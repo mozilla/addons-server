@@ -1,0 +1,2938 @@
+/**
+ * Mozilla-local tweaks to ClearLeft sourced main.css
+ */
+#header #title img {
+    height: 75px
+}
+.firefox #header #title strong {
+    color: #D64203;
+}
+
+.with-js .hide-with-js { display: none }
+.show-with-js { display: none }
+.with-js .show-with-js { display: block }
+.clearboth { clear: both; }
+
+/**
+ * This is a wtf I found on the collector_features page.  If your page looks
+ * like
+ *   <div class=primary />
+ *   <div class=secondary />
+ * then the default clear: both on .secondary will put .secondary content
+ * *under* .primary, not beside.  It works if you put the .secondary div first
+ * in your code, but that's wrong.
+ */
+.secondary {
+    clear: left;
+}
+
+.categories ul {
+    padding: 1em;
+}
+
+#search-query .query-label {
+    color: #000;
+    position: absolute;
+    left: 2.5em;
+    display: none;
+}
+.hasJS #search-query .query-label {
+    display: block;
+}
+
+.html-rtl #search-query .query-label {
+    left: auto;
+    right: 2.5em;
+}
+
+.primary.full,
+.secondary.full {
+    width: 100%;
+}
+
+/** addon listings */
+#addon-list-options ul {
+    float: none;
+    margin: 0 1em;
+}
+#addon-list-options ul li {
+    margin: 0 .5em;
+}
+#addon-list-options ul li.perpage {
+    float: right;
+}
+.html-rtl #addon-list-options ul li.perpage {
+    float: left;
+}
+#addon-list-options ul li.perpage div {
+    display: block;
+    line-height: 2em;
+}
+
+/**
+ * Fix for bug 494070.  The default width is 50%.  I'm assuming
+ * pagination will have most of the line, so we can give it more space.
+ * Only tested on collections listing and detail pages.
+ */
+ol.pagination {
+    width: 70%;
+}
+
+/* clearleft's category padding is 20px */
+li.sub-category {
+    padding-left:30px
+}
+
+.html-rtl li.sub-category {
+    padding-left: 0;
+    padding-right: 30px;
+}
+
+p.install-button {
+    margin: 0;
+}
+.experimental .install-container {
+    min-width: 10em;
+    margin: .3em .3em .5em .3em;
+}
+.install strong.compatmsg {
+   padding-bottom: 0.5em;
+}
+.install label {
+    font-weight: normal;
+}
+
+.experimental .install .exp-confirm-install {
+}
+.experimental .install .exp-desc {
+}
+
+.teaser-items .item .install {
+    float: left;
+}
+
+.html-rtl .teaser-items .item .install {
+    float: right;
+}
+
+.section-teaser #t-mozilla_shopping {
+    background-image: url(../../img/amo2009/illustrations/shopping-online.jpg);
+}
+.html-rtl .section-teaser #t-mozilla_shopping {
+    background-image: url(../../img/amo2009/illustrations/shopping-online-rtl.jpg);
+}
+.section-teaser .item {
+    margin: 0;
+    padding-top: 1em;
+}
+
+.hasJS .section-teaser .teaser-header {
+    position: relative;
+}
+
+.hasJS .section-teaser .featured-inner {
+    padding-bottom: 3em;
+}
+
+.section-teaser .slideshow-controls {
+    margin:-38px 0 0;
+}
+.section-teaser .addon-view .column {
+    width: 31%;
+}
+.section-teaser .addon-view .lead {
+    padding-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 4.5em;
+}
+.html-rtl .section-teaser .addon-view .lead {
+    margin-left: auto;
+    margin-right: 4.5em;
+}
+
+.section-teaser .addon-view h3 {
+    margin-bottom: 0.2em;
+}
+
+.section-teaser .teaser-header ol li {
+    margin-right: 3.4em;
+}
+
+.hasJS .section-teaser .window {
+    position: relative;
+}
+
+.hasJS .section-teaser .window .teaser-items {
+    position: absolute;
+}
+
+.html-rtl.hasJS .section-teaser .window ol.teaser-items {
+    direction: rtl;
+    left: auto;
+    right: 0;
+}
+
+.html-rtl .column {
+    float: right;
+    margin-left: 0;
+    margin-right: 2%;
+}
+.html-rtl .section-teaser .column {
+    border-left: none;
+    border-right: 1px dotted #A4CFDE;
+}
+.html-rtl .first {
+    margin-right: 0;
+}
+.html-rtl .section-teaser .first {
+    border-right: none;
+}
+.html-rtl .section-teaser .addon-view {
+    background-position: left bottom;
+}
+.html-rtl .section-teaser .addon-view .column {
+    border: none;
+    text-align: right;
+}
+.html-rtl .section-teaser .addon-view .column-inner {
+    padding-left: 0;
+    padding-right: 55px;
+}
+.html-rtl .section-teaser .column p, .html-rtl .section-teaser .column h3 {
+    margin-left: 0;
+    margin-right: 1em;
+}
+.html-rtl .section-teaser .column p.install-button {
+    margin-right: 0;
+}
+.html-rtl .section-teaser .teaser-header ol li {
+    margin-left: 5em;
+    margin-right: 0;
+    float: right;
+}
+.html-rtl .section-teaser .teaser-header ol li:last-child {
+    margin-left: 0;
+}
+.html-rtl .section-teaser .prev,
+.html-rtl .section-teaser .next {
+    right: auto;
+    left: 8px;
+    background-position: 0 0;
+}
+.html-rtl .section-teaser .prev {
+    left: auto;
+    right: 8px;
+    background-position: 0 -150px;
+}
+.html-rtl .section-teaser .active.next {
+    background-position: 0 -50px;
+}
+.html-rtl .section-teaser .active.prev {
+    background-position: 0 -200px;
+}
+.html-rtl .section-teaser .active.next:focus,
+.html-rtl .section-teaser .active.next:hover {
+    background-position: 0 -100px;
+}
+.html-rtl .section-teaser .active.prev:focus,
+.html-rtl .section-teaser .active.prev:hover {
+    background-position: 0 -250px;
+}
+
+/* Translation Box Element */
+.graybox {
+    background-color: #fff;
+    border: 3px solid #c8e8f3;
+    padding: 15px;
+}
+.graybox.errors {
+    background-color: #fff1eb;
+}
+.graybox.spaced {
+    margin-bottom: 10px;
+}
+.rounded {
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+}
+.translation-box h4 {
+    border-bottom: 1px solid #2E5186;
+}
+.translation-box h4 img {
+    float: right;
+    margin-top: 3px;
+}
+.html-rtl .translation-box h4 img {
+    float: left;
+}
+.translation-box .translation-button img {
+    cursor: pointer;
+    float: left;
+    background-color: #EEEEEE;
+    border: 1px solid #EEEEEE;
+    border-bottom: none;
+    padding: 2px 5px 3px;
+    margin: 5px 0 0 10px;
+    height: 1.5em;
+    -moz-border-radius-topleft: 6px;
+    -moz-border-radius-topright: 6px;
+    -webkit-border-top-left-radius: 6px;
+    -webkit-border-top-right-radius: 6px;
+}
+.html-rtl .translation-box .translation-button img {
+    float: right;
+    margin: 5px 10px 0 0;
+}
+.translation-box .translation-button.remove img {
+    float: right;
+}
+.html-rtl .translation-box .translation-button.remove img {
+    float: left;
+}
+.translation-box .translation-button img:hover {
+    background-color: #E4F3FA;
+}
+.translation-box .translation-tab {
+    float: left;
+    margin-right: 2px;
+    background-color: #DDDDDD;
+    text-align: center;
+    padding: 5px;
+    -moz-border-radius-topleft: 6px;
+    -moz-border-radius-topright: 6px;
+    -webkit-border-top-left-radius: 6px;
+    -webkit-border-top-right-radius: 6px;
+    width: 3.1em;
+    height: 1.5em;
+    cursor: pointer;
+    border-bottom: 1px solid #FFFFFF;
+}
+.html-rtl .translation-box .translation-tab {
+    float: right;
+    margin-right: auto;
+    margin-left: 2px;
+}
+.translation-box .translation-tab.selected {
+    border: 1px solid #2E5186;
+    background-color: #C8E8F3;
+    border-bottom: none;
+    color: #1D587F;
+}
+.translation-box .translation-tab:hover {
+    text-decoration: underline;
+}
+.translation-box .translation-area {
+    clear: both;
+    margin: 0;
+}
+.translation-box .translation-maxlength {
+    text-align: right;
+    display: none;
+}
+.html-rtl .translation-box .translation-maxlength {
+    text-align: left;
+}
+.translation-box .translation-maxlength.selected {
+    display: block;
+}
+.translation-box .translation-maxlength img {
+    display: none;
+}
+.translation-box .translation-maxlength.over {
+    color: #CC3333;
+}
+.translation-box .translation-maxlength.over img {
+    display: inline;
+    vertical-align: middle;
+}
+.translation-box .translation-maxlength span {
+    font-weight: bold;
+}
+.translation-box .input {
+    border: 1px solid #2E5186;
+    margin: 0;
+    -moz-border-radius-bottomleft: 6px;
+    -moz-border-radius-bottomright: 6px;
+    -webkit-border-bottom-left-radius: 6px;
+    -webkit-border-bottom-right-radius: 6px;
+    width: 100%;
+    display: none;
+}
+.translation-box .input.selected {
+    display: block;
+}
+.translation-newlocale-container,
+.translation-deletelocale-container,
+.translation-help-container,
+.translation-error-container {
+    display: none;
+}
+.translation-newlocale,
+.translation-deletelocale {
+    border: 1px solid #1D587F;
+    margin: 0;
+    -moz-border-radius-bottomleft: 6px;
+    -moz-border-radius-bottomright: 6px;
+    -webkit-border-bottom-left-radius: 6px;
+    -webkit-border-bottom-right-radius: 6px;
+    width: 100%;
+    height: 100px;
+    display: none;
+}
+.translation-deletelocale.textarea {
+    position: absolute;
+    z-index: 10;
+}
+.translation-newlocale.selected,
+.translation-deletelocale {
+    display: block;
+}
+.translation-newlocale .padded,
+.translation-deletelocale .padded,
+.translation-help .padded {
+    padding: 15px;
+}
+.translation-newlocale .buttons,
+.translation-deletelocale .buttons {
+    text-align: center;
+    margin: 10px;
+}
+.translation-help {
+    background-color: #def1f8;
+    margin-bottom: 10px;
+    display: none;
+    border: 1px solid #c8e8f3;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+}
+.graybox .error-message {
+    background: transparent url('../../img/developers/exclamation.png') no-repeat 5px 50%;
+    color: red;
+    padding: 5px 0 5px 30px;
+}
+.html-rtl .graybox .error-message {
+    background-position: 100% 50%;
+    padding: 5px 25px 5px 0;
+}
+
+
+/** Notification Box Element */
+.notification-box {
+    display: block;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #021437;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    background-color: #C8E8F3;
+}
+.notification-box.error {
+    border-color: #C63717;
+    background-color: #FFA5A5;
+}
+.notification-box h2 {
+    margin: 0;
+    padding: 10px 0 0 60px;
+    font-size: 130%;
+    line-height: 1.5em;
+    min-height: 38px;
+    color: #444444;
+    background: url(../../img/amo2009/notifications/sprite.png) no-repeat top left;
+}
+.html-rtl .notification-box h2 {
+    padding-left: 0;
+    padding-right: 60px;
+    background-position: top right;
+}
+.notification-box.notification h2 {
+    padding: 0;
+    min-height: 0;
+    background: none;
+}
+.notification-box.info h2 {
+    background-position: 0 -348px;
+}
+.html-rtl .notification-box.info h2 {
+    background-position: right -348px;
+}
+.notification-box.success h2 {
+    background-position: 0 -546px;
+}
+.html-rtl .notification-box.success h2 {
+    background-position: right -546px;
+}
+.notification-box.warning h2 {
+    background-position: 0 -744px;
+}
+.html-rtl .notification-box.warning h2 {
+    background-position: right -744px;
+}
+.notification-box.error h2 {
+    color: #C63717;
+    background-position: 0 -150px;
+}
+.html-rtl .notification-box.error h2 {
+    background-position: right -150px;
+}
+
+/** jQuery UI tabs */
+.ui-tabs-hide {
+    display: none !important;
+}
+.ui-tabs-nav {
+    list-style: none;
+    margin: 0;
+    padding: 0 0 0 3px;
+}
+.ui-tabs-nav:after { /* clearing without presentational markup, IE gets extra treatment */
+    display: block;
+    clear: both;
+    content: " ";
+}
+.ui-tabs-nav li {
+    float: left;
+    margin: 0 0 0 2px;
+    font-weight: bold;
+}
+.ui-tabs-nav a, .ui-tabs-nav a span {
+    float: left; /* fixes dir=ltr problem and other quirks IE */
+    padding: 0 12px;
+    background-color: #26395A;
+}
+.ui-tabs-nav a {
+    margin: 5px 0 0; /* position: relative makes opacity fail for disabled tab in IE */
+    padding-left: 0;
+    background-position: 100% 0;
+    text-decoration: none;
+    white-space: nowrap; /* @ IE 6 */
+    outline: 0; /* @ Firefox, prevent dotted border after click */
+}
+.ui-tabs-nav a:link, .ui-tabs-nav a:visited {
+    color: #fff;
+}
+.ui-tabs-nav .ui-tabs-selected a {
+    position: relative;
+    top: 1px;
+    z-index: 2;
+    margin-top: 0;
+    background-position: 100% -23px;
+}
+.ui-tabs-nav a span {
+    padding-top: 1px;
+    padding-right: 0;
+    height: 20px;
+    background-position: 0 0;
+    line-height: 20px;
+}
+.ui-tabs-nav .ui-tabs-selected a span {
+    padding-top: 0;
+    height: 27px;
+    background-position: 0 -23px;
+    line-height: 27px;
+}
+.ui-tabs-nav .ui-tabs-selected a:link, .ui-tabs-nav .ui-tabs-selected a:visited,
+.ui-tabs-nav .ui-tabs-disabled a:link, .ui-tabs-nav .ui-tabs-disabled a:visited { /* @ Opera, use pseudo classes otherwise it confuses cursor... */
+    cursor: text;
+}
+.ui-tabs-nav a:hover, .ui-tabs-nav a:focus, .ui-tabs-nav a:active,
+.ui-tabs-nav .ui-tabs-unselect a:hover, .ui-tabs-nav .ui-tabs-unselect a:focus, .ui-tabs-nav .ui-tabs-unselect a:active { /* @ Opera, we need to be explicit again here now... */
+    cursor: pointer;
+}
+.ui-tabs-disabled {
+    opacity: .4;
+    filter: alpha(opacity=40);
+}
+.ui-tabs-nav .ui-tabs-disabled a:link, .ui-tabs-nav .ui-tabs-disabled a:visited {
+    color: #000;
+}
+.ui-tabs-panel {
+    border: 1px solid #26395A;
+    padding: 10px;
+    _background: #fff; /* declare background color for container to avoid distorted fonts in IE while fading */
+}
+/*.ui-tabs-loading em {
+    padding: 0 0 0 20px;
+    background: url(loading.gif) no-repeat 0 50%;
+}*/
+/* Additional IE specific bug fixes... */
+* html .ui-tabs-nav { /* auto clear @ IE 6 & IE 7 Quirks Mode */
+    display: inline-block;
+}
+*:first-child+html .ui-tabs-nav  { /* auto clear @ IE 7 Standards Mode - do not group selectors, otherwise IE 6 will ignore complete rule (because of the unknown + combinator)... */
+    display: inline-block;
+}
+
+
+/** Collections Pages */
+
+form.favorite button {
+    text-align: left;
+}
+
+.html-rtl form.favorite button {
+    text-align: right;
+}
+
+blockquote.publisher-comment {
+    border-left: 3px solid #C9E8F3;
+    margin-left: 2em;
+    padding-left: 1em;
+}
+blockquote.publisher-comment p {
+    margin: 0;
+}
+blockquote.publisher-comment p.by {
+    font-style: italic;
+}
+
+/* Collections Add and Edit: common styles */
+.collections-page .submit-button {
+    margin-top: 1em;
+}
+.collections-page .error_message {
+    color: red;
+    font-weight: bold;
+}
+
+/* Collections Add and Edit: add-on autocomplete */
+.collections-page .ac_input {
+    width: 400px;
+}
+.collections-page .ac_results {
+    padding: 0px;
+    border: 1px solid WindowFrame;
+    background-color: Window;
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: 400px;
+}
+
+.collections-page .ac_results ul {
+    width: 100%;
+    list-style-position: outside;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.collections-page .ac_results iframe {
+    display:none;/*sorry for IE5*/
+    display/**/:block;/*sorry for IE5*/
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:-1;
+    filter:mask();
+    width:3000px;
+    height:3000px;
+}
+
+.collections-page .ac_results li {
+    margin: 0px;
+    padding: 2px 5px;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    font: menu;
+    font-size: 12px;
+    overflow: hidden;
+}
+.collections-page .ac_results li img {
+    width: 32px;
+    height: 32px;
+    margin-right: .5em;
+    vertical-align: middle;
+}
+.collections-page .ac_loading {
+    background-image: url('../../img/ajax_loading.gif');
+    background-position: right center;
+    background-repeat: no-repeat;
+}
+.collections-page .ac_over {
+    background-color: Highlight;
+    color: HighlightText;
+}
+
+/* Collections: "add" page */
+#collections-add #addonname {
+    width: 250px;
+}
+#collections-add #selectedaddons {
+    width: 80%;
+    overflow: auto;
+    max-height: 300px;
+}
+#collections-add #selectedaddons > ul {
+    -moz-column-count: 2;
+}
+#collections-add #selectedaddons ul li {
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    line-height: 32px;
+    padding: 5px;
+    overflow: hidden;
+}
+#collections-add #selectedaddons ul li.flash {
+    background-color: #C8E8F3;
+}
+#collections-add #selectedaddons ul li img {
+    vertical-align: middle;
+    margin-right: .5em;
+}
+
+#collections-add #firstaddons,
+#collections-add #selectedaddons {
+    display: none; /* shown with JS */
+}
+
+/* Collections: "edit" page */
+#collections-edit .jsonly {
+    display: none;
+}
+#collections-edit .error, #collections-edit .error_message {
+    color: #f00;
+}
+#collections-edit .coll-addon {
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: solid 1px #C8E8F3;
+}
+#collections-edit .coll-addon blockquote {
+    margin-right: 50px;
+}
+
+#collections-edit .coll-addon img {
+    vertical-align:middle;
+    margin-right: .5em;
+}
+#collections-edit .coll-addon .name {
+    font-weight: bold;
+}
+#collections-edit .coll-addon .added {
+    float: right;
+    font-style: italic;
+}
+#collections-edit .coll-addon a.removeaddon {
+    float: left;
+    margin-top: -25px;
+    margin-left: 40px;
+}
+#collections-edit .coll-addon .editbox {
+    clear: both;
+}
+#collections-edit .coll-addon .editbox textarea {
+    margin-bottom: .5em;
+}
+#collections-edit input#submitbutton {
+    margin: 10px;
+}
+
+/* Collections: "detail" page */
+#collections-detail .manage {
+    padding-right: 1em;
+}
+.html-rtl #collections-detail .manage {
+    padding: 0 0 0 1em;
+}
+
+/* Recently Viewed Collections */
+
+#add-to-recents, #recently-viewed {
+    /* Placeholders for js content, hidden until needed. */
+    display: none;
+}
+
+/** END collections pages */
+
+/** Add to collection module **/
+
+.html-ltr #coll_publish a {
+    float: right;
+}
+.html-rtl #coll_publish a {
+    float: left;
+}
+
+#coll_publish h3 {
+    margin: 0 0 0.5em 0;
+}
+
+#coll_publish h3 label {
+    font-weight: normal;
+    font-size: 0.85em;
+}
+
+#publish_to {
+    width: 100%;
+}
+
+/* Hide "Select a collection..." */
+#publish_to option[value=''] {
+    display: none;
+}
+
+/** END add to collection module **/
+
+/* Search Pages */
+p.addon-search-message {
+    margin-top:2em;
+    color: #777777;
+    font-size: 180%;
+    font-weight: bold;
+    text-align:center;
+    padding-bottom: .5em;
+}
+/** END Search Pages */
+
+/** Add-on display page additions **/
+
+#addon .featured .secondary {
+    margin-bottom: 0;
+    max-width: 205px;
+}
+
+#review-box {
+    padding-bottom: 0;
+}
+
+#review-box button {
+    padding: 0.1em 1em;
+    margin-left: 18%;
+}
+
+h2 span {
+    position:relative;
+    top: -0.35em;
+}
+
+h4.author {
+    position:relative;
+    left:51px;
+    top:-25px;
+    font-weight: normal;
+}
+
+.html-rtl h4.author {
+    left: auto;
+    right: 51px;
+}
+
+h4.author a {
+    font-weight: bold;
+}
+
+.hidden {
+    position: absolute;
+    top: -100000px;
+}
+
+.addon-cats {
+    margin: 0;
+}
+
+.addon-cats li {
+    display: inline;
+}
+
+.addon-cats li:after {
+    content: " | ";
+}
+
+.addon-cats li:last-child:after {
+    content: "";
+}
+
+#addon-summary-wrapper {
+    float: right;
+    width: 100%;
+    margin-left: -25em;
+}
+
+.html-rtl #addon-summary-wrapper {
+    float: left;
+    margin-left: auto;
+    margin-right: -25em;
+}
+
+#addon-summary {
+    margin-left: 230px;
+    float: none;
+    width: auto;
+    display: block;
+}
+
+.html-rtl #addon-summary {
+    margin-left: auto;
+    margin-right: 230px;
+}
+
+.html-rtl .notification #addon-summary {
+    margin: 0;
+}
+
+#addon-summary.condensed {
+    margin-left: 5px;
+    min-height: 30px;
+}
+
+.html-rtl #addon-summary.condensed {
+    margin-left: 0;
+    margin-right: 5px;
+}
+
+#addon-summary .stats {
+    margin: 0;
+    float: none;
+    text-align: left;
+    color: #6FB727;
+}
+
+.html-rtl #addon-summary .stats {
+    text-align: right;
+}
+
+#addon-summary .stats em {
+    font-style: normal;
+    font-weight: bold;
+}
+
+.preview-img {
+    left:-260px;
+    padding:0 0 0 20px;
+    position:absolute;
+    top:0;
+}
+
+.html-rtl .preview-img {
+    left: auto;
+    right: -260px;
+    padding-left: 0;
+    padding-right: 20px;
+}
+
+.updated {
+    color: #666; /* evil */
+}
+
+#addon-summary .rating {
+    left:-240px;
+    top: 160px;
+    position: absolute;
+    font-weight: bold;
+}
+
+.html-rtl #addon-summary .rating {
+    left: auto;
+    right: -240px;
+}
+
+#addon-summary .share-this {
+    clear:left;
+    float:left;
+    left:-240px;
+    position:absolute;
+    width:200px;
+    top: 230px;
+}
+
+.html-rtl #addon-summary .share-this {
+    clear: right;
+    float: right;
+    left: auto;
+    right: -240px;
+}
+
+#addon-summary .stats {
+    position: absolute;
+    left: -240px;
+    top: 180px;
+}
+
+.html-rtl #addon-summary .stats {
+    left: auto;
+    right: -240px;
+}
+
+#addon-summary .install {
+    float: left;
+    text-align: center;
+    -webkit-border-radius: 11px;
+    -moz-border-radius: 11px;
+    border-radius: 11px;
+    padding: 0 3px 3px 3px;
+}
+
+.html-rtl #addon-summary .install {
+    float: right;
+}
+
+#addon-summary .unavailable {
+    border: 1px solid #D2E7EE;
+    padding: 0.3em;
+    width: 10em;
+    background-color: #FFFFFF;
+    color: #666666;
+}
+
+#addon-summary.rec .install {
+    background-color: #efe;
+    border: 1px solid #2a2;
+    padding-top:4px;
+    margin-bottom:3px;
+}
+
+#addon-summary.exp .install{
+    background-color: #fee;
+    border: 1px solid #f66;
+    padding-top:4px;
+    margin-bottom:3px;
+}
+
+#addon-summary .install strong {
+    display: block;
+    font-weight: normal;
+    font-size: 0.85em;
+    line-height: 1em;
+    color: #000;
+    text-shadow: #FFFFFF 1px 1px 1px;
+    clear: left;
+}
+
+.html-rtl #addon-summary .install strong {
+    clear: right;
+}
+
+.share-networks {
+    z-index: 100; /** prevents sharing network dropdown from showing up behind preview thumbnails **/
+}
+
+.featured h4 {
+    clear: both;
+}
+
+#addon-info .item {
+    padding: 1em;
+}
+
+#addon-info a {
+    font-weight: bold;
+}
+
+.app_compat ul {
+    margin: 0;
+}
+
+.prose ul li {
+    margin-left: 1em;
+}
+
+.html-rtl .prose ul li {
+    margin-left: 0;
+    margin-right: 1em;
+}
+
+.privacypolicy {
+    clear: both;
+    font-weight: bold;
+}
+
+.policy-link {
+    clear: both;
+}
+
+.highlight.collections-add p {
+    margin-bottom: 1em;
+}
+
+.hint {
+    font-size: 90%;
+}
+.hint .example{
+    font-style: italic;
+}
+
+/* addons "old versions" page */
+#version-history .listing .item.oldversion {
+    padding-left: 1em;
+}
+
+#version-history .oldversion ul.legal li {
+    padding-left: 20px;
+}
+#version-history .oldversion ul.legal li.license {
+    background: url(../../img/amo2009/icons/script_code_red.png) left no-repeat;
+}
+#version-history .oldversion ul.legal li.source {
+    background: url(../../img/amo2009/icons/page_code.png) left no-repeat;
+}
+
+/* addons "source license" page */
+#version-license pre {
+    max-height: 400px;
+    overflow-y: auto;
+    background-color: #fff;
+    padding: 1em 2em;
+    -moz-border-radius: 8px;
+}
+
+#version-license h2 span {
+    top: auto;
+}
+
+/** END Add-on display page additions **/
+
+/** Review box **/
+#form-review .login, #form-review h3 {
+    display: inline;
+}
+
+#form-review h4, #form-review .selectReplacement  {
+    float: left;
+}
+
+.html-rtl #form-review h4, .html-rtl #form-review .selectReplacement  {
+    float: right;
+}
+
+#form-review .selectReplacement, #form-review .stars {
+    margin: 4px 0 0 5px;
+    clear: none;
+}
+
+#form-review .stars {
+    margin: 1px 0 0 5px;
+    height: 12px;
+}
+
+.html-rtl #form-review .selectReplacement, .html-rtl #form-review .stars {
+    margin-left: 0;
+    margin-right: 5px;
+}
+
+#form-review a {
+    font-weight: bold;
+}
+
+#form-review button {
+    float: right;
+}
+
+.html-rtl #form-review button {
+    float: left;
+}
+
+#form-review p {
+    clear: both;
+}
+
+/** END Review box **/
+
+/** Highlight styles **/
+.highlight a {
+    font-weight: bold;
+}
+
+.highlight .prose {
+    margin: 0;
+}
+
+.highlight .other-author-addons {
+    clear: left;
+    padding-top: 1em;
+}
+
+.highlight .other-author-addons h4 {
+    margin-bottom: 0.1667em;
+}
+
+.highlight .other-author-addons form#addons-author-addons,
+.highlight .other-author-addons ul.xoxo {
+    margin-bottom: 0.5833em;
+}
+
+.highlight .other-author-addons li {
+    margin-bottom: 0;
+}
+
+.html-rtl .highlight .other-author-addons {
+    clear: right;
+}
+
+.highlight h3 label {
+    font-weight: normal;
+}
+
+/** END Highlight styles **/
+
+/** Category dropdown/search container tweaks **/
+
+.stand-alone-options {
+    z-index: 500; /** fixes issue with category dropdown menu appearing *behind* addon detail page images (stacking context bug) **/
+}
+
+/** END Category dropdown/search container tweaks **/
+
+/** Header tweaks **/
+#header {
+    z-index: 600;
+}
+
+/** END header tweaks **/
+
+/** User Edit page **/
+#profile-user .line .edit-picture {
+    float:left;
+}
+.html-rtl #profile-user .line .edit-picture {
+    float:right;
+}
+table#editor-subscriptions {
+    width: 100%;
+    border-collapse: separate;
+}
+table#editor-subscriptions tbody {
+    height: 20em;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+/** END User Edit page **/
+
+/* Get Satisfaction widget */
+div#gsfn_list_widget img { border: none; }
+div#gsfn_list_widget { float:right; font-size: 12px; width: 250px; border: 6px solid #DDD; padding: 5px 5px 25px 20px; margin: 5px 5px 10px 10px;}
+div#gsfn_list_widget a.widget_title { color: #000; display: block; margin-bottom: 10px; font-weight: bold; }
+div#gsfn_list_widget .powered_by { margin-top: 8px; padding-top: 8px; border-top: 1px solid #DDD; }
+div#gsfn_list_widget .powered_by a { color: #333; font-size: 90%; }
+div#gsfn_list_widget div#gsfn_content { }
+div#gsfn_list_widget div#gsfn_content li { text-align:left; margin-bottom:6px; }
+div#gsfn_list_widget div#gsfn_content a.gsfn_link { line-height: 1; }
+div#gsfn_list_widget div#gsfn_content span.time { font-size: 90%; padding-left: 3px; }
+div#gsfn_list_widget div#gsfn_content p.gsfn_summary { margin-top: 2px }
+/** END Get Satisfaction widget */
+
+/* pages/submissionhelp */
+ul.submissionHelp li span.required {
+    font-weight: bold;
+}
+ul.submissionHelp li span.optional {
+    font-style: italic;
+}
+/* END pages/submissionhelp */
+
+/* pages/collector_firstrun */
+form.collector-firstrun-favorite, div.collector-firstrun-favorite {
+    margin-bottom: 1.5em;
+}
+div.collector-firstrun-favorite {
+    clear:both;
+}
+/* END pages/collector_firstrun */
+
+/* Plug-ins browse page */
+.item .baseline img.faq {margin: 0 5px 0 0; float: left;}
+.html-rtl .item .baseline img.faq {margin: 0 0 0 5px; float: right;}
+/* END Plug-ins browse page */
+
+
+/* =Reviews Page */
+
+.review .others-by-user { font-style: italic; display: block; margin-top: 0.5em; font-size: 0.85em }
+.review .others-by-user a { padding-left: 22px;  }
+.review .others-by-user a.loading { background: transparent url(../../img/ajax_loading.gif) no-repeat 2px top }
+.review h2 { margin-bottom: 2px;}
+.review h3 { margin-bottom: 2px;}
+
+.review .hsession { display: inline; }
+.review .reviewed-on { font-size: .8em; margin: .4em 0; }
+
+.others-by-user-load { padding-left: 3em; }
+
+.review-reply { margin-left: 3em; }
+
+.review p.flag-thanks, .review-reply p.flag-thanks { font-weight: bold }
+.review form.flag, .review-reply form.flag { display: block; padding-bottom: 1em }
+.review form.flag label, .review-reply form.flag label { display: block; font-weight: bold }
+.review form.flag .error { color:#f00; }
+
+.with-js .review p.flag-thanks, .with-js .review-reply p.flag-thanks { display: inline }
+.with-js .review form.flag, .with-js .review-reply form.flag { display: inline }
+.with-js .review form.flag label, .with-js .review-reply form.flag label { display: none; }
+
+.review .flag span.loading, .review-reply .flag span.loading { padding-left: 22px; background: transparent url(../../img/ajax_loading.gif) no-repeat 2px top }
+
+/* END =Reviews Page */
+
+.html-rtl .new, .html-rtl .listing-header li {
+  unicode-bidi: embed;
+}
+
+.search-form .basic button img {
+    width: 9px;
+    height: 18px;
+    background-image: url(../../img/amo2009/icons/buttons/go-green.gif);
+}
+.html-rtl .search-form .basic button img {
+    background-image: url(../../img/amo2009/icons/buttons/go-green_rtl.gif);
+}
+
+.html-rtl #advanced-link {
+    right: auto;
+    left: 30px;
+}
+.html-rtl #advanced-link a:link,
+.html-rtl #advanced-link a:visited,
+.html-rtl #advanced-link a:hover,
+.html-rtl #advanced-link a:focus,
+.html-rtl #advanced-link a:active {
+    padding-left: 20px;
+    padding-right: 1em;
+    background-position: 5% -591px;
+}
+.html-rtl .expanded #advanced-link a:link,
+.html-rtl .expanded #advanced-link a:visited,
+.html-rtl .expanded #advanced-link a:hover,
+.html-rtl .expanded #advanced-link a:focus,
+.html-rtl .expanded #advanced-link a:active {
+    background-position: 5% -641px;
+}
+
+.html-rtl .meta .subscribers,
+.html-rtl .meta .addons {
+    float: right;
+}
+.html-rtl .item {
+    clear: right;
+}
+
+/* RTL support for the aux-nav box */
+.html-rtl #aux-nav p.context {
+    float: left;
+    padding-right: auto;
+    padding-left: 1em;
+    right: auto;
+    left: 0;
+}
+.html-rtl.hasJS #aux-nav ul {
+    float: left;
+    padding-right: auto;
+    padding-left: 1em;
+}
+.html-rtl #aux-nav span.greeting {
+    margin-right: auto;
+    margin-left: 1em;
+}
+.html-rtl #aux-nav .settings {
+    margin-right: auto;
+    margin-left: 1em;
+}
+.html-rtl #aux-nav ul.change {
+    padding: 0;
+}
+.html-rtl.hasJS #aux-nav ul.change {
+    background-position: top left;
+    border-right: none;
+    border-left: 3px solid transparent;
+}
+.html-rtl #aux-nav ul.change li {
+    margin-left: auto;
+    margin-right: 1em;
+}
+.html-rtl.hasJS #aux-nav ul.change li {
+    background-position: top right;
+    margin-left: 0;
+    margin-right: 0;
+}
+.html-rtl #aux-nav ul.change li li {
+    background-position: top right;
+}
+.html-rtl.hasJS #aux-nav .change li ul li {
+    text-align: right;
+}
+.html-rtl.hasJS #aux-nav .change li ul li a {
+    background-position: top right;
+    padding-left: 0.3em;
+    padding-right: 45px;
+}
+.html-rtl.hasJS #aux-nav .change li ul li.firefox a {
+    background-position: 95% 0;
+}
+.html-rtl.hasJS #aux-nav .change li ul li.thunderbird a {
+    background-position: 95% -50px;
+}
+.html-rtl.hasJS #aux-nav .change li ul li.sunbird a {
+    background-position: 95% -100px;
+}
+.html-rtl.hasJS #aux-nav .change li ul li.seamonkey a {
+    background-position: 95% -150px;
+}
+.html-rtl.hasJS #aux-nav ul.change a.controller:link,
+.html-rtl.hasJS #aux-nav ul.change a.controller:visited,
+.html-rtl.hasJS #aux-nav ul.change a.controller:focus,
+.html-rtl.hasJS #aux-nav ul.change a.controller:hover,
+.html-rtl.hasJS #aux-nav ul.change a.controller:active {
+    padding-left: 20px;
+    padding-right: 1em;
+    background-position: 5% -65px;
+}
+.html-rtl.hasJS #aux-nav ul.change a.controller:focus,
+.html-rtl.hasJS #aux-nav ul.change a.controller:hover,
+.html-rtl.hasJS #aux-nav ul.change a.controller:active {
+    background-position: 5% -105px;
+}
+.html-rtl.hasJS #aux-nav ul.change ul {
+    right: auto;
+    left: -3px;
+    border-right: none;
+    border-left: 3px solid #A2C2D7;
+}
+.html-rtl #aux-nav ul.tools {
+    padding: 0;
+}
+.html-rtl.hasJS #aux-nav ul.tools {
+    margin: 0;
+    border-right: none;
+    border-left: 3px solid transparent;
+}
+.html-rtl #aux-nav ul.tools li {
+    margin-left: auto;
+    margin-right: 1em;
+}
+.html-rtl.hasJS #aux-nav ul.tools li {
+    margin-left: auto;
+    margin-right: 0;
+}
+.html-rtl #aux-nav ul.tools li li {
+    background-position: top right;
+}
+.html-rtl.hasJS #aux-nav .tools li ul li {
+    text-align: right;
+    margin: 0;
+    padding-left: 0.3em;
+    padding-right: 1em;
+}
+.html-rtl.hasJS #aux-nav ul.tools a.controller:link,
+.html-rtl.hasJS #aux-nav ul.tools a.controller:visited,
+.html-rtl.hasJS #aux-nav ul.tools a.controller:focus,
+.html-rtl.hasJS #aux-nav ul.tools a.controller:hover,
+.html-rtl.hasJS #aux-nav ul.tools a.controller:active {
+    padding-left: 20px;
+    padding-right: 1em;
+    background-position: 5% -65px;
+}
+.html-rtl.hasJS #aux-nav ul.tools a.controller:focus,
+.html-rtl.hasJS #aux-nav ul.tools a.controller:hover,
+.html-rtl.hasJS #aux-nav ul.tools a.controller:active {
+    background-position: 5% -105px;
+}
+.html-rtl.hasJS #aux-nav ul.tools ul {
+    right: auto;
+    left: -3px;
+    border-right: none;
+    border-left: 3px solid #A2C2D7;
+}
+.html-rtl.hasJS #aux-nav ul.expanded {
+    border-right: none;
+    border-left: 3px solid #A2C2D7;
+}
+
+/** Frozen button styles **/
+.exp-loggedout .button.positive:link,
+.exp-loggedout .button.positive:visited,
+.exp-loggedout .button.positive:hover,
+.exp-loggedout .button.positive:active {
+    background: none #555;
+    border-color: #999;
+    cursor: default;
+    opacity: 0.3;
+    filter: (opacity=30);
+}
+
+.exp-loggedout .button.positive:link img,
+.exp-loggedout .button.positive:visited img,
+.exp-loggedout .button.positive:hover img,
+.exp-loggedout .button.positive:active img {
+    border-right: 1px solid #999;
+}
+
+/** END Frozen button styles **/
+
+/** Adding focus outline to buttons **/
+a:focus.button {
+    outline-color: #73B9FF;
+}
+
+a:focus.button.neutral {
+    outline-color: #E5A365;
+}
+
+a:focus.button.positive {
+    outline-color: #8CC553;
+}
+
+a:focus.button.negative {
+    outline-color: #EC7F82;
+}
+
+.item h3, .item h4 {
+    overflow: visible;
+}
+
+/** END Adding focus outlines to buttons **/
+
+
+/** Search form **/
+
+.html-rtl .search-form .basic input,
+.search-form .basic input {
+    text-indent: 0;
+    width: 40%;
+}
+
+.search-form .basic input {
+    padding-left: 2em;
+}
+
+.html-rtl .search-form .basic input {
+    padding-left: 0;
+    padding-right: 2em;
+}
+
+/** END Search form **/
+
+/** FAQ and Validation Pages **/
+
+dl.faq dt:target, dl.validation dt:target { color: #df731b; }
+
+/** END FAQ / Validation Page **/
+
+
+/** Installation instruction overlays (bug 495124) **/
+.app_install {
+    margin: 0 auto;
+}
+
+#app_install-popup-container {
+    z-index: 1000;
+}
+
+.app_install-popup {
+    width: 32em;
+    background: #fbfefb;
+    border: 4px solid #b4e4b4;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    text-align: left;
+    z-index: 10001;
+    display: none;
+}
+
+.html-rtl .app_install-popup {
+    text-align: right;
+}
+
+.app_install-popup-inner {
+    padding: 1em;
+    border: 1px solid #256350;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.app_install-popup h3 {
+    margin-top: 0;
+}
+
+.app_install-popup ol,
+.app_install-popup p {
+    margin-top: 1.5em;
+    margin-bottom: 0;
+}
+
+.html-rtl .app_install-popup ol {
+    margin-left: 0;
+    margin-right: 2em;
+}
+
+.html-rtl .app_install-popup ol {
+    margin-top: 1.5em;
+    margin-bottom: 0;
+}
+
+.app_install-popup .close {
+    font-weight: bold;
+    text-align: right;
+}
+
+.html-rtl .app_install-popup .close {
+    text-align: left;
+}
+/** END Installation instruction overlays **/
+
+/** Advanced search form **/
+.expanded-search-form .advanced {
+    display: none;
+    padding: 1em;
+}
+
+.search-form fieldset {
+    margin: 0;
+}
+/** END Advanced search form **/
+
+/**
+ * Review add page styles.
+ */
+.review_add .stars {
+    /* override the general .stars style in main.css */
+    background: transparent;
+    float: none;
+    margin: 0;
+    text-indent: 0;
+    width: auto;
+}
+
+.review_add .review-body-label {
+}
+.review_add #ReviewBody {
+    width: 65%;
+}
+
+.stars input {
+    margin: 0 4px;
+}
+
+.stars {
+    zoom:1;
+}
+
+.stars .cancel,
+.stars .star{
+    float: left;
+    width: 12px;
+    height: 14px;
+    overflow: hidden;
+    text-indent: -999em;
+    cursor: pointer;
+}
+
+.html-rtl .stars .star,
+.html-rtl .stars .cancel {
+    float:right;
+}
+
+.stars .cancel a,
+.stars .cancel a {
+    background: url(../../img/ratings_images.gif) no-repeat;
+}
+
+.stars .star a,
+.stars .star a {
+    background: url(../../img/ratings_images.gif) no-repeat;
+}
+
+.stars.cancel a,
+.stars .star a,
+.stars .cancel a,
+.stars .star a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-position: 0 -25px;
+    border:1 solid #FF0000;
+}
+
+.stars .cancel a,
+.stars.cancel a {
+    background-position: 0 2px;
+}
+
+.stars div.star_hover a,
+.stars div.star_hover a {
+    background-position: 0 -38px;
+}
+
+.stars div.cancel_on a,
+.stars div.cancel_on a {
+    background-position: 0 -11px;
+}
+
+.stars div.star_on a,
+.stars div.star_on a {
+    background-position: 0 -38px;
+}
+
+/* Clearfix! */
+#builder li:after,
+.block-row:after,
+.barometer:after,
+.vcard:after,
+#addon-install:after,
+.stand-alone-options:after,
+.stars:after, .notification:after,
+.featured-inner:after,
+.addon-info:after {
+    content: ".";
+    clear: both;
+    display: block;
+    visibility: hidden;
+    height: 0;
+    overflow: hidden;
+}
+
+/**
+ * Category landing page styles.
+ */
+.category_landing .search-form {
+    margin-bottom: 0;
+}
+.category_landing [role=main] {
+    width: 100%;
+}
+#featured_addons {
+    z-index: 2;
+    position: relative;
+}
+#featured_addons ul {
+    list-style-type: none;
+    margin: 0; padding: 0;
+}
+#featured_addons ul li {
+    display: block;
+    float: left;
+    margin: 0; padding: 0 8px 8px 0;
+}
+.html-rtl #featured_addons ul li {
+    float: right;
+    padding: 0 0 8px 8px;
+}
+#featured_addons ul li.addon_block_wrapper {
+    width: 32%;
+}
+#featured_addons ul li div.item {
+    margin: 0;
+    padding: 0;
+}
+#featured_addons ul li div.item .unavailable {
+    width: 90%;
+}
+#featured_addons ul li div.addon_block
+{
+    display: block;
+    position: relative;
+    background: #f9f9f9 url(../../img/sprite.png?20090430) no-repeat scroll left -968px;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    border: 1px solid #ececec;
+    -moz-border-radius-topleft: 8px;
+    -moz-border-radius-topright: 8px;
+    -moz-border-radius-bottomleft: 8px;
+    -moz-border-radius-bottomright: 8px;
+    -webkit-border-top-left-radius: 8px;
+    -webkit-border-top-right-radius: 8px;
+    -webkit-border-bottom-left-radius: 8px;
+    -webkit-border-bottom-right-radius: 8px;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    padding: 0 0 0 0px;
+}
+#featured_addons ul li div.addon_block .name {
+    font-size: 138%;
+    margin: 8px 155px 0px 0;
+    padding: 0 0 0 8px;
+    line-height: 1.25em;
+}
+.html-rtl #featured_addons ul li div.addon_block .name {
+    margin: 8px 0 0 155px;
+    padding: 0 8px 0 0;
+}
+#featured_addons ul li div.addon_block .name a {
+    color: black;
+    text-decoration: none;
+}
+
+#featured_addons ul li div.addon_block .preview {
+    position: absolute;
+    top: 8px; right: 9px;
+}
+.html-rtl #featured_addons ul li div.addon_block .preview {
+    right: auto;
+    left: 9px;
+}
+#featured_addons ul li div.addon_block .preview img {
+    max-width: 138px;
+}
+
+#featured_addons ul li div.addon_block .summary {
+    font-size: 93%;
+    line-height: 1.5em;
+    margin: 0px 149px 0px 0px;
+    padding: 0 0 0 8px;
+    max-height: 4.5em;
+    overflow: hidden;
+}
+.html-rtl #featured_addons ul li div.addon_block .summary {
+    margin: 0 0 0 149px;
+    padding: 0 8px 0 0;
+}
+
+#featured_addons ul li div.addon_block .authors {
+    font-size: 100%;
+    line-height: 1.5em;
+    margin: 0 145px 0 0;
+    padding: 0 0 0 8px;
+    color: #2363a5;
+}
+.html-rtl #featured_addons ul li div.addon_block .authors {
+    margin: 0 0 0 145px;
+    padding: 0 8px 0 0;
+}
+#featured_addons ul li div.addon_block .authors a {
+    text-decoration: none;
+}
+#featured_addons ul li div.addon_block .rating {
+    font-size: 10px;
+    overflow: hidden;
+    margin: 2px 0 0 0;
+    padding: 0 0 0 8px;
+}
+.html-rtl #featured_addons ul li div.addon_block .rating {
+    padding: 0 8px 0 0;
+}
+.rating span {
+    display: block;
+    background: transparent url(../../img/ratings/5stars.png) no-repeat scroll top left;
+    width: 68px; height: 12px;
+    text-indent: -1000em;
+}
+.rating .stars-1 {
+    background-image: url(../../img/ratings/1stars.png)
+}
+.rating .stars-2 {
+    background-image: url(../../img/ratings/2stars.png)
+}
+.rating .stars-3 {
+    background-image: url(../../img/ratings/3stars.png)
+}
+.rating .stars-4 {
+    background-image: url(../../img/ratings/4stars.png)
+}
+.rating .stars-5 {
+    background-image: url(../../img/ratings/5stars.png)
+}
+
+
+#featured_addons div.addon_block .install-container {
+    position: absolute;
+    left: 7px;
+    bottom: 7px;
+}
+.html-rtl #featured_addons div.addon_block .install-container {
+    left: auto;
+    right: 7px;
+}
+.category_landing [role=main] div.addons_column {
+    float: left;
+    padding: 0 9px 8px 0;
+    width: 32%;
+}
+.html-rtl .category_landing [role=main] div.addons_column {
+    float: right;
+    padding: 0 0 8px 9px;
+}
+
+.category_landing [role=main] div.addons_column.last {
+    float: left;
+    padding: 0 0 8px 0;
+}
+.html-rtl .category_landing [role=main] div.addons_column.last {
+    float: right;
+}
+
+.category_landing [role=main] div.addons_column h3 {
+    background: #acacac;
+    -moz-border-radius-topleft: 8px;
+    -moz-border-radius-topright: 8px;
+    -webkit-border-top-left-radius: 8px;
+    -webkit-border-top-right-radius: 8px;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    margin: 0px;
+    font-family: "Trebuchet MS",Helvetica,"Helvetica Neue",Arial,sans-serif;
+    line-height: 1.6em;
+}
+.category_landing [role=main] div.addons_column h3 span {
+    padding: 0 8px 0 8px;
+    text-transform: uppercase;
+    font-size: 14px;
+    color: #fff;
+    font-weight: bold;
+}
+.category_landing [role=main] div.addons_column ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.category_landing [role=main] div.addons_column ul li {
+    position: relative;
+    border-left: 1px solid #c9c8c9;
+    border-right: 1px solid #c9c8c9;
+    margin: 0;
+
+}
+.category_landing [role=main] div.addons_column ul li.odd {
+}
+.category_landing [role=main] div.addons_column ul li.even {
+    background: #f0efef;
+}
+.category_landing [role=main] div.addons_column ul li a {
+    height: 50px;
+    display: block;
+    text-decoration: none;
+    border: 1px solid transparent;
+    background: transparent url(../../img/sprite.png?20090602) no-repeat scroll right -2001px;
+}
+.html-rtl .category_landing [role=main] div.addons_column ul li a {
+    background-position: -363px -558px;
+}
+.category_landing [role=main] div.addons_column ul li a:hover {
+    border-top: 1px solid #000;
+    border-left: 1px solid #000;
+    border-bottom: 1px solid #000;
+    background: transparent url(../../img/sprite.png?20090602) no-repeat scroll right -2051px;
+}
+.html-rtl .category_landing [role=main] div.addons_column ul li a:hover {
+    border-left: 1px solid transparent;
+    border-right: 1px solid #000;
+    background-position: -363px -670px;
+}
+.category_landing [role=main] div.addons_column ul li a img.icon {
+    position: absolute;
+    top: 6px; left: 6px;
+}
+.html-rtl .category_landing [role=main] div.addons_column ul li a img.icon {
+    left: auto;
+    right: 6px;
+}
+.category_landing [role=main] div.addons_column ul li a .name {
+    display: block;
+    padding: 4px 15px 0 0;
+    margin-left: 52px;
+    color: #000;
+    font-size: 116%;
+    line-height: 1.25em;
+    height: 1.25em;
+    overflow: hidden;
+}
+.html-rtl .category_landing [role=main] div.addons_column ul li a .name {
+    padding: 4px 0 0 15px;
+    margin-left: 0;
+    margin-right: 52px;
+}
+
+.category_landing [role=main] div.addons_column ul li a .rating {
+   margin-left: 42px;
+   padding: 0 0 4px 0;
+   display: block;
+}
+.html-rtl .category_landing [role=main] div.addons_column ul li a .rating {
+    margin-left: 0;
+    margin-right: 42px;
+    padding: 0 8px 0 0;
+}
+
+.category_landing [role=main] div.addons_column ul li a .meta {
+    display: block;
+    margin-left: 52px;
+    font-size: 93%;
+    color: #777;
+    position: absolute;
+    bottom: 6px;
+}
+.html-rtl .category_landing [role=main] div.addons_column ul li a .meta {
+    margin-left: 0;
+    margin-right: 52px;
+}
+
+.category_landing [role=main] div.addons_column .view-all {
+    color: #fff;
+    font-weight: bold;
+    background: #acacac;
+    -moz-border-radius-bottomleft: 8px;
+    -moz-border-radius-bottomright: 8px;
+    -webkit-border-bottom-left-radius: 8px;
+    -webkit-border-bottom-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    padding: 2px 0 2px 9px;
+
+}
+.html-rtl .category_landing [role=main] div.addons_column .view-all {
+    padding: 2px 9px 2px 0;
+}
+
+.category_landing [role=main] div.addons_column .view-all a:link,
+.category_landing [role=main] div.addons_column .view-all a:visited,
+.category_landing [role=main] div.addons_column .view-all a:hover,
+.category_landing [role=main] div.addons_column .view-all a:active {
+    color: #fff;
+    text-decoration: none;
+    font-size: 93%;
+}
+
+.category_landing [role=main] div.addons_column .view-all a:hover {
+    text-decoration: underline;
+}
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+
+.clearfix {
+    display: inline-block;
+}
+
+html[xmlns] .clearfix {
+    display: block;
+}
+
+* html .clearfix {
+    height: 1%;
+}
+
+/* Modal collection subscription box, based on jqModal styling. */
+.modal-subscription {
+    display: none;
+    position: fixed;
+    top: 17%;
+    left: 50%;
+    margin-left: -20em;
+    width: 40em;
+}
+
+/* Turn off notification box colors. */
+.modal-subscription .notification-box {
+    background: none;
+    border: none;
+}
+
+/* The long description. */
+.modal-subscription .notification-box div {
+    margin-left: 60px; /* the offset from the icon */
+    padding-bottom: .5em;
+    border-bottom: 2px dotted #b4dfee;
+}
+
+/* The short message. */
+.modal-subscription .notification-box h2 {
+    margin-bottom: 0.5em;
+}
+
+.modal-subscription .footer {
+    margin-left: 5.3em; /* offset to match the text indent */
+    margin-top: -0.5em;
+}
+
+.modal-subscription .bother {
+    float: right;
+    padding-right: 10px; /* matches the notification element */
+}
+
+.modal-subscription .bother label {
+    font-weight: normal;
+}
+
+.jqmOverlay {
+    background-color: #000;
+}
+
+/** END Modal collection box. */
+
+/*** =Dictionaries ***/
+#dictionaries { background-color: #f7fafc; border: 1px solid #eef1f3; -moz-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px; }
+#dictionaries th, #dictionaries td { border-bottom: 1px solid #eee; }
+#dictionaries tbody tr.alt th, #dictionaries tbody tr.alt td { background-color: #fff; }
+#dictionaries { clear: both; padding: 10px 15px; }
+#dictionaries table { width: 100%; }
+#dictionaries th, #dictionaries td { padding: 6px 12px; }
+#dictionaries td p { margin-bottom: 0; }
+#dictionaries tbody th { font-weight: bold; }
+/*** END =Dictionaries ***/
+
+/* Search engines & Themes Landing pages */
+.secondary h3.compact {
+    margin-bottom: 12px;
+}
+.compact {
+    margin: 0px;
+}
+/* END Search engines & Themes Landing pages */
+
+/* Search engines & Themes Landing pages */
+.secondary h3.compact-bottom {
+    margin-bottom: 6px;
+}
+/* END Search engines & Themes Landing pages */
+
+/** Footer language selector **/
+#language {
+    margin: 0 0.5em 0 0;
+}
+/** END Footer language selector **/
+
+/*** =Browse Thumbs ***/
+.personas .primary h2,
+.browse_thumbs .primary h2 {
+    margin-bottom: 0;
+}
+.personas .primary h3,
+.browse_thumbs .primary h3 {
+    margin-top: 0;
+}
+.browse_thumbs .featured {
+    background: transparent;
+}
+.browse_thumbs ul.thumbs {
+    margin: 0;
+    padding: 0;
+}
+.browse_thumbs ul.thumbs li.thumb {
+    position: relative;
+    width: 24.5%;
+    float: left;
+}
+.browse_thumbs ul.thumbs li.thumb div.thumb_item {
+    display: block;
+    position: relative;
+    margin: 6px 4px 6px 4px;
+    background: #f9f9f9 url(../../img/sprite.png?20090430) no-repeat scroll left -968px;
+    min-height: 220px;
+    border: 1px solid #ececec;
+    -moz-border-radius-topleft: 8px;
+    -moz-border-radius-topright: 8px;
+    -moz-border-radius-bottomleft: 8px;
+    -moz-border-radius-bottomright: 8px;
+    -webkit-border-top-left-radius: 8px;
+    -webkit-border-top-right-radius: 8px;
+    -webkit-border-bottom-left-radius: 8px;
+    -webkit-border-bottom-right-radius: 8px;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    padding: 0 0 0 0px;
+}
+.browse_thumbs ul.thumbs li.thumb .flag {
+    position: absolute;
+    top: 2px;
+    left: 8px;
+    padding: 0px;
+    font-size: 80%;
+}
+.html-rtl .browse_thumbs ul.thumbs li.thumb .flag {
+    left: auto;
+    right: 8px;
+}
+.browse_thumbs ul.thumbs li.rec div.thumb_item .flag {
+}
+.browse_thumbs ul.thumbs li.rec div.thumb_item .flag a {
+    color: #360;
+}
+.browse_thumbs ul.thumbs li.rec div.thumb_item {
+    background-color: #efe;
+}
+.browse_thumbs ul.thumbs li.exp div.thumb_item .flag {
+}
+.browse_thumbs ul.thumbs li.exp div.thumb_item .flag a {
+    color: #900;
+}
+.browse_thumbs ul.thumbs li.exp div.thumb_item {
+    background-color: #fee;
+}
+.browse_thumbs ul.thumbs li.thumb .name {
+    margin: 8px 0px 0px 0;
+    padding: 0 0 0 8px;
+    line-height: 1.25em;
+    margin: 0;
+    padding: 10px 0 0 10px;
+}
+.html-rtl .browse_thumbs ul.thumbs li.thumb .name {
+    left: auto;
+    right: 10px;
+}
+.browse_thumbs ul.thumbs li.thumb .name a {
+    color: #000;
+}
+.browse_thumbs ul.thumbs li.thumb .meta {
+    margin: 0;
+    padding: 0 0 0 10px;
+    font-size: 93%;
+    color: #777;
+    bottom: 4px;
+    left: 10px;
+}
+.html-rtl .browse_thumbs ul.thumbs li.thumb .meta {
+    left: auto;
+    right: 10px;
+}
+.browse_thumbs ul.thumbs li.thumb div.thumb_item .img {
+    text-align: center;
+    border:1px solid #CCCCCC;
+    margin: 1.5em 8px 0 8px;
+    overflow: hidden;
+}
+.browse_thumbs ul.thumbs li.thumb div.thumb_item .img img {
+    max-height: 135px;
+}
+.browse_thumbs .search-form {
+    margin-bottom: 0;
+}
+.browse_thumbs .secondary {
+    clear: both;
+}
+.browse_thumbs .subcategories li {
+    margin: 0.2em;
+}
+.browse_thumbs .subcategories li.sub {
+    margin-left: 1em;
+}
+.browse_thumbs .subcategories li.selected {
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid #001133;
+    background-color: #223355;
+    padding: 0 3px 0 3px;
+}
+.browse_thumbs .subcategories li.selected a {
+    color: #fff;
+}
+.subcategories .items {
+    color: white;
+    background-color: #94BFCE;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    border-radius: 7px;
+    margin-left: 0.1em;
+    padding: 1px 5px;
+    font-size: 0.856em;
+    font-weight: normal;
+}
+.browse_thumbs ul.thumbs li.thumb div.thumb_item.incompatible {
+    opacity:0.3;
+    filter:alpha(opacity=30);
+}
+.browse_thumbs ul.thumbs li.thumb div.overlay {
+    display: none;
+    min-width: 30%;
+    max-width: 100%;
+    position: absolute;
+    top: 30%;
+    padding: 10px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, .5);
+}
+.browse_thumbs ul.thumbs li.thumb div.overlay p {
+    text-align: center;
+    margin: 0;
+}
+.browse_thumbs ul.thumbs li.thumb div.overlay a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+}
+/*** END =Browse Thumbs ***/
+
+#license a {
+    font-size: 0.9em;
+}
+
+/**
+ * Tag classes, from 1 to 10, 10 being the largest
+ */
+ul.tag-cloud li {float: left; padding: 3px;}
+ul.tag-cloud:after {
+    content: ".";
+    clear: both;
+    display: block;
+    visibility: hidden;
+    height: 0;
+    overflow: hidden;
+}
+
+.tagLevel1 {font-size: 1em;}
+.tagLevel2 {font-size: 1.2em;}
+.tagLevel3 {font-size: 1.4em;}
+.tagLevel4 {font-size: 1.6em;}
+.tagLevel5 {font-size: 1.8em;}
+.tagLevel6 {font-size: 2em;}
+.tagLevel7 {font-size: 2.2em;}
+.tagLevel8 {font-size: 2.4em;}
+.tagLevel9 {font-size: 2.6em;}
+.tagLevel10 {font-size: 3em;}
+
+/** tag styles **/
+.addon-tags .usertag .tagitem {
+    padding-left: 20px;
+    background-image: url(../../img/amo2009/icons/icons.png);
+    background-repeat: no-repeat;
+    background-position: 0px -600px;
+}
+
+.html-rtl .addon-tags .usertag .tagitem {
+    background-position: 100% -600px;
+    padding-left: 0;
+    padding-right: 20px;
+}
+
+.addon-tags .developertag .tagitem {
+    padding-left: 20px;
+    background-image: url(../../img/amo2009/icons/icons.png);
+    background-repeat: no-repeat;
+    background-position: 0px -1400px;
+}
+
+.html-rtl .addon-tags .developertag .tagitem {
+    background-position: 100% -1400px;
+    padding-left: 0;
+    padding-right: 20px;
+}
+
+
+.addon-tags li .removetag {
+    display:none;
+}
+.addon-tags li.hover .removetag,
+#tags .nojs li .removetag {
+    display:inline;
+    background: transparent url(../../img/amo2009/icons/cross.png) no-repeat left;
+    border: none;
+    margin: 0;
+    text-indent: -1000px;
+    /* IE7 fix in ie7.css */
+}
+.html-rtl .addon-tags li.hover .removetag,
+.html-rtl #tags .nojs li .removetag {
+    background-position: right;
+}
+
+.addon-tags form.remove-tags { margin-bottom: 0;}
+.addon-tags form.remove-tags .removetag { vertical-align: bottom; margin-left: 3px; }
+.html-rtl .addon-tags form.remove-tags .removetag { margin-left: 0; margin-right: 3px; }
+
+#tags #tagMessage {
+    background-color: #FFFFFF;
+    color:#666666;
+    display:block;
+    font-size:0.769em;
+    font-weight:normal;
+    line-height:1em;
+    text-shadow:1px 1px 1px #FFFFFF;
+    padding: 4px;
+}
+
+.addon-collections li .collectionitem {
+	padding-left: 20px;
+	background-image: url(../../img/amo2009/icons/icons.png);
+	background-repeat: no-repeat;
+	background-position: 0px -300px;
+}
+
+.html-rtl .addon-collections li .collectionitem {
+	padding-right: 20px;
+	padding-left: 0;
+	background-position: 100% -300px;
+}
+
+.addon-otheraddons li .addonitem {
+	padding-left: 20px;
+	background-image: url(../../img/amo2009/icons/icons.png);
+	background-repeat: no-repeat;
+	background-position: 0px -200px;
+}
+
+.html-rtl .addon-otheraddons li .addonitem {
+	padding-right: 20px;
+	padding-left: 0;
+	background-position: 100% -200px;
+}
+
+.results-head {width: 100%;}
+.results-head h2 { margin-bottom: 0;}
+.results-head h3 {margin-top: 0; font-family: "helvetica neue", arial, helvetica, sans-serif; font-weight: normal; color: #444;}
+
+.results .item .item-info .downloads {display: block; margin-left: 0px;}
+.results .item .install {float: none; margin-left: 0px;}
+
+.results .item h3 {
+    float: left;
+}
+
+.html-rtl .results .item h3 {
+    float: right;
+}
+
+.results .item blockquote {
+    clear: left;
+}
+
+.html-rtl .item blockquote {
+    clear: right;
+}
+
+.secondary ul.refinements li a { padding: 0.21em 1.2em; display: block; color: #444; font-weight: normal;}
+.secondary ul.refinements li.selected a {
+    background-color: #b9dbe7;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    font-weight: bold;
+    background-image: url(../../img/amo2009/icons/arrows.gif);
+    background-repeat: no-repeat;
+    background-position:4px -152px;
+}
+.secondary ul.refinements li a.tagitem {
+    padding: 0.21em 2em;
+    background-image: url(../../img/amo2009/icons/icons.png);
+    background-repeat: no-repeat;
+    background-position: 3px -596px;
+}
+
+/*** =Site-notice ***/
+#site-notice {
+    background: #ffe; border-bottom: 2px solid #ccc;
+    font-size: 110%;
+    width: 80%;
+    padding: 5px 10% 0px;
+    margin:0px;
+}
+
+
+/** Login Forms **/
+
+#login {
+    padding-top: 1.5em;
+    padding-bottom: .5em;
+}
+
+#login .container {
+    margin-bottom: .75em;
+}
+
+#login label {
+    float: left;
+    width: 9em;
+    padding-right: 1em;
+    text-align: right;
+    border-bottom: none;
+}
+
+.html-rtl #login label {
+    float: right;
+    padding-left: 1em;
+    padding-right: 0;
+    text-align: left;
+}
+
+#login .remember label {
+    float: none;
+}
+
+#login .remember {
+    margin-left: 10em;
+}
+
+.html-rtl #login .remember {
+    margin-left: 0;
+    margin-right: 10em;
+}
+
+#login button {
+    margin-left: 8.33em;
+}
+
+.html-rtl #login button {
+    margin-left: 0;
+    margin-right: 8.33em;
+}
+
+#login-help {
+    padding-bottom: 0;
+}
+
+#login-help h3 {
+    margin-top: 0;
+}
+
+#login-help ul {
+    list-style: square outside;
+    margin-left: 1.5em;
+}
+
+#login-help li {
+    margin-top: .25em;
+}
+
+/** END Login Forms **/
+
+.amo-form .error_message {
+    border-color: #C63717;
+    background-color: #FFA5A5;
+    color: #C63717;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+
+
+/** Support this add-on box. **/
+
+.support-this-addon {
+    text-align: center;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    background-color: #dfeef5;
+    font-size: 0.9em;
+}
+
+.recommended .support-this-addon {
+    background-color: #f7f6d3;
+}
+
+.support-this-addon a {
+    font-weight: bold;
+}
+
+.category_landing .support-this-addon {
+    margin-left: 5%;
+    /* What could be better than absolute positioning with pixels??? */
+    position: absolute;
+    bottom: 34px;
+    width: 92%;
+}
+
+/* Don't strech over the extra info on search results. */
+.results .item .support-this-addon {
+    margin-right: 17em;
+}
+
+.html-rtl .item .support-this-addon {
+    margin-left: 17em;
+    margin-right: inherit;
+}
+
+/** END Support this add-on box. **/
+
+/** Ratings barometer **/
+
+.barometer {
+    width: 100%;
+    display: -moz-box;
+    -moz-box-orient: horizontal;
+    -moz-box-align: stretch;
+    display: -webkit-box;
+    -webkit-box-orient: horizontal;
+    -webkit-box-align: center;
+    display: box;
+    box-orient: horizontal;
+    box-align: stretch;
+}
+
+/* .upvotes and .downvotes are the numbers + thumb images, in inputs. */
+.barometer .upvotes, .barometer .downvotes {
+    /* Override native input styling. */
+    margin: 0;
+    padding: 0;
+    border: 0 none;
+    cursor: pointer;
+    text-shadow: none;
+    -moz-border-radius: 0;
+
+    padding-top: 0.1em; /* Push the text down a bit. */
+    background-repeat: no-repeat;
+    background-color: transparent;
+}
+
+.barometer .upvotes {
+    color: #00b960;
+    padding-left: 1.2em; /* Space for the image. */
+    margin-right: 0.2em; /* Space between number and bar. */
+    background-image: url('../../img/amo2009/icons/thumbs.png');
+    background-position: left 33.2%;
+}
+
+.html-rtl .barometer .upvotes {
+    padding: 0 1.2em 0 0; /* Space for the image. */
+    margin: 0 0 0 0.2em; /* Space between number and bar. */
+    background-position: right 32.5%;
+}
+
+.barometer .upvotes.voted,
+.barometer .upvotes:hover {
+    background-image: url('../../img/amo2009/icons/thumbs.png');
+    background-position: left 0;
+}
+
+.html-rtl .barometer .upvotes.voted,
+.html-rtl .barometer .upvotes:hover {
+    background-position: right 0;
+}
+
+.barometer .downvotes {
+    color: #d93a40;
+    padding-right: 1.2em; /* Space for the image. */
+    margin-left: 0.2em; /* Space between number and bar. */
+    background-image: url('../../img/amo2009/icons/thumbs.png');
+    background-position: right 100%;
+}
+
+.html-rtl .barometer .downvotes {
+    padding: 0 0 0 1.2em; /* Space for the image. */
+    margin: 0 0.2em 0 0; /* Space between number and bar. */
+    background-position: left 100%;
+}
+
+.barometer .downvotes.voted,
+.barometer .downvotes:hover {
+    background-image: url('../../img/amo2009/icons/thumbs.png');
+    background-position: right 67%;
+}
+
+.html-rtl .barometer .downvotes.voted,
+.html-rtl .barometer .downvotes:hover {
+    background-position: left 67.2%;
+}
+
+.barometer .downvotes:hover, .barometer .upvotes:hover,
+.barometer .downvotes.voted, .barometer .upvotes.voted {
+    font-weight: bold;
+    text-shadow: none;
+}
+
+.barometer .bars {
+    -moz-box-flex: 1;
+    -webkit-box-flex: 1;
+    box-flex: 1;
+}
+
+.barometer .novotes {
+    background-color: #d9d9d9;
+}
+
+.barometer .upbar, .barometer .downbar, .barometer .novotes {
+    /* Make the bars short, centered using the top margin. */
+    height: 0.7em;
+    margin-top: 0.6em;
+}
+
+.barometer .votecount {
+    margin-top: -1000em;
+    position: absolute;
+}
+
+.barometer .upbar,
+.barometer .downbar {
+    float: left;
+}
+
+.html-rtl .barometer .upbar,
+.html-rtl .barometer .downbar {
+    float: right;
+}
+
+.barometer .upbar {
+    background-color: #a3e4cf;
+    margin-right: 1%; /* Little bit of space between the bars. */
+}
+
+.html-rtl .barometer .upbar {
+    margin-left: 1%; /* Little bit of space between the bars. */
+    margin-right: 0;
+}
+
+.barometer .downbar {
+    background-color: #ffc3c6;
+}
+
+/*
+
+/* Turn off form margins in listings. */
+.item .barometer form {
+    margin: 0;
+}
+
+.item .barometer {
+    padding-bottom: 7px;
+}
+
+/** END Ratings barometer **/
+
+/** Hub pages **/
+.hub-category-description {
+    padding-right: 35px;
+}
+/** END Hub pages **/
+
+/** personas pages */
+.personas .search-form {
+    margin-bottom: 0;
+}
+/* END personas pages */
+
+/**.personas-feature feature box */
+.personas-feature, .description-active {
+    margin: 1em;
+}
+
+.description-active {
+    display: block;
+    float: left;
+    width: 400px;
+}
+
+.personas-feature {
+    width: 297px;
+    height: 170px;
+    float: left;
+    color: #a4a4a4;
+    overflow: hidden;
+}
+
+.personas-feature p {
+    padding: 0;
+}
+
+.personas-feature strong {
+    color: #6a6a6a;
+}
+
+.personas-feature.slideshow {
+    position: relative;
+    width: 297px;
+    overflow: hidden;
+}
+
+.personas-feature.last {
+    margin-right: 0;
+}
+
+.personas-feature h3 {
+    color: #C63717;
+    font-size: 138.5%;
+    font-weight: bold;
+    margin: 0 0 15px 0;
+    font-family: Helvetica, sans-serif;
+}
+
+.personas-feature h4 {
+    display: block;
+    color: #f67b00;
+    font-size: 116%;
+    font-weight: bold;
+    font-family: Helvetica, sans-serif;
+}
+
+.personas-feature a {
+    color: #00a1e2;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.personas-feature p {
+    font-size: 93%;
+    line-height: 1.3em;
+}
+
+.personas-feature .daily-users {
+    clear: both;
+    padding: 6px 0;
+}
+
+.personas-feature img.preview  {
+    margin: 0 0 10px 0;
+}
+
+.personas-feature.more p {
+    margin: 1.4em 0;
+}
+
+.personas-feature .slideshow-nav {
+    position: absolute;
+    top: 150px;
+    left: 120px;
+}
+
+.personas-feature .slideshow-nav li {
+    float: left;
+    list-style-type: none;
+    margin: 0;
+}
+
+.personas-feature .slideshow-nav li a {
+    text-indent: -999em;
+    width: 9px;
+    height: 9px;
+    background: url('../../img/amo2009/personas/slideshow-nav.png') 0 0 no-repeat;
+    margin: 0 3px;
+    display: block;
+    float: left;
+}
+
+.personas-feature .slideshow-nav li a.active {
+    background: url('../../img/amo2009/personas/slideshow-nav.png') -16px 0 no-repeat;
+}
+
+.personas-feature .slides {
+    height: 240px;
+    overflow: hidden;
+    position: absolute;
+    width: 1500px;
+}
+
+.personas-feature .slides li {
+    height: 240px;
+    width: 297px;
+    float: left;
+    margin: 0;
+    list-style: none;
+}
+
+.personas-feature .slideshow-previous, .personas-feature .slideshow-next {
+    position: absolute;
+    top: 66px;
+    z-index: 20;
+    cursor: pointer;
+}
+
+.personas-feature .slideshow-next {
+    left: 273px;
+}
+
+.personas-feature .slideshow-previous.disabled, .personas-feature .slideshow-next.disabled {
+    cursor: default;
+}
+
+.personas-feature .slides p {
+    margin: 0;
+}
+/* end.personas-feature */
+
+.error,
+.highlight .error-message {
+    color: #C63717;
+}
+
+/* Thumbnails (like the personas browser) */
+.thumbnails li {
+    display: inline-block;
+    border: 2px solid #ecf2f5;
+    -moz-border-radius: 6px;
+    margin: 1.2em;
+    padding: 1em 0.5em;
+    background: #f9f9f9;
+    width: 200px;
+    vertical-align: top;
+}
+
+.thumbnails {
+    background: -moz-linear-gradient(left top, left 20%, from(#cfeaf4), to(#fff));
+    background-repeat: no-repeat;
+}
+/* END Thumbnails (like the personas browser) */
+
+/* Personas categories */
+.persona-categories li {
+    padding-left: 0.5em;
+    -moz-border-radius: 4px;
+    margin: 0.2em;
+    margin-left: 0;
+}
+
+/* Override .categories h3 to make this look like a normal h3. */
+.persona-categories h3 {
+    font-family: georgia, serif;
+    background: none;
+    color: #011234;
+    border: none;
+    font-size: 1.385em;
+    font-weight: normal;
+    padding-bottom: 0;
+}
+/* END Personas categories */
+
+/* Personas detail page */
+.persona-detail-holder {
+    max-width: 680px; /* Size of the persona preview image. */
+}
+
+.persona-detail-holder .what-are-personas {
+    float: right;
+}
+/* END Personas detail page */
+
+.hide {
+    display:none;
+}
+
+.created-by {
+    margin-top: -1.2em;
+    margin-bottom: 2em;
+}
+
+/* Compatibility first-run */
+.firstrun-image {
+    padding: 10px;
+    background-color: #FFFFFF;
+    -moz-border-radius: 6px;
+    margin-top: 75px;
+    width: 85%;
+}
+
+/* Compatibility Reporter */
+
+.compat-info .comments td {
+    padding: 1em;
+    border-bottom: 3px solid #666;
+}
+
+h2.compat-heading a {
+    color: inherit;
+}
+
+#compat-query {
+    font-size: 200%;
+    height: 1.5em;
+    width: 20em;
+    margin-top: .5em;
+}
+
+#compat-filters {
+    margin-left: 0.4em;
+}
+
+#compat-filters label {
+    display: block;
+}
+
+#compat-filters ul,
+#compat-filters li {
+    margin-bottom: 0.5em;
+}
+/* END Compatibility Reporter */

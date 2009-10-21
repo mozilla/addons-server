@@ -1,0 +1,4400 @@
+/* @group General styles */
+/*
+Harmonise v1.3
+Resets styles then adds basic typographical styling.
+Use as a starting point upon which to build more CSS.
+By Clearleft.com
+*/
+
+/* @group Reset */
+
+/* Based on http://meyerweb.com/eric/tools/css/reset/ */
+/* v1.0 | 20080212 */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+
+ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+
+/* tables may still need 'cellspacing="0"' in the markup */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* @end */
+
+html {
+    background-color: #fafdfe;
+    background-image: url(../../img/amo2009/bg/body.jpg);
+    background-position: top center;
+    background-repeat: no-repeat;
+}
+
+body {
+    margin: 0 auto;
+    color:#444444;
+    font-size:13px;
+    line-height:1.538em; /* Baseline grid of 20px */
+    background-image: url(../../img/amo2009/bg/header-border.png);
+    background-repeat: repeat-x;
+    background-position: top left;
+    position: relative;
+    min-width: 780px;
+}
+
+body.about {
+    background-image: none;
+    margin: 1em 0 0;
+}
+
+/* for pages without a header or footer */
+body.min {
+    background-image: none;
+    padding-top: 3em;
+    padding-bottom: 2em;
+}
+
+a:link,
+button.link span {
+    color: #0055EE;
+    text-decoration: none;
+}
+a:visited {
+    color: #003595;
+    text-decoration: none;
+}
+a:hover,
+a:focus,
+a:active,
+button.link:hover span,
+button.link:focus span,
+button.link:active span {
+    color: #003595;
+    text-decoration: underline;
+}
+
+/* @group Font families */
+
+body,
+#title,
+.categories h3,
+.item h3,
+.section-teaser .addon-view h3 {
+    font-family: "helvetica neue", arial, helvetica, sans-serif;
+}
+
+h2,
+h3,
+#title em,
+.highlight h2,
+.highlight h3,
+.stats strong,
+h4.step {
+    font-family: georgia, serif;
+}
+
+pre, code, kbd, tt, samp, tt {
+    font-family: "andale mono", monospace;
+}
+
+/* @end */
+
+/* @group Headings */
+
+/* size headings using classic scale of 16, 18, 24, 36 */
+
+h1 {
+    font-size: 2.571em /* 36px */;
+    line-height:1em /* 36px */;
+    margin-top:0.1667em /* 6px */;
+    margin-bottom:0.5833em /* 21px */;
+}
+h2 {
+    font-size:2.154em /* 28px */;
+    font-weight:normal;
+    line-height:1em /* 28px */;
+    margin-top:0.5em /* 42px */;
+    margin-bottom:0.5em /* 14px */;
+    color:#C63717;
+}
+h3 {
+    color:#011234;
+    font-size:1.385em /* 18px */;
+    font-weight:normal;
+    line-height:1.111em /* 20px */;
+    margin-top:1.556em /* 28px */;
+    margin-bottom:0.778em /* 14px */;
+}
+h4 {
+    color:#223355;
+    font-size:1em /* 13px */;
+}
+h5, h6 {
+    font-size:1em /* 13px */;
+}
+
+/* @end */
+
+/* @group Lists */
+
+.prose ul,
+ul.xoxo,
+ul.xoxo ul {
+/* unordered lists more often DON'T require bullets except in extended bits of writing. Where bullets are required apply the .prose class to a container, or apply directly with .xoxo */
+    list-style-type: square;
+    margin-left: 1.5em; /* 21px */
+}
+
+.html-rtl .prose ul,
+.html-rtl ul.xoxo,
+.html-rtl ul.xoxo ul {
+/* unordered lists more often DON'T require bullets except in extended bits of writing. Where bullets are required apply the .prose class to a container, or apply directly with .xoxo */
+    list-style-type: square;
+    margin-left: 0em;
+    margin-right: 1.5em; /* 21px */
+}
+
+.prose ul li,
+ul.xoxo li,
+ul.xoxo ul li {
+    margin-bottom: 0.5em;
+}
+
+ol {    /* ordered lists usually DO require (numbered) bullets */
+    list-style-type: decimal;
+    margin-left: 2em; /* 26px */
+}
+
+.html-rtl ol {
+    margin-left: 0;
+    margin-right: 2em;
+}
+
+dt {
+    font-weight: bold;
+    margin-top: 1.5em; /* 19.5px */
+}
+
+ul ul, ol ol, ol ul, ul ol {
+    margin-bottom: 0;
+}
+
+/* @end */
+
+/* @group Tables */
+
+table {
+    border-bottom: 1px solid #666;
+}
+
+caption {
+    font-weight: bold;
+    padding-bottom: 0.539em; /* 7px */
+    font-size:1.231em; /* 16px */
+}
+
+thead th {
+    border-top: 1px solid #666;
+    border-bottom: 3px solid #666;
+    padding-top: 0;
+    padding-bottom: 0.539em; /* 7px */
+}
+
+tbody {
+    border-top: 3px solid #666; /* not rendered in IE6/7 */
+}
+
+tbody tr th, tbody tr td {
+    border-top: 1px solid #ddd;
+}
+
+th, td {
+    text-align: left;
+    padding: 0.308em 0.537em 0.214em 0.231em; /* 4px 7px 3px 7px */
+}
+
+/* @end */
+
+/* @group Blockquotes */
+
+blockquote {
+    font-style: italic;
+    margin:0  1.5em  1.5em 1.5em; /* 19.5px */
+}
+
+p+p+blockquote {
+    margin-top: 1.5em /* 19.5px */;
+}
+
+blockquote cite, blockquote em {
+    font-style: normal;
+}
+
+/* @end */
+
+/* @group Other styling */
+
+p, ul, ol, dl, address, table, pre, form, fieldset {
+    font-size: 1em /* 14px */;
+    margin-bottom: 1.5em; /* 21px */
+}
+
+address {
+    font-style: normal;
+}
+
+ins {
+    text-decoration: underline;
+}
+
+del {
+    text-decoration: line-through;
+}
+
+/* @end */
+
+
+/* @end */
+
+/* @group Helper styles */
+
+/* @group Forms */
+
+/* @group Containers */
+
+form .container {
+    margin-bottom: 1.5em; /* 19.5px */
+}
+
+
+/* @group Fieldsets */
+
+fieldset {
+    border: 1px solid #ccc;
+    padding: 0 1.5em 1em 1.5em; /* 0 19.5px 13px 19.5px */
+}
+
+legend {
+    font-weight: bold;
+}
+
+form fieldset .container {
+    margin-top: 1em; /* 13px */
+    margin-bottom:0;
+    position: relative;
+}
+
+/* @end */
+
+/* @end */
+
+/* @group Labels */
+
+label {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.meta-label {
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+.multi-container label,
+.radio-container label,
+.checkbox-container label {
+    font-weight: normal;
+}
+
+.radio-container label,
+.checkbox-container label {
+    display: block;
+}
+
+.compact label {
+    display: inline;
+}
+
+/* @end */
+
+/* @group Meta */
+
+form .help {
+    display: block;
+    color: #777;
+    font-style: normal;
+    font-size: 0.923em; /* 12px */
+}
+
+/* @end */
+
+/* @group Form controls */
+
+input, textarea, select, button {
+    font-family: inherit;
+    font-size: 1em;
+    line-height: inherit;
+}
+
+select {
+    background-color: #fff; /* fixes bug in Opera which inherits bgcolor from container */
+}
+
+
+button {
+    overflow: visible;
+    cursor: pointer;
+}
+
+textarea,
+input[type='text'],
+input[type='password'],
+select {
+    border-width: 1px;
+    border-style: solid;
+    border-top-color: #999;
+    border-left-color: #999;
+    border-bottom-color: #ccc;
+    border-right-color: #ccc;
+    padding: 0 1px 1px 1px;
+}
+
+textarea:focus,
+input[type='text']:focus,
+input[type='password']:focus,
+select:focus {
+    border-color: #888;
+    outline: 1px solid #ffffaa;
+}
+
+input.short {
+    width: 4em;
+}
+
+input.medium, textarea.medium {
+    width: 12em;
+}
+
+input.long, textarea.long {
+    width: 30em;
+}
+
+textarea {
+    width: 99%;
+    display: block;
+}
+
+.button-container input {
+    font-weight: bold;
+}
+
+.button-container input.cancel {
+    font-weight: normal;
+}
+
+button.link {
+    background-image: none;
+    border: 0;
+    padding: 0;
+    background-color: #fff;
+    font-weight: normal;
+    cursor: pointer;
+    width: auto;
+    overflow: visible;
+    text-shadow: none;
+    -moz-user-select: text;
+}
+
+/* accessibility feature, resize check and radio inputs */
+.radio-container input,
+.checkbox-container input {
+    width: 1em;
+    height: 1em;
+}
+
+/* @end */
+
+/* @end */
+
+/* @group Stars */
+
+.stars {
+    text-indent:-5000px;
+    background-image: url(../../img/amo2009/icons/stars.png);
+    background-position: 0 50%;
+    background-repeat: no-repeat;
+    margin-right: 0.5em;
+    width: 63px;
+    display: block;
+    float: left;
+}
+.stars-4 {
+    background-position: -13px 50%;
+}
+.stars-3 {
+    background-position: -26px 50%;
+}
+.stars-2 {
+    background-position: -39px 50%;
+}
+.stars-1 {
+    background-position: -52px 50%;
+}
+.stars-0 {
+    background-position: -65px 50%;
+}
+
+/* @group star select replacement */
+
+select.replaced {
+    display: none;
+}
+.selectReplacement {
+    cursor: pointer;
+    list-style: none;
+    position: relative;
+    width: 65px;
+    height: 12px;
+    margin: 0;
+    padding:0;
+    background-image:url("../../img/amo2009/icons/starselect.gif");
+    background-position: -65px 0;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+.selectReplacement li {
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+.selectReplacement li a:link,
+.selectReplacement li a:visited,
+.selectReplacement li a:hover,
+.selectReplacement li a:active,
+.selectReplacement li a:focus {
+    display: block;
+    position: absolute;
+    width: 13px;
+    height: 12px;
+    text-indent: -9999px;
+    overflow: hidden;
+    left: 0;
+}
+ul.worst {
+    background-position: -52px 0;
+}
+ul.bad {
+    background-position: -39px 0;
+}
+ul.fair {
+    background-position: -26px 0;
+}
+ul.good {
+    background-position: -13px 0;
+}
+ul.best {
+    background-position: 0 0;
+}
+.selectReplacement li.worst a:link,
+.selectReplacement li.worst a:visited,
+.selectReplacement li.worst a:hover,
+.selectReplacement li.worst a:active,
+.selectReplacement li.worst a:focus {
+    left: 0;
+    z-index: 6;
+}
+.selectReplacement li.bad a:link,
+.selectReplacement li.bad a:visited,
+.selectReplacement li.bad a:hover,
+.selectReplacement li.bad a:focus,
+.selectReplacement li.bad a:active {
+    left: 13px;
+    z-index: 5;
+}
+.selectReplacement li.fair a:link,
+.selectReplacement li.fair a:visited,
+.selectReplacement li.fair a:hover,
+.selectReplacement li.fair a:focus,
+.selectReplacement li.fair a:active {
+    left: 26px;
+    z-index: 4;
+}
+.selectReplacement li.good a:link,
+.selectReplacement li.good a:visited,
+.selectReplacement li.good a:hover,
+.selectReplacement li.good a:focus,
+.selectReplacement li.good a:active {
+    left: 39px;
+    z-index: 3;
+}
+.selectReplacement li.best a:link,
+.selectReplacement li.best a:visited,
+.selectReplacement li.best a:hover,
+.selectReplacement li.best a:focus,
+.selectReplacement li.best a:active {
+    left: 52px;
+    z-index: 2;
+}
+.selectReplacement li a:hover,
+.selectReplacement li a:focus,
+.selectReplacement li a:active {
+    background-position: left top;
+    background-repeat: repeat-x;
+    background-image:url("../../img/amo2009/icons/starselect_single.gif");
+    left: 0;
+}
+
+.selectReplacement li.worst a:hover,
+.selectReplacement li.worst a:focus,
+.selectReplacement li.worst a:active {
+    width: 13px;
+    left: 0;
+}
+.selectReplacement li.bad a:hover,
+.selectReplacement li.bad a:focus,
+.selectReplacement li.bad a:active{
+    width: 26px;
+    left: 0;
+}
+.selectReplacement li.fair a:hover,
+.selectReplacement li.fair a:focus,
+.selectReplacement li.fair a:active{
+    width: 39px;
+    left: 0;
+}
+.selectReplacement li.good a:hover,
+.selectReplacement li.good a:focus,
+.selectReplacement li.good a:active{
+    width: 52px;
+    left: 0;
+}
+.selectReplacement li.best a:hover,
+.selectReplacement li.best a:focus,
+.selectReplacement li.best a:active {
+    width: 65px;
+    left: 0;
+}
+
+/* @end */
+
+/* @end */
+
+/* @group indicators */
+
+.downloads {
+    color: #390;
+    clear: both;
+}
+
+.subscribe,
+.addons,
+.collections,
+.subscribers,
+.category,
+.tags,
+.share,
+.digg,
+.delicious,
+.facebook,
+.friendfeed,
+.myspace,
+.twitter {
+    background-image: url(../../img/amo2009/icons/icons.png);
+    background-repeat: no-repeat;
+    padding-left: 20px;
+}
+
+.subscribe {
+    background-position: 0 2px;
+}
+
+.share {
+    background-position: 0 -100px;
+}
+
+.addons {
+    background-position: 0 -200px;
+    padding-bottom: 7px;
+}
+.collections {
+    background-position: 0 -300px;
+}
+.subscribers {
+    background-position: 0 -400px;
+    padding-bottom: 7px;
+}
+.category {
+    background-position: 0 -503px;
+}
+.tags {
+    background-position: 0 -600px;
+}
+.digg {
+    background-position: 0 -890px;
+}
+.delicious {
+    background-position: 0 -990px;
+}
+.facebook {
+    background-position: 0 -1090px;
+}
+.friendfeed {
+    background-position: 0 -1190px;
+}
+.myspace {
+    background-position: 0 -1290px;
+}
+.twitter {
+    background-position: 0 -1492px;
+}
+
+span.new {
+    padding: 0.2em 0.5em;
+    background-color: #305083;
+    color: white;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    background-image: url(../../img/amo2009/bg/heading-dark-blue.jpg);
+    background-repeat: repeat-x;
+    background-position: bottom left;
+    border:  1px solid #021437;
+    text-transform: uppercase;
+    font-size: 0.611em;
+}
+
+h3 .secondary a:link, h3 .secondary a:active, h3 .secondary a:visited, h3 .secondary a:hover, h3 .secondary a:focus {
+    vertical-align: middle;
+}
+
+/* @end */
+
+/* @group hReviews */
+
+.hreview {
+    border-bottom: 1px dotted #B5D9E5;
+    padding: 0.5em 0 1em 0;
+    margin-bottom: 0.5em;
+}
+
+.hreview p {
+    margin-bottom: 0;
+}
+
+.hreview:last-child {
+    border-bottom: none;
+}
+
+/* @end */
+
+/* @group More Info */
+
+.more-info,
+.more-info:link,
+.more-info:visited,
+.more-info:hover,
+.more-info:focus,
+.more-info:active {
+    font-weight: bold;
+    float: right;
+    background-image: url(../../img/amo2009/icons/arrows.gif);
+    background-repeat: no-repeat;
+    background-position:right -153px;
+    padding-right: 1em;
+    color: #0055EE;
+}
+
+.more-info:hover,
+.more-info:focus,
+.more-info:active {
+    background-position:right -203px;
+    color: #003595;
+}
+
+/* @end */
+
+/* @group Generic Image Styles */
+
+.pull-left {
+    margin-right: 1em;
+    float: left;
+}
+.html-rtl .pull-left {
+    margin-right: auto;
+    margin-left: 1em;
+    float: right;
+}
+.pull-right {
+    margin-left: 1em;
+    float: right;
+}
+.html-rtl .pull-right {
+    margin-left: auto;
+    margin-right: 1em;
+    float: left;
+}
+.teaser-img {
+    text-align: center;
+    display: block;
+}
+img.icon {
+    background-color: #fff;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    padding: 4px;
+}
+
+h5 img.icon,
+h2 img.icon {
+    float: left;
+    margin-right: 10px;
+}
+h2 img.icon {
+    position: relative;
+    top: -0.2em;
+}
+img.avatar {
+    border: 3px solid #FFFFFF;
+}
+
+img.photo-large {
+    padding: 5px;
+    background-color: #FFFFFF;
+    width: 200px;
+    max-width: 99.9%;
+    border: none;
+    border-bottom: 1px solid #B5D9E5;
+    border-right: 1px solid #B5D9E5;
+}
+
+.screenshot.thumbnail {
+    border: 3px solid #C9E8F3;
+    float: left;
+    margin-right: 1em;
+    margin-bottom: 1em;
+    height: 150px;
+    width: 200px;
+}
+
+.screenshot.thumbnail img {
+    display: block;
+}
+
+.hasJS .screenshot.thumbnail {
+    position: relative;
+}
+
+.hasJS .screenshot.thumbnail .img-control {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 18px;
+    height: 18px;
+    overflow: hidden;
+}
+
+img.scale {
+    width: 100%;
+}
+
+/* @end */
+
+/* @group Buttons */
+
+a:link.button,
+a:visited.button,
+a:hover.button,
+a:focus.button,
+a:active.button,
+button,input[type=submit],input[type=button] {
+    background-image: url(../../img/amo2009/bg/button-blue.jpg);
+    background-color:#73B9FF;
+    background-position:center center;
+    background-repeat:repeat-x;
+    padding:0 0.6em 0 0.5em;
+    -moz-border-radius: 13px;
+    -webkit-border-radius: 8px;
+    border-radius: 10px;
+    color:#FFFFFF;
+    font-family:helvetica, arial, sans-serif;
+    text-decoration:none;
+    font-size:1em;
+    text-shadow:-1px -1px 1px #196CF2;
+    white-space:nowrap;
+    overflow:visible;
+    cursor:pointer;
+    border:1px solid #258BFF;
+    margin:0.3em 0;
+    vertical-align:middle;
+}
+
+a:link.button,
+a:visited.button,
+a:hover.button,
+a:focus.button,
+a:active.button {
+    padding: 0.15em 0.5em;
+}
+
+.button.disabled,
+button.disabled,
+button:disabled,
+input[type=submit].disabled,
+input[type=submit]:disabled {
+  background-image: url(../../img/amo2009/bg/button-gray.jpg);
+  background-color: #ccc;
+  border-color: #aaa;
+  text-shadow:-1px -1px 1px #999;
+  color: #eee;
+}
+
+a:link.button img,
+a:visited.button img,
+a:hover.button img,
+a:focus.button img,
+a:active.button img,
+button img {
+    vertical-align:middle;
+    padding:0;
+    margin:0;
+    border-left:none;
+    border-top:none;
+    border-bottom:none;
+    border-right:1px solid #3399FF;
+    margin:0 0.6em 0.25em 0;
+    padding:0.1em 0.5em 0.1em 0;
+}
+
+a:link.auxillary,
+a:visited.auxillary,
+a:hover.auxillary,
+a:focus.auxillary,
+a:active.auxillary,
+button.auxillary {
+    font-size:0.923em;
+    padding:0.15em 1em 0.1em 0.7em;
+}
+
+a:link.prominent,
+a:visited.prominent,
+a:hover.prominent,
+a:focus.prominent,
+a:active.prominent,
+button.prominent {
+    font-size:1.2em;
+    -moz-border-radius: 13px;
+    -webkit-border-radius: 11px;
+    border-radius: 13px;
+}
+
+a:link.significant,
+a:visited.significant,
+a:hover.significant,
+a:focus.significant,
+a:active.significant,
+button.significant {
+    font-size:1.2em;
+    -moz-border-radius: 16px;
+    -webkit-border-radius: 14px;
+    border-radius: 16px;
+    font-weight: bold;
+    padding:0.4em 0.8em 0.3em 0.5em;
+    line-height: 2em;
+}
+
+a:link.significant img,
+a:visited.significant img,
+a:hover.significant img,
+a:focus.significant img,
+a:active.significant img,
+button.significant img {
+    /* padding:0 0.4em 0.2em 0.2em; */
+    /* margin-right: 0.4em; */
+        margin-bottom:0.4em;
+    margin-right:0.6em;
+    padding:0.4em 0.6em 0.2em 0.2em;
+}
+
+a:link.button.neutral,
+a:visited.button.neutral,
+a:hover.button.neutral,
+a:focus.button.neutral,
+a:active.button.neutral,
+button.neutral {
+    background-color:#E5A365;
+    background-image: url(../../img/amo2009/bg/button-orange.jpg);
+    border:1px solid #CB7E42;
+    text-shadow:-1px -1px 1px #BF6524;
+}
+
+a:link.button.neutral img,
+a:visited.button.neutral img,
+a:hover.button.neutral img,
+a:focus.button.neutral img,
+a:active.button.neutral img,
+button.neutral img {
+    border-right:1px solid #DD7711;
+}
+
+a:link.button.positive,
+a:visited.button.positive,
+a:hover.button.positive,
+a:focus.button.positive,
+a:active.button.positive,
+button.positive {
+    background-color:#8CC553;
+    background-image: url(../../img/amo2009/bg/button-green.jpg);
+    border: 1px solid #488F03;
+    text-shadow:-1px -1px 1px #7BAB29;
+}
+
+a:link.button.positive img,
+a:visited.button.positive img,
+a:hover.button.positive img,
+a:focus.button.positive img,
+a:active.button.positive img,
+button.positive img {
+    border-right:1px solid #55AA00;
+}
+
+a:link.negative,
+a:visited.negative,
+a:hover.negative,
+a:focus.negative,
+a:active.negative,
+button.negative {
+    background-color:#EC7F82;
+    background-image: url(../../img/amo2009/bg/button-red.jpg);
+    border: 1px solid #CF2F1E;
+}
+
+a:link.negative img,
+a:visited.negative img,
+a:hover.negative img,
+a:focus.negative img,
+a:active.negative img,
+button.negative img {
+    border-right:1px solid #E54C4F;
+}
+
+a:link.button.cool,
+a:visited.button.cool,
+a:hover.button.cool,
+a:focus.button.cool,
+a:active.button.cool,
+button.cool {
+    background-color: #8D96A7;
+    background-image: url(../../img/amo2009/bg/button-dark-blue.jpg);
+    border: 1px solid #22334f;
+    text-shadow:-1px -1px 1px #7C869A;
+}
+
+a:link.button.cool img,
+a:visited.button.cool img,
+a:hover.button.cool img,
+a:focus.button.cool img,
+a:active.button.cool img,
+button.cool img {
+    border-right:1px solid #18243B;
+}
+
+a:link.button[disabled=disabled],
+a:visited.button[disabled=disabled],
+a:hover.button[disabled=disabled],
+a:focus.button[disabled=disabled],
+a:active.button[disabled=disabled],
+button[disabled=disabled],
+input[type=submit][disabled=disabled] {
+    opacity: 0.5;
+    cursor: default;
+}
+
+/* @end */
+
+/* @group Add To Favourites */
+
+button.add-to-fav {
+    margin: 0;
+    padding: 0.5em 0 0.2em 19px;
+    background: none;
+    background-image: url(../../img/amo2009/icons/fav-off.gif);
+    background-position: left center;
+    background-repeat: no-repeat;
+    -moz-border-radius: 0;
+    border:none;
+    color: #0055EE;
+    cursor:pointer;
+    text-shadow:none;
+    white-space: normal;
+    font-size: 0.923em;
+    font-weight: bold;
+}
+
+button.add-to-fav.fav {
+    color: #CC0000;
+    background-image: url(../../img/amo2009/icons/fav-on.gif);
+}
+
+form button.add-to-fav:hover,
+form button.add-to-fav:focus {
+    color: black;
+}
+
+form button.add-to-fav.loading-fav,
+form button.add-to-fav.loading-fav:hover,
+form button.add-to-fav.loading-fav:focus,
+form button.add-to-fav.loading-fav:active {
+    color: #A4A5A5;
+    background-image: url(../../img/amo2009/icons/orange-loading.gif);
+}
+
+/*.favorite {
+    background-image: url(../../img/amo2009/icons/icons.png);
+    background-repeat: no-repeat;
+    background-position: 0 -700px;
+    padding-left: 20px;
+    padding-bottom: 7px;
+    cursor: pointer;
+}
+.favorite-loading {
+    background-image: url(../../img/amo2009/icons/orange-loading.gif);
+    background-position: 0 0;
+}
+
+.favorite-added {
+    background-image: url(../../img/amo2009/icons/icons.png);
+    background-position: 0 -800px;
+    color: #D11F1F;
+} */
+
+form.favorite {
+    margin: 0;
+}
+
+/* @end */
+
+.privacy-policy {
+    margin-left: 1em;
+    margin-top: 0.5em;
+}
+
+.prose {
+    margin: 1em;
+}
+.primary.prose {
+    margin: 0;
+}
+
+.accessibility-only {
+    display:block;
+    float:left;
+    height:1px;
+    overflow:hidden;
+    text-indent:-5000px;
+    width:1px;
+}
+
+/* @end */
+
+/* @group Page structure */
+
+.section {
+    width: 90%;
+    overflow: hidden;
+    padding: 0 2%;
+    margin: 0 auto;
+    max-width: 90em;
+    min-width: 20em;
+    position: relative;
+    min-height: 30em;
+}
+
+/* @group Header */
+
+#header {
+    position: relative;
+    padding: 1px 0 0 0;
+}
+
+/* @group Title */
+
+#title {
+    font-size: 3.231em; /* 42px */
+    color: #223355;
+    font-weight: bold;
+    margin-top: 1.2em;
+    margin-bottom: 0.4em;
+    line-height: 0.8;
+}
+
+#title a:link,
+#title a:visited,
+#title a:hover,
+#title a:focus,
+#title a:active {
+    color: #223355;
+    text-decoration: none;
+    background: none;
+}
+
+#title em {
+    color: #445577;
+    font-weight: normal;
+    font-style: italic;
+}
+
+#title img {
+    vertical-align: middle;
+    position: relative;
+    top: -0.1em;
+}
+
+/* @end */
+
+/* @group Brand */
+
+#brand {
+    position: absolute;
+    top: 4px;
+    left: 0;
+    margin: 0;
+}
+
+#brand a:link,
+#brand a:visited,
+#brand a:hover,
+#brand a:focus,
+#brand a:active {
+    background-image: url(../../img/amo2009/tab-mozilla.png);
+    background-position: top left;
+    background-repeat: no-repeat;
+    width: 90px;
+    height: 31px;
+    overflow: hidden;
+    display: block;
+    text-indent: -5000px;
+}
+
+/* @end */
+
+/* @group Stats */
+
+.stats {
+    font-size: 0.923em;
+    text-align: right;
+    margin: -4.8em 1em 0 0;
+    padding: 0;
+    float: right;
+    color: #223355;
+    display: table;
+    border-collapse: collapse;
+}
+
+.hasJS .stats {
+    margin: -8em 0 0 0;
+}
+
+.stats li {
+    padding: 0.1em 0;
+    line-height: 1.2em;
+}
+
+.hasJS .stats li {
+    border-bottom: 1px dotted #94BFCE;
+    padding: 0.2em 0;
+    line-height: 1.25em;
+    display: table-row-group;
+}
+
+.hasJS .stats li a {
+    display: table-row;
+}
+
+.stats li:last-child {
+    border-bottom: none;
+}
+
+.stats strong, .stats span {
+    display: table-cell;
+    padding: 0.1em 0.2em;
+}
+
+.stats span {
+    text-align: left;
+}
+
+.stats strong {
+    color: #C63717;
+    font-size: 1.33em;
+    font-weight: normal;
+}
+
+/* @end */
+
+/* @group Aux nav */
+
+#aux-nav {
+    position: absolute;
+    top: 5px;
+    right: 0;
+    margin: 0 0 0 100px;
+    font-size: 0.923em;
+    padding: 0;
+    text-align: right;
+    color: #757778;
+}
+
+#aux-nav p.context {
+    display: block;
+    float: right;
+    padding-top: 0.7em;
+    padding-right: 1em;
+    position: absolute;
+    top: 5px;
+    right: 0;
+}
+
+.hasJS #aux-nav p.context {
+    position: static;
+}
+
+#aux-nav ul {
+    display: block;
+    padding-top: 0.7em;
+    z-index: 1;
+}
+
+.hasJS #aux-nav ul {
+    float: right;
+    padding-right: 1em;
+}
+
+#aux-nav span.greeting {
+    margin-right: 1em;
+}
+
+#aux-nav .settings {
+    margin-right: 1em;
+}
+
+#aux-nav a:link,
+#aux-nav a:visited,
+#aux-nav a:hover,
+#aux-nav a:focus,
+#aux-nav a:active {
+    /*margin-left: 1em;*/
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+/* #aux-nav a.change:link,
+#aux-nav a.change:visited,
+#aux-nav a.change:hover,
+#aux-nav a.change:focus,
+#aux-nav a.change:active {
+    background-image: url(../../img/amo2009/bg/border-header-user-options.gif);
+    background-repeat: no-repeat;
+    background-position: top left;
+    display: block;
+    padding-top: 0.7em;
+    padding-left: 1em;
+    float: right;
+}
+
+#aux-nav .tools {
+    margin: 0 1em;
+} */
+
+/* @group Change */
+
+#aux-nav ul.change {
+    margin: 2.5em 0 0 0;
+    padding: 0;
+}
+
+.hasJS #aux-nav ul.change {
+    background-image: url(../../img/amo2009/bg/border-header-user-options.gif);
+    background-repeat: no-repeat;
+    background-position: top right;
+    margin-top: 0;
+    border-right: 3px solid transparent;
+    position: relative;
+}
+
+#aux-nav ul.change li {
+    display: inline;
+    margin-left: 1em;
+}
+
+.hasJS #aux-nav ul.change li {
+    background-image: url(../../img/amo2009/bg/border-header-user-options.gif);
+    background-repeat: no-repeat;
+    background-position: top left;
+    display: block;
+    margin-left: 0;
+}
+
+#aux-nav ul.change li li {
+    background-image: none;
+    background-repeat: no-repeat;
+    background-position: top left;
+}
+
+.hasJS #aux-nav .change li ul li {
+    background-color: #FFFFFF;
+    background-image: url(../../img/amo2009/bg/header-dropdown.png);
+    background-repeat: repeat-x;
+    background-position: top left;
+    border-top: 1px solid #D0EBF4;
+    width: 11em;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+}
+
+.hasJS #aux-nav .change li ul li a {
+    background-repeat: no-repeat;
+    background-position: top left;
+    display: block;
+    margin: 0;
+    padding: 0.3em 0.3em 0.3em 45px;
+}
+
+.hasJS #aux-nav .change li ul li.firefox a {
+    background-image: url(../../img/amo2009/icons/logos-applications.gif);
+    background-repeat: no-repeat;
+    background-position: 1em 0;
+}
+.hasJS #aux-nav .change li ul li.thunderbird a {
+    background-image: url(../../img/amo2009/icons/logos-applications.gif);
+    background-repeat: no-repeat;
+    background-position: 1em -50px;
+    top: 24px;
+}
+.hasJS #aux-nav .change li ul li.sunbird a {
+    background-image: url(../../img/amo2009/icons/logos-applications.gif);
+    background-repeat: no-repeat;
+    background-position: 1em -100px;
+}
+.hasJS #aux-nav .change li ul li.seamonkey a {
+    background-image: url(../../img/amo2009/icons/logos-applications.gif);
+    background-repeat: no-repeat;
+    background-position: 1em -150px;
+}
+.hasJS #aux-nav .change li ul li.mobile a {
+    background-image: url(../../img/amo2009/icons/logos-applications.gif);
+    background-repeat: no-repeat;
+    background-position: 1em 0;
+}
+
+
+#aux-nav ul.change a.controller:link,
+#aux-nav ul.change a.controller:visited,
+#aux-nav ul.change a.controller:focus,
+#aux-nav ul.change a.controller:hover,
+#aux-nav ul.change a.controller:active {
+    padding: 0.7em 1em 0 1em;
+    cursor:default;
+    color: #333333;
+    text-decoration: none;
+}
+
+.hasJS #aux-nav ul.change a.controller:link,
+.hasJS #aux-nav ul.change a.controller:visited,
+.hasJS #aux-nav ul.change a.controller:focus,
+.hasJS #aux-nav ul.change a.controller:hover,
+.hasJS #aux-nav ul.change a.controller:active {
+    padding: 0.7em 20px 0.5em 1em;
+    display: block;
+    cursor:pointer;
+    color: #0055EE;
+    background-image: url(../../img/amo2009/icons/arrows.gif);
+    background-repeat: no-repeat;
+    background-position: 95% -65px;
+}
+
+.hasJS #aux-nav ul.change a.controller:focus,
+.hasJS #aux-nav ul.change a.controller:hover,
+.hasJS #aux-nav ul.change a.controller:active {
+    text-decoration: underline;
+    color: #003595;
+    background-position: 95% -105px;
+}
+
+#aux-nav ul.change ul {
+    display: inline;
+}
+
+.hasJS #aux-nav ul.change ul {
+    display: none;
+    position: absolute;
+    right: -3px;
+    padding: 0;
+    border-right: 3px solid #A2C2D7;
+    border-bottom: 3px solid #A2C2D7;
+}
+
+/* @end */
+
+/* @group Tools */
+
+#aux-nav ul.tools {
+    margin: -0.5em 0 0 0;
+    padding: 0;
+    background-image: none;
+}
+
+.hasJS #aux-nav ul.tools {
+    margin: 0;
+    position: relative;
+    border-right: 3px solid transparent;
+}
+
+#aux-nav ul.tools li {
+    background-image: none;
+    display: inline;
+    margin-left: 1em;
+}
+
+.hasJS #aux-nav ul.tools li {
+    display: block;
+    margin-left: 0;
+}
+
+#aux-nav ul.tools li li {
+    background-image: none;
+    background-repeat: no-repeat;
+    background-position: top left;
+}
+
+.hasJS #aux-nav .tools li ul li {
+    background-color: #FFFFFF;
+    background-image: url(../../img/amo2009/bg/header-dropdown.png);
+    background-repeat: repeat-x;
+    background-position: top left;
+    border-top: 1px solid #D0EBF4;
+    width: 10em;
+    text-align: left;
+    margin: 0;
+    padding: 0.3em 0.3em 0.3em 1em;
+}
+
+#aux-nav ul.tools a.controller:link,
+#aux-nav ul.tools a.controller:visited,
+#aux-nav ul.tools a.controller:focus,
+#aux-nav ul.tools a.controller:hover,
+#aux-nav ul.tools a.controller:active {
+    padding: 0.7em 1em 0 1em;
+    cursor:default;
+    color: #333333;
+    text-decoration: none;
+}
+
+.hasJS #aux-nav ul.tools a.controller:link,
+.hasJS #aux-nav ul.tools a.controller:visited,
+.hasJS #aux-nav ul.tools a.controller:focus,
+.hasJS #aux-nav ul.tools a.controller:hover,
+.hasJS #aux-nav ul.tools a.controller:active {
+    padding: 0.7em 20px 0.5em 1em;
+    display: block;
+    cursor:pointer;
+    color: inherit;
+    text-decoration: inherit;
+    color: #0055EE;
+    background-image: url(../../img/amo2009/icons/arrows.gif);
+    background-repeat: no-repeat;
+    background-position: 95% -65px;
+}
+
+.hasJS #aux-nav ul.tools a.controller:focus,
+.hasJS #aux-nav ul.tools a.controller:hover,
+.hasJS #aux-nav ul.tools a.controller:active {
+    color: #003595;
+    text-decoration: underline;
+    background-position: 95% -105px;
+}
+
+#aux-nav ul.tools ul {
+    display: inline;
+}
+
+.hasJS #aux-nav ul.tools ul {
+    display: none;
+    position: absolute;
+    right: -3px;
+    padding: 0;
+    border-right: 3px solid #A2C2D7;
+    border-bottom: 3px solid #A2C2D7;
+}
+
+/* @end */
+
+.hasJS #aux-nav .expanded .controller {
+    background-color: #FFFFFF;
+    padding-bottom: 1em;
+}
+
+.hasJS #aux-nav ul.expanded {
+    border-right: 3px solid #A2C2D7;
+}
+
+/* @end */
+
+/* @end */
+
+/* @group Footer */
+
+#footer {
+    background-image: url(../../img/amo2009/bg/footer.png);
+    background-repeat: repeat-x;
+    background-position: 0 50px;
+    clear: both;
+    padding-bottom: 1em;
+}
+#footer .section {
+    min-height: 0;
+}
+#footer .primary {
+    float: left;
+    padding-top: 70px;
+    background-image: url(../../img/amo2009/logo-mozilla.gif);
+    background-repeat: no-repeat;
+    background-position: 0 70px;
+    clear: none;
+}
+#footer .secondary {
+    float: right;
+    text-align: right;
+    clear: none;
+}
+#footer .secondary img {
+    max-width: 190px;
+    width: 100%;
+}
+#footer p {
+    margin-bottom: 0;
+    margin-left: 60px;
+    margin-right: 1em;
+}
+#footer ul {
+    font-size: 0.846em;
+    line-height: 1.273;
+    margin-top: 0.3em;
+    padding: 0;
+    margin-left: 60px;
+    margin-right: 1.273em;
+}
+#footer ul li {
+    display: inline;
+    margin-right: 1em;
+}
+#footer .disclaimer {
+    font-size: 0.846em;
+    line-height: 1.273;
+    color: #666666;
+    margin-right: 1.273em;
+}
+
+#footer .languages {
+    float: right;
+    margin: 0;
+}
+
+/* @end */
+
+/* @group Layout constructs */
+
+.primary {
+    width: 73.47%;
+    float: right;
+    clear: right;
+    display: inline;
+}
+.secondary {
+    width: 24.49%;
+    float: left;
+    clear: both;
+    display: inline;
+}
+
+.primary .primary {
+    width: 63.889%;
+    float: left;
+    clear: none;
+}
+
+.primary .secondary {
+    margin-bottom: 2em;
+    width: 33.333%;
+    float: right;
+    clear: none;
+}
+
+/* @group Inverse layout */
+
+.inverse .primary {
+    float: left;
+    clear: left;
+}
+.inverse .secondary {
+    float: right;
+    clear: right;
+}
+.inverse .primary .primary {
+    float: left;
+    clear: none;
+}
+.section .inverse .primary {
+    float: right;
+    clear: none;
+}
+.inverse .primary .secondary {
+    float: right;
+    clear: none;
+}
+.section .inverse .secondary  {
+    float: left;
+    clear: none;
+}
+
+/* @end */
+
+.column-wrapper {
+    overflow: hidden;
+}
+
+.column {
+    float: left;
+    width: 32%;
+    display: inline;
+    margin-left: 2%;
+}
+
+.first {
+    margin-left: 0;
+}
+
+/* @end */
+
+
+/* @end */
+
+/* @group Page Components */
+
+.secondary fieldset {
+    border: none;
+    padding: 0;
+}
+
+.secondary select#add-to-collection {
+    width: 100%;
+    margin: 0.5em 0;
+}
+
+.secondary li a:link,
+.secondary li a:visited,
+.secondary li a:hover,
+.secondary li a:focus,
+.secondary li a:active {
+    font-weight: bold;
+}
+
+/* @group Featured */
+
+.featured {
+    border: 4px solid #B5D9E5;
+    background-color: #B5D9E5;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    margin-bottom: 2em;
+    clear: both;
+}
+.featured-inner {
+    background-color: #fff;
+    border: 1px solid #2E5186;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+/* @end */
+
+/* @group Article */
+
+.article {
+    background-color: #fff;
+    border: 1px solid #C9E8F3;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    padding: 1em;
+    overflow: hidden;
+}
+.secondary .article {
+    margin-bottom: 1em;
+}
+
+.article h4 {
+    clear: both;
+    margin-bottom: 0.3em;
+}
+
+.article img .screenshot {
+    margin-top: 1em;
+    margin-right: 2em;
+}
+
+.article a:link,
+.article a:visited,
+.article a:hover,
+.article a:focus,
+.article a:active {
+    font-weight: bold;
+}
+
+.article ul.further-navigation {
+    border-top: none;
+    padding-top: 0;
+    margin-bottom: 0;
+}
+
+/* @end */
+
+/* @group Notification */
+
+.notification {
+    background-color: #FFFFFF;
+    border: 1px solid #C8E8F3;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    padding: 1em;
+    color: #444444;
+    margin-bottom: 2em;
+    position: relative;
+}
+
+.notification h3 {
+    font-style: italic;
+    font-weight: normal;
+    line-height: 1.5em;
+    color: #223355;
+    margin-top: 0;
+}
+
+.about .notification h3 {
+    display: inline;
+}
+
+.notification .continue {
+    margin:0 0.5em 0 1em;
+}
+
+.html-rtl .notification .continue {
+    margin:0 1em 0 0.5em;
+}
+
+.notification .continue a:link,
+.notification .continue a:visited,
+.notification .continue a:hover,
+.notification .continue a:focus,
+.notification .continue a:active {
+    font-size: 1.5em;
+}
+
+.notification .suggestion {
+    float: right;
+    text-align: right;
+}
+
+.about .notification .suggestion {
+    float: none;
+}
+
+.about .notification .aux {
+    width: auto;
+    float: right;
+    margin: -0.6em 0 0 0;
+}
+
+.about .notification .aux .button-wrapper {
+    margin-bottom: 0;
+    overflow: visible;
+}
+
+.html-rtl .notification .suggestion {
+    float: left;
+    text-align: left;
+}
+
+.html-rtl .notification .button {
+    unicode-bidi: embed;
+}
+
+.notification .suggestion p {
+    margin: 0;
+    color: #666666;
+    font-weight: bold;
+}
+.notification .aux {
+    overflow: hidden;
+    width: 100%;
+}
+
+/* Install button inside a notification, such as on meet-the-devloper pages. */
+.notification .aux .install-container {
+    float: left;
+    margin: 0.5em;
+}
+
+.toggle-help,
+.toggle-info .close {
+    display: none;
+}
+
+.hasJS .toggle-help,
+.hasJS .toggle-info .close  {
+    display: block;
+}
+
+.hasJS .toggle-info .close {
+    font-size: 0.769em;
+    position: absolute;
+    top: 1em;
+    right: 0.5em;
+}
+
+.notification .toggle-info {
+    color: #666666;
+    font-size:1.385em;
+    line-height: 1.375em;
+    position: relative;
+}
+
+.notification .toggle-info p {
+    margin-bottom: 0;
+    margin-top: 1em;
+}
+
+.hasJS .dropdown {
+    background-color: white;
+    border: 1px solid #2E5186;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border-radius:5px;
+}
+
+.hasJS #contribute-links {
+    position: absolute;
+    left: 1em;
+    clear: both;
+    padding: 0.5em 1em;
+    margin-top: -1em;
+}
+
+.html-rtl .hasJS #contribute-links {
+    left: inherit;
+}
+
+#contribute-links a {
+    font-weight: bold;
+}
+
+#contribute-links li span {
+    font-size: .9em;
+    margin: 0 1em;
+}
+
+#contribute-links ul {
+    margin: 0;
+}
+
+#contribute-links li:not(:last-child) {
+    border-bottom: 1px dotted #94BFCE;
+}
+
+.hasJS .notification .toggle-info {
+    clear: both;
+    font-weight: normal;
+    position: absolute;
+    right: 0;
+    font-size: 1em;
+    clear:both;
+    width: 24.3%;
+    background-image: url(../../img/amo2009/icons/pointer.gif);
+    background-repeat: no-repeat;
+    background-position: 95% 4px;
+    padding-top: 10px;
+}
+
+.hasJS .primary .notification .toggle-info {
+    width: 33.2%;
+    z-index: 1;
+}
+.hasJS .primary .object-lead .toggle-info {
+    width: 100%;
+}
+
+.hasJS .notification .toggle-info p {
+    margin-top: 0;
+    padding: 1em;
+}
+
+/* @end */
+
+/* @group Highlights */
+
+.highlight {
+    background-color: #C8E8F3;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    padding: 1em;
+    color: #444444;
+    overflow: hidden;
+    margin-bottom: 1em;
+}
+
+.highlight h2,
+.highlight h3 {
+    margin-top: 0;
+    color: #011234;
+    font-size: 1.385em;
+    font-weight: normal;
+}
+
+.highlight h4 {
+    margin-bottom:1em;
+}
+
+.highlight p {
+    margin-bottom: 0;
+    margin-top: 1em;
+}
+
+.highlight img.avatar {
+    float: right;
+    margin-left: 1em;
+    margin-bottom: 1em;
+}
+
+.highlight .more-info {
+    float: left;
+}
+
+.highlight a.button {
+    margin-top: 0.5em;
+}
+
+.highlight .further-navigation {
+    border-top: 1px dotted #A5C9D5;
+    margin-bottom: 0;
+}
+
+.highlight .further-navigation .more-info {
+    float: right;
+}
+
+/* @end */
+
+/* @group Top search and cat bar */
+
+/* @group Categories list */
+
+.categories {
+    background-color: #C8E8F3;
+    color: #444444;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    width: 24.49%;
+    float: left;
+    margin-bottom: 1em;
+}
+
+.categories h3 a:link,
+.categories h3 a:visited,
+.categories h3 a:hover,
+.categories h3 a:focus,
+.categories h3 a:active {
+    color: white;
+    text-decoration: none;
+}
+
+/* putting back the focus outline */
+.categories h3 a:focus {
+    outline: 1px dotted white;
+}
+
+.secondary .categories {
+    width: 100%;
+    float: none;
+}
+
+.categories h2,
+.categories h3 {
+    margin: 0;
+    padding: 0.79em 0.8em; /* 10px 13px*/
+    background-color: #305083;
+    color: white;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    font-size: 1.231em;
+    background-image: url(../../img/amo2009/bg/heading-dark-blue.jpg);
+    background-repeat: repeat-x;
+    background-position: bottom left;
+    border:  1px solid #021437;
+    font-weight: normal;
+}
+
+
+.categories ul {
+    padding: 1em 0.5em 1em 1em;
+    margin: 0;
+    font-weight: bold;
+}
+
+.categories ul ul {
+    padding: 0 0 1em 0;
+    margin: 0;
+    font-weight: bold;
+}
+
+.categories ul ul li {
+    margin: 0.2em;
+}
+
+.categories ul li:first-child ul {
+    border-bottom: 1px dotted #94BFCE;
+    margin-bottom: 0.8em;
+    padding-bottom: 0.8em;
+}
+
+.categories .items {
+    color: white;
+    background-color: #94BFCE;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    border-radius: 7px;
+    margin-left: 0.1em;
+    padding: 1px 5px;
+    font-size: 0.856em;
+    font-weight: bold;
+}
+.html-rtl .categories .items {
+    unicode-bidi: embed;
+}
+
+/* @group With Javascript */
+.hasJS .stand-alone-options {
+    position: relative;
+}
+.hasJS .dropdown-categories {
+    z-index: 99;
+    position: absolute;
+    left: 0;
+    top: 0;
+    /*width: 23.4%;*/
+}
+.hasJS .dropdown-categories>ul {
+    display: none;
+}
+.hasJS .dropdown-categories img {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+.hasJS .dropdown-categories ul ul {
+    display: block;
+    position: static;
+}
+.hasJS .dropdown-categories h2,
+.hasJS .dropdown-categories h3 {
+    cursor: pointer;
+    position: relative;
+    padding-left: 35px;
+}
+
+/* @end */
+
+
+/* @end */
+
+/* @group Search Form */
+
+
+.search-form {
+    margin-bottom: 2em;
+    width: 73.47%;
+    float: right;
+    position: relative;
+    padding: 0 0 1.5em 0;
+}
+.primary .search-form {
+    width: 100%;
+    float: none;
+}
+.search-form form {
+    margin: 0;
+}
+.search-form .basic {
+    background-image: url(../../img/amo2009/bg/heading-dark-blue.jpg);
+    background-repeat: repeat-x;
+    background-position: bottom left;
+    border:  1px solid #021437;
+    margin: 0;
+    background-color: #305083;
+    color: white;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    font-size: 1.231em;
+    white-space:nowrap;
+    display: block;
+    overflow:hidden;
+    position: relative;
+}
+
+.search-form .basic * {
+    vertical-align: middle;
+}
+
+.search-form .basic button {
+    position: absolute;
+    top:0.06em;
+    right: 1%;
+    -moz-border-radius-bottomleft:5px;
+    -moz-border-radius-bottomright:5px;
+    -moz-border-radius-topleft:5px;
+    -moz-border-radius-topright:5px;
+    background-color:#6FB727;
+    background-image:url(../../img/amo2009/bg/button-green.jpg);
+    background-position:left center;
+    background-repeat:repeat-x;
+    border:1px solid #B9D999;
+    color:white;
+    line-height:0;
+    width: 5%;
+    display: block;
+    float: left;
+    text-align: center;
+    padding:0.3em 0;
+    /* padding:0.3em 0.6em 0.3em 0.75em; */
+}
+
+.search-form .basic button img {
+    vertical-align: top;
+    margin: 0;
+    padding: 0;
+    display: inline;
+    border-right: none;
+}
+
+.search-form .basic button p span {
+    text-indent: -5000px;
+}
+
+.search-form .basic label {
+    font-weight: normal;
+    width: 10%;
+    text-align: center;
+    display: block;
+    float: left;
+    padding-top: 0.7em;
+}
+
+.search-form .basic input{
+    border: 1px solid #CCCCCC;
+    outline: 1px solid #011234;
+    margin:0.35em 0 0.35em 1.4%;
+    background-image: url(../../img/amo2009/icons/magnifying-glass.gif);
+    background-repeat: no-repeat;
+    background-position: 0.1em center;
+    background-color: white;
+    padding:0.3em 0;
+    text-indent: 2em;
+    width:45%;
+    display: block;
+    float: left;
+}
+
+.search-form .basic select {
+    border: 1px solid #CCCCCC;
+    outline: 1px solid #011234;
+    margin:0.35em 0;
+    color: #444444;
+    padding:0.23em 0;
+    width: 35%;
+    float:left;
+}
+.search-form .basic option {
+    color: black;
+    text-indent: 10px;
+    padding-left: 5px;
+}
+.search-form .basic option.cat-all {
+    color: #444444;
+    text-indent: 0;
+    font-weight: bold;
+}
+.search-form .basic textarea:focus,
+.search-form .basic input[type='text']:focus,
+.search-form .basic input[type='password']:focus,
+.search-form .basic select:focus {
+    border: 1px solid #999;
+    outline: 1px solid black;
+}
+
+#advanced-link {
+    position: absolute;
+    bottom: 0;
+    right: 30px;
+    margin: 0;
+}
+#advanced-link a:link,
+#advanced-link a:visited,
+#advanced-link a:hover,
+#advanced-link a:focus,
+#advanced-link a:active {
+    display: block;
+    padding: 0 20px 0.1em 1em;
+    font-size: 0.923em;
+    font-weight: bold;
+    color: white;
+    -moz-border-radius: 0 0 5px 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 0 0 5px 5px;
+    border: 1px solid #021437;
+    border-top: none;
+    /*background-color: #223355;*/
+    background-color: #26395A;
+    background-image: url(../../img/amo2009/icons/arrows.gif);
+    background-position: 95% -591px;
+    background-repeat: no-repeat;
+}
+
+.expanded #advanced-link a:link,
+.expanded #advanced-link a:visited,
+.expanded #advanced-link a:hover,
+.expanded #advanced-link a:focus,
+.expanded #advanced-link a:active {
+    background-position: 95% -641px;
+}
+
+/* @group Expanded search form */
+
+.search-form .advanced {
+    display: none;
+}
+.expanded-search-form .advanced {
+    display: block;
+    padding-top: 1px;
+    margin: 0 5px;
+    background-color: #EAF6FA;
+    border-color: #223355;
+    border-style: solid;
+    border-width: 0 5px 5px 5px;
+    -moz-border-radius: 0 0 5px 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+    border-radius: 0 0 5px 5px;
+}
+.search-form fieldset {
+    border: none;
+    margin: 1em;
+    padding: 0;
+}
+.search-form fieldset:first-child {
+    border-bottom: 1px dotted #A4CFDE;
+    padding-bottom: 1em;
+}
+
+/* @group Subsidiary */
+
+.search-form .subsidiary {
+    margin-top: 0;
+    border: none;
+}
+.search-form .subsidiary .container {
+    width: 48%;
+    float: left;
+    display: inline;
+}
+.search-form .subsidiary label {
+    width: 35%;
+    display: block;
+    float: left;
+    font-weight: bold;
+}
+.search-form .subsidiary select,
+.search-form .subsidiary input {
+    width: 40%;
+}
+
+/* @end */
+
+/* @group Important */
+
+.search-form .important {
+    margin-bottom: 0;
+}
+.search-form .important div  {
+    display: inline;
+    white-space: nowrap;
+}
+.search-form .important select,
+.search-form .important input {
+    margin: 0 0.5em;
+}
+.search-form .important .application label  {
+    font-weight: bold;
+    display: block;
+    float: left;
+    width: 16.8%;
+}
+.search-form .important .application select,
+.search-form .important .application input {
+    margin: 0 1em 0 0;
+}
+
+/* @end */
+
+
+/* @end */
+/* @end */
+
+/* @end */
+
+/* @group Homepage teaser */
+
+.hasJS .section-teaser .featured-inner {
+    padding-bottom: 5em;
+    position: relative;
+}
+
+/* @group Teaser Header */
+
+.section-teaser .teaser-header {
+    background-image: url(../../img/amo2009/bg/listing-footer.gif);
+    background-position: top left;
+    background-repeat: repeat-x;
+    -webkit-border-top-right-radius: 3px;
+    -webkit-border-top-left-radius: 3px;
+    -moz-border-radius: 3px 3px 0 0;
+    border-radius: 3px 3px 0 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+.hasJS .section-teaser .teaser-header {
+    -webkit-border-top-right-radius: 0;
+    -webkit-border-top-left-radius: 0;
+    -webkit-border-bottom-right-radius: 3px;
+    -webkit-border-bottom-left-radius: 3px;
+    -moz-border-radius: 0 0 3px 3px;
+    border-radius: 0 0 3px 3px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+.section-teaser .teaser-header ol {
+    margin: 0;
+    padding: 0 45px;
+    list-style-type: none;
+}
+
+.hasJS .section-teaser .teaser-header ol {
+    border-top: 1px solid #AEC3CF;
+}
+
+.section-teaser .teaser-header ol li {
+    margin: 0 2.1em 0.5em 0;
+    padding: 0.5em 0 0 0;
+    float: left;
+    white-space: nowrap;
+    position: relative;
+    top: -1px;
+}
+
+.section-teaser .teaser-header ol li:first-child {
+    margin-left: 0;
+}
+
+.section-teaser .teaser-header ol li:last-child {
+    margin-right: 0;
+}
+
+.section-teaser .teaser-header a:link,
+.section-teaser .teaser-header a:visited,
+.section-teaser .teaser-header a:hover,
+.section-teaser .teaser-header a:focus,
+.section-teaser .teaser-header a:active {
+    color: #54647E;
+    text-decoration: none;
+    font-size: 0.923em;
+    font-weight: bold;
+}
+
+.section-teaser .teaser-header a:hover,
+.section-teaser .teaser-header a:focus,
+.section-teaser .teaser-header a:active {
+    color: #223355;
+}
+
+.section-teaser .teaser-header li.selected {
+    background-image: url(../../img/amo2009/bg/panel-selected.png);
+    background-repeat: no-repeat;
+    background-position: center top;
+}
+
+/* @end */
+
+.teaser-items {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.teaser-items li {
+    margin: 0;
+    padding: 0;
+}
+
+/* @group Next and previous icons */
+
+.slideshow-controls {
+    margin: 0;
+}
+
+.section-teaser .prev,
+.section-teaser .next {
+    display: block;
+    position: absolute;
+    overflow: hidden;
+    cursor: pointer;
+    text-decoration: none;
+    text-indent: -5000px;
+    bottom: 1.6em;
+    left: 8px;
+    width: 27px;
+    height: 27px;
+    background-image: url(../../img/amo2009/icons/arrows-scroller.png);
+    background-position: 0 0;
+    background-repeat: no-repeat;
+}
+
+.section-teaser .next {
+    left: auto;
+    right: 8px;
+    background-position: 0 -150px;
+}
+
+.section-teaser .active.prev {
+    background-position: 0 -50px;
+}
+
+.section-teaser .active.next {
+    background-position: 0 -200px;
+}
+
+.section-teaser .active.prev:focus,
+.section-teaser .active.prev:hover {
+    background-position: 0 -100px;
+}
+
+.section-teaser .active.next:focus,
+.section-teaser .active.next:hover {
+    background-position: 0 -250px;
+}
+
+/* @end */
+
+/* @group Slideshow Window with Javascript */
+
+.hasJS .section-teaser .window {
+    overflow: hidden;
+    direction: ltr;
+}
+
+.hasJS .section-teaser .window ol.teaser-items {
+    margin: 0;
+    padding: 0;
+    width: 50000px;
+    overflow: hidden;
+    position: relative;
+    left: 0;
+    direction: ltr;
+}
+
+.hasJS .section-teaser .window ol.teaser-items li {
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+
+.hasJS .section-teaser .window .more-info {
+    background-position:right -155px;
+}
+
+/* @end */
+
+/* @group Teaser internals */
+
+.section-teaser .column-wrapper {
+    margin: 0 1em;
+}
+
+.section-teaser h2 {
+    margin-left: 0.619em;
+    margin-right: 0.619em;
+    font-size: 1.615em;
+    line-height: 0.952em;
+}
+
+.section-teaser .column {
+    border-left: 1px dotted #A4CFDE;
+    text-align: center;
+    width: 31.5%;
+}
+
+.section-teaser .column p,
+.section-teaser .column h3 {
+    margin-left: 1em;
+}
+
+.section-teaser .first {
+    border-left: none;
+}
+
+.section-teaser .addon-view {
+    background-position: bottom right;
+    background-repeat: no-repeat;
+}
+
+.section-teaser .addon-view .lead {
+    clear: both;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+.section-teaser .addon-view .more-info {
+    float: none;
+}
+
+.section-teaser .addon-view .column {
+    border:none;
+    text-align: left;
+    width: 25%;
+}
+
+.section-teaser .addon-view .column-inner {
+    padding: 1em 0 1em 55px;
+    position: relative;
+}
+
+.section-teaser .addon-view .icon {
+    position: absolute;
+    top: 1em;
+    left: 10px;
+}
+
+.section-teaser .addon-view h3 {
+    margin-top: 0;
+    font-weight: bold;
+    font-size: 1em;
+    line-height: 1.25em;
+}
+
+.section-teaser .addon-view p,
+.section-teaser .addon-view h3 {
+    margin-left: 0;
+    margin-right: 0;
+    line-height: 1.23em;
+}
+
+div.section-teaser .column .button {
+    white-space: nowrap;
+    margin: 0;
+    margin-right: 1%;
+    margin-left: 0.7%;
+}
+
+div.section-teaser .column .button * {
+    white-space: nowrap;
+}
+
+/* @group Section BG images */
+
+.section-teaser #t-entertainment {
+    /*background-image: url(../../img/amo2009/illustrations/entertainment.jpg);*/
+}
+.section-teaser #t-shopping {
+    background-image: url(../../img/amo2009/illustrations/shopping-online.jpg);
+}
+.section-teaser #t-music {
+    /*background-image: url(../../img/amo2009/illustrations/music.jpg);*/
+}
+.section-teaser #t-socialising {
+    /*background-image: url(../../img/amo2009/illustrations/socialising.jpg);*/
+}
+.section-teaser #t-news {
+    /*background-image: url(../../img/amo2009/illustrations/news.jpg);*/
+}
+.section-teaser #t-search {
+    /*background-image: url(../../img/amo2009/illustrations/search.jpg);*/
+}
+
+/* @end */
+
+/* @end */
+
+/* @end */
+
+/* @group Steps */
+
+ol.numbered {
+    margin-left: 0;
+    list-style-type: none;
+}
+
+ol.numbered li {
+    position: relative;
+    margin-bottom: 1em;
+    overflow: hidden;
+    min-height:35px;
+    padding-left: 50px;
+}
+
+h4.step {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-image: url(../../img/amo2009/icons/step.png);
+    background-repeat: no-repeat;
+    background-position: left top;
+    color: #FFFFFF;
+    font-size:1.6em;
+    font-weight:lighter;
+    padding:5px 13px 15px;
+}
+
+/* @end */
+
+/* @group Pagination */
+
+ol.pagination {
+    width: 50%;
+    margin-bottom: 2em;
+    margin-left: 0;
+    float: left;
+    line-height: 2em;
+}
+.listing-footer ol.pagination {
+    margin-bottom: 0;
+}
+ol.pagination li {
+    display: inline;
+    list-style: none;
+}
+ol.pagination li a {
+    padding: 0.3em 0.7em;
+    font-weight: bold;
+}
+ol.pagination span {
+    font-weight: bold;
+    padding: 0.3em 0.7em;
+}
+ol.pagination a[rel~="prev"],
+ol.pagination span.prev  {
+    background-image: url(../../img/amo2009/icons/arrows.gif);
+    background-repeat: no-repeat;
+    background-position: 5px -420px;
+    color: #0055EE;
+    padding-right:0.7em;
+    padding-left: 15px;
+}
+ol.pagination a[rel~="next"],
+ol.pagination span.next {
+    background-image: url(../../img/amo2009/icons/arrows.gif);
+    background-repeat: no-repeat;
+    background-position: 95% -340px;
+    color: #0055EE;
+    padding-left:0.7em;
+    padding-right: 15px;
+}
+ol.pagination span.prev {
+    color: #666;
+    background-position: 5px -540px;
+}
+ol.pagination span.next {
+    color: #666;
+    background-position: 92% -500px;
+}
+ol.pagination li.selected a:link,
+ol.pagination li.selected a:visited,
+ol.pagination li.selected a:hover,
+ol.pagination li.selected a:focus,
+ol.pagination li.selected a:active {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    background-color: #223355;
+    color: white;
+}
+ol.pagination li a:hover,
+ol.pagination li a:focus,
+ol.pagination li a:active {
+    background-color: #BDDDE8;
+    /*color: #223355;*/
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    text-decoration: none;
+}
+
+/* @end */
+
+/* @group Share This */
+
+.share-this {
+    width: 200px;
+    clear:left;
+    float:left;
+}
+
+.share-networks {
+    background-image: url(../../img/amo2009/icons/pointer.gif);
+    background-repeat: no-repeat;
+    background-position:30px top;
+    padding-top: 7px;
+}
+
+.secondary .share-networks {
+    position:absolute;
+}
+
+.share-networks ul {
+    display:table;
+    border: 1px solid #2E5186;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border-radius:5px;
+    background-color:#FFFFFF;
+    padding: 0 0 0 0.8em;
+}
+
+.html-rtl .share-networks ul {
+    padding: 0 0.8em 0 0;
+}
+
+.share-networks li {
+    margin-bottom:0.5em;
+    display:table-row;
+}
+
+.share-networks li:hover span.share-link {
+    background-image:url(../../img/amo2009/icons/share-arrow-sprite.png);
+    background-repeat:no-repeat;
+    background-position: right 8px;
+}
+
+.html-rtl .share-networks li:hover span.share-link {
+    background-position: 0 -42px;
+}
+
+.share-networks li span {
+    display:table-cell;
+    padding-top:8px;
+    padding-right:15px;
+    padding-left:20px;
+}
+
+.html-rtl .share-networks li span {
+    padding-right:20px;
+    padding-left:15px;
+}
+
+.share-networks .share-count {
+    padding-left:0.8em;
+    padding-right:0.8em;
+    text-align:right;
+    background-color:#EAF7FB;
+}
+
+.html-rtl .share-networks .share-count {
+    text-align:left;
+}
+
+.share-networks li:last-child span {
+    padding-bottom:8px;
+}
+
+.share-networks li:first-child .share-count {
+    -moz-border-radius-topright:5px;
+    -webkit-border-top-right-radius:5px;
+    border-top-right-radius:5px;
+}
+
+.html-rtl .share-networks li:first-child .share-count {
+    -moz-border-radius-topright:0;
+    -webkit-border-top-right-radius:0;
+    border-top-right-radius:0;
+    -moz-border-radius-topleft:5px;
+    -webkit-border-top-left-radius:5px;
+    border-top-left-radius:5px;
+}
+
+.share-networks li:last-child .share-count {
+    -moz-border-radius-bottomright:5px;
+    -webkit-border-bottom-right-radius:5px;
+    border-bottom-right-radius:5px;
+}
+
+.html-rtl .share-networks li:last-child .share-count {
+    -moz-border-radius-bottomright:0;
+    -webkit-border-bottom-right-radius:0;
+    border-bottom-right-radius:0;
+    -moz-border-radius-bottomleft:5px;
+    -webkit-border-bottom-right-radius:5px;
+    border-bottom-right-radius:5px;
+}
+
+
+/* @end */
+
+/* @group Top Shared Addons */
+
+.top-shared-addons h3 {
+    margin-bottom:0.5em;
+}
+
+.top-shared-addons h3 span {
+    font-size:0.7em;
+}
+
+.top-shared-addons ol {
+    margin-bottom:0;
+}
+
+/* @end */
+
+/* @group Addon list */
+
+.secondary-item-list {
+    background-color: #fff;
+    border: 1px solid #C9E8F3;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    padding: 1em;
+    overflow: hidden;
+}
+.secondary-item-list ul {
+    margin: 0.5em 0 0 0;
+    padding: 0;
+}
+
+.secondary-item-list ul li {
+    margin: 0;
+    padding: 0;
+}
+
+.secondary-item-list ul li a {
+    margin: 0 0 0.8em 0;
+    padding: 0 0 0 25px;
+    display: block;
+    line-height: 1.25;
+}
+/* @end */
+
+/* @group Breadcrumbs */
+
+ol.breadcrumbs {
+    font-weight: bold;
+    margin-bottom: 1.3em;
+    font-size: 0.846em;
+    margin-left: 0;
+    clear: both;
+}
+
+ol.breadcrumbs li {
+    display: inline;
+    background-image: url(../../img/amo2009/icons/buttons/breadcrumb.gif);
+    background-repeat: no-repeat;
+    background-position: top right;
+    padding-right: 1em;
+}
+
+ol.breadcrumbs li:last-child {
+    background-image: none;
+    padding-right: 0;
+}
+
+/* @end */
+
+/* @group Feedback Form */
+
+form.addon-feedback {
+    width: 50%;
+    float: left;
+    margin-right: 1.5em;
+    margin-top: 1em;
+}
+
+form.addon-feedback textarea {
+    width: 80%;
+    background-color: #E3F3F9;
+    float: right;
+    min-height:140px;
+}
+form.addon-feedback select {
+    background-color: #E3F3F9;
+    margin-left: 1%;
+}
+form.addon-feedback label {
+    float: left;
+    clear: both;
+    width: 18%;
+    margin-bottom: 1em;
+}
+
+form.addon-feedback button {
+    display: block;
+    margin-top: 1em;
+    clear: both;
+}
+
+form.addon-feedback div.container {
+    clear: both;
+    margin-bottom: 0.5em;
+    overflow: hidden;
+}
+
+/* @end */
+
+/* @group Listing */
+
+.listing {
+    margin-bottom: 1em;
+}
+
+/* @group Listing - Header */
+
+.listing-header {
+    background-color: #F0F8FC;
+    background-image: url(../../img/amo2009/bg/listing-header.gif);
+    background-repeat: repeat-x;
+    background-position: bottom left;
+    border-bottom: 1px solid #A5BFCE;
+    -webkit-border-top-right-radius: 3px;
+    -webkit-border-top-left-radius: 3px;
+    -moz-border-radius: 3px 3px 0 0;
+    border-radius: 3px 3px 0 0;
+    padding: 0.1em 0 0.1em 0.25em;
+    overflow: hidden;
+}
+.listing-header ul {
+    margin-bottom: 0;
+    float: left;
+}
+.listing-header li {
+    line-height: 2.5;
+    display: inline;
+    margin: 0 0.25em;
+}
+.listing-header li a {
+    color: #223355;
+    font-weight: bold;
+    text-decoration: none;
+    border: 1px solid transparent;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    padding: 0.3em 0.8em;
+    white-space: nowrap;
+}
+.listing-header li a:hover,
+.listing-header li a:focus {
+    background-color: #BBDCE8;
+}
+.categories li.selected,
+.categories li.selected a,
+.listing-header li.selected a:link,
+.listing-header li.selected a:visited,
+.listing-header li.selected a:hover,
+.listing-header li.selected a:focus,
+.listing-header li.selected a:active {
+    color: #fff;
+    background-color: #223355;
+    border-color: #001133;
+    border-width: 1px 0 0 1px;
+}
+
+.listing-header .num-results {
+    float: left;
+}
+
+.html-rtl .listing-header .num-results {
+    float: right;
+}
+
+/* @group Item sort form */
+
+.item-sort {
+    margin:0.2em 0.5em 0 0.5em;
+    text-align:right;
+    white-space:nowrap;
+    float: right;
+}
+
+
+
+/* @end */
+
+/* @end */
+
+/* @group Listing - Footer */
+
+.listing-footer {
+    background-color: #FFFFFF;
+    background-image: url(../../img/amo2009/bg/listing-footer.gif);
+    background-repeat: repeat-x;
+    background-position: left top;
+    border-top: 1px solid #A5BFCE;
+    -webkit-border-bottom-right-radius: 3px;
+    -webkit-border-bottom-left-radius: 3px;
+    -moz-border-radius: 0 0 3px 3px;
+    border-radius: 0 0 3px 3px;
+    margin-top: -1px;
+    position: relative;
+    z-index: 10;
+    overflow: hidden;
+    padding:0.3em 1em 0.5em;
+}
+.listing-footer a {
+    font-weight: bold;
+}
+.listing-footer .subscribe,
+.listing-footer .pagination {
+    float: left;
+}
+
+.listing-footer .num-results {
+    float: right;
+    line-height: 2em;
+}
+
+.html-rtl .listing-footer .num-results {
+    float: left;
+}
+
+.listing-footer .subscribe {
+    margin-top: 0.3em;
+}
+
+.listing-footer .more-info {
+    margin-top: 0.3em;
+}
+
+
+/* @end */
+
+/* @group Items */
+
+.item {
+    margin: 1.2em 0;
+    padding-top:1px;
+}
+.item blockquote {
+    font-style: normal;
+    margin: 0;
+}
+.item blockquote p {
+    margin-bottom: 0.5em;
+}
+
+/* @group Headings */
+
+.item h5 {
+    font-size: 1.167em; /* 14px */
+    margin-top: 0.5em;
+    margin-bottom: 0.2em;
+}
+.item h3,
+.item h4 {
+    font-size: 1.385em; /* 18px */
+    font-weight: bold;
+    line-height: 1em;
+    margin-top: 0;
+    margin-bottom: 0.778em;
+    overflow: hidden;
+}
+.item h3 span,
+.item h4 span {
+    font-size: 0.667em; /* 13px */
+    font-weight: normal;
+    display:block;
+}
+.item h5 span {
+    font-size: 0.857em;
+    font-weight:normal;
+    white-space: nowrap;
+}
+
+/* @end */
+
+/* @group Item information */
+
+.item .meta {
+    font-size: 0.923em; /* 12px */
+    border-top: 1px dotted #B5D9E5;
+    padding-top: 0.3em;
+}
+.item .meta .addons {
+    margin-right: 1em;
+}
+.html-rtl .item .meta .addons {
+    margin-right: auto;
+    margin-left: 1em;
+}
+
+.item .downloads {
+    margin-left: 1em;
+}
+.html-rtl .item .downloads {
+    margin-left: auto;
+    margin-right: 1em;
+}
+
+/* @group Item info (aligned Right) */
+
+.item-info {
+    float: right;
+    width: 14em;
+    padding-left:2%;
+    margin-left: 2%;
+}
+
+.item .item-info {
+    border-left: 1px dotted #B4DFEE;
+    /*margin-bottom: -50em;
+    padding-bottom: 50em;*/
+}
+.item-info ul {
+    list-style-type: none;
+}
+
+/* @end */
+
+/* @group Install Information */
+
+.item .install {
+    float: right;
+    text-align: center;
+    -webkit-border-radius: 11px;
+    -moz-border-radius: 11px;
+    border-radius: 11px;
+    padding: 2px 3px 3px 3px;
+    margin-left: 0.5em;
+}
+
+.item .unavailable {
+    border: 1px solid #D2E7EE;
+    padding: 0.3em;
+    width: 10em;
+    background-color: #FFFFFF;
+    color: #666666;
+}
+
+.recommended .install {
+    background-color: #efe;
+    border: 1px solid #2a2;
+}
+
+.experimental .install{
+    background-color: #fee;
+    border: 1px solid #f66;
+}
+
+.item .install strong {
+    display: block;
+    font-weight: normal;
+    font-size: 0.85em;
+    line-height: 1em;
+    color: #000;
+    text-shadow: #FFFFFF 1px 1px 1px;
+    clear: left;
+}
+
+/* @end */
+
+
+
+/* @end */
+
+/* @group Listing and separated items */
+.separated-listing h3 {
+    float: left;
+    margin-top: 0;
+}
+
+.html-rtl .separated-listing h3 {
+    float: right;
+}
+
+.separated-listing .item h3 {
+    float: none;
+}
+
+.separated-listing form.item-sort {
+    float: right;
+    margin-top: -0.2em;
+}
+
+.html-rtl .separated-listing form.item-sort {
+    float: left;
+}
+
+.separated-listing .item .item-info {
+    border: none;
+    margin-bottom: 2em;
+}
+
+.separated-listing .item .item-info p {
+    margin: 0;
+}
+
+.separated-listing .item .downloads {
+    margin: 0;
+}
+
+.separated-listing blockquote {
+    margin-right: 11em;
+    clear: left;
+}
+
+.separated-listing .item h4 {
+    float: left;
+}
+
+.html-rtl .separated-listing .item h4 {
+    float: right;
+}
+
+.separated-listing .item-info p:first-child {
+    margin-bottom: 3px;
+}
+
+.table-listing .item,
+.blocks .item,
+.listing .item,
+.separated-listing .item {
+    padding: 1em 1em 1em 52px;
+    position: relative;
+    background-color: #FFFFFF;
+    overflow: hidden;
+    clear: both;
+    background-repeat: repeat-x;
+    background-position: left bottom;
+}
+
+.table-listing .item,
+.blocks .item,
+.separated-listing .item {
+    border: 1px solid #C9E8F3;
+    margin: 0 0 1em 0;
+    -moz-border-radius:3px;
+    -webkit-border-radius: 3px;
+    border-radius:3px;
+}
+
+.listing .item {
+    border-bottom: 1px solid #D6E9F0;
+    background-image: url(../../img/amo2009/bg/listing-item.png);
+    margin: 0 0 0 0;
+}
+
+.listing .item img.icon,
+.separated-listing .item img.icon {
+    position: absolute;
+    top: 0.5em;
+    left: 7px;
+}
+
+.blocks .item {
+    padding: 1em;
+    height: 24.7%;
+    width: 90%;
+    min-width: 315px;
+
+    clear: none;
+    float: left;
+
+    -moz-border-radius:6px;
+    -webkit-border-radius: 6px;
+    border-radius:6px;
+}
+
+.html-rtl .blocks .item {
+    float: right;
+    clear: none;
+}
+
+.blocks .item .description {
+    padding-top: 0;
+    margin-bottom: 0.5em;
+}
+
+/* Float every other block right for a nice grid if we have space. */
+@media all and (min-width: 1055px) {
+    .blocks .item {
+        width: 45%;
+    }
+
+    .blocks .item:nth-child(even) {
+        float: right;
+    }
+
+    .html-rtl .blocks .item:nth-child(even) {
+        float: left;
+    }
+}
+
+.table-listing .item {
+    display: table;
+    padding-left: 2em;
+    width: 90%;
+    -moz-border-radius:6px;
+    -webkit-border-radius: 6px;
+    border-radius:6px;
+}
+
+.table-listing .item-info {
+    display: table-cell;
+    float: none;
+}
+
+.table-listing .main-info {
+    display: table-cell;
+    padding-right: 1em;
+}
+
+
+/* @group Item variations */
+
+.listing .recommended,
+.separated-listing .recommended {
+    background-image: url(../../img/amo2009/bg/listing-item-yellow.png);
+    border-color: #fc9;
+}
+.recommended .meta {
+    border-color: #fc9;
+}
+
+.listing .experimental,
+.separated-listing .experimental {
+    background-image: url(../../img/amo2009/bg/listing-item-red.png);
+    border-color: #fcc;
+}
+.experimental .meta {
+    border-color: #fcc;
+}
+
+/* @end */
+
+/* @end */
+
+/* @end */
+
+/* @end */
+
+/* @group Object Lead */
+
+.object-lead {
+    padding: 1em;
+    margin: 0;
+    background-image: url(../../img/amo2009/bg/listing-item.png);
+    background-repeat: repeat-x;
+    background-position: left bottom;
+    position: relative;
+}
+
+.object-lead img.avatar {
+    border: 3px solid #C8E8F3;
+    float: left;
+    margin-right: 1em;
+}
+
+.object-lead form {
+    margin:0;
+}
+
+.object-lead h3 {
+    margin-top: 0;
+}
+
+.object-lead .meta {
+    float: right;
+    width: 18em;
+    padding-left: 2%;
+    margin: 2em 2% 0 0;
+    margin-left: 1em;
+    border-left: 1px dotted #B4DFEE;
+}
+
+.html-rtl .object-lead .meta {
+    float: left;
+    padding-left: auto;
+    padding-right: 2%;
+    margin-left: 2%;
+    margin-right: 1em;
+    border-left: none;
+    border-right: 1px dotted #B4DFEE;
+}
+
+.object-lead .object-info p {
+    margin: 0;
+}
+
+.object-lead .user-role {
+    position: absolute;
+    top: 1em;
+    right:0;
+    background-image:url(../../img/amo2009/icons/developer.png);
+    background-position: left center;
+    background-repeat: no-repeat;
+    padding: 0.3em 1.18em 0.3em 35px;
+    text-transform: uppercase;
+    font-size: 0.846em;
+}
+
+.object-lead .notification {
+    background-color: #C8E8F3;
+    border: none;
+    margin-top: 2em;
+    margin-bottom: 1em;
+    clear: left;
+}
+
+.aux .button-wrapper,
+.object-lead .button-wrapper {
+    float: left;
+    margin-top:0.5em;
+    overflow: hidden;
+}
+
+.html-rtl .aux .button-wrapper,
+.html-rtl .object-lead .button-wrapper {
+    float: right;
+}
+
+/* @group Object Content */
+
+.object-content {
+    margin-left: 220px;
+}
+
+.vcard .object-content {
+    margin-left: 150px;
+}
+
+.object-lead table,
+.object-lead tbody {
+    border-top: none;
+    border-bottom: none;
+}
+
+.object-lead table {
+    width: 100%;
+    margin-top: 1em;
+}
+
+.object-lead table tr th {
+    width: 20%;
+}
+
+.object-lead table tr td,
+.object-lead table tr th {
+    border-top: 1px dotted #A5C9D5;
+    border-bottom: none;
+}
+
+.object-lead table tr:first-child td,
+.object-lead table tr:first-child th {
+    border-top: none;
+}
+
+/* @end */
+
+
+
+/* @end */
+
+/* @group Person Info table */
+
+table.person-info th,
+table.person-info td {
+    display: block;
+}
+
+table.person-info td {
+    border-top:none;
+    margin: 0;
+    padding: 0.1em 0 0.3em 0;
+}
+
+table.person-info th {
+    border-top:1px dotted #A5C9D5;
+    margin: 0;
+    padding: 0.3em 0 0 0;
+}
+
+table.person-info tr:first-child th {
+    border-top: none;
+}
+
+table.person-info tbody {
+    border-top:none;
+}
+
+table.person-info {
+    border-bottom:none;
+}
+
+table.person-info a:link,
+table.person-info a:visited,
+table.person-info a:hover,
+table.person-info a:focus,
+table.person-info a:active {
+    font-weight: bold;
+}
+
+/* @end */
+
+/* @group Collection Columns */
+
+
+.article-wrapper {
+    margin-bottom: 1em;
+    clear: both;
+}
+
+.article-wrapper .article {
+    padding-bottom: 0;
+}
+
+.article-wrapper h3 {
+    margin-top: 0;
+}
+
+/* @end */
+
+/* @group Further Navigation */
+
+ul.further-navigation {
+    border-top: 1px dotted #B4DFEE;
+    padding-top: 1em;
+    margin-top: 1.5em;
+}
+
+ul.further-navigation li {
+    display: inline;
+    padding-right: 1em;
+}
+
+ul.further-navigation li a {
+    font-weight: bold;
+}
+
+/* @end */
+
+/* @end */
+
+/* @group Overrides */
+
+/* @group RL languages */
+
+
+
+/* class on the html element in order to work with arabic etc */
+
+.html-rtl {
+    text-align: right;
+    direction: rtl
+}
+
+.html-rtl .primary {
+    float: left;
+    clear: left;
+}
+.html-rtl .secondary {
+    float: right;
+    clear: right;
+}
+.html-rtl .primary .primary {
+    float: right;
+    clear: none;
+}
+.html-rtl .primary .secondary {
+    float: left;
+    clear: none;
+}
+
+/* @group Helper Styles */
+
+/* @group Generic Image Styles */
+
+
+
+/* @end */
+
+/* @group More Info */
+
+.html-rtl .more-info {
+    float: left;
+}
+.html-rtl .more-info,
+.html-rtl .more-info:link,
+.html-rtl .more-info:visited,
+.html-rtl .more-info:hover,
+.html-rtl .more-info:focus,
+.html-rtl .more-info:active {
+background-position:left -253px;
+padding-right:0;
+padding-left: 1em;
+}
+
+.html-rtl .more-info:hover,
+.html-rtl .more-info:focus,
+.html-rtl .more-info:active {
+background-position:left -303px;
+}
+.html-rtl .hasJS .item a.show-expanded {
+    float: left;
+}
+
+.html-rtl .highlight .more-info {
+    float: right;
+}
+
+.html-rtl .highlight .further-navigation .more-info {
+    float: left;
+}
+
+.html-rtl.hasJS .section-teaser .window .more-info {
+    background-position:left -155px;
+}
+
+.html-rtl .section-teaser .addon-view .more-info {
+    float: none;
+}
+
+/* @end */
+
+/* @group Icon Indicators */
+
+.html-rtl .subscribe {
+    background-position: right 2px;
+    padding: 0 20px 0 0;
+}
+
+.html-rtl .share {
+    background-position: right -100px;
+    padding: 0 20px 0 0;
+    float: right;
+}
+
+.html-rtl .addons {
+    background-position: right -200px;
+    padding: 0 20px 7px 0;
+}
+.html-rtl .collections {
+    background-position: right -300px;
+    padding: 0 20px 0 0;
+}
+.html-rtl .subscribers {
+    background-position: right -400px;
+    padding: 0 20px 7px 0;
+}
+.html-rtl .category {
+    background-position: right -500px;
+    padding: 0 20px 0 0;
+}
+.html-rtl .tags {
+    background-position: right -600px;
+    padding: 0 20px 0 0;
+}
+.html-rtl .digg {
+    background-position: right -890px;
+    padding: 0 20px 0 0;
+}
+.html-rtl .delicious {
+    background-position: right -990px;
+    padding: 0 20px 0 0;
+}
+.html-rtl .facebook {
+    background-position: right -1090px;
+    padding: 0 20px 0 0;
+}
+.html-rtl .friendfeed {
+    background-position: right -1190px;
+    padding: 0 20px 0 0;
+}
+.html-rtl .myspace {
+    background-position: right -1290px;
+    padding: 0 20px 0 0;
+}
+.html-rtl .twitter {
+    background-position: right -1492px;
+    padding: 0 20px 0 0;
+}
+
+.html-rtl li.subscribe,
+.html-rtl li.share,
+.html-rtl li.addons,
+.html-rtl li.collections,
+.html-rtl li.subscribers,
+.html-rtl li.category,
+.html-rtl li.tags,
+.html-rtl li.digg,
+.html-rtl li.delicious,
+.html-rtl li.facebook,
+.html-rtl li.friendfeed,
+.html-rtl li.myspace,
+.html-rtl a.subscribe,
+.html-rtl a.share,
+.html-rtl a.addons,
+.html-rtl a.collections,
+.html-rtl a.subscribers,
+.html-rtl a.category,
+.html-rtl a.tags,
+.html-rtl a.digg,
+.html-rtl a.delicious,
+.html-rtl a.facebook,
+.html-rtl a.friendfeed,
+.html-rtl a.myspace,
+.html-rtl a.twitter {
+    padding-right:20px;
+    text-align: right;
+}
+
+.html-rtl .stars {
+    text-indent:-5000px;
+}
+
+/* @end */
+
+/* @end */
+
+/* @group Inverse layout */
+
+.html-rtl .inverse .primary {
+    float: right;
+    clear: right;
+}
+.html-rtl .inverse .secondary {
+    float: left;
+    clear: left;
+}
+.html-rtl .inverse .primary .primary {
+    float: right;
+    clear: none;
+}
+.html-rtl .section .inverse .primary {
+    float: left;
+    clear: none;
+}
+.html-rtl .inverse .primary .secondary {
+    float: left;
+    clear: none;
+}
+.html-rtl .section .inverse .secondary  {
+    float: right;
+    clear: none;
+}
+
+
+/* @end */
+
+/* @group Header */
+
+.html-rtl #header #title {
+    direction: ltr;
+    text-align: right;
+}
+
+/* @group Stats */
+
+.html-rtl .stats {
+    text-align: left;
+    float: left;
+}
+
+.html-rtl .stats li {
+    overflow: hidden;
+}
+
+.html-rtl .stats strong {
+    margin-left: 0.5em;
+}
+
+.html-rtl .stats span {
+    text-align: right;
+}
+
+.html-rtl ol.breadcrumbs li {
+    unicode-bidi: embed;
+    background-position:left -50px;
+    padding-right:0;
+    padding-left:1em;
+}
+
+/* @end */
+
+/* @group Brand */
+
+.html-rtl #brand {
+    left: auto;
+    right: 0;
+}
+
+.html-rtl #brand a:link,
+.html-rtl #brand a:visited,
+.html-rtl #brand a:hover,
+.html-rtl #brand a:focus,
+.html-rtl #brand a:active {
+    background-position: top right;
+    text-indent: 5000px;
+}
+
+/* @end */
+
+/* @group Aux nav */
+
+.html-rtl #aux-nav {
+    right: auto;
+    left: 0;
+    margin: 0 100px 0 0;
+    text-align: left;
+    background-position: top left;
+}
+
+/*
+
+.html-rtl #aux-nav a:link,
+.html-rtl #aux-nav a:visited,
+.html-rtl #aux-nav a:hover,
+.html-rtl #aux-nav a:focus,
+.html-rtl #aux-nav a:active {
+    margin-left: 1em;
+}
+
+.html-rtl #aux-nav a.change:link,
+.html-rtl #aux-nav a.change:visited,
+.html-rtl #aux-nav a.change:hover,
+.html-rtl #aux-nav a.change:focus,
+.html-rtl #aux-nav a.change:active {
+    background-position: top right;
+    padding-left: 0;
+    padding-right: 1em;
+    float: left;
+    margin-left: 0;
+    margin-right: 1em;
+}
+*/
+
+/* @end */
+
+/* @end */
+
+/* @group Footer */
+
+.html-rtl #footer .primary {
+    float: right;
+    background-position: right 70px;
+}
+.html-rtl #footer .secondary {
+    float: left;
+    text-align: left;
+}
+.html-rtl #footer p {
+    margin-right: 60px;
+    margin-left: 1em;
+}
+.html-rtl #footer ul {
+    margin-right: 60px;
+    margin-left: 1.273em;
+}
+.html-rtl #footer ul li {
+    display: inline;
+    margin-right: 0;
+    margin-left: 1em;
+}
+.html-rtl #footer .disclaimer {
+    margin-left: 1.273em;
+    margin-right: 60px;
+}
+
+.html-rtl #footer .languages {
+    float: left;
+}
+
+.html-rtl .stars {
+    float: right;
+    margin-left: 0.5em;
+    margin-right: 0;
+}
+
+.html-rtl h5 img.icon,
+.html-rtl h2 img.icon {
+    float: right;
+    margin-right:0;
+    margin-left: 10px;
+}
+
+/* @end */
+
+/* @group Components */
+
+/* @group Further Navigation */
+
+.html-rtl ul.further-navigation li {
+    padding-right: 0;
+    padding-left: 1em;
+}
+
+/* @end */
+
+/* @group Star Select Replacement */
+
+.html-rtl .selectReplacement {
+    float: right;
+}
+
+/* @end */
+
+/* @group Steps */
+
+.html-rtl h4.step {
+    left: auto;
+    right: 0;
+}
+
+.html-rtl ol.numbered li {
+    padding-left:0;
+    padding-right:50px;
+}
+
+/* @end */
+
+/* @group Privacy Policy */
+
+.html-rtl .privacy-policy {
+    display: block;
+}
+
+/* @end */
+
+/* @group Homepage teaser */
+
+.html-rtl .section-teaser .slideshow-controls {
+    direction: rtl;
+}
+
+
+/* @end */
+
+/* @group Tables */
+
+.html-rtl table tr td,
+.html-rtl table tr th {
+    text-align: right;
+}
+
+/* @end */
+
+/* @group Pagination */
+
+.html-rtl ol.pagination {
+    float: right;
+}
+
+.html-rtl ol.pagination li {
+    float: right;
+}
+
+.html-rtl ol.pagination span.next,
+.html-rtl ol.pagination a[rel~="next"] {
+    background-position:left -420px;
+    padding-left: 1em;
+    padding-right: 0.4em;
+}
+
+.html-rtl ol.pagination span.prev,
+.html-rtl ol.pagination a[rel~="prev"] {
+    background-position:right -340px;
+    padding-right: 1em;
+    padding-left: 0.4em;
+}
+
+.html-rtl ol.pagination span.prev {
+    background-position: 92% -500px;
+}
+.html-rtl ol.pagination span.next {
+    background-position: 5px -540px;
+}
+
+/* @end */
+
+/* @group SearchForm */
+
+.html-rtl .hasJS .dropdown-categories {
+    left: auto;
+    right: 0;
+}
+
+.html-rtl .hasJS .dropdown-categories img {
+    position: absolute;
+    left: auto;
+    right: 10px;
+    top: 12px;
+}
+
+.html-rtl .hasJS .dropdown-categories h2,
+.html-rtl .hasJS .dropdown-categories h3 {
+    padding-right: 35px;
+    padding-left: 0;
+}
+
+.html-rtl .search-form {
+    float: left;
+}
+
+.html-rtl .secondary .search-form {
+    float: none;
+}
+
+.html-rtl .search-form .subsidiary .container {
+    float: right;
+}
+
+.html-rtl .search-form .important .application select,
+.html-rtl .search-form .important .application input {
+    margin: 0;
+}
+
+.html-rtl .search-form .basic input {
+    background-position:right center;
+    margin-right: 1.4%;
+    margin-left: 0;
+}
+
+.html-rtl .search-form .basic label,
+.html-rtl .search-form .basic select,
+.html-rtl .search-form .basic input,
+.html-rtl .search-form .basic button {
+    float: right;
+}
+
+.html-rtl .search-form .basic button {
+    left: 1.4%;
+    right: auto;
+}
+
+.html-rtl .search-form .important .application label,
+.html-rtl .search-form .subsidiary label {
+    float: right;
+}
+
+.html-rtl form.addon-feedback label {
+    float: right;
+}
+
+.html-rtl form.addon-feedback textarea {
+    float: left;
+}
+
+/* @end */
+
+/* @group Share This */
+
+.html-rtl .share-networks {
+    background-position:160px top;
+    clear:both;
+}
+
+.html-rtl .share-this {
+    clear: right;
+    float: right;
+}
+
+
+/* @end */
+
+/* @group Feedback Form */
+
+.html-rtl form.addon-feedback {
+    float: right;
+    margin-right: 0;
+    margin-left: 1.5em;
+}
+
+/* @end */
+
+/* @group Meta */
+
+
+.html-rtl .meta .subscribers {
+    background-position: right -400px;
+    float: left;
+}
+
+.html-rtl .meta .addons {
+    background-position: right -200px;
+    float: left;
+
+}
+
+/* @end */
+
+
+
+/* @group Buttons */
+
+.html-rtl a:link.button img,
+.html-rtl a:visited.button img,
+.html-rtl a:hover.button img,
+.html-rtl a:focus.button img,
+.html-rtl a:active.button img,
+.html-rtl button img {
+    border-right:none;
+    border-left:1px solid #3399FF;
+    margin-right:0;
+    margin-left: 0.7em;
+    padding-right:0.2em;
+    padding-left: 0.4em;
+}
+
+.html-rtl a:link.negative img,
+.html-rtl a:visited.negative img,
+.html-rtl a:hover.negative img,
+.html-rtl a:focus.negative img,
+.html-rtl a:active.negative img,
+.html-rtl button.negative img {
+    border-right:none;
+    border-left:1px solid #E54C4F;
+}
+
+.html-rtl a:link.button.positive img,
+.html-rtl a:visited.button.positive img,
+.html-rtl a:hover.button.positive img,
+.html-rtl a:focus.button.positive img,
+.html-rtl a:active.button.positive img,
+.html-rtl button.positive img {
+    border-right:none;
+    border-left:1px solid #55AA00;
+}
+
+.html-rtl a:link.button.neutral img,
+.html-rtl a:visited.button.neutral img,
+.html-rtl a:hover.button.neutral img,
+.html-rtl a:focus.button.neutral img,
+.html-rtl a:active.button.neutral img,
+.html-rtl button.neutral img {
+    border-right:none;
+    border-left:1px solid #DD7711;
+}
+
+.html-rtl .search-form button img {
+    border-left: none;
+}
+
+.html-rtl button.add-to-fav {
+    background-position: right;
+    float: right;
+    padding:0.5em 19px 0.2em 0px;
+}
+
+/* @end */
+
+/* @group Listing */
+
+/* @group Listing - Header */
+
+.html-rtl .listing-header .item-sort  {
+    float: left;
+}
+
+.html-rtl .listing-header ul {
+    float: right;
+}
+
+/* @end */
+
+
+
+/* @group Listing - Footer */
+
+.html-rtl .listing-footer .subscribe {
+    float: right;
+    margin-left: 1em;
+}
+
+.html-rtl .listing-footer .subscribe,
+.html-rtl .pagination {
+    float: right;
+}
+
+/* @end */
+
+/* @group Listing items */
+
+.html-rtl .listing .item,
+.html-rtl .separated-listing .item {
+padding:1em 52px 1em 1em;
+}
+
+.html-rtl .item .install {
+    float: left;
+    margin-left: 0;
+    margin-right: 0.5em;
+}
+.html-rtl .item img.icon {
+    left: auto;
+    right: 7px;
+}
+
+.html-rtl .item .downloads {
+    margin-left: 0;
+    margin-right: 1em;
+}
+
+.html-rtl .item-info {
+    float: left;
+    border-left:none;
+    border-right:1px dotted #B4DFEE;
+    margin-left:0;
+    margin-left:2%;
+    padding-left: 0;
+    padding-right:2%;
+    margin-right: 2%;
+}
+
+.html-rtl .item-info ul {
+    text-align: left;
+}
+
+.html-rtl .item .thumbnail {
+    float: right;
+    margin-left:1em;
+    margin-right:0;
+}
+
+.html-rtl .screenshot.thumbnail {
+    float: right;
+    margin-right: 0;
+    margin-left: 1em;
+}
+
+.html-rtl .separated-listing blockquote {
+    margin-right:0;
+    margin-left:11em;
+}
+
+/* @end */
+/* @end */
+
+/* @group Object Lead */
+
+.html-rtl .object-lead .user-role {
+    background-position:right center;
+    left:160px;
+    right: inherit;
+    padding:0.3em 35px 0.3em 1.18em;
+}
+
+.html-rtl .object-content {
+    margin-right:0;
+    margin-left:220px;
+}
+
+/* @end */
+
+
+
+/* @end */
+/* @end */
+
+/* @group Different Applications  */
+
+.firefox h2 {
+    color: #C63717;
+}
+.firefox #aux-nav .change li.firefox {
+    display: none;
+}
+
+.thunderbird h2 {
+    color: #105399;
+}
+.thunderbird #aux-nav .change li.thunderbird {
+    display: none;
+}
+
+.sunbird h2 {
+    color: #007940;
+}
+.sunbird #aux-nav .change li.sunbird {
+    display: none;
+}
+
+.seamonkey h2 {
+    color: #1408E5;
+}
+.seamonkey #aux-nav .change li.seamonkey {
+    display: none;
+}
+
+
+/* @end */
+
+/* @end */
+
+/* Developer page */
+
+.vcard .secondary {
+    margin: 1em 0 0 1em;
+}
+
+.teaser-items .vcard .photo-large {
+    height: 150px;
+    width: 150px;
+}
