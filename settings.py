@@ -1,5 +1,10 @@
 # Django settings for zamboni project.
 
+# Make filepaths relative to settings.
+import os
+ROOT = os.path.dirname(os.path.abspath(__file__))
+path = lambda *a: os.path.join(ROOT, *a)
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
