@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="{{ LANG }}" dir="{{ DIR }}"><!--TODO: APP_SHORTNAME-->
+  <head>
+    <title>{% block title %}{{ _('Mozilla Add-ons') }}{% endblock %}</title>
+
+    <link rel="shortcut icon" type="image/x-icon"
+          href="{{ MEDIA_URL}}/img/favicon.ico">
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" type="text/css" media="screen,projection,tv"
+          href="{{ MEDIA_URL}}/css/main.css">
+    <link rel="stylesheet" type="text/css" media="screen,projection,tv"
+          href="{{ MEDIA_URL}}/css/main-mozilla.css">
+
+    {% block css %}{% endblock %}
+    {% block js %}{% endblock %}
+  </head>
+  <body class="html-{{ DIR }} hasJS">
+    <div class="section">
+      {% include "header.html" %}
+      {% block categories %}{% include "categories.html" %}{% endblock %}
+      {% block search %}{% include "search.html" %}{% endblock %}
+    </div>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+<div class="search-form expanded-search-form">
+  <form method="get" id="search-form">
+    <div class="basic" id="search-query">
+      <input id="query" type="text" title="search" name="q"
+             value="{{ _('search for add-ons') }}">
+      <label for="cat">{{ _('within') }}</label>
+      <select name="cat" id="cat">
+        <option class="cat-all" value="all">{{ _('all add-ons') }}</option>
+      </select>
+      <button type="submit">
+        <img src="{{ MEDIA_URL}}img/amo2009/blank.gif">
+      </button>
+    </div>
+  </form>
+</div>
