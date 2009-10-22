@@ -7,6 +7,7 @@ path = lambda *a: os.path.join(ROOT, *a)
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
+DEBUG_PROPAGATE_EXCEPTIONS = True
 
 ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
