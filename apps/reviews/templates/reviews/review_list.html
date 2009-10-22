@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="primary" role="main">
+  {% set addon_name = addon.name %}
+  <h2>{{ _('Reviews for {0}')|f(addon.name) }}</h2>
+
+  {% include "reviews/navigation.html" %}
+  <hr>
+  {% for review in reviews.object_list %}
+    <div class="item review" id="review-{{ review.id }}">
+      <h3>{{ review.title }}</h3>
+      <div class="reviewed-on">
+        {{ review.rating|stars }}
+        {% trans user=review.user|user_link, date=review.created|datetime %}
+          by {{ user }} on {{ date }}
+        {% endtrans %}
+      </div>
+      <p>{{ review.body|nl2br }}</p>
+    </div>
+  {% endfor %}
+  {{ reviews|paginator }}
+  <hr>
+  {% include "reviews/navigation.html" %}
+</div>
+{% endblock content %}

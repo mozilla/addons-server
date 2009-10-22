@@ -1,10 +1,15 @@
 from django.conf import settings
-from django.conf.urls.defaults import *
+from django.conf.urls.defaults import patterns, url, include
+
 
 urlpatterns = patterns('',
     url('^$', 'jingo.views.direct_to_template',
         {'template': 'base.html'}, name='home'),
+
+    # Reviews.
+    ('^reviews/', include('reviews.urls')),
 )
+
 
 if settings.DEBUG:
     # Remove leading and trailing slashes so the regex matches.
