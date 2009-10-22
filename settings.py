@@ -85,6 +85,10 @@ TEMPLATE_DIRS = (
 
 INSTALLED_APPS = (
     'amo',
+    'addons',
+    'reviews',
+    'users',
+    'versions',
 
     'django.contrib.auth',
     'django.contrib.contenttypes',
