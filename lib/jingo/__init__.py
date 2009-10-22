@@ -38,6 +38,14 @@ def render(request, template, context=None, content_type=None):
     return http.HttpResponse(rendered, content_type=content_type)
 
 
+def load_template_tags():
+    for app in settings.INSTALLED_APPS:
+        try:
+            __import__('%s.templatetags' % app)
+        except ImportError:
+            pass
+
+
 class Register(object):
     """Decorators to add filters and functions to the template Environment."""
 
@@ -58,3 +66,4 @@ register = Register(env)
 
 # Import down here after the env is initialized.
 from . import templatetags
+load_template_tags()
