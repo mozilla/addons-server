@@ -1,5 +1,11 @@
 #!/usr/bin/env python
+import site
+
 from django.core.management import execute_manager
+
+
+site.addsitedir('apps')
+site.addsitedir('lib')
 
 try:
     import local_settings as settings
