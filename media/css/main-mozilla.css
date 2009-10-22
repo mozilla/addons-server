@@ -1667,6 +1667,7 @@ dl.faq dt:target, dl.validation dt:target { color: #df731b; }
 }
 
 /* Clearfix! */
+.num-results:after,
 #builder li:after,
 .block-row:after,
 .barometer:after,
