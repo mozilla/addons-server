@@ -24,6 +24,7 @@ Contents:
    :maxdepth: 2
    :glob:
 
+   installation
    ref/*
 
 Indices and tables
