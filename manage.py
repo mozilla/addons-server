@@ -4,9 +4,6 @@ import site
 from django.core.management import execute_manager
 
 
-site.addsitedir('apps')
-site.addsitedir('lib')
-
 try:
     import local_settings as settings
 except ImportError:
@@ -18,6 +15,10 @@ except ImportError:
             "Error: Tried importing 'local_settings.py' and 'settings.py' "
             "but neither could be found (or they're throwing an ImportError)."
             " Please come back and try again later.")
+
+
+site.addsitedir(settings.path('apps'))
+site.addsitedir(settings.path('lib'))
 
 
 if __name__ == "__main__":
