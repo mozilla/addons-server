@@ -30,11 +30,11 @@ def datetime(t, format=_('%B %d, %Y')):
 
 @register.filter
 def selected(a, b, text='selected'):
-    """Return ``text`` if a == b."""
+    """Return ``text`` if ``a == b``."""
     return jinja2.Markup(text if a == b else '')
 
 
 @register.filter
 def class_selected(a, b):
-    """Return 'class="selected"' if a == b."""
+    """Return ``'class="selected"'`` if ``a == b``."""
     return selected(a, b, 'class="selected"')
