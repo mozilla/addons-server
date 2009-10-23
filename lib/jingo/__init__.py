@@ -28,14 +28,14 @@ def get_env():
     return e
 
 
-def render(request, template, context=None, content_type=None):
-    """Shortcut like Django's render_to_response."""
+def render(request, template, context=None, **kwargs):
+    """Shortcut like Django's render_to_response, but better."""
     if context is None:
         context = {}
     for processor in get_standard_processors():
         context.update(processor(request))
     rendered = env.get_template(template).render(**context)
-    return http.HttpResponse(rendered, content_type=content_type)
+    return http.HttpResponse(rendered, **kwargs)
 
 
 def load_template_tags():
