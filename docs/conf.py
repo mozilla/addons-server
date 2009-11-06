@@ -203,6 +203,12 @@ latex_documents = [
 # If false, no module index is generated.
 #latex_use_modindex = True
 
+_django_docs = 'http://docs.djangoproject.com/en/dev'
 
-# Example configuration for intersphinx: refer to the Python standard library.
-intersphinx_mapping = {'http://docs.python.org/': None}
+# intershpinx links for Python, Django, Jinja, and Sphinx.
+intersphinx_mapping = {
+    'http://docs.python.org/': None,
+    _django_docs: os.path.join(_django_docs, '_objects'),
+    'http://jinja.pocoo.org/2/documentation/': None,
+    'http://sphinx.pocoo.org/': None,
+    }
