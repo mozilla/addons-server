@@ -8,11 +8,8 @@ You won't be going too far without :ref:`installation` unless you're just here
 to read.
 
 
-How these Docs are Arranged
----------------------------
-
 Topics
-~~~~~~
+------
 
 These are fairly broad narratives that cover things like Django or Sphinx, with
 lots of links to more in-depth coverage.
@@ -25,7 +22,7 @@ lots of links to more in-depth coverage.
 
 
 Reference
-~~~~~~~~~
+---------
 
 Reference pages are more like typical API docs, using docstrings and narratives
 to cover internal packages.

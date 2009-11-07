@@ -7,6 +7,7 @@ Installing Zamboni
 We're going to use all the hottest Python tools to set up a nice environment.
 Here we go!
 
+
 Requirements
 ------------
 
@@ -14,7 +15,7 @@ The only we need to get started is Python 2.6.
 
 
 Use the Source
-^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~
 
 Grab zamboni from github with ::
 
@@ -81,7 +82,7 @@ the system Python), pass the path to mkvirtualenv with ``--python``::
 
 
 pip
-^^^
+~~~
 
 We're going to use pip to install Python packages from `pypi
 <http://pypi.python.org/pypi>`_ and github. ::

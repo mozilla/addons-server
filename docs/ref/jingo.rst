@@ -1,5 +1,6 @@
+.. _jingo:
+.. module:: jingo
 .. highlight:: jinja
-
 
 A page about Jingo.
 ===================
@@ -14,7 +15,7 @@ doing L10n in Django templates.
 
 
 Localization
-^^^^^^^^^^^^
+------------
 
 Since we all love L10n, let's see what it looks like in Jinja templates::
 
@@ -35,7 +36,7 @@ directly.  Both methods are useful, pick the one that makes you happy.
 
 
 Rendering
-^^^^^^^^^
+---------
 
 At this point, Jingo only provides two shortcuts for rendering templates.
 
@@ -45,7 +46,6 @@ At this point, Jingo only provides two shortcuts for rendering templates.
     processors in ``settings.CONTEXT_PROCESSORS`` will be applied to the
     context, just like when you use a ``RequestContext`` in Django.  Any extra
     keyword arguments are passed directly to ``http.HttpResponse``.
-
 
 
 Template filters provided by jingo
