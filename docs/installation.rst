@@ -1,6 +1,8 @@
-============================
-Getting Started with zamboni
-============================
+.. _installation:
+
+==================
+Installing Zamboni
+==================
 
 We're going to use all the hottest Python tools to set up a nice environment.
 Here we go!
@@ -26,9 +28,7 @@ virtualenv
 isolated Python environments.  We're going to be installing a bunch of packages,
 but we don't want your system littered with all these things you only need for
 zamboni.  Some other piece of software might want an older version than zamboni
-wants, which can create quite a mess.
-
-::
+wants, which can create quite a mess.  ::
 
     easy_install virtualenv
 
@@ -48,12 +48,15 @@ Install it like this::
     wget http://bitbucket.org/dhellmann/virtualenvwrapper/raw/tip/virtualenvwrapper_bashrc -O ~/.virtualenvwrapper
     mkdir ~/.virtualenvs
 
-Then put this in your ``~/.bashrc``::
+Then put these lines in your ``~/.bashrc``::
 
     export WORKON_HOME=$HOME/.virtualenvs
     source $HOME/.virtualenvwrapper
 
 ``exec bash`` and you're set.
+
+.. note:: You should really be using zsh, but you know to ``s/bash/zsh/g`` if
+          you're sailing that ship.
 
 
 Getting Packages
@@ -67,18 +70,21 @@ That creates a clean environment named zamboni and (for convenience) initializes
 the environment.  You can get out of the environment by restarting your shell or
 calling ``deactivate``.
 
-To get back into the zamboni environment, type::
+To get back into the zamboni environment later, type::
 
     workon zamboni
+
+If you keep your Python binary in a special place (i.e. you don't want to use
+the system Python), pass the path to mkvirtualenv with ``--python``::
+
+    mkvirtualenv --python=/usr/local/bin/python2.6 --no-site-packages zamboni
 
 
 pip
 ^^^
 
 We're going to use pip to install Python packages from `pypi
-<http://pypi.python.org/pypi>`_ and github.
-
-::
+<http://pypi.python.org/pypi>`_ and github. ::
 
     easy_install pip
 
@@ -86,7 +92,7 @@ Since we're in our zamboni environment, pip was only installed locally, not
 system-wide.
 
 zamboni uses a requirements file to tell pip what to install.  Get everything
-you need by running::
+you need by running ::
 
     pip install -r requirements.txt
 
