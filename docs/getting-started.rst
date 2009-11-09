@@ -37,14 +37,6 @@ to cover internal packages.
 
 Things to learn about:
 
-Django
-    * ORM
-    * CSRF
-    * Forms
-    * testing
-    * best practices, app layout
-    * multidb, master-slave
-
 Jinja
     * builtin filters
     * :mod:`jingo`
