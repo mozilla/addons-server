@@ -60,6 +60,34 @@ Then put these lines in your ``~/.bashrc``::
           you're sailing that ship.
 
 
+virtualenvwrapper Hooks
+~~~~~~~~~~~~~~~~~~~~~~~
+
+virtualenvwrapper lets you run hooks when creating, activating, and deleting
+virtual environments.  These hooks can change settings, the shell environment,
+or anything else you want to do from a shell script.  For complete hook
+documentation, see
+http://www.doughellmann.com/docs/virtualenvwrapper/hooks.html.
+
+You can find some lovely hooks to get started at http://gist.github.com/234301.
+The hook files should go in ``$WORKON_HOME`` (``$HOME/.virtualenvs`` from
+above), and ``premkvirtualenv`` should be made executable.
+
+
+premkvirtualenv
+***************
+
+This hook installs pip and ipython into every virtualenv you create.
+
+
+postactivate
+************
+
+This runs whenever you start a virtual environment.  If you have a virtual
+environment named ``zamboni``, ``postactivate`` switches the shell to
+``~/dev/zamboni`` if that directory exists.
+
+
 Getting Packages
 ----------------
 
@@ -142,4 +170,4 @@ Fin
 Everything's good to go now (assuming you've installed a remora database clone),
 so start up the development server. ::
 
-    python manage.py runserver
+    python manage.py runserver 0:8000
