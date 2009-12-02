@@ -11,6 +11,7 @@ from django.core.cache import cache
 
 CACHE_DURATION = 60 * 30
 
+
 def _cache_key(model, **fields):
     key = ':'.join('%s=%s' % item for item in sorted(fields.items()))
     return '%s.%s.%s' % (model._meta.app_label, model._meta.module_name, key)
@@ -21,6 +22,7 @@ def _get_cache_key(self, field=None):
 
 
 class CachingManager(models.Manager):
+
     def __init__(self, use_for_related_fields=True, *args, **kwargs):
         self.use_for_related_fields = use_for_related_fields
         super(CachingManager, self).__init__(*args, **kwargs)
@@ -39,13 +41,13 @@ class CachingManager(models.Manager):
 
     def _invalidate_cache(self, instance):
         """
-        Explicitly set a None value instead of just deleting so we don't have any race
-        conditions where:
+        Explicitly set a None value instead of just deleting so we don't have
+        any race conditions where:
             Thread 1 -> Cache miss, get object from DB
             Thread 2 -> Object saved, deleted from cache
             Thread 1 -> Store (stale) object fetched from DB in cache
-        Five second should be more than enough time to prevent this from happening for
-        a web app.
+        Five second should be more than enough time to prevent this from
+        happening for a web app.
         """
         cache.set(instance.cache_key, None, 5)
 
@@ -57,19 +59,21 @@ class CachingManager(models.Manager):
 
 
 class CachingQuerySet(QuerySet):
+
     def iterator(self):
         superiter = super(CachingQuerySet, self).iterator()
         while True:
             obj = superiter.next()
-            # Use cache.add instead of cache.set to prevent race conditions (see CachingManager)
+            # Use cache.add instead of cache.set to prevent race conditions
+            # (see CachingManager)
             cache.add(obj.cache_key, obj, CACHE_DURATION)
             print 'added', obj.cache_key
             yield obj
 
     def get(self, *args, **kwargs):
         """
-        Checks the cache to see if there's a cached entry for this pk. If not, fetches
-        using super then stores the result in cache.
+        Checks the cache to see if there's a cached entry for this pk. If not,
+        fetches using super then stores the result in cache.
 
         Most of the logic here was gathered from a careful reading of
         ``django.db.models.sql.query.add_filter``

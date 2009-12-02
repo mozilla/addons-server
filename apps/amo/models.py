@@ -16,3 +16,4 @@ class ModelBase(TranslatedFieldMixin, models.Model):
 
     class Meta:
         abstract = True
+

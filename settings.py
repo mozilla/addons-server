@@ -39,7 +39,10 @@ TIME_ZONE = 'America/Los_Angeles'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en-US'
+
+# Accepted locales and apps
+LANGUAGES = {'en-US': 'English (US)', 'ja': 'Japanese'}
 
 SITE_ID = 1
 
@@ -75,6 +78,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'amo.middleware.LocaleAndAppURLMiddleware',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -99,9 +103,7 @@ INSTALLED_APPS = (
     'translations',
     'users',
     'versions',
-
     'django_nose',
-
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -111,3 +113,12 @@ INSTALLED_APPS = (
 TEST_RUNNER = 'django_nose.run_tests'
 
 LOG_LEVEL = logging.DEBUG
+
+# AMO Specific details
+SUPPORTED_APPS = ('firefox', 'thunderbird', 'mobile', 'seamonkey',
+'sunbird', )
+
+# paths that don't require an app prefix
+SUPPORTED_NONAPPS = ('admin', 'developers', 'editors', 'localizers',
+'statistics', )
+DEFAULT_APP = 'firefox'

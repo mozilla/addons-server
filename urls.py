@@ -8,8 +8,8 @@ urlpatterns = patterns('',
 
     # Reviews.
     ('^reviews/', include('reviews.urls')),
-)
 
+)
 
 if settings.DEBUG:
     # Remove leading and trailing slashes so the regex matches.

@@ -9,7 +9,9 @@ Sphinx==0.6.3
 ipython==0.10
 sqlparse==0.1.1
 
+
 -e git://github.com/jbalogh/django-nose.git#egg=django-nose
 nose==0.11.1
 coverage==3.2b4
 mock==0.6.0
+fabric
