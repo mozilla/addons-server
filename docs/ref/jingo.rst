@@ -55,5 +55,5 @@ These filters are injected into all templates automatically.  Template filters
 are what Jinja uses instead of "helpers" in other systems.  They're just
 functions that get called from templates using the ``|`` (pipe) syntax.
 
-.. automodule:: jingo.templatetags
+.. automodule:: jingo.helpers
     :members:

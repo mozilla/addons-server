@@ -38,10 +38,11 @@ def render(request, template, context=None, **kwargs):
     return http.HttpResponse(rendered, **kwargs)
 
 
-def load_template_tags():
+def load_helpers():
+    """Try to import ``helpers.py`` from each app in INSTALLED_APPS."""
     for app in settings.INSTALLED_APPS:
         try:
-            __import__('%s.templatetags' % app)
+            __import__('%s.helpers' % app)
         except ImportError:
             pass
 
@@ -65,5 +66,5 @@ env = get_env()
 register = Register(env)
 
 # Import down here after the env is initialized.
-from . import templatetags
-load_template_tags()
+from . import helpers
+load_helpers()

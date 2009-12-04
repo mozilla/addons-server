@@ -34,7 +34,7 @@ def datetime(t, format=_('%B %d, %Y')):
 
 
 @register.filter
-def selected(a, b, text='selected'):
+def ifeq(a, b, text):
     """Return ``text`` if ``a == b``."""
     return jinja2.Markup(text if a == b else '')
 
@@ -42,4 +42,4 @@ def selected(a, b, text='selected'):
 @register.filter
 def class_selected(a, b):
     """Return ``'class="selected"'`` if ``a == b``."""
-    return selected(a, b, 'class="selected"')
+    return ifeq(a, b, 'class="selected"')
