@@ -19,7 +19,9 @@ class LocaleAndAppURLMiddleware(object):
     def process_request(self, request):
         # Find locale, app
         locale, app, path = self.split_locale_app_from_path(request.path)
-        locale_app_path = self.locale_app_path(path, locale, app)
+        has_trailing_slash = request.path.endswith('/')
+        locale_app_path = self.locale_app_path(path, locale, app,
+            has_trailing_slash)
 
         if locale_app_path != request.path_info:
             if request.META.get("QUERY_STRING", ""):
@@ -68,7 +70,8 @@ class LocaleAndAppURLMiddleware(object):
         return locale, app, path.strip('/')
 
 
-    def locale_app_path(self, path, locale='', app=''):
+    def locale_app_path(self, path, locale='', app='',
+        has_trailing_slash = False):
         """
         Generate the localeurl-enabled path from a path without locale prefix.
         If the locale is empty settings.LANGUAGE_CODE is used.
@@ -90,4 +93,7 @@ class LocaleAndAppURLMiddleware(object):
         if path:
             url_parts.append(path)
 
-        return u'/' + u'/'.join(url_parts) + u'/'
+        url = u'/' + '/'.join(url_parts)
+        if has_trailing_slash:
+            url = url + '/'
+        return url
