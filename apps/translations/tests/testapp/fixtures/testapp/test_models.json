@@ -1,0 +1,56 @@
+[
+    {   "pk": 2,
+        "model": "translations.translationsequence",
+        "fields": {}
+    },
+    {
+        "pk": 1,
+        "model": "translations.translation",
+        "fields": {
+            "id": 1,
+            "locale": "en-US",
+            "localized_string": "some name",
+            "created": "2007-03-05 16:06:55",
+            "modified": "2007-03-21 13:42:36"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "translations.translation",
+        "fields": {
+            "id": 2,
+            "locale": "en-US",
+            "localized_string": "some description",
+            "created": "2007-03-05 16:06:55",
+            "modified": "2007-03-21 13:42:36"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "translations.translation",
+        "fields": {
+            "id": 1,
+            "locale": "de",
+            "localized_string": "German!! (unst unst)",
+            "created": "2007-03-05 16:06:55",
+            "modified": "2007-03-21 13:42:36"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "testapp.translatedmodel",
+        "fields": {
+            "id": 1,
+            "name": 1,
+            "description": 2
+        }
+    },
+    {
+        "pk": 1,
+        "model": "testapp.untranslatedmodel",
+        "fields": {
+            "id": 1,
+            "number": 17
+        }
+    }
+]

@@ -88,6 +88,7 @@ INSTALLED_APPS = (
     'amo',
     'addons',
     'reviews',
+    'translations',
     'users',
     'versions',
 
