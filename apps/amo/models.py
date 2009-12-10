@@ -1,42 +1,51 @@
 from django.db import models
+from django.utils import translation as translation_utils
 
-from . import managers
 
+class ModelBase(models.Model):
+    """
+    Base class for AMO models to abstract some common features.
 
-class LegacyModel(models.Model):
-    """Adds automatic created and modified fields to the model."""
+    * Adds automatic created and modified fields to the model.
+    * Fetches all translations in one subsequent query during initialization
+    """
+
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
     class Meta:
         abstract = True
 
+    def __init__(self, *args, **kw):
+        super(ModelBase, self).__init__(*args, **kw)
+        self.set_tranlated_fields()
 
-class TranslatedField(models.IntegerField):
-    __metaclass__ = models.SubfieldBase
+    def set_tranlated_fields(self):
+        """Fetch and attach all of this object's translations."""
+        if not hasattr(self._meta, 'translated_fields'):
+            return
 
-    def to_python(self, value):
-        locale = 'en-US'
-        try:
-            o = Translation.objects.get(id=value, locale=locale)
-            return o.localized_string
-        except Translation.DoesNotExist:
-            return value
+        # Map the attribute name to the object name: 'name_id' => 'name'
+        names = dict((f.attname, f.name) for f in self._meta.translated_fields)
+        # Map the foreign key to the attribute name: self.name_id => 'name_id'
+        ids = dict((getattr(self, name), name) for name in names)
 
+        Translation = self._meta.translated_fields[0].rel.to
+        lang = translation_utils.get_language()
+        q = self._fetch_translations(Translation, ids, lang)
 
-# Putting Translation in here since TranslatedField depends on it.
-class Translation(LegacyModel):
+        for translation in q:
+            attr = names[ids[translation.id]]
+            setattr(self, attr, translation)
 
-    autoid = models.AutoField(primary_key=True)
-    id = models.IntegerField()
-    locale = models.CharField(max_length=10)
-    localized_string = models.TextField()
+    def _fetch_translations(self, Translation, ids, lang):
+        """
+        Performs the query for finding Translation objects.
 
-    objects = managers.CachingManager()
+        ``Translation`` is the :class:`translations.Translation` class
+        ``ids`` is a list of the foreign keys to the object's translations
+        ``lang`` is the language of the current request
 
-    class Meta:
-        db_table = 'translations'
-
-    @property
-    def cache_key(self):
-        return self._cache_key(id=self.id, locale=self.locale)
+        Override this to search for translations in an unusual way.
+        """
+        return Translation.objects.filter(id__in=ids, locale=lang)

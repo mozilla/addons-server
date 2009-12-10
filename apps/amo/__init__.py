@@ -6,7 +6,7 @@ import functools
 from django.core import paginator
 
 from .managers import CachingManager
-from .models import LegacyModel, TranslatedField
+from .models import ModelBase
 
 
 def paginate(request, queryset, per_page=20):
