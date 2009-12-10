@@ -3,7 +3,7 @@ from django.db import models
 import amo
 
 
-class User(amo.LegacyModel):
+class User(amo.ModelBase):
 
     email = models.EmailField()
     firstname = models.CharField(max_length=255)

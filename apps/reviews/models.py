@@ -1,14 +1,15 @@
 from django.db import models
 
 import amo
+from translations.fields import TranslatedField
 from users.models import User
 
 
-class Review(amo.LegacyModel):
+class Review(amo.ModelBase):
 
     rating = models.IntegerField()
-    title = amo.TranslatedField()
-    body = amo.TranslatedField()
+    title = TranslatedField()
+    body = TranslatedField()
 
     version = models.ForeignKey('versions.Version')
     user = models.ForeignKey(User)

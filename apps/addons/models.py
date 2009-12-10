@@ -1,12 +1,13 @@
 from django.db import models
 
 import amo
-from users.models import User
+from translations.fields import TranslatedField
 
 
-class Addon(amo.LegacyModel):
-    name = amo.TranslatedField()
-    users = models.ManyToManyField(User)
+class Addon(amo.ModelBase):
+    name = TranslatedField()
+    description = TranslatedField()
+    users = models.ManyToManyField('users.User')
 
     class Meta:
         db_table = 'addons'

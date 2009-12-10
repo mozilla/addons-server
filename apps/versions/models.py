@@ -4,7 +4,7 @@ import amo
 from addons.models import Addon
 
 
-class Version(amo.LegacyModel):
+class Version(amo.ModelBase):
 
     addon = models.ForeignKey(Addon)
 
