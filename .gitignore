@@ -1,5 +1,5 @@
 local_settings.py
 *.py[co]
 *.sw[po]
-pip-log.txt
 .coverage
+pip-log.txt
