@@ -1,1 +1,3 @@
 local_settings.py
+*.py[co]
+*.sw[po]
