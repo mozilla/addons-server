@@ -213,6 +213,7 @@ class CachingMixin:
         """Return the cache key for self plus all related foreign keys."""
         fks = dict((f, getattr(self, f.attname)) for f in self._meta.fields
                     if isinstance(f, models.ForeignKey))
+
         keys = [fk.rel.to._cache_key(val) for fk, val in fks.items()
-                if val is not None]
+                if val is not None and hasattr(fk.rel.to, '_cache_key')]
         return (self.cache_key,) + tuple(keys)

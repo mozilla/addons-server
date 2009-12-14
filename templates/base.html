@@ -14,7 +14,7 @@
 
     {% block extrahead %}{% endblock %}
   </head>
-  <body class="html-{{ DIR }} hasJS {% block bodyclass %}{% endblock %}">
+  <body class="html-{{ DIR }} {% block bodyclass %}{% endblock %}">
     <div class="section">
 
       {% block site_header %}
@@ -45,10 +45,46 @@
       {% endblock site_header %}
 
       {% block navbar %}
+      <div class="stand-alone-options">
         {% block categories %}{% include "categories.html" %}{% endblock %}
         {% block search %}{% include "search.html" %}{% endblock %}
+      </div>
       {% endblock %}
       {% block content %}{% endblock %}
     </div>
+
+    <!-- js -->
+    <script type="text/javascript" src="{{ MEDIA_URL}}js/__utm.js"></script>
+    <script type="text/javascript"
+      src="/en-US/firefox/pages/js_constants.js"></script>
+    <script type="text/javascript"
+      src="{{ MEDIA_URL}}js/jquery-compressed.js"></script>
+    <script type="text/javascript"
+      src="{{ MEDIA_URL}}js/jquery.cookie.js"></script>
+    <script type="text/javascript"
+      src="{{ MEDIA_URL}}js/amo2009/global.js"></script>
+
+    <script type="text/javascript"
+      src="{{ MEDIA_URL}}js/amo2009/slimbox2.js"></script>
+    <script type="text/javascript"
+      src="{{ MEDIA_URL}}js/amo2009/addons.js"></script>
+    <script type="text/javascript"
+      src="{{ MEDIA_URL}}js/amo2009/global-mozilla.js"></script>
+    <script type="text/javascript"
+      src="{{ MEDIA_URL}}js/amo2009/install-button.js"></script>
+    <script type="text/javascript"
+      src="{{ MEDIA_URL}}js/jquery-ui/jqModal.js"></script>
+    <script type="text/javascript">// <![CDATA[
+    $(document).ready(function() {
+        $(".hidden").hide(); // hide anything that should be hidden
+
+        if (typeof __utmSetVar == 'function') {
+                            __utmSetVar("Loggedin");
+                    }
+    });
+    // ]]></script>
+
+    <script type="text/javascript"
+      src="{{ MEDIA_URL}}js/amo2009/home.js"></script>
   </body>
 </html>

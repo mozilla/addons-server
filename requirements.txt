@@ -18,3 +18,6 @@ Fabric==0.9.0
 nose==0.11.1
 coverage==3.2b4
 mock==0.6.0
+south
+
+phpserialize

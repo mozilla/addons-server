@@ -11,6 +11,9 @@ urlpatterns = patterns('',
 
     # Reviews.
     ('^reviews/', include('reviews.urls')),
+    
+    # Users
+    ('^users/', include('users.urls')),
 
     # AMO admin (not django admin).
     ('^admin/', include('admin.urls')),

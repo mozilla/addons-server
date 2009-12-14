@@ -23,7 +23,7 @@
     },
     {
         "pk": 4230,
-        "model": "users.user",
+        "model": "users.userprofile",
         "fields": {
             "firstname": "Jorge",
             "created": "2007-03-05 13:09:35",

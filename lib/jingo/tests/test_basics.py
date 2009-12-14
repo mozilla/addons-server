@@ -9,7 +9,7 @@ def test_render(mock_env):
     mock_template = Mock()
     mock_env.get_template.return_value = mock_template
 
-    response = jingo.render(sentinel.request, sentinel.template, status=32)
+    response = jingo.render(Mock(), sentinel.template, status=32)
     mock_env.get_template.assert_called_with(sentinel.template)
     assert mock_template.render.called
 

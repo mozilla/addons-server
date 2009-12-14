@@ -5,13 +5,12 @@ from django.db import models
 import amo
 from translations.fields import TranslatedField
 from translations.models import Translation
-from users.models import User
 
 
 class Review(amo.ModelBase):
 
     version = models.ForeignKey('versions.Version')
-    user = models.ForeignKey(User)
+    user = models.ForeignKey('users.UserProfile')
     reply_to = models.ForeignKey('self', null=True, unique=True)
 
     rating = models.PositiveSmallIntegerField(null=True)

@@ -81,7 +81,12 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+
+    'cake.middleware.CakeCookieMiddleware',
+
 )
+
+AUTHENTICATION_BACKENDS = ( 'cake.backends.SessionBackend',)
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.auth',
@@ -90,6 +95,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
 
     'amo.context_processors.i18n',
+    'amo.context_processors.links'
 )
 
 ROOT_URLCONF = 'zamboni.urls'
@@ -112,6 +118,8 @@ INSTALLED_APPS = (
     'users',
     'versions',
 
+    'cake',
+    'south',
     'django_nose',
 
     'django.contrib.admin',
@@ -131,7 +139,9 @@ SUPPORTED_APPS = ('firefox', 'thunderbird', 'mobile', 'seamonkey',
 
 # paths that don't require an app prefix
 SUPPORTED_NONAPPS = ('admin', 'developers', 'editors', 'localizers',
-'statistics', )
+    'statistics',)
 DEFAULT_APP = 'firefox'
 
 CACHE_DURATION = 60  # seconds
+
+AUTH_PROFILE_MODULE = 'users.UserProfile'

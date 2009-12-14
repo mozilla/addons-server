@@ -1,5 +1,25 @@
+<ul class="account">
+    <li>
+    <a href="#" class="controller" title="{{ user.email }}">
+      {{ _('My Account') }}</a>
+      {% if account_links %}
+        <ul>
+          {% for link in account_links %}
+            <li><a href="{{ link.href }}">{{ link.text }}</a></li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+    </li>
+</ul>
+
 <p class="context">
+  {% if user.is_authenticated() %}
+  <span class="greeting">
+    {{ _('Welcome, {0}')|f(user.get_profile().welcome_name) }}
+  </span>
+  {% else %}
   {% trans reg="/users/register", login="/user/login" %}
     <a href="{{ reg }}">Register</a> or <a href="{{ login }}">Log in</a>
   {% endtrans %}
+  {% endif %}
 </p>

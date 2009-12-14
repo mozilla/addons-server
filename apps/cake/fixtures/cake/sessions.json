@@ -1,0 +1,45 @@
+[
+  {
+    "pk": 1,
+    "model": "users.userprofile",
+    "fields": {
+        "nickname": "fligtard",
+        "firstname": "Scott",
+        "lastname": "Bakula",
+        "emailhidden": 1,
+        "sandboxshown": 1,
+        "display_collections": 1,
+        "display_collections_fav": 1,
+        "notifycompat": 1,
+        "notifyevents": 1
+    }
+  },
+  {
+      "pk": 2,
+      "model": "cake.session",
+      "fields": {
+          "session_id": "17f051c99f083244bf653d5798111216",
+          "expires": 1426308304,
+          "data": "User|a:1:{s:2:\"id\";s:1:\"1\";}"
+      }
+  },
+  {
+      "pk": 3,
+      "model": "cake.session",
+      "fields": {
+          "session_id": "27f051c99f083244bf653d5798111216",
+          "expires": 1,
+          "data": "User|a:1:{s:2:\"id\";s:1:\"1\";}"
+      }
+  },
+  {
+      "pk": 4,
+      "model": "cake.session",
+      "fields": {
+          "session_id": "37f051c99f083244bf653d5798111216",
+          "expires": 1426308304,
+          "data": "User|a:1:{s:2:\"id\";s:1:\"9\";}"
+      }
+  }
+  
+]

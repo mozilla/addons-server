@@ -14,7 +14,7 @@ class Approval(amo.ModelBase):
     comments = models.TextField(null=True)
 
     addon = models.ForeignKey('addons.Addon')
-    user = models.ForeignKey('users.User')
+    user = models.ForeignKey('users.UserProfile')
     #file = models.ForeignKey('files.File')
     reply_to = models.ForeignKey('self', null=True, db_column='reply_to')
 

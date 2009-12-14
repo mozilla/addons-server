@@ -29,6 +29,7 @@ class Addon(amo.ModelBase):
     supportemail = TranslatedField()
     supporturl = TranslatedField()
     description = TranslatedField()
+
     summary = TranslatedField()
     developercomments = TranslatedField()
     eula = TranslatedField()
@@ -75,7 +76,7 @@ class Addon(amo.ModelBase):
     get_satisfaction_company = models.CharField(max_length=255, blank=True)
     get_satisfaction_product = models.CharField(max_length=255, blank=True)
 
-    users = models.ManyToManyField('users.User')
+    users = models.ManyToManyField('users.UserProfile')
 
     class Meta:
         db_table = 'addons'

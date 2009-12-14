@@ -34,10 +34,10 @@
     },
     {
         "pk": 1,
-        "model": "users.user",
+        "model": "users.userprofile",
         "fields": {
             "firstname": "",
-            "created": null,
+            "created": "2009-10-19 06:21:02",
             "lastname": "",
             "modified": "2009-10-19 06:21:02",
             "nickname": "nobody",
