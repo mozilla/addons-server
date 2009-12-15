@@ -92,7 +92,7 @@ class TranslationDescriptor(related.ReverseSingleRelatedObjectDescriptor):
 
 
 class TranslatedFieldMixin(object):
-    """Mixin that fetches all ``TranslatedField``s after instantiation."""
+    """Mixin that fetches all ``TranslatedFields`` after instantiation."""
 
     def __init__(self, *args, **kw):
         super(TranslatedFieldMixin, self).__init__(*args, **kw)
@@ -119,8 +119,8 @@ class TranslatedFieldMixin(object):
         """
         Performs the query for finding Translation objects.
 
-        ``ids`` is a list of the foreign keys to the object's translations
-        ``lang`` is the language of the current request
+        - ``ids`` is a list of the foreign keys to the object's translations
+        - ``lang`` is the language of the current request
 
         Override this to search for translations in an unusual way.
         """

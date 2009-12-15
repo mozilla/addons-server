@@ -27,10 +27,13 @@ class Translation(models.Model):
 
     @classmethod
     def new(cls, string, locale, id=None):
-        """Jumps through all the right hoops to create a new translation."""
-        if not string:
-            return
+        """
+        Jumps through all the right hoops to create a new translation.
 
+        If ``id`` is not given a new id will be created using
+        ``translations_seq``.  Otherwise, the id will be used to add strings to
+        an existing translation.
+        """
         if id is None:
             # Get a sequence key for the new translation.
             cursor = connection.cursor()
