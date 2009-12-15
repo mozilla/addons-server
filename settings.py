@@ -1,7 +1,10 @@
 # Django settings for zamboni project.
 
-# Make filepaths relative to settings.
 import os
+import logging
+
+
+# Make filepaths relative to settings.
 ROOT = os.path.dirname(os.path.abspath(__file__))
 path = lambda *a: os.path.join(ROOT, *a)
 
@@ -101,3 +104,5 @@ INSTALLED_APPS = (
 )
 
 TEST_RUNNER = 'django_nose.run_tests'
+
+LOG_LEVEL = logging.DEBUG
