@@ -23,8 +23,8 @@ Contents:
    :maxdepth: 2
    :glob:
 
-   getting-started
    installation
+   getting-started
 
 Indices and tables
 ~~~~~~~~~~~~~~~~~~
