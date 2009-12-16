@@ -26,7 +26,7 @@ DATABASE_HOST = ''
 DATABASE_PORT = ''
 
 DATABASE_OPTIONS = {
-   "init_command": "SET storage_engine=INNODB",
+    'init_command': 'SET storage_engine=InnoDB',
 }
 
 
