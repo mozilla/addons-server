@@ -9,7 +9,9 @@
   <hr>
   {% for review in reviews.object_list %}
     <div class="item review" id="review-{{ review.id }}">
-      <h3>{{ review.title }}</h3>
+      {% if review.title %}
+        <h3>{{ review.title }}</h3>
+      {% endif %}
       <div class="reviewed-on">
         {{ review.rating|stars }}
         {% trans user=review.user|user_link, date=review.created|datetime %}
