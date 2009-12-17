@@ -10,8 +10,7 @@ class Translation(models.Model):
     """
 
     autoid = models.AutoField(primary_key=True)
-    # id is not really unique.  See the story in translations/sql/.
-    id = models.IntegerField(unique=True)
+    id = models.IntegerField()
     locale = models.CharField(max_length=10)
     localized_string = models.TextField()
 
