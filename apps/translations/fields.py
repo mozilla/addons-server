@@ -124,6 +124,9 @@ class TranslatedFieldMixin(object):
 
         Override this to search for translations in an unusual way.
         """
+        if not ids:
+            return []
+
         fetched = Translation.objects.filter(id__in=ids, locale=lang)
 
         # Try to find any missing translations in the default locale.
