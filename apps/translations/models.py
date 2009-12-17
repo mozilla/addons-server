@@ -26,6 +26,11 @@ class Translation(models.Model):
     def __unicode__(self):
         return self.localized_string
 
+    def __nonzero__(self):
+        # __nonzero__ is called to evaluate an object in a boolean context.  We
+        # want Translations to be falsy if their string is empty.
+        return bool(self.localized_string.strip())
+
     @classmethod
     def new(cls, string, locale, id=None):
         """

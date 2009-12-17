@@ -5,7 +5,7 @@ from nose.tools import eq_
 from test_utils import ExtraAppTestCase, trans_eq
 
 from testapp.models import TranslatedModel, UntranslatedModel
-from translations.models import TranslationSequence
+from translations.models import Translation, TranslationSequence
 
 
 class TranslationTestCase(ExtraAppTestCase):
@@ -88,3 +88,11 @@ class TranslationTestCase(ExtraAppTestCase):
         trans_eq(o.name, 'new name', 'en-US')
         # Make sure it was an update, not an insert.
         eq_(o.name.autoid, translation_id)
+
+
+def test_translation_bool():
+    t = lambda s: Translation(localized_string=s)
+
+    assert bool(t('text')) is True
+    assert bool(t(' ')) is False
+    assert bool(t('')) is False
