@@ -6,8 +6,8 @@
     </li>
     {% endfor %}
     <li rel="next">
-      <a href="#page={{ pager.next_page_number() }}">
-        {{ pager.next_page_number() }}
+      <a href="{{ pager.add_query(page=pager.next_page_number()) }}">
+        {{ _('Next') }}
       </a>
     </li>
   </ol>
