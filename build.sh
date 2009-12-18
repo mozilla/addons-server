@@ -19,7 +19,8 @@ ROOT_URLCONF = 'workspace.urls'
 SETTINGS
 
 echo "Starting tests..."
-python manage.py test --noinput --with-coverage --with-xunit --with-xcoverage --cover-package=workspace
+coverage run manage.py test --noinput --with-xunit
+coverage xml $(find apps lib -name '*.py')
 
 echo "Building documentation..."
 cd docs
