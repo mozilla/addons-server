@@ -9,7 +9,7 @@ fi
 
 source bin/activate
 
-pip install -r requirements.txt
+pip install -q -r requirements.txt
 
 cat > local_settings.py <<SETTINGS
 from settings import *
@@ -23,4 +23,4 @@ echo "Building documentation..."
 cd docs
 make dirhtml
 
-echo "done"
+echo 'shazam!'
