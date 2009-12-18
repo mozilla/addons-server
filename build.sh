@@ -1,13 +1,15 @@
 # This script should be called from within Hudson
 
+VENV=$WORKSPACE/venv
+
 echo "Starting build..."
 
-if [ ! -d "$WORKSPACE/bin" ]; then
+if [ ! -d "$VENV/bin" ]; then
   echo "No virtualenv found.  Making one..."
-  virtualenv --no-site-packages $WORKSPACE
+  virtualenv --no-site-packages $VENV
 fi
 
-source bin/activate
+source $VENV/bin/activate
 
 pip install -q -r requirements.txt
 
