@@ -5,7 +5,6 @@ import functools
 
 from django.core import paginator
 
-from .managers import CachingManager
 from .models import ModelBase
 
 
