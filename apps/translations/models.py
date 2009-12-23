@@ -1,7 +1,9 @@
 from django.db import models, connection
 
+import caching
 
-class Translation(models.Model):
+
+class Translation(caching.CachingMixin, models.Model):
     """
     Translation model.
 
@@ -19,6 +21,8 @@ class Translation(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
+    objects = caching.CachingManager()
+
     class Meta:
         db_table = 'translations'
         unique_together = ('id', 'locale')
@@ -30,6 +34,10 @@ class Translation(models.Model):
         # __nonzero__ is called to evaluate an object in a boolean context.  We
         # want Translations to be falsy if their string is empty.
         return bool(self.localized_string.strip())
+
+    @property
+    def cache_key(self):
+        return self._cache_key(self.id)
 
     @classmethod
     def new(cls, string, locale, id=None):
