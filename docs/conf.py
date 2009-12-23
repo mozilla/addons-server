@@ -211,4 +211,5 @@ intersphinx_mapping = {
     _django_docs: os.path.join(_django_docs, '_objects'),
     'http://jinja.pocoo.org/2/documentation/': None,
     'http://sphinx.pocoo.org/': None,
+    'http://somethingaboutorange.com/mrl/projects/nose/0.11.1/': None,
     }

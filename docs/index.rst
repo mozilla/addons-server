@@ -2,29 +2,46 @@
 Welcome to zamboni's documentation!
 ===================================
 
-This is just a start, but imagine how useful real documentation would be for
-writing down our conventions, expectations, tips, and a general index of all the
-pieces we have available.
 
-While the docs would primarily be a resource for developers, they'd also be
-useful for that elusive external contributor.
+Tip of the Day
+--------------
 
-There's support for automatic module/class/function documentation and tons of
-linking goodies.  You can even link to other Sphinx document sites, so we could
-reference Django and Jinja docs inline.  It's a little fiddly getting started,
-but super awesome once you get the hang of it.
+Run your tests like this::
 
-If you're working on the docs, use ``make loop`` to keep your built pages
-up-to-date.
+    python manage.py test --noinput --logging-clear-handlers
 
-Contents:
+* ``--noinput`` tells Django not to ask about creating or destroying test
+  databases.
+* ``--loggging-clear-handlers`` tells nose that you don't want to see any
+  logging output.  Without this, our debug logging will spew all over your
+  console during test runs.  This can be useful for debugging, but it's not that
+  great most of the time.  See the docs for more stuff you can do with
+  :mod:`nose and logging <nose.plugins.logcapture>`.
+
+
+Installation
+------------
+If you're just getting started, the :doc:`install <installation>` docs are the best.
+
+
+Contents
+--------
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :glob:
 
+   topics/*
+   ref/*
    installation
-   getting-started
+
+
+Older Tips
+----------
+
+* If you're working on the docs, use ``make loop`` to keep your built pages
+  up-to-date.
+
 
 Indices and tables
 ~~~~~~~~~~~~~~~~~~
@@ -32,4 +49,3 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
-
