@@ -122,3 +122,5 @@ SUPPORTED_APPS = ('firefox', 'thunderbird', 'mobile', 'seamonkey',
 SUPPORTED_NONAPPS = ('admin', 'developers', 'editors', 'localizers',
 'statistics', )
 DEFAULT_APP = 'firefox'
+
+CACHE_DURATION = 60  # seconds
