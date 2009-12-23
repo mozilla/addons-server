@@ -10,27 +10,25 @@ from nose.tools import eq_
 class ExtraAppTestCase(test.TestCase):
     extra_apps = []
 
-    def _pre_setup(self):
-        for app in self.extra_apps:
+    @classmethod
+    def setup_class(cls):
+        for app in cls.extra_apps:
             settings.INSTALLED_APPS += (app,)
             loading.load_app(app)
 
         management.call_command('syncdb', verbosity=0, interactive=False)
 
-        super(ExtraAppTestCase, self)._pre_setup()
-
-    def _post_teardown(self):
+    @classmethod
+    def teardown_class(cls):
         # Remove the apps from extra_apps.
-        apps = set(settings.INSTALLED_APPS).difference(self.extra_apps)
-        settings.INSTALLED_APPS = tuple(apps)
+        for app_label in cls.extra_apps:
+            app_name = app_label.split('.')[-1]
+            app = loading.cache.get_app(app_name)
+            del loading.cache.app_models[app_name]
+            del loading.cache.app_store[app]
 
-        super(ExtraAppTestCase, self)._post_teardown()
-        """
-        for app_label in self.extra_apps:
-            app = loading.cache.get_app(app_label)
-            for model in loading.cache.get_models(app):
-                del cache.app_store[model]
-        """
+        apps = set(settings.INSTALLED_APPS).difference(cls.extra_apps)
+        settings.INSTALLED_APPS = tuple(apps)
 
 
 # Comparisons
