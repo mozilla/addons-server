@@ -203,13 +203,14 @@ latex_documents = [
 # If false, no module index is generated.
 #latex_use_modindex = True
 
-_django_docs = 'http://docs.djangoproject.com/en/dev'
-
-# intershpinx links for Python, Django, Jinja, and Sphinx.
+# Intersphinx links to the local _intersphinx cache.
 intersphinx_mapping = {
-    'http://docs.python.org/': None,
-    _django_docs: os.path.join(_django_docs, '_objects'),
-    'http://jinja.pocoo.org/2/documentation/': None,
-    'http://sphinx.pocoo.org/': None,
-    'http://somethingaboutorange.com/mrl/projects/nose/0.11.1/': None,
+    'http://docs.python.org/': 'python.inv',
+    'http://docs.djangoproject.com/en/dev': 'django.inv',
+    'http://jinja.pocoo.org/2/documentation/': 'jinja.inv',
+    'http://sphinx.pocoo.org/': 'jinja.inv',
+    'http://somethingaboutorange.com/mrl/projects/nose/0.11.1/': 'nose.inv',
     }
+
+for key, val in intersphinx_mapping.items():
+    intersphinx_mapping[key] = '_intersphinx/' + val
