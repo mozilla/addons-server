@@ -1,11 +1,22 @@
 """
 To enable caching for a model, add the :class:`~caching.CachingManager` to that
-class.  If you want related (foreign key) lookups to hit the cache,
-``CachingManager`` must be the default manager.  If you have multiple managers
-that should be cached, return a :class:`~caching.CachingQuerySet` from the
-other manager's ``get_query_set`` method instead of subclassing
-``CachingManager``, since that would hook up the post_save and post_delete
-signals multiple times.
+class and inherit from the :class:`~caching.CachingMixin`.  If you want related
+(foreign key) lookups to hit the cache, ``CachingManager`` must be the default
+manager.  If you have multiple managers that should be cached, return a
+:class:`~caching.CachingQuerySet` from the other manager's ``get_query_set``
+method instead of subclassing ``CachingManager``, since that would hook up the
+post_save and post_delete signals multiple times.
+
+Here's what a minimal cached model looks like::
+
+    from django.db import models
+
+    import caching
+
+    class Zomg(caching.CachingMixin, models.Model):
+        val = models.IntegerField()
+
+        objects = caching.CachingManager()
 
 Whenever you run a query, ``CachingQuerySet`` will try to find that query in
 the cache.  Queries are keyed by ``{locale}:{sql}``. If it's there, we return
@@ -176,6 +187,7 @@ def flush_key(obj):
 
 
 class CachingMixin:
+    """Inherit from this class to get caching and invalidation helpers."""
 
     @property
     def cache_key(self):
