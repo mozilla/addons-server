@@ -23,8 +23,8 @@ class CachingTestCase(ExtraAppTestCase):
         a = Addon.objects.get(id=1)
         eq_(a.cache_key, 'o:testapp.addon:1')
 
-        eq_(a._cache_keys(), (a.cache_key, a.author1.cache_key,
-                              a.author2.cache_key))
+        keys = set((a.cache_key, a.author1.cache_key, a.author2.cache_key))
+        eq_(set(a._cache_keys()), keys)
 
     def test_cache(self):
         """Basic cache test: second get comes from cache."""
