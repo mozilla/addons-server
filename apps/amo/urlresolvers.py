@@ -1,4 +1,31 @@
 from django.conf import settings
+from django.core.urlresolvers import reverse as django_reverse
+from django.utils.thread_support import currentThread
+
+
+# Thread-local storage for URL prefixes.  Access with {get,set}_url_prefix.
+_prefixes = {}
+
+
+def set_url_prefix(prefix):
+    """Set ``prefix`` for the current thread."""
+    _prefixes[currentThread()] = prefix
+
+
+def get_url_prefix():
+    """Get the prefix for the current thread, or None."""
+    return _prefixes.get(currentThread())
+
+
+def reverse(viewname, urlconf=None, args=None, kwargs=None, prefix=None,
+            current_app=None):
+    """Wraps django's reverse to prepend the correct locale and app."""
+    prefixer = get_url_prefix()
+    url = django_reverse(viewname, urlconf, args, kwargs, prefix, current_app)
+    if prefixer:
+        return prefixer.fix(url)
+    else:
+        return url
 
 
 class Prefixer(object):

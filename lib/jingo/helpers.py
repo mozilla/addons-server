@@ -1,8 +1,8 @@
-from django.core import urlresolvers
 from django.utils.translation import ugettext as _
 
 import jinja2
 
+from amo import urlresolvers
 from jingo import register
 
 

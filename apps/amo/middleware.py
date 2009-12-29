@@ -6,7 +6,7 @@ Note: didn't make sense to use localeurl since we need to capture app as well
 from django.http import HttpResponseRedirect
 from django.utils import translation
 
-from .url_prefix import Prefixer
+from . import urlresolvers
 
 
 class LocaleAndAppURLMiddleware(object):
@@ -19,7 +19,8 @@ class LocaleAndAppURLMiddleware(object):
 
     def process_request(self, request):
         # Find locale, app
-        prefixer = Prefixer(request)
+        prefixer = urlresolvers.Prefixer(request)
+        urlresolvers.set_url_prefix(prefixer)
         full_path = prefixer.fix(prefixer.shortened_path)
 
         if full_path != request.path_info:

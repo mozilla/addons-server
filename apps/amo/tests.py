@@ -1,11 +1,11 @@
-from django.test import TestCase
+from django import test
 
 from nose.tools import eq_
 
-from amo.url_prefix import Prefixer
+from amo import urlresolvers
 
 
-class MiddlewareTest(TestCase):
+class MiddlewareTest(test.TestCase):
     """
     Tests that the locale and app redirection work propperly
     """
@@ -31,9 +31,13 @@ class MiddlewareTest(TestCase):
 
 class TestPrefixer:
 
+    def setup(self):
+        urlresolvers._prefixes.clear()
+
     def test_split_request(self):
+
         def split_eq(url, locale, app, path):
-            prefixer = Prefixer(Request(url))
+            prefixer = urlresolvers.Prefixer(Request(url))
             eq_(prefixer.split_request(), (locale, app, path))
 
         split_eq('/', '', '', '')
@@ -52,7 +56,7 @@ class TestPrefixer:
         split_eq('/foo/', '', '', 'foo/')
 
     def test_fix(self):
-        prefixer = Prefixer(Request('/'))
+        prefixer = urlresolvers.Prefixer(Request('/'))
 
         eq_(prefixer.fix('/'), '/en-US/firefox/')
         eq_(prefixer.fix('/foo'), '/en-US/firefox/foo')
@@ -68,6 +72,15 @@ class TestPrefixer:
         eq_(prefixer.fix('/foo/'), '/de/thunderbird/foo/')
         eq_(prefixer.fix('/admin'), '/de/admin')
         eq_(prefixer.fix('/admin/'), '/de/admin/')
+
+    def test_reverse(self):
+        # Make sure it works outside the request.
+        eq_(urlresolvers.reverse('home'), '/')
+
+        # With a request, locale and app prefixes work.
+        client = test.Client()
+        client.get('/')
+        eq_(urlresolvers.reverse('home'), '/en-US/firefox/')
 
 
 class Request(object):
