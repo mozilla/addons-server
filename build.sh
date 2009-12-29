@@ -24,6 +24,6 @@ coverage xml $(find apps lib -name '*.py')
 
 echo "Building documentation..."
 cd docs
-make dirhtml
+make clean dirhtml
 
 echo 'shazam!'
