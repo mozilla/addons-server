@@ -89,8 +89,13 @@ class CachingManager(models.Manager):
         log.debug('post_delete signal for %s' % instance)
         self.invalidate(instance)
 
-    def invalidate(self, obj):
-        keys = [key for key in map(flush_key, obj._cache_keys())]
+    def invalidate(self, *objects):
+        """Invalidate all the flush lists associated with ``objects``."""
+        self.invalidate_keys(k for o in objects for k in o._cache_keys())
+
+    def invalidate_keys(self, keys):
+        """Invalidate all the flush lists named by the list of ``keys``."""
+        keys = map(flush_key, keys)
 
         # Add other flush keys from the lists, which happens when a parent
         # object includes a foreign key.

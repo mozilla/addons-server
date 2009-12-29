@@ -10,7 +10,8 @@ Cache is King
 Classes that May Interest You
 -----------------------------
 
-.. class:: caching.CachingManager
+.. autoclass:: caching.CachingManager
+    :members:
 
     This :class:`manager <django.db.models.Manager>` always returns a
     :class:`~caching.CachingQuerySet`, and hooks up ``post_save`` and
