@@ -8,5 +8,5 @@ class Version(amo.ModelBase):
 
     addon = models.ForeignKey(Addon)
 
-    class Meta:
+    class Meta(amo.ModelBase.Meta):
         db_table = 'versions'

@@ -19,3 +19,4 @@ class ModelBase(caching.CachingMixin, TranslatedFieldMixin, models.Model):
 
     class Meta:
         abstract = True
+        get_latest_by = 'created'
