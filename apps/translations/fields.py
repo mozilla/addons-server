@@ -109,13 +109,13 @@ class TranslatedFieldMixin(object):
         ids = dict((getattr(self, name), name) for name in names)
 
         lang = translation_utils.get_language()
-        q = self._fetch_translations(filter(None, ids), lang)
+        q = self.fetch_translations(filter(None, ids), lang)
 
         for translation in q:
             attr = names.pop(ids[translation.id])
             setattr(self, attr, translation)
 
-    def _fetch_translations(self, ids, lang):
+    def fetch_translations(self, ids, lang):
         """
         Performs the query for finding Translation objects.
 
@@ -124,16 +124,20 @@ class TranslatedFieldMixin(object):
 
         Override this to search for translations in an unusual way.
         """
-        if not ids:
-            return []
+        return translations_with_fallback(ids, lang, settings.LANGUAGE_CODE)
 
-        fetched = Translation.objects.filter(id__in=ids, locale=lang)
 
-        # Try to find any missing translations in the default locale.
-        missing = set(ids).difference(t.id for t in fetched)
-        default = settings.LANGUAGE_CODE
-        if missing and default != lang:
-            fallback = Translation.objects.filter(id__in=missing, locale=default)
-            return list(fetched) + list(fallback)
-        else:
-            return fetched
+def translations_with_fallback(ids, lang, default):
+    """Default implementation for TranslatedFieldMixin.fetch_translations."""
+    if not ids:
+        return []
+
+    fetched = Translation.objects.filter(id__in=ids, locale=lang)
+
+    # Try to find any missing translations in the default locale.
+    missing = set(ids).difference(t.id for t in fetched)
+    if missing and default != lang:
+        fallback = Translation.objects.filter(id__in=missing, locale=default)
+        return list(fetched) + list(fallback)
+    else:
+        return fetched

@@ -21,7 +21,7 @@ class Review(amo.ModelBase):
     class Meta:
         db_table = 'reviews'
 
-    def _fetch_translations(self, ids, lang):
+    def fetch_translations(self, ids, lang):
         if not ids:
             return []
 
