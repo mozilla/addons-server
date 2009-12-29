@@ -7,6 +7,9 @@ from translations.fields import TranslatedField
 class Addon(amo.ModelBase):
     name = TranslatedField()
     description = TranslatedField()
+
+    adminreview = models.BooleanField(default=False)
+
     users = models.ManyToManyField('users.User')
 
     class Meta:
