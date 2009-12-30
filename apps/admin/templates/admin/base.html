@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block site_header_title %}
+<a href="{{ url('admin.home') }}" title="keep it real fliggy">Site Administration</a>
+{% endblock %}
+
+{% block extrahead %}
+<link rel="stylesheet" media="screen,projection,tv"
+      href="{{ MEDIA_URL }}css/admin-mozilla.css">
+<link rel="stylesheet" media="screen,projection,tv"
+      href="{{ MEDIA_URL }}css/developers.css">
+{% endblock %}
+
+{% block navbar %}
+<div id="navbar">
+  <ul class="top">
+    <li class="top">
+      <a href="#" class="controller">Manage Add-ons</a>
+      <ul>
+        <li><a href="{{ url('admin:addons_blacklistedguid_changelist') }}">Banned GUIDs</a></li>
+        <li><a href="{{ url('admin.flagged') }}">Flagged Add-ons</a></li>
+      </ul>
+    </li>
+    <li class="top">
+      <a href="#" class="controller">Manage Users</a>
+    </li>
+    <li class="top">
+      <a href="#" class="controller">Site Settings</a>
+    </li>
+    <li class="top">
+      <a href="#" class="controller">Server Config</a>
+    </li>
+  </ul>
+</div>
+{% endblock %}

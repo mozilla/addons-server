@@ -9,6 +9,8 @@ urlpatterns = patterns('',
     # Reviews.
     ('^reviews/', include('reviews.urls')),
 
+    # AMO admin (not django admin).
+    ('^admin/', include('admin.urls')),
 )
 
 if settings.DEBUG:

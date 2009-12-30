@@ -1,0 +1,41 @@
+{% templatetag openblock %} extends "admin/base.html" {% templatetag closeblock %}
+
+{#
+All the templatetag junk is here because we're rendering a Jinja template with
+all of Django's html inside.  The templatetag parts are defining our site's
+normal blocks, and need to be escaped so the Django template engine doesn't see
+them.  See admin.django_to_jinja for more details.
+#}
+
+{% templatetag openblock %} block extrahead {% templatetag closeblock %}
+  {% templatetag openvariable %} super() {% templatetag closevariable %}
+  <link rel="stylesheet" type="text/css"
+        href="{{ MEDIA_URL}}css/admin-django.css">
+  {% block extrastyle %}{% endblock %}
+  {% block extrahead %}{% endblock %}
+{% templatetag openblock %} endblock {% templatetag closeblock %}
+
+{% templatetag openblock %} block bodyclass -{% templatetag closeblock %}
+  {% block bodyclass %}{% endblock %}
+{% templatetag openblock %}- endblock {% templatetag closeblock %}
+
+{% templatetag openblock %} block content {% templatetag closeblock %}
+  {% block breadcrumbs %}
+    <div class="breadcrumbs">
+      <a href="/">Home</a>
+      {% if title %} &rsaquo; {{ title }}{% endif %}
+    </div>
+  {% endblock %}
+
+  <div id="content" class="{% block coltype %}colM{% endblock %}">
+    {% block pretitle %}{% endblock %}
+    {% block content_title %}
+      {% if title %}<h2>{{ title }}</h2>{% endif %}
+    {% endblock %}
+    {% block content %}
+      {% block object-tools %}{% endblock %}
+      {{ content }}
+    {% endblock %}
+    {% block sidebar %}{% endblock %}
+  </div>
+{% templatetag openblock %} endblock {% templatetag closeblock %}
