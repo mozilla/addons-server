@@ -74,11 +74,13 @@ TEMPLATE_LOADERS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    # AMO URL middleware comes first so everyone else sees nice URLs.
+    'amo.middleware.LocaleAndAppURLMiddleware',
+
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'amo.middleware.LocaleAndAppURLMiddleware',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
