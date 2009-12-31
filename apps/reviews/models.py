@@ -10,13 +10,17 @@ from users.models import User
 
 class Review(amo.ModelBase):
 
-    rating = models.IntegerField(null=True)
+    version = models.ForeignKey('versions.Version')
+    user = models.ForeignKey(User)
+    reply_to = models.ForeignKey('self', null=True, unique=True)
+
+    rating = models.PositiveSmallIntegerField(null=True)
     title = TranslatedField()
     body = TranslatedField()
 
-    version = models.ForeignKey('versions.Version')
-    user = models.ForeignKey(User)
-    reply_to = models.ForeignKey('self', db_column='reply_to', null=True)
+    editorreview = models.BooleanField(default=False)
+    flag = models.BooleanField(default=False)
+    sandbox = models.BooleanField(default=False)
 
     class Meta:
         db_table = 'reviews'
