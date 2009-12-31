@@ -69,16 +69,16 @@ class Addon(amo.ModelBase):
     wants_contributions = models.BooleanField(default=False)
     show_beta = models.BooleanField(default=True)
 
-    nominationdate = models.DateTimeField()
-    target_locale = models.CharField(max_length=255, db_index=True,
+    nominationdate = models.DateTimeField(null=True)
+    target_locale = models.CharField(max_length=255, db_index=True, blank=True,
                             help_text="For dictionaries and language packs")
-    locale_disambiguation = models.CharField(max_length=255,
+    locale_disambiguation = models.CharField(max_length=255, blank=True,
                             help_text="For dictionaries and language packs")
 
     paypal_id = models.CharField(max_length=255)
     suggested_amount = models.CharField(max_length=255,
                             help_text="Requested donation amount.")
-    annoying = models.PositiveIntegerField(choices=STATUS_CHOICES)
+    annoying = models.PositiveIntegerField(choices=STATUS_CHOICES, default=0)
 
     get_satisfaction_company = models.CharField(max_length=255)
     get_satisfaction_product = models.CharField(max_length=255)
