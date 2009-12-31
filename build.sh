@@ -24,6 +24,6 @@ coverage xml $(find apps lib -name '*.py')
 
 echo "Building documentation..."
 cd docs
-make clean dirhtml
+make clean dirhtml SPHINXOPTS='-q'
 
 echo 'shazam!'
