@@ -5,9 +5,41 @@ from django.db.models import loading
 from django.utils.encoding import smart_unicode as unicode
 
 from nose.tools import eq_
+import jinja2
 
 
-class ExtraAppTestCase(test.TestCase):
+# We only want to run through setup_test_environment once.
+IS_SETUP = False
+
+
+def setup_test_environment():
+    """Our own setup that hijacks Jinja template rendering."""
+    global IS_SETUP
+    if IS_SETUP:
+        return
+    IS_SETUP = True
+
+    old_render = jinja2.Template.render
+
+    def instrumented_render(self, *args, **kwargs):
+        context = dict(*args, **kwargs)
+        test.signals.template_rendered.send(sender=self, template=self,
+                                            context=context)
+        return old_render(self, *args, **kwargs)
+
+    jinja2.Template.render = instrumented_render
+
+
+# We want to import this TestCase so that the template_rendered signal gets
+# hooked up.
+class TestCase(test.TestCase):
+
+    def __init__(self, *args, **kwargs):
+        setup_test_environment()
+        super(TestCase, self).__init__(*args, **kwargs)
+
+
+class ExtraAppTestCase(TestCase):
     extra_apps = []
 
     @classmethod
