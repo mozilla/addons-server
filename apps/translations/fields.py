@@ -12,7 +12,7 @@ class TranslatedField(models.ForeignKey):
     def __init__(self):
         # to_field: The field on the related object that the relation is to.
         # Django wants to default to translations.autoid, but we need id.
-        options = dict(null=True, to_field='id')
+        options = dict(null=True, to_field='id', unique=True)
         super(TranslatedField, self).__init__(Translation, **options)
 
     @property
