@@ -1,7 +1,6 @@
 from datetime import datetime
 
 from django.conf import settings
-from django.contrib import admin
 from django.db import models
 
 import amo
@@ -122,6 +121,3 @@ class BlacklistedGuid(models.Model):
 
     def __unicode__(self):
         return self.guid
-
-
-admin.site.register(BlacklistedGuid)
