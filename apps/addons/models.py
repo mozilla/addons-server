@@ -36,7 +36,7 @@ class Addon(amo.ModelBase):
     status = models.PositiveIntegerField(choices=STATUS_CHOICES, db_index=True)
     higheststatus = models.PositiveIntegerField(choices=STATUS_CHOICES,
                     help_text="An upper limit for what an author can change.")
-    icontype = models.CharField(max_length=25)
+    icontype = models.CharField(max_length=25, blank=True)
     homepage = TranslatedField()
     supportemail = TranslatedField()
     supporturl = TranslatedField()
@@ -78,18 +78,21 @@ class Addon(amo.ModelBase):
     locale_disambiguation = models.CharField(max_length=255, blank=True,
                             help_text="For dictionaries and language packs")
 
-    paypal_id = models.CharField(max_length=255)
-    suggested_amount = models.CharField(max_length=255,
+    paypal_id = models.CharField(max_length=255, blank=True)
+    suggested_amount = models.CharField(max_length=255, blank=True,
                             help_text="Requested donation amount.")
     annoying = models.PositiveIntegerField(choices=STATUS_CHOICES, default=0)
 
-    get_satisfaction_company = models.CharField(max_length=255)
-    get_satisfaction_product = models.CharField(max_length=255)
+    get_satisfaction_company = models.CharField(max_length=255, blank=True)
+    get_satisfaction_product = models.CharField(max_length=255, blank=True)
 
     users = models.ManyToManyField('users.User')
 
     class Meta:
         db_table = 'addons'
+
+    def __unicode__(self):
+        return '%s: %s' % (self.id, self.name)
 
     def get_absolute_url(self):
         # XXX: use reverse
