@@ -1,3 +1,4 @@
+from django import forms
 from django.conf import settings
 from django.db import models
 from django.db.models.fields import related
@@ -43,6 +44,11 @@ class TranslatedField(models.ForeignKey):
 
         # Replace the normal descriptor with our custom descriptor.
         setattr(cls, self.name, TranslationDescriptor(self))
+
+    def formfield(self, **kw):
+        defaults = {'form_class': TranslationFormField}
+        defaults.update(kw)
+        return super(TranslatedField, self).formfield(**defaults)
 
 
 class TranslationDescriptor(related.ReverseSingleRelatedObjectDescriptor):
@@ -141,3 +147,31 @@ def translations_with_fallback(ids, lang, default):
         return list(fetched) + list(fallback)
     else:
         return fetched
+
+
+class TranslationWidget(forms.widgets.Textarea):
+
+    # Django expects ForeignKey widgets to have a choices attribute.
+    choices = None
+
+    def render(self, name, value, attrs=None):
+        lang = translation_utils.get_language()
+        try:
+            trans_id = int(value)
+            try:
+                trans = Translation.objects.get(id=trans_id, locale=lang)
+                value = trans.localized_string
+            except Translation.DoesNotExist:
+                value = ''
+        except ValueError:
+            pass
+        return super(TranslationWidget, self).render(name, value, attrs)
+
+
+class TranslationFormField(forms.Field):
+    widget = TranslationWidget
+
+    def __init__(self, *args, **kwargs):
+        del kwargs['queryset']
+        del kwargs['to_field_name']
+        super(TranslationFormField, self).__init__(*args, **kwargs)
