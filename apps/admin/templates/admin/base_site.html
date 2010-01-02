@@ -7,6 +7,11 @@ normal blocks, and need to be escaped so the Django template engine doesn't see
 them.  See admin.django_to_jinja for more details.
 #}
 
+{% templatetag openblock %} block title {% templatetag closeblock %}
+  {{ title }}
+  {% templatetag openvariable %} super() {% templatetag closevariable %}
+{% templatetag openblock %} endblock {% templatetag closeblock %}
+
 {% templatetag openblock %} block extrahead {% templatetag closeblock %}
   {% templatetag openvariable %} super() {% templatetag closevariable %}
   <link rel="stylesheet" type="text/css"
