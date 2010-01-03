@@ -121,3 +121,19 @@ class BlacklistedGuid(models.Model):
 
     def __unicode__(self):
         return self.guid
+
+
+class Feature(amo.ModelBase):
+
+    addon = models.ForeignKey(Addon)
+    start = models.DateTimeField()
+    end = models.DateTimeField()
+    locale = models.CharField(max_length=10, default='', blank=True)
+    application = models.ForeignKey('amo.Application')
+
+    class Meta:
+        db_table = 'features'
+
+    def __unicode__(self):
+        return '%s (%s: %s)' % (self.addon.name, self.application.name,
+                                self.locale)
