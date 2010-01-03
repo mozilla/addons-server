@@ -100,6 +100,7 @@ TEMPLATE_DIRS = (
 
 INSTALLED_APPS = (
     'amo',
+    'access',
     'addons',
     'admin',
     'approvals',
