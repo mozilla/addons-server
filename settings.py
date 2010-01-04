@@ -104,6 +104,7 @@ INSTALLED_APPS = (
     'addons',
     'admin',
     'approvals',
+    'applications',
     'reviews',
     'translations',
     'users',

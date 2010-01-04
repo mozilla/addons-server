@@ -133,7 +133,7 @@ class Feature(amo.ModelBase):
     start = models.DateTimeField()
     end = models.DateTimeField()
     locale = models.CharField(max_length=10, default='', blank=True)
-    application = models.ForeignKey('amo.Application')
+    application = models.ForeignKey('applications.Application')
 
     class Meta:
         db_table = 'features'
