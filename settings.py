@@ -105,6 +105,7 @@ INSTALLED_APPS = (
     'admin',
     'approvals',
     'applications',
+    'editors',
     'reviews',
     'translations',
     'users',
