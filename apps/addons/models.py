@@ -8,16 +8,7 @@ from translations.fields import TranslatedField, translations_with_fallback
 
 
 class Addon(amo.ModelBase):
-    STATUS_CHOICES = (
-            (0, 'Null'),
-            (1, 'In the sandbox'),
-            (2, 'Pending approval'),
-            (3, 'Nominated to be public'),
-            (4, 'Public'),
-            (5, 'Disabled'),
-            (6, 'Listed'),
-            (7, 'Beta'),
-            )
+    STATUS_CHOICES = amo.STATUS_CHOICES.items()
 
     CONTRIBUTIONS_CHOICES = (
             (0, 'None'),
