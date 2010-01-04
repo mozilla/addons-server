@@ -110,6 +110,9 @@ class AddonType(amo.ModelBase):
     class Meta:
         db_table = 'addontypes'
 
+    def __unicode__(self):
+        return unicode(self.name)
+
 
 class BlacklistedGuid(models.Model):
 
