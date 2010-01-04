@@ -9,7 +9,6 @@ class Application(amo.ModelBase):
     guid = models.CharField(max_length=255, default='')
     name = TranslatedField()
     shortname = TranslatedField()
-    supported = models.BooleanField()
     # icondata
     # icontype = models.CharField(max_length=25, default='')
 
