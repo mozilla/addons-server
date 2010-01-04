@@ -19,20 +19,29 @@
     <li class="top">
       <a href="#" class="controller">Manage Add-ons</a>
       <ul>
-        <li><a href="{{ url('admin:addons_blacklistedguid_changelist') }}">Banned GUIDs</a></li>
-        <li><a href="{{ url('admin:addons_feature_changelist') }}">Featured Add-ons</a></li>
-        <li><a href="{{ url('admin.flagged') }}">Flagged Add-ons</a></li>
-        <li><a href="{{ url('admin:addons_addon_changelist') }}">Manage an Add-on</a></li>
+        <li><a href="{{ url('admin:addons_blacklistedguid_changelist') }}">
+          Banned GUIDs</a></li>
+        <li><a href="{{ url('admin:addons_feature_changelist') }}">
+          Featured Add-ons</a></li>
+        <li><a href="{{ url('admin.flagged') }}">
+          Flagged Add-ons</a></li>
+        <li><a href="{{ url('admin:addons_addon_changelist') }}">
+          Manage an Add-on</a></li>
       </ul>
     </li>
     <li class="top">
       <a href="#" class="controller">Manage Users</a>
       <ul>
-        <li><a href="{{ url('admin:access_group_changelist') }}">Configure Groups</a></li>
+        <li><a href="{{ url('admin:access_group_changelist') }}">
+          Configure Groups</a></li>
       </ul>
     </li>
     <li class="top">
       <a href="#" class="controller">Site Settings</a>
+      <ul>
+        <li><a href="{{ url('admin:applications_application_changelist') }}">
+          Applications</a></li>
+      </ul>
     </li>
     <li class="top">
       <a href="#" class="controller">Server Config</a>

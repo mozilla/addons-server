@@ -18,3 +18,18 @@ class Application(amo.ModelBase):
 
     def __unicode__(self):
         return unicode(self.name)
+
+
+class AppVersion(amo.ModelBase):
+
+    application = models.ForeignKey(Application)
+    version = models.CharField(max_length=255, default='')
+    version_int = models.IntegerField(editable=False)
+    # TODO: 1.2
+    # version_int = models.BigIntegerField()
+
+    class Meta:
+        db_table = 'appversions'
+
+    def __unicode__(self):
+        return self.version
