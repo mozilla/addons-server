@@ -163,7 +163,7 @@ class TranslationWidget(forms.widgets.Textarea):
                 value = trans.localized_string
             except Translation.DoesNotExist:
                 value = ''
-        except ValueError:
+        except (TypeError, ValueError):
             pass
         return super(TranslationWidget, self).render(name, value, attrs)
 
