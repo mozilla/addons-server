@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib import admin
 
-from .models import Addon, BlacklistedGuid, Feature
+from .models import Addon, BlacklistedGuid, Feature, Category
 
 
 class AddonForm(forms.ModelForm):
@@ -62,6 +62,13 @@ class FeatureAdmin(admin.ModelAdmin):
     list_display = ('addon', 'application', 'locale')
 
 
+class CategoryAdmin(admin.ModelAdmin):
+    raw_id_fields = ('addons',)
+    list_display = ('name', 'application', 'addontype', 'count')
+    list_filter = ('application', 'addontype')
+
+
 admin.site.register(BlacklistedGuid)
 admin.site.register(Feature, FeatureAdmin)
 admin.site.register(Addon, AddonAdmin)
+admin.site.register(Category, CategoryAdmin)

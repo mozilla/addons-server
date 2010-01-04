@@ -132,3 +132,33 @@ class Feature(amo.ModelBase):
     def __unicode__(self):
         return '%s (%s: %s)' % (self.addon.name, self.application.name,
                                 self.locale)
+
+
+class Category(amo.ModelBase):
+
+    name = TranslatedField()
+    description = TranslatedField()
+    addontype = models.ForeignKey(AddonType)
+    application = models.ForeignKey('applications.Application')
+    count = models.IntegerField('Addon count')
+    weight = models.IntegerField(
+        help_text='Category weight used in sort ordering')
+
+    addons = models.ManyToManyField(Addon, through='AddonCategory')
+
+    class Meta:
+        db_table = 'categories'
+        verbose_name_plural = 'Categories'
+
+    def __unicode__(self):
+        return unicode(self.name)
+
+
+class AddonCategory(models.Model):
+    addon = models.ForeignKey(Addon)
+    category = models.ForeignKey(Category)
+    feature = models.BooleanField(default=False)
+    feature_locales = models.CharField(max_length=255, default='')
+
+    class Meta:
+        db_table = 'addons_categories'
