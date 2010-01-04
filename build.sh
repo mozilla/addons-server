@@ -4,6 +4,9 @@ VENV=$WORKSPACE/venv
 
 echo "Starting build..."
 
+# Make sure there's no old pyc files around.
+find . -name '*.pyc' | xargs rm
+
 if [ ! -d "$VENV/bin" ]; then
   echo "No virtualenv found.  Making one..."
   virtualenv --no-site-packages $VENV
