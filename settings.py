@@ -115,6 +115,7 @@ INSTALLED_APPS = (
     'admin',
     'approvals',
     'applications',
+    'devhub',
     'editors',
     'reviews',
     'tags',
