@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from django.conf import settings
 from django.db import models
 
@@ -106,10 +104,9 @@ class AddonType(amo.ModelBase):
         return unicode(self.name)
 
 
-class BlacklistedGuid(models.Model):
+class BlacklistedGuid(amo.ModelBase):
 
     guid = models.CharField(max_length=255, unique=True)
-    created = models.DateTimeField(default=datetime.now, editable=False)
 
     class Meta:
         db_table = 'blacklisted_guids'

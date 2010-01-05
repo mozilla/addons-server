@@ -2,12 +2,11 @@ from datetime import datetime
 
 from django.db import models
 
-import caching
+import amo
 
 
-class Approval(caching.CachingMixin, models.Model):
+class Approval(amo.ModelBase):
 
-    created = models.DateTimeField(default=datetime.now)
     reviewtype = models.CharField(max_length=10, default='pending')
     action = models.IntegerField(default=0)
     os = models.CharField(max_length=255, default='')
@@ -19,8 +18,5 @@ class Approval(caching.CachingMixin, models.Model):
     #file = models.ForeignKey('files.File')
     reply_to = models.ForeignKey('self', null=True, db_column='reply_to')
 
-    objects = caching.CachingManager()
-
-    class Meta:
+    class Meta(amo.ModelBase.Meta):
         db_table = 'approvals'
-        get_latest_by = 'created'
