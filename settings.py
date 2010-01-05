@@ -107,6 +107,7 @@ INSTALLED_APPS = (
     'applications',
     'editors',
     'reviews',
+    'tags',
     'translations',
     'users',
     'versions',
