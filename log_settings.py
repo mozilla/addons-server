@@ -16,7 +16,6 @@ if settings.DEBUG:
     handler = logging.StreamHandler()
     formatter = logging.Formatter(fmt, datefmt='%H:%M:%S')
 else:
-    level = getattr(settings, 'LOG_LEVEL', level)
     SysLogger = logging.handlers.SysLogHandler
     handler = SysLogger(facility=SysLogger.LOG_LOCAL7)
     formatter = logging.Formatter(fmt)
