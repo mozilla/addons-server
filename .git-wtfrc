@@ -1,0 +1,8 @@
+---
+max_commits: 5
+versions:
+- heads/master
+- heads/next
+- heads/edge
+ignore: [heads/gh-pages]
+
