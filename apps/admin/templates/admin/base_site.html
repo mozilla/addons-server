@@ -14,8 +14,7 @@ them.  See admin.django_to_jinja for more details.
 
 {% templatetag openblock %} block extrahead {% templatetag closeblock %}
   {% templatetag openvariable %} super() {% templatetag closevariable %}
-  <link rel="stylesheet" type="text/css"
-        href="{{ MEDIA_URL}}css/admin-django.css">
+  <link rel="stylesheet" href="{{ MEDIA_URL}}css/admin-django.css">
   {% block extrastyle %}{% endblock %}
   {% block extrahead %}{% endblock %}
 {% templatetag openblock %} endblock {% templatetag closeblock %}
