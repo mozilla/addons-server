@@ -145,17 +145,23 @@ whatever parameters you want.  This is my ``local_settings.py``::
     from settings import *
 
 
-    DATABASE_ENGINE = 'mysql'
-    DATABASE_NAME = 'remora'
-    DATABASE_USER = 'jbalogh'
-    DATABASE_PASSWORD = 'xxx'
+    DATABASES = {
+        'default': {
+            'NAME': 'remora',
+            'ENGINE': 'django.db.backends.mysql',
+            'USER': 'jbalogh',
+            'PASSWORD': 'foo',
+            'OPTIONS':  {'init_command': 'SET storage_engine=InnoDB'},
+        },
+    }
 
     # For debug toolbar.
     MIDDLEWARE_CLASSES += ('debug_toolbar.middleware.DebugToolbarMiddleware',)
     INTERNAL_IPS = ('127.0.0.1',)
     INSTALLED_APPS += ('debug_toolbar',)
 
-    CACHE_BACKEND = 'locmem://?max_entries=1000'
+    CACHE_BACKEND = 'memcached://localhost:11211'
+    CACHE_DURATION = 500
 
     DEBUG = True
 

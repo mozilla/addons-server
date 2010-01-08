@@ -18,16 +18,20 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASE_ENGINE = 'mysql'
-DATABASE_NAME = 'zamboni'
-DATABASE_USER = ''
-DATABASE_PASSWORD = ''
-DATABASE_HOST = ''
-DATABASE_PORT = ''
-
-DATABASE_OPTIONS = {
-    'init_command': 'SET storage_engine=InnoDB',
+DATABASES = {
+    'default': {
+        'NAME': 'remora',
+        'ENGINE': 'django.db.backends.mysql',
+        'HOST': '',
+        'PORT': '',
+        'USER': '',
+        'PASSWORD': '',
+        'OPTIONS': {'init_command': 'SET storage_engine=InnoDB'},
+    },
 }
+
+# Put the aliases for your slave databases in this list.
+SLAVE_DATABASES = []
 
 
 # Local time zone for this installation. Choices can be found here:
