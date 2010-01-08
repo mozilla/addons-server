@@ -1,6 +1,4 @@
-from time import time
-
-from django.contrib.auth.models import User, AnonymousUser
+from django.contrib.auth.models import AnonymousUser
 
 from test_utils import TestCase
 

@@ -1,0 +1,26 @@
+[MASTER]
+
+ignore=migrations,settings_local.py
+
+[REPORTS]
+
+output_format=parsable
+
+[MESSAGES CONTROL]
+
+# :C0111: *Missing docstring*
+#   This is far too noisy, ideally we should ignore it in specific places
+#   but pylint isn't very good at letting us specify certain rules for certain
+#   files
+# :C0103: *Invalid name "%s" (should match %s)*
+#   This is rather annoying in some contexts.
+# :W0403: *Relative import %r, should be %r*
+#   We don't know where zamboni is going to be running, so relative imports
+#   are necessary for now.
+# :W0142: *Used * or ** magic*
+#     This isn't harry potter... there's no such thing as magic.
+# :W0232: *Class has no __init__ method*
+# :R0904: *Too many public methods (%s/%s)*
+# :R0903: *Too few public methods (%s/%s)*
+
+disable-msg=C0111,C0103,W0403,W0142,W0232,R0904,R0903
