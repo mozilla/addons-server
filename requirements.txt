@@ -21,3 +21,4 @@ mock==0.6.0
 south
 
 phpserialize
+pylint

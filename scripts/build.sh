@@ -1,5 +1,6 @@
 # This script should be called from within Hudson
 
+cd $WORKSPACE
 VENV=$WORKSPACE/venv
 
 echo "Starting build..."
