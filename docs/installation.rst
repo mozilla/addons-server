@@ -147,7 +147,7 @@ whatever parameters you want.  This is my ``settings_local.py``::
 
     DATABASES = {
         'default': {
-            'NAME': 'remora',
+            'NAME': 'zamboni',
             'ENGINE': 'django.db.backends.mysql',
             'USER': 'jbalogh',
             'PASSWORD': 'foo',

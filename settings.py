@@ -20,7 +20,7 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'NAME': 'remora',
+        'NAME': 'zamboni',
         'ENGINE': 'django.db.backends.mysql',
         'HOST': '',
         'PORT': '',
