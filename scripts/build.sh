@@ -17,7 +17,7 @@ source $VENV/bin/activate
 
 pip install -q -r requirements.txt
 
-cat > local_settings.py <<SETTINGS
+cat > settings_local.py <<SETTINGS
 from settings import *
 ROOT_URLCONF = 'workspace.urls'
 SETTINGS

@@ -134,13 +134,13 @@ Settings
 
 Most of zamboni is configured in ``settings.py``, but it's incomplete since we
 don't want to put database passwords into version control.  Put any local
-settings into ``local_settings.py``.  Make sure you have ::
+settings into ``settings_local.py``.  Make sure you have ::
 
     from settings import *
 
-in your ``local_settings.py`` so that all of the configuration is included.  If
+in your ``settings_local.py`` so that all of the configuration is included.  If
 you want to override anything, put that import at the top and then redefine
-whatever parameters you want.  This is my ``local_settings.py``::
+whatever parameters you want.  This is my ``settings_local.py``::
 
     from settings import *
 

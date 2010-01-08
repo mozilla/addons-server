@@ -1,4 +1,4 @@
-local_settings.py
+settings_local.py
 *.py[co]
 *.sw[po]
 .coverage
