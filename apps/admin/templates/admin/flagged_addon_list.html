@@ -9,6 +9,7 @@
          link to review, review image #}
 
 <form action="{{ url('admin.flagged') }}" method="post">
+  {{ csrf() }}
   <table>
     <thead>
       <tr>

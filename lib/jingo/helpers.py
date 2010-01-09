@@ -1,4 +1,5 @@
 from django.utils.translation import ugettext as _
+from django.template.defaulttags import CsrfTokenNode
 
 import jinja2
 
@@ -10,6 +11,12 @@ from jingo import register
 def url(viewname, *args, **kwargs):
     """Helper for Django's ``reverse`` in templates."""
     return urlresolvers.reverse(viewname, args=args, kwargs=kwargs)
+
+
+@register.function
+@jinja2.contextfunction
+def csrf(context):
+    return jinja2.Markup(CsrfTokenNode().render(context))
 
 
 @register.filter

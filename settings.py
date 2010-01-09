@@ -85,21 +85,23 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
 
     'cake.middleware.CakeCookieMiddleware',
 
 )
 
-AUTHENTICATION_BACKENDS = ( 'cake.backends.SessionBackend',)
+AUTHENTICATION_BACKENDS = ('cake.backends.SessionBackend',)
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.auth',
     'django.core.context_processors.debug',
     'django.core.context_processors.media',
     'django.core.context_processors.request',
+    'django.core.context_processors.csrf',
 
     'amo.context_processors.i18n',
-    'amo.context_processors.links'
+    'amo.context_processors.links',
 )
 
 ROOT_URLCONF = 'zamboni.urls'

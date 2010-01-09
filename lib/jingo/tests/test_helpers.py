@@ -58,3 +58,10 @@ def test_class_selected():
 def test_url(mock_reverse):
     render('{{ url("viewname", 1, z=2) }}')
     mock_reverse.assert_called_with('viewname', args=(1,), kwargs={'z': 2})
+
+
+def test_csrf():
+    s = render('{{ csrf() }}', {'csrf_token': 'fffuuu'})
+    eq_(s, "<div style='display:none'>"
+           "<input type='hidden' name='csrfmiddlewaretoken' value='fffuuu' />"
+           "</div>")
