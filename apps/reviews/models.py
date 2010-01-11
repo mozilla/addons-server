@@ -11,7 +11,8 @@ class Review(amo.ModelBase):
 
     version = models.ForeignKey('versions.Version')
     user = models.ForeignKey('users.UserProfile')
-    reply_to = models.ForeignKey('self', null=True, unique=True)
+    reply_to = models.ForeignKey('self', null=True, unique=True,
+                                 db_column='reply_to')
 
     rating = models.PositiveSmallIntegerField(null=True)
     title = TranslatedField()
