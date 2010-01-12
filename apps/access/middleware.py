@@ -3,6 +3,8 @@ This middleware will handle marking users into certain groups and loading
 their ACLs into the request.
 """
 
+from access import acl
+
 
 class ACLMiddleware(object):
 
@@ -15,3 +17,6 @@ class ACLMiddleware(object):
         if request.user.is_authenticated():
             request.amo_user = request.user.get_profile()
             request.groups = request.amo_user.group_set.all()
+
+            if acl.action_allowed(request, 'Admin', '%'):
+                request.user.is_staff = True

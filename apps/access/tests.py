@@ -1,10 +1,44 @@
 from cake.models import Session
 from test_utils import TestCase
+from .acl import match_rules
+
+
+def test_match_rules():
+    """
+    Unit tests for the match_rules method.
+    """
+
+    rules = ('*:*',
+        'Editors:*,Admin:EditAnyAddon,Admin:flagged,Admin:addons,'
+        'Admin:EditAnyCollection',
+        'Tests:*,Admin:serverstatus,Admin:users',
+        'Admin:EditAnyAddon,Admin:EditAnyLocale,Editors:*,'
+        'Admin:lists,Admin:applications,Admin:addons,Localizers:*',
+        'Admin:EditAnyAddon',
+        'Admin:ViewAnyStats,Admin:ViewAnyCollectionStats',
+        'Admin:ViewAnyStats',
+        'Editors:*,Admin:features',
+        'Admin:Statistics',
+        'Admin:Features,Editors:*',
+        'Admin:%',
+        'Admin:*',
+        'Admin:Foo',
+        'Admin:Bar',
+        )
+
+    for rule in rules:
+        assert match_rules(rule, 'Admin', '%'), "%s != Admin:%%" % rule
+
+    rules = ('Doctors:*',)
+
+    for rule in rules:
+        assert not match_rules(rule, 'Admin', '%'), \
+            "%s == Admin:%% and shouldn't" % rule
 
 
 class ACLTestCase(TestCase):
     """
-    Test some basic ACLs by going to various locked pages on AMO
+    Test some basic ACLs by going to various locked pages on AMO.
     """
 
     fixtures = ['access/login.json']
