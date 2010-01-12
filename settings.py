@@ -88,7 +88,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
 
     'cake.middleware.CakeCookieMiddleware',
-
+    # This should come after authentication middle ware
+    'access.middleware.ACLMiddleware',
 )
 
 AUTHENTICATION_BACKENDS = ('cake.backends.SessionBackend',)

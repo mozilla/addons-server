@@ -32,7 +32,6 @@ class CakeCookieMiddleware(object):
                 user = auth.authenticate(session=session)
                 if user is not None:
                     auth.login(request, user)
-                request.amouser = user.get_profile()
 
             except Session.DoesNotExist:
                 return

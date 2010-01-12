@@ -1,0 +1,69 @@
+[
+  {
+    "pk": 1,
+    "model": "users.userprofile",
+    "fields": {
+        "nickname": "fligtard",
+        "firstname": "Scott",
+        "lastname": "Bakula",
+        "email": "scott@bakula.com",
+        "emailhidden": 1,
+        "sandboxshown": 1,
+        "display_collections": 1,
+        "display_collections_fav": 1,
+        "notifycompat": 1,
+        "notifyevents": 1
+    }
+  },
+  {
+      "pk": 2,
+      "model": "cake.session",
+      "fields": {
+          "session_id": "1234",
+          "expires": 1426308304,
+          "data": "User|a:1:{s:2:\"id\";s:1:\"1\";}"
+      }
+  },
+  {
+    "pk": 2,
+    "model": "users.userprofile",
+    "fields": {
+        "nickname": "milos",
+        "firstname": "Milos",
+        "lastname": "Dinic",
+        "email": "milos@dinic.com",
+        "emailhidden": 1,
+        "sandboxshown": 1,
+        "display_collections": 1,
+        "display_collections_fav": 1,
+        "notifycompat": 1,
+        "notifyevents": 1
+    }
+  },
+  {
+      "pk": 3,
+      "model": "cake.session",
+      "fields": {
+          "session_id": "4567",
+          "expires": 1426308304,
+          "data": "User|a:1:{s:2:\"id\";s:1:\"2\";}"
+      }
+  },
+  {
+      "pk": 1,
+      "model": "access.group",
+      "fields": {
+          "name": "Admins",
+          "rules": "*:*"
+      }
+  },
+  {
+      "pk": 1,
+      "model": "access.groupuser",
+      "fields": {
+          "group": 1,
+          "user": 1
+      }
+  }
+
+]
