@@ -1,10 +1,27 @@
 from datetime import datetime
+import hashlib
+import random
+import string
 
 from django.db import models
 from django.contrib.auth.models import User
 
 import amo
 from translations.fields import TranslatedField
+
+
+def get_hexdigest(algorithm, salt, raw_password):
+    return hashlib.new(algorithm, salt + raw_password).hexdigest()
+
+
+def rand_string(length):
+    return ''.join(random.choice(string.letters) for i in xrange(length))
+
+
+def create_password(algorithm, raw_password):
+    salt = get_hexdigest(algorithm, rand_string(12), rand_string(12))[:64]
+    hsh = get_hexdigest(algorithm, salt, raw_password)
+    return '$'.join([algorithm, salt, hsh])
 
 
 class UserProfile(amo.ModelBase):
@@ -69,3 +86,18 @@ class UserProfile(amo.ModelBase):
             self.resetcode_expires = datetime.now()
 
         super(UserProfile, self).save(force_insert, force_update)
+
+    def check_password(self, raw_password):
+        if '$' not in self.password:
+            valid = (get_hexdigest('md5', '', raw_password) == self.password)
+            if valid:
+                # Upgrade an old password.
+                self.set_password(raw_password)
+                self.save()
+            return valid
+
+        algo, salt, hsh = self.password.split('$')
+        return hsh == get_hexdigest(algo, salt, raw_password)
+
+    def set_password(self, raw_password, algorithm='sha512'):
+        self.password = create_password(algorithm, raw_password)
