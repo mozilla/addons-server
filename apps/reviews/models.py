@@ -17,6 +17,7 @@ class Review(amo.ModelBase):
     rating = models.PositiveSmallIntegerField(null=True)
     title = TranslatedField()
     body = TranslatedField()
+    ip_address = models.CharField(max_length=255, default='0.0.0.0')
 
     editorreview = models.BooleanField(default=False)
     flag = models.BooleanField(default=False)
