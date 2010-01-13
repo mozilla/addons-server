@@ -101,3 +101,23 @@ class UserProfile(amo.ModelBase):
 
     def set_password(self, raw_password, algorithm='sha512'):
         self.password = create_password(algorithm, raw_password)
+
+    def create_django_user(self):
+        """Make a django.contrib.auth.User for this UserProfile."""
+        # Reusing the id will make our life easier, because we can use the
+        # OneToOneField as pk for Profile linked back to the auth.user
+        # in the future.
+        self.user = User(id=self.pk)
+        self.user.first_name = self.firstname
+        self.user.last_name = self.lastname
+        self.user.username = self.nickname
+        self.user.email = self.email
+        self.user.password = self.password
+        self.user.date_joined = self.created
+
+        if self.group_set.filter(rules='*:*').count():
+            self.user.is_superuser = self.user.is_staff = True
+
+        self.user.save()
+        self.save()
+        return self.user

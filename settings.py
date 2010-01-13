@@ -92,7 +92,10 @@ MIDDLEWARE_CLASSES = (
     'access.middleware.ACLMiddleware',
 )
 
-AUTHENTICATION_BACKENDS = ('cake.backends.SessionBackend',)
+AUTHENTICATION_BACKENDS = (
+    'users.backends.AmoUserBackend',
+    'cake.backends.SessionBackend',
+)
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.auth',

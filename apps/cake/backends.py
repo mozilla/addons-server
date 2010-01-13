@@ -31,18 +31,7 @@ class SessionBackend:
             return None
 
         if profile.user is None:
-            # reusing the id will make our life easier, because we can use the
-            # OneToOneField as pk for Profile linked back to the auth.user
-            # in the future
-            profile.user = User(id=profile.pk)
-            profile.user.first_name  = profile.firstname
-            profile.user.last_name   = profile.lastname
-            profile.user.username    = profile.nickname
-            profile.user.email       = profile.email
-            profile.user.password    = profile.password
-            profile.user.date_joined = profile.created
-            profile.user.save()
-            profile.save()
+            profile.create_django_user()
 
         return profile.user
 
