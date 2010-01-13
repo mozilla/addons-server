@@ -2,6 +2,7 @@ from django.conf import settings
 from django.db import models
 
 import amo
+from .models import Category
 from translations.fields import TranslatedField, translations_with_fallback
 
 
@@ -92,8 +93,40 @@ class Addon(amo.ModelBase):
         return translations_with_fallback(ids, lang, self.defaultlocale)
 
 
-class AddonType(amo.ModelBase):
+class AddonCategory(models.Model):
+    addon = models.ForeignKey(Addon)
+    category = models.ForeignKey(Category)
+    feature = models.BooleanField(default=False)
+    feature_locales = models.CharField(max_length=255, default='')
 
+    class Meta:
+        db_table = 'addons_categories'
+
+
+class AddonPledge(amo.ModelBase):
+    addon = models.ForeignKey(Addon)
+    target = models.PositiveIntegerField() # Only $ for now
+    what_ima_gonna_do = TranslatedField()
+    active = models.BooleanField(default=False)
+    deadline = models.DateField(null=True)
+
+    class Meta:
+        db_table = 'addons_pledges'
+
+    def __unicode__(self):
+        return '%s ($%s, %s)' % (self.addon.name, self.target, self.deadline)
+
+
+class AddonRecommendation(models.Model):
+    addon = models.ForeignKey(Addon, related_name="addon_one")
+    other_addon = models.ForeignKey(Addon, related_name="addon_two")
+    score = models.FloatField()
+
+    class Meta:
+        db_table = 'addon_recommendations'
+
+
+class AddonType(amo.ModelBase):
     name = TranslatedField()
     name_plural = TranslatedField()
     description = TranslatedField()
@@ -106,7 +139,6 @@ class AddonType(amo.ModelBase):
 
 
 class BlacklistedGuid(amo.ModelBase):
-
     guid = models.CharField(max_length=255, unique=True)
 
     class Meta:
@@ -116,24 +148,7 @@ class BlacklistedGuid(amo.ModelBase):
         return self.guid
 
 
-class Feature(amo.ModelBase):
-
-    addon = models.ForeignKey(Addon)
-    start = models.DateTimeField()
-    end = models.DateTimeField()
-    locale = models.CharField(max_length=10, default='', blank=True)
-    application = models.ForeignKey('applications.Application')
-
-    class Meta:
-        db_table = 'features'
-
-    def __unicode__(self):
-        return '%s (%s: %s)' % (self.addon.name, self.application.name,
-                                self.locale)
-
-
 class Category(amo.ModelBase):
-
     name = TranslatedField()
     description = TranslatedField()
     addontype = models.ForeignKey(AddonType)
@@ -152,11 +167,44 @@ class Category(amo.ModelBase):
         return unicode(self.name)
 
 
-class AddonCategory(models.Model):
-    addon = models.ForeignKey(Addon)
-    category = models.ForeignKey(Category)
-    feature = models.BooleanField(default=False)
-    feature_locales = models.CharField(max_length=255, default='')
+class CompatibilityReport(models.Model):
+    guid = models.CharField(max_length=128, db_index=True)
+    works_properly = models.NullBooleanField()
+    app_guid = models.CharField(max_length=128, blank=True)
+    app_version = models.CharField(max_length=128, blank=True)
+    app_build = models.CharField(max_length=128, blank=True)
+    client_os = models.CharField(max_length=128, blank=True)
+    client_ip = models.CharField(max_length=128, blank=True)
+    version = models.CharField(max_length=128, default='0.0')
+    comments = models.TextField()
+    other_addons = models.TextField()
+    created = models.DateTimeField(null=True)
 
     class Meta:
-        db_table = 'addons_categories'
+        db_table = 'compatibility_reports'
+
+
+class Feature(amo.ModelBase):
+    addon = models.ForeignKey(Addon)
+    start = models.DateTimeField()
+    end = models.DateTimeField()
+    locale = models.CharField(max_length=10, default='', blank=True)
+    application = models.ForeignKey('applications.Application')
+
+    class Meta:
+        db_table = 'features'
+
+    def __unicode__(self):
+        return '%s (%s: %s)' % (self.addon.name, self.application.name,
+                                self.locale)
+
+
+class Preview(amo.ModelBase):
+    addon = models.ForeignKey(Addon)
+    filetype = models.CharField(max_length=25)
+    thumbtype = models.CharField(max_length=25)
+    caption = TranslatedField()
+    highlight = models.BooleanField(default=False)
+
+    class Meta:
+        db_table = 'previews'
