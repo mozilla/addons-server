@@ -1,6 +1,6 @@
 """
 This middleware will handle marking users into certain groups and loading
-their ACLs into the request
+their ACLs into the request.
 """
 
 
@@ -8,7 +8,7 @@ class ACLMiddleware(object):
 
     def process_request(self, request):
         """
-        mark all users as is_admin, this is open source!
+        Keep groups as part of the request.
         """
 
         # figure out our list of groups...
@@ -16,6 +16,3 @@ class ACLMiddleware(object):
             request.amo_user = request.user.get_profile()
             request.groups = request.amo_user.group_set.all()
 
-            if '*:*' in [v.rules for v in request.groups]:
-                request.user.is_superuser = True
-                request.user.is_staff = True
