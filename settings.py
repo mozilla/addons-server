@@ -130,7 +130,6 @@ INSTALLED_APPS = (
     'versions',
 
     'cake',
-    'south',
     'django_nose',
 
     'django.contrib.admin',
