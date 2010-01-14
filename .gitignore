@@ -3,3 +3,5 @@ settings_local.py
 *.sw[po]
 .coverage
 pip-log.txt
+docs/_gh-pages
+

@@ -3,7 +3,7 @@
 # Should be run from the docs directory: (cd docs && ./build-github.zsh)
 
 REPO=$(dirname $(pwd))
-GH=gh-pages
+GH=_gh-pages
 
 
 # Checkout the gh-pages branch, if necessary.
