@@ -28,7 +28,7 @@ class CakeTestCase(TestCase):
 
         self.assertEqual(profile.firstname, user.first_name)
         self.assertEqual(profile.lastname, user.last_name)
-        self.assertEqual(profile.nickname, user.username)
+        self.assertEqual(profile.email, user.username)
         self.assertEqual(profile.email, user.email)
         self.assertEqual(profile.created, user.date_joined)
         self.assertEqual(profile.password, user.password)

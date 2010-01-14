@@ -110,7 +110,7 @@ class UserProfile(amo.ModelBase):
         self.user = User(id=self.pk)
         self.user.first_name = self.firstname
         self.user.last_name = self.lastname
-        self.user.username = self.nickname
+        self.user.username = self.email
         self.user.email = self.email
         self.user.password = self.password
         self.user.date_joined = self.created

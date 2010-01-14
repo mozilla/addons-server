@@ -1,3 +1,4 @@
+from datetime import datetime
 import hashlib
 
 from django import test
@@ -23,6 +24,14 @@ def test_welcome_name():
     eq_(u4.welcome_name, '')
 
 
+def test_empty_nickname():
+    u = UserProfile(email='yoyoyo@yo.yo', pk=1, created=datetime.now())
+    assert u.user is None
+    u.create_django_user()
+    assert u.user is not None
+    eq_(u.user.username, 'yoyoyo@yo.yo')
+
+
 def test_resetcode_expires():
     """
     For some reasone resetcode is required, and we default it to
@@ -32,7 +41,7 @@ def test_resetcode_expires():
     """
 
     u = UserProfile(lastname='Connor', pk=2, resetcode_expires=None,
-                    email='j.connor@sky.net')
+		    nickname='fffuuu', email='j.connor@sky.net')
     u.save()
     assert u.resetcode_expires
 
