@@ -2,7 +2,6 @@ from django.conf import settings
 from django.db import models
 
 import amo
-from .models import Category
 from translations.fields import TranslatedField, translations_with_fallback
 
 
@@ -95,7 +94,7 @@ class Addon(amo.ModelBase):
 
 class AddonCategory(models.Model):
     addon = models.ForeignKey(Addon)
-    category = models.ForeignKey(Category)
+    category = models.ForeignKey('Category')
     feature = models.BooleanField(default=False)
     feature_locales = models.CharField(max_length=255, default='')
 
