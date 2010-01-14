@@ -9,7 +9,6 @@ from reviews.models import Review
 class TestReviewModel(test.TestCase):
     fixtures = ['reviews/test_models.json']
 
-
     def test_translations(self):
         translation.activate('en-US')
 

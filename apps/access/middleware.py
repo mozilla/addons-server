@@ -15,4 +15,3 @@ class ACLMiddleware(object):
         if request.user.is_authenticated():
             request.amo_user = request.user.get_profile()
             request.groups = request.amo_user.group_set.all()
-
