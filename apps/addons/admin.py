@@ -17,14 +17,14 @@ class AddonForm(forms.ModelForm):
 
 class AddonAdmin(admin.ModelAdmin):
     form = AddonForm
-    raw_id_fields = ('users',)
+    exclude = ('users',)
     list_display = ('__unicode__', 'addontype', 'status', 'averagerating')
     list_filter = ('addontype', 'status')
 
     fieldsets = (
         (None, {
             'fields': ('name', 'guid', 'defaultlocale', 'addontype', 'status',
-                       'higheststatus', 'users', 'nominationdate'),
+                       'higheststatus', 'nominationdate'),
         }),
         ('Details', {
             'fields': ('summary', 'description', 'homepage', 'eula',

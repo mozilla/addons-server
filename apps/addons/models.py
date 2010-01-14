@@ -78,7 +78,7 @@ class Addon(amo.ModelBase):
     get_satisfaction_company = models.CharField(max_length=255, blank=True)
     get_satisfaction_product = models.CharField(max_length=255, blank=True)
 
-    users = models.ManyToManyField('users.UserProfile')
+    users = models.ManyToManyField('users.UserProfile', through='AddonUser')
 
     class Meta:
         db_table = 'addons'
@@ -137,6 +137,19 @@ class AddonType(amo.ModelBase):
 
     def __unicode__(self):
         return unicode(self.name)
+
+
+class AddonUser(models.Model):
+    AUTHOR_CHOICES = amo.AUTHOR_CHOICES.items()
+
+    addon = models.ForeignKey(Addon)
+    user = models.ForeignKey('users.UserProfile')
+    role = models.SmallIntegerField(default=5, choices=AUTHOR_CHOICES)
+    listed = models.BooleanField(default=True)
+    position = models.IntegerField(default=0)
+
+    class Meta:
+        db_table = 'addons_users'
 
 
 class BlacklistedGuid(amo.ModelBase):

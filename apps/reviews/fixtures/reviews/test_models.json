@@ -59,7 +59,6 @@
         "pk": 4,
         "model": "addons.addon",
         "fields": {
-            "users": [],
             "addontype": 1,
             "status": 4,
             "higheststatus": 4,
