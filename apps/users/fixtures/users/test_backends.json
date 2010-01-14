@@ -50,6 +50,24 @@
     },
     {
         "pk": 9945,
+        "model": "auth.user",
+        "fields": {
+            "username": "Justin Scott (fligtar)",
+            "first_name": "Justin",
+            "last_name": "Scott",
+            "is_active": true,
+            "is_superuser": true,
+            "is_staff": true,
+            "last_login": "2010-01-12 15:28:07",
+            "groups": [],
+            "user_permissions": [],
+            "password": "sha512$32e15df727a054aa56cf69accc142d1573372641a176aab9b0f1458e27dc6f3b$5bd3bd7811569776a07fbbb5e50156aa6ebdd0bec9267249b57da065340f0324190f1ad0d5f609dca19179a86c64807e22f789d118e6f7109c95b9c64ae8f619",
+            "email": "fligtar@gmail.com",
+            "date_joined": "2009-02-02 11:50:31"
+        }
+    },
+    {
+        "pk": 9945,
         "model": "users.userprofile",
         "fields": {
             "sandboxshown": 1,

@@ -2,6 +2,7 @@
 
 import os
 import logging
+import socket
 
 
 # Make filepaths relative to settings.
@@ -32,7 +33,6 @@ DATABASES = {
 
 # Put the aliases for your slave databases in this list.
 SLAVE_DATABASES = []
-
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -144,6 +144,17 @@ TEST_RUNNER = 'django_nose.run_tests'
 
 LOG_LEVEL = logging.DEBUG
 
+# Full base URL for your main site including protocol.  No trailing slash.
+#   Example: https://addons.mozilla.org
+SITE_URL = 'http://%s' % socket.gethostname()
+
+# If you want to run Selenium tests, you'll need to have a server running.
+# Then give this a dictionary of settings.  Something like:
+#    'HOST': 'localhost',
+#    'PORT': 4444,
+#    'BROWSER': '*firefox', # Alternative: *safari
+SELENIUM_CONFIG = {}
+
 # AMO Specific details
 SUPPORTED_APPS = ('firefox', 'thunderbird', 'mobile', 'seamonkey',
 'sunbird', )
@@ -153,6 +164,7 @@ SUPPORTED_NONAPPS = ('admin', 'developers', 'editors', 'localizers',
     'statistics',)
 DEFAULT_APP = 'firefox'
 
+# Length of time to store items in memcache
 CACHE_DURATION = 60  # seconds
 
 AUTH_PROFILE_MODULE = 'users.UserProfile'

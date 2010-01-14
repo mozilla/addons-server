@@ -5,6 +5,8 @@ from django.db.models import loading
 from django.utils.encoding import smart_unicode as unicode
 
 from nose.tools import eq_
+from nose import SkipTest
+from selenium import selenium
 import jinja2
 
 
@@ -61,6 +63,27 @@ class ExtraAppTestCase(TestCase):
 
         apps = set(settings.INSTALLED_APPS).difference(cls.extra_apps)
         settings.INSTALLED_APPS = tuple(apps)
+
+
+class SeleniumTestCase(TestCase):
+    selenium = True
+
+    def setUp(self):
+        super(TestCase, self).setUp()
+
+        if not settings.SELENIUM_CONFIG:
+            raise SkipTest()
+
+        self.selenium = selenium(settings.SELENIUM_CONFIG['HOST'],
+                                 settings.SELENIUM_CONFIG['PORT'],
+                                 settings.SELENIUM_CONFIG['BROWSER'],
+                                 settings.SITE_URL)
+        self.selenium.start()
+
+    def tearDown(self):
+        self.selenium.close()
+        self.selenium.stop()
+        super(TestCase, self).tearDown()
 
 
 # Comparisons
