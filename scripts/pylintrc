@@ -22,5 +22,12 @@ output_format=parseable
 # :W0232: *Class has no __init__ method*
 # :R0904: *Too many public methods (%s/%s)*
 # :R0903: *Too few public methods (%s/%s)*
-
-disable-msg=C0111,C0103,W0403,W0142,W0232,R0904,R0903
+# :E1101: *%s %r has no %r member*
+#     This is too often wrong to be useful.
+# :R0901: *Too many ancestors (%s/%s)*
+#     We end up breaking this with django.
+# :R0201: Method could be a function
+#     Useful, but there's a number of places where we use methods
+#     since we're extending Django classes that require specific
+#     methods.
+disable-msg=C0111,C0103,W0403,W0142,W0232,R0904,R0903,E1101,R0901,R0201
