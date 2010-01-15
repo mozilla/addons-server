@@ -1,4 +1,3 @@
-from datetime import datetime
 import hashlib
 
 from django import test
@@ -8,42 +7,40 @@ from nose.tools import eq_
 from users.models import UserProfile, get_hexdigest
 
 
-def test_display_name_nickname():
-    u = UserProfile(nickname='Terminator', pk=1)
-    eq_(u.display_name, 'Terminator')
+class TestUserProfile(test.TestCase):
 
+    def test_display_name_nickname(self):
+        u = UserProfile(nickname='Terminator', pk=1)
+        eq_(u.display_name, 'Terminator')
 
-def test_welcome_name():
-    u1 = UserProfile(lastname='Connor', pk=1)
-    u2 = UserProfile(firstname='Sarah', nickname='sc', lastname='Connor', pk=1)
-    u3 = UserProfile(nickname='sc', lastname='Connor', pk=1)
-    u4 = UserProfile(pk=1)
-    eq_(u1.welcome_name, 'Connor')
-    eq_(u2.welcome_name, 'Sarah')
-    eq_(u3.welcome_name, 'sc')
-    eq_(u4.welcome_name, '')
+    def test_welcome_name(self):
+        u1 = UserProfile(lastname='Connor')
+        u2 = UserProfile(firstname='Sarah', nickname='sc', lastname='Connor')
+        u3 = UserProfile(nickname='sc', lastname='Connor')
+        u4 = UserProfile()
+        eq_(u1.welcome_name, 'Connor')
+        eq_(u2.welcome_name, 'Sarah')
+        eq_(u3.welcome_name, 'sc')
+        eq_(u4.welcome_name, '')
 
+    def test_empty_nickname(self):
+        u = UserProfile.objects.create(email='yoyoyo@yo.yo')
+        assert u.user is None
+        u.create_django_user()
+        eq_(u.user.username, 'yoyoyo@yo.yo')
 
-def test_empty_nickname():
-    u = UserProfile(email='yoyoyo@yo.yo', pk=1, created=datetime.now())
-    assert u.user is None
-    u.create_django_user()
-    assert u.user is not None
-    eq_(u.user.username, 'yoyoyo@yo.yo')
+    def test_resetcode_expires(self):
+        """
+        For some reasone resetcode is required, and we default it to
+        '0000-00-00 00:00' in mysql, but that doesn't fly in Django since it's
+        an invalid date.  If Django reads this from the db, it interprets this
+        as resetcode_expires as None
+        """
 
-
-def test_resetcode_expires():
-    """
-    For some reasone resetcode is required, and we default it to
-    '0000-00-00 00:00' in mysql, but that doesn't fly in Django since it's an
-    invalid date.  If Django reads this from the db, it interprets this as
-    resetcode_expires as None
-    """
-
-    u = UserProfile(lastname='Connor', pk=2, resetcode_expires=None,
-		    nickname='fffuuu', email='j.connor@sky.net')
-    u.save()
-    assert u.resetcode_expires
+        u = UserProfile(lastname='Connor', pk=2, resetcode_expires=None,
+                        email='j.connor@sky.net')
+        u.save()
+        assert u.resetcode_expires
 
 
 class TestPasswords(test.TestCase):

@@ -80,12 +80,12 @@ class UserProfile(amo.ModelBase):
 
         return ''
 
-    def save(self, force_insert=False, force_update=False):
+    def save(self, force_insert=False, force_update=False, using=None):
         # we have to fix stupid things that we defined poorly in remora
         if self.resetcode_expires is None:
             self.resetcode_expires = datetime.now()
 
-        super(UserProfile, self).save(force_insert, force_update)
+        super(UserProfile, self).save(force_insert, force_update, using)
 
     def check_password(self, raw_password):
         if '$' not in self.password:
