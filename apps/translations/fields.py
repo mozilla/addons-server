@@ -6,6 +6,7 @@ from django.utils import translation as translation_utils
 from django.utils.translation.trans_real import to_language
 
 from .models import Translation
+from .widgets import TranslationWidget
 
 
 class TranslatedField(models.ForeignKey):
@@ -182,25 +183,6 @@ def translations_with_fallback(ids, lang, default):
         return list(fetched) + list(fallback)
     else:
         return fetched
-
-
-class TranslationWidget(forms.widgets.Textarea):
-
-    # Django expects ForeignKey widgets to have a choices attribute.
-    choices = None
-
-    def render(self, name, value, attrs=None):
-        lang = translation_utils.get_language()
-        try:
-            trans_id = int(value)
-            try:
-                trans = Translation.objects.get(id=trans_id, locale=lang)
-                value = trans.localized_string
-            except Translation.DoesNotExist:
-                value = ''
-        except (TypeError, ValueError):
-            pass
-        return super(TranslationWidget, self).render(name, value, attrs)
 
 
 class TranslationFormField(forms.Field):

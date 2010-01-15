@@ -7,6 +7,7 @@ from test_utils import ExtraAppTestCase, trans_eq
 from caching import cache
 from testapp.models import TranslatedModel, UntranslatedModel
 from translations.models import Translation
+from translations import widgets
 
 
 class TranslationTestCase(ExtraAppTestCase):
@@ -152,3 +153,10 @@ def test_translation_bool():
     assert bool(t('text')) is True
     assert bool(t(' ')) is False
     assert bool(t('')) is False
+
+
+def test_widget_value_from_datadict():
+    data = {'f_en-US': 'woo', 'f_de': 'herr', 'f_fr_delete': ''}
+    actual = widgets.TranslationWidget().value_from_datadict(data, [], 'f')
+    expected = {'en-US': 'woo', 'de': 'herr', 'fr': None}
+    eq_(actual, expected)
