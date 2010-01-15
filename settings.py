@@ -123,6 +123,7 @@ INSTALLED_APPS = (
     'applications',
     'devhub',
     'editors',
+    'files',
     'reviews',
     'tags',
     'translations',
