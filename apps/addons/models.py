@@ -21,9 +21,11 @@ class Addon(amo.ModelBase):
                                      default=settings.LANGUAGE_CODE)
 
     addontype = models.ForeignKey('AddonType')
-    status = models.PositiveIntegerField(choices=STATUS_CHOICES, db_index=True)
-    higheststatus = models.PositiveIntegerField(choices=STATUS_CHOICES,
-                    help_text="An upper limit for what an author can change.")
+    status = models.PositiveIntegerField(
+        choices=STATUS_CHOICES, db_index=True, default=0)
+    higheststatus = models.PositiveIntegerField(
+        choices=STATUS_CHOICES, default=0,
+        help_text="An upper limit for what an author can change.")
     icontype = models.CharField(max_length=25, blank=True)
     homepage = TranslatedField()
     supportemail = TranslatedField()
