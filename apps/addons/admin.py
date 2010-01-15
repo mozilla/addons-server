@@ -1,22 +1,9 @@
-from django import forms
 from django.contrib import admin
 
 from .models import Addon, BlacklistedGuid, Feature, Category
 
 
-class AddonForm(forms.ModelForm):
-
-    class Meta:
-        model = Addon
-
-    def clean(self):
-        # Override clean so we ignore uniqueness checks on the django side,
-        # since they don't handle translations correctly.
-        return self.cleaned_data
-
-
 class AddonAdmin(admin.ModelAdmin):
-    form = AddonForm
     exclude = ('users',)
     list_display = ('__unicode__', 'addontype', 'status', 'averagerating')
     list_filter = ('addontype', 'status')
