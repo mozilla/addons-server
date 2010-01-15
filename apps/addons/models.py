@@ -21,9 +21,11 @@ class Addon(amo.ModelBase):
                                      default=settings.LANGUAGE_CODE)
 
     addontype = models.ForeignKey('AddonType')
-    status = models.PositiveIntegerField(choices=STATUS_CHOICES, db_index=True)
-    higheststatus = models.PositiveIntegerField(choices=STATUS_CHOICES,
-                    help_text="An upper limit for what an author can change.")
+    status = models.PositiveIntegerField(
+        choices=STATUS_CHOICES, db_index=True, default=0)
+    higheststatus = models.PositiveIntegerField(
+        choices=STATUS_CHOICES, default=0,
+        help_text="An upper limit for what an author can change.")
     icontype = models.CharField(max_length=25, blank=True)
     homepage = TranslatedField()
     supportemail = TranslatedField()
@@ -76,7 +78,7 @@ class Addon(amo.ModelBase):
     get_satisfaction_company = models.CharField(max_length=255, blank=True)
     get_satisfaction_product = models.CharField(max_length=255, blank=True)
 
-    users = models.ManyToManyField('users.UserProfile')
+    users = models.ManyToManyField('users.UserProfile', through='AddonUser')
 
     class Meta:
         db_table = 'addons'
@@ -135,6 +137,19 @@ class AddonType(amo.ModelBase):
 
     def __unicode__(self):
         return unicode(self.name)
+
+
+class AddonUser(models.Model):
+    AUTHOR_CHOICES = amo.AUTHOR_CHOICES.items()
+
+    addon = models.ForeignKey(Addon)
+    user = models.ForeignKey('users.UserProfile')
+    role = models.SmallIntegerField(default=5, choices=AUTHOR_CHOICES)
+    listed = models.BooleanField(default=True)
+    position = models.IntegerField(default=0)
+
+    class Meta:
+        db_table = 'addons_users'
 
 
 class BlacklistedGuid(amo.ModelBase):
