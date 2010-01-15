@@ -5,7 +5,7 @@ from nose.tools import eq_
 from test_utils import ExtraAppTestCase, trans_eq
 
 from testapp.models import TranslatedModel, UntranslatedModel
-from translations.models import Translation, TranslationSequence
+from translations.models import Translation
 
 
 class TranslationTestCase(ExtraAppTestCase):
