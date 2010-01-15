@@ -30,4 +30,8 @@ echo "Building documentation..."
 cd docs
 make clean dirhtml SPHINXOPTS='-q'
 
+echo "Taking forever to make a bundle..."
+PKG=$WORKSPACE/packages
+rm -rf $PKG && mkdir $PKG && pip bundle -r requirements-prod.txt $PKG/amo.pybundle
+
 echo 'shazam!'
