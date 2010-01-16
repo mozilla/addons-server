@@ -121,6 +121,7 @@ INSTALLED_APPS = (
     'admin',
     'approvals',
     'applications',
+    'bandwagon',
     'devhub',
     'editors',
     'files',
