@@ -5,7 +5,7 @@ import jingo
 
 import amo
 from addons.models import Addon
-from approvals.models import Approval
+from files.models import Approval
 from versions.models import Version
 
 

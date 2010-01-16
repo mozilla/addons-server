@@ -129,7 +129,38 @@
     },
     {
         "pk": 1,
-        "model": "approvals.approval",
+        "model": "files.platform",
+        "fields": {
+            "name": null,
+            "shortname": null,
+            "icontype": "image/png"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "files.file",
+        "fields": {
+            "version": 39083,
+            "platform": 1,
+            "filename": "sweetaddon-fx-1.0.xpi",
+            "hash": "sha256:3d690208f3a50b8be4d7cc0a696dd3970d2bf1e32813274199cab99c66917781",
+            "status": "1"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "files.file",
+        "fields": {
+            "version": 2,
+            "platform": 1,
+            "filename": "suckyaddon-fx-1.0.xpi",
+            "hash": "sha256:0934704605d5976734711897ad2d5c91390f6792ee7352d2c6019cfd77367ce1",
+            "status": "4"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "files.approval",
         "fields": {
             "created": "2009-10-20 15:38:57",
             "user": 4230,
@@ -139,12 +170,13 @@
             "action": 3,
             "reply_to": null,
             "os": "",
-            "addon": 1
+            "addon": 1,
+            "file": 1
         }
     },
     {
         "pk": 3,
-        "model": "approvals.approval",
+        "model": "files.approval",
         "fields": {
             "created": "2009-10-20 15:38:57",
             "user": 4230,
@@ -154,7 +186,8 @@
             "action": 2,
             "reply_to": null,
             "os": "",
-            "addon": 3
+            "addon": 3,
+            "file": 2
         }
     }
 ]

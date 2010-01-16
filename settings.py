@@ -119,7 +119,6 @@ INSTALLED_APPS = (
     'access',
     'addons',
     'admin',
-    'approvals',
     'applications',
     'bandwagon',
     'devhub',
