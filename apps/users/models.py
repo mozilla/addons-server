@@ -107,7 +107,7 @@ class UserProfile(amo.ModelBase):
         # Reusing the id will make our life easier, because we can use the
         # OneToOneField as pk for Profile linked back to the auth.user
         # in the future.
-        self.user = User(id=self.pk)
+        self.user = DjangoUser(id=self.pk)
         self.user.first_name = self.firstname
         self.user.last_name = self.lastname
         self.user.username = self.email
