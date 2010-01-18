@@ -4,7 +4,7 @@ import random
 import string
 
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User as DjangoUser
 
 import amo
 from translations.fields import TranslatedField
@@ -50,7 +50,7 @@ class UserProfile(amo.ModelBase):
     resetcode_expires = models.DateTimeField(default=datetime.now)
     sandboxshown = models.BooleanField(default=False)
 
-    user = models.ForeignKey(User, null=True)
+    user = models.ForeignKey(DjangoUser, null=True)
 
     class Meta:
         db_table = 'users'

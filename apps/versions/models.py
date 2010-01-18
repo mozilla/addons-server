@@ -2,7 +2,7 @@ from django.db import models
 
 import amo
 from addons.models import Addon
-from users.models import User
+from users.models import UserProfile
 from applications.models import Application
 from translations.fields import TranslatedField
 
@@ -29,7 +29,7 @@ class License(amo.ModelBase):
 class VersionComment(amo.ModelBase):
     """Editor comments for version discussion threads."""
     version = models.ForeignKey(Version)
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(UserProfile)
     reply_to = models.ForeignKey(Version, related_name="reply_to", null=True)
     subject = models.CharField(max_length=1000)
     comment = models.TextField()
