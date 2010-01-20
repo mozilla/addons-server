@@ -9,7 +9,7 @@ from translations.fields import TranslatedField
 
 class Version(amo.ModelBase):
     addon = models.ForeignKey(Addon)
-    license = models.ForeignKey('License')
+    license = models.ForeignKey('License', null=True)
     releasenotes = TranslatedField()
     approvalnotes = models.TextField()
     version = models.CharField(max_length=255, default=0)
