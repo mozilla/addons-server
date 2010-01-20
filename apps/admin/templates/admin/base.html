@@ -11,6 +11,13 @@
       href="{{ MEDIA_URL }}css/admin-mozilla.css">
 <link rel="stylesheet" media="screen,projection,tv"
       href="{{ MEDIA_URL }}css/developers.css">
+<link rel="stylesheet" href="{{ MEDIA_URL }}css/zamboni/tabs.css">
+<link rel="stylesheet" href="{{ MEDIA_URL }}css/zamboni/translations/trans.css">
+{% endblock %}
+
+{% block js %}
+<script src="{{ MEDIA_URL }}js/zamboni/translations/tabs.js"></script>
+<script src="{{ MEDIA_URL }}js/zamboni/translations/trans.js"></script>
 {% endblock %}
 
 {% block navbar %}
