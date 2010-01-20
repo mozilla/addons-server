@@ -14,7 +14,7 @@ class Translation(caching.CachingMixin, models.Model):
     autoid = models.AutoField(primary_key=True)
     id = models.IntegerField()
     locale = models.CharField(max_length=10)
-    localized_string = models.TextField()
+    localized_string = models.TextField(null=True)
 
     # These are normally from amo.ModelBase, but we don't want to have weird
     # circular dependencies between ModelBase and Translations.

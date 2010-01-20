@@ -172,7 +172,8 @@ def translations_with_fallback(ids, lang, default):
     if not ids:
         return []
 
-    fetched = Translation.objects.filter(id__in=ids, locale=lang)
+    fetched = Translation.objects.filter(id__in=ids, locale=lang,
+                                         localized_string__isnull=False)
 
     # Try to find any missing translations in the default locale.
     missing = set(ids).difference(t.id for t in fetched)
