@@ -3,12 +3,12 @@ from django.conf import settings
 from django.core import management
 from django.db.models import loading
 from django.utils.encoding import smart_unicode as unicode
+from django.utils.translation.trans_real import to_language
 
 from nose.tools import eq_
 from nose import SkipTest
 from selenium import selenium
 import jinja2
-
 
 # We only want to run through setup_test_environment once.
 IS_SETUP = False
@@ -89,7 +89,7 @@ class SeleniumTestCase(TestCase):
 # Comparisons
 
 def locale_eq(a, b):
-    eq_(a.lower(), b.lower())
+    eq_(*map(to_language, [a, b]))
 
 
 def trans_eq(translation, string, locale=None):

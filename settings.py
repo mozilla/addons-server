@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Django settings for zamboni project.
 
 import os
@@ -46,7 +47,41 @@ TIME_ZONE = 'America/Los_Angeles'
 LANGUAGE_CODE = 'en-US'
 
 # Accepted locales and apps
-LANGUAGES = {'en-US': 'English (US)', 'ja': 'Japanese'}
+LANGUAGES = {
+    'ar': u'عربي',
+    'ca': u'català',
+    'cs': u'Čeština',
+    'da': u'Dansk',
+    'de': u'Deutsch',
+    'el': u'Ελληνικά',
+    'en-US': u'English (US)',
+    'es-ES': u'Español (de España)',
+    'eu': u'Euskara',
+    'fa': u'فارسی',
+    'fi': u'suomi',
+    'fr': u'Français',
+    'ga-IE': u'Gaeilge',
+    'he': u'עברית',
+    'hu': u'Magyar',
+    'id': u'Bahasa Indonesia',
+    'it': u'Italiano',
+    'ja': u'日本語',
+    'ko': u'한국어',
+    'mn': u'Монгол',
+    'nl': u'Nederlands',
+    'pl': u'Polski',
+    'pt-BR': u'Português (do Brasil)',
+    'pt-PT': u'Português (Europeu)',
+    'ro': u'română',
+    'ru': u'Русский',
+    'sk': u'slovenčina',
+    'sq': u'Shqip',
+    'sv-SE': u'Svenska',
+    'uk': u'Українська',
+    'vi': u'Tiếng Việt',
+    'zh-CN': u'中文 (简体)',
+    'zh-TW': u'正體中文 (繁體)',
+}
 
 SITE_ID = 1
 

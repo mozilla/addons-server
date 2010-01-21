@@ -5,3 +5,7 @@ def pep8():
         " --exclude *.sh,*.html,*.json,*.txt,*.pyc,.DS_Store,README,"
         "migrations"
         " apps", capture=False)
+
+
+def test():
+    local("python manage.py test --noinput --logging-clear-handlers")
