@@ -56,8 +56,16 @@ class Translation(caching.CachingMixin, models.Model):
             cursor.execute('SELECT LAST_INSERT_ID() FROM translations_seq')
             id = cursor.fetchone()[0]
 
-        return Translation.objects.create(id=id, localized_string=string,
-                                          locale=locale)
+        # Update if one exists, otherwise create a new one.
+        q = {'id': id, 'locale': locale}
+        try:
+            trans = Translation.objects.get(**q)
+            trans.localized_string = string
+            trans.save(force_update=True)
+        except Translation.DoesNotExist:
+            trans = Translation.objects.create(localized_string=string, **q)
+
+        return trans
 
 
 class TranslationSequence(models.Model):

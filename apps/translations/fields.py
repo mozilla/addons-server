@@ -3,6 +3,7 @@ from django.conf import settings
 from django.db import models
 from django.db.models.fields import related
 from django.utils import translation as translation_utils
+from django.utils.translation.trans_real import to_language
 
 from .models import Translation
 
@@ -50,6 +51,11 @@ class TranslatedField(models.ForeignKey):
         defaults.update(kw)
         return super(TranslatedField, self).formfield(**defaults)
 
+    def validate(self, value, model_instance):
+        # Skip ForeignKey.validate since that expects only one Translation when
+        # doing .get(id=id)
+        return models.Field.validate(self, value, model_instance)
+
 
 class TranslationDescriptor(related.ReverseSingleRelatedObjectDescriptor):
     """
@@ -70,31 +76,59 @@ class TranslationDescriptor(related.ReverseSingleRelatedObjectDescriptor):
             return None
 
     def __set__(self, instance, value):
+        lang = translation_utils.get_language()
         if isinstance(value, basestring):
-            lang = translation_utils.get_language()
-            try:
-                trans = getattr(instance, self.field.name)
-                trans_id = getattr(instance, self.field.attname)
-                if trans is None and trans_id is not None:
-                    # This locale doesn't have a translation set, but there are
-                    # translations in another locale, so we have an id already.
-                    trans = Translation.new(value, lang, id=trans_id)
-                elif trans.locale.lower() == lang.lower():
-                    # Replace the translation in the current language.
-                    trans.localized_string = value
-                    trans.save()
-                else:
-                    # We already have a translation in a different language.
-                    trans = Translation.new(value, lang, id=trans.id)
-            except AttributeError:
-                # Create a brand new translation.
-                trans = Translation.new(value, lang)
-            value = trans
+            value = self.translation_from_string(instance, lang, value)
+        elif hasattr(value, 'items'):
+            value = self.translation_from_dict(instance, lang, value)
+
 
         # Don't let this be set to None, because Django will then blank out the
         # foreign key for this object.  That's incorrect for translations.
         if value is not None:
             super(TranslationDescriptor, self).__set__(instance, value)
+
+    def translation_from_string(self, instance, lang, string):
+        """Create, save, and return a Translation from a string."""
+        try:
+            trans = getattr(instance, self.field.name)
+            trans_id = getattr(instance, self.field.attname)
+            if trans is None and trans_id is not None:
+                # This locale doesn't have a translation set, but there are
+                # translations in another locale, so we have an id already.
+                return Translation.new(string, lang, id=trans_id)
+            elif to_language(trans.locale) == lang.lower():
+                # Replace the translation in the current language.
+                trans.localized_string = string
+                trans.save()
+                return trans
+            else:
+                # We already have a translation in a different language.
+                return Translation.new(string, lang, id=trans.id)
+        except AttributeError:
+            # Create a brand new translation.
+            return Translation.new(string, lang)
+
+    def translation_from_dict(self, instance, lang, dict_):
+        """
+        Create Translations from a {'locale': 'string'} mapping.
+
+        If one of the locales matches lang, that Translation will be returned.
+        """
+        rv = None
+        for locale, string in dict_.items():
+            # The Translation is created and saved in here.
+            trans = self.translation_from_string(instance, locale, string)
+
+            # Set the Translation on the object because translation_from_string
+            # doesn't expect Translations to be created but not attached.
+            self.__set__(instance, trans)
+
+            # If we're setting the current locale, set it to the object so
+            # callers see the expected effect.
+            if to_language(locale) == lang:
+                rv = trans
+        return rv
 
 
 class TranslatedFieldMixin(object):
@@ -175,3 +209,6 @@ class TranslationFormField(forms.Field):
         del kwargs['queryset']
         del kwargs['to_field_name']
         super(TranslationFormField, self).__init__(*args, **kwargs)
+
+    def clean(self, value):
+        return dict(value)
