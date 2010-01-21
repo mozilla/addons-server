@@ -15,7 +15,7 @@ class Addon(amo.ModelBase):
             (3, 'Roadblock; User shown splash screen before download'),
     )
 
-    guid = models.CharField(max_length=255, unique=True)
+    guid = models.CharField(max_length=255, unique=True, null=True)
     name = TranslatedField()
     defaultlocale = models.CharField(max_length=10,
                                      default=settings.LANGUAGE_CODE)
