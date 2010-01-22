@@ -14,6 +14,7 @@ class TestFlagged(test_utils.TestCase):
     fixtures = ['admin/tests/flagged']
 
     def setUp(self):
+        self.client.login(username='jbalogh@mozilla.com', password='password')
         cache.clear()
 
     def test_get(self):

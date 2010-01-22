@@ -1,3 +1,4 @@
+from django.contrib import admin
 from django.db.models import Q
 from django.shortcuts import redirect
 
@@ -9,6 +10,7 @@ from files.models import Approval
 from versions.models import Version
 
 
+@admin.site.admin_view
 def flagged(request):
     addons = Addon.objects.filter(adminreview=True).order_by('-created')
 
