@@ -7,3 +7,6 @@
 [submodule "media/js"]
 	path = media/js
 	url = git://github.com/davedash/amo-js.git
+[submodule "configs"]
+	path = configs
+	url = git://github.com/davedash/amo-configs
