@@ -90,7 +90,7 @@ class TestResultCache(amo.ModelBase):
     """When a file is checked the results are stored here in JSON.  This is
     temporary storage and removed with the garbage cleanup cron."""
     date = models.DateTimeField()
-    key = models.CharField(max_length=255)
+    key = models.CharField(max_length=255, db_index=True)
     test_case = models.ForeignKey(TestCase)
     message = models.TextField(blank=True)
 

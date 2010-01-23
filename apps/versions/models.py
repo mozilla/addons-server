@@ -2,14 +2,16 @@ from django.db import models
 
 import amo
 from addons.models import Addon
+
 from users.models import UserProfile
-from applications.models import Application
+from applications.models import Application, AppVersion
+
 from translations.fields import TranslatedField
 
 
 class Version(amo.ModelBase):
     addon = models.ForeignKey(Addon)
-    license = models.ForeignKey('License')
+    license = models.ForeignKey('License', null=True)
     releasenotes = TranslatedField()
     approvalnotes = models.TextField()
     version = models.CharField(max_length=255, default=0)
@@ -47,3 +49,14 @@ class VersionSummary(amo.ModelBase):
 
     class Meta(amo.ModelBase.Meta):
         db_table = 'versions_summary'
+
+
+class ApplicationsVersions(models.Model):
+
+    application = models.ForeignKey(Application)
+    version = models.ForeignKey(Version)
+    min = models.ForeignKey(AppVersion, db_column='min', related_name='min_set')
+    max = models.ForeignKey(AppVersion, db_column='max', related_name='max_set')
+
+    class Meta:
+        db_table = u'applications_versions'

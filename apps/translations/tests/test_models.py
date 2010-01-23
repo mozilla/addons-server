@@ -4,13 +4,18 @@ from nose.tools import eq_
 
 from test_utils import ExtraAppTestCase, trans_eq
 
+from caching import cache
 from testapp.models import TranslatedModel, UntranslatedModel
-from translations.models import Translation, TranslationSequence
+from translations.models import Translation
+from translations import widgets
 
 
 class TranslationTestCase(ExtraAppTestCase):
     fixtures = ['testapp/test_models.json']
     extra_apps = ['translations.tests.testapp']
+
+    def setUp(self):
+        cache.clear()
 
     def test_fetch_translations(self):
         """Basic check of fetching translations in the current locale."""
@@ -89,6 +94,58 @@ class TranslationTestCase(ExtraAppTestCase):
         # Make sure it was an update, not an insert.
         eq_(o.name.autoid, translation_id)
 
+    def test_create_with_dict(self):
+        # Set translations with a dict.
+        strings = {'en-US': 'right language', 'de': 'wrong language'}
+        o = TranslatedModel.objects.create(name=strings)
+
+        # Make sure we get the English text since we're in en-US.
+        trans_eq(o.name, 'right language', 'en-US')
+
+        # Check that de was set.
+        translation.activate('de')
+        o = TranslatedModel.objects.get(id=o.id)
+        trans_eq(o.name, 'wrong language', 'de')
+
+        # We're in de scope, so we should see the de text.
+        de = TranslatedModel.objects.create(name=strings)
+        trans_eq(o.name, 'wrong language', 'de')
+
+        # Make sure en-US was still set.
+        translation.deactivate()
+        o = TranslatedModel.objects.get(id=de.id)
+        trans_eq(o.name, 'right language', 'en-US')
+
+    def test_update_with_dict(self):
+        # There's existing en-US and de strings.
+        strings = {'de': None, 'fr': 'oui'}
+        get_model = lambda: TranslatedModel.objects.get(id=1)
+
+        # Don't try checking that the model's name value is en-US.  It will be
+        # one of the other locales, but we don't know which one.  You just set
+        # the name to a dict, deal with it.
+        get_model().name = strings
+
+        # en-US was not touched.
+        trans_eq(get_model().name, 'some name', 'en-US')
+
+        # de was updated to NULL, so it falls back to en-US.
+        translation.activate('de')
+        trans_eq(get_model().name, 'some name', 'en-US')
+
+        # fr was added.
+        translation.activate('fr')
+        trans_eq(get_model().name, 'oui', 'fr')
+
+    def test_widget(self):
+        strings = {'de': None, 'fr': 'oui'}
+        o = TranslatedModel.objects.get(id=1)
+        o.name = strings
+
+        # Shouldn't see de since that's NULL now.
+        ws = widgets.trans_widgets(o.name_id, lambda *args: None)
+        eq_(sorted(dict(ws).keys()), ['en-us', 'fr'])
+
 
 def test_translation_bool():
     t = lambda s: Translation(localized_string=s)
@@ -96,3 +153,10 @@ def test_translation_bool():
     assert bool(t('text')) is True
     assert bool(t(' ')) is False
     assert bool(t('')) is False
+
+
+def test_widget_value_from_datadict():
+    data = {'f_en-US': 'woo', 'f_de': 'herr', 'f_fr_delete': ''}
+    actual = widgets.TranslationWidget().value_from_datadict(data, [], 'f')
+    expected = {'en-US': 'woo', 'de': 'herr', 'fr': None}
+    eq_(actual, expected)
