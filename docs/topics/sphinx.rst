@@ -50,6 +50,13 @@ Use two newlines prior to a new heading.  I'm only using one here for space
 efficiency.
 
 
+Sphinx Extras
+-------------
+
+Use ``:src:`path/to/file.py``` to link to source files online.  Example:
+:src:`settings.py`.
+
+
 Vim
 ---
 
