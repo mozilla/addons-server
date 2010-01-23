@@ -16,8 +16,7 @@ import sys, os
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
-#sys.path.append(os.path.abspath('.'))
-
+sys.path.append(os.path.abspath('.'))
 sys.path.append(os.path.abspath('..'))
 
 # Import manage.py so we get the sitedirs that are added there.
@@ -32,7 +31,9 @@ os.environ['DJANGO_SETTINGS_MODULE'] = filename
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['sphinx.ext.autodoc', 'sphinx.ext.doctest', 'sphinx.ext.intersphinx', 'sphinx.ext.todo', 'sphinx.ext.coverage']
+extensions = ['sphinx.ext.autodoc', 'sphinx.ext.doctest',
+              'sphinx.ext.intersphinx', 'sphinx.ext.todo',
+              'sphinx.ext.coverage', 'extensions.src_role']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -214,3 +215,6 @@ intersphinx_mapping = {
 
 for key, val in intersphinx_mapping.items():
     intersphinx_mapping[key] = '_intersphinx/' + val
+
+# Root url where source files can be browsed online.
+src_base_url = 'http://github.com/jbalogh/zamboni/tree/master/'
