@@ -17,6 +17,9 @@ if [[ ! -d $GH ]]; then
     cd ..
 fi
 
+# Update the _gh-pages target dir.
+cd $GH && git pull && cd ..
+
 # Make a clean build.
 make clean dirhtml
 
