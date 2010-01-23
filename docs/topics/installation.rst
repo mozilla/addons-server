@@ -171,10 +171,34 @@ Toolbar <http://github.com/robhudson/django-debug-toolbar>`_.  It's awesome, and
 I recommend you do the same.
 
 
+Database
+--------
+
+If you have access, I recommend you use http://gist.github.com/273575 to create
+a small database from the production db.  Otherwise, let Django create the
+database schema for you.  Either way, run ::
+
+    django syncdb --noinput
+
+to get the auth and admin tables from Django.
+
+At the moment, we're tracking Django's trunk, and South does not work.  So we'll
+have to do database migrations manually.  I hope there aren't too many. ::
+
+    ALTER TABLE `users`
+        ADD COLUMN `user_id` INTEGER,
+        ADD CONSTRAINT `user_id_refs_id_eb1f4611` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`);
+
+Then pipe this file into your mysql::
+
+    cat apps/cake/sql/session.sql | mysql ...
+
+What a mess!
+
+
 Fin
 ---
 
-Everything's good to go now (assuming you've installed a remora database clone),
-so start up the development server. ::
+Everything's good to go now so start up the development server. ::
 
     python manage.py runserver 0:8000

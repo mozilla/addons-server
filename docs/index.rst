@@ -21,7 +21,7 @@ Run your tests like this::
 
 Installation
 ------------
-If you're just getting started, the :doc:`install <installation>` docs are the best.
+If you're just getting started, the :ref:`install <installation>` docs are the best.
 
 
 Contents
@@ -33,7 +33,6 @@ Contents
 
    topics/*
    ref/*
-   installation
 
 
 Older Tips
