@@ -44,3 +44,16 @@ COLLECTION_AUTHOR_CHOICES = {
     COLLECTION_ROLE_PUBLISHER: 'Publisher',
     COLLECTION_ROLE_ADMIN: 'Admin',
 }
+
+# Addon types
+ADDON_ANY = -1
+ADDON_EXTENSION = 1
+ADDON_THEME = 2
+ADDON_DICT = 3
+ADDON_SEARCH = 4
+ADDON_LPAPP = 5
+ADDON_LPADDON = 6
+ADDON_PLUGIN = 7
+ADDON_API = 8 # not actually a type but used to identify extensions + themes
+ADDON_PERSONA = 9
+

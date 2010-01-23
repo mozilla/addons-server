@@ -160,6 +160,7 @@ INSTALLED_APPS = (
     'editors',
     'files',
     'reviews',
+    'search',
     'tags',
     'translations',
     'users',
@@ -203,3 +204,9 @@ DEFAULT_APP = 'firefox'
 CACHE_DURATION = 60  # seconds
 
 AUTH_PROFILE_MODULE = 'users.UserProfile'
+
+SPHINX_INDEXER = 'indexer'
+SPHINX_SEARCHD = 'searchd'
+SPHINX_CONFIG_PATH = path('configs/sphinx/sphinx.conf')
+SPHINX_HOST = '127.0.0.1'
+SPHINX_PORT = 3312
