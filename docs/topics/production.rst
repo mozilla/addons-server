@@ -17,7 +17,11 @@ You're going to need virtualenv and pip, but I'll let you figure that one out.
 
 We rely on one compiled package, MySQLdb.  It needs to link against the
 mysql-dev headers, so install that one system-wide.  The rest of our packages
-should be installed in a virtualenv using pip::
+should be installed in a virtualenv using pip.  If you're oremj, do this::
+
+    pip install http://sm-hudson01.mozilla.org:8080/job/addons.mozilla.org/ws/packages/amo.pybundle
+
+Otherwise, get them from the internet like this::
 
     pip install -r requirements-prod.txt
 

@@ -29,6 +29,7 @@ coverage xml $(find apps lib -name '*.py')
 echo "Building documentation..."
 cd docs
 make clean dirhtml SPHINXOPTS='-q'
+cd $WORKSPACE
 
 echo "Taking forever to make a bundle..."
 PKG=$WORKSPACE/packages
