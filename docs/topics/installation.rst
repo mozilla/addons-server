@@ -138,32 +138,11 @@ settings into ``settings_local.py``.  Make sure you have ::
 
     from settings import *
 
-in your ``settings_local.py`` so that all of the configuration is included.  If
-you want to override anything, put that import at the top and then redefine
-whatever parameters you want.  This is my ``settings_local.py``::
+in your ``settings_local.py`` so that all of the configuration is included.
+The settings template for developers, included below, is at
+:src:`settings/settings_local.dev.py`.
 
-    from settings import *
-
-
-    DATABASES = {
-        'default': {
-            'NAME': 'zamboni',
-            'ENGINE': 'django.db.backends.mysql',
-            'USER': 'jbalogh',
-            'PASSWORD': 'foo',
-            'OPTIONS':  {'init_command': 'SET storage_engine=InnoDB'},
-        },
-    }
-
-    # For debug toolbar.
-    MIDDLEWARE_CLASSES += ('debug_toolbar.middleware.DebugToolbarMiddleware',)
-    INTERNAL_IPS = ('127.0.0.1',)
-    INSTALLED_APPS += ('debug_toolbar',)
-
-    CACHE_BACKEND = 'memcached://localhost:11211'
-    CACHE_DURATION = 500
-
-    DEBUG = True
+.. literalinclude:: /../settings/settings_local.dev.py
 
 I'm overriding the database parameters from ``settings.py`` and then extending
 ``INSTALLED_APPS`` and ``MIDDLEWARE_CLASSES`` to include the `Django Debug
