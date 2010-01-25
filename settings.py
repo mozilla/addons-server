@@ -176,6 +176,11 @@ INSTALLED_APPS = (
     'django.contrib.sites',
 )
 
+# These apps will be removed from INSTALLED_APPS in a production environment.
+DEV_APPS = (
+    'django_nose',
+)
+
 TEST_RUNNER = 'django_nose.run_tests'
 
 LOG_LEVEL = logging.DEBUG
