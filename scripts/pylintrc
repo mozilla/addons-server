@@ -1,6 +1,6 @@
 [MASTER]
 
-ignore=migrations,settings_local.py
+ignore=migrations,settings_local.py,sphinxapi.py
 
 [REPORTS]
 
