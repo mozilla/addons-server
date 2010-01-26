@@ -131,7 +131,7 @@ def convert_version(version_string):
 
         # We recombine everything into a single large integer.
         int_str = ("%02d%02d%02d%02d%d%02d%d%02d"
-            % (major, minor1, minor2, minor3, alpha, alpha_n, pre, pre_n) )
+            % (major, minor1, minor2, minor3, alpha, alpha_n, pre, pre_n))
 
         return int(int_str)
 

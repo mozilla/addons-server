@@ -69,6 +69,7 @@ def trans_widgets(trans_id, widget):
 
 
 def widget_builder(name, attrs):
+
     def widget(locale, value):
         locale = to_language(locale)
         value = jinja2.escape(value)

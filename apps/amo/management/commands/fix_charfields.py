@@ -46,5 +46,6 @@ class Command(BaseCommand):
                     updates.append(update)
                     model_alters.append(alter)
             if model_alters:
-                alters.append('ALTER TABLE %s\n\t%s' % (table, ',\n\t'.join(model_alters)))
+                alters.append('ALTER TABLE %s\n\t%s' %
+                    (table, ',\n\t'.join(model_alters)))
         print ';\n'.join(updates + alters) + ';'

@@ -55,8 +55,10 @@ class ApplicationsVersions(models.Model):
 
     application = models.ForeignKey(Application)
     version = models.ForeignKey(Version)
-    min = models.ForeignKey(AppVersion, db_column='min', related_name='min_set')
-    max = models.ForeignKey(AppVersion, db_column='max', related_name='max_set')
+    min = models.ForeignKey(AppVersion, db_column='min',
+        related_name='min_set')
+    max = models.ForeignKey(AppVersion, db_column='max',
+        related_name='max_set')
 
     class Meta:
         db_table = u'applications_versions'
