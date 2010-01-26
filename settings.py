@@ -158,6 +158,7 @@ INSTALLED_APPS = (
     'admin',
     'applications',
     'bandwagon',
+    'blocklist',
     'devhub',
     'editors',
     'files',
