@@ -13,6 +13,10 @@ database aliases that can be found in ``DATABASES``::
     }
     SLAVE_DATABASES = ['shadow-1', 'shadow-2']
 
+Then put ``multidb.MasterSlaveRouter`` into DATABASE_ROUTERS::
+
+    DATABASE_ROUTERS = ('multidb.MasterSlaveRouter',)
+
 The slave databases will be chosen in round-robin fashion.
 """
 import itertools
@@ -37,6 +41,7 @@ else:
 
 
 class MasterSlaveRouter(object):
+    """Router that sends all reads to a slave, all writes to default."""
 
     def db_for_read(self, model, **hints):
         """Send reads to slaves in round-robin."""
