@@ -8,4 +8,5 @@ def pep8():
 
 
 def test():
-    local("python manage.py test --noinput --logging-clear-handlers")
+    local("python manage.py test --noinput --logging-clear-handlers",
+          capture=False)
