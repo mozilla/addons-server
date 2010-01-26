@@ -16,3 +16,8 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'zamboni.local_settings'
 
 # This is what mod_wsgi runs.
 application = django.core.handlers.wsgi.WSGIHandler()
+
+# Uncomment this to figure out what's going on with the mod_wsgi environment.
+# def application(env, start_response):
+#     start_response('200 OK', [('Content-Type', 'text/plain')])
+#     return '\n'.join('%s: %s' % item for item in sorted(env.items()))
