@@ -61,8 +61,6 @@ from django.db.models import signals
 from django.db.models.sql import query
 from django.utils import translation, encoding
 
-import multidb
-
 from .backends import cache
 
 FOREVER = 0
@@ -115,7 +113,7 @@ class CachingManager(models.Manager):
         cache.delete_many(*keys)
 
 
-class CachingQuerySet(multidb.SlaveQuerySet):
+class CachingQuerySet(models.query.QuerySet):
 
     def iterator(self):
         try:

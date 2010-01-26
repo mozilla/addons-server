@@ -32,6 +32,8 @@ DATABASES = {
     },
 }
 
+DATABASE_ROUTERS = ('multidb.MasterSlaveRouter',)
+
 # Put the aliases for your slave databases in this list.
 SLAVE_DATABASES = []
 
@@ -181,7 +183,7 @@ DEV_APPS = (
     'django_nose',
 )
 
-TEST_RUNNER = 'django_nose.run_tests'
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
 LOG_LEVEL = logging.DEBUG
 

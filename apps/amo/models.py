@@ -1,12 +1,10 @@
 from django.db import models
 
 import caching
-import multidb
 from translations.fields import TranslatedFieldMixin
 
 
-class ModelBase(multidb.SlaveMixin, caching.CachingMixin,
-                TranslatedFieldMixin, models.Model):
+class ModelBase(caching.CachingMixin, TranslatedFieldMixin, models.Model):
     """
     Base class for AMO models to abstract some common features.
 
