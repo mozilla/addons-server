@@ -12,6 +12,9 @@ class BlocklistApp(amo.ModelBase):
     class Meta(amo.ModelBase.Meta):
         db_table = 'blapps'
 
+    def __unicode__(self):
+        return '%s: %s - %s' % (self.guid, self.min, self.max)
+
 
 class BlocklistItem(amo.ModelBase):
     guid = models.CharField(max_length=255, blank=True)
@@ -22,6 +25,9 @@ class BlocklistItem(amo.ModelBase):
 
     class Meta(amo.ModelBase.Meta):
         db_table = 'blitems'
+
+    def __unicode__(self):
+        return '%s: %s - %s' % (self.guid, self.min, self.max)
 
 
 class BlocklistPlugin(amo.ModelBase):
@@ -37,3 +43,7 @@ class BlocklistPlugin(amo.ModelBase):
 
     class Meta(amo.ModelBase.Meta):
         db_table = 'blplugins'
+
+    def __unicode__(self):
+        return '%s: %s - %s' % (self.name or self.guid or self.filename,
+                                    self.min, self.max)

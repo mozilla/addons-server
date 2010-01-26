@@ -2,7 +2,8 @@ from fabric.api import local
 
 
 def pylint():
-    local("cd ..;export DJANGO_SETTINGS_MODULE=zamboni/settings_local;export PYTHONPATH=zamboni/apps:zamboni/lib;"
+    local("cd ..;export DJANGO_SETTINGS_MODULE=zamboni/settings_local;"
+        "export PYTHONPATH=zamboni/apps:zamboni/lib;"
         "pylint --rcfile zamboni/scripts/pylintrc -fparseable zamboni",
         capture=False)
 
