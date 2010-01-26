@@ -151,9 +151,10 @@ class CachingQuerySet(models.query.QuerySet):
         # memcached keys must be < 250 bytes and w/o whitespace, but it's nice
         # to see the keys when using locmem.
         if cache.scheme == 'memcached':
-            return hashlib.md5(key).hexdigest()
+            return '%s%s' % (settings.CACHE_PREFIX,
+                             hashlib.md5(key).hexdigest())
         else:
-            return key
+            return '%s%s' % (settings.CACHE_PREFIX, key)
 
     def _cache_objects(self, objects):
         """Cache query_key => objects, then update the flush lists."""
