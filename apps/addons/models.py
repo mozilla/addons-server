@@ -2,6 +2,7 @@ from django.conf import settings
 from django.db import models
 
 import amo
+from amo.urlresolvers import reverse
 from translations.fields import TranslatedField, translations_with_fallback
 
 
@@ -87,8 +88,7 @@ class Addon(amo.ModelBase):
         return '%s: %s' % (self.id, self.name)
 
     def get_absolute_url(self):
-        # XXX: use reverse
-        return '/addon/%s' % self.id
+        return reverse('addons.detail', args=(self.id,))
 
     def fetch_translations(self, ids, lang):
         return translations_with_fallback(ids, lang, self.defaultlocale)
