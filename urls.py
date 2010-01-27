@@ -9,9 +9,9 @@ urlpatterns = patterns('',
     url('^$', 'jingo.views.direct_to_template',
         {'template': 'base.html'}, name='home'),
 
-    # Reviews.
-    ('^reviews/', include('reviews.urls')),
-    
+    # Add-ons.
+    ('', include('addons.urls')),
+
     # Users
     ('^users/', include('users.urls')),
 
