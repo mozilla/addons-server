@@ -33,6 +33,6 @@ cd $WORKSPACE
 
 echo "Taking forever to make a bundle..."
 PKG=$WORKSPACE/packages
-rm -rf $PKG && mkdir $PKG && pip bundle -r requirements-prod.txt $PKG/amo.pybundle
+rm -rf $PKG && mkdir $PKG && pip -q bundle -r requirements-prod.txt $PKG/amo.pybundle
 
 echo 'shazam!'

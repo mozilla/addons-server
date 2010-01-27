@@ -1,7 +1,6 @@
 from django.contrib.auth import logout
 from django.http import HttpResponseRedirect
 
-import views
 from .signals import logged_out
 
 
@@ -11,5 +10,5 @@ def logout_view(request):
     logout(request)
     # fire logged out signal so we can be decoupled from cake
     response = HttpResponseRedirect(redir)
-    logged_out.send(views, request=request, response=response)
+    logged_out.send(None, request=request, response=response)
     return response

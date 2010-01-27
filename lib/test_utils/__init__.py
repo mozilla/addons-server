@@ -69,7 +69,7 @@ class SeleniumTestCase(TestCase):
     selenium = True
 
     def setUp(self):
-        super(TestCase, self).setUp()
+        super(SeleniumTestCase, self).setUp()
 
         if not settings.SELENIUM_CONFIG:
             raise SkipTest()
@@ -83,7 +83,7 @@ class SeleniumTestCase(TestCase):
     def tearDown(self):
         self.selenium.close()
         self.selenium.stop()
-        super(TestCase, self).tearDown()
+        super(SeleniumTestCase, self).tearDown()
 
 
 # Comparisons
