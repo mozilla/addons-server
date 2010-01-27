@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.conf.urls.defaults import patterns, url, include
 from django.contrib import admin
+from django.shortcuts import redirect
 
 admin.autodiscover()
 
@@ -9,14 +10,18 @@ urlpatterns = patterns('',
     url('^$', 'jingo.views.direct_to_template',
         {'template': 'base.html'}, name='home'),
 
-    # Reviews.
-    ('^reviews/', include('reviews.urls')),
-    
+    # Add-ons.
+    ('', include('addons.urls')),
+
     # Users
     ('^users/', include('users.urls')),
 
     # AMO admin (not django admin).
     ('^admin/', include('admin.urls')),
+
+    # Redirect patterns.
+    ('^reviews/display/(\d+)',
+      lambda r, id: redirect('reviews.list', id)),
 )
 
 if settings.DEBUG:
