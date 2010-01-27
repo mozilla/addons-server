@@ -2,7 +2,6 @@
 
 {% block content %}
 <div class="primary" role="main">
-  {% set addon_name = addon.name %}
   <h2>{{ _('Reviews for {0}')|f(addon.name) }}</h2>
 
   {% include "reviews/navigation.html" %}
