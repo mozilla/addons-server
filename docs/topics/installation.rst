@@ -142,7 +142,7 @@ in your ``settings_local.py`` so that all of the configuration is included.
 The settings template for developers, included below, is at
 :src:`settings/settings_local.dev.py`.
 
-.. literalinclude:: /../settings/settings_local.dev.py
+.. literalinclude:: /settings/settings_local.dev.py
 
 I'm overriding the database parameters from ``settings.py`` and then extending
 ``INSTALLED_APPS`` and ``MIDDLEWARE_CLASSES`` to include the `Django Debug
