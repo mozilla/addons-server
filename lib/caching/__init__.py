@@ -147,7 +147,11 @@ class CachingQuerySet(models.query.QuerySet):
     def _query_key(self):
         """Generate a cache key for this QuerySet."""
         lang = translation.get_language()
-        key = '%s:%s' % (lang, self.query)
+
+        # Work-around for Django #12717.
+        sql, params = self.query.get_compiler(using=self.db).as_sql()
+        key = '%s:%s' % (lang, sql % params)
+
         # memcached keys must be < 250 bytes and w/o whitespace, but it's nice
         # to see the keys when using locmem.
         if cache.scheme == 'memcached':
