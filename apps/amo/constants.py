@@ -1,3 +1,6 @@
+from django.utils.translation import ugettext as _
+
+
 # Add-on and File statuses.
 STATUS_NULL = 0
 STATUS_SANDBOX = 1
@@ -56,3 +59,39 @@ ADDON_LPADDON = 6
 ADDON_PLUGIN = 7
 ADDON_API = 8 # not actually a type but used to identify extensions + themes
 ADDON_PERSONA = 9
+
+# Applications
+class FIREFOX:
+    id = 1
+    short = 'firefox'
+    pretty = _('Firefox')
+    browser = True
+
+class THUNDERBIRD:
+    id = 18
+    short = 'thunderbird'
+    pretty = _('Thunderbird')
+    browser = True
+
+class SEAMONKEY:
+    id = 59
+    short = 'seamonkey'
+    pretty = _('SeaMonkey')
+    browser = True
+
+class SUNBIRD:
+    id = 52
+    short = 'sunbird'
+    pretty = _('Sunbird')
+
+class MOBILE:
+    id = 60
+    short = 'mobile'
+    pretty = _('Mobile')
+    browser = True
+
+_apps = (FIREFOX, THUNDERBIRD, SEAMONKEY, SUNBIRD, MOBILE)
+APPS = dict((app.short, app) for app in _apps)
+APP_IDS = dict((app.id, app) for app in _apps)
+
+APP_SUPPORTS_PERSONAS = (FIREFOX, THUNDERBIRD)

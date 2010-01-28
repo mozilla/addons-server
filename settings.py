@@ -199,13 +199,9 @@ SITE_URL = 'http://%s' % socket.gethostname()
 #    'BROWSER': '*firefox', # Alternative: *safari
 SELENIUM_CONFIG = {}
 
-# AMO Specific details
-SUPPORTED_APPS = ('firefox', 'thunderbird', 'mobile', 'seamonkey',
-'sunbird', )
-
 # paths that don't require an app prefix
 SUPPORTED_NONAPPS = ('admin', 'developers', 'editors', 'localizers',
-    'statistics',)
+                     'statistics',)
 DEFAULT_APP = 'firefox'
 
 # Length of time to store items in memcache

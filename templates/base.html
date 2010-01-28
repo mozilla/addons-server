@@ -44,13 +44,17 @@
         </div>
       {% endblock site_header %}
 
-      {% block navbar %}
-      <div class="stand-alone-options">
-        {% block categories %}{% include "categories.html" %}{% endblock %}
-        {% block search %}{% include "search.html" %}{% endblock %}
-      </div>
+      {# Overridden in base_side_categories, which expands categories
+         on the side of the page. #}
+      {% block main_content %}
+        {% block navbar %}
+        <div class="stand-alone-options">
+          {% include "categories.html" %}
+          {% include "search.html" %}
+        </div>
+        {% endblock %}
+        {% block content %}{% endblock %}
       {% endblock %}
-      {% block content %}{% endblock %}
     </div>
 
     <!-- js -->
