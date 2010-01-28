@@ -1,10 +1,20 @@
-{% extends "base.html" %}
+{% extends "base_side_categories.html" %}
+
+{% macro back_to_addon() -%}
+<ul>
+  <li>
+    <a href="{{ addon.get_absolute_url() }}">
+      {{ _('Back to {0}')|f(addon.name) }}
+    </a>
+  </li>
+</ul>
+{%- endmacro %}
 
 {% block content %}
 <div class="primary" role="main">
   <h2>{{ _('Reviews for {0}')|f(addon.name) }}</h2>
 
-  {% include "reviews/navigation.html" %}
+  {{ back_to_addon() }}
   <hr>
   {% for review in reviews.object_list %}
     <div class="item review" id="review-{{ review.id }}">
@@ -22,6 +32,6 @@
   {% endfor %}
   {{ reviews|paginator }}
   <hr>
-  {% include "reviews/navigation.html" %}
+  {{ back_to_addon() }}
 </div>
 {% endblock content %}
