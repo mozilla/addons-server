@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+  <div class="secondary" role="complementary">
+    {% include "categories.html" %}
+  </div>
+  <div class="primary" role="main">
+    {% include "search.html" %}
+    {% block content %}{% endblock %}
+  </div>
+{% endblock %}
