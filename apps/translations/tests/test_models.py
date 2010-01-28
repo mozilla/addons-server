@@ -146,6 +146,12 @@ class TranslationTestCase(ExtraAppTestCase):
         ws = widgets.trans_widgets(o.name_id, lambda *args: None)
         eq_(sorted(dict(ws).keys()), ['en-us', 'fr'])
 
+    def test_sorting(self):
+        b = Translation.new('bbbb', 'de')
+        a = Translation.new('aaaa', 'de')
+        c = Translation.new('cccc', 'de')
+        eq_(sorted([c, a, b]), [a, b, c])
+
 
 def test_translation_bool():
     t = lambda s: Translation(localized_string=s)

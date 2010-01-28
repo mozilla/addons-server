@@ -35,6 +35,9 @@ class Translation(caching.CachingMixin, models.Model):
         # want Translations to be falsy if their string is empty.
         return bool(self.localized_string.strip())
 
+    def __cmp__(self, other):
+        return cmp(self.localized_string, other.localized_string)
+
     @property
     def cache_key(self):
         return self._cache_key(self.id)
