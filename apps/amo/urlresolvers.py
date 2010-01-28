@@ -2,6 +2,8 @@ from django.conf import settings
 from django.core.urlresolvers import reverse as django_reverse
 from django.utils.thread_support import currentThread
 
+import amo
+
 
 # Thread-local storage for URL prefixes.  Access with {get,set}_url_prefix.
 _prefixes = {}
@@ -48,14 +50,14 @@ class Prefixer(object):
         second, _, rest = first_rest.partition('/')
 
         if first in settings.LANGUAGES:
-            if second in settings.SUPPORTED_APPS:
+            if second in amo.APPS:
                 return first, second, rest
             else:
                 return first, '', first_rest
-        elif first in settings.SUPPORTED_APPS:
+        elif first in amo.APPS:
             return '', first, first_rest
         else:
-            if second in settings.SUPPORTED_APPS:
+            if second in amo.APPS:
                 return '', second, rest
             else:
                 return '', '', path

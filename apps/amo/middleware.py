@@ -6,6 +6,7 @@ Note: didn't make sense to use localeurl since we need to capture app as well
 from django.http import HttpResponseRedirect
 from django.utils import translation
 
+import amo
 from . import urlresolvers
 
 
@@ -31,4 +32,4 @@ class LocaleAndAppURLMiddleware(object):
 
         request.path_info = '/' + prefixer.shortened_path
         translation.activate(prefixer.locale)
-        request.APP = prefixer.app
+        request.APP = amo.APPS.get(prefixer.app)
