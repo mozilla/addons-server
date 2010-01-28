@@ -211,6 +211,9 @@ DEFAULT_APP = 'firefox'
 # Length of time to store items in memcache
 CACHE_DURATION = 60  # seconds
 
+# Prefix for cache keys (will prevent collisions when running parallel copies)
+CACHE_PREFIX = 'amo:'
+
 AUTH_PROFILE_MODULE = 'users.UserProfile'
 
 SPHINX_INDEXER = 'indexer'
