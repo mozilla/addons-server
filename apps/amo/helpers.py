@@ -2,10 +2,22 @@ import jinja2
 
 from jingo import register, env
 
+import amo
+
 
 @register.filter
 def paginator(pager):
     return Paginator(pager).render()
+
+
+@register.function
+def is_mobile(app):
+    return app == amo.MOBILE
+
+
+@register.function
+def supports_personas(app):
+    return app in amo.APP_SUPPORTS_PERSONAS
 
 
 class Paginator(object):

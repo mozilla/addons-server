@@ -93,3 +93,5 @@ class MOBILE:
 _apps = (FIREFOX, THUNDERBIRD, SEAMONKEY, SUNBIRD, MOBILE)
 APPS = dict((app.short, app) for app in _apps)
 APP_IDS = dict((app.id, app) for app in _apps)
+
+APP_SUPPORTS_PERSONAS = (FIREFOX, THUNDERBIRD)
