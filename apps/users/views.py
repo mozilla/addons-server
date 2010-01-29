@@ -1,6 +1,10 @@
-from django.contrib.auth import logout
-from django.http import HttpResponseRedirect
+from django import http
 from django.shortcuts import get_object_or_404
+from django.contrib import auth
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+
+from l10n import ugettext as _
 
 import jingo
 
@@ -9,6 +13,7 @@ from bandwagon.models import Collection
 
 from .models import UserProfile
 from .signals import logged_out
+from .users import models as users
 
 
 def profile(request, user_id):
@@ -38,8 +43,26 @@ def profile(request, user_id):
 def logout_view(request):
     # XXX - we should redirect to /en-US/firefox by default
     redir = request.REQUEST.get('to', '/')
-    logout(request)
+    auth.logout(request)
     # fire logged out signal so we can be decoupled from cake
-    response = HttpResponseRedirect(redir)
+    response = http.HttpResponseRedirect(redir)
     logged_out.send(None, request=request, response=response)
     return response
+
+
+@login_required
+def user_edit(request):
+    amouser = request.user.get_profile()
+    if request.method == 'POST':
+        form = users.UserEditForm(request.POST)
+        if form.is_valid():
+            # XXX TODO process the data
+            messages.success(request, _('Profile Updated'))
+        else:
+            messages.error(request, _('There were errors in the changes you '
+                                    'made. Please correct them and resubmit.'))
+    else:
+        form = users.UserEditForm(instance=amouser)
+
+    return jingo.render(request, 'users/user_edit.html',
+                        {'form': form, 'amouser': amouser})

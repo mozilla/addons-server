@@ -172,7 +172,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
 
     'cake.middleware.CakeCookieMiddleware',
-    # This should come after authentication middle ware
+    # This should come after authentication middleware
     'access.middleware.ACLMiddleware',
 )
 

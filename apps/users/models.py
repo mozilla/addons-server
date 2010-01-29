@@ -8,6 +8,7 @@ import time
 from django.conf import settings
 from django.contrib.auth.models import User as DjangoUser
 from django.db import models
+from django.forms import ModelForm
 
 import amo
 import amo.models
@@ -153,3 +154,10 @@ class UserProfile(amo.models.ModelBase):
         self.user.save()
         self.save()
         return self.user
+
+
+class UserEditForm(ModelForm):
+
+        class Meta:
+            model = UserProfile
+

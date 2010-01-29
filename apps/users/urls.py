@@ -11,6 +11,6 @@ detail_patterns = patterns('',
 urlpatterns = patterns('',
     # URLs for a single user.
     ('^user/(?P<user_id>\d+)/', include(detail_patterns)),
-
+    url('^users/edit$', views.user_edit, name='users.edit'),
     url('^users/logout$', views.logout_view, name='users.logout'),
 )

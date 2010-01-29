@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page_title(_('User Account Editing')) }}{% endblock %}
+
+{% block extrahead %}
+<link rel="stylesheet" href="{{ MEDIA_URL }}css/zamboni/tabs.css">
+<link rel="stylesheet" href="{{ MEDIA_URL }}css/zamboni/translations/trans.css">
+{% endblock %}
+
+{% block content %}
+<div class="primary" role="main">
+  {# XXX TODO This messages block should be a macro #}
+  {% if messages %}
+    {% for message in messages %}
+      <div class="notification-box {{ message.tags }}">
+        <h2>{{ message }}</h2>
+      </div>
+    {% endfor %}
+  {% endif %}
+  <h1>{{ _('Edit user profile for %s')|format(amouser.welcome_name) }}</h1>
+  <form method="post" action="">
+  {{ csrf() }}
+    <div class="tab-wrapper">
+      <ul class="tab-nav">
+        <li><a href="#profile_general">{{ _('User Profile') }}</a></li>
+        <li><a href="#profile_collections">{{ _('Collections') }}</a></li>
+        <li><a href="#profile_notifications">{{ _('Notifications') }}</a></li>
+        <li><a href="#profile_pw_email">{{ _('Change Password or Email') }}</a></li>
+        <li><a href="#profile_other">{{ _('Other Actions') }}</a></li>
+      </ul>
+      <div id="profile_general" class="tab-panel">
+        <div class="line">
+          <label for="id_firstname">{{ _('First name') }}</label>
+          {{ form.firstname|safe }}
+          {{ form.firstname.errors|safe }}
+          {{ _('A first name, last name or nickname is required.') }}
+        </div>
+        <div class="line">
+          <label for="id_lastname">{{ _('Last name') }}</label>
+          {{ form.lastname|safe }}
+          {{ form.lastname.errors|safe }}
+        </div>
+        <div class="line">
+          <label for="id_lastname">{{ _('Nickname') }}</label>
+          {{ form.nickname|safe }}
+          {{ form.nickname.errors|safe }}
+        </div>
+        <div class="line">
+          <label for="id_location">{{ _('Location') }}</label>
+          {{ form.location|safe }}
+          {{ form.location.errors|safe }}
+        </div>
+        <div class="line">
+          <label for="id_occupation">{{ _('Occupation') }}</label>
+          {{ form.occupation|safe }}
+          {{ form.occupation.errors|safe }}
+        </div>
+        <div class="line">
+          <label for="id_homepage">{{ _('Website URL') }}</label>
+          {{ form.homepage|safe }}
+          {{ form.homepage.errors|safe }}
+        </div>
+        <div class="line">
+          <label for="id_display_emailhidden">
+            {{ _('Hide email address') }}
+          </label>
+          {{ form.emailhidden|safe }}
+          {{ form.emailhidden.errors|safe }}
+        </div>
+        <div class="line">
+          {# TODO XXX: Edit picture.  Also, add gravatar support, eh? #}
+        </div>
+        <div class="line clearboth">
+          <label for="id_bio">{{ _('About me') }}</label>
+          <p>
+            {% trans -%}
+            Introduce yourself to the community, if you like!
+            This text will appear publicly on your user info page.
+            {%- endtrans %}
+          </p>
+          {{ form.bio|safe }}
+          {{ form.bio.errors|safe }}
+        </div>
+      </div>{# /#profile_general #}
+      <div id="profile_collections" class="tab-panel">
+        <div class="line">
+          <label for="id_display_collections">
+            {{ _('Display the collections I have created in my user profile') }}
+          </label>
+          {{ form.display_collections|safe }}
+          {{ form.display_collections.errors|safe }}
+        </div>
+        <div class="line">
+          <label for="id_display_collections_fav">
+            {{ _('Display my favorite collections in my user profile') }}
+          </label>
+          {{ form.display_collections_fav|safe }}
+          {{ form.display_collections_fav.errors|safe }}
+        </div>
+      </div>{# /#profile_collections #}
+      <div id="profile_notifications" class="tab-panel">
+        {# XXX TODO Fill out this panel #}
+      </div>{# /#profile_notifications #}
+      <div id="profile_pw_email" class="tab-panel">
+        {# XXX TODO Fill out this panel #}
+      </div>{# /#profile_pw_email #}
+      <div id="profile_other" class="tab-panel">
+        {# XXX TODO Fill out this panel #}
+      </div>{# /#profile_other #}
+    </div>{# /.tab-wrapper #}
+    <input type="submit" value="{{ _('Save') }}" />
+  </form>
+</div>{# /.primary #}
+{% endblock content %}
+
+{% block js %}
+<script src="{{ MEDIA_URL }}js/zamboni/tabs.js"></script>
+<script src="{{ MEDIA_URL }}js/zamboni/translations/trans.js"></script>
+{% endblock %}
