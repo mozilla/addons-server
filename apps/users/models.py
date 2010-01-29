@@ -6,7 +6,7 @@ import string
 from django.db import models
 from django.contrib.auth.models import User as DjangoUser
 
-import amo
+import amo.models
 from translations.fields import TranslatedField
 
 
@@ -24,7 +24,7 @@ def create_password(algorithm, raw_password):
     return '$'.join([algorithm, salt, hsh])
 
 
-class UserProfile(amo.ModelBase):
+class UserProfile(amo.models.ModelBase):
 
     nickname = models.CharField(max_length=255, unique=True, default='')
     firstname = models.CharField(max_length=255, default='')

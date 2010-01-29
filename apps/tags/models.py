@@ -1,9 +1,9 @@
 from django.db import models
 
-import amo
+import amo.models
 
 
-class Tag(amo.ModelBase):
+class Tag(amo.models.ModelBase):
     tag_text = models.CharField(max_length=128)
     blacklisted = models.BooleanField(default=False)
     addons = models.ManyToManyField('addons.Addon', through='AddonTag')
@@ -16,7 +16,7 @@ class Tag(amo.ModelBase):
         return self.tagstat.num_addons
 
 
-class TagStat(amo.ModelBase):
+class TagStat(amo.models.ModelBase):
     tag = models.OneToOneField(Tag, primary_key=True)
     num_addons = models.IntegerField()
 
@@ -24,7 +24,7 @@ class TagStat(amo.ModelBase):
         db_table = 'tag_stat'
 
 
-class AddonTag(amo.ModelBase):
+class AddonTag(amo.models.ModelBase):
     addon = models.ForeignKey('addons.Addon')
     tag = models.ForeignKey(Tag)
     user = models.ForeignKey('users.UserProfile')

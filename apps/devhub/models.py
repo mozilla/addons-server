@@ -2,7 +2,7 @@ from datetime import datetime
 
 from django.db import models
 
-import amo
+import amo.models
 from translations.fields import TranslatedField
 
 
@@ -57,7 +57,7 @@ LOG = {
 }
 
 
-class HubPromo(amo.ModelBase):
+class HubPromo(amo.models.ModelBase):
     VISIBILITY_CHOICES = (
         (0, 'Nobody'),
         (1, 'Visitors'),
@@ -76,7 +76,7 @@ class HubPromo(amo.ModelBase):
         return unicode(self.heading)
 
 
-class HubEvent(amo.ModelBase):
+class HubEvent(amo.models.ModelBase):
     name = models.CharField(max_length=255, default='')
     url = models.URLField(max_length=255, default='')
     location = models.CharField(max_length=255, default='')
@@ -89,7 +89,7 @@ class HubEvent(amo.ModelBase):
         return self.name
 
 
-class AddonLog(amo.ModelBase):
+class AddonLog(amo.models.ModelBase):
     TYPES = [(value, key) for key, value in LOG.items()]
 
     addon = models.ForeignKey('addons.Addon', null=True, blank=True)

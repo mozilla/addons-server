@@ -3,7 +3,7 @@ import re
 from django.conf import settings
 from django.utils import translation
 
-import amo
+import amo.models
 from .sphinxapi import SphinxClient
 import sphinxapi as sphinx
 from .utils import convert_version, crc32

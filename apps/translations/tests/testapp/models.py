@@ -1,14 +1,14 @@
 from django.db import models
 
-import amo
+import amo.models
 from translations.fields import TranslatedField
 
 
-class TranslatedModel(amo.ModelBase):
+class TranslatedModel(amo.models.ModelBase):
     name = TranslatedField()
     description = TranslatedField()
 
 
-class UntranslatedModel(amo.ModelBase):
+class UntranslatedModel(amo.models.ModelBase):
     """Make sure nothing is broken when a model doesn't have translations."""
     number = models.IntegerField()

@@ -1,9 +1,9 @@
 from django.db import models
 
-import amo
+import amo.models
 
 
-class Group(amo.ModelBase):
+class Group(amo.models.ModelBase):
 
     name = models.CharField(max_length=255, default='')
     rules = models.TextField()

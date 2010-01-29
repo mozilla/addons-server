@@ -16,8 +16,8 @@ class Translation(caching.CachingMixin, models.Model):
     locale = models.CharField(max_length=10)
     localized_string = models.TextField(null=True)
 
-    # These are normally from amo.ModelBase, but we don't want to have weird
-    # circular dependencies between ModelBase and Translations.
+    # These are normally from amo.models.ModelBase, but we don't want to have
+    # weird circular dependencies between ModelBase and Translations.
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 

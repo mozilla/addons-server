@@ -6,7 +6,7 @@ Note: didn't make sense to use localeurl since we need to capture app as well
 from django.http import HttpResponseRedirect
 from django.utils import translation
 
-import amo
+import amo.models
 from . import urlresolvers
 
 
