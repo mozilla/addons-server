@@ -4,7 +4,7 @@ import re
 
 from django.conf import settings
 
-from amo import constants as const
+import amo
 
 
 def reindex():
@@ -47,15 +47,15 @@ pattern_plus = re.compile(r'((\d+)\+)')
 
 def convert_type(type):
     if type == 'extension' or type == 'extensions':
-        return const.ADDON_EXTENSIONS
+        return amo.ADDON_EXTENSIONS
     elif type == 'theme' or type == 'themes':
-        return const.ADDON_THEME
+        return amo.ADDON_THEME
     elif type == 'dict' or type == 'dicts':
-        return const.ADDON_DICT
+        return amo.ADDON_DICT
     elif type == 'language' or type == 'languages':
-        return const.ADDON_LPAPP
+        return amo.ADDON_LPAPP
     elif type == 'plugin' or type == 'plugins':
-        return const.ADDON_PLUGIN
+        return amo.ADDON_PLUGIN
 
 
 def convert_version(version_string):
