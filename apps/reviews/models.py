@@ -2,12 +2,12 @@ import itertools
 
 from django.db import models
 
-import amo
+import amo.models
 from translations.fields import TranslatedField
 from translations.models import Translation
 
 
-class Review(amo.ModelBase):
+class Review(amo.models.ModelBase):
 
     version = models.ForeignKey('versions.Version')
     user = models.ForeignKey('users.UserProfile')

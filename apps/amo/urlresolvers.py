@@ -2,7 +2,7 @@ from django.conf import settings
 from django.core.urlresolvers import reverse as django_reverse
 from django.utils.thread_support import currentThread
 
-import amo
+import amo.models
 
 
 # Thread-local storage for URL prefixes.  Access with {get,set}_url_prefix.

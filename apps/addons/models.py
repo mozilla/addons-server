@@ -1,12 +1,12 @@
 from django.conf import settings
 from django.db import models
 
-import amo
+import amo.models
 from amo.urlresolvers import reverse
 from translations.fields import TranslatedField, translations_with_fallback
 
 
-class Addon(amo.ModelBase):
+class Addon(amo.models.ModelBase):
     STATUS_CHOICES = amo.STATUS_CHOICES.items()
 
     CONTRIBUTIONS_CHOICES = (
@@ -104,7 +104,7 @@ class AddonCategory(models.Model):
         db_table = 'addons_categories'
 
 
-class AddonPledge(amo.ModelBase):
+class AddonPledge(amo.models.ModelBase):
     addon = models.ForeignKey(Addon)
     target = models.PositiveIntegerField() # Only $ for now
     what_ima_gonna_do = TranslatedField()
@@ -127,7 +127,7 @@ class AddonRecommendation(models.Model):
         db_table = 'addon_recommendations'
 
 
-class AddonType(amo.ModelBase):
+class AddonType(amo.models.ModelBase):
     name = TranslatedField()
     name_plural = TranslatedField()
     description = TranslatedField()
@@ -152,7 +152,7 @@ class AddonUser(models.Model):
         db_table = 'addons_users'
 
 
-class BlacklistedGuid(amo.ModelBase):
+class BlacklistedGuid(amo.models.ModelBase):
     guid = models.CharField(max_length=255, unique=True)
 
     class Meta:
@@ -162,7 +162,7 @@ class BlacklistedGuid(amo.ModelBase):
         return self.guid
 
 
-class Category(amo.ModelBase):
+class Category(amo.models.ModelBase):
     name = TranslatedField()
     description = TranslatedField()
     addontype = models.ForeignKey(AddonType)
@@ -198,7 +198,7 @@ class CompatibilityReport(models.Model):
         db_table = 'compatibility_reports'
 
 
-class Feature(amo.ModelBase):
+class Feature(amo.models.ModelBase):
     addon = models.ForeignKey(Addon)
     start = models.DateTimeField()
     end = models.DateTimeField()
@@ -213,7 +213,7 @@ class Feature(amo.ModelBase):
                                 self.locale)
 
 
-class Preview(amo.ModelBase):
+class Preview(amo.models.ModelBase):
     addon = models.ForeignKey(Addon)
     filetype = models.CharField(max_length=25)
     thumbtype = models.CharField(max_length=25)

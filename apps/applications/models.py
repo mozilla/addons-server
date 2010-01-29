@@ -1,10 +1,10 @@
 from django.db import models
 
-import amo
+import amo.models
 from translations.fields import TranslatedField
 
 
-class Application(amo.ModelBase):
+class Application(amo.models.ModelBase):
 
     guid = models.CharField(max_length=255, default='')
     name = TranslatedField()
@@ -19,7 +19,7 @@ class Application(amo.ModelBase):
         return unicode(self.name)
 
 
-class AppVersion(amo.ModelBase):
+class AppVersion(amo.models.ModelBase):
 
     application = models.ForeignKey(Application)
     version = models.CharField(max_length=255, default='')

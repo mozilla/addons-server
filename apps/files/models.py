@@ -1,11 +1,11 @@
 from django.db import models
 
-import amo
+import amo.models
 from versions.models import Version
 from translations.fields import TranslatedField
 
 
-class File(amo.ModelBase):
+class File(amo.models.ModelBase):
     STATUS_CHOICES = amo.STATUS_CHOICES.items()
 
     version = models.ForeignKey(Version)
@@ -18,11 +18,11 @@ class File(amo.ModelBase):
                 default=0)
     datestatuschanged = models.DateTimeField(null=True)
 
-    class Meta(amo.ModelBase.Meta):
+    class Meta(amo.models.ModelBase.Meta):
         db_table = 'files'
 
 
-class Approval(amo.ModelBase):
+class Approval(amo.models.ModelBase):
 
     reviewtype = models.CharField(max_length=10, default='pending')
     action = models.IntegerField(default=0)
@@ -35,21 +35,21 @@ class Approval(amo.ModelBase):
     file = models.ForeignKey(File)
     reply_to = models.ForeignKey('self', null=True, db_column='reply_to')
 
-    class Meta(amo.ModelBase.Meta):
+    class Meta(amo.models.ModelBase.Meta):
         db_table = 'approvals'
 
 
-class Platform(amo.ModelBase):
+class Platform(amo.models.ModelBase):
     name = TranslatedField()
     shortname = TranslatedField()
     # icondata => mysql blob
     icontype = models.CharField(max_length=25, default='')
 
-    class Meta(amo.ModelBase.Meta):
+    class Meta(amo.models.ModelBase.Meta):
         db_table = 'platforms'
 
 
-class TestCase(amo.ModelBase):
+class TestCase(amo.models.ModelBase):
     test_group = models.ForeignKey('TestGroup')
     platform = models.ForeignKey('Platform')
     help_link = models.CharField(max_length=255, blank=True,
@@ -57,11 +57,11 @@ class TestCase(amo.ModelBase):
     function = models.CharField(max_length=255,
             help_text='Name of the function to call')
 
-    class Meta(amo.ModelBase.Meta):
+    class Meta(amo.models.ModelBase.Meta):
         db_table = 'test_cases'
 
 
-class TestGroup(amo.ModelBase):
+class TestGroup(amo.models.ModelBase):
     category = models.CharField(max_length=255, blank=True)
     tier = models.PositiveSmallIntegerField(default=2,
             help_text="Run in order.  Tier 1 runs before Tier 2, etc.")
@@ -70,11 +70,11 @@ class TestGroup(amo.ModelBase):
     types = models.PositiveIntegerField(default=0,
             help_text="Pretty sure it involves binary math... KHAN!!!")
 
-    class Meta(amo.ModelBase.Meta):
+    class Meta(amo.models.ModelBase.Meta):
         db_table = 'test_groups'
 
 
-class TestResult(amo.ModelBase):
+class TestResult(amo.models.ModelBase):
     file = models.ForeignKey(File)
     test_case = models.ForeignKey(TestCase)
     result = models.PositiveSmallIntegerField(default=0)
@@ -82,11 +82,11 @@ class TestResult(amo.ModelBase):
     filename = models.CharField(max_length=255, blank=True)
     message = models.TextField(blank=True)
 
-    class Meta(amo.ModelBase.Meta):
+    class Meta(amo.models.ModelBase.Meta):
         db_table = 'test_results'
 
 
-class TestResultCache(amo.ModelBase):
+class TestResultCache(amo.models.ModelBase):
     """When a file is checked the results are stored here in JSON.  This is
     temporary storage and removed with the garbage cleanup cron."""
     date = models.DateTimeField()
@@ -94,5 +94,5 @@ class TestResultCache(amo.ModelBase):
     test_case = models.ForeignKey(TestCase)
     message = models.TextField(blank=True)
 
-    class Meta(amo.ModelBase.Meta):
+    class Meta(amo.models.ModelBase.Meta):
         db_table = 'test_results_cache'

@@ -13,14 +13,14 @@ of translation rows.
 
 A minimal Addon model looks like this::
 
-    import amo
+    import amo.models
     from translations.fields import TranslatedField
 
-    class Addon(amo.ModelBase):
+    class Addon(amo.models.ModelBase):
         name = TranslatedField()
         description = TranslatedField()
 
-:class:`amo.ModelBase` inherits from
+:class:`amo.models.ModelBase` inherits from
 :class:`translations.fields.TranslatedFieldMixin`, which fetches all of a
 model's translations during initialization.  It first tries to fetch strings for
 the current locale, and then looks for any missing strings in the default

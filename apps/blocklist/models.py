@@ -1,36 +1,36 @@
 from django.db import models
 
-import amo
+import amo.models
 
 
-class BlocklistApp(amo.ModelBase):
+class BlocklistApp(amo.models.ModelBase):
     blitem = models.ForeignKey('BlocklistItem')
     guid = models.CharField(max_length=255, blank=True, db_index=True)
     min = models.CharField(max_length=255, blank=True)
     max = models.CharField(max_length=255, blank=True)
 
-    class Meta(amo.ModelBase.Meta):
+    class Meta(amo.models.ModelBase.Meta):
         db_table = 'blapps'
 
     def __unicode__(self):
         return '%s: %s - %s' % (self.guid, self.min, self.max)
 
 
-class BlocklistItem(amo.ModelBase):
+class BlocklistItem(amo.models.ModelBase):
     guid = models.CharField(max_length=255, blank=True)
     min = models.CharField(max_length=255, blank=True)
     max = models.CharField(max_length=255, blank=True)
     os = models.CharField(max_length=255, blank=True)
     severity = models.SmallIntegerField(null=True)
 
-    class Meta(amo.ModelBase.Meta):
+    class Meta(amo.models.ModelBase.Meta):
         db_table = 'blitems'
 
     def __unicode__(self):
         return '%s: %s - %s' % (self.guid, self.min, self.max)
 
 
-class BlocklistPlugin(amo.ModelBase):
+class BlocklistPlugin(amo.models.ModelBase):
     name = models.CharField(max_length=255, blank=True)
     guid = models.CharField(max_length=255, blank=True)
     min = models.CharField(max_length=255, blank=True)
@@ -41,7 +41,7 @@ class BlocklistPlugin(amo.ModelBase):
     filename = models.CharField(max_length=255, blank=True)
     severity = models.SmallIntegerField(null=True)
 
-    class Meta(amo.ModelBase.Meta):
+    class Meta(amo.models.ModelBase.Meta):
         db_table = 'blplugins'
 
     def __unicode__(self):

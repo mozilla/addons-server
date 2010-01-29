@@ -1,13 +1,13 @@
 from django.db import models
 
-import amo
+import amo.models
 from addons.models import Addon, AddonCategory
 from applications.models import Application
 from users.models import User
 from translations.fields import TranslatedField
 
 
-class Collection(amo.ModelBase):
+class Collection(amo.models.ModelBase):
     uuid = models.CharField(max_length=36, blank=True, unique=True)
     name = TranslatedField()
     nickname = models.CharField(max_length=30, blank=True, unique=True)
@@ -31,7 +31,7 @@ class Collection(amo.ModelBase):
     downvotes = models.PositiveIntegerField(default=0)
     rating = models.FloatField(default=0)
 
-    class Meta(amo.ModelBase.Meta):
+    class Meta(amo.models.ModelBase.Meta):
         db_table = 'collections'
 
 
@@ -44,40 +44,40 @@ class CollectionAddonRecommendation(models.Model):
         db_table = 'collection_addon_recommendations'
 
 
-class CollectionCategory(amo.ModelBase):
+class CollectionCategory(amo.models.ModelBase):
     collection = models.ForeignKey(Collection)
     category = models.ForeignKey(AddonCategory)
 
-    class Meta(amo.ModelBase.Meta):
+    class Meta(amo.models.ModelBase.Meta):
         db_table = 'collection_categories'
 
 
-class CollectionFeature(amo.ModelBase):
+class CollectionFeature(amo.models.ModelBase):
     title = TranslatedField()
     tagline = TranslatedField()
 
-    class Meta(amo.ModelBase.Meta):
+    class Meta(amo.models.ModelBase.Meta):
         db_table = 'collection_features'
 
 
-class CollectionPromo(amo.ModelBase):
+class CollectionPromo(amo.models.ModelBase):
     collection = models.ForeignKey(Collection, null=True)
     locale = models.CharField(max_length=10, null=True)
     collection_feature = models.ForeignKey(CollectionFeature)
 
-    class Meta(amo.ModelBase.Meta):
+    class Meta(amo.models.ModelBase.Meta):
         db_table = 'collection_promos'
         unique_together = ('collection', 'locale', 'collection_feature')
 
 
-class CollectionRecommendation(amo.ModelBase):
+class CollectionRecommendation(amo.models.ModelBase):
     collection = models.ForeignKey(Collection, null=True,
             related_name="collection_one")
     other_collection = models.ForeignKey(Collection, null=True,
             related_name="collection_two")
     score = models.FloatField(blank=True)
 
-    class Meta(amo.ModelBase.Meta):
+    class Meta(amo.models.ModelBase.Meta):
         db_table = 'collection_recommendations'
 
 
@@ -99,11 +99,11 @@ class CollectionSummary(models.Model):
         db_table = 'collection_search_summary'
 
 
-class CollectionSubscription(amo.ModelBase):
+class CollectionSubscription(amo.models.ModelBase):
     collection = models.ForeignKey(Collection)
     user = models.ForeignKey(User)
 
-    class Meta(amo.ModelBase.Meta):
+    class Meta(amo.models.ModelBase.Meta):
         db_table = 'collection_subscriptions'
 
 

@@ -4,7 +4,7 @@ from django.shortcuts import redirect
 
 import jingo
 
-import amo
+import amo.models
 from addons.models import Addon
 from files.models import Approval
 from versions.models import Version

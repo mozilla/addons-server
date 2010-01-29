@@ -1,10 +1,8 @@
-from django.db import models
-
-import amo
+import amo.models
 from translations.fields import TranslatedField
 
 
-class CannedResponse(amo.ModelBase):
+class CannedResponse(amo.models.ModelBase):
 
     name = TranslatedField()
     response = TranslatedField()

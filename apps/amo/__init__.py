@@ -1,37 +1,100 @@
 """
 Miscellaneous helpers that make Django compatible with AMO.
 """
-import functools
-
-from django.core import paginator
-
-from .models import ModelBase
-from .constants import *
+from django.utils.translation import ugettext as _
 
 
-def paginate(request, queryset, per_page=20):
-    """Get a Paginator, abstracting some common paging actions."""
-    p = paginator.Paginator(queryset, per_page)
+# Add-on and File statuses.
+STATUS_NULL = 0
+STATUS_SANDBOX = 1
+STATUS_PENDING = 2
+STATUS_NOMINATED = 3
+STATUS_PUBLIC = 4
+STATUS_DISABLED = 5
+STATUS_LISTED = 6
+STATUS_BETA = 7
 
-    # Get the page from the request, make sure it's an int.
-    try:
-        page = int(request.GET.get('page', 1))
-    except ValueError:
-        page = 1
+STATUS_CHOICES = {
+    STATUS_NULL: 'Null',
+    STATUS_SANDBOX: 'In the sandbox',
+    STATUS_PENDING: 'Pending approval',
+    STATUS_NOMINATED: 'Nominated to be public',
+    STATUS_PUBLIC: 'Public',
+    STATUS_DISABLED: 'Disabled',
+    STATUS_LISTED: 'Listed',
+    STATUS_BETA: 'Beta',
+}
 
-    # Get a page of results, or the first page if there's a problem.
-    try:
-        paginated = p.page(page)
-    except (paginator.EmptyPage, paginator.InvalidPage):
-        paginated = p.page(1)
+# Add-on author roles.
+AUTHOR_ROLE_NONE = 0
+AUTHOR_ROLE_VIEWER = 1
+AUTHOR_ROLE_DEV = 4
+AUTHOR_ROLE_OWNER = 5
+AUTHOR_ROLE_ADMIN = 6
+AUTHOR_ROLE_ADMINOWNER = 7
 
-    paginated.add_query = functools.partial(add_query, request)
-    return paginated
+AUTHOR_CHOICES = {
+    AUTHOR_ROLE_NONE: 'None',
+    AUTHOR_ROLE_VIEWER: 'Viewer',
+    AUTHOR_ROLE_DEV: 'Developer',
+    AUTHOR_ROLE_OWNER: 'Owner',
+    AUTHOR_ROLE_ADMIN: 'Admin',
+    AUTHOR_ROLE_ADMINOWNER: 'Admin & Owner',
+}
 
+# Collection author roles.
+COLLECTION_ROLE_PUBLISHER = 0
+COLLECTION_ROLE_ADMIN = 1
 
-def add_query(request, **kwargs):
-    """Return absolute url to current page with ``kwargs`` added to GET."""
-    base = request.build_absolute_uri(request.path)
-    query = dict(request.GET)
-    query.update(kwargs)
-    return '%s?%s' % (base, '&'.join('%s=%s' % q for q in query.items()))
+COLLECTION_AUTHOR_CHOICES = {
+    COLLECTION_ROLE_PUBLISHER: 'Publisher',
+    COLLECTION_ROLE_ADMIN: 'Admin',
+}
+
+# Addon types
+ADDON_ANY = -1
+ADDON_EXTENSION = 1
+ADDON_THEME = 2
+ADDON_DICT = 3
+ADDON_SEARCH = 4
+ADDON_LPAPP = 5
+ADDON_LPADDON = 6
+ADDON_PLUGIN = 7
+ADDON_API = 8 # not actually a type but used to identify extensions + themes
+ADDON_PERSONA = 9
+
+# Applications
+class FIREFOX:
+    id = 1
+    short = 'firefox'
+    pretty = _('Firefox')
+    browser = True
+
+class THUNDERBIRD:
+    id = 18
+    short = 'thunderbird'
+    pretty = _('Thunderbird')
+    browser = True
+
+class SEAMONKEY:
+    id = 59
+    short = 'seamonkey'
+    pretty = _('SeaMonkey')
+    browser = True
+
+class SUNBIRD:
+    id = 52
+    short = 'sunbird'
+    pretty = _('Sunbird')
+
+class MOBILE:
+    id = 60
+    short = 'mobile'
+    pretty = _('Mobile')
+    browser = True
+
+_apps = (FIREFOX, THUNDERBIRD, SEAMONKEY, SUNBIRD, MOBILE)
+APPS = dict((app.short, app) for app in _apps)
+APP_IDS = dict((app.id, app) for app in _apps)
+
+APP_SUPPORTS_PERSONAS = (FIREFOX, THUNDERBIRD)
