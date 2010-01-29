@@ -37,8 +37,7 @@ class TranslationWidget(forms.widgets.Textarea):
         except (TypeError, ValueError), e:
             pass
 
-        langs = [(to_language(i[0]), i[1]) for i in settings.LANGUAGES.items()]
-        languages = dict((lang, val) for lang, val in langs)
+        languages = dict((i.lower(), j) for i, j in settings.LANGUAGES.items())
 
         template = jingo.env.get_template('translations/transbox.html')
         return template.render(id=id, name=name, widgets=widgets,

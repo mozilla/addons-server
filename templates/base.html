@@ -58,22 +58,24 @@
     </div>
 
     <!-- js -->
-    <script src="{{ MEDIA_URL}}js/__utm.js"></script>
+    <script src="{{ MEDIA_URL }}js/__utm.js"></script>
     <script src="/en-US/firefox/pages/js_constants.js"></script>
-    <script src="{{ MEDIA_URL}}js/jquery-compressed.js"></script>
-    <script src="{{ MEDIA_URL}}js/zamboni/underscore-min.js"></script>
-    <script src="{{ MEDIA_URL}}js/jquery.cookie.js"></script>
-    <script src="{{ MEDIA_URL}}js/amo2009/global.js"></script>
+    <script src="{{ MEDIA_URL }}js/jquery-compressed.js"></script>
+    <script src="{{ MEDIA_URL }}js/zamboni/underscore-min.js"></script>
+    <script src="{{ MEDIA_URL }}js/jquery.cookie.js"></script>
+    <script src="{{ MEDIA_URL }}js/amo2009/global.js"></script>
 
-    <script src="{{ MEDIA_URL}}js/amo2009/slimbox2.js"></script>
-    <script src="{{ MEDIA_URL}}js/amo2009/addons.js"></script>
-    <script src="{{ MEDIA_URL}}js/amo2009/global-mozilla.js"></script>
-    <script src="{{ MEDIA_URL}}js/amo2009/install-button.js"></script>
-    <script src="{{ MEDIA_URL}}js/jquery-ui/jqModal.js"></script>
+    <script src="{{ MEDIA_URL }}js/amo2009/slimbox2.js"></script>
+    <script src="{{ MEDIA_URL }}js/amo2009/addons.js"></script>
+    <script src="{{ MEDIA_URL }}js/amo2009/global-mozilla.js"></script>
+    <script src="{{ MEDIA_URL }}js/amo2009/install-button.js"></script>
+    <script src="{{ MEDIA_URL }}js/jquery-ui/jqModal.js"></script>
 
-    <script src="{{ MEDIA_URL}}js/amo2009/home.js"></script>
+    <script src="{{ MEDIA_URL }}js/amo2009/home.js"></script>
 
     <script src="{{ MEDIA_URL }}js/zamboni/init.js"></script>
+
     {% block js %}{% endblock %}
+    {% include "footer.html" %}
   </body>
 </html>

@@ -1,8 +1,15 @@
 #!/usr/bin/env python
+import os
 import site
 
 from django.core.management import execute_manager, setup_environ
 
+# Duplicated in settings.py
+ROOT = os.path.dirname(os.path.abspath(__file__))
+path = lambda *a: os.path.join(ROOT, *a)
+
+site.addsitedir(path('apps'))
+site.addsitedir(path('lib'))
 
 try:
     import settings_local as settings
@@ -15,10 +22,6 @@ except ImportError:
             "Error: Tried importing 'settings_local.py' and 'settings.py' "
             "but neither could be found (or they're throwing an ImportError)."
             " Please come back and try again later.")
-
-
-site.addsitedir(settings.path('apps'))
-site.addsitedir(settings.path('lib'))
 
 # The first thing execute_manager does is call `setup_environ`.  Logging config
 # needs to access settings, so we'll setup the environ early.

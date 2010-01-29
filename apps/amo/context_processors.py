@@ -11,10 +11,10 @@ def i18n(request):
             }
 
 
-def links(request):
+def global_settings(request):
     """
     Storing standard AMO-wide information used in global headers, such as
-    account links.
+    account links and settings.
     """
     account_links = []
 

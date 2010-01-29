@@ -5,6 +5,7 @@ import os
 import logging
 import socket
 
+import product_details
 
 # Make filepaths relative to settings.
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -48,42 +49,17 @@ TIME_ZONE = 'America/Los_Angeles'
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-US'
 
-# Accepted locales and apps
-LANGUAGES = {
-    'ar': u'عربي',
-    'ca': u'català',
-    'cs': u'Čeština',
-    'da': u'Dansk',
-    'de': u'Deutsch',
-    'el': u'Ελληνικά',
-    'en-US': u'English (US)',
-    'es-ES': u'Español (de España)',
-    'eu': u'Euskara',
-    'fa': u'فارسی',
-    'fi': u'suomi',
-    'fr': u'Français',
-    'ga-IE': u'Gaeilge',
-    'he': u'עברית',
-    'hu': u'Magyar',
-    'id': u'Bahasa Indonesia',
-    'it': u'Italiano',
-    'ja': u'日本語',
-    'ko': u'한국어',
-    'mn': u'Монгол',
-    'nl': u'Nederlands',
-    'pl': u'Polski',
-    'pt-BR': u'Português (do Brasil)',
-    'pt-PT': u'Português (Europeu)',
-    'ro': u'română',
-    'ru': u'Русский',
-    'sk': u'slovenčina',
-    'sq': u'Shqip',
-    'sv-SE': u'Svenska',
-    'uk': u'Українська',
-    'vi': u'Tiếng Việt',
-    'zh-CN': u'中文 (简体)',
-    'zh-TW': u'正體中文 (繁體)',
-}
+# Accepted locales
+AMO_LANGUAGES = (
+    'ar', 'ca', 'cs', 'da', 'de', 'el', 'en-US', 'es-ES', 'eu',
+    'fa', 'fi', 'fr', 'ga-IE', 'he', 'hu', 'id', 'it', 'ja', 'ko',
+    'mn', 'nl', 'pl', 'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sq',
+    'sv-SE', 'uk', 'vi', 'zh-CN', 'zh-TW',
+)
+
+# Override Django's built-in with our native names
+LANGUAGES = dict([(i, product_details.languages[i]['native'])
+                 for i in AMO_LANGUAGES])
 
 SITE_ID = 1
 
@@ -144,7 +120,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.messages.context_processors.messages',
 
     'amo.context_processors.i18n',
-    'amo.context_processors.links',
+    'amo.context_processors.global_settings',
 )
 
 ROOT_URLCONF = 'zamboni.urls'

@@ -1,0 +1,40 @@
+    <div id="footer" role="contentinfo">
+      <div class="section">
+        <div class="primary">
+          <p>{% trans legalurl="http://www.mozilla.com/en-US/about/legal.html#site", ccurl="http://creativecommons.org/licenses/by-sa/3.0/" -%}
+                Except where otherwise <a href="{{ legalurl }}">noted</a>, content on this site is licensed under the<br /><strong>
+                <a href="{{ ccurl }}">Creative Commons Attribution Share-Alike License v3.0</a></strong> or any later version
+             {%- endtrans %}
+             .{# Period is outside of the translation for future use. #}
+          </p>
+          <form class="languages go" method="get" action="">
+            <label for="language">{{ _('Other languages:') }}</label>
+            <select id="language" name="lang" dir="ltr">
+              {% for code, name in LANGUAGES|dictsort %}
+                <option value="{{ code|lower }}" {{ code|lower|ifeq(LANG, "selected") }}>
+                  {{ name }}
+                </option>
+              {% endfor %}
+            </select>
+            {# XXX TODO: xenophobia checkbox #}
+            <button type="submit">{{ _('Go') }}</button>
+          </form>
+          <ul>
+            <li><a href="http://www.mozilla.com/{{ LANG }}/privacy-policy.html">{{ _('Privacy Policy') }}</a></li>
+            <li><a href="http://www.mozilla.com/{{ LANG }}/about/legal.html">{{ _('Legal Notices') }}</a></li>
+            <li><a href="#{# url('pages.about') XXX TODO #}">{{ _('About') }}</a></li>
+            <li><a href="http://blog.mozilla.com/addons">{{ _('Blog') }}</a></li>
+            <li><a href="#{# url('developers') XXX TODO #}">{{ _('Developer Hub') }}</a></li>
+            <li><a href="#{# url('pages.faq') XXX TODO #}"><abbr title="{{ _('Frequently Asked Questions') }}">{{ _('FAQ') }}</abbr></a></li>
+            <li><a href="https://forums.addons.mozilla.org">{{ _('Forum') }}</a></li>
+          </ul>
+          <p class="disclaimer">{% trans -%}Mozilla is providing links to these applications as a courtesy, and makes no representations
+            regarding the applications or any information related thereto. Any questions, complaints or claims regarding the
+            applications must be directed to the appropriate software vendor.{%- endtrans %}
+          </p>
+        </div><!-- /.primary -->
+        <div class="secondary">
+          <img src="{{ MEDIA_URL }}img/amo2009/illustrations/logo-add-ons-half.png" alt="" />
+        </div><!-- /.secondary -->
+      </div> <!-- /.section -->
+    </div> <!-- /#footer -->
