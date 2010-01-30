@@ -63,38 +63,52 @@ ADDON_PLUGIN = 7
 ADDON_API = 8 # not actually a type but used to identify extensions + themes
 ADDON_PERSONA = 9
 
+ADDON_TYPES = {
+    ADDON_EXTENSION: _('Extensions'),
+    ADDON_THEME: _('Themes'),
+    ADDON_DICT: _('Dictionaries & Language Packs'),
+    ADDON_SEARCH: _('Search Tools'),
+    ADDON_PLUGIN: _('Plugins'),
+    ADDON_PERSONA: _('Personas'),
+}
+
 # Applications
 class FIREFOX:
     id = 1
     short = 'firefox'
     pretty = _('Firefox')
     browser = True
+    types = [ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_SEARCH,
+             ADDON_PLUGIN, ADDON_PERSONA]
 
 class THUNDERBIRD:
     id = 18
     short = 'thunderbird'
     pretty = _('Thunderbird')
     browser = True
+    types = [ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_PERSONA]
 
 class SEAMONKEY:
     id = 59
     short = 'seamonkey'
     pretty = _('SeaMonkey')
     browser = True
+    types = [ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_SEARCH,
+             ADDON_PLUGIN]
 
 class SUNBIRD:
     id = 52
     short = 'sunbird'
     pretty = _('Sunbird')
+    types = [ADDON_EXTENSION, ADDON_THEME, ADDON_DICT]
 
 class MOBILE:
     id = 60
     short = 'mobile'
     pretty = _('Mobile')
     browser = True
+    types = [ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_SEARCH]
 
 _apps = (FIREFOX, THUNDERBIRD, SEAMONKEY, SUNBIRD, MOBILE)
 APPS = dict((app.short, app) for app in _apps)
 APP_IDS = dict((app.id, app) for app in _apps)
-
-APP_SUPPORTS_PERSONAS = (FIREFOX, THUNDERBIRD)

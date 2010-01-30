@@ -1,8 +1,13 @@
+import collections
+
 import jinja2
+
+from django.utils.translation import ugettext as _
 
 from jingo import register, env
 
 import amo
+from addons.models import Category
 
 
 @register.filter
@@ -16,8 +21,31 @@ def is_mobile(app):
 
 
 @register.function
-def supports_personas(app):
-    return app in amo.APP_SUPPORTS_PERSONAS
+def sidebar(app):
+    """Populates the sidebar with (categories, types)."""
+    q = Category.objects.filter(application=app.id, weight__gte=0,
+                                addontype=amo.ADDON_EXTENSION)
+    _categories = list(q)
+
+    # Plugins are on a static page, so we add it to categories dynamically.
+    # There are 7 plugins, so we hardcode the number.  That's fantastic.
+    if amo.ADDON_PLUGIN in app.types:
+        # Use a namedtuple instead of the Category class so Translations aren't
+        # triggered.
+        _Category = collections.namedtuple('Category', 'name weight count')
+        _categories.append(_Category(name=_('Plugins'), weight=0, count=7))
+    categories = sorted(_categories, key=lambda x: (x.weight, x.name))
+
+    Type = collections.namedtuple('Type', 'name url')
+    types = [Type(_('Collections'), '/collections')]
+    shown_types = [amo.ADDON_PERSONA, amo.ADDON_DICT, amo.ADDON_SEARCH,
+                   amo.ADDON_THEME]
+    for type_ in shown_types:
+        if type_ in app.types:
+            name = amo.ADDON_TYPES[type_]
+            types.append(Type(name, '#' + name))
+
+    return categories, types
 
 
 class Paginator(object):
