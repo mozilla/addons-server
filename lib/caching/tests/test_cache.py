@@ -1,7 +1,9 @@
+from django.core.cache import cache
+
 from nose.tools import eq_
 
 from test_utils import ExtraAppTestCase
-import caching
+import caching.base as caching
 
 from testapp.models import Addon, User
 
@@ -11,7 +13,7 @@ class CachingTestCase(ExtraAppTestCase):
     extra_apps = ['caching.tests.testapp']
 
     def setUp(self):
-        caching.cache.clear()
+        cache.clear()
 
     def test_flush_key(self):
         """flush_key should work for objects or strings."""

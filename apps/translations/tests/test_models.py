@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
+from django.core.cache import cache
 from django.utils import translation
+
 from nose.tools import eq_
 
 from test_utils import ExtraAppTestCase, trans_eq
 
-from caching import cache
 from testapp.models import TranslatedModel, UntranslatedModel
 from translations.models import Translation
 from translations import widgets
