@@ -112,6 +112,9 @@ class CachingManager(models.Manager):
         cache.set_many(dict((k, None) for k in flush), 5)
         cache.delete_many(*keys)
 
+    def raw(self, raw_query, params=None, *args, **kwargs):
+        return CachingRawQuerySet(raw_query, self.model, params=params,
+                                  using=self._db, *args, **kwargs)
 
 
 class CacheMachine(object):
@@ -241,3 +244,12 @@ class CachingMixin:
         keys = [fk.rel.to._cache_key(val) for fk, val in fks.items()
                 if val is not None and hasattr(fk.rel.to, '_cache_key')]
         return (self.cache_key,) + tuple(keys)
+
+
+class CachingRawQuerySet(models.query.RawQuerySet):
+
+    def __iter__(self):
+        iterator = super(CachingRawQuerySet, self).__iter__
+        for obj in CacheMachine(self.raw_query, iterator):
+            yield obj
+        raise StopIteration
