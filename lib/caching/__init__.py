@@ -113,11 +113,34 @@ class CachingManager(models.Manager):
         cache.delete_many(*keys)
 
 
-class CachingQuerySet(models.query.QuerySet):
 
-    def iterator(self):
+class CacheMachine(object):
+    """
+    Handles all the cache management for a QuerySet.
+
+    Takes the string representation of a query and a function that can be
+    called to get an iterator over some database results.
+    """
+
+    def __init__(self, query_string, iter_function):
+        self.query_string = query_string
+        self.iter_function = iter_function
+
+    def query_key(self):
+        """Generate the cache key for this query."""
+        key = '%s:%s' % (translation.get_language(), self.query_string)
+
+        # memcached keys must be < 250 bytes and w/o whitespace, but it's nice
+        # to see the keys when using locmem.
+        if cache.scheme == 'memcached':
+            return '%s%s' % (settings.CACHE_PREFIX,
+                             hashlib.md5(key).hexdigest())
+        else:
+            return '%s%s' % (settings.CACHE_PREFIX, key)
+
+    def __iter__(self):
         try:
-            query_key = self._query_key()
+            query_key = self.query_key()
         except query.EmptyResultSet:
             raise StopIteration
 
@@ -131,36 +154,20 @@ class CachingQuerySet(models.query.QuerySet):
             return
 
         # Do the database query, cache it once we have all the objects.
-        superiter = super(CachingQuerySet, self).iterator()
+        iterator = self.iter_function()
 
         to_cache = []
         try:
             while True:
-                obj = superiter.next()
+                obj = iterator.next()
                 obj.from_cache = False
                 to_cache.append(obj)
                 yield obj
         except StopIteration:
-            self._cache_objects(to_cache)
+            self.cache_objects(to_cache)
             raise
 
-    def _query_key(self):
-        """Generate a cache key for this QuerySet."""
-        lang = translation.get_language()
-
-        # Work-around for Django #12717.
-        sql, params = self.query.get_compiler(using=self.db).as_sql()
-        key = '%s:%s' % (lang, sql % params)
-
-        # memcached keys must be < 250 bytes and w/o whitespace, but it's nice
-        # to see the keys when using locmem.
-        if cache.scheme == 'memcached':
-            return '%s%s' % (settings.CACHE_PREFIX,
-                             hashlib.md5(key).hexdigest())
-        else:
-            return '%s%s' % (settings.CACHE_PREFIX, key)
-
-    def _cache_objects(self, objects):
+    def cache_objects(self, objects):
         """Cache query_key => objects, then update the flush lists."""
         # Adding to the flush lists has a race condition: if simultaneous
         # processes are adding to the same list, one of the query keys will be
@@ -176,7 +183,7 @@ class CachingQuerySet(models.query.QuerySet):
                     list_.append(new_key)
             cache.set_many(flush_lists)
 
-        query_key = self._query_key()
+        query_key = self.query_key()
 
         cache.add(query_key, objects, settings.CACHE_DURATION)
 
@@ -188,6 +195,18 @@ class CachingQuerySet(models.query.QuerySet):
             keys = map(flush_key, obj._cache_keys())
             keys.remove(obj_flush)
             add_to_flush_list(keys, obj_flush)
+
+
+class CachingQuerySet(models.query.QuerySet):
+
+    def iterator(self):
+        # Work-around for Django #12717.
+        sql, params = self.query.get_compiler(using=self.db).as_sql()
+        query_string = sql % params
+        iterator = super(CachingQuerySet, self).iterator
+        for obj in CacheMachine(query_string, iterator):
+            yield obj
+        raise StopIteration
 
 
 def flush_key(obj):
