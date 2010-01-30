@@ -60,16 +60,18 @@ import hashlib
 import logging
 
 from django.conf import settings
+from django.core.cache import cache, parse_backend_uri
 from django.db import models
 from django.db.models import signals
 from django.db.models.sql import query
 from django.utils import translation, encoding
 
-from .backends import cache
-
 FOREVER = 0
 
 log = logging.getLogger('z.caching')
+
+scheme, _, _ = parse_backend_uri(settings.CACHE_BACKEND)
+cache.scheme = scheme
 
 
 class CachingManager(models.Manager):
@@ -103,18 +105,18 @@ class CachingManager(models.Manager):
 
         # Add other flush keys from the lists, which happens when a parent
         # object includes a foreign key.
-        for flush_list in cache.get_many(*keys):
+        for flush_list in cache.get_many(keys).values():
             if flush_list is not None:
                 keys.extend(k for k in flush_list if k.startswith('flush:'))
 
         flush = []
-        for flush_list in cache.get_many(*keys):
+        for flush_list in cache.get_many(keys).values():
             if flush_list is not None:
                 flush.extend(flush_list)
         log.debug('invalidating %s' % keys)
         log.debug('flushing %s' % flush)
         cache.set_many(dict((k, None) for k in flush), 5)
-        cache.delete_many(*keys)
+        cache.delete_many(keys)
 
     def raw(self, raw_query, params=None, *args, **kwargs):
         return CachingRawQuerySet(raw_query, self.model, params=params,
@@ -139,7 +141,7 @@ class CacheMachine(object):
 
         # memcached keys must be < 250 bytes and w/o whitespace, but it's nice
         # to see the keys when using locmem.
-        if cache.scheme == 'memcached':
+        if 'memcached' in cache.scheme:
             return '%s%s' % (settings.CACHE_PREFIX,
                              hashlib.md5(key).hexdigest())
         else:
@@ -182,7 +184,8 @@ class CacheMachine(object):
 
         def add_to_flush_list(flush_keys, new_key):
             """Add new_key to all the flush lists keyed by flush_keys."""
-            flush_lists = cache.get_dict(*flush_keys)
+            flush_lists = dict((key, None) for key in flush_keys)
+            flush_lists.update(cache.get_many(flush_keys))
             for key, list_ in flush_lists.items():
                 if list_ is None:
                     flush_lists[key] = [new_key]
