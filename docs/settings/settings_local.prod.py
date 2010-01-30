@@ -29,7 +29,7 @@ DATABASES = {
 SLAVE_DATABASES = ['slave']
 
 # Use IP:PORT pairs separated by semicolons.
-CACHE_BACKEND = 'memcached://localhost:11211;localhost:11212'
+CACHE_BACKEND = 'caching.backends.memcached://localhost:11211;localhost:11212'
 
 # Default time (in seconds) to cache objects.
 CACHE_DURATION = 500
