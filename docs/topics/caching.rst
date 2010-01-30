@@ -1,7 +1,7 @@
 .. _caching:
 
 =============
-Cache is King
+Cache Machine
 =============
 
 .. automodule:: caching
@@ -9,6 +9,8 @@ Cache is King
 
 Classes that May Interest You
 -----------------------------
+
+.. autoclass:: caching.CacheMachine
 
 .. autoclass:: caching.CachingManager
     :members:

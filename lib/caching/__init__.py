@@ -1,7 +1,7 @@
 """
 To enable caching for a model, add the :class:`~caching.CachingManager` to that
 class and inherit from the :class:`~caching.CachingMixin`.  If you want related
-(foreign key) lookups to hit the cache, ``CachingManager`` must be the default
+lookups (foreign keys) to hit the cache, ``CachingManager`` must be the default
 manager.  If you have multiple managers that should be cached, return a
 :class:`~caching.CachingQuerySet` from the other manager's ``get_query_set``
 method instead of subclassing ``CachingManager``, since that would hook up the
@@ -27,6 +27,10 @@ once iteration is done.
 
 .. note::
     Nothing will be cached if the QuerySet is not iterated through completely.
+
+Caching is supported normal :class:`QuerySets <django.db.models.QuerySet>` and
+for :meth:`django.db.models.Manager.raw`.  At this time, caching has not been
+implemented for ``QuerySet.values`` or ``QuerySet.values_list``.
 
 To support easy cache invalidation, we use "flush lists" to mark the cached
 queries an object belongs to.  That way, all queries where an object was found
