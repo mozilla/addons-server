@@ -30,11 +30,9 @@ class CachingManager(models.Manager):
         return super(CachingManager, self).contribute_to_class(cls, name)
 
     def post_save(self, instance, **kwargs):
-        log.debug('post_save signal for %s' % instance)
         self.invalidate(instance)
 
     def post_delete(self, instance, **kwargs):
-        log.debug('post_delete signal for %s' % instance)
         self.invalidate(instance)
 
     def invalidate(self, *objects):
@@ -43,18 +41,18 @@ class CachingManager(models.Manager):
 
     def invalidate_keys(self, keys):
         """Invalidate all the flush lists named by the list of ``keys``."""
-        keys = map(flush_key, keys)
+        keys = set(map(flush_key, keys))
 
         # Add other flush keys from the lists, which happens when a parent
         # object includes a foreign key.
         for flush_list in cache.get_many(keys).values():
             if flush_list is not None:
-                keys.extend(k for k in flush_list if k.startswith('flush:'))
+                keys.update(k for k in flush_list if k.startswith('flush:'))
 
-        flush = []
-        for flush_list in cache.get_many(keys).values():
+        flush = set()
+        for flush_list in cache.get_many(set(keys)).values():
             if flush_list is not None:
-                flush.extend(flush_list)
+                flush.update(flush_list)
         log.debug('invalidating %s' % keys)
         log.debug('flushing %s' % flush)
         cache.set_many(dict((k, None) for k in flush), 5)
