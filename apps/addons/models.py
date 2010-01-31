@@ -1,9 +1,20 @@
+from datetime import date
 from django.conf import settings
 from django.db import models
 
 import amo.models
 from amo.urlresolvers import reverse
 from translations.fields import TranslatedField, translations_with_fallback
+
+
+class AddonManager(amo.models.ManagerBase):
+
+    def featured(self, app):
+        """Get all the featured add-ons for an application in all locales."""
+        qs = super(AddonManager, self).get_query_set()
+        today = date.today()
+        return qs.filter(feature__application=app.id,
+                         feature__start__lte=today, feature__end__gte=today)
 
 
 class Addon(amo.models.ModelBase):
@@ -80,6 +91,8 @@ class Addon(amo.models.ModelBase):
     get_satisfaction_product = models.CharField(max_length=255, blank=True)
 
     users = models.ManyToManyField('users.UserProfile', through='AddonUser')
+
+    objects = AddonManager()
 
     class Meta:
         db_table = 'addons'
