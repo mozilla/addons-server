@@ -4,6 +4,11 @@ import caching.base
 from translations.fields import TranslatedFieldMixin
 
 
+# Our apps should subclass BaseManager instead of models.Manager or
+# caching.base.CachingManager directly.
+ManagerBase = caching.base.CachingManager
+
+
 class ModelBase(caching.base.CachingMixin, TranslatedFieldMixin, models.Model):
     """
     Base class for AMO models to abstract some common features.
@@ -15,7 +20,7 @@ class ModelBase(caching.base.CachingMixin, TranslatedFieldMixin, models.Model):
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
-    objects = caching.base.CachingManager()
+    objects = ManagerBase()
 
     class Meta:
         abstract = True
