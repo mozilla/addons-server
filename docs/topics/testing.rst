@@ -45,9 +45,17 @@ for the full set, but some common ones are:
 
 Our continuous integration server adds some additional flags for other features
 (for example, coverage statistics).  To see what those commands are check out
-the build script at ``/scripts/build.sh``.
+the build script at :src:`scripts/build.sh`.
 
-.. Would be nice to link to the actual script at some point.
+
+Database Setup
+~~~~~~~~~~~~~~
+
+Our test runner will try as hard as it can to skip creating a fresh database
+every time.  If you really want to make a new database (e.g. when models have
+changed), set the environment variable ``FORCE_DB``. ::
+
+    FORCE_DB=true python manage.py test
 
 
 Writing Tests
