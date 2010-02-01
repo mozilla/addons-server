@@ -43,7 +43,7 @@ http://docs.djangoproject.com/en/dev/howto/deployment/modwsgi/
 
 http://code.google.com/p/modwsgi/wiki/QuickConfigurationGuide
 
-Here's a basic http.conf snippet that I used to get zamboni running on my Mac::
+Here's a basic httpd.conf snippet that I used to get zamboni running on my Mac::
 
     # WSGI
     LoadModule wsgi_module modules/mod_wsgi.so
