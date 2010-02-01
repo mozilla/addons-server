@@ -197,6 +197,7 @@ class CachingRawQuerySet(models.query.RawQuerySet):
 
     def __iter__(self):
         iterator = super(CachingRawQuerySet, self).__iter__
-        for obj in CacheMachine(self.raw_query, iterator):
+        sql = self.raw_query % tuple(self.params)
+        for obj in CacheMachine(sql, iterator):
             yield obj
         raise StopIteration

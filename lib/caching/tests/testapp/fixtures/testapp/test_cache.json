@@ -21,5 +21,14 @@
             "author1": 2,
             "val": 42
         }
+    },
+    {
+        "pk": 2,
+        "model": "testapp.addon",
+        "fields": {
+            "author2": 1,
+            "author1": 2,
+            "val": 42
+        }
     }
 ]

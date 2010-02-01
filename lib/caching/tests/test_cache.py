@@ -88,3 +88,12 @@ class CachingTestCase(ExtraAppTestCase):
         for field in Addon._meta.fields:
             eq_(getattr(a, field.name), getattr(cached_addon, field.name))
         assert cached_addon.from_cache is True
+
+    def test_raw_cache_params(self):
+        """Make sure the query params are included in the cache key."""
+        sql = 'SELECT * from %s WHERE id = %%s' % Addon._meta.db_table
+        raw = list(Addon.objects.raw(sql, [1]))[0]
+        eq_(raw.id, 1)
+
+        raw2 = list(Addon.objects.raw(sql, [2]))[0]
+        eq_(raw2.id, 2)
