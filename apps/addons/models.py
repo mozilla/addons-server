@@ -4,6 +4,7 @@ from django.db import models
 
 import amo.models
 from amo.urlresolvers import reverse
+from reviews.models import Review
 from translations.fields import TranslatedField, translations_with_fallback
 
 
@@ -105,6 +106,9 @@ class Addon(amo.models.ModelBase):
 
     def fetch_translations(self, ids, lang):
         return translations_with_fallback(ids, lang, self.defaultlocale)
+
+    def reviews(self):
+        return Review.objects.filter(version__addon=self)
 
 
 class AddonCategory(models.Model):
