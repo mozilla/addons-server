@@ -1,7 +1,9 @@
+from django.core.cache import cache
+
 from nose.tools import eq_
 
 from test_utils import ExtraAppTestCase
-import caching
+import caching.base as caching
 
 from testapp.models import Addon, User
 
@@ -11,7 +13,7 @@ class CachingTestCase(ExtraAppTestCase):
     extra_apps = ['caching.tests.testapp']
 
     def setUp(self):
-        caching.cache.clear()
+        cache.clear()
 
     def test_flush_key(self):
         """flush_key should work for objects or strings."""
@@ -68,3 +70,21 @@ class CachingTestCase(ExtraAppTestCase):
         a = Addon.objects.get(id=1)
         assert a.from_cache is False
         eq_(a.author1.name, 'fffuuu')
+
+    def test_raw_cache(self):
+        sql = 'SELECT * FROM %s WHERE id = 1' % Addon._meta.db_table
+        raw = list(Addon.objects.raw(sql))
+        eq_(len(raw), 1)
+        raw_addon = raw[0]
+        a = Addon.objects.get(id=1)
+        for field in Addon._meta.fields:
+            eq_(getattr(a, field.name), getattr(raw_addon, field.name))
+        assert raw_addon.from_cache is False
+
+        cached = list(Addon.objects.raw(sql))
+        eq_(len(cached), 1)
+        cached_addon = cached[0]
+        a = Addon.objects.get(id=1)
+        for field in Addon._meta.fields:
+            eq_(getattr(a, field.name), getattr(cached_addon, field.name))
+        assert cached_addon.from_cache is True

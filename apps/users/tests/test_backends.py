@@ -1,7 +1,7 @@
 from django import test
 from django.contrib.auth import authenticate
+from django.core.cache import cache
 
-from caching import cache
 from users.models import UserProfile
 
 

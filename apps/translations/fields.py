@@ -141,11 +141,15 @@ class TranslatedFieldMixin(object):
 
     def _set_translated_fields(self):
         """Fetch and attach all of this object's translations."""
-        if not hasattr(self._meta, 'translated_fields'):
-            return
+        if hasattr(self._meta, 'translated_fields'):
+            fields = self._meta.translated_fields
+        else:
+            fields = [f for f in self._meta.fields
+                      if isinstance(f, TranslatedField)]
+            self._meta.translated_fields = fields
 
         # Map the attribute name to the object name: 'name_id' => 'name'
-        names = dict((f.attname, f.name) for f in self._meta.translated_fields)
+        names = dict((f.attname, f.name) for f in fields)
         # Map the foreign key to the attribute name: self.name_id => 'name_id'
         ids = dict((getattr(self, name), name) for name in names)
 

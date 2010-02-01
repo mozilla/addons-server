@@ -1,9 +1,9 @@
 from django.db import models, connection
 
-import caching
+import caching.base
 
 
-class Translation(caching.CachingMixin, models.Model):
+class Translation(caching.base.CachingMixin, models.Model):
     """
     Translation model.
 
@@ -21,7 +21,7 @@ class Translation(caching.CachingMixin, models.Model):
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
-    objects = caching.CachingManager()
+    objects = caching.base.CachingManager()
 
     class Meta:
         db_table = 'translations'

@@ -2,7 +2,7 @@ import test_utils
 
 from nose.tools import eq_
 
-from caching import cache
+from django.core.cache import cache
 
 from amo.urlresolvers import reverse
 from addons.models import Addon

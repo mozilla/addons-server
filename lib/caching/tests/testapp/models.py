@@ -1,6 +1,6 @@
 from django.db import models
 
-from caching import CachingMixin, CachingManager
+from caching.base import CachingMixin, CachingManager
 
 
 class User(CachingMixin, models.Model):
