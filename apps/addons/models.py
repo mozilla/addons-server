@@ -188,7 +188,8 @@ class Category(amo.models.ModelBase):
     weight = models.IntegerField(
         help_text='Category weight used in sort ordering')
 
-    addons = models.ManyToManyField(Addon, through='AddonCategory')
+    addons = models.ManyToManyField(Addon, through='AddonCategory',
+                                    related_name='categories')
 
     class Meta:
         db_table = 'categories'
