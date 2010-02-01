@@ -133,7 +133,9 @@
         "fields": {
             "name": null,
             "shortname": null,
-            "icontype": "image/png"
+            "icontype": "image/png",
+            "modified": "2009-08-03 23:59:20",
+            "created": "2009-08-03 23:58:46"
         }
     },
     {

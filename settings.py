@@ -184,7 +184,7 @@ DEV_APPS = (
     'django_nose',
 )
 
-TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+TEST_RUNNER = 'test_utils.runner.RadicalTestSuiteRunner'
 
 LOG_LEVEL = logging.DEBUG
 
