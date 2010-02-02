@@ -12,11 +12,12 @@ from .widgets import TranslationWidget
 class TranslatedField(models.ForeignKey):
     """A foreign key to the translations table."""
 
-    def __init__(self):
+    def __init__(self, **kwargs):
         # to_field: The field on the related object that the relation is to.
         # Django wants to default to translations.autoid, but we need id.
         options = dict(null=True, to_field='id', unique=True, blank=True)
-        super(TranslatedField, self).__init__(Translation, **options)
+        kwargs.update(options)
+        super(TranslatedField, self).__init__(Translation, **kwargs)
 
     @property
     def db_column(self):
