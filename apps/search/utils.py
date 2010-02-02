@@ -104,8 +104,8 @@ def convert_version(version_string):
         # normalize data
         major  = int(major)
         minor1 = int(minor1)
-        minor2 = int(minor2) if minor2 else 0
-        minor3 = int(minor3) if minor3 else 0
+        minor2 = int(minor2 or 0)
+        minor3 = int(minor3 or 0)
 
         if alpha == 'a':
             alpha = 0
