@@ -77,15 +77,7 @@ class CacheMachine(object):
 
     def query_key(self):
         """Generate the cache key for this query."""
-        key = '%s:%s' % (translation.get_language(), self.query_string)
-
-        # memcached keys must be < 250 bytes and w/o whitespace, but it's nice
-        # to see the keys when using locmem.
-        if 'memcached' in cache.scheme:
-            return '%s%s' % (settings.CACHE_PREFIX,
-                             hashlib.md5(key).hexdigest())
-        else:
-            return '%s%s' % (settings.CACHE_PREFIX, key)
+        return make_key('qs:%s' % self.query_string)
 
     def __iter__(self):
         try:
@@ -201,3 +193,15 @@ class CachingRawQuerySet(models.query.RawQuerySet):
         for obj in CacheMachine(sql, iterator):
             yield obj
         raise StopIteration
+
+
+def make_key(k):
+    """Generate the full key for ``k``, with a prefix and locale."""
+    lang = translation.get_language()
+    key = '%s:%s:%s' % (settings.CACHE_PREFIX, lang, k)
+    # memcached keys must be < 250 bytes and w/o whitespace, but it's nice
+    # to see the keys when using locmem.
+    if 'memcached' in cache.scheme:
+        return hashlib.md5(key).hexdigest()
+    else:
+        return key
