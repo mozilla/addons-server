@@ -163,6 +163,7 @@ INSTALLED_APPS = (
     'files',
     'reviews',
     'search',
+    'stats',
     'tags',
     'translations',
     'users',
