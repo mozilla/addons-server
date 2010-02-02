@@ -19,7 +19,7 @@ urlpatterns = patterns('',
     ('', include('browse.urls')),
 
     # Users
-    ('^users/', include('users.urls')),
+    ('', include('users.urls')),
 
     # AMO admin (not django admin).
     ('^admin/', include('admin.urls')),
@@ -33,6 +33,9 @@ urlpatterns = patterns('',
     # Redirect patterns.
     ('^reviews/display/(\d+)',
       lambda r, id: redirect('reviews.list', id, permanent=True)),
+
+    ('^users/info/(\d+)',
+     lambda r, id: redirect('users.profile', id, permanent=True)),
 
     ('^browse/type:3$',
       lambda r: redirect('browse.language_tools', permanent=True)),

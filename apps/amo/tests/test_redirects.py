@@ -75,3 +75,8 @@ class TestRedirects(test.TestCase):
         response = self.client.get('/', follow=True,
                                    HTTP_ACCEPT_LANGUAGE='en-us;q=0.5, de')
         self.assertRedirects(response, '/de/firefox/', status_code=301)
+
+    def test_users(self):
+        response = self.client.get('/users/info/1', follow=True)
+        self.assertRedirects(response, '/en-US/firefox/user/1/',
+                             status_code=301)

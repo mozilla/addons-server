@@ -1,7 +1,17 @@
 from django.contrib.auth import logout
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
+from django.shortcuts import get_object_or_404
 
+import jingo
+
+from .models import UserProfile
 from .signals import logged_out
+
+
+def profile(request, user_id):
+    """user profile display page"""
+    user = get_object_or_404(UserProfile, id=user_id)
+    return HttpResponse()
 
 
 def logout_view(request):

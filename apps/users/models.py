@@ -3,8 +3,9 @@ import hashlib
 import random
 import string
 
-from django.db import models
+from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User as DjangoUser
+from django.db import models
 
 import amo.models
 from translations.fields import TranslatedField
@@ -61,8 +62,7 @@ class UserProfile(amo.models.ModelBase):
         return '%s: %s' % (self.id, self.display_name)
 
     def get_absolute_url(self):
-        # XXX: use reverse
-        return '/users/%s' % self.id
+        return reverse('users.profile', args=[self.id])
 
     @property
     def display_name(self):
