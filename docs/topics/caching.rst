@@ -89,6 +89,17 @@ The foundations of this module were derived from `Mike Malone's`_
 .. _django-caching: http://github.com/mmalone/django-caching/
 
 
+Manual Caching
+--------------
+
+Some things can be cached better outside of the ORM, so CacheMachine provides
+the function :func:`caching.base.cached` for caching arbitrary objects.  Using
+this function gives you more control over what gets cached, and for how long,
+while abstracting a few repetitive elements.
+
+.. autofunction:: caching.base.cached
+
+
 Classes that May Interest You
 -----------------------------
 

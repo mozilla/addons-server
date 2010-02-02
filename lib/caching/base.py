@@ -205,3 +205,16 @@ def make_key(k):
         return hashlib.md5(key).hexdigest()
     else:
         return key
+
+
+def cached(function, key_, duration=None):
+    """Only calls the function if ``key`` is not already in the cache."""
+    key = make_key('f:%s' % key_)
+    val = cache.get(key)
+    if val is None:
+        log.debug('cache miss for %s' % key)
+        val = function()
+        cache.set(key, val, duration)
+    else:
+        log.debug('cache hit for %s' % key)
+    return val
