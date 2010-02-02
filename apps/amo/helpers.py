@@ -1,8 +1,11 @@
 import collections
 
-import jinja2
-
+from django.utils import translation
 from django.utils.translation import ugettext as _
+
+from babel import Locale
+from babel.support import Format
+import jinja2
 
 from jingo import register, env
 
@@ -82,3 +85,14 @@ class Paginator(object):
              'count': self.count}
         t = env.get_template('amo/paginator.html').render(**c)
         return jinja2.Markup(t)
+
+
+def _get_format():
+    lang = translation.get_language()
+    locale = Locale(translation.to_locale(lang))
+    return Format(locale)
+
+
+@register.filter
+def numberfmt(num, format=None):
+    return _get_format().decimal(num, format)
