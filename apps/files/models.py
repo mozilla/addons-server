@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 
 import amo.models
@@ -8,7 +9,7 @@ from translations.fields import TranslatedField
 class File(amo.models.ModelBase):
     STATUS_CHOICES = amo.STATUS_CHOICES.items()
 
-    version = models.ForeignKey(Version)
+    version = models.ForeignKey(Version, related_name='files')
     platform = models.ForeignKey('Platform')
     filename = models.CharField(max_length=255, default='')
     size = models.PositiveIntegerField(default=0)
@@ -20,6 +21,9 @@ class File(amo.models.ModelBase):
 
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'files'
+
+    def get_absolute_url(self, src):
+        return settings.FILES_URL % (self.id, self.filename, src)
 
 
 class Approval(amo.models.ModelBase):

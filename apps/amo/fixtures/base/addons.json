@@ -1,0 +1,310 @@
+[
+       {
+        "pk": 1,
+        "model": "translations.translation",
+        "fields": {
+            "id": 1,
+            "locale": "en-US",
+            "localized_string": "ALL",
+            "created": "2001-01-01 13:14:15"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "files.platform",
+        "fields": {
+            "name": 1,
+            "icontype": "",
+            "modified": "2008-04-07 08:16:55",
+            "created": "2007-03-05 13:09:27"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "addons.addontype",
+        "fields": {
+            "modified": "2009-02-06 08:42:28",
+            "created": "2006-08-21 23:53:19"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "addons.addontype",
+        "fields": {
+            "modified": "2009-02-06 08:42:28",
+            "created": "2006-08-21 23:53:24"
+        }
+    },
+    {
+        "pk": 15000,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2007-03-05 13:10:42",
+            "id": 15000,
+            "modified": "2009-03-26 07:41:10",
+            "localized_string": "Delicious Bookmarks"
+        }
+    },
+
+   {
+        "pk": 29034,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2007-03-05 13:10:42",
+            "id": 15002,
+            "modified": "2009-04-29 11:20:57",
+            "localized_string": "This extension integrates your browser with Delicious (http://delicious.com), the leading social bookmarking service on the Web.  It does this by augmenting the bookmarking functionality in Firefox with an enhanced experience that offers the following advantages:\r\n\r\n- Search and browse your Delicious bookmarks\r\n- Keep up to date on your Network and Links For You\r\n- Access your bookmarks from any computer at any time\r\n- Keep your bookmarks organized using tags\r\n- Share your bookmarks with friends or anyone on the Web\r\n- Import your existing Firefox bookmarks\r\n\r\nWe've also included a Classic Mode for those who want the basic Delicious buttons without any sync or search features.  This option is available when you install the add-on, and can be accessed later from the Delicious menu in Firefox.\r\n\r\nFor a product tour and more details about this extension, please visit:\r\nhttp://delicious.com/help/quicktour/firefox\r\n\r\nFor product feedback, commentary & enhancement requests, please post to our discussion group, found here:\r\nhttp://tech.groups.yahoo.com/group/delicious-firefox-extension/\r\n\r\nor try the Delicious support forums:\r\n\r\nhttp://support.delicious.com/\r\n"
+        }
+    },
+
+    {
+        "pk": 3615,
+        "model": "addons.addon",
+        "fields": {
+            "dev_agreement": 1,
+            "public_stats": 0,
+            "modified": "2009-10-21 09:58:52",
+            "weekly_downloads": 20178,
+            "share_count": 5,
+            "admin_review": 0,
+            "average_daily_downloads": 5928,
+            "show_beta": 1,
+            "trusted": 1,
+            "average_rating": "3.02",
+            "binary": 0,
+            "total_reviews": 389,
+            "view_source": 0,
+            "external_software": 0,
+            "average_daily_users": 493241,
+            "total_downloads": 5175276,
+            "icon_type": "image/png",
+            "status": 4,
+            "description": 15002,
+            "site_specific": 1,
+            "nomination_date": "2009-03-26 07:41:12",
+            "wants_contributions": 0,
+            "prerelease": 0,
+            "guid": "{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}",
+            "bayesian_rating": 3.06941,
+            "name": 15000,
+            "created": "2006-10-23 12:57:41",
+            "paypal_id": "",
+            "annoying": 0,
+            "inactive": 0,
+            "type": 1,
+            "highest_status": 4,
+            "default_locale": "en-US"
+        }
+    },
+    {
+        "pk": 24007,
+        "model": "versions.version",
+        "fields": {
+            "license": null,
+            "created": "2006-10-23 12:57:41",
+            "approvalnotes": "",
+            "modified": "2006-10-23 19:22:18",
+            "version": "1.0.43",
+            "addon": 3615
+        }
+    },
+    {
+        "pk": 1,
+        "model": "versions.version",
+        "fields": {
+            "license": null,
+            "created": "2006-10-24 12:00:00",
+            "approvalnotes": "",
+            "modified": "2006-10-24 12:00:01",
+            "version": "1.2",
+            "addon": 3615
+        }
+    },
+    {
+        "pk": 2,
+        "model": "versions.version",
+        "fields": {
+            "addon": 3615,
+            "created": "2006-08-21 23:53:19"
+        }
+    },
+   {
+        "pk": 1,
+        "model": "applications.application",
+        "fields": {
+            "guid": "{3550f703-e582-4d05-9a08-453d09bdfdc6}",
+            "created": "2006-08-21 23:53:19"
+        }
+    },
+    {
+        "pk": 18,
+        "model": "applications.application",
+        "fields": {
+            "guid": "{3550f703-e582-4d05-9a08-453d09bdfdc6}",
+            "created": "2006-08-21 23:53:19"
+        }
+    },
+     {
+        "pk": 200,
+        "model": "applications.appversion",
+        "fields": {
+            "application": 1,
+            "version": "1",
+            "version_int": 1,
+            "created": "2006-08-21 23:53:19"
+        }
+    },
+    {
+        "pk": 201,
+        "model": "applications.appversion",
+        "fields": {
+            "application": 1,
+            "version": "2",
+            "version_int": 2,
+            "created": "2006-08-21 23:53:19"
+        }
+    },
+    {
+        "pk": 202,
+        "model": "applications.appversion",
+        "fields": {
+            "application": 18,
+            "version": "1",
+            "version_int": 1,
+            "created": "2006-08-21 23:53:19"
+        }
+    },
+    {
+        "pk": 203,
+        "model": "applications.appversion",
+        "fields": {
+            "application": 18,
+            "version": "2",
+            "version_int": 2,
+            "created": "2006-08-21 23:53:19"
+        }
+    },
+      {
+        "pk": 20,
+        "model": "versions.applicationsversions",
+        "fields": {
+            "application": 1,
+            "version": 2,
+            "min": 200,
+            "max": 201
+        }
+    },
+    {
+        "pk": 21,
+        "model": "versions.applicationsversions",
+        "fields": {
+            "application": 18,
+            "version": 2,
+            "min": 202,
+            "max": 203
+        }
+    },
+  {
+        "pk": 11993,
+        "model": "files.file",
+        "fields": {
+            "status": 4,
+            "codereview": 0,
+            "hash": "sha256:5b5aaf7b38e332cc95d92ba759c01c3076b53a840f6c16e01dc272eefcb29566",
+            "created": "2007-03-05 13:19:15",
+            "modified": "2007-04-04 12:30:11",
+            "filename": "del.icio.us_bookmarks-1.0.43-fx.xpi",
+            "platform": 1,
+            "version": 24007,
+            "datestatuschanged": null,
+            "size": 169
+        }
+    },
+    {
+        "pk": 1,
+        "model": "files.file",
+        "fields": {
+            "status": 1,
+            "codereview": 0,
+            "hash": "sha256:5b5aaf7b38e332cc95d92ba759c01c3076b53a840f6c16e01dc272eefcb29566",
+            "created": "2007-03-05 13:19:15",
+            "modified": "2007-04-04 12:30:11",
+            "filename": "del.icio.us_bookmarks-1.2-fx.xpi",
+            "platform": 1,
+            "version": 1,
+            "datestatuschanged": null,
+            "size": 169
+        }
+    },
+    {
+        "pk": 129780,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2007-03-05 13:10:42",
+            "id": 129780,
+            "modified": "2009-03-26 07:41:10",
+            "localized_string": "macos theme"
+        }
+    },
+    {
+        "pk": 7172,
+        "model": "addons.addon",
+        "fields": {
+            "dev_agreement": 1,
+            "view_source": 0,
+            "total_downloads": 751302,
+            "inactive": 0,
+            "average_daily_downloads": 1325,
+            "show_beta": 1,
+            "trusted": 0,
+            "binary": 0,
+            "guid": "{00352F14-3F76-4e4d-ACFF-9976D7E4B3B9}",
+            "weekly_downloads": 7523,
+            "paypal_id": "",
+            "average_rating": "4.56",
+            "wants_contributions": 0,
+            "average_daily_users": 66334,
+            "bayesian_rating": 4.5321899999999999,
+            "share_count": 2,
+            "public_stats": 1,
+            "status": 4,
+            "default_locale": "en-US",
+            "prerelease": 0,
+            "admin_review": 0,
+            "external_software": 0,
+            "highest_status": 4,
+            "name": 129780,
+            "created": "2008-05-01 00:59:36",
+            "type": 2,
+            "annoying": 0,
+            "modified": "2009-09-22 01:49:51",
+            "site_specific": 0,
+            "total_reviews": 346,
+            "nomination_date": "2009-03-21 09:17:07"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "addons.addon",
+        "fields": {
+            "type": 1,
+            "created": "2006-08-21 23:53:19"
+        }
+    },
+    {
+        "pk": 25981,
+        "model": "addons.preview",
+        "fields": {
+            "caption": null,
+            "filetype": "image/png",
+            "created": "2008-09-15 01:30:44",
+            "modified": "2008-09-15 01:30:44",
+            "thumbtype": "image/png",
+            "highlight": 0,
+            "addon": 7172
+        }
+    }
+]

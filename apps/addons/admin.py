@@ -5,33 +5,33 @@ from .models import Addon, BlacklistedGuid, Feature, Category
 
 class AddonAdmin(admin.ModelAdmin):
     exclude = ('users',)
-    list_display = ('__unicode__', 'addontype', 'status', 'averagerating')
-    list_filter = ('addontype', 'status')
+    list_display = ('__unicode__', 'type', 'status', 'average_rating')
+    list_filter = ('type', 'status')
 
     fieldsets = (
         (None, {
-            'fields': ('name', 'guid', 'defaultlocale', 'addontype', 'status',
-                       'higheststatus', 'nominationdate'),
+            'fields': ('name', 'guid', 'default_locale', 'type', 'status',
+                       'highest_status', 'nomination_date'),
         }),
         ('Details', {
             'fields': ('summary', 'description', 'homepage', 'eula',
-                       'privacypolicy', 'developercomments', 'icontype',
+                       'privacy_policy', 'developer_comments', 'icon_type',
                        'the_reason', 'the_future'),
         }),
         ('Support', {
-            'fields': ('supporturl', 'supportemail',
+            'fields': ('support_url', 'support_email',
                        'get_satisfaction_company', 'get_satisfaction_product'),
         }),
         ('Stats', {
-            'fields': ('averagerating', 'bayesianrating', 'totalreviews',
-                       'weeklydownloads', 'totaldownloads',
+            'fields': ('average_rating', 'bayesian_rating', 'total_reviews',
+                       'weekly_downloads', 'total_downloads',
                        'average_daily_downloads', 'average_daily_users',
-                       'sharecount'),
+                       'share_count'),
         }),
         ('Truthiness', {
-            'fields': ('inactive', 'trusted', 'viewsource', 'publicstats',
-                       'prerelease', 'adminreview', 'sitespecific',
-                       'externalsoftware', 'binary', 'dev_agreement',
+            'fields': ('inactive', 'trusted', 'view_source', 'public_stats',
+                       'prerelease', 'admin_review', 'site_specific',
+                       'external_software', 'binary', 'dev_agreement',
                        'show_beta'),
         }),
         ('Money', {

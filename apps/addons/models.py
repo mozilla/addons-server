@@ -1,4 +1,6 @@
 from datetime import date
+import time
+
 from django.conf import settings
 from django.db import models
 
@@ -30,45 +32,57 @@ class Addon(amo.models.ModelBase):
 
     guid = models.CharField(max_length=255, unique=True, null=True)
     name = TranslatedField()
-    defaultlocale = models.CharField(max_length=10,
-                                     default=settings.LANGUAGE_CODE)
+    default_locale = models.CharField(max_length=10,
+                                      default=settings.LANGUAGE_CODE,
+                                      db_column='defaultlocale')
 
-    addontype = models.ForeignKey('AddonType')
+    type = models.ForeignKey('AddonType', db_column='addontype_id')
     status = models.PositiveIntegerField(
         choices=STATUS_CHOICES, db_index=True, default=0)
-    higheststatus = models.PositiveIntegerField(
+    highest_status = models.PositiveIntegerField(
         choices=STATUS_CHOICES, default=0,
-        help_text="An upper limit for what an author can change.")
-    icontype = models.CharField(max_length=25, blank=True)
+        help_text="An upper limit for what an author can change.",
+        db_column='higheststatus')
+    icon_type = models.CharField(max_length=25, blank=True,
+                                 db_column='icontype')
     homepage = TranslatedField()
-    supportemail = TranslatedField()
-    supporturl = TranslatedField()
+    support_email = TranslatedField(db_column='supportemail')
+    support_url = TranslatedField(db_column='supporturl')
     description = TranslatedField()
 
     summary = TranslatedField()
-    developercomments = TranslatedField()
+    developer_comments = TranslatedField(db_column='developercomments')
     eula = TranslatedField()
-    privacypolicy = TranslatedField()
+    privacy_policy = TranslatedField(db_column='privacypolicy')
     the_reason = TranslatedField()
     the_future = TranslatedField()
 
-    averagerating = models.CharField(max_length=255, default=0)
-    bayesianrating = models.FloatField(default=0, db_index=True)
-    totalreviews = models.PositiveIntegerField(default=0)
-    weeklydownloads = models.PositiveIntegerField(default=0)
-    totaldownloads = models.PositiveIntegerField(default=0)
+    average_rating = models.CharField(max_length=255, default=0,
+                                      db_column='averagerating')
+    bayesian_rating = models.FloatField(default=0, db_index=True,
+                                        db_column='bayesianrating')
+    total_reviews = models.PositiveIntegerField(default=0,
+                                                db_column='totalreviews')
+    weekly_downloads = models.PositiveIntegerField(
+            default=0, db_column='weeklydownloads')
+    total_downloads = models.PositiveIntegerField(
+            default=0, db_column='totaldownloads')
+
     average_daily_downloads = models.PositiveIntegerField(default=0)
     average_daily_users = models.PositiveIntegerField(default=0)
-    sharecount = models.PositiveIntegerField(default=0, db_index=True)
+    share_count = models.PositiveIntegerField(default=0, db_index=True,
+                                              db_column='sharecount')
 
     inactive = models.BooleanField(default=False, db_index=True)
     trusted = models.BooleanField(default=False)
-    viewsource = models.BooleanField(default=False)
-    publicstats = models.BooleanField(default=False)
+    view_source = models.BooleanField(default=False, db_column='viewsource')
+    public_stats = models.BooleanField(default=False, db_column='publicstats')
     prerelease = models.BooleanField(default=False)
-    adminreview = models.BooleanField(default=False)
-    sitespecific = models.BooleanField(default=False)
-    externalsoftware = models.BooleanField(default=False)
+    admin_review = models.BooleanField(default=False, db_column='adminreview')
+    site_specific = models.BooleanField(default=False,
+                                        db_column='sitespecific')
+    external_software = models.BooleanField(default=False,
+                                            db_column='externalsoftware')
     binary = models.BooleanField(default=False,
                             help_text="Does the add-on contain a binary?")
     dev_agreement = models.BooleanField(default=False,
@@ -76,7 +90,8 @@ class Addon(amo.models.ModelBase):
     wants_contributions = models.BooleanField(default=False)
     show_beta = models.BooleanField(default=True)
 
-    nominationdate = models.DateTimeField(null=True)
+    nomination_date = models.DateTimeField(null=True,
+                                           db_column='nominationdate')
     target_locale = models.CharField(max_length=255, db_index=True, blank=True,
                             help_text="For dictionaries and language packs")
     locale_disambiguation = models.CharField(max_length=255, blank=True,
@@ -91,7 +106,9 @@ class Addon(amo.models.ModelBase):
     get_satisfaction_company = models.CharField(max_length=255, blank=True)
     get_satisfaction_product = models.CharField(max_length=255, blank=True)
 
-    users = models.ManyToManyField('users.UserProfile', through='AddonUser')
+    authors = models.ManyToManyField('users.UserProfile', through='AddonUser')
+
+    objects = AddonManager()
 
     objects = AddonManager()
 
@@ -105,10 +122,45 @@ class Addon(amo.models.ModelBase):
         return reverse('addons.detail', args=(self.id,))
 
     def fetch_translations(self, ids, lang):
-        return translations_with_fallback(ids, lang, self.defaultlocale)
+        return translations_with_fallback(ids, lang, self.default_locale)
 
     def reviews(self):
         return Review.objects.filter(version__addon=self)
+
+    def get_current_version(self):
+        """
+        Retrieves the latest public version of an addon.
+        """
+        try:
+            return self.versions.filter(files__status=amo.STATUS_PUBLIC)[0]
+        except IndexError:
+            return None
+
+    def get_icon_url(self):
+        """
+        Returns either the addon's icon url, or a default.
+        """
+        if not self.icon_type:
+            if self.type_id == amo.ADDON_THEME:
+                return settings.STATIC_URL + '/img/theme.png'
+            else:
+                return settings.STATIC_URL + '/img/default_icon.png'
+
+        else:
+            return settings.ADDON_ICON_URL % (
+                    self.id, int(time.mktime(self.modified.timetuple())))
+
+    def get_thumbnail_url(self):
+        """
+        Returns the addon's thumbnail url or a default.
+        """
+        try:
+            preview = self.preview_set.order_by(
+                    '-highlight', 'created').all()[0]
+            return preview.get_thumbnail_url()
+
+        except IndexError:
+            return settings.STATIC_URL + '/img/no-preview.png'
 
 
 class AddonCategory(models.Model):
@@ -240,3 +292,8 @@ class Preview(amo.models.ModelBase):
 
     class Meta:
         db_table = 'previews'
+
+    def get_thumbnail_url(self):
+        return (settings.PREVIEW_THUMBNAIL_URL %
+                (str(self.id)[0], self.id,
+                 int(time.mktime(self.modified.timetuple()))))
