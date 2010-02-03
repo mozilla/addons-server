@@ -21,7 +21,13 @@ def get_env():
             'auto_reload': settings.DEBUG,
             'loader': jinja2.ChoiceLoader(loaders),
             }
-    opts.update(getattr(settings, 'JINJA_CONFIG', {}))
+
+    if hasattr(settings, 'JINJA_CONFIG'):
+        if hasattr(settings.JINJA_CONFIG, '__call__'):
+            config = settings.JINJA_CONFIG()
+        else:
+            config = settings.JINJA_CONFIG
+        opts.update(config)
 
     e = jinja2.Environment(**opts)
     # TODO: use real translations
