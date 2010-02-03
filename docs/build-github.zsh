@@ -12,13 +12,13 @@ git checkout gh-pages && git pull && git checkout -
 # Checkout the gh-pages branch, if necessary.
 if [[ ! -d $GH ]]; then
     git clone $REPO $GH
-    cd $GH
+    pushd $GH
     git checkout -b gh-pages origin/gh-pages
-    cd ..
+    popd
 fi
 
-# Update the _gh-pages target dir.
-cd $GH && git pull && cd ..
+# Update and clean out the _gh-pages target dir.
+pushd $GH && git pull && rm -rf * && popd
 
 # Make a clean build.
 make clean dirhtml

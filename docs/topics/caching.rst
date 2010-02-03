@@ -28,8 +28,8 @@ For locmem (only recommended for testing)::
 CacheMachine will not work properly with the file or database cache backends.
 
 
-Cache Manger
-------------
+Cache Manager
+-------------
 
 To enable caching for a model, add the :class:`~caching.base.CachingManager` to
 that class and inherit from the :class:`~caching.base.CachingMixin`.  If you
