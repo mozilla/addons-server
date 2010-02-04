@@ -277,15 +277,15 @@ class Feature(amo.models.ModelBase):
     addon = models.ForeignKey(Addon)
     start = models.DateTimeField()
     end = models.DateTimeField()
-    locale = models.CharField(max_length=10, default='', blank=True)
+    locale = models.CharField(max_length=10, default='', blank=True, null=True)
     application = models.ForeignKey('applications.Application')
 
     class Meta:
         db_table = 'features'
 
     def __unicode__(self):
-        return '%s (%s: %s)' % (self.addon.name, self.application.name,
-                                self.locale)
+        app = amo.APP_IDS[self.application].pretty
+        return '%s (%s: %s)' % (self.addon.name, app, self.locale)
 
 
 class Preview(amo.models.ModelBase):
