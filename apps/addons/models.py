@@ -124,10 +124,12 @@ class Addon(amo.models.ModelBase):
     def fetch_translations(self, ids, lang):
         return translations_with_fallback(ids, lang, self.default_locale)
 
+    @property
     def reviews(self):
         return Review.objects.filter(version__addon=self)
 
-    def get_current_version(self):
+    @property
+    def current_version(self):
         """
         Retrieves the latest public version of an addon.
         """
@@ -136,7 +138,8 @@ class Addon(amo.models.ModelBase):
         except IndexError:
             return None
 
-    def get_icon_url(self):
+    @property
+    def icon_url(self):
         """
         Returns either the addon's icon url, or a default.
         """
@@ -150,7 +153,8 @@ class Addon(amo.models.ModelBase):
             return settings.ADDON_ICON_URL % (
                     self.id, int(time.mktime(self.modified.timetuple())))
 
-    def get_thumbnail_url(self):
+    @property
+    def thumbnail_url(self):
         """
         Returns the addon's thumbnail url or a default.
         """
@@ -233,6 +237,7 @@ class BlacklistedGuid(amo.models.ModelBase):
 
 class Category(amo.models.ModelBase):
     name = TranslatedField()
+    slug = models.SlugField(max_length=50, help_text='Used in Category URLs.')
     description = TranslatedField()
     addontype = models.ForeignKey(AddonType)
     application = models.ForeignKey('applications.Application')
