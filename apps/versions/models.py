@@ -2,13 +2,13 @@ import collections
 
 from django.db import models
 
+import caching.base
+
 import amo.models
 from addons.models import Addon
-
-from users.models import UserProfile
 from applications.models import Application, AppVersion
-
 from translations.fields import TranslatedField
+from users.models import UserProfile
 
 
 class Version(amo.models.ModelBase):
@@ -80,7 +80,7 @@ class VersionSummary(amo.models.ModelBase):
         db_table = 'versions_summary'
 
 
-class ApplicationsVersions(models.Model):
+class ApplicationsVersions(caching.base.CachingMixin, models.Model):
 
     application = models.ForeignKey(Application)
     version = models.ForeignKey(Version)
@@ -88,6 +88,8 @@ class ApplicationsVersions(models.Model):
         related_name='min_set')
     max = models.ForeignKey(AppVersion, db_column='max',
         related_name='max_set')
+
+    objects = caching.base.CachingManager()
 
     class Meta:
         db_table = u'applications_versions'
