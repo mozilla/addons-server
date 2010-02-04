@@ -161,6 +161,7 @@ INSTALLED_APPS = (
     'devhub',
     'editors',
     'files',
+    'nick',
     'reviews',
     'search',
     'stats',

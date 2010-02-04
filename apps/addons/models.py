@@ -13,11 +13,16 @@ from translations.fields import TranslatedField, translations_with_fallback
 class AddonManager(amo.models.ManagerBase):
 
     def featured(self, app):
-        """Get all the featured add-ons for an application in all locales."""
+        """Get all featured add-ons for ``app`` in all locales."""
         qs = super(AddonManager, self).get_query_set()
         today = date.today()
         return qs.filter(feature__application=app.id,
                          feature__start__lte=today, feature__end__gte=today)
+
+    def category_featured(self):
+        """Get all category-featured add-ons for ``app`` in all locales."""
+        qs = super(AddonManager, self).get_query_set()
+        return qs.filter(addoncategory__feature=True)
 
 
 class Addon(amo.models.ModelBase):
@@ -277,15 +282,15 @@ class Feature(amo.models.ModelBase):
     addon = models.ForeignKey(Addon)
     start = models.DateTimeField()
     end = models.DateTimeField()
-    locale = models.CharField(max_length=10, default='', blank=True)
+    locale = models.CharField(max_length=10, default='', blank=True, null=True)
     application = models.ForeignKey('applications.Application')
 
     class Meta:
         db_table = 'features'
 
     def __unicode__(self):
-        return '%s (%s: %s)' % (self.addon.name, self.application.name,
-                                self.locale)
+        app = amo.APP_IDS[self.application].pretty
+        return '%s (%s: %s)' % (self.addon.name, app, self.locale)
 
 
 class Preview(amo.models.ModelBase):

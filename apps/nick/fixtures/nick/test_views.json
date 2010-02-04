@@ -1,0 +1,69 @@
+[
+    {
+        "pk": 2,
+        "model": "addons.feature",
+        "fields": {
+            "application": 1,
+            "end": "2010-12-01 00:00:00",
+            "created": "2007-03-05 16:06:55",
+            "locale": null,
+            "modified": "2009-12-08 11:00:51",
+            "start": "2008-11-01 00:00:00",
+            "addon": 3615
+        }
+    },
+    {
+        "pk": 12,
+        "model": "addons.category",
+        "fields": {
+            "count": 587,
+            "description": null,
+            "weight": 0,
+            "created": "2007-03-05 13:09:26",
+            "modified": "2010-01-17 18:54:06",
+            "application": 1,
+            "addontype": 1,
+            "slug": "privacy-security",
+            "name": null
+        }
+    },
+    {
+        "pk": 22,
+        "model": "addons.category",
+        "fields": {
+            "count": 859,
+            "description": null,
+            "weight": 0,
+            "created": "2007-03-05 13:09:27",
+            "modified": "2010-01-17 18:54:06",
+            "application": 1,
+            "addontype": 1,
+            "slug": "bookmarks",
+            "name": null
+        }
+    },
+    {
+        "pk": 93,
+        "model": "addons.category",
+        "fields": {
+            "count": 361,
+            "description": null,
+            "weight": 0,
+            "created": "2007-12-19 21:48:37",
+            "modified": "2010-01-17 18:54:06",
+            "application": 1,
+            "addontype": 1,
+            "slug": "tabs",
+            "name": null
+        }
+    },
+    {
+        "pk": 1,
+        "model": "addons.addoncategory",
+        "fields": {
+            "addon": 3615,
+            "category": 12,
+            "feature": 1
+        }
+    }
+]

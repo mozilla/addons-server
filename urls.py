@@ -19,6 +19,9 @@ urlpatterns = patterns('',
     # AMO admin (not django admin).
     ('^admin/', include('admin.urls')),
 
+    # Nick's special pages.
+    ('^nickspages/', include('nick.urls')),
+
     # Redirect patterns.
     ('^reviews/display/(\d+)',
       lambda r, id: redirect('reviews.list', id)),
