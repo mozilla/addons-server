@@ -24,9 +24,7 @@ class AppVersion(amo.models.ModelBase):
 
     application = models.ForeignKey(Application)
     version = models.CharField(max_length=255, default='')
-    version_int = models.IntegerField(editable=False)
-    # TODO: 1.2
-    # version_int = models.BigIntegerField()
+    version_int = models.BigIntegerField(editable=False)
 
     class Meta:
         db_table = 'appversions'
