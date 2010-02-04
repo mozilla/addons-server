@@ -120,6 +120,7 @@ MIDDLEWARE_CLASSES = (
 
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
 
@@ -139,6 +140,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.media',
     'django.core.context_processors.request',
     'django.core.context_processors.csrf',
+
+    'django.contrib.messages.context_processors.messages',
 
     'amo.context_processors.i18n',
     'amo.context_processors.links',
@@ -174,6 +177,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
+    'django.contrib.messages',
     'django.contrib.sessions',
     'django.contrib.sites',
 )
@@ -186,6 +190,7 @@ DEV_APPS = (
 TEST_RUNNER = 'test_utils.runner.RadicalTestSuiteRunner'
 
 LOG_LEVEL = logging.DEBUG
+
 
 def JINJA_CONFIG():
     import jinja2
@@ -217,8 +222,11 @@ SELENIUM_CONFIG = {}
 
 # paths that don't require an app prefix
 SUPPORTED_NONAPPS = ('admin', 'developers', 'editors', 'localizers',
-                     'statistics',)
+                     'statistics', 'services',)
 DEFAULT_APP = 'firefox'
+
+# paths that don't require a locale prefix
+SUPPORTED_NONLOCALES = ('services',)
 
 # Length of time to store items in memcache
 CACHE_DURATION = 60  # seconds

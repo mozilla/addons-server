@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Mozilla Add-ons Site Status{% endblock title %}
+{% block main_content %}
+{% if messages %}
+  {% for message in messages %}
+    <div class="notification-box {{ message.tags }}">
+        <h2>{{ message }}</h2>
+      </div>
+  {% endfor %}
+{% endif %}
+{% endblock main_content %}
