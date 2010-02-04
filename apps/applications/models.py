@@ -7,8 +7,9 @@ from translations.fields import TranslatedField
 class Application(amo.models.ModelBase):
 
     guid = models.CharField(max_length=255, default='')
-    name = TranslatedField()
-    shortname = TranslatedField()
+    # We never reference these translated fields, so stop loading them.
+    # name = TranslatedField()
+    # shortname = TranslatedField()
     # icondata
     # icontype = models.CharField(max_length=25, default='')
 
