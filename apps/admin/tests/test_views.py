@@ -50,8 +50,8 @@ class TestFlagged(test_utils.TestCase):
         response = self.client.post(url, {'addon_id': ['1', '2']}, follow=True)
         self.assertRedirects(response, url)
 
-        assert not Addon.objects.get(id=1).adminreview
-        assert not Addon.objects.get(id=2).adminreview
+        assert not Addon.objects.get(id=1).admin_review
+        assert not Addon.objects.get(id=2).admin_review
 
         addons = response.context['addons']
         eq_(len(addons), 1)

@@ -1,3 +1,5 @@
+import collections
+
 from django.db import models
 
 import amo.models
@@ -18,6 +20,33 @@ class Version(amo.models.ModelBase):
 
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'versions'
+        ordering = ['-created']
+
+    def get_compatible_apps(self):
+        """
+        Looks at the current version and gives us a list of namedtuples of
+        Application, Min and Max version.
+        """
+        compat_list = []
+
+        Compatibility = collections.namedtuple(
+                'Compatibility', 'application max min')
+        avs = self.applicationsversions_set.select_related().all()
+
+        [compat_list.append(Compatibility(
+            av.application, av.max.version, av.min.version)) for av in avs]
+
+        return compat_list
+
+    def get_supported_platforms(self):
+        """
+        Looks at the current version and gives us a list of supported versions.
+        """
+        platforms = []
+        [platforms.append(file.platform.name) for file in
+                self.files.all()]
+
+        return list(set(platforms))
 
 
 class License(amo.models.ModelBase):
@@ -62,3 +91,4 @@ class ApplicationsVersions(models.Model):
 
     class Meta:
         db_table = u'applications_versions'
+        unique_together = (("application", "version"),)

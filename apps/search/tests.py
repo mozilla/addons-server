@@ -39,7 +39,7 @@ def test_convert_version():
 
 class SphinxTest(TransactionTestCase):
 
-    fixtures = ["search/sphinx.json"]
+    fixtures = ["base/addons.json"]
     sphinx = True
 
     def setUp(self):

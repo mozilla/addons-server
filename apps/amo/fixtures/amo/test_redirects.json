@@ -59,9 +59,9 @@
         "pk": 4,
         "model": "addons.addon",
         "fields": {
-            "addontype": 1,
+            "type": 1,
             "status": 4,
-            "higheststatus": 4,
+            "highest_status": 4,
             "description": null,
             "modified": "2008-05-22 11:59:13",
             "name": null,

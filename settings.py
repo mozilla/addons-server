@@ -216,3 +216,14 @@ SPHINX_SEARCHD = 'searchd'
 SPHINX_CONFIG_PATH = path('configs/sphinx/sphinx.conf')
 SPHINX_HOST = '127.0.0.1'
 SPHINX_PORT = 3312
+
+# URL paths
+
+# paths for images, e.g. mozcdn.com/amo or '/static'
+STATIC_URL = SITE_URL
+ADDON_ICON_URL = "%s/%s/%s/images/addon_icon/%%d/%%s" % (
+        STATIC_URL, LANGUAGE_CODE, DEFAULT_APP)
+PREVIEW_THUMBNAIL_URL = (STATIC_URL +
+        '/img/uploads/previews/thumbs/%s/%d.png?modified=%d')
+# paths for uploaded extensions
+FILES_URL = STATIC_URL + "/downloads/file/%d/%s?src=%s"

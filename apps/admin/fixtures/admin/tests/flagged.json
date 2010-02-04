@@ -41,11 +41,11 @@
             "description": null,
             "created": "2006-06-25 22:23:47",
             "modified": "2009-12-11 15:34:35",
-            "adminreview": 0,
-            "defaultlocale": "en-US",
+            "admin_review": 0,
+            "default_locale": "en-US",
             "status": 4,
-            "higheststatus": 4,
-            "addontype": 1,
+            "highest_status": 4,
+            "type": 1,
             "name": null
         }
     },
@@ -57,11 +57,11 @@
             "description": null,
             "created": "2006-06-25 22:23:47",
             "modified": "2009-12-11 15:34:35",
-            "adminreview": 1,
-            "defaultlocale": "en-US",
+            "admin_review": 1,
+            "default_locale": "en-US",
             "status": 4,
-            "higheststatus": 4,
-            "addontype": 1,
+            "highest_status": 4,
+            "type": 1,
             "name": null
         }
     },
@@ -73,11 +73,11 @@
             "description": null,
             "created": "2006-06-25 22:23:47",
             "modified": "2009-12-11 15:34:35",
-            "adminreview": 1,
-            "defaultlocale": "en-US",
+            "admin_review": 1,
+            "default_locale": "en-US",
             "status": 4,
-            "higheststatus": 4,
-            "addontype": 1,
+            "highest_status": 4,
+            "type": 1,
             "name": null
         }
     },
@@ -89,11 +89,11 @@
             "description": null,
             "created": "2006-06-25 22:23:47",
             "modified": "2009-12-11 15:34:35",
-            "adminreview": 1,
-            "defaultlocale": "en-US",
+            "admin_review": 1,
+            "default_locale": "en-US",
             "status": 4,
-            "higheststatus": 4,
-            "addontype": 1,
+            "highest_status": 4,
+            "type": 1,
             "name": null
         }
     },
