@@ -1,5 +1,3 @@
-import collections
-
 from django.db import models
 
 import caching.base
@@ -22,31 +20,21 @@ class Version(amo.models.ModelBase):
         db_table = 'versions'
         ordering = ['-created']
 
-    def get_compatible_apps(self):
-        """
-        Looks at the current version and gives us a list of namedtuples of
-        Application, Min and Max version.
-        """
-        compat_list = []
+    @property
+    def compatible_apps(self):
+        """Get a mapping of {APP: ApplicationVersion}."""
+        apps = {}
+        for av in self.applicationsversions_set.select_related():
+            app_id = av.application.id
+            if app_id in amo.APP_IDS:
+                apps[amo.APP_IDS[app_id]] = av
+        return apps
 
-        Compatibility = collections.namedtuple(
-                'Compatibility', 'application max min')
-        avs = self.applicationsversions_set.select_related().all()
-
-        [compat_list.append(Compatibility(
-            av.application, av.max.version, av.min.version)) for av in avs]
-
-        return compat_list
-
-    def get_supported_platforms(self):
-        """
-        Looks at the current version and gives us a list of supported versions.
-        """
-        platforms = []
-        [platforms.append(file.platform.name) for file in
-                self.files.all()]
-
-        return list(set(platforms))
+    # TODO(jbalogh): Do we want names or Platforms?
+    @property
+    def supported_platforms(self):
+        """Get a list of supported platform names."""
+        return list(set(f.platform.name for f in self.files.all()))
 
 
 class License(amo.models.ModelBase):
