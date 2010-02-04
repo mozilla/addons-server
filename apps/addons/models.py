@@ -13,11 +13,16 @@ from translations.fields import TranslatedField, translations_with_fallback
 class AddonManager(amo.models.ManagerBase):
 
     def featured(self, app):
-        """Get all the featured add-ons for an application in all locales."""
+        """Get all featured add-ons for ``app`` in all locales."""
         qs = super(AddonManager, self).get_query_set()
         today = date.today()
         return qs.filter(feature__application=app.id,
                          feature__start__lte=today, feature__end__gte=today)
+
+    def category_featured(self):
+        """Get all category-featured add-ons for ``app`` in all locales."""
+        qs = super(AddonManager, self).get_query_set()
+        return qs.filter(addoncategory__feature=True)
 
 
 class Addon(amo.models.ModelBase):
