@@ -66,8 +66,9 @@ class Prefixer(object):
         path = path.lstrip('/')
         url_parts = []
 
-        locale = self.locale if self.locale else settings.LANGUAGE_CODE
-        url_parts.append(locale)
+        if path.partition('/')[0] not in settings.SUPPORTED_NONLOCALES:
+            locale = self.locale if self.locale else settings.LANGUAGE_CODE
+            url_parts.append(locale)
 
         if path.partition('/')[0] not in settings.SUPPORTED_NONAPPS:
             app = self.app if self.app else settings.DEFAULT_APP
