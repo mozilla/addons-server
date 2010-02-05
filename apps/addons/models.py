@@ -134,7 +134,7 @@ class Addon(amo.models.ModelBase):
     def reviews(self):
         return Review.objects.filter(version__addon=self)
 
-    @property
+    @amo.cached_property
     def current_version(self):
         """
         Retrieves the latest public version of an addon.
@@ -172,7 +172,7 @@ class Addon(amo.models.ModelBase):
         except IndexError:
             return settings.STATIC_URL + '/img/no-preview.png'
 
-    @property
+    @amo.cached_property
     def compatible_apps(self):
         """Shortcut to get compatible apps for the current version."""
         if self.current_version:

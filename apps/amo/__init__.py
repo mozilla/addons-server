@@ -4,6 +4,44 @@ Miscellaneous helpers that make Django compatible with AMO.
 from django.utils.translation import ugettext as _
 
 
+class cached_property(object):
+    """A decorator that converts a function into a lazy property.  The
+    function wrapped is called the first time to retrieve the result
+    and than that calculated result is used the next time you access
+    the value::
+
+        class Foo(object):
+
+            @cached_property
+            def foo(self):
+                # calculate something important here
+                return 42
+
+    Lifted from werkzeug.
+    """
+
+    def __init__(self, func, name=None, doc=None, writeable=False):
+        self.func = func
+        self.writeable = writeable
+        self.__name__ = name or func.__name__
+        self.__doc__ = doc or func.__doc__
+
+    def __get__(self, obj, type=None):
+        if obj is None:
+            return self
+        _missing = object()
+        value = obj.__dict__.get(self.__name__, _missing)
+        if value is _missing:
+            value = self.func(obj)
+            obj.__dict__[self.__name__] = value
+        return value
+
+    def __set__(self, obj, value):
+        if not self.writeable:
+            raise TypeError('read only attribute')
+        obj.__dict__[self.__name__] = value
+
+
 # Add-on and File statuses.
 STATUS_NULL = 0
 STATUS_SANDBOX = 1
