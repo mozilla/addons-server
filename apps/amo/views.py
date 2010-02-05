@@ -4,15 +4,19 @@ import socket
 from django.conf import settings
 from django.core.cache import parse_backend_uri
 from django.views.decorators.cache import never_cache
-from django.contrib import messages
 
 
 @never_cache
 def monitor(request):
 
+    # For each check, a boolean pass/fail status to show in the template
+    status_summary = {}
     status = 200
-    scheme, servers, _ = parse_backend_uri(settings.CACHE_BACKEND)
 
+    # Check all memcached servers
+    scheme, servers, _ = parse_backend_uri(settings.CACHE_BACKEND)
+    memcache_results = []
+    status_summary['memcache'] = True
     if 'memcached' in scheme:
         hosts = servers.split(';')
         for host in hosts:
@@ -21,28 +25,19 @@ def monitor(request):
                 s = socket.socket()
                 s.connect((ip, int(port)))
             except Exception, e:
-                messages.error(request, ("[Memcached] Failed to connect"
-                                         " (%s:%s): %s" % (ip, port, e)))
+                result = False
+                status_summary['memcache'] = False
+                status = 500
             else:
-                messages.success(request, ("[Memcached] Successfully connected"
-                                           " (%s:%s)" % (ip, port)))
+                result = True
             finally:
                 s.close()
 
-        if len(hosts) >= 2:
-            messages.success(request, ("[Memcached] At least 2 servers? "
-                                       "Yes: %s" % len(hosts)))
-        else:
-            messages.error(request, ("[Memcached] At least 2 servers? "
-                                     "No: %s" % len(hosts)))
-
-    else:
-        messages.error(request, "Memcache is not configured!")
-
-    storage = messages.get_messages(request)
-    for message in storage:
-        if "error" in message.tags:
-            status = 500
+            memcache_results.append((ip, port, result))
+        if len(memcache_results) < 2:
+            status_summary['memcache'] = False
 
     return jingo.render(request, 'services/monitor.html',
-                        {}, status=status)
+                        {'memcache_results': memcache_results,
+                         'status_summary': status_summary},
+                        status=status)

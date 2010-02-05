@@ -1,11 +1,22 @@
 {% extends 'base.html' %}
 {% block title %}Mozilla Add-ons Site Status{% endblock title %}
 {% block main_content %}
-{% if messages %}
-  {% for message in messages %}
-    <div class="notification-box {{ message.tags }}">
-        <h2>{{ message }}</h2>
-      </div>
+<div class="notification-box {% if status_summary.memcache %}info{% else %}error{% endif %}">
+  <h2>[Memcache] Connection Tests</h2>
+  <ul>
+  {% for ip, port, result in memcache_results %}
+    <li>{{ ip }}:{{ port }}
+    {% if result %}
+      Success
+    {% else %}
+      <strong>Failed</strong>
+    {% endif %}
+    </li>
+  {% else %}
+    <li>There are no memcache servers!</li>
   {% endfor %}
-{% endif %}
+  </ul>
+  <p>There must be a minimum of 2 working servers.</p>
+</div>
+
 {% endblock main_content %}
