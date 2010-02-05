@@ -1,0 +1,15 @@
+{% extends "base_side_categories.html" %}
+
+{% block title %}{{ _('Oops') }}{% endblock %}
+
+{% block content %}
+{% trans home="/" %}
+<h1>Oops!  We had an error.</h1>
+
+<p>We'll get to fixing that soon.</p>
+<p>
+  You can try refreshing the page, or head back to the
+  <a href="{{ home }}">Add-ons homepage</a>.
+</p>
+{% endtrans %}
+{% endblock %}

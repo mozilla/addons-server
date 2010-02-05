@@ -1,5 +1,5 @@
 [
-       {
+    {
         "pk": 1,
         "model": "translations.translation",
         "fields": {
@@ -7,6 +7,28 @@
             "locale": "en-US",
             "localized_string": "ALL",
             "created": "2001-01-01 13:14:15"
+        }
+    },
+    {
+        "pk": 15000,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2007-03-05 13:10:42",
+            "id": 15000,
+            "modified": "2009-03-26 07:41:10",
+            "localized_string": "Delicious Bookmarks"
+        }
+    },
+    {
+        "pk": 29034,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2007-03-05 13:10:42",
+            "id": 15002,
+            "modified": "2009-04-29 11:20:57",
+            "localized_string": "Delicious blah blah blah"
         }
     },
     {
@@ -35,30 +57,6 @@
             "created": "2006-08-21 23:53:24"
         }
     },
-    {
-        "pk": 15000,
-        "model": "translations.translation",
-        "fields": {
-            "locale": "en-US",
-            "created": "2007-03-05 13:10:42",
-            "id": 15000,
-            "modified": "2009-03-26 07:41:10",
-            "localized_string": "Delicious Bookmarks"
-        }
-    },
-
-   {
-        "pk": 29034,
-        "model": "translations.translation",
-        "fields": {
-            "locale": "en-US",
-            "created": "2007-03-05 13:10:42",
-            "id": 15002,
-            "modified": "2009-04-29 11:20:57",
-            "localized_string": "This extension integrates your browser with Delicious (http://delicious.com), the leading social bookmarking service on the Web.  It does this by augmenting the bookmarking functionality in Firefox with an enhanced experience that offers the following advantages:\r\n\r\n- Search and browse your Delicious bookmarks\r\n- Keep up to date on your Network and Links For You\r\n- Access your bookmarks from any computer at any time\r\n- Keep your bookmarks organized using tags\r\n- Share your bookmarks with friends or anyone on the Web\r\n- Import your existing Firefox bookmarks\r\n\r\nWe've also included a Classic Mode for those who want the basic Delicious buttons without any sync or search features.  This option is available when you install the add-on, and can be accessed later from the Delicious menu in Firefox.\r\n\r\nFor a product tour and more details about this extension, please visit:\r\nhttp://delicious.com/help/quicktour/firefox\r\n\r\nFor product feedback, commentary & enhancement requests, please post to our discussion group, found here:\r\nhttp://tech.groups.yahoo.com/group/delicious-firefox-extension/\r\n\r\nor try the Delicious support forums:\r\n\r\nhttp://support.delicious.com/\r\n"
-        }
-    },
-
     {
         "pk": 3615,
         "model": "addons.addon",
@@ -305,6 +303,55 @@
             "thumbtype": "image/png",
             "highlight": 0,
             "addon": 7172
+        }
+    },
+    {
+        "pk": 4043307,
+        "model": "auth.user",
+        "fields": {
+            "username": "admin",
+            "first_name": "Jeff",
+            "last_name": "Balogh",
+            "is_active": 1,
+            "is_superuser": 1,
+            "is_staff": 1,
+            "last_login": "2010-01-13 17:17:23",
+            "groups": [],
+            "user_permissions": [],
+            "password": "sha512$7b5436061f8c0902088c292c057be69fdb17312e2f71607c9c51641f5d876522$08d1d370d89e2ae92755fd03464a7276ca607c431d04a52d659f7a184f3f9918073637d82fc88981c7099c7c46a1137b9fdeb675304eb98801038905a9ee0600",
+            "email": "admin@mozilla.com",
+            "date_joined": "2009-02-02 11:50:31"
+        }
+    },
+    {
+        "pk": 4043307,
+        "model": "users.userprofile",
+        "fields": {
+            "sandboxshown": 1,
+            "display_collections_fav": 1,
+            "display_collections": 1,
+            "occupation": "",
+            "confirmationcode": "",
+            "location": "",
+            "picture_type": "",
+            "averagerating": "",
+            "homepage": "http://jeffbalogh.org",
+            "email": "admin@mozilla.com",
+            "notifycompat": 1,
+            "bio": null,
+            "firstname": "Jeff",
+            "deleted": 0,
+            "lastname": "Balogh",
+            "emailhidden": 0,
+            "user": 4043307,
+            "password": "sha512$7b5436061f8c0902088c292c057be69fdb17312e2f71607c9c51641f5d876522$08d1d370d89e2ae92755fd03464a7276ca607c431d04a52d659f7a184f3f9918073637d82fc88981c7099c7c46a1137b9fdeb675304eb98801038905a9ee0600",
+            "nickname": "admin",
+            "resetcode_expires": "2010-01-12 15:28:07",
+            "resetcode": "",
+            "created": "2009-02-02 11:50:31",
+            "notes": "",
+            "modified": "2010-01-12 17:01:41",
+            "notifyevents": 1
         }
     }
 ]

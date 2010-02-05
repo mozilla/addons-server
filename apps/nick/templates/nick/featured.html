@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+<link rel="stylesheet" href="{{ MEDIA_URL }}css/zamboni/nick.css">
+<link rel="stylesheet"
+      href="{{ MEDIA_URL }}css/zamboni/jquery-ui/custom-1.7.2.css">
+{% endblock %}
+
+{% block title %}
+Nick's Special Featured Add-ons Page for {{ request.APP.pretty }}
+{% endblock %}
+
+{% block content %}
+<ul class="listing-header">
+  {% for name, url, title in sections %}
+  <li {{ name|class_selected(section) }}>
+    <a href="{{ url }}">{{ title }}</a>
+  </li>
+  {% endfor %}
+  </li>
+  <li>
+    <form id="params" method="get" action="" class="go">
+      {{ form.as_p()|safe }}
+    </form>
+  </li>
+</ul>
+
+<table id="rec-stats" title="holy tablular data batman">
+  <thead>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Categories</th>
+    <th>Rating</th>
+    <th>Reviews</th>
+    <th>Compatibility</th>
+    {% if section != 'featured' %}
+      <th>Featured?</th>
+    {% endif %}
+    <th>DL(prev)</th>
+    <th>DL(cur)</th>
+    <th>DL&Delta;</th>
+    <th>ADU(prev)</th>
+    <th>ADU(cur)</th>
+    <th>ADU&Delta;</th>
+    <th>SPARKLINES</th>
+  </thead>
+  <tbody>
+    {% for addon in addons %}
+    <tr>
+      <td><a href="{{ url('addons.detail', addon.id) }}"
+             title="{{ addon.name }}">{{ addon.id }}</a></td>
+      <td>{{ addon.name.localized_string|truncate(20, True) }}</td>
+      <td>{{ addon.first_category }}</td>
+      <td>{{ addon.average_rating }}</td>
+      <td><a href="{{ url('reviews.list', addon.id) }}">
+          {{ addon.reviews.count() }}</a></td>
+      {% set supports = addon.current_version.compatible_apps %}
+      {% if request.APP in supports %}
+        <td>{{ supports[request.APP].max }}</td>
+      {% else %}
+        <td>---</td>
+      {% endif %}
+      {% if section != 'featured' %}
+        <td>{% if addon.featured %}Y{% else %}N{% endif %}</td>
+      {% endif %}
+      <td>{{ addon.downloads.previous|numberfmt }}</td>
+      <td>{{ addon.downloads.current|numberfmt }}</td>
+      <td class="{{ addon.downloads.change }}">
+        {{ addon.downloads.delta|numberfmt('+0%;-0%') }}
+      </td>
+      <td>{{ addon.adus.previous|round|numberfmt }}</td>
+      <td>{{ addon.adus.current|round|numberfmt }}</td>
+      <td class="{{ addon.adus.change }}">
+        {{ addon.adus.delta|numberfmt('+0%;-0%') }}
+      </td>
+      <td class="sparklines">{{ addon.sparks|join(',') }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<p>You've got {{ addons|length }} add-ons there.</p>
+{% endblock %}
+
+{% block js %}
+<script src="{{ MEDIA_URL }}js/zamboni/jquery-ui/custom-1.7.2.min.js"></script>
+<script src="{{ MEDIA_URL }}js/zamboni/jquery.sparkline.min.js"></script>
+<script src="{{ MEDIA_URL }}js/zamboni/jquery.tablesorter.min.js"></script>
+<script src="{{ MEDIA_URL }}js/zamboni/nick.js"></script>
+<script>
+</script>
+{% endblock %}
