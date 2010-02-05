@@ -9,9 +9,19 @@ import manage
 from django.conf import settings
 
 config = settings.DATABASES['default']
-config['HOST'] = config.get('HOST') or 'localhost'
-config['PORT'] = config.get('PORT') or '3306'
+config['HOST'] = config.get('HOST', 'localhost')
+config['PORT'] = config.get('PORT', '3306')
 
-s = 'mysql {NAME} -h{HOST} -P{PORT} -u{USER} -p{PASSWORD}'
+if config['HOST'].endswith('.sock'):
+    """ Oh you meant 'localhost'! """
+    config['HOST'] = 'localhost'
+
+s = 'mysql --silent {NAME} -h{HOST} -P{PORT} -u{USER}'
+
+if config['PASSWORD']:
+    s += ' -p{PASSWORD}'
+else:
+    del config['PASSWORD']
+
 db = s.format(**config)
 table = 'schema_version'
