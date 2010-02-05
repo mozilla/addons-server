@@ -101,6 +101,17 @@ ADDON_PLUGIN = 7
 ADDON_API = 8 # not actually a type but used to identify extensions + themes
 ADDON_PERSONA = 9
 
+# Singular
+ADDON_TYPE = {
+    ADDON_EXTENSION: _('Extension'),
+    ADDON_THEME: _('Theme'),
+    ADDON_DICT: _('Dictionary'),
+    ADDON_SEARCH: _('Search Engine'),
+    ADDON_PLUGIN: _('Plugin'),
+    ADDON_PERSONA: _('Persona'),
+}
+
+# Plural
 ADDON_TYPES = {
     ADDON_EXTENSION: _('Extensions'),
     ADDON_THEME: _('Themes'),
