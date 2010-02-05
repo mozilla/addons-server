@@ -161,6 +161,7 @@ INSTALLED_APPS = (
     'applications',
     'bandwagon',
     'blocklist',
+    'browse',
     'devhub',
     'editors',
     'files',

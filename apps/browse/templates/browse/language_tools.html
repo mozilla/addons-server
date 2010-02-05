@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Dictionaries & Language Packs') }}{% endblock %}
+
+{% if request.APP.browser %}
+  {% set install_dict = _('Install Dictionary') %}
+  {% set install_pack = _('Install Language Pack') %}
+{% else %}
+  {% set install_dict = _('Download Dictionary') %}
+  {% set install_pack = _('Download Language Pack') %}
+{% endif %}
+
+{% macro langtool(addons, text) %}
+  {% for addon in addons %}
+  <p>
+    <a href="{{ url('addons.detail', addon.id) }}">{{ text }}</a>
+    ({{ _('{0} KB')|f(addon.current_version.files.all()[0].size) }})
+    {% if addon.locale_disambiguation %}
+      <br>({{ addon.locale_disambiguation }})
+    {% endif %}
+  </p>
+  {% endfor %}
+{% endmacro %}
+
+{% block content %}
+<div class="featured">
+  <div class="featured-inner">
+    <div id="dictionaries">
+      <h3>{{ _('Dictionaries & Language Packs') }}</h3>
+      <table summary="{{ _('List of language packs and dictionaries.') }}">
+        <thead>
+          <tr>
+            <th colspan="2">{{ _('Language') }}</th>
+            <th>{{ _('Dictionary') }}</th>
+            <th>{{ _('Language Pack') }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for lang, locale in locales %}
+          <tr>
+            <th>{{ locale.display }}</th>
+            <td lang="{{ lang }}">{{ locale.native }}</td>
+            <td>{{ langtool(locale.dicts, install_dict) }}</td>
+            <td>{{ langtool(locale.packs, install_pack) }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}
