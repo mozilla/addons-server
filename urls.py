@@ -24,12 +24,12 @@ urlpatterns = patterns('',
     # Nick's special pages.
     ('^nickspages/', include('nick.urls')),
 
-    # Redirect patterns.
-    ('^reviews/display/(\d+)',
-      lambda r, id: redirect('reviews.list', id)),
-
     # Services
     ('^services/', include('amo.urls')),
+
+    # Redirect patterns.
+    ('^reviews/display/(\d+)',
+      lambda r, id: redirect('reviews.list', id, permanent=True)),
 )
 
 if settings.DEBUG:
