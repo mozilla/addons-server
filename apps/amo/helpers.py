@@ -26,6 +26,9 @@ def is_mobile(app):
 @register.function
 def sidebar(app):
     """Populates the sidebar with (categories, types)."""
+    if app is None:
+        return [], []
+
     q = Category.objects.filter(application=app.id, weight__gte=0,
                                 addontype=amo.ADDON_EXTENSION)
     _categories = list(q)
