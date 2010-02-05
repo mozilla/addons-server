@@ -14,6 +14,13 @@ def pep8():
         " apps", capture=False)
 
 
-def test():
-    local("python manage.py test --noinput --logging-clear-handlers",
-          capture=False)
+def test(module=None, pdb=False):
+    cmd = "python manage.py test"
+    if module:
+        cmd += " %s" % module
+
+    cmd += " --noinput --logging-clear-handlers"
+    if pdb:
+        cmd += ' --pdb --pdb-failures'
+
+    local(cmd, capture=False)
