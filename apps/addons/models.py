@@ -12,17 +12,18 @@ from translations.fields import TranslatedField, translations_with_fallback
 
 class AddonManager(amo.models.ManagerBase):
 
+    def public(self):
+        return self.filter(inactive=False, status=amo.STATUS_PUBLIC)
+
     def featured(self, app):
         """Get all featured add-ons for ``app`` in all locales."""
-        qs = super(AddonManager, self).get_query_set()
         today = date.today()
-        return qs.filter(feature__application=app.id,
-                         feature__start__lte=today, feature__end__gte=today)
+        return self.filter(feature__application=app.id,
+                           feature__start__lte=today, feature__end__gte=today)
 
     def category_featured(self):
         """Get all category-featured add-ons for ``app`` in all locales."""
-        qs = super(AddonManager, self).get_query_set()
-        return qs.filter(addoncategory__feature=True)
+        return self.filter(addoncategory__feature=True)
 
 
 class Addon(amo.models.ModelBase):
@@ -170,6 +171,14 @@ class Addon(amo.models.ModelBase):
 
         except IndexError:
             return settings.STATIC_URL + '/img/no-preview.png'
+
+    @property
+    def compatible_apps(self):
+        """Shortcut to get compatible apps for the current version."""
+        if self.current_version:
+            return self.current_version.compatible_apps
+        else:
+            return {}
 
 
 class AddonCategory(models.Model):
