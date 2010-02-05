@@ -36,6 +36,7 @@ def monitor(request):
 
             memcache_results.append((ip, port, result))
         if len(memcache_results) < 2:
+            status = 500
             status_summary['memcache'] = False
 
     return jingo.render(request, 'services/monitor.html',
