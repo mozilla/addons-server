@@ -20,3 +20,5 @@ CACHE_BACKEND = 'caching.backends.memcached://localhost:11211'
 CACHE_DURATION = 500
 
 DEBUG = True
+
+DEBUG_PROPAGATE_EXCEPTIONS = DEBUG

@@ -5,6 +5,9 @@ from django.shortcuts import redirect
 
 admin.autodiscover()
 
+handler404 = 'amo.views.handler404'
+handler500 = 'amo.views.handler500'
+
 urlpatterns = patterns('',
     url('^$', 'jingo.views.direct_to_template',
         {'template': 'base.html'}, name='home'),
@@ -21,12 +24,12 @@ urlpatterns = patterns('',
     # Nick's special pages.
     ('^nickspages/', include('nick.urls')),
 
-    # Redirect patterns.
-    ('^reviews/display/(\d+)',
-      lambda r, id: redirect('reviews.list', id)),
-
     # Services
     ('^services/', include('amo.urls')),
+
+    # Redirect patterns.
+    ('^reviews/display/(\d+)',
+      lambda r, id: redirect('reviews.list', id, permanent=True)),
 )
 
 if settings.DEBUG:

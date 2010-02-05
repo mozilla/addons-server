@@ -1,9 +1,10 @@
-import jingo
 import socket
 
 from django.conf import settings
 from django.core.cache import parse_backend_uri
 from django.views.decorators.cache import never_cache
+
+import jingo
 
 
 @never_cache
@@ -41,3 +42,11 @@ def monitor(request):
                         {'memcache_results': memcache_results,
                          'status_summary': status_summary},
                         status=status)
+
+
+def handler404(request):
+    return jingo.render(request, 'amo/404.lhtml', status=404)
+
+
+def handler500(request):
+    return jingo.render(request, 'amo/500.lhtml')

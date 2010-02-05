@@ -3,7 +3,7 @@ Borrowed from: http://code.google.com/p/django-localeurl
 
 Note: didn't make sense to use localeurl since we need to capture app as well
 """
-from django.http import HttpResponseRedirect
+from django.http import HttpResponsePermanentRedirect
 from django.utils import translation
 
 import amo.models
@@ -28,7 +28,16 @@ class LocaleAndAppURLMiddleware(object):
             query_string = request.META.get('QUERY_STRING', '')
             if query_string:
                 full_path = "%s?%s" % (full_path, query_string)
-            return HttpResponseRedirect(full_path)
+
+            response = HttpResponsePermanentRedirect(full_path)
+
+            # Vary on Accept-Language if we changed the locale.
+            old_locale = prefixer.locale
+            new_locale, _, _ = prefixer.split_path(full_path)
+            if old_locale != new_locale:
+                response['Vary'] = 'Accept-Language'
+
+            return response
 
         request.path_info = '/' + prefixer.shortened_path
         translation.activate(prefixer.locale)

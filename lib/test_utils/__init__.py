@@ -1,6 +1,7 @@
 from django import test
 from django.conf import settings
 from django.core import management
+from django.core.handlers import wsgi
 from django.db.models import loading
 from django.utils.encoding import smart_unicode as unicode
 from django.utils.translation.trans_real import to_language
@@ -84,6 +85,47 @@ class SeleniumTestCase(TestCase):
         self.selenium.close()
         self.selenium.stop()
         super(SeleniumTestCase, self).tearDown()
+
+
+# http://www.djangosnippets.org/snippets/963/
+class RequestFactory(test.Client):
+    """
+    Class that lets you create mock Request objects for use in testing.
+
+    Usage:
+    rf = RequestFactory()
+    get_request = rf.get('/hello/')
+    post_request = rf.post('/submit/', {'foo': 'bar'})
+
+    This class re-uses the django.test.client.Client interface, docs here:
+    http://www.djangoproject.com/documentation/testing/#the-test-client
+
+    Once you have a request object you can pass it to any view function, just
+    as if that view had been hooked up using a URLconf.
+    """
+
+    def request(self, **request):
+        """Return the request object as soon as it's created."""
+        environ = {
+            'HTTP_COOKIE':      self.cookies,
+            'PATH_INFO':         '/',
+            'QUERY_STRING':      '',
+            'REMOTE_ADDR':       '127.0.0.1',
+            'REQUEST_METHOD':    'GET',
+            'SCRIPT_NAME':       '',
+            'SERVER_NAME':       'testserver',
+            'SERVER_PORT':       '80',
+            'SERVER_PROTOCOL':   'HTTP/1.1',
+            'wsgi.version':      (1,0),
+            'wsgi.url_scheme':   'http',
+            'wsgi.errors':       self.errors,
+            'wsgi.multiprocess': True,
+            'wsgi.multithread':  False,
+            'wsgi.run_once':     False,
+        }
+        environ.update(self.defaults)
+        environ.update(request)
+        return wsgi.WSGIRequest(environ)
 
 
 # Comparisons

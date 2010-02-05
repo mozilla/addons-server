@@ -1,8 +1,10 @@
 from django import test
 
 from nose.tools import eq_
+import test_utils
 
 from amo import urlresolvers
+from amo.middleware import LocaleAndAppURLMiddleware
 
 
 class MiddlewareTest(test.TestCase):
@@ -10,23 +12,43 @@ class MiddlewareTest(test.TestCase):
     Tests that the locale and app redirection work propperly
     """
 
+    def setUp(self):
+        self.rf = test_utils.RequestFactory()
+        self.middleware = LocaleAndAppURLMiddleware()
+
     def test_redirection(self):
         redirections = {
-        '/': '/en-US/firefox/',
-        '/en-US': '/en-US/firefox/',
-        '/sda/dasdas': '/en-US/firefox/sda/dasdas',
-        '/sda/dasdas/': '/en-US/firefox/sda/dasdas/',
-        '/sda/firefox/foo': '/en-US/firefox/foo',
-        '/firefox': '/en-US/firefox/',
-        '/admin': '/en-US/admin',
-        }
-        for path, redirection in redirections.items():
-            response = self.client.get(path)
-            location = response['Location'].replace('http://testserver', '', 1)
+            '/': '/en-US/firefox/',
+            '/en-US': '/en-US/firefox/',
+            '/firefox': '/en-US/firefox/',
 
-            self.assertEqual(location, redirection,
-                "Expected %s to redirect to %s, but it went to %s" %
-                (path, redirection, location))
+            # Make sure we don't mess with trailing slashes.
+            '/addon/1/': '/en-US/firefox/addon/1/',
+            '/addon/1': '/en-US/firefox/addon/1',
+
+            # Check an invalid locale.
+            '/sda/firefox/addon/1': '/en-US/firefox/addon/1',
+
+            # /admin doesn't get an app.
+            '/developers': '/en-US/developers',
+        }
+
+        for path, location in redirections.items():
+            response = self.middleware.process_request(self.rf.get(path))
+            eq_(response.status_code, 301)
+            eq_(response['Location'], location)
+
+    def test_no_redirect(self):
+        # /services doesn't get an app or locale.
+        response = self.middleware.process_request(self.rf.get('/services'))
+        assert response is None
+
+    def test_vary_locale(self):
+        response = self.middleware.process_request(self.rf.get('/'))
+        eq_(response['Vary'], 'Accept-Language')
+
+        response = self.middleware.process_request(self.rf.get('/en-US'))
+        assert 'Vary' not in response
 
 
 class TestPrefixer:
@@ -34,11 +56,12 @@ class TestPrefixer:
     def setup(self):
         urlresolvers._prefixes.clear()
 
-    def test_split_request(self):
+    def test_split_path(self):
 
         def split_eq(url, locale, app, path):
             prefixer = urlresolvers.Prefixer(Request(url))
-            eq_(prefixer.split_request(), (locale, app, path))
+            actual = (prefixer.locale, prefixer.app, prefixer.shortened_path)
+            eq_(actual, (locale, app, path))
 
         split_eq('/', '', '', '')
         split_eq('/en-US', 'en-US', '', '')
