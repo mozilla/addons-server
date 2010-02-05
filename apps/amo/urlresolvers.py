@@ -35,15 +35,16 @@ class Prefixer(object):
     def __init__(self, request):
         self.request_path = request.path
 
-        self.locale, self.app, self.shortened_path = self.split_request()
+        split = self.split_path(request.path)
+        self.locale, self.app, self.shortened_path = split
 
-    def split_request(self):
+    def split_path(self, path_):
         """
         Split the requested path into (locale, app, remainder).
 
         locale and app will be empty strings if they're not found.
         """
-        path = self.request_path.lstrip('/')
+        path = path_.lstrip('/')
 
         # Use partition instead of split since it always returns 3 parts.
         first, _, first_rest = path.partition('/')
