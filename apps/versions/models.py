@@ -24,7 +24,7 @@ class Version(amo.models.ModelBase):
     def compatible_apps(self):
         """Get a mapping of {APP: ApplicationVersion}."""
         apps = {}
-        for av in self.applicationsversions_set.select_related():
+        for av in self.applicationsversions_set.select_related(depth=1):
             app_id = av.application.id
             if app_id in amo.APP_IDS:
                 apps[amo.APP_IDS[app_id]] = av
