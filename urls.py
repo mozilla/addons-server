@@ -33,8 +33,12 @@ urlpatterns = patterns('',
     # Redirect patterns.
     ('^reviews/display/(\d+)',
       lambda r, id: redirect('reviews.list', id, permanent=True)),
+
     ('^browse/type:3$',
       lambda r: redirect('browse.language_tools', permanent=True)),
+
+    # SAMO/API
+    ('^api/', include('api.urls')),
 )
 
 if settings.DEBUG:
