@@ -41,3 +41,5 @@ SECRET_KEY = 'replace me with something long'
 INSTALLED_APPS = tuple(app for app in INSTALLED_APPS if app not in DEV_APPS)
 
 LOG_LEVEL = logging.WARNING
+
+DEBUG_PROPAGATE_EXCEPTIONS = DEBUG
