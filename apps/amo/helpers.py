@@ -99,3 +99,9 @@ def _get_format():
 @register.filter
 def numberfmt(num, format=None):
     return _get_format().decimal(num, format)
+
+
+@register.function
+@jinja2.contextfunction
+def page_title(context, title):
+    return "%s :: %s" % (title, _("Add-ons for {0}").format(context['APP'].pretty))
