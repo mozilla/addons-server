@@ -1,0 +1,134 @@
+[
+    {
+        "pk": 1,
+        "model": "addons.addontype",
+        "fields": {
+            "name": null,
+            "name_plural": null,
+            "description": null,
+            "modified": "2006-07-11 11:11:11",
+            "created": "2006-06-11 18:23:31"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "addons.addon",
+        "fields": {
+            "type": 1,
+            "status": 4,
+            "highest_status": 4,
+            "description": null,
+            "modified": "2008-05-22 11:59:13",
+            "name": null,
+            "created": "2004-06-11 18:23:31"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "stats.downloadcount",
+        "fields": {
+            "addon": 4,
+            "count": 10,
+            "sources": "a:2:{s:6:\"search\";i:3;s:3:\"api\";i:2;}",
+            "date": "2009-06-01"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "stats.downloadcount",
+        "fields": {
+            "addon": 4,
+            "count": 10,
+            "sources": "a:2:{s:6:\"search\";i:3;s:3:\"api\";i:2;}",
+            "date": "2009-06-07"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "stats.downloadcount",
+        "fields": {
+            "addon": 4,
+            "count": 10,
+            "sources": "a:2:{s:6:\"search\";i:3;s:3:\"api\";i:2;}",
+            "date": "2009-06-12"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "stats.downloadcount",
+        "fields": {
+            "addon": 4,
+            "count": 10,
+            "sources": "a:2:{s:6:\"search\";i:3;s:3:\"api\";i:2;}",
+            "date": "2009-06-20"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "stats.downloadcount",
+        "fields": {
+            "addon": 4,
+            "count": 10,
+            "sources": "a:2:{s:6:\"search\";i:3;s:3:\"api\";i:2;}",
+            "date": "2009-06-28"
+        }
+    },
+    {
+        "pk": 6,
+        "model": "stats.downloadcount",
+        "fields": {
+            "addon": 4,
+            "count": 10,
+            "sources": "a:2:{s:6:\"search\";i:3;s:3:\"api\";i:2;}",
+            "date": "2009-07-03"
+        }
+    },
+    {
+        "pk": 7,
+        "model": "stats.downloadcount",
+        "fields": {
+            "addon": 4,
+            "count": 10,
+            "sources": "a:2:{s:6:\"search\";i:3;s:3:\"api\";i:2;}",
+            "date": "2009-08-03"
+        }
+    },
+    {
+        "pk": 8,
+        "model": "stats.downloadcount",
+        "fields": {
+            "addon": 4,
+            "count": 10,
+            "sources": "a:2:{s:6:\"search\";i:3;s:3:\"api\";i:2;}",
+            "date": "2009-09-03"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "stats.updatecount",
+        "fields": {
+            "addon": 4,
+            "count": 10,
+            "versions": "a:2:{s:3:\"1.0\";i:2;s:3:\"2.0\";i:8;}",
+            "statuses": "a:2:{s:11:\"userEnabled\";i:9;s:12:\"userDisabled\";i:1;}",
+            "applications": "a:1:{s:38:\"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}\";a:1:{s:5:\"3.0.9\";i:7;}}",
+            "oses": "a:2:{s:5:\"Linux\";i:3;s:5:\"WINNT\";i:7;}",
+            "locales": null,
+            "date": "2009-06-01"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "stats.updatecount",
+        "fields": {
+            "addon": 4,
+            "count": 10,
+            "versions": "a:2:{s:3:\"1.0\";i:2;s:3:\"2.0\";i:8;}",
+            "statuses": "a:2:{s:11:\"userEnabled\";i:9;s:12:\"userDisabled\";i:1;}",
+            "applications": "a:1:{s:38:\"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}\";a:1:{s:5:\"3.0.9\";i:6;}}",
+            "oses": "a:2:{s:5:\"Linux\";i:3;s:5:\"WINNT\";i:7;}",
+            "locales": null,
+            "date": "2009-06-02"
+        }
+    }
+]
