@@ -20,7 +20,7 @@ class Version(amo.models.ModelBase):
         db_table = 'versions'
         ordering = ['-created']
 
-    @property
+    @amo.cached_property
     def compatible_apps(self):
         """Get a mapping of {APP: ApplicationVersion}."""
         apps = {}
@@ -31,7 +31,7 @@ class Version(amo.models.ModelBase):
         return apps
 
     # TODO(jbalogh): Do we want names or Platforms?
-    @property
+    @amo.cached_property
     def supported_platforms(self):
         """Get a list of supported platform names."""
         return list(set(f.platform.name for f in self.files.all()))

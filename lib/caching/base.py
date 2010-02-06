@@ -88,7 +88,7 @@ class CacheMachine(object):
         # Try to fetch from the cache.
         cached = cache.get(query_key)
         if cached is not None:
-            log.debug('cache hit: %s' % query_key)
+            log.debug('cache hit: %s' % self.query_string)
             for obj in cached:
                 obj.from_cache = True
                 yield obj

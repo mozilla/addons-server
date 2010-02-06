@@ -1,0 +1,802 @@
+[
+    {
+        "pk": 3,
+        "model": "addons.addontype",
+        "fields": {
+            "modified": "2009-02-06 08:42:28",
+            "created": "2006-08-21 23:53:30"
+        }
+    },
+    {
+        "pk": 15000,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2007-03-05 13:10:42",
+            "id": 15000,
+            "modified": "2009-03-26 07:41:10",
+            "localized_string": "Walloon Language Pack"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "addons.addontype",
+        "fields": {
+            "modified": "2009-02-06 08:42:28",
+            "created": "2006-08-21 23:53:58"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "applications.application",
+        "fields": {
+            "guid": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}",
+            "modified": "2008-11-03 15:34:59",
+            "created": "2007-03-05 13:09:26"
+        }
+    },
+    {
+        "pk": 267,
+        "model": "applications.appversion",
+        "fields": {
+            "version_int": 3050000200100,
+            "application": 1,
+            "version": "3.5",
+            "modified": "2008-11-03 15:34:59",
+            "created": "2007-03-05 13:09:26"
+        }
+    },
+    {
+        "pk": 3439,
+        "model": "addons.addon",
+        "fields": {
+            "dev_agreement": 0,
+            "view_source": 0,
+            "total_downloads": 683268,
+            "inactive": 0,
+            "average_daily_downloads": 732,
+            "show_beta": 1,
+            "trusted": 0,
+            "locale_disambiguation": "",
+            "binary": 0,
+            "guid": "el-GR@dictionaries.addons.mozilla.org",
+            "weekly_downloads": 1554,
+            "paypal_id": "",
+            "average_rating": "5.00",
+            "wants_contributions": 0,
+            "average_daily_users": 53476,
+            "bayesian_rating": 4.1705500000000004,
+            "share_count": 0,
+            "get_satisfaction_company": "",
+            "public_stats": 0,
+            "status": 4,
+            "default_locale": "el-XX",
+            "target_locale": "el-XX",
+            "prerelease": 0,
+            "admin_review": 0,
+            "external_software": 0,
+            "highest_status": 4,
+            "get_satisfaction_product": "",
+            "created": "2006-09-24 09:02:12",
+            "type": 3,
+            "icon_type": "",
+            "annoying": 0,
+            "modified": "2009-03-17 00:01:54",
+            "suggested_amount": "0",
+            "site_specific": 0,
+            "total_reviews": 3,
+            "nomination_date": "2009-03-17 00:01:54"
+        }
+    },
+    {
+        "pk": 3497,
+        "model": "addons.addon",
+        "fields": {
+            "dev_agreement": 1,
+            "view_source": 0,
+            "total_downloads": 14853651,
+            "inactive": 0,
+            "average_daily_downloads": 15920,
+            "show_beta": 1,
+            "trusted": 0,
+            "locale_disambiguation": "",
+            "binary": 0,
+            "guid": "en-US@dictionaries.addons.mozilla.org",
+            "weekly_downloads": 19445,
+            "paypal_id": "",
+            "average_rating": "3.90",
+            "wants_contributions": 0,
+            "average_daily_users": 1308443,
+            "bayesian_rating": 3.9357199999999999,
+            "share_count": 4,
+            "get_satisfaction_company": "",
+            "public_stats": 1,
+            "status": 4,
+            "default_locale": "en-US",
+            "target_locale": "en-US",
+            "prerelease": 0,
+            "admin_review": 0,
+            "external_software": 0,
+            "highest_status": 4,
+            "get_satisfaction_product": "",
+            "created": "2006-10-05 12:01:22",
+            "type": 3,
+            "icon_type": "image/gif",
+            "annoying": 0,
+            "modified": "2009-10-05 00:05:30",
+            "suggested_amount": "0",
+            "site_specific": 0,
+            "total_reviews": 62,
+            "nomination_date": "2008-05-22 08:13:45"
+        }
+    },
+    {
+        "pk": 4796,
+        "model": "addons.addon",
+        "fields": {
+            "dev_agreement": 0,
+            "view_source": 0,
+            "total_downloads": 39300,
+            "inactive": 0,
+            "average_daily_downloads": 51,
+            "show_beta": 1,
+            "trusted": 0,
+            "locale_disambiguation": "myspell",
+            "binary": 0,
+            "guid": "roa-ES-val@dictionaries.addons.mozilla.org",
+            "weekly_downloads": 166,
+            "paypal_id": "",
+            "average_rating": "3.14",
+            "wants_contributions": 0,
+            "average_daily_users": 1468,
+            "bayesian_rating": 3.6734100000000001,
+            "share_count": 0,
+            "get_satisfaction_company": "",
+            "public_stats": 0,
+            "status": 4,
+            "default_locale": "es-ES",
+            "target_locale": "ca-valencia",
+            "prerelease": 0,
+            "admin_review": 0,
+            "external_software": 0,
+            "highest_status": 4,
+            "get_satisfaction_product": "",
+            "created": "2007-04-12 13:29:54",
+            "type": 3,
+            "icon_type": "image/png",
+            "annoying": 0,
+            "modified": "2009-07-28 16:48:16",
+            "suggested_amount": "0",
+            "site_specific": 0,
+            "total_reviews": 14,
+            "nomination_date": "2009-02-03 13:34:55"
+        }
+    },
+    {
+        "pk": 6526,
+        "model": "addons.addon",
+        "fields": {
+            "dev_agreement": 1,
+            "view_source": 1,
+            "total_downloads": 167176,
+            "inactive": 0,
+            "average_daily_downloads": 361,
+            "show_beta": 1,
+            "trusted": 0,
+            "locale_disambiguation": "",
+            "binary": 0,
+            "guid": "openmedspel@e-medtools.com",
+            "weekly_downloads": 12817,
+            "paypal_id": "",
+            "average_rating": "4.25",
+            "wants_contributions": 0,
+            "average_daily_users": 6852,
+            "bayesian_rating": 4.0802100000000001,
+            "share_count": 1,
+            "get_satisfaction_company": "",
+            "public_stats": 1,
+            "status": 4,
+            "default_locale": "en-US",
+            "target_locale": "en-US",
+            "prerelease": 0,
+            "admin_review": 0,
+            "external_software": 0,
+            "highest_status": 4,
+            "get_satisfaction_product": "",
+            "created": "2008-02-16 09:36:21",
+            "type": 3,
+            "icon_type": "image/png",
+            "annoying": 0,
+            "modified": "2009-10-05 12:58:02",
+            "suggested_amount": "0",
+            "site_specific": 0,
+            "total_reviews": 4,
+            "nomination_date": "2009-08-31 09:24:37"
+        }
+    },
+    {
+        "pk": 9192,
+        "model": "addons.addon",
+        "fields": {
+            "dev_agreement": 1,
+            "view_source": 0,
+            "total_downloads": 17448,
+            "inactive": 0,
+            "average_daily_downloads": 43,
+            "show_beta": 1,
+            "trusted": 0,
+            "locale_disambiguation": "AVL",
+            "binary": 0,
+            "guid": "ca-valencia@dictionaries.addons.mozilla.org",
+            "weekly_downloads": 148,
+            "paypal_id": "",
+            "average_rating": "3.79",
+            "wants_contributions": 0,
+            "average_daily_users": 538,
+            "bayesian_rating": 3.9215200000000001,
+            "share_count": 0,
+            "get_satisfaction_company": "",
+            "public_stats": 0,
+            "status": 4,
+            "default_locale": "ca",
+            "target_locale": "ca-valencia",
+            "prerelease": 0,
+            "admin_review": 0,
+            "external_software": 0,
+            "highest_status": 4,
+            "get_satisfaction_product": "",
+            "created": "2008-10-09 02:02:50",
+            "type": 3,
+            "icon_type": "image/png",
+            "annoying": 0,
+            "modified": "2009-07-08 15:54:34",
+            "suggested_amount": "0",
+            "site_specific": 0,
+            "total_reviews": 19,
+            "nomination_date": "2009-02-02 15:03:23"
+        }
+    },
+    {
+        "pk": 3790,
+        "model": "addons.addon",
+        "fields": {
+            "dev_agreement": 1,
+            "view_source": 0,
+            "total_downloads": 17466,
+            "inactive": 0,
+            "average_daily_downloads": 19,
+            "show_beta": 1,
+            "trusted": 0,
+            "locale_disambiguation": "",
+            "binary": 0,
+            "guid": "langpack-roa-ES-val@softwarevalencia.com",
+            "weekly_downloads": 73,
+            "paypal_id": "",
+            "average_rating": "3.37",
+            "wants_contributions": 0,
+            "average_daily_users": 495,
+            "bayesian_rating": 3.65801,
+            "share_count": 0,
+            "get_satisfaction_company": "",
+            "public_stats": 0,
+            "status": 4,
+            "default_locale": "es-ES",
+            "target_locale": "ca-valencia",
+            "prerelease": 0,
+            "admin_review": 0,
+            "external_software": 0,
+            "highest_status": 4,
+            "get_satisfaction_product": "",
+            "created": "2006-11-06 12:21:10",
+            "type": 5,
+            "icon_type": "image/png",
+            "annoying": 0,
+            "modified": "2009-07-28 16:50:43",
+            "suggested_amount": "0",
+            "site_specific": 0,
+            "total_reviews": 27,
+            "nomination_date": "2009-02-03 13:52:36"
+        }
+    },
+    {
+        "pk": 4443,
+        "model": "addons.addon",
+        "fields": {
+            "dev_agreement": 1,
+            "view_source": 0,
+            "total_downloads": 4531,
+            "inactive": 0,
+            "average_daily_downloads": 9,
+            "show_beta": 1,
+            "trusted": 0,
+            "locale_disambiguation": "",
+            "binary": 0,
+            "guid": "langpack-roa-ES-val@thunderbird.mozilla.org",
+            "weekly_downloads": 27,
+            "paypal_id": "",
+            "average_rating": "4.82",
+            "wants_contributions": 0,
+            "average_daily_users": 45,
+            "bayesian_rating": 4.3205999999999998,
+            "share_count": 0,
+            "get_satisfaction_company": "",
+            "public_stats": 0,
+            "status": 4,
+            "default_locale": "es-ES",
+            "target_locale": "ca-valencia",
+            "prerelease": 0,
+            "admin_review": 0,
+            "external_software": 0,
+            "highest_status": 4,
+            "get_satisfaction_product": "",
+            "created": "2007-02-01 12:00:59",
+            "type": 5,
+            "icon_type": "image/png",
+            "annoying": 0,
+            "modified": "2009-12-25 14:14:12",
+            "suggested_amount": "0",
+            "site_specific": 0,
+            "total_reviews": 11,
+            "nomination_date": "2009-02-03 13:50:00"
+        }
+    },
+    {
+        "pk": 9702,
+        "model": "addons.addon",
+        "fields": {
+            "dev_agreement": 1,
+            "view_source": 0,
+            "total_downloads": 8990,
+            "inactive": 0,
+            "average_daily_downloads": 23,
+            "show_beta": 1,
+            "trusted": 0,
+            "locale_disambiguation": "AVL",
+            "binary": 0,
+            "guid": "langpack-ca-valencia@firefox.mozilla.org",
+            "weekly_downloads": 74,
+            "paypal_id": "",
+            "average_rating": "5.00",
+            "wants_contributions": 0,
+            "average_daily_users": 332,
+            "bayesian_rating": 4.3419999999999996,
+            "share_count": 0,
+            "get_satisfaction_company": "",
+            "public_stats": 0,
+            "status": 4,
+            "default_locale": "ca",
+            "target_locale": "ca-valencia",
+            "prerelease": 0,
+            "admin_review": 0,
+            "external_software": 0,
+            "highest_status": 4,
+            "get_satisfaction_product": "",
+            "created": "2008-11-21 08:51:28",
+            "type": 5,
+            "icon_type": "image/png",
+            "annoying": 0,
+            "modified": "2010-01-14 16:20:07",
+            "suggested_amount": "0",
+            "site_specific": 0,
+            "total_reviews": 9,
+            "nomination_date": "2009-01-28 07:05:14"
+        }
+    },
+    {
+        "pk": 9730,
+        "model": "addons.addon",
+        "fields": {
+            "dev_agreement": 1,
+            "view_source": 0,
+            "total_downloads": 4278,
+            "inactive": 0,
+            "average_daily_downloads": 12,
+            "show_beta": 1,
+            "trusted": 0,
+            "locale_disambiguation": "AVL",
+            "binary": 0,
+            "guid": "langpack-ca-valencia@thunderbird.mozilla.org",
+            "weekly_downloads": 29,
+            "paypal_id": "",
+            "average_rating": "5.00",
+            "wants_contributions": 0,
+            "average_daily_users": 50,
+            "bayesian_rating": 4.2368399999999999,
+            "share_count": 0,
+            "get_satisfaction_company": "",
+            "public_stats": 0,
+            "status": 4,
+            "default_locale": "ca",
+            "target_locale": "ca-valencia",
+            "prerelease": 0,
+            "admin_review": 0,
+            "external_software": 0,
+            "highest_status": 4,
+            "get_satisfaction_product": "",
+            "created": "2008-11-24 01:02:34",
+            "type": 5,
+            "icon_type": "image/png",
+            "annoying": 0,
+            "modified": "2009-12-19 05:49:48",
+            "suggested_amount": "0",
+            "site_specific": 0,
+            "total_reviews": 5,
+            "nomination_date": "2009-02-02 14:55:21"
+        }
+    },
+    {
+        "pk": 49897,
+        "model": "addons.addon",
+        "fields": {
+            "name": 15000,
+            "dev_agreement": 1,
+            "view_source": 1,
+            "total_downloads": 71,
+            "inactive": 0,
+            "average_daily_downloads": 2,
+            "show_beta": 1,
+            "trusted": 0,
+            "locale_disambiguation": "",
+            "binary": 0,
+            "guid": "langpack-wa@firefox.mozilla.org",
+            "weekly_downloads": 5,
+            "paypal_id": "",
+            "average_rating": "0",
+            "wants_contributions": 0,
+            "average_daily_users": 7,
+            "bayesian_rating": 0.0,
+            "share_count": 0,
+            "get_satisfaction_company": "",
+            "public_stats": 0,
+            "status": 4,
+            "default_locale": "en-US",
+            "target_locale": "wa",
+            "prerelease": 0,
+            "admin_review": 0,
+            "external_software": 0,
+            "highest_status": 4,
+            "get_satisfaction_product": "",
+            "created": "2009-11-16 13:36:27",
+            "type": 5,
+            "icon_type": "image/png",
+            "annoying": 0,
+            "modified": "2010-01-15 09:19:03",
+            "suggested_amount": "0",
+            "site_specific": 0,
+            "total_reviews": 0,
+            "nomination_date": "2009-12-27 00:42:21"
+        }
+    },
+    {
+        "pk": 58463,
+        "model": "versions.version",
+        "fields": {
+            "created": "2008-12-07 02:58:13",
+            "approvalnotes": "",
+            "modified": "2009-10-14 07:30:32",
+            "version": "0.8.3",
+            "addon": 3439
+        }
+    },
+    {
+        "pk": 79773,
+        "model": "versions.version",
+        "fields": {
+            "created": "2009-10-02 02:01:07",
+            "approvalnotes": "",
+            "modified": "2009-10-02 02:03:17",
+            "version": "4.0.0",
+            "addon": 3497
+        }
+    },
+    {
+        "pk": 77260,
+        "model": "versions.version",
+        "fields": {
+            "created": "2009-08-29 13:56:36",
+            "approvalnotes": "",
+            "modified": "2009-10-10 10:21:46",
+            "version": "1.0.7",
+            "addon": 6526
+        }
+    },
+    {
+        "pk": 72900,
+        "model": "versions.version",
+        "fields": {
+            "created": "2009-07-08 15:54:34",
+            "approvalnotes": "",
+            "modified": "2009-11-11 00:39:44",
+            "version": "2.1.5",
+            "addon": 9192
+        }
+    },
+    {
+        "pk": 70873,
+        "model": "versions.version",
+        "fields": {
+            "created": "2009-06-21 11:16:45",
+            "approvalnotes": "Updated for Firefox 3.5.",
+            "modified": "2009-07-01 13:11:18",
+            "version": "3.5",
+            "addon": 3790
+        }
+    },
+    {
+        "pk": 88879,
+        "model": "versions.version",
+        "fields": {
+            "created": "2009-12-25 12:52:11",
+            "approvalnotes": "",
+            "modified": "2009-12-25 12:52:11",
+            "version": "3.0.0",
+            "addon": 4443
+        }
+    },
+    {
+        "pk": 71407,
+        "model": "versions.version",
+        "fields": {
+            "created": "2009-06-28 16:34:35",
+            "approvalnotes": "",
+            "modified": "2009-06-28 16:35:36",
+            "version": "3.5.0.2",
+            "addon": 9702
+        }
+    },
+    {
+        "pk": 88168,
+        "model": "versions.version",
+        "fields": {
+            "created": "2009-12-19 05:49:49",
+            "approvalnotes": "",
+            "modified": "2009-12-19 05:51:21",
+            "version": "3.0.1",
+            "addon": 9730
+        }
+    },
+    {
+        "pk": 87551,
+        "model": "versions.version",
+        "fields": {
+            "created": "2009-12-13 09:44:59",
+            "approvalnotes": "",
+            "modified": "2009-12-13 09:44:59",
+            "version": "3.5.0.20091213.8",
+            "addon": 49897
+        }
+    },
+    {
+        "pk": 41600,
+        "model": "versions.applicationsversions",
+        "fields": {
+            "application": 1,
+            "max": 267,
+            "version": 70873,
+            "min": 267
+        }
+    },
+    {
+        "pk": 41953,
+        "model": "versions.applicationsversions",
+        "fields": {
+            "application": 1,
+            "max": 267,
+            "version": 71407,
+            "min": 267
+        }
+    },
+    {
+        "pk": 43015,
+        "model": "versions.applicationsversions",
+        "fields": {
+            "application": 1,
+            "max": 267,
+            "version": 72900,
+            "min": 267
+        }
+    },
+    {
+        "pk": 47277,
+        "model": "versions.applicationsversions",
+        "fields": {
+            "application": 1,
+            "max": 267,
+            "version": 79773,
+            "min": 267
+        }
+    },
+    {
+        "pk": 50887,
+        "model": "versions.applicationsversions",
+        "fields": {
+            "application": 1,
+            "max": 267,
+            "version": 87551,
+            "min": 267
+        }
+    },
+    {
+        "pk": 33104,
+        "model": "versions.applicationsversions",
+        "fields": {
+            "application": 1,
+            "max": 267,
+            "version": 58463,
+            "min": 267
+        }
+    },
+    {
+        "pk": 45793,
+        "model": "versions.applicationsversions",
+        "fields": {
+            "application": 1,
+            "max": 267,
+            "version": 77260,
+            "min": 267
+        }
+    },
+    {
+        "pk": 31203,
+        "model": "versions.applicationsversions",
+        "fields": {
+            "application": 1,
+            "max": 267,
+            "version": 88168,
+            "min": 267
+        }
+    },
+    {
+        "pk": 1,
+        "model": "files.platform",
+        "fields": {
+            "icontype": "",
+            "modified": "2008-04-07 08:16:55",
+            "created": "2007-03-05 13:09:27"
+        }
+    },
+    {
+        "pk": 42473,
+        "model": "files.file",
+        "fields": {
+            "status": 4,
+            "codereview": 0,
+            "hash": "sha256:5cea78303c0fd418e90a413bf3afd60887eef146ee9f05152f57e9dfd9307bbd",
+            "created": "2008-12-07 02:58:13",
+            "modified": "2009-10-14 07:30:31",
+            "filename": "greek_spellchecking_dictionary_-0.8.3-fx+tb+sm.xpi",
+            "platform": 1,
+            "version": 58463,
+            "datestatuschanged": "2009-01-03 11:55:47",
+            "size": 1549
+        }
+    },
+    {
+        "pk": 65839,
+        "model": "files.file",
+        "fields": {
+            "status": 4,
+            "codereview": 0,
+            "hash": "sha256:5514b47abca7ac5175ce73d1af8a5ce6282c03628011179b3e4b9bd72d85c657",
+            "created": "2009-10-02 02:01:07",
+            "modified": "2009-10-02 06:00:28",
+            "filename": "united_states_english_dictionary-4.0.0-fx+tb+sm.xpi",
+            "platform": 1,
+            "version": 79773,
+            "datestatuschanged": "2009-10-02 06:00:28",
+            "size": 223
+        }
+    },
+    {
+        "pk": 63183,
+        "model": "files.file",
+        "fields": {
+            "status": 4,
+            "codereview": 0,
+            "hash": "sha256:129a20b1bfe29abac90fa72f9b259c81e11ce369854de52225f49c11f451a96a",
+            "created": "2009-08-29 13:56:37",
+            "modified": "2009-10-10 10:21:46",
+            "filename": "openmedspel-1.0.7-fx+tb+sm.xpi",
+            "platform": 1,
+            "version": 77260,
+            "datestatuschanged": "2009-10-05 12:58:01",
+            "size": 429
+        }
+    },
+    {
+        "pk": 58261,
+        "model": "files.file",
+        "fields": {
+            "status": 4,
+            "codereview": 0,
+            "hash": "sha256:2bf8cd8a8f50cff24e7a3490bff00f35e67a58213624998a40bad10675f94ded",
+            "created": "2009-07-08 15:54:34",
+            "modified": "2009-11-11 00:39:41",
+            "filename": "diccionari_catal____valenci___-2.1.5-fx+tb+sm.xpi",
+            "platform": 1,
+            "version": 72900,
+            "datestatuschanged": "2009-07-10 08:40:37",
+            "size": 599
+        }
+    },
+    {
+        "pk": 57164,
+        "model": "files.file",
+        "fields": {
+            "status": 4,
+            "codereview": 0,
+            "hash": "sha256:9a3ad712289df0420962fba05ec5cb04232fe6158bdc5a5a27fbe5f3aec5db72",
+            "created": "2009-07-01 13:11:36",
+            "modified": "2009-07-24 18:11:20",
+            "filename": "paquet_d__idioma_valenci__-3.5-fx.xpi",
+            "platform": 1,
+            "version": 70873,
+            "datestatuschanged": "2009-07-24 18:11:20",
+            "size": 109
+        }
+    },
+    {
+        "pk": 73769,
+        "model": "files.file",
+        "fields": {
+            "status": 4,
+            "codereview": 0,
+            "hash": "sha256:11f73e51cca8e39b941a2dfa256e977ff7397bcced363e46e115c40f9008d5b8",
+            "created": "2009-12-25 12:52:11",
+            "modified": "2010-01-05 13:03:36",
+            "filename": "paquet_d__idioma_valenci__-3.0.0-tb.xpi",
+            "platform": 1,
+            "version": 88879,
+            "datestatuschanged": "2010-01-05 13:03:36",
+            "size": 163
+        }
+    },
+    {
+        "pk": 56592,
+        "model": "files.file",
+        "fields": {
+            "status": 4,
+            "codereview": 0,
+            "hash": "sha256:e510f35b0a5557937527687246001a4d364da2171088c30bead071795f7ae4fa",
+            "created": "2009-06-28 16:34:36",
+            "modified": "2009-07-11 15:59:43",
+            "filename": "catal____valenci____language_pack-3.5.0.2-fx.xpi",
+            "platform": 1,
+            "version": 71407,
+            "datestatuschanged": "2009-07-11 15:59:43",
+            "size": 123
+        }
+    },
+    {
+        "pk": 73192,
+        "model": "files.file",
+        "fields": {
+            "status": 4,
+            "codereview": 0,
+            "hash": "sha256:276b9e458fef8f85499a75dcca44912e9790b9cb87235252c7f72ff9aee25798",
+            "created": "2009-12-19 05:49:51",
+            "modified": "2009-12-22 12:40:41",
+            "filename": "catal____valenci____language_pack-3.0.1-tb.xpi",
+            "platform": 1,
+            "version": 88168,
+            "datestatuschanged": "2009-12-22 12:40:41",
+            "size": 202
+        }
+    },
+    {
+        "pk": 72631,
+        "model": "files.file",
+        "fields": {
+            "status": 4,
+            "codereview": 0,
+            "hash": "sha256:b234f2114fcd517875a65d6f985ace448de03401083e3765563756836276ad46",
+            "created": "2009-12-13 09:45:00",
+            "modified": "2010-01-14 09:51:01",
+            "filename": "walloon_language_pack-3.5.0.20091213.8-fx.xpi",
+            "platform": 1,
+            "version": 87551,
+            "datestatuschanged": "2010-01-14 09:51:01",
+            "size": 176
+        }
+    }
+]

@@ -15,6 +15,9 @@ urlpatterns = patterns('',
     # Add-ons.
     ('', include('addons.urls')),
 
+    # Browse pages.
+    ('', include('browse.urls')),
+
     # Users
     ('^users/', include('users.urls')),
 
@@ -30,6 +33,8 @@ urlpatterns = patterns('',
     # Redirect patterns.
     ('^reviews/display/(\d+)',
       lambda r, id: redirect('reviews.list', id, permanent=True)),
+    ('^browse/type:3$',
+      lambda r: redirect('browse.language_tools', permanent=True)),
 )
 
 if settings.DEBUG:
