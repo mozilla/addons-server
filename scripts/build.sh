@@ -5,9 +5,6 @@ VENV=$WORKSPACE/venv
 
 echo "Starting build..."
 
-# Update submodules
-git submodule update --init
-
 # Make sure there's no old pyc files around.
 find . -name '*.pyc' | xargs rm
 
