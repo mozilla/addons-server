@@ -18,6 +18,14 @@ Then put ``multidb.MasterSlaveRouter`` into DATABASE_ROUTERS::
     DATABASE_ROUTERS = ('multidb.MasterSlaveRouter',)
 
 The slave databases will be chosen in round-robin fashion.
+
+If you want to get a connection to a slave in your app, use
+:func:`multidb.get_slave`::
+
+    from django.db import connections
+    import multidb
+
+    connection = connections[multidb.get_slave()]
 """
 import itertools
 import random
@@ -40,12 +48,17 @@ else:
     slaves = itertools.repeat(DEFAULT_DB_ALIAS)
 
 
+def get_slave():
+    """Returns the alias of a slave database."""
+    return slaves.next()
+
+
 class MasterSlaveRouter(object):
     """Router that sends all reads to a slave, all writes to default."""
 
     def db_for_read(self, model, **hints):
         """Send reads to slaves in round-robin."""
-        return slaves.next()
+        return get_slave()
 
     def db_for_write(self, model, **hints):
         """Send all writes to the master."""
