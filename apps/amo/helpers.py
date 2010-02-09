@@ -1,4 +1,5 @@
 import collections
+import math
 
 from django.utils import translation
 from django.utils.translation import ugettext as _
@@ -105,3 +106,39 @@ def numberfmt(num, format=None):
 @jinja2.contextfunction
 def page_title(context, title):
     return "%s :: %s" % (title, _("Add-ons for {0}").format(context['APP'].pretty))
+
+
+# XXX: Jinja2's round is broken:
+# http://dev.pocoo.org/projects/jinja/ticket/367
+@register.filter
+def wround(value, precision=0, method='common'):
+    """Round the number to a given precision. The first
+    parameter specifies the precision (default is ``0``), the
+    second the rounding method:
+
+    - ``'common'`` rounds either up or down
+    - ``'ceil'`` always rounds up
+    - ``'floor'`` always rounds down
+
+    If you don't specify a method ``'common'`` is used.
+
+    .. sourcecode:: jinja
+
+        {{ 42.55|round }}
+            -> 43
+        {{ 42.55|round(1, 'floor') }}
+            -> 42.5
+    """
+    if not method in ('common', 'ceil', 'floor'):
+        raise FilterArgumentError('method must be common, ceil or floor')
+    if precision < 0:
+        raise FilterArgumentError('precision must be a postive integer '
+                                  'or zero.')
+    if method == 'common':
+        val = round(value, precision)
+        return val if precision else int(val)
+    func = getattr(math, method)
+    if precision:
+        return func(value * 10 * precision) / (10 * precision)
+    else:
+        return int(func(value))

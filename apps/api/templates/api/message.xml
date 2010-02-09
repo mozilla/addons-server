@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+{% if error_level %}
+<error>{{_(msg)}}</error>
+{% else %}
+<msg>{{_(msg)}} </msg>
+{% endif %}

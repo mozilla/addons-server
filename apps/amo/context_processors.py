@@ -40,4 +40,4 @@ def global_settings(request):
         link['href'] = '/users/logout?to=' + urlquote(request.path)
         account_links.append(link)
 
-    return {'account_links': account_links}
+    return {'account_links': account_links, 'settings': settings}

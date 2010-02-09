@@ -11,6 +11,9 @@ from .utils import convert_version, crc32
 m_dot_n_re = re.compile(r'^\d+\.\d+$')
 SEARCH_ENGINE_APP = 99
 
+class SearchError(Exception):
+    pass
+
 
 class Client(object):
     """
@@ -84,7 +87,7 @@ class Client(object):
         # STATUS_DISABLED and 0 (which likely means null) are filtered from
         # search
 
-        sc.SetFilter('status', (0, amo.STATUS_DISABLED), True)
+        sc.SetFilter('addon_status', (0, amo.STATUS_DISABLED), True)
 
         # Unless we're in admin mode, or we're looking at stub entries,
         # everything must have a file.
@@ -109,7 +112,7 @@ class Client(object):
         else:
             # We want to boost public addons, and addons in your native
             # language.
-            expr = ("@weight + IF(status=%d, 30, 0) + "
+            expr = ("@weight + IF(addon_status=%d, 30, 0) + "
                 "IF(locale_ord=%d, 29, 0)") % (amo.STATUS_PUBLIC,
                 crc32(translation.get_language()))
             sc.SetSortMode(sphinx.SPH_SORT_EXPR, expr)
@@ -149,6 +152,9 @@ class Client(object):
         #   * Logging
 
         result = sc.Query(term)
+
+        if sc.GetLastError():
+            raise SearchError(sc.GetLastError())
 
         if result:
             return result['matches']

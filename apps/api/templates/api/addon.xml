@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<addon>
+  <name>{{addon.name}}</name>
+  <type id="{{addon.type.id}}">{{amo.ADDON_TYPE[addon.type.id]}}</type>
+  <guid>{{addon.guid}}</guid>
+  <version>{{addon.current_version.version}}</version>
+  <status id="{{addon.status}}">{{amo.STATUS_CHOICES[addon.status]}}</status>
+  <authors>
+    {% for author in addon.authors.filter(addonuser__listed=True) %}
+    <author>{{author.display_name}}</author>
+    {% endfor %}
+  </authors>
+  <summary>{{addon.summary}}</summary>
+  <description>{{addon.description}}</description>
+  <icon>{{addon.icon_url}}</icon>
+  <compatible_applications>
+    {% if addon.current_version %}
+    {% for app in addon.current_version.applicationsversions_set.all() %}
+    <application>
+      <name>{{amo.APP_IDS[app.application_id].pretty}}</name>
+      <application_id>{{app.application.id}}</application_id>
+      <min_version>{{app.min}}</min_version>
+      <max_version>{{app.max}}</max_version>
+    </application>
+    {% endfor %}
+    {% endif %}
+  </compatible_applications>
+  <all_compatible_os>
+    {% if addon.current_version %}
+    {% for os in addon.current_version.supported_platforms %}
+    <os>{{os}}</os>
+    {% endfor %}
+    {% endif %}
+  </all_compatible_os>
+  <eula>{{addon.eula}}</eula>
+  <thumbnail>{{addon.thumbnail_url}}</thumbnail>
+  <rating>{{addon.bayesian_rating|wround}}</rating>
+  <learnmore>{{settings.SITE_URL+addon.get_absolute_url()+'?src=api'}}</learnmore>
+  {% if addon.current_version %}
+  {% for file in addon.current_version.files.all() %}
+  <install hash="{{file.hash}}" os="{{file.platform.name}}">
+    {{file.get_absolute_url('api')}}
+  </install>
+  {% endfor %}
+  {% endif %}
+</addon>
+

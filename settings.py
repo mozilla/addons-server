@@ -134,6 +134,7 @@ INSTALLED_APPS = (
     'access',
     'addons',
     'admin',
+    'api',
     'applications',
     'bandwagon',
     'blocklist',
@@ -187,10 +188,13 @@ def JINJA_CONFIG():
         config['bytecode_cache'] = bc
     return config
 
+# The host currently running the site.  Only use this in code for good reason;
+# the site is designed to run on a cluster and should continue to support that
+HOSTNAME = socket.gethostname()
 
 # Full base URL for your main site including protocol.  No trailing slash.
 #   Example: https://addons.mozilla.org
-SITE_URL = 'http://%s' % socket.gethostname()
+SITE_URL = 'http://%s' % HOSTNAME
 
 # If you want to run Selenium tests, you'll need to have a server running.
 # Then give this a dictionary of settings.  Something like:

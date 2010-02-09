@@ -2,10 +2,9 @@
       <div class="section">
         <div class="primary">
           <p>{% trans legalurl="http://www.mozilla.com/en-US/about/legal.html#site", ccurl="http://creativecommons.org/licenses/by-sa/3.0/" -%}
-                Except where otherwise <a href="{{ legalurl }}">noted</a>, content on this site is licensed under the<br /><strong>
-                <a href="{{ ccurl }}">Creative Commons Attribution Share-Alike License v3.0</a></strong> or any later version
-             {%- endtrans %}
-             .{# Period is outside of the translation for future use. #}
+             Except where otherwise <a href="{{ legalurl }}">noted</a>, content on this site is licensed under the
+             <strong><a href="{{ ccurl }}">Creative Commons Attribution Share-Alike License v3.0</a></strong> or any later version
+             {%- endtrans %}<span title="{{ settings.HOSTNAME }}">.</span>
           </p>
           <form class="languages go" method="get" action="">
             <label for="language">{{ _('Other languages:') }}</label>

@@ -31,14 +31,14 @@ class TestUserProfile(test.TestCase):
 
     def test_resetcode_expires(self):
         """
-        For some reasone resetcode is required, and we default it to
+        For some reason resetcode is required, and we default it to
         '0000-00-00 00:00' in mysql, but that doesn't fly in Django since it's
         an invalid date.  If Django reads this from the db, it interprets this
         as resetcode_expires as None
         """
 
         u = UserProfile(lastname='Connor', pk=2, resetcode_expires=None,
-                        email='j.connor@sky.net')
+                        nickname='jconnor', email='j.connor@sky.net')
         u.save()
         assert u.resetcode_expires
 

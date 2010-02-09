@@ -1,5 +1,16 @@
 [
     {
+        "pk": 36151,
+        "model": "translations.translation",
+        "fields": {
+            "id": 36151,
+            "locale": "en-US",
+            "localized_string": "Best Addon Evar",
+            "created": "2001-01-01 13:14:15"
+        }
+    },
+
+    {
         "pk": 1,
         "model": "translations.translation",
         "fields": {
@@ -58,6 +69,33 @@
         }
     },
     {
+        "pk": 55021,
+        "model": "users.userprofile",
+        "fields": {
+            "nickname": "carlsjr",
+            "sandboxshown": 1,
+            "display_collections_fav": 0,
+            "display_collections": 0,
+            "occupation": "",
+            "confirmationcode": "",
+            "location": "",
+            "picture_type": "",
+            "averagerating": "3.11",
+            "homepage": "http://www.yahoo.com/",
+            "email": "dd+0cb167b90cc5ed1b6d0e4566d2c2c3a6@davedash.com",
+            "notifycompat": 1,
+            "firstname": "Carl",
+            "deleted": 0,
+            "lastname": "Yahoo!, Jr.",
+            "emailhidden": 1,
+            "password": "sha512$61ba34cb04c185f51ca6b5c3132bfbf5b4d6b16c329ff076039c597c0d14912f$9b461aca85bcbc326c0555c3165ff526eabdce82a49c7408bbb71121d3d9d48499c952b96dc520cb4accbca0df0cd1d17756873d08e488a9a144aaf34cb78bf1",
+            "resetcode": "",
+            "created": "2007-03-05 13:09:56",
+            "modified": "2007-07-21 11:45:47",
+            "notifyevents": 1
+        }
+    },
+    {
         "pk": 3615,
         "model": "addons.addon",
         "fields": {
@@ -80,6 +118,7 @@
             "icon_type": "image/png",
             "status": 4,
             "description": 15002,
+            "summary": 36151,
             "site_specific": 1,
             "nomination_date": "2009-03-26 07:41:12",
             "wants_contributions": 0,
@@ -182,6 +221,16 @@
             "version": "2",
             "version_int": 2,
             "created": "2006-08-21 23:53:19"
+        }
+    },
+      {
+        "pk": 240071,
+        "model": "versions.applicationsversions",
+        "fields": {
+            "application": 1,
+            "version": 24007,
+            "min": 200,
+            "max": 201
         }
     },
       {
@@ -352,6 +401,17 @@
             "notes": "",
             "modified": "2010-01-12 17:01:41",
             "notifyevents": 1
+        }
+    },
+    {
+        "pk": 2808,
+        "model": "addons.addonuser",
+        "fields": {
+            "position": 0,
+            "listed": 1,
+            "role": 5,
+            "user": 55021,
+            "addon": 3615
         }
     }
 ]
