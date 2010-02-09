@@ -145,6 +145,8 @@
             "version": 39083,
             "platform": 1,
             "filename": "sweetaddon-fx-1.0.xpi",
+            "modified": "2009-08-03 23:59:20",
+            "created": "2009-08-03 23:58:46",
             "hash": "sha256:3d690208f3a50b8be4d7cc0a696dd3970d2bf1e32813274199cab99c66917781",
             "status": "1"
         }
@@ -156,6 +158,8 @@
             "version": 2,
             "platform": 1,
             "filename": "suckyaddon-fx-1.0.xpi",
+            "modified": "2009-08-03 23:59:20",
+            "created": "2009-08-03 23:58:46",
             "hash": "sha256:0934704605d5976734711897ad2d5c91390f6792ee7352d2c6019cfd77367ce1",
             "status": "4"
         }
@@ -173,6 +177,8 @@
             "reply_to": null,
             "os": "",
             "addon": 1,
+            "modified": "2009-08-03 23:59:20",
+            "created": "2009-08-03 23:58:46",
             "file": 1
         }
     },
@@ -189,6 +195,8 @@
             "reply_to": null,
             "os": "",
             "addon": 3,
+            "modified": "2009-08-03 23:59:20",
+            "created": "2009-08-03 23:58:46",
             "file": 2
         }
     },
