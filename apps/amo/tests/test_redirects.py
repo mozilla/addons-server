@@ -19,3 +19,16 @@ class TestRedirects(test.TestCase):
         response = self.client.get('/browse/type:3', follow=True)
         self.assertRedirects(response, '/en-US/firefox/language-tools',
                              status_code=301)
+
+    def test_accept_language(self):
+        """
+        Given an Accept Language header with a preference for German we should
+        redirect to the /de/firefox site.
+        """
+        response = self.client.get('/', follow=True, HTTP_ACCEPT_LANGUAGE='de')
+        self.assertRedirects(response, '/de/firefox/', status_code=301)
+
+        # test that en-us->en-US
+        response = self.client.get('/', follow=True,
+                                   HTTP_ACCEPT_LANGUAGE='en-us,de;q=0.5')
+        self.assertRedirects(response, '/en-US/firefox/', status_code=301)

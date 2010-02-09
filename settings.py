@@ -58,9 +58,10 @@ AMO_LANGUAGES = (
 )
 
 # Override Django's built-in with our native names
-LANGUAGES = dict([(i, product_details.languages[i]['native'])
+LANGUAGES = dict([(i.lower(), product_details.languages[i]['native'])
                  for i in AMO_LANGUAGES])
 
+LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not

@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.core.urlresolvers import reverse as django_reverse
 from django.utils.thread_support import currentThread
+from django.utils.translation.trans_real import parse_accept_lang_header
 
 import amo.models
 
@@ -34,7 +35,7 @@ class Prefixer(object):
 
     def __init__(self, request):
         self.request_path = request.path
-
+        self.request = request
         split = self.split_path(request.path)
         self.locale, self.app, self.shortened_path = split
 
@@ -50,7 +51,7 @@ class Prefixer(object):
         first, _, first_rest = path.partition('/')
         second, _, rest = first_rest.partition('/')
 
-        if first in settings.LANGUAGES:
+        if first.lower() in settings.LANGUAGES:
             if second in amo.APPS:
                 return first, second, rest
             else:
@@ -63,12 +64,24 @@ class Prefixer(object):
             else:
                 return '', '', path
 
+    def get_language(self):
+        if (hasattr(self.request,'META') and
+            self.request.META.get('HTTP_ACCEPT_LANGUAGE')):
+            ranked_languages = parse_accept_lang_header(
+                    self.request.META['HTTP_ACCEPT_LANGUAGE'])
+            supported = [lang[0] for lang in ranked_languages if lang[0]
+                    in settings.LANGUAGES]
+            if len(supported):
+                return settings.LANGUAGE_URL_MAP[supported[0]]
+
+        return settings.LANGUAGE_CODE
+
     def fix(self, path):
         path = path.lstrip('/')
         url_parts = []
 
         if path.partition('/')[0] not in settings.SUPPORTED_NONLOCALES:
-            locale = self.locale if self.locale else settings.LANGUAGE_CODE
+            locale = self.locale if self.locale else self.get_language()
             url_parts.append(locale)
 
         if path.partition('/')[0] not in settings.SUPPORTED_NONAPPS:
