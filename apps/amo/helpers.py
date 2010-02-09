@@ -11,7 +11,14 @@ import jinja2
 from jingo import register, env
 
 import amo
+from amo import urlresolvers
 from addons.models import Category
+
+
+@register.function
+def url(viewname, *args, **kwargs):
+    """Helper for Django's ``reverse`` in templates."""
+    return urlresolvers.reverse(viewname, args=args, kwargs=kwargs)
 
 
 @register.filter

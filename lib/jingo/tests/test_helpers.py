@@ -2,7 +2,6 @@
 from datetime import datetime
 
 from nose.tools import eq_
-from mock import patch
 
 import jingo
 
@@ -52,12 +51,6 @@ def test_class_selected():
 
     s = render('{{ a|class_selected(b) }}', neq_context)
     eq_(s, '')
-
-
-@patch('jingo.helpers.urlresolvers.reverse')
-def test_url(mock_reverse):
-    render('{{ url("viewname", 1, z=2) }}')
-    mock_reverse.assert_called_with('viewname', args=(1,), kwargs={'z': 2})
 
 
 def test_csrf():
