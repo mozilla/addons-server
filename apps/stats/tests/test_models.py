@@ -1,8 +1,11 @@
-from django import test
-from nose.tools import eq_
-from stats.models import DownloadCount, UpdateCount, StatsDict
-
 from datetime import date
+from decimal import Decimal
+
+from django import test
+
+from nose.tools import eq_
+
+from stats.models import Contribution, DownloadCount, UpdateCount, StatsDict
 
 
 class TestDownloadCountModel(test.TestCase):
@@ -115,3 +118,24 @@ class TestUpdateCountModel(test.TestCase):
             'unexpected row_count in applications summary')
         eq_(summary['apps'][self.test_app][self.test_ver], 13,
             'unexpected total for app version')
+
+
+class TestContributionModel(test.TestCase):
+    fixtures = ['stats/test_models.json']
+
+    def test_basic(self):
+        c = Contribution.objects.get(id=1)
+
+        eq_(c.amount, Decimal('1.99'), 'unexpected amount')
+        assert isinstance(c.post_data, StatsDict), \
+            'post_data is not a StatsDict'
+        eq_(c.email, 'nobody@mozilla.com', 'unexpected payer_email')
+
+    def test_daily_summary(self):
+        qs = Contribution.objects.filter(addon=4, transaction_id__isnull=False,
+                created__range=(date(2009, 6, 2), date(2009, 6, 3)))
+        days = list(qs.daily_summary('amount'))
+
+        eq_(len(days), 1, 'unexpected number of days')
+        eq_(days[0]['row_count'], 2, 'unexpected row_count')
+        eq_(days[0]['amount'], Decimal('4.98'), 'unexpected total amount')
