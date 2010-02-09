@@ -52,6 +52,6 @@ class TestViews(test_utils.TestCase):
         eq_(len(addons), 1)
 
     def test_popular(self):
-        url = reverse('nick.popular')
+        url = reverse('nick.popular') + '?category=tabs'
         response = self.client.get(url, follow=True)
         eq_(response.status_code, 200)

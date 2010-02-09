@@ -128,7 +128,7 @@ def view(request, func):
     returns the queryset we should operate on.  The rest of the structure is
     the same.
     """
-    qs = func(request).distinct()
+    qs = func(request).exclude(type=amo.ADDON_PERSONA).distinct()
     date_ = date.today()
     form = CategoryForm(request)
 
@@ -144,7 +144,8 @@ def view(request, func):
     f = lambda: attach_stats(request, qs, date_)
     addons = cached(f, cache_key, time.mktime(tomorrow.timetuple()))
 
-    c = {'addons': addons, 'section': func.__name__,
+    # Hard limit at 250.  Pagination would be friendlier.
+    c = {'addons': addons[:250], 'section': func.__name__,
          'form': form, 'sections': get_sections()}
     return jingo.render(request, 'nick/featured.html', c)
 
@@ -167,22 +168,20 @@ def section(title):
 
 @section('Featured')
 def featured(request):
-    return Addon.objects.featured(request.APP).exclude(type=amo.ADDON_PERSONA)
+    return Addon.objects.featured(request.APP)
 
 
 @section('Category Featured')
 def category_featured(request):
-    return Addon.objects.category_featured().exclude(type=amo.ADDON_PERSONA)
+    return Addon.objects.category_featured()
 
 
 @section('Featured + Category Featured')
 def combo(request):
     o = Addon.objects
-    q = o.featured(request.APP) | o.category_featured()
-    return q.exclude(type=amo.ADDON_PERSONA)
+    return o.featured(request.APP) | o.category_featured()
 
 
 @section('Popular')
 def popular(request):
-    return (Addon.objects.order_by('-weekly_downloads')
-            .exclude(type=amo.ADDON_PERSONA)[:250])
+    return Addon.objects.order_by('-weekly_downloads')
