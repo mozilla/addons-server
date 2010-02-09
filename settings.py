@@ -134,6 +134,7 @@ INSTALLED_APPS = (
     'access',
     'addons',
     'admin',
+    'api',
     'applications',
     'bandwagon',
     'blocklist',
