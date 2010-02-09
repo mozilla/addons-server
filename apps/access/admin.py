@@ -1,17 +1,17 @@
 from django.contrib import admin
 
-from .models import Group
+from .models import Group, GroupUser
 
 
-# XXX: needs Django 1.2
-# class UserInline(admin.TabularInline):
-#     Group.users.through
-#     raw_id_fields = ('user_id',)
+class GroupUserInline(admin.TabularInline):
+    model = GroupUser
+    raw_id_fields = ('user',)
 
 
 class GroupAdmin(admin.ModelAdmin):
     raw_id_fields = ('users',)
     ordering = ('name',)
     list_display = ('name', 'rules')
+    inlines = (GroupUserInline,)
 
 admin.site.register(Group, GroupAdmin)

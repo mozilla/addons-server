@@ -34,7 +34,8 @@ class UserProfile(amo.models.ModelBase):
 
     averagerating = models.CharField(max_length=255, blank=True)
     bio = TranslatedField()
-    confirmationcode = models.CharField(max_length=255, default='')
+    confirmationcode = models.CharField(max_length=255, default='',
+                                        blank=True)
     deleted = models.BooleanField(default=True)
     display_collections = models.BooleanField(default=False)
     display_collections_fav = models.BooleanField(default=False)
@@ -44,13 +45,14 @@ class UserProfile(amo.models.ModelBase):
     notes = models.TextField(blank=True)
     notifycompat = models.BooleanField(default=True)
     notifyevents = models.BooleanField(default=True)
-    occupation = models.CharField(max_length=765, default='')
-    picture_type = models.CharField(max_length=75, default='')
-    resetcode = models.CharField(max_length=255, default='')
-    resetcode_expires = models.DateTimeField(default=datetime.now)
+    occupation = models.CharField(max_length=765, default='', blank=True)
+    picture_type = models.CharField(max_length=75, default='', blank=True)
+    resetcode = models.CharField(max_length=255, default='', blank=True)
+    resetcode_expires = models.DateTimeField(default=datetime.now,
+                                             blank=True)
     sandboxshown = models.BooleanField(default=False)
 
-    user = models.ForeignKey(DjangoUser, null=True)
+    user = models.ForeignKey(DjangoUser, null=True, editable=False, blank=True)
 
     class Meta:
         db_table = 'users'
