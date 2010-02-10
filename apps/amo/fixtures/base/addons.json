@@ -355,7 +355,7 @@
         "pk": 7172,
         "model": "files.file",
         "fields": {
-            "status": 1,
+            "status": 4,
             "codereview": 0,
             "hash": "sha256:5b5aaf7b38e332cc95d92ba759c01c3076b53a840f6c16e01dc272eefcb29566",
             "created": "2007-03-05 13:19:15",
@@ -368,12 +368,23 @@
         }
     },
     {
-        "pk": 1,
+        "pk": 73,
+        "model": "translations.translation",
+        "fields": {
+            "id": 73,
+            "locale": "en-US",
+            "localized_string": "z addon seventy-three",
+            "created": "2001-01-01 13:14:15"
+        }
+    },
+    {
+        "pk": 73,
         "model": "addons.addon",
         "fields": {
             "type": 1,
             "status": 4,
-            "bayesian_rating": 1.0,
+            "name": 73,
+            "bayesian_rating": 0.8,
             "weekly_downloads": 23523,
             "modified": "2006-08-21 23:53:19",
             "created": "2006-08-21 23:53:19"
@@ -383,7 +394,7 @@
         "pk": 73,
         "model": "versions.version",
         "fields": {
-            "addon": 1,
+            "addon": 73,
             "created": "2006-08-21 23:53:19"
         }
     },
@@ -401,7 +412,7 @@
         "pk": 73,
         "model": "files.file",
         "fields": {
-            "status": 1,
+            "status": 4,
             "codereview": 0,
             "hash": "sha256:5b5aaf7b38e332cc95d92ba759c01c3076b53a840f6c16e01dc272eefcb29566",
             "created": "2007-03-05 13:19:15",
@@ -415,12 +426,23 @@
     },
     {
         "pk": 55,
+        "model": "translations.translation",
+        "fields": {
+            "id": 55,
+            "locale": "en-US",
+            "localized_string": "addon fifty-five",
+            "created": "2001-01-01 13:14:15"
+        }
+    },
+    {
+        "pk": 55,
         "model": "addons.addon",
         "fields": {
             "type": 1,
             "status": 1,
+            "name": 55,
             "bayesian_rating": 1.0,
-            "weekly_downloads": 23523,
+            "weekly_downloads": 3865386,
             "modified": "2006-08-21 23:53:19",
             "created": "2006-08-21 23:53:19"
         }

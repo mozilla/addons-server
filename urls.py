@@ -34,6 +34,9 @@ urlpatterns = patterns('',
     ('^jsi18n/$', 'django.views.i18n.javascript_catalog',
      {'domain': 'javascript', 'packages': ['zamboni']}),
 
+    # SAMO/API
+    ('^api/', include('api.urls')),
+
     # Redirect patterns.
     ('^reviews/display/(\d+)',
       lambda r, id: redirect('reviews.list', id, permanent=True)),
@@ -44,8 +47,8 @@ urlpatterns = patterns('',
     ('^browse/type:3$',
       lambda r: redirect('browse.language_tools', permanent=True)),
 
-    # SAMO/API
-    ('^api/', include('api.urls')),
+    ('^browse/type:2.*$',
+     lambda r: redirect('browse.themes', permanent=True)),
 )
 
 if settings.DEBUG:

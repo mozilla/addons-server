@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block title %}
+{# L10n: {0} is a translated theme name like "Nature" or "Sports" #}
+{{ page_title(_('{0} Themes')|f(selected.name)) }}
+{% endblock %}
+
+{% block bodyclass %}browse-thumbs{% endblock %}
+
+{% block content %}
+<div class="secondary">
+  {% set params = dict(experimental=experimental, sort=sorting) %}
+  <div id="thumb-categories" class="highlight">
+    <h3>{{ _('Themes') }}</h3>
+    <ul class="subcategories">
+      <li {% if selected not in categories %}class="selected"{% endif %}>
+        <a href="{{ url('browse.themes')|urlparams(**params) }}">
+          {{ _('All') }}</a>
+        <span class="items">{{ total_count }}</span>
+      </li>
+      {% for category in categories %}
+        <li {{ category|class_selected(selected) }}>
+        <a href="{{ url('browse.themes', category.slug)|urlparams(**params) }}">
+            {{ category}}</a>
+          <span class="items">{{ category.count }}</span>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+<div class="primary" role="main">
+  <hgroup>
+    <h2>{{ _('{0} Themes')|f(selected.name) }}</h2>
+    {# L10n: {0} is the add-on count. #}
+    <h3>{{ ngettext("{0} add-on", "{0} add-ons",
+                    selected.count)|f(selected.count) }}</h3>
+  </hgroup>
+
+  <div id="addon-listing" class="featured listing">
+    <div class="featured-inner">
+      <div id="addon-list-options" class="listing-header">
+        {% set url_base = url('browse.themes', selected.slug) %}
+        <ul>
+          <li>{{ _('Sort by:') }}</li>
+          {% for value, title in sort_opts %}
+            <li {{ value|class_selected(sorting) }}>
+            <a href="{{ url_base|urlparams(experimental=experimental, sort=value) }}">
+              {{ title }}</a>
+            </li>
+          {% endfor %}
+          <li class="perpage">
+            <form action="" method="get" class="go">
+              <label>
+                <input type="checkbox" name="experimental"
+                      {{ experimental|ifeq("on", "checked") }}>
+                {{ _('Show experimental add-ons') }}
+              </label>
+              <button type="submit">{{ _('Go') }}</button>
+            </form>
+          </li>
+        </ul>
+      </div>
+      {% for row in themes.object_list|batch(4) %}
+      <ul class="thumbs">
+        {% for addon in row %}
+        {% set compat = addon.compatible_apps[request.APP] %}
+        <li {% if compat %}
+              data-min="{{ compat.min.version }}"
+              data-max="{{ compat.max.version }}"
+              {% endif %} class="{{ addon|statusflags }}">
+        <div class="inner">
+          {{ addon|flag }}
+          <a href="{{ addon.get_absolute_url() }}">
+            <img alt="" src="{{ addon.thumbnail_url }}">
+          </a>
+          <div class="details">
+            <h4><a href="{{ addon.get_absolute_url() }}">{{ addon.name }}</a></h4>
+            <p class="meta">
+              {% if sorting == "date" %}
+                {# TODO(jbalogh): this shouldn't be using modified. #}
+                {% trans date=addon.modified|datetime %}
+                  Updated {{ date }}
+                {% endtrans %}
+              {% elif sorting == "downloads" %}
+                {% trans num=addon.weekly_downloads|numberfmt %}
+                  {{ num }} weekly downloads
+                {% endtrans %}
+              {% else %}
+                {{ addon.average_rating|float|stars }}
+                <a href="{{ addon.get_absolute_url() }}#reviews">
+                  {# L10n: {0} is the review count. #}
+                  {{ ngettext("{0} review", "{0} reviews",
+                              addon.total_reviews)|f(addon.total_reviews) }}</a>
+              {% endif %}
+            </p>
+          </div>
+        </div>
+        </li>
+        {% endfor %}
+      </ul>
+      {% endfor %}
+    </div> {# featured-inner #}
+  </div> {# featured #}
+  {{ themes|paginator }}
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{{ MEDIA_URL }}js/zamboni/themes.js"></script>
+{% endblock %}

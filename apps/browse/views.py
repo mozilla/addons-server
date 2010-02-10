@@ -1,11 +1,14 @@
 import collections
 import itertools
 
+from django.utils.translation import ugettext as _
+
 import jingo
 import product_details
 
-import amo
-from addons.models import Addon
+import amo.utils
+from addons.models import Addon, Category
+from translations.query import order_by_translation
 
 
 languages = dict((lang.lower(), val)
@@ -67,3 +70,83 @@ def language_tools(request):
     locales = sorted(locales.items(), key=lambda x: x[1].display)
     return jingo.render(request, 'browse/language_tools.html',
                         {'locales': locales})
+
+# Placeholder for the All category.
+_Category = collections.namedtuple('Category', 'name count slug')
+
+
+class AddonSorter(object):
+    """
+    Support class for sorting add-ons.  Sortable fields are defined as
+    (value, title) pairs in ``opts``.  Pass in a request and a queryset and
+    AddonSorter will figure out how to sort the queryset.
+
+    self.sorting: the field we're sorting by
+    self.opts: all the sort options
+    self.qs: the sorted queryset
+    """
+    opts = (('name', _('Name')),
+            ('date', _('Date')),
+            ('downloads', _('Downloads')),
+            ('rating', _('Rating')))
+
+    def __init__(self, request, queryset, default):
+        self.sorting = self.options(request, default)
+        self.qs = self.sort(queryset, self.sorting)
+
+    def __iter__(self):
+        """Cleverness: this lets you unpack the class like a tuple."""
+        return iter((self.sorting, self.opts, self.qs))
+
+    def options(self, request, default):
+        opts_dict = dict(self.opts)
+        if 'sort' in request.GET and request.GET['sort'] in opts_dict:
+            sort = request.GET['sort']
+            return sort
+        else:
+            return default
+
+    def sort(self, qs, field):
+        if field == 'date':
+            # TODO(jbalogh): this should actually sort by the latest
+            # file.date_status_changed or file.created (unreviewed).
+            # But listed add-ons and personas don't have that, so let's make a
+            # new field on the add-on to give us the right answer.
+            return qs.order_by('-modified')
+        elif field == 'downloads':
+            return qs.order_by('-weekly_downloads')
+        elif field == 'rating':
+            return qs.order_by('-bayesian_rating')
+        else:
+            return order_by_translation(qs, 'name')
+
+
+def themes(request, category=None):
+    APP, THEME = request.APP, amo.ADDON_THEME
+    status = [amo.STATUS_PUBLIC]
+
+    experimental = 'on' if request.GET.get('experimental', False) else None
+    if experimental:
+        status.append(amo.STATUS_SANDBOX)
+
+    q = Category.objects.filter(application=APP.id, type=THEME)
+    categories = order_by_translation(q, 'name')
+
+    addons = Addon.objects.listed(APP, *status).filter(type=THEME).distinct()
+    total_count = addons.count()
+
+    sorting, sort_opts, addons = AddonSorter(request, addons, 'downloads')
+
+    if category is None:
+        selected = _Category(_('All'), total_count, '')
+    else:
+        selected = dict((c.slug, c) for c in categories)[category]
+        addons = addons.filter(categories__slug=category)
+
+    themes = amo.utils.paginate(request, addons)
+
+    return jingo.render(request, 'browse/themes.html',
+                        {'categories': categories, 'total_count': total_count,
+                         'themes': themes, 'selected': selected,
+                         'sorting': sorting, 'sort_opts': sort_opts,
+                         'experimental': experimental})
