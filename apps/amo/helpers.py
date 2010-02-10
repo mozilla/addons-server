@@ -39,7 +39,7 @@ def sidebar(app):
         return [], []
 
     q = Category.objects.filter(application=app.id, weight__gte=0,
-                                addontype=amo.ADDON_EXTENSION)
+                                type=amo.ADDON_EXTENSION)
     _categories = list(q)
 
     # Plugins are on a static page, so we add it to categories dynamically.

@@ -253,7 +253,7 @@ class Category(amo.models.ModelBase):
     name = TranslatedField()
     slug = models.SlugField(max_length=50, help_text='Used in Category URLs.')
     description = TranslatedField()
-    addontype = models.ForeignKey(AddonType)
+    type = models.ForeignKey('AddonType', db_column='addontype_id')
     application = models.ForeignKey('applications.Application')
     count = models.IntegerField('Addon count')
     weight = models.IntegerField(

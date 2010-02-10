@@ -22,7 +22,7 @@
             "created": "2007-03-05 13:09:26",
             "modified": "2010-01-17 18:54:06",
             "application": 1,
-            "addontype": 1,
+            "type": 1,
             "slug": "privacy-security",
             "name": null
         }
@@ -37,7 +37,7 @@
             "created": "2007-03-05 13:09:27",
             "modified": "2010-01-17 18:54:06",
             "application": 1,
-            "addontype": 1,
+            "type": 1,
             "slug": "bookmarks",
             "name": null
         }
@@ -52,7 +52,7 @@
             "created": "2007-12-19 21:48:37",
             "modified": "2010-01-17 18:54:06",
             "application": 1,
-            "addontype": 1,
+            "type": 1,
             "slug": "tabs",
             "name": null
         }

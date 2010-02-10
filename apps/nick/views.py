@@ -26,7 +26,7 @@ from stats.models import DownloadCount, UpdateCount
 def CategoryForm(request):
     """Makes a form to select a category for the current app, and a date."""
     q = Category.objects.filter(application=request.APP.id,
-                                addontype=amo.ADDON_EXTENSION)
+                                type=amo.ADDON_EXTENSION)
     choices = (('', '--------'),) + tuple((c.slug, c.name) for c in q)
 
     class _CategoryForm(forms.Form):
