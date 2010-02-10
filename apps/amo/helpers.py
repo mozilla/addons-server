@@ -7,6 +7,7 @@ from django.utils.translation import ugettext as _
 from babel import Locale
 from babel.support import Format
 import jinja2
+from jinja2.exceptions import FilterArgumentError
 
 from jingo import register, env
 
@@ -112,7 +113,8 @@ def numberfmt(num, format=None):
 @register.function
 @jinja2.contextfunction
 def page_title(context, title):
-    return "%s :: %s" % (title, _("Add-ons for {0}").format(context['APP'].pretty))
+    app = context['request'].APP.pretty
+    return u'%s :: %s' % (title, _(u'Add-ons for {0}').format(app))
 
 
 # XXX: Jinja2's round is broken:

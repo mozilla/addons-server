@@ -1,7 +1,5 @@
-from datetime import datetime
-
 from nose.tools import eq_
-from mock import patch
+from mock import Mock, patch
 
 import jingo
 
@@ -14,9 +12,10 @@ def render(s, context={}):
 
 
 def test_page_title():
-    ctx = {'APP': amo.FIREFOX}
+    request = Mock()
+    request.APP = amo.FIREFOX
     title = 'Oh hai!'
-    s = render('{{ page_title("%s") }}' % title, ctx)
+    s = render('{{ page_title("%s") }}' % title, {'request': request})
     eq_(s, '%s :: Add-ons for Firefox' % title)
 
 
