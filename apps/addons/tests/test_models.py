@@ -30,6 +30,32 @@ class TestAddonManager(test.TestCase):
         eq_(featured.id, 2)
         eq_(Addon.objects.featured(amo.THUNDERBIRD).count(), 1)
 
+    def test_listed(self):
+        # Should find one addon.
+        q = Addon.objects.listed(amo.FIREFOX, amo.STATUS_PUBLIC)
+        eq_(len(q.all()), 1)
+
+        addon = q[0]
+        eq_(addon.id, 1)
+
+        # Making it inactive hides it.
+        addon.inactive = True
+        addon.save()
+        eq_(q.count(), 0)
+
+        # If we search for public or experimental we find it.
+        addon.inactive = False
+        addon.status = amo.STATUS_SANDBOX
+        addon.save()
+        eq_(q.count(), 0)
+        eq_(Addon.objects.listed(amo.FIREFOX, amo.STATUS_PUBLIC,
+                                 amo.STATUS_SANDBOX).count(), 1)
+
+
+        # Can't find it without a file.
+        addon.versions.get().files.get().delete()
+        eq_(q.count(), 0)
+
 
 class TestAddonModels(test.TestCase):
     # base/addons.json has an example addon

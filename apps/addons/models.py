@@ -25,6 +25,19 @@ class AddonManager(amo.models.ManagerBase):
         """Get all category-featured add-ons for ``app`` in all locales."""
         return self.filter(addoncategory__feature=True)
 
+    def listed(self, app, *status):
+        """
+        Listed add-ons have a version with a file matching ``status`` and are
+        not inactive.  TODO: handle personas and listed add-ons.
+        """
+        if len(status) == 0:
+            status = [amo.STATUS_PUBLIC]
+
+        # XXX: handle personas (no versions) and listed (no files)
+        return self.filter(inactive=False, status__in=status,
+                           versions__applicationsversions__application=app.id,
+                           versions__files__status__in=status)
+
 
 class Addon(amo.models.ModelBase):
     STATUS_CHOICES = amo.STATUS_CHOICES.items()

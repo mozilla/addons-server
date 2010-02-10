@@ -159,5 +159,64 @@
             "start": "2007-10-10 15:34:20",
             "addon": 2
         }
+    },
+    {
+        "pk": 296,
+        "model": "applications.appversion",
+        "fields": {
+            "version_int": 3001200200100,
+            "application": 1,
+            "version": "3.0.12",
+            "modified": null,
+            "created": null
+        }
+    },
+    {
+        "pk": 24007,
+        "model": "versions.version",
+        "fields": {
+            "license": null,
+            "created": "2006-10-23 12:57:41",
+            "approvalnotes": "",
+            "modified": "2006-10-23 19:22:18",
+            "version": "1.0.43",
+            "addon": 1
+        }
+    },
+    {
+        "pk": 1,
+        "model": "files.platform",
+        "fields": {
+            "name": null,
+            "icontype": "",
+            "modified": "2008-04-07 08:16:55",
+            "created": "2007-03-05 13:09:27"
+        }
+    },
+    {
+        "pk": 11993,
+        "model": "files.file",
+        "fields": {
+            "status": 4,
+            "codereview": 0,
+            "hash": "sha256:5b5aaf7b38e332cc95d92ba759c01c3076b53a840f6c16e01dc272eefcb29566",
+            "created": "2007-03-05 13:19:15",
+            "modified": "2007-04-04 12:30:11",
+            "filename": "del.icio.us_bookmarks-1.0.43-fx.xpi",
+            "platform": 1,
+            "version": 24007,
+            "datestatuschanged": null,
+            "size": 169
+        }
+    },
+    {
+        "pk": 44555,
+        "model": "versions.applicationsversions",
+        "fields": {
+            "application": 1,
+            "max": 296,
+            "version": 24007,
+            "min": 296
+        }
     }
 ]
