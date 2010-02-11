@@ -4,6 +4,10 @@ from django.utils.translation import ugettext as _
 from django.utils.http import urlquote
 
 
+def app(request):
+    return {'APP': request.APP}
+
+
 def i18n(request):
     return {'LANGUAGES': settings.LANGUAGES,
             'LANG': translation.get_language(),

@@ -120,6 +120,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
     'django.contrib.messages.context_processors.messages',
 
+    'amo.context_processors.app',
     'amo.context_processors.i18n',
     'amo.context_processors.global_settings',
 )
