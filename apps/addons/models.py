@@ -313,6 +313,9 @@ class Preview(amo.models.ModelBase):
         db_table = 'previews'
 
     def get_thumbnail_url(self):
+        if self.modified is not None:
+            modified = int(time.mktime(self.modified.timetuple()))
+        else:
+            modified = 0
         return (settings.PREVIEW_THUMBNAIL_URL %
-                (str(self.id)[0], self.id,
-                 int(time.mktime(self.modified.timetuple()))))
+                (self.id / 1000, self.id, modified))

@@ -1,4 +1,7 @@
+from django.conf import settings
+
 from test_utils import TestCase
+
 import api
 
 
@@ -53,8 +56,8 @@ class APITest(TestCase):
         self.assertContains(response,
                 "<description>Delicious blah blah blah</description>")
 
-        self.assertContains(response,
-                "/en-US/firefox/images/addon_icon/3615/1256144332</icon>")
+        icon_url = settings.ADDON_ICON_URL % (3615, 1256144332)
+        self.assertContains(response, icon_url + '</icon>')
         self.assertContains(response, "<application>")
         self.assertContains(response, "<name>Firefox</name>")
         self.assertContains(response, "<application_id>1</application_id>")
