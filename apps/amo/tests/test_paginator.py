@@ -37,3 +37,21 @@ def test_page_range():
     assert_range(75, 75, [68, 69, 70, 71, 72, 73, 74, 75])
 
     assert_range(1, 8, [1, 2, 3, 4, 5, 6, 7, 8])
+
+
+def test_dots():
+    p = Paginator(mock_pager(1, 5, 100))
+    assert not p.pager.dotted_upper
+    assert not p.pager.dotted_lower
+
+    p = Paginator(mock_pager(1, 25, 100))
+    assert p.pager.dotted_upper
+    assert not p.pager.dotted_lower
+
+    p = Paginator(mock_pager(12, 25, 100))
+    assert p.pager.dotted_upper
+    assert p.pager.dotted_lower
+
+    p = Paginator(mock_pager(24, 25, 100))
+    assert not p.pager.dotted_upper
+    assert p.pager.dotted_lower
