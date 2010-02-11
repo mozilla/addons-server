@@ -38,7 +38,6 @@ class Version(amo.models.ModelBase):
 
 
 class License(amo.models.ModelBase):
-    rating = models.SmallIntegerField(default=-1)
     text = TranslatedField()
 
     class Meta(amo.models.ModelBase.Meta):
