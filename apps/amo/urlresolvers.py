@@ -65,12 +65,29 @@ class Prefixer(object):
                 return '', '', path
 
     def get_language(self):
-        if (hasattr(self.request,'META') and
+        """
+        Return a locale code that we support on the site using the
+        user's Accept Language header to determine which is best.  This
+        mostly follows the RFCs but read bug 439568 for details.
+        """
+        if (hasattr(self.request, 'META') and
             self.request.META.get('HTTP_ACCEPT_LANGUAGE')):
             ranked_languages = parse_accept_lang_header(
                     self.request.META['HTTP_ACCEPT_LANGUAGE'])
+
+            # Do we support or remap their locale directly?
             supported = [lang[0] for lang in ranked_languages if lang[0]
-                    in settings.LANGUAGES]
+                    in settings.LANGUAGE_URL_MAP]
+
+            # Do we support a less specific locale? (xx-YY -> xx)
+            if not len(supported):
+                for lang in ranked_languages:
+                    supported = [x for x in settings.LANGUAGE_URL_MAP if
+                                     lang[0].split('-', 1)[0] ==
+                                     x.split('-', 1)[0]]
+                    if supported:
+                        break
+
             if len(supported):
                 return settings.LANGUAGE_URL_MAP[supported[0]]
 
