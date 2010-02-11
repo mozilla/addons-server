@@ -3,6 +3,7 @@ import time
 
 from django.conf import settings
 from django.db import models
+from django.db.models import Q
 
 import amo.models
 from amo.urlresolvers import reverse
@@ -111,19 +112,24 @@ class Addon(amo.models.ModelBase):
 
     nomination_date = models.DateTimeField(null=True,
                                            db_column='nominationdate')
-    target_locale = models.CharField(max_length=255, db_index=True, blank=True,
-                            help_text="For dictionaries and language packs")
-    locale_disambiguation = models.CharField(max_length=255, blank=True,
-                            help_text="For dictionaries and language packs")
+    target_locale = models.CharField(
+        max_length=255, db_index=True, blank=True, null=True,
+        help_text="For dictionaries and language packs")
+    locale_disambiguation = models.CharField(
+        max_length=255, blank=True, null=True,
+        help_text="For dictionaries and language packs")
 
     paypal_id = models.CharField(max_length=255, blank=True)
-    suggested_amount = models.CharField(max_length=255, blank=True,
-                            help_text="Requested donation amount.")
+    suggested_amount = models.CharField(
+        max_length=255, blank=True, null=True,
+        help_text="Requested donation amount.")
     annoying = models.PositiveIntegerField(choices=CONTRIBUTIONS_CHOICES,
                                            default=0)
 
-    get_satisfaction_company = models.CharField(max_length=255, blank=True)
-    get_satisfaction_product = models.CharField(max_length=255, blank=True)
+    get_satisfaction_company = models.CharField(max_length=255, blank=True,
+                                               null=True)
+    get_satisfaction_product = models.CharField(max_length=255, blank=True,
+                                               null=True)
 
     authors = models.ManyToManyField('users.UserProfile', through='AddonUser')
 
@@ -185,6 +191,26 @@ class Addon(amo.models.ModelBase):
         except IndexError:
             return settings.STATIC_URL + '/img/no-preview.png'
 
+    def is_experimental(self):
+        return self.status in amo.EXPERIMENTAL_STATUSES
+
+    def is_featured(self, app, lang):
+        """is add-on globally featured for this app and language?"""
+        locale_filter = (Q(locale=lang) | Q(locale__isnull=True) |
+                         Q(locale=''))
+        feature = Feature.objects.filter(locale_filter,
+            addon=self, start__lte=date.today(), end__gte=date.today(),
+            application__id=app.id)[:1]
+        return bool(feature)
+
+    def is_category_featured(self, app, lang):
+        """is add-on featured in any category for this app?"""
+        # XXX should probably take feature_locales under consideration, even
+        # though remora didn't do that
+        feature = AddonCategory.objects.filter(
+            addon=self, feature=True, category__application__id=app.id).count()
+        return bool(feature)
+
     @amo.cached_property
     def compatible_apps(self):
         """Shortcut to get compatible apps for the current version."""
@@ -198,7 +224,7 @@ class AddonCategory(models.Model):
     addon = models.ForeignKey(Addon)
     category = models.ForeignKey('Category')
     feature = models.BooleanField(default=False)
-    feature_locales = models.CharField(max_length=255, default='')
+    feature_locales = models.CharField(max_length=255, default='', null=True)
 
     class Meta:
         db_table = 'addons_categories'
@@ -311,7 +337,7 @@ class Feature(amo.models.ModelBase):
         db_table = 'features'
 
     def __unicode__(self):
-        app = amo.APP_IDS[self.application].pretty
+        app = amo.APP_IDS[self.application.id].pretty
         return '%s (%s: %s)' % (self.addon.name, app, self.locale)
 
 

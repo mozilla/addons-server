@@ -4,7 +4,7 @@ from django.conf import settings
 from nose.tools import eq_
 
 import amo
-from addons.models import Addon
+from addons.models import Addon, Feature
 
 
 class TestAddonManager(test.TestCase):
@@ -59,7 +59,7 @@ class TestAddonManager(test.TestCase):
 
 class TestAddonModels(test.TestCase):
     # base/addons.json has an example addon
-    fixtures = ['base/addons.json']
+    fixtures = ['base/addons.json', 'addons/featured.json']
 
     def test_current_version(self):
         """
@@ -73,7 +73,7 @@ class TestAddonModels(test.TestCase):
         Tests for various icons.
         1. Test for an icon that exists.
         2. Test for default THEME icon.
-        3. Test for default non-THEM icon.
+        3. Test for default non-THEME icon.
         """
         a = Addon.objects.get(pk=3615)
         expected = (settings.ADDON_ICON_URL % (3615, 0)).rstrip('/0')
@@ -94,3 +94,28 @@ class TestAddonModels(test.TestCase):
         a = Addon.objects.get(pk=1)
         assert a.thumbnail_url.endswith('/img/no-preview.png'), (
                 "No match for %s" % a.thumbnail_url)
+
+    def test_is_experimental(self):
+        """Test if add-on is experimental or not"""
+        # public add-on
+        a = Addon.objects.get(pk=3615)
+        assert not a.is_experimental(), 'public add-on: is_experimental=False'
+
+        # experimental add-on
+        a = Addon(status=amo.STATUS_SANDBOX)
+        assert a.is_experimental(), 'sandboxed add-on: is_experimental=True'
+
+    def test_is_featured(self):
+        """Test if an add-on is globally featured"""
+        a = Addon.objects.get(pk=1003)
+        assert a.is_featured(amo.FIREFOX, 'en-US'), (
+            'globally featured add-on not recognized')
+
+    def test_is_category_featured(self):
+        """Test if an add-on is category featured"""
+        a = Addon.objects.get(pk=1001)
+        assert not a.is_featured(amo.FIREFOX, 'en-US'), (
+            'category featured add-on mistaken for globally featured')
+
+        assert a.is_category_featured(amo.FIREFOX, 'en-US'), (
+            'category featured add-on not recognized')
