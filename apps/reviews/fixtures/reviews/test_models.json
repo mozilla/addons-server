@@ -73,7 +73,6 @@
         "model": "versions.license",
         "fields": {
             "id": 1,
-            "rating": 4,
             "text": null,
             "modified": "2004-06-11 18:23:31",
             "created": "2004-06-11 18:23:31"
