@@ -53,7 +53,7 @@ Nick's Special Featured Add-ons Page for {{ request.APP.pretty }}
       <td>{{ addon.first_category }}</td>
       <td>{{ addon.average_rating }}</td>
       <td><a href="{{ url('reviews.list', addon.id) }}">
-          {{ addon.reviews.count() }}</a></td>
+          {{ addon.total_reviews}}</a></td>
       {% set supports = addon.current_version.compatible_apps %}
       {% if request.APP in supports %}
         <td>{{ supports[request.APP].max }}</td>
