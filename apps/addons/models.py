@@ -131,9 +131,8 @@ class Addon(amo.models.ModelBase):
     get_satisfaction_product = models.CharField(max_length=255, blank=True,
                                                null=True)
 
-    authors = models.ManyToManyField('users.UserProfile', through='AddonUser')
-
-    objects = AddonManager()
+    authors = models.ManyToManyField('users.UserProfile', through='AddonUser',
+                                     related_name='addons')
 
     objects = AddonManager()
 
@@ -274,7 +273,8 @@ class AddonUser(models.Model):
 
     addon = models.ForeignKey(Addon)
     user = models.ForeignKey('users.UserProfile')
-    role = models.SmallIntegerField(default=5, choices=AUTHOR_CHOICES)
+    role = models.SmallIntegerField(default=amo.AUTHOR_ROLE_OWNER,
+                                    choices=AUTHOR_CHOICES)
     listed = models.BooleanField(default=True)
     position = models.IntegerField(default=0)
 
