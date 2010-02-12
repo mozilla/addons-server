@@ -146,6 +146,10 @@ class Addon(amo.models.ModelBase):
     def get_absolute_url(self):
         return reverse('addons.detail', args=(self.id,))
 
+    @classmethod
+    def get_fallback(cls):
+        return cls._meta.get_field('default_locale')
+
     def fetch_translations(self, ids, lang):
         return translations_with_fallback(ids, lang, self.default_locale)
 
