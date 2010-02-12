@@ -17,7 +17,7 @@ class AddonManager(amo.models.ManagerBase):
         return self.filter(inactive=False, status=amo.STATUS_PUBLIC)
 
     def featured(self, app):
-        """Get all featured add-ons for ``app`` in all locales."""
+        """Filter for all featured add-ons for an application in all locales."""
         today = date.today()
         return self.filter(feature__application=app.id,
                            feature__start__lte=today, feature__end__gte=today)

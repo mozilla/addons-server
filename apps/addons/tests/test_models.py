@@ -1,10 +1,11 @@
 from django import test
 from django.conf import settings
 
-from nose.tools import eq_
+from nose.tools import eq_, assert_not_equal
 
 import amo
 from addons.models import Addon, Feature
+from users.models import UserProfile
 
 
 class TestAddonManager(test.TestCase):
@@ -55,6 +56,12 @@ class TestAddonManager(test.TestCase):
         # Can't find it without a file.
         addon.versions.get().files.get().delete()
         eq_(q.count(), 0)
+
+    def test_public(self):
+        public = Addon.objects.public()
+        for a in public:
+            assert_not_equal(
+                a.id, 3, 'public() must not return experimental add-ons')
 
 
 class TestAddonModels(test.TestCase):
