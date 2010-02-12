@@ -3,7 +3,7 @@ from django.db import models
 import amo.models
 from addons.models import Addon, AddonCategory
 from applications.models import Application
-from users.models import User
+from users.models import UserProfile
 from translations.fields import TranslatedField
 
 
@@ -17,7 +17,8 @@ class Collection(amo.models.ModelBase):
     icontype = models.CharField(max_length=25, blank=True)
 
     access = models.BooleanField(default=False)
-    listed = models.BooleanField(default=True)
+    listed = models.BooleanField(
+        default=True, help_text='Collections are either listed or private.')
     password = models.CharField(max_length=255, blank=True)
 
     subscribers = models.PositiveIntegerField(default=0)
@@ -33,6 +34,14 @@ class Collection(amo.models.ModelBase):
 
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'collections'
+
+    def get_absolute_url(self):
+        return '/collection/%s' % self.url_slug
+
+    @property
+    def url_slug(self):
+        """uuid or nickname if chosen"""
+        return self.nickname or self.uuid
 
 
 class CollectionAddonRecommendation(models.Model):
@@ -101,7 +110,7 @@ class CollectionSummary(models.Model):
 
 class CollectionSubscription(amo.models.ModelBase):
     collection = models.ForeignKey(Collection)
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(UserProfile)
 
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'collection_subscriptions'
@@ -109,7 +118,7 @@ class CollectionSubscription(amo.models.ModelBase):
 
 class CollectionUser(models.Model):
     collection = models.ForeignKey(Collection)
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(UserProfile)
     role = models.SmallIntegerField(default=1,
             choices=amo.COLLECTION_AUTHOR_CHOICES.items())
 
@@ -119,7 +128,7 @@ class CollectionUser(models.Model):
 
 class CollectionVote(models.Model):
     collection = models.ForeignKey(Collection)
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(UserProfile)
     vote = models.SmallIntegerField(default=0)
     created = models.DateTimeField(null=True)
 
