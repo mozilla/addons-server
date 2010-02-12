@@ -23,3 +23,35 @@ def test_page_title():
 def test_url(mock_reverse):
     render('{{ url("viewname", 1, z=2) }}')
     mock_reverse.assert_called_with('viewname', args=(1,), kwargs={'z': 2})
+
+
+def test_urlparams():
+    url = '/en-US/firefox/themes/category'
+    c = {'base': url,
+         'base_frag': url + '#hash',
+         'base_query': url + '?x=y',
+         'sort': 'name', 'frag': 'frag'}
+
+    # Adding a query.
+    s = render('{{ base_frag|urlparams(sort=sort) }}', c)
+    eq_(s, '%s?sort=name#hash' % url)
+
+    # Adding a fragment.
+    s = render('{{ base|urlparams(frag) }}', c)
+    eq_(s, '%s#frag' % url)
+
+    # Replacing a fragment.
+    s = render('{{ base_frag|urlparams(frag) }}', c)
+    eq_(s, '%s#frag' % url)
+
+    # Adding query and fragment.
+    s = render('{{ base_frag|urlparams(frag, sort=sort) }}', c)
+    eq_(s, '%s?sort=name#frag' % url)
+
+    # Adding query with existing params.
+    s = render('{{ base_query|urlparams(frag, sort=sort) }}', c)
+    eq_(s, '%s?sort=name&x=y#frag' % url)
+
+    # Replacing a query param.
+    s = render('{{ base_query|urlparams(frag, x="z") }}', c)
+    eq_(s, '%s?x=z#frag' % url)

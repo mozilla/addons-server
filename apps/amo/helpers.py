@@ -1,5 +1,8 @@
+import cgi
 import collections
 import math
+import urllib
+import urlparse
 
 from django.utils import translation
 from django.utils.translation import ugettext as _
@@ -20,6 +23,26 @@ from addons.models import Category
 def url(viewname, *args, **kwargs):
     """Helper for Django's ``reverse`` in templates."""
     return urlresolvers.reverse(viewname, args=args, kwargs=kwargs)
+
+
+@register.filter
+def urlparams(url_, hash=None, **query):
+    """
+    Add a fragment and/or query paramaters to a URL.
+
+    New query params will be appended to exising parameters, except duplicate
+    names, which will be replaced.
+    """
+    url = urlparse.urlparse(url_)
+    fragment = hash if hash is not None else url.fragment
+
+    query_dict = dict(cgi.parse_qsl(url.query)) if url.query else {}
+    query_dict.update(query)
+
+    query_string = urllib.urlencode(query_dict.items())
+    new = urlparse.ParseResult(url.scheme, url.netloc, url.path, url.params,
+                               query_string, fragment)
+    return jinja2.Markup(new.geturl())
 
 
 @register.filter
