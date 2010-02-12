@@ -55,3 +55,7 @@ def test_urlparams():
     # Replacing a query param.
     s = render('{{ base_query|urlparams(frag, x="z") }}', c)
     eq_(s, '%s?x=z#frag' % url)
+
+    # Params with value of None get dropped.
+    s = render('{{ base|urlparams(sort=None) }}', c)
+    eq_(s, url)

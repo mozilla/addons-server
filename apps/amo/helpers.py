@@ -37,7 +37,7 @@ def urlparams(url_, hash=None, **query):
     fragment = hash if hash is not None else url.fragment
 
     query_dict = dict(cgi.parse_qsl(url.query)) if url.query else {}
-    query_dict.update(query)
+    query_dict.update((k, v) for k, v in query.items() if v is not None)
 
     query_string = urllib.urlencode(query_dict.items())
     new = urlparse.ParseResult(url.scheme, url.netloc, url.path, url.params,
