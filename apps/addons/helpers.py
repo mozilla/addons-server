@@ -2,7 +2,7 @@ from django.utils.translation import ugettext as _
 
 import jinja2
 
-from jingo import register
+from jingo import register, env
 
 
 @register.filter
@@ -29,3 +29,12 @@ def flag(context, addon):
         return jinja2.Markup(u'<h5 class="flag">%s</h5>' % msg[status])
     else:
         return ''
+
+
+@register.function
+@jinja2.contextfunction
+def separated_list_items(context, addons, src=None):
+    c = {'addons': addons, 'APP': context['APP'], 'LANG': context['LANG'],
+         'src': src}
+    t = env.get_template('addons/separated_list_items.html').render(**c)
+    return jinja2.Markup(t)

@@ -9,6 +9,7 @@ import amo.models
 from amo.urlresolvers import reverse
 from reviews.models import Review
 from translations.fields import TranslatedField, translations_with_fallback
+from users.models import UserProfile
 
 
 class AddonManager(amo.models.ManagerBase):
@@ -148,6 +149,11 @@ class Addon(amo.models.ModelBase):
     @classmethod
     def get_fallback(cls):
         return cls._meta.get_field('default_locale')
+
+    @property
+    def listed_authors(self):
+        return UserProfile.objects.filter(
+            addons=self, addonuser__listed=True).order_by('addonuser__position')
 
     def fetch_translations(self, ids, lang):
         return translations_with_fallback(ids, lang, self.default_locale)
