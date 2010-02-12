@@ -1,5 +1,6 @@
 import itertools
 
+from django.conf import settings
 from django.db import models
 from django.db.models.sql import compiler
 
@@ -78,7 +79,10 @@ class SQLCompiler(compiler.SQLCompiler):
 
         # fallback could be a string locale or a model field.
         params.append(translation_utils.get_language())
-        fallback = self.query.model.get_fallback()
+        if hasattr(self.query.model, 'get_fallback'):
+            fallback = self.query.model.get_fallback()
+        else:
+            fallback = settings.LANGUAGE_CODE
         if not isinstance(fallback, models.Field):
             params.append(fallback)
 

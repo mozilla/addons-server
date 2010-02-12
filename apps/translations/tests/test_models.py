@@ -3,7 +3,6 @@ from django.core.cache import cache
 from django.utils import translation
 
 from nose.tools import eq_
-from mock import patch
 
 from test_utils import ExtraAppTestCase, trans_eq
 
@@ -175,10 +174,9 @@ class TranslationTestCase(ExtraAppTestCase):
         eq_(ids(order_by_translation(q, 'name')), expected)
         eq_(ids(order_by_translation(q, '-name')), list(reversed(expected)))
 
-    @patch('translations.tests.testapp.models.TranslatedModel.get_fallback')
-    def test_sorting_by_field(self, fallback_mock):
+    def test_sorting_by_field(self):
         field = TranslatedModel._meta.get_field('default_locale')
-        fallback_mock.return_value = field
+        TranslatedModel.get_fallback = classmethod(lambda cls: field)
 
         translation.activate('de')
         q = TranslatedModel.objects.all()
@@ -186,6 +184,8 @@ class TranslationTestCase(ExtraAppTestCase):
 
         eq_(ids(order_by_translation(q, 'name')), expected)
         eq_(ids(order_by_translation(q, '-name')), list(reversed(expected)))
+
+        del TranslatedModel.get_fallback
 
 
 def test_translation_bool():
