@@ -13,6 +13,7 @@ import jinja2
 from jinja2.exceptions import FilterArgumentError
 
 from jingo import register, env
+import jingo.helpers
 
 import amo
 from amo import urlresolvers
@@ -174,3 +175,8 @@ def wround(value, precision=0, method='common'):
         return func(value * 10 * precision) / (10 * precision)
     else:
         return int(func(value))
+
+@register.filter
+def isotime(t):
+    """Date/Time format according to ISO 8601"""
+    return t.strftime("%Y-%m-%d %H:%M:%S")

@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from nose.tools import eq_
 from mock import Mock, patch
 
@@ -59,3 +61,9 @@ def test_urlparams():
     # Params with value of None get dropped.
     s = render('{{ base|urlparams(sort=None) }}', c)
     eq_(s, url)
+
+
+def test_isotime():
+    time = datetime(2009, 12, 25, 10, 11, 12)
+    s = render('{{ d|isotime }}', {'d': time})
+    eq_(s, '2009-12-25 10:11:12')
