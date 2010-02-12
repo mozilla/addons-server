@@ -3,12 +3,18 @@ from django.core.cache import cache
 from django.utils import translation
 
 from nose.tools import eq_
+from mock import patch
 
 from test_utils import ExtraAppTestCase, trans_eq
 
 from testapp.models import TranslatedModel, UntranslatedModel
 from translations.models import Translation
 from translations import widgets
+from translations.query import order_by_translation
+
+
+def ids(qs):
+    return [o.id for o in qs]
 
 
 class TranslationTestCase(ExtraAppTestCase):
@@ -148,10 +154,38 @@ class TranslationTestCase(ExtraAppTestCase):
         eq_(sorted(dict(ws).keys()), ['en-us', 'fr'])
 
     def test_sorting(self):
+        """Test translation comparisons in Python code."""
         b = Translation.new('bbbb', 'de')
         a = Translation.new('aaaa', 'de')
         c = Translation.new('cccc', 'de')
         eq_(sorted([c, a, b]), [a, b, c])
+
+    def test_sorting_en(self):
+        q = TranslatedModel.objects.all()
+        expected = [4, 1, 3]
+
+        eq_(ids(order_by_translation(q, 'name')), expected)
+        eq_(ids(order_by_translation(q, '-name')), list(reversed(expected)))
+
+    def test_sorting_mixed(self):
+        translation.activate('de')
+        q = TranslatedModel.objects.all()
+        expected = [1, 4, 3]
+
+        eq_(ids(order_by_translation(q, 'name')), expected)
+        eq_(ids(order_by_translation(q, '-name')), list(reversed(expected)))
+
+    @patch('translations.tests.testapp.models.TranslatedModel.get_fallback')
+    def test_sorting_by_field(self, fallback_mock):
+        field = TranslatedModel._meta.get_field('default_locale')
+        fallback_mock.return_value = field
+
+        translation.activate('de')
+        q = TranslatedModel.objects.all()
+        expected = [3, 1, 4]
+
+        eq_(ids(order_by_translation(q, 'name')), expected)
+        eq_(ids(order_by_translation(q, '-name')), list(reversed(expected)))
 
 
 def test_translation_bool():
