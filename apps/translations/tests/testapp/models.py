@@ -7,6 +7,11 @@ from translations.fields import TranslatedField
 class TranslatedModel(amo.models.ModelBase):
     name = TranslatedField()
     description = TranslatedField()
+    default_locale = models.CharField(max_length=10)
+
+    @classmethod
+    def get_fallback(self):
+        return 'en-US'
 
 
 class UntranslatedModel(amo.models.ModelBase):

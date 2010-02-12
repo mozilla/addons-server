@@ -1,5 +1,5 @@
 [
-    {   "pk": 2,
+    {   "pk": 90,
         "model": "translations.translationsequence",
         "fields": {}
     },
@@ -37,12 +37,72 @@
         }
     },
     {
+        "pk": 4,
+        "model": "translations.translation",
+        "fields": {
+            "id": 3,
+            "locale": "fr",
+            "localized_string": "frenchie",
+            "created": "2007-03-05 16:06:55",
+            "modified": "2007-03-21 13:42:36"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "translations.translation",
+        "fields": {
+            "id": 3,
+            "locale": "en-US",
+            "localized_string": "speak American",
+            "created": "2007-03-05 16:06:55",
+            "modified": "2007-03-21 13:42:36"
+        }
+    },
+    {
+        "pk": 6,
+        "model": "translations.translation",
+        "fields": {
+            "id": 4,
+            "locale": "en-US",
+            "localized_string": "hot dogs",
+            "created": "2007-03-05 16:06:55",
+            "modified": "2007-03-21 13:42:36"
+        }
+    },
+    {
         "pk": 1,
         "model": "testapp.translatedmodel",
         "fields": {
             "id": 1,
             "name": 1,
-            "description": 2
+            "description": 2,
+            "default_locale": "de",
+            "created": "2007-03-05 16:06:55",
+            "modified": "2007-03-21 13:42:36"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "testapp.translatedmodel",
+        "fields": {
+            "id": 3,
+            "name": 3,
+            "description": null,
+            "default_locale": "fr",
+            "created": "2007-03-05 16:06:55",
+            "modified": "2007-03-21 13:42:36"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "testapp.translatedmodel",
+        "fields": {
+            "id": 4,
+            "name": 4,
+            "description": null,
+            "default_locale": "en-US",
+            "created": "2007-03-05 16:06:55",
+            "modified": "2007-03-21 13:42:36"
         }
     },
     {
@@ -50,7 +110,9 @@
         "model": "testapp.untranslatedmodel",
         "fields": {
             "id": 1,
-            "number": 17
+            "number": 17,
+            "created": "2007-03-05 16:06:55",
+            "modified": "2007-03-21 13:42:36"
         }
     }
 ]
