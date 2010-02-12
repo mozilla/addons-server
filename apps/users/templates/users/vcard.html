@@ -1,0 +1,58 @@
+<div>
+  <table class="{{ table_class }}" summary="{{ _('Developer Information') }}">
+    <tbody>
+      {# TODO msgctxt for table headers #}
+      <tr>
+        <th>{{ _('Name') }}</th>
+        <td class="fn n">{{ profile.display_name }}</td>
+      </tr>
+      {% if profile.location %}
+        <tr>
+          <th>{{ _('Location') }}</th>
+          <td class="adr">{{ profile.location }}</td>
+        </tr>
+      {% endif %}
+      {% if profile.occupation %}
+        <tr>
+          <th>{{ _('Occupation') }}</th>
+          <td class="role">{{ profile.occupation }}</td>
+        </tr>
+      {% endif %}
+      {# TODO cleaned external links #}
+      {% if profile.homepage %}
+        <tr>
+          <th>{{ _('Homepage') }}</th>
+          <td><a class="url" href="{{ profile.homepage }}">{{ profile.homepage }}</a></td>
+        </tr>
+      {% endif %}
+      {% if not profile.emailhidden %}
+        <tr>
+          <th>{{ _('Email address') }}</th>
+          <td>{{ profile.email|emaillink }}</td>
+        </tr>
+      {% endif %}
+      <tr>
+        <th>{{ _('User since') }}</th>
+        <td>{{ profile.created|datetime }}</td>
+      </tr>
+      {% if about_addons %}
+        <tr>
+          <th>{{ _('Number of Add-ons Developed') }}</th>
+          <td>
+            <a href="{{ profile.get_absolute_url() }}">
+              {% trans num=profile.addons_listed|length %}
+              {{ num }} Add-on
+              {% pluralize %}
+              {{ num }} Add-ons
+              {% endtrans %}
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <th>{{ _('Average rating for their Add-ons') }}</th>
+          <td>{{ profile.averagerating|float|stars }}</td>
+        </tr>
+      {% endif %}
+    </tbody>
+  </table>
+</div>

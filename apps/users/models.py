@@ -1,8 +1,11 @@
 from datetime import datetime
 import hashlib
 import random
+import re
 import string
+import urlparse
 
+from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User as DjangoUser
 from django.db import models
@@ -63,6 +66,23 @@ class UserProfile(amo.models.ModelBase):
 
     def get_absolute_url(self):
         return reverse('users.profile', args=[self.id])
+
+    @amo.cached_property
+    def addons_listed(self):
+        """public add-ons this user is listed as author of"""
+        return self.addons.valid().filter(addonuser__listed=True)
+
+    @property
+    def picture_url(self):
+        # TODO this used to be /user/1234/picture, and the regex stuff was
+        # in htaccess. Should we let the web server take care of it again?
+        split_id = re.match(r'((\d*?)(\d{0,3}?))\d{1,3}$', str(self.id))
+        return (settings.MEDIA_URL + 'img/uploads/userpics/%s/%s/%s.jpg' % (
+            split_id.group(2) or 0, split_id.group(1) or 0, self.id))
+
+    @amo.cached_property
+    def is_developer(self):
+        return bool(self.addons.filter(authors=self, addonuser__listed=True)[:1])
 
     @property
     def display_name(self):

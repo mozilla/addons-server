@@ -1,6 +1,10 @@
+# -*- coding: utf-8 -*-
+import re
+
+from django.core.urlresolvers import reverse
 from nose.tools import eq_
 
-from users.helpers import emaillink, user_link
+from users.helpers import emaillink, user_link, users_list
 from users.models import UserProfile
 
 
@@ -19,4 +23,18 @@ def test_emaillink():
 
 def test_user_link():
     u = UserProfile(firstname='John', lastname='Connor', pk=1)
-    eq_(user_link(u), """<a href="/users/1">John Connor</a>""")
+    eq_(user_link(u), '<a href="%s">John Connor</a>' %
+        reverse('users.profile', args=[1]))
+
+
+def test_users_list():
+    u1 = UserProfile(firstname='John', lastname='Connor', pk=1)
+    u2 = UserProfile(firstname='Sarah', lastname='Connor', pk=2)
+    eq_(users_list([u1, u2]), ', '.join((user_link(u1), user_link(u2))))
+
+
+def test_user_link_unicode():
+    """make sure helper won't choke on unicode input"""
+    u = UserProfile(firstname=u'Jürgen', lastname=u'Müller', pk=1)
+    eq_(user_link(u), u'<a href="%s">Jürgen Müller</a>' %
+        reverse('users.profile', args=[1]))

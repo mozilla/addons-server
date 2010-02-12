@@ -1,0 +1,76 @@
+{% extends "base_side_categories.html" %}
+
+{% block title %}{{ page_title(_('User Info for {0}')|f(profile.display_name)) }}{% endblock %}
+
+{% block content %}
+{% if user.is_staff: %}{# TODO restrict this to admins with user edit rights only #}
+<a href="{{ url("admin:users_userprofile_change", profile.id) }}">{{ _('Edit User') }}</a>
+{% endif %}
+
+<div class="vcard">
+  <h2 class="fn n">{{ profile.display_name }}</h2>
+  <div class="featured">
+    <div class="featured-inner object-lead">
+      <h3>{{ _('About Me')}}</h3>
+      <img class="avatar thumbnail" alt="" src="{{ profile.picture_url }}"/>
+      <div class="object-content">
+        {% if profile.is_developer %}
+          <p class="user-role">{{ _('Add-ons Developer') }}</p>
+        {% endif %}
+
+        {{ profile|user_vcard(table_class='', about_addons=False) }}
+
+      </div>{# /object-content #}
+      {% if profile.bio %}{# TODO purified field #}
+      <h4>{{ _('In a little more detail…') }}</h4>
+      <div class="prose userinput">
+          <p class="description">{{ profile.bio|nl2br }}</p>
+      </div>
+      {% endif %}
+    </div>{# /featured-inner #}
+  </div>{# /featured #}
+</div>{# /vcard #}
+
+{% if profile.is_developer %}
+  <div class="separated-listing">
+    {{ separated_list_items(profile.addons_listed, src='userprofile') }}
+  </div>
+{% endif %}
+
+{% if profile.reviews.all()|length %}
+  <div class="primary">
+    <h3>{{ _('My Reviews') }}</h3>
+    <div class="article">
+      {% for review in profile.reviews.all() %}
+        {% set addon = review.version.addon %}
+        <div class="hreview">
+          <h4 class="summary">
+            <a class="url" href="{{ addon.get_absolute_url() }}">{{ addon.name }}</a>
+          </h4>
+          <p class="description" locale="{{ review.body.locale }}">
+            {{ review.body|nl2br }}
+          </p>
+          <p>
+            {{ review.rating|stars }}
+            <abbr class="dtreviewed" title="{{ review.created|isotime }}">
+              {{ review.created|datetime }}
+            </abbr>
+          </p>
+        </div>
+        {% endfor %}
+    </div>{# /article #}
+  </div>{# /primary #}
+{% endif %}
+
+{% if own_coll or fav_coll %}
+  <div class="secondary" role="complementary">
+    <h3>{{ _('My Collections') }}</h3>
+    <div class="secondary-item-list">
+      {{ user_collection_list(heading=_('Favorites'), collections=fav_coll) }}
+      {{ user_collection_list(heading=_('Created by Me'),
+                              collections=own_coll) }}
+    </div>
+  </div>{# secondary #}
+{% endif %}
+
+{% endblock %}

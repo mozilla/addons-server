@@ -15,7 +15,16 @@ from users.models import UserProfile
 class AddonManager(amo.models.ManagerBase):
 
     def public(self):
+        """Get public add-ons only"""
         return self.filter(inactive=False, status=amo.STATUS_PUBLIC)
+
+    def experimental(self):
+        """Get only experimental add-ons"""
+        return self.filter(inactive=False, status__in=EXPERIMENTAL_STATUSES)
+
+    def valid(self):
+        """Get valid, enabled add-ons only"""
+        return self.filter(status__in=amo.VALID_STATUSES, inactive=False)
 
     def featured(self, app):
         """Filter for all featured add-ons for an application in all locales."""
