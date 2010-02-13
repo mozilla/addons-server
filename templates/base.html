@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ LANG }}" dir="{{ DIR }}"><!--TODO: APP_SHORTNAME-->
+<html lang="{{ LANG }}" dir="{{ DIR }}">
   <head>
     <title>{% block title %}{{ _('Mozilla Add-ons') }}{% endblock %}</title>
 
@@ -14,7 +14,8 @@
 
     {% block extrahead %}{% endblock %}
   </head>
-  <body class="html-{{ DIR }} {% block bodyclass %}{% endblock %}">
+  <body class="html-{{ DIR }} {% block bodyclass %}{% endblock %}"
+        data-app="{{ request.APP.short }}" data-appname="{{ request.APP.pretty }}">
     <div class="section">
 
       {% block site_header %}
