@@ -6,17 +6,17 @@ Welcome to zamboni's documentation!
 Tip of the Day
 --------------
 
-Did you break something recently?  Are you wondering which commit started the
-problem? ::
+We have gettext in javascript!  Just mark your strings with ``gettext()`` or
+``ngettext()``.  There isn't an ``_`` alias right now, since underscore.js has
+that.  If we end up with a lot of js translations, we can fix that.  Check it
+out::
 
-    git bisect start
-    git bisect bad
-    git bisect good <master>  # Put the known-good commit here.
-    git bisect run fab test
-    git bisect reset
-
-Git will churn for a while, running tests, and will eventually tell you where
-you suck.  See the git-bisect man page for more details.
+    cd locale
+    ./extract-po.py -d javascript
+    pybabel init -l en_US -d . -i javascript.pot -D javascript
+    perl -pi -e 's/fuzzy//' en_US/LC_MESSAGES/javascript.po
+    pybabel compile -d . -D javascript
+    open http://0:8000/en-US/jsi18n/
 
 
 Installation
@@ -38,9 +38,24 @@ Contents
 Older Tips
 ----------
 
-* If you're working on the docs, use ``make loop`` to keep your built pages
-  up-to-date.
+Git Bisect
+~~~~~~~~~~
 
+Did you break something recently?  Are you wondering which commit started the
+problem? ::
+
+    git bisect start
+    git bisect bad
+    git bisect good <master>  # Put the known-good commit here.
+    git bisect run fab test
+    git bisect reset
+
+Git will churn for a while, running tests, and will eventually tell you where
+you suck.  See the git-bisect man page for more details.
+
+
+Running Tests
+~~~~~~~~~~~~~
 
 * Run your tests like this::
 
@@ -53,6 +68,13 @@ Older Tips
     console during test runs.  This can be useful for debugging, but it's not that
     great most of the time.  See the docs for more stuff you can do with
     :mod:`nose and logging <nose.plugins.logcapture>`.
+
+
+Building Docs
+~~~~~~~~~~~~~
+
+* If you're working on the docs, use ``make loop`` to keep your built pages
+  up-to-date.
 
 
 Indices and tables

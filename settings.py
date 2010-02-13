@@ -11,6 +11,10 @@ import product_details
 ROOT = os.path.dirname(os.path.abspath(__file__))
 path = lambda *a: os.path.join(ROOT, *a)
 
+# We need to track this because hudson can't just call its checkout "zamboni".
+# It puts it in a dir called "workspace".  Way to be, hudson.
+ROOT_PACKAGE = os.path.basename(ROOT)
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 DEBUG_PROPAGATE_EXCEPTIONS = True
@@ -124,7 +128,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'amo.context_processors.global_settings',
 )
 
-ROOT_URLCONF = 'zamboni.urls'
+ROOT_URLCONF = '%s.urls' % ROOT_PACKAGE
 
 TEMPLATE_DIRS = (
     path('templates'),
@@ -151,6 +155,9 @@ INSTALLED_APPS = (
     'translations',
     'users',
     'versions',
+
+    # We need this so the jsi18n view will pick up our locale directory.
+    ROOT_PACKAGE,
 
     'cake',
     'django_nose',
@@ -206,7 +213,7 @@ SELENIUM_CONFIG = {}
 
 # paths that don't require an app prefix
 SUPPORTED_NONAPPS = ('admin', 'developers', 'editors', 'localizers',
-                     'statistics', 'services',)
+                     'statistics', 'services', 'jsi18n')
 DEFAULT_APP = 'firefox'
 
 # paths that don't require a locale prefix

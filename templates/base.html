@@ -58,9 +58,10 @@
       {% endblock %}
     </div>
 
-    <!-- js -->
+    {# js #}
+    <script src="{{ url('django.views.i18n.javascript_catalog') }}"></script>
+
     <script src="{{ MEDIA_URL }}js/__utm.js"></script>
-    <script src="/en-US/firefox/pages/js_constants.js"></script>
     <script src="{{ MEDIA_URL }}js/jquery-compressed.js"></script>
     <script src="{{ MEDIA_URL }}js/zamboni/underscore-min.js"></script>
     <script src="{{ MEDIA_URL }}js/jquery.cookie.js"></script>

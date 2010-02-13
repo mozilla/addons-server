@@ -30,6 +30,10 @@ urlpatterns = patterns('',
     # Services
     ('^services/', include('amo.urls')),
 
+    # Javascript translations.
+    ('^jsi18n/$', 'django.views.i18n.javascript_catalog',
+     {'domain': 'javascript', 'packages': ['zamboni']}),
+
     # Redirect patterns.
     ('^reviews/display/(\d+)',
       lambda r, id: redirect('reviews.list', id, permanent=True)),

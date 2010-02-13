@@ -28,6 +28,14 @@ DOMAIN_METHODS = {
     'lhtml': [
         ('**/templates/**.lhtml', 'extract-po:extract_amo_template'),
     ],
+    'javascript': [
+        # We can't say **.js because that would dive into mochikit and timeplot
+        # and all the other baggage we're carrying.  Timeplot, in particular,
+        # crashes the extractor with bad unicode data.
+        ('media/js/*.js', 'javascript'),
+        ('media/js/amo2009/**.js', 'javascript'),
+        ('media/js/zamboni/**.js', 'javascript'),
+    ],
 }
 
 COMMENT_TAGS = ['L10n:']
