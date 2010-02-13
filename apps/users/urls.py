@@ -12,5 +12,5 @@ urlpatterns = patterns('',
     # URLs for a single user.
     ('^user/(?P<user_id>\d+)/', include(detail_patterns)),
 
-    url('^user/logout/$', views.logout_view, name='users.logout'),
+    url('^users/logout$', views.logout_view, name='users.logout'),
 )
