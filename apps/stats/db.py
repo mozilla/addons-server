@@ -1,7 +1,9 @@
 from datetime import date, timedelta
-import phpserialize as php
+from decimal import Decimal
 
 from django.db import models
+
+import phpserialize as php
 
 import caching.base
 
@@ -289,6 +291,31 @@ class StatsDict(dict):
             {'a': 2, 'b': 2, 'c': 4}
         """
         return StatsDict(self._rdict_sum(self, d))
+
+    def __mul__(self, k):
+        """Multiply all dictionary items by a constant value k.
+
+        Example:
+            >>> a = StatsDict({'a': 1, 'b': 2, 'c': {'d': 3}})
+            >>> a * 3
+            {'a': 3, 'b': 6, 'c': {'d': 9}}
+        """
+        if type(k) not in (int, float, Decimal):
+            raise TypeError(
+                "unsupported operand type(s) for *: '%s' and '%s'" % (
+                    type(self).__name__, type(k).__name__))
+        return StatsDict(self._rdict_mul(self, k))
+
+    @classmethod
+    def _rdict_mul(cls, d, k):
+        """Recursively multiply dictionary items by a constant."""
+        result = {}
+        for key in d:
+            if isinstance(d[key], dict):
+                result[key] = cls._rdict_mul(d[key], k)
+            else:
+                result[key] = k * d[key]
+        return result
 
     @classmethod
     def _rdict_sum(cls, a, b):

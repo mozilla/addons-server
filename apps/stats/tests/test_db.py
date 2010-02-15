@@ -1,4 +1,5 @@
 from datetime import date, datetime
+from decimal import Decimal
 
 from django import test
 
@@ -22,6 +23,15 @@ class TestStatsDict(test.TestCase):
 
         d = self.dict_a + self.dict_b
         res = StatsDict({'a': 6, 'b': 1, 'nested': {'b': 10, 'c': 12}})
+        eq_(d, res)
+
+    def test_mul(self):
+        d = self.dict_empty * Decimal('1234.432')
+        eq_(d, self.dict_empty)
+
+        d = self.dict_a * Decimal('1.1')
+        res = StatsDict({'a': Decimal('3.3'),
+                         'nested': {'b': Decimal('5.5'), 'c': Decimal('6.6')}})
         eq_(d, res)
 
 
