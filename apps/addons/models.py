@@ -214,11 +214,11 @@ class Addon(amo.models.ModelBase):
 
     def is_featured(self, app, lang):
         """is add-on globally featured for this app and language?"""
-        locale_filter = (Q(locale=lang) | Q(locale__isnull=True) |
-                         Q(locale=''))
-        feature = Feature.objects.filter(locale_filter,
-            addon=self, start__lte=date.today(), end__gte=date.today(),
-            application__id=app.id)[:1]
+        locale_filter = (Q(feature__locale=lang) |
+                         Q(feature__locale__isnull=True) |
+                         Q(feature__locale=''))
+        feature = Addon.objects.featured(app).filter(
+            locale_filter, pk=self.pk)[:1]
         return bool(feature)
 
     def is_category_featured(self, app, lang):
