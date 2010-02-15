@@ -1,3 +1,4 @@
+import calendar
 from datetime import date, timedelta
 from decimal import Decimal
 
@@ -12,38 +13,38 @@ import caching.base
 # These all take a date or datetime and return a date.
 
 
-def prev_month(d):
-    """Determine the start date of the previous month."""
+def prev_month_period(d):
+    """Determine the date range of the previous month."""
     yr, mo = divmod(d.year * 12 + d.month - 2, 12)
-    return date(yr, mo + 1, 1)
+    return period_of_month(date(yr, mo + 1, 1))
 
 
-def prev_week(d):
-    """Determine the start date of the previous week."""
-    ws = d - timedelta(d.weekday() + 7)
-    return date(ws.year, ws.month, ws.day)
+def prev_week_period(d):
+    """Determine the date range of the previous week."""
+    return period_of_week(d - timedelta(7))
 
 
-def prev_day(d):
-    """Determine the previous day."""
-    pd = d - timedelta(1)
-    return date(pd.year, pd.month, pd.day)
+def prev_day_period(d):
+    """Determine the date range of the previous day."""
+    return period_of_day(d - timedelta(1))
 
 
-def start_of_month(d):
-    """Determine the start of the month for a date or datetime."""
-    return date(d.year, d.month, 1)
+def period_of_month(d):
+    """Determine the month range for a date or datetime."""
+    eom = calendar.monthrange(d.year, d.month)[1]
+    return date(d.year, d.month, 1), date(d.year, d.month, eom)
 
 
-def start_of_week(d):
-    """Determine the start of the week for a date or datetime."""
+def period_of_week(d):
+    """Determine the week range for a date or datetime."""
     ws = d - timedelta(d.weekday())
-    return date(ws.year, ws.month, ws.day)
+    we = ws + timedelta(6)
+    return date(ws.year, ws.month, ws.day), date(we.year, we.month, we.day)
 
 
-def start_of_day(d):
-    """Determine the start of the day for a date or datetime."""
-    return date(d.year, d.month, d.day)
+def period_of_day(d):
+    """Determine the day range for a date or datetime."""
+    return date(d.year, d.month, d.day), date(d.year, d.month, d.day)
 
 
 class StatsQuerySet(caching.base.CachingQuerySet):
@@ -59,11 +60,12 @@ class StatsQuerySet(caching.base.CachingQuerySet):
         Fields may be renamed in the results by using named arguments:
 
         >>> qs.summary('swallows', dead_parrots='parrots')
-        {'row_count': 1, 'start': None, 'swallows': 10, 'dead_parrots': 7}
+        {'row_count': 1, 'start': None, 'end': None, 'swallows': 10,
+         'dead_parrots': 7}
         """
 
         fields = self._map_fields(*fields, **kwargs)
-        summary = self.zero_summary(None, **fields)
+        summary = self.zero_summary(**fields)
         for obj in self:
             summary = self._accumulate(obj, summary, **fields)
 
@@ -94,10 +96,10 @@ class StatsQuerySet(caching.base.CachingQuerySet):
         named arguments, for example:
 
         >>> [s for s in q.daily_summary('swallows', dead_parrots='parrots')]
-        [{'row_count': 1, 'start': date(2009, 5, 3), 'swallows': 0,
-          'dead_parrots': 2},
-         {'row_count': 1, 'start': date(2009, 5, 2), 'swallows': 10,
-          'dead_parrots': 5}]
+        [{'row_count': 1, 'start': date(2009, 5, 3), 'end': date(2009, 5, 3),
+          'swallows': 0, 'dead_parrots': 2},
+         {'row_count': 1, 'start': date(2009, 5, 2), 'end': date(2009, 5, 2),
+          'swallows': 10, 'dead_parrots': 5}]
         """
         fill_holes = kwargs.pop('fill_holes', False)
         fields = self._map_fields(*fields, **kwargs)
@@ -107,7 +109,7 @@ class StatsQuerySet(caching.base.CachingQuerySet):
         fill_holes = kwargs.pop('fill_holes', False)
         fields = self._map_fields(*fields, **kwargs)
         return self._summary_iter(fields, fill_holes=fill_holes,
-            previous_date=prev_week, format_date=start_of_week)
+            previous_period=prev_week_period, current_period=period_of_week)
 
     weekly_summary.__doc__ = daily_summary.__doc__
 
@@ -115,22 +117,22 @@ class StatsQuerySet(caching.base.CachingQuerySet):
         fill_holes = kwargs.pop('fill_holes', False)
         fields = self._map_fields(*fields, **kwargs)
         return self._summary_iter(fields, fill_holes=fill_holes,
-            previous_date=prev_month, format_date=start_of_month)
+            previous_period=prev_month_period, current_period=period_of_month)
 
     monthly_summary.__doc__ = daily_summary.__doc__
 
-    def zero_summary(self, start_date, **fields):
+    def zero_summary(self, **fields):
         """Returns a dictionary of 0 values for specified fields.
 
         >>> qs.zero_summary(date(2009, 1, 1), count_total='ignored')
-        {'start': date(2009, 1, 1), 'row_count': 0, 'count_total': 0}
+        {'start': None, 'end': None, 'row_count': 0, 'count_total': 0}
         """
 
         res = {}
         for res_key, fname in fields.items():
             # handle special summary fields
-            if fname == 'start':
-                res[res_key] = start_date
+            if fname in ('start', 'end'):
+                res[res_key] = None
                 continue
             elif fname == 'row_count':
                 res[res_key] = 0
@@ -151,17 +153,19 @@ class StatsQuerySet(caching.base.CachingQuerySet):
 
         Example:
 
-        >>> ac = {'start': date(2009, 1, 1), 'row_count': 2, 'sum': 10}
+        >>> ac = {'start': date(2009, 1, 1), 'end': date(2009, 1, 31),
+                  'row_count': 2, 'sum': 10}
         >>> someobj.count = 4
         >>> qs._accumulate(someobj, ac, sum='count')
-        {'start': date(2009, 1, 1), 'row_count': 3, 'count_sum': 14}
+        {'start': date(2009, 1, 1), 'end': date(2009, 1, 31),
+         'row_count': 3, 'count_sum': 14}
         """
         for ac_key, field in fields.items():
             # handle special summary fields
             if field == 'row_count':
                 ac[ac_key] += 1
                 continue
-            elif field == 'start':
+            elif field in ('start', 'end'):
                 continue
 
             # handle regular model fields
@@ -178,18 +182,24 @@ class StatsQuerySet(caching.base.CachingQuerySet):
 
         Named arguments take precedence, for example:
 
-        >>> qs._map_fields('a', 'b', 'c', c='cool', d='duh')
-        {'a': 'a', 'b': 'b', 'c': 'cool', 'd': 'duh'}
+        >>> qs._map_fields('a', 'b', c='cool', b='bee')
+        {'start': 'start', 'end': 'end', 'row_count': 'row_count',
+         'a': 'a', 'b': 'bee', 'c': 'cool'}
         """
         fields = dict(zip(fields, fields))
         fields.update(kwargs)
 
-        # the special fields 'start' and 'row_count' are implicit but
+        # the special fields 'start', 'end' and 'row_count' are implicit but
         # may be remapped
         if 'start' not in fields.values():
             if 'start' in fields:
                 raise KeyError("reserved field 'start' must be remapped")
             fields['start'] = 'start'
+
+        if 'end' not in fields.values():
+            if 'end' in fields:
+                raise KeyError("reserved field 'end' must be remapped")
+            fields['end'] = 'end'
 
         if 'row_count' not in fields.values():
             if 'row_count' in fields:
@@ -198,8 +208,9 @@ class StatsQuerySet(caching.base.CachingQuerySet):
 
         return fields
 
-    def _summary_iter(self, fields, fill_holes=False, previous_date=prev_day,
-                      format_date=start_of_day):
+    def _summary_iter(self, fields, fill_holes=False,
+                      previous_period=prev_day_period,
+                      current_period=period_of_day):
         """Generates generic date period summaries of fields in the queryset.
 
         The fields argument should be a dictionary that maps result keys
@@ -213,44 +224,48 @@ class StatsQuerySet(caching.base.CachingQuerySet):
                 If True, create zero count summaries for periods in the
                 middle of the queryset that contain no records.
 
-            previous_date
-                A function that calculates the start of the next period
-                prior to a date
+            previous_period
+                A function that calculates the range of the period
+                before a date
 
-            format_date
-                A function that calculates the start of the period for
-                a date or datetime
+            current_period
+                A function that calculates the range of the period
+                containing a date or datetime
         """
-        # we support remapping the special 'start' field - find it!
+        # special 'start' and 'end' fields could be remapped - find them!
         start_key = [k for (k, v) in fields.items() if v == 'start'][0]
+        end_key = [k for (k, v) in fields.items() if v == 'end'][0]
 
-        ac_zero = self.zero_summary(None, **fields)
-        ac = None
+        ac_zero = self.zero_summary(**fields)
+        ac = None # accumulated data
 
         for obj in self:
-            d = format_date(getattr(obj, self._stats_date_field))
+            start, end = current_period(getattr(obj, self._stats_date_field))
 
-            if not ac:
+            if ac is None:
                 # XXX: add option to fill in holes at end of timeseries?
                 # prep first non-zero result
                 ac = ac_zero.copy()
-                ac[start_key] = d
+                ac[start_key] = start
+                ac[end_key] = end
 
-            if ac[start_key] != d:
+            if ac[start_key] != start:
                 yield ac
 
                 # option: fill holes in middle of timeseries
                 if fill_holes:
-                    nd = previous_date(ac[start_key])
-                    while nd > d:
+                    prev_start, prev_end = previous_period(ac[start_key])
+                    while prev_start > start:
                         ac_fill = ac_zero.copy()
-                        ac_fill[start_key] = nd
+                        ac_fill[start_key] = prev_start
+                        ac_fill[end_key] = prev_end
                         yield ac_fill
-                        nd = previous_date(nd)
+                        prev_start, prev_end = previous_period(prev_start)
 
                 # prep next non-zero result
                 ac = ac_zero.copy()
-                ac[start_key] = d
+                ac[start_key] = start
+                ac[end_key] = end
 
             # accumulate
             ac = self._accumulate(obj, ac, **fields)

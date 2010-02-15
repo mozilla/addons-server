@@ -6,7 +6,7 @@ from django import test
 from nose.tools import eq_
 
 from stats.db import StatsDict
-from stats.db import prev_month
+from stats.db import prev_month_period, prev_week_period, prev_day_period
 from stats.models import DownloadCount
 
 
@@ -38,22 +38,47 @@ class TestStatsDict(test.TestCase):
 
 class TestDateUtils(test.TestCase):
 
-    def test_prev_month(self):
+    def test_prev_month_period(self):
         from_to = [
-            (date(2008, 1, 1), date(2007, 12, 1)),
-            (date(2008, 1, 31), date(2007, 12, 1)),
-            (date(2008, 2, 1), date(2008, 1, 1)),
-            (date(2008, 2, 29), date(2008, 1, 1)),
-            (datetime(2008, 2, 29, 23, 59, 59), date(2008, 1, 1)),
-            (date(2008, 3, 1), date(2008, 2, 1)),
-            (date(2008, 3, 31), date(2008, 2, 1)),
-            (date(2008, 4, 1), date(2008, 3, 1)),
-            (date(2008, 4, 30), date(2008, 3, 1)),
-            (date(2008, 12, 1), date(2008, 11, 1)),
-            (date(2008, 12, 31), date(2008, 11, 1)),
+            (date(2008, 1, 1), (date(2007, 12, 1), date(2007, 12, 31))),
+            (date(2008, 1, 31), (date(2007, 12, 1), date(2007, 12, 31))),
+            (date(2008, 2, 1), (date(2008, 1, 1), date(2008, 1, 31))),
+            (date(2008, 2, 29), (date(2008, 1, 1), date(2008, 1, 31))),
+            (datetime(2008, 2, 29, 23, 59, 59),
+                (date(2008, 1, 1), date(2008, 1, 31))),
+            (date(2008, 3, 1), (date(2008, 2, 1), date(2008, 2, 29))),
+            (date(2008, 3, 31), (date(2008, 2, 1), date(2008, 2, 29))),
+            (date(2008, 4, 1), (date(2008, 3, 1), date(2008, 3, 31))),
+            (date(2008, 4, 30), (date(2008, 3, 1), date(2008, 3, 31))),
+            (date(2008, 12, 1), (date(2008, 11, 1), date(2008, 11, 30))),
+            (date(2008, 12, 31), (date(2008, 11, 1), date(2008, 11, 30))),
         ]
         for (d, expected) in from_to:
-            eq_(prev_month(d), expected, 'unexpected prev_month result')
+            eq_(prev_month_period(d), expected,
+                'unexpected prev_month_period result')
+
+    def test_prev_week_period(self):
+        from_to = [
+            (date(2010, 1, 4), (date(2009, 12, 28), date(2010, 1, 3))),
+            (date(2010, 1, 6), (date(2009, 12, 28), date(2010, 1, 3))),
+            (date(2010, 1, 10), (date(2009, 12, 28), date(2010, 1, 3))),
+            (datetime(2010, 1, 10, 23, 59, 59),
+                (date(2009, 12, 28), date(2010, 1, 3))),
+        ]
+        for (d, expected) in from_to:
+            eq_(prev_week_period(d), expected,
+                'unexpected prev_week_period result')
+
+    def test_prev_day_period(self):
+        from_to = [
+            (date(2010, 1, 1), (date(2009, 12, 31), date(2009, 12, 31))),
+            (date(2008, 3, 1), (date(2008, 2, 29), date(2008, 2, 29))),
+            (datetime(2008, 3, 1, 23, 59, 59),
+                (date(2008, 2, 29), date(2008, 2, 29))),
+        ]
+        for (d, expected) in from_to:
+            eq_(prev_day_period(d), expected,
+                'unexpected prev_day_period result')
 
 
 class TestDbSummaries(test.TestCase):
