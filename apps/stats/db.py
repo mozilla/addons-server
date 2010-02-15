@@ -69,6 +69,16 @@ class StatsQuerySet(caching.base.CachingQuerySet):
 
         return summary
 
+    def period_summary(self, period, *fields, **kwargs):
+        """Calls one of daily_summary, weekly_summary, or monthly_summary.
+
+        Period must be 'day', 'week', or 'month'
+        otherwise a KeyError is raised.
+        """
+        summaries = {'day': self.daily_summary, 'week': self.weekly_summary,
+                     'month': self.monthly_summary}
+        return summaries[period](*fields, **kwargs)
+
     def daily_summary(self, *fields, **kwargs):
         """Generate daily/weekly/monthly summaries on the queryset.
 

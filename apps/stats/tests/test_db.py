@@ -7,6 +7,7 @@ from nose.tools import eq_
 
 from stats.db import StatsDict
 from stats.db import prev_month
+from stats.models import DownloadCount
 
 
 class TestStatsDict(test.TestCase):
@@ -53,3 +54,20 @@ class TestDateUtils(test.TestCase):
         ]
         for (d, expected) in from_to:
             eq_(prev_month(d), expected, 'unexpected prev_month result')
+
+
+class TestDbSummaries(test.TestCase):
+    fixtures = ['stats/test_models.json']
+
+    def test_period_summary(self):
+        qs = DownloadCount.objects.filter(addon=4,
+                date__range=(date(2009, 6, 1), date(2009, 7, 3)))
+
+        s = list(qs.period_summary('day', fill_holes=True))
+        eq_(len(s), 33)
+
+        s = list(qs.period_summary('week'))
+        eq_(len(s), 5)
+
+        s = list(qs.period_summary('month'))
+        eq_(len(s), 2)
