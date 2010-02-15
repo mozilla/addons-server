@@ -1,6 +1,6 @@
 import calendar
 from datetime import date, timedelta
-from decimal import Decimal
+from decimal import Decimal, DivisionByZero
 
 from django.db import models
 
@@ -47,6 +47,115 @@ def period_of_day(d):
     return date(d.year, d.month, d.day), date(d.year, d.month, d.day)
 
 
+class StatsAggregate(object):
+    """Base class for StatsQuerySet aggregation. """
+
+    def __init__(self, field_name):
+        self.field_name = field_name
+
+    def reset(self, zero_value):
+        """Reset internal state based on the specified zero value."""
+        pass
+
+    def accumulate(self, value):
+        """Accumulate calculation, called once per row/object."""
+        pass
+
+    def final_result(self, n_rows, n_days):
+        """Return the final aggregate result.
+
+        n_rows is the number of rows/objects in the aggregate period.
+        n_days is the number of days in the aggregate period.
+        """
+        return None
+
+
+class Count(StatsAggregate):
+    """Counts the number of rows/objects in an aggregate period."""
+
+    def __init__(self, field_name):
+        super(Count, self).__init__(field_name)
+        self.count = 0
+
+    def reset(self, zero_value):
+        self.count = 0
+
+    def accumulate(self, value):
+        self.count += 1
+
+    def final_result(self, n_rows=None, n_days=None):
+        return self.count
+
+
+class Sum(StatsAggregate):
+    """Sum a set of values in a queryset."""
+
+    def __init__(self, field_name):
+        super(Sum, self).__init__(field_name)
+        self.sum = None
+
+    def reset(self, zero_value):
+        self.sum = zero_value
+
+    def accumulate(self, value):
+        try:
+            self.sum = self.sum + value
+        except TypeError:
+            pass
+
+    def final_result(self, n_rows=None, n_days=None):
+        return self.sum
+
+
+class First(StatsAggregate):
+    """Returns the first value in a queryset."""
+
+    def __init__(self, field_name):
+        super(First, self).__init__(field_name)
+        self.got_it = False
+        self.value = None
+
+    def reset(self, zero_value):
+        self.got_it = False
+        self.value = None
+
+    def accumulate(self, value):
+        if not self.got_it:
+            self.value = value
+            self.got_it = True
+
+    def final_result(self, n_rows=None, n_days=None):
+        return self.value
+
+
+class Last(First):
+    """Returns the last value in a queryset."""
+
+    def accumulate(self, value):
+        self.value = value
+        self.got_it = True
+
+
+class Avg(Sum):
+    """Calculate an average per row/object."""
+
+    def final_result(self, n_rows, n_days):
+        try:
+            return self.sum * (1 / Decimal(n_rows))
+        except (TypeError, DivisionByZero):
+            return None
+
+
+class DayAvg(Sum):
+    """Calculate an average per day."""
+
+    def final_result(self, n_rows, n_days):
+        try:
+            return self.sum * (1 / Decimal(n_days))
+        except (TypeError, DivisionByZero):
+            return None
+
+
 class StatsQuerySet(caching.base.CachingQuerySet):
 
     def __init__(self, *args, **kwargs):
@@ -63,11 +172,29 @@ class StatsQuerySet(caching.base.CachingQuerySet):
         {'row_count': 1, 'start': None, 'end': None, 'swallows': 10,
          'dead_parrots': 7}
         """
+        # Use some aggregate trickery in order to determine the date range
+        # of the entire queryset. Other aggregates depend on knowing the
+        # length of this range.
+        kwargs.update({'_tricky_start': Last(self._stats_date_field),
+                       '_tricky_end': First(self._stats_date_field)})
 
+        # This is the normal prep/accumulate phase.
         fields = self._map_fields(*fields, **kwargs)
         summary = self.zero_summary(**fields)
+        self._reset_aggregates(summary, **fields)
         for obj in self:
-            summary = self._accumulate(obj, summary, **fields)
+            self._accumulate_aggregates(obj, **fields)
+
+        # Replace start/end with our computed First/Last values.
+        summary[self._start_key] = fields['_tricky_start'].final_result()
+        summary[self._end_key] = fields['_tricky_end'].final_result()
+
+        # Now other aggregates will be able to use day count.
+        self._finalize_aggregates(summary, **fields)
+
+        # We don't need these anymore.
+        del(summary['_tricky_start'])
+        del(summary['_tricky_end'])
 
         return summary
 
@@ -134,11 +261,12 @@ class StatsQuerySet(caching.base.CachingQuerySet):
             if fname in ('start', 'end'):
                 res[res_key] = None
                 continue
-            elif fname == 'row_count':
-                res[res_key] = 0
-                continue
 
-            # handle regular model fields
+            # lookout for aggregates
+            if isinstance(fname, StatsAggregate):
+                fname = fname.field_name
+
+            # zero-out value based on model field type
             field = self.model._meta.get_field_by_name(fname)[0]
             if isinstance(field, StatsDictField):
                 # an empty summable dictionary
@@ -148,34 +276,40 @@ class StatsQuerySet(caching.base.CachingQuerySet):
                 res[res_key] = 0
         return res
 
-    def _accumulate(self, obj, ac, **fields):
-        """Accumulates (sums) field values of an object.
+    def _reset_aggregates(self, zero_sum, **fields):
+        """Reset all aggregate fields.
 
-        Example:
-
-        >>> ac = {'start': date(2009, 1, 1), 'end': date(2009, 1, 31),
-                  'row_count': 2, 'sum': 10}
-        >>> someobj.count = 4
-        >>> qs._accumulate(someobj, ac, sum='count')
-        {'start': date(2009, 1, 1), 'end': date(2009, 1, 31),
-         'row_count': 3, 'count_sum': 14}
+        Call this prior to calculating results for a new period.
         """
-        for ac_key, field in fields.items():
-            # handle special summary fields
-            if field == 'row_count':
-                ac[ac_key] += 1
-                continue
-            elif field in ('start', 'end'):
-                continue
+        for k, f in fields.items():
+            if isinstance(f, StatsAggregate):
+                f.reset(zero_sum[k])
 
-            # handle regular model fields
-            try:
-                # works with numbers and StatsDict
-                ac[ac_key] = ac[ac_key] + getattr(obj, field)
-            except TypeError:
-                # anything else will keep the initial value (probably 0)
-                pass
-        return ac
+    def _accumulate_aggregates(self, obj, **fields):
+        """Accumulate object falues for all aggregate fields."""
+        for field in fields.values():
+            if isinstance(field, StatsAggregate):
+                field.accumulate(getattr(obj, field.field_name))
+
+    def _finalize_aggregates(self, summary, **fields):
+        """Record final aggregate results into summary.
+
+        Call this after all rows/objects have been accumulated in a period.
+        """
+        # row and day counts
+        # finalize row_count first
+        summary[self._count_key] = fields[self._count_key].final_result()
+        n_rows = summary[self._count_key]
+        try:
+            n_days = (summary[self._end_key] -
+                      summary[self._start_key]).days + 1
+        except (TypeError, AttributeError):
+            n_days = 0
+
+        # save final results
+        for k, f in fields.items():
+            if isinstance(f, StatsAggregate):
+                summary[k] = f.final_result(n_rows, n_days)
 
     def _map_fields(self, *fields, **kwargs):
         """Make a map of result key names to model field names.
@@ -189,22 +323,38 @@ class StatsQuerySet(caching.base.CachingQuerySet):
         fields = dict(zip(fields, fields))
         fields.update(kwargs)
 
+        # Our special fields are referenced frequently, so search for and save
+        # their keys.
+        self._start_key = self._end_key = self._count_key = None
+        for k, field in fields.items():
+            if field == 'start':
+                self._start_key = k
+            elif field == 'end':
+                self._end_key = k
+            elif field == 'row_count':
+                self._count_key = k
+                fields[k] = Count(self._stats_date_field)
+            # Other non-aggregate fields are summed by default
+            elif not isinstance(field, StatsAggregate):
+                fields[k] = Sum(field)
+
         # the special fields 'start', 'end' and 'row_count' are implicit but
         # may be remapped
-        if 'start' not in fields.values():
+        if self._start_key is None:
             if 'start' in fields:
                 raise KeyError("reserved field 'start' must be remapped")
-            fields['start'] = 'start'
+            self._start_key = fields['start'] = 'start'
 
-        if 'end' not in fields.values():
+        if self._end_key is None:
             if 'end' in fields:
                 raise KeyError("reserved field 'end' must be remapped")
-            fields['end'] = 'end'
+            self._end_key = fields['end'] = 'end'
 
-        if 'row_count' not in fields.values():
+        if self._count_key is None:
             if 'row_count' in fields:
                 raise KeyError("reserved field 'row_count' must be remapped")
-            fields['row_count'] = 'row_count'
+            fields['row_count'] = Count(self._stats_date_field)
+            self._count_key = 'row_count'
 
         return fields
 
@@ -232,46 +382,49 @@ class StatsQuerySet(caching.base.CachingQuerySet):
                 A function that calculates the range of the period
                 containing a date or datetime
         """
-        # special 'start' and 'end' fields could be remapped - find them!
-        start_key = [k for (k, v) in fields.items() if v == 'start'][0]
-        end_key = [k for (k, v) in fields.items() if v == 'end'][0]
-
-        ac_zero = self.zero_summary(**fields)
-        ac = None # accumulated data
+        summary_zero = self.zero_summary(**fields)
+        summary = None
 
         for obj in self:
             start, end = current_period(getattr(obj, self._stats_date_field))
 
-            if ac is None:
+            if summary is None:
                 # XXX: add option to fill in holes at end of timeseries?
                 # prep first non-zero result
-                ac = ac_zero.copy()
-                ac[start_key] = start
-                ac[end_key] = end
+                summary = summary_zero.copy()
+                summary[self._start_key] = start
+                summary[self._end_key] = end
+                self._reset_aggregates(summary, **fields)
 
-            if ac[start_key] != start:
-                yield ac
+            if summary[self._start_key] != start:
+                self._finalize_aggregates(summary, **fields)
+                yield summary
 
                 # option: fill holes in middle of timeseries
                 if fill_holes:
-                    prev_start, prev_end = previous_period(ac[start_key])
+                    prev_start, prev_end = previous_period(
+                        summary[self._start_key])
                     while prev_start > start:
-                        ac_fill = ac_zero.copy()
-                        ac_fill[start_key] = prev_start
-                        ac_fill[end_key] = prev_end
-                        yield ac_fill
+                        filler = summary_zero.copy()
+                        filler[self._start_key] = prev_start
+                        filler[self._end_key] = prev_end
+                        self._reset_aggregates(filler, **fields)
+                        self._finalize_aggregates(filler, **fields)
+                        yield filler
                         prev_start, prev_end = previous_period(prev_start)
 
                 # prep next non-zero result
-                ac = ac_zero.copy()
-                ac[start_key] = start
-                ac[end_key] = end
+                summary = summary_zero.copy()
+                summary[self._start_key] = start
+                summary[self._end_key] = end
+                self._reset_aggregates(summary, **fields)
 
             # accumulate
-            ac = self._accumulate(obj, ac, **fields)
+            self._accumulate_aggregates(obj, **fields)
 
-        if ac:
-            yield ac
+        if summary:
+            self._finalize_aggregates(summary, **fields)
+            yield summary
 
         # XXX: add option to fill in holes at start of timeseries?
         return

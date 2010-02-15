@@ -23,8 +23,8 @@ class TestDownloadCountModel(test.TestCase):
                 count_sum='count', sources_sum='sources')
 
         eq_(len(summary), 5, 'unexpected number of keys in summary')
-        eq_(summary['start'], None, 'start is not None')
-        eq_(summary['end'], None, 'end is not None')
+        eq_(summary['start'], date(2009, 6, 1), 'unexpected summary start date %s' % summary)
+        eq_(summary['end'], date(2009, 9, 3), 'unexpected summary end date')
         assert summary['row_count'] > 0, 'zero rows in summary'
         assert summary['count_sum'] > 0, 'zero count_sum in summary'
         assert sum(summary['sources_sum'].values()) > 0, \
