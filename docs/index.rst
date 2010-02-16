@@ -6,6 +6,9 @@ Welcome to zamboni's documentation!
 Tip of the Day
 --------------
 
+gettext in Javascript
+~~~~~~~~~~~~~~~~~~~~~
+
 We have gettext in javascript!  Just mark your strings with ``gettext()`` or
 ``ngettext()``.  There isn't an ``_`` alias right now, since underscore.js has
 that.  If we end up with a lot of js translations, we can fix that.  Check it
