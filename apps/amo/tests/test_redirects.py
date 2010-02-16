@@ -16,6 +16,15 @@ class TestRedirects(test.TestCase):
         self.assertRedirects(response, '/en-US/firefox/language-tools',
                              status_code=301)
 
+        response = self.client.get('/browse/type:2', follow=True)
+        self.assertRedirects(response, '/en-US/firefox/themes/',
+                             status_code=301)
+
+        # Drop the category.
+        response = self.client.get('/browse/type:2/cat:all', follow=True)
+        self.assertRedirects(response, '/en-US/firefox/themes/',
+                             status_code=301)
+
     def test_accept_language(self):
         """
         Given an Accept Language header, do the right thing.  See bug 439568

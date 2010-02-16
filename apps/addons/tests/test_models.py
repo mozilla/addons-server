@@ -4,8 +4,7 @@ from django.conf import settings
 from nose.tools import eq_, assert_not_equal
 
 import amo
-from addons.models import Addon, Feature
-from users.models import UserProfile
+from addons.models import Addon
 
 
 class TestAddonManager(test.TestCase):
@@ -75,6 +74,10 @@ class TestAddonModels(test.TestCase):
         a = Addon.objects.get(pk=3615)
         eq_(a.current_version.id, 24007)
 
+    def test_current_version_experimental(self):
+        a = Addon.objects.get(pk=55)
+        eq_(a.current_version.id, 55)
+
     def test_icon_url(self):
         """
         Tests for various icons.
@@ -88,7 +91,7 @@ class TestAddonModels(test.TestCase):
         a = Addon.objects.get(pk=7172)
         assert a.icon_url.endswith('/img/theme.png'), (
                 "No match for %s" % a.icon_url)
-        a = Addon.objects.get(pk=1)
+        a = Addon.objects.get(pk=73)
         assert a.icon_url.endswith('/img/default_icon.png')
 
     def test_thumbnail_url(self):
@@ -98,7 +101,7 @@ class TestAddonModels(test.TestCase):
         """
         a = Addon.objects.get(pk=7172)
         a.thumbnail_url.index('/previews/thumbs/25/25981.png?modified=')
-        a = Addon.objects.get(pk=1)
+        a = Addon.objects.get(pk=73)
         assert a.thumbnail_url.endswith('/img/no-preview.png'), (
                 "No match for %s" % a.thumbnail_url)
 
