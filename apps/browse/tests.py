@@ -23,13 +23,13 @@ def test_locale_display_name():
     assert_raises(KeyError, check, 'fake-lang', '', '')
 
 
-class TestView(test_utils.TestCase):
+class TestLanguageTools(test_utils.TestCase):
     fixtures = ['browse/test_views']
 
     def setUp(self):
         cache.clear()
-        url = reverse('browse.language_tools')
-        response = self.client.get(url, follow=True)
+        self.url = reverse('browse.language_tools')
+        response = self.client.get(self.url, follow=True)
         self.locales = response.context['locales']
 
     def test_sorting(self):
@@ -55,6 +55,24 @@ class TestView(test_utils.TestCase):
         ca = dict(self.locales)['ca-valencia']
         eq_(len(ca.dicts), 1)
         eq_(len(ca.packs), 2)
+
+    def test_empty_target_locale(self):
+        """Make sure nothing breaks with empty target locales."""
+        for addon in Addon.objects.all():
+            addon.target_locale = ''
+            addon.save()
+        response = self.client.get(self.url, follow=True)
+        eq_(response.status_code, 200)
+        eq_(response.context['locales'], [])
+
+    def test_null_target_locale(self):
+        """Make sure nothing breaks with null target locales."""
+        for addon in Addon.objects.all():
+            addon.target_locale = None
+            addon.save()
+        response = self.client.get(self.url, follow=True)
+        eq_(response.status_code, 200)
+        eq_(response.context['locales'], [])
 
 
 class TestThemes(test_utils.TestCase):
