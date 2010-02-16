@@ -173,11 +173,13 @@ class Addon(amo.models.ModelBase):
 
     @amo.cached_property
     def current_version(self):
-        """
-        Retrieves the latest public version of an addon.
-        """
+        """Retrieves the latest listed version of an addon."""
         try:
-            return self.versions.filter(files__status=amo.STATUS_PUBLIC)[0]
+            if self.status == amo.STATUS_PUBLIC:
+                status = [self.status]
+            else:
+                status = amo.VALID_STATUSES
+            return self.versions.filter(files__status__in=status)[0]
         except IndexError:
             return None
 

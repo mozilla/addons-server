@@ -334,11 +334,129 @@
         }
     },
     {
+        "pk": 7172,
+        "model": "versions.version",
+        "fields": {
+            "addon": 7172,
+            "created": "2006-08-21 23:53:19"
+        }
+    },
+    {
+        "pk": 7172,
+        "model": "versions.applicationsversions",
+        "fields": {
+            "application": 1,
+            "version": 7172,
+            "min": 200,
+            "max": 201
+        }
+    },
+    {
+        "pk": 7172,
+        "model": "files.file",
+        "fields": {
+            "status": 1,
+            "codereview": 0,
+            "hash": "sha256:5b5aaf7b38e332cc95d92ba759c01c3076b53a840f6c16e01dc272eefcb29566",
+            "created": "2007-03-05 13:19:15",
+            "modified": "2007-04-04 12:30:11",
+            "filename": "del.icio.us_bookmarks-1.2-fx.xpi",
+            "platform": 1,
+            "version": 7172,
+            "datestatuschanged": null,
+            "size": 169
+        }
+    },
+    {
         "pk": 1,
         "model": "addons.addon",
         "fields": {
             "type": 1,
+            "status": 4,
+            "bayesian_rating": 1.0,
+            "weekly_downloads": 23523,
+            "modified": "2006-08-21 23:53:19",
             "created": "2006-08-21 23:53:19"
+        }
+    },
+    {
+        "pk": 73,
+        "model": "versions.version",
+        "fields": {
+            "addon": 1,
+            "created": "2006-08-21 23:53:19"
+        }
+    },
+    {
+        "pk": 73,
+        "model": "versions.applicationsversions",
+        "fields": {
+            "application": 1,
+            "version": 73,
+            "min": 200,
+            "max": 201
+        }
+    },
+    {
+        "pk": 73,
+        "model": "files.file",
+        "fields": {
+            "status": 1,
+            "codereview": 0,
+            "hash": "sha256:5b5aaf7b38e332cc95d92ba759c01c3076b53a840f6c16e01dc272eefcb29566",
+            "created": "2007-03-05 13:19:15",
+            "modified": "2007-04-04 12:30:11",
+            "filename": "del.icio.us_bookmarks-1.2-fx.xpi",
+            "platform": 1,
+            "version": 73,
+            "datestatuschanged": null,
+            "size": 169
+        }
+    },
+    {
+        "pk": 55,
+        "model": "addons.addon",
+        "fields": {
+            "type": 1,
+            "status": 1,
+            "bayesian_rating": 1.0,
+            "weekly_downloads": 23523,
+            "modified": "2006-08-21 23:53:19",
+            "created": "2006-08-21 23:53:19"
+        }
+    },
+    {
+        "pk": 55,
+        "model": "versions.version",
+        "fields": {
+            "addon": 55,
+            "created": "2006-08-21 23:53:19"
+        }
+    },
+    {
+        "pk": 55,
+        "model": "versions.applicationsversions",
+        "fields": {
+            "application": 1,
+            "version": 55,
+            "min": 200,
+            "max": 201
+        }
+    },
+    {
+        "pk": 55,
+        "model": "files.file",
+        "fields": {
+            "status": 1,
+            "codereview": 0,
+            "hash": "sha256:5b5aaf7b38e332cc95d92ba759c01c3076b53a840f6c16e01dc272eefcb29566",
+            "created": "2007-03-05 13:19:15",
+            "modified": "2007-04-04 12:30:11",
+            "filename": "del.icio.us_bookmarks-1.2-fx.xpi",
+            "platform": 1,
+            "version": 55,
+            "datestatuschanged": null,
+            "size": 169
         }
     },
     {

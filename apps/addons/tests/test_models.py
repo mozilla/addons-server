@@ -75,6 +75,10 @@ class TestAddonModels(test.TestCase):
         a = Addon.objects.get(pk=3615)
         eq_(a.current_version.id, 24007)
 
+    def test_current_version_experimental(self):
+        a = Addon.objects.get(pk=55)
+        eq_(a.current_version.id, 55)
+
     def test_icon_url(self):
         """
         Tests for various icons.
