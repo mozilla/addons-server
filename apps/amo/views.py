@@ -50,4 +50,4 @@ def handler404(request):
 
 
 def handler500(request):
-    return jingo.render(request, 'amo/500.lhtml')
+    return jingo.render(request, 'amo/500.lhtml', status=500)
