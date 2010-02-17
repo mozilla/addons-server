@@ -24,6 +24,9 @@ def reverse(viewname, urlconf=None, args=None, kwargs=None, prefix=None,
             current_app=None):
     """Wraps django's reverse to prepend the correct locale and app."""
     prefixer = get_url_prefix()
+    # Blank out the script prefix since we add that in prefixer.fix().
+    if prefixer:
+        prefix = prefix or '/'
     url = django_reverse(viewname, urlconf, args, kwargs, prefix, current_app)
     if prefixer:
         return prefixer.fix(url)

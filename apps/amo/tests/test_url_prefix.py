@@ -1,4 +1,5 @@
 from django import test
+from django.core.urlresolvers import set_script_prefix
 
 from nose.tools import eq_
 import test_utils
@@ -58,8 +59,9 @@ class MiddlewareTest(test.TestCase):
 
 class TestPrefixer:
 
-    def setup(self):
+    def tearDown(self):
         urlresolvers._prefixes.clear()
+        set_script_prefix('/')
 
     def test_split_path(self):
 
@@ -117,3 +119,8 @@ class TestPrefixer:
         request = rf.get('/foo', SCRIPT_NAME='/oremj')
         prefixer = urlresolvers.Prefixer(request)
         eq_(prefixer.fix(prefixer.shortened_path), '/oremj/en-US/firefox/foo')
+
+        # Now check reverse.
+        urlresolvers.set_url_prefix(prefixer)
+        set_script_prefix('/oremj')
+        eq_(urlresolvers.reverse('home'), '/oremj/en-US/firefox/')
