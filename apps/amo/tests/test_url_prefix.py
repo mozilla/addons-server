@@ -59,7 +59,8 @@ class TestPrefixer:
     def test_split_path(self):
 
         def split_eq(url, locale, app, path):
-            prefixer = urlresolvers.Prefixer(Request(url))
+            rf = test_utils.RequestFactory()
+            prefixer = urlresolvers.Prefixer(rf.get(url))
             actual = (prefixer.locale, prefixer.app, prefixer.shortened_path)
             eq_(actual, (locale, app, path))
 
@@ -79,7 +80,8 @@ class TestPrefixer:
         split_eq('/foo/', '', '', 'foo/')
 
     def test_fix(self):
-        prefixer = urlresolvers.Prefixer(Request('/'))
+        rf = test_utils.RequestFactory()
+        prefixer = urlresolvers.Prefixer(rf.get('/'))
 
         eq_(prefixer.fix('/'), '/en-US/firefox/')
         eq_(prefixer.fix('/foo'), '/en-US/firefox/foo')
@@ -105,8 +107,9 @@ class TestPrefixer:
         client.get('/')
         eq_(urlresolvers.reverse('home'), '/en-US/firefox/')
 
-
-class Request(object):
-
-    def __init__(self, path):
-        self.path = path
+    def test_script_name(self):
+        rf = test_utils.RequestFactory()
+        request = rf.get('/foo')
+        request.environ['SCRIPT_NAME'] = '/oremj'
+        prefixer = urlresolvers.Prefixer(request)
+        eq_(prefixer.fix(prefixer.shortened_path), '/oremj/en-US/firefox/foo')

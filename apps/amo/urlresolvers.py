@@ -34,9 +34,8 @@ def reverse(viewname, urlconf=None, args=None, kwargs=None, prefix=None,
 class Prefixer(object):
 
     def __init__(self, request):
-        self.request_path = request.path
         self.request = request
-        split = self.split_path(request.path)
+        split = self.split_path(request.path_info)
         self.locale, self.app, self.shortened_path = split
 
     def split_path(self, path_):
@@ -95,7 +94,7 @@ class Prefixer(object):
 
     def fix(self, path):
         path = path.lstrip('/')
-        url_parts = []
+        url_parts = [self.request.META['SCRIPT_NAME']]
 
         if path.partition('/')[0] not in settings.SUPPORTED_NONLOCALES:
             locale = self.locale if self.locale else self.get_language()
@@ -107,4 +106,4 @@ class Prefixer(object):
 
         url_parts.append(path)
 
-        return '/' + '/'.join(url_parts)
+        return '/'.join(url_parts)
