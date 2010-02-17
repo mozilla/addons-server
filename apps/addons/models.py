@@ -102,6 +102,8 @@ class Addon(amo.models.ModelBase):
     average_daily_users = models.PositiveIntegerField(default=0)
     share_count = models.PositiveIntegerField(default=0, db_index=True,
                                               db_column='sharecount')
+    last_updated = models.DateTimeField(db_index=True, null=True,
+        help_text='Last time this add-on had a file/version update')
 
     inactive = models.BooleanField(default=False, db_index=True)
     trusted = models.BooleanField(default=False)
