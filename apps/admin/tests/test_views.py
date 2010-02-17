@@ -27,20 +27,24 @@ class TestFlagged(test_utils.TestCase):
         # 1. an addon should have latest version and approval attached
         addon = Addon.objects.get(id=1)
         eq_(addons[1], addon)
-        eq_(addons[1].version, Version.objects.filter(addon=addon).latest())
-        eq_(addons[1].approval, Approval.objects.filter(addon=addon).latest())
+        eq_(addons[1].version.id,
+            Version.objects.filter(addon=addon).latest().id)
+        eq_(addons[1].approval.id,
+            Approval.objects.filter(addon=addon).latest().id)
 
         # 2. missing approval is ok
         addon = Addon.objects.get(id=2)
         eq_(addons[2], addon)
-        eq_(addons[2].version, Version.objects.filter(addon=addon).latest())
-        assert not hasattr(addons[2], 'approval')
+        eq_(addons[2].version.id,
+            Version.objects.filter(addon=addon).latest().id)
+        eq_(addons[2].approval, None)
 
         # 3. missing approval is ok
         addon = Addon.objects.get(id=3)
         eq_(addons[3], addon)
-        eq_(addons[3].approval, Approval.objects.filter(addon=addon).latest())
-        assert not hasattr(addons[3], 'version')
+        eq_(addons[3].approval.id,
+            Approval.objects.filter(addon=addon).latest().id)
+        eq_(addons[3].version, None)
 
     def test_post(self):
         # Do a get first so the query is cached.

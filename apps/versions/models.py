@@ -20,6 +20,9 @@ class Version(amo.models.ModelBase):
         db_table = 'versions'
         ordering = ['-created']
 
+    def __unicode__(self):
+        return self.version
+
     @amo.cached_property
     def compatible_apps(self):
         """Get a mapping of {APP: ApplicationVersion}."""

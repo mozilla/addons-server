@@ -1,5 +1,4 @@
 from django.contrib import admin
-from django.db.models import Q
 from django.shortcuts import redirect
 
 import jingo
@@ -22,18 +21,30 @@ def flagged(request):
         Addon.objects.invalidate(*invalid)
         return redirect('admin.flagged')
 
-    for addon in addons:
-        try:
-            addon.version = Version.objects.filter(addon=addon).latest()
-        except Version.DoesNotExist:
-            pass
+    sql = """SELECT {t}.* FROM {t} JOIN (
+                SELECT addon_id, MAX(created) AS created
+                FROM {t}
+                GROUP BY addon_id) as J
+             ON ({t}.addon_id = J.addon_id AND {t}.created = J.created)
+             WHERE {t}.addon_id IN {ids}"""
+    approvals_sql = sql + """
+        AND (({t}.reviewtype = 'nominated' AND {t}.action = %s)
+             OR ({t}.reviewtype = 'pending' AND {t}.action = %s))"""
 
-        try:
-            q = (Q(reviewtype='nominated', action=amo.STATUS_NOMINATED) |
-                Q(reviewtype='pending', action=amo.STATUS_PENDING))
-            addon.approval = Approval.objects.filter(q, addon=addon).latest()
-        except Approval.DoesNotExist:
-            pass
+    ids = '(%s)' % ', '.join(str(a.id) for a in addons)
+    versions_sql = sql.format(t=Version._meta.db_table, ids=ids)
+    approvals_sql = approvals_sql.format(t=Approval._meta.db_table, ids=ids)
+
+    versions = dict((x.addon_id, x) for x in
+                    Version.objects.raw(versions_sql))
+    approvals = dict((x.addon_id, x) for x in
+                     Approval.objects.raw(approvals_sql,
+                                          [amo.STATUS_NOMINATED,
+                                           amo.STATUS_PENDING]))
+
+    for addon in addons:
+        addon.version = versions.get(addon.id)
+        addon.approval = approvals.get(addon.id)
 
     return jingo.render(request, 'admin/flagged_addon_list.html',
                         {'addons': addons})
