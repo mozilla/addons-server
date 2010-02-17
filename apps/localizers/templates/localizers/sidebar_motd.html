@@ -1,0 +1,19 @@
+<div class="motd">
+  {% if show_edit %}
+    <div class="edit_motd" style="display:none;">
+      <form action="{{ url('localizers.set_motd') }}" method="post">
+        {{ csrf() }}
+        <input type="hidden" name="lang" value="{{ motd_lang }}"/>
+        <textarea name="msg">{{ motd and motd.localized_string }}</textarea>
+        <button type="submit">{{ _('Submit') }}</button>
+        <a href="#" class="cancel">{{ _('Cancel') }}</a>
+      </form>
+    </div>
+  {% endif %}
+  <div class="motd_text">
+    <div class="msg">{{ motd }}</div>
+    {% if show_edit %}
+      <p class="edit"><a href="#">{{ _('(edit)') }}</a></p>
+    {% endif %}
+  </div>
+</div>

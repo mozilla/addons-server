@@ -1,0 +1,11 @@
+<div id="localeswitcher">
+  <form method="get" action="">
+    <label for="userlang">{{ _('Change Locale:') }}</label>
+    <select id="userlang" name="userlang" onChange="this.form.submit();">
+      {% for locale in locales %}
+        <option value="{{ locale }}"{{ ' selected' if locale == current_locale }}>{{ languages[locale]['native'] }}</option>
+      {% endfor %}
+    </select>
+    <noscript><button type="submit">{{ _('Go') }}</button></noscript>
+  </form>
+</div>

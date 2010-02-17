@@ -29,7 +29,7 @@ $(document).ready(function() {
                 .siblings('.motd_text').show();
         });
 
-    $('.sidebar .motd .motd_text p.edit a').click(function(e) {
+    $('#l10n-motd .motd .motd_text p.edit a').click(function(e) {
         e.preventDefault();
         $(this).closest('.motd_text')
             .hide()

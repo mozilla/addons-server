@@ -1,0 +1,26 @@
+{% extends "localizers/base.html" %}
+
+{% block title %}
+{# L10n: %s is a locale name or code ('German' or 'de') #}
+{{ page_title(_('Localization Summary for {0}')|f(userlang['native'])) }}
+{% endblock %}
+
+{% block content %}
+
+<header>
+  {{ impala_breadcrumbs([(url('localizers.dashboard'), _('Localization Dashboard'))]) }}
+
+  <h1>{{ _('Category Localization for {0}')|f(userlang.native) }}</h1>
+
+  {{ locale_switcher(current_locale=locale_code) }}
+</header>
+
+{{ localizers_sidebar(locale_code=locale_code) }}
+<div class="primary c">
+
+  <section class="hero island c">
+    Future home of category L10n
+  </section>
+</div>{# /#primary #}
+
+{% endblock content %}
