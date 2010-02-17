@@ -5,9 +5,6 @@
 {% block content %}
 <h2>Flagged Add-ons</h2>
 
-{# TODO: link to addon in admin/status, version number,
-         link to review, review image #}
-
 <form action="{{ url('admin.flagged') }}" method="post">
   {{ csrf() }}
   <table>
@@ -15,7 +12,7 @@
       <tr>
         <th></th>
         <th>Add-on</th>
-        <th>Review</th>
+        <th>Version</th>
         <th>Flagged On</th>
         <th>Flagged By</th>
         <th>Comments</th>
@@ -25,10 +22,13 @@
     {% for addon in addons %}
       <tr>
         <td><input type="checkbox" name="addon_id" value="{{ addon.id }}"></td>
-        <td>{{ addon.name }}</td>
+        <td>
+          <a href="{{ addon.get_absolute_url() }}">{{ addon.name }}</a>
+        </td>
         <td>
           {% if addon.version %}
-            img
+            {# TODO(jbalogh): use reverse #}
+            <a href="/editors/review/{{ addon.version.id }}">{{ addon.version }}</a>
           {% endif %}
         </td>
         {% if addon.approval %}
