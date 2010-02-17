@@ -5,7 +5,7 @@ ALTER TABLE addons
 -- Populate the new field in SQL the first time for speed.  We'll keep it
 -- up to date in a cron job after this.
 
-CREATE TABLE tmp (
+CREATE TEMPORARY TABLE tmp (
     addon_id INT PRIMARY KEY,
     last_updated datetime
 );
