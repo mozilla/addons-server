@@ -114,9 +114,8 @@ class TestThemes(test_utils.TestCase):
         eq_(ids, [55, 3615, 7172, 73])
 
     def test_date_sort(self):
-        raise nose.SkipTest('need to fix the modified TODO')
         ids = self._get_sort('date')
-        eq_(ids, [7172, 3615, 55, 73])
+        eq_(ids, [3615, 7172, 73, 55])
 
     def test_rating_sort(self):
         ids = self._get_sort('rating')

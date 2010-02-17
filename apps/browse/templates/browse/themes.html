@@ -78,8 +78,7 @@
             <h4><a href="{{ addon.get_absolute_url() }}">{{ addon.name }}</a></h4>
             <p class="meta">
               {% if sorting == "date" %}
-                {# TODO(jbalogh): this shouldn't be using modified. #}
-                {% trans date=addon.modified|datetime %}
+                {% trans date=addon.last_updated|datetime %}
                   Updated {{ date }}
                 {% endtrans %}
               {% elif sorting == "downloads" %}
