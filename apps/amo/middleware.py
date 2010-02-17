@@ -24,7 +24,7 @@ class LocaleAndAppURLMiddleware(object):
         urlresolvers.set_url_prefix(prefixer)
         full_path = prefixer.fix(prefixer.shortened_path)
 
-        if full_path != request.path_info:
+        if full_path != request.path:
             query_string = request.META.get('QUERY_STRING', '')
             if query_string:
                 full_path = "%s?%s" % (full_path, query_string)

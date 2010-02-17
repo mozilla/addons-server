@@ -50,6 +50,11 @@ class MiddlewareTest(test.TestCase):
         response = self.middleware.process_request(self.rf.get('/en-US'))
         assert 'Vary' not in response
 
+    def test_no_redirect_with_script(self):
+        request = self.rf.get('/services', SCRIPT_NAME='/oremj')
+        response = self.middleware.process_request(request)
+        assert response is None
+
 
 class TestPrefixer:
 
@@ -109,7 +114,6 @@ class TestPrefixer:
 
     def test_script_name(self):
         rf = test_utils.RequestFactory()
-        request = rf.get('/foo')
-        request.environ['SCRIPT_NAME'] = '/oremj'
+        request = rf.get('/foo', SCRIPT_NAME='/oremj')
         prefixer = urlresolvers.Prefixer(request)
         eq_(prefixer.fix(prefixer.shortened_path), '/oremj/en-US/firefox/foo')
