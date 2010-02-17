@@ -101,6 +101,7 @@
         "fields": {
             "dev_agreement": 1,
             "public_stats": 0,
+            "last_updated": "2009-10-21 09:58:52",
             "modified": "2009-10-21 09:58:52",
             "weekly_downloads": 20178,
             "share_count": 5,
@@ -327,6 +328,7 @@
             "created": "2008-05-01 00:59:36",
             "type": 2,
             "annoying": 0,
+            "last_updated": "2009-09-22 01:49:51",
             "modified": "2009-09-22 01:49:51",
             "site_specific": 0,
             "total_reviews": 346,
@@ -386,6 +388,7 @@
             "name": 73,
             "bayesian_rating": 0.8,
             "weekly_downloads": 23523,
+            "last_updated": "2008-08-21 23:53:19",
             "modified": "2006-08-21 23:53:19",
             "created": "2006-08-21 23:53:19"
         }
@@ -443,6 +446,7 @@
             "name": 55,
             "bayesian_rating": 1.0,
             "weekly_downloads": 3865386,
+            "last_updated": "2006-08-21 23:53:19",
             "modified": "2006-08-21 23:53:19",
             "created": "2006-08-21 23:53:19"
         }

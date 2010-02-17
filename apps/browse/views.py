@@ -108,11 +108,7 @@ class AddonSorter(object):
 
     def sort(self, qs, field):
         if field == 'date':
-            # TODO(jbalogh): this should actually sort by the latest
-            # file.date_status_changed or file.created (unreviewed).
-            # But listed add-ons and personas don't have that, so let's make a
-            # new field on the add-on to give us the right answer.
-            return qs.order_by('-modified')
+            return qs.order_by('-last_updated')
         elif field == 'downloads':
             return qs.order_by('-weekly_downloads')
         elif field == 'rating':
