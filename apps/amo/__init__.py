@@ -179,3 +179,19 @@ PLATFORM_MAC = 3
 PLATFORM_BSD = 4
 PLATFORM_WIN = 5
 PLATFORM_SUN = 6
+
+PLATFORMS = {
+    'all': PLATFORM_ALL,
+    'linux': PLATFORM_LINUX,
+    'mac': PLATFORM_MAC,
+    'macosx': PLATFORM_MAC,
+    'darwin': PLATFORM_MAC,
+    'bsd': PLATFORM_BSD,
+    'bsd_os': PLATFORM_BSD,
+    'win': PLATFORM_WIN,
+    'winnt': PLATFORM_WIN,
+    'windows': PLATFORM_WIN,
+    'sun': PLATFORM_SUN,
+    'sunos': PLATFORM_SUN,
+    'solaris': PLATFORM_SUN,
+}

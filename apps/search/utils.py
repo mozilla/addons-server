@@ -45,19 +45,6 @@ pattern = re.compile(r"""(\d+)   # major (x in x.y)
 pattern_plus = re.compile(r'((\d+)\+)')
 
 
-def convert_type(type):
-    if type == 'extension' or type == 'extensions':
-        return amo.ADDON_EXTENSIONS
-    elif type == 'theme' or type == 'themes':
-        return amo.ADDON_THEME
-    elif type == 'dict' or type == 'dicts':
-        return amo.ADDON_DICT
-    elif type == 'language' or type == 'languages':
-        return amo.ADDON_LPAPP
-    elif type == 'plugin' or type == 'plugins':
-        return amo.ADDON_PLUGIN
-
-
 def convert_version(version_string):
     """
     This will enumerate a version so that it can be used for comparisons and

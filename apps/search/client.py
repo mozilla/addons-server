@@ -3,13 +3,46 @@ import re
 from django.conf import settings
 from django.utils import translation
 
+import amo
 import amo.models
+from addons.models import Addon, Category
 from .sphinxapi import SphinxClient
 import sphinxapi as sphinx
 from .utils import convert_version, crc32
 
 m_dot_n_re = re.compile(r'^\d+\.\d+$')
 SEARCH_ENGINE_APP = 99
+
+
+def get_category_id(category, application):
+    """
+    Given a string, get the category id associated with it.
+    """
+    category = Category.objects.filter(
+            slug__istartswith=category,
+            application=application)[:1]
+
+    if len(category):
+        return category[0].id
+
+
+def extract_from_query(term, filter, regexp, options={}):
+    """
+    This pulls out a keyword filter from a search term and returns the value
+    for the filter and a new term with the filter removed.
+
+    E.g. "yslow version:3" will result in (yslow, 3).  Failing this, we'll look
+    in the search options dictionary to see if there is a value.
+    """
+    match = re.search(r'\b%s:\s*(%s)\b' % (filter, regexp), term)
+
+    if match:
+        term = term.replace(match.group(0), '')
+        value = match.group(1)
+    else:
+        value = options.get(filter, None)
+    return (term, value)
+
 
 class SearchError(Exception):
     pass
@@ -39,7 +72,6 @@ class Client(object):
         high_int = convert_version(version)
         low_int = high_int
 
-
         if m_dot_n_re.match(version):
             low_int = convert_version(version + "apre")
 
@@ -51,7 +83,7 @@ class Client(object):
             sc.SetFilterRange('max_ver', low_int, 10 * high_int)
             sc.SetFilterRange('min_ver', 0, high_int)
 
-    def query(self, term, **kwargs):
+    def query(self, term, limit=10, offset=0, **kwargs):
         """
         Queries sphinx for a term, and parses specific options.
 
@@ -77,11 +109,10 @@ class Client(object):
         # Setup some default parameters for the search.
         fields = "addon_id, app, category"
 
-        limit = kwargs.get('limit', 2000)
-
         sc.SetSelect(fields)
         sc.SetFieldWeights({'name': 4})
-        sc.SetLimits(0, limit)
+        # limiting happens later, since Sphinx returns more than we need.
+        sc.SetLimits(0, 2000)
         sc.SetFilter('inactive', (0,))
 
         # STATUS_DISABLED and 0 (which likely means null) are filtered from
@@ -123,13 +154,36 @@ class Client(object):
             sc.SetFilter('app', (kwargs['app'], SEARCH_ENGINE_APP))
 
         # Version filtering.
-        match = re.match('\bversion:([0-9\.]+)/', term)
+        (term, version) = extract_from_query(term, 'version', '[0-9.]+',
+                                             kwargs)
 
-        if match:
-            term = term.replace(match.group(0), '')
-            self.restrict_version(match.group(1))
-        elif 'version' in kwargs:
-            self.restrict_version(kwargs['version'])
+        if version:
+            self.restrict_version(version)
+
+        # Category filtering.
+        (term, category) = extract_from_query(term, 'category', '\w+')
+
+        if category and 'app' in kwargs:
+            category = get_category_id(category, kwargs['app'])
+            if category:
+                sc.SetFilter('category', [int(category)])
+
+        (term, platform) = extract_from_query(term, 'platform', '\w+', kwargs)
+
+        if platform:
+            platform = amo.PLATFORMS.get(platform)
+            if platform:
+                sc.SetFilter('platform', (int(platform), amo.PLATFORM_ALL,))
+
+        (term, addon_type) = extract_from_query(term, 'type', '\w+', kwargs)
+
+        if addon_type:
+            if not isinstance(addon_type, int):
+                types = dict((name.lower(), id) for id, name
+                             in amo.ADDON_TYPE.items())
+                addon_type = types[addon_type.lower()]
+            if addon_type:
+                sc.SetFilter('type', (addon_type,))
 
         # Xenophobia - restrict to just my language.
         if 'xenophobia' in kwargs and 'admin' not in kwargs:
@@ -142,11 +196,8 @@ class Client(object):
         # XXX - Todo:
         # In the interest of having working code sooner than later, we're
         # skipping the following... for now:
-        #   * Type filter
-        #   * Platform filter
         #   * Date filter
         #   * GUID filter
-        #   * Category filter
         #   * Tag filter
         #   * Num apps filter
         #   * Logging
@@ -155,6 +206,22 @@ class Client(object):
 
         if sc.GetLastError():
             raise SearchError(sc.GetLastError())
+        if result and result['total']:
+            # Return results as a list of addons.
+            results = [m['attrs']['addon_id'] for m in result['matches']]
 
-        if result:
-            return result['matches']
+            # Uniquify
+            ids = []
+            for the_id in results:
+                if the_id not in ids:
+                    ids.append(the_id)
+
+            ids = ids[offset:limit]
+            addons = Addon.objects.filter(id__in=ids).extra(
+                    select={'manual': 'FIELD(id,%s)'
+                            % ','.join(map(str, ids))},
+                    order_by=['manual'])
+
+            return addons
+        else:
+            return []
