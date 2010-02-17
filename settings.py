@@ -144,6 +144,7 @@ INSTALLED_APPS = (
     'bandwagon',
     'blocklist',
     'browse',
+    'cronjobs',
     'devhub',
     'editors',
     'files',
