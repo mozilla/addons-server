@@ -49,10 +49,10 @@
             "name_plural": 39112,
             "modified": "2009-02-06 08:42:28",
             "name": 39109,
-            "created": "2006-08-21 23:53:19"
+            "created": "2006-08-22 23:53:19"
         }
     },
-    
+
     {
         "pk": 1,
         "model": "applications.application",
@@ -805,7 +805,8 @@
             "summary": 7999,
             "site_specific": 0,
             "total_reviews": 727,
-            "nomination_date": "2009-02-05 15:24:24"
+            "nomination_date": "2009-02-05 15:24:24",
+            "last_updated": "2009-02-05 15:24:24"
         }
     },
     {
@@ -1015,7 +1016,9 @@
             "summary": 104239,
             "site_specific": 0,
             "total_reviews": 26,
-            "nomination_date": "2008-08-08 17:22:37"
+            "nomination_date": "2008-08-08 17:22:37",
+            "last_updated": "2009-02-06 15:24:24"
+
         }
     },
     {
@@ -1235,7 +1238,8 @@
             "site_specific": 0,
             "total_reviews": 33,
             "the_reason": 539994,
-            "nomination_date": "2009-03-27 19:14:48"
+            "nomination_date": "2009-03-27 19:14:48",
+            "last_updated": "2009-02-07 15:24:24"
         }
     },
     {
@@ -1394,7 +1398,8 @@
             "summary": 60896,
             "site_specific": 0,
             "total_reviews": 57,
-            "nomination_date": "2009-02-27 11:36:53"
+            "nomination_date": "2009-02-27 11:36:53",
+            "last_updated": "2009-02-09 15:24:24"
         }
     },
     {
@@ -1606,7 +1611,9 @@
             "site_specific": 1,
             "total_reviews": 101,
             "the_reason": 482381,
-            "nomination_date": "2009-03-23 12:20:04"
+            "nomination_date": "2009-03-23 12:20:04",
+            "last_updated": "2009-03-23 12:20:04"
+            
         }
     },
     {
@@ -1681,5 +1688,5 @@
             "name": 37939
         }
     }
-    
+
 ]
