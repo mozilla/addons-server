@@ -5,6 +5,8 @@ from django.conf import settings
 from django.db import models
 from django.db.models import Q
 
+import caching.base
+
 import amo.models
 from amo.urlresolvers import reverse
 from reviews.models import Review
@@ -230,8 +232,8 @@ class Addon(amo.models.ModelBase):
         # XXX should probably take feature_locales under consideration, even
         # though remora didn't do that
         feature = AddonCategory.objects.filter(
-            addon=self, feature=True, category__application__id=app.id).count()
-        return bool(feature)
+            addon=self, feature=True, category__application__id=app.id)
+        return bool(feature[:1])
 
     @amo.cached_property
     def compatible_apps(self):
@@ -242,14 +244,17 @@ class Addon(amo.models.ModelBase):
             return {}
 
 
-class AddonCategory(models.Model):
+class AddonCategory(caching.base.CachingMixin, models.Model):
     addon = models.ForeignKey(Addon)
     category = models.ForeignKey('Category')
     feature = models.BooleanField(default=False)
     feature_locales = models.CharField(max_length=255, default='', null=True)
 
+    objects = caching.base.CachingManager()
+
     class Meta:
         db_table = 'addons_categories'
+        unique_together = ('addon', 'category')
 
 
 class AddonPledge(amo.models.ModelBase):
