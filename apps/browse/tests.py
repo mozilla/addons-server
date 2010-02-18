@@ -116,7 +116,7 @@ class TestThemes(test_utils.TestCase):
 
     def test_date_sort(self):
         ids = self._get_sort('date')
-        eq_(ids, [3615, 7172, 73, 55])
+        eq_(ids, [3615, 7172, 73, 55, 10869, 1843, 6704, 5369])
 
     def test_rating_sort(self):
         ids = self._get_sort('rating')

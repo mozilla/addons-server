@@ -370,7 +370,7 @@ class SphinxClient:
 		assert iter(values)
 
 		for value in values:
-			assert(isinstance(value, int))
+			assert(isinstance(value, (int,long)))
 
 		self._filters.append ( { 'type':SPH_FILTER_VALUES, 'attr':attribute, 'exclude':exclude, 'values':values } )
 
@@ -381,8 +381,8 @@ class SphinxClient:
 		Only match records if 'attribute' value is beetwen 'min_' and 'max_' (inclusive).
 		"""
 		assert(isinstance(attribute, str))
-		assert(isinstance(min_, int))
-		assert(isinstance(max_, int))
+		assert(isinstance(min_, (int,long)))
+		assert(isinstance(max_, (int,long)))
 		assert(min_<=max_)
 
 		self._filters.append ( { 'type':SPH_FILTER_RANGE, 'attr':attribute, 'exclude':exclude, 'min':min_, 'max':max_ } )
