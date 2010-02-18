@@ -171,9 +171,25 @@ class MOBILE:
     types = [ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_SEARCH]
     guid = '{a23983c0-fd0e-11dc-95ff-0800200c9a66}'
 
+class MOZILLA:
+    """Mozilla exists for completeness and historical purposes.
+
+    Stats and other modules may reference this for history.
+    This should NOT be added to APPS.
+    """
+    id = 2
+    short = 'mz'
+    pretty = _('Mozilla')
+    browser = True
+    types = [ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_SEARCH,
+             ADDON_PLUGIN]
+    guid = '{86c18b42-e466-45a9-ae7a-9b95ba6f5640}'
+
 _apps = (FIREFOX, THUNDERBIRD, SEAMONKEY, SUNBIRD, MOBILE)
 APPS = dict((app.short, app) for app in _apps)
 APP_IDS = dict((app.id, app) for app in _apps)
+APP_GUIDS = dict((app.guid, app) for app in _apps)
+APPS_RETIRED = dict([(MOZILLA.short, MOZILLA)])
 
 # Platforms
 PLATFORM_ANY = -1
