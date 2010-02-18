@@ -86,6 +86,7 @@ class APITest(TestCase):
         response = self.client.get("/en-US/firefox/api/1.2/search/foo")
         self.assertContains(response, "Could not connect to Sphinx search.",
                             status_code=503)
+    test_sphinx_off.sphinx = True
 
 
 class SearchTest(SphinxTestCase):
