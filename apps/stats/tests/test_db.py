@@ -35,6 +35,13 @@ class TestStatsDict(test.TestCase):
                          'nested': {'b': Decimal('5.5'), 'c': Decimal('6.6')}})
         eq_(d, res)
 
+    def test_sum_reduce(self):
+        sum = self.dict_empty.sum_reduce()
+        eq_(sum, 0)
+
+        sum = self.dict_a.sum_reduce()
+        eq_(sum, 14)
+
 
 class TestDateUtils(test.TestCase):
 

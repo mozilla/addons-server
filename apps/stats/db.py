@@ -459,6 +459,13 @@ class StatsManager(caching.base.CachingManager):
 
 class StatsDict(dict):
 
+    def sum_reduce(self):
+        """Reduce the dictionary to a single value by summing.
+
+        Values in nested dictionaries are also summed.
+        """
+        return self._rdict_sum_reduce(self)
+
     def __add__(self, d):
         """Combines two dictionaries, summing values where keys overlap.
 
@@ -510,6 +517,17 @@ class StatsDict(dict):
             else:
                 result[k] = a_val + b_val
         return result
+
+    @classmethod
+    def _rdict_sum_reduce(cls, d):
+        """Recursively sum all values in a dictionary."""
+        s = 0
+        for val in d.values():
+            if isinstance(val, dict):
+                s = s + cls._rdict_sum_reduce(val)
+            else:
+                s = s + val
+        return s
 
 
 class StatsDictField(models.TextField):
