@@ -1,0 +1,92 @@
+[
+    {
+        "pk": 67984,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2007-03-22 20:51:22",
+            "id": 39111,
+            "modified": "2007-03-26 20:06:20",
+            "localized_string": "Extensions are small add-ons that add new functionality to %1$s, from a simple toolbar button to a completely new feature. They allow you to customize %1$s to fit your own needs and preferences, while letting us keep %1$s itself light and lean."
+        }
+    },
+    {
+        "pk": 68015,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2007-03-22 21:16:47",
+            "id": 39112,
+            "modified": "2007-03-26 20:06:20",
+            "localized_string": "Extensions"
+        }
+    },
+    {
+        "pk": 67951,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2007-03-22 20:51:22",
+            "id": 39109,
+            "modified": "2007-03-26 20:06:20",
+            "localized_string": "Extension"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "applications.application",
+        "fields": {
+            "guid": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}",
+            "modified": "2008-11-03 15:34:59",
+            "created": "2007-03-05 13:09:26"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "addons.addontype",
+        "fields": {
+            "description": 39111,
+            "name_plural": 39112,
+            "modified": "2009-02-06 08:42:28",
+            "name": 39109,
+            "created": "2006-08-21 23:53:19"
+        }
+    },
+    {
+        "pk": 1118,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2007-03-05 13:09:26",
+            "id": 1018,
+            "modified": "2007-10-12 16:58:05",
+            "localized_string": "Stay up to date with frequently updated content from your favorite news and blog sites with these add-ons."
+        }
+    },
+    {
+        "pk": 1085,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2007-03-05 13:09:26",
+            "id": 1017,
+            "modified": "2007-10-12 16:58:05",
+            "localized_string": "Feeds, News & Blogging"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "addons.category",
+        "fields": {
+            "count": 811,
+            "description": 1018,
+            "weight": 0,
+            "created": "2007-03-05 13:09:26",
+            "modified": "2009-11-13 02:15:57",
+            "application": 1,
+            "type": 1,
+            "slug": "feeds-news-blogging",
+            "name": 1017
+        }
+    }
+]

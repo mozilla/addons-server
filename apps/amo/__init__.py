@@ -125,6 +125,7 @@ ADDON_TYPES = {
     ADDON_PERSONA: _('Personas'),
 }
 
+
 # Applications
 class FIREFOX:
     id = 1
@@ -134,12 +135,14 @@ class FIREFOX:
     types = [ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_SEARCH,
              ADDON_PLUGIN, ADDON_PERSONA]
 
+
 class THUNDERBIRD:
     id = 18
     short = 'thunderbird'
     pretty = _('Thunderbird')
     browser = True
     types = [ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_PERSONA]
+
 
 class SEAMONKEY:
     id = 59
@@ -149,11 +152,13 @@ class SEAMONKEY:
     types = [ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_SEARCH,
              ADDON_PLUGIN]
 
+
 class SUNBIRD:
     id = 52
     short = 'sunbird'
     pretty = _('Sunbird')
     types = [ADDON_EXTENSION, ADDON_THEME, ADDON_DICT]
+
 
 class MOBILE:
     id = 60
@@ -165,3 +170,28 @@ class MOBILE:
 _apps = (FIREFOX, THUNDERBIRD, SEAMONKEY, SUNBIRD, MOBILE)
 APPS = dict((app.short, app) for app in _apps)
 APP_IDS = dict((app.id, app) for app in _apps)
+
+# Platforms
+PLATFORM_ANY = -1
+PLATFORM_ALL = 1
+PLATFORM_LINUX = 2
+PLATFORM_MAC = 3
+PLATFORM_BSD = 4
+PLATFORM_WIN = 5
+PLATFORM_SUN = 6
+
+PLATFORMS = {
+    'all': PLATFORM_ALL,
+    'linux': PLATFORM_LINUX,
+    'mac': PLATFORM_MAC,
+    'macosx': PLATFORM_MAC,
+    'darwin': PLATFORM_MAC,
+    'bsd': PLATFORM_BSD,
+    'bsd_os': PLATFORM_BSD,
+    'win': PLATFORM_WIN,
+    'winnt': PLATFORM_WIN,
+    'windows': PLATFORM_WIN,
+    'sun': PLATFORM_SUN,
+    'sunos': PLATFORM_SUN,
+    'solaris': PLATFORM_SUN,
+}

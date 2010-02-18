@@ -4,7 +4,7 @@ from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 
 
-class Command(BaseCommand):
+class Command(BaseCommand): #pragma: no cover
     help = ("Runs the indexer script for sphinx as defined in "
     " settings.SPHINX_INDEXER")
 

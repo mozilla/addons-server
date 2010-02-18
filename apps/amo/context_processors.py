@@ -3,6 +3,8 @@ from django.utils import translation
 from django.utils.translation import ugettext as _
 from django.utils.http import urlquote
 
+import amo
+
 
 def app(request):
     return {'APP': request.APP}
@@ -44,4 +46,4 @@ def global_settings(request):
         link['href'] = '/users/logout?to=' + urlquote(request.path)
         account_links.append(link)
 
-    return {'account_links': account_links, 'settings': settings}
+    return {'account_links': account_links, 'settings': settings, 'amo': amo}

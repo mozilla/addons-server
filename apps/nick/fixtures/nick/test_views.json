@@ -13,48 +13,125 @@
         }
     },
     {
-        "pk": 12,
-        "model": "addons.category",
+        "pk": 1,
+        "model": "addons.addontype",
         "fields": {
-            "count": 587,
-            "description": null,
-            "weight": 0,
-            "created": "2007-03-05 13:09:26",
-            "modified": "2010-01-17 18:54:06",
-            "application": 1,
-            "type": 1,
-            "slug": "privacy-security",
-            "name": null
+            "description": 39111,
+            "name_plural": 39112,
+            "modified": "2009-02-06 08:42:28",
+            "name": 39109,
+            "created": "2006-08-21 23:53:19"
         }
     },
     {
-        "pk": 22,
+        "pk": 1309,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2007-03-05 13:09:26",
+            "id": 1034,
+            "modified": "2007-10-12 16:59:31",
+            "localized_string": "Some of these add-ons will help you control and protect your personal data, while others help defend against some types of web attacks."
+        }
+    },
+    {
+        "pk": 1276,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2007-03-05 13:09:26",
+            "id": 1033,
+            "modified": "2007-10-12 16:59:31",
+            "localized_string": "Privacy & Security"
+        }
+    },
+    {
+        "pk": 12,
         "model": "addons.category",
         "fields": {
-            "count": 859,
-            "description": null,
+            "count": 556,
+            "description": 1034,
             "weight": 0,
-            "created": "2007-03-05 13:09:27",
-            "modified": "2010-01-17 18:54:06",
+            "created": "2007-03-05 13:09:26",
+            "modified": "2009-11-13 02:15:57",
             "application": 1,
             "type": 1,
-            "slug": "bookmarks",
-            "name": null
+            "slug": "privacy-security",
+            "name": 1033
+        }
+    },
+    {
+        "pk": 122558,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2007-12-19 21:48:37",
+            "id": 88312,
+            "modified": "2007-12-19 21:55:57",
+            "localized_string": "These add-ons are related to tabs functionality and tabs management."
+        }
+    },
+    {
+        "pk": 122529,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2007-12-19 21:48:37",
+            "id": 88311,
+            "modified": "2007-12-19 21:55:57",
+            "localized_string": "Tabs"
         }
     },
     {
         "pk": 93,
         "model": "addons.category",
         "fields": {
-            "count": 361,
-            "description": null,
+            "count": 344,
+            "description": 88312,
             "weight": 0,
             "created": "2007-12-19 21:48:37",
-            "modified": "2010-01-17 18:54:06",
+            "modified": "2009-11-13 02:15:58",
             "application": 1,
             "type": 1,
             "slug": "tabs",
-            "name": null
+            "name": 88311
+        }
+    },
+    {
+        "pk": 1564,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2007-03-05 13:09:27",
+            "id": 1044,
+            "modified": "2007-03-21 13:32:15",
+            "localized_string": "Do you have trouble remembering where you put the bookmark for that fantastic cookie recipe (no, the other one, with the pecans)? Are you tired of looking for a bookmark and then remembering it's on your other computer? Do you want to share your great Web finds with your friends, or see what they think is  hot?  These add-ons can help you with all of that and more."
+        }
+    },
+    {
+        "pk": 1531,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2007-03-05 13:09:27",
+            "id": 1043,
+            "modified": "2007-03-21 13:32:15",
+            "localized_string": "Bookmarks"
+        }
+    },
+    {
+        "pk": 22,
+        "model": "addons.category",
+        "fields": {
+            "count": 824,
+            "description": 1044,
+            "weight": 0,
+            "created": "2007-03-05 13:09:27",
+            "modified": "2009-11-13 02:15:57",
+            "application": 1,
+            "type": 1,
+            "slug": "bookmarks",
+            "name": 1043
         }
     },
     {

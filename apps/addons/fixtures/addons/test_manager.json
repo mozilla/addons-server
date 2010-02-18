@@ -219,9 +219,7 @@
         "fields": {
             "version_int": 3001200200100,
             "application": 1,
-            "version": "3.0.12",
-            "modified": null,
-            "created": null
+            "version": "3.0.12"
         }
     },
     {

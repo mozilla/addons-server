@@ -21,6 +21,6 @@ def test(module=None, pdb=False):
 
     cmd += " --noinput --logging-clear-handlers"
     if pdb:
-        cmd += ' --pdb --pdb-failures'
+        cmd += ' --pdb --pdb-failures -s'
 
     local(cmd, capture=False)

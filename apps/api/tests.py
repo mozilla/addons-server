@@ -2,7 +2,12 @@ from django.conf import settings
 
 from test_utils import TestCase
 
+from nose.tools import eq_
+
+
 import api
+from search.tests import SphinxTestCase
+from search.utils import stop_sphinx
 
 
 class APITest(TestCase):
@@ -67,9 +72,76 @@ class APITest(TestCase):
         self.assertContains(response, "<eula>None</eula>")
         self.assertContains(response, "/img/no-preview.png</thumbnail>")
         self.assertContains(response, "<rating>3</rating>")
-        self.assertContains(response, "/en-US/firefox/addon/3615/?src=api</learnmore>")
+        self.assertContains(response,
+                "/en-US/firefox/addon/3615/?src=api</learnmore>")
         self.assertContains(response,
                 """hash="sha256:5b5aaf7b38e332cc95d92ba759c01"""
                 "c3076b53a840f6c16e01dc272eefcb29566")
 
+    def test_sphinx_off(self):
+        """
+        This tests that if sphinx is turned off that you will get an error.
+        """
+        stop_sphinx()
+        response = self.client.get("/en-US/firefox/api/1.2/search/foo")
+        self.assertContains(response, "Could not connect to Sphinx search.",
+                            status_code=503)
 
+
+class SearchTest(SphinxTestCase):
+
+    def test_zero_results(self):
+        """
+        Tests that the search API correctly gives us zero results found.
+        """
+        # The following URLs should yield zero results.
+        zeros = (
+                 "/en-US/sunbird/api/1.2/search/yslow",
+                 "yslow category:alerts",
+                 "jsonview version:1.0",
+                 "firebug type:dictionary",
+                 "grapple platform:linux",
+                 "firebug/3",
+                 "grapple/all/10/Linux",
+                 "jsonview/all/10/Darwin/1.0",)
+
+        for url in zeros:
+            if not url.startswith('/'):
+                url = '/en-US/firefox/api/1.2/search/' + url
+
+            response = self.client.get(url)
+            self.assertContains(response,
+                                """<searchresults total_results="0">""",
+                                msg_prefix=url)
+
+    def test_search_for_specifics(self):
+        """
+        Tests that the search API correctly returns specific results.
+        """
+        expect = {
+                  'yslow': 'YSlow',
+                  'yslow category:web': 'YSlow',
+                  'jsonview version:3.5': 'JSONView',
+                  'firebug type:extension': 'Firebug',
+                  'grapple platform:mac': 'GrApple',
+                  'firebug/1': 'Firebug',
+                  'grapple/all/10/Darwin': 'GrApple',
+                  'jsonview/all/10/Darwin/3.5': 'JSONView',
+                  '/en-US/mobile/api/1.2/search/twitter/all/10/Linux/1.0b4':
+                  'TwitterBar',
+                  }
+
+        for url, text in expect.iteritems():
+            if not url.startswith('/'):
+                url = '/en-US/firefox/api/1.2/search/' + url
+
+            response = self.client.get(url)
+            self.assertContains(response, text, msg_prefix=url)
+
+    def test_search_limits(self):
+        """
+        Test that we limit our results correctly.
+        """
+        response = self.client.get(
+                "/en-US/firefox/api/1.2/search/firebug/all/1")
+        eq_(response.content.count("<addon>"), 1)

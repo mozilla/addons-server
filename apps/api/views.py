@@ -11,6 +11,7 @@ import jingo
 import amo
 import api
 from addons.models import Addon
+from search.client import Client as SearchClient, SearchError
 
 ERROR = 'error'
 OUT_OF_DATE = _("The API version, {0:.1f}, you are using is not valid.  "
@@ -38,7 +39,7 @@ class APIView(object):
 
     def __call__(self, request, api_version, *args, **kwargs):
 
-        self.format  = request.REQUEST.get('format', 'xml')
+        self.format = request.REQUEST.get('format', 'xml')
         self.mimetype = ('text/xml' if self.format == 'xml'
                          else 'application/json')
         self.request = request
@@ -48,7 +49,7 @@ class APIView(object):
             return self.render_msg(msg, ERROR, status=403,
                                    mimetype=self.mimetype)
 
-        return self.process_request(request, *args, **kwargs)
+        return self.process_request(*args, **kwargs)
 
     def render_msg(self, msg, error_level=None, *args, **kwargs):
         """
@@ -64,7 +65,7 @@ class APIView(object):
 
 class AddonDetailView(APIView):
 
-    def process_request(self, request, addon_id):
+    def process_request(self, addon_id):
         try:
             addon = Addon.objects.get(id=addon_id)
         except Addon.DoesNotExist:
@@ -76,11 +77,43 @@ class AddonDetailView(APIView):
     def render_addon(self, addon):
         if self.format == 'xml':
             return jingo.render(
-                self.request, 'api/addon.xml',
+                self.request, 'api/addon_detail.xml',
                 {'addon': addon, 'amo': amo}, mimetype=self.mimetype)
         else:
             pass
             # serialize me?
+
+
+class SearchView(APIView):
+
+    def process_request(self, query, type='ALL', limit=10, platform='ALL',
+                        version=None):
+        """
+        This queries sphinx with `query` and serves the results in xml.
+        """
+        sc = SearchClient()
+
+        opts = {'app': self.request.APP.id}
+
+        if type.upper() != 'ALL':
+            opts['type'] = int(type)
+
+        if version:
+            opts['version'] = version
+
+        if platform.upper() != 'ALL':
+            opts['platform'] = platform.lower()
+
+        try:
+            results = sc.query(query, limit=int(limit), **opts)
+        except SearchError:
+            return self.render_msg('Could not connect to Sphinx search.',
+                                   ERROR, status=503, mimetype=self.mimetype)
+
+        if self.format == 'xml':
+            return jingo.render(
+                    self.request, 'api/search.xml',
+                    {'results': results}, mimetype=self.mimetype)
 
 
 def redirect_view(request, url):
