@@ -15,12 +15,15 @@
   <compatible_applications>
     {% if addon.current_version %}
     {% for app in addon.current_version.applicationsversions_set.all() %}
+    {% if amo.APP_IDS.get(app.application_id) %}
     <application>
       <name>{{amo.APP_IDS[app.application_id].pretty}}</name>
-      <application_id>{{app.application.id}}</application_id>
+      <application_id>{{app.application_id}}</application_id>
       <min_version>{{app.min}}</min_version>
       <max_version>{{app.max}}</max_version>
+      <appID>{{amo.APP_IDS[app.application_id].guid}}</appID>
     </application>
+    {% endif %}
     {% endfor %}
     {% endif %}
   </compatible_applications>
@@ -31,9 +34,9 @@
     {% endfor %}
     {% endif %}
   </all_compatible_os>
-  <eula>{{addon.eula}}</eula>
+  <eula>{{addon.eula|hide_none}}</eula>
   <thumbnail>{{addon.thumbnail_url}}</thumbnail>
-  <rating>{{addon.bayesian_rating|wround}}</rating>
+  <rating>{{addon.bayesian_rating|wround(0, 'ceil')}}</rating>
   <learnmore>{{settings.SITE_URL+addon.get_absolute_url()+'?src=api'}}</learnmore>
   {% if addon.current_version %}
   {% for file in addon.current_version.files.all() %}

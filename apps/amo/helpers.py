@@ -20,6 +20,11 @@ from amo import urlresolvers
 from addons.models import Category
 
 
+@register.filter
+def hide_none(string):
+    return '' if string is None else string
+
+
 @register.function
 def url(viewname, *args, **kwargs):
     """Helper for Django's ``reverse`` in templates."""

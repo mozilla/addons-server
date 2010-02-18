@@ -1,11 +1,12 @@
+import math
+
 from django.conf import settings
 
 from test_utils import TestCase
-
 from nose.tools import eq_
 
-
 import api
+from addons.models import Addon
 from search.tests import SphinxTestCase
 from search.utils import stop_sphinx
 
@@ -43,6 +44,38 @@ class APITest(TestCase):
 
         self.assertContains(response, 'Add-on not found!', status_code=404)
 
+
+    def test_addon_detail_appid(self):
+        """
+        Make sure we serve an appid.  See
+        https://bugzilla.mozilla.org/show_bug.cgi?id=546542.
+        """
+        response = self.client.get('/en-US/firefox/api/%.1f/addon/3615' %
+                                   api.CURRENT_VERSION)
+        self.assertContains(response,
+                '<appID>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</appID>')
+
+    def test_addon_detail_empty_eula(self):
+        """
+        Empty EULA should show up as '' not None.  See
+        https://bugzilla.mozilla.org/show_bug.cgi?id=546542.
+        """
+        response = self.client.get('/en-US/firefox/api/%.1f/addon/4664' %
+                                   api.CURRENT_VERSION)
+        self.assertContains(response, '<eula></eula>')
+
+
+    def test_addon_detail_rating(self):
+        """
+        We use the ceiling value of average rating for an addon.
+        See https://bugzilla.mozilla.org/show_bug.cgi?id=546542.
+        """
+        a = Addon.objects.get(pk=4664)
+        response = self.client.get('/en-US/firefox/api/%.1f/addon/4664' %
+                                   api.CURRENT_VERSION)
+        self.assertContains(response, '<rating>%d</rating>' %
+                            int(math.ceil(a.bayesian_rating)))
+
     def test_addon_detail(self):
         """
         Test for expected strings in the XML.
@@ -69,9 +102,9 @@ class APITest(TestCase):
         self.assertContains(response, "<min_version>1</min_version>")
         self.assertContains(response, "<max_version>2</max_version>")
         self.assertContains(response, "<os>ALL</os>")
-        self.assertContains(response, "<eula>None</eula>")
+        self.assertContains(response, "<eula></eula>")
         self.assertContains(response, "/img/no-preview.png</thumbnail>")
-        self.assertContains(response, "<rating>3</rating>")
+        self.assertContains(response, "<rating>4</rating>")
         self.assertContains(response,
                 "/en-US/firefox/addon/3615/?src=api</learnmore>")
         self.assertContains(response,
