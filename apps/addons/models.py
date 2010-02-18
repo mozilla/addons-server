@@ -295,6 +295,19 @@ class Addon(amo.models.ModelBase):
         else:
             return {}
 
+    def has_author(self, user, roles=None):
+        """True if ``user`` is an author with any of the specified ``roles``.
+
+        ``roles`` should be a list of valid roles (see amo.AUTHOR_ROLE_*). If
+        not specified, then has_author will return true if the user has any
+        role other than amo.AUTHOR_ROLE_NONE.
+        """
+        if roles is None:
+            roles = amo.AUTHOR_CHOICES.keys()
+            roles.remove(amo.AUTHOR_ROLE_NONE)
+        return bool(AddonUser.objects.filter(addon=self, user=user,
+                                             role__in=roles))
+
 
 class AddonCategory(caching.base.CachingMixin, models.Model):
     addon = models.ForeignKey(Addon)
@@ -344,7 +357,7 @@ class AddonType(amo.models.ModelBase):
         return unicode(self.name)
 
 
-class AddonUser(models.Model):
+class AddonUser(caching.base.CachingMixin, models.Model):
     AUTHOR_CHOICES = amo.AUTHOR_CHOICES.items()
 
     addon = models.ForeignKey(Addon)
@@ -353,6 +366,8 @@ class AddonUser(models.Model):
                                     choices=AUTHOR_CHOICES)
     listed = models.BooleanField(default=True)
     position = models.IntegerField(default=0)
+
+    objects = caching.base.CachingManager()
 
     class Meta:
         db_table = 'addons_users'
