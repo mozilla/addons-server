@@ -203,6 +203,7 @@ class Client(object):
         #   * Logging
 
         result = sc.Query(term)
+        self.total_found = result['total_found'] if result else 0
 
         if sc.GetLastError():
             raise SearchError(sc.GetLastError())
