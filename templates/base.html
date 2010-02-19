@@ -14,7 +14,8 @@
 
     {% block extrahead %}{% endblock %}
   </head>
-  <body class="html-{{ DIR }} {% block bodyclass %}{% endblock %}"
+  <body class="html-{{ DIR }} {{ request.APP.short }}
+               {% block bodyclass %}{% endblock %}"
         data-app="{{ request.APP.short }}" data-appname="{{ request.APP.pretty }}">
     <div class="section">
 
@@ -22,11 +23,7 @@
         <div id="header" role="banner">
           <p id="title">
             {% block site_header_title %}
-              <a href="{{ url('home') }}"
-                 title="{% trans app=_("Firefox") %}Return to the {{ app }} Add-ons homepage{% endtrans %}">
-                {% trans url="%simg/amo2009/app-icons/firefox.png"|format(MEDIA_URL) -%}
-                  Add-ons <em>for</em> <img alt="Firefox" src="{{ url }}"> <strong>Firefox</strong>
-                {%- endtrans %}</a>
+              {% include "header_title.html" %}
             {% endblock site_header_title %}
           </p>
 

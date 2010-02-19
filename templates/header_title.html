@@ -1,0 +1,19 @@
+{% macro heading(text, icon) -%}
+<a href="{{ url('home') }}"
+  title="{{ _('Return to the {0} Add-ons homepage')|f(request.APP.pretty) }}">
+  {{ text|f(MEDIA_URL + 'img/amo2009/app-icons/' + icon + '.png')|safe }}</a>
+{%- endmacro %}
+
+{% if request.APP == amo.FIREFOX %}
+  {{ heading(_('Add-ons <em>for</em> <img alt="" src="{0}"> <strong>Firefox</strong>'), 'firefox') }}
+{% elif request.APP == amo.THUNDERBIRD %}
+  {{ heading(_('Add-ons <em>for</em> <img alt="" src="{0}"> <strong>Thunderbird</strong>'), 'thunderbird') }}
+{% elif request.APP == amo.MOBILE %}
+  {{ heading(_('Mobile Add-ons <em>for</em> <img alt="" src="{0}"> <strong>Firefox</strong>'), 'firefox') }}
+{% elif request.APP == amo.SEAMONKEY %}
+  {{ heading(_('Add-ons <em>for</em> <img alt="" src="{0}"> <strong>SeaMonkey</strong>'), 'seamonkey') }}
+{% elif request.APP == amo.SUNBIRD %}
+  {{ heading(_('Add-ons <em>for</em> <img alt="" src="{0}"> <strong>Sunbird</strong>'), 'sunbird') }}
+{% else %}
+  {{ heading(_('Add-ons <img alt="" src="{0}">'), 'generic') }}
+{% endif %}
