@@ -2,12 +2,13 @@ from django import test
 from django.conf import settings
 
 from nose.tools import eq_, assert_not_equal
+import test_utils
 
 import amo
 from addons.models import Addon
 
 
-class TestAddonManager(test.TestCase):
+class TestAddonManager(test_utils.TestCase):
     fixtures = ['addons/test_manager']
 
     def test_featured(self):
