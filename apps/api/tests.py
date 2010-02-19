@@ -179,3 +179,12 @@ class SearchTest(SphinxTestCase):
         response = self.client.get(
                 "/en-US/firefox/api/1.2/search/firebug/all/1")
         eq_(response.content.count("<addon>"), 1)
+
+    def test_total_results(self):
+        """
+        The search for firebug should result in 2 total addons, even though
+        we limit (and therefore show) only 1.
+        """
+        response = self.client.get(
+                "/en-US/firefox/api/1.2/search/firebug/all/1")
+        self.assertContains(response, """<searchresults total_results="2">""")

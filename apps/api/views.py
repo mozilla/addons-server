@@ -113,7 +113,8 @@ class SearchView(APIView):
         if self.format == 'xml':
             return jingo.render(
                     self.request, 'api/search.xml',
-                    {'results': results}, mimetype=self.mimetype)
+                    {'results': results, 'total': sc.total_found},
+                    mimetype=self.mimetype)
 
 
 def redirect_view(request, url):
