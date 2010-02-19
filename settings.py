@@ -185,7 +185,7 @@ def JINJA_CONFIG():
     import jinja2
     from django.conf import settings
     from caching.base import cache
-    config = {}
+    config = {'extensions': ['jinja2.ext.i18n', 'caching.ext.cache']}
     if 'memcached' in cache.scheme and not settings.DEBUG:
         # We're passing the _cache object directly to jinja because
         # Django can't store binary directly; it enforces unicode on it.

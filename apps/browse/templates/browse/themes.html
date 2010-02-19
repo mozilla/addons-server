@@ -18,6 +18,7 @@
           {{ _('All') }}</a>
         <span class="items">{{ total_count }}</span>
       </li>
+      {% cache categories %}
       {% for category in categories %}
         <li {{ category|class_selected(selected) }}>
         <a href="{{ url('browse.themes', category.slug)|urlparams(**params) }}">
@@ -25,6 +26,7 @@
           <span class="items">{{ category.count }}</span>
         </li>
       {% endfor %}
+      {% endcache %}
     </ul>
   </div>
 </div>
@@ -61,6 +63,7 @@
           </li>
         </ul>
       </div>
+      {% cache themes.object_list %}
       {% for row in themes.object_list|batch(4) %}
       <ul class="thumbs">
         {% for addon in row %}
@@ -99,6 +102,7 @@
         {% endfor %}
       </ul>
       {% endfor %}
+      {% endcache %}
     </div> {# featured-inner #}
   </div> {# featured #}
   {{ themes|paginator }}
