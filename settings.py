@@ -220,11 +220,12 @@ DEFAULT_APP = 'firefox'
 # paths that don't require a locale prefix
 SUPPORTED_NONLOCALES = ('services',)
 
-# Length of time to store items in memcache
-CACHE_DURATION = 60  # seconds
-
 # Prefix for cache keys (will prevent collisions when running parallel copies)
 CACHE_PREFIX = 'amo:'
+
+# Number of seconds a count() query should be cached.  Keep it short because
+# it's not possible to invalidate these queries.
+CACHE_COUNT_TIMEOUT = 60
 
 AUTH_PROFILE_MODULE = 'users.UserProfile'
 

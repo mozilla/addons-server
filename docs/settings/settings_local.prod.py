@@ -29,10 +29,7 @@ DATABASES = {
 SLAVE_DATABASES = ['slave']
 
 # Use IP:PORT pairs separated by semicolons.
-CACHE_BACKEND = 'caching.backends.memcached://localhost:11211;localhost:11212'
-
-# Default time (in seconds) to cache objects.
-CACHE_DURATION = 500
+CACHE_BACKEND = 'caching.backends.memcached://localhost:11211;localhost:11212?timeout=500'
 
 # This is used to hash some things in Django.
 SECRET_KEY = 'replace me with something long'

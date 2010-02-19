@@ -55,7 +55,7 @@ Here's a basic httpd.conf snippet that I used to get zamboni running on my Mac::
         ServerName 127.0.0.1
         WSGIScriptAlias / /Users/jeff/dev/zamboni/wsgi/zamboni.wsgi
 
-        WSGIDaemonProcess zamboni processes=8 threads=10 \
+        WSGIDaemonProcess zamboni processes=8 threads=1 \
             python-path=/Users/jeff/.virtualenvs/zamboni/lib/python2.6/site-packages
         WSGIProcessGroup zamboni
 

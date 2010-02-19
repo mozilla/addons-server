@@ -16,8 +16,7 @@ MIDDLEWARE_CLASSES += ('debug_toolbar.middleware.DebugToolbarMiddleware',)
 INTERNAL_IPS = ('127.0.0.1',)
 INSTALLED_APPS += ('debug_toolbar',)
 
-CACHE_BACKEND = 'caching.backends.memcached://localhost:11211'
-CACHE_DURATION = 500
+CACHE_BACKEND = 'caching.backends.memcached://localhost:11211?timeout=500'
 
 DEBUG = True
 
