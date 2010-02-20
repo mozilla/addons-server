@@ -1,0 +1,788 @@
+[
+    {
+        "pk": 637432,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "localized_string": "Personas are lightweight, easy-to-install and easy-to-change \"skins\" for your Firefox web browser.",
+            "id": 590130,
+            "modified": null,
+            "created": "2009-10-20 21:58:03"
+        }
+    },
+    {
+        "pk": 637431,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "localized_string": "Personas",
+            "id": 590129,
+            "modified": null,
+            "created": "2009-10-20 21:58:03"
+        }
+    },
+    {
+        "pk": 637430,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "localized_string": "Persona",
+            "id": 590128,
+            "modified": null,
+            "created": "2009-10-20 21:58:03"
+        }
+    },
+    {
+        "pk": 638213,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "localized_string": "Lady Gaga has exploded on to the dance pop music scene with her debut album The Fame and number one singles \"Just Dance\" & \"Poker Face.\" Her groundbreaking style and amazing live show has captured fans around the world and beyond!\r\nhttp://www.ladygaga.com",
+            "id": 590911,
+            "modified": null,
+            "created": "2009-10-20 21:58:25"
+        }
+    },
+    {
+        "pk": 9,
+        "model": "addons.addontype",
+        "fields": {
+            "name": 590128,
+            "created": "2009-10-20 21:58:03",
+            "description": 590130,
+            "modified": "2009-10-20 21:58:03",
+            "name_plural": 590129
+        }
+    },
+    {
+        "pk": 638212,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "localized_string": "Lady Gaga",
+            "id": 590910,
+            "modified": null,
+            "created": "2009-10-20 21:58:25"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "applications.application",
+        "fields": {
+            "guid": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}",
+            "modified": "2008-11-03 15:34:59",
+            "created": "2007-03-05 13:09:26"
+        }
+    },
+    {
+        "pk": 15679,
+        "model": "addons.addon",
+        "fields": {
+            "dev_agreement": 0,
+            "last_updated": "2009-03-30 23:18:20",
+            "view_source": 0,
+            "total_downloads": 0,
+            "inactive": 0,
+            "average_daily_downloads": 0,
+            "show_beta": 1,
+            "guid": null,
+            "trusted": 0,
+            "binary": 0,
+            "weekly_downloads": 0,
+            "paypal_id": "",
+            "wants_contributions": 0,
+            "average_daily_users": 3661,
+            "bayesian_rating": 0.0,
+            "share_count": 0,
+            "public_stats": 0,
+            "status": 4,
+            "description": 590911,
+            "default_locale": "en-US",
+            "prerelease": 0,
+            "admin_review": 0,
+            "external_software": 0,
+            "highest_status": 0,
+            "name": 590910,
+            "created": "2009-03-30 23:18:20",
+            "type": 9,
+            "icon_type": "",
+            "annoying": 0,
+            "modified": "2009-03-30 23:18:20",
+            "summary": null,
+            "suggested_amount": null,
+            "site_specific": 0,
+            "total_reviews": 0,
+            "the_reason": null,
+            "nomination_date": null
+        }
+    },
+    {
+        "pk": 342,
+        "model": "addons.feature",
+        "fields": {
+            "end": "2010-04-27 14:23:13",
+            "start": "2009-10-27 14:23:13",
+            "locale": null,
+            "created": "2009-10-27 14:23:13",
+            "modified": "2009-10-27 14:23:13",
+            "application": 1,
+            "addon": 15679
+        }
+    },
+    {
+        "pk": 67984,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2007-03-22 20:51:22",
+            "localized_string": "Extensions are small add-ons that add new functionality to %1$s, from a simple toolbar button to a completely new feature. They allow you to customize %1$s to fit your own needs and preferences, while letting us keep %1$s itself light and lean.",
+            "modified": "2007-03-26 20:06:20",
+            "id": 39111
+        }
+    },
+    {
+        "pk": 68015,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2007-03-22 21:16:47",
+            "localized_string": "Extensions",
+            "modified": "2007-03-26 20:06:20",
+            "id": 39112
+        }
+    },
+    {
+        "pk": 67951,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2007-03-22 20:51:22",
+            "localized_string": "Extension",
+            "modified": "2007-03-26 20:06:20",
+            "id": 39109
+        }
+    },
+    {
+        "pk": 199483,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2008-06-20 05:36:07",
+            "localized_string": "* If you want the old SD&G behavior of making a dragged link behave like a middle-clicked link, you can get that through addon's settings.",
+            "modified": "2009-04-07 18:01:01",
+            "id": 162669
+        }
+    },
+    {
+        "pk": 149352,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2008-04-02 13:57:44",
+            "localized_string": "Extends the function of the drag-and-drop mouse gesture so that it can be used to load URLs, do a web search of selected text on a page, or save an image on a page.  The successor to Super DragAndGo.",
+            "modified": "2009-04-05 18:56:08",
+            "id": 113720
+        }
+    },
+    {
+        "pk": 149349,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2008-04-02 13:57:44",
+            "localized_string": "Extends the function of the drag-and-drop mouse gesture so that it can be used to load URLs, do a web search of selected text on a page, or save an image on a page.  Compatible with both Firefox and SeaMonkey.\r\n\r\nThis is the successor to the defunct SuperDragAndGo extension; it delivers the same functionality with a small footprint.\r\n\r\nGeneral usage information can be found here:\r\nhttp://code.kliu.org/quickdrag/\r\n\r\nFAQ (incl. how QuickDrag differs from SuperDrag And Go):\r\nhttp://code.kliu.org/quickdrag/faq.html\r\n\r\n-- -- -- --\r\nTips & Tricks:\r\n\r\n1) If you want the old SD&G behavior of opening a clickable link in a new tab instead of searching for the link text, there is an option that you can set in the addon's settings.\r\n\r\n2) If you hold down [Ctrl] while drag-n-dropping an image, you can open the image in a new tab instead of saving it (if the save images option is enabled).\r\n\r\n3) If you hold down [Shift] while drag-n-dropping, it will reverse reverse the foreground/background tab behavior for that drag (e.g., if your settings are to open in a background tab, holding [Shift] will open it in a foreground tab instead)\r\n\r\n4) If you hold down [Alt] while dropping a URL, you will save the URL instead of opening it in a new tab.\r\n-- -- -- --",
+            "modified": "2009-06-14 08:22:43",
+            "id": 113717
+        }
+    },
+    {
+        "pk": 149531,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2008-04-02 18:28:06",
+            "localized_string": "http://forums.mozillazine.org/viewtopic.php?t=644971",
+            "modified": "2009-04-05 18:56:08",
+            "id": 113902
+        }
+    },
+    {
+        "pk": 396316,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2009-04-05 18:35:10",
+            "localized_string": "kliu@code.kliu.org",
+            "modified": "2009-04-05 18:56:08",
+            "id": 358205
+        }
+    },
+    {
+        "pk": 149350,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2008-04-02 13:57:44",
+            "localized_string": "http://code.kliu.org/quickdrag/",
+            "modified": "2009-04-05 18:56:08",
+            "id": 113718
+        }
+    },
+    {
+        "pk": 1,
+        "model": "addons.addontype",
+        "fields": {
+            "description": 39111,
+            "name_plural": 39112,
+            "name": 39109,
+            "modified": "2009-02-06 08:42:28",
+            "created": "2006-08-21 23:53:19"
+        }
+    },
+    {
+        "pk": 149351,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2008-04-02 13:57:44",
+            "localized_string": "QuickDrag",
+            "modified": "2009-04-05 18:56:08",
+            "id": 113719
+        }
+    },
+    {
+        "pk": 523835,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2009-07-16 12:08:01",
+            "localized_string": "Over the past 2 years, I've continually been amazed at the amount of feedback I've received from users.  I've tried my best to listen to every suggestion and a large number of them have been implemented.  You are always welcome to voice your thoughts at http://readitlaterlist.com/support\r\n\r\nVersion 2.0 is on the near horizon and it's going to complete the package.  I'm looking forward to bringing a lot of the advancements and features found on the new Read It Later iPhone app to Firefox users.  ",
+            "modified": null,
+            "id": 482318
+        }
+    },
+    {
+        "pk": 523834,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2009-07-16 12:08:01",
+            "localized_string": "I created Read It Later because I needed a better way to manage the things I wanted to read.\r\n\r\nDuring the work day I would continually come across articles or tutorials I wanted to read but couldn\u2019t on the job.  My process at the time was simply to email them to myself.\r\n\r\nIt didn\u2019t work.  The emails got lost in the mix and I never read them.  So one day after work, I said enough is enough, started learning how to make a Firefox extension, and Read It Later was born.\r\n\r\nOver the past 2 years, the face of RIL has changed and evolved significantly.  I've worked hard to create a simple, fast, and always accessible tool to eliminate the cluttered tabs, inboxes and bookmarks that plague our daily work-flow.",
+            "modified": null,
+            "id": 482317
+        }
+    },
+    {
+        "pk": 197292,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2008-06-19 05:50:15",
+            "localized_string": "If the RSS feed is turned on, your reading list will be sent to Read It Later servers.  The RSS feed is turned on by default.\r\n\r\nData is sent anonymously.  Each Read It Later user is assigned a random id, independent of any identifiable information.  This user id is the only information that relates a specific user to a reading list.  \r\n\r\nThe data on the server is used for these purposes:\r\n1. To provide the user with a public RSS feed and remote access to their reading list.\r\n2. To allow syncing of their list between the user's computers.\r\n3. General usage statistics and anonymous trending for Read It Later",
+            "modified": "2009-04-09 07:41:29",
+            "id": 160424
+        }
+    },
+    {
+        "pk": 197293,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2008-06-19 05:50:15",
+            "localized_string": "Read It Later allows you to save pages of interest to read later. It eliminates cluttering of bookmarks with sites that are merely of a one-time interest.",
+            "modified": "2009-04-09 07:41:29",
+            "id": 160425
+        }
+    },
+    {
+        "pk": 197288,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2008-06-19 05:50:15",
+            "localized_string": "\u2022 Save pages to a reading list to read when you have time\r\n\r\n\u2022 Offline Reading Mode - Read the items you\u2019ve saved for later on the plane, train, or anywhere\r\n\r\n\u2022 Access Anywhere - Manage your list in any browser, on any device.  Your list is saved on readitlaterlist.com for web access.  (Optional but enabled by default)\r\n\r\n\u2022 RSS Feeds - View your list from anywhere with automatic rss feeds of your items\r\n\r\n\u2022 Sync Between Computers - Sync your reading list with any number of computers, work or home\r\n\r\n\u2022 After reading, bookmark pages on your preferred bookmarking service\r\n\r\n\u2022 Click to Save Mode - Quickly batch a reading list just by clicking on interesting links\r\n\r\nFor more details and a demo video, take a look at Read It Later's homepage listed below.\r\n\r\n\r\n\r\n*****************************************\r\nIf you have questions or problems, please contact me through one of the support options below.  I can't reply to you if you enter a support request in a review!",
+            "modified": "2009-04-09 07:41:29",
+            "id": 160420
+        }
+    },
+    {
+        "pk": 197289,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2008-06-19 05:50:15",
+            "localized_string": "http://readitlaterlist.com/help/",
+            "modified": "2009-08-03 15:08:25",
+            "id": 160421
+        }
+    },
+    {
+        "pk": 244922,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2008-08-07 11:22:59",
+            "localized_string": "RIL@ideashower.com",
+            "modified": "2009-01-25 05:20:09",
+            "id": 207805
+        }
+    },
+    {
+        "pk": 197290,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2008-06-19 05:50:15",
+            "localized_string": "http://readitlaterlist.com",
+            "modified": "2009-04-09 07:41:29",
+            "id": 160422
+        }
+    },
+    {
+        "pk": 197291,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2008-06-19 05:50:15",
+            "localized_string": "Read It Later",
+            "modified": "2009-04-09 07:41:29",
+            "id": 160423
+        }
+    },
+    {
+        "pk": 526240,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2009-07-17 14:53:13",
+            "localized_string": "Some features coming soon:\r\n* Simplified FoxyProxy for those not needing all the features of FoxyProxy Standard\r\n* import of proxy lists (local and remote)\r\n* random and round-robin proxy switching\r\n* lots of other stuff being discussed at http://foxyproxy.mozdev.org/drupal -- submit your idea there!",
+            "modified": "2009-10-15 09:04:27",
+            "id": 484641
+        }
+    },
+    {
+        "pk": 526239,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2009-07-17 14:53:12",
+            "localized_string": "Tiring of slow proxies servers, I wrote this add-on with the idea that it should be easy to route blocked pages through slow proxy servers while still maximizing use of your (normal) fast connection. FoxyProxy has since evolved way beyond that to a generalized proxy tool.",
+            "modified": "2009-08-26 11:31:20",
+            "id": 484640
+        }
+    },
+    {
+        "pk": 20545,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2007-03-05 13:10:34",
+            "localized_string": "Please report bugs to http://foxyproxy.mozdev.org/drupal",
+            "modified": "2009-08-17 08:44:00",
+            "id": 10438
+        }
+    },
+    {
+        "pk": 20549,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2007-03-05 13:10:34",
+            "localized_string": "FoxyProxy is an advanced proxy management tool that completely replaces Firefox's limited proxying capabilities. It offers more features than SwitchProxy, ProxyButton, QuickProxy, xyzproxy, ProxyTex, TorButton, etc.",
+            "modified": "2009-03-20 17:25:22",
+            "id": 10439
+        }
+    },
+    {
+        "pk": 20532,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2007-03-05 13:10:34",
+            "localized_string": "FoxyProxy is a Firefox extension which automatically switches an internet connection across one or more proxy servers based on URL patterns. Put simply, FoxyProxy automates the manual process of editing Firefox's Connection Settings dialog. Proxy server switching occurs based on the loading URL and the switching rules you define.\r\n\r\nAnimated icons show you when a proxy is in use. Advanced logging shows you which proxies were used and when. QuickAdd makes it a snap to create new URL patterns on-the-fly. FoxyProxy is fully compatible with Portable Firefox, has better support for PAC files than Firefox itself, and is translated into more than 25 languages.\r\n\r\nHome: http://foxyproxy.mozdev.org\r\nForums: http://foxyproxy.mozdev.org/drupal",
+            "modified": "2009-03-20 17:25:22",
+            "id": 10437
+        }
+    },
+    {
+        "pk": 146657,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2008-03-29 16:11:42",
+            "localized_string": "http://foxyproxy.mozdev.org/drupal",
+            "modified": "2009-03-20 17:25:22",
+            "id": 111072
+        }
+    },
+    {
+        "pk": 20516,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2007-03-05 13:10:34",
+            "localized_string": "http://foxyproxy.mozdev.org",
+            "modified": "2009-03-20 17:25:22",
+            "id": 10436
+        }
+    },
+    {
+        "pk": 20500,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2007-03-05 13:10:34",
+            "localized_string": "FoxyProxy Standard",
+            "modified": "2009-10-18 18:36:02",
+            "id": 10435
+        }
+    },
+    {
+        "pk": 71607,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2007-03-30 18:17:52",
+            "localized_string": "AdaptiveBlue, Inc. respects your privacy and recognizes your need for appropriate protection and management of your personal information, such as your name, email address and mailing address.\r\n\r\nAdaptiveBlue does not sell, trade or rent your personal information to others. We may use your personal information to contact you from time to time regarding updates to our policies, upgrades to Glue software, or other information that we feel may be of interest to you.\r\n\r\nIn addition to personal information voluntarily provided by you, by the nature of its functionality, Glue software collects information regarding your Internet usage when visiting specific web pages that represent books, music, movies, and other everyday things.\r\n\r\nGlue works by recognizing books, music, movies, wine, restaurants, stocks and other things around the web. The software automatically stores the last 20 things you visit. In addition, Glue enables you to explicitly save your favorites by clicking the Like button or adding a comment.\r\n\r\nAlthough we do not sell, trade or rent your information, we may release personal and/or non-personal information about you when you request us to do so. In addition, your information may also be accessed by AdaptiveBlue employees as necessary to provide customer support and troubleshoot problems.\r\n\r\nWe may also release personal and non-personal information when we believe release is appropriate to comply with the law, to enforce or apply our Conditions of Use and other agreements, or the protect the rights of AdaptiveBlue or others.\r\n\r\nInformation collected about you is protected in several ways. Access by you to your personal information is available through a password and unique user ID selected by you. Your password is encrypted. We recommend that you do not divulge your password to anyone.\r\n\r\nYour personal information resides on proprietary and secure servers on Rackspace and Amazon Web Services. Only selected AdaptiveBlue personnel and contracts have access to it via password. The Amazon Web Services facilities are subject to the terms and conditions of Amazon's Web Services Licensing Agreement.\r\n\r\nWhen your personal information is sent between the web browser and the servers it is encrypted using modern encryption standards in order prevent unauthorized parties from viewing such information while it is being transferred.\r\n\r\nGlue may suggest links to various webpages that the software determines may be of interest to you. We do not have control over third-party websites or their information collection practices and the practices of third-party websites are not covered by this Privacy Policy. We recommend that you consult the privacy policies of the third-party websites or contact the websites directly for information about their privacy practices.\r\n\r\nAt any time, you may request to view or update the personal information that is associated with your account and stored by AdaptiveBlue. You may also request that we delete all personal and/or non-personal information that we have collected about you. We will promptly fulfill your request and provide you confirmation when the information has been deleted.\r\n\r\nBecause the Internet is constantly evolving, so are our policies. By creating a User Account, you agree to the terms of this Privacy Policy as it may be amended from time to time. While we may send you a copy of any updates, we recommend that you check back to view the policy at this site from time to time.\r\n\r\nIf you have any questions regarding this Privacy Policy or our information practices, please contact AdaptiveBlue at support@getglue.com. ",
+            "modified": "2009-01-26 02:30:14",
+            "id": 40978
+        }
+    },
+    {
+        "pk": 28016,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2007-03-05 13:10:42",
+            "localized_string": "We look forward to your feedback! Please send emails to support@getglue.com and checkout our blog: http://blog.adaptiveblue.com\r\n\r\nGlue Team",
+            "modified": "2009-07-27 22:05:58",
+            "id": 14523
+        }
+    },
+    {
+        "pk": 28017,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2007-03-05 13:10:42",
+            "localized_string": "Glue helps you find your next favorite movie, book, or music album. As you visit sites like Amazon, IMDB, and Wikipedia, Glue suggest things you'll like.",
+            "modified": "2009-10-22 08:08:18",
+            "id": 14524
+        }
+    },
+    {
+        "pk": 28015,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2007-03-05 13:10:42",
+            "localized_string": "Get Glue! Find your next favorite movie, book, or music album!\r\n\r\nWhen you visit popular sites like Amazon, IMDB, and Wikipedia, Glue will appear on the page to show you books, movies and music that you'll like.\r\n\r\nSuggestions are based on what you like, what your friends like and what's popular around the web.\r\n\r\nThe more you use Glue, the better the suggestions.\r\n\r\nHere is why you will love Glue:\r\n\r\n- Glue appears on popular sites to suggest movies, books, and music that you'll like\r\n\r\n- See what your friends thought of the book, movie or music album you're looking at\r\n\r\n- Easily save your favorite things from hundreds of popular sites.\r\n\r\n- Earn awesome stickers and become the Guru of things you love\r\n\r\n- Quickly share links with your Facebook and Twitter friends\r\n",
+            "modified": "2009-10-22 08:08:19",
+            "id": 14522
+        }
+    },
+    {
+        "pk": 148645,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2008-04-01 14:41:27",
+            "localized_string": "http://www.getglue.com/",
+            "modified": "2008-11-07 00:44:32",
+            "id": 113047
+        }
+    },
+    {
+        "pk": 148644,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2008-04-01 14:41:27",
+            "localized_string": "support@getglue.com",
+            "modified": "2008-11-07 01:05:51",
+            "id": 113046
+        }
+    },
+    {
+        "pk": 28014,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2007-03-05 13:10:42",
+            "localized_string": "http://www.getglue.com/",
+            "modified": "2009-01-26 02:30:14",
+            "id": 14521
+        }
+    },
+    {
+        "pk": 28013,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2007-03-05 13:10:42",
+            "localized_string": "Glue - Recommendations for Books/Movies/Music ",
+            "modified": "2009-07-25 22:36:33",
+            "id": 14520
+        }
+    },
+    {
+        "pk": 6912,
+        "model": "addons.addon",
+        "fields": {
+            "dev_agreement": 1,
+            "last_updated": "2009-05-29 21:25:25",
+            "view_source": 1,
+            "total_downloads": 446919,
+            "developer_comments": 162669,
+            "inactive": 0,
+            "average_daily_downloads": 750,
+            "show_beta": 1,
+            "the_future": null,
+            "trusted": 0,
+            "locale_disambiguation": null,
+            "binary": 0,
+            "guid": "quickdrag@mozilla.ktechcomputing.com",
+            "weekly_downloads": 16683,
+            "support_url": 113902,
+            "paypal_id": "",
+            "average_rating": "4.75",
+            "wants_contributions": 0,
+            "average_daily_users": 63492,
+            "bayesian_rating": 4.6195899999999996,
+            "share_count": 2,
+            "get_satisfaction_company": null,
+            "homepage": 113718,
+            "support_email": 358205,
+            "public_stats": 0,
+            "status": 4,
+            "description": 113717,
+            "default_locale": "en-US",
+            "target_locale": null,
+            "prerelease": 0,
+            "admin_review": 0,
+            "external_software": 0,
+            "highest_status": 4,
+            "get_satisfaction_product": null,
+            "name": 113719,
+            "created": "2008-04-02 13:53:41",
+            "type": 1,
+            "icon_type": "",
+            "annoying": 0,
+            "modified": "2009-05-07 13:52:26",
+            "summary": 113720,
+            "suggested_amount": null,
+            "site_specific": 0,
+            "total_reviews": 87,
+            "the_reason": null,
+            "nomination_date": "2009-04-05 18:56:10"
+        }
+    },
+    {
+        "pk": 7661,
+        "model": "addons.addon",
+        "fields": {
+            "dev_agreement": 1,
+            "last_updated": "2009-10-20 08:25:49",
+            "view_source": 0,
+            "total_downloads": 2069199,
+            "developer_comments": null,
+            "inactive": 0,
+            "average_daily_downloads": 4002,
+            "show_beta": 1,
+            "the_future": 482318,
+            "trusted": 1,
+            "locale_disambiguation": null,
+            "binary": 0,
+            "guid": "isreaditlater@ideashower.com",
+            "weekly_downloads": 41099,
+            "support_url": 160421,
+            "paypal_id": "acc@ideashower.com",
+            "average_rating": "4.46",
+            "wants_contributions": 1,
+            "average_daily_users": 229702,
+            "bayesian_rating": 4.41995,
+            "share_count": 3,
+            "get_satisfaction_company": null,
+            "homepage": 160422,
+            "support_email": 207805,
+            "public_stats": 0,
+            "status": 4,
+            "description": 160420,
+            "default_locale": "en-US",
+            "target_locale": null,
+            "prerelease": 0,
+            "admin_review": 0,
+            "external_software": 0,
+            "highest_status": 4,
+            "get_satisfaction_product": null,
+            "name": 160423,
+            "created": "2008-06-18 08:11:34",
+            "type": 1,
+            "icon_type": "image/png",
+            "annoying": 1,
+            "modified": "2009-10-20 08:25:58",
+            "summary": 160425,
+            "suggested_amount": "1",
+            "site_specific": 0,
+            "total_reviews": 185,
+            "the_reason": 482317,
+            "nomination_date": "2009-04-09 07:41:33"
+        }
+    },
+    {
+        "pk": 2464,
+        "model": "addons.addon",
+        "fields": {
+            "dev_agreement": 1,
+            "last_updated": "2009-11-14 16:11:34",
+            "view_source": 0,
+            "total_downloads": 6536054,
+            "developer_comments": 10438,
+            "inactive": 0,
+            "average_daily_downloads": 7487,
+            "show_beta": 1,
+            "the_future": 484641,
+            "trusted": 1,
+            "locale_disambiguation": null,
+            "binary": 0,
+            "guid": "foxyproxy@eric.h.jung",
+            "weekly_downloads": 98872,
+            "support_url": 111072,
+            "paypal_id": "support@leahscape.com",
+            "average_rating": "4.22",
+            "wants_contributions": 1,
+            "average_daily_users": 335767,
+            "bayesian_rating": 4.1992000000000003,
+            "share_count": 0,
+            "get_satisfaction_company": null,
+            "homepage": 10436,
+            "support_email": null,
+            "public_stats": 0,
+            "status": 4,
+            "description": 10437,
+            "default_locale": "en-US",
+            "target_locale": null,
+            "prerelease": 0,
+            "admin_review": 0,
+            "external_software": 0,
+            "highest_status": 4,
+            "get_satisfaction_product": null,
+            "name": 10435,
+            "created": "2006-04-26 13:40:54",
+            "type": 1,
+            "icon_type": "image/gif",
+            "annoying": 3,
+            "modified": "2009-11-14 16:12:16",
+            "summary": 10439,
+            "suggested_amount": "10.00",
+            "site_specific": 0,
+            "total_reviews": 147,
+            "the_reason": 484640,
+            "nomination_date": "2009-03-20 17:25:25"
+        }
+    },
+    {
+        "pk": 3481,
+        "model": "addons.addon",
+        "fields": {
+            "dev_agreement": 1,
+            "last_updated": "2009-11-09 05:27:37",
+            "view_source": 0,
+            "total_downloads": 2142245,
+            "developer_comments": 14523,
+            "inactive": 0,
+            "average_daily_downloads": 2477,
+            "show_beta": 1,
+            "the_future": null,
+            "trusted": 1,
+            "locale_disambiguation": null,
+            "binary": 0,
+            "guid": "{D2A6A719-7CBC-4594-85FD-C36AD881424F}",
+            "weekly_downloads": 11066,
+            "support_url": 113047,
+            "paypal_id": "",
+            "average_rating": "4.57",
+            "wants_contributions": 0,
+            "average_daily_users": 81063,
+            "bayesian_rating": 4.5274599999999996,
+            "share_count": 1,
+            "get_satisfaction_company": null,
+            "homepage": 14521,
+            "support_email": 113046,
+            "public_stats": 0,
+            "status": 4,
+            "description": 14522,
+            "default_locale": "en-US",
+            "target_locale": null,
+            "prerelease": 0,
+            "admin_review": 0,
+            "external_software": 0,
+            "highest_status": 4,
+            "get_satisfaction_product": null,
+            "name": 14520,
+            "created": "2006-10-01 12:02:38",
+            "type": 1,
+            "icon_type": "image/jpeg",
+            "annoying": 0,
+            "modified": "2009-11-09 05:27:57",
+            "summary": 14524,
+            "suggested_amount": null,
+            "site_specific": 0,
+            "total_reviews": 224,
+            "the_reason": null,
+            "nomination_date": "2009-01-26 09:30:15"
+        }
+    },
+    {
+        "pk": 327,
+        "model": "addons.feature",
+        "fields": {
+            "end": "2010-03-05 17:00:39",
+            "application": 1,
+            "locale": null,
+            "created": "2009-09-05 17:00:39",
+            "modified": "2009-09-05 17:00:39",
+            "start": "2009-09-05 17:00:39",
+            "addon": 6912
+        }
+    },
+    {
+        "pk": 326,
+        "model": "addons.feature",
+        "fields": {
+            "end": "2010-03-05 17:00:23",
+            "application": 1,
+            "locale": null,
+            "created": "2009-09-05 17:00:23",
+            "modified": "2009-09-05 17:00:23",
+            "start": "2009-09-05 17:00:23",
+            "addon": 7661
+        }
+    },
+    {
+        "pk": 325,
+        "model": "addons.feature",
+        "fields": {
+            "end": "2010-03-05 17:00:10",
+            "application": 1,
+            "locale": null,
+            "created": "2009-09-05 17:00:10",
+            "modified": "2009-09-05 17:00:10",
+            "start": "2009-09-05 17:00:10",
+            "addon": 2464
+        }
+    },
+    {
+        "pk": 302,
+        "model": "addons.feature",
+        "fields": {
+            "end": "2009-12-10 08:39:55",
+            "application": 1,
+            "locale": "en-US",
+            "created": "2009-06-10 08:39:55",
+            "modified": "2009-10-20 18:18:52",
+            "start": "2009-06-10 08:39:55",
+            "addon": 3481
+        }
+    }
+]

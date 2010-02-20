@@ -1,6 +1,7 @@
 import math
 
 from django.conf import settings
+from django.test.client import Client
 
 from test_utils import TestCase
 from nose.tools import eq_
@@ -9,6 +10,12 @@ import api
 from addons.models import Addon
 from search.tests import SphinxTestCase
 from search.utils import stop_sphinx
+
+
+api_url = lambda x, app='firefox', lang='en-US': '/%s/%s/api/1.2/%s' % (
+            lang, app, x)
+client = Client()
+make_call = lambda *args, **kwargs: client.get(api_url(*args, **kwargs))
 
 
 class APITest(TestCase):
@@ -44,7 +51,6 @@ class APITest(TestCase):
 
         self.assertContains(response, 'Add-on not found!', status_code=404)
 
-
     def test_addon_detail_appid(self):
         """
         Make sure we serve an appid.  See
@@ -63,7 +69,6 @@ class APITest(TestCase):
         response = self.client.get('/en-US/firefox/api/%.1f/addon/4664' %
                                    api.CURRENT_VERSION)
         self.assertContains(response, '<eula></eula>')
-
 
     def test_addon_detail_rating(self):
         """
@@ -119,7 +124,84 @@ class APITest(TestCase):
         response = self.client.get("/en-US/firefox/api/1.2/search/foo")
         self.assertContains(response, "Could not connect to Sphinx search.",
                             status_code=503)
+
+
     test_sphinx_off.sphinx = True
+    # /class APITest
+
+
+class ListTest(TestCase):
+    """
+    Tests the list view with various urls.
+    """
+    fixtures = ['base/featured']
+
+    def test_defaults(self):
+        """
+        This tests the default settings for /list.
+        i.e. We should get 3 items by default.
+        """
+        request = make_call('list')
+        self.assertContains(request, '<addon>', 3)
+
+    def test_randomness(self):
+        """
+        This tests that we're sufficiently random when recommending addons.
+
+        We can test for this by querying /list/recommended a number of times
+        until we get two request.contents that do not match.
+        """
+        request = make_call('list/recommended')
+
+        all_identical = True
+
+        for i in range(99):
+            current_request = make_call('list/recommended')
+            if current_request.content != request.content:
+                all_identical = False
+
+        assert not all_identical, (
+                "All 100 requests returned the exact same response.")
+
+    def test_type_filter(self):
+        """
+        This tests that list filtering works.
+        E.g. /list/recommended/theme gets only shows themes
+        """
+        request = make_call('list/recommended/9/1')
+
+        self.assertContains(request, """<type id="9">Persona</type>""", 1)
+
+    def test_limits(self):
+        """
+        Assert /list/recommended/all/1 gets one item only.
+        """
+        request = make_call('list/recommended/all/1')
+        self.assertContains(request, "<addon>", 1)
+
+    def test_version_filter(self):
+        """
+        Assert that filtering by application version works.
+
+        E.g.
+        /list/new/all/1/mac/4.0 gives us nothing
+        """
+        request = make_call('list/new/all/1/all/4.0')
+        self.assertNotContains(request, "<addon>")
+
+    def test_backfill(self):
+        """
+        The /list/recommended should first populate itself with addons in its
+        locale.  If it doesn't reach the desired limit, it should backfill from
+        the general population of featured addons.
+        """
+        request = make_call('list', lang='fr')
+        self.assertContains(request, "<addon>", 3)
+
+        request = make_call('list', lang='he')
+        self.assertContains(request, "<addon>", 3)
+
+    # /class ListTest
 
 
 class SearchTest(SphinxTestCase):

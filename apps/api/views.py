@@ -2,8 +2,11 @@
 API views
 """
 import json
+import random
+import datetime
 
 from django.http import HttpResponse, HttpResponsePermanentRedirect
+from django.utils import translation
 from django.utils.translation import ugettext as _
 
 import jingo
@@ -115,6 +118,56 @@ class SearchView(APIView):
                     self.request, 'api/search.xml',
                     {'results': results, 'total': sc.total_found},
                     mimetype=self.mimetype)
+
+
+class ListView(APIView):
+
+    def process_request(self, list_type='recommended', type='ALL', limit=3,
+            platform='ALL', version=None):
+        """
+        This generates a list of addons that can be served to the
+        AddonManager.
+
+        We generate the lists by making empty queries to Sphinx, but with
+        using parameters to influence the order.
+        """
+        if list_type == 'newest':
+            # "New" is arbitrarily defined as 10 days old.
+            qs = Addon.objects.filter(
+                    created__gte=
+                    datetime.date.today() - datetime.timedelta(days=10))
+        else:
+            qs = Addon.objects.featured(self.request.APP)
+
+        if type.lower() != 'all':
+            type = int(type)
+            if type:
+                qs = qs.filter(type = type)
+
+        if platform.lower() != 'all':
+            qs = (qs.distinct() &
+                  Addon.objects.compatible_with_platform(platform))
+
+        if version is not None:
+            qs = qs.distinct() & Addon.objects.compatible_with_app(
+                    self.request.APP, version)
+
+        locale_filter = Addon.objects.filter(
+                description__locale=translation.get_language())
+        addons = list(locale_filter.distinct() & qs.distinct())
+        random.shuffle(addons)
+
+        if len(addons) < limit:
+            # We need to backfill.  Just do the same query, without the
+            # language filter.
+            moar_addons = list(qs.exclude(
+                description__locale=translation.get_language()))
+            random.shuffle(moar_addons)
+            addons.extend(moar_addons)
+
+        if self.format == 'xml':
+            return jingo.render(self.request, 'api/list.xml',
+                    {'addons': addons[:int(limit)]}, mimetype=self.mimetype)
 
 
 def redirect_view(request, url):

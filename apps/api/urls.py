@@ -8,23 +8,38 @@ from . import views
 # function.
 class_view = lambda x: lambda *args, **kwargs: x()(*args, **kwargs)
 
-# These ultimately build up to match
-# /search/:type/:limit/:platform/:version
-base_search_regexp = r'search/(?P<query>[^/]+)'
-search_type_regexp = base_search_regexp + '/(?P<type>[^/]*)'
-search_type_limit_regexp = search_type_regexp + '/(?P<limit>\d*)'
-search_type_limit_platform_regexp = (
-        search_type_limit_regexp + '/(?P<platform>\w*)')
-search_type_limit_platform_version_regexp = (
-        search_type_limit_platform_regexp + '/(?P<version>[^/]*)')
+# Regular expressions that we use in our urls.
+type_regexp = '/(?P<type>[^/]*)'
+limit_regexp = '/(?P<limit>\d*)'
+platform_regexp = '/(?P<platform>\w*)'
+version_regexp = '/(?P<version>[^/]*)'
 
-search_regexps = (
-    base_search_regexp,
-    search_type_regexp,
-    search_type_limit_regexp,
-    search_type_limit_platform_regexp,
-    search_type_limit_platform_version_regexp,
-    )
+
+def build_urls(base, appendages):
+    """
+    Many of our urls build off each other:
+    e.g.
+    /search/:query
+    /search/:query/:type
+    .
+    .
+    /search/:query/:type/:limit/:platform/:version
+    """
+    urls = [base]
+    for i in range(len(appendages)):
+        urls.append(base+''.join(appendages[:i+1]))
+
+    return urls
+
+
+base_search_regexp = r'search/(?P<query>[^/]+)'
+appendages = [type_regexp, limit_regexp, platform_regexp, version_regexp]
+search_regexps = build_urls(base_search_regexp, appendages)
+
+base_list_regexp = r'list'
+appendages.insert(0, '/(?P<list_type>[^/]+)')
+list_regexps = build_urls(base_list_regexp, appendages)
+
 
 api_patterns = patterns('',
     # Addon_details
@@ -36,9 +51,13 @@ for regexp in search_regexps:
     api_patterns += patterns('',
         url(regexp + '/?$', class_view(views.SearchView), name='api.search'))
 
+for regexp in list_regexps:
+    api_patterns += patterns('',
+            url(regexp + '/?$', class_view(views.ListView), name='api.list'))
+
 urlpatterns = patterns('',
     # Redirect api requests without versions
-    url('^((?:addon|search)/.*)$', views.redirect_view),
+    url('^((?:addon|search|list)/.*)$', views.redirect_view),
 
     # Append api_version to the real api views
     url(r'^(?P<api_version>\d+|\d+.\d+)/', include(api_patterns)),
