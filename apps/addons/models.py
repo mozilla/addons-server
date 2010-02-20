@@ -12,6 +12,7 @@ from amo.urlresolvers import reverse
 from reviews.models import Review
 from translations.fields import TranslatedField, translations_with_fallback
 from users.models import UserProfile
+from search import utils as search_utils
 
 
 class AddonManager(amo.models.ManagerBase):
@@ -29,7 +30,9 @@ class AddonManager(amo.models.ManagerBase):
         return self.filter(status__in=amo.VALID_STATUSES, inactive=False)
 
     def featured(self, app):
-        """Filter for all featured add-ons for an application in all locales."""
+        """
+        Filter for all featured add-ons for an application in all locales.
+        """
         today = date.today()
         return self.filter(feature__application=app.id,
                            feature__start__lte=today, feature__end__gte=today)
@@ -50,6 +53,38 @@ class AddonManager(amo.models.ManagerBase):
         return self.filter(inactive=False, status__in=status,
                            versions__applicationsversions__application=app.id,
                            versions__files__status__in=status)
+
+    def compatible_with_app(self, app, version=None):
+        """
+        Returns addons compatible with specific applcications and optionally
+        specific versions of said application.
+
+        E.g. amo.FIREFOX and '3.5'
+        """
+        qs = self.filter(
+                versions__applicationsversions__min__application=app.id)
+
+        if version is not None:
+
+            version_int = search_utils.convert_version(version)
+            qs = qs.filter(
+                versions__applicationsversions__min__version_int__lte=
+                version_int,
+                versions__applicationsversions__max__version_int__gte=
+                version_int)
+
+        return qs.distinct()
+
+    def compatible_with_platform(self, platform):
+        if not isinstance(platform, int):
+            platform = amo.PLATFORMS.get(platform, amo.PLATFORM_ALL)
+
+        if platform != amo.PLATFORM_ALL:
+            return self.filter(
+                    Q(versions__files__platform=platform) |
+                    Q(versions__files__platform=amo.PLATFORM_ALL)).distinct()
+
+        return self.all()
 
 
 class Addon(amo.models.ModelBase):
@@ -165,8 +200,8 @@ class Addon(amo.models.ModelBase):
 
     @property
     def listed_authors(self):
-        return UserProfile.objects.filter(
-            addons=self, addonuser__listed=True).order_by('addonuser__position')
+        return UserProfile.objects.filter(addons=self,
+                addonuser__listed=True).order_by('addonuser__position')
 
     def fetch_translations(self, ids, lang):
         return translations_with_fallback(ids, lang, self.default_locale)

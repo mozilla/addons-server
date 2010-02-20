@@ -16,11 +16,11 @@ class Command(BaseCommand):
             'use in a fixture')
     args = "[object_class id ...]"
 
-    def handle(self, object_class, id, *app_labels, **options):
+    def handle(self, object_class, *ids, **options):
         (app_label, model_name) = object_class.split('.')
         dump_me = loading.get_model(app_label, model_name)
-        obj = dump_me.objects.get(id=int(id))
-        serialize_me = [obj]
+        obj = dump_me.objects.filter(id__in=[int(i) for i in ids])
+        serialize_me = list(obj)
         index = 0
 
         while index < len(serialize_me):
