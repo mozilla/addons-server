@@ -39,22 +39,37 @@ class MiddlewareTest(test.TestCase):
             eq_(response.status_code, 301)
             eq_(response['Location'], location)
 
+    def process(self, *args, **kwargs):
+        request = self.rf.get(*args, **kwargs)
+        return self.middleware.process_request(request)
+
     def test_no_redirect(self):
         # /services doesn't get an app or locale.
-        response = self.middleware.process_request(self.rf.get('/services'))
+        response = self.process('/services')
         assert response is None
 
     def test_vary_locale(self):
-        response = self.middleware.process_request(self.rf.get('/'))
+        response = self.process('/')
         eq_(response['Vary'], 'Accept-Language')
 
-        response = self.middleware.process_request(self.rf.get('/en-US'))
+        response = self.process('/en-US')
         assert 'Vary' not in response
 
     def test_no_redirect_with_script(self):
-        request = self.rf.get('/services', SCRIPT_NAME='/oremj')
-        response = self.middleware.process_request(request)
+        response = self.process('/services', SCRIPT_NAME='/oremj')
         assert response is None
+
+    def test_get_lang(self):
+        def check(url, expected):
+            response = self.process(url)
+            eq_(response['Location'], expected)
+
+        check('/services?lang=fr', '/services')
+        check('/en-US/firefox?lang=fr', '/fr/firefox/')
+        check('/de/admin/?lang=fr&foo=bar', '/fr/admin/?foo=bar')
+        check('/en-US/firefox/?lang=fake', '/en-US/firefox/')
+        check('/firefox/?lang=fr', '/fr/firefox/')
+        check('/firefox/?lang=fake', '/en-US/firefox/')
 
 
 class TestPrefixer:

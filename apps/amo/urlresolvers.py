@@ -72,14 +72,18 @@ class Prefixer(object):
         user's Accept Language header to determine which is best.  This
         mostly follows the RFCs but read bug 439568 for details.
         """
-        if (hasattr(self.request, 'META') and
-            self.request.META.get('HTTP_ACCEPT_LANGUAGE')):
+        if 'lang' in self.request.GET:
+            lang = self.request.GET['lang'].lower()
+            if lang in settings.LANGUAGE_URL_MAP:
+                return settings.LANGUAGE_URL_MAP[lang]
+
+        if self.request.META.get('HTTP_ACCEPT_LANGUAGE'):
             ranked_languages = parse_accept_lang_header(
                     self.request.META['HTTP_ACCEPT_LANGUAGE'])
 
             # Do we support or remap their locale directly?
             supported = [lang[0] for lang in ranked_languages if lang[0]
-                    in settings.LANGUAGE_URL_MAP]
+                        in settings.LANGUAGE_URL_MAP]
 
             # Do we support a less specific locale? (xx-YY -> xx)
             if not len(supported):
