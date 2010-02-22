@@ -81,5 +81,6 @@ def deactivate():
     """
     locale = django_trans.get_language()
     django_trans.deactivate()
-    del django_trans._translations[locale]
+    if locale in django_trans._translations:
+        del django_trans._translations[locale]
 
