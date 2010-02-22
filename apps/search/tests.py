@@ -80,8 +80,8 @@ class SphinxTestCase(TransactionTestCase):
 
     @classmethod
     def tearDownClass(cls):
+        call_command('flush', verbosity=0, interactive=False)
         if SphinxTestCase.sphinx_is_running:
-            call_command('flush', verbosity=0, interactive=False)
             stop_sphinx()
             SphinxTestCase.sphinx_is_running = False
 

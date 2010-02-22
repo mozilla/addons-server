@@ -25,6 +25,7 @@ def setup():
 def teardown():
     if os.path.isdir(LOCALEDIR):
         shutil.rmtree(LOCALEDIR)
+    l10n.deactivate()
 
 
 @with_setup(setup, teardown)
@@ -66,11 +67,13 @@ def test_ungettext():
 
 
 def test_activate():
+    l10n.deactivate()
     l10n.activate('fr')
     # This string is from the AMO .po file
     a_text = "My Account"
     p_text = "Mon compte"
     eq_(p_text, _(a_text))
+    l10n.deactivate()
 
 
 MO_DATA = '''\

@@ -40,6 +40,10 @@ def activate(locale):
     that's dumb and we want to be able to load different files depending on
     what part of the site the user is in, we'll make our own function here.
     """
+    # XXX TODO: When it comes time to load .mo files on the fly and merge
+    # them, this is the place to do it.  We'll also need to implement our own
+    # caching since the _translations stuff is built on a per locale basis,
+    # not per locale + some key
     import jingo
 
     # Django caches the translation objects here
@@ -61,7 +65,6 @@ def activate(locale):
         also.
         """
         #If you've got extra .mo files to load, this is the place.
-        #XXX Only load Dev CP / Admin stuff when it's useful
         bonus = gettext.translation('messages', path('locale'), [locale],
                                     django_trans.DjangoTranslation)
         t.merge(bonus)
@@ -71,3 +74,12 @@ def activate(locale):
     django_trans._active[currentThread()] = t
 
     jingo.env.install_gettext_translations(t)
+
+def deactivate():
+    """ Override django's utils.translation.deactivate().  Django continues
+    to cache a catalog even if you call their deactivate().
+    """
+    locale = django_trans.get_language()
+    django_trans.deactivate()
+    del django_trans._translations[locale]
+
