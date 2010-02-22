@@ -8,11 +8,13 @@ from django.utils.translation import ungettext as django_nugettext
 
 from settings import path
 
+
 def ugettext(message, context=None):
     message = strip_whitespace(message)
     if context:
         message = _add_context(context, message)
     return django_ugettext(message)
+
 
 def ungettext(singular, plural, number, context=None):
     singular = strip_whitespace(singular)
@@ -22,12 +24,15 @@ def ungettext(singular, plural, number, context=None):
         plural = _add_context(context, plural)
     return django_nugettext(singular, plural, number)
 
+
 def _add_context(context, message):
     # \x04 is a magic gettext number.
     return u"%s\x04%s" % (context, message)
 
+
 def strip_whitespace(message):
     return re.compile(r'\s+', re.UNICODE).sub(' ', message).strip()
+
 
 def activate(locale):
     """ Override django's utils.translation.activate().  Django forces files
@@ -60,7 +65,7 @@ def activate(locale):
         bonus = gettext.translation('messages', path('locale'), [locale],
                                     django_trans.DjangoTranslation)
         t.merge(bonus)
-    except IOError, e:
+    except IOError:
         pass
 
     django_trans._active[currentThread()] = t

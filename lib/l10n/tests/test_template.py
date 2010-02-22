@@ -5,10 +5,12 @@ import jingo
 
 from tests import setup, teardown
 
+
 # Stolen from jingo's test_helpers
 def render(s, context={}):
     t = jingo.env.from_string(s)
     return t.render(**context)
+
 
 @with_setup(setup, teardown)
 def test_simple():
@@ -22,6 +24,7 @@ def test_simple():
         test
         {% endtrans %}'''
     eq_(render(s), 'you ran a test!')
+
 
 @with_setup(setup, teardown)
 def test_substitution():

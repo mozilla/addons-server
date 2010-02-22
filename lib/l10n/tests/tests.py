@@ -11,6 +11,7 @@ from l10n import ugettext as _, ungettext as n_
 LOCALEDIR = os.path.join('locale', 'xx')
 MOFILE = os.path.join(LOCALEDIR, 'LC_MESSAGES', 'messages.mo')
 
+
 def setup():
     if not os.path.isdir(os.path.join(LOCALEDIR, 'LC_MESSAGES')):
         os.makedirs(os.path.join(LOCALEDIR, 'LC_MESSAGES'))
@@ -20,9 +21,11 @@ def setup():
 
     l10n.activate('xx')
 
+
 def teardown():
     if os.path.isdir(LOCALEDIR):
         shutil.rmtree(LOCALEDIR)
+
 
 @with_setup(setup, teardown)
 def test_ugettext():
@@ -37,6 +40,7 @@ def test_ugettext():
     p_text_2 = "What time is it? (context=2)"
     eq_(p_text_1, _(a_text, 'context_one'))
     eq_(p_text_2, _(a_text, 'context_two'))
+
 
 @with_setup(setup, teardown)
 def test_ungettext():
@@ -59,6 +63,7 @@ def test_ungettext():
     eq_(p_plural_1, n_(a_singular, a_plural, 3, 'context_one'))
     eq_(p_singular_2, n_(a_singular, a_plural, 1, 'context_two'))
     eq_(p_plural_2, n_(a_singular, a_plural, 3, 'context_two'))
+
 
 def test_activate():
     l10n.activate('fr')
