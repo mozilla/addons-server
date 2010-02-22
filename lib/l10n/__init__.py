@@ -9,14 +9,14 @@ from django.utils.translation import ungettext as django_nugettext
 from settings import path
 
 def ugettext(message, context=None):
-    message = _strip_whitespace(message)
+    message = strip_whitespace(message)
     if context:
         message = _add_context(context, message)
     return django_ugettext(message)
 
 def ungettext(singular, plural, number, context=None):
-    singular = _strip_whitespace(singular)
-    plural = _strip_whitespace(plural)
+    singular = strip_whitespace(singular)
+    plural = strip_whitespace(plural)
     if context:
         singular = _add_context(context, singular)
         plural = _add_context(context, plural)
@@ -24,9 +24,9 @@ def ungettext(singular, plural, number, context=None):
 
 def _add_context(context, message):
     # \x04 is a magic gettext number.
-    return "%s\x04%s" % (context, message)
+    return u"%s\x04%s" % (context, message)
 
-def _strip_whitespace(message):
+def strip_whitespace(message):
     return re.compile(r'\s+', re.UNICODE).sub(' ', message).strip()
 
 def activate(locale):
@@ -64,3 +64,5 @@ def activate(locale):
         pass
 
     django_trans._active[currentThread()] = t
+
+    jingo.env.install_gettext_translations(t)
