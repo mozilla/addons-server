@@ -12,8 +12,8 @@ from search.tests import SphinxTestCase
 from search.utils import stop_sphinx
 
 
-api_url = lambda x, app='firefox', lang='en-US': '/%s/%s/api/1.2/%s' % (
-            lang, app, x)
+api_url = lambda x, app='firefox', lang='en-US', version=1.2: \
+          '/%s/%s/api/%.1f/%s' % (lang, app, version, x)
 client = Client()
 make_call = lambda *args, **kwargs: client.get(api_url(*args, **kwargs))
 
@@ -205,6 +205,7 @@ class ListTest(TestCase):
 
 
 class SearchTest(SphinxTestCase):
+    no_results = """<searchresults total_results="0">"""
 
     def test_zero_results(self):
         """
@@ -226,9 +227,7 @@ class SearchTest(SphinxTestCase):
                 url = '/en-US/firefox/api/1.2/search/' + url
 
             response = self.client.get(url)
-            self.assertContains(response,
-                                """<searchresults total_results="0">""",
-                                msg_prefix=url)
+            self.assertContains(response, self.no_results, msg_prefix=url)
 
     def test_search_for_specifics(self):
         """
@@ -270,3 +269,26 @@ class SearchTest(SphinxTestCase):
         response = self.client.get(
                 "/en-US/firefox/api/1.2/search/firebug/all/1")
         self.assertContains(response, """<searchresults total_results="2">""")
+
+    def test_sandbox_search(self):
+        """
+        For API < 1.5 and where ?hide_sandbox=1 we should show no addons when
+        searching for MozEx (a sandboxed addon).  However, for API version 1.5
+        we should find it.
+        """
+        # API < 1.5
+        response = make_call('search/mozex', version=1.4)
+        self.assertContains(response, self.no_results,
+                            msg_prefix=response.request['PATH_INFO'])
+
+        # API = 1.5, hide_sandbox
+        response = self.client.get(
+                api_url('search/mozex', version=1.5) + '?hide_sandbox=1')
+        self.assertContains(response, self.no_results,
+                            msg_prefix=response.request['PATH_INFO'])
+
+        # API = 1.5
+        response = make_call('search/mozex', version=1.5)
+        self.assertContains(response, """<status id="1">""")
+
+# /class SearchTest
