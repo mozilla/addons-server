@@ -213,12 +213,12 @@ SITE_URL = 'http://%s' % HOSTNAME
 SELENIUM_CONFIG = {}
 
 # paths that don't require an app prefix
-SUPPORTED_NONAPPS = ('admin', 'developers', 'editors', 'localizers',
-                     'statistics', 'services', 'jsi18n')
+SUPPORTED_NONAPPS = ('admin', 'developers', 'editors', 'img', 'jsi18n',
+                     'localizers', 'media', 'statistics', 'services')
 DEFAULT_APP = 'firefox'
 
 # paths that don't require a locale prefix
-SUPPORTED_NONLOCALES = ('services',)
+SUPPORTED_NONLOCALES = ('img', 'media', 'services',)
 
 # Prefix for cache keys (will prevent collisions when running parallel copies)
 CACHE_PREFIX = 'amo:'
