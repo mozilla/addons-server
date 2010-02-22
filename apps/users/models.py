@@ -10,6 +10,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User as DjangoUser
 from django.db import models
 
+import amo
 import amo.models
 from translations.fields import TranslatedField
 

@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.utils import translation
-from django.utils.translation import ugettext as _
+from l10n import ugettext as _
 from django.utils.http import urlquote
 
 import amo

@@ -3,7 +3,7 @@ import urllib
 import urlparse
 
 from django.core.urlresolvers import reverse
-from django.utils.translation import ugettext as _, ungettext
+from l10n import ugettext as _, ungettext
 
 import jinja2
 

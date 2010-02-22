@@ -5,7 +5,7 @@ import urllib
 import urlparse
 
 from django.utils import translation
-from django.utils.translation import ugettext as _
+from l10n import ugettext as _
 
 from babel import Locale
 from babel.support import Format

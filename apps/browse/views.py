@@ -1,7 +1,7 @@
 import collections
 import itertools
 
-from django.utils.translation import ugettext as _
+from l10n import ugettext as _
 
 import jingo
 import product_details

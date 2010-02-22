@@ -4,8 +4,9 @@ Borrowed from: http://code.google.com/p/django-localeurl
 Note: didn't make sense to use localeurl since we need to capture app as well
 """
 from django.http import HttpResponsePermanentRedirect
-from django.utils import translation
 from django.utils.encoding import smart_str
+
+from lib import l10n
 
 import amo.models
 from . import urlresolvers
@@ -51,5 +52,5 @@ class LocaleAndAppURLMiddleware(object):
             return response
 
         request.path_info = '/' + prefixer.shortened_path
-        translation.activate(prefixer.locale)
+        l10n.activate(prefixer.locale)
         request.APP = amo.APPS.get(prefixer.app)

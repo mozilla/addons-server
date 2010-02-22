@@ -9,7 +9,7 @@ from django.core.management.base import BaseCommand
 
 from jinja2 import ext
 
-from lib.l10n import strip_whitespace
+from l10n import strip_whitespace
 
 DEFAULT_DOMAIN = 'messages'
 
