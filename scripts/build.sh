@@ -20,6 +20,7 @@ pip install -q -r requirements.txt
 cat > settings_local.py <<SETTINGS
 from settings import *
 ROOT_URLCONF = 'workspace.urls'
+LOG_LEVEL = logging.ERROR
 SETTINGS
 
 echo "Starting tests..."
