@@ -75,12 +75,10 @@ def activate(locale):
 
     jingo.env.install_gettext_translations(t)
 
-def deactivate():
-    """ Override django's utils.translation.deactivate().  Django continues
-    to cache a catalog even if you call their deactivate().
+def deactivate_all():
+    """ Override django's utils.translation.deactivate_all().  Django continues
+    to cache a catalog even if you call their deactivate_all().
     """
-    locale = django_trans.get_language()
-    django_trans.deactivate()
-    if locale in django_trans._translations:
-        del django_trans._translations[locale]
+    django_trans.deactivate_all()
+    django_trans._translations = {}
 
