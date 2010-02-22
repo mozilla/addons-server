@@ -142,8 +142,8 @@ def numberfmt(num, format=None):
 @register.function
 @jinja2.contextfunction
 def page_title(context, title):
-    app = context['request'].APP.pretty
-    return u'%s :: %s' % (title, _(u'Add-ons for {0}').format(app))
+    app = context['request'].APP or amo.FIREFOX
+    return u'%s :: %s' % (title, _(u'Add-ons for {0}').format(app.pretty))
 
 
 # XXX: Jinja2's round is broken:

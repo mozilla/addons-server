@@ -15,8 +15,13 @@ def render(s, context={}):
 
 def test_page_title():
     request = Mock()
-    request.APP = amo.FIREFOX
+    request.APP = amo.THUNDERBIRD
     title = 'Oh hai!'
+    s = render('{{ page_title("%s") }}' % title, {'request': request})
+    eq_(s, '%s :: Add-ons for Thunderbird' % title)
+
+    # pages without app should default to Firefox
+    request.APP = None
     s = render('{{ page_title("%s") }}' % title, {'request': request})
     eq_(s, '%s :: Add-ons for Firefox' % title)
 
