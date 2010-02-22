@@ -148,6 +148,7 @@ INSTALLED_APPS = (
     'devhub',
     'editors',
     'files',
+    'l10n',  # for ./manage.py extract
     'nick',
     'reviews',
     'search',
@@ -185,7 +186,7 @@ def JINJA_CONFIG():
     import jinja2
     from django.conf import settings
     from caching.base import cache
-    config = {'extensions': ['jinja2.ext.i18n', 'caching.ext.cache']}
+    config = {'extensions': ['l10n.template.i18n', 'caching.ext.cache']}
     if 'memcached' in cache.scheme and not settings.DEBUG:
         # We're passing the _cache object directly to jinja because
         # Django can't store binary directly; it enforces unicode on it.
@@ -193,7 +194,7 @@ def JINJA_CONFIG():
         # and in the errors you get when you try it the other way.
         bc = jinja2.MemcachedBytecodeCache(cache._cache,
                                            "%sj2:" % settings.CACHE_PREFIX)
-        config['cache_size'] = -1 # Never clear the cache
+        config['cache_size'] = -1  # Never clear the cache
         config['bytecode_cache'] = bc
     return config
 
@@ -213,12 +214,12 @@ SITE_URL = 'http://%s' % HOSTNAME
 SELENIUM_CONFIG = {}
 
 # paths that don't require an app prefix
-SUPPORTED_NONAPPS = ('admin', 'developers', 'editors', 'localizers',
-                     'statistics', 'services', 'jsi18n')
+SUPPORTED_NONAPPS = ('admin', 'developers', 'editors', 'img', 'jsi18n',
+                     'localizers', 'media', 'statistics', 'services')
 DEFAULT_APP = 'firefox'
 
 # paths that don't require a locale prefix
-SUPPORTED_NONLOCALES = ('services',)
+SUPPORTED_NONLOCALES = ('img', 'media', 'services',)
 
 # Prefix for cache keys (will prevent collisions when running parallel copies)
 CACHE_PREFIX = 'amo:'

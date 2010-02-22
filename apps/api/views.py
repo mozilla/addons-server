@@ -7,7 +7,7 @@ import datetime
 
 from django.http import HttpResponse, HttpResponsePermanentRedirect
 from django.utils import translation
-from django.utils.translation import ugettext as _
+from l10n import ugettext as _
 
 import jingo
 

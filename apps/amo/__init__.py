@@ -1,7 +1,7 @@
 """
 Miscellaneous helpers that make Django compatible with AMO.
 """
-from django.utils.translation import ugettext as _
+from l10n import ugettext as _
 
 
 class cached_property(object):
