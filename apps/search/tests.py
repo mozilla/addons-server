@@ -9,10 +9,11 @@ from django.test import TestCase, TransactionTestCase
 from django.core.management import call_command
 from django.utils import translation
 
+from nose import SkipTest
 from nose.tools import eq_
 
 import amo
-import settings
+from manage import settings
 from .utils import start_sphinx, stop_sphinx, reindex, convert_version
 from .client import Client as SearchClient, SearchError, get_category_id, extract_from_query
 
@@ -60,6 +61,9 @@ class SphinxTestCase(TransactionTestCase):
 
     def setUp(self):
         if not SphinxTestCase.sphinx_is_running:
+            if not settings.SPHINX_SEARCHD or not settings.SPHINX_INDEXER:
+                raise SkipTest()
+
             os.environ['DJANGO_ENVIRONMENT'] = 'test'
 
             if os.path.exists('/tmp/data/sphinx'):
@@ -76,9 +80,10 @@ class SphinxTestCase(TransactionTestCase):
 
     @classmethod
     def tearDownClass(cls):
-        call_command('flush', verbosity=0, interactive=False)
-        stop_sphinx()
-        SphinxTestCase.sphinx_is_running = False
+        if SphinxTestCase.sphinx_is_running:
+            call_command('flush', verbosity=0, interactive=False)
+            stop_sphinx()
+            SphinxTestCase.sphinx_is_running = False
 
 
 class GetCategoryIdTest(TestCase):
