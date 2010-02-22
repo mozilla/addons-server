@@ -15,7 +15,8 @@ from nose.tools import eq_
 import amo
 from manage import settings
 from .utils import start_sphinx, stop_sphinx, reindex, convert_version
-from .client import Client as SearchClient, SearchError, get_category_id, extract_from_query
+from .client import Client as SearchClient, SearchError, get_category_id, \
+        extract_from_query
 
 
 def test_convert_version():
@@ -145,7 +146,6 @@ class SearchTest(SphinxTestCase):
         # Poor sunbird, nobody likes them.
         eq_(len(query("", limit=1, app=amo.SUNBIRD.id)), 0)
 
-
     def test_category_filter(self):
         """
         This tests filtering by category.
@@ -182,3 +182,13 @@ class SearchTest(SphinxTestCase):
         Similar to test_xenophobia_filter.
         """
         eq_(len(query("grapple", locale='fr')), 0)
+
+    def test_status_filter(self):
+        """
+        Tests that if we filter for public addons that MozEx does not show up.
+        If we look for sandboxed addons as well MozEx will show up.
+        """
+
+        eq_(len(query("MozEx", status=[amo.STATUS_PUBLIC])), 0)
+        eq_(query("MozEx",
+                  status=[amo.STATUS_PUBLIC, amo.STATUS_SANDBOX])[0].id, 40)
