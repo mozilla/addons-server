@@ -5,12 +5,13 @@ import re
 import string
 
 from django.conf import settings
-from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User as DjangoUser
 from django.db import models
 
 import amo
 import amo.models
+
+from amo.urlresolvers import reverse
 from translations.fields import PurifiedField
 
 

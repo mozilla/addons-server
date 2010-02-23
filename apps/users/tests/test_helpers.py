@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import re
 
-from django.core.urlresolvers import reverse
 from nose.tools import eq_
 
+from amo.urlresolvers import reverse
 from users.helpers import emaillink, user_link, users_list
 from users.models import UserProfile
 
@@ -13,8 +13,8 @@ def test_emaillink():
     obfuscated = unicode(emaillink(email))
 
     # remove junk
-    m = re.match(r'<span class="emaillink">(.*?)<span class="i">null</span>(.*)'
-                 '</span>', obfuscated)
+    m = re.match(r'<span class="emaillink">(.*?)<span class="i">null</span>'
+                 '(.*)</span>', obfuscated)
     obfuscated = (''.join((m.group(1), m.group(2)))
                   .replace('&#x0040;', '@').replace('&#x002E;', '.'))[::-1]
 
