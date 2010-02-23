@@ -12,8 +12,9 @@ from search.tests import SphinxTestCase
 from search.utils import stop_sphinx
 
 
-api_url = lambda x, app='firefox', lang='en-US', version=1.2: \
-          '/%s/%s/api/%.1f/%s' % (lang, app, version, x)
+def api_url(x, app='firefox', lang='en-US', version=1.2):
+    return '/%s/%s/api/%.1f/%s' % (lang, app, version, x)
+
 client = Client()
 make_call = lambda *args, **kwargs: client.get(api_url(*args, **kwargs))
 
@@ -85,8 +86,7 @@ class APITest(TestCase):
         """
         Test for expected strings in the XML.
         """
-        response = self.client.get('/en-US/firefox/api/%.1f/addon/3615' %
-                                   api.CURRENT_VERSION)
+        response = self.client.get('/en-US/firefox/api/%.1f/addon/3615' % 1.2)
 
         self.assertContains(response, "<name>Delicious Bookmarks</name>")
         self.assertContains(response, """id="1">Extension</type>""")
@@ -115,6 +115,38 @@ class APITest(TestCase):
         self.assertContains(response,
                 """hash="sha256:5b5aaf7b38e332cc95d92ba759c01"""
                 "c3076b53a840f6c16e01dc272eefcb29566")
+
+    def test_15_addon_detail(self):
+        """
+        For an api>1.5 we need to verify we have:
+        # Contributions information, including a link to contribute, suggested
+          amount, and Meet the Developers page
+        # Number of user reviews and link to view them
+        # Total downloads, weekly downloads, and latest daily user counts
+        # Add-on creation date
+        # Link to the developer's profile
+        # File size
+        """
+        needles = (
+                "<contribution_data>",
+                "/en-US/firefox/addons/contribute/4664?src=api</link>",
+                "<suggested_amount>0.99</suggested_amount>",
+                "/en-US/firefox/addon/4664/developers?src=api"
+                "</meet_developers>",
+                "<num_reviews>101</num_reviews>",
+                "/en-US/firefox/addon/4664/reviews?src=api</reviews>",
+                "<total_downloads>867952</total_downloads>",
+                "<weekly_downloads>23646</weekly_downloads>",
+                "<daily_users>44693</daily_users>",
+                "<created>2007-03-17 05:23:55</created>",
+                "/en-US/firefox/user/2519/?src=api</link>",
+                'size="90kb"',
+                )
+
+        response = make_call('addon/4664', version=1.5)
+
+        for needle in needles:
+            self.assertContains(response, needle)
 
     def test_sphinx_off(self):
         """

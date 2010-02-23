@@ -6,7 +6,14 @@
   <status id="{{ addon.status }}">{{ amo.STATUS_CHOICES[addon.status] }}</status>
   <authors>
     {% for author in addon.authors.filter(addonuser__listed=True) %}
+    {% if api_version >= 1.5 %}
+    <author>
+      <name>{{ author.display_name }}</name>
+      <link>{{ settings.SITE_URL + author.get_absolute_url() + '?src=api' }}</link>
+    </author>
+    {% else %}
     <author>{{ author.display_name }}</author>
+    {% endif %}
     {% endfor %}
   </authors>
   <summary>{{ addon.summary }}</summary>
@@ -37,13 +44,31 @@
   <eula>{{ addon.eula|hide_none }}</eula>
   <thumbnail>{{ addon.thumbnail_url }}</thumbnail>
   <rating>{{ addon.bayesian_rating|wround(0, 'ceil') }}</rating>
-  <learnmore>{{ settings.SITE_URL+addon.get_absolute_url()+'?src=api' }}</learnmore>
+  <learnmore>
+    {{ settings.SITE_URL+addon.get_absolute_url()+'?src=api' }}</learnmore>
   {% if addon.current_version %}
   {% for file in addon.current_version.files.all() %}
-  <install hash="{{ file.hash }}" os="{{ file.platform.name }}">
+  <install hash="{{ file.hash }}" os="{{ file.platform.name }}"
+    size="{{ file.size }}kb">
     {{ file.get_absolute_url('api') }}
   </install>
   {% endfor %}
+  {% endif %}
+  {% if api_version >= 1.5 %}
+  {% if addon.wants_contributions %}
+  <contribution_data>
+    <link>{{ addon.contribution_url + '?src=api' }}</link>
+    <suggested_amount>{{ addon.suggested_amount }}</suggested_amount>
+    <meet_developers>{{ addon.meet_developers_url + '?src=api' }}</meet_developers>
+  </contribution_data>
+  {% endif %}
+  <num_reviews>{{ addon.total_reviews }}</num_reviews>
+  <reviews>{{ addon.reviews_url + '?src=api' }}</reviews>
+  <total_downloads>{{ addon.total_downloads }}</total_downloads>
+  <weekly_downloads>{{ addon.weekly_downloads }}</weekly_downloads>
+  <daily_users>{{ addon.average_daily_users }}</daily_users>
+  <created>{{ addon.created }}</created>
+  <last_updated>{{ addon.last_updated }}</last_updated>
   {% endif %}
 </addon>
 

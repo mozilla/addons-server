@@ -13,10 +13,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2007-03-22 20:51:22",
             "localized_string": "Extensions are small add-ons that add new functionality to %1$s, from a simple toolbar button to a completely new feature. They allow you to customize %1$s to fit your own needs and preferences, while letting us keep %1$s itself light and lean.",
-            "id": 39111,
             "modified": "2007-03-26 20:06:20",
-            "created": "2007-03-22 20:51:22"
+            "id": 39111
         }
     },
     {
@@ -24,10 +24,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2007-03-22 21:16:47",
             "localized_string": "Extensions",
-            "id": 39112,
             "modified": "2007-03-26 20:06:20",
-            "created": "2007-03-22 21:16:47"
+            "id": 39112
         }
     },
     {
@@ -35,21 +35,21 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2007-03-22 20:51:22",
             "localized_string": "Extension",
-            "id": 39109,
             "modified": "2007-03-26 20:06:20",
-            "created": "2007-03-22 20:51:22"
+            "id": 39109
         }
     },
     {
         "pk": 1,
         "model": "addons.addontype",
         "fields": {
-            "name": 39109,
-            "created": "2006-08-22 23:53:19",
             "description": 39111,
+            "name_plural": 39112,
+            "name": 39109,
             "modified": "2009-02-06 08:42:28",
-            "name_plural": 39112
+            "created": "2006-08-22 23:53:19"
         }
     },
     {
@@ -66,10 +66,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2007-03-05 16:06:55",
             "localized_string": "These tools notify you about or help you work with various types of data found on web pages.",
-            "id": 37940,
             "modified": "2007-10-12 17:02:23",
-            "created": "2007-03-05 16:06:55"
+            "id": 37940
         }
     },
     {
@@ -77,10 +77,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2007-03-05 16:06:55",
             "localized_string": "Alerts & Updates",
-            "id": 37939,
             "modified": "2007-10-12 17:02:23",
-            "created": "2007-03-05 16:06:55"
+            "id": 37939
         }
     },
     {
@@ -96,9 +96,9 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
-            "created": "2001-01-01 13:14:15",
             "id": 36151,
-            "localized_string": "Best Addon Evar"
+            "localized_string": "Best Addon Evar",
+            "created": "2001-01-01 13:14:15"
         }
     },
     {
@@ -106,9 +106,9 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
-            "created": "2001-01-01 13:14:15",
             "id": 1,
-            "localized_string": "ALL"
+            "localized_string": "ALL",
+            "created": "2001-01-01 13:14:15"
         }
     },
     {
@@ -116,10 +116,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2007-03-05 13:10:42",
             "localized_string": "Delicious Bookmarks",
-            "id": 15000,
             "modified": "2009-03-26 07:41:10",
-            "created": "2007-03-05 13:10:42"
+            "id": 15000
         }
     },
     {
@@ -127,10 +127,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2007-03-05 13:10:42",
             "localized_string": "Delicious blah blah blah",
-            "id": 15002,
             "modified": "2009-04-29 11:20:57",
-            "created": "2007-03-05 13:10:42"
+            "id": 15002
         }
     },
     {
@@ -138,9 +138,9 @@
         "model": "files.platform",
         "fields": {
             "icontype": "",
-            "created": "2007-03-05 13:09:27",
             "name": 1,
-            "modified": "2008-04-07 08:16:55"
+            "modified": "2008-04-07 08:16:55",
+            "created": "2007-03-05 13:09:27"
         }
     },
     {
@@ -156,26 +156,26 @@
         "model": "users.userprofile",
         "fields": {
             "sandboxshown": 1,
-            "notifyevents": 1,
-            "password": "sha512$61ba34cb04c185f51ca6b5c3132bfbf5b4d6b16c329ff076039c597c0d14912f$9b461aca85bcbc326c0555c3165ff526eabdce82a49c7408bbb71121d3d9d48499c952b96dc520cb4accbca0df0cd1d17756873d08e488a9a144aaf34cb78bf1",
-            "averagerating": "3.11",
+            "resetcode": "",
+            "location": "",
             "firstname": "Carl",
             "created": "2007-03-05 13:09:56",
             "deleted": 0,
             "display_collections_fav": 0,
-            "notifycompat": 1,
             "modified": "2007-07-21 11:45:47",
+            "occupation": "",
             "homepage": "http://www.yahoo.com/",
-            "resetcode": "",
+            "display_collections": 0,
+            "nickname": "carlsjr",
             "confirmationcode": "",
-            "location": "",
+            "notifycompat": 1,
             "emailhidden": 1,
             "lastname": "Yahoo!, Jr.",
             "picture_type": "",
-            "display_collections": 0,
-            "nickname": "carlsjr",
+            "password": "sha512$61ba34cb04c185f51ca6b5c3132bfbf5b4d6b16c329ff076039c597c0d14912f$9b461aca85bcbc326c0555c3165ff526eabdce82a49c7408bbb71121d3d9d48499c952b96dc520cb4accbca0df0cd1d17756873d08e488a9a144aaf34cb78bf1",
+            "notifyevents": 1,
             "email": "dd+0cb167b90cc5ed1b6d0e4566d2c2c3a6@davedash.com",
-            "occupation": ""
+            "averagerating": "3.11"
         }
     },
     {
@@ -184,15 +184,15 @@
         "fields": {
             "dev_agreement": 1,
             "last_updated": "2009-10-21 09:58:52",
-            "average_daily_downloads": 5928,
+            "view_source": 0,
             "total_downloads": 5175276,
             "inactive": 0,
-            "view_source": 0,
+            "average_daily_downloads": 5928,
             "show_beta": 1,
-            "guid": "{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}",
+            "annoying": 0,
             "trusted": 1,
             "binary": 0,
-            "annoying": 0,
+            "guid": "{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}",
             "weekly_downloads": 20178,
             "paypal_id": "",
             "average_rating": "3.02",
@@ -225,8 +225,8 @@
         "fields": {
             "license": null,
             "created": "2006-10-23 12:57:41",
-            "modified": "2006-10-23 19:22:18",
             "approvalnotes": "",
+            "modified": "2006-10-23 19:22:18",
             "version": "1.0.43",
             "addon": 3615
         }
@@ -235,19 +235,19 @@
         "pk": 1,
         "model": "versions.version",
         "fields": {
-            "addon": 3615,
             "version": "1.2",
+            "created": "2006-10-24 12:00:00",
             "approvalnotes": "",
             "modified": "2006-10-24 12:00:01",
-            "created": "2006-10-24 12:00:00"
+            "addon": 3615
         }
     },
     {
         "pk": 2,
         "model": "versions.version",
         "fields": {
-            "created": "2006-08-21 23:53:19",
-            "addon": 3615
+            "addon": 3615,
+            "created": "2006-08-21 23:53:19"
         }
     },
     {
@@ -295,9 +295,9 @@
         "model": "versions.applicationsversions",
         "fields": {
             "application": 1,
-            "max": 201,
             "version": 24007,
-            "min": 200
+            "min": 200,
+            "max": 201
         }
     },
     {
@@ -305,9 +305,9 @@
         "model": "versions.applicationsversions",
         "fields": {
             "application": 1,
-            "max": 201,
             "version": 2,
-            "min": 200
+            "min": 200,
+            "max": 201
         }
     },
     {
@@ -315,9 +315,9 @@
         "model": "versions.applicationsversions",
         "fields": {
             "application": 18,
-            "max": 203,
             "version": 2,
-            "min": 202
+            "min": 202,
+            "max": 203
         }
     },
     {
@@ -347,8 +347,8 @@
             "filename": "del.icio.us_bookmarks-1.2-fx.xpi",
             "platform": 1,
             "version": 1,
-            "size": 169,
-            "datestatuschanged": null
+            "datestatuschanged": null,
+            "size": 169
         }
     },
     {
@@ -356,10 +356,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2007-03-05 13:10:42",
             "localized_string": "macos theme",
-            "id": 129780,
             "modified": "2009-03-26 07:41:10",
-            "created": "2007-03-05 13:10:42"
+            "id": 129780
         }
     },
     {
@@ -368,15 +368,15 @@
         "fields": {
             "dev_agreement": 1,
             "last_updated": "2009-09-22 01:49:51",
-            "average_daily_downloads": 1325,
+            "view_source": 0,
             "total_downloads": 751302,
             "inactive": 0,
-            "view_source": 0,
+            "average_daily_downloads": 1325,
             "show_beta": 1,
-            "guid": "{00352F14-3F76-4e4d-ACFF-9976D7E4B3B9}",
+            "annoying": 0,
             "trusted": 0,
             "binary": 0,
-            "annoying": 0,
+            "guid": "{00352F14-3F76-4e4d-ACFF-9976D7E4B3B9}",
             "weekly_downloads": 7523,
             "paypal_id": "",
             "average_rating": "4.56",
@@ -404,8 +404,8 @@
         "pk": 7172,
         "model": "versions.version",
         "fields": {
-            "created": "2006-08-21 23:53:19",
-            "addon": 7172
+            "addon": 7172,
+            "created": "2006-08-21 23:53:19"
         }
     },
     {
@@ -413,9 +413,9 @@
         "model": "versions.applicationsversions",
         "fields": {
             "application": 1,
-            "max": 201,
             "version": 7172,
-            "min": 200
+            "min": 200,
+            "max": 201
         }
     },
     {
@@ -430,8 +430,8 @@
             "filename": "del.icio.us_bookmarks-1.2-fx.xpi",
             "platform": 1,
             "version": 7172,
-            "size": 169,
-            "datestatuschanged": null
+            "datestatuschanged": null,
+            "size": 169
         }
     },
     {
@@ -439,9 +439,9 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
-            "created": "2001-01-01 13:14:15",
             "id": 73,
-            "localized_string": "z addon seventy-three"
+            "localized_string": "z addon seventy-three",
+            "created": "2001-01-01 13:14:15"
         }
     },
     {
@@ -451,8 +451,8 @@
             "status": 4,
             "last_updated": "2008-08-21 23:53:19",
             "name": 73,
-            "weekly_downloads": 23523,
             "created": "2006-08-21 23:53:19",
+            "weekly_downloads": 23523,
             "modified": "2006-08-21 23:53:19",
             "bayesian_rating": 0.80000000000000004,
             "type": 1
@@ -462,8 +462,8 @@
         "pk": 73,
         "model": "versions.version",
         "fields": {
-            "created": "2006-08-21 23:53:19",
-            "addon": 73
+            "addon": 73,
+            "created": "2006-08-21 23:53:19"
         }
     },
     {
@@ -471,9 +471,9 @@
         "model": "versions.applicationsversions",
         "fields": {
             "application": 1,
-            "max": 201,
             "version": 73,
-            "min": 200
+            "min": 200,
+            "max": 201
         }
     },
     {
@@ -488,8 +488,8 @@
             "filename": "del.icio.us_bookmarks-1.2-fx.xpi",
             "platform": 1,
             "version": 73,
-            "size": 169,
-            "datestatuschanged": null
+            "datestatuschanged": null,
+            "size": 169
         }
     },
     {
@@ -497,9 +497,9 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
-            "created": "2001-01-01 13:14:15",
             "id": 55,
-            "localized_string": "addon fifty-five"
+            "localized_string": "addon fifty-five",
+            "created": "2001-01-01 13:14:15"
         }
     },
     {
@@ -509,8 +509,8 @@
             "status": 1,
             "last_updated": "2006-08-21 23:53:19",
             "name": 55,
-            "weekly_downloads": 3865386,
             "created": "2006-08-21 23:53:19",
+            "weekly_downloads": 3865386,
             "modified": "2006-08-21 23:53:19",
             "bayesian_rating": 1.0,
             "type": 1
@@ -520,8 +520,8 @@
         "pk": 55,
         "model": "versions.version",
         "fields": {
-            "created": "2006-08-21 23:53:19",
-            "addon": 55
+            "addon": 55,
+            "created": "2006-08-21 23:53:19"
         }
     },
     {
@@ -529,9 +529,9 @@
         "model": "versions.applicationsversions",
         "fields": {
             "application": 1,
-            "max": 201,
             "version": 55,
-            "min": 200
+            "min": 200,
+            "max": 201
         }
     },
     {
@@ -546,19 +546,19 @@
             "filename": "del.icio.us_bookmarks-1.2-fx.xpi",
             "platform": 1,
             "version": 55,
-            "size": 169,
-            "datestatuschanged": null
+            "datestatuschanged": null,
+            "size": 169
         }
     },
     {
         "pk": 25981,
         "model": "addons.preview",
         "fields": {
-            "thumbtype": "image/png",
+            "caption": null,
             "filetype": "image/png",
             "created": "2008-09-15 01:30:44",
             "modified": "2008-09-15 01:30:44",
-            "caption": null,
+            "thumbtype": "image/png",
             "highlight": 0,
             "addon": 7172
         }
@@ -588,14 +588,14 @@
             "sandboxshown": 1,
             "display_collections_fav": 1,
             "display_collections": 1,
-            "averagerating": "",
-            "confirmationcode": "",
-            "notifycompat": 1,
-            "picture_type": "",
             "occupation": "",
+            "confirmationcode": "",
+            "location": "",
+            "picture_type": "",
+            "averagerating": "",
             "homepage": "http://jeffbalogh.org",
             "email": "admin@mozilla.com",
-            "location": "",
+            "notifycompat": 1,
             "bio": null,
             "firstname": "Jeff",
             "deleted": 0,
@@ -617,10 +617,10 @@
         "model": "addons.addonuser",
         "fields": {
             "position": 0,
-            "addon": 3615,
+            "user": 55021,
             "role": 5,
             "listed": 1,
-            "user": 55021
+            "addon": 3615
         }
     },
     {
@@ -628,10 +628,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2007-03-05 13:10:30",
             "localized_string": "If you have any problems, please read the FireBug FAQ.\r\n\r\nhttp://getfirebug.com/faq.html\r\n",
-            "id": 7998,
             "modified": null,
-            "created": "2007-03-05 13:10:30"
+            "id": 7998
         }
     },
     {
@@ -639,10 +639,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2007-03-05 13:10:30",
             "localized_string": "Firebug integrates with Firefox to put a wealth of development tools at your fingertips while you browse. You can edit, debug, and monitor CSS, HTML, and JavaScript live in any web page...\r\n\r\nFirebug 1.4 requires Firefox 3.0 or higher.",
-            "id": 7999,
             "modified": "2009-07-27 18:55:31",
-            "created": "2007-03-05 13:10:30"
+            "id": 7999
         }
     },
     {
@@ -650,10 +650,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2007-03-05 13:10:30",
             "localized_string": "Firebug integrates with Firefox to put a wealth of development tools at your fingertips while you browse. You can edit, debug, and monitor CSS, HTML, and JavaScript live in any web page.\r\n\r\nVisit the Firebug website for documentation, screen shots, and discussion forums: http://getfirebug.com\r\n",
-            "id": 7997,
             "modified": "2009-02-05 08:24:24",
-            "created": "2007-03-05 13:10:30"
+            "id": 7997
         }
     },
     {
@@ -661,10 +661,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2008-06-13 15:22:33",
             "localized_string": "http://groups.google.com/group/firebug/topics",
-            "id": 153024,
             "modified": "2009-02-05 08:24:24",
-            "created": "2008-06-13 15:22:33"
+            "id": 153024
         }
     },
     {
@@ -672,10 +672,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2007-03-05 13:10:30",
             "localized_string": "http://getfirebug.com/",
-            "id": 7996,
             "modified": "2009-02-05 08:24:24",
-            "created": "2007-03-05 13:10:30"
+            "id": 7996
         }
     },
     {
@@ -683,10 +683,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2007-03-05 13:10:30",
             "localized_string": "Firebug",
-            "id": 7995,
             "modified": "2009-02-05 08:24:24",
-            "created": "2007-03-05 13:10:30"
+            "id": 7995
         }
     },
     {
@@ -694,10 +694,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2007-03-05 13:09:27",
             "localized_string": "ALL",
-            "id": 1134,
             "modified": null,
-            "created": "2007-03-05 13:09:27"
+            "id": 1134
         }
     },
     {
@@ -705,10 +705,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2007-03-05 13:09:27",
             "localized_string": "ALL",
-            "id": 1133,
             "modified": null,
-            "created": "2007-03-05 13:09:27"
+            "id": 1133
         }
     },
     {
@@ -716,10 +716,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2009-11-05 05:17:30",
             "localized_string": "this is a minor release to fix a bug found in Firebug 1.4.4.",
-            "id": 668076,
             "modified": null,
-            "created": "2009-11-05 05:17:30"
+            "id": 668076
         }
     },
     {
@@ -728,15 +728,15 @@
         "fields": {
             "dev_agreement": 1,
             "last_updated": "2009-02-05 15:24:24",
-            "view_source": 1,
+            "average_daily_downloads": 22567,
             "total_downloads": 19701236,
             "inactive": 0,
-            "average_daily_downloads": 22567,
+            "view_source": 1,
             "show_beta": 1,
-            "guid": "firebug@software.joehewitt.com",
+            "annoying": 0,
             "trusted": 1,
             "target_locale": "en-US",
-            "annoying": 0,
+            "guid": "firebug@software.joehewitt.com",
             "weekly_downloads": 215005,
             "support_url": 153024,
             "paypal_id": "",
@@ -772,8 +772,8 @@
         "fields": {
             "license": null,
             "created": "2009-11-05 05:16:21",
-            "modified": "2009-11-05 05:17:31",
             "approvalnotes": "",
+            "modified": "2009-11-05 05:17:31",
             "version": "1.4.5",
             "addon": 1843
         }
@@ -790,8 +790,8 @@
             "filename": "firebug-1.4.5-fx.xpi",
             "platform": 1,
             "version": 83167,
-            "size": 679,
-            "datestatuschanged": "2009-11-05 05:15:45"
+            "datestatuschanged": "2009-11-05 05:15:45",
+            "size": 679
         }
     },
     {
@@ -800,9 +800,9 @@
         "fields": {
             "application": 1,
             "version": "3.6.*",
-            "created": "2001-01-01 13:14:15",
             "version_int": 3069900200100,
-            "modified": "2001-01-01 13:14:15"
+            "modified": "2001-01-01 13:14:15",
+            "created": "2001-01-01 13:14:15"
         }
     },
     {
@@ -811,9 +811,9 @@
         "fields": {
             "application": 1,
             "version": "3.0",
-            "created": "2001-01-01 13:14:15",
             "version_int": 3000000200100,
-            "modified": "2001-01-01 13:14:15"
+            "modified": "2001-01-01 13:14:15",
+            "created": "2001-01-01 13:14:15"
         }
     },
     {
@@ -821,9 +821,9 @@
         "model": "versions.applicationsversions",
         "fields": {
             "application": 1,
+            "max": 291,
             "version": 83167,
-            "min": 233,
-            "max": 291
+            "min": 233
         }
     },
     {
@@ -831,10 +831,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2007-03-05 13:08:05",
             "localized_string": "Themes are like new clothes for your %1$s. A theme can change only a few colors, or every piece of %1$s's appearance. It's another great way to personalize %1$s to your tastes.",
-            "id": 149,
             "modified": "2007-03-25 17:17:19",
-            "created": "2007-03-05 13:08:05"
+            "id": 149
         }
     },
     {
@@ -842,10 +842,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2007-03-05 13:08:05",
             "localized_string": "Themes",
-            "id": 143,
             "modified": "2007-03-25 17:17:19",
-            "created": "2007-03-05 13:08:05"
+            "id": 143
         }
     },
     {
@@ -853,10 +853,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2007-03-05 13:08:05",
             "localized_string": "Theme",
-            "id": 2,
             "modified": "2007-03-25 17:17:19",
-            "created": "2007-03-05 13:08:05"
+            "id": 2
         }
     },
     {
@@ -864,10 +864,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2008-03-10 14:31:39",
             "localized_string": "Designed to fit well in the Mac OS X environment.",
-            "id": 104239,
             "modified": "2008-08-08 17:22:35",
-            "created": "2008-03-10 14:31:39"
+            "id": 104239
         }
     },
     {
@@ -875,10 +875,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2008-03-10 14:31:39",
             "localized_string": "The theme is equally available on: http://www.takebacktheweb.org/\r\nand there as well with some customizing hints. ",
-            "id": 104236,
             "modified": "2008-08-08 17:22:35",
-            "created": "2008-03-10 14:31:39"
+            "id": 104236
         }
     },
     {
@@ -886,10 +886,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2008-03-10 14:31:39",
             "localized_string": "http://www.takebacktheweb.org/",
-            "id": 104237,
             "modified": "2008-08-08 17:22:35",
-            "created": "2008-03-10 14:31:39"
+            "id": 104237
         }
     },
     {
@@ -897,10 +897,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2008-03-10 14:31:39",
             "localized_string": "GrApple Yummy",
-            "id": 104238,
             "modified": "2009-06-24 14:56:43",
-            "created": "2008-03-10 14:31:39"
+            "id": 104238
         }
     },
     {
@@ -908,10 +908,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2007-03-05 13:09:27",
             "localized_string": "macosx",
-            "id": 1140,
             "modified": "2007-03-22 13:57:06",
-            "created": "2007-03-05 13:09:27"
+            "id": 1140
         }
     },
     {
@@ -919,10 +919,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2007-03-05 13:09:27",
             "localized_string": "MacOSX",
-            "id": 1139,
             "modified": "2007-03-22 13:57:06",
-            "created": "2007-03-05 13:09:27"
+            "id": 1139
         }
     },
     {
@@ -940,15 +940,15 @@
         "fields": {
             "dev_agreement": 1,
             "last_updated": "2009-02-06 15:24:24",
-            "average_daily_downloads": 141,
+            "view_source": 0,
             "total_downloads": 87385,
             "inactive": 0,
-            "view_source": 0,
+            "average_daily_downloads": 141,
             "show_beta": 1,
-            "guid": "{b1fad17a-3b98-c743-ed56-85c722d622d3}",
+            "annoying": 0,
             "trusted": 0,
             "binary": 0,
-            "annoying": 0,
+            "guid": "{b1fad17a-3b98-c743-ed56-85c722d622d3}",
             "weekly_downloads": 278,
             "paypal_id": "",
             "average_rating": "4.77",
@@ -980,11 +980,11 @@
         "pk": 75631,
         "model": "versions.version",
         "fields": {
-            "license": 5,
-            "created": "2009-08-08 10:28:59",
-            "modified": "2009-08-08 10:28:59",
+            "addon": 6704,
             "version": "2.0.5",
-            "addon": 6704
+            "modified": "2009-08-08 10:28:59",
+            "license": 5,
+            "created": "2009-08-08 10:28:59"
         }
     },
     {
@@ -993,9 +993,9 @@
         "fields": {
             "shortname": 1140,
             "icontype": "",
-            "created": "2007-03-05 13:09:27",
             "modified": "2008-04-07 08:16:55",
-            "name": 1139
+            "name": 1139,
+            "created": "2007-03-05 13:09:27"
         }
     },
     {
@@ -1010,8 +1010,8 @@
             "filename": "grapple_yummy-2.0.5-fx-macosx.jar",
             "platform": 3,
             "version": 75631,
-            "size": 568,
-            "datestatuschanged": "2009-08-23 03:16:29"
+            "datestatuschanged": "2009-08-23 03:16:29",
+            "size": 568
         }
     },
     {
@@ -1037,9 +1037,9 @@
         "model": "versions.applicationsversions",
         "fields": {
             "application": 1,
+            "max": 279,
             "version": 75631,
-            "min": 268,
-            "max": 279
+            "min": 268
         }
     },
     {
@@ -1047,10 +1047,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2009-08-29 22:53:13",
             "localized_string": "JSONView is a simple extension with a simple purpose and I'd like to keep it that way. That said, there are a few things I'd like to see added to it, chief among which is JSON-P support. You can follow the full list of proposed enhancements at http://code.google.com/p/jsonview/issues/list .",
-            "id": 539995,
             "modified": null,
-            "created": "2009-08-29 22:53:13"
+            "id": 539995
         }
     },
     {
@@ -1058,10 +1058,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2009-08-29 22:53:12",
             "localized_string": "I developed JSONView because I like JSON better than XML, but developing RESTful web services with XML was easier to debug because you could just view the output in a browser, while JSON caused Firefox to just throw up a download dialog. So I set out to make JSON viewing in Firefox as nice as, or better, than the default XML view.",
-            "id": 539994,
             "modified": null,
-            "created": "2009-08-29 22:53:12"
+            "id": 539994
         }
     },
     {
@@ -1069,10 +1069,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2009-02-23 23:51:23",
             "localized_string": "Known bugs:\r\n* \"Save as...\" saves HTML instead of the original JSON document.\r\n* \"Page Info\" panel reports content as HTML instead of JSON.\r\n* Copying and pasting from the formatted JSON does not copy the original document.",
-            "id": 332049,
             "modified": "2009-03-15 18:10:38",
-            "created": "2009-02-23 23:51:23"
+            "id": 332049
         }
     },
     {
@@ -1080,10 +1080,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2009-02-23 23:47:34",
             "localized_string": "View JSON documents in the browser.",
-            "id": 332039,
             "modified": "2009-03-01 15:27:06",
-            "created": "2009-02-23 23:47:34"
+            "id": 332039
         }
     },
     {
@@ -1091,10 +1091,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2009-02-23 23:51:23",
             "localized_string": "Normally when encountering a JSON document (content type \"application/json\"), Firefox simply prompts you to download the file. With the JSONView extension, JSON documents are shown in the browser similar to how XML documents are shown. The document is formatted, highlighted, and arrays and objects can be collapsed.  Even if the JSON document contains errors, JSONView will still show the raw text.\r\nOnce you've got JSONView installed, check out http://brh.numbera.com/software/jsonview/example.json to see the extension in action!",
-            "id": 332048,
             "modified": "2009-03-27 21:19:44",
-            "created": "2009-02-23 23:51:23"
+            "id": 332048
         }
     },
     {
@@ -1102,10 +1102,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2009-02-24 00:49:25",
             "localized_string": "http://code.google.com/p/jsonview/issues",
-            "id": 332078,
             "modified": "2009-03-01 15:27:06",
-            "created": "2009-02-24 00:49:25"
+            "id": 332078
         }
     },
     {
@@ -1113,10 +1113,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2009-02-23 23:47:33",
             "localized_string": "http://brh.numbera.com/software/jsonview/",
-            "id": 332037,
             "modified": "2009-03-01 15:27:06",
-            "created": "2009-02-23 23:47:33"
+            "id": 332037
         }
     },
     {
@@ -1124,10 +1124,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2009-02-23 23:47:34",
             "localized_string": "JSONView",
-            "id": 332038,
             "modified": "2009-03-01 15:27:06",
-            "created": "2009-02-23 23:47:34"
+            "id": 332038
         }
     },
     {
@@ -1135,10 +1135,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2009-10-07 23:26:00",
             "localized_string": "* Preference dialog with an option to send \"application/json\" in the HTTP Accept header.\r\n* Fixed a bug where values that were 0 or false would not show up.\r\n* Fixed a bug where documents would sometimes show up as invalid when Firebug was enabled\r\n* Bumped compatibility for 3.7a1pre ",
-            "id": 577660,
             "modified": null,
-            "created": "2009-10-07 23:26:00"
+            "id": 577660
         }
     },
     {
@@ -1162,10 +1162,10 @@
             "inactive": 0,
             "view_source": 1,
             "show_beta": 1,
-            "guid": "jsonview@brh.numbera.com",
+            "the_future": 539995,
             "trusted": 0,
             "binary": 0,
-            "the_future": 539995,
+            "guid": "jsonview@brh.numbera.com",
             "weekly_downloads": 2198,
             "support_url": 332078,
             "paypal_id": "",
@@ -1202,9 +1202,9 @@
         "fields": {
             "application": 1,
             "version": "3.7a1pre",
-            "created": "2009-02-23 23:47:34",
             "version_int": 3070000001000,
-            "modified": null
+            "modified": null,
+            "created": "2009-02-23 23:47:34"
         }
     },
     {
@@ -1213,8 +1213,8 @@
         "fields": {
             "license": 22,
             "created": "2009-10-07 23:23:03",
-            "modified": "2009-10-08 21:11:35",
             "approvalnotes": "http://code.google.com/p/jsonview/source/list - Changes are r22 to r27. (I fixed the missing strings from the previous upload - I thought they would fall back to en-US. Might want to add that to the validator.)",
+            "modified": "2009-10-08 21:11:35",
             "version": "0.4",
             "addon": 10869
         }
@@ -1224,9 +1224,9 @@
         "model": "versions.applicationsversions",
         "fields": {
             "application": 1,
+            "max": 282,
             "version": 80422,
-            "min": 233,
-            "max": 282
+            "min": 233
         }
     },
     {
@@ -1241,8 +1241,8 @@
             "filename": "jsonview-0.4-fx.xpi",
             "platform": 1,
             "version": 80422,
-            "size": 19,
-            "datestatuschanged": "2009-10-12 01:30:52"
+            "datestatuschanged": "2009-10-12 01:30:52",
+            "size": 19
         }
     },
     {
@@ -1250,10 +1250,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2009-04-20 17:21:30",
             "localized_string": "The new YSlow is here!",
-            "id": 366908,
             "modified": "2009-04-28 16:08:18",
-            "created": "2009-04-20 17:21:30"
+            "id": 366908
         }
     },
     {
@@ -1261,10 +1261,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2007-07-19 21:54:54",
             "localized_string": "YSlow analyzes web pages and why they're slow based on Yahoo!'s rules for high performance web sites.\r\n\r\nYSlow uses Yahoo!'s Smush.it service, which is subject to Smush.it Terms of Use: http://info.yahoo.com/legal/us/yahoo/smush_it/smush_it-4378.html",
-            "id": 60896,
             "modified": "2009-04-28 16:08:17",
-            "created": "2007-07-19 21:54:54"
+            "id": 60896
         }
     },
     {
@@ -1272,10 +1272,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2007-07-19 21:54:53",
             "localized_string": "YSlow analyzes web pages and suggests ways to improve their performance based on a set of rules for high performance web pages. YSlow is a Firefox add-on integrated with the Firebug web development tool. YSlow grades web page based on one of three predefined ruleset or a user-defined ruleset. It offers suggestions for improving the page's performance, summarizes the page's components, displays statistics about the page, and provides tools for performance analysis, including Smush.it\u2122 and JSLint. \r\n\r\nYSlow is licensed under the Mozilla Public License (MPL) version 1.1, with portions licensed by third parties under other license terms.  To review the terms before installing, see http://developer.yahoo.com/yslow/faq.html#faq_license.\r\n\r\nYSlow uses Yahoo!'s Smush.it service, which is subject to Smush.it Terms of Use: http://info.yahoo.com/legal/us/yahoo/smush_it/smush_it-4378.html\r\n\r\nYou must install Firebug: https://addons.mozilla.org/en-US/firefox/addon/1843",
-            "id": 60892,
             "modified": "2009-04-28 16:08:18",
-            "created": "2007-07-19 21:54:53"
+            "id": 60892
         }
     },
     {
@@ -1283,10 +1283,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2008-04-21 19:34:21",
             "localized_string": "http://developer.yahoo.com/yslow",
-            "id": 124902,
             "modified": "2009-02-27 11:36:01",
-            "created": "2008-04-21 19:34:21"
+            "id": 124902
         }
     },
     {
@@ -1294,10 +1294,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2007-07-19 21:54:54",
             "localized_string": "http://developer.yahoo.com/yslow/",
-            "id": 60894,
             "modified": "2009-02-27 11:36:49",
-            "created": "2007-07-19 21:54:54"
+            "id": 60894
         }
     },
     {
@@ -1305,10 +1305,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2007-07-19 21:54:54",
             "localized_string": "YSlow",
-            "id": 60895,
             "modified": "2009-02-27 11:36:49",
-            "created": "2007-07-19 21:54:54"
+            "id": 60895
         }
     },
     {
@@ -1323,10 +1323,10 @@
             "inactive": 0,
             "view_source": 0,
             "show_beta": 1,
-            "guid": "yslow@yahoo-inc.com",
+            "annoying": 0,
             "trusted": 0,
             "binary": 0,
-            "annoying": 0,
+            "guid": "yslow@yahoo-inc.com",
             "weekly_downloads": 18909,
             "support_url": 124902,
             "paypal_id": "",
@@ -1370,20 +1370,20 @@
         "fields": {
             "application": 1,
             "version": "2.0",
-            "created": "2007-03-05 13:09:26",
             "version_int": 2000000200100,
-            "modified": null
+            "modified": null,
+            "created": "2007-03-05 13:09:26"
         }
     },
     {
         "pk": 83711,
         "model": "versions.version",
         "fields": {
-            "license": null,
-            "created": "2009-11-09 15:11:30",
-            "modified": "2009-11-09 15:11:30",
+            "addon": 5369,
             "version": "2.0.2",
-            "addon": 5369
+            "modified": "2009-11-09 15:11:30",
+            "license": null,
+            "created": "2009-11-09 15:11:30"
         }
     },
     {
@@ -1391,9 +1391,9 @@
         "model": "versions.applicationsversions",
         "fields": {
             "application": 1,
+            "max": 267,
             "version": 83711,
-            "min": 97,
-            "max": 267
+            "min": 97
         }
     },
     {
@@ -1408,8 +1408,8 @@
             "filename": "yslow-2.0.2-fx.xpi",
             "platform": 1,
             "version": 83711,
-            "size": 211,
-            "datestatuschanged": "2009-11-12 22:22:32"
+            "datestatuschanged": "2009-11-12 22:22:32",
+            "size": 211
         }
     },
     {
@@ -1417,10 +1417,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2009-07-16 12:40:03",
             "localized_string": "I'm thinking of adding more features that would be useful for the times when you actually do visit Twitter.com (like to read your friends' messages.)  Maybe better trending topics in the sidebar, adding a retweet button, or possibly integrated image upload.",
-            "id": 482382,
             "modified": null,
-            "created": "2009-07-16 12:40:03"
+            "id": 482382
         }
     },
     {
@@ -1428,10 +1428,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2009-07-16 12:40:02",
             "localized_string": "I wanted a way to quickly and easily update Twitter without visiting the site, and TwitterBar had been abandoned by its original author, so I took over development and started fixing it up and adding features.",
-            "id": 482381,
             "modified": null,
-            "created": "2009-07-16 12:40:02"
+            "id": 482381
         }
     },
     {
@@ -1439,10 +1439,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2007-03-17 05:29:25",
             "localized_string": "Post to Twitter from your address bar.",
-            "id": 38754,
             "modified": "2009-03-23 12:20:02",
-            "created": "2007-03-17 05:29:25"
+            "id": 38754
         }
     },
     {
@@ -1450,10 +1450,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2007-03-17 05:29:25",
             "localized_string": "TwitterBar allows you to post to Twitter from Firefox's address bar. A small Twitter icon sits to the right of your address bar; clicking on it will post your tweet, and you can hover your mouse over it to see how many characters you have left.\r\n\r\nYou can also post by typing \"--post\" at the end of your tweet.  Clicking the Twitter icon when visiting a webpage will send a tweet containing the URL of the webpage you are currently viewing.",
-            "id": 38750,
             "modified": "2009-03-23 12:20:02",
-            "created": "2007-03-17 05:29:25"
+            "id": 38750
         }
     },
     {
@@ -1461,10 +1461,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2008-05-03 10:00:08",
             "localized_string": "http://www.chrisfinke.com/addons/twitterbar/",
-            "id": 130757,
             "modified": "2009-03-23 12:20:02",
-            "created": "2008-05-03 10:00:08"
+            "id": 130757
         }
     },
     {
@@ -1472,10 +1472,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2008-05-01 12:12:04",
             "localized_string": "cfinke@gmail.com",
-            "id": 130099,
             "modified": "2009-03-23 12:20:02",
-            "created": "2008-05-01 12:12:04"
+            "id": 130099
         }
     },
     {
@@ -1483,10 +1483,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2007-03-17 05:29:25",
             "localized_string": "http://www.chrisfinke.com/addons/twitterbar/",
-            "id": 38752,
             "modified": "2009-03-23 12:20:02",
-            "created": "2007-03-17 05:29:25"
+            "id": 38752
         }
     },
     {
@@ -1494,10 +1494,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2007-03-17 05:29:25",
             "localized_string": "TwitterBar",
-            "id": 38753,
             "modified": "2009-03-23 12:20:02",
-            "created": "2007-03-17 05:29:25"
+            "id": 38753
         }
     },
     {
@@ -1505,10 +1505,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2009-11-18 06:33:38",
             "localized_string": "* Updated for Firefox 3.6 compatibility\r\n* Updated for Fennec compatibility\r\n* Fixed bug that would prevent last tweet before authorization from being sent out\r\n* Updated translations",
-            "id": 688177,
             "modified": null,
-            "created": "2009-11-18 06:33:38"
+            "id": 688177
         }
     },
     {
@@ -1526,15 +1526,15 @@
         "fields": {
             "dev_agreement": 1,
             "last_updated": "2009-03-23 12:20:04",
-            "average_daily_downloads": 994,
+            "view_source": 1,
             "total_downloads": 867952,
             "inactive": 0,
-            "view_source": 1,
+            "average_daily_downloads": 994,
             "show_beta": 1,
-            "guid": "{1a0c9ebe-ddf9-4b76-b8a3-675c77874d37}",
+            "the_future": 482382,
             "trusted": 0,
             "binary": 0,
-            "the_future": 482382,
+            "guid": "{1a0c9ebe-ddf9-4b76-b8a3-675c77874d37}",
             "weekly_downloads": 23646,
             "support_url": 130757,
             "paypal_id": "cfinke+premier@gmail.com",
@@ -1573,8 +1573,8 @@
         "fields": {
             "license": 13,
             "created": "2009-11-18 06:32:02",
-            "modified": "2009-11-18 06:33:39",
             "approvalnotes": "You can contact me at cfinke@gmail.com or @cfinke on Twitter with any questions.  Fennec support was the main reason for this upgrade.",
+            "modified": "2009-11-18 06:33:39",
             "version": "2.7",
             "addon": 4664
         }
@@ -1583,7 +1583,7 @@
         "pk": 70282,
         "model": "files.file",
         "fields": {
-            "status": 2,
+            "status": 4,
             "codereview": 0,
             "hash": "sha256:38840d62c05f4ca4342d4df3b6a6e5cd4f11e587701ac3c10768bc8a22218a72",
             "created": "2009-11-18 06:32:03",
@@ -1591,8 +1591,8 @@
             "filename": "twitterbar-2.7-fx+fn.xpi",
             "platform": 1,
             "version": 84770,
-            "size": 90,
-            "datestatuschanged": "2009-11-18 06:31:42"
+            "datestatuschanged": "2009-11-18 06:31:42",
+            "size": 90
         }
     },
     {
@@ -1618,9 +1618,9 @@
         "model": "versions.applicationsversions",
         "fields": {
             "application": 60,
+            "max": 249,
             "version": 84770,
-            "min": 259,
-            "max": 249
+            "min": 259
         }
     },
     {
@@ -1643,10 +1643,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2007-03-05 13:10:18",
             "localized_string": "Allows the user to use external programs for: view page source, edit content of textareas handle mailto, news, telnet and FTP links and download...",
-            "id": 1299,
             "modified": null,
-            "created": "2007-03-05 13:10:18"
+            "id": 1299
         }
     },
     {
@@ -1654,10 +1654,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2007-03-05 13:10:18",
             "localized_string": "Allows the user to use external programs for: view page source, edit content of textareas handle mailto, news, telnet and FTP links and download files.",
-            "id": 1297,
             "modified": null,
-            "created": "2007-03-05 13:10:18"
+            "id": 1297
         }
     },
     {
@@ -1665,10 +1665,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2007-03-05 13:10:18",
             "localized_string": "http://mozex.mozdev.org/",
-            "id": 1296,
             "modified": null,
-            "created": "2007-03-05 13:10:18"
+            "id": 1296
         }
     },
     {
@@ -1676,10 +1676,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2007-03-05 13:10:18",
             "localized_string": "MozEX",
-            "id": 1295,
             "modified": null,
-            "created": "2007-03-05 13:10:18"
+            "id": 1295
         }
     },
     {
@@ -1688,14 +1688,15 @@
         "fields": {
             "dev_agreement": 0,
             "last_updated": "2007-03-05 13:11:03",
-            "view_source": 0,
+            "average_daily_downloads": 42,
             "total_downloads": 24739,
             "inactive": 0,
-            "average_daily_downloads": 42,
+            "view_source": 0,
             "show_beta": 1,
             "guid": "{7c07e56e-b2f0-4932-bbe2-857a91b69f45}",
             "trusted": 0,
             "binary": 0,
+            "annoying": 0,
             "weekly_downloads": 6,
             "paypal_id": "",
             "average_rating": "4.00",
@@ -1717,7 +1718,6 @@
             "created": "2004-06-12 02:52:33",
             "type": 1,
             "icon_type": "",
-            "annoying": 0,
             "modified": null,
             "summary": 1299,
             "suggested_amount": null,
@@ -1733,8 +1733,8 @@
         "fields": {
             "license": null,
             "created": "2004-06-12 02:52:33",
-            "modified": "2004-06-13 20:25:13",
             "approvalnotes": "",
+            "modified": "2004-06-13 20:25:13",
             "version": "1.0.7",
             "addon": 40
         }
@@ -1751,8 +1751,8 @@
             "filename": "mozex-1.0.7-fx.xpi",
             "platform": 1,
             "version": 42,
-            "size": 18,
-            "datestatuschanged": null
+            "datestatuschanged": null,
+            "size": 18
         }
     },
     {
@@ -1761,9 +1761,9 @@
         "fields": {
             "application": 1,
             "version": "0.9",
-            "created": "2007-03-05 13:10:58",
             "version_int": 90000200100,
-            "modified": null
+            "modified": null,
+            "created": "2007-03-05 13:10:58"
         }
     },
     {
@@ -1772,9 +1772,9 @@
         "fields": {
             "application": 1,
             "version": "0.7",
-            "created": "2007-03-05 13:09:26",
             "version_int": 70000200100,
-            "modified": null
+            "modified": null,
+            "created": "2007-03-05 13:09:26"
         }
     },
     {
@@ -1782,9 +1782,48 @@
         "model": "versions.applicationsversions",
         "fields": {
             "application": 1,
+            "max": 123,
             "version": 42,
-            "min": 42,
-            "max": 123
+            "min": 42
+        }
+    },
+    {
+        "pk": 2519,
+        "model": "users.userprofile",
+        "fields": {
+            "sandboxshown": 1,
+            "display_collections_fav": 0,
+            "display_collections": 0,
+            "averagerating": "4.06",
+            "confirmationcode": "",
+            "notifycompat": 1,
+            "picture_type": "image/png",
+            "occupation": "Software Developer",
+            "homepage": "http://www.chrisfinke.com/",
+            "email": "dd+357b3dde1d3e7e3267d23f605a078d62@davedash.com",
+            "location": "Minneapolis, MN",
+            "bio": null,
+            "firstname": "Christopher",
+            "deleted": 0,
+            "lastname": "Finke",
+            "emailhidden": 0,
+            "user": null,
+            "password": "sha512$9b7d3208f1f3c2ddd7c9e117f32a2b7ebaae7dfd62ace1f490048aaf8f8d81fb$ae3acaadaa2fb720773f0bbd65f019ba168ba89ff3e2d5eef0aa699042d2882b607a31ee43c403f4d1fd2cda19c46fa728d578d04682b42d164fb418e5bd50d8",
+            "resetcode": "",
+            "created": "2007-03-05 13:09:34",
+            "modified": "2009-07-17 12:12:18",
+            "notifyevents": 1
+        }
+    },
+    {
+        "pk": 3706,
+        "model": "addons.addonuser",
+        "fields": {
+            "position": 0,
+            "addon": 4664,
+            "role": 5,
+            "listed": 1,
+            "user": 2519
         }
     }
 ]

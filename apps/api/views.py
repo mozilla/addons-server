@@ -65,6 +65,13 @@ class APIView(object):
         else:
             return HttpResponse(json.dumps({'msg': _(msg)}), *args, **kwargs)
 
+    def render(self, template, context):
+        context['api_version'] = self.version
+        context['api'] = api
+
+        return jingo.render(self.request, template, context,
+                            mimetype=self.mimetype)
+
 
 class AddonDetailView(APIView):
 
@@ -79,9 +86,8 @@ class AddonDetailView(APIView):
 
     def render_addon(self, addon):
         if self.format == 'xml':
-            return jingo.render(
-                self.request, 'api/addon_detail.xml',
-                {'addon': addon, 'amo': amo}, mimetype=self.mimetype)
+            return self.render('api/addon_detail.xml',
+                               {'addon': addon, 'amo': amo})
         else:
             pass
             # serialize me?
@@ -89,8 +95,8 @@ class AddonDetailView(APIView):
 
 class SearchView(APIView):
 
-    def process_request(self, query, addon_type='ALL', limit=10, platform='ALL',
-                        version=None):
+    def process_request(self, query, addon_type='ALL', limit=10,
+                        platform='ALL', version=None):
         """
         This queries sphinx with `query` and serves the results in xml.
         """
@@ -123,10 +129,8 @@ class SearchView(APIView):
                                    ERROR, status=503, mimetype=self.mimetype)
 
         if self.format == 'xml':
-            return jingo.render(
-                    self.request, 'api/search.xml',
-                    {'results': results, 'total': sc.total_found},
-                    mimetype=self.mimetype)
+            return self.render('api/search.xml',
+                               {'results': results, 'total': sc.total_found})
 
 
 class ListView(APIView):
@@ -175,8 +179,7 @@ class ListView(APIView):
             addons.extend(moar_addons)
 
         if self.format == 'xml':
-            return jingo.render(self.request, 'api/list.xml',
-                    {'addons': addons[:int(limit)]}, mimetype=self.mimetype)
+            return self.render('api/list.xml', {'addons': addons[:int(limit)]})
 
 
 # pylint: disable-msg=W0613
