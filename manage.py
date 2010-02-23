@@ -28,6 +28,7 @@ except ImportError:
 setup_environ(settings)
 
 # Import for side-effect: configures our logging handlers.
+# pylint: disable-msg=W0611
 import log_settings
 
 
