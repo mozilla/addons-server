@@ -2,7 +2,6 @@ from django.db import models, connection
 
 from bleach import Bleach
 import caching.base
-import jinja2
 
 
 bleach = Bleach()

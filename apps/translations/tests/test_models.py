@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from django.core.cache import cache
 from django.utils import translation
 
 import jinja2
@@ -191,7 +190,8 @@ class TranslationTestCase(ExtraAppTestCase):
         m = FancyModel.objects.create(purified=s)
         eq_(m.purified.localized_string_clean,
             '<a href="http://xxx.com" rel="nofollow">yay</a> '
-            '<i><a href="http://yyy.com" rel="nofollow">http://yyy.com</a></i>')
+            '<i><a href="http://yyy.com" rel="nofollow">'
+            'http://yyy.com</a></i>')
         eq_(m.purified.localized_string, s)
 
     def test_new_linkified_field(self):
@@ -199,7 +199,8 @@ class TranslationTestCase(ExtraAppTestCase):
         m = FancyModel.objects.create(linkified=s)
         eq_(m.linkified.localized_string_clean,
             '<a href="http://xxx.com" rel="nofollow">yay</a> '
-            '&lt;i&gt;<a href="http://yyy.com" rel="nofollow">http://yyy.com</a>&lt;/i&gt;')
+            '&lt;i&gt;<a href="http://yyy.com" rel="nofollow">'
+            'http://yyy.com</a>&lt;/i&gt;')
         eq_(m.linkified.localized_string, s)
 
     def test_update_purified_field(self):
@@ -209,7 +210,8 @@ class TranslationTestCase(ExtraAppTestCase):
         m.save()
         eq_(m.purified.localized_string_clean,
             '<a href="http://xxx.com" rel="nofollow">yay</a> '
-            '<i><a href="http://yyy.com" rel="nofollow">http://yyy.com</a></i>')
+            '<i><a href="http://yyy.com" rel="nofollow">'
+            'http://yyy.com</a></i>')
         eq_(m.purified.localized_string, s)
 
     def test_update_linkified_field(self):
@@ -219,9 +221,9 @@ class TranslationTestCase(ExtraAppTestCase):
         m.save()
         eq_(m.linkified.localized_string_clean,
             '<a href="http://xxx.com" rel="nofollow">yay</a> '
-            '&lt;i&gt;<a href="http://yyy.com" rel="nofollow">http://yyy.com</a>&lt;/i&gt;')
+            '&lt;i&gt;<a href="http://yyy.com" rel="nofollow">'
+            'http://yyy.com</a>&lt;/i&gt;')
         eq_(m.linkified.localized_string, s)
-
 
     def test_purified_field_str(self):
         m = FancyModel.objects.get(id=1)
