@@ -80,6 +80,17 @@ class TestAddonManager(test_utils.TestCase):
             assert_not_equal(
                 a.id, 3, 'public() must not return experimental add-ons')
 
+    def test_experimental(self):
+        """
+        Tests for experimental addons.
+        """
+        exp = Addon.objects.experimental()
+
+        for addon in exp:
+            assert addon.status in amo.EXPERIMENTAL_STATUSES, (
+                    "experimental() must return experimental addons.")
+# /class TestAddonManager
+
 
 class TestAddonModels(test.TestCase):
     # base/addons.json has an example addon

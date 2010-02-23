@@ -9,7 +9,7 @@ from . import views
 class_view = lambda x: lambda *args, **kwargs: x()(*args, **kwargs)
 
 # Regular expressions that we use in our urls.
-type_regexp = '/(?P<type>[^/]*)'
+type_regexp = '/(?P<addon_type>[^/]*)'
 limit_regexp = '/(?P<limit>\d*)'
 platform_regexp = '/(?P<platform>\w*)'
 version_regexp = '/(?P<version>[^/]*)'

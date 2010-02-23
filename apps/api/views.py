@@ -89,7 +89,7 @@ class AddonDetailView(APIView):
 
 class SearchView(APIView):
 
-    def process_request(self, query, type='ALL', limit=10, platform='ALL',
+    def process_request(self, query, addon_type='ALL', limit=10, platform='ALL',
                         version=None):
         """
         This queries sphinx with `query` and serves the results in xml.
@@ -98,8 +98,8 @@ class SearchView(APIView):
 
         opts = {'app': self.request.APP.id}
 
-        if type.upper() != 'ALL':
-            opts['type'] = int(type)
+        if addon_type.upper() != 'ALL':
+            opts['type'] = int(addon_type)
 
         if version:
             opts['version'] = version
@@ -131,8 +131,8 @@ class SearchView(APIView):
 
 class ListView(APIView):
 
-    def process_request(self, list_type='recommended', type='ALL', limit=3,
-            platform='ALL', version=None):
+    def process_request(self, list_type='recommended', addon_type='ALL',
+                        limit=3, platform='ALL', version=None):
         """
         This generates a list of addons that can be served to the
         AddonManager.
@@ -148,10 +148,10 @@ class ListView(APIView):
         else:
             qs = Addon.objects.featured(self.request.APP)
 
-        if type.lower() != 'all':
-            type = int(type)
-            if type:
-                qs = qs.filter(type=type)
+        if addon_type.lower() != 'all':
+            addon_type = int(addon_type)
+            if addon_type:
+                qs = qs.filter(type=addon_type)
 
         if platform.lower() != 'all':
             qs = (qs.distinct() &
@@ -179,6 +179,7 @@ class ListView(APIView):
                     {'addons': addons[:int(limit)]}, mimetype=self.mimetype)
 
 
+# pylint: disable-msg=W0613
 def redirect_view(request, url):
     """
     Redirect all requests that come here to an API call with a view parameter.

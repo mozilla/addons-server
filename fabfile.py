@@ -3,8 +3,8 @@ from fabric.api import local
 
 def pylint():
     local("cd ..;export DJANGO_SETTINGS_MODULE=zamboni/settings_local;"
-        "export PYTHONPATH=zamboni/apps:zamboni/lib;"
-        "pylint --rcfile zamboni/scripts/pylintrc -fparseable zamboni",
+        "PYTHONPATH=zamboni/apps:zamboni/lib "
+        "pylint --rcfile zamboni/scripts/pylintrc zamboni ",
         capture=False)
 
 def pep8():
