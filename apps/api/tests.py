@@ -39,7 +39,7 @@ class APITest(TestCase):
 
         response = self.client.get('/en-US/firefox/api/0.9/addon/12')
         self.assertContains(response, 'The API version, %.1f, you are using '
-            'is not valid.  Please upgrade to the current version %.1f '
+            'is not valid. Please upgrade to the current version %.1f '
             'API.' % (0.9, api.CURRENT_VERSION), status_code=403)
 
     def test_addon_detail_missing(self):
