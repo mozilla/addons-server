@@ -1,6 +1,11 @@
 from django.db import models, connection
 
+from bleach import Bleach
 import caching.base
+import jinja2
+
+
+bleach = Bleach()
 
 
 class Translation(caching.base.CachingMixin, models.Model):
@@ -15,6 +20,7 @@ class Translation(caching.base.CachingMixin, models.Model):
     id = models.IntegerField()
     locale = models.CharField(max_length=10)
     localized_string = models.TextField(null=True)
+    localized_string_clean = models.TextField(null=True)
 
     # These are normally from amo.models.ModelBase, but we don't want to have
     # weird circular dependencies between ModelBase and Translations.
@@ -65,13 +71,48 @@ class Translation(caching.base.CachingMixin, models.Model):
         # Update if one exists, otherwise create a new one.
         q = {'id': id, 'locale': locale}
         try:
-            trans = Translation.objects.get(**q)
+            trans = cls.objects.get(**q)
             trans.localized_string = string
             trans.save(force_update=True)
-        except Translation.DoesNotExist:
-            trans = Translation.objects.create(localized_string=string, **q)
+        except cls.DoesNotExist:
+            trans = cls.objects.create(localized_string=string, **q)
 
         return trans
+
+
+class PurifiedTranslation(Translation):
+    """Run the string through bleach to get a safe, linkified version."""
+
+    class Meta:
+        proxy = True
+
+    def __unicode__(self):
+        if not self.localized_string_clean:
+            self.clean()
+        return unicode(self.localized_string_clean)
+
+    def __html__(self):
+        return self
+
+    def clean(self):
+        self.localized_string_clean = bleach.bleach(self.localized_string)
+
+    def save(self, **kwargs):
+        self.clean()
+        return super(PurifiedTranslation, self).save(**kwargs)
+
+
+class LinkifiedTranslation(PurifiedTranslation):
+    """Run the string through bleach to get a linkified version."""
+
+    class Meta:
+        proxy = True
+
+    def clean(self):
+        linkified = bleach.linkify(self.localized_string)
+        clean = bleach.clean(linkified, tags=['a'],
+                             attributes={'a': ['href', 'rel']})
+        self.localized_string_clean = clean
 
 
 class TranslationSequence(models.Model):

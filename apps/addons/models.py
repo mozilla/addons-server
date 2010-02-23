@@ -10,7 +10,8 @@ import caching.base
 import amo.models
 from amo.urlresolvers import reverse
 from reviews.models import Review
-from translations.fields import TranslatedField, translations_with_fallback
+from translations.fields import (TranslatedField, PurifiedField,
+                                 LinkifiedField, translations_with_fallback)
 from users.models import UserProfile
 from search import utils as search_utils
 
@@ -115,10 +116,10 @@ class Addon(amo.models.ModelBase):
     homepage = TranslatedField()
     support_email = TranslatedField(db_column='supportemail')
     support_url = TranslatedField(db_column='supporturl')
-    description = TranslatedField()
+    description = PurifiedField()
 
-    summary = TranslatedField()
-    developer_comments = TranslatedField(db_column='developercomments')
+    summary = LinkifiedField()
+    developer_comments = PurifiedField(db_column='developercomments')
     eula = TranslatedField()
     privacy_policy = TranslatedField(db_column='privacypolicy')
     the_reason = TranslatedField()

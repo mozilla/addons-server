@@ -3,7 +3,6 @@ import hashlib
 import random
 import re
 import string
-import urlparse
 
 from django.conf import settings
 from django.core.urlresolvers import reverse
@@ -12,7 +11,7 @@ from django.db import models
 
 import amo
 import amo.models
-from translations.fields import TranslatedField
+from translations.fields import PurifiedField
 
 
 def get_hexdigest(algorithm, salt, raw_password):
@@ -38,7 +37,7 @@ class UserProfile(amo.models.ModelBase):
     email = models.EmailField(unique=True)
 
     averagerating = models.CharField(max_length=255, blank=True)
-    bio = TranslatedField()
+    bio = PurifiedField()
     confirmationcode = models.CharField(max_length=255, default='',
                                         blank=True)
     deleted = models.BooleanField(default=True)
@@ -83,7 +82,8 @@ class UserProfile(amo.models.ModelBase):
 
     @amo.cached_property
     def is_developer(self):
-        return bool(self.addons.filter(authors=self, addonuser__listed=True)[:1])
+        return bool(self.addons.filter(authors=self,
+                                       addonuser__listed=True)[:1])
 
     @property
     def display_name(self):
