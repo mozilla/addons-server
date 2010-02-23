@@ -23,7 +23,8 @@ class TestDownloadCountModel(test.TestCase):
                 count_sum='count', sources_sum='sources')
 
         eq_(len(summary), 5, 'unexpected number of keys in summary')
-        eq_(summary['start'], date(2009, 6, 1), 'unexpected summary start date %s' % summary)
+        eq_(summary['start'], date(2009, 6, 1),
+            'unexpected summary start date')
         eq_(summary['end'], date(2009, 9, 3), 'unexpected summary end date')
         assert summary['row_count'] > 0, 'zero rows in summary'
         assert summary['count_sum'] > 0, 'zero count_sum in summary'
@@ -107,7 +108,7 @@ class TestUpdateCountModel(test.TestCase):
 
         assert isinstance(uc.applications[self.test_app], dict), \
             'applications item is not a dict'
-        assert uc.applications[self.test_app][self.test_ver] == 7, \
+        assert uc.applications[self.test_app][self.test_ver] == 1000, \
             'unexpected count for app version'
 
     def test_applications_summary(self):
@@ -117,7 +118,7 @@ class TestUpdateCountModel(test.TestCase):
 
         eq_(summary['row_count'], 2,
             'unexpected row_count in applications summary')
-        eq_(summary['apps'][self.test_app][self.test_ver], 13,
+        eq_(summary['apps'][self.test_app][self.test_ver], 2500,
             'unexpected total for app version')
 
 

@@ -1,0 +1,64 @@
+[
+    {
+        "pk": 4043307,
+        "model": "auth.user",
+        "fields": {
+            "username": "jbalogh",
+            "is_active": 1,
+            "is_superuser": 1,
+            "is_staff": 1,
+            "password": "sha512$7b5436061f8c0902088c292c057be69fdb17312e2f71607c9c51641f5d876522$08d1d370d89e2ae92755fd03464a7276ca607c431d04a52d659f7a184f3f9918073637d82fc88981c7099c7c46a1137b9fdeb675304eb98801038905a9ee0600",
+            "email": "jbalogh@mozilla.com"
+        }
+    },
+    {
+        "pk": 4043307,
+        "model": "users.userprofile",
+        "fields": {
+            "nickname": "jbalogh",
+            "deleted": 0,
+            "user": 4043307,
+            "password": "sha512$7b5436061f8c0902088c292c057be69fdb17312e2f71607c9c51641f5d876522$08d1d370d89e2ae92755fd03464a7276ca607c431d04a52d659f7a184f3f9918073637d82fc88981c7099c7c46a1137b9fdeb675304eb98801038905a9ee0600",
+            "email": "jbalogh@mozilla.com"
+        }
+    },
+    {
+        "pk": 8675309,
+        "model": "auth.user",
+        "fields": {
+            "username": "nobodyspecial",
+            "is_active": 1,
+            "is_superuser": 0,
+            "is_staff": 0,
+            "password": "sha512$7b5436061f8c0902088c292c057be69fdb17312e2f71607c9c51641f5d876522$08d1d370d89e2ae92755fd03464a7276ca607c431d04a52d659f7a184f3f9918073637d82fc88981c7099c7c46a1137b9fdeb675304eb98801038905a9ee0600",
+            "email": "nobodyspecial@mozilla.com"
+        }
+    },
+    {
+        "pk": 8675309,
+        "model": "users.userprofile",
+        "fields": {
+            "nickname": "nobodyspecial",
+            "deleted": 0,
+            "user": 8675309,
+            "password": "sha512$7b5436061f8c0902088c292c057be69fdb17312e2f71607c9c51641f5d876522$08d1d370d89e2ae92755fd03464a7276ca607c431d04a52d659f7a184f3f9918073637d82fc88981c7099c7c46a1137b9fdeb675304eb98801038905a9ee0600",
+            "email": "nobodyspecial@mozilla.com"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "access.group",
+        "fields": {
+            "name": "Admins",
+            "rules": "*:*"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "access.groupuser",
+        "fields": {
+            "group": 1,
+            "user": 4043307
+        }
+    }
+]

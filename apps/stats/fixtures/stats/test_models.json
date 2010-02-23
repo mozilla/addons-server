@@ -24,6 +24,20 @@
         }
     },
     {
+        "pk": 5,
+        "model": "addons.addon",
+        "fields": {
+            "type": 1,
+            "status": 4,
+            "highest_status": 4,
+            "description": null,
+            "public_stats": true,
+            "modified": "2008-05-22 11:59:13",
+            "name": null,
+            "created": "2004-06-11 18:23:31"
+        }
+    },
+    {
         "pk": 1,
         "model": "stats.downloadcount",
         "fields": {
@@ -108,11 +122,11 @@
         "model": "stats.updatecount",
         "fields": {
             "addon": 4,
-            "count": 10,
-            "versions": "a:2:{s:3:\"1.0\";i:2;s:3:\"2.0\";i:8;}",
-            "statuses": "a:2:{s:11:\"userEnabled\";i:9;s:12:\"userDisabled\";i:1;}",
-            "applications": "a:1:{s:38:\"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}\";a:1:{s:5:\"3.0.9\";i:7;}}",
-            "oses": "a:2:{s:5:\"Linux\";i:3;s:5:\"WINNT\";i:7;}",
+            "count": 1000,
+            "versions": "a:2:{s:3:\"1.0\";i:200;s:3:\"2.0\";i:800;}",
+            "statuses": "a:2:{s:11:\"userEnabled\";i:950;s:12:\"userDisabled\";i:50;}",
+            "applications": "a:1:{s:38:\"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}\";a:1:{s:5:\"3.0.9\";i:1000;}}",
+            "oses": "a:2:{s:5:\"Linux\";i:300;s:5:\"WINNT\";i:400;}",
             "locales": null,
             "date": "2009-06-01"
         }
@@ -122,11 +136,11 @@
         "model": "stats.updatecount",
         "fields": {
             "addon": 4,
-            "count": 10,
-            "versions": "a:2:{s:3:\"1.0\";i:2;s:3:\"2.0\";i:8;}",
-            "statuses": "a:2:{s:11:\"userEnabled\";i:9;s:12:\"userDisabled\";i:1;}",
-            "applications": "a:1:{s:38:\"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}\";a:1:{s:5:\"3.0.9\";i:6;}}",
-            "oses": "a:2:{s:5:\"Linux\";i:3;s:5:\"WINNT\";i:7;}",
+            "count": 1500,
+            "versions": "a:2:{s:3:\"1.0\";i:550;s:3:\"2.0\";i:950;}",
+            "statuses": "a:2:{s:11:\"userEnabled\";i:1370;s:12:\"userDisabled\";i:130;}",
+            "applications": "a:1:{s:38:\"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}\";a:1:{s:5:\"3.0.9\";i:1500;}}",
+            "oses": "a:2:{s:5:\"Linux\";i:400;s:5:\"WINNT\";i:500;}",
             "locales": null,
             "date": "2009-06-02"
         }
@@ -141,10 +155,10 @@
             "annoying": 0,
             "is_suggested": 1,
             "suggested_amount": "4.99",
-            "comment": "",
+            "comment": "thanks!",
             "uuid": null,
             "transaction_id": "0HX69660HR839625E",
-            "post_data": "a:1:{s:11:\"payer_email\";s:18:\"nobody@mozilla.com\";}",
+            "post_data": "a:3:{s:11:\"payer_email\";s:18:\"nobody@mozilla.com\";s:10:\"first_name\";s:5:\"First\";s:9:\"last_name\";s:4:\"Last\";}",
             "created": "2009-06-02 17:55:23"
         }
     },

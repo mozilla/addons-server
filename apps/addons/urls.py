@@ -8,6 +8,7 @@ detail_patterns = patterns('',
     url('^$', views.addon_detail, name='addons.detail'),
 
     ('^reviews/', include('reviews.urls')),
+    ('^statistics/', include('stats.urls')),
 )
 
 
