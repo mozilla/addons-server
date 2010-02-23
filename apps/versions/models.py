@@ -5,14 +5,14 @@ import caching.base
 import amo.models
 from addons.models import Addon
 from applications.models import Application, AppVersion
-from translations.fields import TranslatedField
+from translations.fields import TranslatedField, PurifiedField
 from users.models import UserProfile
 
 
 class Version(amo.models.ModelBase):
     addon = models.ForeignKey(Addon, related_name='versions')
     license = models.ForeignKey('License', null=True)
-    releasenotes = TranslatedField()
+    releasenotes = PurifiedField()
     approvalnotes = models.TextField(default="")
     version = models.CharField(max_length=255, default=0)
 

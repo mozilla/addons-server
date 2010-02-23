@@ -4,14 +4,14 @@ import amo.models
 from addons.models import Addon, AddonCategory
 from applications.models import Application
 from users.models import UserProfile
-from translations.fields import TranslatedField
+from translations.fields import TranslatedField, LinkifiedField
 
 
 class Collection(amo.models.ModelBase):
     uuid = models.CharField(max_length=36, blank=True, unique=True)
     name = TranslatedField()
     nickname = models.CharField(max_length=30, blank=True, unique=True)
-    description = TranslatedField()
+    description = LinkifiedField()
     defaultlocale = models.CharField(max_length=10, default='en-US')
     collection_type = models.PositiveIntegerField(default=0)
     icontype = models.CharField(max_length=25, blank=True)
