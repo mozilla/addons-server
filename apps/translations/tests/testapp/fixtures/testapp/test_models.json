@@ -70,6 +70,28 @@
         }
     },
     {
+        "pk": 20,
+        "model": "translations.purifiedtranslation",
+        "fields": {
+            "id": 20,
+            "locale": "en-US",
+            "localized_string": "<i>x</i> http://yyy.com",
+            "created": "2007-03-05 16:06:55",
+            "modified": "2007-03-21 13:42:36"
+        }
+    },
+    {
+        "pk": 30,
+        "model": "translations.linkifiedtranslation",
+        "fields": {
+            "id": 30,
+            "locale": "en-US",
+            "localized_string": "<i>x</i> http://yyy.com",
+            "created": "2007-03-05 16:06:55",
+            "modified": "2007-03-21 13:42:36"
+        }
+    },
+    {
         "pk": 1,
         "model": "testapp.translatedmodel",
         "fields": {
@@ -111,6 +133,17 @@
         "fields": {
             "id": 1,
             "number": 17,
+            "created": "2007-03-05 16:06:55",
+            "modified": "2007-03-21 13:42:36"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "testapp.fancymodel",
+        "fields": {
+            "id": 1,
+            "purified": 20,
+            "linkified": 30,
             "created": "2007-03-05 16:06:55",
             "modified": "2007-03-21 13:42:36"
         }

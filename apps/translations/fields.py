@@ -5,19 +5,20 @@ from django.db.models.fields import related
 from django.utils import translation as translation_utils
 from django.utils.translation.trans_real import to_language
 
-from .models import Translation
+from .models import Translation, PurifiedTranslation, LinkifiedTranslation
 from .widgets import TranslationWidget
 
 
 class TranslatedField(models.ForeignKey):
     """A foreign key to the translations table."""
+    model = Translation
 
     def __init__(self, **kwargs):
         # to_field: The field on the related object that the relation is to.
         # Django wants to default to translations.autoid, but we need id.
         options = dict(null=True, to_field='id', unique=True, blank=True)
         kwargs.update(options)
-        super(TranslatedField, self).__init__(Translation, **kwargs)
+        super(TranslatedField, self).__init__(self.model, **kwargs)
 
     @property
     def db_column(self):
@@ -59,10 +60,28 @@ class TranslatedField(models.ForeignKey):
         return models.Field.validate(self, value, model_instance)
 
 
+class PurifiedField(TranslatedField):
+    model = PurifiedTranslation
+
+
+class LinkifiedField(TranslatedField):
+    model = LinkifiedTranslation
+
+
+def switch(obj, new_model):
+    """Switch between Translation and Purified/Linkified Translations."""
+    fields = [(f.name, getattr(obj, f.name)) for f in new_model._meta.fields]
+    return new_model(**dict(fields))
+
+
 class TranslationDescriptor(related.ReverseSingleRelatedObjectDescriptor):
     """
     Descriptor that handles creating and updating Translations given strings.
     """
+
+    def __init__(self, field):
+        super(TranslationDescriptor, self).__init__(field)
+        self.model = field.model
 
     def __get__(self, instance, instance_type=None):
         if instance is None:
@@ -88,6 +107,11 @@ class TranslationDescriptor(related.ReverseSingleRelatedObjectDescriptor):
         # Don't let this be set to None, because Django will then blank out the
         # foreign key for this object.  That's incorrect for translations.
         if value is not None:
+            # We always get these back from the database as Translations, but
+            # we may want them to be a more specific Purified/Linkified child
+            # class.
+            if not isinstance(value, self.model):
+                value = switch(value, self.model)
             super(TranslationDescriptor, self).__set__(instance, value)
 
     def translation_from_string(self, instance, lang, string):
@@ -98,7 +122,7 @@ class TranslationDescriptor(related.ReverseSingleRelatedObjectDescriptor):
             if trans is None and trans_id is not None:
                 # This locale doesn't have a translation set, but there are
                 # translations in another locale, so we have an id already.
-                return Translation.new(string, lang, id=trans_id)
+                return self.model.new(string, lang, id=trans_id)
             elif to_language(trans.locale) == lang.lower():
                 # Replace the translation in the current language.
                 trans.localized_string = string
@@ -106,10 +130,10 @@ class TranslationDescriptor(related.ReverseSingleRelatedObjectDescriptor):
                 return trans
             else:
                 # We already have a translation in a different language.
-                return Translation.new(string, lang, id=trans.id)
+                return self.model.new(string, lang, id=trans.id)
         except AttributeError:
             # Create a brand new translation.
-            return Translation.new(string, lang)
+            return self.model.new(string, lang)
 
     def translation_from_dict(self, instance, lang, dict_):
         """

@@ -2,11 +2,11 @@
 from django.core.cache import cache
 from django.utils import translation
 
+import jinja2
 from nose.tools import eq_
-
 from test_utils import ExtraAppTestCase, trans_eq
 
-from testapp.models import TranslatedModel, UntranslatedModel
+from testapp.models import TranslatedModel, UntranslatedModel, FancyModel
 from translations.models import Translation
 from translations import widgets
 from translations.query import order_by_translation
@@ -19,9 +19,6 @@ def ids(qs):
 class TranslationTestCase(ExtraAppTestCase):
     fixtures = ['testapp/test_models.json']
     extra_apps = ['translations.tests.testapp']
-
-    def setUp(self):
-        cache.clear()
 
     def test_fetch_translations(self):
         """Basic check of fetching translations in the current locale."""
@@ -186,6 +183,65 @@ class TranslationTestCase(ExtraAppTestCase):
         eq_(ids(order_by_translation(q, '-name')), list(reversed(expected)))
 
         del TranslatedModel.get_fallback
+
+    def test_new_purified_field(self):
+        # This is not a full test of the html sanitizing.  We expect the
+        # underlying bleach library to have full tests.
+        s = '<a id=xx href="http://xxx.com">yay</a> <i>http://yyy.com</i>'
+        m = FancyModel.objects.create(purified=s)
+        eq_(m.purified.localized_string_clean,
+            '<a href="http://xxx.com" rel="nofollow">yay</a> '
+            '<i><a href="http://yyy.com" rel="nofollow">http://yyy.com</a></i>')
+        eq_(m.purified.localized_string, s)
+
+    def test_new_linkified_field(self):
+        s = '<a id=xx href="http://xxx.com">yay</a> <i>http://yyy.com</i>'
+        m = FancyModel.objects.create(linkified=s)
+        eq_(m.linkified.localized_string_clean,
+            '<a href="http://xxx.com" rel="nofollow">yay</a> '
+            '&lt;i&gt;<a href="http://yyy.com" rel="nofollow">http://yyy.com</a>&lt;/i&gt;')
+        eq_(m.linkified.localized_string, s)
+
+    def test_update_purified_field(self):
+        m = FancyModel.objects.get(id=1)
+        s = '<a id=xx href="http://xxx.com">yay</a> <i>http://yyy.com</i>'
+        m.purified = s
+        m.save()
+        eq_(m.purified.localized_string_clean,
+            '<a href="http://xxx.com" rel="nofollow">yay</a> '
+            '<i><a href="http://yyy.com" rel="nofollow">http://yyy.com</a></i>')
+        eq_(m.purified.localized_string, s)
+
+    def test_update_linkified_field(self):
+        m = FancyModel.objects.get(id=1)
+        s = '<a id=xx href="http://xxx.com">yay</a> <i>http://yyy.com</i>'
+        m.linkified = s
+        m.save()
+        eq_(m.linkified.localized_string_clean,
+            '<a href="http://xxx.com" rel="nofollow">yay</a> '
+            '&lt;i&gt;<a href="http://yyy.com" rel="nofollow">http://yyy.com</a>&lt;/i&gt;')
+        eq_(m.linkified.localized_string, s)
+
+
+    def test_purified_field_str(self):
+        m = FancyModel.objects.get(id=1)
+        eq_(u'%s' % m.purified,
+            '<i>x</i> '
+            '<a href="http://yyy.com" rel="nofollow">http://yyy.com</a>')
+
+    def test_linkified_field_str(self):
+        m = FancyModel.objects.get(id=1)
+        eq_(u'%s' % m.linkified,
+            '&lt;i&gt;x&lt;/i&gt; '
+            '<a href="http://yyy.com" rel="nofollow">http://yyy.com</a>')
+
+    def test_purifed_linkified_fields_in_template(self):
+        m = FancyModel.objects.get(id=1)
+        env = jinja2.Environment()
+        t = env.from_string('{{ m.purified }}=={{ m.linkified }}')
+        s = t.render(m=m)
+        eq_(s, u'%s==%s' % (m.purified.localized_string_clean,
+                            m.linkified.localized_string_clean))
 
 
 def test_translation_bool():
