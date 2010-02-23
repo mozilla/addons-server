@@ -4,6 +4,7 @@ import time
 from django.conf import settings
 from django.db import models
 from django.db.models import Q
+from django.utils import translation
 
 import caching.base
 
@@ -24,7 +25,8 @@ class AddonManager(amo.models.ManagerBase):
 
     def experimental(self):
         """Get only experimental add-ons"""
-        return self.filter(inactive=False, status__in=amo.EXPERIMENTAL_STATUSES)
+        return self.filter(inactive=False,
+                           status__in=amo.EXPERIMENTAL_STATUSES)
 
     def valid(self):
         """Get valid, enabled add-ons only"""
@@ -195,6 +197,14 @@ class Addon(amo.models.ModelBase):
     def get_absolute_url(self):
         return reverse('addons.detail', args=(self.id,))
 
+    @property
+    def meet_developers_url(self):
+        return self.get_absolute_url() + 'developers'
+
+    @property
+    def reviews_url(self):
+        return self.get_absolute_url() + 'reviews'
+
     @classmethod
     def get_fallback(cls):
         return cls._meta.get_field('default_locale')
@@ -237,6 +247,12 @@ class Addon(amo.models.ModelBase):
         else:
             return settings.ADDON_ICON_URL % (
                     self.id, int(time.mktime(self.modified.timetuple())))
+
+    @property
+    def contribution_url(self, lang=settings.LANGUAGE_CODE,
+                         app=settings.DEFAULT_APP):
+        return settings.SITE_URL + '/%s/%s/addons/contribute/%d' % (
+                lang, app, self.id)
 
     @property
     def thumbnail_url(self):
