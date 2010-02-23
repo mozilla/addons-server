@@ -23,7 +23,7 @@ class AddonManager(amo.models.ManagerBase):
 
     def experimental(self):
         """Get only experimental add-ons"""
-        return self.filter(inactive=False, status__in=EXPERIMENTAL_STATUSES)
+        return self.filter(inactive=False, status__in=amo.EXPERIMENTAL_STATUSES)
 
     def valid(self):
         """Get valid, enabled add-ons only"""
