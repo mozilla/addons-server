@@ -2,7 +2,8 @@ from django.core.urlresolvers import reverse
 from django import test
 
 from nose.tools import eq_
-import pyquery
+from pyquery import PyQuery
+import test_utils
 
 
 def test_404_no_app():
@@ -17,9 +18,23 @@ def test_heading():
     c = test.Client()
     def title_eq(url, expected):
         response = c.get(url, follow=True)
-        actual = pyquery.PyQuery(response.content)('#title').text()
+        actual = PyQuery(response.content)('#title').text()
         eq_(expected, actual)
 
     title_eq('/firefox', 'Add-ons for Firefox')
     title_eq('/thunderbird', 'Add-ons for Thunderbird')
     title_eq('/mobile', 'Mobile Add-ons for Firefox')
+
+
+class TestStuff(test_utils.TestCase):
+    fixtures = ['base/addons']
+
+    def test_data_anonymous(self):
+        def check(expected):
+            response = self.client.get('/', follow=True)
+            anon = PyQuery(response.content)('body').attr('data-anonymous')
+            eq_(anon, expected)
+
+        check('1')
+        self.client.login(username='admin@mozilla.com', password='password')
+        check('0')

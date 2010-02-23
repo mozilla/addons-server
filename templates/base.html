@@ -14,9 +14,11 @@
 
     {% block extrahead %}{% endblock %}
   </head>
+  {% set anon = not request.user.is_authenticated() and 1 or 0 %}
   <body class="html-{{ DIR }} {{ request.APP.short }}
                {% block bodyclass %}{% endblock %}"
-        data-app="{{ request.APP.short }}" data-appname="{{ request.APP.pretty }}">
+        data-app="{{ request.APP.short }}" data-appname="{{ request.APP.pretty }}"
+        data-anonymous="{{ anon }}">
     <div class="section">
 
       {% block site_header %}
