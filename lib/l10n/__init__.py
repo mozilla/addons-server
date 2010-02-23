@@ -1,12 +1,12 @@
 import gettext
 import re
 
+from django.conf import settings
+from django.utils.importlib import import_module
 from django.utils.thread_support import currentThread
-from django.utils.translation import trans_real as django_trans
-from django.utils.translation import ugettext as django_ugettext
-from django.utils.translation import ungettext as django_nugettext
-
-from settings import path
+from django.utils.translation import (trans_real as django_trans,
+                                      ugettext as django_ugettext,
+                                      ungettext as django_nugettext)
 
 
 def ugettext(message, context=None):
@@ -65,6 +65,7 @@ def activate(locale):
         also.
         """
         #If you've got extra .mo files to load, this is the place.
+        path = import_module(settings.SETTINGS_MODULE).path
         bonus = gettext.translation('messages', path('locale'), [locale],
                                     django_trans.DjangoTranslation)
         t.merge(bonus)

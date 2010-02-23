@@ -6,7 +6,7 @@ Note: didn't make sense to use localeurl since we need to capture app as well
 from django.http import HttpResponsePermanentRedirect
 from django.utils.encoding import smart_str
 
-from lib import l10n
+import l10n
 
 import amo.models
 from . import urlresolvers
