@@ -107,6 +107,15 @@ class SearchView(APIView):
         if platform.upper() != 'ALL':
             opts['platform'] = platform.lower()
 
+        # By default we show public addons only for api_version < 1.5
+        statuses = [amo.STATUS_PUBLIC]
+
+        if (self.version >= 1.5
+            and not self.request.REQUEST.get('hide_sandbox')):
+            statuses.append(amo.STATUS_SANDBOX)
+
+        opts['status'] = statuses
+
         try:
             results = sc.query(query, limit=int(limit), **opts)
         except SearchError:
@@ -134,15 +143,15 @@ class ListView(APIView):
         if list_type == 'newest':
             # "New" is arbitrarily defined as 10 days old.
             qs = Addon.objects.filter(
-                    created__gte=
-                    datetime.date.today() - datetime.timedelta(days=10))
+                    created__gte=(datetime.date.today() -
+                        datetime.timedelta(days=10)))
         else:
             qs = Addon.objects.featured(self.request.APP)
 
         if type.lower() != 'all':
             type = int(type)
             if type:
-                qs = qs.filter(type = type)
+                qs = qs.filter(type=type)
 
         if platform.lower() != 'all':
             qs = (qs.distinct() &

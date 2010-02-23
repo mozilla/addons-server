@@ -120,6 +120,14 @@ class Client(object):
 
         sc.SetFilter('addon_status', (0, amo.STATUS_DISABLED), True)
 
+        # Status filtering
+
+        if 'status' in kwargs:
+            if not isinstance(kwargs['status'], list):
+                kwargs['status'] = [kwargs['status']]
+
+            sc.SetFilter('addon_status', kwargs['status'])
+
         # Unless we're in admin mode, or we're looking at stub entries,
         # everything must have a file.
         if (('admin' not in kwargs) and
