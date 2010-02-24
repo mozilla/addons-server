@@ -5,7 +5,7 @@ import urllib
 import urlparse
 
 from django.utils import translation
-from l10n import ugettext as _
+from django.template import defaultfilters
 
 from babel import Locale
 from babel.support import Format
@@ -13,11 +13,14 @@ import jinja2
 from jinja2.exceptions import FilterArgumentError
 
 from jingo import register, env
-import jingo.helpers
+from l10n import ugettext as _
 
 import amo
 from amo import urlresolvers
 from addons.models import Category
+
+# Yanking filters from Django.
+register.filter(defaultfilters.slugify)
 
 
 @register.filter
@@ -180,6 +183,7 @@ def wround(value, precision=0, method='common'):
         return func(value * 10 * precision) / (10 * precision)
     else:
         return int(func(value))
+
 
 @register.filter
 def isotime(t):

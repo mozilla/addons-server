@@ -10,11 +10,19 @@
   #settings dd {
     font-family: monospace;
   }
+  #settings dt a {
+    visibility: hidden;
+  }
+  #settings dt:hover a {
+    visibility: visible;
+  }
 </style>
 <h2>Settings!</h2>
 <dl id="settings">
   {% for key, value in settings_dict|dictsort %}
-    <dt>{{ key }}</dt>
+    <dt id="{{ key|slugify }}">
+      {{ key }} <a href="#{{ key|slugify }}">¶</a>
+    </dt>
     <dd>{{ value|pprint }}</dd>
   {% endfor %}
 </dl>

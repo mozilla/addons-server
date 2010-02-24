@@ -63,5 +63,6 @@ class TestFlagged(test_utils.TestCase):
 
 
 def test_settings():
+    # Are you there, settings page?
     response = test.Client().get(reverse('admin.settings'))
     eq_(response.status_code, 200)
