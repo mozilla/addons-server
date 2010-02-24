@@ -6,7 +6,7 @@ from nose.tools import eq_
 from test_utils import ExtraAppTestCase, trans_eq
 
 from testapp.models import TranslatedModel, UntranslatedModel, FancyModel
-from translations.models import Translation
+from translations.models import Translation, PurifiedTranslation
 from translations import widgets
 from translations.query import order_by_translation
 
@@ -259,3 +259,9 @@ def test_widget_value_from_datadict():
     actual = widgets.TranslationWidget().value_from_datadict(data, [], 'f')
     expected = {'en-US': 'woo', 'de': 'herr', 'fr': None}
     eq_(actual, expected)
+
+
+def test_purified_translation_html():
+    """__html__() should return a string."""
+    x = PurifiedTranslation('<h1>heyhey</h1>')
+    assert isinstance(x.__html__(), unicode)

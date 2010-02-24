@@ -91,7 +91,7 @@ class PurifiedTranslation(Translation):
         return unicode(self.localized_string_clean)
 
     def __html__(self):
-        return self
+        return unicode(self)
 
     def clean(self):
         self.localized_string_clean = bleach.bleach(self.localized_string)
