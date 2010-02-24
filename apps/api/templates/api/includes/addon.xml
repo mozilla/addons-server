@@ -50,7 +50,7 @@
   {% if addon.current_version %}
   {% for file in addon.current_version.files.all() %}
   <install hash="{{ file.hash }}" os="{{ file.platform.name }}"
-    size="{{ file.size }}kb">
+    size="{{ file.size }}" units="kb">
     {{ file.get_absolute_url('api') }}
   </install>
   {% endfor %}
@@ -63,8 +63,7 @@
     <meet_developers>{{ addon.meet_developers_url + '?src=api' }}</meet_developers>
   </contribution_data>
   {% endif %}
-  <num_reviews>{{ addon.total_reviews }}</num_reviews>
-  <reviews>{{ addon.reviews_url + '?src=api' }}</reviews>
+  <reviews num="{{ addon.total_reviews }}">{{ addon.reviews_url + '?src=api' }}</reviews>
   <total_downloads>{{ addon.total_downloads }}</total_downloads>
   <weekly_downloads>{{ addon.weekly_downloads }}</weekly_downloads>
   <daily_users>{{ addon.average_daily_users }}</daily_users>
