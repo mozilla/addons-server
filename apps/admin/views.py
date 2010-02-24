@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.shortcuts import redirect
+from django.views import debug
 
 import jingo
 
@@ -48,3 +49,10 @@ def flagged(request):
 
     return jingo.render(request, 'admin/flagged_addon_list.html',
                         {'addons': addons})
+
+
+
+@admin.site.admin_view
+def settings(request):
+    return jingo.render(request, 'admin/settings.html',
+                        {'settings_dict': debug.get_safe_settings()})

@@ -1,0 +1,21 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{{ page_title('Settings!') }}{% endblock %}
+
+{% block content %}
+<style>
+  #settings dt {
+    margin-top: 1em;
+  }
+  #settings dd {
+    font-family: monospace;
+  }
+</style>
+<h2>Settings!</h2>
+<dl id="settings">
+  {% for key, value in settings_dict|dictsort %}
+    <dt>{{ key }}</dt>
+    <dd>{{ value|pprint }}</dd>
+  {% endfor %}
+</dl>
+{% endblock %}

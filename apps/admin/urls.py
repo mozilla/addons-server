@@ -9,6 +9,7 @@ urlpatterns = patterns('',
     # AMO stuff.
     url('^$', lambda r: redirect('admin:index'), name='admin.home'),
     url('^flagged', views.flagged, name='admin.flagged'),
+    url('^settings', views.settings, name='admin.settings'),
 
     # The Django admin.
     url('^models/', include(admin.site.urls)),

@@ -1,8 +1,8 @@
+from django import test
+
 import test_utils
 
 from nose.tools import eq_
-
-from django.core.cache import cache
 
 from amo.urlresolvers import reverse
 from addons.models import Addon
@@ -14,8 +14,8 @@ class TestFlagged(test_utils.TestCase):
     fixtures = ['admin/tests/flagged']
 
     def setUp(self):
+        super(TestFlagged, self).setUp()
         self.client.login(username='jbalogh@mozilla.com', password='password')
-        cache.clear()
 
     def test_get(self):
         url = reverse('admin.flagged')
@@ -60,3 +60,8 @@ class TestFlagged(test_utils.TestCase):
         addons = response.context['addons']
         eq_(len(addons), 1)
         eq_(addons[0], Addon.objects.get(id=3))
+
+
+def test_settings():
+    response = test.Client().get(reverse('admin.settings'))
+    eq_(response.status_code, 200)
