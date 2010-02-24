@@ -27,7 +27,7 @@ do
     PACKAGE=$PYPI/$(basename $f) &&
     mkdir -p $PACKAGE &&
     pushd $f &&
-    python setup.py sdist &&
+    python setup.py -q sdist &&
     mv dist/* $PACKAGE &&
     popd
 done
