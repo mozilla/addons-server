@@ -403,6 +403,11 @@ class Category(amo.models.ModelBase):
     def __unicode__(self):
         return unicode(self.name)
 
+    def get_absolute_url(self):
+        # TODO(jbalogh): reverse the real urls
+        base = reverse('home')
+        return '%sbrowse/type:%s/cat:%s' % (base, self.type_id, self.id)
+
 
 class CompatibilityReport(models.Model):
     guid = models.CharField(max_length=128, db_index=True)

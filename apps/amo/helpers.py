@@ -18,6 +18,7 @@ from l10n import ugettext as _
 import amo
 from amo import urlresolvers
 from addons.models import Category
+from translations.query import order_by_translation
 
 # Yanking filters from Django.
 register.filter(defaultfilters.slugify)
@@ -70,29 +71,29 @@ def sidebar(app):
     if app is None:
         return [], []
 
+    # We muck with query to make order_by and extra_order_by play nice.
     q = Category.objects.filter(application=app.id, weight__gte=0,
                                 type=amo.ADDON_EXTENSION)
-    _categories = list(q)
+    categories = order_by_translation(q, 'name')
+    categories.query.extra_order_by.insert(0, 'weight')
 
-    # Plugins are on a static page, so we add it to categories dynamically.
-    # There are 7 plugins, so we hardcode the number.  That's fantastic.
-    if amo.ADDON_PLUGIN in app.types:
-        # Use a namedtuple instead of the Category class so Translations aren't
-        # triggered.
-        _Category = collections.namedtuple('Category', 'name weight count')
-        _categories.append(_Category(name=_('Plugins'), weight=0, count=7))
-    categories = sorted(_categories, key=lambda x: (x.weight, x.name))
-
+    # TODO(jbalogh): real reverse
     Type = collections.namedtuple('Type', 'name url')
-    types = [Type(_('Collections'), '/collections')]
-    shown_types = [amo.ADDON_PERSONA, amo.ADDON_DICT, amo.ADDON_SEARCH,
-                   amo.ADDON_THEME]
-    for type_ in shown_types:
+    base = urlresolvers.reverse('home')
+    types = [Type(_('Collections'), base + 'collections/')]
+    shown_types = {
+        amo.ADDON_PERSONA: base + 'personas/',
+        amo.ADDON_DICT: urlresolvers.reverse('browse.language_tools'),
+        amo.ADDON_SEARCH: base + 'browse/type:4',
+        amo.ADDON_PLUGIN: base + 'browse/type:7',
+        amo.ADDON_THEME: urlresolvers.reverse('browse.themes'),
+    }
+    for type_, url in shown_types.items():
         if type_ in app.types:
             name = amo.ADDON_TYPES[type_]
-            types.append(Type(name, '#' + name))
+            types.append(Type(name, url))
 
-    return categories, types
+    return categories, sorted(types, key=lambda x: x.name)
 
 
 class Paginator(object):
