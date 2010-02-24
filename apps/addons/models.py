@@ -72,7 +72,7 @@ class AddonManager(amo.models.ManagerBase):
                 versions__applicationsversions__min__version_int__lte=
                 version_int,
                 versions__applicationsversions__max__version_int__gte=
-                version_int)
+                version_int).distinct()
 
         return qs.distinct()
 
@@ -85,7 +85,7 @@ class AddonManager(amo.models.ManagerBase):
                     Q(versions__files__platform=platform) |
                     Q(versions__files__platform=amo.PLATFORM_ALL)).distinct()
 
-        return self.all()
+        return self.distinct()
 
 
 class Addon(amo.models.ModelBase):

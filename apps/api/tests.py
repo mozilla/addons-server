@@ -125,9 +125,7 @@ class APITest(TestCase):
         self.assertContains(response, "Could not connect to Sphinx search.",
                             status_code=503)
 
-
     test_sphinx_off.sphinx = True
-    # /class APITest
 
 
 class ListTest(TestCase):
@@ -201,7 +199,15 @@ class ListTest(TestCase):
         request = make_call('list', lang='he')
         self.assertContains(request, "<addon>", 3)
 
-    # /class ListTest
+    def test_browser_featured_list(self):
+        """
+        This is a query that a browser would use to show it's featured list.
+
+        c.f.: https://bugzilla.mozilla.org/show_bug.cgi?id=548114
+        """
+        request = make_call('list/featured/all/10/Linux/3.7a2pre',
+                            version=1.3)
+        self.assertContains(request, "<addons>")
 
 
 class SearchTest(SphinxTestCase):
