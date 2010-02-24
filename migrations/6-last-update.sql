@@ -32,7 +32,7 @@ FROM
     addons a INNER JOIN versions v ON (a.id=v.addon_id)
     INNER JOIN files f ON (v.id=f.version_id)
 WHERE
-    a.status != 4
+    a.status IN (0,1,2,3,5,7)
 GROUP BY a.id
 );
 
