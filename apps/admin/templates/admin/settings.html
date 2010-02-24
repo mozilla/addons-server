@@ -4,26 +4,27 @@
 
 {% block content %}
 <style>
-  #settings dt {
-    margin-top: 1em;
-  }
-  #settings dd {
+  #settings td {
     font-family: monospace;
   }
-  #settings dt a {
+  #settings th a {
     visibility: hidden;
   }
-  #settings dt:hover a {
+  #settings tr:hover th a {
     visibility: visible;
   }
 </style>
 <h2>Settings!</h2>
-<dl id="settings">
-  {% for key, value in settings_dict|dictsort %}
-    <dt id="{{ key|slugify }}">
-      {{ key }} <a href="#{{ key|slugify }}">¶</a>
-    </dt>
-    <dd>{{ value|pprint }}</dd>
-  {% endfor %}
-</dl>
+<table id="settings">
+  <tbody>
+    {% for key, value in settings_dict|dictsort %}
+      <tr>
+        <th id="{{ key|slugify }}">
+          {{ key }} <a href="#{{ key|slugify }}">¶</a>
+        </th>
+        <td>{{ value|pprint }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
 {% endblock %}
