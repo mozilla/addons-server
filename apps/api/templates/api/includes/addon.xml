@@ -1,3 +1,4 @@
+{% cache addon %}
 <addon>
   <name>{{ addon.name }}</name>
   <type id="{{ addon.type.id }}">{{ amo.ADDON_TYPE[addon.type.id] }}</type>
@@ -71,4 +72,4 @@
   <last_updated>{{ addon.last_updated }}</last_updated>
   {% endif %}
 </addon>
-
+{% endcache %}
