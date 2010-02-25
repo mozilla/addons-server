@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.db import models
 
 import caching.base
@@ -84,3 +85,7 @@ class ApplicationsVersions(caching.base.CachingMixin, models.Model):
     class Meta:
         db_table = u'applications_versions'
         unique_together = (("application", "version"),)
+
+    def __unicode__(self):
+        return u'%s: %s – %s' % (self.application, self.min, self.max)
+
