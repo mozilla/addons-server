@@ -152,11 +152,44 @@ def numberfmt(num, format=None):
     return _get_format().decimal(num, format)
 
 
+def _page_name(app=None):
+    """Determine the correct page name for the given app (or no app)."""
+    if app:
+        return _(u'Add-ons for {0}').format(app.pretty)
+    else:
+        return _('Add-ons')
+
+
 @register.function
 @jinja2.contextfunction
 def page_title(context, title):
-    app = context['request'].APP or amo.FIREFOX
-    return u'%s :: %s' % (title, _(u'Add-ons for {0}').format(app.pretty))
+    app = context['request'].APP
+    return u'%s :: %s' % (title, _page_name(app))
+
+
+@register.function
+@jinja2.contextfunction
+def breadcrumbs(context, items=[], add_default=True):
+    """
+    show a list of breadcrumbs.
+    Accepts: [(url, label)]
+    """
+    if add_default:
+        app = context['request'].APP
+        crumbs = [(urlresolvers.reverse('home'), _page_name(app))]
+    else:
+        crumbs = []
+
+    # add user-defined breadcrumbs
+    if items:
+        try:
+            crumbs += items
+        except:
+            crumbs.append(items)
+
+    c = {'breadcrumbs': crumbs}
+    t = env.get_template('amo/breadcrumbs.html').render(**c)
+    return jinja2.Markup(t)
 
 
 # XXX: Jinja2's round is broken:

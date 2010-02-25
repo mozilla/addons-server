@@ -4,6 +4,7 @@ from nose.tools import eq_
 from mock import Mock, patch
 
 import jingo
+from pyquery import PyQuery
 import test_utils
 
 import amo
@@ -22,10 +23,62 @@ def test_page_title():
     s = render('{{ page_title("%s") }}' % title, {'request': request})
     eq_(s, '%s :: Add-ons for Thunderbird' % title)
 
-    # pages without app should default to Firefox
+    # pages without app should show a default
     request.APP = None
     s = render('{{ page_title("%s") }}' % title, {'request': request})
-    eq_(s, '%s :: Add-ons for Firefox' % title)
+    eq_(s, '%s :: Add-ons' % title)
+
+
+def test_breadcrumbs():
+    req_noapp = Mock()
+    req_noapp.APP = None
+    req_app = Mock()
+    req_app.APP = amo.FIREFOX
+
+    # default, no app
+    s = render('{{ breadcrumbs() }}', {'request': req_noapp})
+    doc = PyQuery(s)
+    crumbs = doc('li>a')
+    eq_(len(crumbs), 1)
+    eq_(crumbs.text(), 'Add-ons')
+    eq_(crumbs.attr('href'), urlresolvers.reverse('home'))
+
+    # default, with app
+    s = render('{{ breadcrumbs() }}', {'request': req_app})
+    doc = PyQuery(s)
+    crumbs = doc('li>a')
+    eq_(len(crumbs), 1)
+    eq_(crumbs.text(), 'Add-ons for Firefox')
+    eq_(crumbs.attr('href'), urlresolvers.reverse('home'))
+
+    # no default, no items => no breadcrumbs for you
+    s = render('{{ breadcrumbs(add_default=False) }}', {'request': req_app})
+    eq_(len(s), 0)
+
+    # no default, some items
+    s = render("""{{ breadcrumbs([('/foo', 'foo'),
+                                  ('/bar', 'bar')],
+                                 add_default=False) }}'""",
+               {'request': req_app})
+    doc = PyQuery(s)
+    crumbs = doc('li>a')
+    eq_(len(crumbs), 2)
+    eq_(crumbs.eq(0).text(), 'foo')
+    eq_(crumbs.eq(0).attr('href'), '/foo')
+    eq_(crumbs.eq(1).text(), 'bar')
+    eq_(crumbs.eq(1).attr('href'), '/bar')
+
+    # default, some items
+    s = render("""{{ breadcrumbs([('/foo', 'foo'),
+                                  ('/bar', 'bar')]) }}'""",
+               {'request': req_app})
+    doc = PyQuery(s)
+    crumbs = doc('li>a')
+    eq_(len(crumbs), 3)
+    eq_(crumbs.eq(1).text(), 'foo')
+    eq_(crumbs.eq(1).attr('href'), '/foo')
+    eq_(crumbs.eq(2).text(), 'bar')
+    eq_(crumbs.eq(2).attr('href'), '/bar')
 
 
 @patch('amo.helpers.urlresolvers.reverse')
