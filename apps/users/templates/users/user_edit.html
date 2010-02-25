@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}{{ page_title(_('User Account Editing')) }}{% endblock %}
+{% block title %}{{ page_title(_('Account Settings')) }}{% endblock %}
 
 {% block extrahead %}
 <link rel="stylesheet" href="{{ MEDIA_URL }}css/zamboni/tabs.css">
@@ -17,98 +17,167 @@
       </div>
     {% endfor %}
   {% endif %}
-  <h1>{{ _('Edit user profile for %s')|format(amouser.welcome_name) }}</h1>
+  <h1>{{ _('Account Settings') }}</h1>
   <form method="post" action="">
-  {{ csrf() }}
-    <div class="tab-wrapper">
-      <ul class="tab-nav">
-        <li><a href="#profile_general">{{ _('User Profile') }}</a></li>
-        <li><a href="#profile_collections">{{ _('Collections') }}</a></li>
-        <li><a href="#profile_notifications">{{ _('Notifications') }}</a></li>
-        <li><a href="#profile_pw_email">{{ _('Change Password or Email') }}</a></li>
-        <li><a href="#profile_other">{{ _('Other Actions') }}</a></li>
+    {{ csrf() }}
+    <div id="user-edit" class="tab-wrapper">
+      <ul class="tab-nav main">
+        <li><a href="#user-account">{{ _('Email & Password') }}</a></li>
+        <li><a href="#user-profile">{{ _('User Profile') }}</a></li>
       </ul>
-      <div id="profile_general" class="tab-panel">
-        <div class="line">
-          <label for="id_firstname">{{ _('First name') }}</label>
-          {{ form.firstname|safe }}
-          {{ form.firstname.errors|safe }}
-          {{ _('A first name, last name or nickname is required.') }}
-        </div>
-        <div class="line">
-          <label for="id_lastname">{{ _('Last name') }}</label>
-          {{ form.lastname|safe }}
-          {{ form.lastname.errors|safe }}
-        </div>
-        <div class="line">
-          <label for="id_lastname">{{ _('Nickname') }}</label>
-          {{ form.nickname|safe }}
-          {{ form.nickname.errors|safe }}
-        </div>
-        <div class="line">
-          <label for="id_location">{{ _('Location') }}</label>
-          {{ form.location|safe }}
-          {{ form.location.errors|safe }}
-        </div>
-        <div class="line">
-          <label for="id_occupation">{{ _('Occupation') }}</label>
-          {{ form.occupation|safe }}
-          {{ form.occupation.errors|safe }}
-        </div>
-        <div class="line">
-          <label for="id_homepage">{{ _('Website URL') }}</label>
-          {{ form.homepage|safe }}
-          {{ form.homepage.errors|safe }}
-        </div>
-        <div class="line">
-          <label for="id_display_emailhidden">
-            {{ _('Hide email address') }}
-          </label>
-          {{ form.emailhidden|safe }}
-          {{ form.emailhidden.errors|safe }}
-        </div>
-        <div class="line">
-          {# TODO XXX: Edit picture.  Also, add gravatar support, eh? #}
-        </div>
-        <div class="line clearboth">
-          <label for="id_bio">{{ _('About me') }}</label>
+      <div id="user-account" class="tab-panel">
+        <fieldset id="acct-account">
+          <h3>{{ _('My account') }}</h3>
+          <ul>
+            <li>
+              <label for="id_lastname">{{ _('Nickname') }}</label>
+              {{ form.nickname|safe }}
+              {{ form.nickname.errors|safe }}
+            </li>
+            <li>
+              <label for="id_email">{{ _('Email Address') }}</label>
+              {{ form.email|safe }}
+              {{ form.email.errors|safe }}
+            </li>
+            <li>
+              <label for="id_emailhidden" class="check">
+              {{ form.emailhidden|safe }}
+                {{ _('Hide email address from other users') }}
+              </label>
+              {{ form.emailhidden.errors|safe }}
+            </li>
+          </ul>
+        </fieldset>
+
+        <fieldset id="acct-password">
+        {# TODO XXX: Change these fields out for whatever we need to reset the password #}
+        {# TODO XXX: Add L10n #}
+          <h3>{{ _('Password') }}</h3>
+          <ol>
+            <li>
+              <label for="pass_old">Old Password</label>
+              <input type="password" id="pass_old" name="oldpass" />
+            </li>
+            <li>
+              <label for="pass_new">New Password</label>
+              <input type="password" id="pass_new" name="newpass" />
+            </li>
+            <li>
+              <label for="pass_confirm">Confirm New Password</label>
+              <input type="password" id="pass_confirm" name="confpass" />
+            </li>
+          </ol>
+        </fieldset>
+
+        <fieldset id="acct-notify">
+          <h3>{{ _('Notifications') }}</h3>
+          <p>
+            {% trans %}
+            From time to time, Mozilla may send you email about upcoming releases
+            and add-on events. Please select the topics you are interested in below:
+            {% endtrans %}
+          </p>
+          <ul>
+            <li>
+              <label for="id_notifycompat" class="check">
+                {{ form.notifycompat|safe }}
+                {{ _('Add-on compatibility (recommended)') }}
+              </label>
+              {{ form.notifycompat.errors|safe }}
+            </li>
+            <li>
+              <label for="id_notifyevents" class="check">
+                {{ form.notifyevents|safe }}
+                {{ _('Upcomping events and contests') }}
+              </label>
+              {{ form.notifyevents.errors|safe }}
+            </li>
+          </ul>
+          <p class="note">
+            {% trans %}
+              Mozilla reserves the right to contact you individually about specific
+              concerns with your hosted add-ons.
+            {% endtrans %}
+          </p>
+        </fieldset>
+      </div>{# /#user-account #}
+      <div id="user-profile" class="tab-panel">
+        <fieldset id="profile-personal">
+          <h3>{{ _('Profile information') }}</h3>
+          <ol>
+            <li>
+              <label for="id_firstname">
+                {{ _('First name') }} <abbr class="req" title="required">*</abbr>
+              </label>
+              {{ form.firstname|safe }}
+              {{ form.firstname.errors|safe }}
+            </li>
+            <li>
+              <label for="id_lastname">{{ _('Last name') }}</label>
+              {{ form.lastname|safe }}
+              {{ form.lastname.errors|safe }}
+            </li>
+            <li>
+              <label for="id_location">{{ _('Location') }}</label>
+              {{ form.location|safe }}
+              {{ form.location.errors|safe }}
+            </li>
+            <li>
+              <label for="id_occupation">{{ _('Occupation') }}</label>
+              {{ form.occupation|safe }}
+              {{ form.occupation.errors|safe }}
+            </li>
+            <li>
+              <label for="id_homepage">{{ _('Homepage') }}</label>
+              {{ form.homepage|safe }}
+              {{ form.homepage.errors|safe }}
+            </li>
+            <li class="profile-photo">
+              {# TODO XXX: Change these fields out for whatever we need to do notifications #}
+              {# TODO XXX: Add L10n #}
+                <label for="id_photo">Profile Photo</label>
+                <input type="file" id="id_photo" name="photo">
+                <img src="../media/img/amo2009/site-images/avatar-developer-200x200.jpg" alt="" width="200" height="200" class="avatar photo-large photo" />
+                <a href="#">Delete current photo</a>
+            </li>
+          </ol>
+        </fieldset>
+        <fieldset id="profile-detail" class="clearboth">
+          <h3>{{ _('In a little more detail...') }}</h3>
           <p>
             {% trans -%}
-            Introduce yourself to the community, if you like!
-            This text will appear publicly on your user info page.
+              Introduce yourself to the community, if you like!
+              This text will appear publicly on your user info page.
+              <a href="#">Some HTML allowed</a>
             {%- endtrans %}
           </p>
           {{ form.bio|safe }}
           {{ form.bio.errors|safe }}
-        </div>
-      </div>{# /#profile_general #}
-      <div id="profile_collections" class="tab-panel">
-        <div class="line">
-          <label for="id_display_collections">
-            {{ _('Display the collections I have created in my user profile') }}
-          </label>
-          {{ form.display_collections|safe }}
-          {{ form.display_collections.errors|safe }}
-        </div>
-        <div class="line">
-          <label for="id_display_collections_fav">
-            {{ _('Display my favorite collections in my user profile') }}
-          </label>
-          {{ form.display_collections_fav|safe }}
-          {{ form.display_collections_fav.errors|safe }}
-        </div>
-      </div>{# /#profile_collections #}
-      <div id="profile_notifications" class="tab-panel">
-        {# XXX TODO Fill out this panel #}
-      </div>{# /#profile_notifications #}
-      <div id="profile_pw_email" class="tab-panel">
-        {# XXX TODO Fill out this panel #}
-      </div>{# /#profile_pw_email #}
-      <div id="profile_other" class="tab-panel">
-        {# XXX TODO Fill out this panel #}
-      </div>{# /#profile_other #}
+        </fieldset> {# /.profile-detail #}
+
+        <ul>
+          <li>
+            <label for="id_display_collections" class="check">
+              {{ form.display_collections|safe }}
+              {{ _('Display the collections I have created') }}
+            </label>
+            {{ form.display_collections.errors|safe }}
+          </li>
+          <li>
+            <label for="id_display_collections_fav" class="check">
+              {{ form.display_collections_fav|safe }}
+              {{ _('Display my favorite collections') }}
+            </label>
+            {{ form.display_collections_fav.errors|safe }}
+          </li>
+        </ul>
+
+      </div>{# /#user-profile #}
+      <div class="listing-footer">
+        <button type="submit" class="prominent">{{ _('Update') }}</button> or <a href="#">{{ _('Cancel') }}</a>
+        <p id="acct-delete"><a href="#" title="{{ _('Permanently delete your account') }}">{{ _('Delete Account') }}</a></p>
+      </div>
     </div>{# /.tab-wrapper #}
-    <input type="submit" value="{{ _('Save') }}" />
   </form>
 </div>{# /.primary #}
 {% endblock content %}
