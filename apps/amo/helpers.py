@@ -169,7 +169,7 @@ def page_title(context, title):
 
 @register.function
 @jinja2.contextfunction
-def breadcrumbs(context, items=[], add_default=True):
+def breadcrumbs(context, items=list(), add_default=True):
     """
     show a list of breadcrumbs.
     Accepts: [(url, label)]
@@ -184,7 +184,7 @@ def breadcrumbs(context, items=[], add_default=True):
     if items:
         try:
             crumbs += items
-        except:
+        except TypeError:
             crumbs.append(items)
 
     c = {'breadcrumbs': crumbs}
