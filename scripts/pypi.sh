@@ -16,7 +16,7 @@ pip -q bundle -r requirements-prod.txt $PYBUNDLE
 
 # Now take apart the bundle and make a pypi-like index.
 rm -rf $BUNDLE
-unzip $PYBUNDLE -d $BUNDLE
+unzip -q $PYBUNDLE -d $BUNDLE
 chmod -R 744 $BUNDLE
 
 mkdir -p $PYPI
