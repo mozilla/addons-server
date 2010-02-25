@@ -64,6 +64,7 @@ AMO_LANGUAGES = (
 # Override Django's built-in with our native names
 LANGUAGES = dict([(i.lower(), product_details.languages[i]['native'])
                  for i in AMO_LANGUAGES])
+RTL_LANGUAGES = ('ar', 'fa', 'fa-IR', 'he')
 
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 
