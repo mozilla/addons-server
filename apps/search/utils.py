@@ -5,6 +5,7 @@ import re
 from django.conf import settings
 
 import amo
+from versions.compare import version_re
 
 
 def reindex():
@@ -34,14 +35,6 @@ def stop_sphinx():
     subprocess.call([settings.SPHINX_SEARCHD, '--stop', '--config',
         settings.SPHINX_CONFIG_PATH])
 
-pattern = re.compile(r"""(\d+)   # major (x in x.y)
-                         \.(\d+)   # minor1 (y in x.y)
-                         \.?(\d+)? # minor2 (z in x.y.z)
-                         \.?(\d+)? # minor3 (w in x.y.z.w)
-                         ([a|b]?)  # alpha/beta
-                         (\d*)     # alpha/beta version
-                         (pre)?    # pre release
-                         (\d)?     # pre release version""", re.VERBOSE)
 pattern_plus = re.compile(r'((\d+)\+)')
 
 
@@ -82,7 +75,7 @@ def convert_version(version_string):
     #
     # The numbers are chosen based on sorting rules, not for any deep meaning.
 
-    match = re.match(pattern, version_string)
+    match = re.match(version_re, version_string)
 
     if match:
         (major, minor1, minor2, minor3, alpha, alpha_n, pre,

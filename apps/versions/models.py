@@ -9,6 +9,8 @@ from applications.models import Application, AppVersion
 from translations.fields import TranslatedField, PurifiedField
 from users.models import UserProfile
 
+from . import compare
+
 
 class Version(amo.models.ModelBase):
     addon = models.ForeignKey(Addon, related_name='versions')
@@ -20,6 +22,10 @@ class Version(amo.models.ModelBase):
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'versions'
         ordering = ['-created']
+
+    def __init__(self, *args, **kwargs):
+        super(Version, self).__init__(*args, **kwargs)
+        self.__dict__.update(compare.version_dict(self.version or ''))
 
     def __unicode__(self):
         return self.version

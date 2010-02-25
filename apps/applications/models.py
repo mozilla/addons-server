@@ -1,7 +1,7 @@
 from django.db import models
 
 import amo.models
-from translations.fields import TranslatedField
+from versions import compare
 
 
 class Application(amo.models.ModelBase):
@@ -28,6 +28,10 @@ class AppVersion(amo.models.ModelBase):
 
     class Meta:
         db_table = 'appversions'
+
+    def __init__(self, *args, **kwargs):
+        super(AppVersion, self).__init__(*args, **kwargs)
+        self.__dict__.update(compare.version_dict(self.version or ''))
 
     def __unicode__(self):
         return self.version
