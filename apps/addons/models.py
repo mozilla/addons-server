@@ -267,6 +267,10 @@ class Addon(amo.models.ModelBase):
         except IndexError:
             return settings.STATIC_URL + '/img/no-preview.png'
 
+    @property
+    def is_listed(self):
+        return self.status == amo.STATUS_LISTED
+
     def is_experimental(self):
         return self.status in amo.EXPERIMENTAL_STATUSES
 
@@ -286,6 +290,7 @@ class Addon(amo.models.ModelBase):
         feature = AddonCategory.objects.filter(
             addon=self, feature=True, category__application__id=app.id)
         return bool(feature[:1])
+
 
     @amo.cached_property
     def compatible_apps(self):
