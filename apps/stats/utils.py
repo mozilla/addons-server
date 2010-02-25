@@ -3,6 +3,19 @@ from decimal import Decimal
 from .db import StatsDict
 
 
+class DictKey(object):
+    """A simple wrapper used to prevent collisions with string dictionary keys.
+
+    Used by ``unknown_gen``.
+    """
+
+    def __init__(self, name):
+        self.name = name
+
+    def __str__(self):
+        return str(self.name)
+
+
 def csv_prep(stats, field_list, precision='1'):
     """Prepare simple stats for CSV output.
 
@@ -101,11 +114,27 @@ def unknown_gen(stats, total_key, dyn_key, unknown_key='unknown'):
 
     Unknown is simply the difference between the total and sum of a breakdown.
     """
+    # Using an object for the unknown key allows us to prevent key collisions
+    # in the case where there is an existing key named ``unknown_key``, but the
+    # value is not a scalar (ie a dict). This can occur with an UpdateCount
+    # breakdown of applications. This object trick works because we know that
+    # keys coming from the data store will always be strings.
+    #
+    # If scalar, we simply add in the unknown count. If not, use the object
+    # as the key. Once results are flattened, the object resolves to the same
+    # string as specified in ``unknown_key``. We end up with something like:
+    #
+    # {'total_key': 3, 'dyn_key/unknown/a': 2, 'dyn_key/unknown': 1}
     for s in stats:
         uk_sum = max(0, s[total_key] - s[dyn_key].sum_reduce())
 
-        # Add to instead of replacing any existing value at ``unknown_key``
-        s[dyn_key][unknown_key] = uk_sum + s[dyn_key].get(unknown_key, 0)
+        val = s[dyn_key].get(unknown_key, 0)
+        if isinstance(val, dict):
+            # Create a new entry with an object key since the normal
+            # case below would result in a TypeError from: scalar + dict
+            s[dyn_key][DictKey(unknown_key)] = uk_sum
+        else:
+            s[dyn_key][unknown_key] = uk_sum + val
         yield s
 
 

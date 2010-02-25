@@ -146,6 +146,20 @@
         }
     },
     {
+        "pk": 3,
+        "model": "stats.updatecount",
+        "fields": {
+            "addon": 4,
+            "count": 10,
+            "versions": null,
+            "statuses": null,
+            "applications": "a:2:{s:2:\"ff\";a:1:{s:5:\"3.0.9\";i:5;}s:7:\"unknown\";a:1:{s:5:\"1.0.1\";i:1;}}",
+            "oses": null,
+            "locales": null,
+            "date": "2007-01-01"
+        }
+    },
+    {
         "pk": 1,
         "model": "stats.contribution",
         "fields": {
