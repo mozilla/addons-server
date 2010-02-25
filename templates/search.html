@@ -1,15 +1,65 @@
 <div class="search-form expanded-search-form">
-  <form method="get" id="search-form">
+  <form method="get" id="search-form" action="{{ url('search.search') }}">
     <div class="basic" id="search-query">
       <input id="query" type="text" title="search" name="q"
-             value="{{ _('search for add-ons') }}">
+             {% if not search_form.q.data %}class="placeholder"{% endif %}
+             value="{{ search_form.q.data or '' }}"
+             placeholder="{{ _('search for add-ons') }}">
       <label for="cat">{{ _('within') }}</label>
       <select name="cat" id="cat">
-        <option class="cat-all" value="all">{{ _('all add-ons') }}</option>
+        {% for value, title in search_form.fields['cat'].choices -%}
+          {% if value in search_form.top_level_cat %}
+            {% set class = 'cat-all' %}
+          {% else %}
+            {% set class = '' %}
+          {% endif %}
+          <option class="{{ class }}" value="{{ value }}"
+                  {{ value|ifeq(search_form.cat.data, 'selected') }}>
+            {{ title }}</option>
+        {%- endfor %}
       </select>
       <button type="submit">
         <img src="{{ MEDIA_URL}}img/amo2009/blank.gif">
       </button>
+    </div> {# search-query #}
+    <div id="advanced-link" title="{{ _('Toggle advanced search mode') }}">
+      <a class="asopen" href="#search-form">{{ _('Advanced') }}</a>
     </div>
+    <div id="advanced-search" class="advanced">
+      <fieldset class="important">
+        <div class="container application">
+          {{ search_form.appid.label_tag()|safe }}
+          {{ search_form.appid|safe }}
+        </div>
+        <div class="container">
+          {{ search_form.lver.label_tag()|safe }}
+          {{ search_form.lver|safe }}
+        </div>
+      </fieldset>
+      <fieldset class="subsidiary">
+        <div class="container">
+          {{ search_form.atype.label_tag()|safe }}
+          {{ search_form.atype|safe }}
+        </div>
+        <div class="container">
+          {{ search_form.sort.label_tag()|safe }}
+          {{ search_form.sort|safe }}
+        </div>
+        <div class="container">
+          {{ search_form.pid.label_tag()|safe }}
+          {{ search_form.pid|safe }}
+        </div>
+        <div class="container">
+          {{ search_form.pp.label_tag()|safe }}
+          {{ search_form.pp|safe }}
+        </div>
+        <div class="container">
+          {{ search_form.lup.label_tag()|safe }}
+          {{ search_form.lup|safe }}
+        </div>
+      </fieldset>
+      <span id="search-data"
+        data-appversions="{{ search_form.app_versions|json }}"></span>
+    </div> {# advanced-search #}
   </form>
 </div>

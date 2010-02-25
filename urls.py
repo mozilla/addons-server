@@ -30,6 +30,9 @@ urlpatterns = patterns('',
     # Services
     ('^services/', include('amo.urls')),
 
+    # Search
+    ('^search/', include('search.urls')),
+
     # Javascript translations.
     ('^jsi18n/$', 'django.views.i18n.javascript_catalog',
      {'domain': 'javascript', 'packages': ['zamboni']}),

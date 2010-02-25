@@ -11,12 +11,14 @@ from django.utils import translation
 
 from nose import SkipTest
 from nose.tools import eq_
+import test_utils
 
-import amo
+import amo.helpers
 from manage import settings
-from .utils import start_sphinx, stop_sphinx, reindex, convert_version
-from .client import Client as SearchClient, SearchError, get_category_id, \
-        extract_from_query
+from search import forms
+from search.utils import start_sphinx, stop_sphinx, reindex, convert_version
+from search.client import (Client as SearchClient, SearchError,
+                           get_category_id, extract_from_query)
 
 
 def test_convert_version():
@@ -192,3 +194,22 @@ class SearchTest(SphinxTestCase):
         eq_(len(query("MozEx", status=[amo.STATUS_PUBLIC])), 0)
         eq_(query("MozEx",
                   status=[amo.STATUS_PUBLIC, amo.STATUS_SANDBOX])[0].id, 40)
+
+
+class TestSearchForm(test_utils.TestCase):
+    fixtures = ['base/addons']
+
+    def test_get_app_versions(self):
+        actual = forms.get_app_versions()
+        expected = {
+            amo.FIREFOX.id: ['2.0', '3.0', '3.5', '3.6', '3.7'],
+            amo.THUNDERBIRD.id: [],
+            amo.SUNBIRD.id: [],
+            amo.SEAMONKEY.id: [],
+            amo.MOBILE.id: ['1.0'],
+        }
+        for app in expected:
+            expected[app] = [(k, k) for k in expected[app]]
+            expected[app].append(('Any', 'any'))
+        # So you added a new appversion and this broke?  Sorry about that.
+        eq_(actual, expected)

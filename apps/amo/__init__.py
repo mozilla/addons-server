@@ -94,7 +94,7 @@ COLLECTION_AUTHOR_CHOICES = {
 }
 
 # Addon types
-ADDON_ANY = -1
+ADDON_ANY = 0
 ADDON_EXTENSION = 1
 ADDON_THEME = 2
 ADDON_DICT = 3
@@ -107,16 +107,19 @@ ADDON_PERSONA = 9
 
 # Singular
 ADDON_TYPE = {
+    ADDON_ANY: _('Any'),
     ADDON_EXTENSION: _('Extension'),
     ADDON_THEME: _('Theme'),
     ADDON_DICT: _('Dictionary'),
     ADDON_SEARCH: _('Search Engine'),
     ADDON_PLUGIN: _('Plugin'),
+    ADDON_LPAPP: _('Language Pack (Application)'),
     ADDON_PERSONA: _('Persona'),
 }
 
 # Plural
 ADDON_TYPES = {
+    ADDON_ANY: _('Any'),
     ADDON_EXTENSION: _('Extensions'),
     ADDON_THEME: _('Themes'),
     ADDON_DICT: _('Dictionaries & Language Packs'),
@@ -192,7 +195,7 @@ APP_GUIDS = dict((app.guid, app) for app in _apps)
 APPS_RETIRED = dict([(MOZILLA.short, MOZILLA)])
 
 # Platforms
-PLATFORM_ANY = -1
+PLATFORM_ANY = 0
 PLATFORM_ALL = 1
 PLATFORM_LINUX = 2
 PLATFORM_MAC = 3
@@ -214,4 +217,11 @@ PLATFORMS = {
     'sun': PLATFORM_SUN,
     'sunos': PLATFORM_SUN,
     'solaris': PLATFORM_SUN,
+    PLATFORM_ANY: _('Any'),
+    PLATFORM_ALL: _('All'),
+    PLATFORM_LINUX: _('Linux'),
+    PLATFORM_MAC: _('Mac OS X'),
+    PLATFORM_BSD: _('BSD'),
+    PLATFORM_WIN: _('Windows'),
+    PLATFORM_SUN: _('Solaris'),
 }

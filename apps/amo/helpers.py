@@ -1,5 +1,6 @@
 import cgi
 import collections
+import json as jsonlib
 import math
 import urllib
 import urlparse
@@ -227,3 +228,8 @@ def wround(value, precision=0, method='common'):
 def isotime(t):
     """Date/Time format according to ISO 8601"""
     return t.strftime("%Y-%m-%d %H:%M:%S")
+
+
+@register.filter
+def json(s):
+    return jsonlib.dumps(s)
