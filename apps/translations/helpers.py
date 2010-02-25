@@ -16,4 +16,5 @@ def locale_html(translatedfield):
         return ''
     else:
         textdir = 'rtl' if locale in settings.RTL_LANGUAGES else 'ltr'
-        return jinja2.Markup(' lang="%s" dir="%s"' % (locale, textdir))
+        return jinja2.Markup(' lang="%s" dir="%s"' % (translatedfield.locale,
+                                                      textdir))

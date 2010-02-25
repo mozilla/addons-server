@@ -14,7 +14,7 @@ def test_locale_html():
     testfield = Mock()
 
     # same language: no need for attributes
-    this_lang = translation.to_locale(translation.get_language())
+    this_lang = translation.get_language()
     testfield.locale = this_lang
     s = locale_html(testfield)
     assert not s, 'no special HTML attributes for site language'
