@@ -4,8 +4,10 @@ from nose.tools import eq_
 from mock import Mock, patch
 
 import jingo
+import test_utils
 
 import amo
+from amo import urlresolvers
 
 
 def render(s, context={}):
@@ -72,3 +74,12 @@ def test_isotime():
     time = datetime(2009, 12, 25, 10, 11, 12)
     s = render('{{ d|isotime }}', {'d': time})
     eq_(s, '2009-12-25 10:11:12')
+
+
+def test_locale_url():
+    rf = test_utils.RequestFactory()
+    request = rf.get('/de', SCRIPT_NAME='/z')
+    prefixer = urlresolvers.Prefixer(request)
+    urlresolvers.set_url_prefix(prefixer)
+    s = render('{{ locale_url("mobile") }}')
+    eq_(s, '/z/de/mobile')

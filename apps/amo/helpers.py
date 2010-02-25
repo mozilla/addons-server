@@ -30,6 +30,15 @@ def hide_none(string):
 
 
 @register.function
+def locale_url(url):
+    """Take a URL and give it the locale prefix."""
+    prefixer = urlresolvers.get_url_prefix()
+    script = prefixer.request.META['SCRIPT_NAME']
+    parts = [script, prefixer.locale, url.lstrip('/')]
+    return '/'.join(parts)
+
+
+@register.function
 def url(viewname, *args, **kwargs):
     """Helper for Django's ``reverse`` in templates."""
     return urlresolvers.reverse(viewname, args=args, kwargs=kwargs)
