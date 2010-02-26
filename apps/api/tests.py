@@ -129,17 +129,22 @@ class APITest(TestCase):
         """
         needles = (
                 "<contribution_data>",
-                "/en-US/firefox/addons/contribute/4664?src=api</link>",
+                "%s/en-US/firefox/addons/contribute/4664?src=api</link>"
+                % settings.SITE_URL,
                 "<suggested_amount>0.99</suggested_amount>",
-                "/en-US/firefox/addon/4664/developers?src=api"
+                "<meet_developers>",
+                "%s/en-US/firefox/addon/4664/developers?src=api"
+                % settings.SITE_URL,
                 "</meet_developers>",
                 """<reviews num="101">""",
-                "/en-US/firefox/addon/4664/reviews?src=api</reviews>",
+                "%s/en-US/firefox/addon/4664/reviews/?src=api</reviews>"
+                % settings.SITE_URL,
                 "<total_downloads>867952</total_downloads>",
                 "<weekly_downloads>23646</weekly_downloads>",
                 "<daily_users>44693</daily_users>",
                 "<created>2007-03-17 05:23:55</created>",
-                "/en-US/firefox/user/2519/?src=api</link>",
+                "%s/en-US/firefox/user/2519/?src=api</link>"
+                % settings.SITE_URL,
                 'size="90"',
                 'units="kb"',
                 )

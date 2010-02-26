@@ -10,7 +10,7 @@
     {% if api_version >= 1.5 %}
     <author>
       <name>{{ author.display_name }}</name>
-      <link>{{ settings.SITE_URL + author.get_url_path() + '?src=api' }}</link>
+      <link>{{ author.get_url_path()|absolutify|urlparams(src='api') }}</link>
     </author>
     {% else %}
     <author>{{ author.display_name }}</author>
@@ -46,24 +46,24 @@
   <thumbnail>{{ addon.thumbnail_url }}</thumbnail>
   <rating>{{ addon.bayesian_rating|wround(0, 'ceil') }}</rating>
   <learnmore>
-    {{ settings.SITE_URL+addon.get_url_path()+'?src=api' }}</learnmore>
+    {{ settings.SITE_URL+addon.get_url_path()|absolutify|urlparams(src='api') }}</learnmore>
   {% if addon.current_version %}
   {% for file in addon.current_version.files.all() %}
   <install hash="{{ file.hash }}" os="{{ file.platform.name }}"
     size="{{ file.size }}" units="kb">
-    {{ file.get_url_path('api') }}
+    {{ file.get_url_path('api')|absolutify }}
   </install>
   {% endfor %}
   {% endif %}
   {% if api_version >= 1.5 %}
   {% if addon.wants_contributions %}
   <contribution_data>
-    <link>{{ addon.contribution_url + '?src=api' }}</link>
+    <link>{{ addon.contribution_url|absolutify|urlparams(src='api') }}</link>
     <suggested_amount>{{ addon.suggested_amount }}</suggested_amount>
-    <meet_developers>{{ addon.meet_developers_url + '?src=api' }}</meet_developers>
+    <meet_developers>{{ addon.meet_developers_url|absolutify|urlparams(src='api')  }}</meet_developers>
   </contribution_data>
   {% endif %}
-  <reviews num="{{ addon.total_reviews }}">{{ addon.reviews_url + '?src=api' }}</reviews>
+  <reviews num="{{ addon.total_reviews }}">{{ addon.reviews_url|absolutify|urlparams(src='api')  }}</reviews>
   <total_downloads>{{ addon.total_downloads }}</total_downloads>
   <weekly_downloads>{{ addon.weekly_downloads }}</weekly_downloads>
   <daily_users>{{ addon.average_daily_users }}</daily_users>
