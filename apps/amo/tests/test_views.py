@@ -38,3 +38,15 @@ class TestStuff(test_utils.TestCase):
         check('1')
         self.client.login(username='admin@mozilla.com', password='password')
         check('0')
+
+    def test_my_account_menu(self):
+        def check(expected):
+            response = self.client.get('/', follow=True)
+            account = PyQuery(response.content)('ul.account')
+            tools = PyQuery(response.content)('ul.tools')
+            eq_(account.size(), expected)
+            eq_(tools.size(), expected)
+
+        check(0)
+        self.client.login(username='admin@mozilla.com', password='password')
+        check(1)

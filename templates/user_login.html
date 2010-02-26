@@ -1,13 +1,16 @@
-<ul class="tools">
-  <li>
-    <a href="#" class="controller">{{ _('Tools') }}</a>
-    <ul>
-      {% for link in tools_links %}
-        <li><a href="{{ link.href }}">{{ link.text }}</a></li>
-      {% endfor %}
-    </ul>
-  </li>
-</ul>
+{% if user.is_authenticated() %}
+{% if tools_links %}
+  <ul class="tools">
+    <li>
+      <a href="#" class="controller">{{ _('Tools') }}</a>
+      <ul>
+        {% for link in tools_links %}
+          <li><a href="{{ link.href }}">{{ link.text }}</a></li>
+        {% endfor %}
+      </ul>
+    </li>
+  </ul>
+{% endif %}
 <ul class="account">
     <li>
     <a href="#" class="controller" title="{{ user.email }}">
@@ -21,6 +24,7 @@
       {% endif %}
     </li>
 </ul>
+{% endif %}
 
 <p class="context">
   {% if user.is_authenticated() %}
