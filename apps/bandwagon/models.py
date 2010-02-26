@@ -35,7 +35,7 @@ class Collection(amo.models.ModelBase):
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'collections'
 
-    def get_absolute_url(self):
+    def get_url_path(self):
         return '/collection/%s' % self.url_slug
 
     @property

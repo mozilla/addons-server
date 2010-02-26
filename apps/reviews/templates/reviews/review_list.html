@@ -3,7 +3,7 @@
 {% macro back_to_addon() -%}
 <ul>
   <li>
-    <a href="{{ addon.get_absolute_url() }}">
+    <a href="{{ addon.get_url_path() }}">
       {{ _('Back to {0}')|f(addon.name) }}
     </a>
   </li>

@@ -4,7 +4,7 @@
   {% for collection in collections: %}
     <li>
       {# TODO reverse url #}
-      <a class="collection" href="{{ collection.get_absolute_url() }}">
+      <a class="collection" href="{{ collection.get_url_path() }}">
         {{ collection.name }}
       </a>
     </li>

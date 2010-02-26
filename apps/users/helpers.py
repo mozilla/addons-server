@@ -35,7 +35,7 @@ def users_list(users):
 
 def _user_link(user):
     return u'<a href="%s">%s</a>' % (
-        user.get_absolute_url(), unicode(jinja2.escape(user.display_name)))
+        user.get_url_path(), unicode(jinja2.escape(user.display_name)))
 
 
 @register.filter

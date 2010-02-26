@@ -39,7 +39,7 @@
         <tr>
           <th>{{ _('Number of Add-ons Developed') }}</th>
           <td>
-            <a href="{{ profile.get_absolute_url() }}">
+            <a href="{{ profile.get_url_path() }}">
               {% trans num=profile.addons_listed|length %}
               {{ num }} Add-on
               {% pluralize %}

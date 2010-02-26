@@ -27,7 +27,7 @@ def global_settings(request):
     if request.user.is_authenticated():
         link = {}
         link['text'] = _('View Profile')
-        link['href'] = request.user.get_profile().get_absolute_url()
+        link['href'] = request.user.get_profile().get_url_path()
         account_links.append(link)
 
         link = {}

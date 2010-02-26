@@ -22,7 +22,7 @@ class File(amo.models.ModelBase):
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'files'
 
-    def get_absolute_url(self, src):
+    def get_url_path(self, src):
         return settings.FILES_URL % (self.id, self.filename, src)
 
 
