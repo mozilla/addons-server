@@ -9,12 +9,12 @@ from jingo import register
 @register.filter
 def locale_html(translatedfield):
     """HTML attributes for languages different than the site language"""
-    sitelang = translation.get_language()
-    sitelocale = translation.to_locale(sitelang)
+    site_locale = translation.to_locale(translation.get_language())
     locale = translation.to_locale(translatedfield.locale)
-    if locale == sitelocale:
+    if locale == site_locale:
         return ''
     else:
-        textdir = 'rtl' if locale in settings.RTL_LANGUAGES else 'ltr'
+        rtl_locales = map(translation.to_locale, settings.RTL_LANGUAGES)
+        textdir = 'rtl' if locale in rtl_locales else 'ltr'
         return jinja2.Markup(' lang="%s" dir="%s"' % (translatedfield.locale,
                                                       textdir))

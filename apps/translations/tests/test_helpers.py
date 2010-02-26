@@ -1,5 +1,3 @@
-import random
-
 from django.conf import settings
 from django.utils import translation
 
@@ -25,6 +23,7 @@ def test_locale_html():
     eq_(s, ' lang="de" dir="ltr"')
 
     # rtl language
-    testfield.locale = random.choice(settings.RTL_LANGUAGES)
-    s = locale_html(testfield)
-    eq_(s, ' lang="%s" dir="rtl"' % testfield.locale)
+    for lang in settings.RTL_LANGUAGES:
+        testfield.locale = lang
+        s = locale_html(testfield)
+        eq_(s, ' lang="%s" dir="rtl"' % testfield.locale)
