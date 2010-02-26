@@ -24,11 +24,6 @@ from translations.query import order_by_translation
 register.filter(defaultfilters.slugify)
 
 
-@register.filter
-def hide_none(string):
-    return '' if string is None else string
-
-
 @register.function
 def locale_url(url):
     """Take a URL and give it the locale prefix."""

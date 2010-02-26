@@ -42,7 +42,7 @@
     {% endfor %}
     {% endif %}
   </all_compatible_os>
-  <eula>{{ addon.eula|hide_none }}</eula>
+  <eula>{{ addon.eula }}</eula>
   <thumbnail>{{ addon.thumbnail_url }}</thumbnail>
   <rating>{{ addon.bayesian_rating|wround(0, 'ceil') }}</rating>
   <learnmore>

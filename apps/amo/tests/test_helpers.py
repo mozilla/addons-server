@@ -16,6 +16,11 @@ def render(s, context={}):
     return t.render(**context)
 
 
+def test_finalize():
+    """We want None to show up as ''.  We do this in JINJA_CONFIG."""
+    eq_('', render('{{ x }}', {'x': None}))
+
+
 def test_page_title():
     request = Mock()
     request.APP = amo.THUNDERBIRD
