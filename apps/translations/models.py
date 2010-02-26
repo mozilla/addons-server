@@ -38,7 +38,8 @@ class Translation(caching.base.CachingMixin, models.Model):
     def __nonzero__(self):
         # __nonzero__ is called to evaluate an object in a boolean context.  We
         # want Translations to be falsy if their string is empty.
-        return bool(self.localized_string.strip())
+        return (bool(self.localized_string) and
+                bool(self.localized_string.strip()))
 
     def __cmp__(self, other):
         if isinstance(other, basestring):

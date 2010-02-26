@@ -252,6 +252,7 @@ def test_translation_bool():
     assert bool(t('text')) is True
     assert bool(t(' ')) is False
     assert bool(t('')) is False
+    assert bool(t(None)) is False
 
 
 def test_widget_value_from_datadict():
