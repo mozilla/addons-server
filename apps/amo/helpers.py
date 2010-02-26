@@ -5,6 +5,7 @@ import math
 import urllib
 import urlparse
 
+from django.conf import settings
 from django.utils import translation
 from django.template import defaultfilters
 
@@ -233,3 +234,9 @@ def isotime(t):
 @register.filter
 def json(s):
     return jsonlib.dumps(s)
+
+
+@register.filter
+def absolutify(url):
+    """Takes a URL and prepends the SITE_URL"""
+    return settings.SITE_URL + url
