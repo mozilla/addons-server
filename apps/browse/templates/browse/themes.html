@@ -74,11 +74,11 @@
               {% endif %} class="{{ addon|statusflags }}">
         <div class="inner">
           {{ addon|flag }}
-          <a href="{{ addon.get_absolute_url() }}">
+          <a href="{{ addon.get_url_path() }}">
             <img alt="" src="{{ addon.thumbnail_url }}">
           </a>
           <div class="details">
-            <h4><a href="{{ addon.get_absolute_url() }}">{{ addon.name }}</a></h4>
+            <h4><a href="{{ addon.get_url_path() }}">{{ addon.name }}</a></h4>
             <p class="meta">
               {% if sorting == "date" %}
                 {% trans date=addon.last_updated|datetime %}
@@ -90,7 +90,7 @@
                 {% endtrans %}
               {% else %}
                 {{ addon.average_rating|float|stars }}
-                <a href="{{ addon.get_absolute_url() }}#reviews">
+                <a href="{{ addon.get_url_path() }}#reviews">
                   {# L10n: {0} is the review count. #}
                   {{ ngettext("{0} review", "{0} reviews",
                               addon.total_reviews)|f(addon.total_reviews) }}</a>

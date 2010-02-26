@@ -45,7 +45,7 @@
         {% set addon = review.version.addon %}
         <div class="hreview">
           <h4 class="summary">
-            <a class="url" href="{{ addon.get_absolute_url() }}">{{ addon.name }}</a>
+            <a class="url" href="{{ addon.get_url_path() }}">{{ addon.name }}</a>
           </h4>
           <p class="description" locale="{{ review.body.locale }}">
             {{ review.body|nl2br }}

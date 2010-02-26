@@ -194,16 +194,16 @@ class Addon(amo.models.ModelBase):
     def __unicode__(self):
         return '%s: %s' % (self.id, self.name)
 
-    def get_absolute_url(self):
+    def get_url_path(self):
         return reverse('addons.detail', args=(self.id,))
 
     @property
     def meet_developers_url(self):
-        return self.get_absolute_url() + 'developers'
+        return self.get_url_path() + 'developers'
 
     @property
     def reviews_url(self):
-        return self.get_absolute_url() + 'reviews'
+        return self.get_url_path() + 'reviews'
 
     @classmethod
     def get_fallback(cls):
@@ -293,7 +293,6 @@ class Addon(amo.models.ModelBase):
         feature = AddonCategory.objects.filter(
             addon=self, feature=True, category__application__id=app.id)
         return bool(feature[:1])
-
 
     @amo.cached_property
     def compatible_apps(self):
@@ -411,7 +410,7 @@ class Category(amo.models.ModelBase):
     def __unicode__(self):
         return unicode(self.name)
 
-    def get_absolute_url(self):
+    def get_url_path(self):
         # TODO(jbalogh): reverse the real urls
         base = reverse('home')
         return '%sbrowse/type:%s/cat:%s' % (base, self.type_id, self.id)

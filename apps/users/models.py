@@ -65,7 +65,7 @@ class UserProfile(amo.models.ModelBase):
     def __unicode__(self):
         return '%s: %s' % (self.id, self.display_name)
 
-    def get_absolute_url(self):
+    def get_url_path(self):
         return reverse('users.profile', args=[self.id])
 
     @amo.cached_property

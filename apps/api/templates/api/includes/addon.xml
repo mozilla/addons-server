@@ -10,7 +10,7 @@
     {% if api_version >= 1.5 %}
     <author>
       <name>{{ author.display_name }}</name>
-      <link>{{ settings.SITE_URL + author.get_absolute_url() + '?src=api' }}</link>
+      <link>{{ settings.SITE_URL + author.get_url_path() + '?src=api' }}</link>
     </author>
     {% else %}
     <author>{{ author.display_name }}</author>
@@ -46,12 +46,12 @@
   <thumbnail>{{ addon.thumbnail_url }}</thumbnail>
   <rating>{{ addon.bayesian_rating|wround(0, 'ceil') }}</rating>
   <learnmore>
-    {{ settings.SITE_URL+addon.get_absolute_url()+'?src=api' }}</learnmore>
+    {{ settings.SITE_URL+addon.get_url_path()+'?src=api' }}</learnmore>
   {% if addon.current_version %}
   {% for file in addon.current_version.files.all() %}
   <install hash="{{ file.hash }}" os="{{ file.platform.name }}"
     size="{{ file.size }}" units="kb">
-    {{ file.get_absolute_url('api') }}
+    {{ file.get_url_path('api') }}
   </install>
   {% endfor %}
   {% endif %}

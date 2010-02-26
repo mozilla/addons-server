@@ -25,3 +25,6 @@ class ModelBase(caching.base.CachingMixin, TranslatedFieldMixin, models.Model):
     class Meta:
         abstract = True
         get_latest_by = 'created'
+
+    def get_absolute_url(self, *args, **kwargs):
+        return self.get_url_path(*args, **kwargs)

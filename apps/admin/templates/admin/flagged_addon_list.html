@@ -23,7 +23,7 @@
       <tr>
         <td><input type="checkbox" name="addon_id" value="{{ addon.id }}"></td>
         <td>
-          <a href="{{ addon.get_absolute_url() }}">{{ addon.name }}</a>
+          <a href="{{ addon.get_url_path() }}">{{ addon.name }}</a>
         </td>
         <td>
           {% if addon.version %}

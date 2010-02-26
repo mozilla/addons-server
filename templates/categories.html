@@ -14,7 +14,7 @@
       <ul>
         {% for category in categories %}
         <li>
-          <a href="{{ category.get_absolute_url() }}">{{ category.name }}</a>
+          <a href="{{ category.get_url_path() }}">{{ category.name }}</a>
           <span class="items">{{ category.count }}</span>
         </li>
         {% endfor %}
