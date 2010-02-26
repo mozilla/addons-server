@@ -260,9 +260,8 @@ class Addon(amo.models.ModelBase):
         Returns the addon's thumbnail url or a default.
         """
         try:
-            preview = self.preview_set.order_by(
-                    '-highlight', 'created').all()[0]
-            return preview.get_thumbnail_url()
+            preview = self.previews.all()[0]
+            return preview.thumbnail_url
 
         except IndexError:
             return settings.STATIC_URL + '/img/no-preview.png'
@@ -447,7 +446,7 @@ class Feature(amo.models.ModelBase):
 
 
 class Preview(amo.models.ModelBase):
-    addon = models.ForeignKey(Addon)
+    addon = models.ForeignKey(Addon, related_name='previews')
     filetype = models.CharField(max_length=25)
     thumbtype = models.CharField(max_length=25)
     caption = TranslatedField()
@@ -455,11 +454,21 @@ class Preview(amo.models.ModelBase):
 
     class Meta:
         db_table = 'previews'
+        ordering = ('-highlight', 'created')
 
-    def get_thumbnail_url(self):
+    def _image_url(self, thumb=True):
         if self.modified is not None:
             modified = int(time.mktime(self.modified.timetuple()))
         else:
             modified = 0
-        return (settings.PREVIEW_THUMBNAIL_URL %
-                (self.id / 1000, self.id, modified))
+        url_template = (thumb and settings.PREVIEW_THUMBNAIL_URL or
+                        settings.PREVIEW_FULL_URL)
+        return url_template % (self.id / 1000, self.id, modified)
+
+    @property
+    def thumbnail_url(self):
+        return self._image_url(thumb=True)
+
+    @property
+    def image_url(self):
+        return self._image_url(thumb=False)

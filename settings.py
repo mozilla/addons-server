@@ -247,5 +247,7 @@ ADDON_ICON_URL = "%s/%s/%s/images/addon_icon/%%d/%%s" % (
         STATIC_URL, LANGUAGE_CODE, DEFAULT_APP)
 PREVIEW_THUMBNAIL_URL = (STATIC_URL +
         '/img/uploads/previews/thumbs/%s/%d.png?modified=%d')
+PREVIEW_FULL_URL = (STATIC_URL +
+        '/img/uploads/previews/full/%s/%d.png?modified=%d')
 # paths for uploaded extensions
 FILES_URL = STATIC_URL + "/downloads/file/%d/%s?src=%s"
