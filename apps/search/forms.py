@@ -107,6 +107,8 @@ def SearchForm(request):
         pp = forms.ChoiceField(label=_('Per Page'),
                                choices=zip(per_page, per_page))
 
+        advanced = forms.BooleanField(widget=forms.HiddenInput)
+
         # Attach these to the form for usage in the template.
         app_versions = get_app_versions()
         top_level_cat = dict(top_level)

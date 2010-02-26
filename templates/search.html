@@ -1,4 +1,5 @@
-<div class="search-form expanded-search-form">
+{% set show_advanced = search_form.advanced.data == 'on' %}
+<div class="search-form expanded-search-form {% if show_advanced %}expanded{% endif %}">
   <form method="get" id="search-form" action="{{ url('search.search') }}">
     <div class="basic" id="search-query">
       <input id="query" type="text" title="search" name="q"
@@ -23,7 +24,7 @@
       </button>
     </div> {# search-query #}
     <div id="advanced-link" title="{{ _('Toggle advanced search mode') }}">
-      <a class="asopen" href="#search-form">{{ _('Advanced') }}</a>
+      <a class="asopen" href="?advanced=on">{{ _('Advanced') }}</a>
     </div>
     <div id="advanced-search" class="advanced">
       <fieldset class="important">
@@ -60,6 +61,7 @@
       </fieldset>
       <span id="search-data"
         data-appversions="{{ search_form.app_versions|json }}"></span>
+      {{ search_form.advanced|safe }}
     </div> {# advanced-search #}
   </form>
 </div>
