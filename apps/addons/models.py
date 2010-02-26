@@ -199,11 +199,12 @@ class Addon(amo.models.ModelBase):
 
     @property
     def meet_developers_url(self):
+        # TODO(davedash): reverse when developers pages are build
         return self.get_url_path() + 'developers'
 
     @property
     def reviews_url(self):
-        return self.get_url_path() + 'reviews'
+        return reverse('reviews.list', args=(self.id,))
 
     @classmethod
     def get_fallback(cls):
@@ -251,8 +252,7 @@ class Addon(amo.models.ModelBase):
     @property
     def contribution_url(self, lang=settings.LANGUAGE_CODE,
                          app=settings.DEFAULT_APP):
-        return settings.SITE_URL + '/%s/%s/addons/contribute/%d' % (
-                lang, app, self.id)
+        return '/%s/%s/addons/contribute/%d' % (lang, app, self.id)
 
     @amo.cached_property
     def preview_count(self):
