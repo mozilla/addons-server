@@ -1,3 +1,13 @@
+<ul class="tools">
+  <li>
+    <a href="#" class="controller">{{ _('Tools') }}</a>
+    <ul>
+      {% for link in tools_links %}
+        <li><a href="{{ link.href }}">{{ link.text }}</a></li>
+      {% endfor %}
+    </ul>
+  </li>
+</ul>
 <ul class="account">
     <li>
     <a href="#" class="controller" title="{{ user.email }}">
@@ -8,7 +18,7 @@
             <li><a href="{{ link.href }}">{{ link.text }}</a></li>
           {% endfor %}
         </ul>
-        {% endif %}
+      {% endif %}
     </li>
 </ul>
 
