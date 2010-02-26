@@ -46,7 +46,9 @@ def test_ugettext():
 @with_setup(setup, teardown)
 def test_ugettext_not_found():
     eq_('yo', _('yo'))
+    eq_('yo yo', _('  yo  yo  '))
     eq_('yo', _('yo', 'context'))
+    eq_('yo yo', _('  yo  yo  ', 'context'))
 
 
 @with_setup(setup, teardown)
@@ -75,7 +77,9 @@ def test_ungettext():
 @with_setup(setup, teardown)
 def test_ungettext_not_found():
     eq_('yo', n_('yo', 'yos', 1, 'context'))
+    eq_('yo yo', n_('  yo  yo  ', 'yos', 1, 'context'))
     eq_('yos', n_('yo', 'yos', 3, 'context'))
+    eq_('yo yos', n_('yo', '  yo  yos  ', 3, 'context'))
 
 
 def test_activate():

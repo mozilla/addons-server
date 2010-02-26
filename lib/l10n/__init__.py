@@ -10,29 +10,36 @@ from django.utils.translation import (trans_real as django_trans,
 
 
 def ugettext(message, context=None):
-    new_message = strip_whitespace(message)
-    if context:
-        new_message = _add_context(context, new_message)
-    ret = django_ugettext(new_message)
+    """Always return a stripped string, localized if possible"""
+    stripped = strip_whitespace(message)
 
-    if ret == new_message:
-        return message
-    return ret
+    message = _add_context(context, stripped) if context else stripped
+
+    ret = django_ugettext(message)
+
+    # If the context isn't found, we need to return the string without it
+    return stripped if ret == message else ret
 
 
 def ungettext(singular, plural, number, context=None):
-    new_singular = strip_whitespace(singular)
-    new_plural = strip_whitespace(plural)
-    if context:
-        new_singular = _add_context(context, new_singular)
-        new_plural = _add_context(context, new_plural)
-    ret = django_nugettext(new_singular, new_plural, number)
+    """Always return a stripped string, localized if possible"""
+    singular_stripped = strip_whitespace(singular)
+    plural_stripped = strip_whitespace(plural)
 
-    # If the context isn't found, the string is returned as it was sent
-    if ret == new_singular:
-        return singular
-    elif ret == new_plural:
-        return plural
+    if context:
+        singular = _add_context(context, singular_stripped)
+        plural = _add_context(context, plural_stripped)
+    else:
+        singular = singular_stripped
+        plural = plural_stripped
+
+    ret = django_nugettext(singular, plural, number)
+
+    # If the context isn't found, the string is returned as it came
+    if ret == singular:
+        return singular_stripped
+    elif ret == plural:
+        return plural_stripped
     return ret
 
 
