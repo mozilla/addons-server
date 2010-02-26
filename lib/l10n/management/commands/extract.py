@@ -1,4 +1,5 @@
 import os
+from manage import settings
 from optparse import make_option
 
 from babel.messages import Catalog
@@ -79,7 +80,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         domain = options.get('domain')
 
-        root = os.path.abspath('.')
+        root = settings.ROOT
         print "Extracting all strings for in domain %s..." % (domain)
 
         catalog = Catalog(

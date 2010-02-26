@@ -44,6 +44,12 @@ def test_ugettext():
 
 
 @with_setup(setup, teardown)
+def test_ugettext_not_found():
+    eq_('yo', _('yo'))
+    eq_('yo', _('yo', 'context'))
+
+
+@with_setup(setup, teardown)
 def test_ungettext():
     # No context
     a_singular = " one\t\r\n\nlight \n\n!\n"
@@ -64,6 +70,12 @@ def test_ungettext():
     eq_(p_plural_1, n_(a_singular, a_plural, 3, 'context_one'))
     eq_(p_singular_2, n_(a_singular, a_plural, 1, 'context_two'))
     eq_(p_plural_2, n_(a_singular, a_plural, 3, 'context_two'))
+
+
+@with_setup(setup, teardown)
+def test_ungettext_not_found():
+    eq_('yo', n_('yo', 'yos', 1, 'context'))
+    eq_('yos', n_('yo', 'yos', 3, 'context'))
 
 
 def test_activate():

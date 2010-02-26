@@ -10,19 +10,30 @@ from django.utils.translation import (trans_real as django_trans,
 
 
 def ugettext(message, context=None):
-    message = strip_whitespace(message)
+    new_message = strip_whitespace(message)
     if context:
-        message = _add_context(context, message)
-    return django_ugettext(message)
+        new_message = _add_context(context, new_message)
+    ret = django_ugettext(new_message)
+
+    if ret == new_message:
+        return message
+    return ret
 
 
 def ungettext(singular, plural, number, context=None):
-    singular = strip_whitespace(singular)
-    plural = strip_whitespace(plural)
+    new_singular = strip_whitespace(singular)
+    new_plural = strip_whitespace(plural)
     if context:
-        singular = _add_context(context, singular)
-        plural = _add_context(context, plural)
-    return django_nugettext(singular, plural, number)
+        new_singular = _add_context(context, new_singular)
+        new_plural = _add_context(context, new_plural)
+    ret = django_nugettext(new_singular, new_plural, number)
+
+    # If the context isn't found, the string is returned as it was sent
+    if ret == new_singular:
+        return singular
+    elif ret == new_plural:
+        return plural
+    return ret
 
 
 def _add_context(context, message):
@@ -76,10 +87,10 @@ def activate(locale):
 
     jingo.env.install_gettext_translations(t)
 
+
 def deactivate_all():
     """ Override django's utils.translation.deactivate_all().  Django continues
     to cache a catalog even if you call their deactivate_all().
     """
     django_trans.deactivate_all()
     django_trans._translations = {}
-
