@@ -1,8 +1,8 @@
 {% if num_pages > 1 %}
   <ol class="pagination">
     {% if pager.has_previous() %}
-      <li rel="prev">
-        <a href="{{ pager.url|urlparams(page=pager.previous_page_number()) }}">
+      <li>
+        <a rel="prev" href="{{ pager.url|urlparams(page=pager.previous_page_number()) }}">
           {{ _('Prev') }}
         </a>
       </li>
@@ -21,8 +21,8 @@
       <li><a href="{{ pager.url|urlparams(page=num_pages) }}">{{ num_pages }}</a></li>
     {% endif %}
     {% if pager.has_next() %}
-      <li rel="next">
-        <a href="{{ pager.url|urlparams(page=pager.next_page_number()) }}">
+      <li>
+        <a rel="next" href="{{ pager.url|urlparams(page=pager.next_page_number()) }}">
           {{ _('Next') }}
         </a>
       </li>
