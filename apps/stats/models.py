@@ -86,3 +86,16 @@ class Contribution(caching.base.CachingMixin, models.Model):
         except (TypeError, KeyError):
             # post_data may be None or missing a key
             return None
+
+
+class GlobalStat(caching.base.CachingMixin, models.Model):
+    name = models.CharField(max_length=255)
+    count = models.IntegerField()
+    date = models.DateField()
+
+    objects = caching.base.CachingManager()
+
+    class Meta:
+        db_table = 'global_stats'
+        unique_together = ('name', 'date')
+        get_latest_by = 'date'
