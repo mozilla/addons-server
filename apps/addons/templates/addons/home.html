@@ -1,0 +1,20 @@
+{% extends "base_side_categories.html" %}
+
+{% block site_stats %}
+<ul class="stats">
+  {% set dl_text = ngettext('<strong>{0}</strong> <span>add-on downloaded</span>',
+                            '<strong>{0}</strong> <span>add-ons downloaded</span>',
+                            downloads.count) %}
+  {% set ping_text = ngettext('<strong>{0}</strong> <span>add-on in use</span>',
+                              '<strong>{0}</strong> <span>add-ons in use</span>',
+                              pings.count) %}
+  <li>
+    <a href="{{ url('statistics.dashboard') }}">
+      {{ dl_text|f(downloads.count|numberfmt)|safe }}</a>
+  </li>
+  <li>
+    <a href="{{ url('statistics.dashboard') }}">
+      {{ ping_text|f(pings.count|numberfmt)|safe }}</a>
+  </li>
+</ul>
+{% endblock %}

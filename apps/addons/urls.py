@@ -13,6 +13,9 @@ detail_patterns = patterns('',
 
 
 urlpatterns = patterns('',
+    # The homepage.
+    url('^$', views.home, name='home'),
+
     # URLs for a single add-on.
     ('^addon/(?P<addon_id>\d+)/', include(detail_patterns)),
 )

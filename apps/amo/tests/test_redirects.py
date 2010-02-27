@@ -4,7 +4,7 @@ from django import test
 
 class TestRedirects(test.TestCase):
 
-    fixtures = ['amo/test_redirects']
+    fixtures = ['amo/test_redirects', 'base/global-stats']
 
     def test_reviews(self):
         response = self.client.get('/reviews/display/4', follow=True)

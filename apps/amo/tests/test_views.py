@@ -14,20 +14,8 @@ def test_404_no_app():
     eq_(response.status_code, 404)
 
 
-def test_heading():
-    c = test.Client()
-    def title_eq(url, expected):
-        response = c.get(url, follow=True)
-        actual = PyQuery(response.content)('#title').text()
-        eq_(expected, actual)
-
-    title_eq('/firefox', 'Add-ons for Firefox')
-    title_eq('/thunderbird', 'Add-ons for Thunderbird')
-    title_eq('/mobile', 'Mobile Add-ons for Firefox')
-
-
 class TestStuff(test_utils.TestCase):
-    fixtures = ['base/addons']
+    fixtures = ['base/addons', 'base/global-stats']
 
     def test_data_anonymous(self):
         def check(expected):
@@ -50,3 +38,13 @@ class TestStuff(test_utils.TestCase):
         check(0)
         self.client.login(username='admin@mozilla.com', password='password')
         check(1)
+
+    def test_heading(self):
+        def title_eq(url, expected):
+            response = self.client.get(url, follow=True)
+            actual = PyQuery(response.content)('#title').text()
+            eq_(expected, actual)
+
+        title_eq('/firefox', 'Add-ons for Firefox')
+        title_eq('/thunderbird', 'Add-ons for Thunderbird')
+        title_eq('/mobile', 'Mobile Add-ons for Firefox')

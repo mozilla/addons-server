@@ -9,9 +9,6 @@ handler404 = 'amo.views.handler404'
 handler500 = 'amo.views.handler500'
 
 urlpatterns = patterns('',
-    url('^$', 'jingo.views.direct_to_template',
-        {'template': 'base.html'}, name='home'),
-
     # Add-ons.
     ('', include('addons.urls')),
 

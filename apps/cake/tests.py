@@ -9,7 +9,7 @@ from cake.backends import SessionBackend
 
 class CakeTestCase(TestCase):
 
-    fixtures = ['cake/sessions.json']
+    fixtures = ['cake/sessions.json', 'base/global-stats']
 
     def test_login(self):
         """
