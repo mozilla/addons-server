@@ -33,6 +33,9 @@ urlpatterns = patterns('',
     # Search
     ('^search/', include('search.urls')),
 
+    # Global stats dashboard.
+    url('^statistics/', lambda r: redirect('/'), name='statistics.dashboard'),
+
     # Javascript translations.
     ('^jsi18n/$', 'django.views.i18n.javascript_catalog',
      {'domain': 'javascript', 'packages': ['zamboni']}),
