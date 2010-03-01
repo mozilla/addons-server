@@ -127,7 +127,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'amo.context_processors.app',
     'amo.context_processors.i18n',
     'amo.context_processors.global_settings',
-    'search.context_processors.search_form',
 )
 
 ROOT_URLCONF = '%s.urls' % ROOT_PACKAGE

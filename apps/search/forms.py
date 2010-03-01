@@ -110,8 +110,9 @@ def SearchForm(request):
         advanced = forms.BooleanField(widget=forms.HiddenInput)
 
         # Attach these to the form for usage in the template.
-        app_versions = get_app_versions()
+        get_app_versions = staticmethod(get_app_versions)
         top_level_cat = dict(top_level)
+        queryset = AppVersion.objects.filter(id__in=amo.APP_IDS)
 
         # TODO(jbalogh): when we start using this form for zamboni search, it
         # should check that the appid and lver match up using app_versions.

@@ -1,3 +1,5 @@
+{% set search_form = SearchForm(request) %}
+{% cache search_form.queryset %}
 {% set show_advanced = search_form.advanced.data == 'on' %}
 <div class="search-form expanded-search-form {% if show_advanced %}expanded{% endif %}">
   <form method="get" id="search-form" action="{{ url('search.search') }}">
@@ -60,8 +62,9 @@
         </div>
       </fieldset>
       <span id="search-data"
-        data-appversions="{{ search_form.app_versions|json }}"></span>
+        data-appversions="{{ search_form.get_app_versions()|json }}"></span>
       {{ search_form.advanced|safe }}
     </div> {# advanced-search #}
   </form>
 </div>
+{% endcache %}
