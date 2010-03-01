@@ -11,8 +11,11 @@ from django.template import defaultfilters
 
 from babel import Locale
 from babel.support import Format
+import datetime
 import jinja2
 from jinja2.exceptions import FilterArgumentError
+import pytz
+import time
 
 from jingo import register, env
 from l10n import ugettext as _
@@ -225,10 +228,21 @@ def wround(value, precision=0, method='common'):
         return int(func(value))
 
 
+def _append_tz(t):
+    tz = pytz.timezone(settings.TIME_ZONE)
+    return tz.localize(t)
+
+
 @register.filter
 def isotime(t):
     """Date/Time format according to ISO 8601"""
-    return t.strftime("%Y-%m-%d %H:%M:%S")
+    return _append_tz(t).astimezone(pytz.utc).strftime("%Y-%m-%d %H:%M:%S%z")
+
+
+@register.filter
+def epoch(t):
+    """Date/Time converted to seconds since epoch"""
+    return int(time.mktime(_append_tz(t).timetuple()))
 
 
 @register.filter

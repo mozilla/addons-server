@@ -5,6 +5,7 @@ python-memcached==1.45
 Babel==0.9.4
 phpserialize
 south
+pytz
 
 -e git://github.com/jbalogh/django-multidb-router.git#egg=django-multidb-router
 -e git://github.com/jbalogh/django-cache-machine.git#egg=django-cache-machine
