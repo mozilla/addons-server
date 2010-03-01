@@ -32,7 +32,8 @@
     {{ _('Welcome, {0}')|f(user.get_profile().welcome_name) }}
   </span>
   {% else %}
-  {% trans reg="/users/register", login="/user/login" %}
+  {# TODO(jbalogh): reverse #}
+  {% trans reg="/users/register", login="/users/login" %}
     <a href="{{ reg }}">Register</a> or <a href="{{ login }}">Log in</a>
   {% endtrans %}
   {% endif %}
