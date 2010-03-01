@@ -117,7 +117,7 @@ def test_urlparams():
 
     # Adding query with existing params.
     s = render('{{ base_query|urlparams(frag, sort=sort) }}', c)
-    eq_(s, '%s?sort=name&x=y#frag' % url)
+    eq_(s, '%s?sort=name&amp;x=y#frag' % url)
 
     # Replacing a query param.
     s = render('{{ base_query|urlparams(frag, x="z") }}', c)
@@ -131,7 +131,7 @@ def test_urlparams():
 def test_isotime():
     time = datetime(2009, 12, 25, 10, 11, 12)
     s = render('{{ d|isotime }}', {'d': time})
-    eq_(s, '2009-12-25 10:11:12')
+    eq_(s, '2009-12-25 18:11:12+0000')
 
 
 def test_locale_url():

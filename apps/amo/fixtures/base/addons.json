@@ -15,8 +15,8 @@
             "locale": "en-US",
             "created": "2007-03-22 20:51:22",
             "localized_string": "Extensions are small add-ons that add new functionality to %1$s, from a simple toolbar button to a completely new feature. They allow you to customize %1$s to fit your own needs and preferences, while letting us keep %1$s itself light and lean.",
-            "modified": "2007-03-26 20:06:20",
-            "id": 39111
+            "id": 39111,
+            "modified": "2007-03-26 20:06:20"
         }
     },
     {
@@ -78,9 +78,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2007-03-05 16:06:55",
-            "localized_string": "Alerts & Updates",
+            "id": 37939,
             "modified": "2007-10-12 17:02:23",
-            "id": 37939
+            "localized_string": "Alerts & Updates"
         }
     },
     {
@@ -117,9 +117,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2007-03-05 13:10:42",
-            "localized_string": "Delicious Bookmarks",
+            "id": 15000,
             "modified": "2009-03-26 07:41:10",
-            "id": 15000
+            "localized_string": "Delicious Bookmarks"
         }
     },
     {
@@ -128,9 +128,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2007-03-05 13:10:42",
-            "localized_string": "Delicious blah blah blah",
+            "id": 15002,
             "modified": "2009-04-29 11:20:57",
-            "id": 15002
+            "localized_string": "Delicious blah blah blah"
         }
     },
     {
@@ -157,25 +157,25 @@
         "fields": {
             "sandboxshown": 1,
             "resetcode": "",
-            "location": "",
+            "averagerating": "3.11",
             "firstname": "Carl",
             "created": "2007-03-05 13:09:56",
             "deleted": 0,
             "display_collections_fav": 0,
+            "homepage": "http://www.yahoo.com/",
             "modified": "2007-07-21 11:45:47",
             "occupation": "",
-            "homepage": "http://www.yahoo.com/",
+            "emailhidden": 1,
             "display_collections": 0,
             "nickname": "carlsjr",
             "confirmationcode": "",
-            "notifycompat": 1,
-            "emailhidden": 1,
+            "location": "",
             "lastname": "Yahoo!, Jr.",
             "picture_type": "",
             "password": "sha512$61ba34cb04c185f51ca6b5c3132bfbf5b4d6b16c329ff076039c597c0d14912f$9b461aca85bcbc326c0555c3165ff526eabdce82a49c7408bbb71121d3d9d48499c952b96dc520cb4accbca0df0cd1d17756873d08e488a9a144aaf34cb78bf1",
             "notifyevents": 1,
             "email": "dd+0cb167b90cc5ed1b6d0e4566d2c2c3a6@davedash.com",
-            "averagerating": "3.11"
+            "notifycompat": 1
         }
     },
     {
@@ -357,9 +357,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2007-03-05 13:10:42",
-            "localized_string": "macos theme",
+            "id": 129780,
             "modified": "2009-03-26 07:41:10",
-            "id": 129780
+            "localized_string": "macos theme"
         }
     },
     {
@@ -617,9 +617,9 @@
         "model": "addons.addonuser",
         "fields": {
             "position": 0,
-            "user": 55021,
-            "role": 5,
             "listed": 1,
+            "role": 5,
+            "user": 55021,
             "addon": 3615
         }
     },
@@ -629,9 +629,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2007-03-05 13:10:30",
-            "localized_string": "If you have any problems, please read the FireBug FAQ.\r\n\r\nhttp://getfirebug.com/faq.html\r\n",
+            "id": 7998,
             "modified": null,
-            "id": 7998
+            "localized_string": "If you have any problems, please read the FireBug FAQ.\r\n\r\nhttp://getfirebug.com/faq.html\r\n"
         }
     },
     {
@@ -640,9 +640,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2007-03-05 13:10:30",
-            "localized_string": "Firebug integrates with Firefox to put a wealth of development tools at your fingertips while you browse. You can edit, debug, and monitor CSS, HTML, and JavaScript live in any web page...\r\n\r\nFirebug 1.4 requires Firefox 3.0 or higher.",
+            "id": 7999,
             "modified": "2009-07-27 18:55:31",
-            "id": 7999
+            "localized_string": "Firebug integrates with Firefox to put a wealth of development tools at your fingertips while you browse. You can edit, debug, and monitor CSS, HTML, and JavaScript live in any web page...\r\n\r\nFirebug 1.4 requires Firefox 3.0 or higher."
         }
     },
     {
@@ -651,9 +651,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2007-03-05 13:10:30",
-            "localized_string": "Firebug integrates with Firefox to put a wealth of development tools at your fingertips while you browse. You can edit, debug, and monitor CSS, HTML, and JavaScript live in any web page.\r\n\r\nVisit the Firebug website for documentation, screen shots, and discussion forums: http://getfirebug.com\r\n",
+            "id": 7997,
             "modified": "2009-02-05 08:24:24",
-            "id": 7997
+            "localized_string": "Firebug integrates with Firefox to put a wealth of development tools at your fingertips while you browse. You can edit, debug, and monitor CSS, HTML, and JavaScript live in any web page.\r\n\r\nVisit the Firebug website for documentation, screen shots, and discussion forums: http://getfirebug.com\r\n"
         }
     },
     {
@@ -662,9 +662,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2008-06-13 15:22:33",
-            "localized_string": "http://groups.google.com/group/firebug/topics",
+            "id": 153024,
             "modified": "2009-02-05 08:24:24",
-            "id": 153024
+            "localized_string": "http://groups.google.com/group/firebug/topics"
         }
     },
     {
@@ -673,9 +673,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2007-03-05 13:10:30",
-            "localized_string": "http://getfirebug.com/",
+            "id": 7996,
             "modified": "2009-02-05 08:24:24",
-            "id": 7996
+            "localized_string": "http://getfirebug.com/"
         }
     },
     {
@@ -684,9 +684,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2007-03-05 13:10:30",
-            "localized_string": "Firebug",
+            "id": 7995,
             "modified": "2009-02-05 08:24:24",
-            "id": 7995
+            "localized_string": "Firebug"
         }
     },
     {
@@ -695,9 +695,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2007-03-05 13:09:27",
-            "localized_string": "ALL",
+            "id": 1134,
             "modified": null,
-            "id": 1134
+            "localized_string": "ALL"
         }
     },
     {
@@ -706,9 +706,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2007-03-05 13:09:27",
-            "localized_string": "ALL",
+            "id": 1133,
             "modified": null,
-            "id": 1133
+            "localized_string": "ALL"
         }
     },
     {
@@ -717,9 +717,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2009-11-05 05:17:30",
-            "localized_string": "this is a minor release to fix a bug found in Firebug 1.4.4.",
+            "id": 668076,
             "modified": null,
-            "id": 668076
+            "localized_string": "this is a minor release to fix a bug found in Firebug 1.4.4."
         }
     },
     {
@@ -832,9 +832,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2007-03-05 13:08:05",
-            "localized_string": "Themes are like new clothes for your %1$s. A theme can change only a few colors, or every piece of %1$s's appearance. It's another great way to personalize %1$s to your tastes.",
+            "id": 149,
             "modified": "2007-03-25 17:17:19",
-            "id": 149
+            "localized_string": "Themes are like new clothes for your %1$s. A theme can change only a few colors, or every piece of %1$s's appearance. It's another great way to personalize %1$s to your tastes."
         }
     },
     {
@@ -843,9 +843,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2007-03-05 13:08:05",
-            "localized_string": "Themes",
+            "id": 143,
             "modified": "2007-03-25 17:17:19",
-            "id": 143
+            "localized_string": "Themes"
         }
     },
     {
@@ -854,9 +854,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2007-03-05 13:08:05",
-            "localized_string": "Theme",
+            "id": 2,
             "modified": "2007-03-25 17:17:19",
-            "id": 2
+            "localized_string": "Theme"
         }
     },
     {
@@ -865,9 +865,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2008-03-10 14:31:39",
-            "localized_string": "Designed to fit well in the Mac OS X environment.",
+            "id": 104239,
             "modified": "2008-08-08 17:22:35",
-            "id": 104239
+            "localized_string": "Designed to fit well in the Mac OS X environment."
         }
     },
     {
@@ -876,9 +876,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2008-03-10 14:31:39",
-            "localized_string": "The theme is equally available on: http://www.takebacktheweb.org/\r\nand there as well with some customizing hints. ",
+            "id": 104236,
             "modified": "2008-08-08 17:22:35",
-            "id": 104236
+            "localized_string": "The theme is equally available on: http://www.takebacktheweb.org/\r\nand there as well with some customizing hints. "
         }
     },
     {
@@ -887,9 +887,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2008-03-10 14:31:39",
-            "localized_string": "http://www.takebacktheweb.org/",
+            "id": 104237,
             "modified": "2008-08-08 17:22:35",
-            "id": 104237
+            "localized_string": "http://www.takebacktheweb.org/"
         }
     },
     {
@@ -898,9 +898,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2008-03-10 14:31:39",
-            "localized_string": "GrApple Yummy",
+            "id": 104238,
             "modified": "2009-06-24 14:56:43",
-            "id": 104238
+            "localized_string": "GrApple Yummy"
         }
     },
     {
@@ -909,9 +909,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2007-03-05 13:09:27",
-            "localized_string": "macosx",
+            "id": 1140,
             "modified": "2007-03-22 13:57:06",
-            "id": 1140
+            "localized_string": "macosx"
         }
     },
     {
@@ -920,9 +920,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2007-03-05 13:09:27",
-            "localized_string": "MacOSX",
+            "id": 1139,
             "modified": "2007-03-22 13:57:06",
-            "id": 1139
+            "localized_string": "MacOSX"
         }
     },
     {
@@ -1048,9 +1048,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2009-08-29 22:53:13",
-            "localized_string": "JSONView is a simple extension with a simple purpose and I'd like to keep it that way. That said, there are a few things I'd like to see added to it, chief among which is JSON-P support. You can follow the full list of proposed enhancements at http://code.google.com/p/jsonview/issues/list .",
+            "id": 539995,
             "modified": null,
-            "id": 539995
+            "localized_string": "JSONView is a simple extension with a simple purpose and I'd like to keep it that way. That said, there are a few things I'd like to see added to it, chief among which is JSON-P support. You can follow the full list of proposed enhancements at http://code.google.com/p/jsonview/issues/list ."
         }
     },
     {
@@ -1059,9 +1059,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2009-08-29 22:53:12",
-            "localized_string": "I developed JSONView because I like JSON better than XML, but developing RESTful web services with XML was easier to debug because you could just view the output in a browser, while JSON caused Firefox to just throw up a download dialog. So I set out to make JSON viewing in Firefox as nice as, or better, than the default XML view.",
+            "id": 539994,
             "modified": null,
-            "id": 539994
+            "localized_string": "I developed JSONView because I like JSON better than XML, but developing RESTful web services with XML was easier to debug because you could just view the output in a browser, while JSON caused Firefox to just throw up a download dialog. So I set out to make JSON viewing in Firefox as nice as, or better, than the default XML view."
         }
     },
     {
@@ -1070,9 +1070,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2009-02-23 23:51:23",
-            "localized_string": "Known bugs:\r\n* \"Save as...\" saves HTML instead of the original JSON document.\r\n* \"Page Info\" panel reports content as HTML instead of JSON.\r\n* Copying and pasting from the formatted JSON does not copy the original document.",
+            "id": 332049,
             "modified": "2009-03-15 18:10:38",
-            "id": 332049
+            "localized_string": "Known bugs:\r\n* \"Save as...\" saves HTML instead of the original JSON document.\r\n* \"Page Info\" panel reports content as HTML instead of JSON.\r\n* Copying and pasting from the formatted JSON does not copy the original document."
         }
     },
     {
@@ -1081,9 +1081,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2009-02-23 23:47:34",
-            "localized_string": "View JSON documents in the browser.",
+            "id": 332039,
             "modified": "2009-03-01 15:27:06",
-            "id": 332039
+            "localized_string": "View JSON documents in the browser."
         }
     },
     {
@@ -1092,9 +1092,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2009-02-23 23:51:23",
-            "localized_string": "Normally when encountering a JSON document (content type \"application/json\"), Firefox simply prompts you to download the file. With the JSONView extension, JSON documents are shown in the browser similar to how XML documents are shown. The document is formatted, highlighted, and arrays and objects can be collapsed.  Even if the JSON document contains errors, JSONView will still show the raw text.\r\nOnce you've got JSONView installed, check out http://brh.numbera.com/software/jsonview/example.json to see the extension in action!",
+            "id": 332048,
             "modified": "2009-03-27 21:19:44",
-            "id": 332048
+            "localized_string": "Normally when encountering a JSON document (content type \"application/json\"), Firefox simply prompts you to download the file. With the JSONView extension, JSON documents are shown in the browser similar to how XML documents are shown. The document is formatted, highlighted, and arrays and objects can be collapsed.  Even if the JSON document contains errors, JSONView will still show the raw text.\r\nOnce you've got JSONView installed, check out http://brh.numbera.com/software/jsonview/example.json to see the extension in action!"
         }
     },
     {
@@ -1103,9 +1103,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2009-02-24 00:49:25",
-            "localized_string": "http://code.google.com/p/jsonview/issues",
+            "id": 332078,
             "modified": "2009-03-01 15:27:06",
-            "id": 332078
+            "localized_string": "http://code.google.com/p/jsonview/issues"
         }
     },
     {
@@ -1114,9 +1114,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2009-02-23 23:47:33",
-            "localized_string": "http://brh.numbera.com/software/jsonview/",
+            "id": 332037,
             "modified": "2009-03-01 15:27:06",
-            "id": 332037
+            "localized_string": "http://brh.numbera.com/software/jsonview/"
         }
     },
     {
@@ -1125,9 +1125,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2009-02-23 23:47:34",
-            "localized_string": "JSONView",
+            "id": 332038,
             "modified": "2009-03-01 15:27:06",
-            "id": 332038
+            "localized_string": "JSONView"
         }
     },
     {
@@ -1136,9 +1136,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2009-10-07 23:26:00",
-            "localized_string": "* Preference dialog with an option to send \"application/json\" in the HTTP Accept header.\r\n* Fixed a bug where values that were 0 or false would not show up.\r\n* Fixed a bug where documents would sometimes show up as invalid when Firebug was enabled\r\n* Bumped compatibility for 3.7a1pre ",
+            "id": 577660,
             "modified": null,
-            "id": 577660
+            "localized_string": "* Preference dialog with an option to send \"application/json\" in the HTTP Accept header.\r\n* Fixed a bug where values that were 0 or false would not show up.\r\n* Fixed a bug where documents would sometimes show up as invalid when Firebug was enabled\r\n* Bumped compatibility for 3.7a1pre "
         }
     },
     {
@@ -1251,9 +1251,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2009-04-20 17:21:30",
-            "localized_string": "The new YSlow is here!",
+            "id": 366908,
             "modified": "2009-04-28 16:08:18",
-            "id": 366908
+            "localized_string": "The new YSlow is here!"
         }
     },
     {
@@ -1262,9 +1262,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2007-07-19 21:54:54",
-            "localized_string": "YSlow analyzes web pages and why they're slow based on Yahoo!'s rules for high performance web sites.\r\n\r\nYSlow uses Yahoo!'s Smush.it service, which is subject to Smush.it Terms of Use: http://info.yahoo.com/legal/us/yahoo/smush_it/smush_it-4378.html",
+            "id": 60896,
             "modified": "2009-04-28 16:08:17",
-            "id": 60896
+            "localized_string": "YSlow analyzes web pages and why they're slow based on Yahoo!'s rules for high performance web sites.\r\n\r\nYSlow uses Yahoo!'s Smush.it service, which is subject to Smush.it Terms of Use: http://info.yahoo.com/legal/us/yahoo/smush_it/smush_it-4378.html"
         }
     },
     {
@@ -1273,9 +1273,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2007-07-19 21:54:53",
-            "localized_string": "YSlow analyzes web pages and suggests ways to improve their performance based on a set of rules for high performance web pages. YSlow is a Firefox add-on integrated with the Firebug web development tool. YSlow grades web page based on one of three predefined ruleset or a user-defined ruleset. It offers suggestions for improving the page's performance, summarizes the page's components, displays statistics about the page, and provides tools for performance analysis, including Smush.it\u2122 and JSLint. \r\n\r\nYSlow is licensed under the Mozilla Public License (MPL) version 1.1, with portions licensed by third parties under other license terms.  To review the terms before installing, see http://developer.yahoo.com/yslow/faq.html#faq_license.\r\n\r\nYSlow uses Yahoo!'s Smush.it service, which is subject to Smush.it Terms of Use: http://info.yahoo.com/legal/us/yahoo/smush_it/smush_it-4378.html\r\n\r\nYou must install Firebug: https://addons.mozilla.org/en-US/firefox/addon/1843",
+            "id": 60892,
             "modified": "2009-04-28 16:08:18",
-            "id": 60892
+            "localized_string": "YSlow analyzes web pages and suggests ways to improve their performance based on a set of rules for high performance web pages. YSlow is a Firefox add-on integrated with the Firebug web development tool. YSlow grades web page based on one of three predefined ruleset or a user-defined ruleset. It offers suggestions for improving the page's performance, summarizes the page's components, displays statistics about the page, and provides tools for performance analysis, including Smush.it\u2122 and JSLint. \r\n\r\nYSlow is licensed under the Mozilla Public License (MPL) version 1.1, with portions licensed by third parties under other license terms.  To review the terms before installing, see http://developer.yahoo.com/yslow/faq.html#faq_license.\r\n\r\nYSlow uses Yahoo!'s Smush.it service, which is subject to Smush.it Terms of Use: http://info.yahoo.com/legal/us/yahoo/smush_it/smush_it-4378.html\r\n\r\nYou must install Firebug: https://addons.mozilla.org/en-US/firefox/addon/1843"
         }
     },
     {
@@ -1284,9 +1284,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2008-04-21 19:34:21",
-            "localized_string": "http://developer.yahoo.com/yslow",
+            "id": 124902,
             "modified": "2009-02-27 11:36:01",
-            "id": 124902
+            "localized_string": "http://developer.yahoo.com/yslow"
         }
     },
     {
@@ -1295,9 +1295,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2007-07-19 21:54:54",
-            "localized_string": "http://developer.yahoo.com/yslow/",
+            "id": 60894,
             "modified": "2009-02-27 11:36:49",
-            "id": 60894
+            "localized_string": "http://developer.yahoo.com/yslow/"
         }
     },
     {
@@ -1306,9 +1306,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2007-07-19 21:54:54",
-            "localized_string": "YSlow",
+            "id": 60895,
             "modified": "2009-02-27 11:36:49",
-            "id": 60895
+            "localized_string": "YSlow"
         }
     },
     {
@@ -1418,9 +1418,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2009-07-16 12:40:03",
-            "localized_string": "I'm thinking of adding more features that would be useful for the times when you actually do visit Twitter.com (like to read your friends' messages.)  Maybe better trending topics in the sidebar, adding a retweet button, or possibly integrated image upload.",
+            "id": 482382,
             "modified": null,
-            "id": 482382
+            "localized_string": "I'm thinking of adding more features that would be useful for the times when you actually do visit Twitter.com (like to read your friends' messages.)  Maybe better trending topics in the sidebar, adding a retweet button, or possibly integrated image upload."
         }
     },
     {
@@ -1429,9 +1429,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2009-07-16 12:40:02",
-            "localized_string": "I wanted a way to quickly and easily update Twitter without visiting the site, and TwitterBar had been abandoned by its original author, so I took over development and started fixing it up and adding features.",
+            "id": 482381,
             "modified": null,
-            "id": 482381
+            "localized_string": "I wanted a way to quickly and easily update Twitter without visiting the site, and TwitterBar had been abandoned by its original author, so I took over development and started fixing it up and adding features."
         }
     },
     {
@@ -1440,9 +1440,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2007-03-17 05:29:25",
-            "localized_string": "Post to Twitter from your address bar.",
+            "id": 38754,
             "modified": "2009-03-23 12:20:02",
-            "id": 38754
+            "localized_string": "Post to Twitter from your address bar."
         }
     },
     {
@@ -1451,9 +1451,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2007-03-17 05:29:25",
-            "localized_string": "TwitterBar allows you to post to Twitter from Firefox's address bar. A small Twitter icon sits to the right of your address bar; clicking on it will post your tweet, and you can hover your mouse over it to see how many characters you have left.\r\n\r\nYou can also post by typing \"--post\" at the end of your tweet.  Clicking the Twitter icon when visiting a webpage will send a tweet containing the URL of the webpage you are currently viewing.",
+            "id": 38750,
             "modified": "2009-03-23 12:20:02",
-            "id": 38750
+            "localized_string": "TwitterBar allows you to post to Twitter from Firefox's address bar. A small Twitter icon sits to the right of your address bar; clicking on it will post your tweet, and you can hover your mouse over it to see how many characters you have left.\r\n\r\nYou can also post by typing \"--post\" at the end of your tweet.  Clicking the Twitter icon when visiting a webpage will send a tweet containing the URL of the webpage you are currently viewing."
         }
     },
     {
@@ -1462,9 +1462,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2008-05-03 10:00:08",
-            "localized_string": "http://www.chrisfinke.com/addons/twitterbar/",
+            "id": 130757,
             "modified": "2009-03-23 12:20:02",
-            "id": 130757
+            "localized_string": "http://www.chrisfinke.com/addons/twitterbar/"
         }
     },
     {
@@ -1473,9 +1473,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2008-05-01 12:12:04",
-            "localized_string": "cfinke@gmail.com",
+            "id": 130099,
             "modified": "2009-03-23 12:20:02",
-            "id": 130099
+            "localized_string": "cfinke@gmail.com"
         }
     },
     {
@@ -1484,9 +1484,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2007-03-17 05:29:25",
-            "localized_string": "http://www.chrisfinke.com/addons/twitterbar/",
+            "id": 38752,
             "modified": "2009-03-23 12:20:02",
-            "id": 38752
+            "localized_string": "http://www.chrisfinke.com/addons/twitterbar/"
         }
     },
     {
@@ -1495,9 +1495,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2007-03-17 05:29:25",
-            "localized_string": "TwitterBar",
+            "id": 38753,
             "modified": "2009-03-23 12:20:02",
-            "id": 38753
+            "localized_string": "TwitterBar"
         }
     },
     {
@@ -1506,9 +1506,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2009-11-18 06:33:38",
-            "localized_string": "* Updated for Firefox 3.6 compatibility\r\n* Updated for Fennec compatibility\r\n* Fixed bug that would prevent last tweet before authorization from being sent out\r\n* Updated translations",
+            "id": 688177,
             "modified": null,
-            "id": 688177
+            "localized_string": "* Updated for Firefox 3.6 compatibility\r\n* Updated for Fennec compatibility\r\n* Fixed bug that would prevent last tweet before authorization from being sent out\r\n* Updated translations"
         }
     },
     {
@@ -1522,12 +1522,22 @@
     },
     {
         "pk": 4664,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "id": "4664",
+            "localized_string": "Embrace hug love hug meow meow"
+        }
+    },
+    {
+        "pk": 4664,
         "model": "addons.addon",
         "fields": {
             "dev_agreement": 1,
             "last_updated": "2009-03-23 12:20:04",
             "view_source": 1,
             "total_downloads": 867952,
+            "developer_comments": 4664,
             "inactive": 0,
             "average_daily_downloads": 994,
             "show_beta": 1,
@@ -1644,9 +1654,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2007-03-05 13:10:18",
-            "localized_string": "Allows the user to use external programs for: view page source, edit content of textareas handle mailto, news, telnet and FTP links and download...",
+            "id": 1299,
             "modified": null,
-            "id": 1299
+            "localized_string": "Allows the user to use external programs for: view page source, edit content of textareas handle mailto, news, telnet and FTP links and download..."
         }
     },
     {
@@ -1655,9 +1665,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2007-03-05 13:10:18",
-            "localized_string": "Allows the user to use external programs for: view page source, edit content of textareas handle mailto, news, telnet and FTP links and download files.",
+            "id": 1297,
             "modified": null,
-            "id": 1297
+            "localized_string": "Allows the user to use external programs for: view page source, edit content of textareas handle mailto, news, telnet and FTP links and download files."
         }
     },
     {
@@ -1666,9 +1676,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2007-03-05 13:10:18",
-            "localized_string": "http://mozex.mozdev.org/",
+            "id": 1296,
             "modified": null,
-            "id": 1296
+            "localized_string": "http://mozex.mozdev.org/"
         }
     },
     {
@@ -1677,9 +1687,9 @@
         "fields": {
             "locale": "en-US",
             "created": "2007-03-05 13:10:18",
-            "localized_string": "MozEX",
+            "id": 1295,
             "modified": null,
-            "id": 1295
+            "localized_string": "MozEX"
         }
     },
     {
@@ -1822,8 +1832,176 @@
             "position": 0,
             "addon": 4664,
             "role": 5,
-            "listed": 1,
-            "user": 2519
+            "user": 2519,
+            "listed": 1
+        }
+    },
+    {
+        "pk": 65230,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": null,
+            "created": "2007-03-17 05:29:25",
+            "locale": "en-US",
+            "modified": "2009-03-23 12:20:02",
+            "id": 38751,
+            "localized_string": ""
+        }
+    },
+    {
+        "pk": 167014,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": null,
+            "created": "2008-05-03 10:03:27",
+            "locale": "en-US",
+            "modified": null,
+            "id": 130761,
+            "localized_string": "TwitterBar places an icon in the address bar."
+        }
+    },
+    {
+        "pk": 20397,
+        "model": "addons.preview",
+        "fields": {
+            "caption": 130761,
+            "filetype": "image/png",
+            "created": "2008-05-03 10:03:27",
+            "modified": "2008-05-03 10:03:28",
+            "thumbtype": "image/png",
+            "highlight": 1,
+            "addon": 4664
+        }
+    },
+    {
+        "pk": 378388,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "http://groups.google.com/group/better-gmail-2-firefox-extension",
+            "created": "2009-03-09 19:16:20",
+            "locale": "en-US",
+            "modified": null,
+            "id": 340672,
+            "localized_string_clean": null
+        }
+    },
+    {
+        "pk": 378387,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "better-gmail-2-firefox-extension@googlegroups.com",
+            "created": "2009-03-09 19:16:20",
+            "locale": "en-US",
+            "modified": null,
+            "id": 340671,
+            "localized_string_clean": null
+        }
+    },
+    {
+        "pk": 90915,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "http://www.ginatrapani.org/workshop/firefox/bettergcal/",
+            "created": "2007-07-08 13:49:43",
+            "locale": "en-US",
+            "modified": "2009-03-09 19:16:20",
+            "id": 58813,
+            "localized_string_clean": null
+        }
+    },
+    {
+        "pk": 90916,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "Better GCal",
+            "created": "2007-07-08 13:49:43",
+            "locale": "en-US",
+            "modified": "2009-03-09 19:16:20",
+            "id": 58814,
+            "localized_string_clean": null
+        }
+    },
+    {
+        "pk": 5299,
+        "model": "addons.addon",
+        "fields": {
+            "dev_agreement": 1,
+            "eula": null,
+            "last_updated": "2008-07-07 12:08:01",
+            "view_source": 0,
+            "total_downloads": 198571,
+            "developer_comments": null,
+            "inactive": 0,
+            "average_daily_downloads": 217,
+            "show_beta": 1,
+            "guid": "bettergcal@ginatrapani.org",
+            "trusted": 0,
+            "locale_disambiguation": null,
+            "binary": 0,
+            "the_future": null,
+            "weekly_downloads": 551,
+            "support_url": 340672,
+            "paypal_id": "",
+            "average_rating": "3.53",
+            "wants_contributions": 0,
+            "average_daily_users": 20083,
+            "bayesian_rating": 3.7239300000000002,
+            "share_count": 5,
+            "get_satisfaction_company": null,
+            "homepage": 58813,
+            "support_email": 340671,
+            "public_stats": 0,
+            "status": 4,
+            "privacy_policy": null,
+            "description": 58812,
+            "default_locale": "en-US",
+            "target_locale": null,
+            "prerelease": 0,
+            "admin_review": 0,
+            "external_software": 0,
+            "highest_status": 4,
+            "get_satisfaction_product": null,
+            "name": 58814,
+            "created": "2007-07-08 13:48:03",
+            "type": 1,
+            "icon_type": "image/png",
+            "annoying": 0,
+            "modified": "2010-02-09 19:51:24",
+            "summary": 58815,
+            "suggested_amount": null,
+            "site_specific": 1,
+            "total_reviews": 34,
+            "the_reason": null,
+            "nomination_date": "2009-03-09 19:16:22"
+        }
+    },
+    {
+        "pk": 78841,
+        "model": "versions.version",
+        "fields": {
+            "license": 13,
+            "created": "2009-09-18 12:33:23",
+            "releasenotes": 560592,
+            "modified": "2010-02-09 19:50:17",
+            "approvalnotes": "Thanks for your time!",
+            "version": "0.4",
+            "addon": 5299
+        }
+    },
+    {
+        "pk": 64874,
+        "model": "files.file",
+        "fields": {
+            "status": 7,
+            "codereview": 0,
+            "hash": "sha256:4395f9cf4934ecc8f22d367c2a301fd79613b68937c59e676e92e4f0a89a5b92",
+            "created": "2009-09-18 12:33:25",
+            "modified": "2010-02-09 19:50:16",
+            "filename": "better_gcal-0.4-fx.xpi",
+            "platform": 1,
+            "version": 78841,
+            "size": 24,
+            "datestatuschanged": "2009-09-18 12:32:59"
         }
     }
 ]

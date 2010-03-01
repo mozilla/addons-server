@@ -61,7 +61,7 @@ def urlparams(url_, hash=None, **query):
     query_string = urllib.urlencode(query_dict.items())
     new = urlparse.ParseResult(url.scheme, url.netloc, url.path, url.params,
                                query_string, fragment)
-    return jinja2.Markup(new.geturl())
+    return new.geturl()
 
 
 @register.filter
@@ -192,8 +192,6 @@ def breadcrumbs(context, items=list(), add_default=True):
     return jinja2.Markup(t)
 
 
-# XXX: Jinja2's round is broken:
-# http://dev.pocoo.org/projects/jinja/ticket/367
 @register.filter
 def wround(value, precision=0, method='common'):
     """Round the number to a given precision. The first

@@ -135,7 +135,7 @@ class SearchTest(SphinxTestCase):
         """
         eq_(query("", limit=1, sort='newest')[0].id, 10869)
         eq_(query("", limit=1, sort='updated')[0].id, 4664)
-        eq_(query("", limit=1, sort='name')[0].id, 3615)
+        eq_(query("", limit=1, sort='name')[0].id, 5299)
         eq_(query("", limit=1, sort='averagerating')[0].id, 7172)
         eq_(query("", limit=1, sort='weeklydownloads')[0].id, 55)
 

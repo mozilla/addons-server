@@ -94,7 +94,7 @@ class APITest(TestCase):
                 """<guid>{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}</guid>""")
         self.assertContains(response, "<version>1.0.43</version>")
         self.assertContains(response, """<status id="4">Public</status>""")
-        self.assertContains(response, "<author>carlsjr</author>")
+        self.assertContains(response, '<author>carlsjr</author>')
         self.assertContains(response, "<summary>Best Addon Evar</summary>")
         self.assertContains(response,
                 "<description>Delicious blah blah blah</description>")
@@ -116,6 +116,15 @@ class APITest(TestCase):
                 """hash="sha256:5b5aaf7b38e332cc95d92ba759c01"""
                 "c3076b53a840f6c16e01dc272eefcb29566")
 
+    def test_double_site_url(self):
+        """
+        For some reason I noticed hostnames getting doubled up.  This checks
+        that it doesn't happen.
+        """
+
+        request = make_call('addon/4664', version=1.5)
+        self.assertNotContains(request, settings.SITE_URL + settings.SITE_URL)
+
     def test_15_addon_detail(self):
         """
         For an api>1.5 we need to verify we have:
@@ -128,10 +137,11 @@ class APITest(TestCase):
         # File size
         """
         needles = (
+                '<addon id="4664">',
                 "<contribution_data>",
                 "%s/en-US/firefox/addons/contribute/4664?src=api</link>"
                 % settings.SITE_URL,
-                "<suggested_amount>0.99</suggested_amount>",
+                '<suggested_amount currency="USD">0.99</suggested_amount>',
                 "<meet_developers>",
                 "%s/en-US/firefox/addon/4664/developers?src=api"
                 % settings.SITE_URL,
@@ -142,14 +152,49 @@ class APITest(TestCase):
                 "<total_downloads>867952</total_downloads>",
                 "<weekly_downloads>23646</weekly_downloads>",
                 "<daily_users>44693</daily_users>",
-                "<created>2007-03-17 05:23:55</created>",
+                '<created epoch="1174134235">2007-03-17 12:23:55+0000'
+                '</created>',
+                '<last_updated epoch="1237836004">'
+                "2009-03-23 19:20:04+0000</last_updated>",
+                '<author id="2519"',
                 "%s/en-US/firefox/user/2519/?src=api</link>"
                 % settings.SITE_URL,
-                'size="90"',
-                'units="kb"',
+                "<previews>",
+                """<preview primary="1">""",
+                "<caption>"
+                "TwitterBar places an icon in the address bar.</caption>",
+                """<full type="image/png">""",
+                "%s/img/uploads/previews/full/20/20397.png"
+                "?src=api&amp;modified=1209834208"
+                % settings.SITE_URL,
+                """<thumbnail type="image/png">""",
+                "%s/img/uploads/previews/thumbs/20/20397.png?"
+                "src=api&amp;modified=1209834208"
+                % settings.SITE_URL,
+                "<developer_comments>Embrace hug love hug meow meow"
+                "</developer_comments>",
+                'size="92160"',
                 )
 
         response = make_call('addon/4664', version=1.5)
+
+        for needle in needles:
+            self.assertContains(response, needle)
+
+    def test_beta_channel(self):
+        """
+        This tests that addons with files in beta will have those files
+        displayed.
+        """
+        response = make_call('addon/5299', version=1.5)
+
+        needles = (
+            """<install hash="sha256:4395f9cf4934ecc8f22d367c2a301fd7""",
+            """9613b68937c59e676e92e4f0a89a5b92" """,
+            'size="24576"',
+            'status="Beta">',
+            "/downloads/file/64874/better_gcal-0.4-fx.xpi?src=api",
+        )
 
         for needle in needles:
             self.assertContains(response, needle)
@@ -178,7 +223,7 @@ class ListTest(TestCase):
         i.e. We should get 3 items by default.
         """
         request = make_call('list')
-        self.assertContains(request, '<addon>', 3)
+        self.assertContains(request, '<addon id', 3)
 
     def test_randomness(self):
         """
@@ -213,7 +258,7 @@ class ListTest(TestCase):
         Assert /list/recommended/all/1 gets one item only.
         """
         request = make_call('list/recommended/all/1')
-        self.assertContains(request, "<addon>", 1)
+        self.assertContains(request, "<addon id", 1)
 
     def test_version_filter(self):
         """
@@ -223,7 +268,7 @@ class ListTest(TestCase):
         /list/new/all/1/mac/4.0 gives us nothing
         """
         request = make_call('list/new/all/1/all/4.0')
-        self.assertNotContains(request, "<addon>")
+        self.assertNotContains(request, "<addon id")
 
     def test_backfill(self):
         """
@@ -232,10 +277,10 @@ class ListTest(TestCase):
         the general population of featured addons.
         """
         request = make_call('list', lang='fr')
-        self.assertContains(request, "<addon>", 3)
+        self.assertContains(request, "<addon id", 3)
 
         request = make_call('list', lang='he')
-        self.assertContains(request, "<addon>", 3)
+        self.assertContains(request, "<addon id", 3)
 
     def test_browser_featured_list(self):
         """
@@ -303,7 +348,7 @@ class SearchTest(SphinxTestCase):
         """
         response = self.client.get(
                 "/en-US/firefox/api/1.2/search/firebug/all/1")
-        eq_(response.content.count("<addon>"), 1)
+        eq_(response.content.count("<addon id"), 1)
 
     def test_total_results(self):
         """
@@ -334,5 +379,3 @@ class SearchTest(SphinxTestCase):
         # API = 1.5
         response = make_call('search/mozex', version=1.5)
         self.assertContains(response, """<status id="1">""")
-
-# /class SearchTest

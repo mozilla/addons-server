@@ -165,7 +165,6 @@ class TestAddonModels(test.TestCase):
         a.status = amo.STATUS_LISTED
         assert a.is_listed, 'listed add-on => is_listed()'
 
-
     def test_is_featured(self):
         """Test if an add-on is globally featured"""
         a = Addon.objects.get(pk=1003)
