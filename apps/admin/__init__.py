@@ -1,5 +1,4 @@
 from django.contrib.admin import options, actions, sites
-from django import http
 from django.template import loader
 
 import jingo
@@ -15,13 +14,8 @@ def django_to_jinja(template_name, context, **kw):
     """
     context_instance = kw.pop('context_instance')
     source = loader.render_to_string(template_name, context, context_instance)
-    context = {}
-    if context_instance:
-        # Add in reverse so the first dict can override later dicts.
-        for d in reversed(context_instance.dicts):
-            context.update(d)
-    rendered = jingo.env.from_string(source).render(context)
-    return http.HttpResponse(rendered)
+    request = context_instance['request']
+    return jingo.render(request, jingo.env.from_string(source))
 
 actions.render_to_response = django_to_jinja
 options.render_to_response = django_to_jinja
