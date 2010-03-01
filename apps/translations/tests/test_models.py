@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from django import test
 from django.utils import translation
 
 import jinja2
@@ -6,13 +7,47 @@ from nose.tools import eq_
 from test_utils import ExtraAppTestCase, trans_eq
 
 from testapp.models import TranslatedModel, UntranslatedModel, FancyModel
-from translations.models import Translation, PurifiedTranslation
+from translations.models import (Translation, PurifiedTranslation,
+                                 TranslationSequence)
 from translations import widgets
 from translations.query import order_by_translation
 
 
 def ids(qs):
     return [o.id for o in qs]
+
+
+class TranslationSequenceTestCase(test.TestCase):
+    """
+    Make sure automatic translation sequence generation works
+    as expected.
+    """
+
+    def test_empty_translations_seq(self):
+        """Make sure we can handle an empty translation sequence table."""
+        TranslationSequence.objects.all().delete()
+        newtrans = Translation.new('abc', 'en-us')
+        newtrans.save()
+        assert newtrans.id > 0, (
+            'Empty translation table should still generate an ID.')
+
+    def test_single_translation_sequence(self):
+        """Make sure we only ever have one translation sequence."""
+        TranslationSequence.objects.all().delete()
+        eq_(TranslationSequence.objects.count(), 0)
+        for i in range(5):
+            newtrans = Translation.new(str(i), 'en-us')
+            newtrans.save()
+            eq_(TranslationSequence.objects.count(), 1)
+
+    def test_translation_sequence_increases(self):
+        """Make sure translation sequence increases monotonically."""
+        newtrans1 = Translation.new('abc', 'en-us')
+        newtrans1.save()
+        newtrans2 = Translation.new('def', 'de')
+        newtrans2.save()
+        assert newtrans2.pk > newtrans1.pk, (
+            'Translation sequence needs to keep increasing.')
 
 
 class TranslationTestCase(ExtraAppTestCase):

@@ -65,6 +65,13 @@ class Translation(caching.base.CachingMixin, models.Model):
             cursor = connection.cursor()
             cursor.execute("""UPDATE translations_seq
                               SET id=LAST_INSERT_ID(id + 1)""")
+
+            # The sequence table should never be empty. But alas, if it is,
+            # let's fix it.
+            if not cursor.rowcount > 0:
+                cursor.execute("""INSERT INTO translations_seq (id)
+                                  VALUES(LAST_INSERT_ID(id + 1))""")
+
             cursor.execute('SELECT LAST_INSERT_ID() FROM translations_seq')
             id = cursor.fetchone()[0]
 
