@@ -6,6 +6,7 @@ import caching.base
 import amo.models
 from addons.models import Addon
 from applications.models import Application, AppVersion
+from l10n import ugettext as _
 from translations.fields import TranslatedField, PurifiedField
 from users.models import UserProfile
 
@@ -48,10 +49,58 @@ class Version(amo.models.ModelBase):
 
 
 class License(amo.models.ModelBase):
-    text = TranslatedField()
+    """
+    Custom as well as built-in licenses.
+    A name of -1 indicates a custom license, all names >= 0 are built-in.
+    Built-in licenses are defined in amo.__init__
+    """
+
+    _name_field = models.IntegerField(null=False,
+                                      default=amo.LICENSE_CUSTOM.id,
+                                      db_column='name')
+    _custom_text = TranslatedField(db_column='text')
 
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'licenses'
+
+    def __unicode__(self):
+        return self.name
+
+    @property
+    def license(self):
+        return amo.LICENSE_IDS.get(self._name_field, amo.LICENSE_CUSTOM)
+
+    @license.setter
+    def license(self, license):
+        assert license in amo.LICENSES
+        self._name_field = license.id
+
+    @property
+    def is_custom(self):
+        """is this a custom, not built-in, license?"""
+        return self.license.id == amo.LICENSE_CUSTOM.id
+
+    @property
+    def name(self):
+        return self.license.name
+
+    @property
+    def text(self):
+        if self.is_custom:
+            return self._custom_text
+        else:
+            # TODO return actual built-in license text
+            return 'Built-in license: %s' % self.name
+
+    @text.setter
+    def text(self, value):
+        if value:
+            self.license = amo.LICENSE_CUSTOM
+        self._custom_text = value
+
+    @property
+    def url(self):
+        return self.license.url
 
 
 class VersionComment(amo.models.ModelBase):

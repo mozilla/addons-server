@@ -15,7 +15,7 @@
         "model": "versions.license",
         "fields": {
             "id": 1,
-            "text": null,
+            "_custom_text": null,
             "modified": "2004-06-11 18:23:31",
             "created": "2004-06-11 18:23:31"
         }

@@ -929,7 +929,7 @@
         "pk": 5,
         "model": "versions.license",
         "fields": {
-            "text": null,
+            "_custom_text": null,
             "modified": "2009-04-30 22:29:53",
             "created": "2009-04-30 22:29:53"
         }
@@ -1145,7 +1145,7 @@
         "pk": 22,
         "model": "versions.license",
         "fields": {
-            "text": null,
+            "_custom_text": null,
             "modified": "2009-05-01 17:29:25",
             "created": "2009-05-01 17:29:25"
         }
@@ -1515,7 +1515,7 @@
         "pk": 13,
         "model": "versions.license",
         "fields": {
-            "text": null,
+            "_custom_text": null,
             "modified": "2009-05-01 05:00:44",
             "created": "2009-05-01 05:00:44"
         }

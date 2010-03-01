@@ -225,3 +225,61 @@ PLATFORMS = {
     PLATFORM_WIN: _('Windows'),
     PLATFORM_SUN: _('Solaris'),
 }
+
+# Built-in Licenses
+# TODO: actual license texts for all but custom license
+class LICENSE_CUSTOM:
+    """
+    Not an actual license, but used as a placeholder for author-defined
+    licenses
+    """
+    id = -1
+    name = _('Custom License')
+    url = None
+    text = None
+
+class LICENSE_MPL:
+    id = 0
+    name = _('Mozilla Public License, version 1.1')
+    url = 'http://www.mozilla.org/MPL/MPL-1.1.html'
+    text = 'MPL License Text'
+
+class LICENSE_GPL2:
+    id = 1
+    name = _('GNU General Public License, version 2.0')
+    url = 'http://www.gnu.org/licenses/gpl-2.0.html'
+    text = 'GPL2 license text'
+
+class LICENSE_GPL3:
+    id = 2
+    name = _('GNU General Public License, version 3.0')
+    url = 'http://www.gnu.org/licenses/gpl-3.0.html'
+    text = 'GPL3 license text'
+
+class LICENSE_LGPL21:
+    id = 3
+    name = 'GNU Lesser General Public License, version 2.1'
+    url = 'http://www.gnu.org/licenses/lgpl-2.1.html'
+    text = 'LGPL21 license text'
+
+class LICENSE_LGPL3:
+    id = 4
+    name = _('GNU Lesser General Public License, version 3.0')
+    url = 'http://www.gnu.org/licenses/lgpl-3.0.html'
+    text = 'LGPL3 license text'
+
+class LICENSE_MIT:
+    id = 5
+    name = _('MIT/X11 License')
+    url = 'http://www.opensource.org/licenses/mit-license.php'
+    text = 'MIT license text'
+
+class LICENSE_BSD:
+    id = 6
+    name = _('BSD License')
+    url = 'http://www.opensource.org/licenses/bsd-license.php'
+    text = 'BSD license text'
+
+LICENSES = (LICENSE_CUSTOM, LICENSE_MPL, LICENSE_GPL2, LICENSE_GPL3,
+            LICENSE_LGPL21, LICENSE_LGPL3, LICENSE_MIT, LICENSE_BSD)
+LICENSE_IDS = dict((license.id, license) for license in LICENSES)

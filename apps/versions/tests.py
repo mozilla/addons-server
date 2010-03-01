@@ -3,7 +3,7 @@ from django import test
 from nose.tools import eq_
 
 import amo
-from versions.models import Version
+from versions.models import License, Version
 
 
 class TestVersion(test.TestCase):
@@ -46,3 +46,38 @@ class TestVersion(test.TestCase):
         eq_(v.minor1, None)
         eq_(v.minor2, None)
         eq_(v.minor3, None)
+
+
+class TestLicense(test.TestCase):
+    """Test built-in as well as custom licenses."""
+
+    def test_defaults(self):
+        lic = License()
+        lic.save()
+        assert lic.is_custom, 'Custom license not recognized.'
+        assert lic.license is amo.LICENSE_CUSTOM # default
+        assert not lic.license.text
+
+        lic.license = amo.LICENSE_MPL
+        assert not lic.is_custom, 'Built-in license not recognized.'
+        assert lic.license.text
+        eq_(lic.url, amo.LICENSE_MPL.url)
+
+    def test_license(self):
+        """Test getters and setters for license."""
+        mylicense = amo.LICENSE_MPL
+
+        lic = License()
+        lic.license = mylicense
+        lic.save()
+        eq_(lic.license, mylicense)
+
+    def test_custom_text(self):
+        """Test getters and setters for custom text."""
+        mytext = 'OMG'
+
+        lic = License()
+        lic.text = mytext
+        lic.save()
+        lic2 = License.objects.get(pk=lic.pk)
+        eq_(unicode(lic2.text), mytext)
