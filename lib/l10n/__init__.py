@@ -53,21 +53,34 @@ def strip_whitespace(message):
 
 
 def activate(locale):
-    """ Override django's utils.translation.activate().  Django forces files
+    """
+    Override django's utils.translation.activate().  Django forces files
     to be named django.mo (http://code.djangoproject.com/ticket/6376).  Since
     that's dumb and we want to be able to load different files depending on
     what part of the site the user is in, we'll make our own function here.
     """
+
+    class Translation(object):
+        """
+        We pass this object to jinja so it can find our gettext implementation.
+        If we pass the GNUTranslation object directly, it won't have our
+        context and whitespace stripping action.
+        """
+        ugettext = staticmethod(ugettext)
+        ungettext = staticmethod(ungettext)
+
+    import jingo
+    jingo.env.install_gettext_translations(Translation)
+
     # XXX TODO: When it comes time to load .mo files on the fly and merge
     # them, this is the place to do it.  We'll also need to implement our own
     # caching since the _translations stuff is built on a per locale basis,
     # not per locale + some key
-    import jingo
 
     # Django caches the translation objects here
     t = django_trans._translations.get(locale, None)
     if t is not None:
-        return t
+        return
 
     # Django's activate() simply calls translation() and adds it to a global.
     # We'll do the same here, first calling django's translation() so it can
@@ -91,8 +104,6 @@ def activate(locale):
         pass
 
     django_trans._active[currentThread()] = t
-
-    jingo.env.install_gettext_translations(t)
 
 
 def deactivate_all():
