@@ -89,7 +89,6 @@ class TestAddonManager(test_utils.TestCase):
         for addon in exp:
             assert addon.status in amo.EXPERIMENTAL_STATUSES, (
                     "experimental() must return experimental addons.")
-# /class TestAddonManager
 
 
 class TestAddonModels(test.TestCase):
@@ -102,6 +101,10 @@ class TestAddonModels(test.TestCase):
         """
         a = Addon.objects.get(pk=3615)
         eq_(a.current_version.id, 24007)
+
+    def test_current_beta_version(self):
+        a = Addon.objects.get(pk=5299)
+        eq_(a.current_beta_version.id, 78841)
 
     def test_current_version_experimental(self):
         a = Addon.objects.get(pk=55)

@@ -224,7 +224,7 @@ class Addon(amo.models.ModelBase):
 
     @amo.cached_property
     def current_version(self):
-        """Retrieves the latest listed version of an addon."""
+        """Retrieves the latest version of an addon."""
         try:
             if self.status == amo.STATUS_PUBLIC:
                 status = [self.status]
@@ -233,6 +233,14 @@ class Addon(amo.models.ModelBase):
             return self.versions.filter(files__status__in=status)[0]
         except IndexError:
             return None
+
+    @amo.cached_property
+    def current_beta_version(self):
+        """Retrieves the latest version of an addon, in the beta channel."""
+        versions = self.versions.filter(files__status=amo.STATUS_BETA)
+
+        if len(versions):
+            return versions[0]
 
     @property
     def icon_url(self):
