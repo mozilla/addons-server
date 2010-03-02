@@ -47,6 +47,13 @@ class TestVersion(test.TestCase):
         eq_(v.minor2, None)
         eq_(v.minor3, None)
 
+    def test_has_files(self):
+        v = Version.objects.get(pk=24007)
+        assert v.has_files, 'Version with files not recognized.'
+
+        v = Version.objects.get(pk=2)
+        assert not v.has_files, 'Version without files not recognized.'
+
 
 class TestLicense(test.TestCase):
     """Test built-in as well as custom licenses."""

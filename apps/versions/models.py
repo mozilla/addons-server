@@ -46,6 +46,10 @@ class Version(amo.models.ModelBase):
         """Get a list of supported platform names."""
         return list(set(f.platform.name for f in self.files.all()))
 
+    @amo.cached_property
+    def has_files(self):
+        return bool(self.files.count())
+
 
 class License(amo.models.ModelBase):
     """
