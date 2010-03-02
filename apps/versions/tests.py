@@ -55,12 +55,12 @@ class TestLicense(test.TestCase):
         lic = License()
         lic.save()
         assert lic.is_custom, 'Custom license not recognized.'
-        assert lic.license is amo.LICENSE_CUSTOM # default
-        assert not lic.license.text
+        assert lic.license_type is amo.LICENSE_CUSTOM # default
+        assert not lic.text
 
-        lic.license = amo.LICENSE_MPL
+        lic.license_type = amo.LICENSE_MPL
         assert not lic.is_custom, 'Built-in license not recognized.'
-        assert lic.license.text
+        assert lic.text
         eq_(lic.url, amo.LICENSE_MPL.url)
 
     def test_license(self):
@@ -68,9 +68,9 @@ class TestLicense(test.TestCase):
         mylicense = amo.LICENSE_MPL
 
         lic = License()
-        lic.license = mylicense
+        lic.license_type = mylicense
         lic.save()
-        eq_(lic.license, mylicense)
+        eq_(lic.license_type, mylicense)
 
     def test_custom_text(self):
         """Test getters and setters for custom text."""
@@ -81,3 +81,13 @@ class TestLicense(test.TestCase):
         lic.save()
         lic2 = License.objects.get(pk=lic.pk)
         eq_(unicode(lic2.text), mytext)
+
+    def test_builtin_text(self):
+        """Get license text for all built-in licenses."""
+        lic = License()
+        for licensetype in amo.LICENSES:
+            lic.license_type = licensetype
+            if licensetype == amo.LICENSE_CUSTOM:
+                assert not lic.text
+            else:
+                assert lic.text

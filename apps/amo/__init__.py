@@ -1,6 +1,8 @@
 """
 Miscellaneous helpers that make Django compatible with AMO.
 """
+from lib.licenses import license_text
+
 from l10n import ugettext as _
 
 
@@ -227,8 +229,15 @@ PLATFORMS = {
 }
 
 # Built-in Licenses
-# TODO: actual license texts for all but custom license
-class LICENSE_CUSTOM:
+class _LicenseBase(object):
+    """Base class for built-in licenses."""
+    shortname = None
+
+    @classmethod
+    def text(cls):
+        return cls.shortname and license_text(cls.shortname) or None
+
+class LICENSE_CUSTOM(_LicenseBase):
     """
     Not an actual license, but used as a placeholder for author-defined
     licenses
@@ -236,49 +245,49 @@ class LICENSE_CUSTOM:
     id = -1
     name = _('Custom License')
     url = None
-    text = None
+    shortname = None
 
-class LICENSE_MPL:
+class LICENSE_MPL(_LicenseBase):
     id = 0
     name = _('Mozilla Public License, version 1.1')
     url = 'http://www.mozilla.org/MPL/MPL-1.1.html'
-    text = 'MPL License Text'
+    shortname = 'mpl'
 
-class LICENSE_GPL2:
+class LICENSE_GPL2(_LicenseBase):
     id = 1
     name = _('GNU General Public License, version 2.0')
     url = 'http://www.gnu.org/licenses/gpl-2.0.html'
-    text = 'GPL2 license text'
+    shortname = 'gpl2'
 
-class LICENSE_GPL3:
+class LICENSE_GPL3(_LicenseBase):
     id = 2
     name = _('GNU General Public License, version 3.0')
     url = 'http://www.gnu.org/licenses/gpl-3.0.html'
-    text = 'GPL3 license text'
+    shortname = 'gpl3'
 
-class LICENSE_LGPL21:
+class LICENSE_LGPL21(_LicenseBase):
     id = 3
     name = 'GNU Lesser General Public License, version 2.1'
     url = 'http://www.gnu.org/licenses/lgpl-2.1.html'
-    text = 'LGPL21 license text'
+    shortname = 'lgpl21'
 
-class LICENSE_LGPL3:
+class LICENSE_LGPL3(_LicenseBase):
     id = 4
     name = _('GNU Lesser General Public License, version 3.0')
     url = 'http://www.gnu.org/licenses/lgpl-3.0.html'
-    text = 'LGPL3 license text'
+    shortname = 'lgpl3'
 
-class LICENSE_MIT:
+class LICENSE_MIT(_LicenseBase):
     id = 5
     name = _('MIT/X11 License')
     url = 'http://www.opensource.org/licenses/mit-license.php'
-    text = 'MIT license text'
+    shortname = 'mit'
 
-class LICENSE_BSD:
+class LICENSE_BSD(_LicenseBase):
     id = 6
     name = _('BSD License')
     url = 'http://www.opensource.org/licenses/bsd-license.php'
-    text = 'BSD license text'
+    shortname = 'bsd'
 
 LICENSES = (LICENSE_CUSTOM, LICENSE_MPL, LICENSE_GPL2, LICENSE_GPL3,
             LICENSE_LGPL21, LICENSE_LGPL3, LICENSE_MIT, LICENSE_BSD)
