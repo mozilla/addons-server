@@ -251,3 +251,7 @@ PREVIEW_FULL_URL = (STATIC_URL +
         '/img/uploads/previews/full/%s/%d.png?modified=%d')
 # paths for uploaded extensions
 FILES_URL = STATIC_URL + "/downloads/file/%d/%s?src=%s"
+
+# Legacy Settings
+# used by old-style CSRF token
+CAKE_SESSION_TIMEOUT = 8640

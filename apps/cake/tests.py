@@ -1,10 +1,13 @@
 from django.contrib.auth.models import AnonymousUser
 
+from mock import Mock
 from test_utils import TestCase
+from pyquery import PyQuery as pq
 
 from cake.models import Session
 from users.models import UserProfile
 from cake.backends import SessionBackend
+from cake.helpers import cake_csrf_token
 
 
 class CakeTestCase(TestCase):
@@ -75,3 +78,27 @@ class CakeTestCase(TestCase):
 
         assert isinstance(response.context['user'], AnonymousUser)
         self.assertEqual(client.cookies.get('AMOv3').value, '')
+
+
+class TestHelpers(TestCase):
+
+    fixtures = ['cake/sessions.json']
+
+    def test_csrf_token(self):
+        mysessionid = "17f051c99f083244bf653d5798111216"
+
+        s = SessionBackend()
+        session = Session.objects.get(pk=mysessionid)
+        user = s.authenticate(session=session)
+
+        client = self.client
+        client.cookies['AMOv3'] = mysessionid
+
+        request = Mock()
+        request.user = user
+        request.COOKIES = client.cookies
+        ctx = {'request': request}
+
+        doc = pq(cake_csrf_token(ctx))
+        self.assert_(doc.html())
+        self.assert_(doc('input').attr('value'))
