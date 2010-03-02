@@ -189,7 +189,7 @@ class Client(object):
             if not isinstance(addon_type, int):
                 types = dict((name.lower(), id) for id, name
                              in amo.ADDON_TYPE.items())
-                addon_type = types[addon_type.lower()]
+                addon_type = types.get(addon_type.lower())
             if addon_type:
                 sc.SetFilter('type', (addon_type,))
 

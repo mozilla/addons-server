@@ -5,7 +5,7 @@ import os
 import shutil
 import time
 
-from django.test import TestCase, TransactionTestCase
+from django.test import TestCase, TransactionTestCase, client
 from django.core.management import call_command
 from django.utils import translation
 
@@ -50,6 +50,20 @@ def test_extract_from_query():
 
     eq_(("yslow ", "3.4",),
         extract_from_query("yslow voo:3.4", "voo", "[0-9.]+"))
+
+
+def test_parse_bad_type():
+    """
+    Given a type that doesn't exist, we should not throw a KeyError.
+
+    Note: This does not require sphinx to be running.
+    """
+    c = client.Client()
+    try:
+        c.get("/en-US/firefox/api/1.2/search/firebug%20type:dict")
+    except KeyError:
+        assert False, ("We should not throw a KeyError just because we had a "
+                       "nonexistant addon type.")
 
 
 class SphinxTestCase(TransactionTestCase):
