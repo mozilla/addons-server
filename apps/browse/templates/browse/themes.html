@@ -18,7 +18,8 @@
           {{ _('All') }}</a>
         <span class="items">{{ total_count }}</span>
       </li>
-      {% cache categories %}
+      {# TODO(jbalogh): cache by categories & selected #}
+      {# cache categories #}
       {% for category in categories %}
         <li {{ category|class_selected(selected) }}>
         <a href="{{ url('browse.themes', category.slug)|urlparams(**params) }}">
@@ -26,7 +27,7 @@
           <span class="items">{{ category.count }}</span>
         </li>
       {% endfor %}
-      {% endcache %}
+      {# endcache #}
     </ul>
   </div>
 </div>
