@@ -1,7 +1,7 @@
 """
 Miscellaneous helpers that make Django compatible with AMO.
 """
-from lib.licenses import license_text
+from licenses import license_text
 
 from l10n import ugettext as _
 
