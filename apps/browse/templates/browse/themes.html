@@ -86,15 +86,18 @@
                   Updated {{ date }}
                 {% endtrans %}
               {% elif sorting == "downloads" %}
-                {% trans num=addon.weekly_downloads|numberfmt %}
-                  {{ num }} weekly downloads
-                {% endtrans %}
+                {% with num=addon.weekly_downloads %}
+                  {# L10n: {0} is the number of downloads. #}
+                  {{ ngettext("{0} weekly download", "{0} weekly downloads",
+                              num)|f(num|numberfmt) }}
+                {% endwith %}
               {% else %}
                 {{ addon.average_rating|float|stars }}
                 <a href="{{ addon.get_url_path() }}#reviews">
-                  {# L10n: {0} is the review count. #}
-                  {{ ngettext("{0} review", "{0} reviews",
-                              addon.total_reviews)|f(addon.total_reviews) }}</a>
+                  {% with num=addon.total_reviews %}
+                    {# L10n: {0} is the review count. #}
+                    {{ ngettext("{0} review", "{0} reviews", num)|f(num|numberfmt) }}</a>
+                  {% endwith %}
               {% endif %}
             </p>
           </div>
