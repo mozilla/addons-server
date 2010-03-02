@@ -1,3 +1,6 @@
+import time
+
+from django.conf import settings
 from django.db import models
 
 import amo.models
@@ -26,22 +29,34 @@ class Collection(amo.models.ModelBase):
     weekly_subscribers = models.PositiveIntegerField(default=0)
     monthly_subscribers = models.PositiveIntegerField(default=0)
     application = models.ForeignKey(Application, null=True)
-    addonCount = models.PositiveIntegerField(default=0)
+    addon_count = models.PositiveIntegerField(default=0,
+                                              db_column='addonCount')
 
     upvotes = models.PositiveIntegerField(default=0)
     downvotes = models.PositiveIntegerField(default=0)
     rating = models.FloatField(default=0)
 
+    users = models.ManyToManyField(UserProfile, through='CollectionUser')
+
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'collections'
 
     def get_url_path(self):
+        # TODO(jbalogh): reverse
         return '/collection/%s' % self.url_slug
 
     @property
     def url_slug(self):
         """uuid or nickname if chosen"""
         return self.nickname or self.uuid
+
+    @property
+    def icon_url(self):
+        modified = int(time.mktime(self.modified.timetuple()))
+        if self.icontype:
+            return settings.COLLECTION_ICON_URL % (self.id, modified)
+        else:
+            return settings.MEDIA_URL + 'img/amo2009/icons/collection.png'
 
 
 class CollectionAddonRecommendation(models.Model):

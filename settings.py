@@ -251,6 +251,8 @@ PREVIEW_FULL_URL = (STATIC_URL +
         '/img/uploads/previews/full/%s/%d.png?modified=%d')
 # paths for uploaded extensions
 FILES_URL = STATIC_URL + "/downloads/file/%d/%s?src=%s"
+COLLECTION_ICON_URL = ('%s/%s/%s/images/collection_icon/%%s/%%s' %
+                       (STATIC_URL, LANGUAGE_CODE, DEFAULT_APP))
 
 # Legacy Settings
 # used by old-style CSRF token
