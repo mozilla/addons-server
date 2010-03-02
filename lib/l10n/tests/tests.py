@@ -2,6 +2,8 @@ import os
 import base64
 import shutil
 
+from django.utils import translation
+
 from nose import with_setup
 from nose.tools import eq_
 
@@ -90,6 +92,26 @@ def test_activate():
     p_text = "Mon compte"
     eq_(p_text, _(a_text))
     l10n.deactivate_all()
+
+
+def test_cached_activate():
+    """
+    Make sure the locale is always activated properly, even when we hit a
+    cached version.
+    """
+    l10n.deactivate_all()
+    l10n.activate('fr')
+    eq_(translation.get_language(), 'fr')
+    l10n.activate('vi')
+    eq_(translation.get_language(), 'vi')
+    l10n.activate('fr')
+    eq_(translation.get_language(), 'fr')
+    l10n.activate('de')
+    eq_(translation.get_language(), 'de')
+    l10n.activate('fr')
+    eq_(translation.get_language(), 'fr')
+    l10n.activate('vi')
+    eq_(translation.get_language(), 'vi')
 
 
 MO_DATA = '''\

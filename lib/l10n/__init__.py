@@ -72,6 +72,10 @@ def activate(locale):
     import jingo
     jingo.env.install_gettext_translations(Translation)
 
+    django_trans._active[currentThread()] = _activate(locale)
+
+
+def _activate(locale):
     # XXX TODO: When it comes time to load .mo files on the fly and merge
     # them, this is the place to do it.  We'll also need to implement our own
     # caching since the _translations stuff is built on a per locale basis,
@@ -80,7 +84,7 @@ def activate(locale):
     # Django caches the translation objects here
     t = django_trans._translations.get(locale, None)
     if t is not None:
-        return
+        return t
 
     # Django's activate() simply calls translation() and adds it to a global.
     # We'll do the same here, first calling django's translation() so it can
@@ -103,7 +107,7 @@ def activate(locale):
     except IOError:
         pass
 
-    django_trans._active[currentThread()] = t
+    return t
 
 
 def deactivate_all():
