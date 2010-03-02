@@ -3,7 +3,7 @@
     <h4>
       <a href="{{ addon.get_url_path() }}">{{ addon.name }}</a>
       <span>
-      {% trans users=addon.listed_authors|users_list %}
+      {% trans users=users_list(addon.listed_authors) %}
         created by {{ users }}
       {% endtrans %}
       </span>

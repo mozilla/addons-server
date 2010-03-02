@@ -1,0 +1,36 @@
+{% cache collections %}
+{% for collection in collections %}
+<div class="item">
+  <h5>
+    <a href="{{ collection.get_url_path() }}">
+      <img class="icon" width="32" height="32"
+           src="{{ collection.icon_url }}">
+      {{ collection.name }}</a>
+    <span>
+      {% trans users = users_list(collection.users.all()) %}
+        by {{ users }}
+      {% endtrans %}
+    </span>
+  </h5>
+  <blockquote>{{ collection.description }}</blockquote>
+  <div class="meta">
+    <span class="addons">
+      {% with num=collection.addon_count %}
+        {# L10n: {0} is the number of add-ons. #}
+        {{ ngettext("<strong>{0}</strong> add-on",
+                    "<strong>{0}</strong> add-ons",
+                    num)|f(num|numberfmt)|safe }}
+      {% endwith %}
+    </span>
+    <span class="subscribers">
+      {% with num=collection.subscribers %}
+        {# L10n: {0} is the number of subscribers. #}
+        {{ ngettext("<strong>{0}</strong> subscriber",
+                    "<strong>{0}</strong> subscribers",
+                    num)|f(num|numberfmt)|safe }}
+      {% endwith %}
+    </span>
+  </div>
+</div>
+{% endfor %}
+{% endcache %}

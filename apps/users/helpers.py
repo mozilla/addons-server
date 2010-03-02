@@ -28,7 +28,7 @@ def user_link(user):
     return jinja2.Markup(_user_link(user))
 
 
-@register.filter
+@register.function
 def users_list(users):
     return jinja2.Markup(', '.join(map(_user_link, users)))
 
