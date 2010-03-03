@@ -2,6 +2,7 @@ import gettext
 import re
 
 from django.conf import settings
+from django.utils.functional import lazy
 from django.utils.importlib import import_module
 from django.utils.thread_support import currentThread
 from django.utils.translation import (trans_real as django_trans,
@@ -41,6 +42,9 @@ def ungettext(singular, plural, number, context=None):
     elif ret == plural:
         return plural_stripped
     return ret
+
+ugettext_lazy = lazy(ugettext, unicode)
+ungettext_lazy = lazy(ungettext, unicode)
 
 
 def _add_context(context, message):
