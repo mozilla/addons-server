@@ -1,6 +1,7 @@
 import os
 from manage import settings
 from optparse import make_option
+from subprocess import Popen
 
 from babel.messages import Catalog
 from babel.messages.extract import extract_from_dir
@@ -12,7 +13,7 @@ from jinja2 import ext
 
 from l10n import strip_whitespace
 
-DEFAULT_DOMAIN = 'messages'
+DEFAULT_DOMAIN = 'all'
 
 KEYWORDS = {
     '_': None,
@@ -21,7 +22,7 @@ KEYWORDS = {
 }
 
 DOMAIN_METHODS = {
-    DEFAULT_DOMAIN: [
+    'messages': [
         ('apps/**.py', 'python'),
         ('**/templates/**.html',
             'lib.l10n.management.commands.extract.extract_amo_template'),
@@ -73,43 +74,65 @@ k   only strip whitespace from the ends of a string and then only if you ask
 class Command(BaseCommand):
     option_list = BaseCommand.option_list + (
         make_option('--domain', '-d', default=DEFAULT_DOMAIN, dest='domain',
-                    help='The domain of the message files '
+                    help='The domain of the message files.  If "all" everything '
+                         'will be extracted and combined into z-keys.pot. '
                          '(default: %s).' % DEFAULT_DOMAIN),
             )
 
     def handle(self, *args, **options):
-        domain = options.get('domain')
+        domains = options.get('domain')
+
+        if domains == "all":
+            domains = DOMAIN_METHODS.keys()
+        else:
+            domains = [domains]
 
         root = settings.ROOT
-        print "Extracting all strings for in domain %s..." % (domain)
-
-        catalog = Catalog(
-                    domain=domain,
-                    project="addons.mozilla.org",
-                    copyright_holder="Mozilla Corporation",
-                    msgid_bugs_address="dev-l10n-web@lists.mozilla.org",
-                    charset='utf-8')
 
         def callback(filename, method, options):
             if method != 'ignore':
                 print "  %s" % filename
 
-        methods = DOMAIN_METHODS[domain]
-        extracted = extract_from_dir(root,
-                                     method_map=methods,
-                                     keywords=KEYWORDS,
-                                     comment_tags=COMMENT_TAGS,
-                                     callback=callback)
+        for domain in domains:
 
-        for filename, lineno, message, comments in extracted:
-            catalog.add(message, None, [(filename, lineno)],
-                        auto_comments=comments)
+            print "Extracting all strings for in domain %s..." % (domain)
 
-        f = file(os.path.join(root, 'locale', 'z-%s.pot' % domain), 'w')
+            catalog = Catalog(domain=domain,
+                              project="addons.mozilla.org",
+                              copyright_holder="Mozilla Corporation",
+                              msgid_bugs_address="dev-l10n-web@lists.mozilla.org",
+                              charset='utf-8')
 
-        try:
-            write_po(f, catalog, width=79)
-        finally:
-            f.close()
+            methods = DOMAIN_METHODS[domain]
+            extracted = extract_from_dir(root,
+                                         method_map=methods,
+                                         keywords=KEYWORDS,
+                                         comment_tags=COMMENT_TAGS,
+                                         callback=callback)
+
+            for filename, lineno, message, comments in extracted:
+                catalog.add(message, None, [(filename, lineno)],
+                            auto_comments=comments)
+
+            f = file(os.path.join(root, 'locale', 'z-%s.pot' % domain), 'w')
+
+            try:
+                write_po(f, catalog, width=79)
+            finally:
+                f.close()
+
+        if len(domain) > 1:
+            print "Concatenating all domains..."
+            pot_files = []
+            for i in domains:
+                pot_files.append(os.path.join(root, 'locale', 'z-%s.pot' % i))
+            z_keys = open(os.path.join(root, 'locale', 'z-keys.pot'), 'w+t')
+            z_keys.truncate()
+            command = ["msgcat"] + pot_files
+            p1 = Popen(command, stdout=z_keys)
+            p1.communicate()
+            z_keys.close()
+            for i in domains:
+                os.remove(os.path.join(root, 'locale', 'z-%s.pot' % i))
 
         print 'done'
