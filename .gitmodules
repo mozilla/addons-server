@@ -16,6 +16,3 @@
 [submodule "locale"]
 	path = locale
 	url = git://github.com/clouserw/amo-locales.git
-[submodule "lib/translate"]
-	path = lib/translate
-	url = git://github.com/clouserw/Translate-Toolkit-Mirror.git
