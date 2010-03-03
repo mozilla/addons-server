@@ -9,6 +9,9 @@ from jingo import register
 @register.filter
 def locale_html(translatedfield):
     """HTML attributes for languages different than the site language"""
+    if not translatedfield:
+        return ''
+
     site_locale = translation.to_locale(translation.get_language())
     locale = translation.to_locale(translatedfield.locale)
     if locale == site_locale:

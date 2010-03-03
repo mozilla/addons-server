@@ -27,3 +27,9 @@ def test_locale_html():
         testfield.locale = lang
         s = locale_html(testfield)
         eq_(s, ' lang="%s" dir="rtl"' % testfield.locale)
+
+
+def test_empty_locale_html():
+    """locale_html must still work if field is None."""
+    s = locale_html(None)
+    assert not s, 'locale_html on None must be empty.'
