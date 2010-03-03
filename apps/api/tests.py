@@ -3,11 +3,13 @@ import math
 from django.conf import settings
 from django.test.client import Client
 
+import jingo
 from test_utils import TestCase
 from nose.tools import eq_
 
 import api
 from addons.models import Addon
+from amo import helpers
 from search.tests import SphinxTestCase
 from search.utils import stop_sphinx
 
@@ -136,43 +138,46 @@ class APITest(TestCase):
         # Link to the developer's profile
         # File size
         """
+        e = jingo.env.filters['e']
+
+        def urlparams(x, *args, **kwargs):
+            return e(helpers.urlparams(x, *args, **kwargs))
+
         needles = (
                 '<addon id="4664">',
                 "<contribution_data>",
                 "%s/en-US/firefox/addons/contribute/4664?src=api</link>"
-                % settings.SITE_URL,
+                    % settings.SITE_URL,
                 '<suggested_amount currency="USD">0.99</suggested_amount>',
                 "<meet_developers>",
                 "%s/en-US/firefox/addon/4664/developers?src=api"
-                % settings.SITE_URL,
+                    % settings.SITE_URL,
                 "</meet_developers>",
                 """<reviews num="101">""",
                 "%s/en-US/firefox/addon/4664/reviews/?src=api</reviews>"
-                % settings.SITE_URL,
+                    % settings.SITE_URL,
                 "<total_downloads>867952</total_downloads>",
                 "<weekly_downloads>23646</weekly_downloads>",
                 "<daily_users>44693</daily_users>",
                 '<created epoch="1174134235">2007-03-17 12:23:55+0000'
-                '</created>',
+                    '</created>',
                 '<last_updated epoch="1237836004">'
-                "2009-03-23 19:20:04+0000</last_updated>",
+                    "2009-03-23 19:20:04+0000</last_updated>",
                 '<author id="2519"',
                 "%s/en-US/firefox/user/2519/?src=api</link>"
-                % settings.SITE_URL,
+                    % settings.SITE_URL,
                 "<previews>",
                 """<preview primary="1">""",
                 "<caption>"
-                "TwitterBar places an icon in the address bar.</caption>",
+                    "TwitterBar places an icon in the address bar.</caption>",
                 """<full type="image/png">""",
-                "%s/img/uploads/previews/full/20/20397.png"
-                "?src=api&amp;modified=1209834208"
-                % settings.SITE_URL,
+                urlparams(settings.PREVIEW_FULL_URL %
+                          ('20', 20397, 1209834208), src='api'),
                 """<thumbnail type="image/png">""",
-                "%s/img/uploads/previews/thumbs/20/20397.png?"
-                "src=api&amp;modified=1209834208"
-                % settings.SITE_URL,
+                urlparams(settings.PREVIEW_THUMBNAIL_URL %
+                          ('20', 20397, 1209834208), src='api'),
                 "<developer_comments>Embrace hug love hug meow meow"
-                "</developer_comments>",
+                    "</developer_comments>",
                 'size="92160"',
                 )
 
