@@ -152,6 +152,11 @@ def numberfmt(num, format=None):
     return _get_format().decimal(num, format)
 
 
+@register.filter
+def currencyfmt(num, currency):
+    return _get_format().currency(num, currency)
+
+
 def _page_name(app=None):
     """Determine the correct page name for the given app (or no app)."""
     if app:

@@ -9,6 +9,7 @@ from django.utils import translation
 import caching.base
 
 import amo.models
+from amo.fields import DecimalCharField
 from amo.urlresolvers import reverse
 from reviews.models import Review
 from translations.fields import (TranslatedField, PurifiedField,
@@ -180,9 +181,9 @@ class Addon(amo.models.ModelBase):
         help_text="For dictionaries and language packs")
 
     paypal_id = models.CharField(max_length=255, blank=True)
-    suggested_amount = models.CharField(
-        max_length=255, blank=True, null=True,
-        help_text="Requested donation amount.")
+    suggested_amount = DecimalCharField(max_digits=8, decimal_places=2,
+                                        blank=True, null=True,
+                                        help_text="Requested donation amount.")
     annoying = models.PositiveIntegerField(choices=CONTRIBUTIONS_CHOICES,
                                            default=0)
 
@@ -330,6 +331,11 @@ class Addon(amo.models.ModelBase):
             roles.remove(amo.AUTHOR_ROLE_NONE)
         return bool(AddonUser.objects.filter(addon=self, user=user,
                                              role__in=roles))
+
+    @property
+    def takes_contributions(self):
+        # TODO(jbalogh): config.paypal_disabled
+        return self.wants_contributions and self.paypal_id
 
 
 class AddonCategory(caching.base.CachingMixin, models.Model):

@@ -1,8 +1,7 @@
-from django.utils.translation import ugettext as _
-
 import jinja2
 
 from jingo import register, env
+from l10n import ugettext as _
 
 
 @register.filter
@@ -38,3 +37,9 @@ def separated_list_items(context, addons, src=None):
          'src': src}
     t = env.get_template('addons/separated_list_items.html').render(**c)
     return jinja2.Markup(t)
+
+
+@register.function
+def support_addon(addon):
+    t = env.get_template('addons/support_addon.html')
+    return jinja2.Markup(t.render(addon=addon))
