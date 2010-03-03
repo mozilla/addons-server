@@ -9,9 +9,23 @@ from nose.tools import eq_
 
 import l10n
 from l10n import ugettext as _, ungettext as n_
+from l10n import ugettext_lazy as _lazy, ungettext_lazy as n_lazy
 
 LOCALEDIR = os.path.join('locale', 'xx')
 MOFILE = os.path.join(LOCALEDIR, 'LC_MESSAGES', 'messages.mo')
+
+# Used for the _lazy() tests
+_lazy_strings = {}
+_lazy_strings['nocontext'] = _lazy('this is a test')
+_lazy_strings['context'] = _lazy('What time is it?', 'context_one')
+
+n_lazy_strings = {}
+n_lazy_strings['s_nocontext'] = n_lazy('one light !', 'many lights !', 1)
+n_lazy_strings['p_nocontext'] = n_lazy('one light !', 'many lights !', 3)
+n_lazy_strings['s_context'] = n_lazy('%d poodle please', '%d poodles please',
+                                     1, 'context_one')
+n_lazy_strings['p_context'] = n_lazy('%d poodle please', '%d poodles please',
+                                     3, 'context_one')
 
 
 def setup():
@@ -82,6 +96,20 @@ def test_ungettext_not_found():
     eq_('yo yo', n_('  yo  yo  ', 'yos', 1, 'context'))
     eq_('yos', n_('yo', 'yos', 3, 'context'))
     eq_('yo yos', n_('yo', '  yo  yos  ', 3, 'context'))
+
+
+@with_setup(setup, teardown)
+def test_ugettext_lazy():
+    eq_(unicode(_lazy_strings['nocontext']), 'you ran a test!')
+    eq_(unicode(_lazy_strings['context']), 'What time is it? (context=1)')
+
+
+@with_setup(setup, teardown)
+def test_ungettext_lazy():
+    eq_(unicode(n_lazy_strings['s_nocontext']), 'you found a light!')
+    eq_(unicode(n_lazy_strings['p_nocontext']), 'you found a pile of lights!')
+    eq_(unicode(n_lazy_strings['s_context']), '%d poodle (context=1)')
+    eq_(unicode(n_lazy_strings['p_context']), '%d poodles (context=1)')
 
 
 def test_activate():
