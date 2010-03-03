@@ -9,6 +9,7 @@ from manage import settings
 
 from translate.tools import pypo2phppo
 
+
 class Command(BaseCommand):
     """
     This will merge zamboni strings into the current remora messages.po file in the
@@ -30,7 +31,7 @@ class Command(BaseCommand):
         z_keys_python = TemporaryFile('w+t')
 
         if not pypo2phppo.convertpy2php(z_keys_file, z_keys_python):
-            print " Something is broken in (%s)" % z_keys_python
+            sys.exit(" Something is broken in (%s)" % z_keys_python)
 
         z_keys_file.close()
 
@@ -45,17 +46,18 @@ class Command(BaseCommand):
         p1.communicate()
 
         for locale in os.listdir(locale_dir):
-            if not os.path.isdir(os.path.join(locale_dir, locale)) or \
-                    locale.startswith('.'):
+            if (not os.path.isdir(os.path.join(locale_dir, locale)) or
+                    locale.startswith('.')):
                         continue
 
             r_messages = os.path.join(locale_dir, locale, 'LC_MESSAGES',
                                       'messages.po')
 
-            print "Mushing python strings into messages.po for %s" % (locale)
-
             if not os.path.isfile(r_messages):
                 print " Can't find (%s).  Skipping..." % (r_messages)
+                continue
+
+            print "Mushing python strings into messages.po for %s" % (locale)
 
             # Step 3: Merge our new combined .pot with the .po file
             if locale == "en_US":
