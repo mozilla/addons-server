@@ -171,10 +171,9 @@ class ListView(APIView):
         random.shuffle(addons)
 
         if len(addons) < limit:
-            # We need to backfill.  Just do the same query, without the
-            # language filter.
-            moar_addons = list(qs.exclude(
-                description__locale=translation.get_language()))
+            # We need to backfill.  So do the previous query without
+            # a language requirement, and exclude the addon ids we've found
+            moar_addons = list(qs.exclude(id__in=[a.id for a in addons]))
             random.shuffle(moar_addons)
             addons.extend(moar_addons)
 
