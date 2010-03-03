@@ -13,8 +13,8 @@ from applications.models import AppVersion
 types = (amo.ADDON_ANY, amo.ADDON_EXTENSION, amo.ADDON_THEME,
          amo.ADDON_DICT, amo.ADDON_SEARCH, amo.ADDON_LPAPP)
 
-platforms = (amo.PLATFORM_ANY, amo.PLATFORM_BSD, amo.PLATFORM_LINUX,
-             amo.PLATFORM_MAC, amo.PLATFORM_SUN, amo.PLATFORM_WIN)
+platforms = [platform.id for platform in
+             amo.PLATFORMS.values() if platform.id != 0]
 
 updated = (
     ('', _lazy(u'Any time')),
@@ -74,9 +74,9 @@ def get_search_groups(app):
     sub.extend(helpers.sidebar(app)[0])
     sub = [('%s,%s' % (a.type_id, a.id), a.name) for a in
            sorted(sub, key=lambda x: (x.weight, x.name))]
-    top_level =  [('all', _('all add-ons')),
-                  ('collections', _('all collections')),
-                  ('personas', _('all personas'))]
+    top_level = [('all', _('all add-ons')),
+                 ('collections', _('all collections')),
+                 ('personas', _('all personas'))]
     return top_level[:1] + sub + top_level[1:], top_level
 
 
@@ -100,7 +100,8 @@ def SearchForm(request):
 
         # TODO(jbalogh): why not use the platform id?
         pid = forms.ChoiceField(label=_('Platform'),
-            choices=[(idx, amo.PLATFORMS[p]) for idx, p in enumerate(platforms)])
+                                choices=[(idx, amo.PLATFORMS[p].id) for idx, p
+                                         in enumerate(platforms)])
 
         lup = forms.ChoiceField(label=_('Last Updated'), choices=updated)
 

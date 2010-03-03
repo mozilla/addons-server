@@ -104,7 +104,7 @@ ADDON_SEARCH = 4
 ADDON_LPAPP = 5
 ADDON_LPADDON = 6
 ADDON_PLUGIN = 7
-ADDON_API = 8 # not actually a type but used to identify extensions + themes
+ADDON_API = 8  # not actually a type but used to identify extensions + themes
 ADDON_PERSONA = 9
 
 # Singular
@@ -150,6 +150,7 @@ class THUNDERBIRD:
     types = [ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_PERSONA]
     guid = '{3550f703-e582-4d05-9a08-453d09bdfdc6}'
 
+
 class SEAMONKEY:
     id = 59
     short = 'seamonkey'
@@ -176,6 +177,7 @@ class MOBILE:
     types = [ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_SEARCH]
     guid = '{a23983c0-fd0e-11dc-95ff-0800200c9a66}'
 
+
 class MOZILLA:
     """Mozilla exists for completeness and historical purposes.
 
@@ -196,16 +198,64 @@ APP_IDS = dict((app.id, app) for app in _apps)
 APP_GUIDS = dict((app.guid, app) for app in _apps)
 APPS_RETIRED = dict([(MOZILLA.short, MOZILLA)])
 
-# Platforms
-PLATFORM_ANY = 0
-PLATFORM_ALL = 1
-PLATFORM_LINUX = 2
-PLATFORM_MAC = 3
-PLATFORM_BSD = 4
-PLATFORM_WIN = 5
-PLATFORM_SUN = 6
 
-PLATFORMS = {
+# Platforms
+class PLATFORM_ANY:
+    id = 0
+    name = _('Any')
+    shortname = _('Any')
+    # API name is not translated
+    api_name = u'ALL'
+
+
+class PLATFORM_ALL:
+    id = 1
+    name = _('All')
+    shortname = _('All')
+    api_name = u'ALL'
+
+
+class PLATFORM_LINUX:
+    id = 2
+    name = _('Linux')
+    shortname = _('Linux')
+    api_name = u'Linux'
+
+
+class PLATFORM_MAC:
+    id = 3
+    name = _('MacOSX')
+    shortname = _('macosx')
+    api_name = u'Darwin'
+
+
+class PLATFORM_BSD:
+    id = 4
+    name = _('BSD')
+    shortname = _('bsd')
+    api_name = u'BSD_OS'
+
+
+class PLATFORM_WIN:
+    id = 5
+    name = _('Windows')
+    shortname = _('win')
+    api_name = u'WINNT'
+
+
+class PLATFORM_SUN:
+    id = 6
+    name = _('Solaris')
+    shortname = _('Solaris')
+    api_name = 'SunOS'
+
+# Order matters
+PLATFORMS = {PLATFORM_ANY.id: PLATFORM_ANY, PLATFORM_ALL.id: PLATFORM_ALL,
+             PLATFORM_LINUX.id: PLATFORM_LINUX, PLATFORM_MAC.id: PLATFORM_MAC,
+             PLATFORM_BSD.id: PLATFORM_BSD, PLATFORM_WIN.id: PLATFORM_WIN,
+             PLATFORM_SUN.id: PLATFORM_SUN}
+
+PLATFORM_DICT = {
     'all': PLATFORM_ALL,
     'linux': PLATFORM_LINUX,
     'mac': PLATFORM_MAC,
@@ -219,14 +269,8 @@ PLATFORMS = {
     'sun': PLATFORM_SUN,
     'sunos': PLATFORM_SUN,
     'solaris': PLATFORM_SUN,
-    PLATFORM_ANY: _(u'Any'),
-    PLATFORM_ALL: _(u'All'),
-    PLATFORM_LINUX: _(u'Linux'),
-    PLATFORM_MAC: _(u'Mac OS X'),
-    PLATFORM_BSD: _(u'BSD'),
-    PLATFORM_WIN: _(u'Windows'),
-    PLATFORM_SUN: _(u'Solaris'),
 }
+
 
 # Built-in Licenses
 class _LicenseBase(object):
@@ -236,6 +280,7 @@ class _LicenseBase(object):
     @classmethod
     def text(cls):
         return cls.shortname and license_text(cls.shortname) or None
+
 
 class LICENSE_CUSTOM(_LicenseBase):
     """
@@ -247,11 +292,13 @@ class LICENSE_CUSTOM(_LicenseBase):
     url = None
     shortname = None
 
+
 class LICENSE_MPL(_LicenseBase):
     id = 0
     name = _(u'Mozilla Public License, version 1.1')
     url = 'http://www.mozilla.org/MPL/MPL-1.1.html'
     shortname = 'mpl'
+
 
 class LICENSE_GPL2(_LicenseBase):
     id = 1
@@ -259,11 +306,13 @@ class LICENSE_GPL2(_LicenseBase):
     url = 'http://www.gnu.org/licenses/gpl-2.0.html'
     shortname = 'gpl2'
 
+
 class LICENSE_GPL3(_LicenseBase):
     id = 2
     name = _(u'GNU General Public License, version 3.0')
     url = 'http://www.gnu.org/licenses/gpl-3.0.html'
     shortname = 'gpl3'
+
 
 class LICENSE_LGPL21(_LicenseBase):
     id = 3
@@ -271,17 +320,20 @@ class LICENSE_LGPL21(_LicenseBase):
     url = 'http://www.gnu.org/licenses/lgpl-2.1.html'
     shortname = 'lgpl21'
 
+
 class LICENSE_LGPL3(_LicenseBase):
     id = 4
     name = _(u'GNU Lesser General Public License, version 3.0')
     url = 'http://www.gnu.org/licenses/lgpl-3.0.html'
     shortname = 'lgpl3'
 
+
 class LICENSE_MIT(_LicenseBase):
     id = 5
     name = _(u'MIT/X11 License')
     url = 'http://www.opensource.org/licenses/mit-license.php'
     shortname = 'mit'
+
 
 class LICENSE_BSD(_LicenseBase):
     id = 6

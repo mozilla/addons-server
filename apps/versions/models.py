@@ -21,7 +21,7 @@ class Version(amo.models.ModelBase):
 
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'versions'
-        ordering = ['-created']
+        ordering = ['-created', '-modified']
 
     def __init__(self, *args, **kwargs):
         super(Version, self).__init__(*args, **kwargs)
@@ -44,7 +44,8 @@ class Version(amo.models.ModelBase):
     @amo.cached_property
     def supported_platforms(self):
         """Get a list of supported platform names."""
-        return list(set(f.platform.name for f in self.files.all()))
+        return list(set(amo.PLATFORMS[f.platform_id]
+                        for f in self.files.all()))
 
     @amo.cached_property
     def has_files(self):
@@ -145,4 +146,3 @@ class ApplicationsVersions(caching.base.CachingMixin, models.Model):
 
     def __unicode__(self):
         return u'%s: %s – %s' % (self.application, self.min, self.max)
-

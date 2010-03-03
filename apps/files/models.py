@@ -44,8 +44,9 @@ class Approval(amo.models.ModelBase):
 
 
 class Platform(amo.models.ModelBase):
-    name = TranslatedField()
-    shortname = TranslatedField()
+    # `name` and `shortname` are provided in amo.__init__
+    # name = TranslatedField()
+    # shortname = TranslatedField()
     # icondata => mysql blob
     icontype = models.CharField(max_length=25, default='')
 

@@ -79,13 +79,21 @@ class AddonManager(amo.models.ManagerBase):
         return qs.distinct()
 
     def compatible_with_platform(self, platform):
-        if not isinstance(platform, int):
-            platform = amo.PLATFORMS.get(platform, amo.PLATFORM_ALL)
+        """
+        `platform` can be either a class amo.PLATFORM_* or an id
+        """
+
+        if isinstance(platform, int):
+            platform = amo.PLATFORMS.get(id, amo.PLATFORM_ALL)
+
+        if platform not in amo.PLATFORMS:
+            platform = amo.PLATFORM_DICT.get(platform, amo.PLATFORM_ALL)
 
         if platform != amo.PLATFORM_ALL:
-            return self.filter(
-                    Q(versions__files__platform=platform) |
-                    Q(versions__files__platform=amo.PLATFORM_ALL)).distinct()
+            return (self.filter(
+                    Q(versions__files__platform=platform.id) |
+                    Q(versions__files__platform=amo.PLATFORM_ALL.id))
+                    .distinct())
 
         return self.distinct()
 
@@ -339,7 +347,7 @@ class AddonCategory(caching.base.CachingMixin, models.Model):
 
 class AddonPledge(amo.models.ModelBase):
     addon = models.ForeignKey(Addon)
-    target = models.PositiveIntegerField() # Only $ for now
+    target = models.PositiveIntegerField()  # Only $ for now
     what_ima_gonna_do = TranslatedField()
     active = models.BooleanField(default=False)
     deadline = models.DateField(null=True)

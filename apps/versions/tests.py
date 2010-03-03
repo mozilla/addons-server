@@ -21,7 +21,7 @@ class TestVersion(test.TestCase):
 
     def test_supported_platforms(self):
         v = Version.objects.get(pk=24007)
-        assert 'ALL' in [str(os) for os in v.supported_platforms]
+        assert amo.PLATFORM_ALL in v.supported_platforms
 
     def test_major_minor(self):
         """Check that major/minor/alpha is getting set."""
@@ -62,7 +62,7 @@ class TestLicense(test.TestCase):
         lic = License()
         lic.save()
         assert lic.is_custom, 'Custom license not recognized.'
-        assert lic.license_type is amo.LICENSE_CUSTOM # default
+        assert lic.license_type is amo.LICENSE_CUSTOM  # default
         assert not lic.text
 
         lic.license_type = amo.LICENSE_MPL

@@ -179,9 +179,9 @@ class Client(object):
         (term, platform) = extract_from_query(term, 'platform', '\w+', kwargs)
 
         if platform:
-            platform = amo.PLATFORMS.get(platform)
+            platform = amo.PLATFORM_DICT.get(platform)
             if platform:
-                sc.SetFilter('platform', (int(platform), amo.PLATFORM_ALL,))
+                sc.SetFilter('platform', (platform.id, amo.PLATFORM_ALL.id,))
 
         (term, addon_type) = extract_from_query(term, 'type', '\w+', kwargs)
 

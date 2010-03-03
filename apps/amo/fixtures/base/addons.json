@@ -138,7 +138,6 @@
         "model": "files.platform",
         "fields": {
             "icontype": "",
-            "name": 1,
             "modified": "2008-04-07 08:16:55",
             "created": "2007-03-05 13:09:27"
         }
@@ -991,10 +990,8 @@
         "pk": 3,
         "model": "files.platform",
         "fields": {
-            "shortname": 1140,
             "icontype": "",
             "modified": "2008-04-07 08:16:55",
-            "name": 1139,
             "created": "2007-03-05 13:09:27"
         }
     },

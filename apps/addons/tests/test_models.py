@@ -19,8 +19,8 @@ class TestAddonManager(test_utils.TestCase):
         for addon in mac_friendly:
             platform_ids = [file.platform_id for file in
                     addon.current_version.files.all()]
-            assert (amo.PLATFORM_MAC in platform_ids or
-                    amo.PLATFORM_ALL in platform_ids)
+            assert (amo.PLATFORM_MAC.id in platform_ids or
+                    amo.PLATFORM_ALL.id in platform_ids)
 
     def test_compatible_with_platform_fake(self):
         "Given a fake platform, we should still get results."
@@ -68,7 +68,6 @@ class TestAddonManager(test_utils.TestCase):
         eq_(q.count(), 0)
         eq_(Addon.objects.listed(amo.FIREFOX, amo.STATUS_PUBLIC,
                                  amo.STATUS_SANDBOX).count(), 1)
-
 
         # Can't find it without a file.
         addon.versions.get().files.get().delete()
