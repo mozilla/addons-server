@@ -1,7 +1,7 @@
 import collections
 import itertools
 
-from l10n import ugettext as _
+from l10n import ugettext as _, ugettext_lazy as _lazy
 
 import jingo
 import product_details
@@ -85,10 +85,10 @@ class AddonSorter(object):
     self.opts: all the sort options
     self.qs: the sorted queryset
     """
-    opts = (('name', _('Name')),
-            ('date', _('Date')),
-            ('downloads', _('Downloads')),
-            ('rating', _('Rating')))
+    opts = (('name', _lazy(u'Name')),
+            ('date', _lazy(u'Date')),
+            ('downloads', _lazy(u'Downloads')),
+            ('rating', _lazy(u'Rating')))
 
     def __init__(self, request, queryset, default):
         self.sorting = self.options(request, default)

@@ -3,7 +3,7 @@ Miscellaneous helpers that make Django compatible with AMO.
 """
 from licenses import license_text
 
-from l10n import ugettext as _
+from l10n import ugettext_lazy as _
 
 
 class cached_property(object):
@@ -109,25 +109,25 @@ ADDON_PERSONA = 9
 
 # Singular
 ADDON_TYPE = {
-    ADDON_ANY: _('Any'),
-    ADDON_EXTENSION: _('Extension'),
-    ADDON_THEME: _('Theme'),
-    ADDON_DICT: _('Dictionary'),
-    ADDON_SEARCH: _('Search Engine'),
-    ADDON_PLUGIN: _('Plugin'),
-    ADDON_LPAPP: _('Language Pack (Application)'),
-    ADDON_PERSONA: _('Persona'),
+    ADDON_ANY: _(u'Any'),
+    ADDON_EXTENSION: _(u'Extension'),
+    ADDON_THEME: _(u'Theme'),
+    ADDON_DICT: _(u'Dictionary'),
+    ADDON_SEARCH: _(u'Search Engine'),
+    ADDON_PLUGIN: _(u'Plugin'),
+    ADDON_LPAPP: _(u'Language Pack (Application)'),
+    ADDON_PERSONA: _(u'Persona'),
 }
 
 # Plural
 ADDON_TYPES = {
-    ADDON_ANY: _('Any'),
-    ADDON_EXTENSION: _('Extensions'),
-    ADDON_THEME: _('Themes'),
-    ADDON_DICT: _('Dictionaries & Language Packs'),
-    ADDON_SEARCH: _('Search Tools'),
-    ADDON_PLUGIN: _('Plugins'),
-    ADDON_PERSONA: _('Personas'),
+    ADDON_ANY: _(u'Any'),
+    ADDON_EXTENSION: _(u'Extensions'),
+    ADDON_THEME: _(u'Themes'),
+    ADDON_DICT: _(u'Dictionaries & Language Packs'),
+    ADDON_SEARCH: _(u'Search Tools'),
+    ADDON_PLUGIN: _(u'Plugins'),
+    ADDON_PERSONA: _(u'Personas'),
 }
 
 
@@ -135,7 +135,7 @@ ADDON_TYPES = {
 class FIREFOX:
     id = 1
     short = 'firefox'
-    pretty = _('Firefox')
+    pretty = _(u'Firefox')
     browser = True
     types = [ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_SEARCH,
              ADDON_PLUGIN, ADDON_PERSONA]
@@ -145,7 +145,7 @@ class FIREFOX:
 class THUNDERBIRD:
     id = 18
     short = 'thunderbird'
-    pretty = _('Thunderbird')
+    pretty = _(u'Thunderbird')
     browser = True
     types = [ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_PERSONA]
     guid = '{3550f703-e582-4d05-9a08-453d09bdfdc6}'
@@ -153,7 +153,7 @@ class THUNDERBIRD:
 class SEAMONKEY:
     id = 59
     short = 'seamonkey'
-    pretty = _('SeaMonkey')
+    pretty = _(u'SeaMonkey')
     browser = True
     types = [ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_SEARCH,
              ADDON_PLUGIN]
@@ -163,7 +163,7 @@ class SEAMONKEY:
 class SUNBIRD:
     id = 52
     short = 'sunbird'
-    pretty = _('Sunbird')
+    pretty = _(u'Sunbird')
     types = [ADDON_EXTENSION, ADDON_THEME, ADDON_DICT]
     guid = '{718e30fb-e89b-41dd-9da7-e25a45638b28}'
 
@@ -171,7 +171,7 @@ class SUNBIRD:
 class MOBILE:
     id = 60
     short = 'mobile'
-    pretty = _('Mobile')
+    pretty = _(u'Mobile')
     browser = True
     types = [ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_SEARCH]
     guid = '{a23983c0-fd0e-11dc-95ff-0800200c9a66}'
@@ -184,7 +184,7 @@ class MOZILLA:
     """
     id = 2
     short = 'mz'
-    pretty = _('Mozilla')
+    pretty = _(u'Mozilla')
     browser = True
     types = [ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_SEARCH,
              ADDON_PLUGIN]
@@ -219,13 +219,13 @@ PLATFORMS = {
     'sun': PLATFORM_SUN,
     'sunos': PLATFORM_SUN,
     'solaris': PLATFORM_SUN,
-    PLATFORM_ANY: _('Any'),
-    PLATFORM_ALL: _('All'),
-    PLATFORM_LINUX: _('Linux'),
-    PLATFORM_MAC: _('Mac OS X'),
-    PLATFORM_BSD: _('BSD'),
-    PLATFORM_WIN: _('Windows'),
-    PLATFORM_SUN: _('Solaris'),
+    PLATFORM_ANY: _(u'Any'),
+    PLATFORM_ALL: _(u'All'),
+    PLATFORM_LINUX: _(u'Linux'),
+    PLATFORM_MAC: _(u'Mac OS X'),
+    PLATFORM_BSD: _(u'BSD'),
+    PLATFORM_WIN: _(u'Windows'),
+    PLATFORM_SUN: _(u'Solaris'),
 }
 
 # Built-in Licenses
@@ -243,25 +243,25 @@ class LICENSE_CUSTOM(_LicenseBase):
     licenses
     """
     id = -1
-    name = _('Custom License')
+    name = _(u'Custom License')
     url = None
     shortname = None
 
 class LICENSE_MPL(_LicenseBase):
     id = 0
-    name = _('Mozilla Public License, version 1.1')
+    name = _(u'Mozilla Public License, version 1.1')
     url = 'http://www.mozilla.org/MPL/MPL-1.1.html'
     shortname = 'mpl'
 
 class LICENSE_GPL2(_LicenseBase):
     id = 1
-    name = _('GNU General Public License, version 2.0')
+    name = _(u'GNU General Public License, version 2.0')
     url = 'http://www.gnu.org/licenses/gpl-2.0.html'
     shortname = 'gpl2'
 
 class LICENSE_GPL3(_LicenseBase):
     id = 2
-    name = _('GNU General Public License, version 3.0')
+    name = _(u'GNU General Public License, version 3.0')
     url = 'http://www.gnu.org/licenses/gpl-3.0.html'
     shortname = 'gpl3'
 
@@ -273,19 +273,19 @@ class LICENSE_LGPL21(_LicenseBase):
 
 class LICENSE_LGPL3(_LicenseBase):
     id = 4
-    name = _('GNU Lesser General Public License, version 3.0')
+    name = _(u'GNU Lesser General Public License, version 3.0')
     url = 'http://www.gnu.org/licenses/lgpl-3.0.html'
     shortname = 'lgpl3'
 
 class LICENSE_MIT(_LicenseBase):
     id = 5
-    name = _('MIT/X11 License')
+    name = _(u'MIT/X11 License')
     url = 'http://www.opensource.org/licenses/mit-license.php'
     shortname = 'mit'
 
 class LICENSE_BSD(_LicenseBase):
     id = 6
-    name = _('BSD License')
+    name = _(u'BSD License')
     url = 'http://www.opensource.org/licenses/bsd-license.php'
     shortname = 'bsd'
 

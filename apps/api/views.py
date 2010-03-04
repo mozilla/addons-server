@@ -7,7 +7,7 @@ import datetime
 
 from django.http import HttpResponse, HttpResponsePermanentRedirect
 from django.utils import translation
-from l10n import ugettext as _
+from l10n import ugettext as _, ugettext_lazy
 
 import jingo
 
@@ -17,8 +17,9 @@ from addons.models import Addon
 from search.client import Client as SearchClient, SearchError
 
 ERROR = 'error'
-OUT_OF_DATE = _("The API version, {0:.1f}, you are using is not valid.  "
-                "Please upgrade to the current version {1:.1f} API.")
+OUT_OF_DATE = ugettext_lazy(
+    u"The API version, {0:.1f}, you are using is not valid.  "
+    u"Please upgrade to the current version {1:.1f} API.")
 
 
 def validate_api_version(version):

@@ -3,7 +3,7 @@ import itertools
 
 from django import forms
 
-from l10n import ugettext as _
+from l10n import ugettext as _, ugettext_lazy as _lazy
 
 import amo
 from amo import helpers
@@ -17,21 +17,22 @@ platforms = (amo.PLATFORM_ANY, amo.PLATFORM_BSD, amo.PLATFORM_LINUX,
              amo.PLATFORM_MAC, amo.PLATFORM_SUN, amo.PLATFORM_WIN)
 
 updated = (
-    ('', _('Any time')),
-    ('1 day ago', _('Past Day')),
-    ('1 week ago', _('Past Week')),
-    ('1 month ago', _('Past Month')),
-    ('3 months ago', _('Past 3 Months')),
-    ('6 months ago', _('Past 6 Months')),
-    ('1 year ago', _('Past Year')),
+    ('', _lazy(u'Any time')),
+    ('1 day ago', _lazy(u'Past Day')),
+    ('1 week ago', _lazy(u'Past Week')),
+    ('1 month ago', _lazy(u'Past Month')),
+    ('3 months ago', _lazy(u'Past 3 Months')),
+    ('6 months ago', _lazy(u'Past 6 Months')),
+    ('1 year ago', _lazy(u'Past Year')),
 )
 
 sort_by = (
-    ('', _('Keyword Match')),
-    ('newest', _('Newest', 'advanced_search_form_newest')),
-    ('name', _('Name', 'advanced_search_form_name')),
-    ('averagerating', _('Rating', 'advanced_search_form_rating')),
-    ('weeklydownloads', _('Popularity', 'advanced_search_form_popularity')),
+    ('', _lazy(u'Keyword Match')),
+    ('newest', _lazy(u'Newest', 'advanced_search_form_newest')),
+    ('name', _lazy(u'Name', 'advanced_search_form_name')),
+    ('averagerating', _lazy(u'Rating', 'advanced_search_form_rating')),
+    ('weeklydownloads', _lazy(u'Popularity',
+                              'advanced_search_form_popularity')),
 )
 
 per_page = (20, 50, 100)
@@ -64,6 +65,7 @@ def get_app_versions():
 
 # Fake categories to slip some add-on types into the search groups.
 _Cat = collections.namedtuple('Cat', 'id name weight type_id')
+
 
 def get_search_groups(app):
     sub = []
