@@ -25,5 +25,6 @@ coverage==3.2b4
 selenium==1.0.1
 mock==0.6.0
 pyquery==0.4
+translate-toolkit==1.6.0
 
 pylint
