@@ -82,9 +82,7 @@
             <h4><a href="{{ addon.get_url_path() }}">{{ addon.name }}</a></h4>
             <p class="meta">
               {% if sorting == "date" %}
-                {% trans date=addon.last_updated|datetime %}
-                  Updated {{ date }}
-                {% endtrans %}
+                {{ _('Updated {0}')|f(addon.last_updated|datetime) }}
               {% elif sorting == "downloads" %}
                 {% with num=addon.weekly_downloads %}
                   {# L10n: {0} is the number of downloads. #}

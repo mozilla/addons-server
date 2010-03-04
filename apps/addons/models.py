@@ -56,7 +56,7 @@ class AddonManager(amo.models.ManagerBase):
         # XXX: handle personas (no versions) and listed (no files)
         return self.filter(inactive=False, status__in=status,
                            versions__applicationsversions__application=app.id,
-                           versions__files__status__in=status)
+                           versions__files__status__in=status).distinct()
 
     def compatible_with_app(self, app, version=None):
         """
