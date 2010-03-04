@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django import test
 from django.utils import translation
+from django.utils.functional import lazy
 
 import jinja2
 from nose.tools import eq_
@@ -299,5 +300,14 @@ def test_widget_value_from_datadict():
 
 def test_purified_translation_html():
     """__html__() should return a string."""
-    x = PurifiedTranslation('<h1>heyhey</h1>')
+    s = u'<b>heyhey</b>'
+    x = PurifiedTranslation(localized_string=s)
     assert isinstance(x.__html__(), unicode)
+    eq_(x.__html__(), s)
+
+
+def test_comparison_with_lazy():
+    x = Translation(localized_string='xxx')
+    lazy_u = lazy(lambda x: x, unicode)
+    x == lazy_u('xxx')
+    lazy_u('xxx') == x

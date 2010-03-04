@@ -42,10 +42,10 @@ class Translation(caching.base.CachingMixin, models.Model):
                 bool(self.localized_string.strip()))
 
     def __cmp__(self, other):
-        if isinstance(other, basestring):
-            return cmp(self.localized_string, other)
-        else:
+        if hasattr(other, 'localized_string'):
             return cmp(self.localized_string, other.localized_string)
+        else:
+            return cmp(self.localized_string, other)
 
     @property
     def cache_key(self):
