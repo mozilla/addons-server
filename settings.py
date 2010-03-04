@@ -79,7 +79,7 @@ MEDIA_ROOT = path('media')
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
-MEDIA_URL = '/media/'
+MEDIA_URL = '/media//'
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
@@ -150,6 +150,7 @@ INSTALLED_APPS = (
     'editors',
     'files',
     'l10n',  # for ./manage.py extract
+    'minify',
     'nick',
     'reviews',
     'search',
@@ -233,11 +234,15 @@ CACHE_COUNT_TIMEOUT = 60
 
 AUTH_PROFILE_MODULE = 'users.UserProfile'
 
+# External tools.
+
 SPHINX_INDEXER = 'indexer'
 SPHINX_SEARCHD = 'searchd'
 SPHINX_CONFIG_PATH = path('configs/sphinx/sphinx.conf')
 SPHINX_HOST = '127.0.0.1'
 SPHINX_PORT = 3312
+
+JAVA_BIN = '/usr/bin/java'
 
 # URL paths
 
