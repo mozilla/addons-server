@@ -258,9 +258,10 @@ class Addon(amo.models.ModelBase):
         """
         if not self.icon_type:
             if self.type_id == amo.ADDON_THEME:
-                return settings.STATIC_URL + '/img/theme.png'
+                icon = 'default-theme.png'
             else:
-                return settings.STATIC_URL + '/img/default_icon.png'
+                icon = 'default-addon.png'
+            return settings.MEDIA_URL + 'img/amo2009/icons/' + icon
 
         else:
             return settings.ADDON_ICON_URL % (
@@ -285,7 +286,7 @@ class Addon(amo.models.ModelBase):
             return preview.thumbnail_url
 
         except IndexError:
-            return settings.STATIC_URL + '/img/no-preview.png'
+            return settings.MEDIA_URL + '/img/amo2009/icons/no-preview.png'
 
     @property
     def is_listed(self):

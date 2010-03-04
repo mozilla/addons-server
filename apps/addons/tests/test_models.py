@@ -120,10 +120,10 @@ class TestAddonModels(test.TestCase):
         expected = (settings.ADDON_ICON_URL % (3615, 0)).rstrip('/0')
         assert a.icon_url.startswith(expected)
         a = Addon.objects.get(pk=7172)
-        assert a.icon_url.endswith('/img/theme.png'), (
+        assert a.icon_url.endswith('/icons/default-theme.png'), (
                 "No match for %s" % a.icon_url)
         a = Addon.objects.get(pk=73)
-        assert a.icon_url.endswith('/img/default_icon.png')
+        assert a.icon_url.endswith('/icons/default-addon.png')
 
     def test_thumbnail_url(self):
         """
@@ -133,7 +133,7 @@ class TestAddonModels(test.TestCase):
         a = Addon.objects.get(pk=7172)
         a.thumbnail_url.index('/previews/thumbs/25/25981.png?modified=')
         a = Addon.objects.get(pk=73)
-        assert a.thumbnail_url.endswith('/img/no-preview.png'), (
+        assert a.thumbnail_url.endswith('/icons/no-preview.png'), (
                 "No match for %s" % a.thumbnail_url)
 
     def test_preview_count(self):

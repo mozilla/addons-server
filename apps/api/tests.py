@@ -110,7 +110,7 @@ class APITest(TestCase):
         self.assertContains(response, "<max_version>2</max_version>")
         self.assertContains(response, "<os>ALL</os>")
         self.assertContains(response, "<eula></eula>")
-        self.assertContains(response, "/img/no-preview.png</thumbnail>")
+        self.assertContains(response, "/icons/no-preview.png</thumbnail>")
         self.assertContains(response, "<rating>4</rating>")
         self.assertContains(response,
                 "/en-US/firefox/addon/3615/?src=api</learnmore>")
