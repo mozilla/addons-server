@@ -181,7 +181,9 @@ class Addon(amo.models.ModelBase):
         help_text="For dictionaries and language packs")
 
     paypal_id = models.CharField(max_length=255, blank=True)
+    # TODO(jbalogh): remove nullify_invalid once remora dies.
     suggested_amount = DecimalCharField(max_digits=8, decimal_places=2,
+                                        nullify_invalid=True,
                                         blank=True, null=True,
                                         help_text="Requested donation amount.")
     annoying = models.PositiveIntegerField(choices=CONTRIBUTIONS_CHOICES,
