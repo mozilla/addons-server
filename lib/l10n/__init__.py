@@ -14,7 +14,7 @@ def ugettext(message, context=None):
     """Always return a stripped string, localized if possible"""
     stripped = strip_whitespace(message)
 
-    message = _add_context(context, stripped) if context else stripped
+    message = add_context(context, stripped) if context else stripped
 
     ret = django_ugettext(message)
 
@@ -28,8 +28,8 @@ def ungettext(singular, plural, number, context=None):
     plural_stripped = strip_whitespace(plural)
 
     if context:
-        singular = _add_context(context, singular_stripped)
-        plural = _add_context(context, plural_stripped)
+        singular = add_context(context, singular_stripped)
+        plural = add_context(context, plural_stripped)
     else:
         singular = singular_stripped
         plural = plural_stripped
@@ -47,9 +47,17 @@ ugettext_lazy = lazy(ugettext, unicode)
 ungettext_lazy = lazy(ungettext, unicode)
 
 
-def _add_context(context, message):
+def add_context(context, message):
     # \x04 is a magic gettext number.
     return u"%s\x04%s" % (context, message)
+
+
+def split_context(message):
+    # \x04 is a magic gettext number.
+    ret = message.split(u"\x04")
+    if len(ret) == 1:
+        ret.insert(0, "")
+    return ret
 
 
 def strip_whitespace(message):

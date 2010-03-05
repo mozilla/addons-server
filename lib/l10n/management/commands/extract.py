@@ -2,34 +2,29 @@ import os
 from manage import settings
 from optparse import make_option
 from subprocess import Popen
-
-from babel.messages import Catalog
-from babel.messages.extract import extract_from_dir
-from babel.messages.pofile import write_po
+from settings import JINJA_CONFIG
 
 from django.core.management.base import BaseCommand
 
 from jinja2 import ext
+from babel.messages.extract import (DEFAULT_KEYWORDS, extract_from_dir,
+                                    extract_python)
+from translate.storage import po
 
-from l10n import strip_whitespace
+from l10n import strip_whitespace, add_context, split_context
 
 DEFAULT_DOMAIN = 'all'
 
-KEYWORDS = {
-    '_': None,
-    'gettext': None,
-    'ngettext': (1, 2),
-}
-
 DOMAIN_METHODS = {
     'messages': [
-        ('apps/**.py', 'python'),
+        ('apps/**.py',
+            'l10n.management.commands.extract.extract_amo_python'),
         ('**/templates/**.html',
-            'lib.l10n.management.commands.extract.extract_amo_template'),
+            'l10n.management.commands.extract.extract_amo_template'),
     ],
     'lhtml': [
         ('**/templates/**.lhtml',
-            'lib.l10n.management.commands.extract.extract_amo_template'),
+            'l10n.management.commands.extract.extract_amo_template'),
     ],
     'javascript': [
         # We can't say **.js because that would dive into mochikit and timeplot
@@ -41,42 +36,98 @@ DOMAIN_METHODS = {
     ],
 }
 
+OPTIONS_MAP = {
+    '**.*': {'extensions': ",".join(JINJA_CONFIG()['extensions'])},
+}
+
 COMMENT_TAGS = ['L10n:']
 
 
-def extract_amo_template(fileobj, keywords, comment_tags, options):
-    """ Extract localizable strings from a template (.html) file.  We piggyback
-    on jinja2's babel_extract() function but tweak the output before it's
-    returned.  Specifically, we strip whitespace from the msgid.  Jinja2 will
-k   only strip whitespace from the ends of a string and then only if you ask
-    it which means linebreaks show up in your .po files.
+def tweak_message(message):
+    """We piggyback on jinja2's babel_extract() (really, Babel's extract_*
+    functions) but they don't support some things we need so this function will
+    tweak the message.  Specifically:
 
-    See babel_extract() for more details.
+        1) We strip whitespace from the msgid.  Jinja2 will only strip
+            whitespace from the ends of a string so linebreaks show up in
+            your .po files still.
+
+        2) Babel doesn't support context (msgctxt).  We hack that in ourselves
+            here.
     """
+    if isinstance(message, basestring):
+        message = strip_whitespace(message)
+    elif isinstance(message, tuple):
+        # A tuple of 2 has context, 3 is plural, 4 is plural with context
+        if len(message) == 2:
+            message = add_context(message[1], message[0])
+        elif len(message) == 3:
+            singular, plural, num = message
+            message = (strip_whitespace(singular),
+                       strip_whitespace(plural),
+                       num)
+        elif len(message) == 4:
+            singular, plural, num, ctxt = message
+            message = (add_context(ctxt, strip_whitespace(singular)),
+                       add_context(ctxt, strip_whitespace(plural)),
+                       num)
+    return message
 
-    options['extensions'] = 'caching.ext.cache'
+
+def extract_amo_python(fileobj, keywords, comment_tags, options):
+    for lineno, funcname, message, comments in \
+            list(extract_python(fileobj, keywords, comment_tags, options)):
+
+        message = tweak_message(message)
+
+        yield lineno, funcname, message, comments
+
+
+def extract_amo_template(fileobj, keywords, comment_tags, options):
     for lineno, funcname, message, comments in \
             list(ext.babel_extract(fileobj, keywords, comment_tags, options)):
 
-        if isinstance(message, basestring):
-            message = strip_whitespace(message)
-        elif isinstance(message, list):
-            message = [strip_whitespace(x) for x in message if x is not None]
-        elif isinstance(message, tuple):
-            # Plural form
-            message = (strip_whitespace(message[0]),
-                      strip_whitespace(message[1]),
-                      message[2])
+        message = tweak_message(message)
 
         yield lineno, funcname, message, comments
+
+
+def create_pounit(filename, lineno, message, comments):
+    unit = po.pounit(encoding="UTF-8")
+    if isinstance(message, tuple):
+        _, s = split_context(message[0])
+        c, p = split_context(message[1])
+        unit.setsource([s, p])
+        # Workaround for http://bugs.locamotion.org/show_bug.cgi?id=1385
+        unit.target = u""
+    else:
+        c, m = split_context(message)
+        unit.setsource(m)
+    if c:
+        unit.msgctxt = ['"%s"' % c]
+    if comments:
+        for comment in comments:
+            unit.addnote(comment, "developer")
+
+    unit.addlocation("%s:%s" % (filename, lineno))
+    return unit
+
+
+def create_pofile_from_babel(extracted):
+    catalog = po.pofile(inputfile="")
+    for filename, lineno, message, comments in extracted:
+        unit = create_pounit(filename, lineno, message, comments)
+        catalog.addunit(unit)
+    catalog.removeduplicates()
+    return catalog
 
 
 class Command(BaseCommand):
     option_list = BaseCommand.option_list + (
         make_option('--domain', '-d', default=DEFAULT_DOMAIN, dest='domain',
-                    help='The domain of the message files.  If "all" everything '
-                         'will be extracted and combined into z-keys.pot. '
-                         '(default: %s).' % DEFAULT_DOMAIN),
+                    help='The domain of the message files.  If "all" '
+                         'everything will be extracted and combined into '
+                         'z-keys.pot. (default: %s).' % DEFAULT_DOMAIN),
             )
 
     def handle(self, *args, **options):
@@ -95,33 +146,20 @@ class Command(BaseCommand):
 
         for domain in domains:
 
-            print "Extracting all strings for in domain %s..." % (domain)
-
-            catalog = Catalog(domain=domain,
-                              project="addons.mozilla.org",
-                              copyright_holder="Mozilla Corporation",
-                              msgid_bugs_address="dev-l10n-web@lists.mozilla.org",
-                              charset='utf-8')
+            print "Extracting all strings in domain %s..." % (domain)
 
             methods = DOMAIN_METHODS[domain]
             extracted = extract_from_dir(root,
                                          method_map=methods,
-                                         keywords=KEYWORDS,
+                                         keywords=DEFAULT_KEYWORDS,
                                          comment_tags=COMMENT_TAGS,
-                                         callback=callback)
+                                         callback=callback,
+                                         options_map=OPTIONS_MAP,
+                                         )
+            catalog = create_pofile_from_babel(extracted)
+            catalog.savefile(os.path.join(root, 'locale', 'z-%s.pot' % domain))
 
-            for filename, lineno, message, comments in extracted:
-                catalog.add(message, None, [(filename, lineno)],
-                            auto_comments=comments)
-
-            f = file(os.path.join(root, 'locale', 'z-%s.pot' % domain), 'w')
-
-            try:
-                write_po(f, catalog, width=79)
-            finally:
-                f.close()
-
-        if len(domain) > 1:
+        if len(domains) > 1:
             print "Concatenating all domains..."
             pot_files = []
             for i in domains:
