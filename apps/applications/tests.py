@@ -1,7 +1,8 @@
 from nose.tools import eq_
 import test_utils
 
-from applications.models import AppVersion
+import amo
+from applications.models import AppVersion, Application
 
 
 class TestAppVersion(test_utils.TestCase):
@@ -29,3 +30,16 @@ class TestAppVersion(test_utils.TestCase):
         eq_(v.minor1, None)
         eq_(v.minor2, None)
         eq_(v.minor3, None)
+
+
+class TestApplication(test_utils.TestCase):
+    fixtures = ['applications/all_apps.json']
+
+    def test_string_representation(self):
+        """
+        Check that the string representation of the app model instances
+        matches out constants
+        """
+        for static_app in amo.APP_USAGE:
+            model_app = Application.objects.get(id=static_app.id)
+            eq_(unicode(model_app), unicode(static_app.pretty))

@@ -17,7 +17,7 @@ class Application(amo.models.ModelBase):
         db_table = 'applications'
 
     def __unicode__(self):
-        return amo.APP_IDS[self.id].pretty
+        return unicode(amo.APP_IDS[self.id].pretty)
 
 
 class AppVersion(amo.models.ModelBase):
