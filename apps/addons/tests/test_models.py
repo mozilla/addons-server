@@ -186,6 +186,23 @@ class TestAddonModels(test.TestCase):
 class TestAddonPledgeModel(test.TestCase):
     fixtures = ['stats/test_models.json']
 
+    def test_ongoing(self):
+        """Make sure ongoing pledges are returned correctly."""
+        myaddon = Addon.objects.get(id=4)
+        mypledge = AddonPledge(addon=myaddon, target=10,
+                               created=date(2009, 6, 1),
+                               deadline=date(2009, 7, 1))
+        mypledge.save()
+
+        mypledge2 = AddonPledge(addon=myaddon, target=10,
+                                created=date(2009, 6, 1),
+                                deadline=date.today())
+        mypledge2.save()
+
+        ongoing = AddonPledge.objects.ongoing()
+        eq_(ongoing.count(), 1)
+        eq_(ongoing[0], mypledge2)
+
     def test_contributions(self):
         myaddon = Addon.objects.get(id=4)
         mypledge = AddonPledge(addon=myaddon, target=10,

@@ -236,7 +236,10 @@ MINIFY_BUNDLES = {
             'css/main.css',
             'css/main-mozilla.css',
             'css/zamboni/zamboni.css',
-        )
+
+            'css/jquery-lightbox.css',
+            'css/autocomplete.css',
+        ),
     },
     'js': {
         # JS files common to the entire site.
@@ -252,7 +255,15 @@ MINIFY_BUNDLES = {
             'js/jquery-ui/jqModal.js',
             'js/amo2009/home.js',
             'js/__utm.js',
-        )
+
+            # add-ons details page
+            'js/jquery-ui/ui.lightbox.js',
+            'js/jquery.autocomplete.pack.js',
+            'js/tags.js',
+            'js/get-satisfaction-v2.js',
+            'js/zamboni/contributions.js',
+            'js/zamboni/addon_details.js',
+        ),
     }
 }
 

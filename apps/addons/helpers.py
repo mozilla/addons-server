@@ -61,9 +61,11 @@ def contribution(addon, text='', src='', show_install=False, show_help=True):
     """
 
     # prepare pledge
-    pledge = addon.pledges.all() and addon.pledges.all()[0] or None
-    if pledge:
+    try:
+        pledge = addon.pledges.ongoing()[0]
         src = '%s-pledge-%s' % (src, pledge.id)
+    except IndexError:
+        pledge = None
 
     t = env.get_template('addons/contribution.html')
     return jinja2.Markup(t.render({

@@ -4,8 +4,8 @@
       <div class="pledgebox">
         {% with target=pledge.target|float|currencyfmt('USD') %}
         {# L10n: {0} is a number #}
-        <h3><em>{{ _('Help the developer of this add-on raise {0} to support '
-                     'its continued development.')|f(target) }}</em></h3>
+        <h3>{{ _('Help the developer of this add-on raise {0} to support '
+                 'its continued development.')|f(target) }}</h3>
         <p>{{ pledge.what_ima_gonna_do }}</p>
         <div class="o-meter">
           <dl class="raised">
@@ -48,8 +48,8 @@
            suggested amount (i.e., only one choice). #}
         {% if has_suggested %}id="contribute-button"{% endif %}
         href="/addons/contribute/{{ addon.id }}?source={{ src }}">{# TODO reverse URL #}
-        <img src="{{ MEDIA_URL }}img/amo2009/icons/buttons/heart-blue-16x16.gif"
-             alt=""/>{{ _('Contribute') }}</a>
+        <img src="{{ MEDIA_URL }}img/amo2009/icons/buttons/heart-blue-16x16.gif"/>{{
+          _('Contribute') }}</a>
       </a>
 
       {% if show_install %}
@@ -59,7 +59,8 @@
 
     <div class="suggestion">
       {% if has_suggested %}
-        <p>{{ _('Suggested Donation: {0}')|f(addon.suggested_amount) }}</p>
+        <p>{{ _('Suggested Donation: {0}')|f(
+          addon.suggested_amount|currencyfmt('USD')) }}</p>
       {% endif %}
       {% if show_help %}
         <p>

@@ -2,6 +2,554 @@
 
 {% block title %}{{ page_title(addon.name) }}{% endblock %}
 
+{% block bodyclass %}inverse{% endblock %}
+
 {% block content %}
 {{ breadcrumbs() }}
+
+{% set version = addon.current_version %}
+
+<h2 class="addon"{{ addon.name|locale_html }}>
+  <img src="{{ addon.icon_url }}" class="icon"/>
+  <span>
+    {{ addon.name }}
+  </span>
+  {% if version and not addon.is_listed %}
+    <span class="version">{{ version.version }}</span>
+  {% endif %}
+</h2>
+<h4 class="author">{{ _('by') }} {{ users_list(addon.listed_authors) }}</h4>
+
+{# TODO(fwenzel): "add-on has been added to collection" notification #}
+
+<div id="addon" class="primary" role="main">
+  <div class="featured">
+    <div class="featured-inner object-lead inverse">
+
+      <div id="addon-summary-wrapper">
+        <div id="addon-summary" class="primary {{ addon|statusflags }}">
+          <p{{ addon.summary|locale_html }}>{{ addon.summary|nl2br }}</p>
+
+          {# TODO(fwenzel): if has_version: install button, if listed: warning #}
+
+          {% if addon.takes_contributions %}
+          {{
+          contribution(
+            addon=addon,
+            text=_('The developer of this add-on asks that you help support '
+                   'its continued development by making a small contribution.'),
+            src='addon-detail')
+          }}
+          {% endif %}
+
+          <table summary="{{ _('Add-on Information') }}">
+            <tbody>
+              <tr>
+                <th>{{ _('Updated') }}</th>
+                <td>
+                  <time datetime="{{ version.created|isotime }}">{{
+                    version.created|datetime }}</time>
+                </td>
+              </tr>
+              {% if addon.homepage %}
+                <tr>
+                  <th>{{ _('Website') }}</th>
+                  {# TODO linkification #}
+                  <td>{{ addon.homepage }}</td>
+                </tr>
+              {% endif %}
+              {% if addon.compatible_apps %}
+                <tr>
+                  <th>{{ _('Works with') }}</th>
+                  <td>{{ addon.compatible_apps[APP] }}</td>
+                </tr>
+              {% endif %}
+              {# XXX future feature: 'Depends on' ... #}
+              {# XXX future feature: 'Localizations' ... #}
+              <tr>
+                <th>{{ _('Rating', 'advanced_search_form_rating') }}</th>
+                <td>{{ addon|reviews_link }}</td>
+              </tr>
+              {% if not addon.is_listed %}
+                <tr class="meta-stats">
+                  <th>{{ _('Downloads', 'list_sortby_downloads') }}</th>
+                  <td>
+                    <strong class="downloads">{{
+                      addon.total_downloads|numberfmt }}</strong>
+                    {% if addon.public_stats %}
+                      {# TODO real reverse URL #}
+                      <a href="/addon/{{ addon.id }}/statistics">{{ _('View Statistics') }}</a>
+                    {% endif %}
+                  </td>
+                </tr>
+              {% endif %}
+            </tbody>
+          </table>
+
+        </div>{# /addon-summary #}
+      </div>{# /addon-summary-wrapper #}
+
+      <div class="secondary">
+        {% if addon.previews.all() %}
+          {% with preview = addon.previews.all()[0] %}
+            <a class="screenshot thumbnail" rel="jquery-lightbox"
+              href="{{ preview.image_url }}" title="{{ preview.caption }}">
+                <img alt="" src="{{ preview.thumbnail_url }}" />
+            </a>
+          {% endwith %}
+        {% else %}
+          <img class="screenshot thumbnail" src="{{ addon.thumbnail_url }}"
+            alt="" width="200" height="150" />
+        {% endif %}
+
+        {{ addon_sharing(addon) }}
+
+      </div>{# /secondary #}
+
+    </div>{# /featured-inner #}
+  </div>{# /featured #}
+
+  <h3>{{ _('More about this add-on') }}</h3>
+  <div class="article userinput">
+    <p{{ addon.description|locale_html }}>{{ addon.description|nl2br }}</p>
+
+    {% if addon.preview_count > 1 %}
+      <h4>{{ _('Image Gallery') }}</h4>
+      {% for preview in addon.previews.all()[1:] %}
+        <a class="screenshot thumbnail" rel="jquery-lightbox"
+          href="{{ preview.image_url }}" title="{{ preview.caption }}">
+            <img src="{{ preview.thumbnail_url }}" alt="" />
+        </a>
+      {% endfor %}
+    {% endif %}
+
+    {% if addon.developer_comments %}
+    <h4>{{ _('Developer Comments', 'addons_display_developer_comments') }}</h4>
+      <div class="prose userinput">
+        <p{{ addon.developer_comments|locale_html }}>{{
+          addon.developer_comments|nl2br }}</p>
+      </div>
+    {% endif %}
+
+    {# beta channel #}
+    {% if addon.show_beta %}
+      <h4 id="beta-channel">{{ _('Beta Channel') }}</h4>
+      <div>
+        <p>
+          {% trans %}
+          The Beta Channel lets you test an experimental new version of this
+          add-on before it's released to the general public. Once you install
+          the beta version, you will continue to get updates from this channel.
+          {% endtrans %}
+          <a href="#install-beta">{{ _('Install beta version') }}</a>
+        </p>
+        <div class="install-beta" id="install-beta">
+          <p>
+            {% trans %}
+            <strong>Caution:</strong> Beta versions of this add-on have not
+            been reviewed by Mozilla. Once you install a beta version you will
+            continue to receive beta updates from this developer. To stop
+            receiving beta updates, reinstall the default version from the
+            link above.
+            {% endtrans %}
+          </p>
+          <dl>
+            <dt class="beta-version">{{ _('Version {0}:')|f(
+              addon.current_beta_version.version) }}</dt>
+            <dd>{# TODO install button #}</dd>
+          </dl>
+        </div>{# /install-beta #}
+      </div>
+    {% endif %}
+    {# /beta #}
+  </div>{# /article #}
+
+  {% if addon.reviews %}
+    <h3 id="reviews">{{ _('Reviews') }}</h3>
+    <div class="article">
+      {% for review in addon.reviews[:3] %}
+        <div class="hreview">
+          {% if review.title %}
+            <h5>{{ review.title }}</h5>
+          {% endif %}
+          <p class="description">{{ review.body|nl2br }}</p>
+          <p>{{ review.rating|stars }}
+            {% trans user=review.user|user_link, date=review.created|datetime %}
+              by {{ user }} on {{ date }}
+            {% endtrans %}
+          </p>
+        </div>
+      {% endfor %}
+      <p>
+        <a class="more-info" href="{{ url('reviews.list', addon_id=addon.id) }}">
+          {{ _('See all {0} reviews of this add-on')|f(addon.reviews.count()) }}
+        </a>
+      </p>
+    </div>
+  {% endif %}{# /reviews #}
+
+  {% if not addon.has_author(user) %}
+    <h3>{{ _('What do you think?') }}</h3>
+    <div id="review-box" class="highlight">
+      {% if not user.is_authenticated() %}
+        <p>
+          {% trans login='/users/login' %}{# TODO reverse url #}
+            Please <a href="{{ login }}">log in</a> to submit a review
+          {% endtrans %}
+        </p>
+      {% endif %}
+
+      {# TODO uncakeify  #}
+      <form class="addon-feedback" method="post"
+            action="{{ locale_url('%s/reviews/add/%s' % (APP.short, addon.id)) }}">
+        {{ cake_csrf_token() }}
+        {% with disabled = user.is_authenticated() and '' or
+          ' disabled="disabled"' %}
+          <div class="container">
+            <label for="review">{{ _('Review') }}</label>
+            <textarea name="data[Review][body]" id="review"{{ disabled }}
+                      cols="30" rows="6"></textarea>
+          </div>
+          <div class="container">
+            <label for="review-rating">{{ _('Rating', 'advanced_search_form_rating') }}</label>
+            <select id="review-rating" name="data[Review][rating]">
+              <option></option>
+              <option value="1" class="worst">*</option>
+              <option value="2" class="bad">**</option>
+              <option value="3" class="fair">***</option>
+              <option value="4" class="good">****</option>
+              <option value="5" class="best">*****</option>
+            </select>
+            <input type="hidden" name="data[Review][id]" value="" id="ReviewId"/>
+            <input type="hidden" name="data[Review][title]" value=" " id="ReviewTitle"/>
+            <button type="submit"{{ disabled }}>{{ _('Post Review') }}</button>
+          </div>
+        {% endwith %}
+      </form>
+
+      <p>
+        {% trans %}
+          Please do not post bug reports in reviews. We do not make your email
+          address available to add-on developers and they may need to contact
+          you to help resolve your issue.
+        {% endtrans %}
+      </p>
+      {% if addon.support_url or addon.support_email %}
+      <p>
+        {% trans support='#support' %}
+          See the <a href="{{ support }}">support section</a> to find out
+          where to get assistance for this add-on.
+        {% endtrans %}
+      </p>
+      {% endif %}
+      {# TODO reverse url #}
+      <p><a href="/pages/review_guide">{{ _('Review Guidelines') }}</a></p>
+      <p>
+        {# TODO reverse url #}
+        <a href="/reviews/{{ addon.id }}/add/">
+          {{ _('Detailed Review') }}</a>
+      </p>
+
+    </div>{# /#review-box #}
+    {% endif %}{# /is_author #}
+
+    {% if version %}
+    <h3>{{ _('Release Notes', 'addons_display_release_notes') }}</h3>
+    <div class="article">
+      {# TODO reverse URL #}
+      <p><a href="/addons/versions/{{ addon.id }}#version-{{
+        version.version }}" title="{{ _('Permanent link to this version')
+        }}">{{ _('Version {0}', 'addon_display_header_version')|f(version.version) }}</a>
+        &mdash;
+        <span title="{{ version.created|isotime }}">{{
+          version.created|datetime }}</span>
+        {% if version.has_files %}
+          &mdash;
+          {{ _('{0} KB')|f(version.files.all()[0].size|int|numberfmt) }}
+        {% endif %}
+      </p>
+
+      <div class="prose userinput">
+        <p id="release-notes"{{ version.releasenotes|locale_html }}>
+          {{ version.releasenotes|nl2br }}
+        </p>
+      </div>
+
+      {# License #}
+      {% if version.license %}
+        <h5 id="license">
+          {{ _('Source Code License') }}
+          {# TODO reverse URL #}
+          <a href="/pages/developer_faq#license">
+            {{ _("What's this?", 'addons_display_a_license_what') }}
+          </a>
+        </h5>
+        {# TODO reverse URL #}
+        <p><a href="/versions/license/{{ version.id }}">{{
+          version.license.name }}</p>
+      {% endif %}
+
+      <ul class="further-navigation">
+        {% if addon.view_source and user.is_authenticated() and
+          version.has_files %}
+          <li>
+            {# TODO reverse URL #}
+            <a href="/files/browse/{{
+              version.files.all()[0].pk }}">{{ _('View the source') }}</a>
+          </li>
+        {% endif %}
+        {% if not addon.is_listed %}
+          <li>
+            {# TODO reverse URL #}
+            <a href="/addons/versions/{{ addon.id }}">
+              {{ _('View All Versions') }}
+            </a>
+          </li>
+        {% endif %}
+      </ul>
+    </div> <!-- Release Notes -->
+    {% endif %}
+
+</div>{# /primary #}
+
+<div class="secondary" role="secondary">
+
+  {% if addon.the_reason and addon.the_future %}
+  <div class="highlight">
+    {% with single_dev = addon.listed_authors|random %}
+      <h3 class="compact-bottom">
+        {% trans count=addon.listed_authors|length %}
+        Meet the Developer
+        {% pluralize %}
+        Meet the Developers
+        {% endtrans %}
+      </h3>
+      <img class="avatar" alt="{{ single_dev.display_name }}" height="64"
+           width="64" src="{{ single_dev.picture_url }}"/>
+      <p>{{ _("Learn why {0} was created and find out what's next for this "
+              'add-on.')|f(addon.name) }}</p>
+      <p>
+        <a class="more-info" href="{{ addon.meet_developers_url }}">
+        {% if addon.listed_authors|length > 1 %}
+          {{ _('Meet the Developers') }}
+        {% else %}
+          {{ _('Meet {0}')|f(single_dev.display_name) }}
+        {% endif %}
+        </a>
+      </p>
+    {% endwith %}
+  </div>
+  {% endif %}{# /meet the devs #}
+
+  {# categories and other add-ons #}
+  {% with categories = addon.categories.filter(application=APP.id) %}
+    {% if categories or author_addons|length > 1 %}
+    <div class="highlight">
+      {% if categories %}
+      {% set _sort_opts = addon.is_searchengine and '?sort=averagerating' or
+        '' %}
+        <ul>
+          {# TODO reverse URL #}
+          {% for category in categories %}
+          <li>
+            <a href="{{ '/browse/type:{0}/cat:{1}{2}'|f(
+              category.type.id, category.id, _sort_opts)
+              }}" class="more-info">
+              {{ _('See All {0} Add-ons')|f(category) }}
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+      {% if author_addons|length > 1 %}
+      <div class="other-author-addons">
+        <h4>
+          {% trans count = addon.listed_authors|length,
+                   author = users_list(addon.listed_authors) %}
+            Other add-ons by {{ author }}
+          {% pluralize %}
+            Other add-ons by these authors
+          {% endtrans %}
+        </h4>
+
+        {% if author_addons|length > 3 %}
+          <form id="addons-author-addons" method="get" action="">
+            <select id="addons-author-addons-select"
+              name="addons-author-addons-select"
+              onchange="this.form.submit()">
+            {% for other in author_addons %}
+              {% with id=other.id, title=other.name,
+                      name=other.name|string|truncate(25) %}
+                <option value="{{ id }}" title="{{ title }}"{{
+                        id == addon.id and ' selected="selected"' or '' }}>
+                  {{ name }}
+                </option>
+              {% endwith %}
+            {% endfor %}
+            </select>
+            <input class="hidden" type="submit" value="{{
+              _('Go', 'addons_author_addons_submit') }}"/>
+          </form>
+
+        {% else %}
+          <ul>
+          {% for other in author_addons %}
+            {% with id=other.id, title=other.name,
+                    name=other.name|string|truncate(25) %}
+              {%- if id == addon.id %}{% continue %}{% endif %}
+              <li>
+                <a href="{{ other.base_url }}" title="{{ title }}"
+                   class="addonitem">{{ name }}</a>
+              </li>
+            {% endwith %}
+          {% endfor %}
+          </ul>
+        {% endif %}
+
+      </div>{# /highlight #}
+      {% endif %}
+
+    </div>
+    {% endif %}
+  {% endwith %}
+  {# /categories #}
+
+
+  {# support box #}
+  {% if addon.support_email or addon.support_url or addon.has_satisfaction %}
+  <div id="support" class="highlight">
+    <h3 class="compact-bottom">{{ _('Need help with this add-on?') }}</h3>
+    <ul class="xoxo">
+      {% if addon.has_satisfaction %}
+        {# get satisfaction only supports en-US so no L10n here #}
+        <li>Ask others on
+          <a href="#" id="feedback_btn" class="feedback_btn"
+            data-company="{{ addon.get_satisfaction_company }}"
+            data-product="{{ addon.get_satisfaction_product }}"
+             >Get Satisfaction</a>
+        </li>
+      {% endif %}
+      {% if addon.support_email %}
+        <li><a href="mailto:{{ addon.support_email }}">{{
+          _('E-mail your question') }}</a></li>
+      {% endif %}
+      {% if addon.support_url %}
+        <li><a href="{{ addon.support_url }}">{{
+          _('Visit the support site') }}</a></li>
+      {% endif %}
+    </ul>
+
+    {% if addon.has_satisfaction %}
+    <div id="get_satisfaction_container"></div>
+    {% endif %}
+
+  </div>
+  {% endif %}
+  {# /support #}
+
+  {# tags #}
+  <div class="clearboth">
+    <h3 class="compact-bottom">{{ _('Tags', 'tags_header_tags_title') }}</h3>
+
+    <div id="tags">
+      {{ tag_list(addon, dev_tags=dev_tags, user_tags=user_tags) }}
+    </div>
+
+    {% if user.is_authenticated() %}
+    <a href="#" id="addatag">{{ _('Add a tag') }}</a>
+      <div class="addtagform">
+        <form id="tagForm" action="{{ locale_url(APP.short+'/tags/add/') }}"
+              method="post">{# TODO reverse URL #}
+          {{ cake_csrf_token() }}
+          <input type="text" id="newTag" name="newTag"/>
+          <input type="hidden" name="addonid" id="addtagformaddonid" value="{{ addon.id }}"/>
+          <button id="addtagbutton">{{ _('Add', 'tags_add_tag_button') }}</button>
+        </form>
+        <span class="hint">
+          {% trans %}
+            Comma-separated, minimum of 2 characters.  Example:
+            <span class="example">ocean, sail boat, water</span>
+          {% endtrans %}
+        </span>
+      </div>
+    {% else %}
+      {% trans register='/users/register', login='/users/login' %}
+        {# TODO reverse URL #}
+        <a href="{{ register }}">Register</a> or
+        <a href="{{ login }}">Log in</a> to add tags
+      {% endtrans %}
+    {% endif %}
+  </div>
+  {# /tags #}
+
+  {# addon recommendations #}
+  {% if recommendations %}
+  <div>
+    <h3 class="compact-bottom">{{ _('Often used with&hellip;')|safe }}</h3>
+    <ul class="addon-otheraddons">
+      {% for rec in recommendations %}
+      <li>
+      <a href="{{ url('addons.detail', addon_id=rec.id) }}"?src=oftenusedwith"
+         class="addonitem">{{ rec.name }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+  {# /recommendations #}
+
+  {# related collections #}
+  <div class="collections-add">
+    <h3 class="compact-bottom">{{ _('Related Collections') }}</h3>
+
+    {% if not collections %}
+      <p>{{ _('This add-on is not yet in any collections.') }}</p>
+    {% else %}
+      <ul class="addon-collections">
+        {% for coll in collections %}
+        <li><a href="{{ coll.get_url_path() }}"
+               class="collectionitem">{{ coll.name }}</a></li>
+        {% endfor %}
+        {% if other_collection_count %}
+        {# TODO reverse URL #}
+        <li>
+          <a href="/collections/addon/{{ addon.id }}">
+            {% trans count=other_collection_count %}
+            and {{ count }} more collection
+            {% pluralize %}
+            and {{ count }} more collections
+            {% endtrans %}
+          </a>
+        </li>
+        {% endif %}
+      </ul>
+    {% endif %}
+
+    {% if user.is_authenticated() %}
+    {# TODO reverse URLs #}
+    <form action="{{ locale_url(APP.short+'/collections/addtocollection') }}"
+          method="post" id="coll_publish">
+      <div>
+        <a href="/collections/">{{ _("What's this?", 'addons_display_a_license_what') }}</a>
+        <h3>
+          <label for="publish_to">{{ _('Add to a collection:') }}</label>
+        </h3>
+        {{ cake_csrf_token() }}
+        <input name="data[addon_id]" type="hidden" value="{{ addon.id }}"/>
+        <select name="data[collection_uuid]" id="publish_to">
+          <option value="" selected="selected">{{ _('Select a collection...') }}</option>
+          {% for collection in user_collections %}
+            <option value="{{ collection.uuid }}">{{ collection.name }}</option>
+          {% endfor %}
+          <option value="new">{{ _('New Collection...') }}</option>
+        </select>
+        <button>{{ _('Publish') }}</button>
+      </div>
+    </form>
+    {% endif %}
+  </div>
+  {# /collections #}
+
+</div>{# /secondary #}
 {% endblock content %}

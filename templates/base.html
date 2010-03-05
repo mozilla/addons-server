@@ -15,7 +15,8 @@
         data-app="{{ request.APP.short }}"
         data-appname="{{ request.APP.pretty }}"
         data-appid="{{ request.APP.id }}"
-        data-anonymous="{{ request.user.is_authenticated() and 'false' or 'true' }}">
+        data-anonymous="{{ request.user.is_authenticated() and 'false' or 'true' }}"
+        data-media-url="{{ MEDIA_URL }}">
     <div class="section">
 
       {% block site_header %}

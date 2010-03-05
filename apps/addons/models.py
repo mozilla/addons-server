@@ -354,12 +354,21 @@ class AddonCategory(caching.base.CachingMixin, models.Model):
         unique_together = ('addon', 'category')
 
 
+class PledgeManager(amo.models.ManagerBase):
+
+    def ongoing(self):
+        """Get non-expired pledges only"""
+        return self.filter(deadline__gte=date.today())
+
+
 class AddonPledge(amo.models.ModelBase):
     addon = models.ForeignKey(Addon, related_name='pledges')
     target = models.PositiveIntegerField()  # Only $ for now
     what_ima_gonna_do = TranslatedField()
     active = models.BooleanField(default=False)
     deadline = models.DateField(null=True)
+
+    objects = PledgeManager()
 
     class Meta:
         db_table = 'addons_pledges'
@@ -395,6 +404,7 @@ class AddonRecommendation(models.Model):
 
     class Meta:
         db_table = 'addon_recommendations'
+        ordering = ('-score',)
 
 
 class AddonType(amo.models.ModelBase):

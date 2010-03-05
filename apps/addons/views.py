@@ -1,19 +1,88 @@
 from django import http
 from django.db.models import Q
+from django.shortcuts import get_object_or_404
 from django.utils import translation
 
 import jingo
 from l10n import ugettext as _
 
 import amo
+from amo.urlresolvers import reverse
+
 from addons.models import Addon
 from bandwagon.models import Collection, CollectionFeature, CollectionPromo
+from users.models import UserProfile
 from stats.models import GlobalStat
+from .models import Addon
 
 
-# pylint: disable-msg: W0613
+def author_addon_clicked(f):
+    """Decorator redirecting clicks on "Other add-ons by author"."""
+    def decorated(request, *args, **kwargs):
+        try:
+            target_id = int(request.GET.get('addons-author-addons-select'))
+            return http.HttpResponsePermanentRedirect(reverse(
+                'addons.detail', args=[target_id]))
+        except TypeError:
+            return f(request, *args, **kwargs)
+    return decorated
+
+
+@author_addon_clicked
 def addon_detail(request, addon_id):
-    return http.HttpResponse('this is addon %s' % addon_id)
+    """Add-ons details page."""
+    addon = get_object_or_404(Addon, id=addon_id)
+    addon.is_searchengine = (addon.type == amo.ADDON_SEARCH)
+
+    # source tracking
+    src = request.GET.get('src', 'addondetail')
+
+    # get satisfaction only supports en-US
+    lang = translation.to_locale(translation.get_language())
+    addon.has_satisfaction = (lang=='en_US' and
+                              addon.get_satisfaction_company)
+
+    # other add-ons from the same author(s)
+    author_addons = Addon.objects.valid().filter(
+        addonuser__listed=True, authors__in=addon.listed_authors).distinct()
+
+    # tags
+    tags = addon.tags.not_blacklisted()
+    dev_tags = tags.filter(addon_tags__user__in=addon.authors.all())
+    user_tags = tags.exclude(addon_tags__user__in=addon.authors.all())
+
+    # addon recommendations
+    recommended = Addon.objects.valid().filter(
+        recommended_for__addon=addon)[:5]
+
+    # popular collections this addon is part of
+    coll_show_count = 3
+    collections = Collection.objects.listed().filter(
+        addons=addon, application__id=request.APP.id)
+    other_coll_count = collections.count() - coll_show_count
+    popular_coll = collections.order_by('-subscribers')[:coll_show_count]
+
+    # this user's collections
+    profile = UserProfile.objects.get(user=request.user)
+    user_collections = profile.collections.filter(
+        collectionuser__role=amo.COLLECTION_ROLE_ADMIN)
+
+    data = {
+        'addon': addon,
+        'author_addons': author_addons,
+
+        'src': src,
+
+        'dev_tags': dev_tags,
+        'user_tags': user_tags,
+
+        'recommendations': recommended,
+
+        'collections': popular_coll,
+        'other_collection_count': other_coll_count,
+        'user_collections': user_collections
+    }
+    return jingo.render(request, 'addons/details.html', data)
 
 
 class HomepageFilter(object):
