@@ -189,7 +189,7 @@ def JINJA_CONFIG():
     from django.conf import settings
     from caching.base import cache
     config = {'extensions': ['l10n.template.i18n', 'caching.ext.cache',
-                             'jinja2.ext.with_'],
+                             'jinja2.ext.with_', 'jinja2.ext.loopcontrols'],
               'finalize': lambda x: x if x is not None else ''}
     if 'memcached' in cache.scheme and not settings.DEBUG:
         # We're passing the _cache object directly to jinja because
