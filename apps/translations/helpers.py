@@ -21,3 +21,16 @@ def locale_html(translatedfield):
         textdir = 'rtl' if locale in rtl_locales else 'ltr'
         return jinja2.Markup(' lang="%s" dir="%s"' % (translatedfield.locale,
                                                       textdir))
+
+
+@register.filter
+def truncate(s, length=255, killwords=False, end='...'):
+    """
+    Wrapper for jinja's truncate that checks if the object has a
+    __truncate__ attribute first.
+    """
+    if s is None:
+        return ''
+    if hasattr(s, '__truncate__'):
+        return s.__truncate__(length, killwords, end)
+    return jinja2.filters.do_truncate(s, length, killwords, end)

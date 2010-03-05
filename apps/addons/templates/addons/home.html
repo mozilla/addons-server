@@ -79,9 +79,7 @@
                        alt="{{ addon.name }}">
                 </a>
                 <blockquote>
-                  {# The first |safe turns the PurifiedField into a string.
-                     The second marks the truncated string as safe. #}
-                  <p>{{ addon.description|safe|truncate(250)|safe }}</p>
+                  <p>{{ addon.description|truncate(250) }}</p>
                 </blockquote>
                 <div class="meta">
                   {{ addon|reviews_link }}
