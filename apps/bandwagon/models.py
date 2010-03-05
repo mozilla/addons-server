@@ -39,6 +39,8 @@ class Collection(amo.models.ModelBase):
     downvotes = models.PositiveIntegerField(default=0)
     rating = models.FloatField(default=0)
 
+    addons = models.ManyToManyField(Addon, through='CollectionAddon',
+                                    related_name='collections')
     users = models.ManyToManyField(UserProfile, through='CollectionUser')
 
     class Meta(amo.models.ModelBase.Meta):
@@ -67,6 +69,20 @@ class Collection(amo.models.ModelBase):
             return settings.COLLECTION_ICON_URL % (self.id, modified)
         else:
             return settings.MEDIA_URL + 'img/amo2009/icons/collection.png'
+
+
+class CollectionAddon(amo.models.ModelBase):
+    addon = models.ForeignKey(Addon)
+    collection = models.ForeignKey(Collection)
+    added = models.DateTimeField()
+    # category (deprecated: for "Fashion Your Firefox")
+    comments = TranslatedField(null=True)
+    downloads = models.PositiveIntegerField(default=0)
+    user = models.ForeignKey(UserProfile)
+
+    class Meta(amo.models.ModelBase.Meta):
+        db_table = 'addons_collections'
+        unique_together = (('addon', 'collection'),)
 
 
 class CollectionAddonRecommendation(models.Model):
