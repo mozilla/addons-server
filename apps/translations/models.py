@@ -1,7 +1,10 @@
 from django.db import models, connection
+import jinja2
 
 from bleach import Bleach
 import caching.base
+
+from . import utils
 
 
 bleach = Bleach()
@@ -107,6 +110,9 @@ class PurifiedTranslation(Translation):
     def save(self, **kwargs):
         self.clean()
         return super(PurifiedTranslation, self).save(**kwargs)
+
+    def __truncate__(self, length, killwords, end):
+        return utils.truncate(self.localized_string, length, killwords, end)
 
 
 class LinkifiedTranslation(PurifiedTranslation):

@@ -1,14 +1,19 @@
 from django import test
 
+import jingo
 from nose.tools import eq_
+from pyquery import PyQuery
 
 import amo
-from addons.helpers import statusflags, flag
+from addons.helpers import statusflags, flag, support_addon
 from addons.models import Addon
 
 
 class TestHelpers(test.TestCase):
     fixtures = ['base/addons.json', 'addons/featured.json']
+
+    def setUp(self):
+        jingo.load_helpers()
 
     def test_statusflags(self):
         ctx = {'APP': amo.FIREFOX, 'LANG': 'en-US'}
@@ -39,3 +44,16 @@ class TestHelpers(test.TestCase):
         # category featured
         featured = Addon.objects.get(pk=1001)
         eq_(flag(ctx, featured), '<h5 class="flag">Recommended</h5>')
+
+    def test_support_addon(self):
+        a = Addon(id=12)
+        eq_(support_addon(a), '')
+
+        # TODO(jbalogh): check the url when using reverse
+        a.wants_contributions = a.paypal_id = True
+        eq_(PyQuery(support_addon(a))('a').text(), 'Support this add-on')
+
+        a.suggested_amount = '12'
+        doc = PyQuery(support_addon(a))
+        eq_(doc('.support-this-addon').text(),
+            'Support this add-on: Contribute $12.00')

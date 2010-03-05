@@ -9,6 +9,7 @@ from django.utils import translation
 import caching.base
 
 import amo.models
+from amo.fields import DecimalCharField
 from amo.urlresolvers import reverse
 from reviews.models import Review
 from translations.fields import (TranslatedField, PurifiedField,
@@ -55,7 +56,7 @@ class AddonManager(amo.models.ManagerBase):
         # XXX: handle personas (no versions) and listed (no files)
         return self.filter(inactive=False, status__in=status,
                            versions__applicationsversions__application=app.id,
-                           versions__files__status__in=status)
+                           versions__files__status__in=status).distinct()
 
     def compatible_with_app(self, app, version=None):
         """
@@ -180,9 +181,9 @@ class Addon(amo.models.ModelBase):
         help_text="For dictionaries and language packs")
 
     paypal_id = models.CharField(max_length=255, blank=True)
-    suggested_amount = models.CharField(
-        max_length=255, blank=True, null=True,
-        help_text="Requested donation amount.")
+    suggested_amount = DecimalCharField(max_digits=8, decimal_places=2,
+                                        blank=True, null=True,
+                                        help_text="Requested donation amount.")
     annoying = models.PositiveIntegerField(choices=CONTRIBUTIONS_CHOICES,
                                            default=0)
 
@@ -257,9 +258,10 @@ class Addon(amo.models.ModelBase):
         """
         if not self.icon_type:
             if self.type_id == amo.ADDON_THEME:
-                return settings.STATIC_URL + '/img/theme.png'
+                icon = 'default-theme.png'
             else:
-                return settings.STATIC_URL + '/img/default_icon.png'
+                icon = 'default-addon.png'
+            return settings.MEDIA_URL + 'img/amo2009/icons/' + icon
 
         else:
             return settings.ADDON_ICON_URL % (
@@ -284,7 +286,7 @@ class Addon(amo.models.ModelBase):
             return preview.thumbnail_url
 
         except IndexError:
-            return settings.STATIC_URL + '/img/no-preview.png'
+            return settings.MEDIA_URL + '/img/amo2009/icons/no-preview.png'
 
     @property
     def is_listed(self):
@@ -330,6 +332,11 @@ class Addon(amo.models.ModelBase):
             roles.remove(amo.AUTHOR_ROLE_NONE)
         return bool(AddonUser.objects.filter(addon=self, user=user,
                                              role__in=roles))
+
+    @property
+    def takes_contributions(self):
+        # TODO(jbalogh): config.paypal_disabled
+        return self.wants_contributions and self.paypal_id
 
 
 class AddonCategory(caching.base.CachingMixin, models.Model):
