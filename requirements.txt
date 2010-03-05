@@ -28,3 +28,4 @@ pyquery==0.4
 translate-toolkit==1.6.0
 
 pylint
+-e git://github.com/davedash/django-fixture-magic.git#egg=django_fixture_magic
