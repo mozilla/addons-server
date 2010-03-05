@@ -4,7 +4,6 @@ import time
 from django.conf import settings
 from django.db import models
 from django.db.models import Q
-from django.utils import translation
 
 import caching.base
 
@@ -217,14 +216,14 @@ class Addon(amo.models.ModelBase):
     def reviews_url(self):
         return reverse('reviews.list', args=(self.id,))
 
-    @classmethod
-    def get_fallback(cls):
-        return cls._meta.get_field('default_locale')
-
     @property
     def listed_authors(self):
         return UserProfile.objects.filter(addons=self,
                 addonuser__listed=True).order_by('addonuser__position')
+
+    @classmethod
+    def get_fallback(cls):
+        return cls._meta.get_field('default_locale')
 
     def fetch_translations(self, ids, lang):
         return translations_with_fallback(ids, lang, self.default_locale)

@@ -7,15 +7,18 @@ import amo.models
 from addons.models import Addon, AddonCategory
 from applications.models import Application
 from users.models import UserProfile
-from translations.fields import TranslatedField, LinkifiedField
+from translations.fields import (TranslatedField, LinkifiedField,
+                                 translations_with_fallback)
 
 
 class Collection(amo.models.ModelBase):
     uuid = models.CharField(max_length=36, blank=True, unique=True)
     name = TranslatedField()
-    nickname = models.CharField(max_length=30, blank=True, unique=True)
+    nickname = models.CharField(max_length=30, blank=True, unique=True,
+                                null=True)
     description = LinkifiedField()
-    defaultlocale = models.CharField(max_length=10, default='en-US')
+    default_locale = models.CharField(max_length=10, default='en-US',
+                                      db_column='defaultlocale')
     collection_type = models.PositiveIntegerField(default=0)
     icontype = models.CharField(max_length=25, blank=True)
 
@@ -44,6 +47,13 @@ class Collection(amo.models.ModelBase):
     def get_url_path(self):
         # TODO(jbalogh): reverse
         return '/collection/%s' % self.url_slug
+
+    def fetch_translations(self, ids, lang):
+        return translations_with_fallback(ids, lang, self.default_locale)
+
+    @classmethod
+    def get_fallback(cls):
+        return cls._meta.get_field('default_locale')
 
     @property
     def url_slug(self):
