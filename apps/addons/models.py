@@ -188,6 +188,9 @@ class Addon(amo.models.ModelBase):
                                         help_text="Requested donation amount.")
     annoying = models.PositiveIntegerField(choices=CONTRIBUTIONS_CHOICES,
                                            default=0)
+    enable_thankyou = models.BooleanField(default=False,
+        help_text="Should the thankyou note be sent to contributors?")
+    thankyou_note = TranslatedField()
 
     get_satisfaction_company = models.CharField(max_length=255, blank=True,
                                                null=True)

@@ -1,0 +1,7 @@
+{# L10n: This is an email.  Whitespace matters! #}{% load i18n %}
+{{ thankyou_note }}
+
+{% blocktrans %}Learn more about the future of {{ addon_name }} by clicking here:{% endblocktrans %}
+{{ learn_url }}
+
+{% blocktrans %}Please email amo-unsubscribe@mozilla.com if you would like to stop receiving future messages from {{ hostname }} users.{% endblocktrans %}
