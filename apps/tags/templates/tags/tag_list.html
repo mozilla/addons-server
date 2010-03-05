@@ -1,0 +1,28 @@
+{% macro tag_li(tag, addon=None, css_class='') -%}
+<li id="taglink-{{ tag.id }}" class="{{ css_class }}">
+  <a href="{{ url('home') }}tag/{{ tag.tag_text }}" class="tagitem">
+    {{ tag.tag_text }}
+  </a>
+  {% if tag.addon_tags.user == request.user or
+        addon and addon.has_author(request.user) %}
+      <input type="submit" alt="{{ _('Remove') }}" name="tagid"
+             value="{{ tag.id }}" class="removetag"/>
+             {# TODO msgctxt 'tags_alt_remove_tag' #}
+  {% endif %}
+</li>
+{%- endmacro %}
+
+<form id="tags" class="remove-tags" method="post"
+      action="{{ url('home') }}tags/remove/">{# TODO reverse URL #}
+  {{ cake_csrf_token() }}
+  <input type="hidden" name="addonid" value="{{ addon.id }}" />
+  <input type="hidden" name="ajax" value="0" />
+  <ul class="addon-tags nojs" id="addonid-{{ addon.id }}">
+    {% for tag in dev_tags %}
+      {{ tag_li(tag, addon=addon, css_class='developertag') }}
+    {% endfor %}
+    {% for tag in user_tags %}
+      {{ tag_li(tag, addon=addon, css_class='usertag') }}
+    {% endfor %}
+  </ul>
+</form>

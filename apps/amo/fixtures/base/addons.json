@@ -173,7 +173,7 @@
             "picture_type": "",
             "password": "sha512$61ba34cb04c185f51ca6b5c3132bfbf5b4d6b16c329ff076039c597c0d14912f$9b461aca85bcbc326c0555c3165ff526eabdce82a49c7408bbb71121d3d9d48499c952b96dc520cb4accbca0df0cd1d17756873d08e488a9a144aaf34cb78bf1",
             "notifyevents": 1,
-            "email": "dd+0cb167b90cc5ed1b6d0e4566d2c2c3a6@davedash.com",
+            "email": "dd+0cb167b9@davedash.com",
             "notifycompat": 1
         }
     },
