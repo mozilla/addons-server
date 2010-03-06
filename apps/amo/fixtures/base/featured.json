@@ -4,10 +4,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2009-10-20 21:58:03",
             "localized_string": "Personas are lightweight, easy-to-install and easy-to-change \"skins\" for your Firefox web browser.",
-            "id": 590130,
             "modified": null,
-            "created": "2009-10-20 21:58:03"
+            "id": 590130
         }
     },
     {
@@ -15,10 +15,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2009-10-20 21:58:03",
             "localized_string": "Personas",
-            "id": 590129,
             "modified": null,
-            "created": "2009-10-20 21:58:03"
+            "id": 590129
         }
     },
     {
@@ -26,10 +26,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2009-10-20 21:58:03",
             "localized_string": "Persona",
-            "id": 590128,
             "modified": null,
-            "created": "2009-10-20 21:58:03"
+            "id": 590128
         }
     },
     {
@@ -37,21 +37,21 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2009-10-20 21:58:25",
             "localized_string": "Lady Gaga has exploded on to the dance pop music scene with her debut album The Fame and number one singles \"Just Dance\" & \"Poker Face.\" Her groundbreaking style and amazing live show has captured fans around the world and beyond!\r\nhttp://www.ladygaga.com",
-            "id": 590911,
             "modified": null,
-            "created": "2009-10-20 21:58:25"
+            "id": 590911
         }
     },
     {
         "pk": 9,
         "model": "addons.addontype",
         "fields": {
-            "name": 590128,
-            "created": "2009-10-20 21:58:03",
             "description": 590130,
+            "name_plural": 590129,
+            "name": 590128,
             "modified": "2009-10-20 21:58:03",
-            "name_plural": 590129
+            "created": "2009-10-20 21:58:03"
         }
     },
     {
@@ -59,10 +59,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
+            "created": "2009-10-20 21:58:25",
             "localized_string": "Lady Gaga",
-            "id": 590910,
             "modified": null,
-            "created": "2009-10-20 21:58:25"
+            "id": 590910
         }
     },
     {
@@ -80,20 +80,22 @@
         "fields": {
             "dev_agreement": 0,
             "last_updated": "2009-03-30 23:18:20",
-            "view_source": 0,
+            "average_daily_downloads": 0,
             "total_downloads": 0,
             "inactive": 0,
-            "average_daily_downloads": 0,
+            "view_source": 0,
             "show_beta": 1,
             "guid": null,
             "trusted": 0,
             "binary": 0,
+            "annoying": 0,
             "weekly_downloads": 0,
             "paypal_id": "",
             "wants_contributions": 0,
             "average_daily_users": 3661,
             "bayesian_rating": 0.0,
             "share_count": 0,
+            "type": 9,
             "public_stats": 0,
             "status": 4,
             "description": 590911,
@@ -104,9 +106,7 @@
             "highest_status": 0,
             "name": 590910,
             "created": "2009-03-30 23:18:20",
-            "type": 9,
             "icon_type": "",
-            "annoying": 0,
             "modified": "2009-03-30 23:18:20",
             "summary": null,
             "suggested_amount": null,
@@ -121,11 +121,11 @@
         "model": "addons.feature",
         "fields": {
             "end": "2010-04-27 14:23:13",
-            "start": "2009-10-27 14:23:13",
+            "application": 1,
             "locale": null,
             "created": "2009-10-27 14:23:13",
             "modified": "2009-10-27 14:23:13",
-            "application": 1,
+            "start": "2009-10-27 14:23:13",
             "addon": 15679
         }
     },
@@ -134,10 +134,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
-            "created": "2007-03-22 20:51:22",
+            "id": 39111,
             "localized_string": "Extensions are small add-ons that add new functionality to %1$s, from a simple toolbar button to a completely new feature. They allow you to customize %1$s to fit your own needs and preferences, while letting us keep %1$s itself light and lean.",
             "modified": "2007-03-26 20:06:20",
-            "id": 39111
+            "created": "2007-03-22 20:51:22"
         }
     },
     {
@@ -145,10 +145,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
-            "created": "2007-03-22 21:16:47",
+            "id": 39112,
             "localized_string": "Extensions",
             "modified": "2007-03-26 20:06:20",
-            "id": 39112
+            "created": "2007-03-22 21:16:47"
         }
     },
     {
@@ -156,10 +156,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
-            "created": "2007-03-22 20:51:22",
+            "id": 39109,
             "localized_string": "Extension",
             "modified": "2007-03-26 20:06:20",
-            "id": 39109
+            "created": "2007-03-22 20:51:22"
         }
     },
     {
@@ -167,10 +167,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
-            "created": "2008-06-20 05:36:07",
+            "id": 162669,
             "localized_string": "* If you want the old SD&G behavior of making a dragged link behave like a middle-clicked link, you can get that through addon's settings.",
             "modified": "2009-04-07 18:01:01",
-            "id": 162669
+            "created": "2008-06-20 05:36:07"
         }
     },
     {
@@ -178,10 +178,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
-            "created": "2008-04-02 13:57:44",
+            "id": 113720,
             "localized_string": "Extends the function of the drag-and-drop mouse gesture so that it can be used to load URLs, do a web search of selected text on a page, or save an image on a page.  The successor to Super DragAndGo.",
             "modified": "2009-04-05 18:56:08",
-            "id": 113720
+            "created": "2008-04-02 13:57:44"
         }
     },
     {
@@ -189,10 +189,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
-            "created": "2008-04-02 13:57:44",
+            "id": 113717,
             "localized_string": "Extends the function of the drag-and-drop mouse gesture so that it can be used to load URLs, do a web search of selected text on a page, or save an image on a page.  Compatible with both Firefox and SeaMonkey.\r\n\r\nThis is the successor to the defunct SuperDragAndGo extension; it delivers the same functionality with a small footprint.\r\n\r\nGeneral usage information can be found here:\r\nhttp://code.kliu.org/quickdrag/\r\n\r\nFAQ (incl. how QuickDrag differs from SuperDrag And Go):\r\nhttp://code.kliu.org/quickdrag/faq.html\r\n\r\n-- -- -- --\r\nTips & Tricks:\r\n\r\n1) If you want the old SD&G behavior of opening a clickable link in a new tab instead of searching for the link text, there is an option that you can set in the addon's settings.\r\n\r\n2) If you hold down [Ctrl] while drag-n-dropping an image, you can open the image in a new tab instead of saving it (if the save images option is enabled).\r\n\r\n3) If you hold down [Shift] while drag-n-dropping, it will reverse reverse the foreground/background tab behavior for that drag (e.g., if your settings are to open in a background tab, holding [Shift] will open it in a foreground tab instead)\r\n\r\n4) If you hold down [Alt] while dropping a URL, you will save the URL instead of opening it in a new tab.\r\n-- -- -- --",
             "modified": "2009-06-14 08:22:43",
-            "id": 113717
+            "created": "2008-04-02 13:57:44"
         }
     },
     {
@@ -200,10 +200,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
-            "created": "2008-04-02 18:28:06",
+            "id": 113902,
             "localized_string": "http://forums.mozillazine.org/viewtopic.php?t=644971",
             "modified": "2009-04-05 18:56:08",
-            "id": 113902
+            "created": "2008-04-02 18:28:06"
         }
     },
     {
@@ -211,10 +211,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
-            "created": "2009-04-05 18:35:10",
+            "id": 358205,
             "localized_string": "kliu@code.kliu.org",
             "modified": "2009-04-05 18:56:08",
-            "id": 358205
+            "created": "2009-04-05 18:35:10"
         }
     },
     {
@@ -222,21 +222,21 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
-            "created": "2008-04-02 13:57:44",
+            "id": 113718,
             "localized_string": "http://code.kliu.org/quickdrag/",
             "modified": "2009-04-05 18:56:08",
-            "id": 113718
+            "created": "2008-04-02 13:57:44"
         }
     },
     {
         "pk": 1,
         "model": "addons.addontype",
         "fields": {
-            "description": 39111,
-            "name_plural": 39112,
-            "name": 39109,
             "modified": "2009-02-06 08:42:28",
-            "created": "2006-08-21 23:53:19"
+            "created": "2006-08-21 23:53:19",
+            "description": 39111,
+            "name": 39109,
+            "name_plural": 39112
         }
     },
     {
@@ -244,10 +244,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
-            "created": "2008-04-02 13:57:44",
+            "id": 113719,
             "localized_string": "QuickDrag",
             "modified": "2009-04-05 18:56:08",
-            "id": 113719
+            "created": "2008-04-02 13:57:44"
         }
     },
     {
@@ -255,10 +255,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
-            "created": "2009-07-16 12:08:01",
+            "id": 482318,
             "localized_string": "Over the past 2 years, I've continually been amazed at the amount of feedback I've received from users.  I've tried my best to listen to every suggestion and a large number of them have been implemented.  You are always welcome to voice your thoughts at http://readitlaterlist.com/support\r\n\r\nVersion 2.0 is on the near horizon and it's going to complete the package.  I'm looking forward to bringing a lot of the advancements and features found on the new Read It Later iPhone app to Firefox users.  ",
             "modified": null,
-            "id": 482318
+            "created": "2009-07-16 12:08:01"
         }
     },
     {
@@ -266,10 +266,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
-            "created": "2009-07-16 12:08:01",
+            "id": 482317,
             "localized_string": "I created Read It Later because I needed a better way to manage the things I wanted to read.\r\n\r\nDuring the work day I would continually come across articles or tutorials I wanted to read but couldn\u2019t on the job.  My process at the time was simply to email them to myself.\r\n\r\nIt didn\u2019t work.  The emails got lost in the mix and I never read them.  So one day after work, I said enough is enough, started learning how to make a Firefox extension, and Read It Later was born.\r\n\r\nOver the past 2 years, the face of RIL has changed and evolved significantly.  I've worked hard to create a simple, fast, and always accessible tool to eliminate the cluttered tabs, inboxes and bookmarks that plague our daily work-flow.",
             "modified": null,
-            "id": 482317
+            "created": "2009-07-16 12:08:01"
         }
     },
     {
@@ -277,10 +277,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
-            "created": "2008-06-19 05:50:15",
+            "id": 160424,
             "localized_string": "If the RSS feed is turned on, your reading list will be sent to Read It Later servers.  The RSS feed is turned on by default.\r\n\r\nData is sent anonymously.  Each Read It Later user is assigned a random id, independent of any identifiable information.  This user id is the only information that relates a specific user to a reading list.  \r\n\r\nThe data on the server is used for these purposes:\r\n1. To provide the user with a public RSS feed and remote access to their reading list.\r\n2. To allow syncing of their list between the user's computers.\r\n3. General usage statistics and anonymous trending for Read It Later",
             "modified": "2009-04-09 07:41:29",
-            "id": 160424
+            "created": "2008-06-19 05:50:15"
         }
     },
     {
@@ -288,10 +288,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
-            "created": "2008-06-19 05:50:15",
+            "id": 160425,
             "localized_string": "Read It Later allows you to save pages of interest to read later. It eliminates cluttering of bookmarks with sites that are merely of a one-time interest.",
             "modified": "2009-04-09 07:41:29",
-            "id": 160425
+            "created": "2008-06-19 05:50:15"
         }
     },
     {
@@ -299,10 +299,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
-            "created": "2008-06-19 05:50:15",
+            "id": 160420,
             "localized_string": "\u2022 Save pages to a reading list to read when you have time\r\n\r\n\u2022 Offline Reading Mode - Read the items you\u2019ve saved for later on the plane, train, or anywhere\r\n\r\n\u2022 Access Anywhere - Manage your list in any browser, on any device.  Your list is saved on readitlaterlist.com for web access.  (Optional but enabled by default)\r\n\r\n\u2022 RSS Feeds - View your list from anywhere with automatic rss feeds of your items\r\n\r\n\u2022 Sync Between Computers - Sync your reading list with any number of computers, work or home\r\n\r\n\u2022 After reading, bookmark pages on your preferred bookmarking service\r\n\r\n\u2022 Click to Save Mode - Quickly batch a reading list just by clicking on interesting links\r\n\r\nFor more details and a demo video, take a look at Read It Later's homepage listed below.\r\n\r\n\r\n\r\n*****************************************\r\nIf you have questions or problems, please contact me through one of the support options below.  I can't reply to you if you enter a support request in a review!",
             "modified": "2009-04-09 07:41:29",
-            "id": 160420
+            "created": "2008-06-19 05:50:15"
         }
     },
     {
@@ -310,10 +310,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
-            "created": "2008-06-19 05:50:15",
+            "id": 160421,
             "localized_string": "http://readitlaterlist.com/help/",
             "modified": "2009-08-03 15:08:25",
-            "id": 160421
+            "created": "2008-06-19 05:50:15"
         }
     },
     {
@@ -321,10 +321,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
-            "created": "2008-08-07 11:22:59",
+            "id": 207805,
             "localized_string": "RIL@ideashower.com",
             "modified": "2009-01-25 05:20:09",
-            "id": 207805
+            "created": "2008-08-07 11:22:59"
         }
     },
     {
@@ -332,10 +332,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
-            "created": "2008-06-19 05:50:15",
+            "id": 160422,
             "localized_string": "http://readitlaterlist.com",
             "modified": "2009-04-09 07:41:29",
-            "id": 160422
+            "created": "2008-06-19 05:50:15"
         }
     },
     {
@@ -343,10 +343,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
-            "created": "2008-06-19 05:50:15",
+            "id": 160423,
             "localized_string": "Read It Later",
             "modified": "2009-04-09 07:41:29",
-            "id": 160423
+            "created": "2008-06-19 05:50:15"
         }
     },
     {
@@ -354,10 +354,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
-            "created": "2009-07-17 14:53:13",
+            "id": 484641,
             "localized_string": "Some features coming soon:\r\n* Simplified FoxyProxy for those not needing all the features of FoxyProxy Standard\r\n* import of proxy lists (local and remote)\r\n* random and round-robin proxy switching\r\n* lots of other stuff being discussed at http://foxyproxy.mozdev.org/drupal -- submit your idea there!",
             "modified": "2009-10-15 09:04:27",
-            "id": 484641
+            "created": "2009-07-17 14:53:13"
         }
     },
     {
@@ -365,10 +365,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
-            "created": "2009-07-17 14:53:12",
+            "id": 484640,
             "localized_string": "Tiring of slow proxies servers, I wrote this add-on with the idea that it should be easy to route blocked pages through slow proxy servers while still maximizing use of your (normal) fast connection. FoxyProxy has since evolved way beyond that to a generalized proxy tool.",
             "modified": "2009-08-26 11:31:20",
-            "id": 484640
+            "created": "2009-07-17 14:53:12"
         }
     },
     {
@@ -376,10 +376,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
-            "created": "2007-03-05 13:10:34",
+            "id": 10438,
             "localized_string": "Please report bugs to http://foxyproxy.mozdev.org/drupal",
             "modified": "2009-08-17 08:44:00",
-            "id": 10438
+            "created": "2007-03-05 13:10:34"
         }
     },
     {
@@ -387,10 +387,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
-            "created": "2007-03-05 13:10:34",
+            "id": 10439,
             "localized_string": "FoxyProxy is an advanced proxy management tool that completely replaces Firefox's limited proxying capabilities. It offers more features than SwitchProxy, ProxyButton, QuickProxy, xyzproxy, ProxyTex, TorButton, etc.",
             "modified": "2009-03-20 17:25:22",
-            "id": 10439
+            "created": "2007-03-05 13:10:34"
         }
     },
     {
@@ -398,10 +398,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
-            "created": "2007-03-05 13:10:34",
+            "id": 10437,
             "localized_string": "FoxyProxy is a Firefox extension which automatically switches an internet connection across one or more proxy servers based on URL patterns. Put simply, FoxyProxy automates the manual process of editing Firefox's Connection Settings dialog. Proxy server switching occurs based on the loading URL and the switching rules you define.\r\n\r\nAnimated icons show you when a proxy is in use. Advanced logging shows you which proxies were used and when. QuickAdd makes it a snap to create new URL patterns on-the-fly. FoxyProxy is fully compatible with Portable Firefox, has better support for PAC files than Firefox itself, and is translated into more than 25 languages.\r\n\r\nHome: http://foxyproxy.mozdev.org\r\nForums: http://foxyproxy.mozdev.org/drupal",
             "modified": "2009-03-20 17:25:22",
-            "id": 10437
+            "created": "2007-03-05 13:10:34"
         }
     },
     {
@@ -409,10 +409,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
-            "created": "2008-03-29 16:11:42",
+            "id": 111072,
             "localized_string": "http://foxyproxy.mozdev.org/drupal",
             "modified": "2009-03-20 17:25:22",
-            "id": 111072
+            "created": "2008-03-29 16:11:42"
         }
     },
     {
@@ -420,10 +420,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
-            "created": "2007-03-05 13:10:34",
+            "id": 10436,
             "localized_string": "http://foxyproxy.mozdev.org",
             "modified": "2009-03-20 17:25:22",
-            "id": 10436
+            "created": "2007-03-05 13:10:34"
         }
     },
     {
@@ -431,10 +431,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
-            "created": "2007-03-05 13:10:34",
+            "id": 10435,
             "localized_string": "FoxyProxy Standard",
             "modified": "2009-10-18 18:36:02",
-            "id": 10435
+            "created": "2007-03-05 13:10:34"
         }
     },
     {
@@ -442,10 +442,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
-            "created": "2007-03-30 18:17:52",
+            "id": 40978,
             "localized_string": "AdaptiveBlue, Inc. respects your privacy and recognizes your need for appropriate protection and management of your personal information, such as your name, email address and mailing address.\r\n\r\nAdaptiveBlue does not sell, trade or rent your personal information to others. We may use your personal information to contact you from time to time regarding updates to our policies, upgrades to Glue software, or other information that we feel may be of interest to you.\r\n\r\nIn addition to personal information voluntarily provided by you, by the nature of its functionality, Glue software collects information regarding your Internet usage when visiting specific web pages that represent books, music, movies, and other everyday things.\r\n\r\nGlue works by recognizing books, music, movies, wine, restaurants, stocks and other things around the web. The software automatically stores the last 20 things you visit. In addition, Glue enables you to explicitly save your favorites by clicking the Like button or adding a comment.\r\n\r\nAlthough we do not sell, trade or rent your information, we may release personal and/or non-personal information about you when you request us to do so. In addition, your information may also be accessed by AdaptiveBlue employees as necessary to provide customer support and troubleshoot problems.\r\n\r\nWe may also release personal and non-personal information when we believe release is appropriate to comply with the law, to enforce or apply our Conditions of Use and other agreements, or the protect the rights of AdaptiveBlue or others.\r\n\r\nInformation collected about you is protected in several ways. Access by you to your personal information is available through a password and unique user ID selected by you. Your password is encrypted. We recommend that you do not divulge your password to anyone.\r\n\r\nYour personal information resides on proprietary and secure servers on Rackspace and Amazon Web Services. Only selected AdaptiveBlue personnel and contracts have access to it via password. The Amazon Web Services facilities are subject to the terms and conditions of Amazon's Web Services Licensing Agreement.\r\n\r\nWhen your personal information is sent between the web browser and the servers it is encrypted using modern encryption standards in order prevent unauthorized parties from viewing such information while it is being transferred.\r\n\r\nGlue may suggest links to various webpages that the software determines may be of interest to you. We do not have control over third-party websites or their information collection practices and the practices of third-party websites are not covered by this Privacy Policy. We recommend that you consult the privacy policies of the third-party websites or contact the websites directly for information about their privacy practices.\r\n\r\nAt any time, you may request to view or update the personal information that is associated with your account and stored by AdaptiveBlue. You may also request that we delete all personal and/or non-personal information that we have collected about you. We will promptly fulfill your request and provide you confirmation when the information has been deleted.\r\n\r\nBecause the Internet is constantly evolving, so are our policies. By creating a User Account, you agree to the terms of this Privacy Policy as it may be amended from time to time. While we may send you a copy of any updates, we recommend that you check back to view the policy at this site from time to time.\r\n\r\nIf you have any questions regarding this Privacy Policy or our information practices, please contact AdaptiveBlue at support@getglue.com. ",
             "modified": "2009-01-26 02:30:14",
-            "id": 40978
+            "created": "2007-03-30 18:17:52"
         }
     },
     {
@@ -453,10 +453,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
-            "created": "2007-03-05 13:10:42",
+            "id": 14523,
             "localized_string": "We look forward to your feedback! Please send emails to support@getglue.com and checkout our blog: http://blog.adaptiveblue.com\r\n\r\nGlue Team",
             "modified": "2009-07-27 22:05:58",
-            "id": 14523
+            "created": "2007-03-05 13:10:42"
         }
     },
     {
@@ -464,10 +464,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
-            "created": "2007-03-05 13:10:42",
+            "id": 14524,
             "localized_string": "Glue helps you find your next favorite movie, book, or music album. As you visit sites like Amazon, IMDB, and Wikipedia, Glue suggest things you'll like.",
             "modified": "2009-10-22 08:08:18",
-            "id": 14524
+            "created": "2007-03-05 13:10:42"
         }
     },
     {
@@ -475,10 +475,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
-            "created": "2007-03-05 13:10:42",
+            "id": 14522,
             "localized_string": "Get Glue! Find your next favorite movie, book, or music album!\r\n\r\nWhen you visit popular sites like Amazon, IMDB, and Wikipedia, Glue will appear on the page to show you books, movies and music that you'll like.\r\n\r\nSuggestions are based on what you like, what your friends like and what's popular around the web.\r\n\r\nThe more you use Glue, the better the suggestions.\r\n\r\nHere is why you will love Glue:\r\n\r\n- Glue appears on popular sites to suggest movies, books, and music that you'll like\r\n\r\n- See what your friends thought of the book, movie or music album you're looking at\r\n\r\n- Easily save your favorite things from hundreds of popular sites.\r\n\r\n- Earn awesome stickers and become the Guru of things you love\r\n\r\n- Quickly share links with your Facebook and Twitter friends\r\n",
             "modified": "2009-10-22 08:08:19",
-            "id": 14522
+            "created": "2007-03-05 13:10:42"
         }
     },
     {
@@ -486,10 +486,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
-            "created": "2008-04-01 14:41:27",
+            "id": 113047,
             "localized_string": "http://www.getglue.com/",
             "modified": "2008-11-07 00:44:32",
-            "id": 113047
+            "created": "2008-04-01 14:41:27"
         }
     },
     {
@@ -497,10 +497,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
-            "created": "2008-04-01 14:41:27",
+            "id": 113046,
             "localized_string": "support@getglue.com",
             "modified": "2008-11-07 01:05:51",
-            "id": 113046
+            "created": "2008-04-01 14:41:27"
         }
     },
     {
@@ -508,10 +508,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
-            "created": "2007-03-05 13:10:42",
+            "id": 14521,
             "localized_string": "http://www.getglue.com/",
             "modified": "2009-01-26 02:30:14",
-            "id": 14521
+            "created": "2007-03-05 13:10:42"
         }
     },
     {
@@ -519,10 +519,10 @@
         "model": "translations.translation",
         "fields": {
             "locale": "en-US",
-            "created": "2007-03-05 13:10:42",
+            "id": 14520,
             "localized_string": "Glue - Recommendations for Books/Movies/Music ",
             "modified": "2009-07-25 22:36:33",
-            "id": 14520
+            "created": "2007-03-05 13:10:42"
         }
     },
     {
@@ -537,11 +537,11 @@
             "inactive": 0,
             "average_daily_downloads": 750,
             "show_beta": 1,
-            "the_future": null,
+            "guid": "quickdrag@mozilla.ktechcomputing.com",
             "trusted": 0,
             "locale_disambiguation": null,
             "binary": 0,
-            "guid": "quickdrag@mozilla.ktechcomputing.com",
+            "the_future": null,
             "weekly_downloads": 16683,
             "support_url": 113902,
             "paypal_id": "",
@@ -589,11 +589,11 @@
             "inactive": 0,
             "average_daily_downloads": 4002,
             "show_beta": 1,
-            "the_future": 482318,
+            "guid": "isreaditlater@ideashower.com",
             "trusted": 1,
             "locale_disambiguation": null,
             "binary": 0,
-            "guid": "isreaditlater@ideashower.com",
+            "the_future": 482318,
             "weekly_downloads": 41099,
             "support_url": 160421,
             "paypal_id": "acc@ideashower.com",
@@ -641,11 +641,11 @@
             "inactive": 0,
             "average_daily_downloads": 7487,
             "show_beta": 1,
-            "the_future": 484641,
+            "guid": "foxyproxy@eric.h.jung",
             "trusted": 1,
             "locale_disambiguation": null,
             "binary": 0,
-            "guid": "foxyproxy@eric.h.jung",
+            "the_future": 484641,
             "weekly_downloads": 98872,
             "support_url": 111072,
             "paypal_id": "support@leahscape.com",
@@ -693,11 +693,11 @@
             "inactive": 0,
             "average_daily_downloads": 2477,
             "show_beta": 1,
-            "the_future": null,
+            "guid": "{D2A6A719-7CBC-4594-85FD-C36AD881424F}",
             "trusted": 1,
             "locale_disambiguation": null,
             "binary": 0,
-            "guid": "{D2A6A719-7CBC-4594-85FD-C36AD881424F}",
+            "the_future": null,
             "weekly_downloads": 11066,
             "support_url": 113047,
             "paypal_id": "",
@@ -738,11 +738,11 @@
         "model": "addons.feature",
         "fields": {
             "end": "2010-03-05 17:00:39",
-            "application": 1,
+            "start": "2009-09-05 17:00:39",
             "locale": null,
             "created": "2009-09-05 17:00:39",
             "modified": "2009-09-05 17:00:39",
-            "start": "2009-09-05 17:00:39",
+            "application": 1,
             "addon": 6912
         }
     },
@@ -751,11 +751,11 @@
         "model": "addons.feature",
         "fields": {
             "end": "2010-03-05 17:00:23",
-            "application": 1,
+            "start": "2009-09-05 17:00:23",
             "locale": null,
             "created": "2009-09-05 17:00:23",
             "modified": "2009-09-05 17:00:23",
-            "start": "2009-09-05 17:00:23",
+            "application": 1,
             "addon": 7661
         }
     },
@@ -764,11 +764,11 @@
         "model": "addons.feature",
         "fields": {
             "end": "2010-03-05 17:00:10",
-            "application": 1,
+            "start": "2009-09-05 17:00:10",
             "locale": null,
             "created": "2009-09-05 17:00:10",
             "modified": "2009-09-05 17:00:10",
-            "start": "2009-09-05 17:00:10",
+            "application": 1,
             "addon": 2464
         }
     },
@@ -777,12 +777,347 @@
         "model": "addons.feature",
         "fields": {
             "end": "2009-12-10 08:39:55",
-            "application": 1,
+            "start": "2009-06-10 08:39:55",
             "locale": "en-US",
             "created": "2009-06-10 08:39:55",
             "modified": "2009-10-20 18:18:52",
-            "start": "2009-06-10 08:39:55",
+            "application": 1,
             "addon": 3481
+        }
+    },
+    {
+        "pk": 497609,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": null,
+            "created": "2009-07-02 07:18:10",
+            "locale": "en-US",
+            "modified": null,
+            "id": 456704,
+            "localized_string": "License Agreement\r\n\r\nThis Software License Agreement (\"Agreement\") is an agreement between the end-user (\"You\") and AdaptiveBlue, Inc. (\"AdaptiveBlue\") that sets forth your rights and obligations with respect to download and use of Glue software (the \"Software\").  By clicking the \"Accept\" button at the end of the Agreement, You agree to abide by and be legally bound by the terms and conditions of the Agreement, including the disclaimers of warranties and limitations of liability.\r\n\r\nLICENSE AGREEMENT\r\n\r\n1. License Grant and Restrictions.\r\n\r\n(a)\tGrant.\r\n\r\nAdaptiveBlue hereby grants, and You hereby accept, a non-exclusive, non-transferable License of the Software for your personal, non-commercial use, subject to the terms and conditions of this Agreement.\r\n\r\n(b)\tData Collection and Privacy.\r\n\r\nYou understand that the functionality of the Software involves the tracking and storage of certain non-personally identifiable data relating to your Internet usage and expressed personal preferences and interests.  Your acceptance of this Agreement indicates that you have read, understand and agree to the terms of AdaptiveBlue's Privacy Policy, as it may be amended from time to time: http://getglue.com/privacy.html\r\n\r\n(c)\tRestrictions.\r\n\r\n\r\nYou agree that You shall not, other than with the express written consent of AdaptiveBlue:\r\n\r\n(i) use the Software other than as expressly permitted by this License;\r\n(ii) reproduce, modify, copy, transmit or create any derivate work of all or any portion of the Software;\r\n(iii) reverse engineer, decompile, or disassemble the Software or otherwise attempt to recreate all or any portion of the Software;\r\n(iv) remove, obscure or alter any copyright notices or other proprietary rights notices contained in the Software Licensee;\r\n(v) sell, lease, rent, license, sublicense or otherwise distribute the Software or any part thereof or the right to use the Software or any part thereof to any person or entity;\r\n(vi) use automated agents or robots to exercise the functionality provided by the Software; or\r\n(vii) authorize any third party to do any of the foregoing.\r\n\r\n2.\tTerm.\r\n\r\n(a)\tThis Agreement is effective from the date on which you install the Software.\r\n\r\n(b)\tYou may terminate the Agreement at any time by erasing or destroying all copies of the Software that are within your possession or control. The Agreement and your License to use the Software will also automatically terminate if You fail to comply with any term or condition of this Agreement.\r\n\r\n(c)\tAdaptiveBlue may terminate this Agreement at any time and without notice in the event that: \r\n(i) You use the Software in a manner that over-utilizes AdaptiveBlue's available resources;\r\n(ii) Adaptive Blue determines in its sole discretion that Your Data is or includes data that is unlawful, fraudulent, threatening, libelous, defamatory, obscene, illegal or otherwise objectionable;\r\n(iii) You use the Software or otherwise engage in any action that, in the sole and absolute discretion of AdaptiveBlue, may reflect poorly upon AdaptiveBlue or its trademarks, service marks, trade  name or reputation; (iv) the User Account that you create with AdaptiveBlue at the time this Agreement takes effect is inactive for a period of at least ninety (90) days; \r\n(v) AdaptiveBlue for any other reason in its sole and absolute discretion determines that it is in the best interest of AdaptiveBlue to terminate the Agreement.  For the purpose of this Agreement, \"Your Data\" means information that you provide as or that is collected based upon your input to the Software.\r\n\r\n3.\tIntellectual Property.\r\n\r\nYou acknowledge and agree that the Software constitutes proprietary information and/or trade secrets of AdaptiveBlue and/or its suppliers, whether or not any portion thereof is or may be validly copyrighted or patented.  AdaptiveBlue owns all rights, title and interest in and to the Software, including all Intellectual Property Rights. This Agreement conveys a limited right to operate the Software and shall not be construed to convey title to the Software or any copyright, patent, or other proprietary right of AdaptiveBlue or its suppliers to You.  No right, title, or interest in or to any trademark, service mark, logo or trade name of AdaptiveBlue or its suppliers is granted under this Agreement.  For the purpose of this Agreement, \"Intellectual Property Rights\" means any and all rights existing from time to time under patent law, copyright law, trade secret law, trademark law, unfair competition law, and any and all other proprietary rights, and any and all applications, renewals, extensions and restorations thereof, now or hereafter in force and effect worldwide.\r\n\r\n4.\tWarranty Disclaimer.\r\n\r\nTHE SOFTWARE IS PROVIDED \"AS IS\" AND ADAPTIVEBLUE MAKES NO WARRANTY, EXPRESS, IMPLIED OR STATUTORY, WITH RESPECT TO THE SOFTWARE OR ANY PART THEREOF, INCLUDING WITHOUT LIMITATION ANY IMPLIED WARRANTY OF TITLE, AVAILABILITY, USEFULNESS, MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, NONINFRINGEMENT, OR ARISING FROM COURSE OF PERFORMANCE, COURSE OF DEALING OR USAGE OF TRADE. ADAPTIVEBLUE DOES NOT WARRANT THAT THE SOFTWARE OR ANY PART THEREOF WILL MEET YOUR REQUIREMENTS OR BE UNINTERRUPTED, TIMELY, AVAILABLE, SECURE OR ERROR-FREE, OR THAT ERRORS WILL BE CORRECTED.\r\n\r\n5.\tLimitation of Liability.\r\n\r\n(A) IN NO EVENT WILL ADAPTIVEBLUE BE LIABLE TO YOU FOR INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, PUNITIVE OR EXEMPLARY DAMAGES ARISING OUT OF OR RELATED TO THIS AGREEMENT, INCLUDING, BUT NOT LIMITED TO, LOST PROFITS OR INTERRUPTION OR LOSS OF INFORMATION, EVEN IF ADAPTIVEBLUE HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES AND NOTWITHSTANDING FAULT, NEGLIGENCE AND THE FAILURE OF THE ESSENTIAL PURPOSE OF ANY LIMITED REMEDY.  REGARDLESS OF THE CAUSE OR FORM OF THE ACTION, ADAPTIVEBLUE'S AGGREGATE LIABILITY TO YOU FOR ACTUAL DAMAGES ARISING OUT OF OR RELATED TO THIS AGREEMENT SHALL BE LIMITED TO THE TOTAL AMOUNT OF THE LICENSE FEE, IF ANY, PAID BY YOU TO ADAPTIVEBLUE FOR THE USE OF THE SOFTWARE.\r\n\r\n(B) YOU HEREBY ACKNOWLEDGE THAT SECURITY SAFEGUARDS, BY THEIR NATURE, ARE CAPABLE OF CIRCUMVENTION. WHILE ADAPTIVEBLUE IS COMMITTED TO YOUR PRIVACY AND WILL MAKE EVERY REASONABLE EFFORT TO SAFEGUARD YOUR DATA, ADAPTIVEBLUE DOES NOT GUARANTEE THAT YOUR DATA OR OTHER INFORMATION CANNOT BE ACCESSED BY UNAUTHORIZED PERSONS CAPABLE OF OVERCOMING SUCH SAFEGUARDS. YOU UNDERSTAND  THAT THE SOFTWARE INVOLVES THE EXCHANGE OF INFORMATION OVER THE INTERNET. ADAPTIVEBLUE SHALL NOT BE RESPONSIBLE FOR VIRUSES, WORMS, TROJAN HORSES, OR OTHER UNAUTHORIZED THIRD-PARTY DATA OR SOFTWARE OR RESULTANT DAMAGE OR USE OF YOUR DATA.\r\n\r\n(C) SOME JURISDICTIONS DO NOT ALLOW THE EXCLUSION OF IMPLIED REPRESENTATIONS, WARRANTIES OR CONDITIONS, OR THE LIMITATION OR EXCLUSION OF LIABILITY FOR INCIDENTAL OR CONSEQUENTIAL DAMAGES, SO SOME OF THE ABOVE LIMITATIONS AND EXCLUSIONS MAY NOT APPLY TO YOU, TO THE EXTENT PROHIBITED BY APPLICABLE LAW.\r\n\r\n6.\tIndemnification.\r\n\r\nYou shall defend, indemnify and hold harmless AdaptiveBlue, its Affiliates, and their licensors, officers, directors, agents and employees from any liability, loss, damage, cost or expense (including reasonable attorney's fees) arising out of any act or omission by You in connection with the Software. For the purpose of this Agreement, \"Affiliates\" shall mean a party that directly or indirectly, through one or more intermediaries, controls, is controlled by, or is under common control with AdaptiveBlue.\r\n\r\n7.\tAssignability.\r\n\r\nThis Agreement is not assignable or transferable in whole or in party, by operation of law or otherwise, by You without the prior written consent of AdaptiveBlue.  AdaptiveBlue may assign this Agreement without Your consent.\r\n\r\n8.\tSeverability and Interpretation.\r\n\r\nThe provisions of this Agreement are severable. If any one or more of the provisions of this Agreement are determined by a court of competent jurisdiction to be illegal or otherwise unenforceable, in whole or in part, the remaining provisions of this Agreement shall nevertheless be binding on and enforceable by and between the parties hereto, and shall be interpreted so as best to reasonably effect the intent of the parties.  The parties further agree that any such invalid or unenforceable provisions will be deemed replaced with valid and enforceable provisions that achieve, to the extent possible, the business purposes and intent of such invalid and unenforceable provisions.  To the extent that any law, treaty or regulation is in conflict with this Agreement, the conflicting terms of this Agreement shall be superseded only to the extent necessary by such law, treaty or regulation.\r\n\r\n9.\tGoverning Law and Jurisdiction.\r\n\r\n(a)\tThis Agreement and all rights and obligations hereunder, including but not limited to matters of construction, validity and performance, shall be governed by and construed in accordance with the laws of the State of New Jersey.\r\n\r\n(b)\tEach of the parties hereto: (i) irrevocably submits to the exclusive jurisdiction of any New Jersey state or federal court sitting in Essex or Bergen County in any action or proceeding arising out of or relating to this Agreement; and (ii) irrevocably agrees that all claims in respect of such action or proceeding shall be heard and determined in such New Jersey state or federal court.  Each of the parties hereto irrevocably waives, to the fullest extent it may legally do so, any rights to a trial by jury in such action or proceeding and the defense of an inconvenient forum to the maintenance of such action or proceeding.  Each of the parties hereto agrees that a final judgment in any such action or proceeding shall be conclusive and may be enforced in other jurisdictions by suit on the judgment or in any other manner provided by law.\r\n\r\nTHE FOREGOING IS A LICENSE AGREEMENT WITH ADAPTIVEBLUE, INC. WHEN YOU DOWNLOAD GLUE YOU ARE CONSENTING TO BE BOUND BY AND BECOME A PARTY TO THIS AGREEMENT.\r\n"
+        }
+    },
+    {
+        "pk": 71606,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": null,
+            "created": "2007-03-30 18:17:52",
+            "locale": "en-US",
+            "modified": "2009-01-26 02:30:14",
+            "id": 40977,
+            "localized_string": null
+        }
+    },
+    {
+        "pk": 63008,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": null,
+            "created": "2007-03-11 12:02:46",
+            "locale": "en-US",
+            "modified": "2009-03-20 17:25:22",
+            "id": 38489,
+            "localized_string": null
+        }
+    },
+    {
+        "pk": 62998,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": null,
+            "created": "2007-03-11 12:02:46",
+            "locale": "en-US",
+            "modified": "2009-03-20 17:25:22",
+            "id": 38488,
+            "localized_string": null
+        }
+    },
+    {
+        "pk": 415464,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": null,
+            "created": "2009-05-06 17:42:01",
+            "locale": "en-US",
+            "modified": "2009-05-06 17:44:57",
+            "id": 377095,
+            "localized_string": "What's Free/Open:\r\n---------\r\nRead It Later for Firefox is free to use and distribute.\r\n\r\nA public API is available for users to build applications onto, please see:\r\nhttp://readitlaterlist.com/api/ for more details.\r\n\r\nSuggestions for additions to Read It Later are VERY welcome.  A large number of user suggestions have been implemented.  Please\r\nlet me know of any additional features you are seeking at: http://readitlaterlist.com/support/\r\n\r\n\r\nWhat is not free/open:\r\n---------\r\n\r\nThe source code may not be used in other applications whether they be personal, commercial, free, or paid without written permission from Read It Later.\r\n\r\nThe source code may not be modified in anyway.\r\n"
+        }
+    },
+    {
+        "pk": 416390,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": null,
+            "created": "2009-05-08 05:34:06",
+            "locale": "en-US",
+            "modified": null,
+            "id": 377982,
+            "localized_string": "we don't see/send/store any private information."
+        }
+    },
+    {
+        "pk": 416386,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": null,
+            "created": "2009-05-08 05:26:21",
+            "locale": "en-US",
+            "modified": null,
+            "id": 377978,
+            "localized_string": "http://www.jlc.org.il/limon/"
+        }
+    },
+    {
+        "pk": 416387,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": null,
+            "created": "2009-05-08 05:26:21",
+            "locale": "en-US",
+            "modified": null,
+            "id": 377979,
+            "localized_string": "Limon free English-Hebrew dictionary"
+        }
+    },
+    {
+        "pk": 345,
+        "model": "versions.license",
+        "fields": {
+            "_custom_text": 456704,
+            "_name_field": -1,
+            "modified": "2009-07-02 07:18:10",
+            "created": "2009-07-02 07:18:10"
+        }
+    },
+    {
+        "pk": 13,
+        "model": "versions.license",
+        "fields": {
+            "_custom_text": null,
+            "_name_field": 1,
+            "modified": "2009-05-01 05:00:44",
+            "created": "2009-05-01 05:00:44"
+        }
+    },
+    {
+        "pk": 60,
+        "model": "versions.license",
+        "fields": {
+            "_custom_text": 377095,
+            "_name_field": -1,
+            "modified": "2009-05-06 17:42:02",
+            "created": "2009-05-06 17:42:01"
+        }
+    },
+    {
+        "pk": 6,
+        "model": "versions.license",
+        "fields": {
+            "_custom_text": null,
+            "_name_field": 2,
+            "modified": "2009-04-30 23:48:48",
+            "created": "2009-04-30 23:48:48"
+        }
+    },
+    {
+        "pk": 11870,
+        "model": "addons.addon",
+        "fields": {
+            "dev_agreement": 1,
+            "eula": null,
+            "last_updated": "2009-05-08 05:26:22",
+            "view_source": 0,
+            "total_downloads": 563,
+            "developer_comments": null,
+            "inactive": 0,
+            "average_daily_downloads": 3,
+            "show_beta": 1,
+            "guid": "limon@mbd",
+            "trusted": 0,
+            "locale_disambiguation": null,
+            "binary": 0,
+            "the_future": null,
+            "weekly_downloads": 4,
+            "support_url": null,
+            "paypal_id": "",
+            "average_rating": "0",
+            "wants_contributions": 0,
+            "average_daily_users": 40,
+            "bayesian_rating": 0.0,
+            "share_count": 0,
+            "get_satisfaction_company": null,
+            "homepage": 377978,
+            "support_email": null,
+            "public_stats": 0,
+            "status": 1,
+            "privacy_policy": 377982,
+            "description": 377981,
+            "default_locale": "en-US",
+            "target_locale": null,
+            "prerelease": 0,
+            "admin_review": 0,
+            "external_software": 0,
+            "highest_status": 1,
+            "get_satisfaction_product": null,
+            "name": 377979,
+            "created": "2009-05-08 05:26:21",
+            "type": 1,
+            "icon_type": "",
+            "annoying": 0,
+            "modified": "2009-05-13 18:19:30",
+            "summary": 377980,
+            "suggested_amount": null,
+            "site_specific": 0,
+            "total_reviews": 0,
+            "the_reason": null,
+            "nomination_date": "2009-05-08 05:49:11"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "files.platform",
+        "fields": {
+            "icontype": "",
+            "modified": "2008-04-07 08:16:55",
+            "created": "2007-03-05 13:09:27"
+        }
+    },
+    {
+        "pk": 91189,
+        "model": "versions.version",
+        "fields": {
+            "license": 345,
+            "created": "2010-01-14 11:39:40",
+            "releasenotes": 758487,
+            "approvalnotes": "",
+            "modified": "2010-01-14 11:40:45",
+            "version": "4.5.16",
+            "addon": 3481
+        }
+    },
+    {
+        "pk": 90952,
+        "model": "versions.version",
+        "fields": {
+            "license": 13,
+            "created": "2010-01-12 20:50:20",
+            "releasenotes": 756306,
+            "approvalnotes": "",
+            "modified": "2010-01-13 08:21:43",
+            "version": "2.17",
+            "addon": 2464
+        }
+    },
+    {
+        "pk": 90952,
+        "model": "versions.applicationsversions",
+        "fields": {
+            "application": 1,
+            "max": 282,
+            "version": 90952,
+            "min": 282
+        }
+    },
+    {
+        "pk": 88798,
+        "model": "versions.version",
+        "fields": {
+            "license": 60,
+            "created": "2009-12-24 18:30:07",
+            "releasenotes": 733724,
+            "approvalnotes": "",
+            "modified": "2009-12-24 18:31:25",
+            "version": "2.0.3",
+            "addon": 7661
+        }
+    },
+    {
+        "pk": 88798,
+        "model": "versions.applicationsversions",
+        "fields": {
+            "application": 1,
+            "max": 282,
+            "version": 88798,
+            "min": 282
+        }
+    },
+    {
+        "pk": 68019,
+        "model": "versions.version",
+        "fields": {
+            "license": 6,
+            "created": "2009-05-08 05:26:21",
+            "releasenotes": null,
+            "approvalnotes": null,
+            "modified": "2009-05-08 05:26:21",
+            "version": "0.5.3",
+            "addon": 11870
+        }
+    },
+    {
+        "pk": 75708,
+        "model": "files.file",
+        "fields": {
+            "status": 4,
+            "codereview": 0,
+            "hash": "sha256:f153612e10edab9f14267909f4aaa179ce368d47c128a1d3090d7bb4ff44c153",
+            "created": "2010-01-14 11:39:41",
+            "modified": "2010-01-14 11:40:45",
+            "filename": "glue-4.5.16-fx.xpi",
+            "platform": 1,
+            "version": 91189,
+            "datestatuschanged": "2010-01-14 11:39:32",
+            "size": 161
+        }
+    },
+    {
+        "pk": 75488,
+        "model": "files.file",
+        "fields": {
+            "status": 4,
+            "codereview": 0,
+            "hash": "sha256:63296bbbc92c47c53052459c14a4b60b77bb31e0b85ebab2e0e3e68c5afe3369",
+            "created": "2010-01-12 20:50:21",
+            "modified": "2010-01-13 08:21:42",
+            "filename": "foxyproxy_standard-2.17-fx+sm+tb.xpi",
+            "platform": 1,
+            "version": 90952,
+            "datestatuschanged": "2010-01-12 20:50:11",
+            "size": 579
+        }
+    },
+    {
+        "pk": 73703,
+        "model": "files.file",
+        "fields": {
+            "status": 4,
+            "codereview": 0,
+            "hash": "sha256:a0de832991d6cd499373e6181e62e18989213a22b31e2febe01cd641ba6193cd",
+            "created": "2009-12-24 18:30:11",
+            "modified": "2009-12-24 18:31:24",
+            "filename": "read_it_later-2.0.3-fx.xpi",
+            "platform": 1,
+            "version": 88798,
+            "datestatuschanged": "2009-12-24 18:30:00",
+            "size": 169
+        }
+    },
+    {
+        "pk": 52775,
+        "model": "files.file",
+        "fields": {
+            "status": 1,
+            "codereview": 0,
+            "hash": "sha256:daa986b10ca0b72aabd1bfa07dbc2aa445a1bf1c887b74c883719348b074d6a7",
+            "created": "2009-05-08 05:26:22",
+            "modified": "2009-05-08 05:26:22",
+            "filename": "limon_free_english-hebrew_dictionary-0.5.3-fx.xpi",
+            "platform": 1,
+            "version": 68019,
+            "datestatuschanged": "2009-05-08 05:26:20",
+            "size": 3
         }
     }
 ]

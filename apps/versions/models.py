@@ -16,7 +16,7 @@ class Version(amo.models.ModelBase):
     addon = models.ForeignKey(Addon, related_name='versions')
     license = models.ForeignKey('License', null=True)
     releasenotes = PurifiedField()
-    approvalnotes = models.TextField(default="")
+    approvalnotes = models.TextField(default='', null=True)
     version = models.CharField(max_length=255, default=0)
 
     class Meta(amo.models.ModelBase.Meta):
