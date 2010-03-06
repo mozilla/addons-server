@@ -1,9 +1,6 @@
 {% extends "base_side_categories.html" %}
 
-{# L10n: {0} is Featured or Popular or Updated. #}
-{% block title %}
-  {{ page_title(_('{0} Add-ons', 'homepage_title')|f(filter.title)) }}
-{% endblock %}
+{% block title %}{{ _('Add-ons for Firefox') }}{% endblock %}
 
 {% block site_stats %}
 {% if downloads and pings %}
@@ -41,6 +38,8 @@
 
 {% block content %}
 
+{% include "addons/collections_teaser.html" %}
+
 {% if is_mobile(request.APP) %}
 <h2>{{ _('Browse Mobile Add-ons') }}</h2>
 {% else %}
@@ -54,8 +53,7 @@
         <ul>
           {% for value, title in filter.opts %}
           <li {{ value|class_selected(filter.field) }} id="{{ value }}">
-          <a href="{{ url('home')|urlparams(browse=value) }}" data-target="{{ value }}"
-            data-title="{{ page_title(_('{0} Add-ons', 'homepage_title')|f(title)) }}">
+          <a href="{{ url('home')|urlparams(browse=value) }}" data-target="{{ value }}">
             {{ title }}</a>
           </li>
           {% endfor %}
@@ -132,4 +130,13 @@
 
 {% block js %}
 <script src="{{ MEDIA_URL }}js/zamboni/homepage.js"></script>
+{% endblock %}
+
+{% block under_categories %}
+<div class="highlight">
+  <h3>{{ _('Build a {0} Add-on')|f(request.APP.pretty) }}</h3>
+  <p>{{ _('Find all the tools and resouces you need to make your first add-on.') }}</p>
+  {# TODO(jbalogh): reverse #}
+  <p><strong><a href="/developers">{{ _('Visit the Developer Hub') }}</a></strong></p>
+</div>
 {% endblock %}

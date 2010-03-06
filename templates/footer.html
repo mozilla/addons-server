@@ -9,11 +9,11 @@
           <form class="languages go" method="get" action="">
             <label for="language">{{ _('Other languages:') }}</label>
             <select id="language" name="lang" dir="ltr">
-              {% for code, name in LANGUAGES|dictsort %}
+              {% for code, name in LANGUAGES|dictsort -%}
                 <option value="{{ code|lower }}" {{ code|lower|ifeq(LANG, "selected") }}>
                   {{ name }}
                 </option>
-              {% endfor %}
+              {%- endfor %}
             </select>
             {# XXX TODO: xenophobia checkbox #}
             <button type="submit">{{ _('Go') }}</button>
@@ -31,9 +31,9 @@
             regarding the applications or any information related thereto. Any questions, complaints or claims regarding the
             applications must be directed to the appropriate software vendor.{%- endtrans %}
           </p>
-        </div><!-- /.primary -->
+        </div> {# primary #}
         <div class="secondary">
           <img src="{{ MEDIA_URL }}img/amo2009/illustrations/logo-add-ons-half.png" alt="" />
-        </div><!-- /.secondary -->
-      </div> <!-- /.section -->
-    </div> <!-- /#footer -->
+        </div> {# secondary #}
+      </div> {# section #}
+    </div> {# footer #}
