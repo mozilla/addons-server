@@ -41,6 +41,8 @@
 
 {% block content %}
 
+{% include "addons/collections_teaser.html" %}
+
 {% if is_mobile(request.APP) %}
 <h2>{{ _('Browse Mobile Add-ons') }}</h2>
 {% else %}
