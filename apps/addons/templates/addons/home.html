@@ -6,6 +6,7 @@
 {% endblock %}
 
 {% block site_stats %}
+{% if downloads and pings %}
 <ul class="stats">
   <li>
     <a href="{{ url('statistics.dashboard') }}">
@@ -26,6 +27,7 @@
     </a>
   </li>
 </ul>
+{% endif %}
 {% endblock %}
 
 {% set view_all = {

@@ -64,9 +64,12 @@ class HomepageFilter(object):
 
 
 def home(request):
-    gs = GlobalStat.objects
-    downloads = gs.filter(name='addon_total_downloads').latest()
-    pings = gs.filter(name='addon_total_updatepings').latest()
+    try:
+        gs = GlobalStat.objects
+        downloads = gs.filter(name='addon_total_downloads').latest()
+        pings = gs.filter(name='addon_total_updatepings').latest()
+    except GlobalStat.DoesNotExist:
+        downloads = pings = None
 
     q = Collection.objects.filter(listed=True, application=request.APP.id)
     collections = q.order_by('-weekly_subscribers')[:3]
