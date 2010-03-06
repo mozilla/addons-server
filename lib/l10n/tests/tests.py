@@ -32,6 +32,7 @@ n_lazy_strings['s_context'] = n_lazy('%d poodle please', '%d poodles please',
 n_lazy_strings['p_context'] = n_lazy('%d poodle please', '%d poodles please',
                                      3, 'context_one')
 
+
 # Stolen from jingo's test_helpers
 def render(s, context={}):
     t = jingo.env.from_string(s)
@@ -159,6 +160,7 @@ def test_cached_activate():
     eq_(translation.get_language(), 'fr')
     l10n.activate('vi')
     eq_(translation.get_language(), 'vi')
+
 
 @with_setup(setup, teardown)
 def test_template_simple():

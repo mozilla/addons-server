@@ -1,6 +1,6 @@
 import os
 import sys
-from subprocess import Popen, PIPE
+from subprocess import Popen
 from tempfile import TemporaryFile
 
 from django.core.management.base import BaseCommand
@@ -12,8 +12,8 @@ from translate.tools import pypo2phppo
 
 class Command(BaseCommand):
     """
-    This will merge zamboni strings into the current remora messages.po file in the
-    PHP format.  This is not for the faint of heart.
+    This will merge zamboni strings into the current remora messages.po file
+    in the PHP format.  This is not for the faint of heart.
     """
 
     def handle(self, *args, **options):
