@@ -222,7 +222,7 @@ class ListTest(TestCase):
     """
     Tests the list view with various urls.
     """
-    fixtures = ['base/featured']
+    fixtures = ['base/addons', 'base/featured']
 
     def test_defaults(self):
         """

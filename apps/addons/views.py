@@ -27,26 +27,31 @@ class HomepageFilter(object):
             ('new', _('Just Added')),
             ('updated', _('Updated')))
 
-    def __init__(self, request, queryset, key, default):
+    def __init__(self, request, base, key, default):
+        self.opts_dict = dict(self.opts)
         self.request = request
-        self.queryset = queryset
+        self.base_queryset = base
         self.field, self.title = self.options(self.request, key, default)
         self.qs = self.filter(self.field)
 
     def options(self, request, key, default):
-        opts_dict = dict(self.opts)
-        if key in request.GET and request.GET[key] in opts_dict:
+        """Get the (option, title) pair we should according to the request."""
+        if key in request.GET and request.GET[key] in self.opts_dict:
             opt = request.GET[key]
         else:
             opt = default
-        return opt, opts_dict[opt]
+        return opt, self.opts_dict[opt]
 
     def all(self):
+        """Get a full mapping of {option: queryset}."""
         return dict((field, self.filter(field)) for field in dict(self.opts))
 
     def filter(self, field):
-        qs = (self.queryset.listed(self.request.APP)
-              .exclude(type=amo.ADDON_PERSONA))
+        """Get the queryset for the given field."""
+        return self.base_queryset & self._filter(field).distinct()
+
+    def _filter(self, field):
+        qs = Addon.objects
         if field == 'popular':
             return qs.order_by('-bayesian_rating')
         elif field == 'new':
@@ -55,20 +60,22 @@ class HomepageFilter(object):
             return qs.order_by('-last_updated')
         else:
             # It's ok to cache this for a while...it'll expire eventually.
-            return (self.queryset.featured(self.request.APP)
-                    .exclude(type=amo.ADDON_PERSONA).order_by('?'))
+            return qs.featured(self.request.APP).order_by('?')
 
 
 def home(request):
-    gs = GlobalStat.objects
-    downloads = gs.filter(name='addon_total_downloads').latest()
-    pings = gs.filter(name='addon_total_updatepings').latest()
+    try:
+        gs = GlobalStat.objects
+        downloads = gs.filter(name='addon_total_downloads').latest()
+        pings = gs.filter(name='addon_total_updatepings').latest()
+    except GlobalStat.DoesNotExist:
+        downloads = pings = None
 
     q = Collection.objects.filter(listed=True, application=request.APP.id)
     collections = q.order_by('-weekly_subscribers')[:3]
 
-    filter = HomepageFilter(request, Addon.objects,
-                            key='browse', default='featured')
+    base = Addon.objects.listed(request.APP).exclude(type=amo.ADDON_PERSONA)
+    filter = HomepageFilter(request, base, key='browse', default='featured')
     addon_sets = dict((key, qs[:4]) for key, qs in filter.all().items())
 
     return jingo.render(request, 'addons/home.html',
