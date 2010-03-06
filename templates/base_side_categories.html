@@ -3,6 +3,7 @@
 {% block main_content %}
   <div class="secondary" role="complementary">
     {% include "categories.html" %}
+    {% block under_categories %}{% endblock %}
   </div>
   <div class="primary" role="main">
     {% include "search.html" %}

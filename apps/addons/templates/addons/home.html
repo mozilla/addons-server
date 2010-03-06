@@ -133,3 +133,12 @@
 {% block js %}
 <script src="{{ MEDIA_URL }}js/zamboni/homepage.js"></script>
 {% endblock %}
+
+{% block under_categories %}
+<div class="highlight">
+  <h3>{{ _('Build a {0} Add-on')|f(request.APP.pretty) }}</h3>
+  <p>{{ _('Find all the tools and resouces you need to make your first add-on.') }}</p>
+  {# TODO(jbalogh): reverse #}
+  <p><strong><a href="/developers">{{ _('Visit the Developer Hub') }}</a></strong></p>
+</div>
+{% endblock %}
