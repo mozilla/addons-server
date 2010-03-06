@@ -1,9 +1,6 @@
 {% extends "base_side_categories.html" %}
 
-{# L10n: {0} is Featured or Popular or Updated. #}
-{% block title %}
-  {{ page_title(_('{0} Add-ons', 'homepage_title')|f(filter.title)) }}
-{% endblock %}
+{% block title %}{{ _('Add-ons for Firefox') }}{% endblock %}
 
 {% block site_stats %}
 {% if downloads and pings %}
@@ -56,8 +53,7 @@
         <ul>
           {% for value, title in filter.opts %}
           <li {{ value|class_selected(filter.field) }} id="{{ value }}">
-          <a href="{{ url('home')|urlparams(browse=value) }}" data-target="{{ value }}"
-            data-title="{{ page_title(_('{0} Add-ons', 'homepage_title')|f(title)) }}">
+          <a href="{{ url('home')|urlparams(browse=value) }}" data-target="{{ value }}">
             {{ title }}</a>
           </li>
           {% endfor %}
