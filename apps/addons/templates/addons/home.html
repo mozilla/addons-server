@@ -79,7 +79,7 @@
                        alt="{{ addon.name }}">
                 </a>
                 <blockquote>
-                  <p>{{ addon.description|truncate(250) }}</p>
+                  {{ addon.description|truncate(250) }}
                 </blockquote>
                 <div class="meta">
                   {{ addon|reviews_link }}
