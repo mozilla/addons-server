@@ -17,6 +17,11 @@ def render(s, context={}):
     return t.render(**context)
 
 
+def test_strip_controls():
+    """We want control codes like \x0c to disappear."""
+    eq_('I ove you', render('{{ "I \x0cove you"|strip_controls }}'))
+
+
 def test_finalize():
     """We want None to show up as ''.  We do this in JINJA_CONFIG."""
     eq_('', render('{{ x }}', {'x': None}))

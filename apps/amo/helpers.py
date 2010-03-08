@@ -257,3 +257,13 @@ def json(s):
 def absolutify(url):
     """Takes a URL and prepends the SITE_URL"""
     return settings.SITE_URL + url
+
+
+@register.filter
+def strip_controls(s):
+    """
+    Strips control characters from a string.
+    """
+    # Translation table of control characters.
+    control_trans = dict((n, None) for n in xrange(32) if n not in [10, 13])
+    return unicode(s).translate(control_trans)
