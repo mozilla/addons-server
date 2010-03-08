@@ -1,3 +1,5 @@
+from datetime import date
+
 from django import test
 from django.conf import settings
 
@@ -5,7 +7,8 @@ from nose.tools import eq_, assert_not_equal
 import test_utils
 
 import amo
-from addons.models import Addon
+from addons.models import Addon, AddonPledge
+from stats.models import Contribution
 
 
 class TestAddonManager(test_utils.TestCase):
@@ -178,3 +181,17 @@ class TestAddonModels(test.TestCase):
 
         assert a.is_category_featured(amo.FIREFOX, 'en-US'), (
             'category featured add-on not recognized')
+
+
+class TestAddonPledgeModel(test.TestCase):
+    fixtures = ['stats/test_models.json']
+
+    def test_contributions(self):
+        myaddon = Addon.objects.get(id=4)
+        mypledge = AddonPledge(addon=myaddon, target=10,
+                               created=date(2009, 6, 1),
+                               deadline=date(2009, 7, 1))
+
+        # Only the two valid contributions must be counted.
+        eq_(mypledge.num_users, 2)
+        self.assertAlmostEqual(mypledge.raised, 4.98)

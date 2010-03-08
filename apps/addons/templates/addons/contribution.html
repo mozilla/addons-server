@@ -1,0 +1,147 @@
+<div class="notification">
+  {% if pledge %}
+    {% cache pledge %}
+      <div class="pledgebox">
+        {% with target=pledge.target|float|currencyfmt('USD') %}
+        {# L10n: {0} is a number #}
+        <h3><em>{{ _('Help the developer of this add-on raise {0} to support '
+                     'its continued development.')|f(target) }}</em></h3>
+        <p>{{ pledge.what_ima_gonna_do }}</p>
+        <div class="o-meter">
+          <dl class="raised">
+            <dt>
+              {# L10n: title for the amount of money a developer has raised #}
+              {{ _('Raised') }}
+            </dt>
+            <dd>
+              {# L10n: {0} is a number, {1} is a user count #}
+              {{ _('<span class="money">{0}</span> from {1} users')|f(
+                pledge.raised|float|currencyfmt('USD'), pledge.num_users)|safe }}
+            </dd>
+          </dl>
+          <canvas class="pledge-o-meter"
+                  data-ratio="{{ pledge.raised / pledge.target|float }}"
+                  data-radius="14" height="70px"></canvas>
+          <dl class="goal">
+            <dt>
+              {# L10n: title for the amount of money a developer would like to raise #}
+              {{ _('Goal') }}
+            </dt>
+            <dd>
+              {# L10n: {0} is a number, {1} is a username #}
+              {{ _('<span class="money">{0}</span> by {1}')|f(
+                target, pledge.deadline|datetime(_('%b %d')))|safe }}
+            </dd>
+          </dl>
+        </div>
+        {% endwith %}
+      </div>{# /pledgebox #}
+    {% endcache %}
+  {% else %}
+    <h3>{{ text }}</h3>
+  {% endif %}
+
+  <div class="aux">
+    <p class="button-wrapper">
+      <a class="button significant"
+        {# The id triggers a dropdown, so don't expose it if there isn't a
+           suggested amount (i.e., only one choice). #}
+        {% if has_suggested %}id="contribute-button"{% endif %}
+        href="/addons/contribute/{{ addon.id }}?source={{ src }}">{# TODO reverse URL #}
+        <img src="{{ MEDIA_URL }}img/amo2009/icons/buttons/heart-blue-16x16.gif"
+             alt=""/>{{ _('Contribute') }}</a>
+      </a>
+
+      {% if show_install %}
+        {# TODO install button #}
+      {% endif %}
+      </p>{# /button-wrapper #}
+
+    <div class="suggestion">
+      {% if has_suggested %}
+        <p>{{ _('Suggested Donation: {0}')|f(addon.suggested_amount) }}</p>
+      {% endif %}
+      {% if show_help %}
+        <p>
+          <a class="toggle-help" href="#contribute-why">
+            {{ _("What's this?") }}{# msgctxt addons_display_a_license_what #}
+          </a>
+        </p>
+      {% endif %}
+    </div>{# /suggestion #}
+  </div>{# /aux #}
+
+  {% if has_suggested %}
+    <div id="contribute-box" class="jqmWindow">
+      <form action="/addons/contribute/{{ addon.id }}" method="get">{# TODO reverse URL #}
+        <input type="hidden" name="source" value="{{ src }}"/>
+        <h2>{{ _('Make a Contribution') }}</h2>
+        <p class="support">
+          {% trans addon_name=addon.name, paypal_url='http://paypal.com' %}
+            Help support the continued development of <strong>{{
+            addon_name }}</strong> by making a small contribution through
+            <a href="{{ paypal_url }}">Paypal</a>.
+          {% endtrans %}
+        </p>
+
+        <h4>{{ _('How much would you like to contribute?') }}</h4>
+        <ul>
+          <li>
+            <input type="radio" name="type" value="suggested"
+                   id="contrib-suggested" checked="checked"/>
+            <label for="contrib-suggested">
+              {# L10n: {1} is a currency amount (e.g., $5.00) #}
+              {{ _('A one-time suggested contribution of {0}')|f(
+                addon.suggested_amount|currencyfmt('USD')) }}
+            </label>
+          </li>
+          <li>
+            <input type="radio" name="type" value="onetime"
+                   id="contrib-onetime"/>
+            <label>
+              {# L10n: {0} is a currency symbol (e.g., $),
+                       {1} is an amount input field #}
+              {{ _('A one-time contribution of {0} {1}')|f(
+                '$', '<input type="text" name="onetime-amount" value=""/>') }}
+            </label>
+          </li>
+          <li>
+            <input type="radio" name="type" value="monthly"
+                   id="contrib-monthly"/>
+            <label for="contrib-monthly">
+              {# L10n: {0} is a currency symbol (e.g., $),
+                       {1} is an amount input field #}
+              {{ _('A regular monthly contribution of {0} {1}')|f(
+                '$', '<input type="text" name="monthly-amount" value=""/>') }}
+            </label>
+          </li>
+        </ul>
+
+        <h4 class="comment">
+          <label for="contrib-comment">
+            {{ _('Leave a comment or request with your contribution.') }}
+          </label>
+        <h4><span>{{ _('(optional)') }}</span>
+        <textarea name="comment" id="contrib-comment"></textarea>
+        <span class="commentlen"></span>
+
+        <button id="contribute-confirm" type="submit" class="button significant">
+          {{ _('Make Contribution') }}
+        </button>
+        <span class="cancel"><a href="#">{{ _('No Thanks') }}</a></span>
+      </form>
+    </div>{# /contribute-box #}
+  {% endif %}
+
+  <div id="contribute-why" class="toggle-info">
+    <p class="dropdown">
+      {% trans %}
+      Mozilla is committed to supporting a vibrant and healthy developer
+      ecosystem. Your optional contribution helps sustain further development
+      of this add-on.
+      {% endtrans %}
+    </p>
+    <a class="close" href="#">{{ _('close') }}</a>
+  </div>{# /why #}
+
+</div>{# /notification #}

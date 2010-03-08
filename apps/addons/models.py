@@ -3,7 +3,7 @@ import time
 
 from django.conf import settings
 from django.db import models
-from django.db.models import Q
+from django.db.models import Q, Sum
 
 import caching.base
 
@@ -15,6 +15,7 @@ from translations.fields import (TranslatedField, PurifiedField,
                                  LinkifiedField, translations_with_fallback)
 from users.models import UserProfile
 from search import utils as search_utils
+from stats.models import Contribution as ContributionStats
 
 
 class AddonManager(amo.models.ManagerBase):
@@ -354,7 +355,7 @@ class AddonCategory(caching.base.CachingMixin, models.Model):
 
 
 class AddonPledge(amo.models.ModelBase):
-    addon = models.ForeignKey(Addon)
+    addon = models.ForeignKey(Addon, related_name='pledges')
     target = models.PositiveIntegerField()  # Only $ for now
     what_ima_gonna_do = TranslatedField()
     active = models.BooleanField(default=False)
@@ -362,6 +363,22 @@ class AddonPledge(amo.models.ModelBase):
 
     class Meta:
         db_table = 'addons_pledges'
+        ordering = ('-deadline',)
+
+    @property
+    def contributions(self):
+        return ContributionStats.objects.filter(
+            addon=self.addon, created__gte=self.created,
+            created__lte=self.deadline, transaction_id__isnull=False)
+
+    @amo.cached_property
+    def num_users(self):
+        return self.contributions.count()
+
+    @amo.cached_property
+    def raised(self):
+        qs = self.contributions.aggregate(raised=Sum('amount'))
+        return qs['raised']
 
     def __unicode__(self):
         return '%s ($%s, %s)' % (self.addon.name, self.target, self.deadline)

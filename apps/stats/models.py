@@ -73,6 +73,9 @@ class Contribution(caching.base.CachingMixin, models.Model):
     class Meta:
         db_table = 'stats_contributions'
 
+    def __unicode__(self):
+        return u'%s: %s' % (self.addon.name, self.amount)
+
     @property
     def date(self):
         try:

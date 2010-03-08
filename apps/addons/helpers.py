@@ -1,3 +1,5 @@
+from django.conf import settings
+
 import jinja2
 
 from jingo import register, env
@@ -43,3 +45,34 @@ def separated_list_items(context, addons, src=None):
 def support_addon(addon):
     t = env.get_template('addons/support_addon.html')
     return jinja2.Markup(t.render(addon=addon))
+
+
+@register.function
+def contribution(addon, text='', src='', show_install=False, show_help=True):
+    """
+    Show a contribution box.
+
+    Parameters:
+        addon
+        text: The begging text at the top of the box.
+        src: The page where the contribution link is coming from.
+        show_install: Whether or not to show the install button.
+        show_help: Show "What's this?" link?
+    """
+
+    # prepare pledge
+    pledge = addon.pledges.all() and addon.pledges.all()[0] or None
+    if pledge:
+        src = '%s-pledge-%s' % (src, pledge.id)
+
+    t = env.get_template('addons/contribution.html')
+    return jinja2.Markup(t.render({
+        'MEDIA_URL': settings.MEDIA_URL,
+        'addon': addon,
+        'text': text,
+        'src': src,
+        'show_install': show_install,
+        'show_help': show_help,
+        'has_suggested': bool(addon.suggested_amount),
+        'pledge': pledge
+    }))
