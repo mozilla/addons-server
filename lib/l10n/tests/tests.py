@@ -320,6 +320,7 @@ msgstr ""
 msgid "a fligtar"
 msgid_plural "many fligtars"
 msgstr[0] ""
+msgstr[1] ""
 
 #: filename:11
 #: filename:12
@@ -328,6 +329,7 @@ msgctxt "aticecreamshop"
 msgid "a fligtar"
 msgid_plural "many fligtars"
 msgstr[0] ""
+msgstr[1] ""
 
 #. L10n: Turn down the volume
 #: filename:23
@@ -335,6 +337,7 @@ msgctxt "aticecreamshop"
 msgid "fligtar"
 msgid_plural "many fligtars"
 msgstr[0] ""
+msgstr[1] ""
 """
 
 TEST_TEMPLATE_INPUT = """
@@ -388,11 +391,13 @@ msgstr ""
 msgid "%(count)s hour left"
 msgid_plural "%(count)s hours left"
 msgstr[0] ""
+msgstr[1] ""
 
 #: filename:18
 msgid "one"
 msgid_plural "many"
 msgstr[0] ""
+msgstr[1] ""
 
 #. This string has a hat.
 #: filename:21
