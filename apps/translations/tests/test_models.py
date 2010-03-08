@@ -291,6 +291,13 @@ def test_translation_bool():
     assert bool(t(None)) is False
 
 
+def test_translation_unicode():
+    t = lambda s: Translation(localized_string=s)
+
+    eq_(unicode(t('hello')), 'hello')
+    eq_(unicode(t(None)), '')
+
+
 def test_widget_value_from_datadict():
     data = {'f_en-US': 'woo', 'f_de': 'herr', 'f_fr_delete': ''}
     actual = widgets.TranslationWidget().value_from_datadict(data, [], 'f')

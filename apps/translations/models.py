@@ -36,7 +36,7 @@ class Translation(caching.base.CachingMixin, models.Model):
         unique_together = ('id', 'locale')
 
     def __unicode__(self):
-        return unicode(self.localized_string)
+        return self.localized_string and unicode(self.localized_string) or ''
 
     def __nonzero__(self):
         # __nonzero__ is called to evaluate an object in a boolean context.  We
