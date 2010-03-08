@@ -2,7 +2,6 @@ import os
 from manage import settings
 from optparse import make_option
 from subprocess import Popen
-from settings import JINJA_CONFIG
 
 from django.core.management.base import BaseCommand
 
@@ -15,29 +14,8 @@ from l10n import strip_whitespace, add_context, split_context
 
 DEFAULT_DOMAIN = 'all'
 
-DOMAIN_METHODS = {
-    'messages': [
-        ('apps/**.py',
-            'l10n.management.commands.extract.extract_amo_python'),
-        ('**/templates/**.html',
-            'l10n.management.commands.extract.extract_amo_template'),
-    ],
-    'lhtml': [
-        ('**/templates/**.lhtml',
-            'l10n.management.commands.extract.extract_amo_template'),
-    ],
-    'javascript': [
-        # We can't say **.js because that would dive into mochikit and timeplot
-        # and all the other baggage we're carrying.  Timeplot, in particular,
-        # crashes the extractor with bad unicode data.
-        ('media/js/*.js', 'javascript'),
-        ('media/js/amo2009/**.js', 'javascript'),
-        ('media/js/zamboni/**.js', 'javascript'),
-    ],
-}
-
 OPTIONS_MAP = {
-    '**.*': {'extensions': ",".join(JINJA_CONFIG()['extensions'])},
+    '**.*': {'extensions': ",".join(settings.JINJA_CONFIG()['extensions'])},
 }
 
 COMMENT_TAGS = ['L10n:']
@@ -134,7 +112,7 @@ class Command(BaseCommand):
         domains = options.get('domain')
 
         if domains == "all":
-            domains = DOMAIN_METHODS.keys()
+            domains = settings.DOMAIN_METHODS.keys()
         else:
             domains = [domains]
 
@@ -148,7 +126,7 @@ class Command(BaseCommand):
 
             print "Extracting all strings in domain %s..." % (domain)
 
-            methods = DOMAIN_METHODS[domain]
+            methods = settings.DOMAIN_METHODS[domain]
             extracted = extract_from_dir(root,
                                          method_map=methods,
                                          keywords=DEFAULT_KEYWORDS,

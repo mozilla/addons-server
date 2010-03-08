@@ -202,6 +202,30 @@ def JINJA_CONFIG():
         config['bytecode_cache'] = bc
     return config
 
+
+# Tells the extract script what files to look for l10n in and what function
+# handles the extraction.  The Tower library expects this.
+DOMAIN_METHODS = {
+    'messages': [
+        ('apps/**.py',
+            'l10n.management.commands.extract.extract_amo_python'),
+        ('**/templates/**.html',
+            'l10n.management.commands.extract.extract_amo_template'),
+    ],
+    'lhtml': [
+        ('**/templates/**.lhtml',
+            'l10n.management.commands.extract.extract_amo_template'),
+    ],
+    'javascript': [
+        # We can't say **.js because that would dive into mochikit and timeplot
+        # and all the other baggage we're carrying.  Timeplot, in particular,
+        # crashes the extractor with bad unicode data.
+        ('media/js/*.js', 'javascript'),
+        ('media/js/amo2009/**.js', 'javascript'),
+        ('media/js/zamboni/**.js', 'javascript'),
+    ],
+}
+
 # The host currently running the site.  Only use this in code for good reason;
 # the site is designed to run on a cluster and should continue to support that
 HOSTNAME = socket.gethostname()
