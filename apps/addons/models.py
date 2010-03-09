@@ -296,7 +296,7 @@ class Addon(amo.models.ModelBase):
     def is_listed(self):
         return self.status == amo.STATUS_LISTED
 
-    def is_experimental(self):
+    def is_unreviewed(self):
         return self.status in amo.EXPERIMENTAL_STATUSES
 
     def is_featured(self, app, lang):

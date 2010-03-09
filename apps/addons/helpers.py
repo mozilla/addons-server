@@ -12,7 +12,7 @@ def statusflags(context, addon):
     """experimental/recommended status flags for use as CSS classes"""
     app = context['APP']
     lang = context['LANG']
-    if addon.is_experimental():
+    if addon.is_unreviewed():
         return 'experimental'
     elif addon.is_featured(app, lang) or addon.is_category_featured(app, lang):
         return 'recommended'

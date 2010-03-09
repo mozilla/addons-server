@@ -151,15 +151,15 @@ class TestAddonModels(test.TestCase):
         a = Addon.objects.get(pk=73)
         eq_(a.preview_count, 0)
 
-    def test_is_experimental(self):
+    def test_is_unreviewed(self):
         """Test if add-on is experimental or not"""
         # public add-on
         a = Addon.objects.get(pk=3615)
-        assert not a.is_experimental(), 'public add-on: is_experimental=False'
+        assert not a.is_unreviewed(), 'public add-on: is_unreviewed=False'
 
         # experimental add-on
         a = Addon(status=amo.STATUS_SANDBOX)
-        assert a.is_experimental(), 'sandboxed add-on: is_experimental=True'
+        assert a.is_unreviewed(), 'sandboxed add-on: is_unreviewed=True'
 
     def test_is_listed(self):
         """Test if an add-on is listed or hosted"""

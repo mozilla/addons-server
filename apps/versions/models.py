@@ -51,6 +51,10 @@ class Version(amo.models.ModelBase):
     def has_files(self):
         return bool(self.files.count())
 
+    @amo.cached_property
+    def is_unreviewed(self):
+        return bool(self.files.filter(status=amo.STATUS_SANDBOX))
+
 
 class License(amo.models.ModelBase):
     """
