@@ -21,6 +21,16 @@ client = Client()
 make_call = lambda *args, **kwargs: client.get(api_url(*args, **kwargs))
 
 
+class ControlCharacterTest(TestCase):
+    """This test is to assure we aren't showing control characters."""
+
+    fixtures = ['base/addon_592.json']
+
+    def test(self):
+        request = make_call('addon/592')
+        self.assertNotContains(request, '')
+
+
 class APITest(TestCase):
 
     fixtures = ['base/addons']

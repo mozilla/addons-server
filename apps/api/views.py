@@ -6,6 +6,7 @@ import random
 import datetime
 
 from django.http import HttpResponse, HttpResponsePermanentRedirect
+from django.template.context import get_standard_processors
 from django.utils import translation
 from l10n import ugettext as _, ugettext_lazy
 
@@ -20,6 +21,23 @@ ERROR = 'error'
 OUT_OF_DATE = ugettext_lazy(
     u"The API version, {0:.1f}, you are using is not valid.  "
     u"Please upgrade to the current version {1:.1f} API.")
+
+xml_env = jingo.env.overlay()
+old_finalize = xml_env.finalize
+xml_env.finalize = lambda x: amo.helpers.strip_controls(old_finalize(x))
+
+
+def render_xml(request, template, context={}, **kwargs):
+    """Safely renders xml, stripping out nasty control characters."""
+    if not jingo._helpers_loaded:
+        jingo.load_helpers()
+
+    for processor in get_standard_processors():
+        context.update(processor(request))
+
+    template = xml_env.get_template(template)
+    rendered = template.render(**context)
+    return HttpResponse(rendered, **kwargs)
 
 
 def validate_api_version(version):
@@ -61,7 +79,7 @@ class APIView(object):
         """
 
         if self.format == 'xml':
-            return jingo.render(self.request, 'api/message.xml',
+            return render_xml(self.request, 'api/message.xml',
                 {'error_level': error_level, 'msg': msg}, *args, **kwargs)
         else:
             return HttpResponse(json.dumps({'msg': _(msg)}), *args, **kwargs)
@@ -70,7 +88,7 @@ class APIView(object):
         context['api_version'] = self.version
         context['api'] = api
 
-        return jingo.render(self.request, template, context,
+        return render_xml(self.request, template, context,
                             mimetype=self.mimetype)
 
 
