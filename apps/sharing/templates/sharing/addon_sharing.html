@@ -1,0 +1,63 @@
+<div class="share-this">
+  <a class="share" href="#">{{ _('Share this Add-on') }}</a>
+  <div class="share-arrow"><div class="share-frame">
+  {% cache all_shares %}
+    <div class="share-networks share-content">
+      <ul>
+        {% for service in services %}
+          {% set opts = service_opts[service] %}
+          <li class="{{ service.shortname }}">
+            <span class="share-link">
+              <a class="uniquify" target="{{ opts.target }}" href="{{ opts.url }}">
+                {{ service.label }}
+              </a>
+            </span>
+            <span class="share-count">{{ service.share_count(addon) }}</span>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>{# /share-networks #}
+  {% endcache %}
+
+  {% if user.is_authenticated() %}
+    <div class="share-email share-content">
+      <form action="{{ service_opts[email_service].url }}" method="post">
+        {{ cake_csrf_token() }}
+        {# TODO uncakeify #}
+        <div class="container">
+          <label for="FriendEmails">
+            {# L10n: Refers to recipients of an add-on recommendation email #}
+            {{ _('Enter Email Addresses') }}
+          </label>
+          <input id="FriendEmails" type="text" value="" name="data[Friend][emails]"
+                 placeholder="{{ email_service.placeholders|join(', ') }}"/>
+        </div>
+        <div class="container">
+          <label for="FriendMessage">
+            {# L10n: When recommending add-ons by email, users can specify a
+                     personal message #}
+            {{ _('Message (optional)') }}
+          </label>
+          <textarea id="FriendMessage" name="data[Friend][message]"></textarea>
+        </div>
+        <div class="container emailerror" style="display:none">
+          <p></p>
+        </div>
+        <div class="container buttons">
+          <a href="#" class="close">{{ _('Cancel') }}</a>
+          <button type="submit" class="prominent">
+            {# L10n: Refers to an email #}
+            {{ _('Send') }}
+          </button>
+        </div>
+      </form>
+
+      <div class="share-email-success">
+        <p>{{ _('Emails sent!') }}</p>
+      </div>
+    </div>{# /share-email #}
+  {% endif %}
+
+
+  </div></div>{# /share-frame, /share-arrow #}
+</div>{# /share-this #}

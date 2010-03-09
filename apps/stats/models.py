@@ -41,6 +41,18 @@ class UpdateCount(caching.base.CachingMixin, models.Model):
         db_table = 'update_counts'
 
 
+class ShareCount(caching.base.CachingMixin, models.Model):
+    addon = models.ForeignKey('addons.Addon')
+    count = models.PositiveIntegerField()
+    service = models.CharField(max_length=255, null=True)
+    date = models.DateField()
+
+    objects = StatsManager('date')
+
+    class Meta:
+        db_table = 'stats_share_counts'
+
+
 class Contribution(caching.base.CachingMixin, models.Model):
     addon = models.ForeignKey('addons.Addon')
     amount = DecimalCharField(max_digits=9, decimal_places=2,

@@ -154,6 +154,7 @@ INSTALLED_APPS = (
     'nick',
     'reviews',
     'search',
+    'sharing',
     'stats',
     'tags',
     'translations',
