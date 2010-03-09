@@ -89,7 +89,7 @@ class HubEvent(amo.models.ModelBase):
         return self.name
 
 
-class AddonLog(amo.models.ModelBase):
+class AddonLog(models.Model):
     TYPES = [(value, key) for key, value in LOG.items()]
 
     addon = models.ForeignKey('addons.Addon', null=True, blank=True)
