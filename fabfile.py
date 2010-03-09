@@ -7,11 +7,18 @@ def pylint():
         "pylint --rcfile zamboni/scripts/pylintrc zamboni ",
         capture=False)
 
-def pep8():
-    local("pep8 --repeat --ignore E221"
-        " --exclude *.sh,*.html,*.json,*.txt,*.pyc,.DS_Store,README,"
-        "migrations,sphinxapi.py"
-        " apps", capture=False)
+
+def pep8(all=False):
+    local("git fetch jbalogh")
+    cmd = ("pep8 --repeat --ignore E221"
+           " --exclude *.sh,*.html,*.json,*.txt,*.pyc,.DS_Store,README,"
+           "migrations,sphinxapi.py")
+
+    if all:
+        cmd = cmd + " apps lib"
+    else:
+        cmd = cmd + " $(git diff --name-only jbalogh/master|grep py$)"
+    local(cmd, capture=False)
 
 
 def test(module=None, pdb=False):
