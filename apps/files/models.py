@@ -36,6 +36,10 @@ class File(amo.models.ModelBase):
         url.append('addon-%s-latest%s' % (addon, self.extension))
         return os.path.join(*url)
 
+    def eula_url(self):
+        # TODO(jbalogh): reverse
+        return '/addons/policy/0/%s/%s' % (self.version.addon_id, self.id)
+
     @property
     def extension(self):
         return os.path.splitext(self.filename)[-1]
