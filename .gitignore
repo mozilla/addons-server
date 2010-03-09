@@ -5,3 +5,4 @@ settings_local.py
 pip-log.txt
 docs/_gh-pages
 build.py
+.DS_Store

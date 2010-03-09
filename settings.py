@@ -232,23 +232,28 @@ DOMAIN_METHODS = {
 MINIFY_BUNDLES = {
     'css': {
         # CSS files common to the entire site.
-        'common': ('css/main.css', 'css/main-mozilla.css',)
+        'common': (
+            'css/main.css',
+            'css/main-mozilla.css',
+            'css/zamboni/zamboni.css',
+        )
     },
     'js': {
         # JS files common to the entire site.
         'common': (
-                'js/__utm.js',
-                'js/jquery-compressed.js',
-                'js/zamboni/underscore-min.js',
-                'js/jquery.cookie.js',
-                'js/amo2009/global.js',
-                'js/amo2009/slimbox2.js',
-                'js/amo2009/addons.js',
-                'js/amo2009/install-button.js',
-                'js/jquery-ui/jqModal.js',
-                'js/amo2009/home.js',
-                'js/zamboni/init.js',
-            )
+            'js/jquery-compressed.js',
+            'js/zamboni/underscore-min.js',
+            'js/amo2009/addons.js',
+            'js/zamboni/init.js',
+            'js/zamboni/buttons.js',
+
+            'js/jquery.cookie.js',
+            'js/amo2009/global.js',
+            'js/amo2009/slimbox2.js',
+            'js/jquery-ui/jqModal.js',
+            'js/amo2009/home.js',
+            'js/__utm.js',
+        )
     }
 }
 
