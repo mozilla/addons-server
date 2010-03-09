@@ -18,8 +18,10 @@ def cake_csrf_token(context):
     if not user.is_authenticated():
         return
 
-    session_id = context['request'].COOKIES.get('AMOv3').value
-    if not session_id:
+    try:
+        session_id = context['request'].COOKIES.get('AMOv3').value
+        assert session_id
+    except (AttributeError, AssertionError):
         return
 
     try:

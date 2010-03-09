@@ -102,3 +102,21 @@ class TestHelpers(TestCase):
         doc = pq(cake_csrf_token(ctx))
         self.assert_(doc.html())
         self.assert_(doc('input').attr('value'))
+
+    def test_csrf_token_nosession(self):
+        """No session cookie, no Cake CSRF token."""
+        mysessionid = "17f051c99f083244bf653d5798111216"
+
+        s = SessionBackend()
+        session = Session.objects.get(pk=mysessionid)
+        user = s.authenticate(session=session)
+
+        client = self.client
+
+        request = Mock()
+        request.user = user
+        request.COOKIES = client.cookies
+        ctx = {'request': request}
+
+        token = cake_csrf_token(ctx)
+        assert not token
