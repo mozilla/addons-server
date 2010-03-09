@@ -239,6 +239,8 @@ class Addon(amo.models.ModelBase):
         try:
             if self.status == amo.STATUS_PUBLIC:
                 status = [self.status]
+            elif self.status == amo.STATUS_LISTED:
+                return self.versions.get()
             else:
                 status = amo.VALID_STATUSES
             return self.versions.filter(files__status__in=status)[0]

@@ -1,0 +1,150 @@
+[
+    {
+        "pk": 366,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": null,
+            "created": "2007-03-05 13:08:05",
+            "locale": "en-US",
+            "modified": "2007-03-25 17:17:19",
+            "id": 149,
+            "localized_string": "Themes are like new clothes for your %1$s. A theme can change only a few colors, or every piece of %1$s's appearance. It's another great way to personalize %1$s to your tastes."
+        }
+    },
+    {
+        "pk": 192,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": null,
+            "created": "2007-03-05 13:08:05",
+            "locale": "en-US",
+            "modified": "2007-03-25 17:17:19",
+            "id": 143,
+            "localized_string": "Themes"
+        }
+    },
+    {
+        "pk": 17,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": null,
+            "created": "2007-03-05 13:08:05",
+            "locale": "en-US",
+            "modified": "2007-03-25 17:17:19",
+            "id": 2,
+            "localized_string": "Theme"
+        }
+    },
+    {
+        "pk": 29876,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": null,
+            "created": "2007-03-07 22:34:07",
+            "locale": "ja",
+            "modified": "2010-01-03 22:27:06",
+            "id": 15451,
+            "localized_string": "http://f22.aaa.livedoor.jp/~ptdb/firefox/theme.html"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "addons.addontype",
+        "fields": {
+            "description": 149,
+            "name_plural": 143,
+            "modified": "2009-02-06 08:42:28",
+            "name": 2,
+            "created": "2006-08-21 23:53:24"
+        }
+    },
+    {
+        "pk": 29866,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": null,
+            "created": "2007-03-07 22:34:07",
+            "locale": "ja",
+            "modified": "2008-05-17 22:14:50",
+            "id": 15450,
+            "localized_string": null
+        }
+    },
+    {
+        "pk": 5,
+        "model": "versions.license",
+        "fields": {
+            "_custom_text": null,
+            "_name_field": 0,
+            "modified": "2009-04-30 22:29:53",
+            "created": "2009-04-30 22:29:53"
+        }
+    },
+    {
+        "pk": 3723,
+        "model": "addons.addon",
+        "fields": {
+            "dev_agreement": 0,
+            "eula": null,
+            "last_updated": "2010-01-03 21:26:09",
+            "view_source": 0,
+            "total_downloads": 418529,
+            "developer_comments": 15453,
+            "inactive": 1,
+            "average_daily_downloads": 1511,
+            "show_beta": 0,
+            "the_future": null,
+            "trusted": 0,
+            "locale_disambiguation": null,
+            "binary": 0,
+            "guid": "{835A3F80-DF39-11D9-A0B5-000D0B3AEB26}",
+            "weekly_downloads": 0,
+            "support_url": null,
+            "paypal_id": "",
+            "average_rating": "0",
+            "wants_contributions": 0,
+            "average_daily_users": 21709,
+            "bayesian_rating": 3.6789000000000001,
+            "share_count": 0,
+            "get_satisfaction_company": "",
+            "homepage": 15451,
+            "support_email": null,
+            "public_stats": 0,
+            "status": 6,
+            "privacy_policy": null,
+            "description": 15452,
+            "default_locale": "ja",
+            "target_locale": null,
+            "prerelease": 0,
+            "admin_review": 0,
+            "external_software": 0,
+            "highest_status": 4,
+            "get_satisfaction_product": "",
+            "name": 15450,
+            "created": "2006-10-31 23:19:06",
+            "type": 2,
+            "icon_type": "",
+            "annoying": 0,
+            "modified": "2010-01-03 22:27:15",
+            "summary": 15454,
+            "suggested_amount": null,
+            "site_specific": 0,
+            "total_reviews": 2,
+            "the_reason": null,
+            "nomination_date": "2008-09-20 21:43:58"
+        }
+    },
+    {
+        "pk": 89774,
+        "model": "versions.version",
+        "fields": {
+            "license": 5,
+            "created": "2010-01-03 21:26:09",
+            "releasenotes": null,
+            "approvalnotes": null,
+            "modified": "2010-01-03 22:13:50",
+            "version": "0",
+            "addon": 3723
+        }
+    }
+]
