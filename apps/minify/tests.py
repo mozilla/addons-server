@@ -3,7 +3,6 @@ from django.conf import settings
 import jingo
 from nose.tools import eq_
 
-from minify import BUNDLES
 
 try:
     from build import BUILD_ID_CSS, BUILD_ID_JS
@@ -16,7 +15,7 @@ def setup():
 def test_js_helper():
     """
     Given the js() tag if we return the assets that make up that bundle
-    as defined in minify.BUNDLES.
+    as defined in settings.MINIFY_BUNDLES.
 
     If we're not in debug mode, we just return a minified url
     """
@@ -27,7 +26,7 @@ def test_js_helper():
     s = t.render()
 
     expected ="\n".join(["""<script src="%s"></script>""" % (settings.MEDIA_URL + j)
-                        for j in BUNDLES['js']['common']])
+                        for j in settings.MINIFY_BUNDLES['js']['common']])
 
     eq_(s, expected)
 
@@ -41,7 +40,7 @@ def test_js_helper():
 def test_css_helper():
     """
     Given the css() tag if we return the assets that make up that bundle
-    as defined in minify.BUNDLES.
+    as defined in settings.MINIFY_BUNDLES.
 
     If we're not in debug mode, we just return a minified url
     """
@@ -52,7 +51,8 @@ def test_css_helper():
 
     expected ="\n".join(
         ["""<link rel="stylesheet" media="screen,projection,tv" href="%s" />"""
-         % (settings.MEDIA_URL + j) for j in BUNDLES['css']['common']])
+         % (settings.MEDIA_URL + j) for j in
+         settings.MINIFY_BUNDLES['css']['common']])
 
     eq_(s, expected)
 

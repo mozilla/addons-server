@@ -3,7 +3,6 @@ from django.conf import settings
 from jinja2 import Markup
 from jingo import register, env
 
-import minify
 
 try:
     from build import BUILD_ID_CSS, BUILD_ID_JS
@@ -25,7 +24,7 @@ def js(bundle, debug=settings.TEMPLATE_DEBUG):
     If we are not in debug mode, return a script that points at bundle-min.js.
     """
     if debug:
-        items = minify.BUNDLES['js'][bundle]
+        items = settings.MINIFY_BUNDLES['js'][bundle]
     else:
         items = ("js/%s-min.js?build=%s" % (bundle, BUILD_ID_JS,),)
 
@@ -39,7 +38,7 @@ def css(bundle, media="screen,projection,tv", debug=settings.TEMPLATE_DEBUG):
     If we are not in debug mode, return a script that points at bundle-min.css.
     """
     if debug:
-        items = minify.BUNDLES['css'][bundle]
+        items = settings.MINIFY_BUNDLES['css'][bundle]
     else:
         items = ("css/%s-min.css?build=%s" % (bundle, BUILD_ID_CSS,),)
 

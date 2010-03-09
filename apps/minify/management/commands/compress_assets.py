@@ -5,13 +5,13 @@ from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 
 import git
-import minify
+
 
 path = lambda *a: os.path.join(settings.MEDIA_ROOT, *a)
 
 
 class Command(BaseCommand):  #pragma: no cover
-    help = ("Compresses css and js assets defined in minify.BUNDLE")
+    help = ("Compresses css and js assets defined in settings.MINIFY_BUNDLES")
 
     requires_model_validation = False
 
@@ -20,7 +20,7 @@ class Command(BaseCommand):  #pragma: no cover
                 'yuicompressor-2.4.2.jar')
         path_to_jar = os.path.realpath(os.path.join(*jar_path))
 
-        for ftype, bundle in minify.BUNDLES.iteritems():
+        for ftype, bundle in settings.MINIFY_BUNDLES.iteritems():
             for name, files in bundle.iteritems():
                 concatted_file = path(ftype, '%s-all.%s' % (name, ftype,))
                 compressed_file = path(ftype, '%s-min.%s' % (name, ftype,))
