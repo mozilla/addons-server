@@ -21,10 +21,13 @@ def pep8(all=False):
     local(cmd, capture=False)
 
 
-def test(module=None, pdb=False):
+def test(module=None, pdb=False, failfast=True):
     cmd = "python manage.py test"
     if module:
         cmd += " %s" % module
+
+    if failfast and failfast != '0':
+        cmd += " -x"
 
     cmd += " --noinput --logging-clear-handlers"
     if pdb:
