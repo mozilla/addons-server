@@ -203,7 +203,7 @@ APPS_RETIRED = dict([(MOZILLA.short, MOZILLA)])
 class PLATFORM_ANY:
     id = 0
     name = _('Any')
-    shortname = _('Any')
+    shortname = 'any'
     # API name is not translated
     api_name = u'ALL'
 
@@ -211,42 +211,42 @@ class PLATFORM_ANY:
 class PLATFORM_ALL:
     id = 1
     name = _('All')
-    shortname = _('All')
+    shortname = 'all'
     api_name = u'ALL'
 
 
 class PLATFORM_LINUX:
     id = 2
     name = _('Linux')
-    shortname = _('Linux')
+    shortname = 'linux'
     api_name = u'Linux'
 
 
 class PLATFORM_MAC:
     id = 3
-    name = _('MacOSX')
-    shortname = _('macosx')
+    name = _('Mac OS X')
+    shortname = 'mac'
     api_name = u'Darwin'
 
 
 class PLATFORM_BSD:
     id = 4
     name = _('BSD')
-    shortname = _('bsd')
+    shortname = 'bsd'
     api_name = u'BSD_OS'
 
 
 class PLATFORM_WIN:
     id = 5
     name = _('Windows')
-    shortname = _('win')
+    shortname = 'windows'
     api_name = u'WINNT'
 
 
 class PLATFORM_SUN:
     id = 6
     name = _('Solaris')
-    shortname = _('Solaris')
+    shortname = 'solaris'
     api_name = 'SunOS'
 
 # Order matters
