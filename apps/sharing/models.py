@@ -25,7 +25,7 @@ class ServiceBase(object):
         # note: make sure this is cached when you use it.
         count = cls.all_shares(addon).filter(
             service=cls.shortname).aggregate(total=Sum('count'))
-        return count['total']
+        return count['total'] or 0
 
 
 class DELICIOUS(ServiceBase):
