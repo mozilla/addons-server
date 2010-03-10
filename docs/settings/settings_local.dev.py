@@ -8,6 +8,8 @@ DATABASES = {
         'USER': 'jbalogh',
         'PASSWORD': 'xxx',
         'OPTIONS':  {'init_command': 'SET storage_engine=InnoDB'},
+        'TEST_CHARSET': 'utf8',
+        'TEST_COLLATION': 'utf8_general_ci',
     },
 }
 
