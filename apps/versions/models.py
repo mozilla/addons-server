@@ -145,4 +145,4 @@ class ApplicationsVersions(caching.base.CachingMixin, models.Model):
         unique_together = (("application", "version"),)
 
     def __unicode__(self):
-        return u'%s: %s – %s' % (self.application, self.min, self.max)
+        return u'%s: %s - %s' % (self.application, self.min, self.max)
