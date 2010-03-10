@@ -23,9 +23,9 @@ class TestStuff(test_utils.TestCase):
             anon = PyQuery(response.content)('body').attr('data-anonymous')
             eq_(anon, expected)
 
-        check('1')
+        check('true')
         self.client.login(username='admin@mozilla.com', password='password')
-        check('0')
+        check('false')
 
     def test_my_account_menu(self):
         def check(expected):
