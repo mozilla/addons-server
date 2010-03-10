@@ -20,7 +20,4 @@ ALTER TABLE collection_addon_recommendations
 ALTER TABLE versions_summary
     ADD COLUMN id INTEGER UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY FIRST;
 
-ALTER TABLE users_tags_addons
-    ADD UNIQUE(`user_id`,`tag_id`,`addon_id`),
-    DROP PRIMARY KEY,
-    ADD COLUMN id INTEGER UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY FIRST;
+-- users_tags_addons removed, that's already in migration 15. --fwenzel
