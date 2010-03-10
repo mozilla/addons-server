@@ -12,7 +12,8 @@
                 {{ service.label }}
               </a>
             </span>
-            <span class="share-count">{{ service.share_count(addon) }}</span>
+            <span class="share-count">{{
+              service.count_term(service.share_count(addon)) }}</span>
           </li>
         {% endfor %}
       </ul>
