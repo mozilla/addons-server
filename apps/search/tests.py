@@ -148,9 +148,9 @@ class SearchTest(SphinxTestCase):
         This tests the various sorting.
         """
         eq_(query("", limit=1, sort='newest')[0].id, 10869)
-        eq_(query("", limit=1, sort='updated')[0].id, 4664)
+        eq_(query("", limit=1, sort='updated')[0].id, 6113)
         eq_(query("", limit=1, sort='name')[0].id, 5299)
-        eq_(query("", limit=1, sort='averagerating')[0].id, 7172)
+        eq_(query("", limit=1, sort='averagerating')[0].id, 6113)
         eq_(query("", limit=1, sort='weeklydownloads')[0].id, 55)
 
     def test_app_filter(self):
@@ -216,7 +216,7 @@ class TestSearchForm(test_utils.TestCase):
     def test_get_app_versions(self):
         actual = forms.get_app_versions()
         expected = {
-            amo.FIREFOX.id: ['2.0', '3.0', '3.5', '3.6', '3.7'],
+            amo.FIREFOX.id: ['1.5', '2.0', '3.0', '3.5', '3.6', '3.7'],
             amo.THUNDERBIRD.id: [],
             amo.SUNBIRD.id: [],
             amo.SEAMONKEY.id: [],

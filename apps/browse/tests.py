@@ -96,10 +96,10 @@ class TestThemes(test_utils.TestCase):
     def test_experimental(self):
         # Only 3 without experimental.
         response = self.client.get(self.base_url)
-        eq_(len(response.context['themes'].object_list), 7)
+        eq_(len(response.context['themes'].object_list), 8)
 
         response = self.client.get(self.exp_url)
-        eq_(len(response.context['themes'].object_list), 9)
+        eq_(len(response.context['themes'].object_list), 10)
 
     def _get_sort(self, sort):
         response = self.client.get(urlparams(self.exp_url, sort=sort))
@@ -108,16 +108,16 @@ class TestThemes(test_utils.TestCase):
 
     def test_download_sort(self):
         ids = self._get_sort('downloads')
-        eq_(ids, [55, 1843, 73, 3615, 5369, 7172, 10869, 6704, 40])
+        eq_(ids, [55, 1843, 73, 3615, 5369, 7172, 6113, 10869, 6704, 40])
 
     def test_name_sort(self):
         ids = self._get_sort('name')
-        eq_(ids, [55, 3615, 1843, 6704, 10869, 7172, 40, 5369, 73])
+        eq_(ids, [55, 3615, 1843, 6704, 10869, 7172, 40, 5369, 73, 6113])
 
     def test_date_sort(self):
         ids = self._get_sort('date')
-        eq_(ids, [3615, 7172, 5369, 10869, 6704, 1843, 73, 40, 55])
+        eq_(ids, [6113, 3615, 7172, 5369, 10869, 6704, 1843, 73, 40, 55])
 
     def test_rating_sort(self):
         ids = self._get_sort('rating')
-        eq_(ids, [7172, 1843, 6704, 10869, 40, 5369, 3615, 55, 73])
+        eq_(ids, [6113, 7172, 1843, 6704, 10869, 40, 5369, 3615, 55, 73])
