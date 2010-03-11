@@ -313,6 +313,14 @@ class ListTest(TestCase):
 class SearchTest(SphinxTestCase):
     no_results = """<searchresults total_results="0">"""
 
+    def test_double_escaping(self):
+        """
+        For API < 1.5 we use double escaping in search.
+        """
+        resp = make_call('search/%25E6%2596%25B0%25E5%2590%258C%25E6%2596%'
+                '2587%25E5%25A0%2582/all/10/WINNT/3.6', version=1.2)
+        self.assertContains(resp, '<addon id="6113">')
+
     def test_zero_results(self):
         """
         Tests that the search API correctly gives us zero results found.

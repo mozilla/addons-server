@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <searchresults total_results="{{ total }}">
-  {% for addon in results %}
-  {% include 'api/includes/addon.xml' %}
+  {% for addon in results -%}
+  {% include 'api/includes/addon.xml' -%}
   {% endfor %}
 </searchresults>

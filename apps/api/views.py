@@ -4,6 +4,7 @@ API views
 import json
 import random
 import datetime
+import urllib
 
 from django.http import HttpResponse, HttpResponsePermanentRedirect
 from django.template.context import get_standard_processors
@@ -140,6 +141,10 @@ class SearchView(APIView):
             statuses.append(amo.STATUS_SANDBOX)
 
         opts['status'] = statuses
+
+        # Fix doubly encoded query strings
+        if self.version < 1.5:
+            query = urllib.unquote(query.encode('ascii'))
 
         try:
             results = sc.query(query, limit=int(limit), **opts)
