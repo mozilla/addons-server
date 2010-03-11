@@ -149,6 +149,16 @@ def test_isotime():
     time = datetime(2009, 12, 25, 10, 11, 12)
     s = render('{{ d|isotime }}', {'d': time})
     eq_(s, '2009-12-25 18:11:12+0000')
+    s = render('{{ d|isotime }}', {'d': None})
+    eq_(s, '')
+
+
+def test_epoch():
+    time = datetime(2009, 12, 25, 10, 11, 12)
+    s = render('{{ d|epoch }}', {'d': time})
+    eq_(s, '1261764672')
+    s = render('{{ d|epoch }}', {'d': None})
+    eq_(s, '')
 
 
 def test_locale_url():

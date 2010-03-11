@@ -239,12 +239,16 @@ def _append_tz(t):
 @register.filter
 def isotime(t):
     """Date/Time format according to ISO 8601"""
+    if not hasattr(t, 'tzinfo'):
+        return
     return _append_tz(t).astimezone(pytz.utc).strftime("%Y-%m-%d %H:%M:%S%z")
 
 
 @register.filter
 def epoch(t):
     """Date/Time converted to seconds since epoch"""
+    if not hasattr(t, 'tzinfo'):
+        return
     return int(time.mktime(_append_tz(t).timetuple()))
 
 
