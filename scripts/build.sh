@@ -21,6 +21,8 @@ cat > settings_local.py <<SETTINGS
 from settings import *
 ROOT_URLCONF = 'workspace.urls'
 LOG_LEVEL = logging.ERROR
+DATABASES['default']['TEST_CHARSET'] = 'utf8'
+DATABASES['default']['TEST_COLLATION'] = 'utf8_general_ci'
 SETTINGS
 
 echo "Starting tests..."
