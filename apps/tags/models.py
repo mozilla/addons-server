@@ -3,11 +3,20 @@ from django.db import models
 import amo.models
 
 
+class TagManager(amo.models.ManagerBase):
+
+    def not_blacklisted(self):
+        """Get allowed tags only"""
+        return self.filter(blacklisted=False)
+
+
 class Tag(amo.models.ModelBase):
     tag_text = models.CharField(max_length=128)
     blacklisted = models.BooleanField(default=False)
     addons = models.ManyToManyField('addons.Addon', through='AddonTag',
                                     related_name='tags')
+
+    objects = TagManager()
 
     class Meta:
         db_table = 'tags'
