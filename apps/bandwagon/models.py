@@ -11,6 +11,13 @@ from translations.fields import (TranslatedField, LinkifiedField,
                                  translations_with_fallback)
 
 
+class CollectionManager(amo.models.ManagerBase):
+
+    def listed(self):
+        """Return public collections only."""
+        return self.filter(listed=True)
+
+
 class Collection(amo.models.ModelBase):
     uuid = models.CharField(max_length=36, blank=True, unique=True)
     name = TranslatedField()
@@ -41,10 +48,16 @@ class Collection(amo.models.ModelBase):
 
     addons = models.ManyToManyField(Addon, through='CollectionAddon',
                                     related_name='collections')
-    users = models.ManyToManyField(UserProfile, through='CollectionUser')
+    users = models.ManyToManyField(UserProfile, through='CollectionUser',
+                                  related_name='collections')
+
+    objects = CollectionManager()
 
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'collections'
+
+    def __unicode__(self):
+        return u'%s (%s)' % (self.name, self.addon_count)
 
     def get_url_path(self):
         # TODO(jbalogh): reverse
