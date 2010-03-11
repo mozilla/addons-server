@@ -5,7 +5,7 @@ import os
 import shutil
 import time
 
-from django.test import TestCase, TransactionTestCase, client
+from django.test import TestCase, client
 from django.core.management import call_command
 from django.utils import translation
 
@@ -66,7 +66,7 @@ def test_parse_bad_type():
                        "nonexistant addon type.")
 
 
-class SphinxTestCase(TransactionTestCase):
+class SphinxTestCase(test_utils.TransactionTestCase):
     """
     This test case type can setUp and tearDown the sphinx daemon.  Use this
     when testing any feature that requires sphinx.
@@ -97,7 +97,6 @@ class SphinxTestCase(TransactionTestCase):
 
     @classmethod
     def tearDownClass(cls):
-        call_command('flush', verbosity=0, interactive=False)
         if SphinxTestCase.sphinx_is_running:
             stop_sphinx()
             SphinxTestCase.sphinx_is_running = False
