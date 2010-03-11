@@ -331,6 +331,8 @@ class Addon(amo.models.ModelBase):
         not specified, then has_author will return true if the user has any
         role other than amo.AUTHOR_ROLE_NONE.
         """
+        if user is None:
+            return False
         if roles is None:
             roles = amo.AUTHOR_CHOICES.keys()
             roles.remove(amo.AUTHOR_ROLE_NONE)

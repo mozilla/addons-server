@@ -63,9 +63,12 @@ def addon_detail(request, addon_id):
     popular_coll = collections.order_by('-subscribers')[:coll_show_count]
 
     # this user's collections
-    profile = UserProfile.objects.get(user=request.user)
-    user_collections = profile.collections.filter(
-        collectionuser__role=amo.COLLECTION_ROLE_ADMIN)
+    if request.user.is_authenticated():
+        profile = UserProfile.objects.get(user=request.user)
+        user_collections = profile.collections.filter(
+            collectionuser__role=amo.COLLECTION_ROLE_ADMIN)
+    else:
+        user_collections = []
 
     data = {
         'addon': addon,

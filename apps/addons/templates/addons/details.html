@@ -188,7 +188,9 @@
     </div>
   {% endif %}{# /reviews #}
 
-  {% if not addon.has_author(user) %}
+  {# TODO(jbalogh): make this a global fix: bug 551748 #}
+  {% set amo_user = user.get_profile() if user.is_authenticated() else None %}
+  {% if not addon.has_author(amo_user) %}
     <h3>{{ _('What do you think?') }}</h3>
     <div id="review-box" class="highlight">
       {% if not user.is_authenticated() %}

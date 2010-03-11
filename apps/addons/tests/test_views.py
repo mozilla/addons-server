@@ -44,3 +44,14 @@ class TestHomepage(test_utils.TestCase):
         response = self.client.get(self.base_url)
         opts = [k[0] for k in response.context['filter'].opts]
         eq_(opts, 'featured popular new updated'.split())
+
+
+class TestDetailPage(test_utils.TestCase):
+    fixtures = ['base/addons']
+
+    def test_anonymous_user(self):
+        """Does the page work for an anonymous user?"""
+        response = self.client.get(reverse('addons.detail', args=[3615]),
+                                   follow=True)
+        eq_(response.status_code, 200)
+        eq_(response.context['addon'].id, 3615)
