@@ -203,8 +203,8 @@
       <form class="addon-feedback" method="post"
             action="{{ locale_url('%s/reviews/add/%s' % (APP.short, addon.id)) }}">
         {{ cake_csrf_token() }}
-        {% with disabled = user.is_authenticated() and '' or
-          ' disabled="disabled"' %}
+        {% with disabled = ('' if user.is_authenticated() else
+                            ' disabled="disabled"') %}
           <div class="container">
             <label for="review">{{ _('Review') }}</label>
             <textarea name="data[Review][body]" id="review"{{ disabled }}
@@ -529,7 +529,8 @@
     {% if user.is_authenticated() %}
     {# TODO reverse URLs #}
     <form action="{{ locale_url(APP.short+'/collections/addtocollection') }}"
-          method="post" id="coll_publish">
+          method="post" id="coll_publish"
+          data-coll-url="{{ locale_url(APP.short+'/collections') }}">
       <div>
         <a href="/collections/">{{ _("What's this?", 'addons_display_a_license_what') }}</a>
         <h3>

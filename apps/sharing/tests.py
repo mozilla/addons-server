@@ -9,6 +9,7 @@ from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 from addons.models import Addon
+import amo
 import sharing
 from sharing.helpers import addon_sharing
 from sharing.models import DIGG, FACEBOOK
@@ -21,8 +22,15 @@ class SharingHelpersTestCase(test.TestCase):
     def test_addon_sharing(self):
         addon = Addon.objects.get(id=7172)
 
+        jingo.load_helpers()
+        # mock helpers
+        locale_url = lambda url: url
+        locale_url.__name__ = 'locale_url'
+        jingo.register.function(locale_url)
+
         request = Mock()
         request.user = DjangoUser()
+        request.APP = amo.FIREFOX
         ctx = {'request': request}
 
         # disable cake csrf token
