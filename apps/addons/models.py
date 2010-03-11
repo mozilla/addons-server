@@ -368,8 +368,12 @@ class AddonPledge(amo.models.ModelBase):
 
 
 class AddonRecommendation(models.Model):
-    addon = models.ForeignKey(Addon, related_name="addon_one")
-    other_addon = models.ForeignKey(Addon, related_name="addon_two")
+    """
+    Add-on recommendations. For each `addon`, a group of `other_addon`s
+    is recommended with a score (= correlation coefficient).
+    """
+    addon = models.ForeignKey(Addon, related_name="addon_recommendations")
+    other_addon = models.ForeignKey(Addon, related_name="recommended_for")
     score = models.FloatField()
 
     class Meta:
