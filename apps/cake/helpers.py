@@ -19,7 +19,7 @@ def cake_csrf_token(context):
         return
 
     try:
-        session_id = context['request'].COOKIES['AMOv3'].value
+        session_id = context['request'].COOKIES['AMOv3']
         assert session_id
     except (KeyError, AssertionError):
         return

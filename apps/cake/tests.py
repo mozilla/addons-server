@@ -91,12 +91,9 @@ class TestHelpers(TestCase):
         session = Session.objects.get(pk=mysessionid)
         user = s.authenticate(session=session)
 
-        client = self.client
-        client.cookies['AMOv3'] = mysessionid
-
         request = Mock()
         request.user = user
-        request.COOKIES = client.cookies
+        request.COOKIES = {'AMOv3': mysessionid}
         ctx = {'request': request}
 
         doc = pq(cake_csrf_token(ctx))
@@ -111,11 +108,9 @@ class TestHelpers(TestCase):
         session = Session.objects.get(pk=mysessionid)
         user = s.authenticate(session=session)
 
-        client = self.client
-
         request = Mock()
         request.user = user
-        request.COOKIES = client.cookies
+        request.COOKIES = {}
         ctx = {'request': request}
 
         token = cake_csrf_token(ctx)
