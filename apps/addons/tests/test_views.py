@@ -79,3 +79,24 @@ class TestDetailPage(test_utils.TestCase):
 
         eq_(hosted('#releasenotes').length, 1)
         eq_(listed('#releasenotes').length, 0)
+
+    def test_beta(self):
+        """Test add-on with a beta channel."""
+        my_addonid = 3615
+        get_pq_content = lambda: pq(self.client.get(reverse(
+            'addons.detail', args=[my_addonid]), follow=True).content)
+
+        myaddon = Addon.objects.get(id=my_addonid)
+
+        # Add a beta version and show it.
+        mybetafile = myaddon.versions.all()[0].files.all()[0]
+        mybetafile.status = amo.STATUS_BETA
+        mybetafile.save()
+        beta = get_pq_content()
+        eq_(beta('#beta-channel').length, 1)
+
+        # Now hide it.
+        myaddon.show_beta = False
+        myaddon.save()
+        beta = get_pq_content()
+        eq_(beta('#beta-channel').length, 0)

@@ -132,7 +132,7 @@
     {% endif %}
 
     {# beta channel #}
-    {% if addon.show_beta %}
+    {% if addon.show_beta and addon.current_beta_version %}
       <h4 id="beta-channel">{{ _('Beta Channel') }}</h4>
       <div>
         <p>
