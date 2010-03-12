@@ -125,7 +125,11 @@ class SearchView(APIView):
         opts = {'app': self.request.APP.id}
 
         if addon_type.upper() != 'ALL':
-            opts['type'] = int(addon_type)
+            try:
+                opts['type'] = int(addon_type)
+            except ValueError:
+                # `addon_type` is ALL or a type id.  Otherwise we ignore it.
+                pass
 
         if version:
             opts['version'] = version
