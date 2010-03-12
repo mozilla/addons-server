@@ -8,14 +8,20 @@ import amo
 from versions.compare import version_re
 
 
-def reindex():
+call = lambda x: subprocess.Popen(x, stdout=subprocess.PIPE).communicate()
+
+
+def reindex(rotate=False):
     """
     Reindexes sphinx.  Note this is only to be used in dev and test
     environments.
     """
+    calls = [settings.SPHINX_INDEXER, '--all', '--config',
+             settings.SPHINX_CONFIG_PATH]
+    if rotate:
+        calls.append('--rotate')
 
-    subprocess.call([settings.SPHINX_INDEXER, '--all', '--rotate',
-        '--config', settings.SPHINX_CONFIG_PATH])
+    call(calls)
 
 
 def start_sphinx():
@@ -23,7 +29,7 @@ def start_sphinx():
     Starts sphinx.  Note this is only to be used in dev and test environments.
     """
 
-    subprocess.Popen([settings.SPHINX_SEARCHD, '--config',
+    call([settings.SPHINX_SEARCHD, '--config',
         settings.SPHINX_CONFIG_PATH])
 
 
@@ -32,7 +38,7 @@ def stop_sphinx():
     Stops sphinx.  Note this is only to be used in dev and test environments.
     """
 
-    subprocess.call([settings.SPHINX_SEARCHD, '--stop', '--config',
+    call([settings.SPHINX_SEARCHD, '--stop', '--config',
         settings.SPHINX_CONFIG_PATH])
 
 pattern_plus = re.compile(r'((\d+)\+)')
