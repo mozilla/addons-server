@@ -6,7 +6,8 @@ from pyquery import PyQuery as pq
 
 import amo
 from amo.urlresolvers import reverse
-from addons.models import Addon
+from addons.models import Addon, AddonUser
+from users.models import UserProfile
 
 
 class TestHomepage(test_utils.TestCase):
@@ -100,3 +101,22 @@ class TestDetailPage(test_utils.TestCase):
         myaddon.save()
         beta = get_pq_content()
         eq_(beta('#beta-channel').length, 0)
+
+    def test_other_addons(self):
+        """Test "other add-ons by author" list."""
+
+        # Grab a user and give them some add-ons.
+        u = UserProfile.objects.get(pk=2519)
+        thisaddon = u.addons.all()[0]
+        other_addons = Addon.objects.exclude(pk=thisaddon.pk)[:3]
+        for addon in other_addons:
+            AddonUser.objects.create(user=u, addon=addon)
+
+        page = self.client.get(reverse('addons.detail', args=[thisaddon.id]),
+                               follow=True)
+        doc = pq(page.content)
+        eq_(doc('.other-author-addons li').length, other_addons.count())
+        for i in range(other_addons.count()):
+            link = doc('.other-author-addons li a').eq(i)
+            eq_(link.attr('href'), other_addons[i].get_url_path())
+            print link

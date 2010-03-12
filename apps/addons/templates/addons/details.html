@@ -375,7 +375,7 @@
           {% endtrans %}
         </h4>
 
-        {% if author_addons|length > 3 %}
+        {% if author_addons|length > 4 %}
           <form id="addons-author-addons" method="get" action="">
             <select id="addons-author-addons-select"
               name="addons-author-addons-select"
@@ -401,7 +401,7 @@
                     name=other.name|string|truncate(25) %}
               {%- if id == addon.id %}{% continue %}{% endif %}
               <li>
-                <a href="{{ other.base_url }}" title="{{ title }}"
+                <a href="{{ other.get_url_path() }}" title="{{ title }}"
                    class="addonitem">{{ name }}</a>
               </li>
             {% endwith %}
