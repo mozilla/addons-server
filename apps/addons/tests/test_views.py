@@ -5,6 +5,7 @@ import test_utils
 
 import amo
 from amo.urlresolvers import reverse
+from addons.models import Addon
 
 
 class TestHomepage(test_utils.TestCase):
@@ -55,3 +56,12 @@ class TestDetailPage(test_utils.TestCase):
                                    follow=True)
         eq_(response.status_code, 200)
         eq_(response.context['addon'].id, 3615)
+
+    def test_inactive_addon(self):
+        """Do not display disabled add-ons."""
+        myaddon = Addon.objects.get(id=3615)
+        myaddon.inactive = True
+        myaddon.save()
+        response = self.client.get(reverse('addons.detail', args=[myaddon.id]),
+                                   follow=True)
+        eq_(response.status_code, 404)

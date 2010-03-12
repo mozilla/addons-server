@@ -1,6 +1,5 @@
 from django import http
 from django.db.models import Q
-from django.shortcuts import get_object_or_404
 from django.utils import translation
 
 import jingo
@@ -31,7 +30,10 @@ def author_addon_clicked(f):
 @author_addon_clicked
 def addon_detail(request, addon_id):
     """Add-ons details page."""
-    addon = get_object_or_404(Addon, id=addon_id)
+    try:
+        addon = Addon.objects.valid().get(id=addon_id)
+    except Addon.DoesNotExist:
+        raise http.Http404
     addon.is_searchengine = (addon.type == amo.ADDON_SEARCH)
 
     # source tracking
