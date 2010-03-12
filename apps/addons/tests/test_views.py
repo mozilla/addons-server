@@ -52,6 +52,11 @@ class TestHomepage(test_utils.TestCase):
 class TestDetailPage(test_utils.TestCase):
     fixtures = ['base/addons', 'addons/listed']
 
+    def tearDown(self):
+        """Return URL prefixer to default."""
+        prefixer = amo.urlresolvers.get_url_prefix()
+        prefixer.app = settings.DEFAULT_APP
+
     def test_anonymous_user(self):
         """Does the page work for an anonymous user?"""
         response = self.client.get(reverse('addons.detail', args=[3615]),
@@ -120,3 +125,29 @@ class TestDetailPage(test_utils.TestCase):
             link = doc('.other-author-addons li a').eq(i)
             eq_(link.attr('href'), other_addons[i].get_url_path())
             print link
+
+    def test_compatible_app_redirect(self):
+        """
+        For add-ons incompatible with the current app, redirect to one
+        that's supported.
+        """
+        addon = Addon.objects.get(id=3615)
+        comp_app = addon.compatible_apps.keys()[0]
+        not_comp_app = [ a for a in amo.APP_USAGE if a not in
+                         addon.compatible_apps.keys() ][0]
+
+        # no SeaMonkey version => redirect
+        prefixer = amo.urlresolvers.get_url_prefix()
+        prefixer.app = not_comp_app.short
+        response = self.client.get(reverse('addons.detail', args=[addon.id]),
+                                   follow=False)
+        eq_(response.status_code, 301)
+        eq_(response['Location'].find(not_comp_app.short), -1)
+        assert (response['Location'].find(comp_app.short) >= 0)
+
+        # compatible app => 200
+        prefixer = amo.urlresolvers.get_url_prefix()
+        prefixer.app = comp_app.short
+        response = self.client.get(reverse('addons.detail', args=[addon.id]),
+                                   follow=False)
+        eq_(response.status_code, 200)

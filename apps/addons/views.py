@@ -6,6 +6,7 @@ import jingo
 from l10n import ugettext as _
 
 import amo
+from amo import urlresolvers
 from amo.urlresolvers import reverse
 
 from addons.models import Addon
@@ -34,6 +35,16 @@ def addon_detail(request, addon_id):
         addon = Addon.objects.valid().get(id=addon_id)
     except Addon.DoesNotExist:
         raise http.Http404
+
+    # if current version is incompatible with this app, redirect
+    comp_apps = addon.compatible_apps
+    if comp_apps and not comp_apps.has_key(request.APP):
+        prefixer = urlresolvers.get_url_prefix()
+        prefixer.app = comp_apps.keys()[0].short
+        return http.HttpResponsePermanentRedirect(reverse(
+            'addons.detail', args=[addon_id]))
+
+
     addon.is_searchengine = (addon.type == amo.ADDON_SEARCH)
 
     # source tracking
