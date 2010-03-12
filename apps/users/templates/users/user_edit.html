@@ -41,7 +41,7 @@
             </li>
             <li>
               <label for="id_emailhidden" class="check">
-              {{ form.emailhidden|safe }}
+                {{ form.emailhidden|safe }}
                 {{ _('Hide email address from other users') }}
               </label>
               {{ form.emailhidden.errors|safe }}
@@ -50,21 +50,22 @@
         </fieldset>
 
         <fieldset id="acct-password">
-        {# TODO XXX: Change these fields out for whatever we need to reset the password #}
-        {# TODO XXX: Add L10n #}
           <h3>{{ _('Password') }}</h3>
           <ol>
             <li>
-              <label for="pass_old">Old Password</label>
-              <input type="password" id="pass_old" name="oldpass" />
+              <label for="id_password">{{ _('Old Password') }}</label>
+              {{ form.oldpassword|safe }}
+              {{ form.oldpassword.errors|safe }}
             </li>
             <li>
-              <label for="pass_new">New Password</label>
-              <input type="password" id="pass_new" name="newpass" />
+              <label for="id_newpassword">{{ _('New Password') }}</label>
+              {{ form.newpassword|safe }}
+              {{ form.newpassword.errors|safe }}
             </li>
             <li>
-              <label for="pass_confirm">Confirm New Password</label>
-              <input type="password" id="pass_confirm" name="confpass" />
+              <label for="id_newpassword2">{{ _('Confirm New Password') }}</label>
+              {{ form.newpassword2|safe }}
+              {{ form.newpassword2.errors|safe }}
             </li>
           </ol>
         </fieldset>
@@ -174,7 +175,7 @@
 
       </div>{# /#user-profile #}
       <div class="listing-footer">
-        <button type="submit" class="prominent">{{ _('Update') }}</button> or <a href="#">{{ _('Cancel') }}</a>
+        <button type="submit" class="prominent">{{ _('Update') }}</button>
         <p id="acct-delete"><a href="#" title="{{ _('Permanently delete your account') }}">{{ _('Delete Account') }}</a></p>
       </div>
     </div>{# /.tab-wrapper #}

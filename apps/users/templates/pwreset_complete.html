@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page_title(_('Password Reset')) }}{% endblock %}
+
+{% block content %}
+
+<div class="primary" role="main">
+
+  <h1>{{ _('Password successfully reset.') }}</h1>
+
+  <p><a href="{{ login_url }}">{{ _('Log in') }}</a></p>
+
+</div>
+
+{% endblock content %}

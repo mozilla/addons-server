@@ -223,7 +223,6 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.messages',
     'django.contrib.sessions',
-    'django.contrib.sites',
 )
 
 # These apps will be removed from INSTALLED_APPS in a production environment.

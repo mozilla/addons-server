@@ -1,11 +1,11 @@
 from datetime import datetime
 import hashlib
+import logging
 import random
 import re
 import string
 import time
 
-from django import forms
 from django.conf import settings
 from django.contrib.auth.models import User as DjangoUser
 from django.db import models
@@ -15,6 +15,8 @@ import amo.models
 
 from amo.urlresolvers import reverse
 from translations.fields import PurifiedField
+
+log = logging.getLogger('z.users')
 
 
 def get_hexdigest(algorithm, salt, raw_password):
@@ -154,10 +156,3 @@ class UserProfile(amo.models.ModelBase):
         self.user.save()
         self.save()
         return self.user
-
-
-class UserEditForm(forms.ModelForm):
-
-        class Meta:
-            model = UserProfile
-

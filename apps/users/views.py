@@ -13,7 +13,7 @@ from bandwagon.models import Collection
 
 from .models import UserProfile
 from .signals import logged_out
-from .users import models as users
+from .users import forms
 
 
 def profile(request, user_id):
@@ -54,15 +54,17 @@ def logout_view(request):
 def user_edit(request):
     amouser = request.user.get_profile()
     if request.method == 'POST':
-        form = users.UserEditForm(request.POST)
+        form = forms.UserEditForm(request.POST, request=request,
+                                  instance=amouser)
         if form.is_valid():
-            # XXX TODO process the data
             messages.success(request, _('Profile Updated'))
+            form.save()
         else:
-            messages.error(request, _('There were errors in the changes you '
-                                    'made. Please correct them and resubmit.'))
+            messages.error(request, _('There were errors in the changes '
+                                      'you made. Please correct them and '
+                                      'resubmit.'))
     else:
-        form = users.UserEditForm(instance=amouser)
+        form = forms.UserEditForm(instance=amouser)
 
     return jingo.render(request, 'users/user_edit.html',
                         {'form': form, 'amouser': amouser})
