@@ -1,3 +1,5 @@
+import os
+
 from django.conf import settings
 from django.db import models
 
@@ -24,6 +26,19 @@ class File(amo.models.ModelBase):
 
     def get_url_path(self, src):
         return settings.FILES_URL % (self.id, self.filename, src)
+
+    def latest_xpi_url(self):
+        # TODO(jbalogh): reverse?
+        addon = self.version.addon_id
+        url = ['/downloads/latest/%s' % addon]
+        if self.platform_id != amo.PLATFORM_ALL.id:
+            url.append('platform:%s' % self.platform_id)
+        url.append('addon-%s-latest%s' % (addon, self.extension))
+        return os.path.join(*url)
+
+    @property
+    def extension(self):
+        return os.path.splitext(self.filename)[-1]
 
 
 class Approval(amo.models.ModelBase):
