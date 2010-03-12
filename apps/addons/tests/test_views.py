@@ -2,6 +2,7 @@ from django.conf import settings
 
 from nose.tools import eq_
 import test_utils
+from pyquery import PyQuery as pq
 
 import amo
 from amo.urlresolvers import reverse
@@ -48,7 +49,7 @@ class TestHomepage(test_utils.TestCase):
 
 
 class TestDetailPage(test_utils.TestCase):
-    fixtures = ['base/addons']
+    fixtures = ['base/addons', 'addons/listed']
 
     def test_anonymous_user(self):
         """Does the page work for an anonymous user?"""
@@ -65,3 +66,16 @@ class TestDetailPage(test_utils.TestCase):
         response = self.client.get(reverse('addons.detail', args=[myaddon.id]),
                                    follow=True)
         eq_(response.status_code, 404)
+
+    def test_listed(self):
+        """Show certain things for hosted but not listed add-ons."""
+        hosted_resp = self.client.get(reverse('addons.detail', args=[3615]),
+                                      follow=True)
+        hosted = pq(hosted_resp.content)
+
+        listed_resp = self.client.get(reverse('addons.detail', args=[3723]),
+                                      follow=True)
+        listed = pq(listed_resp.content)
+
+        eq_(hosted('#releasenotes').length, 1)
+        eq_(listed('#releasenotes').length, 0)

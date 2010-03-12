@@ -255,8 +255,8 @@
     </div>{# /#review-box #}
     {% endif %}{# /is_author #}
 
-    {% if version %}
-    <h3>{{ _('Release Notes', 'addons_display_release_notes') }}</h3>
+    {% if not addon.is_listed and version %}
+    <h3 id="releasenotes">{{ _('Release Notes', 'addons_display_release_notes') }}</h3>
     <div class="article">
       {# TODO reverse URL #}
       <p><a href="/addons/versions/{{ addon.id }}#version-{{
