@@ -344,6 +344,10 @@ class Addon(amo.models.ModelBase):
         # TODO(jbalogh): config.paypal_disabled
         return self.wants_contributions and self.paypal_id
 
+    @property
+    def has_eula(self):
+        return self.eula and self.eula.localized_string
+
 
 class AddonCategory(caching.base.CachingMixin, models.Model):
     addon = models.ForeignKey(Addon)
