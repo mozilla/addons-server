@@ -32,6 +32,12 @@ tree.  It sets up sensible defaults, but you can twiddle with these settings:
     default in ``log_settings.py``.  The complete list of formatting options is
     available at http://docs.python.org/library/logging.html#formatter.
 
+``SYSLOG_FORMAT``
+    This setting is the same as ``LOG_FORMAT`` except it controls the format for
+    what is sent to syslog.  By default, it's the same as ``LOG_FORMAT`` except
+    it strips the date/time prefix since syslogd is going to timestamp
+    everything anyway.
+
 
 Using Loggers
 -------------

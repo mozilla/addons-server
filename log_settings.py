@@ -8,14 +8,16 @@ from django.conf import settings
 # configuration from the base z logger.
 log = logging.getLogger('z')
 
-fmt = '%(asctime)s %(name)s:%(levelname)s %(message)s :%(pathname)s:%(lineno)s'
-fmt = getattr(settings, 'LOG_FORMAT', fmt)
 level = settings.LOG_LEVEL
 
 if settings.DEBUG:
+    fmt = '%(asctime)s %(name)s:%(levelname)s %(message)s :%(pathname)s:%(lineno)s'
+    fmt = getattr(settings, 'LOG_FORMAT', fmt)
     handler = logging.StreamHandler()
     formatter = logging.Formatter(fmt, datefmt='%H:%M:%S')
 else:
+    fmt = '%(name)s:%(levelname)s %(message)s :%(pathname)s:%(lineno)s'
+    fmt = getattr(settings, 'SYSLOG_FORMAT', fmt)
     SysLogger = logging.handlers.SysLogHandler
     handler = SysLogger(facility=SysLogger.LOG_LOCAL7)
     formatter = logging.Formatter(fmt)
