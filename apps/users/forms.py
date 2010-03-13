@@ -10,6 +10,10 @@ from . import models
 log = logging.getLogger('z.users')
 
 
+class AuthenticationForm(auth_forms.AuthenticationForm):
+    rememberme = forms.BooleanField(required=False)
+
+
 class PasswordResetForm(auth_forms.PasswordResetForm):
     def save(self, **kw):
         for user in self.users_cache:

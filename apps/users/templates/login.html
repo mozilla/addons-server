@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page_title(_('User Login')) }}{% endblock %}
+
+{% block content %}
+
+<div class="primary" role="main">
+  {% if form.non_field_errors() %}
+      <div class="notification-box error">
+        <ul>
+        {% for error in form.non_field_errors() %}
+          <h2>{{ error }}</h2>
+        {% endfor %}
+        </ul>
+      </div>
+  {% endif %}
+  <div class="primary">
+    <form method="post" action="">
+      {{ csrf() }}
+      <div id="user-edit" class="tab-wrapper">
+        <div id="user-account" class="tab-panel">
+          <fieldset>
+            <h3>{{ _('Log In') }}</h3>
+            <ul>
+              <li>
+                <label for="id_username">{{ _('Email address') }}</label>
+                <input id="id_username" type="text" name="username"
+                                                              autofocus />
+                {{ form.username.errors|safe }}
+              </li>
+              <li>
+                <label for="id_password">{{ _('Password') }}</label>
+                {{ form.password|safe }}
+                {{ form.password.errors|safe }}
+              </li>
+              <li>
+                {{ form.rememberme|safe }}
+                {{ form.rememberme.errors|safe }}
+                <label for="id_rememberme">{{ _('Remember me on this computer') }}</label>
+              </li>
+            </ul>
+          </fieldset>
+        </div>
+        <div class="listing-footer">
+          <button type="submit">{{ _('Log in') }}</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="secondary">
+      <div class="article">
+          <h3>{{ _('Login Problems?') }}</h3>
+          <ul>
+              {# /users/register #}
+              <li><a href="#">{{ _("I don't have an account.") }} </a></li>
+              {# /users/pwreset #}
+              <li><a href="#">{{ _("I forgot my password.") }}</a></li>
+          </ul>
+      </div>
+  </div>
+
+</div>{# .primary #}
+
+{% endblock content %}

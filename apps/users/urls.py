@@ -9,12 +9,14 @@ detail_patterns = patterns('',
     url('^$', views.profile, name='users.profile'),
 )
 
-
 urlpatterns = patterns('',
     # URLs for a single user.
     ('^user/(?P<user_id>\d+)/', include(detail_patterns)),
-    url('^users/edit$', views.user_edit, name='users.edit'),
-    url('^users/logout$', views.logout_view, name='users.logout'),
+
+    url(r'^users/login/?$', views.login, name='users.login'),
+    url(r'^users/logout$', views.logout, name='users.logout'),
+
+    url('^users/edit$', views.edit),
 
     # Password reset stuff
     url(r'^users/pwreset/?$', auth_views.password_reset,
