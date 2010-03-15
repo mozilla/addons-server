@@ -4,4 +4,5 @@ from . import views
 
 urlpatterns = patterns('',
     url('^monitor$', views.monitor, name='amo.monitor'),
+    url('^paypal$', views.paypal, name='amo.paypal'),
 )

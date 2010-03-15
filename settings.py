@@ -338,6 +338,9 @@ REDIRECT_SECRET_KEY = ''
 # used by old-style CSRF token
 CAKE_SESSION_TIMEOUT = 8640
 
+# PayPal Settings
+PAYPAL_CGI_URL = 'https://www.paypal.com/cgi-bin/webscr'
+
 # Email settings
 EMAIL_FROM_DEFAULT = 'nobody@mozilla.org'
 
