@@ -36,7 +36,7 @@ def addon_detail(request, addon_id):
 
     # if current version is incompatible with this app, redirect
     comp_apps = addon.compatible_apps
-    if comp_apps and not comp_apps.has_key(request.APP):
+    if comp_apps and request.APP not in comp_apps:
         prefixer = urlresolvers.get_url_prefix()
         prefixer.app = comp_apps.keys()[0].short
         return http.HttpResponsePermanentRedirect(reverse(

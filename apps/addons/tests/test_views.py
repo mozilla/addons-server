@@ -124,7 +124,6 @@ class TestDetailPage(test_utils.TestCase):
         for i in range(other_addons.count()):
             link = doc('.other-author-addons li a').eq(i)
             eq_(link.attr('href'), other_addons[i].get_url_path())
-            print link
 
     def test_compatible_app_redirect(self):
         """
