@@ -1,5 +1,6 @@
 from django import http
 from django.db.models import Q
+from django.shortcuts import get_object_or_404
 from django.utils import translation
 
 import jingo
@@ -31,10 +32,7 @@ def author_addon_clicked(f):
 @author_addon_clicked
 def addon_detail(request, addon_id):
     """Add-ons details page."""
-    try:
-        addon = Addon.objects.valid().get(id=addon_id)
-    except Addon.DoesNotExist:
-        raise http.Http404
+    addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
 
     # if current version is incompatible with this app, redirect
     comp_apps = addon.compatible_apps
