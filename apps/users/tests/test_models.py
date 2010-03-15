@@ -1,3 +1,4 @@
+from datetime import date
 import hashlib
 
 from django import test
@@ -41,6 +42,21 @@ class TestUserProfile(test.TestCase):
                         nickname='jconnor', email='j.connor@sky.net')
         u.save()
         assert u.resetcode_expires
+
+    def test_picture_url(self):
+        """
+        Test for a preview URL if image is set, or default image otherwise.
+        """
+        u = UserProfile(id=1234, picture_type='image/png',
+                        modified=date.today())
+        u.picture_url.index('/userpics/0/1/1234.jpg?modified=')
+
+        u = UserProfile(id=1234567890, picture_type='image/png',
+                        modified=date.today())
+        u.picture_url.index('/userpics/1234/1234567/1234567890.jpg?modified=')
+
+        u = UserProfile(id=1234, picture_type=None)
+        assert u.picture_url.endswith('/anon_user.png')
 
 
 class TestPasswords(test.TestCase):

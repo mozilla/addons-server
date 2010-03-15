@@ -3,6 +3,7 @@ import hashlib
 import random
 import re
 import string
+import time
 
 from django.conf import settings
 from django.contrib.auth.models import User as DjangoUser
@@ -75,11 +76,13 @@ class UserProfile(amo.models.ModelBase):
 
     @property
     def picture_url(self):
-        # TODO this used to be /user/1234/picture, and the regex stuff was
-        # in htaccess. Should we let the web server take care of it again?
         split_id = re.match(r'((\d*?)(\d{0,3}?))\d{1,3}$', str(self.id))
-        return (settings.MEDIA_URL + 'img/uploads/userpics/%s/%s/%s.jpg' % (
-            split_id.group(2) or 0, split_id.group(1) or 0, self.id))
+        if not self.picture_type:
+            return settings.MEDIA_URL + '/img/zamboni/anon_user.png'
+        else:
+            return settings.USER_PIC_URL % (
+                split_id.group(2) or 0, split_id.group(1) or 0, self.id,
+                int(time.mktime(self.modified.timetuple())))
 
     @amo.cached_property
     def is_developer(self):
