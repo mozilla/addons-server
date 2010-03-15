@@ -30,7 +30,7 @@
         <div id="addon-summary" class="primary {{ addon|statusflags }}">
           <p{{ addon.summary|locale_html }}>{{ addon.summary|nl2br }}</p>
 
-          {# TODO(fwenzel): if has_version: install button, if listed: warning #}
+          {{ install_button(addon) }}
 
           {% if addon.takes_contributions %}
           {{
@@ -156,7 +156,7 @@
           <dl>
             <dt class="beta-version">{{ _('Version {0}:')|f(
               addon.current_beta_version.version) }}</dt>
-            <dd>{# TODO install button #}</dd>
+            <dd>{{ install_button(addon, version=addon.current_beta_version) }}</dd>
           </dl>
         </div>{# /install-beta #}
       </div>
