@@ -1,0 +1,82 @@
+{# Variables {like_this} are going to be formatted in javascript using the
+   format function.  It's like Python's str.format. #}
+
+{% macro icon(src=None) %}
+  {% if not src %}
+    {% set src = MEDIA_URL + "img/zamboni/icons/{0}-32x32.png"|f(APP.short) %}
+  {% endif %}
+  <img src="{{ src }}" width="32" height="32" class="bug">
+{% endmacro %}
+
+{% macro learn_more() %}
+{# js vars: url #}
+<div class="install-note">
+  {{ icon() }}
+  <p class="msg">{% trans %}
+    To install this add-on and thousands more, <strong>get Firefox</strong>, a
+    free and open web browser from Mozilla.
+  {% endtrans %}</p>
+  <p><a href="#TODO" class="button">{{ _('Learn more about Firefox') }}</a></p>
+  <p>{% trans %}
+    or <strong><a class="installer" href="{url}">download anyway</a></strong>
+  {% endtrans %}</p>
+</div>
+{% endmacro %}
+
+{% macro not_updated() %}
+{# js vars: url #}
+<div class="install-note">
+  {{ icon() }}
+  <p class="msg">{% trans %}
+    This add-on has not been updated to work with your version of Firefox.
+  {% endtrans %}</p>
+  <p><a href="{url}" class="button installer">{{ _('Install Anyway') }}</a></p>
+</div>
+{% endmacro %}
+
+{% macro newer_version() %}
+{# js vars: new_version, old_version, addon #}
+<div class="install-note">
+  {{ icon() }}
+  <p class="msg">{% trans app=APP.pretty %}
+    This add-on requires {{ app }} {new_version}. You are currently using
+    {{ app }} {old_version}.
+  {% endtrans %}</p>
+  <p><a href="#TODO" class="button">{{ _('Upgrade {0}')|f(APP.name) }}</a></p>
+  {# Building a url with a fake addon that's replaced with a js placeholder?  Sketchy. #}
+  <p>{% trans href=url('reviews.list', 000)|replace(000, '{addon}') %}
+    or view <a href="{{ href }}">older versions of this add-on</a>.
+  {% endtrans %}</p>
+</div>
+{% endmacro %}
+
+{% macro unreviewed() %}
+<div class="install-note">
+  {{ icon(MEDIA_URL + 'img/zamboni/icons/alert-32x32.png') }}
+  <p class="msg">{% trans %}
+    <strong>Caution:</strong> This add-on has not been reviewed by Mozilla.  Be
+    careful when installing third-party software that might harm your computer.
+  {% endtrans %}</p>
+  <p><a href="{url}" class="button installer">{{ _('Install Anyway') }}</a></p>
+</div>
+{% endmacro %}
+
+{% macro selfhosted() %}
+<div class="install-note">
+  {{ icon(MEDIA_URL + 'img/zamboni/icons/alert-32x32.png') }}
+  <p class="msg">{% trans %}
+    <strong>Caution:</strong> This add-on is hosted on the developer's own
+    website and has not been reviewed by Mozilla. Be careful when installing
+    third-party software that might harm your computer.
+  {% endtrans %}</p>
+  <p><a href="{url}" class="button">{{ _('Continue to Website') }}</a></p>
+</div>
+{% endmacro %}
+
+z.button_messages = {
+  learn_more: {{ learn_more()|json|safe }},
+  not_updated: {{ not_updated()|json|safe }},
+  newer_version: {{ newer_version()|json|safe }},
+  unreviewed: {{ unreviewed()|json|safe }},
+  selfhosted: {{ selfhosted()|json|safe }}
+};

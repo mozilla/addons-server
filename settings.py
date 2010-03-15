@@ -250,6 +250,8 @@ MINIFY_BUNDLES = {
             'js/zamboni/underscore-min.js',
             'js/amo2009/addons.js',
             'js/zamboni/init.js',
+            'js/zamboni/buttons.js',
+            'js/zamboni/search.js',
 
             'js/jquery.cookie.js',
             'js/amo2009/global.js',

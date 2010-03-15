@@ -3,7 +3,9 @@ from django.conf import settings
 import jinja2
 
 from jingo import register, env
-from l10n import ugettext as _
+from l10n import ugettext as _, ugettext_lazy as _lazy
+
+import amo
 
 
 @register.filter

@@ -1,0 +1,20 @@
+{% extends "base_side_categories.html" %}
+
+{% block title %}It's an Add-on Buffet!{% endblock %}
+
+{% block content %}
+<div class="featured listing">
+  <div class="featured-inner">
+    {% for addon in addons %}
+    <div class="item">
+      {{ install_button(addon) }}
+      <hgroup>
+        <h3>{{ addon.name }}</h3>
+        <h5>({{ addon.tag }})</h5>
+      </hgroup>
+      <blockquote>{{ addon.summary }}</blockquote>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
