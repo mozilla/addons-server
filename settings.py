@@ -18,11 +18,11 @@ ROOT_PACKAGE = os.path.basename(ROOT)
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 DEBUG_PROPAGATE_EXCEPTIONS = True
+LOG_LEVEL = logging.DEBUG
 
 ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
 )
-
 MANAGERS = ADMINS
 
 DATABASES = {
@@ -74,6 +74,14 @@ LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 # to load the internationalization machinery.
 USE_I18N = True
 
+# The host currently running the site.  Only use this in code for good reason;
+# the site is designed to run on a cluster and should continue to support that
+HOSTNAME = socket.gethostname()
+
+# Full base URL for your main site including protocol.  No trailing slash.
+#   Example: https://addons.mozilla.org
+SITE_URL = 'http://%s' % HOSTNAME
+
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
 MEDIA_ROOT = path('media')
@@ -88,33 +96,23 @@ MEDIA_URL = '/media//'
 # Examples: "http://foo.com/media/", "/media/".
 ADMIN_MEDIA_PREFIX = '/admin-media/'
 
+# paths that don't require an app prefix
+SUPPORTED_NONAPPS = ('admin', 'developers', 'editors', 'img', 'jsi18n',
+                     'localizers', 'media', 'statistics', 'services')
+DEFAULT_APP = 'firefox'
+
+# paths that don't require a locale prefix
+SUPPORTED_NONLOCALES = ('img', 'media', 'services',)
+
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'r#%9w^o_80)7f%!_ir5zx$tu3mupw9u%&s!)-_q%gy7i+fhx#)'
+
+# Templates
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.load_template_source',
     'django.template.loaders.app_directories.load_template_source',
-)
-
-MIDDLEWARE_CLASSES = (
-    # AMO URL middleware comes first so everyone else sees nice URLs.
-    'amo.middleware.LocaleAndAppURLMiddleware',
-
-    'django.middleware.common.CommonMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-
-    'cake.middleware.CakeCookieMiddleware',
-    # This should come after authentication middle ware
-    'access.middleware.ACLMiddleware',
-)
-
-AUTHENTICATION_BACKENDS = (
-    'users.backends.AmoUserBackend',
-    'cake.backends.SessionBackend',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -131,11 +129,53 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'amo.context_processors.global_settings',
 )
 
-ROOT_URLCONF = '%s.urls' % ROOT_PACKAGE
-
 TEMPLATE_DIRS = (
     path('templates'),
 )
+
+def JINJA_CONFIG():
+    import jinja2
+    from django.conf import settings
+    from caching.base import cache
+    config = {'extensions': ['l10n.template.i18n', 'caching.ext.cache',
+                             'jinja2.ext.with_', 'jinja2.ext.loopcontrols'],
+              'finalize': lambda x: x if x is not None else ''}
+    if 'memcached' in cache.scheme and not settings.DEBUG:
+        # We're passing the _cache object directly to jinja because
+        # Django can't store binary directly; it enforces unicode on it.
+        # Details: http://jinja.pocoo.org/2/documentation/api#bytecode-cache
+        # and in the errors you get when you try it the other way.
+        bc = jinja2.MemcachedBytecodeCache(cache._cache,
+                                           "%sj2:" % settings.CACHE_PREFIX)
+        config['cache_size'] = -1  # Never clear the cache
+        config['bytecode_cache'] = bc
+    return config
+
+
+
+MIDDLEWARE_CLASSES = (
+    # AMO URL middleware comes first so everyone else sees nice URLs.
+    'amo.middleware.LocaleAndAppURLMiddleware',
+
+    'django.middleware.common.CommonMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+
+    'cake.middleware.CakeCookieMiddleware',
+    # This should come after authentication middle ware
+    'access.middleware.ACLMiddleware',
+)
+
+# Auth
+AUTHENTICATION_BACKENDS = (
+    'users.backends.AmoUserBackend',
+    'cake.backends.SessionBackend',
+)
+AUTH_PROFILE_MODULE = 'users.UserProfile'
+
+ROOT_URLCONF = '%s.urls' % ROOT_PACKAGE
 
 INSTALLED_APPS = (
     'amo',
@@ -182,29 +222,15 @@ DEV_APPS = (
     'django_nose',
 )
 
+# Tests
 TEST_RUNNER = 'test_utils.runner.RadicalTestSuiteRunner'
 
-LOG_LEVEL = logging.DEBUG
-
-
-def JINJA_CONFIG():
-    import jinja2
-    from django.conf import settings
-    from caching.base import cache
-    config = {'extensions': ['l10n.template.i18n', 'caching.ext.cache',
-                             'jinja2.ext.with_', 'jinja2.ext.loopcontrols'],
-              'finalize': lambda x: x if x is not None else ''}
-    if 'memcached' in cache.scheme and not settings.DEBUG:
-        # We're passing the _cache object directly to jinja because
-        # Django can't store binary directly; it enforces unicode on it.
-        # Details: http://jinja.pocoo.org/2/documentation/api#bytecode-cache
-        # and in the errors you get when you try it the other way.
-        bc = jinja2.MemcachedBytecodeCache(cache._cache,
-                                           "%sj2:" % settings.CACHE_PREFIX)
-        config['cache_size'] = -1  # Never clear the cache
-        config['bytecode_cache'] = bc
-    return config
-
+# If you want to run Selenium tests, you'll need to have a server running.
+# Then give this a dictionary of settings.  Something like:
+#    'HOST': 'localhost',
+#    'PORT': 4444,
+#    'BROWSER': '*firefox', # Alternative: *safari
+SELENIUM_CONFIG = {}
 
 # Tells the extract script what files to look for l10n in and what function
 # handles the extraction.  The Tower library expects this.
@@ -272,29 +298,7 @@ MINIFY_BUNDLES = {
 }
 
 
-# The host currently running the site.  Only use this in code for good reason;
-# the site is designed to run on a cluster and should continue to support that
-HOSTNAME = socket.gethostname()
-
-# Full base URL for your main site including protocol.  No trailing slash.
-#   Example: https://addons.mozilla.org
-SITE_URL = 'http://%s' % HOSTNAME
-
-# If you want to run Selenium tests, you'll need to have a server running.
-# Then give this a dictionary of settings.  Something like:
-#    'HOST': 'localhost',
-#    'PORT': 4444,
-#    'BROWSER': '*firefox', # Alternative: *safari
-SELENIUM_CONFIG = {}
-
-# paths that don't require an app prefix
-SUPPORTED_NONAPPS = ('admin', 'developers', 'editors', 'img', 'jsi18n',
-                     'localizers', 'media', 'statistics', 'services')
-DEFAULT_APP = 'firefox'
-
-# paths that don't require a locale prefix
-SUPPORTED_NONLOCALES = ('img', 'media', 'services',)
-
+# Caching
 # Prefix for cache keys (will prevent collisions when running parallel copies)
 CACHE_PREFIX = 'amo:'
 
@@ -302,10 +306,7 @@ CACHE_PREFIX = 'amo:'
 # it's not possible to invalidate these queries.
 CACHE_COUNT_TIMEOUT = 60
 
-AUTH_PROFILE_MODULE = 'users.UserProfile'
-
 # External tools.
-
 SPHINX_INDEXER = 'indexer'
 SPHINX_SEARCHD = 'searchd'
 SPHINX_CONFIG_PATH = path('configs/sphinx/sphinx.conf')
@@ -315,7 +316,6 @@ SPHINX_PORT = 3312
 JAVA_BIN = '/usr/bin/java'
 
 # URL paths
-
 # paths for images, e.g. mozcdn.com/amo or '/static'
 STATIC_URL = SITE_URL
 ADDON_ICON_URL = "%s/%s/%s/images/addon_icon/%%d/%%s" % (
