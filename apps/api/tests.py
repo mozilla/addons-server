@@ -203,6 +203,10 @@ class APITest(TestCase):
                 "<developer_comments>Embrace hug love hug meow meow"
                     "</developer_comments>",
                 'size="92160"',
+                '<homepage>http://www.chrisfinke.com/addons/twitterbar/'
+                    '</homepage>',
+                '<support>http://www.chrisfinke.com/addons/twitterbar/'
+                    '</support>',
                 )
 
         response = make_call('addon/4664', version=1.5)

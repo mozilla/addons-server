@@ -98,6 +98,8 @@
   <daily_users>{{ addon.average_daily_users }}</daily_users>
   <created epoch="{{ addon.created|epoch }}">{{ addon.created|isotime }}</created>
   <last_updated epoch="{{ addon.last_updated|epoch }}">{{ addon.last_updated|isotime }}</last_updated>
+  <homepage>{{ addon.homepage }}</homepage>
+  <support>{{ addon.support_url }}</support>
   {%- endif -%}
 </addon>
 {% endcache %}
