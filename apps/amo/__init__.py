@@ -344,3 +344,17 @@ class LICENSE_BSD(_LicenseBase):
 LICENSES = (LICENSE_CUSTOM, LICENSE_MPL, LICENSE_GPL2, LICENSE_GPL3,
             LICENSE_LGPL21, LICENSE_LGPL3, LICENSE_MIT, LICENSE_BSD)
 LICENSE_IDS = dict((license.id, license) for license in LICENSES)
+
+
+# Contributions
+CONTRIB_NONE = 0
+CONTRIB_PASSIVE = 1
+CONTRIB_AFTER = 2
+CONTRIB_ROADBLOCK = 3
+
+CONTRIB_CHOICES = {
+    CONTRIB_NONE: 'None',
+    CONTRIB_PASSIVE: 'Passive; user shown message next to download button',
+    CONTRIB_AFTER: 'User shown splash screen after download',
+    CONTRIB_ROADBLOCK: 'Roadblock; User shown splash screen before download',
+}
