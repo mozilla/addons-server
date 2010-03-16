@@ -1,3 +1,7 @@
+import hashlib
+import urllib
+from urlparse import urlparse
+
 from django.conf import settings
 from django.core.urlresolvers import reverse as django_reverse
 from django.utils.thread_support import currentThread
@@ -114,3 +118,19 @@ class Prefixer(object):
         url_parts.append(path)
 
         return '/'.join(url_parts)
+
+
+def get_outgoing_url(url):
+    """
+    Bounce a URL off an outgoing URL redirector, such as outgoing.mozilla.org.
+    """
+    if not settings.REDIRECT_URL:
+        return url
+
+    # no double-escaping
+    if urlparse(url).netloc == urlparse(settings.REDIRECT_URL).netloc:
+        return url
+
+    hash = hashlib.sha1(settings.REDIRECT_SECRET_KEY + url).hexdigest()
+    return '/'.join(
+        [settings.REDIRECT_URL.rstrip('/'), hash, urllib.quote(url)])

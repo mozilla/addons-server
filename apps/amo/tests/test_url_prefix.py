@@ -1,7 +1,8 @@
+from django.conf import settings
 from django import test
 from django.core.urlresolvers import set_script_prefix
 
-from nose.tools import eq_
+from nose.tools import eq_, assert_not_equal
 import test_utils
 
 from amo import urlresolvers
@@ -139,3 +140,32 @@ class TestPrefixer:
         urlresolvers.set_url_prefix(prefixer)
         set_script_prefix('/oremj')
         eq_(urlresolvers.reverse('home'), '/oremj/en-US/firefox/')
+
+
+def test_outgoing_url():
+    redirect_url = settings.REDIRECT_URL
+    secretkey = settings.REDIRECT_SECRET_KEY
+    settings.REDIRECT_URL = 'http://example.net'
+    settings.REDIRECT_SECRET_KEY = 'sekrit'
+
+    try:
+        myurl = 'http://example.com'
+        s = urlresolvers.get_outgoing_url(myurl)
+
+        # Regular URLs must be escaped.
+        eq_(s,
+            'http://example.net/6119a8f8ce0e9f9a5ec803e7e0c120b2243ffcb6/'
+            'http%3A//example.com')
+
+        # No double-escaping of outgoing URLs.
+        s2 = urlresolvers.get_outgoing_url(s)
+        eq_(s, s2)
+
+        evil = settings.REDIRECT_URL.rstrip('/')+'.evildomain.com'
+        s = urlresolvers.get_outgoing_url(evil)
+        assert_not_equal(s, evil,
+                         'No subdomain abuse of double-escaping protection.')
+
+    finally:
+        settings.REDIRECT_URL = redirect_url
+        settings.REDIRECT_SECRET_KEY = secretkey

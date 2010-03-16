@@ -1,5 +1,7 @@
 from datetime import datetime
 
+from django.conf import settings
+
 import jingo
 from mock import Mock, patch
 from nose.tools import eq_, assert_almost_equal, assert_raises
@@ -168,3 +170,18 @@ def test_locale_url():
     urlresolvers.set_url_prefix(prefixer)
     s = render('{{ locale_url("mobile") }}')
     eq_(s, '/z/de/mobile')
+
+
+def test_external_url():
+    redirect_url = settings.REDIRECT_URL
+    secretkey = settings.REDIRECT_SECRET_KEY
+    settings.REDIRECT_URL = 'http://example.net'
+    settings.REDIRECT_SECRET_KEY = 'sekrit'
+
+    try:
+        myurl = 'http://example.com'
+        s = render('{{ "%s"|external_url }}' % myurl)
+        eq_(s, urlresolvers.get_outgoing_url(myurl))
+    finally:
+        settings.REDIRECT_URL = redirect_url
+        settings.REDIRECT_SECRET_KEY = secretkey

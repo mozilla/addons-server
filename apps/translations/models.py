@@ -4,10 +4,16 @@ import jinja2
 from bleach import Bleach
 import caching.base
 
+from amo import urlresolvers
 from . import utils
 
 
-bleach = Bleach()
+class MyBleach(Bleach):
+    def filter_url(self, url):
+        """Pass auto-linked URLs through the redirector."""
+        return urlresolvers.get_outgoing_url(url)
+
+bleach = MyBleach()
 
 
 class Translation(caching.base.CachingMixin, models.Model):

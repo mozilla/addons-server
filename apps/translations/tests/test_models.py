@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from django.conf import settings
 from django import test
 from django.utils import translation
 from django.utils.functional import lazy
@@ -54,6 +55,18 @@ class TranslationSequenceTestCase(test.TestCase):
 class TranslationTestCase(ExtraAppTestCase):
     fixtures = ['testapp/test_models.json']
     extra_apps = ['translations.tests.testapp']
+
+    def setUp(self):
+        super(TranslationTestCase, self).setUp()
+        self.redirect_url = settings.REDIRECT_URL
+        self.redirect_secret_key = settings.REDIRECT_SECRET_KEY
+        settings.REDIRECT_URL = None
+        settings.REDIRECT_SECRET_KEY = 'sekrit'
+
+    def tearDown(self):
+        super(TranslationTestCase, self).tearDown()
+        settings.REDIRECT_URL = self.redirect_url
+        settings.REDIRECT_SECRET_KEY = self.redirect_secret_key
 
     def test_fetch_translations(self):
         """Basic check of fetching translations in the current locale."""
@@ -280,6 +293,22 @@ class TranslationTestCase(ExtraAppTestCase):
         s = t.render(m=m)
         eq_(s, u'%s==%s' % (m.purified.localized_string_clean,
                             m.linkified.localized_string_clean))
+
+    def test_outgoing_url(self):
+        """
+        Make sure linkified field is properly bounced off our outgoing URL
+        redirector.
+        """
+        settings.REDIRECT_URL = 'http://example.com/'
+
+        s = 'I like http://example.org/awesomepage.html .'
+        m = FancyModel.objects.create(linkified=s)
+        eq_(m.linkified.localized_string_clean,
+            'I like <a href="http://example.com/'
+            '45cfcbcc274c1b6a4bbff81584f3463dd5a08221/http%3A//example.org/'
+            'awesomepage.html" rel="nofollow">http://example.org/awesomepage'
+            '.html</a> .')
+        eq_(m.linkified.localized_string, s)
 
 
 def test_translation_bool():

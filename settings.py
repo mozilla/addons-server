@@ -330,6 +330,10 @@ FILES_URL = STATIC_URL + "/downloads/file/%d/%s?src=%s"
 COLLECTION_ICON_URL = ('%s/%s/%s/images/collection_icon/%%s/%%s' %
                        (STATIC_URL, LANGUAGE_CODE, DEFAULT_APP))
 
+# Outgoing URL bouncer
+REDIRECT_URL = 'https://outgoing.mozilla.org/v1/'
+REDIRECT_SECRET_KEY = ''
+
 # Legacy Settings
 # used by old-style CSRF token
 CAKE_SESSION_TIMEOUT = 8640

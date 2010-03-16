@@ -271,3 +271,9 @@ def strip_controls(s):
     # Translation table of control characters.
     control_trans = dict((n, None) for n in xrange(32) if n not in [10, 13])
     return unicode(s).translate(control_trans)
+
+
+@register.filter
+def external_url(url):
+    """Bounce a URL off outgoing.mozilla.org."""
+    return urlresolvers.get_outgoing_url(unicode(url))
