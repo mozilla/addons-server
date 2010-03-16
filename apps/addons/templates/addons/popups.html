@@ -51,6 +51,7 @@
 {% endmacro %}
 
 {% macro unreviewed() %}
+{# js vars: url #}
 <div class="install-note">
   {{ icon(MEDIA_URL + 'img/zamboni/icons/alert-32x32.png') }}
   <p class="msg">{% trans %}
@@ -62,6 +63,7 @@
 {% endmacro %}
 
 {% macro selfhosted() %}
+{# js vars: url #}
 <div class="install-note">
   {{ icon(MEDIA_URL + 'img/zamboni/icons/alert-32x32.png') }}
   <p class="msg">{% trans %}
@@ -73,10 +75,29 @@
 </div>
 {% endmacro %}
 
+{% macro bad_platform() %}
+{# js vars: platforms #}
+<div class="install-note">
+  {{ icon(MEDIA_URL + 'img/zamboni/icons/no-32x32.png') }}
+  <p class="msg">{% trans %}
+    <strong>Please note:</strong> This add-on is not compatible with your
+    operating system.
+  {% endtrans %}</p>
+  <ul>{platforms}</ul>
+</div>
+{% endmacro %}
+
+{% macro platform_link() %}
+{# js vars: href, msg #}
+  <li><a href="{href}">{msg}</a></li>
+{% endmacro %}
+
 z.button_messages = {
   learn_more: {{ learn_more()|json|safe }},
   not_updated: {{ not_updated()|json|safe }},
   newer_version: {{ newer_version()|json|safe }},
   unreviewed: {{ unreviewed()|json|safe }},
-  selfhosted: {{ selfhosted()|json|safe }}
+  selfhosted: {{ selfhosted()|json|safe }},
+  platform_link: {{ platform_link()|json|safe }},
+  bad_platform: {{ bad_platform()|json|safe }}
 };

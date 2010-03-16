@@ -58,6 +58,7 @@ class InstallButton(object):
         rv = []
         for file in self.version.files.all():
             platform = file.platform_id
+            # TODO(jbalogh): this is wrong if we got a version argument.
             url = file.latest_xpi_url()
             if platform == amo.PLATFORM_ALL.id:
                 text, os = _('Download Now'), None
