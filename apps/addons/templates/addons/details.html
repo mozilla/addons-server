@@ -207,8 +207,7 @@
       <form class="addon-feedback" method="post"
         action="{{ remora_url('/reviews/add/{0}')|f(addon.id) }}">
         {{ cake_csrf_token() }}
-        {% with disabled = ('' if user.is_authenticated() else
-                            ' disabled="disabled"') %}
+        {% with disabled = ('' if user.is_authenticated() else ' disabled') %}
           <div class="container">
             <label for="review">{{ _('Review') }}</label>
             <textarea name="data[Review][body]" id="review"{{ disabled }}
