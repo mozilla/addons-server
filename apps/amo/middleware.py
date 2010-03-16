@@ -3,6 +3,8 @@ Borrowed from: http://code.google.com/p/django-localeurl
 
 Note: didn't make sense to use localeurl since we need to capture app as well
 """
+import urllib
+
 from django.http import HttpResponsePermanentRedirect
 from django.utils.encoding import smart_str
 
@@ -41,6 +43,7 @@ class LocaleAndAppURLMiddleware(object):
             if query_string:
                 full_path = "%s?%s" % (full_path, query_string)
 
+            full_path = urllib.quote(full_path.encode('utf-8'))
             response = HttpResponsePermanentRedirect(full_path)
 
             # Vary on Accept-Language if we changed the locale.

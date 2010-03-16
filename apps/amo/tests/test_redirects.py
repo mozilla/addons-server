@@ -1,10 +1,19 @@
+# -*- coding: utf8 -*-
 """Check all our redirects from remora to zamboni."""
 from django import test
 
+from nose.tools import eq_
 
 class TestRedirects(test.TestCase):
 
     fixtures = ['amo/test_redirects', 'base/global-stats']
+
+    def test_utf8(self):
+        """Without proper unicode handling this will fail."""
+        response = self.client.get(u'/api/1.5/search/ツールバー',
+                                   follow=True)
+        # Sphinx will be off so let's just test that it redirects.
+        eq_(response.redirect_chain[0][1], 301)
 
     def test_reviews(self):
         response = self.client.get('/reviews/display/4', follow=True)
