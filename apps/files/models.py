@@ -5,7 +5,6 @@ from django.db import models
 
 import amo.models
 from versions.models import Version
-from translations.fields import TranslatedField
 
 
 class File(amo.models.ModelBase):

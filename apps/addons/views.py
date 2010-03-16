@@ -10,7 +10,6 @@ import amo
 from amo import urlresolvers
 from amo.urlresolvers import reverse
 
-from addons.models import Addon
 from bandwagon.models import Collection, CollectionFeature, CollectionPromo
 from users.models import UserProfile
 from stats.models import GlobalStat
@@ -42,7 +41,6 @@ def addon_detail(request, addon_id):
         return http.HttpResponsePermanentRedirect(reverse(
             'addons.detail', args=[addon_id]))
 
-
     addon.is_searchengine = (addon.type == amo.ADDON_SEARCH)
 
     # source tracking
@@ -50,7 +48,7 @@ def addon_detail(request, addon_id):
 
     # get satisfaction only supports en-US
     lang = translation.to_locale(translation.get_language())
-    addon.has_satisfaction = (lang=='en_US' and
+    addon.has_satisfaction = (lang == 'en_US' and
                               addon.get_satisfaction_company)
 
     # other add-ons from the same author(s)
@@ -94,7 +92,7 @@ def addon_detail(request, addon_id):
 
         'collections': popular_coll,
         'other_collection_count': other_coll_count,
-        'user_collections': user_collections
+        'user_collections': user_collections,
     }
     return jingo.render(request, 'addons/details.html', data)
 
