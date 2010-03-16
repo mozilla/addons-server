@@ -3,9 +3,11 @@ from django.conf import settings
 import jinja2
 
 from jingo import register, env
-from l10n import ugettext as _, ugettext_lazy as _lazy
+from l10n import ugettext as _
 
-import amo
+from . import buttons
+
+register.function(buttons.install_button)
 
 
 @register.filter

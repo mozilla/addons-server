@@ -6,7 +6,6 @@ import amo
 from addons.models import Addon
 
 
-@jingo.register.function
 @jinja2.contextfunction
 def install_button(context, addon, version=None, show_eula=True):
     """If version isn't given, we use the latest version."""
