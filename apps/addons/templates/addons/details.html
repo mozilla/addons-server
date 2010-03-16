@@ -54,8 +54,10 @@
               {% if addon.homepage %}
                 <tr>
                   <th>{{ _('Website') }}</th>
-                  {# TODO linkification #}
-                  <td>{{ addon.homepage }}</td>
+                  <td>
+                    <strong><a href="{{ addon.homepage|external_url }}">{{
+                      addon.homepage }}</a></strong>
+                  </td>
                 </tr>
               {% endif %}
               {% if addon.compatible_apps %}
@@ -437,8 +439,7 @@
           _('E-mail your question') }}</a></li>
       {% endif %}
       {% if addon.support_url %}
-        {# TODO linkification #}
-        <li><a href="{{ addon.support_url }}">{{
+        <li><a href="{{ addon.support_url|external_url }}">{{
           _('Visit the support site') }}</a></li>
       {% endif %}
     </ul>

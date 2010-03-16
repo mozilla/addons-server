@@ -150,3 +150,12 @@ class TestDetailPage(test_utils.TestCase):
         response = self.client.get(reverse('addons.detail', args=[addon.id]),
                                    follow=False)
         eq_(response.status_code, 200)
+
+    def test_external_urls(self):
+        """Check that external URLs are properly escaped."""
+        addon = Addon.objects.get(id=1843)
+        response = self.client.get(reverse('addons.detail', args=[addon.id]),
+                                   follow=True)
+        doc = pq(response.content)
+        eq_(doc('#addon-summary a[href^="%s"]' %
+                settings.REDIRECT_URL).length, 1)

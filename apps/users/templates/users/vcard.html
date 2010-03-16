@@ -22,7 +22,8 @@
       {% if profile.homepage %}
         <tr>
           <th>{{ _('Homepage') }}</th>
-          <td><a class="url" href="{{ profile.homepage }}">{{ profile.homepage }}</a></td>
+          <td><a class="url" href="{{ profile.homepage|external_url
+              }}">{{ profile.homepage }}</a></td>
         </tr>
       {% endif %}
       {% if not profile.emailhidden %}
