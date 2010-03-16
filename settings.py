@@ -337,3 +337,11 @@ REDIRECT_SECRET_KEY = ''
 # Legacy Settings
 # used by old-style CSRF token
 CAKE_SESSION_TIMEOUT = 8640
+
+# Email settings
+EMAIL_FROM_DEFAULT = 'nobody@mozilla.org'
+
+# Please use all lowercase for the blacklist.
+EMAIL_BLACKLIST = (
+    'nobody@mozilla.org',
+)
