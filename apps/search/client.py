@@ -107,12 +107,14 @@ class Client(object):
         sc = self.sphinx
 
         # Setup some default parameters for the search.
-        fields = "addon_id, app, category"
-
+        fields = ("addon_id, app, category, "
+                  "@weight + IF(addon_status=%d, 30, 0) + " % amo.STATUS_PUBLIC
+                  + "IF(locale_ord=%d, 29, 0) AS weight" %
+                  crc32(translation.get_language()))
         sc.SetSelect(fields)
         sc.SetFieldWeights({'name': 4})
         # limiting happens later, since Sphinx returns more than we need.
-        sc.SetLimits(0, 2000)
+        sc.SetLimits(offset, limit)
         sc.SetFilter('inactive', (0,))
 
         # STATUS_DISABLED and 0 (which likely means null) are filtered from
@@ -136,25 +138,35 @@ class Client(object):
 
         # Sorting
         if 'sort' in kwargs:
+            sort_direction = sphinx.SPH_SORT_ATTR_DESC
             if kwargs['sort'] == 'newest':
-                sc.SetSortMode(sphinx.SPH_SORT_ATTR_DESC, 'created')
+                sort_field = 'created'
             elif kwargs['sort'] == 'updated':
+                sort_field = 'modified'
                 sc.SetSortMode(sphinx.SPH_SORT_ATTR_DESC, 'modified')
             elif kwargs['sort'] == 'name':
-                sc.SetSortMode(sphinx.SPH_SORT_ATTR_ASC, 'name_ord')
+                sort_field = 'name_ord'
+                sort_direction = sphinx.SPH_SORT_ATTR_ASC
             elif (kwargs['sort'] == 'averagerating' or
                 kwargs['sort'] == 'bayesianrating'):
-                sc.SetSortMode(sphinx.SPH_SORT_ATTR_DESC, 'averagerating')
+                sort_field = 'averagerating'
             elif kwargs['sort'] == 'weeklydownloads':
-                sc.SetSortMode(sphinx.SPH_SORT_ATTR_DESC, 'weeklydownloads')
+                sort_field = 'weeklydownloads'
+
+            sc.SetSortMode(sort_direction, sort_field)
+
+            if sort_direction == sphinx.SPH_SORT_ATTR_ASC:
+                sort_direction = 'ASC'
+            else:
+                sort_direction = 'DESC'
+            sc.SetGroupBy('addon_id', sphinx.SPH_GROUPBY_ATTR,
+                          '%s %s' % (sort_field, sort_direction))
 
         else:
             # We want to boost public addons, and addons in your native
             # language.
-            expr = ("@weight + IF(addon_status=%d, 30, 0) + "
-                "IF(locale_ord=%d, 29, 0)") % (amo.STATUS_PUBLIC,
-                crc32(translation.get_language()))
-            sc.SetSortMode(sphinx.SPH_SORT_EXPR, expr)
+            sc.SetSortMode(sphinx.SPH_SORT_EXTENDED, 'weight DESC')
+            sc.SetGroupBy('addon_id', sphinx.SPH_GROUPBY_ATTR, 'weight DESC')
 
         # We should always have an 'app' except for the admin.
         if 'app' in kwargs:
@@ -219,16 +231,9 @@ class Client(object):
             # Return results as a list of addons.
             results = [m['attrs']['addon_id'] for m in result['matches']]
 
-            # Uniquify
-            ids = []
-            for the_id in results:
-                if the_id not in ids:
-                    ids.append(the_id)
-
-            ids = ids[offset:limit]
-            addons = Addon.objects.filter(id__in=ids).extra(
+            addons = Addon.objects.filter(id__in=results).extra(
                     select={'manual': 'FIELD(id,%s)'
-                            % ','.join(map(str, ids))},
+                            % ','.join(map(str, results))},
                     order_by=['manual'])
 
             return addons
