@@ -1,13 +1,16 @@
 from django.contrib.auth.models import AnonymousUser
 
 from mock import Mock
+from nose.tools import eq_
 from test_utils import TestCase
 from pyquery import PyQuery as pq
 
-from cake.models import Session
+import amo
 from users.models import UserProfile
-from cake.backends import SessionBackend
-from cake.helpers import cake_csrf_token
+from .backends import SessionBackend
+from .models import Session
+from .helpers import cake_csrf_token, remora_url
+
 
 
 class CakeTestCase(TestCase):
@@ -115,3 +118,18 @@ class TestHelpers(TestCase):
 
         token = cake_csrf_token(ctx)
         assert not token
+
+    def test_remora_url(self):
+        """Build remora URLs."""
+        ctx = {
+            'LANG': 'en-us',
+            'APP': amo.FIREFOX
+        }
+        url = remora_url(ctx, '/addon/1234')
+        eq_(url, '/en-US/firefox/addon/1234')
+
+        url = remora_url(ctx, '/addon/1234', 'pt-BR', 'thunderbird')
+        eq_(url, '/pt-BR/thunderbird/addon/1234')
+
+        url = remora_url(ctx, '/devhub/something', app='', prefix='remora')
+        eq_(url, '/remora/en-US/devhub/something')

@@ -195,7 +195,7 @@
     <div id="review-box" class="highlight">
       {% if not user.is_authenticated() %}
         <p>
-          {% trans login='/users/login' %}{# TODO reverse url #}
+          {% trans login=remora_url('/users/login') %}{# TODO reverse url #}
             Please <a href="{{ login }}">log in</a> to submit a review
           {% endtrans %}
         </p>
@@ -203,7 +203,7 @@
 
       {# TODO uncakeify  #}
       <form class="addon-feedback" method="post"
-            action="{{ locale_url('%s/reviews/add/%s' % (APP.short, addon.id)) }}">
+        action="{{ remora_url('/reviews/add/{0}')|f(addon.id) }}">
         {{ cake_csrf_token() }}
         {% with disabled = ('' if user.is_authenticated() else
                             ' disabled="disabled"') %}
@@ -437,6 +437,7 @@
           _('E-mail your question') }}</a></li>
       {% endif %}
       {% if addon.support_url %}
+        {# TODO linkification #}
         <li><a href="{{ addon.support_url }}">{{
           _('Visit the support site') }}</a></li>
       {% endif %}
@@ -461,7 +462,7 @@
     {% if user.is_authenticated() %}
     <a href="#" id="addatag">{{ _('Add a tag') }}</a>
       <div class="addtagform">
-        <form id="tagForm" action="{{ locale_url(APP.short+'/tags/add/') }}"
+        <form id="tagForm" action="{{ remora_url('/tags/add/') }}"
               method="post">{# TODO reverse URL #}
           {{ cake_csrf_token() }}
           <input type="text" id="newTag" name="newTag"/>
@@ -530,9 +531,9 @@
 
     {% if user.is_authenticated() %}
     {# TODO reverse URLs #}
-    <form action="{{ locale_url(APP.short+'/collections/addtocollection') }}"
+    <form action="{{ remora_url('/collections/addtocollection') }}"
           method="post" id="coll_publish"
-          data-coll-url="{{ locale_url(APP.short+'/collections') }}">
+          data-coll-url="{{ remora_url('/collections') }}">
       <div>
         <a href="/collections/">{{ _("What's this?", 'addons_display_a_license_what') }}</a>
         <h3>

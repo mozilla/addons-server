@@ -2,10 +2,10 @@ import hashlib
 from time import time
 
 from django.conf import settings
-
-import jinja2
+from django.utils import translation
 
 from jingo import register, env
+import jinja2
 
 from .models import Session as CakeSession
 
@@ -34,3 +34,22 @@ def cake_csrf_token(context):
 
     except CakeSession.DoesNotExist:
         return
+
+
+@register.function
+@jinja2.contextfunction
+def remora_url(context, url, lang=None, app=None, prefix=''):
+    """
+    Builds a remora-style URL, independent from Zamboni's prefixer logic.
+    If app and/or lang are None, the current Zamboni values will be used.
+    To omit them from the URL, set them to ''.
+    """
+    if lang is None:
+        lang = translation.to_locale(context['LANG']).replace('_', '-')
+    if app is None:
+        app = context['APP'].short
+
+    url_parts = [prefix, lang, app, url]
+    url_parts = [p.strip('/') for p in url_parts if p]
+
+    return '/'+'/'.join(url_parts)
