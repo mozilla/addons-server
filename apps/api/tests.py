@@ -1,3 +1,5 @@
+# -*- coding: utf8 -*-
+
 import math
 
 from django.conf import settings
@@ -33,6 +35,11 @@ class No500Errors(TestCase):
         # We'll likely get a 503 since Sphinx is off and that
         # is good.  We just don't want 500 errors.
         assert response.status_code != 500, "We recieved a 500 error, wtf?"
+
+    def test_utf_redirect(self):
+        """Test that urls with unicode redirect propperly."""
+        response = make_call(u'search/ツールバー', version=1.5)
+        assert response.status_code != 500, "Unicode failed to redirect."
 
 
 class ControlCharacterTest(TestCase):

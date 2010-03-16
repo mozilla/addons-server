@@ -14,6 +14,7 @@ from l10n import ugettext as _, ugettext_lazy
 import jingo
 
 import amo
+from amo.urlresolvers import get_url_prefix
 import api
 from addons.models import Addon
 from search.client import Client as SearchClient, SearchError
@@ -214,5 +215,8 @@ def redirect_view(request, url):
     """
     Redirect all requests that come here to an API call with a view parameter.
     """
-    return HttpResponsePermanentRedirect('/api/%.1f/%s' %
-        (api.CURRENT_VERSION, url))
+    dest = '/api/%.1f/%s' % (api.CURRENT_VERSION,
+                             urllib.quote(url.encode('utf-8')))
+    dest = get_url_prefix().fix(dest)
+
+    return HttpResponsePermanentRedirect(dest)
