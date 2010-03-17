@@ -8,15 +8,15 @@ from . import views
 detail_patterns = patterns('',
     url('^$', views.profile, name='users.profile'),
     url(r'^emailchange/(?P<token>[-\w]+={0,3})/(?P<hash>[\w]+)$',
-                                                    views.emailchange),
+                        views.emailchange, name="users.emailchange"),
 )
 
 urlpatterns = patterns('',
     # URLs for a single user.
     ('^user/(?P<user_id>\d+)/', include(detail_patterns)),
 
-    url(r'^users/login/?$', views.login, name='users.login'),
-    url(r'^users/logout$', views.logout, name='users.logout'),
+    url(r'^users/login', views.login, name='users.login'),
+    url(r'^users/logout', views.logout, name='users.logout'),
 
     url('^users/edit$', views.edit, name='users.edit'),
 
@@ -25,7 +25,8 @@ urlpatterns = patterns('',
                             {'template_name': 'pwreset_request.html',
                              'email_template_name': 'email/pwreset.ltxt',
                              'password_reset_form': forms.PasswordResetForm,
-                            }),
+                            },
+                            name="users.pwreset"),
     url(r'^users/pwresetsent$', auth_views.password_reset_done,
                             {'template_name': 'pwreset_sent.html'}),
     url(r'^users/pwreset/(?P<uidb36>[-\w]+)/(?P<token>[-\w]+)$',

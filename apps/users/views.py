@@ -48,11 +48,11 @@ def edit(request):
                     'email. Until then, you can keep logging in with your '
                     'current email address.').format(amouser.email)))
 
-                domain = settings.HOSTNAME
-                code = EmailResetCode.create(amouser.id, amouser.email)
-                url = "%s/user/%s/emailchange/%s" % (settings.SITE_URL,
-                                                  amouser.id,
-                                                  code)
+                domain = settings.DOMAIN
+                token, hash = EmailResetCode.create(amouser.id, amouser.email)
+                url = "%s%s" % (settings.SITE_URL,
+                                reverse('users.emailchange', args=[amouser.id,
+                                                                   token, hash]))
                 t = loader.get_template('email/emailchange.ltxt')
                 c = {'domain': domain, 'url': url, }
                 send_mail(_(("Please confirm your email address "
@@ -104,6 +104,7 @@ def emailchange(request, user_id, token, hash):
 
 
 def login(request):
+    logout(request)
     r = auth.views.login(request, template_name='login.html',
                          authentication_form=forms.AuthenticationForm)
     form = forms.AuthenticationForm(data=request.POST)

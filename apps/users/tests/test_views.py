@@ -1,6 +1,7 @@
 from django import test
 from django.core import mail
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
 from django.test.client import Client
 
 from nose.tools import eq_
@@ -47,28 +48,29 @@ class TestEmailChange(UserViewBase):
 
     def setUp(self):
         super(TestEmailChange, self).setUp()
-        self.code = EmailResetCode.create(self.user.id, 'nobody@mozilla.org')
-        self.url = '/en-US/firefox/user/%s/emailchange/%s'
+        self.token, self.hash = EmailResetCode.create(self.user.id, 'nobody@mozilla.org')
 
     def test_fail(self):
         # Completely invalid user, valid code
-        url = self.url % (12345, self.code)
+        url = reverse('users.emailchange', args=[1234, self.token, self.hash])
         r = self.client.get(url, follow=True)
         eq_(r.status_code, 404)
 
         # User is in the system, but not attached to this code, valid code
-        url = self.url % (9945, self.code)
+        url = reverse('users.emailchange', args=[9945, self.token, self.hash])
         r = self.client.get(url, follow=True)
         eq_(r.status_code, 400)
 
         # Valid user, invalid code
-        url = self.url % (self.user.id, self.code[:-3])
+        url = reverse('users.emailchange', args=[self.user.id, self.token,
+                                                 self.hash[:-3]])
         r = self.client.get(url, follow=True)
         eq_(r.status_code, 400)
 
     def test_success(self):
         self.assertEqual(self.user_profile.email, 'jbalogh@mozilla.com')
-        url = self.url % (self.user.id, self.code)
+        url = reverse('users.emailchange', args=[self.user.id, self.token,
+                                                 self.hash])
         r = self.client.get(url, follow=True)
         eq_(r.status_code, 200)
         u = User.objects.get(id=self.user.id).get_profile()

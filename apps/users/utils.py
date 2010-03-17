@@ -19,7 +19,7 @@ class EmailResetCode():
         token = ",".join([str(i) for i in data])
         secret = self.make_secret(token)
 
-        return "%s/%s" % (base64.urlsafe_b64encode(token), secret)
+        return base64.urlsafe_b64encode(token), secret
 
     @classmethod
     def parse(self, code, hash):
