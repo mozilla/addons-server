@@ -1,8 +1,13 @@
 from django import test
-from django.test.client import Client
+from django.core import mail
 from django.contrib.auth.models import User
+from django.test.client import Client
+
+from nose.tools import eq_
 
 from manage import settings
+
+from users.utils import EmailResetCode
 
 
 class UserViewBase(test.TestCase):
@@ -16,7 +21,58 @@ class UserViewBase(test.TestCase):
 
 
 class TestEdit(UserViewBase):
-    pass
+
+    def test_email_change_mail_sent(self):
+        self.client.login(username='jbalogh@mozilla.com', password='foo')
+
+        data = {'nickname': 'jbalogh',
+                'email': 'jbalogh.changed@mozilla.com',
+                'firstname': 'DJ SurfNTurf',
+                'lastname': 'Balogh', }
+
+        r = self.client.post('/en-US/firefox/users/edit', data)
+        self.assertContains(r, "An email has been sent to %s" % data['email'])
+
+        # The email shouldn't change until they confirm, but the name should
+        u = User.objects.get(id='4043307').get_profile()
+        self.assertEquals(u.firstname, 'DJ SurfNTurf')
+        self.assertEquals(u.email, 'jbalogh@mozilla.com')
+
+        eq_(len(mail.outbox), 1)
+        assert mail.outbox[0].subject.find('Please confirm your email') == 0
+        assert mail.outbox[0].body.find('%s/emailchange/' % self.user.id) > 0
+
+
+class TestEmailChange(UserViewBase):
+
+    def setUp(self):
+        super(TestEmailChange, self).setUp()
+        self.code = EmailResetCode.create(self.user.id, 'nobody@mozilla.org')
+        self.url = '/en-US/firefox/user/%s/emailchange/%s'
+
+    def test_fail(self):
+        # Completely invalid user, valid code
+        url = self.url % (12345, self.code)
+        r = self.client.get(url, follow=True)
+        eq_(r.status_code, 404)
+
+        # User is in the system, but not attached to this code, valid code
+        url = self.url % (9945, self.code)
+        r = self.client.get(url, follow=True)
+        eq_(r.status_code, 400)
+
+        # Valid user, invalid code
+        url = self.url % (self.user.id, self.code[:-3])
+        r = self.client.get(url, follow=True)
+        eq_(r.status_code, 400)
+
+    def test_success(self):
+        self.assertEqual(self.user_profile.email, 'jbalogh@mozilla.com')
+        url = self.url % (self.user.id, self.code)
+        r = self.client.get(url, follow=True)
+        eq_(r.status_code, 200)
+        u = User.objects.get(id=self.user.id).get_profile()
+        self.assertEqual(u.email, 'nobody@mozilla.org')
 
 
 class TestLogin(UserViewBase):
@@ -66,6 +122,7 @@ class TestLogout(UserViewBase):
         self.client.login(username='jbalogh@mozilla.com', password='foo')
         r = self.client.get('/', follow=True)
         self.assertContains(r, "Welcome, Jeff")
+
         r = self.client.get('/users/logout', follow=True)
         self.assertNotContains(r, "Welcome, Jeff")
         self.assertContains(r, "Log in")

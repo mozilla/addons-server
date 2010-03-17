@@ -1,9 +1,8 @@
 from django import test
-from django.test.client import Client
-
 from django.contrib.auth.models import User
 from django.contrib.auth.tokens import default_token_generator
 from django.core import mail
+from django.test.client import Client
 from django.utils.http import int_to_base36
 
 from nose.tools import eq_
