@@ -73,9 +73,11 @@ class InstallButton(object):
 
     def attrs(self):
         rv = {}
-        if (self.addon.takes_contributions
-            and self.addon.annoying == amo.CONTRIB_AFTER):
+        addon = self.addon
+        if addon.takes_contributions and addon.annoying == amo.CONTRIB_AFTER:
             rv['data-after'] = 'contrib'
+        if addon.type_id == amo.ADDON_SEARCH:
+            rv['data-search'] = 'true'
         return rv
 
     def links(self):
@@ -212,6 +214,8 @@ def smorgasbord(request):
     addons[-1].tag = 'mobile'
 
     # Search Engine.
+    addons.append(Addon.objects.filter(type=amo.ADDON_SEARCH)[0])
+    addons[-1].tag = 'search engine'
     # Theme.
     # Persona.
     # Future Version.
