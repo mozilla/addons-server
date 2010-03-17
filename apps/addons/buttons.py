@@ -17,7 +17,7 @@ def install_button(context, addon, version=None, show_eula=True,
                                     show_eula, show_contrib)
     c = {'button': button, 'addon': addon, 'version': button.version,
          'APP': app}
-    t = jingo.env.get_template('addons/install-button.html').render(c)
+    t = jingo.env.get_template('addons/button.html').render(c)
     return jinja2.Markup(t)
 
 
