@@ -149,8 +149,11 @@ class SearchView(APIView):
 
         # Fix doubly encoded query strings
         if self.version < 1.5:
-            query = urllib.unquote(query.encode('ascii'))
-
+            try:
+                query = urllib.unquote(query.encode('ascii'))
+            except UnicodeEncodeError:
+                # This fails if the string is already UTF-8.
+                pass
         try:
             results = sc.query(query, limit=int(limit), **opts)
         except SearchError:

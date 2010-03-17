@@ -1,5 +1,4 @@
 # -*- coding: utf8 -*-
-
 import math
 
 from django.conf import settings
@@ -23,7 +22,7 @@ client = Client()
 make_call = lambda *args, **kwargs: client.get(api_url(*args, **kwargs))
 
 
-class No500Errors(TestCase):
+class No500ErrorsTest(TestCase):
     """
     A series of unfortunate urls that have caused 500 errors in the past.
     """
@@ -40,6 +39,12 @@ class No500Errors(TestCase):
         """Test that urls with unicode redirect propperly."""
         response = make_call(u'search/ツールバー', version=1.5)
         assert response.status_code != 500, "Unicode failed to redirect."
+
+    def test_manual_utf_search(self):
+        """If someone searches for non doubly encoded data using an old API we
+        should not try to decode it."""
+        response = make_call(u'search/für', version=1.2)
+        assert response.status_code != 500, "ZOMG Unicode fails."
 
 
 class ControlCharacterTest(TestCase):
