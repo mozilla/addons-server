@@ -170,7 +170,7 @@ class Contribution(caching.base.CachingMixin, models.Model):
             'thankyou_note': self.addon.thankyou_note,
             'addon_name': self.addon.name,
             'learn_url': settings.SITE_URL + '/'.join(url_parts),
-            'hostname': settings.HOSTNAME,
+            'domain': settings.DOMAIN,
         }
         body = t.render(Context(c))
         subject = _('Thanks for contributing to {addon_name}').format(

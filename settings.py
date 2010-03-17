@@ -78,9 +78,14 @@ USE_I18N = True
 # the site is designed to run on a cluster and should continue to support that
 HOSTNAME = socket.gethostname()
 
+# The front end domain of the site. If you're not running on a cluster this
+# might be the same as HOSTNAME but don't depend on that.  Use this when you
+# need the real domain.
+DOMAIN = HOSTNAME
+
 # Full base URL for your main site including protocol.  No trailing slash.
 #   Example: https://addons.mozilla.org
-SITE_URL = 'http://%s' % HOSTNAME
+SITE_URL = 'http://%s' % DOMAIN
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
