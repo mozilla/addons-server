@@ -1,6 +1,11 @@
 {# Variables {like_this} are going to be formatted in javascript using the
    format function.  It's like Python's str.format. #}
 
+{% set app_url = {
+    amo.FIREFOX: 'http://getfirefox.com/?src=amo',
+    amo.THUNDERBIRD: 'http://www.mozillamessaging.com/',
+}[APP] %}
+
 {% macro icon(src=None) %}
   {% if not src %}
     {% set src = MEDIA_URL + "img/zamboni/icons/{0}-32x32.png"|f(APP.short) %}
@@ -16,7 +21,7 @@
     To install this add-on and thousands more, <strong>get Firefox</strong>, a
     free and open web browser from Mozilla.
   {% endtrans %}</p>
-  <p><a href="#TODO" class="button">{{ _('Learn more about Firefox') }}</a></p>
+  <p><a href="{{ app_url }}" class="button">{{ _('Learn more about Firefox') }}</a></p>
   <p>{% trans %}
     or <strong><a class="installer" href="{url}">download anyway</a></strong>
   {% endtrans %}</p>
@@ -27,8 +32,8 @@
 {# js vars: url #}
 <div class="install-note">
   {{ icon() }}
-  <p class="msg">{% trans %}
-    This add-on has not been updated to work with your version of Firefox.
+  <p class="msg">{% trans app=APP.pretty %}
+    This add-on has not been updated to work with your version of {{ app }}.
   {% endtrans %}</p>
   <p><a href="{url}" class="button installer">{{ _('Install Anyway') }}</a></p>
 </div>
@@ -42,7 +47,8 @@
     This add-on requires {{ app }} {new_version}. You are currently using
     {{ app }} {old_version}.
   {% endtrans %}</p>
-  <p><a href="#TODO" class="button">{{ _('Upgrade {0}')|f(APP.pretty) }}</a></p>
+  {# L10n: {0} is an app name, like Firefox. #}
+  <p><a href="{{ app_url }}" class="button">{{ _('Upgrade {0}')|f(APP.pretty) }}</a></p>
   {# Building a url with a fake addon that's replaced with a js placeholder?  Sketchy. #}
   <p>{% trans href=url('reviews.list', 000)|replace(000, '{addon}') %}
     or view <a href="{{ href }}">older versions of this add-on</a>.
