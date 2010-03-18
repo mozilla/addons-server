@@ -6,18 +6,10 @@
     amo.THUNDERBIRD: 'http://www.mozillamessaging.com/',
 }[APP] %}
 
-{% macro icon(src=None) %}
-  {% if not src %}
-    {% set src = MEDIA_URL + "img/zamboni/icons/{0}-32x32.png"|f(APP.short) %}
-  {% endif %}
-  <img src="{{ src }}" width="32" height="32" class="bug">
-{% endmacro %}
-
 {% macro learn_more() %}
 {# js vars: url #}
 <div class="install-note">
-  {{ icon() }}
-  <p class="msg">{% trans %}
+  <p class="msg m-learn-more">{% trans %}
     To install this add-on and thousands more, <strong>get Firefox</strong>, a
     free and open web browser from Mozilla.
   {% endtrans %}</p>
@@ -31,8 +23,7 @@
 {% macro not_updated() %}
 {# js vars: url #}
 <div class="install-note">
-  {{ icon() }}
-  <p class="msg">{% trans app=APP.pretty %}
+  <p class="msg m-not-updated">{% trans app=APP.pretty %}
     This add-on has not been updated to work with your version of {{ app }}.
   {% endtrans %}</p>
   <p><a href="{url}" class="button installer">{{ _('Install Anyway') }}</a></p>
@@ -42,8 +33,7 @@
 {% macro newer_version() %}
 {# js vars: new_version, old_version, addon #}
 <div class="install-note">
-  {{ icon() }}
-  <p class="msg">{% trans app=APP.pretty %}
+  <p class="msg m-newer-version">{% trans app=APP.pretty %}
     This add-on requires {{ app }} {new_version}. You are currently using
     {{ app }} {old_version}.
   {% endtrans %}</p>
@@ -57,22 +47,20 @@
 {% endmacro %}
 
 {% macro unreviewed() %}
-{# js vars: url #}
+{# js vars: url, msg #}
 <div class="install-note">
-  {{ icon(MEDIA_URL + 'img/zamboni/icons/alert-32x32.png') }}
-  <p class="msg">{% trans %}
+  <p class="msg m-unreviewed">{% trans %}
     <strong>Caution:</strong> This add-on has not been reviewed by Mozilla.  Be
     careful when installing third-party software that might harm your computer.
   {% endtrans %}</p>
-  <p><a href="{url}" class="button installer">{{ _('Install Anyway') }}</a></p>
+  <p><a href="{url}" class="button installer">{msg}</a></p>
 </div>
 {% endmacro %}
 
 {% macro selfhosted() %}
 {# js vars: url #}
 <div class="install-note">
-  {{ icon(MEDIA_URL + 'img/zamboni/icons/alert-32x32.png') }}
-  <p class="msg">{% trans %}
+  <p class="msg m-selfhosted">{% trans %}
     <strong>Caution:</strong> This add-on is hosted on the developer's own
     website and has not been reviewed by Mozilla. Be careful when installing
     third-party software that might harm your computer.
@@ -84,8 +72,7 @@
 {% macro bad_platform() %}
 {# js vars: platforms #}
 <div class="install-note">
-  {{ icon(MEDIA_URL + 'img/zamboni/icons/no-32x32.png') }}
-  <p class="msg">{% trans %}
+  <p class="msg m-platforms">{% trans %}
     <strong>Please note:</strong> This add-on is not compatible with your
     operating system.
   {% endtrans %}</p>

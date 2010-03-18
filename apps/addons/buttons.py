@@ -143,6 +143,9 @@ def smorgasbord(request):
         return {'min': {'version': min}, 'max': {'version': max}}
 
     addons = []
+    normal_version = _compat('1.0', '10.0')
+    older_version = _compat('1.0', '2.0')
+    newer_version = _compat('9.0', '10.0')
 
     # Featured.
     featured = Addon.objects.featured(request.APP)
@@ -153,19 +156,19 @@ def smorgasbord(request):
     normal = Addon.objects.listed(request.APP).exclude(id__in=featured)
     addon = normal[0]
     addon.tag = 'normal'
-    addon.compatible_apps[request.APP] = _compat('1.0', '10.0')
+    addon.compatible_apps[request.APP] = normal_version
     addons.append(addon)
 
     # Older version.
     addon = normal[0]
     addon.tag = 'older version'
-    addon.compatible_apps[request.APP] = _compat('1.0', '2.0')
+    addon.compatible_apps[request.APP] = older_version
     addons.append(addon)
 
     # Newer version.
     addon = normal[0]
     addon.tag = 'newer version'
-    addon.compatible_apps[request.APP] = _compat('9.0', '10.0')
+    addon.compatible_apps[request.APP] = newer_version
     addons.append(addon)
 
     # Unreviewed.
@@ -178,8 +181,14 @@ def smorgasbord(request):
     addons[-1].tag = 'platformer'
 
     # Incompatible Platform.
-    addons.append(Addon.objects.get(id=5308))
-    addons[-1].tag = 'windows-only'
+    def w(tag, version):
+        a = Addon.objects.get(id=5308)
+        a.tag = tag
+        a.compatible_apps[request.APP] = version
+        return a
+    addons.append(w('windows/linux-only', normal_version))
+    addons.append(w('windows/linux-only + older version', older_version))
+    addons.append(w('windows/linux-only + newer version', newer_version))
 
     # Self-Hosted.
     addons.append(Addon.objects.filter(status=amo.STATUS_LISTED,
