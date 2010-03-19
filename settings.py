@@ -268,10 +268,11 @@ MINIFY_BUNDLES = {
         'common': (
             'css/main.css',
             'css/main-mozilla.css',
-            'css/zamboni/zamboni.css',
-
             'css/jquery-lightbox.css',
             'css/autocomplete.css',
+        ),
+        'zamboni/z': (
+            'css/zamboni/zamboni.css',
         ),
     },
     'js': {
