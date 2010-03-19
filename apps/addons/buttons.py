@@ -95,8 +95,8 @@ class InstallButton(object):
         rv = []
         for file in self.version.files.all():
             platform = file.platform_id
-            # TODO(jbalogh): this is wrong if we got a version argument.
-            url = file.latest_xpi_url()
+            url = (file.latest_xpi_url() if self.latest else
+                   file.get_url_path(self.src))
             if platform == amo.PLATFORM_ALL.id:
                 text, os = _('Download Now'), None
             else:
@@ -243,10 +243,15 @@ def smorgasbord(request):
     # Search Engine.
     addons.append(Addon.objects.filter(type=amo.ADDON_SEARCH)[0])
     addons[-1].tag = 'search engine'
+
+    # Beta Version
+    beta = normal.filter(versions__files__status=amo.STATUS_BETA)[0]
+    beta.tag = 'beta version'
+
     # Theme.
     # Persona.
     # Future Version.
     # No versions.
 
     return jingo.render(request, 'addons/smorgasbord.html',
-                        {'addons': addons})
+                        {'addons': addons, 'beta': beta})
