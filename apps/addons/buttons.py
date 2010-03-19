@@ -9,12 +9,20 @@ from addons.models import Addon
 
 @jinja2.contextfunction
 def install_button(context, addon, version=None, show_eula=True,
-                   show_contrib=True, show_warning=True):
+                   show_contrib=True, show_warning=True, src='',
+                   collection=None):
     """If version isn't given, we use the latest version."""
+    request = context['request']
     app, lang = context['APP'], context['LANG']
-    show_eula = bool(context['request'].GET.get('eula', show_eula))
+    show_eula = bool(request.GET.get('eula', show_eula))
+    src = src or context.get('src') or request.GET.get('src', '')
+    collection = (collection or context.get('collection')
+                  or request.GET.get('collection')
+                  or request.GET.get('collection_id')
+                  or request.GET.get('collection_uuid'))
     button = install_button_factory(addon, app, lang, version,
-                                    show_eula, show_contrib)
+                                    show_eula, show_contrib, show_warning,
+                                    src, collection)
     c = {'button': button, 'addon': addon, 'version': button.version,
          'APP': app}
     t = jingo.env.get_template('addons/button.html').render(c)
@@ -42,10 +50,12 @@ class InstallButton(object):
     install_text = ''
 
     def __init__(self, addon, app, lang, version=None, show_eula=True,
-                 show_contrib=True, show_warning=True):
+                 show_contrib=True, show_warning=True, src='', collection=None):
         self.addon, self.app, self.lang = addon, app, lang
         self.latest = version is None
         self.version = version or addon.current_version
+        self.src = src
+        self.collection = collection
 
         self.featured = addon.is_featured(app, lang)
         self.unreviewed = addon.is_unreviewed() or self.version.is_unreviewed
@@ -98,8 +108,15 @@ class InstallButton(object):
                 text = _('Continue to Download &rarr;')
                 roadblock = self.addon.meet_the_dev_url(extra='roadblock')
                 url = urlparams(roadblock, eula='')
-            rv.append(Link(text, url, os, file))
+            rv.append(Link(text, self.fix_link(url), os, file))
         return rv
+
+    def fix_link(self, url):
+        if self.src:
+            url = urlparams(url, src=self.src)
+        if self.collection:
+            url = urlparams(url, collection=self.collection)
+        return url
 
 
 class FeaturedInstallButton(InstallButton):
