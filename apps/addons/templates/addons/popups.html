@@ -4,19 +4,33 @@
 {% set app_url = {
     amo.FIREFOX: 'http://getfirefox.com/?src=amo',
     amo.THUNDERBIRD: 'http://www.mozillamessaging.com/',
+    amo.MOBILE: 'http://www.mozilla.com/m/',
+    amo.SUNBIRD: 'http://www.mozilla.org/projects/calendar/sunbird/',
+    amo.SEAMONKEY: 'http://www.seamonkey-project.org/',
 }[APP] %}
 
 {% macro learn_more() %}
 {# js vars: url #}
 <div class="install-note">
-  <p class="msg m-learn-more">{% trans %}
-    To install this add-on and thousands more, <strong>get Firefox</strong>, a
-    free and open web browser from Mozilla.
-  {% endtrans %}</p>
-  <p><a href="{{ app_url }}" class="button">{{ _('Learn more about Firefox') }}</a></p>
-  <p>{% trans %}
-    or <strong><a class="installer" href="{url}">download anyway</a></strong>
-  {% endtrans %}</p>
+  {% if APP == amo.FIREFOX %}
+    <p class="msg m-learn-more">{% trans %}
+      To install this add-on and thousands more, <b>get Firefox</b>, a
+      free and open web browser from Mozilla.
+    {% endtrans %}</p>
+    <p><a href="{{ app_url }}" class="button">{{ _('Learn more about Firefox') }}</a></p>
+    <p>{% trans %}
+      or <b><a class="installer" href="{url}">download anyway</a></b>
+    {% endtrans %}</p>
+  {% elif APP == amo.THUNDERBIRD %}
+    <p class="msg m-learn-more">{% trans %}
+      <strong>How to Install in Thunderbird</strong>
+      <ol>
+        <li>Download and save the file to your hard disk.</li>
+        <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li>
+        <li>Click the Install button, and locate/select the file you downloaded and click "OK".</li>
+      </ol>
+    {% endtrans %}</p>
+  {% endif %}
 </div>
 {% endmacro %}
 
