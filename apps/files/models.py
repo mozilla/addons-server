@@ -4,6 +4,7 @@ from django.conf import settings
 from django.db import models
 
 import amo.models
+from amo.urlresolvers import reverse
 from versions.models import Version
 
 
@@ -36,8 +37,8 @@ class File(amo.models.ModelBase):
         return os.path.join(*url)
 
     def eula_url(self):
-        # TODO(jbalogh): reverse
-        return '/addons/policy/0/%s/%s' % (self.version.addon_id, self.id)
+        addon = self.version.addon_id
+        return reverse('addons.eula', args=[addon, self.id])
 
     @property
     def extension(self):

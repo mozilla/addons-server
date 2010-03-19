@@ -332,7 +332,7 @@
       <p>{{ _("Learn why {0} was created and find out what's next for this "
               'add-on.')|f(addon.name) }}</p>
       <p>
-        <a class="more-info" href="{{ addon.meet_developers_url }}">
+        <a class="more-info" href="{{ addon.meet_the_dev_url() }}">
         {% if addon.listed_authors|length > 1 %}
           {{ _('Meet the Developers') }}
         {% else %}

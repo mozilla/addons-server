@@ -6,6 +6,9 @@ from . import views
 # These will all start with /addon/<addon_id>/
 detail_patterns = patterns('',
     url('^$', views.addon_detail, name='addons.detail'),
+    url('^eula/(?P<file_id>\d+)$', views.eula, name='addons.eula'),
+    url('^developers(?:/(?P<extra>.+))?$', views.meet_the_developer,
+        name='addons.meet'),
 
     ('^reviews/', include('reviews.urls')),
     ('^statistics/', include('stats.urls')),

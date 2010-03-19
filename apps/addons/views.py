@@ -196,3 +196,14 @@ class CollectionPromoBox(object):
 
     def __nonzero__(self):
         return self.request.APP == amo.FIREFOX
+
+
+def eula(request, addon_id, file_id):
+    addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
+    return jingo.render(request, 'addons/eula.html', {'addon': addon})
+
+
+def meet_the_developer(request, addon_id, extra=None):
+    addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
+    return jingo.render(request, 'addons/meet_the_developer.html',
+                        {'addon': addon})

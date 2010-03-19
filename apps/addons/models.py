@@ -204,10 +204,9 @@ class Addon(amo.models.ModelBase):
     def get_url_path(self):
         return reverse('addons.detail', args=(self.id,))
 
-    @property
-    def meet_developers_url(self):
-        # TODO(davedash): reverse when developers pages are build
-        return self.get_url_path() + 'developers'
+    def meet_the_dev_url(self, extra=None):
+        args = [self.id, extra] if extra else [self.id]
+        return reverse('addons.meet', args=args)
 
     @property
     def reviews_url(self):

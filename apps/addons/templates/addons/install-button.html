@@ -8,6 +8,7 @@
 <div class="install {{ b.install_class }}"
      data-addon="{{ addon.id }}"
      data-icon="{{ addon.icon_url }}"
+     data-developers="{{ addon.meet_the_dev_url() }}"
      data-name="{{ addon.name }}"
   {% if compat %}
     data-min="{{ compat.min.version }}"
