@@ -26,13 +26,20 @@ class No500ErrorsTest(TestCase):
     """
     A series of unfortunate urls that have caused 500 errors in the past.
     """
-    def test_bad_type(self):
+    def test_search_bad_type(self):
         """
         For search/:term/:addon_type <-- addon_type should be an integer.
         """
         response = make_call('/search/foo/theme')
         # We'll likely get a 503 since Sphinx is off and that
         # is good.  We just don't want 500 errors.
+        assert response.status_code != 500, "We recieved a 500 error, wtf?"
+
+    def test_list_bad_type(self):
+        """
+        For list/new/:addon_type <-- addon_type should be an integer.
+        """
+        response = make_call('/list/new/extension')
         assert response.status_code != 500, "We recieved a 500 error, wtf?"
 
     def test_utf_redirect(self):

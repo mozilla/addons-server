@@ -184,10 +184,15 @@ class ListView(APIView):
         else:
             qs = Addon.objects.featured(self.request.APP)
 
-        if addon_type.lower() != 'all':
-            addon_type = int(addon_type)
-            if addon_type:
-                qs = qs.filter(type=addon_type)
+        if addon_type.upper() != 'ALL':
+            try:
+                addon_type = int(addon_type)
+                if addon_type:
+                    qs = qs.filter(type=addon_type)
+
+            except ValueError:
+                # `addon_type` is ALL or a type id.  Otherwise we ignore it.
+                pass
 
         if platform.lower() != 'all':
             qs = (qs.distinct() &
