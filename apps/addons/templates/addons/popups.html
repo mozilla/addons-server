@@ -42,7 +42,7 @@
     This add-on requires {{ app }} {new_version}. You are currently using
     {{ app }} {old_version}.
   {% endtrans %}</p>
-  <p><a href="#TODO" class="button">{{ _('Upgrade {0}')|f(APP.name) }}</a></p>
+  <p><a href="#TODO" class="button">{{ _('Upgrade {0}')|f(APP.pretty) }}</a></p>
   {# Building a url with a fake addon that's replaced with a js placeholder?  Sketchy. #}
   <p>{% trans href=url('reviews.list', 000)|replace(000, '{addon}') %}
     or view <a href="{{ href }}">older versions of this add-on</a>.
@@ -89,10 +89,10 @@
 
 {% macro platform_link() %}
 {# js vars: href, msg #}
-  <li><a href="{href}">{msg}</a></li>
+  <li><a class="installer" href="{href}">{msg}</a></li>
 {% endmacro %}
 
-z.button_messages = {
+z.button.messages = {
   learn_more: {{ learn_more()|json|safe }},
   not_updated: {{ not_updated()|json|safe }},
   newer_version: {{ newer_version()|json|safe }},

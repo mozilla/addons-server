@@ -3,22 +3,27 @@ import jinja2
 from l10n import ugettext as _, ugettext_lazy as _lazy
 
 import amo
+from amo.helpers import urlparams
 from addons.models import Addon
 
 
 @jinja2.contextfunction
-def install_button(context, addon, version=None, show_eula=True):
+def install_button(context, addon, version=None, show_eula=True,
+                   show_contrib=True):
     """If version isn't given, we use the latest version."""
     app, lang = context['APP'], context['LANG']
-    button = install_button_factory(addon, app, lang, version, show_eula)
+    show_eula = bool(context['request'].GET.get('eula', show_eula))
+    button = install_button_factory(addon, app, lang, version,
+                                    show_eula, show_contrib)
     c = {'button': button, 'addon': addon, 'version': button.version,
          'APP': app}
     t = jingo.env.get_template('addons/install-button.html').render(c)
     return jinja2.Markup(t)
 
 
-def install_button_factory(addon, app, lang, version=None, show_eula=True):
-    button = InstallButton(addon, app, lang, version, show_eula)
+def install_button_factory(addon, app, lang, version=None, show_eula=True,
+                           show_contrib=True):
+    button = InstallButton(addon, app, lang, version, show_eula, show_contrib)
     # Order matters.  We want to highlight unreviewed before featured.  They
     # should be mutually exclusive, but you never know.
     classes = (('unreviewed', UnreviewedInstallButton),
@@ -33,11 +38,12 @@ def install_button_factory(addon, app, lang, version=None, show_eula=True):
 
 
 class InstallButton(object):
-    button_class = 'download'
-    install_class = ''
+    button_class = ['download']
+    install_class = []
     install_text = ''
 
-    def __init__(self, addon, app, lang, version=None, show_eula=True):
+    def __init__(self, addon, app, lang, version=None, show_eula=True,
+                 show_contrib=True):
         self.addon, self.app, self.lang = addon, app, lang
         self.latest = version is None
         self.version = version or addon.current_version
@@ -47,12 +53,30 @@ class InstallButton(object):
         self.self_hosted = addon.status == amo.STATUS_LISTED
 
         self.show_eula = show_eula and addon.has_eula
+        self.show_contrib = (show_contrib and addon.takes_contributions
+                             and addon.annoying == amo.CONTRIB_ROADBLOCK)
 
     def prepare(self):
         """Called after the class is set to manage eulas, contributions."""
-        if self.show_eula:
-            self.button_class = 'eula'
-            self.install_class += ' eula'
+        # Get a copy for this instance.
+        self.button_class = list(self.__class__.button_class)
+        self.install_class = list(self.__class__.install_class)
+        tests = (self.show_eula, 'eula'), (self.show_contrib, 'contrib')
+        for pred, cls in tests:
+            if bool(pred):
+                try:
+                    self.button_class.remove('download')
+                except ValueError:
+                    pass
+                self.button_class.append(cls)
+                self.install_class.append(cls)
+
+    def attrs(self):
+        rv = {}
+        if (self.addon.takes_contributions
+            and self.addon.annoying == amo.CONTRIB_AFTER):
+            rv['data-after'] = 'contrib'
+        return rv
 
     def links(self):
         rv = []
@@ -66,25 +90,30 @@ class InstallButton(object):
                 text, os = _('Download'), amo.PLATFORMS[platform]
             if self.show_eula:
                 text, url = _('Continue to Download &rarr;'), file.eula_url()
+            elif self.show_contrib:
+                # The eula doesn't exist or has been hit already.
+                text = _('Continue to Download &rarr;')
+                roadblock = self.addon.meet_the_dev_url(extra='roadblock')
+                url = urlparams(roadblock, eula='')
             rv.append(Link(text, url, os, file))
         return rv
 
 
 class FeaturedInstallButton(InstallButton):
-    install_class = 'featuredaddon'
+    install_class = ['featuredaddon']
     install_text = _lazy(u'Featured', 'install_button')
 
 
 class UnreviewedInstallButton(InstallButton):
-    install_class = 'unreviewed'
+    install_class = ['unreviewed']
     install_text = _lazy(u'Not Reviewed', 'install_button')
-    button_class = 'download caution'
+    button_class = 'download caution'.split()
 
 
 class SelfHostedInstallButton(InstallButton):
-    install_class = 'selfhosted'
+    install_class = ['selfhosted']
     install_text = _lazy(u'Self Hosted', 'install_button')
-    button_class = 'go'
+    button_class = ['go']
 
     def links(self):
         return [Link(_('Continue to Website &rarr;'), self.addon.homepage)]
@@ -158,14 +187,21 @@ def smorgasbord(request):
     # EULA.
     addons.append(normal.filter(eula__isnull=False)[0])
     addons[-1].tag = 'eula'
+    addons.append(exp.filter(eula__isnull=False)
+                  .exclude(eula__localized_string='')[0])
+    addons[-1].tag = 'eula + unreviewed'
 
     # Contributions.
     addons.append(normal.filter(annoying=1)[0])
     addons[-1].tag = 'contrib: passive'
     addons.append(normal.filter(annoying=2)[0])
-    addons[-1].tag = 'contrib: post'
+    addons[-1].tag = 'contrib: after'
     addons.append(normal.filter(annoying=3)[0])
     addons[-1].tag = 'contrib: roadblock'
+    addons.append(Addon.objects.get(id=2608))
+    addons[-1].tag = 'after + eula'
+    addons.append(Addon.objects.get(id=8442))
+    addons[-1].tag = 'roadblock + eula'
 
     # Other App.
     addons.append(Addon.objects.get(id=5326))
