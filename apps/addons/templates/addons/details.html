@@ -30,7 +30,7 @@
         <div id="addon-summary" class="primary {{ addon|statusflags }}">
           <p{{ addon.summary|locale_html }}>{{ addon.summary|nl2br }}</p>
 
-          {{ install_button(addon) }}
+          {{ install_button(addon, show_warning=False) }}
 
           {% if addon.takes_contributions %}
           {{
@@ -158,7 +158,8 @@
           <dl>
             <dt class="beta-version">{{ _('Version {0}:')|f(
               addon.current_beta_version.version) }}</dt>
-            <dd>{{ install_button(addon, version=addon.current_beta_version) }}</dd>
+            <dd>{{ install_button(addon, version=addon.current_beta_version,
+                                  show_warning=False) }}</dd>
           </dl>
         </div>{# /install-beta #}
       </div>

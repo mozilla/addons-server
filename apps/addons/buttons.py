@@ -9,7 +9,7 @@ from addons.models import Addon
 
 @jinja2.contextfunction
 def install_button(context, addon, version=None, show_eula=True,
-                   show_contrib=True):
+                   show_contrib=True, show_warning=True):
     """If version isn't given, we use the latest version."""
     app, lang = context['APP'], context['LANG']
     show_eula = bool(context['request'].GET.get('eula', show_eula))
@@ -21,9 +21,8 @@ def install_button(context, addon, version=None, show_eula=True,
     return jinja2.Markup(t)
 
 
-def install_button_factory(addon, app, lang, version=None, show_eula=True,
-                           show_contrib=True):
-    button = InstallButton(addon, app, lang, version, show_eula, show_contrib)
+def install_button_factory(*args, **kwargs):
+    button = InstallButton(*args, **kwargs)
     # Order matters.  We want to highlight unreviewed before featured.  They
     # should be mutually exclusive, but you never know.
     classes = (('unreviewed', UnreviewedInstallButton),
@@ -43,7 +42,7 @@ class InstallButton(object):
     install_text = ''
 
     def __init__(self, addon, app, lang, version=None, show_eula=True,
-                 show_contrib=True):
+                 show_contrib=True, show_warning=True):
         self.addon, self.app, self.lang = addon, app, lang
         self.latest = version is None
         self.version = version or addon.current_version
@@ -55,6 +54,8 @@ class InstallButton(object):
         self.show_eula = show_eula and addon.has_eula
         self.show_contrib = (show_contrib and addon.takes_contributions
                              and addon.annoying == amo.CONTRIB_ROADBLOCK)
+        self.show_warning = show_warning and (self.unreviewed or
+                                              self.self_hosted)
 
     def prepare(self):
         """Called after the class is set to manage eulas, contributions."""

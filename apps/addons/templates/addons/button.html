@@ -19,7 +19,12 @@
     {% for link in b.links() %}
       <a class="button {{ b.button_class|join(' ') }} {{ link.os.shortname }}"
          data-hash="{{ link.file.hash }}"
-         href="{{ link.url }}">
+         {% if b.show_warning %}
+           href="{{ b.addon.get_url_path() }}"
+           data-realurl="{{ link.url }}"
+         {% else %}
+           href="{{ link.url }}"
+         {% endif %}>
         <b></b>
         <span>
           {{ link.text|safe }}
