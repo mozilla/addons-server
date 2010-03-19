@@ -1,34 +1,44 @@
 {# Variables {like_this} are going to be formatted in javascript using the
    format function.  It's like Python's str.format. #}
 
-{% macro icon(src=None) %}
-  {% if not src %}
-    {% set src = MEDIA_URL + "img/zamboni/icons/{0}-32x32.png"|f(APP.short) %}
-  {% endif %}
-  <img src="{{ src }}" width="32" height="32" class="bug">
-{% endmacro %}
+{% set app_url = {
+    amo.FIREFOX: 'http://getfirefox.com/?src=amo',
+    amo.THUNDERBIRD: 'http://www.mozillamessaging.com/',
+    amo.MOBILE: 'http://www.mozilla.com/m/',
+    amo.SUNBIRD: 'http://www.mozilla.org/projects/calendar/sunbird/',
+    amo.SEAMONKEY: 'http://www.seamonkey-project.org/',
+}[APP] %}
 
 {% macro learn_more() %}
 {# js vars: url #}
 <div class="install-note">
-  {{ icon() }}
-  <p class="msg">{% trans %}
-    To install this add-on and thousands more, <strong>get Firefox</strong>, a
-    free and open web browser from Mozilla.
-  {% endtrans %}</p>
-  <p><a href="#TODO" class="button">{{ _('Learn more about Firefox') }}</a></p>
-  <p>{% trans %}
-    or <strong><a class="installer" href="{url}">download anyway</a></strong>
-  {% endtrans %}</p>
+  {% if APP == amo.FIREFOX %}
+    <p class="msg m-learn-more">{% trans %}
+      To install this add-on and thousands more, <b>get Firefox</b>, a
+      free and open web browser from Mozilla.
+    {% endtrans %}</p>
+    <p><a href="{{ app_url }}" class="button">{{ _('Learn more about Firefox') }}</a></p>
+    <p>{% trans %}
+      or <b><a class="installer" href="{url}">download anyway</a></b>
+    {% endtrans %}</p>
+  {% elif APP == amo.THUNDERBIRD %}
+    <p class="msg m-learn-more">{% trans %}
+      <strong>How to Install in Thunderbird</strong>
+      <ol>
+        <li>Download and save the file to your hard disk.</li>
+        <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li>
+        <li>Click the Install button, and locate/select the file you downloaded and click "OK".</li>
+      </ol>
+    {% endtrans %}</p>
+  {% endif %}
 </div>
 {% endmacro %}
 
 {% macro not_updated() %}
 {# js vars: url #}
 <div class="install-note">
-  {{ icon() }}
-  <p class="msg">{% trans %}
-    This add-on has not been updated to work with your version of Firefox.
+  <p class="msg m-not-updated">{% trans app=APP.pretty %}
+    This add-on has not been updated to work with your version of {{ app }}.
   {% endtrans %}</p>
   <p><a href="{url}" class="button installer">{{ _('Install Anyway') }}</a></p>
 </div>
@@ -37,34 +47,34 @@
 {% macro newer_version() %}
 {# js vars: new_version, old_version, addon #}
 <div class="install-note">
-  {{ icon() }}
-  <p class="msg">{% trans app=APP.pretty %}
+  <p class="msg m-newer-version">{% trans app=APP.pretty %}
     This add-on requires {{ app }} {new_version}. You are currently using
     {{ app }} {old_version}.
   {% endtrans %}</p>
-  <p><a href="#TODO" class="button">{{ _('Upgrade {0}')|f(APP.name) }}</a></p>
+  {# L10n: {0} is an app name, like Firefox. #}
+  <p><a href="{{ app_url }}" class="button">{{ _('Upgrade {0}')|f(APP.pretty) }}</a></p>
   {# Building a url with a fake addon that's replaced with a js placeholder?  Sketchy. #}
-  <p>{% trans href=url('reviews.list', 000)|replace(000, '{addon}') %}
+  <p class="older-versions">{% trans href=url('reviews.list', 000)|replace(000, '{addon}') %}
     or view <a href="{{ href }}">older versions of this add-on</a>.
   {% endtrans %}</p>
 </div>
 {% endmacro %}
 
 {% macro unreviewed() %}
+{# js vars: url, msg #}
 <div class="install-note">
-  {{ icon(MEDIA_URL + 'img/zamboni/icons/alert-32x32.png') }}
-  <p class="msg">{% trans %}
+  <p class="msg m-unreviewed">{% trans %}
     <strong>Caution:</strong> This add-on has not been reviewed by Mozilla.  Be
     careful when installing third-party software that might harm your computer.
   {% endtrans %}</p>
-  <p><a href="{url}" class="button installer">{{ _('Install Anyway') }}</a></p>
+  <p><a href="{url}" class="button installer">{msg}</a></p>
 </div>
 {% endmacro %}
 
 {% macro selfhosted() %}
+{# js vars: url #}
 <div class="install-note">
-  {{ icon(MEDIA_URL + 'img/zamboni/icons/alert-32x32.png') }}
-  <p class="msg">{% trans %}
+  <p class="msg m-selfhosted">{% trans %}
     <strong>Caution:</strong> This add-on is hosted on the developer's own
     website and has not been reviewed by Mozilla. Be careful when installing
     third-party software that might harm your computer.
@@ -73,10 +83,28 @@
 </div>
 {% endmacro %}
 
-z.button_messages = {
+{% macro bad_platform() %}
+{# js vars: platforms #}
+<div class="install-note">
+  <p class="msg m-platforms">{% trans %}
+    <strong>Please note:</strong> This add-on is not compatible with your
+    operating system.
+  {% endtrans %}</p>
+  <ul>{platforms}</ul>
+</div>
+{% endmacro %}
+
+{% macro platform_link() %}
+{# js vars: href, msg #}
+  <li><a class="installer" href="{href}">{msg}</a></li>
+{% endmacro %}
+
+z.button.messages = {
   learn_more: {{ learn_more()|json|safe }},
   not_updated: {{ not_updated()|json|safe }},
   newer_version: {{ newer_version()|json|safe }},
   unreviewed: {{ unreviewed()|json|safe }},
-  selfhosted: {{ selfhosted()|json|safe }}
+  selfhosted: {{ selfhosted()|json|safe }},
+  platform_link: {{ platform_link()|json|safe }},
+  bad_platform: {{ bad_platform()|json|safe }}
 };

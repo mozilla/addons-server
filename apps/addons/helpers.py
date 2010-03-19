@@ -80,5 +80,5 @@ def contribution(addon, text='', src='', show_install=False, show_help=True):
         'show_install': show_install,
         'show_help': show_help,
         'has_suggested': bool(addon.suggested_amount),
-        'pledge': pledge
+        'pledge': pledge,
     }))

@@ -161,7 +161,7 @@ class Contribution(caching.base.CachingMixin, models.Model):
 
         # Make sure the url uses the right language.
         # Setting a prefixer would be nicer, but that requires a request.
-        url_parts = self.addon.meet_developers_url.split('/')
+        url_parts = self.addon.meet_the_dev_url().split('/')
         url_parts[1] = lang
 
         # Buildup the email components.

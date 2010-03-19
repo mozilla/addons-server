@@ -277,7 +277,7 @@ MINIFY_BUNDLES = {
     'js': {
         # JS files common to the entire site.
         'common': (
-            'js/jquery-compressed.js',
+            'js/zamboni/jquery-1.4.2.min.js',
             'js/zamboni/underscore-min.js',
             'js/amo2009/addons.js',
             'js/zamboni/init.js',

@@ -5,25 +5,34 @@
 
 {% set compat = addon.compatible_apps[APP] %}
 <div class="install-shell">
-<div class="install {{ b.install_class }}"
+<div class="install {{ b.install_class|join(' ') }}"
      data-addon="{{ addon.id }}"
      data-icon="{{ addon.icon_url }}"
+     data-developers="{{ addon.meet_the_dev_url() }}"
      data-name="{{ addon.name }}"
+     {{ b.attrs()|xmlattr }}
   {% if compat %}
-    data-min="{{ compat.min.version }}"
-    data-max="{{ compat.max.version }}"
+     data-min="{{ compat.min.version }}"
+     data-max="{{ compat.max.version }}"
   {% endif %}>
   <p class="install-button">
     {% for link in b.links() %}
-      <a class="button {{ b.button_class }} {{ link.os.shortname }}"
+      <a class="button {{ b.button_class|join(' ') }} {{ link.os.shortname }}"
          data-hash="{{ link.file.hash }}"
-         href="{{ link.url }}">
+         {% if b.show_warning %}
+           href="{{ b.addon.get_url_path() }}"
+           data-realurl="{{ link.url }}"
+         {% else %}
+           href="{{ link.url }}"
+         {% endif %}>
         <b></b>
         <span>
           {{ link.text|safe }}
           {% if link.os %}
             {# L10n: {0} is a platform name like Windows or Mac OS X. #}
-            <span class="os">{{ _('for {0}')|f(link.os.name) }}</span>
+            <span class="os" data-os="{{ link.os.name }}">
+              {{ _('for {0}')|f(link.os.name) }}
+            </span>
           {% endif %}
         </span>
       </a>

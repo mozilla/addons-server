@@ -101,13 +101,7 @@ class AddonManager(amo.models.ManagerBase):
 
 class Addon(amo.models.ModelBase):
     STATUS_CHOICES = amo.STATUS_CHOICES.items()
-
-    CONTRIBUTIONS_CHOICES = (
-            (0, 'None'),
-            (1, 'Passive; user shown message next to download button'),
-            (2, 'User shown splash screen after download'),
-            (3, 'Roadblock; User shown splash screen before download'),
-    )
+    CONTRIB_CHOICES = sorted(amo.CONTRIB_CHOICES.items())
 
     guid = models.CharField(max_length=255, unique=True, null=True)
     name = TranslatedField()
@@ -186,8 +180,7 @@ class Addon(amo.models.ModelBase):
                                         nullify_invalid=True,
                                         blank=True, null=True,
                                         help_text="Requested donation amount.")
-    annoying = models.PositiveIntegerField(choices=CONTRIBUTIONS_CHOICES,
-                                           default=0)
+    annoying = models.PositiveIntegerField(choices=CONTRIB_CHOICES, default=0)
     enable_thankyou = models.BooleanField(default=False,
         help_text="Should the thankyou note be sent to contributors?")
     thankyou_note = TranslatedField()
@@ -211,10 +204,9 @@ class Addon(amo.models.ModelBase):
     def get_url_path(self):
         return reverse('addons.detail', args=(self.id,))
 
-    @property
-    def meet_developers_url(self):
-        # TODO(davedash): reverse when developers pages are build
-        return self.get_url_path() + 'developers'
+    def meet_the_dev_url(self, extra=None):
+        args = [self.id, extra] if extra else [self.id]
+        return reverse('addons.meet', args=args)
 
     @property
     def reviews_url(self):
