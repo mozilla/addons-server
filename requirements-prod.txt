@@ -12,4 +12,4 @@ pytz
 -e git://github.com/jbalogh/jingo.git#egg=jingo
 -e git://github.com/jsocol/bleach.git#egg=bleach
 -e git://github.com/jbalogh/schematic.git#egg=schematic
--e git://gitorious.org/git-python/mainline.git#egg=git-python
+-e git://gitorious.org/git-python/mainline.git@e3e2c8c1#egg=git-python
