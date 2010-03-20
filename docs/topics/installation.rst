@@ -11,7 +11,10 @@ Here we go!
 Requirements
 ------------
 
-The only we need to get started is Python 2.6.
+To get started, you'll need:
+ * Python 2.6
+ * MySQL (plus mysql development headers for building mysql-python)
+ * libxml2 (for building lxml, used in tests)
 
 
 Use the Source
