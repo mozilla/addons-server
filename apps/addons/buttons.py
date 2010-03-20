@@ -57,9 +57,10 @@ class InstallButton(object):
         self.src = src
         self.collection = collection
 
-        self.featured = addon.is_featured(app, lang)
         self.unreviewed = addon.is_unreviewed() or self.version.is_unreviewed
         self.self_hosted = addon.status == amo.STATUS_LISTED
+        self.featured = (not self.unreviewed and not self.self_hosted
+                         and addon.is_featured(app, lang))
 
         self.show_eula = show_eula and addon.has_eula
         self.show_contrib = (show_contrib and addon.takes_contributions
@@ -94,22 +95,29 @@ class InstallButton(object):
     def links(self):
         rv = []
         for file in self.version.files.all():
-            platform = file.platform_id
-            url = (file.latest_xpi_url() if self.latest else
-                   file.get_url_path(self.src))
-            if platform == amo.PLATFORM_ALL.id:
-                text, os = _('Download Now'), None
-            else:
-                text, os = _('Download'), amo.PLATFORMS[platform]
-            if self.show_eula:
-                text, url = _('Continue to Download &rarr;'), file.eula_url()
-            elif self.show_contrib:
-                # The eula doesn't exist or has been hit already.
-                text = _('Continue to Download &rarr;')
-                roadblock = self.addon.meet_the_dev_url(extra='roadblock')
-                url = urlparams(roadblock, eula='')
+            text, url, os = self.file_details(file)
             rv.append(Link(text, self.fix_link(url), os, file))
         return rv
+
+    def file_details(self, file):
+        platform = file.platform_id
+        url = (file.latest_xpi_url() if self.latest else
+               file.get_url_path(self.src))
+
+        if platform == amo.PLATFORM_ALL.id:
+            text, os = _('Download Now'), None
+        else:
+            text, os = _('Download'), amo.PLATFORMS[platform]
+
+        if self.show_eula:
+            text, url = _('Continue to Download &rarr;'), file.eula_url()
+        elif self.show_contrib:
+            # The eula doesn't exist or has been hit already.
+            text = _('Continue to Download &rarr;')
+            roadblock = self.addon.meet_the_dev_url(extra='roadblock')
+            url = urlparams(roadblock, eula='')
+
+        return text, url, os
 
     def fix_link(self, url):
         if self.src:

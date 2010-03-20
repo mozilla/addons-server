@@ -1,0 +1,344 @@
+import jingo
+from mock import patch, Mock, sentinel
+from nose.tools import eq_
+from pyquery import PyQuery
+import test_utils
+
+import amo
+from addons.buttons import install_button
+
+
+def setup():
+    jingo.load_helpers()
+
+
+class ButtonTest(object):
+
+    def setup(self):
+        self.addon = Mock()
+        self.addon.is_featured.return_value = False
+        self.addon.is_unreviewed.return_value = False
+        self.addon.has_eula = False
+
+        self.version = v = Mock()
+        v.is_unreviewed = False
+        self.addon.current_version = v
+
+        self.file = self.get_file(amo.PLATFORM_ALL)
+        v.files.all.return_value = [self.file]
+
+        self.platforms = amo.PLATFORM_MAC, amo.PLATFORM_LINUX
+
+        self.request = test_utils.RequestFactory().get('/')
+        # Make GET mutable.
+        self.request.GET = self.request.GET.copy()
+        self.context = {
+            'APP': amo.FIREFOX,
+            'LANG': 'en-US',
+            'request': self.request,
+        }
+
+    @patch('addons.buttons.jingo.env.get_template')
+    def get_button(self, t_mock, **kwargs):
+        """Proxy for calling install_button."""
+        template_mock = Mock()
+        t_mock.return_value = template_mock
+        install_button(self.context, self.addon, **kwargs)
+        # Extract button from the *args from the first call.
+        return template_mock.render.call_args[0][0]['button']
+
+    def render(self, **kwargs):
+        return PyQuery(install_button(self.context, self.addon, **kwargs))
+
+    def get_file(self, platform):
+        file = Mock()
+        file.platform_id = platform.id
+        file.latest_xpi_url.return_value = 'xpi.latest'
+        file.get_url_path.return_value = 'xpi.url'
+        file.eula_url.return_value = 'eula.url'
+        return file
+
+
+class TestButtonSetup(ButtonTest):
+    """Tests for setup code inside install_button."""
+
+    def test_eula(self):
+        """show_eula defaults to true, can be overridden in request.GET."""
+        self.addon.has_eula = True
+        b = self.get_button()
+        assert b.show_eula
+
+        b = self.get_button(show_eula=False)
+        assert not b.show_eula
+
+        self.request.GET['eula'] = ''
+        b = self.get_button()
+        assert not b.show_eula
+
+        self.request.GET['eula'] = 'xx'
+        b = self.get_button(show_eula=False)
+        assert b.show_eula
+
+        self.setup()
+        self.addon.has_eula = False
+        b = self.get_button()
+        assert not b.show_eula
+
+    def test_src(self):
+        """src defaults to '', and can be in the context or request.GET."""
+        b = self.get_button()
+        eq_(b.src, '')
+
+        self.request.GET['src'] = 'zz'
+        b = self.get_button()
+        eq_(b.src, 'zz')
+
+        self.context['src'] = 'yy'
+        b = self.get_button()
+        eq_(b.src, 'yy')
+
+        b = self.get_button(src='xx')
+        eq_(b.src, 'xx')
+
+    def test_collection(self):
+        """Same as src; looking for collection{,_id,_uuid} in request."""
+        b = self.get_button()
+        eq_(b.collection, None)
+
+        self.request.GET['collection_uuid'] = 'aa'
+        b = self.get_button()
+        eq_(b.collection, 'aa')
+
+        self.request.GET['collection_id'] = 'bb'
+        b = self.get_button()
+        eq_(b.collection, 'bb')
+
+        self.request.GET['collection'] = 'cc'
+        b = self.get_button()
+        eq_(b.collection, 'cc')
+
+        self.context['collection'] = 'dd'
+        b = self.get_button()
+        eq_(b.collection, 'dd')
+
+        b = self.get_button(collection='ee')
+        eq_(b.collection, 'ee')
+
+
+class TestButton(ButtonTest):
+    """Tests for the InstallButton class."""
+
+    def test_plain_button(self):
+        b = self.get_button()
+        eq_(b.button_class, ['download'])
+        eq_(b.install_class, [])
+        eq_(b.install_text, '')
+        eq_(b.version, self.version)
+        assert b.latest
+        assert not b.featured
+        assert not b.unreviewed
+        assert not b.self_hosted
+        assert not b.show_eula
+        assert not b.show_contrib
+        assert not b.show_warning
+
+    def test_show_contrib(self):
+        b = self.get_button()
+        assert not b.show_contrib
+
+        self.addon.takes_contributions = True
+        b = self.get_button()
+        assert not b.show_contrib
+
+        self.addon.annoying = amo.CONTRIB_ROADBLOCK
+        b = self.get_button()
+        assert b.show_contrib
+        eq_(b.button_class, ['contrib'])
+        eq_(b.install_class, ['contrib'])
+
+    def test_show_warning(self):
+        b = self.get_button()
+        assert not b.show_warning
+
+        self.addon.is_unreviewed.return_value = True
+        b = self.get_button()
+        assert b.show_warning
+        b = self.get_button(show_warning=False)
+        assert not b.show_warning
+
+        self.setup()
+        self.addon.status = amo.STATUS_LISTED
+        b = self.get_button()
+        assert b.show_warning
+
+    def test_eula(self):
+        self.addon.has_eula = True
+        b = self.get_button()
+        eq_(b.button_class, ['eula'])
+        eq_(b.install_class, ['eula'])
+
+    def test_featured(self):
+        self.addon.is_featured.return_value = True
+        b = self.get_button()
+        assert b.featured
+        eq_(b.button_class, ['download'])
+        eq_(b.install_class, ['featuredaddon'])
+        eq_(b.install_text, 'Featured')
+
+    def test_unreviewed(self):
+        # Throw featured in there to make sure it's ignored.
+        self.addon.is_featured.return_value = True
+        self.addon.is_unreviewed.return_value = True
+        b = self.get_button()
+        assert not b.featured
+        assert b.unreviewed
+        eq_(b.button_class, ['download', 'caution'])
+        eq_(b.install_class, ['unreviewed'])
+        eq_(b.install_text, 'Not Reviewed')
+
+    def test_self_hosted(self):
+        # Throw featured in there to make sure it's ignored.
+        self.addon.is_featured.return_value = True
+        self.addon.homepage = sentinel.url
+        self.addon.status = amo.STATUS_LISTED
+
+        b = self.get_button()
+        assert not b.featured
+        assert b.self_hosted
+        eq_(b.button_class, ['go'])
+        eq_(b.install_class, ['selfhosted'])
+        eq_(b.install_text, 'Self Hosted')
+
+        links = b.links()
+        eq_(len(links), 1)
+        eq_(links[0].url, sentinel.url)
+
+    def test_attrs(self):
+        b = self.get_button()
+        eq_(b.attrs(), {})
+
+        self.addon.takes_contributions = True
+        self.addon.annoying = amo.CONTRIB_AFTER
+        self.addon.type_id = amo.ADDON_SEARCH
+
+        b = self.get_button()
+        eq_(b.attrs(), {'data-after': 'contrib', 'data-search': 'true'})
+
+    def test_file_details(self):
+        file = self.get_file(amo.PLATFORM_ALL)
+        self.addon.meet_the_dev_url.return_value = 'meet.dev'
+        b = self.get_button()
+
+        # Normal.
+        text, url, os = b.file_details(file)
+        eq_(text, 'Download Now')
+        eq_(url, 'xpi.latest')
+        eq_(os, None)
+
+        # Platformer.
+        file = self.get_file(amo.PLATFORM_MAC)
+        _, _, os = b.file_details(file)
+        eq_(os, amo.PLATFORM_MAC)
+
+        # Not the latest version.
+        b.latest = False
+        _, url, _ = b.file_details(file)
+        eq_(url, 'xpi.url')
+
+        # Eula roadblock.
+        b.show_eula = True
+        text, url, _ = b.file_details(file)
+        eq_(text, 'Continue to Download &rarr;')
+        eq_(url, 'eula.url')
+
+        # Contribution roadblock.
+        b.show_eula = False
+        b.show_contrib = True
+        text, url, _ = b.file_details(file)
+        eq_(text, 'Continue to Download &rarr;')
+        eq_(url, 'meet.dev?eula=')
+
+    def test_fix_link(self):
+        b = self.get_button()
+        eq_(b.fix_link('foo.com'), 'foo.com')
+
+        b = self.get_button(src='src')
+        eq_(b.fix_link('foo.com'), 'foo.com?src=src')
+
+        b = self.get_button(collection='xxx')
+        eq_(b.fix_link('foo.com'), 'foo.com?collection=xxx')
+
+        b = self.get_button(collection='xxx', src='src')
+        eq_(b.fix_link('foo.com'), 'foo.com?src=src&collection=xxx')
+
+    def test_links(self):
+        platforms = self.platforms
+        self.version.files.all.return_value = map(self.get_file, platforms)
+        links = self.get_button().links()
+
+        eq_(len(links), len(platforms))
+        eq_([x.os for x in links], list(platforms))
+
+
+class TestButtonHtml(ButtonTest):
+
+    def test_basics(self):
+        a = self.addon
+        a.id = 'addon id'
+        a.icon_url = 'icon url'
+        a.meet_the_dev_url.return_value = 'meet.dev'
+        a.name = 'addon name'
+        self.file.hash = 'file hash'
+
+        doc = self.render()
+        eq_(doc('.install-shell').length, 1)
+        eq_(doc('.install').length, 1)
+        eq_(doc('.install').length, 1)
+        eq_(doc('.install-button').length, 1)
+        eq_(doc('.button').length, 1)
+
+        install = doc('.install')
+        eq_('addon id', install.attr('data-addon'))
+        eq_('icon url', install.attr('data-icon'))
+        eq_('meet.dev', install.attr('data-developers'))
+        eq_('addon name', install.attr('data-name'))
+        eq_(None, install.attr('data-min'))
+        eq_(None, install.attr('data-max'))
+
+        button = doc('.button')
+        eq_(['button', 'download'], button.attr('class').split())
+        eq_('file hash', button.attr('data-hash'))
+        eq_('xpi.latest', button.attr('href'))
+
+    def test_featured(self):
+        self.addon.is_featured.return_value = True
+        doc = self.render()
+        eq_(['install', 'featuredaddon'],
+            doc('.install').attr('class').split())
+        eq_('Featured', doc('.install strong:last-child').text())
+
+    def test_unreviewed(self):
+        self.addon.is_unreviewed.return_value = True
+        self.addon.get_url_path.return_value = 'addon.url'
+        button = self.render()('.button.caution')
+        eq_('addon.url', button.attr('href'))
+        eq_('xpi.latest', button.attr('data-realurl'))
+
+    def test_multi_platform(self):
+        self.version.files.all.return_value = map(self.get_file, self.platforms)
+        names = [p.name for p in self.platforms]
+        doc = self.render()
+        eq_(doc('.button').length, 2)
+
+        for platform in self.platforms:
+            os = doc('.button.%s .os' % platform.shortname).attr('data-os')
+            eq_(platform.name, os)
+
+    def test_compatible_apps(self):
+        compat = Mock()
+        compat.min.version = 'min version'
+        compat.max.version = 'max version'
+        self.addon.compatible_apps = {amo.FIREFOX: compat}
+        install = self.render()('.install')
+        eq_('min version', install.attr('data-min'))
+        eq_('max version', install.attr('data-max'))
