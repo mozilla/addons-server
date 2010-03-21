@@ -142,17 +142,17 @@ class Contribution(caching.base.CachingMixin, models.Model):
             raise ContributionError('Transaction not complete')
 
         # Send from support_email, developer's email, or default.
+        from_email = settings.EMAIL_FROM_DEFAULT
         if self.addon.support_email:
             from_email = str(self.addon.support_email)
         else:
             try:
                 author = self.addon.listed_authors[0]
-                if not author.emailhidden:
+                if author.email and not author.emailhidden:
                     from_email = author.email
-            except IndexError:
-                from_email = None
-        if not from_email:
-            from_email = settings.EMAIL_FROM_DEFAULT
+            except (IndexError, TypeError):
+                # This shouldn't happen, but the default set above is still ok.
+                pass
 
         # We need the contributor's email.
         to_email = self.post_data['payer_email']
