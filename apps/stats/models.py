@@ -169,7 +169,8 @@ class Contribution(caching.base.CachingMixin, models.Model):
         c = {
             'thankyou_note': self.addon.thankyou_note,
             'addon_name': self.addon.name,
-            'learn_url': settings.SITE_URL + '/'.join(url_parts),
+            'learn_url': '%s%s?src=emailinfo' % (settings.SITE_URL,
+                                                 '/'.join(url_parts)),
             'domain': settings.DOMAIN,
         }
         body = t.render(Context(c))
