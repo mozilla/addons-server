@@ -390,7 +390,7 @@ class AddonPledge(amo.models.ModelBase):
     @amo.cached_property
     def raised(self):
         qs = self.contributions.aggregate(raised=Sum('amount'))
-        return qs['raised']
+        return qs['raised'] or 0
 
     def __unicode__(self):
         return '%s ($%s, %s)' % (self.addon.name, self.target, self.deadline)

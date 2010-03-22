@@ -186,8 +186,21 @@ class TestAddonModels(test.TestCase):
         assert a.is_category_featured(amo.FIREFOX, 'en-US'), (
             'category featured add-on not recognized')
 
+    def test_has_eula(self):
+        addon = lambda: Addon.objects.get(pk=3615)
+        assert not addon().has_eula
 
-class TestAddonPledgeModel(test.TestCase):
+        a = addon()
+        a.eula = ''
+        a.save()
+        assert not addon().has_eula
+
+        a.eula = 'eula'
+        a.save()
+        assert addon().has_eula
+
+
+class TestAddonPledgeModel(test_utils.TestCase):
     fixtures = ['stats/test_models.json']
 
     def test_ongoing(self):
@@ -216,3 +229,9 @@ class TestAddonPledgeModel(test.TestCase):
         # Only the two valid contributions must be counted.
         eq_(mypledge.num_users, 2)
         self.assertAlmostEqual(mypledge.raised, 4.98)
+
+    def test_raised(self):
+        """AddonPledge.raised should never return None."""
+        pledge = AddonPledge.objects.create(addon_id=4, target=230,
+                                            deadline=date.today())
+        eq_(pledge.raised, 0)
