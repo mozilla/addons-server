@@ -173,48 +173,36 @@ def smorgasbord(request):
     older_version = _compat('1.0', '2.0')
     newer_version = _compat('9.0', '10.0')
 
+    def all_versions(addon, base_tag):
+        x = (('', normal_version),
+             (' + older version', older_version),
+             (' + newer version', newer_version))
+        for extra, version in x:
+            a = addon()
+            a.tag = base_tag + extra
+            a.compatible_apps[request.APP] = version
+            addons.append(a)
+
     # Featured.
     featured = Addon.objects.featured(request.APP)
     addons.append(featured[0])
     addons[-1].tag = 'featured'
 
-    # Normal.
     normal = Addon.objects.listed(request.APP).exclude(id__in=featured)
-    addon = normal[0]
-    addon.tag = 'normal'
-    addon.compatible_apps[request.APP] = normal_version
-    addons.append(addon)
 
-    # Older version.
-    addon = normal[0]
-    addon.tag = 'older version'
-    addon.compatible_apps[request.APP] = older_version
-    addons.append(addon)
-
-    # Newer version.
-    addon = normal[0]
-    addon.tag = 'newer version'
-    addon.compatible_apps[request.APP] = newer_version
-    addons.append(addon)
+    # Normal, Older Version, Newer Version.
+    all_versions(lambda: normal[0], 'normal')
 
     # Unreviewed.
     exp = Addon.objects.experimental()
-    addons.append(exp[0])
-    addons[-1].tag = 'unreviewed'
+    all_versions(lambda: exp[0], 'unreviewed')
 
     # Multiple Platforms.
     addons.append(Addon.objects.get(id=2313))
     addons[-1].tag = 'platformer'
 
     # Incompatible Platform.
-    def w(tag, version):
-        a = Addon.objects.get(id=5308)
-        a.tag = tag
-        a.compatible_apps[request.APP] = version
-        return a
-    addons.append(w('windows/linux-only', normal_version))
-    addons.append(w('windows/linux-only + older version', older_version))
-    addons.append(w('windows/linux-only + newer version', newer_version))
+    all_versions(lambda: Addon.objects.get(id=5308), 'windows/linux-only')
 
     # Self-Hosted.
     addons.append(Addon.objects.filter(status=amo.STATUS_LISTED,
