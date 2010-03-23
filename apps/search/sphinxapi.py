@@ -195,6 +195,7 @@ class SphinxClient:
                 addr = ( self._host, self._port )
                 desc = '%s;%s' % addr
             sock = socket.socket ( af, socket.SOCK_STREAM )
+            sock.settimeout(5)
             sock.connect ( addr )
         except socket.error, msg:
             if sock:
