@@ -133,6 +133,24 @@
 {% endblock %}
 
 {% block under_categories %}
+{% cache top_tags %}
+  {% if top_tags %}
+  {% set max_tag_count = top_tags[0].popularity or 1 %}
+  <div class="highlight" id="tag-box">
+    <h3>{{ _('Popular Tags') }}</h3>
+    <div class="tag-cloud">
+      {% for tag in top_tags|list|shuffle %}
+        {{ tag_link(tag.tag_text, tag.tagstat.num_addons, max_tag_count) }}
+      {% endfor %}
+    </div>
+    <p class="more">
+      <a href="{{ remora_url('/tags/top') }}">{{
+        _('View Top 100 Tags &rsaquo;')|safe }}</a>
+    </p>
+  </div>
+  {% endif %}
+{% endcache %}
+
 <div class="highlight">
   <h3>{{ _('Build a {0} Add-on')|f(request.APP.pretty) }}</h3>
   <p>{{ _('Find all the tools and resouces you need to make your first add-on.') }}</p>
@@ -140,3 +158,10 @@
   <p><strong><a href="/developers">{{ _('Visit the Developer Hub') }}</a></strong></p>
 </div>
 {% endblock %}
+
+{% macro tag_link(tag_text, tag_count, max_count) -%}
+{% with factor=(tag_count/max_count*10)|wround(method='ceil') %}
+  <a class="tagLevel{{ factor }} tag" href="{{
+    remora_url('/tag/' + tag_text) }}">{{ tag_text }}</a>
+{% endwith %}
+{%- endmacro %}

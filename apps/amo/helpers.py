@@ -2,6 +2,7 @@ import cgi
 import collections
 import json as jsonlib
 import math
+import random
 import urllib
 import urlparse
 
@@ -277,3 +278,10 @@ def strip_controls(s):
 def external_url(url):
     """Bounce a URL off outgoing.mozilla.org."""
     return urlresolvers.get_outgoing_url(unicode(url))
+
+
+@register.filter
+def shuffle(sequence):
+    """Shuffle a sequence."""
+    random.shuffle(sequence)
+    return sequence

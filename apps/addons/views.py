@@ -13,6 +13,7 @@ from amo.urlresolvers import reverse
 from bandwagon.models import Collection, CollectionFeature, CollectionPromo
 from users.models import UserProfile
 from stats.models import GlobalStat
+from tags.models import Tag
 from .models import Addon
 
 
@@ -163,10 +164,15 @@ def home(request):
     except GlobalStat.DoesNotExist:
         downloads = pings = None
 
+    # Top tags.
+    top_tags = Tag.objects.not_blacklisted().select_related(
+        'tagstat').order_by('-tagstat__num_addons')[:10]
+
     return jingo.render(request, 'addons/home.html',
                         {'downloads': downloads, 'pings': pings,
                          'filter': filter, 'addon_sets': addon_sets,
                          'collections': collections, 'promobox': promobox,
+                         'top_tags': top_tags,
                         })
 
 
