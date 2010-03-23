@@ -143,7 +143,7 @@ settings into ``settings_local.py``.  Make sure you have ::
 
 in your ``settings_local.py`` so that all of the configuration is included.
 The settings template for developers, included below, is at
-:src:`settings/settings_local.dev.py`.
+:src:`docs/settings/settings_local.dev.py`.
 
 .. literalinclude:: /settings/settings_local.dev.py
 
@@ -160,7 +160,7 @@ If you have access, I recommend you use http://gist.github.com/273575 to create
 a small database from the production db.  Otherwise, let Django create the
 database schema for you.  Either way, run ::
 
-    django syncdb --noinput
+    ./manage.py syncdb --noinput
 
 to get the auth and admin tables from Django.
 

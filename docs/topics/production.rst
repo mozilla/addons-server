@@ -31,7 +31,7 @@ Configuration
 
 We keep most of our config in ``settings.py`` under version control.  Local
 config can be overridden in ``settings_local.py``.  This template, inlined
-below,  can be found at :src:`settings/settings_local.prod.py`:
+below,  can be found at :src:`docs/settings/settings_local.prod.py`:
 
 .. literalinclude:: /settings/settings_local.prod.py
 
