@@ -62,7 +62,43 @@
       <div class="addon-listing addon-listing-{{ filter.field }}">
         {% for key, addons in addon_sets.items() %}
           <div id="list-{{ key }}">
-            {{ addon_listing_items(addons) }}
+            {% for addon in addons %}
+            {% cache addon %}
+              <div class="item">
+                <div class="install">Install button</div>
+                <h3>
+                  <a href="{{ addon.get_url_path() }}">{{ addon.name }}</a>
+                  <span>
+                    {% trans users=users_list(addon.authors.all()) %}
+                      by {{ users }}
+                    {% endtrans %}
+                  </span>
+                </h3>
+                <a href="{{ addon.get_url_path() }}">
+                  <img class="icon" width="32" height="32" src="{{ addon.icon_url }}"
+                       alt="{{ addon.name }}">
+                </a>
+                <blockquote>
+                  {{ addon.description|truncate(250) }}
+                </blockquote>
+                <div class="meta">
+                  {{ addon|reviews_link }}
+                  <span class="downloads">
+                    {% with num=addon.weekly_downloads %}
+                      {# L10n: {0} is the number of downloads. #}
+                      {{ ngettext("<strong>{0}</strong> weekly download",
+                                  "<strong>{0}</strong> weekly downloads",
+                                  num)|f(num|numberfmt)|safe }}
+                    {% endwith %}
+                  </span>
+                  <span class="updated">
+                    {{ _('Updated {0}')|f(addon.last_updated|datetime) }}
+                  </span>
+                  {{ support_addon(addon) }}
+                </div>
+              </div>
+            {% endcache %}
+            {% endfor %}
             <div class="listing-footer">
               {# TODO(jbalogh): browse and rss page urls #}
               <a class="subscribe" href="#">

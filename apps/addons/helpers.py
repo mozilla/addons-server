@@ -82,11 +82,3 @@ def contribution(addon, text='', src='', show_install=False, show_help=True):
         'has_suggested': bool(addon.suggested_amount),
         'pledge': pledge,
     }))
-
-
-@register.inclusion_tag('addons/listing_items.html')
-@jinja2.contextfunction
-def addon_listing_items(context, addons):
-    c = dict(context.items())
-    c['addons'] = addons
-    return c
