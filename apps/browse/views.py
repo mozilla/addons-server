@@ -75,11 +75,11 @@ def language_tools(request):
 _Category = collections.namedtuple('Category', 'name count slug')
 
 
-class AddonSorter(object):
+class AddonFilter(object):
     """
     Support class for sorting add-ons.  Sortable fields are defined as
     (value, title) pairs in ``opts``.  Pass in a request and a queryset and
-    AddonSorter will figure out how to sort the queryset.
+    AddonFilter will figure out how to sort the queryset.
 
     self.sorting: the field we're sorting by
     self.opts: all the sort options
@@ -121,20 +121,12 @@ class AddonSorter(object):
 
 
 def themes(request, category=None):
-    APP, THEME = request.APP, amo.ADDON_THEME
-    status = [amo.STATUS_PUBLIC]
-
-    experimental = 'on' if request.GET.get('experimental', False) else None
-    if experimental:
-        status.append(amo.STATUS_SANDBOX)
-
-    q = Category.objects.filter(application=APP.id, type=THEME)
+    q = Category.objects.filter(application=request.APP.id,
+                                type=amo.ADDON_THEME)
     categories = order_by_translation(q, 'name')
 
-    addons = Addon.objects.listed(APP, *status).filter(type=THEME).distinct()
+    addons, filter, experimental = _listing(request, amo.ADDON_THEME)
     total_count = addons.count()
-
-    sorting, sort_opts, addons = AddonSorter(request, addons, 'downloads')
 
     if category is None:
         selected = _Category(_('All'), total_count, '')
@@ -147,5 +139,20 @@ def themes(request, category=None):
     return jingo.render(request, 'browse/themes.html',
                         {'categories': categories, 'total_count': total_count,
                          'themes': themes, 'selected': selected,
-                         'sorting': sorting, 'sort_opts': sort_opts,
+                         'sorting': filter.sorting,
+                         'sort_opts': filter.opts,
                          'experimental': experimental})
+
+
+def _listing(request, addon_type, default='downloads'):
+    # Set up the queryset and filtering for themes & extension listing pages.
+    status = [amo.STATUS_PUBLIC]
+
+    experimental = 'on' if request.GET.get('experimental', False) else None
+    if experimental:
+        status.append(amo.STATUS_SANDBOX)
+
+    qs = (Addon.objects.listed(request.APP, *status)
+          .filter(type=addon_type).distinct())
+    filter = AddonFilter(request, qs, default)
+    return filter.qs, filter, experimental
