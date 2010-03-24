@@ -86,7 +86,8 @@ class AddonSorter(object):
     self.qs: the sorted queryset
     """
     opts = (('name', _lazy(u'Name')),
-            ('date', _lazy(u'Date')),
+            ('updated', _lazy(u'Updated')),
+            ('created', _lazy(u'Created')),
             ('downloads', _lazy(u'Downloads')),
             ('rating', _lazy(u'Rating')))
 
@@ -107,8 +108,10 @@ class AddonSorter(object):
             return default
 
     def sort(self, qs, field):
-        if field == 'date':
+        if field == 'updated':
             return qs.order_by('-last_updated')
+        if field == 'created':
+            return qs.order_by('-created')
         elif field == 'downloads':
             return qs.order_by('-weekly_downloads')
         elif field == 'rating':
