@@ -28,6 +28,7 @@ class AppVersion(amo.models.ModelBase):
 
     class Meta:
         db_table = 'appversions'
+        ordering = ['-version_int']
 
     def __init__(self, *args, **kwargs):
         super(AppVersion, self).__init__(*args, **kwargs)
