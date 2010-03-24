@@ -15,7 +15,17 @@ import zamboni.manage
 os.environ['DJANGO_SETTINGS_MODULE'] = 'zamboni.local_settings'
 
 # This is what mod_wsgi runs.
-application = django.core.handlers.wsgi.WSGIHandler()
+django_app = application = django.core.handlers.wsgi.WSGIHandler()
+
+
+# Normally we could let WSGIHandler run directly, but while we're dark
+# launching, we want to force the script name to be empty so we don't create
+# any /z links through reverse.  This fixes bug 554576.
+def application(env, start_response):
+    if 'HTTP_X_ZEUS_DL_PT' in env:
+        env['SCRIPT_NAME'] = ''
+    return django_app(env, start_response)
+
 
 # Uncomment this to figure out what's going on with the mod_wsgi environment.
 # def application(env, start_response):
