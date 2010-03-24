@@ -164,7 +164,7 @@ MIDDLEWARE_CLASSES = (
     'amo.middleware.LocaleAndAppURLMiddleware',
 
     'django.middleware.common.CommonMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
+    'amo.middleware.NoVarySessionMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
