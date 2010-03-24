@@ -87,7 +87,16 @@ def paypal(request):
         return http.HttpResponse('Transaction already processed')
 
     # Fetch and update the contribution - item_number is the uuid we created.
-    c = Contribution.objects.get(uuid=request.POST['item_number'])
+    try:
+        c = Contribution.objects.get(uuid=request.POST['item_number'])
+    except Contribution.DoesNotExist:
+        # If these warnings frequently occur on the first IPN attempt,
+        # perhaps consider logging only if POST['resend'] is set.
+        ipn_type = 'repeated' if 'resend' in request.POST else 'initial'
+        log.warning('Contribution (uuid=%s) not found for %s IPN request.'
+                     % (request.POST['item_number'], ipn_type))
+        return http.HttpResponseServerError('Contribution not found')
+
     c.transaction_id = request.POST['txn_id']
     c.amount = request.POST['mc_gross']
     c.uuid = None
