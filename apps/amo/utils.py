@@ -6,6 +6,8 @@ from django.conf import settings
 from django.core import paginator
 from django.core.mail import send_mail as django_send_mail
 
+from . import log
+
 
 def paginate(request, queryset, per_page=20):
     """Get a Paginator, abstracting some common paging actions."""
@@ -35,8 +37,6 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
 
     Adds blacklist checking and error logging.
     """
-    log = logging.getLogger('z.amo')
-
     if not recipient_list:
         return True
 

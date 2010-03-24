@@ -1,4 +1,3 @@
-import logging
 import socket
 import urllib2
 
@@ -12,6 +11,7 @@ import jingo
 import phpserialize as php
 
 from stats.models import Contribution, ContributionError
+from . import log
 
 
 @never_cache
@@ -99,7 +99,6 @@ def paypal(request):
         c.mail_thankyou(request)
     except ContributionError as e:
         # A failed thankyou email is not a show stopper, but is good to know.
-        log = logging.getLogger('z.amo')
         log.error('Thankyou note email failed with error: %s' % e)
 
     return http.HttpResponse('Success!')
