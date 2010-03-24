@@ -1,7 +1,9 @@
+from django import http
 from django.contrib import admin
 from django.shortcuts import redirect
 from django.views import debug
 
+import jinja2
 import jingo
 
 import amo.models
@@ -56,3 +58,8 @@ def flagged(request):
 def settings(request):
     return jingo.render(request, 'admin/settings.html',
                         {'settings_dict': debug.get_safe_settings()})
+
+
+@admin.site.admin_view
+def env(request):
+    return http.HttpResponse(u'<pre>%s</pre>' % (jinja2.escape(request)))
