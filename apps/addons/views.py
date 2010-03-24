@@ -31,8 +31,19 @@ def author_addon_clicked(f):
 
 @author_addon_clicked
 def addon_detail(request, addon_id):
-    """Add-ons details page."""
+    """Add-ons details page dispatcher."""
     addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
+    if addon.type.id in request.APP.types:
+        if addon.type.id == amo.ADDON_PERSONA:
+            return persona_detail(request, addon)
+        else:
+            return extension_detail(request, addon)
+    else:
+        raise http.Http404
+
+
+def extension_detail(request, addon):
+    """Extensions details page."""
 
     # if current version is incompatible with this app, redirect
     comp_apps = addon.compatible_apps
@@ -40,9 +51,9 @@ def addon_detail(request, addon_id):
         prefixer = urlresolvers.get_url_prefix()
         prefixer.app = comp_apps.keys()[0].short
         return http.HttpResponsePermanentRedirect(reverse(
-            'addons.detail', args=[addon_id]))
+            'addons.detail', args=[addon.id]))
 
-    addon.is_searchengine = (addon.type == amo.ADDON_SEARCH)
+    addon.is_searchengine = (addon.type.id == amo.ADDON_SEARCH)
 
     # source tracking
     src = request.GET.get('src', 'addondetail')
@@ -96,6 +107,45 @@ def addon_detail(request, addon_id):
         'user_collections': user_collections,
     }
     return jingo.render(request, 'addons/details.html', data)
+
+
+def persona_detail(request, addon):
+    """Details page for Personas."""
+    persona = addon.persona
+
+    # this persona's categories
+    categories = addon.categories.filter(application=request.APP.id)
+    if categories:
+        category_personas = Addon.objects.valid().filter(
+            categories=categories[0]).exclude(pk=addon.pk).order_by('?')[:6]
+    else:
+        category_personas = None
+
+    # tags
+    tags = addon.tags.not_blacklisted()
+    dev_tags = tags.filter(addon_tags__user__in=addon.authors.all())
+    user_tags = tags.exclude(addon_tags__user__in=addon.authors.all())
+
+    # other personas from the same author(s)
+    other_personas_regular = Q(addonuser__listed=True,
+                               authors__in=addon.listed_authors)
+    other_personas_legacy = Q(persona__author=persona.author)
+    author_personas = Addon.objects.valid().filter(
+        other_personas_regular | other_personas_legacy,
+        type=amo.ADDON_PERSONA).exclude(
+            pk=addon.pk).distinct().select_related('persona')[:3]
+
+    data = {
+        'addon': addon,
+        'persona': persona,
+        'categories': categories,
+        'author_personas': author_personas,
+        'category_personas': category_personas,
+        'dev_tags': dev_tags,
+        'user_tags': user_tags,
+    }
+
+    return jingo.render(request, 'addons/personas_detail.html', data)
 
 
 class HomepageFilter(object):

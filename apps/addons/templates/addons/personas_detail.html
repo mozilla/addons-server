@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page_title(addon.name) }}{% endblock %}
+
+{% block bodyclass %}inverse{% endblock %}
+
+{% block content %}
+{# TODO link to personas browse page #}
+{{ breadcrumbs([('/.../', _('Personas'))]) }}
+
+<hgroup>
+  <h2 class="addon"{{ addon.name|locale_html }}>
+    <img src="{{ addon.icon_url }}" class="icon"/>
+    <span>
+      {{ addon.name }}
+    </span>
+  </h2>
+  <h4 class="author">{{ _('by') }} {{ users_list(addon.listed_authors) or
+    persona.display_username }}</h4>
+</hgroup>
+
+<div id="persona" class="primary" role="main">
+  <div class="featured">
+    <div class="featured-inner object-lead">
+
+      <div id="addon-summary-wrapper">
+        <div id="persona-summary" class="{{ addon|statusflags }}">
+
+          {{ persona_preview(persona, linked=False) }}
+
+          <table summary="{{ _('Add-on Information') }}">
+            <tbody>
+              <tr>
+                <th>{{ _('Updated') }}</th>
+                <td>
+                  <time datetime="{{ addon.modified|isotime }}">{{
+                    addon.modified|datetime }}</time>
+                </td>
+              </tr>
+              <tr class="artist">
+                <th>{{ _('Artist') }}</th>
+                <td>{{ users_list(addon.listed_authors) or
+                  persona.display_username }}</td>
+              </th>
+              <tr>
+                <th>{{ _('Rating', 'advanced_search_form_rating') }}</th>
+                <td>{{ addon|reviews_link }}</td>
+              </tr>
+              <tr class="meta-stats">
+                <th>{{ _('Daily Users') }}</th>
+                <td>
+                  {# TODO #}
+                  <strong class="downloads">{{
+                    addon.total_downloads|numberfmt }}</strong>
+                </td>
+              </tr>
+              <tr>
+                <th>{{ _('License') }}</th>
+                <td>{# TODO: license_link(...) #}</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p{{ addon.summary|locale_html }}>{{ addon.summary|nl2br }}</p>
+
+          {# TODO install button #}
+
+          {# TODO sharing? #}
+          {{ addon_sharing(addon) }}
+
+      </div></div>{# /addon-summary and -wrapper #}
+  </div></div>{# /featured-inner and featured #}
+
+  <div id="more-personas">
+    {% cache category_personas %}
+      {% if category_personas %}
+      <div id="more-category" class="persona-list {{ 'persona-list-3col' if not author_personas else 'persona-list-2col' }}">
+        {# L10n: {0} is a category name, such as Nature #}
+        <h3>{{ _('More {0} Personas')|f(categories[0].name) }}</h3>
+        <div class="article">
+          {% for other in category_personas %}
+            {{ persona_preview(other.persona, size='small') }}
+          {% endfor %}
+        </div>
+        {# L10n: {0} is a category name, such as Nature #}
+        <a href="TODO" class="more-link">{{ _('See all {0} Personas')|f(categories[0].name) }}</a>
+      </div>
+      {% endif %}
+    {% endcache %}
+
+    {% cache author_personas %}
+      {% if author_personas %}
+      <div id="more-artist">
+        <h3>{{ _('More by this Artist') }}</h3>
+        <div class="article">
+          {% for other in author_personas %}
+            {{ persona_preview(other.persona, size='small') }}
+          {% endfor %}
+        </div>
+        <a href="TODO" class="more-link">{{ _('See all Personas by this Artist') }}</a>
+      </div>
+      {% endif %}
+    {% endcache %}
+  </div>{# /more-personas #}
+
+  {{ review_list_box(addon=addon, reviews=addon.reviews) }}
+
+  {{ review_add_box(addon=addon) }}
+
+</div>{# /primary #}
+
+<div id="persona-side" class="secondary" role="secondary">
+  {% if categories %}
+  <div class="category-list">
+    <h3 class="compact-bottom">{{ _('Categories') }}</h3>
+    <ul>
+      {# TODO reverse URL #}
+      {% for category in categories %}
+      <li>
+        <a href="TODO" class="category">{{ category }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+  {{ tags_box(addon=addon, dev_tags=dev_tags, user_tags=user_tags) }}
+
+</div>{# /secondary #}
+{% endblock content %}

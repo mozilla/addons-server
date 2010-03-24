@@ -1,0 +1,16 @@
+<div class="persona persona-{{ size }}">
+  <div class="persona-inner">
+    <div class="persona-preview">
+      {% set tag = 'a' if linked else 'div' %}
+      <{{ tag }} {{ ('href="%s" ' % addon.get_url_path())|safe if
+                    linked else '' }}
+      title="{{ addon.name }}" style="background-image:url('{{ preview }}')"
+      data-browsertheme="{{ persona.json_data }}"></{{ tag }}>
+
+      {% if linked %}
+      {# TODO persona install button on hover #}
+      <span class="persona-install"></span>
+      {% endif %}
+    </div>
+  </div>
+</div>

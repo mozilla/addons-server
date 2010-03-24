@@ -304,6 +304,10 @@ MINIFY_BUNDLES = {
             'js/get-satisfaction-v2.js',
             'js/zamboni/contributions.js',
             'js/zamboni/addon_details.js',
+
+            # Personas
+            'js/zamboni/jquery.hoverIntent.min.js',
+            'js/zamboni/personas.js',
         ),
     }
 }
@@ -340,8 +344,10 @@ USER_PIC_URL = STATIC_URL + '/img/uploads/userpics/%s/%s/%s.jpg?modified=%d'
 FILES_URL = STATIC_URL + "/downloads/file/%d/%s?src=%s"
 COLLECTION_ICON_URL = ('%s/%s/%s/images/collection_icon/%%s/%%s' %
                        (STATIC_URL, LANGUAGE_CODE, DEFAULT_APP))
-PERSONAS_IMAGE_URL = ('https://getpersonas.com/static/'
+PERSONAS_IMAGE_URL = ('http://getpersonas.com/static/'
                       '%(tens)d/%(units)d/%(id)d/%(file)s')
+PERSONAS_IMAGE_URL_SSL = ('https://getpersonas.com/static/'
+                          '%(tens)d/%(units)d/%(id)d/%(file)s')
 
 # Outgoing URL bouncer
 REDIRECT_URL = 'http://outgoing.mozilla.org/v1/'

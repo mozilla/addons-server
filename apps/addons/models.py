@@ -1,4 +1,5 @@
 from datetime import date
+import json
 import time
 
 from django.conf import settings
@@ -343,7 +344,7 @@ class Addon(amo.models.ModelBase):
 class Persona(caching.base.CachingMixin, models.Model):
     """Personas-specific additions to the add-on model."""
     addon = models.OneToOneField(Addon)
-    persona = models.PositiveIntegerField(db_column='persona_id')
+    persona_id = models.PositiveIntegerField()
     # name: deprecated in favor of Addon model's name field
     # description: deprecated, ditto
     header = models.CharField(max_length=64, null=True)
@@ -363,12 +364,14 @@ class Persona(caching.base.CachingMixin, models.Model):
     def __unicode__(self):
         return unicode(self.addon.name)
 
-    def _image_url(self, filename):
-        units = self.id % 10
-        tens = (self.id // 10) % 10
-        return settings.PERSONAS_IMAGE_URL % {
+    def _image_url(self, filename, ssl=True):
+        base_url = (settings.PERSONAS_IMAGE_URL_SSL if ssl else
+                    settings.PERSONAS_IMAGE_URL)
+        units = self.persona_id % 10
+        tens = (self.persona_id // 10) % 10
+        return base_url % {
             'units': units, 'tens': tens, 'file': filename,
-            'id': self.id
+            'id': self.persona_id
         }
 
     @amo.cached_property
@@ -380,6 +383,28 @@ class Persona(caching.base.CachingMixin, models.Model):
     def preview_url(self):
         """URL to Persona's big, 680px, preview."""
         return self._image_url('preview_large.jpg')
+
+    @amo.cached_property
+    def json_data(self):
+        """Persona JSON Data for Browser/extension preview."""
+        hexcolor = lambda color: '#%s' % color
+        addon = self.addon
+        return json.dumps({
+            'id': unicode(self.persona_id), # Personas dislikes ints
+            'name': unicode(addon.name),
+            'accentcolor': hexcolor(self.accentcolor),
+            'textcolor': hexcolor(self.textcolor),
+            'category': unicode(addon.categories.all()[0].name),
+            'author': (addon.listed_authors[0].display_name if
+                       addon.listed_authors else self.author),
+            'description': unicode(addon.description),
+            'header': self._image_url(self.header, ssl=False),
+            'footer': self._image_url(self.footer, ssl=False),
+            'headerURL': self._image_url(self.header, ssl=False),
+            'footerURL': self._image_url(self.footer, ssl=False),
+            'previewURL': self.preview_url,
+            'iconURL': self.thumb_url,
+        }, separators=(',', ':'))
 
 
 class AddonCategory(caching.base.CachingMixin, models.Model):

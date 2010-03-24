@@ -255,7 +255,6 @@ class TestAddonPledgeModel(test_utils.TestCase):
 class TestPersonaModel(test_utils.TestCase):
 
     def test_image_urls(self):
-        mypersona = Persona(id=1234)
-        assert mypersona.thumb_url.endswith('/3/4/1234/preview.jpg')
-        assert mypersona.preview_url.endswith('/3/4/1234/preview_large.jpg')
-        pass
+        mypersona = Persona(id=1234, persona_id=9876)
+        assert mypersona.thumb_url.endswith('/7/6/9876/preview.jpg')
+        assert mypersona.preview_url.endswith('/7/6/9876/preview_large.jpg')
