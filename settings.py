@@ -19,6 +19,7 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 DEBUG_PROPAGATE_EXCEPTIONS = True
 LOG_LEVEL = logging.DEBUG
+SYSLOG_TAG = "http_app_addons"
 
 ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
