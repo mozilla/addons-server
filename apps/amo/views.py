@@ -20,7 +20,6 @@ def monitor(request):
     # For each check, a boolean pass/fail status to show in the template
     status_summary = {}
     status = 200
-    log = logging.getLogger('z.amo')
 
     # Check all memcached servers
     scheme, servers, _ = parse_backend_uri(settings.CACHE_BACKEND)
