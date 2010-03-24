@@ -10,4 +10,7 @@ urlpatterns = patterns('',
 
     url('^themes/(?P<category>[^/]+)?$', views.themes,
         name='browse.themes'),
+
+    url('^extensions/(?P<category>[^/]+)?$', views.extensions,
+        name='browse.extensions'),
 )

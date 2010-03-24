@@ -1,8 +1,9 @@
 import collections
 import itertools
 
-from l10n import ugettext as _, ugettext_lazy as _lazy
+from django.shortcuts import get_object_or_404
 
+from l10n import ugettext as _, ugettext_lazy as _lazy
 import jingo
 import product_details
 
@@ -156,3 +157,21 @@ def _listing(request, addon_type, default='downloads'):
           .filter(type=addon_type).distinct())
     filter = AddonFilter(request, qs, default)
     return filter.qs, filter, experimental
+
+
+def extensions(request, category=None):
+    TYPE = amo.ADDON_EXTENSION
+    addons, filter, experimental = _listing(request, TYPE)
+
+    if category is not None:
+        q = Category.objects.filter(application=request.APP.id, type=TYPE)
+        category = get_object_or_404(q, slug=category)
+        addons = addons.filter(categories__id=category.id)
+
+    addons = amo.utils.paginate(request, addons)
+
+    return jingo.render(request, 'browse/extensions.html',
+                        {'category': category, 'addons': addons,
+                         'experimental': experimental,
+                         'sorting': filter.sorting,
+                         'sort_opts': filter.opts})
