@@ -25,9 +25,10 @@ class ButtonTest(object):
         self.addon.current_version = v
 
         self.file = self.get_file(amo.PLATFORM_ALL)
-        v.files.all.return_value = [self.file]
+        v.files.select_related.return_value = [self.file]
 
         self.platforms = amo.PLATFORM_MAC, amo.PLATFORM_LINUX
+        self.platform_files = map(self.get_file, self.platforms)
 
         self.request = test_utils.RequestFactory().get('/')
         # Make GET mutable.
@@ -272,12 +273,11 @@ class TestButton(ButtonTest):
         eq_(b.fix_link('foo.com'), 'foo.com?src=src&collection=xxx')
 
     def test_links(self):
-        platforms = self.platforms
-        self.version.files.all.return_value = map(self.get_file, platforms)
+        self.version.files.select_related.return_value = self.platform_files
         links = self.get_button().links()
 
-        eq_(len(links), len(platforms))
-        eq_([x.os for x in links], list(platforms))
+        eq_(len(links), len(self.platforms))
+        eq_([x.os for x in links], list(self.platforms))
 
 
 class TestButtonHtml(ButtonTest):
@@ -325,7 +325,7 @@ class TestButtonHtml(ButtonTest):
         eq_('xpi.latest', button.attr('data-realurl'))
 
     def test_multi_platform(self):
-        self.version.files.all.return_value = map(self.get_file, self.platforms)
+        self.version.files.select_related.return_value = self.platform_files
         names = [p.name for p in self.platforms]
         doc = self.render()
         eq_(doc('.button').length, 2)

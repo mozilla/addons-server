@@ -94,7 +94,7 @@ class InstallButton(object):
 
     def links(self):
         rv = []
-        for file in self.version.files.all():
+        for file in self.version.files.select_related('version'):
             text, url, os = self.file_details(file)
             rv.append(Link(text, self.fix_link(url), os, file))
         return rv
