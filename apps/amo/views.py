@@ -20,6 +20,7 @@ def monitor(request):
     # For each check, a boolean pass/fail status to show in the template
     status_summary = {}
     status = 200
+    log = logging.getLogger('z.amo')
 
     # Check all memcached servers
     scheme, servers, _ = parse_backend_uri(settings.CACHE_BACKEND)
@@ -36,6 +37,8 @@ def monitor(request):
                 result = False
                 status_summary['memcache'] = False
                 status = 500
+                log.critical('Failed to connect to memcached (%s): %s' %
+                                                                    (host, e))
             else:
                 result = True
             finally:
@@ -45,6 +48,12 @@ def monitor(request):
         if len(memcache_results) < 2:
             status = 500
             status_summary['memcache'] = False
+            log.warning('You should have 2+ memcache servers.  You have %s.' %
+                                                        len(memcache_results))
+    if not memcache_results:
+        status = 500
+        status_summary['memcache'] = False
+        log.info('Memcache is not configured.')
 
     return jingo.render(request, 'services/monitor.html',
                         {'memcache_results': memcache_results,
