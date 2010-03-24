@@ -26,11 +26,17 @@ def test_user_link():
     eq_(user_link(u), '<a href="%s">John Connor</a>' %
         reverse('users.profile', args=[1]))
 
+    # handle None gracefully
+    eq_(user_link(None), '')
+
 
 def test_users_list():
     u1 = UserProfile(firstname='John', lastname='Connor', pk=1)
     u2 = UserProfile(firstname='Sarah', lastname='Connor', pk=2)
     eq_(users_list([u1, u2]), ', '.join((user_link(u1), user_link(u2))))
+
+    # handle None gracefully
+    eq_(user_link(None), '')
 
 
 def test_user_link_unicode():

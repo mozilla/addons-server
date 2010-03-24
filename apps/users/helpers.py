@@ -25,11 +25,15 @@ def emaillink(email):
 
 @register.filter
 def user_link(user):
+    if not user:
+        return ''
     return jinja2.Markup(_user_link(user))
 
 
 @register.function
 def users_list(users):
+    if not users:
+        return ''
     return jinja2.Markup(', '.join(map(_user_link, users)))
 
 
