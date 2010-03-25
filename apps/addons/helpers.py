@@ -102,3 +102,17 @@ def review_add_box(context, addon):
     c = dict(context.items())
     c['addon'] = addon
     return c
+
+
+@register.inclusion_tag('addons/tags_box.html')
+@jinja2.contextfunction
+def tags_box(context, addon, dev_tags, user_tags):
+    """
+    Details page: Show a box with existing tags along with a form to add new
+    ones.
+    """
+    c = dict(context.items())
+    c.update({'addon': addon,
+              'dev_tags': dev_tags,
+              'user_tags': user_tags})
+    return c
