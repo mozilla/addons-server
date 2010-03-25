@@ -82,3 +82,23 @@ def contribution(addon, text='', src='', show_install=False, show_help=True):
         'has_suggested': bool(addon.suggested_amount),
         'pledge': pledge,
     }))
+
+
+@register.inclusion_tag('addons/review_list_box.html')
+@jinja2.contextfunction
+def review_list_box(context, addon, reviews):
+    """Details page: Show a box with three add-on reviews."""
+    c = dict(context.items())
+    c.update({'addon': addon,
+              'reviews': reviews,
+             })
+    return c
+
+
+@register.inclusion_tag('addons/review_add_box.html')
+@jinja2.contextfunction
+def review_add_box(context, addon):
+    """Details page: Show a box for the user to post a review."""
+    c = dict(context.items())
+    c['addon'] = addon
+    return c
