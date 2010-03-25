@@ -1,6 +1,7 @@
 {% set b = button %}
 {% set compat = addon.compatible_apps[APP] %}
 
+{% cache addon %}
 <div class="install-shell">
 <div class="install {{ b.install_class|join(' ') }}"
      data-addon="{{ addon.id }}"
@@ -40,3 +41,4 @@
   {%- endif %}
 </div>
 </div>
+{% endcache %}

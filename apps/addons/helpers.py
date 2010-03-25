@@ -116,3 +116,11 @@ def tags_box(context, addon, dev_tags, user_tags):
               'dev_tags': dev_tags,
               'user_tags': user_tags})
     return c
+
+
+@register.inclusion_tag('addons/listing_items.html')
+@jinja2.contextfunction
+def addon_listing_items(context, addons):
+    c = dict(context.items())
+    c['addons'] = addons
+    return c
