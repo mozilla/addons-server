@@ -4,6 +4,25 @@ from nose.tools import eq_
 
 import amo
 from versions.models import License, Version
+from versions.compare import version_int, dict_from_int
+
+
+def test_version_int():
+    """Tests that version_int. Corrects our versions."""
+    eq_(version_int("3.5.0a1pre2"), 3050000001002)
+    eq_(version_int(""), 200100)
+
+
+def test_dict_from_int():
+    d = dict_from_int(3050000001002)
+    eq_(d['major'], 3)
+    eq_(d['minor1'], 5)
+    eq_(d['minor2'], 0)
+    eq_(d['minor3'], 0)
+    eq_(d['alpha'], 'a')
+    eq_(d['alpha_ver'], 1)
+    eq_(d['pre'], 'pre')
+    eq_(d['pre_ver'], 2)
 
 
 class TestVersion(test.TestCase):

@@ -12,6 +12,25 @@ version_re = re.compile(r"""(?P<major>\d+)      # major (x in x.y)
                         re.VERBOSE)
 
 
+def dict_from_int(version_int):
+    """Converts a version integer into a dictionary with major/minor/...
+    info."""
+    d = {}
+    rem = version_int
+    (rem, d['pre_ver']) = divmod(rem, 100)
+    (rem, d['pre']) = divmod(rem, 10)
+    (rem, d['alpha_ver']) = divmod(rem, 100)
+    (rem, d['alpha']) = divmod(rem, 10)
+    (rem, d['minor3']) = divmod(rem, 100)
+    (rem, d['minor2']) = divmod(rem, 100)
+    (rem, d['minor1']) = divmod(rem, 100)
+    (rem, d['major']) = divmod(rem, 100)
+    d['pre'] = None if d['pre'] else 'pre'
+    d['alpha'] = {0: 'a', 1: 'b'}.get(d['alpha'])
+
+    return d
+
+
 def version_dict(version):
     """Turn a version string into a dict with major/minor/... info."""
     match = version_re.match(version or '')
@@ -27,3 +46,19 @@ def version_dict(version):
         d = dict((k, None) for k in numbers)
         d.update((k, None) for k in letters)
     return d
+
+
+def version_int(version):
+    d = version_dict(str(version))
+    for key in ['alpha_ver', 'major', 'minor1', 'minor2', 'minor3',
+                'pre_ver']:
+        if not d[key]:
+            d[key] = 0
+    atrans = {'a': 0, 'b': 1}
+    d['alpha'] = atrans.get(d['alpha'], 2)
+    d['pre'] = 0 if d['pre'] else 1
+
+    v = "%d%02d%02d%02d%d%02d%d%02d" % (d['major'], d['minor1'],
+            d['minor2'], d['minor3'], d['alpha'], d['alpha_ver'], d['pre'],
+            d['pre_ver'])
+    return int(v)
