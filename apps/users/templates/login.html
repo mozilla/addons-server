@@ -54,8 +54,7 @@
           <ul>
               {# /users/register #}
               <li><a href="#">{{ _("I don't have an account.") }} </a></li>
-              {# /users/pwreset #}
-              <li><a href="#">{{ _("I forgot my password.") }}</a></li>
+              <li><a href="{{ url('users.pwreset') }}">{{ _("I forgot my password.") }}</a></li>
           </ul>
       </div>
   </div>

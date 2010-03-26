@@ -35,9 +35,10 @@ def create_password(algorithm, raw_password):
 
 class UserProfile(amo.models.ModelBase):
 
-    nickname = models.CharField(max_length=255, unique=True, default='')
-    firstname = models.CharField(max_length=255, default='')
-    lastname = models.CharField(max_length=255, default='')
+    nickname = models.CharField(max_length=255, unique=True, default='',
+                                null=True, blank=True)
+    firstname = models.CharField(max_length=255, default='', blank=True)
+    lastname = models.CharField(max_length=255, default='', blank=True)
     password = models.CharField(max_length=255, default='')
     email = models.EmailField(unique=True)
 
@@ -78,6 +79,12 @@ class UserProfile(amo.models.ModelBase):
         return self.addons.valid().filter(addonuser__listed=True)
 
     @property
+    def name(self):
+        """Can be used while we're transitioning from separate first/last names
+        to a single field.  Bug 546818#6"""
+        return ('%s %s' % (self.firstname, self.lastname)).strip()
+
+    @property
     def picture_url(self):
         split_id = re.match(r'((\d*?)(\d{0,3}?))\d{1,3}$', str(self.id))
         if not self.picture_type:
@@ -114,6 +121,18 @@ class UserProfile(amo.models.ModelBase):
     def reviews(self):
         """All reviews that are not dev replies."""
         return self._reviews_all.filter(reply_to=None)
+
+    def anonymize(self):
+        log.info("User (%s: <%s>) is being anonymized." % (self, self.email))
+        self.email = ""
+        self.password = "sha512$Anonymous$Password"
+        self.firstname = ""
+        self.lastname = ""
+        self.nickname = ""
+        self.homepage = ""
+        self.deleted = True
+        self.picture_type = ""
+        self.save()
 
     def save(self, force_insert=False, force_update=False, using=None):
         # we have to fix stupid things that we defined poorly in remora

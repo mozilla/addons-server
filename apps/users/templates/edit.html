@@ -9,7 +9,6 @@
 
 {% block content %}
 <div class="primary" role="main">
-  {# XXX TODO This messages block should be a macro #}
   {% if messages %}
     {% for message in messages %}
       <div class="notification-box {{ message.tags }}">
@@ -30,12 +29,16 @@
           <h3>{{ _('My account') }}</h3>
           <ul>
             <li>
-              <label for="id_lastname">{{ _('Nickname') }}</label>
+              <label for="id_nickname">
+                {{ _('Nickname') }} <abbr class="req" title="required">*</abbr>
+              </label>
               {{ form.nickname|safe }}
               {{ form.nickname.errors|safe }}
             </li>
             <li>
-              <label for="id_email">{{ _('Email Address') }}</label>
+              <label for="id_email">
+                {{ _('Email Address') }} <abbr class="req" title="required">*</abbr>
+              </label>
               {{ form.email|safe }}
               {{ form.email.errors|safe }}
             </li>
@@ -176,7 +179,7 @@
       </div>{# /#user-profile #}
       <div class="listing-footer">
         <button type="submit" class="prominent">{{ _('Update') }}</button>
-        <p id="acct-delete"><a href="#" title="{{ _('Permanently delete your account') }}">{{ _('Delete Account') }}</a></p>
+        <p id="acct-delete"><a href="{{ url('users.delete') }}" title="{{ _('Permanently delete your account') }}">{{ _('Delete Account') }}</a></p>
       </div>
     </div>{# /.tab-wrapper #}
   </form>

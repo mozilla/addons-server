@@ -15,10 +15,11 @@ urlpatterns = patterns('',
     # URLs for a single user.
     ('^user/(?P<user_id>\d+)/', include(detail_patterns)),
 
+    url('^users/delete$', views.delete, name='users.delete'),
+    url('^users/edit$', views.edit, name='users.edit'),
+
     url(r'^users/login', views.login, name='users.login'),
     url(r'^users/logout', views.logout, name='users.logout'),
-
-    url('^users/edit$', views.edit, name='users.edit'),
 
     # Password reset stuff
     url(r'^users/pwreset/?$', auth_views.password_reset,

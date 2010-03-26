@@ -32,6 +32,42 @@ class SetPasswordForm(auth_forms.SetPasswordForm):
         super(SetPasswordForm, self).save(**kw)
 
 
+class UserDeleteForm(forms.Form):
+    password = forms.CharField(max_length=255, required=True,
+                            widget=forms.PasswordInput(render_value=False))
+    confirm = forms.BooleanField(required=False)
+
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request', None)
+        return super(UserDeleteForm, self).__init__(*args, **kwargs)
+
+    def clean_password(self):
+        data = self.cleaned_data
+        amouser = self.request.user.get_profile()
+        if not amouser.check_password(data["password"]):
+            raise forms.ValidationError(_("Wrong password entered!"))
+
+    def clean_confirm(self):
+        if not self.cleaned_data['confirm']:
+            msg = _(('You need to check the box "I understand..." before we '
+                     'can delete your account.'))
+            raise forms.ValidationError(msg)
+
+    def clean(self):
+        amouser = self.request.user.get_profile()
+        if amouser.is_developer:
+            # This is tampering because the form isn't shown on the page if the
+            # user is a developer
+            log.warning('[Tampering] Attempt to delete developer account (%s)'
+                                                          % self.request.user)
+            raise forms.ValidationError("")
+
+    def save(self, **kw):
+        log.info('User (%s) has successfully deleted their account.'
+                                                        % self.request.user)
+        super(UserDeleteForm, self).save(**kw)
+
+
 class UserEditForm(forms.ModelForm):
     oldpassword = forms.CharField(max_length=255, required=False,
                             widget=forms.PasswordInput(render_value=False))
@@ -48,12 +84,22 @@ class UserEditForm(forms.ModelForm):
         model = models.UserProfile
         exclude = ['password']
 
+    def clean_nickname(self):
+        """We're breaking the rules and allowing null=True and blank=True on a
+        CharField because I want to enforce uniqueness in the db.  In order to
+        let save() work, I override '' here."""
+        n = self.cleaned_data['nickname']
+        if n == '':
+            n = None
+        return n
+
     def clean(self):
         super(UserEditForm, self).clean()
 
         data = self.cleaned_data
         amouser = self.request.user.get_profile()
 
+        # Passwords
         p1 = data.get("newpassword")
         p2 = data.get("newpassword2")
 
@@ -67,6 +113,17 @@ class UserEditForm(forms.ModelForm):
                 self._errors["newpassword2"] = ErrorList([msg])
                 del data["newpassword"]
                 del data["newpassword2"]
+
+        # Names
+        if not "nickname" in self._errors:
+            fname = data.get("firstname")
+            lname = data.get("lastname")
+            nname = data.get("nickname")
+            if not (fname or lname or nname):
+                msg = _("A first name, last name or nickname is required.")
+                self._errors["firstname"] = ErrorList([msg])
+                self._errors["lastname"] = ErrorList([msg])
+                self._errors["nickname"] = ErrorList([msg])
 
         return data
 

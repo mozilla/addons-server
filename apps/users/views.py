@@ -26,6 +26,23 @@ log = logging.getLogger('z.users')
 
 
 @login_required
+def delete(request):
+    amouser = request.user.get_profile()
+    if request.method == 'POST':
+        form = forms.UserDeleteForm(request.POST, request=request)
+        if form.is_valid():
+            messages.success(request, _('Profile Deleted'))
+            amouser.anonymize()
+            logout(request)
+            form = None
+    else:
+        form = forms.UserDeleteForm()
+
+    return jingo.render(request, 'delete.html',
+                        {'form': form, 'amouser': amouser})
+
+
+@login_required
 def edit(request):
     amouser = request.user.get_profile()
     if request.method == 'POST':
@@ -52,7 +69,7 @@ def edit(request):
                 token, hash = EmailResetCode.create(amouser.id, amouser.email)
                 url = "%s%s" % (settings.SITE_URL,
                                 reverse('users.emailchange', args=[amouser.id,
-                                                                   token, hash]))
+                                                                token, hash]))
                 t = loader.get_template('email/emailchange.ltxt')
                 c = {'domain': domain, 'url': url, }
                 send_mail(_(("Please confirm your email address "

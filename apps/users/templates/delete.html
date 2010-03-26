@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page_title(_('Delete User Account')) }}{% endblock %}
+
+{% block content %}
+
+<div class="primary" role="main">
+  <div class="primary">
+    <h2>{{ _('Delete User Account') }}</h2>
+
+    {% if messages %}
+      {% for message in messages %}
+        <div class="notification-box {{ message.tags }}">
+          <h2>{{ message }}</h2>
+        </div>
+      {% endfor %}
+    {% endif %}
+
+    {% if amouser.is_developer %}
+      <div class="notification-box info">
+      {% trans link=url('users.profile', amouser.id) %}
+        You cannot delete your account if you are listed as an
+        <a href="{{ link }}"> author of any add-ons</a>. To delete your
+        account, please have another person in your development group delete
+        you from the list of authors for your add-ons. Afterwards you will be
+        able to delete your account here.
+      {% endtrans %}
+      </div>
+
+    {% else %}
+
+      {% if form %}
+        <div class="notification-box info prose">
+          <p>{% trans site=settings.DOMAIN %}
+            By clicking "delete" your account is going to be <strong>permanently removed</strong>. That means:
+            <ul>
+              <li>You will not be able to log into {{ site }} anymore.</li>
+                <li>Your reviews and ratings will not be deleted, but they will no longer be associated with you.</li>
+            </ul>
+          {% endtrans %}</p>
+        </div>
+        <form method="post" action="">
+          {{ csrf() }}
+          <div id="user-edit" class="tab-wrapper">
+            <div id="user-account" class="tab-panel">
+              <fieldset>
+                <h3>{{ _('Confirm account deletion') }}</h3>
+                <ul>
+                    <label for="id_password">{{ _('Password') }}</label>
+                    {{ form.password|safe }}
+                    {{ form.password.errors|safe }}
+                  </li>
+                  <li>
+                    <label for="id_confirm" class="check">
+                      {{ form.confirm|safe }}
+                      {{ _('I understand this step cannot be undone.') }}
+                    </label>
+                    {{ form.confirm.errors|safe }}
+                  </li>
+                </ul>
+              </fieldset>
+            </div>
+            <div class="listing-footer">
+              <button type="submit">{{ _('Delete my user account now') }}</button>
+            </div>
+          </div>
+        </form>
+      {% endif %}
+    {% endif %}{# /amouser.is_developer #}
+  </div>
+
+</div>{# .primary #}
+
+{% endblock content %}
