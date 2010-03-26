@@ -344,6 +344,30 @@ class Addon(amo.models.ModelBase):
         return self.eula and self.eula.localized_string
 
 
+class Persona(caching.base.CachingMixin, models.Model):
+    """Personas-specific additions to the add-on model."""
+    addon = models.OneToOneField(Addon)
+    persona = models.PositiveIntegerField(db_column='persona_id')
+    # name: deprecated in favor of Addon model's name field
+    # description: deprecated, ditto
+    header = models.CharField(max_length=64, null=True)
+    footer = models.CharField(max_length=64, null=True)
+    accentcolor = models.CharField(max_length=10, null=True)
+    textcolor = models.CharField(max_length=10, null=True)
+    author = models.CharField(max_length=32, null=True)
+    display_username = models.CharField(max_length=32, null=True)
+    submit = models.DateTimeField(null=True)
+    approve = models.DateTimeField(null=True)
+
+    objects = caching.base.CachingManager()
+
+    class Meta:
+        db_table = 'personas'
+
+    def __unicode__(self):
+        return unicode(self.addon.name)
+
+
 class AddonCategory(caching.base.CachingMixin, models.Model):
     addon = models.ForeignKey(Addon)
     category = models.ForeignKey('Category')
