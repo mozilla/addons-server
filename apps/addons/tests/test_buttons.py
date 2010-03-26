@@ -246,7 +246,7 @@ class TestButton(ButtonTest):
         _, url, _ = b.file_details(file)
         eq_(url, 'xpi.url')
 
-        # Eula roadblock.
+        # EULA roadblock.
         b.show_eula = True
         text, url, _ = b.file_details(file)
         eq_(text, 'Continue to Download &rarr;')
