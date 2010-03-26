@@ -135,6 +135,10 @@ def test_urlparams():
     s = render('{{ base|urlparams(sort=None) }}', c)
     eq_(s, url)
 
+    # Removing a query
+    s = render('{{ base_query|urlparams(x=None) }}', c)
+    eq_(s, url)
+
 
 def test_wround():
     # Invalid input formats.

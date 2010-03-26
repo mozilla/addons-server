@@ -57,9 +57,10 @@ def urlparams(url_, hash=None, **query):
     fragment = hash if hash is not None else url.fragment
 
     query_dict = dict(cgi.parse_qsl(url.query)) if url.query else {}
-    query_dict.update((k, v) for k, v in query.items() if v is not None)
+    query_dict.update((k, v) for k, v in query.items())
 
-    query_string = urllib.urlencode(query_dict.items())
+    query_string = urllib.urlencode(dict((k, v) for k, v in query_dict.items()
+                                         if v is not None))
     new = urlparse.ParseResult(url.scheme, url.netloc, url.path, url.params,
                                query_string, fragment)
     return new.geturl()
@@ -302,12 +303,17 @@ def license_link(license):
 
     # TODO link to custom license page
     parts.append('<li class="text">')
+
     if license.url:
-        parts.append('<a href="%s"%s>%s</a>' % (
-            license.url,
-            (' title="%s"' % unicode(license.name)) if license.linktext else '',
-            unicode(license.linktext or license.name)
-        ))
+        if license.linktext:
+            title = ' title="%s"' % unicode(license.name)
+            linktext = license.linktext
+        else:
+            title = ''
+            linktext = license.name
+
+        parts.append(u'<a href="%s"%s>%s</a>' % (
+                     license.url, title, linktext))
     else:
         parts.append(unicode(license.name))
     parts.append('</li></ul>')
