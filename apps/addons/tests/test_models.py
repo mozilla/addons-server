@@ -7,7 +7,7 @@ from nose.tools import eq_, assert_not_equal
 import test_utils
 
 import amo
-from addons.models import Addon, AddonPledge
+from addons.models import Addon, AddonPledge, Persona
 from stats.models import Contribution
 
 
@@ -235,3 +235,12 @@ class TestAddonPledgeModel(test_utils.TestCase):
         pledge = AddonPledge.objects.create(addon_id=4, target=230,
                                             deadline=date.today())
         eq_(pledge.raised, 0)
+
+
+class TestPersonaModel(test_utils.TestCase):
+
+    def test_image_urls(self):
+        mypersona = Persona(id=1234)
+        assert mypersona.thumb_url.endswith('/3/4/1234/preview.jpg')
+        assert mypersona.preview_url.endswith('/3/4/1234/preview_large.jpg')
+        pass

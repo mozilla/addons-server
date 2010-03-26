@@ -336,6 +336,8 @@ USER_PIC_URL = STATIC_URL + '/img/uploads/userpics/%s/%s/%s.jpg?modified=%d'
 FILES_URL = STATIC_URL + "/downloads/file/%d/%s?src=%s"
 COLLECTION_ICON_URL = ('%s/%s/%s/images/collection_icon/%%s/%%s' %
                        (STATIC_URL, LANGUAGE_CODE, DEFAULT_APP))
+PERSONAS_IMAGE_URL = ('https://getpersonas.com/static/'
+                      '%(tens)d/%(units)d/%(id)d/%(file)s')
 
 # Outgoing URL bouncer
 REDIRECT_URL = 'https://outgoing.mozilla.org/v1/'

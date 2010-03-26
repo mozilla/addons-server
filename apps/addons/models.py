@@ -367,6 +367,24 @@ class Persona(caching.base.CachingMixin, models.Model):
     def __unicode__(self):
         return unicode(self.addon.name)
 
+    def _image_url(self, filename):
+        units = self.id % 10
+        tens = (self.id // 10) % 10
+        return settings.PERSONAS_IMAGE_URL % {
+            'units': units, 'tens': tens, 'file': filename,
+            'id': self.id
+        }
+
+    @amo.cached_property
+    def thumb_url(self):
+        """URL to Persona's thumbnail preview."""
+        return self._image_url('preview.jpg')
+
+    @amo.cached_property
+    def preview_url(self):
+        """URL to Persona's big, 680px, preview."""
+        return self._image_url('preview_large.jpg')
+
 
 class AddonCategory(caching.base.CachingMixin, models.Model):
     addon = models.ForeignKey(Addon)
