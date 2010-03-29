@@ -41,7 +41,7 @@ while keeping the sidebar cached. #}
     <h2>{{ _('Extensions') }}</h2>
   {% endif %}
   {# L10n: {0} is an integer. #}
-  <h3>{{ _('{0} add-ons')|f(addons.paginator.count) }}</h3>
+  <h3>{{ _('<b>{0}</b> add-ons')|f(addons.paginator.count)|safe }}</h3>
   </hgroup>
 </header>
 
