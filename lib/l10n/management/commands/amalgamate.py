@@ -22,8 +22,11 @@ class Command(BaseCommand):
 
         z_keys = os.path.join(locale_dir, 'z-keys.pot')
         r_keys = os.path.join(locale_dir, 'r-keys.pot')
+        z_js_keys = os.path.join(locale_dir, 'z-javascript.pot')
 
-        if not os.path.isfile(z_keys) or not os.path.isfile(r_keys):
+        if not (os.path.isfile(z_keys) or
+                os.path.isfile(r_keys) or
+                os.path.isfile(z_js_keys)):
             sys.exit("Can't find .pot files")
 
         # Step 1: Convert the zamboni .pot file to php format
@@ -80,5 +83,49 @@ class Command(BaseCommand):
                         stdin=mergeme)
 
             p2.communicate()
+
+        # Step 4: Merge the zamboni JS files to each locale.  We duplicate a
+        # little code here, but I think it keeps it simpler than sticking these
+        # commands in the middle of Step 3.
+        print "Merging JavaScript strings to each locale..."
+        for locale in os.listdir(locale_dir):
+            if (not os.path.isdir(os.path.join(locale_dir, locale)) or
+                locale.startswith('.')):
+                        continue
+
+            z_js_messages = os.path.join(locale_dir, locale, 'LC_MESSAGES',
+                                         'z-javascript.po')
+
+            if not os.path.isfile(z_js_messages):
+                print " Can't find (%s).  Creating..." % (z_js_messages)
+                t = open(z_js_messages, 'w')
+                t.close()
+                continue
+
+            print "Merging z-javascript.po for %s" % (locale)
+
+            z_js_keys_file = open(z_js_keys)
+
+            if locale == "en_US":
+                enmerged = TemporaryFile('w+t')
+                p3 = Popen(["msgen", "-"], stdin=z_js_keys_file,
+                        stdout=enmerged)
+                p3.communicate()
+                mergeme = enmerged
+            else:
+                mergeme = z_js_keys_file
+
+            mergeme.seek(0)
+            p4 = Popen(["msgmerge",
+                        "--update",
+                        "--no-fuzzy-matching",
+                        "--sort-output",
+                        "--width=200",
+                        z_js_messages,
+                        "-"],
+                        stdin=mergeme)
+
+            p4.communicate()
+            mergeme.close()
 
         print "finished"

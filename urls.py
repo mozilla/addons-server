@@ -38,7 +38,7 @@ urlpatterns = patterns('',
 
     # Javascript translations.
     ('^jsi18n/$', 'django.views.i18n.javascript_catalog',
-     {'domain': 'javascript', 'packages': ['zamboni']}),
+     {'domain': 'z-javascript', 'packages': ['zamboni']}),
 
     # SAMO/API
     ('^api/', include('api.urls')),
