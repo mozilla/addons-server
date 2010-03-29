@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page_title(_('New User Registration')) }}{% endblock %}
+
+{% block content %}
+
+<div class="primary" role="main">
+  <div class="primary">
+    {% if messages %}
+      {% for message in messages %}
+        <div class="notification-box {{ message.tags }}">
+          <h2>{{ message }}</h2>
+        </div>
+      {% endfor %}
+    {% endif %}
+
+    {% if form %}
+      <form method="post" action="" class="user-input">
+        {{ csrf() }}
+        <fieldset>
+          <legend>{{ _('Register') }}</legend>
+          <ul>
+            <li>
+              <label for="id_email">
+                {{ _('Email Address') }} <abbr class="req" title="required">*</abbr>
+              </label>
+              {{ form.email|safe }}
+              {{ form.email.errors|safe }}
+            </li>
+            <li class="check">
+              <label for="id_emailhidden" class="check">
+                {{ form.emailhidden|safe }}
+                {{ _('Hide email address from other users') }}
+              </label>
+              {{ form.emailhidden.errors|safe }}
+            </li>
+            <li>
+              <label for="id_password">{{ _('Password') }}</label>
+              {{ form.password|safe }}
+              {{ form.password.errors|safe }}
+            </li>
+            <li>
+              <label for="id_password2">{{ _('Confirm password') }}</label>
+              {{ form.password2|safe }}
+              {{ form.password2.errors|safe }}
+            </li>
+            <li>
+              <label for="id_firstname">
+                {{ _('First name') }} <abbr class="req" title="required">*</abbr>
+              </label>
+              {{ form.firstname|safe }}
+              {{ form.firstname.errors|safe }}
+            </li>
+            <li>
+              <label for="id_lastname">{{ _('Last name') }}</label>
+              {{ form.lastname|safe }}
+              {{ form.lastname.errors|safe }}
+            </li>
+            <li>
+              <label for="id_nickname">
+                {{ _('Nickname') }} <abbr class="req" title="required">*</abbr>
+              </label>
+              {{ form.nickname|safe }}
+              {{ form.nickname.errors|safe }}
+            </li>
+            <li>
+              <label for="id_homepage">{{ _('Homepage') }}</label>
+              {{ form.homepage|safe }}
+              {{ form.homepage.errors|safe }}
+            </li>
+          </ul>
+        </fieldset>
+        <div class="fm-control">
+          <button type="submit">{{ _('Register') }}</button>
+        </div>
+      </form>
+    {% endif %}
+  </div>
+  <div class="secondary">
+    <div class="article prose">
+      <h3>{{ _('Why register?') }}</h3>
+      {% trans legal="http://www.mozilla.com/about/legal.html",
+               privacy="http://www.mozilla.com/privacy-policy.html" %}
+          <p>Registration on AMO is <strong>not required</strong> if you
+          simply want to download and install public add-ons.</p>
+          <p>You only need to register if:</p>
+            <ul>
+              <li>You want to submit reviews for add-ons</li>
+              <li>You want to keep track of your favorite add-on collections or create one yourself</li>
+              <li>You are an add-on developer and want to upload your add-on for hosting on AMO</li>
+            </ul>
+          <p>Upon successful registration, you will be sent a confirmation
+          email to the address you provided. Please follow the instructions
+          there to confirm your account.</p><p>If you like, you can read our
+          <a href="{{ legal }}" title="Legal Notices">Legal Notices</a> and
+          <a href="{{ privacy }}" title="Privacy Policy">Privacy Policy</a>.</p>
+      {% endtrans %}
+    </div>
+</div>{# .primary #}
+
+{% endblock content %}

@@ -6,8 +6,6 @@ from django.test.client import Client
 
 from nose.tools import eq_
 
-from manage import settings
-
 from users.utils import EmailResetCode
 
 
@@ -48,7 +46,8 @@ class TestEmailChange(UserViewBase):
 
     def setUp(self):
         super(TestEmailChange, self).setUp()
-        self.token, self.hash = EmailResetCode.create(self.user.id, 'nobody@mozilla.org')
+        self.token, self.hash = EmailResetCode.create(self.user.id,
+                                                      'nobody@mozilla.org')
 
     def test_fail(self):
         # Completely invalid user, valid code
@@ -79,37 +78,7 @@ class TestEmailChange(UserViewBase):
 
 class TestLogin(UserViewBase):
 
-    def _get_login_url(self):
-        return "/en-US/firefox/users/login"
-
-    def test_credential_fail(self):
-        url = self._get_login_url()
-        r = self.client.post(url, {'username': '', 'password': ''})
-        self.assertFormError(r, 'form', 'username', "This field is required.")
-        self.assertFormError(r, 'form', 'password', "This field is required.")
-
-        r = self.client.post(url, {'username': 'jbalogh@mozilla.com',
-                                   'password': 'wrongpassword'})
-        self.assertFormError(r, 'form', '', ("Please enter a correct username "
-                                             "and password. Note that both "
-                                             "fields are case-sensitive."))
-
-    def test_credential_success(self):
-        url = self._get_login_url()
-        r = self.client.post(url, {'username': 'jbalogh@mozilla.com',
-                                   'password': 'foo'}, follow=True)
-        self.assertContains(r, "Welcome, Jeff")
-        self.assertTrue(self.client.session.get_expire_at_browser_close())
-
-        r = self.client.post(url, {'username': 'jbalogh@mozilla.com',
-                                   'password': 'foo',
-                                   'rememberme': 1}, follow=True)
-        self.assertContains(r, "Welcome, Jeff")
-        # Subtract 100 to give some breathing room
-        age = settings.SESSION_COOKIE_AGE - 100
-        assert self.client.session.get_expiry_age() > age
-
-    def test_test_client_login(self):
+    def test_client_login(self):
         """This is just here to make sure Test Client's login() works with
             our custom code."""
         assert not self.client.login(username='jbalogh@mozilla.com',
@@ -130,5 +99,37 @@ class TestLogout(UserViewBase):
         self.assertContains(r, "Log in")
 
 
-class TestProfile(UserViewBase):
-    pass
+class TestRegistration(UserViewBase):
+
+    def test_confirm(self):
+        # User doesn't have a confirmation code
+        url = reverse('users.confirm', args=[self.user.id, 'code'])
+        r = self.client.get(url, follow=True)
+        self.assertContains(r, '<button type="submit">Log in</button>')
+
+        self.user_profile.confirmationcode = "code"
+        self.user_profile.save()
+
+        # URL has the wrong confirmation code
+        url = reverse('users.confirm', args=[self.user.id, 'blah'])
+        r = self.client.get(url, follow=True)
+        eq_(r.status_code, 400)
+
+        # URL has the right confirmation code
+        url = reverse('users.confirm', args=[self.user.id, 'code'])
+        r = self.client.get(url, follow=True)
+        self.assertContains(r, 'Successfully verified!')
+
+    def test_confirm_resend(self):
+        # User doesn't have a confirmation code
+        url = reverse('users.confirm.resend', args=[self.user.id])
+        r = self.client.get(url, follow=True)
+        self.assertContains(r, '<button type="submit">Log in</button>')
+
+        self.user_profile.confirmationcode = "code"
+        self.user_profile.save()
+
+        # URL has the wrong confirmation code
+        url = reverse('users.confirm.resend', args=[self.user.id])
+        r = self.client.get(url, follow=True)
+        self.assertContains(r, 'An email has been sent to your address')

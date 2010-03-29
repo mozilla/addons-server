@@ -3,6 +3,7 @@ import hashlib
 
 from django import test
 from django.contrib.auth.models import User
+from django.core import mail
 
 from nose.tools import eq_
 
@@ -26,6 +27,16 @@ class TestUserProfile(test.TestCase):
     def test_display_name_nickname(self):
         u = UserProfile(nickname='Terminator', pk=1)
         eq_(u.display_name, 'Terminator')
+
+    def test_email_confirmation_code(self):
+        u = User.objects.get(id='4043307').get_profile()
+        u.confirmationcode = 'blah'
+        u.email_confirmation_code()
+
+        eq_(len(mail.outbox), 1)
+        assert mail.outbox[0].subject.find('Please confirm your email') == 0
+        assert mail.outbox[0].body.find('%s/confirm/%s' %
+                                        (u.id, u.confirmationcode)) > 0
 
     def test_welcome_name(self):
         u1 = UserProfile(lastname='Connor')

@@ -1,7 +1,7 @@
 import logging
 from django import forms
-from django.forms.util import ErrorList
 from django.contrib.auth import forms as auth_forms
+from django.forms.util import ErrorList
 
 from l10n import ugettext as _
 
@@ -139,3 +139,55 @@ class UserEditForm(forms.ModelForm):
         log.debug('User (%s) updated their profile', amouser)
 
         amouser.save()
+
+
+class UserRegisterForm(forms.ModelForm):
+    """For registering users.  We're not building off
+    d.contrib.auth.forms.UserCreationForm because it doesn't do a lot of the
+    details here, so we'd have to rewrite most of it anyway."""
+    password = forms.CharField(max_length=255, required=False,
+                            widget=forms.PasswordInput(render_value=False))
+    password2 = forms.CharField(max_length=255, required=False,
+                            widget=forms.PasswordInput(render_value=False))
+
+    class Meta:
+        model = models.UserProfile
+
+    def clean_nickname(self):
+        """We're breaking the rules and allowing null=True and blank=True on a
+        CharField because I want to enforce uniqueness in the db.  In order to
+        let save() work, I override '' here."""
+        n = self.cleaned_data['nickname']
+        if n == '':
+            n = None
+        return n
+
+    def clean(self):
+        super(UserRegisterForm, self).clean()
+
+        data = self.cleaned_data
+
+        # Passwords
+        p1 = data.get("password")
+        p2 = data.get("password2")
+
+        if p1 != p2:
+            msg = _("The passwords did not match.")
+            self._errors["password2"] = ErrorList([msg])
+            #del data["password"]
+            del data["password2"]
+
+        # Names
+        if not ("nickname" in self._errors or
+                "firstname" in self._errors or
+                "lastname" in self._errors):
+            fname = data.get("firstname")
+            lname = data.get("lastname")
+            nname = data.get("nickname")
+            if not (fname or lname or nname):
+                msg = _("A first name, last name or nickname is required.")
+                self._errors["firstname"] = ErrorList([msg])
+                self._errors["lastname"] = ErrorList([msg])
+                self._errors["nickname"] = ErrorList([msg])
+
+        return data

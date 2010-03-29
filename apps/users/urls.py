@@ -7,6 +7,8 @@ from . import views
 # These will all start with /user/<user_id>/
 detail_patterns = patterns('',
     url('^$', views.profile, name='users.profile'),
+    url('^confirm/resend$', views.confirm_resend, name='users.confirm.resend'),
+    url('^confirm/(?P<token>[-\w]+)$', views.confirm, name='users.confirm'),
     url(r'^emailchange/(?P<token>[-\w]+={0,3})/(?P<hash>[\w]+)$',
                         views.emailchange, name="users.emailchange"),
 )
@@ -17,9 +19,9 @@ urlpatterns = patterns('',
 
     url('^users/delete$', views.delete, name='users.delete'),
     url('^users/edit$', views.edit, name='users.edit'),
-
-    url(r'^users/login', views.login, name='users.login'),
-    url(r'^users/logout', views.logout, name='users.logout'),
+    url('^users/login', views.login, name='users.login'),
+    url('^users/logout', views.logout, name='users.logout'),
+    url('^users/register$', views.register, name='users.register'),
 
     # Password reset stuff
     url(r'^users/pwreset/?$', auth_views.password_reset,

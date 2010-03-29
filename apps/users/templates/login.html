@@ -5,6 +5,15 @@
 {% block content %}
 
 <div class="primary" role="main">
+  {% if messages %}
+    {% for message in messages %}
+      {% if message %}
+        <div class="notification-box {{ message.tags }}">
+          <h2>{{ message|safe }}</h2>
+        </div>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
   {% if form.non_field_errors() %}
       <div class="notification-box error">
         <ul>
@@ -52,8 +61,7 @@
       <div class="article">
           <h3>{{ _('Login Problems?') }}</h3>
           <ul>
-              {# /users/register #}
-              <li><a href="#">{{ _("I don't have an account.") }} </a></li>
+              <li><a href="{{ url('users.register') }}">{{ _("I don't have an account.") }} </a></li>
               <li><a href="{{ url('users.pwreset') }}">{{ _("I forgot my password.") }}</a></li>
           </ul>
       </div>

@@ -1,4 +1,6 @@
 import logging
+import string
+from random import Random
 from django import http
 from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
@@ -23,6 +25,45 @@ from .users import forms
 from users.utils import EmailResetCode
 
 log = logging.getLogger('z.users')
+
+
+def confirm(request, user_id, token):
+    user = get_object_or_404(UserProfile, id=user_id)
+
+    if not user.confirmationcode:
+        return http.HttpResponseRedirect(reverse('users.login'))
+
+    if user.confirmationcode != token:
+        log.info("Account confirmation failed for user (%s)", user)
+        return http.HttpResponse(status=400)
+
+    user.confirmationcode = ''
+    user.save()
+    messages.success(request, _('Successfully verified!'))
+    log.info("Account confirmed for user (%s)", user)
+
+    return http.HttpResponseRedirect(reverse('users.login'))
+
+
+def confirm_resend(request, user_id):
+    user = get_object_or_404(UserProfile, id=user_id)
+
+    if not user.confirmationcode:
+        return http.HttpResponseRedirect(reverse('users.login'))
+
+    # Potential for flood here if someone requests a confirmationcode and then
+    # re-requests confirmations.  We may need to track requests in the future.
+    log.info("Account confirm re-requested for user (%s)", user)
+
+    user.email_confirmation_code()
+
+    msg = _(('An email has been sent to your address {0} to confirm '
+             'your account. Before you can log in, you have to activate '
+             'your account by clicking on the link provided in this '
+             'email.').format(user.email))
+    messages.info(request, msg)
+
+    return http.HttpResponseRedirect(reverse('users.login'))
 
 
 @login_required
@@ -124,15 +165,42 @@ def login(request):
     logout(request)
     r = auth.views.login(request, template_name='login.html',
                          authentication_form=forms.AuthenticationForm)
-    form = forms.AuthenticationForm(data=request.POST)
-    form.is_valid()  # clean the data
 
     if isinstance(r, HttpResponseRedirect):
-        # Succsesful log in
+        # Succsesful log in according to django.  Now we do our checks.  I do
+        # the checks here instead of the form's clean() because I want to use
+        # the messages framework and it's not available in the request there
         user = request.user.get_profile()
-        if form.cleaned_data['rememberme']:
+
+        if user.deleted:
+            logout(request)
+            log.warning('Attempt to log in with deleted account (%s)' % user)
+            messages.error(request, _('Wrong email address or password!'))
+            return jingo.render(request, 'login.html',
+                                {'form': forms.AuthenticationForm()})
+
+        if user.confirmationcode:
+            logout(request)
+            log.info('Attempt to log in with unconfirmed account (%s)' % user)
+            msg1 = _(('A link to activate your user account was sent by email '
+                      'to your address {0}. You have to click it before you '
+                      'can log in.').format(user.email))
+            url = "%s%s" % (settings.SITE_URL,
+                            reverse('users.confirm.resend', args=[user.id]))
+            msg2 = _(('If you did not receive the confirmation email, make '
+                      'sure your email service did not mark it as "junk '
+                      'mail" or "spam". If you need to, you can have us '
+                      '<a href="%s">resend the confirmation message</a> '
+                      'to your email address mentioned above.') % url)
+            messages.error(request, msg1)
+            messages.info(request, msg2)
+            return jingo.render(request, 'login.html',
+                                {'form': forms.AuthenticationForm()})
+
+        rememberme = request.POST.get('rememberme', None)
+        if rememberme:
             request.session.set_expiry(settings.SESSION_COOKIE_AGE)
-            log.debug(('User (%s) logged in successfully with'
+            log.debug(('User (%s) logged in successfully with '
                                         '"remember me" set') % user)
         else:
             log.debug("User (%s) logged in successfully" % user)
@@ -180,3 +248,46 @@ def profile(request, user_id):
     return jingo.render(request, 'users/profile.html',
                         {'profile': user, 'own_coll': own_coll,
                          'fav_coll': fav_coll})
+
+
+def register(request):
+    if request.user.is_authenticated():
+        messages.info(request, _("You are already logged in to an account."))
+        form = None
+    elif request.method == 'POST':
+        form = forms.UserRegisterForm(request.POST)
+        if form.is_valid():
+            data = request.POST
+            u = UserProfile()
+            u.email = data.get('email')
+            u.emailhidden = data.get('emailhidden', False)
+            u.firstname = data.get('firstname', None)
+            u.lastname = data.get('lastname', None)
+            u.nickname = data.get('nickname', None)
+            u.homepage = data.get('homepage', None)
+            u.deleted = False  # This defaults to true...?
+
+            u.set_password(data.get('password'))
+            u.confirmationcode = ''.join(Random().sample(
+                                         string.letters + string.digits, 60))
+
+            u.save()
+            u.create_django_user()
+            log.info("Registered new account for user (%s)", u)
+
+            u.email_confirmation_code()
+
+            messages.success(request, _(('Congratulations! Your user account '
+                                         'was successfully created.')))
+            msg = _(('An email has been sent to your address {0} to confirm '
+                     'your account. Before you can log in, you have to '
+                     'activate your account by clicking on the link provided '
+                     ' in this email.').format(u.email))
+            messages.info(request, msg)
+            form = None
+        else:
+            messages.error(request, _(('There are errors in this form. Please '
+                                       'correct them and resubmit.')))
+    else:
+        form = forms.UserRegisterForm()
+    return jingo.render(request, 'users/register.html', {'form': form, })

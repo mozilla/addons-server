@@ -5,6 +5,7 @@ from django.core import mail
 from django.test.client import Client
 from django.utils.http import int_to_base36
 
+from manage import settings
 from nose.tools import eq_
 
 
@@ -158,3 +159,117 @@ class TestUserEditForm(UserFormBase):
                 'newpassword2': 'new', }
         r = self.client.post('/en-US/firefox/users/edit', data)
         self.assertContains(r, "Profile Updated")
+
+
+class TestUserLoginForm(UserFormBase):
+
+    def _get_login_url(self):
+        return "/en-US/firefox/users/login"
+
+    def test_credential_fail(self):
+        url = self._get_login_url()
+        r = self.client.post(url, {'username': '', 'password': ''})
+        self.assertFormError(r, 'form', 'username', "This field is required.")
+        self.assertFormError(r, 'form', 'password', "This field is required.")
+
+        r = self.client.post(url, {'username': 'jbalogh@mozilla.com',
+                                   'password': 'wrongpassword'})
+        self.assertFormError(r, 'form', '', ("Please enter a correct username "
+                                             "and password. Note that both "
+                                             "fields are case-sensitive."))
+
+    def test_credential_success(self):
+        url = self._get_login_url()
+        r = self.client.post(url, {'username': 'jbalogh@mozilla.com',
+                                   'password': 'foo'}, follow=True)
+        self.assertContains(r, "Welcome, Jeff")
+        self.assertTrue(self.client.session.get_expire_at_browser_close())
+
+        r = self.client.post(url, {'username': 'jbalogh@mozilla.com',
+                                   'password': 'foo',
+                                   'rememberme': 1}, follow=True)
+        self.assertContains(r, "Welcome, Jeff")
+        # Subtract 100 to give some breathing room
+        age = settings.SESSION_COOKIE_AGE - 100
+        assert self.client.session.get_expiry_age() > age
+
+    def test_unconfirmed_account(self):
+        url = self._get_login_url()
+        self.user_profile.confirmationcode = 'blah'
+        self.user_profile.save()
+        r = self.client.post(url, {'username': 'jbalogh@mozilla.com',
+                                   'password': 'foo'}, follow=True)
+        self.assertNotContains(r, "Welcome, Jeff")
+        self.assertContains(r, "A link to activate your user account")
+        self.assertContains(r, "If you did not receive the confirmation")
+
+    def test_disabled_account(self):
+        url = self._get_login_url()
+        self.user_profile.deleted = True
+        self.user_profile.save()
+        r = self.client.post(url, {'username': 'jbalogh@mozilla.com',
+                                   'password': 'foo'}, follow=True)
+        self.assertNotContains(r, "Welcome, Jeff")
+        self.assertContains(r, "Wrong email address or password!")
+
+
+class TestUserRegisterForm(UserFormBase):
+
+    def test_no_info(self):
+        data = {'email': '',
+                'password': '',
+                'password2': '',
+                'firstname': '',
+                'lastname': '',
+                'nickname': '', }
+        r = self.client.post('/en-US/firefox/users/register', data)
+        self.assertFormError(r, 'form', 'email',
+                             'This field is required.')
+        msg = "A first name, last name or nickname is required."
+        self.assertFormError(r, 'form', 'nickname', msg)
+        self.assertFormError(r, 'form', 'firstname', msg)
+        self.assertFormError(r, 'form', 'lastname', msg)
+
+    def test_register_existing_account(self):
+        data = {'email': 'jbalogh@mozilla.com',
+                'password': 'xxx',
+                'password2': 'xxx',
+                'firstname': 'xxx', }
+        r = self.client.post('/en-US/firefox/users/register', data)
+        self.assertFormError(r, 'form', 'email',
+                             'User profile with this Email already exists.')
+        eq_(len(mail.outbox), 0)
+
+    def test_set_unmatched_passwords(self):
+        data = {'email': 'john.connor@sky.net',
+                'password': 'new1',
+                'password2': 'new2', }
+        r = self.client.post('/en-US/firefox/users/register', data)
+        self.assertFormError(r, 'form', 'password2',
+                                            'The passwords did not match.')
+        eq_(len(mail.outbox), 0)
+
+    def test_already_logged_in(self):
+        self.client.login(username='jbalogh@mozilla.com', password='foo')
+        r = self.client.get('/users/register', follow=True)
+        self.assertContains(r, "You are already logged in")
+        self.assertNotContains(r, '<button type="submit">Register</button>')
+
+    def test_success(self):
+        data = {'email': 'john.connor@sky.net',
+                'password': 'carebears',
+                'password2': 'carebears',
+                'firstname': 'John',
+                'lastname': 'Connor',
+                'nickname': 'BigJC',
+                'homepage': ''}
+        r = self.client.post('/en-US/firefox/users/register', data)
+        self.assertContains(r, "Congratulations!")
+
+        u = User.objects.get(email='john.connor@sky.net').get_profile()
+
+        assert u.confirmationcode
+        eq_(len(mail.outbox), 1)
+        assert mail.outbox[0].subject.find('Please confirm your email') == 0
+        assert mail.outbox[0].body.find('%s/confirm/%s' %
+                                        (u.id, u.confirmationcode)) > 0

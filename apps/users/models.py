@@ -8,12 +8,15 @@ import time
 
 from django.conf import settings
 from django.contrib.auth.models import User as DjangoUser
+from django.core.mail import send_mail
 from django.db import models
+from django.template import Context, loader
 
 import amo
 import amo.models
 
 from amo.urlresolvers import reverse
+from l10n import ugettext as _
 from translations.fields import PurifiedField
 
 log = logging.getLogger('z.users')
@@ -155,6 +158,18 @@ class UserProfile(amo.models.ModelBase):
 
     def set_password(self, raw_password, algorithm='sha512'):
         self.password = create_password(algorithm, raw_password)
+
+    def email_confirmation_code(self):
+        log.debug("Sending account confirmation code for user (%s)", self)
+
+        url = "%s%s" % (settings.SITE_URL,
+                        reverse('users.confirm',
+                                args=[self.id, self.confirmationcode]))
+        domain = settings.DOMAIN
+        t = loader.get_template('email/confirm.ltxt')
+        c = {'domain': domain, 'url': url, }
+        send_mail(_("Please confirm your email address"),
+                  t.render(Context(c)), None, [self.email])
 
     def create_django_user(self):
         """Make a django.contrib.auth.User for this UserProfile."""
