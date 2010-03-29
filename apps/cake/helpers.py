@@ -47,7 +47,10 @@ def remora_url(context, url, lang=None, app=None, prefix=''):
     if lang is None:
         lang = translation.to_locale(context['LANG']).replace('_', '-')
     if app is None:
-        app = context['APP'].short
+        try:
+            app = context['APP'].short
+        except AttributeError:
+            app = None
 
     url_parts = [prefix, lang, app, url]
     url_parts = [p.strip('/') for p in url_parts if p]

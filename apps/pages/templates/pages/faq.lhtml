@@ -1,0 +1,113 @@
+{% extends "base_side_categories.html" %}
+
+{% block title %}{{ page_title(_('Frequently Asked Questions')) }}{% endblock %}
+
+{% block content %}
+<div class="prose">
+{# TODO reverse these URLs #}
+{% trans getsatisfaction=get_satisfaction_widget() %}
+<h1>Frequently Asked Questions</h1>
+
+<p>This FAQ for the <a href="http://addons.mozilla.org">AMO site</a> addresses some topics not currently covered by the Firefox Support website. The Support website includes introductory information about <a href="http://support.mozilla.com/kb/Custo
+mizing+Firefox+with+add-ons">customizing Firefox with add-ons</a> as well as articles on:</p>
+
+<ul>
+    <li> Troubleshooting <a href="http://support.mozilla.com/kb/Unable+to+install+add-ons">add-on installation</a>, <a href="http://support.mozilla.com/kb/Troubleshooting+plugins">plugins</a> &amp; <a href="http://support.mozilla.com/kb/Troubleshoot
+ing+extensions+and+themes">general issues</a>.</li>
+    <li> <a href="http://support.mozilla.com/kb/Uninstalling+add-ons">How to uninstall add-ons</a> and <a href="http://support.mozilla.com/kb/Cannot+uninstall+an+add-on">troubleshooting uninstallation</a>.</li>
+    <li> <a href="http://support.mozilla.com/kb/Gray+bar+below+the+status+bar">Dealing with problematic add-ons / Gray Bar issue</a></li>
+</ul>
+
+<p></p>
+
+{{ getsatisfaction }}
+
+<h2>Add-on Questions</h2>
+<dl class="faq">
+<dt>What is an Add-on?</dt>
+<dd>Add-ons let you add features which aren't part of the standard application. Themes change appearance without changing functionality. Search Plugins and Dictionaries/Language Packs add additional search engines and language support. Extensions ad
+d more extensive features to the browser; some add simple toolbars while others can add a wide range of new features.</dd>
+
+<dt>Are add-ons easy to install?</dt>
+<dd>Yes! Add-ons are very easy to install. They're generally much smaller than a normal application and download very quickly. If you don't like one, they are just as easy to remove or disable. Also, if an update is available for one of your add-ons
+, Firefox will inform you and let you upgrade with one click.</dd>
+
+<dt>How do I manage an add-on?</dt>
+<dd>In Firefox, go to "Add-ons" in the Tools menu to manage Themes and Extensions. If your Extension has special options, you can see them in the Extensions section of the Add-ons window. From here, you can also disable and uninstall add-ons. Dictio
+naries are installed as Extensions. Search Plugins can be managed in the Search Bar.</dd>
+
+<dt>Can add-ons make Firefox slower?</dt>
+<dd>In most cases, add-ons do not cause a perceivable slowdown in Firefox. However, since they are applications some may affect the performance of Firefox depending on your system configuration. If you suspect that an add-on is affecting the way Firefox runs on your machine try disabling it.</dd>
+
+<dt>Why would I disable an add-on?</dt>
+<dd>Disabling an add-on prevents it from loading when you start Firefox, but it doesn't remove the add-on or any of its settings. Enabling the add-on again will bring it back to where it was when you disabled it. For add-ons that you want to turn of
+f without removing, disabling is the way to go.</dd>
+
+<dt>How do I backup all of the add-ons and themes that I've installed?</dt>
+<dd>You can backup your profile directory which will also backup your add-ons and themes. A third party application like MozBackup can help you with this.</dd>
+</dl>
+
+<h2>Website questions</h2>
+<dl class="faq">
+<dt>I see several add-ons which provide the same capabilities. How do I decide which one is best?</dt>
+<dd>In general, you can look at ratings and downloads which will give you an idea. Good add-ons tend to be downloaded more than bad ones. However, it's also easy to install both add-ons and decide which one you want to use. You may decide after tryi
+ng them that you want to use both!</dd>
+
+<dt>I see a great add-on but it says that it's only compatible with Firefox 2.x. Can I still install it in Firefox 3.x?</dt>
+<dd>In general, no. Firefox 3.x has a number of new features and a large majority of add-on developers have updated their add-ons to support 3.x. If the add-on only supports Firefox 2, try searching for that add-on's title. In many cases there will
+be a new version that supports Firefox 3 with the same or similar title.</dd>
+
+<dt>I installed a new theme but would like to revert back to the Firefox default theme. How do I do that?</dt>
+<dd>Go to "Add-ons" in the "Tools" menu. Click the "Themes" section and from here you can select the default theme, or any others you have installed.</dd>
+
+<dt>If I have an issue with an add-on, should I contact Mozilla?</dt>
+<dd>Add-ons, with a few exceptions, are created by the community and not Mozilla. The best thing to do is to contact the developer directly with your question. To find contact info for a developer, click their name in the by line on the Add-on listi
+ng page.</dd>
+
+<dt>How are add-ons reviewed?</dt>
+<dd>Public add-ons are reviewed by our dedicated and talented editorial team. They review the code of all public add-ons and also test the add-ons to make sure that they are accurately described.</dd>
+
+<dt>I've upgraded to Firefox 3.5 but my add-on no longer works? Why is that?</dt>
+<dd>Most of our add-ons are now Firefox 3.5 compatible, and every day more are added. If your add-on worked on 3.0 but not 3.5, chances are they're already working on it. When they do upgrade their add-on, Firefox will notify you about the upgrade.</dd>
+
+<dt id="experimental-addons">What are experimental add-ons?</dt>
+<dd>
+    <p>Experimental add-ons are newer add-ons which have not yet undergone our public review process.  Many of these add-ons may be in prototype form.  Since they are untested by our editorial team, they may be alpha, beta or pre-production in quali
+ty, performance and features.</p>
+    <p>Caution should be used when installing experimental add-ons, as they have not been tested by an editor and may harm your computer configuration.</p>
+</dd>
+
+<dt id="recognizing-experimental-addons">How do I know an experimental add-on when I see one on the site?</dt>
+<dd>Experimental add-ons are marked with an "experimental" label and show a warning when you install them.</dd>
+
+<dt id="recommended-addons">What are Recommended and Featured add-ons?</dt>
+<dd>The AMO team recommends a set of add-ons which represent some of the best add-ons in terms of utility and overall experience.  These Recommended add-ons appear on the individual category pages.  Some of these add-ons are also rotated onto the fr
+ont page of AMO as Featured add-ons.  This is by no means a comprehensive list, and we update the list monthly to continue to show our users a fresh set of add-ons.  Some things we consider when we recommend add-ons: quality, popularity, uniqueness,
+ and whether or not the add-on has already been recommended.</dd>
+
+<dt id="beta-addons">What are Beta add-ons?</dt>
+<dd>
+    <p>Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-ons are less stable than the general add-on rel
+eases.</p>
+    <p>Please note that when you install an add-on from the "Beta Version" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial version you installed, all beta releases are u
+nreviewed by Mozilla and may harm your computer.</p>
+</dd>
+
+</dl>
+{% endtrans %}
+</div>
+
+<script src="https://getsatisfaction.com/mozilla/widgets/javascripts/500b6b4141/widgets.js" type="text/javascript"></script>
+<script src="https://getsatisfaction.com/mozilla/topics.widget?callback=gsfnTopicsCallback&amp;limit=5&amp;product=mozilla_mozilla_add_ons&amp;sort=last_active_at&amp;style=topics" type="text/javascript"></script>
+{% endblock %}
+
+{% macro get_satisfaction_widget() -%}
+<div id="gsfn_list_widget">
+  <a href="https://getsatisfaction.com/mozilla" class="widget_title">Active customer service discussions about Mozilla Add-ons</a>
+  <div id="gsfn_content">Loading...</div>
+  <div class="powered_by">
+    <a href="https://getsatisfaction.com/"><img alt="Favicon" src="https://www.getsatisfaction.com/favicon.gif" style="vertical-align: middle;" /></a>
+    <a href="https://getsatisfaction.com/">Get Satisfaction support network</a>
+  </div>
+</div>
+{%- endmacro %}

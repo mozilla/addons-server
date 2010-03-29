@@ -200,6 +200,7 @@ INSTALLED_APPS = (
     'l10n',  # for ./manage.py extract
     'minify',
     'nick',
+    'pages',
     'reviews',
     'search',
     'sharing',

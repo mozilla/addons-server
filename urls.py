@@ -24,6 +24,9 @@ urlpatterns = patterns('',
     # Nick's special pages.
     ('^nickspages/', include('nick.urls')),
 
+    # Localizable pages.
+    ('', include('pages.urls')),
+
     # Services
     ('^services/', include('amo.urls')),
 
@@ -52,6 +55,11 @@ urlpatterns = patterns('',
 
     ('^browse/type:2.*$',
      lambda r: redirect('browse.themes', permanent=True)),
+
+    ('^pages/about$',
+     lambda r: redirect('pages.about', permanent=True)),
+    ('^pages/faq$',
+     lambda r: redirect('pages.faq', permanent=True)),
 )
 
 if settings.DEBUG:
