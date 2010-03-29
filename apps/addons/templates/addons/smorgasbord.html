@@ -3,11 +3,11 @@
 {% block title %}It's an Add-on Buffet!{% endblock %}
 
 {% macro item(addon, version=None) %}
-<div class="item">
+<div class="item" id="{{ addon.tag|slugify }}">
   {{ install_button(addon, version) }}
   <hgroup>
     <h3>{{ addon.name }}</h3>
-    <h5>({{ addon.tag }})</h5>
+    <h5><a href="#{{ addon.tag|slugify }}">({{ addon.tag }})</a></h5>
   </hgroup>
   <blockquote>{{ addon.summary }}</blockquote>
 </div>

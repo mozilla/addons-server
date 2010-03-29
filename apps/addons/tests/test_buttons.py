@@ -351,3 +351,10 @@ class TestButtonHtml(ButtonTest):
 
         doc = self.render(show_eula=False)
         assert not doc('.button').hasClass('eula')
+
+    def test_platformer_with_eula(self):
+        """Don't show platform text for eula buttons."""
+        self.version.files.select_related.return_value = self.platform_files
+        self.addon.has_eula = True
+        doc = self.render()
+        eq_(doc('.eula .os').text(), '')

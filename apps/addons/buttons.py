@@ -5,6 +5,7 @@ from l10n import ugettext as _, ugettext_lazy as _lazy
 import amo
 from amo.helpers import urlparams
 from addons.models import Addon
+from translations.models import Translation
 
 
 @jinja2.contextfunction
@@ -200,6 +201,16 @@ def smorgasbord(request):
     # Multiple Platforms.
     addons.append(Addon.objects.get(id=2313))
     addons[-1].tag = 'platformer'
+
+    # Multiple Platforms + EULA.
+    addons.append(Addon.objects.get(id=2313))
+    addons[-1].eula = Translation(localized_string='xxx')
+    addons[-1].tag = 'platformer + eula'
+
+    # Incompatible Platform + EULa.
+    addons.append(Addon.objects.get(id=5308))
+    addons[-1].eula = Translation(localized_string='xxx')
+    addons[-1].tag = 'windows/linux-only + eula'
 
     # Incompatible Platform.
     all_versions(lambda: Addon.objects.get(id=5308), 'windows/linux-only')

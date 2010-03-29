@@ -28,7 +28,9 @@
           {% if link.os %}
             {# L10n: {0} is a platform name like Windows or Mac OS X. #}
             <span class="os" data-os="{{ link.os.name }}">
-              {{ _('for {0}')|f(link.os.name) }}
+              {% if not b.show_eula %}
+                {{ _('for {0}')|f(link.os.name) }}
+              {% endif %}
             </span>
           {% endif %}
         </span>
