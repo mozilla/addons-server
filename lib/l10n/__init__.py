@@ -113,7 +113,8 @@ def _activate(locale):
         """
         #If you've got extra .mo files to load, this is the place.
         path = import_module(settings.SETTINGS_MODULE).path
-        bonus = gettext.translation('messages', path('locale'), [locale],
+        domain = getattr(settings, 'TEXT_DOMAIN', 'messages')
+        bonus = gettext.translation(domain, path('locale'), [locale],
                                     django_trans.DjangoTranslation)
         t.merge(bonus)
     except IOError:
