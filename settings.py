@@ -343,7 +343,7 @@ PERSONAS_IMAGE_URL = ('https://getpersonas.com/static/'
                       '%(tens)d/%(units)d/%(id)d/%(file)s')
 
 # Outgoing URL bouncer
-REDIRECT_URL = 'https://outgoing.mozilla.org/v1/'
+REDIRECT_URL = 'http://outgoing.mozilla.org/v1/'
 REDIRECT_SECRET_KEY = ''
 
 # Legacy Settings
