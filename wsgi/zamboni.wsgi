@@ -23,11 +23,13 @@ django_app = application = django.core.handlers.wsgi.WSGIHandler()
 # any /z links through reverse.  This fixes bug 554576.
 def application(env, start_response):
     if 'HTTP_X_ZEUS_DL_PT' in env:
-        env['SCRIPT_NAME'] = ''
+        env['SCRIPT_URL'] = env['SCRIPT_NAME'] = ''
     return django_app(env, start_response)
 
 
 # Uncomment this to figure out what's going on with the mod_wsgi environment.
 # def application(env, start_response):
 #     start_response('200 OK', [('Content-Type', 'text/plain')])
-#     return '\n'.join('%s: %s' % item for item in sorted(env.items()))
+#     return '\n'.join('%r: %r' % item for item in sorted(env.items()))
+
+# vim: ft=python
