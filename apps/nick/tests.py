@@ -29,7 +29,7 @@ class TestViews(test_utils.TestCase):
 
         eq_('featured', response.context['section'])
 
-        addons = response.context['addons']
+        addons = response.context['addons'].object_list
         eq_(len(addons), 1)
 
         addon = addons[0]
@@ -48,7 +48,7 @@ class TestViews(test_utils.TestCase):
         url = reverse('nick.combo')
         response = self.client.get(url, follow=True)
         eq_(response.status_code, 200)
-        addons = response.context['addons']
+        addons = response.context['addons'].object_list
         eq_(len(addons), 1)
 
     def test_popular(self):

@@ -139,13 +139,13 @@ def view(request, func):
             qs = qs.filter(categories__slug=category)
 
     # These aggregate stats won't change until tomorrow, if ever.
+    addons = amo.utils.paginate(request, qs, per_page=75)
     tomorrow = date.today() + td(days=1)
-    cache_key = '%s%s' % (qs.query, date_)
-    f = lambda: attach_stats(request, qs, date_)
-    addons = cached(f, cache_key, time.mktime(tomorrow.timetuple()))
+    cache_key = '%s%s' % (addons.object_list.query, date_)
+    f = lambda: attach_stats(request, addons.object_list, date_)
+    addons.object_list = cached(f, cache_key, time.mktime(tomorrow.timetuple()))
 
-    # Hard limit at 250.  Pagination would be friendlier.
-    c = {'addons': addons[:250], 'section': func.__name__,
+    c = {'addons': addons, 'section': func.__name__,
          'form': form, 'sections': get_sections()}
     return jingo.render(request, 'nick/featured.html', c)
 
