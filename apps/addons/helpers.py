@@ -124,3 +124,12 @@ def addon_listing_items(context, addons):
     c = dict(context.items())
     c['addons'] = addons
     return c
+
+
+@register.inclusion_tag('addons/listing_header.html')
+@jinja2.contextfunction
+def addon_listing_header(context, url_base, sort_opts, selected, experimental):
+    c = dict(context.items())
+    c.update({'url_base': url_base, 'sort_opts': sort_opts,
+              'selected': selected, 'experimental': experimental})
+    return c

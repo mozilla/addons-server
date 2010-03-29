@@ -13,7 +13,7 @@
     <li>
       <ul>
         {% for category in categories %}
-        <li>
+        <li id="c-{{ category.id }}">
           <a href="{{ category.get_url_path() }}">{{ category.name }}</a>
           <span class="items">{{ category.count }}</span>
         </li>

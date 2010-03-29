@@ -511,9 +511,8 @@ class Category(amo.models.ModelBase):
         return unicode(self.name)
 
     def get_url_path(self):
-        # TODO(jbalogh): reverse the real urls
-        base = reverse('home')
-        return '%sbrowse/type:%s/cat:%s' % (base, self.type_id, self.id)
+        type = amo.ADDON_SLUGS[self.type_id]
+        return reverse('browse.%s' % type, args=[self.slug])
 
 
 class CompatibilityReport(models.Model):
