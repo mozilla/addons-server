@@ -17,7 +17,7 @@ from l10n import ugettext_lazy as _lazy, ungettext_lazy as n_lazy
 from l10n.management.commands.extract import create_pofile_from_babel
 
 LOCALEDIR = os.path.join('locale', 'xx')
-MOFILE = os.path.join(LOCALEDIR, 'LC_MESSAGES', 'messages.mo')
+MOFILE = os.path.join(LOCALEDIR, 'LC_MESSAGES', 'z-messages.mo')
 
 # Used for the _lazy() tests
 _lazy_strings = {}
