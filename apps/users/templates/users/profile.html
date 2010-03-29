@@ -3,9 +3,6 @@
 {% block title %}{{ page_title(_('User Info for {0}')|f(profile.display_name)) }}{% endblock %}
 
 {% block content %}
-{% if user.is_staff: %}{# TODO restrict this to admins with user edit rights only #}
-<a href="{{ url("admin:users_userprofile_change", profile.id) }}">{{ _('Edit User') }}</a>
-{% endif %}
 
 <div class="vcard">
   <h2 class="fn n">{{ profile.display_name }}</h2>
@@ -20,13 +17,19 @@
 
         {{ profile|user_vcard(table_class='', about_addons=False) }}
 
+        {% if profile.bio %}{# TODO purified field #}
+          <h4>{{ _('In a little more detail...') }}</h4>
+          <div class="prose userinput">
+              <p class="description">{{ profile.bio|nl2br }}</p>
+          </div>
+        {% endif %}
+
+        {% if user.is_staff: %}{# TODO restrict this to admins with user edit rights only #}
+          <p class="editprofile">
+            <a href="{{ url("admin:users_userprofile_change", profile.id) }}">{{ _('Edit User') }}</a>
+          </p>
+        {% endif %}
       </div>{# /object-content #}
-      {% if profile.bio %}{# TODO purified field #}
-      <h4>{{ _('In a little more detail...') }}</h4>
-      <div class="prose userinput">
-          <p class="description">{{ profile.bio|nl2br }}</p>
-      </div>
-      {% endif %}
     </div>{# /featured-inner #}
   </div>{# /featured #}
 </div>{# /vcard #}
