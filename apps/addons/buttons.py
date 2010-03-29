@@ -1,3 +1,5 @@
+from django.db.models import Q
+
 import jingo
 import jinja2
 from l10n import ugettext as _, ugettext_lazy as _lazy
@@ -221,10 +223,11 @@ def smorgasbord(request):
     addons[-1].tag = 'self-hosted'
 
     # EULA.
-    addons.append(normal.filter(eula__isnull=False)[0])
+    eula = (Q(eula__isnull=False, eula__localized_string__isnull=False)
+            & ~Q(eula__localized_string=''))
+    addons.append(normal.filter(eula)[0])
     addons[-1].tag = 'eula'
-    addons.append(exp.filter(eula__isnull=False)
-                  .exclude(eula__localized_string='')[0])
+    addons.append(exp.filter(eula)[0])
     addons[-1].tag = 'eula + unreviewed'
 
     # Contributions.
