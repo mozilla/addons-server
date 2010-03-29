@@ -28,3 +28,17 @@ class ModelBase(caching.base.CachingMixin, TranslatedFieldMixin, models.Model):
 
     def get_absolute_url(self, *args, **kwargs):
         return self.get_url_path(*args, **kwargs)
+
+
+def manual_order(qs, pks, pk_name='id'):
+    """
+    Given a query set and a list of primary keys, return a set of objects from
+    the query set in that exact order.
+    """
+
+    objects = qs.filter(id__in=pks).extra(
+            select={'_manual': 'FIELD(%s, %s)'
+                % (pk_name, ','.join(map(str, pks)))},
+            order_by=['_manual'])
+
+    return objects
