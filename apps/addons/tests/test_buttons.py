@@ -342,3 +342,12 @@ class TestButtonHtml(ButtonTest):
         install = self.render()('.install')
         eq_('min version', install.attr('data-min'))
         eq_('max version', install.attr('data-max'))
+
+    def test_caching(self):
+        """Make sure we don't cache too hard and ignore flags."""
+        self.addon.has_eula = True
+        doc = self.render()
+        assert doc('.button').hasClass('eula')
+
+        doc = self.render(show_eula=False)
+        assert not doc('.button').hasClass('eula')
