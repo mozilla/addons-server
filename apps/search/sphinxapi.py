@@ -20,6 +20,9 @@ import re
 from struct import *
 
 
+# Zamboni customizations
+Z_SPHINX_TIMEOUT = 1
+
 # known searchd commands
 SEARCHD_COMMAND_SEARCH  = 0
 SEARCHD_COMMAND_EXCERPT = 1
@@ -195,7 +198,7 @@ class SphinxClient:
                 addr = ( self._host, self._port )
                 desc = '%s;%s' % addr
             sock = socket.socket ( af, socket.SOCK_STREAM )
-            sock.settimeout(5)
+            sock.settimeout(Z_SPHINX_TIMEOUT)
             sock.connect ( addr )
         except socket.error, msg:
             if sock:
