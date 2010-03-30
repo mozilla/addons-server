@@ -9,6 +9,8 @@ import test_utils
 import amo
 from addons.models import Addon, AddonPledge, Persona
 from stats.models import Contribution
+from reviews.models import Review
+from users.models import UserProfile
 
 
 class TestAddonManager(test_utils.TestCase):
@@ -198,6 +200,27 @@ class TestAddonModels(test.TestCase):
         a.eula = 'eula'
         a.save()
         assert addon().has_eula
+
+    def test_review_replies(self):
+        """
+        Make sure that developer replies are not returned as if they were
+        original reviews.
+        """
+        addon = Addon.objects.get(id=3615)
+        u = UserProfile.objects.get(pk=2519)
+        version = addon.current_version
+        new_review = Review(version=version, user=u, rating=2, body='hello')
+        new_review.save()
+        new_reply = Review(version=version, user=addon.authors.all()[0],
+                           reply_to=new_review, rating=2, body='my reply')
+        new_reply.save()
+
+        review_list = [ r.pk for r in addon.reviews ]
+
+        assert new_review.pk in review_list, (
+            'Original review must show up in review list.')
+        assert new_reply.pk not in review_list, (
+            'Developer reply must not show up in review list.')
 
 
 class TestAddonPledgeModel(test_utils.TestCase):

@@ -226,7 +226,7 @@ class Addon(amo.models.ModelBase):
 
     @property
     def reviews(self):
-        return Review.objects.filter(version__addon=self)
+        return Review.objects.filter(version__addon=self, reply_to=None)
 
     @amo.cached_property
     def current_version(self):
