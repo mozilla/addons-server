@@ -5,7 +5,7 @@ from nose.tools import eq_
 from pyquery import PyQuery
 
 import amo
-from addons.helpers import statusflags, flag, support_addon
+from addons.helpers import statusflags, flag, support_addon, contribution
 from addons.models import Addon
 
 
@@ -57,3 +57,11 @@ class TestHelpers(test.TestCase):
         doc = PyQuery(support_addon(a))
         eq_(doc('.support-this-addon').text(),
             'Support this add-on: Contribute $12.00')
+
+    def test_contribution_box(self):
+        a = Addon.objects.get(pk=1003)
+        a.suggested_amount = '12'
+        doc = PyQuery(contribution(a))
+        # make sure input boxes are rendered correctly (bug 555867)
+        assert doc('input[name=onetime-amount]').length == 1
+        assert doc('input[name=monthly-amount]').length == 1
