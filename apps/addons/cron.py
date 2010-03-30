@@ -49,7 +49,7 @@ def addon_last_updated():
               .annotate(last_updated=Max('versions__created')))
 
     personas = (Addon.objects.filter(type=amo.ADDON_PERSONA)
-                .extra(select={'last_updated': 'modified'}))
+                .extra(select={'last_updated': 'created'}))
 
     for q in (public, exp, listed, personas):
         for addon, last_updated in q.values_list('id', 'last_updated'):
@@ -59,5 +59,5 @@ def addon_last_updated():
 
     # Get anything that didn't match above.
     other = (Addon.objects.filter(last_updated__isnull=True)
-             .values_list('id', 'modified'))
+             .values_list('id', 'created'))
     _change_last_updated(dict(other))
