@@ -33,9 +33,7 @@ Nick's Special Featured Add-ons Page for {{ request.APP.pretty }}
     <th>Rating</th>
     <th>Reviews</th>
     <th>Compatibility</th>
-    {% if section != 'featured' %}
-      <th>Featured?</th>
-    {% endif %}
+    <th>Featured?</th>
     <th>DL(prev)</th>
     <th>DL(cur)</th>
     <th>DL&Delta;</th>
@@ -61,9 +59,7 @@ Nick's Special Featured Add-ons Page for {{ request.APP.pretty }}
       {% else %}
         <td>---</td>
       {% endif %}
-      {% if section != 'featured' %}
-        <td>{% if addon.featured %}Y{% else %}N{% endif %}</td>
-      {% endif %}
+      <td>{% if addon.featured %}Y{% else %}N{% endif %}</td>
       <td>{{ addon.downloads.previous|numberfmt }}</td>
       <td>{{ addon.downloads.current|numberfmt }}</td>
       <td class="{{ addon.downloads.change }}">
