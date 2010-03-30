@@ -29,7 +29,7 @@
     <div class="featured-inner object-lead inverse">
 
       <div id="addon-summary-wrapper">
-        <div id="addon-summary" class="primary {{ addon|statusflags }}">
+        <div id="addon-summary" class="primary">
           <p{{ addon.summary|locale_html }}>{{ addon.summary|nl2br }}</p>
 
           {{ install_button(addon, show_warning=False) }}

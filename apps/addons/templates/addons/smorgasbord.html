@@ -6,7 +6,7 @@
 <div class="item" id="{{ addon.tag|slugify }}">
   {{ install_button(addon, version) }}
   <hgroup>
-    <h3>{{ addon.name }}</h3>
+    <h3><a href="{{ addon.get_url_path() }}">{{ addon.name }}</a></h3>
     <h5><a href="#{{ addon.tag|slugify }}">({{ addon.tag }})</a></h5>
   </hgroup>
   <blockquote>{{ addon.summary }}</blockquote>
