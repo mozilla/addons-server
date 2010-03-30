@@ -285,3 +285,31 @@ def shuffle(sequence):
     """Shuffle a sequence."""
     random.shuffle(sequence)
     return sequence
+
+
+@register.function
+def license_link(license):
+    """Link to a code license, incl. icon where applicable."""
+    if not license:
+        return ''
+    lic_icon = lambda name: '<li class="icon %s"></li>' % name
+
+    parts = []
+    parts.append('<ul class="license">')
+    if license.icons:
+        for i in license.icons:
+            parts.append(lic_icon(i))
+
+    # TODO link to custom license page
+    parts.append('<li class="text">')
+    if license.url:
+        parts.append('<a href="%s"%s>%s</a>' % (
+            license.url,
+            (' title="%s"' % unicode(license.name)) if license.linktext else '',
+            unicode(license.linktext or license.name)
+        ))
+    else:
+        parts.append(unicode(license.name))
+    parts.append('</li></ul>')
+
+    return jinja2.Markup(''.join(parts))

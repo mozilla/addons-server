@@ -290,6 +290,8 @@ PLATFORM_DICT = {
 class _LicenseBase(object):
     """Base class for built-in licenses."""
     shortname = None
+    icons = None # CSS classes. See zamboni.css for a list.
+    linktext = None # Link text distinct from full license name.
 
     @classmethod
     def text(cls):
@@ -355,8 +357,26 @@ class LICENSE_BSD(_LicenseBase):
     url = 'http://www.opensource.org/licenses/bsd-license.php'
     shortname = 'bsd'
 
-LICENSES = (LICENSE_CUSTOM, LICENSE_MPL, LICENSE_GPL2, LICENSE_GPL3,
-            LICENSE_LGPL21, LICENSE_LGPL3, LICENSE_MIT, LICENSE_BSD)
+
+class LICENSE_COPYRIGHT(_LicenseBase):
+    id = 7
+    name = _(u'All Rights Reserved')
+    url = None
+    shortname = None
+    icons = ('copyr',)
+
+
+class LICENSE_CC_BY_NC_SA(_LicenseBase):
+    id = 8
+    name = _(u'Creative Commons Attribution-Noncommercial-Share Alike 3.0')
+    linktext = _(u'Some rights reserved')
+    url = 'http://creativecommons.org/licenses/by-nc-sa/3.0/'
+    shortname = None
+    icons = ('cc-attrib', 'cc-noncom', 'cc-share')
+
+LICENSES = (LICENSE_CUSTOM, LICENSE_COPYRIGHT, LICENSE_MPL, LICENSE_GPL2,
+            LICENSE_GPL3, LICENSE_LGPL21, LICENSE_LGPL3, LICENSE_MIT,
+            LICENSE_BSD, LICENSE_CC_BY_NC_SA)
 LICENSE_IDS = dict((license.id, license) for license in LICENSES)
 
 

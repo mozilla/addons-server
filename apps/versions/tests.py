@@ -94,7 +94,7 @@ class TestLicense(test.TestCase):
         lic = License()
         for licensetype in amo.LICENSES:
             lic.license_type = licensetype
-            if licensetype == amo.LICENSE_CUSTOM:
+            if not licensetype.shortname:
                 assert not lic.text
             else:
                 assert lic.text

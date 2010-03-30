@@ -185,3 +185,24 @@ def test_external_url():
     finally:
         settings.REDIRECT_URL = redirect_url
         settings.REDIRECT_SECRET_KEY = secretkey
+
+
+def test_license_link():
+    expected = {
+        amo.LICENSE_MIT: (
+            '<ul class="license"><li class="text"><a href="http://www.'
+            'opensource.org/licenses/mit-license.php">MIT/X11 License</a>'
+            '</li></ul>'),
+        amo.LICENSE_COPYRIGHT: (
+            '<ul class="license"><li class="icon copyr"></li><li class="text">'
+            'All Rights Reserved</li></ul>'),
+        amo.LICENSE_CC_BY_NC_SA: (
+            '<ul class="license"><li class="icon cc-attrib"></li><li class='
+            '"icon cc-noncom"></li><li class="icon cc-share"></li><li class='
+            '"text"><a href="http://creativecommons.org/licenses/by-nc-sa/'
+            '3.0/" title="Creative Commons Attribution-Noncommercial-Share '
+            'Alike 3.0">Some rights reserved</a></li></ul>'),
+    }
+    for lic, ex in expected.items():
+        s = render('{{ license_link(lic) }}', {'lic': lic})
+        eq_(s, ex)
