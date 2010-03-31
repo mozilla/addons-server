@@ -102,7 +102,7 @@
   {% set max_tag_count = top_tags[0].popularity or 1 %}
   <div class="highlight" id="tag-box">
     <h3>{{ _('Popular Tags') }}</h3>
-    <div class="tag-cloud">
+    <div>
       {% for tag in top_tags|list|shuffle %}
         {{ tag_link(tag.tag_text, tag.tagstat.num_addons, max_tag_count) }}
       {% endfor %}
