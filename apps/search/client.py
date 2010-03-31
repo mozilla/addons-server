@@ -1,4 +1,6 @@
 import re
+import socket
+import logging
 
 from django.conf import settings
 from django.utils import translation
@@ -12,6 +14,8 @@ from .utils import convert_version, crc32
 
 m_dot_n_re = re.compile(r'^\d+\.\d+$')
 SEARCH_ENGINE_APP = 99
+
+log = logging.getLogger('z.sphinx')
 
 
 def get_category_id(category, application):
@@ -222,7 +226,16 @@ class Client(object):
         #   * Num apps filter
         #   * Logging
 
-        result = sc.Query(term)
+        try:
+            result = sc.Query(term)
+        except socket.timeout:
+            log.error("Query has timed out.")
+            import pdb; pdb.set_trace()
+            raise SearchError("Query has timed out.")
+        except Exception, e:
+            log.error("Sphinx threw an unknown exception: %s" % e)
+            raise SearchError("Sphinx threw an unknown exception.")
+
         self.total_found = result['total_found'] if result else 0
 
         if sc.GetLastError():
