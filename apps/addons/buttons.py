@@ -84,6 +84,7 @@ class InstallButton(object):
                 except ValueError:
                     pass
                 self.button_class.append(cls)
+                self.button_class.append('go')
                 self.install_class.append(cls)
 
     def attrs(self):
