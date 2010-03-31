@@ -154,7 +154,7 @@ class TestButton(ButtonTest):
         self.addon.annoying = amo.CONTRIB_ROADBLOCK
         b = self.get_button()
         assert b.show_contrib
-        eq_(b.button_class, ['contrib'])
+        eq_(b.button_class, ['contrib', 'go'])
         eq_(b.install_class, ['contrib'])
 
     def test_show_warning(self):
@@ -175,7 +175,7 @@ class TestButton(ButtonTest):
     def test_eula(self):
         self.addon.has_eula = True
         b = self.get_button()
-        eq_(b.button_class, ['eula'])
+        eq_(b.button_class, ['eula', 'go'])
         eq_(b.install_class, ['eula'])
 
     def test_featured(self):
