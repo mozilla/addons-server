@@ -4,11 +4,15 @@
 
 {% macro item(addon, version=None) %}
 <div class="item" id="{{ addon.tag|slugify }}">
-  {{ install_button(addon, version) }}
-  <hgroup>
+  <hgroup style="float: left">
     <h3><a href="{{ addon.get_url_path() }}">{{ addon.name }}</a></h3>
     <h5><a href="#{{ addon.tag|slugify }}">({{ addon.tag }})</a></h5>
   </hgroup>
+  <div class="item-info">
+    {{ install_button(addon, version) }}
+    <pre>
+    </pre>
+  </div>
   <blockquote>{{ addon.summary }}</blockquote>
 </div>
 {% endmacro %}
