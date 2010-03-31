@@ -107,6 +107,11 @@ class UserProfile(amo.models.ModelBase):
 
         return ''
 
+    @amo.cached_property
+    def reviews(self):
+        """All reviews that are not dev replies."""
+        return self._reviews_all.filter(reply_to=None)
+
     def save(self, force_insert=False, force_update=False, using=None):
         # we have to fix stupid things that we defined poorly in remora
         if self.resetcode_expires is None:

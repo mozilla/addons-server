@@ -10,7 +10,7 @@ from translations.models import Translation
 class Review(amo.models.ModelBase):
 
     version = models.ForeignKey('versions.Version', related_name='reviews')
-    user = models.ForeignKey('users.UserProfile', related_name='reviews')
+    user = models.ForeignKey('users.UserProfile', related_name='_reviews_all')
     reply_to = models.ForeignKey('self', null=True, unique=True,
                                  db_column='reply_to')
 

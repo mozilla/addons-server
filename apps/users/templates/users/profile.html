@@ -40,11 +40,13 @@
   </div>
 {% endif %}
 
+{% set reviews = profile.reviews %}
+{% cache reviews %}
 <div class="primary" id="userprofile-reviews">
   <h3>{{ _('My Reviews') }}</h3>
   <div class="article">
-    {% if profile.reviews.all()|length %}
-      {% for review in profile.reviews.all() %}
+    {% if reviews %}
+      {% for review in reviews %}
         {% set addon = review.version.addon %}
         <div class="hreview">
           <h4 class="summary">
@@ -60,12 +62,13 @@
             </abbr>
           </p>
         </div>
-        {% endfor %}
-      {% else %}
-        <p class="noreviews">{{ _('No add-on reviews yet.') }}</p>
-      {% endif %}
-    </div>{# /article #}
-  </div>{# /primary #}
+      {% endfor %}
+    {% else %}
+      <p class="noreviews">{{ _('No add-on reviews yet.') }}</p>
+    {% endif %}
+  </div>{# /article #}
+</div>{# /primary #}
+{% endcache %}
 
 {% if own_coll or fav_coll %}
   <div class="secondary" role="complementary">

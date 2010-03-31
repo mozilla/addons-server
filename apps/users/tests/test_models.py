@@ -5,10 +5,13 @@ from django import test
 
 from nose.tools import eq_
 
+from addons.models import Addon
+from reviews.models import Review
 from users.models import UserProfile, get_hexdigest
 
 
 class TestUserProfile(test.TestCase):
+    fixtures = ['base/addons.json']
 
     def test_display_name_nickname(self):
         u = UserProfile(nickname='Terminator', pk=1)
@@ -25,7 +28,7 @@ class TestUserProfile(test.TestCase):
         eq_(u4.welcome_name, '')
 
     def test_empty_nickname(self):
-        u = UserProfile.objects.create(email='yoyoyo@yo.yo')
+        u = UserProfile.objects.create(email='yoyoyo@yo.yo', nickname='yoyo')
         assert u.user is None
         u.create_django_user()
         eq_(u.user.username, 'yoyoyo@yo.yo')
@@ -57,6 +60,28 @@ class TestUserProfile(test.TestCase):
 
         u = UserProfile(id=1234, picture_type=None)
         assert u.picture_url.endswith('/anon_user.png')
+
+    def test_review_replies(self):
+        """
+        Make sure that developer replies are not returned as if they were
+        original reviews.
+        """
+        addon = Addon.objects.get(id=3615)
+        u = UserProfile.objects.get(pk=2519)
+        version = addon.current_version
+        new_review = Review(version=version, user=u, rating=2, body='hello')
+        new_review.save()
+        new_reply = Review(version=version, user=u, reply_to=new_review,
+                           body='my reply')
+        new_reply.save()
+
+        review_list = [ r.pk for r in u.reviews ]
+
+        eq_(len(review_list), 1)
+        assert new_review.pk in review_list, (
+            'Original review must show up in review list.')
+        assert new_reply.pk not in review_list, (
+            'Developer reply must not show up in review list.')
 
 
 class TestPasswords(test.TestCase):
