@@ -1,8 +1,9 @@
+{% set reviews = reviews[:3] %}
 {% cache reviews %}
   {% if reviews %}
   <h3 id="reviews">{{ _('Reviews') }}</h3>
   <div class="article">
-    {% for review in addon.reviews[:3] %}
+    {% for review in reviews %}
       <div class="hreview">
         {% if review.title %}
           <h5>{{ review.title }}</h5>
