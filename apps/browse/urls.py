@@ -13,4 +13,7 @@ urlpatterns = patterns('',
 
     url('^extensions/(?P<category>[^/]+)?$', views.extensions,
         name='browse.extensions'),
+
+    url('^extensions/(?P<category>[^/]+)/featured$',
+        views.creatured, name='browse.creatured'),
 )

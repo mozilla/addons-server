@@ -20,7 +20,10 @@
 {% if addons %}
   <div id="featured-addons" class="featured">
     <div class="featured-inner">
-      <h3>{{ _('Featured Add-ons') }}</h3>
+      <h3>
+        <a href="{{ url('browse.creatured', category.slug) }}">
+          {{ _('Featured Add-ons') }}</a>
+      </h3>
       <ul>
         {% cache addons %}
           {% for addon in addons %}
