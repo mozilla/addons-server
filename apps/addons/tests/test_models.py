@@ -145,14 +145,6 @@ class TestAddonModels(test.TestCase):
         assert a.thumbnail_url.endswith('/icons/no-preview.png'), (
                 "No match for %s" % a.thumbnail_url)
 
-    def test_preview_count(self):
-        """Test if preview count is accurate"""
-        a = Addon.objects.get(pk=7172)
-        eq_(a.preview_count, 1)
-
-        a = Addon.objects.get(pk=73)
-        eq_(a.preview_count, 0)
-
     def test_is_unreviewed(self):
         """Test if add-on is experimental or not"""
         # public add-on

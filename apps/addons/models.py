@@ -271,10 +271,6 @@ class Addon(amo.models.ModelBase):
                          app=settings.DEFAULT_APP):
         return '/%s/%s/addons/contribute/%d' % (lang, app, self.id)
 
-    @amo.cached_property
-    def preview_count(self):
-        return self.previews.all().count()
-
     @property
     def thumbnail_url(self):
         """

@@ -8,6 +8,7 @@
 {{ breadcrumbs() }}
 
 {% set version = addon.current_version %}
+{% set previews = addon.previews.all() %}
 
 <hgroup>
 <h2 class="addon"{{ addon.name|locale_html }}>
@@ -94,8 +95,8 @@
       </div>{# /addon-summary-wrapper #}
 
       <div class="secondary">
-        {% if addon.previews.all() %}
-          {% with preview = addon.previews.all()[0] %}
+        {% if previews %}
+          {% with preview=previews[0] %}
             <a class="screenshot thumbnail" rel="jquery-lightbox"
               href="{{ preview.image_url }}" title="{{ preview.caption }}">
                 <img alt="" src="{{ preview.thumbnail_url }}" />
@@ -117,9 +118,9 @@
   <div class="article userinput">
     <p{{ addon.description|locale_html }}>{{ addon.description|nl2br }}</p>
 
-    {% if addon.preview_count > 1 %}
+    {% if previews|length > 1 %}
       <h4>{{ _('Image Gallery') }}</h4>
-      {% for preview in addon.previews.all()[1:] %}
+      {% for preview in previews[1:] %}
         <a class="screenshot thumbnail" rel="jquery-lightbox"
           href="{{ preview.image_url }}" title="{{ preview.caption }}">
             <img src="{{ preview.thumbnail_url }}" alt="" />
