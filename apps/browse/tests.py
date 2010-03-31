@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
+from django import http
 from django.core.cache import cache
 
+from mock import patch
 import nose
 from nose.tools import eq_, assert_raises
 
@@ -9,7 +11,8 @@ import test_utils
 import amo
 from amo.urlresolvers import reverse
 from amo.helpers import urlparams
-from addons.models import Addon
+from addons.models import Addon, Category
+from browse import views
 from browse.views import locale_display_name
 
 
@@ -125,3 +128,29 @@ class TestThemes(test_utils.TestCase):
     def test_rating_sort(self):
         ids = self._get_sort('rating')
         eq_(ids, [6113, 7172, 1843, 6704, 10869, 40, 5369, 3615, 55, 73])
+
+
+class TestCategoryPages(test_utils.TestCase):
+    fixtures = ['base/addons']
+
+    def test_matching_opts(self):
+        """Every filter on landing pages is available on listing pages."""
+        for key, _ in views.CategoryLandingFilter.opts:
+            if key != 'featured':
+                assert key in dict(views.AddonFilter.opts)
+
+    @patch('browse.views.category_landing')
+    def test_goto_category_landing(self, landing_mock):
+        """We hit a landing page if there's a category and no sorting."""
+        landing_mock.return_value = http.HttpResponse()
+
+        self.client.get(reverse('browse.extensions'))
+        assert not landing_mock.called
+
+        slug = Category.objects.all()[0].slug
+        category_url = reverse('browse.extensions', args=[slug])
+        self.client.get('%s?sort=created' % category_url)
+        assert not landing_mock.called
+
+        self.client.get(category_url)
+        assert landing_mock.called

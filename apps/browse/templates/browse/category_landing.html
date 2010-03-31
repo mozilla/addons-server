@@ -1,0 +1,84 @@
+{% extends "browse/base_listing.html" %}
+
+{% set addon_sets = filter.all() %}
+
+{% set more_links = {
+    'created': _('View All Recently Added'),
+    'downloads': _('View All Top Downloads'),
+    'rating': _('View All Top Rated'),
+} %}
+
+{% block bodyclass %}category-landing category_landing{% endblock %}
+
+{% block content %}
+<header>
+  {{ breadcrumbs([(url('browse.extensions'), _('Extensions'))]) }}
+  <h2>{{ category.name }}</h2>
+</header>
+
+{% set addons = addon_sets['featured'][:3] %}
+{% if addons %}
+  <div id="featured-addons" class="featured">
+    <div class="featured-inner">
+      <h3>{{ _('Featured Add-ons') }}</h3>
+      <ul>
+        {% cache addons %}
+          {% for addon in addons %}
+          <li class="addon item">
+            <h4>
+              <a href="{{ addon.get_url_path() }}">{{ addon.name }}</a>
+              <span>
+                {% trans users=users_list(addon.authors.all()) %}
+                  by {{ users }}
+                {% endtrans %}
+              </span>
+            </h4>
+            <p class="preview">
+              <a href="{{ addon.get_url_path() }}">
+                <img src="{{ addon.thumbnail_url }}"></a>
+            </p>
+            <p class="addon-desc">{{ addon.summary|truncate(100) }}</p>
+            <p class="addon-rating">{{ addon.bayesian_rating|stars }}</p>
+            {{ install_button(addon) }}
+          </li>
+          {% endfor %}
+        {% endcache %}
+      </ul>
+    </div>
+  </div> {# featured-addons #}
+{% endif %}
+
+{% macro meta(key, addon) %}
+<span class="meta">
+{% if key == 'created' -%}
+  {{ _('added on {0}')|f(addon.created|datetime) }}
+{% elif key == 'downloads' %}
+  {{ _('{0} weekly downloads')|f(addon.weekly_downloads|numberfmt) }}
+{% elif key == 'rating' %}
+  {{ addon.bayesian_rating|stars }}
+{%- endif %}
+</span>
+{% endmacro %}
+
+{% for key, title in filter.opts if key != 'featured' %}
+{% set addons = addon_sets[key][:10] %}
+{% set link = url('browse.extensions', category.slug)|urlparams(sort=key) %}
+<div class="addons-column">
+  <h3><a href="{{ link }}">{{ filter.opts_dict[key] }}</a></h3>
+  <ul>
+    {% cache addons %}
+      {% for addon in addons %}
+      <li>
+        <a href="{{ addon.get_url_path() }}">
+          <img class="icon" width="32" height="32" src="{{ addon.icon_url }}">
+          <span class="name">{{ addon.name }}</span>
+          {{ meta(key, addon) }}
+        </a>
+      </li>
+      {% endfor %}
+    {% endcache %}
+  </ul>
+  <p class="view-all"><a href="{{ link }}">{{ more_links[key] }}</a></p>
+</div>
+{% endfor %}
+{% endblock content %}
