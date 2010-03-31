@@ -1,7 +1,7 @@
 {% if addon.takes_contributions %}
   {# TODO(jbalogh): reverse #}
   {% set base = '/addons/contribute/{0}?source=direct'|f(addon.id) %}
-  <div class="support-this-addon">
+  <div class="contribute">
     {% if addon.suggested_amount is not none %}
     {% trans url=base|urlparams(type='suggested'),
              amt=addon.suggested_amount|currencyfmt('USD') %}

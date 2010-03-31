@@ -55,7 +55,7 @@ class TestHelpers(test.TestCase):
 
         a.suggested_amount = '12'
         doc = PyQuery(support_addon(a))
-        eq_(doc('.support-this-addon').text(),
+        eq_(doc('.contribute').text(),
             'Support this add-on: Contribute $12.00')
 
     def test_contribution_box(self):
