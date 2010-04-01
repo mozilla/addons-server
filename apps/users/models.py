@@ -49,16 +49,16 @@ class UserProfile(amo.models.ModelBase):
     bio = PurifiedField()
     confirmationcode = models.CharField(max_length=255, default='',
                                         blank=True)
-    deleted = models.BooleanField(default=True)
+    deleted = models.BooleanField(default=False)
     display_collections = models.BooleanField(default=False)
     display_collections_fav = models.BooleanField(default=False)
     emailhidden = models.BooleanField(default=False)
-    homepage = models.CharField(max_length=765, blank=True, default='')
-    location = models.CharField(max_length=765, blank=True, default='')
+    homepage = models.CharField(max_length=255, blank=True, default='')
+    location = models.CharField(max_length=255, blank=True, default='')
     notes = models.TextField(blank=True)
     notifycompat = models.BooleanField(default=True)
     notifyevents = models.BooleanField(default=True)
-    occupation = models.CharField(max_length=765, default='', blank=True)
+    occupation = models.CharField(max_length=255, default='', blank=True)
     picture_type = models.CharField(max_length=75, default='', blank=True)
     resetcode = models.CharField(max_length=255, default='', blank=True)
     resetcode_expires = models.DateTimeField(default=datetime.now,
@@ -131,7 +131,7 @@ class UserProfile(amo.models.ModelBase):
         self.password = "sha512$Anonymous$Password"
         self.firstname = ""
         self.lastname = ""
-        self.nickname = ""
+        self.nickname = None
         self.homepage = ""
         self.deleted = True
         self.picture_type = ""

@@ -265,7 +265,6 @@ def register(request):
             u.lastname = data.get('lastname', None)
             u.nickname = data.get('nickname', None)
             u.homepage = data.get('homepage', None)
-            u.deleted = False  # This defaults to true...?
 
             u.set_password(data.get('password'))
             u.confirmationcode = ''.join(Random().sample(

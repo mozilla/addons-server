@@ -13,9 +13,7 @@ from users.models import UserProfile, get_hexdigest
 
 
 class TestUserProfile(test.TestCase):
-    fixtures = ['base/addons.json']
-
-    fixtures = ['users/test_backends']
+    fixtures = ['base/addons.json', 'users/test_backends']
 
     def test_anonymize(self):
         u = User.objects.get(id='4043307').get_profile()
