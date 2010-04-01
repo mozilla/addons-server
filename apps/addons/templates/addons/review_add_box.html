@@ -54,10 +54,10 @@
     </p>
     {% endif %}
     {# TODO reverse url #}
-    <p><a href="/pages/review_guide">{{ _('Review Guidelines') }}</a></p>
+    <p><a href="{{ remora_url('/pages/review_guide') }}">{{ _('Review Guidelines') }}</a></p>
     <p>
       {# TODO reverse url #}
-      <a href="/reviews/{{ addon.id }}/add/">
+      <a href="{{ remora_url('/reviews/add/{0}')|f(addon.id) }}">
         {{ _('Detailed Review') }}</a>
     </p>
 
