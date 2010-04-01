@@ -421,7 +421,8 @@
           method="post" id="coll_publish"
           data-coll-url="{{ remora_url('/collections') }}">
       <div>
-        <a href="/collections/">{{ _("What's this?", 'addons_display_a_license_what') }}</a>
+        <a href="/collections/" class="what">{{
+          _("What's this?", 'addons_display_a_license_what') }}</a>
         <h3>
           <label for="publish_to">{{ _('Add to a collection:') }}</label>
         </h3>
