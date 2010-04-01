@@ -230,7 +230,6 @@ class Client(object):
             result = sc.Query(term)
         except socket.timeout:
             log.error("Query has timed out.")
-            import pdb; pdb.set_trace()
             raise SearchError("Query has timed out.")
         except Exception, e:
             log.error("Sphinx threw an unknown exception: %s" % e)
