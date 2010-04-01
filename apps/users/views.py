@@ -79,7 +79,7 @@ def delete(request):
     else:
         form = forms.UserDeleteForm()
 
-    return jingo.render(request, 'delete.html',
+    return jingo.render(request, 'users/delete.html',
                         {'form': form, 'amouser': amouser})
 
 
@@ -111,7 +111,7 @@ def edit(request):
                 url = "%s%s" % (settings.SITE_URL,
                                 reverse('users.emailchange', args=[amouser.id,
                                                                 token, hash]))
-                t = loader.get_template('email/emailchange.ltxt')
+                t = loader.get_template('users/email/emailchange.ltxt')
                 c = {'domain': domain, 'url': url, }
                 send_mail(_(("Please confirm your email address "
                              "change at %s") % domain),
@@ -128,7 +128,7 @@ def edit(request):
     else:
         form = forms.UserEditForm(instance=amouser)
 
-    return jingo.render(request, 'edit.html',
+    return jingo.render(request, 'users/edit.html',
                         {'form': form, 'amouser': amouser})
 
 
@@ -163,7 +163,7 @@ def emailchange(request, user_id, token, hash):
 
 def login(request):
     logout(request)
-    r = auth.views.login(request, template_name='login.html',
+    r = auth.views.login(request, template_name='users/login.html',
                          authentication_form=forms.AuthenticationForm)
 
     if isinstance(r, HttpResponseRedirect):
@@ -176,7 +176,7 @@ def login(request):
             logout(request)
             log.warning('Attempt to log in with deleted account (%s)' % user)
             messages.error(request, _('Wrong email address or password!'))
-            return jingo.render(request, 'login.html',
+            return jingo.render(request, 'users/login.html',
                                 {'form': forms.AuthenticationForm()})
 
         if user.confirmationcode:
@@ -194,7 +194,7 @@ def login(request):
                       'to your email address mentioned above.') % url)
             messages.error(request, msg1)
             messages.info(request, msg2)
-            return jingo.render(request, 'login.html',
+            return jingo.render(request, 'users/login.html',
                                 {'form': forms.AuthenticationForm()})
 
         rememberme = request.POST.get('rememberme', None)

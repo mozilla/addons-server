@@ -166,7 +166,7 @@ class UserProfile(amo.models.ModelBase):
                         reverse('users.confirm',
                                 args=[self.id, self.confirmationcode]))
         domain = settings.DOMAIN
-        t = loader.get_template('email/confirm.ltxt')
+        t = loader.get_template('users/email/confirm.ltxt')
         c = {'domain': domain, 'url': url, }
         send_mail(_("Please confirm your email address"),
                   t.render(Context(c)), None, [self.email])
