@@ -357,6 +357,8 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 SESSION_COOKIE_AGE = 1209600
 SESSION_COOKIE_SECURE = True
 
+DEFAULT_FROM_EMAIL = "Mozilla Add-ons <nobody@mozilla.org>"
+
 # These should have app+locale at the start to avoid redirects
 LOGIN_URL = "/users/login"
 LOGOUT_URL = "/users/logout"
