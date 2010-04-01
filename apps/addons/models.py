@@ -356,6 +356,10 @@ class Persona(caching.base.CachingMixin, models.Model):
     submit = models.DateTimeField(null=True)
     approve = models.DateTimeField(null=True)
 
+    movers = models.FloatField(null=True)
+    popularity = models.IntegerField(null=True)
+    license = models.ForeignKey('versions.License', null=True)
+
     objects = caching.base.CachingManager()
 
     class Meta:
