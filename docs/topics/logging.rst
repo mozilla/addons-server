@@ -27,6 +27,16 @@ tree.  It sets up sensible defaults, but you can twiddle with these settings:
         import logging
         LOG_LEVEL = logging.WARN
 
+``LOG_FILTERS``
+    If this optional setting is set to a tuple, only log items matching strings
+    in said tuple will be displayed.
+
+    For example::
+
+        LOG_FILTERS = ('z.sphinx.', )
+
+    This will show you messages **only** that start with ``z.sphinx``.
+
 ``LOG_FORMAT``
     This string controls what gets printed out for each log message.  See the
     default in ``log_settings.py``.  The complete list of formatting options is

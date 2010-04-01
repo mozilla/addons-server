@@ -11,7 +11,8 @@ log = logging.getLogger('z')
 level = settings.LOG_LEVEL
 
 if settings.DEBUG:
-    fmt = '%(asctime)s %(name)s:%(levelname)s %(message)s :%(pathname)s:%(lineno)s'
+    fmt = ('%(asctime)s %(name)s:%(levelname)s %(message)s '
+           ':%(pathname)s:%(lineno)s')
     fmt = getattr(settings, 'LOG_FORMAT', fmt)
     handler = logging.StreamHandler()
     formatter = logging.Formatter(fmt, datefmt='%H:%M:%S')
@@ -26,4 +27,8 @@ else:
 log.setLevel(level)
 handler.setLevel(level)
 handler.setFormatter(formatter)
+
+for f in getattr(settings, 'LOG_FILTERS', []):
+    handler.addFilter(logging.Filter(f))
+
 log.addHandler(handler)
