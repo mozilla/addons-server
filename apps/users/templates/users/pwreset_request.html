@@ -4,35 +4,30 @@
 
 {% block content %}
 <div class="primary" role="main">
-
-  <h1>{{ _('Password Reset') }}</h1>
-
-  <p>
-    {% trans %} Forgotten your password? Enter your e-mail address below, and
-    we'll e-mail instructions for setting a new one.
-    {% endtrans %}
-  </p>
-
-  <form method="post" action="">
-    {{ csrf() }}
-      <div id="user-edit" class="tab-wrapper">
-        <div id="user-account" class="tab-panel">
-          <fieldset>
-            <h3>{{ _('Password Reset') }}</h3>
-            <ul>
-              <li>
-                <label for="id_email">{{ _('Email Address') }}</label>
-                {{ form.email|safe }}
-                {{ form.email.errors|safe }}
-              </li>
-            </ul>
-          </fieldset>
-        </div>
-        <div class="listing-footer">
-          <button type="submit">{{ _('Send password reset link') }}</button>
-        </div>
+  <h2>{{ _('Password Reset') }}</h2>
+  <div class="primary featured">
+    <form method="post" action="" class="featured-inner object-lead user-input">
+      {{ csrf() }}
+      <fieldset>
+        <p class="instruct">
+          {% trans %} Forgotten your password? Enter your e-mail address below,
+          and we'll e-mail instructions for setting a new one.
+          {% endtrans %}
+        </p>
+        <ul>
+          <li>
+            <label for="id_email">
+              {{ _('Email Address') }} <abbr class="req" title="{{ _('required') }}">*</abbr>
+            </label>
+            {{ form.email|safe }}
+            {{ form.email.errors|safe }}
+          </li>
+        </ul>
+      </fieldset>
+      <div class="fm-control">
+        <button type="submit">{{ _('Send password reset link') }}</button>
       </div>
-  </form>
-
+    </form>
+  </div>
 </div>
 {% endblock content %}

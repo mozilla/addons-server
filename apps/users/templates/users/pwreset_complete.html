@@ -6,9 +6,14 @@
 
 <div class="primary" role="main">
 
-  <h1>{{ _('Password successfully reset.') }}</h1>
+  <div class="notification-box success">
+    <h2>{{ _('Password successfully reset.') }}</h2>
+  </div>
+  <div class="notification-box info">
+    <div><a href="{{ login_url }}">{{ _('Log in') }}</a></div>
+  </div>
 
-  <p><a href="{{ login_url }}">{{ _('Log in') }}</a></p>
+
 
 </div>
 

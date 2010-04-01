@@ -39,30 +39,29 @@
             </ul>
           {% endtrans %}</p>
         </div>
-        <form method="post" action="">
+        <form method="post" action="" class="featured-inner object-lead user-input">
           {{ csrf() }}
-          <div id="user-edit" class="tab-wrapper">
-            <div id="user-account" class="tab-panel">
-              <fieldset>
-                <h3>{{ _('Confirm account deletion') }}</h3>
-                <ul>
-                    <label for="id_password">{{ _('Password') }}</label>
-                    {{ form.password|safe }}
-                    {{ form.password.errors|safe }}
-                  </li>
-                  <li>
-                    <label for="id_confirm" class="check">
-                      {{ form.confirm|safe }}
-                      {{ _('I understand this step cannot be undone.') }}
-                    </label>
-                    {{ form.confirm.errors|safe }}
-                  </li>
-                </ul>
-              </fieldset>
-            </div>
-            <div class="listing-footer">
-              <button type="submit">{{ _('Delete my user account now') }}</button>
-            </div>
+          <fieldset>
+            <legend>{{ _('Confirm account deletion') }}</legend>
+            <ul>
+                <label for="id_password">
+                  {{ _('Password') }}<abbr class="req" title="{{ _('required') }}">*</abbr>
+                </label>
+                {{ form.password|safe }}
+                {{ form.password.errors|safe }}
+              </li>
+              <li>
+                <label for="id_confirm" class="check">
+                  {{ form.confirm|safe }}
+                  {{ _('I understand this step cannot be undone.') }}
+                  <abbr class="req" title="{{ _('required') }}">*</abbr>
+                </label>
+                {{ form.confirm.errors|safe }}
+              </li>
+            </ul>
+          </fieldset>
+          <div class="fm-control">
+            <button type="submit">{{ _('Delete my user account now') }}</button>
           </div>
         </form>
       {% endif %}

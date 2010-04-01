@@ -17,7 +17,7 @@
     {% endfor %}
   {% endif %}
   <h1>{{ _('Account Settings') }}</h1>
-  <form method="post" action="">
+  <form method="post" action="" class="user-input">
     {{ csrf() }}
     <div id="user-edit" class="tab-wrapper">
       <ul class="tab-nav main">
@@ -26,18 +26,18 @@
       </ul>
       <div id="user-account" class="tab-panel">
         <fieldset id="acct-account">
-          <h3>{{ _('My account') }}</h3>
+          <legend>{{ _('My account') }}</legend>
           <ul>
             <li>
               <label for="id_nickname">
-                {{ _('Nickname') }} <abbr class="req" title="required">*</abbr>
+                {{ _('Nickname') }} <abbr class="req" title="{{ _('required') }}">*</abbr>
               </label>
               {{ form.nickname|safe }}
               {{ form.nickname.errors|safe }}
             </li>
             <li>
               <label for="id_email">
-                {{ _('Email Address') }} <abbr class="req" title="required">*</abbr>
+                {{ _('Email Address') }} <abbr class="req" title="{{ _('required') }}">*</abbr>
               </label>
               {{ form.email|safe }}
               {{ form.email.errors|safe }}
@@ -53,7 +53,7 @@
         </fieldset>
 
         <fieldset id="acct-password">
-          <h3>{{ _('Password') }}</h3>
+          <legend>{{ _('Password') }}</legend>
           <ol>
             <li>
               <label for="id_password">{{ _('Old Password') }}</label>
@@ -74,7 +74,7 @@
         </fieldset>
 
         <fieldset id="acct-notify">
-          <h3>{{ _('Notifications') }}</h3>
+          <legend>{{ _('Notifications') }}</legend>
           <p>
             {% trans %}
             From time to time, Mozilla may send you email about upcoming releases
@@ -107,11 +107,11 @@
       </div>{# /#user-account #}
       <div id="user-profile" class="tab-panel">
         <fieldset id="profile-personal">
-          <h3>{{ _('Profile information') }}</h3>
+          <legend>{{ _('Profile information') }}</legend>
           <ol>
             <li>
               <label for="id_firstname">
-                {{ _('First name') }} <abbr class="req" title="required">*</abbr>
+                {{ _('First name') }} <abbr class="req" title="{{ _('required') }}">*</abbr>
               </label>
               {{ form.firstname|safe }}
               {{ form.firstname.errors|safe }}
@@ -147,7 +147,7 @@
           </ol>
         </fieldset>
         <fieldset id="profile-detail" class="clearboth">
-          <h3>{{ _('In a little more detail...') }}</h3>
+          <legend>{{ _('In a little more detail...') }}</legend>
           <p>
             {% trans -%}
               Introduce yourself to the community, if you like!

@@ -6,37 +6,40 @@
 <div class="primary" role="main">
 
   {% if validlink %}
-
-    <form method="post" action="">
-      {{ csrf() }}
-      <div id="user-edit" class="tab-wrapper">
-        <div id="user-account" class="tab-panel">
-          <fieldset>
-            <h3>{{ _('Password Reset') }}</h3>
-            <ul>
-              <li>
-                <label for="id_new_password1">{{ _('New password') }}</label>
-                {{ form.new_password1|safe }}
-                {{ form.new_password1.errors|safe }}
-              </li>
-              <li>
-                <label for="id_new_password2">{{ _('Confirm password') }}</label>
-                {{ form.new_password2|safe }}
-                {{ form.new_password2.errors|safe }}
-              </li>
-            </ul>
-          </fieldset>
-        </div>
-        <div class="listing-footer">
+    <h2>{{ _('Password Reset') }}</h2>
+    <div class="primary featured">
+      <form method="post" action="" class="featured-inner object-lead user-input">
+        {{ csrf() }}
+        <fieldset>
+          <ul>
+            <li>
+              <label for="id_new_password1">
+                {{ _('New password') }} <abbr class="req" title="{{ _('required') }}">*</abbr>
+              </label>
+              {{ form.new_password1|safe }}
+              {{ form.new_password1.errors|safe }}
+            </li>
+            <li>
+              <label for="id_new_password2">
+                {{ _('Confirm password') }} <abbr class="req" title="{{ _('required') }}">*</abbr>
+              </label>
+              {{ form.new_password2|safe }}
+              {{ form.new_password2.errors|safe }}
+            </li>
+          </ul>
+        </fieldset>
+        <div class="fm-control">
           <button type="submit">{{ _('Update') }}</button>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
 
   {% else %}
 
-    <h1>{{ _('Password reset unsuccessful') }}</h1>
-    <p>{{ _('The password reset link was invalid, possibly because it has already been used.  Please request a new password reset.') }}</p>
+    <div class="notification-box error">
+      <h2>{{ _('Password reset unsuccessful') }}</h2>
+      <div>{{ _('The password reset link was invalid, possibly because it has already been used.  Please request a new password reset.') }}</div>
+    </div>
 
   {% endif %}
 
