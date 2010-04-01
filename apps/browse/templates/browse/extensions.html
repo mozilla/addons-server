@@ -1,33 +1,4 @@
-{% extends "base_side_categories.html" %}
-
-{% block title %}
-{% if category %}
-  {{ page_title(category.name) }}
-{% else %}
-  {{ page_title(_('Extensions')) }}
-{% endif %}
-{% endblock %}
-
-{% block extrahead %}
-{# This is ripped off from the li.selected styling in main-mozilla.css.  I'm
-not excited about CSS in here, but it's the best way to highlight the category
-while keeping the sidebar cached. #}
-{% if category %}
-  <style>
-    #c-{{ category.id }} {
-        -moz-border-radius: 3px;
-        -webkit-border-radius: 3px;
-        border-radius: 3px;
-        border: 1px solid #001133;
-        background-color: #223355;
-        padding: 0 3px 0 3px;
-    }
-    #c-{{ category.id }} a {
-        color: #fff;
-    }
-  </style>
-{% endif %}
-{% endblock %}
+{% extends "browse/base_listing.html" %}
 
 {% block content %}
 <header>

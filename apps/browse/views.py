@@ -9,6 +9,7 @@ import product_details
 
 import amo.utils
 from addons.models import Addon, Category
+from addons.views import HomepageFilter
 from translations.query import order_by_translation
 
 
@@ -161,11 +162,17 @@ def _listing(request, addon_type, default='downloads'):
 
 def extensions(request, category=None):
     TYPE = amo.ADDON_EXTENSION
-    addons, filter, experimental = _listing(request, TYPE)
 
     if category is not None:
         q = Category.objects.filter(application=request.APP.id, type=TYPE)
         category = get_object_or_404(q, slug=category)
+
+    if 'sort' not in request.GET and category:
+        return category_landing(request, category)
+
+    addons, filter, experimental = _listing(request, TYPE)
+
+    if category:
         addons = addons.filter(categories__id=category.id)
 
     addons = amo.utils.paginate(request, addons)
@@ -175,3 +182,42 @@ def extensions(request, category=None):
                          'experimental': experimental,
                          'sorting': filter.sorting,
                          'sort_opts': filter.opts})
+
+
+class CategoryLandingFilter(HomepageFilter):
+
+    opts = (('featured', _('Featured')),
+            ('created', _('Recently Added')),
+            ('downloads', _('Top Downloads')),
+            ('rating', _('Top Rated')))
+
+    def _filter(self, field):
+        qs = Addon.objects
+        if field == 'created':
+            return qs.order_by('-created')
+        elif field == 'downloads':
+            return qs.order_by('-weekly_downloads')
+        elif field == 'rating':
+            return qs.order_by('-bayesian_rating')
+        else:
+            return qs.category_featured().order_by('?')
+
+
+def category_landing(request, category):
+    base = (Addon.objects.listed(request.APP).exclude(type=amo.ADDON_PERSONA)
+            .filter(categories__id=category.id))
+    filter = CategoryLandingFilter(request, base,
+                                   key='browse', default='featured')
+
+    return jingo.render(request, 'browse/category_landing.html',
+                        {'category': category, 'filter': filter})
+
+
+def creatured(request, category):
+    TYPE = amo.ADDON_EXTENSION
+    q = Category.objects.filter(application=request.APP.id, type=TYPE)
+    category = get_object_or_404(q, slug=category)
+    addons = Addon.objects.filter(addoncategory__feature=True,
+                                  addoncategory__category=category)
+    return jingo.render(request, 'browse/creatured.html',
+                        {'addons': addons, 'category': category})
