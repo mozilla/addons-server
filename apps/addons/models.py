@@ -295,17 +295,16 @@ class Addon(amo.models.ModelBase):
         locale_filter = (Q(feature__locale=lang) |
                          Q(feature__locale__isnull=True) |
                          Q(feature__locale=''))
-        feature = Addon.objects.featured(app).filter(
-            locale_filter, pk=self.pk)[:1]
-        return bool(feature)
+        return Addon.objects.featured(app).filter(
+            locale_filter, pk=self.pk).exists()
 
     def is_category_featured(self, app, lang):
         """is add-on featured in any category for this app?"""
         # XXX should probably take feature_locales under consideration, even
         # though remora didn't do that
-        feature = AddonCategory.objects.filter(
-            addon=self, feature=True, category__application__id=app.id)
-        return bool(feature[:1])
+        return AddonCategory.objects.filter(
+            addon=self, feature=True,
+            category__application__id=app.id).exists()
 
     @amo.cached_property
     def compatible_apps(self):
@@ -327,8 +326,8 @@ class Addon(amo.models.ModelBase):
         if roles is None:
             roles = amo.AUTHOR_CHOICES.keys()
             roles.remove(amo.AUTHOR_ROLE_NONE)
-        return bool(AddonUser.objects.filter(addon=self, user=user,
-                                             role__in=roles))
+        return AddonUser.objects.filter(addon=self, user=user,
+                                        role__in=roles).exists()
 
     @property
     def takes_contributions(self):
