@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% set name = category.name if category else filter.title %}
+{% set title = _('{0} Personas')|f(name) %}
+{% set url_base = url('browse.personas', category.slug) %}
+
+{% block title %}{{ page_title(title) }}{% endblock %}
+
+{% block extrahead %}
+<style>
+  #p-{{ category.id if category else filter.field }} a {
+    color: inherit;
+  }
+</style>
+{% endblock %}
+
+{% macro persona_categories() %}
+<div class="secondary" role="complementary">
+  <div class="other-categories highlight">
+    <h3>{{ _('Personas') }}</h3>
+    <ul>
+      {% for key, title_ in filter.opts_dict.items() %}
+        <li id="p-{{ key }}">
+          <a href="{{ url('browse.personas')|urlparams(sort=key) }}">{{ title_ }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+    <ul>
+    {% cache categories %}
+    {% for cat in categories %}
+      <li id="p-{{ cat.id }}">
+        <a href="{{ url('browse.personas', cat.slug) }}">
+          {{ cat.name }}</a>
+      </li>
+    {% endfor %}
+    {% endcache %}
+    </ul>
+  </div>
+</div>
+{% endmacro %}

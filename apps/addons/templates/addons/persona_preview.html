@@ -7,7 +7,7 @@
       title="{{ addon.name }}" style="background-image:url('{{ preview }}')"
       data-browsertheme="{{ persona.json_data }}">
         {% if extra == 'created' %}
-          <span class="crearatingted">
+          <span class="created">
             {{ _('Added {0}')|f(addon.created|datetime) }}
           </span>
         {% elif extra == 'popular' %}

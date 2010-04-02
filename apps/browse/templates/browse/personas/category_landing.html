@@ -1,0 +1,62 @@
+{% extends "browse/personas/base.html" %}
+
+{% set addon_sets = filter.all() %}
+{% set special = 'up-and-coming' %}
+{% set more_links = {
+    'created': _('View All Recently Added'),
+    'popular': _('View All Most Popular'),
+    'rating': _('View All Top Rated'),
+} %}
+
+{% macro sort_link(key) -%}
+  {{ url('browse.personas', category.slug)|urlparams(sort=key) }}
+{%- endmacro %}
+
+{% block bodyclass %}category-landing{% endblock %}
+
+{% block content %}
+<div class="primary" role="main">
+  <header>
+    {{ breadcrumbs([(url('browse.personas'), _('Personas'))]) }}
+    <h2>{{ category.name }}</h2>
+  </header>
+
+  {% set addons = addon_sets[special][:6] %}
+  <div id="featured-addons" class="featured personas">
+    <div class="featured-inner">
+      <h3>
+        <a href="{{ sort_link(special) }}">{{ _('Up & Coming Personas') }}</a>
+      </h3>
+      <ul class="persona-list-3col">
+        {% cache addons %}
+          {% for addon in addons %}
+            <li>{{ persona_preview(addon.persona, size='small') }}</li>
+          {% endfor %}
+        {% endcache %}
+      </ul>
+      <p class="view-all">
+        <a href="{{ sort_link(special) }}">
+          {{ _('View All Up & Coming') }}</a>
+      </p>
+    </div>
+  </div> {# featured-addons #}
+
+  {% for key, title in filter.opts if key != special %}
+    {% set addons = addon_sets[key][:6] %}
+    {% set link = sort_link(key) %}
+    <div class="addons-column">
+      <h3><a href="{{ link }}">{{ filter.opts_dict[key] }}</a></h3>
+      <ul class="personas">
+        {% cache addons %}
+        {% for addon in addons %}
+          <li>{{ persona_preview(addon.persona, size='small', extra=key) }}</li>
+        {% endfor %}
+        {% endcache %}
+      </ul>
+      <p class="view-all"><a href="{{ link }}">{{ more_links[key] }}</a></p>
+    </div>
+  {% endfor %}
+</div>
+
+{{ persona_categories() }}
+{% endblock content %}
