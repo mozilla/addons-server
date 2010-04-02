@@ -3,7 +3,7 @@ from django.db.models import Sum
 import caching
 
 from tower import ugettext_lazy as _, ungettext as ngettext
-from stats.models import ShareCount
+from stats.models import ShareCountTotal
 
 
 # string replacements in URLs are: url, title, description
@@ -14,18 +14,6 @@ class ServiceBase(object):
     def count_term(count):
         """Render this service's share count with the right term."""
         return ngettext('{0} post', '{0} posts', count).format(count)
-
-    @staticmethod
-    def all_shares(addon):
-        """Base queryset containing all per-day share counts for this add-on."""
-        return ShareCount.objects.filter(addon=addon)
-
-    @classmethod
-    def share_count(cls, addon):
-        # note: make sure this is cached when you use it.
-        count = cls.all_shares(addon).filter(
-            service=cls.shortname).aggregate(total=Sum('count'))
-        return count['total'] or 0
 
 
 class DELICIOUS(ServiceBase):

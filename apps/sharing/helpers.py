@@ -21,15 +21,13 @@ def addon_sharing(context, addon):
             service_opts['target'] = '_blank'
         opts[service] = service_opts
 
-    # all shares for this add-on: not evaluated, but cached against
-    all_shares = ServiceBase.all_shares(addon)
-
     c = dict(context.items())
     c.update({
+        'request': context['request'],
+        'user': context['request'].user,
         'addon': addon,
         'services': sharing.SERVICES_LIST,
         'service_opts': opts,
         'email_service': EMAIL,
-        'all_shares': all_shares
     })
     return c

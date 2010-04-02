@@ -58,6 +58,17 @@ class ShareCount(caching.base.CachingMixin, models.Model):
         db_table = 'stats_share_counts'
 
 
+class ShareCountTotal(caching.base.CachingMixin, models.Model):
+    addon = models.ForeignKey('addons.Addon')
+    count = models.PositiveIntegerField()
+    service = models.CharField(max_length=255, null=True)
+
+    objects = caching.base.CachingManager()
+
+    class Meta:
+        db_table = 'stats_share_counts_totals'
+
+
 class ContributionError(Exception):
 
     def __init__(self, value):

@@ -1,7 +1,7 @@
 <div class="share-this">
   <a class="share" href="#">{{ _('Share this Add-on') }}</a>
   <div class="share-arrow"><div class="share-frame">
-  {% cache all_shares %}
+  {% cache addon %}
     <div class="share-networks share-content">
       <ul>
         {% for service in services %}
@@ -12,8 +12,9 @@
                 {{ service.label }}
               </a>
             </span>
-            <span class="share-count">{{
-              service.count_term(service.share_count(addon)) }}</span>
+            <span class="share-count">
+              {{ service.count_term(addon.share_counts()[service.shortname]) }}
+            </span>
           </li>
         {% endfor %}
       </ul>

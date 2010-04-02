@@ -1,0 +1,47 @@
+[
+    {
+        "pk": 177155738,
+        "model": "stats.sharecounttotal",
+        "fields": {
+            "count": 13,
+            "service": "delicious",
+            "addon": 7172
+        }
+    },
+    {
+        "pk": 177155739,
+        "model": "stats.sharecounttotal",
+        "fields": {
+            "count": 29,
+            "service": "digg",
+            "addon": 7172
+        }
+    },
+    {
+        "pk": 177155741,
+        "model": "stats.sharecounttotal",
+        "fields": {
+            "count": 4,
+            "service": "friendfeed",
+            "addon": 7172
+        }
+    },
+    {
+        "pk": 177155742,
+        "model": "stats.sharecounttotal",
+        "fields": {
+            "count": 14,
+            "service": "myspace",
+            "addon": 7172
+        }
+    },
+    {
+        "pk": 177155743,
+        "model": "stats.sharecounttotal",
+        "fields": {
+            "count": 4,
+            "service": "twitter",
+            "addon": 7172
+        }
+    }
+]

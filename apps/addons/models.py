@@ -1,3 +1,4 @@
+import collections
 from datetime import date
 import json
 import time
@@ -16,7 +17,7 @@ from translations.fields import (TranslatedField, PurifiedField,
                                  LinkifiedField, translations_with_fallback)
 from users.models import UserProfile
 from search import utils as search_utils
-from stats.models import Contribution as ContributionStats
+from stats.models import Contribution as ContributionStats, ShareCountTotal
 
 
 class AddonManager(amo.models.ManagerBase):
@@ -340,6 +341,13 @@ class Addon(amo.models.ModelBase):
     @property
     def has_eula(self):
         return self.eula and self.eula.localized_string
+
+    @caching.cached_method
+    def share_counts(self):
+        rv = collections.defaultdict(int)
+        rv.update(ShareCountTotal.objects.filter(addon=self)
+                  .values_list('service', 'count'))
+        return rv
 
 
 class Persona(caching.CachingMixin, models.Model):

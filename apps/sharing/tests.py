@@ -48,19 +48,13 @@ class SharingHelpersTestCase(test.TestCase):
 
 
 class SharingModelsTestCase(test.TestCase):
-    fixtures = ['base/addons']
+    fixtures = ['base/addons', 'sharing/share_counts']
 
     def test_share_count(self):
         addon = Addon.objects.get(id=7172)
 
-        # add shares, then check aggregate
-        mycounts = (5, 2, 7, 0, 3)
-        for i in range(len(mycounts)):
-            ShareCount.objects.create(
-                addon=addon, count=mycounts[i], date=date.today()-timedelta(i),
-                service=DIGG.shortname)
-        eq_(DIGG.share_count(addon), sum(mycounts))
+        eq_(addon.share_counts()[DIGG.shortname], 29)
 
         # total count with no shares
-        eq_(FACEBOOK.share_count(addon), 0,
+        eq_(addon.share_counts()[FACEBOOK.shortname], 0,
             'Total count with no shares must be 0')
