@@ -6,7 +6,7 @@ from django.conf import settings
 from django.db import models
 from django.db.models import Q, Sum
 
-import caching.base
+import caching.base as caching
 
 import amo.models
 from amo.fields import DecimalCharField
@@ -290,6 +290,7 @@ class Addon(amo.models.ModelBase):
     def is_unreviewed(self):
         return self.status in amo.UNREVIEWED_STATUSES
 
+    @caching.cached_method
     def is_featured(self, app, lang):
         """is add-on globally featured for this app and language?"""
         locale_filter = (Q(feature__locale=lang) |
@@ -298,6 +299,7 @@ class Addon(amo.models.ModelBase):
         return Addon.objects.featured(app).filter(
             locale_filter, pk=self.pk).exists()
 
+    @caching.cached_method
     def is_category_featured(self, app, lang):
         """is add-on featured in any category for this app?"""
         # XXX should probably take feature_locales under consideration, even
@@ -314,6 +316,7 @@ class Addon(amo.models.ModelBase):
         else:
             return {}
 
+    @caching.cached_method
     def has_author(self, user, roles=None):
         """True if ``user`` is an author with any of the specified ``roles``.
 
@@ -339,7 +342,7 @@ class Addon(amo.models.ModelBase):
         return self.eula and self.eula.localized_string
 
 
-class Persona(caching.base.CachingMixin, models.Model):
+class Persona(caching.CachingMixin, models.Model):
     """Personas-specific additions to the add-on model."""
     addon = models.OneToOneField(Addon)
     persona_id = models.PositiveIntegerField(db_index=True)
@@ -358,7 +361,7 @@ class Persona(caching.base.CachingMixin, models.Model):
     popularity = models.IntegerField(null=False, default=0)
     license = models.ForeignKey('versions.License', null=True)
 
-    objects = caching.base.CachingManager()
+    objects = caching.CachingManager()
 
     class Meta:
         db_table = 'personas'
@@ -409,13 +412,13 @@ class Persona(caching.base.CachingMixin, models.Model):
         }, separators=(',', ':'))
 
 
-class AddonCategory(caching.base.CachingMixin, models.Model):
+class AddonCategory(caching.CachingMixin, models.Model):
     addon = models.ForeignKey(Addon)
     category = models.ForeignKey('Category')
     feature = models.BooleanField(default=False)
     feature_locales = models.CharField(max_length=255, default='', null=True)
 
-    objects = caching.base.CachingManager()
+    objects = caching.CachingManager()
 
     class Meta:
         db_table = 'addons_categories'
@@ -487,7 +490,7 @@ class AddonType(amo.models.ModelBase):
         return unicode(self.name)
 
 
-class AddonUser(caching.base.CachingMixin, models.Model):
+class AddonUser(caching.CachingMixin, models.Model):
     AUTHOR_CHOICES = amo.AUTHOR_CHOICES.items()
 
     addon = models.ForeignKey(Addon)
@@ -497,7 +500,7 @@ class AddonUser(caching.base.CachingMixin, models.Model):
     listed = models.BooleanField(default=True)
     position = models.IntegerField(default=0)
 
-    objects = caching.base.CachingManager()
+    objects = caching.CachingManager()
 
     class Meta:
         db_table = 'addons_users'
