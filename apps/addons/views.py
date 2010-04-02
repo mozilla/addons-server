@@ -33,9 +33,9 @@ def author_addon_clicked(f):
 def addon_detail(request, addon_id):
     """Add-ons details page dispatcher."""
     addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
-    # add-on needs to have a version and be valid for this app.
-    if addon.current_version and addon.type.id in request.APP.types:
-        if addon.type.id == amo.ADDON_PERSONA:
+    # addon needs to have a version and be valid for this app.
+    if addon.current_version and addon.type_id in request.APP.types:
+        if addon.type_id == amo.ADDON_PERSONA:
             return persona_detail(request, addon)
         else:
             return extension_detail(request, addon)
@@ -54,7 +54,7 @@ def extension_detail(request, addon):
         return http.HttpResponsePermanentRedirect(reverse(
             'addons.detail', args=[addon.id]))
 
-    addon.is_searchengine = (addon.type.id == amo.ADDON_SEARCH)
+    addon.is_searchengine = (addon.type_id == amo.ADDON_SEARCH)
 
     # source tracking
     src = request.GET.get('src', 'addondetail')

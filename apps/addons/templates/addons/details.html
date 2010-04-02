@@ -268,15 +268,11 @@
     {% if categories or author_addons|length > 1 %}
     <div class="highlight">
       {% if categories %}
-      {% set _sort_opts = addon.is_searchengine and '?sort=averagerating' or
-        '' %}
         <ul>
           {# TODO reverse URL #}
           {% for category in categories %}
           <li>
-            <a href="{{ '/browse/type:{0}/cat:{1}{2}'|f(
-              category.type.id, category.id, _sort_opts)
-              }}" class="more-info">
+            <a href="{{ category.get_url_path() }}" class="more-info">
               {{ _('See All {0} Add-ons')|f(category) }}
             </a>
           </li>

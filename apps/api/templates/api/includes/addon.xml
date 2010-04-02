@@ -1,7 +1,7 @@
 {% cache addon %}
 <addon id="{{ addon.id }}">
   <name>{{ addon.name }}</name>
-  <type id="{{ addon.type.id }}">{{ amo.ADDON_TYPE[addon.type.id] }}</type>
+  <type id="{{ addon.type_id }}">{{ amo.ADDON_TYPE[addon.type_id] }}</type>
   <guid>{{ addon.guid }}</guid>
   <version>{{ addon.current_version.version }}</version>
   <status id="{{ addon.status }}">{{ amo.STATUS_CHOICES[addon.status] }}</status>
