@@ -3,11 +3,11 @@ import itertools
 from django.db import models
 
 import amo.models
-from translations.fields import TranslatedField
+from translations.fields import TranslatedField, TranslatedFieldMixin
 from translations.models import Translation
 
 
-class Review(amo.models.ModelBase):
+class Review(TranslatedFieldMixin, amo.models.ModelBase):
 
     version = models.ForeignKey('versions.Version', related_name='reviews')
     user = models.ForeignKey('users.UserProfile', related_name='_reviews_all')

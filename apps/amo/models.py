@@ -1,15 +1,39 @@
 from django.db import models
 
+from queryset_transform import TransformQuerySet
+
 import caching.base
 from translations.fields import TranslatedFieldMixin
+from translations import transformer
 
 
-# Our apps should subclass BaseManager instead of models.Manager or
-# caching.base.CachingManager directly.
-ManagerBase = caching.base.CachingManager
+# Make TransformQuerySet one of CachingQuerySet's parents so that we can do
+# transforms on objects and then get them cached.
+CachingQuerySet = caching.base.CachingQuerySet
+CachingQuerySet.__bases__ = (TransformQuerySet,) + CachingQuerySet.__bases__
 
 
-class ModelBase(caching.base.CachingMixin, TranslatedFieldMixin, models.Model):
+class ManagerBase(caching.base.CachingManager):
+    """
+    Base for all managers in AMO.
+
+    Returns TransformQuerySets from the queryset_transform project.
+
+    If a model has translated fields, they'll be attached through a transform
+    function.
+    """
+
+    def get_query_set(self):
+        qs = super(ManagerBase, self).get_query_set()
+        if hasattr(self.model._meta, 'translated_fields'):
+            qs = qs.transform(transformer.get_trans)
+        return qs
+
+    def transform(self, fn):
+        return self.all().transform(fn)
+
+
+class ModelBase(caching.base.CachingMixin, models.Model):
     """
     Base class for AMO models to abstract some common features.
 
