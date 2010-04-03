@@ -2,6 +2,7 @@ from datetime import date, timedelta
 
 from django import test
 from django.contrib.auth.models import User as DjangoUser
+from django.utils import translation
 
 import jingo
 from mock import Mock
@@ -23,15 +24,13 @@ class SharingHelpersTestCase(test.TestCase):
         addon = Addon.objects.get(id=7172)
 
         jingo.load_helpers()
-        # mock helpers
-        locale_url = lambda url: url
-        locale_url.__name__ = 'locale_url'
-        jingo.register.function(locale_url)
 
         request = Mock()
         request.user = DjangoUser()
         request.APP = amo.FIREFOX
-        ctx = {'request': request}
+        ctx = {'request': request,
+               'APP': request.APP,
+               'LANG': translation.get_language()}
 
         # disable cake csrf token
         cake_csrf_token = lambda: ''

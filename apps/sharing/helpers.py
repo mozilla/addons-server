@@ -5,11 +5,9 @@ import sharing
 from .models import ServiceBase, EMAIL
 
 
-@register.function
+@register.inclusion_tag('sharing/addon_sharing.html')
 @jinja2.contextfunction
 def addon_sharing(context, addon):
-    t = env.get_template('sharing/addon_sharing.html')
-
     # prepare services
     opts = {}
     for service in sharing.SERVICES_LIST:
@@ -26,13 +24,12 @@ def addon_sharing(context, addon):
     # all shares for this add-on: not evaluated, but cached against
     all_shares = ServiceBase.all_shares(addon)
 
-    data = {
-        'request': context['request'],
-        'user': context['request'].user,
+    c = dict(context.items())
+    c.update({
         'addon': addon,
         'services': sharing.SERVICES_LIST,
         'service_opts': opts,
         'email_service': EMAIL,
         'all_shares': all_shares
-    }
-    return jinja2.Markup(t.render(**data))
+    })
+    return c

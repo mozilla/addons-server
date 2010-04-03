@@ -20,10 +20,10 @@
     </div>{# /share-networks #}
   {% endcache %}
 
-  {% if user.is_authenticated() %}
+  {% if request.user.is_authenticated() %}
     <div class="share-email share-content">
-      <form action="{{ locale_url(
-        request.APP.short+service_opts[email_service].url) }}" method="post">
+      <form action="{{ remora_url(service_opts[email_service].url) }}"
+        method="post">
         {{ cake_csrf_token() }}
         {# TODO uncakeify #}
         <div class="container">
