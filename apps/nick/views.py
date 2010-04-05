@@ -13,7 +13,7 @@ from django.contrib import admin
 from django.db.models import Sum, Avg
 
 import jingo
-from caching.base import cached
+from caching.base import cached_with
 
 import amo
 from amo.urlresolvers import reverse
@@ -138,15 +138,14 @@ def view(request, func):
         if category:
             qs = qs.filter(categories__slug=category)
 
-    # These aggregate stats won't change until tomorrow, if ever.
     addons = amo.utils.paginate(request, qs, per_page=75)
-    tomorrow = date.today() + td(days=1)
-    cache_key = '%s%s' % (addons.object_list.query, date_)
-    f = lambda: attach_stats(request, addons.object_list, date_)
-    addons.object_list = cached(f, cache_key, time.mktime(tomorrow.timetuple()))
+    q = addons.object_list
+    cache_key = '%s%s' % (q.query, date_)
+    f = lambda: attach_stats(request, q, date_)
+    addons.object_list = cached_with(q, f, cache_key)
 
     c = {'addons': addons, 'section': func.__name__,
-         'form': form, 'sections': get_sections()}
+         'query': q, 'form': form, 'sections': get_sections()}
     return jingo.render(request, 'nick/featured.html', c)
 
 

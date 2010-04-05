@@ -43,8 +43,8 @@ Nick's Special Featured Add-ons Page for {{ request.APP.pretty }}
     <th>SPARKLINES</th>
   </thead>
   <tbody>
+    {% cache query %}
     {% for addon in addons.object_list %}
-    {% cache addon.object_list %}
     <tr>
       <td><a href="{{ url('addons.detail', addon.id) }}"
              title="{{ addon.name }}">{{ addon.id }}</a></td>
@@ -72,8 +72,8 @@ Nick's Special Featured Add-ons Page for {{ request.APP.pretty }}
       </td>
       <td class="sparklines">{{ addon.sparks|join(',') }}</td>
     </tr>
-    {% endcache %}
     {% endfor %}
+    {% endcache %}
   </tbody>
 </table>
 {{ addons|paginator }}
