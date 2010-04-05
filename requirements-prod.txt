@@ -13,3 +13,4 @@ GitPython==0.1.7
 -e git://github.com/jbalogh/jingo.git#egg=jingo
 -e git://github.com/jsocol/bleach.git#egg=bleach
 -e git://github.com/jbalogh/schematic.git#egg=schematic
+-e git://github.com/clouserw/tower.git#egg=tower
