@@ -44,7 +44,7 @@ Nick's Special Featured Add-ons Page for {{ request.APP.pretty }}
   </thead>
   <tbody>
     {% for addon in addons.object_list %}
-    {% cache addon %}
+    {% cache addon.object_list %}
     <tr>
       <td><a href="{{ url('addons.detail', addon.id) }}"
              title="{{ addon.name }}">{{ addon.id }}</a></td>
