@@ -63,7 +63,8 @@ class InstallButton(object):
         self.unreviewed = addon.is_unreviewed() or self.version.is_unreviewed
         self.self_hosted = addon.status == amo.STATUS_LISTED
         self.featured = (not self.unreviewed and not self.self_hosted
-                         and addon.is_featured(app, lang))
+                         and addon.is_featured(app, lang)
+                         or addon.is_category_featured(app, lang))
 
         self.show_eula = show_eula and addon.has_eula
         self.show_contrib = (show_contrib and addon.takes_contributions
