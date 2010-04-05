@@ -3,14 +3,16 @@ Tests for the search (sphinx) app.
 """
 import os
 import shutil
+import socket
 import time
 
 from django.test import TestCase, client
 from django.core.management import call_command
 from django.utils import translation
 
+import mock
 from nose import SkipTest
-from nose.tools import eq_
+from nose.tools import eq_, assert_raises
 import test_utils
 
 import amo.helpers
@@ -111,6 +113,19 @@ class GetCategoryIdTest(TestCase):
 
 
 query = lambda *args, **kwargs: SearchClient().query(*args, **kwargs)
+
+
+@mock.patch('search.client.SphinxClient')
+def test_sphinx_timeout(sphinx_mock):
+    def sphinx_error(cls):
+        raise cls
+
+    sphinx_mock.return_value = sphinx_mock
+    sphinx_mock.Query.side_effect = lambda *a: sphinx_error(socket.timeout)
+    assert_raises(SearchError, query, 'xxx')
+
+    sphinx_mock.Query.side_effect = lambda *a: sphinx_error(Exception)
+    assert_raises(SearchError, query, 'xxx')
 
 
 class SearchDownTest(TestCase):
