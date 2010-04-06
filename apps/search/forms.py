@@ -13,9 +13,6 @@ from applications.models import AppVersion
 types = (amo.ADDON_ANY, amo.ADDON_EXTENSION, amo.ADDON_THEME,
          amo.ADDON_DICT, amo.ADDON_SEARCH, amo.ADDON_LPAPP)
 
-platforms = [platform.id for platform in
-             amo.PLATFORMS.values() if platform.id != 0]
-
 updated = (
     ('', _lazy(u'Any time')),
     ('1 day ago', _lazy(u'Past Day')),
@@ -100,8 +97,8 @@ def SearchForm(request):
 
         # TODO(jbalogh): why not use the platform id?
         pid = forms.ChoiceField(label=_('Platform'),
-                                choices=[(idx, amo.PLATFORMS[p].id) for idx, p
-                                         in enumerate(platforms)])
+                choices=[(p[0], p[1].name) for p in amo.PLATFORMS.iteritems()
+                         if p[1] != amo.PLATFORM_ANY])
 
         lup = forms.ChoiceField(label=_('Last Updated'), choices=updated)
 
