@@ -137,11 +137,11 @@ def addon_listing_header(context, url_base, sort_opts, selected, experimental):
 
 @register.inclusion_tag('addons/persona_preview.html')
 @jinja2.contextfunction
-def persona_preview(context, persona, size='large', linked=True):
+def persona_preview(context, persona, size='large', linked=True, extra=None):
     preview_map = {'large': persona.preview_url,
                    'small': persona.thumb_url}
 
     c = dict(context.items())
     c.update({'persona': persona, 'addon': persona.addon, 'linked': linked,
-              'size': size, 'preview': preview_map[size]})
+              'size': size, 'preview': preview_map[size], 'extra': extra})
     return c

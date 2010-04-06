@@ -5,7 +5,22 @@
       <{{ tag }} {{ ('href="%s" ' % addon.get_url_path())|safe if
                     linked else '' }}
       title="{{ addon.name }}" style="background-image:url('{{ preview }}')"
-      data-browsertheme="{{ persona.json_data }}"></{{ tag }}>
+      data-browsertheme="{{ persona.json_data }}">
+        {% if extra == 'created' %}
+          <span class="crearatingted">
+            {{ _('Added {0}')|f(addon.created|datetime) }}
+          </span>
+        {% elif extra == 'popular' %}
+          <span class="users">
+            {{ _('<b>{0}</b> users')|f(addon.persona.popularity|numberfmt)|safe }}
+          </span>
+        {% elif extra == 'rating' %}
+          {# TODO(jbalogh): call this rating when remora is gone. #}
+          <span class="reviews">
+            {{ addon.bayesian_rating|stars }} {{ addon.total_reviews|numberfmt }}
+          </span>
+        {% endif %}
+      </{{ tag }}>
 
       {% if linked %}
       {# TODO persona install button on hover #}
