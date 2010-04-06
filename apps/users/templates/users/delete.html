@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% from 'includes/forms.html' import required %}
 
 {% block title %}{{ page_title(_('Delete User Account')) }}{% endblock %}
 
@@ -31,22 +32,22 @@
 
       {% if form %}
         <div class="notification-box info prose">
-          <p>{% trans site=settings.DOMAIN %}
-            By clicking "delete" your account is going to be <strong>permanently removed</strong>. That means:
+          <p>
+            {% trans site=settings.DOMAIN %}By clicking "delete" your account is going
+             to be <strong>permanently removed</strong>. That means:
             <ul>
               <li>You will not be able to log into {{ site }} anymore.</li>
-                <li>Your reviews and ratings will not be deleted, but they will no longer be associated with you.</li>
+              <li>Your reviews and ratings will not be deleted, but they will no longer be associated with you.</li>
             </ul>
-          {% endtrans %}</p>
+             {% endtrans %}
+          </p>
         </div>
         <form method="post" action="" class="featured-inner object-lead user-input">
           {{ csrf() }}
           <fieldset>
             <legend>{{ _('Confirm account deletion') }}</legend>
             <ul>
-                <label for="id_password">
-                  {{ _('Password') }}<abbr class="req" title="{{ _('required') }}">*</abbr>
-                </label>
+                <label for="id_password">{{ _('Password') }} {{ required() }}</label>
                 {{ form.password|safe }}
                 {{ form.password.errors|safe }}
               </li>
@@ -54,7 +55,7 @@
                 <label for="id_confirm" class="check">
                   {{ form.confirm|safe }}
                   {{ _('I understand this step cannot be undone.') }}
-                  <abbr class="req" title="{{ _('required') }}">*</abbr>
+                  {{ required() }}
                 </label>
                 {{ form.confirm.errors|safe }}
               </li>

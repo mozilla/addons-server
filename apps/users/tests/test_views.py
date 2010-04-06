@@ -5,6 +5,7 @@ from django.core.urlresolvers import reverse
 from django.test.client import Client
 
 from nose.tools import eq_
+from pyquery import PyQuery
 
 from users.utils import EmailResetCode
 
@@ -29,7 +30,7 @@ class TestEdit(UserViewBase):
                 'firstname': 'DJ SurfNTurf',
                 'lastname': 'Balogh', }
 
-        r = self.client.post('/en-US/firefox/users/edit', data)
+        r = self.client.post('/en-US/firefox/users/edit', data, follow=True)
         self.assertContains(r, "An email has been sent to %s" % data['email'])
 
         # The email shouldn't change until they confirm, but the name should
@@ -105,7 +106,8 @@ class TestRegistration(UserViewBase):
         # User doesn't have a confirmation code
         url = reverse('users.confirm', args=[self.user.id, 'code'])
         r = self.client.get(url, follow=True)
-        self.assertContains(r, '<button type="submit">Log in</button>')
+        anon = PyQuery(r.content)('body').attr('data-anonymous')
+        self.assertTrue(anon)
 
         self.user_profile.confirmationcode = "code"
         self.user_profile.save()
@@ -113,7 +115,7 @@ class TestRegistration(UserViewBase):
         # URL has the wrong confirmation code
         url = reverse('users.confirm', args=[self.user.id, 'blah'])
         r = self.client.get(url, follow=True)
-        eq_(r.status_code, 400)
+        self.assertContains(r, 'Invalid confirmation code!')
 
         # URL has the right confirmation code
         url = reverse('users.confirm', args=[self.user.id, 'code'])
@@ -124,7 +126,8 @@ class TestRegistration(UserViewBase):
         # User doesn't have a confirmation code
         url = reverse('users.confirm.resend', args=[self.user.id])
         r = self.client.get(url, follow=True)
-        self.assertContains(r, '<button type="submit">Log in</button>')
+        anon = PyQuery(r.content)('body').attr('data-anonymous')
+        self.assertTrue(anon)
 
         self.user_profile.confirmationcode = "code"
         self.user_profile.save()

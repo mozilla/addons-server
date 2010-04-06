@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% from 'includes/forms.html' import required %}
 
 {% block title %}{{ page_title(_('Password Reset')) }}{% endblock %}
 
@@ -16,9 +17,7 @@
         </p>
         <ul>
           <li>
-            <label for="id_email">
-              {{ _('Email Address') }} <abbr class="req" title="{{ _('required') }}">*</abbr>
-            </label>
+            <label for="id_email">{{ _('Email Address') }} {{ required() }}</label>
             {{ form.email|safe }}
             {{ form.email.errors|safe }}
           </li>

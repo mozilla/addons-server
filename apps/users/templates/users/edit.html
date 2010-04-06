@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% from 'includes/forms.html' import required %}
 
 {% block title %}{{ page_title(_('Account Settings')) }}{% endblock %}
 
@@ -29,16 +30,12 @@
           <legend>{{ _('My account') }}</legend>
           <ul>
             <li>
-              <label for="id_nickname">
-                {{ _('Nickname') }} <abbr class="req" title="{{ _('required') }}">*</abbr>
-              </label>
+              <label for="id_nickname">{{ _('Nickname') }} {{ required() }}</label>
               {{ form.nickname|safe }}
               {{ form.nickname.errors|safe }}
             </li>
             <li>
-              <label for="id_email">
-                {{ _('Email Address') }} <abbr class="req" title="{{ _('required') }}">*</abbr>
-              </label>
+              <label for="id_email">{{ _('Email Address') }} {{ required() }}</label>
               {{ form.email|safe }}
               {{ form.email.errors|safe }}
             </li>
@@ -61,14 +58,14 @@
               {{ form.oldpassword.errors|safe }}
             </li>
             <li>
-              <label for="id_newpassword">{{ _('New Password') }}</label>
-              {{ form.newpassword|safe }}
-              {{ form.newpassword.errors|safe }}
+              <label for="id_password">{{ _('New Password') }}</label>
+              {{ form.password|safe }}
+              {{ form.password.errors|safe }}
             </li>
             <li>
-              <label for="id_newpassword2">{{ _('Confirm New Password') }}</label>
-              {{ form.newpassword2|safe }}
-              {{ form.newpassword2.errors|safe }}
+              <label for="id_password2">{{ _('Confirm New Password') }}</label>
+              {{ form.password2|safe }}
+              {{ form.password2.errors|safe }}
             </li>
           </ol>
         </fieldset>
@@ -110,9 +107,7 @@
           <legend>{{ _('Profile information') }}</legend>
           <ol>
             <li>
-              <label for="id_firstname">
-                {{ _('First name') }} <abbr class="req" title="{{ _('required') }}">*</abbr>
-              </label>
+              <label for="id_firstname">{{ _('First name') }} {{ required() }}</label>
               {{ form.firstname|safe }}
               {{ form.firstname.errors|safe }}
             </li>

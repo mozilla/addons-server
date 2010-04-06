@@ -85,7 +85,7 @@ class UserProfile(amo.models.ModelBase):
     def name(self):
         """Can be used while we're transitioning from separate first/last names
         to a single field.  Bug 546818#6"""
-        return ('%s %s' % (self.firstname, self.lastname)).strip()
+        return (u'%s %s' % (self.firstname, self.lastname)).strip()
 
     @property
     def picture_url(self):

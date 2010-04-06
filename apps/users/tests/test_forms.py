@@ -2,7 +2,6 @@ from django import test
 from django.contrib.auth.models import User
 from django.contrib.auth.tokens import default_token_generator
 from django.core import mail
-from django.test.client import Client
 from django.utils.http import int_to_base36
 
 from manage import settings
@@ -14,7 +13,6 @@ class UserFormBase(test.TestCase):
     fixtures = ['users/test_backends']
 
     def setUp(self):
-        self.client = Client()
         self.user = User.objects.get(id='4043307')
         self.user_profile = self.user.get_profile()
         self.uidb36 = int_to_base36(self.user.id)
@@ -94,14 +92,12 @@ class TestUserDeleteForm(UserFormBase):
         self.client.login(username='jbalogh@mozilla.com', password='foo')
         data = {'password': 'foo'}
         r = self.client.post('/en-US/firefox/users/delete', data)
-        msg = ('You need to check the box "I understand..." before we '
-                 'can delete your account.')
-        self.assertFormError(r, 'form', 'confirm', msg)
+        self.assertFormError(r, 'form', 'confirm', 'This field is required.')
 
     def test_success(self):
         self.client.login(username='jbalogh@mozilla.com', password='foo')
         data = {'password': 'foo', 'confirm': True, }
-        r = self.client.post('/en-US/firefox/users/delete', data)
+        r = self.client.post('/en-US/firefox/users/delete', data, follow=True)
         self.assertContains(r, "Profile Deleted")
         u = User.objects.get(id='4043307').get_profile()
         eq_(u.email, '')
@@ -127,15 +123,15 @@ class TestUserEditForm(UserFormBase):
                 'email': 'jbalogh@mozilla.com',
                 'firstname': '',
                 'lastname': '', }
-        r = self.client.post('/en-US/firefox/users/edit', data)
+        r = self.client.post('/en-US/firefox/users/edit', data, follow=True)
         self.assertContains(r, "Profile Updated")
 
     def test_set_wrong_password(self):
         self.client.login(username='jbalogh@mozilla.com', password='foo')
         data = {'email': 'jbalogh@mozilla.com',
                 'oldpassword': 'wrong',
-                'newpassword': 'new',
-                'newpassword2': 'new', }
+                'password': 'new',
+                'password2': 'new', }
         r = self.client.post('/en-US/firefox/users/edit', data)
         self.assertFormError(r, 'form', 'oldpassword',
                                                 'Wrong password entered!')
@@ -144,10 +140,10 @@ class TestUserEditForm(UserFormBase):
         self.client.login(username='jbalogh@mozilla.com', password='foo')
         data = {'email': 'jbalogh@mozilla.com',
                 'oldpassword': 'foo',
-                'newpassword': 'new1',
-                'newpassword2': 'new2', }
+                'password': 'new1',
+                'password2': 'new2', }
         r = self.client.post('/en-US/firefox/users/edit', data)
-        self.assertFormError(r, 'form', 'newpassword2',
+        self.assertFormError(r, 'form', 'password2',
                                             'The passwords did not match.')
 
     def test_set_new_passwords(self):
@@ -155,9 +151,10 @@ class TestUserEditForm(UserFormBase):
         data = {'nickname': 'jbalogh',
                 'email': 'jbalogh@mozilla.com',
                 'oldpassword': 'foo',
-                'newpassword': 'new',
-                'newpassword2': 'new', }
-        r = self.client.post('/en-US/firefox/users/edit', data)
+                'password': 'new',
+                'password2': 'new', }
+        r = self.client.post('/en-US/firefox/users/edit', data, follow=True)
+        print r.content
         self.assertContains(r, "Profile Updated")
 
 

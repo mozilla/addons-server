@@ -1,6 +1,6 @@
 import logging
+import random
 import string
-from random import Random
 from django import http
 from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
@@ -34,13 +34,14 @@ def confirm(request, user_id, token):
         return http.HttpResponseRedirect(reverse('users.login'))
 
     if user.confirmationcode != token:
-        log.info("Account confirmation failed for user (%s)", user)
-        return http.HttpResponse(status=400)
+        log.info(u"Account confirmation failed for user (%s)", user)
+        messages.error(request, _('Invalid confirmation code!'))
+        return http.HttpResponseRedirect(reverse('users.login'))
 
     user.confirmationcode = ''
     user.save()
     messages.success(request, _('Successfully verified!'))
-    log.info("Account confirmed for user (%s)", user)
+    log.info(u"Account confirmed for user (%s)", user)
 
     return http.HttpResponseRedirect(reverse('users.login'))
 
@@ -53,14 +54,14 @@ def confirm_resend(request, user_id):
 
     # Potential for flood here if someone requests a confirmationcode and then
     # re-requests confirmations.  We may need to track requests in the future.
-    log.info("Account confirm re-requested for user (%s)", user)
+    log.info(u"Account confirm re-requested for user (%s)", user)
 
     user.email_confirmation_code()
 
     msg = _(('An email has been sent to your address {0} to confirm '
              'your account. Before you can log in, you have to activate '
              'your account by clicking on the link provided in this '
-             'email.').format(user.email))
+             'email.')).format(user.email)
     messages.info(request, msg)
 
     return http.HttpResponseRedirect(reverse('users.login'))
@@ -76,6 +77,7 @@ def delete(request):
             amouser.anonymize()
             logout(request)
             form = None
+            return http.HttpResponseRedirect(reverse('users.login'))
     else:
         form = forms.UserDeleteForm()
 
@@ -98,13 +100,13 @@ def edit(request):
                 l = {'user': amouser,
                      'mail1': original_email,
                      'mail2': amouser.email}
-                log.info(("User (%(user)s) has requested email change from"
+                log.info((u"User (%(user)s) has requested email change from"
                             "(%(mail1)s) to (%(mail2)s)") % l)
                 messages.info(request, _(('An email has been sent to {0} to '
                     'confirm your new email address. For the change to take '
                     'effect, you need to click on the link provided in this '
                     'email. Until then, you can keep logging in with your '
-                    'current email address.').format(amouser.email)))
+                    'current email address.')).format(amouser.email))
 
                 domain = settings.DOMAIN
                 token, hash = EmailResetCode.create(amouser.id, amouser.email)
@@ -121,6 +123,7 @@ def edit(request):
                 # address until they confirm the new one
                 amouser.email = original_email
             form.save()
+            return http.HttpResponseRedirect(reverse('users.edit'))
         else:
             messages.error(request, _('There were errors in the changes '
                                       'you made. Please correct them and '
@@ -144,7 +147,7 @@ def emailchange(request, user_id, token, hash):
         # I'm calling this a warning because invalid hashes up to this point
         # could be any number of things, but this is a targeted attack from
         # one user account to another
-        log.warning(("[Tampering] Valid email reset code for UID (%s) "
+        log.warning((u"[Tampering] Valid email reset code for UID (%s) "
                      "attempted to change email address for user (%s)")
                                                         % (_uid, user))
         return http.HttpResponse(status=400)
@@ -153,7 +156,7 @@ def emailchange(request, user_id, token, hash):
     user.save()
 
     l = {'user': user, 'newemail': newemail}
-    log.info("User (%(user)s) confirmed new email address (%(newemail)s)" % l)
+    log.info(u"User (%(user)s) confirmed new email address (%(newemail)s)" % l)
     messages.success(request, _(('Your email address was changed '
                                  'successfully.  From now on, please use {0} '
                                  'to log in.')).format(newemail))
@@ -174,14 +177,14 @@ def login(request):
 
         if user.deleted:
             logout(request)
-            log.warning('Attempt to log in with deleted account (%s)' % user)
+            log.warning(u'Attempt to log in with deleted account (%s)' % user)
             messages.error(request, _('Wrong email address or password!'))
             return jingo.render(request, 'users/login.html',
                                 {'form': forms.AuthenticationForm()})
 
         if user.confirmationcode:
             logout(request)
-            log.info('Attempt to log in with unconfirmed account (%s)' % user)
+            log.info(u'Attempt to log in with unconfirmed account (%s)' % user)
             msg1 = _(('A link to activate your user account was sent by email '
                       'to your address {0}. You have to click it before you '
                       'can log in.').format(user.email))
@@ -200,10 +203,10 @@ def login(request):
         rememberme = request.POST.get('rememberme', None)
         if rememberme:
             request.session.set_expiry(settings.SESSION_COOKIE_AGE)
-            log.debug(('User (%s) logged in successfully with '
+            log.debug((u'User (%s) logged in successfully with '
                                         '"remember me" set') % user)
         else:
-            log.debug("User (%s) logged in successfully" % user)
+            log.debug(u"User (%s) logged in successfully" % user)
     else:
         # Hitting POST directly because cleaned_data doesn't exist
         if 'username' in request.POST:
@@ -217,7 +220,7 @@ def logout(request):
     # Not using get_profile() becuase user could be anonymous
     user = request.user
     if not user.is_anonymous():
-        log.debug("User (%s) logged out" % user)
+        log.debug(u"User (%s) logged out" % user)
 
     auth.logout(request)
     response = http.HttpResponseRedirect(settings.LOGOUT_REDIRECT_URL)
@@ -267,17 +270,17 @@ def register(request):
             u.homepage = data.get('homepage', None)
 
             u.set_password(data.get('password'))
-            u.confirmationcode = ''.join(Random().sample(
+            u.confirmationcode = ''.join(random.sample(
                                          string.letters + string.digits, 60))
 
             u.save()
             u.create_django_user()
-            log.info("Registered new account for user (%s)", u)
+            log.info(u"Registered new account for user (%s)", u)
 
             u.email_confirmation_code()
 
-            messages.success(request, _(('Congratulations! Your user account '
-                                         'was successfully created.')))
+            messages.success(request, _('Congratulations! Your user account '
+                                        'was successfully created.'))
             msg = _(('An email has been sent to your address {0} to confirm '
                      'your account. Before you can log in, you have to '
                      'activate your account by clicking on the link provided '
