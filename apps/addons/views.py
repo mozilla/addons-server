@@ -80,7 +80,7 @@ def extension_detail(request, addon):
     coll_show_count = 3
     collections = Collection.objects.listed().filter(
         addons=addon, application__id=request.APP.id)
-    other_coll_count = collections.count() - coll_show_count
+    other_coll_count = max(0, collections.count() - coll_show_count)
     popular_coll = collections.order_by('-subscribers')[:coll_show_count]
 
     # this user's collections
