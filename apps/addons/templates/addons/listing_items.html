@@ -27,7 +27,11 @@
             {% endwith %}
           </span>
           <span class="updated">
+            {% if show_added_date %}
+            {{ _('Added {0}')|f(addon.created|datetime) }}
+            {% else %}
             {{ _('Updated {0}')|f(addon.last_updated|datetime) }}
+            {% endif %}
           </span>
         {% endif %}
       </div>
