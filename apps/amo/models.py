@@ -36,6 +36,9 @@ def manual_order(qs, pks, pk_name='id'):
     the query set in that exact order.
     """
 
+    if not pks:
+        return []
+
     objects = qs.filter(id__in=pks).extra(
             select={'_manual': 'FIELD(%s, %s)'
                 % (pk_name, ','.join(map(str, pks)))},
