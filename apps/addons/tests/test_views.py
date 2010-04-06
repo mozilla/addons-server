@@ -166,3 +166,22 @@ class TestDetailPage(test_utils.TestCase):
         response = self.client.get(reverse('addons.detail', args=[addon.id]),
                                    follow=True)
         assert response.context['other_collection_count'] >= 0
+
+    def test_privacy_policy(self):
+        """Make sure privacy policy is shown when present."""
+        addon = Addon.objects.get(id=1843)
+        addon.privacy_policy = None
+        addon.save()
+        response = self.client.get(reverse('addons.detail', args=[addon.id]),
+                                   follow=True)
+        doc = pq(response.content)
+        eq_(doc('.privacy-policy').length, 0)
+
+        addon.privacy_policy = 'foo bar'
+        addon.save()
+        response = self.client.get(reverse('addons.detail', args=[addon.id]),
+                                   follow=True)
+        doc = pq(response.content)
+        eq_(doc('.privacy-policy').length, 1)
+        assert doc('.privacy-policy').attr('href').endswith(
+            '/addons/policy/0/1843')

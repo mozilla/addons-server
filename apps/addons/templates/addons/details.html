@@ -35,6 +35,12 @@
 
           {{ install_button(addon, show_warning=False) }}
 
+          {% if addon.privacy_policy %}
+            <a class="privacy-policy" href="{{ remora_url('/addons/policy/0/{0}'|f(addon.id)) }}">
+              <strong>{{ _('View privacy policy') }}</strong>
+            </a>
+          {% endif %}
+
           {% if addon.takes_contributions %}
           {{
           contribution(
