@@ -248,12 +248,20 @@ def personas(request, category=None):
                                 type=TYPE)
     categories = order_by_translation(q, 'name')
 
+    base = Addon.objects.valid().filter(type=TYPE)
+
     if category is not None:
         category = get_object_or_404(q, slug=category)
+        base = base.filter(categories__id=category.id)
 
-    base = Addon.objects.filter(type=TYPE, categories__id=category.id)
     filter = PersonasFilter(request, base, key='sort', default='up-and-coming')
 
-    return jingo.render(request, 'browse/personas/category_landing.html',
+    if 'sort' in request.GET:
+        template = 'grid.html'
+    else:
+        template = 'category_landing.html'
+
+    addons = amo.utils.paginate(request, filter.qs, 30)
+    return jingo.render(request, 'browse/personas/' + template,
                         {'categories': categories, 'category': category,
-                         'filter': filter})
+                         'filter': filter, 'addons': addons})
