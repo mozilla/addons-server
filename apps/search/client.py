@@ -1,21 +1,148 @@
 import re
 import socket
 import logging
+import random
+from collections import defaultdict
 
 from django.conf import settings
 from django.utils import translation
+from django.utils.encoding import smart_unicode
 
 import amo
-import amo.models
+from amo.models import manual_order
 from addons.models import Addon, Category
 from .sphinxapi import SphinxClient
 import sphinxapi as sphinx
 from .utils import convert_version, crc32
+from translations.query import order_by_translation
+from tags.models import Tag
 
 m_dot_n_re = re.compile(r'^\d+\.\d+$')
 SEARCH_ENGINE_APP = 99
+BIG_INTEGER = 10000000    # Used for SetFilterRange
+MAX_TAGS = 10             # Number of tags we return by default.
+SPHINX_HARD_LIMIT = 1000  # A hard limit that sphinx imposes.
+THE_FUTURE = 9999999999
 
 log = logging.getLogger('z.sphinx')
+
+
+def extract_filters(term, kwargs):
+    """Pulls all the filtering options out of kwargs and the term and
+    returns a cleaned term without said options and a dictionary of
+    filter names and filter values."""
+
+    filters = {'inactive': 0}
+    excludes = {}
+    ranges = {}
+    metas = {}
+
+    # Status filtering
+    if 'status' in kwargs:
+        filters['addon_status'] = kwargs['status']
+
+    # We should always have an 'app' except for the admin.
+    if 'app' in kwargs:
+        # We add SEARCH_ENGINE_APP since search engines work on all apps.
+        filters['app'] = (kwargs['app'], SEARCH_ENGINE_APP, )
+
+    (term, platform) = extract_from_query(term, 'platform', '\w+', kwargs)
+
+    if platform:
+        if not isinstance(platform, int):
+            platform = amo.PLATFORM_DICT.get(platform)
+            if platform:
+                platform = platform.id
+        if platform:
+            filters['platform'] = (platform, amo.PLATFORM_ALL.id,)
+
+    # Locale filtering
+    if 'locale' in kwargs:
+        filters['locale_ord'] = crc32(kwargs['locale'])
+
+    # Xenophobia - restrict to just my language.
+    if 'xenophobia' in kwargs and 'admin' not in kwargs:
+        filters['locale_ord'] = get_locale_ord()
+
+    # Unless we're in admin mode, or we're looking at stub entries,
+    # everything must have a file.
+    if (('admin' not in kwargs) and
+        ('type' not in kwargs or kwargs['type'] != amo.ADDON_PERSONA)):
+        excludes['num_files'] = 0
+
+    # STATUS_DISABLED and 0 (which likely means null) are filtered
+    excludes['addon_status'] = (0, amo.STATUS_DISABLED,)
+
+    if 'before' in kwargs:
+        ranges['modified'] = (kwargs['before'], THE_FUTURE)
+
+    (term, addon_type) = extract_from_query(term, 'type', '\w+', kwargs)
+
+    if addon_type:
+        if not isinstance(addon_type, int):
+            types = dict((name.lower(), id) for id, name
+                         in amo.ADDON_TYPE.items())
+            addon_type = types.get(addon_type.lower())
+
+        metas['type'] = addon_type
+
+    # Category filtering.
+    (term, category) = extract_from_query(term, 'category', '\w+', kwargs)
+
+    if category and 'app' in kwargs:
+       if not isinstance(category, int):
+            category = get_category_id(category, kwargs['app'])
+
+       metas['category'] = category
+
+    (term, tag) = extract_from_query(term, 'tag', '\w+', kwargs)
+
+    if tag:
+        tag = Tag.objects.filter(tag_text=tag)[:1]
+        if tag:
+            metas['tag'] = tag[0].id
+        else:
+            metas['tag'] = -1
+
+    # TODO:
+    # In the interest of having working code sooner than later, we're
+    # skipping the following... for now:
+    #   * GUID filter
+    #   * Num apps filter
+
+    return (term, filters, excludes, ranges, metas)
+
+
+def get_locale_ord():
+    return crc32(settings.LANGUAGE_URL_MAP.get(translation.get_language())
+                 or translation.get_language())
+
+
+class ResultSet(object):
+    """
+    ResultSet wraps around a query set and provides meta data used for
+    pagination.
+    """
+    def __init__(self, queryset, total, offset):
+        self.queryset = queryset
+        self.total = total
+        self.offset = offset
+
+    def __len__(self):
+        return self.total
+
+    def __iter__(self):
+        return iter(self.queryset)
+
+    def __getitem__(self, k):
+        """`queryset` doesn't contain all `total` items, just the items for the
+        current page, so we need to adjust `k`"""
+        if isinstance(k, slice) and k.start >= self.offset:
+            k = slice(k.start - self.offset, k.stop - self.offset)
+        elif isinstance(k, int):
+            k -= self.offset
+
+        return self.queryset.__getitem__(k)
 
 
 def get_category_id(category, application):
@@ -29,9 +156,11 @@ def get_category_id(category, application):
     if len(category):
         return category[0].id
 
+
 def sanitize_query(term):
     term = term.strip('^$ ')
     return term
+
 
 def extract_from_query(term, filter, regexp, options={}):
     """
@@ -64,6 +193,45 @@ class Client(object):
         self.sphinx = SphinxClient()
         self.sphinx.SetServer(settings.SPHINX_HOST, settings.SPHINX_PORT)
 
+        self.weight_field = ("@weight + IF(addon_status=%d, 30, 0) + "
+                             "IF(locale_ord=%d, 29, 0) AS weight" %
+                             (amo.STATUS_PUBLIC, get_locale_ord()))
+
+        # Store meta data about our queries:
+        self.meta = {}
+        self.queries = {}
+        self.query_index = 0
+        self.meta_filters = {}
+
+        # TODO(davedash): make this less arbitrary
+        # Unique ID used for logging
+        self.id = int(random.random() * 10**5)
+
+    def log_query(self, term=None):
+        """
+        Logs whatever relevant data we can from sphinx.
+        """
+        filter_msg = []
+
+        for f in self.sphinx._filters:
+            msg = '+' if not f['exclude'] else '-'
+            msg += '%s: ' % f['attr']
+
+            if 'values' in f:
+                msg += '%s' % (f['values'],)
+            if 'max' in f and 'min' in f:
+                msg += '%d..%d' % (f['min'], f['max'],)
+
+            filter_msg.append(msg)
+
+        debug = lambda x: log.debug('%d %s' % (self.id, x))
+
+        debug(u'Term: %s' % smart_unicode(term))
+        debug('Filters: ' + ' '.join(filter_msg))
+        debug('Sort: %s' % self.sphinx._sortby)
+        debug('Limit: %d' % self.sphinx._limit)
+        debug('Offset: %d' % self.sphinx._offset)
+
     def restrict_version(self, version):
         """
         Restrict a search to a specific version.
@@ -90,13 +258,69 @@ class Client(object):
             sc.SetFilterRange('max_ver', low_int, 10 * high_int)
             sc.SetFilterRange('min_ver', 0, high_int)
 
+    def add_meta_query(self, field, term):
+        """Adds a 'meta' query to the client, this is an aggregate of some
+        field that we can use to populate filters.
+
+        This also adds meta filters that do not match the current query.
+
+        E.g. if we can add back category filters to see what tags exist in
+        that data set.
+        """
+
+        # We only need to select a single field for aggregate queries.
+        self.sphinx.SetSelect(field)
+        self.sphinx.SetGroupBy(field, sphinx.SPH_GROUPBY_ATTR)
+
+        # We are adding back all the other meta filters.  This way we can find
+        # out all of the possible values of this particular field after we
+        # filter down the search.
+        filters = self.apply_meta_filters(exclude=field)
+        self.sphinx.AddQuery(term, 'addons')
+
+        # We roll back our client and store a pointer to this filter.
+        self.remove_filters(len(filters))
+        self.queries[field] = self.query_index
+        self.query_index += 1
+        self.sphinx.ResetGroupBy()
+
+    def apply_meta_filters(self, exclude=None):
+        """Apply any meta filters, excluding the filter listed in `exclude`."""
+
+        filters = [f for field, f in self.meta_filters.iteritems()
+                   if field != exclude]
+        self.sphinx._filters.extend(filters)
+        return filters
+
+    def remove_filters(self, num):
+        """Remove the `num` last filters from the sphinx query."""
+        if num:
+            self.sphinx._filters = self.sphinx._filters[:-num]
+
+    def add_filter(self, field, values, meta=False, exclude=False):
+        """
+        Filters the current sphinx query.  `meta` means we can save pull this
+        filter out for meta queries.
+        """
+        if values is None:
+            return
+
+        if not isinstance(values, (tuple, list)):
+            values = (values,)
+
+        self.sphinx.SetFilter(field, values, exclude)
+
+        if meta:
+            self.meta_filters[field] = self.sphinx._filters.pop()
+
+
     def query(self, term, limit=10, offset=0, **kwargs):
         """
         Queries sphinx for a term, and parses specific options.
 
         The following kwargs will do things:
 
-        limit: limits the number of results.  Default is 2000.
+        limit: limits the number of results.
         admin: if present we are in "admin" mode which lets you find addons
             without files and overrides any 'xenophobia' settings.
         type: specifies an addon_type by id
@@ -110,75 +334,51 @@ class Client(object):
         'locale': restricts addons to the specified locale
 
         """
-
         sc = self.sphinx
 
         # Setup some default parameters for the search.
-        fields = ("addon_id, app, category, "
-                  "@weight + IF(addon_status=%d, 30, 0) + " % amo.STATUS_PUBLIC
-                  + "IF(locale_ord=%d, 29, 0) AS weight" %
-                  crc32(translation.get_language()))
+        fields = ("addon_id, app, category, %s" % self.weight_field)
+
         sc.SetSelect(fields)
         sc.SetFieldWeights({'name': 4})
-        # limiting happens later, since Sphinx returns more than we need.
-        sc.SetLimits(offset, limit)
-        sc.SetFilter('inactive', (0,))
 
-        # STATUS_DISABLED and 0 (which likely means null) are filtered from
-        # search
+        # Extract and apply various filters.
+        (term, includes, excludes, ranges, metas) = extract_filters(
+                term, kwargs)
 
-        sc.SetFilter('addon_status', (0, amo.STATUS_DISABLED), True)
+        for filter, value in includes.iteritems():
+            self.add_filter(filter, value)
 
-        # Status filtering
+        for filter, value in excludes.iteritems():
+            self.add_filter(filter, value, exclude=True)
 
-        if 'status' in kwargs:
-            if not isinstance(kwargs['status'], list):
-                kwargs['status'] = [kwargs['status']]
+        for filter, value in ranges.iteritems():
+            self.sphinx.SetFilterRange(filter, value[0], value[1])
 
-            sc.SetFilter('addon_status', kwargs['status'])
+        for filter, value in metas.iteritems():
+            self.add_filter(filter, value, meta=True)
 
-        # Unless we're in admin mode, or we're looking at stub entries,
-        # everything must have a file.
-        if (('admin' not in kwargs) and
-            ('type' not in kwargs or kwargs['type'] != amo.ADDON_PERSONA)):
-            sc.SetFilter('num_files', (0,), True)
+        # Meta queries serve aggregate data we might want.  Such as filters
+        # that the end-user may want to apply to their query.
+        if 'meta' in kwargs:
+            sc.SetLimits(0, 10000)
 
-        # Sorting
-        if 'sort' in kwargs:
-            sort_direction = sphinx.SPH_SORT_ATTR_DESC
-            if kwargs['sort'] == 'newest':
-                sort_field = 'created'
-            elif kwargs['sort'] == 'updated':
-                sort_field = 'modified'
-                sc.SetSortMode(sphinx.SPH_SORT_ATTR_DESC, 'modified')
-            elif kwargs['sort'] == 'name':
-                sort_field = 'name_ord'
-                sort_direction = sphinx.SPH_SORT_ATTR_ASC
-            elif (kwargs['sort'] == 'averagerating' or
-                kwargs['sort'] == 'bayesianrating'):
-                sort_field = 'averagerating'
-            elif kwargs['sort'] == 'weeklydownloads':
-                sort_field = 'weeklydownloads'
+            if 'versions' in kwargs['meta']:
+                self.add_meta_query('max_ver', term)
+                self.add_meta_query('min_ver', term)
 
-            sc.SetSortMode(sort_direction, sort_field)
+            if 'categories' in kwargs['meta']:
+                self.add_meta_query('category', term)
 
-            if sort_direction == sphinx.SPH_SORT_ATTR_ASC:
-                sort_direction = 'ASC'
-            else:
-                sort_direction = 'DESC'
-            sc.SetGroupBy('addon_id', sphinx.SPH_GROUPBY_ATTR,
-                          '%s %s' % (sort_field, sort_direction))
+            if 'tags' in kwargs['meta']:
+                sc.SetFilterRange('tag', 0, BIG_INTEGER)
+                self.add_filter('locale_ord', get_locale_ord())
+                self.add_meta_query('tag', term)
+                self.remove_filters(2)
 
-        else:
-            # We want to boost public addons, and addons in your native
-            # language.
-            sc.SetSortMode(sphinx.SPH_SORT_EXTENDED, 'weight DESC')
-            sc.SetGroupBy('addon_id', sphinx.SPH_GROUPBY_ATTR, 'weight DESC')
+        sc.SetSelect(fields)
 
-        # We should always have an 'app' except for the admin.
-        if 'app' in kwargs:
-            # We add SEARCH_ENGINE_APP since search engines work on all apps.
-            sc.SetFilter('app', (kwargs['app'], SEARCH_ENGINE_APP))
+        self.apply_meta_filters()
 
         # Version filtering.
         (term, version) = extract_from_query(term, 'version', '[0-9.]+',
@@ -187,51 +387,41 @@ class Client(object):
         if version:
             self.restrict_version(version)
 
-        # Category filtering.
-        (term, category) = extract_from_query(term, 'category', '\w+')
+        sort_field = 'weight DESC'
 
-        if category and 'app' in kwargs:
-            category = get_category_id(category, kwargs['app'])
-            if category:
-                sc.SetFilter('category', [int(category)])
+        sort_choices = {
+                'newest': 'created DESC',
+                'updated': 'modified DESC',
+                'name': 'name_ord ASC',
+                'rating': 'averagerating DESC',
+                'averagerating': 'averagerating DESC',
+                'popularity': 'weeklydownloads DESC',
+                'weeklydownloads': 'weeklydownloads DESC',
+                }
 
-        (term, platform) = extract_from_query(term, 'platform', '\w+', kwargs)
+        if 'sort' in kwargs and kwargs['sort']:
+            sort_field = sort_choices.get(kwargs.get('sort'))
+            if not sort_field:
+                log.error("Invalid sort option: %s" % kwargs.get('sort'))
+                raise SearchError("Invalid sort option given: %s" %
+                                  kwargs.get('sort'))
 
-        if platform:
-            platform = amo.PLATFORM_DICT.get(platform)
-            if platform:
-                sc.SetFilter('platform', (platform.id, amo.PLATFORM_ALL.id,))
+        sc.SetSortMode(sphinx.SPH_SORT_EXTENDED, sort_field)
 
-        (term, addon_type) = extract_from_query(term, 'type', '\w+', kwargs)
+        sc.SetGroupBy('addon_id', sphinx.SPH_GROUPBY_ATTR, sort_field)
 
-        if addon_type:
-            if not isinstance(addon_type, int):
-                types = dict((name.lower(), id) for id, name
-                             in amo.ADDON_TYPE.items())
-                addon_type = types.get(addon_type.lower())
-            if addon_type:
-                sc.SetFilter('type', (addon_type,))
+        sc.SetLimits(min(offset, SPHINX_HARD_LIMIT - 1), limit)
 
-        # Xenophobia - restrict to just my language.
-        if 'xenophobia' in kwargs and 'admin' not in kwargs:
-            kwargs['locale'] = translation.get_language()
+        term = sanitize_query(term)
 
-        # Locale filtering
-        if 'locale' in kwargs:
-            sc.SetFilter('locale_ord', (crc32(kwargs['locale']),))
+        sc.AddQuery(term, 'addons')
+        self.queries['primary'] = self.query_index
+        self.query_index += 1
 
-        # XXX - Todo:
-        # In the interest of having working code sooner than later, we're
-        # skipping the following... for now:
-        #   * Date filter
-        #   * GUID filter
-        #   * Tag filter
-        #   * Num apps filter
-        #   * Logging
+        self.log_query(term)
 
         try:
-            term = sanitize_query(term)
-            result = sc.Query(term)
+            results = sc.RunQueries()
         except socket.timeout:
             log.error("Query has timed out.")
             raise SearchError("Query has timed out.")
@@ -239,19 +429,77 @@ class Client(object):
             log.error("Sphinx threw an unknown exception: %s" % e)
             raise SearchError("Sphinx threw an unknown exception.")
 
-        self.total_found = result['total_found'] if result else 0
-
         if sc.GetLastError():
             raise SearchError(sc.GetLastError())
+
+        # Handle any meta data we have.
+        if 'meta' in kwargs:
+            if 'versions' in kwargs['meta']:
+                # We don't care about the first 10 digits, since
+                # those deal with alpha/preview/etc
+                result = results[self.queries['min_ver']]
+
+                # We want to lob off the last 10 digits of a number
+                truncate = lambda x: (x / 10 ** 10) * 10 ** 10
+
+                min_vers = [truncate(m['attrs']['min_ver'])
+                            for m in result['matches']]
+                result = results[self.queries['max_ver']]
+                max_vers = [truncate(m['attrs']['max_ver'])
+                            for m in result['matches']]
+                versions = list(set(min_vers + max_vers))
+                sorted(versions, reverse=True)
+                self.meta['versions'] = [v for v in versions
+                                         if v not in (0, 10 ** 13)]
+
+            if 'categories' in kwargs['meta']:
+                result = results[self.queries['category']]
+                category_ids = []
+
+                for m in result['matches']:
+                    category_ids.extend(m['attrs']['category'])
+
+                category_ids = set(category_ids)
+                categories = []
+
+                if category_ids:
+
+                    qs = Category.objects.filter(id__in=set(category_ids))
+
+                    if 'app' in kwargs:
+                        qs = qs.filter(application=kwargs['app'])
+
+                    categories = order_by_translation(qs, 'name')
+
+                self.meta['categories'] = categories
+
+            if 'tags' in kwargs['meta']:
+                result = results[self.queries['tag']]
+                tag_dict = defaultdict(int)
+
+                for m in result['matches']:
+                    for tag_id in m['attrs']['tag']:
+                        tag_dict[tag_id] += 1
+                tag_dict_sorted = sorted(tag_dict.iteritems(),
+                        key=lambda x: x[1], reverse=True)[:MAX_TAGS]
+                tag_ids = [k for k, v in tag_dict_sorted]
+                self.meta['tags'] = manual_order(Tag.objects.all(), tag_ids)
+
+        result = results[self.queries['primary']]
+        self.total_found = result['total_found'] if result else 0
+
         if result and result['total']:
             # Return results as a list of addons.
             results = [m['attrs']['addon_id'] for m in result['matches']]
+            addons = []
+            for key in results:
+                try:
+                    addons.append(Addon.objects.get(pk=key))
+                except Addon.DoesNotExist:
+                    log.warn(u'%d: Result for %s refers to non-existant '
+                             'addon: %d' % (self.id, term, key))
 
-            addons = Addon.objects.filter(id__in=results).extra(
-                    select={'manual': 'FIELD(id,%s)'
-                            % ','.join(map(str, results))},
-                    order_by=['manual'])
-
-            return addons
+            return ResultSet(addons, min(self.total_found, SPHINX_HARD_LIMIT),
+                             offset)
         else:
             return []

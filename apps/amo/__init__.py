@@ -133,6 +133,7 @@ ADDON_TYPES = {
     ADDON_DICT: _(u'Dictionaries & Language Packs'),
     ADDON_SEARCH: _(u'Search Tools'),
     ADDON_PLUGIN: _(u'Plugins'),
+    ADDON_LPAPP: _(u'Language Packs (Application)'),
     ADDON_PERSONA: _(u'Personas'),
 }
 
@@ -154,6 +155,9 @@ class FIREFOX:
     types = [ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_SEARCH,
              ADDON_PLUGIN, ADDON_PERSONA]
     guid = '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}'
+    min_display_version = 2.0
+    # These versions were relabeled and should not be displayed.
+    exclude_versions = (3.1,)
 
 
 class THUNDERBIRD:
@@ -163,6 +167,7 @@ class THUNDERBIRD:
     browser = True
     types = [ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_PERSONA]
     guid = '{3550f703-e582-4d05-9a08-453d09bdfdc6}'
+    min_display_version = 1.0
 
 
 class SEAMONKEY:
@@ -173,6 +178,7 @@ class SEAMONKEY:
     types = [ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_SEARCH,
              ADDON_PLUGIN]
     guid = '{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}'
+    min_display_version = 1.0
 
 
 class SUNBIRD:
@@ -181,6 +187,7 @@ class SUNBIRD:
     pretty = _(u'Sunbird')
     types = [ADDON_EXTENSION, ADDON_THEME, ADDON_DICT]
     guid = '{718e30fb-e89b-41dd-9da7-e25a45638b28}'
+    min_display_version = 0.2
 
 
 class MOBILE:
@@ -190,6 +197,7 @@ class MOBILE:
     browser = True
     types = [ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_SEARCH]
     guid = '{a23983c0-fd0e-11dc-95ff-0800200c9a66}'
+    min_display_version = 0.1
 
 
 class MOZILLA:
@@ -290,8 +298,8 @@ PLATFORM_DICT = {
 class _LicenseBase(object):
     """Base class for built-in licenses."""
     shortname = None
-    icons = None # CSS classes. See zamboni.css for a list.
-    linktext = None # Link text distinct from full license name.
+    icons = None     # CSS classes. See zamboni.css for a list.
+    linktext = None  # Link text distinct from full license name.
 
     @classmethod
     def text(cls):

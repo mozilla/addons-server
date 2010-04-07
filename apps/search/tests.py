@@ -5,6 +5,7 @@ import os
 import shutil
 import socket
 import time
+import urllib
 
 from django.test import TestCase, client
 from django.core.management import call_command
@@ -13,14 +14,22 @@ from django.utils import translation
 import mock
 from nose import SkipTest
 from nose.tools import eq_, assert_raises
+from mock import Mock
+from pyquery import PyQuery as pq
 import test_utils
 
 import amo.helpers
+from amo.urlresolvers import reverse
+from amo.tests.test_helpers import render
 from manage import settings
-from search import forms
+from search import forms, views
+import search.helpers
 from search.utils import start_sphinx, stop_sphinx, reindex, convert_version
 from search.client import (Client as SearchClient, SearchError,
                            get_category_id, extract_from_query)
+from addons.models import Addon, Category
+from applications.models import AppVersion
+from tags.models import Tag
 
 
 def test_convert_version():
@@ -74,7 +83,7 @@ class SphinxTestCase(test_utils.TransactionTestCase):
     when testing any feature that requires sphinx.
     """
 
-    fixtures = ["base/addons.json"]
+    fixtures = ["base/addons"]
     sphinx = True
     sphinx_is_running = False
 
@@ -120,12 +129,21 @@ def test_sphinx_timeout(sphinx_mock):
     def sphinx_error(cls):
         raise cls
 
+    sphinx_mock._filters = []
+    sphinx_mock._limit = 10
+    sphinx_mock._offset = 0
     sphinx_mock.return_value = sphinx_mock
     sphinx_mock.Query.side_effect = lambda *a: sphinx_error(socket.timeout)
     assert_raises(SearchError, query, 'xxx')
 
     sphinx_mock.Query.side_effect = lambda *a: sphinx_error(Exception)
     assert_raises(SearchError, query, 'xxx')
+
+
+class BadSortOptionTest(TestCase):
+    def test_bad_sort_option(self):
+        """Test that we raise an error on bad sort options."""
+        assert_raises(SearchError, lambda: query('xxx', sort="upsidedown"))
 
 
 class SearchDownTest(TestCase):
@@ -135,6 +153,12 @@ class SearchDownTest(TestCase):
         Test that we raise a SearchError if search is not running.
         """
         self.assertRaises(SearchError, query, "")
+
+    def test_fe_search_down(self):
+        self.client.get('/')
+        resp = self.client.get(reverse('search.search'))
+        doc = pq(resp.content)
+        eq_(doc('.notfound').length, 1)
 
 
 class SearchTest(SphinxTestCase):
@@ -235,13 +259,136 @@ class SearchTest(SphinxTestCase):
                 assert False, "Error querying for %s" % guy
 
 
+class FrontendSearchTest(SphinxTestCase):
+
+    def setUp(self):
+        # Warms up the prefixer.
+        self.client.get('/')
+        super(FrontendSearchTest, self).setUp()
+
+    def get_response(self, **kwargs):
+        return self.client.get(reverse('search.search') +
+                               '?' + urllib.urlencode(kwargs))
+
+    def test_default_query(self):
+        """
+        Verify some expected things on a query for nothing.
+        """
+        resp = self.get_response()
+        doc = pq(resp.content)
+        num_actual_results = len(Addon.objects.filter(
+            versions__applicationsversions__application=amo.FIREFOX.id,
+            versions__files__gt=0, versions__files__platform=1))
+        # Verify that we have at least 10 results listed.
+        eq_(doc('.item').length, num_actual_results)
+
+        # We should count the number of expected results and match.
+        eq_(doc('h3.results-count').text(), "Showing 1 - %d of %d results"
+           % (num_actual_results, num_actual_results, ))
+
+        # Verify that we have the Refine Results.
+        eq_(doc('.secondary .highlight h3').length, 1)
+
+    def test_basic_query(self):
+        "Test a simple query"
+        resp = self.get_response(q='delicious')
+        doc = pq(resp.content)
+        el = doc('title')[0].text_content().strip()
+        eq_(el, 'Search for delicious :: Add-ons for Firefox')
+
+    def test_redirection(self):
+        resp = self.get_response(appid=18)
+        self.assertRedirects(resp, '/en-US/thunderbird/search/?appid=18')
+
+    def test_last_updated(self):
+        """
+        Verify that we have no new things in the last day.
+        """
+        resp = self.get_response(lup='1 day ago')
+        doc = pq(resp.content)
+        eq_(doc('.item').length, 0)
+
+    def test_category(self):
+        """
+        Verify that we have nothing in category 72.
+        """
+        resp = self.get_response(cat='1,72')
+        doc = pq(resp.content)
+        eq_(doc('.item').length, 0)
+
+    def test_addontype(self):
+        resp = self.get_response(atype=amo.ADDON_LPAPP)
+        doc = pq(resp.content)
+        eq_(doc('.item').length, 0)
+
+    def test_version_selected(self):
+        "The selected version should match the lver param."
+        resp = self.get_response(lver='3.6')
+        doc = pq(resp.content)
+        el = doc('#refine-compatibility li.selected')[0].text_content().strip()
+        eq_(el, '3.6')
+
+    def test_sort_newest(self):
+        "Test that we selected the right sort."
+        resp = self.get_response(sort='newest')
+        doc = pq(resp.content)
+        el = doc('.listing-header li.selected')[0].text_content().strip()
+        eq_(el, 'Newest')
+
+    def test_sort_default(self):
+        "Test that by default we're sorting by Keyword Search"
+        resp = self.get_response()
+        doc = pq(resp.content)
+        els = doc('.listing-header li.selected')
+        eq_(len(els), 1, "No selected sort :(")
+        eq_(els[0].text_content().strip(), 'Keyword Match')
+
+    def test_sort_bad(self):
+        "Test that a bad sort value won't bring the system down."
+        resp = self.get_response(sort='yermom')
+
+    def test_non_existant_tag(self):
+        "If you are searching for a tag that doesn't exist we shouldn't return any results."
+        resp = self.get_response(tag='stockholmsyndrome')
+        doc = pq(resp.content)
+        eq_(doc('.item').length, 0)
+
+
+class ViewTest(test_utils.TestCase):
+    """Tests some of the functions used in building the view."""
+
+    fixtures = ['base/addons']
+
+    def setUp(self):
+        self.fake_request = Mock()
+        self.fake_request.get_full_path = lambda: 'http://fatgir.ls/'
+
+    def test_get_categories(self):
+        cats = Category.objects.all()
+        cat = cats[0].id
+
+        # Select a category.
+        items = views._get_categories(self.fake_request, cats, category=cat)
+        eq_(len(cats), len(items[1].children))
+        assert any((i.selected for i in items[1].children))
+
+        # Select an addon type.
+        atype = cats[0].type_id
+        items = views._get_categories(self.fake_request, cats, addon_type=atype)
+        assert any((i.selected for i in items))
+
+    def test_get_tags(self):
+        t = Tag(tag_text='yermom')
+        assert views._get_tags(self.fake_request, tags=[t], selected='yermom')
+
+
 class TestSearchForm(test_utils.TestCase):
     fixtures = ['base/addons']
 
     def test_get_app_versions(self):
         actual = forms.get_app_versions()
         expected = {
-            amo.FIREFOX.id: ['1.5', '2.0', '3.0', '3.5', '3.6', '3.7'],
+            amo.FIREFOX.id: ['2.0', '3.0', '3.5', '3.6', '3.7'],
             amo.THUNDERBIRD.id: [],
             amo.SUNBIRD.id: [],
             amo.SEAMONKEY.id: [],
@@ -252,3 +399,24 @@ class TestSearchForm(test_utils.TestCase):
             expected[app].append(('Any', 'any'))
         # So you added a new appversion and this broke?  Sorry about that.
         eq_(actual, expected)
+
+def test_showing_helper():
+    tpl = "{{ showing(query, tag, pager) }}"
+    pager = Mock()
+    pager.start_index = lambda: 1
+    pager.end_index = lambda: 20
+    pager.paginator.count = 1000
+    c = {}
+    c['query'] = ''
+    c['tag'] = ''
+    c['pager'] = pager
+    eq_('Showing 1 - 20 of 1000 results', render(tpl, c))
+    c['tag'] = 'foo'
+    eq_('Showing 1 - 20 of 1000 results tagged with <strong>foo</strong>',
+            render(tpl, c))
+    c['query'] = 'balls'
+    eq_('Showing 1 - 20 of 1000 results for <strong>balls</strong> '
+        'tagged with <strong>foo</strong>', render(tpl, c))
+    c['tag'] = ''
+    eq_('Showing 1 - 20 of 1000 results for <strong>balls</strong>',
+        render(tpl, c))

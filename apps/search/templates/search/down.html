@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}{{ page_title(title) }}{% endblock %}
+{% block content %}
+<div role="main" class="primary wide">
+  <div class="featured listing results">
+    <div class="featured-inner">
+      <div class="listing-header">
+        <p class="notfound">
+        {% if settings.DEBUG %}
+          Consider starting the search deamon!
+        {% else %}
+          {{ _('Search is temporarily unavailable.') }}
+        {% endif %}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
