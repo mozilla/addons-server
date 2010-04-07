@@ -24,6 +24,16 @@ def get_url_prefix():
     return _prefixes.get(currentThread())
 
 
+def get_app_redirect(app):
+    """Redirect request to another app."""
+    prefixer = get_url_prefix()
+    old_app = prefixer.app
+    prefixer.app = app.short
+    (_, _, url) = prefixer.split_path(prefixer.request.get_full_path())
+    new_url = prefixer.fix(url)
+    prefixer.app = old_app
+    return new_url
+
 def reverse(viewname, urlconf=None, args=None, kwargs=None, prefix=None,
             current_app=None):
     """Wraps django's reverse to prepend the correct locale and app."""
