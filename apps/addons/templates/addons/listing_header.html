@@ -7,15 +7,17 @@
         {{ title }}</a>
       </li>
     {% endfor %}
-    <li class="perpage">
-      <form action="" method="get" class="go">
-        <label>
-          <input type="checkbox" name="experimental"
-                {{ experimental|ifeq("on", "checked") }}>
-          {{ _('Show experimental add-ons') }}
-        </label>
-        <button type="submit">{{ _('Go') }}</button>
-      </form>
-    </li>
+    {% if show_experimental %}
+      <li class="perpage">
+        <form action="" method="get" class="go">
+          <label>
+            <input type="checkbox" name="experimental"
+                  {{ experimental|ifeq("on", "checked") }}>
+            {{ _('Show experimental add-ons') }}
+          </label>
+          <button type="submit">{{ _('Go') }}</button>
+        </form>
+      </li>
+    {% endif %}
   </ul>
 </div>

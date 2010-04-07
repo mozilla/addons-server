@@ -128,20 +128,26 @@ def addon_listing_items(context, addons):
 
 @register.inclusion_tag('addons/listing_header.html')
 @jinja2.contextfunction
-def addon_listing_header(context, url_base, sort_opts, selected, experimental):
+def addon_listing_header(context, url_base, sort_opts, selected,
+                         experimental=None, show_experimental=True):
+    return new_context(locals())
+
+
+def new_context(context, **kw):
     c = dict(context.items())
-    c.update({'url_base': url_base, 'sort_opts': sort_opts,
-              'selected': selected, 'experimental': experimental})
+    c.update(kw)
     return c
 
 
 @register.inclusion_tag('addons/persona_preview.html')
 @jinja2.contextfunction
-def persona_preview(context, persona, size='large', linked=True):
+def persona_preview(context, persona, size='large', linked=True, extra=None,
+                    details=False):
     preview_map = {'large': persona.preview_url,
                    'small': persona.thumb_url}
 
     c = dict(context.items())
     c.update({'persona': persona, 'addon': persona.addon, 'linked': linked,
-              'size': size, 'preview': preview_map[size]})
+              'size': size, 'preview': preview_map[size], 'extra': extra,
+              'details': details})
     return c

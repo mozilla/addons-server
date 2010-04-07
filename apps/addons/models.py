@@ -357,7 +357,7 @@ class Persona(caching.base.CachingMixin, models.Model):
     approve = models.DateTimeField(null=True)
 
     movers = models.FloatField(null=True)
-    popularity = models.IntegerField(null=True)
+    popularity = models.IntegerField(null=False, default=0)
     license = models.ForeignKey('versions.License', null=True)
 
     objects = caching.base.CachingManager()
@@ -375,7 +375,7 @@ class Persona(caching.base.CachingMixin, models.Model):
         tens = (self.persona_id // 10) % 10
         return base_url % {
             'units': units, 'tens': tens, 'file': filename,
-            'id': self.persona_id
+            'id': self.persona_id,
         }
 
     @amo.cached_property
@@ -394,7 +394,7 @@ class Persona(caching.base.CachingMixin, models.Model):
         hexcolor = lambda color: '#%s' % color
         addon = self.addon
         return json.dumps({
-            'id': unicode(self.persona_id), # Personas dislikes ints
+            'id': unicode(self.persona_id),  # Personas dislikes ints
             'name': unicode(addon.name),
             'accentcolor': hexcolor(self.accentcolor),
             'textcolor': hexcolor(self.textcolor),

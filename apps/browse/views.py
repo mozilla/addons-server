@@ -221,3 +221,47 @@ def creatured(request, category):
                                   addoncategory__category=category)
     return jingo.render(request, 'browse/creatured.html',
                         {'addons': addons, 'category': category})
+
+
+class PersonasFilter(HomepageFilter):
+
+    opts = (('up-and-coming', _('Up & Coming')),
+            ('created', _('Recently Added')),
+            ('popular', _('Most Popular')),
+            ('rating', _('Top Rated')))
+
+    def _filter(self, field):
+        qs = Addon.objects
+        if field == 'created':
+            return qs.order_by('-created')
+        elif field == 'popular':
+            return qs.order_by('-persona__popularity')
+        elif field == 'rating':
+            return qs.order_by('-bayesian_rating')
+        else:
+            return qs.order_by('-persona__movers')
+
+
+def personas(request, category=None):
+    TYPE = amo.ADDON_PERSONA
+    q = Category.objects.filter(application=request.APP.id,
+                                type=TYPE)
+    categories = order_by_translation(q, 'name')
+
+    base = Addon.objects.valid().filter(type=TYPE)
+
+    if category is not None:
+        category = get_object_or_404(q, slug=category)
+        base = base.filter(categories__id=category.id)
+
+    filter = PersonasFilter(request, base, key='sort', default='up-and-coming')
+
+    if 'sort' in request.GET:
+        template = 'grid.html'
+    else:
+        template = 'category_landing.html'
+
+    addons = amo.utils.paginate(request, filter.qs, 30)
+    return jingo.render(request, 'browse/personas/' + template,
+                        {'categories': categories, 'category': category,
+                         'filter': filter, 'addons': addons})
