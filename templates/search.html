@@ -62,6 +62,7 @@
         </div>
       </fieldset>
       <span id="search-data"
+        data-version="{{ request.REQUEST.get('lver', 'any') }}"
         data-appversions="{{ search_form.get_app_versions()|json }}"></span>
       {{ search_form.advanced|safe }}
     </div> {# advanced-search #}
