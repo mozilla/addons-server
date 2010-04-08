@@ -56,11 +56,11 @@ def urlparams(url_, hash=None, **query):
     url = urlparse.urlparse(url_)
     fragment = hash if hash is not None else url.fragment
 
-    query_dict = dict(cgi.parse_qsl(url.query)) if url.query else {}
+    query_dict = dict(cgi.parse_qsl(str(url.query))) if url.query else {}
     query_dict.update((k, v) for k, v in query.items())
 
-    query_string = urllib.urlencode(dict((k, v) for k, v in query_dict.items()
-                                         if v is not None))
+    query_string = urllib.urlencode(dict((k, v) for k, v
+            in query_dict.items() if v is not None))
     new = urlparse.ParseResult(url.scheme, url.netloc, url.path, url.params,
                                query_string, fragment)
     return new.geturl()

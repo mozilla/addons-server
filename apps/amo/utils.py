@@ -26,7 +26,13 @@ def paginate(request, queryset, per_page=20):
         paginated = p.page(1)
 
     base = request.build_absolute_uri(request.path)
-    paginated.url = u'%s?%s' % (base, urllib.urlencode(request.GET.items()))
+
+    try:
+        qsa = urllib.urlencode(request.GET.items())
+    except UnicodeEncodeError:
+        qsa = urllib.urlencode([(k, v.encode('utf8')) for k, v
+                                in request.GET.items()])
+    paginated.url = u'%s?%s' % (base, qsa)
     return paginated
 
 
