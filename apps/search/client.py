@@ -29,6 +29,9 @@ def get_category_id(category, application):
     if len(category):
         return category[0].id
 
+def sanitize_query(term):
+    term = term.strip('^$ ')
+    return term
 
 def extract_from_query(term, filter, regexp, options={}):
     """
@@ -227,6 +230,7 @@ class Client(object):
         #   * Logging
 
         try:
+            term = sanitize_query(term)
             result = sc.Query(term)
         except socket.timeout:
             log.error("Query has timed out.")
