@@ -7,7 +7,9 @@ from l10n import ugettext as _
 
 from . import buttons
 
+
 register.function(buttons.install_button)
+register.function(buttons.big_install_button)
 
 
 @register.filter

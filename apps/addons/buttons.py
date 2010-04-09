@@ -13,7 +13,7 @@ from translations.models import Translation
 @jinja2.contextfunction
 def install_button(context, addon, version=None, show_eula=True,
                    show_contrib=True, show_warning=True, src='',
-                   collection=None, size=''):
+                   collection=None, size='', detailed=False):
     """If version isn't given, we use the latest version."""
     request = context['request']
     app, lang = context['APP'], context['LANG']
@@ -25,11 +25,20 @@ def install_button(context, addon, version=None, show_eula=True,
                   or request.GET.get('collection_uuid'))
     button = install_button_factory(addon, app, lang, version,
                                     show_eula, show_contrib, show_warning,
-                                    src, collection, size)
+                                    src, collection, size, detailed)
     c = {'button': button, 'addon': addon, 'version': button.version,
-         'APP': app}
+         'APP': app, 'LANG': context['LANG']}
     t = jingo.env.get_template('addons/button.html').render(c)
     return jinja2.Markup(t)
+
+
+@jinja2.contextfunction
+def big_install_button(context, addon, **kwargs):
+    from addons.helpers import statusflags
+    b = install_button(context, addon, detailed=True, size='prominent',
+                       **kwargs)
+    s = u'<div class="install-wrapper %s">%s</div>'
+    return jinja2.Markup(s % (statusflags(context, addon), b))
 
 
 def install_button_factory(*args, **kwargs):
@@ -54,13 +63,14 @@ class InstallButton(object):
 
     def __init__(self, addon, app, lang, version=None, show_eula=True,
                  show_contrib=True, show_warning=True, src='', collection=None,
-                 size=''):
+                 size='', detailed=False):
         self.addon, self.app, self.lang = addon, app, lang
         self.latest = version is None
         self.version = version or addon.current_version
         self.src = src
         self.collection = collection
         self.size = size
+        self.detailed = detailed
 
         self.unreviewed = addon.is_unreviewed() or self.version.is_unreviewed
         self.self_hosted = addon.status == amo.STATUS_LISTED
