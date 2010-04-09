@@ -155,15 +155,15 @@ class TestAddonModels(test.TestCase):
         a = Addon(status=amo.STATUS_SANDBOX)
         assert a.is_unreviewed(), 'sandboxed add-on: is_unreviewed=True'
 
-    def test_is_listed(self):
+    def test_is_selfhosted(self):
         """Test if an add-on is listed or hosted"""
         # hosted
         a = Addon.objects.get(pk=3615)
-        assert not a.is_listed, 'hosted add-on => !is_listed()'
+        assert not a.is_selfhosted(), 'hosted add-on => !is_selfhosted()'
 
         # listed
         a.status = amo.STATUS_LISTED
-        assert a.is_listed, 'listed add-on => is_listed()'
+        assert a.is_selfhosted(), 'listed add-on => is_selfhosted()'
 
     def test_is_featured(self):
         """Test if an add-on is globally featured"""

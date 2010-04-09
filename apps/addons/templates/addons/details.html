@@ -16,7 +16,7 @@
   <span>
     {{ addon.name }}
   </span>
-  {% if version and not addon.is_listed %}
+  {% if version and not addon.is_selfhosted() %}
     <span class="version">{{ version.version }}</span>
   {% endif %}
 </h2>
@@ -81,7 +81,7 @@
                 <th>{{ _('Rating', 'advanced_search_form_rating') }}</th>
                 <td>{{ addon|reviews_link }}</td>
               </tr>
-              {% if not addon.is_listed %}
+              {% if not addon.is_selfhosted() %}
                 <tr class="meta-stats">
                   <th>{{ _('Downloads', 'list_sortby_downloads') }}</th>
                   <td>
@@ -181,7 +181,7 @@
   {{ review_add_box(addon=addon) }}
 
 
-  {% if not addon.is_listed and version %}
+  {% if not addon.is_selfhosted() and version %}
   <h3 id="releasenotes">{{ _('Release Notes', 'addons_display_release_notes') }}</h3>
   <div class="article">
     {# TODO reverse URL #}
@@ -226,7 +226,7 @@
             version.files.all()[0].pk }}">{{ _('View the source') }}</a>
         </li>
       {% endif %}
-      {% if not addon.is_listed %}
+      {% if not addon.is_selfhosted() %}
         <li>
           {# TODO reverse URL #}
           <a href="/addons/versions/{{ addon.id }}">

@@ -284,8 +284,7 @@ class Addon(amo.models.ModelBase):
         except IndexError:
             return settings.MEDIA_URL + '/img/amo2009/icons/no-preview.png'
 
-    @property
-    def is_listed(self):
+    def is_selfhosted(self):
         return self.status == amo.STATUS_LISTED
 
     def is_unreviewed(self):
