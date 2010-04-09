@@ -223,6 +223,17 @@ class SearchTest(SphinxTestCase):
         eq_(query("MozEx",
                   status=[amo.STATUS_PUBLIC, amo.STATUS_SANDBOX])[0].id, 40)
 
+    def test_badchars(self):
+        """ Sphinx doesn't like queries that are entirely '$', '^' or '^ $' """
+        bad_guys = ('^', '$', '$ ^', '^ s $', '$s^', '  $ s  ^', ' ^  s  $',
+                    '^$', '^    $')
+
+        for guy in bad_guys:
+            try:
+                query(guy)
+            except SearchError:
+                assert False, "Error querying for %s" % guy
+
 
 class TestSearchForm(test_utils.TestCase):
     fixtures = ['base/addons']
