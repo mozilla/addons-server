@@ -11,6 +11,7 @@
     {{ css('zamboni/z') }}
 
     {% block extrahead %}{% endblock %}
+    <noscript><link rel="stylesheet" href="{{ MEDIA_URL }}css/nojs.css"></noscript>
   </head>
   <body class="html-{{ DIR }} {{ request.APP.short }} {% block bodyclass %}{% endblock %}"
         data-app="{{ request.APP.short }}"
