@@ -17,9 +17,11 @@ def statusflags(context, addon):
     app = context['APP']
     lang = context['LANG']
     if addon.is_unreviewed():
-        return 'experimental'
+        return 'unreviewed'
     elif addon.is_featured(app, lang) or addon.is_category_featured(app, lang):
-        return 'recommended'
+        return 'featuredaddon'
+    elif addon.is_selfhosted():
+        return 'selfhosted'
     else:
         return ''
 
@@ -29,7 +31,8 @@ def statusflags(context, addon):
 def flag(context, addon):
     """experimental/recommended flag heading."""
     status = statusflags(context, addon)
-    msg = {'experimental': _('Experimental'), 'recommended': _('Recommended')}
+    msg = {'unreviewed': _('Unreviewed'), 'featuredaddon': _('Featured'),
+           'selfhosted': _('Self Hosted')}
     if status:
         return jinja2.Markup(u'<h5 class="flag">%s</h5>' % msg[status])
     else:
