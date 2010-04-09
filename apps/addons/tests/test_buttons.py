@@ -179,6 +179,15 @@ class TestButton(ButtonTest):
         eq_(b.button_class, ['eula', 'go'])
         eq_(b.install_class, ['eula'])
 
+    def test_accept_eula(self):
+        self.addon.has_eula = True
+        b = self.get_button(show_eula=False)
+        assert 'accept' in b.install_class
+
+        file = self.get_file(amo.PLATFORM_ALL)
+        text, _, _ = b.file_details(file)
+        eq_(text, 'Accept and Download')
+
     def test_featured(self):
         self.addon.is_featured.return_value = True
         b = self.get_button()

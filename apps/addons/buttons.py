@@ -67,6 +67,7 @@ class InstallButton(object):
                          or addon.is_category_featured(app, lang))
 
         self.show_eula = show_eula and addon.has_eula
+        self.accept_eula = addon.has_eula and not show_eula
         self.show_contrib = (show_contrib and addon.takes_contributions
                              and addon.annoying == amo.CONTRIB_ROADBLOCK)
         self.show_warning = show_warning and (self.unreviewed or
@@ -87,6 +88,9 @@ class InstallButton(object):
                 self.button_class.append(cls)
                 self.button_class.append('go')
                 self.install_class.append(cls)
+
+        if self.accept_eula:
+            self.install_class.append('accept')
 
     def attrs(self):
         rv = {}
@@ -116,6 +120,8 @@ class InstallButton(object):
 
         if self.show_eula:
             text, url = _('Continue to Download &rarr;'), file.eula_url()
+        elif self.accept_eula:
+            text = _('Accept and Download')
         elif self.show_contrib:
             # The eula doesn't exist or has been hit already.
             text = _('Continue to Download &rarr;')
