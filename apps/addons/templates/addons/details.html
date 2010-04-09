@@ -33,7 +33,7 @@
         <div id="addon-summary" class="primary">
           <p{{ addon.summary|locale_html }}>{{ addon.summary|nl2br }}</p>
 
-          {{ install_button(addon, show_warning=False) }}
+          {{ install_button(addon, show_warning=False, size='prominent') }}
 
           {% if addon.privacy_policy %}
             <a class="privacy-policy" href="{{ remora_url('/addons/policy/0/{0}'|f(addon.id)) }}">

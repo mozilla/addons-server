@@ -13,7 +13,7 @@ from translations.models import Translation
 @jinja2.contextfunction
 def install_button(context, addon, version=None, show_eula=True,
                    show_contrib=True, show_warning=True, src='',
-                   collection=None):
+                   collection=None, size=''):
     """If version isn't given, we use the latest version."""
     request = context['request']
     app, lang = context['APP'], context['LANG']
@@ -25,7 +25,7 @@ def install_button(context, addon, version=None, show_eula=True,
                   or request.GET.get('collection_uuid'))
     button = install_button_factory(addon, app, lang, version,
                                     show_eula, show_contrib, show_warning,
-                                    src, collection)
+                                    src, collection, size)
     c = {'button': button, 'addon': addon, 'version': button.version,
          'APP': app}
     t = jingo.env.get_template('addons/button.html').render(c)
@@ -53,12 +53,14 @@ class InstallButton(object):
     install_text = ''
 
     def __init__(self, addon, app, lang, version=None, show_eula=True,
-                 show_contrib=True, show_warning=True, src='', collection=None):
+                 show_contrib=True, show_warning=True, src='', collection=None,
+                 size=''):
         self.addon, self.app, self.lang = addon, app, lang
         self.latest = version is None
         self.version = version or addon.current_version
         self.src = src
         self.collection = collection
+        self.size = size
 
         self.unreviewed = addon.is_unreviewed() or self.version.is_unreviewed
         self.self_hosted = addon.status == amo.STATUS_LISTED
@@ -91,6 +93,8 @@ class InstallButton(object):
 
         if self.accept_eula:
             self.install_class.append('accept')
+        if self.size:
+            self.button_class.append(self.size)
 
     def attrs(self):
         rv = {}
