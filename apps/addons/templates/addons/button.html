@@ -14,7 +14,8 @@
   {% endif %}>
   <p class="install-button">
     {% for link in b.links() %}
-      <a class="button {{ b.button_class|join(' ') }} {{ link.os.shortname }}"
+      {% set extra = "platform " + link.os.shortname if link.os else "" %}
+      <a class="button {{ b.button_class|join(' ') }} {{ extra }}"
          data-hash="{{ link.file.hash }}"
          {% if b.show_warning %}
            href="{{ b.addon.get_url_path() }}"
