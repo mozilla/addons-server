@@ -12,7 +12,6 @@ from .models import Session
 from .helpers import cake_csrf_token, remora_url
 
 
-
 class CakeTestCase(TestCase):
 
     fixtures = ['cake/sessions.json', 'base/global-stats']
@@ -58,6 +57,13 @@ class CakeTestCase(TestCase):
         # check that it's no longer in the db
         f = lambda: Session.objects.get(pk='37f051c99f083244bf653d5798111216')
         self.assertRaises(Session.DoesNotExist, f)
+
+    def test_broken_session_data(self):
+        """Bug 553397"""
+        backend = SessionBackend()
+        session = Session.objects.get(pk='17f051c99f083244bf653d5798111216')
+        session.data = session.data.replace('"', 'breakme', 5)
+        self.assertEqual(None, backend.authenticate(session=session))
 
     def test_backend_get_user(self):
         s = SessionBackend()
@@ -123,8 +129,7 @@ class TestHelpers(TestCase):
         """Build remora URLs."""
         ctx = {
             'LANG': 'en-us',
-            'APP': amo.FIREFOX
-        }
+            'APP': amo.FIREFOX}
         url = remora_url(ctx, '/addon/1234')
         eq_(url, '/en-US/firefox/addon/1234')
 

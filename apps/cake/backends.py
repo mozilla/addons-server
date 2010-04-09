@@ -1,3 +1,4 @@
+import logging
 from time import time
 
 from django.contrib.auth.models import User
@@ -5,6 +6,8 @@ from django.contrib.auth.models import User
 import phpserialize
 
 from users.models import UserProfile
+
+log = logging.getLogger('z.cake')
 
 
 class SessionBackend:
@@ -19,9 +22,15 @@ class SessionBackend:
             session.delete()
             return None
 
-        serialized_data = session.data[5:]
+        try:
+            serialized_data = session.data[5:]
+            php_user = phpserialize.loads(serialized_data)
+        except ValueError, e:
+            # Bug 553397
+            log.warning("Found corrupt session (%s): %s" % (session.pk, e))
+            session.delete()
+            return None
 
-        php_user = phpserialize.loads(serialized_data)
         user_id = int(php_user.get('id'))
 
         try:
