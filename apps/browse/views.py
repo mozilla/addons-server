@@ -191,6 +191,11 @@ class CategoryLandingFilter(HomepageFilter):
             ('downloads', _('Top Downloads')),
             ('rating', _('Top Rated')))
 
+    def __init__(self, request, base, category, key, default):
+        self.category = category
+        super(CategoryLandingFilter, self).__init__(request, base, key,
+                                                    default)
+
     def _filter(self, field):
         qs = Addon.objects
         if field == 'created':
@@ -200,13 +205,14 @@ class CategoryLandingFilter(HomepageFilter):
         elif field == 'rating':
             return qs.order_by('-bayesian_rating')
         else:
-            return qs.category_featured().order_by('?')
+            return qs.filter(addoncategory__feature=True,
+                             addoncategory__category=self.category)
 
 
 def category_landing(request, category):
     base = (Addon.objects.listed(request.APP).exclude(type=amo.ADDON_PERSONA)
             .filter(categories__id=category.id))
-    filter = CategoryLandingFilter(request, base,
+    filter = CategoryLandingFilter(request, base, category,
                                    key='browse', default='featured')
 
     return jingo.render(request, 'browse/category_landing.html',

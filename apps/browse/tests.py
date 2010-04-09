@@ -154,3 +154,18 @@ class TestCategoryPages(test_utils.TestCase):
 
         self.client.get(category_url)
         assert landing_mock.called
+
+    def test_creatured_addons(self):
+        """Make sure the creatured add-ons are for the right category."""
+        # Featured in bookmarks.
+        url = reverse('browse.extensions', args=['bookmarks'])
+        response = self.client.get(url, follow=True)
+        creatured = response.context['filter'].all()['featured']
+        eq_(len(creatured), 1)
+        eq_(creatured[0].id, 3615)
+
+        # Not featured in search-tools.
+        url = reverse('browse.extensions', args=['search-tools'])
+        response = self.client.get(url, follow=True)
+        creatured = response.context['filter'].all()['featured']
+        eq_(len(creatured), 0)
