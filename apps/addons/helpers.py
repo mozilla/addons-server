@@ -33,7 +33,7 @@ def statusflags(context, addon):
 def flag(context, addon):
     """experimental/recommended flag heading."""
     status = statusflags(context, addon)
-    msg = {'unreviewed': _('Unreviewed'), 'featuredaddon': _('Featured'),
+    msg = {'unreviewed': _('Not Reviewed'), 'featuredaddon': _('Featured'),
            'selfhosted': _('Self Hosted')}
     if status:
         return jinja2.Markup(u'<h5 class="flag">%s</h5>' % msg[status])

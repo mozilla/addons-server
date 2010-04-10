@@ -35,7 +35,7 @@ class TestHelpers(test.TestCase):
 
         # experimental
         a = Addon(status=amo.STATUS_SANDBOX)
-        eq_(flag(ctx, a), '<h5 class="flag">Unreviewed</h5>')
+        eq_(flag(ctx, a), '<h5 class="flag">Not Reviewed</h5>')
 
         # recommended
         featured = Addon.objects.get(pk=1003)
