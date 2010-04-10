@@ -58,10 +58,10 @@ def confirm_resend(request, user_id):
 
     user.email_confirmation_code()
 
-    msg = _(('An email has been sent to your address {0} to confirm '
-             'your account. Before you can log in, you have to activate '
-             'your account by clicking on the link provided in this '
-             'email.')).format(user.email)
+    msg = _('An email has been sent to your address {0} to confirm '
+            'your account. Before you can log in, you have to activate '
+            'your account by clicking on the link provided in this '
+            'email.').format(user.email)
     messages.info(request, msg)
 
     return http.HttpResponseRedirect(reverse('users.login'))
@@ -100,8 +100,8 @@ def edit(request):
                 l = {'user': amouser,
                      'mail1': original_email,
                      'mail2': amouser.email}
-                log.info((u"User (%(user)s) has requested email change from"
-                            "(%(mail1)s) to (%(mail2)s)") % l)
+                log.info(u"User (%(user)s) has requested email change from"
+                          "(%(mail1)s) to (%(mail2)s)" % l)
                 messages.info(request, _(('An email has been sent to {0} to '
                     'confirm your new email address. For the change to take '
                     'effect, you need to click on the link provided in this '

@@ -23,3 +23,6 @@ CACHE_BACKEND = 'caching.backends.memcached://localhost:11211?timeout=500'
 DEBUG = True
 
 DEBUG_PROPAGATE_EXCEPTIONS = DEBUG
+
+# If you're not running on SSL you'll want this to be False
+SESSION_COOKIE_SECURE = False
