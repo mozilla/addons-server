@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page_title(_('User Login')) }}{% endblock %}
+
+{% block content %}
+
+<div class="primary" role="main">
+  {% if messages %}
+    {% for message in messages %}
+      {% if message %}
+        <div class="notification-box {{ message.tags }}">
+          <h2>{{ message|safe }}</h2>
+        </div>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+  {% if form.non_field_errors() %}
+      <div class="notification-box error">
+        <ul>
+        {% for error in form.non_field_errors() %}
+          <h2>{{ error }}</h2>
+        {% endfor %}
+        </ul>
+      </div>
+  {% endif %}
+  <h2>{{ _('Log In') }}</h2>
+  <div class="primary featured">
+    <form method="post" action="" class="featured-inner object-lead user-input">
+      {{ csrf() }}
+      <fieldset>
+        <ul>
+          <li>
+            <label for="id_username">{{ _('Email address') }}</label>
+            <input id="id_username" type="text" name="username"
+                                                          autofocus />
+            {{ form.username.errors|safe }}
+          </li>
+          <li>
+            <label for="id_password">{{ _('Password') }}</label>
+            {{ form.password|safe }}
+            {{ form.password.errors|safe }}
+          </li>
+          <li>
+            <label for="id_rememberme" class="check">
+              {{ form.rememberme|safe }}
+              {{ _('Remember me on this computer') }}
+            </label>
+            {{ form.rememberme.errors|safe }}
+          </li>
+        </ul>
+      </fieldset>
+      <div class="fm-control">
+        <button type="submit">{{ _('Log in') }}</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="secondary">
+      <div id="login-help" class="article">
+          <h3>{{ _('Login Problems?') }}</h3>
+          <ul>
+              <li><a href="{{ url('users.register') }}">{{ _("I don't have an account.") }} </a></li>
+              <li><a href="{{ url('users.pwreset') }}">{{ _("I forgot my password.") }}</a></li>
+          </ul>
+      </div>
+  </div>
+
+</div>{# .primary #}
+
+{% endblock content %}

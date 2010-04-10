@@ -172,7 +172,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
 
     'cake.middleware.CakeCookieMiddleware',
-    # This should come after authentication middle ware
+    # This should come after authentication middleware
     'access.middleware.ACLMiddleware',
 )
 
@@ -223,7 +223,6 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.messages',
     'django.contrib.sessions',
-    'django.contrib.sites',
 )
 
 # These apps will be removed from INSTALLED_APPS in a production environment.
@@ -352,6 +351,19 @@ PERSONAS_IMAGE_URL_SSL = ('https://getpersonas.com/static/'
 # Outgoing URL bouncer
 REDIRECT_URL = 'http://outgoing.mozilla.org/v1/'
 REDIRECT_SECRET_KEY = ''
+
+# Default to short expiration; check "remember me" to override
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_COOKIE_AGE = 1209600
+SESSION_COOKIE_SECURE = True
+
+DEFAULT_FROM_EMAIL = "Mozilla Add-ons <nobody@mozilla.org>"
+
+# These should have app+locale at the start to avoid redirects
+LOGIN_URL = "/users/login"
+LOGOUT_URL = "/users/logout"
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"
 
 # Legacy Settings
 # used by old-style CSRF token

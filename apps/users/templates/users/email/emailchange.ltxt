@@ -1,0 +1,15 @@
+{% load i18n %}
+{# L10n: This is an email.  Whitespace matters! #}
+{% blocktrans %}
+You requested a change to your email address at {{ domain }}.
+
+In order to confirm the new address, please click the link below or copy and paste the whole thing into your browser's location bar:
+
+{{ url }}
+
+You have 48 hours to confirm the new address. If you do not want to change the address anymore, you can just ignore this email.
+
+Thanks!
+
+The {{ domain }} staff
+{% endblocktrans %}

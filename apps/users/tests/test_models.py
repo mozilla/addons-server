@@ -2,6 +2,8 @@ from datetime import date
 import hashlib
 
 from django import test
+from django.contrib.auth.models import User
+from django.core import mail
 
 from nose.tools import eq_
 
@@ -11,11 +13,28 @@ from users.models import UserProfile, get_hexdigest
 
 
 class TestUserProfile(test.TestCase):
-    fixtures = ['base/addons.json']
+    fixtures = ['base/addons.json', 'users/test_backends']
+
+    def test_anonymize(self):
+        u = User.objects.get(id='4043307').get_profile()
+        eq_(u.email, 'jbalogh@mozilla.com')
+        u.anonymize()
+        x = User.objects.get(id='4043307').get_profile()
+        eq_(x.email, "")
 
     def test_display_name_nickname(self):
         u = UserProfile(nickname='Terminator', pk=1)
         eq_(u.display_name, 'Terminator')
+
+    def test_email_confirmation_code(self):
+        u = User.objects.get(id='4043307').get_profile()
+        u.confirmationcode = 'blah'
+        u.email_confirmation_code()
+
+        eq_(len(mail.outbox), 1)
+        assert mail.outbox[0].subject.find('Please confirm your email') == 0
+        assert mail.outbox[0].body.find('%s/confirm/%s' %
+                                        (u.id, u.confirmationcode)) > 0
 
     def test_welcome_name(self):
         u1 = UserProfile(lastname='Connor')
@@ -26,6 +45,12 @@ class TestUserProfile(test.TestCase):
         eq_(u2.welcome_name, 'Sarah')
         eq_(u3.welcome_name, 'sc')
         eq_(u4.welcome_name, '')
+
+    def test_name(self):
+        u1 = UserProfile(firstname='Sarah', lastname='Connor')
+        u2 = UserProfile(firstname='Sarah')
+        eq_(u1.name, 'Sarah Connor')
+        eq_(u2.name, 'Sarah')  # No trailing space
 
     def test_empty_nickname(self):
         u = UserProfile.objects.create(email='yoyoyo@yo.yo', nickname='yoyo')

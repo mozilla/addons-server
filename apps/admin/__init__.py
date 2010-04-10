@@ -20,3 +20,18 @@ def django_to_jinja(template_name, context, **kw):
 actions.render_to_response = django_to_jinja
 options.render_to_response = django_to_jinja
 sites.render_to_response = django_to_jinja
+
+
+def jinja_for_django(template_name, context={}, **kw):
+    """
+    If you want to use some built in logic (or a contrib app) but need to
+    override the templates to work with Jinja, replace the object's
+    render_to_response function with this one.  That will render a Jinja
+    template through Django's functions.  An example can be found in the users
+    app.
+    """
+    context_instance = kw.pop('context_instance')
+    request = context_instance['request']
+    for d in context_instance.dicts:
+        context.update(d)
+    return jingo.render(request, template_name, context, **kw)

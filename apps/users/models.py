@@ -1,5 +1,6 @@
 from datetime import datetime
 import hashlib
+import logging
 import random
 import re
 import string
@@ -7,13 +8,18 @@ import time
 
 from django.conf import settings
 from django.contrib.auth.models import User as DjangoUser
+from django.core.mail import send_mail
 from django.db import models
+from django.template import Context, loader
 
 import amo
 import amo.models
 
 from amo.urlresolvers import reverse
+from l10n import ugettext as _
 from translations.fields import PurifiedField
+
+log = logging.getLogger('z.users')
 
 
 def get_hexdigest(algorithm, salt, raw_password):
@@ -32,9 +38,10 @@ def create_password(algorithm, raw_password):
 
 class UserProfile(amo.models.ModelBase):
 
-    nickname = models.CharField(max_length=255, unique=True, default='')
-    firstname = models.CharField(max_length=255, default='')
-    lastname = models.CharField(max_length=255, default='')
+    nickname = models.CharField(max_length=255, unique=True, default='',
+                                null=True, blank=True)
+    firstname = models.CharField(max_length=255, default='', blank=True)
+    lastname = models.CharField(max_length=255, default='', blank=True)
     password = models.CharField(max_length=255, default='')
     email = models.EmailField(unique=True)
 
@@ -42,16 +49,16 @@ class UserProfile(amo.models.ModelBase):
     bio = PurifiedField()
     confirmationcode = models.CharField(max_length=255, default='',
                                         blank=True)
-    deleted = models.BooleanField(default=True)
+    deleted = models.BooleanField(default=False)
     display_collections = models.BooleanField(default=False)
     display_collections_fav = models.BooleanField(default=False)
     emailhidden = models.BooleanField(default=False)
-    homepage = models.CharField(max_length=765, blank=True, default='')
-    location = models.CharField(max_length=765, blank=True, default='')
+    homepage = models.CharField(max_length=255, blank=True, default='')
+    location = models.CharField(max_length=255, blank=True, default='')
     notes = models.TextField(blank=True)
     notifycompat = models.BooleanField(default=True)
     notifyevents = models.BooleanField(default=True)
-    occupation = models.CharField(max_length=765, default='', blank=True)
+    occupation = models.CharField(max_length=255, default='', blank=True)
     picture_type = models.CharField(max_length=75, default='', blank=True)
     resetcode = models.CharField(max_length=255, default='', blank=True)
     resetcode_expires = models.DateTimeField(default=datetime.now,
@@ -73,6 +80,12 @@ class UserProfile(amo.models.ModelBase):
     def addons_listed(self):
         """public add-ons this user is listed as author of"""
         return self.addons.valid().filter(addonuser__listed=True)
+
+    @property
+    def name(self):
+        """Can be used while we're transitioning from separate first/last names
+        to a single field.  Bug 546818#6"""
+        return (u'%s %s' % (self.firstname, self.lastname)).strip()
 
     @property
     def picture_url(self):
@@ -112,6 +125,18 @@ class UserProfile(amo.models.ModelBase):
         """All reviews that are not dev replies."""
         return self._reviews_all.filter(reply_to=None)
 
+    def anonymize(self):
+        log.info("User (%s: <%s>) is being anonymized." % (self, self.email))
+        self.email = ""
+        self.password = "sha512$Anonymous$Password"
+        self.firstname = ""
+        self.lastname = ""
+        self.nickname = None
+        self.homepage = ""
+        self.deleted = True
+        self.picture_type = ""
+        self.save()
+
     def save(self, force_insert=False, force_update=False, using=None):
         # we have to fix stupid things that we defined poorly in remora
         if self.resetcode_expires is None:
@@ -133,6 +158,18 @@ class UserProfile(amo.models.ModelBase):
 
     def set_password(self, raw_password, algorithm='sha512'):
         self.password = create_password(algorithm, raw_password)
+
+    def email_confirmation_code(self):
+        log.debug("Sending account confirmation code for user (%s)", self)
+
+        url = "%s%s" % (settings.SITE_URL,
+                        reverse('users.confirm',
+                                args=[self.id, self.confirmationcode]))
+        domain = settings.DOMAIN
+        t = loader.get_template('users/email/confirm.ltxt')
+        c = {'domain': domain, 'url': url, }
+        send_mail(_("Please confirm your email address"),
+                  t.render(Context(c)), None, [self.email])
 
     def create_django_user(self):
         """Make a django.contrib.auth.User for this UserProfile."""
