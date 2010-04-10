@@ -41,7 +41,7 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
         return True
 
     if not from_email:
-        from_email = settings.EMAIL_FROM_DEFAULT
+        from_email = settings.DEFAULT_FROM_EMAIL
 
     # Prune blacklisted emails.
     white_list = []

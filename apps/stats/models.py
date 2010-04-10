@@ -142,7 +142,7 @@ class Contribution(caching.base.CachingMixin, models.Model):
             raise ContributionError('Transaction not complete')
 
         # Send from support_email, developer's email, or default.
-        from_email = settings.EMAIL_FROM_DEFAULT
+        from_email = settings.DEFAULT_FROM_EMAIL
         if self.addon.support_email:
             from_email = str(self.addon.support_email)
         else:

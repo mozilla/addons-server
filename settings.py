@@ -357,8 +357,6 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 SESSION_COOKIE_AGE = 1209600
 SESSION_COOKIE_SECURE = True
 
-DEFAULT_FROM_EMAIL = "Mozilla Add-ons <nobody@mozilla.org>"
-
 # These should have app+locale at the start to avoid redirects
 LOGIN_URL = "/users/login"
 LOGOUT_URL = "/users/logout"
@@ -373,7 +371,7 @@ CAKE_SESSION_TIMEOUT = 8640
 PAYPAL_CGI_URL = 'https://www.paypal.com/cgi-bin/webscr'
 
 # Email settings
-EMAIL_FROM_DEFAULT = 'nobody@mozilla.org'
+DEFAULT_FROM_EMAIL = "Mozilla Add-ons <nobody@mozilla.org>"
 
 # Email goes to the console by default.  s/console/smtp/ for regular delivery
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
