@@ -274,6 +274,7 @@ MINIFY_BUNDLES = {
             'css/jquery-lightbox.css',
             'css/autocomplete.css',
             'css/zamboni/tags.css',
+            'css/zamboni/tabs.css',
         ),
         'zamboni/z': (
             'css/zamboni/zamboni.css',
@@ -288,6 +289,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/init.js',
             'js/zamboni/buttons.js',
             'js/zamboni/search.js',
+            'js/zamboni/tabs.js',
 
             'js/jquery.cookie.js',
             'js/amo2009/global.js',
