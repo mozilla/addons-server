@@ -2,7 +2,6 @@ from collections import defaultdict
 from datetime import timedelta, datetime
 import time
 
-from django import http
 from django.http import HttpResponseRedirect
 
 import jingo

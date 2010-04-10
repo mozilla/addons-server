@@ -130,11 +130,11 @@ def SearchForm(request):
             d = self.cleaned_data
 
             # Set some defaults
-            if 'appid' not in d or not d['appid']:
+            if not d.get('appid'):
                 d['appid'] = request.APP.id
 
             if 'cat' in d:
-                if d['cat'].find(',') != -1:
+                if ',' in d['cat']:
                     (d['atype'], d['cat']) = map(int, d['cat'].split(','))
                 elif d['cat'] == 'all':
                     d['cat'] = None
@@ -150,7 +150,7 @@ def SearchForm(request):
             Does not remove cleaned_data if there are errors.
             """
             self._errors = ErrorDict()
-            if not self.is_bound: # Stop further processing.
+            if not self.is_bound:  # Stop further processing.
                 return
             self.cleaned_data = {}
             # If the form is permitted to be empty, and none of the form data
@@ -159,7 +159,6 @@ def SearchForm(request):
                 return
             self._clean_fields()
             self._clean_form()
-
 
     d = request.GET.copy()
 

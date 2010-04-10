@@ -11,7 +11,8 @@ class TestRedirects(test.TestCase):
 
     def test_utf8(self):
         """Without proper unicode handling this will fail."""
-        response = self.client.get(u'/api/1.5/search/ツールバー', follow=True)
+        response = self.client.get(u'/api/1.5/search/ツールバー',
+                                   follow=True)
         # Sphinx will be off so let's just test that it redirects.
         eq_(response.redirect_chain[0][1], 301)
 

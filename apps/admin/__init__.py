@@ -22,7 +22,7 @@ options.render_to_response = django_to_jinja
 sites.render_to_response = django_to_jinja
 
 
-def jinja_for_django(template_name, context={}, **kw):
+def jinja_for_django(template_name, context=None, **kw):
     """
     If you want to use some built in logic (or a contrib app) but need to
     override the templates to work with Jinja, replace the object's
@@ -30,6 +30,8 @@ def jinja_for_django(template_name, context={}, **kw):
     template through Django's functions.  An example can be found in the users
     app.
     """
+    if context is None:
+        context = {}
     context_instance = kw.pop('context_instance')
     request = context_instance['request']
     for d in context_instance.dicts:

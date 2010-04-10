@@ -8,7 +8,6 @@ import time
 import urllib
 
 from django.test import TestCase, client
-from django.core.management import call_command
 from django.utils import translation
 
 import mock
@@ -18,17 +17,15 @@ from mock import Mock
 from pyquery import PyQuery as pq
 import test_utils
 
-import amo.helpers
+import amo
 from amo.urlresolvers import reverse
 from amo.tests.test_helpers import render
 from manage import settings
 from search import forms, views
-import search.helpers
 from search.utils import start_sphinx, stop_sphinx, reindex, convert_version
 from search.client import (Client as SearchClient, SearchError,
                            get_category_id, extract_from_query)
 from addons.models import Addon, Category
-from applications.models import AppVersion
 from tags.models import Tag
 
 
@@ -45,8 +42,8 @@ def test_convert_version():
 
         return 0
 
-    v = ['1.9.0a1pre', '1.9.0a1', '1.9.1.b5', '1.9.1.b5', '1.9.1pre', \
-        '1.9.1', '1.9.0']
+    v = ['1.9.0a1pre', '1.9.0a1', '1.9.1.b5', '1.9.1.b5', '1.9.1pre',
+         '1.9.1', '1.9.0']
 
     eq_(c(v[0], v[1]), -1)
     eq_(c(v[1], v[2]), -1)
@@ -74,7 +71,7 @@ def test_parse_bad_type():
         c.get("/en-US/firefox/api/1.2/search/firebug%20type:dict")
     except KeyError:
         assert False, ("We should not throw a KeyError just because we had a "
-                       "nonexistant addon type.")
+                       "nonexistent addon type.")
 
 
 class SphinxTestCase(test_utils.TransactionTestCase):
@@ -345,10 +342,13 @@ class FrontendSearchTest(SphinxTestCase):
 
     def test_sort_bad(self):
         "Test that a bad sort value won't bring the system down."
-        resp = self.get_response(sort='yermom')
+        self.get_response(sort='yermom')
 
-    def test_non_existant_tag(self):
-        "If you are searching for a tag that doesn't exist we shouldn't return any results."
+    def test_non_existent_tag(self):
+        """
+        If you are searching for a tag that doesn't exist we shouldn't return
+        any results.
+        """
         resp = self.get_response(tag='stockholmsyndrome')
         doc = pq(resp.content)
         eq_(doc('.item').length, 0)

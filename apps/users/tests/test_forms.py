@@ -154,7 +154,6 @@ class TestUserEditForm(UserFormBase):
                 'password': 'new',
                 'password2': 'new', }
         r = self.client.post('/en-US/firefox/users/edit', data, follow=True)
-        print r.content
         self.assertContains(r, "Profile Updated")
 
 

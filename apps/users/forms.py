@@ -41,7 +41,7 @@ class UserDeleteForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)
-        return super(UserDeleteForm, self).__init__(*args, **kwargs)
+        super(UserDeleteForm, self).__init__(*args, **kwargs)
 
     def clean_password(self):
         data = self.cleaned_data
@@ -118,7 +118,7 @@ class UserEditForm(UserRegisterForm):
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)
-        return super(UserEditForm, self).__init__(*args, **kwargs)
+        super(UserEditForm, self).__init__(*args, **kwargs)
 
     class Meta:
         model = models.UserProfile

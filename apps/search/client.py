@@ -90,10 +90,10 @@ def extract_filters(term, kwargs):
     (term, category) = extract_from_query(term, 'category', '\w+', kwargs)
 
     if category and 'app' in kwargs:
-       if not isinstance(category, int):
+        if not isinstance(category, int):
             category = get_category_id(category, kwargs['app'])
 
-       metas['category'] = category
+        metas['category'] = category
 
     (term, tag) = extract_from_query(term, 'tag', '\w+', kwargs)
 
@@ -496,7 +496,7 @@ class Client(object):
                 try:
                     addons.append(Addon.objects.get(pk=key))
                 except Addon.DoesNotExist:
-                    log.warn(u'%d: Result for %s refers to non-existant '
+                    log.warn(u'%d: Result for %s refers to non-existent '
                              'addon: %d' % (self.id, term, key))
 
             return ResultSet(addons, min(self.total_found, SPHINX_HARD_LIMIT),
