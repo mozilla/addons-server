@@ -40,5 +40,19 @@
   {% if b.install_text -%}
     <strong>{{ b.install_text }}</strong>
   {%- endif %}
-</div>
-</div>
+</div> {# install #}
+
+{% if b.detailed %}
+  {% if addon.privacy_policy %}
+    <a class="privacy-policy" href="{{ remora_url('/addons/policy/0/{0}'|f(addon.id)) }}">
+      <strong>{{ _('View privacy policy') }}</strong>
+    </a>
+  {% endif %}
+
+  {% if addon.is_unreviewed() %}
+    <p class="warning">{{ _("This add-on has not been reviewed by Mozilla.") }}</p>
+  {% elif addon.is_selfhosted() %}
+    <p class="warning">{{ _("This add-on is hosted on the developer's own website and has not been reviewed by Mozilla.") }}</p>
+  {% endif %}
+{% endif %}
+</div> {# install-shell #}

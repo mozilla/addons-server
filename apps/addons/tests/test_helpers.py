@@ -20,30 +20,30 @@ class TestHelpers(test.TestCase):
 
         # experimental
         a = Addon(status=amo.STATUS_SANDBOX)
-        eq_(statusflags(ctx, a), 'experimental')
+        eq_(statusflags(ctx, a), 'unreviewed')
 
         # recommended
         featured = Addon.objects.get(pk=1003)
-        eq_(statusflags(ctx, featured), 'recommended')
+        eq_(statusflags(ctx, featured), 'featuredaddon')
 
         # category featured
         featured = Addon.objects.get(pk=1001)
-        eq_(statusflags(ctx, featured), 'recommended')
+        eq_(statusflags(ctx, featured), 'featuredaddon')
 
     def test_flags(self):
         ctx = {'APP': amo.FIREFOX, 'LANG': 'en-US'}
 
         # experimental
         a = Addon(status=amo.STATUS_SANDBOX)
-        eq_(flag(ctx, a), '<h5 class="flag">Experimental</h5>')
+        eq_(flag(ctx, a), '<h5 class="flag">Unreviewed</h5>')
 
         # recommended
         featured = Addon.objects.get(pk=1003)
-        eq_(flag(ctx, featured), '<h5 class="flag">Recommended</h5>')
+        eq_(flag(ctx, featured), '<h5 class="flag">Featured</h5>')
 
         # category featured
         featured = Addon.objects.get(pk=1001)
-        eq_(flag(ctx, featured), '<h5 class="flag">Recommended</h5>')
+        eq_(flag(ctx, featured), '<h5 class="flag">Featured</h5>')
 
     def test_support_addon(self):
         a = Addon(id=12)
