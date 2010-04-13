@@ -296,7 +296,6 @@ MINIFY_BUNDLES = {
             'js/amo2009/slimbox2.js',
             'js/jquery-ui/jqModal.js',
             'js/amo2009/home.js',
-            'js/__utm.js',
 
             # add-ons details page
             'js/jquery-ui/ui.lightbox.js',
