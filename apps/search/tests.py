@@ -152,11 +152,11 @@ class SearchDownTest(TestCase):
         """
         self.assertRaises(SearchError, query, "")
 
-    def test_fe_search_down(self):
+    def test_frontend_search_down(self):
         self.client.get('/')
         resp = self.client.get(reverse('search.search'))
         doc = pq(resp.content)
-        eq_(doc('.notfound').length, 1)
+        eq_(doc('.no-results').length, 1)
 
 
 class SearchTest(SphinxTestCase):
