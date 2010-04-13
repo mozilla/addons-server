@@ -3,7 +3,7 @@ import hashlib
 import logging
 import time
 
-from manage import settings
+from django.conf import settings
 
 log = logging.getLogger('z.users')
 

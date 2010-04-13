@@ -2,9 +2,9 @@ import logging
 import random
 import string
 from django import http
+from django.conf import settings
 from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
@@ -17,7 +17,6 @@ import jingo
 
 import amo
 from bandwagon.models import Collection
-from manage import settings
 
 from .models import UserProfile
 from .signals import logged_out
@@ -169,7 +168,7 @@ def login(request):
     r = auth.views.login(request, template_name='users/login.html',
                          authentication_form=forms.AuthenticationForm)
 
-    if isinstance(r, HttpResponseRedirect):
+    if isinstance(r, http.HttpResponseRedirect):
         # Succsesful log in according to django.  Now we do our checks.  I do
         # the checks here instead of the form's clean() because I want to use
         # the messages framework and it's not available in the request there
