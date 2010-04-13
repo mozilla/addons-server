@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
+import itertools
+
 from django.db import models
 
 import caching.base
 
 import amo.models
-from addons.models import Addon
 from applications.models import Application, AppVersion
+from files.models import File
 from translations.fields import TranslatedField, PurifiedField
 from users.models import UserProfile
 
@@ -13,7 +15,7 @@ from . import compare
 
 
 class Version(amo.models.ModelBase):
-    addon = models.ForeignKey(Addon, related_name='versions')
+    addon = models.ForeignKey('addons.Addon', related_name='versions')
     license = models.ForeignKey('License', null=True)
     releasenotes = PurifiedField()
     approvalnotes = models.TextField(default='', null=True)
@@ -30,30 +32,63 @@ class Version(amo.models.ModelBase):
     def __unicode__(self):
         return self.version
 
-    @amo.cached_property
+    @amo.cached_property(writable=True)
     def compatible_apps(self):
         """Get a mapping of {APP: ApplicationVersion}."""
-        apps = {}
-        for av in self.applicationsversions_set.select_related(depth=1):
-            app_id = av.application.id
-            if app_id in amo.APP_IDS:
-                apps[amo.APP_IDS[app_id]] = av
-        return apps
+        avs = self.applicationsversions_set.select_related(depth=1)
+        return self._compat_map(avs)
+
+    @amo.cached_property(writable=True)
+    def all_files(self):
+        """Shortcut for list(self.files.all()).  Heavily cached."""
+        return list(self.files.all())
 
     # TODO(jbalogh): Do we want names or Platforms?
     @amo.cached_property
     def supported_platforms(self):
         """Get a list of supported platform names."""
         return list(set(amo.PLATFORMS[f.platform_id]
-                        for f in self.files.all()))
+                        for f in self.all_files))
 
     @amo.cached_property
     def has_files(self):
-        return bool(self.files.count())
+        return bool(self.all_files)
 
     @amo.cached_property
     def is_unreviewed(self):
-        return bool(self.files.filter(status=amo.STATUS_UNREVIEWED))
+        return filter(lambda f: f.status == amo.STATUS_UNREVIEWED,
+                      self.all_files)
+
+    @classmethod
+    def _compat_map(cls, avs):
+        apps = {}
+        for av in avs:
+            app_id = av.application_id
+            if app_id in amo.APP_IDS:
+                apps[amo.APP_IDS[app_id]] = av
+        return apps
+
+    @classmethod
+    def transformer(cls, versions):
+        """Attach all the compatible apps and files to the versions."""
+        if not versions:
+            return
+
+        avs = (ApplicationsVersions.objects.filter(version__in=versions)
+               .select_related(depth=1).order_by('version').no_cache())
+        files = (File.objects.filter(version__in=versions).order_by('version')
+                 .select_related('version').no_cache())
+
+        def rollup(xs):
+            groups = itertools.groupby(xs, key=lambda x: x.version_id)
+            return dict((k, list(vs)) for k, vs in groups)
+
+        av_dict, file_dict = rollup(avs), rollup(files)
+
+        for version in versions:
+            v_id = version.id
+            version.compatible_apps = cls._compat_map(av_dict.get(v_id, []))
+            version.all_files = file_dict.get(v_id, [])
 
 
 class License(amo.models.ModelBase):
@@ -123,7 +158,7 @@ class VersionComment(amo.models.ModelBase):
 
 
 class VersionSummary(amo.models.ModelBase):
-    addon = models.ForeignKey(Addon)
+    addon = models.ForeignKey('addons.Addon')
     version = models.ForeignKey(Version)
     application = models.ForeignKey(Application)
     min = models.IntegerField(null=True)

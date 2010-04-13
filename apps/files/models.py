@@ -5,13 +5,12 @@ from django.db import models
 
 import amo.models
 from amo.urlresolvers import reverse
-from versions.models import Version
 
 
 class File(amo.models.ModelBase):
     STATUS_CHOICES = amo.STATUS_CHOICES.items()
 
-    version = models.ForeignKey(Version, related_name='files')
+    version = models.ForeignKey('versions.Version', related_name='files')
     platform = models.ForeignKey('Platform')
     filename = models.CharField(max_length=255, default='')
     size = models.PositiveIntegerField(default=0)

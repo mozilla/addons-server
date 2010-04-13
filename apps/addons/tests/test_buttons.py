@@ -26,7 +26,7 @@ class ButtonTest(object):
         self.addon.current_version = v
 
         self.file = self.get_file(amo.PLATFORM_ALL)
-        v.files.select_related.return_value = [self.file]
+        v.all_files = [self.file]
 
         self.platforms = amo.PLATFORM_MAC, amo.PLATFORM_LINUX
         self.platform_files = map(self.get_file, self.platforms)
@@ -288,7 +288,7 @@ class TestButton(ButtonTest):
         eq_(b.fix_link('foo.com'), 'foo.com?src=src&collection=xxx')
 
     def test_links(self):
-        self.version.files.select_related.return_value = self.platform_files
+        self.version.all_files = self.platform_files
         links = self.get_button().links()
 
         eq_(len(links), len(self.platforms))
@@ -340,7 +340,7 @@ class TestButtonHtml(ButtonTest):
         eq_('xpi.latest', button.attr('data-realurl'))
 
     def test_multi_platform(self):
-        self.version.files.select_related.return_value = self.platform_files
+        self.version.all_files = self.platform_files
         names = [p.name for p in self.platforms]
         doc = self.render()
         eq_(doc('.button').length, 2)
@@ -369,7 +369,7 @@ class TestButtonHtml(ButtonTest):
 
     def test_platformer_with_eula(self):
         """Don't show platform text for eula buttons."""
-        self.version.files.select_related.return_value = self.platform_files
+        self.version.all_files = self.platform_files
         self.addon.has_eula = True
         doc = self.render()
         eq_(doc('.eula .os').text(), '')

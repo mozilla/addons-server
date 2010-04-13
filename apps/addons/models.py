@@ -13,14 +13,19 @@ import amo.models
 from amo.fields import DecimalCharField
 from amo.urlresolvers import reverse
 from reviews.models import Review
+from search import utils as search_utils
+from stats.models import Contribution as ContributionStats, ShareCountTotal
 from translations.fields import (TranslatedField, PurifiedField,
                                  LinkifiedField, translations_with_fallback)
 from users.models import UserProfile
-from search import utils as search_utils
-from stats.models import Contribution as ContributionStats, ShareCountTotal
+from versions.models import Version
 
 
 class AddonManager(amo.models.ManagerBase):
+
+    def get_query_set(self):
+        qs = super(AddonManager, self).get_query_set()
+        return qs.transform(Addon.transformer)
 
     def public(self):
         """Get public add-ons only"""
@@ -243,6 +248,16 @@ class Addon(amo.models.ModelBase):
             return self.versions.filter(files__status__in=status)[0]
         except IndexError:
             return None
+
+    @classmethod
+    def transformer(cls, addons):
+        if not addons:
+            return
+        # TODO(jbalogh): It would be awesome to get the versions in one
+        # (or a few) queries, but we'll accept the overhead here to roll up
+        # some version queries.
+        versions = filter(None, (a.current_version for a in addons))
+        Version.transformer(versions)
 
     @amo.cached_property
     def current_beta_version(self):

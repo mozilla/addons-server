@@ -8,7 +8,6 @@ import test_utils
 
 import amo
 from addons.models import Addon, AddonPledge, Persona
-from stats.models import Contribution
 from reviews.models import Review
 from users.models import UserProfile
 
@@ -23,7 +22,7 @@ class TestAddonManager(test_utils.TestCase):
         mac_friendly = Addon.objects.compatible_with_platform('macosx')
         for addon in mac_friendly:
             platform_ids = [file.platform_id for file in
-                    addon.current_version.files.all()]
+                    addon.current_version.all_files]
             assert (amo.PLATFORM_MAC.id in platform_ids or
                     amo.PLATFORM_ALL.id in platform_ids)
 
@@ -207,7 +206,7 @@ class TestAddonModels(test.TestCase):
                            reply_to=new_review, rating=2, body='my reply')
         new_reply.save()
 
-        review_list = [ r.pk for r in addon.reviews ]
+        review_list = [r.pk for r in addon.reviews]
 
         assert new_review.pk in review_list, (
             'Original review must show up in review list.')

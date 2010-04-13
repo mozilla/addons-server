@@ -187,7 +187,7 @@
         version.created|datetime }}</span>
       {% if version.has_files %}
         &mdash;
-        {{ _('{0} KB')|f(version.files.all()[0].size|int|numberfmt) }}
+        {{ _('{0} KB')|f(version.all_files[0].size|int|numberfmt) }}
       {% endif %}
     </p>
 
@@ -217,7 +217,7 @@
         <li>
           {# TODO reverse URL #}
           <a href="/files/browse/{{
-            version.files.all()[0].pk }}">{{ _('View the source') }}</a>
+            version.all_files[0].pk }}">{{ _('View the source') }}</a>
         </li>
       {% endif %}
       {% if not addon.is_selfhosted() %}
