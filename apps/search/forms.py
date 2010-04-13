@@ -50,15 +50,21 @@ min_version.update({
 
 
 def get_app_versions():
-    rv = {}
-    for id, app in amo.APP_IDS.items():
+    rv = collections.defaultdict(list)
+    appversions = (AppVersion.objects.filter(application__in=amo.APP_IDS)
+                   .order_by('application'))
+    key = lambda x: x.application_id
+    for app_id, versions in itertools.groupby(appversions, key=key):
+        app = amo.APP_IDS[app_id]
         min_ver, skip = min_version[app], skip_versions[app]
-        versions = [(a.major, a.minor1) for a in
-                    AppVersion.objects.filter(application=id)]
+        versions = [(a.major, a.minor1) for a in versions]
+        # Find all the unique (major, minor) pairs.
         groups = itertools.groupby(sorted(versions))
         strings = ['%s.%s' % v for v, group in groups
                    if v >= min_ver and v not in skip]
-        rv[id] = [(s, s) for s in strings] + [(_('Any'), 'any')]
+        rv[app_id] = [(s, s) for s in strings]
+    for app_id in amo.APP_IDS:
+        rv[app_id] += [(_('Any'), 'any')]
     return rv
 
 
