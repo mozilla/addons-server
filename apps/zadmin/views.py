@@ -22,7 +22,7 @@ def flagged(request):
         # The sql update doesn't invalidate anything, do it manually.
         invalid = [addon for addon in addons if addon.id in ids]
         Addon.objects.invalidate(*invalid)
-        return redirect('admin.flagged')
+        return redirect('zadmin.flagged')
 
     sql = """SELECT {t}.* FROM {t} JOIN (
                 SELECT addon_id, MAX(created) AS created
@@ -49,14 +49,14 @@ def flagged(request):
         addon.version = versions.get(addon.id)
         addon.approval = approvals.get(addon.id)
 
-    return jingo.render(request, 'admin/flagged_addon_list.html',
+    return jingo.render(request, 'zadmin/flagged_addon_list.html',
                         {'addons': addons})
 
 
 
 @admin.site.admin_view
 def settings(request):
-    return jingo.render(request, 'admin/settings.html',
+    return jingo.render(request, 'zadmin/settings.html',
                         {'settings_dict': debug.get_safe_settings()})
 
 

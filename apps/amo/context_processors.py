@@ -56,7 +56,7 @@ def global_settings(request):
                                 'href': '/localizers'})
         if acl.action_allowed(request, 'Admin', '%'):
             tools_links.append({'text': _('Admin Tools'),
-                                'href': reverse('admin.home')})
+                                'href': reverse('zadmin.home')})
 
 
     return {'account_links': account_links, 'settings': settings, 'amo': amo,

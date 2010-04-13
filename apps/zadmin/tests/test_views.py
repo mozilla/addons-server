@@ -11,14 +11,14 @@ from versions.models import Version
 
 
 class TestFlagged(test_utils.TestCase):
-    fixtures = ['admin/tests/flagged']
+    fixtures = ['zadmin/tests/flagged']
 
     def setUp(self):
         super(TestFlagged, self).setUp()
         self.client.login(username='jbalogh@mozilla.com', password='password')
 
     def test_get(self):
-        url = reverse('admin.flagged')
+        url = reverse('zadmin.flagged')
         response = self.client.get(url, follow=True)
 
         addons = dict((a.id, a) for a in response.context['addons'])
@@ -48,7 +48,7 @@ class TestFlagged(test_utils.TestCase):
 
     def test_post(self):
         # Do a get first so the query is cached.
-        url = reverse('admin.flagged')
+        url = reverse('zadmin.flagged')
         self.client.get(url, follow=True)
 
         response = self.client.post(url, {'addon_id': ['1', '2']}, follow=True)
@@ -64,5 +64,5 @@ class TestFlagged(test_utils.TestCase):
 
 def test_settings():
     # Are you there, settings page?
-    response = test.Client().get(reverse('admin.settings'))
+    response = test.Client().get(reverse('zadmin.settings'))
     eq_(response.status_code, 200)

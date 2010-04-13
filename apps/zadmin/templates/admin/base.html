@@ -3,7 +3,7 @@
 {% block title %}:: AMO Admin{% endblock %}
 
 {% block site_header_title %}
-<a href="{{ url('admin.home') }}" title="keep it real fliggy">Site Administration</a>
+<a href="{{ url('zadmin.home') }}" title="keep it real fliggy">Site Administration</a>
 {% endblock %}
 
 {% block extrahead %}
@@ -29,7 +29,7 @@
           Banned GUIDs</a></li>
         <li><a href="{{ url('admin:addons_feature_changelist') }}">
           Featured Add-ons</a></li>
-        <li><a href="{{ url('admin.flagged') }}">
+        <li><a href="{{ url('zadmin.flagged') }}">
           Flagged Add-ons</a></li>
         <li><a href="{{ url('admin:addons_addon_changelist') }}">
           Manage an Add-on</a></li>
@@ -69,7 +69,7 @@
     <li class="top">
       <a href="#" class="controller">Server Config</a>
       <ul>
-        <li><a href="{{ url('admin.settings') }}">Settings</a></li>
+        <li><a href="{{ url('zadmin.settings') }}">Settings</a></li>
       </ul>
     </li>
   </ul>

@@ -7,10 +7,10 @@ from . import views
 
 urlpatterns = patterns('',
     # AMO stuff.
-    url('^$', lambda r: redirect('admin:index'), name='admin.home'),
+    url('^$', lambda r: redirect('admin:index'), name='zadmin.home'),
     url('^env$', views.env, name='amo.env'),
-    url('^flagged', views.flagged, name='admin.flagged'),
-    url('^settings', views.settings, name='admin.settings'),
+    url('^flagged', views.flagged, name='zadmin.flagged'),
+    url('^settings', views.settings, name='zadmin.settings'),
 
     # The Django admin.
     url('^models/', include(admin.site.urls)),

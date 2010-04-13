@@ -19,7 +19,7 @@ urlpatterns = patterns('',
     ('', include('users.urls')),
 
     # AMO admin (not django admin).
-    ('^admin/', include('admin.urls')),
+    ('^admin/', include('zadmin.urls')),
 
     # Nick's special pages.
     ('^nickspages/', include('nick.urls')),

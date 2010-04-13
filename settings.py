@@ -189,7 +189,7 @@ INSTALLED_APPS = (
     'amo',
     'access',
     'addons',
-    'admin',
+    'zadmin',
     'api',
     'applications',
     'bandwagon',
