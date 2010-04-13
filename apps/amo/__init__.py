@@ -12,7 +12,16 @@ from tower import ugettext_lazy as _
 log = logging.getLogger('z.amo')
 
 
-class cached_property(object):
+def cached_property(*args, **kw):
+    # Handles invocation as a direct decorator or
+    # with intermediate keyword arguments.
+    if args:  # @cached_property
+        return CachedProperty(args[0])
+    else:     # @cached_property(name=..., writable=...)
+        return lambda f: CachedProperty(f, **kw)
+
+
+class CachedProperty(object):
     """A decorator that converts a function into a lazy property.  The
     function wrapped is called the first time to retrieve the result
     and than that calculated result is used the next time you access
@@ -28,9 +37,9 @@ class cached_property(object):
     Lifted from werkzeug.
     """
 
-    def __init__(self, func, name=None, doc=None, writeable=False):
+    def __init__(self, func, name=None, doc=None, writable=False):
         self.func = func
-        self.writeable = writeable
+        self.writable = writable
         self.__name__ = name or func.__name__
         self.__doc__ = doc or func.__doc__
 
@@ -45,7 +54,7 @@ class cached_property(object):
         return value
 
     def __set__(self, obj, value):
-        if not self.writeable:
+        if not self.writable:
             raise TypeError('read only attribute')
         obj.__dict__[self.__name__] = value
 
