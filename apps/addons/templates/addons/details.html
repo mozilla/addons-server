@@ -50,8 +50,8 @@
               <tr>
                 <th>{{ _('Updated') }}</th>
                 <td>
-                  <time datetime="{{ version.created|isotime }}">{{
-                    version.created|datetime }}</time>
+                  <time datetime="{{ addon.last_updated|isotime }}">{{
+                    addon.last_updated|datetime }}</time>
                 </td>
               </tr>
               {% if addon.homepage %}
