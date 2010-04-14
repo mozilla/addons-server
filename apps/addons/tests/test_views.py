@@ -191,3 +191,13 @@ class TestDetailPage(test_utils.TestCase):
         response = self.client.get(reverse('addons.detail', args=[3615]),
                                    follow=True)
         assert pq(response.content)('.button').hasClass('prominent')
+
+    def test_invalid_version(self):
+        """Only render details pages for add-ons that have a version."""
+        myaddon = Addon.objects.get(id=3615)
+        # wipe all versions
+        myaddon.versions.all().delete()
+        # try accessing the details page
+        response = self.client.get(reverse('addons.detail', args=[myaddon.id]),
+                                   follow=True)
+        eq_(response.status_code, 404)
