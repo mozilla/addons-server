@@ -8,7 +8,7 @@
               alt="{{ addon.name }}">
           {{ addon.name }}</a>
         <span>
-          {% trans users=users_list(addon.authors.all()) %}
+          {% trans users=users_list(addon.listed_authors) %}
             by {{ users }}
           {% endtrans %}
         </span>
