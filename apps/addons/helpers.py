@@ -15,7 +15,7 @@ register.function(buttons.big_install_button)
 @register.filter
 @jinja2.contextfilter
 def statusflags(context, addon):
-    """experimental/recommended status flags for use as CSS classes"""
+    """unreviewed/recommended status flags for use as CSS classes"""
     app = context['APP']
     lang = context['LANG']
     if addon.is_unreviewed():
@@ -31,7 +31,7 @@ def statusflags(context, addon):
 @register.filter
 @jinja2.contextfilter
 def flag(context, addon):
-    """experimental/recommended flag heading."""
+    """unreviewed/recommended flag heading."""
     status = statusflags(context, addon)
     msg = {'unreviewed': _('Not Reviewed'), 'featuredaddon': _('Featured'),
            'selfhosted': _('Self Hosted')}
@@ -137,7 +137,7 @@ def addon_listing_items(context, addons, show_added_date=False):
 @register.inclusion_tag('addons/listing_header.html')
 @jinja2.contextfunction
 def addon_listing_header(context, url_base, sort_opts, selected,
-                         experimental=None, show_experimental=True):
+                         unreviewed=None, show_unreviewed=True):
     return new_context(locals())
 
 

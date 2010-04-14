@@ -127,7 +127,7 @@ def themes(request, category=None):
                                 type=amo.ADDON_THEME)
     categories = order_by_translation(q, 'name')
 
-    addons, filter, experimental = _listing(request, amo.ADDON_THEME)
+    addons, filter, unreviewed = _listing(request, amo.ADDON_THEME)
     total_count = addons.count()
 
     if category is None:
@@ -143,21 +143,21 @@ def themes(request, category=None):
                          'themes': themes, 'selected': selected,
                          'sorting': filter.sorting,
                          'sort_opts': filter.opts,
-                         'experimental': experimental})
+                         'unreviewed': unreviewed})
 
 
 def _listing(request, addon_type, default='downloads'):
     # Set up the queryset and filtering for themes & extension listing pages.
     status = [amo.STATUS_PUBLIC]
 
-    experimental = 'on' if request.GET.get('experimental', False) else None
-    if experimental:
-        status.append(amo.STATUS_SANDBOX)
+    unreviewed = 'on' if request.GET.get('unreviewed', False) else None
+    if unreviewed:
+        status.append(amo.STATUS_UNREVIEWED)
 
     qs = (Addon.objects.listed(request.APP, *status)
           .filter(type=addon_type).distinct())
     filter = AddonFilter(request, qs, default)
-    return filter.qs, filter, experimental
+    return filter.qs, filter, unreviewed
 
 
 def extensions(request, category=None):
@@ -170,7 +170,7 @@ def extensions(request, category=None):
     if 'sort' not in request.GET and category:
         return category_landing(request, category)
 
-    addons, filter, experimental = _listing(request, TYPE)
+    addons, filter, unreviewed = _listing(request, TYPE)
 
     if category:
         addons = addons.filter(categories__id=category.id)
@@ -179,7 +179,7 @@ def extensions(request, category=None):
 
     return jingo.render(request, 'browse/extensions.html',
                         {'category': category, 'addons': addons,
-                         'experimental': experimental,
+                         'unreviewed': unreviewed,
                          'sorting': filter.sorting,
                          'sort_opts': filter.opts})
 

@@ -37,11 +37,11 @@ class TestHomepage(test_utils.TestCase):
         response = self.client.get(self.base_url + '?browse=xxx')
         self.assertRedirects(response, '/en-US/firefox/', status_code=301)
 
-    def test_no_experimental(self):
+    def test_no_unreviewed(self):
         response = self.client.get(self.base_url)
         for addons in response.context['addon_sets'].values():
             for addon in addons:
-                assert addon.status != amo.STATUS_SANDBOX
+                assert addon.status != amo.STATUS_UNREVIEWED
 
     def test_filter_opts(self):
         response = self.client.get(self.base_url)

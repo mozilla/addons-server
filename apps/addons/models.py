@@ -25,10 +25,10 @@ class AddonManager(amo.models.ManagerBase):
         """Get public add-ons only"""
         return self.filter(inactive=False, status=amo.STATUS_PUBLIC)
 
-    def experimental(self):
-        """Get only experimental add-ons"""
+    def unreviewed(self):
+        """Get only unreviewed add-ons"""
         return self.filter(inactive=False,
-                           status__in=amo.EXPERIMENTAL_STATUSES)
+                           status__in=amo.UNREVIEWED_STATUSES)
 
     def valid(self):
         """Get valid, enabled add-ons only"""
@@ -288,7 +288,7 @@ class Addon(amo.models.ModelBase):
         return self.status == amo.STATUS_LISTED
 
     def is_unreviewed(self):
-        return self.status in amo.EXPERIMENTAL_STATUSES
+        return self.status in amo.UNREVIEWED_STATUSES
 
     def is_featured(self, app, lang):
         """is add-on globally featured for this app and language?"""

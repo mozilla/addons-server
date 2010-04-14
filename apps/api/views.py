@@ -143,7 +143,7 @@ class SearchView(APIView):
 
         if (self.version >= 1.5
             and not self.request.REQUEST.get('hide_sandbox')):
-            statuses.append(amo.STATUS_SANDBOX)
+            statuses.append(amo.STATUS_UNREVIEWED)
 
         opts['status'] = statuses
 

@@ -89,15 +89,15 @@ class TestThemes(test_utils.TestCase):
             addon.save()
 
         self.base_url = reverse('browse.themes')
-        self.exp_url = urlparams(self.base_url, experimental=True)
+        self.exp_url = urlparams(self.base_url, unreviewed=True)
 
     def test_default_sort(self):
         """Default sort should be by downloads."""
         response = self.client.get(self.base_url)
         eq_(response.context['sorting'], 'downloads')
 
-    def test_experimental(self):
-        # Only 3 without experimental.
+    def test_unreviewed(self):
+        # Only 3 without unreviewed.
         response = self.client.get(self.base_url)
         eq_(len(response.context['themes'].object_list), 8)
 

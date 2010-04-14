@@ -219,7 +219,7 @@ def smorgasbord(request):
     all_versions(lambda: normal[0], 'normal')
 
     # Unreviewed.
-    exp = Addon.objects.experimental()
+    exp = Addon.objects.unreviewed()
     all_versions(lambda: exp[0], 'unreviewed')
 
     # Multiple Platforms.

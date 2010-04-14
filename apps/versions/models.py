@@ -53,7 +53,7 @@ class Version(amo.models.ModelBase):
 
     @amo.cached_property
     def is_unreviewed(self):
-        return bool(self.files.filter(status=amo.STATUS_SANDBOX))
+        return bool(self.files.filter(status=amo.STATUS_UNREVIEWED))
 
 
 class License(amo.models.ModelBase):

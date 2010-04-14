@@ -242,7 +242,7 @@ class SearchTest(SphinxTestCase):
 
         eq_(len(query("MozEx", status=[amo.STATUS_PUBLIC])), 0)
         eq_(query("MozEx",
-                  status=[amo.STATUS_PUBLIC, amo.STATUS_SANDBOX])[0].id, 40)
+                  status=[amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED])[0].id, 40)
 
     def test_badchars(self):
         """ Sphinx doesn't like queries that are entirely '$', '^' or '^ $' """

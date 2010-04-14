@@ -18,8 +18,8 @@ class TestHelpers(test.TestCase):
     def test_statusflags(self):
         ctx = {'APP': amo.FIREFOX, 'LANG': 'en-US'}
 
-        # experimental
-        a = Addon(status=amo.STATUS_SANDBOX)
+        # unreviewed
+        a = Addon(status=amo.STATUS_UNREVIEWED)
         eq_(statusflags(ctx, a), 'unreviewed')
 
         # recommended
@@ -33,8 +33,8 @@ class TestHelpers(test.TestCase):
     def test_flags(self):
         ctx = {'APP': amo.FIREFOX, 'LANG': 'en-US'}
 
-        # experimental
-        a = Addon(status=amo.STATUS_SANDBOX)
+        # unreviewed
+        a = Addon(status=amo.STATUS_UNREVIEWED)
         eq_(flag(ctx, a), '<h5 class="flag">Not Reviewed</h5>')
 
         # recommended

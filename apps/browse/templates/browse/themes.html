@@ -9,7 +9,7 @@
 
 {% block content %}
 <div class="secondary">
-  {% set params = dict(experimental=experimental, sort=sorting) %}
+  {% set params = dict(unreviewed=unreviewed, sort=sorting) %}
   <div id="thumb-categories" class="highlight">
     <h3>{{ _('Themes') }}</h3>
     <ul class="subcategories">
@@ -43,7 +43,7 @@
   <div id="addon-listing" class="featured listing">
     <div class="featured-inner">
       {% with url_base=url('browse.themes', selected.slug) %}
-        {{ addon_listing_header(url_base, sort_opts, sorting, experimental) }}
+        {{ addon_listing_header(url_base, sort_opts, sorting, unreviewed) }}
       {% endwith %}
       {% cache themes.object_list %}
       {% for row in themes.object_list|batch(4) %}

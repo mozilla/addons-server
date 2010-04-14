@@ -23,7 +23,7 @@
     {% else %}
       {% set url_base = url('browse.extensions') %}
     {% endif %}
-    {{ addon_listing_header(url_base, sort_opts, sorting, experimental) }}
+    {{ addon_listing_header(url_base, sort_opts, sorting, unreviewed) }}
     {{ addon_listing_items(addons.object_list,
                            show_added_date=(sorting=='created')) }}
     <div class="listing-footer">

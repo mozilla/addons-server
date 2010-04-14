@@ -66,13 +66,13 @@ class TestAddonManager(test_utils.TestCase):
         addon.save()
         eq_(q.count(), 0)
 
-        # If we search for public or experimental we find it.
+        # If we search for public or unreviewed we find it.
         addon.inactive = False
-        addon.status = amo.STATUS_SANDBOX
+        addon.status = amo.STATUS_UNREVIEWED
         addon.save()
         eq_(q.count(), 0)
         eq_(Addon.objects.listed(amo.FIREFOX, amo.STATUS_PUBLIC,
-                                 amo.STATUS_SANDBOX).count(), 1)
+                                 amo.STATUS_UNREVIEWED).count(), 1)
 
         # Can't find it without a file.
         addon.versions.get().files.get().delete()
@@ -82,17 +82,17 @@ class TestAddonManager(test_utils.TestCase):
         public = Addon.objects.public()
         for a in public:
             assert_not_equal(
-                a.id, 3, 'public() must not return experimental add-ons')
+                a.id, 3, 'public() must not return unreviewed add-ons')
 
-    def test_experimental(self):
+    def test_unreviewed(self):
         """
-        Tests for experimental addons.
+        Tests for unreviewed addons.
         """
-        exp = Addon.objects.experimental()
+        exp = Addon.objects.unreviewed()
 
         for addon in exp:
-            assert addon.status in amo.EXPERIMENTAL_STATUSES, (
-                    "experimental() must return experimental addons.")
+            assert addon.status in amo.UNREVIEWED_STATUSES, (
+                    "unreviewed() must return unreviewed addons.")
 
 
 class TestAddonModels(test.TestCase):
@@ -114,7 +114,7 @@ class TestAddonModels(test.TestCase):
         a = Addon.objects.get(pk=5299)
         eq_(a.current_beta_version.id, 78841)
 
-    def test_current_version_experimental(self):
+    def test_current_version_unreviewed(self):
         a = Addon.objects.get(pk=55)
         eq_(a.current_version.id, 55)
 
@@ -146,13 +146,13 @@ class TestAddonModels(test.TestCase):
                 "No match for %s" % a.thumbnail_url)
 
     def test_is_unreviewed(self):
-        """Test if add-on is experimental or not"""
+        """Test if add-on is unreviewed or not"""
         # public add-on
         a = Addon.objects.get(pk=3615)
         assert not a.is_unreviewed(), 'public add-on: is_unreviewed=False'
 
-        # experimental add-on
-        a = Addon(status=amo.STATUS_SANDBOX)
+        # unreviewed add-on
+        a = Addon(status=amo.STATUS_UNREVIEWED)
         assert a.is_unreviewed(), 'sandboxed add-on: is_unreviewed=True'
 
     def test_is_selfhosted(self):
