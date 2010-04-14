@@ -1,21 +1,23 @@
-import re
-import socket
+from collections import defaultdict
 import logging
 import random
-from collections import defaultdict
+import re
+import socket
 
 from django.conf import settings
 from django.utils import translation
 from django.utils.encoding import smart_unicode
 
+import sphinxapi as sphinx
+
 import amo
 from amo.models import manual_order
 from addons.models import Addon, Category
-from .sphinxapi import SphinxClient
-import sphinxapi as sphinx
-from .utils import convert_version, crc32
 from translations.query import order_by_translation
+from translations.transformer import get_trans
 from tags.models import Tag
+
+from .utils import convert_version, crc32
 
 m_dot_n_re = re.compile(r'^\d+\.\d+$')
 SEARCH_ENGINE_APP = 99
@@ -190,7 +192,7 @@ class Client(object):
     """
 
     def __init__(self):
-        self.sphinx = SphinxClient()
+        self.sphinx = sphinx.SphinxClient()
         self.sphinx.SetServer(settings.SPHINX_HOST, settings.SPHINX_PORT)
 
         self.weight_field = ("@weight + IF(addon_status=%d, 30, 0) + "
@@ -489,15 +491,24 @@ class Client(object):
         self.total_found = result['total_found'] if result else 0
 
         if result and result['total']:
-            # Return results as a list of addons.
-            results = [m['attrs']['addon_id'] for m in result['matches']]
+            # Remove transformations for now so we can pull them in later.
+            qs = Addon.objects.all()
+            transforms = qs._transform_fns
+            qs._transform_fns = []
+
+            # Return results as a list of add-ons.
+            addon_ids = [m['attrs']['addon_id'] for m in result['matches']]
             addons = []
-            for key in results:
+            for addon_id in addon_ids:
                 try:
-                    addons.append(Addon.objects.get(pk=key))
+                    addons.append(qs.get(pk=addon_id))
                 except Addon.DoesNotExist:
                     log.warn(u'%d: Result for %s refers to non-existent '
-                             'addon: %d' % (self.id, term, key))
+                             'addon: %d' % (self.id, term, addon_id))
+
+            # Do the transforms now that we have all the add-ons.
+            for fn in transforms:
+                fn(addons)
 
             return ResultSet(addons, min(self.total_found, SPHINX_HARD_LIMIT),
                              offset)

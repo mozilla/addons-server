@@ -122,7 +122,7 @@ class GetCategoryIdTest(TestCase):
 query = lambda *args, **kwargs: SearchClient().query(*args, **kwargs)
 
 
-@mock.patch('search.client.SphinxClient')
+@mock.patch('search.client.sphinx.SphinxClient')
 def test_sphinx_timeout(sphinx_mock):
     def sphinx_error(cls):
         raise cls
