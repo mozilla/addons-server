@@ -85,6 +85,7 @@ class SphinxTestCase(test_utils.TransactionTestCase):
     sphinx_is_running = False
 
     def setUp(self):
+        super(SphinxTestCase, self).setUp()
         if not SphinxTestCase.sphinx_is_running:
             if not settings.SPHINX_SEARCHD or not settings.SPHINX_INDEXER:
                 raise SkipTest()
