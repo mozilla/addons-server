@@ -2,7 +2,7 @@ from django.db.models import Q
 
 import jingo
 import jinja2
-from l10n import ugettext as _, ugettext_lazy as _lazy
+from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
 from amo.helpers import urlparams

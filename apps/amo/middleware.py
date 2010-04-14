@@ -9,7 +9,7 @@ from django.contrib.sessions.middleware import SessionMiddleware
 from django.http import HttpResponsePermanentRedirect
 from django.utils.encoding import smart_str
 
-import l10n
+import tower
 
 import amo.models
 from . import urlresolvers
@@ -56,7 +56,7 @@ class LocaleAndAppURLMiddleware(object):
             return response
 
         request.path_info = '/' + prefixer.shortened_path
-        l10n.activate(prefixer.locale)
+        tower.activate(prefixer.locale)
         request.APP = amo.APPS.get(prefixer.app)
 
 

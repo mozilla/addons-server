@@ -145,7 +145,7 @@ def JINJA_CONFIG():
     import jinja2
     from django.conf import settings
     from caching.base import cache
-    config = {'extensions': ['l10n.template.i18n', 'caching.ext.cache',
+    config = {'extensions': ['tower.template.i18n', 'caching.ext.cache',
                              'jinja2.ext.with_', 'jinja2.ext.loopcontrols'],
               'finalize': lambda x: x if x is not None else ''}
     if 'memcached' in cache.scheme and not settings.DEBUG:
@@ -199,7 +199,6 @@ INSTALLED_APPS = (
     'devhub',
     'editors',
     'files',
-    'l10n',  # for ./manage.py extract
     'minify',
     'nick',
     'pages',
@@ -208,6 +207,7 @@ INSTALLED_APPS = (
     'sharing',
     'stats',
     'tags',
+    'tower',  # for ./manage.py extract
     'translations',
     'users',
     'versions',
@@ -245,13 +245,13 @@ SELENIUM_CONFIG = {}
 DOMAIN_METHODS = {
     'messages': [
         ('apps/**.py',
-            'l10n.management.commands.extract.extract_amo_python'),
+            'tower.management.commands.extract.extract_tower_python'),
         ('**/templates/**.html',
-            'l10n.management.commands.extract.extract_amo_template'),
+            'tower.management.commands.extract.extract_tower_template'),
     ],
     'lhtml': [
         ('**/templates/**.lhtml',
-            'l10n.management.commands.extract.extract_amo_template'),
+            'tower.management.commands.extract.extract_tower_template'),
     ],
     'javascript': [
         # We can't say **.js because that would dive into mochikit and timeplot

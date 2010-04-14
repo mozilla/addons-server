@@ -16,7 +16,7 @@ import amo
 import amo.models
 
 from amo.urlresolvers import reverse
-from l10n import ugettext as _
+from tower import ugettext as _
 from translations.fields import PurifiedField
 
 log = logging.getLogger('z.users')

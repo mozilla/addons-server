@@ -9,7 +9,7 @@ import urllib
 from django.http import HttpResponse, HttpResponsePermanentRedirect
 from django.template.context import get_standard_processors
 from django.utils import translation
-from l10n import ugettext as _, ugettext_lazy
+from tower import ugettext as _, ugettext_lazy
 
 import jingo
 

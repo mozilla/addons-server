@@ -3,7 +3,7 @@ import itertools
 
 from django.shortcuts import get_object_or_404
 
-from l10n import ugettext as _, ugettext_lazy as _lazy
+from tower import ugettext as _, ugettext_lazy as _lazy
 import jingo
 import product_details
 

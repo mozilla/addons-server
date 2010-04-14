@@ -3,7 +3,7 @@ from django.conf import settings
 import jinja2
 
 from jingo import register, env
-from l10n import ugettext as _
+from tower import ugettext as _
 
 from . import buttons
 

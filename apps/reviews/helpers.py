@@ -3,7 +3,7 @@ import math
 import jinja2
 
 import jingo
-from l10n import ugettext as _
+from tower import ugettext as _
 
 
 @jingo.register.filter

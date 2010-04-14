@@ -5,8 +5,8 @@ from django.db import models
 from django.template import Context, loader
 
 import caching.base
-import l10n
-from l10n import ugettext as _
+import tower
+from tower import ugettext as _
 
 from amo.fields import DecimalCharField
 from amo.utils import send_mail as amo_send_mail
@@ -130,7 +130,7 @@ class Contribution(caching.base.CachingMixin, models.Model):
             lang = self.source_locale
         else:
             lang = self.addon.default_locale
-        l10n.activate(lang)
+        tower.activate(lang)
 
         # Thankyous must be enabled.
         if not self.addon.enable_thankyou:

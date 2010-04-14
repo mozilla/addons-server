@@ -19,7 +19,7 @@ import pytz
 import time
 
 from jingo import register, env
-from l10n import ugettext as _
+from tower import ugettext as _
 
 import amo
 from amo import urlresolvers

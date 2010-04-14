@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404
 from django.utils import translation
 
 import jingo
-from l10n import ugettext as _
+from tower import ugettext as _
 
 import amo
 from amo import urlresolvers

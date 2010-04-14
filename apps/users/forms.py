@@ -3,7 +3,7 @@ from django import forms
 from django.contrib.auth import forms as auth_forms
 from django.forms.util import ErrorList
 
-from l10n import ugettext as _
+from tower import ugettext as _
 
 from . import models
 

@@ -2,7 +2,7 @@ from django.db.models import Sum
 
 import caching
 
-from l10n import ugettext_lazy as _, ungettext as ngettext
+from tower import ugettext_lazy as _, ungettext as ngettext
 from stats.models import ShareCount
 
 

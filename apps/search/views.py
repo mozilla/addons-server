@@ -5,7 +5,7 @@ import time
 from django.http import HttpResponseRedirect
 
 import jingo
-from l10n import ugettext as _
+from tower import ugettext as _
 
 import amo
 from amo.helpers import urlparams

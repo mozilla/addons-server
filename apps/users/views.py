@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.template import Context, loader
 
-from l10n import ugettext as _
+from tower import ugettext as _
 
 import jingo
 

@@ -4,7 +4,7 @@ import itertools
 from django import forms
 from django.forms.util import ErrorDict
 
-from l10n import ugettext as _, ugettext_lazy as _lazy
+from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
 from amo import helpers
