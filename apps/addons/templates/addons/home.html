@@ -62,7 +62,7 @@
       <div class="addon-listing addon-listing-{{ filter.field }}">
         {% for key, addons in addon_sets.items() %}
           <div id="list-{{ key }}">
-            {{ addon_listing_items(addons) }}
+            {{ addon_listing_items(addons, show_added_date=(key=='new')) }}
             <div class="listing-footer">
               {# TODO(jbalogh): browse and rss page urls #}
               <a class="subscribe" href="#">
