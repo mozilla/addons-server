@@ -343,7 +343,7 @@ class Addon(amo.models.ModelBase):
 class Persona(caching.base.CachingMixin, models.Model):
     """Personas-specific additions to the add-on model."""
     addon = models.OneToOneField(Addon)
-    persona_id = models.PositiveIntegerField()
+    persona_id = models.PositiveIntegerField(db_index=True)
     # name: deprecated in favor of Addon model's name field
     # description: deprecated, ditto
     header = models.CharField(max_length=64, null=True)
