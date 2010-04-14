@@ -5,8 +5,8 @@ from django.core.urlresolvers import reverse
 from django.test.client import Client
 
 from nose.tools import eq_
-from pyquery import PyQuery
 
+from amo.pyquery_wrapper import PyQuery
 from users.utils import EmailResetCode
 
 

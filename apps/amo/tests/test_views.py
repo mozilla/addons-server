@@ -2,8 +2,9 @@ from django.core.urlresolvers import reverse
 from django import test
 
 from nose.tools import eq_
-from pyquery import PyQuery
 import test_utils
+
+from amo.pyquery_wrapper import PyQuery
 
 
 def test_404_no_app():
