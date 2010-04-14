@@ -1,5 +1,6 @@
 import collections
 from datetime import date
+import itertools
 import json
 import time
 
@@ -219,7 +220,7 @@ class Addon(amo.models.ModelBase):
     def reviews_url(self):
         return reverse('reviews.list', args=(self.id,))
 
-    @property
+    @amo.cached_property(writable=True)
     def listed_authors(self):
         return UserProfile.objects.filter(addons=self,
                 addonuser__listed=True).order_by('addonuser__position')
@@ -253,11 +254,22 @@ class Addon(amo.models.ModelBase):
     def transformer(cls, addons):
         if not addons:
             return
+
+        addon_dict = dict((a.id, a) for a in addons)
         # TODO(jbalogh): It would be awesome to get the versions in one
         # (or a few) queries, but we'll accept the overhead here to roll up
         # some version queries.
         versions = filter(None, (a.current_version for a in addons))
         Version.transformer(versions)
+
+        # Attach listed authors.
+        q = (UserProfile.objects.no_cache()
+             .filter(addons__in=addons, addonuser__listed=True)
+             .extra(select={'addon_id': 'addons_users.addon_id'})
+             .order_by('addon_id', 'addonuser__position'))
+        for addon_id, users in itertools.groupby(q, key=lambda u: u.addon_id):
+            addon_dict[addon_id].listed_authors = list(users)
+
 
     @amo.cached_property
     def current_beta_version(self):
