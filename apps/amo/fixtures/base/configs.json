@@ -1,0 +1,9 @@
+[
+    {
+        "pk": "xenophobia",
+        "model": "zadmin.config",
+        "fields": {
+            "value": "{\"ja\": true}"
+        }
+    }
+]

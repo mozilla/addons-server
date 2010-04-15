@@ -4,24 +4,31 @@ Borrowed from: http://code.google.com/p/django-localeurl
 Note: didn't make sense to use localeurl since we need to capture app as well
 """
 import urllib
+from datetime import datetime, timedelta
 
 from django.contrib.sessions.middleware import SessionMiddleware
 from django.http import HttpResponsePermanentRedirect
 from django.utils.encoding import smart_str
+from django.utils import translation
 
 import tower
 
 import amo.models
 from . import urlresolvers
 from .helpers import urlparams
+from zadmin.models import Config
+
+NEXT_YEAR = datetime.strftime(datetime.utcnow() +
+        timedelta(seconds=365 * 24 * 60 * 60), "%a, %d-%b-%Y %H:%M:%S GMT")
 
 
 class LocaleAndAppURLMiddleware(object):
     """
-    1. search for locale first
-    2. see if there are acceptable apps
-    3. save those matched parameters in the request
-    4. strip them from the URL so we can do stuff
+    1. Search for locale first.
+    2. See if there are acceptable apps.
+    3. Save those matched parameters in the request.
+    4. Strip them from the URL so we can do stuff.
+    5. Process locale-only (xenophobia) since it's submitted with 'lang'.
     """
 
     def process_request(self, request):
@@ -35,9 +42,20 @@ class LocaleAndAppURLMiddleware(object):
             # from query params so we don't have an infinite loop.
             prefixer.locale = ''
             new_path = prefixer.fix(prefixer.shortened_path)
-            query = dict((smart_str(k), request.GET[k]) for k in request.GET)
-            query.pop('lang')
-            return HttpResponsePermanentRedirect(urlparams(new_path, **query))
+            query = dict((smart_str(k), v) for k, v in request.GET.items()
+                         if k not in ('lang', 'locale-only'))
+
+            response = HttpResponsePermanentRedirect(
+                    urlparams(new_path, **query))
+
+            xenophobia = 0
+
+            # User checked a box is the only reason this would happen.
+            if 'locale-only' in request.GET:
+                xenophobia = 1
+
+            response.set_cookie('locale-only', xenophobia, expires=NEXT_YEAR)
+            return response
 
         if full_path != request.path:
             query_string = request.META.get('QUERY_STRING', '')
@@ -58,6 +76,16 @@ class LocaleAndAppURLMiddleware(object):
         request.path_info = '/' + prefixer.shortened_path
         tower.activate(prefixer.locale)
         request.APP = amo.APPS.get(prefixer.app)
+
+        if 'locale-only' in request.COOKIES:
+            request.XENOPHOBIA = (request.COOKIES['locale-only'] == '1')
+        else:
+            try:
+                conf = Config.objects.get(pk='xenophobia')
+                request.XENOPHOBIA = conf.json.get(
+                        translation.get_language(), False)
+            except Config.DoesNotExist:
+                request.XENOPHOBIA = False
 
 
 class NoVarySessionMiddleware(SessionMiddleware):

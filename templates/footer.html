@@ -7,15 +7,25 @@
              {%- endtrans %}<span title="{{ settings.HOSTNAME }}">.</span>
           </p>
           <form class="languages go" method="get" action="">
-            <label for="language">{{ _('Other languages:') }}</label>
-            <select id="language" name="lang" dir="ltr">
-              {% for code, name in LANGUAGES|dictsort -%}
-                <option value="{{ code|lower }}" {{ code|lower|ifeq(LANG, "selected") }}>
-                  {{ name }}
-                </option>
-              {%- endfor %}
-            </select>
-            {# XXX TODO: xenophobia checkbox #}
+            <p>
+              <label for="language">{{ _('Other languages:') }}</label>
+              <select id="language" name="lang" dir="ltr">
+                {% for code, name in LANGUAGES|dictsort -%}
+                  <option value="{{ code|lower }}" {{ code|lower|ifeq(LANG, "selected") }}>
+                    {{ name }}
+                  </option>
+                {%- endfor %}
+              </select>
+            </p>
+            <p id="locale-only-wrapper">
+              <label for="locale-only">
+                <input id="locale-only" type="checkbox"
+                {% if request.XENOPHOBIA %}checked="checked"{% endif %}
+                name="locale-only">
+                {# L10n: {0} is the name of a language #}
+                {{ _('show only {0} add-ons')|f(LANGUAGES.get(LANG.lower())) }}
+              </label>
+            </p>
             <button type="submit">{{ _('Go') }}</button>
           </form>
           <ul>
