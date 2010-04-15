@@ -3,7 +3,13 @@
 cd $WORKSPACE
 VENV=$WORKSPACE/venv
 
-echo "Starting build..."
+echo "Starting build on executor $EXECUTOR_NUMBER..."
+
+if [ -z $1 ]; then
+    echo "Warning: You should provide a unique name for this job to prevent database collisions."
+    echo "Usage: ./build.sh <name>"
+    echo "Continuing, but don't say you weren't warned."
+fi
 
 # Make sure there's no old pyc files around.
 find . -name '*.pyc' | xargs rm
@@ -21,6 +27,7 @@ cat > settings_local.py <<SETTINGS
 from settings import *
 ROOT_URLCONF = 'workspace.urls'
 LOG_LEVEL = logging.ERROR
+DATABASES['default']['TEST_NAME'] = 'test_zamboni_$1'
 DATABASES['default']['TEST_CHARSET'] = 'utf8'
 DATABASES['default']['TEST_COLLATION'] = 'utf8_general_ci'
 SETTINGS
