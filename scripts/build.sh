@@ -27,6 +27,8 @@ cat > settings_local.py <<SETTINGS
 from settings import *
 ROOT_URLCONF = 'workspace.urls'
 LOG_LEVEL = logging.ERROR
+# Database name has to be set because of sphinx
+DATABASES['default']['NAME'] = 'zamboni_$1'
 DATABASES['default']['TEST_NAME'] = 'test_zamboni_$1'
 DATABASES['default']['TEST_CHARSET'] = 'utf8'
 DATABASES['default']['TEST_COLLATION'] = 'utf8_general_ci'
