@@ -18,21 +18,21 @@
         {{ install_button(addon) }}
         {{ addon|reviews_link }}
         {% if addon.status != amo.STATUS_LISTED %}
-          <span class="downloads">
+          <p class="downloads">
             {% with num=addon.weekly_downloads %}
               {# L10n: {0} is the number of downloads. #}
               {{ ngettext("<strong>{0}</strong> weekly download",
                           "<strong>{0}</strong> weekly downloads",
                           num)|f(num|numberfmt)|safe }}
             {% endwith %}
-          </span>
-          <span class="updated">
+          </p>
+          <p class="updated">
             {% if show_added_date %}
             {{ _('Added {0}')|f(addon.created|datetime) }}
             {% else %}
             {{ _('Updated {0}')|f(addon.last_updated|datetime) }}
             {% endif %}
-          </span>
+          </p>
         {% endif %}
       </div>
 
