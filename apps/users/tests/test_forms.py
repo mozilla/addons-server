@@ -1,4 +1,3 @@
-from django import test
 from django.contrib.auth.models import User
 from django.contrib.auth.tokens import default_token_generator
 from django.core import mail
@@ -6,9 +5,12 @@ from django.utils.http import int_to_base36
 
 from manage import settings
 from nose.tools import eq_
+import test_utils
+
+from amo.helpers import urlparams
 
 
-class UserFormBase(test.TestCase):
+class UserFormBase(test_utils.TestCase):
 
     fixtures = ['users/test_backends']
 
@@ -188,6 +190,12 @@ class TestUserLoginForm(UserFormBase):
         # Subtract 100 to give some breathing room
         age = settings.SESSION_COOKIE_AGE - 100
         assert self.client.session.get_expiry_age() > age
+
+    def test_redirect_after_login(self):
+        url = urlparams(self._get_login_url(), to="en-US/firefox/about")
+        r = self.client.post(url, {'username': 'jbalogh@mozilla.com',
+                                   'password': 'foo'}, follow=True)
+        self.assertRedirects(r, '/en-US/firefox/about')
 
     def test_unconfirmed_account(self):
         url = self._get_login_url()

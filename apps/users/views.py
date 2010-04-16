@@ -163,9 +163,31 @@ def emailchange(request, user_id, token, hash):
     return http.HttpResponseRedirect(reverse('users.edit'))
 
 
+def _clean_next_url(request):
+    gets = request.GET.copy()
+    url = gets['to']
+
+    if '://' in url or '\r' in url or '\n' in url:
+        url = None
+
+    # TODO(davedash): This is a remora-ism, let's remove this after remora and
+    # since all zamboni 'to' parameters will begin with '/'.
+    if url and not url.startswith('/'):
+        url = '/' + url
+
+    gets['to'] = url
+    request.GET = gets
+    return request
+
+
 def login(request):
     logout(request)
+
+    if 'to' in request.GET:
+        request = _clean_next_url(request)
+
     r = auth.views.login(request, template_name='users/login.html',
+                         redirect_field_name='to',
                          authentication_form=forms.AuthenticationForm)
 
     if isinstance(r, http.HttpResponseRedirect):
