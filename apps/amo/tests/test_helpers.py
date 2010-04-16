@@ -154,7 +154,7 @@ def test_wround():
 def test_isotime():
     time = datetime(2009, 12, 25, 10, 11, 12)
     s = render('{{ d|isotime }}', {'d': time})
-    eq_(s, '2009-12-25 18:11:12+0000')
+    eq_(s, '2009-12-25T18:11:12Z')
     s = render('{{ d|isotime }}', {'d': None})
     eq_(s, '')
 

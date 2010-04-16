@@ -203,10 +203,10 @@ class APITest(TestCase):
                 "<total_downloads>867952</total_downloads>",
                 "<weekly_downloads>23646</weekly_downloads>",
                 "<daily_users>44693</daily_users>",
-                '<created epoch="1174134235">2007-03-17 12:23:55+0000'
+                '<created epoch="1174134235">2007-03-17T12:23:55Z'
                     '</created>',
                 '<last_updated epoch="1237836004">'
-                    "2009-03-23 19:20:04+0000</last_updated>",
+                    "2009-03-23T19:20:04Z</last_updated>",
                 '<author id="2519"',
                 "%s/en-US/firefox/user/2519/?src=api</link>"
                     % settings.SITE_URL,
