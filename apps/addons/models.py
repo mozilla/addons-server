@@ -56,15 +56,17 @@ class AddonManager(amo.models.ManagerBase):
     def listed(self, app, *status):
         """
         Listed add-ons have a version with a file matching ``status`` and are
-        not inactive.  TODO: handle personas and listed add-ons.
+        not inactive.  Personas and self-hosted add-ons will be returned too.
         """
         if len(status) == 0:
             status = [amo.STATUS_PUBLIC]
 
+        has_version = Q(versions__apps__application=app.id,
+                        versions__files__status__in=status)
+        is_weird = Q(type=amo.ADDON_PERSONA) | Q(status=amo.STATUS_LISTED)
         # XXX: handle personas (no versions) and listed (no files)
-        return self.filter(inactive=False, status__in=status,
-                           versions__apps__application=app.id,
-                           versions__files__status__in=status).distinct()
+        return self.filter(has_version | is_weird,
+                           inactive=False, status__in=status).distinct()
 
 
 class Addon(amo.models.ModelBase):
