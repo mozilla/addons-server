@@ -43,17 +43,16 @@
 
   <div class="aux">
     <p class="button-wrapper">
-      <a class="button significant"
+      <a class="button contribute prominent"
         {# The id triggers a dropdown, so don't expose it if there isn't a
            suggested amount (i.e., only one choice). #}
         {% if has_suggested %}id="contribute-button"{% endif %}
         href="/addons/contribute/{{ addon.id }}?source={{ src }}">{# TODO reverse URL #}
-        <img src="{{ MEDIA_URL }}img/amo2009/icons/buttons/heart-blue-16x16.gif"/>{{
-          _('Contribute') }}</a>
+        <b></b>{{ _('Contribute') }}
       </a>
 
       {% if show_install %}
-        {# TODO install button #}
+        {{ install_button(addon) }}
       {% endif %}
       </p>{# /button-wrapper #}
 
