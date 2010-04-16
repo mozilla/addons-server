@@ -275,9 +275,9 @@ class FrontendSearchTest(SphinxTestCase):
         resp = self.get_response()
         doc = pq(resp.content)
         num_actual_results = len(Addon.objects.filter(
-            versions__applicationsversions__application=amo.FIREFOX.id,
+            versions__apps__application=amo.FIREFOX.id,
             versions__files__gt=0, versions__files__platform=1))
-        # Verify that we have at least 10 results listed.
+        # Verify that we have the expected number of results.
         eq_(doc('.item').length, num_actual_results)
 
         # We should count the number of expected results and match.
@@ -400,6 +400,7 @@ class TestSearchForm(test_utils.TestCase):
             expected[app].append(('Any', 'any'))
         # So you added a new appversion and this broke?  Sorry about that.
         eq_(actual, expected)
+
 
 def test_showing_helper():
     tpl = "{{ showing(query, tag, pager) }}"

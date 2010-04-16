@@ -6,7 +6,7 @@
   <version>{{ addon.current_version.version }}</version>
   <status id="{{ addon.status }}">{{ amo.STATUS_CHOICES[addon.status] }}</status>
   <authors>
-    {% for author in addon.authors.filter(addonuser__listed=True) -%}
+    {% for author in addon.listed_authors -%}
     {%- if api_version >= 1.5 -%}
     <author id="{{ author.id }}">
       <name>{{ author.display_name }}</name>
@@ -22,7 +22,7 @@
   <icon>{{ addon.icon_url }}</icon>
   <compatible_applications>
     {%- if addon.current_version -%}
-    {%- for app in addon.current_version.applicationsversions_set.all() -%}
+    {%- for app in addon.current_version.compatible_apps.values() %}
     {%- if amo.APP_IDS.get(app.application_id) -%}
     <application>
       <name>{{ amo.APP_IDS[app.application_id].pretty }}</name>

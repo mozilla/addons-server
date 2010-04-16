@@ -63,7 +63,7 @@ class AddonManager(amo.models.ManagerBase):
 
         # XXX: handle personas (no versions) and listed (no files)
         return self.filter(inactive=False, status__in=status,
-                           versions__applicationsversions__application=app.id,
+                           versions__apps__application=app.id,
                            versions__files__status__in=status).distinct()
 
     def compatible_with_app(self, app, version=None):
@@ -74,18 +74,15 @@ class AddonManager(amo.models.ManagerBase):
         E.g. amo.FIREFOX and '3.5'
         """
         qs = self.filter(
-                versions__applicationsversions__min__application=app.id)
+                versions__apps__min__application=app.id)
 
         if version is not None:
-
             version_int = search_utils.convert_version(version)
             qs = qs.filter(
-                versions__applicationsversions__min__version_int__lte=
-                version_int,
-                versions__applicationsversions__max__version_int__gte=
-                version_int).distinct()
+                versions__apps__min__version_int__lte=version_int,
+                versions__apps__max__version_int__gte=version_int)
 
-        return qs.distinct()
+        return qs
 
     def compatible_with_platform(self, platform):
         """
@@ -99,12 +96,10 @@ class AddonManager(amo.models.ManagerBase):
             platform = amo.PLATFORM_DICT.get(platform, amo.PLATFORM_ALL)
 
         if platform != amo.PLATFORM_ALL:
-            return (self.filter(
-                    Q(versions__files__platform=platform.id) |
-                    Q(versions__files__platform=amo.PLATFORM_ALL.id))
-                    .distinct())
-
-        return self.distinct()
+            platforms = [platform.id, amo.PLATFORM_ALL.id]
+            return self.filter(versions__files__platform__in=platforms)
+        else:
+            return self.all()
 
 
 class Addon(amo.models.ModelBase):
@@ -269,7 +264,6 @@ class Addon(amo.models.ModelBase):
              .order_by('addon_id', 'addonuser__position'))
         for addon_id, users in itertools.groupby(q, key=lambda u: u.addon_id):
             addon_dict[addon_id].listed_authors = list(users)
-
 
     @amo.cached_property
     def current_beta_version(self):

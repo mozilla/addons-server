@@ -321,8 +321,8 @@ class ListTest(TestCase):
         E.g.
         /list/new/all/1/mac/4.0 gives us nothing
         """
-        request = make_call('list/new/all/1/all/4.0')
-        self.assertNotContains(request, "<addon id")
+        response = make_call('list/new/1/1/all/4.0')
+        self.assertNotContains(response, "<addon id")
 
     def test_backfill(self):
         """
