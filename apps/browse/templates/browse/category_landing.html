@@ -29,7 +29,7 @@
           {% for addon in addons %}
           <li class="addon item">
             <h4>
-              <a href="{{ addon.get_url_path() }}">{{ addon.name }}</a>
+              <a href="{{ addon.get_url_path() }}">{{ addon.name.localized_string|truncate(35) }}</a>
               <span>
                 {% trans users=users_list(addon.authors.all()) %}
                   by {{ users }}
@@ -74,7 +74,7 @@
       <li>
         <a href="{{ addon.get_url_path() }}">
           <img class="icon" width="32" height="32" src="{{ addon.icon_url }}">
-          <span class="name">{{ addon.name }}</span>
+          <span class="name">{{ addon.name.localized_string|truncate(35) }}</span>
           {{ meta(key, addon) }}
         </a>
       </li>
