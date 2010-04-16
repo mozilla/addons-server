@@ -1,6 +1,7 @@
 # -*- coding: utf8 -*-
 import math
 
+from django.core.cache import cache
 from django.conf import settings
 from django.test.client import Client
 
@@ -291,9 +292,11 @@ class ListTest(TestCase):
         all_identical = True
 
         for i in range(99):
+            cache.clear()
             current_request = make_call('list/recommended')
             if current_request.content != request.content:
                 all_identical = False
+                break
 
         assert not all_identical, (
                 "All 100 requests returned the exact same response.")

@@ -10,9 +10,9 @@ import urllib
 from django.http import HttpResponse, HttpResponsePermanentRedirect
 from django.template.context import get_standard_processors
 from django.utils import translation
-from tower import ugettext as _, ugettext_lazy
 
 import jingo
+from tower import ugettext as _, ugettext_lazy
 
 import amo
 from amo.urlresolvers import get_url_prefix
