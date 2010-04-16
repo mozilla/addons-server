@@ -169,6 +169,14 @@ def _page_name(app=None):
 
 @register.function
 @jinja2.contextfunction
+def login_link(context):
+    next = context['request'].path
+    l = urlparams(urlresolvers.reverse('users.login'), to=next)
+    return l
+
+
+@register.function
+@jinja2.contextfunction
 def page_title(context, title):
     app = context['request'].APP
     return u'%s :: %s' % (title, _page_name(app))
@@ -199,6 +207,7 @@ def breadcrumbs(context, items=list(), add_default=True):
     return jinja2.Markup(t)
 
 
+# TODO(davedash): Deprecate this in favor of |round|int
 @register.filter
 def wround(value, precision=0, method='common'):
     """Round the number to a given precision. The first
@@ -218,7 +227,7 @@ def wround(value, precision=0, method='common'):
         {{ 42.55|round(1, 'floor') }}
             -> 42.5
     """
-    if not method in ('common', 'ceil', 'floor'):
+    if not method in ('common', 'ceil', 'floor'):  # pragma: no cover
         raise FilterArgumentError('method must be common, ceil or floor')
     if precision < 0:
         raise FilterArgumentError('precision must be a postive integer '

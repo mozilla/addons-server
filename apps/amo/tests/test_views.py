@@ -1,3 +1,5 @@
+import urllib
+
 from django.core.urlresolvers import reverse
 from django import test
 
@@ -92,3 +94,10 @@ class TestStuff(test_utils.TestCase):
         eq_((None, 0), cookie_box(False))
         eq_(('checked', 1), cookie_box(True, 'ja'))
         eq_((None, 0), cookie_box(False, 'ja'))
+
+    def test_login_link(self):
+        r = self.client.get(reverse('home'), follow=True)
+        doc = PyQuery(r.content)
+        next = urllib.urlencode({'to': '/en-US/firefox/'})
+        eq_('/en-US/firefox/users/login?%s' % next,
+            doc('#aux-nav p a')[1].attrib['href'])

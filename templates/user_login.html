@@ -33,7 +33,7 @@
   </span>
   {% else %}
   {# TODO(jbalogh): reverse #}
-  {% trans reg="/users/register", login="/users/login" %}
+  {% trans reg="/users/register", login=login_link() %}
     <a href="{{ reg }}">Register</a> or <a href="{{ login }}">Log in</a>
   {% endtrans %}
   {% endif %}

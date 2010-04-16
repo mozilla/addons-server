@@ -197,6 +197,15 @@ class TestUserLoginForm(UserFormBase):
                                    'password': 'foo'}, follow=True)
         self.assertRedirects(r, '/en-US/firefox/about')
 
+    def test_redirect_after_login_evil(self):
+        "http://foo.com is a bad value for redirection."
+        url = urlparams(self._get_login_url(), to="http://foo.com")
+        r = self.client.post(url, {'username': 'jbalogh@mozilla.com',
+                                   'password': 'foo'}, follow=True)
+        self.assertRedirects(r, '/en-US/firefox/')
+
+
+
     def test_unconfirmed_account(self):
         url = self._get_login_url()
         self.user_profile.confirmationcode = 'blah'
