@@ -66,41 +66,6 @@ class AddonManager(amo.models.ManagerBase):
                            versions__apps__application=app.id,
                            versions__files__status__in=status).distinct()
 
-    def compatible_with_app(self, app, version=None):
-        """
-        Returns addons compatible with specific applcications and optionally
-        specific versions of said application.
-
-        E.g. amo.FIREFOX and '3.5'
-        """
-        qs = self.filter(
-                versions__apps__min__application=app.id)
-
-        if version is not None:
-            version_int = search_utils.convert_version(version)
-            qs = qs.filter(
-                versions__apps__min__version_int__lte=version_int,
-                versions__apps__max__version_int__gte=version_int)
-
-        return qs
-
-    def compatible_with_platform(self, platform):
-        """
-        `platform` can be either a class amo.PLATFORM_* or an id
-        """
-
-        if isinstance(platform, int):
-            platform = amo.PLATFORMS.get(id, amo.PLATFORM_ALL)
-
-        if platform not in amo.PLATFORMS:
-            platform = amo.PLATFORM_DICT.get(platform, amo.PLATFORM_ALL)
-
-        if platform != amo.PLATFORM_ALL:
-            platforms = [platform.id, amo.PLATFORM_ALL.id]
-            return self.filter(versions__files__platform__in=platforms)
-        else:
-            return self.all()
-
 
 class Addon(amo.models.ModelBase):
     STATUS_CHOICES = amo.STATUS_CHOICES.items()

@@ -15,23 +15,6 @@ from users.models import UserProfile
 class TestAddonManager(test_utils.TestCase):
     fixtures = ['addons/test_manager']
 
-    def test_compatible_with_app(self):
-        eq_(len(Addon.objects.compatible_with_app(amo.FIREFOX, '4.0')), 0)
-
-    def test_compatible_with_platform(self):
-        mac_friendly = Addon.objects.compatible_with_platform('macosx')
-        for addon in mac_friendly:
-            platform_ids = [file.platform_id for file in
-                    addon.current_version.all_files]
-            assert (amo.PLATFORM_MAC.id in platform_ids or
-                    amo.PLATFORM_ALL.id in platform_ids)
-
-    def test_compatible_with_platform_fake(self):
-        "Given a fake platform, we should still get results."
-
-        fake_platform = Addon.objects.compatible_with_platform('fake')
-        assert len(fake_platform)
-
     def test_featured(self):
         featured = Addon.objects.featured(amo.FIREFOX)[0]
         eq_(featured.id, 1)
