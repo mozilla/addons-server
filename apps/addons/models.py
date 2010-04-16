@@ -434,7 +434,8 @@ class Persona(caching.CachingMixin, models.Model):
             'name': unicode(addon.name),
             'accentcolor': hexcolor(self.accentcolor),
             'textcolor': hexcolor(self.textcolor),
-            'category': unicode(addon.categories.all()[0].name),
+            'category': (unicode(addon.categories.all()[0].name) if
+                         addon.categories.all() else ''),
             'author': (addon.listed_authors[0].display_name if
                        addon.listed_authors else self.author),
             'description': unicode(addon.description),

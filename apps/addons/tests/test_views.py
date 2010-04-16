@@ -50,7 +50,7 @@ class TestHomepage(test_utils.TestCase):
 
 
 class TestDetailPage(test_utils.TestCase):
-    fixtures = ['base/addons', 'addons/listed']
+    fixtures = ['base/addons', 'addons/listed', 'addons/persona']
 
     def tearDown(self):
         """Return URL prefixer to default."""
@@ -59,10 +59,17 @@ class TestDetailPage(test_utils.TestCase):
 
     def test_anonymous_user(self):
         """Does the page work for an anonymous user?"""
+        # extensions
         response = self.client.get(reverse('addons.detail', args=[3615]),
                                    follow=True)
         eq_(response.status_code, 200)
         eq_(response.context['addon'].id, 3615)
+
+        # personas
+        response = self.client.get(reverse('addons.detail', args=[15663]),
+                                   follow=True)
+        eq_(response.status_code, 200)
+        eq_(response.context['addon'].id, 15663)
 
     def test_inactive_addon(self):
         """Do not display disabled add-ons."""

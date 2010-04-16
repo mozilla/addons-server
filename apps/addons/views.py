@@ -34,10 +34,12 @@ def addon_detail(request, addon_id):
     """Add-ons details page dispatcher."""
     addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
     # addon needs to have a version and be valid for this app.
-    if addon.current_version and addon.type_id in request.APP.types:
+    if addon.type_id in request.APP.types:
         if addon.type_id == amo.ADDON_PERSONA:
             return persona_detail(request, addon)
         else:
+            if not addon.current_version:
+                raise http.Http404
             return extension_detail(request, addon)
     else:
         raise http.Http404
