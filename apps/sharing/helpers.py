@@ -14,7 +14,7 @@ def addon_sharing(context, addon):
         service_opts = {}
         if service == EMAIL and not context['request'].user.is_authenticated():
             service_opts['url'] = '/users/login' # TODO reverse URL
-            service_opts['target'] = ''
+            service_opts['target'] = '_self'
         else:
             service_opts['url'] = '/addon/share/{id}?service={name}'.format(
                 id=addon.id, name=service.shortname)

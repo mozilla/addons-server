@@ -45,6 +45,8 @@ class SharingHelpersTestCase(test.TestCase):
         for i in range(len(sharing.SERVICES_LIST)):
             self.assertEquals(doc('li').eq(i).attr('class'),
                               sharing.SERVICES_LIST[i].shortname)
+            assert doc('li a').eq(i).attr('target') in ('_blank', '_self'), (
+                'Sharing link target must either be blank or self.')
 
 
 class SharingModelsTestCase(test.TestCase):
