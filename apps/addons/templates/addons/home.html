@@ -47,7 +47,7 @@
 {% endif %}
 
 <div class="primary" id="homepage">
-  <div class="featured listing">
+  <div class="featured listing compact">
     <div class="featured-inner">
       <div class="listing-header">
         <ul>
@@ -62,7 +62,7 @@
       <div class="addon-listing addon-listing-{{ filter.field }}">
         {% for key, addons in addon_sets.items() %}
           <div id="list-{{ key }}">
-            {{ addon_listing_items(addons, show_added_date=(key=='new')) }}
+            {{ addon_listing_items_compact(addons, show_added_date=(key=='new')) }}
             <div class="listing-footer">
               {# TODO(jbalogh): browse and rss page urls #}
               <a class="subscribe" href="#">
