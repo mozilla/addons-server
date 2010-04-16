@@ -123,14 +123,14 @@ def tags_box(context, addon, dev_tags, user_tags):
     return c
 
 
-@register.inclusion_tag('addons/listing_items.html')
+@register.inclusion_tag('addons/listing/items.html')
 @jinja2.contextfunction
 def addon_listing_items(context, addons, show_added_date=False):
     """`show_added_date` will show the added versus the updated date."""
     return new_context(**locals())
 
 
-@register.inclusion_tag('addons/listing_items_compact.html')
+@register.inclusion_tag('addons/listing/items_compact.html')
 @jinja2.contextfunction
 def addon_listing_items_compact(context, addons, show_added_date=False):
     """`show_added_date` will show the added versus the updated date."""

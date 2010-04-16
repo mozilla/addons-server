@@ -1,0 +1,18 @@
+{% from "addons/listing/macros.html" import heading, item_info %}
+{% cache addons %}
+{% for addon in addons %}
+  {% cache addon %}
+    <div class="item">
+      {{ heading(addon) }}
+      <div class="item-info">
+        {{ install_button(addon) }}
+        {{ item_info(addon, amo) }}
+      </div>
+      <blockquote>
+        <div>{{ addon.description|truncate(250)|nl2br }}</div>
+        {{ support_addon(addon) }}
+      </blockquote>
+    </div>
+  {% endcache %}
+{% endfor %}
+{% endcache %}
