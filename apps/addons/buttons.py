@@ -117,7 +117,9 @@ class InstallButton(object):
 
     def links(self):
         rv = []
-        for file in self.version.all_files:
+        files = [f for f in self.version.all_files
+                 if f.status in amo.VALID_STATUSES]
+        for file in files:
             text, url, os = self.file_details(file)
             rv.append(Link(text, self.fix_link(url), os, file))
         return rv

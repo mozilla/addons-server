@@ -58,6 +58,7 @@ class ButtonTest(object):
         file.latest_xpi_url.return_value = 'xpi.latest'
         file.get_url_path.return_value = 'xpi.url'
         file.eula_url.return_value = 'eula.url'
+        file.status = amo.STATUS_PUBLIC
         return file
 
 
@@ -293,6 +294,16 @@ class TestButton(ButtonTest):
 
         eq_(len(links), len(self.platforms))
         eq_([x.os for x in links], list(self.platforms))
+
+    def test_link_with_invalid_file(self):
+        self.version.all_files = self.platform_files
+        self.version.all_files[0].status = amo.STATUS_DISABLED
+        links = self.get_button().links()
+
+        expected_platforms = self.platforms[1:]
+        eq_(len(links), len(expected_platforms))
+        eq_([x.os for x in links], list(expected_platforms))
+
 
 
 class TestButtonHtml(ButtonTest):
