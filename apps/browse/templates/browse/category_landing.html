@@ -16,7 +16,7 @@
   <h2>{{ category.name }}</h2>
 </header>
 
-{% set addons = addon_sets['featured'][:3] %}
+{% set addons = addon_sets['featured'] %}
 {% if addons %}
   <div id="featured-addons" class="featured">
     <div class="featured-inner">
@@ -26,10 +26,13 @@
       </h3>
       <ul>
         {% cache addons %}
-          {% for addon in addons %}
+        {# The featured add-ons for a category should be small, so we get them all
+           with the if.  Shuffling here to take advantage of the cached fragment. #}
+          {% for addon in addons|list|shuffle[:3] %}
           <li class="addon item">
             <h4>
-              <a href="{{ addon.get_url_path() }}">{{ addon.name.localized_string|truncate(35) }}</a>
+              <a href="{{ addon.get_url_path() }}">
+                {{ addon.name.localized_string|truncate(35) }}</a>
               <span>
                 {% trans users=users_list(addon.authors.all()) %}
                   by {{ users }}
