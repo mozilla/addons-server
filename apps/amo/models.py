@@ -1,10 +1,22 @@
 from django.db import models
 
-from queryset_transform import TransformQuerySet
+import queryset_transform
 
 import caching.base
 from translations.fields import TranslatedFieldMixin
 from translations import transformer
+
+
+class TransformQuerySet(queryset_transform.TransformQuerySet):
+
+    def pop_transforms(self):
+        qs = self._clone()
+        transforms = qs._transform_fns
+        qs._transform_fns = []
+        return transforms, qs
+
+    def no_transforms(self):
+        return self.pop_transforms()[1]
 
 
 # Make TransformQuerySet one of CachingQuerySet's parents so that we can do

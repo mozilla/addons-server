@@ -25,7 +25,7 @@ def _change_last_updated(next):
 
     log.debug('Updating %s add-ons' % len(changes))
     # Update + invalidate.
-    for addon in Addon.objects.filter(id__in=changes):
+    for addon in Addon.objects.filter(id__in=changes).no_transforms():
         addon.last_updated = changes[addon.id]
         addon.save()
 
