@@ -1,23 +1,25 @@
 """
 API views
 """
+from datetime import date, timedelta
+import itertools
 import json
 import random
-import datetime
 import urllib
 
 from django.http import HttpResponse, HttpResponsePermanentRedirect
 from django.template.context import get_standard_processors
 from django.utils import translation
-from tower import ugettext as _, ugettext_lazy
 
 import jingo
+from tower import ugettext as _, ugettext_lazy
 
 import amo
 from amo.urlresolvers import get_url_prefix
 import api
 from addons.models import Addon
 from search.client import Client as SearchClient, SearchError
+from search import utils as search_utils
 
 ERROR = 'error'
 OUT_OF_DATE = ugettext_lazy(
@@ -27,6 +29,19 @@ OUT_OF_DATE = ugettext_lazy(
 xml_env = jingo.env.overlay()
 old_finalize = xml_env.finalize
 xml_env.finalize = lambda x: amo.helpers.strip_controls(old_finalize(x))
+
+
+# Hard limit of 30.  The buffer is to try for locale-specific add-ons.
+MAX_LIMIT, BUFFER = 30, 10
+
+# "New" is arbitrarily defined as 10 days old.
+NEW_DAYS = 10
+
+
+def partition(seq, key):
+    """Group a sequence based into buckets by key(x)."""
+    groups = itertools.groupby(sorted(seq, key=key), key=key)
+    return ((k, list(v)) for k, v in groups)
 
 
 def render_xml(request, template, context={}, **kwargs):
@@ -122,6 +137,7 @@ class SearchView(APIView):
         This queries sphinx with `query` and serves the results in xml.
         """
         sc = SearchClient()
+        limit = min(MAX_LIMIT, int(limit))
 
         opts = {'app': self.request.APP.id}
 
@@ -155,7 +171,7 @@ class SearchView(APIView):
                 # This fails if the string is already UTF-8.
                 pass
         try:
-            results = sc.query(query, limit=int(limit), **opts)
+            results = sc.query(query, limit=limit, **opts)
         except SearchError:
             return self.render_msg('Could not connect to Sphinx search.',
                                    ERROR, status=503, mimetype=self.mimetype)
@@ -168,7 +184,7 @@ class SearchView(APIView):
 class ListView(APIView):
 
     def process_request(self, list_type='recommended', addon_type='ALL',
-                        limit=3, platform='ALL', version=None):
+                        limit=10, platform='ALL', version=None):
         """
         This generates a list of addons that can be served to the
         AddonManager.
@@ -176,46 +192,59 @@ class ListView(APIView):
         We generate the lists by making empty queries to Sphinx, but with
         using parameters to influence the order.
         """
+        limit = min(MAX_LIMIT, int(limit))
+        APP, platform = self.request.APP, platform.lower()
+        qs = Addon.objects.listed(APP)
+
         if list_type == 'newest':
-            # "New" is arbitrarily defined as 10 days old.
-            qs = Addon.objects.filter(
-                    created__gte=(datetime.date.today() -
-                        datetime.timedelta(days=10)))
+            new = date.today() - timedelta(days=NEW_DAYS)
+            addons = (qs.filter(created__gte=new)
+                      .order_by('-created'))[:limit + BUFFER]
         else:
-            qs = Addon.objects.featured(self.request.APP)
+            addons = Addon.objects.featured(APP).distinct() & qs
 
         if addon_type.upper() != 'ALL':
             try:
                 addon_type = int(addon_type)
                 if addon_type:
-                    qs = qs.filter(type=addon_type)
-
+                    addons = [a for a in addons if a.type_id == addon_type]
             except ValueError:
                 # `addon_type` is ALL or a type id.  Otherwise we ignore it.
                 pass
 
-        if platform.lower() != 'all':
-            qs = (qs.distinct() &
-                  Addon.objects.compatible_with_platform(platform))
+        # Take out personas since they don't have versions.
+        groups = dict(partition(addons,
+                                lambda x: x.type_id == amo.ADDON_PERSONA))
+        personas, addons = groups.get(True, []), groups.get(False, [])
+
+        if platform != 'all' and platform in amo.PLATFORM_DICT:
+            pid = amo.PLATFORM_DICT[platform]
+            f = lambda ps: pid in ps or amo.PLATFORM_ALL in ps
+            addons = [a for a in addons
+                      if f(a.current_version.supported_platforms)]
 
         if version is not None:
-            qs = qs.distinct() & Addon.objects.compatible_with_app(
-                    self.request.APP, version)
+            v = search_utils.convert_version(version)
+            f = lambda app: app.min.version_int < v < app.max.version_int
+            addons = [a for a in addons if f(a.compatible_apps[APP])]
 
-        locale_filter = Addon.objects.filter(
-                description__locale=translation.get_language())
-        addons = list(locale_filter.distinct() & qs.distinct())
-        random.shuffle(addons)
+        # Put personas back in.
+        addons.extend(personas)
 
-        if len(addons) < limit:
-            # We need to backfill.  So do the previous query without
-            # a language requirement, and exclude the addon ids we've found
-            moar_addons = list(qs.exclude(id__in=[a.id for a in addons]))
-            random.shuffle(moar_addons)
-            addons.extend(moar_addons)
+        # We prefer add-ons that support the current locale.
+        lang = translation.get_language()
+        groups = dict(partition(addons,
+                                lambda x: x.description.locale == lang))
+        good, others = groups.get(True, []), groups.get(False, [])
+
+        random.shuffle(good)
+        random.shuffle(others)
+
+        if len(good) < limit:
+            good.extend(others[:limit - len(good)])
 
         if self.format == 'xml':
-            return self.render('api/list.xml', {'addons': addons[:int(limit)]})
+            return self.render('api/list.xml', {'addons': good})
 
 
 # pylint: disable-msg=W0613

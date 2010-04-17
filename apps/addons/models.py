@@ -56,55 +56,17 @@ class AddonManager(amo.models.ManagerBase):
     def listed(self, app, *status):
         """
         Listed add-ons have a version with a file matching ``status`` and are
-        not inactive.  TODO: handle personas and listed add-ons.
+        not inactive.  Personas and self-hosted add-ons will be returned too.
         """
         if len(status) == 0:
             status = [amo.STATUS_PUBLIC]
 
+        has_version = Q(versions__apps__application=app.id,
+                        versions__files__status__in=status)
+        is_weird = Q(type=amo.ADDON_PERSONA) | Q(status=amo.STATUS_LISTED)
         # XXX: handle personas (no versions) and listed (no files)
-        return self.filter(inactive=False, status__in=status,
-                           versions__applicationsversions__application=app.id,
-                           versions__files__status__in=status).distinct()
-
-    def compatible_with_app(self, app, version=None):
-        """
-        Returns addons compatible with specific applcications and optionally
-        specific versions of said application.
-
-        E.g. amo.FIREFOX and '3.5'
-        """
-        qs = self.filter(
-                versions__applicationsversions__min__application=app.id)
-
-        if version is not None:
-
-            version_int = search_utils.convert_version(version)
-            qs = qs.filter(
-                versions__applicationsversions__min__version_int__lte=
-                version_int,
-                versions__applicationsversions__max__version_int__gte=
-                version_int).distinct()
-
-        return qs.distinct()
-
-    def compatible_with_platform(self, platform):
-        """
-        `platform` can be either a class amo.PLATFORM_* or an id
-        """
-
-        if isinstance(platform, int):
-            platform = amo.PLATFORMS.get(id, amo.PLATFORM_ALL)
-
-        if platform not in amo.PLATFORMS:
-            platform = amo.PLATFORM_DICT.get(platform, amo.PLATFORM_ALL)
-
-        if platform != amo.PLATFORM_ALL:
-            return (self.filter(
-                    Q(versions__files__platform=platform.id) |
-                    Q(versions__files__platform=amo.PLATFORM_ALL.id))
-                    .distinct())
-
-        return self.distinct()
+        return self.filter(has_version | is_weird,
+                           inactive=False, status__in=status).distinct()
 
 
 class Addon(amo.models.ModelBase):
@@ -269,7 +231,6 @@ class Addon(amo.models.ModelBase):
              .order_by('addon_id', 'addonuser__position'))
         for addon_id, users in itertools.groupby(q, key=lambda u: u.addon_id):
             addon_dict[addon_id].listed_authors = list(users)
-
 
     @amo.cached_property
     def current_beta_version(self):

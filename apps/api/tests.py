@@ -1,6 +1,7 @@
 # -*- coding: utf8 -*-
 import math
 
+from django.core.cache import cache
 from django.conf import settings
 from django.test.client import Client
 
@@ -291,9 +292,11 @@ class ListTest(TestCase):
         all_identical = True
 
         for i in range(99):
+            cache.clear()
             current_request = make_call('list/recommended')
             if current_request.content != request.content:
                 all_identical = False
+                break
 
         assert not all_identical, (
                 "All 100 requests returned the exact same response.")
@@ -321,8 +324,8 @@ class ListTest(TestCase):
         E.g.
         /list/new/all/1/mac/4.0 gives us nothing
         """
-        request = make_call('list/new/all/1/all/4.0')
-        self.assertNotContains(request, "<addon id")
+        response = make_call('list/new/1/1/all/4.0')
+        self.assertNotContains(response, "<addon id")
 
     def test_backfill(self):
         """

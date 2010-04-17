@@ -1,12 +1,19 @@
+from django.conf import settings
 from django.conf.urls.defaults import patterns, url, include
+from django.views.decorators.cache import cache_page
 
 from . import views
 
 
-# Wrap class views in a lambda call so we get an instance of the class for view
-# so we can be thread-safe.  Yes, this lambda function returns a lambda
-# function.
-class_view = lambda x: lambda *args, **kwargs: x()(*args, **kwargs)
+API_CACHE_TIMEOUT = getattr(settings, 'API_CACHE_TIMEOUT', 500)
+
+
+# Wrap class views in a lambda call so we get an fresh instance of the class
+# for thread-safety.
+def cached_class_view(cls):
+    inner = lambda *args, **kw: cls()(*args, **kw)
+    return cache_page(API_CACHE_TIMEOUT)(inner)
+
 
 # Regular expressions that we use in our urls.
 type_regexp = '/(?P<addon_type>[^/]*)'
@@ -27,7 +34,7 @@ def build_urls(base, appendages):
     """
     urls = [base]
     for i in range(len(appendages)):
-        urls.append(base+''.join(appendages[:i+1]))
+        urls.append(base + ''.join(appendages[:i + 1]))
 
     return urls
 
@@ -44,16 +51,18 @@ list_regexps = build_urls(base_list_regexp, appendages)
 api_patterns = patterns('',
     # Addon_details
     url('addon/(?P<addon_id>\d+)$',
-        class_view(views.AddonDetailView),
+        cached_class_view(views.AddonDetailView),
         name='api.addon_detail'),)
 
 for regexp in search_regexps:
     api_patterns += patterns('',
-        url(regexp + '/?$', class_view(views.SearchView), name='api.search'))
+        url(regexp + '/?$', cached_class_view(views.SearchView),
+            name='api.search'))
 
 for regexp in list_regexps:
     api_patterns += patterns('',
-            url(regexp + '/?$', class_view(views.ListView), name='api.list'))
+            url(regexp + '/?$', cached_class_view(views.ListView),
+                name='api.list'))
 
 urlpatterns = patterns('',
     # Redirect api requests without versions

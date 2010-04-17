@@ -35,7 +35,7 @@ class Version(amo.models.ModelBase):
     @amo.cached_property(writable=True)
     def compatible_apps(self):
         """Get a mapping of {APP: ApplicationVersion}."""
-        avs = self.applicationsversions_set.select_related(depth=1)
+        avs = self.apps.select_related(depth=1)
         return self._compat_map(avs)
 
     @amo.cached_property(writable=True)
@@ -171,7 +171,7 @@ class VersionSummary(amo.models.ModelBase):
 class ApplicationsVersions(caching.base.CachingMixin, models.Model):
 
     application = models.ForeignKey(Application)
-    version = models.ForeignKey(Version)
+    version = models.ForeignKey(Version, related_name='apps')
     min = models.ForeignKey(AppVersion, db_column='min',
         related_name='min_set')
     max = models.ForeignKey(AppVersion, db_column='max',
