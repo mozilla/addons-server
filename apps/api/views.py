@@ -226,7 +226,8 @@ class ListView(APIView):
         if version is not None:
             v = search_utils.convert_version(version)
             f = lambda app: app.min.version_int < v < app.max.version_int
-            addons = [a for a in addons if f(a.compatible_apps[APP])]
+            addons = [a for a in addons
+                      if APP in a.compatible_apps and f(a.compatible_apps[APP])]
 
         # Put personas back in.
         addons.extend(personas)

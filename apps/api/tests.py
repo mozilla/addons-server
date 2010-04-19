@@ -350,6 +350,18 @@ class ListTest(TestCase):
         self.assertContains(request, "<addons>")
 
 
+class SeamonkeyFeaturedTest(TestCase):
+    fixtures = ['base/seamonkey']
+
+    def test_seamonkey_wankery(self):
+        """
+        An add-on used to support seamonkey, but not in its current_version.
+        This was making our filters crash.
+        """
+        response = make_call('/list/featured/all/10/all/1', app='seamonkey')
+        eq_(response.context['addons'], [])
+
+
 class SearchTest(SphinxTestCase):
     no_results = """<searchresults total_results="0">"""
 
