@@ -167,7 +167,8 @@ def _clean_next_url(request):
     gets = request.GET.copy()
     url = gets['to']
 
-    if '://' in url or '\r' in url or '\n' in url:
+    # We want to not redirect outside of AMO via login/logout.
+    if url and '://' in url:
         url = None
 
     # TODO(davedash): This is a remora-ism, let's remove this after remora and
@@ -244,9 +245,16 @@ def logout(request):
         log.debug(u"User (%s) logged out" % user)
 
     auth.logout(request)
-    response = http.HttpResponseRedirect(settings.LOGOUT_REDIRECT_URL)
-    # fire logged out signal so we can be decoupled from cake
+
+    if 'to' in request.GET:
+       request = _clean_next_url(request)
+
+    next = request.GET.get('to') or settings.LOGOUT_REDIRECT_URL
+    response = http.HttpResponseRedirect(next)
+    # Fire logged out signal so we can be decoupled from cake.
     logged_out.send(None, request=request, response=response)
+
+
     return response
 
 

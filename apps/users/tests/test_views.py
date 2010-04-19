@@ -6,6 +6,7 @@ from django.test.client import Client
 
 from nose.tools import eq_
 
+from amo.helpers import urlparams
 from amo.pyquery_wrapper import PyQuery
 from users.utils import EmailResetCode
 
@@ -98,6 +99,14 @@ class TestLogout(UserViewBase):
         r = self.client.get('/users/logout', follow=True)
         self.assertNotContains(r, "Welcome, Jeff")
         self.assertContains(r, "Log in")
+
+    def test_redirect(self):
+        self.client.login(username='jbalogh@mozilla.com', password='foo')
+        self.client.get('/', follow=True)
+        url = '/en-US/firefox/about'
+        r = self.client.get(urlparams(reverse('users.logout'), to=url),
+                            follow=True)
+        self.assertRedirects(r, url, status_code=301)
 
 
 class TestRegistration(UserViewBase):
