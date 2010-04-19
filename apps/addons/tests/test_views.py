@@ -5,6 +5,7 @@ import test_utils
 from pyquery import PyQuery as pq
 
 import amo
+from amo.helpers import urlparams
 from amo.urlresolvers import reverse
 from addons.models import Addon, AddonUser
 from users.models import UserProfile
@@ -208,3 +209,15 @@ class TestDetailPage(test_utils.TestCase):
         response = self.client.get(reverse('addons.detail', args=[myaddon.id]),
                                    follow=True)
         eq_(response.status_code, 404)
+
+    def test_login_links(self):
+        """Make sure the login links on this page, redirect back to itself."""
+        url = reverse('addons.detail', args=[3615])
+        resp = self.client.get(url, follow=True)
+        if not url.startswith('/en-US/firefox'):
+            url = '/en-US/firefox' + url
+
+        sel = 'a[href$="%s"]' % urlparams(reverse('users.login'), to=url)
+        doc = pq(resp.content)
+        eq_(len(doc(sel)), 3)  # 3 login links
+

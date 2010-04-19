@@ -23,7 +23,7 @@
       </span>
     </div>
   {% else %}
-    {% trans register='/users/register', login=login_link %}
+    {% trans register='/users/register', login=login_link() %}
       {# TODO reverse URL #}
       <a href="{{ register }}">Register</a> or
       <a href="{{ login }}">Log in</a> to add tags

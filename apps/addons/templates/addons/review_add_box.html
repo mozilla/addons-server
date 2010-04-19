@@ -5,7 +5,7 @@
   <div id="review-box" class="highlight">
     {% if not user.is_authenticated() %}
       <p>
-        {% trans login=login_link %}
+        {% trans login=login_link() %}
           Please <a href="{{ login }}">log in</a> to submit a review
         {% endtrans %}
       </p>
