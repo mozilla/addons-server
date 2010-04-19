@@ -10,6 +10,7 @@ import amo
 from addons.models import Addon, AddonPledge, Persona
 from reviews.models import Review
 from users.models import UserProfile
+from versions.models import Version
 
 
 class TestAddonManager(test_utils.TestCase):
@@ -77,7 +78,7 @@ class TestAddonManager(test_utils.TestCase):
                     "unreviewed() must return unreviewed addons.")
 
 
-class TestAddonModels(test.TestCase):
+class TestAddonModels(test_utils.TestCase):
     # base/addons.json has an example addon
     fixtures = ['base/addons.json', 'addons/featured.json']
 
@@ -91,6 +92,11 @@ class TestAddonModels(test.TestCase):
     def test_current_version_listed(self):
         a = Addon.objects.get(pk=3723)
         eq_(a.current_version.id, 89774)
+
+    def test_current_version_listed_no_version(self):
+        Version.objects.filter(addon=3723).delete()
+        a = Addon.objects.get(pk=3723)
+        eq_(a.current_version, None)
 
     def test_current_beta_version(self):
         a = Addon.objects.get(pk=5299)

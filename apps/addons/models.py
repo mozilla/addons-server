@@ -209,7 +209,7 @@ class Addon(amo.models.ModelBase):
             else:
                 status = amo.VALID_STATUSES
             return self.versions.filter(files__status__in=status)[0]
-        except IndexError:
+        except (IndexError, Version.DoesNotExist):
             return None
 
     @classmethod
