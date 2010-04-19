@@ -19,4 +19,7 @@ urlpatterns = patterns('',
 
     url('^personas/(?P<category>[^/]+)?$', views.personas,
         name='browse.personas'),
+
+    url('^extensions/(?:(?P<category>[^/]+)/)?$', views.search_providers,
+        name='browse.search-providers'),
 )

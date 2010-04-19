@@ -1,6 +1,7 @@
 import collections
 import itertools
 
+from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 
 from tower import ugettext as _, ugettext_lazy as _lazy
@@ -271,3 +272,7 @@ def personas(request, category=None):
     return jingo.render(request, 'browse/personas/' + template,
                         {'categories': categories, 'category': category,
                          'filter': filter, 'addons': addons})
+
+
+def search_providers(request, category=None):
+    return HttpResponse("Search providers browse page stub.")

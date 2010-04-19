@@ -133,6 +133,11 @@ class TestThemes(test_utils.TestCase):
 class TestCategoryPages(test_utils.TestCase):
     fixtures = ['base/addons']
 
+    def test_browsing_urls(self):
+        """Every browse page URL exists."""
+        for _, slug in amo.ADDON_SLUGS.items():
+            assert reverse('browse.%s' % slug, args=['something'])
+
     def test_matching_opts(self):
         """Every filter on landing pages is available on listing pages."""
         for key, _ in views.CategoryLandingFilter.opts:
