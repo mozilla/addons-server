@@ -1,6 +1,5 @@
 from django.conf import settings
 from django.conf.urls.defaults import patterns, url, include
-from django.views.decorators.cache import cache_page
 
 from . import views
 
@@ -10,9 +9,9 @@ API_CACHE_TIMEOUT = getattr(settings, 'API_CACHE_TIMEOUT', 500)
 
 # Wrap class views in a lambda call so we get an fresh instance of the class
 # for thread-safety.
-def cached_class_view(cls):
+def class_view(cls):
     inner = lambda *args, **kw: cls()(*args, **kw)
-    return cache_page(API_CACHE_TIMEOUT)(inner)
+    return inner
 
 
 # Regular expressions that we use in our urls.
@@ -50,19 +49,16 @@ list_regexps = build_urls(base_list_regexp, appendages)
 
 api_patterns = patterns('',
     # Addon_details
-    url('addon/(?P<addon_id>\d+)$',
-        cached_class_view(views.AddonDetailView),
+    url('addon/(?P<addon_id>\d+)$', class_view(views.AddonDetailView),
         name='api.addon_detail'),)
 
 for regexp in search_regexps:
     api_patterns += patterns('',
-        url(regexp + '/?$', cached_class_view(views.SearchView),
-            name='api.search'))
+        url(regexp + '/?$', class_view(views.SearchView), name='api.search'))
 
 for regexp in list_regexps:
     api_patterns += patterns('',
-            url(regexp + '/?$', cached_class_view(views.ListView),
-                name='api.list'))
+            url(regexp + '/?$', class_view(views.ListView), name='api.list'))
 
 urlpatterns = patterns('',
     # Redirect api requests without versions

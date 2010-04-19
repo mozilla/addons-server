@@ -13,6 +13,7 @@ from django.utils import translation
 
 import jingo
 from tower import ugettext as _, ugettext_lazy
+from caching.base import cached_with
 
 import amo
 from amo.urlresolvers import get_url_prefix
@@ -186,11 +187,8 @@ class ListView(APIView):
     def process_request(self, list_type='recommended', addon_type='ALL',
                         limit=10, platform='ALL', version=None):
         """
-        This generates a list of addons that can be served to the
-        AddonManager.
-
-        We generate the lists by making empty queries to Sphinx, but with
-        using parameters to influence the order.
+        Find a list of new or featured add-ons.  Filtering is done in Python
+        for cache-friendliness and to avoid heavy queries.
         """
         limit = min(MAX_LIMIT, int(limit))
         APP, platform = self.request.APP, platform.lower()
@@ -202,6 +200,14 @@ class ListView(APIView):
                       .order_by('-created'))[:limit + BUFFER]
         else:
             addons = Addon.objects.featured(APP).distinct() & qs
+
+        args = (list_type, addon_type, limit, platform, version)
+        f = lambda: self._process(addons, *args)
+        return cached_with(addons, f, self.request.path)
+
+    def _process(self, addons, list_type, addon_type, limit, platform, version):
+        """Do all the filtering in here so we can wrap it in cached_with."""
+        APP = self.request.APP
 
         if addon_type.upper() != 'ALL':
             try:
@@ -226,8 +232,8 @@ class ListView(APIView):
         if version is not None:
             v = search_utils.convert_version(version)
             f = lambda app: app.min.version_int < v < app.max.version_int
-            addons = [a for a in addons
-                      if APP in a.compatible_apps and f(a.compatible_apps[APP])]
+            xs = [(a, a.compatible_apps) for a in addons]
+            addons = [a for a, apps in xs if APP in apps and f(apps[APP])]
 
         # Put personas back in.
         addons.extend(personas)
