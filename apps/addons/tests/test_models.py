@@ -8,7 +8,7 @@ from nose.tools import eq_, assert_not_equal
 import test_utils
 
 import amo
-from addons.models import Addon, AddonPledge, Persona
+from addons.models import Addon, AddonPledge, AddonType, Category, Persona
 from reviews.models import Review
 from users.models import UserProfile
 from versions.models import Version
@@ -221,6 +221,15 @@ class TestAddonModels(test_utils.TestCase):
             'Original review must show up in review list.')
         assert new_reply.pk not in review_list, (
             'Developer reply must not show up in review list.')
+
+
+class TestCategoryModel(test_utils.TestCase):
+
+    def test_category_url(self):
+        """Every type must have a url path for its categories."""
+        for t in amo.ADDON_TYPE.keys():
+            cat = Category(type=AddonType(id=t), slug='omg')
+            assert cat.get_url_path()
 
 
 class TestAddonPledgeModel(test_utils.TestCase):

@@ -545,7 +545,10 @@ class Category(amo.models.ModelBase):
         return unicode(self.name)
 
     def get_url_path(self):
-        type = amo.ADDON_SLUGS[self.type_id]
+        try:
+            type = amo.ADDON_SLUGS[self.type_id]
+        except KeyError:
+            type = amo.ADDON_SLUGS[amo.ADDON_EXTENSION]
         return reverse('browse.%s' % type, args=[self.slug])
 
 
