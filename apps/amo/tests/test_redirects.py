@@ -16,6 +16,13 @@ class TestRedirects(test.TestCase):
         # Sphinx will be off so let's just test that it redirects.
         eq_(response.redirect_chain[0][1], 301)
 
+    def test_parameters(self):
+        """Bug 554976. Make sure when we redirect, we preserve our query
+        strings."""
+        url = u'/users/login?next=/en-US/firefox/users/edit'
+        r = self.client.get(url, follow=True)
+        self.assertRedirects(r, '/en-US/firefox' + url, status_code=301)
+
     def test_reviews(self):
         response = self.client.get('/reviews/display/4', follow=True)
         self.assertRedirects(response, '/en-US/firefox/addon/4/reviews/',
