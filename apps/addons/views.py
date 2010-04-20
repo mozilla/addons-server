@@ -160,7 +160,7 @@ class HomepageFilter(object):
     opts = (('featured', _('Featured')),
             ('popular', _('Popular')),
             ('new', _('Recently Added')),
-            ('updated', _('Updated')))
+            ('updated', _('Recently Updated')))
 
     def __init__(self, request, base, key, default):
         self.opts_dict = dict(self.opts)
