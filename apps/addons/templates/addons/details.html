@@ -376,7 +376,7 @@
     <ul class="addon-otheraddons">
       {% for rec in recommendations %}
       <li>
-      <a href="{{ url('addons.detail', addon_id=rec.id) }}"?src=oftenusedwith"
+      <a href="{{ url('addons.detail', addon_id=rec.id) }}?src=oftenusedwith"
          class="addonitem">{{ rec.name }}</a>
       </li>
       {% endfor %}

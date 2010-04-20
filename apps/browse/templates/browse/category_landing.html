@@ -45,7 +45,7 @@
             </p>
             <p class="addon-desc">{{ addon.summary|truncate(100) }}</p>
             <p class="addon-rating">{{ addon.bayesian_rating|stars }}</p>
-            {{ install_button(addon) }}
+            {{ install_button(addon, src='creatured') }}
           </li>
           {% endfor %}
         {% endcache %}

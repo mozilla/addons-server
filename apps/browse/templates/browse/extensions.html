@@ -24,7 +24,7 @@
       {% set url_base = url('browse.extensions') %}
     {% endif %}
     {{ addon_listing_header(url_base, sort_opts, sorting, unreviewed) }}
-    {{ addon_listing_items(addons.object_list,
+    {{ addon_listing_items(addons.object_list, src='category',
                            show_added_date=(sorting=='created')) }}
     <div class="listing-footer">
       {{ addons|paginator }}

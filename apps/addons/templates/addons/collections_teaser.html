@@ -64,7 +64,7 @@
                     href="{{ addon.get_url_path() }}">{{ addon.name }}</a>
                 </h3>
                 <p>{{ addon.summary|truncate(80) }}</p>
-                {{ install_button(addon) }}
+                {{ install_button(addon, src='homepagepromo') }}
               </div>
             </div>
           {% endfor %}

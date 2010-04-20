@@ -19,7 +19,8 @@
           {% endfor %}
         </ul>
       </div>
-      {{ addon_listing_items(pager.object_list, show_added_date=(sort == 'newest')) }}
+      {{ addon_listing_items(pager.object_list, show_added_date=(sort == 'newest'),
+                             src='search') }}
     </div>
 
     <div class="listing-footer">
