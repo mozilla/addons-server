@@ -130,7 +130,7 @@ ADDON_TYPES = {
     ADDON_ANY: _(u'Any'),
     ADDON_EXTENSION: _(u'Extensions'),
     ADDON_THEME: _(u'Themes'),
-    ADDON_DICT: _(u'Dictionaries & Language Packs'),
+    ADDON_DICT: _(u'Dictionaries'),
     ADDON_SEARCH: _(u'Search Tools'),
     ADDON_PLUGIN: _(u'Plugins'),
     ADDON_LPAPP: _(u'Language Packs (Application)'),

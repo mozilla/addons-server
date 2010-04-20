@@ -164,7 +164,7 @@ def page_title(context, title):
 @jinja2.contextfunction
 def breadcrumbs(context, items=list(), add_default=True):
     """
-    show a list of breadcrumbs.
+    show a list of breadcrumbs. If url is None, it won't be a link.
     Accepts: [(url, label)]
     """
     if add_default:

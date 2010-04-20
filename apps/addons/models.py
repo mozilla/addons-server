@@ -506,6 +506,13 @@ class AddonType(amo.models.ModelBase):
     def __unicode__(self):
         return unicode(self.name)
 
+    def get_url_path(self):
+        try:
+            type = amo.ADDON_SLUGS[self.id]
+        except KeyError:
+            return None
+        return reverse('browse.%s' % type)
+
 
 class AddonUser(caching.CachingMixin, models.Model):
     AUTHOR_CHOICES = amo.AUTHOR_CHOICES.items()
