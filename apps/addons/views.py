@@ -56,8 +56,6 @@ def extension_detail(request, addon):
         return http.HttpResponsePermanentRedirect(reverse(
             'addons.detail', args=[addon.id]))
 
-    addon.is_searchengine = (addon.type_id == amo.ADDON_SEARCH)
-
     # source tracking
     src = request.GET.get('src', 'addondetail')
 
