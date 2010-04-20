@@ -4,6 +4,7 @@ from django.conf import settings
 from django.db import models
 
 import amo.models
+from amo.utils import sorted_groupby
 from addons.models import Addon, AddonCategory
 from applications.models import Application
 from users.models import UserProfile
@@ -131,6 +132,19 @@ class CollectionPromo(amo.models.ModelBase):
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'collection_promos'
         unique_together = ('collection', 'locale', 'collection_feature')
+
+    @staticmethod
+    def transformer(promos):
+        if not promos:
+            return
+
+        promo_dict = dict((p.id, p) for p in promos)
+        q = (Collection.objects.no_cache()
+             .filter(collectionpromo__in=promos)
+             .extra(select={'promo_id': 'collection_promos.id'}))
+
+        for promo_id, collection in (sorted_groupby(q, 'promo_id')):
+            promo_dict[promo_id].collection = collection.next()
 
 
 class CollectionRecommendation(amo.models.ModelBase):

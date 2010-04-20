@@ -1,12 +1,19 @@
 import functools
 import urllib
 import logging
+import itertools
 
 from django.conf import settings
 from django.core import paginator
 from django.core.mail import send_mail as django_send_mail
 
 from . import log
+
+
+def sorted_groupby(seq, field):
+    """Given a sequence, we sort it and group it by a key"""
+    key = lambda x: getattr(x, field)
+    return itertools.groupby(sorted(seq, key=key), key=key)
 
 
 def paginate(request, queryset, per_page=20):

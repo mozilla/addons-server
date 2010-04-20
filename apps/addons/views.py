@@ -7,9 +7,9 @@ import jingo
 from tower import ugettext as _
 
 import amo
+from amo.utils import sorted_groupby
 from amo import urlresolvers
 from amo.urlresolvers import reverse
-
 from bandwagon.models import Collection, CollectionFeature, CollectionPromo
 from users.models import UserProfile
 from stats.models import GlobalStat
@@ -243,14 +243,26 @@ class CollectionPromoBox(object):
         locale = Q(locale='') | Q(locale=lang)
         promos = (CollectionPromo.objects.filter(locale)
                   .filter(collection_feature__in=features)
-                  .select_related('collection'))
-        # Get a localized collection, if possible.
+                  .transform(CollectionPromo.transformer))
+        groups = sorted_groupby(promos, 'collection_feature_id')
+
+        # We key by feature_id and locale, so we can favor locale specific
+        # promos.
+        promo_dict = {}
+        for k, v in groups:
+            promo = v.next()
+            key = (k, promo.locale)
+            promo_dict[key] = promo
+
         rv = {}
-        pdict = dict(((p.collection_feature_id, p.locale), p) for p in promos)
+        # If we can, we favor locale specific collections.
         for feature in features:
-            _key = (feature.id, lang)
-            key = _key if _key in pdict else (feature.id, '')
-            rv[feature] = pdict[key].collection
+            key = (feature.id, lang)
+            if key not in promo_dict:
+                key = (feature.id, '')
+
+            rv[feature] = promo_dict[key].collection
+
         return rv
 
     def __nonzero__(self):
