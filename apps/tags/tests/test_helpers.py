@@ -31,6 +31,8 @@ class TestHelpers(test.TestCase):
         user_tags = tags.exclude(addon_tags__user__in=addon.authors.all())
 
         ctx = {
+            'APP': 'firefox',
+            'LANG': 'en-us',
             'request': request,
             'addon': addon,
             'dev_tags': dev_tags,
