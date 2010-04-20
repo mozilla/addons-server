@@ -3,7 +3,7 @@ import jinja2
 from jingo import register, env
 
 
-@register.function
+@register.inclusion_tag('tags/tag_list.html')
 @jinja2.contextfunction
 def tag_list(context, addon, dev_tags=None, user_tags=None):
     """Display list of tags, with delete buttons."""
@@ -14,11 +14,8 @@ def tag_list(context, addon, dev_tags=None, user_tags=None):
     if not user_tags:
         user_tags = []
 
-    c = {
-        'request': context['request'],
-        'addon': addon,
-        'dev_tags': dev_tags,
-        'user_tags': user_tags,
-    }
-    t = env.get_template('tags/tag_list.html').render(**c)
-    return jinja2.Markup(t)
+    c = dict(context.items())
+    c.update({'addon': addon,
+              'dev_tags': dev_tags,
+              'user_tags': user_tags})
+    return c
