@@ -1,6 +1,6 @@
 {% macro tag_li(tag, addon=None, css_class='') -%}
 <li id="taglink-{{ tag.id }}" class="{{ css_class }}">
-  <a href="{{ url('home') }}tag/{{ tag.tag_text }}" class="tagitem">
+  <a href="{{ remora_url('/tag/') }}/{{ tag.tag_text }}" class="tagitem">
     {{ tag.tag_text }}
   </a>
   {% if tag.addon_tags.user == request.user or
@@ -13,7 +13,7 @@
 {%- endmacro %}
 
 <form id="tags" class="remove-tags" method="post"
-      action="{{ url('home') }}tags/remove/">{# TODO reverse URL #}
+      action="{{ remora_url('/tags/remove/') }}">{# TODO reverse URL #}
   {{ cake_csrf_token() }}
   <input type="hidden" name="addonid" value="{{ addon.id }}" />
   <input type="hidden" name="ajax" value="0" />
