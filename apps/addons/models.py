@@ -212,8 +212,8 @@ class Addon(amo.models.ModelBase):
         except (IndexError, Version.DoesNotExist):
             return None
 
-    @classmethod
-    def transformer(cls, addons):
+    @staticmethod
+    def transformer(addons):
         if not addons:
             return
 
