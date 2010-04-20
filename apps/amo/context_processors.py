@@ -36,10 +36,11 @@ def global_settings(request):
         account_links.append({'text': _('Edit Profile'),
                               'href': '/users/edit'})
         if request.amo_user.is_developer:
-            account_links.append({'text': 'My Add-ons',
+            account_links.append({'text': _('My Add-ons'),
                                   'href': '/developers/addons'})
 
-        # TODO(jbalogh): - add collections /collections/mine
+        account_links.append({'text': _('My Collections'),
+                              'href': '/collections/mine'})
 
         account_links.append({
             'text': _('Log out'),
