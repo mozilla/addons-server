@@ -30,11 +30,11 @@ def test_reviews_link():
     eq_(PyQuery(s)('strong').text(), '37 reviews')
 
     # without collection uuid
-    eq_(PyQuery(s)('a').attr('href'), '/en-US/firefox/addon/1/#reviews')
+    eq_(PyQuery(s)('a').attr('href'), '/addon/1/#reviews')
 
     # with collection uuid
     myuuid = 'f19a8822-1ee3-4145-9440-0a3640201fe6'
     s = render('{{ myaddon|reviews_link(myuuid) }}', {'myaddon': a,
                                                       'myuuid': myuuid})
     eq_(PyQuery(s)('a').attr('href'),
-        '/en-US/firefox/addon/1/?collection_uuid=%s#reviews' % myuuid)
+        '/addon/1/?collection_uuid=%s#reviews' % myuuid)

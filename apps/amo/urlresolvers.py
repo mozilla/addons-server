@@ -24,6 +24,11 @@ def get_url_prefix():
     return _prefixes.get(currentThread())
 
 
+def clean_url_prefixes():
+    """Purge prefix cache."""
+    _prefixes.clear()
+
+
 def get_app_redirect(app):
     """Redirect request to another app."""
     prefixer = get_url_prefix()

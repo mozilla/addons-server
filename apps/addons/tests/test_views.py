@@ -60,11 +60,6 @@ class TestHomepage(test_utils.TestCase):
 class TestDetailPage(test_utils.TestCase):
     fixtures = ['base/addons', 'addons/listed', 'addons/persona']
 
-    def tearDown(self):
-        """Return URL prefixer to default."""
-        prefixer = amo.urlresolvers.get_url_prefix()
-        prefixer.app = settings.DEFAULT_APP
-
     def test_anonymous_user(self):
         """Does the page work for an anonymous user?"""
         # extensions
