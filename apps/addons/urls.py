@@ -22,8 +22,6 @@ urlpatterns = patterns('',
     # URLs for a single add-on.
     ('^addon/(?P<addon_id>\d+)/', include(detail_patterns)),
 
-    url('^discovery/?', views.discovery, name='addon.discovery'),
-
     # For happy install button debugging.
     url('^addons/smorgasbord$', 'addons.buttons.smorgasbord'),
     url('^addons/buttons.js$', 'addons.buttons.js'),

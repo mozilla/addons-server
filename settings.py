@@ -186,10 +186,9 @@ AUTH_PROFILE_MODULE = 'users.UserProfile'
 ROOT_URLCONF = '%s.urls' % ROOT_PACKAGE
 
 INSTALLED_APPS = (
-    'amo',
+    'amo',  # amo comes first so it always takes precedence.
     'access',
     'addons',
-    'zadmin',
     'api',
     'applications',
     'bandwagon',
@@ -197,6 +196,7 @@ INSTALLED_APPS = (
     'browse',
     'cronjobs',
     'devhub',
+    'discovery',
     'editors',
     'files',
     'minify',
@@ -211,6 +211,7 @@ INSTALLED_APPS = (
     'translations',
     'users',
     'versions',
+    'zadmin',
 
     # We need this so the jsi18n view will pick up our locale directory.
     ROOT_PACKAGE,
@@ -279,6 +280,9 @@ MINIFY_BUNDLES = {
             'css/zamboni/tags.css',
             'css/zamboni/tabs.css',
         ),
+        'zamboni/discovery-pane': (
+            'css/zamboni/discovery-pane.css',
+        )
     },
     'js': {
         # JS files common to the entire site.
