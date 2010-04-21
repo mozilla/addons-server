@@ -1,6 +1,7 @@
 from django import test
 
 import jingo
+from mock import Mock
 from nose.tools import eq_
 from pyquery import PyQuery
 
@@ -61,7 +62,8 @@ class TestHelpers(test.TestCase):
     def test_contribution_box(self):
         a = Addon.objects.get(pk=1003)
         a.suggested_amount = '12'
-        doc = PyQuery(contribution(a))
+        s = contribution({'LANG': 'en-us', 'APP': amo.FIREFOX}, a)
+        doc = PyQuery(s)
         # make sure input boxes are rendered correctly (bug 555867)
         assert doc('input[name=onetime-amount]').length == 1
         assert doc('input[name=monthly-amount]').length == 1

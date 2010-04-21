@@ -47,7 +47,7 @@
         {# The id triggers a dropdown, so don't expose it if there isn't a
            suggested amount (i.e., only one choice). #}
         {% if has_suggested %}id="contribute-button"{% endif %}
-        href="/addons/contribute/{{ addon.id }}?source={{ src }}">{# TODO reverse URL #}
+        href="{{ remora_url('/addons/contribute/{0}?source={1}'|f(addon.id, src)) }}">
         <b></b>{{ _('Contribute') }}
       </a>
 

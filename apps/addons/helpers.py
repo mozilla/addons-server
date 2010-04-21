@@ -56,8 +56,10 @@ def support_addon(addon):
     return jinja2.Markup(t.render(addon=addon))
 
 
-@register.function
-def contribution(addon, text='', src='', show_install=False, show_help=True):
+@register.inclusion_tag('addons/contribution.html')
+@jinja2.contextfunction
+def contribution(context, addon, text='', src='', show_install=False,
+                 show_help=True):
     """
     Show a contribution box.
 
@@ -76,17 +78,8 @@ def contribution(addon, text='', src='', show_install=False, show_help=True):
     except IndexError:
         pledge = None
 
-    t = env.get_template('addons/contribution.html')
-    return jinja2.Markup(t.render({
-        'MEDIA_URL': settings.MEDIA_URL,
-        'addon': addon,
-        'text': text,
-        'src': src,
-        'show_install': show_install,
-        'show_help': show_help,
-        'has_suggested': bool(addon.suggested_amount),
-        'pledge': pledge,
-    }))
+    has_suggested = bool(addon.suggested_amount)
+    return new_context(**locals())
 
 
 @register.inclusion_tag('addons/review_list_box.html')
