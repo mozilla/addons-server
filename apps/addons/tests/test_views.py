@@ -12,11 +12,18 @@ from users.models import UserProfile
 
 
 class TestHomepage(test_utils.TestCase):
-    fixtures = ['base/addons', 'base/global-stats', 'base/featured']
+    fixtures = ['base/addons', 'base/global-stats', 'base/featured',
+                'base/collection-promo']
 
     def setUp(self):
         super(TestHomepage, self).setUp()
         self.base_url = reverse('home')
+
+    def test_promo_box(self):
+        """Test that the stupid promo box has the Online Shopping link."""
+        r = self.client.get(self.base_url, follow=True)
+        doc = pq(r.content)
+        eq_(doc('.lead a')[0].text, 'Online Shopping')
 
     def test_default_feature(self):
         response = self.client.get(self.base_url, follow=True)
