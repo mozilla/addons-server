@@ -3,18 +3,15 @@ from datetime import datetime
 from django import test
 
 import jingo
+from jingo.tests.test_helpers import render
 from mock import Mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
+import amo
 from addons.models import Addon
 from tags.models import Tag
 from tags.helpers import tag_list
-
-
-def render(s, context={}):
-    t = jingo.env.from_string(s)
-    return t.render(**context)
 
 
 class TestHelpers(test.TestCase):
@@ -31,7 +28,7 @@ class TestHelpers(test.TestCase):
         user_tags = tags.exclude(addon_tags__user__in=addon.authors.all())
 
         ctx = {
-            'APP': 'firefox',
+            'APP': amo.FIREFOX,
             'LANG': 'en-us',
             'request': request,
             'addon': addon,
@@ -47,7 +44,8 @@ class TestHelpers(test.TestCase):
 
         # no tags, no list
         s = render('{{ tag_list(addon) }}', ctx)
-        assert not s, "Empty tags should not return tag list."
+        self.assertEqual(s.strip(), "")
+        return
 
         # regular lists
         s = render('{{ tag_list(addon, dev_tags=dev_tags) }}', ctx)
