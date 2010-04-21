@@ -2,6 +2,7 @@ from datetime import date
 
 from django import test
 from django.conf import settings
+from django.core.cache import cache
 
 from nose.tools import eq_, assert_not_equal
 import test_utils
@@ -80,7 +81,8 @@ class TestAddonManager(test_utils.TestCase):
 
 class TestAddonModels(test_utils.TestCase):
     # base/addons.json has an example addon
-    fixtures = ['base/addons.json', 'addons/featured.json']
+    fixtures = ['base/addons.json', 'addons/featured.json',
+                'addons/invalid_latest_version.json']
 
     def test_current_version(self):
         """
@@ -105,6 +107,24 @@ class TestAddonModels(test_utils.TestCase):
     def test_current_version_unreviewed(self):
         a = Addon.objects.get(pk=55)
         eq_(a.current_version.id, 55)
+
+    def test_current_version_mixed_statuses(self):
+        """Mixed file statuses are evil (bug 558237)."""
+        a = Addon.objects.get(pk=3895)
+        # Last version has pending files, so second to last version is
+        # considered "current".
+        eq_(a.current_version.id, 78829)
+
+        # Fix file statuses on last version.
+        v = Version.objects.get(pk=98217)
+        v.files.update(status=amo.STATUS_PUBLIC)
+
+        # Wipe caches.
+        cache.clear()
+        del a.__dict__['current_version']
+
+        # Make sure the updated version is now considered current.
+        eq_(a.current_version.id, v.id)
 
     def test_icon_url(self):
         """

@@ -208,7 +208,18 @@ class Addon(amo.models.ModelBase):
                 return self.versions.get()
             else:
                 status = amo.VALID_STATUSES
-            return self.versions.filter(files__status__in=status)[0]
+
+            status_list = ','.join(map(str, status))
+            return self.versions.filter(
+                files__status__in=status).extra(
+                where=["""
+                    NOT EXISTS (
+                        SELECT 1 FROM versions as v2
+                        INNER JOIN files AS f2 ON (f2.version_id = v2.id)
+                        WHERE v2.id = versions.id
+                        AND f2.status NOT IN (%s))
+                    """ % status_list])[0]
+
         except (IndexError, Version.DoesNotExist):
             return None
 

@@ -1,0 +1,314 @@
+[
+    {
+        "pk": 67984,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": null,
+            "created": "2007-03-22 20:51:22",
+            "locale": "en-US",
+            "modified": "2007-03-26 20:06:20",
+            "id": 39111,
+            "localized_string": "Extensions are small add-ons that add new functionality to %1$s, from a simple toolbar button to a completely new feature. They allow you to customize %1$s to fit your own needs and preferences, while letting us keep %1$s itself light and lean."
+        }
+    },
+    {
+        "pk": 68015,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": null,
+            "created": "2007-03-22 21:16:47",
+            "locale": "en-US",
+            "modified": "2007-03-26 20:06:20",
+            "id": 39112,
+            "localized_string": "Extensions"
+        }
+    },
+    {
+        "pk": 67951,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": null,
+            "created": "2007-03-22 20:51:22",
+            "locale": "en-US",
+            "modified": "2007-03-26 20:06:20",
+            "id": 39109,
+            "localized_string": "Extension"
+        }
+    },
+    {
+        "pk": 31313,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": "How to ... (clean)",
+            "created": "2007-03-05 13:10:44",
+            "locale": "en-US",
+            "modified": "2010-03-05 04:45:37",
+            "id": 16193,
+            "localized_string": "How to..."
+        }
+    },
+    {
+        "pk": 31321,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": "\"Menus Toolbar\" item is now available in Toolbar Context Menu and you may hide it forever! ",
+            "created": "2007-03-05 13:10:44",
+            "locale": "en-US",
+            "modified": "2009-07-20 19:05:55",
+            "id": 16194,
+            "localized_string": "\"Menus Toolbar\" item is now available in Toolbar Context Menu and you may hide it forever! "
+        }
+    },
+    {
+        "pk": 31302,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": "After installing... (clean)",
+            "created": "2007-03-05 13:10:44",
+            "locale": "en-US",
+            "modified": "2010-03-02 19:47:11",
+            "id": 16192,
+            "localized_string": "After installing ..."
+        }
+    },
+    {
+        "pk": 190117,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": null,
+            "created": "2008-06-13 23:34:48",
+            "locale": "en-US",
+            "modified": "2008-11-04 22:38:47",
+            "id": 153272,
+            "localized_string": "http://example.org/"
+        }
+    },
+    {
+        "pk": 301978,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": null,
+            "created": "2008-11-04 19:15:21",
+            "locale": "en-US",
+            "modified": "2008-11-04 22:38:47",
+            "id": 264410,
+            "localized_string": "me@example.com"
+        }
+    },
+    {
+        "pk": 31290,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": null,
+            "created": "2007-03-05 13:10:44",
+            "locale": "en-US",
+            "modified": "2008-12-19 11:09:38",
+            "id": 16191,
+            "localized_string": "https://example.org/"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "addons.addontype",
+        "fields": {
+            "description": 39111,
+            "name_plural": 39112,
+            "modified": "2009-02-06 08:42:28",
+            "name": 39109,
+            "created": "2006-08-21 23:53:19"
+        }
+    },
+    {
+        "pk": 31277,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": null,
+            "created": "2007-03-05 13:10:44",
+            "locale": "en-US",
+            "modified": "2008-12-19 11:09:38",
+            "id": 16190,
+            "localized_string": "Personal Menu"
+        }
+    },
+    {
+        "pk": 933493,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": "Addition:\n+ New language: ... (clean)",
+            "created": "2010-03-02 19:41:57",
+            "locale": "en-US",
+            "modified": "2010-03-02 21:03:31",
+            "id": 873921,
+            "localized_string": "Addition:\r\n+ New language: ..."
+        }
+    },
+    {
+        "pk": 605226,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": "Additions:... (clean)",
+            "created": "2009-09-18 06:31:51",
+            "locale": "en-US",
+            "modified": "2010-03-02 20:50:25",
+            "id": 560362,
+            "localized_string": "Additions:..."
+        }
+    },
+    {
+        "pk": 3895,
+        "model": "addons.addon",
+        "fields": {
+            "dev_agreement": 1,
+            "eula": null,
+            "last_updated": "2009-10-25 21:46:43",
+            "view_source": 0,
+            "enable_thankyou": 0,
+            "total_downloads": 107,
+            "developer_comments": 16193,
+            "inactive": 0,
+            "average_daily_downloads": 10,
+            "show_beta": 1,
+            "the_future": null,
+            "trusted": 0,
+            "locale_disambiguation": null,
+            "binary": 0,
+            "guid": "1ce9c2c3-01d4-4946-b19d-3b8e8e9daac4",
+            "weekly_downloads": 7534,
+            "support_url": 153272,
+            "paypal_id": "",
+            "average_rating": "4.49",
+            "wants_contributions": 0,
+            "average_daily_users": 82846,
+            "bayesian_rating": 4.4509800000000004,
+            "share_count": 8,
+            "get_satisfaction_company": null,
+            "homepage": 16191,
+            "support_email": 264410,
+            "public_stats": 0,
+            "status": 4,
+            "privacy_policy": null,
+            "description": 16192,
+            "default_locale": "en-US",
+            "target_locale": null,
+            "prerelease": 0,
+            "thankyou_note": null,
+            "admin_review": 0,
+            "external_software": 0,
+            "highest_status": 4,
+            "get_satisfaction_product": null,
+            "name": 16190,
+            "created": "2006-11-16 20:58:38",
+            "type": 1,
+            "icon_type": "image/png",
+            "annoying": 0,
+            "modified": "2010-03-02 19:31:01",
+            "summary": 16194,
+            "suggested_amount": null,
+            "site_specific": 0,
+            "total_reviews": 216,
+            "the_reason": null,
+            "nomination_date": "2008-12-19 18:09:40"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "files.platform",
+        "fields": {
+            "icontype": "",
+            "modified": "2008-04-07 08:16:55",
+            "created": "2007-03-05 13:09:27"
+        }
+    },
+    {
+        "pk": 98217,
+        "model": "versions.version",
+        "fields": {
+            "license": null,
+            "created": "2010-03-02 19:31:02",
+            "releasenotes": 873921,
+            "approvalnotes": "",
+            "modified": "2010-03-02 21:03:35",
+            "version": "4.3.0",
+            "addon": 3895
+        }
+    },
+    {
+        "pk": 2,
+        "model": "files.platform",
+        "fields": {
+            "icontype": "",
+            "modified": "2008-04-07 08:16:55",
+            "created": "2007-03-05 13:09:27"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "files.platform",
+        "fields": {
+            "icontype": "",
+            "modified": "2008-04-07 08:16:56",
+            "created": "2007-03-05 13:09:27"
+        }
+    },
+    {
+        "pk": 78829,
+        "model": "versions.version",
+        "fields": {
+            "license": null,
+            "created": "2009-09-18 05:57:58",
+            "releasenotes": 560362,
+            "approvalnotes": "",
+            "modified": "2010-03-04 07:21:51",
+            "version": "4.2.1",
+            "addon": 3895
+        }
+    },
+    {
+        "pk": 81916,
+        "model": "files.file",
+        "fields": {
+            "status": 2,
+            "codereview": 0,
+            "hash": "sha256:df13359ca5c2b1521e15c594004099ebec7e1f4fb6eab6f9fcdc7109ec450ba0",
+            "created": "2010-03-02 19:31:03",
+            "modified": "2010-03-02 21:03:34",
+            "filename": "personal_menu-4.3.0-fx-win.xpi",
+            "platform": 1,
+            "version": 98217,
+            "datestatuschanged": "2010-03-02 19:29:19",
+            "size": 82
+        }
+    },
+    {
+        "pk": 64865,
+        "model": "files.file",
+        "fields": {
+            "status": 4,
+            "codereview": 0,
+            "hash": "sha256:c3fb1f07de8ec59fcc1c32166d9f6d6c7a175cfc0746aea9d3a6c4dbab80e486",
+            "created": "2009-09-18 09:36:07",
+            "modified": "2010-03-04 07:21:51",
+            "filename": "personal_menu-4.3.0-fx-linux.xpi",
+            "platform": 2,
+            "version": 98217,
+            "datestatuschanged": "2009-10-25 21:46:43",
+            "size": 87
+        }
+    },
+    {
+        "pk": 64864,
+        "model": "files.file",
+        "fields": {
+            "status": 4,
+            "codereview": 0,
+            "hash": "sha256:25bbaa768fcb9c2c1a2c09e25d8d4432cc10586a06fe863a14295e08ce41c26d",
+            "created": "2009-09-18 09:35:19",
+            "modified": "2010-03-04 07:21:51",
+            "filename": "personal_menu-4.2.1-fx-win.xpi",
+            "platform": 5,
+            "version": 78829,
+            "datestatuschanged": "2009-10-24 08:43:10",
+            "size": 88
+        }
+    }
+]
