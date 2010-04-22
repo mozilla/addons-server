@@ -174,7 +174,6 @@
         "fields": {
             "downloads": 46,
             "rating": 0.0,
-            "password": "yermom",
             "description": 394558,
             "default_locale": "en-US",
             "created": "2009-06-09 23:35:10",
@@ -184,7 +183,6 @@
             "weekly_subscribers": 0,
             "modified": "2009-06-09 23:37:36",
             "name": 394557,
-            "access": 0,
             "application": 1,
             "listed": 1,
             "subscribers": 1,
@@ -201,7 +199,6 @@
         "fields": {
             "downloads": 367,
             "rating": 0.0,
-            "password": "yermom",
             "description": 394488,
             "default_locale": "en-US",
             "created": "2009-06-09 22:47:49",
@@ -211,7 +208,6 @@
             "weekly_subscribers": 0,
             "modified": "2009-06-10 15:00:43",
             "name": 394487,
-            "access": 0,
             "application": 1,
             "listed": 1,
             "subscribers": 1,
@@ -270,7 +266,6 @@
         "fields": {
             "downloads": 5648,
             "rating": -7.1670400000000001,
-            "password": "yermom",
             "description": 394370,
             "default_locale": "en-US",
             "created": "2009-06-09 21:41:08",
@@ -280,7 +275,6 @@
             "weekly_subscribers": 0,
             "modified": "2009-06-10 15:00:18",
             "name": 394369,
-            "access": 0,
             "application": 1,
             "listed": 1,
             "subscribers": 212,

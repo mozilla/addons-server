@@ -26,3 +26,8 @@ class TestCollections(test_utils.TestCase):
 
         eq_(listed.count(), 1)
         eq_(listed[0], c)
+
+    def test_auto_uuid(self):
+        c = Collection.objects.create()
+        assert c.uuid != ''
+        assert isinstance(c.uuid, basestring)

@@ -1,8 +1,10 @@
 import time
+import uuid
 
 from django.conf import settings
 from django.db import models
 
+import amo
 import amo.models
 from amo.utils import sorted_groupby
 from addons.models import Addon, AddonCategory
@@ -34,10 +36,8 @@ class Collection(amo.models.ModelBase):
             choices=TYPE_CHOICES, default=0)
     icontype = models.CharField(max_length=25, blank=True)
 
-    access = models.BooleanField(default=False)
     listed = models.BooleanField(
         default=True, help_text='Collections are either listed or private.')
-    password = models.CharField(max_length=255, blank=True)
 
     subscribers = models.PositiveIntegerField(default=0)
     downloads = models.PositiveIntegerField(default=0)
@@ -63,6 +63,12 @@ class Collection(amo.models.ModelBase):
 
     def __unicode__(self):
         return u'%s (%s)' % (self.name, self.addon_count)
+
+    def save(self, **kw):
+        if not self.uuid:
+            self.uuid = unicode(uuid.uuid4())
+
+        super(Collection, self).save(**kw)
 
     def get_url_path(self):
         # TODO(jbalogh): reverse
