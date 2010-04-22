@@ -1,8 +1,6 @@
 from django import http
 from django.conf import settings
 
-import test_utils.signals
-
 from . import urlresolvers
 
 
@@ -11,6 +9,14 @@ def register_signals():
     Register signal handlers.
     Called from models.py to make sure Django finds it.
     """
+
+    # TODO move all this into tests/__init__.py and call it
+    # somehow before tests are run
+    try:
+        import test_utils.signals
+    except ImportError:
+        return
+
     # Clean up URL prefix cache when a new test is invoked.
     test_utils.signals.pre_setup.connect(default_prefixer)
     test_utils.signals.post_teardown.connect(clean_url_prefixes)
