@@ -10,7 +10,7 @@ from django.views.decorators.csrf import csrf_exempt
 import jingo
 import phpserialize as php
 
-from stats.models import Contribution, ContributionError
+from stats.models import Contribution, ContributionError, SubscriptionEvent
 from . import log
 
 
@@ -77,8 +77,12 @@ def paypal(request):
                        data.urlencode(), 20).readline() != 'VERIFIED':
         return http.HttpResponseForbidden('Invalid confirmation')
 
+    if request.POST.get('txn_type', '').startswith('subscr_'):
+        SubscriptionEvent.objects.create(post_data=php.serialize(request.POST))
+        return http.HttpResponse()
+
     # We only care about completed transactions.
-    if request.POST['payment_status'] != 'Completed':
+    if request.POST.get('payment_status') != 'Completed':
         return http.HttpResponse('Payment not completed')
 
     # Make sure transaction has not yet been processed.

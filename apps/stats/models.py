@@ -8,6 +8,7 @@ import caching.base
 import tower
 from tower import ugettext as _
 
+from amo.models import ModelBase
 from amo.fields import DecimalCharField
 from amo.utils import send_mail as amo_send_mail
 
@@ -194,6 +195,14 @@ class Contribution(caching.base.CachingMixin, models.Model):
             # Clear out contributor identifying information.
             del(self.post_data['payer_email'])
             self.save()
+
+
+class SubscriptionEvent(ModelBase):
+    """Save subscription info for future processing."""
+    post_data = StatsDictField()
+
+    class Meta:
+        db_table = 'subscription_events'
 
 
 class GlobalStat(caching.base.CachingMixin, models.Model):

@@ -1,12 +1,14 @@
 import urllib
 
-from django.core.urlresolvers import reverse
-from django import test
+from django import http, test
+from amo.urlresolvers import reverse
 
+from mock import patch, Mock
 from nose.tools import eq_
 import test_utils
 
 from amo.pyquery_wrapper import PyQuery
+from stats.models import SubscriptionEvent
 
 
 def test_404_no_app():
@@ -101,3 +103,33 @@ class TestStuff(test_utils.TestCase):
         next = urllib.urlencode({'to': '/en-US/firefox/'})
         eq_('/en-US/firefox/users/login?%s' % next,
             doc('#aux-nav p a')[1].attrib['href'])
+
+
+class TestPaypal(test_utils.TestCase):
+
+    def setUp(self):
+        self.url = reverse('amo.paypal')
+
+    def urlopener(self, status):
+        m = Mock()
+        m.readline.return_value = status
+        return m
+
+    @patch('amo.views.urllib2.urlopen')
+    def test_not_verified(self, urlopen):
+        urlopen.return_value = self.urlopener('xxx')
+        response = self.client.post(self.url)
+        assert isinstance(response, http.HttpResponseForbidden)
+
+    @patch('amo.views.urllib2.urlopen')
+    def test_no_payment_status(self, urlopen):
+        urlopen.return_value = self.urlopener('VERIFIED')
+        response = self.client.post(self.url)
+        eq_(response.status_code, 200)
+
+    @patch('amo.views.urllib2.urlopen')
+    def test_subscription_event(self, urlopen):
+        urlopen.return_value = self.urlopener('VERIFIED')
+        response = self.client.post(self.url, {'txn_type': 'subscr_xxx'})
+        eq_(response.status_code, 200)
+        eq_(SubscriptionEvent.objects.count(), 1)
