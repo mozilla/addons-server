@@ -1,15 +1,18 @@
 # -*- coding: utf8 -*-
+import json
 import math
 
 from django.core.cache import cache
 from django.conf import settings
 from django.test.client import Client
 
+from pyquery import PyQuery as pq
 import jingo
 from test_utils import TestCase
 from nose.tools import eq_
 
 import api
+import api.utils
 from addons.models import Addon
 from amo import helpers
 from search.tests import SphinxTestCase
@@ -22,6 +25,15 @@ def api_url(x, app='firefox', lang='en-US', version=1.2):
 client = Client()
 make_call = lambda *args, **kwargs: client.get(api_url(*args, **kwargs))
 
+class UtilsTest():
+
+    fixtures = ['base/addons']
+
+    def test_dict(self):
+        "Verify that we're getting dict."
+        a = Addon.objects.get(pk=3615)
+        d = addon_to_dict(a)
+        assert d['learnmore'].endswith('/addon/3615/?src=test')
 
 class No500ErrorsTest(TestCase):
     """
@@ -192,21 +204,16 @@ class APITest(TestCase):
                 "<contribution_data>",
                 "%s/en-US/firefox/addons/contribute/4664?src=api</link>"
                     % settings.SITE_URL,
-                '<suggested_amount currency="USD">0.99</suggested_amount>',
                 "<meet_developers>",
                 "%s/en-US/firefox/addon/4664/developers?src=api"
                     % settings.SITE_URL,
                 "</meet_developers>",
                 """<reviews num="101">""",
-                "%s/en-US/firefox/addon/4664/reviews/?src=api</reviews>"
+                "%s/en-US/firefox/addon/4664/reviews/?src=api"
                     % settings.SITE_URL,
                 "<total_downloads>867952</total_downloads>",
                 "<weekly_downloads>23646</weekly_downloads>",
                 "<daily_users>44693</daily_users>",
-                '<created epoch="1174134235">2007-03-17T12:23:55Z'
-                    '</created>',
-                '<last_updated epoch="1237836004">'
-                    "2009-03-23T19:20:04Z</last_updated>",
                 '<author id="2519"',
                 "%s/en-US/firefox/user/2519/?src=api</link>"
                     % settings.SITE_URL,
@@ -230,6 +237,22 @@ class APITest(TestCase):
                 )
 
         response = make_call('addon/4664', version=1.5)
+        doc = pq(response.content)
+
+        tags = {
+                'suggested_amount': ({'currency': 'USD'}, '0.99'),
+                'created': ({'epoch': '1174134235'}, '2007-03-17T12:23:55Z'),
+                'last_updated': (
+                    {'epoch': '1237836004'}, '2009-03-23T19:20:04Z'),
+                }
+
+        for tag, v in tags.items():
+            attrs, text = v
+            el = doc(tag)
+            for attr, val in attrs.items():
+                eq_(el.attr(attr), val)
+
+            eq_(el.text(), text)
 
         for needle in needles:
             self.assertContains(response, needle)
@@ -267,9 +290,7 @@ class APITest(TestCase):
 
 
 class ListTest(TestCase):
-    """
-    Tests the list view with various urls.
-    """
+    """Tests the list view with various urls."""
     fixtures = ['base/addons', 'base/featured']
 
     def test_defaults(self):
@@ -348,6 +369,19 @@ class ListTest(TestCase):
         request = make_call('list/featured/all/10/Linux/3.7a2pre',
                             version=1.3)
         self.assertContains(request, "<addons>")
+
+    def test_average_daily_users(self):
+        """Verify that average daily users returns data in order."""
+        r = make_call('list/by_adu', version=1.5)
+        doc = pq(r.content)
+        vals = [int(a.text) for a in doc("average_daily_users")]
+        sorted_vals = sorted(vals, reverse=True)
+        eq_(vals, sorted_vals)
+
+    def test_json(self):
+        """Verify that we get some json."""
+        r = make_call('list/by_adu?format=json', version=1.5)
+        assert json.loads(r.content)
 
 
 class SeamonkeyFeaturedTest(TestCase):

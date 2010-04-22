@@ -16,8 +16,9 @@ from tower import ugettext as _, ugettext_lazy
 from caching.base import cached_with
 
 import amo
-from amo.urlresolvers import get_url_prefix
 import api
+from api.utils import addon_to_dict
+from amo.urlresolvers import get_url_prefix
 from addons.models import Addon
 from search.client import Client as SearchClient, SearchError
 from search import utils as search_utils
@@ -79,11 +80,11 @@ class APIView(object):
 
     def __call__(self, request, api_version, *args, **kwargs):
 
+        self.version = float(api_version)
         self.format = request.REQUEST.get('format', 'xml')
         self.mimetype = ('text/xml' if self.format == 'xml'
                          else 'application/json')
         self.request = request
-        self.version = float(api_version)
         if not validate_api_version(api_version):
             msg = OUT_OF_DATE.format(self.version, api.CURRENT_VERSION)
             return self.render_msg(msg, ERROR, status=403,
@@ -106,8 +107,15 @@ class APIView(object):
         context['api_version'] = self.version
         context['api'] = api
 
-        return render_xml(self.request, template, context,
-                            mimetype=self.mimetype)
+        if self.format == 'xml':
+            return render_xml(self.request, template, context,
+                              mimetype=self.mimetype)
+        else:
+            return HttpResponse(self.render_json(context),
+                                mimetype=self.mimetype)
+
+    def render_json(self, context):  # pragma: no cover
+        return json.dumps({'msg': _('Not implemented yet.')})
 
 
 class AddonDetailView(APIView):
@@ -122,12 +130,7 @@ class AddonDetailView(APIView):
         return self.render_addon(addon)
 
     def render_addon(self, addon):
-        if self.format == 'xml':
-            return self.render('api/addon_detail.xml',
-                               {'addon': addon, 'amo': amo})
-        else:
-            pass
-            # serialize me?
+        return self.render('api/addon_detail.xml', {'addon': addon})
 
 
 class SearchView(APIView):
@@ -177,9 +180,8 @@ class SearchView(APIView):
             return self.render_msg('Could not connect to Sphinx search.',
                                    ERROR, status=503, mimetype=self.mimetype)
 
-        if self.format == 'xml':
-            return self.render('api/search.xml',
-                               {'results': results, 'total': sc.total_found})
+        return self.render('api/search.xml',
+                           {'results': results, 'total': sc.total_found})
 
 
 class ListView(APIView):
@@ -193,19 +195,24 @@ class ListView(APIView):
         limit = min(MAX_LIMIT, int(limit))
         APP, platform = self.request.APP, platform.lower()
         qs = Addon.objects.listed(APP)
+        shuffle = True
 
         if list_type == 'newest':
             new = date.today() - timedelta(days=NEW_DAYS)
             addons = (qs.filter(created__gte=new)
                       .order_by('-created'))[:limit + BUFFER]
+        elif list_type == 'by_adu':
+            addons = qs.order_by('-average_daily_users')[:limit + BUFFER]
+            shuffle = False  # By_adu is an ordered list.
         else:
             addons = Addon.objects.featured(APP).distinct() & qs
 
-        args = (list_type, addon_type, limit, platform, version)
+        args = (list_type, addon_type, limit, platform, version, shuffle)
         f = lambda: self._process(addons, *args)
         return cached_with(addons, f, self.request.path)
 
-    def _process(self, addons, list_type, addon_type, limit, platform, version):
+    def _process(self, addons, list_type, addon_type, limit, platform, version,
+                 shuffle=True):
         """Do all the filtering in here so we can wrap it in cached_with."""
         APP = self.request.APP
 
@@ -240,18 +247,22 @@ class ListView(APIView):
 
         # We prefer add-ons that support the current locale.
         lang = translation.get_language()
-        groups = dict(partition(addons,
-                                lambda x: x.description.locale == lang))
+        partitioner = lambda x: (x.description and
+                                 (x.description.locale == lang))
+        groups = dict(partition(addons, partitioner))
         good, others = groups.get(True, []), groups.get(False, [])
 
-        random.shuffle(good)
-        random.shuffle(others)
+        if shuffle:
+            random.shuffle(good)
+            random.shuffle(others)
 
         if len(good) < limit:
             good.extend(others[:limit - len(good)])
 
-        if self.format == 'xml':
-            return self.render('api/list.xml', {'addons': good})
+        return self.render('api/list.xml', {'addons': good})
+
+    def render_json(self, context):
+        return json.dumps([addon_to_dict(a) for a in context['addons']])
 
 
 # pylint: disable-msg=W0613

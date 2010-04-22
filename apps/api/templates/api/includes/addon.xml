@@ -75,31 +75,42 @@
   {% endfor -%}
   {%- endif -%}
   {%- if api_version >= 1.5 %}
-  {%- if addon.current_beta_version -%}
-  {%- for file in addon.current_beta_version.files.all() -%}
-  <install hash="{{ file.hash }}" os="{{ file.platform.name }}"
-           size="{{ file.size * 1024 }}"
-           status="{{ amo.STATUS_CHOICES[amo.STATUS_BETA] }}">
-    {{ file.get_url_path('api') }}
-  </install>
-  {% endfor -%}
-  {%- endif -%}
-  {%- if addon.wants_contributions -%}
-  <contribution_data>
-    <link>{{ addon.contribution_url|absolutify|urlparams(src='api') }}</link>
-    <suggested_amount currency="USD">{{ addon.suggested_amount }}</suggested_amount>
-    <meet_developers>{{ addon.meet_the_dev_url()|absolutify|urlparams(src='api')  }}</meet_developers>
-  </contribution_data>
-  {%- endif -%}
-  <developer_comments>{{ addon.developer_comments }}</developer_comments>
-  <reviews num="{{ addon.total_reviews }}">{{ addon.reviews_url|absolutify|urlparams(src='api')  }}</reviews>
-  <total_downloads>{{ addon.total_downloads }}</total_downloads>
-  <weekly_downloads>{{ addon.weekly_downloads }}</weekly_downloads>
-  <daily_users>{{ addon.average_daily_users }}</daily_users>
-  <created epoch="{{ addon.created|epoch }}">{{ addon.created|isotime }}</created>
-  <last_updated epoch="{{ addon.last_updated|epoch }}">{{ addon.last_updated|isotime }}</last_updated>
-  <homepage>{{ addon.homepage }}</homepage>
-  <support>{{ addon.support_url }}</support>
+    {%- if addon.current_beta_version -%}
+    {%- for file in addon.current_beta_version.all_files -%}
+    <install hash="{{ file.hash }}" os="{{ file.platform.name }}"
+             size="{{ file.size * 1024 }}"
+             status="{{ amo.STATUS_CHOICES[amo.STATUS_BETA] }}">
+      {{ file.get_url_path('api') }}
+    </install>
+    {% endfor -%}
+    {%- endif -%}
+
+    {%- if addon.wants_contributions -%}
+    <contribution_data>
+      <link>{{ addon.contribution_url|absolutify|urlparams(src='api') }}</link>
+      <suggested_amount currency="USD">
+        {{ addon.suggested_amount }}
+      </suggested_amount>
+      <meet_developers>
+        {{ addon.meet_the_dev_url()|absolutify|urlparams(src='api') }}
+      </meet_developers>
+    </contribution_data>
+    {%- endif -%}
+    <developer_comments>{{ addon.developer_comments }}</developer_comments>
+    <reviews num="{{ addon.total_reviews }}">
+      {{ addon.reviews_url|absolutify|urlparams(src='api') }}
+    </reviews>
+    <total_downloads>{{ addon.total_downloads }}</total_downloads>
+    <weekly_downloads>{{ addon.weekly_downloads }}</weekly_downloads>
+    <daily_users>{{ addon.average_daily_users }}</daily_users>
+    <created epoch="{{ addon.created|epoch }}">
+      {{ addon.created|isotime }}
+    </created>
+    <last_updated epoch="{{ addon.last_updated|epoch }}">
+      {{ addon.last_updated|isotime }}
+    </last_updated>
+    <homepage>{{ addon.homepage }}</homepage>
+    <support>{{ addon.support_url }}</support>
   {%- endif -%}
 </addon>
 {% endcache %}

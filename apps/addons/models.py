@@ -12,6 +12,7 @@ import caching.base as caching
 
 import amo.models
 from amo.fields import DecimalCharField
+from amo.utils import urlparams
 from amo.urlresolvers import reverse
 from reviews.models import Review
 from search import utils as search_utils
@@ -603,6 +604,12 @@ class Preview(amo.models.ModelBase):
         url_template = (thumb and settings.PREVIEW_THUMBNAIL_URL or
                         settings.PREVIEW_FULL_URL)
         return url_template % (self.id / 1000, self.id, modified)
+
+    def as_dict(self, src=None):
+        d = {'full': urlparams(self.image_url, src=src),
+             'thumbnail': urlparams(self.thumbnail_url, src=src),
+             'caption': unicode(self.caption)}
+        return d
 
     @property
     def thumbnail_url(self):

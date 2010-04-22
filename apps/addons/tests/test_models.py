@@ -8,7 +8,8 @@ from nose.tools import eq_, assert_not_equal
 import test_utils
 
 import amo
-from addons.models import Addon, AddonPledge, AddonType, Category, Persona
+from addons.models import (Addon, AddonPledge, AddonType, Category, Persona,
+                           Preview)
 from reviews.models import Review
 from users.models import UserProfile
 from versions.models import Version
@@ -80,9 +81,9 @@ class TestAddonManager(test_utils.TestCase):
 
 
 class TestAddonModels(test_utils.TestCase):
-    # base/addons.json has an example addon
-    fixtures = ['base/addons.json', 'addons/featured.json',
-                'addons/invalid_latest_version.json']
+    # base/addons has an example addon
+    fixtures = ['base/addons', 'addons/featured',
+                'addons/invalid_latest_version']
 
     def test_current_version(self):
         """
@@ -233,7 +234,7 @@ class TestCategoryModel(test_utils.TestCase):
 
 
 class TestAddonPledgeModel(test_utils.TestCase):
-    fixtures = ['stats/test_models.json']
+    fixtures = ['stats/test_models']
 
     def test_ongoing(self):
         """Make sure ongoing pledges are returned correctly."""
@@ -275,3 +276,13 @@ class TestPersonaModel(test_utils.TestCase):
         mypersona = Persona(id=1234, persona_id=9876)
         assert mypersona.thumb_url.endswith('/7/6/9876/preview.jpg')
         assert mypersona.preview_url.endswith('/7/6/9876/preview_large.jpg')
+
+
+class TestPreviewModel(test_utils.TestCase):
+
+    fixtures = ['base/previews']
+
+    def test_as_dict(self):
+        expect = ['caption', 'full', 'thumbnail']
+        reality = sorted(Preview.objects.all()[0].as_dict().keys())
+        eq_(expect, reality)
