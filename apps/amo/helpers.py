@@ -1,10 +1,8 @@
-import cgi
 import collections
 import json as jsonlib
 import math
 import random
 import urllib
-import urlparse
 
 from django.conf import settings
 from django.utils import translation
@@ -12,22 +10,23 @@ from django.template import defaultfilters
 
 from babel import Locale
 from babel.support import Format
-import datetime
 import jinja2
 from jinja2.exceptions import FilterArgumentError
-import pytz
-import time
-
 from jingo import register, env
 from tower import ugettext as _
 
 import amo
-from amo import urlresolvers
+from amo import utils, urlresolvers
 from addons.models import Category
 from translations.query import order_by_translation
 
 # Yanking filters from Django.
 register.filter(defaultfilters.slugify)
+
+# Registering some utils as filters:
+urlparams = register.filter(utils.urlparams)
+register.filter(utils.epoch)
+register.filter(utils.isotime)
 
 
 @register.function
@@ -43,27 +42,6 @@ def locale_url(url):
 def url(viewname, *args, **kwargs):
     """Helper for Django's ``reverse`` in templates."""
     return urlresolvers.reverse(viewname, args=args, kwargs=kwargs)
-
-
-@register.filter
-def urlparams(url_, hash=None, **query):
-    """
-    Add a fragment and/or query paramaters to a URL.
-
-    New query params will be appended to exising parameters, except duplicate
-    names, which will be replaced.
-    """
-    url = urlparse.urlparse(url_)
-    fragment = hash if hash is not None else url.fragment
-
-    query_dict = dict(cgi.parse_qsl(str(url.query))) if url.query else {}
-    query_dict.update((k, v) for k, v in query.items())
-
-    query_string = urllib.urlencode(dict((k, v) for k, v
-            in query_dict.items() if v is not None))
-    new = urlparse.ParseResult(url.scheme, url.netloc, url.path, url.params,
-                               query_string, fragment)
-    return new.geturl()
 
 
 @register.filter
@@ -240,27 +218,6 @@ def wround(value, precision=0, method='common'):
         return func(value * 10 * precision) / (10 * precision)
     else:
         return int(func(value))
-
-
-def _append_tz(t):
-    tz = pytz.timezone(settings.TIME_ZONE)
-    return tz.localize(t)
-
-
-@register.filter
-def isotime(t):
-    """Date/Time format according to ISO 8601"""
-    if not hasattr(t, 'tzinfo'):
-        return
-    return _append_tz(t).astimezone(pytz.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-
-
-@register.filter
-def epoch(t):
-    """Date/Time converted to seconds since epoch"""
-    if not hasattr(t, 'tzinfo'):
-        return
-    return int(time.mktime(_append_tz(t).timetuple()))
 
 
 @register.filter

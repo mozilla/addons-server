@@ -1,13 +1,57 @@
+import cgi
 import functools
 import urllib
+import urlparse
 import logging
 import itertools
+import time
 
 from django.conf import settings
 from django.core import paginator
 from django.core.mail import send_mail as django_send_mail
 
+import pytz
+
 from . import log
+
+
+def urlparams(url_, hash=None, **query):
+    """
+    Add a fragment and/or query paramaters to a URL.
+
+    New query params will be appended to exising parameters, except duplicate
+    names, which will be replaced.
+    """
+    url = urlparse.urlparse(url_)
+    fragment = hash if hash is not None else url.fragment
+
+    query_dict = dict(cgi.parse_qsl(str(url.query))) if url.query else {}
+    query_dict.update((k, v) for k, v in query.items())
+
+    query_string = urllib.urlencode(dict((k, v) for k, v
+            in query_dict.items() if v is not None))
+    new = urlparse.ParseResult(url.scheme, url.netloc, url.path, url.params,
+                               query_string, fragment)
+    return new.geturl()
+
+
+def isotime(t):
+    """Date/Time format according to ISO 8601"""
+    if not hasattr(t, 'tzinfo'):
+        return
+    return _append_tz(t).astimezone(pytz.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def epoch(t):
+    """Date/Time converted to seconds since epoch"""
+    if not hasattr(t, 'tzinfo'):
+        return
+    return int(time.mktime(_append_tz(t).timetuple()))
+
+
+def _append_tz(t):
+    tz = pytz.timezone(settings.TIME_ZONE)
+    return tz.localize(t)
 
 
 def sorted_groupby(seq, field):
