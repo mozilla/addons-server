@@ -6,12 +6,6 @@ import caching.base
 from translations.fields import TranslatedFieldMixin
 from translations import transformer
 
-from .signals import register_signals
-
-
-# Register Django signals this app listens to.
-register_signals()
-
 
 class TransformQuerySet(queryset_transform.TransformQuerySet):
 
