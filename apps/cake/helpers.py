@@ -1,5 +1,6 @@
 import hashlib
 from time import time
+import urllib
 
 from django.conf import settings
 from django.utils import translation
@@ -55,4 +56,5 @@ def remora_url(context, url, lang=None, app=None, prefix=''):
     url_parts = [prefix, lang, app, url]
     url_parts = [p.strip('/') for p in url_parts if p]
 
-    return '/'+'/'.join(url_parts)
+    full_path = '/'+'/'.join(url_parts)
+    return urllib.quote(full_path.encode('utf-8'))

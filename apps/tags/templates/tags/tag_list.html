@@ -1,6 +1,6 @@
 {% macro tag_li(tag, addon=None, css_class='') -%}
 <li id="taglink-{{ tag.id }}" class="{{ css_class }}">
-  <a href="{{ remora_url('/tag/') }}/{{ tag.tag_text }}" class="tagitem">
+  <a href="{{ remora_url('/tag/'+tag.tag_text) }}" class="tagitem">
     {{ tag.tag_text }}
   </a>
   {% if is_tag_admin or tag.addon_tags.user == request.user or

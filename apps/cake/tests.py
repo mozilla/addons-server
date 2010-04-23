@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.contrib.auth.models import AnonymousUser
 
 from mock import Mock
@@ -138,3 +139,7 @@ class TestHelpers(TestCase):
 
         url = remora_url(ctx, '/devhub/something', app='', prefix='remora')
         eq_(url, '/remora/en-US/devhub/something')
+
+        # UTF-8 strings
+        url = remora_url(ctx, u'/tags/Hallo und tschüß')
+        eq_(url, '/en-US/firefox/tags/Hallo%20und%20tsch%C3%BC%C3%9F')
