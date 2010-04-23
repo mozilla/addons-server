@@ -98,11 +98,15 @@ class Collection(amo.models.ModelBase):
 class CollectionAddon(amo.models.ModelBase):
     addon = models.ForeignKey(Addon)
     collection = models.ForeignKey(Collection)
-    added = models.DateTimeField()
+    added = models.DateTimeField(auto_now_add=True)
     # category (deprecated: for "Fashion Your Firefox")
     comments = TranslatedField(null=True)
     downloads = models.PositiveIntegerField(default=0)
-    user = models.ForeignKey(UserProfile)
+    user = models.ForeignKey(UserProfile, null=True)
+
+    ordering = models.PositiveIntegerField(default=0,
+        help_text='Add-ons are displayed in ascending order '
+                  'based on this field.')
 
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'addons_collections'
