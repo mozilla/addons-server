@@ -13,7 +13,11 @@
      data-max="{{ compat.max.version }}"
   {% endif %}>
   <p class="install-button">
-    {% for link in b.links() %}
+    {% set links = b.links() %}
+    {% if not links %}
+      {{ _('No compatible versions') }}
+    {% endif %}
+    {% for link in links %}
       {% set extra = "platform " + link.os.shortname if link.os else "" %}
       <a class="button {{ b.button_class|join(' ') }} {{ extra }}"
          data-hash="{{ link.file.hash }}"

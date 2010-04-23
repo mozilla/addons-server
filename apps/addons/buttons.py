@@ -72,7 +72,8 @@ class InstallButton(object):
         self.size = size
         self.detailed = detailed
 
-        self.unreviewed = addon.is_unreviewed() or self.version.is_unreviewed
+        version_unreviewed = (self.version and self.version.is_unreviewed)
+        self.unreviewed = addon.is_unreviewed() or version_unreviewed
         self.self_hosted = addon.status == amo.STATUS_LISTED
         self.featured = (not self.unreviewed and not self.self_hosted
                          and addon.is_featured(app, lang)
@@ -116,6 +117,8 @@ class InstallButton(object):
         return rv
 
     def links(self):
+        if not self.version:
+            return []
         rv = []
         files = [f for f in self.version.all_files
                  if f.status in amo.VALID_STATUSES]

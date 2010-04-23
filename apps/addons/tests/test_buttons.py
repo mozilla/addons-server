@@ -304,6 +304,9 @@ class TestButton(ButtonTest):
         eq_(len(links), len(expected_platforms))
         eq_([x.os for x in links], list(expected_platforms))
 
+    def test_no_version(self):
+        self.addon.current_version = None
+        eq_(self.get_button().links(), [])
 
 
 class TestButtonHtml(ButtonTest):
