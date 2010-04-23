@@ -4,5 +4,5 @@
 
 {% block content %}
 <h2>{{ _('Eula for {0}')|f(addon.name) }}</h2>
-{{ install_button(addon, show_eula=False, show_warning=False) }}
+{{ install_button(addon, show_contrib=False, show_eula=False, show_warning=False) }}
 {% endblock content %}

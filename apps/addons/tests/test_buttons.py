@@ -5,6 +5,7 @@ from pyquery import PyQuery
 import test_utils
 
 import amo
+from amo.urlresolvers import reverse
 from addons.buttons import install_button
 
 
@@ -86,6 +87,14 @@ class TestButtonSetup(ButtonTest):
         self.addon.has_eula = False
         b = self.get_button()
         assert not b.show_eula
+
+    def test_eula_and_contrib(self):
+        """If show_eula is True, show_contrib should be off."""
+        self.addon.has_eula = True
+        self.addon.annoying = amo.CONTRIB_ROADBLOCK
+        b = self.get_button(show_eula=False)
+        assert not b.show_eula
+        assert b.show_contrib
 
     def test_src(self):
         """src defaults to '', and can be in the context or request.GET."""
@@ -387,3 +396,13 @@ class TestButtonHtml(ButtonTest):
         self.addon.has_eula = True
         doc = self.render()
         eq_(doc('.eula .os').text(), '')
+
+
+class TestViews(test_utils.TestCase):
+    fixtures = ['addons/eula+contrib-addon']
+
+    def test_eula_with_contrib_roadblock(self):
+        url = reverse('addons.eula', args=[11730, 53612])
+        response = self.client.get(url, follow=True)
+        doc = PyQuery(response.content)
+        eq_(doc('[data-search]').attr('class'), 'install accept')

@@ -79,10 +79,10 @@ class InstallButton(object):
                          and addon.is_featured(app, lang)
                          or addon.is_category_featured(app, lang))
 
-        self.show_eula = show_eula and addon.has_eula
         self.accept_eula = addon.has_eula and not show_eula
         self.show_contrib = (show_contrib and addon.takes_contributions
                              and addon.annoying == amo.CONTRIB_ROADBLOCK)
+        self.show_eula = not self.show_contrib and show_eula and addon.has_eula
         self.show_warning = show_warning and (self.unreviewed or
                                               self.self_hosted)
 
