@@ -223,3 +223,12 @@ class TestDetailPage(test_utils.TestCase):
         doc = pq(resp.content)
         eq_(len(doc(sel)), 3)  # 3 login links
 
+
+class TestTagsBox(test_utils.TestCase):
+    fixtures = ['base/addontag']
+
+    def test_tag_box(self):
+        """Verify that we don't show duplicate tags."""
+        r = self.client.get(reverse('addons.detail', args=[8680]), follow=True)
+        doc = pq(r.content)
+        eq_('SEO', doc('#tags ul').children().text())

@@ -310,6 +310,14 @@ class Addon(amo.models.ModelBase):
             category__application__id=app.id).exists()
 
     @amo.cached_property
+    def tags_partitioned_by_developer(self):
+        "Returns a tuple of developer tags and user tags for this addon."
+        tags = self.tags.not_blacklisted()
+        user_tags = tags.exclude(addon_tags__user__in=self.authors.all())
+        dev_tags = tags.exclude(id__in=user_tags)
+        return (dev_tags, user_tags,)
+
+    @amo.cached_property
     def compatible_apps(self):
         """Shortcut to get compatible apps for the current version."""
         if self.current_version:
