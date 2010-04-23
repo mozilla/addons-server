@@ -69,9 +69,7 @@ def extension_detail(request, addon):
         addonuser__listed=True, authors__in=addon.listed_authors).distinct()
 
     # tags
-    tags = addon.tags.not_blacklisted()
-    dev_tags = tags.filter(addon_tags__user__in=addon.authors.all())
-    user_tags = tags.exclude(addon_tags__user__in=addon.authors.all())
+    (dev_tags, user_tags) = addon.tags_partitioned_by_developer
 
     # addon recommendations
     recommended = Addon.objects.valid().filter(
