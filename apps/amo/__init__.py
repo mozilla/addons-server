@@ -409,3 +409,8 @@ CONTRIB_CHOICES = {
     CONTRIB_AFTER: 'User shown splash screen after download',
     CONTRIB_ROADBLOCK: 'Roadblock; User shown splash screen before download',
 }
+
+# Personas
+PERSONAS_ADDON_ID = 10900 # Add-on ID of the Personas Plus Add-on
+PERSONAS_FIREFOX_MIN = '3.6' # First Firefox version to support Personas
+PERSONAS_THUNDERBIRD_MIN = '3.1' # Ditto for Thunderbird

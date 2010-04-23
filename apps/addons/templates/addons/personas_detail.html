@@ -64,7 +64,7 @@
 
           <p{{ addon.summary|locale_html }}>{{ addon.summary|nl2br }}</p>
 
-          {# TODO install button #}
+          {{ big_install_button(addon, show_warning=False) }}
 
           {{ addon_sharing(addon) }}
 

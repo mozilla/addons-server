@@ -34,6 +34,25 @@
 </div>
 {% endmacro %}
 
+{% macro learn_more_personas() %}
+<div class="install-note">
+  {% if APP == amo.THUNDERBIRD %}
+    <p class="msg m-learn-more">{% trans %}
+      To install this Persona, <b>get Thunderbird</b>, a free and open
+      source email client from Mozilla Messaging and install the Personas
+      Plus add-on.
+    {% endtrans %}</p>
+    <p><a href="{{ app_url }}" class="button">{{ _('Learn more about Thunderbird') }}</a></p>
+  {% else %}
+    <p class="msg m-learn-more">{% trans %}
+      To install this Persona and thousands more, <b>get Firefox</b>, a
+      free and open web browser from Mozilla.
+    {% endtrans %}</p>
+    <p><a href="{{ app_url }}" class="button">{{ _('Learn more about Firefox') }}</a></p>
+  {% endif %}
+</div>
+{% endmacro %}
+
 {% macro not_updated() %}
 {# js vars: url #}
 <div class="install-note">
@@ -57,6 +76,20 @@
   <p class="older-versions">{% trans href=url('reviews.list', 000)|replace(000, '{addon}') %}
     or view <a href="{{ href }}">older versions of this add-on</a>.
   {% endtrans %}</p>
+</div>
+{% endmacro %}
+
+{% macro personas_need_upgrade() %}
+{# js vars: old_version #}
+<div class="install-note">
+  {% set new_version = (amo.PERSONAS_THUNDERBIRD_MIN if APP == amo.THUNDERBIRD
+                        else amo.PERSONAS_FIREFOX_MIN) %}
+  <p class="msg m-newer-version">{% trans app=APP.pretty %}
+  This Persona requires {{ app }} {{ new_version }}. You are currently using
+    {{ app }} {old_version}.
+  {% endtrans %}</p>
+  {# L10n: {0} is an app name, like Firefox. #}
+  <p><a href="{{ app_url }}" class="button">{{ _('Upgrade {0}')|f(APP.pretty) }}</a></p>
 </div>
 {% endmacro %}
 
@@ -101,8 +134,10 @@
 
 z.button.messages = {
   learn_more: {{ learn_more()|json|safe }},
+  learn_more_personas: {{ learn_more_personas()|json|safe }},
   not_updated: {{ not_updated()|json|safe }},
   newer_version: {{ newer_version()|json|safe }},
+  personas_need_upgrade: {{ personas_need_upgrade()|json|safe }},
   unreviewed: {{ unreviewed()|json|safe }},
   selfhosted: {{ selfhosted()|json|safe }},
   platform_link: {{ platform_link()|json|safe }},

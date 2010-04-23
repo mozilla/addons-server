@@ -6,6 +6,7 @@ from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
 from amo.helpers import urlparams
+from amo.urlresolvers import reverse
 from addons.models import Addon
 from translations.models import Translation
 
@@ -45,7 +46,8 @@ def install_button_factory(*args, **kwargs):
     button = InstallButton(*args, **kwargs)
     # Order matters.  We want to highlight unreviewed before featured.  They
     # should be mutually exclusive, but you never know.
-    classes = (('unreviewed', UnreviewedInstallButton),
+    classes = (('is_persona', PersonaInstallButton),
+               ('unreviewed', UnreviewedInstallButton),
                ('self_hosted', SelfHostedInstallButton),
                ('featured', FeaturedInstallButton))
     for pred, cls in classes:
@@ -78,6 +80,7 @@ class InstallButton(object):
         self.featured = (not self.unreviewed and not self.self_hosted
                          and addon.is_featured(app, lang)
                          or addon.is_category_featured(app, lang))
+        self.is_persona = addon.type_id == amo.ADDON_PERSONA
 
         self.accept_eula = addon.has_eula and not show_eula
         self.show_contrib = (show_contrib and addon.takes_contributions
@@ -175,6 +178,19 @@ class SelfHostedInstallButton(InstallButton):
 
     def links(self):
         return [Link(_('Continue to Website &rarr;'), self.addon.homepage)]
+
+
+class PersonaInstallButton(InstallButton):
+    install_class = ['persona']
+
+    def links(self):
+        return [Link(_('Add to {0}').format(unicode(self.app.pretty)),
+                     reverse('addons.detail', args=[amo.PERSONAS_ADDON_ID]))]
+
+    def attrs(self):
+        rv = super(PersonaInstallButton, self).attrs()
+        rv['data-browsertheme'] = self.addon.persona.json_data
+        return rv
 
 
 class Link(object):
@@ -286,7 +302,11 @@ def smorgasbord(request):
     beta.tag = 'beta version'
 
     # Theme.
+
     # Persona.
+    addons.append(Addon.objects.filter(type=amo.ADDON_PERSONA)[0])
+    addons[-1].tag = 'persona'
+
     # Future Version.
     # No versions.
 
