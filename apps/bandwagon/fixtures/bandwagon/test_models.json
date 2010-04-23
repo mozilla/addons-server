@@ -36,7 +36,7 @@
             "name": 395856,
             "access": 0,
             "application": 1,
-            "collection_type": 0,
+            "type": 0,
             "listed": 1,
             "subscribers": 1,
             "default_locale": "ru",

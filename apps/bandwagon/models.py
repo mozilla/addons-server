@@ -20,6 +20,9 @@ class CollectionManager(amo.models.ManagerBase):
 
 
 class Collection(amo.models.ModelBase):
+
+    TYPE_CHOICES = amo.COLLECTION_CHOICES.items()
+
     uuid = models.CharField(max_length=36, blank=True, unique=True)
     name = TranslatedField()
     nickname = models.CharField(max_length=30, blank=True, unique=True,
@@ -27,7 +30,8 @@ class Collection(amo.models.ModelBase):
     description = LinkifiedField()
     default_locale = models.CharField(max_length=10, default='en-US',
                                       db_column='defaultlocale')
-    collection_type = models.PositiveIntegerField(default=0)
+    type = models.PositiveIntegerField(db_column='collection_type',
+            choices=TYPE_CHOICES, default=0)
     icontype = models.CharField(max_length=25, blank=True)
 
     access = models.BooleanField(default=False)

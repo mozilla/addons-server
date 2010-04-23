@@ -1,5 +1,6 @@
 from django.conf import settings
 
+from mock import Mock
 from nose.tools import eq_
 import test_utils
 from pyquery import PyQuery as pq
@@ -8,6 +9,7 @@ import amo
 from amo.helpers import urlparams
 from amo.urlresolvers import reverse
 from addons.models import Addon, AddonUser
+from addons.views import _details_collections_dropdown
 from users.models import UserProfile
 
 
@@ -59,7 +61,7 @@ class TestHomepage(test_utils.TestCase):
 
 class TestDetailPage(test_utils.TestCase):
     fixtures = ['base/addons', 'addons/listed', 'addons/persona',
-                'base/addon_8680']
+                'base/addon_8680', 'base/collections']
 
     def test_anonymous_user(self):
         """Does the page work for an anonymous user?"""
@@ -248,6 +250,24 @@ class TestDetailPage(test_utils.TestCase):
                  in doc('#addons-author-addons-select option')
                  if a.attrib['value'] == '8680']), 0)
 
+    def test__details_collections_dropdown(self):
+
+        request = Mock()
+        request.APP.id = 1
+
+        profile = Mock()
+        profile.id = 10482
+
+        addon = Mock()
+        addon.id = 4048
+
+        ret = _details_collections_dropdown(request, profile, addon)
+        eq_(len(ret), 2)
+
+        # Add-on exists in one of the collections
+        addon.id = 433
+        ret = _details_collections_dropdown(request, profile, addon)
+        eq_(len(ret), 1)
 
 class TestTagsBox(test_utils.TestCase):
     fixtures = ['base/addontag']

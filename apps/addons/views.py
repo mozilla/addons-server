@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404
 from django.utils import translation
 
 import jingo
-from tower import ugettext as _, ugettext_lazy as _lazy
+from tower import ugettext_lazy as _lazy
 
 import amo
 from amo.utils import sorted_groupby
@@ -99,8 +99,8 @@ def extension_detail(request, addon):
     # this user's collections
     if request.user.is_authenticated():
         profile = UserProfile.objects.get(user=request.user)
-        user_collections = profile.collections.filter(
-            collectionuser__role=amo.COLLECTION_ROLE_ADMIN)
+        user_collections = _details_collections_dropdown(request,
+                                                        profile, addon)
     else:
         user_collections = []
 
@@ -120,6 +120,54 @@ def extension_detail(request, addon):
         'user_collections': user_collections,
     }
     return jingo.render(request, 'addons/details.html', data)
+
+
+def _details_collections_dropdown(request, profile, addon):
+    """Returns the collections which should be shown on an add-on details
+        page for a logged in user. This is used in the "Add to a collection..."
+        dropdown.  Rules to be in this list:
+            - user is logged in
+            - collection is not synchronized
+            - user is an admin or publisher of the collection
+            - collection application matches current APP
+            - current add-on is not already in the collection
+
+    This takes care of all but #5, for that we had to resort to raw() :(
+        profile.collections.filter(
+            Q(type=amo.COLLECTION_NORMAL) | Q(type=amo.COLLECTION_FEATURED),
+            Q(collectionuser__role=amo.COLLECTION_ROLE_ADMIN) |
+            Q(collectionuser__role=amo.COLLECTION_ROLE_PUBLISHER),
+            application__id=request.APP.id)
+    """
+
+    sql = """
+            SELECT DISTINCT
+                collections.id
+            FROM
+                collections_users as cu
+            INNER JOIN
+                collections ON
+                (cu.collection_id = collections.id)
+            LEFT JOIN
+                addons_collections AS ac ON
+                (ac.collection_id = collections.id AND ac.addon_id IN (%s))
+            WHERE
+                cu.user_id = %s
+            AND cu.role IN (%s,%s) AND ac.addon_id IS NULL
+            AND collections.collection_type IN (%s,%s)
+            AND collections.application_id = %s
+    """
+    params = [addon.id, profile.id, amo.COLLECTION_ROLE_PUBLISHER,
+              amo.COLLECTION_ROLE_ADMIN, amo.COLLECTION_NORMAL,
+              amo.COLLECTION_FEATURED, request.APP.id]
+    collections = Collection.objects.raw(sql, params)
+
+    ids = [i.id for i in collections]
+
+    if ids:
+        return Collection.objects.filter(id__in=ids)
+    else:
+        return []
 
 
 def persona_detail(request, addon):
