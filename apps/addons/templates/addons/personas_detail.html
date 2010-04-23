@@ -49,15 +49,16 @@
               <tr class="meta-stats">
                 <th>{{ _('Daily Users') }}</th>
                 <td>
-                  {# TODO #}
                   <strong class="downloads">{{
-                    addon.total_downloads|numberfmt }}</strong>
+                    persona.popularity|numberfmt }}</strong>
                 </td>
               </tr>
-              <tr>
-                <th>{{ _('License') }}</th>
-                <td>{# TODO: license_link(...) #}</td>
-              </tr>
+              {% if persona.license %}
+                <tr>
+                  <th>{{ _('License') }}</th>
+                  <td>{{ license_link(persona.license.license_type) }}</td>
+                </tr>
+              {% endif %}
             </tbody>
           </table>
 
@@ -65,7 +66,6 @@
 
           {# TODO install button #}
 
-          {# TODO sharing? #}
           {{ addon_sharing(addon) }}
 
       </div></div>{# /addon-summary and -wrapper #}
