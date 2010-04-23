@@ -1,13 +1,19 @@
 import logging
 
-from django.db.models import Max
+from django.db import connection, transaction
+from django.db.models import Max, Q, F
+
+from celery.decorators import task
+from celery.messaging import establish_connection
 
 import amo
+from amo.utils import chunked
 import cronjobs
 
 from .models import Addon
 
 log = logging.getLogger('z.cron')
+task_log = logging.getLogger('z.task')
 
 
 def _change_last_updated(next):
@@ -61,3 +67,45 @@ def addon_last_updated():
     other = (Addon.objects.filter(last_updated__isnull=True)
              .values_list('id', 'created'))
     _change_last_updated(dict(other))
+
+
+@cronjobs.register
+def update_addon_appsupport():
+    # Find all the add-ons that need their app support details updated.
+    no_versions = (Q(status=amo.STATUS_LISTED) |
+                   Q(type__in=[amo.ADDON_PERSONA, amo.ADDON_SEARCH]))
+    newish = (Q(last_updated__gte=F('appsupport__created')) |
+              Q(appsupport__created__isnull=True))
+    ids = (Addon.objects.valid().exclude(no_versions).distinct()
+           .filter(newish, versions__apps__isnull=False,
+                   versions__files__status__in=amo.VALID_STATUSES)
+           .values_list('id', flat=True))
+
+    with establish_connection() as conn:
+        for chunk in chunked(ids, 20):
+            _update_appsupport.apply_async(args=[chunk], connection=conn)
+
+
+@task(rate_limit='20/m')
+@transaction.commit_manually
+def _update_appsupport(ids, **kw):
+    task_log.debug('Updating appsupport for %r' % ids)
+    delete = 'DELETE FROM appsupport WHERE addon_id IN (%s)'
+    insert = """INSERT INTO appsupport (addon_id, app_id, created, modified)
+                VALUES %s"""
+
+    addons = Addon.objects.no_cache().no_transforms().filter(id__in=ids)
+    apps = [(addon.id, app.id) for addon in addons
+            for app in addon.compatible_apps]
+    s = ','.join('(%s, %s, NOW(), NOW())' % x for x in apps)
+
+    if not apps:
+        return
+
+    cursor = connection.cursor()
+    cursor.execute(delete, [','.join(map(str, ids))])
+    cursor.execute(insert % s)
+    transaction.commit()
+
+    # All our updates were sql, so invalidate manually.
+    Addon.objects.invalidate(*addons)

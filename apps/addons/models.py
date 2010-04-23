@@ -15,7 +15,6 @@ from amo.fields import DecimalCharField
 from amo.utils import urlparams
 from amo.urlresolvers import reverse
 from reviews.models import Review
-from search import utils as search_utils
 from stats.models import Contribution as ContributionStats, ShareCountTotal
 from translations.fields import (TranslatedField, PurifiedField,
                                  LinkifiedField, translations_with_fallback)
@@ -65,7 +64,6 @@ class AddonManager(amo.models.ManagerBase):
         has_version = Q(versions__apps__application=app.id,
                         versions__files__status__in=status)
         is_weird = Q(type=amo.ADDON_PERSONA) | Q(status=amo.STATUS_LISTED)
-        # XXX: handle personas (no versions) and listed (no files)
         return self.filter(has_version | is_weird,
                            inactive=False, status__in=status).distinct()
 
@@ -633,3 +631,12 @@ class Preview(amo.models.ModelBase):
     @property
     def image_url(self):
         return self._image_url(thumb=False)
+
+
+class AppSupport(amo.models.ModelBase):
+    """Cache to tell us if an add-on's current version supports an app."""
+    addon = models.ForeignKey(Addon)
+    app = models.ForeignKey('applications.Application')
+
+    class Meta:
+        db_table = 'appsupport'

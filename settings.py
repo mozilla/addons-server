@@ -218,6 +218,7 @@ INSTALLED_APPS = (
     ROOT_PACKAGE,
 
     'cake',
+    'celery',
     'django_nose',
 
     'django.contrib.admin',
@@ -386,3 +387,12 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BLACKLIST = (
     'nobody@mozilla.org',
 )
+
+
+## Celery
+BROKER_HOST = 'localhost'
+BROKER_PORT = 5672
+BROKER_USER = 'zamboni'
+BROKER_PASSWORD = 'zamboni'
+BROKER_VHOST = 'zamboni'
+CELERY_RESULT_BACKEND = 'amqp'

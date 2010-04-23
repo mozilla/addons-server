@@ -125,6 +125,7 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
 
     return result
 
+
 class JSONEncoder(json.DjangoJSONEncoder):
 
     def default(self, obj):
@@ -138,3 +139,18 @@ class JSONEncoder(json.DjangoJSONEncoder):
                                                'max': unicode(obj.max)}}
 
         return super(JSONEncoder, self).default(obj)
+
+
+# By Ned Batchelder.
+def chunked(seq, n):
+    """
+    Yield successive n-sized chunks from seq.
+
+    >>> for group in chunked(range(8), 3):
+    ...     print group
+    [0, 1, 2]
+    [3, 4, 5]
+    [6, 7]
+    """
+    for i in xrange(0, len(seq), n):
+        yield seq[i:i+n]
