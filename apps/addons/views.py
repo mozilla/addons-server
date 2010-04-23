@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404
 from django.utils import translation
 
 import jingo
-from tower import ugettext as _
+from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
 from amo.utils import sorted_groupby
@@ -155,10 +155,10 @@ class HomepageFilter(object):
     default: the default key we should use
     """
 
-    opts = (('featured', _('Featured')),
-            ('popular', _('Popular')),
-            ('new', _('Recently Added')),
-            ('updated', _('Recently Updated')))
+    opts = (('featured', _lazy('Featured')),
+            ('popular', _lazy('Popular')),
+            ('new', _lazy('Recently Added')),
+            ('updated', _lazy('Recently Updated')))
 
     def __init__(self, request, base, key, default):
         self.opts_dict = dict(self.opts)
