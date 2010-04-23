@@ -22,6 +22,7 @@ class TestHelpers(test.TestCase):
 
         request = Mock()
         request.user = addon.authors.all()[0].create_django_user()
+        request.groups = ()
 
         tags = addon.tags.filter(blacklisted=False)
         dev_tags = tags.filter(addon_tags__user__in=addon.authors.all())
@@ -67,3 +68,6 @@ class TestHelpers(test.TestCase):
         eq_(doc('li.usertag').length, len(user_tags))
         eq_(doc('li.developertag').length, len(dev_tags))
         eq_(doc('li').length, len(user_tags)+len(dev_tags))
+
+        # delete buttons are shown
+        assert doc('li input.removetag').length > 0
