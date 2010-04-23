@@ -1,3 +1,4 @@
+import hashlib
 import time
 import uuid
 
@@ -56,6 +57,10 @@ class Collection(amo.models.ModelBase):
     users = models.ManyToManyField(UserProfile, through='CollectionUser',
                                   related_name='collections')
 
+    addon_index = models.CharField(max_length=40, null=True, db_index=True,
+        help_text='Custom index for the add-ons in this collection')
+    recommended_collection = models.ForeignKey('self', null=True)
+
     objects = CollectionManager()
 
     class Meta(amo.models.ModelBase.Meta):
@@ -68,18 +73,25 @@ class Collection(amo.models.ModelBase):
         if not self.uuid:
             self.uuid = unicode(uuid.uuid4())
 
+        # Maintain our index of add-on ids.
+        if self.id:
+            ids = self.addons.values_list('id', flat=True)
+            self.addon_index = self.make_index(ids)
+
         super(Collection, self).save(**kw)
 
     def get_url_path(self):
         # TODO(jbalogh): reverse
         return '/collection/%s' % self.url_slug
 
-    def fetch_translations(self, ids, lang):
-        return translations_with_fallback(ids, lang, self.default_locale)
-
     @classmethod
     def get_fallback(cls):
         return cls._meta.get_field('default_locale')
+
+    @classmethod
+    def make_index(cls, addon_ids):
+        ids = ':'.join(map(str, sorted(addon_ids)))
+        return hashlib.md5(ids).hexdigest()
 
     @property
     def url_slug(self):
