@@ -19,7 +19,7 @@
     {% if addon %}
       <p>
         <a class="more-info" href="{{ url('reviews.list', addon_id=addon.id) }}">
-          {{ _('See all {0} reviews of this add-on')|f(reviews.count()) }}
+          {{ _('See all {0} reviews of this add-on')|f(addon.total_reviews) }}
         </a>
       </p>
     {% endif %}
