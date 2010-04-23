@@ -2,7 +2,7 @@ import logging
 import time
 import urllib2
 
-from pyquery import PyQuery as pq
+#from pyquery import PyQuery as pq
 
 import cronjobs
 
@@ -15,6 +15,11 @@ log = logging.getLogger('z.cron')
 def fetch_ryf_blog():
     """Currently used in the discovery pane from the API.  This job queries
     rockyourfirefox.com and pulls the latest entry from the RSS feed. """
+
+    # When you remove this, also uncomment pyquery above
+    log.error("Cron job disabled until bug 561232 is fixed.")
+    return
+
     url = "http://rockyourfirefox.com/feed/"
     try:
         p = pq(url=url)
