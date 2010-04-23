@@ -1,22 +1,29 @@
 import os
 import site
 
+import django.conf
 import django.core.handlers.wsgi
+import django.core.management
+import django.utils
 
 
-# Add the parent dir of zamboni to the python path so we can import manage
-# (which sets other path stuff) and settings.
+# Add the zamboni dir to the python path so we can import manage which sets up
+# other paths and settings.
 wsgidir = os.path.dirname(__file__)
-site.addsitedir(os.path.abspath(os.path.join(wsgidir, '../../')))
+site.addsitedir(os.path.abspath(os.path.join(wsgidir, '../')))
 
-# zamboni.manage adds the `apps` and `lib` directories to the path.
-import zamboni.manage
+# manage adds the `apps` and `lib` directories to the path.
+import manage
 
-os.environ['DJANGO_SETTINGS_MODULE'] = 'zamboni.local_settings'
+# Do validate and activate translations like using `./manage.py runserver`.
+# http://blog.dscpl.com.au/2010/03/improved-wsgi-script-for-use-with.html
+utility = django.core.management.ManagementUtility()
+command = utility.fetch_command('runserver')
+command.validate()
+django.utils.translation.activate(django.conf.settings.LANGUAGE_CODE)
 
 # This is what mod_wsgi runs.
 django_app = application = django.core.handlers.wsgi.WSGIHandler()
-
 
 # Normally we could let WSGIHandler run directly, but while we're dark
 # launching, we want to force the script name to be empty so we don't create

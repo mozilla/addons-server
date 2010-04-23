@@ -13,7 +13,7 @@ from django.utils import translation
 
 import tower
 
-import amo.models
+import amo
 from . import urlresolvers
 from .helpers import urlparams
 from zadmin.models import Config
