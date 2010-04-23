@@ -16,3 +16,4 @@ GitPython==0.1.7
 -e git://github.com/jbalogh/schematic.git#egg=schematic
 -e git://github.com/clouserw/tower.git#egg=tower
 -e git://github.com/jbalogh/django-queryset-transform.git#egg=django-queryset-transform
+-e git://github.com/jsocol/commonware.git#egg=commonware
