@@ -8,7 +8,7 @@
       {{ item_info(addon, amo) }}
     </div>
     <blockquote>
-      <div>{{ addon.description|truncate(250)|nl2br }}</div>
+      <div>{{ addon.summary|truncate(250)|nl2br }}</div>
       {{ support_addon(addon) }}
     </blockquote>
   </div>
