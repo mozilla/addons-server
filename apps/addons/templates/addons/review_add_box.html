@@ -13,7 +13,7 @@
 
     {# TODO uncakeify  #}
     <form class="addon-feedback" method="post"
-      action="{{ remora_url('/reviews/add/{0}')|f(addon.id) }}">
+      action="{{ remora_url('/reviews/add/') }}/{{ addon.id }}">
       {{ cake_csrf_token() }}
       {% with disabled = ('' if user.is_authenticated() else ' disabled') %}
         <div class="container">
