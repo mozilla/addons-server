@@ -135,6 +135,20 @@ class TestDetailPage(test_utils.TestCase):
             link = doc('.other-author-addons li a').eq(i)
             eq_(link.attr('href'), other_addons[i].get_url_path())
 
+    def test_type_redirect(self):
+        """
+        If current add-on's type is unsupported by app, redirect to an
+        app that supports it.
+        """
+        # Sunbird can't do Personas => redirect
+        prefixer = amo.urlresolvers.get_url_prefix()
+        prefixer.app = amo.SUNBIRD.short
+        response = self.client.get(reverse('addons.detail', args=[15663]),
+                                   follow=False)
+        eq_(response.status_code, 301)
+        eq_(response['Location'].find(amo.SUNBIRD.short), -1)
+        assert (response['Location'].find(amo.FIREFOX.short) >= 0)
+
     def test_compatible_app_redirect(self):
         """
         For add-ons incompatible with the current app, redirect to one

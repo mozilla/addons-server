@@ -42,7 +42,17 @@ def addon_detail(request, addon_id):
                 raise http.Http404
             return extension_detail(request, addon)
     else:
-        raise http.Http404
+        # Redirect to an app that supports this type.
+        try:
+            new_app = [ a for a in amo.APP_USAGE if
+                        addon.type_id in a.types ][0]
+        except IndexError:
+            raise http.Http404
+        else:
+            prefixer = urlresolvers.get_url_prefix()
+            prefixer.app = new_app.short
+            return http.HttpResponsePermanentRedirect(reverse(
+                'addons.detail', args=[addon.id]))
 
 
 def extension_detail(request, addon):
