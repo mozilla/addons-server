@@ -58,7 +58,8 @@ class TestHomepage(test_utils.TestCase):
 
 
 class TestDetailPage(test_utils.TestCase):
-    fixtures = ['base/addons', 'addons/listed', 'addons/persona']
+    fixtures = ['base/addons', 'addons/listed', 'addons/persona',
+                'base/addon_8680']
 
     def test_anonymous_user(self):
         """Does the page work for an anonymous user?"""
@@ -236,6 +237,16 @@ class TestDetailPage(test_utils.TestCase):
         sel = 'a[href$="%s"]' % urlparams(reverse('users.login'), to=url)
         doc = pq(resp.content)
         eq_(len(doc(sel)), 3)  # 3 login links
+
+    def test_other_author_addons(self):
+        """
+        Make sure the list of other author addons doesn't include this one.
+        """
+        r = self.client.get(reverse('addons.detail', args=[8680]))
+        doc = pq(r.content)
+        eq_(len([a.attrib['value'] for a
+                 in doc('#addons-author-addons-select option')
+                 if a.attrib['value'] == '8680']), 0)
 
 
 class TestTagsBox(test_utils.TestCase):

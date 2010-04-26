@@ -78,6 +78,10 @@ def extension_detail(request, addon):
     author_addons = Addon.objects.valid().filter(
         addonuser__listed=True, authors__in=addon.listed_authors).distinct()
 
+    # Remove this addon via list comprehension so we can use the above cached
+    # query on other addons.
+    author_addons = [a for a in author_addons if a.id != addon.id]
+
     # tags
     (dev_tags, user_tags) = addon.tags_partitioned_by_developer
 
