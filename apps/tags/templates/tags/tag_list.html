@@ -12,7 +12,10 @@
 {%- endmacro %}
 
 {% if dev_tags or user_tags %}
-<form id="tags" class="remove-tags" method="post"
+{# TODO: make the class remove-tags to match with the rest of the site.
+Currently it will break the js.
+#}
+<form id="tags" class="remove_tags" method="post"
       action="{{ remora_url('/tags/remove/') }}">{# TODO reverse URL #}
   {{ cake_csrf_token() }}
   <input type="hidden" name="addonid" value="{{ addon.id }}" />
