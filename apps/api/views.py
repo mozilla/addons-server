@@ -19,6 +19,7 @@ import amo
 import api
 from api.utils import addon_to_dict
 from amo.urlresolvers import get_url_prefix
+from amo.utils import JSONEncoder
 from addons.models import Addon
 from search.client import Client as SearchClient, SearchError
 from search import utils as search_utils
@@ -262,7 +263,8 @@ class ListView(APIView):
         return self.render('api/list.xml', {'addons': good})
 
     def render_json(self, context):
-        return json.dumps([addon_to_dict(a) for a in context['addons']])
+        return json.dumps([addon_to_dict(a) for a in context['addons']],
+                          cls=JSONEncoder)
 
 
 # pylint: disable-msg=W0613

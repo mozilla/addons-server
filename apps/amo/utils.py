@@ -8,11 +8,15 @@ import time
 
 from django.conf import settings
 from django.core import paginator
+from django.core.serializers import json
 from django.core.mail import send_mail as django_send_mail
+from django.utils.functional import Promise
 
 import pytz
 
 from . import log
+from translations.models import Translation
+from versions.models import ApplicationsVersions
 
 
 def urlparams(url_, hash=None, **query):
@@ -120,3 +124,17 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
             raise
 
     return result
+
+class JSONEncoder(json.DjangoJSONEncoder):
+
+    def default(self, obj):
+
+        unicodable = (Translation, Promise)
+
+        if isinstance(obj, unicodable):
+            return unicode(obj)
+        if isinstance(obj, ApplicationsVersions):
+            return {unicode(obj.application): {'min': unicode(obj.min),
+                                               'max': unicode(obj.max)}}
+
+        return super(JSONEncoder, self).default(obj)
