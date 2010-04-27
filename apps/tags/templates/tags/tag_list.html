@@ -3,8 +3,10 @@
   <a href="{{ remora_url('/tag/'+tag.tag_text) }}" class="tagitem">
     {{ tag.tag_text }}
   </a>
-  {% if is_tag_admin or tag.addon_tags.user == request.user or
-        addon and addon.has_author(request.user) %}
+  {% if is_tag_admin
+        or request.user.is_authenticated()
+        and (tag.addon_tags.user == request.amo_user
+             or (addon and addon.has_author(request.amo_user))) %}
     <input type="submit" alt="{{ _('Remove', 'tags_alt_remove_tag') }}"
            name="tagid" value="{{ tag.id }}" class="removetag"/>
   {% endif %}
