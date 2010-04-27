@@ -9,6 +9,9 @@ South==0.7
 pytz==2010e
 GitPython==0.1.7
 celery==1.0.2
+# This is required by celery, but celery's setup.py does bad things and
+# packaging doesn't pick it up.
+importlib==1.0.2
 
 -e git://github.com/jbalogh/django-multidb-router.git#egg=django-multidb-router
 -e git://github.com/jbalogh/django-cache-machine.git#egg=django-cache-machine
