@@ -32,4 +32,4 @@ class TestFile(test.TestCase):
 
     def test_eula_url(self):
         f = File.objects.get(id=61321)
-        eq_(f.eula_url(), '/en-US/firefox/policy/0/6704/61321')
+        eq_(f.eula_url(), '/en-US/firefox/addons/policy/0/6704/61321')
