@@ -74,5 +74,12 @@
     <script async defer src="{{ url('addons.buttons.js') }}"></script>
     {% block js %}{% endblock %}
     {% include "footer.html" %}
+    {# Webtrends Stats Tracking #}
+    <script defer src="{{ MEDIA_URL }}js/webtrends/webtrends.js') }}"></script>
+    <noscript>
+      <img id="DCSIMG" width="1" height="1"
+        src="https://statse.webtrendslive.com/dcso6de4r0000082npfcmh4rf_4b1e/njs.gif?dcsuri=/nojavascript&amp;WT.js=No&amp;WT.tv=8.6.2" />
+    </noscript>
+    {# End Webtrends #}
   </body>
 </html>
