@@ -6,20 +6,29 @@ import site
 wsgidir = os.path.dirname(__file__)
 site.addsitedir(os.path.abspath(os.path.join(wsgidir, '../')))
 
-# manage adds the `apps` and `lib` directories to the path.
+# We let Apache tell us where to find site packages through the SITE variable
+# in the wsgi environment.  That means we can't import anything from django or
+# zamboni until we're inside of a request, so the first time through will run
+# basic imports and validate our models (which cascades to import
+# <apps>.models).
+
 
 class ZamboniApp:
+
     def __init__(self):
-        self._app = self.setup_app
-        self.django_app = None
+        self.setup = False
 
     def __call__(self, env, start_response):
-        return self._app(env, start_response)
+        if not self.setup:
+            self.setup_app(env)
+            self.setup = True
+        return self.zamboni_app(env, start_response)
 
-    def setup_app(self, env, start_response):
+    def setup_app(self, env):
         if 'SITE' in env:
             site.addsitedir(env['SITE'])
 
+        # manage adds the `apps` and `lib` directories to the path.
         import manage
 
         import django.conf
@@ -35,16 +44,12 @@ class ZamboniApp:
         django.utils.translation.activate(django.conf.settings.LANGUAGE_CODE)
 
         # This is what mod_wsgi runs.
-        self.django_app = django.core.handlers.wsgi.WSGIHandler()
-
-        self._app = self.zamboni_app
-
-        return self.zamboni_app(env, start_response)
+        self.wsgi_handler = django.core.handlers.wsgi.WSGIHandler()
 
     def zamboni_app(self, env, start_response):
         if 'HTTP_X_ZEUS_DL_PT' in env:
             env['SCRIPT_URL'] = env['SCRIPT_NAME'] = ''
-        return self.django_app(env, start_response)
+        return self.wsgi_handler(env, start_response)
 
 
 application = ZamboniApp()
