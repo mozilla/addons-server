@@ -29,3 +29,7 @@ class TestFile(test.TestCase):
         f = File.objects.get(id=11993)
         expected = '/downloads/latest/{0}/addon-{0}-latest.xpi'
         eq_(expected.format(f.version.addon_id), f.latest_xpi_url())
+
+    def test_eula_url(self):
+        f = File.objects.get(id=61321)
+        eq_(f.eula_url(), '/en-US/firefox/policy/0/6704/61321')

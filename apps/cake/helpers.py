@@ -1,6 +1,5 @@
 import hashlib
 from time import time
-import urllib
 
 from django.conf import settings
 from django.utils import translation
@@ -9,6 +8,7 @@ from jingo import register, env
 import jinja2
 
 from .models import Session as CakeSession
+from .urlresolvers import remora_url as remora_urlresolver
 
 
 @register.function
@@ -40,21 +40,15 @@ def cake_csrf_token(context):
 @register.function
 @jinja2.contextfunction
 def remora_url(context, url, lang=None, app=None, prefix=''):
-    """
-    Builds a remora-style URL, independent from Zamboni's prefixer logic.
-    If app and/or lang are None, the current Zamboni values will be used.
-    To omit them from the URL, set them to ''.
-    """
+    """Wrapper for urlresolvers.remora_url"""
     if lang is None:
-        lang = translation.to_locale(context['LANG']).replace('_', '-')
+        try:
+            lang = translation.to_locale(context['LANG']).replace('_', '-')
+        except KeyError:
+            pass
     if app is None:
         try:
             app = context['APP'].short
-        except AttributeError:
-            app = None
-
-    url_parts = [prefix, lang, app, url]
-    url_parts = [p.strip('/') for p in url_parts if p]
-
-    full_path = '/'+'/'.join(url_parts)
-    return urllib.quote(full_path.encode('utf-8'))
+        except AttributeError, KeyError:
+            pass
+    return remora_urlresolver(url=url, lang=lang, app=app, prefix=prefix)

@@ -5,6 +5,7 @@ from django.db import models
 
 import amo.models
 from amo.urlresolvers import reverse
+from cake.urlresolvers import remora_url
 
 
 class File(amo.models.ModelBase):
@@ -36,8 +37,10 @@ class File(amo.models.ModelBase):
         return os.path.join(*url)
 
     def eula_url(self):
-        addon = self.version.addon_id
-        return reverse('addons.eula', args=[addon, self.id])
+        return remora_url('/policy/0/{addonid}/{fileid}'.format(
+            addonid=self.version.addon_id, fileid=self.id))
+        # TODO: change this back to a reverse URL
+        # return reverse('addons.eula', args=[addon, self.id])
 
     @property
     def extension(self):
