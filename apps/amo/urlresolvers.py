@@ -1,6 +1,7 @@
+# -*- coding: utf-8 -*-
 import hashlib
 import urllib
-from urlparse import urlparse
+from urlparse import urlparse, urlsplit, urlunsplit
 
 from django.conf import settings
 from django.core.urlresolvers import reverse as django_reverse
@@ -149,3 +150,25 @@ def get_outgoing_url(url):
     hash = hashlib.sha1(settings.REDIRECT_SECRET_KEY + url).hexdigest()
     return '/'.join(
         [settings.REDIRECT_URL.rstrip('/'), hash, urllib.quote(url)])
+
+
+def url_fix(s, charset='utf-8'):
+    """Sometimes you get an URL by a user that just isn't a real
+    URL because it contains unsafe characters like ' ' and so on.  This
+    function can fix some of the problems in a similar way browsers
+    handle data entered by the user:
+
+    >>> url_fix(u'http://de.wikipedia.org/wiki/Elf (Begriffsklärung)')
+    'http://de.wikipedia.org/wiki/Elf%20%28Begriffskl%C3%A4rung%29'
+
+    :param charset: The target charset for the URL if the url was
+                    given as unicode string.
+
+    Lifted from Werkzeug.
+    """
+    if isinstance(s, unicode):
+        s = s.encode(charset, 'ignore')
+    scheme, netloc, path, qs, anchor = urlsplit(s)
+    path = urllib.quote(path, '/%')
+    qs = urllib.quote_plus(qs, ':&=')
+    return urlunsplit((scheme, netloc, path, qs, anchor))

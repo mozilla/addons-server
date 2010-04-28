@@ -1,8 +1,6 @@
-import urllib
-
 from django.conf import settings
 
-from amo.urlresolvers import get_url_prefix, reverse
+from amo.urlresolvers import get_url_prefix, reverse, url_fix
 
 
 def remora_url(url, lang=None, app=None, prefix=''):
@@ -19,5 +17,4 @@ def remora_url(url, lang=None, app=None, prefix=''):
 
     url_parts = [p.strip('/') for p in (prefix, lang, app, url) if p]
 
-    full_path = '/'+'/'.join(url_parts)
-    return urllib.quote(full_path.encode('utf-8'))
+    return url_fix('/'+'/'.join(url_parts))

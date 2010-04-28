@@ -51,4 +51,5 @@ def remora_url(context, url, lang=None, app=None, prefix=''):
             app = context['APP'].short
         except AttributeError, KeyError:
             pass
-    return remora_urlresolver(url=url, lang=lang, app=app, prefix=prefix)
+    return jinja2.Markup(remora_urlresolver(
+        url=url, lang=lang, app=app, prefix=prefix))

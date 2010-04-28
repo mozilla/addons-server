@@ -143,3 +143,7 @@ class TestHelpers(TestCase):
         # UTF-8 strings
         url = remora_url(ctx, u'/tags/Hallo und tschüß')
         eq_(url, '/en-US/firefox/tags/Hallo%20und%20tsch%C3%BC%C3%9F')
+
+        # correct escaping
+        url = remora_url(ctx, u'/browse/type:1/cat:all?sort=popular')
+        eq_(url, '/en-US/firefox/browse/type%3A1/cat%3Aall?sort=popular')
