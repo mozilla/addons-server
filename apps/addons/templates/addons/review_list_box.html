@@ -18,7 +18,7 @@
     {% endfor %}
     {% if addon %}
       <p>
-        <a class="more-info" href="{{ url('reviews.list', addon_id=addon.id) }}">
+        <a class="more-info" href="{{ remora_url('reviews/display/%d' % addon.id) }}">
           {{ _('See all {0} reviews of this add-on')|f(addon.total_reviews) }}
         </a>
       </p>
