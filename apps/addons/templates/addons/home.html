@@ -28,10 +28,26 @@
 {% endblock %}
 
 {% set view_all = {
-  'featured': _('View all featured add-ons'),
-  'popular': _('View all popular add-ons'),
-  'new': _('View all newly created add-ons'),
-  'updated': _('View all recently updated add-ons'),
+  'featured': {
+    'text': _('View all featured add-ons'),
+    'link': '/recommended',
+    'feed': '/recommended/format:rss',
+  },
+  'popular': {
+    'text': _('View all popular add-ons'),
+    'link': '/browse/type:1/cat:all/format:rss?sort=popular',
+    'feed': '/browse/type:1/cat:all?sort=popular',
+  },
+  'new': {
+    'text': _('View all newly created add-ons'),
+    'link': '/browse/type:1/cat:all/format:rss?sort=newest',
+    'feed': '/browse/type:1/cat:all?sort=newest',
+  },
+  'updated': {
+    'text': _('View all recently updated add-ons'),
+    'link': '/browse/type:1/cat:all/format:rss?sort=updated',
+    'feed': '/browse/type:1/cat:all?sort=updated',
+  }
 }
 %}
 
@@ -65,10 +81,11 @@
             {{ addon_listing_items_compact(addons, show_added_date=(key=='new'),
                                            src='homepagebrowse') }}
             <div class="listing-footer">
-              {# TODO(jbalogh): browse and rss page urls #}
-              <a class="subscribe" href="#">
+              {# TODO: reverse URLs #}
+              <a class="subscribe" href="{{ remora_url(view_all[key]['feed']) }}">
                 {{ _('Subscribe', 'addons_home_browse_subscribe') }}</a>
-              <a class="more-info" href="#">{{ view_all[key] }}</a>
+              <a class="more-info" href="{{ remora_url(view_all[key]['link'])
+                }}">{{ view_all[key]['text'] }}</a>
             </div>
           </div> {# listing-{{ key }} #}
         {% endfor %}
@@ -130,3 +147,10 @@
     remora_url('/tag/' + tag_text) }}">{{ tag_text }}</a>
 {% endwith %}
 {%- endmacro %}
+
+{% block extrahead %}
+{% for feed in view_all.itervalues() %}
+  <link rel="alternate" type="application/rss+xml" title="{{ feed['text'] }}"
+        href="{{ remora_url(feed['feed']) }}"/>
+{% endfor %}
+{% endblock %}
