@@ -397,6 +397,14 @@ class TestButtonHtml(ButtonTest):
         doc = self.render()
         eq_(doc('.eula .os').text(), '')
 
+    def test_contrib_text_with_platform(self):
+        self.version.all_files = self.platform_files
+        self.addon.takes_contributions = True
+        self.addon.annoying = amo.CONTRIB_ROADBLOCK
+        self.addon.meet_the_dev_url.return_value = 'addon.url'
+        doc = self.render()
+        eq_(doc('.contrib .os').text(), '')
+
 
 class TestViews(test_utils.TestCase):
     fixtures = ['addons/eula+contrib-addon']

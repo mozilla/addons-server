@@ -31,9 +31,9 @@
         <span>
           {{ link.text|safe }}
           {% if link.os %}
-            {# L10n: {0} is a platform name like Windows or Mac OS X. #}
             <span class="os" data-os="{{ link.os.name }}">
-              {% if not b.show_eula %}
+              {% if not (b.show_eula or b.show_contrib) %}
+                {# L10n: {0} is a platform name like Windows or Mac OS X. #}
                 {{ _('for {0}')|f(link.os.name) }}
               {% endif %}
             </span>
