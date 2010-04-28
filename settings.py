@@ -332,6 +332,8 @@ CACHE_COUNT_TIMEOUT = 60
 SPHINX_INDEXER = 'indexer'
 SPHINX_SEARCHD = 'searchd'
 SPHINX_CONFIG_PATH = path('configs/sphinx/sphinx.conf')
+SPHINX_CATALOG_PATH = '/tmp/data/sphinx'
+SPHINX_DATA_PATH = '/tmp/log/searchd'
 SPHINX_HOST = '127.0.0.1'
 SPHINX_PORT = 3312
 
