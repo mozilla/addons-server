@@ -120,7 +120,7 @@
         "pk": 342,
         "model": "addons.feature",
         "fields": {
-            "end": "2010-04-27 14:23:13",
+            "end": "2012-04-27 14:23:13",
             "application": 1,
             "locale": null,
             "created": "2009-10-27 14:23:13",
