@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.core.cache import cache
 
 from mock import Mock
 from nose.tools import eq_
@@ -15,17 +16,29 @@ from users.models import UserProfile
 
 class TestHomepage(test_utils.TestCase):
     fixtures = ['base/addons', 'base/global-stats', 'base/featured',
-                'base/collection-promo']
+                'base/collections.json']
 
     def setUp(self):
         super(TestHomepage, self).setUp()
         self.base_url = reverse('home')
 
-    def test_promo_box(self):
-        """Test that the stupid promo box has the Online Shopping link."""
+    def test_promo_box_public_addons(self):
+        """Only public add-ons in the promobox."""
         r = self.client.get(self.base_url, follow=True)
         doc = pq(r.content)
-        eq_(doc('.lead a')[0].text, 'Online Shopping')
+        assert doc('.addon-view .item').length > 0
+
+        Addon.objects.update(status=amo.STATUS_UNREVIEWED)
+        cache.clear()
+        r = self.client.get(self.base_url, follow=True)
+        doc = pq(r.content)
+        eq_(doc('.addon-view .item').length, 0)
+
+    def test_promo_box(self):
+        """Test that promobox features have proper translations."""
+        r = self.client.get(self.base_url, follow=True)
+        doc = pq(r.content)
+        eq_(doc('.lead a')[0].text, 'WebDev')
 
     def test_default_feature(self):
         response = self.client.get(self.base_url, follow=True)
