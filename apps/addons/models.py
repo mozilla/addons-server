@@ -14,6 +14,7 @@ import amo.models
 from amo.fields import DecimalCharField
 from amo.utils import urlparams
 from amo.urlresolvers import reverse
+from cake.urlresolvers import remora_url
 from reviews.models import Review
 from stats.models import Contribution as ContributionStats, ShareCountTotal
 from translations.fields import (TranslatedField, PurifiedField,
@@ -567,6 +568,10 @@ class Category(amo.models.ModelBase):
         except KeyError:
             type = amo.ADDON_SLUGS[amo.ADDON_EXTENSION]
         return reverse('browse.%s' % type, args=[self.slug])
+
+    def get_remora_url_path(self):
+        return remora_url('browse/type:%d/cat:%d' % (self.type_id, self.id))
+
 
 
 class CompatibilityReport(models.Model):
