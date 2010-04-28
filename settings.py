@@ -303,10 +303,10 @@ MINIFY_BUNDLES = {
             'js/jquery-ui/jqModal.js',
             'js/amo2009/home.js',
 
-            # add-ons details page
+            # Add-ons details page
             'js/jquery-ui/ui.lightbox.js',
             'js/jquery.autocomplete.pack.js',
-            'js/tags.js',
+            'js/zamboni/tags.js',
             'js/get-satisfaction-v2.js',
             'js/zamboni/contributions.js',
             'js/zamboni/addon_details.js',

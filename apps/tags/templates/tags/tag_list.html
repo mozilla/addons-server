@@ -14,10 +14,7 @@
 {%- endmacro %}
 
 {% if dev_tags or user_tags %}
-{# TODO: make the class only remove-tags to match with the rest of the site.
-Currently it will break the js in remora.
-#}
-<form id="tags" class="remove_tags remove-tags" method="post"
+<form id="tags" class="remove-tags" method="post"
       action="{{ remora_url('/tags/remove/') }}">{# TODO reverse URL #}
   {{ cake_csrf_token() }}
   <input type="hidden" name="addonid" value="{{ addon.id }}" />
