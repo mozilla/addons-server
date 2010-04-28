@@ -1,3 +1,6 @@
+from datetime import datetime
+
+from django import test
 from django.conf import settings
 from django.core.cache import cache
 
@@ -172,8 +175,8 @@ class TestDetailPage(test_utils.TestCase):
         """
         addon = Addon.objects.get(id=3615)
         comp_app = addon.compatible_apps.keys()[0]
-        not_comp_app = [ a for a in amo.APP_USAGE if a not in
-                         addon.compatible_apps.keys() ][0]
+        not_comp_app = [a for a in amo.APP_USAGE
+                        if a not in addon.compatible_apps.keys()][0]
 
         # no SeaMonkey version => redirect
         prefixer = amo.urlresolvers.get_url_prefix()
@@ -282,6 +285,7 @@ class TestDetailPage(test_utils.TestCase):
         ret = _details_collections_dropdown(request, profile, addon)
         eq_(len(ret), 1)
 
+
 class TestTagsBox(test_utils.TestCase):
     fixtures = ['base/addontag']
 
@@ -290,3 +294,11 @@ class TestTagsBox(test_utils.TestCase):
         r = self.client.get(reverse('addons.detail', args=[8680]), follow=True)
         doc = pq(r.content)
         eq_('SEO', doc('#tags ul').children().text())
+
+
+def test_button_caching():
+    """The button popups should be cached for a long time."""
+    response = test.Client().get(reverse('addons.buttons.js'), follow=True)
+    fmt = '%a, %d %b %Y %H:%M:%S GMT'
+    expires = datetime.strptime(response['Expires'], fmt)
+    assert (expires - datetime.now()).days >= 365

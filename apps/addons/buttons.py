@@ -1,4 +1,5 @@
 from django.db.models import Q
+from django.views.decorators.cache import cache_page
 
 import jingo
 import jinja2
@@ -199,6 +200,8 @@ class Link(object):
         self.text, self.url, self.os, self.file = text, url, os, file
 
 
+# Cache it for a year.
+@cache_page(60 * 60 * 24 * 365)
 def js(request):
     return jingo.render(request, 'addons/popups.html',
                         content_type='text/javascript')

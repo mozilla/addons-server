@@ -135,11 +135,13 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'amo.context_processors.app',
     'amo.context_processors.i18n',
     'amo.context_processors.global_settings',
+    'minify.helpers.build_ids',
 )
 
 TEMPLATE_DIRS = (
     path('templates'),
 )
+
 
 def JINJA_CONFIG():
     import jinja2
@@ -158,7 +160,6 @@ def JINJA_CONFIG():
         config['cache_size'] = -1  # Never clear the cache
         config['bytecode_cache'] = bc
     return config
-
 
 
 MIDDLEWARE_CLASSES = (
@@ -284,7 +285,7 @@ MINIFY_BUNDLES = {
         ),
         'zamboni/discovery-pane': (
             'css/zamboni/discovery-pane.css',
-        )
+        ),
     },
     'js': {
         # JS files common to the entire site.

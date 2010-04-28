@@ -71,7 +71,7 @@
     {# js #}
     <script src="{{ url('django.views.i18n.javascript_catalog') }}"></script>
     {{ js('common') }}
-    <script async defer src="{{ url('addons.buttons.js') }}"></script>
+    <script async defer src="{{ url('addons.buttons.js') }}?build={{ BUILD_ID_JS }}"></script>
     {% block js %}{% endblock %}
     {% include "footer.html" %}
     {# Webtrends Stats Tracking #}
