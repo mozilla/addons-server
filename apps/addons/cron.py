@@ -103,7 +103,7 @@ def _update_appsupport(ids, **kw):
         return
 
     cursor = connection.cursor()
-    cursor.execute(delete, [','.join(map(str, ids))])
+    cursor.execute(delete % ','.join(map(str, ids)))
     cursor.execute(insert % s)
     transaction.commit()
 

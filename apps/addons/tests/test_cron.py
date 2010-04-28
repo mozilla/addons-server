@@ -3,7 +3,7 @@ import test_utils
 
 import amo
 from addons import cron
-from addons.models import Addon
+from addons.models import Addon, AppSupport
 from files.models import File
 
 
@@ -39,3 +39,13 @@ class TestLastUpdated(test_utils.TestCase):
         cron.addon_last_updated()
         for addon in Addon.objects.filter(status=amo.STATUS_PUBLIC):
             eq_(addon.last_updated, addon.created)
+
+    def test_appsupport(self):
+        ids = Addon.objects.values_list('id', flat=True)
+        cron._update_appsupport(ids)
+
+        eq_(AppSupport.objects.count(), 11)
+
+        # Run it again to test deletes.
+        cron._update_appsupport(ids)
+        eq_(AppSupport.objects.count(), 11)
