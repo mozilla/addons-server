@@ -127,7 +127,7 @@
             "last_login": "2010-04-23 10:33:53",
             "groups": [],
             "user_permissions": [],
-            "password": "sha512$a$b",
+            "password": "yermom",
             "email": "clouserw@gmail.com",
             "date_joined": "2007-03-05 13:09:38"
         }
@@ -174,7 +174,7 @@
         "fields": {
             "downloads": 46,
             "rating": 0.0,
-            "password": "",
+            "password": "yermom",
             "description": 394558,
             "default_locale": "en-US",
             "created": "2009-06-09 23:35:10",
@@ -201,7 +201,7 @@
         "fields": {
             "downloads": 367,
             "rating": 0.0,
-            "password": "",
+            "password": "yermom",
             "description": 394488,
             "default_locale": "en-US",
             "created": "2009-06-09 22:47:49",
@@ -254,7 +254,7 @@
             "lastname": "Clouser",
             "emailhidden": 0,
             "user": 10482,
-            "password": "sha512$a$b",
+            "password": "yermom",
             "nickname": "clouserw",
             "resetcode_expires": "2010-01-01 00:00:00",
             "resetcode": "",
@@ -270,7 +270,7 @@
         "fields": {
             "downloads": 5648,
             "rating": -7.1670400000000001,
-            "password": "",
+            "password": "yermom",
             "description": 394370,
             "default_locale": "en-US",
             "created": "2009-06-09 21:41:08",
