@@ -55,7 +55,8 @@ def extract_filters(term, kwargs):
             platform = amo.PLATFORM_DICT.get(platform)
             if platform:
                 platform = platform.id
-        if platform:
+        # If they are seeking out PLATFORM_ALL they mean no platform filtering
+        if platform and platform != amo.PLATFORM_ALL.id:
             filters['platform'] = (platform, amo.PLATFORM_ALL.id,)
 
     # Locale filtering

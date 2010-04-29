@@ -1,6 +1,4 @@
-"""
-Tests for the search (sphinx) app.
-"""
+"""Tests for the search (sphinx) app."""
 import os
 import shutil
 import socket
@@ -292,7 +290,7 @@ class FrontendSearchTest(SphinxTestCase):
         doc = pq(resp.content)
         num_actual_results = len(Addon.objects.filter(
             versions__apps__application=amo.FIREFOX.id,
-            versions__files__gt=0, versions__files__platform=1))
+            versions__files__gt=0))
         # Verify that we have the expected number of results.
         eq_(doc('.item').length, num_actual_results)
 
@@ -369,6 +367,13 @@ class FrontendSearchTest(SphinxTestCase):
         resp = self.get_response(tag='stockholmsyndrome')
         doc = pq(resp.content)
         eq_(doc('.item').length, 0)
+
+    def test_themes_in_results(self):
+        """Many themes have platform ids that aren't 1, we should make sure we
+        are returning them."""
+        resp = self.get_response(q='grapple')
+        doc = pq(resp.content)
+        eq_('GrApple Yummy', doc('.item h3 a').text())
 
 
 class ViewTest(test_utils.TestCase):
