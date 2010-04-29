@@ -17,6 +17,14 @@ class TransformQuerySet(queryset_transform.TransformQuerySet):
     def no_transforms(self):
         return self.pop_transforms()[1]
 
+    def only_translations(self):
+        """Remove all transforms except translations."""
+        # Add an extra select so these are cached separately.
+        qs = self.no_transforms().extra(select={'_only_trans': 1})
+        if hasattr(self.model._meta, 'translated_fields'):
+            qs = qs.transform(transformer.get_trans)
+        return qs
+
 
 class RawQuerySet(models.query.RawQuerySet):
     """A RawQuerySet with __len__."""
