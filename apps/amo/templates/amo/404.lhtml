@@ -25,7 +25,7 @@
 <p>Or you can just jump over to some of the popular pages on our website.</p>
 
 <ul>
-  <li>Are you interested in a <a href="{{ rec }}">list of recommended add-ons</a>?</li>
+  <li>Are you interested in a <a href="{{ rec }}">list of featured add-ons</a>?</li>
   <li>
     Do you want to <a href="{{ search }}">search for add-ons</a>? You may go to the
     <a href="{{ search }}">search page</a> or just use the search field above.
