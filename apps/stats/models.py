@@ -12,7 +12,18 @@ from amo.models import ModelBase
 from amo.fields import DecimalCharField
 from amo.utils import send_mail as amo_send_mail
 
-from .db import StatsDict, StatsDictField, StatsManager
+from .db import StatsDictField, StatsManager
+
+
+class CollectionCount(caching.base.CachingMixin, models.Model):
+    collection = models.ForeignKey('bandwagon.Collection')
+    count = models.PositiveIntegerField()
+    date = models.DateField()
+
+    objects = StatsManager('date')
+
+    class Meta:
+        db_table = 'stats_collections_counts'
 
 
 class DownloadCount(caching.base.CachingMixin, models.Model):
