@@ -9,6 +9,8 @@
 
     {{ css('common') }}
     {{ css('zamboni/z') }}
+    <!--[if IE]><link rel="stylesheet" href="{{ MEDIA_URL }}css/ie.css"><![endif]-->
+    <!--[if IE 7]><link rel="stylesheet" href="{{ MEDIA_URL }}css/ie7.css"><![endif]-->
 
     {% block extrahead %}{% endblock %}
     <noscript><link rel="stylesheet" href="{{ MEDIA_URL }}css/nojs.css"></noscript>
