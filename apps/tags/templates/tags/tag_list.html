@@ -4,9 +4,9 @@
     {{ tag.tag_text }}
   </a>
   {% if is_tag_admin
-        or request.user.is_authenticated()
-        and (tag.addon_tags.user == request.amo_user
-             or (addon and addon.has_author(request.amo_user))) %}
+        or (request.user.is_authenticated()
+            and addon and addon.has_author(request.amo_user))
+        or tag in current_user_tags %}
     <input type="submit" alt="{{ _('Remove', 'tags_alt_remove_tag') }}"
            name="tagid" value="{{ tag.id }}" class="removetag"/>
   {% endif %}

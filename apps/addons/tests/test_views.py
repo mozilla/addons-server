@@ -266,7 +266,7 @@ class TestDetailPage(test_utils.TestCase):
                  in doc('#addons-author-addons-select option')
                  if a.attrib['value'] == '8680']), 0)
 
-    def test__details_collections_dropdown(self):
+    def test_details_collections_dropdown(self):
 
         request = Mock()
         request.APP.id = 1
@@ -284,6 +284,12 @@ class TestDetailPage(test_utils.TestCase):
         addon.id = 433
         ret = _details_collections_dropdown(request, profile, addon)
         eq_(len(ret), 1)
+
+    def test_remove_tag_button(self):
+        self.client.login(username='regular@mozilla.com', password='password')
+        r = self.client.get(reverse('addons.detail', args=[3615]))
+        doc = pq(r.content)
+        assert len(doc('#tags li input.removetag'))
 
 
 class TestTagsBox(test_utils.TestCase):

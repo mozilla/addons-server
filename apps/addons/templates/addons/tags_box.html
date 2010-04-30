@@ -2,7 +2,8 @@
   <h3 class="compact-bottom">{{ _('Tags', 'tags_header_tags_title') }}</h3>
 
   <div id="tagbox">
-    {{ tag_list(addon, dev_tags=dev_tags, user_tags=user_tags) }}
+    {{ tag_list(addon, dev_tags=dev_tags, user_tags=user_tags,
+                current_user_tags=current_user_tags) }}
   </div>
 
   {% if user.is_authenticated() %}

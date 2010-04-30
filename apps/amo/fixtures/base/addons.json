@@ -588,6 +588,7 @@
         "model": "auth.user",
         "pk": 4043307
     },
+
     {
         "fields": {
             "averagerating": "",
@@ -2349,5 +2350,51 @@
             "feature": 0,
             "addon": 3615
         }
+    },
+    {
+        "fields": {
+            "averagerating": "",
+            "bio": null,
+            "confirmationcode": "",
+            "created": "2009-02-02 11:50:31",
+            "deleted": 0,
+            "display_collections": 1,
+            "display_collections_fav": 1,
+            "email": "regular@mozilla.com",
+            "emailhidden": 0,
+            "firstname": "Regular",
+            "homepage": "",
+            "lastname": "User",
+            "location": "",
+            "modified": "2010-01-12 17:01:41",
+            "nickname": "regularuser",
+            "notes": "",
+            "notifycompat": 1,
+            "notifyevents": 1,
+            "occupation": "",
+            "password": "sha512$7b5436061f8c0902088c292c057be69fdb17312e2f71607c9c51641f5d876522$08d1d370d89e2ae92755fd03464a7276ca607c431d04a52d659f7a184f3f9918073637d82fc88981c7099c7c46a1137b9fdeb675304eb98801038905a9ee0600",
+            "picture_type": "",
+            "resetcode": "",
+            "resetcode_expires": "2010-01-12 15:28:07",
+            "sandboxshown": 1
+        },
+        "model": "users.userprofile",
+        "pk": 999
+    },
+    {
+      "pk": 3615,
+      "model": "tags.tag",
+      "fields": {
+        "tag_text": "balls"
+        }
+    },
+    {
+      "pk": 3615,
+      "model": "tags.addontag",
+      "fields": {
+        "addon": 3615,
+        "tag": 3615,
+        "user": 999
+      }
     }
 ]

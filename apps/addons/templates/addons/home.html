@@ -121,7 +121,7 @@
   <div class="highlight" id="tag-box">
     <h3>{{ _('Popular Tags') }}</h3>
     <div>
-      {% for tag in top_tags|list|shuffle %}
+      {% for tag in top_tags|list|shuffle if tag.tagstat %}
         {{ tag_link(tag.tag_text, tag.tagstat.num_addons, max_tag_count) }}
       {% endfor %}
     </div>

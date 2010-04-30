@@ -104,7 +104,7 @@ def review_add_box(context, addon):
 
 @register.inclusion_tag('addons/tags_box.html')
 @jinja2.contextfunction
-def tags_box(context, addon, dev_tags, user_tags):
+def tags_box(context, addon, dev_tags, user_tags, current_user_tags=[]):
     """
     Details page: Show a box with existing tags along with a form to add new
     ones.
