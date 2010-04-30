@@ -5,7 +5,8 @@ from django import test
 
 from nose.tools import eq_
 
-from stats.models import Contribution, DownloadCount, UpdateCount, StatsDict
+from stats.db import StatsDict
+from stats.models import Contribution, DownloadCount, UpdateCount
 
 
 class TestDownloadCountModel(test.TestCase):
