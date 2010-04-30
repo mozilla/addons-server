@@ -1,6 +1,11 @@
+from django.http import HttpRequest
+from nose.tools import assert_false
+
+import amo
 from cake.models import Session
 from test_utils import TestCase
-from .acl import match_rules
+
+from .acl import match_rules, action_allowed
 
 
 def test_match_rules():
@@ -34,6 +39,12 @@ def test_match_rules():
     for rule in rules:
         assert not match_rules(rule, 'Admin', '%'), \
             "%s == Admin:%% and shouldn't" % rule
+
+
+def test_anonymous_user():
+    # Fake request must not have .groups, just like an anonymous user.
+    fake_request = HttpRequest()
+    assert_false(action_allowed(fake_request, amo.FIREFOX, 'Admin:%'))
 
 
 class ACLTestCase(TestCase):

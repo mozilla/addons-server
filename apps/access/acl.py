@@ -24,4 +24,4 @@ def action_allowed(request, app, action):
     """
 
     return any(match_rules(group.rules, app, action)
-        for group in request.groups)
+        for group in getattr(request, 'groups', ()))
