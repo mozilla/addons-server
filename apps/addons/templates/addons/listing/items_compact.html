@@ -2,7 +2,6 @@
 
 {% cache addons %}
 {% for addon in addons %}
-  {% cache addon %}
   <div class="item">
     {{ install_button(addon) }}
     {{ heading(addon) }}
@@ -14,6 +13,5 @@
     </div>
     {{ support_addon(addon) }}
   </div>
-  {% endcache %}
 {% endfor %}
 {% endcache %}
