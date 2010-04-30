@@ -298,7 +298,13 @@ class TestTagsBox(test_utils.TestCase):
 
 def test_button_caching():
     """The button popups should be cached for a long time."""
-    response = test.Client().get(reverse('addons.buttons.js'), follow=True)
+    # Get the url from a real page so it includes the build id.
+    client = test.Client()
+    doc = pq(client.get('/', follow=True).content)
+    js_url = reverse('addons.buttons.js')
+    url_with_build = doc('script[src^="%s"]' % js_url).attr('src')
+
+    response = client.get(url_with_build, follow=True)
     fmt = '%a, %d %b %Y %H:%M:%S GMT'
     expires = datetime.strptime(response['Expires'], fmt)
     assert (expires - datetime.now()).days >= 365
