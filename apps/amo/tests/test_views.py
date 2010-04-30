@@ -133,3 +133,7 @@ class TestPaypal(test_utils.TestCase):
         response = self.client.post(self.url, {'txn_type': 'subscr_xxx'})
         eq_(response.status_code, 200)
         eq_(SubscriptionEvent.objects.count(), 1)
+
+    def test_get_not_allowed(self):
+        response = self.client.get(self.url)
+        eq_(response.status_code, 405)

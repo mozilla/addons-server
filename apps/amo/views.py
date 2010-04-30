@@ -69,6 +69,8 @@ def paypal(request):
     db errors or replication lag will result in an exception and http
     status of 500, which is good so PayPal will try again later.
     """
+    if request.method != 'POST':
+        return http.HttpResponseNotAllowed(['POST'])
 
     # Check that the request is valid and coming from PayPal.
     data = request.POST.copy()
