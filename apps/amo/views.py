@@ -3,7 +3,7 @@ import urllib2
 
 from django import http
 from django.conf import settings
-from django.core.cache import parse_backend_uri
+from django.core.cache import cache, parse_backend_uri
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 
@@ -68,6 +68,10 @@ def paypal(request):
     IPN will retry periodically until it gets success (status=200). Any
     db errors or replication lag will result in an exception and http
     status of 500, which is good so PayPal will try again later.
+
+    PayPal IPN variables available at:
+    https://cms.paypal.com/us/cgi-bin/?cmd=_render-content
+                    &content_ID=developer/e_howto_html_IPNandPDTVariables
     """
     if request.method != 'POST':
         return http.HttpResponseNotAllowed(['POST'])
@@ -75,31 +79,46 @@ def paypal(request):
     # Check that the request is valid and coming from PayPal.
     data = request.POST.copy()
     data['cmd'] = '_notify-validate'
-    if urllib2.urlopen(settings.PAYPAL_CGI_URL,
-                       data.urlencode(), 20).readline() != 'VERIFIED':
+    pr = urllib2.urlopen(settings.PAYPAL_CGI_URL,
+                         data.urlencode(), 20).readline()
+    if pr != 'VERIFIED':
+        log.error("Expecting 'VERIFIED' from PayPal, got '%s'.  Failing." % pr)
         return http.HttpResponseForbidden('Invalid confirmation')
 
     if request.POST.get('txn_type', '').startswith('subscr_'):
         SubscriptionEvent.objects.create(post_data=php.serialize(request.POST))
-        return http.HttpResponse()
+        return http.HttpResponse('Success!')
 
     # We only care about completed transactions.
     if request.POST.get('payment_status') != 'Completed':
         return http.HttpResponse('Payment not completed')
 
     # Make sure transaction has not yet been processed.
-    if len(Contribution.objects.filter(transaction_id=request.POST['txn_id'])) > 0:
+    if (Contribution.objects
+                   .filter(transaction_id=request.POST['txn_id']).count()) > 0:
         return http.HttpResponse('Transaction already processed')
 
     # Fetch and update the contribution - item_number is the uuid we created.
     try:
-        c = Contribution.objects.get(uuid=request.POST['item_number'])
+        c = Contribution.objects.no_cache().get(
+                                            uuid=request.POST['item_number'])
     except Contribution.DoesNotExist:
-        # If these warnings frequently occur on the first IPN attempt,
-        # perhaps consider logging only if POST['resend'] is set.
-        ipn_type = 'repeated' if 'resend' in request.POST else 'initial'
-        log.warning('Contribution (uuid=%s) not found for %s IPN request.'
-                     % (request.POST['item_number'], ipn_type))
+        key = "%s%s:%s" % (settings.CACHE_PREFIX, 'contrib',
+                           request.POST['item_number'])
+        count = cache.get(key, 0) + 1
+
+        log.warning('Contribution (uuid=%s) not found for IPN request #%s.'
+                     % (request.POST['item_number'], count))
+        if count > 10:
+            logme = (request.POST['txn_id'], request.POST['payer_email'],
+                     request.POST['receiver_email'], request.POST['mc_gross'])
+            log.error("Paypal sent a transaction that we don't know about and "
+                      "we're giving up on it! (TxnID={d[txn_id]}; "
+                      "From={d[payer_email]}; To={d[receiver_email]}; "
+                      "Amount={d[mc_gross]})".format(d=request.POST))
+            cache.delete(key)
+            return http.HttpResponse('Transaction not found; skipping.')
+        cache.set(key, count, 1209600)  # This is 2 weeks.
         return http.HttpResponseServerError('Contribution not found')
 
     c.transaction_id = request.POST['txn_id']

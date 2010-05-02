@@ -1,9 +1,12 @@
 import urllib
 
 from django import http, test
+from django.conf import settings
+from django.core.cache import cache, parse_backend_uri
 from amo.urlresolvers import reverse
 
 from mock import patch, Mock
+from nose import SkipTest
 from nose.tools import eq_
 import test_utils
 
@@ -73,7 +76,6 @@ class TestStuff(test_utils.TestCase):
 
             response = self.client.get("/%s/firefox/?%slang=%s&next=/" % (
                     locale, xeno, locale), follow=True)
-            doc = PyQuery(response.content)
             box = PyQuery(response.content)('#locale-only').attr('checked')
             cookie = self.client.cookies.get("locale-only")
 
@@ -109,6 +111,7 @@ class TestPaypal(test_utils.TestCase):
 
     def setUp(self):
         self.url = reverse('amo.paypal')
+        self.item = 1234567890
 
     def urlopener(self, status):
         m = Mock()
@@ -136,4 +139,28 @@ class TestPaypal(test_utils.TestCase):
 
     def test_get_not_allowed(self):
         response = self.client.get(self.url)
-        eq_(response.status_code, 405)
+        assert isinstance(response, http.HttpResponseNotAllowed)
+
+    @patch('amo.views.urllib2.urlopen')
+    def test_mysterious_contribution(self, urlopen):
+        scheme, servers, _ = parse_backend_uri(settings.CACHE_BACKEND)
+        if 'dummy' in scheme:
+            raise SkipTest()
+        urlopen.return_value = self.urlopener('VERIFIED')
+
+        key = "%s%s:%s" % (settings.CACHE_PREFIX, 'contrib', self.item)
+
+        data = {'txn_id': 100,
+                'payer_email': 'jbalogh@wherever.com',
+                'receiver_email': 'clouserw@gmail.com',
+                'mc_gross': '99.99',
+                'item_number': self.item,
+                'payment_status': 'Completed'}
+        response = self.client.post(self.url, data)
+        assert isinstance(response, http.HttpResponseServerError)
+        eq_(cache.get(key), 1)
+
+        cache.set(key, 10, 1209600)
+        response = self.client.post(self.url, data)
+        assert isinstance(response, http.HttpResponse)
+        eq_(cache.get(key), None)
