@@ -4,6 +4,7 @@ from . import views
 
 
 urlpatterns = patterns('',
+    url('^recs$', views.recommendations, name='discovery.recs'),
     url('^(?P<version>[^/]+)/(?P<os>[^/]+)$', views.pane,
         name='discovery.pane'),
 )
