@@ -1,4 +1,7 @@
+import json
+
 from django import http
+from django.db import connection
 from django.views.decorators.csrf import csrf_exempt
 
 import jingo
@@ -18,3 +21,8 @@ def recommendations(request, limit=5):
     """
     if request.method != 'POST':
         return http.HttpResponseNotAllowed(['POST'])
+
+    try:
+        guids = json.loads(request.raw_post_data)
+    except ValueError:
+        return http.HttpResponseBadRequest()

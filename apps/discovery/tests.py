@@ -29,3 +29,12 @@ class RecsTest(test_utils.TestCase):
         """GET should find method not allowed."""
         response = self.client.get(self.url)
         eq_(response.status_code, 405)
+
+    def test_empty_post_data(self):
+        response = self.client.post(self.url)
+        eq_(response.status_code, 400)
+
+    def test_bad_post_data(self):
+        response = self.client.post(self.url, "{]{",
+                                    content_type='application/json')
+        eq_(response.status_code, 400)
