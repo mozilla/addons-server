@@ -228,3 +228,14 @@ class CollectionVote(models.Model):
 
     class Meta:
         db_table = 'collections_votes'
+
+
+class SyncedCollection(Collection):
+    """Collection that automatically sets type=SYNC."""
+
+    class Meta:
+        proxy = True
+
+    def save(self, **kw):
+        self.type = amo.COLLECTION_SYNCHRONIZED
+        return super(SyncedCollection, self).save(**kw)

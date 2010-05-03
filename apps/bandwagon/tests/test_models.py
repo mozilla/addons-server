@@ -1,7 +1,8 @@
 from nose.tools import eq_
 import test_utils
 
-from bandwagon.models import Collection
+import amo
+from bandwagon.models import Collection, SyncedCollection
 
 
 class TestCollections(test_utils.TestCase):
@@ -35,3 +36,8 @@ class TestCollections(test_utils.TestCase):
         ids = c.addons.values_list('id', flat=True)
         c.save()
         eq_(c.addon_index, Collection.make_index(ids))
+
+    def test_synced_collection(self):
+        """SyncedCollections automatically get type=sync."""
+        c = SyncedCollection.objects.create()
+        eq_(c.type, amo.COLLECTION_SYNCHRONIZED)
