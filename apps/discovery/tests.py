@@ -7,6 +7,7 @@ import test_utils
 
 from amo.urlresolvers import reverse
 from addons.models import Addon
+from discovery.views import get_addon_ids
 
 
 class RecsTest(test_utils.TestCase):
@@ -22,6 +23,7 @@ class RecsTest(test_utils.TestCase):
                       "firebug@software.joehewitt.com",
                       "foxyproxy@eric.h.jung",
                       "isreaditlater@ideashower.com",
+                      "not-a-real-guid",
                       "yslow@yahoo-inc.com"]
         self.json = json.dumps(self.guids)
 
@@ -38,3 +40,8 @@ class RecsTest(test_utils.TestCase):
         response = self.client.post(self.url, "{]{",
                                     content_type='application/json')
         eq_(response.status_code, 400)
+
+    def test_get_addon_ids(self):
+        ids = get_addon_ids(self.guids)
+        expected = [5299, 1843, 2464, 7661, 5369]
+        eq_(set(ids), set(expected))

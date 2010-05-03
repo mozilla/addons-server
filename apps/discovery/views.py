@@ -6,6 +6,8 @@ from django.views.decorators.csrf import csrf_exempt
 
 import jingo
 
+from addons.models import Addon
+
 
 def pane(request, version, os):
     return jingo.render(request, 'discovery/pane.html')
@@ -26,3 +28,9 @@ def recommendations(request, limit=5):
         guids = json.loads(request.raw_post_data)
     except ValueError:
         return http.HttpResponseBadRequest()
+
+    addon_ids = get_addon_ids(guids)
+
+
+def get_addon_ids(guids):
+    return Addon.objects.filter(guid__in=guids).values_list('id', flat=True)
