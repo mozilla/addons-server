@@ -50,7 +50,7 @@ management smoother.
 
 Install it like this::
 
-    wget http://bitbucket.org/dhellmann/virtualenvwrapper/raw/tip/virtualenvwrapper_bashrc -O ~/.virtualenvwrapper
+    wget http://bitbucket.org/dhellmann/virtualenvwrapper/raw/f31869779141/virtualenvwrapper_bashrc -O ~/.virtualenvwrapper
     mkdir ~/.virtualenvs
 
 Then put these lines in your ``~/.bashrc``::
