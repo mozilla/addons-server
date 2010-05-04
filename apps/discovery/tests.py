@@ -2,13 +2,14 @@ import json
 
 from django import test
 
+import mock
 from nose.tools import eq_
 import test_utils
 
 import amo
 from amo.urlresolvers import reverse
 from bandwagon.models import SyncedCollection
-from discovery.views import get_addon_ids, get_synced_collection
+from discovery import views
 
 
 class RecsTest(test_utils.TestCase):
@@ -44,12 +45,12 @@ class RecsTest(test_utils.TestCase):
         eq_(response.status_code, 400)
 
     def test_get_addon_ids(self):
-        ids = set(get_addon_ids(self.guids))
+        ids = set(views.get_addon_ids(self.guids))
         eq_(ids, set(self.ids))
 
     def test_get_synced_collection(self):
         # Get a fresh synced collection.
-        c = get_synced_collection(self.ids, 'token')
+        c = views.get_synced_collection(self.ids, 'token')
         eq_(c.listed, False)
         eq_(c.type, amo.COLLECTION_SYNCHRONIZED)
         eq_(set(c.addons.values_list('id', flat=True)), set(self.ids))
@@ -58,7 +59,7 @@ class RecsTest(test_utils.TestCase):
         eq_(c.token_set.get().token, 'token')
 
         # Make sure we get the same collection if we try again.
-        next = get_synced_collection(self.ids, 'next')
+        next = views.get_synced_collection(self.ids, 'next')
         eq_(next.id, c.id)
         eq_(set(next.addons.values_list('id', flat=True)), set(self.ids))
         eq_(list(c.token_set.values_list('token', flat=True)),
@@ -71,5 +72,12 @@ class RecsTest(test_utils.TestCase):
         two = SyncedCollection.objects.create()
         two.set_addons(self.ids)
 
-        three = get_synced_collection(self.ids, 'token')
+        three = views.get_synced_collection(self.ids, 'token')
         assert one.addon_index == two.addon_index == three.addon_index
+
+    @mock.patch('discovery.views.uuid.uuid4')
+    def test_get_random_token(self, uuid_mock):
+        uuid_mock.side_effect = ['two', 'one', 'one', 'one'].pop
+        eq_(views.get_random_token(), 'one')
+        views.get_synced_collection([], 'one')
+        eq_(views.get_random_token(), 'two')

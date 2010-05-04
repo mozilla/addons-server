@@ -1,4 +1,5 @@
 import json
+import uuid
 
 from django import http
 from django.views.decorators.csrf import csrf_exempt
@@ -6,7 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 import jingo
 
 from addons.models import Addon
-from bandwagon.models import Collection, SyncedCollection
+from bandwagon.models import Collection, SyncedCollection, CollectionToken
 
 
 def pane(request, version, os):
@@ -52,3 +53,11 @@ def get_synced_collection(addon_ids, token):
 
     c.token_set.create(token=token)
     return c
+
+
+def get_random_token():
+    """Get a random token for the user, make sure it's unique."""
+    while 1:
+        token = unicode(uuid.uuid4())
+        if CollectionToken.objects.filter(token=token).count() == 0:
+            return token
