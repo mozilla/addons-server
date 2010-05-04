@@ -306,3 +306,14 @@ class RecommendedCollection(Collection):
                 d[addon] += score
         addons = [(score, addon) for addon, score in d.items()]
         return [addon for _, addon in sorted(addons)]
+
+
+class CollectionToken(amo.models.ModelBase):
+    """Links a Collection to an anonymous token."""
+    token = models.CharField(max_length=255, unique=True)
+    collection = models.ForeignKey(Collection, related_name='token_set')
+
+    objects = models.Manager()
+
+    class Meta:
+        db_table = 'collections_tokens'
