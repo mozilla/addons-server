@@ -15,6 +15,16 @@ from amo.utils import send_mail as amo_send_mail
 from .db import StatsDictField, StatsManager
 
 
+class AddonCollectionCount(caching.base.CachingMixin, models.Model):
+    addon = models.ForeignKey('addons.Addon')
+    collection = models.ForeignKey('bandwagon.Collection')
+    count = models.PositiveIntegerField()
+    date = models.DateField()
+
+    class Meta:
+        db_table = 'stats_addons_collections_counts'
+
+
 class CollectionCount(caching.base.CachingMixin, models.Model):
     collection = models.ForeignKey('bandwagon.Collection')
     count = models.PositiveIntegerField()
@@ -24,6 +34,17 @@ class CollectionCount(caching.base.CachingMixin, models.Model):
 
     class Meta:
         db_table = 'stats_collections_counts'
+
+
+class CollectionStats(caching.base.CachingMixin, models.Model):
+    """In the running for worst-named model ever."""
+    collection = models.ForeignKey('bandwagon.Collection')
+    name = models.CharField(max_length=255, null=True)
+    count = models.PositiveIntegerField()
+    date = models.DateField()
+
+    class Meta:
+        db_table = 'stats_collections'
 
 
 class DownloadCount(caching.base.CachingMixin, models.Model):
