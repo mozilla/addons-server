@@ -1,12 +1,12 @@
 import json
 
 from django import http
-from django.db import connection
 from django.views.decorators.csrf import csrf_exempt
 
 import jingo
 
 from addons.models import Addon
+from bandwagon.models import Collection, SyncedCollection
 
 
 def pane(request, version, os):
@@ -34,3 +34,21 @@ def recommendations(request, limit=5):
 
 def get_addon_ids(guids):
     return Addon.objects.filter(guid__in=guids).values_list('id', flat=True)
+
+
+def get_synced_collection(addon_ids, token):
+    """
+    Get a synced collection for these addons. May reuse an existing collection.
+
+    The token is associated with the collection.
+    """
+    index = Collection.make_index(addon_ids)
+    try:
+        c = (SyncedCollection.objects.no_cache()
+             .filter(addon_index=index))[0]
+    except IndexError:
+        c = SyncedCollection.objects.create(listed=False)
+        c.set_addons(addon_ids)
+
+    c.token_set.create(token=token)
+    return c
