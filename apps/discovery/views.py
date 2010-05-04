@@ -28,14 +28,35 @@ def recommendations(request, limit=5):
         return http.HttpResponseNotAllowed(['POST'])
 
     try:
-        guids = json.loads(request.raw_post_data)
-    except ValueError:
+        POST = json.loads(request.raw_post_data)
+        guids = POST['guids']
+    except (ValueError, TypeError, KeyError):
+        # Errors: invalid json, didn't get a dict, didn't find "guids".
         return http.HttpResponseBadRequest()
 
     addon_ids = get_addon_ids(guids)
-    token = get_random_token()
+    token = POST['token'] if 'token' in POST else get_random_token()
+
+    if 'token' in POST:
+        q = SyncedCollection.objects.filter(token_set__token=token)
+        if q:
+            # We've seen this user before.
+            synced = q[0]
+            if synced.addon_index == Collection.make_index(addon_ids):
+                # Their add-ons didn't change, get out quick.
+                recs = synced.get_recommendations()
+                return _recommendations(request, limit, token, recs)
+            else:
+                # Remove the link to the current sync, make a new one below.
+                synced.token_set.get(token=token).delete()
+
     synced = get_synced_collection(addon_ids, token)
     recs = synced.get_recommendations()
+    return _recommendations(request, limit, token, recs)
+
+
+def _recommendations(request, limit, token, recs):
+    """Return a JSON response for the recs view."""
     ids = list(recs.addons.order_by('collectionaddon__ordering')
                .values_list('id', flat=True))[:limit]
     data = {'token': token, 'recommendations': recs.get_url_path(),
