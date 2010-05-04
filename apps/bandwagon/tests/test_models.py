@@ -1,11 +1,22 @@
+import itertools
+import random
+
 from nose.tools import eq_
 import test_utils
 
-from bandwagon.models import Collection
+import amo
+from addons.models import Addon, AddonRecommendation
+from bandwagon.models import (Collection, SyncedCollection,
+                              RecommendedCollection)
+
+
+def get_addons(c):
+    q = c.addons.order_by('collectionaddon__ordering')
+    return list(q.values_list('id', flat=True))
 
 
 class TestCollections(test_utils.TestCase):
-    fixtures = ['bandwagon/test_models']
+    fixtures = ['base/addons', 'bandwagon/test_models', 'base/collections']
 
     def test_translation_default(self):
         """Make sure we're getting strings from the default locale."""
@@ -14,15 +25,84 @@ class TestCollections(test_utils.TestCase):
 
     def test_listed(self):
         """Make sure the manager's listed() filter works."""
+        listed_count = Collection.objects.listed().count()
         # make a private collection
         private = Collection(
             name="Hello", uuid="4e2a1acc-39ae-47ec-956f-46e080ac7f69",
             listed=False)
         private.save()
 
-        c = Collection.objects.get(pk=512)
-
         listed = Collection.objects.listed()
+        eq_(len(listed), listed_count)
 
-        eq_(listed.count(), 1)
-        eq_(listed[0], c)
+    def test_auto_uuid(self):
+        c = Collection.objects.create()
+        assert c.uuid != ''
+        assert isinstance(c.uuid, basestring)
+
+    def test_addon_index(self):
+        c = Collection.objects.get(pk=5)
+        eq_(c.addon_index, None)
+        ids = c.addons.values_list('id', flat=True)
+        c.save()
+        eq_(c.addon_index, Collection.make_index(ids))
+
+    def test_synced_collection(self):
+        """SyncedCollections automatically get type=sync."""
+        c = SyncedCollection.objects.create()
+        eq_(c.type, amo.COLLECTION_SYNCHRONIZED)
+
+    def test_recommended_collection(self):
+        """RecommendedCollections automatically get type=rec."""
+        c = RecommendedCollection.objects.create()
+        eq_(c.type, amo.COLLECTION_RECOMMENDED)
+
+    def test_set_addons(self):
+        addons = list(Addon.objects.values_list('id', flat=True))
+        c = Collection.objects.create()
+
+        # Check insert.
+        random.shuffle(addons)
+        c.set_addons(addons)
+        eq_(get_addons(c), addons)
+
+        # Check update.
+        random.shuffle(addons)
+        c.set_addons(addons)
+        eq_(get_addons(c), addons)
+
+        # Check delete.
+        addons = addons[:2]
+        c.set_addons(addons)
+        eq_(get_addons(c), addons)
+        eq_(c.addons.count(), len(addons))
+
+
+class TestRecommendations(test_utils.TestCase):
+    fixtures = ['base/addon-recs']
+    ids = [5299, 1843, 2464, 7661, 5369]
+
+    def expected_recs(self):
+        scores, ranked = [], {}
+        # Get all the add-on => rank pairs.
+        for x in AddonRecommendation.scores(self.ids).values():
+            scores.extend(x.items())
+        # Sum up any dupes.
+        groups = itertools.groupby(sorted(scores), key=lambda x: x[0])
+        for addon, pairs in groups:
+            ranked[addon] = sum(x[1] for x in pairs)
+        addons = sorted(ranked.items(), key=lambda x: x[1])
+        return [x[0] for x in addons]
+
+    def test_build_recs(self):
+        recs = RecommendedCollection.build_recs(self.ids)
+        eq_(recs, self.expected_recs())
+
+    def test_get_recommendations(self):
+        c = Collection.objects.create()
+        c.set_addons(self.ids)
+        recs = c.get_recommendations()
+        eq_(recs.type, amo.COLLECTION_RECOMMENDED)
+        eq_(recs.listed, False)
+        expected = self.expected_recs()[:Collection.RECOMMENDATION_LIMIT]
+        eq_(get_addons(recs), expected)

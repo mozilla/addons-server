@@ -12,7 +12,7 @@ import caching.base as caching
 
 import amo.models
 from amo.fields import DecimalCharField
-from amo.utils import urlparams
+from amo.utils import urlparams, sorted_groupby
 from amo.urlresolvers import reverse
 from cake.urlresolvers import remora_url
 from reviews.models import Review
@@ -496,6 +496,16 @@ class AddonRecommendation(models.Model):
         db_table = 'addon_recommendations'
         ordering = ('-score',)
 
+    @classmethod
+    def scores(cls, addon_ids):
+        """Get a mapping of {addon: {other_addon: score}} for each add-on."""
+        d = {}
+        q = (AddonRecommendation.objects.filter(addon__in=addon_ids)
+             .values('addon', 'other_addon', 'score'))
+        for addon, rows in sorted_groupby(q, key=lambda x: x['addon']):
+            d[addon] = dict((r['other_addon'], r['score']) for r in rows)
+        return d
+
 
 class AddonType(amo.models.ModelBase):
     name = TranslatedField()
@@ -571,7 +581,6 @@ class Category(amo.models.ModelBase):
 
     def get_remora_url_path(self):
         return remora_url('browse/type:%d/cat:%d' % (self.type_id, self.id))
-
 
 
 class CompatibilityReport(models.Model):
