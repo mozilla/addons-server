@@ -26,6 +26,19 @@ class CollectionCount(caching.base.CachingMixin, models.Model):
         db_table = 'stats_collections_counts'
 
 
+class CollectionStats(caching.base.CachingMixin, models.Model):
+    """In the running for worst-named model ever."""
+    collection = models.ForeignKey('bandwagon.Collection')
+    name = models.CharField(max_length=255, null=True)
+    count = models.PositiveIntegerField()
+    date = models.DateField()
+
+    objects = StatsManager('date')
+
+    class Meta:
+        db_table = 'stats_collections'
+
+
 class DownloadCount(caching.base.CachingMixin, models.Model):
     addon = models.ForeignKey('addons.Addon')
     count = models.PositiveIntegerField()
