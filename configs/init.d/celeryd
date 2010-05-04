@@ -1,0 +1,99 @@
+#!/bin/bash
+#
+# chkconfig: 35 68 38
+# description: Starts celeryd
+#
+# @author Jeremy Orem <oremj@mozilla.com>
+# @author Dave Dash <dd@mozilla.com>
+#
+
+DJANGO_PROJECT_DIR=/data/amo_python/www/preview/zamboni
+VIRTUAL_ENV="/data/virtualenvs/zamboni"
+CELERYD_PID_FILE="/var/run/celeryd-preview.pid"
+CELERYD_LOG_FILE="/var/log/celeryd-preview.log"
+CELERYD_LOG_LEVEL="INFO"
+
+CELERYD="$DJANGO_PROJECT_DIR/manage.py"
+CELERYD_OPTS="-f $CELERYD_LOG_FILE"
+PROG_NAME="celeryd"
+
+
+# I'm running this as apache.  No reason.
+user="apache"
+
+CELERYD_OPTS="-f $CELERYD_LOG_FILE -l $CELERYD_LOG_LEVEL"
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+start() {
+    if [ -r $CELERYD_PID_FILE ]; then
+        oldpid=`cat $CELERYD_PID_FILE`
+        checkpid $oldpid
+        if [ "$?" -eq "0" ]; then
+            echo "$PROG_NAME: Already running in $oldpid"
+            exit 1
+        fi
+    fi
+
+    echo -n $"Starting $PROG_NAME: "
+
+    sudo -u $user $VIRTUAL_ENV/bin/python $CELERYD $PROG_NAME $CELERYD_OPTS &
+
+    echo $! > $CELERYD_PID_FILE
+
+    RETVAL=$?
+
+    if [ "$RETVAL" -eq "0" ]; then
+        echo_success
+    else
+        echo_failure
+    fi
+
+    return $RETVAL
+
+}
+
+stop() {
+    echo -n $"Stopping $PROG_NAME: "
+
+    killproc -p $CELERYD_PID_FILE
+
+    RETVAL=$?
+
+    rm -f $CELERYD_PID_FILE
+
+    if [ "$RETVAL" -eq "0" ]; then
+        echo_success
+    else
+        echo_failure
+    fi
+
+    return $RETVAL
+}
+
+# See how we were called.
+case "$1" in
+  start)
+    start
+    ;;
+  stop)
+    stop
+    ;;
+  status)
+    status -p $CELERYD_PID_FILE
+    exit $?
+    ;;
+  restart)
+    stop
+    start
+    ;;
+  *)
+    echo $"Usage: celeryd {start|stop|restart}"
+    exit 1
+esac
+
+echo ""
+
+exit 0
+
