@@ -303,7 +303,6 @@ MINIFY_BUNDLES = {
 
             'js/jquery.cookie.js',
             'js/amo2009/global.js',
-            'js/amo2009/slimbox2.js',
             'js/jquery-ui/jqModal.js',
             'js/amo2009/home.js',
 
