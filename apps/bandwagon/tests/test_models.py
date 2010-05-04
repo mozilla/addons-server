@@ -1,7 +1,10 @@
+import random
+
 from nose.tools import eq_
 import test_utils
 
 import amo
+from addons.models import Addon
 from bandwagon.models import Collection, SyncedCollection
 
 
@@ -41,3 +44,27 @@ class TestCollections(test_utils.TestCase):
         """SyncedCollections automatically get type=sync."""
         c = SyncedCollection.objects.create()
         eq_(c.type, amo.COLLECTION_SYNCHRONIZED)
+
+    def test_set_addons(self):
+        addons = list(Addon.objects.values_list('id', flat=True))
+        c = Collection.objects.create()
+
+        def get_addons():
+            q = c.addons.order_by('collectionaddon__ordering')
+            return list(q.values_list('id', flat=True))
+
+        # Check insert.
+        random.shuffle(addons)
+        c.set_addons(addons)
+        eq_(get_addons(), addons)
+
+        # Check update.
+        random.shuffle(addons)
+        c.set_addons(addons)
+        eq_(get_addons(), addons)
+
+        # Check delete.
+        addons = addons[:2]
+        c.set_addons(addons)
+        eq_(get_addons(), addons)
+        eq_(c.addons.count(), len(addons))

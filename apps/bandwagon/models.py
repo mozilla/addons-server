@@ -1,9 +1,10 @@
+from datetime import datetime
 import hashlib
 import time
 import uuid
 
 from django.conf import settings
-from django.db import models
+from django.db import models, connection
 
 import amo
 import amo.models
@@ -11,8 +12,7 @@ from amo.utils import sorted_groupby
 from addons.models import Addon, AddonCategory
 from applications.models import Application
 from users.models import UserProfile
-from translations.fields import (TranslatedField, LinkifiedField,
-                                 translations_with_fallback)
+from translations.fields import TranslatedField, LinkifiedField
 
 
 class CollectionManager(amo.models.ManagerBase):
@@ -105,6 +105,37 @@ class Collection(amo.models.ModelBase):
             return settings.COLLECTION_ICON_URL % (self.id, modified)
         else:
             return settings.MEDIA_URL + 'img/amo2009/icons/collection.png'
+
+    def set_addons(self, addon_ids):
+        """Replace the current add-ons with a new list of add-on ids."""
+        order = dict((a, idx) for idx, a in enumerate(addon_ids))
+
+        # Partition addon_ids into add/update/remove buckets.
+        existing = set(self.addons.values_list('id', flat=True))
+        add, update = [], []
+        for addon in addon_ids:
+            bucket = update if addon in existing else add
+            bucket.append((addon, order[addon]))
+        remove = existing.difference(addon_ids)
+
+        cursor = connection.cursor()
+        now = datetime.now()
+        if remove:
+            cursor.execute("DELETE FROM addons_collections "
+                           "WHERE collection_id=%s AND addon_id IN (%s)" %
+                           (self.id, ','.join(map(str, remove))))
+        if add:
+            insert = '(%s, %s, %s, NOW(), NOW(), NOW(), 0)'
+            values = [insert % (a, self.id, idx) for a, idx in add]
+            cursor.execute("""
+                INSERT INTO addons_collections
+                    (addon_id, collection_id, ordering, added, created,
+                     modified, downloads)
+                VALUES %s""" % ','.join(values))
+        for addon, ordering in update:
+            (CollectionAddon.objects.filter(collection=self.id, addon=addon)
+             .update(ordering=ordering, modified=now))
+        self.save()
 
 
 class CollectionAddon(amo.models.ModelBase):
