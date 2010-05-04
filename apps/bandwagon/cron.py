@@ -31,13 +31,15 @@ def update_collections_subscribers():
 @task(rate_limit='15/m')
 def _update_collections_subscribers(data, **kw):
     task_log.debug("[%s@%s] Updating collections' subscribers totals." %
-                   (len(data), '15/m'))
+                   (len(data), _update_collections_subscribers.rate_limit))
     cursor = connection.cursor()
+    today = datetime.date.today()
     for var in data:
-        q = ('REPLACE INTO stats_collections(`date`, `name`, '
-             '`collection_id`, `count`) VALUES (%s, %s, %s, %s)')
-        p = [datetime.date.today(), 'new_subscribers',
-             var['collection_id'], var['count']]
+        q = """REPLACE INTO
+                    stats_collections(`date`, `name`, `collection_id`, `count`)
+                VALUES
+                    (%s, %s, %s, %s)"""
+        p = [today, 'new_subscribers', var['collection_id'], var['count']]
         cursor.execute(q, p)
     transaction.commit_unless_managed()
 
@@ -68,8 +70,8 @@ def update_collections_votes():
 
 @task(rate_limit='15/m')
 def _update_collections_votes(data, stat, **kw):
-    task_log.debug("[%s@%s] Updating collections' subscribers totals." %
-                   (len(data), '15/m'))
+    task_log.debug("[%s@%s] Updating collections' votes totals." %
+                   (len(data), _update_collections_votes.rate_limit))
     cursor = connection.cursor()
     for var in data:
         q = ('REPLACE INTO stats_collections(`date`, `name`, '
