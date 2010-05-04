@@ -1,6 +1,6 @@
 from datetime import date
+import itertools
 
-from django import test
 from django.conf import settings
 from django.core.cache import cache
 
@@ -8,8 +8,8 @@ from nose.tools import eq_, assert_not_equal
 import test_utils
 
 import amo
-from addons.models import (Addon, AddonPledge, AddonType, Category, Persona,
-                           Preview)
+from addons.models import (Addon, AddonPledge, AddonRecommendation, AddonType,
+                           Category, Persona, Preview)
 from reviews.models import Review
 from users.models import UserProfile
 from versions.models import Version
@@ -286,3 +286,15 @@ class TestPreviewModel(test_utils.TestCase):
         expect = ['caption', 'full', 'thumbnail']
         reality = sorted(Preview.objects.all()[0].as_dict().keys())
         eq_(expect, reality)
+
+
+class TestAddonRecommendations(test_utils.TestCase):
+    fixtures = ['base/addon-recs']
+
+    def test_scores(self):
+        ids = [5299, 1843, 2464, 7661, 5369]
+        scores = AddonRecommendation.scores(ids)
+        q = AddonRecommendation.objects.filter(addon__in=ids)
+        for addon, recs in itertools.groupby(q, lambda x: x.addon_id):
+            for rec in recs:
+                eq_(scores[addon][rec.other_addon_id], rec.score)

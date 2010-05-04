@@ -1,10 +1,9 @@
 import cgi
-import functools
+import itertools
+import operator
+import time
 import urllib
 import urlparse
-import logging
-import itertools
-import time
 
 from django.conf import settings
 from django.core import paginator
@@ -58,9 +57,14 @@ def _append_tz(t):
     return tz.localize(t)
 
 
-def sorted_groupby(seq, field):
-    """Given a sequence, we sort it and group it by a key"""
-    key = lambda x: getattr(x, field)
+def sorted_groupby(seq, key):
+    """
+    Given a sequence, we sort it and group it by a key.
+
+    key should be a string (used with attrgetter) or a function.
+    """
+    if isinstance(key, basestring):
+        key = operator.attrgetter(key)
     return itertools.groupby(sorted(seq, key=key), key=key)
 
 
