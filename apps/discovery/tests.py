@@ -13,7 +13,8 @@ from discovery import views
 
 
 class RecsTest(test_utils.TestCase):
-    fixtures = ['base/addons', 'base/category', 'base/featured']
+    fixtures = ['base/addon-recs', 'base/addons', 'base/category',
+                'base/featured']
 
     @classmethod
     def setup_class(cls):
@@ -81,3 +82,20 @@ class RecsTest(test_utils.TestCase):
         eq_(views.get_random_token(), 'one')
         views.get_synced_collection([], 'one')
         eq_(views.get_random_token(), 'two')
+
+    def test_success(self):
+        response = self.client.post(self.url, self.json,
+                                    content_type='application/json')
+        eq_(response.status_code, 200)
+        eq_(response['Content-type'], 'application/json')
+        data = json.loads(response.content)
+
+        eq_(set(data.keys()), set(['token', 'recommendations', 'addons']))
+        eq_(len(data['addons']), 5)
+
+        # Our token should match a synced collection, and that collection's
+        # recommendations should match what we got.
+        q = SyncedCollection.objects.filter(token_set__token=data['token'])
+        eq_(len(q), 1)
+        eq_(q[0].recommended_collection.get_url_path(),
+            data['recommendations'])

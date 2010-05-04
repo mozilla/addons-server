@@ -6,6 +6,8 @@ from django.views.decorators.csrf import csrf_exempt
 
 import jingo
 
+import amo.utils
+import api.utils
 from addons.models import Addon
 from bandwagon.models import Collection, SyncedCollection, CollectionToken
 
@@ -31,6 +33,16 @@ def recommendations(request, limit=5):
         return http.HttpResponseBadRequest()
 
     addon_ids = get_addon_ids(guids)
+    token = get_random_token()
+    synced = get_synced_collection(addon_ids, token)
+    recs = synced.get_recommendations()
+    ids = list(recs.addons.order_by('collectionaddon__ordering')
+               .values_list('id', flat=True))[:limit]
+    data = {'token': token, 'recommendations': recs.get_url_path(),
+            'addons': [api.utils.addon_to_dict(Addon.objects.get(pk=pk))
+                       for pk in ids]}
+    content = json.dumps(data, cls=amo.utils.JSONEncoder)
+    return http.HttpResponse(content, content_type='application/json')
 
 
 def get_addon_ids(guids):
