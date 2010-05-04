@@ -10,6 +10,11 @@ from bandwagon.models import (Collection, SyncedCollection,
                               RecommendedCollection)
 
 
+def get_addons(c):
+    q = c.addons.order_by('collectionaddon__ordering')
+    return list(q.values_list('id', flat=True))
+
+
 class TestCollections(test_utils.TestCase):
     fixtures = ['base/addons', 'bandwagon/test_models', 'base/collections']
 
@@ -56,41 +61,48 @@ class TestCollections(test_utils.TestCase):
         addons = list(Addon.objects.values_list('id', flat=True))
         c = Collection.objects.create()
 
-        def get_addons():
-            q = c.addons.order_by('collectionaddon__ordering')
-            return list(q.values_list('id', flat=True))
-
         # Check insert.
         random.shuffle(addons)
         c.set_addons(addons)
-        eq_(get_addons(), addons)
+        eq_(get_addons(c), addons)
 
         # Check update.
         random.shuffle(addons)
         c.set_addons(addons)
-        eq_(get_addons(), addons)
+        eq_(get_addons(c), addons)
 
         # Check delete.
         addons = addons[:2]
         c.set_addons(addons)
-        eq_(get_addons(), addons)
+        eq_(get_addons(c), addons)
         eq_(c.addons.count(), len(addons))
 
 
 class TestRecommendations(test_utils.TestCase):
     fixtures = ['base/addon-recs']
+    ids = [5299, 1843, 2464, 7661, 5369]
 
-    def test_get_recs(self):
-        ids = [5299, 1843, 2464, 7661, 5369]
+    def expected_recs(self):
         scores, ranked = [], {}
         # Get all the add-on => rank pairs.
-        for x in AddonRecommendation.scores(ids).values():
+        for x in AddonRecommendation.scores(self.ids).values():
             scores.extend(x.items())
         # Sum up any dupes.
         groups = itertools.groupby(sorted(scores), key=lambda x: x[0])
         for addon, pairs in groups:
             ranked[addon] = sum(x[1] for x in pairs)
         addons = sorted(ranked.items(), key=lambda x: x[1])
+        return [x[0] for x in addons]
 
-        recs = RecommendedCollection.get_recs(ids)
-        eq_(recs, [x[0] for x in addons])
+    def test_build_recs(self):
+        recs = RecommendedCollection.build_recs(self.ids)
+        eq_(recs, self.expected_recs())
+
+    def test_get_recommendations(self):
+        c = Collection.objects.create()
+        c.set_addons(self.ids)
+        recs = c.get_recommendations()
+        eq_(recs.type, amo.COLLECTION_RECOMMENDED)
+        eq_(recs.listed, False)
+        expected = self.expected_recs()[:Collection.RECOMMENDATION_LIMIT]
+        eq_(get_addons(recs), expected)

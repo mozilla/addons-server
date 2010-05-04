@@ -26,6 +26,7 @@ class CollectionManager(amo.models.ManagerBase):
 class Collection(amo.models.ModelBase):
 
     TYPE_CHOICES = amo.COLLECTION_CHOICES.items()
+    RECOMMENDATION_LIMIT = 15  # Maximum number of add-ons to recommend.
 
     uuid = models.CharField(max_length=36, blank=True, unique=True)
     name = TranslatedField()
@@ -106,6 +107,19 @@ class Collection(amo.models.ModelBase):
             return settings.COLLECTION_ICON_URL % (self.id, modified)
         else:
             return settings.MEDIA_URL + 'img/amo2009/icons/collection.png'
+
+    def get_recommendations(self):
+        """Get a collection of recommended add-ons for this collection."""
+        if self.recommended_collection:
+            return self.recommended_collection
+        else:
+            r = RecommendedCollection.objects.create(listed=False)
+            addons = list(self.addons.values_list('id', flat=True))
+            recs = RecommendedCollection.build_recs(addons)
+            r.set_addons(recs[:Collection.RECOMMENDATION_LIMIT])
+            self.recommended_collection = r
+            self.save()
+            return r
 
     def set_addons(self, addon_ids):
         """Replace the current add-ons with a new list of add-on ids."""
@@ -283,7 +297,7 @@ class RecommendedCollection(Collection):
         return super(RecommendedCollection, self).save(**kw)
 
     @classmethod
-    def get_recs(cls, addon_ids):
+    def build_recs(cls, addon_ids):
         """Get the top ranking add-ons according to recommendation scores."""
         scores = AddonRecommendation.scores(addon_ids)
         d = collections.defaultdict(int)
