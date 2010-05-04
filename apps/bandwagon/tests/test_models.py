@@ -1,11 +1,13 @@
+import itertools
 import random
 
 from nose.tools import eq_
 import test_utils
 
 import amo
-from addons.models import Addon
-from bandwagon.models import Collection, SyncedCollection
+from addons.models import Addon, AddonRecommendation
+from bandwagon.models import (Collection, SyncedCollection,
+                              RecommendedCollection)
 
 
 class TestCollections(test_utils.TestCase):
@@ -45,6 +47,11 @@ class TestCollections(test_utils.TestCase):
         c = SyncedCollection.objects.create()
         eq_(c.type, amo.COLLECTION_SYNCHRONIZED)
 
+    def test_recommended_collection(self):
+        """RecommendedCollections automatically get type=rec."""
+        c = RecommendedCollection.objects.create()
+        eq_(c.type, amo.COLLECTION_RECOMMENDED)
+
     def test_set_addons(self):
         addons = list(Addon.objects.values_list('id', flat=True))
         c = Collection.objects.create()
@@ -68,3 +75,22 @@ class TestCollections(test_utils.TestCase):
         c.set_addons(addons)
         eq_(get_addons(), addons)
         eq_(c.addons.count(), len(addons))
+
+
+class TestRecommendations(test_utils.TestCase):
+    fixtures = ['base/addon-recs']
+
+    def test_get_recs(self):
+        ids = [5299, 1843, 2464, 7661, 5369]
+        scores, ranked = [], {}
+        # Get all the add-on => rank pairs.
+        for x in AddonRecommendation.scores(ids).values():
+            scores.extend(x.items())
+        # Sum up any dupes.
+        groups = itertools.groupby(sorted(scores), key=lambda x: x[0])
+        for addon, pairs in groups:
+            ranked[addon] = sum(x[1] for x in pairs)
+        addons = sorted(ranked.items(), key=lambda x: x[1])
+
+        recs = RecommendedCollection.get_recs(ids)
+        eq_(recs, [x[0] for x in addons])

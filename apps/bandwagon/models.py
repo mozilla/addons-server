@@ -1,3 +1,4 @@
+import collections
 from datetime import datetime
 import hashlib
 import time
@@ -9,7 +10,7 @@ from django.db import models, connection
 import amo
 import amo.models
 from amo.utils import sorted_groupby
-from addons.models import Addon, AddonCategory
+from addons.models import Addon, AddonCategory, AddonRecommendation
 from applications.models import Application
 from users.models import UserProfile
 from translations.fields import TranslatedField, LinkifiedField
@@ -270,3 +271,24 @@ class SyncedCollection(Collection):
     def save(self, **kw):
         self.type = amo.COLLECTION_SYNCHRONIZED
         return super(SyncedCollection, self).save(**kw)
+
+
+class RecommendedCollection(Collection):
+
+    class Meta:
+        proxy = True
+
+    def save(self, **kw):
+        self.type = amo.COLLECTION_RECOMMENDED
+        return super(RecommendedCollection, self).save(**kw)
+
+    @classmethod
+    def get_recs(cls, addon_ids):
+        """Get the top ranking add-ons according to recommendation scores."""
+        scores = AddonRecommendation.scores(addon_ids)
+        d = collections.defaultdict(int)
+        for others in scores.values():
+            for addon, score in others.items():
+                d[addon] += score
+        addons = [(score, addon) for addon, score in d.items()]
+        return [addon for _, addon in sorted(addons)]
