@@ -1,3 +1,4 @@
+from datetime import datetime
 import urllib
 
 from django import http, test
@@ -8,6 +9,7 @@ from amo.urlresolvers import reverse
 from mock import patch, Mock
 from nose import SkipTest
 from nose.tools import eq_
+from pyquery import PyQuery as pq
 import test_utils
 
 from amo.pyquery_wrapper import PyQuery
@@ -164,3 +166,17 @@ class TestPaypal(test_utils.TestCase):
         response = self.client.post(self.url, data)
         assert isinstance(response, http.HttpResponse)
         eq_(cache.get(key), None)
+
+
+def test_jsi18n_caching():
+    """The jsi18n catalog should be cached for a long time."""
+    # Get the url from a real page so it includes the build id.
+    client = test.Client()
+    doc = pq(client.get('/', follow=True).content)
+    js_url = reverse('jsi18n')
+    url_with_build = doc('script[src^="%s"]' % js_url).attr('src')
+
+    response = client.get(url_with_build, follow=True)
+    fmt = '%a, %d %b %Y %H:%M:%S GMT'
+    expires = datetime.strptime(response['Expires'], fmt)
+    assert (expires - datetime.now()).days >= 365

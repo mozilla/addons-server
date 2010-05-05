@@ -2,6 +2,8 @@ from django.conf import settings
 from django.conf.urls.defaults import patterns, url, include
 from django.contrib import admin
 from django.shortcuts import redirect
+from django.views.i18n import javascript_catalog
+from django.views.decorators.cache import cache_page
 
 admin.autodiscover()
 
@@ -40,8 +42,8 @@ urlpatterns = patterns('',
     url('^statistics/', lambda r: redirect('/'), name='statistics.dashboard'),
 
     # Javascript translations.
-    ('^jsi18n/$', 'django.views.i18n.javascript_catalog',
-     {'domain': 'z-javascript', 'packages': ['zamboni']}),
+    url('^jsi18n/.*$', cache_page(60 * 60 * 24 * 365)(javascript_catalog),
+        {'domain': 'z-javascript', 'packages': ['zamboni']}, name='jsi18n'),
 
     # SAMO/API
     ('^api/', include('api.urls')),
