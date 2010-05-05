@@ -18,7 +18,7 @@ from stats.models import ShareCount
 
 
 class SharingHelpersTestCase(test.TestCase):
-    fixtures = ['base/addons']
+    fixtures = ['base/fixtures']
 
     def test_addon_sharing(self):
         addon = Addon.objects.get(id=7172)
@@ -50,7 +50,7 @@ class SharingHelpersTestCase(test.TestCase):
 
 
 class SharingModelsTestCase(test.TestCase):
-    fixtures = ['base/addons', 'sharing/share_counts']
+    fixtures = ['base/fixtures', 'sharing/share_counts']
 
     def test_share_count(self):
         addon = Addon.objects.get(id=7172)

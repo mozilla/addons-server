@@ -9,7 +9,7 @@ from applications.models import Application
 
 
 class TestViews(test_utils.TestCase):
-    fixtures = ['base/addons', 'nick/test_views']
+    fixtures = ['base/fixtures', 'nick/test_views']
 
     def setUp(self):
         assert self.client.login(username='admin@mozilla.com',

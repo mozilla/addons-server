@@ -23,7 +23,7 @@ def test_404_no_app():
 
 
 class TestStuff(test_utils.TestCase):
-    fixtures = ['base/addons', 'base/global-stats', 'base/configs']
+    fixtures = ['base/fixtures', 'base/global-stats', 'base/configs']
 
     def test_data_anonymous(self):
         def check(expected):

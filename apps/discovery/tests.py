@@ -17,7 +17,7 @@ from discovery.modules import registry
 
 
 class RecsTest(test_utils.TestCase):
-    fixtures = ['base/addon-recs', 'base/addons', 'base/category',
+    fixtures = ['base/addon-recs', 'base/fixtures', 'base/category',
                 'base/featured']
 
     @classmethod
@@ -154,11 +154,11 @@ class RecsTest(test_utils.TestCase):
         assert one['addons'] != two['addons']
         eq_(CollectionToken.objects.count(), 1)
         eq_(len(Collection.objects.filter(type=amo.COLLECTION_SYNCHRONIZED)),
-            2)
+            12)
 
 
 class TestModuleAdmin(test_utils.TestCase):
-    fixtures = ['base/addons']
+    fixtures = ['base/fixtures']
 
     def test_sync_db_and_registry(self):
         def check():

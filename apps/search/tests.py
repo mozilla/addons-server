@@ -80,7 +80,7 @@ class SphinxTestCase(test_utils.TransactionTestCase):
     when testing any feature that requires sphinx.
     """
 
-    fixtures = ["base/addons"]
+    fixtures = ['base/fixtures']
     sphinx = True
     sphinx_is_running = False
 
@@ -184,9 +184,11 @@ class SearchTest(SphinxTestCase):
         This tests the various sorting.
         """
         eq_(query("", limit=1, sort='newest')[0].id, 10869)
-        eq_(query("", limit=1, sort='updated')[0].id, 6113)
+        eq_(query("", limit=1, sort='updated')[0].id, 6113,
+            'Sort by updated is incorrect.')
         eq_(query("", limit=1, sort='name')[0].id, 5299)
-        eq_(query("", limit=1, sort='averagerating')[0].id, 6113)
+        eq_(query("", limit=1, sort='averagerating')[0].id, 8680,
+            'Sort by average rating is incorrect.')
         eq_(query("", limit=1, sort='weeklydownloads')[0].id, 55)
 
     def test_app_filter(self):
@@ -358,7 +360,7 @@ class FrontendSearchTest(SphinxTestCase):
 class ViewTest(test_utils.TestCase):
     """Tests some of the functions used in building the view."""
 
-    fixtures = ['base/addons']
+    fixtures = ['base/fixtures']
 
     def setUp(self):
         self.fake_request = Mock()
@@ -384,7 +386,7 @@ class ViewTest(test_utils.TestCase):
 
 
 class TestSearchForm(test_utils.TestCase):
-    fixtures = ['base/addons']
+    fixtures = ['base/fixtures']
 
     def test_get_app_versions(self):
         actual = forms.get_app_versions()

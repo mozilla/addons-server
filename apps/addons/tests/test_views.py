@@ -18,8 +18,7 @@ from users.models import UserProfile
 
 
 class TestHomepage(test_utils.TestCase):
-    fixtures = ['base/addons', 'base/global-stats', 'base/featured',
-                'base/collections.json']
+    fixtures = ['base/fixtures', 'base/global-stats', 'base/featured']
 
     def setUp(self):
         super(TestHomepage, self).setUp()
@@ -81,8 +80,7 @@ class TestHomepage(test_utils.TestCase):
 
 
 class TestDetailPage(test_utils.TestCase):
-    fixtures = ['base/addons', 'addons/listed', 'addons/persona',
-                'base/addon_8680', 'base/collections']
+    fixtures = ['base/fixtures', 'addons/listed', 'addons/persona']
 
     def test_anonymous_user(self):
         """Does the page work for an anonymous user?"""

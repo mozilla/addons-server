@@ -10,7 +10,7 @@ class TestFile(test.TestCase):
     Tests the methods of the File model.
     """
 
-    fixtures = ['base/addons.json']
+    fixtures = ['base/fixtures']
 
     def test_get_absolute_url(self):
         f = File.objects.get(id=11993)

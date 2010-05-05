@@ -27,7 +27,7 @@ make_call = lambda *args, **kwargs: client.get(api_url(*args, **kwargs))
 
 class UtilsTest():
 
-    fixtures = ['base/addons']
+    fixtures = ['base/fixtures']
 
     def test_dict(self):
         "Verify that we're getting dict."
@@ -70,7 +70,7 @@ class No500ErrorsTest(TestCase):
 class ControlCharacterTest(TestCase):
     """This test is to assure we aren't showing control characters."""
 
-    fixtures = ['base/addon_592.json']
+    fixtures = ['base/fixtures']
 
     def test(self):
         request = make_call('addon/592')
@@ -79,7 +79,7 @@ class ControlCharacterTest(TestCase):
 
 class APITest(TestCase):
 
-    fixtures = ['base/addons']
+    fixtures = ['base/fixtures']
 
     def test_redirection(self):
         """
@@ -291,7 +291,7 @@ class APITest(TestCase):
 
 class ListTest(TestCase):
     """Tests the list view with various urls."""
-    fixtures = ['base/addons', 'base/featured']
+    fixtures = ['base/fixtures', 'base/featured']
 
     def test_defaults(self):
         """

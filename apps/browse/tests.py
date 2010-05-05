@@ -80,7 +80,7 @@ class TestLanguageTools(test_utils.TestCase):
 
 
 class TestThemes(test_utils.TestCase):
-    fixtures = ['base/addons']
+    fixtures = ['base/fixtures']
 
     def setUp(self):
         # Make all the add-ons themes.
@@ -131,7 +131,7 @@ class TestThemes(test_utils.TestCase):
 
 
 class TestCategoryPages(test_utils.TestCase):
-    fixtures = ['base/addons']
+    fixtures = ['base/fixtures']
 
     def test_browsing_urls(self):
         """Every browse page URL exists."""

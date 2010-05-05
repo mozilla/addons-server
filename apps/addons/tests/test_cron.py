@@ -8,7 +8,7 @@ from files.models import File
 
 
 class TestLastUpdated(test_utils.TestCase):
-    fixtures = ['base/addons']
+    fixtures = ['base/fixtures']
 
     def test_personas(self):
         Addon.objects.update(type=amo.ADDON_PERSONA)

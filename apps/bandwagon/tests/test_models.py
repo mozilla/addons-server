@@ -16,7 +16,7 @@ def get_addons(c):
 
 
 class TestCollections(test_utils.TestCase):
-    fixtures = ['base/addons', 'bandwagon/test_models', 'base/collections']
+    fixtures = ['base/fixtures', 'bandwagon/test_models']
 
     def test_translation_default(self):
         """Make sure we're getting strings from the default locale."""

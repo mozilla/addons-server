@@ -81,8 +81,8 @@ class TestAddonManager(test_utils.TestCase):
 
 
 class TestAddonModels(test_utils.TestCase):
-    # base/addons has an example addon
-    fixtures = ['base/addons', 'addons/featured',
+    # base/fixtures has an example addon
+    fixtures = ['base/fixtures', 'addons/featured',
                 'addons/invalid_latest_version']
 
     def test_current_version(self):

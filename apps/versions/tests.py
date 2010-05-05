@@ -30,7 +30,7 @@ class TestVersion(test.TestCase):
     Test methods of the version class.
     """
 
-    fixtures = ['base/addons.json']
+    fixtures = ['base/fixtures']
 
     def test_compatible_apps(self):
         v = Version.objects.get(pk=2)

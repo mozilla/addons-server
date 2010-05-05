@@ -11,7 +11,7 @@ from addons.models import Addon
 
 
 class TestHelpers(test.TestCase):
-    fixtures = ['base/addons.json', 'addons/featured.json']
+    fixtures = ['base/fixtures', 'addons/featured.json']
 
     def setUp(self):
         jingo.load_helpers()

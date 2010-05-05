@@ -15,7 +15,7 @@ from tags.helpers import tag_list
 
 
 class TestHelpers(test.TestCase):
-    fixtures = ['base/addons.json', 'tags/tags.json']
+    fixtures = ['base/fixtures', 'tags/tags']
 
     def test_tag_list(self):
         addon = Addon.objects.get(id=3615)
