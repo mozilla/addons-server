@@ -1,0 +1,213 @@
+[
+    {
+        "pk": 366, 
+        "model": "translations.translation", 
+        "fields": {
+            "localized_string_clean": null, 
+            "created": "2007-03-05 13:08:05", 
+            "locale": "en-US", 
+            "modified": "2007-03-25 17:17:19", 
+            "id": 149, 
+            "localized_string": "Themes are like new clothes for your %1$s. A theme can change only a few colors, or every piece of %1$s's appearance. It's another great way to personalize %1$s to your tastes."
+        }
+    }, 
+    {
+        "pk": 192, 
+        "model": "translations.translation", 
+        "fields": {
+            "localized_string_clean": null, 
+            "created": "2007-03-05 13:08:05", 
+            "locale": "en-US", 
+            "modified": "2007-03-25 17:17:19", 
+            "id": 143, 
+            "localized_string": "Themes"
+        }
+    }, 
+    {
+        "pk": 17, 
+        "model": "translations.translation", 
+        "fields": {
+            "localized_string_clean": null, 
+            "created": "2007-03-05 13:08:05", 
+            "locale": "en-US", 
+            "modified": "2007-03-25 17:17:19", 
+            "id": 2, 
+            "localized_string": "Theme"
+        }
+    }, 
+    {
+        "pk": 771371, 
+        "model": "translations.translation", 
+        "fields": {
+            "localized_string_clean": null, 
+            "created": "2009-12-13 23:16:15", 
+            "locale": "en-US", 
+            "modified": null, 
+            "id": 719663, 
+            "localized_string": "You are free to use this theme in the capacity of an end-user.  You are permitted to apply modifications for personal use only.\r\n\r\nThis theme contains Crystal SVG images.  Permission was granted by Everaldo to use the Crystal SVG icon set.  If you intend to use these images for a project of your own, contact Everaldo for permission.\r\n\r\nThis theme contains composite images which were created from Crystal SVG images.  These images may not be reproduced or redistributed in any way.\r\n\r\nThis theme contains original images created by CatThief.  These images may not be reproduced or redistributed in any way.\r\n\r\nThis theme may not be re-released, or modified and re-released, at any time as long as it remains active by its developer.  If developer ceases active involvement with this theme (no longer available at CatThief's web site and it ceases to work with current Final Release versions of SeaMonkey for a period of at least 6 months), the project may be resumed by another individual as long as proper attribution to the theme's original developer, \"CatThief\", the theme's original title, \"Mostly Crystal\", as well as all contributors is included.\r\n\r\nYou are not permitted, under any circumstances, to submit any theme to any web site for download or distribution without developer's permission.\r\n\r\nIn the spirit of open source, developers are encouraged to use any source code as a model for their own projects.\r\n\r\nSource code is licensed under MPL/LPGL/GPL.  Details on MPL/LPGL/GPL licensing can be found at:  http://www.mozilla.org/MPL\r\n\r\nIf this theme breaks on a nightly build, support will not be provided for problems.\r\n\r\nBy using this theme you assume full responsibility for any damage to your computer or your installation of any SeaMonkey program file(s) or component(s)."
+        }
+    }, 
+    {
+        "pk": 22828, 
+        "model": "translations.translation", 
+        "fields": {
+            "localized_string_clean": "This theme was developed for Windows and Linux systems only.  It was tested on Windows XP and OpenSUSE Linux.  It will also install on Solaris (Sun OS), FreeBSD, OpenBSD, and eComStation (OS/2).  Although it was not personally tested by me on these OSs, users indicate that it works fine.  It will not install on Mac.\n\nVisit my site's FAQ page for a list of archived themes for older versions of SeaMonkey.", 
+            "created": "2007-03-05 13:10:37", 
+            "locale": "en-US", 
+            "modified": "2010-01-20 19:30:14", 
+            "id": 11828, 
+            "localized_string": "This theme was developed for Windows and Linux systems only.  It was tested on Windows XP and OpenSUSE Linux.  It will also install on Solaris (Sun OS), FreeBSD, OpenBSD, and eComStation (OS/2).  Although it was not personally tested by me on these OSs, users indicate that it works fine.  It will not install on Mac.\r\n\r\nVisit my site's FAQ page for a list of archived themes for older versions of SeaMonkey."
+        }
+    }, 
+    {
+        "pk": 22829, 
+        "model": "translations.translation", 
+        "fields": {
+            "localized_string_clean": "Based on the colorful Crystal SVG icon set by Everaldo (everaldo.com).", 
+            "created": "2007-03-05 13:10:37", 
+            "locale": "en-US", 
+            "modified": "2009-12-13 23:16:56", 
+            "id": 11829, 
+            "localized_string": "Based on the colorful Crystal SVG icon set by Everaldo (everaldo.com)."
+        }
+    }, 
+    {
+        "pk": 22827, 
+        "model": "translations.translation", 
+        "fields": {
+            "localized_string_clean": "Based on the colorful Crystal SVG icon set by Everaldo (everaldo.com). Combines original Crystal icons with custom-edited composites of the originals. The toolbar buttons are sized at 24 pixels. Selecting \"Use Small Icons\" will have no effect on the theme's toolbar buttons.\n\nVisit my site for FAQs, how-tos, and other things that go with the theme - <a href=\"http://outgoing.mozilla.org/v1/5c9f71dd4cc88b6887218f027323f372998db725/http%3A//tom-cat.com/mozilla\">http://tom-cat.com/mozilla</a>\n\nFor a complete list of userChrome options to override the throbber default plus options for changing backgrounds, menuitem icons, and much more, visit <a href=\"http://outgoing.mozilla.org/v1/b06309b4b2c1d805e083fd64237c7209a4960eee/http%3A//tom-cat.com/mozilla/seamonkey/userchrome.html\">http://tom-cat.com/mozilla/seamonkey/userchrome.html</a>\n\nPlease READ the userChrome.css Options page at my site BEFORE complaining about the theme missing the things shown in the screenshots.  If you need to contact me, use the Contact Form at my site.", 
+            "created": "2007-03-05 13:10:37", 
+            "locale": "en-US", 
+            "modified": "2009-12-13 23:36:42", 
+            "id": 11827, 
+            "localized_string": "Based on the colorful Crystal SVG icon set by Everaldo (everaldo.com). Combines original Crystal icons with custom-edited composites of the originals. The toolbar buttons are sized at 24 pixels. Selecting \"Use Small Icons\" will have no effect on the theme's toolbar buttons.\r\n\r\nVisit my site for FAQs, how-tos, and other things that go with the theme - http://tom-cat.com/mozilla\r\n\r\nFor a complete list of userChrome options to override the throbber default plus options for changing backgrounds, menuitem icons, and much more, visit http://tom-cat.com/mozilla/seamonkey/userchrome.html\r\n\r\nPlease READ the userChrome.css Options page at my site BEFORE complaining about the theme missing the things shown in the screenshots.  If you need to contact me, use the Contact Form at my site."
+        }
+    }, 
+    {
+        "pk": 22826, 
+        "model": "translations.translation", 
+        "fields": {
+            "localized_string_clean": null, 
+            "created": "2007-03-05 13:10:37", 
+            "locale": "en-US", 
+            "modified": "2009-12-13 23:23:53", 
+            "id": 11826, 
+            "localized_string": "http://tom-cat.com/mozilla"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "addons.addontype", 
+        "fields": {
+            "description": 149, 
+            "name_plural": 143, 
+            "modified": "2009-02-06 08:42:28", 
+            "name": 2, 
+            "created": "2006-08-21 23:53:24"
+        }
+    }, 
+    {
+        "pk": 22825, 
+        "model": "translations.translation", 
+        "fields": {
+            "localized_string_clean": null, 
+            "created": "2007-03-05 13:10:37", 
+            "locale": "en-US", 
+            "modified": "2008-12-13 10:44:26", 
+            "id": 11825, 
+            "localized_string": "Mostly Crystal (for SeaMonkey)"
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "versions.license", 
+        "fields": {
+            "_custom_text": null, 
+            "_name_field": 0, 
+            "modified": "2009-04-30 22:29:53", 
+            "created": "2009-04-30 22:29:53"
+        }
+    }, 
+    {
+        "pk": 2795, 
+        "model": "addons.addon", 
+        "fields": {
+            "dev_agreement": 0, 
+            "eula": null, 
+            "last_updated": "2009-12-13 23:10:16", 
+            "view_source": 0, 
+            "enable_thankyou": 0, 
+            "total_downloads": 213788, 
+            "developer_comments": 11828, 
+            "inactive": 0, 
+            "average_daily_downloads": 238, 
+            "show_beta": 0, 
+            "the_future": null, 
+            "trusted": 0, 
+            "locale_disambiguation": null, 
+            "binary": 0, 
+            "guid": "{fd20d4e6-5589-47ab-b2a9-f266ea3e493b}", 
+            "weekly_downloads": 0, 
+            "support_url": null, 
+            "paypal_id": "", 
+            "average_rating": "5.00", 
+            "wants_contributions": 0, 
+            "average_daily_users": 9, 
+            "bayesian_rating": 4.0847499999999997, 
+            "share_count": 0, 
+            "get_satisfaction_company": "", 
+            "homepage": 11826, 
+            "support_email": null, 
+            "public_stats": 0, 
+            "status": 6, 
+            "privacy_policy": 719663, 
+            "description": 11827, 
+            "default_locale": "en-US", 
+            "target_locale": null, 
+            "prerelease": 0, 
+            "thankyou_note": null, 
+            "admin_review": 0, 
+            "external_software": 0, 
+            "highest_status": 4, 
+            "get_satisfaction_product": "", 
+            "name": 11825, 
+            "created": "2006-06-15 23:14:49", 
+            "type": 2, 
+            "icon_type": "image/png", 
+            "annoying": 0, 
+            "modified": "2009-12-14 17:40:19", 
+            "summary": 11829, 
+            "suggested_amount": null, 
+            "site_specific": 0, 
+            "total_reviews": 1, 
+            "the_reason": null, 
+            "nomination_date": "2008-12-13 17:44:27"
+        }
+    }, 
+    {
+        "pk": 87598, 
+        "model": "versions.version", 
+        "fields": {
+            "license": 5, 
+            "created": "2009-12-13 23:10:16", 
+            "releasenotes": null, 
+            "approvalnotes": null, 
+            "modified": "2009-12-13 23:11:17", 
+            "version": "0", 
+            "addon": 2795
+        }
+    }, 
+    {
+        "pk": 87599, 
+        "model": "versions.version", 
+        "fields": {
+            "license": 5, 
+            "created": "2009-12-13 23:10:16", 
+            "releasenotes": null, 
+            "approvalnotes": null, 
+            "modified": "2009-12-14 17:43:48", 
+            "version": "0", 
+            "addon": 2795
+        }
+    }
+]
