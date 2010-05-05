@@ -5,6 +5,7 @@ from django.core.cache import cache
 from mock import patch
 import nose
 from nose.tools import eq_, assert_raises
+from pyquery import PyQuery as pq
 
 import test_utils
 
@@ -174,3 +175,9 @@ class TestCategoryPages(test_utils.TestCase):
         response = self.client.get(url, follow=True)
         creatured = response.context['filter'].all()['featured']
         eq_(len(creatured), 0)
+
+    def test_added_date(self):
+        url = reverse('browse.extensions') + '?sort=created'
+        doc = pq(self.client.get(url).content)
+        s = doc('.featured .item .updated').text()
+        assert s.strip().startswith('Added'), s

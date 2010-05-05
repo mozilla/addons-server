@@ -74,6 +74,11 @@ class TestHomepage(test_utils.TestCase):
         opts = [k[0] for k in response.context['filter'].opts]
         eq_(opts, 'featured popular new updated'.split())
 
+    def test_added_date(self):
+        doc = pq(self.client.get(self.base_url).content)
+        s = doc('#list-new .item .updated').text()
+        assert s.strip().startswith('Added'), s
+
 
 class TestDetailPage(test_utils.TestCase):
     fixtures = ['base/addons', 'addons/listed', 'addons/persona',
