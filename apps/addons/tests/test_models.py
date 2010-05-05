@@ -298,3 +298,10 @@ class TestAddonRecommendations(test_utils.TestCase):
         for addon, recs in itertools.groupby(q, lambda x: x.addon_id):
             for rec in recs:
                 eq_(scores[addon][rec.other_addon_id], rec.score)
+
+
+class TestListedAddonTwoVersions(test_utils.TestCase):
+    fixtures = ['addons/listed-two-versions']
+
+    def test_listed_two_versions(self):
+        Addon.objects.get(id=2795)  # bug 563967
