@@ -2,7 +2,8 @@ import logging
 
 from celery.decorators import task
 from celery.messaging import establish_connection
-from django.db import connection
+from django.db import connections
+import multidb
 
 from .models import UserProfile
 from amo import VALID_STATUSES
@@ -16,7 +17,7 @@ task_log = logging.getLogger('z.task')
 def update_user_ratings():
     """Update add-on author's ratings."""
 
-    cursor = connection.cursor()
+    cursor = connections[multidb.get_slave()].cursor()
     # We build this query ahead of time because the cursor complains about data
     # truncation if it does the parameters.  Also, this query is surprisingly
     # quick, <1sec for 6100 rows returned

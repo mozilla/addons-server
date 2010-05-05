@@ -1,10 +1,10 @@
 import logging
 
-from django.db import connection, transaction
-from django.db.models import Max, Q, F
-
 from celery.decorators import task
 from celery.messaging import establish_connection
+from django.db import connection, connections, transaction
+from django.db.models import Max, Q, F
+import multidb
 
 import amo
 from amo.utils import chunked
@@ -14,6 +14,37 @@ from .models import Addon
 
 log = logging.getLogger('z.cron')
 task_log = logging.getLogger('z.task')
+
+
+@cronjobs.register
+def update_addon_average_daily_users():
+    """Update add-ons ADU totals."""
+    cursor = connections[multidb.get_slave()].cursor()
+    # We need to use SQL for this until
+    # http://code.djangoproject.com/ticket/11003 is resolved
+    q = """SELECT
+               addon_id, AVG(`count`)
+           FROM update_counts
+           USE KEY (`addon_and_count`)
+           GROUP BY addon_id
+           ORDER BY addon_id"""
+    cursor.execute(q)
+    d = cursor.fetchall()
+    cursor.close()
+
+    with establish_connection() as conn:
+        for chunk in chunked(d, 1000):
+            _update_addon_average_daily_users.apply_async(args=[chunk],
+                                                        connection=conn)
+
+
+@task(rate_limit='15/m')
+def _update_addon_average_daily_users(data, **kw):
+    task_log.debug("[%s@%s] Updating add-ons ADU totals." %
+                   (len(data), _update_addon_average_daily_users.rate_limit))
+
+    for pk, count in data:
+        Addon.objects.filter(pk=pk).update(average_daily_users=count)
 
 
 def _change_last_updated(next):
