@@ -35,7 +35,7 @@ def update_addon_average_daily_users():
     with establish_connection() as conn:
         for chunk in chunked(d, 1000):
             _update_addon_average_daily_users.apply_async(args=[chunk],
-                                                        connection=conn)
+                                                          connection=conn)
 
 
 @task(rate_limit='15/m')
@@ -45,6 +45,38 @@ def _update_addon_average_daily_users(data, **kw):
 
     for pk, count in data:
         Addon.objects.filter(pk=pk).update(average_daily_users=count)
+
+
+@cronjobs.register
+def update_addon_download_totals():
+    """Update add-on total and average downloads."""
+    cursor = connections[multidb.get_slave()].cursor()
+    # We need to use SQL for this until
+    # http://code.djangoproject.com/ticket/11003 is resolved
+    q = """SELECT
+               addon_id, AVG(count), SUM(count)
+           FROM download_counts
+           USE KEY (`addon_and_count`)
+           GROUP BY addon_id
+           ORDER BY addon_id"""
+    cursor.execute(q)
+    d = cursor.fetchall()
+    cursor.close()
+
+    with establish_connection() as conn:
+        for chunk in chunked(d, 1000):
+            _update_addon_download_totals.apply_async(args=[chunk],
+                                                      connection=conn)
+
+
+@task(rate_limit='15/m')
+def _update_addon_download_totals(data, **kw):
+    task_log.debug("[%s@%s] Updating add-ons download+average totals." %
+                   (len(data), _update_addon_download_totals.rate_limit))
+
+    for pk, avg, sum in data:
+        Addon.objects.filter(pk=pk).update(average_daily_downloads=avg,
+                                           total_downloads=sum)
 
 
 def _change_last_updated(next):
