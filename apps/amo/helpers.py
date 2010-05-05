@@ -75,7 +75,9 @@ def sidebar(app):
         amo.ADDON_DICT: urlresolvers.reverse('browse.language_tools'),
         amo.ADDON_SEARCH: base + 'browse/type:4',
         amo.ADDON_PLUGIN: base + 'browse/type:7',
-        amo.ADDON_THEME: urlresolvers.reverse('browse.themes'),
+        amo.ADDON_THEME: base + 'browse/type:2',
+        # TODO(davedash): Remove comment after remora goes away:
+        # amo.ADDON_THEME: urlresolvers.reverse('browse.themes'),
     }
     for type_, url in shown_types.items():
         if type_ in app.types:
