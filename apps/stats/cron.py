@@ -29,7 +29,7 @@ def update_addons_collections_downloads():
 @task(rate_limit='15/m')
 def _update_addons_collections_downloads(data, **kw):
     task_log.debug("[%s@%s] Updating addons+collections download totals." %
-                   (len(data), '15/m'))
+                  (len(data), _update_addons_collections_downloads.rate_limit))
     for var in data:
         (CollectionAddon.objects.filter(addon=var['addon'],
                                         collection=var['collection'])
@@ -52,7 +52,7 @@ def update_collections_total():
 @task(rate_limit='15/m')
 def _update_collections_total(data, **kw):
     task_log.debug("[%s@%s] Updating collections' download totals." %
-                   (len(data), '15/m'))
+                   (len(data), _update_collections_total.rate_limit))
     for var in data:
         (Collection.objects.filter(pk=var['collection_id'])
          .update(downloads=var['sum']))
