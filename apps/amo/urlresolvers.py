@@ -5,6 +5,7 @@ from urlparse import urlparse, urlsplit, urlunsplit
 
 from django.conf import settings
 from django.core import urlresolvers
+from django.utils import encoding
 from django.utils.thread_support import currentThread
 from django.utils.translation.trans_real import parse_accept_lang_header
 
@@ -155,6 +156,7 @@ def get_outgoing_url(url):
     if urlparse(url).netloc == urlparse(settings.REDIRECT_URL).netloc:
         return url
 
+    url = encoding.smart_str(url)  # I am safety string.
     hash = hashlib.sha1(settings.REDIRECT_SECRET_KEY + url).hexdigest()
     return '/'.join(
         [settings.REDIRECT_URL.rstrip('/'), hash, urllib.quote(url)])
