@@ -8,8 +8,12 @@ import test_utils
 
 import amo
 from amo.urlresolvers import reverse
+from applications.models import Application
 from bandwagon.models import Collection, SyncedCollection, CollectionToken
 from discovery import views
+from discovery.forms import DiscoveryModuleForm
+from discovery.models import DiscoveryModule
+from discovery.modules import registry
 
 
 class RecsTest(test_utils.TestCase):
@@ -151,3 +155,37 @@ class RecsTest(test_utils.TestCase):
         eq_(CollectionToken.objects.count(), 1)
         eq_(len(Collection.objects.filter(type=amo.COLLECTION_SYNCHRONIZED)),
             2)
+
+
+class TestModuleAdmin(test_utils.TestCase):
+    fixtures = ['base/addons']
+
+    def test_sync_db_and_registry(self):
+        def check():
+            views._sync_db_and_registry(qs, app)
+            eq_(qs.count(), len(registry))
+            modules = qs.values_list('module', flat=True)
+            eq_(set(modules), set(registry.keys()))
+
+        app = Application.objects.create()
+        qs = DiscoveryModule.uncached.filter(app=app)
+        eq_(qs.count(), 0)
+
+        # All our modules get added.
+        check()
+
+        # The deleted module is removed.
+        registry.popitem()
+        check()
+
+    def test_discovery_module_form_bad_locale(self):
+        d = dict(app=1, module='xx', locales='fake')
+        form = DiscoveryModuleForm(d)
+        assert form.errors['locales']
+
+
+    def test_discovery_module_form_dedupe(self):
+        d = dict(app=1, module='xx', locales='en-US he he fa fa')
+        form = DiscoveryModuleForm(d)
+        assert form.is_valid()
+        eq_(form.cleaned_data['locales'], 'fa en-US he')

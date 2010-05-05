@@ -2,6 +2,9 @@ import json
 import uuid
 
 from django import http
+from django.contrib import admin
+from django.forms.models import modelformset_factory
+from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_exempt
 
 import jingo
@@ -10,10 +13,48 @@ import amo.utils
 import api.utils
 from addons.models import Addon
 from bandwagon.models import Collection, SyncedCollection, CollectionToken
+from .models import DiscoveryModule
+from .forms import DiscoveryModuleForm
+from .modules import registry as module_registry
 
 
 def pane(request, version, os):
     return jingo.render(request, 'discovery/pane.html')
+
+
+@admin.site.admin_view
+def module_admin(request):
+    APP = request.APP
+    # Custom sorting to drop ordering=NULL objects to the bottom.
+    qs = DiscoveryModule.uncached.raw("""
+        SELECT * from discovery_modules WHERE app_id = %s
+        ORDER BY ordering IS NULL, ordering""", [APP.id])
+    qs.ordered = True  # The formset looks for this.
+    _sync_db_and_registry(qs, APP)
+
+    Form = modelformset_factory(DiscoveryModule, form=DiscoveryModuleForm,
+                                can_delete=True, extra=0)
+    formset = Form(request.POST or None, queryset=qs)
+
+    if request.method == 'POST' and formset.is_valid():
+        formset.save()
+        return redirect('discovery.module_admin')
+
+    return jingo.render(request, 'discovery/module_admin.html',
+                        {'formset': formset})
+
+
+def _sync_db_and_registry(qs, app):
+    """Match up the module registry and DiscoveryModule rows in the db."""
+    existing = dict((m.module, m) for m in qs)
+    add = [m for m in module_registry if m not in existing]
+    delete = [m for m in existing if m not in module_registry]
+    for m in add:
+        DiscoveryModule.objects.create(module=m, app_id=app.id)
+    for m in delete:
+        DiscoveryModule.objects.get(module=m, app=app.id).delete()
+    if add or delete:
+        qs._result_cache = None
 
 
 @csrf_exempt
