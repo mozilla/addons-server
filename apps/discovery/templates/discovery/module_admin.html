@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Discovery Pane Promo Modules{% endblock %}
+
+{% macro field(form, name) %}
+<td class="{{ name }} {% if form[name].errors %}error{% endif %}">
+  {{ form[name]|safe }}
+</td>
+{% endmacro %}
+
+{% block content %}
+<h1>{{ self.title() }} for {{ APP.pretty }}</h1>
+<form method="post" action="" id="discovery-modules">
+  {{ formset.management_form|safe }}
+  {{ csrf() }}
+  <table>
+    <thead>
+      <th>Ordering</th>
+      <th>Module</th>
+      <th>Restrict to locales</th>
+    </thead>
+    <tbody>
+      {% for form in formset.forms %}
+      {% if form.errors %}
+      <tr><td colspan="3">
+        {% for errors in form.errors.values() %}{{ errors|safe }}{% endfor %}
+      </td></tr>
+      {% endif %}
+      <tr>
+        {{ field(form, 'ordering') }}
+        <td class="module">
+          {# Show the text as read-only, then sneak in our hidden fields. #}
+          {{ form.initial.module }}
+          <input type="hidden" name="{{ form.module.html_name }}"
+                 value="{{ form.initial.module }}">
+          <input type="hidden" name="{{ form.app.html_name }}"
+                 value="{{ form.initial.app }}">
+          {% for field in form.hidden_fields() %}
+            {{ field|safe }}
+          {% endfor %}
+        </td>
+        {{ field(form, 'locales') }}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <ul class="help">
+    <li>Locales are a space-separated list of locale codes.</li>
+    <li> Ordering is just a number.  Look for drag-and-drop and flashing lights
+    any day now.</li>
+    <li>Modules without an ordering will not be shown on the discovery pane.</li>
+  </ul>
+  <input type="submit" value="Make it so!">
+</form>
+{% endblock %}

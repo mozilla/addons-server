@@ -3,7 +3,6 @@ from django.db import models
 import queryset_transform
 
 import caching.base
-from translations.fields import TranslatedFieldMixin
 from translations import transformer
 
 
@@ -19,13 +18,50 @@ class TransformQuerySet(queryset_transform.TransformQuerySet):
         return self.pop_transforms()[1]
 
 
+class RawQuerySet(models.query.RawQuerySet):
+    """A RawQuerySet with __len__."""
+
+    def __init__(self, *args, **kw):
+        super(RawQuerySet, self).__init__(*args, **kw)
+        self._result_cache = None
+
+    def __iter__(self):
+        if self._result_cache is None:
+            self._result_cache = list(super(RawQuerySet, self).__iter__())
+        return iter(self._result_cache)
+
+    def __len__(self):
+        return len(list(self.__iter__()))
+
+
+class CachingRawQuerySet(RawQuerySet, caching.base.CachingRawQuerySet):
+    """A RawQuerySet with __len__ and caching."""
+
 # Make TransformQuerySet one of CachingQuerySet's parents so that we can do
 # transforms on objects and then get them cached.
 CachingQuerySet = caching.base.CachingQuerySet
 CachingQuerySet.__bases__ = (TransformQuerySet,) + CachingQuerySet.__bases__
 
 
-class ManagerBase(caching.base.CachingManager):
+class UncachedManagerBase(models.Manager):
+
+    def get_query_set(self):
+        return self._with_translations(TransformQuerySet(self.model))
+
+    def _with_translations(self, qs):
+        if hasattr(self.model._meta, 'translated_fields'):
+            qs = qs.transform(transformer.get_trans)
+        return qs
+
+    def transform(self, fn):
+        return self.all().transform(fn)
+
+    def raw(self, raw_query, params=None, *args, **kwargs):
+        return RawQuerySet(raw_query, self.model, params=params,
+                           using=self._db, *args, **kwargs)
+
+
+class ManagerBase(caching.base.CachingManager, UncachedManagerBase):
     """
     Base for all managers in AMO.
 
@@ -37,12 +73,11 @@ class ManagerBase(caching.base.CachingManager):
 
     def get_query_set(self):
         qs = super(ManagerBase, self).get_query_set()
-        if hasattr(self.model._meta, 'translated_fields'):
-            qs = qs.transform(transformer.get_trans)
-        return qs
+        return self._with_translations(qs)
 
-    def transform(self, fn):
-        return self.all().transform(fn)
+    def raw(self, raw_query, params=None, *args, **kwargs):
+        return CachingRawQuerySet(raw_query, self.model, params=params,
+                                  using=self._db, *args, **kwargs)
 
 
 class ModelBase(caching.base.CachingMixin, models.Model):
@@ -57,6 +92,7 @@ class ModelBase(caching.base.CachingMixin, models.Model):
     modified = models.DateTimeField(auto_now=True)
 
     objects = ManagerBase()
+    uncached = UncachedManagerBase()
 
     class Meta:
         abstract = True

@@ -1,0 +1,15 @@
+<section>
+  <h1>{{ title }}</h1>
+  <ul>
+    {% for addon in addons %}
+      <li>
+        <a href="{{ addon.get_url_path() }}">
+          <img alt="" src="{{ addon.icon_url }}">
+          {{ addon.name }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+  {# L10n: {0} is the name of a collection. #}
+  <p>{{ _('Find more add-ons in the {0}')|f(collection.name) }}</p>
+</section>

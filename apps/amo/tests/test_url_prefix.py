@@ -1,5 +1,5 @@
+from django import test, shortcuts
 from django.conf import settings
-from django import test
 from django.core.urlresolvers import set_script_prefix
 
 from nose.tools import eq_, assert_not_equal
@@ -142,6 +142,13 @@ class TestPrefixer:
         eq_(urlresolvers.reverse('home'), '/oremj/en-US/firefox/')
 
 
+def test_redirect():
+    """Make sure django.shortcuts.redirect uses our reverse."""
+    test.Client().get('/')
+    redirect = shortcuts.redirect('home')
+    eq_(redirect['Location'], '/en-US/firefox/')
+
+
 def test_outgoing_url():
     redirect_url = settings.REDIRECT_URL
     secretkey = settings.REDIRECT_SECRET_KEY
@@ -161,7 +168,7 @@ def test_outgoing_url():
         s2 = urlresolvers.get_outgoing_url(s)
         eq_(s, s2)
 
-        evil = settings.REDIRECT_URL.rstrip('/')+'.evildomain.com'
+        evil = settings.REDIRECT_URL.rstrip('/') + '.evildomain.com'
         s = urlresolvers.get_outgoing_url(evil)
         assert_not_equal(s, evil,
                          'No subdomain abuse of double-escaping protection.')

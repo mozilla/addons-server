@@ -4,11 +4,15 @@ import urllib
 from urlparse import urlparse, urlsplit, urlunsplit
 
 from django.conf import settings
-from django.core.urlresolvers import reverse as django_reverse
+from django.core import urlresolvers
 from django.utils.thread_support import currentThread
 from django.utils.translation.trans_real import parse_accept_lang_header
 
 import amo.models
+
+# Get a pointer to Django's reverse because we're going to hijack it after we
+# define our own.
+django_reverse = urlresolvers.reverse
 
 
 # Thread-local storage for URL prefixes.  Access with {get,set}_url_prefix.
@@ -40,6 +44,7 @@ def get_app_redirect(app):
     prefixer.app = old_app
     return new_url
 
+
 def reverse(viewname, urlconf=None, args=None, kwargs=None, prefix=None,
             current_app=None):
     """Wraps django's reverse to prepend the correct locale and app."""
@@ -52,6 +57,9 @@ def reverse(viewname, urlconf=None, args=None, kwargs=None, prefix=None,
         return prefixer.fix(url)
     else:
         return url
+
+# Replace Django's reverse with our own.
+urlresolvers.reverse = reverse
 
 
 class Prefixer(object):

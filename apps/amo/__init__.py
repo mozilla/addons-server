@@ -219,6 +219,7 @@ APPS = dict((app.short, app) for app in _apps)
 APP_IDS = dict((app.id, app) for app in _apps)
 APP_GUIDS = dict((app.guid, app) for app in _apps)
 APPS_RETIRED = dict([(MOZILLA.short, MOZILLA)])
+APPS_ALL = dict((app.id, app) for app in _apps + (MOZILLA,))
 
 
 # Platforms
