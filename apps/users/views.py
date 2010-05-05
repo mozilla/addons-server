@@ -4,7 +4,6 @@ import string
 from django import http
 from django.conf import settings
 from django.core.mail import send_mail
-from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
@@ -16,12 +15,13 @@ from tower import ugettext as _
 import jingo
 
 import amo
+from amo.urlresolvers import reverse
 from bandwagon.models import Collection
 
 from .models import UserProfile
 from .signals import logged_out
 from .users import forms
-from users.utils import EmailResetCode
+from .utils import EmailResetCode
 
 log = logging.getLogger('z.users')
 
@@ -247,14 +247,12 @@ def logout(request):
     auth.logout(request)
 
     if 'to' in request.GET:
-       request = _clean_next_url(request)
+        request = _clean_next_url(request)
 
     next = request.GET.get('to') or settings.LOGOUT_REDIRECT_URL
     response = http.HttpResponseRedirect(next)
     # Fire logged out signal so we can be decoupled from cake.
     logged_out.send(None, request=request, response=response)
-
-
     return response
 
 

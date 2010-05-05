@@ -1,13 +1,13 @@
 from django import test
 from django.core import mail
 from django.contrib.auth.models import User
-from django.core.urlresolvers import reverse
 from django.test.client import Client
 
 from nose.tools import eq_
 
 from amo.helpers import urlparams
 from amo.pyquery_wrapper import PyQuery
+from amo.urlresolvers import reverse
 from users.utils import EmailResetCode
 
 
@@ -106,7 +106,7 @@ class TestLogout(UserViewBase):
         url = '/en-US/firefox/about'
         r = self.client.get(urlparams(reverse('users.logout'), to=url),
                             follow=True)
-        self.assertRedirects(r, url, status_code=301)
+        self.assertRedirects(r, url, status_code=302)
 
 
 class TestRegistration(UserViewBase):
