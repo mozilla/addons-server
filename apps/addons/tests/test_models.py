@@ -286,3 +286,10 @@ class TestPreviewModel(test_utils.TestCase):
         expect = ['caption', 'full', 'thumbnail']
         reality = sorted(Preview.objects.all()[0].as_dict().keys())
         eq_(expect, reality)
+
+
+class TestListedAddonTwoVersions(test_utils.TestCase):
+    fixtures = ['addons/listed-two-versions']
+
+    def test_listed_two_versions(self):
+        Addon.objects.get(id=2795)  # bug 563967

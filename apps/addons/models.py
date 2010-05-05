@@ -205,7 +205,7 @@ class Addon(amo.models.ModelBase):
             if self.status == amo.STATUS_PUBLIC:
                 status = [self.status]
             elif self.status == amo.STATUS_LISTED:
-                return self.versions.get()
+                return self.versions.all()[0]
             else:
                 status = amo.VALID_STATUSES
 
