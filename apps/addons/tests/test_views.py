@@ -24,6 +24,12 @@ class TestHomepage(test_utils.TestCase):
         super(TestHomepage, self).setUp()
         self.base_url = reverse('home')
 
+    def test_thunderbird(self):
+        """Thunderbird homepage should have the Thunderbird title."""
+        r = self.client.get('/en-US/thunderbird/')
+        doc = pq(r.content)
+        eq_('Add-ons for Thunderbird', doc('title').text())
+
     def test_promo_box_public_addons(self):
         """Only public add-ons in the promobox."""
         r = self.client.get(self.base_url, follow=True)
