@@ -3,7 +3,6 @@ from django import http
 from django.core.cache import cache
 
 from mock import patch
-import nose
 from nose.tools import eq_, assert_raises
 from pyquery import PyQuery as pq
 
@@ -24,7 +23,7 @@ def test_locale_display_name():
         eq_(actual, (english, native))
 
     check('el', 'Greek', u'Ελληνικά')
-    check('el-XXX', 'Greek', u'Ελληνικά')
+    check('el-XX', 'Greek', u'Ελληνικά')
     assert_raises(KeyError, check, 'fake-lang', '', '')
 
 
@@ -39,7 +38,7 @@ class TestLanguageTools(test_utils.TestCase):
 
     def test_sorting(self):
         """The locales should be sorted by English display name."""
-        displays = [locale.display for lang, locale in self.locales]
+        displays = [locale.display for _, locale in self.locales]
         eq_(displays, sorted(displays))
 
     def test_native_missing_region(self):
