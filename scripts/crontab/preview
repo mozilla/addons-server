@@ -1,48 +1,48 @@
 MAILTO=amo-developers@mozilla.org
 
-0 * * * * root rm -rf /data/virtualenvs/zamboni/build && /data/virtualenvs/zamboni/bin/pip -q install -U -i https://hudson.mozilla.org/pypi/ -r https://hudson.mozilla.org/pypi/pip-manifest.txt > /dev/null
+0 * * * * rm -rf /data/virtualenvs/zamboni/build && /data/virtualenvs/zamboni/bin/pip -q install -U -i https://hudson.mozilla.org/pypi/ -r https://hudson.mozilla.org/pypi/pip-manifest.txt > /dev/null
 
 #every 15 min
 
 #once per hour
-5 * * * * root cd /data/amo_python/src/preview/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron update_collections_subscribers
-10 * * * * root cd /data/amo/www/addons.mozilla.org-preview/bin; php -f maintenance.php blog
-15 * * * * root cd /data/amo/www/addons.mozilla.org-preview/bin ; php -f update-search-views.php
-20 * * * * root cd /data/amo_python/src/preview/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron addon_last_updated
-25 * * * * root cd /data/amo_python/src/preview/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron update_collections_votes
-30 * * * * root cd /data/amo/www/addons.mozilla.org-preview/bin; php -f maintenance.php l10n_stats
-35 * * * * root cd /data/amo/www/addons.mozilla.org-preview/bin; php -f maintenance.php l10n_rss
+5 * * * * cd /data/amo_python/src/preview/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron update_collections_subscribers
+10 * * * * cd /data/amo/www/addons.mozilla.org-preview/bin; php -f maintenance.php blog
+15 * * * * cd /data/amo/www/addons.mozilla.org-preview/bin ; php -f update-search-views.php
+20 * * * * cd /data/amo_python/src/preview/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron addon_last_updated
+25 * * * * cd /data/amo_python/src/preview/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron update_collections_votes
+30 * * * * cd /data/amo/www/addons.mozilla.org-preview/bin; php -f maintenance.php l10n_stats
+35 * * * * cd /data/amo/www/addons.mozilla.org-preview/bin; php -f maintenance.php l10n_rss
 
 #every 3 hours
-20 */3 * * * apache cd /data/amo/www/addons.mozilla.org-preview/bin ; php -f compatibility_report.php
-20 */3 * * * root cd /data/amo/www/addons.mozilla.org-preview/bin ; /usr/bin/python26 maintenance.py collection_addon_count
+20 */3 * * * cd /data/amo/www/addons.mozilla.org-preview/bin ; php -f compatibility_report.php
+20 */3 * * * cd /data/amo/www/addons.mozilla.org-preview/bin ; /usr/bin/python26 maintenance.py collection_addon_count
 
 #twice per day
-25 1,13 * * * root cd /data/amo/www/addons.mozilla.org-preview/bin; /usr/bin/python26 import-personas.py
-25 2,14 * * * root cd /data/amo/www/addons.mozilla.org-preview/bin; /usr/bin/python26 maintenance.py collections_ratings
-25 3,15 * * * root cd /data/amo_python/src/preview/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron update_addons_collections_downloads
-25 4,16 * * * root cd /data/amo_python/src/preview/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron update_collections_total
+25 1,13 * * * cd /data/amo/www/addons.mozilla.org-preview/bin; /usr/bin/python26 import-personas.py
+25 2,14 * * * cd /data/amo/www/addons.mozilla.org-preview/bin; /usr/bin/python26 maintenance.py collections_ratings
+25 3,15 * * * cd /data/amo_python/src/preview/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron update_addons_collections_downloads
+25 4,16 * * * cd /data/amo_python/src/preview/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron update_collections_total
 
 #once per day
-30 1 * * * root cd /data/amo_python/src/preview/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron update_user_ratings
-30 2 * * * root cd /data/amo/www/addons.mozilla.org-preview/bin; php -f maintenance.php reviews
-30 3 * * * root cd /data/amo/www/addons.mozilla.org-preview/bin; php -f maintenance.php ratings
-30 4 * * * root cd /data/amo/www/addons.mozilla.org-preview/bin; php -f maintenance.php gc
-30 5 * * * root cd /data/amo/www/addons.mozilla.org-preview/bin; php -f maintenance.php expired_resetcode
-30 6 * * * root cd /data/amo/www/addons.mozilla.org-preview/bin; php -f maintenance.php category_totals
-30 7 * * * root cd /data/amo/www/addons.mozilla.org-preview/bin; php -f maintenance.php collection_subscribers
-30 8 * * * root cd /data/amo/www/addons.mozilla.org-preview/bin; /usr/bin/python26 maintenance.py personas_adu
-30 9 * * * root cd /data/amo/www/addons.mozilla.org-preview/bin; /usr/bin/python26 maintenance.py share_count_totals
-30 10 * * * root cd /data/amo/www/addons.mozilla.org-preview/bin; /usr/bin/python26 build-recommendations.py addons
-30 16 * * * root cd /data/amo/www/addons.mozilla.org-preview/bin; /usr/bin/python26 build-recommendations.py collections
+30 1 * * * cd /data/amo_python/src/preview/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron update_user_ratings
+30 2 * * * cd /data/amo/www/addons.mozilla.org-preview/bin; php -f maintenance.php reviews
+30 3 * * * cd /data/amo/www/addons.mozilla.org-preview/bin; php -f maintenance.php ratings
+30 4 * * * cd /data/amo/www/addons.mozilla.org-preview/bin; php -f maintenance.php gc
+30 5 * * * cd /data/amo/www/addons.mozilla.org-preview/bin; php -f maintenance.php expired_resetcode
+30 6 * * * cd /data/amo/www/addons.mozilla.org-preview/bin; php -f maintenance.php category_totals
+30 7 * * * cd /data/amo/www/addons.mozilla.org-preview/bin; php -f maintenance.php collection_subscribers
+30 8 * * * cd /data/amo/www/addons.mozilla.org-preview/bin; /usr/bin/python26 maintenance.py personas_adu
+30 9 * * * cd /data/amo/www/addons.mozilla.org-preview/bin; /usr/bin/python26 maintenance.py share_count_totals
+30 10 * * * cd /data/amo/www/addons.mozilla.org-preview/bin; /usr/bin/python26 build-recommendations.py addons
+30 16 * * * cd /data/amo/www/addons.mozilla.org-preview/bin; /usr/bin/python26 build-recommendations.py collections
 
 #Once per day after 2100 PST (after metrics is done)
-35 21 * * * root cd /data/amo/www/addons.mozilla.org-preview/bin; /usr/bin/python26 maintenance.py total
-40 21 * * * root cd /data/amo/www/addons.mozilla.org-preview/bin; /usr/bin/python26 maintenance.py weekly
-35 22 * * * root cd /data/amo/www/addons.mozilla.org-preview/bin; php -f maintenance.php global_stats
-40 22 * * * root cd /data/amo/www/addons.mozilla.org-preview/bin; /usr/bin/python26 maintenance.py addons_adu
+35 21 * * * cd /data/amo/www/addons.mozilla.org-preview/bin; /usr/bin/python26 maintenance.py total
+40 21 * * * cd /data/amo/www/addons.mozilla.org-preview/bin; /usr/bin/python26 maintenance.py weekly
+35 22 * * * cd /data/amo/www/addons.mozilla.org-preview/bin; php -f maintenance.php global_stats
+40 22 * * * cd /data/amo/www/addons.mozilla.org-preview/bin; /usr/bin/python26 maintenance.py addons_adu
 
 # Once per week
-45 23 * * 4 root cd /data/amo/www/addons.mozilla.org-preview/bin; php -f maintenance.php unconfirmed
+45 23 * * 4 cd /data/amo/www/addons.mozilla.org-preview/bin; php -f maintenance.php unconfirmed
 
 MAILTO=root
