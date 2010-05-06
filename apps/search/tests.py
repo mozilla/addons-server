@@ -21,8 +21,8 @@ from amo.tests.test_helpers import render
 from manage import settings
 from search import forms, views
 from search.utils import start_sphinx, stop_sphinx, reindex, convert_version
-from search.client import (Client as SearchClient, SearchError,
-                           get_category_id, extract_from_query)
+from search.client import (Client as SearchClient, CollectionsClient,
+                           SearchError, get_category_id, extract_from_query)
 from addons.models import Addon, Category
 from tags.models import Tag
 
@@ -118,7 +118,7 @@ class GetCategoryIdTest(TestCase):
 
 
 query = lambda *args, **kwargs: SearchClient().query(*args, **kwargs)
-
+cquery = lambda *args, **kwargs: CollectionsClient().query(*args, **kwargs)
 
 @mock.patch('search.client.sphinx.SphinxClient')
 def test_sphinx_timeout(sphinx_mock):
@@ -155,6 +155,25 @@ class SearchDownTest(TestCase):
         resp = self.client.get(reverse('search.search'))
         doc = pq(resp.content)
         eq_(doc('.no-results').length, 1)
+
+
+class CollectionsSearchTest(SphinxTestCase):
+
+    def test_query(self):
+        r = cquery("")
+        assert r.total > 0
+
+    def test_sort_good(self):
+        r = cquery("", sort='weekly')
+        weekly = [c.weekly_subscribers for c in r]
+        eq_(weekly, sorted(weekly, reverse=True))
+
+    def test_sort_bad(self):
+        assert_raises(SearchError, cquery, '', sort='fffuuu')
+
+    def test_zero_results(self):
+        r = query("ffffffffffffffffffffuuuuuuuuuuuuuuuuuuuu")
+        eq_(r, [])
 
 
 class SearchTest(SphinxTestCase):

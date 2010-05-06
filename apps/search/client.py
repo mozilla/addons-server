@@ -13,6 +13,7 @@ import sphinxapi as sphinx
 import amo
 from amo.models import manual_order
 from addons.models import Addon, Category
+from bandwagon.models import Collection
 from translations.query import order_by_translation
 from translations.transformer import get_trans
 from tags.models import Tag
@@ -188,9 +189,7 @@ class SearchError(Exception):
 
 
 class Client(object):
-    """
-    A search client that queries sphinx for addons.
-    """
+    """A search client that queries sphinx for addons."""
 
     def __init__(self):
         self.sphinx = sphinx.SphinxClient()
@@ -342,7 +341,6 @@ class Client(object):
         # Setup some default parameters for the search.
         fields = ("addon_id, app, category, %s" % self.weight_field)
 
-        sc.SetSelect(fields)
         sc.SetFieldWeights({'name': 4})
 
         # Extract and apply various filters.
@@ -426,10 +424,10 @@ class Client(object):
 
         try:
             results = sc.RunQueries()
-        except socket.timeout:
+        except socket.timeout:  # pragma: no cover
             log.error("Query has timed out.")
             raise SearchError("Query has timed out.")
-        except Exception, e:
+        except Exception, e:  # pragma: no cover
             log.error("Sphinx threw an unknown exception: %s" % e)
             raise SearchError("Sphinx threw an unknown exception.")
 
@@ -512,7 +510,7 @@ class Client(object):
             for addon_id in addon_ids:
                 try:
                     addons.append(qs.get(pk=addon_id))
-                except Addon.DoesNotExist:
+                except Addon.DoesNotExist:  # pragma: no cover
                     log.warn(u'%d: Result for %s refers to non-existent '
                              'addon: %d' % (self.id, term, addon_id))
 
@@ -522,5 +520,80 @@ class Client(object):
 
             return ResultSet(addons, min(self.total_found, SPHINX_HARD_LIMIT),
                              offset)
+        else:
+            return []
+
+
+class CollectionsClient(Client):
+    """A search client that queries sphinx for Collections."""
+
+    def query(self, term, limit=10, offset=0, **kwargs):
+        sc = self.sphinx
+        sc.SetSelect("collection_id")
+
+        # sc.SetSortMode(sphinx.SPH_SORT_EXTENDED, sort_field)
+        # sc.SetGroupBy('collection_id', sphinx.SPH_GROUPBY_ATTR, sort_field)
+        sc.SetLimits(min(offset, SPHINX_HARD_LIMIT - 1), limit)
+        term = sanitize_query(term)
+
+        self.add_filter('locale_ord', get_locale_ord())
+
+        sort_field = 'weekly_subscribers DESC'
+
+        sort_choices = {
+                'weekly': sort_field,
+                'monthly': 'monthly_subscribers DESC',
+                'all': 'subscribers DESC',
+                'rating': 'rating DESC',
+                'newest': 'created DESC',
+                }
+
+        if 'sort' in kwargs and kwargs['sort']:
+            sort_field = sort_choices.get(kwargs.get('sort'))
+            if not sort_field:
+                log.error("Invalid sort option: %s" % kwargs.get('sort'))
+                raise SearchError("Invalid sort option given: %s" %
+                                  kwargs.get('sort'))
+
+        sc.SetSortMode(sphinx.SPH_SORT_EXTENDED, sort_field)
+
+        self.log_query(term)
+
+        try:
+            result = sc.Query(term, 'collections')
+        except socket.timeout:  # pragma: no cover
+            log.error("Query has timed out.")
+            raise SearchError("Query has timed out.")
+        except Exception, e:  # pragma: no cover
+            log.error("Sphinx threw an unknown exception: %s" % e)
+            raise SearchError("Sphinx threw an unknown exception.")
+
+        if sc.GetLastError():  # pragma: no cover
+            raise SearchError(sc.GetLastError())
+
+        self.total_found = result['total_found'] if result else 0
+
+        if result and result['total']:
+            qs = Collection.objects.all()
+            transforms = qs._transform_fns
+            qs._transform_fns = []
+
+            collection_ids = (m['attrs']['collection_id'] for m
+                              in result['matches'])
+            collections = []
+
+            for collection_id in collection_ids:
+                try:
+                    collections.append(qs.get(pk=collection_id))
+                except Collection.DoesNotExist:  # pragma: no cover
+                    log.warn(u'%d: Result for %s refers to non-existent '
+                             'addon: %d' % (self.id, term, collection_id))
+
+            for fn in transforms:
+                fn(collections)
+
+            return ResultSet(collections,
+                             min(self.total_found, SPHINX_HARD_LIMIT), offset)
+
         else:
             return []
