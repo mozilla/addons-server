@@ -1,4 +1,4 @@
-<FilesMatch "common-min.(css|js)|z-min.css|\.(gif|jpe?g|png)$">
+<FilesMatch "common-min.(css|js)|z-min.css|webtrends.js|\.(gif|jpe?g|png)$">
     ExpiresActive On
     ExpiresDefault "access plus 10 years"
 </FilesMatch>
