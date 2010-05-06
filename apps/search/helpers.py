@@ -2,7 +2,7 @@ from django.utils.html import escape
 
 import jingo
 import jinja2
-from tower import ugettext as _
+from tower import ugettext_lazy as _
 
 from . import forms
 
@@ -13,6 +13,18 @@ def SearchForm(request):
 
 
 @jingo.register.function
+def pagination_result_count(pager):
+    "Returns a 'Results m-n of y.'"
+    format_opts = (pager.start_index(), pager.end_index(),
+                   pager.paginator.count,)
+
+    result_string = _(u'Results <strong>{0}</strong>-<strong>{1}</strong>'
+                      ' of <strong>{2}</strong>').format(*format_opts)
+
+    return jinja2.Markup(result_string)
+
+
+@jingo.register.function
 def showing(query, tag, pager):
     """Writes a string that tells the user what they are seeing in terms of
     search results."""
@@ -20,6 +32,7 @@ def showing(query, tag, pager):
                    pager.paginator.count,)
 
     query = escape(query)
+
     # TODO: Can we cleanly localize this, so we can do "Showing no results for
     # Foo tagged with Bar" without having more if/elif/else statements?
 
