@@ -37,10 +37,11 @@ MAILTO=amo-developers@mozilla.org
 30 16 * * * cd /data/amo/www/addons.mozilla.org-preview/bin; /usr/bin/python26 build-recommendations.py collections
 
 #Once per day after 2100 PST (after metrics is done)
-35 21 * * * cd /data/amo/www/addons.mozilla.org-preview/bin; /usr/bin/python26 maintenance.py total
+35 21 * * * cd /data/amo_python/src/preview/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron update_addon_download_totals
 40 21 * * * cd /data/amo/www/addons.mozilla.org-preview/bin; /usr/bin/python26 maintenance.py weekly
-35 22 * * * cd /data/amo/www/addons.mozilla.org-preview/bin; php -f maintenance.php global_stats
-40 22 * * * cd /data/amo/www/addons.mozilla.org-preview/bin; /usr/bin/python26 maintenance.py addons_adu
+35 22 * * * cd /data/amo_python/src/preview/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron update_global_totals
+55 22 * * * cd /data/amo_python/src/preview/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron update_global_metrics_totals
+40 22 * * * cd /data/amo_python/src/preview/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron update_addon_average_daily_users
 
 # Once per week
 45 23 * * 4 cd /data/amo/www/addons.mozilla.org-preview/bin; php -f maintenance.php unconfirmed
