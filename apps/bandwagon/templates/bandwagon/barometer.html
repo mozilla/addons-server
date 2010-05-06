@@ -1,0 +1,39 @@
+<div class="barometer">
+
+  <form method="post" action="{{ up_action }}">
+    <input class="{{ up_class }}" value="{{ c.up_votes }}" type="submit"
+           title="{{ up_title }}"/>
+  </form>
+
+  <div class="bars">
+
+    {% if total_votes %}
+
+      <div class="upbar" style="width: {{ up_width }}%;">
+        <span class="votecount">
+          {{ _('{0} positive votes for this collection')|f(up_ratio) }}
+        </span>
+      </div>
+
+      <div class="downbar" style="width: {{ down_width }}%;">
+        <span class="votecount">
+          {{ _('{0} negative votes for this collection')|f(down_ratio) }}
+        </span>
+      </div>
+
+    {% else %}
+
+      <div class="novotes">
+        <span class="votecount">
+          {{ _('No votes for this collection yet.') }}
+        </span>
+      </div>
+
+    {% endif %}
+  </div>
+
+  <form method="post" action="{{ down_action }}">
+    <input class="{{ down_class }}" value="{{ c.down_votes }}" type="submit"
+           title="{{ down_title }}">
+  </form>
+</div>
