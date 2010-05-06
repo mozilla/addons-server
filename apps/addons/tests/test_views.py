@@ -297,6 +297,14 @@ class TestDetailPage(test_utils.TestCase):
         doc = pq(r.content)
         assert len(doc('#tags li input.removetag'))
 
+    def test_detailed_review_link(self):
+        # TODO(jbalogh): use reverse when we drop remora.
+        self.client.login(username='regular@mozilla.com', password='password')
+        r = self.client.get(reverse('addons.detail', args=[3615]))
+        doc = pq(r.content)
+        href = doc('#review-box a[href*="reviews/add"]').attr('href')
+        assert href.endswith('/reviews/add/3615'), href
+
 
 class TestTagsBox(test_utils.TestCase):
     fixtures = ['base/addontag']
