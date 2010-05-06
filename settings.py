@@ -318,6 +318,9 @@ MINIFY_BUNDLES = {
             # Personas
             'js/zamboni/jquery.hoverIntent.min.js',
             'js/zamboni/personas.js',
+
+            # Collections
+            'js/zamboni/collections.js',
         ),
     }
 }

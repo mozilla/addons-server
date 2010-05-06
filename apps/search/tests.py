@@ -121,6 +121,7 @@ class GetCategoryIdTest(TestCase):
 query = lambda *args, **kwargs: SearchClient().query(*args, **kwargs)
 cquery = lambda *args, **kwargs: CollectionsClient().query(*args, **kwargs)
 
+
 @mock.patch('search.client.sphinx.SphinxClient')
 def test_sphinx_timeout(sphinx_mock):
     def sphinx_error(cls):
@@ -154,6 +155,12 @@ class SearchDownTest(TestCase):
     def test_frontend_search_down(self):
         self.client.get('/')
         resp = self.client.get(reverse('search.search'))
+        doc = pq(resp.content)
+        eq_(doc('.no-results').length, 1)
+
+    def test_collections_search_down(self):
+        self.client.get('/')
+        resp = self.client.get(reverse('search.search') + '?cat=collections')
         doc = pq(resp.content)
         eq_(doc('.no-results').length, 1)
 
@@ -320,6 +327,12 @@ class FrontendSearchTest(SphinxTestCase):
 
         # Verify that we have the Refine Results.
         eq_(doc('.secondary .highlight h3').length, 1)
+
+    def test_default_collections_query(self):
+        r = self.get_response(cat='collections')
+        doc = pq(r.content)
+        eq_(doc('title').text(),
+            'Collection Search Results :: Add-ons for Firefox')
 
     def test_basic_query(self):
         "Test a simple query"

@@ -280,7 +280,7 @@ $(document).ready(function() {
                .find('form').submit(callback);
         });
     };
-    $('.user-login .barometer form').submit(callback);
+    $('body[data-anonymous["false"]] .barometer form').submit(callback);
 })
 
 $(document).ready(function(){

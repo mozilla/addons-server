@@ -32,6 +32,14 @@ sort_by = (
                               'advanced_search_form_popularity')),
 )
 
+collection_sort_by = (
+    ('weekly', _lazy('Most popular this week')),
+    ('monthly', _lazy('Most popular this month')),
+    ('all', _lazy('Most popular all time')),
+    ('rating', _lazy('Highest Rated')),
+    ('newest', _lazy('Newest')),
+)
+
 per_page = (20, 50, 100)
 
 tuplize = lambda x: divmod(int(x * 10), 10)
@@ -163,3 +171,20 @@ def SearchForm(request):
     d = request.GET.copy()
 
     return _SearchForm(d)
+
+
+class CollectionsSearchForm(forms.Form):
+    q = forms.CharField(widget=forms.HiddenInput, required=False)
+    cat = forms.CharField(widget=forms.HiddenInput)
+    pp = forms.IntegerField(widget=forms.HiddenInput, required=False)
+    sortby = forms.ChoiceField(label=_('Sort By'), choices=collection_sort_by,
+                               initial='weekly', required=False)
+    page = forms.IntegerField(widget=forms.HiddenInput, required=False)
+
+    def clean(self):
+        d = self.cleaned_data
+
+        if not d.get('pp'):
+            d['pp'] = per_page[0]
+
+        return d

@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block title %}
+  {% if query %}
+    {{ page_title(_('Collection Search Results for {0}')|f(query)) }}
+  {% else %}
+    {{ page_title(_('Collection Search Results')) }}
+  {% endif %}
+{% endblock %}
+
+{% block bodyclass %}inverse{% endblock %}
+
+{% block content %}
+<div class="primary" role="main">
+  <h2>{{ _('Collection Search Results') }}</h2>
+  <div class="featured listing">
+    {% if pager.object_list %}
+      <div class="featured-inner">
+        <div class="listing-header">
+          <div class="num-results">
+            {{ pagination_result_count(pager) }}
+          </div>
+          <form class="item-sort go" action="" method="get">
+            <div>
+              {{ form['q']|safe }}
+              {{ form['cat']|safe }}
+              {{ form['pp']|safe }}
+              <label for="id_sortby">
+                {{ form['sortby'].label }}
+              </label>
+              {{ form['sortby']|safe }}
+            </div>
+          </form>
+        </div>
+        {% for c in pager.object_list %}
+          <div class="item">
+            <div class="item-info">
+              <ul>
+                <li class="addons">
+                  {{ _('<strong>{0}</strong> add-ons')|f(c.addon_count)|safe }}
+                </li>
+                <li class="subscribers">
+                  {{ _('<strong>{0}</strong> subscribers')|f(c.subscribers)|safe }}
+                </li>
+                <li>
+                  {{ barometer(c) }}
+                </li>
+                {% if request.user.is_authenticated() %}
+                  <li>
+                    {{ collection_favorite(c) }}
+                  </li>
+                {% endif %}
+              </ul>
+            </div> {# /item-info #}
+            <h3>
+              <a href="{{ c.get_url_path() }}">{{ c.name }}</a>
+              <span>{{ _('created by {0}')|f(c.author|user_link)|safe }}</span>
+              <a href="{{ c.get_url_path() }}">
+                <img class="icon" alt="" src="{{ c.icon_url }}">
+              </a>
+            </h3>
+            <blockquote>{{ c.description|nl2br }}</blockquote>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="listing-footer">{{ pager|paginator }}</div>
+    {% else %}
+    {% include 'search/no_results.html' %}
+    {% endif %}
+  </div>
+</div> {# /primary #}
+
+<div class="secondary" role="complementary">
+  <div class="highlight">
+    <h3>{{ _('What are Collections?') }}</h3>
+    <p>
+      {{ _('Collections are groups of related add-ons assembled for easy sharing.') }}
+    </p>
+    <p>
+      <a class="more-info" href="{{ remora_url('collections/add') }}">
+        {{ _('Create a Collection', 'collections_index_a_create') }}
+      </a>
+    </p>
+  </div>
+
+  <div class="highlight">
+    <h3>{{ _('Add-on Collector', 'collections_index_header_collector') }}</h3>
+
+    <p class="teaser-img">
+      <a href="{{ remora_url('pages/collector') }}">
+        <img alt="" src="{{ MEDIA_URL }}img/amo2009/illustrations/logo-collections-download-146x159.png">
+      </a>
+    </p>
+    <p>
+      {{ _("There's a new way to manage and find favorite add-ons.  Comment, share and sync collections, all from your browser.") }}
+    </p>
+    <p>
+      <a class="more-info" href="{{ remora_url('pages/collector') }}">
+        {{ _('Check out Add-on Collector') }}
+      </a>
+    </p>
+  </div>
+</div> {# /secondary #}
+
+{# TODO(davedash): parcel this out into a jinja function. #}
+<div class="secondary">
+  <div id="recently-viewed" class="collections-add">
+    <h3 class="compact-bottom">{{ _('Recently Viewed') }}</h3>
+  </div>
+</div>
+
+{% endblock %}
