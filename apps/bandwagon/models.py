@@ -12,6 +12,7 @@ import amo.models
 from amo.utils import sorted_groupby
 from addons.models import Addon, AddonCategory, AddonRecommendation
 from applications.models import Application
+from cake.urlresolvers import remora_url
 from users.models import UserProfile
 from translations.fields import TranslatedField, LinkifiedField
 
@@ -50,8 +51,8 @@ class Collection(amo.models.ModelBase):
     addon_count = models.PositiveIntegerField(default=0,
                                               db_column='addonCount')
 
-    upvotes = models.PositiveIntegerField(default=0)
-    downvotes = models.PositiveIntegerField(default=0)
+    up_votes = models.PositiveIntegerField(default=0, db_column='upvotes')
+    down_votes = models.PositiveIntegerField(default=0, db_column='downvotes')
     rating = models.FloatField(default=0)
 
     addons = models.ManyToManyField(Addon, through='CollectionAddon',
@@ -110,7 +111,7 @@ class Collection(amo.models.ModelBase):
 
     def get_recommendations(self):
         """Get a collection of recommended add-ons for this collection."""
-        if self.recommended_collection:
+        if self.recommended_collection:  # pragma: no cover
             return self.recommended_collection
         else:
             r = RecommendedCollection.objects.create(listed=False)
@@ -151,6 +152,17 @@ class Collection(amo.models.ModelBase):
             (CollectionAddon.objects.filter(collection=self.id, addon=addon)
              .update(ordering=ordering, modified=now))
         self.save()
+
+    def is_subscribed(self, user):
+        "Determines if an AMO user is subscribed to this particular collection."
+        return self.subscriptions.filter(user=user).exists()
+
+    @amo.cached_property
+    def author(self):
+        """Typically a collection will have one author, that's the one we'll
+        list."""
+        users = self.users.all()[:1]
+        return users[0] if users else None
 
 
 class CollectionAddon(amo.models.ModelBase):
@@ -249,7 +261,7 @@ class CollectionSummary(models.Model):
 
 
 class CollectionSubscription(amo.models.ModelBase):
-    collection = models.ForeignKey(Collection)
+    collection = models.ForeignKey(Collection, related_name='subscriptions')
     user = models.ForeignKey(UserProfile)
 
     class Meta(amo.models.ModelBase.Meta):
@@ -268,7 +280,7 @@ class CollectionUser(models.Model):
 
 class CollectionVote(models.Model):
     collection = models.ForeignKey(Collection)
-    user = models.ForeignKey(UserProfile)
+    user = models.ForeignKey(UserProfile, related_name='votes')
     vote = models.SmallIntegerField(default=0)
     created = models.DateTimeField(null=True)
 

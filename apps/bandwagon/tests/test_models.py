@@ -8,6 +8,8 @@ import amo
 from addons.models import Addon, AddonRecommendation
 from bandwagon.models import (Collection, SyncedCollection,
                               RecommendedCollection)
+import settings
+from users.models import UserProfile
 
 
 def get_addons(c):
@@ -17,6 +19,27 @@ def get_addons(c):
 
 class TestCollections(test_utils.TestCase):
     fixtures = ['base/fixtures', 'bandwagon/test_models']
+
+    def test_unicode(self):
+        c = Collection.objects.get(pk=512)
+        eq_(unicode(c), 'yay (4)')
+
+    def test_icon_url(self):
+        c = Collection.objects.get(pk=512)
+        eq_(settings.MEDIA_URL + 'img/amo2009/icons/collection.png',
+            c.icon_url)
+
+    def test_author(self):
+        c = Collection.objects.get(pk=80)
+        eq_(c.author, UserProfile.objects.get(pk=10482))
+
+    def test_is_subscribed(self):
+        c = Collection.objects.get(pk=512)
+        u = UserProfile()
+        u.nickname='unique'
+        u.save()
+        c.subscriptions.create(user=u)
+        assert c.is_subscribed(u), "User isn't subscribed to collection."
 
     def test_translation_default(self):
         """Make sure we're getting strings from the default locale."""
