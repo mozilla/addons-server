@@ -4,7 +4,9 @@
 
 {% block content %}
 {# TODO(jbalogh): reverse these URLs. #}
-{% trans rec="/recommended", search="/search", home="/" %}
+{% trans rec=remora_url('/recommended'),
+         search=url('search.search'),
+         home=url('home') %}
 <h1>We're sorry, but we can't find what you're looking for.</h1>
 
 <p>

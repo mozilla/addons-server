@@ -24,6 +24,16 @@ def test_404_no_app():
     eq_(response.status_code, 404)
 
 
+def test_404_app_links():
+    response = test.Client().get('/en-US/thunderbird/xxxxxxx')
+    eq_(response.status_code, 404)
+    links = pq(response.content)('[role=main] ul li a:not([href^=mailto])')
+    eq_(len(links), 4)
+    for link in links:
+        href = link.attrib['href']
+        assert href.startswith('/en-US/thunderbird'), href
+
+
 class TestStuff(test_utils.TestCase):
     fixtures = ['base/fixtures', 'base/global-stats', 'base/configs']
 
