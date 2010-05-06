@@ -1,9 +1,10 @@
 import logging
 
-from celery.decorators import task
-from celery.messaging import establish_connection
 from django.db import connection, connections, transaction
 from django.db.models import Max, Q, F
+
+from celery.decorators import task
+from celery.messaging import establish_connection
 import multidb
 
 import amo
