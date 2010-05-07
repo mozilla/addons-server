@@ -1,7 +1,7 @@
 from django import http
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
-from django.utils import translation
+from django.utils.translation import trans_real as translation
 
 import jingo
 from tower import ugettext_lazy as _lazy
@@ -302,7 +302,7 @@ class CollectionPromoBox(object):
 
     def collections(self):
         features = self.features()
-        lang = translation.get_language()
+        lang = translation.to_language(translation.get_language())
         locale = Q(locale='') | Q(locale=lang)
         promos = (CollectionPromo.objects.filter(locale)
                   .filter(collection_feature__in=features)
@@ -312,9 +312,9 @@ class CollectionPromoBox(object):
         # We key by feature_id and locale, so we can favor locale specific
         # promos.
         promo_dict = {}
-        for k, v in groups:
+        for feature_id, v in groups:
             promo = v.next()
-            key = (k, promo.locale)
+            key = (feature_id, translation.to_language(promo.locale))
             promo_dict[key] = promo
 
         rv = {}

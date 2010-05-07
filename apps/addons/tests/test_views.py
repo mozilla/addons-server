@@ -24,12 +24,6 @@ class TestHomepage(test_utils.TestCase):
         super(TestHomepage, self).setUp()
         self.base_url = reverse('home')
 
-    def test_thunderbird(self):
-        """Thunderbird homepage should have the Thunderbird title."""
-        r = self.client.get('/en-US/thunderbird/')
-        doc = pq(r.content)
-        eq_('Add-ons for Thunderbird', doc('title').text())
-
     def test_promo_box_public_addons(self):
         """Only public add-ons in the promobox."""
         r = self.client.get(self.base_url, follow=True)
@@ -47,6 +41,12 @@ class TestHomepage(test_utils.TestCase):
         r = self.client.get(self.base_url, follow=True)
         doc = pq(r.content)
         eq_(doc('.lead a')[0].text, 'WebDev')
+
+    def test_thunderbird(self):
+        """Thunderbird homepage should have the Thunderbird title."""
+        r = self.client.get('/en-US/thunderbird/')
+        doc = pq(r.content)
+        eq_('Add-ons for Thunderbird', doc('title').text())
 
     def test_default_feature(self):
         response = self.client.get(self.base_url, follow=True)
@@ -83,6 +83,16 @@ class TestHomepage(test_utils.TestCase):
         doc = pq(self.client.get(self.base_url).content)
         s = doc('#list-new .item .updated').text()
         assert s.strip().startswith('Added'), s
+
+
+class TestPromobox(test_utils.TestCase):
+    fixtures = ['addons/ptbr-promobox']
+
+    def test_promo_box_ptbr(self):
+        # bug 564355, we were trying to match pt-BR and pt-br
+        response = self.client.get('/pt-BR/firefox/', follow=True)
+        eq_(response.status_code, 200)
+    test_promo_box_ptbr.xxx = 3
 
 
 class TestDetailPage(test_utils.TestCase):

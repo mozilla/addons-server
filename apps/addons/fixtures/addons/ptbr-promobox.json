@@ -1,0 +1,403 @@
+[
+    {
+        "pk": 1,
+        "model": "applications.application",
+        "fields": {
+            "guid": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}",
+            "modified": "2008-11-03 15:34:59",
+            "created": "2007-03-05 13:09:26"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "bandwagon.collectionfeature",
+        "fields": {
+            "tagline": null,
+            "created": "2009-07-15 17:06:46",
+            "modified": "2010-03-20 07:47:25",
+            "title": null
+        }
+    },
+    {
+        "pk": 2,
+        "model": "bandwagon.collection",
+        "fields": {
+            "description": null,
+            "rating": 1406.3900000000001,
+            "icontype": "image/png",
+            "uuid": "da0ecd99-2289-7ab0-7d57-e7c489c845c3",
+            "default_locale": "en-US",
+            "created": "2009-06-09 21:35:13",
+            "monthly_subscribers": 455,
+            "nickname": "webdeveloper",
+            "downvotes": 29,
+            "weekly_subscribers": 113,
+            "modified": "2010-02-03 01:02:40",
+            "addon_count": 11,
+            "addon_index": null,
+            "application": 1,
+            "listed": 1,
+            "subscribers": 9049,
+            "upvotes": 275,
+            "recommended_collection": null,
+            "type": 2,
+            "downloads": 818624,
+            "name": null
+        }
+    },
+    {
+        "pk": 1,
+        "model": "bandwagon.collectionfeature",
+        "fields": {
+            "tagline": null,
+            "created": "2009-07-15 17:06:46",
+            "modified": "2010-03-20 07:47:25",
+            "title": null
+        }
+    },
+    {
+        "pk": 37265,
+        "model": "bandwagon.collection",
+        "fields": {
+            "description": null,
+            "rating": 17.482500000000002,
+            "icontype": "image/jpeg",
+            "uuid": "ac2a23ac-e891-6d5c-0f48-e3f8ee361b17",
+            "default_locale": "en-US",
+            "created": "2009-09-18 13:46:22",
+            "monthly_subscribers": 82,
+            "nickname": "onlineshopping",
+            "downvotes": 14,
+            "weekly_subscribers": 24,
+            "modified": "2010-02-02 11:49:11",
+            "addon_count": 8,
+            "addon_index": null,
+            "application": 1,
+            "listed": 1,
+            "subscribers": 463,
+            "upvotes": 19,
+            "recommended_collection": null,
+            "type": 2,
+            "downloads": 138557,
+            "name": null
+        }
+    },
+    {
+        "pk": 2,
+        "model": "bandwagon.collectionfeature",
+        "fields": {
+            "tagline": null,
+            "created": "2009-07-15 17:06:46",
+            "modified": "2010-03-20 07:47:25",
+            "title": null
+        }
+    },
+    {
+        "pk": 33357,
+        "model": "bandwagon.collection",
+        "fields": {
+            "description": null,
+            "rating": -25.6449,
+            "icontype": "image/jpeg",
+            "uuid": "5ba9c681-c82e-cb1f-f736-d0fa875366f9",
+            "default_locale": "en-US",
+            "created": "2009-08-26 13:49:23",
+            "monthly_subscribers": 52,
+            "nickname": "sport",
+            "downvotes": 23,
+            "weekly_subscribers": 18,
+            "modified": "2010-01-05 14:21:50",
+            "addon_count": 6,
+            "addon_index": null,
+            "application": 1,
+            "listed": 1,
+            "subscribers": 395,
+            "upvotes": 16,
+            "recommended_collection": null,
+            "type": 2,
+            "downloads": 169627,
+            "name": null
+        }
+    },
+    {
+        "pk": 3,
+        "model": "bandwagon.collectionfeature",
+        "fields": {
+            "tagline": null,
+            "created": "2009-07-15 17:06:46",
+            "modified": "2010-03-20 07:47:25",
+            "title": null
+        }
+    },
+    {
+        "pk": 10,
+        "model": "bandwagon.collection",
+        "fields": {
+            "description": null,
+            "rating": 347.21499999999997,
+            "icontype": "image/png",
+            "uuid": "c37b85ec-f029-9ef1-1801-0e1ea52ca728",
+            "default_locale": "en-US",
+            "created": "2009-06-09 21:43:45",
+            "monthly_subscribers": 538,
+            "nickname": "reference",
+            "downvotes": 31,
+            "weekly_subscribers": 135,
+            "modified": "2010-01-05 12:30:59",
+            "addon_count": 8,
+            "addon_index": null,
+            "application": 1,
+            "listed": 1,
+            "subscribers": 6436,
+            "upvotes": 102,
+            "recommended_collection": null,
+            "type": 2,
+            "downloads": 385246,
+            "name": null
+        }
+    },
+    {
+        "pk": 5,
+        "model": "bandwagon.collectionfeature",
+        "fields": {
+            "tagline": null,
+            "created": "2009-07-15 17:06:46",
+            "modified": "2010-03-20 07:47:25",
+            "title": null
+        }
+    },
+    {
+        "pk": 4,
+        "model": "bandwagon.collection",
+        "fields": {
+            "description": null,
+            "rating": 84.230099999999993,
+            "icontype": "image/png",
+            "uuid": "a64b30fa-24b7-49a7-ff72-a8f963b555cc",
+            "default_locale": "en-US",
+            "created": "2009-06-09 21:41:05",
+            "monthly_subscribers": 93,
+            "nickname": "travel",
+            "downvotes": 12,
+            "weekly_subscribers": 25,
+            "modified": "2010-01-05 12:33:14",
+            "addon_count": 9,
+            "addon_index": null,
+            "application": 1,
+            "listed": 1,
+            "subscribers": 1538,
+            "upvotes": 34,
+            "recommended_collection": null,
+            "type": 2,
+            "downloads": 373246,
+            "name": null
+        }
+    },
+    {
+        "pk": 48,
+        "model": "bandwagon.collectionpromo",
+        "fields": {
+            "locale": "",
+            "collection_feature": 4,
+            "modified": null,
+            "collection": 2,
+            "created": "2010-01-05 18:16:52"
+        }
+    },
+    {
+        "pk": 47,
+        "model": "bandwagon.collectionpromo",
+        "fields": {
+            "locale": "",
+            "collection_feature": 1,
+            "modified": null,
+            "collection": 37265,
+            "created": "2010-01-05 18:16:11"
+        }
+    },
+    {
+        "pk": 38,
+        "model": "bandwagon.collectionpromo",
+        "fields": {
+            "locale": "",
+            "collection_feature": 2,
+            "modified": null,
+            "collection": 33357,
+            "created": "2009-09-18 12:14:09"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "bandwagon.collectionpromo",
+        "fields": {
+            "locale": "",
+            "collection_feature": 3,
+            "modified": null,
+            "collection": 10,
+            "created": "2009-06-09 22:49:47"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "bandwagon.collectionpromo",
+        "fields": {
+            "locale": "",
+            "collection_feature": 5,
+            "modified": null,
+            "collection": 4,
+            "created": "2009-06-09 22:49:15"
+        }
+    },
+    {
+        "pk": 29294,
+        "model": "bandwagon.collection",
+        "fields": {
+            "description": null,
+            "rating": 1.38629,
+            "icontype": "",
+            "uuid": "e1d80987-e1e2-3ff7-b2f5-5be3d168d411",
+            "default_locale": "pt-BR",
+            "created": "2009-08-05 14:01:07",
+            "monthly_subscribers": 0,
+            "nickname": "animers",
+            "downvotes": 0,
+            "weekly_subscribers": 0,
+            "modified": "2009-08-05 14:02:59",
+            "addon_count": 5,
+            "addon_index": null,
+            "application": 1,
+            "listed": 1,
+            "subscribers": 4,
+            "upvotes": 2,
+            "recommended_collection": null,
+            "type": 0,
+            "downloads": 56889,
+            "name": null
+        }
+    },
+    {
+        "pk": 24161,
+        "model": "bandwagon.collection",
+        "fields": {
+            "description": null,
+            "rating": 3.2958400000000001,
+            "icontype": "",
+            "uuid": "bb14acf8-0b9a-731e-de17-88f82028fd53",
+            "default_locale": "pt-BR",
+            "created": "2009-07-16 08:21:37",
+            "monthly_subscribers": 3,
+            "nickname": "qahelper",
+            "downvotes": 0,
+            "weekly_subscribers": 3,
+            "modified": "2009-08-14 06:55:45",
+            "addon_count": 8,
+            "addon_index": null,
+            "application": 1,
+            "listed": 1,
+            "subscribers": 5,
+            "upvotes": 3,
+            "recommended_collection": null,
+            "type": 0,
+            "downloads": 19739,
+            "name": null
+        }
+    },
+    {
+        "pk": 308,
+        "model": "bandwagon.collection",
+        "fields": {
+            "description": null,
+            "rating": 0.0,
+            "icontype": "",
+            "uuid": "80c60587-ebe3-22e4-3e9a-445c20848cae",
+            "default_locale": "pt-BR",
+            "created": "2009-06-10 05:27:00",
+            "monthly_subscribers": 2,
+            "nickname": "security",
+            "downvotes": 0,
+            "weekly_subscribers": 1,
+            "modified": "2009-06-10 06:33:04",
+            "addon_count": 5,
+            "addon_index": null,
+            "application": 1,
+            "listed": 1,
+            "subscribers": 6,
+            "upvotes": 0,
+            "recommended_collection": null,
+            "type": 0,
+            "downloads": 18094,
+            "name": null
+        }
+    },
+    {
+        "pk": 23926,
+        "model": "bandwagon.collection",
+        "fields": {
+            "description": null,
+            "rating": 3.2958400000000001,
+            "icontype": "",
+            "uuid": "4b59ae7e-de6e-77f0-e67c-894239fdd602",
+            "default_locale": "pt-BR",
+            "created": "2009-07-15 12:10:11",
+            "monthly_subscribers": 0,
+            "nickname": "mma",
+            "downvotes": 0,
+            "weekly_subscribers": 0,
+            "modified": "2009-07-15 15:43:43",
+            "addon_count": 7,
+            "addon_index": null,
+            "application": 1,
+            "listed": 1,
+            "subscribers": 10,
+            "upvotes": 3,
+            "recommended_collection": null,
+            "type": 0,
+            "downloads": 46672,
+            "name": null
+        }
+    },
+    {
+        "pk": 32,
+        "model": "bandwagon.collectionpromo",
+        "fields": {
+            "locale": "pt-BR",
+            "collection_feature": 3,
+            "modified": null,
+            "collection": 29294,
+            "created": "2009-09-08 13:23:28"
+        }
+    },
+    {
+        "pk": 31,
+        "model": "bandwagon.collectionpromo",
+        "fields": {
+            "locale": "pt-BR",
+            "collection_feature": 2,
+            "modified": null,
+            "collection": 24161,
+            "created": "2009-09-08 13:22:44"
+        }
+    },
+    {
+        "pk": 30,
+        "model": "bandwagon.collectionpromo",
+        "fields": {
+            "locale": "pt-BR",
+            "collection_feature": 4,
+            "modified": null,
+            "collection": 308,
+            "created": "2009-09-08 13:21:54"
+        }
+    },
+    {
+        "pk": 29,
+        "model": "bandwagon.collectionpromo",
+        "fields": {
+            "locale": "pt-BR",
+            "collection_feature": 1,
+            "modified": null,
+            "collection": 23926,
+            "created": "2009-09-08 13:12:03"
+        }
+    }
+]
