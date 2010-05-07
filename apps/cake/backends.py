@@ -39,8 +39,13 @@ class SessionBackend:
             session.delete()
             return None
 
+        # User will hit this if they are new to zamboni.
         if profile.user is None:
-            profile.create_django_user()
+            # This will catch replication lags in case we created a user.
+            profile = UserProfile.objects.using('default').no_cache().get(
+                    pk=user_id)
+            if profile.user is None:
+                profile.create_django_user()
 
         return profile.user
 
