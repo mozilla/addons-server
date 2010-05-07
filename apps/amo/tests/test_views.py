@@ -190,3 +190,10 @@ def test_jsi18n_caching():
     fmt = '%a, %d %b %Y %H:%M:%S GMT'
     expires = datetime.strptime(response['Expires'], fmt)
     assert (expires - datetime.now()).days >= 365
+
+
+def test_dictionaries_link():
+    doc = pq(test.Client().get('/', follow=True).content)
+    # This just failed because you dropped the remora url.
+    link = doc('#categoriesdropdown a[href$="type:3"]')
+    eq_(link.text(), 'Dictionaries & Language Packs')
