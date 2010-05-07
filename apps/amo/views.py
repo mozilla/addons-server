@@ -1,3 +1,4 @@
+import random
 import socket
 import urllib2
 
@@ -73,16 +74,41 @@ def paypal(request):
     https://cms.paypal.com/us/cgi-bin/?cmd=_render-content
                     &content_ID=developer/e_howto_html_IPNandPDTVariables
     """
+
+
+    def _log_error_with_data(msg, request):
+        """Log a message along with some of the POST info from PayPal."""
+
+        id = random.randint(0,99999999)
+        msg = "[%s] %s (dumping data)" % (id, msg)
+
+        log.error(msg)
+
+        logme = {'txn_id': request.POST.get('txn_id'),
+                 'txn_type': request.POST.get('txn_id'),
+                 'payer_email': request.POST.get('payer_email'),
+                 'receiver_email': request.POST.get('receiver_email'),
+                 'payment_status': request.POST.get('payment_status'),
+                 'payment_type': request.POST.get('payment_type'),
+                 'mc_gross': request.POST.get('mc_gross'),
+                 'item_number': request.POST.get('item_number'),
+                }
+
+        log.error("[%s] PayPal Data: %s" % (id, logme))
+
+
     if request.method != 'POST':
         return http.HttpResponseNotAllowed(['POST'])
 
     # Check that the request is valid and coming from PayPal.
     data = request.POST.copy()
     data['cmd'] = '_notify-validate'
-    pr = urllib2.urlopen(settings.PAYPAL_CGI_URL,
-                         data.urlencode(), 20).readline()
-    if pr != 'VERIFIED':
-        log.error("Expecting 'VERIFIED' from PayPal, got '%s'.  Failing." % pr)
+    paypal_response = urllib2.urlopen(settings.PAYPAL_CGI_URL,
+                                      data.urlencode(), 20).readline()
+    if paypal_response != 'VERIFIED':
+        msg = ("Expecting 'VERIFIED' from PayPal, got '%s'. "
+               "Failing." % paypal_response)
+        _log_error_with_data(msg, request)
         return http.HttpResponseForbidden('Invalid confirmation')
 
     if request.POST.get('txn_type', '').startswith('subscr_'):
@@ -110,12 +136,9 @@ def paypal(request):
         log.warning('Contribution (uuid=%s) not found for IPN request #%s.'
                      % (request.POST['item_number'], count))
         if count > 10:
-            logme = (request.POST['txn_id'], request.POST['payer_email'],
-                     request.POST['receiver_email'], request.POST['mc_gross'])
-            log.error("Paypal sent a transaction that we don't know about and "
-                      "we're giving up on it! (TxnID={d[txn_id]}; "
-                      "From={d[payer_email]}; To={d[receiver_email]}; "
-                      "Amount={d[mc_gross]})".format(d=request.POST))
+            msg = ("Paypal sent a transaction that we don't know "
+                   "about and we're giving up on it.")
+            _log_error_with_data(msg, request)
             cache.delete(key)
             return http.HttpResponse('Transaction not found; skipping.')
         cache.set(key, count, 1209600)  # This is 2 weeks.
