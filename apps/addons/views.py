@@ -11,7 +11,6 @@ from amo.utils import sorted_groupby
 from amo import urlresolvers
 from amo.urlresolvers import reverse
 from bandwagon.models import Collection, CollectionFeature, CollectionPromo
-from users.models import UserProfile
 from stats.models import GlobalStat
 from tags.models import Tag
 from .models import Addon
@@ -103,12 +102,7 @@ def extension_detail(request, addon):
     popular_coll = collections.order_by('-subscribers')[:coll_show_count]
 
     # this user's collections
-    if request.user.is_authenticated():
-        profile = UserProfile.objects.get(user=request.user)
-        user_collections = _details_collections_dropdown(request,
-                                                        profile, addon)
-    else:
-        user_collections = []
+    user_collections = _details_collections_dropdown(request, addon)
 
     data = {
         'addon': addon,
@@ -129,7 +123,7 @@ def extension_detail(request, addon):
     return jingo.render(request, 'addons/details.html', data)
 
 
-def _details_collections_dropdown(request, profile, addon):
+def _details_collections_dropdown(request, addon):
     """Returns the collections which should be shown on an add-on details
         page for a logged in user. This is used in the "Add to a collection..."
         dropdown.  Rules to be in this list:
@@ -146,6 +140,10 @@ def _details_collections_dropdown(request, profile, addon):
             Q(collectionuser__role=amo.COLLECTION_ROLE_PUBLISHER),
             application__id=request.APP.id)
     """
+    if request.user.is_authenticated():
+        profile = request.amo_user
+    else:
+        return []
 
     sql = """
             SELECT DISTINCT

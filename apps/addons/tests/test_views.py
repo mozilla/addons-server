@@ -279,20 +279,28 @@ class TestDetailPage(test_utils.TestCase):
 
         request = Mock()
         request.APP.id = 1
+        request.user.is_authenticated = lambda: True
 
-        profile = Mock()
-        profile.id = 10482
+        request.amo_user.id = 10482
 
         addon = Mock()
         addon.id = 4048
 
-        ret = _details_collections_dropdown(request, profile, addon)
+        ret = _details_collections_dropdown(request, addon)
         eq_(len(ret), 2)
 
         # Add-on exists in one of the collections
         addon.id = 433
-        ret = _details_collections_dropdown(request, profile, addon)
+        ret = _details_collections_dropdown(request, addon)
         eq_(len(ret), 1)
+
+        request.user.is_authenticated = lambda: False
+        request.amo_user.id = None
+
+        ret = _details_collections_dropdown(request, addon)
+        eq_(len(ret), 0)
+
+
 
     def test_remove_tag_button(self):
         self.client.login(username='regular@mozilla.com', password='password')
