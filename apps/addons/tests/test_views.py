@@ -86,7 +86,8 @@ class TestHomepage(test_utils.TestCase):
 
 
 class TestDetailPage(test_utils.TestCase):
-    fixtures = ['base/fixtures', 'addons/listed', 'addons/persona']
+    fixtures = ['base/fixtures', 'base/addon_59.json', 'addons/listed',
+                'addons/persona']
 
     def test_anonymous_user(self):
         """Does the page work for an anonymous user?"""
@@ -300,8 +301,6 @@ class TestDetailPage(test_utils.TestCase):
         ret = _details_collections_dropdown(request, addon)
         eq_(len(ret), 0)
 
-
-
     def test_remove_tag_button(self):
         self.client.login(username='regular@mozilla.com', password='password')
         r = self.client.get(reverse('addons.detail', args=[3615]))
@@ -315,6 +314,12 @@ class TestDetailPage(test_utils.TestCase):
         doc = pq(r.content)
         href = doc('#review-box a[href*="reviews/add"]').attr('href')
         assert href.endswith('/reviews/add/3615'), href
+
+    def test_no_listed_authors(self):
+        r = self.client.get(reverse('addons.detail', args=[59]))
+        # We shouldn't show an avatar since this has no listed_authors.
+        doc = pq(r.content)
+        eq_(0, len(doc('.avatar')))
 
 
 class TestTagsBox(test_utils.TestCase):

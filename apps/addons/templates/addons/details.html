@@ -239,7 +239,7 @@
 
 <div class="secondary" role="navigation">
 
-  {% if addon.the_reason and addon.the_future %}
+  {% if addon.the_reason and addon.the_future and addon.listed_authors %}
   <div class="highlight">
     {% with single_dev = addon.listed_authors|random %}
       <h3 class="compact-bottom">
