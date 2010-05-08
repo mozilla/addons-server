@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.contrib.auth.models import AnonymousUser, User
+from django.db import IntegrityError
 
 from mock import Mock, patch
 from nose.tools import eq_
@@ -91,7 +92,7 @@ class CakeTestCase(TestCase):
 
     @patch('django.db.models.fields.related.'
            'ReverseSingleRelatedObjectDescriptor.__get__')
-    def test_bad_user_id(self, p_mock):
+    def test_backend_profile_exceptions(self, p_mock):
         # We have a legitimate profile, but for some reason the user_id is phony
         s = SessionBackend()
         backend = SessionBackend()
@@ -99,6 +100,13 @@ class CakeTestCase(TestCase):
 
         p_mock.side_effect = User.DoesNotExist()
         eq_(None, s.authenticate(session))
+
+        p_mock.side_effect = IntegrityError()
+        eq_(None, s.authenticate(session))
+
+        p_mock.side_effect = Exception()
+        eq_(None, s.authenticate(session))
+
 
 
 class TestHelpers(TestCase):

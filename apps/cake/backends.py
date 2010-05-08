@@ -2,6 +2,7 @@ import logging
 from time import time
 
 from django.contrib.auth.models import User
+from django.db import IntegrityError
 
 import phpserialize
 
@@ -55,7 +56,15 @@ class SessionBackend:
             # Chances are we are suffering from replication lag, but
             # let's play it safe and just not authenticate.
             return None
+        except IntegrityError, e:
+            # Typically a duplicate key.
+            log.warning('DB Error for UserProfile {0}: {1}'.format(user_id, e))
+            return None
 
+        except Exception, e:
+            log.error('Unknown exception for UserProfile {0}: {1}'.format(
+                    user_id, e))
+            return None
 
         return profile.user
 
