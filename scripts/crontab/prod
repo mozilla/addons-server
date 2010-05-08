@@ -10,6 +10,7 @@ MAILTO=amo-developers@mozilla.org
 25 * * * * apache cd /data/amo_python/src/prod/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron update_collections_votes
 30 * * * * apache cd /data/amo/www/addons.mozilla.org-remora/bin; php -f maintenance.php l10n_stats
 35 * * * * apache cd /data/amo/www/addons.mozilla.org-remora/bin; php -f maintenance.php l10n_rss
+40 * * * * apache cd /data/amo_python/src/prod/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron fetch_ryf_blog
 
 #every 3 hours
 20 */3 * * * apache cd /data/amo/www/addons.mozilla.org-remora/bin ; php -f compatibility_report.php

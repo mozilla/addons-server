@@ -12,6 +12,7 @@ MAILTO=amo-developers@mozilla.org
 25 * * * * cd /data/amo_python/src/preview/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron update_collections_votes
 30 * * * * cd /data/amo/www/addons.mozilla.org-preview/bin; php -f maintenance.php l10n_stats
 35 * * * * cd /data/amo/www/addons.mozilla.org-preview/bin; php -f maintenance.php l10n_rss
+40 * * * * cd /data/amo_python/src/preview/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron fetch_ryf_blog
 
 #every 3 hours
 20 */3 * * * cd /data/amo/www/addons.mozilla.org-preview/bin ; php -f compatibility_report.php
