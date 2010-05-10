@@ -12,6 +12,7 @@ handler500 = 'amo.views.handler500'
 
 urlpatterns = patterns('',
     # Discovery pane is first for undetectable efficiency wins.
+    ('^discovery.*', 'jingo.render', {'template': 'addons/discovery.html'}),
     ('^discovery/', include('discovery.urls')),
 
     # Add-ons.
