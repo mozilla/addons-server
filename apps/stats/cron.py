@@ -29,12 +29,12 @@ def update_addons_collections_downloads():
          .annotate(sum=Sum('count')))
 
     with establish_connection() as conn:
-        for chunk in chunked(d, 1000):
+        for chunk in chunked(d, 600):
             _update_addons_collections_downloads.apply_async(args=[chunk],
                                                              connection=conn)
 
 
-@task(rate_limit='15/m')
+@task(rate_limit='10/m')
 def _update_addons_collections_downloads(data, **kw):
     task_log.debug("[%s@%s] Updating addons+collections download totals." %
                   (len(data), _update_addons_collections_downloads.rate_limit))
