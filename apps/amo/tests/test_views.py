@@ -4,7 +4,6 @@ import urllib
 from django import http, test
 from django.conf import settings
 from django.core.cache import cache, parse_backend_uri
-from amo.urlresolvers import reverse
 
 from mock import patch, Mock
 from nose import SkipTest
@@ -12,8 +11,22 @@ from nose.tools import eq_
 from pyquery import PyQuery as pq
 import test_utils
 
+from amo.urlresolvers import reverse
 from amo.pyquery_wrapper import PyQuery
 from stats.models import SubscriptionEvent
+
+
+URL_ENCODED = 'application/x-www-form-urlencoded'
+
+
+class Client(test.Client):
+    """Test client that uses form-urlencoded (like browsers)."""
+
+    def post(self, url, data={}, **kw):
+        if hasattr(data, 'items'):
+            data = urllib.urlencode(data)
+            kw['content_type'] = URL_ENCODED
+        return super(Client, self).post(url, data, **kw)
 
 
 def test_404_no_app():
@@ -124,6 +137,7 @@ class TestPaypal(test_utils.TestCase):
     def setUp(self):
         self.url = reverse('amo.paypal')
         self.item = 1234567890
+        self.client = Client()
 
     def urlopener(self, status):
         m = Mock()
@@ -176,6 +190,23 @@ class TestPaypal(test_utils.TestCase):
         response = self.client.post(self.url, data)
         assert isinstance(response, http.HttpResponse)
         eq_(cache.get(key), None)
+
+    @patch('amo.views.urllib2.urlopen')
+    def test_query_string_order(self, urlopen):
+        urlopen.return_value = self.urlopener('HEY MISTER')
+        query = 'x=x&a=a&y=y'
+        response = self.client.post(self.url, data=query,
+                                    content_type=URL_ENCODED)
+        eq_(response.status_code, 403)
+        _, path, _ = urlopen.call_args[0]
+        eq_(path, 'cmd=_notify-validate&%s' % query)
+
+    @patch('amo.views.urllib2.urlopen')
+    def test_any_exception(self, urlopen):
+        urlopen.side_effect = Exception()
+        response = self.client.post(self.url, {})
+        eq_(response.status_code, 500)
+        eq_(response.content, 'Unknown error.')
 
 
 def test_jsi18n_caching():

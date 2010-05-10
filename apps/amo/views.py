@@ -74,12 +74,18 @@ def paypal(request):
     https://cms.paypal.com/us/cgi-bin/?cmd=_render-content
                     &content_ID=developer/e_howto_html_IPNandPDTVariables
     """
+    try:
+        return _paypal(request)
+    except Exception, e:
+        log.error('[paypal] %s\n%s' % (e, request))
+        return http.HttpResponseServerError('Unknown error.')
 
 
+def _paypal(request):
     def _log_error_with_data(msg, request):
         """Log a message along with some of the POST info from PayPal."""
 
-        id = random.randint(0,99999999)
+        id = random.randint(0, 99999999)
         msg = "[%s] %s (dumping data)" % (id, msg)
 
         log.error(msg)
@@ -96,15 +102,13 @@ def paypal(request):
 
         log.error("[%s] PayPal Data: %s" % (id, logme))
 
-
     if request.method != 'POST':
         return http.HttpResponseNotAllowed(['POST'])
 
     # Check that the request is valid and coming from PayPal.
-    data = request.POST.copy()
-    data['cmd'] = '_notify-validate'
+    data = '%s&%s' % ('cmd=_notify-validate', request.raw_post_data)
     paypal_response = urllib2.urlopen(settings.PAYPAL_CGI_URL,
-                                      data.urlencode(), 20).readline()
+                                      data, 20).readline()
     if paypal_response != 'VERIFIED':
         msg = ("Expecting 'VERIFIED' from PayPal, got '%s'. "
                "Failing." % paypal_response)

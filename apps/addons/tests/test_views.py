@@ -92,7 +92,6 @@ class TestPromobox(test_utils.TestCase):
         # bug 564355, we were trying to match pt-BR and pt-br
         response = self.client.get('/pt-BR/firefox/', follow=True)
         eq_(response.status_code, 200)
-    test_promo_box_ptbr.xxx = 3
 
 
 class TestDetailPage(test_utils.TestCase):
