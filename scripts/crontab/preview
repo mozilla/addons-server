@@ -1,6 +1,6 @@
 MAILTO=amo-developers@mozilla.org
 
-0 * * * * rm -rf /data/virtualenvs/zamboni/build && /data/virtualenvs/zamboni/bin/pip -q install -U -i https://hudson.mozilla.org/pypi/ -r https://hudson.mozilla.org/pypi/pip-manifest.txt > /dev/null
+0 * * * * rm -rf /data/virtualenvs/zamboni/build && /data/virtualenvs/zamboni/bin/pip -q install -i https://hudson.mozilla.org/pypi/ -r https://hudson.mozilla.org/pypi/pip-manifest.txt > /dev/null
 
 #every 15 min
 
