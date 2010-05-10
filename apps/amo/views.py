@@ -1,3 +1,4 @@
+import logging
 import random
 import socket
 import urllib2
@@ -14,6 +15,7 @@ import phpserialize as php
 from stats.models import Contribution, ContributionError, SubscriptionEvent
 from . import log
 
+paypal_log = logging.getLogger('z.paypal')
 
 @never_cache
 def monitor(request):
@@ -77,18 +79,19 @@ def paypal(request):
     try:
         return _paypal(request)
     except Exception, e:
-        log.error('[paypal] %s\n%s' % (e, request))
+        paypal_log.error('%s\n%s' % (e, request))
         return http.HttpResponseServerError('Unknown error.')
 
 
 def _paypal(request):
+
     def _log_error_with_data(msg, request):
         """Log a message along with some of the POST info from PayPal."""
 
         id = random.randint(0, 99999999)
         msg = "[%s] %s (dumping data)" % (id, msg)
 
-        log.error(msg)
+        paypal_log.error(msg)
 
         logme = {'txn_id': request.POST.get('txn_id'),
                  'txn_type': request.POST.get('txn_type'),
@@ -100,7 +103,7 @@ def _paypal(request):
                  'item_number': request.POST.get('item_number'),
                 }
 
-        log.error("[%s] PayPal Data: %s" % (id, logme))
+        paypal_log.error("[%s] PayPal Data: %s" % (id, logme))
 
     if request.method != 'POST':
         return http.HttpResponseNotAllowed(['POST'])
@@ -137,8 +140,8 @@ def _paypal(request):
                            request.POST['item_number'])
         count = cache.get(key, 0) + 1
 
-        log.warning('Contribution (uuid=%s) not found for IPN request #%s.'
-                     % (request.POST['item_number'], count))
+        paypal_log.warning('Contribution (uuid=%s) not found for IPN request '
+                           '#%s.' % (request.POST['item_number'], count))
         if count > 10:
             msg = ("Paypal sent a transaction that we don't know "
                    "about and we're giving up on it.")
@@ -159,7 +162,7 @@ def _paypal(request):
         c.mail_thankyou(request)
     except ContributionError as e:
         # A failed thankyou email is not a show stopper, but is good to know.
-        log.error('Thankyou note email failed with error: %s' % e)
+        paypal_log.error('Thankyou note email failed with error: %s' % e)
 
     return http.HttpResponse('Success!')
 
