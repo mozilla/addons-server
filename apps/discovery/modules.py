@@ -1,6 +1,7 @@
 import jingo
 from tower import ugettext_lazy as _
 
+from api.views import addon_filter
 from bandwagon.models import Collection
 from .models import BlogCacheRyf
 
@@ -30,31 +31,44 @@ class PromoModule(object):
     abstract = True
     slug = None
 
-    def render(self, request):
+    def __init__(self, request, platform, version):
+        self.request = request
+        self.platform = platform
+        self.version = version
+
+    def render(self):
         raise NotImplementedError
 
 
 class RockYourFirefox(PromoModule):
     slug = 'Rock Your Firefox'
 
-    def render(self, request):
-        return jingo.render_to_string(request, 'discovery/modules/ryf.html',
-                                      {'ryf': BlogCacheRyf.objects.get()})
+    def render(self):
+        return jingo.render_to_string(
+            self.request, 'discovery/modules/ryf.html',
+            {'ryf': BlogCacheRyf.objects.get()})
 
 
 class CollectionPromo(PromoModule):
     abstract = True
     template = 'discovery/modules/collection.html'
     title = None
+    limit = 5
 
-    def __init__(self):
-        super(CollectionPromo, self).__init__()
+    def __init__(self, *args, **kw):
+        super(CollectionPromo, self).__init__(*args, **kw)
         self.collection = Collection.objects.get(pk=self.pk)
 
-    def render(self, request):
+    def get_addons(self):
+        addons = self.collection.addons.all()
+        kw = dict(addon_type='ALL', limit=6, app=self.request.APP,
+                  platform=self.platform, version=self.version, shuffle=True)
+        return addon_filter(addons, **kw)
+
+    def render(self):
         c = dict(title=self.title, collection=self.collection,
-                 addons=self.collection.addons.all())
-        return jingo.render_to_string(request, self.template, c)
+                 addons=self.get_addons())
+        return jingo.render_to_string(self.request, self.template, c)
 
 
 class ShoppingCollection(CollectionPromo):
@@ -69,7 +83,7 @@ class WebdevCollection(CollectionPromo):
     title = _('Build the perfect website')
 
 
-class SportsCollectoin(CollectionPromo):
+class SportsCollection(CollectionPromo):
     slug = 'Sports Collection'
-    pk = 3217
-    title = _('Get the latest scores and higlights')
+    pk = 33357
+    title = _('Get the latest scores and highlights')
