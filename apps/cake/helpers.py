@@ -42,10 +42,9 @@ def cake_csrf_token(context):
 def remora_url(context, url, lang=None, app=None, prefix=''):
     """Wrapper for urlresolvers.remora_url"""
     if lang is None:
-        try:
-            lang = translation.to_locale(context['LANG']).replace('_', '-')
-        except KeyError:
-            pass
+        _lang = context['LANG']
+        if _lang:
+            lang = translation.to_locale(_lang).replace('_', '-')
     if app is None:
         try:
             app = context['APP'].short
