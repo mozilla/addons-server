@@ -91,7 +91,7 @@ def _paypal(request):
         log.error(msg)
 
         logme = {'txn_id': request.POST.get('txn_id'),
-                 'txn_type': request.POST.get('txn_id'),
+                 'txn_type': request.POST.get('txn_type'),
                  'payer_email': request.POST.get('payer_email'),
                  'receiver_email': request.POST.get('receiver_email'),
                  'payment_status': request.POST.get('payment_status'),
