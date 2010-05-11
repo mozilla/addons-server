@@ -163,9 +163,12 @@ def JINJA_CONFIG():
 
 
 MIDDLEWARE_CLASSES = (
-    'commonware.log.ThreadRequestMiddleware',
     # AMO URL middleware comes first so everyone else sees nice URLs.
     'amo.middleware.LocaleAndAppURLMiddleware',
+
+    # Munging REMOTE_ADDR must come before ThreadRequest.
+    'commonware.middleware.SetRemoteAddrFromForwardedFor',
+    'commonware.log.ThreadRequestMiddleware',
 
     'django.middleware.common.CommonMiddleware',
     'amo.middleware.NoVarySessionMiddleware',

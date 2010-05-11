@@ -5,6 +5,7 @@ from django import http, test
 from django.conf import settings
 from django.core.cache import cache, parse_backend_uri
 
+import commonware.log
 from mock import patch, Mock
 from nose import SkipTest
 from nose.tools import eq_
@@ -228,3 +229,12 @@ def test_dictionaries_link():
     # This just failed because you dropped the remora url.
     link = doc('#categoriesdropdown a[href$="type:3"]')
     eq_(link.text(), 'Dictionaries & Language Packs')
+
+
+def test_remote_addr():
+    """Make sure we're setting REMOTE_ADDR from X_FORWARDED_FOR."""
+    client = test.Client()
+    # Send X-Forwarded-For as it shows up in a wsgi request.
+    response = client.get('/en-US/firefox/', follow=True,
+                          HTTP_X_FORWARDED_FOR='oh yeah')
+    eq_(commonware.log.get_remote_addr(), 'oh yeah')
