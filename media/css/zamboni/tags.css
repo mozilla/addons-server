@@ -1,0 +1,40 @@
+.tagLevel1 {font-size: 1.2em;}
+.tagLevel2 {font-size: 1.4em;}
+.tagLevel3 {font-size: 1.6em;}
+.tagLevel4 {font-size: 1.8em;}
+.tagLevel5 {font-size: 2em;}
+.tagLevel6 {font-size: 2.2em;}
+.tagLevel7 {font-size: 2.4em;}
+.tagLevel8 {font-size: 2.6em;}
+.tagLevel9 {font-size: 2.8em;}
+.tagLevel10 {font-size: 3em;}
+
+#tag-box div {
+    font-size: 60%;
+    line-height: 3.07em;
+    padding: 0;
+    text-align: left;
+}
+.html-rtl #tag-box div {
+    text-align: right;
+}
+
+#tag-box .tag {
+    vertical-align: baseline;
+}
+.html-ltr #tag-box .tag {
+    margin-right: 8px;
+}
+.html-rtl #tag-box .tag {
+    margin-left: 8px;
+}
+
+#tag-box p.more {
+    border-top: 1px dotted #94BFCE;
+    display: block;
+    padding-top: .3em;
+    text-align: right;
+}
+.html-rtl #tag-box p.more {
+    text-align: left;
+}

@@ -1,0 +1,1941 @@
+/* Clearfix!!! */
+#persona #more-personas:after,
+.listing .item:after,
+.search-form .basic:after,
+.section:after,
+.notification .aux:after,
+.aux .button-wrapper:after,
+.object-lead .button-wrapper:after {
+    content: ".";
+    display: block;
+    clear: both;
+    height: 0;
+    visibility: hidden;
+}
+
+/************************************/
+/*             ELEMENTS             */
+/************************************/
+.section,
+.notification .aux,
+.aux .button-wrapper,
+.object-lead .button-wrapper {
+    overflow: visible;
+}
+
+li.usertag {
+    overflow: hidden;
+}
+
+header {
+    margin: 0 1em;
+    display: block;
+}
+
+header ol.breadcrumbs {
+    margin-bottom: 0;
+}
+
+header hgroup h2 {
+    margin-bottom: 0.3em;
+    margin-top: 0.2em;
+}
+
+header hgroup h3 {
+    margin-top: 0;
+    color: #666;
+    font-family: "helvetica neue", arial, helvetica, sans-serif;
+    font-size: 16px;
+    margin-bottom: 14px;
+}
+
+.search-form {
+    padding-bottom: 1.6em;
+    margin-bottom: .5em;
+}
+
+ul.errorlist {
+    margin-bottom: 0;
+    color: #c00;
+}
+
+.html-ltr a.more-link:after {
+    content: '\25B8';
+    margin-left: .5em;
+}
+.html-rtl a.more-link:after {
+    content: '\25C2';
+    margin-right: .5em;
+}
+
+#publish_to {
+    margin-bottom: .25em;
+}
+
+.highlight .more-info {
+    float: none;
+}
+
+.highlight ul {
+    margin-bottom: .5em;
+}
+
+.other-author-addons li .addonitem {
+	padding-left: 20px;
+	background-image: url(../../img/amo2009/icons/icons.png);
+	background-repeat: no-repeat;
+	background-position: 0px -200px;
+}
+
+.html-rtl .other-author-addons li .addonitem {
+	padding-right: 20px;
+	padding-left: 0;
+	background-position: 100% -200px;
+}
+
+.html-rtl.inverse .primary {
+    float: right;
+    clear: right;
+}
+
+.html-rtl.inverse .secondary {
+    float: left;
+    clear: left;
+}
+
+.html-rtl .object-lead .notification {
+    clear: right;
+}
+
+/** Generic Button *********/
+a.button:link,
+a.button:visited,
+button,
+input[type=submit],
+input[type=button] {
+    font-weight: bold;
+    color: #fff;
+    background: #39f url("../../img/zamboni/button-blue.png") 0 50% repeat-x;
+    background: -moz-linear-gradient(top, #7bf 40%, #39f 60%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(40%, #7bf), color-stop(60%, #39f));
+    border: 1px solid #05e;
+    padding: 0 .95em;
+    margin: 0;
+    display: inline-block;
+    line-height: 1.538;
+    text-shadow: 0 -1px 0 #05e;
+    -moz-box-shadow: inset 0 0 1px rgba(255,255,255,0.1);
+    -webkit-box-shadow: inset 0 0 1px rgba(255,255,255,0.1);
+    box-shadow: inset 0 0 1px rgba(255,255,255,0.1);
+    -moz-border-radius: .95em;
+    -webkit-border-radius: .95em;
+    border-radius: .95em;
+}
+
+button,
+input[type=submit],
+input[type=button] {
+    padding: .2em .95em .3em;
+}
+
+.button span,
+button span {
+    border-left: 2px groove rgba(150,150,150,0.35);
+    padding: .3em .5em .2em .65em;
+    margin: 0 .25em 0 -.25em;
+    display: inline-block;
+    line-height: 1.2;
+    white-space: normal;
+}
+
+.html-rtl .button span,
+.html-rtl button span {
+    border-left: 0;
+    border-right: 2px groove rgba(150,150,150,0.35);
+    padding: .3em .65em .2em .5em;
+    margin: 0 -.25em 0 .25em;
+}
+
+.button.go span,
+button.go span {
+    border: 0;
+    padding: .3em 0 .2em;
+    margin: 0;
+}
+
+.button.concealed span {
+    border-color: rgba(130,160,175,0.15);
+}
+
+a.button:hover,
+a.button:focus,
+button:hover,
+button:focus,
+input[type=submit]:hover,
+input[type=button]:hover,
+input[type=submit]:focus,
+input[type=button]:focus {
+    border-color: #03c;
+    -moz-box-shadow: inset 0 0 2px rgba(255,255,255,1);
+    -webkit-box-shadow: inset 0 0 2px rgba(255,255,255,1);
+    box-shadow: inset 0 0 2px rgba(255,255,255,1);
+}
+
+a.button:active {
+    border-color: #03c;
+    background-image: url("../../img/zamboni/button-blue-on.png");
+    background: -moz-linear-gradient(top, #39f 40%, #6fb7ff 60%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(40%, #39f), color-stop(60%, #6fb7ff));
+    -moz-box-shadow: inset 0 0 2px rgba(0,0,0,.5);
+    -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,.5);
+    box-shadow: inset 0 0 2px rgba(0,0,0,.5);
+}
+
+a.button[disabled],
+button:disabled,
+input[type=submit]:disabled,
+input[type=button]:disabled {
+    background: #a6a6a6;
+    border-color: #666;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    text-shadow: 0 -1px 0 #666;
+}
+
+/* larger buttons for emphasis */
+a.button.prominent:link,
+a.button.prominent:visited,
+a.button.prominent:hover,
+a.button.prominent:focus,
+a.button.prominent:active,
+button.prominent,
+input[type=button].prominent,
+input[type=submit].prominent {
+    font-size: 1.2em;
+}
+
+/* big search button */
+.search-form .basic button {
+    top: .35em;
+    right: 1.5%;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+/* Some buttons look like links */
+button.link {
+    background: transparent none;
+    text-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: 0;
+    font-weight: bold;
+    color: #05e;
+}
+
+button.link:hover,
+button.link:focus {
+    color: #003595;
+    text-decoration: underline;
+}
+
+/** =Green buttons: Add, Download, Mobile *********/
+a.button.add:link,
+a.button.add:visited,
+button.add,
+input[type=submit].add,
+input[type=button].add,
+a.button.download:link,
+a.button.download:visited,
+button.download,
+input[type=submit].download,
+input[type=button].download,
+a.button.mobile:link,
+a.button.mobile:visited,
+button.mobile,
+input[type=button].mobile,
+input[type=submit].mobile {
+    background: #55a802 url("../../img/zamboni/button-green.png") 0 50% repeat-x;
+    background: -moz-linear-gradient(top, #93c85e 30%, #55a802 55%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(30%, #93c85e), color-stop(55%, #55a802));
+    border-color: #3a7404;
+    text-shadow: 0 -1px 0 #3a7404;
+}
+
+a.button.add:hover,
+a.button.add:focus,
+button.add:hover,
+button.add:focus,
+input[type=submit].add:hover,
+input[type=button].add:hover,
+input[type=submit].add:focus,
+input[type=button].add:focus {
+    border-color: #1a5404;
+}
+
+a.button.add:active,
+a.button.download:active {
+    border-color: #1a5404;
+    background-image: url("../../img/zamboni/button-green-on.png");
+    background: -moz-linear-gradient(#55a802 40%, #83c046 65%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(40%, #55a802), color-stop(65%, #83c046));
+}
+
+/** Temporary diagnostic styles to weed out redundant button classes *********/
+a.button.significant,
+button.significant,
+input[type=submit].significant,
+input[type=button].significant,
+a.button.positive,
+button.positive,
+input[type=submit].positive,
+input[type=button].positive,
+a.button.negative,
+button.negative,
+input[type=submit].negative,
+input[type=button].negative,
+a.button.neutral,
+button.neutral,
+input[type=submit].neutral,
+input[type=button].neutral,
+a.button.cool,
+button.cool,
+input[type=submit].cool,
+input[type=button].cool {
+    outline: 3px dotted red;
+}
+/** end of diagnostic styles **/
+
+/** Navigational Button *********/
+a.button.go:link,
+a.button.go:visited,
+button.go,
+input[type=submit].go,
+input[type=button].go {
+    color: #05e;
+    background: #fff none;
+    border-color: #b5d9e5;
+    text-shadow: 0 1px 0 #fff;
+    -moz-box-shadow: inset 0 0 3px #c0e1ee;
+    -webkit-box-shadow: inset 0 0 3px #c0e1ee;
+}
+
+a.button.go:hover,
+a.button.go:focus,
+button.go:hover,
+button.go:focus,
+input[type=submit].go:hover,
+input[type=button].go:hover,
+input[type=submit].go:focus,
+input[type=button].go:focus {
+    color: #05e;
+    border-color: #a8cedd;
+}
+
+a.button.go:active {
+    border-color: #95b9c5;
+    background-image: none;
+    -moz-box-shadow: inset 0 0 5px #ccc;
+    -webkit-box-shadow: inset 0 0 5px #ccc;
+}
+
+
+/** Cautionary Button *********/
+a.button.caution:link,
+a.button.caution:visited,
+button.caution,
+input[type=submit].caution,
+input[type=button].caution {
+    color: #333;
+    background: #fc0 url("../../img/zamboni/button-caution.png") 0 50% repeat-x;
+    background: -moz-linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0) 60%),
+                -moz-repeating-linear-gradient(-45deg, #F0B500, #F0B500 7px, #FFD000 7px, #FFD000 14px);
+    border-color: #a70;
+    text-shadow: 0 1px 0 #ffe56b;
+}
+
+a.button.caution.concealed:link,
+a.button.caution.concealed:visited,
+button.caution.concealed,
+input[type=submit].caution.concealed,
+input[type=button].caution.concealed {
+    color: #859fae;
+    border-color: #a70;
+    background: -moz-linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.6) 60%),
+                -moz-repeating-linear-gradient(-45deg, #F0B500, #F0B500 7px, #FFD000 7px, #FFD000 14px);
+}
+
+a.button.caution:hover,
+a.button.caution:focus,
+button.caution:hover,
+button.caution:focus,
+input[type=submit].caution:hover,
+input[type=button].caution:hover,
+input[type=submit].caution:focus,
+input[type=button].caution:focus {
+    border-color: #850;
+}
+
+a.button.caution:active {
+    border-color: #850;
+    background-image: url("../../img/zamboni/button-caution-on.png");
+    background: -moz-linear-gradient(rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0.3) 60%),
+                -moz-repeating-linear-gradient(45deg, #F0B500, #F0B500 7px, #FFD000 7px, #FFD000 14px);
+    -moz-box-shadow: inset 0 0 5px rgba(0,0,0,.5);
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,.5);
+}
+
+/** Status Button *********/
+a.button.status:link,
+a.button.status:visited,
+button.status,
+input[type=submit].status,
+input[type=button].status {
+    color: #333;
+    background: #fff none;
+    border-color: #b5d9e5;
+    text-shadow: 0 1px 0 #fff;
+    -moz-box-shadow: inset 0 0 3px #c0e1ee;
+    -webkit-box-shadow: inset 0 0 3px #c0e1ee;
+}
+
+a.button.status:hover,
+a.button.status:focus,
+button.status:hover,
+button.status:focus,
+input[type=submit].status:hover,
+input[type=button].status:hover,
+input[type=submit].status:focus,
+input[type=button].status:focus {
+    color: #333;
+    border-color: #a8cedd;
+}
+
+a.button.status:active {
+    border-color: #95b9c5;
+    background-image: none;
+    -moz-box-shadow: inset 0 0 8px #a4cee2;
+    -webkit-box-shadow: inset 0 0 8px #a4cee2;
+}
+
+/** Concealed Button *********/
+a.button.concealed:link,
+a.button.concealed:visited,
+button.concealed,
+input[type=submit].concealed,
+input[type=button].concealed {
+    color: #859fae;
+    background: #fff none;
+    border-color: #b5d9e5;
+    text-shadow: 0 1px 0 #fff;
+    -moz-box-shadow: inset 0 0 3px #c0e1ee;
+    -webkit-box-shadow: inset 0 0 3px #c0e1ee;
+}
+
+a.button.concealed:hover,
+a.button.concealed:focus,
+button.concealed:hover,
+button.concealed:focus,
+input[type=submit].concealed:hover,
+input[type=button].concealed:hover,
+input[type=submit].concealed:focus,
+input[type=button].concealed:focus {
+    color: #657f8e;
+    border-color: #a8cedd;
+}
+
+a.button.concealed:active {
+    border-color: #95b9c5;
+    background-image: none;
+    -moz-box-shadow: inset 0 0 8px #a4cee2;
+    -webkit-box-shadow: inset 0 0 8px #a4cee2;
+}
+
+
+/** =Install Button *********/
+.item .install-shell .install {
+    float: left; /* Only in zamboni. */
+}
+
+.install-shell .extra {
+    font-size: .85em;
+    font-weight: bold;
+    clear: both;
+}
+
+.install-shell .notavail {
+    padding: 1px 0 1px 20px;
+    margin-left: 3px;  /* Match the padding of .install. */
+    background: url(../../img/zamboni/icons/no-14x14.png) 0 30% no-repeat;
+    white-space: nowrap;
+}
+
+.html-rtl .install-shell .notavail {
+    padding: 1px 20px 1px 0;
+    background-position: 100% 30%;
+}
+
+.item .install,
+.install-shell .install {
+    text-align: inherit;
+    margin: 0 0 .5em;
+}
+
+.item .install strong,
+.install strong {
+    font-weight: bold;
+    text-shadow: none;
+    margin: 0 4px;
+    font-size: 0.85em;
+    display: block;
+}
+
+.teaser-items .item .install strong {
+    margin: 0 4px;
+}
+
+.install.featuredaddon,
+.install.unreviewed,
+.install.selfhosted {
+    padding: 2px;
+    -moz-border-radius: .95em .95em .95em 0;
+    -webkit-border-radius: .95em;
+    -webkit-border-bottom-left-radius: 0;
+    border-radius: .95em .95em .95em 0;
+}
+
+.html-rtl .install.featuredaddon,
+.html-rtl .install.unreviewed,
+.html-rtl .install.selfhosted {
+    -moz-border-radius: .95em .95em 0 .95em;
+    -webkit-border-radius: .95em;
+    -webkit-border-bottom-left-radius: .95em;
+    -webkit-border-bottom-right-radius: 0;
+    border-radius: .95em .95em 0 .95em;
+}
+
+.install.featuredaddon {
+    background: #bcdba2;
+}
+.install.featuredaddon strong {
+    color: #360;
+}
+
+.install.unreviewed {
+    background: #ffe57f;
+}
+.install.unreviewed strong {
+    color: #333;
+}
+
+.install.selfhosted {
+    background: #d3ecf6;
+}
+.install.selfhosted strong {
+    color: #235;
+}
+
+/** =Button =icons *********/
+.button.add b,
+.button.download b,
+.button.mobile b,
+.button.contribute b,
+.button.status.ok b {
+    padding: .3em 1em .2em .85em;
+    margin: 0 0 0 -.5em;
+    width: 16px;
+    background: transparent url("../../img/zamboni/icons/button-icons.png") 25% 0 no-repeat;
+}
+
+.button.add b { background-position: 25% 0; }
+.button.add.prominent b { background-position: 25% -49px; }
+.button.download b { background-position: 25% -100px; }
+.button.download.prominent b { background-position: 25% -150px; }
+.button.add.caution b { background-position: 25% -400px; }
+.button.add.caution.prominent b { background-position: 25% -450px; }
+.button.download.caution b { background-position: 25% -500px; }
+.button.download.caution.prominent b { background-position: 25% -550px; }
+.button.add.concealed b { background-position: 25% -200px; }
+.button.add.concealed.prominent b { background-position: 25% -250px; }
+.button.download.concealed b { background-position: 25% -300px; }
+.button.download.concealed.prominent b { background-position: 25% -350px; }
+.button.mobile b { background-position: 25% -600px; }
+.button.mobile.prominent b { background-position: 25% -650px; }
+.button.mobile.caution b { background-position: 25% -700px; }
+.button.mobile.caution.prominent b { background-position: 25% -750px; }
+.button.contribute b { background-position: 25% -800px; }
+.button.contribute.prominent b { background-position: 25% -850px; }
+.button.status.ok b { background-position: 25% -900px; }
+
+.html-rtl .button b,
+.html-rtl button b {
+    padding: .3em 1em .2em .65em;
+    margin: 0 -.5em 0 .25em;
+}
+
+/* For other platforms */
+.install-button .button span.os {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    font-weight: normal;
+    display: inline;
+    white-space: nowrap;
+}
+
+.install-button .button.platform {
+    display: none;
+}
+
+.mac .button.mac,
+.linux .button.linux,
+.other .button.bsd,
+.other .button.solaris,
+.windows .button.windows {
+      display: inherit;
+}
+
+
+/** Button =Popups *********/
+.install {
+    position: relative;
+    padding: 2px 3px 3px;
+}
+
+.install-note .msg {
+    background-repeat: no-repeat;
+    min-height: 32px;
+}
+
+.firefox .install-note .msg { background-image: url(../../img/amo2009/app-icons/small/firefox.png); }
+.thunderbird .install-note .msg { background-image: url(../../img/amo2009/app-icons/small/thunderbird.png); }
+.mobile .install-note .msg { background-image: url(../../img/amo2009/app-icons/small/mobile.png); }
+.sunbird .install-note .msg { background-image: url(../../img/amo2009/app-icons/small/sunbird.png); }
+.seamonkey .install-note .msg { background-image: url(../../img/amo2009/app-icons/small/seamonkey.png); }
+
+.install-note .msg.m-unreviewed,
+.install-note .msg.m-selfhosted {
+    background-image: url(../../img/zamboni/icons/alert-32x32.png);
+}
+
+.install-note .msg.m-platforms {
+    background-image: url(../../img/zamboni/icons/no-32x32.png);
+}
+
+.install-note {
+    position: absolute;
+    left: -15px;
+    margin-top: 5px;
+    z-index: 999;
+    background: #fff;
+    width: 300px;
+    padding: 10px 10px 0;
+    border: 3px solid #2e5186;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.35);
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.35);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.35);
+}
+/* append the left class if the bubble is to the far right */
+.install-note.left {
+    left: -160px;
+}
+
+.unreviewed .install-note {
+    border-color: #c90;
+}
+
+/* http://nicolasgallagher.com/demo/pure-css-speech-bubbles/bubbles.html */
+/* Creates the larger triangle. */
+.install-note:before {
+    content: "\00a0";
+    display: block; /* reduce the damage in FF3.0 */
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: 50px;
+    top: -20px; /* value = - border-top-width - border-bottom-width */
+    border: 10px solid transparent;
+    border-bottom-color: #2e5186;
+}
+
+.unreviewed .install-note:before {
+    border-bottom-color: #c90;
+}
+
+/* creates the smaller triangle */
+.install-note:after {
+    content: "\00a0";
+    display: block; /* reduce the damage in FF3.0 */
+    position: absolute;
+    left: 55px;
+    width: 0;
+    height: 0;
+    top: -10px; /* value = - border-top-width - border-bottom-width */
+    border: 5px solid transparent;
+    border-bottom-color: #fff;
+}
+
+.install-note.left:before {
+    right: 71px; /* controls horizontal position */
+    left: auto;
+}
+
+.install-note.left:after {
+    right: 76px; /* value = (:before right) + (:before border-right) - (:after border-right) */
+    left: auto;
+}
+
+.install .install-note > * {
+    margin-bottom: 1em;
+    padding-left: 50px;
+}
+
+.install .install-note strong {
+    margin: 0;
+    color: inherit;
+    font-size: inherit;
+}
+
+/** =Search =Suggestions *********/
+.search-form .basic {
+    overflow: visible;
+}
+
+.search-form .basic * {
+    vertical-align: baseline;
+}
+
+#search-suggest {
+    background: #fff;
+    border: 1px solid #011234;
+    width: 38%;
+    padding: .5em 0;
+    position: absolute;
+    left: 1.4%;
+    z-index: 99;
+    display: none;
+}
+
+.html-rtl #search-suggest {
+    left: auto;
+    right: 1.4%;
+}
+
+#search-suggest .all {
+    margin: .5em 10px 0;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+#search-suggest ul {
+    margin: 0;
+}
+
+#search-suggest li a {
+    display: block;
+    padding: 2px 2px 2px 32px;
+    font-weight: bold;
+    font-size: .875em;
+    color: #444;
+    text-decoration: none;
+    background: transparent url("../../../media/img/zamboni/icons/suggest-types.png") 8px 2px no-repeat;
+}
+
+.html-rtl #search-suggest li a {
+    padding: 2px 32px 2px 2px;
+}
+
+#search-suggest li a:hover,
+#search-suggest li a:focus,
+#search-suggest li a:active {
+    background-color: #ecf7fb;
+    text-decoration: none;
+}
+
+/** Code Licenses *********/
+ul.license li {
+    display: block;
+    float: left;
+    list-style: none;
+}
+.html-rtl ul.license li {
+    float: right;
+}
+ul.license li.text {
+    font-size: 90%;
+    margin-top: -.2em;
+}
+.html-ltr ul.license li.text {
+    margin-left: .3em;
+}
+.html-rtl ul.license li.text {
+    margin-right: .3em;
+}
+ul.license li.icon {
+    background: url(../../img/zamboni/licenses.png) no-repeat top left;
+    height: 15px;
+    width: 15px;
+}
+ul.license li.cc-attrib { background-position: 0 0; }
+ul.license li.cc-noderiv { background-position: 0 -65px; }
+ul.license li.cc-noncom { background-position: 0 -130px; }
+ul.license li.cc-share { background-position: 0 -195px; }
+ul.license li.copyr { background-position: 0 -260px; }
+
+
+/** Personas *********/
+.persona-list,
+.persona-list-2col,
+.persona-list-3col {
+    overflow: hidden;
+}
+.persona-list-2col .persona {
+    float: left;
+    width: 50%;
+    margin-bottom: .6em;
+}
+.persona-list-3col .persona {
+    float: left;
+    width: 33.3%;
+    margin-bottom: .6em;
+}
+.persona-inner {
+    position: relative;
+    padding: .5em;
+    -moz-border-radius: .25em;
+}
+.persona-small .persona-inner {
+    max-width: 206px;
+}
+.persona-large .persona-inner {
+    max-width: 680px;
+}
+.persona-hover .persona-inner {
+    background: #c8e8f2;
+}
+.persona-hover .persona-install {
+    display: block;
+}
+.persona-preview {
+    position: relative;
+    display: block;
+    line-height: 1;
+}
+.persona-preview [data-browsertheme] {
+    display: block;
+    background: transparent no-repeat right top;
+    border: .25em solid #c8e8f2 !important;
+}
+.persona-hover .persona-preview [data-browsertheme] {
+    border-color: #fff !important;
+}
+.persona-small .persona-preview [data-browsertheme] {
+    height: 67px;
+}
+.persona-large .persona-preview [data-browsertheme] {
+    height: 100px;
+}
+
+.persona-preview .created,
+.persona-preview .users,
+.persona-preview .reviews {
+    background-color: #c8e8f2;
+    display: inline-block;
+    padding: .25em .5em;
+    font-size: .846em;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.html-rtl .persona-preview .created,
+.html-rtl .persona-preview .users,
+.html-rtl .persona-preview .reviews {
+    left: auto;
+    right: 0;
+}
+
+.persona-hover .created,
+.persona-hover .users,
+.persona-hover .reviews {
+    background-color: #fff;
+}
+
+.personas .created {
+    color: #222;
+}
+
+.personas .users b {
+    font-weight: bold;
+}
+
+.persona .users {
+    color: #390;
+}
+
+/************************************/
+/*               PAGES              */
+/************************************/
+
+#search-suggest li.ext a { background-position: 7px 2px; }
+#search-suggest li.col a { background-position: 7px -98px; }
+#search-suggest li.cat a { background-position: 7px -196px; }
+.html-rtl #search-suggest li.ext a { background-position: 98% 2px; }
+.html-rtl #search-suggest li.col a { background-position: 98% -98px; }
+.html-rtl #search-suggest li.cat a { background-position: 98% -196px; }
+
+
+#search-suggest em {
+    font-weight: normal;
+    font-style: normal;
+    color: #999;
+    margin: 0 8px;
+}
+
+/** =Form Elements *********/
+fieldset {
+    margin: 1em 0 1.5em;
+    border: 0;
+    padding: .25em 0 1em;
+    clear: both;
+    border-bottom: 1px dotted #a4cfde;
+}
+
+form fieldset:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+    margin-bottom: .5em;
+}
+
+fieldset legend { /* based on h3 */
+    font: normal 1.385em/1.1 georgia, serif;
+    color: #011234;
+    margin: 0.75em 0 0;
+}
+
+.user-input h3 {
+  margin: 0 0 .5em;
+}
+
+fieldset ol,
+fieldset ul,
+.html-rtl fieldset ol,
+.html-rtl fieldset ul {
+    list-style: none;
+    margin: 0;
+}
+
+fieldset li {
+    margin-bottom: .5em;
+}
+
+.user-input label {
+    display: block;
+    width: 320px;
+}
+
+.user-input .check label {
+    width: auto;
+    display: inline;
+}
+
+input[type="text"],
+input[type="password"],
+select,
+textarea {
+    padding: 2px 5px;
+    border: 1px solid #5875a0;
+    color: #666;
+}
+
+select {
+  padding: 2px 0 2px 5px;
+}
+
+.html-rtl select {
+  padding: 2px 5px 2px 0;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+select:focus,
+textarea:focus {
+    color: #444;
+}
+
+.user-input input[type="text"],
+.user-input input[type="password"] {
+    width: 310px;
+}
+
+.user-input select {
+    width: 322px;
+}
+
+.user-input textarea {
+    width: 98%;
+}
+
+.user-input .instruct {
+    width: 70%;
+    margin-bottom: .75em;
+}
+
+form .note {
+    font-size: 0.846em; /* 11px */
+    line-height: 1.4;
+    color: #666;
+}
+
+form label .note {
+    font-weight: normal;
+    display: block;
+    margin-bottom: .5em;
+}
+
+abbr.req {
+    color: #d52f2f;
+    font-weight: bold;
+}
+
+fieldset.inline {
+    margin: 1em 0 0;
+    padding: 0;
+    position: relative;
+}
+
+fieldset.inline legend {
+    font-size: 1.077em; /* 14px */
+}
+
+fieldset.inline ol,
+fieldset.inline ul {
+    margin-bottom: .5em;
+}
+
+fieldset.inline li {
+    display: inline;
+    margin-right: 10px;
+}
+
+fieldset.inline label {
+    display: inline;
+    margin-right: 5px;
+}
+
+fieldset.inline input[type="text"],
+fieldset.inline input[type="password"],
+fieldset.inline select {
+    width: auto;
+}
+
+form .error {
+    margin-bottom: 1em;
+}
+
+form .error .error,
+form .error .errorlist,
+form .error .errorlist li {
+    margin-bottom: 0;
+}
+
+form .error input[type="text"],
+form .error input[type="password"],
+form .error select,
+form .error textarea {
+    border-color: #c00;
+    border-width: 2px;
+}
+
+form .error .note {
+    color: inherit;
+}
+
+form .error .note.error {
+    color: inherit;
+    font-size: inherit;
+    display: block;
+}
+
+/************************************/
+/*               PAGES              */
+/************************************/
+
+/** =User =Edit *********/
+#user-profile ol {
+    padding-right: 280px;
+    min-height: 310px;
+    margin: 0;
+    position: relative;
+}
+
+.html-rtl #user-profile ol {
+    padding: 0 0 0 280px;
+}
+
+#acct-account label[for="account_hideemail"] {
+    font-weight: normal;
+    color: #666;
+}
+
+#user-profile input[type="text"] {
+    width: 90%;
+    max-width: 310px;
+}
+
+#user-profile .profile-photo {
+    width: 220px;
+    position: absolute;
+    right: 10%;
+    top: 0;
+    margin-left: 55%;
+}
+
+.html-rtl #user-profile .profile-photo {
+    left: 10%;
+    right: auto;
+    margin-left: 0;
+    margin-right: 55%;
+}
+
+#user-profile .profile-photo label {
+    width: auto;
+}
+
+#user-profile .avatar {
+    border: 3px solid #c8e8f3;
+    padding: 0;
+    margin-top: 1em;
+}
+
+#user-profile .trans {
+    width: 96%;
+}
+
+.html-rtl #user-edit #acct-notify {
+    padding: 0 0 0 35%;
+}
+
+#user-edit #acct-delete {
+    margin: .25em 0;
+    float: right;
+}
+
+.html-rtl #user-edit #acct-delete {
+    float: left;
+}
+
+#acct-delete a {
+    color: #c00;
+}
+
+/** =User =Profile *********/
+.object-lead table {
+    margin: 0 0 1em;
+}
+
+.object-lead table tr th {
+    width: 160px;
+}
+
+.object-content .prose {
+    margin: 0 0 1em;
+}
+
+.object-content .editprofile {
+    border-top: 1px dotted #a5c9d5;
+    margin: .25em 0 0;
+    padding-top: .25em;
+}
+
+.object-content .editprofile a {
+    font-weight: bold;
+    font-size: .923em;
+    padding: .25em 0 .25em 22px;
+    background: transparent url("../../../media/img/amo2009/icons/news-feed-sprite.png") 0 -538px no-repeat;
+}
+
+.html-rtl .object-content .editprofile a {
+    padding: .25em 22px .25em 0;
+    background-position: 100% -538px;
+}
+
+/** =Category Landing *********/
+.category-landing [role="main"] {
+    width: 73.47%;
+}
+
+.personas .persona-inner,
+.category-landing .persona-inner {
+    margin: 0 auto;
+}
+
+#featured-addons {
+    width: auto;
+}
+
+#featured-addons ul {
+    overflow: hidden;
+    width: 96.7%;
+    padding-left: 3.3%;
+}
+
+#featured-addons li.addon {
+    width: 30%;
+    padding: 0;
+    margin: 0 3.33% 0 0;
+    overflow: visible;
+    float: left;
+}
+
+#featured-addons ul li.addon:last-child {
+    margin-right: 0;
+}
+
+#featured-addons .featured-inner {
+    padding: 10px;
+    background: #fff;
+    background: -moz-linear-gradient(#fff, #e4f5fb);
+}
+
+#featured-addons h3 {
+    margin-top: 0;
+}
+
+#featured-addons h3 a {
+    color: inherit;
+}
+
+.html-rtl #featured-addons li.addon {
+    float: right;
+    clear: none;
+    margin: 0 0 0 3.33%
+}
+
+#featured-addons .addon:last-child {
+    margin-right: 0;
+}
+
+.html-rtl #featured-addons .addon:last-child {
+    margin-left: 0;
+    margin-right: 3.33%;
+}
+
+#featured-addons .preview {
+    margin-bottom: .5em;
+    position: relative;
+    left: -3px;
+    overflow: hidden;
+}
+
+.html-rtl #featured-addons .preview {
+    left: 3px;
+    right: -3px;
+}
+
+#featured-addons .preview a {
+    border: 3px solid #c8e8f3;
+    display: block;
+    max-width: 200px;
+    height: 155px;
+    overflow: hidden;
+}
+
+#featured-addons .preview a:hover,
+#featured-addons .preview a:focus,
+#featured-addons .preview a:active {
+    border-color: #aedff3;
+}
+
+#featured-addons .addon-desc {
+    margin-bottom: .75em;
+    text-overflow: ellipsis;
+    min-height: 5em;
+}
+
+#featured-addons .addon-rating {
+    clear: both;
+    float: left;
+    margin-bottom: 1em;
+}
+
+.html-rtl #featured-addons .addon-rating {
+    clear: both;
+    float: right;
+    margin-bottom: 1em;
+}
+
+#featured-addons .item .install {
+    float: left;
+    clear: both;
+    margin: .5em 0;
+}
+
+.html-rtl #featured-addons .item .install {
+    float: right;
+}
+
+.category-landing .addons-column {
+    float: left;
+    padding: 0 2% 0 0;
+    width: 32%;
+    border: 0;
+}
+
+.html-rtl .category-landing .addons-column {
+    float: right;
+    padding: 0 0 2% 0;
+}
+
+.category-landing .addons-column:last-child {
+    padding-right: 0;
+}
+
+.html-rtl .category-landing .addons-column:last-child {
+    padding-right: 2%;
+    padding-left: 0;
+}
+
+.category-landing .addons-column h3 {
+    background: transparent none;
+    color: inherit;
+    font-family: georgia, serif;
+    margin: 0 2px .5em;
+}
+
+.category-landing .addons-column h3 a:link,
+.category-landing .addons-column h3 a:visited {
+    color: inherit;
+}
+
+.category-landing .addons-column h3 a:hover,
+.category-landing .addons-column h3 a:focus,
+.category-landing .addons-column h3 a:active {
+    color: inherit;
+    text-decoration: underline;
+}
+
+.category-landing .addons-column ul {
+    border: 1px solid #b5d9e5;
+    -moz-border-radius: 5px;
+    padding: 0;
+    margin: 0;
+}
+
+.category-landing .addons-column ul.personas {
+    padding: .5em 5px 1.2em;
+}
+
+.category-landing .addons-column ul li {
+    border-top: 1px dotted #b5d9e5;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+}
+
+.category-landing .addons-column ul.personas li {
+    background-color: inherit;
+    padding: .6em 0 0;
+    border: 0;
+}
+
+.html-rtl.category-landing .addons-column ul li {
+    overflow: auto;
+}
+
+.category-landing .addons-column ul li a {
+    min-height: 50px;
+    height: auto;
+    display: block;
+    position: relative;
+    text-decoration: none;
+    padding: 0 5px 0 50px;
+}
+
+.html-rtl.category-landing .addons-column ul li a {
+    padding: 0 50px 0 5px;
+}
+
+.category-landing .addons-column ul li a:hover,
+.category-landing .addons-column ul li a:focus {
+    background-color: #e4f5fb;
+}
+
+.category-landing .addons-column ul li a .name {
+    font-size: 1em;
+    font-weight: bold;
+    color: #05e;
+    padding: 8px 0 0;
+    margin-left: 0;
+    display: block;
+    height: 1.25em;
+    line-height: 1.25em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.category-landing .addons-column ul li a:hover .name,
+.category-landing .addons-column ul li a:focus .name,
+.category-landing .addons-column ul li a:active .name {
+    color: #003595;
+    text-decoration: underline;
+}
+
+.category-landing .addons-column ul li a .meta {
+    margin-left: 0;
+    position: static;
+    color: #777;
+    display: block;
+    font-size: 93%;
+}
+
+.category-landing .addons-column ul li a img.icon {
+    left: 5px;
+    top: 6px;
+    position: absolute;
+}
+
+.html-rtl.category-landing .addons-column ul li a img.icon {
+    left: auto;
+    right: 5px;
+}
+
+.category-landing .view-all {
+    background: transparent none;
+    margin-top: .75em;
+    font-weight: bold;
+    padding: 2px 0 2px 9px;
+}
+
+.category-landing .view-all a:link,
+.category-landing .view-all a:visited {
+    font-size: 1em;
+    color: #05e;
+    padding-right: 10px;
+    background: transparent url(../../img/zamboni/icons/arrow-right-blue.png) 100% 55% no-repeat;
+}
+
+.html-rtl.category-landing .view-all a:link,
+.html-rtl.category-landing .view-all a:visited {
+    padding-right: 0;
+    padding-left: 10px;
+    background: transparent url(../../img/zamboni/icons/arrow-left-blue.png) 0 55% no-repeat;
+}
+
+.category-landing .view-all a:hover,
+.category-landing .view-all a:active {
+    color: #003595;
+}
+
+.category-landing .featured.personas .view-all {
+    border-top: 1px dotted #B5D9E5;
+    padding: 2px 7px;
+    margin: -15px 0 0;
+    text-align: right;
+}
+
+.html-rtl .category-landing .featured .view-all {
+    text-align: left;
+}
+
+/** =Search results *********/
+.results {
+    border: 4px solid #b5d9e5;
+    background-color: #b5d9e5;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    margin-bottom: 2em;
+    clear: both;
+}
+.results-inner {
+    background-color: #fff;
+    border: 1px solid #2e5186;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    overflow: visible;
+}
+
+.listing-header .item-sort {
+    margin-right: 5px;
+}
+
+.listing-header .item-sort button {
+    position: absolute;
+    left: -999em;
+}
+
+.html-rtl .listing-header .item-sort button {
+    left: auto;
+    right: -999em;
+}
+
+.results .featured {
+    border-width: 0 0 1px;
+    background-color: transparent;
+    margin-bottom: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+
+.result-count {
+    padding: 0 10px;
+    font-size: 1.231em;
+}
+
+.listing .contribute {
+    background: #d3edf6;
+    float: left;
+    padding: 3px 10px;
+    margin-top: 0.5em;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.listing .contribute a {
+    font-weight: bold;
+}
+
+.html-rtl .listing .contribute {
+    float: right;
+}
+
+.listing .item {
+    overflow: visible;
+}
+
+.listing .item h3 {
+    float: left;
+}
+
+.item .install,
+.results .item .install {
+    float: left;
+    clear: both;
+    min-height: 2.75em;
+    margin-left: -3px;
+}
+
+.html-rtl .item .install {
+    float: right;
+    margin-right: -3px;
+    margin-left: 0;
+}
+
+.item .install-button {
+    margin-bottom: .25em;
+}
+
+.item-info .notavail,
+.item-info .addon-rating,
+.item-info .downloads,
+.item-info .updated {
+    font-size: .923em; /* 12px */
+    padding-top: 1px;
+    margin: 0;
+    clear: both;
+}
+
+.html-rtl .item-info .notavail,
+.html-rtl .item-info .addon-rating,
+.html-rtl .item-info .downloads,
+.html-rtl .item-info .updated {
+    margin: 0;
+}
+
+.listing .item blockquote {
+    clear: left;
+    padding-right: 16em;
+}
+
+.html-rtl .listing .item blockquote {
+    clear: right;
+    padding-right: 0;
+    padding-left: 16em;
+}
+
+.listing .item blockquote img {
+    max-width: 100%;
+}
+
+.results-head {
+    position: relative;
+    width: auto;
+    padding-right: 350px;
+}
+
+.html-rtl .results-head {
+    padding-right: 0;
+    padding-left: 350px;
+}
+
+.results-head .suggest {
+    padding-left: 10px;
+    font-size: .923em;
+    line-height: 1.4;
+    position: absolute;
+    width: 280px;
+    padding: 6px 8px 6px 28px;
+    background: #ffc url("../../img/zamboni/icons/suggest-help.png") 6px .5em no-repeat;
+    border: 1px solid #fc6;
+    -moz-box-shadow: 2px 2px 0 #b5d9e5;
+    -webkit-box-shadow: 2px 2px 0 #b5d9e5;
+    box-shadow: 2px 2px 0 #b5d9e5;
+    top: 0;
+    right: 0;
+}
+
+
+.results-head .suggest a {
+    font-weight: bold;
+}
+
+.results-head .suggest strong {
+    display: block;
+}
+
+.results-head .suggest .point {
+    position: relative;
+    left: -28px;
+    margin-bottom: -19px;
+    display: block;
+    padding: 0 0 20px 28px;
+    background: transparent url("../../img/zamboni/suggest-point.png") 8px bottom no-repeat;
+}
+
+.html-rtl .results-head .suggest {
+    padding: 6px 28px 6px 8px;
+    background-position: 292px .5em;
+}
+
+.html-rtl .results-head .suggest .point {
+    left: auto;
+    right: -28px;
+    padding: 0 28px 20px 0;
+    background-image: url("../../img/zamboni/suggest-point-rtl.png");
+    background-position: 255px bottom;
+}
+
+.other-categories,
+#refine-results {
+    background: #fff;
+    border: 1px solid #c8e8f3;
+}
+
+#refine-results h5 {
+    color: #235;
+}
+
+.secondary ul.refinements {
+    border-bottom: 1px dotted #94bfce;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+}
+
+#refine-results div:last-child ul.refinements {
+    border-bottom: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.secondary ul.refinements li a {
+    color: #05e;
+    padding: 0 0 0 10px;
+    font-weight: bold;
+    font-size: .923em;
+}
+
+.html-rtl .secondary ul.refinements li a {
+    padding: 0 10px 0 0;
+}
+
+.secondary ul.refinements li.selected a {
+    background: transparent url("../../img/zamboni/arrow-right-blue.png") 0 .5em no-repeat;
+}
+
+.html-rtl .secondary ul.refinements li.selected a {
+    background: transparent url("../../img/zamboni/arrow-left-blue.png") 100% .5em no-repeat;
+}
+
+/** =Report abuse form *********/
+.abuse {
+    border: 0;
+    padding: 1em 0 0;
+}
+
+.abuse ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.abuse label {
+    font-weight: normal;
+}
+
+.abuse legend {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: bold;
+}
+
+.abuse legend span {
+    padding-left: 25px;
+    color: #05e;
+    background: transparent url("../../img/amo2009/icons/icons.png") 0 -1700px no-repeat;
+}
+
+.html-rtl .abuse legend span {
+    padding-left: 0;
+    padding-right: 25px;
+    background-position: 100% -1700px;
+}
+
+/* TODO(jbalogh): remove hasJS when we add the abuse pane. */
+.hasJS .abuse legend span {
+    cursor: pointer;
+}
+
+.hasJS .abuse legend span:hover {
+    text-decoration: underline;
+}
+
+.abuse textarea {
+    border: 1px solid #5875A0;
+    width: 60%;
+}
+
+
+/** =Personas Details page *********/
+.persona-img {
+    height: 100px;
+    overflow: hidden;
+}
+#persona-summary table {
+    display: block;
+    width: 320px;
+    float: right;
+}
+#persona-summary table th {
+    width: auto;
+    min-width: 120px;
+    vertical-align: top;
+}
+#persona-summary table .artist td {
+    font-weight: bold;
+}
+#persona-summary .share-arrow {
+    position: absolute;
+}
+#persona #more-personas {
+    margin-bottom: 3em;
+}
+#persona #more-personas h3 {
+    margin-top: 0;
+}
+#persona #more-category {
+    width: 65.6%;
+    float: left;
+}
+.html-rtl #persona #more-category {
+    float: right;
+}
+#persona #more-category.persona-list-3col {
+    width: 100%;
+}
+#persona #more-artist {
+    width: 32.5%;
+    float: right;
+}
+.html-rtl #persona #more-artist {
+    float: left;
+}
+#persona #more-personas .article {
+    margin-bottom: .3em;
+}
+#persona #more-personas .more-link {
+    font-weight: bold;
+}
+#persona-side .category-list h3 {
+    margin-top: 0;
+}
+
+/** Personas listing pages. **/
+.personas-grid {
+    padding: 0 10px;
+    margin: 1em auto;
+}
+.personas-grid li {
+    display: inline-block;
+    width: 32.9%;
+    vertical-align: top;
+    margin-bottom: .77em;
+}
+.personas-grid li .persona-inner {
+    margin: 0 auto;
+}
+.personas-grid li .details {
+    font-size: 0.846em;
+    line-height: 1.4;
+    margin: 0 .25em;
+}
+.personas-grid h6 {
+    margin: .5em .25em .25em;
+}
+.personas-grid li .details p {
+    margin: 0;
+}
+.personas-grid li .details .users {
+    background-color: inherit;
+    margin-left: 1em;
+    font-size: 1em;
+    padding: 0;
+    position: static;
+}
+.personas-grid li .details .users b {
+    font-weight: bold;
+}
+.html-rtl .personas-grid li .details .users {
+    margin-left: 0;
+    margin-right: 1em;
+}
+
+/** White category list **/
+.other-categories ul {
+    margin: 0;
+}
+
+.other-categories ul + ul {
+    border-top: 1px dotted #94BFCE;
+    margin-top: 1em;
+    padding-top: 1em;
+}
+
+.other-categories ul li {
+    padding: 0 1em;
+    font-size: 1.05em;
+}
+
+/** Add-on detail page buttons. **/
+#addon-summary .install-shell .install {
+    float: left;
+    clear: both;
+}
+
+.html-rtl #addon-summary .install-shell .install {
+    float: right;
+}
+
+#addon-summary .install-shell .notavail {
+    clear: both;
+}
+
+.install-wrapper {
+    margin-bottom: 1.5em;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+}
+
+.install-wrapper .warning {
+    clear: both;
+    padding: 0 4px;
+    margin: 0;
+}
+
+.privacy-policy {
+    display: inline-block;
+}
+
+.install-wrapper .extra {
+    border-top: 1px dotted #A5C9D5;
+    padding-top: 6px;
+}
+
+/* Disable styling for stacked .extras. */
+.install-wrapper .extra + .extra {
+    border: none;
+    padding: 0;
+}
+
+.install-wrapper.unreviewed .extra {
+    border-top: 1px dotted #AA7700;
+}
+
+.install-wrapper.unreviewed .install strong,
+.install-wrapper.selfhosted .install strong{
+    display: none;
+}
+
+.install-wrapper.unreviewed,
+.install-wrapper.selfhosted {
+    padding: 0.4em;
+}
+
+.install-wrapper.selfhosted {
+    background: #D3ECF6;
+}
+
+.install-wrapper.unreviewed {
+    background: #FFE57F;
+}
+
+.aux .button-wrapper {
+    float: left;
+    margin: 0;
+    padding: 0.1em 0 1.5em;
+}
+
+/** Add-on listing on the homepage. */
+.listing.compact .item blockquote {
+    padding: 0;
+}
+
+.listing.compact .item .install-shell,
+.listing.compact .item .install {
+    float: right;
+    margin-left: 10px;
+}
+
+.html-rtl .listing.compact .item .install-shell,
+.html-rtl .listing.compact .item .install {
+    float: left;
+    margin-left: 0;
+    margin-right: 10px;
+}
+
+.listing.compact .item h3 {
+    float: none;
+}
+
+#addon-summary .addon-rating,
+.listing.compact .item .meta .addon-rating,
+.listing.compact .item .meta .downloads,
+.listing.compact .item .meta .updated {
+    display: inline;
+}
+
+.listing.compact .item blockquote {
+    clear: both;
+}
+
+#discovery-modules .ordering input {
+    width: 2em;
+}
+
+#discovery-modules .module {
+    font-weight: bold;
+}
+
+#discovery-modules .locales input {
+    width: 20em;
+}

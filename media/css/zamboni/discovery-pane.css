@@ -1,0 +1,79 @@
+body {
+    background: -moz-linear-gradient(#aaa, #cbcacd);
+    padding-bottom: 3em;
+}
+
+body > section {
+    background: #fff;
+
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+
+    border: 1px solid #777;
+    -moz-box-shadow: 0 0 1px #777;
+
+    height: 10em;
+    margin-top: 1%;
+    padding: 1%;
+
+    overflow: hidden;
+}
+
+#what-are-addons, #main, #featured-addons, #recs {
+    float: left;
+    clear: left;
+    width: 68%;
+    margin-left: 1%;
+}
+
+#mission, #my-account, #top-addons, #links {
+    float: right;
+    clear: right;
+    width: 25%;
+}
+
+#main, #top-addons {
+    height: 14em;
+}
+
+/* Hide recommendations for the common case of 0-3 add-ons. */
+#recs {
+    display: none;
+}
+
+h1 {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+#top-addons ul a {
+    display: block;
+    line-height: 1.2em;
+}
+
+#top-addons ul a img {
+    margin: 0 .5em -.2em 0;
+}
+
+#featured-addons li, .collection li {
+    display: inline-block;
+    padding: 0 2em;
+    width: 50px;
+    vertical-align: top;
+    margin-top: 1em;
+}
+
+#main section:not(:first-child) {
+    display: none;
+}

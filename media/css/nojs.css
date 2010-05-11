@@ -1,0 +1,106 @@
+#aux-nav p.context {
+    display: block;
+    float: right;
+    padding-top: 0.7em;
+    padding-right: 1em;
+    position: absolute;
+    top: 5px;
+    right: 0;
+}
+
+#aux-nav > ul.change {
+    margin-top: 2.5em;
+    background: none;
+}
+
+#aux-nav > ul {
+    float: none;
+    background: none;
+    position: static;
+    line-height: 1.4em;
+    border: none;
+}
+
+.addtagform.hidden {
+    position:relative;
+    top:0;
+}
+
+/* Odd selectors here to make sure we take precedence. */
+#aux-nav > ul.account li,
+#aux-nav > ul:not(.account) li {
+    background: none;
+    display: inline;
+    margin-left: 1em;
+}
+
+#aux-nav > ul ul {
+    display: inline;
+    position: static;
+    border: none;
+}
+
+#aux-nav > ul li ul li {
+    background: none;
+    display: inline;
+    padding: 0;
+}
+
+#aux-nav > ul li ul li.firefox a,
+#aux-nav > ul li ul li.mobile a,
+#aux-nav > ul li ul li.thunderbird a,
+#aux-nav > ul li ul li.seamonkey a,
+#aux-nav > ul li ul li.sunbird a {
+    background: none;
+    display: inline;
+}
+
+#aux-nav > ul a.controller:link,
+#aux-nav > ul a.controller:visited,
+#aux-nav > ul a.controller:focus,
+#aux-nav > ul a.controller:hover,
+#aux-nav > ul a.controller:active {
+    cursor: default;
+    color: #333333;
+    text-decoration: none;
+    display: inline;
+    background: none;
+    padding: 0;
+}
+
+#aux-nav > ul li ul li a {
+    display: inline;
+}
+
+#aux-nav > ul.change li ul li a {
+    padding: 0;
+}
+
+.stats {
+    margin: -4.8em 1em 0 0;
+}
+
+.section-teaser .featured-inner {
+    padding-bottom: 0;
+}
+
+.section-teaser .teaser-header {
+    display: none;
+}
+
+.toggle-help,
+.toggle-info {
+    display: none;
+}
+
+.install-beta {
+    display: block;
+}
+
+#search-query .query-label {
+    display: none;
+}
+
+.install-button .button.platform {
+    display: inherit;
+}

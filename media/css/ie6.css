@@ -1,0 +1,25 @@
+#title img,
+img.scale {
+    behavior: url(iepngfix.htc);
+}
+
+.section,
+.column-wrapper,
+.article,
+.notification .aux,
+.highlight,
+.section-teaser .teaser-header,
+.section-teaser .prev,
+.section-teaser .next,
+ol.numbered li,
+.secondary-item-list,
+form.addon-feedback div.container,
+.listing-header,
+.listing-footer,
+.listing .item,
+.separated-listing .item,
+.object-lead,
+.object-lead .button-wrapper,
+.screenshot.thumbnail {
+    zoom:1;
+}

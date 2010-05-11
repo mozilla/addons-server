@@ -1,0 +1,99 @@
+.tab-wrapper {
+    background-color: #b5d9e5;
+    border: 4px solid #b5d9e5;
+    position: relative;
+    margin-top: 3em;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.tab-wrapper .tab-nav {
+    position: absolute;
+    top: -1.85em;
+    left: 1em;
+    margin: 0;
+}
+
+.tab-wrapper .tab-nav li {
+    margin: 0 .3em 0 0;
+    display: inline;
+}
+
+.html-rtl .tab-wrapper .tab-nav {
+    left: auto;
+    right: 1em;
+}
+
+.tab-wrapper .tab-nav a {
+      color: #235;
+      font-weight: bold;
+      font-size: 12px;
+      background: #b5d9e5;
+      border: 0;
+      padding: .5em 12px;
+      -moz-border-radius: 5px 5px 0 0;
+}
+
+.tab-wrapper .tab-nav .tab-selected a {
+      color: #fff;
+      background: #2e5186;
+      border-bottom: 0;
+}
+
+.tab-wrapper .tab-panel {
+    display: none;
+    border: 1px solid #2e5186;
+    padding: 0 1em 1em;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    background: #fff;
+    background: -moz-linear-gradient(#fff, #e4f5fb);
+}
+
+.tab-wrapper .tab-panel.tab-selected {
+    display: block;
+}
+
+.tab-wrapper .fm-control {
+    font-weight: bold;
+    background: #fff url(../../img/amo2009/bg/listing-footer.gif) repeat-x;
+    border-top: 1px solid #a5bfce;
+    margin-top: -1px;
+    position: relative;
+    z-index: 10;
+    overflow: hidden;
+    padding: 0.3em 1em 0.5em;
+    -webkit-border-bottom-right-radius: 3px;
+    -webkit-border-bottom-left-radius: 3px;
+    -moz-border-radius: 0 0 3px 3px;
+    border-radius: 0 0 3px 3px;
+}
+
+/** Overrides for tabs within tabs *********/
+.tab-wrapper .tab-wrapper {
+    background: transparent;
+    border: 0;
+}
+
+.tab-wrapper .tab-wrapper .tab-nav {
+    position: static;
+    margin-bottom: -1px;
+}
+
+.tab-wrapper .tab-wrapper .tab-nav a {
+    color: #235;
+    font-weight: normal;
+    font-size: 12px;
+    background: #b5d9e5;
+    padding: .25em 12px;
+    border: 1px solid #26395a;
+}
+
+.tab-wrapper .tab-wrapper .tab-nav .tab-selected a {
+    color: #26395a;
+    font-weight: bold;
+    border: 1px solid #26395a;
+    border-bottom: 1px solid white;
+}

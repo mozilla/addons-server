@@ -1,0 +1,24 @@
+#rec-stats th {
+    cursor: pointer;
+}
+#rec-stats .positive, #rec-stats .negative {
+    font-weight: bold;
+}
+#rec-stats .positive {
+    color: #26c457;
+}
+#rec-stats .negative {
+    color: #c92c3f;
+}
+#rec-stats .headerSortUp,
+#rec-stats .headerSortDown {
+    background-color: #badeed;
+    text-shadow: 0 1px 4px white;
+}
+#params {
+    float: right;
+    margin-right: 0.5em;
+}
+#params p {
+    display: inline;
+}

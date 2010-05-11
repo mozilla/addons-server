@@ -1,0 +1,53 @@
+.trans {
+    width: 70%;
+}
+
+.trans .transbox-new {
+    width: 100%;
+    background: -moz-linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.8));
+    text-align: center;
+    border: 1px solid #2e5186;
+    -moz-border-radius: 0 0 5px 5px;
+}
+
+.trans .transbox-new p {
+    font-weight: bold;
+    margin-top: 1em;
+}
+
+.trans .tab a:hover {
+    text-decoration: none;
+}
+
+.trans .transbox-new,
+.trans .transbox textarea {
+    height: 10em;
+}
+
+.trans .transbox-new option.taken {
+    display: none;
+}
+
+.trans .transbox textarea:focus {
+    outline: 0;
+}
+
+.trans button.delete {
+    background: #762d29;
+    float: right;
+    border: none;
+    margin: -1px 0 0;
+    padding: .25em 12px;
+    -moz-border-radius: 5px 5px 0 0;
+    font-weight: bold
+}
+
+.trans .trans-char-count {
+  font-size: 0.846em; /* 11px */
+  color: #666;
+  text-align: right;
+}
+
+.html-rtl .trans-char-count {
+  text-align: left;
+}
