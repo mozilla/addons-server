@@ -270,6 +270,12 @@ class FrontendSearchTest(SphinxTestCase):
         return self.client.get(reverse('search.search') +
                                '?' + urllib.urlencode(kwargs))
 
+    def test_xss(self):
+        """Inputs should be escaped so people don't XSS."""
+        r = self.get_response(q='><strong>My Balls</strong>')
+        doc = pq(r.content)
+        eq_(len([1 for a in doc('strong') if a.text == 'My Balls']), 0)
+
     def test_default_query(self):
         """
         Verify some expected things on a query for nothing.

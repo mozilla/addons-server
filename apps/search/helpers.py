@@ -1,3 +1,5 @@
+from django.utils.html import escape
+
 import jingo
 import jinja2
 from tower import ugettext as _
@@ -17,6 +19,7 @@ def showing(query, tag, pager):
     format_opts = (pager.start_index(), pager.end_index(),
                    pager.paginator.count,)
 
+    query = escape(query)
     # TODO: Can we cleanly localize this, so we can do "Showing no results for
     # Foo tagged with Bar" without having more if/elif/else statements?
 
