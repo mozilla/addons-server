@@ -448,8 +448,12 @@ class Client(object):
                 min_vers = [truncate(m['attrs']['min_ver'])
                             for m in result['matches']]
                 result = results[self.queries['max_ver']]
+
+                # 10**13-1 (a bunch of 9s) is a pseudo max_ver that is
+                # meaningless for faceted search.
                 max_vers = [truncate(m['attrs']['max_ver'])
-                            for m in result['matches']]
+                            for m in result['matches']
+                            if m['attrs']['max_ver'] != 10 ** 13 - 1]
                 versions = list(set(min_vers + max_vers))
                 sorted(versions, reverse=True)
                 self.meta['versions'] = [v for v in versions

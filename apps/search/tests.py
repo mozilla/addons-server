@@ -397,7 +397,7 @@ class TestSearchForm(test_utils.TestCase):
     def test_get_app_versions(self):
         actual = forms.get_app_versions()
         expected = {
-            amo.FIREFOX.id: ['2.0', '3.0', '3.5', '3.6', '3.7'],
+            amo.FIREFOX.id: ['3.0', '3.5', '3.6', '3.7'],
             amo.THUNDERBIRD.id: [],
             amo.SUNBIRD.id: [],
             amo.SEAMONKEY.id: [],

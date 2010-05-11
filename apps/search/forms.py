@@ -38,7 +38,7 @@ tuplize = lambda x: divmod(int(x * 10), 10)
 
 # These releases were so minor that we don't want to search for them.
 skip_versions = collections.defaultdict(list)
-skip_versions[amo.FIREFOX] = (tuplize(v) for v in amo.FIREFOX.exclude_versions)
+skip_versions[amo.FIREFOX] = [tuplize(v) for v in amo.FIREFOX.exclude_versions]
 
 min_version = collections.defaultdict(lambda: (0, 0))
 min_version.update({
@@ -58,10 +58,9 @@ def get_app_versions():
         app = amo.APP_IDS[app_id]
         min_ver, skip = min_version[app], skip_versions[app]
         versions = [(a.major, a.minor1) for a in versions]
-        # Find all the unique (major, minor) pairs.
-        groups = itertools.groupby(sorted(versions))
-        strings = ['%s.%s' % v for v, group in groups
+        strings = ['%s.%s' % v for v in sorted(set(versions))
                    if v >= min_ver and v not in skip]
+
         rv[app_id] = [(s, s) for s in strings]
     for app_id in amo.APP_IDS:
         rv[app_id] += [(_('Any'), 'any')]

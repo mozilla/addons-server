@@ -35,6 +35,7 @@ def _get_versions(request, versions, version):
     compats.append(c)
     seen = {}
     exclude = request.APP.__dict__.get('exclude_versions', [])
+    versions.sort(reverse=True)
 
     for v in versions:
         # v is a version_int so we can get the major and minor:
@@ -47,7 +48,7 @@ def _get_versions(request, versions, version):
 
         seen[text] = 1
 
-        if v_float <= request.APP.min_display_version or v_float in exclude:
+        if v_float < request.APP.min_display_version or v_float in exclude:
             continue
 
         c = MenuItem()
@@ -57,6 +58,7 @@ def _get_versions(request, versions, version):
         if c.text == version:
             c.selected = True
         compats.append(c)
+
     return compats
 
 
