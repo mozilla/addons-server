@@ -173,7 +173,7 @@ def SearchForm(request):
     return _SearchForm(d)
 
 
-class CollectionsSearchForm(forms.Form):
+class SecondarySearchForm(forms.Form):
     q = forms.CharField(widget=forms.HiddenInput, required=False)
     cat = forms.CharField(widget=forms.HiddenInput)
     pp = forms.IntegerField(widget=forms.HiddenInput, required=False)

@@ -10,10 +10,13 @@ from tower import ugettext as _
 import amo
 from amo.helpers import urlparams
 from amo import urlresolvers
+from addons.models import Category
 from versions.compare import dict_from_int
 from search import forms
-from search.client import Client as SearchClient, SearchError, CollectionsClient
-from search.forms import SearchForm, CollectionsSearchForm
+from search.client import (Client as SearchClient, SearchError,
+                           CollectionsClient, PersonasClient)
+from search.forms import SearchForm, SecondarySearchForm
+from translations.query import order_by_translation
 
 DEFAULT_NUM_RESULTS = 20
 
@@ -146,10 +149,44 @@ def _get_sorts(request, sort):
     return items
 
 
+def _personas(request):
+    "Handle the request for persona searches."
+    form = SecondarySearchForm(request.GET)
+    form.is_valid()
+
+    query = form.cleaned_data.get('q', '')
+
+    search_opts = {}
+    search_opts['limit'] = form.cleaned_data.get('pp', DEFAULT_NUM_RESULTS)
+    page = form.cleaned_data.get('page') or 1
+    search_opts['offset'] = (page - 1) * search_opts['limit']
+
+    client = PersonasClient()
+
+    q = Category.objects.filter(application=request.APP.id,
+                                type=amo.ADDON_PERSONA)
+    categories = order_by_translation(q, 'name')
+
+    try:
+        results = client.query(query, **search_opts)
+    except SearchError, e:
+        return jingo.render(request, 'search/down.html', {}, status=503)
+
+    pager = amo.utils.paginate(request, results, search_opts['limit'])
+
+    c = {
+            'pager': pager,
+            'form': form,
+            'categories': categories,
+        }
+
+    return jingo.render(request, 'search/personas.html', c)
+
+
 def _collections(request):
     """Handle the request for collections."""
 
-    form = CollectionsSearchForm(request.GET)
+    form = SecondarySearchForm(request.GET)
     form.is_valid()
 
     query = form.cleaned_data.get('q', '')
@@ -173,7 +210,6 @@ def _collections(request):
             'pager': pager,
             'form': form,
         }
-
 
     return jingo.render(request, 'search/collections.html', c)
 
@@ -207,6 +243,8 @@ def search(request):
 
     if category == 'collections':
         return _collections(request)
+    elif category == 'personas':
+        return _personas(request)
 
     # TODO: Let's change the form values to something less gross when
     # Remora dies in a fire.

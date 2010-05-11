@@ -209,6 +209,29 @@ class Client(object):
         # Unique ID used for logging
         self.id = int(random.random() * 10**5)
 
+    def get_result_set(self, term, result, offset, limit):
+        # Remove transformations for now so we can pull them in later.
+        qs = Addon.objects.all()
+        transforms = qs._transform_fns
+        qs._transform_fns = []
+
+        # Return results as a list of add-ons.
+        addon_ids = [m['attrs']['addon_id'] for m in result['matches']]
+        addons = []
+        for addon_id in addon_ids:
+            try:
+                addons.append(qs.get(pk=addon_id))
+            except Addon.DoesNotExist:  # pragma: no cover
+                log.warn(u'%d: Result for %s refers to non-existent '
+                         'addon: %d' % (self.id, term, addon_id))
+
+        # Do the transforms now that we have all the add-ons.
+        for fn in transforms:
+            fn(addons)
+
+        return ResultSet(addons, min(self.total_found, SPHINX_HARD_LIMIT),
+                         offset)
+
     def log_query(self, term=None):
         """
         Logs whatever relevant data we can from sphinx.
@@ -499,27 +522,37 @@ class Client(object):
             return []  # Fail silently.
 
         if result and result['total']:
-            # Remove transformations for now so we can pull them in later.
-            qs = Addon.objects.all()
-            transforms = qs._transform_fns
-            qs._transform_fns = []
+            return self.get_result_set(term, result, offset, limit)
+        else:
+            return []
 
-            # Return results as a list of add-ons.
-            addon_ids = [m['attrs']['addon_id'] for m in result['matches']]
-            addons = []
-            for addon_id in addon_ids:
-                try:
-                    addons.append(qs.get(pk=addon_id))
-                except Addon.DoesNotExist:  # pragma: no cover
-                    log.warn(u'%d: Result for %s refers to non-existent '
-                             'addon: %d' % (self.id, term, addon_id))
 
-            # Do the transforms now that we have all the add-ons.
-            for fn in transforms:
-                fn(addons)
+class PersonasClient(Client):
+    """A search client that queries sphinx for Personas."""
 
-            return ResultSet(addons, min(self.total_found, SPHINX_HARD_LIMIT),
-                             offset)
+    def query(self, term, limit=10, offset=0, **kwargs):
+        sc = self.sphinx
+        sc.SetSelect('addon_id')
+        sc.SetLimits(min(offset, SPHINX_HARD_LIMIT - 1), limit)
+        term = sanitize_query(term)
+        self.log_query(term)
+
+        try:
+            result = sc.Query(term, 'personas')
+        except socket.timeout:  # pragma: no cover
+            log.error("Query has timed out.")
+            raise SearchError("Query has timed out.")
+        except Exception, e:  # pragma: no cover
+            log.error("Sphinx threw an unknown exception: %s" % e)
+            raise SearchError("Sphinx threw an unknown exception.")
+
+        if sc.GetLastError():  # pragma: no cover
+            raise SearchError(sc.GetLastError())
+
+        self.total_found = result['total_found'] if result else 0
+
+        if result and result['total']:
+            return self.get_result_set(term, result, offset, limit)
         else:
             return []
 
@@ -531,8 +564,6 @@ class CollectionsClient(Client):
         sc = self.sphinx
         sc.SetSelect("collection_id")
 
-        # sc.SetSortMode(sphinx.SPH_SORT_EXTENDED, sort_field)
-        # sc.SetGroupBy('collection_id', sphinx.SPH_GROUPBY_ATTR, sort_field)
         sc.SetLimits(min(offset, SPHINX_HARD_LIMIT - 1), limit)
         term = sanitize_query(term)
 

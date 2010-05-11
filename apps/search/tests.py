@@ -164,6 +164,12 @@ class SearchDownTest(TestCase):
         doc = pq(resp.content)
         eq_(doc('.no-results').length, 1)
 
+    def test_personas_search_down(self):
+        self.client.get('/')
+        resp = self.client.get(reverse('search.search') + '?cat=personas')
+        doc = pq(resp.content)
+        eq_(doc('.no-results').length, 1)
+
 
 class CollectionsSearchTest(SphinxTestCase):
 
@@ -280,7 +286,7 @@ class SearchTest(SphinxTestCase):
         for guy in bad_guys:
             try:
                 query(guy, meta=('versions',))
-            except SearchError:
+            except SearchError:  # pragma: no cover
                 assert False, "Error querying for %s" % guy
 
 
@@ -290,6 +296,25 @@ def test_form_version_label():
         doc = pq(r.content)
         eq_(doc('#advanced-search label')[0].text,
                 '%s Version' % unicode(app.pretty))
+
+
+class PersonaSearchTest(SphinxTestCase):
+    fixtures = ['addons/persona']
+
+    def get_response(self, **kwargs):
+        return self.client.get(reverse('search.search') +
+                               '?' + urllib.urlencode(kwargs))
+
+    def test_default_personas_query(self):
+        r = self.get_response(cat='personas')
+        doc = pq(r.content)
+        eq_(doc('title').text(),
+                'Personas Search Results :: Add-ons for Firefox')
+        eq_(len(doc('.secondary .categories h3')), 1)
+        eq_(doc('.primary h3').text(), '1 Persona')
+        eq_(len(doc('.persona-preview')), 1 )
+        eq_(doc('.thumbnails h4').text(), 'My Persona')
+        eq_(doc('.thumbnails em').text(), '55 active daily users')
 
 
 class FrontendSearchTest(SphinxTestCase):
