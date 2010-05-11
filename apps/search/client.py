@@ -360,6 +360,9 @@ class Client(object):
         for filter, value in metas.iteritems():
             self.add_filter(filter, value, meta=True)
 
+        # Sanitize the term before we start adding queries.
+        term = sanitize_query(term)
+
         # Meta queries serve aggregate data we might want.  Such as filters
         # that the end-user may want to apply to their query.
         if 'meta' in kwargs:
@@ -413,8 +416,6 @@ class Client(object):
         sc.SetGroupBy('addon_id', sphinx.SPH_GROUPBY_ATTR, sort_field)
 
         sc.SetLimits(min(offset, SPHINX_HARD_LIMIT - 1), limit)
-
-        term = sanitize_query(term)
 
         sc.AddQuery(term, 'addons')
         self.queries['primary'] = self.query_index

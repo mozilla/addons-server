@@ -254,7 +254,7 @@ class SearchTest(SphinxTestCase):
 
         for guy in bad_guys:
             try:
-                query(guy)
+                query(guy, meta=('versions',))
             except SearchError:
                 assert False, "Error querying for %s" % guy
 
