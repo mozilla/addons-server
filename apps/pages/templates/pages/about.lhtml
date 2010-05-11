@@ -4,73 +4,85 @@
 
 {% block content %}
 <div class="prose">
-{# TODO reverse these URLs #}
-{% trans newsletter_url='/developers/community/newsletter',
-         devhub_url='/developers', faq_url=url('pages.faq'),
-         contact_url='developers/docs/policies/contact',
-         credits_url='/pages/credits' %}
-<h2>About Mozilla Add-ons</h2>
 
-<h3>What is this website?</h3>
-<p>addons.mozilla.org, commonly known as "AMO", is Mozilla's official site for
-add-ons to Mozilla software, such as Firefox, Thunderbird, SeaMonkey, and Sunbird.
-Add-ons let you add new features and change the way your browser or application works.
-Take a look around and explore the thousands of ways to customize the way you do things online.</p>
+{# TODO reverse the URLs in the trans tags on this page #}
 
-<h3>Who creates these add-ons?</h3>
-<p>The add-ons listed here have been created by thousands of developers from our
-community, ranging from individual hobbyists to large corporations. All publicly
-listed add-ons are reviewed by a team of editors before being released. Add-ons
-marked as Experimental have not been reviewed and should only be installed with caution.</p>
+<h2>{{ _('About Mozilla Add-ons') }}</h2>
 
-<h3>How do I keep up with what's happening at AMO?</h3>
-<p>There are several ways to find out the latest news from the world of add-ons:</p>
+<h3>{{ _('What is this website?') }}</h3>
+<p>{% trans %}addons.mozilla.org, commonly known as "AMO", is Mozilla's official
+site for add-ons to Mozilla software, such as Firefox, Thunderbird, SeaMonkey,
+and Sunbird.  Add-ons let you add new features and change the way your browser
+or application works.  Take a look around and explore the thousands of ways to
+customize the way you do things online.{% endtrans %}</p>
+
+<h3>{{ _('Who creates these add-ons?') }}</h3>
+<p>{% trans %}The add-ons listed here have been created by thousands of
+developers from our community, ranging from individual hobbyists to large
+corporations. All publicly listed add-ons are reviewed by a team of editors
+before being released. Add-ons marked as Experimental have not been reviewed and
+should only be installed with caution.{% endtrans %}</p>
+
+<h3>{{ _("How do I keep up with what's happening at AMO?") }}</h3>
+<p>{{ _("There are several ways to find out the latest news from the world of add-ons:") }}</p>
 <ul>
-    <li>Our <a href="http://blog.mozilla.com/addons/">Add-ons Blog</a> is regularly
-    updated with information for both add-on enthusiasts and developers.</li>
-    <li>You can subscribe to our <a href="{{ newsletter_url }}">
-    about:addons newsletter</a>, which highlights the top add-on news every month.</li>
-    <li>We often post news, tips, and tricks to our Twitter account,
-    <a href="http://twitter.com/mozamo">mozamo</a></li>
-    <li>Our <a href="https://forums.addons.mozilla.org">forums</a> are a good place
-    to interact with the add-ons community and discuss upcoming changes to AMO.</li>
+    <li>{% trans url="http://blog.mozilla.com/addons/" %}Our <a href="{{ url
+    }}">Add-ons Blog</a> is regularly updated with information for both add-on
+    enthusiasts and developers.{% endtrans %}</li>
+    <li>{% trans url="/developers/community/newsletter" %}You can subscribe to
+    our <a href="{{ url }}"> about:addons newsletter</a>, which highlights the
+    top add-on news every month.{% endtrans %}</li>
+    <li>{% trans url="http://twitter.com/mozamo" %}We often post news, tips, and
+    tricks to our Twitter account, <a href="{{ url }}">mozamo</a>{% endtrans %}</li>
+    <li>{% trans url="https://forums.addons.mozilla.org" %}Our <a href="{{ url
+    }}">forums</a> are a good place to interact with the add-ons community and
+    discuss upcoming changes to AMO.{% endtrans %}</li>
 </ul>
 
-<h3>This sounds great! How can I get involved?</h3>
-<p>There are plenty of ways to get involved. If you're on the technical side:</p>
+<h3>{{ _('This sounds great! How can I get involved?') }}</h3>
+<p>{{ _("There are plenty of ways to get involved. If you're on the technical side:") }}</p>
 <ul>
-  <li><a href="{{ devhub_url }}">Make your own add-on</a>. We provide free hosting
-    and update services and can help you reach a large audience of users.</li>
-    <li>If you have add-on development experience, <a href="https://wiki.mozilla.org/AMO:Editors/Applying">
-    become an editor</a>! Our editors are add-on fans with a technical background who
-    review add-ons for code quality and stability.</li>
-  <li>Help improve this website. It's open source, and you can file bugs and
-    submit patches. <a href="https://bugzilla.mozilla.org/buglist.cgi?product=addons.mozilla.org&amp;resolution=---">
-    Bugzilla</a> contains all of our current bugs.</li>
+  <li>{% trans url='/developers' %}<a href="{{ url }}">Make your own add-on</a>.
+  We provide free hosting and update services and can help you reach a large
+  audience of users.{% endtrans %}</li>
+  <li>{% trans url='https://wiki.mozilla.org/AMO:Editors/Applying' %}If you have
+  add-on development experience, <a href="{{ url }}"> become an editor</a>! Our
+  editors are add-on fans with a technical background who review add-ons for
+  code quality and stability.{% endtrans %}</li>
+  <li>{% trans url='https://bugzilla.mozilla.org/buglist.cgi?product=addons.mozilla.org&amp;resolution=---' %}
+  Help improve this website. It's open source, and you can file bugs and
+  submit patches. <a href="{{ url }}"> Bugzilla</a> contains all of our current
+  bugs.{% endtrans %}</li>
 </ul>
 
-<p>If you're interested in add-ons but not quite as technical, there are still
-ways to help:</p>
+<p>{% trans %}If you're interested in add-ons but not quite as technical, there
+are still ways to help:{% endtrans %}</p>
 <ul>
-    <li>Tell your friends! <a href="http://spreadfirefox.com/">Spread Firefox</a>
-    and let people know which add-ons you use.</li>
-    <li>Participate in our <a href="https://forums.addons.mozilla.org">forums</a>.</li>
-    <li>Review add-ons on the site. Add-on authors are more likely to improve
-    their add-ons and write new ones when they know people appreciate their work.</li>
+    <li>{% trans url='http://spreadfirefox.com/' %}Tell your friends! <a
+    href="{{ url }}">Spread Firefox</a> and let people know which add-ons you
+    use.{% endtrans %}</li>
+    <li>{% trans url='https://forums.addons.mozilla.org' %}Participate in our <a
+    href="{{ url }}">forums</a>.{% endtrans %}</li>
+    <li>{% trans %}Review add-ons on the site. Add-on authors are more likely to
+    improve their add-ons and write new ones when they know people appreciate
+    their work.{% endtrans %}</li>
 </ul>
 
-<h3>I have a question</h3>
-<p>A good place to start is our <a href="{{ faq_url }}"><abbr title="Frequently Asked Questions">FAQ</abbr></a>.
-If you don't find an answer there, you can <a href="https://forums.addons.mozilla.org">
-ask on our forums</a>.</p>
+<h3>{{ _('I have a question') }}</h3>
+<p>{% trans faq_url=url('pages.faq'), forum_url="https://forums.addons.mozilla.org" %}A good place
+to start is our <a href="{{ faq_url }}"><abbr title="Frequently Asked Questions">FAQ</abbr></a>.
+If you don't find an answer there, you can <a href="{{ forum_url }}"> ask on our
+forums</a>.{% endtrans %}</p>
 
-<p>If you really need to contact someone from the Mozilla team, please see our
-<a href="{{ contact_url }}">contact information</a> page.</p>
+<p>{% trans url="/developers/docs/policies/contact" %}If you really need to
+contact someone from the Mozilla team, please see our <a href="{{ url }}">
+contact information</a> page.{% endtrans %}</p>
 
-<h3>Who works on this website?</h3>
-<p>Over the years, many people have contributed to this website, including both
-volunteers from the community and a dedicated AMO team. A list of significant
-contributors can be found on our <a href="{{ credits_url }}">Site Credits</a> page.</p>
-{% endtrans %}
+<h3>{{ _('Who works on this website?') }}</h3>
+<p>{% trans url="/pages/credits" %}Over the years, many people have contributed
+to this website, including both volunteers from the community and a dedicated
+AMO team. A list of significant contributors can be found on our <a href="{{ url }}">
+Site Credits</a> page.{% endtrans %}</p>
+
 </div>
 {% endblock %}
