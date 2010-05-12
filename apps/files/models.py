@@ -34,7 +34,7 @@ class File(amo.models.ModelBase):
         if self.platform_id != amo.PLATFORM_ALL.id:
             url.append('platform:%s' % self.platform_id)
         url.append('addon-%s-latest%s' % (addon, self.extension))
-        return os.path.join(*url)
+        return remora_url(os.path.join(*url))
 
     def eula_url(self):
         return remora_url('/addons/policy/0/{addonid}/{fileid}'.format(
