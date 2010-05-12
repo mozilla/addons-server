@@ -8,6 +8,7 @@ from datetime import datetime, timedelta
 
 from django.contrib.sessions.middleware import SessionMiddleware
 from django.http import HttpResponsePermanentRedirect, QueryDict
+from django.middleware import common
 from django.utils.encoding import smart_str
 from django.utils import translation, encoding
 from django.utils.datastructures import MultiValueDict
@@ -112,3 +113,25 @@ class NoVarySessionMiddleware(SessionMiddleware):
         else:
             del new_response['Vary']
         return new_response
+
+
+class RemoveSlashMiddleware(object):
+    """
+    Middleware that tries to remove a trailing slash if there was a 404.
+
+    If the response is a 404 because url resolution failed, we'll look for a
+    better url without a trailing slash.
+    """
+
+    def process_response(self, request, response):
+        if (response.status_code == 404
+            and request.path_info.endswith('/')
+            and not common._is_valid_path(request.path_info)
+            and common._is_valid_path(request.path_info[:-1])):
+            # Use request.path because we munged app/locale in path_info.
+            newurl = request.path[:-1]
+            if request.GET:
+                newurl += '?' + request.META['QUERY_STRING']
+            return HttpResponsePermanentRedirect(newurl)
+        else:
+            return response
