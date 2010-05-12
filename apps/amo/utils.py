@@ -10,6 +10,7 @@ from django.core import paginator
 from django.core.serializers import json
 from django.core.mail import send_mail as django_send_mail
 from django.utils.functional import Promise
+from django.utils.encoding import smart_str
 
 import pytz
 
@@ -31,8 +32,8 @@ def urlparams(url_, hash=None, **query):
     query_dict = dict(cgi.parse_qsl(str(url.query))) if url.query else {}
     query_dict.update((k, v) for k, v in query.items())
 
-    query_string = urllib.urlencode(dict((k, v) for k, v
-            in query_dict.items() if v is not None))
+    query_string = urlencode([(k, v) for k, v in query_dict.items()
+                             if v is not None])
     new = urlparse.ParseResult(url.scheme, url.netloc, url.path, url.params,
                                query_string, fragment)
     return new.geturl()
@@ -86,12 +87,7 @@ def paginate(request, queryset, per_page=20):
 
     base = request.build_absolute_uri(request.path)
 
-    try:
-        qsa = urllib.urlencode(request.GET.items())
-    except UnicodeEncodeError:
-        qsa = urllib.urlencode([(k, v.encode('utf8')) for k, v
-                                in request.GET.items()])
-    paginated.url = u'%s?%s' % (base, qsa)
+    paginated.url = u'%s?%s' % (base, request.GET.urlencode())
     return paginated
 
 
@@ -158,3 +154,11 @@ def chunked(seq, n):
     """
     for i in xrange(0, len(seq), n):
         yield seq[i:i+n]
+
+
+def urlencode(items):
+    """A Unicode-safe URLencoder."""
+    try:
+        return urllib.urlencode(items)
+    except UnicodeEncodeError:
+        return urllib.urlencode([(k, smart_str(v)) for k, v in items])

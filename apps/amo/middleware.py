@@ -7,9 +7,10 @@ import urllib
 from datetime import datetime, timedelta
 
 from django.contrib.sessions.middleware import SessionMiddleware
-from django.http import HttpResponsePermanentRedirect
+from django.http import HttpResponsePermanentRedirect, QueryDict
 from django.utils.encoding import smart_str
-from django.utils import translation
+from django.utils import translation, encoding
+from django.utils.datastructures import MultiValueDict
 
 import tower
 
