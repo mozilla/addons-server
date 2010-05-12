@@ -179,6 +179,6 @@ def url_fix(s, charset='utf-8'):
     if isinstance(s, unicode):
         s = s.encode(charset, 'ignore')
     scheme, netloc, path, qs, anchor = urlsplit(s)
-    path = urllib.quote(path, '/%')
+    path = urllib.quote(path, '/%:')
     qs = urllib.quote_plus(qs, ':&=')
     return urlunsplit((scheme, netloc, path, qs, anchor))

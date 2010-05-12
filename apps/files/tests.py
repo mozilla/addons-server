@@ -22,12 +22,13 @@ class TestFile(test.TestCase):
     def test_latest_url(self):
         # With platform.
         f = File.objects.get(id=61321)
-        expected = '/downloads/latest/{0}/platform:3/addon-{0}-latest.jar'
+        base = '/en-US/firefox/downloads/latest/'
+        expected = base + '{0}/platform:3/addon-{0}-latest.jar'
         eq_(expected.format(f.version.addon_id), f.latest_xpi_url())
 
         # No platform.
         f = File.objects.get(id=11993)
-        expected = '/downloads/latest/{0}/addon-{0}-latest.xpi'
+        expected = base + '{0}/addon-{0}-latest.xpi'
         eq_(expected.format(f.version.addon_id), f.latest_xpi_url())
 
     def test_eula_url(self):
