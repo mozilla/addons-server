@@ -1029,10 +1029,6 @@ h4.author a {
     z-index: 100; /** prevents sharing network dropdown from showing up behind preview thumbnails **/
 }
 
-.featured h4 {
-    clear: both;
-}
-
 #addon-info .item {
     padding: 1em;
 }
