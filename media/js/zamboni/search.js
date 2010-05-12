@@ -2,6 +2,8 @@
 z.searchBox = function() {
     if (!$('#search-form').length) return; // no search box
 
+     var q = $('#query');
+
     /* Get the appversions from JSON. */
     var appversions = JSON.parse($('#search-data').attr('data-appversions'));
     for (var k in appversions) {
