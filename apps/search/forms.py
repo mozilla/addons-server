@@ -4,6 +4,7 @@ import itertools
 from django import forms
 from django.forms.util import ErrorDict
 
+import caching.base as caching
 from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
@@ -49,22 +50,14 @@ min_version.update({
 })
 
 
-def get_app_versions():
-    rv = collections.defaultdict(list)
-    appversions = (AppVersion.objects.filter(application__in=amo.APP_IDS)
-                   .order_by('application'))
-    key = lambda x: x.application_id
-    for app_id, versions in itertools.groupby(appversions, key=key):
-        app = amo.APP_IDS[app_id]
-        min_ver, skip = min_version[app], skip_versions[app]
-        versions = [(a.major, a.minor1) for a in versions]
-        strings = ['%s.%s' % v for v in sorted(set(versions))
-                   if v >= min_ver and v not in skip]
+def get_app_versions(app):
+    appversions = AppVersion.objects.filter(application=app.id)
+    min_ver, skip = min_version[app], skip_versions[app]
+    versions = [(a.major, a.minor1) for a in appversions]
+    strings = ['%s.%s' % v for v in sorted(set(versions), reverse=True)
+               if v >= min_ver and v not in skip]
 
-        rv[app_id] = [(s, s) for s in strings]
-    for app_id in amo.APP_IDS:
-        rv[app_id] += [(_('Any'), 'any')]
-    return rv
+    return [(_('any'), _('Any'))] + zip(strings, strings)
 
 
 # Fake categories to slip some add-on types into the search groups.
@@ -86,19 +79,24 @@ def get_search_groups(app):
 
 def SearchForm(request):
 
-    search_groups, top_level = get_search_groups(request.APP or amo.FIREFOX)
+    current_app = request.APP or amo.FIREFOX
+    search_groups, top_level = get_search_groups(current_app)
+
 
     class _SearchForm(forms.Form):
         q = forms.CharField(required=False)
 
         cat = forms.ChoiceField(choices=search_groups, required=False)
 
+        # TODO(davedash): Remove when we're done with remora.
         appid = forms.TypedChoiceField(label=_('Application'),
             choices=[(app.id, app.pretty) for app in amo.APP_USAGE],
             required=False, coerce=int)
 
         # This gets replaced by a <select> with js.
-        lver = forms.CharField(label=_('Version'), required=False)
+        lver = forms.ChoiceField(
+                label=_('{0} Version'.format(unicode(current_app.pretty))),
+                choices=get_app_versions(current_app), required=False)
 
         atype = forms.TypedChoiceField(label=_('Type'),
             choices=[(t, amo.ADDON_TYPE[t]) for t in types], required=False,
@@ -124,7 +122,6 @@ def SearchForm(request):
         page = forms.IntegerField(widget=forms.HiddenInput, required=False)
 
         # Attach these to the form for usage in the template.
-        get_app_versions = staticmethod(get_app_versions)
         top_level_cat = dict(top_level)
         queryset = AppVersion.objects.filter(id__in=amo.APP_IDS)
 

@@ -259,6 +259,14 @@ class SearchTest(SphinxTestCase):
                 assert False, "Error querying for %s" % guy
 
 
+def test_form_version_label():
+    for app in amo.APP_USAGE:
+        r = client.Client().get('/en-US/{0}/'.format(app.short))
+        doc = pq(r.content)
+        eq_(doc('#advanced-search label')[0].text,
+                '%s Version' % unicode(app.pretty))
+
+
 class FrontendSearchTest(SphinxTestCase):
 
     def setUp(self):
@@ -395,17 +403,10 @@ class TestSearchForm(test_utils.TestCase):
     fixtures = ['base/fixtures']
 
     def test_get_app_versions(self):
-        actual = forms.get_app_versions()
-        expected = {
-            amo.FIREFOX.id: ['3.0', '3.5', '3.6', '3.7'],
-            amo.THUNDERBIRD.id: [],
-            amo.SUNBIRD.id: [],
-            amo.SEAMONKEY.id: [],
-            amo.MOBILE.id: ['1.0'],
-        }
-        for app in expected:
-            expected[app] = [(k, k) for k in expected[app]]
-            expected[app].append(('Any', 'any'))
+        actual = forms.get_app_versions(amo.FIREFOX)
+        expected = [('any', 'Any'), ('3.7', '3.7'), ('3.6', '3.6'),
+                    ('3.5', '3.5'), ('3.0', '3.0'),]
+
         # So you added a new appversion and this broke?  Sorry about that.
         eq_(actual, expected)
 

@@ -29,13 +29,11 @@
     </div>
     <div id="advanced-search" class="advanced">
       <fieldset class="important">
-        <div class="container application">
-          {{ search_form.appid.label_tag()|safe }}
-          {{ search_form.appid|safe }}
-        </div>
         <div class="container">
           {{ search_form.lver.label_tag()|safe }}
+          {% cache search_form.queryset %}
           {{ search_form.lver|safe }}
+          {% endcache %}
         </div>
       </fieldset>
       <fieldset class="subsidiary">
@@ -61,10 +59,7 @@
         </div>
       </fieldset>
       <span id="search-data"
-        data-version="{{ request.REQUEST.get('lver', 'any') }}"
-        {% cache search_form.queryset %}
-          data-appversions="{{ search_form.get_app_versions()|json }}">
-        {% endcache %}
+        data-version="{{ request.REQUEST.get('lver', 'any') }}">
       </span>
       {{ search_form.advanced|safe }}
     </div> {# advanced-search #}

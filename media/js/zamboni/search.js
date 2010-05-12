@@ -4,25 +4,6 @@ z.searchBox = function() {
 
      var q = $('#query');
 
-    /* Get the appversions from JSON. */
-    var appversions = JSON.parse($('#search-data').attr('data-appversions'));
-    for (var k in appversions) {
-        appversions[k] = _.dict(appversions[k]);
-    }
-
-    /* Replace the <input text> version with a <select>. */
-    var lver_parent = $('#id_lver').parent();
-    lver_parent.find('input').remove();
-    lver_parent.append('<select id="id_lver" name="lver"></select>');
-
-    /* Sync the version <select> with the app id. */
-    $('#id_appid').change(function(){
-        var app = $('option:selected', this).val();
-        /* By default we use 'any', unless there's something set in the url */
-        selected = $('#search-data').attr('data-version') || 'any';
-        replaceOptions('#id_lver', appversions[app], selected);
-    }).change();
-
     /* Sync the placeholder text with the category. */
     $('#cat').change(function(){
         var cat = $(this).val(),
