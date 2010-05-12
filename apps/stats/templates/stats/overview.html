@@ -1,0 +1,60 @@
+{% extends "stats/stats.html" %}
+
+{% block stats %}
+    <div class="featured">
+      <div class="featured-inner three-up">
+        <div><a href="#">850,749 Downloads</a><br/><small>16,534 in last 30 days</small></div>
+        <div><a href="#">672,501 Daily Users</a><br/><small>634,475 in last 30 days</small></div>
+        <div><a href="#">$956.00 Contributed</a><br/><small>$83.00 in last 30 days</small></div>
+      </div>
+    </div>
+    <div class="toplists">
+      <div class="toplist statbox">
+        <h3>Most Used Applications</h3>
+        <a class="selected" href="#">Last 30 Days</a> | <a href="#">All time</a>
+        <div class="piechart"></div>
+        <table>
+          <tbody>
+            <tr><td>Firefox 3.6</td> <td>268,000</td> <td>(40%)</td></tr>
+            <tr><td>Firefox 3.5</td> <td>168,000</td> <td>(25%)</td></tr>
+            <tr><td>Firefox 3.0</td> <td>95,000</td> <td>(15%)</td></tr>
+            <tr><td>Thunderbird 3.0</td> <td>63,000</td> <td>(10%)</td></tr>
+            <tr><td>Firefox 2.0</td> <td>31,000</td> <td>(5%)</td></tr>
+            <tr><td>Other</td> <td>31,000</td> <td>(5%)</td></tr>
+          </tbody>
+        </table>
+        <a href="#">See More Applications...</a>
+      </div>
+      <div class="toplist statbox">
+        <h3>Most Used Languages</h3>
+        <a class="selected" href="#">Last 30 Days</a> | <a href="#">All time</a>
+        <div class="piechart"></div>
+        <table>
+          <tbody>
+            <tr><td>English (US)</td> <td>403,000</td> <td>(60%)</td></tr>
+            <tr><td>French</td> <td>95,000</td> <td>(15%)</td></tr>
+            <tr><td>Spanish</td> <td>63,000</td> <td>(10%)</td></tr>
+            <tr><td>Japanese</td> <td>31,000</td> <td>(5%)</td></tr>
+            <tr><td>German</td> <td>31,000</td> <td>(5%)</td></tr>
+            <tr><td>Other</td> <td>31,000</td> <td>(5%)</td></tr>
+          </tbody>
+        </table>
+        <a href="#">See More languages...</a>
+      </div>
+      <div class="toplist statbox">
+        <h3>Most Used OSes</h3>
+        <a class="selected" href="#">Last 30 Days</a> | <a href="#">All time</a>
+        <div class="piechart"></div>
+        <table>
+          <tbody>
+            <tr><td>Windows</td> <td>403,000</td> <td>(60%)</td></tr>
+            <tr><td>Mac OS X</td> <td>168,000</td> <td>(25%)</td></tr>
+            <tr><td>Linux</td> <td>63,000</td> <td>(10%)</td></tr>
+            <tr><td>FreeBSD</td> <td>31,000</td> <td>(5%)</td></tr>
+            <tr><td>Solaris</td> <td>6,000</td> <td>(1%)</td></tr>
+          </tbody>
+        </table>
+        <a href="#">See more operating systems...</a>
+      </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends "stats/stats.html" %}
+
+{% block stats %}
+<h3>{{_('Add-on Status by Date')}}</h3>
+<div class="statbox">
+  <div class="tabular">
+    <table class="bar-table">
+    </table>
+  </div>
+</div>
+{% endblock %}
+
+{% block chartconfig %}
+  <script>
+    AMO.seriesList = {
+      metric: "statuses",
+      fields: [
+        "statuses|userEnabled",
+        "statuses|userDisabled",
+        "statuses|userEnabled,incompatible"
+      ]
+    };
+  
+    AMO.csvTableConfig = {
+        el: $("table.bar-table")[0],
+        report: "{{ report }}",
+        columns: [{
+            label: "{{_('Date')}}",
+            field: 'date',
+            format: function (value) {
+                return Highcharts.dateFormat('%a, %b %e, %Y', new Date(value));
+            }
+        },
+        {
+            label: "{{_('Enabled')}}",
+            field: 'statuses|userEnabled',
+            format: function (value) {
+                return Highcharts.numberFormat(value, 0);
+            }
+        },
+        {
+            label: "{{_('Disabled')}}",
+            field: 'statuses|userDisabled',
+            format: function (value) {
+                return Highcharts.numberFormat(value, 0);
+            }
+        },
+        {
+            label: "{{_('Enabled (Incompatible)')}}",
+            field: 'statuses|userEnabled,incompatible',
+            format: function (value) {
+                return Highcharts.numberFormat(value, 0);
+            }
+        },
+        {
+            label: "{{_('Disabled (Incompatible)')}}",
+            field: 'statuses|userDisabled,incompatible',
+            format: function (value) {
+                return Highcharts.numberFormat(value, 0);
+            }
+        }
+        
+        ]
+    };
+  </script>
+{% endblock %}

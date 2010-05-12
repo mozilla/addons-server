@@ -1191,6 +1191,7 @@ table caption {
 
 .stand-alone-options {
     z-index: 500; /** fixes issue with category dropdown menu appearing *behind* addon detail page images (stacking context bug) **/
+	height:5em; /** both children are position:absolute so needs a defined height or it will collapse **/
 }
 
 /** END Category dropdown/search container tweaks **/

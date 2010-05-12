@@ -1,0 +1,97 @@
+{% extends "stats/stats.html" %}
+
+{% block stats %}
+<div class="featured">
+  <div class="featured-inner">
+    <div class="featured-body tabular">
+      <table class="stats-overview"><thead>
+        <tr><th>Category</th><th>Last 7 Days</th><th>7-14 Days Ago</th><th>All Time</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="label">Average Daily Users</td>
+          <td class="value"><span class="value">9,999,999</span><span class="change plus">+99%</span></td>
+          <td class="value"><span class="value">9,999,999</span><span class="change minus">-99%</span></td>
+          <td class="value"><span class="value">9,999,999</span><span class="change">&nbsp;</span></td>
+        </tr>
+        <tr>
+          <td class="label">Maximum Daily Users</td>
+          <td class="value"><span class="value">9,999,999</span><span class="change plus">+99%</span></td>
+          <td class="value"><span class="value">9,999,999</span><span class="change minus">-99%</span></td>
+          <td class="value"><span class="value">9,999,999</span><span class="change">&nbsp;</span></td>
+        </tr>
+      </tbody></table>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block csvtable %}
+  <div class="statbox">
+    <div class="tabular">
+      <table class="bar-table">
+        <thead>
+          <tr>
+            <th>Date</th><th>Amount</th><th>Count</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Monday, May 17, 2010</td>
+            <td>100</td>
+            <td>100</td>
+          </tr>
+          <tr>
+            <td>Sunday, May 16, 2010</td>
+            <td>50</td>
+            <td>100</td>
+          </tr>
+          <tr>
+            <td>Saturday, May 15, 2010</td>
+            <td>20</td>
+            <td>100</td>
+          </tr>
+          <tr>
+            <td>Friday, May 14, 2010</td>
+            <td>15</td>
+            <td>10</td>
+          </tr>
+          <tr>
+            <td>Thursday, May 13, 2010</td>
+            <td>5</td>
+            <td>100</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="listing-header">
+      <ul>
+        <li class="selected"><a>1</a></li>
+        <li class="selected"><a>2</a></li>
+        <li class="selected"><a>3</a></li>
+        <li class="selected"><a>4</a></li>
+        <li class="selected"><a>5</a></li>
+      </ul>
+    </div>
+  </div>
+{% endblock %}
+
+{% block chartconfig %}
+  <script>
+    AMO.barTableConfig = {
+        el: $("table.bar-table")[0],
+        columns: [{
+            valueColumn: 2,
+            barColor: '#26a2ce',
+            className: 'bar',
+            width: "25%"
+        },
+        {
+            valueColumn: 3,
+            barColor: '#26a2ce',
+            className: 'bar',
+            width: "25%"
+        }]
+    };
+  </script>
+{% endblock %}

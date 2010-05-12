@@ -13,6 +13,7 @@ import jingo
 
 from access import acl
 from addons.models import Addon
+from amo.helpers import locale_url
 
 from .db import DayAvg, Avg
 from .models import DownloadCount, UpdateCount, Contribution
@@ -178,6 +179,15 @@ def check_stats_permission(request, addon, for_contributions=False):
     raise PermissionDenied
 
 
+def stats_report(request, addon_id, report):
+    addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
+    stats_base_url = locale_url('/addon/%d/statistics' % (addon.id))
+    return jingo.render(request, 'stats/%s.html' % report,
+                        {'addon': addon,
+                        'report': report,
+                        'stats_base_url': stats_base_url})
+
+
 def get_daterange_or_404(start, end):
     """Parse and validate a pair of YYYMMDD date strings."""
     try:
@@ -234,7 +244,7 @@ def render_csv(request, addon, stats, fields):
 
 def render_json(request, addon, stats):
     """Render a stats series in JSON."""
-    response = http.HttpResponse(mimetype='text/plain')
+    response = http.HttpResponse(mimetype='text/json')
 
     # XXX: Subclass DjangoJSONEncoder to handle generators.
     if isinstance(stats, GeneratorType):

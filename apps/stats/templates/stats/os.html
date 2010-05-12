@@ -1,0 +1,57 @@
+{% extends "stats/stats.html" %}
+
+{% block stats %}
+<div class="statbox">
+  <div class="tabular">
+    <table class="bar-table">
+    </table>
+  </div>
+</div>
+{% endblock %}
+
+{% block chartconfig %}
+  <script>
+    AMO.seriesList = {
+      metric: "os",
+      fields: [
+        "oses|WINNT",
+        "oses|Darwin",
+        "oses|Linux"
+      ]
+    };
+  
+    AMO.csvTableConfig = {
+        el: $("table.bar-table")[0],
+        report: "{{ report }}",
+        columns: [{
+            label: "{{_('Date')}}",
+            field: 'date',
+            format: function (value) {
+                return Highcharts.dateFormat('%a, %b %e, %Y', new Date(value));
+            }
+        },
+        {
+            label: "{{_('Windows')}}",
+            field: 'oses|WINNT',
+            format: function (value) {
+                return Highcharts.numberFormat(value, 0);
+            }
+        },
+        {
+            label: "{{_('Mac')}}",
+            field: 'oses|Darwin',
+            format: function (value) {
+                return Highcharts.numberFormat(value, 0);
+            }
+        },
+        {
+            label: "{{_('Linux')}}",
+            field: 'oses|Linux',
+            format: function (value) {
+                return Highcharts.numberFormat(value, 0);
+            }
+        }
+        ]
+    };
+  </script>
+{% endblock %}

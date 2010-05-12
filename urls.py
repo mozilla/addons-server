@@ -38,6 +38,9 @@ urlpatterns = patterns('',
     # Search
     ('^search/', include('search.urls')),
 
+    # Stats
+    ('^stats/', include('stats.urls')),
+
     # Global stats dashboard.
     url('^statistics/', lambda r: redirect('/'), name='statistics.dashboard'),
 
