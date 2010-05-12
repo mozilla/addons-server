@@ -68,7 +68,7 @@ def test_parse_bad_type():
     c = client.Client()
     try:
         c.get("/en-US/firefox/api/1.2/search/firebug%20type:dict")
-    except KeyError:
+    except KeyError:  # pragma: no cover
         assert False, ("We should not throw a KeyError just because we had a "
                        "nonexistent addon type.")
 
@@ -86,7 +86,8 @@ class SphinxTestCase(test_utils.TransactionTestCase):
     def setUp(self):
         super(SphinxTestCase, self).setUp()
         if not SphinxTestCase.sphinx_is_running:
-            if not settings.SPHINX_SEARCHD or not settings.SPHINX_INDEXER:
+            if (not settings.SPHINX_SEARCHD or
+                not settings.SPHINX_INDEXER):  # pragma: no cover
                 raise SkipTest()
 
             os.environ['DJANGO_ENVIRONMENT'] = 'test'
@@ -124,7 +125,7 @@ cquery = lambda *args, **kwargs: CollectionsClient().query(*args, **kwargs)
 
 @mock.patch('search.client.sphinx.SphinxClient')
 def test_sphinx_timeout(sphinx_mock):
-    def sphinx_error(cls):
+    def sphinx_error(cls):  # pragma: no cover
         raise cls
 
     sphinx_mock._filters = []
