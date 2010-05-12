@@ -76,6 +76,7 @@ class LocaleAndAppURLMiddleware(object):
         request.path_info = '/' + prefixer.shortened_path
         tower.activate(prefixer.locale)
         request.APP = amo.APPS.get(prefixer.app)
+        request.LANG = prefixer.locale
 
         if 'locale-only' in request.COOKIES:
             request.XENOPHOBIA = (request.COOKIES['locale-only'] == '1')

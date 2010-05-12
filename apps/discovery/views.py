@@ -11,15 +11,51 @@ import jingo
 
 import amo.utils
 import api.utils
+import api.views
 from addons.models import Addon
 from bandwagon.models import Collection, SyncedCollection, CollectionToken
+from stats.models import GlobalStat
+
 from .models import DiscoveryModule
 from .forms import DiscoveryModuleForm
 from .modules import registry as module_registry
 
 
-def pane(request, version, os):
-    return jingo.render(request, 'discovery/pane.html')
+def pane(request, platform, version):
+    def from_api(list_type):
+        r = api_view(request, platform, version, list_type)
+        return json.loads(r.content)
+    addon_downloads = (GlobalStat.objects.filter(name='addon_total_downloads')
+                       .latest().count)
+    return jingo.render(request, 'discovery/pane.html',
+                        {'modules': get_modules(request, platform, version),
+                         'addon_downloads': addon_downloads,
+                         'top_addons': from_api('by_adu'),
+                         'featured': from_api('featured')})
+
+
+def get_modules(request, platform, version):
+    lang = request.LANG
+    qs = DiscoveryModule.objects.filter(app=request.APP.id)
+    # Remove any modules without a registered backend or an ordering.
+    modules = [m for m in qs if m.module in module_registry
+                                and m.ordering is not None]
+    # Remove modules that specify a locales string we're not part of.
+    modules = [m for m in modules if not m.locales
+                                     or lang in m.locales.split()]
+    modules = sorted(modules, key=lambda x: x.ordering)
+    return [module_registry[m.module](request, platform, version)
+            for m in modules]
+
+
+def api_view(request, platform, version, list_type,
+             api_version=1.5, format='json', mimetype='application/json'):
+    """Wrapper for calling an API view."""
+    view = api.views.ListView()
+    view.request, view.version = request, api_version
+    view.format, view.mimetype = format, mimetype
+    return view.process_request(list_type, platform=platform,
+                                version=version)
 
 
 @admin.site.admin_view
