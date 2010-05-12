@@ -2,15 +2,6 @@
 z.searchBox = function() {
     if (!$('#search-form').length) return; // no search box
 
-    /* Prevent the placeholder from being submitted as a query. */
-    var q = $('#query');
-    $('#search-form').submit(function() {
-        /* We clicked search, without changing the value. */
-        if (q.val() == q.attr('placeholder')) {
-            q.val('');
-        }
-    });
-
     /* Get the appversions from JSON. */
     var appversions = JSON.parse($('#search-data').attr('data-appversions'));
     for (var k in appversions) {

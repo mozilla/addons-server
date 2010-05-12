@@ -61,6 +61,14 @@ jQuery.fn.placeholder = function() {
         if ($this.val() == '') {
             $this.val(text).addClass('placeholder');
         }
+    }).each(function(){
+        /* Remove the placeholder text before submitting the form. */
+        var self = $(this);
+        self.closest('form').submit(function() {
+            if (self.hasClass('placeholder')) {
+                self.val('');
+            }
+        });
     }).blur();
 };
 
