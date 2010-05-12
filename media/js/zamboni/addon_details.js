@@ -53,10 +53,9 @@ var addons_display = {
 
 /* general initialization */
 $(document).ready(function() {
-    var coll_url = $('#coll_publish').attr('data-coll-url');
     addons_display.init({
-        jsonURL: coll_url+'/json',
-        collViewURL: coll_url+'/',
+        jsonURL: $('#coll_publish').attr('data-json-url'),
+        collViewURL: $('#coll_publish').attr('data-detail-url'),
         loggedIn: $(document.body).attr('data-anonymous')
     });
 

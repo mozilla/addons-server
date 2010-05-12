@@ -330,6 +330,13 @@ class TestDetailPage(test_utils.TestCase):
         doc = pq(r.content)
         eq_(0, len(doc('.avatar')))
 
+    def test_collection_detal_url(self):
+        self.client.login(username='regular@mozilla.com', password='password')
+        r = self.client.get(reverse('addons.detail', args=[3615]))
+        url = pq(r.content)('[data-detail-url]').attr('data-detail-url')
+        eq_(url, '/en-US/firefox/collection/')
+    test_collection_detal_url.xxx = 3
+
 
 class TestTagsBox(test_utils.TestCase):
     fixtures = ['base/addontag']

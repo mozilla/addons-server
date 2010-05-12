@@ -419,7 +419,8 @@
     {# TODO reverse URLs #}
     <form action="{{ remora_url('/collections/addtocollection') }}"
           method="post" id="coll_publish"
-          data-coll-url="{{ remora_url('/collections') }}">
+          data-detail-url="{{ remora_url('/collection') }}/"
+          data-json-url="{{ remora_url('/collections/json') }}">
       <div>
         <a href="{{ remora_url('/collections/') }}" class="what">
           {{ _("What's this?", 'addons_display_a_license_what') }}</a>
