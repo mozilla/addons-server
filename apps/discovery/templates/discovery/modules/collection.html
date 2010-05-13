@@ -11,5 +11,7 @@
     {% endfor %}
   </ul>
   {# L10n: {0} is the name of a collection. #}
-  <p>{{ _('Find more add-ons in the {0}')|f(collection.name) }}</p>
+  <p>{% trans name=collection.name, url=collection.get_url_path() %}
+  Find more add-ons in the <a href="{{ url }}">{{ name }}</a> collection.
+  {% endtrans %}</p>
 </section>

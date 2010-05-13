@@ -58,7 +58,7 @@
       </section>
     {% else %}
       <section id="mission">
-        {% trans url="TODO" -%}
+        {% trans url="http://www.mozilla.org/" -%}
           Thanks for using Firefox and supporting
           <a href="{{ url }}">Mozilla's mission</a>!
         {%- endtrans %}
@@ -103,11 +103,14 @@
           {{ _('See all themes & Personas') }}</a></li>
       </ul>
       <p>
-        <img style="position: absolute; top: 500px; right: 400px" src="{{ MEDIA_URL }}img/zamboni/carrotdance.gif">
         <FONT face="comic sans" color="tomato">
-          <FONT size="5">DISCLAIMER:</FONT> This is not done.
+          <FONT size="5">DISCLAIMER:</FONT>
+          This page isn't done;
         </FONT>
-        <FONT size=2 color="darkorchid">More improvements to this page coming soon!</FONT>
+        <FONT size=2 color="chartreuse">
+          <a href="http://blog.fligtar.com/2010/03/24/a-new-front-door/">lots more</a>
+          improvements coming soon!
+        </FONT>
       </p>
     </section>
   </body>
