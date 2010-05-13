@@ -100,7 +100,7 @@ class ShareCountTotal(caching.base.CachingMixin, models.Model):
     count = models.PositiveIntegerField()
     service = models.CharField(max_length=255, null=True)
 
-    objects = models.Manager()
+    objects = caching.base.CachingManager()
     stats = caching.base.CachingManager()
 
     class Meta:
@@ -248,7 +248,7 @@ class GlobalStat(caching.base.CachingMixin, models.Model):
     count = models.IntegerField()
     date = models.DateField()
 
-    objects = models.Manager()
+    objects = caching.base.CachingManager()
     stats = caching.base.CachingManager()
 
     class Meta:
