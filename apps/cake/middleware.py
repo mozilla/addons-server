@@ -31,7 +31,6 @@ class CakeCookieMiddleware(object):
                 session = Session.objects.get(pk=id)
                 user = auth.authenticate(session=session)
                 if user is not None:
-                    auth.login(request, user)
                     SESSION_KEY = '_auth_user_id'
                     BACKEND_SESSION_KEY = '_auth_user_backend'
                     if SESSION_KEY in request.session:
