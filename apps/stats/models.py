@@ -30,7 +30,8 @@ class CollectionCount(caching.base.CachingMixin, models.Model):
     count = models.PositiveIntegerField()
     date = models.DateField()
 
-    objects = StatsManager('date')
+    objects = models.Manager()
+    stats = StatsManager('date')
 
     class Meta:
         db_table = 'stats_collections_counts'
@@ -55,7 +56,8 @@ class DownloadCount(caching.base.CachingMixin, models.Model):
     # Leave this out of queries if you can.
     sources = StatsDictField(db_column='src', null=True)
 
-    objects = StatsManager('date')
+    objects = models.Manager()
+    stats = StatsManager('date')
 
     class Meta:
         db_table = 'download_counts'
@@ -73,7 +75,8 @@ class UpdateCount(caching.base.CachingMixin, models.Model):
     oses = StatsDictField(db_column='os', null=True)
     locales = StatsDictField(db_column='locale', null=True)
 
-    objects = StatsManager('date')
+    objects = models.Manager()
+    stats = StatsManager('date')
 
     class Meta:
         db_table = 'update_counts'
@@ -85,7 +88,8 @@ class ShareCount(caching.base.CachingMixin, models.Model):
     service = models.CharField(max_length=255, null=True)
     date = models.DateField()
 
-    objects = StatsManager('date')
+    objects = models.Manager()
+    stats = StatsManager('date')
 
     class Meta:
         db_table = 'stats_share_counts'
@@ -96,7 +100,8 @@ class ShareCountTotal(caching.base.CachingMixin, models.Model):
     count = models.PositiveIntegerField()
     service = models.CharField(max_length=255, null=True)
 
-    objects = caching.base.CachingManager()
+    objects = models.Manager()
+    stats = caching.base.CachingManager()
 
     class Meta:
         db_table = 'stats_share_counts_totals'
@@ -127,7 +132,8 @@ class Contribution(caching.base.CachingMixin, models.Model):
     transaction_id = models.CharField(max_length=255, null=True)
     post_data = StatsDictField(null=True)
 
-    objects = StatsManager('created')
+    objects = models.Manager()
+    stats = StatsManager('created')
 
     class Meta:
         db_table = 'stats_contributions'
@@ -242,7 +248,8 @@ class GlobalStat(caching.base.CachingMixin, models.Model):
     count = models.IntegerField()
     date = models.DateField()
 
-    objects = caching.base.CachingManager()
+    objects = models.Manager()
+    stats = caching.base.CachingManager()
 
     class Meta:
         db_table = 'global_stats'

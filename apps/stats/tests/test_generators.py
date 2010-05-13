@@ -22,7 +22,7 @@ class TestUnknownGen(test.TestCase):
         to this existing dictionary key (which would result in a
         TypeError).
         """
-        qs = UpdateCount.objects.filter(pk=3)
+        qs = UpdateCount.stats.filter(pk=3)
         fields = [('date', 'start'), ('count', DayAvg('count')),
                   ('applications', DayAvg('applications'))]
         stats = qs.daily_summary(**dict(fields))

@@ -82,17 +82,17 @@ def attach_stats(request, addons, date_):
     date_1w, date_2w = date_ - td(days=7), date_ - td(days=14)
 
     # Gather download stats.
-    q = (DownloadCount.objects.filter(addon__in=ids).values('addon')
+    q = (DownloadCount.stats.filter(addon__in=ids).values('addon')
          .annotate(Sum('count')))
     downloads = gather_stats(q, 'addon', 'count__sum', date_)
 
     # Gather active daily user stats.
-    q = (UpdateCount.objects.filter(addon__in=ids).values('addon')
+    q = (UpdateCount.stats.filter(addon__in=ids).values('addon')
          .annotate(Avg('count')))
     adus = gather_stats(q, 'addon', 'count__avg', date_)
 
     # Download data for sparklines.
-    q = (DownloadCount.objects.filter(addon__in=ids, date__gte=date_2w)
+    q = (DownloadCount.stats.filter(addon__in=ids, date__gte=date_2w)
          .order_by('addon', 'date').values_list('addon', 'count'))
     sparks = collections.defaultdict(list)
     for addon_id, count in q:
