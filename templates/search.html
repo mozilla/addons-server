@@ -31,9 +31,7 @@
       <fieldset class="important">
         <div class="container">
           {{ search_form.lver.label_tag()|safe }}
-          {% cache search_form.queryset %}
           {{ search_form.lver|safe }}
-          {% endcache %}
         </div>
       </fieldset>
       <fieldset class="subsidiary">

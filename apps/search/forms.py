@@ -4,7 +4,6 @@ import itertools
 from django import forms
 from django.forms.util import ErrorDict
 
-import caching.base as caching
 from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
@@ -123,7 +122,6 @@ def SearchForm(request):
 
         # Attach these to the form for usage in the template.
         top_level_cat = dict(top_level)
-        queryset = AppVersion.objects.filter(id__in=amo.APP_IDS)
 
         # TODO(jbalogh): when we start using this form for zamboni search, it
         # should check that the appid and lver match up using app_versions.
