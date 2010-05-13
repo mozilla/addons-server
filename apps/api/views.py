@@ -57,6 +57,10 @@ def render_xml(request, template, context={}, **kwargs):
 
     template = xml_env.get_template(template)
     rendered = template.render(**context)
+
+    if 'mimetype' not in kwargs:
+        kwargs['mimetype'] = 'text/xml'
+
     return HttpResponse(rendered, **kwargs)
 
 

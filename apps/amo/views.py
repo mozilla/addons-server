@@ -12,6 +12,8 @@ from django.views.decorators.csrf import csrf_exempt
 import jingo
 import phpserialize as php
 
+from amo.urlresolvers import reverse
+from api.views import render_xml
 from stats.models import Contribution, ContributionError, SubscriptionEvent
 from . import log
 

@@ -6,6 +6,7 @@ from django.conf import settings
 from django.core.cache import cache, parse_backend_uri
 
 import commonware.log
+from lxml import etree
 from mock import patch, Mock
 from nose import SkipTest
 from nose.tools import eq_
@@ -238,3 +239,14 @@ def test_remote_addr():
     response = client.get('/en-US/firefox/', follow=True,
                           HTTP_X_FORWARDED_FOR='oh yeah')
     eq_(commonware.log.get_remote_addr(), 'oh yeah')
+
+def test_opensearch():
+    client = test.Client()
+    page = client.get('/en-US/firefox/opensearch.xml')
+
+    wanted = ('Content-Type', 'text/xml')
+    eq_(page._headers['content-type'], wanted)
+
+    doc = etree.fromstring(page.content)
+    e = doc.find("{http://a9.com/-/spec/opensearch/1.1/}ShortName")
+    eq_(e.text, "Firefox Add-ons")

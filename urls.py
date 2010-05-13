@@ -33,7 +33,7 @@ urlpatterns = patterns('',
     ('', include('pages.urls')),
 
     # Services
-    ('^services/', include('amo.urls')),
+    ('', include('amo.urls')),
 
     # Search
     ('^search/', include('search.urls')),
