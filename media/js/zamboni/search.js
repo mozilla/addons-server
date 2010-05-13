@@ -2,17 +2,27 @@
 z.searchBox = function() {
     if (!$('#search-form').length) return; // no search box
 
-    var q = $('#query');
+    var disable_inputs = function() {
+        $('#advanced-search select:not(#id_pp)').attr('disabled', 'disabled');
+    }
 
     /* Sync the placeholder text with the category. */
     $('#cat').change(function(){
-        var cat = $(this).val(),
-            placeholder = gettext('search for add-ons');
+        var cat = $(this).val();
+        var placeholder;
+
         if (cat == 'collections') {
             placeholder = gettext('search for collections');
+            disable_inputs();
         } else if (cat == 'personas') {
             placeholder = gettext('search for personas');
+            disable_inputs();
+        } else {
+            placeholder = gettext('search for add-ons');
+            $('#advanced-search select').attr('disabled', '');
         }
+
+        var q = $('#query');
 
         // Update the placeholder and trigger a change.
         q.attr('placeholder', placeholder)

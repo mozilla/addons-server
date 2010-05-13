@@ -969,6 +969,10 @@ textarea:focus {
     color: #444;
 }
 
+select:disabled {
+    color: #999;
+}
+
 .user-input input[type="text"],
 .user-input input[type="password"] {
     width: 310px;
