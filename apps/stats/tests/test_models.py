@@ -13,14 +13,14 @@ class TestDownloadCountModel(test.TestCase):
     fixtures = ['stats/test_models.json']
 
     def test_sources(self):
-        dc = DownloadCount.objects.get(id=1)
+        dc = DownloadCount.stats.get(id=1)
 
         assert isinstance(dc.sources, StatsDict), 'sources is not a StatsDict'
         assert len(dc.sources) > 0, 'sources is empty'
 
     def test_summary(self):
         # somewhat contrived, but a good test: summarize the entire dataset
-        summary = DownloadCount.objects.all().summary(
+        summary = DownloadCount.stats.all().summary(
                 count_sum='count', sources_sum='sources')
 
         eq_(len(summary), 5, 'unexpected number of keys in summary')
@@ -33,7 +33,7 @@ class TestDownloadCountModel(test.TestCase):
                 'zero sources in summary'
 
     def test_remap_special_fields(self):
-        qs = DownloadCount.objects.filter(pk=1)
+        qs = DownloadCount.stats.filter(pk=1)
         days = list(qs.daily_summary(date='start', rows='row_count',
                                      start='count'))
 
@@ -46,7 +46,7 @@ class TestDownloadCountModel(test.TestCase):
         eq_(days[0]['start'], 10, 'unexpected start value')
 
     def test_weekly_summary(self):
-        qs = DownloadCount.objects.filter(addon=4,
+        qs = DownloadCount.stats.filter(addon=4,
                 date__range=(date(2009, 6, 1), date(2009, 7, 3)))
         weeks = list(qs.weekly_summary('count', 'sources'))
 
@@ -61,7 +61,7 @@ class TestDownloadCountModel(test.TestCase):
             'unexpected sources total in week 5')
 
     def test_monthly_summary(self):
-        qs = DownloadCount.objects.filter(addon=4,
+        qs = DownloadCount.stats.filter(addon=4,
                 date__range=(date(2009, 6, 1), date(2009, 9, 30)))
         months = list(qs.monthly_summary('count', 'sources'))
 
@@ -76,7 +76,7 @@ class TestDownloadCountModel(test.TestCase):
                 'unexpected sources total in month 4')
 
     def test_daily_fill_holes(self):
-        qs = DownloadCount.objects.filter(addon=4,
+        qs = DownloadCount.stats.filter(addon=4,
                 date__range=(date(2009, 6, 1), date(2009, 6, 7)))
         days = list(qs.daily_summary('count', 'sources', fill_holes=True))
 
@@ -94,7 +94,7 @@ class TestUpdateCountModel(test.TestCase):
     test_ver = '3.0.9'
 
     def test_serial_types(self):
-        uc = UpdateCount.objects.get(id=1)
+        uc = UpdateCount.stats.get(id=1)
 
         assert isinstance(uc.versions, StatsDict), 'versions not a StatsDict'
         assert isinstance(uc.statuses, StatsDict), 'statuses not a StatsDict'
@@ -105,7 +105,7 @@ class TestUpdateCountModel(test.TestCase):
         assert len(uc.statuses) > 0, 'statuses is empty'
 
     def test_applications(self):
-        uc = UpdateCount.objects.get(id=1)
+        uc = UpdateCount.stats.get(id=1)
 
         assert isinstance(uc.applications[self.test_app], dict), \
             'applications item is not a dict'
@@ -113,7 +113,7 @@ class TestUpdateCountModel(test.TestCase):
             'unexpected count for app version'
 
     def test_applications_summary(self):
-        qs = UpdateCount.objects.filter(addon=4,
+        qs = UpdateCount.stats.filter(addon=4,
                 date__range=(date(2009, 6, 1), date(2009, 6, 2)))
         summary = qs.summary(apps='applications')
 
@@ -127,7 +127,7 @@ class TestContributionModel(test.TestCase):
     fixtures = ['stats/test_models.json']
 
     def test_basic(self):
-        c = Contribution.objects.get(id=1)
+        c = Contribution.stats.get(id=1)
 
         eq_(c.amount, Decimal('1.99'), 'unexpected amount')
         assert isinstance(c.post_data, StatsDict), \
@@ -135,7 +135,7 @@ class TestContributionModel(test.TestCase):
         eq_(c.email, 'nobody@mozilla.com', 'unexpected payer_email')
 
     def test_daily_summary(self):
-        qs = Contribution.objects.filter(addon=4, transaction_id__isnull=False,
+        qs = Contribution.stats.filter(addon=4, transaction_id__isnull=False,
                 created__range=(date(2009, 6, 2), date(2009, 6, 3)))
         days = list(qs.daily_summary('amount'))
 
