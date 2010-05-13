@@ -33,7 +33,7 @@ def downloads_series(request, addon_id, group, start, end, format):
 
     # resultkey to fieldname map - stored as a list to maintain order for csv
     fields = [('date', 'start'), ('count', 'count')]
-    qs = DownloadCount.objects.filter(addon=addon_id,
+    qs = DownloadCount.stats.filter(addon=addon_id,
                                       date__range=(start_date, end_date))
     gen = qs.period_summary(group, **dict(fields))
 
@@ -52,7 +52,7 @@ def usage_series(request, addon_id, group, start, end, format):
 
     # resultkey to fieldname map - stored as a list to maintain order for csv
     fields = [('date', 'start'), ('count', DayAvg('count'))]
-    qs = UpdateCount.objects.filter(addon=addon_id,
+    qs = UpdateCount.stats.filter(addon=addon_id,
                                     date__range=(start_date, end_date))
     gen = qs.period_summary(group, **dict(fields))
 
@@ -118,7 +118,7 @@ def sources_series(request, addon_id, group, start, end, format):
 
     # resultkey to fieldname map - stored as a list to maintain order for csv
     fields = [('date', 'start'), ('count', 'count'), ('sources', 'sources')]
-    qs = DownloadCount.objects.filter(addon=addon_id,
+    qs = DownloadCount.stats.filter(addon=addon_id,
                                       date__range=(start_date, end_date))
     gen = qs.period_summary(group, **dict(fields))
 
@@ -140,7 +140,7 @@ def usage_breakdown_series(request, addon_id, group,
     # Use DayAvg so days with 0 rows affect the calculation.
     fields = [('date', 'start'), ('count', DayAvg('count')),
               (field, DayAvg(field))]
-    qs = UpdateCount.objects.filter(addon=addon_id,
+    qs = UpdateCount.stats.filter(addon=addon_id,
                                     date__range=(start_date, end_date))
     gen = qs.period_summary(group, **dict(fields))
 
@@ -206,7 +206,7 @@ def addon_contributions_queryset(addon, start_date, end_date):
         end_date = datetime(end_date.year, end_date.month,
                             end_date.day, 23, 59, 59)
 
-    return Contribution.objects.filter(addon=addon,
+    return Contribution.stats.filter(addon=addon,
                                      transaction_id__isnull=False,
                                      amount__gt=0,
                                      created__range=(start_date, end_date))

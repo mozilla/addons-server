@@ -92,40 +92,40 @@ class TestDbAggregates(test.TestCase):
     fixtures = ['stats/test_models.json']
 
     def test_count(self):
-        qs = DownloadCount.objects.filter(date__range=(
+        qs = DownloadCount.stats.filter(date__range=(
             date(2009, 6, 1), date(2009, 6, 30)))
         s = qs.summary(my_count=Count('count'))
         eq_(s['my_count'], 5, 'unexpected aggregate count')
         eq_(s['my_count'], s['row_count'], 'count and row_count differ')
 
     def test_sum(self):
-        qs = DownloadCount.objects.filter(date__range=(
+        qs = DownloadCount.stats.filter(date__range=(
             date(2009, 6, 1), date(2009, 6, 30)))
         s = qs.summary(count_sum=Sum('count'), source_sum=Sum('sources'))
         eq_(s['count_sum'], 50, 'unexpected aggregate count sum')
         eq_(s['source_sum']['search'], 15, 'unexpected aggregate sources sum')
 
     def test_first(self):
-        qs = DownloadCount.objects.filter(date__range=(
+        qs = DownloadCount.stats.filter(date__range=(
             date(2009, 6, 1), date(2009, 6, 30)))
         s = qs.summary(first_date=First('date'))
         eq_(s['first_date'], date(2009, 6, 28),
             'unexpected aggregate first date')
 
     def test_last(self):
-        qs = DownloadCount.objects.filter(date__range=(
+        qs = DownloadCount.stats.filter(date__range=(
             date(2009, 6, 1), date(2009, 6, 30)))
         s = qs.summary(last_date=Last('date'))
         eq_(s['last_date'], date(2009, 6, 1), 'unexpected aggregate last date')
 
     def test_avg(self):
-        qs = DownloadCount.objects.filter(date__range=(
+        qs = DownloadCount.stats.filter(date__range=(
             date(2009, 6, 1), date(2009, 6, 30)))
         s = qs.summary(my_avg=Avg('count'))
         eq_(s['my_avg'], Decimal('10.0'), 'unexpected aggregate avg value')
 
     def test_dayavg(self):
-        qs = DownloadCount.objects.filter(date__range=(
+        qs = DownloadCount.stats.filter(date__range=(
             date(2009, 6, 1), date(2009, 6, 30)))
         s = qs.summary(my_avg=DayAvg('count'))
         eq_(s['my_avg'].quantize(Decimal('0.1')), Decimal('1.8'), # 50 / 28days
@@ -136,7 +136,7 @@ class TestDbSummaries(test.TestCase):
     fixtures = ['stats/test_models.json']
 
     def test_period_summary(self):
-        qs = DownloadCount.objects.filter(addon=4,
+        qs = DownloadCount.stats.filter(addon=4,
                 date__range=(date(2009, 6, 1), date(2009, 7, 3)))
 
         s = list(qs.period_summary('day', fill_holes=True))
