@@ -17,6 +17,7 @@ from . import log
 
 paypal_log = logging.getLogger('z.paypal')
 
+
 @never_cache
 def monitor(request):
 
@@ -133,8 +134,7 @@ def _paypal(request):
 
     # Fetch and update the contribution - item_number is the uuid we created.
     try:
-        c = Contribution.objects.no_cache().get(
-                                            uuid=request.POST['item_number'])
+        c = Contribution.objects.get(uuid=request.POST['item_number'])
     except Contribution.DoesNotExist:
         key = "%s%s:%s" % (settings.CACHE_PREFIX, 'contrib',
                            request.POST['item_number'])
