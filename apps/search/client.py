@@ -493,7 +493,11 @@ class Client(object):
                 self.meta['tags'] = manual_order(Tag.objects.all(), tag_ids)
 
         result = results[self.queries['primary']]
-        self.total_found = result['total_found'] if result else 0
+        self.total_found = result.get('total_found', 0) if result else 0
+
+        if 'error' in result:
+            log.error(result['error'])
+            return []  # Fail silently.
 
         if result and result['total']:
             # Remove transformations for now so we can pull them in later.
