@@ -76,9 +76,7 @@ def sidebar(app):
         # amo.ADDON_DICT: urlresolvers.reverse('browse.language_tools'),
         amo.ADDON_SEARCH: base + 'browse/type:4',
         amo.ADDON_PLUGIN: base + 'browse/type:7',
-        amo.ADDON_THEME: base + 'browse/type:2/cat:all?sort=popular',
-        # TODO(davedash): Remove comment after remora goes away:
-        # amo.ADDON_THEME: urlresolvers.reverse('browse.themes'),
+        amo.ADDON_THEME: urlresolvers.reverse('browse.themes'),
     }
     titles = dict(amo.ADDON_TYPES,
                   **{amo.ADDON_DICT: _('Dictionaries & Language Packs')})

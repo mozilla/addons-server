@@ -274,7 +274,7 @@
           {# TODO reverse URL #}
           {% for category in categories %}
           <li>
-            <a href="{{ category.get_remora_url_path() }}" class="more-info">
+            <a href="{{ category.get_url_path() }}" class="more-info">
               {{ _('See All {0} Add-ons')|f(category) }}
             </a>
           </li>

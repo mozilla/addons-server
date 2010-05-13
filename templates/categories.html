@@ -14,7 +14,7 @@
       <ul>
         {% for category in categories %}
         <li id="c-{{ category.id }}">
-          <a href="{{ category.get_remora_url_path() }}">{{ category.name }}</a>
+          <a href="{{ category.get_url_path() }}">{{ category.name }}</a>
           <span class="items">{{ category.count }}</span>
         </li>
         {% endfor %}
