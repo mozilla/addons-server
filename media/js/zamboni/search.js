@@ -2,7 +2,7 @@
 z.searchBox = function() {
     if (!$('#search-form').length) return; // no search box
 
-     var q = $('#query');
+    var q = $('#query');
 
     /* Sync the placeholder text with the category. */
     $('#cat').change(function(){
