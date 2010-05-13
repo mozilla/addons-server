@@ -33,6 +33,7 @@
 </div>
 
 <div class="primary" role="main">
+  {{ breadcrumbs([(None, _('{0} Themes')|f(selected.name))]) }}
   <hgroup>
     <h2>{{ _('{0} Themes')|f(selected.name) }}</h2>
     {# L10n: {0} is the add-on count. #}

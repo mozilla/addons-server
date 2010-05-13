@@ -5,8 +5,7 @@
 {% block bodyclass %}inverse{% endblock %}
 
 {% block content %}
-{{ breadcrumbs() }}
-{# TODO: Replace above line with this --> once we serve the extension home. { breadcrumbs([(addon.type.get_url_path(), amo.ADDON_TYPES[addon.type_id])]) } #}
+{{ breadcrumbs([(addon.type.get_url_path(), amo.ADDON_TYPES[addon.type_id]), (None, addon.name)]) }}
 
 {% set version = addon.current_version %}
 {% set previews = addon.previews.all() %}

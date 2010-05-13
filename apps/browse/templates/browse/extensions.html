@@ -3,11 +3,11 @@
 {% block content %}
 <header>
   {% if category %}
-    {{ breadcrumbs([(url('browse.extensions'), _('Extensions'))]) }}
+    {{ breadcrumbs([(url('browse.extensions'), _('Extensions')), (None, category.name)]) }}
     <hgroup>
     <h2>{{ category.name }}</h2>
   {% else %}
-    {{ breadcrumbs() }}
+    {{ breadcrumbs([(None, _('Extensions'))]) }}
     <hgroup>
     <h2>{{ _('Extensions') }}</h2>
   {% endif %}

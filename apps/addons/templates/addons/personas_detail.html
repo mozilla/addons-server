@@ -5,8 +5,7 @@
 {% block bodyclass %}inverse{% endblock %}
 
 {% block content %}
-{# TODO link to personas browse page #}
-{{ breadcrumbs([('/.../', _('Personas'))]) }}
+{{ breadcrumbs([(addon.type.get_url_path(), amo.ADDON_TYPES[addon.type_id]), (None, addon.name)]) }}
 
 <hgroup>
   <h2 class="addon"{{ addon.name|locale_html }}>
