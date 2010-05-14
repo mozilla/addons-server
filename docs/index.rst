@@ -35,7 +35,6 @@ Contents
    :glob:
 
    topics/*
-   ref/*
 
 
 Older Tips

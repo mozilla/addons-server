@@ -1,4 +1,4 @@
-.. _search :
+.. _sphinx_search:
 
 ==================================================
 Search (powered by Sphinx, but not the documenter)
