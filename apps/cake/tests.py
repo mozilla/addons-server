@@ -162,3 +162,7 @@ class TestHelpers(TestCase):
         # UTF-8 strings
         url = remora_url(ctx, u'/tags/Hallo und tschüß')
         eq_(url, '/en-US/firefox/tags/Hallo%20und%20tsch%C3%BC%C3%9F')
+
+        # Trailing slashes are kept if present.
+        eq_(remora_url(ctx, '/foo'), '/en-US/firefox/foo')
+        eq_(remora_url(ctx, '/foo/'), '/en-US/firefox/foo/')
