@@ -74,9 +74,7 @@ $(document).ready(function(){
     });
 
     $("#newTag").live("keypress",function(e){
-        //alert(e.keyCode);
         if($.trim($(this).val()) != '' &&  e.keyCode == 13) {
-            console.log("add tag")
             $("#addtagbutton").click();
             e.preventDefault();
             e.stopPropagation();
