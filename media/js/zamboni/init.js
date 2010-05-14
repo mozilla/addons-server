@@ -47,6 +47,10 @@ var format = function(s, args) {
 
 /* Fake the placeholder attribute since Firefox doesn't support it. */
 jQuery.fn.placeholder = function() {
+    /* Bail early if we have built-in placeholder support. */
+    if ('placeholder' in document.createElement('input')) {
+        return this;
+    }
     return this.focus(function() {
         var $this = $(this),
             text = $this.attr('placeholder');
