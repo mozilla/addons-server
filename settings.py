@@ -135,7 +135,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'amo.context_processors.app',
     'amo.context_processors.i18n',
     'amo.context_processors.global_settings',
-    'minify.helpers.build_ids',
+    'jingo_minify.helpers.build_ids',
 )
 
 TEMPLATE_DIRS = (
@@ -205,7 +205,7 @@ INSTALLED_APPS = (
     'discovery',
     'editors',
     'files',
-    'minify',
+    'jingo_minify',
     'nick',
     'pages',
     'reviews',
