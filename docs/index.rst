@@ -6,20 +6,16 @@ Welcome to zamboni's documentation!
 Tip of the Day
 --------------
 
-gettext in Javascript
-~~~~~~~~~~~~~~~~~~~~~
+runserver_plus and rundevserver
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Part of ``django_extensions`` is a new ``manage.py`` command:
+``runserver_plus``.
 
-We have gettext in javascript!  Just mark your strings with ``gettext()`` or
-``ngettext()``.  There isn't an ``_`` alias right now, since underscore.js has
-that.  If we end up with a lot of js translations, we can fix that.  Check it
-out::
+This hooks in the ``Werkzeug debugger`` when there is a traceback.  This
+debugger is interactive so it makes coding fun.
 
-    cd locale
-    ./extract-po.py -d javascript
-    pybabel init -l en_US -d . -i javascript.pot -D javascript
-    perl -pi -e 's/fuzzy//' en_US/LC_MESSAGES/javascript.po
-    pybabel compile -d . -D javascript
-    open http://0:8000/en-US/jsi18n/
+Similar to ``runserver_plus`` is ``rundevserver`` which does all this, and
+outputs all database queries run.
 
 
 Installation
@@ -39,6 +35,21 @@ Contents
 
 Older Tips
 ----------
+
+gettext in Javascript
+~~~~~~~~~~~~~~~~~~~~~
+
+We have gettext in javascript!  Just mark your strings with ``gettext()`` or
+``ngettext()``.  There isn't an ``_`` alias right now, since underscore.js has
+that.  If we end up with a lot of js translations, we can fix that.  Check it
+out::
+
+    cd locale
+    ./extract-po.py -d javascript
+    pybabel init -l en_US -d . -i javascript.pot -D javascript
+    perl -pi -e 's/fuzzy//' en_US/LC_MESSAGES/javascript.po
+    pybabel compile -d . -D javascript
+    open http://0:8000/en-US/jsi18n/
 
 Git Bisect
 ~~~~~~~~~~
