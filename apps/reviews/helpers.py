@@ -11,10 +11,12 @@ def stars(num):
     if num is None:
         return _('Not yet rated')
     else:
-        stars = int(math.ceil(num))
-        msg = _('Rated %s out of 5 stars') % stars
-        s = (u'<span class="stars stars-{num}" title="{msg}">{msg}</span>'
-             .format(num=stars, msg=msg))
+        num = int(math.ceil(num))
+        rating = '<span itemprop="rating">%s</span>' % num
+        title = _('Rated %s out of 5 stars') % num
+        msg = _('Rated %s out of 5 stars') % rating
+        s = (u'<span class="stars stars-{num}" title="{title}">{msg}</span>'
+             .format(num=num, title=title, msg=msg))
         return jinja2.Markup(s)
 
 
