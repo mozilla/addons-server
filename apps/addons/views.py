@@ -27,7 +27,7 @@ def author_addon_clicked(f):
             return http.HttpResponsePermanentRedirect(reverse(
                 'addons.detail', args=[target_id]))
         except ValueError:
-            raise http.Http404
+            return http.HttpResponseBadRequest('Invalid add-on ID.')
     return decorated
 
 
