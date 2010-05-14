@@ -26,6 +26,21 @@ Grab zamboni from github with ::
     git submodule update --init
 
 
+Installing Python for OSX users
+-------------------------------
+The best solution for OSX is Homebrew_.  Once installed you can install
+software that runs as you, and not have to run any ``sudo`` commands.
+
+The following packages will get you set for python:
+
+::
+
+    brew install python
+    brew install libxml2
+
+.. _Homebrew: http://github.com/mxcl/homebrew
+
+
 virtualenv
 ----------
 
