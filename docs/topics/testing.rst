@@ -64,8 +64,8 @@ We support two types of automated tests right now and there are some details
 below but remember, if you're confused look at existing tests for examples.
 
 
-Unit Tests
-~~~~~~~~~~
+Unit/Functional Tests
+~~~~~~~~~~~~~~~~~~~~~
 Most tests are in this category.  Our test classes extend
 :class:`test_utils.TestCase` and follow the standard rules for unit tests.
 We're using JSON fixtures for the data.
@@ -78,6 +78,16 @@ These tests extend :class:`test_utils.SeleniumTestCase` which handles all the
 connection steps for you and puts the selenium object in ``self.selenium``.
 Full Selenium documentation is available:
 http://release.seleniumhq.org/selenium-core/1.0/reference.html
+
+
+Why Tests Fail
+--------------
+Tests usually fail for one of two reasons: The code has changed or the data has
+changed.  An third reason is **time**.  Some tests have time-dependent data
+usually in the fixtues.  For example, some featured items have expiration dates.
+
+We can usually save our future-selves time by setting these expirations far in
+the future.
 
 
 .. _`Django's Unit Testing`: http://docs.djangoproject.com/en/dev/topics/testing
