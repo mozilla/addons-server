@@ -19,9 +19,11 @@ def test_stars():
     s = render('{{ num|stars }}', {'num': None})
     eq_(s, 'Not yet rated')
 
-    s = render('{{ num|stars }}', {'num': 1})
+    doc = PyQuery(render('{{ num|stars }}', {'num': 1}))
     msg = 'Rated 1 out of 5 stars'
-    eq_(s, '<span class="stars stars-1" title="{0}">{0}</span>'.format(msg))
+    eq_(doc.attr('class'), 'stars stars-1')
+    eq_(doc.attr('title'), msg)
+    eq_(doc.text(), msg)
 
 
 def test_reviews_link():

@@ -15,7 +15,7 @@ def remora_url(url, lang=None, app=None, prefix=''):
     if app is None:
         app = getattr(prefixer, 'app', settings.DEFAULT_APP)
 
-    url_parts = [p for p in (
-        prefix.strip('/'), lang, app, url.lstrip('/')) if p]
+    url_parts = [p for p in (prefix.strip('/'), lang, app, url.lstrip('/'))
+                 if p]
 
     return url_fix('/'+'/'.join(url_parts))
