@@ -175,3 +175,8 @@ def handler404(request):
 
 def handler500(request):
     return jingo.render(request, 'amo/500.lhtml', status=500)
+
+
+def loaded(request):
+    return http.HttpResponse('%s' % request.META['wsgi.loaded'],
+                             content_type='text/plain')

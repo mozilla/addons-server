@@ -1,5 +1,6 @@
 import os
 import site
+from datetime import datetime
 
 # Add the zamboni dir to the python path so we can import manage which sets up
 # other paths and settings.
@@ -11,6 +12,8 @@ site.addsitedir(os.path.abspath(os.path.join(wsgidir, '../')))
 # zamboni until we're inside of a request, so the first time through will run
 # basic imports and validate our models (which cascades to import
 # <apps>.models).
+
+wsgi_loaded = datetime.now()
 
 
 class ZamboniApp:
@@ -49,6 +52,7 @@ class ZamboniApp:
     def zamboni_app(self, env, start_response):
         if 'HTTP_X_ZEUS_DL_PT' in env:
             env['SCRIPT_URL'] = env['SCRIPT_NAME'] = ''
+        env['wsgi.loaded'] = wsgi_loaded
         return self.wsgi_handler(env, start_response)
 
 
