@@ -200,7 +200,7 @@ var installButton = function() {
     } else if (eula || contrib) {
         versionsAndPlatforms({addPopup: false})
     } else if (persona) {
-        $button.removeClass('download').find('span').text(addto);
+        $button.removeClass('download').addClass('add').find('span').text(addto);
         if ($.hasPersonas()) {
             $button.personasButton();
         } else {
