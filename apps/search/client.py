@@ -160,7 +160,7 @@ def get_category_id(category, application):
 
 
 def sanitize_query(term):
-    term = term.strip('^$ ')
+    term = term.strip('^$ ').replace('^$', '')
     return term
 
 
@@ -493,7 +493,11 @@ class Client(object):
                 self.meta['tags'] = manual_order(Tag.objects.all(), tag_ids)
 
         result = results[self.queries['primary']]
-        self.total_found = result['total_found'] if result else 0
+        self.total_found = result.get('total_found', 0) if result else 0
+
+        if result.get('error'):
+            log.error(result['error'])
+            return []  # Fail silently.
 
         if result and result['total']:
             # Remove transformations for now so we can pull them in later.

@@ -247,10 +247,10 @@ class SearchTest(SphinxTestCase):
         eq_(query("MozEx",
                   status=[amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED])[0].id, 40)
 
-    def test_badchars(self):
+    def test_bad_chars(self):
         """ Sphinx doesn't like queries that are entirely '$', '^' or '^ $' """
         bad_guys = ('^', '$', '$ ^', '^ s $', '$s^', '  $ s  ^', ' ^  s  $',
-                    '^$', '^    $')
+                    '^$', '^    $', '||facebook.com^$third-party')
 
         for guy in bad_guys:
             try:
