@@ -19,12 +19,15 @@ from .models import Addon
 def author_addon_clicked(f):
     """Decorator redirecting clicks on "Other add-ons by author"."""
     def decorated(request, *args, **kwargs):
+        redirect_id = request.GET.get('addons-author-addons-select', None)
+        if not redirect_id:
+            return f(request, *args, **kwargs)
         try:
-            target_id = int(request.GET.get('addons-author-addons-select'))
+            target_id = int(redirect_id)
             return http.HttpResponsePermanentRedirect(reverse(
                 'addons.detail', args=[target_id]))
-        except TypeError:
-            return f(request, *args, **kwargs)
+        except ValueError:
+            raise http.Http404
     return decorated
 
 

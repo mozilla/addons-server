@@ -285,6 +285,23 @@ class TestDetailPage(test_utils.TestCase):
                  in doc('#addons-author-addons-select option')
                  if a.attrib['value'] == '8680']), 0)
 
+        # Test "other addons" redirect functionality with valid and
+        # invalid input.
+        forward_to = lambda input: self.client.get(reverse(
+            'addons.detail', args=[8680]), {
+                'addons-author-addons-select': input})
+        # Valid input.
+        response = forward_to('3615')
+        eq_(response.status_code, 301)
+        assert response['Location'].find('3615') > 0
+        # Textual input.
+        response = forward_to('abc')
+        eq_(response.status_code, 404)
+        # Unicode input.
+        response = forward_to(u'\u271D')
+        eq_(response.status_code, 404)
+
+
     def test_details_collections_dropdown(self):
 
         request = Mock()
