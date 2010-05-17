@@ -67,6 +67,13 @@ class CakeTestCase(TestCase):
         session.data = session.data.replace('"', 'breakme', 5)
         self.assertEqual(None, backend.authenticate(session=session))
 
+    def test_utf8_session_data(self):
+        """Bug 566377."""
+        backend = SessionBackend()
+        session = Session.objects.get(pk='47f051c99f083244bf653d5798111216')
+        user = backend.authenticate(session=session)
+        assert user != None, "We should get a user."
+
     def test_backend_get_user(self):
         s = SessionBackend()
         self.assertEqual(None, s.get_user(12))

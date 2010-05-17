@@ -40,6 +40,15 @@
           "expires": 1426308304,
           "data": "User|a:1:{s:2:\"id\";s:1:\"9\";}"
       }
+  },
+  {
+      "pk": 5,
+      "model": "cake.session",
+      "fields": {
+          "session_id": "47f051c99f083244bf653d5798111216",
+          "expires": 1426308304,
+          "data": "User|a:2:{s:2:\"id\";s:1:\"1\";s:1:\"a\";s:2:\"ä\";}"
+      }
   }
-  
+
 ]
