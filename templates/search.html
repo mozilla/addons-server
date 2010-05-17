@@ -16,7 +16,7 @@
             {% set class = '' %}
           {% endif %}
           <option class="{{ class }}" value="{{ value }}"
-                  {{ value|ifeq(search_form.cat.data, 'selected') }}>
+            {% if value in (search_form.cat.data, search_cat) %}selected{% endif %}>
             {{ title }}</option>
         {%- endfor %}
       </select>

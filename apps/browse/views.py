@@ -71,8 +71,11 @@ def language_tools(request):
                                  addon.locale_native, dicts, packs)
 
     locales = sorted(locales.items(), key=lambda x: x[1].display)
+
+    search_cat = '%s,0' % amo.ADDON_DICT
+
     return jingo.render(request, 'browse/language_tools.html',
-                        {'locales': locales})
+                        {'locales': locales, 'search_cat': search_cat})
 
 # Placeholder for the All category.
 _Category = collections.namedtuple('Category', 'name count slug')
@@ -139,12 +142,16 @@ def themes(request, category=None):
 
     themes = amo.utils.paginate(request, addons)
 
+    # Pre-selected category for search form
+    search_cat = '%s,0' % amo.ADDON_THEME
+
     return jingo.render(request, 'browse/themes.html',
                         {'categories': categories, 'total_count': total_count,
                          'themes': themes, 'selected': selected,
                          'sorting': filter.sorting,
                          'sort_opts': filter.opts,
-                         'unreviewed': unreviewed})
+                         'unreviewed': unreviewed,
+                         'search_cat': search_cat})
 
 
 def _listing(request, addon_type, default='downloads'):
@@ -178,11 +185,14 @@ def extensions(request, category=None):
 
     addons = amo.utils.paginate(request, addons)
 
+    search_cat = '%s,%s' % (TYPE, category.id if category else 0)
+
     return jingo.render(request, 'browse/extensions.html',
                         {'category': category, 'addons': addons,
                          'unreviewed': unreviewed,
                          'sorting': filter.sorting,
-                         'sort_opts': filter.opts})
+                         'sort_opts': filter.opts,
+                         'search_cat': search_cat})
 
 
 class CategoryLandingFilter(HomepageFilter):
@@ -216,8 +226,11 @@ def category_landing(request, category):
     filter = CategoryLandingFilter(request, base, category,
                                    key='browse', default='featured')
 
+    search_cat = '%s,%s' % (category.type_id, category.id)
+
     return jingo.render(request, 'browse/category_landing.html',
-                        {'category': category, 'filter': filter})
+                        {'category': category, 'filter': filter,
+                         'search_cat': search_cat})
 
 
 def creatured(request, category):
@@ -269,9 +282,13 @@ def personas(request, category=None):
         template = 'category_landing.html'
 
     addons = amo.utils.paginate(request, filter.qs, 30)
+
+    search_cat = '%s,%s' % (TYPE, category.id if category else 0)
+
     return jingo.render(request, 'browse/personas/' + template,
                         {'categories': categories, 'category': category,
-                         'filter': filter, 'addons': addons})
+                         'filter': filter, 'addons': addons,
+                         'search_cat': search_cat})
 
 
 def search_providers(request, category=None):
