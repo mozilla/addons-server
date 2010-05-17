@@ -447,10 +447,10 @@ class Client(object):
 
         try:
             results = sc.RunQueries()
-        except socket.timeout:  # pragma: no cover
+        except socket.timeout:
             log.error("Query has timed out.")
             raise SearchError("Query has timed out.")
-        except Exception, e:  # pragma: no cover
+        except Exception, e:
             log.error("Sphinx threw an unknown exception: %s" % e)
             raise SearchError("Sphinx threw an unknown exception.")
 
@@ -539,14 +539,14 @@ class PersonasClient(Client):
 
         try:
             result = sc.Query(term, 'personas')
-        except socket.timeout:  # pragma: no cover
+        except socket.timeout:
             log.error("Query has timed out.")
             raise SearchError("Query has timed out.")
-        except Exception, e:  # pragma: no cover
+        except Exception, e:
             log.error("Sphinx threw an unknown exception: %s" % e)
             raise SearchError("Sphinx threw an unknown exception.")
 
-        if sc.GetLastError():  # pragma: no cover
+        if sc.GetLastError():
             raise SearchError(sc.GetLastError())
 
         self.total_found = result['total_found'] if result else 0
@@ -592,14 +592,14 @@ class CollectionsClient(Client):
 
         try:
             result = sc.Query(term, 'collections')
-        except socket.timeout:  # pragma: no cover
+        except socket.timeout:
             log.error("Query has timed out.")
             raise SearchError("Query has timed out.")
-        except Exception, e:  # pragma: no cover
+        except Exception, e:
             log.error("Sphinx threw an unknown exception: %s" % e)
             raise SearchError("Sphinx threw an unknown exception.")
 
-        if sc.GetLastError():  # pragma: no cover
+        if sc.GetLastError():
             raise SearchError(sc.GetLastError())
 
         self.total_found = result['total_found'] if result else 0

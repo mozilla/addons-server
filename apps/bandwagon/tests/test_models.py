@@ -129,3 +129,7 @@ class TestRecommendations(test_utils.TestCase):
         eq_(recs.listed, False)
         expected = self.expected_recs()[:Collection.RECOMMENDATION_LIMIT]
         eq_(get_addons(recs), expected)
+
+        # Test that we're getting the same recommendations.
+        recs2 = c.get_recommendations()
+        eq_(recs, recs2)

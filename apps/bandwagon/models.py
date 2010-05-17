@@ -111,7 +111,7 @@ class Collection(amo.models.ModelBase):
 
     def get_recommendations(self):
         """Get a collection of recommended add-ons for this collection."""
-        if self.recommended_collection:  # pragma: no cover
+        if self.recommended_collection:
             return self.recommended_collection
         else:
             r = RecommendedCollection.objects.create(listed=False)

@@ -178,7 +178,7 @@ class APIView(object):
             return HttpResponse(self.render_json(context),
                                 mimetype=self.mimetype)
 
-    def render_json(self, context):  # pragma: no cover
+    def render_json(self, context):
         return json.dumps({'msg': _('Not implemented yet.')})
 
 

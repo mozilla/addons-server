@@ -23,7 +23,8 @@ from manage import settings
 from search import forms, views
 from search.utils import start_sphinx, stop_sphinx, reindex, convert_version
 from search.client import (Client as SearchClient, CollectionsClient,
-                           SearchError, get_category_id, extract_from_query)
+                           PersonasClient, SearchError, get_category_id,
+                           extract_from_query)
 from addons.models import Addon, Category
 from tags.models import Tag
 
@@ -121,7 +122,7 @@ class GetCategoryIdTest(TestCase):
 
 query = lambda *args, **kwargs: SearchClient().query(*args, **kwargs)
 cquery = lambda *args, **kwargs: CollectionsClient().query(*args, **kwargs)
-
+pquery = lambda *args, **kwargs: PersonasClient().query(*args, **kwargs)
 
 @mock.patch('search.client.sphinx.SphinxClient')
 def test_sphinx_timeout(sphinx_mock):
@@ -132,11 +133,23 @@ def test_sphinx_timeout(sphinx_mock):
     sphinx_mock._limit = 10
     sphinx_mock._offset = 0
     sphinx_mock.return_value = sphinx_mock
-    sphinx_mock.Query.side_effect = lambda *a: sphinx_error(socket.timeout)
+    sphinx_mock.RunQueries.side_effect = lambda *a: sphinx_error(socket.timeout)
     assert_raises(SearchError, query, 'xxx')
 
-    sphinx_mock.Query.side_effect = lambda *a: sphinx_error(Exception)
+    sphinx_mock.RunQueries.side_effect = lambda *a: sphinx_error(Exception)
     assert_raises(SearchError, query, 'xxx')
+
+    sphinx_mock.Query.side_effect = lambda *a: sphinx_error(socket.timeout)
+    assert_raises(SearchError, pquery, 'xxx')
+
+    sphinx_mock.Query.side_effect = lambda *a: sphinx_error(Exception)
+    assert_raises(SearchError, pquery, 'xxx')
+
+    sphinx_mock.Query.side_effect = lambda *a: sphinx_error(socket.timeout)
+    assert_raises(SearchError, cquery, 'xxx')
+
+    sphinx_mock.Query.side_effect = lambda *a: sphinx_error(Exception)
+    assert_raises(SearchError, cquery, 'xxx')
 
 
 class BadSortOptionTest(TestCase):
