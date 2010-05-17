@@ -38,7 +38,7 @@
     <h2>{{ _('{0} Themes')|f(selected.name) }}</h2>
     {# L10n: {0} is the add-on count. #}
     <h3>{{ ngettext("{0} add-on", "{0} add-ons",
-                    selected.count)|f(selected.count) }}</h3>
+                    themes.paginator.count)|f(themes.paginator.count) }}</h3>
   </hgroup>
 
   <div id="addon-listing" class="featured listing">

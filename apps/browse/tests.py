@@ -87,6 +87,9 @@ class TestThemes(test_utils.TestCase):
         for addon in Addon.objects.all():
             addon.type_id = amo.ADDON_THEME
             addon.save()
+        for category in Category.objects.all():
+            category.type_id = amo.ADDON_THEME
+            category.save()
 
         self.base_url = reverse('browse.themes')
         self.exp_url = urlparams(self.base_url, unreviewed=True)
@@ -128,6 +131,15 @@ class TestThemes(test_utils.TestCase):
     def test_rating_sort(self):
         ids = self._get_sort('rating')
         eq_(ids, [6113, 7172, 1843, 6704, 10869, 40, 5369, 3615, 55, 73])
+
+    def test_category_count(self):
+        cat = Category.objects.filter()[0]
+        response = self.client.get(reverse('browse.themes', args=[cat.slug]))
+        doc = pq(response.content)
+        actual_count = int(doc('hgroup h3').text().split()[0])
+        page = response.context['themes']
+        expected_count = page.paginator.count
+        eq_(actual_count, expected_count)
 
 
 class TestCategoryPages(test_utils.TestCase):
