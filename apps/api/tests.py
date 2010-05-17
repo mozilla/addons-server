@@ -180,6 +180,16 @@ class APITest(TestCase):
                 """hash="sha256:5b5aaf7b38e332cc95d92ba759c01"""
                 "c3076b53a840f6c16e01dc272eefcb29566")
 
+    def test_whitespace(self):
+        """Whitespace is apparently evil for learnmore and install."""
+        r = make_call('addon/3615')
+        doc = pq(r.content)
+        learnmore = doc('learnmore')[0].text
+        eq_(learnmore, learnmore.strip())
+
+        install = doc('install')[0].text
+        eq_(install, install.strip())
+
     def test_double_site_url(self):
         """
         For some reason I noticed hostnames getting doubled up.  This checks

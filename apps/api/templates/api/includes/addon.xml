@@ -63,15 +63,12 @@
   <thumbnail>{{ addon.thumbnail_url }}</thumbnail>
   {%- endif -%}
   <rating>{{ addon.bayesian_rating|wround(0, 'ceil') }}</rating>
-  <learnmore>
-    {{ addon.get_url_path()|absolutify|urlparams(src='api') }}</learnmore>
+  <learnmore>{{ addon.get_url_path()|absolutify|urlparams(src='api') }}</learnmore>
   {%- if addon.current_version -%}
   {%- for file in addon.current_version.all_files -%}
   <install hash="{{ file.hash }}"
     os="{{ amo.PLATFORMS[file.platform_id].api_name }}"
-    size="{{ file.size * 1024 }}">
-    {{ file.get_url_path('api') }}
-  </install>
+    size="{{ file.size * 1024 }}">{{ file.get_url_path('api') }}</install>
   {% endfor -%}
   {%- endif -%}
   {%- if api_version >= 1.5 %}
