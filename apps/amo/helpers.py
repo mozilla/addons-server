@@ -207,7 +207,7 @@ def wround(value, precision=0, method='common'):
         {{ 42.55|round(1, 'floor') }}
             -> 42.5
     """
-    if not method in ('common', 'ceil', 'floor'):  # pragma: no cover
+    if not method in ('common', 'ceil', 'floor'):
         raise FilterArgumentError('method must be common, ceil or floor')
     if precision < 0:
         raise FilterArgumentError('precision must be a postive integer '

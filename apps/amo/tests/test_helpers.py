@@ -5,8 +5,8 @@ from django.conf import settings
 import jingo
 from mock import Mock, patch
 from nose.tools import eq_, assert_almost_equal, assert_raises
-
 from pyquery import PyQuery
+from jinja2.exceptions import FilterArgumentError
 import test_utils
 
 import amo
@@ -150,6 +150,12 @@ def test_wround():
     assert_almost_equal(wround(5, 2), 5)
     assert_almost_equal(wround(5.001, 2), 5)
 
+    # Invalid method
+    assert_raises(FilterArgumentError, wround, 0, 2, 'new')
+    assert_raises(FilterArgumentError, wround, 0, -2)
+
+    assert_almost_equal(wround(4.1, 1, 'floor'), 4.1)
+    eq_(wround(4.1, method='floor'), 4)
 
 def test_isotime():
     time = datetime(2009, 12, 25, 10, 11, 12)
