@@ -25,7 +25,9 @@ class File(amo.models.ModelBase):
         db_table = 'files'
 
     def get_url_path(self, src):
-        return settings.FILES_URL % (self.id, self.filename, src)
+        from amo.helpers import urlparams
+        base = settings.FILES_URL % (self.id, self.filename, src)
+        return urlparams(base, confirmed=1)
 
     def latest_xpi_url(self):
         # TODO(jbalogh): reverse?
