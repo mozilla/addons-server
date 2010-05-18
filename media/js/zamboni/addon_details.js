@@ -7,7 +7,6 @@ var addons_display = {
      */
     init: function(options) {
         this.options = options;
-        $('#form-review .stars').rating({readOnly:(!options.loggedIn)});
         $('.rollover-reveal').rolloverReveal({ enable_rollover: false });
 
         $('#coll_publish button').click(this.coll_publish);
@@ -53,10 +52,11 @@ var addons_display = {
 
 /* general initialization */
 $(document).ready(function() {
+    if ($('#addon.primary').length == 0) return;
+
     addons_display.init({
         jsonURL: $('#coll_publish').attr('data-json-url'),
-        collViewURL: $('#coll_publish').attr('data-detail-url'),
-        loggedIn: $(document.body).attr('data-anonymous')
+        collViewURL: $('#coll_publish').attr('data-detail-url')
     });
 
     var lb_baseurl = z.media_url+'img/jquery-lightbox/';
