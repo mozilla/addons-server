@@ -7,7 +7,8 @@ class Group(amo.models.ModelBase):
 
     name = models.CharField(max_length=255, default='')
     rules = models.TextField()
-    users = models.ManyToManyField('users.UserProfile', through='GroupUser')
+    users = models.ManyToManyField('users.UserProfile', through='GroupUser',
+                                   related_name='groups')
 
     class Meta:
         db_table = 'groups'

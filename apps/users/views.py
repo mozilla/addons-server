@@ -14,6 +14,7 @@ from tower import ugettext as _
 
 import jingo
 
+from access import acl
 import amo
 from amo.urlresolvers import reverse
 from bandwagon.models import Collection
@@ -275,9 +276,14 @@ def profile(request, user_id):
     else:
         fav_coll = []
 
+    edit_any_user = acl.action_allowed(request, 'Admin', 'EditAnyUser')
+    own_profile = request.user.is_authenticated() and (
+        request.amo_user.id == user.id)
+
     return jingo.render(request, 'users/profile.html',
                         {'profile': user, 'own_coll': own_coll,
-                         'fav_coll': fav_coll})
+                         'fav_coll': fav_coll, 'edit_any_user': edit_any_user,
+                         'own_profile': own_profile})
 
 
 def register(request):

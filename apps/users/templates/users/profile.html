@@ -24,9 +24,14 @@
           </div>
         {% endif %}
 
-        {% if user.is_staff: %}{# TODO restrict this to admins with user edit rights only #}
+        {% if edit_any_user or own_profile %}
           <p class="editprofile">
-            <a href="{{ url("admin:users_userprofile_change", profile.id) }}">{{ _('Edit User') }}</a>
+            {% if own_profile %}
+              <a href="{{ url("users.edit") }}">{{ _('Edit Profile') }}</a>
+            {% endif %}
+            {% if edit_any_user %}
+              <a href="{{ url("admin:users_userprofile_change", profile.id) }}">{{ _('Manage User') }}</a>
+            {% endif %}
           </p>
         {% endif %}
       </div>{# /object-content #}

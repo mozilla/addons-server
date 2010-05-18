@@ -184,7 +184,7 @@ class UserProfile(amo.models.ModelBase):
         self.user.password = self.password
         self.user.date_joined = self.created
 
-        if self.group_set.filter(rules='*:*').count():
+        if self.groups.filter(rules='*:*').count():
             self.user.is_superuser = self.user.is_staff = True
 
         self.user.save()

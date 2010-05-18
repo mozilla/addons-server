@@ -1,10 +1,12 @@
 from django import test
 from django.core import mail
+from django.core.cache import cache
 from django.contrib.auth.models import User
 from django.test.client import Client
 
 from nose.tools import eq_
 
+from access.models import Group, GroupUser
 from amo.helpers import urlparams
 from amo.pyquery_wrapper import PyQuery
 from amo.urlresolvers import reverse
@@ -145,3 +147,47 @@ class TestRegistration(UserViewBase):
         url = reverse('users.confirm.resend', args=[self.user.id])
         r = self.client.get(url, follow=True)
         self.assertContains(r, 'An email has been sent to your address')
+
+
+class TestProfile(UserViewBase):
+
+    def test_edit_buttons(self):
+        """Ensure admin/user edit buttons are shown."""
+
+        def get_links(id):
+            """Grab profile, return edit links."""
+            url = reverse('users.profile', args=[id])
+            r = self.client.get(url)
+            return PyQuery(r.content)('p.editprofile a')
+
+        # Anonymous user.
+        links = get_links(self.user.id)
+        eq_(links.length, 0)
+
+        # Non-admin, someone else's profile.
+        self.client.login(username='jbalogh@mozilla.com', password='foo')
+        links = get_links(9945)
+        eq_(links.length, 0)
+
+        # Non-admin, own profile.
+        links = get_links(self.user.id)
+        eq_(links.length, 1)
+        eq_(links.eq(0).attr('href'), reverse('users.edit'))
+
+        # Admin, someone else's profile.
+        admingroup = Group(rules='Admin:EditAnyUser')
+        admingroup.save()
+        GroupUser.objects.create(group=admingroup, user=self.user_profile)
+        cache.clear()
+
+        links = get_links(9945)
+        eq_(links.length, 1)
+        eq_(links.eq(0).attr('href'),
+            reverse('admin:users_userprofile_change', args=[9945]))
+
+        # Admin, own profile.
+        links = get_links(self.user.id)
+        eq_(links.length, 2)
+        eq_(links.eq(0).attr('href'), reverse('users.edit'))
+        eq_(links.eq(1).attr('href'),
+            reverse('admin:users_userprofile_change', args=[self.user.id]))

@@ -16,7 +16,7 @@ class ACLMiddleware(object):
         # figure out our list of groups...
         if request.user.is_authenticated():
             request.amo_user = request.user.get_profile()
-            request.groups = request.amo_user.group_set.all()
+            request.groups = request.amo_user.groups.all()
 
             if acl.action_allowed(request, 'Admin', '%'):
                 request.user.is_staff = True

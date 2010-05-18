@@ -1159,15 +1159,18 @@ form .error .note.error {
 }
 
 .object-content .editprofile a {
+    background: transparent url("../../img/amo2009/icons/news-feed-sprite.png") 0 -538px no-repeat;
     font-weight: bold;
     font-size: .923em;
+    margin-right: 1em;
     padding: .25em 0 .25em 22px;
-    background: transparent url("../../../media/img/amo2009/icons/news-feed-sprite.png") 0 -538px no-repeat;
 }
 
 .html-rtl .object-content .editprofile a {
-    padding: .25em 22px .25em 0;
     background-position: 100% -538px;
+    padding: .25em 22px .25em 0;
+    margin-right: 0;
+    margin-left: 1em;
 }
 
 /** =Category Landing *********/
