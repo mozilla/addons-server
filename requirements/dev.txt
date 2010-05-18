@@ -3,7 +3,7 @@
 # package for developers (testing, docs, etc.), it goes in this file.  IT wants
 # to pull in a minimal set of packages to get a running site.
 
--r requirements-prod.txt
+-r prod.txt
 
 Sphinx==0.6.3
 
@@ -19,7 +19,7 @@ sqlparse==0.1.1
 Fabric==0.9.0
 
 -e git://github.com/jbalogh/test-utils.git#egg=test-utils
--e git://github.com/jbalogh/django-nose.git@c4660eed1961ee052d4aaeab007e723b5ea07d14#egg=django_nose
+-e git://github.com/jbalogh/django-nose.git#egg=django_nose
 nose==0.11.1
 coverage==3.2b4
 selenium==1.0.1
