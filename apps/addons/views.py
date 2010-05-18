@@ -78,12 +78,10 @@ def extension_detail(request, addon):
                               addon.get_satisfaction_company)
 
     # other add-ons from the same author(s)
-    author_addons = Addon.objects.valid().filter(
-        addonuser__listed=True, authors__in=addon.listed_authors).distinct()
-
-    # Remove this addon via list comprehension so we can use the above cached
-    # query on other addons.
-    author_addons = [a for a in author_addons if a.id != addon.id]
+    author_addons = (Addon.objects.valid().only_translations()
+                     .exclude(id=addon.id)
+                     .filter(addonuser__listed=True,
+                             authors__in=addon.listed_authors).distinct())
 
     # tags
     (dev_tags, user_tags) = addon.tags_partitioned_by_developer
@@ -95,7 +93,7 @@ def extension_detail(request, addon):
                 addon_tags__user=request.amo_user)
 
     # addon recommendations
-    recommended = Addon.objects.valid().filter(
+    recommended = Addon.objects.valid().only_translations().filter(
         recommended_for__addon=addon)[:5]
 
     # popular collections this addon is part of
