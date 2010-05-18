@@ -405,3 +405,18 @@ BROKER_USER = 'zamboni'
 BROKER_PASSWORD = 'zamboni'
 BROKER_VHOST = 'zamboni'
 CELERY_RESULT_BACKEND = 'amqp'
+
+## Fixture Magic
+CUSTOM_DUMPS = {
+    'addon': {  # ./manage.py custom_dump addon id
+        'primary': 'addons.addon',  # This is our reference model.
+        'dependents': [  # These are items we wish to dump.
+            # Magic turns this into current_version.files.all()[0].
+            'current_version.files.all.0',
+        ],
+        'order': ('translations.translation', 'addons.addontype',
+                  'files.platform', 'addons.addon', 'versions.version',
+                  'files.file'),
+    }
+}
+
