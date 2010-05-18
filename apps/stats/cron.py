@@ -96,7 +96,7 @@ def _update_global_totals(job, date):
                 global_stats(`name`, `count`, `date`)
             VALUES
                 (%s, %s, %s)"""
-    p = [job, num, date]
+    p = [job, num or 0, date]
 
     cursor = connection.cursor()
     cursor.execute(q, p)
