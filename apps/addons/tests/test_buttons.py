@@ -275,14 +275,14 @@ class TestButton(ButtonTest):
         # EULA roadblock.
         b.show_eula = True
         text, url, _ = b.file_details(file)
-        eq_(text, 'Continue to Download &rarr;')
+        eq_(text, 'Continue to Download&nbsp;&rarr;')
         eq_(url, 'eula.url')
 
         # Contribution roadblock.
         b.show_eula = False
         b.show_contrib = True
         text, url, _ = b.file_details(file)
-        eq_(text, 'Continue to Download &rarr;')
+        eq_(text, 'Continue to Download&nbsp;&rarr;')
         eq_(url, 'meet.dev?eula=')
 
     def test_file_details_unreviewed(self):
