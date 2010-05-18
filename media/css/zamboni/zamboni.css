@@ -1742,6 +1742,7 @@ form .error .note.error {
 }
 #persona-summary .share-arrow {
     position: absolute;
+	z-index: 100;
 }
 #persona #more-personas {
     margin-bottom: 3em;
