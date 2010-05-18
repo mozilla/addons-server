@@ -21,6 +21,7 @@ class ButtonTest(object):
         self.addon.is_category_featured.return_value = False
         self.addon.is_unreviewed.return_value = False
         self.addon.has_eula = False
+        self.addon.status = amo.STATUS_PUBLIC
 
         self.version = v = Mock()
         v.is_unreviewed = False
@@ -284,6 +285,14 @@ class TestButton(ButtonTest):
         eq_(text, 'Continue to Download &rarr;')
         eq_(url, 'meet.dev?eula=')
 
+    def test_file_details_unreviewed(self):
+        file = self.get_file(amo.PLATFORM_ALL)
+        file.status = amo.STATUS_UNREVIEWED
+        b = self.get_button()
+
+        _, url, _ = b.file_details(file)
+        eq_(url, 'xpi.url')
+
     def test_fix_link(self):
         b = self.get_button()
         eq_(b.fix_link('foo.com'), 'foo.com')
@@ -356,11 +365,12 @@ class TestButtonHtml(ButtonTest):
         eq_('Featured', doc('.install strong:last-child').text())
 
     def test_unreviewed(self):
+        self.addon.status = amo.STATUS_UNREVIEWED
         self.addon.is_unreviewed.return_value = True
         self.addon.get_url_path.return_value = 'addon.url'
         button = self.render()('.button.caution')
         eq_('addon.url', button.attr('href'))
-        eq_('xpi.latest', button.attr('data-realurl'))
+        eq_('xpi.url', button.attr('data-realurl'))
 
     def test_multi_platform(self):
         self.version.all_files = self.platform_files

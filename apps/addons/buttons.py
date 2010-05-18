@@ -133,8 +133,11 @@ class InstallButton(object):
 
     def file_details(self, file):
         platform = file.platform_id
-        url = (file.latest_xpi_url() if self.latest else
-               file.get_url_path(self.src))
+        if self.latest and (
+            self.addon.status == file.status == amo.STATUS_PUBLIC):
+            url = file.latest_xpi_url()
+        else:
+            url = file.get_url_path(self.src)
 
         if platform == amo.PLATFORM_ALL.id:
             text, os = _('Download Now'), None
