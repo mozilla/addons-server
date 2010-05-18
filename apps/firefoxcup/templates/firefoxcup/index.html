@@ -1,0 +1,430 @@
+{% extends 'base.html' %}
+
+<<<<<<< HEAD
+{% block title %}{{ _('Firefox Cup') }}{% endblock %}
+=======
+{% block title %}{{ page_title(_('Firefox Cup')) }}{% endblock %}
+>>>>>>> 99a6a44... initial work on firefox cup page
+
+{% block site_header %}{% endblock %}
+
+{% block extrahead %}
+    <link rel="stylesheet" href="{{ MEDIA_URL }}/css/firefoxcup/reset-fonts-grids.css" />
+    <link rel="stylesheet" href="{{ MEDIA_URL }}/css/firefoxcup/firefoxcup.css" />
+    <script src="{{ MEDIA_URL }}/js/firefoxcup/yahoo-dom-event.js"></script>
+    <script src="{{ MEDIA_URL }}/js/firefoxcup/animation.js"></script>
+    <script src="{{ MEDIA_URL }}/js/firefoxcup/mozilla-pager.js"></script>
+{% endblock %}
+
+{% block main_content %}
+<div id="wrapper">
+
+<script>
+    // Add a class to the body tag to alternate promo features
+    var class_options = new Array( "footiefox", "footiefox" );
+
+    if (Math.random) {
+        var choice = Math.floor(Math.random() * (class_options.length));
+
+        // Just in case javascript gets carried away...
+        choice = ( (choice < class_options.length)  && choice >= 0) ? choice : 0;
+
+<<<<<<< HEAD
+        if (document.body.className == '') {
+          document.body.className = class_options[choice];
+        } else {
+          document.body.className += ' '+class_options[choice];
+        }
+=======
+		if (document.body.className == '') {
+			document.body.className = class_options[choice];
+		} else {
+			document.body.className += ' '+class_options[choice];
+		}
+>>>>>>> 99a6a44... initial work on firefox cup page
+    }
+</script>
+
+<div id="doc">
+
+<<<<<<< HEAD
+  <ul id="header">
+    <li class="first"><a href="http://www.mozilla.com/">{{ _('Mozilla') }}</a></li>
+    <li><a href="http://addons.mozilla.org/">{{ _('Add-Ons') }}</a></li>
+    <li><a href="http://support.mozilla.com/">{{ _('Support') }}</a></li>
+  </ul>
+
+  <div id="main-feature">
+      <h1><img src="{{ MEDIA_URL }}/img/firefoxcup/logo.png" alt="{{ _('Firefox Cup') }}" /></h1>
+      <h2>{{ _('Install Personas to support your team and compete for the Firefox Cup.') }}</h2>
+    <div id="download">
+      <a href="http://www.mozilla.com/firefox/">
+        <span class="title">{{ _('Get Firefox') }}</span>
+        <span>{{ _('Upgrade to Firefox 3.6 and experience the best of the Web and Firefox Cup.') }}</span>
+      </a>
+    </div>
+  </div>
+
+  <div id="main-content">
+
+    <h2>{{ _('Personas show your passion as your team plays for glory.') }}</h2>
+
+    <div id="personas" class="pager pager-with-tabs">
+
+      <div id="personas-header">
+        <h3>{{ _('Roll over to try, click to apply') }}</h3>
+        <ul id="personas-nav" class="pager-tabs">
+          <li class="first"><a href="#p1">{{ _('1') }}</a></li>
+          <li><a href="#p2">{{ _('2') }}</a></li>
+          <li><a href="#p3">{{ _('3') }}</a></li>
+          <li><a href="#p4">{{ _('4') }}</a></li>
+        </ul>
+      </div>
+
+      <div class="pager-content">
+
+        <div class="personas-contents default-page" id="feature-p1">
+          <script type="text/javascript">// <![CDATA[
+          document.getElementById('feature-p1').id = 'page-feature-p1';
+          // ]]></script>
+          <ul class="personas-list">
+            <li><img src="http://getpersonas.com/static/1/0/7610/preview.jpg" /></li>
+            <li><img src="http://getpersonas.com/static/1/0/7610/preview.jpg" /></li>
+            <li><img src="http://getpersonas.com/static/1/0/7610/preview.jpg" /></li>
+            <li><img src="http://getpersonas.com/static/1/0/7610/preview.jpg" /></li>
+            <li><img src="http://getpersonas.com/static/1/0/7610/preview.jpg" /></li>
+            <li><img src="http://getpersonas.com/static/1/0/7610/preview.jpg" /></li>
+          </ul>
+        </div>
+
+        <div class="personas-contents" id="feature-p2">
+          <script type="text/javascript">// <![CDATA[
+          document.getElementById('feature-p2').id = 'page-feature-p2';
+          // ]]></script>
+          <ul class="personas-list">
+            <li><img src="http://getpersonas.com/static/6/9/64769/preview.jpg" /></li>
+            <li><img src="http://getpersonas.com/static/6/9/64769/preview.jpg" /></li>
+            <li><img src="http://getpersonas.com/static/6/9/64769/preview.jpg" /></li>
+            <li><img src="http://getpersonas.com/static/6/9/64769/preview.jpg" /></li>
+            <li><img src="http://getpersonas.com/static/6/9/64769/preview.jpg" /></li>
+            <li><img src="http://getpersonas.com/static/6/9/64769/preview.jpg" /></li>
+          </ul>
+        </div>
+
+        <div class="personas-contents" id="feature-p3">
+          <script type="text/javascript">// <![CDATA[
+          document.getElementById('feature-p3').id = 'page-feature-p3';
+          // ]]></script>
+          <ul class="personas-list">
+            <li><img src="http://getpersonas.com/static/8/2/141882/preview.jpg" /></li>
+            <li><img src="http://getpersonas.com/static/8/2/141882/preview.jpg" /></li>
+            <li><img src="http://getpersonas.com/static/8/2/141882/preview.jpg" /></li>
+            <li><img src="http://getpersonas.com/static/8/2/141882/preview.jpg" /></li>
+            <li><img src="http://getpersonas.com/static/8/2/141882/preview.jpg" /></li>
+            <li><img src="http://getpersonas.com/static/8/2/141882/preview.jpg" /></li>
+          </ul>
+        </div>
+
+        <div class="personas-contents" id="feature-p4">
+          <script type="text/javascript">// <![CDATA[
+          document.getElementById('feature-p4').id = 'page-feature-p4';
+          // ]]></script>
+          <ul class="personas-list">
+            <li><img src="http://getpersonas.com/static/2/3/64323/preview.jpg" /></li>
+            <li><img src="http://getpersonas.com/static/2/3/64323/preview.jpg" /></li>
+            <li><img src="http://getpersonas.com/static/2/3/64323/preview.jpg" /></li>
+            <li><img src="http://getpersonas.com/static/2/3/64323/preview.jpg" /></li>
+            <li><img src="http://getpersonas.com/static/2/3/64323/preview.jpg" /></li>
+            <li><img src="http://getpersonas.com/static/2/3/64323/preview.jpg" /></li>
+          </ul>
+        </div>
+
+        <p>{{ _('Dress up your Firefox in team spirits and share the love with friends. The team with the most fans using Personas wins the Firefox Cup!') }}</p>
+
+      </div>
+    </div>
+  </div>
+
+  <div id="sidebar">
+
+      <div class="sub-feature" id="email">
+        <h3>{{ _('Sign Up!') }}</h3>
+        <p>{{ _('Stay current with Firefox Cup news by email.') }}</p>
+      </div>
+
+      <div class="sub-feature" id="featured">
+        <div id="featured-footiefox">
+          <h3>{{ _('FootieFox') }}</h3>
+          <p>{{ _("Don't miss a moment of action. FootieFox shows latest scores in your Firefox.") }}</p>
+          <ul class="link"><li><a href="#">{{ _('Install FootieFox Add-on Now') }}</a></li></ul>
+        </div>
+      </div>
+
+      <div class="sub-feature" id="facebook">
+        <h3>{{ _('Stay Connected!') }}</h3>
+        <p>{{ _('Become a Fan') }}</p>
+      </div>
+
+  </div>
+
+  <div id="secondary-content">
+
+    <div id="teams-section">
+
+      <h2>{{ _('Find Your Team Persona') }}</h2>
+      <p>{{ _("Rollover your country's flag to preview Personas, then click to install. At the end of the tournament, the team whose fans used Personas the most wins the Firefox Cup.") }}</p>
+
+    </div>
+
+    <table id="teams">
+      <thead>
+        <tr>
+          <th>{{ _('Flag') }}</th>
+          <th>{{ _('Country') }}</th>
+          <th>{{ _('Average Fans') }}</th>
+          <th>{{ _('Total Fans') }}</th>
+        </tr>
+        <tr><td colspan="5"></td></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><img src="{{ MEDIA_URL }}/img/firefoxcup/flags/usa.png" alt="{{ _('Flag') }}" /></td>
+          <td>{{ _('United States') }}</td>
+          <td>###,###</td>
+          <td>###,###</td>
+        </tr>
+        <tr>
+          <td><img src="{{ MEDIA_URL }}/img/firefoxcup/flags/brazil.png" alt="{{ _('Flag') }}" /></td>
+          <td>{{ _('Brazil') }}</td>
+          <td>###,###</td>
+          <td>###,###</td>
+        </tr>
+        <tr>
+          <td><img src="{{ MEDIA_URL }}/img/firefoxcup/flags/argentina.png" alt="{{ _('Flag') }}" /></td>
+          <td>{{ _('Argentina') }}</td>
+          <td>###,###</td>
+          <td>###,###</td>
+        </tr>
+        <tr>
+          <td><img src="{{ MEDIA_URL }}/img/firefoxcup/flags/australia.png" alt="{{ _('Flag') }}" /></td>
+          <td>{{ _('Australia') }}</td>
+          <td>###,###</td>
+          <td>###,###</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table id="tweets">
+      <thead>
+        <tr>
+          <th><img src="{{ MEDIA_URL }}/img/firefoxcup/twitter.png" alt="Twitter" height="38" width="37" /> {{ _('Follow our tweets') }}</th>
+        </tr>
+        <tr><td></td></tr>
+      </thead>
+      <tbody>
+        <tr><td><a href="#">#hashtag</a> Lorem Ipsum dolor siametur sitamet...</td></tr>
+        <tr><td><a href="#">#hashtag</a> Lorem Ipsum dolor siametur sitamet...</td></tr>
+        <tr><td><a href="#">#hashtag</a> Lorem Ipsum dolor siametur sitamet...</td></tr>
+        <tr><td><a href="#">#hashtag</a> Lorem Ipsum dolor siametur sitamet...</td></tr>
+        <tr><td><a href="#">#hashtag</a> Lorem Ipsum dolor siametur sitamet...</td></tr>
+      </tbody>
+    </table>
+
+  </div>
+=======
+<ul id="header">
+	<li class="first"><a href="http://www.mozilla.com/">Mozilla</a></li>
+	<li><a href="http://addons.mozilla.org/">Add-Ons</a></li>
+	<li><a href="http://support.mozilla.com/">Support</a></li>
+</ul>
+
+<div id="main-feature">
+    <h1><img src="{{ MEDIA_URL }}/img/firefoxcup/logo.png" alt="Firefox Cup" /></h1>
+    <h2>Install Personas to support your team and compete for the Firefox Cup.</h2>
+	<div id="download">
+		<h3>Get Firefox</h3>
+		<p>Upgrade to Firefox 3.6 and experience the best of the Web and Firefox Cup.</p>
+		<p>Download...</p>
+	</div>
+</div>
+
+<div id="main-content">
+
+	<h2>Personas show your passion as your team plays for glory.</h2>
+
+	<div id="personas" class="pager pager-with-tabs">
+
+		<div id="personas-header">
+			<h3>Roll over to try, click to apply</h3>
+			<ul id="personas-nav" class="pager-tabs">
+				<li class="first"><a href="#p1">1</a></li>
+				<li><a href="#p2">2</a></li>
+				<li><a href="#p3">3</a></li>
+				<li><a href="#p4">4</a></li>
+			</ul>
+		</div>
+
+		<div class="pager-content">
+
+			<div class="personas-contents default-page" id="feature-p1">
+				<script type="text/javascript">// <![CDATA[
+				document.getElementById('feature-p1').id = 'page-feature-p1';
+				// ]]></script>
+				<ul class="personas-list">
+					<li><img src="http://getpersonas.com/static/1/0/7610/preview.jpg" /></li>
+					<li><img src="http://getpersonas.com/static/1/0/7610/preview.jpg" /></li>
+					<li><img src="http://getpersonas.com/static/1/0/7610/preview.jpg" /></li>
+					<li><img src="http://getpersonas.com/static/1/0/7610/preview.jpg" /></li>
+					<li><img src="http://getpersonas.com/static/1/0/7610/preview.jpg" /></li>
+					<li><img src="http://getpersonas.com/static/1/0/7610/preview.jpg" /></li>
+				</ul>
+			</div>
+
+			<div class="personas-contents" id="feature-p2">
+				<script type="text/javascript">// <![CDATA[
+				document.getElementById('feature-p2').id = 'page-feature-p2';
+				// ]]></script>
+				<ul class="personas-list">
+					<li><img src="http://getpersonas.com/static/6/9/64769/preview.jpg" /></li>
+					<li><img src="http://getpersonas.com/static/6/9/64769/preview.jpg" /></li>
+					<li><img src="http://getpersonas.com/static/6/9/64769/preview.jpg" /></li>
+					<li><img src="http://getpersonas.com/static/6/9/64769/preview.jpg" /></li>
+					<li><img src="http://getpersonas.com/static/6/9/64769/preview.jpg" /></li>
+					<li><img src="http://getpersonas.com/static/6/9/64769/preview.jpg" /></li>
+				</ul>
+			</div>
+
+			<div class="personas-contents" id="feature-p3">
+				<script type="text/javascript">// <![CDATA[
+				document.getElementById('feature-p3').id = 'page-feature-p3';
+				// ]]></script>
+				<ul class="personas-list">
+					<li><img src="http://getpersonas.com/static/8/2/141882/preview.jpg" /></li>
+					<li><img src="http://getpersonas.com/static/8/2/141882/preview.jpg" /></li>
+					<li><img src="http://getpersonas.com/static/8/2/141882/preview.jpg" /></li>
+					<li><img src="http://getpersonas.com/static/8/2/141882/preview.jpg" /></li>
+					<li><img src="http://getpersonas.com/static/8/2/141882/preview.jpg" /></li>
+					<li><img src="http://getpersonas.com/static/8/2/141882/preview.jpg" /></li>
+				</ul>
+			</div>
+
+			<div class="personas-contents" id="feature-p4">
+				<script type="text/javascript">// <![CDATA[
+				document.getElementById('feature-p4').id = 'page-feature-p4';
+				// ]]></script>
+				<ul class="personas-list">
+					<li><img src="http://getpersonas.com/static/2/3/64323/preview.jpg" /></li>
+					<li><img src="http://getpersonas.com/static/2/3/64323/preview.jpg" /></li>
+					<li><img src="http://getpersonas.com/static/2/3/64323/preview.jpg" /></li>
+					<li><img src="http://getpersonas.com/static/2/3/64323/preview.jpg" /></li>
+					<li><img src="http://getpersonas.com/static/2/3/64323/preview.jpg" /></li>
+					<li><img src="http://getpersonas.com/static/2/3/64323/preview.jpg" /></li>
+				</ul>
+			</div>
+
+			<p>Dress up your Firefox in team spirits and share the love with friends. The team with the most fans using Personas wins the Firefox Cup!</p>
+
+		</div>
+
+	</div>
+
+</div>
+
+<div id="sidebar">
+
+    <div class="sub-feature" id="email">
+        <h3>Sign Up!</h3>
+		<p>Stay current with Firefox Cup news by email.</p>
+    </div>
+
+    <div class="sub-feature" id="featured">
+        <div id="featured-footiefox">
+            <h3>FootieFox</h3>
+            <p>Don't miss a moment of action. FootieFox shows latest scores in your Firefox.</p>
+            <ul class="link"><li><a href="#">Install FootieFox Add-on Now</a></li></ul>
+        </div>
+    </div>
+
+    <div class="sub-feature" id="facebook">
+        <h3>Stay Connected!</h3>
+		<p>Become a Fan</p>
+    </div>
+
+</div>
+
+<div id="secondary-content">
+
+<div id="teams-section">
+
+	<h2>Find Your Team Persona</h2>
+	<p>Rollover your country's flag to preview Personas, then click to install. At the end of the tournament, the team whose fans used Personas the most wins the Firefox Cup.</p>
+
+</div>
+
+<table id="teams">
+	<thead>
+		<tr>
+			<th>Flag</th>
+			<th>Country</th>
+			<th>Average Fans</th>
+			<th>Total Fans</th>
+			<th>Latest News</th>
+		</tr>
+		<tr><td colspan="5"></td></tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><img src="{{ MEDIA_URL }}/img/firefoxcup/flags/usa.png" alt="Flag" /></td>
+			<td>United States</td>
+			<td>###,###</td>
+			<td>###,###</td>
+			<td>Lorem Ipsum dolor siametur sitamet...</td>
+		</tr>
+		<tr>
+			<td><img src="{{ MEDIA_URL }}/img/firefoxcup/flags/brazil.png" alt="Flag" /></td>
+			<td>Brazil</td>
+			<td>###,###</td>
+			<td>###,###</td>
+			<td>Lorem Ipsum dolor siametur sitamet...</td>
+		</tr>
+		<tr>
+			<td><img src="{{ MEDIA_URL }}/img/firefoxcup/flags/argentina.png" alt="Flag" /></td>
+			<td>Argentina</td>
+			<td>###,###</td>
+			<td>###,###</td>
+			<td>Lorem Ipsum dolor siametur sitamet...</td>
+		</tr>
+		<tr>
+			<td><img src="{{ MEDIA_URL }}/img/firefoxcup/flags/australia.png" alt="Flag" /></td>
+			<td>Australia</td>
+			<td>###,###</td>
+			<td>###,###</td>
+			<td>Lorem Ipsum dolor siametur sitamet...</td>
+		</tr>
+	</tbody>
+</table>
+
+<table id="tweets">
+	<thead>
+		<tr>
+			<th><img src="{{ MEDIA_URL }}/img/firefoxcup/twitter.png" alt="Twitter" height="38" width="37" /> Follow our tweets</th>
+		</tr>
+		<tr><td></td></tr>
+	</thead>
+	<tbody>
+		<tr><td><a href="#">#hashtag</a> Lorem Ipsum dolor siametur sitamet...</td></tr>
+		<tr><td><a href="#">#hashtag</a> Lorem Ipsum dolor siametur sitamet...</td></tr>
+		<tr><td><a href="#">#hashtag</a> Lorem Ipsum dolor siametur sitamet...</td></tr>
+		<tr><td><a href="#">#hashtag</a> Lorem Ipsum dolor siametur sitamet...</td></tr>
+		<tr><td><a href="#">#hashtag</a> Lorem Ipsum dolor siametur sitamet...</td></tr>
+	</tbody>
+</table>
+
+</div>
+>>>>>>> 99a6a44... initial work on firefox cup page
+
+
+</div><!-- end #doc -->
+</div><!-- end #wrapper -->
+
+{% endblock %}

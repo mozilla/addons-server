@@ -207,6 +207,7 @@ INSTALLED_APPS = (
     'discovery',
     'editors',
     'files',
+    'firefoxcup',
     'jingo_minify',
     'nick',
     'pages',
@@ -253,6 +254,12 @@ SELENIUM_CONFIG = {}
 # Tells the extract script what files to look for l10n in and what function
 # handles the extraction.  The Tower library expects this.
 DOMAIN_METHODS = {
+    'firefoxcup': [
+        ('apps/firefoxcup/**.py',
+            'tower.management.commands.extract.extract_tower_python'),
+        ('apps/firefoxcup/templates/firefoxcup/**.html',
+            'tower.management.commands.extract.extract_tower_template'),
+    ],
     'messages': [
         ('apps/**.py',
             'tower.management.commands.extract.extract_tower_python'),
