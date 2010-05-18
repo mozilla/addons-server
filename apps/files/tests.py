@@ -14,10 +14,9 @@ class TestFile(test.TestCase):
 
     def test_get_absolute_url(self):
         f = File.objects.get(id=11993)
-        src = "crystalmethod"
-        assert f.get_absolute_url(src).endswith(
+        assert f.get_absolute_url(src='src').endswith(
                 'downloads/file/11993/'
-                'del.icio.us_bookmarks-1.0.43-fx.xpi?src=crystalmethod')
+                'del.icio.us_bookmarks-1.0.43-fx.xpi?src=src&confirmed=1')
 
     def test_latest_url(self):
         # With platform.
