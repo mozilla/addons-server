@@ -1,0 +1,143 @@
+[
+    {
+        "pk": 426,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "Add these search engines to the Search Bar in the upper-right corner of %1$s, for quick access to your favorite search sites.",
+            "created": "2007-03-05 13:08:05",
+            "locale": "en-US",
+            "modified": "2007-03-22 21:54:38",
+            "id": 151
+        }
+    },
+    {
+        "pk": 258,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "Search Engines",
+            "created": "2007-03-05 13:08:05",
+            "locale": "en-US",
+            "modified": "2007-03-22 21:54:38",
+            "id": 145
+        }
+    },
+    {
+        "pk": 83,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "Search Engine",
+            "created": "2007-03-05 13:08:05",
+            "locale": "en-US",
+            "modified": "2007-03-22 21:54:38",
+            "id": 4
+        }
+    },
+    {
+        "pk": 398304,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "asmi search engine powered by Google",
+            "created": "2009-04-08 14:17:45",
+            "locale": "en-US",
+            "modified": null,
+            "id": 360143
+        }
+    },
+    {
+        "pk": 4,
+        "model": "addons.addontype",
+        "fields": {
+            "name": 4,
+            "created": "2006-08-21 23:53:36",
+            "description": 151,
+            "modified": "2009-02-06 08:42:28",
+            "name_plural": 145
+        }
+    },
+    {
+        "pk": 1,
+        "model": "files.platform",
+        "fields": {
+            "icontype": "",
+            "modified": "2008-04-07 08:16:55",
+            "created": "2007-03-05 13:09:27"
+        }
+    },
+    {
+        "pk": 11399,
+        "model": "addons.addon",
+        "fields": {
+            "dev_agreement": 0,
+            "eula": null,
+            "last_updated": "2009-04-18 10:34:12",
+            "view_source": 0,
+            "enable_thankyou": 0,
+            "total_downloads": 24333,
+            "inactive": 0,
+            "average_daily_downloads": 75,
+            "show_beta": 1,
+            "guid": null,
+            "trusted": 0,
+            "locale_disambiguation": null,
+            "binary": 0,
+            "the_future": null,
+            "weekly_downloads": 42,
+            "paypal_id": "",
+            "average_rating": "5.00",
+            "wants_contributions": 0,
+            "average_daily_users": 0,
+            "bayesian_rating": 4.0878300000000003,
+            "share_count": 0,
+            "get_satisfaction_company": null,
+            "public_stats": 0,
+            "status": 4,
+            "privacy_policy": null,
+            "default_locale": "en-US",
+            "target_locale": null,
+            "prerelease": 0,
+            "thankyou_note": null,
+            "admin_review": 0,
+            "external_software": 0,
+            "highest_status": 4,
+            "get_satisfaction_product": null,
+            "name": 360143,
+            "created": "2009-04-08 14:13:21",
+            "type": 4,
+            "icon_type": "image/png",
+            "annoying": 0,
+            "modified": "2009-04-18 10:34:13",
+            "suggested_amount": null,
+            "site_specific": 0,
+            "total_reviews": 1,
+            "the_reason": null,
+            "nomination_date": "2009-04-08 16:32:35"
+        }
+    },
+    {
+        "pk": 66081,
+        "model": "versions.version",
+        "fields": {
+            "license": null,
+            "created": "2009-04-08 16:14:34",
+            "modified": "2009-04-08 16:35:46",
+            "version": "20090408",
+            "addon": 11399
+        }
+    },
+    {
+        "pk": 50621,
+        "model": "files.file",
+        "fields": {
+            "status": 4,
+            "codereview": 0,
+            "hash": "sha256:9dabb90cf3daed4ce90e8c95fda2e9e4225e97b1e06bbfd7226d29d36497daa5",
+            "created": "2009-04-08 16:14:34",
+            "modified": "2009-04-18 10:34:12",
+            "filename": "asmi.ac.id-20090408.xml",
+            "platform": 1,
+            "version": 66081,
+            "size": 5,
+            "datestatuschanged": "2009-04-18 10:34:12"
+        }
+    }
+]

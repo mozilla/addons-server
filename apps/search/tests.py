@@ -205,6 +205,14 @@ class CollectionsSearchTest(SphinxTestCase):
 
 
 class SearchTest(SphinxTestCase):
+    fixtures = SphinxTestCase.fixtures + ['search/560618-alpha-sort']
+
+    def test_alpha_sort(self):
+        "This verifies that alpha sort is case insensitive."
+        c = SearchClient()
+        results = c.query('', sort='name')
+        ordering = [unicode(a.name).lower() for a in results]
+        eq_(ordering, sorted(ordering))
 
     def test_sphinx_indexer(self):
         """
@@ -227,8 +235,10 @@ class SearchTest(SphinxTestCase):
     def test_sorts(self):
         """
         This tests the various sorting.
+
+        Note: These change if you change the fixtures.
         """
-        eq_(query("", limit=1, sort='newest')[0].id, 10869)
+        eq_(query("", limit=1, sort='newest')[0].id, 11399)
         eq_(query("", limit=1, sort='updated')[0].id, 6113,
             'Sort by updated is incorrect.')
         eq_(query("", limit=1, sort='name')[0].id, 5299)
@@ -243,15 +253,12 @@ class SearchTest(SphinxTestCase):
 
         eq_(query("", limit=1, app=amo.MOBILE.id)[0].id, 4664)
         # Poor sunbird, nobody likes them.
-        eq_(len(query("", limit=1, app=amo.SUNBIRD.id)), 0)
+        eq_(len(query("Firebug", app=amo.SUNBIRD.id)), 0)
 
     def test_category_filter(self):
-        """
-        This tests filtering by category.
-        """
+        """This tests filtering by category."""
 
         eq_(len(query("Firebug category:alerts", app=amo.FIREFOX.id)), 0)
-        eq_(len(query("category:alerts", app=amo.MOBILE.id)), 1)
 
     def test_type_filter(self):
         """
