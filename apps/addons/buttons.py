@@ -145,12 +145,14 @@ class InstallButton(object):
             text, os = _('Download'), amo.PLATFORMS[platform]
 
         if self.show_eula:
-            text, url = _('Continue to Download &rarr;'), file.eula_url()
+			# L10n: please keep &nbsp; in the string so the &rarr; does not wrap
+            text, url = _('Continue to Download&nbsp;&rarr;'), file.eula_url()
         elif self.accept_eula:
             text = _('Accept and Download')
         elif self.show_contrib:
             # The eula doesn't exist or has been hit already.
-            text = _('Continue to Download &rarr;')
+			# L10n: please keep &nbsp; in the string so the &rarr; does not wrap
+            text = _('Continue to Download&nbsp;&rarr;')
             roadblock = self.addon.meet_the_dev_url(extra='roadblock')
             url = urlparams(roadblock, eula='')
 
@@ -181,7 +183,8 @@ class SelfHostedInstallButton(InstallButton):
     button_class = ['go']
 
     def links(self):
-        return [Link(_('Continue to Website &rarr;'), self.addon.homepage)]
+		# L10n: please keep &nbsp; in the string so the &rarr; does not wrap
+        return [Link(_('Continue to Website&nbsp;&rarr;'), self.addon.homepage)]
 
 
 class PersonaInstallButton(InstallButton):
