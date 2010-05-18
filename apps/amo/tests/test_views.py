@@ -13,6 +13,7 @@ from nose.tools import eq_
 from pyquery import PyQuery as pq
 import test_utils
 
+from access.models import Group, GroupUser
 from amo.urlresolvers import reverse
 from amo.pyquery_wrapper import PyQuery
 from stats.models import SubscriptionEvent
@@ -63,16 +64,32 @@ class TestStuff(test_utils.TestCase):
         check('false')
 
     def test_my_account_menu(self):
-        def check(expected):
+        def get_homepage():
             response = self.client.get('/', follow=True)
-            account = PyQuery(response.content)('ul.account')
-            tools = PyQuery(response.content)('ul.tools')
-            eq_(account.size(), expected)
-            eq_(tools.size(), expected)
+            return PyQuery(response.content)
 
-        check(0)
+        # Logged out
+        doc = get_homepage()
+        eq_(doc('#aux-nav .account').length, 0)
+        eq_(doc('#aux-nav .tools').length, 0)
+
+        # Logged in, regular user = one tools link
         self.client.login(username='admin@mozilla.com', password='password')
-        check(1)
+        doc = get_homepage()
+        eq_(doc('#aux-nav .account').length, 1)
+        eq_(doc('#aux-nav ul.tools').length, 0)
+        eq_(doc('#aux-nav p.tools').length, 1)
+
+        # Logged in, admin = multiple links
+        admingroup = Group(rules='Admin:*')
+        admingroup.save()
+        GroupUser.objects.create(group=admingroup, user_id=4043307)
+        cache.clear()
+
+        doc = get_homepage()
+        eq_(doc('#aux-nav .account').length, 1)
+        eq_(doc('#aux-nav ul.tools').length, 1)
+        eq_(doc('#aux-nav p.tools').length, 0)
 
     def test_heading(self):
         def title_eq(url, expected):

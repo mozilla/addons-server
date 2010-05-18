@@ -1,5 +1,5 @@
 {% if user.is_authenticated() %}
-{% if tools_links %}
+{% if tools_links and tools_links|count > 1 %}
   <ul class="tools">
     <li>
       <a href="#" class="controller">{{ _('Tools') }}</a>
@@ -10,6 +10,10 @@
       </ul>
     </li>
   </ul>
+{% else %}
+  <p class="context tools">
+    <a href="{{ tools_links[0].href }}">{{ tools_links[0].text }}</a>
+  </p>
 {% endif %}
 <ul class="account">
     <li>
