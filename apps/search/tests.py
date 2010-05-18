@@ -241,7 +241,7 @@ class SearchTest(SphinxTestCase):
         eq_(query("", limit=1, sort='newest')[0].id, 11399)
         eq_(query("", limit=1, sort='updated')[0].id, 6113,
             'Sort by updated is incorrect.')
-        eq_(query("", limit=1, sort='name')[0].id, 5299)
+        eq_(query("", limit=1, sort='name')[0].id, 55)
         eq_(query("", limit=1, sort='averagerating')[0].id, 8680,
             'Sort by average rating is incorrect.')
         eq_(query("", limit=1, sort='weeklydownloads')[0].id, 55)
