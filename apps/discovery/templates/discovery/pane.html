@@ -79,7 +79,9 @@
       {% endfor %}
     </section>
     <section id="top-addons">
-      <h1>{{ _('Top Add-ons') }}</h1>
+      <h1>
+        <a href="{{ url('browse.extensions') }}">{{ _('Top Add-ons') }}</a>
+      </h1>
       {{ addon_list(top_addons) }}
     </section>
 

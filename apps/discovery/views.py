@@ -25,8 +25,12 @@ def pane(request, platform, version):
     def from_api(list_type):
         r = api_view(request, platform, version, list_type)
         return json.loads(r.content)
-    addon_downloads = (GlobalStat.objects.filter(name='addon_total_downloads')
-                       .latest().count)
+    try:
+        qs = GlobalStat.objects.filter(name='addon_total_downloads')
+        addon_downloads = qs.latest().count
+    except GlobalStat.DoesNotExist:
+        addon_downloads = None
+
     return jingo.render(request, 'discovery/pane.html',
                         {'modules': get_modules(request, platform, version),
                          'addon_downloads': addon_downloads,
