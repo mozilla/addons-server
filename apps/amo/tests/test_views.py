@@ -102,46 +102,8 @@ class TestStuff(test_utils.TestCase):
         title_eq('/mobile', 'Mobile Add-ons for Firefox')
 
     def test_xenophobia(self):
-        def box_is_checked(locale='en-US', cookie_val=None):
-            if cookie_val is not None:
-                self.client.cookies['locale-only'] = cookie_val
-            elif 'locale-only' in self.client.cookies:
-                del self.client.cookies['locale-only']
-
-            response = self.client.get("/%s/firefox/" % locale)
-            doc = PyQuery(response.content)
-            return doc("#locale-only").attr('checked')
-
-        def cookie_box(xeno, locale='en-US'):
-            if 'locale-only' in self.client.cookies:
-                del self.client.cookies['locale-only']
-
-            xeno = 'locale-only=1&' if xeno else ''
-
-            response = self.client.get("/%s/firefox/?%slang=%s&next=/" % (
-                    locale, xeno, locale), follow=True)
-            box = PyQuery(response.content)('#locale-only').attr('checked')
-            cookie = self.client.cookies.get("locale-only")
-
-            if cookie:
-                cookie = int(cookie.value)
-            return (box, cookie)
-
-        assert box_is_checked(cookie_val=1), ("True cookie does not show "
-                "checked box for /en-US/.")
-        assert box_is_checked('ja', cookie_val=1), ("True cookie does not "
-                "show checked box for /ja/.")
-        assert not box_is_checked(cookie_val=0), ("False cookie does show "
-                "checked box for /en-US/.")
-        assert not box_is_checked('ja', cookie_val=0), ("False cookie does "
-                "show checked box for /ja/.")
-        assert not box_is_checked(), "Empty cookie does is checked for en-US."
-        assert box_is_checked('ja'), "Empty cookie is not checked for ja."
-
-        eq_(('checked', 1), cookie_box(True))
-        eq_((None, 0), cookie_box(False))
-        eq_(('checked', 1), cookie_box(True, 'ja'))
-        eq_((None, 0), cookie_box(False, 'ja'))
+        r = self.client.get(reverse('home'), follow=True)
+        self.assertNotContains(r, 'show only English (US) add-ons')
 
     def test_login_link(self):
         r = self.client.get(reverse('home'), follow=True)
@@ -256,6 +218,7 @@ def test_remote_addr():
     response = client.get('/en-US/firefox/', follow=True,
                           HTTP_X_FORWARDED_FOR='oh yeah')
     eq_(commonware.log.get_remote_addr(), 'oh yeah')
+
 
 def test_opensearch():
     client = test.Client()
