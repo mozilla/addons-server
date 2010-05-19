@@ -3,7 +3,6 @@ import os
 import site
 import sys
 
-from django.core.management import execute_manager, setup_environ
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 if os.path.splitext(os.path.basename(__file__))[0] == 'cProfile':
@@ -17,6 +16,10 @@ path = lambda *a: os.path.join(ROOT, *a)
 
 site.addsitedir(path('apps'))
 site.addsitedir(path('lib'))
+site.addsitedir(path('vendor'))
+
+# No third-party imports until we've added all our sitedirs!
+from django.core.management import execute_manager, setup_environ
 
 try:
     import settings_local as settings
