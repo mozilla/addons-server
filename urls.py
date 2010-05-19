@@ -55,12 +55,6 @@ urlpatterns = patterns('',
     ('^users/info/(\d+)',
      lambda r, id: redirect('users.profile', id, permanent=True)),
 
-    ('^browse/type:3$',
-      lambda r: redirect('browse.language_tools', permanent=True)),
-
-    ('^browse/type:2.*$',
-     lambda r: redirect('browse.themes', permanent=True)),
-
     ('^pages/about$',
      lambda r: redirect('pages.about', permanent=True)),
 

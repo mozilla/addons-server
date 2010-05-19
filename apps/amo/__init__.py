@@ -140,8 +140,9 @@ ADDON_TYPES = {
 ADDON_SLUGS = {
     ADDON_EXTENSION: 'extensions',
     ADDON_THEME: 'themes',
+    ADDON_DICT: 'language-tools',
     ADDON_PERSONA: 'personas',
-    ADDON_SEARCH: 'search-providers',
+    ADDON_SEARCH: 'search-engines',
 }
 
 

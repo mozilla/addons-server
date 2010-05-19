@@ -32,7 +32,7 @@ class TestLanguageTools(test_utils.TestCase):
 
     def setUp(self):
         cache.clear()
-        self.url = reverse('browse.language_tools')
+        self.url = reverse('browse.language-tools')
         response = self.client.get(self.url, follow=True)
         self.locales = response.context['locales']
 
@@ -83,6 +83,7 @@ class TestThemes(test_utils.TestCase):
     fixtures = ['base/fixtures']
 
     def setUp(self):
+        super(TestThemes, self).setUp()
         # Make all the add-ons themes.
         for addon in Addon.objects.all():
             addon.type_id = amo.ADDON_THEME
@@ -133,7 +134,7 @@ class TestThemes(test_utils.TestCase):
         eq_(ids, [6113, 7172, 1843, 6704, 10869, 40, 5369, 3615, 55, 73])
 
     def test_category_count(self):
-        cat = Category.objects.filter()[0]
+        cat = Category.objects.all()[0]
         response = self.client.get(reverse('browse.themes', args=[cat.slug]))
         doc = pq(response.content)
         actual_count = int(doc('hgroup h3').text().split()[0])
@@ -148,7 +149,7 @@ class TestCategoryPages(test_utils.TestCase):
     def test_browsing_urls(self):
         """Every browse page URL exists."""
         for _, slug in amo.ADDON_SLUGS.items():
-            assert reverse('browse.%s' % slug, args=['something'])
+            assert reverse('browse.%s' % slug)
 
     def test_matching_opts(self):
         """Every filter on landing pages is available on listing pages."""
@@ -192,3 +193,24 @@ class TestCategoryPages(test_utils.TestCase):
         doc = pq(self.client.get(url).content)
         s = doc('.featured .item .updated').text()
         assert s.strip().startswith('Added'), s
+
+
+class TestLegacyRedirects(test_utils.TestCase):
+    fixtures = ['base/fixtures']
+
+    def test_types(self):
+        def redirects(from_, to):
+            response = self.client.get('/en-US/firefox' + from_)
+            self.assertRedirects(response, '/en-US/firefox' + to, status_code=301)
+
+        redirects('/browse/type:1', '/extensions/')
+        redirects('/browse/type:1/', '/extensions/')
+        redirects('/browse/type:1/cat:all', '/extensions/')
+        redirects('/browse/type:1/cat:all/', '/extensions/')
+        redirects('/browse/type:1/cat:72', '/extensions/alerts-updates/')
+        redirects('/browse/type:1/cat:72/', '/extensions/alerts-updates/')
+
+        redirects('/browse/type:2', '/themes/')
+        redirects('/browse/type:3', '/language-tools')
+        redirects('/browse/type:4', '/search-engines/')
+        # redirects('/browse/type:7', '/plugins/')

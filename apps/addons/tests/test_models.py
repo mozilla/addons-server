@@ -229,6 +229,8 @@ class TestCategoryModel(test_utils.TestCase):
     def test_category_url(self):
         """Every type must have a url path for its categories."""
         for t in amo.ADDON_TYPE.keys():
+            if t == amo.ADDON_DICT:
+                continue  # Language packs don't have categories.
             cat = Category(type=AddonType(id=t), slug='omg')
             assert cat.get_url_path()
 

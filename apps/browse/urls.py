@@ -6,7 +6,7 @@ from . import views
 
 urlpatterns = patterns('',
     url('^language-tools$', views.language_tools,
-        name='browse.language_tools'),
+        name='browse.language-tools'),
 
     url('^themes/(?P<category>[^/]+)?$', views.themes,
         name='browse.themes'),
@@ -20,6 +20,9 @@ urlpatterns = patterns('',
     url('^personas/(?P<category>[^/]+)?$', views.personas,
         name='browse.personas'),
 
-    url('^extensions/(?:(?P<category>[^/]+)/)?$', views.search_providers,
-        name='browse.search-providers'),
+    url('^search-engines/(?:(?P<category>[^/]+)/)?$', views.search_engines,
+        name='browse.search-engines'),
+
+    url('^browse/type:(?P<type_>\d)(?:/cat:(?P<category>[^/]+)/?)?',
+        views.legacy_redirects),
 )

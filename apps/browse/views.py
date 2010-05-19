@@ -1,8 +1,9 @@
 import collections
 import itertools
 
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponsePermanentRedirect
 from django.shortcuts import get_object_or_404
+from django.views.decorators.cache import cache_page
 
 from tower import ugettext as _, ugettext_lazy as _lazy
 import jingo
@@ -10,6 +11,7 @@ import product_details
 
 import amo.utils
 from addons.models import Addon, Category
+from amo.urlresolvers import reverse
 from addons.views import HomepageFilter
 from translations.query import order_by_translation
 
@@ -291,5 +293,16 @@ def personas(request, category=None):
                          'search_cat': search_cat})
 
 
-def search_providers(request, category=None):
+def search_engines(request, category=None):
     return HttpResponse("Search providers browse page stub.")
+
+
+@cache_page(60 * 60 * 24 * 365)
+def legacy_redirects(request, type_, category=None):
+    type_slug = amo.ADDON_SLUGS.get(int(type_), 'extensions')
+    if not category or category == 'all':
+        url = reverse('browse.%s' % type_slug)
+    else:
+        cat = get_object_or_404(Category.objects, id=category)
+        url = reverse('browse.%s' % type_slug, args=[cat.slug])
+    return HttpResponsePermanentRedirect(url)

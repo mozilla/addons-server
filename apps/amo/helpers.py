@@ -73,7 +73,7 @@ def sidebar(app):
     shown_types = {
         amo.ADDON_PERSONA: base + 'personas/',
         amo.ADDON_DICT: base + 'browse/type:3',
-        # amo.ADDON_DICT: urlresolvers.reverse('browse.language_tools'),
+        # amo.ADDON_DICT: urlresolvers.reverse('browse.language-tools'),
         amo.ADDON_SEARCH: base + 'browse/type:4',
         amo.ADDON_PLUGIN: base + 'browse/type:7',
         amo.ADDON_THEME: urlresolvers.reverse('browse.themes'),
