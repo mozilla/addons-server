@@ -2,25 +2,14 @@
       <div class="section">
         <div class="primary">
           <form class="languages go" method="get" action="">
-            <p>
-              <label for="language">{{ _('Other languages:') }}</label>
-              <select id="language" name="lang" dir="ltr">
-                {% for code, name in LANGUAGES|dictsort -%}
-                  <option value="{{ code|lower }}" {{ code|lower|ifeq(LANG, "selected") }}>
-                    {{ name }}
-                  </option>
-                {%- endfor %}
-              </select>
-            </p>
-            <p id="locale-only-wrapper">
-              <label for="locale-only">
-                <input id="locale-only" type="checkbox"
-                {% if request.XENOPHOBIA %}checked="checked"{% endif %}
-                name="locale-only">
-                {# L10n: {0} is the name of a language #}
-                {{ _('show only {0} add-ons')|f(LANGUAGES.get(LANG.lower())) }}
-              </label>
-            </p>
+            <label for="language">{{ _('Other languages:') }}</label>
+            <select id="language" name="lang" dir="ltr">
+              {% for code, name in LANGUAGES|dictsort -%}
+                <option value="{{ code|lower }}" {{ code|lower|ifeq(LANG, "selected") }}>
+                  {{ name }}
+                </option>
+              {%- endfor %}
+            </select>
             <button type="submit">{{ _('Go') }}</button>
           </form>
           <p>{% trans legalurl="http://www.mozilla.com/en-US/about/legal.html#site", ccurl="http://creativecommons.org/licenses/by-sa/3.0/" -%}
