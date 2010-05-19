@@ -1,5 +1,4 @@
 from collections import defaultdict
-import logging
 import random
 import re
 import socket
@@ -8,6 +7,7 @@ from django.conf import settings
 from django.utils import translation
 from django.utils.encoding import smart_unicode
 
+import commonware.log
 import sphinxapi as sphinx
 
 import amo
@@ -27,7 +27,7 @@ MAX_TAGS = 10             # Number of tags we return by default.
 SPHINX_HARD_LIMIT = 1000  # A hard limit that sphinx imposes.
 THE_FUTURE = 9999999999
 
-log = logging.getLogger('z.sphinx')
+log = commonware.log.getLogger('z.sphinx')
 
 
 def extract_filters(term, kwargs):

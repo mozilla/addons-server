@@ -1,13 +1,13 @@
-import logging
 from django import forms
 from django.contrib.auth import forms as auth_forms
 from django.forms.util import ErrorList
 
+import commonware.log
 from tower import ugettext as _
 
 from . import models
 
-log = logging.getLogger('z.users')
+log = commonware.log.getLogger('z.users')
 
 
 class AuthenticationForm(auth_forms.AuthenticationForm):

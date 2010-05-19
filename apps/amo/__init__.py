@@ -1,15 +1,14 @@
 """
 Miscellaneous helpers that make Django compatible with AMO.
 """
-import logging
-
 from licenses import license_text
 
+import commonware.log
 from tower import ugettext_lazy as _
 
 
 # Every app should have its own logger.
-log = logging.getLogger('z.amo')
+log = commonware.log.getLogger('z.amo')
 
 
 def cached_property(*args, **kw):

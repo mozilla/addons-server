@@ -1,6 +1,5 @@
 from datetime import datetime
 import hashlib
-import logging
 import random
 import re
 import string
@@ -12,14 +11,15 @@ from django.core.mail import send_mail
 from django.db import models
 from django.template import Context, loader
 
+import commonware.log
+from tower import ugettext as _
+
 import amo
 import amo.models
-
 from amo.urlresolvers import reverse
-from tower import ugettext as _
 from translations.fields import PurifiedField
 
-log = logging.getLogger('z.users')
+log = commonware.log.getLogger('z.users')
 
 
 def get_hexdigest(algorithm, salt, raw_password):

@@ -3,11 +3,6 @@ import logging.handlers
 
 from django.conf import settings
 
-import commonware.log
-
-# Override logging.Logger to add REMOTE_ADDR to our log formats.
-logging.setLoggerClass(commonware.log.Logger)
-
 # Loggers created under the "z" namespace, e.g. "z.caching", will inherit the
 # configuration from the base z logger.
 log = logging.getLogger('z')

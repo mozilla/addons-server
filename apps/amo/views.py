@@ -1,4 +1,3 @@
-import logging
 import random
 import socket
 import urllib2
@@ -9,6 +8,7 @@ from django.core.cache import cache, parse_backend_uri
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 
+import commonware.log
 import jingo
 import phpserialize as php
 
@@ -17,7 +17,7 @@ from api.views import render_xml
 from stats.models import Contribution, ContributionError, SubscriptionEvent
 from . import log
 
-paypal_log = logging.getLogger('z.paypal')
+paypal_log = commonware.log.getLogger('z.paypal')
 
 
 @never_cache

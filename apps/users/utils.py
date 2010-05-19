@@ -1,11 +1,12 @@
 import base64
 import hashlib
-import logging
 import time
 
 from django.conf import settings
 
-log = logging.getLogger('z.users')
+import commonware.log
+
+log = commonware.log.getLogger('z.users')
 
 
 class EmailResetCode():

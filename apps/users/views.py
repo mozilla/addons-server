@@ -1,4 +1,3 @@
-import logging
 import random
 import string
 from django import http
@@ -10,9 +9,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.template import Context, loader
 
+import commonware.log
+import jingo
 from tower import ugettext as _
 
-import jingo
 
 from access import acl
 import amo
@@ -24,7 +24,7 @@ from .signals import logged_out
 from .users import forms
 from .utils import EmailResetCode
 
-log = logging.getLogger('z.users')
+log = commonware.log.getLogger('z.users')
 
 
 def confirm(request, user_id, token):

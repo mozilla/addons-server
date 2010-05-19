@@ -1,15 +1,15 @@
-import logging
 from time import time
 
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.utils.encoding import smart_str
 
+import commonware.log
 import phpserialize
 
 from users.models import UserProfile
 
-log = logging.getLogger('z.cake')
+log = commonware.log.getLogger('z.cake')
 
 
 class SessionBackend:
