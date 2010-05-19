@@ -1,14 +1,17 @@
 """
 Middleware to help interface with the legacy Cake PHP client.
 """
+import logging
+
 from django.contrib import auth
 
 from users.signals import logged_out
-
 from .models import Session
 from .utils import handle_logout
 
 logged_out.connect(handle_logout)
+
+log = logging.getLogger('z.cake')
 
 
 class CakeCookieMiddleware(object):
@@ -24,7 +27,7 @@ class CakeCookieMiddleware(object):
         valid.
         """
         if request.user.is_authenticated():
-           return
+            return
 
         id = request.COOKIES.get('AMOv3')
 
@@ -36,3 +39,15 @@ class CakeCookieMiddleware(object):
                     auth.login(request, user)
             except Session.DoesNotExist:
                 return
+
+
+class CookieCleaningMiddleware(object):
+    "Removes old remora-specific cookies that are long dead."
+
+    def process_response(self, request, response):
+        # TODO(davedash): Remove this method when we no longer get any of these
+        # loggged.
+        if request.COOKIES.get('locale-only'):
+            log.info("Removed a locale-only cookie.")
+            response.delete_cookie('locale-only')
+        return response

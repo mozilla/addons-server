@@ -178,6 +178,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
 
     'cake.middleware.CakeCookieMiddleware',
+    'cake.middleware.CookieCleaningMiddleware',
+
     # This should come after authentication middleware
     'access.middleware.ACLMiddleware',
 )
@@ -419,4 +421,3 @@ CUSTOM_DUMPS = {
                   'files.file'),
     }
 }
-
