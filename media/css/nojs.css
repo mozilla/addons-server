@@ -104,3 +104,7 @@
 .install-button .button.platform {
     display: inherit;
 }
+
+form.go button {
+    display: inherit;
+}

@@ -4265,3 +4265,10 @@ padding:1em 52px 1em 1em;
     height: 150px;
     width: 150px;
 }
+
+/* We hide the <button> for these forms and
+ * use js to submit when they change.
+ * */
+form.go button {
+    display: none;
+}
