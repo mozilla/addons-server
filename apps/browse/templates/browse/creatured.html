@@ -7,7 +7,8 @@
 {% block content %}
 <header>
   {{ breadcrumbs([(url('browse.extensions'), _('Extensions')),
-                  (url('browse.extensions', category.slug), category.name)]) }}
+                  (url('browse.extensions', category.slug), category.name),
+                  (None, _('Featured Add-ons'))]) }}
   <h2>{{ _('{0}: Featured Add-ons')|f(category.name) }}</h2>
 </header>
 <div class="featured listing">

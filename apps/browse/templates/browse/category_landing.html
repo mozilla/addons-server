@@ -12,7 +12,7 @@
 
 {% block content %}
 <header>
-  {{ breadcrumbs([(None, _('Extensions'))]) }}
+  {{ breadcrumbs([(url('browse.extensions'), _('Extensions')), (None, category.name)]) }}
   <h2>{{ category.name }}</h2>
 </header>
 
