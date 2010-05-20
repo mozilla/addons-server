@@ -26,7 +26,7 @@ Installing through pip
 
 You can get a development environment with ::
 
-    pip install -r requirements/dev.txt requirements/compiled.txt
+    pip install -r requirements/dev.txt -r requirements/compiled.txt
 
 
 Using the vendor library

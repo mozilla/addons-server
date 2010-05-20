@@ -142,7 +142,7 @@ system-wide.
 zamboni uses a requirements file to tell pip what to install.  Get everything
 you need by running ::
 
-    pip install -r requirements/dev.txt requirements/compiled.txt
+    pip install -r requirements/dev.txt -r requirements/compiled.txt
 
 from the root of your zamboni checkout.
 
