@@ -1,16 +1,16 @@
-import logging
+from django.db import connections
 
+import commonware.log
+import multidb
 from celery.decorators import task
 from celery.messaging import establish_connection
-from django.db import connections
-import multidb
 
-from .models import UserProfile
+import cronjobs
 from amo import VALID_STATUSES
 from amo.utils import chunked
-import cronjobs
+from .models import UserProfile
 
-task_log = logging.getLogger('z.task')
+task_log = commonware.log.getLogger('z.task')
 
 
 @cronjobs.register

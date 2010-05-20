@@ -1,14 +1,14 @@
-import logging
 import time
 import urllib2
 
+import commonware.log
 from pyquery import PyQuery as pq
 
 import cronjobs
 
 from .models import BlogCacheRyf
 
-log = logging.getLogger('z.cron')
+log = commonware.log.getLogger('z.cron')
 
 
 @cronjobs.register

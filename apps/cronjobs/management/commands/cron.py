@@ -1,12 +1,13 @@
-import logging
 import sys
 
 from django.conf import settings
 from django.core.management.base import BaseCommand
 
+import commonware.log
+
 import cronjobs
 
-log = logging.getLogger('z.cron')
+log = commonware.log.getLogger('z.cron')
 
 
 class Command(BaseCommand):

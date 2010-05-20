@@ -1,8 +1,9 @@
 import datetime
-import logging
 
 from django.db import connection, transaction
 from django.db.models import Count
+
+import commonware.log
 from celery.decorators import task
 from celery.messaging import establish_connection
 
@@ -11,7 +12,7 @@ from bandwagon.models import (CollectionSubscription,
                               CollectionVote)
 import cronjobs
 
-task_log = logging.getLogger('z.task')
+task_log = commonware.log.getLogger('z.task')
 
 
 @cronjobs.register

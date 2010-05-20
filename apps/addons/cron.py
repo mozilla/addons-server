@@ -1,8 +1,7 @@
-import logging
-
 from django.db import connection, connections, transaction
 from django.db.models import Max, Q, F
 
+import commonware.log
 from celery.decorators import task
 from celery.messaging import establish_connection
 import multidb
@@ -13,8 +12,8 @@ import cronjobs
 
 from .models import Addon
 
-log = logging.getLogger('z.cron')
-task_log = logging.getLogger('z.task')
+log = commonware.log.getLogger('z.cron')
+task_log = commonware.log.getLogger('z.task')
 
 
 @cronjobs.register

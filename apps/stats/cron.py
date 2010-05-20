@@ -1,24 +1,24 @@
 import datetime
-import logging
 
 from django.db import connection, transaction
 from django.db.models import Max, Sum
 
+import commonware.log
 from celery.decorators import task
 from celery.messaging import establish_connection
 
-from .models import (AddonCollectionCount, CollectionCount,
-                     DownloadCount, UpdateCount)
-from addons.models import Addon
 import amo
+import cronjobs
+from addons.models import Addon
 from amo.utils import chunked
 from bandwagon.models import Collection, CollectionAddon
-import cronjobs
 from reviews.models import Review
 from versions.models import Version
 from users.models import UserProfile
+from .models import (AddonCollectionCount, CollectionCount,
+                     DownloadCount, UpdateCount)
 
-task_log = logging.getLogger('z.task')
+task_log = commonware.log.getLogger('z.task')
 
 
 @cronjobs.register

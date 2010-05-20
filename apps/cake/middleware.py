@@ -1,9 +1,9 @@
 """
 Middleware to help interface with the legacy Cake PHP client.
 """
-import logging
-
 from django.contrib import auth
+
+import commonware.log
 
 from users.signals import logged_out
 from .models import Session
@@ -11,7 +11,7 @@ from .utils import handle_logout
 
 logged_out.connect(handle_logout)
 
-log = logging.getLogger('z.cake')
+log = commonware.log.getLogger('z.cake')
 
 
 class CakeCookieMiddleware(object):

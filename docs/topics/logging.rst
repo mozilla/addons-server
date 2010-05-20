@@ -70,13 +70,3 @@ because we can turn up the logging output for a particular section of zamboni
 without becoming overwhelmed with logging from all other parts.
 
 Complete logging docs: http://docs.python.org/library/logging.html
-
-
-commonware.log vs. logging
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-We use ``commonware.log.getLogger`` for loggers in the request/response cycle.
-This logger injects the current user's IP address into the log messages.
-
-For logging inside queue tasks or cron jobs, we use ``logging.getLogger`` since
-these won't have an associated request or IP address.
