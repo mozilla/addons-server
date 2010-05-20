@@ -2238,7 +2238,7 @@ form.favorite {
 /* @group Teaser Header */
 
 .section-teaser .teaser-header {
-    background: url(../../img/amo2009/bg/listing-footer.gif) repeat-x top left;
+    background: url(../../img/amo2009/bg/listing-footer.gif) repeat-x top left #fff;
     -webkit-border-bottom-right-radius: 3px;
     -webkit-border-bottom-left-radius: 3px;
     -moz-border-radius: 0 0 3px 3px;
