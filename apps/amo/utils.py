@@ -69,9 +69,18 @@ def sorted_groupby(seq, key):
     return itertools.groupby(sorted(seq, key=key), key=key)
 
 
-def paginate(request, queryset, per_page=20):
-    """Get a Paginator, abstracting some common paging actions."""
+def paginate(request, queryset, per_page=20, count=None):
+    """
+    Get a Paginator, abstracting some common paging actions.
+
+    If you pass ``count``, that value will be used instead of calling
+    ``.count()`` on the queryset.  This can be good if the queryset would
+    produce an expensive count query.
+    """
     p = paginator.Paginator(queryset, per_page)
+
+    if count is not None:
+        p._count = count
 
     # Get the page from the request, make sure it's an int.
     try:
