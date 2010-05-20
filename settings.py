@@ -261,6 +261,8 @@ DOMAIN_METHODS = {
             'tower.management.commands.extract.extract_tower_template'),
     ],
     'messages': [
+        ('apps/firefoxcup/**',
+            'ignore'),
         ('apps/**.py',
             'tower.management.commands.extract.extract_tower_python'),
         ('**/templates/**.html',
@@ -279,6 +281,13 @@ DOMAIN_METHODS = {
         ('media/js/zamboni/**.js', 'javascript'),
     ],
 }
+
+# These domains will not be merged into z-keys.pot and will use separate PO 
+# files.
+STANDALONE_DOMAINS = [
+    'javascript',
+    'firefoxcup',
+    ]
 
 # Bundles is a dictionary of two dictionaries, css and js, which list css files
 # and js files that can be bundled together by the minify app.
