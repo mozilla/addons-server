@@ -13,8 +13,12 @@ Requirements
 
 To get started, you'll need:
  * Python 2.6
- * MySQL (plus mysql development headers for building mysql-python)
+ * MySQL
  * libxml2 (for building lxml, used in tests)
+ * libmemcached
+
+If you're on a foolish Linux distro that splits all its packages into ``-dev``
+and normal stuff, make sure you're getting all those ``-dev`` packages too.
 
 
 Use the Source
@@ -35,8 +39,7 @@ The following packages will get you set for python:
 
 ::
 
-    brew install python
-    brew install libxml2
+    brew install python libxml2 mysql libmemcached
 
 .. _Homebrew: http://github.com/mxcl/homebrew
 
