@@ -1524,6 +1524,10 @@ form .error .note.error {
     float: left;
 }
 
+.html-rtl .listing .item h3 {
+    float: right;
+}
+
 .item .install,
 .results .item .install {
     float: left;
