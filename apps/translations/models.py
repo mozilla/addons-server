@@ -56,6 +56,14 @@ class Translation(caching.base.CachingMixin, models.Model):
         else:
             return cmp(self.localized_string, other)
 
+    def clean(self):
+        if self.localized_string:
+            self.localized_string = self.localized_string.strip()
+
+    def save(self, **kwargs):
+        self.clean()
+        return super(Translation, self).save(**kwargs)
+
     @property
     def cache_key(self):
         return self._cache_key(self.id)
@@ -111,11 +119,8 @@ class PurifiedTranslation(Translation):
         return unicode(self)
 
     def clean(self):
+        super(PurifiedTranslation, self).clean()
         self.localized_string_clean = bleach.bleach(self.localized_string)
-
-    def save(self, **kwargs):
-        self.clean()
-        return super(PurifiedTranslation, self).save(**kwargs)
 
     def __truncate__(self, length, killwords, end):
         return utils.truncate(self.localized_string, length, killwords, end)

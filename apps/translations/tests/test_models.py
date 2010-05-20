@@ -18,6 +18,14 @@ from translations.query import order_by_translation
 def ids(qs):
     return [o.id for o in qs]
 
+class TranslationFixturelessTestCase(test.TestCase):
+    "We want to be able to rollback stuff."
+
+    def test_whitespace(self):
+        t = Translation(localized_string='     khaaaaaan!    ', id=999 )
+        t.save()
+        eq_('khaaaaaan!', t.localized_string)
+
 
 class TranslationSequenceTestCase(test.TestCase):
     """
