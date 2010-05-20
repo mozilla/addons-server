@@ -283,7 +283,9 @@ def personas(request, category=None):
     else:
         template = 'category_landing.html'
 
-    addons = amo.utils.paginate(request, filter.qs, 30)
+    # Pass the count from base instead of letting it come from
+    # filter.qs.count() since that would join against personas.
+    addons = amo.utils.paginate(request, filter.qs, 30, count=base.count())
 
     search_cat = '%s,%s' % (TYPE, category.id if category else 0)
 

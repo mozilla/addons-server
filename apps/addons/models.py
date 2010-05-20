@@ -12,7 +12,7 @@ import caching.base as caching
 
 import amo.models
 from amo.fields import DecimalCharField
-from amo.utils import urlparams, sorted_groupby
+from amo.utils import urlparams, sorted_groupby, JSONEncoder
 from amo.urlresolvers import reverse
 from reviews.models import Review
 from stats.models import Contribution as ContributionStats, ShareCountTotal
@@ -200,6 +200,8 @@ class Addon(amo.models.ModelBase):
     @amo.cached_property
     def current_version(self):
         """Retrieves the latest version of an addon."""
+        if self.type_id == amo.ADDON_PERSONA:
+            return
         try:
             if self.status == amo.STATUS_PUBLIC:
                 status = [self.status]
@@ -228,6 +230,8 @@ class Addon(amo.models.ModelBase):
             return
 
         addon_dict = dict((a.id, a) for a in addons)
+        personas = [a for a in addons if a.type_id == amo.ADDON_PERSONA]
+        addons = [a for a in addons if a.type_id != amo.ADDON_PERSONA]
         # TODO(jbalogh): It would be awesome to get the versions in one
         # (or a few) queries, but we'll accept the overhead here to roll up
         # some version queries.
@@ -241,6 +245,13 @@ class Addon(amo.models.ModelBase):
              .order_by('addon_id', 'addonuser__position'))
         for addon_id, users in itertools.groupby(q, key=lambda u: u.addon_id):
             addon_dict[addon_id].listed_authors = list(users)
+
+        for persona in Persona.objects.no_cache().filter(addon__in=personas):
+            addon_dict[persona.addon_id].persona = persona
+            addon_dict[persona.addon_id].listed_authors = []
+
+        # Personas need categories for the JSON dump.
+        Category.transformer(personas)
 
     @amo.cached_property
     def current_beta_version(self):
@@ -413,21 +424,20 @@ class Persona(caching.CachingMixin, models.Model):
         addon = self.addon
         return json.dumps({
             'id': unicode(self.persona_id),  # Personas dislikes ints
-            'name': unicode(addon.name),
+            'name': addon.name,
             'accentcolor': hexcolor(self.accentcolor),
             'textcolor': hexcolor(self.textcolor),
-            'category': (unicode(addon.categories.all()[0].name) if
-                         addon.categories.all() else ''),
-            'author': (addon.listed_authors[0].display_name if
-                       addon.listed_authors else self.author),
-            'description': unicode(addon.description),
+            'category': (addon.all_categories[0].name if
+                         addon.all_categories else ''),
+            'author': self.author,
+            'description': addon.description,
             'header': self._image_url(self.header, ssl=False),
             'footer': self._image_url(self.footer, ssl=False),
             'headerURL': self._image_url(self.header, ssl=False),
             'footerURL': self._image_url(self.footer, ssl=False),
             'previewURL': self.preview_url,
             'iconURL': self.thumb_url,
-        }, separators=(',', ':'))
+        }, separators=(',', ':'), cls=JSONEncoder)
 
 
 class AddonCategory(caching.CachingMixin, models.Model):
@@ -577,6 +587,14 @@ class Category(amo.models.ModelBase):
         except KeyError:
             type = amo.ADDON_SLUGS[amo.ADDON_EXTENSION]
         return reverse('browse.%s' % type, args=[self.slug])
+
+    @staticmethod
+    def transformer(addons):
+        addon_dict = dict((a.id, a) for a in addons)
+        qs = (Category.uncached.filter(addons__in=addons)
+              .extra(select={'addon_id': 'addons_categories.addon_id'}))
+        for addon_id, cats in sorted_groupby(qs, 'addon_id'):
+            addon_dict[addon_id].all_categories = list(cats)
 
 
 class CompatibilityReport(models.Model):
