@@ -17,7 +17,7 @@
 {% block content %}
 <div class="primary" role="main">
   <header>
-    {{ breadcrumbs([(None, _('Personas'))]) }}
+    {{ breadcrumbs([(url('browse.personas'), _('Personas')), (None, category.name)]) }}
     <h2>{{ category.name }}</h2>
   </header>
 
