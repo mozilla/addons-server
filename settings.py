@@ -308,6 +308,12 @@ MINIFY_BUNDLES = {
         'zamboni/discovery-pane': (
             'css/zamboni/discovery-pane.css',
         ),
+        # CSS files specific to /firefoxcup/
+        'firefoxcup': (
+            'css/firefoxcup/reset-fonts-grids.css',
+            'css/main.css',
+            'css/firefoxcup/firefoxcup.css',
+        ),
     },
     'js': {
         # JS files common to the entire site.
@@ -339,6 +345,15 @@ MINIFY_BUNDLES = {
 
             # Collections
             'js/zamboni/collections.js',
+        ),
+        # JS files specific to /firefoxcup/
+        'firefoxcup': (
+            'js/zamboni/jquery-1.4.2.min.js',
+            'js/firefoxcup/yahoo-dom-event.js',
+            'js/firefoxcup/animation-min.js',
+            'js/zamboni/jquery.hoverIntent.min.js',
+            'js/zamboni/personas.js',
+            'js/firefoxcup/firefoxcup.js',
         ),
     }
 }

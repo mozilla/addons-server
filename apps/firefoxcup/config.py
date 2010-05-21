@@ -1,5 +1,6 @@
 # coding=utf8
 from tower import ugettext as _
+from settings import MEDIA_URL
 
 tags = {
     'all': [
@@ -24,77 +25,170 @@ tags = {
     'sl': 'Svetovni pokal',
 }
 
-def flag(name):
-    return 'img/firefoxcup/flags/%s.png' % name
-
-teams = {
-    'algeria': {
-        'name': _('Algeria')}, 
-    'argentina': {
-        'name': _('Argentina')},
-    'australia': {
-        'name': _('Australia')},
-    'brazil': {
-        'name': _('Brazil')},
-    'cameroon': {
-        'name': _('Cameroon')},
-    'chile': {
-        'name': _('Chile')},
-    'cote': {
-        'name': _("Cote d'Ivoire")},
-    'denmark': {
-        'name': _('Denmark')},
-    'england': {
-        'name': _('England')},
-    'france': {
-        'name': _('France')},
-    'germany': {
-        'name': _('Germany')},
-    'ghana': {
-        'name': _('Ghana')},
-    'greece': {
-        'name': _('Greece')},
-    'honduras': {
-        'name': _('Honduras')},
-    'italy': {
-        'name': _('Italy')},
-    'japan': {
-        'name': _('Japan')},
-    'mexico': {
-        'name': _('Mexico')},
-    'netherlands': {
-        'name': _('Netherlands')},
-    'korea-dpr': {
-        'name': _('North Korea')},
-    'new-zealand': {
-        'name': _('New Zealand')},
-    'nigeria': {
-        'name': _('Nigeria')},
-    'paraguay': {
-        'name': _('Paraguay')},
-    'portugal': {
-        'name': _('Portugal')},
-    'serbia': {
-        'name': _('Serbia')},
-    'slovakia': {
-        'name': _('Slovakia')},
-    'slovenia': {
-        'name': _('Slovenia')},
-    'south-africa': {
-        'name': _('South Africa')},
-    'korea-republic': {
-        'name': _('South Korea')},
-    'spain': {
-        'name': _('Spain')},
-    'switzerland': {
-        'name': _('Switzerland')},
-    'usa': {
-        'name': _('United States')},
-    'uruguay': {
-        'name': _('Uruguay')}
-}    
-for name in teams:
-    teams[name]['flag'] = 'img/firefoxcup/flags/%s.png' % name
+teams = [
+    {
+        'id': 'algeria',
+        'name': _('Algeria'),
+        'persona': 813,
+    }, 
+    {
+        'id': 'argentina',
+        'name': _('Argentina'),
+        'persona': 813,
+    },
+    {
+        'id': 'australia',
+        'name': _('Australia'),
+        'persona': 813,
+    },
+    {
+        'id': 'brazil',
+        'name': _('Brazil'),
+        'persona': 813,
+    },
+    {
+        'id': 'cameroon',
+        'name': _('Cameroon'),
+        'persona': 813,
+    },
+    {
+        'id': 'chile',
+        'name': _('Chile'),
+        'persona': 813,
+    },
+    {
+        'id': 'cote',
+        'name': _("Cote d'Ivoire"),
+        'persona': 813,
+    },
+    {
+        'id': 'denmark',
+        'name': _('Denmark'),
+        'persona': 813,
+    },
+    {
+        'id': 'england',
+        'name': _('England'),
+        'persona': 813,
+    },
+    {
+        'id': 'france',
+        'name': _('France'),
+        'persona': 813,
+    },
+    {
+        'id': 'germany',
+        'name': _('Germany'),
+        'persona': 813,
+    },
+    {
+        'id': 'ghana',
+        'name': _('Ghana'),
+        'persona': 813,
+    },
+    {
+        'id': 'greece',
+        'name': _('Greece'),
+        'persona': 813,
+    },
+    {
+        'id': 'honduras',
+        'name': _('Honduras'),
+        'persona': 813,
+    },
+    {
+        'id': 'italy',
+        'name': _('Italy'),
+        'persona': 813,
+    },
+    {
+        'id': 'japan',
+        'name': _('Japan'),
+        'persona': 813,
+    },
+    {
+        'id': 'mexico',
+        'name': _('Mexico'),
+        'persona': 813,
+    },
+    {
+        'id': 'netherlands',
+        'name': _('Netherlands'),
+        'persona': 813,
+    },
+    {
+        'id': 'korea-dpr',
+        'name': _('North Korea'),
+        'persona': 813,
+    },
+    {
+        'id': 'new-zealand',
+        'name': _('New Zealand'),
+        'persona': 813,
+    },
+    {
+        'id': 'nigeria',
+        'name': _('Nigeria'),
+        'persona': 813,
+    },
+    {
+        'id': 'paraguay',
+        'name': _('Paraguay'),
+        'persona': 813,
+    },
+    {
+        'id': 'portugal',
+        'name': _('Portugal'),
+        'persona': 813,
+    },
+    {
+        'id': 'serbia',
+        'name': _('Serbia'),
+        'persona': 813,
+    },
+    {
+        'id': 'slovakia',
+        'name': _('Slovakia'),
+        'persona': 813,
+    },
+    {
+        'id': 'slovenia',
+        'name': _('Slovenia'),
+        'persona': 813,
+    },
+    {
+        'id': 'south-africa',
+        'name': _('South Africa'),
+        'persona': 813,
+    },
+    {
+        'id': 'korea-republic',
+        'name': _('South Korea'),
+        'persona': 813,
+    },
+    {
+        'id': 'spain',
+        'name': _('Spain'),
+        'persona': 813,
+    },
+    {
+        'id': 'switzerland',
+        'name': _('Switzerland'),
+        'persona': 813,
+    },
+    {
+        'id': 'usa',
+        'name': _('United States'),
+        'persona': 813,
+    },
+    {
+        'id': 'uruguay',
+        'name': _('Uruguay'),
+        'persona': 813,
+    }
+]
+for team in teams:
+    team['flag'] = '%simg/firefoxcup/flags/%s.png' % (MEDIA_URL, team['id'])
 
 twitter_languages = (
     'ar','da','de','en','es','fa','fi','fr','hu',

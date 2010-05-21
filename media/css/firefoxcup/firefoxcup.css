@@ -46,7 +46,6 @@ body, h1, h2, h3, h4, h5, h6 {
 
 #header {
 	float: right;
-	width: 300px;
 }
 
 #header li {
@@ -54,6 +53,7 @@ body, h1, h2, h3, h4, h5, h6 {
 	border-left: 1px solid #209b1e;
 	padding: 0 10px;
 	margin-top: 15px;
+	height: 25px;
 }
 
 #header li.first {
@@ -68,6 +68,18 @@ body, h1, h2, h3, h4, h5, h6 {
 #header a:active {
 	color: #fff;
 	text-decoration: underline;
+	display: block;
+	padding: 5px 0;
+}
+
+#header .languages label {
+	color: #fff;
+	font-weight: normal;
+}
+
+#header .languages button,
+#header .languages select {
+	vertical-align: middle;
 }
 
 /* }}} */
@@ -86,7 +98,7 @@ body, h1, h2, h3, h4, h5, h6 {
 	font-size: 24px;
 	color: #fff;
 	width: 330px;
-	margin-top: 90px;
+	margin-top: 60px;
 	margin-right: 35px;
 	line-height: 1.5;
 }
@@ -137,8 +149,9 @@ body, h1, h2, h3, h4, h5, h6 {
 #main-content {
 	clear: both;
 	float: left;
+	display: inline;
 	width: 575px;
-	padding: 35px 15px 35px 35px;
+	padding: 35px 15px 15px 35px;
 	margin:  0 35px 25px 25px;
 	background: #fff;
 	color: #333;
@@ -148,9 +161,7 @@ body, h1, h2, h3, h4, h5, h6 {
 	border-radius: 10px;
 	-moz-box-shadow: 1px 1px 2px rgba(0,0,0,0.1), 0 -20px 45px rgba(0,0,0,0.08) inset;
 	-webkit-box-shadow: 1px 1px 2px rgba(0,0,0,0.1), 0 -20px 45px rgba(0,0,0,0.08) inset;
-}
-
-#main-content {
+	min-height: 300px;
 	background: #fff url(../../img/firefoxcup/preview-uk.jpg) 10px 100px no-repeat;
 }
 
@@ -173,6 +184,7 @@ body, h1, h2, h3, h4, h5, h6 {
 	font-size: 13px;
 	float: left;
 	margin-left: 5px;
+  margin-top: 5px;
 	padding-right: 25px;
 	background: url(../../img/firefoxcup/arrow.png) 100% 50% no-repeat;
 }
@@ -191,13 +203,16 @@ body, h1, h2, h3, h4, h5, h6 {
 	display: block;
 }
 
+#personas-nav li a.selected {
+	color: #666;
+}
+
 #personas-nav li.first a {
 	border-left: 0;
 }
 
 .pager-content {
 	clear: both;
-	padding: 20px 0 0 0;
 }
 
 ul.personas-list {
@@ -214,6 +229,14 @@ ul.personas-list {
 	height: 50px;
 }
 
+.persona-inner {
+  padding: 0;
+}
+
+.persona-hover .persona-inner {
+  background: none;
+}
+
 #personas p {
 	margin-left: 5px;
 	padding: 20px 0;
@@ -227,13 +250,31 @@ ul.personas-list {
 	width: 275px;
 }
 
-#sidebar .sub-feature {
+#sidebar .subfeatures li {
+}
+
+#sidebar .subfeatures li a:link,
+#sidebar .subfeatures li a:visited,
+#sidebar .subfeatures li a:hover,
+#sidebar .subfeatures li a:active {
+	color: #333;
+	text-decoration: none;
+}
+
+#sidebar .subfeatures li a:hover,
+#sidebar .subfeatures li a:active {
+	color: #000;
+	border-color: #ccc;
+}
+
+#sidebar .subfeatures li a {
+	display: block;
 	padding: 17px 20px 20px 20px;
-	margin: 0 0 20px 0;
+	padding-left: 75px;
 	background: #fff;
 	background-repeat: no-repeat;
 	background-position: 10px 20px;
-	color: #333;
+	margin: 0 0 20px 0;
 	border: 1px solid #eee;
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
@@ -242,26 +283,55 @@ ul.personas-list {
 	-webkit-box-shadow: 1px 1px 2px rgba(0,0,0,0.1), 0 -20px 45px rgba(0,0,0,0.08) inset;
 }
 
-#sidebar .sub-feature h3 {
+#sidebar .subfeatures span.title {
 	font-size: 22px;
 }
 
-.footiefox #sidebar #featured { background-image: url(../../img/firefoxcup/footiefox.png); }
-
-.footiefox #sidebar .sub-feature #featured-footiefox {
+#sidebar .subfeatures span {
 	display: block;
-	padding-left: 55px;
 }
 
-#sidebar #email {
+#sidebar .subfeatures li#featured a {
+
+	display: block;
+	min-height: 80px;
+}
+
+#sidebar .subfeatures li a#featured-footiefox {
+	background-image: url(../../img/firefoxcup/footiefox.png);
+}
+
+#sidebar .subfeatures li a#featured-rockyourfirefox {
+	background-image: url(../../img/firefoxcup/rockyourfirefox.png);
+	background-position: 0 0;
+}
+
+#sidebar .subfeatures li a#featured-amo {
+	background-image: url(../../img/firefoxcup/addons.png);
+	background-position: 10px 20px;
+}
+
+#sidebar #email a {
 	background-image: url(../../img/firefoxcup/email.png);
-	padding-left: 75px;
+	min-height: 62px;
 }
 
-#sidebar #facebook {
+#sidebar #facebook a {
 	background-image: url(../../img/firefoxcup/facebook.png);
-	padding-left: 75px;
+	min-height: 54px;
 }
+
+.default #sidebar .subfeatures li a#featured-footiefox { display: block; }
+.default #sidebar .subfeatures li a#featured-rockyourfirefox,
+.default #sidebar .subfeatures li a#featured-amo { display: none; }
+
+.rockyourfirefox #sidebar .subfeatures li a#featured-rockyourfirefox { display: block; }
+.rockyourfirefox #sidebar .subfeatures li a#featured-footiefox,
+.rockyourfirefox #sidebar .subfeatures li a#featured-amo { display: none; }
+
+.amo #sidebar .subfeatures li a#featured-amo { display: block; }
+.amo #sidebar .subfeatures li a#featured-footiefox,
+.amo #sidebar .subfeatures li a#featured-rockyourfirefox { display: none; }
 
 /* }}} */
 /* {{{ Teams Personas */
@@ -273,6 +343,7 @@ ul.personas-list {
 
 #secondary-content h2 {
 	font-size: 22px;
+	color: #333;
 }
 
 #teams-section {
@@ -376,6 +447,7 @@ ul.personas-list {
 
 #teams img {
 	display: block;
+	margin: 0 auto;
 }
 
 /* }}} */
@@ -384,6 +456,7 @@ ul.personas-list {
 #tweets {
 	width: 275px;
 	float: left;
+	display: inline;
 	border-collapse: separate;
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
@@ -404,13 +477,32 @@ ul.personas-list {
 	background-image: -moz-linear-gradient(center top, rgb(95,219,87) 0%, rgb(82,196,74) 100%);
 	color: #fff;
 	font-size: 16px;
-	padding: 12px;
+	padding: 4px 12px;
 	-webkit-border-top-left-radius: 10px;
 	-moz-border-radius-topleft: 10px;
 	border-top-left-radius: 10px;
 	-webkit-border-top-right-radius: 10px;
 	-moz-border-radius-topright: 10px;
 	border-top-right-radius: 10px;
+}
+
+#tweets thead th a {
+	display: block;
+	background: url(../../img/firefoxcup/twitter.png) 0 50% no-repeat;
+	padding: 12px 0;
+	padding-left: 50px;
+}
+
+#tweets thead th a:link,
+#tweets thead th a:visited,
+#tweets thead th a:hover,
+#tweets thead th a:active {
+	color: #fff;
+}
+
+#tweets thead th a:hover,
+#tweets thead th a:active {
+	text-decoration: underline;
 }
 
 #tweets thead th img {

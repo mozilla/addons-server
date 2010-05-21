@@ -1,3 +1,9 @@
+// Submit on locale choice
+jQuery(function($) {
+  var f = $('form.languages');
+  f.find('input').change(function(){ this.form.submit(); });
+});
+
 /**
  * Initializes pagers on this page after the document has been loaded
  */

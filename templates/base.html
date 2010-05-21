@@ -12,10 +12,12 @@
 
     <meta charset="utf-8">
 
-    {{ css('common') }}
-    {{ css('zamboni/z') }}
-    <!--[if IE]><link rel="stylesheet" href="{{ MEDIA_URL }}css/ie.css"><![endif]-->
-    <!--[if IE 7]><link rel="stylesheet" href="{{ MEDIA_URL }}css/ie7.css"><![endif]-->
+    {% block site_css %}
+      {{ css('common') }}
+      {{ css('zamboni/z') }}
+      <!--[if IE]><link rel="stylesheet" href="{{ MEDIA_URL }}css/ie.css"><![endif]-->
+      <!--[if IE 7]><link rel="stylesheet" href="{{ MEDIA_URL }}css/ie7.css"><![endif]-->
+    {% endblock %}
 
     {% block extrahead %}{% endblock %}
     <noscript><link rel="stylesheet" href="{{ MEDIA_URL }}css/nojs.css"></noscript>
@@ -76,11 +78,15 @@
     </div>
 
     {# js #}
-    <script src="{{ url('jsi18n') }}/build:{{ BUILD_ID_JS }}"></script>
-    {{ js('common') }}
-    <script async defer src="{{ url('addons.buttons.js') }}/build:{{ BUILD_ID_JS }}"></script>
+    {% block site_js %}
+      <script src="{{ url('jsi18n') }}/build:{{ BUILD_ID_JS }}"></script>
+      {{ js('common') }}
+      <script async defer src="{{ url('addons.buttons.js') }}/build:{{ BUILD_ID_JS }}"></script>
+    {% endblock %}
     {% block js %}{% endblock %}
-    {% include "footer.html" %}
+    {% block footer %}
+      {% include "footer.html" %}
+    {% endblock %}
     {# Webtrends Stats Tracking #}
     <script defer src="{{ MEDIA_URL }}js/webtrends/webtrends-v0.1.js"></script>
     <noscript>

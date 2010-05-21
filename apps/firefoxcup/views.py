@@ -17,5 +17,6 @@ def index(request):
     
     return jingo.render(request, 'firefoxcup/index.html', {
         'tweets': tweets, 
-        'teams': teams})
+        'teams': teams
+    })
 
