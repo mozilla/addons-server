@@ -14,6 +14,7 @@ from nose.tools import eq_
 import api
 import api.utils
 from addons.models import Addon
+import amo
 from amo import helpers
 from search.tests import SphinxTestCase
 from search.utils import stop_sphinx
@@ -83,7 +84,7 @@ class ControlCharacterTest(TestCase):
         self.assertNotContains(request, '')
 
 
-class APITest(TestCase):
+class APITest(amo.tests.TestCase):
 
     fixtures = ['base/fixtures']
 
@@ -163,8 +164,8 @@ class APITest(TestCase):
         self.assertContains(response,
                 "<description>Delicious blah blah blah</description>")
 
-        icon_url = settings.ADDON_ICON_URL % (3615, 1256144332)
-        self.assertContains(response, icon_url + '</icon>')
+        icon_url = settings.ADDON_ICON_URL % (3615, '')
+        self.assertContains(response, "<icon>" + icon_url)
         self.assertContains(response, "<application>")
         self.assertContains(response, "<name>Firefox</name>")
         self.assertContains(response, "<application_id>1</application_id>")
@@ -305,7 +306,7 @@ class APITest(TestCase):
     test_sphinx_off.sphinx = True
 
 
-class ListTest(TestCase):
+class ListTest(amo.tests.TestCase):
     """Tests the list view with various urls."""
     fixtures = ['base/fixtures', 'base/featured']
 

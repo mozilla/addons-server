@@ -93,14 +93,14 @@ class TestUserProfile(test.TestCase):
         """
         addon = Addon.objects.get(id=3615)
         u = UserProfile.objects.get(pk=2519)
-        version = addon.current_version
+        version = addon.get_current_version()
         new_review = Review(version=version, user=u, rating=2, body='hello')
         new_review.save()
         new_reply = Review(version=version, user=u, reply_to=new_review,
                            body='my reply')
         new_reply.save()
 
-        review_list = [ r.pk for r in u.reviews ]
+        review_list = [r.pk for r in u.reviews]
 
         eq_(len(review_list), 1)
         assert new_review.pk in review_list, (

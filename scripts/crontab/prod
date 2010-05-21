@@ -15,6 +15,7 @@ MAILTO=amo-developers@mozilla.org
 #every 3 hours
 20 */3 * * * apache cd /data/amo/www/addons.mozilla.org-remora/bin ; php -f compatibility_report.php
 20 */3 * * * apache cd /data/amo/www/addons.mozilla.org-remora/bin ; /usr/bin/python26 maintenance.py collection_addon_count
+25 */3 * * * apache cd /data/amo_python/src/prod/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron update_addons_current_version
 
 #twice per day
 25 1,13 * * * apache cd /data/amo/www/addons.mozilla.org-remora/bin; /usr/bin/python26 import-personas.py

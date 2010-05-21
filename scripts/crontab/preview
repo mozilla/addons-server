@@ -14,9 +14,11 @@ HOME = /tmp
 35 * * * * cd /data/amo/www/addons.mozilla.org-preview/bin; php -f maintenance.php l10n_rss
 40 * * * * cd /data/amo_python/src/preview/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron fetch_ryf_blog
 
+
 #every 3 hours
 20 */3 * * * cd /data/amo/www/addons.mozilla.org-preview/bin ; php -f compatibility_report.php
 20 */3 * * * cd /data/amo/www/addons.mozilla.org-preview/bin ; /usr/bin/python26 maintenance.py collection_addon_count
+25 */3 * * * cd /data/amo_python/src/preview/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron update_addons_current_version
 
 #twice per day
 25 1,13 * * * cd /data/amo/www/addons.mozilla.org-preview/bin; /usr/bin/python26 import-personas.py

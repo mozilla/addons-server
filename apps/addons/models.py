@@ -162,6 +162,9 @@ class Addon(amo.models.ModelBase):
     authors = models.ManyToManyField('users.UserProfile', through='AddonUser',
                                      related_name='addons')
 
+    current_version = models.ForeignKey(Version, related_name='___ignore',
+                                        db_column='current_version', null=True)
+
     objects = AddonManager()
 
     class Meta:
@@ -197,8 +200,7 @@ class Addon(amo.models.ModelBase):
     def reviews(self):
         return Review.objects.filter(version__addon=self, reply_to=None)
 
-    @amo.cached_property
-    def current_version(self):
+    def get_current_version(self):
         """Retrieves the latest version of an addon."""
         if self.type_id == amo.ADDON_PERSONA:
             return
@@ -224,6 +226,17 @@ class Addon(amo.models.ModelBase):
         except (IndexError, Version.DoesNotExist):
             return None
 
+    def update_current_version(self):
+        "Updates the cached current_version field.  Returns true on update."
+        current_version = self.get_current_version()
+
+        if self.current_version != current_version:
+            self.current_version = current_version
+            self.save()
+            return True
+
+        return False
+
     @staticmethod
     def transformer(addons):
         if not addons:
@@ -232,6 +245,7 @@ class Addon(amo.models.ModelBase):
         addon_dict = dict((a.id, a) for a in addons)
         personas = [a for a in addons if a.type_id == amo.ADDON_PERSONA]
         addons = [a for a in addons if a.type_id != amo.ADDON_PERSONA]
+
         # TODO(jbalogh): It would be awesome to get the versions in one
         # (or a few) queries, but we'll accept the overhead here to roll up
         # some version queries.

@@ -9,6 +9,7 @@ from pyquery import PyQuery as pq
 import test_utils
 
 import amo
+import amo.tests
 from amo.urlresolvers import reverse
 from amo.helpers import urlparams
 from addons.models import Addon, Category
@@ -27,10 +28,11 @@ def test_locale_display_name():
     assert_raises(KeyError, check, 'fake-lang', '', '')
 
 
-class TestLanguageTools(test_utils.TestCase):
+class TestLanguageTools(amo.tests.TestCase):
     fixtures = ['browse/test_views']
 
     def setUp(self):
+        super(TestLanguageTools, self).setUp()
         cache.clear()
         self.url = reverse('browse.language-tools')
         response = self.client.get(self.url, follow=True)
@@ -200,8 +202,8 @@ class TestLegacyRedirects(test_utils.TestCase):
 
     def test_types(self):
         def redirects(from_, to):
-            response = self.client.get('/en-US/firefox' + from_)
-            self.assertRedirects(response, '/en-US/firefox' + to, status_code=301)
+            r = self.client.get('/en-US/firefox' + from_)
+            self.assertRedirects(r, '/en-US/firefox' + to, status_code=301)
 
         redirects('/browse/type:1', '/extensions/')
         redirects('/browse/type:1/', '/extensions/')

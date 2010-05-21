@@ -85,21 +85,21 @@ class TestAddonModels(test_utils.TestCase):
     fixtures = ['base/fixtures', 'addons/featured',
                 'addons/invalid_latest_version']
 
-    def test_current_version(self):
+    def test_get_current_version(self):
         """
         Tests that we get the current (latest public) version of an addon.
         """
         a = Addon.objects.get(pk=3615)
-        eq_(a.current_version.id, 24007)
+        eq_(a.get_current_version().id, 24007)
 
     def test_current_version_listed(self):
         a = Addon.objects.get(pk=3723)
-        eq_(a.current_version.id, 89774)
+        eq_(a.get_current_version().id, 89774)
 
     def test_current_version_listed_no_version(self):
         Version.objects.filter(addon=3723).delete()
         a = Addon.objects.get(pk=3723)
-        eq_(a.current_version, None)
+        eq_(a.get_current_version(), None)
 
     def test_current_beta_version(self):
         a = Addon.objects.get(pk=5299)
@@ -107,14 +107,14 @@ class TestAddonModels(test_utils.TestCase):
 
     def test_current_version_unreviewed(self):
         a = Addon.objects.get(pk=55)
-        eq_(a.current_version.id, 55)
+        eq_(a.get_current_version().id, 55)
 
-    def test_current_version_mixed_statuses(self):
+    def test_get_current_version_mixed_statuses(self):
         """Mixed file statuses are evil (bug 558237)."""
         a = Addon.objects.get(pk=3895)
         # Last version has pending files, so second to last version is
         # considered "current".
-        eq_(a.current_version.id, 78829)
+        eq_(a.get_current_version().id, 78829)
 
         # Fix file statuses on last version.
         v = Version.objects.get(pk=98217)
@@ -122,10 +122,9 @@ class TestAddonModels(test_utils.TestCase):
 
         # Wipe caches.
         cache.clear()
-        del a.__dict__['current_version']
 
         # Make sure the updated version is now considered current.
-        eq_(a.current_version.id, v.id)
+        eq_(a.get_current_version().id, v.id)
 
     def test_icon_url(self):
         """
@@ -209,7 +208,7 @@ class TestAddonModels(test_utils.TestCase):
         """
         addon = Addon.objects.get(id=3615)
         u = UserProfile.objects.get(pk=2519)
-        version = addon.current_version
+        version = addon.get_current_version()
         new_review = Review(version=version, user=u, rating=2, body='hello')
         new_review.save()
         new_reply = Review(version=version, user=addon.authors.all()[0],

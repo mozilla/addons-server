@@ -8249,11 +8249,8 @@
             "icon_type": "",
             "modified": null,
             "summary": 1299,
-            "suggested_amount": null,
             "site_specific": 0,
-            "total_reviews": 1,
-            "the_reason": null,
-            "nomination_date": null
+            "total_reviews": 1
         },
         "model": "addons.addon",
         "pk": 40

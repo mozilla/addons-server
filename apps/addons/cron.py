@@ -16,6 +16,32 @@ log = commonware.log.getLogger('z.cron')
 task_log = commonware.log.getLogger('z.task')
 
 
+#TODO(davedash): This will not be needed as a cron task after remora.
+@cronjobs.register
+def update_addons_current_version():
+    """Update the current_version field of the addons."""
+    cursor = connections[multidb.get_slave()].cursor()
+
+    d = Addon.objects.valid().exclude(type=amo.ADDON_PERSONA)
+
+    with establish_connection() as conn:
+        for chunk in chunked(d, 1000):
+            _update_addons_current_version.apply_async(args=[chunk],
+                                                       connection=conn)
+
+
+@task(rate_limit='2/m')
+def _update_addons_current_version(data, **kw):
+    task_log.debug("[%s@%s] Updating addons current_versions." %
+                   (len(data), _update_addons_current_version.rate_limit))
+    for pk in data:
+        try:
+            addon = Addon.objects.get(pk=pk[0])
+            addon.update_current_version()
+        except Addon.DoesNotExist:
+            task_log.debug("Missing addon: %d" % pk)
+
+
 @cronjobs.register
 def update_addon_average_daily_users():
     """Update add-ons ADU totals."""
@@ -104,9 +130,8 @@ def addon_last_updated():
     next = {}
 
     public = (Addon.objects.filter(status=amo.STATUS_PUBLIC,
-                                   versions__files__status=amo.STATUS_PUBLIC)
-              .values('id')
-              .annotate(last_updated=Max('versions__files__datestatuschanged')))
+        versions__files__status=amo.STATUS_PUBLIC).values('id')
+        .annotate(last_updated=Max('versions__files__datestatuschanged')))
 
     exp = (Addon.objects.exclude(status=amo.STATUS_PUBLIC)
            .filter(versions__files__status__in=amo.VALID_STATUSES)

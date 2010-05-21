@@ -94,7 +94,7 @@ class TestPromobox(test_utils.TestCase):
         eq_(response.status_code, 200)
 
 
-class TestDetailPage(test_utils.TestCase):
+class TestDetailPage(amo.tests.TestCase):
     fixtures = ['base/fixtures', 'base/addon_59.json', 'addons/listed',
                 'addons/persona']
 
@@ -300,7 +300,6 @@ class TestDetailPage(test_utils.TestCase):
         # Unicode input.
         response = forward_to(u'\u271D')
         eq_(response.status_code, 400)
-
 
     def test_details_collections_dropdown(self):
 
