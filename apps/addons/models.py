@@ -590,11 +590,12 @@ class Category(amo.models.ModelBase):
 
     @staticmethod
     def transformer(addons):
-        addon_dict = dict((a.id, a) for a in addons)
         qs = (Category.uncached.filter(addons__in=addons)
               .extra(select={'addon_id': 'addons_categories.addon_id'}))
-        for addon_id, cats in sorted_groupby(qs, 'addon_id'):
-            addon_dict[addon_id].all_categories = list(cats)
+        cats = dict((addon_id, list(cs))
+                    for addon_id, cs in sorted_groupby(qs, 'addon_id'))
+        for addon in addons:
+            addon.all_categories = cats.get(addon.id, [])
 
 
 class CompatibilityReport(models.Model):
