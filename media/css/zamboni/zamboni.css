@@ -1984,3 +1984,44 @@ form .error .note.error {
 #discovery-modules .locales input {
     width: 20em;
 }
+
+/**
+ *	Firefox Cup promo styles
+ *	TODO remove these when promo is pulled
+**/
+
+#t-firefox-cup,
+#t-firefox-cup div.cta p,
+#t-firefox-cup div.cta h2 {
+	font-family: "Geneva", "Lucida Sans Unicode", "Lucida Sans", "Trebuchet", sans-serif;
+}
+#t-firefox-cup {
+	padding-top:10px;
+	background-image: url("../../img/zamboni/promos/FirefoxCup_AddsOn_banner.jpg");
+	background-position: top center;
+	height: 260px;
+}
+#t-firefox-cup div.cta {
+	margin-left: 280px;
+}
+#t-firefox-cup div.cta h2 {
+	color:#bcffbb;
+	font-size:200%;
+	margin:1.3em 50px 1em 0;
+	word-spacing:-.1em;
+}
+#t-firefox-cup div.cta p {
+	color:#FFFFFD;
+	font-size:120%;
+	margin-right:50px;
+	margin-left:0;
+}
+#t-firefox-cup div.cta a {
+	color: #FFFFFD;
+	text-decoration: underline;
+}
+
+/**
+ *	End Firefox Cup promo styles
+ *	TODO remove these when promo is pulled
+**/

@@ -6,7 +6,12 @@
       <ol>
         <li><a href="#t-introduction">{{ _('Introduction') }}</a></li>
         {% for feature in promobox.features() %}
-          <li><a href="#t-{{ feature.title|slugify }}">{{ feature.title }}</a></li>
+					{# TODO remove if blocks after the Firefox Cup promo ends #}
+					{% if (feature.title|slugify) in ['sports', 'rock-your-firefox'] %}
+						<li><a href="#t-firefox-cup">{{ _('Firefox Cup') }}</a></li>
+					{% else %}
+	          <li><a href="#t-{{ feature.title|slugify }}">{{ feature.title }}</a></li>
+					{% endif %}
         {% endfor %}
       </ol>
     </div> {# teaser-header #}
@@ -50,29 +55,45 @@
       </li>
       {% set collections = promobox.collections() %}
       {% for feature in promobox.features() %}
-        <li id="t-{{ feature.title|slugify }}" class="addon-view">
-          {% set collection = collections[feature] %}
-          <h2>{{ feature.tagline }}</h2>
-          {% for addon in collection.public_addons.order_by('?')[:3] %}
-            <div class="column {% if loop.first %}first{% endif %}">
-              <div class="column-inner item">
-                <a title="{{ addon.name }}" href="{{ addon.get_url_path() }}">
-                  <img width="32" height="32" class="icon"
-                       src="{{ addon.icon_url }}"></a>
-                <h3>
-                  <a title="{{ _('Learn more about this add-on') }}"
-                    href="{{ addon.get_url_path() }}">{{ addon.name }}</a>
-                </h3>
-                <p>{{ addon.summary|truncate(80) }}</p>
-                {{ install_button(addon, src='homepagepromo') }}
-              </div>
-            </div>
-          {% endfor %}
-          <p class="lead">
-            {% set link = '<a href="{0}">{1}</a>'|f(collection.get_url_path(), collection.name) %}
-            {{ _('Like these? Find more add-ons in the {0} collection.')|f(link)|safe }}
-          </p>
-        </li>
+				{# TODO remove if blocks after the Firefox Cup promo ends #}
+				{% if (feature.title|slugify) in ['sports', 'rock-your-firefox'] %}
+					<li id="t-firefox-cup">
+						<div class="cta">
+							<h2>{{ _('Support your team in the Firefox Cup') }}</h2>
+							<p>
+								{% trans url=url('firefoxcup.index') %}
+									Dress up your Firefox in a Persona that shows off team spirit 
+									and keep up with game scores using the FootieFox Add-on. See 
+									it all on <a href="{{ url }}">Firefox Cup</a>.
+								{% endtrans %}
+							</p>
+						</div>
+					</li>
+				{% else %}
+	        <li id="t-{{ feature.title|slugify }}" class="addon-view">
+	          {% set collection = collections[feature] %}
+	          <h2>{{ feature.tagline }}</h2>
+	          {% for addon in collection.public_addons.order_by('?')[:3] %}
+	            <div class="column {% if loop.first %}first{% endif %}">
+	              <div class="column-inner item">
+	                <a title="{{ addon.name }}" href="{{ addon.get_url_path() }}">
+	                  <img width="32" height="32" class="icon"
+	                       src="{{ addon.icon_url }}"></a>
+	                <h3>
+	                  <a title="{{ _('Learn more about this add-on') }}"
+	                    href="{{ addon.get_url_path() }}">{{ addon.name }}</a>
+	                </h3>
+	                <p>{{ addon.summary|truncate(80) }}</p>
+	                {{ install_button(addon, src='homepagepromo') }}
+	              </div>
+	            </div>
+	          {% endfor %}
+	          <p class="lead">
+	            {% set link = '<a href="{0}">{1}</a>'|f(collection.get_url_path(), collection.name) %}
+	            {{ _('Like these? Find more add-ons in the {0} collection.')|f(link)|safe }}
+	          </p>
+	        </li>
+				{% endif %}
       {% endfor %}
     </ol> {# teaser-items #}
   </div>

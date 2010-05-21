@@ -73,6 +73,7 @@
 	Slideshow.prototype.autoRotate = function() {
 	    if(this.scroll) {
 	        var that = this; //closure due to setInterval's 'this' refers to window, not the current 'this'
+			clearInterval(this.interval);
     	    this.interval = setInterval(function() {
     	        if(that.currentItem != that.itemTotal) {
                     that.moveToItem(that.currentItem+1);
