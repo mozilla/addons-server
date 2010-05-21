@@ -271,6 +271,8 @@ def personas(request, category=None):
     categories = order_by_translation(q, 'name')
 
     base = Addon.objects.valid().filter(type=TYPE)
+    featured = base & Addon.objects.featured(request.APP)
+    is_homepage = category is None and 'sort' not in request.GET
 
     if category is not None:
         category = get_object_or_404(q, slug=category)
@@ -292,6 +294,7 @@ def personas(request, category=None):
     return jingo.render(request, 'browse/personas/' + template,
                         {'categories': categories, 'category': category,
                          'filter': filter, 'addons': addons,
+                         'featured': featured, 'is_homepage': is_homepage,
                          'search_cat': search_cat})
 
 

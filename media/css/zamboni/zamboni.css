@@ -879,6 +879,40 @@ ul.license li.copyr { background-position: 0 -260px; }
     color: #390;
 }
 
+/** Persona Homepage **/
+.personas-featured .persona-list-3col {
+    border: 1px solid #b5d9e5;
+    -moz-border-radius: 5px;
+}
+
+.personas-home .col1 {
+    float: left;
+    clear: left;
+}
+
+.personas-home .intro {
+    font-size: 1.4em;
+    width: 450px;
+}
+
+#featured-addons.personas-home .featured-inner {
+    background: #fff url(../../img/zamboni/personas/promo-browser.png) no-repeat left bottom;
+    height: 345px;
+}
+
+.personas-home .intro .more-info {
+    background-position: 96% -151px;
+    float: none;
+}
+
+#featured-addons .personas-slider {
+    float: right;
+    height: 340px; /* 4 personas @ 85px; */
+    width: 30%;
+    overflow: hidden;
+    margin-bottom: 0;
+}
+
 /************************************/
 /*               PAGES              */
 /************************************/
