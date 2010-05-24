@@ -3,7 +3,6 @@ from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from django.utils.translation import trans_real as translation
 
-import commonware.log
 import jingo
 from tower import ugettext_lazy as _lazy
 
@@ -42,12 +41,7 @@ def addon_detail(request, addon_id):
             return persona_detail(request, addon)
         else:
             if not addon.current_version:
-                if not addon.update_current_version():
-                    raise http.Http404
-                else:
-                    log = commonware.log.getLogger('z.cron')
-                    log.warning('Addon current_version was missing for %s'
-                                % addon.id)
+                raise http.Http404
 
             return extension_detail(request, addon)
     else:

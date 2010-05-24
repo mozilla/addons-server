@@ -162,8 +162,8 @@ class Addon(amo.models.ModelBase):
     authors = models.ManyToManyField('users.UserProfile', through='AddonUser',
                                      related_name='addons')
 
-    current_version = models.ForeignKey(Version, related_name='___ignore',
-                                        db_column='current_version', null=True)
+    _current_version = models.ForeignKey(Version, related_name='___ignore',
+            db_column='current_version', null=True)
 
     objects = AddonManager()
 
@@ -226,16 +226,30 @@ class Addon(amo.models.ModelBase):
         except (IndexError, Version.DoesNotExist):
             return None
 
+
     def update_current_version(self):
-        "Updates the cached current_version field.  Returns true on update."
+        "Returns true if we updated the current_version field."
         current_version = self.get_current_version()
 
-        if self.current_version != current_version:
-            self.current_version = current_version
+        if current_version != self._current_version:
+            self._current_version = current_version
             self.save()
             return True
 
         return False
+
+    @property
+    def current_version(self):
+        "Returns the current_version field or updates it if needed."
+
+        if self.type_id == amo.ADDON_PERSONA:
+            return
+
+        if not self._current_version:
+            self.update_current_version()
+
+        return self._current_version
+
 
     @staticmethod
     def transformer(addons):

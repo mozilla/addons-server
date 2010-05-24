@@ -12,12 +12,12 @@ class CurrentVersionTestCase(test_utils.TestCase):
     fixtures = ['base/fixtures']
 
     def test_addons(self):
-        eq_(Addon.objects.filter(current_version=None, pk=3615).count(), 1)
+        eq_(Addon.objects.filter(_current_version=None, pk=3615).count(), 1)
         cron._update_addons_current_version(((3615,),))
-        eq_(Addon.objects.filter(current_version=None, pk=3615).count(), 0)
+        eq_(Addon.objects.filter(_current_version=None, pk=3615).count(), 0)
 
 
-class TestLastUpdated(amo.tests.TestCase):
+class TestLastUpdated(test_utils.TestCase):
     fixtures = ['base/fixtures']
 
     def test_personas(self):

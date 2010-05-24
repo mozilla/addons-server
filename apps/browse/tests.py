@@ -9,7 +9,6 @@ from pyquery import PyQuery as pq
 import test_utils
 
 import amo
-import amo.tests
 from amo.urlresolvers import reverse
 from amo.helpers import urlparams
 from addons.models import Addon, Category
@@ -28,7 +27,7 @@ def test_locale_display_name():
     assert_raises(KeyError, check, 'fake-lang', '', '')
 
 
-class TestLanguageTools(amo.tests.TestCase):
+class TestLanguageTools(test_utils.TestCase):
     fixtures = ['browse/test_views']
 
     def setUp(self):

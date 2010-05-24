@@ -94,7 +94,7 @@ class TestPromobox(test_utils.TestCase):
         eq_(response.status_code, 200)
 
 
-class TestDetailPage(amo.tests.TestCase):
+class TestDetailPage(test_utils.TestCase):
     fixtures = ['base/fixtures', 'base/addon_59.json', 'addons/listed',
                 'addons/persona']
 

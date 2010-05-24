@@ -84,7 +84,7 @@ class ControlCharacterTest(TestCase):
         self.assertNotContains(request, '')
 
 
-class APITest(amo.tests.TestCase):
+class APITest(TestCase):
 
     fixtures = ['base/fixtures']
 
@@ -306,7 +306,7 @@ class APITest(amo.tests.TestCase):
     test_sphinx_off.sphinx = True
 
 
-class ListTest(amo.tests.TestCase):
+class ListTest(TestCase):
     """Tests the list view with various urls."""
     fixtures = ['base/fixtures', 'base/featured']
 
