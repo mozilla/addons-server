@@ -3,12 +3,13 @@ Borrowed from: http://code.google.com/p/django-localeurl
 
 Note: didn't make sense to use localeurl since we need to capture app as well
 """
+import contextlib
 import urllib
 
 from django.contrib.sessions.middleware import SessionMiddleware
-from django.http import HttpResponsePermanentRedirect, QueryDict
+from django.http import HttpResponsePermanentRedirect
 from django.middleware import common
-from django.utils.encoding import smart_str
+from django.utils.encoding import iri_to_uri, smart_str
 
 import tower
 
@@ -102,7 +103,31 @@ class RemoveSlashMiddleware(object):
             # Use request.path because we munged app/locale in path_info.
             newurl = request.path[:-1]
             if request.GET:
-                newurl += '?' + request.META['QUERY_STRING']
+                with safe_query_string(request):
+                    newurl += '?' + request.META['QUERY_STRING']
             return HttpResponsePermanentRedirect(newurl)
         else:
             return response
+
+
+@contextlib.contextmanager
+def safe_query_string(request):
+    """
+    Turn the QUERY_STRING into a unicode- and ascii-safe string.
+
+    We need unicode so it can be combined with a reversed URL, but it has to be
+    ascii to go in a Location header.  iri_to_uri seems like a good compromise.
+    """
+    qs = request.META['QUERY_STRING']
+    try:
+        request.META['QUERY_STRING'] = iri_to_uri(qs)
+        yield
+    finally:
+        request.META['QUERY_STRING'] = qs
+
+
+class CommonMiddleware(common.CommonMiddleware):
+
+    def process_request(self, request):
+        with safe_query_string(request):
+            return super(CommonMiddleware, self).process_request(request)

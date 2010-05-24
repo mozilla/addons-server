@@ -4,8 +4,6 @@ from nose.tools import eq_
 
 
 def test_no_vary_cookie():
-    c = test.Client()
-
     # We don't break good usage of Vary.
     response = test.Client().get('/')
     eq_(response['Vary'], 'Accept-Language')
@@ -21,6 +19,6 @@ def test_redirect_with_unicode_get():
 
 
 def test_trailing_slash_middleware():
-    response = test.Client().get('/en-US/firefox/about/')
+    response = test.Client().get(u'/en-US/firefox/about/?xxx=\xc3')
     eq_(response.status_code, 301)
-    assert response['Location'].endswith('/en-US/firefox/about')
+    assert response['Location'].endswith('/en-US/firefox/about?xxx=%C3%83')

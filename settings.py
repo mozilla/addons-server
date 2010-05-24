@@ -171,7 +171,7 @@ MIDDLEWARE_CLASSES = (
     'commonware.middleware.SetRemoteAddrFromForwardedFor',
     'commonware.log.ThreadRequestMiddleware',
 
-    'django.middleware.common.CommonMiddleware',
+    'amo.middleware.CommonMiddleware',
     'amo.middleware.NoVarySessionMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
