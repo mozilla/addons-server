@@ -2380,8 +2380,8 @@ form.favorite {
 .section-teaser .window ol.teaser-items {
     margin: 0;
     padding: 0;
-    height: 250px;
-    max-height: 250px;
+    height: 240px;
+    max-height: 240px;
     position: relative;
     left: 0;
     direction: ltr;
@@ -2389,7 +2389,7 @@ form.favorite {
 
 .section-teaser .window ol.teaser-items li {
     margin: 0;
-    padding: 1px 0 0 0;
+    padding: 0;
 }
 
 .section-teaser .window .more-info {
@@ -2413,7 +2413,6 @@ form.favorite {
     margin-right: 0.619em;
     font-size: 1.615em;
     line-height: 0.952em;
-	padding-top:1px;
 }
 
 .section-teaser .column {
