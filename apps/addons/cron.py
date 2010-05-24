@@ -22,7 +22,7 @@ def update_addons_current_version():
     """Update the current_version field of the addons."""
     cursor = connections[multidb.get_slave()].cursor()
 
-    d = Addon.objects.valid().exclude(type=amo.ADDON_PERSONA)
+    d = Addon.objects.valid().exclude(type=amo.ADDON_PERSONA).values_list()
 
     with establish_connection() as conn:
         for chunk in chunked(d, 1000):
