@@ -1,5 +1,5 @@
 // WebTrends SmartSource Data Collector Tag
-// Version: 8.6.2     
+// Version: 8.6.2
 // Tag Builder Version: 3.0
 // Created: 3/29/2010 4:04:57 PM
 function WebTrends(){
@@ -11,7 +11,7 @@ function WebTrends(){
 	this.timezone=-8;
 	this.fpcdom=".mozilla.org";
 	this.onsitedoms="";
-	this.downloadtypes="xls,doc,pdf,txt,csv,zip,dmg,exe";
+	this.downloadtypes="xls,doc,pdf,txt,csv,zip,dmg,exe,xpi,jar";
 	this.navigationtag="div,table";
 	this.trackevents=true;
 	this.enabled=true;
@@ -183,7 +183,7 @@ WebTrends.prototype.dcsIsOnsite=function(host){
 WebTrends.prototype.dcsTypeMatch=function(pth, typelist){
 	var type=pth.toLowerCase().substring(pth.lastIndexOf(".")+1,pth.length);
 	var types=this.dcsSplit(typelist);
-	var tlen=types.length;	
+	var tlen=types.length;
 	for (var i=0;i<tlen;i++){
 		if (type==types[i]){
 			return true;
@@ -202,7 +202,7 @@ WebTrends.prototype.dcsNavigation=function(evt){
 	var id="";
 	var cname="";
 	var elems=this.dcsSplit(this.navigationtag);
-	var elen=elems.length;	
+	var elen=elems.length;
 	var i,e,elem;
 	for (i=0;i<elen;i++){
 		elem=elems[i];
@@ -438,7 +438,7 @@ WebTrends.prototype.dcsVar=function(){
 	})();
 	WT.slv=(function(){
 		var slv="Not enabled";
-		try{     
+		try{
 			if (navigator.userAgent.indexOf('MSIE')!=-1){
 				var sli = new ActiveXObject('AgControl.AgControl');
 				if (sli){
@@ -473,7 +473,7 @@ WebTrends.prototype.dcsVar=function(){
 	if (this.i18n){
 		if (typeof(document.defaultCharset)=="string"){
 			WT.le=document.defaultCharset;
-		} 
+		}
 		else if (typeof(document.characterSet)=="string"){
 			WT.le=document.characterSet;
 		}
