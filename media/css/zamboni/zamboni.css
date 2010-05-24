@@ -81,16 +81,16 @@ ul.errorlist {
 }
 
 .other-author-addons li .addonitem {
-	padding-left: 20px;
-	background-image: url(../../img/amo2009/icons/icons.png);
-	background-repeat: no-repeat;
-	background-position: 0px -200px;
+    padding-left: 20px;
+    background-image: url(../../img/amo2009/icons/icons.png);
+    background-repeat: no-repeat;
+    background-position: 0px -200px;
 }
 
 .html-rtl .other-author-addons li .addonitem {
-	padding-right: 20px;
-	padding-left: 0;
-	background-position: 100% -200px;
+    padding-right: 20px;
+    padding-left: 0;
+    background-position: 100% -200px;
 }
 
 .html-rtl.inverse .primary {
@@ -883,6 +883,10 @@ ul.license li.copyr { background-position: 0 -260px; }
 .personas-featured .persona-list-3col {
     border: 1px solid #b5d9e5;
     -moz-border-radius: 5px;
+}
+
+.featured.personas-home {
+    position:relative;
 }
 
 .personas-home .col1 {
@@ -1779,7 +1783,7 @@ form .error .note.error {
 }
 #persona-summary .share-arrow {
     position: absolute;
-	z-index: 100;
+    z-index: 100;
 }
 #persona #more-personas {
     margin-bottom: 3em;
@@ -1983,4 +1987,51 @@ form .error .note.error {
 
 #discovery-modules .locales input {
     width: 20em;
+}
+
+/* Carousel arrows for personas carousel */
+
+.arrow {
+    display: block;
+    float: right;
+    width: 24px;
+    height: 24px;
+    border: 1px solid #7fcbd8;
+    -moz-border-radius: 13px;
+    cursor: pointer;
+    text-indent: -999px;
+    background: white;
+    position: absolute;
+    right: 108px;
+    overflow: hidden;
+}
+
+.arrow.prev {
+    top: -15px;
+}
+
+.arrow.next {
+    top: 355px;
+}
+
+.arrow:before {
+    content: "\00a0";
+    display: block; /* reduce the damage in FF3.0 */
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-style: solid;
+}
+
+.arrow.prev:before {
+    left: 6px;
+    top: 2px;
+    border-bottom-color: #0471ed;
+}
+
+.arrow.next:before {
+    left: 6px;
+    top: 9px;
+    border-top-color:#0471ed;
 }
