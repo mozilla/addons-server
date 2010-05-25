@@ -407,6 +407,8 @@ BROKER_USER = 'zamboni'
 BROKER_PASSWORD = 'zamboni'
 BROKER_VHOST = 'zamboni'
 CELERY_RESULT_BACKEND = 'amqp'
+CELERY_IGNORE_RESULT = True
+
 
 ## Fixture Magic
 CUSTOM_DUMPS = {
