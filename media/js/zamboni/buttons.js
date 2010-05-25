@@ -115,7 +115,8 @@ var installButton = function() {
     // big function since we merge the messaging when bad platform and version
     // occur simultaneously.
     var versionsAndPlatforms = function(options) {
-        var opts = $.extend({addPopup: true, addWarning: true}, options);
+        var opts = $.extend({addPopup: true, addWarning: true, extra: ''},
+                            options);
             warn = opts.addWarning ? addWarning : _.identity;
 
         // Gather the available platforms.
@@ -130,20 +131,30 @@ var installButton = function() {
             };
         });
 
+
+        var addExtra = function(f) {
+            /* Decorator to add extra content to a message. */
+            return function() {
+                var extra = $.isFunction(opts.extra) ? opts.extra()
+                                : opts.extra;
+                return $(f()).append(extra);
+            };
+        };
+
         // Popup message helpers.
-        var pmsg = function() {
+        var pmsg = addExtra(function() {
             var links = $.map(platforms, function(o) {
                 return format(z.button.messages['platform_link'], o);
             });
             return format(z.button.messages['bad_platform'],
                           {platforms: links.join('')});
-        };
-        var vmsg = function() {
+        });
+        var vmsg = addExtra(function() {
             params['new_version'] = max;
             params['old_version'] = z.browserVersion;
             return message(newerBrowser ? 'not_updated' : 'newer_version')();
-        };
-        var merge = function() {
+        });
+        var merge = addExtra(function() {
             // Prepend the platform message to the version message.  We only
             // want to move the installer when we're looking at an older
             // version of the add-on.
@@ -153,7 +164,7 @@ var installButton = function() {
                 v.find('.installer').parent().html(p.find('ul').clone());
             }
             return v;
-        }
+        });
 
         // Do badPlatform prep out here since we need it in all branches.
         if (badPlatform) {
@@ -247,8 +258,11 @@ var installButton = function() {
         $button.addPopup(message('learn_more')).addClass('concealed');
         versionsAndPlatforms();
     } else if (z.app == 'thunderbird') {
+        var msg = function() {
+            return $(message('learn_more')()).html();
+        };
+        versionsAndPlatforms({extra: msg});
         $button.addPopup(message('learn_more'), true);
-        versionsAndPlatforms();
     }
 };
 
