@@ -269,7 +269,7 @@
 
   {# categories and other add-ons #}
   {% with categories = addon.categories.filter(application=APP.id) %}
-    {% if categories or author_addons|length > 1 %}
+    {% if categories or author_addons %}
     <div class="highlight">
       {% if categories %}
         <ul>
@@ -284,7 +284,7 @@
         </ul>
       {% endif %}
 
-      {% if author_addons|length > 1 %}
+      {% if author_addons %}
       <div class="other-author-addons">
         <h4>
           {% trans count = addon.listed_authors|length,
