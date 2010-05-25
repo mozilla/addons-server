@@ -20,9 +20,7 @@ task_log = commonware.log.getLogger('z.task')
 @cronjobs.register
 def update_addons_current_version():
     """Update the current_version field of the addons."""
-    cursor = connections[multidb.get_slave()].cursor()
-
-    d = Addon.objects.valid().exclude(type=amo.ADDON_PERSONA).values_list()
+    d = Addon.objects.valid().exclude(type=amo.ADDON_PERSONA).values_list('id')
 
     with establish_connection() as conn:
         for chunk in chunked(d, 1000):
