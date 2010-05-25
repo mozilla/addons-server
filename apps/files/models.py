@@ -2,6 +2,7 @@ import os
 
 from django.conf import settings
 from django.db import models
+from django.utils import translation
 
 import amo.models
 from amo.urlresolvers import reverse
@@ -24,9 +25,11 @@ class File(amo.models.ModelBase):
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'files'
 
-    def get_url_path(self, src):
+    def get_url_path(self, app, src):
         from amo.helpers import urlparams
-        base = settings.FILES_URL % (self.id, self.filename, src)
+        lang = translation.get_language()
+        base = settings.FILES_URL % (lang, app.short, self.id,
+                                     self.filename, src)
         return urlparams(base, confirmed=1)
 
     def latest_xpi_url(self):

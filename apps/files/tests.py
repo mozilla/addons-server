@@ -2,6 +2,7 @@ from django import test
 
 from nose.tools import eq_
 
+import amo
 from files.models import File
 
 
@@ -14,9 +15,10 @@ class TestFile(test.TestCase):
 
     def test_get_absolute_url(self):
         f = File.objects.get(id=11993)
-        assert f.get_absolute_url(src='src').endswith(
-                'downloads/file/11993/'
-                'del.icio.us_bookmarks-1.0.43-fx.xpi?src=src&confirmed=1')
+        url = f.get_absolute_url(amo.FIREFOX, src='src')
+        expected = ('/firefox/downloads/file/11993/'
+                    'del.icio.us_bookmarks-1.0.43-fx.xpi?src=src&confirmed=1')
+        assert url.endswith(expected), url
 
     def test_latest_url(self):
         # With platform.
