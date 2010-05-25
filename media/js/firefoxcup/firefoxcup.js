@@ -1,7 +1,7 @@
 // Submit on locale choice
 jQuery(function($) {
   var f = $('form.languages');
-  f.find('input').change(function(){ this.form.submit(); });
+  f.find('select').change(function(){ this.form.submit(); });
 });
 
 /**

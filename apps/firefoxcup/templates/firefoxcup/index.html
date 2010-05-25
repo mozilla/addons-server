@@ -11,34 +11,17 @@
 
 <div id="wrapper">
 
-<script>
-    // Add a class to the body tag to alternate promo features
-    var class_options = new Array( "footiefox", "footiefox" );
-
-    if (Math.random) {
-        var choice = Math.floor(Math.random() * (class_options.length));
-
-        // Just in case javascript gets carried away...
-        choice = ( (choice < class_options.length)  && choice >= 0) ? choice : 0;
-
-        if (document.body.className == '') {
-          document.body.className = class_options[choice];
-        } else {
-          document.body.className += ' '+class_options[choice];
-        }
-    }
-</script>
-
 <div id="doc">
 
   <ul id="header">
     <li class="first"><a href="http://www.mozilla.com/">{{ _('Mozilla') }}</a></li>
     <li><a href="http://addons.mozilla.org/">{{ _('Add-Ons') }}</a></li>
     <li><a href="http://support.mozilla.com/">{{ _('Support') }}</a></li>
+    <li>{% include 'includes/lang_switcher.html' %}</li>
   </ul>
 
   <div id="main-feature">
-      <h1><img src="{{ MEDIA_URL }}/img/firefoxcup/logo.png" alt="{{ _('Firefox Cup') }}" /></h1>
+      <h1><img src="{{ MEDIA_URL }}img/firefoxcup/logo.png" alt="{{ _('Firefox Cup') }}" /></h1>
       <h2>{{ _('Install Personas to support your team and compete for the Firefox Cup.') }}</h2>
     <div id="download">
       <a href="http://www.mozilla.com/firefox/">
@@ -66,13 +49,11 @@
 
       <div class="pager-content">
 
-        {# this ugly loop prints 4 divs (one per pager tab), each with a <ul> of 8 items, 
-           each list item is a persona, for a total of 32 team personas #}
-        {% for idx in range(4) %} 
+        {% for teams_batch in teams|batch(8) %}
           <div class="personas-contents {% if loop.index == 1 %}default-page{% endif %}" id="feature-p{{ loop.index }}">
             <ul class="personas-list">
-              {% for subidx in range(8) %}
-                <li>{{ persona_preview(teams[subidx * idx].persona, size='small', linked=False) }}</li>
+              {% for team in teams_batch %}
+                <li>{{ persona_preview(team.persona, size='small', linked=False) if team.persona else 'Persona not found' }}</li>
               {% endfor %}
             </ul>
           </div>
@@ -86,12 +67,14 @@
 
     <ul class="subfeatures">
 
-      <li id="email">
-        <a href="#">
-          <span class="title">{{ _('Sign Up!') }}</span>
-          <span>{{ _('Stay current with Firefox Cup news by email.') }}</span>
-        </a>
-      </li>
+      {% if email_enabled %}
+        <li id="email">
+          <a href="#">
+            <span class="title">{{ _('Sign Up!') }}</span>
+            <span>{{ _('Stay current with Firefox Cup news by email.') }}</span>
+          </a>
+        </li>
+      {% endif %}
 
       <li id="featured">
         <a href="https://addons.mozilla.org/en-US/firefox/addon/725/" id="featured-footiefox">
@@ -141,10 +124,10 @@
       <tbody>
         {% for team in teams %}
           <tr>
-            <td><img src="{{ team.flag }}" alt="{{ _('Flag') }}" /></td>
+            <td class="persona"><img class="persona-preview" src="{{ team.flag }}" alt="{{ _('Flag') }}" data-browsertheme="{{ team.persona.json_data if team.persona }}" /></td>
             <td>{{ team.name }}</td>
             <td>###,###</td>
-            <td>###,###</td>
+            <td>{{ team.persona.popularity|numberfmt if team.persona else '###,###' }}</td>
           </tr>
         {% endfor %}
       </tbody>
@@ -153,16 +136,14 @@
     <table id="tweets">
       <thead>
         <tr>
-          <th><img src="{{ MEDIA_URL }}/img/firefoxcup/twitter.png" alt="Twitter" height="38" width="37" /> {{ _('Follow our tweets') }}</th>
+          <th><img src="{{ MEDIA_URL }}img/firefoxcup/twitter.png" alt="Twitter" height="38" width="37" /> {{ _('Follow our tweets') }}</th>
         </tr>
         <tr><td></td></tr>
       </thead>
       <tbody>
-        <tr><td><a href="#">#hashtag</a> Lorem Ipsum dolor siametur sitamet...</td></tr>
-        <tr><td><a href="#">#hashtag</a> Lorem Ipsum dolor siametur sitamet...</td></tr>
-        <tr><td><a href="#">#hashtag</a> Lorem Ipsum dolor siametur sitamet...</td></tr>
-        <tr><td><a href="#">#hashtag</a> Lorem Ipsum dolor siametur sitamet...</td></tr>
-        <tr><td><a href="#">#hashtag</a> Lorem Ipsum dolor siametur sitamet...</td></tr>
+        {% for tweet in tweets %}
+          <tr><td>{{ tweet }}</td></tr>
+        {% endfor %}
       </tbody>
     </table>
 

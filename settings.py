@@ -106,7 +106,7 @@ ADMIN_MEDIA_PREFIX = '/admin-media/'
 
 # paths that don't require an app prefix
 SUPPORTED_NONAPPS = ('admin', 'developers', 'editors', 'img', 'jsi18n',
-                     'localizers', 'media', 'statistics', 'services')
+                     'localizers', 'media', 'statistics', 'services', 'firefoxcup')
 DEFAULT_APP = 'firefox'
 
 # paths that don't require a locale prefix
@@ -312,6 +312,7 @@ MINIFY_BUNDLES = {
         'firefoxcup': (
             'css/firefoxcup/reset-fonts-grids.css',
             'css/main.css',
+            'css/zamboni/zamboni.css',
             'css/firefoxcup/firefoxcup.css',
         ),
     },
