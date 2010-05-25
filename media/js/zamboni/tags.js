@@ -3,7 +3,7 @@
 function addTag() {
 
     var tagVal = $("#newTag").val();
-    var addonid = $("#tags ul").attr("id").split("addonid-")[1];
+    var addonid = $('#tags input[name="addonid"]').val();
 
     if($.trim(tagVal)=='' || $.trim(addonid)==''){
         return;
