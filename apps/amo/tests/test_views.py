@@ -215,8 +215,7 @@ def test_remote_addr():
     """Make sure we're setting REMOTE_ADDR from X_FORWARDED_FOR."""
     client = test.Client()
     # Send X-Forwarded-For as it shows up in a wsgi request.
-    response = client.get('/en-US/firefox/', follow=True,
-                          HTTP_X_FORWARDED_FOR='oh yeah')
+    client.get('/en-US/firefox/', follow=True, HTTP_X_FORWARDED_FOR='oh yeah')
     eq_(commonware.log.get_remote_addr(), 'oh yeah')
 
 
@@ -230,3 +229,8 @@ def test_opensearch():
     doc = etree.fromstring(page.content)
     e = doc.find("{http://a9.com/-/spec/opensearch/1.1/}ShortName")
     eq_(e.text, "Firefox Add-ons")
+
+
+def test_language_selector():
+    doc = pq(test.Client().get('/en-US/firefox/').content)
+    eq_(doc('form.languages option[selected]').attr('value'), 'en-us')
