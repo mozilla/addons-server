@@ -29,7 +29,8 @@
     {% endif %}
   </ol>
   <div class="num-results">
-    {% trans begin=pager.start_index(), end=pager.end_index() %}
+    {% trans begin=pager.start_index(), end=pager.end_index(),
+             count=count|numberfmt %}
       Results <strong>{{ begin }}</strong>&ndash;<strong>{{ end }}</strong>
       of <strong>{{ count }}</strong>
     {% endtrans %}
