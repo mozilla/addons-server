@@ -39,14 +39,19 @@ def fetch_ryf_blog():
     page.date_posted = time.strftime("%Y-%m-%d %H:%M:%S", t)
 
     # Another request because we have to get the image URL from the page. :-/
+    # An update to the feed has include <content:encoded>, but we'd have to use
+    # etree for that and I don't want to redo it right now.
     try:
         p = pq(url=page.permalink)
     except urllib2.URLError, e:
         log.error("Couldn't open (%s): %s" % (url, e))
         return
-    image = p('.main-image img').attr('src')
 
-    offset = image.find('/uploads')
+    # We want the first image in the post
+    image = p('.entry-content').find('img:first').attr('src')
+
+    if image:
+        offset = image.find('/uploads')
 
     if not image or offset == -1:
         log.error("Couldn't find a featured image for blog post (%s). "
@@ -55,9 +60,7 @@ def fetch_ryf_blog():
     # Image sources look like this:
     #    http://rockyourfirefox.com/rockyourfirefox_content/
     #                       uploads/2010/04/Nature-SprinG-Persona1-672x367.jpg
-    # Hardcoding the length we're stripping doesn't seem great, but this is a
-    # pretty specific job and I don't know how we'd do it better.  This turns
-    # the above example into:
+    # This turns the above example into:
     #    /uploads/2010/04/Nature-SprinG-Persona1-672x367.jpg
     # which we'll load off of static.amo; bug 561160
     page.image = image[offset:]
