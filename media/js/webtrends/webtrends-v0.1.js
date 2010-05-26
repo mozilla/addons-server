@@ -11,7 +11,7 @@ function WebTrends(){
 	this.timezone=-8;
 	this.fpcdom=".mozilla.org";
 	this.onsitedoms="";
-	this.downloadtypes="xls,doc,pdf,txt,csv,zip,dmg,exe,xpi,jar";
+	this.downloadtypes="xpi,jar";
 	this.navigationtag="div,table";
 	this.trackevents=true;
 	this.enabled=true;
