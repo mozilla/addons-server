@@ -63,7 +63,11 @@ urlpatterns = patterns('',
 
     # Redirect persona/xxx
     ('^persona/(\d+)',
-     lambda r, id: redirect('addons.detail', id, permanent=True))
+     lambda r, id: redirect('addons.detail', id, permanent=True)),
+
+    ('^personas/film and tv/?$',
+     lambda r: redirect('browse.personas', 'film-and-tv', permanent=True)),
+
 )
 
 if settings.DEBUG:
