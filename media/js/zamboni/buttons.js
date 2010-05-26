@@ -111,6 +111,18 @@ var installButton = function() {
         });
     };
 
+    // Gather the available platforms.
+    var platforms = $button.map(function() {
+        var name = $(this).find('.os').attr('data-os'),
+            text = z.appMatchesUserAgent ?
+                /* L10n: {0} is an platform like Windows or Linux. */
+                gettext('Install for {0} anyway') : gettext('Download for {0} anyway');
+        return  {
+            href: $(this).attr('href'),
+            msg: format(text, [name])
+        };
+    });
+
     // Add version and platform warnings and (optionally) popups.  This is one
     // big function since we merge the messaging when bad platform and version
     // occur simultaneously.
@@ -119,25 +131,12 @@ var installButton = function() {
                             options);
             warn = opts.addWarning ? addWarning : _.identity;
 
-        // Gather the available platforms.
-        var platforms = $button.map(function() {
-            var name = $(this).find('.os').attr('data-os'),
-                text = z.appMatchesUserAgent ?
-                    /* L10n: {0} is an platform like Windows or Linux. */
-                    gettext('Install for {0} anyway') : gettext('Download for {0} anyway');
-            return  {
-                href: $(this).attr('href'),
-                msg: format(text, [name])
-            };
-        });
-
-
         var addExtra = function(f) {
             /* Decorator to add extra content to a message. */
             return function() {
                 var extra = $.isFunction(opts.extra) ? opts.extra()
                                 : opts.extra;
-                return $(f()).append(extra);
+                return $(f.apply(this, arguments)).append(extra);
             };
         };
 
