@@ -6,11 +6,15 @@
 <p class="addon-rating">
   {{ addon.bayesian_rating|stars }}
   {% with num=addon.total_reviews %}
+    {% if num %}
     <a href="{{ base }}">
       {% with count='<span itemprop="count">{0}</span>'|f(num|numberfmt) %}
         {# Using num=count so we don't change an L10n string. #}
         <strong>{{ ngettext('{num} review', '{num} reviews',
                             num)|f(num=count)|safe }}</strong></a>
       {% endwith %}
+    {% else %}
+      <strong>{{ _('Not yet rated') }}</strong>
+    {% endif %}
   {% endwith %}
 </p>

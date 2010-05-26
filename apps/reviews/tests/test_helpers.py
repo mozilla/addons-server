@@ -40,3 +40,7 @@ def test_reviews_link():
                                                       'myuuid': myuuid})
     eq_(PyQuery(s)('a').attr('href'),
         '/addon/1/?collection_uuid=%s#reviews' % myuuid)
+
+    z = Addon(average_rating=0, total_reviews=0, id=1)
+    s = render('{{ myaddon|reviews_link }}', {'myaddon': z})
+    eq_(PyQuery(s)('strong').text(), 'Not yet rated')
