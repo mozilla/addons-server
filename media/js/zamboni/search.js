@@ -24,10 +24,7 @@ z.searchBox = function() {
 
         var q = $('#query');
 
-        // Update the placeholder and trigger a change.
+        // Update the placeholder.
         q.attr('placeholder', placeholder)
-        if (q.hasClass('placeholder')) {
-            q.val('').blur();
-        }
     }).change();
 };
