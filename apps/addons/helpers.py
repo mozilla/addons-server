@@ -42,15 +42,6 @@ def flag(context, addon):
 
 
 @register.function
-@jinja2.contextfunction
-def separated_list_items(context, addons, src=None):
-    c = {'addons': addons, 'APP': context['APP'], 'LANG': context['LANG'],
-         'src': src}
-    t = env.get_template('addons/separated_list_items.html').render(**c)
-    return jinja2.Markup(t)
-
-
-@register.function
 def support_addon(addon):
     t = env.get_template('addons/support_addon.html')
     return jinja2.Markup(t.render(addon=addon))
