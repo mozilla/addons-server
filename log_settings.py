@@ -23,9 +23,9 @@ else:
     # Use a root formatter that's known to be safe.
     root_handler = SysLogger(facility=SysLogger.LOG_LOCAL7)
     root_handler.setFormatter(
-        logging.Formatter('%s: %s' % settings.SYSLOG_TAG, base_fmt))
+        logging.Formatter('%s: %s' % (settings.SYSLOG_TAG, base_fmt)))
 
-    fmt = '%s: [%(REMOTE_ADDR)s] %s' % (settings.SYSLOG_TAG, base_fmt)
+    fmt = '%s: [%%(REMOTE_ADDR)s] %s' % (settings.SYSLOG_TAG, base_fmt)
     fmt = getattr(settings, 'SYSLOG_FORMAT', fmt)
     formatter = logging.Formatter(fmt)
 
