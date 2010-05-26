@@ -233,7 +233,7 @@ var installButton = function() {
         $button.addPopup(message('unreviewed'));
         versionsAndPlatforms({addPopup: false});
         $button.removeClass('installer');
-        if (olderBrowser || newerBrowser) {
+        if (olderBrowser || newerBrowser || badPlatform) {
             // The unreviewed warning comes up the first time.  Then we show
             // the version/platform popup.
             $button.bind('newPopup', function(e, popup) {
