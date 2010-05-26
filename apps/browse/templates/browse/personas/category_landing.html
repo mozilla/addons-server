@@ -26,7 +26,7 @@
     <div id="featured-addons" class="featured personas-home">
       <div class="featured-inner">
         <div class="col1">
-          {{ breadcrumbs() }}
+          {{ breadcrumbs([(None, _('Personas'))]) }}
           <h2>{{ _('Personas') }}</h2>
           <p class="intro">
           {% trans url=url('browse.personas')|urlparams(sort=special) %}
