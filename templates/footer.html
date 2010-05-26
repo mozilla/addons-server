@@ -20,10 +20,10 @@
           <ul>
             <li><a href="http://www.mozilla.com/{{ LANG }}/privacy-policy.html">{{ _('Privacy Policy') }}</a></li>
             <li><a href="http://www.mozilla.com/{{ LANG }}/about/legal.html">{{ _('Legal Notices') }}</a></li>
-            <li><a href="{{ remora_url('pages/about') }}">{{ _('About') }}</a></li>
+            <li><a href="{{ url('pages.about') }}">{{ _('About') }}</a></li>
             <li><a href="http://blog.mozilla.com/addons">{{ _('Blog') }}</a></li>
             <li><a href="{{ remora_url('/developers') }}{# TODO #}">{{ _('Developer Hub') }}</a></li>
-            <li><a href="{{ remora_url('pages/faq') }}"><abbr title="{{ _('Frequently Asked Questions') }}">{{ _('FAQ') }}</abbr></a></li>
+            <li><a href="{{ url('pages.faq') }}"><abbr title="{{ _('Frequently Asked Questions') }}">{{ _('FAQ') }}</abbr></a></li>
             <li><a href="https://forums.addons.mozilla.org">{{ _('Forum') }}</a></li>
           </ul>
           <p class="disclaimer">{% trans -%}Mozilla is providing links to these applications as a courtesy, and makes no representations
