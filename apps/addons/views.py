@@ -255,7 +255,7 @@ class HomepageFilter(object):
     def _filter(self, field):
         qs = Addon.objects
         if field == 'popular':
-            return qs.order_by('-bayesian_rating')
+            return qs.order_by('-weekly_downloads')
         elif field == 'new':
             return qs.order_by('-created')
         elif field == 'updated':
