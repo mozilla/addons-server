@@ -1,6 +1,5 @@
 from django.conf.urls.defaults import patterns, url
 
-
 from . import views
 
 
@@ -17,7 +16,7 @@ urlpatterns = patterns('',
     url('^extensions/(?P<category>[^/]+)/featured$',
         views.creatured, name='browse.creatured'),
 
-    url('^personas/(?P<category>[^/]+)?$', views.personas,
+    url('^personas/(?P<category>[^ /]+)?$', views.personas,
         name='browse.personas'),
 
     url('^search-engines/(?:(?P<category>[^/]+)/)?$', views.search_engines,

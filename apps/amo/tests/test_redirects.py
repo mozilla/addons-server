@@ -9,6 +9,12 @@ class TestRedirects(test.TestCase):
 
     fixtures = ['amo/test_redirects', 'base/global-stats']
 
+    def test_persona_category(self):
+        """`/personas/film and tv` should go to /personas/film-and-tv"""
+        r = self.client.get('personas/film and tv', follow=True)
+        assert r.redirect_chain[-1][0].endswith(
+                '/en-US/firefox/personas/film-and-tv')
+
     def test_persona(self):
         """`/persona/\d+` should go to `/addon/\d+`."""
         r = self.client.get(u'persona/4', follow=True)
