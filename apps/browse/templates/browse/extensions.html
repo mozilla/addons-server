@@ -12,7 +12,8 @@
     <h2>{{ _('Extensions') }}</h2>
   {% endif %}
   {# L10n: {0} is an integer. #}
-  <h3>{{ _('<b>{0}</b> add-ons')|f(addons.paginator.count|numberfmt)|safe }}</h3>
+  <h3>{{ ngettext('<b>{0}</b> add-on', '<b>{0}</b> add-ons', addons.paginator.count)|f(
+            addons.paginator.count|numberfmt)|safe }}</h3>
   </hgroup>
 </header>
 
