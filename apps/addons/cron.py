@@ -20,7 +20,7 @@ task_log = commonware.log.getLogger('z.task')
 @cronjobs.register
 def update_addons_current_version():
     """Update the current_version field of the addons."""
-    d = Addon.objects.valid().exclude(type=amo.ADDON_PERSONA).values_list('id')
+    d = Addon.uncached.valid().exclude(type=amo.ADDON_PERSONA).values_list('id')
 
     with establish_connection() as conn:
         for chunk in chunked(d, 1000):
@@ -118,7 +118,7 @@ def _change_last_updated(next):
 
     log.debug('Updating %s add-ons' % len(changes))
     # Update + invalidate.
-    for addon in Addon.objects.filter(id__in=changes).no_transforms():
+    for addon in Addon.uncached.filter(id__in=changes).no_transforms():
         addon.last_updated = changes[addon.id]
         addon.save()
 
@@ -127,20 +127,20 @@ def _change_last_updated(next):
 def addon_last_updated():
     next = {}
 
-    public = (Addon.objects.filter(status=amo.STATUS_PUBLIC,
+    public = (Addon.uncached.filter(status=amo.STATUS_PUBLIC,
         versions__files__status=amo.STATUS_PUBLIC).values('id')
         .annotate(last_updated=Max('versions__files__datestatuschanged')))
 
-    exp = (Addon.objects.exclude(status=amo.STATUS_PUBLIC)
+    exp = (Addon.uncached.exclude(status=amo.STATUS_PUBLIC)
            .filter(versions__files__status__in=amo.VALID_STATUSES)
            .values('id')
            .annotate(last_updated=Max('versions__files__created')))
 
-    listed = (Addon.objects.filter(status=amo.STATUS_LISTED)
+    listed = (Addon.uncached.filter(status=amo.STATUS_LISTED)
               .values('id')
               .annotate(last_updated=Max('versions__created')))
 
-    personas = (Addon.objects.filter(type=amo.ADDON_PERSONA)
+    personas = (Addon.uncached.filter(type=amo.ADDON_PERSONA)
                 .extra(select={'last_updated': 'created'}))
 
     for q in (public, exp, listed, personas):
@@ -150,7 +150,7 @@ def addon_last_updated():
     _change_last_updated(next)
 
     # Get anything that didn't match above.
-    other = (Addon.objects.filter(last_updated__isnull=True)
+    other = (Addon.uncached.filter(last_updated__isnull=True)
              .values_list('id', 'created'))
     _change_last_updated(dict(other))
 
@@ -162,7 +162,7 @@ def update_addon_appsupport():
                    Q(type__in=[amo.ADDON_PERSONA, amo.ADDON_SEARCH]))
     newish = (Q(last_updated__gte=F('appsupport__created')) |
               Q(appsupport__created__isnull=True))
-    ids = (Addon.objects.valid().exclude(no_versions).distinct()
+    ids = (Addon.uncached.valid().exclude(no_versions).distinct()
            .filter(newish, versions__apps__isnull=False,
                    versions__files__status__in=amo.VALID_STATUSES)
            .values_list('id', flat=True))
@@ -180,7 +180,7 @@ def _update_appsupport(ids, **kw):
     insert = """INSERT INTO appsupport (addon_id, app_id, created, modified)
                 VALUES %s"""
 
-    addons = Addon.objects.no_cache().no_transforms().filter(id__in=ids)
+    addons = Addon.uncached.no_transforms().filter(id__in=ids)
     apps = [(addon.id, app.id) for addon in addons
             for app in addon.compatible_apps]
     s = ','.join('(%s, %s, NOW(), NOW())' % x for x in apps)
