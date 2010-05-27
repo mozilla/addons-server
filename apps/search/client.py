@@ -64,8 +64,8 @@ def extract_filters(term, kwargs):
     if 'locale' in kwargs:
         filters['locale_ord'] = crc32(kwargs['locale'])
 
-    # Xenophobia - restrict to just my language.
-    if 'xenophobia' in kwargs and 'admin' not in kwargs:
+    # In order to sort by name we need restrict to just my language.
+    if kwargs.get('sort') == 'name':
         filters['locale_ord'] = get_locale_ord()
 
     # Unless we're in admin mode, or we're looking at stub entries,

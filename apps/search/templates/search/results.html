@@ -7,6 +7,12 @@
   <header class="results-head">
     <h2>{{ _('Search Results') }}</h2>
     <h3 class="results-count">{{ showing(query, tag, pager) }}</h3>
+    {% if sort == 'name' %}
+    {# L10n: {0} is the name of the current locale. #}
+    <p><em>{{ _('Sorting by name includes only {0}
+      results.')|f(settings.LANGUAGES.get(LANG.lower())) }}</em></p>
+    {% endif %}
+
   </header>
 
   <div class="listing results">
