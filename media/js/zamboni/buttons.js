@@ -225,8 +225,12 @@ var installButton = function() {
         }
     } else if (search) {
         addToApp();
-        $button.addClass('installer');  // Enables click hijacking.
         clickHijack();
+        if (unreviewed) {
+            $button.addPopup(message('unreviewed'));
+        } else {
+            $button.addClass('installer');  // Enables click hijacking.
+        }
     } else if (unreviewed) {
         addToApp();
         clickHijack();
