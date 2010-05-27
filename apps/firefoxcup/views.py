@@ -1,12 +1,9 @@
 import jingo
-from addons.models import Persona
 from twitter import search
+
+from addons.models import Persona
 from . import tags, email_enabled
 from . import teams as teams_config
-
-import logging
-
-log = logging.getLogger('z.firefoxcup')
 
 
 # Create your views here.

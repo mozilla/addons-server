@@ -1,15 +1,18 @@
 from hashlib import md5
 import json
-import logging
 from urllib import urlencode
 import urllib2
+
 from django.core.cache import cache
+
 from bleach import Bleach
+import commonware.log
 import jinja2
 import ttp
+
 from . import twitter_languages
 
-log = logging.getLogger('z.firefoxcup')
+log = commonware.log.getLogger('z.firefoxcup')
 parser = ttp.Parser()
 bleach = Bleach()
 
