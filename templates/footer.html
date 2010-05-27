@@ -1,17 +1,7 @@
     <div id="footer" role="contentinfo">
       <div class="section">
         <div class="primary">
-          <form class="languages go" method="get" action="">
-            <label for="language">{{ _('Other languages:') }}</label>
-            <select id="language" name="lang" dir="ltr">
-              {% for code, name in LANGUAGES|dictsort -%}
-                <option value="{{ code }}" {{ code|ifeq(LANG|lower, "selected") }}>
-                  {{ name }}
-                </option>
-              {%- endfor %}
-            </select>
-            <button type="submit">{{ _('Go') }}</button>
-          </form>
+          {% include 'includes/lang_switcher.html' %}
           <p>{% trans legalurl="http://www.mozilla.com/en-US/about/legal.html#site", ccurl="http://creativecommons.org/licenses/by-sa/3.0/" -%}
              Except where otherwise <a href="{{ legalurl }}">noted</a>, content on this site is licensed under the
              <strong><a href="{{ ccurl }}">Creative Commons Attribution Share-Alike License v3.0</a></strong> or any later version

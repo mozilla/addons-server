@@ -106,7 +106,7 @@ ADMIN_MEDIA_PREFIX = '/admin-media/'
 
 # paths that don't require an app prefix
 SUPPORTED_NONAPPS = ('admin', 'developers', 'editors', 'img', 'jsi18n',
-                     'localizers', 'media', 'statistics', 'services')
+                     'localizers', 'media', 'statistics', 'services', 'firefoxcup')
 DEFAULT_APP = 'firefox'
 
 # paths that don't require a locale prefix
@@ -207,6 +207,7 @@ INSTALLED_APPS = (
     'discovery',
     'editors',
     'files',
+    'firefoxcup',
     'jingo_minify',
     'nick',
     'pages',
@@ -253,7 +254,15 @@ SELENIUM_CONFIG = {}
 # Tells the extract script what files to look for l10n in and what function
 # handles the extraction.  The Tower library expects this.
 DOMAIN_METHODS = {
+    'firefoxcup': [
+        ('apps/firefoxcup/**.py',
+            'tower.management.commands.extract.extract_tower_python'),
+        ('apps/firefoxcup/templates/firefoxcup/**.html',
+            'tower.management.commands.extract.extract_tower_template'),
+    ],
     'messages': [
+        ('apps/firefoxcup/**',
+            'ignore'),
         ('apps/**.py',
             'tower.management.commands.extract.extract_tower_python'),
         ('**/templates/**.html',
@@ -273,6 +282,13 @@ DOMAIN_METHODS = {
     ],
 }
 
+# These domains will not be merged into z-keys.pot and will use separate PO 
+# files.
+STANDALONE_DOMAINS = [
+    'javascript',
+    'firefoxcup',
+    ]
+
 # Bundles is a dictionary of two dictionaries, css and js, which list css files
 # and js files that can be bundled together by the minify app.
 MINIFY_BUNDLES = {
@@ -291,6 +307,13 @@ MINIFY_BUNDLES = {
         ),
         'zamboni/discovery-pane': (
             'css/zamboni/discovery-pane.css',
+        ),
+        # CSS files specific to /firefoxcup/
+        'firefoxcup': (
+            'css/firefoxcup/reset-fonts-grids.css',
+            'css/main.css',
+            'css/zamboni/zamboni.css',
+            'css/firefoxcup/firefoxcup.css',
         ),
     },
     'js': {
@@ -323,6 +346,15 @@ MINIFY_BUNDLES = {
 
             # Collections
             'js/zamboni/collections.js',
+        ),
+        # JS files specific to /firefoxcup/
+        'firefoxcup': (
+            'js/zamboni/jquery-1.4.2.min.js',
+            'js/firefoxcup/yahoo-dom-event.js',
+            'js/firefoxcup/animation-min.js',
+            'js/zamboni/jquery.hoverIntent.min.js',
+            'js/zamboni/personas.js',
+            'js/firefoxcup/firefoxcup.js',
         ),
     }
 }
