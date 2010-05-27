@@ -4,7 +4,7 @@
 
 {% block site_header %}{% endblock %}
 {% block site_css %}
-  {{ css('firefoxcup') }}
+  {{ css('firefoxcup/f') }}
 {% endblock %}
 
 {% block main_content %}
@@ -117,7 +117,7 @@
           <th>{{ _('Flag') }}</th>
           <th>{{ _('Country') }}</th>
           <th>{{ _('Average Fans') }}</th>
-          <th>{{ _('Total Fans') }}</th>
+          <th>{{ _('Fans Today') }}</th>
         </tr>
         <tr><td colspan="5"></td></tr>
       </thead>
@@ -126,8 +126,8 @@
           <tr>
             <td class="persona"><img class="persona-preview" src="{{ team.flag }}" alt="{{ _('Flag') }}" data-browsertheme="{{ team.persona.json_data if team.persona }}" /></td>
             <td>{{ team.name }}</td>
-            <td>###,###</td>
-            <td>{{ team.persona.popularity|numberfmt if team.persona else '###,###' }}</td>
+            <td>{{ team.avg_fans|numberfmt if team.avg_fans else 0 }}</td>
+            <td>{{ team.persona.popularity|numberfmt if team.persona else 0 }}</td>
           </tr>
         {% endfor %}
       </tbody>

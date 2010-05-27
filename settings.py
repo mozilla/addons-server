@@ -309,7 +309,7 @@ MINIFY_BUNDLES = {
             'css/zamboni/discovery-pane.css',
         ),
         # CSS files specific to /firefoxcup/
-        'firefoxcup': (
+        'firefoxcup/f': (
             'css/firefoxcup/reset-fonts-grids.css',
             'css/main.css',
             'css/zamboni/zamboni.css',

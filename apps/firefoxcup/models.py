@@ -1,15 +1,23 @@
 from django.db import models
+from django.db.models import Avg
 
-import amo.models
+from amo.models import ModelBase, ManagerBase
+
+class StatsManager(ManagerBase):
+
+    def avg_fans(self):
+        return self.values('persona_id').annotate(average=Avg('popularity'))
 
 
-class FirefoxcupStat(amo.models.ModelBase):
+class Stats(ModelBase):
     """
     Keeps record of daily ADU counts for Firefox Cup personas.
     Used to calculate 'Average Fans' over time of Firefox Cup campaign
     """
-    persona = models.ForeignKey('addons.Persona')
-    adu = models.IntegerField()
+    persona_id = models.PositiveIntegerField(db_index=True)
+    popularity = models.PositiveIntegerField()
 
-    class Meta:
-        db_table = 'firefoxcup_stats'
+    objects = StatsManager()
+
+    class Meta(ModelBase.Meta):
+        db_table = 'stats_firefoxcup'

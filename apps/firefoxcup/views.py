@@ -1,9 +1,10 @@
 import jingo
-from twitter import search
 
 from addons.models import Persona
 from . import tags, email_enabled
 from . import teams as teams_config
+from .models import Stats
+from .twitter import search
 
 
 # Create your views here.
@@ -21,6 +22,9 @@ def index(request):
     teams = dict((t['persona_id'], t) for t in teams_config)
     for persona in Persona.objects.filter(persona_id__in=teams.keys()):
         teams[persona.persona_id]['persona'] = persona
+
+    for record in Stats.objects.avg_fans():
+        teams[record['persona_id']]['avg_fans'] = record['avg_fans']
 
     return jingo.render(request, 'firefoxcup/index.html', {
         'tweets': tweets,

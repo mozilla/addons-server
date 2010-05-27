@@ -131,7 +131,7 @@
         "model": "addons.persona",
         "fields": {
             "display_username": "My Persona",
-            "popularity": 0,
+            "popularity": 10,
             "license": null,
             "footer": "BCBG_Persona_footer2.png",
             "movers": null,
