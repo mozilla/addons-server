@@ -12,7 +12,7 @@ tags = {
         '#south africa2010',
         '#wcup2010'],
     'af': '#Wêreldbeker',
-    'ar': ['كأس العالم','مونديال','المونديال','كأس العالم لكرة القدم'],
+    'ar': ['كأس العالم', 'مونديال', 'المونديال', 'كأس العالم لكرة القدم'],
     'da': ['#vm', 'Fodbold VM'],
     'de': '#wm',
     'es': '#mundial',
@@ -188,8 +188,10 @@ teams = [
         'name': _('Uruguay'),
         'persona_id': 216672,
     }]
+
 for team in teams:
-    team['flag'] = '%simg/firefoxcup/flags/%s.png' % (settings.MEDIA_URL, team['id'])
+    team['flag'] = '%simg/firefoxcup/flags/%s.png' % (settings.MEDIA_URL,
+                                                      team['id'])
     team['persona'] = None
 
 twitter_languages = """

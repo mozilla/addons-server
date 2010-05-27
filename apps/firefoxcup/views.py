@@ -8,6 +8,7 @@ import logging
 
 log = logging.getLogger('z.firefoxcup')
 
+
 # Create your views here.
 def index(request):
 

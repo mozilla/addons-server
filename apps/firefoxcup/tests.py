@@ -1,6 +1,6 @@
 import json
 from StringIO import StringIO
-from mock import patch, Mock
+from mock import patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 import test_utils

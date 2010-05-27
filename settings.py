@@ -282,7 +282,7 @@ DOMAIN_METHODS = {
     ],
 }
 
-# These domains will not be merged into z-keys.pot and will use separate PO 
+# These domains will not be merged into z-keys.pot and will use separate PO
 # files.
 STANDALONE_DOMAINS = [
     'javascript',
@@ -351,7 +351,7 @@ MINIFY_BUNDLES = {
         'firefoxcup': (
             'js/zamboni/jquery-1.4.2.min.js',
             'js/firefoxcup/yahoo-dom-event.js',
-            'js/firefoxcup/animation-min.js',
+            'js/firefoxcup/animation.js',
             'js/zamboni/jquery.hoverIntent.min.js',
             'js/zamboni/personas.js',
             'js/firefoxcup/firefoxcup.js',
