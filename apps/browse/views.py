@@ -310,4 +310,8 @@ def legacy_redirects(request, type_, category=None):
     else:
         cat = get_object_or_404(Category.objects, id=category)
         url = reverse('browse.%s' % type_slug, args=[cat.slug])
+    mapping = {'updated': 'updated', 'newest': 'created', 'name': 'name',
+                'weeklydownloads': 'popular', 'averagerating': 'rating'}
+    if 'sort' in request.GET and request.GET['sort'] in mapping:
+        url += '?sort=%s' % mapping[request.GET['sort']]
     return HttpResponsePermanentRedirect(url)

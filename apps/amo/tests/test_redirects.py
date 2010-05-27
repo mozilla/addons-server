@@ -4,6 +4,10 @@ from django import test
 
 from nose.tools import eq_
 
+import amo
+from addons.models import Category
+from applications.models import Application
+
 
 class TestRedirects(test.TestCase):
 
@@ -117,3 +121,33 @@ class TestRedirects(test.TestCase):
         response = self.client.get('/users/info/1', follow=True)
         self.assertRedirects(response, '/en-US/firefox/user/1/',
                              status_code=301)
+
+    def test_extension_sorting(self):
+        r = self.client.get('/browse/type:1?sort=updated', follow=True)
+        self.assertRedirects(r, '/en-US/firefox/extensions/?sort=updated',
+                             status_code=301)
+        r = self.client.get('/browse/type:1?sort=name', follow=True)
+        self.assertRedirects(r, '/en-US/firefox/extensions/?sort=name',
+                             status_code=301)
+        r = self.client.get('/browse/type:1?sort=newest', follow=True)
+        self.assertRedirects(r, '/en-US/firefox/extensions/?sort=created',
+                             status_code=301)
+        r = self.client.get('/browse/type:1?sort=weeklydownloads', follow=True)
+        self.assertRedirects(r, '/en-US/firefox/extensions/?sort=popular',
+                             status_code=301)
+        r = self.client.get('/browse/type:1?sort=averagerating', follow=True)
+        self.assertRedirects(r, '/en-US/firefox/extensions/?sort=rating',
+                             status_code=301)
+        # If we don't recognize the sort, they get nothing.
+        r = self.client.get('/browse/type:1?sort=xxx', follow=True)
+        self.assertRedirects(r, '/en-US/firefox/extensions/',
+                             status_code=301)
+
+        a = Application.objects.create()
+        Category.objects.create(pk=12, slug='woo', type_id=amo.ADDON_EXTENSION,
+                                application=a, count=1, weight=0)
+        r = self.client.get('/browse/type:1/cat:12?sort=averagerating',
+                            follow=True)
+        url, code = r.redirect_chain[-1]
+        eq_(code, 301)
+        assert url.endswith('/en-US/firefox/extensions/woo/?sort=rating')
