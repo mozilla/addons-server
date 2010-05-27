@@ -180,7 +180,7 @@ def _update_appsupport(ids, **kw):
     insert = """INSERT INTO appsupport (addon_id, app_id, created, modified)
                 VALUES %s"""
 
-    addons = Addon.uncached.no_transforms().filter(id__in=ids)
+    addons = Addon.uncached.filter(id__in=ids).no_transforms()
     apps = [(addon.id, app.id) for addon in addons
             for app in addon.compatible_apps]
     s = ','.join('(%s, %s, NOW(), NOW())' % x for x in apps)
