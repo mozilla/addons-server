@@ -10,7 +10,7 @@ part_re = re.compile(r'\{([-\w]+)\}')
 config = {
     'base': [],
     'locale': 'en-US fr de he pt-BR ja zh-TW el'.split(),
-    'app': ['firefox', 'thunderbird'],
+    'app': ['firefox'],
 
     'extension-slug': [''] + """
         alerts-and-updates appearance bookmarks download-management
@@ -36,13 +36,14 @@ root = '{base}/{locale}/{app}'
 
 templates = t = {
     'root': '/',
-    'extensions': '/extensions/{extension-slug}',
+    'extensions': '/extensions/{extension-slug}/',
     'language-tools': '/language-tools',
     'themes': '/themes/{theme-slug}?sort={theme-sort}&page={page}',
     'personas': '/personas/{personas-slug}',
 }
 t['themes-unreviewed'] = t['themes'] + '&unreviewed={exp}'
 t['personas-sort'] = t['personas'] + '?sort={personas-sort}'
+t['extensions-sort'] = t['extensions'] + '?sort={theme-sort}'
 
 
 for key, value in templates.items():
