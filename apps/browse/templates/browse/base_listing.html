@@ -22,7 +22,7 @@
     {% endif %}
 
     <link rel="alternate" type="application/rss+xml" title="RSS"
-          href="/{{ LANG }}/{{ APP.short }}/browse/type:{{ category.application_id }}/cat:{{ category.id }}/format:rss?sort={{ sort }}" />
+          href="/{{ LANG }}/{{ APP.short }}/browse/type:{{ category.type.id }}/cat:{{ category.id }}/format:rss?sort={{ sort }}" />
   {% endwith %}
 {% endif %}
 {% endblock %}
