@@ -189,6 +189,28 @@ class TestCategoryPages(test_utils.TestCase):
         creatured = response.context['filter'].all()['featured']
         eq_(len(creatured), 0)
 
+    def test_creatured_only_public(self):
+        """Make sure the creatured add-ons are all public."""
+        url = reverse('browse.creatured', args=['bookmarks'])
+        r = self.client.get(url, follow=True)
+        addons = r.context['addons']
+
+        for a in addons:
+            assert a.status == amo.STATUS_PUBLIC, "%s is not public" % a.name
+
+        old_count = len(addons)
+        addons[0].status = amo.STATUS_UNREVIEWED
+        addons[0].save()
+        r = self.client.get(url, follow=True)
+        addons = r.context['addons']
+
+        for a in addons:
+            assert a.status == amo.STATUS_PUBLIC, ("Altered %s is featured"
+                                                   % a.name)
+
+        eq_(len(addons), old_count - 1, "The number of addons is the same.")
+
+
     def test_added_date(self):
         url = reverse('browse.extensions') + '?sort=created'
         doc = pq(self.client.get(url).content)

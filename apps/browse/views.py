@@ -239,8 +239,8 @@ def creatured(request, category):
     TYPE = amo.ADDON_EXTENSION
     q = Category.objects.filter(application=request.APP.id, type=TYPE)
     category = get_object_or_404(q, slug=category)
-    addons = Addon.objects.filter(addoncategory__feature=True,
-                                  addoncategory__category=category)
+    addons = Addon.objects.public().filter(addoncategory__feature=True,
+                                           addoncategory__category=category)
     return jingo.render(request, 'browse/creatured.html',
                         {'addons': addons, 'category': category})
 
