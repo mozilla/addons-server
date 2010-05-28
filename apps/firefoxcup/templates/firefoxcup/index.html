@@ -15,7 +15,7 @@
 
   <ul id="header">
     <li class="first"><a href="http://www.mozilla.com/">{{ _('Mozilla') }}</a></li>
-    <li><a href="http://addons.mozilla.org/">{{ _('Add-Ons') }}</a></li>
+    <li><a href="http://addons.mozilla.org/">{{ _('Add-ons') }}</a></li>
     <li><a href="http://support.mozilla.com/">{{ _('Support') }}</a></li>
     <li>{% include 'includes/lang_switcher.html' %}</li>
   </ul>
@@ -53,7 +53,7 @@
           <div class="personas-contents {% if loop.index == 1 %}default-page{% endif %}" id="feature-p{{ loop.index }}">
             <ul class="personas-list">
               {% for team in teams_batch %}
-                <li>{{ persona_preview(team.persona, size='small', linked=False) if team.persona else 'Persona not found' }}</li>
+                <li>{{ persona_preview(team.persona, size='small', linked=True) if team.persona else 'Persona not found' }}</li>
               {% endfor %}
             </ul>
           </div>
@@ -76,11 +76,13 @@
         </li>
       {% endif %}
 
-      <li id="featured">
-        <a href="https://addons.mozilla.org/en-US/firefox/addon/725/" id="featured-footiefox">
+      <li>
+        <a href="https://addons.mozilla.org/firefox/addon/725/" id="footiefox">
           <span class="title">{{ _('FootieFox') }}</span>
           <span>{{ _("Don't miss a moment of action. FootieFox shows latest scores in your Firefox.") }}</span>
         </a>
+      </li>
+      <li id="featured">
         <a href="http://rockyourfirefox.com/" id="featured-rockyourfirefox">
           <span class="title">{{ _('Rock Your Firefox') }}</span>
           <span>{{ _("Discover new add-ons to brighten your day.") }}</span>
@@ -116,18 +118,16 @@
         <tr>
           <th>{{ _('Flag') }}</th>
           <th>{{ _('Country') }}</th>
-          <th>{{ _('Average Fans') }}</th>
-          <th>{{ _('Fans Today') }}</th>
+          <th>{{ _('Fans') }}</th>
         </tr>
-        <tr><td colspan="5"></td></tr>
+        <tr><td colspan="3"></td></tr>
       </thead>
       <tbody>
         {% for team in teams %}
           <tr>
             <td class="persona"><img class="persona-preview" src="{{ team.flag }}" alt="{{ _('Flag') }}" data-browsertheme="{{ team.persona.json_data if team.persona }}" /></td>
             <td>{{ team.name }}</td>
-            <td>{{ team.avg_fans|numberfmt if team.avg_fans else 0 }}</td>
-            <td>{{ team.persona.popularity|numberfmt if team.persona else 0 }}</td>
+            <td class="fans"><span class="inlinesparkline">{{ team.stats }}</span>{{ team.persona.popularity|numberfmt if team.persona else 0 }}</td>
           </tr>
         {% endfor %}
       </tbody>
@@ -157,10 +157,9 @@
 {% block footer %}{% endblock %}
 {% block site_js %}{% endblock %}
 {% block js %}
-  {{ js('firefoxcup') }}
-  <script>
-    var classOptions = ['default', 'amo', 'rockyourfirefox'];
-    var choice = Math.floor(Math.random() * classOptions.length);
-    $('body').addClass(classOptions[choice]);
+  <script type="text/javascript">
+    media_url = '{{ MEDIA_URL }}';
+    firefoxcup_teams = {{ team_ids|safe }}
   </script>
+  {{ js('firefoxcup') }}
 {% endblock %}

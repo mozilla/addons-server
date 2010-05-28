@@ -1,12 +1,6 @@
 from django.db import models
-from django.db.models import Avg
 
-from amo.models import ModelBase, ManagerBase
-
-class StatsManager(ManagerBase):
-
-    def avg_fans(self):
-        return self.values('persona_id').annotate(average=Avg('popularity'))
+from amo.models import ModelBase
 
 
 class Stats(ModelBase):
@@ -16,8 +10,6 @@ class Stats(ModelBase):
     """
     persona_id = models.PositiveIntegerField(db_index=True)
     popularity = models.PositiveIntegerField()
-
-    objects = StatsManager()
 
     class Meta(ModelBase.Meta):
         db_table = 'stats_firefoxcup'

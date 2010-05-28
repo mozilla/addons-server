@@ -162,7 +162,7 @@ body, h1, h2, h3, h4, h5, h6 {
 	-moz-box-shadow: 1px 1px 2px rgba(0,0,0,0.1), 0 -20px 45px rgba(0,0,0,0.08) inset;
 	-webkit-box-shadow: 1px 1px 2px rgba(0,0,0,0.1), 0 -20px 45px rgba(0,0,0,0.08) inset;
 	min-height: 300px;
-	background: #fff url(../../img/firefoxcup/preview-uk.jpg) 10px 100px no-repeat;
+	background: #fff url(../../img/firefoxcup/personas-pc/usa.jpg) -60px 130px no-repeat;
 }
 
 #main-content h2 {
@@ -299,7 +299,7 @@ ul.personas-list {
 	min-height: 80px;
 }
 
-#sidebar .subfeatures li a#featured-footiefox {
+#sidebar .subfeatures li a#footiefox {
 	background-image: url(../../img/firefoxcup/footiefox.png);
 }
 
@@ -323,16 +323,13 @@ ul.personas-list {
 	min-height: 54px;
 }
 
-.default #sidebar .subfeatures li a#featured-footiefox { display: block; }
 .default #sidebar .subfeatures li a#featured-rockyourfirefox,
 .default #sidebar .subfeatures li a#featured-amo { display: none; }
 
 .rockyourfirefox #sidebar .subfeatures li a#featured-rockyourfirefox { display: block; }
-.rockyourfirefox #sidebar .subfeatures li a#featured-footiefox,
 .rockyourfirefox #sidebar .subfeatures li a#featured-amo { display: none; }
 
 .amo #sidebar .subfeatures li a#featured-amo { display: block; }
-.amo #sidebar .subfeatures li a#featured-footiefox,
 .amo #sidebar .subfeatures li a#featured-rockyourfirefox { display: none; }
 
 /* }}} */
@@ -584,3 +581,11 @@ tbody tr th, tbody tr td {
 }
 
 /* }}} */
+/* Sparkline */
+td.fans {
+  text-align: center;
+}
+.inlinesparkline {
+  display: none;
+  margin: 0 15px;
+}

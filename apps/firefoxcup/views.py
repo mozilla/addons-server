@@ -1,3 +1,4 @@
+import json
 import jingo
 
 from addons.models import Persona
@@ -7,7 +8,6 @@ from .models import Stats
 from .twitter import search
 
 
-# Create your views here.
 def index(request):
 
     tweets = search(tags['all'], lang=request.LANG)
@@ -16,18 +16,40 @@ def index(request):
         extra = search(tags['all'], 'all')
         tweets.extend(extra)
 
-    # we only want 15 tweets
+    # 15 tweets only
     tweets = tweets[:15]
 
-    teams = dict((t['persona_id'], t) for t in teams_config)
-    for persona in Persona.objects.filter(persona_id__in=teams.keys()):
-        teams[persona.persona_id]['persona'] = persona
+    persona_ids = [t['persona_id'] for t in teams_config]
+    personas = {}
+    for persona in Persona.objects.filter(persona_id__in=persona_ids):
+        personas[persona.persona_id] = persona
 
-    for record in Stats.objects.avg_fans():
-        teams[record['persona_id']]['avg_fans'] = record['avg_fans']
+    stats = {}
+    for stat in Stats.objects.all():
+        stats.setdefault(stat.persona_id, []).append(str(stat.popularity))
+
+    teams = []
+    for t in teams_config:
+        id = t['persona_id']
+        t['persona'] = personas.get(id, [])
+
+        if id in stats:
+            # we need at least 2 data points
+            while len(stats[id]) < 2:
+                stats[id].insert(0, '0')
+            t['stats'] = ','.join(stats[id])
+        else:
+            t['stats'] = '0,0'
+        teams.append(t)
+
+    team_ids = json.dumps([t['id'] for t in teams_config])
+
+    # sort by most fans
+    teams.sort(key=lambda x: x['persona'].popularity, reverse=True)
 
     return jingo.render(request, 'firefoxcup/index.html', {
         'tweets': tweets,
-        'teams': teams.values(),
+        'teams': teams,
+        'team_ids': team_ids,
         'email_enabled': email_enabled,
     })

@@ -1,3 +1,53 @@
+$(document).ready(function () {
+  // if user has Firefox 3.6, hide the 'Get Firefox' download block
+  if (BrowserDetect.browser == 'Firefox' && BrowserDetect.version == '3.6')
+    $('#download').hide();
+
+  firefoxcup_random_promo();
+  // media_url and firefoxcup_teams defined in the template
+  firefoxcup_random_screenshot(media_url, firefoxcup_teams);
+
+  $('[data-browsertheme]').personasButton();
+
+  $('.inlinesparkline').show().sparkline('html', {width: '150px'});
+});
+
+function firefoxcup_random_promo() {
+  // randomize sidebar promos
+  var classOptions = ['amo', 'rockyourfirefox'];
+  var choice = Math.floor(Math.random() * classOptions.length);
+  $('body').addClass(classOptions[choice]);
+}
+
+function firefoxcup_random_screenshot(media_url, teams) {
+  var platform = (navigator.appVersion.indexOf('Mac') !== -1) ? 'mac' : 'pc';
+  choice = Math.floor(Math.random() * teams.length);
+  var background =
+      'url("' + media_url + 'img/firefoxcup/personas-'
+    + platform + '/' + teams[choice] + '.jpg")';
+
+  $('#main-content').css('background-image', background);
+}
+
+// the original version of this function doesn't yet handle
+// installing via clicking on a preview image
+// so we have to redefine this here
+$.fn.personasButton = function(options) {
+    $(this).hoverIntent({
+        interval: 100,
+        over: function(e) {
+            dispatchPersonaEvent('PreviewPersona', e.currentTarget);
+        },
+        out: function(e) {
+            dispatchPersonaEvent('ResetPersona', e.currentTarget);
+        }
+    });
+    $(this).click(function(e) {
+        dispatchPersonaEvent('SelectPersona', e.currentTarget);
+        return false;
+    });
+};
+
 // Submit on locale choice
 jQuery(function($) {
   var f = $('form.languages');
@@ -508,3 +558,4 @@ Mozilla.Page.prototype.show = function()
 {
 	this.element.style.display = 'block';
 }
+

@@ -56,9 +56,9 @@ LANGUAGE_CODE = 'en-US'
 
 # Accepted locales
 AMO_LANGUAGES = (
-    'ar', 'ca', 'cs', 'da', 'de', 'el', 'en-US', 'es-ES', 'eu',
+    'af', 'ar', 'ca', 'cs', 'da', 'de', 'el', 'en-GB', 'en-US', 'es-ES', 'eu',
     'fa', 'fi', 'fr', 'ga-IE', 'he', 'hu', 'id', 'it', 'ja', 'ko',
-    'mn', 'nl', 'pl', 'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sq',
+    'mn', 'nl', 'pl', 'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sl', 'sq', 'sr',
     'sv-SE', 'uk', 'vi', 'zh-CN', 'zh-TW',
 )
 
@@ -348,10 +348,12 @@ MINIFY_BUNDLES = {
         # JS files specific to /firefoxcup/
         'firefoxcup': (
             'js/zamboni/jquery-1.4.2.min.js',
+            'js/firefoxcup/browserdetect.js',
             'js/firefoxcup/yahoo-dom-event.js',
             'js/firefoxcup/animation.js',
             'js/zamboni/jquery.hoverIntent.min.js',
             'js/zamboni/personas.js',
+            'js/zamboni/jquery.sparkline.min.js',
             'js/firefoxcup/firefoxcup.js',
         ),
     }
