@@ -278,13 +278,13 @@ class SearchTest(SphinxTestCase):
         eq_(len(query("grapple", platform='sunos')), 0)
         eq_(len(query("grapple", platform='macos')), 1)
 
-    def test_xenophobia_filter(self):
+    def test_namesort_filter(self):
         """
-        Setting the language to 'fr' and turning xenophobia should give us no
-        results... since our fixture is fr incapable.
+        Setting the language to 'fr' and sorting by 'name' should give us no
+        results... since our fixture is fr-incapable.
         """
         translation.activate('fr')
-        eq_(len(query("grapple", xenophobia=True)), 0)
+        eq_(len(query("grapple", sort='name')), 0)
         translation.activate(settings.LANGUAGE_CODE)
 
     def test_locale_filter(self):
