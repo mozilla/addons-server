@@ -1,5 +1,19 @@
 from settings import *
 
+DEBUG = True
+TEMPLATE_DEBUG = DEBUG
+DEBUG_PROPAGATE_EXCEPTIONS = DEBUG
+
+# These apps are great during development.
+INSTALLED_APPS += (
+    'debug_toolbar',
+    'django_extensions',
+    'fixture_magic',
+)
+
+CACHE_BACKEND = 'django_pylibmc.memcached://localhost:11211?timeout=5000'
+# Uncomment to disable caching:
+# CACHE_BACKEND = 'dummy://'
 
 DATABASES = {
     'default': {
@@ -13,16 +27,18 @@ DATABASES = {
     },
 }
 
+
+LOG_LEVEL = logging.DEBUG
+HAS_SYSLOG = False
+
 # For debug toolbar.
-MIDDLEWARE_CLASSES += ('debug_toolbar.middleware.DebugToolbarMiddleware',)
-INTERNAL_IPS = ('127.0.0.1',)
-INSTALLED_APPS += ('debug_toolbar',)
-
-CACHE_BACKEND = 'caching.backends.memcached://localhost:11211?timeout=500'
-
-DEBUG = True
-
-DEBUG_PROPAGATE_EXCEPTIONS = DEBUG
+if DEBUG:
+    INTERNAL_IPS = ('127.0.0.1',)
+    MIDDLEWARE_CLASSES += ('debug_toolbar.middleware.DebugToolbarMiddleware',)
+    DEBUG_TOOLBAR_CONFIG = {
+        'HIDE_DJANGO_SQL': False,
+        'INTERCEPT_REDIRECTS': False,
+    }
 
 # If you're not running on SSL you'll want this to be False
 SESSION_COOKIE_SECURE = False
