@@ -259,7 +259,7 @@ var installButton = function() {
         addToApp();
     } else if (z.app == 'firefox') {
         $button.addPopup(message('learn_more')).addClass('concealed');
-        versionsAndPlatforms();
+        versionsAndPlatforms({addPopup: false});
     } else if (z.app == 'thunderbird') {
         var msg = function() {
             return $(message('learn_more')()).html();
@@ -277,13 +277,14 @@ jQuery.fn.installButton = function() {
 
 // Create a popup box when the element is clicked.  html can be a function.
 jQuery.fn.addPopup = function(html, allowClick) {
-    this.click(function(e) {
-        if (!allowClick) { e.preventDefault(); }
-
+    return this.click(function(e) {
         var $this = $(this),
             _html = $($.isFunction(html) ? html() : html),
             popup_root = _html.get(0),
             $body = $(document.body);
+
+        if (!$this.filter(':visible').length) { return; }
+        if (!allowClick) { e.preventDefault(); }
 
         if ($this.offset().left > $(window).width() / 2) {
             _html.addClass('left');
@@ -305,7 +306,6 @@ jQuery.fn.addPopup = function(html, allowClick) {
         // Trampoline the binding so it isn't triggered by the current click.
         setTimeout(function(){ $body.bind('click newPopup', cb); }, 0);
     });
-    return this;
 };
 
 
