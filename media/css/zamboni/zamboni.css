@@ -1876,7 +1876,6 @@ form .error .note.error {
 
 /** Add-on detail page buttons. **/
 #addon-summary .install-shell .install {
-    float: left;
     clear: both;
 }
 
