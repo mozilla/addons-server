@@ -400,6 +400,10 @@ class ListTest(TestCase):
         r = make_call('list/by_adu?format=json', version=1.5)
         assert json.loads(r.content)
 
+    def test_unicode(self):
+        request = make_call(u'list/featured/all/10/Linux/3.7a2pre'
+                            u'xec\xb6\u0153\xec\xb2')
+
 
 class SeamonkeyFeaturedTest(TestCase):
     fixtures = ['base/seamonkey']

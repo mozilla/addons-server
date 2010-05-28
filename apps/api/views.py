@@ -9,7 +9,7 @@ import urllib
 
 from django.http import HttpResponse, HttpResponsePermanentRedirect
 from django.template.context import get_standard_processors
-from django.utils import translation
+from django.utils import translation, encoding
 
 import jingo
 from tower import ugettext as _, ugettext_lazy
@@ -273,7 +273,7 @@ class ListView(APIView):
 
         args = (addon_type, limit, APP, platform, version, shuffle)
         f = lambda: self._process(addons, *args)
-        return cached_with(addons, f, map(str, args))
+        return cached_with(addons, f, map(encoding.smart_str, args))
 
     def _process(self, addons, *args):
         return self.render('api/list.xml',
