@@ -3,40 +3,67 @@ import logging.handlers
 
 from django.conf import settings
 
-# Loggers created under the "z" namespace, e.g. "z.caching", will inherit the
-# configuration from the base z logger.
-log = logging.getLogger('z')
+import commonware.log
+import dictconfig
 
-level = settings.LOG_LEVEL
+
+class NullHandler(logging.Handler):
+
+    def emit(self, record):
+        pass
+
 
 base_fmt = ('%(name)s:%(levelname)s %(message)s '
             ':%(pathname)s:%(lineno)s')
-if settings.DEBUG:
-    fmt = getattr(settings, 'LOG_FORMAT', '%(asctime)s ' + base_fmt)
-    handler, root_handler = logging.StreamHandler(), logging.StreamHandler()
-    formatter = logging.Formatter(fmt, datefmt='%H:%M:%S')
-    root_handler.setFormatter(formatter)
-else:
-    SysLogger = logging.handlers.SysLogHandler
-    handler = SysLogger(facility=SysLogger.LOG_LOCAL7)
 
-    # Use a root formatter that's known to be safe.
-    root_handler = SysLogger(facility=SysLogger.LOG_LOCAL7)
-    root_handler.setFormatter(
-        logging.Formatter('%s: %s' % (settings.SYSLOG_TAG, base_fmt)))
+cfg = {
+    'version': 1,
+    'filters': {},
+    'formatters': {
+        'debug': {
+            '()': commonware.log.Formatter,
+            'datefmt': '%H:%M:%s',
+            'format': '%(asctime)s ' + base_fmt,
+        },
+        'prod': {
+            '()': commonware.log.Formatter,
+            'datefmt': '%H:%M:%s',
+            'format': '%s: [%%(REMOTE_ADDR)s] %s' % (settings.SYSLOG_TAG,
+                                                     base_fmt),
+        },
+    },
+    'handlers': {
+        'console': {
+            '()': logging.StreamHandler,
+            'formatter': 'debug',
+        },
+        'syslog': {
+            '()': logging.handlers.SysLogHandler,
+            'facility': logging.handlers.SysLogHandler.LOG_LOCAL7,
+            'formatter': 'prod',
+        },
+        'null': {
+            '()': NullHandler,
+        },
+    },
+    'loggers': {
+        'z': {},
+    },
+    'root': {},
+}
 
-    fmt = '%s: [%%(REMOTE_ADDR)s] %s' % (settings.SYSLOG_TAG, base_fmt)
-    fmt = getattr(settings, 'SYSLOG_FORMAT', fmt)
-    formatter = logging.Formatter(fmt)
+for key, value in settings.LOGGING.items():
+    cfg[key].update(value)
 
-# Set a root handler to catch everything else.
-logging.getLogger().addHandler(root_handler)
+# Set the level and handlers for all loggers.
+for logger in cfg['loggers'].values() + [cfg['root']]:
+    syslog = settings.HAS_SYSLOG and not settings.DEBUG
+    if 'handlers' not in logger:
+        logger['handlers'] = ['syslog' if syslog else 'console']
+    if 'level' not in logger:
+        logger['level'] = settings.LOG_LEVEL
+    if logger is not cfg['root'] and 'propagate' not in logger:
+        logger['propagate'] = False
 
-log.setLevel(level)
-handler.setLevel(level)
-handler.setFormatter(formatter)
 
-for f in getattr(settings, 'LOG_FILTERS', []):
-    handler.addFilter(logging.Filter(f))
-
-log.addHandler(handler)
+dictconfig.dictConfig(cfg)
