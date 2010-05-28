@@ -14,7 +14,7 @@ log = commonware.log.getLogger('z.cron')
 @cronjobs.register
 def firefoxcup_stats(teams=teams_config):
     try:
-        latest = Stats.objects.latest()
+        latest = Stats.uncached.latest()
         delta = datetime.today() - latest.created
         if delta.days < 1:
             return
