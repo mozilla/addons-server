@@ -27,6 +27,7 @@ Use the Source
 Grab zamboni from github with ::
 
     git clone git://github.com/jbalogh/zamboni.git
+    cd zamboni
     git submodule update --init
 
 
