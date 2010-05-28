@@ -18,8 +18,6 @@ ROOT_PACKAGE = os.path.basename(ROOT)
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 DEBUG_PROPAGATE_EXCEPTIONS = True
-LOG_LEVEL = logging.DEBUG
-SYSLOG_TAG = "http_app_addons"
 
 ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
@@ -105,8 +103,8 @@ MEDIA_URL = '/media//'
 ADMIN_MEDIA_PREFIX = '/admin-media/'
 
 # paths that don't require an app prefix
-SUPPORTED_NONAPPS = ('admin', 'developers', 'editors', 'img', 'jsi18n',
-                     'localizers', 'media', 'statistics', 'services', 'firefoxcup')
+SUPPORTED_NONAPPS = ('admin', 'developers', 'editors', 'firefoxcup', 'img',
+                     'jsi18n', 'localizers', 'media', 'statistics', 'services')
 DEFAULT_APP = 'firefox'
 
 # paths that don't require a locale prefix
@@ -454,4 +452,19 @@ CUSTOM_DUMPS = {
                   'files.platform', 'addons.addon', 'versions.version',
                   'files.file'),
     }
+}
+
+# Logging
+LOG_LEVEL = logging.DEBUG
+HAS_SYSLOG = True  # syslog is used if HAS_SYSLOG and NOT DEBUG.
+SYSLOG_TAG = "http_app_addons"
+# See PEP 391 and log_settings.py for formatting help.  Each section of LOGGING
+# will get merged into the corresponding section of log_settings.py.
+# Handlers and log levels are set up automatically based on LOG_LEVEL and DEBUG
+# unless you set them here.  Messages will not propagate through a logger
+# unless propagate: True is set.
+LOGGING = {
+    'loggers': {
+        'caching': {'handlers': ['null']},
+    },
 }

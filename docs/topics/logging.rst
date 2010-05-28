@@ -27,26 +27,36 @@ tree.  It sets up sensible defaults, but you can twiddle with these settings:
         import logging
         LOG_LEVEL = logging.WARN
 
-``LOG_FILTERS``
-    If this optional setting is set to a tuple, only log items matching strings
-    in said tuple will be displayed.
+``HAS_SYSLOG``
+    Set this to ``False`` if you don't want logging sent to syslog when
+    ``DEBUG`` is ``False``.
 
-    For example::
+``LOGGING``
+    See PEP 391 and log_settings.py for formatting help.  Each section of LOGGING
+    will get merged into the corresponding section of log_settings.py.
+    Handlers and log levels are set up automatically based on LOG_LEVEL and DEBUG
+    unless you set them here.  Messages will not propagate through a logger unless
+    propagate: True is set.
 
-        LOG_FILTERS = ('z.sphinx.', )
+    ::
 
-    This will show you messages **only** that start with ``z.sphinx``.
+        LOGGING = {
+            'loggers': {
+                'caching': {'handlers': ['null']},
+            },
+        }
 
-``LOG_FORMAT``
-    This string controls what gets printed out for each log message.  See the
-    default in ``log_settings.py``.  The complete list of formatting options is
-    available at http://docs.python.org/library/logging.html#formatter.
+    If you want to add more to this in ``settings_local.py``, do something like
+    this::
 
-``SYSLOG_FORMAT``
-    This setting is the same as ``LOG_FORMAT`` except it controls the format for
-    what is sent to syslog.  By default, it's the same as ``LOG_FORMAT`` except
-    it strips the date/time prefix since syslogd is going to timestamp
-    everything anyway.
+        LOGGING['loggers'].update({
+            'z.paypal': {
+                'level': logging.DEBUG,
+            },
+            'z.sphinx': {
+                'handlers': ['null'],
+            },
+        })
 
 
 Using Loggers
@@ -68,5 +78,13 @@ the configuration by naming it ``"z.caching"``::
 Logs can be nested as much as you want.  Maintaining log namespaces is useful
 because we can turn up the logging output for a particular section of zamboni
 without becoming overwhelmed with logging from all other parts.
+
+
+commonware.log vs. logging
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``commonware.log.getLogger`` should be used inside the request cycle.  It
+returns a ``LoggingAdapter`` that inserts the current user's IP address into
+the log message.
 
 Complete logging docs: http://docs.python.org/library/logging.html
