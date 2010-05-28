@@ -226,6 +226,7 @@ var installButton = function() {
     } else if (search) {
         addToApp();
         clickHijack();
+        versionsAndPlatforms({addPopup: false, addWarning: false});
         if (unreviewed) {
             $button.addPopup(message('unreviewed'));
         } else {
