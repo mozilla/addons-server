@@ -190,7 +190,7 @@ var installButton = function() {
         } else if (badPlatform && opts.addPopup) {
             // Only bad platform is possible.
             $button.addPopup(pmsg);
-        } else if (appSupported) {
+        } else if (appSupported && !unreviewed || search) {
             // Good version, good platform.
             $button.addClass('installer');
         }
@@ -203,6 +203,10 @@ var installButton = function() {
         contrib = $this.hasClass('contrib'),
         search = $this.hasattr('data-search'),
         eula = $this.hasClass('eula');
+
+    if (unreviewed && !(selfhosted || eula || contrib)) {
+        $button.addPopup(message('unreviewed'));
+    }
 
     // Drive the install button based on its type.
     if (selfhosted) {
@@ -223,41 +227,11 @@ var installButton = function() {
                 $button.addPopup(message('learn_more_personas'));
             }
         }
-    } else if (search) {
-        addToApp();
-        clickHijack();
-        versionsAndPlatforms({addPopup: false, addWarning: false});
-        if (unreviewed) {
-            $button.addPopup(message('unreviewed'));
-        } else {
-            $button.addClass('installer');  // Enables click hijacking.
-        }
-    } else if (unreviewed) {
-        addToApp();
-        clickHijack();
-        $button.addPopup(message('unreviewed'));
-        versionsAndPlatforms({addPopup: false});
-        $button.removeClass('installer');
-        if (olderBrowser || newerBrowser || badPlatform) {
-            // The unreviewed warning comes up the first time.  Then we show
-            // the version/platform popup.
-            $button.bind('newPopup', function(e, popup) {
-                // Only bind the new version popup once.
-                $button.unbind('newPopup');
-                $(popup).find('.installer').click(function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    // Remove the unreviewed popup.
-                    $button.unbind('click');
-                    versionsAndPlatforms({addWarning: false});
-                    $button.click();
-                });
-            });
-        }
     } else if (z.appMatchesUserAgent) {
         clickHijack();
-        versionsAndPlatforms();
         addToApp();
+        var opts = search ? {addPopup: false, addWarning: false} : {};
+        versionsAndPlatforms(opts);
     } else if (z.app == 'firefox') {
         $button.addPopup(message('learn_more')).addClass('concealed');
         versionsAndPlatforms({addPopup: false});
@@ -278,36 +252,62 @@ jQuery.fn.installButton = function() {
 
 // Create a popup box when the element is clicked.  html can be a function.
 jQuery.fn.addPopup = function(html, allowClick) {
-    return this.click(function(e) {
+    return this.each(function() {
         var $this = $(this),
-            _html = $($.isFunction(html) ? html() : html),
-            popup_root = _html.get(0),
+            self = this,
             $body = $(document.body);
 
-        if (!$this.filter(':visible').length) { return; }
-        if (!allowClick) { e.preventDefault(); }
+        if (this.hasPopup) {
+            // We've been here before, queue a follow-up button.
+            $this.bind('newPopup', function(e, popup) {
+                $this.unbind('newPopup');
+                $(popup).find('.installer').click(function(e) {
+                    $this.unbind('click');  // Drop the current popup.
+                    self.hasPopup = false;
+                    var next = self.popupQueue.pop();
+                    if (!next[1]) { // allowClick
+                        e.preventDefault();
+                        e.stopPropagation();
+                    }
+                    jQuery.fn.addPopup.apply($this, next);
+                    $this.click();
+                });
+            });
+            self.popupQueue = self.popupQueue || [];
+            self.popupQueue.push([html, allowClick]);
+        } else {
+            this.hasPopup = true;
 
-        if ($this.offset().left > $(window).width() / 2) {
-            _html.addClass('left');
-        }
-        $this.trigger('newPopup', [_html]);
-        $this.after(_html);
+            $this.click(function(e) {
+                var _html = $($.isFunction(html) ? html() : html),
+                    popup_root = _html.get(0);
 
-        // Callback to destroy the popup on the first click outside the popup.
-        var cb = function(e) {
-            // Bail if the click was somewhere on the popup.
-            if (e.type == 'click' &&
-                popup_root == e.target ||
-                _.indexOf($(e.target).parents(), popup_root) != -1) {
-                return;
-            }
-            _html.remove();
-            $body.unbind('click newPopup', cb);
+                if (!$this.filter(':visible').length) { return; }
+                if (!allowClick) { e.preventDefault(); }
+
+                if ($this.offset().left > $(window).width() / 2) {
+                    _html.addClass('left');
+                }
+                $this.trigger('newPopup', [_html]);
+                $this.after(_html);
+
+                // Callback to destroy the popup on the first click outside the popup.
+                var cb = function(e) {
+                    // Bail if the click was somewhere on the popup.
+                    if (e.type == 'click' &&
+                        popup_root == e.target ||
+                        _.indexOf($(e.target).parents(), popup_root) != -1) {
+                        return;
+                    }
+                    _html.remove();
+                    $body.unbind('click newPopup', cb);
+                }
+                // Trampoline the binding so it isn't triggered by the current click.
+                setTimeout(function(){ $body.bind('click newPopup', cb); }, 0);
+            });
         }
-        // Trampoline the binding so it isn't triggered by the current click.
-        setTimeout(function(){ $body.bind('click newPopup', cb); }, 0);
     });
-};
+}
 
 
 /* Install an XPI or a JAR (or something like that).

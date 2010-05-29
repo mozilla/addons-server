@@ -1920,8 +1920,13 @@ form .error .note.error {
 }
 
 .install-wrapper.unreviewed .install strong,
-.install-wrapper.selfhosted .install strong{
+.install-wrapper.selfhosted .install strong {
     display: none;
+}
+
+.install-wrapper.unreviewed .install-note strong,
+.install-wrapper.selfhosted .install-note strong {
+    display: inherit;
 }
 
 .install-wrapper.unreviewed,
