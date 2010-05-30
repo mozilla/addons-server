@@ -2912,7 +2912,7 @@ form.addon-feedback div.container {
 .listing-header li {
     line-height: 2.5;
     display: inline;
-    margin: 0 0.25em;
+    margin: 0 0;
 }
 .listing-header li a {
     color: #223355;
@@ -2922,7 +2922,7 @@ form.addon-feedback div.container {
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
-    padding: 0.3em 0.8em;
+    padding: 0.3em 0.6em;
     white-space: nowrap;
 }
 .listing-header li a:hover,

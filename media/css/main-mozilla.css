@@ -46,10 +46,10 @@
 /** addon listings */
 #addon-list-options ul {
     float: none;
-    margin: 0 1em;
+    margin: 0 1em 0 .75em;
 }
 #addon-list-options ul li {
-    margin: 0 .5em;
+    margin: 0 0;
 }
 #addon-list-options ul li.perpage {
     float: right;
@@ -141,7 +141,7 @@ p.install-button {
 }
 
 .section-teaser .teaser-header ol li {
-    margin-right: 3.4em;
+    margin-right: 2.5em;
 }
 
 .html-rtl .section-teaser .window ol.teaser-items {
