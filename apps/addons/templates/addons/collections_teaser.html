@@ -1,3 +1,6 @@
+{# TODO set fxcup to true on June 10th #}
+{% set fxcup = false %}
+
 {% if promobox %}
 {% cache promobox.features() %}
 <div class="section-teaser featured">
@@ -7,7 +10,7 @@
         <li><a href="#t-introduction">{{ _('Introduction') }}</a></li>
         {% for feature in promobox.features() %}
           {# TODO remove if blocks after the Firefox Cup promo ends #}
-          {% if (feature.title|slugify) in ['sports', 'rock-your-firefox'] %}
+          {% if (feature.title|slugify) in ['sports', 'rock-your-firefox'] and fxcup %}
             <li><a href="#t-firefox-cup">{{ _('Firefox Cup') }}</a></li>
           {% else %}
             <li><a href="#t-{{ feature.title|slugify }}">{{ feature.title }}</a></li>
@@ -56,7 +59,7 @@
       {% set collections = promobox.collections() %}
       {% for feature in promobox.features() %}
         {# TODO remove if blocks after the Firefox Cup promo ends #}
-        {% if (feature.title|slugify) in ['sports', 'rock-your-firefox'] %}
+        {% if (feature.title|slugify) in ['sports', 'rock-your-firefox'] and fxcup %}
           <li id="t-firefox-cup">
             <div class="cta">
               <h2>{{ _('Support your team in the Firefox Cup') }}</h2>
