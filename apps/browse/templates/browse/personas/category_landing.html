@@ -25,16 +25,6 @@
   {% if is_homepage %}
     <div id="featured-addons" class="featured personas-home">
       <div class="featured-inner">
-        <div class="col1">
-          {{ breadcrumbs([(None, _('Personas'))]) }}
-          <h2>{{ _('Personas') }}</h2>
-          <p class="intro">
-          {% trans url=url('browse.personas')|urlparams(sort=special) %}
-            Over 30,000 different designs to personalize your browser! Just move the
-            mouse over a design to try it on.
-            <a href="{{ url }}" class="more-info">Start exploring</a>
-          {% endtrans %}</p>
-        </div>
         {% set addons = addon_sets[special][:16] %}
         <ul class="personas-slider">
           {% cache addons %}
@@ -43,6 +33,14 @@
           {% endfor %}
           {% endcache %}
         </ul>
+        {{ breadcrumbs([(None, _('Personas'))]) }}
+        <h2>{{ _('Personas') }}</h2>
+        <p class="intro">
+        {% trans url=url('browse.personas')|urlparams(sort=special) %}
+          Over 30,000 different designs to personalize your browser! Just move the
+          mouse over a design to try it on.
+          <a href="{{ url }}" class="more-info">Start exploring</a>
+        {% endtrans %}</p>
       </div>
     </div>
 

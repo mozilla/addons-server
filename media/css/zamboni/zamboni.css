@@ -889,11 +889,6 @@ ul.license li.copyr { background-position: 0 -260px; }
     position: relative;
 }
 
-.personas-home .col1 {
-    float: left;
-    clear: left;
-}
-
 .personas-home .intro {
     font-size: 1.4em;
     width: 450px;
@@ -1995,6 +1990,10 @@ form .error .note.error {
 }
 
 /* Carousel arrows for personas carousel */
+
+.personas-home ol.breadcrumbs {
+    clear:none; /*don't want breadcrumbs clearing floats in this module*/
+}
 
 .arrow {
     display: block;
