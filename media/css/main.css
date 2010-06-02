@@ -1587,6 +1587,10 @@ form.favorite {
     margin-bottom: 0;
 }
 
+.article.userinput {
+    overflow: visible;
+}
+
 /* @end */
 
 /* @group Notification */
