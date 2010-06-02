@@ -16,12 +16,12 @@ find . -name '*.pyc' | xargs rm
 
 if [ ! -d "$VENV/bin" ]; then
   echo "No virtualenv found.  Making one..."
-  virtualenv --no-site-packages $VENV
+  virtualenv $VENV
 fi
 
 source $VENV/bin/activate
 
-pip install -q -r requirements/dev.txt -r requirements/compiled.txt
+pip install -q -r requirements/dev.txt
 
 cat > settings_local.py <<SETTINGS
 from settings import *
