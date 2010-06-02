@@ -253,15 +253,21 @@ class PersonasFilter(HomepageFilter):
             ('rating', _lazy('Top Rated')))
 
     def _filter(self, field):
+        # We do the weird isnull and extra...order_by to get around the ORM.
+        # If we do a normal order_by(personas__movers) Django does a LEFT OUTER
+        # JOIN, which busts the index we want.  So we do isnull to get the join
+        # and then order in extra to sneak around Django.
         qs = Addon.objects
         if field == 'created':
             return qs.order_by('-created')
         elif field == 'popular':
-            return qs.order_by('-persona__popularity')
+            return (qs.filter(persona__id__isnull=False)
+                    .extra(order_by=['-personas.popularity']))
         elif field == 'rating':
             return qs.order_by('-bayesian_rating')
         else:
-            return qs.order_by('-persona__movers')
+            return (qs.filter(persona__id__isnull=False)
+                    .extra(order_by=['-personas.movers']))
 
 
 def personas(request, category=None):
