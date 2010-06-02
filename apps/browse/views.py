@@ -254,9 +254,9 @@ class PersonasFilter(HomepageFilter):
 
     def _filter(self, field):
         # We do the weird isnull and extra...order_by to get around the ORM.
-        # If we do a normal order_by(personas__movers) Django does a LEFT OUTER
-        # JOIN, which busts the index we want.  So we do isnull to get the join
-        # and then order in extra to sneak around Django.
+        # If we do a normal .order_by(personas__movers) Django does a LEFT
+        # OUTER JOIN which busts the index we want.  So we use isnull to get
+        # the join and then order in .extra to sneak around Django.
         qs = Addon.objects
         if field == 'created':
             return qs.order_by('-created')
