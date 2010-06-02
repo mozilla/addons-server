@@ -125,7 +125,7 @@ var installButton = function() {
 
     // Add version and platform warnings and (optionally) popups.  This is one
     // big function since we merge the messaging when bad platform and version
-    // occur simultaneously.
+    // occur simultaneously.  Returns true if a popup was added.
     var versionsAndPlatforms = function(options) {
         var opts = $.extend({addPopup: true, addWarning: true, extra: ''},
                             options);
@@ -187,13 +187,16 @@ var installButton = function() {
                 // Bad version.
                 $button.addPopup(vmsg);
             }
+            return true;
         } else if (badPlatform && opts.addPopup) {
             // Only bad platform is possible.
             $button.addPopup(pmsg);
+            return true;
         } else if (appSupported && !unreviewed || search) {
             // Good version, good platform.
             $button.addClass('installer');
         }
+        return false;
     };
 
     // What kind of button are we dealing with?
@@ -239,8 +242,9 @@ var installButton = function() {
         var msg = function() {
             return $(message('learn_more')()).html();
         };
-        versionsAndPlatforms({extra: msg});
-        $button.addPopup(message('learn_more'), true);
+        if (!versionsAndPlatforms({extra: msg})) {
+            $button.addPopup(message('learn_more'), true);
+        }
     }
 };
 
