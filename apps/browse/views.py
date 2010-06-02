@@ -44,7 +44,9 @@ def locale_display_name(locale):
 Locale = collections.namedtuple('Locale', 'locale display native dicts packs')
 
 
-def language_tools(request):
+# We never use the category, but this makes it
+# uniform with the other type listings.
+def language_tools(request, category=None):
     types = (amo.ADDON_DICT, amo.ADDON_LPAPP)
     q = (Addon.objects.public().exclude(target_locale='')
          .filter(type__in=types, target_locale__isnull=False))

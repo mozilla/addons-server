@@ -4,7 +4,7 @@ from . import views
 
 
 urlpatterns = patterns('',
-    url('^language-tools$', views.language_tools,
+    url('^language-tools/(?P<category>[^/]+)?$', views.language_tools,
         name='browse.language-tools'),
 
     url('^themes/(?P<category>[^/]+)?$', views.themes,

@@ -45,7 +45,7 @@ class TestRedirects(test.TestCase):
 
     def test_browse(self):
         response = self.client.get('/browse/type:3', follow=True)
-        self.assertRedirects(response, '/en-US/firefox/language-tools',
+        self.assertRedirects(response, '/en-US/firefox/language-tools/',
                              status_code=301)
 
         response = self.client.get('/browse/type:2', follow=True)
