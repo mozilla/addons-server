@@ -280,10 +280,15 @@ def profile(request, user_id):
     own_profile = request.user.is_authenticated() and (
         request.amo_user.id == user.id)
 
+    if user.is_developer:
+        addons = amo.utils.paginate(request, user.addons_listed)
+    else:
+        addons = []
+
     return jingo.render(request, 'users/profile.html',
                         {'profile': user, 'own_coll': own_coll,
                          'fav_coll': fav_coll, 'edit_any_user': edit_any_user,
-                         'own_profile': own_profile})
+                         'addons': addons, 'own_profile': own_profile})
 
 
 def register(request):
