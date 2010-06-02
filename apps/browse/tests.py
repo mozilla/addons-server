@@ -136,7 +136,7 @@ class TestThemes(test_utils.TestCase):
         eq_(ids, [6113, 7172, 1843, 6704, 10869, 40, 5369, 3615, 55, 73])
 
     def test_category_count(self):
-        cat = Category.objects.all()[0]
+        cat = Category.objects.filter(name__isnull=False)[0]
         response = self.client.get(reverse('browse.themes', args=[cat.slug]))
         doc = pq(response.content)
         actual_count = int(doc('hgroup h3').text().split()[0])

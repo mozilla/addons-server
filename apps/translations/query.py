@@ -46,7 +46,7 @@ def order_by_translation(qs, fieldname):
     ifnull = 'IFNULL(%s, %s)' % (f1, f2)
     prefix = '-' if desc else ''
     return qs.extra(select={name: ifnull},
-                    where=['%s IS NOT NULL AND %s IS NOT NULL' % (f1, f2)],
+                    where=['(%s IS NOT NULL OR %s IS NOT NULL)' % (f1, f2)],
                     order_by=[prefix + name])
 
 
