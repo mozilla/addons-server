@@ -108,7 +108,7 @@ function VerticalCarousel(container) {
     this.items = this.container.find("> li");
     this.numItems = this.items.length;
     this.singleHeight = $(this.items[0]).height();
-    this.numVisible = Math.ceil(this.container.height() / this.singleHeight);
+    this.numVisible = 4; //Math.ceil(this.container.height() / this.singleHeight);
     this.numPages = Math.ceil(this.numItems / this.numVisible);
     this.prevButton = $("<a class='arrow prev'>^</a>");
     this.nextButton = $("<a class='arrow next'>></a>");
