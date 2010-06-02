@@ -245,6 +245,10 @@ var installButton = function() {
         if (!versionsAndPlatforms({extra: msg})) {
             $button.addPopup(message('learn_more'), true);
         }
+    } else {
+        clickHijack();
+        addToApp();
+        versionsAndPlatforms();
     }
 };
 
