@@ -14,6 +14,7 @@ from amo.helpers import urlparams
 from addons.models import Addon, Category
 from browse import views
 from browse.views import locale_display_name
+from translations.query import order_by_translation
 
 
 def test_locale_display_name():
@@ -145,7 +146,7 @@ class TestThemes(test_utils.TestCase):
 
 
 class TestCategoryPages(test_utils.TestCase):
-    fixtures = ['base/fixtures']
+    fixtures = ['base/fixtures', 'browse/nameless-addon']
 
     def test_browsing_urls(self):
         """Every browse page URL exists."""
@@ -210,12 +211,18 @@ class TestCategoryPages(test_utils.TestCase):
 
         eq_(len(addons), old_count - 1, "The number of addons is the same.")
 
-
     def test_added_date(self):
         url = reverse('browse.extensions') + '?sort=created'
         doc = pq(self.client.get(url).content)
         s = doc('.featured .item .updated').text()
         assert s.strip().startswith('Added'), s
+
+    def test_sorting_nameless(self):
+        """Nameless add-ons are dropped from the sort."""
+        qs = Addon.objects.all()
+        ids = order_by_translation(qs, 'name')
+        assert 57132 in [a.id for a in qs]
+        assert 57132 not in [a.id for a in ids]
 
 
 class TestLegacyRedirects(test_utils.TestCase):
