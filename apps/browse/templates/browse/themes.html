@@ -1,49 +1,58 @@
 {% extends "base.html" %}
 
 {% block title %}
-{# L10n: {0} is a translated theme name like "Nature" or "Sports" #}
-{{ page_title(_('{0} Themes')|f(selected.name)) }}
+{% if category %}
+  {# L10n: {0} is a translated theme name like "Nature" or "Sports" #}
+  {{ page_title(_('{0} :: Themes')|f(category.name)) }}
+{% else %}
+  {{ page_title(_('Themes')) }}
+{% endif %}
 {% endblock %}
 
 {% block bodyclass %}browse-thumbs{% endblock %}
 
-{% block content %}
-<div class="secondary">
-  {% set params = dict(unreviewed=unreviewed, sort=sorting) %}
-  <div id="thumb-categories" class="highlight">
-    <h3>{{ _('Themes') }}</h3>
-    <ul class="subcategories">
-      <li {% if selected not in categories %}class="selected"{% endif %}>
-        <a href="{{ url('browse.themes')|urlparams(**params) }}">
-          {{ _('All') }}</a>
-        <span class="items">{{ total_count }}</span>
-      </li>
-      {# TODO(jbalogh): cache by categories & selected #}
-      {# cache categories #}
-      {% for category in categories %}
-        <li {{ category|class_selected(selected) }}>
-        <a href="{{ url('browse.themes', category.slug)|urlparams(**params) }}">
-            {{ category}}</a>
-          <span class="items">{{ category.count }}</span>
-        </li>
-      {% endfor %}
-      {# endcache #}
-    </ul>
-  </div>
-</div>
+{% block extrahead %}
+{% if category %}
+<style>
+  #c-{{ category.id }} {
+    background: url({{ MEDIA_URL }}img/zamboni/arrow-right-blue.png) no-repeat left center;
+  }
+  .html-rtl #c-{{ category.id }} {
+    background: url({{ MEDIA_URL }}img/zamboni/arrow-left-blue.png) no-repeat right center;
+  }
+  #c-{{ category.id }} a {
+    color: inherit;
+  }
+</style>
+{% endif %}
+<link rel="alternate" type="application/rss+xml" title="RSS"
+      href="/{{ LANG }}/{{ APP.short }}/browse/type:{{ amo.ADDON_THEME }}/{% if category%}cat:{{ category.id }}/{% endif %}format:rss?sort={{ sorting }}" />
+{% endblock %}
 
+{% block content %}
 <div class="primary" role="main">
-  {{ breadcrumbs([(None, _('{0} Themes')|f(selected.name))]) }}
-  <hgroup>
-    <h2>{{ _('{0} Themes')|f(selected.name) }}</h2>
-    {# L10n: {0} is the add-on count. #}
-    <h3>{{ ngettext("{0} add-on", "{0} add-ons",
-                    themes.paginator.count)|f(themes.paginator.count) }}</h3>
-  </hgroup>
+  <header>
+    {% if category %}
+      {{ breadcrumbs([(url('browse.themes'), _('Themes')),
+                      (None, category.name)]) }}
+      <hgroup>
+        <h2>{{ category.name }}</h2>
+    {% else %}
+      {{ breadcrumbs([(None, _('Themes'))]) }}
+      <hgroup>
+        <h2>{{ _('Themes') }}</h2>
+    {% endif %}
+        {# L10n: {0} is an integer. #}
+        {% with num=themes.paginator.count %}
+          <h3>{{ ngettext('<b>{0}</b> add-on', '<b>{0}</b> add-ons',
+                          num)|f(num|numberfmt)|safe }}</h3>
+        {% endwith %}
+      </hgroup>
+  </header>
 
   <div id="addon-listing" class="featured listing">
     <div class="featured-inner">
-      {% with url_base=url('browse.themes', selected.slug) %}
+      {% with url_base=url('browse.themes', category.slug) %}
         {{ addon_listing_header(url_base, sort_opts, sorting, unreviewed) }}
       {% endwith %}
       {% cache themes.object_list %}
@@ -92,6 +101,22 @@
     </div> {# featured-inner #}
   </div> {# featured #}
   {{ themes|paginator }}
+</div>
+
+<div class="secondary" role="complementary">
+  <div class="other-categories highlight">
+    <h3>{{ _('Themes') }}</h3>
+    <ul>
+    {% cache categories %}
+    {% for cat in categories %}
+      <li id="c-{{ cat.id }}">
+        <a href="{{ url('browse.themes', cat.slug) }}">{{ cat.name }}</a>
+        <span class="items">{{ cat.count }}</span>
+      </li>
+    {% endfor %}
+    {% endcache %}
+    </ul>
+  </div>
 </div>
 {% endblock %}
 

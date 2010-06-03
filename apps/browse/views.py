@@ -81,9 +81,6 @@ def language_tools(request, category=None):
     return jingo.render(request, 'browse/language_tools.html',
                         {'locales': locales, 'search_cat': search_cat})
 
-# Placeholder for the All category.
-_Category = collections.namedtuple('Category', 'name count slug')
-
 
 class AddonFilter(object):
     """
@@ -138,11 +135,9 @@ def themes(request, category=None):
     addons, filter, unreviewed = _listing(request, amo.ADDON_THEME)
     total_count = addons.count()
 
-    if category is None:
-        selected = _Category(_('All'), total_count, '')
-    else:
-        selected = dict((c.slug, c) for c in categories)[category]
-        addons = addons.filter(categories__slug=category)
+    if category is not None:
+        category = dict((c.slug, c) for c in categories)[category]
+        addons = addons.filter(categories__id=category.id)
 
     themes = amo.utils.paginate(request, addons)
 
@@ -151,7 +146,7 @@ def themes(request, category=None):
 
     return jingo.render(request, 'browse/themes.html',
                         {'categories': categories, 'total_count': total_count,
-                         'themes': themes, 'selected': selected,
+                         'themes': themes, 'category': category,
                          'sorting': filter.sorting,
                          'sort_opts': filter.opts,
                          'unreviewed': unreviewed,
