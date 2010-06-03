@@ -468,5 +468,6 @@ SYSLOG_TAG = "http_app_addons"
 LOGGING = {
     'loggers': {
         'caching': {'handlers': ['null']},
+        'z.sphinx': {'level': logging.INFO},
     },
 }
