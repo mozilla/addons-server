@@ -98,6 +98,7 @@
             "created": "2009-12-22 20:12:06",
             "modified": "2009-12-22 20:12:06",
             "version": 5,
+            "addon": 4,
             "user": 1,
             "reply_to": null
         }
@@ -112,6 +113,7 @@
             "created": "2009-12-22 20:12:06",
             "modified": "2009-12-22 20:12:06",
             "version": 5,
+            "addon": 4,
             "user": 1,
             "reply_to": null
         }

@@ -8,8 +8,9 @@ from translations.models import Translation
 
 
 class Review(TranslatedFieldMixin, amo.models.ModelBase):
-
-    version = models.ForeignKey('versions.Version', related_name='reviews')
+    addon = models.ForeignKey('addons.Addon', related_name='_reviews')
+    version = models.ForeignKey('versions.Version', related_name='reviews',
+                                null=True)
     user = models.ForeignKey('users.UserProfile', related_name='_reviews_all')
     reply_to = models.ForeignKey('self', null=True, unique=True,
                                  db_column='reply_to')
