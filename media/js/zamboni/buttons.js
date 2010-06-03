@@ -192,7 +192,7 @@ var installButton = function() {
             // Only bad platform is possible.
             $button.addPopup(pmsg);
             return true;
-        } else if (appSupported && !unreviewed || search) {
+        } else if (appSupported || search && !unreviewed) {
             // Good version, good platform.
             $button.addClass('installer');
         }
