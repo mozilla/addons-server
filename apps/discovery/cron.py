@@ -56,6 +56,7 @@ def fetch_ryf_blog():
     if not image or offset == -1:
         log.error("Couldn't find a featured image for blog post (%s). "
                   "Fligtar said this would never happen." % page.permalink)
+        return
 
     # Image sources look like this:
     #    http://rockyourfirefox.com/rockyourfirefox_content/
