@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import translation
 
 import queryset_transform
 
@@ -57,9 +58,12 @@ class UncachedManagerBase(models.Manager):
         return self._with_translations(TransformQuerySet(self.model))
 
     def _with_translations(self, qs):
+        # Since we're attaching translations to the object, we need to stick
+        # the locale in the query so objects aren't shared across locales.
         if hasattr(self.model._meta, 'translated_fields'):
             qs = qs.transform(transformer.get_trans)
-        return qs
+        lang = translation.get_language()
+        return qs.extra(where=['"%s"="%s"' % (lang, lang)])
 
     def transform(self, fn):
         return self.all().transform(fn)
