@@ -15,14 +15,16 @@
         color: inherit;
     }
   </style>
-  {# TODO; when remora goes away, fix this blob #}
-  {% with sort = {'created': 'newest', 'downloads': 'popular', 'rating': 'averagerating'}[sorting] %}
-    {% if not sort %}
-      {% set sort = 'updated' %}
-    {% endif %}
-
-    <link rel="alternate" type="application/rss+xml" title="RSS"
-          href="/{{ LANG }}/{{ APP.short }}/browse/type:{{ category.type.id }}/cat:{{ category.id }}/format:rss?sort={{ sort }}" />
-  {% endwith %}
 {% endif %}
+{# TODO; when remora goes away, fix this blob #}
+{% with sort = {'created': 'newest', 'downloads': 'popular', 'rating': 'averagerating'}[sorting] %}
+  {% if not sort %}
+    {% set sort = 'updated' %}
+  {% endif %}
+
+  {% with cat = category.id if category else 'all' %}
+    <link rel="alternate" type="application/rss+xml" title="RSS"
+          href="/{{ LANG }}/{{ APP.short }}/browse/type:{{ amo.ADDON_EXTENSION }}/cat:{{ cat }}/format:rss?sort={{ sort }}" />
+  {% endwith %}
+{% endwith %}
 {% endblock %}
