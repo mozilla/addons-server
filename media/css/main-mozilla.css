@@ -1661,6 +1661,7 @@ dl.faq dt:target, dl.validation dt:target { color: #df731b; }
 .stand-alone-options:after,
 .stars:after, .notification:after,
 .featured-inner:after,
+.article.userinput:after,
 .addon-info:after {
     content: ".";
     clear: both;
