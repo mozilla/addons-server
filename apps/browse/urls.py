@@ -22,6 +22,6 @@ urlpatterns = patterns('',
     url('^search-engines/(?:(?P<category>[^/]+)/)?$', views.search_engines,
         name='browse.search-engines'),
 
-    url('^browse/type:(?P<type_>\d)(?:/cat:(?P<category>[^/]+)/?)?',
+    url('^browse/type:(?P<type_>\d)(?:/cat:(?P<category>\d+).*)?',
         views.legacy_redirects),
 )
