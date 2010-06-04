@@ -56,9 +56,9 @@ LANGUAGE_CODE = 'en-US'
 
 # Accepted locales
 AMO_LANGUAGES = (
-    'af', 'ar', 'ca', 'cs', 'da', 'de', 'el', 'en-GB', 'en-US', 'es-ES', 'eu',
+    'af', 'ar', 'ca', 'cs', 'da', 'de', 'el', 'en-US', 'es-ES', 'eu',
     'fa', 'fi', 'fr', 'ga-IE', 'he', 'hu', 'id', 'it', 'ja', 'ko',
-    'mn', 'nl', 'pl', 'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sl', 'sq', 'sr',
+    'mn', 'nl', 'pl', 'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sq', 'sr',
     'sv-SE', 'uk', 'vi', 'zh-CN', 'zh-TW',
 )
 
