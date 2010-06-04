@@ -59,6 +59,21 @@ def addon_detail(request, addon_id):
                 'addons.detail', args=[addon.id]))
 
 
+def contribute_installed(request, addon_id):
+    """Add-ons details page dispatcher."""
+    addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
+    # other add-ons from the same author(s)
+    author_addons = (Addon.objects.valid().only_translations()
+                     .exclude(id=addon.id)
+                     .filter(addonuser__listed=True,
+                             authors__in=addon.listed_authors).distinct())
+    data = {
+        'addon': addon,
+        'author_addons': author_addons,
+    }
+    return jingo.render(request, 'addons/contribute_installed.html', data)
+
+
 def extension_detail(request, addon):
     """Extensions details page."""
 
@@ -347,5 +362,14 @@ def eula(request, addon_id, file_id):
 
 def meet_the_developer(request, addon_id, extra=None):
     addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
-    return jingo.render(request, 'addons/meet_the_developer.html',
-                        {'addon': addon})
+    
+    # other add-ons from the same author(s)
+    author_addons = (Addon.objects.valid().only_translations()
+                     .exclude(id=addon.id)
+                     .filter(addonuser__listed=True,
+                             authors__in=addon.listed_authors).distinct())
+    data = {
+      'addon': addon,
+      'author_addons': author_addons,
+    }                         
+    return jingo.render(request, 'addons/meet_the_developer.html',data)
