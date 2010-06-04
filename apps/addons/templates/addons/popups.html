@@ -73,7 +73,8 @@
   {# L10n: {0} is an app name, like Firefox. #}
   <p><a href="{{ app_url }}" class="button">{{ _('Upgrade {0}')|f(APP.pretty) }}</a></p>
   {# Building a url with a fake addon that's replaced with a js placeholder?  Sketchy. #}
-  <p class="older-versions">{% trans href=url('reviews.list', 000)|replace(000, '{addon}') %}
+  <p class="older-versions">{% trans href=remora_url('/addons/versions/xxx')|replace('xxx', '{addon}') %}
+  {# <p class="older-versions">{% trans href=url('reviews.list', 000)|replace(000, '{addon}') %} #}
     or view <a href="{{ href }}">older versions of this add-on</a>.
   {% endtrans %}</p>
 </div>
