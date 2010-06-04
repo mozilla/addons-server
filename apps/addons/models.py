@@ -14,7 +14,6 @@ import amo.models
 from amo.fields import DecimalCharField
 from amo.utils import urlparams, sorted_groupby, JSONEncoder
 from amo.urlresolvers import reverse
-from cake.urlresolvers import remora_url
 from reviews.models import Review
 from stats.models import Contribution as ContributionStats, ShareCountTotal
 from translations.fields import (TranslatedField, PurifiedField,
@@ -611,7 +610,6 @@ class Category(amo.models.ModelBase):
         return unicode(self.name)
 
     def get_url_path(self):
-        return remora_url('browse/type:%d/cat:%d' % (self.type_id, self.id))
         try:
             type = amo.ADDON_SLUGS[self.type_id]
         except KeyError:
