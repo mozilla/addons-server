@@ -3,6 +3,7 @@
 -e git://github.com/django/django@5924f18c1100#egg=django
 Babel==0.9.5
 phpserialize==1.2
+python-memcached==1.45
 pyquery==0.4
 South==0.7
 pytz==2010e
