@@ -61,9 +61,10 @@ class UncachedManagerBase(models.Manager):
         # Since we're attaching translations to the object, we need to stick
         # the locale in the query so objects aren't shared across locales.
         if hasattr(self.model._meta, 'translated_fields'):
+            lang = translation.get_language()
             qs = qs.transform(transformer.get_trans)
-        lang = translation.get_language()
-        return qs.extra(where=['"%s"="%s"' % (lang, lang)])
+            qs = qs.extra(where=['"%s"="%s"' % (lang, lang)])
+        return qs
 
     def transform(self, fn):
         return self.all().transform(fn)
