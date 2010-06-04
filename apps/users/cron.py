@@ -49,7 +49,7 @@ def update_user_ratings():
 
 @task(rate_limit='15/m')
 def _update_user_ratings(data, **kw):
-    task_log.debug("[%s@%s] Updating add-on author's ratings." %
+    task_log.info("[%s@%s] Updating add-on author's ratings." %
                    (len(data), _update_user_ratings.rate_limit))
     for pk, rating in data:
         rating = "%.2f" % round(rating, 2)

@@ -30,7 +30,7 @@ def update_addons_current_version():
 
 @task(rate_limit='2/m')
 def _update_addons_current_version(data, **kw):
-    task_log.debug("[%s@%s] Updating addons current_versions." %
+    task_log.info("[%s@%s] Updating addons current_versions." %
                    (len(data), _update_addons_current_version.rate_limit))
     for pk in data:
         try:
@@ -64,7 +64,7 @@ def update_addon_average_daily_users():
 
 @task(rate_limit='15/m')
 def _update_addon_average_daily_users(data, **kw):
-    task_log.debug("[%s@%s] Updating add-ons ADU totals." %
+    task_log.info("[%s@%s] Updating add-ons ADU totals." %
                    (len(data), _update_addon_average_daily_users.rate_limit))
 
     for pk, count in data:
@@ -95,7 +95,7 @@ def update_addon_download_totals():
 
 @task(rate_limit='15/m')
 def _update_addon_download_totals(data, **kw):
-    task_log.debug("[%s@%s] Updating add-ons download+average totals." %
+    task_log.info("[%s@%s] Updating add-ons download+average totals." %
                    (len(data), _update_addon_download_totals.rate_limit))
 
     for pk, avg, sum in data:

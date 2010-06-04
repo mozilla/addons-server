@@ -35,6 +35,6 @@ class Command(BaseCommand):
             print 'Unrecognized name: %s' % script
             sys.exit(1)
 
-        log.debug("Beginning job: %s %s" % (script, args))
+        log.info("Beginning job: %s %s" % (script, args))
         registered[script](*args)
-        log.debug("Ending job: %s %s" % (script, args))
+        log.info("Ending job: %s %s" % (script, args))

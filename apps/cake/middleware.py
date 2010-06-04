@@ -48,6 +48,6 @@ class CookieCleaningMiddleware(object):
         # TODO(davedash): Remove this method when we no longer get any of these
         # loggged.
         if request.COOKIES.get('locale-only'):
-            log.info("Removed a locale-only cookie.")
+            log.debug("Removed a locale-only cookie.")
             response.delete_cookie('locale-only')
         return response

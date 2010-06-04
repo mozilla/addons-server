@@ -470,5 +470,6 @@ LOGGING = {
     'loggers': {
         'caching': {'handlers': ['null']},
         'z.sphinx': {'level': logging.INFO},
+        'z.task': {'level': logging.INFO},
     },
 }

@@ -36,7 +36,7 @@ def update_addons_collections_downloads():
 
 @task(rate_limit='10/m')
 def _update_addons_collections_downloads(data, **kw):
-    task_log.debug("[%s@%s] Updating addons+collections download totals." %
+    task_log.info("[%s@%s] Updating addons+collections download totals." %
                   (len(data), _update_addons_collections_downloads.rate_limit))
     for var in data:
         (CollectionAddon.objects.filter(addon=var['addon'],
@@ -59,7 +59,7 @@ def update_collections_total():
 
 @task(rate_limit='15/m')
 def _update_collections_total(data, **kw):
-    task_log.debug("[%s@%s] Updating collections' download totals." %
+    task_log.info("[%s@%s] Updating collections' download totals." %
                    (len(data), _update_collections_total.rate_limit))
     for var in data:
         (Collection.objects.filter(pk=var['collection_id'])
@@ -84,7 +84,7 @@ def update_global_totals(date=None):
 
 @task(rate_limit='20/h')
 def _update_global_totals(job, date):
-    task_log.debug("[%s] Updating global statistics totals (%s) for (%s)" %
+    task_log.info("[%s] Updating global statistics totals (%s) for (%s)" %
                    (_update_global_totals.rate_limit, job, date))
 
     jobs = _get_daily_jobs()
