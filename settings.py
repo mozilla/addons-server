@@ -363,6 +363,7 @@ MINIFY_BUNDLES = {
 # Caching
 # Prefix for cache keys (will prevent collisions when running parallel copies)
 CACHE_PREFIX = 'amo:'
+FETCH_BY_ID = True
 
 # Number of seconds a count() query should be cached.  Keep it short because
 # it's not possible to invalidate these queries.
