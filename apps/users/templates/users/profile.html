@@ -5,6 +5,7 @@
 {% block content %}
 
 <div class="vcard">
+  {{ breadcrumbs([(None, profile.display_name)]) }}
   <h2 class="fn n">{{ profile.display_name }}</h2>
   <div class="featured">
     <div class="featured-inner object-lead">
