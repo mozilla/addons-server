@@ -49,6 +49,9 @@ urlpatterns = patterns('',
     ('^api/', include('api.urls')),
 
     # Redirect patterns.
+    ('^bookmarks/?$',
+      lambda r: redirect('browse.extensions', 'bookmarks', permanent=True)),
+
     ('^reviews/display/(\d+)',
       lambda r, id: redirect('reviews.list', id, permanent=True)),
 
