@@ -8,6 +8,7 @@ from nose.tools import eq_, assert_not_equal
 import test_utils
 
 import amo
+import amo.test_utils
 from addons.models import (Addon, AddonPledge, AddonRecommendation, AddonType,
                            Category, Persona, Preview)
 from reviews.models import Review
@@ -15,7 +16,7 @@ from users.models import UserProfile
 from versions.models import Version
 
 
-class TestAddonManager(test_utils.TestCase):
+class TestAddonManager(amo.test_utils.ExtraSetup, test_utils.TestCase):
     fixtures = ['addons/test_manager']
 
     def test_featured(self):
@@ -81,7 +82,6 @@ class TestAddonManager(test_utils.TestCase):
 
 
 class TestAddonModels(test_utils.TestCase):
-    # base/fixtures has an example addon
     fixtures = ['base/fixtures', 'addons/featured',
                 'addons/invalid_latest_version']
 
@@ -97,6 +97,7 @@ class TestAddonModels(test_utils.TestCase):
         eq_(a.current_version.id, 89774)
 
     def test_current_version_listed_no_version(self):
+        Addon.objects.filter(pk=3723).update(_current_version=None)
         Version.objects.filter(addon=3723).delete()
         a = Addon.objects.get(pk=3723)
         eq_(a.current_version, None)

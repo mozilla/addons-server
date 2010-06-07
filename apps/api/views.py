@@ -269,7 +269,7 @@ class ListView(APIView):
             addons = qs.order_by('-average_daily_users')[:limit + BUFFER]
             shuffle = False  # By_adu is an ordered list.
         else:
-            addons = Addon.objects.featured(APP).distinct() & qs
+            addons = Addon.objects.featured(APP) & qs
 
         args = (addon_type, limit, APP, platform, version, shuffle)
         f = lambda: self._process(addons, *args)

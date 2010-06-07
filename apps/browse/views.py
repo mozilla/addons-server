@@ -161,8 +161,7 @@ def _listing(request, addon_type, default='popular'):
     if unreviewed:
         status.append(amo.STATUS_UNREVIEWED)
 
-    qs = (Addon.objects.listed(request.APP, *status)
-          .filter(type=addon_type).distinct())
+    qs = Addon.objects.listed(request.APP, *status).filter(type=addon_type)
     filter = AddonFilter(request, qs, default)
     return filter.qs, filter, unreviewed
 

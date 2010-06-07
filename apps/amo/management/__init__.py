@@ -2,6 +2,8 @@ from django import http
 from django.conf import settings
 
 from amo import urlresolvers
+from addons import cron
+from addons.models import Addon
 
 
 def clean_url_prefixes(sender, **kwargs):

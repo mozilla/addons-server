@@ -9,6 +9,7 @@ from pyquery import PyQuery as pq
 import test_utils
 
 import amo
+import amo.test_utils
 from amo.urlresolvers import reverse
 from amo.helpers import urlparams
 from addons.models import Addon, Category
@@ -81,7 +82,7 @@ class TestLanguageTools(test_utils.TestCase):
         eq_(response.context['locales'], [])
 
 
-class TestThemes(test_utils.TestCase):
+class TestThemes(amo.test_utils.ExtraSetup, test_utils.TestCase):
     fixtures = ['base/fixtures']
 
     def setUp(self):
@@ -145,7 +146,7 @@ class TestThemes(test_utils.TestCase):
         eq_(actual_count, expected_count)
 
 
-class TestCategoryPages(test_utils.TestCase):
+class TestCategoryPages(amo.test_utils.ExtraSetup, test_utils.TestCase):
     fixtures = ['base/fixtures', 'browse/nameless-addon']
 
     def test_browsing_urls(self):

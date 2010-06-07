@@ -251,7 +251,7 @@ class HomepageFilter(object):
 
     def filter(self, field):
         """Get the queryset for the given field."""
-        return self.base_queryset.distinct() & self._filter(field).distinct()
+        return self.base_queryset & self._filter(field)
 
     def _filter(self, field):
         qs = Addon.objects

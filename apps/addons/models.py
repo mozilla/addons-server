@@ -61,11 +61,11 @@ class AddonManager(amo.models.ManagerBase):
         if len(status) == 0:
             status = [amo.STATUS_PUBLIC]
 
-        has_version = Q(versions__apps__application=app.id,
-                        versions__files__status__in=status)
+        has_version = Q(appsupport__app=app.id,
+                        _current_version__isnull=False)
         is_weird = Q(type=amo.ADDON_PERSONA) | Q(status=amo.STATUS_LISTED)
         return self.filter(has_version | is_weird,
-                           inactive=False, status__in=status).distinct()
+                           inactive=False, status__in=status)
 
 
 class Addon(amo.models.ModelBase):
@@ -106,7 +106,7 @@ class Addon(amo.models.ModelBase):
     total_reviews = models.PositiveIntegerField(default=0,
                                                 db_column='totalreviews')
     weekly_downloads = models.PositiveIntegerField(
-            default=0, db_column='weeklydownloads')
+            default=0, db_column='weeklydownloads', db_index=True)
     total_downloads = models.PositiveIntegerField(
             default=0, db_column='totaldownloads')
 

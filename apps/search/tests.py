@@ -87,9 +87,6 @@ class SphinxTestCase(test_utils.TransactionTestCase):
     def setUp(self):
         super(SphinxTestCase, self).setUp()
 
-        for addon in Addon.objects.valid():
-            addon.update_current_version()
-
         if not SphinxTestCase.sphinx_is_running:
             if (not settings.SPHINX_SEARCHD or
                 not settings.SPHINX_INDEXER):  # pragma: no cover
@@ -116,7 +113,7 @@ class SphinxTestCase(test_utils.TransactionTestCase):
             SphinxTestCase.sphinx_is_running = False
 
 
-class GetCategoryIdTest(TestCase):
+class GetCategoryIdTest(test_utils.TestCase):
     fixtures = ["base/category"]
 
     def test_get_category_id(self):
