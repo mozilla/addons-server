@@ -7,9 +7,16 @@ import sys
 
 part_re = re.compile(r'\{([-\w]+)\}')
 
+AMO_LANGUAGES = (
+    'af', 'ar', 'ca', 'cs', 'da', 'de', 'el', 'en-US', 'es-ES', 'eu',
+    'fa', 'fi', 'fr', 'ga-IE', 'he', 'hu', 'id', 'it', 'ja', 'ko',
+    'mn', 'nl', 'pl', 'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sq', 'sr',
+    'sv-SE', 'uk', 'vi', 'zh-CN', 'zh-TW',
+)
+
 config = {
     'base': [],
-    'locale': 'en-US fr de he pt-BR ja zh-TW el'.split(),
+    'locale': AMO_LANGUAGES,
     'app': ['firefox'],
 
     'extension-slug': [''] + """
