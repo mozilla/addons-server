@@ -21,11 +21,14 @@ from translations.fields import (TranslatedField, PurifiedField,
 from users.models import UserProfile
 from versions.models import Version
 
+from . import query
+
 
 class AddonManager(amo.models.ManagerBase):
 
     def get_query_set(self):
         qs = super(AddonManager, self).get_query_set()
+        qs = qs._clone(klass=query.IndexQuerySet)
         return qs.transform(Addon.transformer)
 
     def public(self):
