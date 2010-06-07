@@ -81,7 +81,7 @@
                               num)|f(num|numberfmt) }}
                 {% endwith %}
               {% else %}
-                {{ addon.average_rating|float|stars }}
+                {{ addon.bayesian_rating|float|stars }}
                 <a href="{{ addon.get_url_path() }}#reviews">
                   {% with num=addon.total_reviews %}
                     {# L10n: {0} is the review count. #}
