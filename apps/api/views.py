@@ -96,14 +96,14 @@ def addon_filter(addons, addon_type, limit, app, platform, version,
         try:
             addon_type = int(addon_type)
             if addon_type:
-                addons = [a for a in addons if a.type_id == addon_type]
+                addons = [a for a in addons if a.type == addon_type]
         except ValueError:
             # `addon_type` is ALL or a type id.  Otherwise we ignore it.
             pass
 
     # Take out personas since they don't have versions.
     groups = dict(partition(addons,
-                            lambda x: x.type_id == amo.ADDON_PERSONA))
+                            lambda x: x.type == amo.ADDON_PERSONA))
     personas, addons = groups.get(True, []), groups.get(False, [])
 
     if platform != 'all' and platform in amo.PLATFORM_DICT:

@@ -78,7 +78,7 @@ class Addon(amo.models.ModelBase):
                                       default=settings.LANGUAGE_CODE,
                                       db_column='defaultlocale')
 
-    type = models.ForeignKey('AddonType', db_column='addontype_id')
+    type = models.PositiveIntegerField(db_column='addontype_id')
     status = models.PositiveIntegerField(
         choices=STATUS_CHOICES, db_index=True, default=0)
     highest_status = models.PositiveIntegerField(
@@ -184,6 +184,10 @@ class Addon(amo.models.ModelBase):
     def reviews_url(self):
         return reverse('reviews.list', args=(self.id,))
 
+    def type_url(self):
+        """The url for this add-on's AddonType."""
+        return AddonType(self.type).get_url_path()
+
     @amo.cached_property(writable=True)
     def listed_authors(self):
         return UserProfile.objects.filter(addons=self,
@@ -202,7 +206,7 @@ class Addon(amo.models.ModelBase):
 
     def get_current_version(self):
         """Retrieves the latest version of an addon."""
-        if self.type_id == amo.ADDON_PERSONA:
+        if self.type == amo.ADDON_PERSONA:
             return
         try:
             if self.status == amo.STATUS_PUBLIC:
@@ -226,30 +230,23 @@ class Addon(amo.models.ModelBase):
         except (IndexError, Version.DoesNotExist):
             return None
 
-
     def update_current_version(self):
         "Returns true if we updated the current_version field."
         current_version = self.get_current_version()
-
         if current_version != self._current_version:
             self._current_version = current_version
             self.save()
             return True
-
         return False
 
     @property
     def current_version(self):
         "Returns the current_version field or updates it if needed."
-
-        if self.type_id == amo.ADDON_PERSONA:
+        if self.type == amo.ADDON_PERSONA:
             return
-
         if not self._current_version:
             self.update_current_version()
-
         return self._current_version
-
 
     @staticmethod
     def transformer(addons):
@@ -257,12 +254,9 @@ class Addon(amo.models.ModelBase):
             return
 
         addon_dict = dict((a.id, a) for a in addons)
-        personas = [a for a in addons if a.type_id == amo.ADDON_PERSONA]
-        addons = [a for a in addons if a.type_id != amo.ADDON_PERSONA]
+        personas = [a for a in addons if a.type == amo.ADDON_PERSONA]
+        addons = [a for a in addons if a.type != amo.ADDON_PERSONA]
 
-        # TODO(jbalogh): It would be awesome to get the versions in one
-        # (or a few) queries, but we'll accept the overhead here to roll up
-        # some version queries.
         versions = filter(None, (a.current_version for a in addons))
         Version.transformer(versions)
 
@@ -295,7 +289,7 @@ class Addon(amo.models.ModelBase):
         Returns either the addon's icon url, or a default.
         """
         if not self.icon_type:
-            if self.type_id == amo.ADDON_THEME:
+            if self.type == amo.ADDON_THEME:
                 icon = 'default-theme.png'
             else:
                 icon = 'default-addon.png'
@@ -593,7 +587,7 @@ class Category(amo.models.ModelBase):
     name = TranslatedField()
     slug = models.SlugField(max_length=50, help_text='Used in Category URLs.')
     description = TranslatedField()
-    type = models.ForeignKey('AddonType', db_column='addontype_id')
+    type = models.PositiveIntegerField(db_column='addontype_id')
     application = models.ForeignKey('applications.Application')
     count = models.IntegerField('Addon count')
     weight = models.IntegerField(
@@ -611,7 +605,7 @@ class Category(amo.models.ModelBase):
 
     def get_url_path(self):
         try:
-            type = amo.ADDON_SLUGS[self.type_id]
+            type = amo.ADDON_SLUGS[self.type]
         except KeyError:
             type = amo.ADDON_SLUGS[amo.ADDON_EXTENSION]
         return reverse('browse.%s' % type, args=[self.slug])

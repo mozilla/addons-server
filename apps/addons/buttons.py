@@ -81,7 +81,7 @@ class InstallButton(object):
         self.featured = (not self.unreviewed and not self.self_hosted
                          and addon.is_featured(app, lang)
                          or addon.is_category_featured(app, lang))
-        self.is_persona = addon.type_id == amo.ADDON_PERSONA
+        self.is_persona = addon.type == amo.ADDON_PERSONA
 
         self.accept_eula = addon.has_eula and not show_eula
         self.show_contrib = (show_contrib and addon.takes_contributions
@@ -116,7 +116,7 @@ class InstallButton(object):
         addon = self.addon
         if addon.takes_contributions and addon.annoying == amo.CONTRIB_AFTER:
             rv['data-after'] = 'contrib'
-        if addon.type_id == amo.ADDON_SEARCH:
+        if addon.type == amo.ADDON_SEARCH:
             rv['data-search'] = 'true'
         return rv
 

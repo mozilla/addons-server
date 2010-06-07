@@ -37,8 +37,8 @@ def addon_detail(request, addon_id):
     """Add-ons details page dispatcher."""
     addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
     # addon needs to have a version and be valid for this app.
-    if addon.type_id in request.APP.types:
-        if addon.type_id == amo.ADDON_PERSONA:
+    if addon.type in request.APP.types:
+        if addon.type == amo.ADDON_PERSONA:
             return persona_detail(request, addon)
         else:
             if not addon.current_version:
@@ -48,7 +48,7 @@ def addon_detail(request, addon_id):
     else:
         # Redirect to an app that supports this type.
         try:
-            new_app = [a for a in amo.APP_USAGE if addon.type_id
+            new_app = [a for a in amo.APP_USAGE if addon.type
                        in a.types][0]
         except IndexError:
             raise http.Http404

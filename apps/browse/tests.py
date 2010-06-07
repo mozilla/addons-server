@@ -88,10 +88,10 @@ class TestThemes(test_utils.TestCase):
         super(TestThemes, self).setUp()
         # Make all the add-ons themes.
         for addon in Addon.objects.all():
-            addon.type_id = amo.ADDON_THEME
+            addon.type = amo.ADDON_THEME
             addon.save()
         for category in Category.objects.all():
-            category.type_id = amo.ADDON_THEME
+            category.type = amo.ADDON_THEME
             category.save()
 
         self.base_url = reverse('browse.themes')

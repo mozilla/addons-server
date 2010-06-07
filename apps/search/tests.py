@@ -478,7 +478,7 @@ class ViewTest(test_utils.TestCase):
         assert any((i.selected for i in items[1].children))
 
         # Select an addon type.
-        atype = cats[0].type_id
+        atype = cats[0].type
         items = views._get_categories(self.fake_request, cats, addon_type=atype)
         assert any((i.selected for i in items))
 

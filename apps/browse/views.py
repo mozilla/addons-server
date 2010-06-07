@@ -68,8 +68,8 @@ def language_tools(request, category=None):
     locales = {}
     for locale, addons in itertools.groupby(addons, lambda x: x.target_locale):
         addons = list(addons)
-        dicts = [a for a in addons if a.type_id == amo.ADDON_DICT]
-        packs = [a for a in addons if a.type_id == amo.ADDON_LPAPP]
+        dicts = [a for a in addons if a.type == amo.ADDON_DICT]
+        packs = [a for a in addons if a.type == amo.ADDON_LPAPP]
         addon = addons[0]
         locales[locale] = Locale(addon.target_locale, addon.locale_display,
                                  addon.locale_native, dicts, packs)
@@ -225,7 +225,7 @@ def category_landing(request, category):
     filter = CategoryLandingFilter(request, base, category,
                                    key='browse', default='featured')
 
-    search_cat = '%s,%s' % (category.type_id, category.id)
+    search_cat = '%s,%s' % (category.type, category.id)
 
     return jingo.render(request, 'browse/category_landing.html',
                         {'category': category, 'filter': filter,
