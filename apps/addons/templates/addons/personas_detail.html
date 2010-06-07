@@ -101,7 +101,7 @@
             {{ persona_preview(other.persona, size='small') }}
           {% endfor %}
         </div>
-        <a href="TODO" class="more-link">{{ _('See all Personas by this Artist') }}</a>
+        <a href="{{ author_gallery }}" class="more-link">{{ _('See all Personas by this Artist') }}</a>
       </div>
       {% endif %}
     {% endcache %}
@@ -123,7 +123,7 @@
       {# TODO reverse URL #}
       {% for category in categories %}
       <li>
-        <a href="TODO" class="category">{{ category }}</a>
+        <a href="{{ category.get_url_path() }}" class="category">{{ category }}</a>
       </li>
       {% endfor %}
     </ul>

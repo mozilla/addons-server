@@ -1,4 +1,5 @@
 from django import http
+from django.conf import settings
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from django.utils.translation import trans_real as translation
@@ -211,6 +212,8 @@ def persona_detail(request, addon):
         'category_personas': category_personas,
         'dev_tags': dev_tags,
         'user_tags': user_tags,
+        # Remora users persona.author despite there being a display_username
+        'author_gallery': settings.PERSONAS_USER_ROOT % persona.author,
     }
 
     return jingo.render(request, 'addons/personas_detail.html', data)

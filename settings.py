@@ -398,6 +398,7 @@ PERSONAS_IMAGE_URL = ('http://getpersonas.com/static/'
                       '%(tens)d/%(units)d/%(id)d/%(file)s')
 PERSONAS_IMAGE_URL_SSL = ('https://getpersonas.com/static/'
                           '%(tens)d/%(units)d/%(id)d/%(file)s')
+PERSONAS_USER_ROOT = 'http://getpersonas.com/gallery/designer/%s'
 
 # Outgoing URL bouncer
 REDIRECT_URL = 'http://outgoing.mozilla.org/v1/'
