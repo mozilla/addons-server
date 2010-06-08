@@ -1674,6 +1674,13 @@ form .error .note.error {
     border: 1px solid #c8e8f3;
 }
 
+.other-categories .items {
+    color: rgb(114, 142, 164);
+    font-size: 10px; /* or the corresponding size in em's  */
+    margin-left: 0.25em;
+    vertical-align: 1px;
+}
+
 #refine-results h5 {
     color: #235;
 }

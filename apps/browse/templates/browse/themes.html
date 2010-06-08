@@ -1,9 +1,18 @@
 {% extends "base.html" %}
 
+{% set meta_categories = (
+  ('popular', _('Most Popular')),
+  ('rating', _('Top Rated')),
+  ('created', _('Recently Added')),
+) %}
+
 {% block title %}
-{% if category %}
-  {# L10n: {0} is a translated theme name like "Nature" or "Sports" #}
-  {{ page_title(_('{0} :: Themes')|f(category.name)) }}
+{% if category or sorting in dict(meta_categories) %}
+  {% with name = category.name if category else dict(meta_categories)[sorting]
+  %}
+    {# L10n: {0} is a translated theme name like "Nature" or "Sports" #}
+    {{ page_title(_('{0} :: Themes')|f(name)) }}
+  {% endwith %}
 {% else %}
   {{ page_title(_('Themes')) }}
 {% endif %}
@@ -12,19 +21,19 @@
 {% block bodyclass %}browse-thumbs{% endblock %}
 
 {% block extrahead %}
-{% if category %}
+{% with selector=category.id if category else sorting %}
 <style>
-  #c-{{ category.id }} {
+  #c-{{ selector }} {
     background: url({{ MEDIA_URL }}img/zamboni/arrow-right-blue.png) no-repeat left center;
   }
-  .html-rtl #c-{{ category.id }} {
+  .html-rtl #c-{{ selector }} {
     background: url({{ MEDIA_URL }}img/zamboni/arrow-left-blue.png) no-repeat right center;
   }
-  #c-{{ category.id }} a {
+  #c-{{ selector }} a {
     color: inherit;
   }
 </style>
-{% endif %}
+{% endwith %}
 {% endblock %}
 
 {% block content %}
@@ -104,6 +113,13 @@
 <div class="secondary" role="complementary">
   <div class="other-categories highlight">
     <h3>{{ _('Themes') }}</h3>
+    <ul>
+      {% for key, title in meta_categories %}
+        <li id="c-{{ key }}">
+          <a href="{{ url('browse.themes')|urlparams(sort=key) }}">{{ title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
     <ul>
     {% cache categories %}
     {% for cat in categories %}
