@@ -95,7 +95,7 @@ class AddonFilter(object):
     opts = (('name', _lazy(u'Name')),
             ('updated', _lazy(u'Updated')),
             ('created', _lazy(u'Created')),
-            ('downloads', _lazy(u'Downloads')),
+            ('popular', _lazy(u'Downloads')),
             ('rating', _lazy(u'Rating')))
 
     def __init__(self, request, queryset, default):
@@ -119,7 +119,7 @@ class AddonFilter(object):
             return qs.order_by('-last_updated')
         if field == 'created':
             return qs.order_by('-created')
-        elif field == 'downloads':
+        elif field == 'popular':
             return qs.order_by('-weekly_downloads')
         elif field == 'rating':
             return qs.order_by('-bayesian_rating')
@@ -153,7 +153,7 @@ def themes(request, category=None):
                          'search_cat': search_cat})
 
 
-def _listing(request, addon_type, default='downloads'):
+def _listing(request, addon_type, default='popular'):
     # Set up the queryset and filtering for themes & extension listing pages.
     status = [amo.STATUS_PUBLIC]
 
@@ -198,7 +198,7 @@ class CategoryLandingFilter(HomepageFilter):
 
     opts = (('featured', _lazy('Featured')),
             ('created', _lazy('Recently Added')),
-            ('downloads', _lazy('Top Downloads')),
+            ('popular', _lazy('Top Downloads')),
             ('rating', _lazy('Top Rated')))
 
     def __init__(self, request, base, category, key, default):
@@ -210,7 +210,7 @@ class CategoryLandingFilter(HomepageFilter):
         qs = Addon.objects
         if field == 'created':
             return qs.order_by('-created')
-        elif field == 'downloads':
+        elif field == 'popular':
             return qs.order_by('-weekly_downloads')
         elif field == 'rating':
             return qs.order_by('-bayesian_rating')

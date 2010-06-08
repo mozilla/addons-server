@@ -98,9 +98,9 @@ class TestThemes(test_utils.TestCase):
         self.exp_url = urlparams(self.base_url, unreviewed=True)
 
     def test_default_sort(self):
-        """Default sort should be by downloads."""
+        """Default sort should be by popular."""
         response = self.client.get(self.base_url)
-        eq_(response.context['sorting'], 'downloads')
+        eq_(response.context['sorting'], 'popular')
 
     def test_unreviewed(self):
         # Only 3 without unreviewed.
@@ -116,7 +116,7 @@ class TestThemes(test_utils.TestCase):
         return [a.id for a in response.context['themes'].object_list]
 
     def test_download_sort(self):
-        ids = self._get_sort('downloads')
+        ids = self._get_sort('popular')
         eq_(ids, [55, 1843, 73, 3615, 5369, 7172, 6113, 10869, 6704, 40])
 
     def test_name_sort(self):

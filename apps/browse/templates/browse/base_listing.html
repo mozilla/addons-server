@@ -17,7 +17,7 @@
   </style>
 {% endif %}
 {# TODO; when remora goes away, fix this blob #}
-{% with sort = {'created': 'newest', 'downloads': 'popular', 'rating': 'averagerating'}[sorting] %}
+{% with sort = {'created': 'newest', 'popular': 'popular', 'rating': 'averagerating'}[sorting] %}
   {% if not sort %}
     {% set sort = 'updated' %}
   {% endif %}
