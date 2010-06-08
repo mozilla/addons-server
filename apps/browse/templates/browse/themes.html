@@ -91,15 +91,15 @@
                 {% endwith %}
               {% else %}
                 {{ addon.bayesian_rating|float|stars }}
-                <a href="{{ addon.get_url_path() }}#reviews">
-                  {% with num=addon.total_reviews %}
-                    {% if num %}
-                      {# L10n: {0} is the review count. #}
-                      {{ ngettext("{0} review", "{0} reviews", num)|f(num|numberfmt) }}</a>
-                    {% else %}
-                      {{ _('Not yet rated') }}
-                    {% endif %}
-                  {% endwith %}
+                {% with num=addon.total_reviews %}
+                {% if num %}
+                  <a href="{{ addon.get_url_path() }}#reviews">
+                    {# L10n: {0} is the review count. #}
+                    {{ ngettext("{0} review", "{0} reviews", num)|f(num|numberfmt) }}</a>
+                {% else %}
+                  {{ _('Not yet rated') }}
+                {% endif %}
+                {% endwith %}
               {% endif %}
             </p>
           </div>
