@@ -2990,12 +2990,12 @@ form.addon-feedback div.container {
     float: left;
 }
 
-.listing-footer .num-results {
+ol.pagination + .num-results {
     float: right;
     line-height: 2em;
 }
 
-.html-rtl .listing-footer .num-results {
+.html-rtl ol.pagination + .num-results {
     float: left;
 }
 
