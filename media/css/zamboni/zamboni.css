@@ -2064,7 +2064,7 @@ form .error .note.error {
 #t-firefox-cup {
     padding-top: 10px;
     background-image: url("../../img/zamboni/promos/FirefoxCup_AddsOn_banner.jpg");
-    background-position: top center;
+    background-position: 33% top;
     height: 260px;
 }
 #t-firefox-cup div.cta {
