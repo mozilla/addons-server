@@ -83,7 +83,7 @@
                 {{ _('Updated {0}')|f(addon.last_updated|datetime) }}
               {% elif sorting == "created" %}
                 {{ _('Added {0}')|f(addon.created|datetime) }}
-              {% elif sorting == "downloads" %}
+              {% elif sorting == "popular" %}
                 {% with num=addon.weekly_downloads %}
                   {# L10n: {0} is the number of downloads. #}
                   {{ ngettext("{0} weekly download", "{0} weekly downloads",

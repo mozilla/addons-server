@@ -10,8 +10,8 @@
     {% if show_unreviewed %}
       <li class="perpage">
         <form action="" method="get" class="go">
+          <input type="hidden" name="sort" value="{{ selected }}">
           <label>
-            <input type="hidden" name="sort" value="{{ selected }}">
             <input type="checkbox" name="unreviewed"
                   {{ unreviewed|ifeq("on", "checked") }}>
             {{ _('Show unreviewed add-ons') }}
