@@ -1897,6 +1897,10 @@ form .error .note.error {
     border-radius: 6px;
 }
 
+.install-shell {
+    display:inline-block;
+}
+
 .install-wrapper .warning {
     clear: both;
     padding: 0 4px;
