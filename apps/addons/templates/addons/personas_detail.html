@@ -87,7 +87,7 @@
           {% endfor %}
         </div>
         {# L10n: {0} is a category name, such as Nature #}
-        <a href="TODO" class="more-link">{{ _('See all {0} Personas')|f(categories[0].name) }}</a>
+        <a href="{{ categories[0].get_url_path() }}" class="more-link">{{ _('See all {0} Personas')|f(categories[0].name) }}</a>
       </div>
       {% endif %}
     {% endcache %}
