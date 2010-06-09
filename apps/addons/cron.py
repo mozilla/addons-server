@@ -163,7 +163,7 @@ def update_addon_appsupport():
                    Q(type__in=[amo.ADDON_PERSONA, amo.ADDON_SEARCH]))
     newish = (Q(last_updated__gte=F('appsupport__created')) |
               Q(appsupport__created__isnull=True))
-    ids = (Addon.uncached.valid().exclude(no_versions).distinct()
+    ids = (Addon.objects.valid().no_cache().exclude(no_versions).distinct()
            .filter(newish, versions__apps__isnull=False,
                    versions__files__status__in=amo.VALID_STATUSES)
            .values_list('id', flat=True))
