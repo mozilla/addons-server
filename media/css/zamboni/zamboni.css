@@ -1310,6 +1310,10 @@ form .error .note.error {
     margin-bottom: 1em;
 }
 
+#featured-addons .install-shell {
+    display:block;
+}
+
 #featured-addons .item .install {
     float: left;
     clear: both;
