@@ -1,5 +1,6 @@
 import json
 from StringIO import StringIO
+import urllib2
 from mock import patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
@@ -44,3 +45,12 @@ class TestFirefoxCup(test_utils.TestCase):
 
         a = search([])
         eq_(a, ['text'])
+
+    @patch('firefoxcup.twitter.urllib2.urlopen')
+    def test_twitter_search_returns_list_on_error(self, urlopen):
+        """If the call to the Twitter Search API fails,
+        twitter.search() should not return None.  It should
+        always return a list"""
+
+        urlopen.side_effect = urllib2.URLError('Boom')
+        eq_(search([]), [])

@@ -49,13 +49,17 @@ def search(tags, lang='all', check_cache=True):
         json_data = urllib2.urlopen(url)
     except urllib2.URLError, e:
         log.error("Couldn't open (%s): %s" % (url, e))
-        return
+        return []
 
-    # decode JSON
-    data = json.load(json_data)['results']
-    # we only want the text, throw the other data away
-    tweets = [tweet['text'] for tweet in data]
-    tweets = map(_process_tweet, tweets)
+    try:
+        # decode JSON
+        data = json.load(json_data)['results']
+    except (ValueError, KeyError):
+        return []
+
+        # we only want the text, throw the other data away
+        tweets = [tweet['text'] for tweet in data]
+        tweets = map(_process_tweet, tweets)
 
     cache.set(cache_key, tweets, cache_time)
     return tweets
