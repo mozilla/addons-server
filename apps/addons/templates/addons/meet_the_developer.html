@@ -25,7 +25,7 @@
     <div class="secondary" role="complementary">
       <div class="vcard">
   	  <img class="avatar photo photo-large" alt="" src="{{ user.picture_url }}"/>
-        {% with profile = user, about_addons = true, table_class = 'person-info' %}
+        {% with profile = user, about_addons = True, table_class = 'person-info' %}
           {% include "users/vcard.html" %}
         {% endwith %}
       </div>
@@ -76,7 +76,7 @@
             <div class="primary">
               <h3>{{ author.display_name }}</h3>
                 <p class="intro">{{ author.bio }}</p>
-                {% with profile = author, about_addons = true, table_class = 'person-info' %}
+                {% with profile = author, about_addons = True, table_class = 'person-info' %}
                   {% include "users/vcard.html" %}
                 {% endwith %}
             </div>
