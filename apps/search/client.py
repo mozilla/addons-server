@@ -458,63 +458,14 @@ class Client(object):
             raise SearchError(sc.GetLastError())
 
         # Handle any meta data we have.
-        if 'meta' in kwargs and 'matches' in results:
+        if 'meta' in kwargs:
             if 'versions' in kwargs['meta']:
-                # We don't care about the first 10 digits, since
-                # those deal with alpha/preview/etc
-                result = results[self.queries['min_ver']]
-
-                # We want to lob off the last 10 digits of a number
-                truncate = lambda x: (x / 10 ** 10) * 10 ** 10
-
-                min_vers = [truncate(m['attrs']['min_ver'])
-                            for m in result['matches']]
-                result = results[self.queries['max_ver']]
-
-                # 10**13-1 (a bunch of 9s) is a pseudo max_ver that is
-                # meaningless for faceted search.
-                max_vers = [truncate(m['attrs']['max_ver'])
-                            for m in result['matches']
-                            if m['attrs']['max_ver'] != 10 ** 13 - 1]
-                versions = list(set(min_vers + max_vers))
-                sorted(versions, reverse=True)
-                self.meta['versions'] = [v for v in versions
-                                         if v not in (0, 10 ** 13)]
-
+                self.meta['versions'] = self._versions_meta(results, **kwargs)
             if 'categories' in kwargs['meta']:
-                result = results[self.queries['category']]
-                category_ids = []
-
-                for m in result['matches']:
-                    category_ids.extend(m['attrs']['category'])
-
-                category_ids = set(category_ids)
-                categories = []
-
-                if category_ids:
-
-                    qs = Category.objects.filter(id__in=set(category_ids))
-
-                    if 'app' in kwargs:
-                        qs = qs.filter(application=kwargs['app'])
-
-                    categories = order_by_translation(qs, 'name')
-
-                self.meta['categories'] = categories
-
+                self.meta['categories'] = self._categories_meta(results,
+                                                                **kwargs)
             if 'tags' in kwargs['meta']:
-                result = results[self.queries['tag']]
-                tag_dict = defaultdict(int)
-
-                for m in result['matches']:
-                    for tag_id in m['attrs']['tag']:
-                        tag_dict[tag_id] += 1
-                tag_dict_sorted = sorted(tag_dict.iteritems(),
-                        key=lambda x: x[1], reverse=True)[:MAX_TAGS]
-                tag_ids = [k for k, v in tag_dict_sorted]
-                self.meta['tags'] = manual_order(Tag.objects.all(), tag_ids)
-        else:
-            self.meta.update(versions=[], categories=[], tags=[])
+                self.meta['tags'] = self._tags_meta(results, **kwargs)
 
         result = results[self.queries['primary']]
         self.total_found = result.get('total_found', 0) if result else 0
@@ -527,6 +478,64 @@ class Client(object):
             return self.get_result_set(term, result, offset, limit)
         else:
             return []
+
+    def _versions_meta(self, results, **kwargs):
+        # We don't care about the first 10 digits, since
+        # those deal with alpha/preview/etc
+        r = results[self.queries['min_ver']]
+
+        if 'matches' not in r:
+            return []
+
+        # We want to lob off the last 10 digits of a number
+        truncate = lambda x: (x / 10 ** 10) * 10 ** 10
+
+        min_vers = [truncate(m['attrs']['min_ver'])
+                    for m in r['matches']]
+        r = results[self.queries['max_ver']]
+
+        # 10**13-1 (a bunch of 9s) is a pseudo max_ver that is
+        # meaningless for faceted search.
+        max_vers = [truncate(m['attrs']['max_ver'])
+                    for m in r['matches']
+                    if m['attrs']['max_ver'] != 10 ** 13 - 1]
+        versions = list(set(min_vers + max_vers))
+        return [v for v in sorted(versions, reverse=True)
+                if v not in (0, 10 ** 13)]
+
+    def _categories_meta(self, results, **kwargs):
+        r = results[self.queries['category']]
+
+        if 'matches' not in r:
+            return []
+
+        category_ids = []
+        for m in r['matches']:
+            category_ids.extend(m['attrs']['category'])
+
+        category_ids = set(category_ids)
+        categories = []
+
+        if category_ids:
+            qs = Category.objects.filter(id__in=set(category_ids))
+            if 'app' in kwargs:
+                qs = qs.filter(application=kwargs['app'])
+            categories = order_by_translation(qs, 'name')
+        return categories
+
+    def _tags_meta(self, results, **kwargs):
+        r = results[self.queries['tag']]
+        tag_dict = defaultdict(int)
+        if 'matches' not in r:
+            return []
+
+        for m in r['matches']:
+            for tag_id in m['attrs']['tag']:
+                tag_dict[tag_id] += 1
+        tag_dict_sorted = sorted(tag_dict.iteritems(),
+                key=lambda x: x[1], reverse=True)[:MAX_TAGS]
+        tag_ids = [k for k, v in tag_dict_sorted]
+        return manual_order(Tag.objects.all(), tag_ids)
 
 
 class PersonasClient(Client):
