@@ -17,6 +17,7 @@ from pyquery import PyQuery as pq
 import test_utils
 
 import amo
+import amo.test_utils
 from amo.urlresolvers import reverse
 from amo.tests.test_helpers import render
 from manage import settings
@@ -74,7 +75,7 @@ def test_parse_bad_type():
                        "nonexistent addon type.")
 
 
-class SphinxTestCase(test_utils.TransactionTestCase):
+class SphinxTestCase(amo.test_utils.ExtraSetup, test_utils.TransactionTestCase):
     """
     This test case type can setUp and tearDown the sphinx daemon.  Use this
     when testing any feature that requires sphinx.
