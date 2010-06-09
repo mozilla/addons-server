@@ -4,7 +4,7 @@
 
 {% set more_links = {
     'created': _('View All Recently Added'),
-    'downloads': _('View All Top Downloads'),
+    'popular': _('View All Top Downloads'),
     'rating': _('View All Top Rated'),
 } %}
 
@@ -58,7 +58,7 @@
 <span class="meta">
 {% if key == 'created' -%}
   {{ _('added on {0}')|f(addon.created|datetime) }}
-{% elif key == 'downloads' %}
+{% elif key == 'popular' %}
   {{ _('{0} weekly downloads')|f(addon.weekly_downloads|numberfmt) }}
 {% elif key == 'rating' %}
   {{ addon.bayesian_rating|stars }}
