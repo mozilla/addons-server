@@ -75,9 +75,9 @@ class Version(amo.models.ModelBase):
             return
 
         avs = (ApplicationsVersions.objects.filter(version__in=versions)
-               .select_related(depth=1).order_by('version').no_cache())
-        files = (File.objects.filter(version__in=versions).order_by('version')
-                 .select_related('version').no_cache())
+               .select_related(depth=1).order_by('version__id').no_cache())
+        files = (File.objects.filter(version__in=versions)
+                 .order_by('version__id').select_related('version').no_cache())
 
         def rollup(xs):
             groups = itertools.groupby(xs, key=lambda x: x.version_id)

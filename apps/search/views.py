@@ -83,12 +83,12 @@ def _get_categories(request, categories, addon_type=None, category=None):
     for cat in categories:
         item = MenuItem()
         (item.text, item.url) = (cat.name, urlparams(url, atype=None,
-                cat="%d,%d" % (cat.type_id, cat.id)))
+                cat="%d,%d" % (cat.type, cat.id)))
 
         if category == cat.id:
             item.selected = True
 
-        bucket[cat.type_id].append(item)
+        bucket[cat.type].append(item)
 
     for key, children in bucket.iteritems():
         item = MenuItem()

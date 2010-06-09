@@ -246,7 +246,7 @@ class TestButton(ButtonTest):
 
         self.addon.takes_contributions = True
         self.addon.annoying = amo.CONTRIB_AFTER
-        self.addon.type_id = amo.ADDON_SEARCH
+        self.addon.type = amo.ADDON_SEARCH
 
         b = self.get_button()
         eq_(b.attrs(), {'data-after': 'contrib', 'data-search': 'true'})

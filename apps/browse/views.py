@@ -12,7 +12,7 @@ import product_details
 import amo.utils
 from addons.models import Addon, Category
 from amo.urlresolvers import reverse
-from addons.views import HomepageFilter
+from addons.views import BaseFilter
 from translations.query import order_by_translation
 
 
@@ -68,8 +68,8 @@ def language_tools(request, category=None):
     locales = {}
     for locale, addons in itertools.groupby(addons, lambda x: x.target_locale):
         addons = list(addons)
-        dicts = [a for a in addons if a.type_id == amo.ADDON_DICT]
-        packs = [a for a in addons if a.type_id == amo.ADDON_LPAPP]
+        dicts = [a for a in addons if a.type == amo.ADDON_DICT]
+        packs = [a for a in addons if a.type == amo.ADDON_LPAPP]
         addon = addons[0]
         locales[locale] = Locale(addon.target_locale, addon.locale_display,
                                  addon.locale_native, dicts, packs)
@@ -82,49 +82,12 @@ def language_tools(request, category=None):
                         {'locales': locales, 'search_cat': search_cat})
 
 
-class AddonFilter(object):
-    """
-    Support class for sorting add-ons.  Sortable fields are defined as
-    (value, title) pairs in ``opts``.  Pass in a request and a queryset and
-    AddonFilter will figure out how to sort the queryset.
-
-    self.sorting: the field we're sorting by
-    self.opts: all the sort options
-    self.qs: the sorted queryset
-    """
+class AddonFilter(BaseFilter):
     opts = (('name', _lazy(u'Name')),
             ('updated', _lazy(u'Updated')),
             ('created', _lazy(u'Created')),
             ('popular', _lazy(u'Downloads')),
             ('rating', _lazy(u'Rating')))
-
-    def __init__(self, request, queryset, default):
-        self.sorting = self.options(request, default)
-        self.qs = self.sort(queryset, self.sorting)
-
-    def __iter__(self):
-        """Cleverness: this lets you unpack the class like a tuple."""
-        return iter((self.sorting, self.opts, self.qs))
-
-    def options(self, request, default):
-        opts_dict = dict(self.opts)
-        if 'sort' in request.GET and request.GET['sort'] in opts_dict:
-            sort = request.GET['sort']
-            return sort
-        else:
-            return default
-
-    def sort(self, qs, field):
-        if field == 'updated':
-            return qs.order_by('-last_updated')
-        if field == 'created':
-            return qs.order_by('-created')
-        elif field == 'popular':
-            return qs.order_by('-weekly_downloads')
-        elif field == 'rating':
-            return qs.order_by('-bayesian_rating')
-        else:
-            return order_by_translation(qs, 'name')
 
 
 def themes(request, category=None):
@@ -147,7 +110,7 @@ def themes(request, category=None):
     return jingo.render(request, 'browse/themes.html',
                         {'categories': categories, 'total_count': total_count,
                          'themes': themes, 'category': category,
-                         'sorting': filter.sorting,
+                         'sorting': filter.field,
                          'sort_opts': filter.opts,
                          'unreviewed': unreviewed,
                          'search_cat': search_cat})
@@ -161,9 +124,8 @@ def _listing(request, addon_type, default='popular'):
     if unreviewed:
         status.append(amo.STATUS_UNREVIEWED)
 
-    qs = (Addon.objects.listed(request.APP, *status)
-          .filter(type=addon_type).distinct())
-    filter = AddonFilter(request, qs, default)
+    qs = Addon.objects.listed(request.APP, *status).filter(type=addon_type)
+    filter = AddonFilter(request, qs, 'sort', default)
     return filter.qs, filter, unreviewed
 
 
@@ -182,19 +144,20 @@ def extensions(request, category=None):
     if category:
         addons = addons.filter(categories__id=category.id)
 
-    addons = amo.utils.paginate(request, addons)
+    count = addons.with_index(addons='type_status_inactive_idx').count()
+    addons = amo.utils.paginate(request, addons, count=count)
 
     search_cat = '%s,%s' % (TYPE, category.id if category else 0)
 
     return jingo.render(request, 'browse/extensions.html',
                         {'category': category, 'addons': addons,
                          'unreviewed': unreviewed,
-                         'sorting': filter.sorting,
+                         'sorting': filter.field,
                          'sort_opts': filter.opts,
                          'search_cat': search_cat})
 
 
-class CategoryLandingFilter(HomepageFilter):
+class CategoryLandingFilter(BaseFilter):
 
     opts = (('featured', _lazy('Featured')),
             ('created', _lazy('Recently Added')),
@@ -206,17 +169,9 @@ class CategoryLandingFilter(HomepageFilter):
         super(CategoryLandingFilter, self).__init__(request, base, key,
                                                     default)
 
-    def _filter(self, field):
-        qs = Addon.objects
-        if field == 'created':
-            return qs.order_by('-created')
-        elif field == 'popular':
-            return qs.order_by('-weekly_downloads')
-        elif field == 'rating':
-            return qs.order_by('-bayesian_rating')
-        else:
-            return qs.filter(addoncategory__feature=True,
-                             addoncategory__category=self.category)
+    def filter_featured(self):
+        return Addon.objects.filter(addoncategory__feature=True,
+                                    addoncategory__category=self.category)
 
 
 def category_landing(request, category):
@@ -225,7 +180,7 @@ def category_landing(request, category):
     filter = CategoryLandingFilter(request, base, category,
                                    key='browse', default='featured')
 
-    search_cat = '%s,%s' % (category.type_id, category.id)
+    search_cat = '%s,%s' % (category.type, category.id)
 
     return jingo.render(request, 'browse/category_landing.html',
                         {'category': category, 'filter': filter,
@@ -242,7 +197,7 @@ def creatured(request, category):
                         {'addons': addons, 'category': category})
 
 
-class PersonasFilter(HomepageFilter):
+class PersonasFilter(BaseFilter):
 
     opts = (('up-and-coming', _lazy('Up & Coming')),
             ('created', _lazy('Recently Added')),
@@ -250,21 +205,19 @@ class PersonasFilter(HomepageFilter):
             ('rating', _lazy('Top Rated')))
 
     def _filter(self, field):
-        # We do the weird isnull and extra...order_by to get around the ORM.
-        # If we do a normal .order_by(personas__movers) Django does a LEFT
-        # OUTER JOIN which busts the index we want.  So we use isnull to get
-        # the join and then order in .extra to sneak around Django.
         qs = Addon.objects
         if field == 'created':
-            return qs.order_by('-created')
+            return (qs.order_by('-created')
+                    .with_index(addons='created_type_idx'))
         elif field == 'popular':
-            return (qs.filter(persona__id__isnull=False)
-                    .extra(order_by=['-personas.popularity']))
+            return (qs.order_by('-persona__popularity')
+                    .with_index(personas='personas_popularity_idx'))
         elif field == 'rating':
-            return qs.order_by('-bayesian_rating')
+            return (qs.order_by('-bayesian_rating')
+                    .with_index(addons='rating_type_idx'))
         else:
-            return (qs.filter(persona__id__isnull=False)
-                    .extra(order_by=['-personas.movers']))
+            return (qs.order_by('-persona__movers')
+                    .with_index(personas='personas_movers_idx'))
 
 
 def personas(request, category=None):
@@ -273,7 +226,7 @@ def personas(request, category=None):
                                 type=TYPE)
     categories = order_by_translation(q, 'name')
 
-    base = Addon.objects.valid().filter(type=TYPE)
+    base = Addon.objects.public().filter(type=TYPE)
     featured = base & Addon.objects.featured(request.APP)
     is_homepage = category is None and 'sort' not in request.GET
 
@@ -288,9 +241,13 @@ def personas(request, category=None):
     else:
         template = 'category_landing.html'
 
-    # Pass the count from base instead of letting it come from
-    # filter.qs.count() since that would join against personas.
-    addons = amo.utils.paginate(request, filter.qs, 30, count=base.count())
+    if category:
+        count = category.count
+    else:
+        # Pass the count from base instead of letting it come from
+        # filter.qs.count() since that would join against personas.
+        count = base.with_index(addons='type_status_inactive_idx').count()
+    addons = amo.utils.paginate(request, filter.qs, 30, count=count)
 
     search_cat = '%s,%s' % (TYPE, category.id if category else 0)
 

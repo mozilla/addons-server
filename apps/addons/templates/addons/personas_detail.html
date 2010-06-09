@@ -5,7 +5,7 @@
 {% block bodyclass %}inverse{% endblock %}
 
 {% block content %}
-{{ breadcrumbs([(addon.type.get_url_path(), amo.ADDON_TYPES[addon.type_id]), (None, addon.name)]) }}
+{{ breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]), (None, addon.name)]) }}
 
 <hgroup>
   <h2 class="addon"{{ addon.name|locale_html }}>

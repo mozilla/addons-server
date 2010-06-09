@@ -68,7 +68,7 @@ def get_app_versions(app):
 
 
 # Fake categories to slip some add-on types into the search groups.
-_Cat = collections.namedtuple('Cat', 'id name weight type_id')
+_Cat = collections.namedtuple('Cat', 'id name weight type')
 
 
 def get_search_groups(app):
@@ -76,7 +76,7 @@ def get_search_groups(app):
     for type_ in (amo.ADDON_DICT, amo.ADDON_SEARCH, amo.ADDON_THEME):
         sub.append(_Cat(0, amo.ADDON_TYPES[type_], 0, type_))
     sub.extend(helpers.sidebar(app)[0])
-    sub = [('%s,%s' % (a.type_id, a.id), a.name) for a in
+    sub = [('%s,%s' % (a.type, a.id), a.name) for a in
            sorted(sub, key=lambda x: (x.weight, x.name))]
     top_level = [('all', _('all add-ons')),
                  ('collections', _('all collections')),

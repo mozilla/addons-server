@@ -11,10 +11,11 @@ import jingo
 from test_utils import TestCase
 from nose.tools import eq_
 
+import amo
+import amo.test_utils
 import api
 import api.utils
 from addons.models import Addon
-import amo
 from amo import helpers
 from search.tests import SphinxTestCase
 from search.utils import stop_sphinx
@@ -306,7 +307,7 @@ class APITest(TestCase):
     test_sphinx_off.sphinx = True
 
 
-class ListTest(TestCase):
+class ListTest(amo.test_utils.ExtraSetup, TestCase):
     """Tests the list view with various urls."""
     fixtures = ['base/fixtures', 'base/featured']
 
@@ -401,8 +402,7 @@ class ListTest(TestCase):
         assert json.loads(r.content)
 
     def test_unicode(self):
-        request = make_call(u'list/featured/all/10/Linux/3.7a2pre'
-                            u'xec\xb6\u0153\xec\xb2')
+        make_call(u'list/featured/all/10/Linux/3.7a2prexec\xb6\u0153\xec\xb2')
 
 
 class SeamonkeyFeaturedTest(TestCase):

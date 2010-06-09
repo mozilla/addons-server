@@ -10,6 +10,7 @@ import test_utils
 from pyquery import PyQuery as pq
 
 import amo
+import amo.test_utils
 from amo.helpers import urlparams
 from amo.urlresolvers import reverse
 from addons.models import Addon, AddonUser
@@ -17,7 +18,7 @@ from addons.views import _details_collections_dropdown
 from users.models import UserProfile
 
 
-class TestHomepage(test_utils.TestCase):
+class TestHomepage(amo.test_utils.ExtraSetup, test_utils.TestCase):
     fixtures = ['base/fixtures', 'base/global-stats', 'base/featured']
 
     def setUp(self):

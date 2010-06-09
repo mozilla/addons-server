@@ -144,7 +144,7 @@ class TestRedirects(test.TestCase):
                              status_code=301)
 
         a = Application.objects.create()
-        Category.objects.create(pk=12, slug='woo', type_id=amo.ADDON_EXTENSION,
+        Category.objects.create(pk=12, slug='woo', type=amo.ADDON_EXTENSION,
                                 application=a, count=1, weight=0)
         r = self.client.get('/browse/type:1/cat:12?sort=averagerating',
                             follow=True)

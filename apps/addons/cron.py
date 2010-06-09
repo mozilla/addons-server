@@ -38,6 +38,7 @@ def _update_addons_current_version(data, **kw):
             addon.update_current_version()
         except Addon.DoesNotExist:
             task_log.debug("Missing addon: %d" % pk)
+    transaction.commit_unless_managed()
 
 
 @cronjobs.register

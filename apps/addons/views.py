@@ -14,6 +14,7 @@ from amo.urlresolvers import reverse
 from bandwagon.models import Collection, CollectionFeature, CollectionPromo
 from stats.models import GlobalStat
 from tags.models import Tag
+from translations.query import order_by_translation
 from .models import Addon
 
 
@@ -37,8 +38,8 @@ def addon_detail(request, addon_id):
     """Add-ons details page dispatcher."""
     addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
     # addon needs to have a version and be valid for this app.
-    if addon.type_id in request.APP.types:
-        if addon.type_id == amo.ADDON_PERSONA:
+    if addon.type in request.APP.types:
+        if addon.type == amo.ADDON_PERSONA:
             return persona_detail(request, addon)
         else:
             if not addon.current_version:
@@ -48,7 +49,7 @@ def addon_detail(request, addon_id):
     else:
         # Redirect to an app that supports this type.
         try:
-            new_app = [a for a in amo.APP_USAGE if addon.type_id
+            new_app = [a for a in amo.APP_USAGE if addon.type
                        in a.types][0]
         except IndexError:
             raise http.Http404
@@ -219,16 +220,18 @@ def persona_detail(request, addon):
     return jingo.render(request, 'addons/personas_detail.html', data)
 
 
-class HomepageFilter(object):
+class BaseFilter(object):
     """
-    key: the GET param we look at
-    default: the default key we should use
-    """
+    Filters help generate querysets for add-on listings.
 
-    opts = (('featured', _lazy('Featured')),
-            ('popular', _lazy('Popular')),
-            ('new', _lazy('Recently Added')),
-            ('updated', _lazy('Recently Updated')))
+    You have to define ``opts`` on the subclass as a sequence of (key, title)
+    pairs.  The key is used in GET parameters and the title can be used in the
+    view.
+
+    The chosen filter field is combined with the ``base`` queryset using
+    the ``key`` found in request.GET.  ``default`` should be a key in ``opts``
+    that's used if nothing good is found in request.GET.
+    """
 
     def __init__(self, request, base, key, default):
         self.opts_dict = dict(self.opts)
@@ -238,7 +241,7 @@ class HomepageFilter(object):
         self.qs = self.filter(self.field)
 
     def options(self, request, key, default):
-        """Get the (option, title) pair we should according to the request."""
+        """Get the (option, title) pair we want according to the request."""
         if key in request.GET and request.GET[key] in self.opts_dict:
             opt = request.GET[key]
         else:
@@ -251,19 +254,42 @@ class HomepageFilter(object):
 
     def filter(self, field):
         """Get the queryset for the given field."""
-        return self.base_queryset.distinct() & self._filter(field).distinct()
+        return self._filter(field) & self.base_queryset
 
     def _filter(self, field):
-        qs = Addon.objects
-        if field == 'popular':
-            return qs.order_by('-weekly_downloads')
-        elif field == 'new':
-            return qs.order_by('-created')
-        elif field == 'updated':
-            return qs.order_by('-last_updated')
-        else:
-            # It's ok to cache this for a while...it'll expire eventually.
-            return qs.featured(self.request.APP).order_by('?')
+        return getattr(self, 'filter_%s' % field)()
+
+    def filter_popular(self):
+        return (Addon.objects.order_by('-weekly_downloads')
+                .with_index(addons='downloads_type_idx'))
+
+    def filter_created(self):
+        return (Addon.objects.order_by('-created')
+                .with_index(addons='created_type_idx'))
+
+    def filter_updated(self):
+        return (Addon.objects.order_by('-last_updated')
+                .with_index(addons='last_updated_type_idx'))
+
+    def filter_rating(self):
+        return (Addon.objects.order_by('-bayesian_rating')
+                .with_index(addons='rating_type_idx'))
+
+    def filter_name(self):
+        return order_by_translation(Addon.objects.all(), 'name')
+
+
+class HomepageFilter(BaseFilter):
+    opts = (('featured', _lazy('Featured')),
+            ('popular', _lazy('Popular')),
+            ('new', _lazy('Recently Added')),
+            ('updated', _lazy('Recently Updated')))
+
+    filter_new = BaseFilter.filter_created
+
+    def filter_featured(self):
+        # It's ok to cache this for a while...it'll expire eventually.
+        return Addon.objects.featured(self.request.APP).order_by('?')
 
 
 def home(request):
