@@ -12,7 +12,7 @@ import product_details
 import amo.utils
 from addons.models import Addon, Category
 from amo.urlresolvers import reverse
-from addons.views import HomepageFilter
+from addons.views import BaseFilter
 from translations.query import order_by_translation
 
 
@@ -82,49 +82,12 @@ def language_tools(request, category=None):
                         {'locales': locales, 'search_cat': search_cat})
 
 
-class AddonFilter(object):
-    """
-    Support class for sorting add-ons.  Sortable fields are defined as
-    (value, title) pairs in ``opts``.  Pass in a request and a queryset and
-    AddonFilter will figure out how to sort the queryset.
-
-    self.sorting: the field we're sorting by
-    self.opts: all the sort options
-    self.qs: the sorted queryset
-    """
+class AddonFilter(BaseFilter):
     opts = (('name', _lazy(u'Name')),
             ('updated', _lazy(u'Updated')),
             ('created', _lazy(u'Created')),
             ('popular', _lazy(u'Downloads')),
             ('rating', _lazy(u'Rating')))
-
-    def __init__(self, request, queryset, default):
-        self.sorting = self.options(request, default)
-        self.qs = self.sort(queryset, self.sorting)
-
-    def __iter__(self):
-        """Cleverness: this lets you unpack the class like a tuple."""
-        return iter((self.sorting, self.opts, self.qs))
-
-    def options(self, request, default):
-        opts_dict = dict(self.opts)
-        if 'sort' in request.GET and request.GET['sort'] in opts_dict:
-            sort = request.GET['sort']
-            return sort
-        else:
-            return default
-
-    def sort(self, qs, field):
-        if field == 'updated':
-            return qs.order_by('-last_updated')
-        if field == 'created':
-            return qs.order_by('-created')
-        elif field == 'popular':
-            return qs.order_by('-weekly_downloads')
-        elif field == 'rating':
-            return qs.order_by('-bayesian_rating')
-        else:
-            return order_by_translation(qs, 'name')
 
 
 def themes(request, category=None):
@@ -147,7 +110,7 @@ def themes(request, category=None):
     return jingo.render(request, 'browse/themes.html',
                         {'categories': categories, 'total_count': total_count,
                          'themes': themes, 'category': category,
-                         'sorting': filter.sorting,
+                         'sorting': filter.field,
                          'sort_opts': filter.opts,
                          'unreviewed': unreviewed,
                          'search_cat': search_cat})
@@ -162,7 +125,7 @@ def _listing(request, addon_type, default='popular'):
         status.append(amo.STATUS_UNREVIEWED)
 
     qs = Addon.objects.listed(request.APP, *status).filter(type=addon_type)
-    filter = AddonFilter(request, qs, default)
+    filter = AddonFilter(request, qs, 'sort', default)
     return filter.qs, filter, unreviewed
 
 
@@ -189,12 +152,12 @@ def extensions(request, category=None):
     return jingo.render(request, 'browse/extensions.html',
                         {'category': category, 'addons': addons,
                          'unreviewed': unreviewed,
-                         'sorting': filter.sorting,
+                         'sorting': filter.field,
                          'sort_opts': filter.opts,
                          'search_cat': search_cat})
 
 
-class CategoryLandingFilter(HomepageFilter):
+class CategoryLandingFilter(BaseFilter):
 
     opts = (('featured', _lazy('Featured')),
             ('created', _lazy('Recently Added')),
@@ -206,17 +169,9 @@ class CategoryLandingFilter(HomepageFilter):
         super(CategoryLandingFilter, self).__init__(request, base, key,
                                                     default)
 
-    def _filter(self, field):
-        qs = Addon.objects
-        if field == 'created':
-            return qs.order_by('-created')
-        elif field == 'popular':
-            return qs.order_by('-weekly_downloads')
-        elif field == 'rating':
-            return qs.order_by('-bayesian_rating')
-        else:
-            return qs.filter(addoncategory__feature=True,
-                             addoncategory__category=self.category)
+    def filter_featured(self):
+        return Addon.objects.filter(addoncategory__feature=True,
+                                    addoncategory__category=self.category)
 
 
 def category_landing(request, category):
@@ -242,7 +197,7 @@ def creatured(request, category):
                         {'addons': addons, 'category': category})
 
 
-class PersonasFilter(HomepageFilter):
+class PersonasFilter(BaseFilter):
 
     opts = (('up-and-coming', _lazy('Up & Coming')),
             ('created', _lazy('Recently Added')),
@@ -250,10 +205,6 @@ class PersonasFilter(HomepageFilter):
             ('rating', _lazy('Top Rated')))
 
     def _filter(self, field):
-        # We do the weird isnull and extra...order_by to get around the ORM.
-        # If we do a normal .order_by(personas__movers) Django does a LEFT
-        # OUTER JOIN which busts the index we want.  So we use isnull to get
-        # the join and then order in .extra to sneak around Django.
         qs = Addon.objects
         if field == 'created':
             return (qs.order_by('-created')
