@@ -458,7 +458,7 @@ class Client(object):
             raise SearchError(sc.GetLastError())
 
         # Handle any meta data we have.
-        if 'meta' in kwargs:
+        if 'meta' in kwargs and 'matches' in results:
             if 'versions' in kwargs['meta']:
                 # We don't care about the first 10 digits, since
                 # those deal with alpha/preview/etc
