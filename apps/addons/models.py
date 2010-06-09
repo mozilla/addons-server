@@ -260,8 +260,11 @@ class Addon(amo.models.ModelBase):
         personas = [a for a in addons if a.type == amo.ADDON_PERSONA]
         addons = [a for a in addons if a.type != amo.ADDON_PERSONA]
 
-        versions = filter(None, (a.current_version for a in addons))
+        version_ids = filter(None, (a._current_version_id for a in addons))
+        versions = list(Version.objects.filter(id__in=version_ids))
         Version.transformer(versions)
+        for version in versions:
+            addon_dict[version.addon_id]._current_version = version
 
         # Attach listed authors.
         q = (UserProfile.objects.no_cache()

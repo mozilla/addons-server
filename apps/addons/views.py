@@ -251,16 +251,19 @@ class HomepageFilter(object):
 
     def filter(self, field):
         """Get the queryset for the given field."""
-        return self.base_queryset & self._filter(field)
+        return self._filter(field) & self.base_queryset
 
     def _filter(self, field):
         qs = Addon.objects
         if field == 'popular':
-            return qs.order_by('-weekly_downloads')
+            return (qs.order_by('-weekly_downloads')
+                    .with_index(addons='downloads_type_idx'))
         elif field == 'new':
-            return qs.order_by('-created')
+            return (qs.order_by('-created')
+                    .with_index(addons='created_type_idx'))
         elif field == 'updated':
-            return qs.order_by('-last_updated')
+            return (qs.order_by('-last_updated')
+                    .with_index(addons='last_updated_type_idx'))
         else:
             # It's ok to cache this for a while...it'll expire eventually.
             return qs.featured(self.request.APP).order_by('?')

@@ -181,7 +181,8 @@ def extensions(request, category=None):
     if category:
         addons = addons.filter(categories__id=category.id)
 
-    addons = amo.utils.paginate(request, addons)
+    count = addons.with_index(addons='type_status_inactive_idx').count()
+    addons = amo.utils.paginate(request, addons, count=count)
 
     search_cat = '%s,%s' % (TYPE, category.id if category else 0)
 
