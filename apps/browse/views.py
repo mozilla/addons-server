@@ -201,8 +201,7 @@ class PersonasFilter(BaseFilter):
 
     opts = (('up-and-coming', _lazy('Up & Coming')),
             ('created', _lazy('Recently Added')),
-            ('popular', _lazy('Most Popular')),
-            ('rating', _lazy('Top Rated')))
+            ('popular', _lazy('Most Popular')))
 
     def _filter(self, field):
         qs = Addon.objects

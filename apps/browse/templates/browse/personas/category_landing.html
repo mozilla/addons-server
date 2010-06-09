@@ -6,6 +6,7 @@
     'created': _('View All Recently Added'),
     'popular': _('View All Most Popular'),
     'rating': _('View All Top Rated'),
+    'up-and-coming': _('View All Up & Coming'),
 } %}
 
 {% macro sort_link(key) -%}
@@ -79,15 +80,23 @@
     </div> {# featured-addons #}
   {% endif %}
 
-  {% for key, title in filter.opts if key != special %}
-    {% set addons = addon_sets[key][:6] %}
+  {% for key, title in filter.opts %}
+    {% if key == special %}
+      {# We show Up & Coming in the top box, so skip past the ones we're
+      already displaying #}
+      {% set offset = 16 if is_homepage else 6 %}
+      {% set addons = addon_sets[key][offset:offset + 6] %}
+    {% else %}
+      {% set addons = addon_sets[key][:6] %}
+    {% endif %}
     {% set link = sort_link(key) %}
     <div class="addons-column">
       <h3><a href="{{ link }}">{{ filter.opts_dict[key] }}</a></h3>
       <ul class="personas">
         {% cache addons %}
+        {% set extra = 'popular' if key == special else key %}
         {% for addon in addons %}
-          <li>{{ persona_preview(addon.persona, size='small', extra=key) }}</li>
+          <li>{{ persona_preview(addon.persona, size='small', extra=extra) }}</li>
         {% endfor %}
         {% endcache %}
       </ul>
