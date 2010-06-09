@@ -256,15 +256,17 @@ class PersonasFilter(HomepageFilter):
         # the join and then order in .extra to sneak around Django.
         qs = Addon.objects
         if field == 'created':
-            return qs.order_by('-created')
+            return (qs.order_by('-created')
+                    .with_index(addons='created_type_idx'))
         elif field == 'popular':
-            return (qs.filter(persona__id__isnull=False)
-                    .extra(order_by=['-personas.popularity']))
+            return (qs.order_by('-persona__popularity')
+                    .with_index(personas='personas_popularity_idx'))
         elif field == 'rating':
-            return qs.order_by('-bayesian_rating')
+            return (qs.order_by('-bayesian_rating')
+                    .with_index(addons='rating_type_idx'))
         else:
-            return (qs.filter(persona__id__isnull=False)
-                    .extra(order_by=['-personas.movers']))
+            return (qs.order_by('-persona__movers')
+                    .with_index(personas='personas_movers_idx'))
 
 
 def personas(request, category=None):
@@ -273,7 +275,7 @@ def personas(request, category=None):
                                 type=TYPE)
     categories = order_by_translation(q, 'name')
 
-    base = Addon.objects.valid().filter(type=TYPE)
+    base = Addon.objects.public().filter(type=TYPE)
     featured = base & Addon.objects.featured(request.APP)
     is_homepage = category is None and 'sort' not in request.GET
 
@@ -290,7 +292,8 @@ def personas(request, category=None):
 
     # Pass the count from base instead of letting it come from
     # filter.qs.count() since that would join against personas.
-    addons = amo.utils.paginate(request, filter.qs, 30, count=base.count())
+    count = base.with_index(addons='type_status_inactive_idx').count()
+    addons = amo.utils.paginate(request, filter.qs, 30, count=count)
 
     search_cat = '%s,%s' % (TYPE, category.id if category else 0)
 
