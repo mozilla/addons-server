@@ -57,9 +57,9 @@ def search(tags, lang='all', check_cache=True):
     except (ValueError, KeyError):
         return []
 
-        # we only want the text, throw the other data away
-        tweets = [tweet['text'] for tweet in data]
-        tweets = map(_process_tweet, tweets)
+    # we only want the text, throw the other data away
+    tweets = [tweet['text'] for tweet in data]
+    tweets = map(_process_tweet, tweets)
 
     cache.set(cache_key, tweets, cache_time)
     return tweets
