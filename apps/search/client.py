@@ -513,6 +513,8 @@ class Client(object):
                         key=lambda x: x[1], reverse=True)[:MAX_TAGS]
                 tag_ids = [k for k, v in tag_dict_sorted]
                 self.meta['tags'] = manual_order(Tag.objects.all(), tag_ids)
+        else:
+            self.meta.update(versions=[], categories=[], tags=[])
 
         result = results[self.queries['primary']]
         self.total_found = result.get('total_found', 0) if result else 0
