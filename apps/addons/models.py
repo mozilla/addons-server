@@ -269,8 +269,9 @@ class Addon(amo.models.ModelBase):
         # Attach listed authors.
         q = (UserProfile.objects.no_cache()
              .filter(addons__in=addons, addonuser__listed=True)
-             .extra(select={'addon_id': 'addons_users.addon_id'})
-             .order_by('addon_id', 'addonuser__position'))
+             .extra(select={'addon_id': 'addons_users.addon_id',
+                            'position': 'addons_users.position'}))
+        q = sorted(q, key=lambda u: (u.addon_id, u.position))
         for addon_id, users in itertools.groupby(q, key=lambda u: u.addon_id):
             addon_dict[addon_id].listed_authors = list(users)
 
