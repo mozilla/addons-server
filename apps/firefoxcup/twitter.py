@@ -1,49 +1,55 @@
 from hashlib import md5
 import json
-from urllib import urlencode
 import urllib2
 
+from django.conf import settings
 from django.core.cache import cache
+from django.utils.http import urlencode
 
-from bleach import Bleach
 import commonware.log
 import jinja2
 import ttp
 
+from translations.models import LinkifiedTranslation
+
+import firefoxcup as fxcup
 from . import twitter_languages
 
 log = commonware.log.getLogger('z.firefoxcup')
 parser = ttp.Parser()
-bleach = Bleach()
 
 
 def _prepare_lang(lang):
     lang = lang.split('-')[0]
-    if lang not in twitter_languages:
+    if lang not in fxcup.tags:
         lang = 'all'
     return lang
 
 
 def _search_query(tags, lang):
-    return urlencode({
-        'ors': ' '.join(tags),
-        'lang': lang})
+    return urlencode({'ors': ' '.join(tags)})
 
 
-def search(tags, lang='all', check_cache=True):
+def search(lang, limit=15):
+    key = _cache_key(_prepare_lang(lang))
+    tweets = cache.get(key, [])
+    if len(tweets) < limit and key != 'all':
+        tweets.extend(cache.get(_cache_key('all'), []))
+    return tweets[:limit]
+
+
+def _cache_key(lang):
+    return '%s:fxcup-twitter:%s' % (settings.CACHE_PREFIX, lang)
+
+
+def cache_tweets(lang):
     lang = _prepare_lang(lang)
-
+    tags = fxcup.tags[lang]
     url = "http://search.twitter.com/search.json?" + _search_query(tags, lang)
 
     # build cache key
     hash = md5(url).hexdigest()
-    cache_key = "%s:%s" % ("firefoxcup-twitter", hash)
-    cache_time = 60
-
-    if check_cache:
-        cached = cache.get(cache_key)
-        if cached is not None:
-            return cached
+    cache_key = _cache_key(lang)
 
     try:
         json_data = urllib2.urlopen(url)
@@ -61,8 +67,8 @@ def search(tags, lang='all', check_cache=True):
     tweets = [tweet['text'] for tweet in data]
     tweets = map(_process_tweet, tweets)
 
-    cache.set(cache_key, tweets, cache_time)
-    return tweets
+    log.debug('Caching %s tweets for %s' % (len(tweets), lang))
+    cache.set(cache_key, tweets, 0)
 
 
 def _process_tweet(tweet):
