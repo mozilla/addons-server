@@ -394,11 +394,11 @@ USER_PIC_URL = STATIC_URL + '/img/uploads/userpics/%s/%s/%s.jpg?modified=%d'
 FILES_URL = STATIC_URL + "/%s/%s/downloads/file/%d/%s?src=%s"
 COLLECTION_ICON_URL = ('%s/%s/%s/images/collection_icon/%%s/%%s' %
                        (STATIC_URL, LANGUAGE_CODE, DEFAULT_APP))
-PERSONAS_IMAGE_URL = ('http://getpersonas.com/static/'
+PERSONAS_IMAGE_URL = ('http://www.getpersonas.com/static/'
                       '%(tens)d/%(units)d/%(id)d/%(file)s')
-PERSONAS_IMAGE_URL_SSL = ('https://getpersonas.com/static/'
+PERSONAS_IMAGE_URL_SSL = ('https://www.getpersonas.com/static/'
                           '%(tens)d/%(units)d/%(id)d/%(file)s')
-PERSONAS_USER_ROOT = 'http://getpersonas.com/gallery/designer/%s'
+PERSONAS_USER_ROOT = 'http://www.getpersonas.com/gallery/designer/%s'
 
 # Outgoing URL bouncer
 REDIRECT_URL = 'http://outgoing.mozilla.org/v1/'
