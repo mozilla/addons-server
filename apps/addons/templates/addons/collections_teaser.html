@@ -76,7 +76,7 @@
           <li id="t-{{ feature.title|slugify }}" class="addon-view">
             {% set collection = collections[feature] %}
             <h2>{{ feature.tagline }}</h2>
-            {% for addon in collection.public_addons.order_by('?')[:3] %}
+            {% for addon in randslice(collection.public_addons.all(), limit=3) %}
               <div class="column {% if loop.first %}first{% endif %}">
                 <div class="column-inner item">
                   <a title="{{ addon.name }}" href="{{ addon.get_url_path() }}">

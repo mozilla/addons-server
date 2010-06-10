@@ -1,6 +1,7 @@
 import cgi
 import itertools
 import operator
+import random
 import time
 import urllib
 import urlparse
@@ -171,3 +172,24 @@ def urlencode(items):
         return urllib.urlencode(items)
     except UnicodeEncodeError:
         return urllib.urlencode([(k, smart_str(v)) for k, v in items])
+
+
+def randslice(qs, limit, exclude=None):
+    """
+    Get a random slice of items from ``qs`` of size ``limit``.
+
+    There will be two queries.  One to find out how many elements are in ``qs``
+    and another to get a slice.  The count is so we don't go out of bounds.
+    If exclude is given, we make sure that pk doesn't show up in the slice.
+
+    This replaces qs.order_by('?')[:limit].
+    """
+    cnt = qs.count()
+    # Get one extra in case we find the element that should be excluded.
+    if exclude is not None:
+        limit += 1
+    rand = 0 if limit > cnt else random.randint(0, cnt - limit)
+    slice_ = list(qs[rand:rand + limit])
+    if exclude is not None:
+        slice_ = [o for o in slice_ if o.pk != exclude][:limit - 1]
+    return slice_

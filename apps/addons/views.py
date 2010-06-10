@@ -8,7 +8,7 @@ import jingo
 from tower import ugettext_lazy as _lazy
 
 import amo
-from amo.utils import sorted_groupby
+from amo.utils import sorted_groupby, randslice
 from amo import urlresolvers
 from amo.urlresolvers import reverse
 from bandwagon.models import Collection, CollectionFeature, CollectionPromo
@@ -186,8 +186,8 @@ def persona_detail(request, addon):
     # this persona's categories
     categories = addon.categories.filter(application=request.APP.id)
     if categories:
-        category_personas = Addon.objects.valid().filter(
-            categories=categories[0]).exclude(pk=addon.pk).order_by('?')[:6]
+        qs = Addon.objects.valid().filter(categories=categories[0])
+        category_personas = randslice(qs, limit=6, exclude=addon.pk)
     else:
         category_personas = None
 

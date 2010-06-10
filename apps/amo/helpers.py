@@ -28,6 +28,7 @@ urlparams = register.filter(utils.urlparams)
 register.filter(utils.epoch)
 register.filter(utils.isotime)
 register.function(dict)
+register.function(utils.randslice)
 
 
 @register.function
