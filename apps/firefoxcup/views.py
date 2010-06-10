@@ -9,15 +9,7 @@ from .twitter import search
 
 
 def index(request):
-
-    tweets = search(tags['all'], lang=request.LANG)
-
-    if len(tweets) < 15:
-        extra = search(tags['all'], 'all')
-        tweets.extend(extra)
-
-    # 15 tweets only
-    tweets = tweets[:15]
+    tweets = search(lang=request.LANG, limit=15)
 
     persona_ids = [t['persona_id'] for t in teams_config]
     personas = {}
@@ -31,7 +23,10 @@ def index(request):
     teams = []
     for t in teams_config:
         id = t['persona_id']
-        t['persona'] = personas.get(id, [])
+        if id not in personas:
+            continue
+
+        t['persona'] = personas[id]
 
         if id in stats:
             # we need at least 2 data points
