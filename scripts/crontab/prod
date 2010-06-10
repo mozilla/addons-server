@@ -1,6 +1,7 @@
 MAILTO=amo-developers@mozilla.org
 
-#every 15 min
+# Every minute!
+* * * * * apache cd /data/amo_python/src/prod/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron firefoxcup_might_be_a_social_media_expert
 
 #once per hour
 5 * * * * apache cd /data/amo_python/src/prod/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron update_collections_subscribers
