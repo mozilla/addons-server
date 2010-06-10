@@ -350,13 +350,12 @@ class Addon(amo.models.ModelBase):
     @amo.cached_property
     def tags_partitioned_by_developer(self):
         "Returns a tuple of developer tags and user tags for this addon."
-
         # TODO(davedash): We can't cache these tags until /tags/ are moved
         # into Zamboni.
         tags = self.tags.not_blacklisted().no_cache()
-        user_tags = tags.exclude(addon_tags__user__in=self.authors.all())
-        dev_tags = tags.exclude(id__in=user_tags)
-        return (dev_tags, user_tags,)
+        dev_tags = list(tags.filter(addon_tags__user__in=self.listed_authors))
+        user_tags = tags.exclude(id__in=[t.id for t in dev_tags])
+        return dev_tags, user_tags
 
     @amo.cached_property
     def compatible_apps(self):

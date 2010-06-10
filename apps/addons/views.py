@@ -8,7 +8,7 @@ import jingo
 from tower import ugettext_lazy as _lazy
 
 import amo
-from amo.utils import sorted_groupby
+from amo.utils import sorted_groupby, randslice
 from amo import urlresolvers
 from amo.urlresolvers import reverse
 from bandwagon.models import Collection, CollectionFeature, CollectionPromo
@@ -86,7 +86,7 @@ def extension_detail(request, addon):
                              authors__in=addon.listed_authors).distinct())
 
     # tags
-    (dev_tags, user_tags) = addon.tags_partitioned_by_developer
+    dev_tags, user_tags = addon.tags_partitioned_by_developer
 
     current_user_tags = []
 
@@ -186,15 +186,13 @@ def persona_detail(request, addon):
     # this persona's categories
     categories = addon.categories.filter(application=request.APP.id)
     if categories:
-        category_personas = Addon.objects.valid().filter(
-            categories=categories[0]).exclude(pk=addon.pk).order_by('?')[:6]
+        qs = Addon.objects.valid().filter(categories=categories[0])
+        category_personas = randslice(qs, limit=6, exclude=addon.pk)
     else:
         category_personas = None
 
     # tags
-    tags = addon.tags.not_blacklisted()
-    dev_tags = tags.filter(addon_tags__user__in=addon.authors.all())
-    user_tags = tags.exclude(addon_tags__user__in=addon.authors.all())
+    dev_tags, user_tags = addon.tags_partitioned_by_developer
 
     # other personas from the same author(s)
     other_personas_regular = Q(addonuser__listed=True,
