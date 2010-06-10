@@ -56,10 +56,10 @@ LANGUAGE_CODE = 'en-US'
 
 # Accepted locales
 AMO_LANGUAGES = (
-    'af', 'ar', 'ca', 'cs', 'da', 'de', 'el', 'en-GB', 'en-US', 'es-ES', 'eu',
-    'fa', 'fi', 'fr', 'ga-IE', 'he', 'hu', 'id', 'it', 'ja', 'ko',
-    'mn', 'nl', 'pl', 'pt-BR', 'pt-PT', 'ro', 'ru', 'sl', 'sk', 'sq', 'sr',
-    'sv-SE', 'uk', 'vi', 'zh-CN', 'zh-TW',
+    'af', 'ar', 'bg', 'ca', 'cs', 'da', 'de', 'el', 'en-GB', 'en-US', 'es-ES',
+    'eu', 'fa', 'fi', 'fr', 'ga-IE', 'he', 'hu', 'id', 'it', 'ja', 'ko', 'mn',
+    'nl', 'pl', 'pt-BR', 'pt-PT', 'ro', 'ru', 'sl', 'sk', 'sq', 'sr', 'sv-SE',
+    'uk', 'vi', 'zh-CN', 'zh-TW',
 )
 
 # Override Django's built-in with our native names
