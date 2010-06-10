@@ -1,4 +1,5 @@
 from django.conf.urls.defaults import patterns, url, include
+from django.shortcuts import redirect
 
 from . import views
 
@@ -9,6 +10,10 @@ detail_patterns = patterns('',
     url('^eula/(?P<file_id>\d+)$', views.eula, name='addons.eula'),
     url('^developers(?:/(?P<extra>.+))?$', views.meet_the_developer,
         name='addons.meet'),
+    url('^contribute/installed/', views.contribute_installed, name='contribute.installed'),
+    
+    ('^about$',
+     lambda r, addon_id: redirect('contribute.installed', addon_id, permanent=True)),
 
     ('^reviews/', include('reviews.urls')),
     ('^statistics/', include('stats.urls')),

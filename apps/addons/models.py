@@ -307,6 +307,16 @@ class Addon(amo.models.ModelBase):
                     self.id, int(time.mktime(self.modified.timetuple())))
 
     @property
+    def authors_other_addons(self):
+        """
+        Return other addons by the author(s) of this addon
+        """
+        return (Addon.objects.valid().only_translations()
+                  .exclude(id=self.id)
+                  .filter(addonuser__listed=True,
+                          authors__in=self.listed_authors).distinct())
+    
+    @property
     def contribution_url(self, lang=settings.LANGUAGE_CODE,
                          app=settings.DEFAULT_APP):
         return '/%s/%s/addons/contribute/%d' % (lang, app, self.id)

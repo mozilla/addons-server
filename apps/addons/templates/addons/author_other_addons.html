@@ -1,0 +1,29 @@
+<div class="highlight">
+  {% if author_addons %}
+    <div class="other-author-addons">
+      <h4>
+        {% trans count = addon.listed_authors|length,
+                 author = users_list(addon.listed_authors) %}
+          Other add-ons by {{ author }}
+        {% pluralize %}
+          Other add-ons by these authors
+        {% endtrans %}
+      </h4>
+    
+      <ul>
+      {% for other in author_addons %}
+        {% with id=other.id, title=other.name,
+                name=other.name|string|truncate(25) %}
+          {%- if id == addon.id %}{% continue %}{% endif %}
+          <li>
+            <a href="{{ other.get_url_path() }}" title="{{ title }}"
+               class="addonitem">{{ name }}</a>
+          </li>
+        {% endwith %}
+      {% endfor %}
+      </ul>
+
+    </div>{# /other-author-addons #}
+  {% endif %}
+
+</div>{# /highlight #}

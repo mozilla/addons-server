@@ -191,6 +191,9 @@
          * First one to refactor it gets a cookie.
          */
         function HeaderSlideshow() {
+            if($('.teaser-items').hasClass('no-autorotate')) {
+                Slideshow.prototype.autoRotate = function(){}
+            }
             Slideshow.call(this);
         }
         HeaderSlideshow.prototype = new Slideshow();
