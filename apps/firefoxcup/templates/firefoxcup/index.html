@@ -44,16 +44,17 @@
           <li><a href="#p2">{{ _('2') }}</a></li>
           <li><a href="#p3">{{ _('3') }}</a></li>
           <li><a href="#p4">{{ _('4') }}</a></li>
+          <li><a href="#p5">{{ _('5') }}</a></li>
         </ul>
       </div>
 
       <div class="pager-content">
 
-        {% for teams_batch in teams|batch(8) %}
+        {% for batch in personas|batch(8) %}
           <div class="personas-contents {% if loop.index == 1 %}default-page{% endif %}" id="feature-p{{ loop.index }}">
             <ul class="personas-list">
-              {% for team in teams_batch %}
-                <li>{{ persona_preview(team.persona, size='small', linked=True) if team.persona else 'Persona not found' }}</li>
+              {% for persona in batch %}
+                <li>{{ persona_preview(persona, size='small', linked=True) if persona else 'Persona not found' }}</li>
               {% endfor %}
             </ul>
           </div>
@@ -125,7 +126,7 @@
       <tbody>
         {% for team in teams %}
           <tr>
-            <td class="persona"><img class="persona-preview" src="{{ team.flag }}" alt="{{ _('Flag') }}" data-browsertheme="{{ team.persona.json_data if team.persona }}" /></td>
+            <td class="persona"><div class="persona-preview flag flag-{{ team.id }}" data-browsertheme="{{ team.persona.json_data if team.persona }}"></div></td>
             <td>{{ team.name }}</td>
             <td class="fans"><span class="inlinesparkline">{{ team.stats }}</span>{{ team.persona.popularity|numberfmt if team.persona else 0 }}</td>
           </tr>
@@ -136,7 +137,7 @@
     <table id="tweets">
       <thead>
         <tr>
-          <th><img src="{{ MEDIA_URL }}img/firefoxcup/twitter.png" alt="Twitter" height="38" width="37" /> {{ _('Follow our tweets') }}</th>
+          <th><a href="http://twitter.com/firefox">{{ _('Follow our tweets') }}</a></th>
         </tr>
         <tr><td></td></tr>
       </thead>

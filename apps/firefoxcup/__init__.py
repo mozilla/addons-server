@@ -2,10 +2,10 @@
 from django.conf import settings
 from tower import ugettext_lazy as _
 
-email_enabled = False
-
 tags = {
     'all': [
+        '#firefoxcup',
+        '#fxcup',
         '#worldcup',
         '#football',
         '#soccer',
@@ -26,6 +26,10 @@ tags = {
     'sk': [u'Svetový pohár'],
     'sl': [u'Svetovni pokal'],
 }
+
+# generic persona ID
+# bug 569734
+generic_persona = 223469
 
 teams = [
     {

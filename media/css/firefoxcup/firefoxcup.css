@@ -169,7 +169,7 @@ body, h1, h2, h3, h4, h5, h6 {
 	-moz-box-shadow: 1px 1px 2px rgba(0,0,0,0.1), 0 -20px 45px rgba(0,0,0,0.08) inset;
 	-webkit-box-shadow: 1px 1px 2px rgba(0,0,0,0.1), 0 -20px 45px rgba(0,0,0,0.08) inset;
 	min-height: 300px;
-	background: #fff url(../../img/firefoxcup/personas-pc/usa.jpg) -60px 100% no-repeat;
+	background: #fff url(../../img/firefoxcup/generic-mac.jpg) -60px 100% no-repeat;
 }
 
 #main-content h2 {
@@ -652,3 +652,42 @@ td.fans {
 }
 
 /* }}} */
+
+.flag { 
+  background: url(../../img/firefoxcup/flags-sprite.png) no-repeat top left; 
+  width: 33px; 
+  height: 33px;
+}
+.flag-algeria { background-position: 0 0;  } 
+.flag-argentina { background-position: 0 -63px; } 
+.flag-australia { background-position: 0 -126px; } 
+.flag-brazil { background-position: 0 -189px; } 
+.flag-cameroon { background-position: 0 -252px; } 
+.flag-chile { background-position: 0 -315px; } 
+.flag-cote { background-position: 0 -378px; } 
+.flag-denmark { background-position: 0 -441px; } 
+.flag-england { background-position: 0 -504px; } 
+.flag-france { background-position: 0 -567px; } 
+.flag-germany { background-position: 0 -630px; } 
+.flag-ghana { background-position: 0 -693px; } 
+.flag-greece { background-position: 0 -756px; } 
+.flag-honduras { background-position: 0 -819px; } 
+.flag-italy { background-position: 0 -882px; } 
+.flag-japan { background-position: 0 -945px; } 
+.flag-korea-dpr { background-position: 0 -1008px; } 
+.flag-korea-republic { background-position: 0 -1071px; } 
+.flag-mexico { background-position: 0 -1134px; } 
+.flag-netherlands { background-position: 0 -1197px; } 
+.flag-new-zealand { background-position: 0 -1260px; } 
+.flag-nigeria { background-position: 0 -1323px; } 
+.flag-paraguay { background-position: 0 -1386px; } 
+.flag-portugal { background-position: 0 -1449px; } 
+.flag-serbia { background-position: 0 -1512px; } 
+.flag-slovakia { background-position: 0 -1575px; } 
+.flag-slovenia { background-position: 0 -1638px; } 
+.flag-south-africa { background-position: 0 -1701px; } 
+.flag-spain { background-position: 0 -1764px; } 
+.flag-switzerland { background-position: 0 -1827px; } 
+.flag-uruguay { background-position: 0 -1890px; } 
+.flag-usa { background-position: 0 -1953px; } 
+
