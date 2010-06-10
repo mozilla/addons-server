@@ -4,8 +4,7 @@ $(document).ready(function () {
     $('#download').hide();
 
   firefoxcup_random_promo();
-  // media_url and firefoxcup_teams defined in the template
-  firefoxcup_random_screenshot(media_url, firefoxcup_teams);
+  firefoxcup_random_screenshot(media_url);
 
   $('[data-browsertheme]').personasButton();
 
@@ -19,14 +18,11 @@ function firefoxcup_random_promo() {
   $('body').addClass(classOptions[choice]);
 }
 
-function firefoxcup_random_screenshot(media_url, teams) {
+function firefoxcup_random_screenshot(media_url) {
   var platform = (navigator.appVersion.indexOf('Mac') !== -1) ? 'mac' : 'pc';
-  choice = Math.floor(Math.random() * teams.length);
-  var background =
-      'url("' + media_url + 'img/firefoxcup/personas-'
-    + platform + '/' + teams[choice] + '.jpg")';
+  var bg = 'url("' + media_url + 'img/firefoxcup/generic-'+ platform +'.jpg")';
 
-  $('#main-content').css('background-image', background);
+  $('#main-content').css('background-image', bg);
 }
 
 // the original version of this function doesn't yet handle
