@@ -14,7 +14,7 @@
 
 {% block content %}
 
-{{ breadcrumbs([(addon.type.get_url_path(), amo.ADDON_TYPES[addon.type_id]), (None, addon.name)]) }}
+{{ breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]), (None, addon.name)]) }}
 
 <h2>{{ _('Meet the {0} Developer')|f(addon.name) }}</h2>
 

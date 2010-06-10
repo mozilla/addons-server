@@ -15,6 +15,7 @@ from bandwagon.models import Collection, CollectionFeature, CollectionPromo
 from stats.models import GlobalStat
 from tags.models import Tag
 from .models import Addon
+from translations.query import order_by_translation
 
 
 def author_addon_clicked(f):
@@ -63,10 +64,7 @@ def contribute_installed(request, addon_id):
     """Add-ons details page dispatcher."""
     addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
     # other add-ons from the same author(s)
-    author_addons = (Addon.objects.valid().only_translations()
-                     .exclude(id=addon.id)
-                     .filter(addonuser__listed=True,
-                             authors__in=addon.listed_authors).distinct())
+    author_addons = order_by_translation(addon.authors_other_addons, 'name')
     data = {
         'addon': addon,
         'author_addons': author_addons,
@@ -94,10 +92,7 @@ def extension_detail(request, addon):
                               addon.get_satisfaction_company)
 
     # other add-ons from the same author(s)
-    author_addons = (Addon.objects.valid().only_translations()
-                     .exclude(id=addon.id)
-                     .filter(addonuser__listed=True,
-                             authors__in=addon.listed_authors).distinct())
+    author_addons = order_by_translation(addon.authors_other_addons, 'name')
 
     # tags
     (dev_tags, user_tags) = addon.tags_partitioned_by_developer
@@ -364,10 +359,7 @@ def meet_the_developer(request, addon_id, extra=None):
     addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
     
     # other add-ons from the same author(s)
-    author_addons = (Addon.objects.valid().only_translations()
-                     .exclude(id=addon.id)
-                     .filter(addonuser__listed=True,
-                             authors__in=addon.listed_authors).distinct())
+    author_addons = order_by_translation(addon.authors_other_addons, 'name')
     data = {
       'addon': addon,
       'author_addons': author_addons,
