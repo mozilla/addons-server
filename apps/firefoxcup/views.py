@@ -23,7 +23,10 @@ def index(request):
     teams = []
     for t in teams_config:
         id = t['persona_id']
-        t['persona'] = personas.get(id, [])
+        if id not in personas:
+            continue
+
+        t['persona'] = personas[id]
 
         if id in stats:
             # we need at least 2 data points
