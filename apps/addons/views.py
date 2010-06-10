@@ -86,7 +86,7 @@ def extension_detail(request, addon):
                              authors__in=addon.listed_authors).distinct())
 
     # tags
-    (dev_tags, user_tags) = addon.tags_partitioned_by_developer
+    dev_tags, user_tags = addon.tags_partitioned_by_developer
 
     current_user_tags = []
 
@@ -192,9 +192,7 @@ def persona_detail(request, addon):
         category_personas = None
 
     # tags
-    tags = addon.tags.not_blacklisted()
-    dev_tags = tags.filter(addon_tags__user__in=addon.authors.all())
-    user_tags = tags.exclude(addon_tags__user__in=addon.authors.all())
+    dev_tags, user_tags = addon.tags_partitioned_by_developer
 
     # other personas from the same author(s)
     other_personas_regular = Q(addonuser__listed=True,
