@@ -74,4 +74,6 @@ def cache_tweets(lang):
 def _process_tweet(tweet):
     # linkify urls, tags (e.g. #hashtag, @someone)
     tweet = parser.parse(tweet).html
-    return jinja2.Markup(tweet)
+    s = LinkifiedTranslation(localized_string=tweet)
+    s.clean()
+    return jinja2.Markup(s.localized_string_clean)
