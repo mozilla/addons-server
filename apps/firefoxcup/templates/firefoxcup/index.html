@@ -68,22 +68,40 @@
 
     <ul class="subfeatures">
 
-      {% if email_enabled %}
+      {# this email block does not get localized.  en-us only #}
+      {% if LANG == 'en-US' %}
         <li id="email">
-          <a href="#">
+          <a href="#" id="email-start">
             <span class="title">{{ _('Sign Up!') }}</span>
-            <span>{{ _('Stay current with Firefox Cup news by email.') }}</span>
+            <span>Get the Mozilla newsletter for news, tips &amp; tricks.</span>
           </a>
+          <div id="email-form">
+            <p>Subscribe to our email Newsletter to receive special Mozilla news, Firefox tips &amp; tricks, and other Mozilla information.</p>
+            <p id="error-box" class="form-error"></p>
+            <form action="{{ url('firefoxcup.signup') }}" method="POST">
+              <input type="email" name="email" placeholder="Your Email Address" size="30">
+              <label for="privacy"><input type="checkbox" name="privacy" id="privacy"> I agree to the <a href="http://www.mozilla.com/en-US/privacy-policy.html">privacy policy</a></label>
+
+              <input type="hidden" name="campaign" value="Mainstream News">
+              <input type="hidden" name="locale" value="en-US">
+              <input type="hidden" name="source" value="addons.mozilla.org/firefoxcup">
+
+              <input type="submit" value="Subscribe">
+            </form>
+            <p id="footnote">We will only send you Mozilla-related information.</p>
+          </div>
+          <div id="email-finish">
+            <h3>Thanks for subscribing!</h3>
+            <p>We look forward to soon begin sharing tips &amp; tricks on getting the most out of Firefox, as well as exciting news about Mozilla and how we’re working to create a better Web.</p>
+          </div>
         </li>
       {% endif %}
 
-      <li>
-        <a href="https://addons.mozilla.org/firefox/addon/725/?src=external-firefoxcup" id="footiefox">
+      <li id="featured">
+        <a href="{{ url('addons.detail', 725)|urlparams(src='external-firefoxcup') }}" id="featured-footiefox">
           <span class="title">{{ _('FootieFox') }}</span>
           <span>{{ _("Don't miss a moment of action. FootieFox shows latest scores in your Firefox.") }}</span>
         </a>
-      </li>
-      <li id="featured">
         <a href="http://rockyourfirefox.com/" id="featured-rockyourfirefox">
           <span class="title">{{ _('Rock Your Firefox') }}</span>
           <span>{{ _("Discover new add-ons to brighten your day.") }}</span>

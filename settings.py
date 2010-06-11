@@ -354,6 +354,8 @@ MINIFY_BUNDLES = {
             'js/zamboni/jquery.hoverIntent.min.js',
             'js/zamboni/personas.js',
             'js/zamboni/jquery.sparkline.min.js',
+            'js/firefoxcup/jquery.form.js',
+            'js/firefoxcup/newsletter_form.js',
             'js/firefoxcup/firefoxcup.js',
         ),
     }

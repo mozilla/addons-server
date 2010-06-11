@@ -1,5 +1,10 @@
+import httplib
 import json
 import jingo
+
+from django.http import HttpResponse
+from django.utils.http import urlencode
+from django.views.decorators.csrf import csrf_exempt
 
 from addons.models import Persona
 from . import tags, generic_persona, teams as teams_config
@@ -43,6 +48,15 @@ def index(request):
     return jingo.render(request, 'firefoxcup/index.html', {
         'tweets': tweets,
         'teams': teams,
-        'email_enabled': False,
         'personas': personas.values(),
     })
+
+@csrf_exempt
+def signup(request):
+    conn = httplib.HTTPConnection("basket.mozilla.com")
+    headers = {"Content-type": "application/x-www-form-urlencoded",
+               "Accept": "text-plain"}
+    conn.request("POST", "/subscriptions/subscribe/", request.raw_post_data, headers)
+    resp = conn.getresponse()
+    conn.close()
+    return HttpResponse(str(resp.status))

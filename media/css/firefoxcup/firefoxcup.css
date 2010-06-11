@@ -276,6 +276,8 @@ ul.personas-list {
 	border-color: #ccc;
 }
 
+#email-form,
+#email-finish,
 #sidebar .subfeatures li a {
 	display: block;
 	padding: 17px 20px 20px 20px;
@@ -306,7 +308,7 @@ ul.personas-list {
 	min-height: 80px;
 }
 
-#sidebar .subfeatures li a#footiefox {
+#sidebar .subfeatures li a#featured-footiefox {
 	background-image: url(../../img/firefoxcup/footiefox.png);
 }
 
@@ -319,10 +321,51 @@ ul.personas-list {
 	background-image: url(../../img/firefoxcup/addons.png);
 	background-position: 10px 20px;
 }
-
-#sidebar #email a {
+#sidebar a#email-start {
 	background-image: url(../../img/firefoxcup/email.png);
 	min-height: 62px;
+}
+
+#sidebar #email-form form a {
+  display: inline;
+  padding: 0;
+  margin: 0;
+  background: none;
+  border: none;
+  -moz-box-shadow: none;
+	-webkit-box-shadow: none;
+  -moz-border-radius: none;
+	-webkit-border-radius: none;
+  text-decoration: underline;
+  color: blue;
+}
+
+#email-form,
+#email-finish {
+  padding-left: 20px;
+}
+
+#email-form input {
+  display: block;
+  margin: 5px 0;
+}
+
+#email-form input#privacy {
+  display: inline;
+  margin-right: 5px;
+}
+#email-form #footnote {
+  color: #999;
+}
+#email-form,
+#email-finish,
+#error-box {
+  display: none;
+}
+.form-error {
+  -moz-border-radius: 5px;
+  border: 2px solid #cc4927;
+  padding: 2px 5px;
 }
 
 #sidebar #facebook a {
@@ -335,9 +378,11 @@ ul.personas-list {
 
 .rockyourfirefox #sidebar .subfeatures li a#featured-rockyourfirefox { display: block; }
 .rockyourfirefox #sidebar .subfeatures li a#featured-amo { display: none; }
+.rockyourfirefox #sidebar .subfeatures li a#featured-footiefox { display: none; }
 
 .amo #sidebar .subfeatures li a#featured-amo { display: block; }
 .amo #sidebar .subfeatures li a#featured-rockyourfirefox { display: none; }
+.amo #sidebar .subfeatures li a#featured-footiefox { display: none; }
 
 /* }}} */
 /* {{{ Teams Personas */
