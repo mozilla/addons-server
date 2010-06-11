@@ -23,12 +23,12 @@ def update_addons_current_version():
     d = Addon.objects.valid().exclude(type=amo.ADDON_PERSONA).values_list('id')
 
     with establish_connection() as conn:
-        for chunk in chunked(d, 1000):
+        for chunk in chunked(d, 100):
             _update_addons_current_version.apply_async(args=[chunk],
                                                        connection=conn)
 
 
-@task(rate_limit='2/m')
+@task(rate_limit='10/m')
 def _update_addons_current_version(data, **kw):
     task_log.info("[%s@%s] Updating addons current_versions." %
                    (len(data), _update_addons_current_version.rate_limit))
