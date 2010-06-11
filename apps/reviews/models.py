@@ -1,13 +1,23 @@
 import itertools
 
 from django.db import models
+from django.utils import translation
 
 import amo.models
 from translations.fields import TranslatedField, TranslatedFieldMixin
 from translations.models import Translation
+from users.models import UserProfile
+from versions.models import Version
 
 
-class Review(TranslatedFieldMixin, amo.models.ModelBase):
+class ReviewManager(amo.models.ManagerBase):
+
+    def get_query_set(self):
+        qs = super(ReviewManager, self).get_query_set()
+        return qs.transform(Review.transformer)
+
+
+class Review(amo.models.ModelBase):
     addon = models.ForeignKey('addons.Addon', related_name='_reviews')
     version = models.ForeignKey('versions.Version', related_name='reviews',
                                 null=True)
@@ -31,11 +41,14 @@ class Review(TranslatedFieldMixin, amo.models.ModelBase):
     previous_count = models.PositiveIntegerField(default=0, editable=False,
         help_text="How many previous reviews by the user for this add-on?")
 
+    objects = ReviewManager()
+
     class Meta:
         db_table = 'reviews'
         ordering = ('-created',)
 
-    def fetch_translations(self, ids, lang):
+    @classmethod
+    def fetch_translations(cls, ids, lang):
         if not ids:
             return []
 
@@ -64,6 +77,41 @@ class Review(TranslatedFieldMixin, amo.models.ModelBase):
         from . import tasks
         pair = instance.addon_id, instance.user_id
         tasks.update_denorm(pair)
+
+    @staticmethod
+    def transformer(reviews):
+        if not reviews:
+            return
+
+        # Attach users.
+        user_ids = [r.user_id for r in reviews]
+        users = UserProfile.objects.filter(id__in=user_ids)
+        user_dict = dict((u.id, u) for u in users)
+        for review in reviews:
+            review.user = user_dict[review.user_id]
+
+        # Attach translations. Some of these will be picked up by the
+        # Translation transformer, but reviews have special requirements
+        # (see fetch_translations).
+        names = dict((f.attname, f.name)
+                     for f in Review._meta.translated_fields)
+        ids, trans = {}, {}
+        for review in reviews:
+            for attname, name in names.items():
+                trans_id = getattr(review, attname)
+                if getattr(review, name) is None and trans_id is not None:
+                    ids[trans_id] = attname
+                    trans[trans_id] = review
+        translations = Review.fetch_translations(trans.keys(),
+                                                 translation.get_language())
+        for t in translations:
+            setattr(trans[t.id], names[ids[t.id]], t)
+
+        # Attach versions.
+        versions = dict((r.version_id, r) for r in reviews)
+        for version in Version.objects.filter(id__in=versions.keys()):
+            versions[version.id].version = version
+
 
 models.signals.post_save.connect(Review.post_save, sender=Review)
 models.signals.post_delete.connect(Review.post_delete, sender=Review)
