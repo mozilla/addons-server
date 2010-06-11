@@ -16,6 +16,7 @@ from amo.urlresolvers import reverse
 from addons.models import Addon, AddonUser
 from addons.views import _details_collections_dropdown
 from users.models import UserProfile
+from translations.query import order_by_translation
 
 
 class TestHomepage(amo.test_utils.ExtraSetup, test_utils.TestCase):
@@ -162,7 +163,7 @@ class TestDetailPage(test_utils.TestCase):
         # Grab a user and give them some add-ons.
         u = UserProfile.objects.get(pk=2519)
         thisaddon = u.addons.all()[0]
-        other_addons = Addon.objects.exclude(pk=thisaddon.pk)[:3]
+        other_addons = order_by_translation(Addon.objects.exclude(pk=thisaddon.pk),'name')[:3]
         for addon in other_addons:
             AddonUser.objects.create(user=u, addon=addon)
 
