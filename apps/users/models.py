@@ -62,7 +62,7 @@ class UserProfile(amo.models.ModelBase):
     # This is essentially a "has_picture" flag right now
     picture_type = models.CharField(max_length=75, default='', blank=True)
     resetcode = models.CharField(max_length=255, default='', blank=True)
-    resetcode_expires = models.DateTimeField(default=datetime.now,
+    resetcode_expires = models.DateTimeField(default=datetime.now, null=True,
                                              blank=True)
     sandboxshown = models.BooleanField(default=False)
 

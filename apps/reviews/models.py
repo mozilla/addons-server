@@ -24,6 +24,13 @@ class Review(TranslatedFieldMixin, amo.models.ModelBase):
     flag = models.BooleanField(default=False)
     sandbox = models.BooleanField(default=False)
 
+    # Denormalized fields for easy lookup queries.
+    # TODO: index on addon, user, latest
+    is_latest = models.BooleanField(default=True, editable=False,
+        help_text="Is this the user's latest review for the add-on?")
+    previous_count = models.PositiveIntegerField(default=0, editable=False,
+        help_text="How many previous reviews by the user for this add-on?")
+
     class Meta:
         db_table = 'reviews'
         ordering = ('-created',)
@@ -46,3 +53,17 @@ class Review(TranslatedFieldMixin, amo.models.ModelBase):
                 rv[id] = locales.itervalues().next()
 
         return rv.values()
+
+    @staticmethod
+    def post_save(sender, instance, created, **kwargs):
+        if created:
+            Review.post_delete(sender, instance)
+
+    @staticmethod
+    def post_delete(sender, instance, **kwargs):
+        from . import tasks
+        pair = instance.addon_id, instance.user_id
+        tasks.update_denorm(pair)
+
+models.signals.post_save.connect(Review.post_save, sender=Review)
+models.signals.post_delete.connect(Review.post_delete, sender=Review)
