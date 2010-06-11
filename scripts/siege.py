@@ -51,6 +51,7 @@ templates = t = {
 t['themes-unreviewed'] = t['themes'] + '&unreviewed={exp}'
 t['personas-sort'] = t['personas'] + '?sort={personas-sort}'
 t['extensions-sort'] = t['extensions'] + '?sort={theme-sort}'
+t['extensions-featured'] = t['extensions'] + 'featured'
 
 
 for key, value in templates.items():
