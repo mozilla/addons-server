@@ -17,8 +17,9 @@ To get started, you'll need:
  * libxml2 (for building lxml, used in tests)
  * libmemcached
 
-If you're on a foolish Linux distro that splits all its packages into ``-dev``
-and normal stuff, make sure you're getting all those ``-dev`` packages too.
+If you're on a Linux distro that splits all its packages into ``-dev``
+and normal stuff, make sure you're getting all those ``-dev`` packages too (see
+below for Ubuntu details).
 
 
 Use the Source
@@ -29,6 +30,20 @@ Grab zamboni from github with ::
     git clone git://github.com/jbalogh/zamboni.git
     cd zamboni
     git submodule update --init
+
+
+Installing Packages for Ubuntu users
+------------------------------------
+Zamboni uses many packages in production that you may or may not need depending
+on what area you are developing.  For example, if you have MySQL running on a
+separate cluster, you don't need to install it on your development box, although
+you will need the development files.  The following command will install the
+required development files on Ubuntu or, if you're running a recent version, you
+can `install them automatically <apt:python-dev,python-virtualenv,libxml2-dev,libxslt1-dev,libmysqlclient-dev,libmemcached-dev>`_:
+
+::
+
+    sudo aptitude install python-dev python-virtualenv libxml2-dev libxslt1-dev libmysqlclient-dev libmemcached-dev
 
 
 Installing Python for OSX users
