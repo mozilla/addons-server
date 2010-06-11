@@ -1,3 +1,7 @@
+import amo
+from addons.models import Addon
+
+
 def match_rules(rules, app, action):
     """
     This will match rules found in Group.
@@ -25,3 +29,23 @@ def action_allowed(request, app, action):
 
     return any(match_rules(group.rules, app, action)
         for group in getattr(request, 'groups', ()))
+
+
+def check_ownership(request, addon, require_owner=False):
+    """Check if request.user has owner permissions for the add-on."""
+    if not request.user.is_authenticated():
+        return False
+
+    if not require_owner and action_allowed(request, 'Admin', 'EditAnyAddon'):
+        return True
+
+    if addon.status == amo.STATUS_DISABLED:
+        return False
+
+    roles = (amo.AUTHOR_ROLE_ADMINOWNER, amo.AUTHOR_ROLE_ADMIN,
+             amo.AUTHOR_ROLE_OWNER, amo.AUTHOR_ROLE_DEV)
+    if not require_owner:
+        roles += (amo.AUTHOR_ROLE_VIEWER,)
+
+    return bool(addon.authors.filter(addonuser__role__in=roles,
+                                     user=request.user))
