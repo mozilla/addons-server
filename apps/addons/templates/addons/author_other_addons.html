@@ -14,7 +14,7 @@
       {% for other in author_addons %}
         {% with id=other.id, title=other.name,
                 name=other.name|string|truncate(25) %}
-          {%- if id == addon.id %}{% continue %}{% endif %}
+          {% if id == addon.id %}{% continue %}{% endif %}
           <li>
             <a href="{{ other.get_url_path() }}" title="{{ title }}"
                class="addonitem">{{ name }}</a>

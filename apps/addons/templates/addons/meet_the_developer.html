@@ -25,25 +25,31 @@
     <div class="secondary" role="complementary">
       <div class="vcard">
   	  <img class="avatar photo photo-large" alt="" src="{{ user.picture_url }}"/>
-        {% with profile = user, about_addons = true, table_class = 'person-info' %}
+        {% with profile = user, about_addons = True, table_class = 'person-info' %}
           {% include "users/vcard.html" %}
         {% endwith %}
       </div>
     </div>
     <div class="primary" role="main">
       {% if addon.takes_contributions %}
-        {{ contribution(addon=addon, src='addon-detail',
+        {{ contribution(addon=addon, src='addon-detail', show_install=True,
             text=_('The developer of this add-on asks that you help '
                    'support its continued development by making a small '
                    'contribution.')) }}
       {% endif %}
       <div class="primary prose">
+        {% if user.bio %}
         <h3>{{ _('Who is {0}')|f(user.display_name) }}</h3>
         <p class="intro">{{ user.bio }}</p>
-  	  <h3>{{ _("Why was {0} created")|f(addon.name) }}</h3>
-  	  <p>{{ addon.the_reason }}</p>
-  	  <h3>{{ _("What's next for {0}")|f(addon.name) }}</h3>
-  	  <p>{{ addon.the_future }}</p>
+        {% endif %}
+        {% if addon.the_reason %}
+  	    <h3>{{ _("Why was {0} created")|f(addon.name) }}</h3>
+  	    <p>{{ addon.the_reason }}</p>
+  	    {% endif %}
+  	    {% if addon.the_future %}
+  	    <h3>{{ _("What's next for {0}")|f(addon.name) }}</h3>
+  	    <p>{{ addon.the_future }}</p>
+  	    {% endif %}
       </div>
       <div role="complementary" class="secondary">
         {% include "addons/author_other_addons.html" %}
@@ -70,7 +76,7 @@
             <div class="primary">
               <h3>{{ author.display_name }}</h3>
                 <p class="intro">{{ author.bio }}</p>
-                {% with profile = author, about_addons = true, table_class = 'person-info' %}
+                {% with profile = author, about_addons = True, table_class = 'person-info' %}
                   {% include "users/vcard.html" %}
                 {% endwith %}
             </div>
@@ -83,8 +89,10 @@
       {% include "addons/author_other_addons.html" %}
     </div>
     <div class="primary prose">
+      {# L10n: {0} is the name of the add-on #}
       <h3>{{ _("Why was {0} created")|f(addon.name) }}</h3>
   	  <p>{{ addon.the_reason }}</p>
+  	  {# L10n: {0} is the name of the add-on #}
   	  <h3>{{ _("What's next for {0}")|f(addon.name) }}</h3>
   	  <p>{{ addon.the_future }}</p>
     </div>
