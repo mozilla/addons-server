@@ -80,6 +80,7 @@ class Review(amo.models.ModelBase):
     def post_delete(sender, instance, **kwargs):
         from . import tasks
         pair = instance.addon_id, instance.user_id
+        # Do this immediately so is_latest is correct.
         tasks.update_denorm(pair)
         tasks.addon_review_aggregates.delay(instance.addon_id)
 

@@ -1,37 +1,75 @@
-{% extends "base_side_categories.html" %}
+{% extends "base.html" %}
 
-{% macro back_to_addon() -%}
-<ul>
-  <li>
-    <a href="{{ addon.get_url_path() }}">
-      {{ _('Back to {0}')|f(addon.name) }}
-    </a>
-  </li>
-</ul>
-{%- endmacro %}
+{# L10n: {0} is an add-on name. #}
+{% block title %}{{ page_title(_('{0} :: Reviews')|f(addon.name)) }}{% endblock %}
+
+{% block bodyclass %}reviews inverse{% endblock %}
 
 {% block content %}
 <div class="primary" role="main">
-  <h2>{{ _('Reviews for {0}')|f(addon.name) }}</h2>
-
-  {{ back_to_addon() }}
-  <hr>
-  {% for review in reviews.object_list %}
-    <div class="item review" id="review-{{ review.id }}">
-      {% if review.title %}
-        <h3>{{ review.title }}</h3>
+  <header>
+    {# Give a link back to reviews if we're looking at user reviews or a detail page. #}
+    {% with link = None if page == 'list' else url('reviews.list', addon.id) %}
+      {{ breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
+                      (addon.get_url_path(), addon.name),
+                      (link, _('Reviews'))]) }}
+    {% endwith %}
+    <hgroup>
+      {% if page == "list" %}
+        <h2>{{ _('Reviews for {0}')|f(addon.name) }}</h2>
+        {% with num = reviews.paginator.count %}
+          {# L10n: {0} is a number. #}
+          <h3>{{ ngettext('<b>{0}</b> review for this add-on',
+                          '<b>{0}</b> reviews for this add-on',
+                          num)|f(num|numberfmt)|safe }}</h3>
+        {% endwith %}
+      {% elif reply %}
+        {# L10n: {0} is a developer's name. #}
+        <h2>{{ _('Developer reply by {0}')|f(reply.user.display_name) }}</h2>
+      {% elif reviews %}
+        <h2>{% trans cnt=reviews.object_list|length, addon=addon.name,
+                     user=reviews.object_list[0].user.display_name %}
+          Review for {{ addon }} by {{ user }}
+        {% pluralize %}
+          Reviews for {{ addon }} by {{ user }}
+        {% endtrans %}</h2>
+      {% else %}
+        <h2>{{ _('No reviews found.') }}</h2>
       {% endif %}
-      <div class="reviewed-on">
-        {{ review.rating|stars }}
-        {% trans user=review.user|user_link, date=review.created|datetime %}
-          by {{ user }} on {{ date }}
-        {% endtrans %}
-      </div>
-      <p>{{ review.body|nl2br }}</p>
-    </div>
+    </hgroup>
+  </header>
+  {% for review in reviews.object_list %}
+    {% include "reviews/review.html" %}
+    {% if review.id in replies %}
+      {% with review=replies[review.id] %}
+        {% include "reviews/review.html" %}
+      {% endwith %}
+    {% endif %}
   {% endfor %}
   {{ reviews|paginator }}
-  <hr>
-  {{ back_to_addon() }}
+</div>
+
+<div class="secondary">
+  <div class="highlight">
+    <hgroup>
+      <h5 {{ addon.name|locale_html }}>
+        <a href="{{ addon.get_url_path() }}">
+          <img src="{{ addon.icon_url }}" class="icon">
+          <span>{{ addon.name }}</span>
+        </a>
+      </h5>
+      <h6 class="author">{{ _('by') }} {{ users_list(addon.listed_authors) }}</h6>
+    </hgroup>
+    <span>{{ addon.average_rating|float|stars }} {{ _('Average Rating') }}</span>
+    {% if grouped_ratings %}
+      <ul>
+      {% for count in grouped_ratings %}
+        <li>{{ (5 - loop.index0)|stars }} {{ count }} </li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+    <a class="button" href="#TODO">
+      {{ _('Write a New Review') }}</a>
+  </div>
 </div>
 {% endblock content %}
