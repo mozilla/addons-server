@@ -4,7 +4,7 @@ from django.db import models
 from django.utils import translation
 
 import amo.models
-from translations.fields import TranslatedField, TranslatedFieldMixin
+from translations.fields import TranslatedField
 from translations.models import Translation
 from users.models import UserProfile
 from versions.models import Version
@@ -15,6 +15,10 @@ class ReviewManager(amo.models.ManagerBase):
     def get_query_set(self):
         qs = super(ReviewManager, self).get_query_set()
         return qs.transform(Review.transformer)
+
+    def valid(self):
+        """Get all reviews with rating > 0 that aren't replies."""
+        return self.filter(reply_to=None, rating__gt=0)
 
 
 class Review(amo.models.ModelBase):
@@ -77,6 +81,7 @@ class Review(amo.models.ModelBase):
         from . import tasks
         pair = instance.addon_id, instance.user_id
         tasks.update_denorm(pair)
+        tasks.addon_review_aggregates.delay(instance.addon_id)
 
     @staticmethod
     def transformer(reviews):
