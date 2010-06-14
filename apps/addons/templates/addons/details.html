@@ -5,7 +5,9 @@
 {% block bodyclass %}inverse{% endblock %}
 
 {% block content %}
-{{ breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]), (None, addon.name)]) }}
+{% with addonname=addon.name|string|truncate(40) %}
+   {{ breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]), (None, addonname )]) }}
+{% endwith %}
 
 {% set version = addon.current_version %}
 {% set previews = addon.previews.all() %}
