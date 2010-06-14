@@ -26,7 +26,7 @@ class Command(BaseCommand):
 
         if not args:
             log.error("Cron called but doesn't know what to do.")
-            print 'Try one of these: %s' % ', '.join(registered)
+            print 'Try one of these:\n%s' % '\n'.join(sorted(registered))
             sys.exit(1)
 
         script, args = args[0], args[1:]
