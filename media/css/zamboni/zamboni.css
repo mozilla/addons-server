@@ -1851,7 +1851,7 @@ form .error .note.error {
 }
 .personas-grid li .details .users {
     background-color: inherit;
-    margin-left: 1em;
+    /*margin-left: 1em;*/
     font-size: 1em;
     padding: 0;
     position: static;
