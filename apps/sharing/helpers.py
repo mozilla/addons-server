@@ -2,6 +2,7 @@ from jingo import register, env
 import jinja2
 
 import sharing
+from amo.helpers import login_link
 from .models import ServiceBase, EMAIL
 
 
@@ -13,7 +14,7 @@ def addon_sharing(context, addon):
     for service in sharing.SERVICES_LIST:
         service_opts = {}
         if service == EMAIL and not context['request'].user.is_authenticated():
-            service_opts['url'] = '/users/login' # TODO reverse URL
+            service_opts['url'] = login_link(context)
             service_opts['target'] = '_self'
         else:
             service_opts['url'] = '/addon/share/{id}?service={name}'.format(
