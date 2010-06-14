@@ -805,6 +805,9 @@ ul.license li.copyr { background-position: 0 -260px; }
     width: 33.3%;
     margin-bottom: .6em;
 }
+#more-artist .persona {
+    margin-bottom: .6em;
+}
 .persona-inner {
     position: relative;
     padding: .5em;
