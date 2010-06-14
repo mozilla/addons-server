@@ -353,7 +353,7 @@ class Addon(amo.models.ModelBase):
         # TODO(davedash): We can't cache these tags until /tags/ are moved
         # into Zamboni.
         tags = self.tags.not_blacklisted().no_cache()
-        dev_tags = list(tags.filter(addon_tags__user__in=self.listed_authors))
+        dev_tags = list(tags.exclude(addon_tags__user__in=self.listed_authors))
         user_tags = tags.exclude(id__in=[t.id for t in dev_tags])
         return dev_tags, user_tags
 
