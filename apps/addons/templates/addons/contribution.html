@@ -50,8 +50,10 @@
         href="{{ remora_url('/addons/contribute/{0}?source={1}'|f(addon.id, src)) }}">
         <b></b>{{ _('Contribute') }}
       </a>
-
+      
       {% if show_install %}
+        {# L10n: Click Contribute button OR Install button #}
+        <span class="continue">{{ _('or') }}</span>
         {{ install_button(addon) }}
       {% endif %}
       </p>{# /button-wrapper #}
