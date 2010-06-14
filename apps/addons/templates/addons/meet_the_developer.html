@@ -14,7 +14,8 @@
 
 {% block content %}
 
-{{ breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]), (None, addon.name)]) }}
+{{ breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type] ), 
+                 (None, addon.name)]) }}
 
 <h2>{{ _('Meet the {0} Developer')|f(addon.name) }}</h2>
 
@@ -24,8 +25,10 @@
   
     <div class="secondary" role="complementary">
       <div class="vcard">
-  	  <img class="avatar photo photo-large" alt="" src="{{ user.picture_url }}"/>
-        {% with profile = user, about_addons = True, table_class = 'person-info' %}
+  	  <img class="avatar photo photo-large" alt="" 
+  	       src="{{ user.picture_url }}"/>
+        {% with profile = user, about_addons = True, 
+                table_class = 'person-info' %}
           {% include "users/vcard.html" %}
         {% endwith %}
       </div>
@@ -43,7 +46,7 @@
         <p class="intro">{{ user.bio }}</p>
         {% endif %}
         {% if addon.the_reason %}
-  	    <h3>{{ _("Why was {0} created")|f(addon.name) }}</h3>
+  	    <h3>{{ _("Why was {0} created?")|f(addon.name) }}</h3>
   	    <p>{{ addon.the_reason }}</p>
   	    {% endif %}
   	    {% if addon.the_future %}
@@ -52,7 +55,9 @@
   	    {% endif %}
       </div>
       <div role="complementary" class="secondary">
-        {% include "addons/author_other_addons.html" %}
+        {% with other_addon_class = "secondary-item-list" %}
+          {% include "addons/author_other_addons.html" %}
+        {% endwith %}
       </div>
     </div>
 
@@ -63,7 +68,9 @@
       <div class="teaser-header">
       <ol>
         {% for author in authors %}
-          <li><a href="#t-author-{{ author.id }}">{{ author.display_name }}</a></li>
+          <li>
+            <a href="#t-author-{{ author.id }}">{{ author.display_name }}</a>
+          </li>
         {% endfor %}	
       </ol>
       </div>
@@ -71,12 +78,14 @@
         {% for author in authors %}
           <li class="vcard" id="t-author-{{ author.id }}">
             <div class="secondary">
-              <img class="avatar photo-large photo" alt="" src="{{ author.picture_url }}"/>
+              <img class="avatar photo-large photo" alt="" 
+                   src="{{ author.picture_url }}"/>
             </div>
             <div class="primary">
               <h3>{{ author.display_name }}</h3>
                 <p class="intro">{{ author.bio }}</p>
-                {% with profile = author, about_addons = True, table_class = 'person-info' %}
+                {% with profile = author, about_addons = True, 
+                        table_class = 'person-info' %}
                   {% include "users/vcard.html" %}
                 {% endwith %}
             </div>
@@ -86,7 +95,9 @@
       </div>
     </div>
     <div role="complementary" class="secondary">
-      {% include "addons/author_other_addons.html" %}
+      {% with other_addon_class = "secondary-item-list" %}
+        {% include "addons/author_other_addons.html" %}
+      {% endwith %}
     </div>
     <div class="primary prose">
       {# L10n: {0} is the name of the add-on #}

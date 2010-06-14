@@ -1,4 +1,4 @@
-<div class="highlight">
+<div class="{{ other_addon_class|d('highlight') }}">
   {% if author_addons %}
     <div class="other-author-addons">
       <h4>
@@ -23,7 +23,7 @@
       {% endfor %}
       </ul>
 
-    </div>{# /other-author-addons #}
+    </div>{# .other-author-addons #}
   {% endif %}
 
-</div>{# /highlight #}
+</div>
