@@ -222,7 +222,7 @@ class Client(object):
             try:
                 addons.append(qs.get(pk=addon_id))
             except Addon.DoesNotExist:  # pragma: no cover
-                log.warn(u'%d: Result for %s refers to non-existent '
+                log.warning(u'%d: Result for %s refers to non-existent '
                          'addon: %d' % (self.id, term, addon_id))
 
         # Do the transforms now that we have all the add-ons.
@@ -628,7 +628,7 @@ class CollectionsClient(Client):
                 try:
                     collections.append(qs.get(pk=collection_id))
                 except Collection.DoesNotExist:  # pragma: no cover
-                    log.warn(u'%d: Result for %s refers to non-existent '
+                    log.warning(u'%d: Result for %s refers to non-existent '
                              'addon: %d' % (self.id, term, collection_id))
 
             for fn in transforms:
