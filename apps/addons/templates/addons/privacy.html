@@ -2,7 +2,7 @@
 
 {% block title %}
   {# L10n: {} is the name of the Addon #}
-  {{ page_title(_('End-User License Agreement for {0}')|f(addon.name)) }}
+  {{ page_title(_('Privacy Policy for {0}')|f(addon.name)) }}
 {% endblock %}
 
 {% set version = addon.current_version %}
@@ -21,23 +21,8 @@
       <span class="version">{{ version.version }}</span>
     {% endif %}
   </h2>
-  <h3>{{ _('End-User License Agreement') }}</h3>
-  <div class="addon-policy-tagline">
-    <p>
-      {% trans addon_name = addon.name %}
-        {{ addon_name }} requires that you accept the following 
-        End-User License Agreement before installation can proceed:
-      {% endtrans %}
-    </p>
-  </div>
-  <textarea readonly="readonly" cols="80" rows="20">{{ addon.eula }}</textarea>
-  {{ install_button(addon, show_contrib=False, 
-                    show_eula=False, show_warning=False) }}
-  <p class="policy-link">
-    <a href ="{{ url('addons.detail', addon.id) }}">
-      {{ _('Cancel Installation')|f(addon.name) }}
-    </a>
-  </p>
+  <h3>{{ _('Privacy Policy') }}</h3>  
+  <textarea readonly="readonly" cols="80" rows="20">{{ addon.privacy_policy }}</textarea>
   <p class="policy-link">
     <a href ="{{ url('addons.detail', addon.id) }}">
       {{ _('Back to {0}...')|f(addon.name) }}
