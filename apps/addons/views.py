@@ -4,6 +4,7 @@ from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from django.utils.translation import trans_real as translation
 
+import caching.base as caching
 import jingo
 from tower import ugettext_lazy as _lazy
 
@@ -189,6 +190,12 @@ def _details_collections_dropdown(request, addon):
         return []
 
 
+def _category_personas(qs, limit):
+    f = lambda: randslice(qs, limit=limit)
+    key = 'cat-personas:' + qs.query_key()
+    return caching.cached(f, key)
+
+
 def persona_detail(request, addon):
     """Details page for Personas."""
     persona = addon.persona
@@ -197,7 +204,7 @@ def persona_detail(request, addon):
     categories = addon.categories.filter(application=request.APP.id)
     if categories:
         qs = Addon.objects.valid().filter(categories=categories[0])
-        category_personas = randslice(qs, limit=6, exclude=addon.pk)
+        category_personas = _category_personas(qs, limit=6)
     else:
         category_personas = None
 
