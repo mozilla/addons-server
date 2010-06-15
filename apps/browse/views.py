@@ -1,6 +1,7 @@
 import collections
 import itertools
 
+from django import http
 from django.http import HttpResponse, HttpResponsePermanentRedirect
 from django.shortcuts import get_object_or_404
 from django.views.decorators.cache import cache_page
@@ -99,7 +100,10 @@ def themes(request, category=None):
     total_count = addons.count()
 
     if category is not None:
-        category = dict((c.slug, c) for c in categories)[category]
+        try:
+            category = dict((c.slug, c) for c in categories)[category]
+        except KeyError:
+            raise http.Http404()
         addons = addons.filter(categories__id=category.id)
 
     themes = amo.utils.paginate(request, addons)
