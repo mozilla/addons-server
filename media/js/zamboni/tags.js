@@ -9,7 +9,7 @@ function addTag() {
     var post_data = $('#tagForm').serialize()+"&ajax=1";
     var add_ajax_url = $('#tagForm').attr('action');
     $.post(add_ajax_url, post_data, function(data) {
-        $("#tags").html(data);
+        $("#tagbox").html(data);
         $(".addtagform form")[0].reset();
         $("#tags .addon-tags").removeClass("nojs");
     });
