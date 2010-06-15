@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 
-{% block title %}{{ page_title( _('Thank you for installing {0}')|f(addon.name)) }}{% endblock %}
+{% block title %}
+  {{ page_title( _('Thank you for installing {0}')|f(addon.name)) }}
+{% endblock %}
 
 {% set authors = addon.listed_authors %}
 
@@ -8,11 +10,14 @@
 {% if authors|length > 1 %}
   inverse
 {% endif %}
+about
 {% endblock bodyclass %}
 
-{% block content %}
+{# this is a 'headerless' page, so remove those elements #}
+{% block site_header %}{% endblock %}
+{% block navbar %}{% endblock %}
 
-{{ breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]), (None, addon.name)]) }}
+{% block content %}
 
 {% set version = addon.current_version %}
 {% set previews = addon.previews.all() %}
@@ -29,7 +34,7 @@
 
 {% if authors|length == 1 %}
   {% if addon.takes_contributions %}
-    {{ contribution(addon=addon, src='addon-detail', show_install=True,
+    {{ contribution(addon=addon, src='addon-detail', show_install=False,
         text=_('The developer of this add-on asks that you help '
                'support its continued development by making a small '
                'contribution.')) }}
@@ -38,7 +43,8 @@
   <div class="secondary" role="complementary">
     <div class="vcard">
 	  <img class="avatar photo photo-large" alt="" src="{{ user.picture_url }}"/>
-      {% with profile = user, about_addons = True, table_class = 'person-info' %}
+      {% with profile = user, about_addons = True, 
+              table_class = 'person-info' %}
         {% include "users/vcard.html" %}
       {% endwith %}
     </div>
@@ -46,11 +52,11 @@
   <div id="addon" class="primary" role="main">
       <div class="primary prose">
         {% if user.bio %}
-        <h3>{{ _('Who is {0}')|f(user.display_name) }}</h3>
+        <h3>{{ _('Who is {0}?')|f(user.display_name) }}</h3>
         <p class="intro">{{ user.bio }}</p>
         {% endif %}
         {% if addon.the_reason %}
-        <h3>{{ _("Why was {0} created")|f(addon.name) }}</h3>
+        <h3>{{ _("Why was {0} created?")|f(addon.name) }}</h3>
         <p>{{ addon.the_reason }}</p>
         {% endif %}
         {% if addon.the_future %}
@@ -59,7 +65,9 @@
         {% endif %}
       </div>
       <div class="secondary" role="navigation">
-	    {% include "addons/author_other_addons.html" %}
+	      {% with other_addon_class = "secondary-item-list" %}
+          {% include "addons/author_other_addons.html" %}
+        {% endwith %}
       </div> 
   </div>{# /#addon primary #}
   
@@ -70,7 +78,9 @@
       <div class="teaser-header">
       <ol>
         {% for author in authors %}
-          <li><a href="#t-author-{{ author.id }}">{{ author.display_name }}</a></li>
+          <li>
+            <a href="#t-author-{{ author.id }}">{{ author.display_name }}</a>
+          </li>
         {% endfor %}	
       </ol>
       </div>
@@ -78,12 +88,14 @@
         {% for author in authors %}
           <li class="vcard" id="t-author-{{ author.id }}">
             <div class="secondary">
-              <img class="avatar photo-large photo" alt="" src="{{ author.picture_url }}"/>
+              <img class="avatar photo-large photo" alt="" 
+                   src="{{ author.picture_url }}"/>
             </div>
             <div class="primary">
               <h3>{{ author.display_name }}</h3>
                 <p class="intro">{{ author.bio }}</p>
-                {% with profile = author, about_addons = True, table_class = 'person-info' %}
+                {% with profile = author, about_addons = True, 
+                        table_class = 'person-info' %}
                   {% include "users/vcard.html" %}
                 {% endwith %}
             </div>
@@ -93,7 +105,9 @@
     </div>
   </div>
   <div class="secondary" role="navigation">
-    {% include "addons/author_other_addons.html" %}
+    {% with other_addon_class = "secondary-item-list" %}
+      {% include "addons/author_other_addons.html" %}
+    {% endwith %}
   </div>
   
 {% endif %}

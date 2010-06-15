@@ -95,6 +95,19 @@ class TestPromobox(test_utils.TestCase):
         response = self.client.get('/pt-BR/firefox/', follow=True)
         eq_(response.status_code, 200)
 
+class TestContributeInstalled(test_utils.TestCase):
+    fixtures = ['base/fixtures']
+                
+    def test_no_header_block(self):
+        # bug 565493, Port post-install contributions page
+        response = self.client.get(reverse('contribute.installed', args=[592]),
+                                   follow=True)
+        doc = pq(response.content)
+        header = doc('#header')
+        aux_header = doc('#aux-nav')
+        # assert that header and aux_header are empty (don't exist)
+        eq_(header, [])
+        eq_(aux_header, [])
 
 class TestDetailPage(test_utils.TestCase):
     fixtures = ['base/fixtures', 'base/addon_59.json', 'addons/listed',
