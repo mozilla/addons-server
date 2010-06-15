@@ -205,13 +205,10 @@ def persona_detail(request, addon):
     dev_tags, user_tags = addon.tags_partitioned_by_developer
 
     # other personas from the same author(s)
-    other_personas_regular = Q(addonuser__listed=True,
-                               authors__in=addon.listed_authors)
-    other_personas_legacy = Q(persona__author=persona.author)
     author_personas = Addon.objects.valid().filter(
-        other_personas_regular | other_personas_legacy,
+        persona__author=persona.author,
         type=amo.ADDON_PERSONA).exclude(
-            pk=addon.pk).distinct().select_related('persona')[:3]
+            pk=addon.pk).select_related('persona')[:3]
 
     data = {
         'addon': addon,
