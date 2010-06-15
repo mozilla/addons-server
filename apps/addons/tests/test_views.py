@@ -269,12 +269,10 @@ class TestDetailPage(test_utils.TestCase):
         """Make sure the login links on this page, redirect back to itself."""
         url = reverse('addons.detail', args=[3615])
         resp = self.client.get(url, follow=True)
-        if not url.startswith('/en-US/firefox'):
-            url = '/en-US/firefox' + url
 
         sel = 'a[href$="%s"]' % urlparams(reverse('users.login'), to=url)
         doc = pq(resp.content)
-        eq_(len(doc(sel)), 3)  # 3 login links
+        eq_(len(doc(sel)), 4)  # 4 login links
 
     def test_other_author_addons(self):
         """
