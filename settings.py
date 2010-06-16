@@ -106,6 +106,11 @@ MEDIA_ROOT = path('media')
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
 MEDIA_URL = '/media//'
 
+# Absolute path to a writable directory shared by all servers. No trailing
+# slash.
+# Example: /data/uploads
+UPLOADS_PATH = ''
+
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
@@ -390,6 +395,9 @@ SPHINX_HOST = '127.0.0.1'
 SPHINX_PORT = 3312
 
 JAVA_BIN = '/usr/bin/java'
+
+# File paths
+USERPICS_PATH = UPLOADS_PATH + '/userpics'
 
 # URL paths
 # paths for images, e.g. mozcdn.com/amo or '/static'
