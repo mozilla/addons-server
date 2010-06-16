@@ -72,6 +72,9 @@ body.about {
     margin: 1em 0 0;
 }
 
+body.about .section {
+    overflow: hidden;
+}
 /* for pages without a header or footer */
 body.min {
     background-image: none;
