@@ -12,7 +12,8 @@ jQuery(function($) {
 
         if (times_seen >= MAX_SEEN) {
             // If the intro has been seen enough times, skip it.
-            homepageSlider.moveToItem(2);
+            // disabling this for Firefox Cup. TODO potch re-enable this.
+            // homepageSlider.moveToItem(2);
         } else {
             // Otherwise, count another appearance and stash in a cookie.
             $.cookie(SEEN_COOKIE, times_seen + 1, {

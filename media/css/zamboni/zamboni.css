@@ -2071,8 +2071,10 @@ form .error .note.error {
 #t-firefox-cup {
     padding-top: 10px;
     background-image: url("../../img/zamboni/promos/FirefoxCup_AddsOn_banner.jpg");
+    background-repeat: no-repeat;
     background-position: 33% top;
     height: 260px;
+    position:relative;
 }
 #t-firefox-cup div.cta {
     margin-left: 280px;
@@ -2092,6 +2094,14 @@ form .error .note.error {
 #t-firefox-cup div.cta a {
     color: #FFFFFD;
     text-decoration: underline;
+}
+#t-firefox-cup a.cover {
+    position:absolute;
+    height:100%;
+    width:100%;
+    top:0;
+    left:0;
+    display:block;
 }
 
 /**
