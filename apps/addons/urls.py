@@ -11,10 +11,13 @@ detail_patterns = patterns('',
     url('^privacy/', views.privacy, name='addons.privacy'),
     url('^developers(?:/(?P<extra>.+))?$', views.meet_the_developer,
         name='addons.meet'),
-    url('^contribute/installed/', views.contribute_installed, name='contribute.installed'),
-    
-    ('^about$',
-     lambda r, addon_id: redirect('contribute.installed', addon_id, permanent=True)),
+    url('^contribute/roadblock/', views.contribute_roadblock,
+        name='contribute.roadblock'),
+    url('^contribute/installed/', views.contribute_installed,
+        name='contribute.installed'),
+
+    ('^about$', lambda r, addon_id: redirect('contribute.installed',
+                                             addon_id, permanent=True)),
 
     ('^reviews/', include('reviews.urls')),
     ('^statistics/', include('stats.urls')),
