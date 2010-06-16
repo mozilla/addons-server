@@ -109,7 +109,12 @@ MEDIA_URL = '/media//'
 # Absolute path to a writable directory shared by all servers. No trailing
 # slash.
 # Example: /data/uploads
-UPLOADS_PATH = ''
+NETAPP_STORAGE = ''
+
+# Absolute path to a writable directory shared by all servers. No trailing
+# slash.
+# Example: /data/uploads
+UPLOADS_PATH = NETAPP_STORAGE + '/uploads'
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
