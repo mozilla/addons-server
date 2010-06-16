@@ -41,11 +41,10 @@ class File(amo.models.ModelBase):
         url.append('addon-%s-latest%s' % (addon, self.extension))
         return remora_url(os.path.join(*url))
 
+
     def eula_url(self):
-        return remora_url('/addons/policy/0/{addonid}/{fileid}'.format(
-            addonid=self.version.addon_id, fileid=self.id))
-        # TODO: change this back to a reverse URL
-        # return reverse('addons.eula', args=[addon, self.id])
+        return reverse('addons.eula', args=[self.version.addon_id, self.id])
+
 
     @property
     def extension(self):

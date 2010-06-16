@@ -383,6 +383,11 @@ def eula(request, addon_id, file_id):
     return jingo.render(request, 'addons/eula.html', {'addon': addon})
 
 
+def privacy(request, addon_id):
+    addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
+    return jingo.render(request, 'addons/privacy.html', {'addon': addon})
+
+
 def meet_the_developer(request, addon_id, extra=None):
     addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
     
