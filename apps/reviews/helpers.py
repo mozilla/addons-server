@@ -8,7 +8,9 @@ from tower import ugettext as _
 
 @jingo.register.filter
 def stars(num):
-    if num is None:
+    # check for 0.0 incase None was cast to a float. Should
+    # be safe since lowest rating you can give is 1.0
+    if num is None or num == 0.0:
         return _('Not yet rated')
     else:
         num = int(math.ceil(num))
