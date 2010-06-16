@@ -7,6 +7,15 @@ import socket
 
 import product_details
 
+try:
+    # If we have build ids available, we'll grab them here and add them to our
+    # CACHE_PREFIX.  This will let us not have to flush memcache during updates
+    # and it will let us preload data into it before a production push.
+    from build import BUILD_ID_CSS, BUILD_ID_JS
+    build_id = "%s%s" % (BUILD_ID_CSS[:2], BUILD_ID_JS[:2])
+except ImportError:
+    build_id = ""
+
 # Make filepaths relative to settings.
 ROOT = os.path.dirname(os.path.abspath(__file__))
 path = lambda *a: os.path.join(ROOT, *a)
@@ -364,7 +373,7 @@ MINIFY_BUNDLES = {
 
 # Caching
 # Prefix for cache keys (will prevent collisions when running parallel copies)
-CACHE_PREFIX = 'amo:'
+CACHE_PREFIX = 'amo:%s:' % build_id
 FETCH_BY_ID = True
 
 # Number of seconds a count() query should be cached.  Keep it short because
