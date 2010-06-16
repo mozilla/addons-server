@@ -229,7 +229,8 @@ def personas(request, category=None):
                                 type=TYPE)
     categories = order_by_translation(q, 'name')
 
-    base = Addon.objects.public().filter(type=TYPE)
+    base = (Addon.objects.public().filter(type=TYPE)
+            .extra(select={'_app': request.APP.id}))
     featured = base & Addon.objects.featured(request.APP)
     is_homepage = category is None and 'sort' not in request.GET
 
