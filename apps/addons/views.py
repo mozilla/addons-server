@@ -74,6 +74,19 @@ def contribute_installed(request, addon_id):
     return jingo.render(request, 'addons/contribute_installed.html', data)
 
 
+
+def contribute_roadblock(request, addon_id, extra=None):
+    addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
+
+    # other add-ons from the same author(s)
+    author_addons = order_by_translation(addon.authors_other_addons, 'name')
+    data = {
+      'addon': addon,
+      'author_addons': author_addons,
+    }
+    return jingo.render(request, 'addons/contribute_roadblock.html',data)
+
+
 def extension_detail(request, addon):
     """Extensions details page."""
 
