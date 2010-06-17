@@ -24,7 +24,7 @@ function addTag() {
 function remTag(form_data){
     var remove_ajax_url = $('form#tags').attr('action');
     $.post(remove_ajax_url, form_data, function(data){
-        $("#tags").html(data);
+        $("#tagbox").html(data);
         $(".addtagform form")[0].reset();
         $("#tags .addon-tags").removeClass("nojs");
     });
