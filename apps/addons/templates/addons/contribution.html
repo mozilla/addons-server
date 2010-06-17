@@ -50,7 +50,7 @@
         href="{{ remora_url('/addons/contribute/{0}?source={1}'|f(addon.id, src)) }}">
         <b></b>{{ _('Contribute') }}
       </a>
-      
+
       {% if show_install %}
         {# L10n: Click Contribute button OR Install button #}
         <span class="continue">{{ _('or') }}</span>
@@ -114,8 +114,7 @@
               {# L10n: {0} is a currency symbol (e.g., $),
                        {1} is an amount input field #}
               {{ _('A regular monthly contribution of {0} {1}')|f(
-                '$', '<input type="text" name="monthly-amount" value=""/>')|safe }}
-            </label>
+                '$', '</label><input type="text" name="monthly-amount" value=""/>')|safe }}
           </li>
         </ul>
 
