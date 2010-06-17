@@ -42,7 +42,17 @@ def test_empty_locale_html():
 
 
 def test_truncate_purified_field():
-    s = '<p>one</p><p>two</p>'
+    s = '<i>one</i><i>two</i>'
     t = PurifiedTranslation(localized_string=s)
     actual = jingo.env.from_string('{{ s|truncate(6) }}').render(s=t)
     eq_(actual, s)
+
+
+def test_truncate_purified_field_xss():
+    """Truncating should not introduce xss issues."""
+    s = 'safe <script>alert("omg")</script>'
+    t = PurifiedTranslation(localized_string=s)
+    actual = jingo.env.from_string('{{ s|truncate(100) }}').render(s=t)
+    eq_(actual, 'safe &lt;script&gt;alert("omg")&lt;/script&gt;')
+    actual = jingo.env.from_string('{{ s|truncate(6) }}').render(s=t)
+    eq_(actual, 'safe ...')
