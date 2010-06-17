@@ -8,11 +8,9 @@
 {% set version = addon.current_version %}
 
 {% block content %}
-
-{{ breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type] ),
-                (None, addon.name)]) }}
-                 
-<div id="content" class="prose" role="main">
+<header>
+  {{ breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type] ),
+                  (None, addon.name)]) }}
   <h2 class="name"{{ addon.name|locale_html }}>
     <span>
       {{ addon.name }}
@@ -21,12 +19,12 @@
       <span class="version">{{ version.version }}</span>
     {% endif %}
   </h2>
-  <h3>{{ _('Privacy Policy') }}</h3>  
-  <textarea readonly="readonly" cols="80" rows="20">{{ addon.privacy_policy }}</textarea>
-  <p class="policy-link">
-    <a href ="{{ url('addons.detail', addon.id) }}">
-      {{ _('Back to {0}...')|f(addon.name) }}
-    </a>
-  </p>
-</div>{# /primary #}
+</header>
+<h3>{{ _('Privacy Policy') }}</h3>
+<textarea readonly="readonly" cols="80" rows="20">{{ addon.privacy_policy }}</textarea>
+<p class="policy-link">
+  <a href ="{{ url('addons.detail', addon.id) }}">
+    {{ _('Back to {0}...')|f(addon.name) }}
+  </a>
+</p>
 {% endblock content %}

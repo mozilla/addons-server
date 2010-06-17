@@ -13,21 +13,20 @@
 {% set authors = addon.listed_authors %}
 
 {% block content %}
-
-{{ breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type] ), 
-                 (None, addon.name)]) }}
-
-<h2>{{ _('Meet the {0} Developer')|f(addon.name) }}</h2>
-
+<header>
+  {{ breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type] ),
+                  (None, addon.name)]) }}
+  <h2>{{ _('Meet the {0} Developer')|f(addon.name) }}</h2>
+</header>
 {% if authors|length == 1 %}
 
   {% set user = addon.listed_authors[0] %}
-  
+
     <div class="secondary" role="complementary">
       <div class="vcard">
-  	  <img class="avatar photo photo-large" alt="" 
-  	       src="{{ user.picture_url }}"/>
-        {% with profile = user, about_addons = True, 
+      <img class="avatar photo photo-large" alt=""
+           src="{{ user.picture_url }}"/>
+        {% with profile = user, about_addons = True,
                 table_class = 'person-info' %}
           {% include "users/vcard.html" %}
         {% endwith %}
@@ -71,20 +70,20 @@
           <li>
             <a href="#t-author-{{ author.id }}">{{ author.display_name }}</a>
           </li>
-        {% endfor %}	
+        {% endfor %}
       </ol>
       </div>
       <ol class="teaser-items no-autorotate">
         {% for author in authors %}
           <li class="vcard" id="t-author-{{ author.id }}">
             <div class="secondary">
-              <img class="avatar photo-large photo" alt="" 
+              <img class="avatar photo-large photo" alt=""
                    src="{{ author.picture_url }}"/>
             </div>
             <div class="primary">
               <h3>{{ author.display_name }}</h3>
                 <p class="intro">{{ author.bio }}</p>
-                {% with profile = author, about_addons = True, 
+                {% with profile = author, about_addons = True,
                         table_class = 'person-info' %}
                   {% include "users/vcard.html" %}
                 {% endwith %}
@@ -102,10 +101,10 @@
     <div class="primary prose">
       {# L10n: {0} is the name of the add-on #}
       <h3>{{ _("Why was {0} created")|f(addon.name) }}</h3>
-  	  <p>{{ addon.the_reason }}</p>
-  	  {# L10n: {0} is the name of the add-on #}
-  	  <h3>{{ _("What's next for {0}")|f(addon.name) }}</h3>
-  	  <p>{{ addon.the_future }}</p>
+      <p>{{ addon.the_reason }}</p>
+      {# L10n: {0} is the name of the add-on #}
+      <h3>{{ _("What's next for {0}")|f(addon.name) }}</h3>
+      <p>{{ addon.the_future }}</p>
     </div>
 {% endif %}
 
