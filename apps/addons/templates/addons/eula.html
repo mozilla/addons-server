@@ -8,11 +8,9 @@
 {% set version = addon.current_version %}
 
 {% block content %}
-
-{{ breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type] ),
-                (None, addon.name)]) }}
-                 
-<div id="content" class="prose" role="main">
+<header>
+  {{ breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type] ),
+                  (None, addon.name)]) }}
   <h2 class="name"{{ addon.name|locale_html }}>
     <span>
       {{ addon.name }}
@@ -21,27 +19,28 @@
       <span class="version">{{ version.version }}</span>
     {% endif %}
   </h2>
-  <h3>{{ _('End-User License Agreement') }}</h3>
-  <div class="addon-policy-tagline">
-    <p>
-      {% trans addon_name = addon.name %}
-        {{ addon_name }} requires that you accept the following 
-        End-User License Agreement before installation can proceed:
-      {% endtrans %}
-    </p>
-  </div>
-  <textarea readonly="readonly" cols="80" rows="20">{{ addon.eula }}</textarea>
-  {{ install_button(addon, show_contrib=False, 
-                    show_eula=False, show_warning=False) }}
-  <p class="policy-link">
-    <a href ="{{ url('addons.detail', addon.id) }}">
-      {{ _('Cancel Installation')|f(addon.name) }}
-    </a>
+</header>
+<h3>{{ _('End-User License Agreement') }}</h3>
+<div class="addon-policy-tagline">
+  <p>
+    {% trans addon_name = addon.name %}
+      {{ addon_name }} requires that you accept the following
+      End-User License Agreement before installation can proceed:
+    {% endtrans %}
   </p>
-  <p class="policy-link">
-    <a href ="{{ url('addons.detail', addon.id) }}">
-      {{ _('Back to {0}...')|f(addon.name) }}
-    </a>
-  </p>
-</div>{# /primary #}
+</div>
+<textarea readonly="readonly" cols="80" rows="20">{{ addon.eula }}</textarea>
+{{ install_button(addon, show_contrib=False,
+                  show_eula=False, show_warning=False) }}
+<p class="policy-link">
+  <a href ="{{ url('addons.detail', addon.id) }}">
+    {{ _('Cancel Installation')|f(addon.name) }}
+  </a>
+</p>
+<p class="policy-link">
+  <a href ="{{ url('addons.detail', addon.id) }}">
+    {{ _('Back to {0}...')|f(addon.name) }}
+  </a>
+</p>
+
 {% endblock content %}

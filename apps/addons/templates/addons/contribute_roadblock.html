@@ -14,11 +14,11 @@
 
 {% block content %}
 
-{{ breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type] ),
+<header>
+  {{ breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type] ),
                  (None, addon.name)]) }}
-
-<h2>{{ _('Meet the {0} Developer')|f(addon.name) }}</h2>
-
+  <h2>{{ _('Meet the {0} Developer')|f(addon.name) }}</h2>
+</header>
 {% if authors|length == 1 %}
 
   {% set user = addon.listed_authors[0] %}

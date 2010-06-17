@@ -5,26 +5,28 @@
 {% block bodyclass %}inverse{% endblock %}
 
 {% block content %}
-{% with addonname=addon.name|string|truncate(40) %}
-   {{ breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]), (None, addonname )]) }}
-{% endwith %}
 
 {% set version = addon.current_version %}
 {% set previews = addon.previews.all() %}
 
-<hgroup>
-<h2 class="addon"{{ addon.name|locale_html }}>
-  <img src="{{ addon.icon_url }}" class="icon"/>
-  <span>
-    {{ addon.name }}
-  </span>
-  {% if version and not addon.is_selfhosted() %}
-    <span class="version">{{ version.version }}</span>
-  {% endif %}
-</h2>
-<h4 class="author">{{ _('by') }} {{ users_list(addon.listed_authors) }}</h4>
-</hgroup>
-
+<header>
+  {% with addonname=addon.name|string|truncate(40) %}
+    {{ breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
+                    (None, addonname )]) }}
+  {% endwith %}
+  <hgroup>
+    <h2 class="addon"{{ addon.name|locale_html }}>
+      <img src="{{ addon.icon_url }}" class="icon"/>
+      <span>{{ addon.name }}</span>
+      {% if version and not addon.is_selfhosted() %}
+        <span class="version">{{ version.version }}</span>
+      {% endif %}
+    </h2>
+    <h4 class="author">
+      {{ _('by') }} {{ users_list(addon.listed_authors) }}
+    </h4>
+  </hgroup>
+</header>
 {# TODO(fwenzel): "add-on has been added to collection" notification #}
 
 <div id="addon" class="primary" role="main">
