@@ -7,7 +7,7 @@
         or (request.user.is_authenticated()
             and addon and addon.has_author(request.amo_user))
         or tag in current_user_tags %}
-    <input type="submit" alt="{{ _('Remove', 'tags_alt_remove_tag') }}"
+    <input type="submit" title="{{ _('Remove', 'tags_alt_remove_tag') }}"
            name="tagid" value="{{ tag.id }}" class="removetag"/>
   {% endif %}
 </li>
