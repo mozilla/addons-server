@@ -180,7 +180,62 @@
 
   {% if not addon.is_selfhosted() and version %}
   <h3 id="releasenotes">{{ _('Release Notes', 'addons_display_release_notes') }}</h3>
-  {{ version_detail(addon, version, src="addon-detail-version") }}
+  <div class="article">
+    {# TODO reverse URL #}
+    {% set base = remora_url('/addons/versions/{0}'|f(addon.id)) %}
+    <p><a href="{{ base }}#version-{{ version.version }}"
+          title="{{ _('Permanent link to this version') }}">
+         {{ _('Version {0}', 'addon_display_header_version')|f(version.version) }}</a>
+      &mdash;
+      <span title="{{ version.created|isotime }}">{{
+        version.created|datetime }}</span>
+      {% if version.has_files %}
+        &mdash;
+        {{ _('{0} KB')|f(version.all_files[0].size|int|numberfmt) }}
+      {% endif %}
+    </p>
+
+    <div class="prose userinput">
+      <p id="release-notes"{{ version.releasenotes|locale_html }}>
+        {{ version.releasenotes|nl2br }}
+      </p>
+    </div>
+
+    {# License #}
+    {% if version.license %}
+      <h5 id="license">
+        {{ _('Source Code License') }}
+        {# TODO reverse URL #}
+        <a href="{{ remora_url('/pages/developer_faq#license') }}">
+          {{ _("What's this?", 'addons_display_a_license_what') }}
+        </a>
+      </h5>
+      {# TODO reverse URL #}
+      <p>
+        <a href="{{ remora_url('/versions/license/{0}'|f(version.id)) }}">
+          {{ version.license.name }}</a>
+      </p>
+    {% endif %}
+
+    <ul class="further-navigation">
+      {% if addon.view_source and user.is_authenticated() and
+        version.has_files %}
+        <li>
+          {# TODO reverse URL #}
+          <a href="{{ remora_url('/files/browse/{0}'|f(version.all_files[0].pk)) }}">
+            {{ _('View the source') }}</a>
+        </li>
+      {% endif %}
+      {% if not addon.is_selfhosted() %}
+        <li>
+          {# TODO reverse URL #}
+          <a href="{{ remora_url('/addons/versions/{0}'|f(addon.id)) }}">
+            {{ _('View All Versions') }}
+          </a>
+        </li>
+      {% endif %}
+    </ul>
+  </div> <!-- Release Notes -->
   {% endif %}
 
 </div>{# /primary #}

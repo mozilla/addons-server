@@ -23,7 +23,6 @@ detail_patterns = patterns('',
 
     ('^reviews/', include('reviews.urls')),
     ('^statistics/', include('stats.urls')),
-    ('^versions/', include('versions.urls')),
 )
 
 

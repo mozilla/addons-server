@@ -23,12 +23,12 @@ class TestRedirects(test.TestCase):
         """`/persona/\d+` should go to `/addon/\d+`."""
         r = self.client.get(u'persona/4', follow=True)
         assert r.redirect_chain[-1][0].endswith('/en-US/firefox/addon/4/')
-
+        
     def test_contribute_installed(self):
         """`/addon/\d+/about` should go to `/addon/\d+/contribute/installed`."""
         r = self.client.get(u'addon/5326/about', follow=True)
         assert r.redirect_chain[-1][0].endswith('/en-US/firefox/addon/5326/contribute/installed/')
-
+              
     def test_utf8(self):
         """Without proper unicode handling this will fail."""
         response = self.client.get(u'/api/1.5/search/ツールバー',
@@ -156,8 +156,3 @@ class TestRedirects(test.TestCase):
         url, code = r.redirect_chain[-1]
         eq_(code, 301)
         assert url.endswith('/en-US/firefox/extensions/woo/?sort=rating')
-
-    def test_addons_versions(self):
-        r = self.client.get('/addons/versions/1865', follow=True)
-        self.assertRedirects(r, '/en-US/firefox/addon/1865/versions/',
-                             status_code=301)
