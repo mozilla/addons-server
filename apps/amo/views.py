@@ -1,3 +1,4 @@
+import os
 import random
 import socket
 import urllib2
@@ -41,7 +42,6 @@ def monitor(request):
             except Exception, e:
                 result = False
                 status_summary['memcache'] = False
-                status = 500
                 log.critical('Failed to connect to memcached (%s): %s' %
                                                                     (host, e))
             else:
@@ -51,17 +51,36 @@ def monitor(request):
 
             memcache_results.append((ip, port, result))
         if len(memcache_results) < 2:
-            status = 500
             status_summary['memcache'] = False
             log.warning('You should have 2+ memcache servers.  You have %s.' %
                                                         len(memcache_results))
     if not memcache_results:
-        status = 500
         status_summary['memcache'] = False
         log.info('Memcache is not configured.')
 
+    # Check file paths / permissions
+    filepaths = (
+        (settings.NETAPP_STORAGE, os.R_OK | os.W_OK, "We want read + write."),
+        (settings.UPLOADS_PATH, os.R_OK | os.W_OK, "We want read + write."),
+    )
+    filepath_results = []
+    filepath_status = True
+
+    for path, perms, notes in filepaths:
+        path_exists = os.path.isdir(path)
+        path_perms = os.access(path, perms)
+        filepath_status = filepath_status and path_exists and path_perms
+        filepath_results.append((path, path_exists, path_perms, notes))
+
+    status_summary['filepaths'] = filepath_status
+
+    # If anything broke, send HTTP 500
+    if not all(status_summary):
+        status = 500
+
     return jingo.render(request, 'services/monitor.html',
                         {'memcache_results': memcache_results,
+                         'filepath_results': filepath_results,
                          'status_summary': status_summary},
                         status=status)
 

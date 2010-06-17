@@ -19,4 +19,28 @@
   <p>There must be a minimum of 2 working servers.</p>
 </div>
 
+<div class="notification-box {% if status_summary.filepaths %}info{% else %}error{% endif %}">
+  <h2>[Paths] Paths and Permissions</h2>
+  <dl>
+  {% for path, exists, permissions, extra in filepath_results %}
+    <dt>{{ path }}</dt>
+    <dd>
+    {% if exists %}
+      Exists...
+    {% else %}
+      <strong>Does not exist</strong>
+    {% endif %}
+
+    {% if permissions %}
+      with proper permissions.
+    {% else %}
+      <strong>and does not have the permissions we expect.</strong>
+    {% endif %}
+    {% if extra %}
+      ({{ extra }})
+    {% endif %}
+    </dd>
+  {% endfor %}
+  </dl>
+</div>
 {% endblock main_content %}
