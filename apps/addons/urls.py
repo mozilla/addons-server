@@ -36,4 +36,13 @@ urlpatterns = patterns('',
 
     # For happy install button debugging.
     url('^addons/smorgasbord$', 'addons.buttons.smorgasbord'),
+
+    # Remora EULA and Privacy policy URLS
+    ('^addons/policy/0/(?P<addon_id>\d+)/(?P<file_id>\d+)',
+     lambda r, addon_id, file_id: redirect('addons.eula',
+                                  addon_id, file_id, permanent=True)),
+    ('^addons/policy/0/(?P<addon_id>\d+)/',
+     lambda r, addon_id: redirect('addons.privacy',
+                                  addon_id, permanent=True)),
+
 )

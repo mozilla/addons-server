@@ -95,9 +95,10 @@ class TestPromobox(test_utils.TestCase):
         response = self.client.get('/pt-BR/firefox/', follow=True)
         eq_(response.status_code, 200)
 
+
 class TestContributeInstalled(test_utils.TestCase):
     fixtures = ['base/fixtures']
-                
+
     def test_no_header_block(self):
         # bug 565493, Port post-install contributions page
         response = self.client.get(reverse('contribute.installed', args=[592]),
@@ -108,6 +109,7 @@ class TestContributeInstalled(test_utils.TestCase):
         # assert that header and aux_header are empty (don't exist)
         eq_(header, [])
         eq_(aux_header, [])
+
 
 class TestDetailPage(test_utils.TestCase):
     fixtures = ['base/fixtures', 'base/addon_59.json', 'addons/listed',
@@ -176,7 +178,8 @@ class TestDetailPage(test_utils.TestCase):
         # Grab a user and give them some add-ons.
         u = UserProfile.objects.get(pk=2519)
         thisaddon = u.addons.all()[0]
-        other_addons = order_by_translation(Addon.objects.exclude(pk=thisaddon.pk),'name')[:3]
+        other_addons = order_by_translation(
+                         Addon.objects.exclude(pk=thisaddon.pk), 'name')[:3]
         for addon in other_addons:
             AddonUser.objects.create(user=u, addon=addon)
 
@@ -375,6 +378,26 @@ class TestTagsBox(test_utils.TestCase):
         r = self.client.get(reverse('addons.detail', args=[8680]), follow=True)
         doc = pq(r.content)
         eq_('SEO', doc('#tags ul').children().text())
+
+
+class TestEulaPolicyRedirects(test_utils.TestCase):
+    fixtures = ['base/fixtures']
+
+    def test_eula_legacy_url(self):
+        """
+        See that we get a 301 to the zamboni style URL
+        """
+        response = self.client.get('/en-US/firefox/addons/policy/0/592/42')
+        eq_(response.status_code, 301)
+        assert (response['Location'].find('/addon/592/eula/42') != -1)
+
+    def test_policy_legacy_url(self):
+        """
+        See that we get a 301 to the zamboni style URL
+        """
+        response = self.client.get('/en-US/firefox/addons/policy/0/592/')
+        eq_(response.status_code, 301)
+        assert (response['Location'].find('/addon/592/privacy/') != -1)
 
 
 def test_button_caching():
