@@ -3,7 +3,7 @@
   {% set base = '/addons/contribute/{0}?source=direct'|f(addon.id) %}
   <div class="contribute">
     {% if addon.suggested_amount is not none %}
-    {% trans url=base|urlparams(type='suggested'),
+    {% trans url=base|urlparams(type='suggested')|escape,
              amt=addon.suggested_amount|currencyfmt('USD') %}
       Support this add-on: <a href="{{ url }}">Contribute {{ amt }}</a>
     {% endtrans %}

@@ -64,7 +64,7 @@
           <h4 class="summary">
             <a class="url" href="{{ addon.get_url_path() }}">{{ addon.name }}</a>
           </h4>
-          <p class="description" locale="{{ review.body.locale }}">
+          <p class="description" {{ review.body|locale_html }}>
             {{ review.body|nl2br }}
           </p>
           <p>
