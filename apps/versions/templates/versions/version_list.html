@@ -16,12 +16,12 @@
       <h2>{{ _('{0} Version History')|f(addon.name) }}</h2>
       {% with cnt=versions.paginator.count %}
         {# L10n: {0} is a number. #}
-        <h3>{{ ngettext('{0} Version', '{0} Versions', cnt)|f(cnt) }}</h3>
+        <h3>{{ ngettext('{0} version', '{0} versions', cnt)|f(cnt) }}</h3>
       {% endwith %}
     </hgroup>
   </header>
-  <div class="warning">
-    <strong>{{ _('Be careful with old versions!') }}</strong>
+  <div class="warning highlight">
+    <h2>{{ _('Be careful with old versions!') }}</h2>
     <p>{% trans url=url('addons.detail', addon.id) %}
       These versions are displayed for reference and testing purposes.
       You should always use the <a href="{{ url }}">latest version</a> of an add-on.

@@ -1676,9 +1676,35 @@ form .error .note.error {
 }
 
 .other-categories,
-#refine-results {
+#refine-results,
+.versions .primary > .warning {
     background: #fff;
     border: 1px solid #c8e8f3;
+}
+
+.versions .primary > .warning h2 {
+    font-style: italic;
+    margin: 0;
+}
+
+.versions .primary > .warning {
+    border-color: #C63717;
+}
+
+.versions .primary > .warning p {
+    margin-top: .5em;
+}
+
+.item.version {
+    padding: 2em;
+}
+
+.item.version .item-info {
+    margin-right:0;
+}
+
+.item.version h5 {
+    font-size: 1em;
 }
 
 .other-categories .items {
@@ -2056,6 +2082,10 @@ form .error .note.error {
     left: 6px;
     top: 9px;
     border-top-color: #0471ed;
+}
+
+.primary > .warning {
+    
 }
 
 /**
