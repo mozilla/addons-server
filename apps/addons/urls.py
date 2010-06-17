@@ -15,6 +15,8 @@ detail_patterns = patterns('',
         name='contribute.roadblock'),
     url('^contribute/installed/', views.contribute_installed,
         name='contribute.installed'),
+    ('^contribute/thanks$', lambda r, addon_id: redirect('addons.detail',
+                                                         addon_id)),
 
     ('^about$', lambda r, addon_id: redirect('contribute.installed',
                                              addon_id, permanent=True)),
