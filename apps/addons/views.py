@@ -17,7 +17,6 @@ from stats.models import GlobalStat
 from tags.models import Tag
 from translations.query import order_by_translation
 from .models import Addon
-from translations.query import order_by_translation
 
 
 def author_addon_clicked(f):
@@ -74,7 +73,6 @@ def contribute_installed(request, addon_id):
     return jingo.render(request, 'addons/contribute_installed.html', data)
 
 
-
 def contribute_roadblock(request, addon_id, extra=None):
     addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
 
@@ -84,7 +82,7 @@ def contribute_roadblock(request, addon_id, extra=None):
       'addon': addon,
       'author_addons': author_addons,
     }
-    return jingo.render(request, 'addons/contribute_roadblock.html',data)
+    return jingo.render(request, 'addons/contribute_roadblock.html', data)
 
 
 def extension_detail(request, addon):
@@ -393,21 +391,33 @@ class CollectionPromoBox(object):
 
 def eula(request, addon_id, file_id):
     addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
+    # redirect back to detail if no eula
+    # Todo(skeen): think of a better solution
+    if not addon.eula:
+        return http.HttpResponsePermanentRedirect(reverse(
+            'addons.detail', args=[addon.id]))
+
     return jingo.render(request, 'addons/eula.html', {'addon': addon})
 
 
 def privacy(request, addon_id):
     addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
+    # redirect back to detail if no eula
+    # Todo(skeen): think of a better solution
+    if not addon.privacy_policy:
+        return http.HttpResponsePermanentRedirect(reverse(
+            'addons.detail', args=[addon.id]))
+
     return jingo.render(request, 'addons/privacy.html', {'addon': addon})
 
 
 def meet_the_developer(request, addon_id, extra=None):
     addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
-    
+
     # other add-ons from the same author(s)
     author_addons = order_by_translation(addon.authors_other_addons, 'name')
     data = {
       'addon': addon,
       'author_addons': author_addons,
-    }                         
-    return jingo.render(request, 'addons/meet_the_developer.html',data)
+    }
+    return jingo.render(request, 'addons/meet_the_developer.html', data)
