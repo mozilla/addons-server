@@ -4,7 +4,7 @@ from .models import Addon, BlacklistedGuid, Feature, Category
 
 
 class AddonAdmin(admin.ModelAdmin):
-    exclude = ('users',)
+    exclude = ('authors',)
     list_display = ('__unicode__', 'type', 'status', 'average_rating')
     list_filter = ('type', 'status')
 
