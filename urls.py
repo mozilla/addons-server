@@ -71,6 +71,9 @@ urlpatterns = patterns('',
     ('^personas/film and tv/?$',
      lambda r: redirect('browse.personas', 'film-and-tv', permanent=True)),
 
+    ('^addons/versions/(\d+)/?$',
+     lambda r, id: redirect('addons.versions', id, permanent=True)),
+
     # Firefox Cup page, /firefoxcup
     ('^firefoxcup/', include('firefoxcup.urls'))
 )
