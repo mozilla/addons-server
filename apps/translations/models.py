@@ -123,7 +123,7 @@ class PurifiedTranslation(Translation):
         self.localized_string_clean = bleach.bleach(self.localized_string)
 
     def __truncate__(self, length, killwords, end):
-        return utils.truncate(self.localized_string, length, killwords, end)
+        return utils.truncate(unicode(self), length, killwords, end)
 
 
 class LinkifiedTranslation(PurifiedTranslation):
