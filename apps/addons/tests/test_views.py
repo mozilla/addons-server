@@ -263,8 +263,8 @@ class TestDetailPage(test_utils.TestCase):
                                    follow=True)
         doc = pq(response.content)
         eq_(doc('.privacy-policy').length, 1)
-        assert doc('.privacy-policy').attr('href').endswith(
-            '/addons/policy/0/1843')
+        privacy_url = reverse('addons.privacy', args=[addon.id])
+        assert doc('.privacy-policy').attr('href').endswith(privacy_url)
 
     def test_button_size(self):
         """Make sure install buttons on the detail page are prominent."""

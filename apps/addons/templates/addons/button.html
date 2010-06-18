@@ -49,7 +49,7 @@
 
 {% if b.detailed %}
   {% if addon.privacy_policy %}
-    <a class="privacy-policy" href="{{ remora_url('/addons/policy/0/{0}'|f(addon.id)) }}">
+    <a class="privacy-policy" href="{{ url('addons.privacy', addon.id) }}">
       <strong>{{ _('View privacy policy') }}</strong>
     </a>
   {% endif %}
