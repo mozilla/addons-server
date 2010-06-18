@@ -1,8 +1,6 @@
 {# addon, version, request #}
-{% set versions_url = url('addons.versions', addon.id) %}
-{% set hash = "version-" + version.version %}
-<div class="version {{ itemclass }}" id="{{ hash }}">
-  <h3><a href="{{ versions_url }}#{{ hash }}"
+<div class="version {{ itemclass }}" id="version-{{ version.id }}">
+  <h3><a href="{{ url('addons.versions', addon.id, version.id) }}"
         title="{{ _('Permanent link to this version') }}">
        {{ _('Version {0}', 'addon_display_header_version')|f(version.version) }}</a>
     <span title="{{ version.created|isotime }}">{{
@@ -52,7 +50,7 @@
   {% endif %}
   {% if show_versions_link and not addon.is_selfhosted() %}
     <nav class="further-navigation">
-      <a class="more-info" href="{{ versions_url }}">
+      <a class="more-info" href="{{ url('addons.versions', addon.id)}}">
         {{ _('View all versions') }}
       </a>
     </nav>

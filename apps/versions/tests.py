@@ -1,8 +1,10 @@
-from django import test
-
 from nose.tools import eq_
+import test_utils
 
 import amo
+from amo.urlresolvers import reverse
+from addons.models import Addon
+from versions import views
 from versions.models import License, Version
 from versions.compare import version_int, dict_from_int
 
@@ -25,7 +27,7 @@ def test_dict_from_int():
     eq_(d['pre_ver'], 2)
 
 
-class TestVersion(test.TestCase):
+class TestVersion(test_utils.TestCase):
     """
     Test methods of the version class.
     """
@@ -74,7 +76,7 @@ class TestVersion(test.TestCase):
         assert not v.has_files, 'Version without files not recognized.'
 
 
-class TestLicense(test.TestCase):
+class TestLicense(test_utils.TestCase):
     """Test built-in as well as custom licenses."""
 
     def test_defaults(self):
@@ -117,3 +119,32 @@ class TestLicense(test.TestCase):
                 assert not lic.text
             else:
                 assert lic.text
+
+
+class TestViews(test_utils.TestCase):
+    fixtures = ['addons/eula+contrib-addon']
+
+    def setUp(self):
+        self.old_perpage = views.PER_PAGE
+        views.PER_PAGE = 1
+
+    def tearDown(self):
+        views.PER_PAGE = self.old_perpage
+
+    def test_version_detail(self):
+        base = '/en-US/firefox/addon/11730/versions/'
+        a = Addon.objects.get(id=11730)
+        urls = [(v.id, reverse('addons.versions', args=[a.id, v.id]))
+                for v in a.versions.all()]
+
+        version, url = urls[0]
+        r = self.client.get(url, follow=True)
+        self.assertRedirects(r, base + '?page=1#version-%s' % version)
+
+        version, url = urls[1]
+        r = self.client.get(url, follow=True)
+        self.assertRedirects(r, base + '?page=2#version-%s' % version)
+
+    def test_version_detail_404(self):
+        r = self.client.get(reverse('addons.versions', args=[11730, 2]))
+        eq_(r.status_code, 404)
