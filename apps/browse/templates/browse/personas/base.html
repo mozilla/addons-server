@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% from "browse/macros.html" import secondary_categories %}
 
 {% set name = category.name if category else filter.title %}
 {% set title = _('Personas') if is_homepage else _('{0} Personas')|f(name) %}
@@ -23,26 +24,5 @@
 {% endblock %}
 
 {% macro persona_categories() %}
-<div class="secondary" role="complementary">
-  <div class="other-categories highlight">
-    <h3>{{ _('Personas') }}</h3>
-    <ul>
-      {% for key, title_ in filter.opts_dict.items() %}
-        <li id="p-{{ key }}">
-          <a href="{{ url('browse.personas')|urlparams(sort=key) }}">{{ title_ }}</a>
-        </li>
-      {% endfor %}
-    </ul>
-    <ul>
-    {% cache categories %}
-    {% for cat in categories %}
-      <li id="p-{{ cat.id }}">
-        <a href="{{ url('browse.personas', cat.slug) }}">
-          {{ cat.name }}</a>
-      </li>
-    {% endfor %}
-    {% endcache %}
-    </ul>
-  </div>
-</div>
+{{ secondary_categories(_('Personas'), 'browse.personas', categories, filter) }}
 {% endmacro %}

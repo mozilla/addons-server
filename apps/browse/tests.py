@@ -243,5 +243,6 @@ class TestLegacyRedirects(test_utils.TestCase):
 
         redirects('/browse/type:2', '/themes/')
         redirects('/browse/type:3', '/language-tools/')
-        redirects('/browse/type:4', '/search-engines/')
+        redirects('/browse/type:4', '/search-tools/')
+        redirects('/search-engines', '/search-tools/')
         # redirects('/browse/type:7', '/plugins/')

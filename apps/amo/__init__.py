@@ -142,7 +142,7 @@ ADDON_SLUGS = {
     ADDON_THEME: 'themes',
     ADDON_DICT: 'language-tools',
     ADDON_PERSONA: 'personas',
-    ADDON_SEARCH: 'search-engines',
+    ADDON_SEARCH: 'search-tools',
 }
 
 

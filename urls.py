@@ -74,6 +74,9 @@ urlpatterns = patterns('',
     ('^addons/versions/(\d+)/?$',
      lambda r, id: redirect('addons.versions', id, permanent=True)),
 
+    ('^search-engines.*$',
+     lambda r: redirect('browse.search-tools', permanent=True)),
+
     # Firefox Cup page, /firefoxcup
     ('^firefoxcup/', include('firefoxcup.urls'))
 )
