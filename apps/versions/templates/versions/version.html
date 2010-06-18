@@ -1,7 +1,8 @@
 {# addon, version, request #}
-<div class="version {{ itemclass }}">
-  {% set versions_url = url('addons.versions', addon.id) %}
-  <h3><a href="{{ versions_url }}#version-{{ version.version }}"
+{% set versions_url = url('addons.versions', addon.id) %}
+{% set hash = "version-" + version.version %}
+<div class="version {{ itemclass }}" id="{{ hash }}">
+  <h3><a href="{{ versions_url }}#{{ hash }}"
         title="{{ _('Permanent link to this version') }}">
        {{ _('Version {0}', 'addon_display_header_version')|f(version.version) }}</a>
     <span title="{{ version.created|isotime }}">{{
@@ -29,7 +30,7 @@
       {{ version.releasenotes }}
     </div>
   </blockquote>
-  
+
   {# License #}
   {% if version.license %}
     <h5>
