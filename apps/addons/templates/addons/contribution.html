@@ -42,7 +42,7 @@
   {% endif %}
 
   <div class="aux">
-    <p class="button-wrapper">
+    <div class="button-wrapper">
       <a class="button contribute prominent"
         {# The id triggers a dropdown, so don't expose it if there isn't a
            suggested amount (i.e., only one choice). #}
@@ -56,7 +56,7 @@
         <span class="continue">{{ _('or') }}</span>
         {{ install_button(addon) }}
       {% endif %}
-      </p>{# /button-wrapper #}
+    </div>{# /button-wrapper #}
 
     <div class="suggestion">
       {% if has_suggested %}
