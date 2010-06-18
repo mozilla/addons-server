@@ -1,53 +1,5 @@
 [
     {
-        "pk": 426,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string_clean": null,
-            "created": "2007-03-05 13:08:05",
-            "locale": "en-US",
-            "modified": "2007-03-22 21:54:38",
-            "id": 151,
-            "localized_string": "Add these search engines to the Search Bar in the upper-right corner of %1$s, for quick access to your favorite search sites."
-        }
-    },
-    {
-        "pk": 258,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string_clean": null,
-            "created": "2007-03-05 13:08:05",
-            "locale": "en-US",
-            "modified": "2007-03-22 21:54:38",
-            "id": 145,
-            "localized_string": "Search Engines"
-        }
-    },
-    {
-        "pk": 83,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string_clean": null,
-            "created": "2007-03-05 13:08:05",
-            "locale": "en-US",
-            "modified": "2007-03-22 21:54:38",
-            "id": 4,
-            "localized_string": "Search Engine"
-        }
-    },
-    {
-        "pk": 603848,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string_clean": null,
-            "created": "2009-09-17 03:54:26",
-            "locale": "en-US",
-            "modified": "2009-09-17 03:55:20",
-            "id": 559112,
-            "localized_string": "Raising awareness about IPv6 is important. Start now!"
-        }
-    },
-    {
         "pk": 410711,
         "model": "translations.translation",
         "fields": {
@@ -56,114 +8,18 @@
             "locale": "en-US",
             "modified": "2009-08-31 07:58:03",
             "id": 372438,
-            "localized_string": "!!! THE PLUGIN DOES NOT PROVIDE IPv6 CONNECTIVITY !!!\r\n\r\nFor troubleshooting tips and questions - please visit:\r\nhttp://blog.ooz.ie/2009/05/ipv6-google-search-firefox-plugin.html\r\n\r\nTHERE IS NO WARRANTY FOR THE PLUGIN. IT IS PROVIDED \u201cAS IS\u201d WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PLUGIN IS WITH YOU. SHOULD THE PLUGIN PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.\r\n"
-        }
-    },
-    {
-        "pk": 410710,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string_clean": "Visit\n<a href=\"http://outgoing.mozilla.org/v1/94aabf779ab5c0bbf8c09fcbbdd553ee89201a84/http%3A//blog.ooz.ie/2009/05/ipv6-google-search-firefox-plugin.html\">http://blog.ooz.ie/2009/05/ipv6-google-search-firefox-plugin.html</a> \nfor more info.",
-            "created": "2009-04-30 16:54:06",
-            "locale": "en-US",
-            "modified": "2009-09-05 15:27:55",
-            "id": 372437,
-            "localized_string": "Visit\r\nhttp://blog.ooz.ie/2009/05/ipv6-google-search-firefox-plugin.html \r\nfor more info."
-        }
-    },
-    {
-        "pk": 410708,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string_clean": "An OpenSearch plugin for Google on IPv6.\n\nGot IPv6 connectivity? Be one of the first Internauts to use <a href=\"http://outgoing.mozilla.org/v1/25484e0713c851c7e65de9b708c980e21df186fb/http%3A//ipv6.google.com/\">http://ipv6.google.com/</a> as your default search engine! ",
-            "created": "2009-04-30 16:54:05",
-            "locale": "en-US",
-            "modified": "2009-05-05 16:45:15",
-            "id": 372435,
-            "localized_string": "An OpenSearch plugin for Google on IPv6.\r\n\r\nGot IPv6 connectivity? Be one of the first Internauts to use http://ipv6.google.com/ as your default search engine! "
-        }
-    },
-    {
-        "pk": 410709,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string_clean": "This search plugin will point your search queries to <a href=\"http://outgoing.mozilla.org/v1/25484e0713c851c7e65de9b708c980e21df186fb/http%3A//ipv6.google.com/\">http://ipv6.google.com/</a>\nIPv6 connectivity is a prerequisite.",
-            "created": "2009-04-30 16:54:06",
-            "locale": "en-US",
-            "modified": "2009-05-02 06:45:50",
-            "id": 372436,
-            "localized_string": "This search plugin will point your search queries to http://ipv6.google.com/\r\nIPv6 connectivity is a prerequisite."
-        }
-    },
-    {
-        "pk": 591396,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string_clean": null,
-            "created": "2009-09-05 15:29:58",
-            "locale": "en-US",
-            "modified": null,
-            "id": 547551,
-            "localized_string": "http://blog.ooz.ie/2009/05/ipv6-google-search-firefox-plugin.html"
-        }
-    },
-    {
-        "pk": 410717,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string_clean": null,
-            "created": "2009-04-30 17:05:20",
-            "locale": "en-US",
-            "modified": "2009-05-03 12:38:00",
-            "id": 372444,
-            "localized_string": "support@ooz.ie"
-        }
-    },
-    {
-        "pk": 410716,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string_clean": null,
-            "created": "2009-04-30 17:05:19",
-            "locale": "en-US",
-            "modified": "2009-05-03 12:37:59",
-            "id": 372443,
-            "localized_string": "http://blog.ooz.ie/2009/05/ipv6-google-search-firefox-plugin.html"
+            "localized_string": "I'm a freaking eula!"
         }
     },
     {
         "pk": 4,
         "model": "addons.addontype",
         "fields": {
-            "description": 151,
-            "name_plural": 145,
+            "description": null,
+            "name_plural": null,
             "modified": "2009-02-06 08:42:28",
-            "name": 4,
+            "name": null,
             "created": "2006-08-21 23:53:36"
-        }
-    },
-    {
-        "pk": 410718,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string_clean": null,
-            "created": "2009-04-30 17:08:04",
-            "locale": "en-US",
-            "modified": null,
-            "id": 372445,
-            "localized_string": "IPv6 Google Search"
-        }
-    },
-    {
-        "pk": 423049,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string_clean": "Minor prettifying changes made, including:\n- removing new line characters from the XML document\n- changing \"/?#q=\" paramenter to \"/search?q=\" .",
-            "created": "2009-05-21 05:39:12",
-            "locale": "en-US",
-            "modified": null,
-            "id": 384472,
-            "localized_string": "Minor prettifying changes made, including:\r\n- removing new line characters from the XML document\r\n- changing \"/?#q=\" paramenter to \"/search?q=\" ."
         }
     },
     {
@@ -186,7 +42,7 @@
             "view_source": 0,
             "enable_thankyou": 0,
             "total_downloads": 9149,
-            "developer_comments": 372437,
+            "developer_comments": null,
             "inactive": 0,
             "average_daily_downloads": 28,
             "show_beta": 1,
@@ -196,7 +52,7 @@
             "binary": 0,
             "guid": null,
             "weekly_downloads": 146,
-            "support_url": 547551,
+            "support_url": null,
             "paypal_id": "root@ooz.ie",
             "average_rating": "1.0",
             "wants_contributions": 1,
@@ -204,12 +60,12 @@
             "bayesian_rating": 0.0,
             "share_count": 0,
             "get_satisfaction_company": null,
-            "homepage": 372443,
-            "support_email": 372444,
+            "homepage": null,
+            "support_email": null,
             "public_stats": 0,
             "status": 4,
             "privacy_policy": null,
-            "description": 372436,
+            "description": null,
             "default_locale": "en-US",
             "target_locale": null,
             "prerelease": 0,
@@ -218,17 +74,17 @@
             "external_software": 0,
             "highest_status": 4,
             "get_satisfaction_product": null,
-            "name": 372445,
+            "name": null,
             "created": "2009-04-30 16:42:42",
             "type": 4,
             "icon_type": "image/gif",
             "annoying": 3,
             "modified": "2009-09-17 04:09:07",
-            "summary": 372435,
+            "summary": null,
             "suggested_amount": "1.00",
             "site_specific": 0,
             "total_reviews": 0,
-            "the_reason": 559112,
+            "the_reason": null,
             "nomination_date": "2009-06-27 12:21:35"
         }
     },
@@ -247,7 +103,7 @@
         "fields": {
             "license": 6,
             "created": "2009-05-21 05:37:15",
-            "releasenotes": 384472,
+            "releasenotes": null,
             "approvalnotes": "",
             "modified": "2009-05-21 05:39:14",
             "version": "20090521",
@@ -267,6 +123,35 @@
             "platform": 1,
             "version": 68776,
             "datestatuschanged": "2009-08-27 14:29:14",
+            "size": 1
+        }
+    },
+    {
+        "pk": 120,
+        "model": "versions.version",
+        "fields": {
+            "license": 6,
+            "created": "2008-05-21 05:37:15",
+            "releasenotes": null,
+            "approvalnotes": "",
+            "modified": "2008-05-21 05:39:14",
+            "version": "20080521",
+            "addon": 11730
+        }
+    },
+    {
+        "pk": 120,
+        "model": "files.file",
+        "fields": {
+            "status": 4,
+            "codereview": 0,
+            "hash": "sha256:b2097453fca95fc7d7622164483902abf2e24e2cebdbb8a240e4b0ed05769f5a",
+            "created": "2008-05-21 05:37:16",
+            "modified": "2008-08-27 14:29:14",
+            "filename": "ipv6_google_search-20090521.xml",
+            "platform": 1,
+            "version": 120,
+            "datestatuschanged": "2008-08-27 14:29:14",
             "size": 1
         }
     }

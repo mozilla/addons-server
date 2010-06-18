@@ -418,3 +418,35 @@ def test_unicode_redirect():
     url = '/en-US/firefox/addon/2848?xx=\xc2\xbcwhscheck\xc2\xbe'
     response = test.Client().get(url)
     eq_(response.status_code, 301)
+
+
+class TestEula(test_utils.TestCase):
+    fixtures = ['addons/eula+contrib-addon']
+
+    def test_current_version(self):
+        addon = Addon.objects.get(id=11730)
+        r = self.client.get(reverse('addons.eula', args=[addon.id]))
+        eq_(r.context['version'], addon.current_version)
+
+    def test_old_version(self):
+        addon = Addon.objects.get(id=11730)
+        old = addon.versions.order_by('created')[0]
+        assert old != addon.current_version
+        r = self.client.get(reverse('addons.eula',
+                                    args=[addon.id, old.all_files[0].id]))
+        eq_(r.context['version'], old)
+
+    def test_redirect_no_eula(self):
+        Addon.objects.filter(id=11730).update(eula=None)
+        r = self.client.get(reverse('addons.eula', args=[11730]), follow=True)
+        self.assertRedirects(r, reverse('addons.detail', args=[11730]))
+
+
+class TestPrivacyPolicy(test_utils.TestCase):
+    fixtures = ['addons/eula+contrib-addon']
+
+    def test_redirect_no_eula(self):
+        Addon.objects.filter(id=11730).update(privacy_policy=None)
+        r = self.client.get(reverse('addons.privacy', args=[11730]),
+                            follow=True)
+        self.assertRedirects(r, reverse('addons.detail', args=[11730]))

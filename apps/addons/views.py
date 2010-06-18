@@ -389,15 +389,19 @@ class CollectionPromoBox(object):
         return self.request.APP == amo.FIREFOX
 
 
-def eula(request, addon_id, file_id):
+def eula(request, addon_id, file_id=None):
     addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
     # redirect back to detail if no eula
     # Todo(skeen): think of a better solution
     if not addon.eula:
-        return http.HttpResponsePermanentRedirect(reverse(
-            'addons.detail', args=[addon.id]))
+        return http.HttpResponseRedirect(addon.get_url_path())
+    if file_id is not None:
+        version = get_object_or_404(addon.versions, files__id=file_id)
+    else:
+        version = addon.current_version
 
-    return jingo.render(request, 'addons/eula.html', {'addon': addon})
+    return jingo.render(request, 'addons/eula.html',
+                        {'addon': addon, 'version': version})
 
 
 def privacy(request, addon_id):
@@ -405,8 +409,7 @@ def privacy(request, addon_id):
     # redirect back to detail if no eula
     # Todo(skeen): think of a better solution
     if not addon.privacy_policy:
-        return http.HttpResponsePermanentRedirect(reverse(
-            'addons.detail', args=[addon.id]))
+        return http.HttpResponseRedirect(addon.get_url_path())
 
     return jingo.render(request, 'addons/privacy.html', {'addon': addon})
 
