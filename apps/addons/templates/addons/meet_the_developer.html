@@ -15,7 +15,8 @@
 {% block content %}
 <header>
   {{ breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type] ),
-                  (None, addon.name)]) }}
+                  (addon.get_url_path(), addon.name),
+                  (None, _('Meet the Developer'))]) }}
   <h2>{{ _('Meet the {0} Developer')|f(addon.name) }}</h2>
 </header>
 {% if authors|length == 1 %}
