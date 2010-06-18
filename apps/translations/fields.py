@@ -11,14 +11,14 @@ from .widgets import TranslationWidget
 
 class TranslatedField(models.ForeignKey):
     """A foreign key to the translations table."""
-    model = Translation
+    to = Translation
 
     def __init__(self, **kwargs):
         # to_field: The field on the related object that the relation is to.
         # Django wants to default to translations.autoid, but we need id.
         options = dict(null=True, to_field='id', unique=True, blank=True)
         kwargs.update(options)
-        super(TranslatedField, self).__init__(self.model, **kwargs)
+        super(TranslatedField, self).__init__(self.to, **kwargs)
 
     @property
     def db_column(self):
@@ -61,11 +61,11 @@ class TranslatedField(models.ForeignKey):
 
 
 class PurifiedField(TranslatedField):
-    model = PurifiedTranslation
+    to = PurifiedTranslation
 
 
 class LinkifiedField(TranslatedField):
-    model = LinkifiedTranslation
+    to = LinkifiedTranslation
 
 
 def switch(obj, new_model):
@@ -81,7 +81,7 @@ class TranslationDescriptor(related.ReverseSingleRelatedObjectDescriptor):
 
     def __init__(self, field):
         super(TranslationDescriptor, self).__init__(field)
-        self.model = field.model
+        self.model = field.rel.to
 
     def __get__(self, instance, instance_type=None):
         if instance is None:
