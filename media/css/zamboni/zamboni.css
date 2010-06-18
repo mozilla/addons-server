@@ -1605,6 +1605,7 @@ form .error .note.error {
 .listing .item blockquote {
     clear: left;
     padding-right: 16em;
+    overflow-x: hidden;
 }
 
 .html-rtl .listing .item blockquote {
@@ -1695,16 +1696,38 @@ form .error .note.error {
     margin-top: .5em;
 }
 
+.version nav.further-navigation{
+    float:right;
+}
+
 .item.version {
     padding: 2em;
 }
 
-.item.version .item-info {
-    margin-right:0;
+.version .item-info {
+    margin-right: 0;
+    width: auto;
 }
 
 .item.version h5 {
     font-size: 1em;
+}
+
+.article.version blockquote {
+    padding-right: 16em;
+    clear: left;
+    overflow-x: hidden;
+}
+
+.article.version h3 {
+    font-family: "helvetica neue",arial,helvetica,sans-serif;
+    font-size:1em;
+    float: left;
+    margin-top:0;
+}
+
+.article.version h3 span:before {
+    content: '\02013\00a0';
 }
 
 .other-categories .items {
