@@ -2530,7 +2530,7 @@ html[xmlns] .clearfix {
 .addon-tags form.remove-tags .removetag { vertical-align: bottom; margin-left: 3px; }
 .html-rtl .addon-tags form.remove-tags .removetag { margin-left: 0; margin-right: 3px; }
 
-#tags #tagMessage {
+#tagbox #tagMessage {
     background-color: #FFFFFF;
     color:#666666;
     display:block;
