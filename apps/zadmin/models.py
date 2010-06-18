@@ -1,6 +1,9 @@
 import json
 
 from django.db import models
+from django.utils.functional import memoize
+
+_config_cache = {}
 
 
 class Config(models.Model):
@@ -14,3 +17,13 @@ class Config(models.Model):
     @property
     def json(self):
         return json.loads(self.value)
+
+
+def get_config(conf):
+    try:
+        c = Config.objects.get(key=conf)
+        return c.value
+    except Config.DoesNotExist:
+        return
+
+get_config = memoize(get_config, _config_cache, 1)

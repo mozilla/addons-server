@@ -29,6 +29,12 @@
         data-appid="{{ request.APP.id }}"
         data-anonymous="{{ request.user.is_authenticated() and 'false' or 'true' }}"
         data-media-url="{{ MEDIA_URL }}">
+
+    {% if request.ADMIN_MESSAGE %}
+      <div id="site-notice">
+        <p>{{ request.ADMIN_MESSAGE }}</p>
+      </div>
+    {% endif %}
     <div class="section">
 
       {% block site_header %}
