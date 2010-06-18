@@ -1,7 +1,7 @@
 {% extends "base_side_categories.html" %}
 
 {% block title %}
-  {# L10n: {} is the name of the Addon #}
+  {# L10n: {0} is the name of the Addon #}
   {{ page_title(_('Privacy Policy for {0}')|f(addon.name)) }}
 {% endblock %}
 
@@ -9,8 +9,10 @@
 
 {% block content %}
 <header>
+  {# L10n: The Privacy Policy for this addon #}
   {{ breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type] ),
-                  (None, addon.name)]) }}
+                  (url('addons.detail',addon.id), addon.name),
+                  (None, _('Privacy Policy'))]) }}
   <h2 class="name"{{ addon.name|locale_html }}>
     <span>
       {{ addon.name }}
