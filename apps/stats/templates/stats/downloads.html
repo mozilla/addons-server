@@ -4,21 +4,21 @@
 <div class="featured">
   <div class="featured-inner">
     <div class="featured-body tabular">
-      <table class="stats-overview"><thead>
+      <table class="stats-aggregate"><thead>
         <tr><th>{{_('Category')}}</th><th>Last 7 Days</th><th>7-14 Days Ago</th><th>{{_('All Time')}}</th></tr>
       </thead>
       <tbody>
         <tr>
           <td class="label">{{_('Total Downloads')}}</td>
-          <td class="value"><span class="value" id="sum_range"></span><span class="change" id="sum_diff"></span></td>
-          <td class="value"><span class="value" id="sum_prev_range"></span><span class="change" id="sum_prev_diff"></span></td>
-          <td class="value"><span class="value" id="sum_all_time"></span><span class="change">&nbsp;</span></td>
+          <td class="value"><span class="value aggregate" id="sum_range"></span><span class="change" id="sum_diff"></span></td>
+          <td class="value"><span class="value aggregate" id="sum_prev_range"></span><span class="change" id="sum_prev_diff"></span></td>
+          <td class="value"><span class="value aggregate" id="sum_all_time"></span><span class="change">&nbsp;</span></td>
         </tr>
         <tr>
           <td class="label">{{_('Average Downloads/Day')}}</td>
-          <td class="value"><span class="value" id="mean_range"></span><span class="change" id="mean_diff"></span></td>
-          <td class="value"><span class="value" id="mean_prev_range"></span><span class="change" id="mean_prev_diff"></span></td>
-          <td class="value"><span class="value" id="mean_all_time"></span><span class="change">&nbsp;</span></td>
+          <td class="value"><span class="value aggregate" id="mean_range"></span><span class="change" id="mean_diff"></span></td>
+          <td class="value"><span class="value aggregate" id="mean_prev_range"></span><span class="change" id="mean_prev_diff"></span></td>
+          <td class="value"><span class="value aggregate" id="mean_all_time"></span><span class="change">&nbsp;</span></td>
         </tr>
       </tbody></table>
     </div>
@@ -27,41 +27,23 @@
 <h3>{{_('Downloads by Date')}}</h3>
 <div class="statbox">
   <div class="tabular">
-    <table class="bar-table">
+    <table class="csv-table">
+      <thead>
+        <tr>
+          <th 
+            data-field="date"
+            data-format="date">
+              {{_('Date')}}
+          </th>
+          <th 
+            data-field="count"
+            data-format="number"
+            data-bar_column="true"
+            data-bar_width="65%">
+              {{_('Count')}}
+          </th>
+        </tr>
     </table>
   </div>
 </div>
-{% endblock %}
-
-{% block chartconfig %}
-  <script>
-    AMO.csvTableConfig = {
-        el: $("table.bar-table")[0],
-        report: "{{ report }}",
-        columns: [{
-            label: "{{_('Date')}}",
-            field: 'date',
-            format: function (value) {
-                return Highcharts.dateFormat('%a, %b %e, %Y', new Date(value));
-            }
-        },
-        {
-            label: "{{_('Count')}}",
-            field: 'count',
-            format: function (value) {
-                return Highcharts.numberFormat(value, 0);
-            }
-        }],
-        barColumns: [{
-            valueColumn: 2,
-            barColor: '#26a2ce',
-            className: 'bar',
-            width: "65%"
-        }]
-    };
-    AMO.aggregate_stats_field = {
-        metric: "downloads",
-        name: "count"
-    };
-  </script>
 {% endblock %}

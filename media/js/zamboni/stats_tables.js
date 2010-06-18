@@ -7,9 +7,8 @@
 **/
 
 
-function PageTable(_cfg) {
-    this.tableEl = $(_cfg.el);
-    this.thead = $("<thead></thead>");
+function PageTable(_el) {
+    this.tableEl = $(_el);
     this.paginator = {
         ol: $("<ol class='pagination'></ol>"),
         li: [],
@@ -20,22 +19,40 @@ function PageTable(_cfg) {
     };
     this.pages = [];
     this.currentpage = 0;
-    this.columns = _cfg.columns;
-    this.report = _cfg.report;
-    this._cfg = _cfg;
-    this.page_size = _cfg.page_size || 14;
-
-    //Make a header if necessary
     
-    var tr = $("<tr></tr>");
-    for (var i=0; i<this.columns.length; i++) {
-        var col = this.columns[i];
-        tr.append("<th>" + col.label + "</th>");
-    }
-
-    this.thead.append(tr);
-    this.tableEl.append(this.thead);
-
+    this.format = {
+        date: function (value) {
+            return Highcharts.dateFormat('%a, %b %e, %Y', new Date(value));
+        },
+        number: function (value) {
+            return Highcharts.numberFormat(value, 0);
+        }
+    };
+    
+    var $th = $("thead th", this.tableEl);
+    
+    var columns = [];
+    var barColumns = [];
+    $th.each(function (i, v) {
+        $v = $(v);
+        var col = {};
+        col.field = $v.getData("field");
+        col.format = $v.getData("format");
+        if ($v.getData("bar_column")) {
+            barColumns.push({
+                valueColumn: i+1,
+                barColor: '#26a2ce',
+                className: 'bar',
+                width: $v.getData("bar_width")
+            });
+        }
+        columns.push(col);
+    })
+    this.columns = columns;
+    
+    this.report = AMO.getReportName();
+    this.page_size = 14;
+    
     //Set up paginator
     
     this.paginator.ol.append(this.paginator.prev_li);
@@ -56,17 +73,18 @@ function PageTable(_cfg) {
     
     //Set up a BarTable if needed
     
-    if (_cfg.barColumns) {
+    dbg(barColumns);
+    
+    if (barColumns.length) {
         this.barTable = new BarTable({
             el: this.tableEl,
-            columns: _cfg.barColumns
+            columns: barColumns
         })
     }
 }
 PageTable.prototype.gotoPage = function(num) {
     this.tableEl.parent().addClass("loading");
     if (this.pages[num]) {
-        dbg(num);
         if (num > 0) {
             $("tbody.selected", this.tableEl).removeClass("selected");
             $("li.selected", this.paginator.ol).removeClass("selected");
@@ -112,9 +130,9 @@ PageTable.prototype.addPage = function (data) {
             for (var c=0; c<this.columns.length; c++) {
                 col = this.columns[c];
                 val = AMO.StatsManager.getField(row, col.field);
-                attr = " value='" + val + "'";
+                attr = " data-value='" + val + "'";
                 if (col.format) {
-                    val = col.format(val);
+                    val = this.format[col.format](val);
                 }
                 page.push('<td', attr, '>', val, '</td>');
             }
@@ -130,6 +148,8 @@ PageTable.prototype.addPage = function (data) {
     page = $(page.join(''));
     
     t.lap('done page');
+    
+    console.log(page.html());
     
     this.pages[data.page] = page;
     this.tableEl.append(page);
@@ -204,8 +224,8 @@ BarTable.prototype.render = function(tbody) {
         for (var j=0; j<tds.length; j++) {
             if ($.inArray(j,ignore) < 0) {
                 var td = $(tds[j]);
-                if (td.attr('value')) {
-                    var val = parseFloat(td.attr('value'));
+                if (td.getData('value')) {
+                    var val = parseFloat(td.getData('value'));
                 } else {
                     var val = parseFloat(td.text());
                 }

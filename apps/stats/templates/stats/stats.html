@@ -45,7 +45,10 @@
       Notable Stats and tips will go here.
     </aside>
   </div>
-  <div class="primary statistics">
+  <div class="primary statistics"
+    data-report="{{ report }}"
+    data-addon_id="{{ addon.id }}"
+    >
     {% if true %}
       <div class="custom criteria hidden">
         <form>
@@ -80,15 +83,8 @@
 {% block js %}
 <script>
     (function () {
-        var addon_id = {{ addon.id }};
         var stats_base_url = '{{ stats_base_url }}/';
-        var reportName = '{{ report }}';
-        AMO.getAddonId = function () { return addon_id };
         AMO.getStatsBaseURL = function () { return stats_base_url };
-        AMO.getReportName = function () { return reportName };
-        AMO.getSeriesList = function () { 
-          return AMO.seriesList || {"metric" : reportName, fields : ["count"]};
-        };
     })();
 </script>
 {% block chartconfig %}

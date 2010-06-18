@@ -1,8 +1,97 @@
-// (function () {
+$(document).ready(function () {
+    
+    jQuery.fn.getData = function(name) {
+        return this.attr("data-" + name);
+    };
+
+    var addon_id = $(".primary").getData("addon_id");
+    var reportName = $(".primary").getData("report");
+    AMO.getAddonId = function () { return addon_id };
+    AMO.getReportName = function () { return reportName };
+    AMO.getSeriesList = function () { 
+        return AMO.seriesList || {"metric" : reportName, fields : ["count"]};
+    };
+    
+    t.go();
+    
+    AMO.StatsManager.init();
+    
+    t.lap("StatsManager init");
+
+    var report = AMO.getReportName();
+
+    $("#date-range-start").datepicker();
+    $("#date-range-end").datepicker();
+
+    t.lap("datepicker init");
+
+    var rangeMenu = $(".criteria.range ul");
+
+    rangeMenu.click(function(e) {
+        var $target = $(e.target).parent();
+        var newRange = $target.attr("data-range");
+        var $customRangeForm = $("div.custom.criteria");
+
+        if (newRange) {
+            $(this).children("li.selected").removeClass("selected");
+            $target.addClass("selected");
+
+            if (newRange == "custom") {
+                $customRangeForm.removeClass("hidden").slideDown('fast');
+            } else {
+                $customRangeForm.slideUp('fast');
+                AMO.StatsManager.getSeries(AMO.getSeriesList(), newRange, updateSeries);
+            }
+        }
+        e.preventDefault();
+    });
+
+    $("#date-range-submit").click(function(e) {
+        var start = new Date($("#date-range-start").val());
+        var end = new Date($("#date-range-end").val());
+
+        range = {
+            custom: true,
+            start: start,
+            end: end
+        };
+
+        generateSeries(report, range, updateSeries);
+    });
+
+    t.lap("events init");
+
+    var csv_table_el = $(".csv-table");
+    if (csv_table_el.length) {
+        csvTable = new PageTable(csv_table_el[0]);
+    }
+
+    t.lap("csvtable init");
+    
+
+    LoadBar.on("Loading the latest data&hellip;");
+    //Get initial dataset
+    if (datastore[report] && datastore[report].maxdate) {
+        var fetchStart = datastore[report].maxdate - millis("1 day");
+    } else {
+        var fetchStart = ago("30 days");
+    }
+    AMO.StatsManager._fetchData(report, fetchStart, today(), function () {
+        if (AMO.aggregate_stats_field) {
+            show_aggregate_stats(AMO.aggregate_stats_field, 30);
+        }
+        AMO.StatsManager.getSeries(AMO.getSeriesList(), "30 days", initCharts);
+        LoadBar.off();
+        csvTable.gotoPage(1);
+    });
+
+    //initTopCharts();
+
+});
+
+
 
     var mainChart;
-
-    var _seriesCache = {};
 
     function dayFormatter(x) { return Highcharts.dateFormat('%a, %b %e, %Y', x); }
     function weekFormatter(x) { return Highcharts.dateFormat('%b %e - ', x) + Highcharts.dateFormat('%b %e, %Y', x+7*24*60*60*1000); }
@@ -121,84 +210,6 @@
     }
 
 
-    $(document).ready(function () {
-        
-        t.go();
-        
-        AMO.StatsManager.init();
-        
-        t.lap("StatsManager init");
-
-        var report = AMO.getReportName();
-
-        $("#date-range-start").datepicker();
-        $("#date-range-end").datepicker();
-
-        t.lap("datepicker init");
-
-        var rangeMenu = $(".criteria.range ul");
-
-        rangeMenu.click(function(e) {
-            var $target = $(e.target).parent();
-            var newRange = $target.attr("data-range");
-            var $customRangeForm = $("div.custom.criteria");
-
-            if (newRange) {
-                $(this).children("li.selected").removeClass("selected");
-                $target.addClass("selected");
-
-                if (newRange == "custom") {
-                    $customRangeForm.removeClass("hidden").slideDown('fast');
-                } else {
-                    $customRangeForm.slideUp('fast');
-                    AMO.StatsManager.getSeries(AMO.getSeriesList(), newRange, updateSeries);
-                }
-            }
-            e.preventDefault();
-        });
-
-        $("#date-range-submit").click(function(e) {
-            var start = new Date($("#date-range-start").val());
-            var end = new Date($("#date-range-end").val());
-
-            range = {
-                custom: true,
-                start: start,
-                end: end
-            };
-
-            generateSeries(report, range, updateSeries);
-        });
-
-        t.lap("events init");
-
-
-        if (AMO.csvTableConfig) {
-            csvTable = new PageTable(AMO.csvTableConfig);
-        }
-
-        t.lap("csvtable init");
-        
-
-        LoadBar.on("Loading the latest data&hellip;");
-        //Get initial dataset
-        if (datastore[report] && datastore[report].maxdate) {
-            var fetchStart = datastore[report].maxdate - millis("1 day");
-        } else {
-            var fetchStart = ago("30 days");
-        }
-        AMO.StatsManager._fetchData(report, fetchStart, today(), function () {
-            if (AMO.aggregate_stats_field) {
-                show_aggregate_stats(AMO.aggregate_stats_field, 30);
-            }
-            AMO.StatsManager.getSeries(AMO.getSeriesList(), "30 days", initCharts);
-            LoadBar.off();
-            csvTable.gotoPage(1);
-        });
-
-        //initTopCharts();
-
-    });
 
 // })();
 

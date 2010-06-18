@@ -310,34 +310,34 @@ background:#003595;
  *    bar-chart tables
 **/
 
-.bar-table tbody {
+.csv-table tbody {
     display: none;
 }
-.bar-table tbody.selected {
+.csv-table tbody.selected {
     display: table-row-group;
 }
 
-table.bar-table {
+table.csv-table {
     width: 100%;
 }
-table.bar-table td,
-table.bar-table th {
+table.csv-table td,
+table.csv-table th {
     text-align: right;
 }
-table.bar-table td.bar div {
+table.csv-table td.bar div {
     text-align: right;
     margin: 8px 0;
     line-height: 100%;
     height: 100%;
 }
 
-table.bar-table td.bar,
-table.bar-table th.bar {
+table.csv-table td.bar,
+table.csv-table th.bar {
     border-left: 1px solid #8db9c7;
     padding: 0;
 }
-table.bar-table td:first-child,
-table.bar-table th:first-child {
+table.csv-table td:first-child,
+table.csv-table th:first-child {
     text-align: left;
 }
 
@@ -357,37 +357,37 @@ aside.highlight {
  *  Big table
 **/
 
-table.stats-overview {
+table.stats-aggregate {
     width: 100%;
     margin-top: .5em;
 }
 
-table.stats-overview thead th {
+table.stats-aggregate thead th {
     text-align: right;
     padding-right: 72px;
     line-height: 90%;
 }
 
-table.stats-overview thead th:first-child {
+table.stats-aggregate thead th:first-child {
     text-align: left;
     padding-right: inherit;
 }
 
-table.stats-overview tbody td {
+table.stats-aggregate tbody td {
     line-height: 120%;
     font-size: 140%;
 }
 
-table.stats-overview tbody td.value {
+table.stats-aggregate tbody td.value {
     padding: 5px 0 3 0px;
     text-align: right;
 }
 
-table.stats-overview tbody td.label {
+table.stats-aggregate tbody td.label {
     padding-left: 2px;
 }
 
-table.stats-overview tbody span.change {
+table.stats-aggregate tbody span.change {
     display: block;
     float: right;
     width: 54px;
@@ -397,10 +397,10 @@ table.stats-overview tbody span.change {
     padding-top: 2px;
 }
 
-table.stats-overview tbody span.change.plus {
+table.stats-aggregate tbody span.change.plus {
     color: #00774d;
 }
-table.stats-overview tbody span.change.minus {
+table.stats-aggregate tbody span.change.minus {
     color: #850000;
 }
 
