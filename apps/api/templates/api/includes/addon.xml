@@ -46,7 +46,7 @@
   {%- if api_version >= 1.5 -%}
   <previews>
     {%- for preview in addon.previews.all() -%}
-    <preview primary="{{ preview.highlight }}">
+    <preview primary="{{ preview.highlight|int }}">
       <full type="{{ preview.filetype }}">
         {{ preview.image_url|urlparams(src='api') }}
       </full>
