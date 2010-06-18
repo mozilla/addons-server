@@ -5,6 +5,8 @@
   {{ page_title(_('Privacy Policy for {0}')|f(addon.name)) }}
 {% endblock %}
 
+{% block bodyclass %}policy{% endblock %}
+
 {% set version = addon.current_version %}
 
 {% block content %}
@@ -23,7 +25,7 @@
   </h2>
 </header>
 <h3>{{ _('Privacy Policy') }}</h3>
-<textarea readonly="readonly" cols="80" rows="20">{{ addon.privacy_policy }}</textarea>
+<textarea class="policy-statement" readonly="readonly" cols="80" rows="20">{{ addon.privacy_policy }}</textarea>
 <p class="policy-link">
   <a href ="{{ url('addons.detail', addon.id) }}">
     {{ _('Back to {0}...')|f(addon.name) }}

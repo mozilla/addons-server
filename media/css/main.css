@@ -72,6 +72,10 @@ body.about {
     margin: 1em 0 0;
 }
 
+body.policy header {
+    margin-left: 0;
+}
+
 body.about .section {
     overflow: hidden;
 }
@@ -1109,6 +1113,9 @@ form.favorite {
 .privacy-policy {
     margin-left: 1em;
     margin-top: 0.5em;
+}
+.policy-statement {
+    margin-bottom: 1em;
 }
 
 .prose {

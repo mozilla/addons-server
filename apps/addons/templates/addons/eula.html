@@ -5,6 +5,8 @@
   {{ page_title(_('End-User License Agreement for {0}')|f(addon.name)) }}
 {% endblock %}
 
+{% block bodyclass %}policy{% endblock %}
+
 {% block content %}
 <header>
   {# L10n: EULA stand for End User License Agreement #}
@@ -29,7 +31,7 @@
     {% endtrans %}
   </p>
 </div>
-<textarea readonly="readonly" cols="80" rows="20">{{ addon.eula }}</textarea>
+<textarea class="policy-statement" readonly="readonly" cols="80" rows="20">{{ addon.eula }}</textarea>
 {{ install_button(addon, version=version, show_contrib=False,
                   show_eula=False, show_warning=False) }}
 <p class="policy-link">
