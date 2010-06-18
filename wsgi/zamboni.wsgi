@@ -19,10 +19,10 @@ import django.utils
 
 # Do validate and activate translations like using `./manage.py runserver`.
 # http://blog.dscpl.com.au/2010/03/improved-wsgi-script-for-use-with.html
+django.utils.translation.activate(django.conf.settings.LANGUAGE_CODE)
 utility = django.core.management.ManagementUtility()
 command = utility.fetch_command('runserver')
 command.validate()
-django.utils.translation.activate(django.conf.settings.LANGUAGE_CODE)
 
 # This is what mod_wsgi runs.
 django_app = django.core.handlers.wsgi.WSGIHandler()
