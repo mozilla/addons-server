@@ -1085,7 +1085,8 @@ h4.author a {
 #version-history .oldversion ul.legal li.license {
     background: url(../../img/amo2009/icons/script_code_red.png) left no-repeat;
 }
-#version-history .oldversion ul.legal li.source {
+#version-history .oldversion ul.legal li.source,
+.version a.source-code {
     background: url(../../img/amo2009/icons/page_code.png) left no-repeat;
 }
 

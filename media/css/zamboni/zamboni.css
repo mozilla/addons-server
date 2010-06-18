@@ -5,7 +5,8 @@
 .section:after,
 .notification .aux:after,
 .aux .button-wrapper:after,
-.object-lead .button-wrapper:after {
+.object-lead .button-wrapper:after,
+.article.version:after {
     content: ".";
     display: block;
     clear: both;
@@ -1696,8 +1697,23 @@ form .error .note.error {
     margin-top: .5em;
 }
 
-.version nav.further-navigation{
+.version nav.further-navigation {
+    display: block;
+    padding-top: .5em;
+    margin-top: 1em;
+    clear: right;
+    border-top: 1px dotted #B5D9E5;
+}
+
+.version a.source-code {
+    display: block;
+    margin-top: 1em;
+    padding-left: 20px;
+}
+
+.version a.more-info {
     float:right;
+    margin: 0;
 }
 
 .item.version {
@@ -1711,6 +1727,10 @@ form .error .note.error {
 
 .item.version h5 {
     font-size: 1em;
+}
+
+.article.version {
+    overflow: visible;
 }
 
 .article.version blockquote {

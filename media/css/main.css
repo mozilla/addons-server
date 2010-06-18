@@ -3019,7 +3019,8 @@ ol.pagination + .num-results {
     margin: 1.2em 0;
     padding-top:1px;
 }
-.item blockquote {
+.item blockquote,
+.version blockquote {
     font-style: normal;
     margin: 0;
     margin-bottom: 0.5em;
@@ -3047,7 +3048,8 @@ ol.pagination + .num-results {
     font-weight: normal;
     display:block;
 }
-.item h5 span {
+.item h5 span,
+.version h5 span {
     font-size: 0.857em;
     font-weight:normal;
     white-space: nowrap;
