@@ -1,16 +1,28 @@
 $(document).ready(function () {
     
+    var csvTable;
+    
     jQuery.fn.getData = function(name) {
         return this.attr("data-" + name);
     };
 
-    var addon_id = $(".primary").getData("addon_id");
-    var reportName = $(".primary").getData("report");
-    AMO.getAddonId = function () { return addon_id };
-    AMO.getReportName = function () { return reportName };
+    page_state.addon_id = $(".primary").getData("addon_id");
+    page_state.report_name = $(".primary").getData("report");
+    page_state.data_range = "30 days";
+    page_state.chart_fields = $("#head-chart").getData("series").split(',') || ["count"];
+    
+    
+    var stats_base_url = $(".primary").getData("base_url");
+    AMO.aggregate_stats_field = $(".stats-aggregate").getData("field");
+    AMO.getAddonId = function () { return page_state.addon_id };
+    AMO.getReportName = function () { return page_state.report_name };
     AMO.getSeriesList = function () { 
-        return AMO.seriesList || {"metric" : reportName, fields : ["count"]};
+        return {
+            "metric": page_state.report_name,
+            "fields": page_state.chart_fields
+        }
     };
+    AMO.getStatsBaseURL = function () { return stats_base_url };
     
     t.go();
     
@@ -39,8 +51,13 @@ $(document).ready(function () {
             if (newRange == "custom") {
                 $customRangeForm.removeClass("hidden").slideDown('fast');
             } else {
+                page_state.data_range = newRange;
                 $customRangeForm.slideUp('fast');
-                AMO.StatsManager.getSeries(AMO.getSeriesList(), newRange, updateSeries);
+                AMO.StatsManager.getSeries(AMO.getSeriesList(), page_state.data_range, updateSeries);
+                if (AMO.aggregate_stats_field) {
+                    show_aggregate_stats(AMO.aggregate_stats_field, page_state.data_range);
+                }
+                
             }
         }
         e.preventDefault();
@@ -50,24 +67,53 @@ $(document).ready(function () {
         var start = new Date($("#date-range-start").val());
         var end = new Date($("#date-range-end").val());
 
-        range = {
+        page_state.data_range = {
             custom: true,
             start: start,
             end: end
         };
 
-        generateSeries(report, range, updateSeries);
+        generateSeries(report, page_state.data_range, updateSeries);
     });
 
     t.lap("events init");
 
-    var csv_table_el = $(".csv-table");
-    if (csv_table_el.length) {
-        csvTable = new PageTable(csv_table_el[0]);
-    }
+    if (report == "overview") {
+        
+        page_state.report_name = 'downloads';
+        
+        var series_menu = $("#series-select");
 
-    t.lap("csvtable init");
+        series_menu.click(function(e) {
+            var $target = $(e.target);
+            var new_report = $target.getData("report");
+            var new_series = $target.getData("series");
+            
+            if (new_series && new_report != AMO.getReportName()) {
+                series_menu.children("li.selected").removeClass("selected");
+                $target.parent().addClass("selected");
+                
+                page_state.report_name = new_report;
+                page_state.data_fields = new_series;
+                
+                AMO.StatsManager.getSeries(AMO.getSeriesList(), page_state.data_range, initCharts);
+            }
+            e.preventDefault();
+        });        
+        // generate_top_charts();
+
+        initTopCharts();
+        
+    } else {
     
+        var csv_table_el = $(".csv-table");
+        if (csv_table_el.length) {
+            csvTable = new PageTable(csv_table_el[0]);
+        }
+
+        t.lap("csvtable init");
+    
+    }
 
     LoadBar.on("Loading the latest data&hellip;");
     //Get initial dataset
@@ -76,16 +122,21 @@ $(document).ready(function () {
     } else {
         var fetchStart = ago("30 days");
     }
-    AMO.StatsManager._fetchData(report, fetchStart, today(), function () {
+    t.go("fetching data")
+
+    AMO.StatsManager.getDataRange(AMO.getReportName(), fetchStart, today(), function () {
+        t.lap("building aggregate stats")
+    
         if (AMO.aggregate_stats_field) {
-            show_aggregate_stats(AMO.aggregate_stats_field, 30);
+            show_aggregate_stats(AMO.aggregate_stats_field, page_state.data_range);
         }
+        t.lap("building initial chart stuff")
         AMO.StatsManager.getSeries(AMO.getSeriesList(), "30 days", initCharts);
         LoadBar.off();
-        csvTable.gotoPage(1);
-    });
-
-    //initTopCharts();
+        if (csvTable) {
+            csvTable.gotoPage(1);
+        }
+    }, {force: true});
 
 });
 
@@ -123,14 +174,17 @@ $(document).ready(function () {
     var t = new Timer();
 
     function dbg() {
-        if(window.console && console.log) {
-            console.log(Array.prototype.slice.apply(arguments));
+        if(window.console && window.console.log) {
+            window.console.log(Array.prototype.slice.apply(arguments));
         }
     }
 
     function updateSeries(cfg) {
         for (var i=0; i<cfg.length; i++) {
-            mainChart.get(cfg[i].id).setData(cfg[i].data);
+            var series = mainChart.get(cfg[i].id);
+            if (series) {
+                series.setData(cfg[i].data);
+            }
         }
     }
     
@@ -149,7 +203,9 @@ $(document).ready(function () {
     
 
     function initCharts(cfg) {
-        t.lap("pre-charts");
+        if (mainChart) {
+            mainChart.destroy();
+        }
         mainChart = new Highcharts.Chart({
             chart: {
               renderTo: 'head-chart',
@@ -205,7 +261,6 @@ $(document).ready(function () {
         
            series: cfg
         });
-        t.lap("charts init");
 
     }
 
@@ -285,10 +340,17 @@ function initTopCharts() {
     });
 }
 
-function show_aggregate_stats (field, size) {
-    AMO.StatsManager.getSum(field, ago((size * 3) + ' days'), ago((size * 2 - 1) + ' days'), function(sum_3x_range) {
-        AMO.StatsManager.getSum(field, ago((size * 2) + ' days'), ago((size - 1) + ' days'), function(sum_prev_range) {
-            AMO.StatsManager.getSum(field, ago(size + ' days'), today(), function(sum_range) {
+function show_aggregate_stats (_field, range) {
+    field = {
+        metric: AMO.getReportName(),
+        name: _field
+    }
+    $(".stats-aggregate .range").text("Last " + range);
+    $(".stats-aggregate .prev_range").text("Prior " + range);
+
+    AMO.StatsManager.getSum(field, ago(range, 3), ago(range, 2) + millis("1 day"), function(sum_3x_range) {
+        AMO.StatsManager.getSum(field, ago(range, 2), ago(range) + millis("1 day"), function(sum_prev_range) {
+            AMO.StatsManager.getSum(field, ago(range), today(), function(sum_range) {
 
                 $("#sum_range").text(Highcharts.numberFormat(sum_range, 0));
                 $("#sum_prev_range").text(Highcharts.numberFormat(sum_prev_range, 0));
@@ -297,9 +359,9 @@ function show_aggregate_stats (field, size) {
                 draw_diff($("#sum_prev_diff"), sum_prev_range, sum_3x_range);
                 
                 
-                AMO.StatsManager.getMean(field, ago((size * 3) + ' days'), ago((size * 2 - 1) + ' days'), function(mean_3x_range) {
-                    AMO.StatsManager.getMean(field, ago((size * 2) + ' days'), ago((size - 1) + ' days'), function(mean_prev_range) {
-                        AMO.StatsManager.getMean(field, ago(size + ' days'), today(), function(mean_range) {
+                AMO.StatsManager.getMean(field, ago(range, 3), ago(range, 2) + millis("1 day"), function(mean_3x_range) {
+                    AMO.StatsManager.getMean(field, ago(range, 2), ago(range) + millis("1 day"), function(mean_prev_range) {
+                        AMO.StatsManager.getMean(field, ago(range), today(), function(mean_range) {
                             
                             $("#mean_range").text(Highcharts.numberFormat(mean_range, 0));
                             $("#mean_prev_range").text(Highcharts.numberFormat(mean_prev_range, 0));
@@ -315,4 +377,3 @@ function show_aggregate_stats (field, size) {
         });
     });
 }
-

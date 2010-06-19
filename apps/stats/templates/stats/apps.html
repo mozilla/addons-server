@@ -1,49 +1,33 @@
 {% extends "stats/stats.html" %}
 
-{% block stats %}
+{% block chart_config %}
+  data-series="applications|{ec8030f7-c20a-464f-9b0e-13a3a9e97384}|3.6.3,applications|{ec8030f7-c20a-464f-9b0e-13a3a9e97384}|3.6"
+{% endblock %}
+
+{% block csvtable %}
 <div class="statbox">
   <div class="tabular">
-    <table class="bar-table">
+    <table class="csv-table">
+      <thead>
+        <tr>
+          <th 
+            data-field="date"
+            data-format="date">
+              {{_('Date')}}
+          </th>
+          <th 
+            data-field="applications|{ec8030f7-c20a-464f-9b0e-13a3a9e97384}|3.6.3"
+            data-format="number">
+              {{_('Firefox 3.6.3')}}
+          </th>
+          <th 
+            data-field="applications|{ec8030f7-c20a-464f-9b0e-13a3a9e97384}|3.6"
+            data-format="number">
+              {{_('Firefox 3.6')}}
+          </th>
+        </tr>
+      </thead>
     </table>
   </div>
 </div>
-{% endblock %}
-
-{% block chartconfig %}
-  <script>
-    AMO.seriesList = {
-      metric: "apps",
-      fields: [
-        "applications|{ec8030f7-c20a-464f-9b0e-13a3a9e97384}|3.6.3",
-        "applications|{ec8030f7-c20a-464f-9b0e-13a3a9e97384}|3.6",
-      ]
-    };
-  
-    AMO.csvTableConfig = {
-        el: $("table.bar-table")[0],
-        report: "{{ report }}",
-        columns: [{
-            label: "{{_('Date')}}",
-            field: 'date',
-            format: function (value) {
-                return Highcharts.dateFormat('%a, %b %e, %Y', new Date(value));
-            }
-        },
-        {
-            label: "Firefox 3.6.3",
-            field: 'applications|{ec8030f7-c20a-464f-9b0e-13a3a9e97384}|3.6.3',
-            format: function (value) {
-                return Highcharts.numberFormat(value, 0);
-            }
-        },
-        {
-            label: "Firefox 3.6",
-            field: 'applications|{ec8030f7-c20a-464f-9b0e-13a3a9e97384}|3.6',
-            format: function (value) {
-                return Highcharts.numberFormat(value, 0);
-            }
-        }
-        ]
-    };
-  </script>
 {% endblock %}

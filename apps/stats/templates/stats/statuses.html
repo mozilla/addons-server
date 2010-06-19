@@ -1,66 +1,44 @@
 {% extends "stats/stats.html" %}
 
+{% block chart_config %}
+  data-series="statuses|userEnabled,statuses|userDisabled"
+{% endblock %}
+
 {% block stats %}
 <h3>{{_('Add-on Status by Date')}}</h3>
 <div class="statbox">
   <div class="tabular">
-    <table class="bar-table">
+    <table class="csv-table">
+      <thead>
+        <tr>
+          <th 
+            data-field="date"
+            data-format="date">
+              {{_('Date')}}
+          </th>
+          <th 
+            data-field="statuses|userEnabled"
+            data-format="number">
+              {{_('Enabled')}}
+          </th>
+          <th 
+            data-field="statuses|userDisabled"
+            data-format="number">
+              {{_('Disabled')}}
+          </th>
+          <th 
+            data-field="userEnabled,incompatible"
+            data-format="number">
+              {{_('Enabled (incompatible)')}}
+          </th>
+          <th 
+            data-field="userDisabled,incompatible"
+            data-format="number">
+              {{_('Disabled (incompatible)')}}
+          </th>
+        </tr>
+      </thead>
     </table>
   </div>
 </div>
-{% endblock %}
-
-{% block chartconfig %}
-  <script>
-    AMO.seriesList = {
-      metric: "statuses",
-      fields: [
-        "statuses|userEnabled",
-        "statuses|userDisabled",
-        "statuses|userEnabled,incompatible"
-      ]
-    };
-  
-    AMO.csvTableConfig = {
-        el: $("table.bar-table")[0],
-        report: "{{ report }}",
-        columns: [{
-            label: "{{_('Date')}}",
-            field: 'date',
-            format: function (value) {
-                return Highcharts.dateFormat('%a, %b %e, %Y', new Date(value));
-            }
-        },
-        {
-            label: "{{_('Enabled')}}",
-            field: 'statuses|userEnabled',
-            format: function (value) {
-                return Highcharts.numberFormat(value, 0);
-            }
-        },
-        {
-            label: "{{_('Disabled')}}",
-            field: 'statuses|userDisabled',
-            format: function (value) {
-                return Highcharts.numberFormat(value, 0);
-            }
-        },
-        {
-            label: "{{_('Enabled (Incompatible)')}}",
-            field: 'statuses|userEnabled,incompatible',
-            format: function (value) {
-                return Highcharts.numberFormat(value, 0);
-            }
-        },
-        {
-            label: "{{_('Disabled (Incompatible)')}}",
-            field: 'statuses|userDisabled,incompatible',
-            format: function (value) {
-                return Highcharts.numberFormat(value, 0);
-            }
-        }
-        
-        ]
-    };
-  </script>
 {% endblock %}

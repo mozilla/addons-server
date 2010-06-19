@@ -1,57 +1,39 @@
 {% extends "stats/stats.html" %}
 
-{% block stats %}
+{% block chart_config %}
+  data-series="locales|en-US,locales|es-ES,locales|de"
+{% endblock %}
+
+{% block csvtable %}
 <div class="statbox">
   <div class="tabular">
-    <table class="bar-table">
+    <table class="csv-table">
+      <thead>
+        <tr>
+          <th 
+            data-field="date"
+            data-format="date">
+              {{_('Date')}}
+          </th>
+          <th 
+            data-field="locales|en-US"
+            data-format="number">
+              {{_('English (US)')}}
+          </th>
+          <th 
+            data-field="locales|es-ES"
+            data-format="number">
+              {{_('Spanish')}}
+          </th>
+          <th 
+            data-field="locales|de"
+            data-format="number">
+              {{_('German')}}
+          </th>
+        </tr>
+      </thead>
     </table>
   </div>
 </div>
 {% endblock %}
-
-{% block chartconfig %}
-  <script>
-    AMO.seriesList = {
-      metric: "locales",
-      fields: [
-        "locales|en-US",
-        "locales|es-ES",
-        "locales|de"
-      ]
-    };
   
-    AMO.csvTableConfig = {
-        el: $("table.bar-table")[0],
-        report: "{{ report }}",
-        columns: [{
-            label: "{{_('Date')}}",
-            field: 'date',
-            format: function (value) {
-                return Highcharts.dateFormat('%a, %b %e, %Y', new Date(value));
-            }
-        },
-        {
-            label: "{{_('English (US)')}}",
-            field: 'locales|en-US',
-            format: function (value) {
-                return Highcharts.numberFormat(value, 0);
-            }
-        },
-        {
-            label: "{{_('Spanish')}}",
-            field: 'locales|es-ES',
-            format: function (value) {
-                return Highcharts.numberFormat(value, 0);
-            }
-        },
-        {
-            label: "{{_('German')}}",
-            field: 'locales|de',
-            format: function (value) {
-                return Highcharts.numberFormat(value, 0);
-            }
-        }
-        ]
-    };
-  </script>
-{% endblock %}

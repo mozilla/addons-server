@@ -48,6 +48,7 @@
   <div class="primary statistics"
     data-report="{{ report }}"
     data-addon_id="{{ addon.id }}"
+    data-base_url="{{ stats_base_url }}"
     >
     {% if true %}
       <div class="custom criteria hidden">
@@ -64,31 +65,32 @@
           </select>
           <button id="date-range-submit" type="submit">Update</button>
         </form>
-<!--         <ul><li>From</li><li class="selected"><a>Control 1</a></li></ul> -->
       </div>
     {% endif %}
     <div class="featured">
       <div class="featured-inner chart">
-        <div class="listing-header"><ul><li class="selected">&nbsp;</li></ul></div>
-        <div class="featured-body" id="head-chart" style="background:#fff;height:256px"></div>
+        <div class="listing-header">
+          {% block chart_menu %}
+            <ul><li class="selected">&nbsp;</li></ul>
+          {% endblock %}
+        </div>
+        <div class="featured-body" id="head-chart" style="background:#fff;height:256px"
+          {% block chart_config %}
+          data-series="{{ series_fields }}"
+          {% endblock %}
+          >
+        </div>
       </div>
     </div>
     {% block stats %}
     {% endblock %}
+    
     {% block csvtable %}
     {% endblock %}
   </div>
 {% endblock %}
 
 {% block js %}
-<script>
-    (function () {
-        var stats_base_url = '{{ stats_base_url }}/';
-        AMO.getStatsBaseURL = function () { return stats_base_url };
-    })();
-</script>
-{% block chartconfig %}
-{% endblock %}
 <script src="{{ MEDIA_URL }}js/zamboni/jquery-datepicker.js"></script>
 <script src="{{ MEDIA_URL }}js/zamboni/highcharts.src.js"></script>
 <!--[if IE]>

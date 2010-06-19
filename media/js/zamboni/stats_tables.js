@@ -73,8 +73,6 @@ function PageTable(_el) {
     
     //Set up a BarTable if needed
     
-    dbg(barColumns);
-    
     if (barColumns.length) {
         this.barTable = new BarTable({
             el: this.tableEl,
@@ -148,8 +146,6 @@ PageTable.prototype.addPage = function (data) {
     page = $(page.join(''));
     
     t.lap('done page');
-    
-    console.log(page.html());
     
     this.pages[data.page] = page;
     this.tableEl.append(page);

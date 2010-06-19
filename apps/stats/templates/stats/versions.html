@@ -1,57 +1,38 @@
 {% extends "stats/stats.html" %}
 
-{% block stats %}
+{% block chart_config %}
+  data-series="versions|1.2,versions|1.1,versions|1.0"
+{% endblock %}
+
+{% block csvtable %}
 <div class="statbox">
   <div class="tabular">
-    <table class="bar-table">
+    <table class="csv-table">
+      <thead>
+        <tr>
+          <th 
+            data-field="date"
+            data-format="date">
+              {{_('Date')}}
+          </th>
+          <th 
+            data-field="versions|1.2"
+            data-format="number">
+              {{_('1.2')}}
+          </th>
+          <th 
+            data-field="versions|1.1"
+            data-format="number">
+              {{_('1.1')}}
+          </th>
+          <th 
+            data-field="versions|1.0"
+            data-format="number">
+              {{_('1.0')}}
+          </th>
+        </tr>
+      </thead>
     </table>
   </div>
 </div>
-{% endblock %}
-
-{% block chartconfig %}
-  <script>
-    AMO.seriesList = {
-      metric: "versions",
-      fields: [
-        "versions|1.2",
-        "versions|1.1",
-        "versions|1.0"
-      ]
-    };
-  
-    AMO.csvTableConfig = {
-        el: $("table.bar-table")[0],
-        report: "{{ report }}",
-        columns: [{
-            label: "{{_('Date')}}",
-            field: 'date',
-            format: function (value) {
-                return Highcharts.dateFormat('%a, %b %e, %Y', new Date(value));
-            }
-        },
-        {
-            label: "1.2",
-            field: 'versions|1.2',
-            format: function (value) {
-                return Highcharts.numberFormat(value, 0);
-            }
-        },
-        {
-            label: "1.1",
-            field: 'versions|1.1',
-            format: function (value) {
-                return Highcharts.numberFormat(value, 0);
-            }
-        },
-        {
-            label: "1.0",
-            field: 'versions|1.0',
-            format: function (value) {
-                return Highcharts.numberFormat(value, 0);
-            }
-        }
-        ]
-    };
-  </script>
-{% endblock %}
+{% endblock %}3

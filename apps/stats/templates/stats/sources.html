@@ -1,57 +1,38 @@
 {% extends "stats/stats.html" %}
 
-{% block stats %}
+{% block chart_config %}
+  data-series="sources|api,sources|search,sources|collection"
+{% endblock %}
+
+{% block csvtable %}
 <div class="statbox">
   <div class="tabular">
-    <table class="bar-table">
+    <table class="csv-table">
+      <thead>
+        <tr>
+          <th 
+            data-field="date"
+            data-format="date">
+              {{_('Date')}}
+          </th>
+          <th 
+            data-field="sources|api"
+            data-format="number">
+              {{_('API')}}
+          </th>
+          <th 
+            data-field="sources|search"
+            data-format="number">
+              {{_('Search')}}
+          </th>
+          <th 
+            data-field="sources|collection"
+            data-format="number">
+              {{_('Collections')}}
+          </th>
+        </tr>
+      </thead>
     </table>
   </div>
 </div>
-{% endblock %}
-
-{% block chartconfig %}
-  <script>
-    AMO.seriesList = {
-      metric: "sources",
-      fields: [
-        "sources|api",
-        "sources|search",
-        "sources|collection"
-      ]
-    };
-  
-    AMO.csvTableConfig = {
-        el: $("table.bar-table")[0],
-        report: "{{ report }}",
-        columns: [{
-            label: "{{_('Date')}}",
-            field: 'date',
-            format: function (value) {
-                return Highcharts.dateFormat('%a, %b %e, %Y', new Date(value));
-            }
-        },
-        {
-            label: "{{_('API')}}",
-            field: 'sources|api',
-            format: function (value) {
-                return Highcharts.numberFormat(value, 0);
-            }
-        },
-        {
-            label: "{{_('Search')}}",
-            field: 'sources|search',
-            format: function (value) {
-                return Highcharts.numberFormat(value, 0);
-            }
-        },
-        {
-            label: "{{_('Collection')}}",
-            field: 'sources|collection',
-            format: function (value) {
-                return Highcharts.numberFormat(value, 0);
-            }
-        }
-        ]
-    };
-  </script>
 {% endblock %}

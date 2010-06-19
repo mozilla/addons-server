@@ -1,10 +1,33 @@
 {% extends "stats/stats.html" %}
 
+{% block chart_config %}
+  data-series="count"
+{% endblock %}
+
+{% block chart_menu %}
+  <ul id='series-select'>
+    <li class="selected">
+      <a href="#"
+         data-report='downloads'
+         data-series='count'>
+            {{_('Downloads')}}
+      </a>
+    </li>
+    <li>
+      <a href="#"
+         data-report='usage'
+         data-series='count'>
+            {{_('Daily Users')}}
+      </a>
+    </li>
+  </ul>
+{% endblock %}
+
 {% block stats %}
     <div class="featured">
       <div class="featured-inner three-up">
-        <div><a href="#">850,749 Downloads</a><br/><small>16,534 in last 30 days</small></div>
-        <div><a href="#">672,501 Daily Users</a><br/><small>634,475 in last 30 days</small></div>
+        <div><a href="#">{{ addon.total_downloads|numberfmt }} Downloads</a><br/><small>16,534 in last 30 days</small></div>
+        <div><a href="#">{{ addon.average_daily_users|numberfmt }} Daily Users</a><br/><small>634,475 in last 30 days</small></div>
         <div><a href="#">$956.00 Contributed</a><br/><small>$83.00 in last 30 days</small></div>
       </div>
     </div>
