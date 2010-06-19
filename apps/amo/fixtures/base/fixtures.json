@@ -2721,6 +2721,24 @@
         }
     },
     {
+        "pk": 60,
+        "model": "applications.application",
+        "fields": {
+            "guid": "{a23983c0-fd0e-11dc-95ff-0800200c9a66}",
+            "modified": "2008-10-28 18:25:09",
+            "created": "2008-10-28 18:25:09"
+        }
+    },
+    {
+        "pk": 59,
+        "model": "applications.application",
+        "fields": {
+            "guid": "{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}",
+            "modified": "2008-06-17 08:29:01",
+            "created": "2007-03-05 13:09:26"
+        }
+    },
+    {
         "pk": 592,
         "model": "addons.addon",
         "fields": {

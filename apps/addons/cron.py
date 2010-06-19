@@ -159,12 +159,13 @@ def addon_last_updated():
 @cronjobs.register
 def update_addon_appsupport():
     # Find all the add-ons that need their app support details updated.
-    no_versions = (Q(status=amo.STATUS_LISTED) |
-                   Q(type__in=[amo.ADDON_PERSONA, amo.ADDON_SEARCH]))
+    no_versions = Q(status=amo.STATUS_LISTED) | Q(type=amo.ADDON_PERSONA)
     newish = (Q(last_updated__gte=F('appsupport__created')) |
               Q(appsupport__created__isnull=True))
+    # Search providers don't list supported apps.
+    has_app = Q(versions__apps__isnull=False) | Q(type=amo.ADDON_SEARCH)
     ids = (Addon.objects.valid().no_cache().exclude(no_versions).distinct()
-           .filter(newish, versions__apps__isnull=False,
+           .filter(newish, has_app,
                    versions__files__status__in=amo.VALID_STATUSES)
            .values_list('id', flat=True))
 
@@ -173,7 +174,7 @@ def update_addon_appsupport():
             _update_appsupport.apply_async(args=[chunk], connection=conn)
 
 
-@task(rate_limit='20/m')
+@task(rate_limit='30/m')
 @transaction.commit_manually
 def _update_appsupport(ids, **kw):
     task_log.debug('Updating appsupport for %r' % ids)
