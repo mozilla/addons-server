@@ -1617,6 +1617,10 @@ form.favorite {
     position: relative;
 }
 
+.notification .button-wrapper > * {
+    vertical-align: top;
+}
+
 .notification h3 {
     font-style: italic;
     font-weight: normal;
@@ -1630,7 +1634,7 @@ form.favorite {
 }
 
 .notification .continue {
-    margin:0 0.5em 0 1em;
+    margin: 0 1em 0 1em;
 }
 
 .html-rtl .notification .continue {
