@@ -4,6 +4,6 @@ from . import views
 
 urlpatterns = patterns('',
     url('^$', views.version_list, name='addons.versions'),
-    url('^(?P<version_id>\d+)$', views.version_detail,
+    url('^(?P<version_num>[^/]+)$', views.version_detail,
         name='addons.versions'),
 )

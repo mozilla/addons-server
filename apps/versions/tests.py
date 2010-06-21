@@ -1,4 +1,5 @@
 from nose.tools import eq_
+from pyquery import PyQuery
 import test_utils
 
 import amo
@@ -134,7 +135,7 @@ class TestViews(test_utils.TestCase):
     def test_version_detail(self):
         base = '/en-US/firefox/addon/11730/versions/'
         a = Addon.objects.get(id=11730)
-        urls = [(v.id, reverse('addons.versions', args=[a.id, v.id]))
+        urls = [(v.version, reverse('addons.versions', args=[a.id, v.version]))
                 for v in a.versions.all()]
 
         version, url = urls[0]
@@ -148,3 +149,12 @@ class TestViews(test_utils.TestCase):
     def test_version_detail_404(self):
         r = self.client.get(reverse('addons.versions', args=[11730, 2]))
         eq_(r.status_code, 404)
+
+    def test_version_link(self):
+        addon = Addon.objects.get(id=11730)
+        version = addon.current_version.version
+        url = reverse('addons.versions', args=[addon.id])
+        doc = PyQuery(self.client.get(url).content)
+        link = doc('.version h3 > a').attr('href')
+        eq_(link, reverse('addons.versions', args=[addon.id, version]))
+        eq_(doc('.version').attr('id'), 'version-%s' % version)
