@@ -77,11 +77,11 @@ class TestUserProfile(test.TestCase):
         """
         u = UserProfile(id=1234, picture_type='image/png',
                         modified=date.today())
-        u.picture_url.index('/userpics/0/1/1234.jpg?modified=')
+        u.picture_url.index('/userpics/0/1/1234.png?modified=')
 
         u = UserProfile(id=1234567890, picture_type='image/png',
                         modified=date.today())
-        u.picture_url.index('/userpics/1234/1234567/1234567890.jpg?modified=')
+        u.picture_url.index('/userpics/1234/1234567/1234567890.png?modified=')
 
         u = UserProfile(id=1234, picture_type=None)
         assert u.picture_url.endswith('/anon_user.png')
