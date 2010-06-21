@@ -22,6 +22,7 @@ class ButtonTest(object):
         self.addon.is_unreviewed.return_value = False
         self.addon.has_eula = False
         self.addon.status = amo.STATUS_PUBLIC
+        self.addon.id = 2
 
         self.version = v = Mock()
         v.is_unreviewed = False
@@ -283,7 +284,7 @@ class TestButton(ButtonTest):
         b.show_contrib = True
         text, url, _ = b.file_details(file)
         eq_(text, 'Continue to Download&nbsp;&rarr;')
-        eq_(url, 'meet.dev?eula=')
+        eq_(url, '/addon/2/contribute/roadblock/?eula=')
 
     def test_file_details_unreviewed(self):
         file = self.get_file(amo.PLATFORM_ALL)
