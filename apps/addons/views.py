@@ -61,30 +61,6 @@ def addon_detail(request, addon_id):
                 'addons.detail', args=[addon.id]))
 
 
-def contribute_installed(request, addon_id):
-    """Add-ons details page dispatcher."""
-    addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
-    # other add-ons from the same author(s)
-    author_addons = order_by_translation(addon.authors_other_addons, 'name')
-    data = {
-        'addon': addon,
-        'author_addons': author_addons,
-    }
-    return jingo.render(request, 'addons/contribute_installed.html', data)
-
-
-def contribute_roadblock(request, addon_id, extra=None):
-    addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
-
-    # other add-ons from the same author(s)
-    author_addons = order_by_translation(addon.authors_other_addons, 'name')
-    data = {
-      'addon': addon,
-      'author_addons': author_addons,
-    }
-    return jingo.render(request, 'addons/contribute_roadblock.html', data)
-
-
 def extension_detail(request, addon):
     """Extensions details page."""
 
@@ -415,13 +391,9 @@ def privacy(request, addon_id):
     return jingo.render(request, 'addons/privacy.html', {'addon': addon})
 
 
-def meet_the_developer(request, addon_id, extra=None):
+def developers(request, addon_id, page):
     addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
-
-    # other add-ons from the same author(s)
     author_addons = order_by_translation(addon.authors_other_addons, 'name')
-    data = {
-      'addon': addon,
-      'author_addons': author_addons,
-    }
-    return jingo.render(request, 'addons/meet_the_developer.html', data)
+    return jingo.render(request, 'addons/developers.html',
+                        {'addon': addon, 'author_addons': author_addons,
+                         'page': page})

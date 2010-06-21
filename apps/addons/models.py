@@ -179,9 +179,8 @@ class Addon(amo.models.ModelBase):
     def get_url_path(self):
         return reverse('addons.detail', args=(self.id,))
 
-    def meet_the_dev_url(self, extra=None):
-        args = [self.id, extra] if extra else [self.id]
-        return reverse('addons.meet', args=args)
+    def meet_the_dev_url(self):
+        return reverse('addons.meet', args=[self.id])
 
     @property
     def reviews_url(self):

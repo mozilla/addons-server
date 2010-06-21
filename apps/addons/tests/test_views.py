@@ -101,7 +101,7 @@ class TestContributeInstalled(test_utils.TestCase):
 
     def test_no_header_block(self):
         # bug 565493, Port post-install contributions page
-        response = self.client.get(reverse('contribute.installed', args=[592]),
+        response = self.client.get(reverse('addons.installed', args=[592]),
                                    follow=True)
         doc = pq(response.content)
         header = doc('#header')

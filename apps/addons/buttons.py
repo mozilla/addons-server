@@ -153,7 +153,7 @@ class InstallButton(object):
             # The eula doesn't exist or has been hit already.
 			# L10n: please keep &nbsp; in the string so the &rarr; does not wrap
             text = _('Continue to Download&nbsp;&rarr;')
-            roadblock = self.addon.meet_the_dev_url(extra='roadblock')
+            roadblock = reverse('addons.roadblock', args=[self.addon.id])
             url = urlparams(roadblock, eula='')
 
         return text, url, os
