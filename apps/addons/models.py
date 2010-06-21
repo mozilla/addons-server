@@ -152,6 +152,11 @@ class Addon(amo.models.ModelBase):
                                         nullify_invalid=True,
                                         blank=True, null=True,
                                         help_text="Requested donation amount.")
+
+    total_contributions = DecimalCharField(max_digits=8, decimal_places=2,
+                                           nullify_invalid=True, blank=True,
+                                           null=True)
+
     annoying = models.PositiveIntegerField(choices=CONTRIB_CHOICES, default=0)
     enable_thankyou = models.BooleanField(default=False,
         help_text="Should the thankyou note be sent to contributors?")

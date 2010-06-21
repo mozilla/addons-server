@@ -1,11 +1,12 @@
-from django import test
+import test_utils
 from nose.tools import eq_
 
-from stats.cron import _update_global_totals
-from stats.models import GlobalStat
+from addons.models import Addon
+from stats import tasks
+from stats.models import GlobalStat, Contribution
 
 
-class TestGlobalStats(test.TestCase):
+class TestGlobalStats(test_utils.TestCase):
 
     fixtures = ['stats/test_models']
 
@@ -16,6 +17,31 @@ class TestGlobalStats(test.TestCase):
 
         eq_(GlobalStat.objects.no_cache().filter(date=date,
                                                  name=job).count(), 0)
-        _update_global_totals(job, date)
-        eq_(GlobalStat.objects.no_cache().filter(date=date,
-                                                 name=job).count(), 1)
+        tasks.update_global_totals(job, date)
+        eq_(len(GlobalStat.objects.no_cache().filter(date=date,
+                                                 name=job)), 1)
+
+
+class TestTotalContributions(test_utils.TestCase):
+    fixtures = ['base/fixtures']
+
+    def test_total_contributions(self):
+
+        c = Contribution()
+        c.addon_id = 3615
+        c.amount = '9.99'
+        c.save()
+
+        tasks.addon_total_contributions(3615)
+        a = Addon.objects.no_cache().get(pk=3615)
+        eq_(float(a.total_contributions), 9.99)
+
+        c = Contribution()
+        c.addon_id = 3615
+        c.amount = '10.00'
+        c.save()
+
+        tasks.addon_total_contributions(3615)
+        a = Addon.objects.no_cache().get(pk=3615)
+        eq_(float(a.total_contributions), 19.99)
+
