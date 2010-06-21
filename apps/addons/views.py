@@ -238,6 +238,7 @@ def persona_detail(request, addon):
         'user_tags': user_tags,
         # Remora users persona.author despite there being a display_username
         'author_gallery': settings.PERSONAS_USER_ROOT % persona.author,
+        'search_cat': 'personas',
     }
 
     return jingo.render(request, 'addons/personas_detail.html', data)

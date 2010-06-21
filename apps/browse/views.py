@@ -6,7 +6,7 @@ from django.http import HttpResponse, HttpResponsePermanentRedirect
 from django.shortcuts import get_object_or_404
 from django.views.decorators.cache import cache_page
 
-from tower import ugettext as _, ugettext_lazy as _lazy
+from tower import ugettext_lazy as _lazy
 import jingo
 import product_details
 
@@ -253,7 +253,7 @@ def personas(request, category=None):
         count = base.with_index(addons='type_status_inactive_idx').count()
     addons = amo.utils.paginate(request, filter.qs, 30, count=count)
 
-    search_cat = '%s,%s' % (TYPE, category.id if category else 0)
+    search_cat = 'personas'
 
     return jingo.render(request, 'browse/personas/' + template,
                         {'categories': categories, 'category': category,

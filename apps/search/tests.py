@@ -75,7 +75,8 @@ def test_parse_bad_type():
                        "nonexistent addon type.")
 
 
-class SphinxTestCase(amo.test_utils.ExtraSetup, test_utils.TransactionTestCase):
+class SphinxTestCase(amo.test_utils.ExtraSetup,
+                     test_utils.TransactionTestCase):
     """
     This test case type can setUp and tearDown the sphinx daemon.  Use this
     when testing any feature that requires sphinx.
@@ -126,6 +127,7 @@ query = lambda *args, **kwargs: SearchClient().query(*args, **kwargs)
 cquery = lambda *args, **kwargs: CollectionsClient().query(*args, **kwargs)
 pquery = lambda *args, **kwargs: PersonasClient().query(*args, **kwargs)
 
+
 @mock.patch('search.client.sphinx.SphinxClient')
 def test_sphinx_timeout(sphinx_mock):
     def sphinx_error(cls):  # pragma: no cover
@@ -135,7 +137,8 @@ def test_sphinx_timeout(sphinx_mock):
     sphinx_mock._limit = 10
     sphinx_mock._offset = 0
     sphinx_mock.return_value = sphinx_mock
-    sphinx_mock.RunQueries.side_effect = lambda *a: sphinx_error(socket.timeout)
+    sphinx_mock.RunQueries.side_effect = lambda *a: sphinx_error(
+            socket.timeout)
     assert_raises(SearchError, query, 'xxx')
 
     sphinx_mock.RunQueries.side_effect = lambda *a: sphinx_error(Exception)
@@ -335,7 +338,7 @@ class PersonaSearchTest(SphinxTestCase):
                 'Personas Search Results :: Add-ons for Firefox')
         eq_(len(doc('.secondary .categories h3')), 1)
         eq_(doc('.primary h3').text(), '1 Persona')
-        eq_(len(doc('.persona-preview')), 1 )
+        eq_(len(doc('.persona-preview')), 1)
         eq_(doc('.thumbnails h4').text(), 'My Persona')
         eq_(doc('.thumbnails em').text(), '55 active daily users')
 
@@ -477,7 +480,8 @@ class ViewTest(test_utils.TestCase):
 
         # Select an addon type.
         atype = cats[0].type
-        items = views._get_categories(self.fake_request, cats, addon_type=atype)
+        items = views._get_categories(self.fake_request, cats,
+                                      addon_type=atype)
         assert any((i.selected for i in items))
 
     def test_get_tags(self):
@@ -486,15 +490,26 @@ class ViewTest(test_utils.TestCase):
 
 
 class TestSearchForm(test_utils.TestCase):
-    fixtures = ['base/fixtures']
+    fixtures = ['base/fixtures', 'addons/persona']
 
     def test_get_app_versions(self):
         actual = forms.get_app_versions(amo.FIREFOX)
         expected = [('any', 'Any'), ('3.7', '3.7'), ('3.6', '3.6'),
-                    ('3.5', '3.5'), ('3.0', '3.0'),]
+                    ('3.5', '3.5'), ('3.0', '3.0'), ]
 
         # So you added a new appversion and this broke?  Sorry about that.
         eq_(actual, expected)
+
+    def test_personas_selected(self):
+        r = self.client.get(reverse('browse.personas'), follow=True)
+        doc = pq(r.content)
+        eq_(doc('#cat option:selected').val(), 'personas')
+
+        # detail page
+        r = self.client.get(reverse('addons.detail', args=[15663]),
+                            follow=True)
+        doc = pq(r.content)
+        eq_(doc('#cat option:selected').val(), 'personas')
 
 
 def test_showing_helper():
