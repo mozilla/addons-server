@@ -2,9 +2,9 @@
 
 {% block title %}
 {% if page == "installed" %}
-  {{ page_title(_('Meet the {0} Developer')|f(addon.name)) }}
-{% else %}
   {{ page_title( _('Thank you for installing {0}')|f(addon.name)) }}
+{% else %}
+  {{ page_title(_('Meet the {0} Developer')|f(addon.name)) }}
 {% endif %}
 {% endblock %}
 

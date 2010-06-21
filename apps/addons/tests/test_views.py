@@ -110,6 +110,25 @@ class TestContributeInstalled(test_utils.TestCase):
         eq_(header, [])
         eq_(aux_header, [])
 
+    def test_title(self):
+        r = self.client.get(reverse('addons.installed', args=[592]))
+        title = pq(r.content)('title').text()
+        eq_(title[:37], 'Thank you for installing Gmail S/MIME')
+
+
+class TestDeveloperPages(test_utils.TestCase):
+    fixtures = ['base/fixtures']
+
+    def test_meet_the_dev_title(self):
+        r = self.client.get(reverse('addons.meet', args=[592]))
+        title = pq(r.content)('title').text()
+        eq_(title[:31], 'Meet the Gmail S/MIME Developer')
+
+    def test_roadblock_title(self):
+        r = self.client.get(reverse('addons.meet', args=[592]))
+        title = pq(r.content)('title').text()
+        eq_(title[:31], 'Meet the Gmail S/MIME Developer')
+
 
 class TestDetailPage(test_utils.TestCase):
     fixtures = ['base/fixtures', 'base/addon_59.json', 'addons/listed',
