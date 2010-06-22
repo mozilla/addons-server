@@ -5,21 +5,18 @@
 {% block bodyclass %}inverse{% endblock %}
 
 {% block content %}
-<header>
-  {{ breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
-                  (None, addon.name)]) }}
+{{ breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]), (None, addon.name)]) }}
 
-  <hgroup>
-    <h2 class="addon"{{ addon.name|locale_html }}>
-      <img src="{{ addon.icon_url }}" class="icon"/>
-      <span>
-        {{ addon.name }}
-      </span>
-    </h2>
-    <h4 class="author">{{ _('by') }} {{ users_list(addon.listed_authors) or
-      persona.display_username }}</h4>
-  </hgroup>
-</header>
+<hgroup>
+  <h2 class="addon"{{ addon.name|locale_html }}>
+    <img src="{{ addon.icon_url }}" class="icon"/>
+    <span>
+      {{ addon.name }}
+    </span>
+  </h2>
+  <h4 class="author">{{ _('by') }} {{ users_list(addon.listed_authors) or
+    persona.display_username }}</h4>
+</hgroup>
 
 <div id="persona" class="primary" role="main">
   <div class="featured">
