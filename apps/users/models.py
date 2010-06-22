@@ -79,8 +79,8 @@ class UserProfile(amo.models.ModelBase):
 
     @amo.cached_property
     def addons_listed(self):
-        """public add-ons this user is listed as author of"""
-        return self.addons.valid().filter(addonuser__listed=True)
+        """Public add-ons this user is listed as author of."""
+        return self.addons.valid().filter(addonuser__listed=True).distinct()
 
     @property
     def name(self):

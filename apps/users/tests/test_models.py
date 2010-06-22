@@ -7,7 +7,7 @@ from django.core import mail
 
 from nose.tools import eq_
 
-from addons.models import Addon
+from addons.models import Addon, AddonUser
 from reviews.models import Review
 from users.models import UserProfile, get_hexdigest
 
@@ -107,6 +107,13 @@ class TestUserProfile(test.TestCase):
             'Original review must show up in review list.')
         assert new_reply.pk not in review_list, (
             'Developer reply must not show up in review list.')
+
+    def test_addons_listed(self):
+        """Make sure we're returning distinct add-ons."""
+        AddonUser.objects.create(addon_id=3615, user_id=2519, listed=True)
+        u = UserProfile.objects.get(id=2519)
+        addons = u.addons_listed.values_list('id', flat=True)
+        eq_(sorted(addons), [3615, 4664])
 
 
 class TestPasswords(test.TestCase):
