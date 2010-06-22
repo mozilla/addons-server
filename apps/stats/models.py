@@ -234,6 +234,14 @@ class Contribution(caching.base.CachingMixin, models.Model):
             del(self.post_data['payer_email'])
             self.save()
 
+    @staticmethod
+    def post_save(sender, instance, **kwargs):
+        from . import tasks
+        tasks.addon_total_contributions.delay([instance.addon_id])
+
+
+models.signals.post_save.connect(Contribution.post_save, sender=Contribution)
+
 
 class SubscriptionEvent(ModelBase):
     """Save subscription info for future processing."""
