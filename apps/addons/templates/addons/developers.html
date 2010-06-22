@@ -96,37 +96,45 @@
 
 {% else %}{# multiple authors  #}
 
-  <div class="primary featured section-teaser">
-    <div class="featured-inner inverse">
-      <div class="teaser-header">
-        <ol>
+  {% if page == "installed" and addon.takes_contributions %}
+    {{ contrib }}
+  {% endif %}
+  <div class="primary">
+    {% if page != "installed" and addon.takes_contributions %}
+      {{ contrib }}
+    {% endif %}
+    <div class="featured section-teaser">
+      <div class="featured-inner inverse">
+        <div class="teaser-header">
+          <ol>
+            {% for author in authors %}
+              <li>
+                <a href="#t-author-{{ author.id }}">{{ author.display_name }}</a>
+              </li>
+            {% endfor %}
+          </ol>
+        </div>
+        <ol class="teaser-items no-autorotate">
           {% for author in authors %}
-            <li>
-              <a href="#t-author-{{ author.id }}">{{ author.display_name }}</a>
+            <li class="vcard" id="t-author-{{ author.id }}">
+              <div class="secondary">
+                <img class="avatar photo-large photo" alt=""
+                     src="{{ author.picture_url }}"/>
+              </div>
+              <div class="primary">
+                <h3>{{ author.display_name }}</h3>
+                <p class="intro">{{ author.bio }}</p>
+                {% with profile = author, about_addons = True,
+                        table_class = 'person-info' %}
+                  {% include "users/vcard.html" %}
+                {% endwith %}
+              </div>
             </li>
           {% endfor %}
         </ol>
       </div>
-      <ol class="teaser-items no-autorotate">
-        {% for author in authors %}
-          <li class="vcard" id="t-author-{{ author.id }}">
-            <div class="secondary">
-              <img class="avatar photo-large photo" alt=""
-                   src="{{ author.picture_url }}"/>
-            </div>
-            <div class="primary">
-              <h3>{{ author.display_name }}</h3>
-              <p class="intro">{{ author.bio }}</p>
-              {% with profile = author, about_addons = True,
-                      table_class = 'person-info' %}
-                {% include "users/vcard.html" %}
-              {% endwith %}
-            </div>
-          </li>
-        {% endfor %}
-      </ol>
-    </div>
-  </div>  {# featured #}
+    </div>  {# featured #}
+  </div>  {# primary #}
   {% if author_addons %}
     <div role="complementary" class="secondary">
       {% with other_addon_class = "secondary-item-list" %}

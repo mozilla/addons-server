@@ -140,6 +140,12 @@ class TestDeveloperPages(test_utils.TestCase):
         button = pq(r.content)('.install-button a.button').attr('href')
         assert button.endswith('?src=addondetail'), button
 
+    def test_contribute_multiple_devs(self):
+        r = self.client.get(reverse('addons.meet', args=[592]))
+        # Make sure it has multiple devs.
+        assert pq(r.content)('.section-teaser')
+        assert pq(r.content)('#contribute-button')
+
 
 class TestDetailPage(test_utils.TestCase):
     fixtures = ['base/fixtures', 'base/addon_59.json', 'addons/listed',
