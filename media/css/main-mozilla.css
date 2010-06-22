@@ -1013,8 +1013,7 @@ h4.author a {
     clear: right;
 }
 
-#persona-summary table caption,
-#addon-summary table caption {
+table caption {
     position: absolute;
     top: -1000px;
 }
