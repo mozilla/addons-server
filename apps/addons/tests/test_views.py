@@ -117,7 +117,7 @@ class TestContributeInstalled(test_utils.TestCase):
 
 
 class TestDeveloperPages(test_utils.TestCase):
-    fixtures = ['base/fixtures']
+    fixtures = ['base/fixtures', 'addons/eula+contrib-addon']
 
     def test_meet_the_dev_title(self):
         r = self.client.get(reverse('addons.meet', args=[592]))
@@ -128,6 +128,17 @@ class TestDeveloperPages(test_utils.TestCase):
         r = self.client.get(reverse('addons.meet', args=[592]))
         title = pq(r.content)('title').text()
         eq_(title[:31], 'Meet the Gmail S/MIME Developer')
+
+    def test_meet_the_dev_src(self):
+        r = self.client.get(reverse('addons.meet', args=[11730]))
+        button = pq(r.content)('.install-button a.button').attr('href')
+        assert button.endswith('?src=developers'), button
+
+    def test_roadblock_src(self):
+        url = reverse('addons.roadblock', args=[11730]) + '?src=addondetail'
+        r = self.client.get(url)
+        button = pq(r.content)('.install-button a.button').attr('href')
+        assert button.endswith('?src=addondetail'), button
 
 
 class TestDetailPage(test_utils.TestCase):
