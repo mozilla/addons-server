@@ -21,7 +21,10 @@ from .forms import DiscoveryModuleForm
 from .modules import registry as module_registry
 
 
-def pane(request, platform, version):
+def pane(request, version, platform):
+    if 'pre' not in version:
+        return jingo.render(request, 'addons/discovery.html')
+
     def from_api(list_type):
         r = api_view(request, platform, version, list_type)
         return json.loads(r.content)
