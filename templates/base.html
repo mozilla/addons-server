@@ -27,12 +27,19 @@
         data-app="{{ request.APP.short }}"
         data-appname="{{ request.APP.pretty }}"
         data-appid="{{ request.APP.id }}"
-        data-anonymous="{{ request.user.is_authenticated() and 'false' or 'true' }}"
+        data-anonymous="{{ (not request.user.is_authenticated())|json }}"
+        data-readonly="{{ settings.READ_ONLY|json }}"
         data-media-url="{{ MEDIA_URL }}">
 
-    {% if request.ADMIN_MESSAGE %}
+    {% if request.ADMIN_MESSAGE or settings.READ_ONLY%}
       <div id="site-notice">
-        <p>{{ request.ADMIN_MESSAGE }}</p>
+        {% if request.ADMIN_MESSAGE %}
+          <p>{{ request.ADMIN_MESSAGE }}</p>
+        {% endif %}
+        {% if settings.READ_ONLY %}
+          <p>{{ _("Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly.") }}</p>
+        {% endif %}
+      </div>
       </div>
     {% endif %}
     <div class="section">
@@ -66,7 +73,9 @@
                 </ul>
               </li>
             </ul>
-            {% include "user_login.html" %}
+            {% if not settings.READ_ONLY %}
+              {% include "user_login.html" %}
+            {% endif %}
           </div>
         </div>
       {% endblock site_header %}

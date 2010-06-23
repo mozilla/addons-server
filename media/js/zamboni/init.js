@@ -30,6 +30,12 @@ $(document).ready(function(){
 
     // Set up advanced search box.
     z.searchBox();
+
+    if (true || z.readonly) {
+        $('form[method=post]')
+            .before(gettext('This feature is temporarily disabled while we perform website maintenance. Please check back a little later.'))
+            .find('input, button, select').attr('disabled', true);
+    }
 });
 
 
@@ -167,3 +173,5 @@ z.appMatchesUserAgent = z.browser[z.app];
 z.anonymous = JSON.parse(document.body.getAttribute('data-anonymous'))
 
 z.media_url = document.body.getAttribute('data-media-url');
+
+z.readonly = JSON.parse(document.body.getAttribute('data-readonly'))
