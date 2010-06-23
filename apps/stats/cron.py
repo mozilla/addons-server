@@ -1,13 +1,13 @@
 import datetime
 
+from django.db.models import Sum, Max
+
 import commonware.log
-from celery.decorators import task
 from celery.messaging import establish_connection
 
 import cronjobs
 from amo.utils import chunked
 from addons.models import Addon
-from bandwagon.models import CollectionAddon
 from .models import (AddonCollectionCount, CollectionCount,
                      UpdateCount)
 from . import tasks
@@ -46,10 +46,11 @@ def update_global_totals(date=None):
     """Update global statistics totals."""
 
     today = date or datetime.date.today()
-    today_jobs = [dict(job=job, date=today) for job in _get_daily_jobs()]
+    today_jobs = [dict(job=job, date=today) for job in tasks._get_daily_jobs()]
 
     max_update = date or UpdateCount.objects.aggregate(max=Max('date'))['max']
-    metrics_jobs = [dict(job=job, date=max_update) for job in _get_metrics_jobs()]
+    metrics_jobs = [dict(job=job, date=max_update) for job in
+                    tasks._get_metrics_jobs()]
 
     with establish_connection() as conn:
         for kw in today_jobs + metrics_jobs:
