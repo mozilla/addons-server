@@ -447,6 +447,7 @@ CAKE_SESSION_TIMEOUT = 8640
 
 # PayPal Settings
 PAYPAL_CGI_URL = 'https://www.paypal.com/cgi-bin/webscr'
+PAYPAL_BN = ''
 
 # Email settings
 DEFAULT_FROM_EMAIL = "Mozilla Add-ons <nobody@mozilla.org>"
