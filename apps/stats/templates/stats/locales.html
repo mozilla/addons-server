@@ -1,0 +1,39 @@
+{% extends "stats/stats.html" %}
+
+{% block chart_config %}
+  data-series="locales|en-US,locales|es-ES,locales|de"
+{% endblock %}
+
+{% block csvtable %}
+<div class="statbox">
+  <div class="tabular">
+    <table class="csv-table">
+      <thead>
+        <tr>
+          <th 
+            data-field="date"
+            data-format="date">
+              {{_('Date')}}
+          </th>
+          <th 
+            data-field="locales|en-US"
+            data-format="number">
+              {{_('English (US)')}}
+          </th>
+          <th 
+            data-field="locales|es-ES"
+            data-format="number">
+              {{_('Spanish')}}
+          </th>
+          <th 
+            data-field="locales|de"
+            data-format="number">
+              {{_('German')}}
+          </th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+</div>
+{% endblock %}
+  

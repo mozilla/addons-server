@@ -1,0 +1,44 @@
+{% extends "stats/stats.html" %}
+
+{% block chart_config %}
+  data-series="statuses|userEnabled,statuses|userDisabled"
+{% endblock %}
+
+{% block stats %}
+<h3>{{_('Add-on Status by Date')}}</h3>
+<div class="statbox">
+  <div class="tabular">
+    <table class="csv-table">
+      <thead>
+        <tr>
+          <th 
+            data-field="date"
+            data-format="date">
+              {{_('Date')}}
+          </th>
+          <th 
+            data-field="statuses|userEnabled"
+            data-format="number">
+              {{_('Enabled')}}
+          </th>
+          <th 
+            data-field="statuses|userDisabled"
+            data-format="number">
+              {{_('Disabled')}}
+          </th>
+          <th 
+            data-field="userEnabled,incompatible"
+            data-format="number">
+              {{_('Enabled (incompatible)')}}
+          </th>
+          <th 
+            data-field="userDisabled,incompatible"
+            data-format="number">
+              {{_('Disabled (incompatible)')}}
+          </th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+</div>
+{% endblock %}

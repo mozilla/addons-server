@@ -1,0 +1,57 @@
+{% extends "stats/stats.html" %}
+
+{% block chart_config %}
+  data-series="count"
+{% endblock %}
+
+{% block stats %}
+<div class="featured">
+  <div class="featured-inner">
+    <div class="featured-body tabular">
+      <table class="stats-aggregate" data-field="count"><thead>
+        <tr><th>{{_('Category')}}</th><th>Last 7 Days</th><th>7-14 Days Ago</th><th>{{_('All Time')}}</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="label">{{_('Average Daily Users')}}</td>
+          <td class="value"><span class="value aggregate" id="mean_range"></span><span class="change" id="mean_diff"></span></td>
+          <td class="value"><span class="value aggregate" id="mean_prev_range"></span><span class="change" id="mean_prev_diff"></span></td>
+          <td class="value"><span class="value aggregate" id="mean_all_time">{{ addon.average_daily_users|numberfmt }}</span><span class="change">&nbsp;</span></td>
+        </tr>
+        <tr>
+          <td class="label">{{_('Max. Daily Users')}}</td>
+          <td class="value"><span class="value aggregate" id="max_range"></span><span class="change" id="max_diff"></span></td>
+          <td class="value"><span class="value aggregate" id="max_prev_range"></span><span class="change" id="max_prev_diff"></span></td>
+          <td class="value"><span class="value aggregate" id="max_all_time"></span><span class="change">&nbsp;</span></td>
+        </tr>
+      </tbody></table>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block csvtable %}
+  <h3>{{_('Daily Users by Date')}}</h3>
+  <div class="statbox">
+    <div class="tabular">
+      <table class="csv-table">
+        <thead>
+          <tr>
+            <th 
+              data-field="date"
+              data-format="date">
+                {{_('Date')}}
+            </th>
+            <th 
+              data-field="count"
+              data-format="number"
+              data-bar_column="true"
+              data-bar_width="65%">
+                {{_('Count')}}
+            </th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,457 @@
+/* Clearfix! */
+.statbox:after {
+    content: ".";
+    display: block;
+    clear: both;
+    height: 0;
+    visibility: hidden;
+}
+
+.statbox .pagination {
+    display: block;
+    width: 98%;
+    margin: 0;
+    padding: .5em 1%;
+    border-top: 1px solid #A5BFCE;
+    -moz-border-radius: 0 0 3px 3px;
+    background: -moz-linear-gradient(#DAF0F6, #FDFEFE) repeat scroll 0 0 transparent
+}
+
+/**
+ *  Undo default table style
+**/
+
+table, tbody, thead, th, tr, td,
+thead tr th, tbody tr td,
+thead th, tbody tr {
+    border: 0;
+}
+
+thead tr th, tbody tr td {
+    border-top: 0;
+}
+
+
+table {
+    margin-bottom: 0;
+}
+
+.tabular {
+    margin: 1em;
+}
+
+/**
+ *  common styles
+**/
+
+.statbox .listing-header  {
+    -moz-border-radius:0 0 4px 4px;
+    background-color:#F0F8FC;
+    background-image: -moz-linear-gradient(#daf0f6,#fdfefe);
+    border:0;
+    border-top:1px solid #A5BFCE;
+    line-height:2.5em;
+    overflow:hidden;
+    padding:0.1em 0 0.1em 0.25em;
+}
+
+table tbody tr {
+    border-top: 1px dotted #B5D9E5;
+}
+
+.featured-inner {
+    background: -moz-linear-gradient(#ffffff, #eff8fb);
+}
+
+div.statbox {
+    border: 1px solid #C9E8F3;
+    
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.secondary > aside,
+.secondary > div {
+    margin-bottom: 2em;
+}
+
+/**
+ *  Rules for date criteria selection
+**/
+
+.criteria {
+    background: -moz-linear-gradient(#fdfefe,#daf0f6);
+    border: .1em solid #abc4d2;
+    -moz-border-radius: 4px;
+}
+.criteria ul {
+    line-height: 2.5em;
+}
+.criteria.custom form {
+    line-height: 2.5em;
+    margin: .3em 1em;
+}
+.criteria.custom {
+    position: relative;
+    margin-bottom: 1em;
+}
+.criteria.range {
+    float: right;
+    position: relative;
+    top: -18px;
+    z-index: 1000;
+}
+.criteria li {
+    float: left;
+    font-weight: bold;
+}
+.criteria li:first-child {
+    padding-left: 1.4em;
+}
+.criteria li.divider:before {
+    font-weight: normal;
+    font-size: 160%;
+    color: #b8cdd9;
+    content: "|";
+}
+.criteria li a  {
+-moz-border-radius:3px 3px 3px 3px;
+border:1px solid transparent;
+color:#003595;
+font-weight:bold;
+padding:0.3em 0.8em;
+text-decoration:none;
+white-space:nowrap;
+}
+.criteria li a:active,
+.criteria li a:active,
+.criteria li.selected a {
+-moz-border-radius:3px 3px 3px 3px;
+color:#fff;
+background:#003595;
+}
+
+/* creates the inner triangle */
+.criteria.custom:before {
+    font-weight: normal;
+    content: "\00a0";
+    display: block; /* reduce the damage in FF3.0 */
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: -38px; /* value = - border-top-width - border-bottom-width */
+    right: 25px; /* controls horizontal position */
+    border: 20px solid transparent;
+    border-bottom-color: #abc4d2;
+    border-width: 19px 14px; /* vary these values to change the angle of the vertex */
+    border-style: solid;
+}
+
+/* creates the outer triangle */
+.criteria.custom:after {
+    content: "\00a0";
+    display: block; /* reduce the damage in FF3.0 */
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: -37px; /* value = - border-top-width - border-bottom-width */
+    right: 24px; /* value = (:before right) + (:before border-right) - (:after border-right) */
+    border: 13px solid transparent;
+    border-bottom-color: #fdfdfe;
+    border-width: 20px 15px; /* vary these values to change the angle of the vertex */
+    border-style: solid;
+}
+
+/* @end */
+
+/**
+ *  Three-up stats
+**/
+
+.three-up div {
+    border-left: 1px dotted #aaa;
+    float: left;
+    width: 29.25%;
+    padding: 0 2%;
+    margin: 10px 0;
+}
+.three-up div:first-child {
+    border-left: 0;
+    float: left;
+}
+.three-up div a {
+    font-weight: bold;
+    font-size: 140%;
+}
+.three-up div small {
+    font-size: 110%;
+}
+
+/* CSS3 makes it prettier */
+
+.three-up div:nth-child(2n+1) {
+    width: 28.75%;
+}
+.three-up div:nth-child(2) {
+    width: 30.25%;
+}
+
+/**
+ *    Toplists
+**/
+
+.seriesdot {
+    display: block;
+    float: left;
+    position: relative;
+    top: .7em;
+    margin-right: .5em;
+    -moz-border-radius: 4px;
+    height: 8px;
+    width: 8px;
+}
+.toplists {
+    margin-bottom: 2em;
+    overflow: hidden;
+}
+.toplist {
+    float: left;
+    width: 28%;
+    padding: 1em 2%;
+    margin-left: 1.63%;
+}
+.toplist:first-child {
+    margin-left: 0;
+}
+
+.toplist h3 {
+    margin: 0 0 .2em 0;
+}
+#toplist1 {
+    width: 210px;
+    margin: .5em auto 0 auto;
+}
+.toplist tr:first-child {
+    border-top: 0;
+}
+.toplist table {
+    width: 100%;
+    margin: .7em 0;
+}
+.toplist td {
+    text-align: right;
+    padding: 0;
+    line-height: 2em;
+}
+.toplist td:last-child {
+    text-align: left;
+    font-size: 90%;
+    width:40px;
+    padding-left: .3em;
+}
+.toplist td:first-child {
+    text-align: left;
+}
+
+/**
+ *    Rules for Report Menu
+**/
+
+.report-menu nav {
+    display: block;
+}
+.report-menu h3 {
+    margin-top: 0;
+}
+.report-menu ul li {
+    font-size: 110%;
+}
+.report-menu ul li ul li {
+    font-size: 90%;
+}
+.report-menu ul li ul li a {
+    margin: .4em 0;
+}
+.report-menu ul li a {
+    margin: .4em 0;
+}
+.report-menu ul ul {
+    margin-left: 25px;
+}
+.report-menu ul li.selected > a {
+    position: relative;
+    color: #333;
+}
+.report-menu ul li.selected > a:hover {
+    text-decoration: none;
+}
+
+/* Makes the triangles for selected reports */
+.report-menu ul li.selected > a:before {
+    content: "\00a0";
+    display: block; /* reduce the damage in FF3.0 */
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: 20%; /* value = - border-top-width - border-bottom-width */
+    left: 10px; /* value = (:before right) + (:before border-right) - (:after border-right) */
+    border: 5px solid transparent;
+    border-left-color: #333;
+    border-style: solid;
+}
+.report-menu ul li ul li.selected > a:before {
+    border-width: 4px;
+}
+
+/* @end */
+
+/**
+ *    bar-chart tables
+**/
+
+.csv-table tbody {
+    display: none;
+}
+.csv-table tbody.selected {
+    display: table-row-group;
+}
+
+table.csv-table {
+    width: 100%;
+}
+table.csv-table td,
+table.csv-table th {
+    text-align: right;
+}
+table.csv-table td.bar div {
+    text-align: right;
+    margin: 8px 0;
+    line-height: 100%;
+    height: 100%;
+}
+
+table.csv-table td.bar,
+table.csv-table th.bar {
+    border-left: 1px solid #8db9c7;
+    padding: 0;
+}
+table.csv-table td:first-child,
+table.csv-table th:first-child {
+    text-align: left;
+}
+
+div.piechart .highcharts-container{
+    margin: 8px auto 0 auto;
+}
+
+/**
+ *  sidestats
+**/
+
+aside.highlight {
+    display: block;
+}
+
+/**
+ *  Big table
+**/
+
+table.stats-aggregate {
+    width: 100%;
+    margin-top: .5em;
+}
+
+table.stats-aggregate thead th {
+    text-align: right;
+    padding-right: 72px;
+    line-height: 90%;
+}
+
+table.stats-aggregate thead th:first-child {
+    text-align: left;
+    padding-right: inherit;
+}
+
+table.stats-aggregate tbody td {
+    line-height: 120%;
+    font-size: 140%;
+}
+
+table.stats-aggregate tbody td.value {
+    padding: 5px 0 3 0px;
+    text-align: right;
+}
+
+table.stats-aggregate tbody td.label {
+    padding-left: 2px;
+}
+
+table.stats-aggregate tbody span.change {
+    display: block;
+    float: right;
+    width: 54px;
+    padding-left: .5em;
+    text-align: left;
+    font-size: 80%;
+    padding-top: 2px;
+}
+
+table.stats-aggregate tbody span.change.plus {
+    color: #00774d;
+}
+table.stats-aggregate tbody span.change.minus {
+    color: #850000;
+}
+
+.loading {
+    position:relative;
+}
+.loading::after {
+    content: "\00a0";
+    display: block;
+    position: absolute;
+    background: #444;
+    opacity: .5;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    top: 0;
+}
+
+.loadmessage {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: -2.5em;
+    height: 2em;
+    margin: 0 auto;
+    text-align: center;
+    pointer-events: none;
+    -moz-transition: top .5s;
+    -webkit-transition: top .5s;
+    transition: top .5s;
+    z-index:9000;
+    
+}
+
+.loadmessage span {
+    background: url("../../img/zamboni/loading-small.gif") no-repeat 1em center;
+    background-color: #000;
+    padding: .5em 1em;
+    padding-left: 36px;
+    line-height: 2em;
+    color: #fff;
+    opacity: .75;
+    -moz-border-radius: 0 0 .75em .75em;
+    -webkit-border-radius: 0 0 .75em .75em;
+    border-radius: 0 0 .75em .75em;
+}
+
+.loadmessage.on {
+    top: 0;
+}
+
+.loadmessage.off {
+    top: -2.5em;
+}

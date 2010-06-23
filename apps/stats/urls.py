@@ -10,6 +10,30 @@ series = dict((type, '^%s-%s-%s\.%s$' % (type, group_re, range_re, format_re))
               for type in views.SERIES)
 
 urlpatterns = patterns('',
+    # page URLs
+    url('^$', views.stats_report, name='stats.overview', 
+        kwargs={'report': 'overview'}),
+    url('^downloads/$', views.stats_report, name='stats.downloads',
+        kwargs={'report': 'downloads'}),
+    url('^downloads/sources/$', views.stats_report, name='stats.downloads',
+        kwargs={'report': 'sources'}),
+    url('^usage/$', views.stats_report, name='stats.usage',
+        kwargs={'report': 'usage'}),
+    url('^usage/languages/$', views.stats_report, name='stats.locales',
+        kwargs={'report': 'locales'}),
+    url('^usage/versions/$', views.stats_report, name='stats.versions',
+        kwargs={'report': 'versions'}),
+    url('^usage/status/$', views.stats_report, name='stats.statuses',
+        kwargs={'report': 'statuses'}),
+    url('^usage/applications/$', views.stats_report, name='stats.apps',
+        kwargs={'report': 'apps'}),
+    url('^usage/os/$', views.stats_report, name='stats.usage.os',
+        kwargs={'report': 'os'}),
+    url('^contributions/$', views.stats_report, name='stats.contributions',
+        kwargs={'report': 'contributions'}),
+
+
+
     # time series URLs following this pattern:
     # /addon/{addon_id}/statistics/{series}-{group}-{start}-{end}.{format}
     url(series['downloads'], views.downloads_series,
@@ -31,7 +55,9 @@ urlpatterns = patterns('',
     url(series['apps'], views.usage_breakdown_series,
         name='stats.apps_series', kwargs={'field': 'applications'}),
 
+
     # special case time series
     url('^contributions-detail-%s\.%s$' % (range_re, format_re),
         views.contributions_detail, name='stats.contributions_detail'),
+
 )

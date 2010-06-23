@@ -50,9 +50,13 @@ header hgroup h3 {
     margin-bottom: 14px;
 }
 
-.search-form {
-    padding-bottom: 1.6em;
-    margin-bottom: .5em;
+#advanced-search {
+	position:absolute;
+	z-index:100;
+}
+
+#advanced-link {
+	z-index:101;
 }
 
 ul.errorlist {

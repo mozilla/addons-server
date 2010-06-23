@@ -1,0 +1,33 @@
+{% extends "stats/stats.html" %}
+
+{% block chart_config %}
+  data-series="applications|{ec8030f7-c20a-464f-9b0e-13a3a9e97384}|3.6.3,applications|{ec8030f7-c20a-464f-9b0e-13a3a9e97384}|3.6"
+{% endblock %}
+
+{% block csvtable %}
+<div class="statbox">
+  <div class="tabular">
+    <table class="csv-table">
+      <thead>
+        <tr>
+          <th 
+            data-field="date"
+            data-format="date">
+              {{_('Date')}}
+          </th>
+          <th 
+            data-field="applications|{ec8030f7-c20a-464f-9b0e-13a3a9e97384}|3.6.3"
+            data-format="number">
+              {{_('Firefox 3.6.3')}}
+          </th>
+          <th 
+            data-field="applications|{ec8030f7-c20a-464f-9b0e-13a3a9e97384}|3.6"
+            data-format="number">
+              {{_('Firefox 3.6')}}
+          </th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+</div>
+{% endblock %}

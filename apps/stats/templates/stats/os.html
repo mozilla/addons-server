@@ -1,0 +1,38 @@
+{% extends "stats/stats.html" %}
+
+{% block chart_config %}
+  data-series="oses|WINNT,oses|Darwin,oses|Linux"
+{% endblock %}
+
+{% block csvtable %}
+<div class="statbox">
+  <div class="tabular">
+    <table class="csv-table">
+      <thead>
+        <tr>
+          <th 
+            data-field="date"
+            data-format="date">
+              {{_('Date')}}
+          </th>
+          <th 
+            data-field="oses|WINNT"
+            data-format="number">
+              {{_('Windows')}}
+          </th>
+          <th 
+            data-field="oses|Darwin"
+            data-format="number">
+              {{_('Mac')}}
+          </th>
+          <th 
+            data-field="oses|Linux"
+            data-format="number">
+              {{_('Linux')}}
+          </th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+</div>
+{% endblock %}
