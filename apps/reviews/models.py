@@ -1,15 +1,30 @@
 import itertools
 
 from django.db import models
+from django.utils import translation
 
 import amo.models
-from translations.fields import TranslatedField, TranslatedFieldMixin
+from translations.fields import TranslatedField
 from translations.models import Translation
+from users.models import UserProfile
+from versions.models import Version
 
 
-class Review(TranslatedFieldMixin, amo.models.ModelBase):
+class ReviewManager(amo.models.ManagerBase):
 
-    version = models.ForeignKey('versions.Version', related_name='reviews')
+    def get_query_set(self):
+        qs = super(ReviewManager, self).get_query_set()
+        return qs.transform(Review.transformer)
+
+    def valid(self):
+        """Get all reviews with rating > 0 that aren't replies."""
+        return self.filter(reply_to=None, rating__gt=0)
+
+
+class Review(amo.models.ModelBase):
+    addon = models.ForeignKey('addons.Addon', related_name='_reviews')
+    version = models.ForeignKey('versions.Version', related_name='reviews',
+                                null=True)
     user = models.ForeignKey('users.UserProfile', related_name='_reviews_all')
     reply_to = models.ForeignKey('self', null=True, unique=True,
                                  db_column='reply_to')
@@ -23,11 +38,21 @@ class Review(TranslatedFieldMixin, amo.models.ModelBase):
     flag = models.BooleanField(default=False)
     sandbox = models.BooleanField(default=False)
 
+    # Denormalized fields for easy lookup queries.
+    # TODO: index on addon, user, latest
+    is_latest = models.BooleanField(default=True, editable=False,
+        help_text="Is this the user's latest review for the add-on?")
+    previous_count = models.PositiveIntegerField(default=0, editable=False,
+        help_text="How many previous reviews by the user for this add-on?")
+
+    objects = ReviewManager()
+
     class Meta:
         db_table = 'reviews'
         ordering = ('-created',)
 
-    def fetch_translations(self, ids, lang):
+    @classmethod
+    def fetch_translations(cls, ids, lang):
         if not ids:
             return []
 
@@ -45,3 +70,54 @@ class Review(TranslatedFieldMixin, amo.models.ModelBase):
                 rv[id] = locales.itervalues().next()
 
         return rv.values()
+
+    @staticmethod
+    def post_save(sender, instance, created, **kwargs):
+        if created:
+            Review.post_delete(sender, instance)
+
+    @staticmethod
+    def post_delete(sender, instance, **kwargs):
+        from . import tasks
+        pair = instance.addon_id, instance.user_id
+        # Do this immediately so is_latest is correct.
+        tasks.update_denorm(pair)
+        tasks.addon_review_aggregates.delay(instance.addon_id)
+
+    @staticmethod
+    def transformer(reviews):
+        if not reviews:
+            return
+
+        # Attach users.
+        user_ids = [r.user_id for r in reviews]
+        users = UserProfile.objects.filter(id__in=user_ids)
+        user_dict = dict((u.id, u) for u in users)
+        for review in reviews:
+            review.user = user_dict[review.user_id]
+
+        # Attach translations. Some of these will be picked up by the
+        # Translation transformer, but reviews have special requirements
+        # (see fetch_translations).
+        names = dict((f.attname, f.name)
+                     for f in Review._meta.translated_fields)
+        ids, trans = {}, {}
+        for review in reviews:
+            for attname, name in names.items():
+                trans_id = getattr(review, attname)
+                if getattr(review, name) is None and trans_id is not None:
+                    ids[trans_id] = attname
+                    trans[trans_id] = review
+        translations = Review.fetch_translations(trans.keys(),
+                                                 translation.get_language())
+        for t in translations:
+            setattr(trans[t.id], names[ids[t.id]], t)
+
+        # Attach versions.
+        versions = dict((r.version_id, r) for r in reviews)
+        for version in Version.objects.filter(id__in=versions.keys()):
+            versions[version.id].version = version
+
+
+models.signals.post_save.connect(Review.post_save, sender=Review)
+models.signals.post_delete.connect(Review.post_delete, sender=Review)

@@ -1,0 +1,279 @@
+[
+    {
+        "pk": 5293223,
+        "model": "auth.user",
+        "fields": {
+            "username": "root_x@ukr.net",
+            "first_name": "povierennyy",
+            "last_name": "",
+            "is_active": true,
+            "is_superuser": false,
+            "is_staff": false,
+            "last_login": "2010-05-12 17:53:01",
+            "groups": [],
+            "user_permissions": [],
+            "password": "sha512$f0391af37ad932243822c4452cbfcb0b92a263e80855f4110394f611c8cd8414$6e5d4a3552ddd33ddb4d2d138f42fd60da17cb97fb6dc372cea5a8c78bc21b870ebd9a5630e87ff711e01dea8cef5888f2c3dd754f46fc2e220a4c41fdfe8b30",
+            "email": "root_x@ukr.net",
+            "date_joined": "2010-04-21 12:29:12"
+        }
+    },
+    {
+        "pk": 1107724,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": null,
+            "created": "2010-04-21 12:36:48",
+            "locale": "ru",
+            "modified": null,
+            "id": 1043705,
+            "localized_string": "I wanted to install _ not _ the latest version of firefox and use this wonderful piece. Unfortunately Block + does not work with earlier versions * fox: (. I have weak komputer - I wanted to install firefox - version 1.0 or 2.0 ... \r\n---\r\n\u042f \u0445\u043e\u0442\u0435\u043b \u0443\u0441\u0442\u0430\u043d\u043e\u0432\u0438\u0442\u044c _ \u043d\u0435 \u0441\u0430\u043c\u0443\u044e \u043d\u043e\u0432\u0443\u044e _ \u0432\u0435\u0440\u0441\u0438\u044e firefox \u0438 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u044c \u044d\u0442\u0443 \u0437\u0430\u043c\u0435\u0447\u0430\u0442\u0435\u043b\u044c\u043d\u0443\u044e \u0448\u0442\u0443\u043a\u0443. \u041d\u043e \u043a \u0441\u043e\u0436\u0430\u043b\u0435\u043d\u0438\u044e \u0411\u043b\u043e\u043a + \u043d\u0435 \u0440\u0430\u0431\u043e\u0442\u0430\u0435\u0442 \u0441 \u0440\u0430\u043d\u043d\u0438\u043c\u0438 \u0432\u0435\u0440\u0441\u0438\u044f\u043c\u0438 *fox :( . \u0423 \u043c\u0435\u043d\u044f \u0441\u043b\u0430\u0431\u0435\u043d\u044c\u043a\u0438\u0439 \u043a\u043e\u043c\u043f\u0443\u0442\u0435\u0440 - \u0445\u043e\u0442\u0435\u043b \u0443\u0441\u0442\u0430\u043d\u043e\u0432\u0438\u0442\u044c  firefox - \u0432\u0435\u0440\u0441\u0438\u044e 1.0 \u0438\u043b\u0438 2.0...\r\n"
+        }
+    },
+    {
+        "pk": 1107723,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": null,
+            "created": "2010-04-21 12:36:47",
+            "locale": "ru",
+            "modified": null,
+            "id": 1043704,
+            "localized_string": "I have weak komputer :("
+        }
+    },
+    {
+        "pk": 5293223,
+        "model": "users.userprofile",
+        "fields": {
+            "sandboxshown": false,
+            "display_collections_fav": false,
+            "display_collections": false,
+            "occupation": "",
+            "confirmationcode": "",
+            "location": "",
+            "picture_type": "",
+            "averagerating": null,
+            "homepage": "http://povierennyy.hmarka.net/",
+            "email": "root_x@ukr.net",
+            "notifycompat": true,
+            "bio": null,
+            "firstname": "povierennyy",
+            "deleted": false,
+            "lastname": "",
+            "emailhidden": false,
+            "user": 5293223,
+            "password": "sha512$f0391af37ad932243822c4452cbfcb0b92a263e80855f4110394f611c8cd8414$6e5d4a3552ddd33ddb4d2d138f42fd60da17cb97fb6dc372cea5a8c78bc21b870ebd9a5630e87ff711e01dea8cef5888f2c3dd754f46fc2e220a4c41fdfe8b30",
+            "nickname": "root_x",
+            "resetcode_expires": null,
+            "resetcode": "",
+            "created": "2010-04-21 12:29:12",
+            "notes": null,
+            "modified": "2010-05-12 17:48:13",
+            "notifyevents": true
+        }
+    },
+    {
+        "pk": 346,
+        "model": "auth.user",
+        "fields": {
+            "username": "trev@adblockplus.org",
+            "first_name": "Wladimir",
+            "last_name": "Palant",
+            "is_active": true,
+            "is_superuser": false,
+            "is_staff": false,
+            "last_login": "2010-05-14 09:30:04",
+            "groups": [],
+            "user_permissions": [],
+            "password": "sha512$eeadf8b8bb95325c5634eaab2e579390079efc5c195ae6a12f75b493970f9dcd$fee7828db34f7a17a7d0b0dbbca5ef40b54fc9916eed8be570fd78b88e1daa30ca14b738347ec0d5381177e15c57fdc76dc2aca3ca3595489eb002b718b4570b",
+            "email": "trev@adblockplus.org",
+            "date_joined": "2007-03-05 13:09:33"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "versions.license",
+        "fields": {
+            "_custom_text": null,
+            "_name_field": 0,
+            "modified": "2009-04-30 22:29:53",
+            "created": "2009-04-30 22:29:53"
+        }
+    },
+    {
+        "pk": 1110932,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": null,
+            "created": "2010-04-22 22:42:45",
+            "locale": "en-US",
+            "modified": null,
+            "id": 1046853,
+            "localized_string": "\u041d\u043e\u0432\u044b\u0435 \u0432\u0435\u0440\u0441\u0438\u0438 Firefox \u0440\u0430\u0431\u043e\u0442\u0430\u044e\u0442 *\u0431\u044b\u0441\u0442\u0440\u0435\u0435* \u0441\u0442\u0430\u0440\u044b\u0445. \u0423\u0441\u0442\u0430\u043d\u043e\u0432\u0438\u0442\u0435 3.6 \u0438 \u043d\u0435 \u043c\u0430\u0439\u0442\u0435\u0441\u044c \u0434\u0443\u0440\u044c\u044e. Firefox 2.0 \u0443\u0436\u0435 \u0434\u0430\u0432\u043d\u043e \u043d\u0435 \u043f\u043e\u0434\u0434\u0435\u0440\u0436\u0438\u0432\u0430\u0435\u0442\u0441\u044f, \u0442\u0430\u043c \u043c\u0430\u0441\u0441\u0430 \u0438\u0437\u0432\u0435\u0441\u0442\u043d\u044b\u0445 \u0434\u044b\u0440 \u0431\u0435\u0437\u043e\u043f\u0430\u0441\u043d\u043e\u0441\u0442\u0438, \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u044c \u0435\u0433\u043e \u043d\u0438 \u0432 \u043a\u043e\u0435\u043c \u0441\u043b\u0443\u0447\u0430\u0435 \u043d\u0435\u043b\u044c\u0437\u044f - \u0438\u043d\u0430\u0447\u0435 \"\u043c\u0435\u0434\u043b\u0435\u043d\u043d\u044b\u0439\" \u043a\u043e\u043c\u043f\u044c\u044e\u0442\u0435\u0440 \u0441\u043a\u043e\u0440\u043e \u0441\u0442\u0430\u043d\u0435\u0442 \u0435\u0449\u0435 \u043c\u0435\u0434\u043b\u0435\u043d\u043d\u0435\u0439, \u0438\u0437-\u0437\u0430 \u0432\u0440\u0435\u0434\u043e\u043d\u043e\u0441\u043d\u044b\u0445 \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c."
+        }
+    },
+    {
+        "pk": 1110931,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": null,
+            "created": "2010-04-22 22:42:44",
+            "locale": "en-US",
+            "modified": null,
+            "id": 1046852,
+            "localized_string": "Don't use Firefox 2.0!"
+        }
+    },
+    {
+        "pk": 346,
+        "model": "users.userprofile",
+        "fields": {
+            "sandboxshown": false,
+            "display_collections_fav": false,
+            "display_collections": true,
+            "occupation": "",
+            "confirmationcode": "",
+            "location": "",
+            "picture_type": "",
+            "averagerating": "4.70",
+            "homepage": "http://adblockplus.org/",
+            "email": "trev@adblockplus.org",
+            "notifycompat": true,
+            "bio": null,
+            "firstname": "Wladimir",
+            "deleted": false,
+            "lastname": "Palant",
+            "emailhidden": false,
+            "user": 346,
+            "password": "sha512$eeadf8b8bb95325c5634eaab2e579390079efc5c195ae6a12f75b493970f9dcd$fee7828db34f7a17a7d0b0dbbca5ef40b54fc9916eed8be570fd78b88e1daa30ca14b738347ec0d5381177e15c57fdc76dc2aca3ca3595489eb002b718b4570b",
+            "nickname": "Wladimir Palant",
+            "resetcode_expires": null,
+            "resetcode": "",
+            "created": "2007-03-05 13:09:33",
+            "notes": null,
+            "modified": "2010-05-14 09:30:04",
+            "notifyevents": true
+        }
+    },
+    {
+        "pk": 1865,
+        "model": "addons.addon",
+        "fields": {
+            "dev_agreement": true,
+            "eula": null,
+            "last_updated": "2010-04-30 01:00:40",
+            "view_source": true,
+            "enable_thankyou": false,
+            "total_downloads": 80189574,
+            "developer_comments": null,
+            "inactive": false,
+            "average_daily_downloads": 76298,
+            "show_beta": true,
+            "the_future": null,
+            "trusted": true,
+            "locale_disambiguation": null,
+            "binary": false,
+            "guid": "{d10d0bf8-f5b5-c8b4-a8b2-2b9879e08c5d}",
+            "weekly_downloads": 813599,
+            "support_url": null,
+            "paypal_id": "accounting@mozilla.org",
+            "average_rating": "4.7041",
+            "wants_contributions": false,
+            "average_daily_users": 7409464,
+            "bayesian_rating": 4.7014300000000002,
+            "share_count": 117,
+            "get_satisfaction_company": null,
+            "homepage": null,
+            "support_email": null,
+            "public_stats": true,
+            "status": 4,
+            "privacy_policy": null,
+            "description": null,
+            "default_locale": "en-US",
+            "target_locale": null,
+            "prerelease": false,
+            "thankyou_note": null,
+            "admin_review": false,
+            "external_software": false,
+            "highest_status": 4,
+            "get_satisfaction_product": null,
+            "name": null,
+            "created": "2006-01-17 07:28:30",
+            "type": 1,
+            "icon_type": "image/png",
+            "annoying": 1,
+            "modified": "2010-06-14 10:04:31",
+            "summary": null,
+            "suggested_amount": "5.00",
+            "site_specific": false,
+            "_current_version": null,
+            "total_reviews": 1801,
+            "the_reason": null,
+            "nomination_date": "2008-06-17 21:52:36"
+        }
+    },
+    {
+        "pk": 105387,
+        "model": "versions.version",
+        "fields": {
+            "license": 5,
+            "created": "2010-04-30 01:01:33",
+            "releasenotes": null,
+            "approvalnotes": "",
+            "modified": "2010-05-14 09:30:56",
+            "version": "1.2",
+            "addon": 1865
+        }
+    },
+    {
+        "pk": 90149,
+        "model": "versions.version",
+        "fields": {
+            "license": 5,
+            "created": "2010-01-07 00:16:35",
+            "releasenotes": null,
+            "approvalnotes": "",
+            "modified": "2010-04-08 11:12:53",
+            "version": "1.1.3",
+            "addon": 1865
+        }
+    },
+    {
+        "pk": 218207,
+        "model": "reviews.review",
+        "fields": {
+            "body": 1043705,
+            "rating": 4,
+            "editorreview": false,
+            "created": "2010-04-21 12:36:48",
+            "title": 1043704,
+            "modified": "2010-06-15 15:21:14",
+            "sandbox": false,
+            "flag": false,
+            "version": 90149,
+            "addon": 1865,
+            "user": 5293223,
+            "reply_to": null,
+            "ip_address": "63.245.213.8"
+        }
+    },
+    {
+        "pk": 218468,
+        "model": "reviews.review",
+        "fields": {
+            "body": 1046853,
+            "rating": null,
+            "editorreview": false,
+            "created": "2010-04-22 22:42:45",
+            "title": 1046852,
+            "modified": "2010-04-22 22:42:45",
+            "sandbox": false,
+            "flag": false,
+            "version": 90149,
+            "addon": 1865,
+            "user": 346,
+            "reply_to": 218207,
+            "ip_address": "0.0.0.0"
+        }
+    }
+]

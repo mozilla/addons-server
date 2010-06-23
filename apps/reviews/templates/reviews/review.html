@@ -1,0 +1,49 @@
+{% set outdated = (review.version_id
+                      and review.version_id != addon._current_version_id) %}
+{% set is_reply = review.reply_to_id is not none %}
+<div class="review article {% if is_reply %}reply{% endif %}" id="review-{{ review.id }}">
+  <h5>{{ review.title }}</h5>
+  {% if not is_reply %}{{ review.rating|stars }}{% endif %}
+  <div class="reviewed-on">
+    {% if is_reply %}
+      {% trans user=review.user|user_link, date=review.created|datetime %}
+        by {{ user }} <b>(Developer)</b> on {{ date }}
+      {% endtrans %}
+    {% else %}
+      {% trans user=review.user|user_link, date=review.created|datetime %}
+        by {{ user }} on {{ date }}
+      {% endtrans %}
+    {% endif %}
+    {% if (perms.is_admin or perms.is_editor)
+          and review.ip_address != '0.0.0.0' %}
+      <span>[{{ review.ip_address }}]</span>
+    {% endif %}
+    <a href="{{ url('reviews.detail', addon.id, review.id) }}">#</a>
+  </div>
+  <p>{{ review.body|nl2br }}</p>
+  {% if outdated and not is_reply %}
+    {# L10n: {0} is a version number (like 1.01) #}
+    <span>{{ _('This review is for a previous version of the add-on ({0}).')|f(review.version.version) }}</span>
+  {% endif %}
+  {% if page != 'user' and review.previous_count %}
+  <span>
+    {% trans cnt=review.previous_count,
+             url=url('reviews.user', addon.id, review.user.id) %}
+      Show the <a href="{{ url }}">previous review</a> submitted by this user.
+    {% pluralize %}
+      Show <a href="{{ url }}">{{ cnt }} previous reviews</a> submitted by this user.
+    {% endtrans %}
+  </span>
+  {% endif %}
+  {% if request.user.is_authenticated() %}
+  <ul>
+    <li><a href="#TODO">{{ _('Report this review') }}</a></li>
+    {% if perms.is_author or perms.is_admin %}
+      <li><a href="#TODO">{{ _('Reply to review') }}</a></li>
+    {% endif %}
+    {% if perms.can_delete %}
+      <li><a href="#TODO">{{ _('Delete review') }}</a></li>
+    {% endif %}
+  </ul>
+  {% endif %}
+</div>

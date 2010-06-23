@@ -45,7 +45,7 @@ class UserProfile(amo.models.ModelBase):
     password = models.CharField(max_length=255, default='')
     email = models.EmailField(unique=True)
 
-    averagerating = models.CharField(max_length=255, blank=True)
+    averagerating = models.CharField(max_length=255, blank=True, null=True)
     bio = PurifiedField()
     confirmationcode = models.CharField(max_length=255, default='',
                                         blank=True)
@@ -55,14 +55,14 @@ class UserProfile(amo.models.ModelBase):
     emailhidden = models.BooleanField(default=False)
     homepage = models.CharField(max_length=255, blank=True, default='')
     location = models.CharField(max_length=255, blank=True, default='')
-    notes = models.TextField(blank=True)
+    notes = models.TextField(blank=True, null=True)
     notifycompat = models.BooleanField(default=True)
     notifyevents = models.BooleanField(default=True)
     occupation = models.CharField(max_length=255, default='', blank=True)
     # This is essentially a "has_picture" flag right now
     picture_type = models.CharField(max_length=75, default='', blank=True)
     resetcode = models.CharField(max_length=255, default='', blank=True)
-    resetcode_expires = models.DateTimeField(default=datetime.now,
+    resetcode_expires = models.DateTimeField(default=datetime.now, null=True,
                                              blank=True)
     sandboxshown = models.BooleanField(default=False)
 

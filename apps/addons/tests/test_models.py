@@ -211,10 +211,12 @@ class TestAddonModels(test_utils.TestCase):
         addon = Addon.objects.get(id=3615)
         u = UserProfile.objects.get(pk=2519)
         version = addon.current_version
-        new_review = Review(version=version, user=u, rating=2, body='hello')
+        new_review = Review(version=version, user=u, rating=2, body='hello',
+                            addon=addon)
         new_review.save()
         new_reply = Review(version=version, user=addon.authors.all()[0],
-                           reply_to=new_review, rating=2, body='my reply')
+                           addon=addon, reply_to=new_review,
+                           rating=2, body='my reply')
         new_reply.save()
 
         review_list = [r.pk for r in addon.reviews]

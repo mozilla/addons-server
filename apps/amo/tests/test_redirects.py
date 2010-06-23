@@ -11,7 +11,7 @@ from applications.models import Application
 
 class TestRedirects(test.TestCase):
 
-    fixtures = ['amo/test_redirects', 'base/global-stats']
+    fixtures = ['reviews/test_models', 'base/global-stats']
 
     def test_persona_category(self):
         """`/personas/film and tv` should go to /personas/film-and-tv"""
