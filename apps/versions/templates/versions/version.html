@@ -13,10 +13,10 @@
   <div class="item-info">
     {{ install_button(addon, version=version) }}
 
-    {% if addon.compatible_apps %}
+    {% if version.compatible_apps %}
       <h5>{{ _('Works with:') }}</h5>
       <ul>
-        {% for compat in addon.compatible_apps.values() %}
+        {% for compat in version.compatible_apps.values() %}
           <li>{{ compat }}</li>
         {% endfor %}
       </ul>
