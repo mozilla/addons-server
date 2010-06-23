@@ -374,6 +374,10 @@ class Addon(amo.models.ModelBase):
     @amo.cached_property
     def compatible_apps(self):
         """Shortcut to get compatible apps for the current version."""
+        # Search providers don't actually list their supported apps.
+        if self.type == amo.ADDON_SEARCH:
+            return dict((app, None) for app in
+                        amo.APP_TYPE_SUPPORT[amo.ADDON_SEARCH])
         if self.current_version:
             return self.current_version.compatible_apps
         else:

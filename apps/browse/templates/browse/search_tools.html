@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% from "browse/macros.html" import secondary_categories %}
+
+{% set title = _('Search Tools') %}
+
+{% block title %}
+{% if category %}
+  {# L10n: {0} is a category name, like "Music". #}
+  {{ page_title(_('{0} :: Search Tools')|f(category.name)) }}
+{% else %}
+  {{ page_title(title) }}
+{% endif %}
+{% endblock %}
+
+{% block extrahead %}
+<style>
+  #p-{{ category.id if category else filter.field }} {
+    background: url({{ MEDIA_URL }}img/zamboni/arrow-right-blue.png) no-repeat left center;
+  }
+  .html-rtl #p-{{ category.id if category else filter.field }} {
+    background: url({{ MEDIA_URL }}img/zamboni/arrow-left-blue.png) no-repeat right center;
+  }
+  #p-{{ category.id if category else filter.field }} a {
+    color: inherit;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="primary" role="main">
+  <header>
+    {% if category %}
+      {{ breadcrumbs([(url('browse.search-tools'), title), (None, category.name)]) }}
+      <hgroup>
+        <h2>{{ category.name }}</h2>
+    {% else %}
+      {{ breadcrumbs([(None, title)]) }}
+      <hgroup>
+        <h2>{{ title }}</h2>
+    {% endif %}
+      {% with cnt=addons.paginator.count %}
+        <h3>{{ ngettext('<b>{0}</b> add-on', '<b>{0}</b> add-ons', cnt)
+                |f(cnt|numberfmt)|safe }}</h3>
+      {% endwith %}
+      </hgroup>
+  </header>
+  <div class="featured listing">
+    <div class="featured-inner">
+      {{ addon_listing_header(url('browse.search-tools', category.slug),
+                              filter.opts, filter.field, unreviewed) }}
+      {{ addon_listing_items(addons.object_list, src='category',
+                             show_added_date=(filter.field=='created')) }}
+      <div class="listing-footer">
+        {{ addons|paginator }}
+      </div>
+    </div>
+  </div>
+</div>
+
+{{ secondary_categories(title, 'browse.search-tools', categories) }}
+{% endblock %}

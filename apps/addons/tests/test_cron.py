@@ -55,8 +55,8 @@ class TestLastUpdated(test_utils.TestCase):
         ids = Addon.objects.values_list('id', flat=True)
         cron._update_appsupport(ids)
 
-        eq_(AppSupport.objects.count(), 11)
+        eq_(AppSupport.objects.count(), 26)
 
         # Run it again to test deletes.
         cron._update_appsupport(ids)
-        eq_(AppSupport.objects.count(), 11)
+        eq_(AppSupport.objects.count(), 26)

@@ -142,7 +142,7 @@ ADDON_SLUGS = {
     ADDON_THEME: 'themes',
     ADDON_DICT: 'language-tools',
     ADDON_PERSONA: 'personas',
-    ADDON_SEARCH: 'search-engines',
+    ADDON_SEARCH: 'search-tools',
 }
 
 
@@ -222,6 +222,12 @@ APP_IDS = dict((app.id, app) for app in _apps)
 APP_GUIDS = dict((app.guid, app) for app in _apps)
 APPS_RETIRED = dict([(MOZILLA.short, MOZILLA)])
 APPS_ALL = dict((app.id, app) for app in _apps + (MOZILLA,))
+
+APP_TYPE_SUPPORT = {}
+for _app in APP_USAGE:
+    for _type in _app.types:
+        APP_TYPE_SUPPORT.setdefault(_type, []).append(_app)
+del _app, _type
 
 
 # Platforms

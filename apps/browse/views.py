@@ -2,7 +2,7 @@ import collections
 import itertools
 
 from django import http
-from django.http import HttpResponse, HttpResponsePermanentRedirect
+from django.http import HttpResponsePermanentRedirect
 from django.shortcuts import get_object_or_404
 from django.views.decorators.cache import cache_page
 
@@ -262,10 +262,6 @@ def personas(request, category=None):
                          'search_cat': search_cat})
 
 
-def search_engines(request, category=None):
-    return HttpResponse("Search providers browse page stub.")
-
-
 @cache_page(60 * 60 * 24 * 365)
 def legacy_redirects(request, type_, category=None):
     type_slug = amo.ADDON_SLUGS.get(int(type_), 'extensions')
@@ -279,3 +275,22 @@ def legacy_redirects(request, type_, category=None):
     if 'sort' in request.GET and request.GET['sort'] in mapping:
         url += '?sort=%s' % mapping[request.GET['sort']]
     return HttpResponsePermanentRedirect(url)
+
+
+def search_tools(request, category=None):
+    APP, TYPE = request.APP, amo.ADDON_SEARCH
+    qs = Category.objects.filter(application=APP.id, type=TYPE)
+    categories = order_by_translation(qs, 'name')
+
+    addons, filter, unreviewed = _listing(request, TYPE)
+
+    if category is not None:
+        category = get_object_or_404(qs, slug=category)
+        addons = addons.filter(categories__id=category.id)
+
+    addons = amo.utils.paginate(request, addons)
+
+    return jingo.render(request, 'browse/search_tools.html',
+                        {'categories': categories, 'category': category,
+                         'addons': addons, 'filter': filter,
+                         'unreviewed': unreviewed})

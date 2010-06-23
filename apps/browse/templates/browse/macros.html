@@ -1,0 +1,26 @@
+{% macro secondary_categories(title, viewname, categories, filter) %}
+<div class="secondary" role="complementary">
+  <div class="other-categories highlight">
+    <h3>{{ title }}</h3>
+    {% if filter %}
+      <ul>
+        {% for key, title_ in filter.opts_dict.items() %}
+          <li id="p-{{ key }}">
+            <a href="{{ url(viewname)|urlparams(sort=key) }}">{{ title_ }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    <ul>
+    {% cache categories %}
+    {% for cat in categories %}
+      <li id="p-{{ cat.id }}">
+        <a href="{{ url(viewname, cat.slug) }}">
+          {{ cat.name }}</a>
+      </li>
+    {% endfor %}
+    {% endcache %}
+    </ul>
+  </div>
+</div>
+{% endmacro %}
