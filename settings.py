@@ -481,6 +481,9 @@ CUSTOM_DUMPS = {
         'order': ('translations.translation', 'addons.addontype',
                   'files.platform', 'addons.addon', 'versions.version',
                   'files.file'),
+        'excludes': {
+            'addons.addon': ('_current_version',)
+        }
     }
 }
 
