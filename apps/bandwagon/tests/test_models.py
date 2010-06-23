@@ -26,8 +26,7 @@ class TestCollections(test_utils.TestCase):
 
     def test_icon_url(self):
         c = Collection.objects.get(pk=512)
-        eq_(settings.MEDIA_URL + 'img/amo2009/icons/collection.png',
-            c.icon_url)
+        assert c.icon_url.endswith('img/amo2009/icons/collection.png')
 
     def test_author(self):
         c = Collection.objects.get(pk=80)
