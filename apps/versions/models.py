@@ -59,6 +59,11 @@ class Version(amo.models.ModelBase):
         return filter(lambda f: f.status == amo.STATUS_UNREVIEWED,
                       self.all_files)
 
+    @amo.cached_property
+    def is_beta(self):
+        return filter(lambda f: f.status == amo.STATUS_BETA,
+                      self.all_files)
+
     @classmethod
     def _compat_map(cls, avs):
         apps = {}

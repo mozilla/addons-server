@@ -26,6 +26,7 @@ class ButtonTest(object):
 
         self.version = v = Mock()
         v.is_unreviewed = False
+        v.is_beta = False
         self.addon.current_version = v
 
         self.file = self.get_file(amo.PLATFORM_ALL)
@@ -222,6 +223,17 @@ class TestButton(ButtonTest):
         assert b.unreviewed
         eq_(b.button_class, ['download', 'caution'])
         eq_(b.install_class, ['unreviewed'])
+        eq_(b.install_text, 'Not Reviewed')
+
+    def test_beta(self):
+        # Throw featured in there to make sure it's ignored.
+        self.addon.is_featured.return_value = True
+        self.version.is_beta = True
+        b = self.get_button()
+        assert not b.featured
+        assert b.is_beta
+        eq_(b.button_class, ['download', 'caution'])
+        eq_(b.install_class, ['unreviewed', 'beta'])
         eq_(b.install_text, 'Not Reviewed')
 
     def test_self_hosted(self):

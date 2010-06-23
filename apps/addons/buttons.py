@@ -75,10 +75,14 @@ class InstallButton(object):
         self.size = size
         self.detailed = detailed
 
+        self.is_beta = self.version and self.version.is_beta
         version_unreviewed = (self.version and self.version.is_unreviewed)
-        self.unreviewed = addon.is_unreviewed() or version_unreviewed
+        self.unreviewed = (addon.is_unreviewed() or version_unreviewed or
+                           self.is_beta)
         self.self_hosted = addon.status == amo.STATUS_LISTED
-        self.featured = (not self.unreviewed and not self.self_hosted
+        self.featured = (not self.unreviewed
+                         and not self.self_hosted
+                         and not self.is_beta
                          and addon.is_featured(app, lang)
                          or addon.is_category_featured(app, lang))
         self.is_persona = addon.type == amo.ADDON_PERSONA
@@ -110,6 +114,8 @@ class InstallButton(object):
             self.install_class.append('accept')
         if self.size:
             self.button_class.append(self.size)
+        if self.is_beta:
+            self.install_class.append('beta')
 
     def attrs(self):
         rv = {}

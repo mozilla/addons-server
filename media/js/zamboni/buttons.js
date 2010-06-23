@@ -201,13 +201,14 @@ var installButton = function() {
 
     // What kind of button are we dealing with?
     var selfhosted = $this.hasClass('selfhosted'),
-        unreviewed = $this.hasClass('unreviewed'),
+        beta = $this.hasClass('beta');
+        unreviewed = $this.hasClass('unreviewed') && !beta,
         persona = $this.hasClass('persona'),
         contrib = $this.hasClass('contrib'),
         search = $this.hasattr('data-search'),
         eula = $this.hasClass('eula');
 
-    if (unreviewed && !(selfhosted || eula || contrib)) {
+    if (unreviewed && !(selfhosted || eula || contrib || beta)) {
         $button.addPopup(message('unreviewed'));
     }
 
