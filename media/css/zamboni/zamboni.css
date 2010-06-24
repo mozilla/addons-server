@@ -1737,7 +1737,6 @@ form .error .note.error {
 }
 
 .article.version blockquote {
-    padding-right: 16em;
     clear: left;
     overflow-x: hidden;
 }
