@@ -1,7 +1,7 @@
 // (function () {
 
     // Versioning for offline storage
-    var version = "2";
+    var version = "4";
 
     // where all the time-series data for the page is kept
     var datastore = {};
@@ -12,11 +12,8 @@
         mindate: 0,
         maxdate: today()
     };
-    
     var page_state = {
     }
-    
-    
     var capabilities = {
         localStorage : ('localStorage' in window) && window['localStorage'] !== null,
         JSON : window.JSON && typeof JSON.parse == 'function'
@@ -115,7 +112,7 @@
                 var local_store = localStorage;
                 dbg("looking for local data");
                 if (local_store.getItem("statscache") && AMO.StatsManager.verify_local()) {
-                    var cacheObject = local_store.getItem("statscache");
+                    var cacheObject = local_store.getItem("statscache-" + AMO.getAddonId());
                     dbg("found local data, loading...");
                     datastore = JSON.parse(cacheObject);
                 }
@@ -129,7 +126,7 @@
             if (capabilities.localStorage) {
                 dbg("user has local storage");
                 var local_store = localStorage;
-                local_store.setItem("statscache", JSON.stringify(datastore));
+                local_store.setItem("statscache-" + AMO.getAddonId(), JSON.stringify(datastore));
                 local_store.setItem("stats_version", version);
                 dbg("saved local data");
             } else {
@@ -140,7 +137,7 @@
         clear_local: function () {
             if (capabilities.localStorage) {
                 var local_store = localStorage;
-                local_store.removeItem("statscache");
+                local_store.removeItem("statscache-" + AMO.getAddonId());
                 dbg("cleared local data");
             }
         },
@@ -166,8 +163,6 @@
             var seriesURLStart = Highcharts.dateFormat('%Y%m%d', seriesStart),
                 seriesURLEnd = Highcharts.dateFormat('%Y%m%d', seriesEnd),
                 seriesURL = AMO.getStatsBaseURL() + ([metric,"day",seriesURLStart,seriesURLEnd]).join("-") + ".json";
-            
-            
             $.ajax({ url:       seriesURL,
                      dataType:  'text',
                      success:   function(raw_data, status, xhr) {
@@ -184,7 +179,6 @@
                     }
 
                     var ds = datastore[metric];
-                    
                     // process the Data. We want to directly use the native JSON
                     // without jQuery's costly regexes if we can.
                     if (capabilities.JSON) {

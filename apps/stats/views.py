@@ -182,6 +182,7 @@ def check_stats_permission(request, addon, for_contributions=False):
 
 def stats_report(request, addon_id, report):
     addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
+    check_stats_permission(request, addon)
     stats_base_url = reverse('stats.overview', args=[addon.id])
     return jingo.render(request, 'stats/%s.html' % report,
                         {'addon': addon,
