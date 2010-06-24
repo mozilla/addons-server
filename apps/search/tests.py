@@ -424,6 +424,14 @@ class FrontendSearchTest(SphinxTestCase):
         el = doc('#refine-compatibility li.selected')[0].text_content().strip()
         eq_(el, '3.6')
 
+    def test_empty_version_selected(self):
+        """If a user filters by a version that has no results, that version
+        should show up on the filter list anyway."""
+        resp = self.get_response(lver='3.7', q='Bookmarks')
+        doc = pq(resp.content)
+        el = doc('#refine-compatibility li.selected').text().strip()
+        eq_(el, '3.7')
+
     def test_sort_newest(self):
         "Test that we selected the right sort."
         resp = self.get_response(sort='newest')

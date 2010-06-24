@@ -11,7 +11,7 @@ import amo
 from amo.helpers import urlparams
 from amo import urlresolvers
 from addons.models import Category
-from versions.compare import dict_from_int
+from versions.compare import dict_from_int, version_int
 from search import forms
 from search.client import (Client as SearchClient, SearchError,
                            CollectionsClient, PersonasClient)
@@ -46,7 +46,7 @@ def _get_versions(request, versions, version):
         v_float = v['major'] + v['minor1'] / 10.0
         text = "%0.1f" % v_float
 
-        if seen.get(text): #pragma: no cover
+        if seen.get(text):
             continue
 
         seen[text] = 1
@@ -169,7 +169,7 @@ def _personas(request):
 
     try:
         results = client.query(query, **search_opts)
-    except SearchError, e:
+    except SearchError:
         return jingo.render(request, 'search/down.html', {}, status=503)
 
     pager = amo.utils.paginate(request, results, search_opts['limit'])
@@ -201,7 +201,7 @@ def _collections(request):
 
     try:
         results = client.query(query, **search_opts)
-    except SearchError, e:
+    except SearchError:
         return jingo.render(request, 'search/down.html', {}, status=503)
 
     pager = amo.utils.paginate(request, results, search_opts['limit'])
@@ -222,7 +222,7 @@ def search(request):
 
     search_opts = {
             'meta': ('versions', 'categories', 'tags'),
-            'version': None
+            'version': None,
             }
 
     form = SearchForm(request)
@@ -235,7 +235,7 @@ def search(request):
     appid = form.cleaned_data['appid']
 
     if request.APP.id != appid:
-        new_app =  amo.APP_IDS.get(appid)
+        new_app = amo.APP_IDS.get(appid)
         return HttpResponseRedirect(
                 urlresolvers.get_app_redirect(new_app))
 
@@ -272,7 +272,7 @@ def search(request):
             '1 month ago': timedelta(days=30),
             '3 months ago': timedelta(days=90),
             '6 months ago': timedelta(days=180),
-            '1 year ago': timedelta(days=365)
+            '1 year ago': timedelta(days=365),
             }
 
     delta = delta_dict.get(last_updated)
@@ -294,6 +294,12 @@ def search(request):
         results = client.query(query, **search_opts)
     except SearchError:
         return jingo.render(request, 'search/down.html', locals(), status=503)
+
+    version_filters = client.meta['versions']
+
+    # If we are filtering by a version, make sure we explicitly list it.
+    if search_opts['version']:
+        version_filters += (version_int(search_opts['version']),)
 
     versions = _get_versions(request, client.meta['versions'],
                              search_opts['version'])
