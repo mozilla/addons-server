@@ -519,6 +519,17 @@ class TestSearchForm(test_utils.TestCase):
         doc = pq(r.content)
         eq_(doc('#cat option:selected').val(), 'personas')
 
+    def test_no_personas(self):
+        """Sunbird, Mobile and Seamonkey don't have personas.  So don't
+        persuade people to search for them."""
+        apps = ('sunbird', 'mobile', 'seamonkey',)
+
+        for app in apps:
+            r = self.client.get('/en-US/%s/' % app, follow=True)
+            doc = pq(r.content)
+            eq_(len(doc('.cat-all [value=personas]')), 0,
+                '%s shows personas' % app)
+
 
 def test_showing_helper():
     tpl = "{{ showing(query, tag, pager) }}"

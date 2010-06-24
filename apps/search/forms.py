@@ -79,8 +79,11 @@ def get_search_groups(app):
     sub = [('%s,%s' % (a.type, a.id), a.name) for a in
            sorted(sub, key=lambda x: (x.weight, x.name))]
     top_level = [('all', _('all add-ons')),
-                 ('collections', _('all collections')),
-                 ('personas', _('all personas'))]
+                 ('collections', _('all collections')), ]
+
+    if amo.ADDON_PERSONA in app.types:
+        top_level += (('personas', _('all personas')),)
+
     return top_level[:1] + sub + top_level[1:], top_level
 
 
@@ -88,7 +91,6 @@ def SearchForm(request):
 
     current_app = request.APP or amo.FIREFOX
     search_groups, top_level = get_search_groups(current_app)
-
 
     class _SearchForm(forms.Form):
         q = forms.CharField(required=False)
