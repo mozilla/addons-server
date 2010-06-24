@@ -101,6 +101,10 @@
     display: none;
 }
 
+#advanced-search {
+    position: relative;
+}
+
 .install-button .button.platform {
     display: inherit;
 }
