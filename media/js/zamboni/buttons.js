@@ -5,8 +5,10 @@ z.button = {};
 /* A library of callbacks that may be run after InstallTrigger succeeds.
  * ``this`` will be bound to the .install button.
  */
-z.button.after = {'contrib': function() {
-    document.location = $(this).attr('data-developers');
+z.button.after = {'contrib': function(xpi_url, status) {
+    if (status === 0) { //success
+        document.location = $(this).attr('data-developers');
+    }
 }};
 
 var vc = new VersionCompare(),
