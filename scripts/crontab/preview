@@ -30,7 +30,7 @@ HOME = /tmp
 
 #once per day
 30 1 * * * cd /data/amo_python/src/preview/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron update_user_ratings
-30 2 * * * cd /data/amo_python/src/preview/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron cron_review_aggregate
+30 2 * * * cd /data/amo_python/src/preview/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron addon_reviews_ratings
 30 4 * * * cd /data/amo/www/addons.mozilla.org-preview/bin; php -f maintenance.php gc
 30 5 * * * cd /data/amo/www/addons.mozilla.org-preview/bin; php -f maintenance.php expired_resetcode
 30 6 * * * cd /data/amo/www/addons.mozilla.org-preview/bin; php -f maintenance.php category_totals
