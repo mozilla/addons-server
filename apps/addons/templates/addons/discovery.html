@@ -1,35 +1,57 @@
 {# Reminder: When this page is done for real, be sure to add L10n #}
+<!DOCTYPE html>
+<html>
+  <head>
+    <style type="text/css">
+      body {
+          font-family: Helvetica, Arial, sans-serif;
+          color: #222;
+          line-height: 1.6em;
+      }
 
-<style type="text/css">
-#horizon {
-    text-align: center;
-    position: absolute;
-    top: 50%;
-    left: 0px;
-    width: 100%;
-    height: 1px;
-    overflow: visible;
-    display: block;
-}
+      #horizon {
+          position:absolute;
+          top: 50%;
+          left: 50%;
+          height: 1px;
+          width: 1px;
+      }
 
-#content {
-    width: 600px;
-    height: 200px;
-    margin-left: -300px;
-    position: absolute;
-    top: -100px;
-    left: 50%;
-    visibility: visible;
-}
-</style>
-<div id="horizon">
-  <div id="content">
-    <h1>Something good is coming!</h1>
-    <p>This area will soon explain what add-ons are, feature some of the best,
-       and help you pick from thousands of ways to customize Firefox.</p>
+      #content {
+          position: relative;
+          top: -250px;
+          left: -300px;
+          width: 600px;
+          height: 500px;
+          text-align: center;
+      }
 
-    <p>Until then, visit the
-        <a href="https://addons.mozilla.org/en-US/firefox/">Firefox Add-ons</a>
-       website.</p>
-  </div>
-</div>
+      h1 {
+          text-shadow: #ace 0 0 .7em;
+      }
+
+      #cta {
+          font-size: .8em;
+          margin-top: 5em;
+          -moz-border-radius: 1em;
+          border: 1px solid #666;
+          padding: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="horizon">
+      <div id="content">
+        <img width="220" height="176" src="http://addons.mozilla.org/img/amo2009/illustrations/addons-robot.png" alt="robot drawing"/>
+        <h1>Something good is coming!</h1>
+        <p>This area will soon explain what add-ons are, feature some of the best,
+           and help you pick from thousands of ways to customize Firefox.</p>
+
+        <p>Until then, visit the
+            <a href="https://addons.mozilla.org/en-US/firefox/">Firefox Add-ons</a>
+           website.</p>
+        <p id="cta">Help add-on developers get ready for Firefox 4 by installing the <a href="https://addons.mozilla.org/addon/15003?src=external-discovery-pane">Add-on Compatibility Reporter</a></p>
+      </div>
+    </div>
+  </body>
+</html>
