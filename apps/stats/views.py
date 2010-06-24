@@ -8,6 +8,7 @@ from django.shortcuts import get_object_or_404
 from django.utils import simplejson
 from django.core.serializers.json import DjangoJSONEncoder
 from django.core.exceptions import PermissionDenied
+from django.views.decorators.cache import cache_control
 
 import jingo
 
@@ -222,7 +223,11 @@ def addon_contributions_queryset(addon, start_date, end_date):
                                      amount__gt=0,
                                      created__range=(start_date, end_date))
 
+# 30 days in seconds:
+thirty_days = 60 * 60 * 24 * 30
 
+
+@cache_control(max_age=thirty_days)
 def render_csv(request, addon, stats, fields):
     """Render a stats series in CSV."""
     # Start with a header from the template.
@@ -243,6 +248,7 @@ def render_csv(request, addon, stats, fields):
     return response
 
 
+@cache_control(max_age=thirty_days)
 def render_json(request, addon, stats):
     """Render a stats series in JSON."""
     response = http.HttpResponse(mimetype='text/json')

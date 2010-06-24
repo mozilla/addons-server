@@ -240,3 +240,13 @@ class TestCSVs(TestSeriesBase):
         for view, kwargs in self.views_gen(format='csv'):
             testname = 'test_%s' % view[6:] # everything after 'stats.'
             assert hasattr(self, testname), "no test for '%s'" % view
+
+
+class TestCacheControl(TestSeriesBase):
+    """Tests we set cache control headers"""
+
+    def test_cache_control(self):
+        response = self.get_view_response('stats.downloads_series',
+                                          group='month', format='csv')
+        assert response.get('cache-control', '').startswith('max-age='), (
+            'Bad or no cache-control: %r' % response.get('cache-control', ''))
