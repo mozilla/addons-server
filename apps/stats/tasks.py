@@ -2,19 +2,18 @@ import datetime
 
 from django.db import connection, transaction
 from django.db.models import Sum, Max
-from django.db.models.signals import post_save
 
 import commonware.log
 from celery.decorators import task
 
 import amo
 from addons.models import Addon
-from bandwagon.models import Collection
+from bandwagon.models import Collection, CollectionAddon
 from stats.models import Contribution
 from reviews.models import Review
 from users.models import UserProfile
 from versions.models import Version
-from .models import UpdateCount, DownloadCount
+from .models import UpdateCount, DownloadCount, AddonCollectionCount
 
 log = commonware.log.getLogger('z.task')
 
