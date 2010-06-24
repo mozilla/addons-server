@@ -15,7 +15,6 @@ import jingo
 from access import acl
 from addons.models import Addon
 from amo.urlresolvers import reverse
-from amo.helpers import locale_url
 
 from .db import DayAvg, Avg
 from .models import DownloadCount, UpdateCount, Contribution
@@ -146,7 +145,7 @@ def usage_breakdown_series(request, addon_id, group,
     qs = UpdateCount.stats.filter(addon=addon_id,
                                     date__range=(start_date, end_date))
     gen = qs.period_summary(group, **dict(fields))
-    
+
     if format == 'csv':
         gen, headings = csv_dynamic_prep(gen, qs, fields,
                                          'count', field)
@@ -183,7 +182,7 @@ def check_stats_permission(request, addon, for_contributions=False):
 
 def stats_report(request, addon_id, report):
     addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
-    stats_base_url = reverse('stats.overview', args=[addon.id]);
+    stats_base_url = reverse('stats.overview', args=[addon.id])
     return jingo.render(request, 'stats/%s.html' % report,
                         {'addon': addon,
                         'report': report,
