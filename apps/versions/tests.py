@@ -1,5 +1,6 @@
 from nose.tools import eq_
 from pyquery import PyQuery
+import mock
 import test_utils
 
 import amo
@@ -75,6 +76,17 @@ class TestVersion(test_utils.TestCase):
 
         v = Version.objects.get(pk=2)
         assert not v.has_files, 'Version without files not recognized.'
+
+    def _get_version(self, status):
+        v = Version()
+        v.all_files = [mock.Mock()]
+        v.all_files[0].status = status
+        return v
+
+    def test_is_unreviewed(self):
+        assert self._get_version(amo.STATUS_UNREVIEWED).is_unreviewed
+        assert self._get_version(amo.STATUS_PENDING).is_unreviewed
+        assert not self._get_version(amo.STATUS_PUBLIC).is_unreviewed
 
 
 class TestLicense(test_utils.TestCase):

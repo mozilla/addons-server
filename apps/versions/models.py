@@ -56,7 +56,7 @@ class Version(amo.models.ModelBase):
 
     @amo.cached_property
     def is_unreviewed(self):
-        return filter(lambda f: f.status == amo.STATUS_UNREVIEWED,
+        return filter(lambda f: f.status in amo.UNREVIEWED_STATUSES,
                       self.all_files)
 
     @amo.cached_property

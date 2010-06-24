@@ -165,6 +165,9 @@ class TestAddonModels(test_utils.TestCase):
         a = Addon(status=amo.STATUS_UNREVIEWED)
         assert a.is_unreviewed(), 'sandboxed add-on: is_unreviewed=True'
 
+        a.status = amo.STATUS_PENDING
+        assert a.is_unreviewed(), 'pending add-on: is_unreviewed=True'
+
     def test_is_selfhosted(self):
         """Test if an add-on is listed or hosted"""
         # hosted

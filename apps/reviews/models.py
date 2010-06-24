@@ -121,3 +121,11 @@ class Review(amo.models.ModelBase):
 
 models.signals.post_save.connect(Review.post_save, sender=Review)
 models.signals.post_delete.connect(Review.post_delete, sender=Review)
+
+
+class ReviewFlag(amo.models.ModelBase):
+    review = models.ForeignKey(Review)
+    user = models.ForeignKey('users.UserProfile')
+    name = models.CharField(max_length=64, default='review_flag_reason_other',
+                           db_column='flag_name')
+    notes = models.CharField(max_length=100, db_column='flag_notes')
