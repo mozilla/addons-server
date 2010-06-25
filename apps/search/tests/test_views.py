@@ -172,6 +172,12 @@ class FrontendSearchTest(SphinxTestCase):
         doc = pq(resp.content)
         eq_('GrApple Yummy', doc('.item h3 a').text())
 
+    def test_tag_refinement(self):
+        """Don't show the tag list if there's no tags to be shown."""
+        r = self.get_response(q='vuvuzela')
+        doc = pq(r.content)
+        eq_(len(doc('.addon-tags')), 0)
+
 
 class ViewTest(test_utils.TestCase):
     """Tests some of the functions used in building the view."""
