@@ -114,7 +114,9 @@
                 if (local_store.getItem("statscache") && AMO.StatsManager.verify_local()) {
                     var cacheObject = local_store.getItem("statscache-" + AMO.getAddonId());
                     dbg("found local data, loading...");
-                    datastore = JSON.parse(cacheObject);
+                    if (cacheObject) {
+                        datastore = JSON.parse(cacheObject);
+                    }
                 }
             } else {
                 dbg("no local storage");
@@ -278,12 +280,12 @@
 
         getSeries: function (seriesList, time, callback) {
             metric = seriesList.metric;
-            if (typeof time == "string") {
+            if (typeof time === "string") {
                 var cacheKey = metric + "_" + time.replace(/\s/g, '_');
 
                 var seriesStart = ago(time);
                 var seriesEnd = today();
-            } else if (typeof time == "object" && time.custom) {
+            } else if (typeof time === "object" && time.custom) {
                 var cacheKey = metric + "_" + time.start + "_" + time.end;
 
                 var seriesStart = time.start.getTime();

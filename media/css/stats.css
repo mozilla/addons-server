@@ -92,6 +92,10 @@ div.statbox {
     line-height: 2.5em;
     margin: .3em 1em;
 }
+.criteria.custom form input {
+    z-index: 10;
+    position: relative;
+}
 .criteria.custom {
     position: relative;
     margin-bottom: 1em;

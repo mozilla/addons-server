@@ -24,6 +24,8 @@ $(document).ready(function () {
 
     var report = AMO.getReportName();
 
+    $.datepicker.setDefaults({showAnim: ''});
+
     $("#date-range-start").datepicker();
     $("#date-range-end").datepicker();
 
@@ -54,7 +56,7 @@ $(document).ready(function () {
         e.preventDefault();
     });
 
-    $("#date-range-submit").click(function(e) {
+    $("#date-range-form").submit(function() {
         var start = new Date($("#date-range-start").val());
         var end = new Date($("#date-range-end").val());
 
@@ -63,8 +65,8 @@ $(document).ready(function () {
             start: start,
             end: end
         };
-
-        generateSeries(report, page_state.data_range, updateSeries);
+        AMO.StatsManager.getSeries(AMO.getSeriesList(), page_state.data_range, updateSeries);
+        return false;
     });
 
     t.lap("events init");
@@ -87,7 +89,7 @@ $(document).ready(function () {
             e.preventDefault();
         });        // generate_top_charts();
 
-        initTopCharts();
+        // initTopCharts();
     } else {
         var csv_table_el = $(".csv-table");
         if (csv_table_el.length) {
