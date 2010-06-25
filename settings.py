@@ -504,3 +504,31 @@ LOGGING = {
         'z.task': {'level': logging.INFO},
     },
 }
+
+
+# Read-only mode setup.
+READ_ONLY = False
+
+# Turn on read-only mode in settings_local.py by putting this line
+# at the VERY BOTTOM: read_only_mode(globals())
+def read_only_mode(env):
+    env['READ_ONLY'] = True
+
+    # Replace the default (master) db with a slave connection.
+    if not env.get('SLAVE_DATABASES'):
+        raise Exception("We need at least one slave database.")
+    slave = env['SLAVE_DATABASES'][0]
+    env['DATABASES']['default'] = env['DATABASES'][slave]
+
+    # No sessions without the database, so disable auth.
+    env['AUTHENTICATION_BACKENDS'] = ()
+
+    # Add in the read-only middleware before csrf middleware.
+    extra = 'amo.middleware.ReadOnlyMiddleware'
+    before = 'django.middleware.csrf.CsrfViewMiddleware'
+    m = list(env['MIDDLEWARE_CLASSES'])
+    m.insert(m.index(before), extra)
+    env['MIDDLEWARE_CLASSES'] = tuple(m)
+
+    # No logging at this point.
+    print "WE ARE IN READ-ONLY MODE."

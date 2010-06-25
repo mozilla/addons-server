@@ -6,12 +6,15 @@ Note: didn't make sense to use localeurl since we need to capture app as well
 import contextlib
 import urllib
 
+from django.conf import settings
 from django.contrib.sessions.middleware import SessionMiddleware
-from django.http import HttpResponsePermanentRedirect
+from django.http import HttpResponsePermanentRedirect, HttpResponse
 from django.middleware import common
 from django.utils.encoding import iri_to_uri, smart_str
 
+import MySQLdb as mysql
 import tower
+import jingo
 
 import amo
 from . import urlresolvers
@@ -87,6 +90,8 @@ class NoVarySessionMiddleware(SessionMiddleware):
     """
 
     def process_response(self, request, response):
+        if settings.READ_ONLY:
+            return response
         # Let SessionMiddleware do its processing but prevent it from changing
         # the Vary header.
         vary = response.get('Vary', None)
@@ -143,3 +148,14 @@ class CommonMiddleware(common.CommonMiddleware):
     def process_request(self, request):
         with safe_query_string(request):
             return super(CommonMiddleware, self).process_request(request)
+
+
+class ReadOnlyMiddleware(object):
+
+    def process_request(self, request):
+        if request.method == 'POST':
+            return jingo.render(request, 'amo/read-only.html', status=500)
+
+    def process_exception(self, request, exception):
+        if isinstance(exception, mysql.OperationalError):
+            return jingo.render(request, 'amo/read-only.html', status=500)

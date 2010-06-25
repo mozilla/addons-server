@@ -1,44 +1,44 @@
 {% if user.is_authenticated() %}
-{% if tools_links and tools_links|count > 1 %}
-  <ul class="tools">
-    <li>
-      <a href="#" class="controller">{{ _('Tools') }}</a>
-      <ul>
-        {% for link in tools_links %}
-          <li><a href="{{ link.href }}">{{ link.text }}</a></li>
-        {% endfor %}
-      </ul>
-    </li>
-  </ul>
-{% else %}
-  <p class="context tools">
-    <a href="{{ tools_links[0].href }}">{{ tools_links[0].text }}</a>
-  </p>
-{% endif %}
-<ul class="account">
-    <li>
-    <a href="#" class="controller" title="{{ user.email }}">
-      {{ _('My Account') }}</a>
-      {% if account_links %}
+  {% if tools_links and tools_links|count > 1 %}
+    <ul class="tools">
+      <li>
+        <a href="#" class="controller">{{ _('Tools') }}</a>
         <ul>
-          {% for link in account_links %}
+          {% for link in tools_links %}
             <li><a href="{{ link.href }}">{{ link.text }}</a></li>
           {% endfor %}
         </ul>
-      {% endif %}
-    </li>
-</ul>
+      </li>
+    </ul>
+  {% else %}
+    <p class="context tools">
+      <a href="{{ tools_links[0].href }}">{{ tools_links[0].text }}</a>
+    </p>
+  {% endif %}
+  <ul class="account">
+      <li>
+      <a href="#" class="controller" title="{{ user.email }}">
+        {{ _('My Account') }}</a>
+        {% if account_links %}
+          <ul>
+            {% for link in account_links %}
+              <li><a href="{{ link.href }}">{{ link.text }}</a></li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </li>
+  </ul>
 {% endif %}
 
 <p class="context">
   {% if user.is_authenticated() %}
-  <span class="greeting">
-    {{ _('Welcome, {0}')|f(user.get_profile().welcome_name) }}
-  </span>
+    <span class="greeting">
+      {{ _('Welcome, {0}')|f(user.get_profile().welcome_name) }}
+    </span>
   {% else %}
-  {# TODO(jbalogh): reverse #}
-  {% trans reg="/users/register", login=login_link() %}
-    <a href="{{ reg }}">Register</a> or <a href="{{ login }}">Log in</a>
-  {% endtrans %}
+    {# TODO(jbalogh): reverse #}
+    {% trans reg="/users/register", login=login_link() %}
+      <a href="{{ reg }}">Register</a> or <a href="{{ login }}">Log in</a>
+    {% endtrans %}
   {% endif %}
 </p>
