@@ -38,16 +38,18 @@ def update_denorm(*pairs, **kw):
 def addon_review_aggregates(*addons, **kw):
     log.info('[%s@%s] Updating total reviews.' %
              (len(addons), addon_review_aggregates.rate_limit))
-    stats = (Review.objects.valid().filter(addon__in=addons)
-             .values_list('addon').annotate(Count('addon')))
-    for addon, count in stats:
+    stats = dict(Review.objects.valid().filter(addon__in=addons)
+                 .values_list('addon').annotate(Count('addon')))
+    for addon in addons:
+        count = stats.get(addon, 0)
         Addon.objects.filter(id=addon).update(total_reviews=count)
 
     log.info('[%s@%s] Updating average ratings.' %
              (len(addons), addon_review_aggregates.rate_limit))
-    stats = (Review.objects.valid().filter(addon__in=addons)
-             .values_list('addon').annotate(Avg('rating')))
-    for addon, avg in stats:
+    stats = dict(Review.objects.valid().filter(addon__in=addons)
+                 .values_list('addon').annotate(Avg('rating')))
+    for addon in addons:
+        avg = stats.get(addon, 0)
         Addon.objects.filter(id=addon).update(average_rating=avg)
 
     # Delay bayesian calculations to avoid slave lag.

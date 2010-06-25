@@ -51,3 +51,13 @@ class TestDenormalization(test_utils.TestCase):
     def test_cron_review_aggregate(self):
         cron.addon_reviews_ratings()
         self._check_addon()
+
+    def test_deleted_reviews(self):
+        "If all reviews are deleted, reviews and ratings should be cleared."
+        tasks.addon_review_aggregates(72, 3)
+        self._check_addon()
+        Review.objects.all().delete()
+        addon = Addon.objects.get(id=72)
+        eq_(addon.total_reviews, 0)
+        eq_(addon.average_rating, '0')
+        eq_(addon.bayesian_rating, 0)
