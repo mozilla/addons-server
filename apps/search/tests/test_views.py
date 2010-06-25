@@ -178,6 +178,14 @@ class FrontendSearchTest(SphinxTestCase):
         doc = pq(r.content)
         eq_(len(doc('.addon-tags')), 0)
 
+    def test_pagination_refinement(self):
+        """Refinement panel shouldn't have the page parameter in urls."""
+        r = self.get_response(page=2)
+        doc = pq(r.content)
+        for link in doc('#refine-results a'):
+            assert 'page=2' not in link.attrib['href'], (
+                    "page parameter found in %s link" % link.text)
+
 
 class ViewTest(test_utils.TestCase):
     """Tests some of the functions used in building the view."""

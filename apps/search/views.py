@@ -30,7 +30,7 @@ def _get_versions(request, versions, version):
     url = request.get_full_path()
 
     c = MenuItem()
-    (c.text, c.url) = (_('All Versions'), urlparams(url, lver=None))
+    (c.text, c.url) = (_('All Versions'), urlparams(url, lver=None, page=None))
 
     if not version or version == 'any':
         c.selected = True
@@ -56,7 +56,7 @@ def _get_versions(request, versions, version):
 
         c = MenuItem()
         c.text = text
-        c.url = urlparams(url, lver=c.text)
+        c.url = urlparams(url, lver=c.text, page=None)
 
         if c.text == version:
             c.selected = True
@@ -70,7 +70,8 @@ def _get_categories(request, categories, addon_type=None, category=None):
     url = request.get_full_path()
 
     i = MenuItem()
-    (i.text, i.url) = (_('All'), urlparams(url, atype=None, cat=None))
+    (i.text, i.url) = (_('All'), urlparams(url, atype=None, cat=None,
+                                           page=None))
 
     if not addon_type and not category:
         i.selected = True
@@ -83,7 +84,7 @@ def _get_categories(request, categories, addon_type=None, category=None):
     for cat in categories:
         item = MenuItem()
         (item.text, item.url) = (cat.name, urlparams(url, atype=None,
-                cat="%d,%d" % (cat.type, cat.id)))
+                page=None, cat="%d,%d" % (cat.type, cat.id)))
 
         if category == cat.id:
             item.selected = True
@@ -94,7 +95,8 @@ def _get_categories(request, categories, addon_type=None, category=None):
         item = MenuItem()
         item.children = children
         (item.text, item.url) = (amo.ADDON_TYPES[key],
-                                 urlparams(url, atype=key, cat=None))
+                                 urlparams(url, atype=key, cat=None,
+                                           page=None))
         if not category and addon_type == key:
             item.selected = True
 
@@ -110,7 +112,8 @@ def _get_tags(request, tags, selected):
     for tag in tags:
         item = MenuItem()
         (item.text, item.url) = (tag.tag_text.lower(),
-                 urlparams(url, tag=tag.tag_text.encode('utf8').lower()))
+                 urlparams(url, tag=tag.tag_text.encode('utf8').lower(),
+                           page=None))
 
         if tag.tag_text.lower() == selected:
             item.selected = True
