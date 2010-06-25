@@ -2205,19 +2205,19 @@ form.favorite {
     margin-top: 0;
     border: none;
 }
-.search-form .subsidiary .container {
+.search-form .container {
     width: 48%;
     float: left;
     display: inline;
 }
-.search-form .subsidiary label {
+.search-form label {
     width: 35%;
     display: block;
     float: left;
     font-weight: bold;
 }
-.search-form .subsidiary select,
-.search-form .subsidiary input {
+.search-form select,
+.search-form input {
     width: 40%;
 }
 
