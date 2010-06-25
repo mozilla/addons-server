@@ -1,5 +1,5 @@
 import mock
-from nose.tools import eq_
+from nose.tools import eq_, assert_almost_equal
 import test_utils
 
 from addons.models import Addon
@@ -28,7 +28,7 @@ class TestDenormalization(test_utils.TestCase):
         addon = Addon.objects.get(id=72)
         eq_(addon.total_reviews, 3)
         eq_(addon.average_rating, '2.3333')
-        eq_(addon.bayesian_rating, 2.25)
+        assert_almost_equal(addon.bayesian_rating, 2.2499, places=2)
 
     def test_denorms(self):
         cron.reviews_denorm()

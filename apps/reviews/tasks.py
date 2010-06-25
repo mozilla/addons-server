@@ -1,6 +1,6 @@
 import logging
 
-from django.db.models import Count, Avg, Sum
+from django.db.models import Count, Avg, Sum, F
 
 from celery.decorators import task
 import caching.base as caching
@@ -61,16 +61,15 @@ def addon_bayesian_rating(*addons, **kw):
     f = lambda: Addon.objects.aggregate(rating=Avg('average_rating'),
                                         reviews=Avg('total_reviews'))
     avg = caching.cached(f, 'task.bayes.avg', 60 * 60 * 60)
-    qs = (Addon.uncached.filter(id__in=addons, total_reviews__gt=0)
-          .annotate(sum_ratings=Sum('_reviews__rating')))
-    for addon in qs:
-        if addon.total_reviews and addon.sum_ratings:
-            num = (avg['reviews'] * avg['rating']) + addon.sum_ratings
-            denom = avg['reviews'] + addon.total_reviews
-            addon.bayesian_rating = float(num) / denom
+    mc = avg['reviews'] * avg['rating']
+    for addon in Addon.uncached.filter(id__in=addons):
+        q = Addon.objects.filter(id=addon.id)
+        if addon.total_reviews:
+            num = mc + F('total_reviews') * F('average_rating')
+            denom = avg['reviews'] + F('total_reviews')
+            q.update(bayesian_rating=num/denom)
         else:
-            addon.bayesian_rating = 0
-        addon.save()
+            q.update(bayesian_rating=0)
 
 
 @task(rate_limit='10/m')
