@@ -64,7 +64,7 @@
                   </td>
                 </tr>
               {% endif %}
-              {% if addon.compatible_apps %}
+              {% if addon.compatible_apps[APP] %}
                 <tr>
                   <th>{{ _('Works with') }}</th>
                   <td>{{ addon.compatible_apps[APP] }}</td>

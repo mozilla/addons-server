@@ -403,7 +403,20 @@ class TestDetailPage(test_utils.TestCase):
         r = self.client.get(reverse('addons.detail', args=[3615]))
         url = pq(r.content)('[data-detail-url]').attr('data-detail-url')
         eq_(url, '/en-US/firefox/collection/')
-    test_collection_detal_url.xxx = 3
+
+    def test_search_engine_works_with(self):
+        """We don't display works-with info for search engines."""
+        addon = Addon.objects.filter(type=amo.ADDON_SEARCH)[0]
+        r = self.client.get(reverse('addons.detail', args=[addon.id]))
+        headings = pq(r.content)('table[itemscope] th')
+        assert not any(th.text.strip().lower() == 'works with'
+                       for th in headings)
+
+        # Make sure we find Works with for an extension.
+        r = self.client.get(reverse('addons.detail', args=[3615]))
+        headings = pq(r.content)('table[itemscope] th')
+        assert any(th.text.strip().lower() == 'works with'
+                   for th in headings)
 
 
 class TestTagsBox(test_utils.TestCase):
