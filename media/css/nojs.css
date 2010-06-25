@@ -97,6 +97,10 @@
     display: block;
 }
 
+.search-form form {
+    position: relative;
+}
+
 #search-query .query-label {
     display: none;
 }
