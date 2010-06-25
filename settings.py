@@ -482,7 +482,7 @@ CUSTOM_DUMPS = {
                   'files.platform', 'addons.addon', 'versions.version',
                   'files.file'),
         'excludes': {
-            'addons.addon': ('_current_version',)
+            'addons.addon': ('_current_version',),
         }
     }
 }
@@ -508,6 +508,7 @@ LOGGING = {
 
 # Read-only mode setup.
 READ_ONLY = False
+
 
 # Turn on read-only mode in settings_local.py by putting this line
 # at the VERY BOTTOM: read_only_mode(globals())
