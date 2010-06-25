@@ -26,6 +26,11 @@ def test_stars():
     eq_(doc.text(), msg)
 
 
+def test_stars_max():
+    doc = PyQuery(render('{{ num|stars }}', {'num': 5.3}))
+    eq_(doc.attr('class'), 'stars stars-5')
+
+
 def test_reviews_link():
     a = Addon(average_rating=4, total_reviews=37, id=1)
     s = render('{{ myaddon|reviews_link }}', {'myaddon': a})

@@ -1,5 +1,3 @@
-import math
-
 import jinja2
 
 import jingo
@@ -13,7 +11,7 @@ def stars(num):
     if num is None or num == 0.0:
         return _('Not yet rated')
     else:
-        num = int(math.ceil(num))
+        num = min(5, int(round(num)))
         rating = '<span itemprop="rating">%s</span>' % num
         title = _('Rated %s out of 5 stars') % num
         msg = _('Rated %s out of 5 stars') % rating
