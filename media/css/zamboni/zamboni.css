@@ -50,15 +50,6 @@ header hgroup h3 {
     margin-bottom: 14px;
 }
 
-#advanced-search {
-	position:absolute;
-	z-index:100;
-}
-
-#advanced-link {
-	z-index:101;
-}
-
 ul.errorlist {
     margin-bottom: 0;
     color: #c00;

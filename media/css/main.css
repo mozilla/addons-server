@@ -2005,7 +2005,7 @@ form.favorite {
 
 
 .search-form {
-    margin-bottom: 2em;
+    margin-bottom: 4em;
     width: 73.47%;
     float: right;
     position: relative;
@@ -2017,6 +2017,9 @@ form.favorite {
 }
 .search-form form {
     margin: 0;
+    width: 100%;
+    position: absolute;
+    z-index: 100;
 }
 .search-form .basic {
     background-image: url(../../img/amo2009/bg/heading-dark-blue.jpg);
@@ -2126,12 +2129,18 @@ form.favorite {
     outline: 1px solid black;
 }
 
+#advanced-search {
+    z-index:100;
+}
+
 #advanced-link {
     position: absolute;
-    bottom: 0;
+    z-index: 101;
+    bottom: -20px;
     right: 30px;
     margin: 0;
 }
+
 #advanced-link a:link,
 #advanced-link a:visited,
 #advanced-link a:hover,
