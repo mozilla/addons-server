@@ -65,7 +65,7 @@
         {% endfor %}
       </ul>
     </div>
-
+    {% if tags %}
     <div id="refine-tags">
       <h5>{{ _('Tags') }}</h5>
 
@@ -75,6 +75,7 @@
         {% endfor %}
       </ul>
     </div>
+    {% endif %}
   </div>
 </section>
 {% endblock %}
