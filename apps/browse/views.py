@@ -49,9 +49,8 @@ Locale = collections.namedtuple('Locale', 'locale display native dicts packs')
 # uniform with the other type listings.
 def language_tools(request, category=None):
     types = (amo.ADDON_DICT, amo.ADDON_LPAPP)
-    q = (Addon.objects.public().exclude(target_locale='')
-         .filter(type__in=types, target_locale__isnull=False))
-    addons = [a for a in q.all() if request.APP in a.compatible_apps]
+    addons = Addon.objects.public().filter(appsupport__app=request.APP.id, type__in=types,
+                target_locale__isnull=False).exclude(target_locale='').all()
 
     for addon in addons:
         locale = addon.target_locale.lower()
