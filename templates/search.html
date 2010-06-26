@@ -25,7 +25,7 @@
       </button>
     </div> {# search-query #}
     <div id="advanced-link" title="{{ _('Toggle advanced search mode') }}">
-      <a class="asopen" href="?advanced=on">{{ _('Advanced') }}</a>
+      <a class="asopen" href="{% if show_advanced %}./{% else %}?advanced=on{% endif %}">{{ _('Advanced') }}</a>
     </div>
     <div id="advanced-search" class="advanced">
       <fieldset class="important">
