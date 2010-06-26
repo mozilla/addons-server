@@ -1,3 +1,13 @@
+function dbg() {
+    if(capabilities.console && capabilities.debug && !capabilities.debuginpage) {
+        window.console.log(Array.prototype.slice.apply(arguments));
+    }
+    if (capabilities.debuginpage && capbabilities.debug) {
+        var args = Array.prototype.slice.apply(arguments);
+        $("#dbgout").append("\n");
+    }
+}
+
 $(document).ready(function () {
     var csvTable;
     jQuery.fn.getData = function(name) {
@@ -18,9 +28,8 @@ $(document).ready(function () {
         }
     };
     AMO.getStatsBaseURL = function () { return stats_base_url };
-    t.go();
+
     AMO.StatsManager.init();
-    t.lap("StatsManager init");
 
     var report = AMO.getReportName();
 
@@ -28,8 +37,6 @@ $(document).ready(function () {
 
     $("#date-range-start").datepicker();
     $("#date-range-end").datepicker();
-
-    t.lap("datepicker init");
 
     var rangeMenu = $(".criteria.range ul");
 
@@ -69,8 +76,6 @@ $(document).ready(function () {
         return false;
     });
 
-    t.lap("events init");
-
     if (report == "overview") {
         page_state.report_name = 'downloads';
         var series_menu = $("#series-select");
@@ -96,7 +101,6 @@ $(document).ready(function () {
             csvTable = new PageTable(csv_table_el[0]);
         }
 
-        t.lap("csvtable init");
     }
 
     LoadBar.on("Loading the latest data&hellip;");
@@ -106,14 +110,15 @@ $(document).ready(function () {
     } else {
         var fetchStart = ago("30 days");
     }
-    t.go("fetching data")
 
+    fetch_top_charts();
+    
     AMO.StatsManager.getDataRange(AMO.getReportName(), fetchStart, today(), function () {
-        t.lap("building aggregate stats")
+
         if (AMO.aggregate_stats_field) {
             show_aggregate_stats(AMO.aggregate_stats_field, page_state.data_range);
         }
-        t.lap("building initial chart stuff")
+
         AMO.StatsManager.getSeries(AMO.getSeriesList(), "30 days", initCharts);
         LoadBar.off();
         if (csvTable) {
@@ -156,12 +161,6 @@ $(document).ready(function () {
 
     var t = new Timer();
 
-    function dbg() {
-        if(window.console && window.console.log) {
-            window.console.log(Array.prototype.slice.apply(arguments));
-        }
-    }
-
     function updateSeries(cfg) {
         for (var i=0; i<cfg.length; i++) {
             var series = mainChart.get(cfg[i].id);
@@ -170,6 +169,7 @@ $(document).ready(function () {
             }
         }
     }
+    
     function draw_diff(el, current, previous) {
         if (current.nodata || previous.nodata) return;
         var diffel = $(el);
@@ -191,7 +191,8 @@ $(document).ready(function () {
         mainChart = new Highcharts.Chart({
             chart: {
               renderTo: 'head-chart',
-              zoomType: 'x'
+              zoomType: 'x',
+              margin: [30,20,30,70]
             },
             credits: { enabled: false },
             title: {
@@ -242,6 +243,13 @@ $(document).ready(function () {
            },
            series: cfg
         });
+        if (mainChart.series.length > 1) {
+            $(".listing-header").append($("<ul class='chart_legend'></ul>"));
+            $legend = $('.chart_legend');
+            for (var i = 0; i < mainChart.series.length; i++) {
+               $legend.append($("<li style='display:block;float:right'><b class='seriesdot' style='background:" + mainChart.series[i].color + "'>&nbsp;</b>" + mainChart.series[i].name + "</li>"));
+            }
+        }
 
     }
 
@@ -250,74 +258,112 @@ $(document).ready(function () {
 // })();
 
 
-function initTopCharts() {
+function initTopChart(el) {
 
-    $(".toplists .toplist").each(function (i, el) {
+    var table = $("table", el)[0],
+        container = $(".piechart", el)[0],
+        rows = $('tbody tr', table);
 
-        var table = $("table", el)[0],
-            container = $(".piechart", el)[0],
-            rows = $('tbody tr', table);
+    function fancyParse(x) {
+        return parseFloat(x.replace(",", ""));
+    }
 
-        function fancyParse(x) {
-            return parseFloat(x.replace(",", ""));
+    if (table) {
+        var topchart1 = new Highcharts.Chart({
+           chart: {
+              renderTo: container,
+              margin: 0,
+              height:200,
+              width:210
+           },
+           title: {
+              text: null
+           },
+           plotArea: {
+              shadow: null,
+              borderWidth: null,
+              backgroundColor: null
+           },
+           tooltip: {
+              formatter: function() {
+                 return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.y, 0);
+              }
+           },
+           plotOptions: {
+              pie: {
+                 allowPointSelect: true,
+                 data: 'datatable',
+                 dataParser: function(data) {
+                    var result = [];
+                    // loop through the rows and get the data depending on the series (this) name
+                    for (var i = 0; i < rows.length; i++) {
+                       var row = $(rows[i]).children();
+                       result.push(
+                          [$(row[0]).text(), fancyParse($(row[1]).text())]
+                       );
+                    }
+                    return result;
+                 },
+                 dataLabels: {
+                    enabled: false,
+                    color: '#333'
+                 },
+                 size:190
+              }
+           },
+           credits: {enabled:false},
+           legend: {
+              enabled:false
+           },
+              series: [{
+              type: 'pie',
+           }]
+        });
+        for (var i = 0; i < rows.length; i++) {
+           var row = $(rows[i]).children();
+           $(row[0]).append($("<b class='seriesdot' style='background:" + topchart1.series[0].data[i].color + "'>&nbsp;</b>"));
         }
+    } // end if(table)
+}
 
-        if (table) {
-            var topchart1 = new Highcharts.Chart({
-               chart: {
-                  renderTo: container,
-                  margin: 0,
-                  height:200,
-                  width:210
-               },
-               title: {
-                  text: null
-               },
-               plotArea: {
-                  shadow: null,
-                  borderWidth: null,
-                  backgroundColor: null
-               },
-               tooltip: {
-                  formatter: function() {
-                     return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.y, 0);
-                  }
-               },
-               plotOptions: {
-                  pie: {
-                     allowPointSelect: true,
-                     data: 'datatable',
-                     dataParser: function(data) {
-                        var result = [];
-                        // loop through the rows and get the data depending on the series (this) name
-                        for (var i = 0; i < rows.length; i++) {
-                           var row = $(rows[i]).children();
-                           result.push(
-                              [$(row[0]).text(), fancyParse($(row[1]).text())]
-                           );
-                        }
-                        return result;
-                     },
-                     dataLabels: {
-                        enabled: false,
-                        color: '#333'
-                     },
-                     size:190
-                  }
-               },
-               credits: {enabled:false},
-               legend: {
-                  enabled:false
-               },
-                  series: [{
-                  type: 'pie',
-               }]
+function fetch_top_charts() {
+    toplists = $(".toplist");
+    
+    toplists.each(function (i, toplist) {
+        var tableEl = $("table", toplist);
+        var report = tableEl.getData("report"),
+            field = tableEl.getData("field"),
+            tbody = ["<tbody>"];
+
+        if (report && field) {
+            AMO.StatsManager.getRankedList({metric:report,name:field}, ago("30 days"), today(), function (results) {
+                var sums = results.sums;
+                dbg("sumlist", sums);
+                for (i=0; i<Math.min(sums.length, 5); i++) {
+                    var sum = sums[i];
+                    tbody.push("<tr>");
+                    tbody.push("<td>", sum.field, "</td>");
+                    tbody.push("<td>", sum.sum, "</td>");
+                    tbody.push("<td>(", sum.pct, "%)</td>");
+                    tbody.push("</tr>");
+                }
+                if (sums.length > 5) {
+                    var othersum = 0;
+                    for (i=5; i<sums.length; i++) {
+                        othersum += sums[i].sum;
+                    }
+                    tbody.push("<tr>");
+                    tbody.push("<td>Other</td>");
+                    tbody.push("<td>", othersum, "</td>");
+                    tbody.push("<td>(", Math.floor(othersum * 100 / results.total), "%)</td>");
+                    tbody.push("</tr>");
+                    
+                }
+                tbody.push("</tbody>");
+                tableEl.html(tbody.join(''));
+                //initTopChart(toplist);
             });
-            for (var i = 0; i < rows.length; i++) {
-               var row = $(rows[i]).children();
-               $(row[0]).append($("<b class='seriesdot' style='background:" + topchart1.series[0].data[i].color + "'>&nbsp;</b>"));
-            }
-        } // end if(table)
+        }
     });
 }
 

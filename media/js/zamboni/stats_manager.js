@@ -15,8 +15,11 @@
     var page_state = {
     }
     var capabilities = {
-        localStorage : ('localStorage' in window) && window['localStorage'] !== null,
-        JSON : window.JSON && typeof JSON.parse == 'function'
+        'localStorage' : ('localStorage' in window) && window['localStorage'] !== null,
+        'JSON' : window.JSON && typeof JSON.parse == 'function',
+        'debug' : !(('' + document.location).indexOf("dbg") < 0),
+        'debuginpage' : !(('' + document.location).indexOf("dbginpage") < 0),
+        'console' : window.console && (typeof window.console.log == 'function')
     };
 
     var writeInterval = false;
@@ -115,7 +118,10 @@
                     var cacheObject = local_store.getItem("statscache-" + AMO.getAddonId());
                     dbg("found local data, loading...");
                     if (cacheObject) {
-                        datastore = JSON.parse(cacheObject);
+                        cacheObject = JSON.parse(cacheObject);
+                        if (cacheObject) {
+                            dataStore = cacheObject;
+                        }
                     }
                 }
             } else {
@@ -289,7 +295,7 @@
                 var cacheKey = metric + "_" + time.start + "_" + time.end;
 
                 var seriesStart = time.start.getTime();
-                var seriesEnd = time.end;
+                var seriesEnd = time.end.getTime();
             } else {
                 return false;
             }
@@ -329,6 +335,7 @@
                             for (var j=0; j<fields.length; j++) {
                                 ret.push({
                                     type: 'line',
+                                    name: fields[j].split("|").slice(-1),
                                     id: fields[j],
                                     data: out[fields[j]]
                                 });
@@ -365,7 +372,7 @@
 
                     var ret = [];
 
-                    ret.page = num;
+                    repage = num;
 
                     for (var i=seriesEnd; i>seriesStart; i-= millis("1 day")) {
                         if (ds[i] !== undefined) ret.push(ds[i]);
@@ -391,6 +398,63 @@
             var ds = datastore[metric];
 
             return Math.ceil((ds.maxdate - ds.mindate) / millis("1 day") / size);
+        },
+
+        getRankedList: function(field, start, end, callback) {
+            var metric = field.metric;
+            var cacheKey = name || (metric + field.name + "_toplist_" + start + "_" + end);
+            
+            var sums = {};
+            
+            var total = 0;
+            
+            if (seriesCache[cacheKey]) {
+                callback.call(this, seriesCache[cacheKey]);
+            } else {
+                AMO.StatsManager.getDataRange(metric, start, end, function () {
+                    var ds = datastore[metric];
+
+                    for (var i=start; i<end; i+= millis("1 day")) {
+                        if (ds[i] !== undefined) {
+                            var datum = AMO.StatsManager.getField(ds[i], field.name);
+                            for (var j in datum) {
+                                if (datum.hasOwnProperty(j)) {
+                                    if (!sums[j]) {
+                                        sums[j] = 0;
+                                    };
+                                    var val = parseFloat(datum[j]);
+                                    sums[j] += val;
+                                    total += val;
+                                }
+                            }
+                        }
+                    }
+                    
+                    sorted_sums = [];
+                    
+                    for (var i in sums) {
+                        var v= sums[i];
+                        if (datum.hasOwnProperty(i)) {
+                            sorted_sums.push({
+                                'field': i,
+                                'sum': v,
+                                'pct': Math.floor(v*100/total)
+                            });
+                        }
+                    }
+                    
+                    sorted_sums.sort(function (a,b) {
+                        return b.sum-a.sum;
+                    })
+
+                    var ret = {'sums': sorted_sums, 'total': total};
+
+                    seriesCache[cacheKey] = ret;
+
+                    callback.call(this, ret);
+
+                });
+            }
         },
 
         getSum: function(field, start, end, callback, name) {
