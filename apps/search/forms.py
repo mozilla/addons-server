@@ -149,7 +149,7 @@ def SearchForm(request):
                 elif d['cat'] == 'all':
                     d['cat'] = None
 
-            if 'page' not in d or not d['page']:
+            if 'page' not in d or not d['page'] or d['page'] < 1:
                 d['page'] = 1
             return d
 
