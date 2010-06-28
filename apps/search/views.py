@@ -302,7 +302,10 @@ def search(request):
 
     # If we are filtering by a version, make sure we explicitly list it.
     if search_opts['version']:
-        version_filters += (version_int(search_opts['version']),)
+        try:
+            version_filters += (version_int(search_opts['version']),)
+        except UnicodeEncodeError:
+            pass  # We didn't want to list you anyway.
 
     versions = _get_versions(request, client.meta['versions'],
                              search_opts['version'])
