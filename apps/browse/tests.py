@@ -30,14 +30,12 @@ def test_locale_display_name():
     assert_raises(KeyError, check, 'fake-lang', '', '')
 
 
-class TestLanguageTools(test_utils.TestCase):
+class TestLanguageTools(amo.test_utils.ExtraSetup, test_utils.TestCase):
     fixtures = ['browse/test_views']
 
     def setUp(self):
         super(TestLanguageTools, self).setUp()
         cache.clear()
-        ids = Addon.objects.values_list('id', flat=True)
-        _update_appsupport(ids)
         self.url = reverse('browse.language-tools')
         response = self.client.get(self.url, follow=True)
         self.locales = response.context['locales']
