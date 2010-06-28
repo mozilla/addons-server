@@ -1616,12 +1616,10 @@ form .error .note.error {
 .results-head {
     position: relative;
     width: auto;
-    padding-right: 350px;
 }
 
 .html-rtl .results-head {
     padding-right: 0;
-    padding-left: 350px;
 }
 
 .results-head .suggest {
