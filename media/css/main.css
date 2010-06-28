@@ -2232,10 +2232,6 @@ form.favorite {
     display: inline;
     white-space: nowrap;
 }
-.search-form .important select,
-.search-form .important input {
-    margin: 0 0.5em;
-}
 .search-form .important .application label  {
     font-weight: bold;
     display: block;
