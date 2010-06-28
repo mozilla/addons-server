@@ -31,7 +31,7 @@ $(document).ready(function(){
     // Set up advanced search box.
     z.searchBox();
 
-    if (true || z.readonly) {
+    if (z.readonly) {
         $('form[method=post]')
             .before(gettext('This feature is temporarily disabled while we perform website maintenance. Please check back a little later.'))
             .find('input, button, select').attr('disabled', true);
