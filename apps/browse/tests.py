@@ -13,6 +13,7 @@ import amo.test_utils
 from amo.urlresolvers import reverse
 from amo.helpers import urlparams
 from addons.models import Addon, Category
+from addons.cron import _update_appsupport
 from browse import views
 from browse.views import locale_display_name
 from translations.query import order_by_translation
@@ -35,6 +36,8 @@ class TestLanguageTools(test_utils.TestCase):
     def setUp(self):
         super(TestLanguageTools, self).setUp()
         cache.clear()
+        ids = Addon.objects.values_list('id', flat=True)
+        _update_appsupport(ids)
         self.url = reverse('browse.language-tools')
         response = self.client.get(self.url, follow=True)
         self.locales = response.context['locales']

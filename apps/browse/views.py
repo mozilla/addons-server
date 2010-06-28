@@ -6,6 +6,7 @@ from django.http import HttpResponsePermanentRedirect
 from django.shortcuts import get_object_or_404
 from django.views.decorators.cache import cache_page
 
+from caching.base import cached_with
 from tower import ugettext_lazy as _lazy
 import jingo
 import product_details
@@ -45,14 +46,8 @@ def locale_display_name(locale):
 Locale = collections.namedtuple('Locale', 'locale display native dicts packs')
 
 
-# We never use the category, but this makes it
-# uniform with the other type listings.
-def language_tools(request, category=None):
-    types = (amo.ADDON_DICT, amo.ADDON_LPAPP)
-    q = (Addon.objects.public().exclude(target_locale='')
-         .filter(type__in=types, target_locale__isnull=False))
-    addons = [a for a in q.all() if request.APP in a.compatible_apps]
-
+def _get_locales(addons):
+    """Does the heavy lifting for language_tools."""
     for addon in addons:
         locale = addon.target_locale.lower()
         try:
@@ -76,11 +71,23 @@ def language_tools(request, category=None):
                                  addon.locale_native, dicts, packs)
 
     locales = sorted(locales.items(), key=lambda x: x[1].display)
+    return locales
+
+# We never use the category, but this makes it
+# uniform with the other type listings.
+def language_tools(request, category=None):
+    types = (amo.ADDON_DICT, amo.ADDON_LPAPP)
+    addons = (Addon.objects.public().filter(appsupport__app=request.APP.id,
+              type__in=types, target_locale__isnull=False).exclude(
+              target_locale='').all())
+
+    f = lambda: _get_locales(addons)
+    locales = cached_with(addons, f, 'language_tools')
 
     search_cat = '%s,0' % amo.ADDON_DICT
 
     return jingo.render(request, 'browse/language_tools.html',
-                        {'locales': locales, 'search_cat': search_cat})
+            {'locales': locales, 'search_cat': search_cat})
 
 
 class AddonFilter(BaseFilter):
