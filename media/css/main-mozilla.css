@@ -2618,7 +2618,8 @@ html[xmlns] .clearfix {
     font-size: 110%;
     width: 80%;
     padding: 5px 10% 0px;
-    margin:0px;
+    margin: 0px;
+    text-align: center;
 }
 
 
