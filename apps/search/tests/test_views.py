@@ -186,6 +186,15 @@ class FrontendSearchTest(SphinxTestCase):
             assert 'page=2' not in link.attrib['href'], (
                     "page parameter found in %s link" % link.text)
 
+    def test_version_refinement(self):
+        """For a particular addon, ensure that if we search for it, we get the
+        full range of versions for refinement purposes."""
+        # Firebug is 3.0-3.6 compatible
+        r = self.get_response(q='firebug fingertips')
+        doc = pq(r.content)
+        eq_([a.text for a in doc(r.content)('#refine-compatibility a')],
+            ['All Versions', '3.6', '3.5', '3.0'])
+
 
 class ViewTest(test_utils.TestCase):
     """Tests some of the functions used in building the view."""
