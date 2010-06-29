@@ -37,7 +37,8 @@
   {% endif %}
   {% if request.user.is_authenticated() %}
   <ul>
-    <li><a href="#TODO">{{ _('Report this review') }}</a></li>
+    <li><a class="flag-review" href="{{ url('reviews.flag', addon.id, review.id) }}">
+      {{ _('Report this review') }}</a></li>
     {% if perms.is_author or perms.is_admin %}
       <li><a href="#TODO">{{ _('Reply to review') }}</a></li>
     {% endif %}

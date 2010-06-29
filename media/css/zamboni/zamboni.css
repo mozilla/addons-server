@@ -2118,10 +2118,6 @@ form .error .note.error {
     border-top-color: #0471ed;
 }
 
-.primary > .warning {
-    
-}
-
 /**
  *    Firefox Cup promo styles
  *    TODO remove these when promo is pulled
@@ -2173,4 +2169,10 @@ form .error .note.error {
  *    TODO remove these when promo is pulled
 **/
 
+.other-note {
+    display: none;
+}
 
+.other .other-note {
+    display: inherit;
+}
