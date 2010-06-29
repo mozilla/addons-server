@@ -1,8 +1,14 @@
 from django import http
+# I'm so glad we named a function in here settings...
+from django.conf import settings as site_settings
 from django.contrib import admin
+from django.contrib import messages
 from django.shortcuts import redirect
 from django.views import debug
 
+import commonware.log
+from hera import Hera
+from hera.contrib.django_forms import FlushForm
 import jinja2
 import jingo
 
@@ -10,6 +16,8 @@ import amo.models
 from addons.models import Addon
 from files.models import Approval
 from versions.models import Version
+
+log = commonware.log.getLogger('z.zadmin')
 
 
 @admin.site.admin_view
@@ -52,6 +60,51 @@ def flagged(request):
     return jingo.render(request, 'zadmin/flagged_addon_list.html',
                         {'addons': addons})
 
+
+@admin.site.admin_view
+def hera(request):
+    def _hera_fail(e):
+        msg = "We had some trouble talking to zeus"
+        messages.error(request, "%s: %s" % (msg, e))
+        log.error("[Hera] (user:%s): %s" % (request.user, e))
+
+    form = FlushForm(initial={'flushprefix': site_settings.SITE_URL})
+
+    try:
+        username = site_settings.HERA['username']
+        password = site_settings.HERA['password']
+        location = site_settings.HERA['location']
+    except (KeyError, AttributeError):
+        messages.error(request, "Sorry, Hera is not configured. :(")
+        form = None
+
+    if request.method == 'POST':
+        form = FlushForm(request.POST)
+        if form.is_valid():
+            hera = Hera(username, password, location)
+            expressions = request.POST['flushlist'].splitlines()
+
+            for i in expressions:
+                pattern = "%s%s" % (request.POST['flushprefix'], i)
+                total = len(hera.flushObjectsByPattern(pattern,
+                                                       return_list=True))
+
+                msg = "Flushing %s objects matching %s from cache" % (total,
+                                                                      pattern)
+                log.info("[Hera] (user:%s) %s" % (request.user, msg))
+                messages.success(request, msg)
+
+    try:
+        hera = Hera(username, password, location)
+        stats = hera.getGlobalCacheInfo()
+    except Exception, e:
+        # suds throws generic exceptions...
+        stats = None
+        form = None
+        _hera_fail(e)
+
+    return jingo.render(request, 'zadmin/hera.html',
+                        {'form': form, 'stats': stats})
 
 
 @admin.site.admin_view
