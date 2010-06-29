@@ -1,10 +1,13 @@
 function dbg() {
-    if(capabilities.console && capabilities.debug && !capabilities.debuginpage) {
-        window.console.log(Array.prototype.slice.apply(arguments));
-    }
-    if (capabilities.debuginpage && capbabilities.debug) {
-        var args = Array.prototype.slice.apply(arguments);
-        $("#dbgout").append("\n");
+    if (capabilities.debug) {
+        if(capabilities.console && !capabilities.debug_in_page) {
+            window.console.log(Array.prototype.slice.apply(arguments));
+        }
+        if (capabilities.debug_in_page) {
+            var args = Array.prototype.slice.apply(arguments);
+            $("#dbgout").append(args.join("\t"));
+            $("#dbgout").append("\n");
+        }
     }
 }
 
@@ -54,6 +57,10 @@ $(document).ready(function () {
             } else {
                 page_state.data_range = newRange;
                 $customRangeForm.slideUp('fast');
+                if (report == 'overview') {
+                    show_overview_stats(page_state.data_range);
+                    fetch_top_charts();
+                }
                 AMO.StatsManager.getSeries(AMO.getSeriesList(), page_state.data_range, updateSeries);
                 if (AMO.aggregate_stats_field) {
                     show_aggregate_stats(AMO.aggregate_stats_field, page_state.data_range);
@@ -69,8 +76,8 @@ $(document).ready(function () {
 
         page_state.data_range = {
             custom: true,
-            start: start,
-            end: end
+            start: date(start),
+            end: date(end)
         };
         AMO.StatsManager.getSeries(AMO.getSeriesList(), page_state.data_range, updateSeries);
         return false;
@@ -100,7 +107,6 @@ $(document).ready(function () {
         if (csv_table_el.length) {
             csvTable = new PageTable(csv_table_el[0]);
         }
-
     }
 
     LoadBar.on("Loading the latest data&hellip;");
@@ -111,8 +117,6 @@ $(document).ready(function () {
         var fetchStart = ago("30 days");
     }
 
-    fetch_top_charts();
-    
     AMO.StatsManager.getDataRange(AMO.getReportName(), fetchStart, today(), function () {
 
         if (AMO.aggregate_stats_field) {
@@ -123,6 +127,10 @@ $(document).ready(function () {
         LoadBar.off();
         if (csvTable) {
             csvTable.gotoPage(1);
+        }
+        if (report == 'overview') {
+            fetch_top_charts();
+            show_overview_stats(page_state.data_range);
         }
     }, {force: true});
 
@@ -169,7 +177,7 @@ $(document).ready(function () {
             }
         }
     }
-    
+
     function draw_diff(el, current, previous) {
         if (current.nodata || previous.nodata) return;
         var diffel = $(el);
@@ -328,7 +336,7 @@ function initTopChart(el) {
 
 function fetch_top_charts() {
     toplists = $(".toplist");
-    
+
     toplists.each(function (i, toplist) {
         var tableEl = $("table", toplist);
         var report = tableEl.getData("report"),
@@ -336,9 +344,8 @@ function fetch_top_charts() {
             tbody = ["<tbody>"];
 
         if (report && field) {
-            AMO.StatsManager.getRankedList({metric:report,name:field}, ago("30 days"), today(), function (results) {
+            AMO.StatsManager.getRankedList({metric:report,name:field}, ago(page_state.data_range), today(), function (results) {
                 var sums = results.sums;
-                dbg("sumlist", sums);
                 for (i=0; i<Math.min(sums.length, 5); i++) {
                     var sum = sums[i];
                     tbody.push("<tr>");
@@ -357,13 +364,22 @@ function fetch_top_charts() {
                     tbody.push("<td>", othersum, "</td>");
                     tbody.push("<td>(", Math.floor(othersum * 100 / results.total), "%)</td>");
                     tbody.push("</tr>");
-                    
+
                 }
                 tbody.push("</tbody>");
                 tableEl.html(tbody.join(''));
                 //initTopChart(toplist);
             });
         }
+    });
+}
+
+function show_overview_stats (range) {
+    AMO.StatsManager.getSum({metric: "downloads", name: "count"}, ago(range), today(), function(sum_range) {
+        $("#sum_downloads_range").text(Highcharts.numberFormat(sum_range, 0));
+    });
+    AMO.StatsManager.getMean({metric: "usage", name: "count"}, ago(range), today(), function(mean_range) {
+        $("#sum_usage_range").text(Highcharts.numberFormat(mean_range, 0));
     });
 }
 

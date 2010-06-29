@@ -19,7 +19,7 @@ function PageTable(_el) {
     };
     this.pages = [];
     this.currentpage = 0;
-    
+
     this.format = {
         date: function (value) {
             return Highcharts.dateFormat('%a, %b %e, %Y', new Date(value));
@@ -28,9 +28,9 @@ function PageTable(_el) {
             return Highcharts.numberFormat(value, 0);
         }
     };
-    
+
     var $th = $("thead th", this.tableEl);
-    
+
     var columns = [];
     var barColumns = [];
     $th.each(function (i, v) {
@@ -49,12 +49,12 @@ function PageTable(_el) {
         columns.push(col);
     })
     this.columns = columns;
-    
+
     this.report = AMO.getReportName();
     this.page_size = 14;
-    
+
     //Set up paginator
-    
+
     this.paginator.ol.append(this.paginator.prev_li);
     for (var i=1; i<=this.paginator.num_buttons; i++) {
         var li = $("<li><a page='" + i + "' href='#'>" + i + "</a></li>");
@@ -62,17 +62,17 @@ function PageTable(_el) {
         this.paginator.ol.append(li);
     }
     this.paginator.ol.append(this.paginator.next_li);
-    
+
     var that = this;
-    
+
     this.paginator.ol.click( function (e) {
         that.paginate.call(that, e);
     });
-    
+
     this.tableEl.parent().after(this.paginator.ol);
-    
+
     //Set up a BarTable if needed
-    
+
     if (barColumns.length) {
         this.barTable = new BarTable({
             el: this.tableEl,
@@ -88,7 +88,7 @@ PageTable.prototype.gotoPage = function(num) {
             $("li.selected", this.paginator.ol).removeClass("selected");
             $(this.pages[num]).addClass("selected");
             this.currentpage = num;
-        
+
             //Update pagination
             if (!$("a[page='" + num + "']", this.paginator.ol).length) {
                 if (num >= this.paginator.start + this.paginator.num_buttons) {
@@ -115,7 +115,6 @@ PageTable.prototype.gotoPage = function(num) {
     }
 };
 PageTable.prototype.addPage = function (data) {
-    t.go("building page...");
     var stime = (new Date()).getTime();
     var page = ["<tbody>"],
         attr, val,
@@ -138,15 +137,13 @@ PageTable.prototype.addPage = function (data) {
         }
     }
     page.push("</tbody>");
-    
+
     var fillerRow = "<tr class='fill''>" + repeat("<td>&nbsp;</td>", this.columns.length) + "</tr>";
-    
+
     page.push(repeat(fillerRow, this.page_size - data.length));
-    
+
     page = $(page.join(''));
-    
-    t.lap('done page');
-    
+
     this.pages[data.page] = page;
     this.tableEl.append(page);
     if (this.barTable) {
@@ -176,7 +173,7 @@ function BarTable(_cfg) {
     this.tableEl = _cfg.el;
     this.columns = _cfg.columns;
     this._cfg = _cfg;
-    
+
     if (this.tableEl) {
         for (var i=0; i<this.columns.length; i++) {
             var col = this.columns[i];
@@ -241,7 +238,7 @@ BarTable.prototype.render = function(tbody) {
             if ($.inArray(j,ignore) < 0) {
                 var bar = $('<div>&nbsp;</div>');
                 var val = vals[j]
-                if (val > 0) { 
+                if (val > 0) {
                     switch (scale) {
                         case 'log':
                             var wid = (Math.log(vals[j]) / Math.log(10)) / (Math.log(maxVal) / Math.log(10)) * 100;
@@ -265,5 +262,5 @@ BarTable.prototype.render = function(tbody) {
             }
         }
 
-    }    
+    }
 }

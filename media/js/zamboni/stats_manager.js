@@ -12,13 +12,14 @@
         mindate: 0,
         maxdate: today()
     };
+    var pending_fetches = 0;
     var page_state = {
     }
     var capabilities = {
         'localStorage' : ('localStorage' in window) && window['localStorage'] !== null,
         'JSON' : window.JSON && typeof JSON.parse == 'function',
         'debug' : !(('' + document.location).indexOf("dbg") < 0),
-        'debuginpage' : !(('' + document.location).indexOf("dbginpage") < 0),
+        'debug_in_page' : !(('' + document.location).indexOf("dbginpage") < 0),
         'console' : window.console && (typeof window.console.log == 'function')
     };
 
@@ -27,15 +28,18 @@
     LoadBar = {
         bar : $("#lm"),
         msg : $("#lm span"),
+        isOn : false,
         say : function (str) {
             LoadBar.msg.html(str);
         },
         on : function (str) {
             if (str) LoadBar.say(str);
             LoadBar.bar.addClass("on");
+            LoadBar.isOn = true;
         },
         off : function () {
             LoadBar.bar.removeClass("on");
+            LoadBar.isOn = false;
         }
     };
 
@@ -60,10 +64,14 @@
 
     function today() {
         var d = new Date();
+        return date(d);
+    }
+
+    function date(d) {
         return Date.parse([d.getFullYear(), pad2(d.getMonth()+1), pad2(d.getDate()+1)].join('-'));
     }
 
-    function ago (str, times) {
+    function ago(str, times) {
         times = (times !== undefined) ? times : 1;
         return today() - millis(str) * times;
     }
@@ -120,7 +128,7 @@
                     if (cacheObject) {
                         cacheObject = JSON.parse(cacheObject);
                         if (cacheObject) {
-                            dataStore = cacheObject;
+                            datastore = cacheObject;
                         }
                     }
                 }
@@ -168,9 +176,14 @@
             var seriesStart = start;
             var seriesEnd = end;
 
+            pending_fetches++;
+
             var seriesURLStart = Highcharts.dateFormat('%Y%m%d', seriesStart),
                 seriesURLEnd = Highcharts.dateFormat('%Y%m%d', seriesEnd),
                 seriesURL = AMO.getStatsBaseURL() + ([metric,"day",seriesURLStart,seriesURLEnd]).join("-") + ".json";
+
+            dbg("GET", seriesURLStart, seriesURLEnd);
+
             $.ajax({ url:       seriesURL,
                      dataType:  'text',
                      success:   function(raw_data, status, xhr) {
@@ -201,7 +214,7 @@
                         start: 0,
                         end: data.length,
                         step: 1,
-                        chunk_size: 10,
+                        chunk_size: 50,
                         inner: function (i) {
                             var datekey = parseInt(Date.parse(data[i].date));
                             maxdate = Math.max(datekey, maxdate);
@@ -211,15 +224,16 @@
                         callback: function () {
                             ds.maxdate = Math.max(parseInt(maxdate), parseInt(ds.maxdate));
                             ds.mindate = Math.min(parseInt(mindate), parseInt(ds.mindate));
+                            pending_fetches--;
                             callback.call(this, true);
                             clearTimeout(writeInterval);
-                            writeInterval = setTimeout(AMO.StatsManager.write_local, 2000);
+                            writeInterval = setTimeout(AMO.StatsManager.write_local, 1000);
                         },
                         ctx: this
                     });
 
 
-                } else if (xhr.status == 202) {
+                } else if (xhr.status == 202) { //Handle a successful fetch but with no reponse
 
                     var retry_delay = 30000;
 
@@ -254,13 +268,16 @@
 
             function finished() {
                 needed--;
+                dbg(pending_fetches, "fetches left");
+                if (pending_fetches < 1) {
+                    LoadBar.off();
+                }
                 if (datastore[metric] && datastore[metric].maxdate < end) {
                     dbg("truncating fetchable range");
                     range_limits.maxdate = datastore[metric].maxdate;
                 }
                 if (needed < 0) {
                     callback.call(this);
-                    LoadBar.off();
                 } else {
                     if (!quiet) LoadBar.on("Loading&hellip;");
                 }
@@ -294,8 +311,8 @@
             } else if (typeof time === "object" && time.custom) {
                 var cacheKey = metric + "_" + time.start + "_" + time.end;
 
-                var seriesStart = time.start.getTime();
-                var seriesEnd = time.end.getTime();
+                var seriesStart = time.start;
+                var seriesEnd = time.end;
             } else {
                 return false;
             }
@@ -372,7 +389,7 @@
 
                     var ret = [];
 
-                    repage = num;
+                    ret.page = num;
 
                     for (var i=seriesEnd; i>seriesStart; i-= millis("1 day")) {
                         if (ds[i] !== undefined) ret.push(ds[i]);
@@ -403,11 +420,11 @@
         getRankedList: function(field, start, end, callback) {
             var metric = field.metric;
             var cacheKey = name || (metric + field.name + "_toplist_" + start + "_" + end);
-            
+
             var sums = {};
-            
+
             var total = 0;
-            
+
             if (seriesCache[cacheKey]) {
                 callback.call(this, seriesCache[cacheKey]);
             } else {
@@ -429,9 +446,9 @@
                             }
                         }
                     }
-                    
+
                     sorted_sums = [];
-                    
+
                     for (var i in sums) {
                         var v= sums[i];
                         if (datum.hasOwnProperty(i)) {
@@ -442,7 +459,7 @@
                             });
                         }
                     }
-                    
+
                     sorted_sums.sort(function (a,b) {
                         return b.sum-a.sum;
                     })
@@ -457,60 +474,80 @@
             }
         },
 
-        getSum: function(field, start, end, callback, name) {
+        processRange: function(field, start, end, callback) {
             var metric = field.metric;
-            var cacheKey = name || (metric + field.name + "_sum_" + start + "_" + end);
+
+            var sumKey = [metric, field.name, 'sum', start, end].join('_');
+            var meanKey = [metric, field.name, 'mean', start, end].join('_');
+            var maxKey = [metric, field.name, 'max', start, end].join('_');
+            var minKey = [metric, field.name, 'min', start, end].join('_');
+
+            AMO.StatsManager.getDataRange(metric, start, end, function () {
+                var ds = datastore[metric];
+
+                var sum = 0;
+                var max = {nodata: true};
+                var min = {nodata: true};
+
+                var nodata = true;
+
+                for (var i=start; i<end; i+= millis("1 day")) {
+                    if (ds[i] !== undefined) {
+                        var datum = AMO.StatsManager.getField(ds[i], field.name);
+                        if (datum !== undefined) {
+                            var val = parseFloat(datum);
+                            if (nodata) {
+                                min = val;
+                                max = val;
+                            }
+                            nodata = false;
+                            max = Math.max(max, val);
+                            min = Math.min(min, val);
+                            sum += val;
+                        }
+                    }
+                }
+
+                if (nodata) {
+                    var ret = {nodata: true};
+                } else {
+                    seriesCache[sumKey] = sum;
+                    seriesCache[meanKey] = sum / ((end - start) / millis("1 day"));
+                    seriesCache[maxKey] = max;
+                    seriesCache[minKey] = min;
+                }
+
+                callback.call(this);
+
+            });
+        },
+
+        getSum: function(field, start, end, callback) {
+            AMO.StatsManager.getStat(field, 'sum', start, end, callback);
+        },
+
+        getMean: function(field, start, end, callback) {
+            AMO.StatsManager.getStat(field, 'mean', start, end, callback);
+        },
+
+        getMin: function(field, start, end, callback) {
+            AMO.StatsManager.getStat(field, 'min', start, end, callback);
+        },
+
+        getMax: function(field, start, end, callback) {
+            AMO.StatsManager.getStat(field, 'max', start, end, callback);
+        },
+
+        getStat: function(field, stat, start, end, callback) {
+            var cacheKey = name || [field.metric, field.name, stat, start, end].join('_');
 
             if (seriesCache[cacheKey]) {
                 callback.call(this, seriesCache[cacheKey]);
             } else {
-                AMO.StatsManager.getDataRange(metric, start, end, function () {
-                    var ds = datastore[metric];
-
-                    var sum = 0;
-
-                    var nodata = true;
-
-                    for (var i=start; i<end; i+= millis("1 day")) {
-                        if (ds[i] !== undefined) {
-                            var datum = AMO.StatsManager.getField(ds[i], field.name);
-                            if (datum !== undefined) {
-                                nodata = false;
-                                sum += parseFloat(datum);
-                            }
-                        }
-                    }
-
-                    if (nodata) {
-                        var ret = {nodata: true};
-                    } else {
-                        var ret = sum;
-                    }
-
-                    seriesCache[cacheKey] = ret;
-
-                    callback.call(this, ret);
-
+                AMO.StatsManager.processRange(field, start, end, function() {
+                    callback.call(this, seriesCache[cacheKey] || {nodata:true});
                 });
             }
-        },
-
-        getMean: function(field, start, end, callback) {
-            var metric = field.metric;
-
-            AMO.StatsManager.getSum(field, start, end, function (sum) {
-                if (sum.nodata) {
-                    callback.call(this, sum);
-                } else {
-                    var mean = sum / ((end - start) / millis("1 day"));
-                    callback.call(this, mean);
-                }
-            });
-
-        },
-
-        getStat: function(name) {
-            return seriesCache[name] || {nodata: true};
         },
 
         getField: function(record, field) {

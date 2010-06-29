@@ -26,8 +26,8 @@
 {% block stats %}
     <div class="featured">
       <div class="featured-inner two-up">
-        <div><a href="#">{{ addon.total_downloads|numberfmt }} Downloads</a><br/><small>16,534 in last 30 days</small></div>
-        <div><a href="#">{{ addon.average_daily_users|numberfmt }} Daily Users</a><br/><small>634,475 in last 30 days</small></div>
+        <div><a href="#">{{ addon.total_downloads|numberfmt }} Downloads</a><br/><small><span id="sum_downloads_range"></span> in last 30 days</small></div>
+        <div><a href="#">{{ addon.average_daily_users|numberfmt }} Daily Users</a><br/><small><span id="sum_usage_range"></span> in last 30 days</small></div>
       </div>
     </div>
     <div class="toplists">
