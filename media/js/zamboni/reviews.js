@@ -16,21 +16,24 @@ $(document).ready(function() {
                         $(this).find('form').submit(function(e){
                             e.preventDefault();
                             var note = parent.find('#id_note').val();
-                            addFlag(url, 'other', note);
+                            addFlag(parent, url, 'other', note);
                         });
                     } else {
-                        addFlag(url, flag, '');
+                        addFlag(parent, url, flag, '');
                     }
                 }
             });
         });
 
-    var addFlag = function(url, flag, note) {
+    var addFlag = function(el, url, flag, note) {
         $.ajax({type: 'POST',
                 url: url,
                 data: {flag: flag, note: note},
-                success: function(){ alert('success'); },
-                error: function(){ alert('error'); },
+                success: function(){
+                    el.find('.flag-review')
+                        .replaceWith(gettext('Flagged for review'));
+                },
+                error: function(){ },
                 dataType: 'json'
         });
     };

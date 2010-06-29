@@ -1,7 +1,12 @@
 {% set outdated = (review.version_id
                       and review.version_id != addon._current_version_id) %}
 {% set is_reply = review.reply_to_id is not none %}
-<div class="review article {% if is_reply %}reply{% endif %}" id="review-{{ review.id }}">
+{% if flags %}
+  {% set is_flagged = flags[review.id] %}
+{% endif %}
+<div class="review article {% if is_reply %}reply{% endif %}
+            {% if is_flagged %}flagged{% endif %}"
+     id="review-{{ review.id }}">
   <h5>{{ review.title }}</h5>
   {% if not is_reply %}{{ review.rating|stars }}{% endif %}
   <div class="reviewed-on">
@@ -37,8 +42,12 @@
   {% endif %}
   {% if request.user.is_authenticated() %}
   <ul>
-    <li><a class="flag-review" href="{{ url('reviews.flag', addon.id, review.id) }}">
-      {{ _('Report this review') }}</a></li>
+    {% if is_flagged %}
+      <li>{{ _('Flagged for review') }}</li>
+    {% else %}
+      <li><a class="flag-review" href="{{ url('reviews.flag', addon.id, review.id) }}">
+        {{ _('Report this review') }}</a></li>
+    {% endif %}
     {% if perms.is_author or perms.is_admin %}
       <li><a href="#TODO">{{ _('Reply to review') }}</a></li>
     {% endif %}

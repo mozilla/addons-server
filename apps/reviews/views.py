@@ -47,6 +47,7 @@ def review_list(request, addon_id, review_id=None, user_id=None):
             'can_delete': acl.action_allowed(request, 'Editors',
                                              'DeleteReview'),
         }
+        ctx['flags'] = get_flags(request, reviews.object_list)
     return jingo.render(request, 'reviews/review_list.html', ctx)
 
 
@@ -54,6 +55,12 @@ def get_replies(reviews):
     reviews = [r.id for r in reviews]
     qs = Review.objects.filter(reply_to__in=reviews)
     return dict((r.reply_to_id, r) for r in qs)
+
+
+def get_flags(request, reviews):
+    reviews = [r.id for r in reviews]
+    qs = ReviewFlag.objects.filter(review__in=reviews, user=request.user.id)
+    return dict((r.review_id, r) for r in qs)
 
 
 @post_required
