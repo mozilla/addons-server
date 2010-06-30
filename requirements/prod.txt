@@ -6,6 +6,7 @@ phpserialize==1.2
 python-memcached==1.45
 pyquery==0.4
 South==0.7
+suds==0.3.9
 pytz==2010e
 GitPython==0.1.7
 celery==1.0.2
@@ -21,6 +22,7 @@ django-pylibmc==0.2.1
 -e git://github.com/jsocol/jingo-minify.git#egg=jingo-minify
 -e git://github.com/jsocol/bleach.git#egg=bleach
 -e git://github.com/jbalogh/schematic.git#egg=schematic
+-e git://github.com/clouserw/hera.git#egg=hera
 -e git://github.com/clouserw/tower.git#egg=tower
 -e git://github.com/jbalogh/django-queryset-transform.git#egg=django-queryset-transform
 -e git://github.com/jsocol/commonware.git#egg=commonware

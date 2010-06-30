@@ -488,6 +488,12 @@ CUSTOM_DUMPS = {
     }
 }
 
+## Hera
+HERA = {'username': '',
+        'password': '',
+        'location': '',
+       }
+
 # Logging
 LOG_LEVEL = logging.DEBUG
 HAS_SYSLOG = True  # syslog is used if HAS_SYSLOG and NOT DEBUG.
@@ -501,6 +507,7 @@ LOGGING = {
     'loggers': {
         'amqplib': {'handlers': ['null']},
         'caching': {'handlers': ['null']},
+        'suds': {'handlers': ['null']},
         'z.sphinx': {'level': logging.INFO},
         'z.task': {'level': logging.INFO},
     },
