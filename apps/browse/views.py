@@ -6,7 +6,6 @@ from django.http import HttpResponsePermanentRedirect
 from django.shortcuts import get_object_or_404
 from django.views.decorators.cache import cache_page
 
-from caching.base import cached_with
 from tower import ugettext_lazy as _lazy
 import jingo
 import product_details
@@ -48,6 +47,8 @@ Locale = collections.namedtuple('Locale', 'locale display native dicts packs')
 
 def _get_locales(addons):
     """Does the heavy lifting for language_tools."""
+    # This is a generator so we can {% cache addons %} in the template without
+    # running any of this code.
     for addon in addons:
         locale = addon.target_locale.lower()
         try:
@@ -61,33 +62,40 @@ def _get_locales(addons):
             english = u'%s (%s)' % (addon.name, locale)
             addon.locale_display, addon.locale_native = english, ''
 
+    # We don't need the whole add-on so only store the parts in use.
+    def slim(addon):
+        return {'id': addon.id,
+                'file_size': addon.current_version.all_files[0].size,
+                'locale_disambiguation': addon.locale_disambiguation}
+
     locales = {}
     for locale, addons in itertools.groupby(addons, lambda x: x.target_locale):
         addons = list(addons)
-        dicts = [a for a in addons if a.type == amo.ADDON_DICT]
-        packs = [a for a in addons if a.type == amo.ADDON_LPAPP]
+        dicts = [slim(a) for a in addons if a.type == amo.ADDON_DICT]
+        packs = [slim(a) for a in addons if a.type == amo.ADDON_LPAPP]
         addon = addons[0]
         locales[locale] = Locale(addon.target_locale, addon.locale_display,
                                  addon.locale_native, dicts, packs)
 
-    locales = sorted(locales.items(), key=lambda x: x[1].display)
-    return locales
+    for locale in sorted(locales.items(), key=lambda x: x[1].display):
+        yield locale
+
 
 # We never use the category, but this makes it
 # uniform with the other type listings.
 def language_tools(request, category=None):
     types = (amo.ADDON_DICT, amo.ADDON_LPAPP)
-    addons = (Addon.objects.public().filter(appsupport__app=request.APP.id,
-              type__in=types, target_locale__isnull=False).exclude(
-              target_locale='').all())
+    addons = (Addon.objects.public()
+              .filter(appsupport__app=request.APP.id, type__in=types,
+                      target_locale__isnull=False).exclude(target_locale=''))
 
-    f = lambda: _get_locales(addons)
-    locales = cached_with(addons, f, 'language_tools')
+    locales = _get_locales(addons)
 
     search_cat = '%s,0' % amo.ADDON_DICT
 
     return jingo.render(request, 'browse/language_tools.html',
-            {'locales': locales, 'search_cat': search_cat})
+                        {'locales': locales, 'addons': addons,
+                         'search_cat': search_cat})
 
 
 class AddonFilter(BaseFilter):
