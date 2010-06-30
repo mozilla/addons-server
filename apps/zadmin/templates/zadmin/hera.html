@@ -46,15 +46,19 @@
 </div>
 <div class="secondary">
   <h3>Stats</h3>
-  {% if stats.num_lookups > 0 %}
-    {# Can't jinja2 detect a division by zero and just do something intelligent? #}
-    {% set hit_percentage = stats.num_hits / stats.num_lookups %}
+  {% if stats %}
+    {% if stats.num_lookups > 0 %}
+      {# Can't jinja2 detect a division by zero and just do something intelligent? #}
+      {% set hit_percentage = stats.num_hits / stats.num_lookups %}
+    {% else %}
+      {% set hit_percentage = 0 %}
+    {% endif %}
+    <ul>
+      <li>Using {{ stats.bytes_used|filesizeformat }} ({{ stats.percent_used }}% of total space) for {{ stats.entries }} objects.</li>
+      <li>We've had {{ stats.num_hits }} hits out of {{ stats.num_lookups }} lookups ({{ hit_percentage }}%).</li>
+    </ul>
   {% else %}
-    {% set hit_percentage = 0 %}
+    <p>Not Available</p>
   {% endif %}
-  <ul>
-    <li>Using {{ stats.bytes_used|filesizeformat }} ({{ stats.percent_used }}% of total space) for {{ stats.entries }} objects.</li>
-    <li>We've had {{ stats.num_hits }} hits out of {{ stats.num_lookups }} lookups ({{ hit_percentage }}%).</li>
-  </ul>
 </div>
 {% endblock %}
