@@ -1,7 +1,7 @@
 // (function () {
 
     // Versioning for offline storage
-    var version = "4";
+    var version = "5";
 
     // where all the time-series data for the page is kept
     var datastore = {};
@@ -68,7 +68,7 @@
     }
 
     function date(d) {
-        return Date.parse([d.getFullYear(), pad2(d.getMonth()+1), pad2(d.getDate()+1)].join('-'));
+        return Date.parse([d.getFullYear(), pad2(d.getMonth()+1), pad2(d.getDate())].join('-'));
     }
 
     function ago(str, times) {
