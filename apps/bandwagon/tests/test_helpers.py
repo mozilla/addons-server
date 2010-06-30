@@ -17,6 +17,9 @@ class TestHelpers(test.TestCase):
 
     fixtures = ['base/fixtures', 'users/test_backends']
 
+    def setUp(self):
+        self.client.get('/')
+
     def test_collection_favorite(self):
         c = {}
         u = UserProfile()
@@ -42,9 +45,10 @@ class TestHelpers(test.TestCase):
         # Mock logged out.
         c = dict(request=Mock())
         c['request'].path = 'yermom'
+        c['request'].GET.urlencode = lambda: ''
         c['request'].user.is_authenticated = lambda: False
         doc = pq(barometer(c, collection))
-        eq_(doc('form')[0].action, '/users/login?to=yermom')
+        eq_(doc('form')[0].action, '/en-US/firefox/users/login?to=yermom')
 
         # Mock logged in.
         c['request'].amo_user.votes.filter = lambda collection: [1]

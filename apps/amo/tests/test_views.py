@@ -22,6 +22,20 @@ from stats.models import SubscriptionEvent
 URL_ENCODED = 'application/x-www-form-urlencoded'
 
 
+def test_login_link():
+    "Test that the login link, encodes parameters correctly."
+    r = test.Client().get('/?your=mom', follow=True)
+    doc = pq(r.content)
+    assert doc('.context a')[1].attrib['href'].endswith(
+            '?to=%2Fen-US%2Ffirefox%2F%3Fyour%3Dmom'), ("Got %s" %
+            doc('.context a')[1].attrib['href'])
+
+    r = test.Client().get('/en-US/firefox/search/?q=%B8+%EB%B2%88%EC%97%A')
+    doc = pq(r.content)
+    link = doc('.context a')[1].attrib['href']
+    assert link.endswith('?to=%2Fen-US%2Ffirefox%2Fsearch%2F%3Fq%3D%25EF'
+            '%25BF%25BD%2B%25EB%25B2%2588%25EF%25BF%25BDA'), "Got %s" % link
+
 class Client(test.Client):
     """Test client that uses form-urlencoded (like browsers)."""
 

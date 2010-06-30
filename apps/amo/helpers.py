@@ -153,6 +153,12 @@ def _page_name(app=None):
 @jinja2.contextfunction
 def login_link(context):
     next = context['request'].path
+
+    qs = context['request'].GET.urlencode()
+
+    if qs:
+        next += '?' + qs
+
     l = urlparams(urlresolvers.reverse('users.login'), to=next)
     return l
 
