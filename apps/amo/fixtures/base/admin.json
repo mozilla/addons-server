@@ -47,5 +47,23 @@
             "modified": "2010-01-12 17:01:41",
             "notifyevents": 1
         }
+    },
+    {
+        "pk": 1,
+        "model": "access.group",
+        "fields": {
+            "rules": "*:*",
+            "modified": null,
+            "name": "Admins",
+            "created": "2007-03-05 16:06:55"
+        }
+    },
+    {
+        "pk": 10,
+        "model": "access.groupuser",
+        "fields": {
+            "group": 1,
+            "user": 4043307
+        }
     }
 ]

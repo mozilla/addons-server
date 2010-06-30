@@ -1,6 +1,8 @@
+from django import http
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 
+import commonware.log
 import jingo
 from tower import ugettext as _
 
@@ -11,6 +13,8 @@ from addons.models import Addon
 
 from .models import Review, ReviewFlag
 from .forms import ReviewFlagForm
+
+log = commonware.log.getLogger('z.reviews')
 
 
 def review_list(request, addon_id, review_id=None, user_id=None):
@@ -81,3 +85,17 @@ def flag(request, addon_id, review_id):
                          'for editor approval.')}
     else:
         return json_view.error(unicode(form.errors))
+
+
+@post_required
+@login_required
+def delete(request, addon_id, review_id):
+    if not acl.action_allowed(request, 'Editors', 'DeleteReview'):
+        return http.HttpResponseForbidden()
+    review = get_object_or_404(Review.objects, pk=review_id, addon=addon_id)
+    review.delete()
+    log.info('DELETE: %s deleted %s by %s ("%s": "%s")' %
+             (request.amo_user.display_name, review_id,
+              review.user.display_name, review.title, review.body))
+    # TODO: Insert into event log.
+    return http.HttpResponse()

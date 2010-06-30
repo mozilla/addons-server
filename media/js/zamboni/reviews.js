@@ -37,4 +37,13 @@ $(document).ready(function() {
                 dataType: 'json'
         });
     };
+
+    $('.delete-review').click(function(e) {
+        e.preventDefault();
+        var target = $(e.target);
+        $.post(target.attr('href'), function() {
+            target.replaceWith(gettext('Marked for deletion'));
+        });
+        target.closest('.review').addClass('deleted');
+    });
 });
