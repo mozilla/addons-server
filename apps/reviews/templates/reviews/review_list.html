@@ -38,6 +38,18 @@
       {% endif %}
     </hgroup>
   </header>
+  <div id="dev-reply-form" class="review article reply reply-form hidden">
+    <h3>Write a Reply</h3>
+    <form method="POST" action="">
+      <label for="reply-title">{{_('Title:')}}</label>
+      <input id="reply-title" type="text" name="title" />
+      <label for="reply-body">{{_('Reply:')}}</label>
+      <textarea id="reply-body" name="body"></textarea>
+      <input type="hidden" name="inreplyto" value="" />
+      <input type="submit" value="{{ _('Submit Your Reply') }}">
+      or <a href="#">Cancel</a>
+    </form>
+  </div>
   {% for review in reviews.object_list %}
     {% include "reviews/review.html" %}
     {% if review.id in replies %}
@@ -60,16 +72,22 @@
       </h5>
       <h6 class="author">{{ _('by') }} {{ users_list(addon.listed_authors) }}</h6>
     </hgroup>
-    <span>{{ addon.average_rating|float|stars }} {{ _('Average Rating') }}</span>
+    <div>
+      <span>{{ addon.average_rating|float|stars }} {{ _('Average Rating') }}</span>
+    </div>
     {% if grouped_ratings %}
-      <ul>
-      {% for count in grouped_ratings %}
-        <li>{{ (5 - loop.index0)|stars }} {{ count }} </li>
-      {% endfor %}
-      </ul>
+      <div>
+        <ul>
+        {% for count in grouped_ratings %}
+          <li>{{ (5 - loop.index0)|stars }} {{ count }} </li>
+        {% endfor %}
+        </ul>
+      </div>
     {% endif %}
-    <a class="button" href="#TODO">
-      {{ _('Write a New Review') }}</a>
+    <div>
+      <a class="button" href="#TODO">
+        {{ _('Write a New Review') }}</a>
+    </div>
   </div>
 </div>
 

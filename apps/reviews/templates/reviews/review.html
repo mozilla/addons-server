@@ -28,10 +28,10 @@
   <p>{{ review.body|nl2br }}</p>
   {% if outdated and not is_reply %}
     {# L10n: {0} is a version number (like 1.01) #}
-    <span>{{ _('This review is for a previous version of the add-on ({0}).')|f(review.version.version) }}</span>
+    <span class="review-note">{{ _('This review is for a previous version of the add-on ({0}).')|f(review.version.version) }}</span>
   {% endif %}
   {% if page != 'user' and review.previous_count %}
-  <span>
+  <span class="review-note">
     {% trans cnt=review.previous_count,
              url=url('reviews.user', addon.id, review.user.id) %}
       Show the <a href="{{ url }}">previous review</a> submitted by this user.
@@ -41,11 +41,11 @@
   </span>
   {% endif %}
   {% if request.user.is_authenticated() %}
-  <ul>
+  <ul class="review-options">
     {% if is_flagged %}
       <li>{{ _('Flagged for review') }}</li>
     {% else %}
-      <li><a class="flag-review" href="{{ url('reviews.flag', addon.id, review.id) }}">
+      <li class="review-wrapper"><a class="flag-review" href="{{ url('reviews.flag', addon.id, review.id) }}">
         {{ _('Report this review') }}</a></li>
     {% endif %}
     {% if perms.is_author or perms.is_admin %}

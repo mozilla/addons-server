@@ -6,7 +6,8 @@
 .notification .aux:after,
 .aux .button-wrapper:after,
 .object-lead .button-wrapper:after,
-.article.version:after {
+.article.version:after,
+.article.review:after {
     content: ".";
     display: block;
     clear: both;
@@ -2171,8 +2172,128 @@ form .error .note.error {
 
 .other-note {
     display: none;
+    clear: left;
+    padding: .25em 0 0 1em;
+    margin: 0;
+}
+.other-note input[type='text'] {
+    width: 150px;
+}
+.other-note input[type='submit'] {
+    margin-top: -2px;
+}
+.other .other-note,
+.review-reason a {
+    display: block;
 }
 
-.other .other-note {
-    display: inherit;
+/** Reviews *********/
+
+ul.review-options {
+    float: right;
+    font-size: .9em;
+    margin-top: 1em;
+    margin-bottom: 2px;
+    color: #aaa;
+}
+ul.review-options > li {
+    float: left;
+}
+.review ul.review-options > li > a {
+    font-weight: normal;
+    color: #aaa;
+    -moz-transition: color .2s;
+    -webkit-transition: color .2s;
+    transition: color .2s;
+}
+ul.review-options > li:not(:first-child) {
+    list-style-type: disc;
+    margin-left: 1.6em;
+}
+.article.review {
+    margin-bottom: 1em;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    overflow: visible;
+}
+.review h5 {
+    float: left;
+    margin-right: .8em;
+    font-size: 120%;
+}
+.review p {
+    margin: 1em 0 0 0;
+}
+.review .reviewed-on {
+    clear: left;
+    font-size: .9em;
+}
+.reviews .highlight > span {
+    display: block;
+}
+.reviews .highlight hgroup {
+    display: block;
+    margin-bottom: 1em;
+}
+.reviews .highlight > div {
+    margin: 0;
+    padding: 1em 0;
+    border-top: 1px dashed #ccc;
+}
+.reviews .highlight > div:last-child {
+    text-align: center;
+    padding-bottom: 0;
+}
+.review:hover ul.review-options > li > a {
+    color: #0055EE;
+}
+.review-wrapper {
+    position: relative;
+}
+.reviews header {
+    margin-left: 0;
+}
+.highlight h5 {
+    font-size: 120%;
+}
+.review-reason {
+    padding: 1em;
+}
+.review-reason.left {
+    left: -200px;
+}
+.review.reply {
+    margin-left: 4em;
+    background: #f0f6f2;
+    border-color: #d0e2c5;
+}
+.review .review-note {
+    float: left;
+    font-size: .9em;
+    margin-top: 1em;
+    margin-bottom: 2px;
+    font-style: italic;
+}
+
+.review.reply-form {
+    background: #C8E8F3;
+    border: 0;
+}
+.reply-form form {
+    margin-bottom: 0;
+}
+.reply-form label {
+    display: block;
+    margin-top: 1em;
+}
+.reply-form textarea {
+    margin-bottom: 2em;
+    width: 80%;
+}
+.reply-form h3 {
+    margin: 0;
+}
+.reply-form input[type='text'] {
+    width: 60%;
 }
