@@ -27,6 +27,7 @@ BIG_INTEGER = 10000000    # Used for SetFilterRange
 MAX_TAGS = 10             # Number of tags we return by default.
 SPHINX_HARD_LIMIT = 1000  # A hard limit that sphinx imposes.
 THE_FUTURE = 9999999999
+MAX_VERSION = 10**13-1  # Large version
 
 log = commonware.log.getLogger('z.sphinx')
 
@@ -278,10 +279,10 @@ class Client(object):
 
         # SetFilterRange requires a max and min even if you just want a
         # lower-bound.  To work-around this limitation we set max_ver's
-        # upperbound to be ridiculously large (10x the high_int).
+        # upperbound to be ridiculously large.
 
         if high_int:
-            sc.SetFilterRange('max_ver', low_int, 10 * high_int)
+            sc.SetFilterRange('max_ver', low_int, MAX_VERSION )
             sc.SetFilterRange('min_ver', 0, high_int)
 
     def add_meta_query(self, field, term):
