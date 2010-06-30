@@ -17,6 +17,7 @@ from bandwagon.models import Collection
 from translations.query import order_by_translation
 from translations.transformer import get_trans
 from tags.models import Tag
+from versions.models import AppVersion
 
 from .utils import convert_version, crc32
 
@@ -482,13 +483,20 @@ class Client(object):
     def _versions_meta(self, results, **kwargs):
         # We don't care about the first 10 digits, since
         # those deal with alpha/preview/etc
+
+        # We want to lob off the last 10 digits of a number
+        truncate = lambda x: (x / 10 ** 10) * 10 ** 10
+
+        # Acceptable version ranges
+        appversions = AppVersion.objects.filter(application=kwargs.get(
+            'app', amo.FIREFOX.id))
+        acceptable_versions = sorted(set([truncate(a.version_int) for a in
+                                          appversions]))
+
         r = results[self.queries['min_ver']]
 
         if 'matches' not in r:
             return []
-
-        # We want to lob off the last 10 digits of a number
-        truncate = lambda x: (x / 10 ** 10) * 10 ** 10
 
         min_vers = [truncate(m['attrs']['min_ver'])
                     for m in r['matches']]
@@ -497,11 +505,23 @@ class Client(object):
         # 10**13-1 (a bunch of 9s) is a pseudo max_ver that is
         # meaningless for faceted search.
         max_vers = [truncate(m['attrs']['max_ver'])
-                    for m in r['matches']
-                    if m['attrs']['max_ver'] != 10 ** 13 - 1]
-        versions = list(set(min_vers + max_vers))
-        return [v for v in sorted(versions, reverse=True)
-                if v not in (0, 10 ** 13)]
+                    for m in r['matches']]
+
+        version_pairs = zip(min_vers, max_vers)
+        versions = []
+        for min, max in version_pairs:
+            min_idx = 0
+            max_idx = len(acceptable_versions)
+
+            if min in acceptable_versions:
+                min_idx = acceptable_versions.index(min)
+
+            if max in acceptable_versions:
+                max_idx = acceptable_versions.index(max) + 1
+
+            versions.extend(acceptable_versions[min_idx:max_idx])
+
+        return sorted(versions, reverse=True)
 
     def _categories_meta(self, results, **kwargs):
         r = results[self.queries['category']]
