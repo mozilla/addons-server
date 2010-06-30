@@ -237,7 +237,7 @@ class Contribution(caching.base.CachingMixin, models.Model):
     @staticmethod
     def post_save(sender, instance, **kwargs):
         from . import tasks
-        tasks.addon_total_contributions.delay([instance.addon_id])
+        tasks.addon_total_contributions.delay(instance.addon_id)
 
 
 models.signals.post_save.connect(Contribution.post_save, sender=Contribution)
