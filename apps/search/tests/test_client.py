@@ -15,6 +15,7 @@ from search.client import (extract_from_query, get_category_id,
                            PersonasClient, SearchError, )
 from search.tests import SphinxTestCase
 
+
 def test_extract_from_query():
     """Test that the correct terms are extracted from query strings."""
 
@@ -222,4 +223,5 @@ class SearchTest(SphinxTestCase):
             except SearchError:  # pragma: no cover
                 assert False, "Error querying for %s" % guy
 
-
+    def test_summary(self):
+        eq_(query("Evar")[0].id, 3615)  # Should get us Delicious

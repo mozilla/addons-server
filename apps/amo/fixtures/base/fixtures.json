@@ -403,8 +403,7 @@
             "created": "2007-03-05 13:10:22",
             "locale": "en-US",
             "modified": "2010-01-13 12:24:44",
-            "id": 3403,
-            "localized_string_clean": "Please update Gmail S/MIME to 0.4.5 for the latest updates and fixes.\n\nHelp on using this extension can be found at:\n<a href=\"http://outgoing.mozilla.org/v1/fc4727b2e9c847c71ea2c7992b378882128e7f77/http%3A//richard.jones.name/google-hacks/gmail-smime/gmail-smime.html\">http://richard.jones.name/google-hacks/gmail-smime/gmail-smime.html</a>\n<a href=\"http://outgoing.mozilla.org/v1/f2749e19f8054ee61d010b47bf00760e5f69f5bd/http%3A//www.seantek.com/gmailsmime/\">http://www.seantek.com/gmailsmime/</a>\n\nPlease contact the developers directly if you have questions or problems. We do not monitor the comments on this website regularly.\n\nIf you want others to send you encrypted mail, you need a digital certificate. You can get a free one from Comodo at:\n<a href=\"http://outgoing.mozilla.org/v1/fab0567df362aec771f28020a268ead212ae2e83/http%3A//www.instantssl.com/ssl-certificate-products/free-email-certificate.html\">http://www.instantssl.com/ssl-certificate-products/free-email-certificate.html</a>\nJust follow the prompts to have the certificate installed directly in your browser. Sending your certificate to others is as easy as clicking \u201cSign\u201d on the toolbar. For more information, visit:\n<a href=\"http://outgoing.mozilla.org/v1/3735c0182f4b2280db70d61650c621896d49df9c/http%3A//kb.mozillazine.org/Getting_an_SMIME_certificate\">http://kb.mozillazine.org/Getting_an_SMIME_certificate</a>\n\nAlways remember to look at the toolbar before sending a message, to see whether you are signing or encrypting it. By default, messages are not signed, but are automatically encrypted if you have digital certificates for all of the recipients.\n\nSend us e-mail if you have additional questions or comments. Feel free to send us signed and encrypted e-mail, too. We can read them now. :-)"
+            "id": 3403
         }
     },
     {
@@ -415,8 +414,7 @@
             "created": "2007-03-05 13:10:22",
             "locale": "en-US",
             "modified": "2009-03-21 16:36:56",
-            "id": 3404,
-            "localized_string_clean": "Send and receive signed and encrypted messages in Gmail."
+            "id": 3404
         }
     },
     {
@@ -463,15 +461,13 @@
             "created": "2007-03-05 13:10:22",
             "locale": "en-US",
             "modified": "2009-03-21 16:36:56",
-            "id": 3400,
-            "localized_string_clean": null
+            "id": 3400
         }
     },
     {
         "pk": 426,
         "model": "translations.translation",
         "fields": {
-            "localized_string_clean": null,
             "created": "2007-03-05 13:08:05",
             "locale": "en-US",
             "modified": "2007-03-22 21:54:38",
@@ -483,7 +479,6 @@
         "pk": 258,
         "model": "translations.translation",
         "fields": {
-            "localized_string_clean": null,
             "created": "2007-03-05 13:08:05",
             "locale": "en-US",
             "modified": "2007-03-22 21:54:38",
