@@ -116,3 +116,7 @@
 form.go button {
     display: inherit;
 }
+
+.flag-review {
+    display: none;
+}

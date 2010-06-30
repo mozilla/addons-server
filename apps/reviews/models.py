@@ -3,6 +3,8 @@ import itertools
 from django.db import models
 from django.utils import translation
 
+from tower import ugettext_lazy as _
+
 import amo.models
 from translations.fields import TranslatedField
 from translations.models import Translation
@@ -123,9 +125,22 @@ models.signals.post_save.connect(Review.post_save, sender=Review)
 models.signals.post_delete.connect(Review.post_delete, sender=Review)
 
 
+# TODO: translate old flags.
 class ReviewFlag(amo.models.ModelBase):
+    FLAGS = (
+        ('spam', _('Spam or otherwise non-review content')),
+        ('language', _('Inappropriate language/dialog')),
+        ('bug_support', _('Misplaced bug report or support request')),
+        ('other', _('Other (please specify)')),
+    )
+
     review = models.ForeignKey(Review)
     user = models.ForeignKey('users.UserProfile')
-    name = models.CharField(max_length=64, default='review_flag_reason_other',
-                           db_column='flag_name')
-    notes = models.CharField(max_length=100, db_column='flag_notes')
+    flag = models.CharField(max_length=64, default='other',
+                            choices=FLAGS, db_column='flag_name')
+    note = models.CharField(max_length=100, db_column='flag_notes', blank=True,
+                           default='')
+
+    class Meta:
+        db_table = 'reviews_moderation_flags'
+        unique_together = (('review', 'user'),)

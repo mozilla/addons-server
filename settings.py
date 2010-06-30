@@ -358,6 +358,7 @@ MINIFY_BUNDLES = {
             'js/get-satisfaction-v2.js',
             'js/zamboni/contributions.js',
             'js/zamboni/addon_details.js',
+            'js/zamboni/reviews.js',
 
             # Personas
             'js/zamboni/jquery.hoverIntent.min.js',
