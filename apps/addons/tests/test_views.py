@@ -18,6 +18,8 @@ from addons.views import _details_collections_dropdown
 from users.models import UserProfile
 from translations.query import order_by_translation
 
+import re
+
 
 class TestHomepage(amo.test_utils.ExtraSetup, test_utils.TestCase):
     fixtures = ['base/fixtures', 'base/global-stats', 'base/featured']
@@ -114,6 +116,105 @@ class TestContributeInstalled(test_utils.TestCase):
         r = self.client.get(reverse('addons.installed', args=[592]))
         title = pq(r.content)('title').text()
         eq_(title[:37], 'Thank you for installing Gmail S/MIME')
+
+
+class TestContribute(test_utils.TestCase):
+    fixtures = ['base/fixtures']
+
+    def test_invalid_is_404(self):
+        """we get a 404 in case of invalid addon id"""
+        response = self.client.get(reverse('addons.contribute', args=[1]))
+        eq_(response.status_code, 404)
+
+    def test_redirect_params_no_type(self):
+        """Test that we have the required ppal params when no type is given"""
+        response = self.client.get(reverse('addons.contribute',
+                                           args=[592]), follow=True)
+        redirect_url = response.redirect_chain[0][0]
+        required_params = ['bn', 'business', 'charset', 'cmd', 'item_name',
+                           'no_shipping', 'notify_url',
+                           'return', 'item_number']
+        for param in required_params:
+            assert(redirect_url.find(param + '=') > -1), \
+                   "param [%s] not found" % param
+
+    def test_redirect_params_common(self):
+        """Test for the common values that do not change based on type,
+           Check that they have expected values"""
+        response = self.client.get(reverse('addons.contribute',
+                                           args=[592]), follow=True)
+        redirect_url = response.redirect_chain[0][0]
+        assert(re.search('business=([^&]+)', redirect_url))
+        common_params = {'bn': r'-AddonID592',
+                         'business': r'gmailsmime%40seantek.com',
+                         'charset': r'utf-8',
+                         'cmd': r'_donations',
+                         'item_name': r'Contribution\+for\+Gmail\+S%2FMIME',
+                         'no_shipping': r'1',
+                         'notify_url': r'%2Fservices%2Fpaypal',
+                         'return': r'x',
+                         'item_number': r'[a-f\d]{32}'}
+
+        message = 'param [%s] unexpected value: given [%s], ' \
+                  + 'expected pattern [%s]'
+        for param, value_pattern in common_params.items():
+            match = re.search(r'%s=([^&]+)' % param, redirect_url)
+            assert(match and re.search(value_pattern, match.group(1))), \
+                  message % (param, match.group(1), value_pattern)
+
+    def test_redirect_params_type_suggested(self):
+        """Test that we have the required ppal param when type
+           suggested is given"""
+        request_params = '?type=suggested'
+        response = self.client.get(reverse('addons.contribute',
+                                           args=[592]) + request_params,
+                                           follow=True)
+        redirect_url = response.redirect_chain[0][0]
+        required_params = ['amount', 'bn', 'business', 'charset',
+                           'cmd', 'item_name', 'no_shipping', 'notify_url',
+                           'return', 'item_number']
+        for param in required_params:
+            assert(redirect_url.find(param + '=') > -1), \
+                   "param [%s] not found" % param
+
+    def test_redirect_params_type_onetime(self):
+        """Test that we have the required ppal param when
+           type onetime is given"""
+        request_params = '?type=onetime&onetime-amount=42'
+        response = self.client.get(reverse('addons.contribute',
+                                           args=[592]) + request_params,
+                                           follow=True)
+        redirect_url = response.redirect_chain[0][0]
+        required_params = ['amount', 'bn', 'business', 'charset', 'cmd',
+                           'item_name', 'no_shipping', 'notify_url',
+                           'return', 'item_number']
+        for param in required_params:
+            assert(redirect_url.find(param + '=') > -1), \
+                   "param [%s] not found" % param
+
+        assert(redirect_url.find('amount=42') > -1)
+
+    def test_redirect_params_type_monthly(self):
+        """Test that we have the required ppal param when
+           type monthly is given"""
+        request_params = '?type=monthly&monthly-amount=42'
+        response = self.client.get(reverse('addons.contribute',
+                                           args=[592]) + request_params,
+                                           follow=True)
+        redirect_url = response.redirect_chain[0][0]
+        required_params = ['no_note', 'a3', 't3', 'p3', 'bn', 'business',
+                           'charset', 'cmd', 'item_name', 'no_shipping',
+                           'notify_url', 'return', 'item_number']
+        for param in required_params:
+            assert(redirect_url.find(param + '=') > -1), \
+                   "param [%s] not found" % param
+
+        assert(redirect_url.find('cmd=_xclick-subscriptions') > -1), \
+              'param a3 was not 42'
+        assert(redirect_url.find('p3=12') > -1), 'param p3 was not 12'
+        assert(redirect_url.find('t3=M') > -1), 'param t3 was not M'
+        assert(redirect_url.find('a3=42') > -1), 'param a3 was not 42'
+        assert(redirect_url.find('no_note=1') > -1), 'param no_note was not 1'
 
 
 class TestDeveloperPages(test_utils.TestCase):

@@ -13,10 +13,14 @@ from amo.utils import sorted_groupby, randslice
 from amo import urlresolvers
 from amo.urlresolvers import reverse
 from bandwagon.models import Collection, CollectionFeature, CollectionPromo
-from stats.models import GlobalStat
+from stats.models import GlobalStat, Contribution
 from tags.models import Tag
 from translations.query import order_by_translation
 from .models import Addon
+
+import hashlib
+import urllib
+import uuid
 
 
 def author_addon_clicked(f):
@@ -397,3 +401,82 @@ def developers(request, addon_id, page):
     return jingo.render(request, 'addons/developers.html',
                         {'addon': addon, 'author_addons': author_addons,
                          'page': page})
+
+
+def contribute(request, addon_id):
+
+    addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
+
+    contrib_type = request.GET.get('type', '')
+    is_suggested = contrib_type == 'suggested'
+    source = request.GET.get('source', '')
+    comment = request.GET.get('comment', '')
+
+    amount = {
+        'suggested': addon.suggested_amount,
+        'onetime': request.GET.get('onetime-amount', ''),
+        'monthly': request.GET.get('monthly-amount', '')}.get(contrib_type, '')
+
+    contribution_uuid = hashlib.md5(str(uuid.uuid4())).hexdigest()
+
+    contrib = Contribution(addon_id=addon.id,
+                           amount=amount,
+                           source=source,
+                           source_locale=request.LANG,
+                           annoying=addon.annoying,
+                           uuid=str(contribution_uuid),
+                           is_suggested=is_suggested,
+                           suggested_amount=addon.suggested_amount,
+                           comment=comment)
+    contrib.save()
+
+    return_url = "%s?%s" % (reverse('addons.thanks', args=[addon.id]),
+                            urllib.urlencode({'uuid': contribution_uuid}))
+
+    redirect_url_params = contribute_url_params(
+                            addon.paypal_id,
+                            addon.id,
+                            'Contribution for %s' % addon.name,
+                            return_url,
+                            amount,
+                            contribution_uuid,
+                            contrib_type == 'monthly',
+                            comment)
+
+    return http.HttpResponseRedirect(settings.PAYPAL_CGI_URL
+                                     + '?'
+                                     + urllib.urlencode(redirect_url_params))
+
+
+def contribute_url_params(business, addon_id, item_name, return_url,
+                          amount='', item_number='',
+                          monthly=False, comment=''):
+
+    """Get all the data elements that will be URL params
+       on the Paypal redirect URL"""
+
+    data = {'business': business,
+            'item_name': item_name,
+            'item_number': item_number,
+            'bn': settings.PAYPAL_BN + '-AddonID' + str(addon_id),
+            'no_shipping': '1',
+            'return': return_url,
+            'charset': 'utf-8',
+            'notify_url': reverse('amo.paypal')}
+
+    if (not monthly):
+        data['cmd'] = '_donations'
+        if (amount):
+            data['amount'] = amount
+    else:
+        data.update({
+            'cmd': '_xclick-subscriptions',
+            'p3': '12',  # duration: for 12 months
+            't3': 'M',  # time unit, 'M' for month
+            'a3': amount,  # recurring contribution amount
+            'no_note': '1'})  # required: no "note" text field for user
+
+    if (comment):
+        data['custom'] = comment
+
+    return data
