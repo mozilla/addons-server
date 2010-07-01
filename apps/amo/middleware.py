@@ -4,14 +4,16 @@ Borrowed from: http://code.google.com/p/django-localeurl
 Note: didn't make sense to use localeurl since we need to capture app as well
 """
 import contextlib
+import time
 import urllib
 
 from django.conf import settings
 from django.contrib.sessions.middleware import SessionMiddleware
-from django.http import HttpResponsePermanentRedirect, HttpResponse
+from django.http import HttpResponsePermanentRedirect
 from django.middleware import common
 from django.utils.encoding import iri_to_uri, smart_str
 
+import commonware.log
 import MySQLdb as mysql
 import tower
 import jingo
@@ -159,3 +161,23 @@ class ReadOnlyMiddleware(object):
     def process_exception(self, request, exception):
         if isinstance(exception, mysql.OperationalError):
             return jingo.render(request, 'amo/read-only.html', status=500)
+
+
+timing_log = commonware.log.getLogger('z.timer')
+
+
+class TimingMiddleware(object):
+
+    def process_request(self, request):
+        request._start = time.time()
+
+    def process_response(self, request, response):
+        auth = 'ANON'
+        if hasattr(request, 'user') and request.user.is_authenticated():
+            auth = 'AUTH'
+        d = {'method': request.method, 'time': time.time() - request._start,
+             'url': request.path_info, 'code': response.status_code,
+             'auth': auth}
+        msg = '{method} "{url}" ({code}) {time:.2f} [{auth}]'.format(**d)
+        timing_log.info(msg)
+        return response

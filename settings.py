@@ -181,6 +181,7 @@ def JINJA_CONFIG():
 
 MIDDLEWARE_CLASSES = (
     # AMO URL middleware comes first so everyone else sees nice URLs.
+    'amo.middleware.TimingMiddleware',
     'amo.middleware.LocaleAndAppURLMiddleware',
     'amo.middleware.RemoveSlashMiddleware',
 
