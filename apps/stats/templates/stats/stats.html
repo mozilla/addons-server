@@ -9,7 +9,9 @@
 {% block title %}{{ _('Add-ons for Firefox') }} Statistics Dashboard {% endblock %}
 
 {% block navbar %}
-  {{ breadcrumbs() }}
+  {{ breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
+                  (addon.get_url_path(), addon.name),
+                  (link, _('Statistics'))]) }}
   {# TODO: Replace above line with this --> once we serve the extension home. { breadcrumbs([(addon.type.get_url_path(), amo.ADDON_TYPES[addon.type_id])]) } #}
 
 
