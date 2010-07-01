@@ -38,7 +38,9 @@ class TestLanguageTools(amo.test_utils.ExtraSetup, test_utils.TestCase):
         cache.clear()
         self.url = reverse('browse.language-tools')
         response = self.client.get(self.url, follow=True)
-        self.locales = response.context['locales']
+        # For some reason the context doesn't get loaded the first time.
+        response = self.client.get(self.url, follow=True)
+        self.locales = list(response.context['locales'])
 
     def test_sorting(self):
         """The locales should be sorted by English display name."""
@@ -71,7 +73,7 @@ class TestLanguageTools(amo.test_utils.ExtraSetup, test_utils.TestCase):
             addon.save()
         response = self.client.get(self.url, follow=True)
         eq_(response.status_code, 200)
-        eq_(response.context['locales'], [])
+        eq_(list(response.context['locales']), [])
 
     def test_null_target_locale(self):
         """Make sure nothing breaks with null target locales."""
@@ -80,7 +82,7 @@ class TestLanguageTools(amo.test_utils.ExtraSetup, test_utils.TestCase):
             addon.save()
         response = self.client.get(self.url, follow=True)
         eq_(response.status_code, 200)
-        eq_(response.context['locales'], [])
+        eq_(list(response.context['locales']), [])
 
 
 class TestThemes(amo.test_utils.ExtraSetup, test_utils.TestCase):
