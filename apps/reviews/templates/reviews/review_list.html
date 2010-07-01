@@ -79,7 +79,7 @@
       <div>
         <ul>
         {% for count in grouped_ratings %}
-          <li>{{ (5 - loop.index0)|stars }} {{ count }} </li>
+          <li>{{ (5 - loop.index0)|float|stars }} {{ count }} </li>
         {% endfor %}
         </ul>
       </div>

@@ -8,7 +8,7 @@
             {% if is_flagged %}flagged{% endif %}"
      id="review-{{ review.id }}">
   <h5>{{ review.title }}</h5>
-  {% if not is_reply %}{{ review.rating|stars }}{% endif %}
+  {% if not is_reply %}{{ review.rating|float|stars }}{% endif %}
   <div class="reviewed-on">
     {% if is_reply %}
       {% trans user=review.user|user_link, date=review.created|datetime %}

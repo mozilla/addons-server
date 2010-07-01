@@ -44,7 +44,7 @@
                 <img src="{{ addon.thumbnail_url }}"></a>
             </p>
             <p class="addon-desc">{{ addon.summary|truncate(100) }}</p>
-            <p class="addon-rating">{{ addon.bayesian_rating|stars }}</p>
+            <p class="addon-rating">{{ addon.average_rating|float|stars }}</p>
             {{ install_button(addon, src='creatured') }}
           </li>
           {% endfor %}
@@ -61,7 +61,7 @@
 {% elif key == 'popular' %}
   {{ _('{0} weekly downloads')|f(addon.weekly_downloads|numberfmt) }}
 {% elif key == 'rating' %}
-  {{ addon.bayesian_rating|stars }}
+  {{ addon.average_rating|float|stars }}
 {%- endif %}
 </span>
 {% endmacro %}

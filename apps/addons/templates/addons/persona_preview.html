@@ -16,7 +16,7 @@
           </span>
         {% elif extra == 'rating' %}
           <span class="reviews">
-            {{ addon.bayesian_rating|stars }} {{ addon.total_reviews|numberfmt }}
+            {{ addon.average_rating|float|stars }} {{ addon.total_reviews|numberfmt }}
           </span>
         {% endif %}
       </{{ tag }}>
@@ -32,7 +32,7 @@
           </p>
           {#
           <a href="{{ url('reviews.list', addon.id) }}">
-            {{ addon.bayesian_rating|stars }}
+            {{ addon.average_rating|float|stars }}
             {{ addon.total_reviews }}</a>
           #}
           <span class="users">
