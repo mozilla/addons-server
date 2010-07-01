@@ -184,10 +184,47 @@ def stats_report(request, addon_id, report):
     addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
     check_stats_permission(request, addon)
     stats_base_url = reverse('stats.overview', args=[addon.id])
+    view = get_report_view(request)
     return jingo.render(request, 'stats/%s.html' % report,
                         {'addon': addon,
                         'report': report,
+                        'view': view,
                         'stats_base_url': stats_base_url})
+
+
+def get_report_view(request):
+    """Parse and validate a pair of YYYMMDD date strings."""
+    if ('start' in request.GET and
+        'end' in request.GET):
+        try:
+            start = request.GET.get('start')
+            end = request.GET.get('end')
+
+            assert len(start) == 8
+            assert len(end) == 8
+
+            s_year = int(start[0:4])
+            s_month = int(start[4:6])
+            s_day = int(start[6:8])
+            e_year = int(end[0:4])
+            e_month = int(end[4:6])
+            e_day = int(end[6:8])
+
+            date(s_year, s_month, s_day)
+            date(e_year, e_month, e_day)
+
+            return {'range': 'custom',
+                    'start': start,
+                    'end': end}
+        except (KeyError, AssertionError, ValueError):
+            pass
+
+    if 'last' in request.GET:
+        daterange = request.GET.get('last')
+
+        return {'range': daterange, 'last': daterange}
+    else:
+        return {'range': '30', 'last': '30'}
 
 
 def get_daterange_or_404(start, end):

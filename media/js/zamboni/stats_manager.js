@@ -13,8 +13,7 @@
         maxdate: today()
     };
     var pending_fetches = 0;
-    var page_state = {
-    }
+    var page_state = {};
     var capabilities = {
         'localStorage' : ('localStorage' in window) && window['localStorage'] !== null,
         'JSON' : window.JSON && typeof JSON.parse == 'function',

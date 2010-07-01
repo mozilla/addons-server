@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% set range = view.range %}
+
 {% block extrahead %}
   <link rel="stylesheet" href="{{ MEDIA_URL }}css/stats.css"/>
   <link rel="stylesheet"
@@ -21,11 +23,19 @@
   <div class="criteria range">
     <ul>
       <li>For Last:</li>
-      <li class="" data-range="7 days"><a href="#">7 Days</a></li>
-      <li data-range="30 days" class="selected"><a href="#">30 Days</a></li>
-      <li data-range="90 days"><a href="#">90 Days</a></li>
+      <li data-range="7 days"
+          {% if range=='7' %}class="selected"{% endif %}>
+          <a href="#">7 Days</a></li>
+      <li data-range="30 days"
+          {% if range=='30' %}class="selected"{% endif %}>
+          <a href="#">30 Days</a></li>
+      <li data-range="90 days"
+          {% if range=='90' %}class="selected"{% endif %}>
+          <a href="#">90 Days</a></li>
       <li class="divider"></li>
-      <li data-range="custom"><a href="#">Custom</a></li>
+      <li data-range="custom"
+          {% if range=='custom' %}class="selected"{% endif %}>
+          <a href="#">Custom</a></li>
     </ul>
   </div>
 
@@ -52,8 +62,15 @@
   <div class="primary statistics"
     data-report="{{ report }}"
     data-addon_id="{{ addon.id }}"
-    data-base_url="{{ stats_base_url }}"
-    >
+    {% if view.last %}
+    data-range="{{ view.last }} days"
+    {% endif %}
+    {% if view.start and view.end %}
+    data-range="custom"
+    data-start_date="{{ view.start }}"
+    data-end_date="{{ view.end }}"
+    {% endif %}
+    data-base_url="{{ stats_base_url }}">
     {% if true %}
       <div class="custom criteria hidden">
         <form id="date-range-form">
