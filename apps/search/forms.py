@@ -1,5 +1,4 @@
 import collections
-import itertools
 
 from django import forms
 from django.forms.util import ErrorDict
@@ -64,7 +63,7 @@ def get_app_versions(app):
     strings = ['%s.%s' % v for v in sorted(set(versions), reverse=True)
                if v >= min_ver and v not in skip]
 
-    return [(_('any'), _('Any'))] + zip(strings, strings)
+    return [('any', _('Any'))] + zip(strings, strings)
 
 
 # Fake categories to slip some add-on types into the search groups.

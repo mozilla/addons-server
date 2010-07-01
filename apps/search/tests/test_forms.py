@@ -17,6 +17,13 @@ def test_form_version_label():
                 '%s Version' % unicode(app.pretty))
 
 
+def test_korean():
+    "All forms, regardless of nationality, should have an 'Any' version."
+    r = client.Client().get('/ko/firefox/')
+    doc = pq(r.content)
+    eq_(doc('#id_lver option')[0].values()[0], 'any')
+
+
 class TestSearchForm(test_utils.TestCase):
     fixtures = ['base/fixtures', 'addons/persona']
 
