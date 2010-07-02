@@ -212,24 +212,9 @@ class Client(object):
         self.id = int(random.random() * 10**5)
 
     def get_result_set(self, term, result, offset, limit):
-        # Remove transformations for now so we can pull them in later.
-        qs = Addon.objects.all()
-        transforms = qs._transform_fns
-        qs._transform_fns = []
-
         # Return results as a list of add-ons.
         addon_ids = [m['attrs']['addon_id'] for m in result['matches']]
-        addons = []
-        for addon_id in addon_ids:
-            try:
-                addons.append(qs.get(pk=addon_id))
-            except Addon.DoesNotExist:  # pragma: no cover
-                log.warning(u'%d: Result for %s refers to non-existent '
-                         'addon: %d' % (self.id, term, addon_id))
-
-        # Do the transforms now that we have all the add-ons.
-        for fn in transforms:
-            fn(addons)
+        addons = manual_order(Addon.objects.all(), addon_ids)
 
         return ResultSet(addons, min(self.total_found, SPHINX_HARD_LIMIT),
                          offset)
