@@ -358,6 +358,8 @@ class CollectionPromoBox(object):
             key = (feature.id, lang)
             if key not in promo_dict:
                 key = (feature.id, '')
+                if key not in promo_dict:
+                    continue
 
             # We only want to see public add-ons on the front page.
             c = promo_dict[key].collection
