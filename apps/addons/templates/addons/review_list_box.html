@@ -19,7 +19,11 @@
     {% if addon %}
       <p>
         <a class="more-info" href="{{ remora_url('reviews/display/%d' % addon.id) }}">
-          {{ _('See all {0} reviews of this add-on')|f(addon.total_reviews) }}
+          {% trans num=addon.total_reviews, cnt=addon.total_reviews|numberfmt %}
+            See all reviews of this add-on
+          {% pluralize %}
+            See all {{ cnt }} reviews of this add-on
+          {% endtrans %}
         </a>
       </p>
     {% endif %}
