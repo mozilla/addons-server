@@ -1,3 +1,5 @@
+from django.utils import translation
+
 import jingo
 from mock import Mock
 from nose.tools import eq_
@@ -6,6 +8,7 @@ from amo.tests.test_helpers import render
 
 
 def test_showing_helper():
+    translation.activate('en-US')
     tpl = "{{ showing(query, tag, pager) }}"
     pager = Mock()
     pager.start_index = lambda: 1
