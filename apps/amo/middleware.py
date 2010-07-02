@@ -176,8 +176,8 @@ class TimingMiddleware(object):
         if hasattr(request, 'user') and request.user.is_authenticated():
             auth = 'AUTH'
         d = {'method': request.method, 'time': time.time() - request._start,
-             'url': request.path_info, 'code': response.status_code,
-             'auth': auth}
+             'code': response.status_code, 'auth': auth,
+             'url': smart_str(request.path_info)}
         msg = '{method} "{url}" ({code}) {time:.2f} [{auth}]'.format(**d)
         timing_log.info(msg)
         return response
