@@ -11,7 +11,7 @@ from amo.decorators import post_required, json_view
 from access import acl
 from addons.models import Addon
 
-from .models import Review, ReviewFlag
+from .models import Review, ReviewFlag, GroupedRating
 from .forms import ReviewFlagForm
 
 log = commonware.log.getLogger('z.reviews')
@@ -23,7 +23,8 @@ def review_list(request, addon_id, review_id=None, user_id=None):
          .order_by('-created'))
 
     ctx = {'addon': addon, 'ReviewFlag': ReviewFlag,
-           'flag_form': ReviewFlagForm()}
+           'flag_form': ReviewFlagForm(),
+           'grouped_ratings': GroupedRating.get(addon_id)}
 
     if review_id is not None:
         ctx['page'] = 'detail'

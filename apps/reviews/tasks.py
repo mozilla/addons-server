@@ -1,12 +1,12 @@
 import logging
 
-from django.db.models import Count, Avg, Sum, F
+from django.db.models import Count, Avg, F
 
 from celery.decorators import task
 import caching.base as caching
 
 from addons.models import Addon
-from .models import Review
+from .models import Review, GroupedRating
 
 log = logging.getLogger('z.task')
 
@@ -74,9 +74,20 @@ def addon_bayesian_rating(*addons, **kw):
             q.update(bayesian_rating=0)
 
 
+@task
+def addon_grouped_rating(*addons, **kw):
+    """Roll up add-on ratings for the bar chart."""
+    # We stick this all in memcached since it's not critical.
+    log.info('[%s@%s] Updating addon grouped ratings.' %
+             (len(addons), addon_grouped_rating.rate_limit))
+    for addon in addons:
+        GroupedRating.set(addon)
+
+
 @task(rate_limit='10/m')
 def cron_review_aggregate(*addons, **kw):
     log.info('[%s@%s] Updating addon review aggregates.' %
              (len(addons), cron_review_aggregate.rate_limit))
     # We have this redundant task to get rate limiting for big chunks.
     addon_review_aggregates(*addons)
+    addon_grouped_rating(*addons)

@@ -73,13 +73,16 @@
       <h6 class="author">{{ _('by') }} {{ users_list(addon.listed_authors) }}</h6>
     </hgroup>
     <div>
-      <span>{{ addon.average_rating|float|stars }} {{ _('Average Rating') }}</span>
+      <span>
+        {{ addon.average_rating|float|stars }}
+        {{ _('Average Rating ({0})')|f(addon.total_reviews) }}
+      </span>
     </div>
     {% if grouped_ratings %}
       <div>
         <ul>
-        {% for count in grouped_ratings %}
-          <li>{{ (5 - loop.index0)|float|stars }} {{ count }} </li>
+        {% for rating, count in grouped_ratings|sort(reverse=True) %}
+          <li>{{ rating|stars }} {{ count }} </li>
         {% endfor %}
         </ul>
       </div>

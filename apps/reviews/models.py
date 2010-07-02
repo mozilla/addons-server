@@ -1,5 +1,7 @@
 import itertools
 
+from django.conf import settings
+from django.core.cache import cache
 from django.db import models
 from django.utils import translation
 
@@ -144,3 +146,30 @@ class ReviewFlag(amo.models.ModelBase):
     class Meta:
         db_table = 'reviews_moderation_flags'
         unique_together = (('review', 'user'),)
+
+
+class GroupedRating(object):
+    """
+    Group an add-on's ratings so we can have a graph of rating counts.
+
+    SELECT rating, COUNT(rating) FROM reviews where addon=:id
+    """
+    # Non-critical data, so we always leave it in memcached.  Updated through
+    # cron daily, so we cache for two days.
+
+    @classmethod
+    def key(cls, addon):
+        return '%s:%s:%s' % (settings.CACHE_PREFIX, cls.__name__, addon)
+
+    @classmethod
+    def get(cls, addon):
+        return cache.get(cls.key(addon))
+
+    @classmethod
+    def set(cls, addon):
+        q = (Review.objects.valid().filter(addon=addon)
+             .values_list('rating').annotate(models.Count('rating')))
+        counts = dict(q)
+        ratings = [(rating, counts.get(rating, 0)) for rating in range(1, 6)]
+        two_days = 60 * 60 * 24 * 2
+        cache.set(cls.key(addon), ratings, two_days)
