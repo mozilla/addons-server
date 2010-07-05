@@ -399,7 +399,7 @@ class TestButtonHtml(ButtonTest):
         compat = Mock()
         compat.min.version = 'min version'
         compat.max.version = 'max version'
-        self.addon.compatible_apps = {amo.FIREFOX: compat}
+        self.version.compatible_apps = {amo.FIREFOX: compat}
         install = self.render()('.install')
         eq_('min version', install.attr('data-min'))
         eq_('max version', install.attr('data-max'))
