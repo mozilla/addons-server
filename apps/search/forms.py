@@ -137,15 +137,18 @@ def SearchForm(request):
 
         def clean(self):
             d = self.cleaned_data
+            raw = self.data
 
             # Set some defaults
             if not d.get('appid'):
                 d['appid'] = request.APP.id
 
-            if 'cat' in d:
-                if ',' in d['cat']:
-                    (d['atype'], d['cat']) = map(int, d['cat'].split(','))
-                elif d['cat'] == 'all':
+            # Since not all categories are listed in this form, we use the raw
+            # data.
+            if 'cat' in raw:
+                if ',' in raw['cat']:
+                    (d['atype'], d['cat']) = map(int, raw['cat'].split(','))
+                elif raw['cat'] == 'all':
                     d['cat'] = None
 
             if 'page' not in d or not d['page'] or d['page'] < 1:
