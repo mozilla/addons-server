@@ -112,7 +112,6 @@ def themes(request, category=None):
     categories = order_by_translation(q, 'name')
 
     addons, filter, unreviewed = _listing(request, amo.ADDON_THEME)
-    total_count = addons.count()
 
     if category is not None:
         try:
@@ -121,13 +120,14 @@ def themes(request, category=None):
             raise http.Http404()
         addons = addons.filter(categories__id=category.id)
 
-    themes = amo.utils.paginate(request, addons)
+    count = addons.with_index(addons='type_status_inactive_idx').count()
+    themes = amo.utils.paginate(request, addons, count=count)
 
     # Pre-selected category for search form
     search_cat = '%s,0' % amo.ADDON_THEME
 
     return jingo.render(request, 'browse/themes.html',
-                        {'categories': categories, 'total_count': total_count,
+                        {'categories': categories,
                          'themes': themes, 'category': category,
                          'sorting': filter.field,
                          'sort_opts': filter.opts,
