@@ -343,14 +343,21 @@ class Addon(amo.models.ModelBase):
     def is_unreviewed(self):
         return self.status in amo.UNREVIEWED_STATUSES
 
-    @caching.cached_method
     def is_featured(self, app, lang):
         """is add-on globally featured for this app and language?"""
-        locale_filter = (Q(feature__locale=lang) |
-                         Q(feature__locale__isnull=True) |
-                         Q(feature__locale=''))
-        return Addon.objects.featured(app).filter(
-            locale_filter, pk=self.pk).exists()
+        qs = Addon.objects.featured(app)
+        def _features():
+            vals = qs.extra(select={'locale': 'features.locale'})
+            d = collections.defaultdict(list)
+            for id, locale in vals.values_list('id', 'locale'):
+                d[id].append(locale)
+            return dict(d)
+        features = caching.cached_with(qs, _features, 'featured:%s' % app.id)
+        if self.id in features:
+            for locale in (None, '', lang):
+                if locale in features:
+                    return True
+        return False
 
     @caching.cached_method
     def is_category_featured(self, app, lang):
