@@ -97,7 +97,7 @@
                     {# L10n: {0} is the review count. #}
                     {{ ngettext("{0} review", "{0} reviews", num)|f(num|numberfmt) }}</a>
                 {% else %}
-                  {{ _('Not yet rated') }}
+                  <strong>{{ _('Not yet rated') }}</strong>
                 {% endif %}
                 {% endwith %}
               {% endif %}
