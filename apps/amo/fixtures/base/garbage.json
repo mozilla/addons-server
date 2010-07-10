@@ -1,0 +1,84 @@
+[
+    {
+        "pk": 1,
+        "model": "files.testgroup",
+        "fields": {
+            "category": "general",
+            "created": null,
+            "modified": null,
+            "critical": true,
+            "tier": 1,
+            "types": 127
+        }
+    },
+    {
+        "pk": 11,
+        "model": "files.testcase",
+        "fields": {
+            "function": "all_general_verifyExtension",
+            "test_group": 1
+        }
+    },
+    {
+      "pk": 2,
+      "model": "cake.session",
+      "fields": {
+          "session_id": "17f051c99f083244bf653d5798111216",
+          "expires": 1,
+          "data": "User|a:1:{s:2:\"id\";s:1:\"1\";}"
+      }
+    },
+    {
+        "pk": 2567,
+        "model": "stats.sharecount",
+        "fields": {
+            "count": 1,
+            "date": "2009-07-27",
+            "service": "fakebook",
+            "addon": 59
+        }
+    },
+    {
+        "pk": 1,
+        "model": "stats.contribution",
+        "fields": {
+            "created": "2009-07-27",
+            "addon": 59
+        }
+
+    },
+    {
+        "pk": 1,
+        "model": "files.testresult",
+        "fields": {
+            "created": "2000-01-01",
+            "file": 56975,
+            "test_case": 11
+        }
+    },
+    {
+        "pk": 1,
+        "model": "files.testresultcache",
+        "fields": {
+            "date": "2000-01-01",
+            "test_case": 11
+        }
+    },
+    {
+        "pk": 1,
+        "model": "devhub.addonlog",
+        "fields": {
+            "created": "2000-01-01",
+            "addon": 59,
+            "type": 99
+        }
+    },
+    {
+        "pk": 1,
+        "model": "bandwagon.collection",
+        "fields": {
+            "created": "2000-01-01",
+            "type": 6
+        }
+    }
+]

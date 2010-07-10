@@ -1,7 +1,3 @@
-from django.db.models import Sum
-
-import caching
-
 from tower import ugettext_lazy as _, ungettext as ngettext
 from stats.models import ShareCountTotal
 
@@ -82,3 +78,6 @@ class EMAIL(ServiceBase):
     @staticmethod
     def count_term(count):
         return ngettext('{0} email', '{0} emails', count).format(count)
+
+
+SERVICES = [DIGG, FACEBOOK, DELICIOUS, MYSPACE, FRIENDFEED, TWITTER, EMAIL]
