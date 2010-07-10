@@ -81,7 +81,6 @@ class Platform(amo.models.ModelBase):
 
 class TestCase(amo.models.ModelBase):
     test_group = models.ForeignKey('TestGroup')
-    platform = models.ForeignKey('Platform')
     help_link = models.CharField(max_length=255, blank=True,
             help_text='Deprecated')
     function = models.CharField(max_length=255,
@@ -116,13 +115,13 @@ class TestResult(amo.models.ModelBase):
         db_table = 'test_results'
 
 
-class TestResultCache(amo.models.ModelBase):
+class TestResultCache(models.Model):
     """When a file is checked the results are stored here in JSON.  This is
     temporary storage and removed with the garbage cleanup cron."""
     date = models.DateTimeField()
     key = models.CharField(max_length=255, db_index=True)
     test_case = models.ForeignKey(TestCase)
-    message = models.TextField(blank=True)
+    value = models.TextField(blank=True)
 
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'test_results_cache'
