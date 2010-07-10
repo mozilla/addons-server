@@ -100,6 +100,7 @@ class AddonLog(models.Model):
     name1 = models.CharField(max_length=255, default='', blank=True)
     name2 = models.CharField(max_length=255, default='', blank=True)
     notes = models.TextField(blank=True)
+    created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         db_table = 'addonlogs'
