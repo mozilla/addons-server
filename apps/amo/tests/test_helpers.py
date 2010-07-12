@@ -10,7 +10,7 @@ from jinja2.exceptions import FilterArgumentError
 import test_utils
 
 import amo
-from amo import urlresolvers
+from amo import urlresolvers, utils
 from amo.helpers import wround
 
 
@@ -140,6 +140,11 @@ def test_urlparams():
     eq_(s, url)
 
 
+def test_urlparams_unicode():
+    url = u'/xx?evil=reco\ufffd\ufffd\ufffd\u02f5'
+    utils.urlparams(url)
+
+
 def test_wround():
     # Invalid input formats.
     assert_raises(TypeError, wround, None)
@@ -156,6 +161,7 @@ def test_wround():
 
     assert_almost_equal(wround(4.1, 1, 'floor'), 4.1)
     eq_(wround(4.1, method='floor'), 4)
+
 
 def test_isotime():
     time = datetime(2009, 12, 25, 10, 11, 12)
