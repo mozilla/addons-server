@@ -1,0 +1,15 @@
+<div class="hidden">
+  <div class="install-note review-reason">
+    <strong>{{ _('Please select a reason:') }}</strong>
+    <ul>
+      {% for flag, text in ReviewFlag.FLAGS %}
+        <li><a href="#{{ flag }}">{{ text }}</a></li>
+      {% endfor %}
+    </ul>
+    {# Using a fake form so we get submission on keyboard-enter. #}
+    <form class="other-note" method="POST" action="">
+      {{ flag_form.note|safe }}
+      <input type="submit" value="{{ _('Submit') }}">
+    </form>
+  </div>
+</div>

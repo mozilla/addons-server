@@ -25,3 +25,9 @@ def reviews_link(addon, collection_uuid=None):
     t = jingo.env.get_template('reviews/reviews_link.html')
     return jinja2.Markup(t.render(addon=addon,
                                   collection_uuid=collection_uuid))
+
+
+@jingo.register.inclusion_tag('reviews/report_review.html')
+@jinja2.contextfunction
+def report_review_popup(context):
+    return context

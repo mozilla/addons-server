@@ -12,6 +12,7 @@
 
 {% block content %}
 <div class="primary" role="main">
+  {% block review_header %}
   <header>
     {# Give a link back to reviews if we're looking at user reviews or a detail page. #}
     {% with link = None if page == 'list' else url('reviews.list', addon.id) %}
@@ -43,18 +44,9 @@
       {% endif %}
     </hgroup>
   </header>
-  <div id="dev-reply-form" class="review article reply reply-form hidden">
-    <h3>Write a Reply</h3>
-    <form method="POST" action="">
-      <label for="reply-title">{{_('Title:')}}</label>
-      <input id="reply-title" type="text" name="title" />
-      <label for="reply-body">{{_('Reply:')}}</label>
-      <textarea id="reply-body" name="body"></textarea>
-      <input type="hidden" name="inreplyto" value="" />
-      <input type="submit" value="{{ _('Submit Your Reply') }}">
-      or <a href="#">Cancel</a>
-    </form>
-  </div>
+  {% endblock %}
+
+  {% block review_list %}
   {% for review in reviews.object_list %}
     {% include "reviews/review.html" %}
     {% if review.id in replies %}
@@ -64,6 +56,7 @@
     {% endif %}
   {% endfor %}
   {{ reviews|paginator }}
+  {% endblock review_list %}
 </div>
 
 <div class="secondary">
@@ -92,26 +85,14 @@
         </ul>
       </div>
     {% endif %}
-    <div>
-      <a class="button" href="#TODO">
-        {{ _('Write a New Review') }}</a>
-    </div>
+    {% if not review_perms.is_author %}
+      <div>
+        <a class="button" href="{{ url('reviews.add', addon.id) }}">
+          {{ _('Write a New Review') }}</a>
+      </div>
+    {% endif %}
   </div>
 </div>
 
-<div class="hidden">
-  <div class="install-note review-reason">
-    <strong>{{ _('Please select a reason:') }}</strong>
-    <ul>
-      {% for flag, text in ReviewFlag.FLAGS %}
-        <li><a href="#{{ flag }}">{{ text }}</a></li>
-      {% endfor %}
-    </ul>
-    {# Using a fake form so we get submission on keyboard-enter. #}
-    <form class="other-note" method="POST" action="">
-      {{ flag_form.note|safe }}
-      <input type="submit" value="{{ _('Submit') }}">
-    </form>
-  </div>
-</div>
+{{ report_review_popup() }}
 {% endblock content %}

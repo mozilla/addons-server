@@ -1,3 +1,4 @@
+{% set perms = review_perms or {} %}
 {% set outdated = (review.version_id
                       and review.version_id != addon._current_version_id) %}
 {% set is_reply = review.reply_to_id is not none %}
@@ -50,8 +51,11 @@
           {{ _('Report this review') }}</a>
       </li>
     {% endif %}
-    {% if perms.is_author or perms.is_admin %}
-      <li><a href="#TODO">{{ _('Reply to review') }}</a></li>
+    {% if not is_reply and (perms.is_author or perms.is_admin) %}
+      <li>
+        <a class="review-delete" href="{{ url('reviews.reply', addon.id, review.id) }}">
+          {{ _('Reply to review') }}</a>
+      </li>
     {% endif %}
     {% if perms.can_delete %}
       <li>

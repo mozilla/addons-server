@@ -1,6 +1,6 @@
 from django import http
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 
 import commonware.log
 import jingo
@@ -12,9 +12,14 @@ from access import acl
 from addons.models import Addon
 
 from .models import Review, ReviewFlag, GroupedRating
-from .forms import ReviewFlagForm
+from . import forms
 
 log = commonware.log.getLogger('z.reviews')
+
+
+def flag_context():
+    return dict(ReviewFlag=ReviewFlag,
+                flag_form=forms.ReviewFlagForm())
 
 
 def review_list(request, addon_id, review_id=None, user_id=None):
@@ -22,9 +27,9 @@ def review_list(request, addon_id, review_id=None, user_id=None):
     q = (Review.objects.valid().filter(addon=addon)
          .order_by('-created'))
 
-    ctx = {'addon': addon, 'ReviewFlag': ReviewFlag,
-           'flag_form': ReviewFlagForm(),
+    ctx = {'addon': addon,
            'grouped_ratings': GroupedRating.get(addon_id)}
+    ctx.update(flag_context())
 
     if review_id is not None:
         ctx['page'] = 'detail'
@@ -44,7 +49,7 @@ def review_list(request, addon_id, review_id=None, user_id=None):
     ctx['reviews'] = reviews = amo.utils.paginate(request, q)
     ctx['replies'] = get_replies(reviews.object_list)
     if request.user.is_authenticated():
-        ctx['perms'] = {
+        ctx['review_perms'] = {
             'is_admin': acl.action_allowed(request, 'Admin', 'EditAnyAddon'),
             'is_editor': acl.action_allowed(request, 'Editor', '%'),
             'is_author': acl.check_ownership(request, addon,
@@ -53,6 +58,8 @@ def review_list(request, addon_id, review_id=None, user_id=None):
                                              'DeleteReview'),
         }
         ctx['flags'] = get_flags(request, reviews.object_list)
+    else:
+        ctx['review_perms'] = {}
     return jingo.render(request, 'reviews/review_list.html', ctx)
 
 
@@ -78,7 +85,7 @@ def flag(request, addon_id, review_id):
     except ReviewFlag.DoesNotExist:
         instance = None
     data = dict(request.POST.items(), **d)
-    form = ReviewFlagForm(data, instance=instance)
+    form = forms.ReviewFlagForm(data, instance=instance)
     if form.is_valid():
         form.save()
         Review.objects.filter(id=review_id).update(editorreview=True)
@@ -98,5 +105,47 @@ def delete(request, addon_id, review_id):
     log.info('DELETE: %s deleted %s by %s ("%s": "%s")' %
              (request.amo_user.display_name, review_id,
               review.user.display_name, review.title, review.body))
-    # TODO: Insert into event log.
     return http.HttpResponse()
+
+
+def _review_details(request, addon, form):
+    d = dict(addon_id=addon.id, user_id=request.user.id,
+             version_id=addon.current_version.id,
+             ip_address=request.META.get('REMOTE_ADDR', ''))
+    d.update(**form.cleaned_data)
+    return d
+
+
+@login_required
+def reply(request, addon_id, review_id):
+    addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
+    is_admin = acl.action_allowed(request, 'Admin', 'EditAnyAddon')
+    is_author = acl.check_ownership(request, addon, require_owner=True)
+    if not is_admin or is_author:
+        return http.HttpResponseForbidden()
+
+    review = get_object_or_404(Review.objects, pk=review_id, addon=addon_id)
+    form = forms.ReviewReplyForm(request.POST or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            r = Review.objects.create(reply_to_id=review_id,
+                                      **_review_details(request, addon, form))
+            log.debug('New reply to %s: %s' % (review_id, r.id))
+            return redirect('reviews.detail', addon_id, review_id)
+    ctx = dict(review=review, form=form, addon=addon)
+    ctx.update(flag_context())
+    return jingo.render(request, 'reviews/reply.html', ctx)
+
+
+@login_required
+def add(request, addon_id):
+    addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
+    form = forms.ReviewForm(request.POST or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            details = _review_details(request, addon, form)
+            review = Review.objects.create(**details)
+            log.debug('New review: %s' % review.id)
+            return redirect('reviews.detail', addon_id, review.id)
+    return jingo.render(request, 'reviews/add.html',
+                        dict(addon=addon, form=form))

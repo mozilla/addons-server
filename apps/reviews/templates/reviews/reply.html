@@ -1,0 +1,29 @@
+{% extends "reviews/review_list.html" %}
+
+{% set title = _('Reply to review by {0}')|f(review.user.display_name) %}
+
+{% block title %}{{ page_title(title) }}{% endblock %}
+
+{% block content %}
+  {% block review_header %}
+    <h2>{{ title }}</h2>
+  {% endblock %}
+
+  {% block review_list %}
+    {% include "reviews/review.html" %}
+    <div class="review article reply-form">
+      <h3>{{ _('Write a Reply') }}</h3>
+      <form method="post" action="{{ url('reviews.reply', addon.id, review.id) }}">
+        {{ csrf() }}
+        {{ field(form.title, _('Title:')) }}
+        {{ field(form.body, _('Reply:')) }}
+        <input type="submit" value="{{ _('Submit Your Reply') }}">
+        {# L10n: this string is following a <button>. #}
+        {% trans url=url('reviews.list', addon.id) %}
+          or <a href="{{ url }}">Cancel</a>
+        {% endtrans %}
+      </form>
+    </div>
+  {% endblock %}
+{{ report_review_popup() }}
+{% endblock %}

@@ -19,6 +19,8 @@ from amo.helpers import absolutify
 from amo import urlresolvers
 from amo.urlresolvers import reverse
 from bandwagon.models import Collection, CollectionFeature, CollectionPromo
+from reviews.forms import ReviewForm
+from reviews.models import Review
 from stats.models import GlobalStat, Contribution
 from tags.models import Tag
 from translations.query import order_by_translation
@@ -127,6 +129,8 @@ def extension_detail(request, addon):
         'current_user_tags': current_user_tags,
 
         'recommendations': recommended,
+        'review_form': ReviewForm(),
+        'reviews': Review.objects.valid().filter(addon=addon, is_latest=True),
 
         'collections': popular_coll,
         'other_collection_count': other_coll_count,

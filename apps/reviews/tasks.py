@@ -20,7 +20,8 @@ def update_denorm(*pairs, **kw):
     log.info('[%s@%s] Updating review denorms.' %
              (len(pairs), update_denorm.rate_limit))
     for addon, user in pairs:
-        reviews = list(Review.uncached.filter(addon=addon, user=user)
+        reviews = list(Review.objects.valid().no_cache()
+                       .filter(addon=addon, user=user)
                        .filter(reply_to=None).order_by('created'))
         if not reviews:
             continue

@@ -2,7 +2,6 @@ import collections
 import json as jsonlib
 import math
 import random
-import urllib
 
 from django.conf import settings
 from django.utils import translation
@@ -293,3 +292,10 @@ def license_link(license):
     parts.append('</li></ul>')
 
     return jinja2.Markup(''.join(parts))
+
+
+@register.function
+def field(field, label=None):
+    if label is not None:
+        field.label = label
+    return jinja2.Markup(u'%s%s%s' % (field.errors, field.label_tag(), field))

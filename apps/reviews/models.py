@@ -31,7 +31,7 @@ class Review(amo.models.ModelBase):
                                 null=True)
     user = models.ForeignKey('users.UserProfile', related_name='_reviews_all')
     reply_to = models.ForeignKey('self', null=True, unique=True,
-                                 db_column='reply_to')
+                                 related_name='replies', db_column='reply_to')
 
     rating = models.PositiveSmallIntegerField(null=True)
     title = TranslatedField()

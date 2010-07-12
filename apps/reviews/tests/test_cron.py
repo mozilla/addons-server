@@ -36,7 +36,7 @@ class TestDenormalization(test_utils.TestCase):
 
     def test_denorm_on_save(self):
         addon, user = Review.objects.values_list('addon', 'user')[0]
-        Review.objects.create(addon_id=addon, user_id=user)
+        Review.objects.create(addon_id=addon, user_id=user, rating=3)
         self._check()
 
     def test_denorm_on_delete(self):

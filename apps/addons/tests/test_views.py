@@ -506,12 +506,11 @@ class TestDetailPage(amo.test_utils.ExtraSetup, test_utils.TestCase):
         assert len(doc('#tags li input.removetag'))
 
     def test_detailed_review_link(self):
-        # TODO(jbalogh): use reverse when we drop remora.
         self.client.login(username='regular@mozilla.com', password='password')
         r = self.client.get(reverse('addons.detail', args=[3615]))
         doc = pq(r.content)
         href = doc('#review-box a[href*="reviews/add"]').attr('href')
-        assert href.endswith('/reviews/add/3615'), href
+        assert href.endswith(reverse('reviews.add', args=[3615])), href
 
     def test_no_listed_authors(self):
         r = self.client.get(reverse('addons.detail', args=[59]))

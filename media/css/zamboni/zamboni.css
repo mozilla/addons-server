@@ -2178,6 +2178,9 @@ ul.review-options > li:not(:first-child) {
     clear: left;
     font-size: .9em;
 }
+.review.deleted {
+    display: none;
+}
 .reviews .highlight > span {
     display: block;
 }

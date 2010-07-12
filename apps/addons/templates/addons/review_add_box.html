@@ -11,31 +11,11 @@
       </p>
     {% endif %}
 
-    {# TODO uncakeify  #}
-    <form class="addon-feedback" method="post"
-      action="{{ remora_url('/reviews/add/') }}/{{ addon.id }}">
-      {{ cake_csrf_token() }}
-      {% with disabled = ('' if user.is_authenticated() else ' disabled') %}
-        <div class="container">
-          <label for="review">{{ _('Review') }}</label>
-          <textarea name="data[Review][body]" id="review"{{ disabled }}
-                    cols="30" rows="6"></textarea>
-        </div>
-        <div class="container">
-          <label for="review-rating">{{ _('Rating', 'advanced_search_form_rating') }}</label>
-          <select id="review-rating" name="data[Review][rating]">
-            <option></option>
-            <option value="1" class="worst">*</option>
-            <option value="2" class="bad">**</option>
-            <option value="3" class="fair">***</option>
-            <option value="4" class="good">****</option>
-            <option value="5" class="best">*****</option>
-          </select>
-          <input type="hidden" name="data[Review][id]" value="" id="ReviewId"/>
-          <input type="hidden" name="data[Review][title]" value=" " id="ReviewTitle"/>
-          <button type="submit"{{ disabled }}>{{ _('Post Review') }}</button>
-        </div>
-      {% endwith %}
+    <form method="post" action="{{ url('reviews.add', addon.id) }}">
+      {{ csrf() }}
+      {{ field(review_form.body, _('Review:')) }}
+      {{ field(review_form.rating, _('Rating:')) }}
+      <input type="submit" value="{{ _('Submit review') }}">
     </form>
 
     <p>
@@ -57,7 +37,7 @@
     <p><a href="{{ remora_url('/pages/review_guide') }}">{{ _('Review Guidelines') }}</a></p>
     <p>
       {# TODO reverse url #}
-      <a href="{{ remora_url('/reviews/add/{0}'|f(addon.id)) }}">
+      <a href="{{ url('reviews.add', addon.id) }}">
         {{ _('Detailed Review') }}</a>
     </p>
 
