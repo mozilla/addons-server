@@ -13,7 +13,8 @@ class IndexQuerySet(caching.CachingQuerySet):
         qs.with_index(t1='xxx') => INNER JOIN t1 USE INDEX (`xxx`)
         """
         q = self._clone()
-        q.query = self.query.clone(IndexQuery)
+        if not isinstance(q.query, IndexQuery):
+            q.query = self.query.clone(IndexQuery)
         q.query.index_map.update(kw)
         return q
 
