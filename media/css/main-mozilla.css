@@ -2082,6 +2082,9 @@ html[xmlns] .clearfix {
 #dictionaries tbody th {
     font-weight: bold;
 }
+#dictionaries thead th {
+    border-top: none;
+}
 /*** END =Dictionaries ***/
 
 /* Search engines & Themes Landing pages */

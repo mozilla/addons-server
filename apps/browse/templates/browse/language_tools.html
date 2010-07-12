@@ -24,11 +24,15 @@
 
 {% block content %}
 {% cache addons %}
+<header>
+  {{ breadcrumbs([(None, _('Dictionaries & Language Packs'))]) }}
+  <h2>{{ _('Dictionaries & Language Packs') }}</h2>
+</header>
 <div class="featured">
   <div class="featured-inner">
     <div id="dictionaries">
-      <h3>{{ _('Dictionaries & Language Packs') }}</h3>
-      <table summary="{{ _('List of language packs and dictionaries.') }}">
+      <table>
+        <caption>{{ _('List of language packs and dictionaries.') }}</caption>
         <thead>
           <tr>
             <th colspan="2">{{ _('Language') }}</th>
