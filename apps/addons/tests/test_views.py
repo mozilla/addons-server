@@ -199,8 +199,10 @@ class TestContribute(amo.test_utils.ExtraSetup, test_utils.TestCase):
         response = self.client.get(reverse('addons.contribute',
                                            args=[592]), follow=True)
         redirect_url = response.redirect_chain[0][0]
+
         assert(re.search('\?|&return=https?%3A%2F%2F', redirect_url)), \
-               "return URL param did not start w/ http%3A%2F%2F (http://) [%s]" % redirect_url
+               ("return URL param did not start w/ "
+                "http%3A%2F%2F (http://) [%s]" % redirect_url)
 
     def test_redirect_params_type_monthly(self):
         """Test that we have the required ppal param when
@@ -440,13 +442,18 @@ class TestDetailPage(amo.test_utils.ExtraSetup, test_utils.TestCase):
         eq_(response.status_code, 404)
 
     def test_login_links(self):
-        """Make sure the login links on this page, redirect back to itself."""
+        """
+        Make sure the login links on this page, redirect back to itself.
+
+        Note: This test needs to be changed if you add/remove a login link from
+        the detail page.
+        """
         url = reverse('addons.detail', args=[3615])
         resp = self.client.get(url, follow=True)
 
         sel = 'a[href$="%s"]' % urlparams(reverse('users.login'), to=url)
         doc = pq(resp.content)
-        eq_(len(doc(sel)), 4)  # 4 login links
+        eq_(len(doc(sel)), 5)  # 5 login links
 
     def test_other_author_addons(self):
         """
@@ -474,7 +481,7 @@ class TestDetailPage(amo.test_utils.ExtraSetup, test_utils.TestCase):
         response = forward_to(u'\u271D')
         eq_(response.status_code, 400)
 
-    def test_details_collections_dropdown(self):
+    def test_collections_dropdown(self):
 
         request = Mock()
         request.APP.id = 1
@@ -518,12 +525,6 @@ class TestDetailPage(amo.test_utils.ExtraSetup, test_utils.TestCase):
         doc = pq(r.content)
         eq_(0, len(doc('.avatar')))
 
-    def test_collection_detal_url(self):
-        self.client.login(username='regular@mozilla.com', password='password')
-        r = self.client.get(reverse('addons.detail', args=[3615]))
-        url = pq(r.content)('[data-detail-url]').attr('data-detail-url')
-        eq_(url, '/en-US/firefox/collection/')
-
     def test_search_engine_works_with(self):
         """We don't display works-with info for search engines."""
         addon = Addon.objects.filter(type=amo.ADDON_SEARCH)[0]
@@ -537,6 +538,17 @@ class TestDetailPage(amo.test_utils.ExtraSetup, test_utils.TestCase):
         headings = pq(r.content)('table[itemscope] th')
         assert any(th.text.strip().lower() == 'works with'
                    for th in headings)
+
+    def test_collections_login_form(self):
+        # logged out
+        r = self.client.get(reverse('addons.detail', args=[3615]))
+        doc = (pq(r.content))
+        eq_(len(doc('.collection-add-login')), 1)
+        # logged in
+        self.client.login(username='regular@mozilla.com', password='password')
+        r = self.client.get(reverse('addons.detail', args=[3615]))
+        doc = (pq(r.content))
+        eq_(len(doc('.collection-add-login')), 0)
 
 
 class TestTagsBox(amo.test_utils.ExtraSetup, test_utils.TestCase):

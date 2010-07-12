@@ -6,12 +6,13 @@ from tower import ugettext_lazy as _lazy
 
 import amo.utils
 from amo.decorators import login_required
+from amo.urlresolvers import reverse
 from access import acl
 from addons.models import Addon
 from addons.views import BaseFilter
 from tags.models import Tag
 from translations.query import order_by_translation
-from .models import Collection, CollectionAddon, CollectionVote
+from .models import Collection, CollectionAddon, CollectionUser, CollectionVote
 from . import forms
 
 
@@ -130,3 +131,68 @@ def add(request):
 
     data['form'] = form
     return jingo.render(request, 'bandwagon/add.html', data)
+
+
+def ajax_new(request):
+    form = forms.CollectionForm(request.POST or None,
+        initial={'author': request.amo_user,
+                 'application_id': request.APP.id},
+    )
+
+    if request.method == 'POST':
+
+        if form.is_valid():
+            collection = form.save()
+            CollectionUser(collection=collection, user=request.amo_user).save()
+            addon_id = request.REQUEST['addon_id']
+            a = Addon.objects.get(pk=addon_id)
+            collection.add_addon(a)
+
+            return http.HttpResponseRedirect(reverse('collections.ajax_list')
+                                             + '?addon_id=%s' % addon_id)
+
+    return jingo.render(request, 'bandwagon/ajax_new.html', {'form': form})
+
+
+@login_required
+def ajax_list(request):
+    # Get collections associated with this user
+    collections = request.amo_user.collections.manual()
+    addon_id = int(request.GET['addon_id'])
+
+    for collection in collections:
+        # See if the collections contains the addon
+        if addon_id in collection.addons.values_list('id', flat=True):
+            collection.has_addon = True
+
+    return jingo.render(request, 'bandwagon/ajax_list.html',
+                {'collections': collections})
+
+
+def _ajax_add_remove(request, op):
+    id = request.POST['id']
+    addon_id = request.POST['addon_id']
+
+    c = Collection.objects.get(pk=id)
+
+    if not c.is_owner(request.amo_user):
+        return http.HttpResponseForbidden()
+
+    a = Addon.objects.get(pk=addon_id)
+
+    if op == 'add':
+        c.add_addon(a)
+    else:
+        c.remove_addon(a)
+
+    # redirect
+    return http.HttpResponseRedirect(reverse('collections.ajax_list') +
+                                             '?addon_id=%s' % addon_id)
+
+
+def ajax_add(request):
+    return _ajax_add_remove(request, 'add')
+
+
+def ajax_remove(request):
+    return _ajax_add_remove(request, 'remove')

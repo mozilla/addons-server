@@ -2375,3 +2375,15 @@ h6.author, .author a {
 .reply-form input[type='text'] {
     width: 60%;
 }
+
+.collection-add {
+    display: none;
+}
+
+.collection-add-dropdown {
+    display: none;
+}
+
+.collection-add-dropdown .selected {
+    background: red;
+}

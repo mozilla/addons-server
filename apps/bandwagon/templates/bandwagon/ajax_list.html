@@ -1,0 +1,12 @@
+{% if collections %}
+<ul id="ajax_collections_list">
+  {% for collection in collections %}
+  <li {{ collection.has_addon|class_selected(True) }}
+      data-id="{{ collection.id }}">
+    {{ collection.name }}
+  </li>
+  {% endfor %}
+</ul>
+
+<p id="ajax_new_collection">{{ _('Start a new collection...') }}</p>
+{% endif %}

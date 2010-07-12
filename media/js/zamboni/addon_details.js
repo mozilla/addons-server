@@ -100,3 +100,65 @@ $(document).ready(function () {
         feedback_widget.show();
     });
 });
+
+/* Add to collection initialization */
+$(document).ready(function () {
+    var btn = $('.collection-add');
+    var dropdown = $('.collection-add-dropdown');
+    if (!btn.length) return;
+
+    btn.show();
+
+    var refreshHandlers = function() {
+        $('#collections-new button').click(handleSubmit);
+        $('#ajax_collections_list li').click(handleToggle);
+        $('#ajax_new_collection').click(handleNew);
+        $('#collections-new-cancel').click(handleClick);
+    };
+
+    var list_url = btn.attr('data-listurl');
+    var remove_url = btn.attr('data-removeurl');
+    var add_url = btn.attr('data-addurl');
+    var form_url = btn.attr('data-newurl');
+    var addon_id = $('#addon').attr('data-id');
+
+    var handleToggle = function() {
+        var data = {'addon_id': addon_id,
+                    'id': this.getAttribute('data-id')};
+        var url = this.className == "selected" ? remove_url
+                                               : add_url;
+        $.post(url, data, handleClick);
+    }
+
+    var handleSubmit = function(e) {
+        e.preventDefault()
+        form_data = $('#collections-new form').serialize();
+        $.post(form_url + '?addon_id=' + addon_id, form_data, function(d) {
+            dropdown.html(d);
+            refreshHandlers();
+        });
+    }
+
+    var handleNew = function(e) {
+        $.get(form_url, {'addon_id': addon_id}, function(d) {
+            dropdown.html(d);
+            refreshHandlers();
+        });
+    }
+
+    var handleClick = function(e) {
+        // If anonymous, show login overlay.
+        dropdown.show();
+        // Make a call to /collections/ajax/list with addon_id
+        if (!z.anonymous) {
+            $.get(list_url, {'addon_id': addon_id}, function(data) {
+                dropdown.html(data);
+                refreshHandlers();
+            }, 'html');
+        }
+    };
+    btn.click(handleClick);
+
+
+
+});

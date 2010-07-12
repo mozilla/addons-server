@@ -1,0 +1,29 @@
+<div id="collections-new">
+  <h3>{{ _('Start a New Collection') }}</h3>
+
+  <form>
+    <fieldset>
+      <p>
+        {{ form.errors['name']|safe }}
+        {{ form.name.label|safe }}
+        {{ form.name|safe }}
+      </p>
+      <p>
+        {{ form.errors['slug']|safe }}
+        {{ form.slug.label|safe }}
+        {{ url('collections.user', user.get_profile().nickname)|absolutify -}}
+        {{ form.slug|safe }}
+      </p>
+      <p>
+        {{ form.description.label|safe }} {{ _('(optional)') }}
+        {{ form.description|safe }}
+      </p>
+       <label>{{ form.listed.label }}</label>
+       {{ form.listed|safe }}
+    </fieldset>
+    <p>
+      <button>{{ _('Create Collection') }}</button>
+      {% trans %}or <a id="collections-new-cancel">Cancel</a>{% endtrans %}
+    </p>
+  </form>
+</div>
