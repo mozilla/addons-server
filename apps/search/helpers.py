@@ -32,12 +32,14 @@ def showing(query, tag, pager):
                    pager.paginator.count,)
 
     query = escape(query)
+    tag = escape(tag)
 
     # TODO: Can we cleanly localize this, so we can do "Showing no results for
     # Foo tagged with Bar" without having more if/elif/else statements?
 
     if query and tag:
-        showing = _(u'Showing {0} - {1} of {2} results for <strong>{3}</strong>'
+        showing = _(u'Showing {0} - {1} of {2} results for '
+                '<strong>{3}</strong>'
                 ' tagged with <strong>{4}</strong>').format(
                 *(format_opts + (query, tag,)))
     elif query and not tag:

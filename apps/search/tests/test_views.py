@@ -65,10 +65,14 @@ class FrontendSearchTest(SphinxTestCase):
         doc = pq(r.content)
         eq_(len([1 for a in doc('strong') if a.text == 'My Balls']), 0)
 
+    def test_tag_xss(self):
+        """Test that the tag params are escaped as well."""
+
+        r = self.get_response(tag="<script>alert('balls')</script>")
+        self.assertNotContains(r, "<script>alert('balls')</script>")
+
     def test_default_query(self):
-        """
-        Verify some expected things on a query for nothing.
-        """
+        """Verify some expected things on a query for nothing."""
         resp = self.get_response()
         doc = pq(resp.content)
         num_actual_results = len(Addon.objects.filter(
@@ -223,6 +227,3 @@ class ViewTest(test_utils.TestCase):
     def test_get_tags(self):
         t = Tag(tag_text='yermom')
         assert views._get_tags(self.fake_request, tags=[t], selected='yermom')
-
-
-
