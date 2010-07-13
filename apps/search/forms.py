@@ -39,7 +39,7 @@ collection_sort_by = (
     ('newest', _lazy('Newest')),
 )
 
-per_page = (20, 50, 100)
+per_page = (20, 50, )
 
 tuplize = lambda x: divmod(int(x * 10), 10)
 
