@@ -68,14 +68,12 @@ def sidebar(app):
     categories = order_by_translation(q, 'name')
     categories.query.extra_order_by.insert(0, 'weight')
 
-    # TODO(jbalogh): real reverse
     Type = collections.namedtuple('Type', 'name url')
     base = urlresolvers.reverse('home')
     types = [Type(_('Collections'), base + 'collections/')]
     shown_types = {
         amo.ADDON_PERSONA: urlresolvers.reverse('browse.personas'),
-        amo.ADDON_DICT: base + 'browse/type:3',
-        # amo.ADDON_DICT: urlresolvers.reverse('browse.language-tools'),
+        amo.ADDON_DICT: urlresolvers.reverse('browse.language-tools'),
         amo.ADDON_SEARCH: urlresolvers.reverse('browse.search-tools'),
         amo.ADDON_PLUGIN: base + 'browse/type:7',
         amo.ADDON_THEME: urlresolvers.reverse('browse.themes'),
