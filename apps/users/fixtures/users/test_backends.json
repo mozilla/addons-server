@@ -96,5 +96,63 @@
             "modified": "2009-09-24 20:11:30",
             "notifyevents": 1
         }
+    },
+    {
+        "pk": 5349055,
+        "model": "auth.user",
+        "fields": {
+            "username": "testo@example.com",
+            "first_name": "Barry",
+            "last_name": "",
+            "is_active": true,
+            "is_superuser": true,
+            "is_staff": true,
+            "last_login": "2010-07-23 00:43:32",
+            "groups": [],
+            "user_permissions": [],
+            "password": "sha512$9ec347fc67fc17c99a9dd43d1431a5959011acf247fb2128228c9a04208d1991$edcc677c7045ee2a379286e2ad6d99bd58af6b4a2117e1e4c2743923a9a297ce56d5311fe51baa4584c5483af0eaedc57700fbb4b719c0a84597c1609536ca4d",
+            "email": "testo@example.com",
+            "date_joined": "2010-07-03 23:03:11"
+        }
+    },
+    {
+        "pk": 5349055,
+        "model": "users.userprofile",
+        "fields": {
+            "sandboxshown": false,
+            "display_collections_fav": false,
+            "display_collections": false,
+            "occupation": "",
+            "confirmationcode": "",
+            "location": "",
+            "picture_type": "",
+            "averagerating": "",
+            "homepage": "",
+            "email": "testo@example.com",
+            "notifycompat": true,
+            "bio": 1124105,
+            "firstname": "Barry",
+            "deleted": false,
+            "lastname": "",
+            "emailhidden": false,
+            "user": 5349055,
+            "password": "sha512$9ec347fc67fc17c99a9dd43d1431a5959011acf247fb2128228c9a04208d1991$edcc677c7045ee2a379286e2ad6d99bd58af6b4a2117e1e4c2743923a9a297ce56d5311fe51baa4584c5483af0eaedc57700fbb4b719c0a84597c1609536ca4d",
+            "nickname": "barry",
+            "resetcode_expires": "2010-07-23 00:37:10",
+            "resetcode": "",
+            "created": "2010-07-03 23:03:11",
+            "notes": "",
+            "modified": "2010-07-23 00:37:10",
+            "notifyevents": true
+        }
+    },
+    {
+        "pk": 1,
+        "model": "users.blacklistednickname",
+        "fields": {
+            "nickname": "IE6Fan",
+            "modified": "2010-07-21 23:32:05",
+            "created": "2010-07-21 23:32:05"
+        }
     }
 ]

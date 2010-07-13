@@ -1,7 +1,11 @@
-from django.contrib import admin
+from django.contrib import admin, messages
+from django.db.utils import IntegrityError
+
+import jingo
 
 from access.admin import GroupUserInline
-from .models import UserProfile
+from .models import UserProfile, BlacklistedNickname
+from .users import forms
 
 
 class UserAdmin(admin.ModelAdmin):
@@ -32,4 +36,35 @@ class UserAdmin(admin.ModelAdmin):
     )
 
 
+class BlacklistedNicknameAdmin(admin.ModelAdmin):
+    list_display = search_fields = ('nickname',)
+
+    def add_view(self, request, form_url='', extra_context=None):
+        """Override the default admin add view for bulk add."""
+        form = forms.BlacklistedNicknameAddForm()
+        if request.method == 'POST':
+            form = forms.BlacklistedNicknameAddForm(request.POST)
+            if form.is_valid():
+                inserted = 0
+                duplicates = 0
+                for n in form.cleaned_data['nicknames'].splitlines():
+                    try:
+                        BlacklistedNickname.objects.create(nickname=n)
+                        inserted += 1
+                    except IntegrityError:
+                        # note: unless we manage the transactions manually,
+                        # we do lose a primary id here
+                        duplicates += 1
+                msg = '%s new nicknames added to the blacklist.' % (inserted)
+                if duplicates:
+                    msg += ' %s duplicates were ignored.' % (duplicates)
+                messages.success(request, msg)
+                # Default django admin change list view does not print messages
+                # no redirect for now
+                # return http.HttpResponseRedirect(reverse(
+                #     'admin:users_blacklistednickname_changelist'))
+        return jingo.render(request, 'admin/blacklisted_nickname/add.html',
+                            {'form': form})
+
 admin.site.register(UserProfile, UserAdmin)
+admin.site.register(BlacklistedNickname, BlacklistedNicknameAdmin)

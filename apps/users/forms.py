@@ -1,3 +1,5 @@
+import os
+
 from django import forms
 from django.contrib.auth import forms as auth_forms
 from django.forms.util import ErrorList
@@ -5,7 +7,7 @@ from django.forms.util import ErrorList
 import commonware.log
 from tower import ugettext as _
 
-from . import models
+from .models import UserProfile, BlacklistedNickname
 
 log = commonware.log.getLogger('z.users')
 
@@ -74,7 +76,7 @@ class UserRegisterForm(forms.ModelForm):
                             widget=forms.PasswordInput(render_value=False))
 
     class Meta:
-        model = models.UserProfile
+        model = UserProfile
 
     def clean_nickname(self):
         """We're breaking the rules and allowing null=True and blank=True on a
@@ -109,6 +111,13 @@ class UserRegisterForm(forms.ModelForm):
                 self._errors["lastname"] = ErrorList([msg])
                 self._errors["nickname"] = ErrorList([msg])
 
+            # Nickname could be blacklisted
+            if ("nickname" not in self._errors
+                and nname
+                and BlacklistedNickname.blocked(nname)):
+                msg = _("This nickname is invalid.")
+                self._errors["nickname"] = ErrorList([msg])
+
         return data
 
 
@@ -121,7 +130,7 @@ class UserEditForm(UserRegisterForm):
         super(UserEditForm, self).__init__(*args, **kwargs)
 
     class Meta:
-        model = models.UserProfile
+        model = UserProfile
         exclude = ['password']
 
     def clean(self):
@@ -154,3 +163,22 @@ class UserEditForm(UserRegisterForm):
         log.debug(u'User (%s) updated their profile' % amouser)
 
         amouser.save()
+
+
+class BlacklistedNicknameAddForm(forms.Form):
+    """Form for adding blacklisted nickname in bulk fashion."""
+    nicknames = forms.CharField(widget=forms.Textarea(
+        attrs={'cols': 40, 'rows': 16}))
+
+    def clean(self):
+        super(BlacklistedNicknameAddForm, self).clean()
+        data = self.cleaned_data
+
+        if 'nicknames' in data:
+            data['nicknames'] = os.linesep.join(
+                    [s for s in data['nicknames'].splitlines() if s])
+        if 'nicknames' not in data or data['nicknames'] == '':
+            msg = 'Please enter at least one nickname to blacklist.'
+            self._errors['nicknames'] = ErrorList([msg])
+
+        return data

@@ -9,7 +9,7 @@ from nose.tools import eq_
 
 from addons.models import Addon, AddonUser
 from reviews.models import Review
-from users.models import UserProfile, get_hexdigest
+from users.models import UserProfile, get_hexdigest, BlacklistedNickname
 
 
 class TestUserProfile(test.TestCase):
@@ -141,3 +141,11 @@ class TestPasswords(test.TestCase):
         u = UserProfile()
         u.set_password('sekrit')
         assert u.check_password('sekrit') is True
+
+
+class TestBlacklistedNickname(test.TestCase):
+    fixtures = ['users/test_backends']
+
+    def test_blocked(self):
+        eq_(BlacklistedNickname.blocked('IE6Fan'), True)
+        eq_(BlacklistedNickname.blocked('testo'), False)

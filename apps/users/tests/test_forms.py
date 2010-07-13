@@ -8,6 +8,7 @@ from nose.tools import eq_
 import test_utils
 
 from amo.helpers import urlparams
+from amo.urlresolvers import reverse
 
 
 class UserFormBase(test_utils.TestCase):
@@ -204,8 +205,6 @@ class TestUserLoginForm(UserFormBase):
                                    'password': 'foo'}, follow=True)
         self.assertRedirects(r, '/en-US/firefox/')
 
-
-
     def test_unconfirmed_account(self):
         url = self._get_login_url()
         self.user_profile.confirmationcode = 'blah'
@@ -262,6 +261,15 @@ class TestUserRegisterForm(UserFormBase):
                                             'The passwords did not match.')
         eq_(len(mail.outbox), 0)
 
+    def test_invalid_nickname(self):
+        data = {'email': 'testo@example.com',
+                'password': 'xxx',
+                'password2': 'xxx',
+                'nickname': 'IE6Fan', }
+        r = self.client.post('/en-US/firefox/users/register', data)
+        self.assertFormError(r, 'form', 'nickname',
+                             'This nickname is invalid.')
+
     def test_already_logged_in(self):
         self.client.login(username='jbalogh@mozilla.com', password='foo')
         r = self.client.get('/users/register', follow=True)
@@ -286,3 +294,23 @@ class TestUserRegisterForm(UserFormBase):
         assert mail.outbox[0].subject.find('Please confirm your email') == 0
         assert mail.outbox[0].body.find('%s/confirm/%s' %
                                         (u.id, u.confirmationcode)) > 0
+
+
+class TestBlacklistedNicknameAdminAddForm(UserFormBase):
+
+    def test_no_nicknames(self):
+        self.client.login(username='testo@example.com', password='foo')
+        url = reverse('admin:users_blacklistednickname_add')
+        data = {'nicknames': "\n\n", }
+        r = self.client.post(url, data)
+        msg = 'Please enter at least one nickname to blacklist.'
+        self.assertFormError(r, 'form', 'nicknames', msg)
+
+    def test_add(self):
+        self.client.login(username='testo@example.com', password='foo')
+        url = reverse('admin:users_blacklistednickname_add')
+        data = {'nicknames': "IE6Fan\nfubar\n\n", }
+        r = self.client.post(url, data)
+        msg = '1 new nicknames added to the blacklist. '
+        msg += '1 duplicates were ignored.'
+        self.assertContains(r, msg)

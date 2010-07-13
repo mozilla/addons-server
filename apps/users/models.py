@@ -191,3 +191,18 @@ class UserProfile(amo.models.ModelBase):
         self.user.save()
         self.save()
         return self.user
+
+
+class BlacklistedNickname(amo.models.ModelBase):
+    """Blacklisted user nicknames."""
+    nickname = models.CharField(max_length=255, unique=True, default='')
+
+    def __unicode__(self):
+        return self.nickname
+
+    @classmethod
+    def blocked(cls, nick):
+        """Check to see if a nickname is in the blacklist."""
+        # Could also cache the entire blacklist and simply check if the
+        # nickname is in the list here. @TODO?
+        return cls.uncached.only('nickname').filter(nickname=nick).exists()
