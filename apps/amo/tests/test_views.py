@@ -220,8 +220,7 @@ def test_jsi18n_caching():
 
 def test_dictionaries_link():
     doc = pq(test.Client().get('/', follow=True).content)
-    # This just failed because you dropped the remora url.
-    link = doc('#categoriesdropdown a[href$="type:3"]')
+    link = doc('#categoriesdropdown a[href*="language-tools"]')
     eq_(link.text(), 'Dictionaries & Language Packs')
 
 
