@@ -38,13 +38,13 @@ var installButton = function() {
         icon = $this.attr('data-icon'),
         after = $this.attr('data-after'),
         search = $this.hasattr('data-search'),
-        url = $button.attr('href'),
         accept_eula = $this.hasClass('accept'),
         // L10n: {0} is an app name like Firefox.
         _s = accept_eula ? gettext('Accept and Install') : gettext('Add to {0}'),
         addto = format(_s, [z.appName]),
         // params is used for popup variable interpolation.
-        params = {url: url, addon: addon,
+        // The `url` key is set after we've messed with the buttons.
+        params = {addon: addon,
                   msg: z.appMatchesUserAgent ? addto : gettext('Download Now')},
         appSupported = z.appMatchesUserAgent && min && max,
         olderBrowser = null,
@@ -253,6 +253,8 @@ var installButton = function() {
         addToApp();
         versionsAndPlatforms();
     }
+    // Get the xpi link for the first visible button.
+    params.url = $button.filter(':visible')[0].href;
 };
 
 
