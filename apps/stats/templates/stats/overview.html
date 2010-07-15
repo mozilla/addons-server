@@ -31,29 +31,32 @@
       </div>
     </div>
     <div class="toplists">
-      <div class="toplist statbox">
-        <h3>Most Used Applications</h3>
-        <a class="selected" href="#">Last 30 Days</a> | <a href="#">All time</a>
-        <div class="piechart"></div>
-        <table data-report="apps" data-field="applications|{ec8030f7-c20a-464f-9b0e-13a3a9e97384}">
-        </table>
-        <a href="apps/">See More Applications...</a>
+      <div class="toplist loading">
+        <div class="statbox">
+          <h3>Most Used Applications</h3>
+          <div class="piechart"></div>
+          <table data-report="apps" data-field="applications|{ec8030f7-c20a-464f-9b0e-13a3a9e97384}">
+          </table>
+          <a href="apps/">See More Applications...</a>
+        </div>
       </div>
-      <div class="toplist statbox">
-        <h3>Most Used Languages</h3>
-        <a class="selected" href="#">Last 30 Days</a> | <a href="#">All time</a>
-        <div class="piechart"></div>
-        <table data-report="locales" data-field="locales">
-        </table>
-        <a href="locales/">See More languages...</a>
+      <div class="toplist loading">
+        <div class="statbox">
+          <h3>Most Used Languages</h3>
+          <div class="piechart"></div>
+          <table data-report="locales" data-field="locales">
+          </table>
+          <a href="locales/">See More languages...</a>
+        </div>
       </div>
-      <div class="toplist statbox">
-        <h3>Most Used OSes</h3>
-        <a class="selected" href="#">Last 30 Days</a> | <a href="#">All time</a>
-        <div class="piechart"></div>
-        <table data-report="os" data-field="oses">
-        </table>
-        <a href="os/">See more operating systems...</a>
+      <div class="toplist loading">
+        <div class='statbox'>
+          <h3>Most Used OSes</h3>
+          <div class="piechart"></div>
+          <table data-report="os" data-field="oses">
+          </table>
+          <a href="os/">See more operating systems...</a>
+        </div>
       </div>
     </div>
 {% endblock %}

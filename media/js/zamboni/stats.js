@@ -13,7 +13,105 @@ function dbg() {
 
 var mainChart;
 
-function updatePageState() {}
+function set_loading(el) {
+    $(el).removeClass('loaded').addClass('loading');
+}
+
+function get_page_state(_opts) {
+    var params = {},
+        pairs, str, qstr;
+        
+    if (window.location.hash) {
+        str = window.location.hash;
+        if (str != page_state.last_hash) {
+            qstr = str.substr(1);
+            pairs = qstr.split('&');
+            $(pairs).each(function (i,v) {
+                pair = v.split('=');
+                if (pair.length >= 2) {
+                    params[pair[0]] = pair[1];
+                } else {
+                    params[pair[0]] = true;
+                }
+            });
+
+            if ('start' in params && 'end' in params) {
+                var sd = params.start;
+                var ed = params.end;
+                var start_date = sd.substr(0,4) + "/" + sd.substr(4,2) + "/" + sd.substr(6,2);
+                var end_date = ed.substr(0,4) + "/" + ed.substr(4,2) + "/" + ed.substr(6,2);
+                start_date = new Date(start_date);
+                end_date = new Date(end_date);
+                $("#date-range-start").val(datepicker_format(start_date));
+                $("#date-range-end").val(datepicker_format(end_date));
+                page_state.data_range = {
+                    custom: true,
+                    start: date(start_date),
+                    end: date(end_date),
+                    sd_str: sd,
+                    ed_str: ed
+                };
+                
+                $('.criteria li.selected').removeClass("selected");
+                $('.criteria li[data-range~="custom"]').addClass("selected");
+                
+                if (!_opts.skip_update) {
+                    update_page_state();
+                }
+                return true;
+            } else if ('last' in params) {
+                var data_range = params.last;
+                if (("7 30 90").indexOf(data_range) > -1) {
+                    page_state.data_range = data_range + " days";
+                    
+                    $('.criteria li.selected').removeClass("selected");
+                    $('.criteria li[data-range~="'+data_range+'"]').addClass("selected");
+                    
+                    if (!_opts.skip_update) {
+                        update_page_state();
+                    }
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+}
+
+function update_page_state() {
+    if ($(".primary").getData("report") == 'overview') {
+        show_overview_stats(page_state.data_range);
+        fetch_top_charts();
+    }
+    set_loading($("#head-chart").parents('.featured'));
+    AMO.StatsManager.getSeries(AMO.getSeriesList(), page_state.data_range, updateSeries);
+    if (AMO.aggregate_stats_field && typeof page_state.data_range == 'string') {
+        show_aggregate_stats(AMO.aggregate_stats_field, page_state.data_range);
+    }
+    var start, end,
+        range = page_state.data_range,
+        queryparams;
+        
+    if (typeof range === "string") {
+        range = parseInt(range);
+        queryparams = 'last=' + range;
+    } else if (typeof range === "object" && range.custom) {
+        start = new Date(range.start);
+        end = new Date(range.end);
+        dbg(start, end);
+        queryparams = 'start=' + range.sd_str + '&end=' + range.ed_str;
+    } else {
+        return false;
+    }
+    dbg(queryparams);
+    if (capabilities.replaceState) {
+        history.replaceState(page_state, document.title, '?' + queryparams);
+    } else {
+        page_state.last_hash = '#' + queryparams;
+        window.location.hash = '#' + queryparams;
+    }
+    start_hash_check();
+}
 
 function dayFormatter(x) { return Highcharts.dateFormat('%a, %b %e, %Y', x); }
 function weekFormatter(x) { return Highcharts.dateFormat('%b %e - ', x) + Highcharts.dateFormat('%b %e, %Y', x+7*24*60*60*1000); }
@@ -75,6 +173,10 @@ function initCharts(cfg) {
         chart: {
           renderTo: 'head-chart',
           zoomType: 'x',
+          events: {
+              redraw: done_loading,
+              load: done_loading
+          },          
           margin: [30,20,30,70]
         },
         credits: { enabled: false },
@@ -132,6 +234,10 @@ function initCharts(cfg) {
         for (var i = 0; i < mainChart.series.length; i++) {
            $legend.append($("<li style='display:block;float:right'><b class='seriesdot' style='background:" + mainChart.series[i].color + "'>&nbsp;</b>" + mainChart.series[i].name + "</li>"));
         }
+    }
+    
+    function done_loading() {
+        $(mainChart.container).parents('.featured').addClass('loaded');
     }
 
 }
@@ -223,6 +329,7 @@ function fetch_top_charts() {
         return false;
     }
 
+    set_loading(toplists);
     toplists.each(function (i, toplist) {
         var tableEl = $("table", toplist);
         var report = tableEl.getData("report"),
@@ -237,7 +344,7 @@ function fetch_top_charts() {
                     tbody.push("<tr>");
                     tbody.push("<td>", sum.field, "</td>");
                     tbody.push("<td>", sum.sum, "</td>");
-                    tbody.push("<td>(", sum.pct, "%)</td>");
+                    tbody.push("<td>(", (sum.pct > 0 ? sum.pct : '<1'), "%)</td>");
                     tbody.push("</tr>");
                 }
                 if (sums.length > 5) {
@@ -245,16 +352,18 @@ function fetch_top_charts() {
                     for (i=5; i<sums.length; i++) {
                         othersum += sums[i].sum;
                     }
+                    var pct = Math.floor(othersum * 100 / results.total);
                     tbody.push("<tr>");
                     tbody.push("<td>Other</td>");
                     tbody.push("<td>", othersum, "</td>");
-                    tbody.push("<td>(", Math.floor(othersum * 100 / results.total), "%)</td>");
+                    tbody.push("<td>(", (pct > 0 ? pct : '&lt;1'), "%)</td>");
                     tbody.push("</tr>");
 
                 }
                 tbody.push("</tbody>");
                 tableEl.html(tbody.join(''));
                 initTopChart(toplist);
+                $(toplist).addClass('loaded');
             });
         }
     });
@@ -274,6 +383,7 @@ function show_overview_stats () {
     }
     AMO.StatsManager.getSum({metric: "downloads", name: "count"}, start, end, function(sum_range) {
         $("#sum_downloads_range").text(Highcharts.numberFormat(sum_range, 0));
+        
     });
     AMO.StatsManager.getMean({metric: "usage", name: "count"}, start, end, function(mean_range) {
         $("#sum_usage_range").text(Highcharts.numberFormat(mean_range, 0));
@@ -318,22 +428,33 @@ $(document).ready(function () {
     };
 
     var $report_el = $(".primary");
+    var data_range = $report_el.getData("range");
     page_state.addon_id = $report_el.getData("addon_id");
     page_state.report_name = $report_el.getData("report");
-    var data_range = $report_el.getData("range");
-    if (data_range == "custom") {
-        var sd = $report_el.getData("start_date");
-        var ed = $report_el.getData("end_date");
-        start_date = new Date(sd.substr(0,4) + "-" + sd.substr(4,2) + "-" + sd.substr(6,2));
-        end_date = new Date(ed.substr(0,4) + "-" + ed.substr(4,2) + "-" + sd.substr(6,2));
-        page_state.data_range = {
-            custom: true,
-            start: date(start_date),
-            end: date(end_date)
-        };
-    } else {
-        page_state.data_range = data_range;
+
+    if (!get_page_state({skip_update:true})) { //if no hash, get natural page state
+        if (data_range == "custom") {
+            var sd = $report_el.getData("start_date");
+            var ed = $report_el.getData("end_date");
+            start_date = sd.substr(0,4) + "/" + sd.substr(4,2) + "/" + sd.substr(6,2);
+            end_date = ed.substr(0,4) + "/" + ed.substr(4,2) + "/" + ed.substr(6,2);
+            $("#date-range-start").val(datepicker_format(new Date(start_date)));
+            $("#date-range-end").val(datepicker_format(new Date(end_date)));
+            start_date = new Date(start_date);
+            end_date = new Date(end_date);
+            page_state.data_range = {
+                custom: true,
+                start: date(start_date),
+                end: date(end_date),
+                sd_str: sd,
+                ed_str: ed
+            };
+        } else {
+            page_state.data_range = data_range;
+        }
     }
+
+
     page_state.chart_fields = $("#head-chart").getData("series").split(',') || ["count"];
     var stats_base_url = $report_el.getData("base_url");
     AMO.aggregate_stats_field = $(".stats-aggregate").getData("field");
@@ -363,37 +484,35 @@ $(document).ready(function () {
         var $customRangeForm = $("div.custom.criteria");
 
         if (newRange) {
+            stop_hash_check();
             $(this).children("li.selected").removeClass("selected");
             $target.addClass("selected");
 
             if (newRange == "custom") {
                 $customRangeForm.removeClass("hidden").slideDown('fast');
+                start_hash_check();
             } else {
                 page_state.data_range = newRange;
                 $customRangeForm.slideUp('fast');
-                if (report == 'overview') {
-                    show_overview_stats(page_state.data_range);
-                    fetch_top_charts();
-                }
-                AMO.StatsManager.getSeries(AMO.getSeriesList(), page_state.data_range, updateSeries);
-                if (AMO.aggregate_stats_field) {
-                    show_aggregate_stats(AMO.aggregate_stats_field, page_state.data_range);
-                }
+                update_page_state();
             }
         }
         e.preventDefault();
     });
 
     $("#date-range-form").submit(function() {
+        stop_hash_check();
         var start = new Date($("#date-range-start").val());
         var end = new Date($("#date-range-end").val());
 
         page_state.data_range = {
             custom: true,
             start: date(start),
-            end: date(end)
+            end: date(end),
+            sd_str: date_string(start, ''),
+            ed_str: date_string(end, '')
         };
-        AMO.StatsManager.getSeries(AMO.getSeriesList(), page_state.data_range, updateSeries);
+        setTimeout(update_page_state,0);
         return false;
     });
 
@@ -410,12 +529,12 @@ $(document).ready(function () {
                 $target.parent().addClass("selected");
                 page_state.report_name = new_report;
                 page_state.data_fields = new_series;
+                set_loading($("#head-chart").parents('.featured'));
                 AMO.StatsManager.getSeries(AMO.getSeriesList(), page_state.data_range, initCharts);
             }
             e.preventDefault();
-        });        // generate_top_charts();
+        });
 
-        // initTopCharts();
     } else {
         var csv_table_el = $(".csv-table");
         if (csv_table_el.length) {
@@ -425,19 +544,20 @@ $(document).ready(function () {
 
     LoadBar.on("Loading the latest data&hellip;");
     //Get initial dataset
-    if (datastore[report] && datastore[report].maxdate) {
-        var fetchStart = datastore[report].maxdate - millis("1 day");
+    if (datastore[page_state.report_name] && datastore[page_state.report_name].maxdate) {
+        var fetchStart = datastore[page_state.report_name].maxdate - millis("1 day");
     } else {
         var fetchStart = ago('30 days');
     }
 
     AMO.StatsManager.getDataRange(AMO.getReportName(), fetchStart, today(), function () {
 
-        if (AMO.aggregate_stats_field) {
+        if (AMO.aggregate_stats_field && typeof page_state.data_range == 'string') {
             show_aggregate_stats(AMO.aggregate_stats_field, page_state.data_range);
         }
 
         AMO.StatsManager.getSeries(AMO.getSeriesList(), page_state.data_range, initCharts);
+
         LoadBar.off();
         if (csvTable) {
             csvTable.gotoPage(1);
@@ -446,6 +566,7 @@ $(document).ready(function () {
             fetch_top_charts();
             show_overview_stats(page_state.data_range);
         }
+        start_hash_check();
     }, {force: true});
 
 });

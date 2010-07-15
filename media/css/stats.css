@@ -98,6 +98,7 @@ div.statbox {
 .criteria.custom {
     position: relative;
     margin-bottom: 1em;
+    display: none;
 }
 .criteria.range {
     float: right;
@@ -227,14 +228,17 @@ background:#003595;
 }
 .toplist {
     float: left;
-    width: 28%;
-    padding: 1em 2%;
-    margin-left: 1.63%;
+    width: 31%;
+    padding: 0;
+    margin-left: 3.5%;
 }
 .toplist:first-child {
     margin-left: 0;
 }
-
+.toplist .statbox {
+    padding: 1em;
+    margin: 0;
+}
 .toplist h3 {
     margin: 0 0 .2em 0;
 }
@@ -247,6 +251,7 @@ background:#003595;
 }
 .toplist table {
     width: 100%;
+    height: 160px;
     margin: .7em 0;
 }
 .toplist td {
@@ -351,7 +356,10 @@ table.csv-table th:first-child {
     text-align: left;
 }
 
-div.piechart .highcharts-container{
+div.piechart {
+    height: 200px;
+}
+div.piechart .highcharts-container {
     margin: 8px auto 0 auto;
 }
 
@@ -414,19 +422,24 @@ table.stats-aggregate tbody span.change.minus {
     color: #850000;
 }
 
-.loading {
+.loading, .loaded {
     position:relative;
 }
-.loading::after {
+.loading:after {
+    -moz-transition: opacity .5s;
     content: "\00a0";
     display: block;
     position: absolute;
-    background: #444;
-    opacity: .5;
+    background: #040204 url("../../img/zamboni/loading.gif") no-repeat center center;;
+    opacity: .4;
     width: 100%;
     height: 100%;
     z-index: 1000;
     top: 0;
+}
+.loaded:after {
+    opacity: 0;
+    pointer-events: none;
 }
 
 .loadmessage {

@@ -19,10 +19,21 @@
         'JSON' : window.JSON && typeof JSON.parse == 'function',
         'debug' : !(('' + document.location).indexOf("dbg") < 0),
         'debug_in_page' : !(('' + document.location).indexOf("dbginpage") < 0),
-        'console' : window.console && (typeof window.console.log == 'function')
+        'console' : window.console && (typeof window.console.log == 'function'),
+        'replaceState' : typeof history.replaceState === "function"
     };
 
     var writeInterval = false;
+    
+    var hashInterval = false;
+    
+    function stop_hash_check() {
+        clearInterval(hashInterval);
+    }
+    function start_hash_check() {
+        hashInterval = setInterval(get_page_state, 500);
+    }
+    
 
     LoadBar = {
         bar : $("#lm"),
@@ -67,7 +78,15 @@
     }
 
     function date(d) {
-        return Date.parse([d.getFullYear(), pad2(d.getMonth()+1), pad2(d.getDate())].join('-'));
+        return Date.parse(date_string(d, '-'));
+    }
+    
+    function date_string(d, del) {
+        return [d.getFullYear(), pad2(d.getMonth()+1), pad2(d.getDate())].join(del);
+    }
+    
+    function datepicker_format(d) {
+        return [pad2(d.getMonth()+1), pad2(d.getDate()), d.getFullYear()].join('/');
     }
 
     function ago(str, times) {
@@ -400,6 +419,7 @@
                         callback.call(this, ret);
                     } else {
                         seriesCache[cacheKey] = {nodata:true};
+                        callback.call(this, {nodata:true})
                     }
 
                 });

@@ -81,7 +81,7 @@ function PageTable(_el) {
     }
 }
 PageTable.prototype.gotoPage = function(num) {
-    this.tableEl.parent().addClass("loading");
+    set_loading(this.tableEl.parent());
     if (this.pages[num]) {
         if (num > 0) {
             $("tbody.selected", this.tableEl).removeClass("selected");
@@ -105,7 +105,7 @@ PageTable.prototype.gotoPage = function(num) {
                 }
             }
             $("a[page='" + num + "']", this.paginator.ol).parent("li").addClass("selected");
-            this.tableEl.parent().removeClass("loading");
+            this.tableEl.parent().addClass("loaded");
         }
     } else {
         var that = this;
@@ -115,6 +115,9 @@ PageTable.prototype.gotoPage = function(num) {
     }
 };
 PageTable.prototype.addPage = function (data) {
+    if (data.nodata) {
+        this.tableEl.parent().addClass("loaded");
+    }
     var stime = (new Date()).getTime();
     var page = ["<tbody>"],
         attr, val,
