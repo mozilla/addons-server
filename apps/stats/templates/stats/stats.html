@@ -8,7 +8,10 @@
         href="{{ MEDIA_URL }}css/zamboni/jquery-ui/custom-1.7.2.css">
 {% endblock %}
 
-{% block title %}{{ _('Add-ons for Firefox') }} Statistics Dashboard {% endblock %}
+{% block title %}
+      {# L10n: {0} is an add-on name, {1} is an app name (like Firefox) #}
+      {{ _('{0} :: Statistics Dashboard :: Add-ons for {1}')|f(addon.name, request.APP.pretty) }}
+{% endblock %}
 
 {% block navbar %}
   {{ breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
