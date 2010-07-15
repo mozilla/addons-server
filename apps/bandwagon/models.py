@@ -12,7 +12,6 @@ import amo.models
 from amo.utils import sorted_groupby
 from addons.models import Addon, AddonCategory, AddonRecommendation
 from applications.models import Application
-from cake.urlresolvers import remora_url
 from users.models import UserProfile
 from translations.fields import TranslatedField, LinkifiedField
 
@@ -33,7 +32,7 @@ class Collection(amo.models.ModelBase):
     name = TranslatedField()
     nickname = models.CharField(max_length=30, blank=True, unique=True,
                                 null=True)
-
+    slug = models.CharField(max_length=30, blank=True, null=True)
     description = LinkifiedField()
     default_locale = models.CharField(max_length=10, default='en-US',
                                       db_column='defaultlocale')
@@ -156,7 +155,7 @@ class Collection(amo.models.ModelBase):
         self.save()
 
     def is_subscribed(self, user):
-        "Determines if an AMO user is subscribed to this collection."
+        """Determines if the user is subscribed to this collection."""
         return self.subscriptions.filter(user=user).exists()
 
 
