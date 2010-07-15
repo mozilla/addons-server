@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 
+{% block rss_feed %}
+<link  rel="alternate" type="application/rss+xml"
+       title="RSS" href="{{ url('addons.versions', addon.id) }}format:rss">
+{% endblock %}
+
 {# L10n: {0} is an add-on name. #}
 {% block title %}{{ page_title('{0} :: Versions')|f(addon.name) }}{% endblock %}
 

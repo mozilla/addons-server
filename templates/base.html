@@ -6,6 +6,8 @@
     <link rel="shortcut icon" type="image/x-icon"
           href="{{ MEDIA_URL}}img/favicon.ico">
 
+    {% block rss_feed %}{% endblock %}
+
     {# L10n: {0} is an application, like Firefox. #}
     <link title="{{ _('{0} Add-ons')|f(APP.pretty) }}"
           rel="search" type="application/opensearchdescription+xml"
