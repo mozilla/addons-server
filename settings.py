@@ -65,9 +65,9 @@ LANGUAGE_CODE = 'en-US'
 
 # Accepted locales
 AMO_LANGUAGES = (
-    'af', 'ar', 'bg', 'ca', 'cs', 'da', 'de', 'el', 'en-GB', 'en-US', 'es-ES',
+    'af', 'ar', 'bg', 'ca', 'cs', 'da', 'de', 'el', 'en-US', 'es-ES',
     'eu', 'fa', 'fi', 'fr', 'ga-IE', 'he', 'hu', 'id', 'it', 'ja', 'ko', 'mn',
-    'nl', 'pl', 'pt-BR', 'pt-PT', 'ro', 'ru', 'sl', 'sk', 'sq', 'sr', 'sv-SE',
+    'nl', 'pl', 'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sq', 'sr', 'sv-SE',
     'uk', 'vi', 'zh-CN', 'zh-TW',
 )
 
@@ -122,7 +122,7 @@ UPLOADS_PATH = NETAPP_STORAGE + '/uploads'
 ADMIN_MEDIA_PREFIX = '/admin-media/'
 
 # paths that don't require an app prefix
-SUPPORTED_NONAPPS = ('admin', 'developers', 'editors', 'firefoxcup', 'img',
+SUPPORTED_NONAPPS = ('admin', 'developers', 'editors', 'img',
                      'jsi18n', 'localizers', 'media', 'statistics', 'services')
 DEFAULT_APP = 'firefox'
 
@@ -227,7 +227,6 @@ INSTALLED_APPS = (
     'discovery',
     'editors',
     'files',
-    'firefoxcup',
     'jingo_minify',
     'nick',
     'pages',
@@ -274,15 +273,7 @@ SELENIUM_CONFIG = {}
 # Tells the extract script what files to look for l10n in and what function
 # handles the extraction.  The Tower library expects this.
 DOMAIN_METHODS = {
-    'firefoxcup': [
-        ('apps/firefoxcup/**.py',
-            'tower.management.commands.extract.extract_tower_python'),
-        ('apps/firefoxcup/templates/firefoxcup/**.html',
-            'tower.management.commands.extract.extract_tower_template'),
-    ],
     'messages': [
-        ('apps/firefoxcup/**',
-            'ignore'),
         ('apps/**.py',
             'tower.management.commands.extract.extract_tower_python'),
         ('**/templates/**.html',
@@ -306,7 +297,6 @@ DOMAIN_METHODS = {
 # files.
 STANDALONE_DOMAINS = [
     'javascript',
-    'firefoxcup',
     ]
 
 # Bundles is a dictionary of two dictionaries, css and js, which list css files
@@ -327,13 +317,6 @@ MINIFY_BUNDLES = {
         ),
         'zamboni/discovery-pane': (
             'css/zamboni/discovery-pane.css',
-        ),
-        # CSS files specific to /firefoxcup/
-        'firefoxcup/f': (
-            'css/firefoxcup/reset-fonts-grids.css',
-            'css/main.css',
-            'css/zamboni/zamboni.css',
-            'css/firefoxcup/firefoxcup.css',
         ),
     },
     'js': {
@@ -367,19 +350,6 @@ MINIFY_BUNDLES = {
 
             # Collections
             'js/zamboni/collections.js',
-        ),
-        # JS files specific to /firefoxcup/
-        'firefoxcup': (
-            'js/zamboni/jquery-1.4.2.min.js',
-            'js/firefoxcup/browserdetect.js',
-            'js/firefoxcup/yahoo-dom-event.js',
-            'js/firefoxcup/animation.js',
-            'js/zamboni/jquery.hoverIntent.min.js',
-            'js/zamboni/personas.js',
-            'js/zamboni/jquery.sparkline.min.js',
-            'js/firefoxcup/jquery.form.js',
-            'js/firefoxcup/newsletter_form.js',
-            'js/firefoxcup/firefoxcup.js',
         ),
     }
 }
