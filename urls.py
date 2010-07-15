@@ -20,6 +20,9 @@ urlpatterns = patterns('',
     # Browse pages.
     ('', include('browse.urls')),
 
+    # Collections.
+    ('', include('bandwagon.urls')),
+
     # Users
     ('', include('users.urls')),
 

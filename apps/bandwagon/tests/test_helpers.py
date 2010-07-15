@@ -60,9 +60,11 @@ class TestHelpers(test.TestCase):
 
 
     def test_user_collection_list(self):
-        c1 = Collection(uuid='eb4e3cd8-5cf1-4832-86fb-a90fc6d3765c')
-        c2 = Collection(uuid='61780943-e159-4206-8acd-0ae9f63f294c',
-                        nickname='my_collection')
+        c1 = Collection.objects.create(
+            uuid='eb4e3cd8-5cf1-4832-86fb-a90fc6d3765c')
+        c2 = Collection.objects.create(
+            uuid='61780943-e159-4206-8acd-0ae9f63f294c',
+            nickname='my_collection')
         heading = 'My Heading'
         response = unicode(user_collection_list([c1, c2], heading))
 
@@ -71,12 +73,10 @@ class TestHelpers(test.TestCase):
                             'collection list heading missing')
         # both items
         # TODO reverse URLs
-        self.assert_(response.find(u'/collection/%s' % c1.uuid) >= 0,
+        self.assert_(response.find(c1.get_url_path()) >= 0,
                             'collection UUID link missing')
-        self.assert_(response.find(u'/collection/%s' % c2.nickname) >= 0,
+        self.assert_(response.find(c2.get_url_path()) >= 0,
                             'collection nickname link missing')
-        self.assert_(response.find(u'/collection/%s' % c2.uuid) == -1,
-                         'collection with nickname should not have UUID link')
 
         # empty collection, empty response
         response = unicode(user_collection_list([], heading))

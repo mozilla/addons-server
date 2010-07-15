@@ -40,7 +40,8 @@
             "default_locale": "ru",
             "up_votes": 0,
             "icontype": "",
-            "nickname": null,
+            "nickname": "wut",
+            "slug": "wut-slug",
             "addon_count": 4,
             "addon_index": null,
             "description": null

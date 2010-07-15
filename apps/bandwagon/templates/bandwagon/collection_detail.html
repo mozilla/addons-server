@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% set c = collection %}
+
+{% block title %}{{ page_title(_('{0} :: Collections')|f(c.name)) }}{% endblock %}
+
+{% block bodyclass %}inverse{% endblock %}
+
+{% block content %}
+<div class="primary">
+<header>
+  {% with crumbs = [(url('collections.list'), _('Collections')), (None, c.name)] %}
+    {% if c.author %}
+      {% do crumbs.insert(1, (url('collections.user', c.author.nickname), c.author.display_name)) %}
+    {% endif %}
+    {{ breadcrumbs(crumbs) }}
+  {% endwith %}
+  <hgroup>
+    <h2>
+      <img src="{{ c.icon_url }}" class="icon">
+      <span>{{ c.name }}</span>
+    </h2>
+    <h4 class="author">
+      {% trans users=users_list(collection.listed_authors) %}
+        by {{ users }}
+      {% endtrans %}
+    </h4>
+  </hgroup>
+</header>
+
+<div class="featured">
+  <div class="featured-inner object-lead">
+    <div class="meta">
+      <ul>
+        <li>{{ barometer(collection) }}</li>
+        <li class="followers">
+          {% trans p=c.subscribers, num=c.subscribers|numberfmt %}
+            {{ num }} follower {% pluralize %} {{ num }} followers
+          {% endtrans %}
+        </li>
+        <li>{{ _('Updated {0}')|f(c.modified) }}</li>
+      </ul>
+    </div>
+    <h3>{{ _('About this Collection') }}</h3>
+    <p>{{ c.description }}</p>
+  </div>
+</div>
+
+<div class="separated-listing">
+  <h3>
+    {% trans num=c.addon_count %}
+      {{ num }} Add-on in this Collection
+    {% pluralize %}
+      {{ num }} Add-ons in this Collection
+    {% endtrans %}
+  </h3>
+  <form class="item-sort go" action="">
+    <label for="sortby">{{ _('Sort by:') }}</label>
+    <select id="sortby" name="{{ filter.key }}">
+      {% for value, title in filter.opts %}
+      <option value="{{ value }}" {{ value|ifeq(filter.field, 'selected') }}>
+        {{ title }}</option>
+      {% endfor %}
+    </select>
+    <button type="submit">{{ _('Go') }}</button>
+  </form>
+  {% cache addons.object_list %}
+    {{ addon_listing_items(addons.object_list, notes=notes.next()) }}
+    {{ addons|paginator }}
+  {% endcache %}
+</div>
+</div> {# primary #}
+
+<div class="secondary">
+<div class="highlight"></div>
+  <h3>{{ _('What are Collections?') }}</h3>
+  <p>{% trans %}
+  Collections are groups of related add-ons that anyone can create and share.
+  {% endtrans %}</p>
+  <a class="more-info" href="{{ url('collections.list') }}">
+    {{ _('Explore Collections') }}</a>
+</div>
+
+{% if author_collections %}
+  <div>
+    <h3>{{ _('More by this User') }}</h3>
+    {% for ac in author_collections %}
+      <a class="collectionitem" href="{{ ac.get_url_path() }}">
+        {{ ac.name }}</a>
+    {% endfor %}
+    <a class="more-info" href="{{ url('collections.user', c.author.nickname) }}">
+      {{ _('See all collections by this user') }}</a>
+  </div>
+{% endif %}
+{% endblock %}

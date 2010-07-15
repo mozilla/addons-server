@@ -10,6 +10,7 @@ from django.db import models, connection
 import amo
 import amo.models
 from amo.utils import sorted_groupby
+from amo.urlresolvers import reverse
 from addons.models import Addon, AddonCategory, AddonRecommendation
 from applications.models import Application
 from users.models import UserProfile
@@ -76,6 +77,8 @@ class Collection(amo.models.ModelBase):
     def save(self, **kw):
         if not self.uuid:
             self.uuid = unicode(uuid.uuid4())
+        if not self.slug:
+            self.slug = self.uuid[:30]
 
         # Maintain our index of add-on ids.
         if self.id:
@@ -85,8 +88,11 @@ class Collection(amo.models.ModelBase):
         super(Collection, self).save(**kw)
 
     def get_url_path(self):
-        # TODO(jbalogh): reverse
-        return '/collection/%s' % self.url_slug
+        if settings.NEW_COLLECTIONS:
+            nick = self.author.nickname if self.author else 'anonymous'
+            return reverse('collections.detail', args=[nick, self.slug])
+        else:
+            return '/collection/%s' % self.url_slug
 
     @classmethod
     def get_fallback(cls):
