@@ -371,6 +371,10 @@ aside.highlight {
     display: block;
 }
 
+#export_data {
+    font: 13px "helvetica neue",arial,helvetica,sans-serif;
+    margin-left:1em;
+}
 /**
  *  Big table
 **/

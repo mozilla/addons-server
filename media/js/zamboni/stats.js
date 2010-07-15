@@ -95,15 +95,19 @@ function update_page_state() {
     if (typeof range === "string") {
         range = parseInt(range);
         queryparams = 'last=' + range;
+        start = ago(range + ' days');
+        end = today();
     } else if (typeof range === "object" && range.custom) {
         start = new Date(range.start);
         end = new Date(range.end);
-        dbg(start, end);
         queryparams = 'start=' + range.sd_str + '&end=' + range.ed_str;
     } else {
         return false;
     }
-    dbg(queryparams);
+    
+    var seriesURL = AMO.getStatsBaseURL() + ([metric,"day",Highcharts.dateFormat('%Y%m%d', start),Highcharts.dateFormat('%Y%m%d', end)]).join("-") + ".csv";
+    $('#export_data').attr('href', seriesURL);
+    
     if (capabilities.replaceState) {
         history.replaceState(page_state, document.title, '?' + queryparams);
     } else {
@@ -549,6 +553,9 @@ $(document).ready(function () {
     } else {
         var fetchStart = ago('30 days');
     }
+
+    var seriesURL = AMO.getStatsBaseURL() + ([page_state.report_name,"day",Highcharts.dateFormat('%Y%m%d', ago('30 days')),Highcharts.dateFormat('%Y%m%d', today())]).join("-") + ".csv";
+    $('#export_data').attr('href', seriesURL);
 
     AMO.StatsManager.getDataRange(AMO.getReportName(), fetchStart, today(), function () {
 
