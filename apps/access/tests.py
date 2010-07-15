@@ -4,6 +4,7 @@ import mock
 from nose.tools import assert_false, eq_
 
 import amo
+from amo.urlresolvers import reverse
 from cake.models import Session
 from test_utils import TestCase
 
@@ -60,9 +61,9 @@ class ACLTestCase(TestCase):
         """
         Login form for anonymous user on the admin page.
         """
-        c = self.client
-        response = c.get('/en-US/admin/models/')
-        self.assertContains(response, 'login-form')
+        url = '/en-US/admin/models/'
+        r = self.client.get(url)
+        self.assertRedirects(r, '%s?to=%s' % (reverse('users.login'), url))
 
     def test_admin_login_adminuser(self):
         """
@@ -79,12 +80,11 @@ class ACLTestCase(TestCase):
         """
         Non admin user should see a login form.
         """
-
-        c = self.client
         session = Session.objects.get(pk='4567')
-        c.login(session=session)
-        response = c.get('/en-US/admin/models/')
-        self.assertContains(response, 'login-form')
+        self.client.login(session=session)
+        url = '/en-US/admin/models/'
+        r = self.client.get(url)
+        self.assertRedirects(r, '%s?to=%s' % (reverse('users.login'), url))
 
 
 class TestCheckOwnership(TestCase):

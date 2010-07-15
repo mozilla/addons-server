@@ -540,6 +540,3 @@ def read_only_mode(env):
     m = list(env['MIDDLEWARE_CLASSES'])
     m.insert(m.index(before), extra)
     env['MIDDLEWARE_CLASSES'] = tuple(m)
-
-    # No logging at this point.
-    print "WE ARE IN READ-ONLY MODE."
