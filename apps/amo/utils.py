@@ -1,6 +1,7 @@
 import itertools
 import operator
 import random
+import re
 import time
 import urllib
 import urlparse
@@ -194,3 +195,11 @@ def randslice(qs, limit, exclude=None):
     if exclude is not None:
         slice_ = [o for o in slice_ if o.pk != exclude][:limit - 1]
     return slice_
+
+
+slug_re = re.compile('[^\w\s-]', re.UNICODE)
+
+
+def slugify(s):
+    s = slug_re.sub('', unicode(s)).strip().lower()
+    return re.sub('[-\s]+', '-', s)
