@@ -1699,7 +1699,7 @@ form .error .note.error {
 }
 
 .version a.source-code {
-    display: block;
+    display: inline-block;
     margin-top: 1em;
     padding-left: 20px;
 }

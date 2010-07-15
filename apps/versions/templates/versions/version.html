@@ -45,7 +45,7 @@
 
   {% if addon.view_source and request.user.is_authenticated() and version.has_files %}
       {# TODO reverse URL #}
-      <a class="source-code" href="{{ remora_url('/files/browse/{0}'|f(version.all_files[0].pk)) }}">
+      <br/><a class="source-code" href="{{ remora_url('/files/browse/{0}'|f(version.all_files[0].pk)) }}">
         {{ _('View the source') }}</a>
   {% endif %}
   {% if show_versions_link and not addon.is_selfhosted() %}
