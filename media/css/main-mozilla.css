@@ -1198,7 +1198,7 @@ table caption {
 
 /** Header tweaks **/
 #header {
-    z-index: 600;
+    z-index: 2000;
 }
 
 /** END header tweaks **/
