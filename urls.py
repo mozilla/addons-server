@@ -79,9 +79,6 @@ urlpatterns = patterns('',
 
     ('^addons/contribute/(\d+)/?$',
      lambda r, id: redirect('addons.contribute', id, permanent=True)),
-
-    # Firefox Cup page, /firefoxcup
-    ('^firefoxcup/', include('firefoxcup.urls'))
 )
 
 if settings.DEBUG:
