@@ -11,6 +11,12 @@
       <div>{{ addon.summary|truncate(250)|nl2br }}</div>
       {{ support_addon(addon) }}
     </blockquote>
+    {% if notes and notes[addon.id] %}
+    <blockquote>
+      <strong>{{ _("Collector's Note") }}</strong>
+      {{ notes[addon.id] }}
+    </blockquote>
+    {% endif %}
   </div>
 {% endfor %}
 {% endcache %}
