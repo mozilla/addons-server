@@ -246,6 +246,7 @@ class BaseFilter(object):
         self.opts_dict = dict(self.opts)
         self.request = request
         self.base_queryset = base
+        self.key = key
         self.field, self.title = self.options(self.request, key, default)
         self.qs = self.filter(self.field)
 
