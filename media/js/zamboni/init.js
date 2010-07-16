@@ -98,6 +98,17 @@ jQuery.fn.hasattr = function(name) {
 }
 
 
+var escape_ = function(s){
+    return s.replace('&', '&amp;').replace('>', '&gt;').replace('<', '&lt;')
+            .replace("'", '&#39;').replace('"', '&#34;');
+};
+
+
+jQuery.fn.safeText = function() {
+    return escape_(this.text());
+};
+
+
 /** Underscore.js extensions **/
 _.templateSettings = {
     start: '{{',
@@ -140,7 +151,7 @@ z.os = {windows: false, mac: false, linux: false, other: false};
         match = pattern.exec(navigator.userAgent);
         if (match && match.length == 3) {
             z.browser[browser] = true;
-            z.browserVersion = match[2];
+            z.browserVersion = escape_(match[2]);
         }
     }
     // Mobile comes after Firefox to overwrite the browser version.
