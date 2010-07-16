@@ -27,7 +27,7 @@
     <div class="featured">
       <div class="featured-inner two-up">
         <div><a href="#">{{ addon.total_downloads|numberfmt }} Downloads</a><br/><small><span id="sum_downloads_range"></span> in last 30 days</small></div>
-        <div><a href="#">{{ addon.average_daily_users|numberfmt }} Daily Users</a><br/><small><span id="sum_usage_range"></span> in last 30 days</small></div>
+        <div><div><a href="#">{{ addon.average_daily_users|numberfmt }} Daily Users</a><br/><small><span id="sum_usage_range"></span> in last 30 days</small></div></div>
       </div>
     </div>
     <div class="toplists">
@@ -35,7 +35,7 @@
         <div class="statbox">
           <h3>Most Used Applications</h3>
           <div class="piechart"></div>
-          <table data-report="apps" data-field="applications|{ec8030f7-c20a-464f-9b0e-13a3a9e97384}">
+          <table data-report="apps" data-field="applications">
           </table>
           <a href="apps/">See More Applications...</a>
         </div>

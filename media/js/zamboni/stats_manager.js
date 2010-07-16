@@ -344,7 +344,7 @@
                 AMO.StatsManager.getDataRange(metric, seriesStart, seriesEnd, function() {
                     var out = {};
                     var fields = seriesList.fields;
-                    var data = datastore[metric];
+                    var ds = datastore[metric];
 
                     for (var j=0; j<fields.length; j++) {
                         out[fields[j]] = [];
@@ -356,13 +356,16 @@
                         step: millis("1 day"),
                         chunk_size: 10,
                         inner: function (i) {
-                            for (var j=0; j<fields.length; j++) {
-                                var val = data[i] ? AMO.StatsManager.getField(data[i], fields[j]) : null;
-                                var point = {
-                                    x : i,
-                                    y : val ? parseFloat(val) : null
-                                };
-                                out[fields[j]].push(point);
+                            if (ds[i]) {
+                                var row = (metric == 'apps') ? AMO.StatsManager.collapseVersions(ds[i], 2) : ds[i];
+                                for (var j=0; j<fields.length; j++) {
+                                    var val = AMO.StatsManager.getField(row, fields[j]);
+                                    var point = {
+                                        x : i,
+                                        y : val ? parseFloat(val) : null
+                                    };
+                                    out[fields[j]].push(point);
+                                }
                             }
                         },
                         callback: function () {
@@ -370,7 +373,7 @@
                             for (var j=0; j<fields.length; j++) {
                                 ret.push({
                                     type: 'line',
-                                    name: fields[j].split("|").slice(-1),
+                                    name: AMO.StatsManager.getPrettyName(metric, fields[j].split("|").slice(-1)[0]),
                                     id: fields[j],
                                     data: out[fields[j]]
                                 });
@@ -435,12 +438,45 @@
 
             return Math.ceil((ds.maxdate - ds.mindate) / millis("1 day") / size);
         },
+        
+        collapseVersions: function(row, precision) {
+            var out = {
+                    count : row.count,
+                    date : row.date,
+                    end : row.end,
+                    row_count : row.row_count,
+                    applications : {}
+                }, set, ver, key;
+            var ra = out.applications;
+            var apps = row.applications;
+            for (var i in apps) {
+                if (apps.hasOwnProperty(i)) {
+                    var set = apps[i];
+                    for (var j in set) {
+                        if (precision) {
+                            ver = j.split('.').slice(0,precision).join('.') + '.x';
+                        } else {
+                            ver = j;
+                        }
+                        key = i + '_' + ver;
+                        if (!ra[key]) {
+                            ra[key] = 0;
+                        };
+                        var v = parseFloat(set[j]);
+                        ra[key] += v;
+                    }
+                }
+            }
+            return out;
+        },
 
         getRankedList: function(field, start, end, callback) {
             var metric = field.metric;
             var cacheKey = name || (metric + field.name + "_toplist_" + start + "_" + end);
 
             var sums = {};
+            
+            var ver, version_precision = 2;
 
             var total = 0;
 
@@ -448,35 +484,39 @@
                 callback.call(this, seriesCache[cacheKey]);
             } else {
                 AMO.StatsManager.getDataRange(metric, start, end, function () {
-                    var ds = datastore[metric];
-
+                    var ds = datastore[metric],
+                        set = [],
+                        val, v, key, row,
+                        time_size = (end-start) / millis('1 day');
+                        
+                    
                     for (var i=start; i<end; i+= millis("1 day")) {
-                        if (ds[i] !== undefined) {
-                            var datum = AMO.StatsManager.getField(ds[i], field.name);
+                        if (ds[i]) {
+                            row = (metric == 'apps') ? AMO.StatsManager.collapseVersions(ds[i], version_precision) : ds[i];
+                            var datum = AMO.StatsManager.getField(row, field.name);
                             for (var j in datum) {
                                 if (datum.hasOwnProperty(j)) {
+                                    val = datum[j];
                                     if (!sums[j]) {
                                         sums[j] = 0;
                                     };
-                                    var val = parseFloat(datum[j]);
-                                    sums[j] += val;
-                                    total += val;
+                                    var v = parseFloat(datum[j]);
+                                    sums[j] += v;
+                                    total += v;
                                 }
                             }
                         }
                     }
 
                     sorted_sums = [];
-
+                    total = Math.floor(total/time_size);
                     for (var i in sums) {
-                        var v= sums[i];
-                        if (datum.hasOwnProperty(i)) {
-                            sorted_sums.push({
-                                'field': i,
-                                'sum': v,
-                                'pct': Math.floor(v*100/total)
-                            });
-                        }
+                        var v = Math.floor(sums[i]/time_size);
+                        sorted_sums.push({
+                            'field': i,
+                            'sum': v,
+                            'pct': Math.floor(v*100/total)
+                        });
                     }
 
                     sorted_sums.sort(function (a,b) {
@@ -583,6 +623,19 @@
 
             return val;
 
+        },
+        
+        getPrettyName: function(metric, field) {
+            var parts = field.split('_');
+            var key = parts[0];
+            parts = parts.slice(1);
+            
+            if (metric in csv_keys) {
+                if (key in csv_keys[metric]) {
+                    return csv_keys[metric][key] + ' ' + parts.join(' ');
+                }
+            }
+            return field;
         }
 
 

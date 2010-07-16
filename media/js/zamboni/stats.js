@@ -346,7 +346,7 @@ function fetch_top_charts() {
                 for (i=0; i<Math.min(sums.length, 5); i++) {
                     var sum = sums[i];
                     tbody.push("<tr>");
-                    tbody.push("<td>", sum.field, "</td>");
+                    tbody.push("<td>", AMO.StatsManager.getPrettyName(report, sum.field), "</td>");
                     tbody.push("<td>", sum.sum, "</td>");
                     tbody.push("<td>(", (sum.pct > 0 ? sum.pct : '<1'), "%)</td>");
                     tbody.push("</tr>");
@@ -358,7 +358,7 @@ function fetch_top_charts() {
                     }
                     var pct = Math.floor(othersum * 100 / results.total);
                     tbody.push("<tr>");
-                    tbody.push("<td>Other</td>");
+                    tbody.push("<td>" + gettext('Other') + "</td>");
                     tbody.push("<td>", othersum, "</td>");
                     tbody.push("<td>(", (pct > 0 ? pct : '&lt;1'), "%)</td>");
                     tbody.push("</tr>");

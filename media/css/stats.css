@@ -173,17 +173,14 @@ background:#003595;
  *  Three-up stats
 **/
 
-.two-up div {
-    border-left: 1px dotted #aaa;
+.two-up > div {
     float: left;
-    width: 45%;
-    padding: 0 2%;
+    width: 50%;
     margin: 10px 0;
     text-align:center;
 }
-.two-up div:first-child {
-    border-left: 0;
-    float: left;
+.two-up > div > div {
+    border-left: 1px dotted #aaa;
 }
 .two-up div a {
     font-weight: bold;

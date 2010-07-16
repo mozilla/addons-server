@@ -1,7 +1,7 @@
 {% extends "stats/stats.html" %}
 
 {% block chart_config %}
-  data-series="applications|{ec8030f7-c20a-464f-9b0e-13a3a9e97384}|3.6.3,applications|{ec8030f7-c20a-464f-9b0e-13a3a9e97384}|3.6"
+  data-series="applications|{ec8030f7-c20a-464f-9b0e-13a3a9e97384}_3.6.x,applications|{ec8030f7-c20a-464f-9b0e-13a3a9e97384}_3.5.x"
 {% endblock %}
 
 {% block csvtable %}
@@ -19,12 +19,12 @@
           <th 
             data-field="applications|{ec8030f7-c20a-464f-9b0e-13a3a9e97384}|3.6.3"
             data-format="number">
-              {{_('Firefox 3.6.3')}}
+              {{_('Firefox 3.6.x')}}
           </th>
           <th 
             data-field="applications|{ec8030f7-c20a-464f-9b0e-13a3a9e97384}|3.6"
             data-format="number">
-              {{_('Firefox 3.6')}}
+              {{_('Firefox 3.5.x')}}
           </th>
         </tr>
       </thead>
