@@ -164,7 +164,7 @@ class CollectionAddon(amo.models.ModelBase):
     collection = models.ForeignKey(Collection)
     added = models.DateTimeField(auto_now_add=True)
     # category (deprecated: for "Fashion Your Firefox")
-    comments = TranslatedField(null=True)
+    comments = LinkifiedField(null=True)
     downloads = models.PositiveIntegerField(default=0)
     user = models.ForeignKey(UserProfile, null=True)
 
