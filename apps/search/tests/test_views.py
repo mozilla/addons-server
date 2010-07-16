@@ -199,6 +199,10 @@ class FrontendSearchTest(SphinxTestCase):
         eq_([a.text for a in doc(r.content)('#refine-compatibility a')],
             ['All Versions', '3.6', '3.5', '3.0'])
 
+    def test_bad_cat(self):
+        r = self.get_response(cat='1)f,ff')
+        eq_(r.status_code, 200)
+
 
 class ViewTest(test_utils.TestCase):
     """Tests some of the functions used in building the view."""

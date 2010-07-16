@@ -147,7 +147,10 @@ def SearchForm(request):
             # data.
             if 'cat' in raw:
                 if ',' in raw['cat']:
-                    (d['atype'], d['cat']) = map(int, raw['cat'].split(','))
+                    try:
+                        d['atype'], d['cat'] = map(int, raw['cat'].split(','))
+                    except ValueError:
+                        d['cat'] = None
                 elif raw['cat'] == 'all':
                     d['cat'] = None
 
