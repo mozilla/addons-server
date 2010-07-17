@@ -64,9 +64,11 @@ var installButton = function() {
 
     // Helper for dealing with lazy-loaded z.button.messages.
     var message = function(msg) {
-        // Get the xpi link for the first visible button.
-        params.url = $button.filter(':visible')[0].href;
-        return function(){ return format(z.button.messages[msg], params); }
+        return function(){
+            // Get the xpi link for the first visible button.
+            params.url = $button.filter(':visible')[0].href;
+            return format(z.button.messages[msg], params);
+        }
     };
 
     var addWarning = function(msg) { $this.parent().append(format(notavail, [msg])); };
