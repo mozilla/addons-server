@@ -170,3 +170,31 @@ class TestViews(test_utils.TestCase):
         link = doc('.version h3 > a').attr('href')
         eq_(link, reverse('addons.versions', args=[addon.id, version]))
         eq_(doc('.version').attr('id'), 'version-%s' % version)
+
+
+class TestFeeds(test_utils.TestCase):
+    fixtures = ['addons/versions']
+
+    def test_feed_elements_present(self):
+        """specific elements are present and reasonably well formed"""
+        url = reverse('addons.versions.rss', args=[11730])
+        r = self.client.get(url, follow=True)
+        doc = PyQuery(r.content)
+        eq_(doc('rss channel title')[0].text,
+                'IPv6 Google Search Version History')
+        assert doc('rss channel link')[0].text.endswith('/en-US/firefox/')
+        # assert <description> is present
+        assert len(doc('rss channel description')[0].text) > 0
+        # description doesn not contain the default object to string
+        desc_elem = doc('rss channel description')[0]
+        assert desc_elem.text.find('Content-Type:') == -1
+        # title present
+        assert len(doc('rss channel item title')[0].text) > 0
+        # link present and well formed
+        item_link = doc('rss channel item link')[0]
+        assert item_link.text.endswith('/addon/11730/versions/')
+        # guid present
+        assert len(doc('rss channel item guid')[0].text) > 0
+        # proper date format for item
+        item_pubdate = doc('rss channel item pubDate')[0]
+        assert item_pubdate.text == 'Thu, 21 May 2009 05:37:15 -0700'
