@@ -187,12 +187,12 @@ class TestFeeds(test_utils.TestCase):
         assert len(doc('rss channel description')[0].text) > 0
         # description doesn not contain the default object to string
         desc_elem = doc('rss channel description')[0]
-        assert desc_elem.text.find('Content-Type:') == -1
+        assert 'Content-Type:' not in desc_elem
         # title present
         assert len(doc('rss channel item title')[0].text) > 0
         # link present and well formed
         item_link = doc('rss channel item link')[0]
-        assert item_link.text.endswith('/addon/11730/versions/')
+        assert item_link.text.endswith('/addon/11730/versions/20090521')
         # guid present
         assert len(doc('rss channel item guid')[0].text) > 0
         # proper date format for item
