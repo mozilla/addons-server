@@ -33,6 +33,7 @@ class Collection(amo.models.ModelBase):
     name = TranslatedField()
     nickname = models.CharField(max_length=30, blank=True, unique=True,
                                 null=True)
+
     description = LinkifiedField()
     default_locale = models.CharField(max_length=10, default='en-US',
                                       db_column='defaultlocale')
@@ -57,6 +58,7 @@ class Collection(amo.models.ModelBase):
 
     addons = models.ManyToManyField(Addon, through='CollectionAddon',
                                     related_name='collections')
+    author = models.ForeignKey(UserProfile, null=True)
     users = models.ManyToManyField(UserProfile, through='CollectionUser',
                                   related_name='collections')
 
@@ -154,15 +156,8 @@ class Collection(amo.models.ModelBase):
         self.save()
 
     def is_subscribed(self, user):
-        "Determines if an AMO user is subscribed to this particular collection."
+        "Determines if an AMO user is subscribed to this collection."
         return self.subscriptions.filter(user=user).exists()
-
-    @amo.cached_property
-    def author(self):
-        """Typically a collection will have one author, that's the one we'll
-        list."""
-        users = self.users.all()[:1]
-        return users[0] if users else None
 
 
 class CollectionAddon(amo.models.ModelBase):

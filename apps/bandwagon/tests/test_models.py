@@ -28,10 +28,6 @@ class TestCollections(test_utils.TestCase):
         c = Collection.objects.get(pk=512)
         assert c.icon_url.endswith('img/amo2009/icons/collection.png')
 
-    def test_author(self):
-        c = Collection.objects.get(pk=80)
-        eq_(c.author, UserProfile.objects.get(pk=10482))
-
     def test_is_subscribed(self):
         c = Collection.objects.get(pk=512)
         u = UserProfile()

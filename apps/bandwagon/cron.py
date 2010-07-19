@@ -7,12 +7,46 @@ import commonware.log
 from celery.decorators import task
 from celery.messaging import establish_connection
 
+import amo
 from amo.utils import chunked
 from bandwagon.models import (CollectionSubscription,
-                              CollectionVote)
+                              CollectionVote, Collection, CollectionUser)
 import cronjobs
 
 task_log = commonware.log.getLogger('z.task')
+
+
+# TODO(davedash): remove when EB is fully in place.
+# Migration tasks
+
+@cronjobs.register
+def migrate_collection_users():
+    """For all non-anonymous collections with no author, populate the author
+    with the first CollectionUser.  Set all other CollectionUsers to
+    publishers."""
+
+    collections = (Collection.objects.exclude(type=amo.COLLECTION_ANONYMOUS)
+                   .filter(author__isnull=True))
+
+    for collection in collections:
+        collectionusers = collection.collectionuser_set.all()
+        if collectionusers:
+            collection.author_id = collectionusers[0].user_id
+            try:
+                collection.save();
+                collectionusers[0].delete()
+            except:
+                task_log.warning("No author found for collection: %d"
+                               % collection.id)
+
+        else:
+            task_log.warning('No collectionusers found for Collection: %d' %
+                             collection.id)
+
+    # TODO(davedash): We can just remove this from the model altogether.
+    CollectionUser.objects.all().update(role=amo.COLLECTION_ROLE_PUBLISHER)
+
+# /Migration tasks
 
 
 @cronjobs.register
