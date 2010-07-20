@@ -485,6 +485,9 @@ LOGGING = {
     },
 }
 
+# If you don't want experimental add-ons to show up in any search results or
+# have detail pages, flip this switch
+SANDBOX_PANIC = False
 
 # Read-only mode setup.
 READ_ONLY = False
