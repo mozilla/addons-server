@@ -286,6 +286,11 @@ class Addon(amo.models.ModelBase):
         # Personas need categories for the JSON dump.
         Category.transformer(personas)
 
+        # Store creatured apps on the add-on.
+        creatured = AddonCategory.creatured()
+        for addon in addons:
+            addon._creatured_apps = creatured.get(addon.id, [])
+
     @amo.cached_property
     def current_beta_version(self):
         """Retrieves the latest version of an addon, in the beta channel."""
@@ -343,23 +348,32 @@ class Addon(amo.models.ModelBase):
     def is_unreviewed(self):
         return self.status in amo.UNREVIEWED_STATUSES
 
-    @caching.cached_method
     def is_featured(self, app, lang):
         """is add-on globally featured for this app and language?"""
-        locale_filter = (Q(feature__locale=lang) |
-                         Q(feature__locale__isnull=True) |
-                         Q(feature__locale=''))
-        return Addon.objects.featured(app).filter(
-            locale_filter, pk=self.pk).exists()
+        qs = Addon.objects.featured(app)
+        def _features():
+            vals = qs.extra(select={'locale': 'features.locale'})
+            d = collections.defaultdict(list)
+            for id, locale in vals.values_list('id', 'locale'):
+                d[id].append(locale)
+            return dict(d)
+        features = caching.cached_with(qs, _features, 'featured:%s' % app.id)
+        if self.id in features:
+            for locale in (None, '', lang):
+                if locale in features:
+                    return True
+        return False
 
-    @caching.cached_method
     def is_category_featured(self, app, lang):
-        """is add-on featured in any category for this app?"""
-        # XXX should probably take feature_locales under consideration, even
-        # though remora didn't do that
-        return AddonCategory.objects.filter(
-            addon=self, feature=True,
-            category__application__id=app.id).exists()
+        """Is add-on featured in any category for this app?"""
+        return app.id in self._creatured_apps
+
+    @amo.cached_property(writable=True)
+    def _creatured_apps(self):
+        """Return a list of the apps where this add-on is creatured."""
+        # This exists outside of is_category_featured so we can write the list
+        # in the transformer and avoid repeated .creatured() calls.
+        return AddonCategory.creatured().get(self.id, [])
 
     @amo.cached_property
     def tags_partitioned_by_developer(self):
@@ -497,6 +511,17 @@ class AddonCategory(caching.CachingMixin, models.Model):
     class Meta:
         db_table = 'addons_categories'
         unique_together = ('addon', 'category')
+
+    @classmethod
+    def creatured(cls):
+        """Get a dict of {addon: [app,..]} for all creatured add-ons."""
+        qs = cls.objects.filter(feature=True)
+        f = lambda: qs.values_list('addon', 'category__application')
+        vals = caching.cached_with(qs, f, 'creatured')
+        rv = {}
+        for addon, app in vals:
+            rv.setdefault(addon, []).append(app)
+        return rv
 
 
 class PledgeManager(amo.models.ManagerBase):
