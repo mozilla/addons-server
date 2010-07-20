@@ -42,6 +42,10 @@ def author_addon_clicked(f):
 def addon_detail(request, addon_id):
     """Add-ons details page dispatcher."""
     addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
+
+    if settings.SANDBOX_PANIC and addon.status in amo.UNREVIEWED_STATUSES:
+        raise http.Http404
+
     # addon needs to have a version and be valid for this app.
     if addon.type in request.APP.types:
         if addon.type == amo.ADDON_PERSONA:

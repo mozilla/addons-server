@@ -77,7 +77,11 @@ def extract_filters(term, kwargs):
         excludes['num_files'] = 0
 
     # STATUS_DISABLED and 0 (which likely means null) are filtered
-    excludes['addon_status'] = (0, amo.STATUS_DISABLED,)
+    excludes['addon_status'] = (amo.STATUS_NULL, amo.STATUS_DISABLED,)
+
+    if settings.SANDBOX_PANIC:
+        excludes['addon_status'] = (excludes['addon_status'] +
+                                    amo.UNREVIEWED_STATUSES)
 
     if 'before' in kwargs:
         ranges['modified'] = (kwargs['before'], THE_FUTURE)

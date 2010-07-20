@@ -2,6 +2,7 @@ import collections
 import itertools
 
 from django import http
+from django.conf import settings
 from django.http import HttpResponsePermanentRedirect
 from django.shortcuts import get_object_or_404
 from django.views.decorators.cache import cache_page
@@ -139,7 +140,11 @@ def _listing(request, addon_type, default='popular'):
     # Set up the queryset and filtering for themes & extension listing pages.
     status = [amo.STATUS_PUBLIC]
 
-    unreviewed = 'on' if request.GET.get('unreviewed', False) else None
+    if request.GET.get('unreviewed', False) and not settings.SANDBOX_PANIC:
+        unreviewed = 'on'
+    else:
+        unreviewed = None
+
     if unreviewed:
         status.append(amo.STATUS_UNREVIEWED)
 
