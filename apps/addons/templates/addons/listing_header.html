@@ -9,6 +9,7 @@
     {% endfor %}
     {% if show_unreviewed %}
       <li class="perpage">
+        {% if not settings.SANDBOX_PANIC %}
         <form action="" method="get" class="go">
           <input type="hidden" name="sort" value="{{ selected }}">
           <label>
@@ -18,6 +19,7 @@
           </label>
           <button type="submit">{{ _('Go') }}</button>
         </form>
+        {% endif %}
       </li>
     {% endif %}
   </ul>
