@@ -194,6 +194,13 @@ class TestContribute(test_utils.TestCase):
 
         assert(redirect_url.find('amount=42') > -1)
 
+    def test_ppal_return_url_not_relative(self):
+        response = self.client.get(reverse('addons.contribute',
+                                           args=[592]), follow=True)
+        redirect_url = response.redirect_chain[0][0]
+        assert(re.search('\?|&return=https?%3A%2F%2F', redirect_url)), \
+               "return URL param did not start w/ http%3A%2F%2F (http://) [%s]" % redirect_url
+
     def test_redirect_params_type_monthly(self):
         """Test that we have the required ppal param when
            type monthly is given"""
