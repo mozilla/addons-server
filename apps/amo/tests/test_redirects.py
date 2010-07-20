@@ -175,3 +175,8 @@ class TestRedirects(test.TestCase):
         r = self.client.get('/addons/versions/4/format:rss', follow=True)
         self.assertRedirects(r, '/en-US/firefox/addon/4/versions/format:rss',
                              status_code=301)
+
+    def test_addons_reviews_rss(self):
+        r = self.client.get('/addons/reviews/4/format:rss', follow=True)
+        self.assertRedirects(r, '/en-US/firefox/addon/4/reviews/format:rss',
+                             status_code=301)
