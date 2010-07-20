@@ -10,6 +10,7 @@ from tower import ugettext_lazy as _lazy
 
 import amo
 from amo.utils import sorted_groupby, randslice
+from amo.helpers import absolutify
 from amo import urlresolvers
 from amo.urlresolvers import reverse
 from bandwagon.models import Collection, CollectionFeature, CollectionPromo
@@ -439,7 +440,7 @@ def contribute(request, addon_id):
                             addon.paypal_id,
                             addon.id,
                             'Contribution for %s' % addon.name,
-                            return_url,
+                            absolutify(return_url),
                             amount,
                             contribution_uuid,
                             contrib_type == 'monthly',
