@@ -1,5 +1,6 @@
 from django.conf.urls.defaults import patterns, url, include
 from django.shortcuts import redirect
+from django.views.decorators.csrf import csrf_exempt
 
 from . import views
 
@@ -15,8 +16,8 @@ detail_patterns = patterns('',
         {'page': 'roadblock'}, name='addons.roadblock'),
     url('^contribute/installed/', views.developers,
         {'page': 'installed'}, name='addons.installed'),
-    url('^contribute/thanks', lambda r,
-        addon_id: redirect('addons.detail', addon_id),
+    url('^contribute/thanks',
+        csrf_exempt(lambda r, addon_id: redirect('addons.detail', addon_id)),
         name='addons.thanks'),
     url('^contribute/', views.contribute, name='addons.contribute'),
     ('^about$', lambda r, addon_id: redirect('addons.installed',
