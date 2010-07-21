@@ -223,6 +223,12 @@ class TestContribute(test_utils.TestCase):
         assert(redirect_url.find('a3=42') > -1), 'param a3 was not 42'
         assert(redirect_url.find('no_note=1') > -1), 'param no_note was not 1'
 
+    def test_paypal_bounce(self):
+        """Paypal is retarded and posts to this page."""
+        args = dict(args=[3615])
+        r = self.client.post(reverse('addons.thanks', **args))
+        self.assertRedirects(r, reverse('addons.detail', **args))
+
 
 class TestDeveloperPages(test_utils.TestCase):
     fixtures = ['base/fixtures', 'addons/eula+contrib-addon']
