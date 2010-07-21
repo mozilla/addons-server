@@ -460,10 +460,10 @@ CUSTOM_DUMPS = {
     }
 }
 
-## Hera
-HERA = {'username': '',
-        'password': '',
-        'location': '',
+## Hera (http://github.com/clouserw/hera)
+HERA = {'USERNAME': '',
+        'PASSWORD': '',
+        'LOCATION': '',
        }
 
 # Logging

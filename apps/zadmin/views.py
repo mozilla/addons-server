@@ -71,9 +71,9 @@ def hera(request):
     form = FlushForm(initial={'flushprefix': site_settings.SITE_URL})
 
     try:
-        username = site_settings.HERA['username']
-        password = site_settings.HERA['password']
-        location = site_settings.HERA['location']
+        username = site_settings.HERA['USERNAME']
+        password = site_settings.HERA['PASSWORD']
+        location = site_settings.HERA['LOCATION']
     except (KeyError, AttributeError):
         messages.error(request, "Sorry, Hera is not configured. :(")
         form = None
