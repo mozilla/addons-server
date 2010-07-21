@@ -282,7 +282,7 @@ class CollectionVote(models.Model):
     collection = models.ForeignKey(Collection)
     user = models.ForeignKey(UserProfile, related_name='votes')
     vote = models.SmallIntegerField(default=0)
-    created = models.DateTimeField(null=True)
+    created = models.DateTimeField(null=True, auto_now_add=True)
 
     class Meta:
         db_table = 'collections_votes'
