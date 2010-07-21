@@ -8,7 +8,6 @@ import amo
 from addons.models import Addon, AddonRecommendation
 from bandwagon.models import (Collection, SyncedCollection,
                               RecommendedCollection)
-import settings
 from users.models import UserProfile
 
 
@@ -31,7 +30,7 @@ class TestCollections(test_utils.TestCase):
     def test_is_subscribed(self):
         c = Collection.objects.get(pk=512)
         u = UserProfile()
-        u.nickname='unique'
+        u.nickname = 'unique'
         u.save()
         c.subscriptions.create(user=u)
         assert c.is_subscribed(u), "User isn't subscribed to collection."

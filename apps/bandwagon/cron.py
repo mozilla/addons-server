@@ -35,7 +35,7 @@ def migrate_collection_users():
         if collectionusers:
             collection.author_id = collectionusers[0].user_id
             try:
-                collection.save();
+                collection.save()
                 collectionusers[0].delete()
             except:
                 task_log.warning("No author found for collection: %d"

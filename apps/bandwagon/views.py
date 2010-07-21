@@ -1,4 +1,5 @@
 from django import http
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect
 
 import jingo
@@ -8,7 +9,7 @@ import amo.utils
 from addons.models import Addon
 from addons.views import BaseFilter
 from translations.query import order_by_translation
-from .models import Collection, CollectionAddon
+from .models import Collection, CollectionAddon, CollectionVote
 
 
 def legacy_redirect(self, uuid):
@@ -22,7 +23,7 @@ def collection_listing(request):
     return http.HttpResponse()
 
 
-def user_listing(request, user):
+def user_listing(request, username):
     return http.HttpResponse()
 
 
@@ -41,7 +42,7 @@ class CollectionAddonFilter(BaseFilter):
                     .with_index(addons='downloads_type_idx'))
 
 
-def collection_detail(request, user, slug):
+def collection_detail(request, username, slug):
     # TODO: owner=user when dd adds owner to collections
     cn = get_object_or_404(Collection.objects, slug=slug)
     base = cn.addons.all() & Addon.objects.listed(request.APP)
@@ -64,3 +65,26 @@ def get_notes(collection):
     for note in notes:
         rv[note.addon_id] = note.comments
     yield rv
+
+
+@login_required
+def collection_vote(request, username, slug, direction):
+    cn = get_object_or_404(Collection.objects, slug=slug)
+    if request.method != 'POST':
+        return redirect(cn.get_url_path())
+
+    vote = {'up': 1, 'down': -1}[direction]
+    cv, new = CollectionVote.objects.get_or_create(
+        collection=cn, user=request.amo_user, defaults={'vote': vote})
+
+    if not new:
+        if cv.vote == vote:  # Double vote => cancel.
+            cv.delete()
+        else:
+            cv.vote = vote
+            cv.save()
+
+    if request.is_ajax():
+        return http.HttpResponse()
+    else:
+        return redirect(cn.get_url_path())

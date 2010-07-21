@@ -5,7 +5,6 @@ from mock import Mock
 from pyquery import PyQuery as pq
 import jingo
 
-import amo
 from bandwagon.helpers import (user_collection_list, barometer,
                                collection_favorite)
 from bandwagon.models import Collection
@@ -57,7 +56,6 @@ class TestHelpers(test.TestCase):
         doc = pq(barometer(c, collection))
         eq_(doc('form')[0].action,
             remora_url('collections/vote/%s/up' % collection.uuid))
-
 
     def test_user_collection_list(self):
         c1 = Collection.objects.create(

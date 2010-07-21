@@ -279,13 +279,24 @@ class CollectionUser(models.Model):
 
 
 class CollectionVote(models.Model):
-    collection = models.ForeignKey(Collection)
+    collection = models.ForeignKey(Collection, related_name='votes')
     user = models.ForeignKey(UserProfile, related_name='votes')
     vote = models.SmallIntegerField(default=0)
     created = models.DateTimeField(null=True, auto_now_add=True)
 
     class Meta:
         db_table = 'collections_votes'
+
+    @staticmethod
+    def post_save_or_delete(sender, instance, **kwargs):
+        from . import tasks
+        tasks.collection_votes.delay(instance.collection_id)
+
+
+models.signals.post_save.connect(CollectionVote.post_save_or_delete,
+                                 sender=CollectionVote)
+models.signals.post_delete.connect(CollectionVote.post_save_or_delete,
+                                 sender=CollectionVote)
 
 
 class SyncedCollection(Collection):

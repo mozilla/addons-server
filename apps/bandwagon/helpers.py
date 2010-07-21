@@ -1,5 +1,4 @@
 import math
-import random
 
 import jinja2
 from jingo import register, env
@@ -47,7 +46,7 @@ def barometer(context, collection):
     c = dict(context.items())
     request = c['request']
 
-    user_vote = 0  #  Non-zero if logged in and voted.
+    user_vote = 0  # Non-zero if logged in and voted.
 
     if request.user.is_authenticated():
         # TODO: Use reverse when bandwagon is on Zamboni.
@@ -68,7 +67,6 @@ def barometer(context, collection):
         login_title = _('Log in to vote for this collection')
         up_title = down_title = cancel_title = login_title
 
-
     up_class = 'upvotes'
     down_class = 'downvotes'
 
@@ -87,5 +85,5 @@ def barometer(context, collection):
         down_class += ' voted'
     up_class
     c.update(locals())
-    c.update({ 'c': collection, })
+    c.update({'c': collection})
     return c
