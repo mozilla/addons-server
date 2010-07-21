@@ -165,6 +165,7 @@ def JINJA_CONFIG():
     from django.conf import settings
     from caching.base import cache
     config = {'extensions': ['tower.template.i18n', 'amo.ext.cache',
+                             'jinja2.ext.do',
                              'jinja2.ext.with_', 'jinja2.ext.loopcontrols'],
               'finalize': lambda x: x if x is not None else ''}
     if 'memcached' in cache.scheme and not settings.DEBUG:
@@ -513,3 +514,9 @@ def read_only_mode(env):
     m = list(env['MIDDLEWARE_CLASSES'])
     m.insert(m.index(before), extra)
     env['MIDDLEWARE_CLASSES'] = tuple(m)
+
+
+## Feature switches
+# Use this to keep collections compatible with remora before we're ready to
+# switch to zamboni/bandwagon3.
+NEW_COLLECTIONS = True

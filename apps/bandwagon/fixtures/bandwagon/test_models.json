@@ -25,7 +25,7 @@
         "model": "bandwagon.collection",
         "fields": {
             "rating": 0.0,
-            "down_votes": 0,
+            "downvotes": 0,
             "uuid": "f94d08c7-794d-3ce4-4634-99caa09f9ef4",
             "created": "2009-06-10 07:18:11",
             "monthly_subscribers": 0,
@@ -38,9 +38,10 @@
             "listed": 1,
             "subscribers": 1,
             "default_locale": "ru",
-            "up_votes": 0,
+            "upvotes": 0,
             "icontype": "",
-            "nickname": null,
+            "nickname": "wut",
+            "slug": "wut-slug",
             "addon_count": 4,
             "addon_index": null,
             "description": null

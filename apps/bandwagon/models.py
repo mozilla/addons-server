@@ -10,9 +10,9 @@ from django.db import models, connection
 import amo
 import amo.models
 from amo.utils import sorted_groupby
+from amo.urlresolvers import reverse
 from addons.models import Addon, AddonCategory, AddonRecommendation
 from applications.models import Application
-from cake.urlresolvers import remora_url
 from users.models import UserProfile
 from translations.fields import TranslatedField, LinkifiedField
 
@@ -33,7 +33,7 @@ class Collection(amo.models.ModelBase):
     name = TranslatedField()
     nickname = models.CharField(max_length=30, blank=True, unique=True,
                                 null=True)
-
+    slug = models.CharField(max_length=30, blank=True, null=True)
     description = LinkifiedField()
     default_locale = models.CharField(max_length=10, default='en-US',
                                       db_column='defaultlocale')
@@ -52,8 +52,8 @@ class Collection(amo.models.ModelBase):
     addon_count = models.PositiveIntegerField(default=0,
                                               db_column='addonCount')
 
-    up_votes = models.PositiveIntegerField(default=0, db_column='upvotes')
-    down_votes = models.PositiveIntegerField(default=0, db_column='downvotes')
+    upvotes = models.PositiveIntegerField(default=0)
+    downvotes = models.PositiveIntegerField(default=0)
     rating = models.FloatField(default=0)
 
     addons = models.ManyToManyField(Addon, through='CollectionAddon',
@@ -77,6 +77,8 @@ class Collection(amo.models.ModelBase):
     def save(self, **kw):
         if not self.uuid:
             self.uuid = unicode(uuid.uuid4())
+        if not self.slug:
+            self.slug = self.uuid[:30]
 
         # Maintain our index of add-on ids.
         if self.id:
@@ -86,8 +88,11 @@ class Collection(amo.models.ModelBase):
         super(Collection, self).save(**kw)
 
     def get_url_path(self):
-        # TODO(jbalogh): reverse
-        return '/collection/%s' % self.url_slug
+        if settings.NEW_COLLECTIONS:
+            nick = self.author.nickname if self.author else 'anonymous'
+            return reverse('collections.detail', args=[nick, self.slug])
+        else:
+            return '/collection/%s' % self.url_slug
 
     @classmethod
     def get_fallback(cls):
@@ -156,7 +161,7 @@ class Collection(amo.models.ModelBase):
         self.save()
 
     def is_subscribed(self, user):
-        "Determines if an AMO user is subscribed to this collection."
+        """Determines if the user is subscribed to this collection."""
         return self.subscriptions.filter(user=user).exists()
 
 
@@ -165,7 +170,7 @@ class CollectionAddon(amo.models.ModelBase):
     collection = models.ForeignKey(Collection)
     added = models.DateTimeField(auto_now_add=True)
     # category (deprecated: for "Fashion Your Firefox")
-    comments = TranslatedField(null=True)
+    comments = LinkifiedField(null=True)
     downloads = models.PositiveIntegerField(default=0)
     user = models.ForeignKey(UserProfile, null=True)
 
@@ -277,7 +282,7 @@ class CollectionVote(models.Model):
     collection = models.ForeignKey(Collection)
     user = models.ForeignKey(UserProfile, related_name='votes')
     vote = models.SmallIntegerField(default=0)
-    created = models.DateTimeField(null=True)
+    created = models.DateTimeField(null=True, auto_now_add=True)
 
     class Meta:
         db_table = 'collections_votes'

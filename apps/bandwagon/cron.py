@@ -1,14 +1,16 @@
 import datetime
+import itertools
 
-from django.db import connection, transaction
+from django.db import connection, connections, transaction
 from django.db.models import Count
 
 import commonware.log
+import multidb
 from celery.decorators import task
 from celery.messaging import establish_connection
 
 import amo
-from amo.utils import chunked
+from amo.utils import chunked, slugify
 from bandwagon.models import (CollectionSubscription,
                               CollectionVote, Collection, CollectionUser)
 import cronjobs
@@ -115,3 +117,43 @@ def _update_collections_votes(data, stat, **kw):
              var['collection_id'], var['count']]
         cursor.execute(q, p)
     transaction.commit_unless_managed()
+
+
+# TODO: remove this once zamboni enforces slugs.
+@cronjobs.register
+def collections_add_slugs():
+    """Give slugs to any slugless collections."""
+    q = Collection.objects.filter(slug=None)
+    ids = q.values_list('id', flat=True)
+    task_log.info('%s collections without names' % len(ids))
+    max_length = Collection._meta.get_field('slug').max_length
+    cnt = itertools.count()
+    # Chunk it so we don't do huge queries.
+    for chunk in chunked(ids, 300):
+        for c in q.no_cache().filter(id__in=chunk):
+            c.slug = c.nickname or slugify(c.name)[:max_length]
+            if not c.slug:
+                c.slug = 'collection'
+            c.save(force_update=True)
+            task_log.info(u'%s. %s => %s' % (next(cnt), c.name, c.slug))
+
+    # Uniquify slug names by user.
+    cursor = connections[multidb.get_slave()].cursor()
+    dupes = cursor.execute("""
+        SELECT user_id, slug FROM (
+            SELECT user_id, slug, COUNT(1) AS cnt
+            FROM collections c INNER JOIN collections_users cu
+              ON c.id = cu.collection_id
+            GROUP BY user_id, slug) j
+        WHERE j.cnt > 1""")
+    task_log.info('Uniquifying %s (user, slug) pairs' % dupes)
+    cnt = itertools.count()
+    for user, slug in cursor.fetchall():
+        q = Collection.objects.filter(slug=slug, collectionuser__user=user)
+        # Skip the first one since it's unique without any appendage.
+        for idx, c in enumerate(q[1:]):
+            # Give enough space for appending a two-digit number.
+            slug = c.slug[:max_length - 3]
+            c.slug = u'%s-%s' % (slug, idx + 1)
+            c.save(force_update=True)
+            task_log.info(u'%s. %s => %s' % (next(cnt), slug, c.slug))

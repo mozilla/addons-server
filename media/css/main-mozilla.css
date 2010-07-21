@@ -2799,17 +2799,8 @@ html[xmlns] .clearfix {
 
 /** Ratings barometer **/
 
-.barometer {
-    width: 100%;
-    display: -moz-box;
-    -moz-box-orient: horizontal;
-    -moz-box-align: stretch;
-    display: -webkit-box;
-    -webkit-box-orient: horizontal;
-    -webkit-box-align: center;
-    display: box;
-    box-orient: horizontal;
-    box-align: stretch;
+.barometer form {
+    display: inline-block;
 }
 
 /* .upvotes and .downvotes are the numbers + thumb images, in inputs. */
@@ -2883,49 +2874,8 @@ html[xmlns] .clearfix {
     text-shadow: none;
 }
 
-.barometer .bars {
-    -moz-box-flex: 1;
-    -webkit-box-flex: 1;
-    box-flex: 1;
-}
-
 .barometer .novotes {
     background-color: #d9d9d9;
-}
-
-.barometer .upbar, .barometer .downbar, .barometer .novotes {
-    /* Make the bars short, centered using the top margin. */
-    height: 0.7em;
-    margin-top: 0.6em;
-}
-
-.barometer .votecount {
-    margin-top: -10000em;
-    position: absolute;
-}
-
-.barometer .upbar,
-.barometer .downbar {
-    float: left;
-}
-
-.html-rtl .barometer .upbar,
-.html-rtl .barometer .downbar {
-    float: right;
-}
-
-.barometer .upbar {
-    background-color: #a3e4cf;
-    margin-right: 1%; /* Little bit of space between the bars. */
-}
-
-.html-rtl .barometer .upbar {
-    margin-left: 1%; /* Little bit of space between the bars. */
-    margin-right: 0;
-}
-
-.barometer .downbar {
-    background-color: #ffc3c6;
 }
 
 /*
