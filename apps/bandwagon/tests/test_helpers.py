@@ -41,7 +41,7 @@ class TestHelpers(test.TestCase):
     def test_barometer(self):
         jingo.load_helpers()
         collection = Collection.objects.get(pk=57274)
-        collection.up_votes = 1
+        collection.upvotes = 1
         # Mock logged out.
         c = dict(request=Mock())
         c['request'].path = 'yermom'

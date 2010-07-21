@@ -72,10 +72,10 @@ def barometer(context, collection):
     up_class = 'upvotes'
     down_class = 'downvotes'
 
-    total_votes = collection.up_votes + collection.down_votes
+    total_votes = collection.upvotes + collection.downvotes
 
     if total_votes:
-        up_ratio = int(math.ceil(round(100 * collection.up_votes
+        up_ratio = int(math.ceil(round(100 * collection.upvotes
                                        / total_votes, 2)))
         down_ratio = 100 - up_ratio
 

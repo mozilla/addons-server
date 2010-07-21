@@ -52,8 +52,8 @@ class Collection(amo.models.ModelBase):
     addon_count = models.PositiveIntegerField(default=0,
                                               db_column='addonCount')
 
-    up_votes = models.PositiveIntegerField(default=0, db_column='upvotes')
-    down_votes = models.PositiveIntegerField(default=0, db_column='downvotes')
+    upvotes = models.PositiveIntegerField(default=0)
+    downvotes = models.PositiveIntegerField(default=0)
     rating = models.FloatField(default=0)
 
     addons = models.ManyToManyField(Addon, through='CollectionAddon',
