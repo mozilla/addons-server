@@ -1,6 +1,5 @@
-from django import test
-
 import jingo
+import test_utils
 from mock import Mock
 from nose.tools import eq_
 from pyquery import PyQuery
@@ -10,7 +9,7 @@ from addons.helpers import statusflags, flag, support_addon, contribution
 from addons.models import Addon
 
 
-class TestHelpers(test.TestCase):
+class TestHelpers(test_utils.TestCase):
     fixtures = ['base/fixtures', 'addons/featured.json']
 
     def setUp(self):

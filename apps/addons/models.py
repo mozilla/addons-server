@@ -360,7 +360,7 @@ class Addon(amo.models.ModelBase):
         features = caching.cached_with(qs, _features, 'featured:%s' % app.id)
         if self.id in features:
             for locale in (None, '', lang):
-                if locale in features:
+                if locale in features[self.id]:
                     return True
         return False
 
