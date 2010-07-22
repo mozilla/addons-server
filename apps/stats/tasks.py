@@ -24,8 +24,9 @@ def addon_total_contributions(*addons):
 
     log.info('[%s@%s] Updating total contributions.' %
              (len(addons), addon_total_contributions.rate_limit))
-    stats = (Contribution.objects.filter(addon__in=addons).values_list('addon')
-             .annotate(Sum('amount')))
+    # Only count uuid=None; those are verified transactions.
+    stats = (Contribution.objects.filter(addon__in=addons, uuid=None)
+             .values_list('addon').annotate(Sum('amount')))
 
     for addon, total in stats:
         Addon.objects.filter(id=addon).update(total_contributions=total)
