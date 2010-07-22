@@ -7,6 +7,7 @@ from django.utils.translation import trans_real as translation
 import caching.base as caching
 import jingo
 from tower import ugettext_lazy as _lazy
+from tower import ugettext as _
 
 import amo
 from amo.utils import sorted_groupby, randslice
@@ -440,11 +441,13 @@ def contribute(request, addon_id):
 
     return_url = "%s?%s" % (reverse('addons.thanks', args=[addon.id]),
                             urllib.urlencode({'uuid': contribution_uuid}))
-
+    """ L10n: Phrase that will appear on the paypal
+        site specifying who the contribution is for"""
+    contrib_for = _('Contribution for {addon_name}').format(addon_name=addon.name)
     redirect_url_params = contribute_url_params(
                             addon.paypal_id,
                             addon.id,
-                            'Contribution for %s' % addon.name,
+                            contrib_for,
                             absolutify(return_url),
                             amount,
                             contribution_uuid,
