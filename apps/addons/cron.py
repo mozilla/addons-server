@@ -121,7 +121,10 @@ def _change_last_updated(next):
     # Update + invalidate.
     for addon in Addon.uncached.filter(id__in=changes).no_transforms():
         addon.last_updated = changes[addon.id]
-        addon.save()
+        try:
+            addon.save()
+        except Exception, e:
+            log.warning('Could not save %s: (%s)' % (addon.id, e))
 
 
 @cronjobs.register
