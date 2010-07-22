@@ -1,6 +1,5 @@
 {% if addon.takes_contributions %}
-  {# TODO(jbalogh): reverse #}
-  {% set base = '/addons/contribute/{0}?source=direct'|f(addon.id) %}
+  {% set base = url('addons.contribute', addon.id)|urlparams(source='direct') %}
   <div class="contribute">
     {% if addon.suggested_amount is not none %}
     {% trans url=base|urlparams(type='suggested')|escape,

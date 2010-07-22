@@ -47,7 +47,7 @@
         {# The id triggers a dropdown, so don't expose it if there isn't a
            suggested amount (i.e., only one choice). #}
         {% if has_suggested %}id="contribute-button"{% endif %}
-        href="{{ remora_url('/addons/contribute/{0}?source={1}'|f(addon.id, src)) }}">
+        href="{{ url('addons.contribute', addon.id)|urlparams(source=src) }}">
         <b></b>{{ _('Contribute') }}
       </a>
 
@@ -75,7 +75,7 @@
 
   {% if has_suggested %}
     <div id="contribute-box" class="jqmWindow">
-      <form action="/addons/contribute/{{ addon.id }}" method="get">{# TODO reverse URL #}
+      <form action="{{ url('addons.contribute', addon.id) }}" method="get">
         <input type="hidden" name="source" value="{{ src }}"/>
         <h2>{{ _('Make a Contribution') }}</h2>
         <p class="support">

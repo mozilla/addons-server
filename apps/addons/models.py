@@ -328,7 +328,7 @@ class Addon(amo.models.ModelBase):
     @property
     def contribution_url(self, lang=settings.LANGUAGE_CODE,
                          app=settings.DEFAULT_APP):
-        return '/%s/%s/addons/contribute/%d' % (lang, app, self.id)
+        return reverse('addons.contribute', args=[self.id])
 
     @property
     def thumbnail_url(self):
