@@ -220,7 +220,7 @@ class APITest(TestCase):
         needles = (
                 '<addon id="4664">',
                 "<contribution_data>",
-                "%s/en-US/firefox/addons/contribute/4664?src=api</link>"
+                "%s/en-US/firefox/addon/4664/contribute/?source=api</link>"
                     % settings.SITE_URL,
                 "<meet_developers>",
                 "%s/en-US/firefox/addon/4664/developers?src=api"
