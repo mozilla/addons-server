@@ -43,7 +43,7 @@
   <header>
     {{ breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type] ),
                     (addon.get_url_path(), addon.name),
-                    (None, _('Meet the Developer'))]) }}
+                    (None, _('Meet the {0} Developer')|f(addon.name))]) }}
     <h2>{{ _('Meet the {0} Developer')|f(addon.name) }}</h2>
   </header>
 {% endif %}
