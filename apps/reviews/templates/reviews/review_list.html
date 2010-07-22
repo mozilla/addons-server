@@ -5,6 +5,11 @@
 
 {% block bodyclass %}reviews inverse{% endblock %}
 
+{% block rss_feed %}
+<link  rel="alternate" type="application/rss+xml"
+       title="RSS" href="{{ url('reviews.list', addon.id) }}format:rss">
+{% endblock %}
+
 {% block content %}
 <div class="primary" role="main">
   <header>

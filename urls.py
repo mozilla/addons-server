@@ -80,6 +80,9 @@ urlpatterns = patterns('',
     ('^addons/versions/(\d+)/format:rss$',
      lambda r, id: redirect('addons.versions.rss', id, permanent=True)),
 
+    ('^addons/reviews/(\d+)/format:rss$',
+     lambda r, id: redirect('reviews.list.rss', id, permanent=True)),
+
     ('^search-engines.*$',
      lambda r: redirect('browse.search-tools', permanent=True)),
 
