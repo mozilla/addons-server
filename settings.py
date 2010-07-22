@@ -97,6 +97,10 @@ DOMAIN = HOSTNAME
 #   Example: https://addons.mozilla.org
 SITE_URL = 'http://%s' % DOMAIN
 
+# Full URL to your API service. No trailing slash.
+#   Example: https://services.addons.mozilla.org
+SERVICES_URL = 'http://services.%s' % DOMAIN
+
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
 MEDIA_ROOT = path('media')

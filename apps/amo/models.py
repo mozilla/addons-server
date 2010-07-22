@@ -6,6 +6,8 @@ import queryset_transform
 import caching.base
 from translations import transformer
 
+from . import signals
+
 
 class TransformQuerySet(queryset_transform.TransformQuerySet):
 

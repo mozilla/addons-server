@@ -55,6 +55,14 @@ class Review(amo.models.ModelBase):
         db_table = 'reviews'
         ordering = ('-created',)
 
+    def flush_urls(self):
+        urls = ['*/addon/%d/' % self.addon_id,
+                '*/addon/%d/reviews/' % self.addon_id,
+                '*/addon/%d/reviews/format:rss' % self.addon_id,
+                '*/addon/%d/reviews/%d/' % (self.addon_id, self.id),
+                '*/user/%d/' % self.user.id, ]
+        return urls
+
     @classmethod
     def fetch_translations(cls, ids, lang):
         if not ids:
@@ -146,6 +154,9 @@ class ReviewFlag(amo.models.ModelBase):
     class Meta:
         db_table = 'reviews_moderation_flags'
         unique_together = (('review', 'user'),)
+
+    def flush_urls(self):
+        return self.review.flush_urls()
 
 
 class GroupedRating(object):
