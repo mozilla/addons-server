@@ -516,7 +516,7 @@ class AddonCategory(caching.CachingMixin, models.Model):
     def creatured(cls):
         """Get a dict of {addon: [app,..]} for all creatured add-ons."""
         qs = cls.objects.filter(feature=True)
-        f = lambda: qs.values_list('addon', 'category__application')
+        f = lambda: list(qs.values_list('addon', 'category__application'))
         vals = caching.cached_with(qs, f, 'creatured')
         rv = {}
         for addon, app in vals:
