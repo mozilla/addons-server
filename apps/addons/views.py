@@ -1,8 +1,12 @@
+import hashlib
+import uuid
+
 from django import http
 from django.conf import settings
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from django.utils.translation import trans_real as translation
+from django.utils import http as urllib
 
 import caching.base as caching
 import jingo
@@ -19,10 +23,6 @@ from stats.models import GlobalStat, Contribution
 from tags.models import Tag
 from translations.query import order_by_translation
 from .models import Addon
-
-import hashlib
-import urllib
-import uuid
 
 
 def author_addon_clicked(f):

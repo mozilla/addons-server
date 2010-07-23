@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from datetime import datetime
 
 from django import test
@@ -228,6 +229,12 @@ class TestContribute(test_utils.TestCase):
         args = dict(args=[3615])
         r = self.client.post(reverse('addons.thanks', **args))
         self.assertRedirects(r, reverse('addons.detail', **args))
+
+    def test_unicode_comment(self):
+        r = self.client.get(reverse('addons.contribute', args=[592]),
+                            {'comment': u'版本历史记录'})
+        eq_(r.status_code, 302)
+        assert r['Location'].startswith(settings.PAYPAL_CGI_URL)
 
 
 class TestDeveloperPages(test_utils.TestCase):
