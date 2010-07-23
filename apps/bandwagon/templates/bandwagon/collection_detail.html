@@ -21,7 +21,7 @@
       <span>{{ c.name }}</span>
     </h2>
     <h4 class="author">
-      {% trans users=users_list(collection.listed_authors) %}
+      {% trans users=users_list([collection.author]) %}
         by {{ users }}
       {% endtrans %}
     </h4>
