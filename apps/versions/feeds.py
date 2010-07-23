@@ -10,8 +10,6 @@ from amo.helpers import absolutify, url
 
 from addons.models import Addon
 
-import urllib
-
 
 class VersionsRss(Feed):
 
@@ -43,7 +41,8 @@ class VersionsRss(Feed):
 
     def item_link(self, version):
         """Link for a particular version (<item><link>)"""
-        return reverse('addons.versions', args=[version.addon_id, version.version])
+        return absolutify(reverse('addons.versions', args=[version.addon_id,
+                                                           version.version]))
 
     def item_title(self, version):
         """Title for particular version (<item><title>)"""
