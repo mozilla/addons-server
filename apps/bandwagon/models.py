@@ -34,6 +34,7 @@ class Collection(amo.models.ModelBase):
     nickname = models.CharField(max_length=30, blank=True, unique=True,
                                 null=True)
     slug = models.CharField(max_length=30, blank=True, null=True)
+
     description = LinkifiedField()
     default_locale = models.CharField(max_length=10, default='en-US',
                                       db_column='defaultlocale')
@@ -58,9 +59,10 @@ class Collection(amo.models.ModelBase):
 
     addons = models.ManyToManyField(Addon, through='CollectionAddon',
                                     related_name='collections')
-    author = models.ForeignKey(UserProfile, null=True)
+    author = models.ForeignKey(UserProfile, null=True,
+                               related_name='collections')
     users = models.ManyToManyField(UserProfile, through='CollectionUser',
-                                  related_name='collections')
+                                  related_name='collections_publishable')
 
     addon_index = models.CharField(max_length=40, null=True, db_index=True,
         help_text='Custom index for the add-ons in this collection')
