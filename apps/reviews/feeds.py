@@ -40,8 +40,8 @@ class ReviewsRss(Feed):
 
     def item_link(self, review):
         """Link for a particular review (<item><link>)"""
-        review_id = urllib.quote(str(review.id))
-        return reverse('reviews.list', args=[self.addon.id]) + review_id
+        return absolutify(reverse('reviews.detail', args=[self.addon.id,
+                                                          review.id]))
 
     def item_title(self, review):
         """Title for particular review (<item><title>)"""
