@@ -50,7 +50,7 @@ class VersionsRss(Feed):
     def item_title(self, version):
         """Title for particular version (<item><title>)"""
         # L10n: This is the Title for this Version of the Addon
-        return '{name} {version} - {created}'.format(
+        return u'{name} {version} - {created}'.format(
             name=self.addon.name, version=version.version,
                  created=datetime(version.created))
 
