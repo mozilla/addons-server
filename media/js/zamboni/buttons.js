@@ -66,7 +66,7 @@ var installButton = function() {
     var message = function(msg) {
         return function(){
             // Get the xpi link for the first visible button.
-            params.url = $button.filter(':visible')[0].href;
+            params.url = $button.filter(':visible').attr('href');
             return format(z.button.messages[msg], params);
         }
     };
