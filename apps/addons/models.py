@@ -286,8 +286,10 @@ class Addon(amo.models.ModelBase):
             addon_dict[addon_id].listed_authors = list(users)
 
         for persona in Persona.objects.no_cache().filter(addon__in=personas):
-            addon_dict[persona.addon_id].persona = persona
-            addon_dict[persona.addon_id].listed_authors = []
+            addon = addon_dict[persona.addon_id]
+            addon.persona = persona
+            addon.listed_authors = [persona.display_username]
+            addon.weekly_downloads = persona.popularity
 
         # Personas need categories for the JSON dump.
         Category.transformer(personas)
@@ -348,6 +350,9 @@ class Addon(amo.models.ModelBase):
         except IndexError:
             return settings.MEDIA_URL + '/img/amo2009/icons/no-preview.png'
 
+    def is_persona(self):
+        return self.type == amo.ADDON_PERSONA
+
     def is_selfhosted(self):
         return self.status == amo.STATUS_LISTED
 
@@ -387,6 +392,8 @@ class Addon(amo.models.ModelBase):
         # TODO(davedash): We can't cache these tags until /tags/ are moved
         # into Zamboni.
         tags = self.tags.not_blacklisted().no_cache()
+        if self.is_persona:
+            return models.query.EmptyQuerySet(), tags
         user_tags = tags.exclude(addon_tags__user__in=self.listed_authors)
         dev_tags = tags.exclude(id__in=[t.id for t in user_tags])
         return dev_tags, user_tags

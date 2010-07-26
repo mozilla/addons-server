@@ -335,8 +335,8 @@ class TestDetailPage(test_utils.TestCase):
         # Grab a user and give them some add-ons.
         u = UserProfile.objects.get(pk=2519)
         thisaddon = u.addons.all()[0]
-        other_addons = order_by_translation(
-                         Addon.objects.exclude(pk=thisaddon.pk), 'name')[:3]
+        qs = Addon.objects.valid().exclude(pk=thisaddon.pk)
+        other_addons = order_by_translation(qs, 'name')[:3]
         for addon in other_addons:
             AddonUser.objects.create(user=u, addon=addon)
 

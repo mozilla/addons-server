@@ -38,6 +38,8 @@ def users_list(users):
 
 
 def _user_link(user):
+    if isinstance(user, basestring):
+        return user
     return u'<a href="%s">%s</a>' % (
         user.get_url_path(), unicode(jinja2.escape(user.display_name)))
 
