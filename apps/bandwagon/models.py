@@ -56,6 +56,8 @@ class Collection(amo.models.ModelBase):
     upvotes = models.PositiveIntegerField(default=0)
     downvotes = models.PositiveIntegerField(default=0)
     rating = models.FloatField(default=0)
+    all_personas = models.BooleanField(default=False,
+        help_text='Does this collection only contain personas?')
 
     addons = models.ManyToManyField(Addon, through='CollectionAddon',
                                     related_name='collections')
