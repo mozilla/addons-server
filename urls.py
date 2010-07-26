@@ -20,6 +20,9 @@ urlpatterns = patterns('',
     # Browse pages.
     ('', include('browse.urls')),
 
+    # Tags.
+    ('', include('tags.urls')),
+
     # Collections.
     ('', include('bandwagon.urls')),
 
@@ -70,6 +73,10 @@ urlpatterns = patterns('',
     # Redirect persona/xxx
     ('^persona/(\d+)',
      lambda r, id: redirect('addons.detail', id, permanent=True)),
+
+    # Redirect persona/xxx
+    ('^top-tags/?',
+     lambda r: redirect('tags.top_cloud', permanent=True)),
 
     ('^personas/film and tv/?$',
      lambda r: redirect('browse.personas', 'film-and-tv', permanent=True)),

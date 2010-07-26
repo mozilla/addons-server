@@ -9,8 +9,13 @@
 .tagLevel9 {font-size: 2.8em;}
 .tagLevel10 {font-size: 3em;}
 
-#tag-box div {
+.secondary #tag-box div {
     font-size: 60%;
+}
+.primary #tag-box div {
+    text-align: center;
+}
+#tag-box div {
     line-height: 3.07em;
     padding: 0;
     text-align: left;

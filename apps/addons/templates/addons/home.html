@@ -118,11 +118,12 @@
 {% cache top_tags %}
   {% if top_tags %}
   {% set max_tag_count = top_tags[0].popularity or 1 %}
+  {% set min_tag_count = (top_tags|last).popularity or 1 %}
   <div class="highlight" id="tag-box">
     <h3>{{ _('Popular Tags') }}</h3>
     <div>
       {% for tag in top_tags|list|shuffle if tag.tagstat %}
-        {{ tag_link(tag.tag_text, tag.tagstat.num_addons, max_tag_count) }}
+        {{ tag_link(tag, min_tag_count, max_tag_count)|safe }}
       {% endfor %}
     </div>
     <p class="more">
@@ -140,13 +141,6 @@
   <p><strong><a href="/developers">{{ _('Visit the Developer Hub') }}</a></strong></p>
 </div>
 {% endblock %}
-
-{% macro tag_link(tag_text, tag_count, max_count) -%}
-{% with factor=(tag_count/max_count*10)|wround(method='ceil') %}
-  <a class="tagLevel{{ factor }} tag" href="{{
-    remora_url('/tag/' + tag_text) }}">{{ tag_text }}</a>
-{% endwith %}
-{%- endmacro %}
 
 {% block extrahead %}
 {% for feed in view_all.itervalues() %}

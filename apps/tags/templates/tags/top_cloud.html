@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}
+  {{ page_title( _('Top {0} Tags')|f(num_tags)) }}
+{% endblock %}
+
+{% block content %}
+<div class="primary full" role="main">
+    {% cache top_tags %}
+      {% if top_tags %}
+      {% set max_tag_count = top_tags[0].popularity or 1 %}
+      {% set min_tag_count = (top_tags|last).popularity or 1 %}
+      {# L10n: {0} is the current application name #}
+      <h2>{{ _('{0} Top Tags')|f(request.APP.pretty) }}</h2>
+      <div id="tag-box">
+        <div>
+          {% for tag in top_tags|list|shuffle if tag.tagstat %}
+            {{ tag_link(tag, min_tag_count, max_tag_count)|safe }}
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+    {% endcache %}
+</div>
+{% endblock content %}
