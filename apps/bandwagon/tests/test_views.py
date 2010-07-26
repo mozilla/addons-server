@@ -11,8 +11,8 @@ from amo.urlresolvers import reverse
 from bandwagon.models import Collection, CollectionVote
 
 
-class TestViews(amo.test_utils.ExtraSetup, test_utils.TestCase):
-    fixtures = ['bandwagon/test_models.json', 'base/apps']
+class TestViews(test_utils.TestCase):
+    fixtures = ['users/test_backends', 'bandwagon/test_models']
 
     def check_response(self, url, code, to=None):
         response = self.client.get(url, follow=True)
