@@ -29,6 +29,9 @@ urlpatterns = patterns('',
     # Users
     ('', include('users.urls')),
 
+    # Tags
+    ('', include('tags.urls')),
+
     # AMO admin (not django admin).
     ('^admin/', include('zadmin.urls')),
 
