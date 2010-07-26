@@ -82,6 +82,15 @@ def _update_collections_subscribers(data, **kw):
 
 
 @cronjobs.register
+def collection_meta():
+    from . import tasks
+    collections = Collection.objects.values_list('id', flat=True)
+    with establish_connection() as conn:
+        for chunk in chunked(collections, 1000):
+            tasks.cron_collection_meta.apply_async(args=chunk, connection=conn)
+
+
+@cronjobs.register
 def update_collections_votes():
     """Update collection's votes."""
 

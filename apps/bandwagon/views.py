@@ -8,6 +8,7 @@ from tower import ugettext_lazy as _lazy
 import amo.utils
 from addons.models import Addon
 from addons.views import BaseFilter
+from tags.models import Tag
 from translations.query import order_by_translation
 from .models import Collection, CollectionAddon, CollectionVote
 from . import forms
@@ -59,10 +60,13 @@ def collection_detail(request, username, slug):
         others = amo.utils.randslice(qs, limit=4, exclude=c.id)
     else:
         others = []
+
+    tag_ids = c.top_tags
+    tags = Tag.objects.filter(id__in=tag_ids) if tag_ids else []
     return jingo.render(request, 'bandwagon/collection_detail.html',
                         {'collection': c, 'filter': filter,
                          'addons': addons, 'notes': notes,
-                         'author_collections': others})
+                         'author_collections': others, 'tags': tags})
 
 
 def get_notes(collection):

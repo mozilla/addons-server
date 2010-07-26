@@ -41,7 +41,7 @@ HOME = /tmp
 30 8 * * * cd /data/amo/www/addons.mozilla.org-preview/bin; /usr/bin/python26 maintenance.py personas_adu
 30 9 * * * cd /data/amo/www/addons.mozilla.org-preview/bin; /usr/bin/python26 maintenance.py share_count_totals
 30 10 * * * cd /data/amo/www/addons.mozilla.org-preview/bin; /usr/bin/python26 build-recommendations.py addons
-30 16 * * * cd /data/amo/www/addons.mozilla.org-preview/bin; /usr/bin/python26 build-recommendations.py collections
+30 16 * * * cd /data/amo_python/src/preview/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron collection_meta
 
 #Once per day after 2100 PST (after metrics is done)
 35 21 * * * cd /data/amo_python/src/preview/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron update_addon_download_totals

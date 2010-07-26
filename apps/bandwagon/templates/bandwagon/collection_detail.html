@@ -50,7 +50,7 @@
 
 <div class="separated-listing">
   <h3>
-    {% trans num=c.addon_count %}
+    {% trans num=addons.paginator.count %}
       {{ num }} Add-on in this Collection
     {% pluralize %}
       {{ num }} Add-ons in this Collection
@@ -78,7 +78,7 @@
 </div> {# primary #}
 
 <div class="secondary">
-<div class="highlight"></div>
+<div class="highlight">
   <h3>{{ _('What are Collections?') }}</h3>
   <p>{% trans %}
   Collections are groups of related add-ons that anyone can create and share.
@@ -86,6 +86,20 @@
   <a class="more-info" href="{{ url('collections.list') }}">
     {{ _('Explore Collections') }}</a>
 </div>
+
+{% if tags %}
+  <div>
+    <h3>{{ _('Common Tags') }}</h3>
+    <ul class="addon-tags">
+      {% for tag in tags %}
+        <li class="usertag">
+          <a class="tagitem" href="{{ tag.get_url_path() }}">
+            {{ tag.tag_text }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endif %}
 
 {% if author_collections %}
   <div>
@@ -98,4 +112,6 @@
       {{ _('See all collections by this user') }}</a>
   </div>
 {% endif %}
+</div> {# secondary #}
+
 {% endblock %}

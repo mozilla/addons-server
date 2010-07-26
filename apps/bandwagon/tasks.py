@@ -9,6 +9,7 @@ from celery.decorators import task
 # from PIL import Image
 
 import amo
+from tags.models import AddonTag
 from . import cron  # Pull in tasks run through cron.
 from .models import Collection, CollectionAddon, CollectionVote
 
@@ -47,7 +48,16 @@ def collection_meta(*ids):
     counts = dict(qs.annotate(Count('id')))
     persona_counts = dict(qs.filter(addon__type=amo.ADDON_PERSONA)
                           .annotate(Count('id')))
+    tags = (AddonTag.objects.values_list('tag').annotate(cnt=Count('tag'))
+            .filter(cnt__gt=1).order_by('-cnt'))
     for c in Collection.objects.filter(id__in=ids):
         c.addon_count = counts.get(c.id, 0)
         c.all_personas = c.addon_count == persona_counts.get(c.id, None)
+        addons = list(c.addons.values_list('id', flat=True))
+        c.top_tags = [t for t, _ in tags.filter(addon__in=addons)[:5]]
         c.save()
+
+
+@task(rate_limit='10/m')
+def cron_collection_meta(*addons):
+    collection_meta(*addons)
