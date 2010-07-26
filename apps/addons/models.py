@@ -68,10 +68,8 @@ class AddonManager(amo.models.ManagerBase):
         if len(status) == 0:
             status = [amo.STATUS_PUBLIC]
 
-        has_version = Q(appsupport__app=app.id,
-                        _current_version__isnull=False)
-        is_weird = Q(type=amo.ADDON_PERSONA) | Q(status=amo.STATUS_LISTED)
-        return self.filter(has_version | is_weird,
+        hasver = Q(type=amo.ADDON_PERSONA) | Q(_current_version__isnull=False)
+        return self.filter(hasver, appsupport__app=app.id,
                            inactive=False, status__in=status)
 
 
@@ -396,10 +394,10 @@ class Addon(amo.models.ModelBase):
     @amo.cached_property
     def compatible_apps(self):
         """Shortcut to get compatible apps for the current version."""
-        # Search providers don't actually list their supported apps.
-        if self.type == amo.ADDON_SEARCH:
+        # Search providers and personas don't list their supported apps.
+        if self.type in (amo.ADDON_SEARCH, amo.ADDON_PERSONA):
             return dict((app, None) for app in
-                        amo.APP_TYPE_SUPPORT[amo.ADDON_SEARCH])
+                        amo.APP_TYPE_SUPPORT[self.type])
         if self.current_version:
             return self.current_version.compatible_apps
         else:
