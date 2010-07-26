@@ -51,7 +51,7 @@ def collection_detail(request, username, slug):
                                    key='sort', default='popular')
     notes = get_notes(cn)
     count = base.with_index(addons='type_status_inactive_idx').count()
-    addons = amo.utils.paginate(request, filter.qs, count=count)
+    addons = amo.utils.paginate(request, filter.qs, per_page=15, count=count)
     return jingo.render(request, 'bandwagon/collection_detail.html',
                         {'collection': cn, 'filter': filter,
                          'addons': addons, 'notes': notes})

@@ -11,15 +11,7 @@
     <div class="featured-inner">
       {{ addon_listing_header(url_base, filter.opts, filter.field,
                               show_unreviewed=False) }}
-      <ul class="personas-grid">
-        {% cache addons.object_list %}
-        {% for addon in addons.object_list %}
-        <li>
-            {{ persona_preview(addon.persona, size='small', details=True) }}
-        </li>
-        {% endfor %}
-        {% endcache %}
-      </ul>
+      {{ persona_grid(addons.object_list) }}
       <div class="listing-footer">
         {{ addons|paginator }}
       </div>

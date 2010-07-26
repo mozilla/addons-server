@@ -67,7 +67,11 @@
     <button type="submit">{{ _('Go') }}</button>
   </form>
   {% cache addons.object_list %}
-    {{ addon_listing_items(addons.object_list, notes=notes.next()) }}
+    {% if c.all_personas %}
+      {{ persona_grid(addons.object_list) }}
+    {% else %}
+      {{ addon_listing_items(addons.object_list, notes=notes.next()) }}
+    {% endif %}
     {{ addons|paginator }}
   {% endcache %}
 </div>

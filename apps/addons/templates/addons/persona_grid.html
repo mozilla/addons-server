@@ -1,0 +1,9 @@
+<ul class="personas-grid">
+  {% cache addons %}
+  {% for addon in addons %}
+  <li>
+      {{ persona_preview(addon.persona, size='small', details=True) }}
+  </li>
+  {% endfor %}
+  {% endcache %}
+</ul>
