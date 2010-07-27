@@ -1,0 +1,99 @@
+#!/usr/bin/env python
+import os
+from string import Template
+
+CRONS = {}
+
+COMMON = {
+    'PYTHON_CRON': '/data/virtualenvs/zamboni/bin/python manage.py cron',
+}
+
+CRONS['preview'] = {
+    'ZAMBONI': '/data/amo_python/src/preview/zamboni',
+    'REMORA': 'cd /data/amo/www/addons.mozilla.org-preview/bin',
+    'Z_CRON': 'cd $ZAMBONI; $PYTHON_CRON',
+}
+
+CRONS['prod'] = {
+    'ZAMBONI': '/data/amo_python/src/prod/zamboni',
+    'REMORA': 'apache cd /data/amo/www/addons.mozilla.org-remora/bin',
+    'Z_CRON': 'apache cd $ZAMBONI; $PYTHON_CRON',
+}
+
+# Update each dict with the values from common.
+for key, dict_ in CRONS.items():
+    dict_.update(COMMON)
+
+# Do any interpolation inside the keys.
+for dict_ in CRONS.values():
+    for key, val in dict_.items():
+        dict_[key] = Template(val).substitute(dict_)
+
+
+cron = """\
+#
+# !!AUTO-GENERATED!!  Edit scripts/crontab/make-crons.py instead.
+#
+
+MAILTO=amo-developers@mozilla.org
+
+HOME = /tmp
+
+# Every minute!
+
+#once per hour
+5 * * * * $Z_CRON update_collections_subscribers
+10 * * * * $REMORA; php -f maintenance.php blog
+15 * * * * $REMORA; php -f update-search-views.php
+20 * * * * $Z_CRON addon_last_updated
+25 * * * * $Z_CRON update_collections_votes
+30 * * * * $REMORA; php -f maintenance.php l10n_stats
+35 * * * * $REMORA; php -f maintenance.php l10n_rss
+40 * * * * $Z_CRON fetch_ryf_blog
+
+
+#every 3 hours
+20 */3 * * * $REMORA; php -f compatibility_report.php
+20 */3 * * * $REMORA; /usr/bin/python26 maintenance.py collection_addon_count
+25 */3 * * * $Z_CRON update_addons_current_version
+30 */3 * * * $Z_CRON update_addon_appsupport
+
+#twice per day
+25 1,13 * * * $REMORA; /usr/bin/python26 import-personas.py
+25 2,14 * * * $REMORA; /usr/bin/python26 maintenance.py collections_ratings
+25 3,15 * * * $Z_CRON update_addons_collections_downloads
+25 4,16 * * * $Z_CRON update_collections_total
+
+#once per day
+30 1 * * * $Z_CRON update_user_ratings
+30 2 * * * $Z_CRON addon_reviews_ratings
+30 4 * * * $REMORA; php -f maintenance.php gc
+30 5 * * * $REMORA; php -f maintenance.php expired_resetcode
+30 6 * * * $REMORA; php -f maintenance.php category_totals
+30 7 * * * $REMORA; php -f maintenance.php collection_subscribers
+30 8 * * * $REMORA; /usr/bin/python26 maintenance.py personas_adu
+30 9 * * * $REMORA; /usr/bin/python26 maintenance.py share_count_totals
+30 10 * * * $REMORA; /usr/bin/python26 build-recommendations.py addons
+30 16 * * * $REMORA; /usr/bin/python26 build-recommendations.py collections
+
+#Once per day after 2100 PST (after metrics is done)
+35 21 * * * $Z_CRON update_addon_download_totals
+40 21 * * * $REMORA; /usr/bin/python26 maintenance.py weekly
+35 22 * * * $Z_CRON update_global_totals
+40 22 * * * $Z_CRON update_addon_average_daily_users
+
+# Once per week
+45 23 * * 4 $REMORA; php -f maintenance.php unconfirmed
+
+MAILTO=root
+"""
+
+
+def main():
+    for key, vals in CRONS.items():
+        path = os.path.join(os.path.dirname(__file__), key)
+        open(path, 'w').write(Template(cron).substitute(vals))
+
+
+if __name__ == '__main__':
+    main()

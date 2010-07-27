@@ -1,20 +1,27 @@
+#
+# !!AUTO-GENERATED!!  Edit scripts/crontab/make-crons.py instead.
+#
+
 MAILTO=amo-developers@mozilla.org
+
+HOME = /tmp
 
 # Every minute!
 
 #once per hour
 5 * * * * apache cd /data/amo_python/src/prod/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron update_collections_subscribers
 10 * * * * apache cd /data/amo/www/addons.mozilla.org-remora/bin; php -f maintenance.php blog
-15 * * * * apache cd /data/amo/www/addons.mozilla.org-remora/bin ; php -f update-search-views.php
+15 * * * * apache cd /data/amo/www/addons.mozilla.org-remora/bin; php -f update-search-views.php
 20 * * * * apache cd /data/amo_python/src/prod/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron addon_last_updated
 25 * * * * apache cd /data/amo_python/src/prod/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron update_collections_votes
 30 * * * * apache cd /data/amo/www/addons.mozilla.org-remora/bin; php -f maintenance.php l10n_stats
 35 * * * * apache cd /data/amo/www/addons.mozilla.org-remora/bin; php -f maintenance.php l10n_rss
 40 * * * * apache cd /data/amo_python/src/prod/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron fetch_ryf_blog
 
+
 #every 3 hours
-20 */3 * * * apache cd /data/amo/www/addons.mozilla.org-remora/bin ; php -f compatibility_report.php
-20 */3 * * * apache cd /data/amo/www/addons.mozilla.org-remora/bin ; /usr/bin/python26 maintenance.py collection_addon_count
+20 */3 * * * apache cd /data/amo/www/addons.mozilla.org-remora/bin; php -f compatibility_report.php
+20 */3 * * * apache cd /data/amo/www/addons.mozilla.org-remora/bin; /usr/bin/python26 maintenance.py collection_addon_count
 25 */3 * * * apache cd /data/amo_python/src/prod/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron update_addons_current_version
 30 */3 * * * apache cd /data/amo_python/src/prod/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron update_addon_appsupport
 
@@ -26,8 +33,7 @@ MAILTO=amo-developers@mozilla.org
 
 #once per day
 30 1 * * * apache cd /data/amo_python/src/prod/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron update_user_ratings
-30 2 * * * apache cd /data/amo/www/addons.mozilla.org-remora/bin; php -f maintenance.php reviews
-30 3 * * * apache cd /data/amo/www/addons.mozilla.org-remora/bin; php -f maintenance.php ratings
+30 2 * * * apache cd /data/amo_python/src/prod/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron addon_reviews_ratings
 30 4 * * * apache cd /data/amo/www/addons.mozilla.org-remora/bin; php -f maintenance.php gc
 30 5 * * * apache cd /data/amo/www/addons.mozilla.org-remora/bin; php -f maintenance.php expired_resetcode
 30 6 * * * apache cd /data/amo/www/addons.mozilla.org-remora/bin; php -f maintenance.php category_totals

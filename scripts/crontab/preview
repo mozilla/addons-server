@@ -1,3 +1,7 @@
+#
+# !!AUTO-GENERATED!!  Edit scripts/crontab/make-crons.py instead.
+#
+
 MAILTO=amo-developers@mozilla.org
 
 HOME = /tmp
@@ -7,7 +11,7 @@ HOME = /tmp
 #once per hour
 5 * * * * cd /data/amo_python/src/preview/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron update_collections_subscribers
 10 * * * * cd /data/amo/www/addons.mozilla.org-preview/bin; php -f maintenance.php blog
-15 * * * * cd /data/amo/www/addons.mozilla.org-preview/bin ; php -f update-search-views.php
+15 * * * * cd /data/amo/www/addons.mozilla.org-preview/bin; php -f update-search-views.php
 20 * * * * cd /data/amo_python/src/preview/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron addon_last_updated
 25 * * * * cd /data/amo_python/src/preview/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron update_collections_votes
 30 * * * * cd /data/amo/www/addons.mozilla.org-preview/bin; php -f maintenance.php l10n_stats
@@ -16,8 +20,8 @@ HOME = /tmp
 
 
 #every 3 hours
-20 */3 * * * cd /data/amo/www/addons.mozilla.org-preview/bin ; php -f compatibility_report.php
-20 */3 * * * cd /data/amo/www/addons.mozilla.org-preview/bin ; /usr/bin/python26 maintenance.py collection_addon_count
+20 */3 * * * cd /data/amo/www/addons.mozilla.org-preview/bin; php -f compatibility_report.php
+20 */3 * * * cd /data/amo/www/addons.mozilla.org-preview/bin; /usr/bin/python26 maintenance.py collection_addon_count
 25 */3 * * * cd /data/amo_python/src/preview/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron update_addons_current_version
 30 */3 * * * cd /data/amo_python/src/preview/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron update_addon_appsupport
 
