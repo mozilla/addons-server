@@ -20,11 +20,13 @@
       <img src="{{ c.icon_url }}" class="icon">
       <span>{{ c.name }}</span>
     </h2>
+    {% if collection.author %}
     <h4 class="author">
       {% trans users=users_list([collection.author]) %}
         by {{ users }}
       {% endtrans %}
     </h4>
+    {% endif %}
   </hgroup>
 </header>
 
