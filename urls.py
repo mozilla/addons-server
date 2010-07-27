@@ -95,6 +95,7 @@ urlpatterns = patterns('',
 
     ('^addons/contribute/(\d+)/?$',
      lambda r, id: redirect('addons.contribute', id, permanent=True)),
+
 )
 
 if settings.DEBUG:

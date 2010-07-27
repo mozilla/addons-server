@@ -48,7 +48,7 @@ def gc(test_result=True):
     TestResultCache.objects.filter(date__lt=one_hour_ago).delete()
 
     log.debug('Cleaning up test results extraction cache.')
-    if settings.NETAPP_STORAGE:
+    if settings.NETAPP_STORAGE and settings.NETAPP_STORAGE != '/':
         cmd = ('find', settings.NETAPP_STORAGE, '-maxdepth', '1', '-name',
                'validate-*', '-mtime', '+7', '-type', 'd',
                '-exec', 'rm', '-rf', "{}", ';')
@@ -60,6 +60,17 @@ def gc(test_result=True):
 
     else:
         log.warning('NETAPP_STORAGE not defined.')
+
+    if settings.COLLECTIONS_ICON_PATH:
+        log.debug('Cleaning up uncompressed icons.')
+
+        cmd = ('find', settings.COLLECTIONS_ICON_PATH,
+               '-name', '*__unconverted', '-mtime', '+1', '-type', 'f',
+               '-exec', 'rm', '{}', ';')
+        output = Popen(cmd, stdout=PIPE).communicate()[0]
+
+        for line in output.split("\n"):
+            log.debug(line)
 
     # Paypal only keeps retrying to verify transactions for up to 3 days. If we
     # still have an unverified transaction after 6 days, we might as well get

@@ -354,6 +354,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/personas.js',
 
             # Collections
+            'js/zamboni/jquery-ui/custom-1.8.2.min.js',
             'js/zamboni/collections.js',
         ),
     }
@@ -382,6 +383,7 @@ JAVA_BIN = '/usr/bin/java'
 
 # File paths
 USERPICS_PATH = UPLOADS_PATH + '/userpics'
+COLLECTIONS_ICON_PATH = UPLOADS_PATH + '/addon_icons'
 
 # URL paths
 # paths for images, e.g. mozcdn.com/amo or '/static'
@@ -518,6 +520,10 @@ def read_only_mode(env):
     m = list(env['MIDDLEWARE_CLASSES'])
     m.insert(m.index(before), extra)
     env['MIDDLEWARE_CLASSES'] = tuple(m)
+
+
+# Uploaded file limits
+MAX_ICON_UPLOAD_SIZE = 4 * 1024 * 1024
 
 
 ## Feature switches

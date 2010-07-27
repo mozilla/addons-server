@@ -18,4 +18,5 @@ urlpatterns = patterns('',
         name='collections.user'),
     url('^collections/(?P<username>[^/]+)/(?P<slug>[^/]+)/',
         include(detail_urls)),
+    url('^collections/add$', views.add, name='collections.add'),
 )

@@ -10,6 +10,7 @@ from addons.models import Addon
 from addons.views import BaseFilter
 from translations.query import order_by_translation
 from .models import Collection, CollectionAddon, CollectionVote
+from . import forms
 
 
 def legacy_redirect(self, uuid):
@@ -88,3 +89,25 @@ def collection_vote(request, username, slug, direction):
         return http.HttpResponse()
     else:
         return redirect(cn.get_url_path())
+
+
+@login_required
+def add(request):
+    "Displays/processes a form to create a collection."
+    data = {}
+    if request.method == 'POST':
+        form = forms.CollectionForm(
+                request.POST, request.FILES,
+                initial={'author': request.amo_user,
+                         'application_id': request.APP.id})
+        if form.is_valid():
+            collection = form.save()
+            return http.HttpResponseRedirect(collection.get_url_path())
+        else:
+            data['addons'] = form.clean_addon()
+            data['comments'] = form.clean_addon_comment()
+    else:
+        form = forms.CollectionForm()
+
+    data['form'] = form
+    return jingo.render(request, 'bandwagon/add.html', data)

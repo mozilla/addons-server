@@ -303,8 +303,89 @@ $(document).ready(function(){
     collections.hijack_favorite_button();
 });
 
+/* Slugifier for Collection slug based on Collection name */
+if ($('body.collections-add')) {
+  var url_customized = !!$('#id_slug').val();
+  var slugify = function() {
+      var slug = $('#id_slug');
+      if (!url_customized || !slug.val()) {
+          var s = $('#id_name').val().replace(/[^\w\s-]/g, '');
+          s = s.replace(/[-\s]+/g, '-').toLowerCase();
+          slug.val(s);
+      }
+  }
+
+  $('#id_name').keyup(slugify);
+  $('#id_name').blur(slugify);
+
+  $('#id_slug').change(function() {
+      url_customized = true;
+      if (!$('#id_slug').val()) {
+          url_customized = false;
+          slugify();
+      }
+  });
+}
+
+/* Autocomplete for collection add form. */
+$('#addon-ac').autocomplete({
+      minLength: 3,
+      source: function(request, response) {
+          $.getJSON($('#addon-ac').attr('data-src'), {
+              q: request.term
+          }, response);
+      },
+      focus: function(event, ui) {
+          $('#addon-ac').val(ui.item.label);
+          return false;
+      },
+			select: function(event, ui) {
+				$('#addon-ac').val(ui.item.label).attr('data-id', ui.item.id)
+        .attr('data-icon', ui.item.icon);
+
+				return false;
+			}
+    });
+
+$('#addon-select').click(function() {
+    var id = $('#addon-ac').attr('data-id');
+    var name = $('#addon-ac').val();
+    var icon = $('#addon-ac').attr('data-icon');
+
+    // Verify that we aren't listed already
+    if ($('input[name=addon][value='+id+']').length) {
+        return false;
+    }
+
+    if (id && name && icon) {
+
+        var tr = _.template('<tr>' +
+            '<td>' +
+            '<input name="addon" value="{{ id }}" type="hidden">' +
+            '<p><img src="{{ icon }}"> {{ name }}' +
+            '</p><p style="display:none">' +
+            '<textarea name="addon_comment"></textarea>' +
+            '</p></td>' +
+            '<td class="comment">x</td>' +
+            '<td class="remove">x</td>' +
+            '</tr>'
+            );
+        var str = tr({id: id, name: name, icon: icon});
+        $('#addon-select').closest('tbody').append(str);
+    }
+    return false;
+});
+
+var table = $('#addon-ac').closest('table')
+table.delegate(".remove", "click", function() {
+    $(this).closest('tr').remove();
+})
+.delegate(".comment", "click", function() {
+    var row = $(this).closest('tr');
+    row.find('textarea').parent().show();
+});
+
+
 })();
-
-
 
 

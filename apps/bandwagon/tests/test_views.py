@@ -1,3 +1,8 @@
+import os
+
+from django.conf import settings
+from django.http import QueryDict
+
 from nose.tools import eq_
 import test_utils
 
@@ -14,7 +19,7 @@ class TestViews(test_utils.TestCase):
             eq_(response.status_code, 404)
         elif code in (301, 302):
             self.assertRedirects(response, to, status_code=code)
-        else:
+        else:  # pragma: no cover
             assert code in (301, 302, 404), code
 
     def test_legacy_redirects(self):
@@ -92,3 +97,43 @@ class TestVotes(test_utils.TestCase):
                              HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         assert not r.redirect_chain
         eq_(r.status_code, 200)
+
+
+class TestAdd(test_utils.TestCase):
+    """Test the collection form."""
+    fixtures = ['base/fixtures']
+
+    def setUp(self):
+        self.client.login(username='admin@mozilla.com', password='password')
+        self.add_url = reverse('collections.add')
+        self.data = {
+                'addon': 3615,
+                'addon_comment': "fff",
+                'name': "flagtir's ye ole favorites",
+                'slug': "pornstar",
+                'description': '',
+                'listed': 'True'
+                }
+
+    def test_showform(self):
+        """Shows form if logged in."""
+        r = self.client.get(self.add_url)
+        eq_(r.status_code, 200)
+
+    def test_submit(self):
+        """Test submission of addons."""
+        # TODO(davedash): Test file uploads, test multiple addons.
+        r = self.client.post(self.add_url, self.data, follow=True)
+        eq_(r.request['PATH_INFO'],
+            '/en-US/firefox/collections/admin/pornstar/')
+        c = Collection.objects.get(slug='pornstar')
+        eq_(unicode(c.name), self.data['name'])
+        eq_(c.description, None)
+        eq_(c.addons.all()[0].id, 3615)
+
+    def test_duplicate_slug(self):
+        """Try the same thing twice.  AND FAIL"""
+        self.client.post(self.add_url, self.data, follow=True)
+        r = self.client.post(self.add_url, self.data, follow=True)
+        eq_(r.context['form'].errors['slug'][0],
+            'This url is already in use by another collection')
