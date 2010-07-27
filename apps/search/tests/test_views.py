@@ -1,8 +1,10 @@
+# -*- coding: utf8 -*-
+import json
 import urllib
 
 from django.test import client
 
-from mock import Mock
+from mock import Mock, patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 import test_utils
@@ -11,6 +13,7 @@ import amo
 from amo.urlresolvers import reverse
 from search.tests import SphinxTestCase
 from search import views
+from search.client import SearchError
 from addons.models import Addon, Category
 from tags.models import Tag
 
@@ -231,3 +234,33 @@ class ViewTest(test_utils.TestCase):
     def test_get_tags(self):
         t = Tag(tag_text='yermom')
         assert views._get_tags(self.fake_request, tags=[t], selected='yermom')
+
+
+
+class AjaxTest(SphinxTestCase):
+    fixtures = ['base/fixtures']
+
+    def test_json(self):
+        r = self.client.get(reverse('search.ajax') + '?q=del')
+        data = json.loads(r.content)
+
+        check = lambda x, y: eq_(data[0][val], expected)
+
+        addon = Addon.objects.get(pk=3615)
+        check_me = (
+                ('id', addon.id),
+                ('icon', addon.icon_url),
+                ('label', unicode(addon.name)),
+                ('value', unicode(addon.name).lower())
+                )
+
+        for val, expected in check_me:
+            check(val, expected)
+
+    @patch('search.client.Client.query')
+    def test_errors(self, searchclient):
+        searchclient.side_effect = SearchError()
+        r = self.client.get(reverse('search.ajax') + '?q=del')
+        eq_('[]', r.content)
+
+

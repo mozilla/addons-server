@@ -1,8 +1,9 @@
 from collections import defaultdict
 from datetime import timedelta, datetime
+import json
 import time
 
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 
 import jingo
 from tower import ugettext as _
@@ -215,6 +216,28 @@ def _collections(request):
         }
 
     return jingo.render(request, 'search/collections.html', c)
+
+
+def ajax_search(request):
+    """ Returns a json feed of ten results for auto-complete used in
+    collections.
+    [
+        {"id": 123, "name": "best addon", "icon": "http://path/to/icon"},
+        ...
+    ]
+    """
+
+    q = request.GET.get('q', '')
+    client = SearchClient()
+    try:
+        results = client.query(q, limit=10)
+        items = [dict(id=result.id, label=unicode(result.name),
+                      icon=result.icon_url, value=unicode(result.name).lower())
+                 for result in results]
+    except SearchError:
+        items = []
+
+    return HttpResponse(json.dumps(items), mimetype='application/json')
 
 
 def search(request):
