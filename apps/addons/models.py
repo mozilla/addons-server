@@ -37,16 +37,15 @@ class AddonManager(amo.models.ManagerBase):
 
     def public(self):
         """Get public add-ons only"""
-        return self.filter(inactive=False, status=amo.STATUS_PUBLIC)
+        return self.filter(self.valid_q([amo.STATUS_PUBLIC]))
 
     def unreviewed(self):
         """Get only unreviewed add-ons"""
-        return self.filter(inactive=False,
-                           status__in=amo.UNREVIEWED_STATUSES)
+        return self.filter(self.valid_q(amo.UNREVIEWED_STATUSES))
 
     def valid(self):
         """Get valid, enabled add-ons only"""
-        return self.filter(status__in=amo.VALID_STATUSES, inactive=False)
+        return self.filter(self.valid_q(amo.VALID_STATUSES))
 
     def featured(self, app):
         """
@@ -68,9 +67,26 @@ class AddonManager(amo.models.ManagerBase):
         if len(status) == 0:
             status = [amo.STATUS_PUBLIC]
 
-        hasver = Q(type=amo.ADDON_PERSONA) | Q(_current_version__isnull=False)
-        return self.filter(hasver, appsupport__app=app.id,
-                           inactive=False, status__in=status)
+        return self.filter(self.valid_q(status), appsupport__app=app.id)
+
+    def valid_q(self, status=[], prefix=''):
+        """
+        Return a Q object that selects a valid Addon with the given statuses.
+
+        An add-on is valid if it's not inactive and has a current version.
+        ``prefix`` can be used if you're not working with Addon directly and
+        need to hop across a join, e.g. ``prefix='addon__'`` in
+        CollectionAddon.
+        """
+        if not status:
+            status = [amo.STATUS_PUBLIC]
+        def q(*args, **kw):
+            if prefix:
+                kw = dict((prefix + k, v) for k, v in kw.items())
+            return Q(*args, **kw)
+
+        return q(q(type=amo.ADDON_PERSONA) | q(_current_version__isnull=False),
+                 inactive=False, status__in=status)
 
 
 class Addon(amo.models.ModelBase):

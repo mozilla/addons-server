@@ -5077,6 +5077,35 @@
         }
     },
     {
+        "pk": 592,
+        "model": "versions.version",
+        "fields": {
+            "license": 5,
+            "created": "2009-12-06 03:06:48",
+            "releasenotes": null,
+            "modified": "2009-12-06 06:43:48",
+            "approvalnotes": "",
+            "version": "1.32",
+            "addon": 592
+        }
+    },
+    {
+        "pk": 592,
+        "model": "files.file",
+        "fields": {
+            "status": 4,
+            "codereview": 0,
+            "hash": "sha256:fa8934ccfacc78cd35944ae1a1fd0b398f5644698e2f362358c711726e81737e",
+            "created": "2009-12-06 06:47:22",
+            "modified": "2010-01-14 14:15:29",
+            "filename": "gmail/mime-1.32-fx.xpi",
+            "platform": 1,
+            "version": 592,
+            "size": 110,
+            "datestatuschanged": "2010-01-14 14:15:28"
+        }
+    },
+    {
         "pk": 86740,
         "model": "versions.version",
         "fields": {

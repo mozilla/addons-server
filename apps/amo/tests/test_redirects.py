@@ -1,17 +1,17 @@
 # -*- coding: utf8 -*-
 """Check all our redirects from remora to zamboni."""
-from django import test
-
 from nose.tools import eq_
+import test_utils
 
 import amo
+import amo.test_utils
 from addons.models import Category
 from applications.models import Application
 
 
-class TestRedirects(test.TestCase):
+class TestRedirects(amo.test_utils.ExtraSetup, test_utils.TestCase):
 
-    fixtures = ['reviews/test_models', 'base/global-stats']
+    fixtures = ['base/apps', 'reviews/test_models', 'base/global-stats']
 
     def test_persona_category(self):
         """`/personas/film and tv` should go to /personas/film-and-tv"""

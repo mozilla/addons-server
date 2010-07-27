@@ -4,6 +4,7 @@ import mock
 import test_utils
 
 import amo
+import amo.test_utils
 from amo.urlresolvers import reverse
 from addons.models import Addon
 from versions import views
@@ -134,8 +135,8 @@ class TestLicense(test_utils.TestCase):
                 assert lic.text
 
 
-class TestViews(test_utils.TestCase):
-    fixtures = ['addons/eula+contrib-addon']
+class TestViews(amo.test_utils.ExtraSetup, test_utils.TestCase):
+    fixtures = ['addons/eula+contrib-addon', 'base/apps']
 
     def setUp(self):
         self.old_perpage = views.PER_PAGE
@@ -172,8 +173,8 @@ class TestViews(test_utils.TestCase):
         eq_(doc('.version').attr('id'), 'version-%s' % version)
 
 
-class TestFeeds(test_utils.TestCase):
-    fixtures = ['addons/versions']
+class TestFeeds(amo.test_utils.ExtraSetup, test_utils.TestCase):
+    fixtures = ['base/apps', 'addons/versions']
 
     def test_feed_elements_present(self):
         """specific elements are present and reasonably well formed"""
