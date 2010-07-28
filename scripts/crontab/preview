@@ -6,7 +6,8 @@ MAILTO=amo-developers@mozilla.org
 
 HOME = /tmp
 
-# Every minute!
+# Every 20 minutes!
+*/20 * * * * cd /data/amo_python/src/preview/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron update_addons_current_version
 
 #once per hour
 5 * * * * cd /data/amo_python/src/preview/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron update_collections_subscribers
@@ -17,10 +18,8 @@ HOME = /tmp
 30 * * * * cd /data/amo/www/addons.mozilla.org-preview/bin; php -f maintenance.php l10n_stats
 35 * * * * cd /data/amo/www/addons.mozilla.org-preview/bin; php -f maintenance.php l10n_rss
 40 * * * * cd /data/amo_python/src/preview/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron fetch_ryf_blog
-45 * * * * cd /data/amo_python/src/preview/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron update_addons_current_version
+45 * * * * cd /data/amo_python/src/preview/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron update_addon_appsupport
 
-#every 2 hours
-30 */2 * * * cd /data/amo_python/src/preview/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron update_addon_appsupport
 
 #every 3 hours
 20 */3 * * * cd /data/amo/www/addons.mozilla.org-preview/bin; php -f compatibility_report.php

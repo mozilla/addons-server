@@ -39,7 +39,8 @@ MAILTO=amo-developers@mozilla.org
 
 HOME = /tmp
 
-# Every minute!
+# Every 20 minutes!
+*/20 * * * * $Z_CRON update_addons_current_version
 
 #once per hour
 5 * * * * $Z_CRON update_collections_subscribers
@@ -50,10 +51,8 @@ HOME = /tmp
 30 * * * * $REMORA; php -f maintenance.php l10n_stats
 35 * * * * $REMORA; php -f maintenance.php l10n_rss
 40 * * * * $Z_CRON fetch_ryf_blog
-45 * * * * $Z_CRON update_addons_current_version
+45 * * * * $Z_CRON update_addon_appsupport
 
-#every 2 hours
-30 */2 * * * $Z_CRON update_addon_appsupport
 
 #every 3 hours
 20 */3 * * * $REMORA; php -f compatibility_report.php
