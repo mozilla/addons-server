@@ -40,6 +40,9 @@ def csv_dynamic_prep(stats, queryset, field_list, total_key, dynamic_key):
     Returns a tuple containing a row generator and a list of field
     names suitable for the CSV header.
     """
+    if not queryset:
+        return ([], [])
+
     # Summarize entire queryset to get all dynamic field names and
     # determine if we need to calculate 'unknown' values.
     totals = queryset.summary(**dict(field_list))

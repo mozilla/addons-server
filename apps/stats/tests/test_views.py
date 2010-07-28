@@ -241,6 +241,17 @@ class TestCSVs(TestSeriesBase):
             testname = 'test_%s' % view[6:]  # everything after 'stats.'
             assert hasattr(self, testname), "no test for '%s'" % view
 
+    def test_usage_series_no_data(self):
+        self.url_args = {'start': '20010101', 'end': '20010130', 'addon_id': 4}
+        response = self.get_view_response('stats.versions_series',
+                                          group='day', format='csv')
+
+        eq_(response.status_code, 200)
+        rows = list(csv.reader(response.content.split('\n')))
+        eq_(len(rows), 10)
+        eq_(rows[8], ['# Fields: []']) # Header is present
+        eq_(rows[9], []) # There is no data
+
 
 class TestCacheControl(TestSeriesBase):
     """Tests we set cache control headers"""
