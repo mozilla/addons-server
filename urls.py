@@ -74,7 +74,7 @@ urlpatterns = patterns('',
     ('^persona/(\d+)',
      lambda r, id: redirect('addons.detail', id, permanent=True)),
 
-    # Redirect persona/xxx
+    # Redirect top-tags to tags/top
     ('^top-tags/?',
      lambda r: redirect('tags.top_cloud', permanent=True)),
 
