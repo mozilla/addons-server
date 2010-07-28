@@ -228,7 +228,7 @@ class Addon(amo.models.ModelBase):
                 status = amo.VALID_STATUSES
 
             status_list = ','.join(map(str, status))
-            return self.versions.filter(
+            return self.versions.no_cache().filter(
                 files__status__in=status).extra(
                 where=["""
                     NOT EXISTS (
