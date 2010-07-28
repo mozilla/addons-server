@@ -7,7 +7,8 @@
 .aux .button-wrapper:after,
 .object-lead .button-wrapper:after,
 .article.version:after,
-.article.review:after {
+.article.review:after,
+.grouped_ratings li:after {
     content: ".";
     display: block;
     clear: both;
@@ -2181,6 +2182,9 @@ ul.review-options > li:not(:first-child) {
 .review.deleted {
     display: none;
 }
+h6.author, .author a {
+    font-weight: normal;
+}
 .reviews .highlight > span {
     display: block;
 }
@@ -2190,13 +2194,76 @@ ul.review-options > li:not(:first-child) {
 }
 .reviews .highlight > div {
     margin: 0;
-    padding: 1em 0;
+    padding: 1em .2em;
     border-top: 1px dashed #ccc;
+    font-size: .9em;
 }
 .reviews .highlight > div:last-child {
     text-align: center;
     padding-bottom: 0;
 }
+
+.average_rating {
+    margin: 0 .2em;
+}
+
+.average_rating .stars {
+    margin-right: .9em;
+}
+
+/* grouped ratings style */
+
+.grouped_ratings .rating_bar {
+    border-left: 1px solid black;
+    margin-left: 72px;
+    padding-right: 4em;
+    height: 2em;
+}
+
+.grouped_ratings li {
+    margin: 0;
+    overflow: hidden;
+    height: 2em;
+}
+
+.grouped_ratings .rating_bar span.bar {
+    display: block;
+    background: #acd;
+    float: left;
+    margin: .4em .5em 0 0;
+    height: .9em;
+    position: relative;
+}
+
+.grouped_ratings .rating_bar span.num_ratings {
+    display: block;
+    position: absolute;
+    right: -.5em;
+    top: -2px;
+    line-height: 1em;
+    width: 1px;
+    overflow: visible;
+}
+
+
+/* stacking the stars to the right for the grouped ratings */
+
+.grouped_ratings .stars-4 {
+    background-position: 13px 50%;
+}
+.grouped_ratings .stars-3 {
+    background-position: 26px 50%;
+}
+.grouped_ratings .stars-2 {
+    background-position: 39px 50%;
+}
+.grouped_ratings .stars-1 {
+    background-position: 52px 50%;
+}
+.grouped_ratings .stars-0 {
+    background-position: 65px 50%;
+}
+
 .review:hover ul.review-options > li > a {
     color: #0055EE;
 }

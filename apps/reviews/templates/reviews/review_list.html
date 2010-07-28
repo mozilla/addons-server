@@ -11,40 +11,41 @@
 {% endblock %}
 
 {% block content %}
+{% block review_header %}
+<header>
+  {# Give a link back to reviews if we're looking at user reviews or a detail page. #}
+  {% with link = None if page == 'list' else url('reviews.list', addon.id) %}
+    {{ breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
+                    (addon.get_url_path(), addon.name),
+                    (link, _('Reviews'))]) }}
+  {% endwith %}
+  <hgroup>
+    {% if page == "list" %}
+      <h2>{{ _('Reviews for {0}')|f(addon.name) }}</h2>
+      {% with num = reviews.paginator.count %}
+        {# L10n: {0} is a number. #}
+        <h3>{{ ngettext('<b>{0}</b> review for this add-on',
+                        '<b>{0}</b> reviews for this add-on',
+                        num)|f(num|numberfmt)|safe }}</h3>
+      {% endwith %}
+    {% elif reply %}
+      {# L10n: {0} is a developer's name. #}
+      <h2>{{ _('Developer reply by {0}')|f(reply.user.display_name) }}</h2>
+    {% elif reviews %}
+      <h2>{% trans cnt=reviews.object_list|length, addon=addon.name,
+                   user=reviews.object_list[0].user.display_name %}
+        Review for {{ addon }} by {{ user }}
+      {% pluralize %}
+        Reviews for {{ addon }} by {{ user }}
+      {% endtrans %}</h2>
+    {% else %}
+      <h2>{{ _('No reviews found.') }}</h2>
+    {% endif %}
+  </hgroup>
+</header>
+{% endblock %}
 <div class="primary" role="main">
-  {% block review_header %}
-  <header>
-    {# Give a link back to reviews if we're looking at user reviews or a detail page. #}
-    {% with link = None if page == 'list' else url('reviews.list', addon.id) %}
-      {{ breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
-                      (addon.get_url_path(), addon.name),
-                      (link, _('Reviews'))]) }}
-    {% endwith %}
-    <hgroup>
-      {% if page == "list" %}
-        <h2>{{ _('Reviews for {0}')|f(addon.name) }}</h2>
-        {% with num = reviews.paginator.count %}
-          {# L10n: {0} is a number. #}
-          <h3>{{ ngettext('<b>{0}</b> review for this add-on',
-                          '<b>{0}</b> reviews for this add-on',
-                          num)|f(num|numberfmt)|safe }}</h3>
-        {% endwith %}
-      {% elif reply %}
-        {# L10n: {0} is a developer's name. #}
-        <h2>{{ _('Developer reply by {0}')|f(reply.user.display_name) }}</h2>
-      {% elif reviews %}
-        <h2>{% trans cnt=reviews.object_list|length, addon=addon.name,
-                     user=reviews.object_list[0].user.display_name %}
-          Review for {{ addon }} by {{ user }}
-        {% pluralize %}
-          Reviews for {{ addon }} by {{ user }}
-        {% endtrans %}</h2>
-      {% else %}
-        <h2>{{ _('No reviews found.') }}</h2>
-      {% endif %}
-    </hgroup>
-  </header>
-  {% endblock %}
+
 
   {% block review_list %}
   {% for review in reviews.object_list %}
@@ -70,17 +71,25 @@
       </h5>
       <h6 class="author">{{ _('by') }} {{ users_list(addon.listed_authors) }}</h6>
     </hgroup>
-    <div>
+    <div class="average_rating">
       <span>
         {{ addon.average_rating|float|stars }}
-        {{ _('Average Rating ({0})')|f(addon.total_reviews) }}
+        {% trans total=addon.total_reviews %}
+          <strong>Average Rating</strong> ({{ total }})
+        {% endtrans %}
       </span>
     </div>
-    {% if grouped_ratings %}
+    {% if grouped_ratings and addon.total_reviews %}
       <div>
-        <ul>
+        <ul class="grouped_ratings" data-total="{{ addon.total_reviews }}">
         {% for rating, count in grouped_ratings|sort(reverse=True) %}
-          <li>{{ rating|stars }} {{ count }} </li>
+          {% set pct = ( count|float / addon.total_reviews * 100 )|round( method='floor' ) %}
+          <li>{{ rating|stars }}
+            <div class="rating_bar" data-num-reviews="{{ count }}">
+              <span class="bar" style="width:{{ pct }}%">
+                <span class="num_ratings">{{ count }}</span>
+              </span>
+            </div>&nbsp;</li>
         {% endfor %}
         </ul>
       </div>
