@@ -8,7 +8,8 @@ from tower import ugettext as _
 
 from addons.models import Addon
 from .models import Collection, CollectionAddon
-from . import tasks
+# TODO(davedash) uncomment after PIL
+# from . import tasks
 
 privacy_choices = (
         (False, _('Only I can view this collection.')),
@@ -104,8 +105,8 @@ class CollectionForm(forms.ModelForm):
                 fh.write(chunk)
 
             fh.close()
-
-            tasks.resize_icon.delay(tmp_destination, destination)
+            # XXX
+            # tasks.resize_icon.delay(tmp_destination, destination)
 
         for addon in self.cleaned_data['addon']:
             ca = CollectionAddon(collection=c, addon=addon)
