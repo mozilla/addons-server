@@ -41,6 +41,12 @@
           {% endtrans %}
         </li>
         <li>{{ _('Updated {0}')|f(c.modified) }}</li>
+        {% if perms.view_stats %}
+        <li>
+          <a href="{{ remora_url('/statistics/collection/' + c.uuid) }}">
+            {{ _('View Statistics') }}</a>
+        </li>
+        {% endif %}
       </ul>
     </div>
     <h3>{{ _('About this Collection') }}</h3>

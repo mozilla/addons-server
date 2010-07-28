@@ -8,7 +8,7 @@ from amo.urlresolvers import reverse
 from cake.models import Session
 from test_utils import TestCase
 
-from .acl import match_rules, action_allowed, check_ownership
+from .acl import match_rules, action_allowed, check_addon_ownership
 
 
 def test_match_rules():
@@ -96,26 +96,26 @@ class TestCheckOwnership(TestCase):
 
     def test_unauthenticated(self):
         self.request.user.is_authenticated = lambda: False
-        eq_(False, check_ownership(self.request, self.addon))
+        eq_(False, check_addon_ownership(self.request, self.addon))
 
     @mock.patch('access.acl.action_allowed')
     def test_admin(self, allowed):
-        eq_(True, check_ownership(self.request, self.addon))
-        eq_(True, check_ownership(self.request, self.addon,
+        eq_(True, check_addon_ownership(self.request, self.addon))
+        eq_(True, check_addon_ownership(self.request, self.addon,
                                   require_owner=True))
 
     def test_addon_status(self):
         self.addon.status = amo.STATUS_DISABLED
-        eq_(False, check_ownership(self.request, self.addon))
+        eq_(False, check_addon_ownership(self.request, self.addon))
 
     def test_author_roles(self):
         f = self.addon.authors.filter
         roles = (amo.AUTHOR_ROLE_ADMINOWNER, amo.AUTHOR_ROLE_ADMIN,
                  amo.AUTHOR_ROLE_OWNER, amo.AUTHOR_ROLE_DEV)
 
-        check_ownership(self.request, self.addon, True)
+        check_addon_ownership(self.request, self.addon, True)
         eq_(f.call_args[1]['addonuser__role__in'], roles)
 
-        check_ownership(self.request, self.addon)
+        check_addon_ownership(self.request, self.addon)
         eq_(f.call_args[1]['addonuser__role__in'],
             roles + (amo.AUTHOR_ROLE_VIEWER,))

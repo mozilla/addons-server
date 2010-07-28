@@ -6,7 +6,6 @@ from django.http import QueryDict
 from nose.tools import eq_
 import test_utils
 
-import amo.test_utils
 from amo.urlresolvers import reverse
 from bandwagon.models import Collection, CollectionVote
 

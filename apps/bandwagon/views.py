@@ -6,6 +6,7 @@ import jingo
 from tower import ugettext_lazy as _lazy
 
 import amo.utils
+from access import acl
 from addons.models import Addon
 from addons.views import BaseFilter
 from tags.models import Tag
@@ -61,12 +62,17 @@ def collection_detail(request, username, slug):
     else:
         others = []
 
+    perms = {
+        'view_stats': acl.check_ownership(request, c, require_owner=False),
+    }
+
     tag_ids = c.top_tags
     tags = Tag.objects.filter(id__in=tag_ids) if tag_ids else []
     return jingo.render(request, 'bandwagon/collection_detail.html',
                         {'collection': c, 'filter': filter,
                          'addons': addons, 'notes': notes,
-                         'author_collections': others, 'tags': tags})
+                         'author_collections': others, 'tags': tags,
+                         'perms': perms})
 
 
 def get_notes(collection):
