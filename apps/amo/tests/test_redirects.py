@@ -22,7 +22,6 @@ class TestRedirects(test.TestCase):
     def test_top_tags(self):
         """`/top-tags/?` should 301 to `/tags/top`."""
         response = self.client.get(u'top-tags/', follow=True)
-        eq_(response.redirect_chain[0][1], 301)
         self.assertRedirects(response, '/en-US/firefox/tags/top',
                              status_code=301)
 

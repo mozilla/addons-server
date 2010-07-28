@@ -1,5 +1,3 @@
-from math import ceil
-
 from jingo import register
 import jinja2
 from access import acl
@@ -26,17 +24,20 @@ def tag_list(context, addon, dev_tags=[], user_tags=[],
 
 
 def range_convert(value, old_min, old_max, new_min, new_max):
-    """utility to tranfer a value (preserving the relative value in
-       the range) from its current range to a new one"""
+    """
+    Utility to tranfer a value (preserving the relative value in
+    the range) from its current range to a new one.
+    """
     old_range = 1 if old_max - old_min == 0 else old_max - old_min
     new_range = new_max - new_min
     return int(((value - old_min) * new_range) / old_range) + new_min
+
 
 @register.function
 def tag_link(tag, min_count, max_count):
     """create the tag cloud link with the poper tagLevel class"""
     factor = range_convert(tag.tagstat.num_addons, min_count, max_count, 1, 10)
-    hyperlink = '<a class="tagLevel%d tag" href="%s">%s</a>'
+    hyperlink = u'<a class="tagLevel%d tag" href="%s">%s</a>'
     return hyperlink % (factor,
                         remora_url('/tag/' + tag.tag_text),
                         tag.tag_text)
