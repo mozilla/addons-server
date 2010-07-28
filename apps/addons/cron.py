@@ -28,7 +28,7 @@ def update_addons_current_version():
                                                        connection=conn)
 
 
-@task(rate_limit='10/m')
+@task(rate_limit='20/m')
 def _update_addons_current_version(data, **kw):
     task_log.info("[%s@%s] Updating addons current_versions." %
                    (len(data), _update_addons_current_version.rate_limit))

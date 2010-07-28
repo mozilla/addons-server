@@ -50,13 +50,14 @@ HOME = /tmp
 30 * * * * $REMORA; php -f maintenance.php l10n_stats
 35 * * * * $REMORA; php -f maintenance.php l10n_rss
 40 * * * * $Z_CRON fetch_ryf_blog
+45 * * * * $Z_CRON update_addons_current_version
 
+#every 2 hours
+30 */2 * * * $Z_CRON update_addon_appsupport
 
 #every 3 hours
 20 */3 * * * $REMORA; php -f compatibility_report.php
 20 */3 * * * $REMORA; /usr/bin/python26 maintenance.py collection_addon_count
-25 */3 * * * $Z_CRON update_addons_current_version
-30 */3 * * * $Z_CRON update_addon_appsupport
 
 #twice per day
 25 1,13 * * * $REMORA; /usr/bin/python26 import-personas.py
