@@ -19,6 +19,13 @@ class TestRedirects(test.TestCase):
         assert r.redirect_chain[-1][0].endswith(
                 '/en-US/firefox/personas/film-and-tv')
 
+    def test_top_tags(self):
+        """`/top-tags/?` should 301 to `/tags/top`."""
+        response = self.client.get(u'top-tags/', follow=True)
+        eq_(response.redirect_chain[0][1], 301)
+        self.assertRedirects(response, '/en-US/firefox/tags/top',
+                             status_code=301)
+
     def test_persona(self):
         """`/persona/\d+` should go to `/addon/\d+`."""
         r = self.client.get(u'persona/4', follow=True)
