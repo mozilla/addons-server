@@ -1,4 +1,3 @@
-import csv
 import time
 from types import GeneratorType
 from datetime import date, datetime
@@ -16,6 +15,7 @@ from access import acl
 from addons.models import Addon
 from amo.urlresolvers import reverse
 
+import unicode_csv
 from .db import DayAvg, Avg
 from .models import DownloadCount, UpdateCount, Contribution
 from .utils import csv_prep, csv_dynamic_prep
@@ -277,11 +277,11 @@ def render_csv(request, addon, stats, fields):
     # is first.
     # XXX: The list() performance penalty here might be big enough to
     # consider changing the sort order at lower levels.
-    writer = csv.writer(response)
+    writer = unicode_csv.UnicodeWriter(response)
     for row in reversed(list(stats)):
         writer.writerow(row)
 
-    response['Content-Type'] = 'text/plain'
+    response['Content-Type'] = 'text/plain; charset=utf-8'
     return response
 
 
