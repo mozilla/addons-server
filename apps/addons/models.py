@@ -9,6 +9,7 @@ from django.db import models
 from django.db.models import Q, Sum
 
 import caching.base as caching
+import commonware.log
 
 import amo.models
 from amo.fields import DecimalCharField
@@ -22,6 +23,9 @@ from users.models import UserProfile
 from versions.models import Version
 
 from . import query
+
+
+log = commonware.log.getLogger('z.addons')
 
 
 class AddonManager(amo.models.ManagerBase):
@@ -242,8 +246,12 @@ class Addon(amo.models.ModelBase):
         current_version = self.get_current_version()
         if current_version != self._current_version:
             self._current_version = current_version
-            self.save()
-            return True
+            try:
+                self.save()
+                return True
+            except Exception, e:
+                log.error('Could not save version %s for addon %s (%s)' %
+                          (current_version, self.id, e))
         return False
 
     @property
