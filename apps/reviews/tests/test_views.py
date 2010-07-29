@@ -3,21 +3,24 @@ from django import http
 from nose.tools import eq_
 import test_utils
 
+import amo.test_utils
 from amo.urlresolvers import reverse
 from access.models import GroupUser
 from reviews.models import Review, ReviewFlag
 
 
-class TestViews(test_utils.TestCase):
-    fixtures = ['reviews/dev-reply.json']
+class ReviewTest(amo.test_utils.ExtraSetup, test_utils.TestCase):
+    fixtures = ['base/apps', 'reviews/dev-reply.json', 'base/admin']
+
+
+class TestViews(ReviewTest):
 
     def test_dev_reply(self):
         url = reverse('reviews.detail', args=[1865, 218468])
         self.client.get(url)
 
 
-class TestFlag(test_utils.TestCase):
-    fixtures = ['reviews/dev-reply.json', 'base/admin']
+class TestFlag(ReviewTest):
 
     def setUp(self):
         self.url = reverse('reviews.flag', args=[1865, 218468])
@@ -62,8 +65,7 @@ class TestFlag(test_utils.TestCase):
         eq_(Review.objects.filter(editorreview=True).count(), 0)
 
 
-class TestDelete(test_utils.TestCase):
-    fixtures = ['reviews/dev-reply.json', 'base/admin']
+class TestDelete(ReviewTest):
 
     def setUp(self):
         self.url = reverse('reviews.delete', args=[1865, 218207])
@@ -97,3 +99,60 @@ class TestDelete(test_utils.TestCase):
         response = self.client.post(self.url)
         eq_(response.status_code, 200)
         eq_(Review.objects.count(), cnt - 1)
+
+
+class TestCreate(ReviewTest):
+
+    def setUp(self):
+        self.add = reverse('reviews.add', args=[1865])
+        self.client.login(username='root_x@ukr.net', password='password')
+        self.qs = Review.objects.filter(addon=1865)
+
+    def test_no_rating(self):
+        r = self.client.post(self.add, {'body': 'no rating'})
+        self.assertFormError(r, 'form', 'rating', 'This field is required.')
+
+    def test_review_success(self):
+        old_cnt = self.qs.count()
+        r = self.client.post(self.add, {'body': 'xx', 'rating': 3})
+        new = self.qs.get(is_latest=True, user=5293223)
+        self.assertRedirects(r, reverse('reviews.detail', args=[1865, new.id]),
+                             status_code=302)
+        eq_(self.qs.count(), old_cnt + 1)
+
+    def test_new_reply(self):
+        self.client.login(username='trev@adblockplus.org', password='password')
+        Review.objects.filter(reply_to__isnull=False).delete()
+        url = reverse('reviews.reply', args=[1865, 218207])
+        r = self.client.post(url, {'body': 'unst unst'})
+        self.assertRedirects(r, reverse('reviews.detail', args=[1865, 218207]))
+        eq_(self.qs.filter(reply_to=218207).count(), 1)
+
+
+class TestEdit(ReviewTest):
+
+    def setUp(self):
+        self.client.login(username='root_x@ukr.net', password='password')
+
+    def test_edit(self):
+        url = reverse('reviews.edit', args=[1865, 218207])
+        r = self.client.post(url, {'rating': 2, 'body': 'woo woo'},
+                             X_REQUESTED_WITH='XMLHttpRequest')
+        eq_(r.status_code, 200)
+        eq_('%s' % Review.objects.get(id=218207).body, 'woo woo')
+
+    def test_edit_not_owner(self):
+        url = reverse('reviews.edit', args=[1865, 218468])
+        r = self.client.post(url, {'rating': 2, 'body': 'woo woo'},
+                             X_REQUESTED_WITH='XMLHttpRequest')
+        eq_(r.status_code, 403)
+
+    def test_edit_reply(self):
+        self.client.login(username='trev@adblockplus.org', password='password')
+        url = reverse('reviews.edit', args=[1865, 218468])
+        r = self.client.post(url, {'title': 'fo', 'body': 'shizzle'},
+                             X_REQUESTED_WITH='XMLHttpRequest')
+        eq_(r.status_code, 200)
+        review = Review.objects.get(id=218468)
+        eq_('%s' % review.title, 'fo')
+        eq_('%s' % review.body, 'shizzle')

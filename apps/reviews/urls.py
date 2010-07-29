@@ -9,6 +9,7 @@ detail_patterns = patterns('',
     url('^reply$', views.reply, name='reviews.reply'),
     url('^flag$', views.flag, name='reviews.flag'),
     url('^delete$', views.delete, name='reviews.delete'),
+    url('^edit$', views.edit, name='reviews.edit'),
 )
 
 urlpatterns = patterns('',

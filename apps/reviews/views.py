@@ -121,7 +121,7 @@ def reply(request, addon_id, review_id):
     addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
     is_admin = acl.action_allowed(request, 'Admin', 'EditAnyAddon')
     is_author = acl.check_ownership(request, addon, require_owner=True)
-    if not is_admin or is_author:
+    if not (is_admin or is_author):
         return http.HttpResponseForbidden()
 
     review = get_object_or_404(Review.objects, pk=review_id, addon=addon_id)
@@ -149,3 +149,23 @@ def add(request, addon_id):
             return redirect('reviews.detail', addon_id, review.id)
     return jingo.render(request, 'reviews/add.html',
                         dict(addon=addon, form=form))
+
+
+@post_required
+def edit(request, addon_id, review_id):
+    if not request.user.is_authenticated():
+        return http.HttpResponse(status=401)
+    review = get_object_or_404(Review.objects, pk=review_id, addon=addon_id)
+    is_admin = acl.action_allowed(request, 'Admin', 'EditAnyAddon')
+    if not (request.user.id == review.user.id or is_admin):
+        return http.HttpResponseForbidden()
+    cls = forms.ReviewReplyForm if review.reply_to else forms.ReviewForm
+    form = cls(request.POST)
+    if form.is_valid():
+        for field in form.fields:
+            if field in form.cleaned_data:
+                setattr(review, field, form.cleaned_data[field])
+        review.save()
+        return http.HttpResponse()
+    else:
+        return json_view.error(form.errors)

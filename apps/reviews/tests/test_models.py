@@ -3,6 +3,7 @@ from django.utils import translation
 import test_utils
 from nose.tools import eq_
 
+import amo.test_utils
 from reviews import tasks
 from reviews.models import Review, GroupedRating
 
@@ -32,8 +33,8 @@ class TestReviewModel(test_utils.TestCase):
         test_utils.trans_eq(r2.title, 'r2 title de', 'de')
 
 
-class TestGroupedRating(test_utils.TestCase):
-    fixtures = ['reviews/dev-reply.json']
+class TestGroupedRating(amo.test_utils.ExtraSetup, test_utils.TestCase):
+    fixtures = ['base/apps', 'reviews/dev-reply.json']
 
     def test_get_none(self):
         eq_(GroupedRating.get(3), None)
