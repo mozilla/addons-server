@@ -11,7 +11,7 @@ from bandwagon.models import Collection, CollectionVote
 
 
 class TestViews(test_utils.TestCase):
-    fixtures = ['bandwagon/test_models.json']
+    fixtures = ['users/test_backends', 'bandwagon/test_models']
 
     def check_response(self, url, code, to=None):
         response = self.client.get(url, follow=True)

@@ -7,13 +7,14 @@ from django.core import mail
 
 from nose.tools import eq_
 
+import amo.test_utils
 from addons.models import Addon, AddonUser
 from reviews.models import Review
 from users.models import UserProfile, get_hexdigest, BlacklistedNickname
 
 
-class TestUserProfile(test.TestCase):
-    fixtures = ['base/fixtures', 'users/test_backends']
+class TestUserProfile(amo.test_utils.ExtraSetup, test.TestCase):
+    fixtures = ['base/fixtures', 'users/test_backends', 'base/apps']
 
     def test_anonymize(self):
         u = User.objects.get(id='4043307').get_profile()

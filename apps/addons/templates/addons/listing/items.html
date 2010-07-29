@@ -8,7 +8,11 @@
       {{ item_info(addon, amo, show_added_date) }}
     </div>
     <blockquote>
-      <div>{{ addon.summary|truncate(250)|nl2br }}</div>
+      {% if addon.is_persona() %}
+        {{ persona_preview(addon.persona, linked=False) }}
+      {% else %}
+        <div>{{ addon.summary|truncate(250)|nl2br }}</div>
+      {% endif %}
       {{ support_addon(addon) }}
     </blockquote>
     {% if notes and notes[addon.id] %}

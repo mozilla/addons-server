@@ -37,16 +37,15 @@ class AddonManager(amo.models.ManagerBase):
 
     def public(self):
         """Get public add-ons only"""
-        return self.filter(inactive=False, status=amo.STATUS_PUBLIC)
+        return self.filter(self.valid_q([amo.STATUS_PUBLIC]))
 
     def unreviewed(self):
         """Get only unreviewed add-ons"""
-        return self.filter(inactive=False,
-                           status__in=amo.UNREVIEWED_STATUSES)
+        return self.filter(self.valid_q(amo.UNREVIEWED_STATUSES))
 
     def valid(self):
         """Get valid, enabled add-ons only"""
-        return self.filter(status__in=amo.VALID_STATUSES, inactive=False)
+        return self.filter(self.valid_q(amo.VALID_STATUSES))
 
     def featured(self, app):
         """
@@ -68,11 +67,26 @@ class AddonManager(amo.models.ManagerBase):
         if len(status) == 0:
             status = [amo.STATUS_PUBLIC]
 
-        has_version = Q(appsupport__app=app.id,
-                        _current_version__isnull=False)
-        is_weird = Q(type=amo.ADDON_PERSONA) | Q(status=amo.STATUS_LISTED)
-        return self.filter(has_version | is_weird,
-                           inactive=False, status__in=status)
+        return self.filter(self.valid_q(status), appsupport__app=app.id)
+
+    def valid_q(self, status=[], prefix=''):
+        """
+        Return a Q object that selects a valid Addon with the given statuses.
+
+        An add-on is valid if it's not inactive and has a current version.
+        ``prefix`` can be used if you're not working with Addon directly and
+        need to hop across a join, e.g. ``prefix='addon__'`` in
+        CollectionAddon.
+        """
+        if not status:
+            status = [amo.STATUS_PUBLIC]
+        def q(*args, **kw):
+            if prefix:
+                kw = dict((prefix + k, v) for k, v in kw.items())
+            return Q(*args, **kw)
+
+        return q(q(type=amo.ADDON_PERSONA) | q(_current_version__isnull=False),
+                 inactive=False, status__in=status)
 
 
 class Addon(amo.models.ModelBase):
@@ -288,8 +302,10 @@ class Addon(amo.models.ModelBase):
             addon_dict[addon_id].listed_authors = list(users)
 
         for persona in Persona.objects.no_cache().filter(addon__in=personas):
-            addon_dict[persona.addon_id].persona = persona
-            addon_dict[persona.addon_id].listed_authors = []
+            addon = addon_dict[persona.addon_id]
+            addon.persona = persona
+            addon.listed_authors = [persona.display_username]
+            addon.weekly_downloads = persona.popularity
 
         # Personas need categories for the JSON dump.
         Category.transformer(personas)
@@ -350,6 +366,9 @@ class Addon(amo.models.ModelBase):
         except IndexError:
             return settings.MEDIA_URL + '/img/amo2009/icons/no-preview.png'
 
+    def is_persona(self):
+        return self.type == amo.ADDON_PERSONA
+
     def is_selfhosted(self):
         return self.status == amo.STATUS_LISTED
 
@@ -389,6 +408,8 @@ class Addon(amo.models.ModelBase):
         # TODO(davedash): We can't cache these tags until /tags/ are moved
         # into Zamboni.
         tags = self.tags.not_blacklisted().no_cache()
+        if self.is_persona:
+            return models.query.EmptyQuerySet(), tags
         user_tags = tags.exclude(addon_tags__user__in=self.listed_authors)
         dev_tags = tags.exclude(id__in=[t.id for t in user_tags])
         return dev_tags, user_tags
@@ -396,10 +417,10 @@ class Addon(amo.models.ModelBase):
     @amo.cached_property
     def compatible_apps(self):
         """Shortcut to get compatible apps for the current version."""
-        # Search providers don't actually list their supported apps.
-        if self.type == amo.ADDON_SEARCH:
+        # Search providers and personas don't list their supported apps.
+        if self.type in (amo.ADDON_SEARCH, amo.ADDON_PERSONA):
             return dict((app, None) for app in
-                        amo.APP_TYPE_SUPPORT[amo.ADDON_SEARCH])
+                        amo.APP_TYPE_SUPPORT[self.type])
         if self.current_version:
             return self.current_version.compatible_apps
         else:

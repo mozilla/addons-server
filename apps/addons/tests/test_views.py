@@ -99,7 +99,7 @@ class TestPromobox(test_utils.TestCase):
         eq_(response.status_code, 200)
 
 
-class TestContributeInstalled(test_utils.TestCase):
+class TestContributeInstalled(amo.test_utils.ExtraSetup, test_utils.TestCase):
     fixtures = ['base/fixtures']
 
     def test_no_header_block(self):
@@ -119,7 +119,7 @@ class TestContributeInstalled(test_utils.TestCase):
         eq_(title[:37], 'Thank you for installing Gmail S/MIME')
 
 
-class TestContribute(test_utils.TestCase):
+class TestContribute(amo.test_utils.ExtraSetup, test_utils.TestCase):
     fixtures = ['base/fixtures']
 
     def test_invalid_is_404(self):
@@ -237,8 +237,8 @@ class TestContribute(test_utils.TestCase):
         assert r['Location'].startswith(settings.PAYPAL_CGI_URL)
 
 
-class TestDeveloperPages(test_utils.TestCase):
-    fixtures = ['base/fixtures', 'addons/eula+contrib-addon']
+class TestDeveloperPages(amo.test_utils.ExtraSetup, test_utils.TestCase):
+    fixtures = ['base/fixtures', 'addons/eula+contrib-addon', 'base/apps']
 
     def test_meet_the_dev_title(self):
         r = self.client.get(reverse('addons.meet', args=[592]))
@@ -268,7 +268,7 @@ class TestDeveloperPages(test_utils.TestCase):
         assert pq(r.content)('#contribute-button')
 
 
-class TestDetailPage(test_utils.TestCase):
+class TestDetailPage(amo.test_utils.ExtraSetup, test_utils.TestCase):
     fixtures = ['base/fixtures', 'base/addon_59.json', 'addons/listed',
                 'addons/persona']
 
@@ -335,8 +335,8 @@ class TestDetailPage(test_utils.TestCase):
         # Grab a user and give them some add-ons.
         u = UserProfile.objects.get(pk=2519)
         thisaddon = u.addons.all()[0]
-        other_addons = order_by_translation(
-                         Addon.objects.exclude(pk=thisaddon.pk), 'name')[:3]
+        qs = Addon.objects.valid().exclude(pk=thisaddon.pk)
+        other_addons = order_by_translation(qs, 'name')[:3]
         for addon in other_addons:
             AddonUser.objects.create(user=u, addon=addon)
 
@@ -540,8 +540,8 @@ class TestDetailPage(test_utils.TestCase):
                    for th in headings)
 
 
-class TestTagsBox(test_utils.TestCase):
-    fixtures = ['base/addontag']
+class TestTagsBox(amo.test_utils.ExtraSetup, test_utils.TestCase):
+    fixtures = ['base/addontag', 'base/apps']
 
     def test_tag_box(self):
         """Verify that we don't show duplicate tags."""
@@ -590,8 +590,8 @@ def test_unicode_redirect():
     eq_(response.status_code, 301)
 
 
-class TestEula(test_utils.TestCase):
-    fixtures = ['addons/eula+contrib-addon']
+class TestEula(amo.test_utils.ExtraSetup, test_utils.TestCase):
+    fixtures = ['addons/eula+contrib-addon', 'base/apps']
 
     def test_current_version(self):
         addon = Addon.objects.get(id=11730)
@@ -612,8 +612,8 @@ class TestEula(test_utils.TestCase):
         self.assertRedirects(r, reverse('addons.detail', args=[11730]))
 
 
-class TestPrivacyPolicy(test_utils.TestCase):
-    fixtures = ['addons/eula+contrib-addon']
+class TestPrivacyPolicy(amo.test_utils.ExtraSetup, test_utils.TestCase):
+    fixtures = ['addons/eula+contrib-addon', 'base/apps']
 
     def test_redirect_no_eula(self):
         Addon.objects.filter(id=11730).update(privacy_policy=None)

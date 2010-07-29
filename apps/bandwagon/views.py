@@ -6,8 +6,10 @@ import jingo
 from tower import ugettext_lazy as _lazy
 
 import amo.utils
+from access import acl
 from addons.models import Addon
 from addons.views import BaseFilter
+from tags.models import Tag
 from translations.query import order_by_translation
 from .models import Collection, CollectionAddon, CollectionVote
 from . import forms
@@ -44,17 +46,33 @@ class CollectionAddonFilter(BaseFilter):
 
 
 def collection_detail(request, username, slug):
-    # TODO: owner=user when dd adds owner to collections
-    cn = get_object_or_404(Collection.objects, slug=slug)
-    base = cn.addons.all() & Addon.objects.listed(request.APP)
+    c = get_object_or_404(Collection.objects,
+                          author__nickname=username, slug=slug)
+    base = c.addons.all() & Addon.objects.listed(request.APP)
     filter = CollectionAddonFilter(request, base,
                                    key='sort', default='popular')
-    notes = get_notes(cn)
-    count = base.with_index(addons='type_status_inactive_idx').count()
-    addons = amo.utils.paginate(request, filter.qs, count=count)
+    notes = get_notes(c)
+    count = CollectionAddon.objects.filter(
+        Addon.objects.valid_q(prefix='addon__'), collection=c.id).count()
+    addons = amo.utils.paginate(request, filter.qs, per_page=15, count=count)
+
+    if c.author_id:
+        qs = Collection.objects.listed().filter(author=c.author)
+        others = amo.utils.randslice(qs, limit=4, exclude=c.id)
+    else:
+        others = []
+
+    perms = {
+        'view_stats': acl.check_ownership(request, c, require_owner=False),
+    }
+
+    tag_ids = c.top_tags
+    tags = Tag.objects.filter(id__in=tag_ids) if tag_ids else []
     return jingo.render(request, 'bandwagon/collection_detail.html',
-                        {'collection': cn, 'filter': filter,
-                         'addons': addons, 'notes': notes})
+                        {'collection': c, 'filter': filter,
+                         'addons': addons, 'notes': notes,
+                         'author_collections': others, 'tags': tags,
+                         'perms': perms})
 
 
 def get_notes(collection):
@@ -70,13 +88,14 @@ def get_notes(collection):
 
 @login_required
 def collection_vote(request, username, slug, direction):
-    cn = get_object_or_404(Collection.objects, slug=slug)
+    c = get_object_or_404(Collection.objects,
+                          author__nickname=username, slug=slug)
     if request.method != 'POST':
-        return redirect(cn.get_url_path())
+        return redirect(c.get_url_path())
 
     vote = {'up': 1, 'down': -1}[direction]
     cv, new = CollectionVote.objects.get_or_create(
-        collection=cn, user=request.amo_user, defaults={'vote': vote})
+        collection=c, user=request.amo_user, defaults={'vote': vote})
 
     if not new:
         if cv.vote == vote:  # Double vote => cancel.
@@ -88,7 +107,7 @@ def collection_vote(request, username, slug, direction):
     if request.is_ajax():
         return http.HttpResponse()
     else:
-        return redirect(cn.get_url_path())
+        return redirect(c.get_url_path())
 
 
 @login_required

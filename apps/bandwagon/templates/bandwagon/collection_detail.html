@@ -41,6 +41,12 @@
           {% endtrans %}
         </li>
         <li>{{ _('Updated {0}')|f(c.modified) }}</li>
+        {% if perms.view_stats %}
+        <li>
+          <a href="{{ remora_url('/statistics/collection/' + c.uuid) }}">
+            {{ _('View Statistics') }}</a>
+        </li>
+        {% endif %}
       </ul>
     </div>
     <h3>{{ _('About this Collection') }}</h3>
@@ -50,7 +56,7 @@
 
 <div class="separated-listing">
   <h3>
-    {% trans num=c.addon_count %}
+    {% trans num=addons.paginator.count %}
       {{ num }} Add-on in this Collection
     {% pluralize %}
       {{ num }} Add-ons in this Collection
@@ -67,14 +73,18 @@
     <button type="submit">{{ _('Go') }}</button>
   </form>
   {% cache addons.object_list %}
-    {{ addon_listing_items(addons.object_list, notes=notes.next()) }}
+    {% if c.all_personas %}
+      {{ persona_grid(addons.object_list) }}
+    {% else %}
+      {{ addon_listing_items(addons.object_list, notes=notes.next()) }}
+    {% endif %}
     {{ addons|paginator }}
   {% endcache %}
 </div>
 </div> {# primary #}
 
 <div class="secondary">
-<div class="highlight"></div>
+<div class="highlight">
   <h3>{{ _('What are Collections?') }}</h3>
   <p>{% trans %}
   Collections are groups of related add-ons that anyone can create and share.
@@ -82,6 +92,20 @@
   <a class="more-info" href="{{ url('collections.list') }}">
     {{ _('Explore Collections') }}</a>
 </div>
+
+{% if tags %}
+  <div>
+    <h3>{{ _('Common Tags') }}</h3>
+    <ul class="addon-tags">
+      {% for tag in tags %}
+        <li class="usertag">
+          <a class="tagitem" href="{{ tag.get_url_path() }}">
+            {{ tag.tag_text }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endif %}
 
 {% if author_collections %}
   <div>
@@ -94,4 +118,6 @@
       {{ _('See all collections by this user') }}</a>
   </div>
 {% endif %}
+</div> {# secondary #}
+
 {% endblock %}

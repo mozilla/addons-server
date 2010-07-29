@@ -44,7 +44,8 @@
             "slug": "wut-slug",
             "addon_count": 4,
             "addon_index": null,
-            "description": null
+            "description": null,
+            "author": 4043307
         }
     }
 ]

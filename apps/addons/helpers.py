@@ -148,3 +148,9 @@ def persona_preview(context, persona, size='large', linked=True, extra=None,
               'size': size, 'preview': preview_map[size], 'extra': extra,
               'details': details})
     return c
+
+
+@register.inclusion_tag('addons/persona_grid.html')
+@jinja2.contextfunction
+def persona_grid(context, addons):
+    return new_context(**locals())

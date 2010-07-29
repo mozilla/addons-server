@@ -8,7 +8,7 @@ from reviews.models import Review, GroupedRating
 
 
 class TestReviewModel(test_utils.TestCase):
-    fixtures = ['reviews/test_models.json']
+    fixtures = ['base/apps', 'reviews/test_models.json']
 
     def test_translations(self):
         translation.activate('en-US')

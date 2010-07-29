@@ -33,7 +33,7 @@ def test_parse_bad_type():
 
 
 class PersonaSearchTest(SphinxTestCase):
-    fixtures = ['addons/persona']
+    fixtures = ['base/apps', 'addons/persona']
 
     def get_response(self, **kwargs):
         return self.client.get(reverse('search.search') +

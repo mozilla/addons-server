@@ -5,6 +5,7 @@ import time
 import uuid
 
 from django.conf import settings
+from django.core.cache import cache
 from django.db import models, connection
 
 import amo
@@ -15,6 +16,22 @@ from addons.models import Addon, AddonCategory, AddonRecommendation
 from applications.models import Application
 from users.models import UserProfile
 from translations.fields import TranslatedField, LinkifiedField
+
+
+class TopTags(object):
+    """Descriptor to manage a collection's top tags in cache."""
+
+    def key(self, obj):
+        return '%s:top-tags:%s' % (settings.CACHE_PREFIX, obj.id)
+
+    def __get__(self, obj, type=None):
+        if obj is None:
+            return self
+        return cache.get(self.key(obj), [])
+
+    def __set__(self, obj, value):
+        two_days = 60 * 60 * 24 * 2
+        cache.set(self.key(obj), value, two_days)
 
 
 class CollectionManager(amo.models.ManagerBase):
@@ -56,6 +73,8 @@ class Collection(amo.models.ModelBase):
     upvotes = models.PositiveIntegerField(default=0)
     downvotes = models.PositiveIntegerField(default=0)
     rating = models.FloatField(default=0)
+    all_personas = models.BooleanField(default=False,
+        help_text='Does this collection only contain personas?')
 
     addons = models.ManyToManyField(Addon, through='CollectionAddon',
                                     related_name='collections')
@@ -69,6 +88,8 @@ class Collection(amo.models.ModelBase):
     recommended_collection = models.ForeignKey('self', null=True)
 
     objects = CollectionManager()
+
+    top_tags = TopTags()
 
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'collections'
