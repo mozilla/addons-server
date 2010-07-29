@@ -1,3 +1,5 @@
+from datetime import datetime, timedelta
+
 from django.db import connection, connections, transaction
 from django.db.models import Max, Q, F
 
@@ -14,6 +16,18 @@ from .models import Addon
 
 log = commonware.log.getLogger('z.cron')
 task_log = commonware.log.getLogger('z.task')
+
+
+@cronjobs.register
+def fast_current_version():
+    # Only find the really recent versions; this is called a lot.
+    t = datetime.now() - timedelta(minutes=5)
+    q = Addon.objects.filter(
+        Q(status=amo.STATUS_PUBLIC,
+          versions__files__datestatuschanged__gte=t) |
+        Q(status__in=amo.UNREVIEWED_STATUSES,
+          versions__files__created__gte=t))
+    _update_addons_current_version(q.values_list('id'))
 
 
 #TODO(davedash): This will not be needed as a cron task after remora.

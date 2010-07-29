@@ -39,8 +39,11 @@ MAILTO=amo-developers@mozilla.org
 
 HOME = /tmp
 
-# Every 20 minutes!
-*/20 * * * * $Z_CRON update_addons_current_version
+# Every minute!
+* * * * * $Z_CRON fast_current_version
+
+# Every 30 minutes.
+*/30 * * * * $Z_CRON update_addons_current_version
 
 #once per hour
 5 * * * * $Z_CRON update_collections_subscribers

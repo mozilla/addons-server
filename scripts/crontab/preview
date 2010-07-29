@@ -6,8 +6,11 @@ MAILTO=amo-developers@mozilla.org
 
 HOME = /tmp
 
-# Every 20 minutes!
-*/20 * * * * cd /data/amo_python/src/preview/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron update_addons_current_version
+# Every minute!
+* * * * * cd /data/amo_python/src/preview/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron fast_current_version
+
+# Every 30 minutes.
+*/30 * * * * cd /data/amo_python/src/preview/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron update_addons_current_version
 
 #once per hour
 5 * * * * cd /data/amo_python/src/preview/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron update_collections_subscribers
