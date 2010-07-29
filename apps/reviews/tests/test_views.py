@@ -128,6 +128,15 @@ class TestCreate(ReviewTest):
         self.assertRedirects(r, reverse('reviews.detail', args=[1865, 218207]))
         eq_(self.qs.filter(reply_to=218207).count(), 1)
 
+    def test_double_reply(self):
+        self.client.login(username='trev@adblockplus.org', password='password')
+        url = reverse('reviews.reply', args=[1865, 218207])
+        r = self.client.post(url, {'body': 'unst unst'})
+        self.assertRedirects(r, reverse('reviews.detail', args=[1865, 218207]))
+        eq_(self.qs.filter(reply_to=218207).count(), 1)
+        review = Review.objects.get(id=218468)
+        eq_('%s' % review.body, 'unst unst')
+
 
 class TestEdit(ReviewTest):
 

@@ -128,9 +128,14 @@ def reply(request, addon_id, review_id):
     form = forms.ReviewReplyForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
-            r = Review.objects.create(reply_to_id=review_id,
-                                      **_review_details(request, addon, form))
-            log.debug('New reply to %s: %s' % (review_id, r.id))
+            d = dict(reply_to=review, addon=addon,
+                     defaults=dict(user=request.amo_user))
+            reply, new = Review.objects.get_or_create(**d)
+            for key, val in _review_details(request, addon, form).items():
+                setattr(reply, key, val)
+            reply.save()
+            action = 'New' if new else 'Edited'
+            log.debug('%s reply to %s: %s' % (action, review_id, reply.id))
             return redirect('reviews.detail', addon_id, review_id)
     ctx = dict(review=review, form=form, addon=addon)
     ctx.update(flag_context())
