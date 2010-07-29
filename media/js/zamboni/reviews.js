@@ -33,11 +33,12 @@ $(document).ready(function() {
         $.ajax({type: 'POST',
                 url: url,
                 data: {flag: flag, note: note},
-                success: function(){
+                success: function() {
                     el.find('.flag-review')
                         .replaceWith(gettext('Flagged for review'));
                 },
                 error: function(){ },
+                complete: function() { el.click() },
                 dataType: 'json'
         });
     };
