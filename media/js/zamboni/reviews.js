@@ -16,6 +16,10 @@ $(document).ready(function() {
                         $(this).find('form').submit(function(e){
                             e.preventDefault();
                             var note = parent.find('#id_note').val();
+                            if (!note) {
+                                alert(gettext('Your input is required'));
+                                return false;
+                            }
                             addFlag(parent, url, 'other', note);
                         });
                     } else {
@@ -29,11 +33,12 @@ $(document).ready(function() {
         $.ajax({type: 'POST',
                 url: url,
                 data: {flag: flag, note: note},
-                success: function(){
+                success: function() {
                     el.find('.flag-review')
                         .replaceWith(gettext('Flagged for review'));
                 },
                 error: function(){ },
+                complete: function() { el.click() },
                 dataType: 'json'
         });
     };
