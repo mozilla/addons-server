@@ -16,6 +16,10 @@ $(document).ready(function() {
                         $(this).find('form').submit(function(e){
                             e.preventDefault();
                             var note = parent.find('#id_note').val();
+                            if (!note) {
+                                alert(gettext('Your input is required'));
+                                return false;
+                            }
                             addFlag(parent, url, 'other', note);
                         });
                     } else {
