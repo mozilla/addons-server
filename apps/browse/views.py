@@ -13,6 +13,7 @@ import product_details
 
 import amo.utils
 from addons.models import Addon, Category
+from tags.models import Tag
 from amo.urlresolvers import reverse
 from addons.views import BaseFilter
 from translations.query import order_by_translation
@@ -107,6 +108,27 @@ class AddonFilter(BaseFilter):
             ('rating', _lazy(u'Rating')))
 
 
+def tag(request, tag_name):
+
+    TYPE = amo.ADDON_EXTENSION
+    addons = unreviewed = filter = None
+
+    tag = Tag.objects.filter(tag_text=tag_name)
+    if tag:
+        tag = tag.get()
+        addons, filter, unreviewed = _listing(request, TYPE, tag=tag)
+        addons = addons.filter(addon_tags__tag__id=tag.id)
+        count = addons.with_index(addons='type_status_inactive_idx').count()
+        addons = amo.utils.paginate(request, addons, count=count)
+
+    return jingo.render(request, 'browse/tag.html',
+                        {'tag': tag,
+                         'addons': addons,
+                         'unreviewed': unreviewed,
+                         'sorting': filter.field if filter else None,
+                         'sort_opts': filter.opts if filter else None})
+
+
 def themes(request, category=None):
     q = Category.objects.filter(application=request.APP.id,
                                 type=amo.ADDON_THEME)
@@ -136,7 +158,7 @@ def themes(request, category=None):
                          'search_cat': search_cat})
 
 
-def _listing(request, addon_type, default='popular'):
+def _listing(request, addon_type, default='popular', tag=None):
     # Set up the queryset and filtering for themes & extension listing pages.
     status = [amo.STATUS_PUBLIC]
 
@@ -148,7 +170,12 @@ def _listing(request, addon_type, default='popular'):
     if unreviewed:
         status.append(amo.STATUS_UNREVIEWED)
 
-    qs = Addon.objects.listed(request.APP, *status).filter(type=addon_type)
+    if tag is not None:
+        qs = Addon.objects.listed(request.APP,
+                                  *status).filter(type=addon_type,
+                                                  addon_tags__tag__id=tag.id)
+    else:
+        qs = Addon.objects.listed(request.APP, *status).filter(type=addon_type)
     filter = AddonFilter(request, qs, 'sort', default)
     return filter.qs, filter, unreviewed
 
