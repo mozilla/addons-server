@@ -28,7 +28,8 @@ def fast_current_version():
     q2 = qs.filter(status__in=amo.UNREVIEWED_STATUSES,
                    versions__files__created__gte=t)
     addons = set(q1) | set(q2)
-    _update_addons_current_version(addons)
+    if addons:
+        _update_addons_current_version(addons)
 
 
 #TODO(davedash): This will not be needed as a cron task after remora.
