@@ -39,7 +39,7 @@ def update_denorm(*pairs, **kw):
 def addon_review_aggregates(*addons, **kw):
     log.info('[%s@%s] Updating total reviews.' %
              (len(addons), addon_review_aggregates.rate_limit))
-    stats = dict(Review.objects.valid().filter(addon__in=addons)
+    stats = dict(Review.objects.latest().filter(addon__in=addons)
                  .values_list('addon').annotate(Count('addon')))
     for addon in addons:
         count = stats.get(addon, 0)

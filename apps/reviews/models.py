@@ -24,6 +24,10 @@ class ReviewManager(amo.models.ManagerBase):
         """Get all reviews with rating > 0 that aren't replies."""
         return self.filter(reply_to=None, rating__gt=0)
 
+    def latest(self):
+        """Get all the latest valid reviews."""
+        return self.valid().filter(is_latest=True)
+
 
 class Review(amo.models.ModelBase):
     addon = models.ForeignKey('addons.Addon', related_name='_reviews')
