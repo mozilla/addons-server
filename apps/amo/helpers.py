@@ -298,4 +298,4 @@ def license_link(license):
 def field(field, label=None):
     if label is not None:
         field.label = label
-    return jinja2.Markup(u'%s%s%s' % (field.errors, field.label_tag(), field))
+    return jinja2.Markup(u'<p>%s%s%s</p>' % (field.errors, field.label_tag(), field))

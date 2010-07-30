@@ -8,7 +8,8 @@
 .object-lead .button-wrapper:after,
 .article.version:after,
 .article.review:after,
-.grouped_ratings li:after {
+.grouped_ratings li:after,
+#review-form p:after {
     content: ".";
     display: block;
     clear: both;
@@ -2236,13 +2237,11 @@ h6.author, .author a {
 }
 
 .grouped_ratings .rating_bar span.num_ratings {
-    display: block;
     position: absolute;
     right: -.5em;
     top: -2px;
     line-height: 1em;
     width: 1px;
-    overflow: visible;
 }
 
 
@@ -2262,6 +2261,66 @@ h6.author, .author a {
 }
 .grouped_ratings .stars-0 {
     background-position: 65px 50%;
+}
+
+/* review form */
+
+#review-box form {
+    width: 48%;
+    height: 200px;
+    float: left;
+    padding-right: 10px;
+    margin-right: 1em;
+}
+
+#review-box textarea {
+    margin-bottom: 1em;
+    height: 100px;
+}
+
+#review-box div {
+    padding-left: 48%;
+}
+
+#review-form p > label {
+    float: left;
+    width: 8em;
+}
+
+#review-form {
+    margin: 2em 1em 0 1em;
+}
+
+#review-form textarea {
+    margin: 1em 0 1em 0;
+    clear: left;
+}
+
+#review-form .ratingwidget {
+    float: left;
+    margin-bottom:0;
+}
+
+#review-form input[type='text'] {
+    width: 15em;
+}
+
+.ratingwidget input {
+    display: none;
+}
+
+.ratingwidget {
+    display: block;
+    float: none;
+    width: 65px;
+    margin-bottom: 1em;
+}
+
+.ratingwidget label {
+    text-indent: -5000px;
+    display: block;
+    float: left;
+    width: 13px;
 }
 
 .review:hover ul.review-options > li > a {

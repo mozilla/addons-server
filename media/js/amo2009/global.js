@@ -246,51 +246,40 @@ jQuery(function($) {
 	  },2000);
     });
 
-	function selectReplacement(obj) {
-		obj.className += ' replaced';
-		var ul = document.createElement('ul');
-		ul.className = 'selectReplacement';
-		var opts = obj.options;
-		for (var i=0; i<opts.length; i++) {
-			var selectedOpt;
-			if (opts[i].selected) {
-				selectedOpt = i;
-				break;
-			} else {
-				selectedOpt = 0;
-			}
-		}
-		for (var i=0; i<opts.length; i++) {
-			var li = document.createElement('li');
-			var link = document.createElement('a');
-			li.appendChild(link);
-			li.className = opts[i].className;
-			link.selIndex = opts[i].index;
-			link.selectID = obj.id;
-			link.setAttribute('href','#');
-			link.onclick = function() {
-				selectMe(this);
-				return false;
-			}
-			if (i == selectedOpt) {
-				ul.className = 'selectReplacement '+opts[i].className;
-			}
-			ul.appendChild(li);
-		}
-		obj.parentNode.insertBefore(ul,obj);
-	}
-	function selectMe(obj) {
-		setVal(obj.selectID, obj.selIndex);
-		var list = obj.parentNode.parentNode;
-		list.className = 'selectReplacement '+obj.parentNode.className;
-	}
-	function setVal(objID, selIndex) {
-		var obj = document.getElementById(objID);
-		obj.selectedIndex = selIndex;
-	}
-	if (document.getElementById('review-rating')) {
-		selectReplacement(document.getElementById('review-rating'));
-	}
+    // Replaces rating selectboxes with the rating widget
+    $("select[name='rating']").each(function(n, el) {
+        var $el = $(el),
+            $widget = $("<span class='ratingwidget stars stars-0'></span>"),
+            rs = [],
+            showStars = function(n) {
+                $widget.removeClass('stars-0 stars-1 stars-2 stars-3 stars-4 stars-5').addClass('stars-' + n);
+            };
+        for (var i=1; i<=5; i++) {
+            rs.push("<label data-stars='", i, "'>",
+                    format(ngettext('{0} star', '{0} stars', i), [i]),
+                    "<input type='radio' name='rating' value='", i, "'></label>");
+        }
+        var rating = 0;
+        $widget.click(function(evt) {
+            var t = $(evt.target);
+            if (t.val()) {
+                showStars(t.val());
+            }
+            rating = t.val();
+        });
+        $widget.mouseover(function(evt) {
+            var t = $(evt.target);
+            if (t.attr('data-stars')) {
+                showStars(t.attr('data-stars'));
+            }
+        });
+        $widget.mouseout(function(evt) {
+            showStars(rating);
+        });
+        $widget.html(rs.join(''));
+        $el.before($widget);
+        $el.detach();
+    });
 
 	// Categories dropdown only on pages where it is not in secondary
 	if($('#categories').parents('.secondary').length == 0) {
