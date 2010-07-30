@@ -1,11 +1,11 @@
 from django import http
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect
 
 import jingo
 from tower import ugettext_lazy as _lazy
 
 import amo.utils
+from amo.decorators import login_required
 from access import acl
 from addons.models import Addon
 from addons.views import BaseFilter

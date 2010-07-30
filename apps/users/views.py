@@ -5,7 +5,6 @@ from django.conf import settings
 from django.core.mail import send_mail
 from django.shortcuts import get_object_or_404
 from django.contrib import auth
-from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.template import Context, loader
 
@@ -14,9 +13,10 @@ import jingo
 from tower import ugettext as _
 
 
-from access import acl
 import amo
+from amo.decorators import login_required
 from amo.urlresolvers import reverse
+from access import acl
 from bandwagon.models import Collection
 
 from .models import UserProfile

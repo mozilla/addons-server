@@ -1,5 +1,4 @@
 from django import http
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect
 
 import commonware.log
@@ -7,7 +6,7 @@ import jingo
 from tower import ugettext as _
 
 import amo.utils
-from amo.decorators import post_required, json_view
+from amo.decorators import post_required, json_view, login_required
 from access import acl
 from addons.models import Addon
 
@@ -76,7 +75,7 @@ def get_flags(request, reviews):
 
 
 @post_required
-@login_required  # TODO: return a 401?
+@login_required(redirect=False)
 @json_view
 def flag(request, addon_id, review_id):
     d = dict(review=review_id, user=request.user.id)
@@ -96,7 +95,7 @@ def flag(request, addon_id, review_id):
 
 
 @post_required
-@login_required
+@login_required(redirect=False)
 def delete(request, addon_id, review_id):
     if not acl.action_allowed(request, 'Editors', 'DeleteReview'):
         return http.HttpResponseForbidden()
@@ -156,10 +155,9 @@ def add(request, addon_id):
                         dict(addon=addon, form=form))
 
 
+@login_required(redirect=False)
 @post_required
 def edit(request, addon_id, review_id):
-    if not request.user.is_authenticated():
-        return http.HttpResponse(status=401)
     review = get_object_or_404(Review.objects, pk=review_id, addon=addon_id)
     is_admin = acl.action_allowed(request, 'Admin', 'EditAnyAddon')
     if not (request.user.id == review.user.id or is_admin):

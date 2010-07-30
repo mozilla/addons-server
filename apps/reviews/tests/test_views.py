@@ -29,7 +29,7 @@ class TestFlag(ReviewTest):
     def test_no_login(self):
         self.client.logout()
         response = self.client.post(self.url)
-        assert isinstance(response, http.HttpResponseRedirect)
+        eq_(response.status_code, 401)
 
     def test_new_flag(self):
         response = self.client.post(self.url, {'flag': 'spam'})
@@ -74,7 +74,7 @@ class TestDelete(ReviewTest):
     def test_no_login(self):
         self.client.logout()
         response = self.client.post(self.url)
-        assert isinstance(response, http.HttpResponseRedirect)
+        eq_(response.status_code, 401)
 
     def test_no_perms(self):
         GroupUser.objects.all().delete()

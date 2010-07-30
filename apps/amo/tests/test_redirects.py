@@ -54,7 +54,7 @@ class TestRedirects(amo.test_utils.ExtraSetup, test_utils.TestCase):
     def test_parameters(self):
         """Bug 554976. Make sure when we redirect, we preserve our query
         strings."""
-        url = u'/users/login?next=/en-US/firefox/users/edit'
+        url = u'/users/login?to=/en-US/firefox/users/edit'
         r = self.client.get(url, follow=True)
         self.assertRedirects(r, '/en-US/firefox' + url, status_code=301)
 
