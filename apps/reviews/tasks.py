@@ -55,6 +55,7 @@ def addon_review_aggregates(*addons, **kw):
 
     # Delay bayesian calculations to avoid slave lag.
     addon_bayesian_rating.apply_async(args=addons, countdown=5)
+    addon_grouped_rating.apply_async(args=addons, countdown=5)
 
 
 @task
@@ -91,4 +92,3 @@ def cron_review_aggregate(*addons, **kw):
              (len(addons), cron_review_aggregate.rate_limit))
     # We have this redundant task to get rate limiting for big chunks.
     addon_review_aggregates(*addons)
-    addon_grouped_rating(*addons)
