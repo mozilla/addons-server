@@ -22,12 +22,13 @@ task_log = commonware.log.getLogger('z.task')
 def fast_current_version():
     # Only find the really recent versions; this is called a lot.
     t = datetime.now() - timedelta(minutes=5)
-    q = Addon.objects.filter(
-        Q(status=amo.STATUS_PUBLIC,
-          versions__files__datestatuschanged__gte=t) |
-        Q(status__in=amo.UNREVIEWED_STATUSES,
-          versions__files__created__gte=t))
-    _update_addons_current_version(q.values_list('id'))
+    qs = Addon.objects.values_list('id')
+    q1 = qs.filter(status=amo.STATUS_PUBLIC,
+                   versions__files__datestatuschanged__gte=t)
+    q2 = qs.filter(status__in=amo.UNREVIEWED_STATUSES,
+                   versions__files__created__gte=t)
+    addons = set(q1) | set(q2)
+    _update_addons_current_version(addons)
 
 
 #TODO(davedash): This will not be needed as a cron task after remora.
