@@ -115,9 +115,9 @@
           data-removeurl="{{ url('collections.ajax_remove') }}"
           data-newurl="{{ url('collections.ajax_new') }}"
           >
-          Add to collection
+          <span><a href="#">Add to collection</a></span>
         </div>
-        <div class="collection-add-dropdown dropdown">
+        <div class="collection-add-dropdown install-note">
         {% if user.is_anonymous() %}
           <div class="collection-add-login">
             <p>
@@ -136,7 +136,7 @@
               {% endtrans %}
             </p>
           </div>
-          {% endif %}
+        {% endif %}
         </div>
 
         {{ addon_sharing(addon) }}
