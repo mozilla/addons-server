@@ -199,6 +199,18 @@ class Addon(amo.models.ModelBase):
     def __unicode__(self):
         return '%s: %s' % (self.id, self.name)
 
+    def flush_urls(self):
+        urls = ['*/addon/%d/' % self.id, # Doesn't take care of api
+                '*/addon/%d/developers/' % self.id,
+                '*/addon/%d/reviews/' % self.id,
+                '*/addon/%d/versions/*' % self.id,
+                '*/api/*/addon/%d' % self.id,
+                # TODO(clouserw) preview images
+                ]
+        urls.extend('*/user/%d/' % u.id for u in self.listed_authors)
+
+        return urls
+
     def get_url_path(self):
         return reverse('addons.detail', args=(self.id,))
 
