@@ -130,7 +130,7 @@ def extension_detail(request, addon):
 
         'recommendations': recommended,
         'review_form': ReviewForm(),
-        'reviews': Review.objects.valid().filter(addon=addon, is_latest=True),
+        'reviews': Review.objects.latest().filter(addon=addon),
 
         'collections': popular_coll,
         'other_collection_count': other_coll_count,
