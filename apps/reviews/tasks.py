@@ -20,7 +20,7 @@ def update_denorm(*pairs, **kw):
     log.info('[%s@%s] Updating review denorms.' %
              (len(pairs), update_denorm.rate_limit))
     for addon, user in pairs:
-        reviews = list(Review.objects.valid().no_cache()
+        reviews = list(Review.objects.valid().no_cache().using('default')
                        .filter(addon=addon, user=user)
                        .filter(reply_to=None).order_by('created'))
         if not reviews:
@@ -71,7 +71,7 @@ def addon_bayesian_rating(*addons, **kw):
         if addon.total_reviews:
             num = mc + F('total_reviews') * F('average_rating')
             denom = avg['reviews'] + F('total_reviews')
-            q.update(bayesian_rating=num/denom)
+            q.update(bayesian_rating=num / denom)
         else:
             q.update(bayesian_rating=0)
 
