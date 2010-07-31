@@ -4,9 +4,8 @@ import os
 from django.db.models import Count
 
 from celery.decorators import task
-# TODO(davedash): PIL needed
-# from easy_thumbnails import processors
-# from PIL import Image
+from easy_thumbnails import processors
+from PIL import Image
 
 import amo
 from tags.models import AddonTag
@@ -27,16 +26,16 @@ def collection_votes(*ids):
         qs.update(upvotes=votes.get(1, 0), downvotes=votes.get(-1, 0))
 
 
-#@task
-#def resize_icon(src, dest):
-#    """Resizes collection icons to 32x32"""
-#    try:
-#        im = Image.open(src)
-#        im = processors.scale_and_crop(im, (32, 32))
-#        im.save(dest)
-#        os.remove(src)
-#    except Exception, e:
-#        log.error("Error saving collection icon: %s" % e)
+@task
+def resize_icon(src, dest):
+    """Resizes collection icons to 32x32"""
+    try:
+        im = Image.open(src)
+        im = processors.scale_and_crop(im, (32, 32))
+        im.save(dest)
+        os.remove(src)
+    except Exception, e:
+        log.error("Error saving collection icon: %s" % e)
 
 
 @task

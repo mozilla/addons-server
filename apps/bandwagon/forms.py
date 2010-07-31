@@ -8,8 +8,7 @@ from tower import ugettext as _
 
 from addons.models import Addon
 from .models import Collection, CollectionAddon
-# TODO(davedash) uncomment after PIL
-# from . import tasks
+from . import tasks
 
 privacy_choices = (
         (False, _('Only I can view this collection.')),
