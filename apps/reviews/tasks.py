@@ -19,8 +19,9 @@ def update_denorm(*pairs, **kw):
     """
     log.info('[%s@%s] Updating review denorms.' %
              (len(pairs), update_denorm.rate_limit))
+    using = kw.get('using')
     for addon, user in pairs:
-        reviews = list(Review.objects.valid().no_cache().using('default')
+        reviews = list(Review.objects.valid().no_cache().using(using)
                        .filter(addon=addon, user=user)
                        .filter(reply_to=None).order_by('created'))
         if not reviews:
@@ -39,8 +40,9 @@ def update_denorm(*pairs, **kw):
 def addon_review_aggregates(*addons, **kw):
     log.info('[%s@%s] Updating total reviews.' %
              (len(addons), addon_review_aggregates.rate_limit))
+    using = kw.get('using')
     stats = dict(Review.objects.latest().filter(addon__in=addons)
-                 .values_list('addon').annotate(Count('addon')))
+                 .using(using).values_list('addon').annotate(Count('addon')))
     for addon in addons:
         count = stats.get(addon, 0)
         Addon.objects.filter(id=addon).update(total_reviews=count)
@@ -48,14 +50,14 @@ def addon_review_aggregates(*addons, **kw):
     log.info('[%s@%s] Updating average ratings.' %
              (len(addons), addon_review_aggregates.rate_limit))
     stats = dict(Review.objects.valid().filter(addon__in=addons)
-                 .values_list('addon').annotate(Avg('rating')))
+                 .using(using).values_list('addon').annotate(Avg('rating')))
     for addon in addons:
         avg = stats.get(addon, 0)
         Addon.objects.filter(id=addon).update(average_rating=avg)
 
     # Delay bayesian calculations to avoid slave lag.
     addon_bayesian_rating.apply_async(args=addons, countdown=5)
-    addon_grouped_rating.apply_async(args=addons, countdown=5)
+    addon_grouped_rating.apply_async(args=addons, kwargs={'using': using})
 
 
 @task
@@ -82,8 +84,9 @@ def addon_grouped_rating(*addons, **kw):
     # We stick this all in memcached since it's not critical.
     log.info('[%s@%s] Updating addon grouped ratings.' %
              (len(addons), addon_grouped_rating.rate_limit))
+    using = kw.get('using')
     for addon in addons:
-        GroupedRating.set(addon)
+        GroupedRating.set(addon, using=using)
 
 
 @task(rate_limit='10/m')

@@ -1,3 +1,4 @@
+from django.core.cache import cache
 from django.utils import translation
 
 import test_utils
@@ -35,6 +36,9 @@ class TestReviewModel(test_utils.TestCase):
 
 class TestGroupedRating(amo.test_utils.ExtraSetup, test_utils.TestCase):
     fixtures = ['base/apps', 'reviews/dev-reply.json']
+
+    def setUp(self):
+        cache.set(GroupedRating.key(1865), None)
 
     def test_get_none(self):
         eq_(GroupedRating.get(3), None)

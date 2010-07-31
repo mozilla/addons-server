@@ -98,7 +98,8 @@ class Review(amo.models.ModelBase):
         pair = instance.addon_id, instance.user_id
         # Do this immediately so is_latest is correct.
         tasks.update_denorm(pair)
-        tasks.addon_review_aggregates.delay(instance.addon_id)
+        # Use default so we don't hit slave lag.
+        tasks.addon_review_aggregates.delay(instance.addon_id, using='default')
 
     @staticmethod
     def transformer(reviews):
@@ -181,8 +182,8 @@ class GroupedRating(object):
         return cache.get(cls.key(addon))
 
     @classmethod
-    def set(cls, addon):
-        q = (Review.objects.valid().filter(addon=addon)
+    def set(cls, addon, using=None):
+        q = (Review.objects.valid().filter(addon=addon).using(using)
              .values_list('rating').annotate(models.Count('rating')))
         counts = dict(q)
         ratings = [(rating, counts.get(rating, 0)) for rating in range(1, 6)]
