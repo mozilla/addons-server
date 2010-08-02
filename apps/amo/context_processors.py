@@ -27,6 +27,7 @@ def global_settings(request):
     """
     account_links = []
     tools_links = []
+    context = {}
 
     if request.user.is_authenticated():
         # TODO(jbalogh): reverse links
@@ -60,6 +61,9 @@ def global_settings(request):
             tools_links.append({'text': _('Admin Tools'),
                                 'href': reverse('zadmin.home')})
 
+        context['amo_user'] = request.amo_user
 
-    return {'account_links': account_links, 'settings': settings, 'amo': amo,
-            'tools_links': tools_links}
+    context.update({'account_links': account_links,
+                    'settings': settings, 'amo': amo,
+                    'tools_links': tools_links})
+    return context
