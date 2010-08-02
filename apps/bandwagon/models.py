@@ -230,9 +230,6 @@ class Collection(amo.models.ModelBase):
         CollectionAddon.objects.filter(addon=addon, collection=self).delete()
         self.save()  # To invalidate Collection.
 
-    def is_owner(self, user):
-        return (user.id == self.author_id)
-
     @staticmethod
     def transformer(collections):
         if not collections:
@@ -242,6 +239,12 @@ class Collection(amo.models.ModelBase):
                        UserProfile.objects.filter(id__in=author_ids))
         for c in collections:
             c.author = authors.get(c.author_id)
+
+    def owned_by(self, user):
+        return (user.id == self.author_id)
+
+    def publishable_by(self, user):
+        return (user in self.users.all())
 
 
 class CollectionAddon(amo.models.ModelBase):
