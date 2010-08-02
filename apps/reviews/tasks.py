@@ -2,8 +2,8 @@ import logging
 
 from django.db.models import Count, Avg, F
 
-from celery.decorators import task
 import caching.base as caching
+from celeryutils import task
 
 from addons.models import Addon
 from .models import Review, GroupedRating

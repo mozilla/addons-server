@@ -3,7 +3,7 @@ import os
 
 from django.db.models import Count
 
-from celery.decorators import task
+from celeryutils import task
 from easy_thumbnails import processors
 from PIL import Image
 

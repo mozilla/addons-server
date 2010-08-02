@@ -4,7 +4,7 @@ from django.db import connection, transaction
 from django.db.models import Sum, Max
 
 import commonware.log
-from celery.decorators import task
+from celeryutils import task
 
 import amo
 from addons.models import Addon

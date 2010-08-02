@@ -6,8 +6,8 @@ from django.db.models import Count
 
 import commonware.log
 import multidb
-from celery.decorators import task
 from celery.messaging import establish_connection
+from celeryutils import task
 
 import amo
 from amo.utils import chunked, slugify
