@@ -10,7 +10,7 @@ $(document).ready(function() {
                 if ($(e.target).filter('a').length) {
                     e.preventDefault();
                     var flag = $(e.target).attr('href').slice(1)
-                    if (flag == 'other') {
+                    if (flag == 'review_flag_reason_other') {
                         // Show the Other form and bind the submit.
                         parent.addClass('other');
                         $(this).find('form').submit(function(e){
@@ -20,7 +20,8 @@ $(document).ready(function() {
                                 alert(gettext('Your input is required'));
                                 return false;
                             }
-                            addFlag(parent, url, 'other', note);
+                            addFlag(parent, url, 'review_flag_reason_other',
+                                    note);
                         });
                     } else {
                         addFlag(parent, url, flag, '');

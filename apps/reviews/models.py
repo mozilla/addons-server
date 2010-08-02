@@ -146,12 +146,12 @@ class ReviewFlag(amo.models.ModelBase):
         ('spam', _('Spam or otherwise non-review content')),
         ('language', _('Inappropriate language/dialog')),
         ('bug_support', _('Misplaced bug report or support request')),
-        ('other', _('Other (please specify)')),
+        ('review_flag_reason_other', _('Other (please specify)')),
     )
 
     review = models.ForeignKey(Review)
     user = models.ForeignKey('users.UserProfile')
-    flag = models.CharField(max_length=64, default='other',
+    flag = models.CharField(max_length=64, default='review_flag_reason_other',
                             choices=FLAGS, db_column='flag_name')
     note = models.CharField(max_length=100, db_column='flag_notes', blank=True,
                            default='')

@@ -1,5 +1,3 @@
-from django import http
-
 from nose.tools import eq_
 import test_utils
 
@@ -54,9 +52,11 @@ class TestFlag(ReviewTest):
     def test_flag_with_note(self):
         response = self.client.post(self.url, {'flag': 'spam', 'note': 'xxx'})
         eq_(response.status_code, 200)
-        eq_(ReviewFlag.objects.filter(flag='other').count(), 1)
+        eq_(ReviewFlag.objects.filter(flag='review_flag_reason_other').count(),
+            1)
         eq_(ReviewFlag.objects.count(), 1)
-        eq_(ReviewFlag.objects.get(flag='other').note, 'xxx')
+        eq_(ReviewFlag.objects.get(flag='review_flag_reason_other').note,
+            'xxx')
         eq_(Review.objects.filter(editorreview=True).count(), 1)
 
     def test_bad_flag(self):
