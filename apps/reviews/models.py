@@ -96,9 +96,9 @@ class Review(amo.models.ModelBase):
     def post_delete(sender, instance, **kwargs):
         from . import tasks
         pair = instance.addon_id, instance.user_id
-        # Do this immediately so is_latest is correct.
-        tasks.update_denorm(pair)
-        # Use default so we don't hit slave lag.
+        # Do this immediately so is_latest is correct. Use default to avoid
+        # slave lag.
+        tasks.update_denorm(pair, using='default')
         tasks.addon_review_aggregates.delay(instance.addon_id, using='default')
 
     @staticmethod
