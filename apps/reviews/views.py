@@ -46,6 +46,9 @@ def review_list(request, addon_id, review_id=None, user_id=None):
         q = q.filter(is_latest=True)
 
     ctx['reviews'] = reviews = amo.utils.paginate(request, q)
+    if not reviews.object_list:
+        raise http.Http404()
+
     ctx['replies'] = get_replies(reviews.object_list)
     if request.user.is_authenticated():
         ctx['review_perms'] = {

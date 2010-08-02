@@ -15,7 +15,13 @@ class TestViews(ReviewTest):
 
     def test_dev_reply(self):
         url = reverse('reviews.detail', args=[1865, 218468])
-        self.client.get(url)
+        r = self.client.get(url)
+        eq_(r.status_code, 200)
+
+    def test_404_user_page(self):
+        url = reverse('reviews.user', args=[1865, 233452342])
+        r = self.client.get(url)
+        eq_(r.status_code, 404)
 
 
 class TestFlag(ReviewTest):
