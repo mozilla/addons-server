@@ -314,3 +314,7 @@ def search_tools(request, category=None):
                         {'categories': categories, 'category': category,
                          'addons': addons, 'filter': filter,
                          'unreviewed': unreviewed})
+
+def featured(request, category=None):
+    addons = Addon.objects.featured(request.APP)
+    return jingo.render(request, 'browse/featured.html', {'addons': addons})

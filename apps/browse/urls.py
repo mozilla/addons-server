@@ -7,6 +7,8 @@ urlpatterns = patterns('',
     url('^language-tools/(?P<category>[^/]+)?$', views.language_tools,
         name='browse.language-tools'),
 
+    url('^featured$', views.featured, name='browse.featured'),
+
     url('^themes/(?P<category>[^/]+)?$', views.themes,
         name='browse.themes'),
 

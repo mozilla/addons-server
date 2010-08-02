@@ -1,0 +1,19 @@
+{% extends "browse/base_listing.html" %}
+
+
+{% block content %}
+  <div>
+    {% trans %}
+    With so many great add-ons available, there's something for everyone.
+    To get you started, here's a list of some of the most popular. Enjoy!
+    {% endtrans %}
+  </div>
+
+  {% cache addons %}
+  <div class="featured listing">
+    <div class="featured-inner">
+      {{ addon_listing_items(addons|list|shuffle) }}
+    </div>
+  </div>
+  {% endcache %}
+{% endblock content %}

@@ -249,3 +249,13 @@ class TestLegacyRedirects(test_utils.TestCase):
         redirects('/browse/type:4', '/search-tools/')
         redirects('/search-engines', '/search-tools/')
         # redirects('/browse/type:7', '/plugins/')
+        redirects('/recommended', '/featured')
+
+class TestFeaturedPage(amo.test_utils.ExtraSetup, test_utils.TestCase):
+    fixtures = ['base/fixtures', 'addons/featured']
+
+    def test_featured_addons(self):
+        """Make sure that only featured add-ons are shown"""
+
+        response = self.client.get(reverse('browse.featured'))
+        eq_([1003], [a.id for a in response.context['addons']])

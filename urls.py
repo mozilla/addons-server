@@ -99,6 +99,9 @@ urlpatterns = patterns('',
     ('^addons/contribute/(\d+)/?$',
      lambda r, id: redirect('addons.contribute', id, permanent=True)),
 
+    ('^recommended$',
+     lambda r: redirect('browse.featured', permanent=True)),
+
 )
 
 if settings.DEBUG:
