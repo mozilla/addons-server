@@ -1,7 +1,7 @@
 from django.conf import settings
 
 import commonware.log
-from celery.decorators import task
+from celeryutils import task
 from hera.contrib.django_utils import flush_urls
 
 log = commonware.log.getLogger('z.task')

@@ -4,8 +4,8 @@ from django.db import connection, connections, transaction
 from django.db.models import Max, Q, F
 
 import commonware.log
-from celery.decorators import task
 from celery.messaging import establish_connection
+from celeryutils import task
 import multidb
 
 import amo

@@ -2,8 +2,8 @@ from django.db import connections
 
 import commonware.log
 import multidb
-from celery.decorators import task
 from celery.messaging import establish_connection
+from celeryutils import task
 
 import cronjobs
 from amo import VALID_STATUSES
