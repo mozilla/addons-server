@@ -447,14 +447,7 @@ class StatsManager(caching.base.CachingManager):
         # so make that the default as a convenience.
         date_order = '-' + self.date_field
 
-        # Filter out '0000-00-00' dates which are sadly valid in the
-        # stats tables but mean nothing for analysis. '0000-00-00' is not
-        # null and does not have a python equivalent, so we have to filter
-        # using an inexact comparison.
-        date_filter = {self.date_field + '__gt': date(1990, 1, 1)}
-
-        return (StatsQuerySet(model=self.model)
-                .filter(**date_filter).order_by(date_order))
+        return StatsQuerySet(model=self.model).order_by(date_order)
 
 
 class StatsDict(dict):
