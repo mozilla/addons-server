@@ -1,7 +1,7 @@
 from jingo import register
 import jinja2
 from access import acl
-from cake.urlresolvers import remora_url
+from amo.urlresolvers import reverse
 
 
 @register.inclusion_tag('tags/tag_list.html')
@@ -39,5 +39,5 @@ def tag_link(tag, min_count, max_count):
     factor = range_convert(tag.tagstat.num_addons, 0, max_count, 1, 10)
     hyperlink = u'<a class="tagLevel%d tag" href="%s">%s</a>'
     return hyperlink % (factor,
-                        remora_url('/tag/' + tag.tag_text),
+                        reverse('tags.detail', args=[tag.tag_text.lower()]),
                         tag.tag_text)

@@ -80,6 +80,7 @@ class AddonManager(amo.models.ManagerBase):
         """
         if not status:
             status = [amo.STATUS_PUBLIC]
+
         def q(*args, **kw):
             if prefix:
                 kw = dict((prefix + k, v) for k, v in kw.items())
@@ -200,7 +201,7 @@ class Addon(amo.models.ModelBase):
         return '%s: %s' % (self.id, self.name)
 
     def flush_urls(self):
-        urls = ['*/addon/%d/' % self.id, # Doesn't take care of api
+        urls = ['*/addon/%d/' % self.id,  # Doesn't take care of api
                 '*/addon/%d/developers/' % self.id,
                 '*/addon/%d/reviews/' % self.id,
                 '*/addon/%d/versions/*' % self.id,
@@ -390,6 +391,7 @@ class Addon(amo.models.ModelBase):
     def is_featured(self, app, lang):
         """is add-on globally featured for this app and language?"""
         qs = Addon.objects.featured(app)
+
         def _features():
             vals = qs.extra(select={'locale': 'features.locale'})
             d = collections.defaultdict(list)
@@ -417,9 +419,7 @@ class Addon(amo.models.ModelBase):
     @amo.cached_property
     def tags_partitioned_by_developer(self):
         "Returns a tuple of developer tags and user tags for this addon."
-        # TODO(davedash): We can't cache these tags until /tags/ are moved
-        # into Zamboni.
-        tags = self.tags.not_blacklisted().no_cache()
+        tags = self.tags.not_blacklisted()
         if self.is_persona:
             return models.query.EmptyQuerySet(), tags
         user_tags = tags.exclude(addon_tags__user__in=self.listed_authors)
