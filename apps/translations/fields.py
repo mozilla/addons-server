@@ -6,7 +6,7 @@ from django.utils import translation as translation_utils
 from django.utils.translation.trans_real import to_language
 
 from .models import Translation, PurifiedTranslation, LinkifiedTranslation
-from .widgets import TranslationWidget
+from .widgets import TranslationWidget, TranslationTextInput
 
 
 class TranslatedField(models.ForeignKey):
@@ -218,8 +218,9 @@ class TranslationFormField(forms.Field):
     widget = TranslationWidget
 
     def __init__(self, *args, **kwargs):
-        del kwargs['queryset']
-        del kwargs['to_field_name']
+        for k in ('queryset', 'to_field_name'):
+            if k in kwargs:
+                del kwargs[k]
         super(TranslationFormField, self).__init__(*args, **kwargs)
 
     def clean(self, value):
