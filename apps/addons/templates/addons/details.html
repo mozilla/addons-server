@@ -109,35 +109,7 @@
             alt="" width="200" height="150" />
         {% endif %}
 
-        <div class="collection-add"
-          data-listurl="{{ url('collections.ajax_list') }}"
-          data-addurl="{{ url('collections.ajax_add') }}"
-          data-removeurl="{{ url('collections.ajax_remove') }}"
-          data-newurl="{{ url('collections.ajax_new') }}"
-          >
-          <span><a href="#">Add to collection</a></span>
-        </div>
-        <div class="collection-add-dropdown install-note">
-        {% if user.is_anonymous() %}
-          <div class="collection-add-login">
-            <p>
-              {% trans %}
-              To create your own collections, you must have an add-ons
-              account.
-              {% endtrans %}
-            </p>
-            <p class="register-button">
-              <a href="{{ remora_url('users/register') }}">{{ _('Create an Add-ons Account') }}</a>
-            </p>
-
-            <p>
-              {% trans login=login_link() %}
-                or <a href="{{ login }}">log in to your current account</a>
-              {% endtrans %}
-            </p>
-          </div>
-        {% endif %}
-        </div>
+        {% include 'addons/includes/collection_add_widget.html' %}
 
         {{ addon_sharing(addon) }}
 

@@ -3,27 +3,29 @@
 
   <form>
     <fieldset>
-      <p>
-        {{ form.errors['name']|safe }}
-        {{ form.name.label|safe }}
-        {{ form.name|safe }}
-      </p>
-      <p>
+      {{ field(form.name, _('Name:')) }}
+      <p id="collection-form-slug">
         {{ form.errors['slug']|safe }}
-        {{ form.slug.label|safe }}
+        <label>{{ form.slug.label|safe }}</label>
+        <span id="slug_edit">
         {{ url('collections.user', user.get_profile().nickname)|absolutify -}}
         {{ form.slug|safe }}
+        </span>
+        <span id="slug_readonly">
+          {{ url('collections.user', user.get_profile().nickname)|absolutify -}}<span id="slug_value"></span>
+          <a id="edit_slug" href="#">{{ _('Edit') }}</a>
+        </span>
       </p>
       <p>
-        {{ form.description.label|safe }} {{ _('(optional)') }}
+        <label for="id_description">{{ form.description.label|safe }}</label> {{ _('(optional)') }}
         {{ form.description|safe }}
       </p>
        <label>{{ form.listed.label }}</label>
        {{ form.listed|safe }}
     </fieldset>
     <p>
-      <button>{{ _('Create Collection') }}</button>
-      {% trans %}or <a id="collections-new-cancel">Cancel</a>{% endtrans %}
+      <input type="submit" value="{{ _('Create Collection') }}">
+      {% trans %}or <a id="collections-new-cancel" href="#">Cancel</a>{% endtrans %}
     </p>
   </form>
 </div>

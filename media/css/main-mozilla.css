@@ -789,6 +789,10 @@ p.addon-search-message {
     max-width: 205px;
 }
 
+#addon .featured .secondary div {
+    margin-bottom: 1em;
+}
+
 #review-box button {
     padding: 0.1em 1em;
     margin-left: 18%;

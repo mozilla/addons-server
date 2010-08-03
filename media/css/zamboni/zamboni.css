@@ -2377,12 +2377,70 @@ h6.author, .author a {
 }
 
 .collection-add {
+    left: -42px;
 }
 
 .collection-add-dropdown {
+    margin: 0;
     display: none;
+    width: 200px;
+    left: -42px;
+    padding: 1em;
 }
 
-.collection-add-dropdown .selected {
-    background: red;
+.collection-add-dropdown a {
+    color: #0055EE;
+}
+.collection-add-dropdown.new-collection {
+    width: 410px;
+}
+
+#collection-form-slug {
+    font-size: .9em;
+}
+
+#collections-new {
+    width: 400px;
+}
+#collections-new #id_name {
+    display: block;
+    width: 99%;
+}
+
+#ajax_collections_list {
+    margin: 0 0 .5em 0;
+}
+
+#ajax_new_collection {
+    border-top: 1px dashed #aecfda;
+    padding: .5em 0 0 30px;
+    margin: 0;
+}
+
+#slug_edit {
+    display: none;
+}
+#slug_value {
+    font-weight: bold;
+}
+#ajax_collections_list li {
+    cursor: pointer;
+    padding-left: 30px;
+    background-repeat: no-repeat;
+    background-position: 0 4px;
+    background-image: url(../../img/zamboni/icons/checks.png);
+    font-weight: bold;
+}
+
+#ajax_collections_list li:hover {
+    background-position: 0 -36px;
+}
+
+#ajax_collections_list li.selected {
+    background-position: 0 -76px;
+}
+
+#ajax_collections_list li.ajax-loading {
+   background-image: url(../../img/zamboni/loading-white.gif);
+   background-position: left bottom;
 }

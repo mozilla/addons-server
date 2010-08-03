@@ -109,40 +109,41 @@ $(document).ready(function () {
 
     btn.show();
 
-    var refreshHandlers = function() {
-        $('#collections-new button').click(handleSubmit);
-        $('#ajax_collections_list li').click(handleToggle);
-        $('#ajax_new_collection').click(handleNew);
-        $('#collections-new-cancel').click(handleClick);
-    };
-
     var list_url = btn.attr('data-listurl');
     var remove_url = btn.attr('data-removeurl');
     var add_url = btn.attr('data-addurl');
     var form_url = btn.attr('data-newurl');
-    var addon_id = $('#addon').attr('data-id');
+    var addon_id = $('#addon, #persona').attr('data-id');
 
-    var handleToggle = function() {
+    var handleToggle = function(e) {
         var data = {'addon_id': addon_id,
                     'id': this.getAttribute('data-id')};
         var url = this.className == "selected" ? remove_url
                                                : add_url;
-        $.post(url, data, handleClick);
+
+        $(this).addClass('ajax-loading');
+
+        e.preventDefault();
+        $.post(url, data, function(data) {
+            dropdown.removeClass('new-collection');
+            dropdown.html(data);
+        }, 'html');
     }
 
     var handleSubmit = function(e) {
-        e.preventDefault()
+        e.preventDefault();
         form_data = $('#collections-new form').serialize();
         $.post(form_url + '?addon_id=' + addon_id, form_data, function(d) {
             dropdown.html(d);
-            refreshHandlers();
         });
     }
 
     var handleNew = function(e) {
+        e.preventDefault();
         $.get(form_url, {'addon_id': addon_id}, function(d) {
+            dropdown.addClass('new-collection');
             dropdown.html(d);
-            refreshHandlers();
+            $("#id_name").focus();
         });
     }
 
@@ -153,12 +154,63 @@ $(document).ready(function () {
         if (!z.anonymous) {
             $.get(list_url, {'addon_id': addon_id}, function(data) {
                 dropdown.html(data);
-                refreshHandlers();
+                dropdown.removeClass('new-collection');
             }, 'html');
         }
+        e.preventDefault();
+
+        // Clear popup when we click outside it.
+        setTimeout(function(){
+            $(document.body).bind('click newPopup', cb);
+        }, 0);
     };
     btn.click(handleClick);
 
+    function show_slug_edit(e) {
+        $("#slug_readonly").hide();
+        $("#slug_edit").show();
+        $("#id_slug").focus();
+        e.preventDefault();
+    }
+
+    var url_customized = !!$('#id_slug').val();
+
+    function slugify() {
+      var slug = $('#id_slug');
+      if (!url_customized || !slug.val()) {
+          var s = $('#id_name').val().replace(/[^\w\s-]/g, '');
+          s = s.replace(/[-\s]+/g, '-').toLowerCase();
+          slug.val(s);
+          $('#slug_value').text(s);
+      }
+    }
+
+    dropdown.delegate('#ajax_collections_list li', 'click', handleToggle)
+        .delegate('#collections-new form', 'submit', handleSubmit)
+        .delegate('#ajax_new_collection', 'click', handleNew)
+        .delegate('#collections-new-cancel', 'click', handleClick)
+        .delegate('#collections-new #id_name', 'keyup', slugify)
+        .delegate('#collections-new #id_name', 'blur', slugify)
+        .delegate('#collections-new #edit_slug', 'click', show_slug_edit)
+        .delegate('#collections-new #id_slug', 'change', function() {
+            url_customized = true;
+            if (!$('#id_slug').val()) {
+              url_customized = false;
+              slugify();
+            }
+        });
+
+    var cb = function(e) {
+        _root = dropdown.get(0);
+        // Bail if the click was somewhere on the popup.
+        if (e.type == 'click' &&
+            _root == e.target ||
+            _.indexOf($(e.target).parents(), _root) != -1) {
+            return;
+        }
+        dropdown.hide();
+        $(document.body).unbind('click newPopup', cb);
+    }
 
 
 });
