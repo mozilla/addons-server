@@ -74,7 +74,7 @@
     <div class="average_rating">
       <span>
         {{ addon.average_rating|float|stars }}
-        {% trans total=addon.total_reviews %}
+        {% trans total=addon.total_reviews|numberfmt %}
           <strong>Average Rating</strong> ({{ total }})
         {% endtrans %}
       </span>
