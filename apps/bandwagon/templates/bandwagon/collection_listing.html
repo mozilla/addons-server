@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% set titles = {
+    'featured': _('Featured Collections'),
+    'popular': _('Popular Collections'),
+    'rating': _('Highest Rated Collections'),
+    'created': _('Recently Added Collections'),
+} %}
+{% set base_url = url('collections.list') %}
+
+{% block title %}{{ page_title(titles[filter.field]) }}{% endblock %}
+
+{% block extrahead %}{{ category_arrow(filter.field, prefix='p') }}{% endblock %}
+
+{% block content %}
+<div class="primary">
+  <header>
+    {{ breadcrumbs([(base_url, _('Collections')),
+                    (None, filter.title)]) }}
+    <h2>{{ titles[filter.field] }}</h2>
+  </header>
+  <div class="featured listing">
+    {{ addon_listing_header(base_url, filter.opts, filter.field,
+                            show_unreviewed=False) }}
+    <div class="featured-inner">
+      {% cache collections.object_list %}
+        {{ collection_listing_items(collections.object_list) }}
+      {% endcache %}
+    </div>
+  </div>
+</div>
+
+<div class="secondary">
+  <div class="other-categories highlight">
+    <h3>{{ _('Collections') }}</h3>
+    <ul>
+      {% for key, title in filter.opts %}
+        <li id="p-{{ key }}">
+          <a href="{{ base_url|urlparams(sort=key) }}">{{ title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+    {% if request.user.is_authenticated() %}
+      <ul>
+        <li><a href="#TODO-WATCHING">{{ _("Collections I'm Watching") }}</a></li>
+        <li><a href="#TODO-MINE">{{ _("Collections I've Made") }}</a></li>
+        <li><a href="#TODO-FAV">{{ _("My Favorite Add-ons") }}</a></li>
+      </ul>
+    {% endif %}
+  </div>
+
+  <div>
+    <h3>{{ _('Create a New Collection') }}</h3>
+    <p>{% trans %}
+      Collections make it easy to keep track of favorite add-ons and share your
+      perfectly customized browser with others.
+    {% endtrans %}</p>
+    <a href="{{ url('collections.add') }}" class="button">
+      {{ _('Create a Collection') }}</a>
+  </div>
+
+  <div>
+    <h3>{{ _('Add-on Collector') }}</h3>
+    <p>{% trans app=request.APP.pretty %}
+      Get updates on watched collections or manage your own collections directly
+      from {{ app }} with this add-on.
+    {% endtrans %}</p>
+    <a href="{{ remora_url('/pages/collector') }}" class="more-info">
+      {{ _('Check out Add-on Collector') }}</a>
+  </div>
+</div>
+{% endblock %}

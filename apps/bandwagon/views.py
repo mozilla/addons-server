@@ -1,4 +1,5 @@
 from django import http
+from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect
 
 import jingo
@@ -23,8 +24,31 @@ def legacy_redirect(self, uuid):
     return redirect(c.get_url_path())
 
 
+class CollectionFilter(BaseFilter):
+    opts = (('featured', _lazy('Featured')),
+            ('popular', _lazy('Popular')),
+            ('rating', _lazy('Highest Rated')),
+            ('created', _lazy('Recently Added')))
+
+    def filter(self, field):
+        qs = self.base_queryset
+        if field == 'featured':
+            return qs.filter(type=amo.COLLECTION_FEATURED)
+        elif field == 'followers':
+            return qs.order_by('-weekly_subscribers')
+        elif field == 'rating':
+            return qs.order_by('-rating')
+        else:
+            return qs.order_by('-created')
+
+
 def collection_listing(request):
-    return http.HttpResponse()
+    app = Q(application=request.APP.id) | Q(application=None)
+    base = Collection.objects.listed().filter(app)
+    filter = CollectionFilter(request, base, key='sort', default='popular')
+    collections = amo.utils.paginate(request, filter.qs)
+    return jingo.render(request, 'bandwagon/collection_listing.html',
+                        {'collections': collections, 'filter': filter})
 
 
 def user_listing(request, username):

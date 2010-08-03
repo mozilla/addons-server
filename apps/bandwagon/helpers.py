@@ -8,6 +8,14 @@ from amo.helpers import login_link
 from cake.urlresolvers import remora_url
 
 
+@register.inclusion_tag('bandwagon/collection_listing_items.html')
+@jinja2.contextfunction
+def collection_listing_items(context, collections):
+    c = dict(context.items())
+    c['collections'] = collections
+    return c
+
+
 @register.function
 def user_collection_list(collections=[], heading=''):
     """list of collections, as used on the user profile page"""
