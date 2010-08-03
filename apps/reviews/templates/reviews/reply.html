@@ -6,7 +6,13 @@
 
 {% block content %}
   {% block review_header %}
-    <h2>{{ title }}</h2>
+    <header>
+      {{ breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
+                      (addon.get_url_path(), addon.name),
+                      (url('reviews.list', addon.id), _('Reviews')),
+                      (None, _('Reply'))]) }}
+      <h2>{{ title }}</h2>
+    </header>
   {% endblock %}
 
   {% block review_list %}
