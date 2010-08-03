@@ -1,8 +1,6 @@
 import collections
-import itertools
 
 from django import http
-from django.conf import settings
 from django.http import HttpResponsePermanentRedirect
 from django.shortcuts import get_object_or_404
 from django.views.decorators.cache import cache_page
@@ -10,6 +8,7 @@ from django.views.decorators.cache import cache_page
 from tower import ugettext_lazy as _lazy
 import jingo
 import product_details
+import settings
 
 import amo.utils
 from addons.models import Addon, Category
@@ -44,6 +43,31 @@ def locale_display_name(locale):
 
 
 Locale = collections.namedtuple('Locale', 'locale display native dicts packs')
+
+
+class AddonFilter(BaseFilter):
+    opts = (('name', _lazy(u'Name')),
+            ('updated', _lazy(u'Updated')),
+            ('created', _lazy(u'Created')),
+            ('popular', _lazy(u'Downloads')),
+            ('rating', _lazy(u'Rating')))
+
+
+def addon_listing(request, addon_type, default='popular'):
+    # Set up the queryset and filtering for themes & extension listing pages.
+    status = [amo.STATUS_PUBLIC]
+
+    if request.GET.get('unreviewed', False) and not settings.SANDBOX_PANIC:
+        unreviewed = 'on'
+    else:
+        unreviewed = None
+
+    if unreviewed:
+        status.append(amo.STATUS_UNREVIEWED)
+
+    qs = Addon.objects.listed(request.APP, *status).filter(type=addon_type)
+    filter = AddonFilter(request, qs, 'sort', default)
+    return filter.qs, filter, unreviewed
 
 
 def _get_locales(addons):
@@ -99,20 +123,12 @@ def language_tools(request, category=None):
                          'search_cat': search_cat})
 
 
-class AddonFilter(BaseFilter):
-    opts = (('name', _lazy(u'Name')),
-            ('updated', _lazy(u'Updated')),
-            ('created', _lazy(u'Created')),
-            ('popular', _lazy(u'Downloads')),
-            ('rating', _lazy(u'Rating')))
-
-
 def themes(request, category=None):
     q = Category.objects.filter(application=request.APP.id,
                                 type=amo.ADDON_THEME)
     categories = order_by_translation(q, 'name')
 
-    addons, filter, unreviewed = _listing(request, amo.ADDON_THEME)
+    addons, filter, unreviewed = addon_listing(request, amo.ADDON_THEME)
 
     if category is not None:
         try:
@@ -136,23 +152,6 @@ def themes(request, category=None):
                          'search_cat': search_cat})
 
 
-def _listing(request, addon_type, default='popular'):
-    # Set up the queryset and filtering for themes & extension listing pages.
-    status = [amo.STATUS_PUBLIC]
-
-    if request.GET.get('unreviewed', False) and not settings.SANDBOX_PANIC:
-        unreviewed = 'on'
-    else:
-        unreviewed = None
-
-    if unreviewed:
-        status.append(amo.STATUS_UNREVIEWED)
-
-    qs = Addon.objects.listed(request.APP, *status).filter(type=addon_type)
-    filter = AddonFilter(request, qs, 'sort', default)
-    return filter.qs, filter, unreviewed
-
-
 def extensions(request, category=None):
     TYPE = amo.ADDON_EXTENSION
 
@@ -163,7 +162,7 @@ def extensions(request, category=None):
     if 'sort' not in request.GET and category:
         return category_landing(request, category)
 
-    addons, filter, unreviewed = _listing(request, TYPE)
+    addons, filter, unreviewed = addon_listing(request, TYPE)
 
     if category:
         addons = addons.filter(categories__id=category.id)
@@ -283,13 +282,16 @@ def personas(request, category=None):
 
 
 @cache_page(60 * 60 * 24 * 365)
-def legacy_redirects(request, type_, category=None):
+def legacy_redirects(request, type_, category=None, format=None):
     type_slug = amo.ADDON_SLUGS.get(int(type_), 'extensions')
     if not category or category == 'all':
         url = reverse('browse.%s' % type_slug)
     else:
         cat = get_object_or_404(Category.objects, id=category)
-        url = reverse('browse.%s' % type_slug, args=[cat.slug])
+        if format == 'rss':
+            url = reverse('browse.%s.rss' % type_slug, args=[cat.slug])
+        else:
+            url = reverse('browse.%s' % type_slug, args=[cat.slug])
     mapping = {'updated': 'updated', 'newest': 'created', 'name': 'name',
                 'weeklydownloads': 'popular', 'averagerating': 'rating'}
     if 'sort' in request.GET and request.GET['sort'] in mapping:
@@ -302,7 +304,7 @@ def search_tools(request, category=None):
     qs = Category.objects.filter(application=APP.id, type=TYPE)
     categories = order_by_translation(qs, 'name')
 
-    addons, filter, unreviewed = _listing(request, TYPE)
+    addons, filter, unreviewed = addon_listing(request, TYPE)
 
     if category is not None:
         category = get_object_or_404(qs, slug=category)
@@ -314,6 +316,7 @@ def search_tools(request, category=None):
                         {'categories': categories, 'category': category,
                          'addons': addons, 'filter': filter,
                          'unreviewed': unreviewed})
+
 
 def featured(request, category=None):
     addons = Addon.objects.featured(request.APP)

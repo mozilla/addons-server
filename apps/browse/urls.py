@@ -1,5 +1,5 @@
 from django.conf.urls.defaults import patterns, url
-
+from browse.feeds import CategoriesRss
 from . import views
 
 
@@ -18,10 +18,13 @@ urlpatterns = patterns('',
     url('^extensions/(?P<category>[^/]+)/featured$',
         views.creatured, name='browse.creatured'),
 
+    url('^extensions/(?P<category_name>[^/]+)/format:rss$', CategoriesRss(),
+        name='browse.extensions.rss'),
+
     url('^personas/(?P<category>[^ /]+)?$', views.personas,
         name='browse.personas'),
 
-    url('^browse/type:(?P<type_>\d)(?:/cat:(?P<category>\d+).*)?',
+    url('^browse/type:(?P<type_>\d)(?:/cat:(?P<category>\d+))?(?:/format:(?P<format>[^/]+).*)?',
         views.legacy_redirects),
 
     url('^search-tools/(?P<category>[^/]+)?$', views.search_tools,

@@ -16,15 +16,17 @@
     }
   </style>
 {% endif %}
-{# TODO; when remora goes away, fix this blob #}
+{% endblock %}
+
+{% block rss_feed %}
 {% with sort = {'created': 'newest', 'popular': 'popular', 'rating': 'averagerating'}[sorting] %}
   {% if not sort %}
     {% set sort = 'updated' %}
   {% endif %}
 
-  {% with cat = category.id if category else 'all' %}
+  {% with cat = category.slug if category else 'all' %}
     <link rel="alternate" type="application/rss+xml" title="RSS"
-          href="/{{ LANG }}/{{ APP.short }}/browse/type:{{ amo.ADDON_EXTENSION }}/cat:{{ cat }}/format:rss?sort={{ sort }}" />
+          href="{{ url('browse.extensions.rss',cat) }}?sort={{ sort }}" />
   {% endwith %}
 {% endwith %}
-{% endblock %}
+{% endblock rss_feed %}
