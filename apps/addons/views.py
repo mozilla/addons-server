@@ -116,8 +116,6 @@ def extension_detail(request, addon):
     popular_coll = collections.order_by('-subscribers')[:coll_show_count]
 
     # this user's collections
-    user_collections = _details_collections_dropdown(request, addon)
-
     data = {
         'addon': addon,
         'author_addons': author_addons,
@@ -133,62 +131,9 @@ def extension_detail(request, addon):
         'reviews': Review.objects.latest().filter(addon=addon),
 
         'collections': popular_coll,
-        'other_collection_count': other_coll_count,
-        'user_collections': user_collections,
+        'other_collection_count': other_coll_count
     }
     return jingo.render(request, 'addons/details.html', data)
-
-
-def _details_collections_dropdown(request, addon):
-    """Returns the collections which should be shown on an add-on details
-        page for a logged in user. This is used in the "Add to a collection..."
-        dropdown.  Rules to be in this list:
-            - user is logged in
-            - collection is not synchronized
-            - user is an admin or publisher of the collection
-            - collection application matches current APP
-            - current add-on is not already in the collection
-
-    This takes care of all but #5, for that we had to resort to raw() :(
-        profile.collections.filter(
-            Q(type=amo.COLLECTION_NORMAL) | Q(type=amo.COLLECTION_FEATURED),
-            Q(collectionuser__role=amo.COLLECTION_ROLE_ADMIN) |
-            Q(collectionuser__role=amo.COLLECTION_ROLE_PUBLISHER),
-            application__id=request.APP.id)
-    """
-    if request.user.is_authenticated():
-        profile = request.amo_user
-    else:
-        return []
-
-    sql = """
-            SELECT DISTINCT
-                collections.id
-            FROM
-                collections_users as cu
-            INNER JOIN
-                collections ON
-                (cu.collection_id = collections.id)
-            LEFT JOIN
-                addons_collections AS ac ON
-                (ac.collection_id = collections.id AND ac.addon_id IN (%s))
-            WHERE
-                cu.user_id = %s
-            AND cu.role IN (%s,%s) AND ac.addon_id IS NULL
-            AND collections.collection_type IN (%s,%s)
-            AND collections.application_id = %s
-    """
-    params = [addon.id, profile.id, amo.COLLECTION_ROLE_PUBLISHER,
-              amo.COLLECTION_ROLE_ADMIN, amo.COLLECTION_NORMAL,
-              amo.COLLECTION_FEATURED, request.APP.id]
-    collections = Collection.objects.raw(sql, params)
-
-    ids = [i.id for i in collections]
-
-    if ids:
-        return Collection.objects.filter(id__in=ids)
-    else:
-        return []
 
 
 def _category_personas(qs, limit):

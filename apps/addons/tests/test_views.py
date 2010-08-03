@@ -15,7 +15,6 @@ import amo.test_utils
 from amo.helpers import urlparams
 from amo.urlresolvers import reverse
 from addons.models import Addon, AddonUser
-from addons.views import _details_collections_dropdown
 from users.models import UserProfile
 from translations.query import order_by_translation
 
@@ -480,31 +479,6 @@ class TestDetailPage(amo.test_utils.ExtraSetup, test_utils.TestCase):
         # Unicode input.
         response = forward_to(u'\u271D')
         eq_(response.status_code, 400)
-
-    def test_collections_dropdown(self):
-
-        request = Mock()
-        request.APP.id = 1
-        request.user.is_authenticated = lambda: True
-
-        request.amo_user.id = 10482
-
-        addon = Mock()
-        addon.id = 4048
-
-        ret = _details_collections_dropdown(request, addon)
-        eq_(len(ret), 2)
-
-        # Add-on exists in one of the collections
-        addon.id = 433
-        ret = _details_collections_dropdown(request, addon)
-        eq_(len(ret), 1)
-
-        request.user.is_authenticated = lambda: False
-        request.amo_user.id = None
-
-        ret = _details_collections_dropdown(request, addon)
-        eq_(len(ret), 0)
 
     def test_remove_tag_button(self):
         self.client.login(username='regular@mozilla.com', password='password')
