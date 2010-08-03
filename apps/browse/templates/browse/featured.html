@@ -4,6 +4,10 @@
   {{ page_title(_('Featured Add-ons')) }}
 {% endblock %}
 
+{% block extrahead %}
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ remora_url('/recommended/format:rss') }}"/>
+{% endblock %}
+
 {% block content %}
   <div>
     {% trans %}
