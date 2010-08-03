@@ -70,7 +70,7 @@ def _get_locales(addons):
                 'locale_disambiguation': addon.locale_disambiguation}
 
     locales = {}
-    for locale, addons in itertools.groupby(addons, lambda x: x.target_locale):
+    for locale, addons in amo.utils.sorted_groupby(addons, 'target_locale'):
         addons = list(addons)
         dicts = [slim(a) for a in addons if a.type == amo.ADDON_DICT]
         packs = [slim(a) for a in addons if a.type == amo.ADDON_LPAPP]

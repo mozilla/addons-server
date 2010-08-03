@@ -64,7 +64,7 @@ class TestLanguageTools(amo.test_utils.ExtraSetup, test_utils.TestCase):
     def test_packs_and_dicts(self):
         ca = dict(self.locales)['ca-valencia']
         eq_(len(ca.dicts), 1)
-        eq_(len(ca.packs), 2)
+        eq_(len(ca.packs), 3)
 
     def test_empty_target_locale(self):
         """Make sure nothing breaks with empty target locales."""
