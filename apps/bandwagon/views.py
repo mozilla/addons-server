@@ -346,3 +346,28 @@ def edit_contributors(request, collection, username, slug):
                             args=[username, slug]))
 
     return jingo.render(request, 'bandwagon/edit_contributors.html', data)
+
+
+@login_required
+def delete(request, username, slug):
+    collection = get_object_or_404(Collection, author__nickname=username,
+                                   slug=slug)
+
+    is_admin = acl.action_allowed(request, 'Admin', '%')
+
+    if not (collection.is_owner(request.amo_user) or is_admin):
+        return http.HttpResponseForbidden(
+                _('This is not the collection you are looking for.'))
+
+    data = dict(collection=collection, username=username, slug=slug,
+                is_admin=is_admin)
+
+    if request.method == 'POST':
+        if request.POST['sure'] == '1':
+            collection.delete()
+            url = reverse('collections.user', args=[username])
+            return http.HttpResponseRedirect(url)
+        else:
+            return http.HttpResponseRedirect(collection.get_url_path())
+
+    return jingo.render(request, 'bandwagon/delete.html', data)

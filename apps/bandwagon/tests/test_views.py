@@ -251,6 +251,17 @@ class TestCRUD(test_utils.TestCase):
         addon = Collection.objects.filter(slug='pornstar')[0].addons.all()[0]
         eq_(addon.id, 40)
 
+    def test_delete(self):
+        self.create_collection()
+        eq_(len(Collection.objects.filter(slug='pornstar')), 1)
+
+        url = reverse('collections.delete',
+                      args=['admin', 'pornstar'])
+        self.client.post(url, dict(sure=0))
+        eq_(len(Collection.objects.filter(slug='pornstar')), 1)
+        self.client.post(url, dict(sure='1'))
+        eq_(len(Collection.objects.filter(slug='pornstar')), 0)
+
     @patch('access.acl.action_allowed')
     def test_admin(self, f):
         f = lambda *args, **kwargs: True
