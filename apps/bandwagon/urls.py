@@ -9,6 +9,12 @@ detail_urls = patterns('',
         name='collections.vote'),
 )
 
+ajax_urls = patterns('',
+    url('^list$', views.ajax_list, name='collections.ajax_list'),
+    url('^add$', views.ajax_add, name='collections.ajax_add'),
+    url('^remove$', views.ajax_remove, name='collections.ajax_remove'),
+    url('^new$', views.ajax_new, name='collections.ajax_new'),
+)
 
 urlpatterns = patterns('',
     url('^collection/(?P<uuid>[^/]+)/?$', views.legacy_redirect),
@@ -19,4 +25,5 @@ urlpatterns = patterns('',
     url('^collections/(?P<username>[^/]+)/(?P<slug>[^/]+)/',
         include(detail_urls)),
     url('^collections/add$', views.add, name='collections.add'),
+    url('^collections/ajax/', include(ajax_urls)),
 )

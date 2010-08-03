@@ -8818,34 +8818,9 @@
             "last_login": "2010-04-23 10:33:53",
             "groups": [],
             "user_permissions": [],
-            "password": "yermom",
+            "password": "sha1$a04e0$0512298efb3e6e7dbace3976474151d396078fdd",
             "email": "clouserw@gmail.com",
             "date_joined": "2007-03-05 13:09:38"
-        }
-    },
-    {
-        "pk": 80,
-        "model": "bandwagon.collection",
-        "fields": {
-            "description": 394558,
-            "rating": 0.0,
-            "uuid": "a5f1b177-c01d-c306-3030-e01598892405",
-            "default_locale": "en-US",
-            "created": "2009-06-09 23:35:10",
-            "monthly_subscribers": 0,
-            "nickname": "webdev",
-            "downvotes": 0,
-            "weekly_subscribers": 0,
-            "modified": "2009-06-09 23:37:36",
-            "addon_count": 2,
-            "application": 1,
-            "listed": 1,
-            "subscribers": 1,
-            "upvotes": 0,
-            "icontype": "",
-            "type": 0,
-            "downloads": 46,
-            "name": 394557
         }
     },
     {
@@ -8874,17 +8849,6 @@
         }
     },
     {
-        "pk": 47,
-        "model": "bandwagon.collectionpromo",
-        "fields": {
-            "locale": "",
-            "collection_feature": 1,
-            "modified": null,
-            "collection": 80,
-            "created": "2010-01-05 18:16:11"
-        }
-    },
-    {
         "pk": 10482,
         "model": "users.userprofile",
         "fields": {
@@ -8905,7 +8869,7 @@
             "lastname": "Clouser",
             "emailhidden": 0,
             "user": 10482,
-            "password": "yermom",
+            "password": "sha1$a04e0$0512298efb3e6e7dbace3976474151d396078fdd",
             "nickname": "clouserw",
             "resetcode_expires": "2010-01-01 00:00:00",
             "resetcode": "",
@@ -8913,6 +8877,43 @@
             "notes": "",
             "modified": "2010-03-19 13:50:38",
             "notifyevents": 1
+        }
+    },
+    {
+        "pk": 80,
+        "model": "bandwagon.collection",
+        "fields": {
+            "description": 394558,
+            "rating": 0.0,
+            "uuid": "a5f1b177-c01d-c306-3030-e01598892405",
+            "default_locale": "en-US",
+            "created": "2009-06-09 23:35:10",
+            "monthly_subscribers": 0,
+            "nickname": "webdev",
+            "downvotes": 0,
+            "weekly_subscribers": 0,
+            "modified": "2009-06-09 23:37:36",
+            "addon_count": 2,
+            "application": 1,
+            "listed": 1,
+            "subscribers": 1,
+            "upvotes": 0,
+            "icontype": "",
+            "type": 0,
+            "downloads": 46,
+            "name": 394557,
+            "author": 10482
+        }
+    },
+    {
+        "pk": 47,
+        "model": "bandwagon.collectionpromo",
+        "fields": {
+            "locale": "",
+            "collection_feature": 1,
+            "modified": null,
+            "collection": 80,
+            "created": "2010-01-05 18:16:11"
         }
     },
     {

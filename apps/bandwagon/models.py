@@ -8,6 +8,8 @@ from django.conf import settings
 from django.core.cache import cache
 from django.db import models, connection
 
+from MySQLdb import IntegrityError
+
 import amo
 import amo.models
 from amo.utils import sorted_groupby
@@ -35,6 +37,14 @@ class TopTags(object):
 
 
 class CollectionManager(amo.models.ManagerBase):
+
+    def manual(self):
+        """Only hand-crafted, favorites, and featured collections should appear
+        in this filter."""
+        types = (amo.COLLECTION_NORMAL, amo.COLLECTION_FAVORITE,
+                 amo.COLLECTION_FEATURED, )
+
+        return self.filter(type__in=types)
 
     def listed(self):
         """Return public collections only."""
@@ -186,6 +196,26 @@ class Collection(amo.models.ModelBase):
     def is_subscribed(self, user):
         """Determines if the user is subscribed to this collection."""
         return self.subscriptions.filter(user=user).exists()
+
+    # TODO(davedash): use this when we're on 1.3:
+    # http://code.djangoproject.com/ticket/13240
+    def add_addon(self, addon):
+        "Adds an addon to the collection."
+        ca = CollectionAddon()
+        ca.addon = addon
+        ca.collection = self
+        try:
+            ca.save()
+        except IntegrityError:
+            pass
+        self.save()  # To invalidate Collection.
+
+    def remove_addon(self, addon):
+        CollectionAddon.objects.filter(addon=addon, collection=self).delete()
+        self.save()  # To invalidate Collection.
+
+    def is_owner(self, user):
+        return (user.id == self.author_id)
 
 
 class CollectionAddon(amo.models.ModelBase):

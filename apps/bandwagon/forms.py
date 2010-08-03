@@ -23,7 +23,8 @@ class CollectionForm(forms.ModelForm):
                            label=_('Give your collection a name.'))
     slug = forms.CharField(label=_('URL:'))
     description = forms.CharField(label=_('Describe your collections.'),
-                                  widget=forms.Textarea, required=False)
+                                  widget=forms.Textarea(attrs={'rows': 3}),
+                                  required=False)
     listed = forms.ChoiceField(
             label=_('Who can view your collection?'),
             widget=forms.RadioSelect,

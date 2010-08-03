@@ -17,7 +17,7 @@
   <h4 class="author">{{ _('by') }} {{ users_list(addon.listed_authors) }}</h4>
 </hgroup>
 
-<div id="persona" class="primary" role="main">
+<div id="persona" class="primary" role="main" data-id="{{ addon.id }}">
   <div class="featured">
     <div class="featured-inner object-lead">
 
@@ -62,6 +62,8 @@
           <p{{ addon.summary|locale_html }}>{{ addon.summary|nl2br }}</p>
 
           {{ big_install_button(addon, show_warning=False) }}
+
+          {% include 'addons/includes/collection_add_widget.html' %}
 
           {# TODO(davedash): Remove until zamboni does sharing
           {{ addon_sharing(addon) }}
