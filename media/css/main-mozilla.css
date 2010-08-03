@@ -1232,19 +1232,6 @@ table#editor-subscriptions tbody {
 
 /** END User Edit page **/
 
-/* Get Satisfaction widget */
-div#gsfn_list_widget img { border: none; }
-div#gsfn_list_widget { float:right; font-size: 12px; width: 250px; border: 6px solid #DDD; padding: 5px 5px 25px 20px; margin: 5px 5px 10px 10px;}
-div#gsfn_list_widget a.widget_title { color: #000; display: block; margin-bottom: 10px; font-weight: bold; }
-div#gsfn_list_widget .powered_by { margin-top: 8px; padding-top: 8px; border-top: 1px solid #DDD; }
-div#gsfn_list_widget .powered_by a { color: #333; font-size: 90%; }
-div#gsfn_list_widget div#gsfn_content { }
-div#gsfn_list_widget div#gsfn_content li { text-align:left; margin-bottom:6px; }
-div#gsfn_list_widget div#gsfn_content a.gsfn_link { line-height: 1; }
-div#gsfn_list_widget div#gsfn_content span.time { font-size: 90%; padding-left: 3px; }
-div#gsfn_list_widget div#gsfn_content p.gsfn_summary { margin-top: 2px }
-/** END Get Satisfaction widget */
-
 /* pages/submissionhelp */
 ul.submissionHelp li span.required {
     font-weight: bold;
