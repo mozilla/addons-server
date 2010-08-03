@@ -19,6 +19,7 @@ detail_patterns = patterns('',
 )
 
 users_patterns = patterns('',
+    url('^ajax$', views.ajax, name='users.ajax'),
     url('^delete$', views.delete, name='users.delete'),
     url('^edit$', views.edit, name='users.edit'),
     url('^login', views.login, name='users.login'),

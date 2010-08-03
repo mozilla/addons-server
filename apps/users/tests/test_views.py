@@ -1,3 +1,5 @@
+import json
+
 from django import test
 from django.core import mail
 from django.core.cache import cache
@@ -19,8 +21,25 @@ class UserViewBase(test.TestCase):
 
     def setUp(self):
         self.client = Client()
+        self.client.get('/')
         self.user = User.objects.get(id='4043307')
         self.user_profile = self.user.get_profile()
+
+
+class TestAjax(UserViewBase):
+
+    def test_ajax(self):
+        url = reverse('users.ajax') + '?q=fligtar@gmail.com'
+        self.client.login(username='jbalogh@mozilla.com', password='foo')
+        r = self.client.get(url, follow=True)
+        data = json.loads(r.content)
+        eq_(data['id'], 9945)
+        eq_(data['name'], 'Justin Scott')
+
+    def test_forbidden(self):
+        url = reverse('users.ajax')
+        r = self.client.get(url)
+        eq_(r.status_code, 401)
 
 
 class TestEdit(UserViewBase):

@@ -1,3 +1,4 @@
+import json
 import random
 import string
 from django import http
@@ -14,7 +15,7 @@ from tower import ugettext as _
 
 
 import amo
-from amo.decorators import login_required
+from amo.decorators import login_required, json_view
 from amo.urlresolvers import reverse
 from access import acl
 from bandwagon.models import Collection
@@ -25,6 +26,14 @@ from .users import forms
 from .utils import EmailResetCode
 
 log = commonware.log.getLogger('z.users')
+
+@login_required(redirect=False)
+@json_view
+def ajax(request):
+    """Query for a user matching a given email."""
+    email = request.GET.get('q','').strip()
+    u = get_object_or_404(UserProfile, email=email)
+    return dict(id=u.id, name=u.name)
 
 
 def confirm(request, user_id, token):
