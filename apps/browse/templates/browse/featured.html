@@ -5,12 +5,21 @@
 {% endblock %}
 
 {% block content %}
-  <div>
-    {% trans %}
-    With so many great add-ons available, there's something for everyone.
-    To get you started, here's a list of some of the most popular. Enjoy!
+  {{ breadcrumbs([(None, _('Featured Add-ons'))]) }}
+  <h2>{{ _('Featured Add-ons') }}</h2>
+  <p>
+    {% trans app=APP.pretty %}
+    Here's a few of our favorite add-ons to help you get started customizing 
+    {{ app }}.
     {% endtrans %}
-  </div>
+    {% if APP == amo.FIREFOX %}
+      {% trans url="http://www.rockyourfirefox.com?src=amo-featured" %}
+      Be sure to visit 
+      <a href="{{ url }}">Rock Your Firefox</a>
+      to learn about other useful add-ons every week!
+      {% endtrans %}
+    {% endif %}
+  </p>
 
   {% cache addons %}
   <div class="featured listing">
