@@ -12,7 +12,7 @@ $(document).ready(function() {
                     var flag = $(e.target).attr('href').slice(1);
                     if (flag == 'review_flag_reason_other') {
                         // Show the Other form and bind the submit.
-                        parent.addClass('other');
+                        parent.addClass('other').find('input[type=text]').focus();
                         $(this).find('form').submit(function(e){
                             e.preventDefault();
                             var note = parent.find('#id_note').val();
@@ -39,9 +39,9 @@ $(document).ready(function() {
                         .replaceWith(gettext('Flagged for review'));
                 },
                 error: function(){ },
-                complete: function() { el.click(); },
                 dataType: 'json'
         });
+        el.click();
     };
 
     $('.delete-review').click(function(e) {
