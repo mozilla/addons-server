@@ -1,0 +1,47 @@
+      <h3>{{ _('Add-ons in Your Collection') }}</h3>
+      <p>
+        {% trans %}
+        To include an add-on in this collection, enter its name
+        in the box below and hit enter.  You can also use the
+        <strong>Add to Collection</strong> links throughout the
+        site to include add-ons later.
+        {% endtrans %}
+        </p>
+
+      <fieldset>
+        <table>
+          <thead>
+            <tr>
+              <th>{{ _('Add-on') }}</th>
+              <th>{{ _('Comment') }}</th>
+              <th>{{ _('Remove') }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <input id="addon-ac" data-src="{{ url('search.ajax') }}" />
+                <button id="addon-select">
+                  {{ _('Add to Collection') }}
+                </button>
+              </td>
+            </tr>
+            {% for addon in addons %}
+            <tr>
+              <td>
+                <input type="hidden" value="{{ addon.id }}" name="addon">
+                <img src="{{ addon.icon_url }}">
+                <p>{{ addon.name }}</p>
+                <p>
+                  <textarea name="addon_comment">{{ comments.get(addon.id) }}
+                  </textarea>
+                </p>
+              </td>
+              <td class="comment">x</td>
+              <td class="remove">x</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+      </fieldset>

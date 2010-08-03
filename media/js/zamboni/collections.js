@@ -441,7 +441,43 @@ table.delegate(".remove", "click", function() {
     row.find('textarea').parent().show();
 });
 
-
 })();
 
+if ($('body.collections-contributors')) {
+
+    var user_row = _.template('<tr>' +
+            '<td>' +
+            '<input name="contributor" value="{{ id }}" type="hidden">' +
+            '{{ name }}' +
+            '</td><td>{{ email }}</td>' +
+            '<td class="contributor">Contributor</td>' +
+            '<td class="remove">x</td>' +
+            '</tr>'
+            );
+
+    $('#contributor-ac-button').click(function(e) {
+        e.preventDefault();
+        var email = $('#contributor-ac').val();
+        var src = $('#contributor-ac').attr('data-src');
+        var my_id = $('#contributor-ac').attr('data-self');
+
+        // TODO(potch): Add a fancy failure case.
+        $.get(src, {q: email}, function(d) {
+
+            // TODO(potch): gently yell at user if they add someone twice.
+            if ($('input[name=contributor][value='+d.id+']').length == 0 &&
+                my_id != d.id) {
+                var str = user_row({id: d.id, name: d.name, email: email});
+                $('#contributor-ac-button').closest('tbody').append(str);
+            }
+
+            $('#contributor-ac').val('');
+        });
+    });
+
+    var table = $('#contributor-ac').closest('table');
+    table.delegate(".remove", "click", function() {
+        $(this).closest('tr').remove();
+    })
+}
 

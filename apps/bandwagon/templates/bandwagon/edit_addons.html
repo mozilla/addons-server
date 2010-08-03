@@ -1,0 +1,12 @@
+{% extends "bandwagon/edit_base.html" %}
+{% block form %}
+<form method="post"
+      action="{{ url('collections.edit_addons', username, slug) }}">
+{% include 'bandwagon/includes/addon_selector.html' %}
+{{ csrf() }}
+<p>
+  <input type="submit" value="{{ _('Save Changes') }}">
+</p>
+
+</form>
+{% endblock %}

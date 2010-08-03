@@ -3,9 +3,12 @@ import os
 from django.conf import settings
 from django.http import QueryDict
 
+from mock import patch
 from nose.tools import eq_
+from pyquery import PyQuery as pq
 import test_utils
 
+from access import acl
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
 from bandwagon.models import Collection, CollectionVote
@@ -128,7 +131,7 @@ class TestVotes(test_utils.TestCase):
         eq_(r.status_code, 200)
 
 
-class TestAdd(test_utils.TestCase):
+class TestCRUD(test_utils.TestCase):
     """Test the collection form."""
     fixtures = ['base/fixtures']
 
@@ -143,6 +146,12 @@ class TestAdd(test_utils.TestCase):
                 'description': '',
                 'listed': 'True'
                 }
+
+    def login_regular(self):
+        self.client.login(username='regular@mozilla.com', password='password')
+
+    def create_collection(self):
+        return self.client.post(self.add_url, self.data, follow=True)
 
     def test_showform(self):
         """Shows form if logged in."""
@@ -166,3 +175,91 @@ class TestAdd(test_utils.TestCase):
         r = self.client.post(self.add_url, self.data, follow=True)
         eq_(r.context['form'].errors['slug'][0],
             'This url is already in use by another collection')
+
+    def test_reassign(self):
+        """
+        When reassigning an addon make sure we don't give it a duplicate slug.
+        """
+
+        # Create an addon by user 1.
+        r = self.client.post(self.add_url, self.data, follow=True)
+
+        # Create an addon by user 2 with matching slug.
+        self.login_regular()
+        r = self.client.post(self.add_url, self.data, follow=True)
+        # Add user1 to user 2.
+
+        # Make user1 owner of user2s addon.
+        url = reverse('collections.edit_contributors',
+                      args=['regularuser', 'pornstar'])
+        r = self.client.post(url,
+                             {'contributor': 4043307, 'new_owner': 4043307},
+                             follow=True)
+        # verify that user1's addon is slug + '-'
+        c = Collection.objects.get(slug='pornstar-')
+        eq_(c.author_id, 4043307)
+
+    def test_edit(self):
+        self.create_collection()
+        url = reverse('collections.edit', args=['admin', 'pornstar'])
+        r = self.client.get(url, follow=True)
+        eq_(r.status_code, 200)
+
+    def test_edit_post(self):
+        """
+        Test edit of collection.
+        """
+        r = self.client.post(self.add_url, self.data, follow=True)
+        url = reverse('collections.edit',
+                      args=['admin', 'pornstar'])
+
+        r = self.client.post(url,
+                            {'name': 'HALP', 'slug': 'halp', 'listed': True},
+                            follow=True)
+        c = Collection.objects.get(slug='halp')
+        eq_(unicode(c.name), 'HALP')
+
+    def test_forbidden_edit(self):
+        r = self.client.post(self.add_url, self.data, follow=True)
+        self.login_regular()
+        url_args = ['admin', 'pornstar']
+
+
+        url = reverse('collections.edit', args=url_args)
+        r = self.client.get(url)
+        eq_(r.status_code, 403)
+
+        url = reverse('collections.edit_addons', args=url_args)
+        r = self.client.get(url)
+        eq_(r.status_code, 403)
+
+        url = reverse('collections.edit_contributors', args=url_args)
+        r = self.client.get(url)
+        eq_(r.status_code, 403)
+
+    def test_edit_addons(self):
+        self.create_collection()
+        url = reverse('collections.edit_addons', args=['admin', 'pornstar'])
+        r = self.client.get(url, follow=True)
+        eq_(r.status_code, 200)
+
+    def test_edit_addons_post(self):
+        self.create_collection()
+        url = reverse('collections.edit_addons',
+                      args=['admin', 'pornstar'])
+        r = self.client.post(url, {'addon': 40}, follow=True)
+        addon = Collection.objects.filter(slug='pornstar')[0].addons.all()[0]
+        eq_(addon.id, 40)
+
+    @patch('access.acl.action_allowed')
+    def test_admin(self, f):
+        f = lambda *args, **kwargs: True
+        self.create_collection()
+        url = reverse('collections.edit_contributors',
+                      args=['admin', 'pornstar'])
+        r = self.client.get(url, follow=True)
+        doc = pq(r.content)
+        eq_(doc('form h3').text(), 'Admin Settings')
+
+        r = self.client.post(url, dict(application=1, type=0), follow=True)
+        eq_(r.status_code, 200)

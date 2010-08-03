@@ -2456,3 +2456,11 @@ h6.author, .author a {
    background-image: url(../../img/zamboni/loading-white.gif);
    background-position: left bottom;
 }
+
+.collections-contributors tr a {
+    display: none;
+}
+
+.collections-contributors tr:hover a {
+    display: inline;
+}

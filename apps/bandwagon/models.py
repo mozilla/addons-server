@@ -178,7 +178,7 @@ class Collection(amo.models.ModelBase):
             self.save()
             return r
 
-    def set_addons(self, addon_ids):
+    def set_addons(self, addon_ids, comments={}):
         """Replace the current add-ons with a new list of add-on ids."""
         order = dict((a, idx) for idx, a in enumerate(addon_ids))
 
@@ -207,6 +207,14 @@ class Collection(amo.models.ModelBase):
         for addon, ordering in update:
             (CollectionAddon.objects.filter(collection=self.id, addon=addon)
              .update(ordering=ordering, modified=now))
+
+        for addon, comment in comments.iteritems():
+            c = CollectionAddon.objects.filter(collection=self.id, addon=addon)
+
+            if c:
+                c[0].comments = comment
+                c[0].save()
+
         self.save()
 
     def is_subscribed(self, user):
@@ -230,6 +238,12 @@ class Collection(amo.models.ModelBase):
         CollectionAddon.objects.filter(addon=addon, collection=self).delete()
         self.save()  # To invalidate Collection.
 
+    def owned_by(self, user):
+        return (user.id == self.author_id)
+
+    def publishable_by(self, user):
+        return (user in self.users.all())
+
     @staticmethod
     def transformer(collections):
         if not collections:
@@ -239,12 +253,6 @@ class Collection(amo.models.ModelBase):
                        UserProfile.objects.filter(id__in=author_ids))
         for c in collections:
             c.author = authors.get(c.author_id)
-
-    def owned_by(self, user):
-        return (user.id == self.author_id)
-
-    def publishable_by(self, user):
-        return (user in self.users.all())
 
 
 class CollectionAddon(amo.models.ModelBase):
@@ -313,7 +321,7 @@ class CollectionPromo(amo.models.ModelBase):
             promo_dict[promo_id].collection = collection.next()
 
 
-class CollectionRecommendation(amo.models.ModelBase):
+class CollectionRecommendation(models.Model):
     collection = models.ForeignKey(Collection, null=True,
             related_name="collection_one")
     other_collection = models.ForeignKey(Collection, null=True,

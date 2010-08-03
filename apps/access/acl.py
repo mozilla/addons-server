@@ -45,7 +45,8 @@ def check_ownership(request, obj, require_owner=False):
 def check_collection_ownership(request, collection, require_owner=False):
     if not request.user.is_authenticated():
         return False
-    if not require_owner and action_allowed(request, 'Admin', '%'):
+
+    if action_allowed(request, 'Admin', '%'):
         return True
     elif request.user.id == collection.author_id:
         return True

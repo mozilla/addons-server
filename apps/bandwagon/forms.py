@@ -6,25 +6,107 @@ from django.conf import settings
 import commonware
 from tower import ugettext as _
 
+import amo
 from addons.models import Addon
-from .models import Collection, CollectionAddon
+from translations.widgets import TranslationTextInput, TranslationTextarea
+from users.models import UserProfile
+from .models import Collection, CollectionAddon, CollectionUser
 from . import tasks
 
 privacy_choices = (
         (False, _('Only I can view this collection.')),
         (True, _('Anybody can view this collection.')))
 
-log = commonware.log.getLogger('z.image')
+apps = ((a.id, a.pretty) for a in amo.APP_USAGE)
+collection_types = ((k, v) for k, v in amo.COLLECTION_CHOICES.iteritems()
+        if k not in (amo.COLLECTION_ANONYMOUS, amo.COLLECTION_RECOMMENDED))
+
+
+class AdminForm(forms.Form):
+    application = forms.TypedChoiceField(choices=apps, required=False,
+                                         coerce=int)
+    type = forms.TypedChoiceField(choices=collection_types, required=False,
+                                  coerce=int)
+
+    def save(self, collection):
+        collection.type = self.cleaned_data['type']
+        collection.application_id = self.cleaned_data['application']
+        collection.save()
+
+
+class AddonsForm(forms.Form):
+    """This form is related to adding addons to a collection."""
+
+    addon = forms.CharField(widget=forms.MultipleHiddenInput, required=False)
+    addon_comment = forms.CharField(widget=forms.MultipleHiddenInput,
+                                     required=False)
+    def clean_addon(self):
+        return self.data.getlist('addon')
+
+    def clean_addon_comment(self):
+        addon_ids = self.data.getlist('addon')
+        return dict(zip(map(int, addon_ids),
+                        self.data.getlist('addon_comment')))
+
+    def save(self, collection):
+        collection.set_addons(self.cleaned_data['addon'],
+                              self.cleaned_data['addon_comment'])
+
+
+class ContributorsForm(forms.Form):
+    """This form is related to adding contributors to a collection."""
+
+    contributor = forms.CharField(widget=forms.MultipleHiddenInput,
+                                 required=False)
+
+    new_owner = forms.IntegerField(widget=forms.HiddenInput, required=False)
+
+    def clean_new_owner(self):
+        new_owner = self.cleaned_data['new_owner']
+        if new_owner:
+            return UserProfile.objects.get(pk=new_owner)
+
+    def clean_contributor(self):
+        contributor_ids = self.data.getlist('contributor')
+        return UserProfile.objects.filter(pk__in=contributor_ids)
+
+    def save(self, collection):
+        collection.collectionuser_set.all().delete()
+        for user in self.cleaned_data['contributor']:
+            CollectionUser(collection=collection, user=user).save()
+
+        new_owner = self.cleaned_data['new_owner']
+
+        if new_owner:
+            old_owner = collection.author
+            collection.author = new_owner
+
+            cu, created = CollectionUser.objects.get_or_create(
+                    collection=collection, user=old_owner)
+            if created:
+                cu.save()
+
+            # Check for duplicate slugs.
+            slug = collection.slug
+            while new_owner.collections.filter(slug=slug).count():
+                slug = slug + '-'
+            collection.slug = slug
+            collection.save()
+            # New owner is no longer a contributor.
+            collection.collectionuser_set.filter(user=new_owner).delete()
 
 
 class CollectionForm(forms.ModelForm):
 
-    name = forms.CharField(max_length=100,
-                           label=_('Give your collection a name.'))
+    name = forms.CharField(
+            label=_('Give your collection a name.'),
+            widget=TranslationTextInput,
+            )
     slug = forms.CharField(label=_('URL:'))
-    description = forms.CharField(label=_('Describe your collections.'),
-                                  widget=forms.Textarea(attrs={'rows': 3}),
-                                  required=False)
+    description = forms.CharField(
+            label=_('Describe your collections.'),
+            widget=TranslationTextarea,
+            required=False)
     listed = forms.ChoiceField(
             label=_('Who can view your collection?'),
             widget=forms.RadioSelect,
@@ -34,19 +116,6 @@ class CollectionForm(forms.ModelForm):
 
     icon = forms.FileField(label=_('Give your collection an icon.'),
                            required=False)
-
-    addon = forms.CharField(widget=forms.MultipleHiddenInput, required=False)
-    addon_comment = forms.CharField(widget=forms.MultipleHiddenInput,
-                                     required=False)
-
-    def clean_addon(self):
-        addon_ids = self.data.getlist('addon')
-        return Addon.objects.filter(pk__in=addon_ids)
-
-    def clean_addon_comment(self):
-        addon_ids = self.data.getlist('addon')
-        return dict(zip(map(int, addon_ids),
-                        self.data.getlist('addon_comment')))
 
     def clean_description(self):
         description = self.cleaned_data['description']
@@ -58,6 +127,8 @@ class CollectionForm(forms.ModelForm):
     def clean_slug(self):
         author = self.initial['author']
         slug = self.cleaned_data['slug']
+        if self.instance and self.instance.slug == slug:
+            return slug
 
         if author.collections.filter(slug=slug).count():
             raise forms.ValidationError(
@@ -107,15 +178,7 @@ class CollectionForm(forms.ModelForm):
             fh.close()
             # XXX
             # tasks.resize_icon.delay(tmp_destination, destination)
-
-        for addon in self.cleaned_data['addon']:
-            ca = CollectionAddon(collection=c, addon=addon)
-            comment = self.cleaned_data['addon_comment'].get(addon.id)
-            if comment:
-                ca.comments = comment
-
-            ca.save()
-        c.save()  # Update counts, etc.
+            tasks.resize_icon.delay(tmp_destination, destination)
 
         return c
 

@@ -1,0 +1,78 @@
+{% macro user_row(user, role) %}
+<tr>
+  <td>
+    {{ user.name }}
+  </td>
+  <td>
+    {{ user.email }}
+  </td>
+  <td>
+    {{ role }}
+
+    {% if role != _('Owner') %}
+    <input type="hidden" name="contributor" value="{{ user.id }}">
+    <a>Make Owner</a>
+    <button name="new_owner" value="{{ user.id }}">POTCH IT!</button>
+    {% endif %}
+  </td>
+  {% if role != _('Owner') %}
+  <td class="remove">x</td>
+  {% endif %}
+</tr>
+{% endmacro %}
+
+{% extends "bandwagon/edit_base.html" %}
+{% block bodyclass %}collections-contributors{% endblock %}
+{% block form %}
+  <h3>{{ _('Collection Contributors') }}</h3>
+  <p>
+  {% trans %}
+    You can add multiple contributors to this collection.  A contributor can
+    add and remove add-on from this collection, but cannot change its name or
+    description.  To add a contributor, enter their email in the box below.
+    Contributors must have a Mozilla Add-ons account.
+  {% endtrans %}
+  </p>
+  <form method="post"
+      action="{{ url('collections.edit_contributors', username, slug) }}">
+
+    {{ csrf() }}
+    <fieldset>
+      <table>
+        <thead>
+          <tr>
+            <th>{{ _('User') }}</th>
+            <th>{{ _('Email') }}</th>
+            <th>{{ _('Role') }}</th>
+            <th>{{ _('Remove') }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="4">
+              <input id="contributor-ac" data-src="{{ url('users.ajax') }}"
+                     data-self="{{ amo_user.id }}" />
+              <button id="contributor-ac-button">
+                {{ _('Add Contributor') }}
+              </button>
+            </td>
+          </tr>
+          {{ user_row(collection.author, _('Owner')) }}
+          {% for user in collection.users.all() %}
+            {{ user_row(user, _('Contributor')) }}
+          {% endfor %}
+        </tbody>
+      </table>
+    </fieldset>
+
+    {% if is_admin %}
+    <h3>{{ _('Admin Settings') }}</h3>
+    {{ admin_form.as_p()|safe }}
+    {% endif %}
+
+    <p>
+      <input type="submit" value="{{ _('Save Changes') }}">
+    </p>
+
+  </form>
+{% endblock %}

@@ -6,7 +6,7 @@ import test_utils
 
 import amo
 from addons.models import Addon, AddonRecommendation
-from bandwagon.models import (Collection, SyncedCollection,
+from bandwagon.models import (Collection, CollectionUser, SyncedCollection,
                               RecommendedCollection)
 from users.models import UserProfile
 
@@ -93,6 +93,14 @@ class TestCollections(test_utils.TestCase):
         c.set_addons(addons)
         eq_(get_addons(c), addons)
         eq_(c.addons.count(), len(addons))
+
+    def test_is_publisher(self):
+        c = Collection()
+        u = UserProfile(nickname='f')
+        c.save()
+        u.save()
+        CollectionUser(collection=c, user=u).save()
+        eq_(c.is_publisher(u), True)
 
 
 class TestRecommendations(test_utils.TestCase):

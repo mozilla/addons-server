@@ -11,95 +11,15 @@
     <h2>{{ _('Create a New Collection') }}</h2>
   </header>
 
-  {% if form.errors %}
-  <p class="error">
-      {{ _('There are errors in this form.  Please correct them below.') }}
-  </p>
-  {% endif %}
+  {% include 'bandwagon/includes/addedit_errors.html' %}
 
   <div>
     <form method="post" action="{{ url('collections.add') }}"
           enctype="multipart/form-data">
-      {{ csrf() }}
+      {% include 'bandwagon/includes/addedit.html' %}
+      {% include 'bandwagon/includes/addon_selector.html' %}
 
-      <h3>{{ _('Collection Description') }}</h3>
-      <fieldset>
-        <p>
-          {{ form.errors['name']|safe }}
-          {{ form.name.label|safe }}
-          {{ form.name|safe }}
-        </p>
-        <p>
-          {{ form.errors['slug']|safe }}
-          {{ form.slug.label|safe }}
-          {{ url('collections.user', user.get_profile().nickname)|absolutify -}}
-          {{ form.slug|safe }}
-        </p>
-        <p>
-          {{ form.description.label|safe }} {{ _('(optional)') }}
-          {{ form.description|safe }}
-        </p>
-        <p>
-          {{ form.listed.label|safe }}
-        </p>
-        {{ form.listed|safe }}
-        <p>
-          {{ form.errors['icon']|safe }}
-          {{ form.icon.label|safe }} {{ _('(optional)') }}
-          {{ form.icon|safe }}
-        </p>
-        <p>
-        {{ _('PNG and JPG supported.  Image will be resized to 32x32.') }}
-        </p>
-      </fieldset>
 
-      <h3>{{ _('Add-ons in Your Collection') }}</h3>
-      <p>
-        {% trans %}
-        To include an add-on in this collection, enter its name
-        in the box below and hit enter.  You can also use the
-        <strong>Add to Collection</strong> links throughout the
-        site to include add-ons later.
-        {% endtrans %}
-        </p>
-
-      <fieldset>
-        <table>
-          <thead>
-            <tr>
-              <th>Add-on</th>
-              <th>Comment</th>
-              <th>Remove</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <input id="addon-ac" data-src="{{ url('search.ajax') }}" />
-                <button id="addon-select">
-                  {{ _('Add to Collection') }}
-                </button>
-              </td>
-            </tr>
-            {% for addon in addons %}
-            <tr>
-              <td>
-                <input type="hidden" value="{{ addon.id }}" name="addon">
-                <img src="{{ addon.icon_url }}">
-                <p>{{ addon.name }}</p>
-                <p>
-                  <textarea name="addon_comment">{{ comments.get(addon.id) }}
-                  </textarea>
-                </p>
-              </td>
-              <td class="comment">x</td>
-              <td class="remove">x</td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-
-      </fieldset>
       <p>
         <input type="submit" value="{{ _('Create Collection') }}">
       </p>

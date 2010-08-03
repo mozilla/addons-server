@@ -1,20 +1,49 @@
+import functools
+
 from django import http
 from django.db.models import Q
+from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect
 
 import jingo
-from tower import ugettext_lazy as _lazy
+from tower import ugettext_lazy as _lazy, ugettext as _
 
 import amo.utils
 from amo.decorators import login_required
 from amo.urlresolvers import reverse
 from access import acl
+from amo.decorators import login_required
+from amo.urlresolvers import reverse
 from addons.models import Addon
 from addons.views import BaseFilter
 from tags.models import Tag
 from translations.query import order_by_translation
 from .models import Collection, CollectionAddon, CollectionUser, CollectionVote
 from . import forms
+
+
+def owner_required(f=None, require_owner=True):
+    """Requires collection to be owner, by someone."""
+
+    def decorator(func):
+        @functools.wraps(func)
+        def wrapper(request, username, slug, *args, **kw):
+            collection = get_object_or_404(Collection,
+                                           author__nickname=username,
+                                           slug=slug)
+
+            if acl.check_collection_ownership(request, collection,
+                                              require_owner=require_owner):
+                return func(request, collection, username, slug, *args, **kw)
+            else:
+                return http.HttpResponseForbidden(
+                        _("This is not the collection you are looking for."))
+        return wrapper
+
+    if f:
+        return decorator(f)
+    else:
+        return decorator
 
 
 def legacy_redirect(request, uuid):
@@ -159,6 +188,10 @@ def collection_vote(request, username, slug, direction):
         return redirect(c.get_url_path())
 
 
+def initial_data_from_request(request):
+    return dict(author=request.amo_user, application_id=request.APP.id)
+
+
 @login_required
 def add(request):
     "Displays/processes a form to create a collection."
@@ -166,14 +199,17 @@ def add(request):
     if request.method == 'POST':
         form = forms.CollectionForm(
                 request.POST, request.FILES,
-                initial={'author': request.amo_user,
-                         'application_id': request.APP.id})
+                initial=initial_data_from_request(request))
+        aform = forms.AddonsForm(request.POST)
         if form.is_valid():
             collection = form.save()
+
+            if aform.is_valid():
+                aform.save(collection)
             return http.HttpResponseRedirect(collection.get_url_path())
         else:
-            data['addons'] = form.clean_addon()
-            data['comments'] = form.clean_addon_comment()
+            data['addons'] = aform.clean_addon()
+            data['comments'] = aform.clean_addon_comment()
     else:
         form = forms.CollectionForm()
 
@@ -223,7 +259,7 @@ def _ajax_add_remove(request, op):
 
     c = Collection.objects.get(pk=id)
 
-    if not c.is_owner(request.amo_user):
+    if not c.owned_by(request.amo_user):
         return http.HttpResponseForbidden()
 
     a = Addon.objects.get(pk=addon_id)
@@ -244,3 +280,69 @@ def ajax_add(request):
 
 def ajax_remove(request):
     return _ajax_add_remove(request, 'remove')
+
+
+@login_required
+@owner_required
+def edit(request, collection, username, slug):
+    if request.method == 'POST':
+        form = forms.CollectionForm(request.POST, request.FILES,
+                                    initial=initial_data_from_request(request),
+                                    instance=collection)
+        if form.is_valid():
+            collection = form.save()
+
+            return http.HttpResponseRedirect(collection.get_url_path())
+    else:
+        form = forms.CollectionForm(instance=collection)
+
+    data = dict(collection=collection,
+                form=form,
+                username=username,
+                slug=slug)
+    return jingo.render(request, 'bandwagon/edit.html', data)
+
+
+@login_required
+@owner_required(require_owner=False)
+def edit_addons(request, collection, username, slug):
+    if request.method == 'POST':
+        form = forms.AddonsForm(request.POST)
+        if form.is_valid():
+            form.save(collection)
+            return http.HttpResponseRedirect(collection.get_url_path())
+
+    data = dict(collection=collection, username=username, slug=slug)
+    return jingo.render(request, 'bandwagon/edit_addons.html', data)
+
+
+@login_required
+@owner_required
+def edit_contributors(request, collection, username, slug):
+    is_admin = acl.action_allowed(request, 'Admin', '%')
+
+    data = dict(collection=collection, username=username, slug=slug,
+                is_admin=is_admin)
+
+    if is_admin:
+        initial = dict(type=collection.type,
+                       application=collection.application_id)
+        data['admin_form'] = forms.AdminForm(initial=initial)
+
+    if request.method == 'POST':
+        if is_admin:
+            admin_form = forms.AdminForm(request.POST)
+            if admin_form.is_valid():
+                admin_form.save(collection)
+
+        form = forms.ContributorsForm(request.POST)
+        if form.is_valid():
+            form.save(collection)
+            messages.success(request, _('Your collection has been updated.'))
+            if form.cleaned_data['new_owner']:
+                return http.HttpResponseRedirect(collection.get_url_path())
+            return http.HttpResponseRedirect(
+                    reverse('collections.edit_contributors',
+                            args=[username, slug]))
+
+    return jingo.render(request, 'bandwagon/edit_contributors.html', data)

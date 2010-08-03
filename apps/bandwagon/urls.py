@@ -2,11 +2,18 @@ from django.conf.urls.defaults import patterns, url, include
 
 from . import views
 
+edit_urls = patterns('',
+    url('^$', views.edit, name='collections.edit'),
+    url('^addons$', views.edit_addons, name='collections.edit_addons'),
+    url('^contributors$', views.edit_contributors,
+        name='collections.edit_contributors'),
+)
 
 detail_urls = patterns('',
     url('^$', views.collection_detail, name='collections.detail'),
     url('^vote/(?P<direction>up|down)$', views.collection_vote,
         name='collections.vote'),
+    url('^edit/', include(edit_urls)),
 )
 
 ajax_urls = patterns('',
