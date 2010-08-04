@@ -154,7 +154,8 @@ class VersionComment(amo.models.ModelBase):
     """Editor comments for version discussion threads."""
     version = models.ForeignKey(Version)
     user = models.ForeignKey(UserProfile)
-    reply_to = models.ForeignKey(Version, related_name="reply_to", null=True)
+    reply_to = models.ForeignKey(Version, related_name="reply_to",
+                                 db_column='reply_to', null=True)
     subject = models.CharField(max_length=1000)
     comment = models.TextField()
 
