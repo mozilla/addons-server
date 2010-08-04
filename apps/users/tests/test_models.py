@@ -5,16 +5,17 @@ from django import test
 from django.contrib.auth.models import User
 from django.core import mail
 
+import test_utils
 from nose.tools import eq_
 
 import amo.test_utils
 from addons.models import Addon, AddonUser
 from bandwagon.models import Collection
 from reviews.models import Review
-from users.models import UserProfile, get_hexdigest, BlacklistedNickname
+from users.models import UserProfile, get_hexdigest, BlacklistedUsername
 
 
-class TestUserProfile(amo.test_utils.ExtraSetup, test.TestCase):
+class TestUserProfile(amo.test_utils.ExtraSetup, test_utils.TestCase):
     fixtures = ('base/addon_3615', 'base/user_2519', 'users/test_backends',
                 'base/apps',)
 
@@ -24,10 +25,6 @@ class TestUserProfile(amo.test_utils.ExtraSetup, test.TestCase):
         u.anonymize()
         x = User.objects.get(id='4043307').get_profile()
         eq_(x.email, "")
-
-    def test_display_name_nickname(self):
-        u = UserProfile(nickname='Terminator', pk=1)
-        eq_(u.display_name, 'Terminator')
 
     def test_email_confirmation_code(self):
         u = User.objects.get(id='4043307').get_profile()
@@ -40,23 +37,15 @@ class TestUserProfile(amo.test_utils.ExtraSetup, test.TestCase):
                                         (u.id, u.confirmationcode)) > 0
 
     def test_welcome_name(self):
-        u1 = UserProfile(lastname='Connor')
-        u2 = UserProfile(firstname='Sarah', nickname='sc', lastname='Connor')
-        u3 = UserProfile(nickname='sc', lastname='Connor')
-        u4 = UserProfile()
-        eq_(u1.welcome_name, 'Connor')
-        eq_(u2.welcome_name, 'Sarah')
-        eq_(u3.welcome_name, 'sc')
-        eq_(u4.welcome_name, '')
+        u1 = UserProfile(username='sc')
+        u2 = UserProfile(username='sc', display_name="Sarah Connor")
+        u3 = UserProfile()
+        eq_(u1.welcome_name, 'sc')
+        eq_(u2.welcome_name, 'Sarah Connor')
+        eq_(u3.welcome_name, '')
 
-    def test_name(self):
-        u1 = UserProfile(firstname='Sarah', lastname='Connor')
-        u2 = UserProfile(firstname='Sarah')
-        eq_(u1.name, 'Sarah Connor')
-        eq_(u2.name, 'Sarah')  # No trailing space
-
-    def test_empty_nickname(self):
-        u = UserProfile.objects.create(email='yoyoyo@yo.yo', nickname='yoyo')
+    def test_empty_username(self):
+        u = UserProfile.objects.create(email='yoyoyo@yo.yo', username='yoyo')
         assert u.user is None
         u.create_django_user()
         eq_(u.user.username, 'yoyoyo@yo.yo')
@@ -69,8 +58,8 @@ class TestUserProfile(amo.test_utils.ExtraSetup, test.TestCase):
         as resetcode_expires as None
         """
 
-        u = UserProfile(lastname='Connor', pk=2, resetcode_expires=None,
-                        nickname='jconnor', email='j.connor@sky.net')
+        u = UserProfile(username='jconnor', pk=2, resetcode_expires=None,
+                        email='j.connor@sky.net')
         u.save()
         assert u.resetcode_expires
 
@@ -136,7 +125,7 @@ class TestUserProfile(amo.test_utils.ExtraSetup, test.TestCase):
         eq_(c.slug, 'favorites')
 
 
-class TestPasswords(test.TestCase):
+class TestPasswords(amo.test_utils.ExtraSetup, test_utils.TestCase):
 
     def test_invalid_old_password(self):
         u = UserProfile(password='sekrit')
@@ -162,9 +151,9 @@ class TestPasswords(test.TestCase):
         assert u.check_password('sekrit') is True
 
 
-class TestBlacklistedNickname(test.TestCase):
+class TestBlacklistedUsername(amo.test_utils.ExtraSetup, test_utils.TestCase):
     fixtures = ['users/test_backends']
 
     def test_blocked(self):
-        eq_(BlacklistedNickname.blocked('IE6Fan'), True)
-        eq_(BlacklistedNickname.blocked('testo'), False)
+        eq_(BlacklistedUsername.blocked('IE6Fan'), True)
+        eq_(BlacklistedUsername.blocked('testo'), False)

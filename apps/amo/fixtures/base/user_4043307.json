@@ -40,6 +40,8 @@
             "user": 4043307,
             "password": "",
             "nickname": "jbalogh",
+            "username": "jbalogh",
+            "display_name": "jbalogh",
             "resetcode_expires": null,
             "resetcode": "",
             "created": "2009-02-02 11:50:31",

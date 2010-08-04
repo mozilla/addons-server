@@ -11,7 +11,7 @@ from django.core import paginator
 from django.core.serializers import json
 from django.core.mail import send_mail as django_send_mail
 from django.utils.functional import Promise
-from django.utils.encoding import smart_str
+from django.utils.encoding import smart_str, smart_unicode
 
 import pytz
 
@@ -201,5 +201,5 @@ slug_re = re.compile('[^\w\s-]', re.UNICODE)
 
 
 def slugify(s):
-    s = slug_re.sub('', unicode(s)).strip().lower()
+    s = slug_re.sub('', smart_unicode(s)).strip().lower()
     return re.sub('[-\s]+', '-', s)

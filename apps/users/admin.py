@@ -5,7 +5,7 @@ from django.utils.encoding import smart_unicode
 import jingo
 
 from access.admin import GroupUserInline
-from .models import UserProfile, BlacklistedNickname
+from .models import UserProfile, BlacklistedUsername
 from .users import forms
 
 
@@ -18,9 +18,8 @@ class UserAdmin(admin.ModelAdmin):
     # XXX TODO: Ability to change the password (use AdminPasswordChangeForm)
     fieldsets = (
         (None, {
-            'fields': ('nickname', 'firstname', 'lastname', 'email',
-                       'password', 'bio', 'homepage', 'location',
-                       'occupation',),
+            'fields': ('email', 'username', 'display_name', 'password',
+                       'bio', 'homepage', 'location', 'occupation',),
         }),
         ('Registration', {
             'fields': ('confirmationcode', 'resetcode',
@@ -37,43 +36,44 @@ class UserAdmin(admin.ModelAdmin):
     )
 
 
-class BlacklistedNicknameAdmin(admin.ModelAdmin):
-    list_display = search_fields = ('nickname',)
+class BlacklistedUsernameAdmin(admin.ModelAdmin):
+    list_display = search_fields = ('username',)
 
     def add_view(self, request, form_url='', extra_context=None):
         """Override the default admin add view for bulk add."""
-        form = forms.BlacklistedNicknameAddForm()
+        form = forms.BlacklistedUsernameAddForm()
         if request.method == 'POST':
-            form = forms.BlacklistedNicknameAddForm(request.POST)
+            form = forms.BlacklistedUsernameAddForm(request.POST)
             if form.is_valid():
                 inserted = 0
                 duplicates = 0
-                for n in form.cleaned_data['nicknames'].splitlines():
+
+                for n in form.cleaned_data['usernames'].splitlines():
                     # check with teh cache
-                    if BlacklistedNickname.blocked(n):
+                    if BlacklistedUsername.blocked(n):
                         duplicates += 1
                         continue
                     n = smart_unicode(n).lower().encode('utf-8')
                     try:
-                        BlacklistedNickname.objects.create(nickname=n)
+                        BlacklistedUsername.objects.create(username=n)
                         inserted += 1
                     except IntegrityError:
                         # although unlikely, someone else could have added
-                        # the nickname.
+                        # the username.
                         # note: unless we manage the transactions manually,
                         # we do lose a primary id here
                         duplicates += 1
-                msg = '%s new nicknames added to the blacklist.' % (inserted)
+                msg = '%s new usernames added to the blacklist.' % (inserted)
                 if duplicates:
                     msg += ' %s duplicates were ignored.' % (duplicates)
                 messages.success(request, msg)
-                form = forms.BlacklistedNicknameAddForm()
+                form = forms.BlacklistedUsernameAddForm()
                 # Default django admin change list view does not print messages
                 # no redirect for now
                 # return http.HttpResponseRedirect(reverse(
-                #     'admin:users_blacklistednickname_changelist'))
-        return jingo.render(request, 'admin/blacklisted_nickname/add.html',
+                #     'admin:users_blacklistedusername_changelist'))
+        return jingo.render(request, 'admin/blacklisted_username/add.html',
                             {'form': form})
 
 admin.site.register(UserProfile, UserAdmin)
-admin.site.register(BlacklistedNickname, BlacklistedNicknameAdmin)
+admin.site.register(BlacklistedUsername, BlacklistedUsernameAdmin)

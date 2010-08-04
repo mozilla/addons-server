@@ -132,6 +132,8 @@
             "user": 8735,
             "password": "",
             "nickname": "8735",
+            "username": "8735",
+            "display_name": "8735",
             "resetcode_expires": null,
             "resetcode": "",
             "created": "2007-03-05 13:09:37",

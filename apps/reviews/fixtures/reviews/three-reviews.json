@@ -125,6 +125,7 @@
             "bio": null,
             "password": "sha512$280a921ec6e735ec6a1a76dc8802f3f6aee254f3fd71589010fe85ebce185f7a$c797ddde00731d7660b9e0c887d77b373e782eaa949e6101f17ada9a7236c426db53ac4344c133cdf32e73381bb7c7280efe5fdc5dd6134bbd2f706d994f94ff",
             "nickname": "Join2",
+            "username": "Join2",
             "resetcode_expires": null,
             "resetcode": "",
             "created": "2009-05-16 05:29:58",

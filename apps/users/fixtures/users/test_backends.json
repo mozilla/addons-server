@@ -40,6 +40,8 @@
             "user": 4043307,
             "password": "sha512$32e15df727a054aa56cf69accc142d1573372641a176aab9b0f1458e27dc6f3b$5bd3bd7811569776a07fbbb5e50156aa6ebdd0bec9267249b57da065340f0324190f1ad0d5f609dca19179a86c64807e22f789d118e6f7109c95b9c64ae8f619",
             "nickname": "jbalogh",
+            "username": "jbalogh",
+            "display_name": "Jeff Balogh",
             "resetcode_expires": "2010-01-12 15:28:07",
             "resetcode": "",
             "created": "2009-02-02 11:50:31",
@@ -89,6 +91,8 @@
             "user": null,
             "password": "sha512$32e15df727a054aa56cf69accc142d1573372641a176aab9b0f1458e27dc6f3b$5bd3bd7811569776a07fbbb5e50156aa6ebdd0bec9267249b57da065340f0324190f1ad0d5f609dca19179a86c64807e22f789d118e6f7109c95b9c64ae8f619",
             "nickname": "fligtar",
+            "username": "fligtar",
+            "display_name": "Justin Scott",
             "resetcode_expires": "2010-01-12 15:28:07",
             "resetcode": "",
             "created": "2007-03-05 13:09:37",
@@ -138,6 +142,8 @@
             "user": 5349055,
             "password": "sha512$9ec347fc67fc17c99a9dd43d1431a5959011acf247fb2128228c9a04208d1991$edcc677c7045ee2a379286e2ad6d99bd58af6b4a2117e1e4c2743923a9a297ce56d5311fe51baa4584c5483af0eaedc57700fbb4b719c0a84597c1609536ca4d",
             "nickname": "barry",
+            "username": "barry",
+            "display_name": "barry",
             "resetcode_expires": "2010-07-23 00:37:10",
             "resetcode": "",
             "created": "2010-07-03 23:03:11",
@@ -148,9 +154,9 @@
     },
     {
         "pk": 1,
-        "model": "users.blacklistednickname",
+        "model": "users.blacklistedusername",
         "fields": {
-            "nickname": "ie6fan",
+            "username": "IE6Fan",
             "modified": "2010-07-21 23:32:05",
             "created": "2010-07-21 23:32:05"
         }

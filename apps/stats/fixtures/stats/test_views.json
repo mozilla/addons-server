@@ -16,6 +16,7 @@
         "model": "users.userprofile",
         "fields": {
             "nickname": "jbalogh",
+            "username": "jbalogh",
             "deleted": 0,
             "user": 4043307,
             "password": "sha512$7b5436061f8c0902088c292c057be69fdb17312e2f71607c9c51641f5d876522$08d1d370d89e2ae92755fd03464a7276ca607c431d04a52d659f7a184f3f9918073637d82fc88981c7099c7c46a1137b9fdeb675304eb98801038905a9ee0600",
@@ -39,6 +40,7 @@
         "model": "users.userprofile",
         "fields": {
             "nickname": "nobodyspecial",
+            "username": "nobodyspecial",
             "deleted": 0,
             "user": 8675309,
             "password": "sha512$7b5436061f8c0902088c292c057be69fdb17312e2f71607c9c51641f5d876522$08d1d370d89e2ae92755fd03464a7276ca607c431d04a52d659f7a184f3f9918073637d82fc88981c7099c7c46a1137b9fdeb675304eb98801038905a9ee0600",

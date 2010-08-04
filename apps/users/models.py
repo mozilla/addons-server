@@ -47,10 +47,16 @@ class UserManager(amo.models.ManagerBase):
 
 class UserProfile(amo.models.ModelBase):
 
-    nickname = models.CharField(max_length=255, unique=True, default='',
-                                null=True, blank=True)
-    firstname = models.CharField(max_length=255, default='', blank=True)
-    lastname = models.CharField(max_length=255, default='', blank=True)
+    nickname = models.CharField(max_length=255, default='', null=True,
+                                blank=True)
+    firstname = models.CharField(max_length=255, default='', null=True, blank=True)
+    lastname = models.CharField(max_length=255, default='', null=True, blank=True)
+
+    username = models.CharField(max_length=255, default='', unique=True)
+    display_name = models.CharField(max_length=255, default='', null=True,
+                                    blank=True)
+
+
     password = models.CharField(max_length=255, default='')
     email = models.EmailField(unique=True)
 
@@ -83,7 +89,7 @@ class UserProfile(amo.models.ModelBase):
         db_table = 'users'
 
     def __unicode__(self):
-        return '%s: %s' % (self.id, self.display_name)
+        return '%s: %s' % (self.id, self.display_name or self.username)
 
     def get_url_path(self):
         return reverse('users.profile', args=[self.id])
@@ -97,12 +103,6 @@ class UserProfile(amo.models.ModelBase):
     def addons_listed(self):
         """Public add-ons this user is listed as author of."""
         return self.addons.valid().filter(addonuser__listed=True).distinct()
-
-    @property
-    def name(self):
-        """Can be used while we're transitioning from separate first/last names
-        to a single field.  Bug 546818#6"""
-        return (u'%s %s' % (self.firstname, self.lastname)).strip()
 
     @property
     def picture_url(self):
@@ -120,22 +120,8 @@ class UserProfile(amo.models.ModelBase):
                                        addonuser__listed=True)[:1])
 
     @property
-    def display_name(self):
-        if not self.nickname:
-            return '%s %s' % (self.firstname, self.lastname)
-        else:
-            return self.nickname
-
-    @property
     def welcome_name(self):
-        if self.firstname:
-            return self.firstname
-        elif self.nickname:
-            return self.nickname
-        elif self.lastname:
-            return self.lastname
-
-        return ''
+        return self.display_name or self.username
 
     @amo.cached_property
     def reviews(self):
@@ -149,6 +135,8 @@ class UserProfile(amo.models.ModelBase):
         self.firstname = ""
         self.lastname = ""
         self.nickname = None
+        self.username = "Anonymous-%s" % self.id  # Can't be null
+        self.display_name = None
         self.homepage = ""
         self.deleted = True
         self.picture_type = ""
@@ -194,9 +182,9 @@ class UserProfile(amo.models.ModelBase):
         # OneToOneField as pk for Profile linked back to the auth.user
         # in the future.
         self.user = DjangoUser(id=self.pk)
-        self.user.first_name = self.firstname
-        self.user.last_name = self.lastname
-        self.user.username = self.email
+        self.user.first_name = ''
+        self.user.last_name = ''
+        self.user.username = self.email  # f
         self.user.email = self.email
         self.user.password = self.password
         self.user.date_joined = self.created
@@ -236,21 +224,24 @@ class UserProfile(amo.models.ModelBase):
         user.mobile_addons = qs.values_list('addon', flat=True)
 
 
-class BlacklistedNickname(amo.models.ModelBase):
-    """Blacklisted user nicknames."""
-    nickname = models.CharField(max_length=255, unique=True, default='')
+class BlacklistedUsername(amo.models.ModelBase):
+    """Blacklisted user usernames."""
+    username = models.CharField(max_length=255, unique=True, default='')
+
+    class Meta:
+        db_table = 'users_blacklistedusername'
 
     def __unicode__(self):
-        return self.nickname
+        return self.username
 
     @classmethod
-    def blocked(cls, nick):
-        """Check to see if a nickname is in the (cached) blacklist."""
-        nick = smart_unicode(nick).lower()
+    def blocked(cls, username):
+        """Check to see if a username is in the (cached) blacklist."""
+        username = smart_unicode(username).lower()
         qs = cls.objects.all()
-        f = lambda: dict(qs.values_list('nickname', 'id'))
+        f = lambda: [u.lower() for u in qs.values_list('username', flat=True)]
         blacklist = caching.cached_with(qs, f, 'blocked')
-        return nick in blacklist
+        return username in blacklist
 
 
 class PersonaAuthor(unicode):

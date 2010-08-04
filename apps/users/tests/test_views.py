@@ -5,9 +5,10 @@ from django.core.cache import cache
 from django.contrib.auth.models import User
 from django.test.client import Client
 
-from nose.tools import eq_
 import test_utils
+from nose.tools import eq_
 
+import amo.test_utils
 from access.models import Group, GroupUser
 from amo.helpers import urlparams
 from amo.pyquery_wrapper import PyQuery
@@ -15,7 +16,7 @@ from amo.urlresolvers import reverse
 from users.utils import EmailResetCode
 
 
-class UserViewBase(test_utils.TestCase):
+class UserViewBase(amo.test_utils.ExtraSetup, test_utils.TestCase):
 
     fixtures = ['users/test_backends']
 
@@ -47,17 +48,16 @@ class TestEdit(UserViewBase):
     def test_email_change_mail_sent(self):
         self.client.login(username='jbalogh@mozilla.com', password='foo')
 
-        data = {'nickname': 'jbalogh',
+        data = {'username': 'jbalogh',
                 'email': 'jbalogh.changed@mozilla.com',
-                'firstname': 'DJ SurfNTurf',
-                'lastname': 'Balogh', }
+                'display_name': 'DJ SurfNTurf', }
 
         r = self.client.post('/en-US/firefox/users/edit', data, follow=True)
         self.assertContains(r, "An email has been sent to %s" % data['email'])
 
         # The email shouldn't change until they confirm, but the name should
         u = User.objects.get(id='4043307').get_profile()
-        self.assertEquals(u.firstname, 'DJ SurfNTurf')
+        self.assertEquals(u.display_name, 'DJ SurfNTurf')
         self.assertEquals(u.email, 'jbalogh@mozilla.com')
 
         eq_(len(mail.outbox), 1)

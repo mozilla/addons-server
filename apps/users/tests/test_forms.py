@@ -3,15 +3,16 @@ from django.contrib.auth.tokens import default_token_generator
 from django.core import mail
 from django.utils.http import int_to_base36
 
+import test_utils
 from manage import settings
 from nose.tools import eq_
-import test_utils
 
+import amo.test_utils
 from amo.helpers import urlparams
 from amo.urlresolvers import reverse
 
 
-class UserFormBase(test_utils.TestCase):
+class UserFormBase(amo.test_utils.ExtraSetup, test_utils.TestCase):
 
     fixtures = ['users/test_backends']
 
@@ -110,22 +111,16 @@ class TestUserEditForm(UserFormBase):
 
     def test_no_names(self):
         self.client.login(username='jbalogh@mozilla.com', password='foo')
-        data = {'nickname': '',
-                'email': 'jbalogh@mozilla.com',
-                'firstname': '',
-                'lastname': '', }
+        data = {'username': '',
+                'email': 'jbalogh@mozilla.com', }
         r = self.client.post('/en-US/firefox/users/edit', data)
-        msg = "A first name, last name or nickname is required."
-        self.assertFormError(r, 'form', 'nickname', msg)
-        self.assertFormError(r, 'form', 'firstname', msg)
-        self.assertFormError(r, 'form', 'lastname', msg)
+        msg = "This field is required."
+        self.assertFormError(r, 'form', 'username', msg)
 
     def test_no_real_name(self):
         self.client.login(username='jbalogh@mozilla.com', password='foo')
-        data = {'nickname': 'blah',
-                'email': 'jbalogh@mozilla.com',
-                'firstname': '',
-                'lastname': '', }
+        data = {'username': 'blah',
+                'email': 'jbalogh@mozilla.com', }
         r = self.client.post('/en-US/firefox/users/edit', data, follow=True)
         self.assertContains(r, "Profile Updated")
 
@@ -151,7 +146,7 @@ class TestUserEditForm(UserFormBase):
 
     def test_set_new_passwords(self):
         self.client.login(username='jbalogh@mozilla.com', password='foo')
-        data = {'nickname': 'jbalogh',
+        data = {'username': 'jbalogh',
                 'email': 'jbalogh@mozilla.com',
                 'oldpassword': 'foo',
                 'password': 'new',
@@ -181,13 +176,13 @@ class TestUserLoginForm(UserFormBase):
         url = self._get_login_url()
         r = self.client.post(url, {'username': 'jbalogh@mozilla.com',
                                    'password': 'foo'}, follow=True)
-        self.assertContains(r, "Welcome, Jeff")
+        self.assertContains(r, "Welcome, Jeff Balogh")
         self.assertTrue(self.client.session.get_expire_at_browser_close())
 
         r = self.client.post(url, {'username': 'jbalogh@mozilla.com',
                                    'password': 'foo',
                                    'rememberme': 1}, follow=True)
-        self.assertContains(r, "Welcome, Jeff")
+        self.assertContains(r, "Welcome, Jeff Balogh")
         # Subtract 100 to give some breathing room
         age = settings.SESSION_COOKIE_AGE - 100
         assert self.client.session.get_expiry_age() > age
@@ -231,22 +226,17 @@ class TestUserRegisterForm(UserFormBase):
         data = {'email': '',
                 'password': '',
                 'password2': '',
-                'firstname': '',
-                'lastname': '',
-                'nickname': '', }
+                'username': '', }
         r = self.client.post('/en-US/firefox/users/register', data)
-        self.assertFormError(r, 'form', 'email',
-                             'This field is required.')
-        msg = "A first name, last name or nickname is required."
-        self.assertFormError(r, 'form', 'nickname', msg)
-        self.assertFormError(r, 'form', 'firstname', msg)
-        self.assertFormError(r, 'form', 'lastname', msg)
+        msg = "This field is required."
+        self.assertFormError(r, 'form', 'email', msg)
+        self.assertFormError(r, 'form', 'username', msg)
 
     def test_register_existing_account(self):
         data = {'email': 'jbalogh@mozilla.com',
                 'password': 'xxx',
                 'password2': 'xxx',
-                'firstname': 'xxx', }
+                'username': 'xxx', }
         r = self.client.post('/en-US/firefox/users/register', data)
         self.assertFormError(r, 'form', 'email',
                              'User profile with this Email already exists.')
@@ -261,14 +251,14 @@ class TestUserRegisterForm(UserFormBase):
                                             'The passwords did not match.')
         eq_(len(mail.outbox), 0)
 
-    def test_invalid_nickname(self):
+    def test_invalid_username(self):
         data = {'email': 'testo@example.com',
                 'password': 'xxx',
                 'password2': 'xxx',
-                'nickname': 'IE6Fan', }
+                'username': 'IE6Fan', }
         r = self.client.post('/en-US/firefox/users/register', data)
-        self.assertFormError(r, 'form', 'nickname',
-                             'This nickname is invalid.')
+        self.assertFormError(r, 'form', 'username',
+                             'This username is invalid.')
 
     def test_already_logged_in(self):
         self.client.login(username='jbalogh@mozilla.com', password='foo')
@@ -280,9 +270,7 @@ class TestUserRegisterForm(UserFormBase):
         data = {'email': 'john.connor@sky.net',
                 'password': 'carebears',
                 'password2': 'carebears',
-                'firstname': 'John',
-                'lastname': 'Connor',
-                'nickname': 'BigJC',
+                'username': 'BigJC',
                 'homepage': ''}
         r = self.client.post('/en-US/firefox/users/register', data)
         self.assertContains(r, "Congratulations!")
@@ -296,22 +284,22 @@ class TestUserRegisterForm(UserFormBase):
                                         (u.id, u.confirmationcode)) > 0
 
 
-class TestBlacklistedNicknameAdminAddForm(UserFormBase):
+class TestBlacklistedUsernameAdminAddForm(UserFormBase):
 
-    def test_no_nicknames(self):
+    def test_no_usernames(self):
         self.client.login(username='testo@example.com', password='foo')
-        url = reverse('admin:users_blacklistednickname_add')
-        data = {'nicknames': "\n\n", }
+        url = reverse('admin:users_blacklistedusername_add')
+        data = {'usernames': "\n\n", }
         r = self.client.post(url, data)
-        msg = 'Please enter at least one nickname to blacklist.'
-        self.assertFormError(r, 'form', 'nicknames', msg)
+        msg = 'Please enter at least one username to blacklist.'
+        self.assertFormError(r, 'form', 'usernames', msg)
 
     def test_add(self):
         self.client.login(username='testo@example.com', password='foo')
-        url = reverse('admin:users_blacklistednickname_add')
-        data = {'nicknames': "IE6Fan\nFubar\n\n fubar \n", }
+        url = reverse('admin:users_blacklistedusername_add')
+        data = {'usernames': "IE6Fan\nfubar\n\n", }
         r = self.client.post(url, data)
-        msg = '1 new nicknames added to the blacklist. '
-        msg += '2 duplicates were ignored.'
+        msg = '1 new usernames added to the blacklist. '
+        msg += '1 duplicates were ignored.'
         self.assertContains(r, msg)
         self.assertNotContains(r, 'fubar')

@@ -7,7 +7,7 @@ from django.forms.util import ErrorList
 import commonware.log
 from tower import ugettext as _
 
-from .models import UserProfile, BlacklistedNickname
+from .models import UserProfile, BlacklistedUsername
 
 log = commonware.log.getLogger('z.users')
 
@@ -78,11 +78,11 @@ class UserRegisterForm(forms.ModelForm):
     class Meta:
         model = UserProfile
 
-    def clean_nickname(self):
-        """We're breaking the rules and allowing null=True and blank=True on a
-        CharField because I want to enforce uniqueness in the db.  In order to
-        let save() work, I override '' here."""
-        return self.cleaned_data['nickname'] or None
+    def clean_username(self):
+        name = self.cleaned_data['username']
+        if BlacklistedUsername.blocked(name):
+            raise forms.ValidationError("This username is invalid.")
+        return name
 
     def clean(self):
         super(UserRegisterForm, self).clean()
@@ -97,26 +97,6 @@ class UserRegisterForm(forms.ModelForm):
             msg = _("The passwords did not match.")
             self._errors["password2"] = ErrorList([msg])
             del data["password2"]
-
-        # Names
-        if not ("nickname" in self._errors or
-                "firstname" in self._errors or
-                "lastname" in self._errors):
-            fname = data.get("firstname")
-            lname = data.get("lastname")
-            nname = data.get("nickname")
-            if not (fname or lname or nname):
-                msg = _("A first name, last name or nickname is required.")
-                self._errors["firstname"] = ErrorList([msg])
-                self._errors["lastname"] = ErrorList([msg])
-                self._errors["nickname"] = ErrorList([msg])
-
-            # Nickname could be blacklisted
-            if ("nickname" not in self._errors
-                and nname
-                and BlacklistedNickname.blocked(nname)):
-                msg = _("This nickname is invalid.")
-                self._errors["nickname"] = ErrorList([msg])
 
         return data
 
@@ -165,21 +145,21 @@ class UserEditForm(UserRegisterForm):
         amouser.save()
 
 
-class BlacklistedNicknameAddForm(forms.Form):
-    """Form for adding blacklisted nickname in bulk fashion."""
-    nicknames = forms.CharField(widget=forms.Textarea(
+class BlacklistedUsernameAddForm(forms.Form):
+    """Form for adding blacklisted username in bulk fashion."""
+    usernames = forms.CharField(widget=forms.Textarea(
         attrs={'cols': 40, 'rows': 16}))
 
     def clean(self):
-        super(BlacklistedNicknameAddForm, self).clean()
+        super(BlacklistedUsernameAddForm, self).clean()
         data = self.cleaned_data
 
-        if 'nicknames' in data:
-            data['nicknames'] = os.linesep.join(
-                    [s.strip() for s in data['nicknames'].splitlines()
+        if 'usernames' in data:
+            data['usernames'] = os.linesep.join(
+                    [s.strip() for s in data['usernames'].splitlines()
                         if s.strip()])
-        if 'nicknames' not in data or data['nicknames'] == '':
-            msg = 'Please enter at least one nickname to blacklist.'
-            self._errors['nicknames'] = ErrorList([msg])
+        if 'usernames' not in data or data['usernames'] == '':
+            msg = 'Please enter at least one username to blacklist.'
+            self._errors['usernames'] = ErrorList([msg])
 
         return data

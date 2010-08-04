@@ -2,10 +2,13 @@ from django import test
 from django.contrib.auth import authenticate
 from django.core.cache import cache
 
+import test_utils
+
+import amo.test_utils
 from users.models import UserProfile
 
 
-class TestAmoUserBackend(test.TestCase):
+class TestAmoUserBackend(amo.test_utils.ExtraSetup, test_utils.TestCase):
     fixtures = ['users/test_backends']
 
     def setUp(self):

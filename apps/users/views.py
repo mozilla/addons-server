@@ -33,7 +33,7 @@ def ajax(request):
     """Query for a user matching a given email."""
     email = request.GET.get('q','').strip()
     u = get_object_or_404(UserProfile, email=email)
-    return dict(id=u.id, name=u.name)
+    return dict(id=u.id, name=u.display_name)
 
 
 def confirm(request, user_id, token):
@@ -134,6 +134,7 @@ def edit(request):
             form.save()
             return http.HttpResponseRedirect(reverse('users.edit'))
         else:
+
             messages.error(request, _('There were errors in the changes '
                                       'you made. Please correct them and '
                                       'resubmit.'))
@@ -313,7 +314,8 @@ def register(request):
             u.emailhidden = data.get('emailhidden', False)
             u.firstname = data.get('firstname', None)
             u.lastname = data.get('lastname', None)
-            u.nickname = data.get('nickname', None)
+            u.username = data.get('username', None)
+            u.display_name = data.get('display_name', None)
             u.homepage = data.get('homepage', None)
 
             u.set_password(data.get('password'))

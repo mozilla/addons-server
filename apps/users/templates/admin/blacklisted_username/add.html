@@ -5,20 +5,20 @@
   <link rel="stylesheet" href="{{ MEDIA_URL }}css/zamboni/admin-django.css">
 {% endblock %}
 
-{% block title %}{{ page_title('Add Blacklisted Nicknames') }}{% endblock %}
+{% block title %}{{ page_title('Add Blacklisted Usernames') }}{% endblock %}
 
-{% block bodyclass %}users-blacklistednickname change-form{% endblock %}
+{% block bodyclass %}users-blacklistedusername change-form{% endblock %}
 
 {% block content %}
 
 <div class="breadcrumbs">
   <a href="{{ url('admin:index') }}">Home</a> &rsaquo;
   <a href="{{ url('admin:app_list', app_label='users') }}">Users</a> &rsaquo;
-  <a href="{{ url('admin:users_blacklistednickname_changelist') }}">Blacklisted nicknames</a> &rsaquo;
+  <a href="{{ url('admin:users_blacklistedusername_changelist') }}">Blacklisted usernames</a> &rsaquo;
   Add
 </div>
 <div id="content" class="colM">
-  <h2>Add Blacklisted Nicknames</h2>
+  <h2>Add Blacklisted Usernames</h2>
   <div id="content-main">
     {% if messages %}
       {% for message in messages %}
@@ -31,11 +31,11 @@
     {% if form %}
       <form method="post" action="">
         {{ csrf() }}
-        <p>Enter one nickname per line.</p>
+        <p>Enter one username per line.</p>
         <div class="form-row">
-          {{ form.nicknames.errors|safe }}
-          <label for="id_nicknames">Blacklisted Nicknames {{ required() }}</label>
-          {{ form.nicknames|safe }}
+          {{ form.usernames.errors|safe }}
+          <label for="id_usernames">Blacklisted Usernames {{ required() }}</label>
+          {{ form.usernames|safe }}
         </div>
         <div class="submit-row">
           <input type="submit" name="_save" class="default" value="Save">

@@ -266,6 +266,8 @@
             "user": 60582,
             "password": "",
             "nickname": "60582",
+            "username": "60582",
+            "display_name": "60582",
             "resetcode_expires": null,
             "resetcode": "",
             "notes": null,

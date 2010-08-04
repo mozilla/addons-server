@@ -4,6 +4,7 @@
     "model": "users.userprofile",
     "fields": {
         "nickname": "fligtard",
+        "username": "fligtard",
         "firstname": "Scott",
         "lastname": "Bakula",
         "email": "scott@bakula.com",
@@ -29,6 +30,7 @@
     "model": "users.userprofile",
     "fields": {
         "nickname": "milos",
+        "username": "milos",
         "firstname": "Milos",
         "lastname": "Dinic",
         "email": "milos@dinic.com",

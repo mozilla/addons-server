@@ -268,6 +268,8 @@
             "user": null,
             "password": "",
             "nickname": "802",
+            "username": "802",
+            "display_name": "802",
             "resetcode_expires": null,
             "resetcode": "",
             "created": "2007-03-05 13:09:33",

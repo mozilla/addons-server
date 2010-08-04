@@ -22,7 +22,7 @@ def test_emaillink():
 
 
 def test_user_link():
-    u = UserProfile(firstname='John', lastname='Connor', pk=1)
+    u = UserProfile(username='jconnor', display_name='John Connor', pk=1)
     eq_(user_link(u), '<a href="%s">John Connor</a>' %
         reverse('users.profile', args=[1]))
 
@@ -31,8 +31,8 @@ def test_user_link():
 
 
 def test_users_list():
-    u1 = UserProfile(firstname='John', lastname='Connor', pk=1)
-    u2 = UserProfile(firstname='Sarah', lastname='Connor', pk=2)
+    u1 = UserProfile(username='jconnor', display_name='John Connor', pk=1)
+    u2 = UserProfile(username='sconnor', display_name='Sarah Connor', pk=2)
     eq_(users_list([u1, u2]), ', '.join((user_link(u1), user_link(u2))))
 
     # handle None gracefully
@@ -41,6 +41,6 @@ def test_users_list():
 
 def test_user_link_unicode():
     """make sure helper won't choke on unicode input"""
-    u = UserProfile(firstname=u'Jürgen', lastname=u'Müller', pk=1)
+    u = UserProfile(username=u'jmüller', display_name=u'Jürgen Müller', pk=1)
     eq_(user_link(u), u'<a href="%s">Jürgen Müller</a>' %
         reverse('users.profile', args=[1]))

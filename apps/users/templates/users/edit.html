@@ -29,9 +29,9 @@
           <legend>{{ _('My account') }}</legend>
           <ul>
             <li>
-              <label for="id_nickname">{{ _('Nickname') }} {{ required() }}</label>
-              {{ form.nickname|safe }}
-              {{ form.nickname.errors|safe }}
+              <label for="id_username">{{ _('Username') }} {{ required() }}</label>
+              {{ form.username|safe }}
+              {{ form.username.errors|safe }}
             </li>
             <li>
               <label for="id_email">{{ _('Email Address') }} {{ required() }}</label>
@@ -106,14 +106,9 @@
           <legend>{{ _('Profile information') }}</legend>
           <ol>
             <li>
-              <label for="id_firstname">{{ _('First name') }} {{ required() }}</label>
-              {{ form.firstname|safe }}
-              {{ form.firstname.errors|safe }}
-            </li>
-            <li>
-              <label for="id_lastname">{{ _('Last name') }}</label>
-              {{ form.lastname|safe }}
-              {{ form.lastname.errors|safe }}
+              <label for="id_display_name">{{ _('Display Name') }}</label>
+              {{ form.display_name|safe }}
+              {{ form.display_name.errors|safe }}
             </li>
             <li>
               <label for="id_location">{{ _('Location') }}</label>
