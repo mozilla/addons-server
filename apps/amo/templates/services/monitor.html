@@ -1,7 +1,13 @@
 {% extends 'base.html' %}
+
 {% block title %}Mozilla Add-ons Site Status{% endblock title %}
+
+{% macro status(b) %}
+  {% if b %}info{% else %}error{% endif %}
+{% endmacro %}
+
 {% block main_content %}
-<div class="notification-box {% if status_summary.memcache %}info{% else %}error{% endif %}">
+<div class="notification-box {{ status(status_summary.memcache) }}">
   <h2>[Memcache] Connection Tests</h2>
   <ul>
   {% for ip, port, result in memcache_results %}
@@ -19,7 +25,7 @@
   <p>There must be a minimum of 2 working servers.</p>
 </div>
 
-<div class="notification-box {% if status_summary.filepaths %}info{% else %}error{% endif %}">
+<div class="notification-box {{ status(status_summary.filepaths) }}">
   <h2>[Paths] Paths and Permissions</h2>
   <dl>
   {% for path, exists, permissions, extra in filepath_results %}
@@ -43,4 +49,21 @@
   {% endfor %}
   </dl>
 </div>
+
+<div class="notification-box {{ status(status_summary.redis) }}">
+  <h2>Redis Info</h2>
+  {% with info, error = redis_results %}
+    {% if info %}
+      <ul>
+        {% for k, v in info.items() %}
+          <li><code>{{ k }}: {{ v }}</code></li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <strong>Error!</strong>
+      <code>{{ error }}</code>
+    {% endif %}
+  {% endwith %}
+</div>
+
 {% endblock main_content %}

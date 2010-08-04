@@ -9,6 +9,7 @@ from django.core.cache import cache, parse_backend_uri
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 
+import caching.invalidation
 import commonware.log
 import jingo
 import phpserialize as php
@@ -19,6 +20,15 @@ from stats.models import Contribution, ContributionError, SubscriptionEvent
 from . import log
 
 paypal_log = commonware.log.getLogger('z.paypal')
+
+
+def check_redis():
+    redis = caching.invalidation.get_redis_backend()
+    try:
+        return redis.info(), None
+    except Exception, e:
+        log.critical('Failed to chat with redis: (%s)' % e)
+        return None, e
 
 
 @never_cache
@@ -74,6 +84,11 @@ def monitor(request):
 
     status_summary['filepaths'] = filepath_status
 
+    redis_results = [None, 'REDIS_BACKEND is not set']
+    if getattr(settings, 'REDIS_BACKEND', False):
+        redis_results = check_redis()
+    status_summary['redis'] = bool(redis_results[0])
+
     # If anything broke, send HTTP 500
     if not all(status_summary):
         status = 500
@@ -81,6 +96,7 @@ def monitor(request):
     return jingo.render(request, 'services/monitor.html',
                         {'memcache_results': memcache_results,
                          'filepath_results': filepath_results,
+                         'redis_results': redis_results,
                          'status_summary': status_summary},
                         status=status)
 
