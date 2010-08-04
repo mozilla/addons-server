@@ -7,7 +7,9 @@
            src="{{ collection.icon_url }}">
       {{ collection.name }}</a>
     <span>
-      {% trans users = users_list(collection.users.all()) %}
+      {% set users = [collection.author] if settings.NEW_COLLECTIONS else
+                      collection.users.all() %}
+      {% trans users = users_list(users) %}
         by {{ users }}
       {% endtrans %}
     </span>
