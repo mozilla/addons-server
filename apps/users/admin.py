@@ -48,10 +48,17 @@ class BlacklistedNicknameAdmin(admin.ModelAdmin):
                 inserted = 0
                 duplicates = 0
                 for n in form.cleaned_data['nicknames'].splitlines():
+                    # check with teh cache
+                    if BlacklistedNickname.blocked(n):
+                        duplicates += 1
+                        continue
+                    n = n.decode().lower().encode('utf-8')
                     try:
                         BlacklistedNickname.objects.create(nickname=n)
                         inserted += 1
                     except IntegrityError:
+                        # although unlikely, someone else could have added
+                        # the nickname.
                         # note: unless we manage the transactions manually,
                         # we do lose a primary id here
                         duplicates += 1
@@ -59,6 +66,7 @@ class BlacklistedNicknameAdmin(admin.ModelAdmin):
                 if duplicates:
                     msg += ' %s duplicates were ignored.' % (duplicates)
                 messages.success(request, msg)
+                form = forms.BlacklistedNicknameAddForm()
                 # Default django admin change list view does not print messages
                 # no redirect for now
                 # return http.HttpResponseRedirect(reverse(

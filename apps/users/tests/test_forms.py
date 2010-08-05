@@ -309,8 +309,9 @@ class TestBlacklistedNicknameAdminAddForm(UserFormBase):
     def test_add(self):
         self.client.login(username='testo@example.com', password='foo')
         url = reverse('admin:users_blacklistednickname_add')
-        data = {'nicknames': "IE6Fan\nfubar\n\n", }
+        data = {'nicknames': "IE6Fan\nFubar\n\n fubar \n", }
         r = self.client.post(url, data)
         msg = '1 new nicknames added to the blacklist. '
-        msg += '1 duplicates were ignored.'
+        msg += '2 duplicates were ignored.'
         self.assertContains(r, msg)
+        self.assertNotContains(r, 'fubar')

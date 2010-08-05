@@ -150,7 +150,7 @@
         "pk": 1,
         "model": "users.blacklistednickname",
         "fields": {
-            "nickname": "IE6Fan",
+            "nickname": "ie6fan",
             "modified": "2010-07-21 23:32:05",
             "created": "2010-07-21 23:32:05"
         }
