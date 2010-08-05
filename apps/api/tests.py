@@ -501,13 +501,13 @@ class SearchTest(SphinxTestCase):
         # API < 1.5
         response = make_call('search/mozex', version=1.4)
         self.assertContains(response, self.no_results,
-                            msg_prefix=response.response['PATH_INFO'])
+                            msg_prefix=response.request['PATH_INFO'])
 
         # API = 1.5, hide_sandbox
         response = self.client.get(
                 api_url('search/mozex', version=1.5) + '?hide_sandbox=1')
         self.assertContains(response, self.no_results,
-                            msg_prefix=response.response['PATH_INFO'])
+                            msg_prefix=response.request['PATH_INFO'])
 
         # API = 1.5
         response = make_call('search/mozex', version=1.5)

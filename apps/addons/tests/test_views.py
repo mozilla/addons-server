@@ -405,7 +405,7 @@ class TestDetailPage(amo.test_utils.ExtraSetup, test_utils.TestCase):
                                    follow=True)
         assert response.context['other_collection_count'] >= 0
 
-    def test_privacy_policy(self):
+    def test_no_privacy_policy(self):
         """Make sure privacy policy is shown when present."""
         addon = Addon.objects.get(id=1843)
         addon.privacy_policy = None
@@ -415,6 +415,8 @@ class TestDetailPage(amo.test_utils.ExtraSetup, test_utils.TestCase):
         doc = pq(response.content)
         eq_(doc('.privacy-policy').length, 0)
 
+    def test_privacy_policy(self):
+        addon = Addon.objects.get(id=1843)
         addon.privacy_policy = 'foo bar'
         addon.save()
         response = self.client.get(reverse('addons.detail', args=[addon.id]),
