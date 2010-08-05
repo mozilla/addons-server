@@ -343,7 +343,7 @@ class CollectionVote(models.Model):
     @staticmethod
     def post_save_or_delete(sender, instance, **kwargs):
         from . import tasks
-        tasks.collection_votes.delay(instance.collection_id)
+        tasks.collection_votes(instance.collection_id, using='default')
 
 
 models.signals.post_save.connect(CollectionVote.post_save_or_delete,

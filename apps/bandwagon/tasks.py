@@ -16,14 +16,17 @@ log = logging.getLogger('z.task')
 
 
 @task
-def collection_votes(*ids):
+def collection_votes(*ids, **kw):
     log.info('[%s@%s] Updating collection votes.' %
              (len(ids), collection_votes.rate_limit))
+    using = kw.get('using')
     for collection in ids:
-        v = CollectionVote.objects.filter(collection=collection)
+        v = CollectionVote.objects.filter(collection=collection).using(using)
         votes = dict(v.values_list('vote').annotate(Count('vote')))
-        qs = Collection.objects.filter(id=collection)
-        qs.update(upvotes=votes.get(1, 0), downvotes=votes.get(-1, 0))
+        c = Collection.objects.get(id=collection)
+        c.upvotes = votes.get(1, 0)
+        c.downvotes = votes.get(-1, 0)
+        c.save()
 
 
 @task
