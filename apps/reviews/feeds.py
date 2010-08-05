@@ -45,17 +45,14 @@ class ReviewsRss(Feed):
 
     def item_title(self, review):
         """Title for particular review (<item><title>)"""
-        rating = ''
-        tag_line = ''
-        if(hasattr(review, 'rating') and review.rating):
+        tag_line = rating = ''
+        if getattr(review, 'rating', None):
             # L10n: This describes the number of stars given out of 5
             rating = _('Rated %d out of 5 stars') % review.rating
-        if(hasattr(review, 'title') and review.title):
+        if getattr(review, 'title', None):
             tag_line = review.title
         divider = ' : ' if rating and tag_line else ''
-        return "{rating}{divider}{tag_line}".format(rating=rating,
-                                                    divider=divider,
-                                                    tag_line=tag_line)
+        return rating + divider + tag_line
 
     def item_description(self, review):
         """Description for particular review (<item><description>)"""
@@ -68,14 +65,11 @@ class ReviewsRss(Feed):
 
     def item_author_name(self, review):
         """Author for a particuar review  (<item><dc:creator>)"""
-        author = ''
-        if(review.user.nickname):
-            author = review.user.nickname.strip()
+        user = review.user
+        if user.nickname:
+            return user.nickname.strip()
         else:
-            author = "{first} {last}".format(
-                first=review.user.firstname.strip(),
-                last=review.user.lastname.strip()).strip()
-        return author
+            return '%s %s' % (user.firstname.strip(), user.lastname.strip())
 
     def item_pubdate(self, review):
         """Pubdate for a particuar review  (<item><pubDate>)"""
