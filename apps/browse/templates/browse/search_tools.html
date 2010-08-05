@@ -13,17 +13,9 @@
 {% endblock %}
 
 {% block extrahead %}
-<style>
-  #p-{{ category.id if category else filter.field }} {
-    background: url({{ MEDIA_URL }}img/zamboni/arrow-right-blue.png) no-repeat left center;
-  }
-  .html-rtl #p-{{ category.id if category else filter.field }} {
-    background: url({{ MEDIA_URL }}img/zamboni/arrow-left-blue.png) no-repeat right center;
-  }
-  #p-{{ category.id if category else filter.field }} a {
-    color: inherit;
-  }
-</style>
+{% with key = category.id if category else filter.field %}
+  {{ category_arrow(key, prefix='p') }}
+{% endwith %}
 {% endblock %}
 
 {% block content %}
