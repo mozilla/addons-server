@@ -109,7 +109,9 @@
             alt="" width="200" height="150" />
         {% endif %}
 
-        {% include 'addons/includes/collection_add_widget.html' %}
+        {% if settings.NEW_COLLECTIONS %}
+          {% include 'addons/includes/collection_add_widget.html' %}
+        {% endif %}
 
         {{ addon_sharing(addon) }}
 
