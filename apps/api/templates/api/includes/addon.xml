@@ -6,7 +6,7 @@
   <version>{{ addon.current_version.version }}</version>
   <status id="{{ addon.status }}">{{ amo.STATUS_CHOICES[addon.status] }}</status>
   <authors>
-    {% if not addon.is_persona %}
+    {% if not addon.is_persona() %}
     {% for author in addon.listed_authors -%}
     {%- if api_version >= 1.5 -%}
     <author id="{{ author.id }}">
