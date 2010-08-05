@@ -422,7 +422,7 @@ def contribute_url_params(business, addon_id, item_name, return_url,
             'no_shipping': '1',
             'return': return_url,
             'charset': 'utf-8',
-            'notify_url': reverse('amo.paypal')}
+            'notify_url': "%s%s" % (settings.SERVICES_URL, reverse('amo.paypal'))}
 
     if (not monthly):
         data['cmd'] = '_donations'
