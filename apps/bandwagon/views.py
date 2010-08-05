@@ -17,11 +17,25 @@ from .models import Collection, CollectionAddon, CollectionUser, CollectionVote
 from . import forms
 
 
-def legacy_redirect(self, uuid):
+def legacy_redirect(request, uuid):
     # Nicknames have a limit of 30, so len == 36 implies a uuid.
     key = 'uuid' if len(uuid) == 36 else 'nickname'
     c = get_object_or_404(Collection.objects, **{key: uuid})
     return redirect(c.get_url_path())
+
+
+def legacy_directory_redirects(request, page):
+    sorts = {'editors_picks': 'featured', 'popular': 'popular'}
+    loc = base = reverse('collections.list')
+    if page in sorts:
+        loc = amo.utils.urlparams(base, sort=sorts[page])
+    elif request.user.is_authenticated():
+        if page == 'mine':
+            loc = reverse('collections.user', args=[request.amo_user.nickname])
+        elif page == 'favorites':
+            loc = reverse('collections.detail',
+                          args=[request.amo_user.nickname, 'favorites'])
+    return redirect(loc)
 
 
 class CollectionFilter(BaseFilter):
