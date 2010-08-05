@@ -23,7 +23,7 @@ class ReviewsRss(Feed):
 
     def title(self, addon):
         """Title for the feed"""
-        return _('Reviews for %s') % addon.name
+        return _(u'Reviews for %s') % addon.name
 
     def link(self, addon):
         """Link for the feed"""
@@ -52,7 +52,7 @@ class ReviewsRss(Feed):
         if getattr(review, 'title', None):
             tag_line = review.title
         divider = ' : ' if rating and tag_line else ''
-        return rating + divider + tag_line
+        return u'%s%s%s' % (rating, divider, tag_line)
 
     def item_description(self, review):
         """Description for particular review (<item><description>)"""
