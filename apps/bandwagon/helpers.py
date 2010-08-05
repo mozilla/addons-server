@@ -50,10 +50,8 @@ def barometer(context, collection):
 
     if request.user.is_authenticated():
         # TODO: Use reverse when bandwagon is on Zamboni.
-        base_action = remora_url(u'collections/vote/%s' % collection.url_slug)
-        up_action = base_action + '/up'
-        down_action = base_action + '/down'
-        cancel = base_action + '/cancel'
+        up_action = collection.upvote_url()
+        down_action = collection.downvote_url()
         up_title = _('Add a positive vote for this collection')
         down_title = _('Add a negative vote for this collection')
         cancel_title = _('Remove my vote for this collection')
@@ -63,12 +61,13 @@ def barometer(context, collection):
             user_vote = votes[0]
 
     else:
-        up_action = down_action = cancel_action = login_link(c)
+        up_action = down_action = login_link(c)
         login_title = _('Log in to vote for this collection')
         up_title = down_title = cancel_title = login_title
 
     up_class = 'upvotes'
     down_class = 'downvotes'
+    cancel_class = 'cancel_vote'
 
     total_votes = collection.upvotes + collection.downvotes
 
@@ -81,9 +80,13 @@ def barometer(context, collection):
         down_width = max(down_ratio - 1, 0)
 
     if user_vote:
-        up_class += ' voted'
-        down_class += ' voted'
-    up_class
+        if user_vote.vote > 0:
+            up_class += ' voted'
+        else:
+            down_class += ' voted'
+    else:
+        cancel_class += ' hidden'
+
     c.update(locals())
     c.update({'c': collection})
     return c

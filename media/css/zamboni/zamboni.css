@@ -2380,12 +2380,24 @@ h6.author, .author a {
     left: -42px;
 }
 
-.collection-add-dropdown {
+.collection-add-dropdown, .collection-rate-dropdown {
     margin: 0;
     display: none;
     width: 200px;
-    left: -42px;
     padding: 1em;
+}
+
+.collection-rate-dropdown {
+    margin-top:1em;
+}
+
+.upvote .collection-rate-dropdown {
+    left: -56px;
+}
+
+.downvote .collection-rate-dropdown {
+    left: inherit;
+    right: -76px;
 }
 
 .collection-add-dropdown a {

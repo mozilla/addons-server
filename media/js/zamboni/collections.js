@@ -269,18 +269,74 @@ $(document).ready(collections.recently_viewed);
 $(document).ready(function() {
     /* Hijack the voting forms to submit over xhr.
      *
-     * On success we get all this HTML back again, so it's replaced with a more
-     * up-to-date version of itself.
+     * On success we update the vote counts,
+     * and show/hide the 'Remove' link.
      */
      var callback = function(e) {
         e.preventDefault();
-        var the_form = this;
-        $.post(this.action, $(this).serialize(), function(content) {
-           $(the_form).closest('.barometer').parent().html(content)
-               .find('form').submit(callback);
+        var the_form = $(this);
+        $.post(this.action, $(this).serialize(), function(content, status, xhr) {
+            if (xhr.status == 200) {
+                var barometer = the_form.closest('.barometer');
+                var oldvote = $('input.voted', barometer);
+                var newvote = $('input[type="submit"]', the_form);
+                var cancel = $('.cancel_vote', barometer);
+
+                //If the vote cancels an existing vote, cancel said vote
+                if (oldvote.length) {
+                    oldvote.get(0).value--;
+                    oldvote.removeClass('voted');
+                    cancel.hide();
+                }
+
+                //Render new vote if it wasn't a double
+                if (oldvote.get(0) !== newvote.get(0)) {
+                    newvote.get(0).value++;
+                    newvote.addClass('voted');
+                    cancel.show();
+                }
+            }
         });
     };
-    $('body[data-anonymous["false"]] .barometer form').submit(callback);
+    if (z.anonymous) {
+        $('.barometer form').submit(function(e) {
+            e.preventDefault();
+            var the_form = this;
+            var dropdown = $('.collection-rate-dropdown', $(the_form).closest('.barometer'));
+                if ($(the_form).hasClass('downvote')) {
+                    dropdown.addClass('left');
+                } else {
+                    dropdown.removeClass('left');
+                }
+                dropdown.detach().appendTo(the_form).show();
+
+            // Clear popup when we click outside it.
+            setTimeout(function(){
+                function cb(e) {
+                    _root = dropdown.get(0);
+                    // Bail if the click was somewhere on the popup.
+                    if (e.type == 'click' &&
+                        _root == e.target ||
+                        _.indexOf($(e.target).parents(), _root) != -1) {
+                        return;
+                    }
+                    dropdown.hide();
+                    $(document.body).unbind('click newPopup', cb);
+                }
+
+                $(document.body).bind('click newPopup', cb);
+            }, 0);
+
+        });
+    } else {
+        $('.barometer form').submit(callback);
+        $('.barometer .cancel_vote').click(function (e) {
+            e.preventDefault();
+            //Clicking 'Remove' re-submits the user's vote, canceling it.
+            $('input.voted', $(this).closest('.barometer')).closest('form').submit();
+        });
+    }
+
 })
 
 $(document).ready(function(){

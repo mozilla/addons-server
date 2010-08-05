@@ -2801,6 +2801,12 @@ html[xmlns] .clearfix {
 
 .barometer form {
     display: inline-block;
+    position: relative;
+}
+
+.barometer .cancel_vote {
+    font-size: .9em;
+    margin: 0 0 0 .5em;
 }
 
 /* .upvotes and .downvotes are the numbers + thumb images, in inputs. */
