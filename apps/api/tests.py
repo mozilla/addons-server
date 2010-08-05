@@ -81,8 +81,8 @@ class ControlCharacterTest(TestCase):
     fixtures = ['base/fixtures']
 
     def test(self):
-        request = make_call('addon/592')
-        self.assertNotContains(request, '')
+        response = make_call('addon/592')
+        self.assertNotContains(response, '')
 
 
 class APITest(TestCase):
@@ -197,9 +197,8 @@ class APITest(TestCase):
         For some reason I noticed hostnames getting doubled up.  This checks
         that it doesn't happen.
         """
-
-        request = make_call('addon/4664', version=1.5)
-        self.assertNotContains(request, settings.SITE_URL + settings.SITE_URL)
+        response = make_call('addon/4664', version=1.5)
+        self.assertNotContains(response, settings.SITE_URL + settings.SITE_URL)
 
     def test_15_addon_detail(self):
         """
@@ -316,24 +315,23 @@ class ListTest(amo.test_utils.ExtraSetup, TestCase):
         This tests the default settings for /list.
         i.e. We should get 3 items by default.
         """
-        request = make_call('list')
-        self.assertContains(request, '<addon id', 3)
+        response = make_call('list')
+        self.assertContains(response, '<addon id', 3)
 
     def test_randomness(self):
         """
         This tests that we're sufficiently random when recommending addons.
 
         We can test for this by querying /list/recommended a number of times
-        until we get two request.contents that do not match.
+        until we get two response.contents that do not match.
         """
-        request = make_call('list/recommended')
-
+        response = make_call('list/recommended')
         all_identical = True
 
         for i in range(99):
             cache.clear()
             current_request = make_call('list/recommended')
-            if current_request.content != request.content:
+            if current_request.content != response.content:
                 all_identical = False
                 break
 
@@ -356,8 +354,8 @@ class ListTest(amo.test_utils.ExtraSetup, TestCase):
         """
         Assert /list/recommended/all/1 gets one item only.
         """
-        request = make_call('list/recommended/all/1')
-        self.assertContains(request, "<addon id", 1)
+        response = make_call('list/recommended/all/1')
+        self.assertContains(response, "<addon id", 1)
 
     def test_version_filter(self):
         """
@@ -375,11 +373,11 @@ class ListTest(amo.test_utils.ExtraSetup, TestCase):
         locale.  If it doesn't reach the desired limit, it should backfill from
         the general population of featured addons.
         """
-        request = make_call('list', lang='fr')
-        self.assertContains(request, "<addon id", 3)
+        response = make_call('list', lang='fr')
+        self.assertContains(response, "<addon id", 3)
 
-        request = make_call('list', lang='he')
-        self.assertContains(request, "<addon id", 3)
+        response = make_call('list', lang='he')
+        self.assertContains(response, "<addon id", 3)
 
     def test_browser_featured_list(self):
         """
@@ -387,9 +385,9 @@ class ListTest(amo.test_utils.ExtraSetup, TestCase):
 
         c.f.: https://bugzilla.mozilla.org/show_bug.cgi?id=548114
         """
-        request = make_call('list/featured/all/10/Linux/3.7a2pre',
+        response = make_call('list/featured/all/10/Linux/3.7a2pre',
                             version=1.3)
-        self.assertContains(request, "<addons>")
+        self.assertContains(response, "<addons>")
 
     def test_average_daily_users(self):
         """Verify that average daily users returns data in order."""
@@ -503,13 +501,13 @@ class SearchTest(SphinxTestCase):
         # API < 1.5
         response = make_call('search/mozex', version=1.4)
         self.assertContains(response, self.no_results,
-                            msg_prefix=response.request['PATH_INFO'])
+                            msg_prefix=response.response['PATH_INFO'])
 
         # API = 1.5, hide_sandbox
         response = self.client.get(
                 api_url('search/mozex', version=1.5) + '?hide_sandbox=1')
         self.assertContains(response, self.no_results,
-                            msg_prefix=response.request['PATH_INFO'])
+                            msg_prefix=response.response['PATH_INFO'])
 
         # API = 1.5
         response = make_call('search/mozex', version=1.5)
