@@ -1,0 +1,51 @@
+{% extends "browse/base_listing.html" %}
+
+{% block title %}
+{% if not tag %}
+  {{ page_title(_('Tag not found :: Tag')) }}
+{% else %}
+  {# L10n: {0} is the name of the tag #}
+  {{ page_title(_('{0} :: Tag')|f(tag.tag_text)) }}
+{% endif %}
+{% endblock %}
+
+{% block content %}
+
+{% if not tag %}
+  <header>
+    {{ breadcrumbs([(None, _('Tags'))]) }}
+  </header>
+  <div class="featured listing no-results">
+    <div class="featured-inner">
+      <p class="addon-search-message">{{ _('No results found.') }}</p>
+    </div>
+  </div>
+{% else %}
+  <header>
+    {{ breadcrumbs([(None, _('Tags'))]) }}
+    {% set paginator = paginator(addons, render=False) %}
+    <hgroup>
+    <h2>{{ tag.tag_text }}</h2>
+    <h3>
+      {% trans begin=paginator.pager.start_index(), end=paginator.pager.end_index(),
+               count=addons.paginator.count|numberfmt, tag_name=tag.tag_text %}
+        Showing {{ begin }} - {{ end }} of {{ count }} results tagged with <strong>{{ tag_name }}</strong>
+      {% endtrans %}
+    </h3>
+    </hgroup>
+  </header>
+
+  <div class="featured listing">
+    <div class="featured-inner">
+      {% set url_base = url('browse.tag', tag.tag_text) %}
+      {{ addon_listing_header(url_base, sort_opts, sorting, unreviewed) }}
+      {{ addon_listing_items(addons.object_list,
+                             show_added_date=(sorting=='created')) }}
+      <div class="listing-footer">
+        {{ paginator.render() }}
+      </div>
+    </div> {# featured-inner #}
+  </div>
+{% endif %}
+
+{% endblock %}
