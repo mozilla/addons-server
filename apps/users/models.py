@@ -206,3 +206,11 @@ class BlacklistedNickname(amo.models.ModelBase):
         # Could also cache the entire blacklist and simply check if the
         # nickname is in the list here. @TODO?
         return cls.uncached.only('nickname').filter(nickname=nick).exists()
+
+
+class PersonaAuthor(unicode):
+    """Stub user until the persona authors get imported."""
+
+    @property
+    def display_name(self):
+        return self

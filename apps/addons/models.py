@@ -19,7 +19,7 @@ from reviews.models import Review
 from stats.models import Contribution as ContributionStats, ShareCountTotal
 from translations.fields import (TranslatedField, PurifiedField,
                                  LinkifiedField, translations_with_fallback)
-from users.models import UserProfile
+from users.models import UserProfile, PersonaAuthor
 from versions.models import Version
 
 from . import query
@@ -316,7 +316,7 @@ class Addon(amo.models.ModelBase):
         for persona in Persona.objects.no_cache().filter(addon__in=personas):
             addon = addon_dict[persona.addon_id]
             addon.persona = persona
-            addon.listed_authors = [persona.display_username]
+            addon.listed_authors = [PersonaAuthor(persona.display_username)]
             addon.weekly_downloads = persona.popularity
 
         # Personas need categories for the JSON dump.

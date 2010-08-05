@@ -345,9 +345,12 @@ class ListTest(amo.test_utils.ExtraSetup, TestCase):
         This tests that list filtering works.
         E.g. /list/recommended/theme gets only shows themes
         """
-        request = make_call('list/recommended/9/1')
+        response = make_call('list/recommended/9/1')
+        self.assertContains(response, """<type id="9">Persona</type>""", 1)
 
-        self.assertContains(request, """<type id="9">Persona</type>""", 1)
+    def test_persona_search_15(self):
+        response = make_call('list/recommended/9/1', version=1.5)
+        self.assertContains(response, """<type id="9">Persona</type>""", 1)
 
     def test_limits(self):
         """

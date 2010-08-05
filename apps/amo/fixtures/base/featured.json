@@ -117,6 +117,24 @@
         }
     },
     {
+        "pk": 575,
+        "model": "addons.persona",
+        "fields": {
+            "display_username": "ladygaga",
+            "popularity": 8381,
+            "footer": "Persona_Footer_UNI_GAGA_FINAL.jpg",
+            "movers": -0.11117283254862,
+            "author": "ladygaga",
+            "submit": "2009-03-30 21:26:59",
+            "accentcolor": "000000",
+            "header": "Persona_Header_UNI_GAGA_FINAL_2.jpg",
+            "textcolor": "ffffff",
+            "approve": "2009-03-30 23:18:20",
+            "persona_id": 830,
+            "addon": 15679
+        }
+    },
+    {
         "pk": 342,
         "model": "addons.feature",
         "fields": {
