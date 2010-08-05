@@ -61,8 +61,18 @@ def collection_listing(request):
     base = Collection.objects.listed().filter(app)
     filter = CollectionFilter(request, base, key='sort', default='popular')
     collections = amo.utils.paginate(request, filter.qs)
+    votes = get_votes(request, collections.object_list)
     return jingo.render(request, 'bandwagon/collection_listing.html',
-                        {'collections': collections, 'filter': filter})
+                        {'collections': collections, 'filter': filter,
+                         'collection_votes': votes})
+
+
+def get_votes(request, collections):
+    if not request.user.is_authenticated():
+        return {}
+    q = CollectionVote.objects.filter(
+        user=request.amo_user, collection__in=[c.id for c in collections])
+    return dict((v.collection_id, v) for v in q)
 
 
 def user_listing(request, username):

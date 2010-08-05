@@ -51,9 +51,9 @@ class TestHelpers(test.TestCase):
         eq_(doc('form')[0].action, '/en-US/firefox/users/login?to=yermom')
 
         # Mock logged in.
-        qs = Mock()
-        qs.values_list = lambda *args, **kw: [1]
-        c['request'].amo_user.votes.filter = lambda **kw: qs
+        vote = Mock()
+        vote.vote = 1
+        c['request'].amo_user.votes.filter.return_value = [vote]
         c['request'].user.is_authenticated = lambda: True
         barometer(c, collection)
         doc = pq(barometer(c, collection))

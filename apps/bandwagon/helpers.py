@@ -54,7 +54,7 @@ def barometer(context, collection):
     c = dict(context.items())
     request = c['request']
 
-    user_vote = 0  # Non-zero if logged in and voted.
+    user_vote = None  # Non-zero if logged in and voted.
 
     if request.user.is_authenticated():
         # TODO: Use reverse when bandwagon is on Zamboni.
@@ -64,10 +64,12 @@ def barometer(context, collection):
         down_title = _('Add a negative vote for this collection')
         cancel_title = _('Remove my vote for this collection')
 
-        votes = request.amo_user.votes.filter(
-                collection=collection).values_list('vote', flat=True)
-        if votes:
-            user_vote = votes[0]
+        if 'collection_votes' in context:
+            user_vote = context['collection_votes'].get(collection.id)
+        else:
+            votes = request.amo_user.votes.filter(collection=collection)
+            if votes:
+                user_vote = votes[0]
 
     else:
         up_action = down_action = login_link(c)
@@ -89,7 +91,7 @@ def barometer(context, collection):
         down_width = max(down_ratio - 1, 0)
 
     if user_vote:
-        if user_vote > 0:
+        if user_vote.vote > 0:
             up_class += ' voted'
         else:
             down_class += ' voted'
