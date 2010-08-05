@@ -183,7 +183,7 @@ class GroupedRating(object):
 
     @classmethod
     def set(cls, addon, using=None):
-        q = (Review.objects.valid().filter(addon=addon).using(using)
+        q = (Review.objects.latest().filter(addon=addon).using(using)
              .values_list('rating').annotate(models.Count('rating')))
         counts = dict(q)
         ratings = [(rating, counts.get(rating, 0)) for rating in range(1, 6)]
