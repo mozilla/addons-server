@@ -5,6 +5,7 @@ from mock import Mock
 from pyquery import PyQuery as pq
 import jingo
 
+from amo.urlresolvers import reverse
 from bandwagon.helpers import (user_collection_list, barometer,
                                collection_favorite)
 from bandwagon.models import Collection
@@ -42,7 +43,7 @@ class TestHelpers(test.TestCase):
         collection = Collection.objects.get(pk=57274)
         collection.upvotes = 1
         # Mock logged out.
-        c = dict(request=Mock())
+        c = dict(request=Mock(), user=Mock(), LANG='en-US', APP='firefox')
         c['request'].path = 'yermom'
         c['request'].GET.urlencode = lambda: ''
         c['request'].user.is_authenticated = lambda: False
@@ -50,12 +51,14 @@ class TestHelpers(test.TestCase):
         eq_(doc('form')[0].action, '/en-US/firefox/users/login?to=yermom')
 
         # Mock logged in.
-        c['request'].amo_user.votes.filter = lambda collection: [1]
+        qs = Mock()
+        qs.values_list = lambda *args, **kw: [1]
+        c['request'].amo_user.votes.filter = lambda **kw: qs
         c['request'].user.is_authenticated = lambda: True
         barometer(c, collection)
         doc = pq(barometer(c, collection))
         eq_(doc('form')[0].action,
-            remora_url('collections/vote/%s/up' % collection.uuid))
+            reverse('collections.vote', args=['anonymous', None, 'up']))
 
     def test_user_collection_list(self):
         c1 = Collection.objects.create(

@@ -56,7 +56,8 @@ def barometer(context, collection):
         down_title = _('Add a negative vote for this collection')
         cancel_title = _('Remove my vote for this collection')
 
-        votes = request.amo_user.votes.filter(collection=collection)
+        votes = request.amo_user.votes.filter(
+                collection=collection).values_list('vote', flat=True)
         if votes:
             user_vote = votes[0]
 
@@ -80,7 +81,7 @@ def barometer(context, collection):
         down_width = max(down_ratio - 1, 0)
 
     if user_vote:
-        if user_vote.vote > 0:
+        if user_vote > 0:
             up_class += ' voted'
         else:
             down_class += ' voted'
