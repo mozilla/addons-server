@@ -24,7 +24,6 @@ from versions.models import Version
 
 from . import query
 
-
 log = commonware.log.getLogger('z.addons')
 
 
@@ -342,6 +341,8 @@ class Addon(amo.models.ModelBase):
         """
         Returns either the addon's icon url, or a default.
         """
+        if self.type == amo.ADDON_PERSONA:
+            return self.persona.icon_url
         if not self.icon_type:
             if self.type == amo.ADDON_THEME:
                 icon = 'default-theme.png'
@@ -515,6 +516,11 @@ class Persona(caching.CachingMixin, models.Model):
         return self._image_url('preview.jpg')
 
     @amo.cached_property
+    def icon_url(self):
+        """URL to personas square preview."""
+        return self._image_url('preview_small.jpg')
+
+    @amo.cached_property
     def preview_url(self):
         """URL to Persona's big, 680px, preview."""
         return self._image_url('preview_large.jpg')
@@ -538,7 +544,7 @@ class Persona(caching.CachingMixin, models.Model):
             'headerURL': self._image_url(self.header, ssl=False),
             'footerURL': self._image_url(self.footer, ssl=False),
             'previewURL': self.preview_url,
-            'iconURL': self.thumb_url,
+            'iconURL': self.icon_url,
         }, separators=(',', ':'), cls=JSONEncoder)
 
 
