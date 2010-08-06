@@ -268,5 +268,33 @@
             "version": 24007,
             "min": 296
         }
+    },
+    {
+        "pk": 2,
+        "model": "versions.version",
+        "fields": {
+            "license": null,
+            "created": "2006-10-23 12:57:41",
+            "approvalnotes": "",
+            "modified": "2006-10-23 19:22:18",
+            "version": "1.0.43",
+            "addon": 2
+        }
+    },
+    {
+        "pk": 2,
+        "model": "files.file",
+        "fields": {
+            "status": 4,
+            "codereview": 0,
+            "hash": "sha256:5b5aaf7b38e332cc95d92ba759c01c3076b53a840f6c16e01dc272eefcb29566",
+            "created": "2007-03-05 13:19:15",
+            "modified": "2007-04-04 12:30:11",
+            "filename": "del.icio.us_bookmarks-1.0.43-fx.xpi",
+            "platform": 1,
+            "version": 2,
+            "datestatuschanged": null,
+            "size": 169
+        }
     }
 ]

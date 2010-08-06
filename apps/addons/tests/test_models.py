@@ -81,7 +81,7 @@ class TestAddonManager(amo.test_utils.ExtraSetup, test_utils.TestCase):
                     "unreviewed() must return unreviewed addons.")
 
 
-class TestAddonModels(test_utils.TestCase):
+class TestAddonModels(amo.test_utils.ExtraSetup, test_utils.TestCase):
     fixtures = ['base/fixtures', 'addons/featured',
                 'addons/invalid_latest_version']
 

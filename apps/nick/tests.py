@@ -2,13 +2,14 @@ from django.core.management import call_command
 from django.core.cache import cache
 
 from nose.tools import eq_
-
-from amo.urlresolvers import reverse
 import test_utils
+
+import amo.test_utils
+from amo.urlresolvers import reverse
 from applications.models import Application
 
 
-class TestViews(test_utils.TestCase):
+class TestViews(amo.test_utils.ExtraSetup, test_utils.TestCase):
     fixtures = ['base/fixtures', 'nick/test_views']
 
     def setUp(self):

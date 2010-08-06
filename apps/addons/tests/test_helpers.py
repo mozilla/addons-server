@@ -5,11 +5,12 @@ from nose.tools import eq_
 from pyquery import PyQuery
 
 import amo
+import amo.test_utils
 from addons.helpers import statusflags, flag, support_addon, contribution
 from addons.models import Addon
 
 
-class TestHelpers(test_utils.TestCase):
+class TestHelpers(amo.test_utils.ExtraSetup, test_utils.TestCase):
     fixtures = ['base/fixtures', 'addons/featured.json']
 
     def setUp(self):
