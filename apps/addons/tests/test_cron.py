@@ -17,6 +17,12 @@ class CurrentVersionTestCase(test_utils.TestCase):
         cron._update_addons_current_version(((3615,),))
         eq_(Addon.objects.filter(_current_version=None, pk=3615).count(), 0)
 
+    def test_cron(self):
+        Addon.objects.filter(pk=3615).update(_current_version=None)
+        eq_(Addon.objects.filter(_current_version=None, pk=3615).count(), 1)
+        cron.update_addons_current_version()
+        eq_(Addon.objects.filter(_current_version=None, pk=3615).count(), 0)
+
 
 class TestLastUpdated(test_utils.TestCase):
     fixtures = ['base/fixtures']
