@@ -192,7 +192,8 @@ def update_addon_appsupport():
 @task(rate_limit='30/m')
 @transaction.commit_manually
 def _update_appsupport(ids, **kw):
-    task_log.debug('Updating appsupport for %r' % ids)
+    task_log.info("[%s@%s] Updating addons app_support." %
+                   (len(ids), _update_appsupport.rate_limit))
     delete = 'DELETE FROM appsupport WHERE addon_id IN (%s)'
     insert = """INSERT INTO appsupport (addon_id, app_id, created, modified)
                 VALUES %s"""
