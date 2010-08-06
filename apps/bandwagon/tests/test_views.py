@@ -7,6 +7,7 @@ from nose.tools import eq_
 import test_utils
 
 from amo.urlresolvers import reverse
+from amo.utils import urlparams
 from bandwagon.models import Collection, CollectionVote
 
 
@@ -33,6 +34,34 @@ class TestViews(test_utils.TestCase):
             ('/collection/404', 404)]
         for test in tests:
             self.check_response(*test)
+
+    def test_collection_directory_redirects(self):
+        base = reverse('collections.list')
+        tests = [
+            ('/collections/editors_picks', 301,
+             urlparams(base, sort='featured')),
+            ('/collections/popular/', 301,
+             urlparams(base, sort='popular')),
+            # These don't work without a login.
+            ('/collections/mine', 301, base),
+            ('/collections/favorites/', 301, base),
+        ]
+        for test in tests:
+            self.check_response(*test)
+
+    def test_collection_directory_redirects_with_login(self):
+        assert self.client.login(username='jbalogh@mozilla.com', password='foo')
+
+        tests = [
+            ('/collections/mine', 301,
+             reverse('collections.user', args=['jbalogh'])),
+            # TODO(jbalogh): uncomment when we have favorites.
+            #('/collections/favorites/', 301,
+             #reverse('collections.detail', args=['jbalogh', 'favorites'])),
+        ]
+        for test in tests:
+            self.check_response(*test)
+
 
 
 class TestVotes(test_utils.TestCase):

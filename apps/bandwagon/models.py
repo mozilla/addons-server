@@ -38,6 +38,10 @@ class TopTags(object):
 
 class CollectionManager(amo.models.ManagerBase):
 
+    def get_query_set(self):
+        qs = super(CollectionManager, self).get_query_set()
+        return qs.transform(Collection.transformer)
+
     def manual(self):
         """Only hand-crafted, favorites, and featured collections should appear
         in this filter."""
@@ -228,6 +232,16 @@ class Collection(amo.models.ModelBase):
 
     def is_owner(self, user):
         return (user.id == self.author_id)
+
+    @staticmethod
+    def transformer(collections):
+        if not collections:
+            return
+        author_ids = set(c.author_id for c in collections)
+        authors = dict((u.id, u) for u in
+                       UserProfile.objects.filter(id__in=author_ids))
+        for c in collections:
+            c.author = authors.get(c.author_id)
 
 
 class CollectionAddon(amo.models.ModelBase):

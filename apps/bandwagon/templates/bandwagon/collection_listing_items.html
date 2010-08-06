@@ -1,0 +1,29 @@
+{% for c in collections %}
+<div class="item">
+  <div class="item-info">
+    <ul>
+      <li>{{ barometer(c) }}</li>
+      <li class="subscribers">
+        {# L10n: People "watch" collections to get notified of updates.
+                 Like Twitter followers. #}
+        {% trans cnt=c.subscribers, num=c.subscribers|numberfmt %}
+          <strong>{{ num }}</strong> watcher
+        {% pluralize %}
+          <strong>{{ num }}</strong> watchers
+        {% endtrans %}
+      </li>
+      <li class="modified">
+        {{ _('Updated {0}')|f(c.modified|datetime) }}
+      </li>
+    </ul>
+  </div>
+  <h3>
+    <a href="{{ c.get_url_path() }}">
+      <img class="icon" width="32" height="32" src="{{ c.icon_url }}">
+      {{ c.name }}
+    </a>
+    <span>{{ _('by {0}')|f(c.author|user_link)|safe }}</span>
+  </h3>
+  <blockquote>{{ c.description }}</blockquote>
+</div>
+{% endfor %}

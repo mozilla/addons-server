@@ -1,4 +1,5 @@
 from django import http
+from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect
 
 import jingo
@@ -16,15 +17,62 @@ from .models import Collection, CollectionAddon, CollectionUser, CollectionVote
 from . import forms
 
 
-def legacy_redirect(self, uuid):
+def legacy_redirect(request, uuid):
     # Nicknames have a limit of 30, so len == 36 implies a uuid.
     key = 'uuid' if len(uuid) == 36 else 'nickname'
     c = get_object_or_404(Collection.objects, **{key: uuid})
     return redirect(c.get_url_path())
 
 
+def legacy_directory_redirects(request, page):
+    sorts = {'editors_picks': 'featured', 'popular': 'popular'}
+    loc = base = reverse('collections.list')
+    if page in sorts:
+        loc = amo.utils.urlparams(base, sort=sorts[page])
+    elif request.user.is_authenticated():
+        if page == 'mine':
+            loc = reverse('collections.user', args=[request.amo_user.nickname])
+        elif page == 'favorites':
+            loc = reverse('collections.detail',
+                          args=[request.amo_user.nickname, 'favorites'])
+    return redirect(loc)
+
+
+class CollectionFilter(BaseFilter):
+    opts = (('featured', _lazy('Featured')),
+            ('popular', _lazy('Popular')),
+            ('rating', _lazy('Highest Rated')),
+            ('created', _lazy('Recently Added')))
+
+    def filter(self, field):
+        qs = self.base_queryset
+        if field == 'featured':
+            return qs.filter(type=amo.COLLECTION_FEATURED)
+        elif field == 'followers':
+            return qs.order_by('-weekly_subscribers')
+        elif field == 'rating':
+            return qs.order_by('-rating')
+        else:
+            return qs.order_by('-created')
+
+
 def collection_listing(request):
-    return http.HttpResponse()
+    app = Q(application=request.APP.id) | Q(application=None)
+    base = Collection.objects.listed().filter(app)
+    filter = CollectionFilter(request, base, key='sort', default='popular')
+    collections = amo.utils.paginate(request, filter.qs)
+    votes = get_votes(request, collections.object_list)
+    return jingo.render(request, 'bandwagon/collection_listing.html',
+                        {'collections': collections, 'filter': filter,
+                         'collection_votes': votes})
+
+
+def get_votes(request, collections):
+    if not request.user.is_authenticated():
+        return {}
+    q = CollectionVote.objects.filter(
+        user=request.amo_user, collection__in=[c.id for c in collections])
+    return dict((v.collection_id, v) for v in q)
 
 
 def user_listing(request, username):

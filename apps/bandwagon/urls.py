@@ -20,6 +20,8 @@ urlpatterns = patterns('',
     url('^collection/(?P<uuid>[^/]+)/?$', views.legacy_redirect),
 
     url('^collections/$', views.collection_listing, name='collections.list'),
+    url('^collections/(editors_picks|popular|mine|favorites)/?$',
+        views.legacy_directory_redirects),
     url('^collections/(?P<username>[^/]+)/$', views.user_listing,
         name='collections.user'),
     url('^collections/(?P<username>[^/]+)/(?P<slug>[^/]+)/',

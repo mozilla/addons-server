@@ -299,3 +299,11 @@ def field(field, label=None):
     if label is not None:
         field.label = label
     return jinja2.Markup(u'%s<p>%s%s</p>' % (field.errors, field.label_tag(), field))
+
+
+@register.inclusion_tag('amo/category-arrow.html')
+@jinja2.contextfunction
+def category_arrow(context, key, prefix):
+    d = dict(context.items())
+    d.update(key=key, prefix=prefix)
+    return d

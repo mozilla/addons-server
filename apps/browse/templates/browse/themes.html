@@ -22,17 +22,7 @@
 
 {% block extrahead %}
 {% with selector=category.id if category else sorting %}
-<style>
-  #c-{{ selector }} {
-    background: url({{ MEDIA_URL }}img/zamboni/arrow-right-blue.png) no-repeat left center;
-  }
-  .html-rtl #c-{{ selector }} {
-    background: url({{ MEDIA_URL }}img/zamboni/arrow-left-blue.png) no-repeat right center;
-  }
-  #c-{{ selector }} a {
-    color: inherit;
-  }
-</style>
+  {{ category_arrow(selector, prefix='c') }}
 {% endwith %}
 {% endblock %}
 
