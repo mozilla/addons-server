@@ -417,7 +417,9 @@ class Addon(amo.models.ModelBase):
     @amo.cached_property
     def tags_partitioned_by_developer(self):
         "Returns a tuple of developer tags and user tags for this addon."
-        tags = self.tags.not_blacklisted()
+        # TODO(davedash): We can't cache these tags until /tags/ are moved
+        # into Zamboni.
+        tags = self.tags.not_blacklisted().no_cache()
         if self.is_persona:
             return models.query.EmptyQuerySet(), tags
         user_tags = tags.exclude(addon_tags__user__in=self.listed_authors)

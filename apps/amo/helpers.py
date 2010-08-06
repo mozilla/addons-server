@@ -45,13 +45,9 @@ def url(viewname, *args, **kwargs):
     return urlresolvers.reverse(viewname, args=args, kwargs=kwargs)
 
 
-@register.function
 @register.filter
-def paginator(pager, render=True):
-    if render:
-        return Paginator(pager).render()
-    else:
-        return Paginator(pager)
+def paginator(pager):
+    return Paginator(pager).render()
 
 
 @register.function

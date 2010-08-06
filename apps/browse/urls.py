@@ -12,8 +12,6 @@ urlpatterns = patterns('',
     url('^themes/(?P<category>[^/]+)?$', views.themes,
         name='browse.themes'),
 
-    url('^tag/(?P<tag_name>.+)$', views.tag, name='browse.tag'),
-
     url('^extensions/(?:(?P<category>[^/]+)/)?$', views.extensions,
         name='browse.extensions'),
 
