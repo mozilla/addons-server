@@ -103,7 +103,7 @@ $(document).ready(function () {
 
 /* Add to collection initialization */
 $(document).ready(function () {
-    var btn = $('.collection-add');
+    var btn = $('div.collection-add');
     var dropdown = $('.collection-add-dropdown');
     if (!btn.length) return;
 
