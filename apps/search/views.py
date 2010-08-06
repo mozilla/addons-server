@@ -240,7 +240,7 @@ def ajax_search(request):
     return HttpResponse(json.dumps(items), mimetype='application/json')
 
 
-def search(request):
+def search(request, tag_name=None):
     title = _('Search Add-ons')
 
     # If the form is invalid we still want to have a query.
@@ -280,7 +280,7 @@ def search(request):
         title = _('Search for %s' % query)
 
     addon_type = form.cleaned_data.get('atype', 0)
-    tag = form.cleaned_data.get('tag')
+    tag = tag_name if tag_name is not None else form.cleaned_data.get('tag')
     page = form.cleaned_data['page']
     last_updated = form.cleaned_data.get('lup')
     sort = form.cleaned_data.get('sort')
