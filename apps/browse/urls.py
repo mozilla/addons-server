@@ -1,6 +1,7 @@
 from django.conf.urls.defaults import patterns, url
 from browse.feeds import CategoriesRss
 from . import views
+from browse.feeds import FeaturedRss
 
 
 urlpatterns = patterns('',
@@ -29,4 +30,6 @@ urlpatterns = patterns('',
 
     url('^search-tools/(?P<category>[^/]+)?$', views.search_tools,
         name='browse.search-tools'),
+
+    url('^featured/format:rss$', FeaturedRss(), name='browse.featured.rss'),
 )

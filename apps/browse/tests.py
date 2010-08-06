@@ -255,6 +255,7 @@ class TestLegacyRedirects(test_utils.TestCase):
         redirects('/search-engines', '/search-tools/')
         # redirects('/browse/type:7', '/plugins/')
         redirects('/recommended', '/featured')
+        redirects('/recommended/format:rss', '/featured/format:rss')
 
 class TestFeaturedPage(amo.test_utils.ExtraSetup, test_utils.TestCase):
     fixtures = ('base/apps', 'addons/featured')
@@ -263,10 +264,9 @@ class TestFeaturedPage(amo.test_utils.ExtraSetup, test_utils.TestCase):
         """Make sure that only featured add-ons are shown"""
 
         response = self.client.get(reverse('browse.featured'))
-        eq_([1003], [a.id for a in response.context['addons']])
+        eq_([1001,1003], [a.id for a in response.context['addons']])
 
-
-class TestFeed(test_utils.TestCase):
+class TestCategoriesFeed(test_utils.TestCase):
 
     def setUp(self):
         self.feed = feeds.CategoriesRss()
@@ -292,3 +292,29 @@ class TestFeed(test_utils.TestCase):
     def test_item_guid(self):
         t = self.feed.item_guid(self.addon)
         assert t.endswith(u'/addon/2/versions/v%s' % urllib.urlquote(self.u))
+
+class TestFeaturedFeed(amo.test_utils.ExtraSetup, test_utils.TestCase):
+    fixtures = ('base/apps', 'addons/featured')
+
+    def test_feed_elements_present(self):
+        """specific elements are present and reasonably well formed"""
+        url = reverse('browse.featured.rss')
+        r = self.client.get(url, follow=True)
+        doc = pq(r.content)
+        eq_(doc('rss channel title')[0].text,
+                'Featured Add-ons :: Add-ons for Firefox')
+        assert doc('rss channel link')[0].text.endswith('/en-US/firefox/')
+        eq_(doc('rss channel description')[0].text,
+                "Here's a few of our favorite add-ons to help you get " \
+                "started customizing Firefox.")
+        assert len(doc('rss channel item title')[0].text) > 0
+        item_link = doc('rss channel item link')[0]
+        assert item_link.text.endswith('/addon/1003/') \
+               or item_link.text.endswith('/addon/1001/')
+        item_pubdate = doc('rss channel item pubDate')[0]
+        assert item_pubdate.text == 'Tue, 17 Jan 2006 07:28:30 -0800' \
+               or item_pubdate.text == 'Tue, 02 Jan 2007 16:57:55 -0800'
+        item_guid = doc('rss channel item guid')[0]
+        print doc
+        assert item_guid.text.endswith('/versions/1.0.42') or \
+               item_guid.text.endswith('/versions/1.0.43')

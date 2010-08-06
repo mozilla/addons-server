@@ -102,6 +102,9 @@ urlpatterns = patterns('',
     ('^recommended$',
      lambda r: redirect('browse.featured', permanent=True)),
 
+    ('^recommended/format:rss$',
+     lambda r: redirect('browse.featured.rss', permanent=True)),
+
 )
 
 if settings.DEBUG:

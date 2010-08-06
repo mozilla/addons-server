@@ -138,7 +138,7 @@ def currencyfmt(num, currency):
     return _get_format().currency(num, currency)
 
 
-def _page_name(app=None):
+def page_name(app=None):
     """Determine the correct page name for the given app (or no app)."""
     if app:
         return _(u'Add-ons for {0}').format(app.pretty)
@@ -164,7 +164,7 @@ def login_link(context):
 @jinja2.contextfunction
 def page_title(context, title):
     app = context['request'].APP
-    return u'%s :: %s' % (title, _page_name(app))
+    return u'%s :: %s' % (title, page_name(app))
 
 
 @register.function
@@ -176,7 +176,7 @@ def breadcrumbs(context, items=list(), add_default=True):
     """
     if add_default:
         app = context['request'].APP
-        crumbs = [(urlresolvers.reverse('home'), _page_name(app))]
+        crumbs = [(urlresolvers.reverse('home'), page_name(app))]
     else:
         crumbs = []
 
