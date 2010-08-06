@@ -9,13 +9,15 @@ import jingo
 from tower import ugettext as _
 
 import amo
+from amo.decorators import json_view
 from amo.helpers import urlparams
 from amo import urlresolvers
 from addons.models import Category
 from versions.compare import dict_from_int, version_int
 from search import forms
 from search.client import (Client as SearchClient, SearchError,
-                           CollectionsClient, PersonasClient)
+                           CollectionsClient, AddonsPersonasClient,
+                           PersonasClient)
 from search.forms import SearchForm, SecondarySearchForm
 from translations.query import order_by_translation
 
@@ -217,7 +219,7 @@ def _collections(request):
 
     return jingo.render(request, 'search/collections.html', c)
 
-
+@json_view
 def ajax_search(request):
     """ Returns a json feed of ten results for auto-complete used in
     collections.
@@ -228,16 +230,14 @@ def ajax_search(request):
     """
 
     q = request.GET.get('q', '')
-    client = SearchClient()
+    client = AddonsPersonasClient()
     try:
         results = client.query(q, limit=10)
-        items = [dict(id=result.id, label=unicode(result.name),
-                      icon=result.icon_url, value=unicode(result.name).lower())
-                 for result in results]
+        return [dict(id=result.id, label=unicode(result.name),
+                     icon=result.icon_url, value=unicode(result.name).lower())
+                for result in results]
     except SearchError:
-        items = []
-
-    return HttpResponse(json.dumps(items), mimetype='application/json')
+        return []
 
 
 def search(request, tag_name=None):

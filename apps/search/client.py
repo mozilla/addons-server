@@ -548,6 +548,37 @@ class Client(object):
         return manual_order(Tag.objects.all(), tag_ids)
 
 
+class AddonsPersonasClient(Client):
+    """Search client that queries both personas and addons."""
+
+    def query(self, term, limit=10, offset=0, **kwargs):
+        sc = self.sphinx
+        sc.SetSelect('addon_id')
+        sc.SetLimits(min(offset, SPHINX_HARD_LIMIT - 1), limit)
+        term = sanitize_query(term)
+        self.log_query(term)
+
+        try:
+            result = sc.Query(term, 'personas, addons')
+        except socket.timeout:
+            log.error("Query has timed out.")
+            raise SearchError("Query has timed out.")
+        except Exception, e:
+            log.error("Sphinx threw an unknown exception: %s" % e)
+            raise SearchError("Sphinx threw an unknown exception.")
+
+        if sc.GetLastError():
+            raise SearchError(sc.GetLastError())
+
+        self.total_found = result['total_found'] if result else 0
+
+        if result and result['total']:
+            return self.get_result_set(term, result, offset, limit)
+        else:
+            return []
+
+
+
 class PersonasClient(Client):
     """A search client that queries sphinx for Personas."""
 
