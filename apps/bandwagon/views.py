@@ -312,7 +312,16 @@ def edit_addons(request, collection, username, slug):
             form.save(collection)
             return http.HttpResponseRedirect(collection.get_url_path())
 
-    data = dict(collection=collection, username=username, slug=slug)
+    collection_addons = collection.collectionaddon_set.all()
+    addons = []
+    comments = {}
+
+    for ca in collection_addons:
+        comments[ca.addon_id] = ca.comments
+        addons.append(ca.addon)
+
+    data = dict(collection=collection, username=username, slug=slug,
+                addons=addons, comments=comments)
     return jingo.render(request, 'bandwagon/edit_addons.html', data)
 
 
