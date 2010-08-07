@@ -22,7 +22,7 @@ task_log = commonware.log.getLogger('z.task')
 def fast_current_version():
     # Only find the really recent versions; this is called a lot.
     t = datetime.now() - timedelta(minutes=5)
-    qs = Addon.objects.values_list('id')
+    qs = Addon.objects.no_cache().values_list('id')
     q1 = qs.filter(status=amo.STATUS_PUBLIC,
                    versions__files__datestatuschanged__gte=t)
     q2 = qs.filter(status__in=amo.UNREVIEWED_STATUSES,
