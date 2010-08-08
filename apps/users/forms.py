@@ -176,7 +176,8 @@ class BlacklistedNicknameAddForm(forms.Form):
 
         if 'nicknames' in data:
             data['nicknames'] = os.linesep.join(
-                    [s for s in data['nicknames'].splitlines() if s])
+                    [s.strip() for s in data['nicknames'].splitlines()
+                        if s.strip()])
         if 'nicknames' not in data or data['nicknames'] == '':
             msg = 'Please enter at least one nickname to blacklist.'
             self._errors['nicknames'] = ErrorList([msg])

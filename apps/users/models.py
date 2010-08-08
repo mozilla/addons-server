@@ -11,6 +11,7 @@ from django.core.mail import send_mail
 from django.db import models
 from django.template import Context, loader
 
+import caching.base as caching
 import commonware.log
 from tower import ugettext as _
 
@@ -202,10 +203,12 @@ class BlacklistedNickname(amo.models.ModelBase):
 
     @classmethod
     def blocked(cls, nick):
-        """Check to see if a nickname is in the blacklist."""
-        # Could also cache the entire blacklist and simply check if the
-        # nickname is in the list here. @TODO?
-        return cls.uncached.only('nickname').filter(nickname=nick).exists()
+        """Check to see if a nickname is in the (cached) blacklist."""
+        nick = nick.decode().lower().encode('utf-8')
+        qs = cls.objects.all()
+        f = lambda: dict(qs.values_list('nickname', 'id'))
+        blacklist = caching.cached_with(qs, f, 'blocked')
+        return nick in blacklist
 
 
 class PersonaAuthor(unicode):
