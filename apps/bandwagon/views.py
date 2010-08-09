@@ -5,6 +5,7 @@ from django.db.models import Q
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect
 
+import commonware.log
 import jingo
 from tower import ugettext_lazy as _lazy, ugettext as _
 
@@ -21,6 +22,8 @@ from translations.query import order_by_translation
 from .models import Collection, CollectionAddon, CollectionUser, CollectionVote
 from . import forms
 
+
+log = commonware.log.getLogger('z.collections')
 
 def owner_required(f=None, require_owner=True):
     """Requires collection to be owner, by someone."""
@@ -362,18 +365,19 @@ def delete(request, username, slug):
     collection = get_object_or_404(Collection, author__nickname=username,
                                    slug=slug)
 
-    is_admin = acl.action_allowed(request, 'Admin', '%')
-
-    if not (collection.is_owner(request.amo_user) or is_admin):
+    if not acl.check_collection_ownership(request, collection, True):
+        log.debug('%s is trying to delete collection %s'
+                  % (request.amo_user, collection.id))
         return http.HttpResponseForbidden(
                 _('This is not the collection you are looking for.'))
 
-    data = dict(collection=collection, username=username, slug=slug,
-                is_admin=is_admin)
+    data = dict(collection=collection, username=username, slug=slug)
 
     if request.method == 'POST':
         if request.POST['sure'] == '1':
             collection.delete()
+            log.debug('%s deleted collection %s' % (request.amo_user,
+                                                    collection.id))
             url = reverse('collections.user', args=[username])
             return http.HttpResponseRedirect(url)
         else:

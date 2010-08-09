@@ -3,7 +3,7 @@ import os
 from django import forms
 from django.conf import settings
 
-import commonware
+import commonware.log
 from tower import ugettext as _
 
 import amo
@@ -21,6 +21,8 @@ apps = ((a.id, a.pretty) for a in amo.APP_USAGE)
 collection_types = ((k, v) for k, v in amo.COLLECTION_CHOICES.iteritems()
         if k not in (amo.COLLECTION_ANONYMOUS, amo.COLLECTION_RECOMMENDED))
 
+
+log = commonware.log.getLogger('z.collections')
 
 class AdminForm(forms.Form):
     application = forms.TypedChoiceField(choices=apps, required=False,
@@ -74,6 +76,8 @@ class ContributorsForm(forms.Form):
         collection.collectionuser_set.all().delete()
         for user in self.cleaned_data['contributor']:
             CollectionUser(collection=collection, user=user).save()
+            log.debug('%s was added to Collection %s' % (user.nickname,
+                                                         collection.id))
 
         new_owner = self.cleaned_data['new_owner']
 
@@ -94,6 +98,9 @@ class ContributorsForm(forms.Form):
             collection.save()
             # New owner is no longer a contributor.
             collection.collectionuser_set.filter(user=new_owner).delete()
+
+            log.debug('%s now owns Collection %s' % (new_owner.nickname,
+                                                     collection.id))
 
 
 class CollectionForm(forms.ModelForm):

@@ -100,7 +100,7 @@ class TestCollections(test_utils.TestCase):
         c.save()
         u.save()
         CollectionUser(collection=c, user=u).save()
-        eq_(c.is_publisher(u), True)
+        eq_(c.publishable_by(u), True)
 
 
 class TestRecommendations(test_utils.TestCase):
