@@ -182,7 +182,7 @@ class TestCRUD(test_utils.TestCase):
         """
 
         # Create an addon by user 1.
-        r = self.client.post(self.add_url, self.data, follow=True)
+        self.create_collection()
 
         # Create an addon by user 2 with matching slug.
         self.login_regular()
@@ -274,3 +274,21 @@ class TestCRUD(test_utils.TestCase):
 
         r = self.client.post(url, dict(application=1, type=0), follow=True)
         eq_(r.status_code, 200)
+
+    def test_delete_link(self):
+         # Create an addon by user 1.
+        self.create_collection()
+
+        url = reverse('collections.edit_contributors',
+                      args=['admin', 'pornstar'])
+        self.client.post(url, {'contributor': 999}, follow=True)
+        url = reverse('collections.edit_addons', args=['admin', 'pornstar'])
+
+        r = self.client.get(url)
+        doc = pq(r.content)
+        eq_(len(doc('#collection-delete-link')), 1)
+
+        self.login_regular()
+        r = self.client.get(url)
+        doc = pq(r.content)
+        eq_(len(doc('#collection-delete-link')), 0)

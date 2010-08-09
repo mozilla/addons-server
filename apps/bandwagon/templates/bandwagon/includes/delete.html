@@ -1,3 +1,6 @@
-<a href="{{ url('collections.delete', username, slug) }}">
+{% if check_ownership(collection, True) %}
+<a href="{{ url('collections.delete', username, slug) }}"
+   id="collection-delete-link">
   {{ _('Delete Collection') }}
 </a>
+{% endif %}
