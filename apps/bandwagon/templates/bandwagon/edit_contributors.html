@@ -11,7 +11,7 @@
 
     {% if role != _('Owner') %}
     <input type="hidden" name="contributor" value="{{ user.id }}">
-    <a>Make Owner</a>
+    <a>{{ _('Make Owner') }}</a>
     <button name="new_owner" value="{{ user.id }}">POTCH IT!</button>
     {% endif %}
   </td>
@@ -28,7 +28,7 @@
   <p>
   {% trans %}
     You can add multiple contributors to this collection.  A contributor can
-    add and remove add-on from this collection, but cannot change its name or
+    add and remove add-ons from this collection, but cannot change its name or
     description.  To add a contributor, enter their email in the box below.
     Contributors must have a Mozilla Add-ons account.
   {% endtrans %}
