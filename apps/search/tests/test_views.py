@@ -257,7 +257,7 @@ class AjaxTest(SphinxTestCase):
         for val, expected in check_me:
             check(val, expected)
 
-    @patch('search.client.Client.query')
+    @patch('search.client.AddonsPersonasClient.query')
     def test_errors(self, searchclient):
         searchclient.side_effect = SearchError()
         r = self.client.get(reverse('search.ajax') + '?q=del')
