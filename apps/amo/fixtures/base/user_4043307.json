@@ -1,0 +1,51 @@
+[
+    {
+        "pk": 4043307,
+        "model": "auth.user",
+        "fields": {
+            "username": "jbalogh@m.com",
+            "first_name": "Jeff",
+            "last_name": "Balogh",
+            "is_active": true,
+            "is_superuser": true,
+            "is_staff": true,
+            "last_login": "2010-05-18 11:52:06",
+            "groups": [],
+            "user_permissions": [],
+            "password": "",
+            "email": "jbalogh@m.com",
+            "date_joined": "2009-02-02 11:50:31"
+        }
+    },
+    {
+        "pk": 4043307,
+        "model": "users.userprofile",
+        "fields": {
+            "sandboxshown": true,
+            "display_collections_fav": true,
+            "display_collections": true,
+            "occupation": "",
+            "confirmationcode": "",
+            "location": "",
+            "picture_type": "",
+            "averagerating": null,
+            "homepage": "http://jeffbalogh.org",
+            "email": "dd+605fa45e4@davedash.com",
+            "notifycompat": true,
+            "bio": null,
+            "firstname": "Jeff",
+            "deleted": false,
+            "lastname": "Balogh",
+            "emailhidden": false,
+            "user": 4043307,
+            "password": "",
+            "nickname": "jbalogh",
+            "resetcode_expires": null,
+            "resetcode": "",
+            "created": "2009-02-02 11:50:31",
+            "notes": null,
+            "modified": "2010-02-02 22:33:40",
+            "notifyevents": true
+        }
+    }
+]

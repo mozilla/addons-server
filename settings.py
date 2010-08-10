@@ -462,6 +462,7 @@ CUSTOM_DUMPS = {
             # Magic turns this into current_version.files.all()[0].
             'current_version.files.all.0',
             'current_version.apps.all.0',
+            'addonuser_set.all.0',
         ],
         'order': ('applications.application', 'translations.translation',
                   'addons.addontype', 'files.platform', 'addons.addon',
