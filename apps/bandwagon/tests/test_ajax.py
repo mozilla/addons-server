@@ -63,20 +63,3 @@ class AjaxTest(test_utils.TestCase):
         r = self.client.post(reverse('collections.ajax_remove'),
                              {'addon_id': 3615, 'id': c.id}, follow=True)
         eq_(r.status_code, 403)
-
-    def test_not_logged_in(self):
-        # give 403
-
-
-
-    def test_not_post(self):
-        # give 403
-
-    def test_non_integer(self):
-        # give 404
-
-
-    def test_bad_id(self):
-        # give 404
-
-
