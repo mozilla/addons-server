@@ -1,0 +1,51 @@
+[
+    {
+        "pk": 2519,
+        "model": "auth.user",
+        "fields": {
+            "username": "cfinke@m.com",
+            "first_name": "Christopher",
+            "last_name": "Finke",
+            "is_active": true,
+            "is_superuser": false,
+            "is_staff": false,
+            "last_login": "2010-05-19 06:28:40",
+            "groups": [],
+            "user_permissions": [],
+            "password": "",
+            "email": "cfinke@m.com",
+            "date_joined": "2007-03-05 13:09:34"
+        }
+    },
+    {
+        "pk": 2519,
+        "model": "users.userprofile",
+        "fields": {
+            "sandboxshown": true,
+            "display_collections_fav": false,
+            "display_collections": false,
+            "occupation": "Software Developer",
+            "confirmationcode": "",
+            "location": "Minneapolis, MN",
+            "picture_type": "image/png",
+            "averagerating": "4.09",
+            "homepage": "http://www.chrisfinke.com/",
+            "email": "dd+357b3dde1@davedash.com",
+            "notifycompat": true,
+            "bio": null,
+            "firstname": "Christopher",
+            "deleted": false,
+            "lastname": "Finke",
+            "emailhidden": false,
+            "user": 2519,
+            "password": "",
+            "nickname": "cfinke",
+            "resetcode_expires": null,
+            "resetcode": "",
+            "created": "2007-03-05 13:09:34",
+            "notes": null,
+            "modified": "2010-05-07 15:22:13",
+            "notifyevents": true
+        }
+    }
+]
