@@ -46,19 +46,22 @@
 </div>
 <div class="secondary">
   <h3>Stats</h3>
-  {% if stats %}
-    {% if stats.num_lookups > 0 %}
-      {# Can't jinja2 detect a division by zero and just do something intelligent? #}
-      {% set hit_percentage = stats.num_hits / stats.num_lookups %}
-    {% else %}
-      {% set hit_percentage = 0 %}
-    {% endif %}
-    <ul>
-      <li>Using {{ stats.bytes_used|filesizeformat }} ({{ stats.percent_used }}% of total space) for {{ stats.entries }} objects.</li>
-      <li>We've had {{ stats.num_hits }} hits out of {{ stats.num_lookups }} lookups ({{ hit_percentage }}%).</li>
-    </ul>
-  {% else %}
-    <p>Not Available</p>
-  {% endif %}
+  {% for i in boxes %}
+      <h4>{{ i.location }}</h4>
+      {% if i.stats %}
+        {% if i.stats.num_lookups > 0 %}
+          {# Can't jinja2 detect a division by zero and just do something intelligent? #}
+          {% set hit_percentage = i.stats.num_hits / i.stats.num_lookups %}
+        {% else %}
+          {% set hit_percentage = 0 %}
+        {% endif %}
+        <ul>
+          <li>Using {{ i.stats.bytes_used|filesizeformat }} ({{ i.stats.percent_used }}% of total space) for {{ i.stats.entries }} objects.</li>
+          <li>We've had {{ i.stats.num_hits }} hits out of {{ i.stats.num_lookups }} lookups ({{ hit_percentage }}%).</li>
+        </ul>
+      {% else %}
+        <p>Not Available</p>
+      {% endif %}
+  {% endfor %}
 </div>
 {% endblock %}

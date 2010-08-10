@@ -1,3 +1,5 @@
+from urlparse import urlparse
+
 from django import http
 # I'm so glad we named a function in here settings...
 from django.conf import settings as site_settings
@@ -65,14 +67,19 @@ def flagged(request):
 def hera(request):
     form = FlushForm(initial={'flushprefix': site_settings.SITE_URL})
 
-    hera = get_hera()
+    boxes = []
+    configured = False  # Default to not showing the form.
+    for i in site_settings.HERA:
+        hera = get_hera(i)
+        r = {'location': urlparse(i['LOCATION'])[1], 'stats': False}
+        if hera:
+            r['stats'] = hera.getGlobalCacheInfo()
+            configured = True
+        boxes.append(r)
 
-    if not hera:
+    if not configured:
         messages.error(request, "Hera is not (or mis-)configured.")
         form = None
-        stats = None
-    else:
-        stats = hera.getGlobalCacheInfo()
 
     if request.method == 'POST' and hera:
         form = FlushForm(request.POST)
@@ -87,7 +94,7 @@ def hera(request):
                 messages.success(request, msg)
 
     return jingo.render(request, 'zadmin/hera.html',
-                        {'form': form, 'stats': stats})
+                        {'form': form, 'boxes': boxes})
 
 
 @admin.site.admin_view

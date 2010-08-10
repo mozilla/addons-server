@@ -2,6 +2,7 @@ import os
 import random
 import socket
 import urllib2
+from urlparse import urlparse
 
 from django import http
 from django.conf import settings
@@ -14,8 +15,7 @@ import commonware.log
 import jingo
 import phpserialize as php
 
-from amo.urlresolvers import reverse
-from api.views import render_xml
+from hera.contrib.django_utils import get_hera
 from stats.models import Contribution, ContributionError, SubscriptionEvent
 from . import log
 
@@ -84,10 +84,21 @@ def monitor(request):
 
     status_summary['filepaths'] = filepath_status
 
+    # Check Redis
     redis_results = [None, 'REDIS_BACKEND is not set']
     if getattr(settings, 'REDIS_BACKEND', False):
         redis_results = check_redis()
     status_summary['redis'] = bool(redis_results[0])
+
+    # Check Hera
+    hera_results = []
+    status_summary['hera'] = True
+    for i in settings.HERA:
+        r = {'location': urlparse(i['LOCATION'])[1],
+             'result': bool(get_hera(i))}
+        hera_results.append(r)
+        if not hera_results[-1]['result']:
+            status_summary['hera'] = False
 
     # If anything broke, send HTTP 500
     if not all(status_summary):
@@ -97,6 +108,7 @@ def monitor(request):
                         {'memcache_results': memcache_results,
                          'filepath_results': filepath_results,
                          'redis_results': redis_results,
+                         'hera_results': hera_results,
                          'status_summary': status_summary},
                         status=status)
 

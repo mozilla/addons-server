@@ -51,7 +51,7 @@
 </div>
 
 <div class="notification-box {{ status(status_summary.redis) }}">
-  <h2>Redis Info</h2>
+  <h2>[Redis] Redis Info</h2>
   {% with info, error = redis_results %}
     {% if info %}
       <ul>
@@ -64,6 +64,23 @@
       <code>{{ error }}</code>
     {% endif %}
   {% endwith %}
+</div>
+
+<div class="notification-box {{ status(status_summary.hera) }}">
+  <h2>[Zeus] Connection Tests (Hera)</h2>
+  <ul>
+  {% for result in hera_results %}
+    <li>{{ result.location }}:
+    {% if result.result %}
+      Success
+    {% else %}
+      <strong>Failed</strong>
+    {% endif %}
+    </li>
+  {% else %}
+    <li>Hera isn't configured!</li>
+  {% endfor %}
+  </ul>
 </div>
 
 {% endblock main_content %}

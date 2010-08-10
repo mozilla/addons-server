@@ -472,10 +472,10 @@ CUSTOM_DUMPS = {
 }
 
 ## Hera (http://github.com/clouserw/hera)
-HERA = {'USERNAME': '',
+HERA = [{'USERNAME': '',
         'PASSWORD': '',
         'LOCATION': '',
-       }
+       }]
 
 # Logging
 LOG_LEVEL = logging.DEBUG
