@@ -13,8 +13,6 @@ import amo.utils
 from amo.decorators import login_required
 from amo.urlresolvers import reverse
 from access import acl
-from amo.decorators import login_required
-from amo.urlresolvers import reverse
 from addons.models import Addon
 from addons.views import BaseFilter
 from tags.models import Tag
@@ -22,8 +20,8 @@ from translations.query import order_by_translation
 from .models import Collection, CollectionAddon, CollectionUser, CollectionVote
 from . import forms
 
-
 log = commonware.log.getLogger('z.collections')
+
 
 def owner_required(f=None, require_owner=True):
     """Requires collection to be owner, by someone."""
@@ -262,7 +260,7 @@ def _ajax_add_remove(request, op):
 
     c = Collection.objects.get(pk=id)
 
-    if not c.owned_by(request.amo_user):
+    if not acl.check_collection_ownership(request, c):
         return http.HttpResponseForbidden()
 
     a = Addon.objects.get(pk=addon_id)
