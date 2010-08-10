@@ -9,7 +9,6 @@ from django.core.cache import cache
 from django.db import models, connection
 
 import caching.base as caching
-from MySQLdb import IntegrityError
 
 import amo
 import amo.models
@@ -223,17 +222,9 @@ class Collection(amo.models.ModelBase):
         """Determines if the user is subscribed to this collection."""
         return self.subscriptions.filter(user=user).exists()
 
-    # TODO(davedash): use this when we're on 1.3:
-    # http://code.djangoproject.com/ticket/13240
     def add_addon(self, addon):
         "Adds an addon to the collection."
-        ca = CollectionAddon()
-        ca.addon = addon
-        ca.collection = self
-        try:
-            ca.save()
-        except IntegrityError:
-            pass
+        CollectionAddon.objects.get_or_create(addon=addon, collection=self)
         self.save()  # To invalidate Collection.
 
     def remove_addon(self, addon):

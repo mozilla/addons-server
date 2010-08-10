@@ -1,17 +1,13 @@
-import os
-
-from django.conf import settings
-from django.http import QueryDict
-
 from mock import patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 import test_utils
 
-from access import acl
+import amo
+from addons.models import Addon
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
-from bandwagon.models import Collection, CollectionVote
+from bandwagon.models import Collection, CollectionVote, CollectionUser
 
 
 class TestViews(test_utils.TestCase):
@@ -53,7 +49,7 @@ class TestViews(test_utils.TestCase):
             self.check_response(*test)
 
     def test_collection_directory_redirects_with_login(self):
-        assert self.client.login(username='jbalogh@mozilla.com', password='foo')
+        self.client.login(username='jbalogh@mozilla.com', password='foo')
 
         tests = [
             ('/collections/mine', 301,
@@ -64,7 +60,6 @@ class TestViews(test_utils.TestCase):
         ]
         for test in tests:
             self.check_response(*test)
-
 
 
 class TestVotes(test_utils.TestCase):
@@ -144,7 +139,7 @@ class TestCRUD(test_utils.TestCase):
                 'name': "flagtir's ye ole favorites",
                 'slug': "pornstar",
                 'description': '',
-                'listed': 'True'
+                'listed': 'True',
                 }
 
     def login_regular(self):
@@ -186,15 +181,14 @@ class TestCRUD(test_utils.TestCase):
 
         # Create an addon by user 2 with matching slug.
         self.login_regular()
-        r = self.client.post(self.add_url, self.data, follow=True)
+        self.client.post(self.add_url, self.data, follow=True)
         # Add user1 to user 2.
 
         # Make user1 owner of user2s addon.
         url = reverse('collections.edit_contributors',
                       args=['regularuser', 'pornstar'])
-        r = self.client.post(url,
-                             {'contributor': 4043307, 'new_owner': 4043307},
-                             follow=True)
+        self.client.post(url, {'contributor': 4043307, 'new_owner': 4043307},
+                         follow=True)
         # verify that user1's addon is slug + '-'
         c = Collection.objects.get(slug='pornstar-')
         eq_(c.author_id, 4043307)
@@ -209,13 +203,12 @@ class TestCRUD(test_utils.TestCase):
         """
         Test edit of collection.
         """
-        r = self.client.post(self.add_url, self.data, follow=True)
+        self.client.post(self.add_url, self.data, follow=True)
         url = reverse('collections.edit',
                       args=['admin', 'pornstar'])
 
-        r = self.client.post(url,
-                            {'name': 'HALP', 'slug': 'halp', 'listed': True},
-                            follow=True)
+        self.client.post(url, {'name': 'HALP', 'slug': 'halp', 'listed': True},
+                         follow=True)
         c = Collection.objects.get(slug='halp')
         eq_(unicode(c.name), 'HALP')
 
@@ -223,7 +216,6 @@ class TestCRUD(test_utils.TestCase):
         r = self.client.post(self.add_url, self.data, follow=True)
         self.login_regular()
         url_args = ['admin', 'pornstar']
-
 
         url = reverse('collections.edit', args=url_args)
         r = self.client.get(url)
@@ -247,7 +239,7 @@ class TestCRUD(test_utils.TestCase):
         self.create_collection()
         url = reverse('collections.edit_addons',
                       args=['admin', 'pornstar'])
-        r = self.client.post(url, {'addon': 40}, follow=True)
+        self.client.post(url, {'addon': 40}, follow=True)
         addon = Collection.objects.filter(slug='pornstar')[0].addons.all()[0]
         eq_(addon.id, 40)
 
@@ -264,7 +256,6 @@ class TestCRUD(test_utils.TestCase):
 
     @patch('access.acl.action_allowed')
     def test_admin(self, f):
-        f = lambda *args, **kwargs: True
         self.create_collection()
         url = reverse('collections.edit_contributors',
                       args=['admin', 'pornstar'])
@@ -292,3 +283,91 @@ class TestCRUD(test_utils.TestCase):
         r = self.client.get(url)
         doc = pq(r.content)
         eq_(len(doc('#collection-delete-link')), 0)
+
+
+class TestChangeAddon(test_utils.TestCase):
+    fixtures = ['users/test_backends']
+
+    def setUp(self):
+        self.client.login(username='jbalogh@mozilla.com', password='foo')
+        self.add = reverse('collections.alter',
+                           args=['jbalogh', 'mobile', 'add'])
+        self.remove = reverse('collections.alter',
+                              args=['jbalogh', 'mobile', 'remove'])
+        self.flig = Collection.objects.create(author_id=9945, slug='xxx')
+        self.flig_add = reverse('collections.alter',
+                                args=['fligtar', 'xxx', 'add'])
+        self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
+
+    def check_redirect(self, request):
+        url = '%s?addon_id=%s' % (reverse('collections.ajax_list'),
+                                  self.addon.id)
+        self.assertRedirects(request, url)
+
+    def test_login_required(self):
+        self.client.logout()
+        r = self.client.post(self.add)
+        eq_(r.status_code, 302)
+        self.assert_(reverse('users.login') in r['Location'], r['Location'])
+
+    def test_post_required(self):
+        r = self.client.get(self.add)
+        eq_(r.status_code, 405)
+
+    def test_ownership(self):
+        r = self.client.post(self.flig_add)
+        eq_(r.status_code, 403)
+
+    def test_publisher(self):
+        CollectionUser.objects.create(user_id=4043307, collection=self.flig)
+        r = self.client.post(self.flig_add, {'addon_id': self.addon.id},
+                             HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.check_redirect(r)
+
+    def test_no_addon(self):
+        r = self.client.post(self.add)
+        eq_(r.status_code, 400)
+
+    def test_add_success(self):
+        r = self.client.post(self.add, {'addon_id': self.addon.id},
+                             HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.check_redirect(r)
+        c = Collection.objects.get(author__nickname='jbalogh', slug='mobile')
+        self.assert_(self.addon in c.addons.all())
+        eq_(c.addons.count(), 1)
+
+    def test_add_existing(self):
+        r = self.client.post(self.add, {'addon_id': self.addon.id},
+                             HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.check_redirect(r)
+        r = self.client.post(self.add, {'addon_id': self.addon.id},
+                             HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.check_redirect(r)
+        c = Collection.objects.get(author__nickname='jbalogh', slug='mobile')
+        self.assert_(self.addon in c.addons.all())
+        eq_(c.addons.count(), 1)
+
+    def test_remove_success(self):
+        r = self.client.post(self.add, {'addon_id': self.addon.id},
+                             HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.check_redirect(r)
+
+        r = self.client.post(self.remove, {'addon_id': self.addon.id},
+                             HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.check_redirect(r)
+
+        c = Collection.objects.get(author__nickname='jbalogh', slug='mobile')
+        eq_(c.addons.count(), 0)
+
+    def test_remove_nonexistent(self):
+        r = self.client.post(self.remove, {'addon_id': self.addon.id},
+                             HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.check_redirect(r)
+        c = Collection.objects.get(author__nickname='jbalogh', slug='mobile')
+        eq_(c.addons.count(), 0)
+
+    def test_no_ajax_response(self):
+        r = self.client.post(self.add, {'addon_id': self.addon.id},
+                             follow=True)
+        self.assertRedirects(r, reverse('collections.detail',
+                                        args=['jbalogh', 'mobile']))

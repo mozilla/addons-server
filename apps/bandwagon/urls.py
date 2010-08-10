@@ -15,6 +15,8 @@ detail_urls = patterns('',
         name='collections.vote'),
     url('^edit/', include(edit_urls)),
     url('^delete$', views.delete, name='collections.delete'),
+    url('^(?P<action>add|remove)$', views.collection_alter,
+        name='collections.alter'),
 )
 
 ajax_urls = patterns('',

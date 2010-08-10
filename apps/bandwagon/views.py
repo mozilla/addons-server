@@ -10,7 +10,7 @@ import jingo
 from tower import ugettext_lazy as _lazy, ugettext as _
 
 import amo.utils
-from amo.decorators import login_required
+from amo.decorators import login_required, post_required
 from amo.urlresolvers import reverse
 from access import acl
 from addons.models import Addon
@@ -20,6 +20,8 @@ from translations.query import order_by_translation
 from .models import Collection, CollectionAddon, CollectionUser, CollectionVote
 from . import forms
 
+
+SPECIAL_COLLECTIONS = ['mobile', 'favorites']
 log = commonware.log.getLogger('z.collections')
 
 
@@ -252,6 +254,35 @@ def ajax_list(request):
 
     return jingo.render(request, 'bandwagon/ajax_list.html',
                 {'collections': collections})
+
+
+@login_required
+@post_required
+def collection_alter(request, username, slug, action):
+    if slug in SPECIAL_COLLECTIONS:
+        c = getattr(request.amo_user, slug + '_collection')()
+    else:
+        c = get_object_or_404(Collection.objects,
+                              author__nickname=username, slug=slug)
+    return change_addon(request, c, action)
+
+
+def change_addon(request, collection, action):
+    if not acl.check_collection_ownership(request, collection):
+        return http.HttpResponseForbidden()
+
+    try:
+        addon = get_object_or_404(Addon.objects, pk=request.POST['addon_id'])
+    except (ValueError, KeyError):
+        return http.HttpResponseBadRequest()
+
+    getattr(collection, action + '_addon')(addon)
+
+    if request.is_ajax():
+        url = '%s?addon_id=%s' % (reverse('collections.ajax_list'), addon.id)
+    else:
+        url = collection.get_url_path()
+    return redirect(url)
 
 
 def _ajax_add_remove(request, op):
