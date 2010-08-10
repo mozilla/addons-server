@@ -9,6 +9,7 @@ from nose.tools import eq_
 
 import amo.test_utils
 from addons.models import Addon, AddonUser
+from bandwagon.models import Collection
 from reviews.models import Review
 from users.models import UserProfile, get_hexdigest, BlacklistedNickname
 
@@ -116,6 +117,22 @@ class TestUserProfile(amo.test_utils.ExtraSetup, test.TestCase):
         u = UserProfile.objects.get(id=2519)
         addons = u.addons_listed.values_list('id', flat=True)
         eq_(sorted(addons), [3615, 4664])
+
+    def test_mobile_collection(self):
+        u = UserProfile.objects.get(id='4043307')
+        assert not Collection.objects.filter(author=u)
+
+        c = u.mobile_collection()
+        eq_(c.type, amo.COLLECTION_MOBILE)
+        eq_(c.slug, 'mobile')
+
+    def test_favorites_collection(self):
+        u = UserProfile.objects.get(id='4043307')
+        assert not Collection.objects.filter(author=u)
+
+        c = u.favorites_collection()
+        eq_(c.type, amo.COLLECTION_FAVORITES)
+        eq_(c.slug, 'favorites')
 
 
 class TestPasswords(test.TestCase):

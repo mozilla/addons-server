@@ -46,7 +46,7 @@ class CollectionManager(amo.models.ManagerBase):
     def manual(self):
         """Only hand-crafted, favorites, and featured collections should appear
         in this filter."""
-        types = (amo.COLLECTION_NORMAL, amo.COLLECTION_FAVORITE,
+        types = (amo.COLLECTION_NORMAL, amo.COLLECTION_FAVORITES,
                  amo.COLLECTION_FEATURED, )
 
         return self.filter(type__in=types)
@@ -63,6 +63,7 @@ class Collection(amo.models.ModelBase):
 
     uuid = models.CharField(max_length=36, blank=True, unique=True)
     name = TranslatedField()
+    # nickname is deprecated.  Use slug.
     nickname = models.CharField(max_length=30, blank=True, unique=True,
                                 null=True)
     slug = models.CharField(max_length=30, blank=True, null=True)

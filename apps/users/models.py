@@ -194,6 +194,22 @@ class UserProfile(amo.models.ModelBase):
         self.save()
         return self.user
 
+    def mobile_collection(self):
+        return self.special_collection(amo.COLLECTION_MOBILE,
+            defaults={'slug': 'mobile', 'listed': False,
+                      'name': _('My Mobile Add-ons')})
+
+    def favorites_collection(self):
+        return self.special_collection(amo.COLLECTION_FAVORITES,
+            defaults={'slug': 'favorites', 'listed': False,
+                      'name': _('My Favorite Add-ons')})
+
+    def special_collection(self, type_, defaults):
+        from bandwagon.models import Collection
+        c, _ = Collection.objects.get_or_create(
+            author=self, type=type_, defaults=defaults)
+        return c
+
 
 class BlacklistedNickname(amo.models.ModelBase):
     """Blacklisted user nicknames."""
