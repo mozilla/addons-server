@@ -94,7 +94,7 @@ class TestCollections(test_utils.TestCase):
         eq_(get_addons(c), addons)
         eq_(c.addons.count(), len(addons))
 
-    def test_is_publisher(self):
+    def test_publishable_by(self):
         c = Collection()
         u = UserProfile(nickname='f')
         c.save()

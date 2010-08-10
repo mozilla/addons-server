@@ -8,6 +8,7 @@ from django.conf import settings
 from django.core.cache import cache
 from django.db import models, connection
 
+import caching.base as caching
 from MySQLdb import IntegrityError
 
 import amo
@@ -241,8 +242,9 @@ class Collection(amo.models.ModelBase):
     def owned_by(self, user):
         return (user.id == self.author_id)
 
+    @caching.cached_method
     def publishable_by(self, user):
-        return (user in self.users.all())
+        return bool(self.users.filter(pk=user.id))
 
     @staticmethod
     def transformer(collections):

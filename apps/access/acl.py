@@ -48,10 +48,10 @@ def check_collection_ownership(request, collection, require_owner=False):
 
     if action_allowed(request, 'Admin', '%'):
         return True
-    elif request.user.id == collection.author_id:
+    elif request.amo_user.id == collection.author_id:
         return True
     elif not require_owner:
-        return bool(collection.users.filter(user=request.user))
+        return collection.publishable_by(request.amo_user)
     else:
         return False
 
@@ -72,4 +72,4 @@ def check_addon_ownership(request, addon, require_owner=False):
         roles += (amo.AUTHOR_ROLE_VIEWER,)
 
     return bool(addon.authors.filter(addonuser__role__in=roles,
-                                     user=request.user))
+                                     user=request.amo_user))
