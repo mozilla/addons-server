@@ -3,6 +3,9 @@ import json
 
 from django import http
 from django.contrib.auth import decorators as auth_decorators
+from django.utils.http import urlquote
+
+from .urlresolvers import reverse
 
 
 def login_required(f=None, redirect=True):
@@ -12,16 +15,18 @@ def login_required(f=None, redirect=True):
     If redirect=False then we return 401 instead of redirecting to the
     login page.  That's nice for ajax views.
     """
-    if redirect:
-        return auth_decorators.login_required(f, redirect_field_name='to')
-
     def decorator(func):
         @functools.wraps(func)
         def wrapper(request, *args, **kw):
             if request.user.is_authenticated():
                 return func(request, *args, **kw)
             else:
-                return http.HttpResponse(status=401)
+                if redirect:
+                    url = reverse('users.login')
+                    path = urlquote(request.get_full_path())
+                    return http.HttpResponseRedirect('%s?to=%s' % (url, path))
+                else:
+                    return http.HttpResponse(status=401)
         return wrapper
     if f:
         return decorator(f)
