@@ -5,7 +5,7 @@
         "fields": {
             "count": 13,
             "service": "delicious",
-            "addon": 7172
+            "addon": 3615
         }
     },
     {
@@ -14,7 +14,7 @@
         "fields": {
             "count": 29,
             "service": "digg",
-            "addon": 7172
+            "addon": 3615
         }
     },
     {
@@ -23,7 +23,7 @@
         "fields": {
             "count": 4,
             "service": "friendfeed",
-            "addon": 7172
+            "addon": 3615
         }
     },
     {
@@ -32,7 +32,7 @@
         "fields": {
             "count": 14,
             "service": "myspace",
-            "addon": 7172
+            "addon": 3615
         }
     },
     {
@@ -41,7 +41,7 @@
         "fields": {
             "count": 4,
             "service": "twitter",
-            "addon": 7172
+            "addon": 3615
         }
     }
 ]

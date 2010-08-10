@@ -18,10 +18,10 @@ from stats.models import ShareCount
 
 
 class SharingHelpersTestCase(test.TestCase):
-    fixtures = ['base/fixtures']
+    fixtures = ['base/addon_3615']
 
     def test_addon_sharing(self):
-        addon = Addon.objects.get(id=7172)
+        addon = Addon.objects.get(id=3615)
 
         jingo.load_helpers()
 
@@ -50,10 +50,10 @@ class SharingHelpersTestCase(test.TestCase):
 
 
 class SharingModelsTestCase(test.TestCase):
-    fixtures = ['base/fixtures', 'sharing/share_counts']
+    fixtures = ['base/addon_3615', 'sharing/share_counts']
 
     def test_share_count(self):
-        addon = Addon.objects.get(id=7172)
+        addon = Addon.objects.get(id=3615)
 
         eq_(addon.share_counts()[DIGG.shortname], 29)
 
