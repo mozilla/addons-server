@@ -120,6 +120,13 @@ class BadSortOptionTest(test_utils.TestCase):
 class SearchTest(SphinxTestCase):
     fixtures = SphinxTestCase.fixtures + ['search/560618-alpha-sort']
 
+    def test_guid_filter(self):
+        """Filter by guid."""
+        eq_(query('guid:{4c197c8f-a50f-4b49-a2d2-ed922c95612f}')[0].id, 592)
+
+    def test_guid_email_filter(self):
+        eq_(query('guid:yslow@yahoo-inc.com')[0].id, 5369)
+
     def test_alpha_sort(self):
         "This verifies that alpha sort is case insensitive."
         c = SearchClient()
@@ -177,7 +184,6 @@ class SearchTest(SphinxTestCase):
         """
         This tests filtering by addon type.
         """
-
         eq_(query("type:theme", limit=1)[0].id, 7172)
 
     def test_platform_filter(self):

@@ -15,7 +15,6 @@ from amo.models import manual_order
 from addons.models import Addon, Category
 from bandwagon.models import Collection
 from translations.query import order_by_translation
-from translations.transformer import get_trans
 from tags.models import Tag
 from versions.models import AppVersion
 
@@ -27,7 +26,7 @@ BIG_INTEGER = 10000000    # Used for SetFilterRange
 MAX_TAGS = 10             # Number of tags we return by default.
 SPHINX_HARD_LIMIT = 1000  # A hard limit that sphinx imposes.
 THE_FUTURE = 9999999999
-MAX_VERSION = 10**13-1  # Large version
+MAX_VERSION = 10 ** 13 - 1  # Large version
 
 log = commonware.log.getLogger('z.sphinx')
 
@@ -70,7 +69,6 @@ def extract_filters(term, kwargs):
     if kwargs.get('sort') == 'name':
         filters['locale_ord'] = get_locale_ord()
 
-    # Unless we're in admin mode, or we're looking at stub entries,
     # everything must have a file.
     if (('admin' not in kwargs) and
         ('type' not in kwargs or kwargs['type'] != amo.ADDON_PERSONA)):
@@ -95,6 +93,18 @@ def extract_filters(term, kwargs):
             addon_type = types.get(addon_type.lower())
 
         metas['type'] = addon_type
+
+    # Guid filtering..
+    (term, guids) = extract_from_query(term, 'guid', '[{}@\.,\-0-9a-z]+',
+                                       end_of_word_boundary=False)
+
+    if guids:
+        guids_crc = []
+
+        for guid in guids.split(','):
+            guids_crc.append(crc32(guid))
+
+        filters['guid_ord'] = guids_crc
 
     # Category filtering.
     (term, category) = extract_from_query(term, 'category', '\w+', kwargs)
@@ -172,7 +182,8 @@ def sanitize_query(term):
     return term
 
 
-def extract_from_query(term, filter, regexp, options={}):
+def extract_from_query(term, filter, regexp, options={},
+                       end_of_word_boundary=True):
     """
     This pulls out a keyword filter from a search term and returns the value
     for the filter and a new term with the filter removed.
@@ -180,7 +191,12 @@ def extract_from_query(term, filter, regexp, options={}):
     E.g. "yslow version:3" will result in (yslow, 3).  Failing this, we'll look
     in the search options dictionary to see if there is a value.
     """
-    match = re.search(r'\b%s:\s*(%s)\b' % (filter, regexp), term)
+    re_string = r'\b%s:\s*(%s)' % (filter, regexp)
+
+    if end_of_word_boundary:
+        re_string += r'\b'
+
+    match = re.search(re_string, term)
 
     if match:
         term = term.replace(match.group(0), '')
@@ -213,7 +229,7 @@ class Client(object):
 
         # TODO(davedash): make this less arbitrary
         # Unique ID used for logging
-        self.id = int(random.random() * 10**5)
+        self.id = int(random.random() * 10 ** 5)
 
     def get_result_set(self, term, result, offset, limit):
         # Return results as a list of add-ons.
@@ -224,9 +240,7 @@ class Client(object):
                          offset)
 
     def log_query(self, term=None):
-        """
-        Logs whatever relevant data we can from sphinx.
-        """
+        """Logs whatever relevant data we can from sphinx."""
         filter_msg = []
 
         for f in self.sphinx._filters:
@@ -271,7 +285,7 @@ class Client(object):
         # upperbound to be ridiculously large.
 
         if high_int:
-            sc.SetFilterRange('max_ver', low_int, MAX_VERSION )
+            sc.SetFilterRange('max_ver', low_int, MAX_VERSION)
             sc.SetFilterRange('min_ver', 0, high_int)
 
     def add_meta_query(self, field, term):
@@ -328,7 +342,6 @@ class Client(object):
 
         if meta:
             self.meta_filters[field] = self.sphinx._filters.pop()
-
 
     def query(self, term, limit=10, offset=0, **kwargs):
         """
@@ -576,7 +589,6 @@ class AddonsPersonasClient(Client):
             return self.get_result_set(term, result, offset, limit)
         else:
             return []
-
 
 
 class PersonasClient(Client):
