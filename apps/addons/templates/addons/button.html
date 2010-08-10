@@ -17,6 +17,26 @@
     {% if not links %}
       {{ _('No compatible versions') }}
     {% endif %}
+    {% if settings.NEW_COLLECTIONS %}
+    {% if APP == amo.MOBILE %}
+      {% if request.user.is_authenticated() %}
+        {% set action = url('collections.alter', request.amo_user.nickname, 'mobile', 'add') %}
+      {% endif %}
+      {% if installed %}
+        {% set extra, text = 'status ok', _('Added to Mobile') %}
+      {% else %}
+        {% set text = _('Add to Mobile') %}
+      {% endif %}
+      <form method="post" action="{{ action }}">
+        {{ csrf() }}
+        <input type="hidden" name="addon_id" value="{{ addon.id }}">
+        <button class="button mobile {{ extra }} {{ b.button_class|join(' ') }}">
+          <b></b>
+          <span>{{ text }}</span>
+        </button>
+    </form>
+    {% endif %}
+    {% endif %}
     {% for link in links %}
       {% set extra = "platform " + link.os.shortname if link.os else "" %}
       <a class="button {{ b.button_class|join(' ') }} {{ extra }}"
