@@ -10,6 +10,7 @@ from django.contrib.auth.models import User as DjangoUser
 from django.core.mail import send_mail
 from django.db import models
 from django.template import Context, loader
+from django.utils.encoding import smart_unicode
 
 import caching.base as caching
 import commonware.log
@@ -204,7 +205,7 @@ class BlacklistedNickname(amo.models.ModelBase):
     @classmethod
     def blocked(cls, nick):
         """Check to see if a nickname is in the (cached) blacklist."""
-        nick = nick.decode().lower().encode('utf-8')
+        nick = smart_unicode(nick).lower()
         qs = cls.objects.all()
         f = lambda: dict(qs.values_list('nickname', 'id'))
         blacklist = caching.cached_with(qs, f, 'blocked')

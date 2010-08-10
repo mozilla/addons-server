@@ -1,5 +1,6 @@
 from django.contrib import admin, messages
 from django.db.utils import IntegrityError
+from django.utils.encoding import smart_unicode
 
 import jingo
 
@@ -52,7 +53,7 @@ class BlacklistedNicknameAdmin(admin.ModelAdmin):
                     if BlacklistedNickname.blocked(n):
                         duplicates += 1
                         continue
-                    n = n.decode().lower().encode('utf-8')
+                    n = smart_unicode(n).lower().encode('utf-8')
                     try:
                         BlacklistedNickname.objects.create(nickname=n)
                         inserted += 1
