@@ -23,7 +23,7 @@ class TestGlobalStats(test_utils.TestCase):
 
 
 class TestTotalContributions(test_utils.TestCase):
-    fixtures = ['base/fixtures']
+    fixtures = ['base/addon_3615']
 
     def test_total_contributions(self):
 
