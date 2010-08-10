@@ -461,10 +461,11 @@ CUSTOM_DUMPS = {
         'dependents': [  # These are items we wish to dump.
             # Magic turns this into current_version.files.all()[0].
             'current_version.files.all.0',
+            'current_version.apps.all.0',
         ],
-        'order': ('translations.translation', 'addons.addontype',
-                  'files.platform', 'addons.addon', 'versions.version',
-                  'files.file'),
+        'order': ('applications.application', 'translations.translation',
+                  'addons.addontype', 'files.platform', 'addons.addon',
+                  'versions.license', 'versions.version', 'files.file'),
         'excludes': {
             'addons.addon': ('_current_version',),
         }

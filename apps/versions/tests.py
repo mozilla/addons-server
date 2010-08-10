@@ -31,20 +31,17 @@ def test_dict_from_int():
 
 
 class TestVersion(test_utils.TestCase):
-    """
-    Test methods of the version class.
-    """
+    """Test methods of the version class."""
 
-    fixtures = ['base/fixtures']
+    fixtures = ['base/addon_3615']
 
     def test_compatible_apps(self):
-        v = Version.objects.get(pk=2)
+        v = Version.objects.get(pk=81551)
 
         assert amo.FIREFOX in v.compatible_apps, "Missing Firefox >_<"
-        assert amo.THUNDERBIRD in v.compatible_apps, "Missing Thunderbird \o/"
 
     def test_supported_platforms(self):
-        v = Version.objects.get(pk=24007)
+        v = Version.objects.get(pk=81551)
         assert amo.PLATFORM_ALL in v.supported_platforms
 
     def test_major_minor(self):
@@ -72,10 +69,11 @@ class TestVersion(test_utils.TestCase):
         eq_(v.minor3, None)
 
     def test_has_files(self):
-        v = Version.objects.get(pk=24007)
+        v = Version.objects.get(pk=81551)
         assert v.has_files, 'Version with files not recognized.'
 
-        v = Version.objects.get(pk=2)
+        v.files.all().delete()
+        v = Version.objects.get(pk=81551)
         assert not v.has_files, 'Version without files not recognized.'
 
     def _get_version(self, status):
