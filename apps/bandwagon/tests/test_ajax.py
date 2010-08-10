@@ -9,22 +9,27 @@ from bandwagon.models import Collection
 class AjaxTest(test_utils.TestCase):
     fixtures = ['base/fixtures']
 
-    def test_list_collections(self):
+    def setUp(self):
         self.client.login(username='clouserw@gmail.com', password='yermom')
+
+    def test_list_collections(self):
         r = self.client.get(reverse('collections.ajax_list')
                             + '?addon_id=1843',)
         doc = pq(r.content)
         eq_(doc('li.selected').attr('data-id'), '80')
 
     def test_add_collection(self):
-        self.client.login(username='clouserw@gmail.com', password='yermom')
         r = self.client.post(reverse('collections.ajax_add'),
-                             {'addon_id': 3615, 'id': 80}, follow=True)
+                             {'addon_id': 3615, 'id': 80}, follow=True,
+                             HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         doc = pq(r.content)
         eq_(doc('li.selected').attr('data-id'), '80')
 
+    def test_bad_collection(self):
+        r = self.client.post(reverse('collections.ajax_add'), {'id': 'adfa'})
+        eq_(r.status_code, 400)
+
     def test_remove_collection(self):
-        self.client.login(username='clouserw@gmail.com', password='yermom')
         r = self.client.post(reverse('collections.ajax_remove'),
                              {'addon_id': 1843, 'id': 80}, follow=True)
         doc = pq(r.content)
@@ -32,7 +37,6 @@ class AjaxTest(test_utils.TestCase):
 
     def test_new_collection(self):
         num_collections = Collection.objects.all().count()
-        self.client.login(username='clouserw@gmail.com', password='yermom')
         r = self.client.post(reverse('collections.ajax_new'),
                 {'addon_id': 3615,
                  'name': 'foo',
@@ -49,7 +53,6 @@ class AjaxTest(test_utils.TestCase):
         c = Collection()
         c.save()
 
-        self.client.login(username='clouserw@gmail.com', password='yermom')
         r = self.client.post(reverse('collections.ajax_add'),
                              {'addon_id': 3615, 'id': c.id}, follow=True)
         eq_(r.status_code, 403)
@@ -59,7 +62,6 @@ class AjaxTest(test_utils.TestCase):
         c = Collection()
         c.save()
 
-        self.client.login(username='clouserw@gmail.com', password='yermom')
         r = self.client.post(reverse('collections.ajax_remove'),
                              {'addon_id': 3615, 'id': c.id}, follow=True)
         eq_(r.status_code, 403)

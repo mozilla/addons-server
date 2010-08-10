@@ -21,8 +21,10 @@ detail_urls = patterns('',
 
 ajax_urls = patterns('',
     url('^list$', views.ajax_list, name='collections.ajax_list'),
-    url('^add$', views.ajax_add, name='collections.ajax_add'),
-    url('^remove$', views.ajax_remove, name='collections.ajax_remove'),
+    url('^add$', views.ajax_collection_alter, {'action': 'add'},
+        name='collections.ajax_add'),
+    url('^remove$', views.ajax_collection_alter, {'action': 'remove'},
+        name='collections.ajax_remove'),
     url('^new$', views.ajax_new, name='collections.ajax_new'),
 )
 

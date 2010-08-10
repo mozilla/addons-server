@@ -285,33 +285,14 @@ def change_addon(request, collection, action):
     return redirect(url)
 
 
-def _ajax_add_remove(request, op):
-    id = request.POST['id']
-    addon_id = request.POST['addon_id']
-
-    c = Collection.objects.get(pk=id)
-
-    if not acl.check_collection_ownership(request, c):
-        return http.HttpResponseForbidden()
-
-    a = Addon.objects.get(pk=addon_id)
-
-    if op == 'add':
-        c.add_addon(a)
-    else:
-        c.remove_addon(a)
-
-    # redirect
-    return http.HttpResponseRedirect(reverse('collections.ajax_list') +
-                                             '?addon_id=%s' % addon_id)
-
-
-def ajax_add(request):
-    return _ajax_add_remove(request, 'add')
-
-
-def ajax_remove(request):
-    return _ajax_add_remove(request, 'remove')
+@login_required
+@post_required
+def ajax_collection_alter(request, action):
+    try:
+        c = get_object_or_404(Collection.objects, pk=request.POST['id'])
+    except (ValueError, KeyError):
+        return http.HttpResponseBadRequest()
+    return change_addon(request, c, action)
 
 
 @login_required
