@@ -99,8 +99,15 @@ def hera(request):
 
 @admin.site.admin_view
 def settings(request):
+    settings_dict = debug.get_safe_settings()
+
+    # sigh
+    settings_dict['HERA'] = []
+    for i in site_settings.HERA:
+        settings_dict['HERA'].append(debug.cleanse_setting('HERA', i))
+
     return jingo.render(request, 'zadmin/settings.html',
-                        {'settings_dict': debug.get_safe_settings()})
+                        {'settings_dict': settings_dict})
 
 
 @admin.site.admin_view
