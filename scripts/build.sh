@@ -38,8 +38,9 @@ SETTINGS
 
 echo "Starting tests..."
 export FORCE_DB='yes sir'
-coverage run manage.py test --noinput --logging-clear-handlers --with-xunit
-coverage xml $(find apps lib -name '*.py')
+python manage.py test --noinput --logging-clear-handlers --with-xunit
+#coverage run manage.py test --noinput --logging-clear-handlers --with-xunit
+#coverage xml $(find apps lib -name '*.py')
 
 echo "Building documentation..."
 cd docs
