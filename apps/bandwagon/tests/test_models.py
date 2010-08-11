@@ -19,10 +19,6 @@ def get_addons(c):
 class TestCollections(test_utils.TestCase):
     fixtures = ['base/fixtures', 'bandwagon/test_models']
 
-    def test_unicode(self):
-        c = Collection.objects.get(pk=512)
-        eq_(unicode(c), 'yay (4)')
-
     def test_icon_url(self):
         c = Collection.objects.get(pk=512)
         assert c.icon_url.endswith('img/amo2009/icons/collection.png')
