@@ -128,10 +128,12 @@ class TestVotes(test_utils.TestCase):
 
 class TestCRUD(test_utils.TestCase):
     """Test the collection form."""
-    fixtures = ['base/fixtures']
+    fixtures = ('base/apps', 'base/users', 'base/collections', 'base/addon_3615',)
 
     def setUp(self):
-        self.client.login(username='admin@mozilla.com', password='password')
+        login = self.client.login(username='admin@mozilla.com',
+                                  password='password')
+        assert login, "Couldn't log in."
         self.add_url = reverse('collections.add')
         self.data = {
                 'addon': 3615,
@@ -143,7 +145,10 @@ class TestCRUD(test_utils.TestCase):
                 }
 
     def login_regular(self):
-        self.client.login(username='regular@mozilla.com', password='password')
+        login = self.client.login(username='regular@mozilla.com',
+                                  password='password')
+
+        assert login, "Couldn't login as regular user."
 
     def create_collection(self):
         return self.client.post(self.add_url, self.data, follow=True)
@@ -239,9 +244,9 @@ class TestCRUD(test_utils.TestCase):
         self.create_collection()
         url = reverse('collections.edit_addons',
                       args=['admin', 'pornstar'])
-        self.client.post(url, {'addon': 40}, follow=True)
+        self.client.post(url, {'addon': 3615}, follow=True)
         addon = Collection.objects.filter(slug='pornstar')[0].addons.all()[0]
-        eq_(addon.id, 40)
+        eq_(addon.id, 3615)
 
     def test_delete(self):
         self.create_collection()

@@ -17,7 +17,8 @@ def get_addons(c):
 
 
 class TestCollections(test_utils.TestCase):
-    fixtures = ['base/fixtures', 'bandwagon/test_models']
+    fixtures = ('base/apps', 'base/users', 'base/collections',
+                'base/addon_3615', 'bandwagon/test_models')
 
     def test_icon_url(self):
         c = Collection.objects.get(pk=512)
@@ -54,7 +55,7 @@ class TestCollections(test_utils.TestCase):
         assert isinstance(c.uuid, basestring)
 
     def test_addon_index(self):
-        c = Collection.objects.get(pk=5)
+        c = Collection.objects.get(pk=80)
         eq_(c.addon_index, None)
         ids = c.addons.values_list('id', flat=True)
         c.save()

@@ -7,16 +7,19 @@ from bandwagon.models import Collection
 
 
 class AjaxTest(test_utils.TestCase):
-    fixtures = ['base/fixtures']
+    fixtures = ('base/apps', 'base/users', 'base/addon_3615',
+                'base/collections')
 
     def setUp(self):
-        self.client.login(username='clouserw@gmail.com', password='yermom')
+        status = self.client.login(username='clouserw@gmail.com',
+                                   password='yermom')
+        assert status, "Didn't log in."
 
     def test_list_collections(self):
         r = self.client.get(reverse('collections.ajax_list')
-                            + '?addon_id=1843',)
+                            + '?addon_id=3615',)
         doc = pq(r.content)
-        eq_(doc('li.selected').attr('data-id'), '80')
+        eq_(doc('li').attr('data-id'), '80')
 
     def test_add_collection(self):
         r = self.client.post(reverse('collections.ajax_add'),

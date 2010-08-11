@@ -15,7 +15,8 @@ from users.models import UserProfile
 
 class TestHelpers(test.TestCase):
 
-    fixtures = ['base/fixtures', 'users/test_backends']
+    fixtures = ('base/apps', 'base/users', 'base/collections',
+                'users/test_backends',)
 
     def setUp(self):
         self.client.get('/')
@@ -27,7 +28,7 @@ class TestHelpers(test.TestCase):
         u.save()
         c['request'] = Mock()
         c['request'].amo_user = u
-        collection = Collection.objects.get(pk=57274)
+        collection = Collection.objects.get(pk=80)
 
         # Not subscribed yet.
         doc = pq(collection_favorite(c, collection))
@@ -40,7 +41,7 @@ class TestHelpers(test.TestCase):
 
     def test_barometer(self):
         jingo.load_helpers()
-        collection = Collection.objects.get(pk=57274)
+        collection = Collection.objects.get(pk=80)
         collection.upvotes = 1
         # Mock logged out.
         c = dict(request=Mock(), user=Mock(), LANG='en-US', APP='firefox')
@@ -58,7 +59,7 @@ class TestHelpers(test.TestCase):
         barometer(c, collection)
         doc = pq(barometer(c, collection))
         eq_(doc('form')[0].action,
-            reverse('collections.vote', args=['anonymous', None, 'up']))
+            reverse('collections.vote', args=['clouserw', 'mccrackin', 'up']))
 
     def test_user_collection_list(self):
         c1 = Collection.objects.create(
