@@ -50,7 +50,11 @@
       </ul>
     </div>
     <h3>{{ _('About this Collection') }}</h3>
-    <p>{{ c.description }}</p>
+    {% if c.description %}
+      <p>{{ c.description }}</p>
+    {% elif c.type == amo.COLLECTION_MOBILE %}
+      <p>{{ _('Add-ons synced to my Mobile Firefox using the Add-on Collector') }}</p>
+    {% endif %}
   </div>
 </div>
 
