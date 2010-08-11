@@ -248,6 +248,14 @@ class Collection(amo.models.ModelBase):
         for c in collections:
             c.author = authors.get(c.author_id)
 
+    @staticmethod
+    def post_save(sender, instance, **kwargs):
+        from . import tasks
+        tasks.collection_meta.delay(instance.id, using='default')
+
+
+models.signals.post_save.connect(Collection.post_save, sender=Collection)
+
 
 class CollectionAddon(amo.models.ModelBase):
     addon = models.ForeignKey(Addon)

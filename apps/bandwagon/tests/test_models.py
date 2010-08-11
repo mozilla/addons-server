@@ -102,6 +102,14 @@ class TestCollections(test_utils.TestCase):
         CollectionUser(collection=c, user=u).save()
         eq_(c.publishable_by(u), True)
 
+    def test_collection_meta(self):
+        c = Collection.objects.create()
+        eq_(c.addon_count, 0)
+        c.add_addon(Addon.objects.all()[0])
+        c = Collection.objects.get(id=c.id)
+        assert not c.from_cache
+        eq_(c.addon_count, 1)
+
 
 class TestRecommendations(test_utils.TestCase):
     fixtures = ['base/addon-recs']
