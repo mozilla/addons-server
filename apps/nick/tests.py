@@ -10,7 +10,8 @@ from applications.models import Application
 
 
 class TestViews(amo.test_utils.ExtraSetup, test_utils.TestCase):
-    fixtures = ['base/fixtures', 'nick/test_views']
+    fixtures = ('base/users', 'base/addon_3615', 'base/addon_59',
+                'nick/test_views',)
 
     def setUp(self):
         assert self.client.login(username='admin@mozilla.com',
