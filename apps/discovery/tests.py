@@ -17,8 +17,8 @@ from discovery.modules import registry
 
 
 class RecsTest(test_utils.TestCase):
-    fixtures = ['base/addon-recs', 'base/fixtures', 'base/category',
-                'base/featured']
+    fixtures = ('base/appversion', 'base/addon-recs', 'base/addon_5299_gcal',
+                'base/category', 'base/featured',)
 
     @classmethod
     def setup_class(cls):
@@ -26,13 +26,11 @@ class RecsTest(test_utils.TestCase):
 
     def setUp(self):
         self.url = reverse('discovery.recs')
-        self.guids = ['bettergcal@ginatrapani.org',
-                      'firebug@software.joehewitt.com',
+        self.guids = ('bettergcal@ginatrapani.org',
                       'foxyproxy@eric.h.jung',
                       'isreaditlater@ideashower.com',
-                      'not-a-real-guid',
-                      'yslow@yahoo-inc.com']
-        self.ids = [5299, 1843, 2464, 7661, 5369]
+                      'not-a-real-guid',)
+        self.ids = [5299, 2464, 7661]
         self.json = json.dumps({'guids': self.guids})
         # Found in bandwagon.TestRecommendations.expected_recs.
         self.expected_recs = [6249, 7661, 6665, 4781, 6366]
@@ -154,11 +152,11 @@ class RecsTest(test_utils.TestCase):
         assert one['addons'] != two['addons']
         eq_(CollectionToken.objects.count(), 1)
         eq_(len(Collection.objects.filter(type=amo.COLLECTION_SYNCHRONIZED)),
-            12)
+            2)
 
 
 class TestModuleAdmin(test_utils.TestCase):
-    fixtures = ['base/fixtures']
+    fixtures = ('base/apps', )
 
     def test_sync_db_and_registry(self):
         def check():
@@ -185,7 +183,7 @@ class TestModuleAdmin(test_utils.TestCase):
 
 
     def test_discovery_module_form_dedupe(self):
-        d = dict(app=1, module='xx', locales='en-US he he fa fa')
+        d = dict(app=amo.FIREFOX.id, module='xx', locales='en-US he he fa fa')
         form = DiscoveryModuleForm(d)
         assert form.is_valid()
         eq_(form.cleaned_data['locales'], 'fa en-US he')
