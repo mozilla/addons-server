@@ -36,9 +36,13 @@ class ButtonTest(object):
         self.platforms = amo.PLATFORM_MAC, amo.PLATFORM_LINUX
         self.platform_files = map(self.get_file, self.platforms)
 
-        self.request = test_utils.RequestFactory().get('/')
+        self.request = Mock()
+        self.request.APP = amo.FIREFOX
         # Make GET mutable.
-        self.request.GET = self.request.GET.copy()
+        self.request.GET = {}
+        user = self.request.user
+        user.get_and_delete_messages.__dict__['__name__'] = 'f'
+        user.is_authenticated.return_value = False
         self.context = {
             'APP': amo.FIREFOX,
             'LANG': 'en-US',
@@ -51,8 +55,8 @@ class ButtonTest(object):
         template_mock = Mock()
         t_mock.return_value = template_mock
         install_button(self.context, self.addon, **kwargs)
-        # Extract button from the *args from the first call.
-        return template_mock.render.call_args[0][0]['button']
+        # Extract button from the kwargs from the first call.
+        return template_mock.render.call_args[1]['button']
 
     def render(self, **kwargs):
         return PyQuery(install_button(self.context, self.addon, **kwargs))

@@ -38,6 +38,12 @@ def create_password(algorithm, raw_password):
     return '$'.join([algorithm, salt, hsh])
 
 
+class UserManager(amo.models.ManagerBase):
+
+    def request_user(self):
+        return self.transform(UserProfile.request_user_transformer)
+
+
 class UserProfile(amo.models.ModelBase):
 
     nickname = models.CharField(max_length=255, unique=True, default='',
@@ -69,6 +75,8 @@ class UserProfile(amo.models.ModelBase):
     sandboxshown = models.BooleanField(default=False)
 
     user = models.ForeignKey(DjangoUser, null=True, editable=False, blank=True)
+
+    objects = UserManager()
 
     class Meta:
         db_table = 'users'
@@ -209,6 +217,18 @@ class UserProfile(amo.models.ModelBase):
         c, _ = Collection.objects.get_or_create(
             author=self, type=type_, defaults=defaults)
         return c
+
+    @staticmethod
+    def request_user_transformer(users):
+        """Adds extra goodies to a UserProfile (meant for request.amo_user)."""
+        # We don't want to cache these things on every UserProfile; they're
+        # only used by a user attached to a request.
+        from bandwagon.models import CollectionAddon
+        user = users[0]
+        qs = CollectionAddon.objects.filter(
+            collection__author=user, collection__type=amo.COLLECTION_MOBILE)
+        user.mobile_addons = qs.values_list('addon', flat=True)
+
 
 
 class BlacklistedNickname(amo.models.ModelBase):

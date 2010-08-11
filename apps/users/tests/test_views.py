@@ -1,12 +1,12 @@
 import json
 
-from django import test
 from django.core import mail
 from django.core.cache import cache
 from django.contrib.auth.models import User
 from django.test.client import Client
 
 from nose.tools import eq_
+import test_utils
 
 from access.models import Group, GroupUser
 from amo.helpers import urlparams
@@ -15,7 +15,7 @@ from amo.urlresolvers import reverse
 from users.utils import EmailResetCode
 
 
-class UserViewBase(test.TestCase):
+class UserViewBase(test_utils.TestCase):
 
     fixtures = ['users/test_backends']
 
@@ -210,3 +210,11 @@ class TestProfile(UserViewBase):
         eq_(links.eq(0).attr('href'), reverse('users.edit'))
         eq_(links.eq(1).attr('href'),
             reverse('admin:users_userprofile_change', args=[self.user.id]))
+
+    def test_amouser(self):
+        # request.amo_user should be a special guy.
+        self.client.login(username='jbalogh@mozilla.com', password='foo')
+        response = self.client.get(reverse('home'))
+        request = response.context['request']
+        assert hasattr(request.amo_user, 'mobile_addons')
+        assert hasattr(request.user.get_profile(), 'mobile_addons')

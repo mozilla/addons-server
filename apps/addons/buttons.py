@@ -28,9 +28,11 @@ def install_button(context, addon, version=None, show_eula=True,
     button = install_button_factory(addon, app, lang, version,
                                     show_eula, show_contrib, show_warning,
                                     src, collection, size, detailed)
+    installed = (request.user.is_authenticated() and
+                 addon.id in request.amo_user.mobile_addons)
     c = {'button': button, 'addon': addon, 'version': button.version,
-         'APP': app, 'LANG': context['LANG']}
-    t = jingo.env.get_template('addons/button.html').render(c)
+         'installed': installed}
+    t = jingo.render_to_string(request, 'addons/button.html', c)
     return jinja2.Markup(t)
 
 
