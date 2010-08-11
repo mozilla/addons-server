@@ -25,7 +25,7 @@ def test_korean():
 
 
 class TestSearchForm(test_utils.TestCase):
-    fixtures = ['base/fixtures', 'addons/persona']
+    fixtures = ('base/appversion', 'addons/persona',)
 
     def test_get_app_versions(self):
         actual = forms.get_app_versions(amo.FIREFOX)

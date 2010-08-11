@@ -66,6 +66,7 @@ def test_sphinx_timeout(sphinx_mock):
 
 
 class CollectionsSearchTest(SphinxTestCase):
+    fixtures = ('base/collection_57181', 'base/apps',)
 
     def test_query(self):
         r = cquery("")
@@ -118,7 +119,10 @@ class BadSortOptionTest(test_utils.TestCase):
 
 
 class SearchTest(SphinxTestCase):
-    fixtures = SphinxTestCase.fixtures + ['search/560618-alpha-sort']
+
+    fixtures = ('base/addon_3615', 'base/addon_5369', 'base/addon_592',
+                'base/addon_5579', 'base/addon_40', 'search/560618-alpha-sort',
+                'base/apps', 'base/category')
 
     def test_guid_filter(self):
         """Filter by guid."""
@@ -146,11 +150,9 @@ class SearchTest(SphinxTestCase):
             "Didn't get the addon ID I wanted."
 
     def test_version_restriction(self):
-        """
-        This tests that sphinx will properly restrict by version.
-        """
-        eq_(query("Firebug version:3.6")[0].id, 1843)
-        eq_(len(query("Firebug version:4.0")), 0)
+        """This tests that sphinx will properly restrict by version."""
+        eq_(query("Delicious version:3.6")[0].id, 3615)
+        eq_(len(query("Delicious version:4.0")), 0)
 
     def test_sorts(self):
         """
@@ -159,39 +161,39 @@ class SearchTest(SphinxTestCase):
         Note: These change if you change the fixtures.
         """
         eq_(query("", limit=1, sort='newest')[0].id, 11399)
-        eq_(query("", limit=1, sort='updated')[0].id, 6113,
+        eq_(query("", limit=1, sort='updated')[0].id, 592,
             'Sort by updated is incorrect.')
-        eq_(query("", limit=1, sort='name')[0].id, 55)
-        eq_(query("", limit=1, sort='averagerating')[0].id, 8680,
+        eq_(query("", limit=1, sort='name')[0].id, 11399)
+        eq_(query("", limit=1, sort='averagerating')[0].id, 11399,
             'Sort by average rating is incorrect.')
-        eq_(query("", limit=1, sort='weeklydownloads')[0].id, 55)
+        eq_(query("", limit=1, sort='weeklydownloads')[0].id, 5579)
 
     def test_app_filter(self):
         """
         This tests filtering by application id.
         """
 
-        eq_(query("", limit=1, app=amo.MOBILE.id)[0].id, 4664)
+        eq_(query('', limit=1, app=amo.MOBILE.id)[0].id, 11399)
         # Poor sunbird, nobody likes them.
-        eq_(len(query("Firebug", app=amo.SUNBIRD.id)), 0)
+        eq_(len(query('deli', app=amo.SUNBIRD.id)), 0)
 
     def test_category_filter(self):
         """This tests filtering by category."""
 
-        eq_(len(query("Firebug category:alerts", app=amo.FIREFOX.id)), 0)
+        eq_(len(query("Firebug category:feeds", app=amo.FIREFOX.id)), 0)
 
     def test_type_filter(self):
         """
         This tests filtering by addon type.
         """
-        eq_(query("type:theme", limit=1)[0].id, 7172)
+        eq_(query("type:search", limit=1)[0].id, 11399)
 
     def test_platform_filter(self):
         """
         This tests filtering by platform.
         """
-        eq_(len(query("grapple", platform='sunos')), 0)
-        eq_(len(query("grapple", platform='macos')), 1)
+        eq_(len(query("CoolIris", platform='sunos')), 0)
+        eq_(len(query("CoolIris", platform='macos')), 1)
 
     def test_namesort_filter(self):
         """
@@ -230,4 +232,4 @@ class SearchTest(SphinxTestCase):
                 assert False, "Error querying for %s" % guy
 
     def test_summary(self):
-        eq_(query("Evar")[0].id, 3615)  # Should get us Delicious
+        eq_(query("bookmarking")[0].id, 3615)  # Should get us Delicious

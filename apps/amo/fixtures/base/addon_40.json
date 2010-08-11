@@ -1,0 +1,228 @@
+[
+    {
+        "pk": 1,
+        "model": "applications.application",
+        "fields": {
+            "guid": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}",
+            "modified": "2008-11-03 15:34:59",
+            "created": "2007-03-05 13:09:26"
+        }
+    },
+    {
+        "pk": 4287,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "Allows the user to use external programs for: view page source, edit content of textareas handle mailto, news, telnet and FTP links and download...",
+            "created": "2007-03-05 13:10:18",
+            "locale": "en-US",
+            "modified": null,
+            "id": 1299,
+            "localized_string_clean": "Allows the user to use external programs for: view page source, edit content of textareas handle mailto, news, telnet and FTP links and download..."
+        }
+    },
+    {
+        "pk": 4285,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "Allows the user to use external programs for: view page source, edit content of textareas handle mailto, news, telnet and FTP links and download files.",
+            "created": "2007-03-05 13:10:18",
+            "locale": "en-US",
+            "modified": null,
+            "id": 1297,
+            "localized_string_clean": "Allows the user to use external programs for: view page source, edit content of textareas handle mailto, news, telnet and FTP links and download files."
+        }
+    },
+    {
+        "pk": 4284,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "http://mozex.mozdev.org/",
+            "created": "2007-03-05 13:10:18",
+            "locale": "en-US",
+            "modified": null,
+            "id": 1296,
+            "localized_string_clean": null
+        }
+    },
+    {
+        "pk": 4283,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "MozEX",
+            "created": "2007-03-05 13:10:18",
+            "locale": "en-US",
+            "modified": null,
+            "id": 1295,
+            "localized_string_clean": null
+        }
+    },
+    {
+        "pk": 1,
+        "model": "files.platform",
+        "fields": {
+            "icontype": "",
+            "modified": "2008-04-07 08:16:55",
+            "created": "2007-03-05 13:09:27"
+        }
+    },
+    {
+        "pk": 40,
+        "model": "addons.addon",
+        "fields": {
+            "dev_agreement": false,
+            "eula": null,
+            "last_updated": "2007-03-05 13:11:03",
+            "view_source": false,
+            "enable_thankyou": false,
+            "total_downloads": 24820,
+            "developer_comments": null,
+            "inactive": false,
+            "average_daily_downloads": 38,
+            "show_beta": true,
+            "guid": "{7c07e56e-b2f0-4932-bbe2-857a91b69f45}",
+            "trusted": false,
+            "description": 1297,
+            "locale_disambiguation": null,
+            "binary": false,
+            "the_future": null,
+            "weekly_downloads": 12,
+            "support_url": null,
+            "paypal_id": "",
+            "average_rating": "4.00",
+            "wants_contributions": false,
+            "average_daily_users": 68,
+            "bayesian_rating": 4.0337899999999998,
+            "share_count": 0,
+            "get_satisfaction_company": null,
+            "homepage": 1296,
+            "support_email": null,
+            "public_stats": false,
+            "status": 1,
+            "privacy_policy": null,
+            "total_contributions": "0.00",
+            "default_locale": "en-US",
+            "target_locale": null,
+            "prerelease": false,
+            "thankyou_note": null,
+            "admin_review": false,
+            "external_software": false,
+            "highest_status": 1,
+            "get_satisfaction_product": null,
+            "name": 1295,
+            "created": "2004-06-12 02:52:33",
+            "type": 1,
+            "icon_type": "",
+            "annoying": 0,
+            "modified": "2010-05-28 09:01:58",
+            "summary": 1299,
+            "suggested_amount": null,
+            "site_specific": false,
+            "total_reviews": 1,
+            "the_reason": null,
+            "nomination_date": null
+        }
+    },
+    {
+        "pk": 42,
+        "model": "versions.version",
+        "fields": {
+            "license": null,
+            "created": "2004-06-12 02:52:33",
+            "releasenotes": null,
+            "modified": "2004-06-13 20:25:13",
+            "approvalnotes": "",
+            "version": "1.0.7",
+            "addon": 40
+        }
+    },
+    {
+        "pk": 197,
+        "model": "files.file",
+        "fields": {
+            "status": 4,
+            "codereview": false,
+            "hash": "sha256:f6e0881af426279e7f56fe451057d708cac5f21b44afde980bad81f8a2e0c2cb",
+            "created": "2007-03-05 13:11:03",
+            "modified": "2007-03-05 13:11:03",
+            "filename": "mozex-1.0.7-fx.xpi",
+            "platform": 1,
+            "version": 42,
+            "size": 18,
+            "datestatuschanged": "2007-03-05 13:11:03"
+        }
+    },
+    {
+        "pk": 41,
+        "model": "users.userprofile",
+        "fields": {
+            "sandboxshown": false,
+            "display_collections_fav": false,
+            "display_collections": false,
+            "averagerating": "4.00",
+            "confirmationcode": "ceaeb8fdfc2538bf3bc4c4f54804b5d6",
+            "notifycompat": true,
+            "picture_type": "",
+            "occupation": "",
+            "homepage": "",
+            "email": "dd+b565d0324@davedash.com",
+            "location": "",
+            "bio": null,
+            "firstname": "Tomas",
+            "deleted": false,
+            "lastname": "Styblo",
+            "emailhidden": true,
+            "user": null,
+            "password": "",
+            "nickname": "41",
+            "resetcode_expires": null,
+            "resetcode": "",
+            "created": "2007-03-05 13:09:33",
+            "notes": null,
+            "modified": null,
+            "notifyevents": true
+        }
+    },
+    {
+        "pk": 123,
+        "model": "applications.appversion",
+        "fields": {
+            "application": 1,
+            "version": "0.9",
+            "created": "2007-03-05 13:10:58",
+            "version_int": 90000200100,
+            "modified": null
+        }
+    },
+    {
+        "pk": 42,
+        "model": "applications.appversion",
+        "fields": {
+            "application": 1,
+            "version": "0.7",
+            "created": "2007-03-05 13:09:26",
+            "version_int": 70000200100,
+            "modified": null
+        }
+    },
+    {
+        "pk": 39,
+        "model": "addons.addonuser",
+        "fields": {
+            "position": 0,
+            "addon": 40,
+            "role": 5,
+            "listed": true,
+            "user": 41
+        }
+    },
+    {
+        "pk": 19,
+        "model": "versions.applicationsversions",
+        "fields": {
+            "application": 1,
+            "version": 42,
+            "min": 42,
+            "max": 123
+        }
+    }
+]

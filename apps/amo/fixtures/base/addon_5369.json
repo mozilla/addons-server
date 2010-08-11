@@ -1,0 +1,292 @@
+[
+    {
+        "pk": 1,
+        "model": "applications.application",
+        "fields": {
+            "guid": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}",
+            "modified": "2008-11-03 15:34:59",
+            "created": "2007-03-05 13:09:26"
+        }
+    },
+    {
+        "pk": 405182,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "The new YSlow is here!",
+            "created": "2009-04-20 17:21:30",
+            "locale": "en-US",
+            "modified": "2009-04-28 16:08:18",
+            "id": 366908,
+            "localized_string_clean": "The new YSlow is here!"
+        }
+    },
+    {
+        "pk": 93223,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "YSlow analyzes web pages and why they're slow based on Yahoo!'s rules for high performance web sites.\r\n\r\nYSlow uses Yahoo!'s Smush.it service, which is subject to Smush.it Terms of Use: http://info.yahoo.com/legal/us/yahoo/smush_it/smush_it-4378.html",
+            "created": "2007-07-19 21:54:54",
+            "locale": "en-US",
+            "modified": "2009-04-28 16:08:17",
+            "id": 60896,
+            "localized_string_clean": "YSlow analyzes web pages and why they're slow based on Yahoo!'s rules for high performance web sites.\n\nYSlow uses Yahoo!'s Smush.it service, which is subject to Smush.it Terms of Use: <a href=\"http://outgoing.mozilla.org/v1/a9bb0eaa8fcea7961be80a8c20de25704b57a516/http%3A//info.yahoo.com/legal/us/yahoo/smush_it/smush_it-4378.html\">http://info.yahoo.com/legal/us/yahoo/smush_it/smush_it-4378.html</a>"
+        }
+    },
+    {
+        "pk": 93219,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "YSlow analyzes web pages and suggests ways to improve their performance based on a set of rules for high performance web pages. YSlow is a Firefox add-on integrated with the Firebug web development tool. YSlow grades web page based on one of three predefined ruleset or a user-defined ruleset. It offers suggestions for improving the page's performance, summarizes the page's components, displays statistics about the page, and provides tools for performance analysis, including Smush.it\u2122 and JSLint. \r\n\r\nYSlow is licensed under the Mozilla Public License (MPL) version 1.1, with portions licensed by third parties under other license terms.  To review the terms before installing, see http://developer.yahoo.com/yslow/faq.html#faq_license.\r\n\r\nYSlow uses Yahoo!'s Smush.it service, which is subject to Smush.it Terms of Use: http://info.yahoo.com/legal/us/yahoo/smush_it/smush_it-4378.html\r\n\r\nYou must install Firebug: https://addons.mozilla.org/en-US/firefox/addon/1843",
+            "created": "2007-07-19 21:54:53",
+            "locale": "en-US",
+            "modified": "2009-04-28 16:08:18",
+            "id": 60892,
+            "localized_string_clean": "YSlow analyzes web pages and suggests ways to improve their performance based on a set of rules for high performance web pages. YSlow is a Firefox add-on integrated with the Firebug web development tool. YSlow grades web page based on one of three predefined ruleset or a user-defined ruleset. It offers suggestions for improving the page's performance, summarizes the page's components, displays statistics about the page, and provides tools for performance analysis, including Smush.it\u2122 and JSLint. \n\nYSlow is licensed under the Mozilla Public License (MPL) version 1.1, with portions licensed by third parties under other license terms.  To review the terms before installing, see <a href=\"http://outgoing.mozilla.org/v1/eabee1e461dc57ecc5fe96e15b2fbc07137c598a/http%3A//developer.yahoo.com/yslow/faq.html%23faq_license.\">http://developer.yahoo.com/yslow/faq.html#faq_license.</a>\n\nYSlow uses Yahoo!'s Smush.it service, which is subject to Smush.it Terms of Use: <a href=\"http://outgoing.mozilla.org/v1/a9bb0eaa8fcea7961be80a8c20de25704b57a516/http%3A//info.yahoo.com/legal/us/yahoo/smush_it/smush_it-4378.html\">http://info.yahoo.com/legal/us/yahoo/smush_it/smush_it-4378.html</a>\n\nYou must install Firebug: <a href=\"http://outgoing.mozilla.org/v1/0275be79412a56b8f01a5310507ff0b5d93833ee/https%3A//addons.mozilla.org/en-US/firefox/addon/1843\">https://addons.mozilla.org/en-US/firefox/addon/1843</a>"
+        }
+    },
+    {
+        "pk": 160923,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "http://developer.yahoo.com/yslow",
+            "created": "2008-04-21 19:34:21",
+            "locale": "en-US",
+            "modified": "2009-02-27 11:36:01",
+            "id": 124902,
+            "localized_string_clean": null
+        }
+    },
+    {
+        "pk": 93221,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "http://developer.yahoo.com/yslow/",
+            "created": "2007-07-19 21:54:54",
+            "locale": "en-US",
+            "modified": "2009-02-27 11:36:49",
+            "id": 60894,
+            "localized_string_clean": null
+        }
+    },
+    {
+        "pk": 93222,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "YSlow",
+            "created": "2007-07-19 21:54:54",
+            "locale": "en-US",
+            "modified": "2009-02-27 11:36:49",
+            "id": 60895,
+            "localized_string_clean": null
+        }
+    },
+    {
+        "pk": 933321,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "* Encode URI components in beacon parameters.\r\n* For CDN rule, add the list of offending components in beacon parameters.",
+            "created": "2010-03-02 15:04:27",
+            "locale": "en-US",
+            "modified": null,
+            "id": 873763,
+            "localized_string_clean": "* Encode URI components in beacon parameters.\n* For CDN rule, add the list of offending components in beacon parameters."
+        }
+    },
+    {
+        "pk": 1,
+        "model": "files.platform",
+        "fields": {
+            "icontype": "",
+            "modified": "2008-04-07 08:16:55",
+            "created": "2007-03-05 13:09:27"
+        }
+    },
+    {
+        "pk": 5369,
+        "model": "addons.addon",
+        "fields": {
+            "dev_agreement": true,
+            "eula": null,
+            "last_updated": "2010-03-03 16:15:03",
+            "view_source": false,
+            "enable_thankyou": false,
+            "total_downloads": 1861589,
+            "developer_comments": 366908,
+            "inactive": false,
+            "average_daily_downloads": 1798,
+            "show_beta": true,
+            "guid": "yslow@yahoo-inc.com",
+            "trusted": false,
+            "description": 60892,
+            "locale_disambiguation": null,
+            "binary": false,
+            "the_future": null,
+            "weekly_downloads": 12628,
+            "support_url": 124902,
+            "paypal_id": "",
+            "average_rating": "3.48",
+            "wants_contributions": false,
+            "average_daily_users": 181569,
+            "bayesian_rating": 3.5951499999999998,
+            "share_count": 6,
+            "get_satisfaction_company": null,
+            "homepage": 60894,
+            "support_email": null,
+            "public_stats": false,
+            "status": 4,
+            "privacy_policy": null,
+            "total_contributions": "0.00",
+            "default_locale": "en-US",
+            "target_locale": null,
+            "prerelease": false,
+            "thankyou_note": null,
+            "admin_review": false,
+            "external_software": false,
+            "highest_status": 4,
+            "get_satisfaction_product": null,
+            "name": 60895,
+            "created": "2007-07-19 21:48:15",
+            "type": 1,
+            "icon_type": "image/png",
+            "annoying": 0,
+            "modified": "2010-05-28 09:01:58",
+            "summary": 60896,
+            "suggested_amount": null,
+            "site_specific": false,
+            "total_reviews": 80,
+            "the_reason": null,
+            "nomination_date": "2009-02-27 11:36:53"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "versions.license",
+        "fields": {
+            "_custom_text": null,
+            "_name_field": 0,
+            "modified": "2009-04-30 22:29:53",
+            "created": "2009-04-30 22:29:53"
+        }
+    },
+    {
+        "pk": 98198,
+        "model": "versions.version",
+        "fields": {
+            "license": 5,
+            "created": "2010-03-02 15:02:39",
+            "releasenotes": 873763,
+            "modified": "2010-03-02 15:04:28",
+            "approvalnotes": "",
+            "version": "2.0.7",
+            "addon": 5369
+        }
+    },
+    {
+        "pk": 81898,
+        "model": "files.file",
+        "fields": {
+            "status": 4,
+            "codereview": false,
+            "hash": "sha256:7234276dc6778efce3bf171f41bf942f0764ff7dfdf98048b1c311949e1c535c",
+            "created": "2010-03-02 15:02:44",
+            "modified": "2010-03-03 16:15:03",
+            "filename": "yslow-2.0.7-fx.xpi",
+            "platform": 1,
+            "version": 98198,
+            "size": 215,
+            "datestatuschanged": "2010-03-03 16:15:03"
+        }
+    },
+    {
+        "pk": 55021,
+        "model": "auth.user",
+        "fields": {
+            "username": "bookmonkey@yahoo-inc.com",
+            "first_name": "Yahoo!",
+            "last_name": "Inc.",
+            "is_active": true,
+            "is_superuser": false,
+            "is_staff": false,
+            "last_login": "2010-05-20 13:00:37",
+            "groups": [],
+            "user_permissions": [],
+            "password": "",
+            "email": "bookmonkey@yahoo-inc.com",
+            "date_joined": "2007-03-05 13:09:56"
+        }
+    },
+    {
+        "pk": 55021,
+        "model": "users.userprofile",
+        "fields": {
+            "sandboxshown": true,
+            "display_collections_fav": false,
+            "display_collections": false,
+            "averagerating": "3.11",
+            "confirmationcode": "",
+            "notifycompat": true,
+            "picture_type": "",
+            "occupation": "",
+            "homepage": "http://www.yahoo.com/",
+            "email": "dd+0cb167b90@davedash.com",
+            "location": "",
+            "bio": null,
+            "firstname": "Yahoo!",
+            "deleted": false,
+            "lastname": "Inc.",
+            "emailhidden": true,
+            "user": 55021,
+            "password": "",
+            "nickname": "55021",
+            "resetcode_expires": null,
+            "resetcode": "",
+            "created": "2007-03-05 13:09:56",
+            "notes": null,
+            "modified": "2010-05-19 16:41:22",
+            "notifyevents": true
+        }
+    },
+    {
+        "pk": 291,
+        "model": "applications.appversion",
+        "fields": {
+            "application": 1,
+            "version": "3.6.*",
+            "created": null,
+            "version_int": 3069900200100,
+            "modified": null
+        }
+    },
+    {
+        "pk": 233,
+        "model": "applications.appversion",
+        "fields": {
+            "application": 1,
+            "version": "3.0",
+            "created": null,
+            "version_int": 3000000200100,
+            "modified": null
+        }
+    },
+    {
+        "pk": 4432,
+        "model": "addons.addonuser",
+        "fields": {
+            "position": 0,
+            "addon": 5369,
+            "role": 5,
+            "listed": true,
+            "user": 55021
+        }
+    },
+    {
+        "pk": 70199,
+        "model": "versions.applicationsversions",
+        "fields": {
+            "application": 1,
+            "version": 98198,
+            "min": 233,
+            "max": 291
+        }
+    }
+]

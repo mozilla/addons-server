@@ -1,0 +1,236 @@
+[
+    {
+        "pk": 1,
+        "model": "applications.application",
+        "fields": {
+            "guid": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}",
+            "modified": "2008-11-03 15:34:59",
+            "created": "2007-03-05 13:09:26"
+        }
+    },
+    {
+        "pk": 139618,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "Designed to fit well in the Mac OS X environment.",
+            "created": "2008-03-10 14:31:39",
+            "locale": "en-US",
+            "modified": "2008-08-08 17:22:35",
+            "id": 104239,
+            "localized_string_clean": "Designed to fit well in the Mac OS X environment."
+        }
+    },
+    {
+        "pk": 139615,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "The theme is equally available on: http://www.takebacktheweb.org/\r\nand there as well with some customizing hints. ",
+            "created": "2008-03-10 14:31:39",
+            "locale": "en-US",
+            "modified": "2008-08-08 17:22:35",
+            "id": 104236,
+            "localized_string_clean": "The theme is equally available on: <a href=\"http://outgoing.mozilla.org/v1/2b78f2fc4a40942f91d75804e49bd907218858cc/http%3A//www.takebacktheweb.org/\">http://www.takebacktheweb.org/</a>\nand there as well with some customizing hints. "
+        }
+    },
+    {
+        "pk": 139616,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "http://www.takebacktheweb.org/",
+            "created": "2008-03-10 14:31:39",
+            "locale": "en-US",
+            "modified": "2008-08-08 17:22:35",
+            "id": 104237,
+            "localized_string_clean": null
+        }
+    },
+    {
+        "pk": 139617,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "GrApple Yummy",
+            "created": "2008-03-10 14:31:39",
+            "locale": "en-US",
+            "modified": "2009-06-24 14:56:43",
+            "id": 104238,
+            "localized_string_clean": null
+        }
+    },
+    {
+        "pk": 3,
+        "model": "files.platform",
+        "fields": {
+            "icontype": "",
+            "modified": "2008-04-07 08:16:55",
+            "created": "2007-03-05 13:09:27"
+        }
+    },
+    {
+        "pk": 6704,
+        "model": "addons.addon",
+        "fields": {
+            "dev_agreement": true,
+            "eula": null,
+            "last_updated": "2010-02-08 06:27:41",
+            "view_source": false,
+            "enable_thankyou": false,
+            "total_downloads": 100257,
+            "developer_comments": null,
+            "inactive": false,
+            "average_daily_downloads": 124,
+            "show_beta": true,
+            "guid": "{b1fad17a-3b98-c743-ed56-85c722d622d3}",
+            "trusted": false,
+            "description": 104236,
+            "locale_disambiguation": null,
+            "binary": false,
+            "the_future": null,
+            "weekly_downloads": 541,
+            "support_url": null,
+            "paypal_id": "",
+            "average_rating": "4.81",
+            "wants_contributions": false,
+            "average_daily_users": 14094,
+            "bayesian_rating": 4.5252699999999999,
+            "share_count": 1,
+            "get_satisfaction_company": "",
+            "homepage": 104237,
+            "support_email": null,
+            "public_stats": false,
+            "status": 4,
+            "privacy_policy": null,
+            "total_contributions": "0.00",
+            "default_locale": "en-US",
+            "target_locale": null,
+            "prerelease": false,
+            "thankyou_note": null,
+            "admin_review": false,
+            "external_software": false,
+            "highest_status": 4,
+            "get_satisfaction_product": "",
+            "name": 104238,
+            "created": "2008-03-10 14:30:42",
+            "type": 2,
+            "icon_type": "image/png",
+            "annoying": 0,
+            "modified": "2010-05-28 09:01:58",
+            "summary": 104239,
+            "suggested_amount": null,
+            "site_specific": false,
+            "total_reviews": 36,
+            "the_reason": null,
+            "nomination_date": "2008-08-08 17:22:37"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "versions.license",
+        "fields": {
+            "_custom_text": null,
+            "_name_field": 0,
+            "modified": "2009-04-30 22:29:53",
+            "created": "2009-04-30 22:29:53"
+        }
+    },
+    {
+        "pk": 94144,
+        "model": "versions.version",
+        "fields": {
+            "license": 5,
+            "created": "2010-02-02 08:49:13",
+            "releasenotes": null,
+            "modified": "2010-02-02 08:49:13",
+            "approvalnotes": null,
+            "version": "3.0.1",
+            "addon": 6704
+        }
+    },
+    {
+        "pk": 78447,
+        "model": "files.file",
+        "fields": {
+            "status": 4,
+            "codereview": false,
+            "hash": "sha256:f058aa643525660f4627779743812b00b9f4455160eba2711a3389efb537bfb1",
+            "created": "2010-02-02 08:49:13",
+            "modified": "2010-02-08 06:27:41",
+            "filename": "grapple_yummy-3.0.1-fx-macosx.jar",
+            "platform": 3,
+            "version": 94144,
+            "size": 616,
+            "datestatuschanged": "2010-02-08 06:27:41"
+        }
+    },
+    {
+        "pk": 888,
+        "model": "users.userprofile",
+        "fields": {
+            "sandboxshown": false,
+            "display_collections_fav": false,
+            "display_collections": false,
+            "averagerating": "4.88",
+            "confirmationcode": "",
+            "notifycompat": true,
+            "picture_type": "",
+            "occupation": "",
+            "homepage": "http://www.takebacktheweb.org",
+            "email": "dd+50b9da4b9@davedash.com",
+            "location": "",
+            "bio": null,
+            "firstname": "Aronnax",
+            "deleted": false,
+            "lastname": "G.",
+            "emailhidden": false,
+            "user": null,
+            "password": "",
+            "nickname": "Aronnax",
+            "resetcode_expires": null,
+            "resetcode": "",
+            "created": "2007-03-05 13:09:33",
+            "notes": null,
+            "modified": "2009-08-19 07:35:43",
+            "notifyevents": true
+        }
+    },
+    {
+        "pk": 282,
+        "model": "applications.appversion",
+        "fields": {
+            "application": 1,
+            "version": "3.7a1pre",
+            "version_int": 3070000001000,
+            "created": "2009-08-19 07:35:43"
+        }
+    },
+    {
+        "pk": 279,
+        "model": "applications.appversion",
+        "fields": {
+            "application": 1,
+            "version": "3.6b1pre",
+            "version_int": 3060000101000,
+            "created": "2009-08-19 07:35:43"
+        }
+    },
+    {
+        "pk": 5760,
+        "model": "addons.addonuser",
+        "fields": {
+            "position": 0,
+            "addon": 6704,
+            "role": 5,
+            "listed": true,
+            "user": 888
+        }
+    },
+    {
+        "pk": 53601,
+        "model": "versions.applicationsversions",
+        "fields": {
+            "application": 1,
+            "version": 94144,
+            "min": 279,
+            "max": 282
+        }
+    }
+]

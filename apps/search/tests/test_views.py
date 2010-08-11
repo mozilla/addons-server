@@ -52,6 +52,7 @@ class PersonaSearchTest(SphinxTestCase):
 
 
 class FrontendSearchTest(SphinxTestCase):
+    fixtures = ('base/addon_3615', 'base/appversions', 'base/addon_6704')
 
     def setUp(self):
         # Warms up the prefixer.
@@ -177,7 +178,7 @@ class FrontendSearchTest(SphinxTestCase):
         are returning them."""
         resp = self.get_response(q='grapple')
         doc = pq(resp.content)
-        eq_('GrApple Yummy', doc('.item h3 a').text())
+        eq_('GrApple Yummy Aronnax', doc('.item h3 a').text())
 
     def test_tag_refinement(self):
         """Don't show the tag list if there's no tags to be shown."""
@@ -194,13 +195,13 @@ class FrontendSearchTest(SphinxTestCase):
                     "page parameter found in %s link" % link.text)
 
     def test_version_refinement(self):
-        """For a particular addon, ensure that if we search for it, we get the
+        """For an addon, if we search for it, we get the
         full range of versions for refinement purposes."""
-        # Firebug is 3.0-3.6 compatible
-        r = self.get_response(q='firebug fingertips')
+        # Delicious is 3.6-3.7 compatible
+        r = self.get_response(q='delicious')
         doc = pq(r.content)
         eq_([a.text for a in doc(r.content)('#refine-compatibility a')],
-            ['All Versions', '3.6', '3.5', '3.0'])
+            ['All Versions', '3.7', '3.6'])
 
     def test_bad_cat(self):
         r = self.get_response(cat='1)f,ff')
@@ -210,7 +211,7 @@ class FrontendSearchTest(SphinxTestCase):
 class ViewTest(test_utils.TestCase):
     """Tests some of the functions used in building the view."""
 
-    fixtures = ['base/fixtures']
+    fixtures = ('base/category',)
 
     def setUp(self):
         self.fake_request = Mock()
@@ -238,7 +239,7 @@ class ViewTest(test_utils.TestCase):
 
 
 class AjaxTest(SphinxTestCase):
-    fixtures = ['base/fixtures']
+    fixtures = ('base/addon_3615',)
 
     def test_json(self):
         r = self.client.get(reverse('search.ajax') + '?q=del')

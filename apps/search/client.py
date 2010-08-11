@@ -88,7 +88,7 @@ def extract_filters(term, kwargs):
 
     if addon_type:
         if not isinstance(addon_type, int):
-            types = dict((name.lower(), id) for id, name
+            types = dict((name.lower().split()[0], id) for id, name
                          in amo.ADDON_TYPE.items())
             addon_type = types.get(addon_type.lower())
 

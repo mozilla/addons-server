@@ -17,7 +17,6 @@ class SphinxTestCase(amo.test_utils.ExtraSetup,
     when testing any feature that requires sphinx.
     """
 
-    fixtures = ['base/fixtures']
     sphinx = True
     sphinx_is_running = False
 
