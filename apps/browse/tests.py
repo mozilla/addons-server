@@ -86,7 +86,7 @@ class TestLanguageTools(amo.test_utils.ExtraSetup, test_utils.TestCase):
 
 
 class TestThemes(amo.test_utils.ExtraSetup, test_utils.TestCase):
-    fixtures = ['base/fixtures']
+    fixtures = ('base/category', 'base/addon_6704_grapple', 'base/addon_3615')
 
     def setUp(self):
         super(TestThemes, self).setUp()
@@ -109,10 +109,10 @@ class TestThemes(amo.test_utils.ExtraSetup, test_utils.TestCase):
     def test_unreviewed(self):
         # Only 3 without unreviewed.
         response = self.client.get(self.base_url)
-        eq_(len(response.context['themes'].object_list), 8)
+        eq_(len(response.context['themes'].object_list), 2)
 
         response = self.client.get(self.exp_url)
-        eq_(len(response.context['themes'].object_list), 10)
+        eq_(len(response.context['themes'].object_list), 2)
 
     def _get_sort(self, sort):
         response = self.client.get(urlparams(self.exp_url, sort=sort))
@@ -121,23 +121,23 @@ class TestThemes(amo.test_utils.ExtraSetup, test_utils.TestCase):
 
     def test_download_sort(self):
         ids = self._get_sort('popular')
-        eq_(ids, [55, 1843, 73, 3615, 5369, 7172, 6113, 10869, 6704, 40])
+        eq_(ids, [3615, 6704])
 
     def test_name_sort(self):
         ids = self._get_sort('name')
-        eq_(ids, [55, 3615, 1843, 6704, 10869, 7172, 40, 5369, 73, 6113])
+        eq_(ids, [3615, 6704])
 
     def test_created_sort(self):
         ids = self._get_sort('created')
-        eq_(ids, [10869, 7172, 6704, 6113, 5369, 3615, 55, 73, 1843, 40])
+        eq_(ids, [6704, 3615])
 
     def test_updated_sort(self):
         ids = self._get_sort('updated')
-        eq_(ids, [6113, 3615, 7172, 5369, 10869, 6704, 1843, 73, 40, 55])
+        eq_(ids, [6704, 3615])
 
     def test_rating_sort(self):
         ids = self._get_sort('rating')
-        eq_(ids, [6113, 7172, 1843, 6704, 10869, 40, 5369, 3615, 55, 73])
+        eq_(ids, [6704, 3615])
 
     def test_category_count(self):
         cat = Category.objects.filter(name__isnull=False)[0]
@@ -150,7 +150,8 @@ class TestThemes(amo.test_utils.ExtraSetup, test_utils.TestCase):
 
 
 class TestCategoryPages(amo.test_utils.ExtraSetup, test_utils.TestCase):
-    fixtures = ['base/fixtures', 'browse/nameless-addon']
+    fixtures = ('base/apps', 'base/category', 'base/addon_3615',
+                'base/featured', 'addons/featured', 'browse/nameless-addon')
 
     def test_browsing_urls(self):
         """Every browse page URL exists."""
@@ -230,12 +231,13 @@ class TestCategoryPages(amo.test_utils.ExtraSetup, test_utils.TestCase):
 
 
 class TestLegacyRedirects(test_utils.TestCase):
-    fixtures = ['base/fixtures']
+    fixtures = ('base/category.json',)
 
     def test_types(self):
         def redirects(from_, to):
             r = self.client.get('/en-US/firefox' + from_)
-            self.assertRedirects(r, '/en-US/firefox' + to, status_code=301)
+            self.assertRedirects(r, '/en-US/firefox' + to, status_code=301,
+                                 msg_prefix="Redirection failed: %s" % to)
 
         redirects('/browse/type:1', '/extensions/')
         redirects('/browse/type:1/', '/extensions/')
@@ -252,7 +254,7 @@ class TestLegacyRedirects(test_utils.TestCase):
         redirects('/recommended', '/featured')
 
 class TestFeaturedPage(amo.test_utils.ExtraSetup, test_utils.TestCase):
-    fixtures = ['base/fixtures', 'addons/featured']
+    fixtures = ('base/apps', 'addons/featured')
 
     def test_featured_addons(self):
         """Make sure that only featured add-ons are shown"""

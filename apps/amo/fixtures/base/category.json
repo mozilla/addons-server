@@ -88,5 +88,33 @@
             "slug": "feeds-news-blogging",
             "name": 1017
         }
+    },
+    {
+        "fields": {
+            "count": 737,
+            "weight": 0,
+            "created": "2007-03-05 16:06:55",
+            "modified": "2009-11-13 02:15:58",
+            "application": 1,
+            "type": 1,
+            "slug": "alerts-updates"
+        },
+        "model": "addons.category",
+        "pk": 72
+    },
+    {
+        "pk": 13,
+        "model": "addons.category",
+        "fields": {
+            "count": 1509,
+            "description": null,
+            "weight": -1,
+            "created": "2007-03-05 13:09:27",
+            "modified": "2010-02-23 19:17:31",
+            "application": 1,
+            "type": 1,
+            "slug": "search-tools",
+            "name": null
+        }
     }
 ]
