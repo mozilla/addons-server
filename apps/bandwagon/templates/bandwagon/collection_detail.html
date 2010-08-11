@@ -16,9 +16,12 @@
     {{ breadcrumbs(crumbs) }}
   {% endwith %}
   <hgroup>
-    <h2>
+    <h2 class="collection">
       <img src="{{ c.icon_url }}" class="icon">
       <span>{{ c.name }}</span>
+      {% if not c.listed %}
+        <span class="private">{{ _('private') }}</span>
+      {% endif %}
     </h2>
     {% if collection.author %}
     <h4 class="author">

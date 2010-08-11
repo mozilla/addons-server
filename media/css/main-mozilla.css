@@ -803,11 +803,16 @@ h2 span {
     top: -0.35em;
 }
 
+h2.collection .private,
 h2.addon span.version {
     color: #5E728C;
     font-size: 85%;
     margin: 0 .2em;
     vertical-align: bottom;
+}
+
+h2.collection .private {
+    font-style: italic;
 }
 
 h4.author {
