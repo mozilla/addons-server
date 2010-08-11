@@ -52,7 +52,8 @@ class PersonaSearchTest(SphinxTestCase):
 
 
 class FrontendSearchTest(SphinxTestCase):
-    fixtures = ('base/addon_3615', 'base/appversions', 'base/addon_6704')
+    fixtures = ('base/addon_3615', 'base/appversions',
+                'base/addon_6704_grapple')
 
     def setUp(self):
         # Warms up the prefixer.

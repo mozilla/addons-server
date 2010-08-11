@@ -1,0 +1,320 @@
+[
+    {
+        "pk": 1,
+        "model": "applications.application",
+        "fields": {
+            "guid": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}",
+            "modified": "2008-11-03 15:34:59",
+            "created": "2007-03-05 13:09:26"
+        }
+    },
+    {
+        "pk": 560051,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "Hi! I'm a tech blogger (http://smarterware.org) and book author (http://lifehackerbook.com). I started Lifehacker.com.",
+            "created": "2009-08-10 17:07:34",
+            "locale": "en-US",
+            "modified": null,
+            "id": 517666,
+            "localized_string_clean": "Hi! I'm a tech blogger (<a href=\"http://outgoing.mozilla.org/v1/5bd955d53b04e32cb3fb7cc7167eefa438d7dee4/http%3A//smarterware.org\">http://smarterware.org</a>) and book author (<a href=\"http://outgoing.mozilla.org/v1/600b77cd70d2e74c3e2513dff1963a69b0442e80/http%3A//lifehackerbook.com\">http://lifehackerbook.com</a>). I started Lifehacker.com."
+        }
+    },
+    {
+        "pk": 90917,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "Adds collapsible header and sidebar, event title text wrap, colored weekend days, week numbers, and skins to Google Calendar.",
+            "created": "2007-07-08 13:49:43",
+            "locale": "en-US",
+            "modified": "2009-03-09 19:16:20",
+            "id": 58815,
+            "localized_string_clean": "Adds collapsible header and sidebar, event title text wrap, colored weekend days, week numbers, and skins to Google Calendar."
+        }
+    },
+    {
+        "pk": 90914,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "Enhances Google Calendar with Greasemonkey user scripts.",
+            "created": "2007-07-08 13:49:43",
+            "locale": "en-US",
+            "modified": "2009-03-09 19:16:20",
+            "id": 58812,
+            "localized_string_clean": "Enhances Google Calendar with Greasemonkey user scripts."
+        }
+    },
+    {
+        "pk": 378388,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "http://groups.google.com/group/better-gmail-2-firefox-extension",
+            "created": "2009-03-09 19:16:20",
+            "locale": "en-US",
+            "modified": null,
+            "id": 340672,
+            "localized_string_clean": null
+        }
+    },
+    {
+        "pk": 378387,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "better-gmail-2-firefox-extension@googlegroups.com",
+            "created": "2009-03-09 19:16:20",
+            "locale": "en-US",
+            "modified": null,
+            "id": 340671,
+            "localized_string_clean": null
+        }
+    },
+    {
+        "pk": 90915,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "http://www.ginatrapani.org/workshop/firefox/bettergcal/",
+            "created": "2007-07-08 13:49:43",
+            "locale": "en-US",
+            "modified": "2009-03-09 19:16:20",
+            "id": 58813,
+            "localized_string_clean": null
+        }
+    },
+    {
+        "pk": 90916,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "Better GCal",
+            "created": "2007-07-08 13:49:43",
+            "locale": "en-US",
+            "modified": "2009-03-09 19:16:20",
+            "id": 58814,
+            "localized_string_clean": null
+        }
+    },
+    {
+        "pk": 219039,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "Added Redesigned skin beta; Removed Air Skin (not much style difference) and Slate skin (didn't work); Updated to latest extension code; Updated icon.",
+            "created": "2008-07-06 13:54:05",
+            "locale": "en-US",
+            "modified": "2008-07-06 13:54:18",
+            "id": 182125,
+            "localized_string_clean": "Added Redesigned skin beta; Removed Air Skin (not much style difference) and Slate skin (didn't work); Updated to latest extension code; Updated icon."
+        }
+    },
+    {
+        "pk": 1,
+        "model": "files.platform",
+        "fields": {
+            "icontype": "",
+            "modified": "2008-04-07 08:16:55",
+            "created": "2007-03-05 13:09:27"
+        }
+    },
+    {
+        "pk": 5299,
+        "model": "addons.addon",
+        "fields": {
+            "dev_agreement": true,
+            "eula": null,
+            "last_updated": "2008-07-07 12:08:01",
+            "view_source": false,
+            "enable_thankyou": false,
+            "total_downloads": 206990,
+            "developer_comments": null,
+            "inactive": false,
+            "average_daily_downloads": 207,
+            "show_beta": true,
+            "guid": "bettergcal@ginatrapani.org",
+            "trusted": false,
+            "description": 58812,
+            "locale_disambiguation": null,
+            "binary": false,
+            "the_future": null,
+            "weekly_downloads": 580,
+            "support_url": 340672,
+            "paypal_id": "",
+            "average_rating": "3.43",
+            "wants_contributions": false,
+            "average_daily_users": 19616,
+            "bayesian_rating": 3.6313200000000001,
+            "share_count": 6,
+            "get_satisfaction_company": null,
+            "homepage": 58813,
+            "support_email": 340671,
+            "public_stats": false,
+            "status": 4,
+            "privacy_policy": null,
+            "total_contributions": "0.00",
+            "default_locale": "en-US",
+            "target_locale": null,
+            "prerelease": false,
+            "thankyou_note": null,
+            "admin_review": false,
+            "external_software": false,
+            "highest_status": 4,
+            "get_satisfaction_product": null,
+            "name": 58814,
+            "created": "2007-07-08 13:48:03",
+            "type": 1,
+            "icon_type": "image/png",
+            "annoying": 0,
+            "modified": "2010-06-25 15:27:34",
+            "summary": 58815,
+            "suggested_amount": null,
+            "site_specific": true,
+            "total_reviews": 42,
+            "the_reason": null,
+            "nomination_date": "2009-03-09 19:16:22"
+        }
+    },
+    {
+        "pk": 13,
+        "model": "versions.license",
+        "fields": {
+            "_custom_text": null,
+            "_name_field": 1,
+            "modified": "2009-05-01 05:00:44",
+            "created": "2009-05-01 05:00:44"
+        }
+    },
+    {
+        "pk": 49515,
+        "model": "versions.version",
+        "fields": {
+            "license": 13,
+            "created": "2008-07-06 13:53:30",
+            "releasenotes": 182125,
+            "modified": "2010-03-12 07:45:56",
+            "approvalnotes": "",
+            "version": "0.3",
+            "addon": 5299
+        }
+    },
+    {
+        "pk": 33046,
+        "model": "files.file",
+        "fields": {
+            "status": 4,
+            "codereview": false,
+            "hash": "sha256:114091778b4a4e3991e010ff07921eddd65139ff2f29e83b5a14140f2ca37d22",
+            "created": "2008-07-06 13:53:30",
+            "modified": "2010-03-12 07:45:52",
+            "filename": "better_gcal-0.3-fx.xpi",
+            "platform": 1,
+            "version": 49515,
+            "size": 74,
+            "datestatuschanged": "2008-07-07 12:08:01"
+        }
+    },
+    {
+        "fields": {
+            "status": 7,
+            "codereview": 0,
+            "hash": "sha256:4395f9cf4934ecc8f22d367c2a301fd79613b68937c59e676e92e4f0a89a5b92",
+            "created": "2009-09-18 12:33:25",
+            "modified": "2010-02-09 19:50:16",
+            "filename": "better_gcal-0.4-fx.xpi",
+            "platform": 1,
+            "version": 49515,
+            "size": 24,
+            "datestatuschanged": "2009-09-18 12:32:59"
+        },
+        "model": "files.file",
+        "pk": 64874
+    },
+    {
+        "pk": 60582,
+        "model": "auth.user",
+        "fields": {
+            "username": "g@gmail.com",
+            "first_name": "Gina",
+            "last_name": "Trapani",
+            "is_active": true,
+            "is_superuser": false,
+            "is_staff": false,
+            "last_login": "2010-05-21 10:36:25",
+            "groups": [],
+            "user_permissions": [],
+            "password": "",
+            "email": "g@gmail.com",
+            "date_joined": "2007-03-05 13:09:58"
+        }
+    },
+    {
+        "pk": 60582,
+        "model": "users.userprofile",
+        "fields": {
+            "sandboxshown": true,
+            "display_collections_fav": true,
+            "display_collections": true,
+            "averagerating": "3.86",
+            "confirmationcode": "",
+            "notifycompat": true,
+            "picture_type": "image/jpeg",
+            "occupation": "",
+            "homepage": "http://ginatrapani.org",
+            "email": "dd+44230311a@davedash.com",
+            "location": "",
+            "bio": 517666,
+            "firstname": "Gina",
+            "deleted": false,
+            "lastname": "Trapani",
+            "emailhidden": true,
+            "user": 60582,
+            "password": "",
+            "nickname": "60582",
+            "resetcode_expires": null,
+            "resetcode": "",
+            "notes": null,
+            "created": "2007-03-05 13:09:58",
+            "modified": "2010-05-17 13:53:12",
+            "notifyevents": true
+        }
+    },
+    {
+        "pk": 307,
+        "model": "applications.appversion",
+        "fields": {
+            "application": 1,
+            "version": "3.7a3pre",
+            "created": "2007-03-05 13:09:58",
+            "version_int": 3070000003000,
+            "modified": null
+        }
+    },
+    {
+        "pk": 1,
+        "model": "applications.appversion",
+        "fields": {
+            "application": 1,
+            "version": "0.8",
+            "created": "2007-03-05 13:09:26",
+            "version_int": 80000200100,
+            "modified": null
+        }
+    },
+    {
+        "pk": 4365,
+        "model": "addons.addonuser",
+        "fields": {
+            "position": 0,
+            "addon": 5299,
+            "role": 5,
+            "listed": true,
+            "user": 60582
+        }
+    },
+    {
+        "pk": 26402,
+        "model": "versions.applicationsversions",
+        "fields": {
+            "application": 1,
+            "version": 49515,
+            "min": 1,
+            "max": 307
+        }
+    }
+]

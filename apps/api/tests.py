@@ -34,7 +34,7 @@ def test_json_not_implemented():
 
 class UtilsTest(TestCase):
 
-    fixtures = ['base/fixtures']
+    fixtures = ('base/addon_3615',)
 
     def test_dict(self):
         "Verify that we're getting dict."
@@ -78,16 +78,19 @@ class No500ErrorsTest(TestCase):
 class ControlCharacterTest(TestCase):
     """This test is to assure we aren't showing control characters."""
 
-    fixtures = ['base/fixtures']
+    fixtures = ('base/addon_3615',)
 
     def test(self):
-        response = make_call('addon/592')
+        a = Addon.objects.get(pk=3615)
+        a.name = "I ove You"
+        response = make_call('addon/3615')
         self.assertNotContains(response, '')
 
 
 class APITest(TestCase):
 
-    fixtures = ['base/fixtures']
+    fixtures = ('base/apps', 'base/addon_3615', 'base/addon_4664_twitterbar',
+                'base/addon_5299_gcal', )
 
     def test_redirection(self):
         """
@@ -158,29 +161,28 @@ class APITest(TestCase):
         self.assertContains(response, """id="1">Extension</type>""")
         self.assertContains(response,
                 """<guid>{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}</guid>""")
-        self.assertContains(response, "<version>1.0.43</version>")
+        self.assertContains(response, "<version>2.1.072</version>")
         self.assertContains(response, """<status id="4">Public</status>""")
-        self.assertContains(response, '<author>carlsjr</author>')
-        self.assertContains(response, "<summary>Best Addon Evar</summary>")
-        self.assertContains(response,
-                "<description>Delicious blah blah blah</description>")
+        self.assertContains(response, '<author>55021</author>')
+        self.assertContains(response, "<summary>Delicious Bookmarks is the")
+        self.assertContains(response, "<description>This extension integrates")
 
         icon_url = settings.ADDON_ICON_URL % (3615, '')
         self.assertContains(response, "<icon>" + icon_url)
         self.assertContains(response, "<application>")
         self.assertContains(response, "<name>Firefox</name>")
         self.assertContains(response, "<application_id>1</application_id>")
-        self.assertContains(response, "<min_version>1</min_version>")
-        self.assertContains(response, "<max_version>2</max_version>")
+        self.assertContains(response, "<min_version>2.0</min_version>")
+        self.assertContains(response, "<max_version>3.7a1pre</max_version>")
         self.assertContains(response, "<os>ALL</os>")
-        self.assertContains(response, "<eula></eula>")
+        self.assertContains(response, "<eula>")
         self.assertContains(response, "/icons/no-preview.png</thumbnail>")
         self.assertContains(response, "<rating>4</rating>")
         self.assertContains(response,
                 "/en-US/firefox/addon/3615/?src=api</learnmore>")
         self.assertContains(response,
-                """hash="sha256:5b5aaf7b38e332cc95d92ba759c01"""
-                "c3076b53a840f6c16e01dc272eefcb29566")
+                """hash="sha256:3808b13ef8341378b9c8305ca64820095"""
+                '4ee7dcd8dce09fef55f2673458bc31f"')
 
     def test_whitespace(self):
         """Whitespace is apparently evil for learnmore and install."""
@@ -225,12 +227,12 @@ class APITest(TestCase):
                 "%s/en-US/firefox/addon/4664/developers?src=api"
                     % settings.SITE_URL,
                 "</meet_developers>",
-                """<reviews num="101">""",
+                """<reviews num="131">""",
                 "%s/en-US/firefox/addon/4664/reviews/?src=api"
                     % settings.SITE_URL,
-                "<total_downloads>867952</total_downloads>",
-                "<weekly_downloads>23646</weekly_downloads>",
-                "<daily_users>44693</daily_users>",
+                "<total_downloads>1352192</total_downloads>",
+                "<weekly_downloads>13849</weekly_downloads>",
+                "<daily_users>67075</daily_users>",
                 '<author id="2519"',
                 "%s/en-US/firefox/user/2519/?src=api</link>"
                     % settings.SITE_URL,
@@ -246,7 +248,7 @@ class APITest(TestCase):
                           ('20', 20397, 1209834208), src='api'),
                 "<developer_comments>Embrace hug love hug meow meow"
                     "</developer_comments>",
-                'size="92160"',
+                'size="100352"',
                 '<homepage>http://www.chrisfinke.com/addons/twitterbar/'
                     '</homepage>',
                 '<support>http://www.chrisfinke.com/addons/twitterbar/'
@@ -257,10 +259,10 @@ class APITest(TestCase):
         doc = pq(response.content)
 
         tags = {
-                'suggested_amount': ({'currency': 'USD'}, '0.99'),
+                'suggested_amount': ({'currency': 'USD'}, '5.00'),
                 'created': ({'epoch': '1174134235'}, '2007-03-17T12:23:55Z'),
                 'last_updated': (
-                    {'epoch': '1237836004'}, '2009-03-23T19:20:04Z'),
+                    {'epoch': '1272326983'}, '2010-04-27T00:09:43Z'),
                 }
 
         for tag, v in tags.items():
@@ -308,7 +310,7 @@ class APITest(TestCase):
 
 class ListTest(amo.test_utils.ExtraSetup, TestCase):
     """Tests the list view with various urls."""
-    fixtures = ['base/fixtures', 'base/featured']
+    fixtures = ('base/apps', 'base/addon_3615', 'base/featured',)
 
     def test_defaults(self):
         """
@@ -407,7 +409,7 @@ class ListTest(amo.test_utils.ExtraSetup, TestCase):
 
 
 class SeamonkeyFeaturedTest(TestCase):
-    fixtures = ['base/seamonkey']
+    fixtures = ('base/seamonkey',)
 
     def test_seamonkey_wankery(self):
         """
@@ -419,6 +421,11 @@ class SeamonkeyFeaturedTest(TestCase):
 
 
 class SearchTest(SphinxTestCase):
+
+    fixtures = ('base/apps', 'base/addon_6113', 'base/addon_40',
+                'base/addon_3615', 'base/addon_6704_grapple',
+                'base/addon_4664_twitterbar',)
+
     no_results = """<searchresults total_results="0">"""
 
     def test_double_escaping(self):
@@ -456,15 +463,15 @@ class SearchTest(SphinxTestCase):
         Tests that the search API correctly returns specific results.
         """
         expect = {
-                  'yslow': 'YSlow',
-                  'yslow category:web': 'YSlow',
-                  'jsonview version:3.5': 'JSONView',
-                  'firebug type:extension': 'Firebug',
+                  'delicious': 'Delicious Bookmarks',
+                  'delicious category:feeds': 'Delicious Bookmarks',
+                  'delicious version:3.6': 'Delicious Bookmarks',
+                  'delicious type:extension': 'Delicious Bookmarks',
                   'grapple platform:mac': 'GrApple',
-                  'firebug/1': 'Firebug',
+                  'delicious/1': 'Delicious Bookmarks',
                   'grapple/all/10/Darwin': 'GrApple',
-                  'jsonview/all/10/Darwin/3.5': 'JSONView',
-                  '/en-US/mobile/api/1.2/search/twitter/all/10/Linux/1.0b4':
+                  'delicious/all/10/Darwin/3.5': 'Delicious Bookmarks',
+                  '/en-US/mobile/api/1.2/search/twitter/all/10/Linux/1.0':
                   'TwitterBar',
                   }
 
@@ -480,7 +487,7 @@ class SearchTest(SphinxTestCase):
         Test that we limit our results correctly.
         """
         response = self.client.get(
-                "/en-US/firefox/api/1.2/search/firebug/all/1")
+                "/en-US/firefox/api/1.2/search/delicious/all/1")
         eq_(response.content.count("<addon id"), 1)
 
     def test_total_results(self):
@@ -489,8 +496,8 @@ class SearchTest(SphinxTestCase):
         we limit (and therefore show) only 1.
         """
         response = self.client.get(
-                "/en-US/firefox/api/1.2/search/firebug/all/1")
-        self.assertContains(response, """<searchresults total_results="2">""")
+                "/en-US/firefox/api/1.2/search/a/all/1")
+        self.assertContains(response, """<searchresults total_results="3">""")
 
     def test_sandbox_search(self):
         """

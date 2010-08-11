@@ -1,0 +1,393 @@
+[
+    {
+        "fields": {
+            "locale": "en-US",
+            "id": "4664",
+            "localized_string": "Embrace hug love hug meow meow"
+        },
+        "model": "translations.translation",
+        "pk": 4664
+    },
+    {
+        "pk": 1,
+        "model": "applications.application",
+        "fields": {
+            "guid": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}",
+            "modified": "2008-11-03 15:34:59",
+            "created": "2007-03-05 13:09:26"
+        }
+    },
+    {
+        "pk": 523901,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "I'm thinking of adding more features that would be useful for the times when you actually do visit Twitter.com (like to read your friends' messages.)  Maybe better trending topics in the sidebar, adding a retweet button, or possibly integrated image upload.",
+            "created": "2009-07-16 12:40:03",
+            "locale": "en-US",
+            "modified": null,
+            "id": 482382,
+            "localized_string_clean": null
+        }
+    },
+    {
+        "pk": 523900,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "I wanted a way to quickly and easily update Twitter without visiting the site, and TwitterBar had been abandoned by its original author, so I took over development and started fixing it up and adding features.",
+            "created": "2009-07-16 12:40:02",
+            "locale": "en-US",
+            "modified": null,
+            "id": 482381,
+            "localized_string_clean": null
+        }
+    },
+    {
+        "pk": 65260,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "Post to Twitter from your address bar.",
+            "created": "2007-03-17 05:29:25",
+            "locale": "en-US",
+            "modified": "2010-04-14 08:24:14",
+            "id": 38754,
+            "localized_string_clean": "Post to Twitter from your address bar."
+        }
+    },
+    {
+        "pk": 65220,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "TwitterBar allows you to post to Twitter from Firefox's address bar. A small Twitter icon sits to the right of your address bar; clicking on it will post your tweet, and you can hover your mouse over it to see how many characters you have left.\r\n\r\nYou can also post by typing \"--post\" at the end of your tweet.  Clicking the Twitter icon when visiting a webpage will send a tweet containing the URL of the webpage you are currently viewing.\r\n\r\nAs of version 2.9, you can post to multiple Twitter accounts.  To post to a specific account, just type --@account_name at the end of your tweet (but before typing --post). e.g., \"Tweeting from my personal account. --@jimmy2424 --post\".  (If you have authorized more than one account but don't specify which one to post to, you'll be asked to select from a list.)\r\n \r\nTo add a new account, just type --account in the URL bar. You'll be prompted to sign into Twitter with the new account.\r\n\r\nYou can manage your accounts from the options dialog. Just type --options in the URL bar.",
+            "created": "2007-03-17 05:29:25",
+            "locale": "en-US",
+            "modified": "2010-04-14 08:24:16",
+            "id": 38750,
+            "localized_string_clean": "TwitterBar allows you to post to Twitter from Firefox's address bar. A small Twitter icon sits to the right of your address bar; clicking on it will post your tweet, and you can hover your mouse over it to see how many characters you have left.\n\nYou can also post by typing \"--post\" at the end of your tweet.  Clicking the Twitter icon when visiting a webpage will send a tweet containing the URL of the webpage you are currently viewing.\n\nAs of version 2.9, you can post to multiple Twitter accounts.  To post to a specific account, just type --@account_name at the end of your tweet (but before typing --post). e.g., \"Tweeting from my personal account. --@jimmy2424 --post\".  (If you have authorized more than one account but don't specify which one to post to, you'll be asked to select from a list.)\n \nTo add a new account, just type --account in the URL bar. You'll be prompted to sign into Twitter with the new account.\n\nYou can manage your accounts from the options dialog. Just type --options in the URL bar."
+        }
+    },
+    {
+        "pk": 167010,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "http://www.chrisfinke.com/addons/twitterbar/",
+            "created": "2008-05-03 10:00:08",
+            "locale": "en-US",
+            "modified": "2009-03-23 12:20:02",
+            "id": 130757,
+            "localized_string_clean": null
+        }
+    },
+    {
+        "pk": 166336,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "cfinke@gmail.com",
+            "created": "2008-05-01 12:12:04",
+            "locale": "en-US",
+            "modified": "2009-03-23 12:20:02",
+            "id": 130099,
+            "localized_string_clean": null
+        }
+    },
+    {
+        "pk": 65240,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "http://www.chrisfinke.com/addons/twitterbar/",
+            "created": "2007-03-17 05:29:25",
+            "locale": "en-US",
+            "modified": "2009-03-23 12:20:02",
+            "id": 38752,
+            "localized_string_clean": null
+        }
+    },
+    {
+        "pk": 65250,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "TwitterBar",
+            "created": "2007-03-17 05:29:25",
+            "locale": "en-US",
+            "modified": "2009-03-23 12:20:02",
+            "id": 38753,
+            "localized_string_clean": null
+        }
+    },
+    {
+        "pk": 1118477,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "* Now with better and more relevant trending news in the Twitter sidebar.",
+            "created": "2010-04-25 20:09:18",
+            "locale": "en-US",
+            "modified": null,
+            "id": 1054175,
+            "localized_string_clean": "* Now with better and more relevant trending news in the Twitter sidebar."
+        }
+    },
+    {
+        "pk": 1,
+        "model": "files.platform",
+        "fields": {
+            "icontype": "",
+            "modified": "2008-04-07 08:16:55",
+            "created": "2007-03-05 13:09:27"
+        }
+    },
+    {
+        "pk": 4664,
+        "model": "addons.addon",
+        "fields": {
+            "dev_agreement": true,
+            "eula": null,
+            "last_updated": "2010-04-26 17:09:43",
+            "view_source": true,
+            "enable_thankyou": false,
+            "total_downloads": 1352192,
+            "developer_comments": 4664,
+            "inactive": false,
+            "average_daily_downloads": 1278,
+            "show_beta": true,
+            "guid": "{1a0c9ebe-ddf9-4b76-b8a3-675c77874d37}",
+            "trusted": false,
+            "description": 38750,
+            "locale_disambiguation": null,
+            "binary": false,
+            "the_future": 482382,
+            "weekly_downloads": 13849,
+            "support_url": 130757,
+            "paypal_id": "cfinke+premier@gmail.com",
+            "average_rating": "4.44",
+            "wants_contributions": true,
+            "average_daily_users": 67075,
+            "bayesian_rating": 4.3842699999999999,
+            "share_count": 6,
+            "get_satisfaction_company": "",
+            "homepage": 38752,
+            "support_email": 130099,
+            "public_stats": false,
+            "status": 4,
+            "privacy_policy": null,
+            "total_contributions": "1978.68",
+            "default_locale": "en-US",
+            "target_locale": null,
+            "prerelease": false,
+            "thankyou_note": null,
+            "admin_review": false,
+            "external_software": false,
+            "highest_status": 4,
+            "get_satisfaction_product": "",
+            "name": 38753,
+            "created": "2007-03-17 05:23:55",
+            "type": 1,
+            "icon_type": "image/png",
+            "annoying": 2,
+            "modified": "2010-05-24 17:21:28",
+            "summary": 38754,
+            "suggested_amount": "5.00",
+            "site_specific": true,
+            "total_reviews": 131,
+            "the_reason": 482381,
+            "nomination_date": "2009-03-23 12:20:04"
+        }
+    },
+    {
+        "pk": 13,
+        "model": "versions.license",
+        "fields": {
+            "_custom_text": null,
+            "_name_field": 1,
+            "modified": "2009-05-01 05:00:44",
+            "created": "2009-05-01 05:00:44"
+        }
+    },
+    {
+        "pk": 104904,
+        "model": "versions.version",
+        "fields": {
+            "license": 13,
+            "created": "2010-04-25 20:08:37",
+            "releasenotes": 1054175,
+            "modified": "2010-04-27 14:23:48",
+            "approvalnotes": "",
+            "version": "2.9.4",
+            "addon": 4664
+        }
+    },
+    {
+        "pk": 87504,
+        "model": "files.file",
+        "fields": {
+            "status": 4,
+            "codereview": false,
+            "hash": "sha256:e70fbb49f3c420de78802e126877daa0351c5bcc6cb27a62310bb1278023fb3e",
+            "created": "2010-04-25 20:08:37",
+            "modified": "2010-04-27 14:23:48",
+            "filename": "twitterbar-2.9.4-fx+fn.xpi",
+            "platform": 1,
+            "version": 104904,
+            "size": 98,
+            "datestatuschanged": "2010-04-26 17:09:43"
+        }
+    },
+    {
+        "pk": 2519,
+        "model": "auth.user",
+        "fields": {
+            "username": "cfinke@gmail.com",
+            "first_name": "Christopher",
+            "last_name": "Finke",
+            "is_active": true,
+            "is_superuser": false,
+            "is_staff": false,
+            "last_login": "2010-05-19 06:28:40",
+            "groups": [],
+            "user_permissions": [],
+            "password": "",
+            "email": "cfinke@gmail.com",
+            "date_joined": "2007-03-05 13:09:34"
+        }
+    },
+    {
+        "pk": 2519,
+        "model": "users.userprofile",
+        "fields": {
+            "sandboxshown": true,
+            "display_collections_fav": false,
+            "display_collections": false,
+            "averagerating": "4.09",
+            "confirmationcode": "",
+            "notifycompat": true,
+            "picture_type": "image/png",
+            "occupation": "Software Developer",
+            "homepage": "http://www.chrisfinke.com/",
+            "email": "dd+357b3dde1@davedash.com",
+            "location": "Minneapolis, MN",
+            "bio": null,
+            "firstname": "Christopher",
+            "deleted": false,
+            "lastname": "Finke",
+            "emailhidden": false,
+            "user": 2519,
+            "password": "",
+            "nickname": "cfinke",
+            "resetcode_expires": null,
+            "resetcode": "",
+            "notes": null,
+            "modified": "2010-05-07 15:22:13",
+            "created": "2007-03-05 13:09:34",
+            "notifyevents": true
+        }
+    },
+    {
+        "pk": 291,
+        "model": "applications.appversion",
+        "fields": {
+            "application": 1,
+            "version": "3.6.*",
+            "version_int": 3069900200100,
+            "created": "2007-03-05 13:09:34"
+        }
+    },
+    {
+        "pk": 268,
+        "model": "applications.appversion",
+        "fields": {
+            "application": 1,
+            "version": "3.5",
+            "version_int": 3050000200100,
+            "created": "2007-03-05 13:09:34"
+        }
+    },
+    {
+        "pk": 3719,
+        "model": "addons.addonuser",
+        "fields": {
+            "position": 0,
+            "addon": 4664,
+            "role": 5,
+            "listed": true,
+            "user": 2519
+        }
+    },
+    {
+        "pk": 77048,
+        "model": "versions.applicationsversions",
+        "fields": {
+            "application": 1,
+            "version": 104904,
+            "min": 268,
+            "max": 291
+        }
+    },
+    {
+        "pk": 318,
+        "model": "applications.appversion",
+        "fields": {
+            "version_int": 1019900200100,
+            "application": 60,
+            "version": "1.1.*",
+            "modified": null,
+            "created": "2007-03-05 13:09:34"
+        }
+    },
+    {
+        "pk": 308,
+        "model": "applications.appversion",
+        "fields": {
+            "version_int": 1000000200100,
+            "application": 60,
+            "version": "1.0",
+            "created": "2007-03-05 13:09:34"
+        }
+    },
+    {
+        "pk": 104904,
+        "model": "versions.version",
+        "fields": {
+            "license": 13,
+            "created": "2010-04-25 20:08:37",
+            "releasenotes": 1054175,
+            "approvalnotes": "",
+            "modified": "2010-04-27 14:23:48",
+            "version": "2.9.4",
+            "addon": 4664
+        }
+    },
+    {
+        "pk": 77049,
+        "model": "versions.applicationsversions",
+        "fields": {
+            "application": 60,
+            "max": 318,
+            "version": 104904,
+            "min": 308
+        }
+    },
+    {
+        "fields": {
+            "localized_string_clean": null,
+            "created": "2008-05-03 10:03:27",
+            "locale": "en-US",
+            "modified": null,
+            "id": 130761,
+            "localized_string": "TwitterBar places an icon in the address bar."
+        },
+        "model": "translations.translation",
+        "pk": 167014
+    },
+    {
+        "fields": {
+            "caption": 130761,
+            "filetype": "image/png",
+            "created": "2008-05-03 10:03:27",
+            "modified": "2008-05-03 10:03:28",
+            "thumbtype": "image/png",
+            "highlight": 1,
+            "addon": 4664
+        },
+        "model": "addons.preview",
+        "pk": 20397
+    }
+
+]
