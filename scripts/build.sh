@@ -1,5 +1,6 @@
 # This script should be called from within Hudson
 
+
 cd $WORKSPACE
 VENV=$WORKSPACE/venv
 
@@ -36,11 +37,18 @@ CACHE_BACKEND = 'caching.backends.locmem://'
 CELERY_ALWAYS_EAGER = True
 SETTINGS
 
+
 echo "Starting tests..."
 export FORCE_DB='yes sir'
-python manage.py test --noinput --logging-clear-handlers --with-xunit
-#coverage run manage.py test --noinput --logging-clear-handlers --with-xunit
-#coverage xml $(find apps lib -name '*.py')
+
+# with-coverage excludes sphinx so it doesn't conflict with real builds.
+if [[ $2 = 'with-coverage' ]]; then
+    coverage run manage.py test --noinput --logging-clear-handlers --with-xunit -a'!sphinx'
+    coverage xml $(find apps lib -name '*.py')
+else
+    python manage.py test --noinput --logging-clear-handlers --with-xunit
+fi
+
 
 echo "Building documentation..."
 cd docs
