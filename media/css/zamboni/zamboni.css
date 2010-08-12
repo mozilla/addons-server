@@ -9,6 +9,7 @@
 .article.version:after,
 .article.review:after,
 .grouped_ratings li:after,
+.bars:after,
 #review-form p:after {
     content: ".";
     display: block;
@@ -32,7 +33,6 @@ li.usertag {
 }
 
 header {
-    margin: 0 1em;
     display: block;
 }
 
@@ -2463,4 +2463,118 @@ h6.author, .author a {
 
 .collections-contributors tr:hover a {
     display: inline;
+}
+
+.collections-personas .personas-grid {
+    border: 1px solid #C9E8F3;
+    padding: 1em;
+    margin: 0 0 1em 0;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius :8px;
+    background-color: #ffffff;
+    clear:both;
+}
+
+.featured div.meta {
+    margin-top: 0;
+}
+
+.meta li {
+    line-height: 2em;
+}
+
+.followers {
+    color: #37a632;
+}
+.followers span {
+    font-weight: bold;
+}
+
+.listing-footer .delete {
+    float: right;
+    color: red;
+}
+
+.tab-wrapper .content {
+    margin: 1em;
+}
+
+.tab-wrapper .listing-footer {
+    padding-top: .5em;
+    z-index: 0;
+}
+
+table#addons-list, table#contributors-list {
+    width: 100%;
+}
+#addons-list .comments {
+    display: none;
+}
+#addons-list tr {
+    border-top: 1px dotted #A5BFCE;
+}
+#addons-list tr:hover,
+.ui-state-hover {
+    background-color: #e4f5fb;
+}
+#addons-list td, #addons-list h3 {
+    line-height: 36px;
+    margin: 0;
+    padding: 0;
+}
+#addons-list img {
+    float: left;
+    margin: 2px 1em 0 0;
+}
+.ui-autocomplete {
+    background-color: #fff;
+    border: 1px solid black;
+    width: 300px;
+    z-index: 11;
+}
+.ui-autocomplete a {
+    display: block;
+    line-height: 32px;
+}
+#addons-list a.remove,
+#addons-list a.comment,
+#contributors-list a.remove {
+    cursor: pointer;
+    display: block;
+    width: 16px;
+    height: 16px;
+    margin: 10px;
+    text-indent: -9000px;
+    background-repeat: no-repeat;
+    background-image: url(../../img/zamboni/icons/collections.png);
+}
+#addons-list a.remove,
+#contributors-list a.remove {
+    background-position: 0 -250px;
+}
+#addons-list a.remove:hover,
+#contributors-list a.remove:hover,
+.collection-admin a.delete {
+    background-position: 0 -200px;
+}
+#addons-list a.comment {
+    background-position: 0 -800px;
+}
+
+.collection-admin {
+    font-weight: bold;
+    padding: .5em 1em;
+    margin-bottom: 0;
+    display: inline-block;
+}
+.collection-admin a {
+    background-repeat: no-repeat;
+    background-image: url(../../img/zamboni/icons/collections.png);
+    margin-left: 1em;
+    white-space: nowrap;
+    padding-left: 22px;
+}
+.collection-admin a.edit {
+    background-position: 0 -300px;
 }

@@ -230,7 +230,6 @@ def ajax_new(request):
 
         if form.is_valid():
             collection = form.save()
-            CollectionUser(collection=collection, user=request.amo_user).save()
             addon_id = request.REQUEST['addon_id']
             a = Addon.objects.get(pk=addon_id)
             collection.add_addon(a)

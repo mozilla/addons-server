@@ -140,6 +140,14 @@ class Collection(amo.models.ModelBase):
         return reverse('collections.vote',
                        args=[self.author_nickname, self.slug, 'down'])
 
+    def edit_url(self):
+        return reverse('collections.edit',
+                       args=[self.author_nickname, self.slug])
+
+    def delete_url(self):
+        return reverse('collections.delete',
+                       args=[self.author_nickname, self.slug])
+
     @property
     def author_nickname(self):
         return self.author.nickname if self.author else 'anonymous'
@@ -236,7 +244,7 @@ class Collection(amo.models.ModelBase):
 
     @caching.cached_method
     def publishable_by(self, user):
-        return bool(self.users.filter(pk=user.id))
+        return bool(self.owned_by(user) or self.users.filter(pk=user.id))
 
     @staticmethod
     def transformer(collections):

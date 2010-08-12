@@ -3,13 +3,12 @@
     <input class="{{ up_class }}" value="{{ c.upvotes }}" type="submit"
            title="{{ up_title }}"/>
   </form>
-
   <form method="post" class="downvote" action="{{ down_action }}">
     <input class="{{ down_class }}" value="{{ c.downvotes }}" type="submit"
            title="{{ down_title }}">
   </form>
-  {# L10n: Link to remove a collection vote #}
   <a class="{{ cancel_class }}" href="#" title="{{ cancel_title }}">{{ _('Remove') }}</a>
+  {# L10n: Link to remove a collection vote #}
   {% if user.is_anonymous() %}
     <div class="collection-rate-dropdown install-note">
       <div class="collection-rate-login">
