@@ -34,12 +34,14 @@
   <div class="featured-inner object-lead">
     <div class="meta">
       <ul>
-        <li>{{ barometer(collection) }}</li>
-        <li class="followers">
-          {% trans p=c.subscribers, num=c.subscribers|numberfmt %}
-            <span>{{ num }}</span> follower {% pluralize %} <span>{{ num }}</span> followers
-          {% endtrans %}
-        </li>
+        {% if c.listed %}
+          <li>{{ barometer(collection) }}</li>
+          <li class="followers">
+            {% trans p=c.subscribers, num=c.subscribers|numberfmt %}
+              <span>{{ num }}</span> follower {% pluralize %} <span>{{ num }}</span> followers
+            {% endtrans %}
+          </li>
+        {% endif %}
         <li>{{ _('Updated {0}')|f(c.modified|datetime) }}</li>
         {% if perms.view_stats %}
         <li>
@@ -51,20 +53,42 @@
     </div>
     <div class='object-details'>
       <h3>{{ _('About this Collection') }}</h3>
-      {% if c.description %}
+      {% if c.type == amo.COLLECTION_FAVORITES %}
+        {{ favorites_description() }}
+      {% elif c.description %}
         <p>{{ c.description }}</p>
       {% elif c.type == amo.COLLECTION_MOBILE %}
         <p>{{ _('Add-ons synced to my Mobile Firefox using the Add-on Collector') }}</p>
       {% endif %}
-      <p class="highlight collection-admin">
-        {{ _('More Options:') }}
-        {% if c.publishable_by(user) %}
-          <a class="edit" href="{{ c.edit_url() }}">{{ _('Edit Collection') }}</a>
-          {% if collection.owned_by(user) %}
-            <a class="delete" href="{{ c.delete_url() }}">{{ _('Delete Collection') }}</a>
-          {% endif %}
-        {% endif %}
-      </p>
+      {% if c.type == amo.COLLECTION_FAVORITES and c.owned_by(amo_user) %}
+        <ul id="collection-favorites-opts">
+          <li>
+            <form method="post" action="{{ url('collections.edit_privacy', c.author_nickname, c.slug) }}">
+              {{ csrf() }}
+              <button type="submit">
+                {% if c.listed %}
+                  {{ _('Make this Collection Private') }}
+                {% else %}
+                  {{ _('Make this Collection Public') }}
+                {% endif %}
+              </button>
+            </form>
+          </li>
+          <li>
+            <a href="{{ url('pages.faq') }}#collections">
+              {{ _('Learn about collections') }}</a>
+          </li>
+        </ul>
+      {% endif %}
+      {% if c.publishable_by(amo_user) %}
+        <p class="highlight collection-admin">
+          {{ _('More Options:') }}
+            <a class="edit" href="{{ c.edit_url() }}">{{ _('Edit Collection') }}</a>
+            {% if c.owned_by(amo_user) %}
+              <a class="delete" href="{{ c.delete_url() }}">{{ _('Delete Collection') }}</a>
+            {% endif %}
+        </p>
+      {% endif %}
     </div>
   </div>
 </div>
@@ -147,3 +171,28 @@
 </div> {# secondary #}
 
 {% endblock %}
+
+{% macro favorites_description() %}
+  {% if c.owned_by(amo_user) %}
+    {% if c.listed %}
+      <p>{% trans %}
+        Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear
+        below. This collection is currently <b>public</b>, which means everyone can see it. If
+        you would like to hide it from public view, click the button below to make it
+        private.
+      {% endtrans %}</p>
+    {% else %}
+      <p>{% trans %}
+        Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below.
+        This collection is currently <b>private</b>, which means only you can see it.  If you would
+        like everyone to be able to see your favorites, click the button below to make it public.
+      {% endtrans %}</p>
+    {% endif %}
+  {% else %} {# owned-by #}
+    {% if c.description %}
+      <p>{{ c.description }}</p>
+    {% else %}
+      <p>{{ _('My favorite add-ons') }}</p>
+    {% endif %}
+  {% endif %}
+{% endmacro %}

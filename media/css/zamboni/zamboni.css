@@ -2411,6 +2411,11 @@ h6.author, .author a {
     font-size: .9em;
 }
 
+#collection-favorites-opts li {
+    display: inline-block;
+    margin-right: 1em;
+}
+
 #collections-new {
     width: 400px;
 }

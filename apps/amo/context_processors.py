@@ -1,7 +1,9 @@
 from django.conf import settings
+from django.contrib.auth.models import AnonymousUser
 from django.utils import translation
-from tower import ugettext as _
 from django.utils.http import urlquote
+
+from tower import ugettext as _
 
 import amo
 from amo.urlresolvers import reverse
@@ -62,6 +64,8 @@ def global_settings(request):
                                 'href': reverse('zadmin.home')})
 
         context['amo_user'] = request.amo_user
+    else:
+        context['amo_user'] = AnonymousUser()
 
     context.update({'account_links': account_links,
                     'settings': settings, 'amo': amo,

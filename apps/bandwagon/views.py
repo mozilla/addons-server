@@ -24,16 +24,21 @@ from . import forms
 log = commonware.log.getLogger('z.collections')
 
 
+def get_collection(request, username, slug):
+    if slug in SPECIAL_SLUGS and request.user.is_authenticated():
+        return getattr(request.amo_user, slug + '_collection')()
+    else:
+        return get_object_or_404(Collection.objects,
+                                 author__nickname=username, slug=slug)
+
+
 def owner_required(f=None, require_owner=True):
     """Requires collection to be owner, by someone."""
 
     def decorator(func):
         @functools.wraps(func)
         def wrapper(request, username, slug, *args, **kw):
-            collection = get_object_or_404(Collection,
-                                           author__nickname=username,
-                                           slug=slug)
-
+            collection = get_collection(request, username, slug)
             if acl.check_collection_ownership(request, collection,
                                               require_owner=require_owner):
                 return func(request, collection, username, slug, *args, **kw)
@@ -126,8 +131,7 @@ class CollectionAddonFilter(BaseFilter):
 
 
 def collection_detail(request, username, slug):
-    c = get_object_or_404(Collection.objects,
-                          author__nickname=username, slug=slug)
+    c = get_collection(request, username, slug)
     base = c.addons.all() & Addon.objects.listed(request.APP)
     filter = CollectionAddonFilter(request, base,
                                    key='sort', default='popular')
@@ -168,8 +172,7 @@ def get_notes(collection):
 
 @login_required
 def collection_vote(request, username, slug, direction):
-    c = get_object_or_404(Collection.objects,
-                          author__nickname=username, slug=slug)
+    c = get_collection(request, username, slug)
     if request.method != 'POST':
         return redirect(c.get_url_path())
 
@@ -257,11 +260,7 @@ def ajax_list(request):
 @login_required
 @post_required
 def collection_alter(request, username, slug, action):
-    if slug in SPECIAL_SLUGS:
-        c = getattr(request.amo_user, slug + '_collection')()
-    else:
-        c = get_object_or_404(Collection.objects,
-                              author__nickname=username, slug=slug)
+    c = get_collection(request, username, slug)
     return change_addon(request, c, action)
 
 
@@ -366,6 +365,15 @@ def edit_contributors(request, collection, username, slug):
                             args=[username, slug]))
 
     return jingo.render(request, 'bandwagon/edit_contributors.html', data)
+
+
+@login_required
+@owner_required
+@post_required
+def edit_privacy(request, collection, username, slug):
+    collection.listed = not collection.listed
+    collection.save()
+    return redirect(collection.get_url_path())
 
 
 @login_required
