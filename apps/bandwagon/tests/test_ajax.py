@@ -8,6 +8,7 @@ from bandwagon.models import Collection
 
 class AjaxTest(test_utils.TestCase):
     fixtures = ('base/apps', 'base/users', 'base/addon_3615',
+                'base/addon_5299_gcal',
                 'base/collections')
 
     def setUp(self):
@@ -41,7 +42,7 @@ class AjaxTest(test_utils.TestCase):
     def test_new_collection(self):
         num_collections = Collection.objects.all().count()
         r = self.client.post(reverse('collections.ajax_new'),
-                {'addon_id': 3615,
+                {'addon_id': 5299,
                  'name': 'foo',
                  'slug': 'auniqueone',
                  'description': 'yermom',

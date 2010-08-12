@@ -17,7 +17,7 @@ from versions.models import Version
 
 
 class TestAddonManager(amo.test_utils.ExtraSetup, test_utils.TestCase):
-    fixtures = ['addons/test_manager']
+    fixtures = ('base/addon_5299_gcal', 'addons/test_manager',)
 
     def test_featured(self):
         featured = Addon.objects.featured(amo.FIREFOX)[0]
@@ -82,15 +82,23 @@ class TestAddonManager(amo.test_utils.ExtraSetup, test_utils.TestCase):
 
 
 class TestAddonModels(amo.test_utils.ExtraSetup, test_utils.TestCase):
-    fixtures = ['base/fixtures', 'addons/featured',
-                'addons/invalid_latest_version']
+    fixtures = ('base/apps',
+                'base/users',
+                'base/addon_5299_gcal',
+                'base/addon_3615',
+                'base/addon_3723_listed',
+                'base/addon_6704_grapple.json',
+                'base/addon_4664_twitterbar',
+                'addons/featured',
+                'addons/invalid_latest_version',)
+
 
     def test_current_version(self):
         """
         Tests that we get the current (latest public) version of an addon.
         """
         a = Addon.objects.get(pk=3615)
-        eq_(a.current_version.id, 24007)
+        eq_(a.current_version.id, 81551)
 
     def test_current_version_listed(self):
         a = Addon.objects.get(pk=3723)
@@ -104,11 +112,7 @@ class TestAddonModels(amo.test_utils.ExtraSetup, test_utils.TestCase):
 
     def test_current_beta_version(self):
         a = Addon.objects.get(pk=5299)
-        eq_(a.current_beta_version.id, 78841)
-
-    def test_current_version_unreviewed(self):
-        a = Addon.objects.get(pk=55)
-        eq_(a.current_version.id, 55)
+        eq_(a.current_beta_version.id, 49515)
 
     def test_current_version_mixed_statuses(self):
         """Mixed file statuses are evil (bug 558237)."""
@@ -138,10 +142,12 @@ class TestAddonModels(amo.test_utils.ExtraSetup, test_utils.TestCase):
         a = Addon.objects.get(pk=3615)
         expected = (settings.ADDON_ICON_URL % (3615, 0)).rstrip('/0')
         assert a.icon_url.startswith(expected)
-        a = Addon.objects.get(pk=7172)
+        a = Addon.objects.get(pk=6704)
+        a.icon_type = None
         assert a.icon_url.endswith('/icons/default-theme.png'), (
                 "No match for %s" % a.icon_url)
-        a = Addon.objects.get(pk=73)
+        a = Addon.objects.get(pk=3615)
+        a.icon_type = None
         assert a.icon_url.endswith('/icons/default-addon.png')
 
     def test_thumbnail_url(self):
@@ -149,9 +155,9 @@ class TestAddonModels(amo.test_utils.ExtraSetup, test_utils.TestCase):
         Test for the actual thumbnail URL if it should exist, or the no-preview
         url.
         """
-        a = Addon.objects.get(pk=7172)
-        a.thumbnail_url.index('/previews/thumbs/25/25981.png?modified=')
-        a = Addon.objects.get(pk=73)
+        a = Addon.objects.get(pk=4664)
+        a.thumbnail_url.index('/previews/thumbs/20/20397.png?modified=')
+        a = Addon.objects.get(pk=5299)
         assert a.thumbnail_url.endswith('/icons/no-preview.png'), (
                 "No match for %s" % a.thumbnail_url)
 
@@ -195,7 +201,7 @@ class TestAddonModels(amo.test_utils.ExtraSetup, test_utils.TestCase):
 
     def test_has_eula(self):
         addon = lambda: Addon.objects.get(pk=3615)
-        assert not addon().has_eula
+        assert addon().has_eula
 
         a = addon()
         a.eula = ''
@@ -212,7 +218,7 @@ class TestAddonModels(amo.test_utils.ExtraSetup, test_utils.TestCase):
         original reviews.
         """
         addon = Addon.objects.get(id=3615)
-        u = UserProfile.objects.get(pk=2519)
+        u = UserProfile.objects.get(pk=999)
         version = addon.current_version
         new_review = Review(version=version, user=u, rating=2, body='hello',
                             addon=addon)

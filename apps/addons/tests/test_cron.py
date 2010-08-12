@@ -9,7 +9,7 @@ from files.models import File
 
 
 class CurrentVersionTestCase(test_utils.TestCase):
-    fixtures = ['base/fixtures']
+    fixtures = ('base/addon_3615',)
 
     def test_addons(self):
         Addon.objects.filter(pk=3615).update(_current_version=None)
@@ -25,7 +25,7 @@ class CurrentVersionTestCase(test_utils.TestCase):
 
 
 class TestLastUpdated(test_utils.TestCase):
-    fixtures = ['base/fixtures']
+    fixtures = ('base/addon_3615',)
 
     def test_personas(self):
         Addon.objects.update(type=amo.ADDON_PERSONA)
@@ -61,8 +61,8 @@ class TestLastUpdated(test_utils.TestCase):
         ids = Addon.objects.values_list('id', flat=True)
         cron._update_appsupport(ids)
 
-        eq_(AppSupport.objects.count(), 26)
+        eq_(AppSupport.objects.count(), 1)
 
         # Run it again to test deletes.
         cron._update_appsupport(ids)
-        eq_(AppSupport.objects.count(), 26)
+        eq_(AppSupport.objects.count(), 1)

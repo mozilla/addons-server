@@ -17,8 +17,12 @@ def get_addons(c):
 
 
 class TestCollections(test_utils.TestCase):
-    fixtures = ('base/apps', 'base/users', 'base/collections',
-                'base/addon_3615', 'bandwagon/test_models')
+    fixtures = ('base/apps',
+                'base/users',
+                'base/addon_3615',
+                'base/collections',
+                'bandwagon/test_models'
+               )
 
     def test_icon_url(self):
         c = Collection.objects.get(pk=512)

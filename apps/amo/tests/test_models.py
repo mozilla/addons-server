@@ -7,12 +7,13 @@ from addons.models import Addon
 
 
 class ManualOrderTest(TestCase):
-    fixtures = ['base/fixtures']
+    fixtures = ('base/apps', 'base/addon_3615', 'base/addon_5299_gcal',
+                'base/addon_40')
 
     def test_ordering(self):
         """Given a specific set of primary keys, assure that we return addons
         in that order."""
 
-        semi_arbitrary_order = [40, 5299, 3723, 6113]
+        semi_arbitrary_order = [40, 5299, 3615]
         addons = manual_order(Addon.objects.all(), semi_arbitrary_order)
         eq_(semi_arbitrary_order, [addon.id for addon in addons])

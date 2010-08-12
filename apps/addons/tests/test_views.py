@@ -16,13 +16,19 @@ from amo.helpers import urlparams
 from amo.urlresolvers import reverse
 from addons.models import Addon, AddonUser
 from users.models import UserProfile
+from tags.models import Tag, AddonTag
 from translations.query import order_by_translation
 
 import re
 
 
 class TestHomepage(amo.test_utils.ExtraSetup, test_utils.TestCase):
-    fixtures = ['base/fixtures', 'base/global-stats', 'base/featured']
+    fixtures = ('base/apps',
+                'base/users',
+                'base/addon_3615',
+                'base/collections',
+                'base/global-stats',
+                'base/featured')
 
     def setUp(self):
         super(TestHomepage, self).setUp()
@@ -99,7 +105,7 @@ class TestPromobox(test_utils.TestCase):
 
 
 class TestContributeInstalled(amo.test_utils.ExtraSetup, test_utils.TestCase):
-    fixtures = ['base/fixtures']
+    fixtures = ('base/apps', 'base/addon_592',)
 
     def test_no_header_block(self):
         # bug 565493, Port post-install contributions page
@@ -119,7 +125,7 @@ class TestContributeInstalled(amo.test_utils.ExtraSetup, test_utils.TestCase):
 
 
 class TestContribute(amo.test_utils.ExtraSetup, test_utils.TestCase):
-    fixtures = ['base/fixtures']
+    fixtures = ('base/apps', 'base/addon_3615', 'base/addon_592',)
 
     def test_invalid_is_404(self):
         """we get a 404 in case of invalid addon id"""
@@ -239,7 +245,8 @@ class TestContribute(amo.test_utils.ExtraSetup, test_utils.TestCase):
 
 
 class TestDeveloperPages(amo.test_utils.ExtraSetup, test_utils.TestCase):
-    fixtures = ['base/fixtures', 'addons/eula+contrib-addon', 'base/apps']
+    fixtures = ('base/apps', 'base/addon_3615', 'base/addon_592', 'base/users',
+                'addons/eula+contrib-addon',)
 
     def test_meet_the_dev_title(self):
         r = self.client.get(reverse('addons.meet', args=[592]))
@@ -263,6 +270,9 @@ class TestDeveloperPages(amo.test_utils.ExtraSetup, test_utils.TestCase):
         assert button.endswith('?src=addondetail'), button
 
     def test_contribute_multiple_devs(self):
+        a = Addon.objects.get(pk=592)
+        u = UserProfile.objects.get(pk=999)
+        AddonUser(addon=a, user=u).save()
         r = self.client.get(reverse('addons.meet', args=[592]))
         # Make sure it has multiple devs.
         assert pq(r.content)('.section-teaser')
@@ -270,8 +280,13 @@ class TestDeveloperPages(amo.test_utils.ExtraSetup, test_utils.TestCase):
 
 
 class TestDetailPage(amo.test_utils.ExtraSetup, test_utils.TestCase):
-    fixtures = ['base/fixtures', 'base/addon_59.json', 'addons/listed',
-                'addons/persona']
+    fixtures = ('base/apps',
+                'base/addon_3615',
+                'base/users',
+                'base/addon_59',
+                'base/addon_4594_a9',
+                'addons/listed',
+                'addons/persona')
 
     def test_anonymous_user(self):
         """Does the page work for an anonymous user?"""
@@ -334,7 +349,7 @@ class TestDetailPage(amo.test_utils.ExtraSetup, test_utils.TestCase):
         """Test "other add-ons by author" list."""
 
         # Grab a user and give them some add-ons.
-        u = UserProfile.objects.get(pk=2519)
+        u = UserProfile.objects.get(pk=55021)
         thisaddon = u.addons.all()[0]
         qs = Addon.objects.valid().exclude(pk=thisaddon.pk)
         other_addons = order_by_translation(qs, 'name')[:3]
@@ -391,7 +406,7 @@ class TestDetailPage(amo.test_utils.ExtraSetup, test_utils.TestCase):
 
     def test_external_urls(self):
         """Check that external URLs are properly escaped."""
-        addon = Addon.objects.get(id=1843)
+        addon = Addon.objects.get(id=3615)
         response = self.client.get(reverse('addons.detail', args=[addon.id]),
                                    follow=True)
         doc = pq(response.content)
@@ -400,15 +415,15 @@ class TestDetailPage(amo.test_utils.ExtraSetup, test_utils.TestCase):
 
     def test_other_collection_count(self):
         """Other collection count must not get negative."""
-        addon = Addon.objects.get(id=1843)
+        addon = Addon.objects.get(id=3615)
         response = self.client.get(reverse('addons.detail', args=[addon.id]),
                                    follow=True)
         assert response.context['other_collection_count'] >= 0
 
     def test_no_privacy_policy(self):
-        """Make sure privacy policy is shown when present."""
-        addon = Addon.objects.get(id=1843)
-        addon.privacy_policy = None
+        """Make sure privacy policy is not shown when not present."""
+        addon = Addon.objects.get(id=3615)
+        addon.privacy_policy_id = None
         addon.save()
         response = self.client.get(reverse('addons.detail', args=[addon.id]),
                                    follow=True)
@@ -416,7 +431,7 @@ class TestDetailPage(amo.test_utils.ExtraSetup, test_utils.TestCase):
         eq_(doc('.privacy-policy').length, 0)
 
     def test_privacy_policy(self):
-        addon = Addon.objects.get(id=1843)
+        addon = Addon.objects.get(id=3615)
         addon.privacy_policy = 'foo bar'
         addon.save()
         response = self.client.get(reverse('addons.detail', args=[addon.id]),
@@ -460,16 +475,16 @@ class TestDetailPage(amo.test_utils.ExtraSetup, test_utils.TestCase):
         """
         Make sure the list of other author addons doesn't include this one.
         """
-        r = self.client.get(reverse('addons.detail', args=[8680]))
+        r = self.client.get(reverse('addons.detail', args=[3615]))
         doc = pq(r.content)
         eq_(len([a.attrib['value'] for a
                  in doc('#addons-author-addons-select option')
-                 if a.attrib['value'] == '8680']), 0)
+                 if a.attrib['value'] == '3615']), 0)
 
         # Test "other addons" redirect functionality with valid and
         # invalid input.
         forward_to = lambda input: self.client.get(reverse(
-            'addons.detail', args=[8680]), {
+            'addons.detail', args=[3615]), {
                 'addons-author-addons-select': input})
         # Valid input.
         response = forward_to('3615')
@@ -484,6 +499,9 @@ class TestDetailPage(amo.test_utils.ExtraSetup, test_utils.TestCase):
 
     def test_remove_tag_button(self):
         self.client.login(username='regular@mozilla.com', password='password')
+        tag = Tag(tag_text='f')
+        tag.save()
+        AddonTag(addon=Addon.objects.get(pk=3615), tag=tag, user_id=999).save()
         r = self.client.get(reverse('addons.detail', args=[3615]))
         doc = pq(r.content)
         assert len(doc('#tags li input.removetag'))
@@ -538,7 +556,6 @@ class TestTagsBox(amo.test_utils.ExtraSetup, test_utils.TestCase):
 
 
 class TestEulaPolicyRedirects(test_utils.TestCase):
-    fixtures = ['base/fixtures']
 
     def test_eula_legacy_url(self):
         """

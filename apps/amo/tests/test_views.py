@@ -18,7 +18,6 @@ from amo.urlresolvers import reverse
 from amo.pyquery_wrapper import PyQuery
 from stats.models import SubscriptionEvent
 
-
 URL_ENCODED = 'application/x-www-form-urlencoded'
 
 
@@ -65,7 +64,7 @@ def test_404_app_links():
 
 
 class TestStuff(test_utils.TestCase):
-    fixtures = ['base/fixtures', 'base/global-stats', 'base/configs']
+    fixtures = ('base/users', 'base/global-stats', 'base/configs',)
 
     def test_data_anonymous(self):
         def check(expected):

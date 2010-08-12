@@ -11,7 +11,8 @@ from addons.models import Addon
 
 
 class TestHelpers(amo.test_utils.ExtraSetup, test_utils.TestCase):
-    fixtures = ['base/fixtures', 'addons/featured.json']
+    fixtures = ('base/apps', 'base/addon_3615', 'base/addon_4664_twitterbar',
+                'addons/featured.json',)
 
     def setUp(self):
         jingo.load_helpers()
@@ -60,7 +61,7 @@ class TestHelpers(amo.test_utils.ExtraSetup, test_utils.TestCase):
             'Support this add-on: Contribute $12.00')
 
     def test_contribution_box(self):
-        a = Addon.objects.get(pk=1003)
+        a = Addon.objects.get(pk=4664)
         a.suggested_amount = '12'
         s = contribution({'LANG': 'en-us', 'APP': amo.FIREFOX}, a)
         doc = PyQuery(s)

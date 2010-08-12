@@ -15,8 +15,12 @@ from users.models import UserProfile
 
 class TestHelpers(test.TestCase):
 
-    fixtures = ('base/apps', 'base/users', 'base/collections',
-                'users/test_backends',)
+    fixtures = ('base/apps',
+                'base/users',
+                'base/addon_3615',
+                'base/collections',
+                'users/test_backends',
+                )
 
     def setUp(self):
         self.client.get('/')

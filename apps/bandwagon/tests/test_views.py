@@ -128,7 +128,11 @@ class TestVotes(test_utils.TestCase):
 
 class TestCRUD(test_utils.TestCase):
     """Test the collection form."""
-    fixtures = ('base/apps', 'base/users', 'base/collections', 'base/addon_3615',)
+    fixtures = ('base/apps',
+                'base/users',
+                'base/addon_3615',
+                'base/collections',
+               )
 
     def setUp(self):
         login = self.client.login(username='admin@mozilla.com',
