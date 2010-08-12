@@ -24,17 +24,18 @@ class TestCollections(test_utils.TestCase):
                 'bandwagon/test_models'
                )
 
+    def setUp(self):
+        self.user = UserProfile.objects.create(nickname='uhhh', email='uh@hh')
+        self.other = UserProfile.objects.exclude(id=self.user.id)[0]
+
     def test_icon_url(self):
         c = Collection.objects.get(pk=512)
         assert c.icon_url.endswith('img/amo2009/icons/collection.png')
 
     def test_is_subscribed(self):
         c = Collection.objects.get(pk=512)
-        u = UserProfile()
-        u.nickname = 'unique'
-        u.save()
-        c.subscriptions.create(user=u)
-        assert c.is_subscribed(u), "User isn't subscribed to collection."
+        c.subscriptions.create(user=self.user)
+        assert c.is_subscribed(self.user)
 
     def test_translation_default(self):
         """Make sure we're getting strings from the default locale."""
@@ -47,19 +48,20 @@ class TestCollections(test_utils.TestCase):
         # make a private collection
         private = Collection(
             name="Hello", uuid="4e2a1acc-39ae-47ec-956f-46e080ac7f69",
-            listed=False)
+            listed=False, author=self.user)
         private.save()
 
         listed = Collection.objects.listed()
         eq_(len(listed), listed_count)
 
     def test_auto_uuid(self):
-        c = Collection.objects.create()
+        c = Collection.objects.create(author=self.user)
         assert c.uuid != ''
         assert isinstance(c.uuid, basestring)
 
     def test_addon_index(self):
         c = Collection.objects.get(pk=80)
+        c.author = self.user
         eq_(c.addon_index, None)
         ids = c.addons.values_list('id', flat=True)
         c.save()
@@ -67,17 +69,17 @@ class TestCollections(test_utils.TestCase):
 
     def test_synced_collection(self):
         """SyncedCollections automatically get type=sync."""
-        c = SyncedCollection.objects.create()
+        c = SyncedCollection.objects.create(author=self.user)
         eq_(c.type, amo.COLLECTION_SYNCHRONIZED)
 
     def test_recommended_collection(self):
         """RecommendedCollections automatically get type=rec."""
-        c = RecommendedCollection.objects.create()
+        c = RecommendedCollection.objects.create(author=self.user)
         eq_(c.type, amo.COLLECTION_RECOMMENDED)
 
     def test_set_addons(self):
         addons = list(Addon.objects.values_list('id', flat=True))
-        c = Collection.objects.create()
+        c = Collection.objects.create(author=self.user)
 
         # Check insert.
         random.shuffle(addons)
@@ -96,25 +98,44 @@ class TestCollections(test_utils.TestCase):
         eq_(c.addons.count(), len(addons))
 
     def test_publishable_by(self):
-        c = Collection()
-        u = UserProfile(nickname='f')
-        c.save()
-        u.save()
-        CollectionUser(collection=c, user=u).save()
-        eq_(c.publishable_by(u), True)
+        c = Collection.objects.create(author=self.other)
+        CollectionUser(collection=c, user=self.user).save()
+        eq_(c.publishable_by(self.user), True)
 
     def test_collection_meta(self):
-        c = Collection.objects.create()
+        c = Collection.objects.create(author=self.user)
         eq_(c.addon_count, 0)
         c.add_addon(Addon.objects.all()[0])
         c = Collection.objects.get(id=c.id)
         assert not c.from_cache
         eq_(c.addon_count, 1)
 
+    def test_favorites_slug(self):
+        c = Collection.objects.create(author=self.user, slug='favorites')
+        eq_(c.type, amo.COLLECTION_NORMAL)
+        eq_(c.slug, 'favorites~')
+
+        c = Collection.objects.create(author=self.user, slug='favorites')
+        eq_(c.type, amo.COLLECTION_NORMAL)
+        eq_(c.slug, 'favorites~-1')
+
+    def test_slug_dupe(self):
+        c = Collection.objects.create(author=self.user, slug='boom')
+        eq_(c.slug, 'boom')
+        c.save()
+        eq_(c.slug, 'boom')
+        c = Collection.objects.create(author=self.user, slug='boom')
+        eq_(c.slug, 'boom-1')
+        c = Collection.objects.create(author=self.user, slug='boom')
+        eq_(c.slug, 'boom-2')
+
 
 class TestRecommendations(test_utils.TestCase):
     fixtures = ['base/addon-recs']
     ids = [5299, 1843, 2464, 7661, 5369]
+
+    def setUp(self):
+        self.user = UserProfile.objects.create(nickname='uhhh', email='uh@hh')
 
     def expected_recs(self):
         scores, ranked = [], {}
@@ -133,7 +154,7 @@ class TestRecommendations(test_utils.TestCase):
         eq_(recs, self.expected_recs())
 
     def test_get_recommendations(self):
-        c = Collection.objects.create()
+        c = Collection.objects.create(author=self.user)
         c.set_addons(self.ids)
         recs = c.get_recommendations()
         eq_(recs.type, amo.COLLECTION_RECOMMENDED)

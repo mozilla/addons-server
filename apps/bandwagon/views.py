@@ -17,11 +17,10 @@ from addons.models import Addon
 from addons.views import BaseFilter
 from tags.models import Tag
 from translations.query import order_by_translation
-from .models import Collection, CollectionAddon, CollectionUser, CollectionVote
+from .models import (Collection, CollectionAddon, CollectionUser,
+                     CollectionVote, SPECIAL_SLUGS)
 from . import forms
 
-
-SPECIAL_COLLECTIONS = ['mobile', 'favorites']
 log = commonware.log.getLogger('z.collections')
 
 
@@ -258,7 +257,7 @@ def ajax_list(request):
 @login_required
 @post_required
 def collection_alter(request, username, slug, action):
-    if slug in SPECIAL_COLLECTIONS:
+    if slug in SPECIAL_SLUGS:
         c = getattr(request.amo_user, slug + '_collection')()
     else:
         c = get_object_or_404(Collection.objects,

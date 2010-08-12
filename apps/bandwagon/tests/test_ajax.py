@@ -4,6 +4,7 @@ from pyquery import PyQuery as pq
 
 from amo.urlresolvers import reverse
 from bandwagon.models import Collection
+from users.models import UserProfile
 
 
 class AjaxTest(test_utils.TestCase):
@@ -12,9 +13,10 @@ class AjaxTest(test_utils.TestCase):
                 'base/collections')
 
     def setUp(self):
-        status = self.client.login(username='clouserw@gmail.com',
-                                   password='yermom')
-        assert status, "Didn't log in."
+        assert self.client.login(username='clouserw@gmail.com',
+                                 password='yermom')
+        self.user = UserProfile.objects.get(email='clouserw@gmail.com')
+        self.other = UserProfile.objects.exclude(id=self.user.id)[0]
 
     def test_list_collections(self):
         r = self.client.get(reverse('collections.ajax_list')
@@ -54,7 +56,7 @@ class AjaxTest(test_utils.TestCase):
 
     def test_add_other_collection(self):
         "403 when you try to add to a collection that isn't yours."
-        c = Collection()
+        c = Collection(author=self.other)
         c.save()
 
         r = self.client.post(reverse('collections.ajax_add'),
@@ -63,7 +65,7 @@ class AjaxTest(test_utils.TestCase):
 
     def test_remove_other_collection(self):
         "403 when you try to add to a collection that isn't yours."
-        c = Collection()
+        c = Collection(author=self.other)
         c.save()
 
         r = self.client.post(reverse('collections.ajax_remove'),

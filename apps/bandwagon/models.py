@@ -20,6 +20,12 @@ from users.models import UserProfile
 from translations.fields import TranslatedField, LinkifiedField
 
 
+SPECIAL_SLUGS = {
+    'mobile': amo.COLLECTION_MOBILE,
+    'favorites': amo.COLLECTION_FAVORITES,
+}
+
+
 class TopTags(object):
     """Descriptor to manage a collection's top tags in cache."""
 
@@ -108,6 +114,7 @@ class Collection(amo.models.ModelBase):
 
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'collections'
+        unique_together = (('author', 'slug'),)
 
     def __unicode__(self):
         return u'%s (%s)' % (self.name, self.addon_count)
@@ -117,6 +124,7 @@ class Collection(amo.models.ModelBase):
             self.uuid = unicode(uuid.uuid4())
         if not self.slug:
             self.slug = self.uuid[:30]
+        self.clean_slug()
 
         # Maintain our index of add-on ids.
         if self.id:
@@ -124,6 +132,21 @@ class Collection(amo.models.ModelBase):
             self.addon_index = self.make_index(ids)
 
         super(Collection, self).save(**kw)
+
+    def clean_slug(self):
+        if (self.slug in SPECIAL_SLUGS and
+            self.type != SPECIAL_SLUGS[self.slug]):
+            self.slug += '~'
+        if not self.author:
+            return
+        qs = self.author.collections.using('default')
+        slugs = dict((slug, id) for slug, id in qs.values_list('slug', 'id'))
+        if self.slug in slugs and slugs[self.slug] != self.id:
+            for idx in range(len(slugs)):
+                new = '%s-%s' % (self.slug, idx + 1)
+                if new not in slugs:
+                    self.slug = new
+                    return
 
     def get_url_path(self):
         if settings.NEW_COLLECTIONS:

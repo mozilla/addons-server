@@ -145,24 +145,3 @@ def collections_add_slugs():
                 c.slug = 'collection'
             c.save(force_update=True)
             task_log.info(u'%s. %s => %s' % (next(cnt), c.name, c.slug))
-
-    # Uniquify slug names by user.
-    cursor = connections[multidb.get_slave()].cursor()
-    dupes = cursor.execute("""
-        SELECT user_id, slug FROM (
-            SELECT user_id, slug, COUNT(1) AS cnt
-            FROM collections c INNER JOIN collections_users cu
-              ON c.id = cu.collection_id
-            GROUP BY user_id, slug) j
-        WHERE j.cnt > 1""")
-    task_log.info('Uniquifying %s (user, slug) pairs' % dupes)
-    cnt = itertools.count()
-    for user, slug in cursor.fetchall():
-        q = Collection.objects.filter(slug=slug, collectionuser__user=user)
-        # Skip the first one since it's unique without any appendage.
-        for idx, c in enumerate(q[1:]):
-            # Give enough space for appending a two-digit number.
-            slug = c.slug[:max_length - 3]
-            c.slug = u'%s-%s' % (slug, idx + 1)
-            c.save(force_update=True)
-            task_log.info(u'%s. %s => %s' % (next(cnt), slug, c.slug))

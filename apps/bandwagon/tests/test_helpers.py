@@ -24,14 +24,12 @@ class TestHelpers(test.TestCase):
 
     def setUp(self):
         self.client.get('/')
+        self.user = UserProfile.objects.create(nickname='uniq', email='uniq')
 
     def test_collection_favorite(self):
         c = {}
-        u = UserProfile()
-        u.nickname = 'unique'
-        u.save()
         c['request'] = Mock()
-        c['request'].amo_user = u
+        c['request'].amo_user = self.user
         collection = Collection.objects.get(pk=80)
 
         # Not subscribed yet.
@@ -39,7 +37,7 @@ class TestHelpers(test.TestCase):
         eq_(doc('button').text(), u'Add to Favorites')
 
         # Subscribed.
-        collection.subscriptions.create(user=u)
+        collection.subscriptions.create(user=self.user)
         doc = pq(collection_favorite(c, collection))
         eq_(doc('button').text(), u'Remove from Favorites')
 
@@ -66,9 +64,9 @@ class TestHelpers(test.TestCase):
             reverse('collections.vote', args=['clouserw', 'mccrackin', 'up']))
 
     def test_user_collection_list(self):
-        c1 = Collection.objects.create(
+        c1 = Collection.objects.create(author=self.user,
             uuid='eb4e3cd8-5cf1-4832-86fb-a90fc6d3765c')
-        c2 = Collection.objects.create(
+        c2 = Collection.objects.create(author=self.user,
             uuid='61780943-e159-4206-8acd-0ae9f63f294c',
             nickname='my_collection')
         heading = 'My Heading'
