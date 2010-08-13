@@ -7,12 +7,15 @@
     {{ form.name.label|safe }}
     {{ form.name|safe }}
   </p>
+  {% if not (collection and
+             collection.type in amo.COLLECTION_SPECIAL_SLUGS.keys()) %}
   <p>
     {{ form.errors['slug']|safe }}
     {{ form.slug.label|safe }}
     {{ url('collections.user', amo_user.nickname)|absolutify -}}
     {{ form.slug|safe }}
   </p>
+  {% endif %}
   <p>
     {{ form.description.label|safe }} {{ _('(optional)') }}
     {{ form.description|safe }}

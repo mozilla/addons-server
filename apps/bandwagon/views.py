@@ -25,7 +25,7 @@ log = commonware.log.getLogger('z.collections')
 
 
 def get_collection(request, username, slug):
-    if (slug in SPECIAL_SLUGS and request.user.is_authenticated()
+    if (slug in SPECIAL_SLUGS.values() and request.user.is_authenticated()
         and request.amo_user.nickname == username):
         return getattr(request.amo_user, slug + '_collection')()
     else:

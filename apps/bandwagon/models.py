@@ -19,11 +19,7 @@ from applications.models import Application
 from users.models import UserProfile
 from translations.fields import TranslatedField, LinkifiedField
 
-
-SPECIAL_SLUGS = {
-    'mobile': amo.COLLECTION_MOBILE,
-    'favorites': amo.COLLECTION_FAVORITES,
-}
+SPECIAL_SLUGS = amo.COLLECTION_SPECIAL_SLUGS
 
 
 class TopTags(object):
@@ -139,11 +135,20 @@ class Collection(amo.models.ModelBase):
         super(Collection, self).save(**kw)
 
     def clean_slug(self):
-        if (self.slug in SPECIAL_SLUGS and
-            self.type != SPECIAL_SLUGS[self.slug]):
+        if self.type == amo.COLLECTION_FAVORITES:
+            self.slug = SPECIAL_SLUGS[amo.COLLECTION_FAVORITES]
+            return
+
+        if self.type == amo.COLLECTION_MOBILE:
+            self.slug = SPECIAL_SLUGS[amo.COLLECTION_MOBILE]
+            return
+
+        if self.slug in SPECIAL_SLUGS.values():
             self.slug += '~'
+
         if not self.author:
             return
+
         qs = self.author.collections.using('default')
         slugs = dict((slug, id) for slug, id in qs.values_list('slug', 'id'))
         if self.slug in slugs and slugs[self.slug] != self.id:

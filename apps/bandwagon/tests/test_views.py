@@ -269,9 +269,7 @@ class TestCRUD(test_utils.TestCase):
         eq_(r.status_code, 200)
 
     def test_edit_post(self):
-        """
-        Test edit of collection.
-        """
+        """Test edit of collection."""
         self.client.post(self.add_url, self.data, follow=True)
         url = reverse('collections.edit',
                       args=['admin', 'pornstar'])
@@ -353,6 +351,32 @@ class TestCRUD(test_utils.TestCase):
         doc = pq(r.content)
         eq_(len(doc('#collection-delete-link')), 0)
 
+
+    def test_form_uneditable_slug(self):
+        """
+        Editing a mobile or favorite collection should have an uneditable slug.
+        """
+        u = UserProfile.objects.get(nickname='admin')
+        Collection(author=u, slug='mobile', type=amo.COLLECTION_MOBILE).save()
+        url = reverse('collections.edit', args=['admin', 'mobile'])
+        r = self.client.get(url, follow=True)
+        doc = pq(r.content)
+        eq_(len(doc('#id_slug')), 0)
+
+    def test_form_uneditable_slug_submit(self):
+        """
+        Ignore the slug request change, if some jackass thinks he can change
+        it.
+        """
+        u = UserProfile.objects.get(nickname='admin')
+        Collection(author=u, slug='mobile', type=amo.COLLECTION_MOBILE).save()
+        url = reverse('collections.edit', args=['admin', 'mobile'])
+        r = self.client.post(url,
+                             {'name': 'HALP', 'slug': 'halp', 'listed': True},
+                             follow=True)
+
+        assert not Collection.objects.filter(slug='halp', author=u)
+        assert Collection.objects.filter(slug='mobile', author=u)
 
 class TestChangeAddon(test_utils.TestCase):
     fixtures = ['users/test_backends']
@@ -440,3 +464,5 @@ class TestChangeAddon(test_utils.TestCase):
                              follow=True)
         self.assertRedirects(r, reverse('collections.detail',
                                         args=['jbalogh', 'mobile']))
+
+
