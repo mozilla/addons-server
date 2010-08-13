@@ -75,6 +75,9 @@ class HubPromo(amo.models.ModelBase):
     def __unicode__(self):
         return unicode(self.heading)
 
+    def flush_urls(self):
+        return ['*/developers*']
+
 
 class HubEvent(amo.models.ModelBase):
     name = models.CharField(max_length=255, default='')
@@ -87,6 +90,9 @@ class HubEvent(amo.models.ModelBase):
 
     def __unicode__(self):
         return self.name
+
+    def flush_urls(self):
+        return ['*/developers*']
 
 
 class AddonLog(models.Model):

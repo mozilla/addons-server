@@ -64,7 +64,7 @@ class Review(amo.models.ModelBase):
                 '*/addon/%d/reviews/' % self.addon_id,
                 '*/addon/%d/reviews/format:rss' % self.addon_id,
                 '*/addon/%d/reviews/%d/' % (self.addon_id, self.id),
-                '*/user/%d/' % self.user.id, ]
+                '*/user/%d/' % self.user_id, ]
         return urls
 
     @classmethod

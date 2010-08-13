@@ -203,7 +203,8 @@ class Addon(amo.models.ModelBase):
     def flush_urls(self):
         urls = ['*/addon/%d/' % self.id,  # Doesn't take care of api
                 '*/addon/%d/developers/' % self.id,
-                '*/addon/%d/reviews/' % self.id,
+                '*/addon/%d/eula/*' % self.id,
+                '*/addon/%d/privacy/' % self.id,
                 '*/addon/%d/versions/*' % self.id,
                 '*/api/*/addon/%d' % self.id,
                 # TODO(clouserw) preview images
@@ -500,6 +501,17 @@ class Persona(caching.CachingMixin, models.Model):
     def __unicode__(self):
         return unicode(self.addon.name)
 
+    def flush_urls(self):
+        urls = ['*/addon/%d/' % self.addon_id,
+                '*/api/*/addon/%d' % self.addon_id,
+                self.thumb_url,
+                self.icon_url,
+                self.preview_url,
+                self.header_url,
+                self.footer_url, ]
+
+        return urls
+
     def _image_url(self, filename, ssl=True):
         base_url = (settings.PERSONAS_IMAGE_URL_SSL if ssl else
                     settings.PERSONAS_IMAGE_URL)
@@ -526,6 +538,14 @@ class Persona(caching.CachingMixin, models.Model):
         return self._image_url('preview_large.jpg')
 
     @amo.cached_property
+    def header_url(self):
+        return self._image_url(self.header, ssl=False)
+
+    @amo.cached_property
+    def footer_url(self):
+        return self._image_url(self.footer, ssl=False)
+
+    @amo.cached_property
     def json_data(self):
         """Persona JSON Data for Browser/extension preview."""
         hexcolor = lambda color: '#%s' % color
@@ -539,10 +559,10 @@ class Persona(caching.CachingMixin, models.Model):
                          addon.all_categories else ''),
             'author': self.author,
             'description': addon.description,
-            'header': self._image_url(self.header, ssl=False),
-            'footer': self._image_url(self.footer, ssl=False),
-            'headerURL': self._image_url(self.header, ssl=False),
-            'footerURL': self._image_url(self.footer, ssl=False),
+            'header': self.header_url,
+            'footer': self.footer_url,
+            'headerURL': self.header_url,
+            'footerURL': self.footer_url,
             'previewURL': self.preview_url,
             'iconURL': self.icon_url,
         }, separators=(',', ':'), cls=JSONEncoder)
@@ -559,6 +579,11 @@ class AddonCategory(caching.CachingMixin, models.Model):
     class Meta:
         db_table = 'addons_categories'
         unique_together = ('addon', 'category')
+
+    def flush_urls(self):
+        urls = ['*/addon/%d/' % self.addon_id,
+                '*%s' % self.category.get_url_path(), ]
+        return urls
 
     @classmethod
     def creatured(cls):
@@ -669,6 +694,9 @@ class AddonUser(caching.CachingMixin, models.Model):
     class Meta:
         db_table = 'addons_users'
 
+    def flush_urls(self):
+        return self.addon.flush_urls() + self.user.flush_urls()
+
 
 class BlacklistedGuid(amo.models.ModelBase):
     guid = models.CharField(max_length=255, unique=True)
@@ -699,6 +727,10 @@ class Category(amo.models.ModelBase):
 
     def __unicode__(self):
         return unicode(self.name)
+
+    def flush_urls(self):
+        urls = ['*%s' % self.get_url_path(), ]
+        return urls
 
     def get_url_path(self):
         try:
@@ -759,6 +791,12 @@ class Preview(amo.models.ModelBase):
     class Meta:
         db_table = 'previews'
         ordering = ('-highlight', 'created')
+
+    def flush_urls(self):
+        urls = ['*/addon/%d/' % self.addon_id,
+                self.thumbnail_url,
+                self.image_url, ]
+        return urls
 
     def _image_url(self, thumb=True):
         if self.modified is not None:

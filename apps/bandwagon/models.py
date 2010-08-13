@@ -119,6 +119,11 @@ class Collection(amo.models.ModelBase):
     def __unicode__(self):
         return u'%s (%s)' % (self.name, self.addon_count)
 
+    def flush_urls(self):
+        urls = ['*%s' % self.get_url_path(),
+                self.icon_url,]
+        return urls
+
     def save(self, **kw):
         if not self.uuid:
             self.uuid = unicode(uuid.uuid4())
@@ -305,6 +310,11 @@ class CollectionAddon(amo.models.ModelBase):
         db_table = 'addons_collections'
         unique_together = (('addon', 'collection'),)
 
+    def flush_urls(self):
+        urls = ['*/addon/%d/' % self.addon_id,
+                '*%s' % self.collection.get_url_path(),]
+        return urls
+
 
 class CollectionAddonRecommendation(models.Model):
     collection = models.ForeignKey(Collection, null=True)
@@ -390,6 +400,10 @@ class CollectionSubscription(amo.models.ModelBase):
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'collection_subscriptions'
 
+    def flush_urls(self):
+        urls = ['*/user/%d/' % self.user_id,]
+        return urls
+
 
 class CollectionUser(models.Model):
     collection = models.ForeignKey(Collection)
@@ -409,6 +423,10 @@ class CollectionVote(models.Model):
 
     class Meta:
         db_table = 'collections_votes'
+
+    def flush_urls(self):
+        urls = ['*%s' % self.collection.get_url_path(),]
+        return urls
 
     @staticmethod
     def post_save_or_delete(sender, instance, **kwargs):

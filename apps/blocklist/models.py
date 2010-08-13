@@ -16,6 +16,9 @@ class BlocklistApp(amo.models.ModelBase):
     def __unicode__(self):
         return '%s: %s - %s' % (self.guid, self.min, self.max)
 
+    def flush_urls(self):
+        return ['/blocklist*']  # no lang/app
+
 
 class BlocklistItem(amo.models.ModelBase):
     guid = models.CharField(max_length=255, blank=True, null=True)
@@ -29,6 +32,9 @@ class BlocklistItem(amo.models.ModelBase):
 
     def __unicode__(self):
         return '%s: %s - %s' % (self.guid, self.min, self.max)
+
+    def flush_urls(self):
+        return ['/blocklist*']  # no lang/app
 
 
 class BlocklistPlugin(amo.models.ModelBase):
@@ -48,3 +54,6 @@ class BlocklistPlugin(amo.models.ModelBase):
     def __unicode__(self):
         return '%s: %s - %s' % (self.name or self.guid or self.filename,
                                     self.min, self.max)
+
+    def flush_urls(self):
+        return ['/blocklist*']  # no lang/app

@@ -32,6 +32,9 @@ class Version(amo.models.ModelBase):
     def __unicode__(self):
         return self.version
 
+    def flush_urls(self):
+        return self.addon.flush_urls()
+
     @amo.cached_property(writable=True)
     def compatible_apps(self):
         """Get a mapping of {APP: ApplicationVersion}."""

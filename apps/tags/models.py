@@ -33,6 +33,11 @@ class Tag(amo.models.ModelBase):
     def get_url_path(self):
         return reverse('tags.detail', args=[self.tag_text])
 
+    def flush_urls(self):
+        urls = ['*/tag/%s' % self.tag_text, ]
+
+        return urls
+
 
 class TagStat(amo.models.ModelBase):
     tag = models.OneToOneField(Tag, primary_key=True)
@@ -49,3 +54,9 @@ class AddonTag(amo.models.ModelBase):
 
     class Meta:
         db_table = 'users_tags_addons'
+
+    def flush_urls(self):
+        urls = ['*/addon/%d/' % self.addon_id,
+                '*/tag/%s' % self.tag.tag_text, ]
+
+        return urls

@@ -88,6 +88,11 @@ class UserProfile(amo.models.ModelBase):
     def get_url_path(self):
         return reverse('users.profile', args=[self.id])
 
+    def flush_urls(self):
+        urls = ['*/user/%d/' % self.id]
+
+        return urls
+
     @amo.cached_property
     def addons_listed(self):
         """Public add-ons this user is listed as author of."""
@@ -229,7 +234,6 @@ class UserProfile(amo.models.ModelBase):
         qs = CollectionAddon.objects.filter(
             collection__author=user, collection__type=amo.COLLECTION_MOBILE)
         user.mobile_addons = qs.values_list('addon', flat=True)
-
 
 
 class BlacklistedNickname(amo.models.ModelBase):
