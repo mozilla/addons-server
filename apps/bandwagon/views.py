@@ -25,7 +25,8 @@ log = commonware.log.getLogger('z.collections')
 
 
 def get_collection(request, username, slug):
-    if slug in SPECIAL_SLUGS and request.user.is_authenticated():
+    if (slug in SPECIAL_SLUGS and request.user.is_authenticated()
+        and request.amo_user.nickname == username):
         return getattr(request.amo_user, slug + '_collection')()
     else:
         return get_object_or_404(Collection.objects,
@@ -132,6 +133,8 @@ class CollectionAddonFilter(BaseFilter):
 
 def collection_detail(request, username, slug):
     c = get_collection(request, username, slug)
+    if not (c.listed or acl.check_collection_ownership(request, c)):
+        return http.HttpResponseForbidden()
     base = c.addons.all() & Addon.objects.listed(request.APP)
     filter = CollectionAddonFilter(request, base,
                                    key='sort', default='popular')

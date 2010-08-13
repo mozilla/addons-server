@@ -8,6 +8,7 @@ from addons.models import Addon
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
 from bandwagon.models import Collection, CollectionVote, CollectionUser
+from users.models import UserProfile
 
 
 class TestViews(test_utils.TestCase):
@@ -54,12 +55,49 @@ class TestViews(test_utils.TestCase):
         tests = [
             ('/collections/mine', 301,
              reverse('collections.user', args=['jbalogh'])),
-            # TODO(jbalogh): uncomment when we have favorites.
-            #('/collections/favorites/', 301,
-             #reverse('collections.detail', args=['jbalogh', 'favorites'])),
+            ('/collections/favorites/', 301,
+             reverse('collections.detail', args=['jbalogh', 'favorites'])),
         ]
         for test in tests:
             self.check_response(*test)
+
+
+class TestPrivacy(test_utils.TestCase):
+    fixtures = ['users/test_backends']
+
+    def setUp(self):
+        # The favorites collection is created automatically.
+        self.url = reverse('collections.detail', args=['jbalogh', 'favorites'])
+        self.client.login(username='jbalogh@mozilla.com', password='foo')
+        eq_(self.client.get(self.url).status_code, 200)
+        self.client.logout()
+        self.c = Collection.objects.get(slug='favorites',
+                                        author__nickname='jbalogh')
+
+    def test_owner(self):
+        self.client.login(username='jbalogh@mozilla.com', password='foo')
+        eq_(self.client.get(self.url).status_code, 200)
+
+    def test_private(self):
+        self.client.logout()
+        self.client.login(username='fligtar@gmail.com', password='foo')
+        eq_(self.client.get(self.url).status_code, 403)
+
+    def test_public(self):
+        # Make it public, others can see it.
+        eq_(self.client.get(self.url).status_code, 403)
+        self.c.listed = True
+        self.c.save()
+        eq_(self.client.get(self.url).status_code, 200)
+
+    def test_publisher(self):
+        self.c.listed = False
+        self.c.save()
+        eq_(self.client.get(self.url).status_code, 403)
+        u = UserProfile.objects.get(email='fligtar@gmail.com')
+        CollectionUser.objects.create(collection=self.c, user=u)
+        self.client.login(username='fligtar@gmail.com', password='foo')
+        eq_(self.client.get(self.url).status_code, 200)
 
 
 class TestVotes(test_utils.TestCase):
