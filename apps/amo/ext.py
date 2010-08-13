@@ -10,13 +10,13 @@ class FragmentCacheExtension(caching.ext.FragmentCacheExtension):
     def process_cache_arguments(self, args):
         args.append(nodes.Getattr(nodes.ContextReference(), 'request', 'load'))
 
-    def _cache_support(self, name, obj, timeout, request, caller):
+    def _cache_support(self, name, obj, timeout, extra, request, caller):
         if isinstance(request, jinja2.runtime.Undefined):
             key = name
         else:
             key = '%s:%s' % (name, request.APP.id)
         sup = super(FragmentCacheExtension, self)._cache_support
-        return sup(key, obj, timeout, caller)
+        return sup(key, obj, timeout, extra, caller)
 
 
 cache = FragmentCacheExtension

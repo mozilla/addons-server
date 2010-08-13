@@ -17,7 +17,7 @@ importlib==1.0.2
 django-pylibmc==0.2.1
 
 -e git://github.com/jbalogh/django-multidb-router.git#egg=django-multidb-router
--e git://github.com/jbalogh/django-cache-machine.git@c8af0214#egg=django-cache-machine
+-e git://github.com/jbalogh/django-cache-machine.git@89ce18eb8fa#egg=django-cache-machine
 -e git://github.com/jbalogh/jingo.git#egg=jingo
 -e git://github.com/jsocol/jingo-minify.git#egg=jingo-minify
 -e git://github.com/jsocol/bleach.git#egg=bleach

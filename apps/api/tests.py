@@ -92,6 +92,16 @@ class APITest(TestCase):
     fixtures = ('base/apps', 'base/addon_3615', 'base/addon_4664_twitterbar',
                 'base/addon_5299_gcal', )
 
+    def test_api_caching(self):
+        response = self.client.get('/en-US/firefox/api/1.5/addon/3615')
+        eq_(response.status_code, 200)
+        self.assertContains(response, '<author id="')
+
+        # Make sure we don't cache the 1.5 response for 1.2.
+        response = self.client.get('/en-US/firefox/api/1.2/addon/3615')
+        eq_(response.status_code, 200)
+        self.assertContains(response, '<author>')
+
     def test_redirection(self):
         """
         Test that /api/addon is redirected to /api/LATEST_API_VERSION/addon

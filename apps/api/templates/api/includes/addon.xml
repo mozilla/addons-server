@@ -1,4 +1,4 @@
-{% cache addon %}
+{% cache addon, extra=[api_version] %}
 <addon id="{{ addon.id }}">
   <name>{{ addon.name }}</name>
   <type id="{{ addon.type }}">{{ amo.ADDON_TYPE[addon.type] }}</type>
