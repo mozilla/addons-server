@@ -7,10 +7,9 @@ import commonware.log
 from tower import ugettext as _
 
 import amo
-from addons.models import Addon
 from translations.widgets import TranslationTextInput, TranslationTextarea
 from users.models import UserProfile
-from .models import Collection, CollectionAddon, CollectionUser
+from .models import Collection, CollectionUser
 from . import tasks
 
 privacy_choices = (
@@ -23,6 +22,7 @@ collection_types = ((k, v) for k, v in amo.COLLECTION_CHOICES.iteritems()
 
 
 log = commonware.log.getLogger('z.collections')
+
 
 class AdminForm(forms.Form):
     application = forms.TypedChoiceField(choices=apps, required=False,
@@ -42,6 +42,7 @@ class AddonsForm(forms.Form):
     addon = forms.CharField(widget=forms.MultipleHiddenInput, required=False)
     addon_comment = forms.CharField(widget=forms.MultipleHiddenInput,
                                      required=False)
+
     def clean_addon(self):
         return self.data.getlist('addon')
 
@@ -76,8 +77,8 @@ class ContributorsForm(forms.Form):
         collection.collectionuser_set.all().delete()
         for user in self.cleaned_data['contributor']:
             CollectionUser(collection=collection, user=user).save()
-            log.debug('%s was added to Collection %s' % (user.nickname,
-                                                         collection.id))
+            log.info('%s was added to Collection %s' % (user.nickname,
+                                                        collection.id))
 
         new_owner = self.cleaned_data['new_owner']
 
@@ -99,8 +100,8 @@ class ContributorsForm(forms.Form):
             # New owner is no longer a contributor.
             collection.collectionuser_set.filter(user=new_owner).delete()
 
-            log.debug('%s now owns Collection %s' % (new_owner.nickname,
-                                                     collection.id))
+            log.info('%s now owns Collection %s' % (new_owner.nickname,
+                                                    collection.id))
 
 
 class CollectionForm(forms.ModelForm):

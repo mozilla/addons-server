@@ -17,7 +17,7 @@ from addons.models import Addon
 from addons.views import BaseFilter
 from tags.models import Tag
 from translations.query import order_by_translation
-from .models import (Collection, CollectionAddon, CollectionUser,
+from .models import (Collection, CollectionAddon,
                      CollectionVote, SPECIAL_SLUGS)
 from . import forms
 
@@ -208,9 +208,9 @@ def add(request):
         aform = forms.AddonsForm(request.POST)
         if form.is_valid():
             collection = form.save()
-
             if aform.is_valid():
                 aform.save(collection)
+            log.info('Created collection %s' % collection.id)
             return http.HttpResponseRedirect(collection.get_url_path())
         else:
             data['addons'] = aform.clean_addon()
@@ -235,7 +235,7 @@ def ajax_new(request):
             addon_id = request.REQUEST['addon_id']
             a = Addon.objects.get(pk=addon_id)
             collection.add_addon(a)
-
+            log.info('Created collection %s' % collection.id)
             return http.HttpResponseRedirect(reverse('collections.ajax_list')
                                              + '?addon_id=%s' % addon_id)
 
@@ -274,6 +274,8 @@ def change_addon(request, collection, action):
         return http.HttpResponseBadRequest()
 
     getattr(collection, action + '_addon')(addon)
+    log.info('%s: %s %s to collection %s' %
+             (request.amo_user, action, addon.id, collection.id))
 
     if request.is_ajax():
         url = '%s?addon_id=%s' % (reverse('collections.ajax_list'), addon.id)
@@ -301,7 +303,8 @@ def edit(request, collection, username, slug):
                                     instance=collection)
         if form.is_valid():
             collection = form.save()
-
+            log.info('%s edited collection %s' %
+                     (request.amo_user, collection.id))
             return http.HttpResponseRedirect(collection.get_url_path())
     else:
         form = forms.CollectionForm(instance=collection)
@@ -320,6 +323,8 @@ def edit_addons(request, collection, username, slug):
         form = forms.AddonsForm(request.POST)
         if form.is_valid():
             form.save(collection)
+            log.info('%s added add-ons to %s' %
+                     (request.amo_user, collection.id))
             return http.HttpResponseRedirect(collection.get_url_path())
 
     collection_addons = collection.collectionaddon_set.all()
@@ -373,6 +378,8 @@ def edit_contributors(request, collection, username, slug):
 def edit_privacy(request, collection, username, slug):
     collection.listed = not collection.listed
     collection.save()
+    log.info('%s changed privacy on collection %s' %
+             (request.amo_user, collection.id))
     return redirect(collection.get_url_path())
 
 
@@ -382,8 +389,8 @@ def delete(request, username, slug):
                                    slug=slug)
 
     if not acl.check_collection_ownership(request, collection, True):
-        log.debug('%s is trying to delete collection %s'
-                  % (request.amo_user, collection.id))
+        log.info('%s is trying to delete collection %s'
+                 % (request.amo_user, collection.id))
         return http.HttpResponseForbidden(
                 _('This is not the collection you are looking for.'))
 
@@ -392,8 +399,8 @@ def delete(request, username, slug):
     if request.method == 'POST':
         if request.POST['sure'] == '1':
             collection.delete()
-            log.debug('%s deleted collection %s' % (request.amo_user,
-                                                    collection.id))
+            log.info('%s deleted collection %s' %
+                     (request.amo_user, collection.id))
             url = reverse('collections.user', args=[username])
             return http.HttpResponseRedirect(url)
         else:
