@@ -177,6 +177,12 @@
     <dt>{{ _('How much do add-ons cost to purchase?') }}</dt>
     <dd>{{ _('Add-ons hosted in our gallery are free unless clearly marked 
     otherwise.') }}</dd>
+    
+    <dt>{{ _('What does it mean when an add-on asks for contributions?') }}</dt>
+    <dd>{{ _('Some add-on authors request users who enjoy an add-on to
+        contribute to its development by making a monetary donation. These
+        contributions go directly to the developer unless a third party is
+        indicated, such as the non-profit Mozilla Foundation.') }}</dd>
 
     <dt id="beta-addons">{{ _('What are beta add-ons?') }}</dt>
     <dd>
@@ -191,11 +197,7 @@
         Mozilla and may harm your computer.{% endtrans %}</p>
     </dd>
 
-    <dt>{{ _('What is a collection?') }}</dt>
-    <dd>{{ _('Collections are groups of related add-ons created by users to 
-    share.') }}</dd>
-
-    <dt>{{ _('How do I report an inappropirate or spam user review?') }}</dt>
+    <dt>{{ _('How do I report an inappropriate or spam user review?') }}</dt>
     <dd>{{ _('To report a user review of an add-on, log in with your account 
     and visit the add-on\'s reviews page. Find the review you wish to report, 
     click "Report this review" and select a reason. Our editorial team will 
@@ -204,6 +206,50 @@
     <dt>{{ _('How do I report a bug or contact the Mozilla Add-ons team?') }}</dt>
     <dd>{% trans contact_url=remora_url('developers/docs/policies/contact') %}
         Please visit our <a href="{{ contact_url }}">Contact page</a>.{% endtrans %}</dd>
+
+</dl>
+
+<h3 id="collections">{{ _('Collections and Favorites') }}</h3>
+<dl class="faq">
+
+    <dt>{{ _('What is a collection?') }}</dt>
+    <dd>{{ _('Collections are groups of related add-ons created by users to 
+    share.') }}</dd>
+    
+    <dt>{{ _('What is the My Favorites collection?') }}</dt>
+    <dd>{{ _('Favorite add-ons are add-ons that you have bookmarked to easily get back to later. You can add an add-on to your favorites collection by clicking "Add to favorites" on its details page.') }}</dd>
+    
+    <dt>{{ _('What is the Add-on Collector?') }}</dt>
+    <dd>{% trans collector_url=remora_url('pages/collector'),
+           collector_faq=remora_url('pages/collector_faq') %}
+        The <a href="{{ collector_url }}">Add-on Collector</a> is an add-on 
+        that helps you stay connected to your watched collections and manage 
+        the add-ons in your own collections. It can also automatically publish 
+        to a collection. <a href="{{ collector_url }}">Learn more</a> or visit 
+        the <a href="{{ collector_faq }}">Collector FAQ</a>.
+        {% endtrans %}</dd>
+
+</dl>
+
+<h3 id="add-to-mobile">{{ _('Mobile Add-ons') }}</h3>
+<dl class="faq">
+
+    <dt>{{ _('What are mobile add-ons?') }}</dt>
+    <dd>{% trans mobile_url="http://www.mozilla.com/mobile",
+           gallery_url=locale_url('mobile') %}
+        Mobile add-ons work with <a href="{{ mobile_url }}">Firefox for 
+        Mobile</a> and add or modify functionality just like desktop add-ons. 
+        You can find add-ons that work with Firefox for Mobile in our 
+        <a href="{{ gallery_url }}">gallery</a>.{% endtrans %}</dd>
+
+    <dt>{{ _('Can I install add-ons on my mobile device from my desktop?') }}</dt>
+    <dd>{% trans collector_url=url('addons.detail', 11950),
+           gallery_url=locale_url('mobile') %}
+        Yes! Just head over to the <a href="{{ gallery_url }}">mobile gallery</a>
+        on your desktop and use the Add to Mobile buttons. Then install the 
+        <a href="{{ collector_url }}">Add-on Collector</a> on your mobile device and 
+        it will sync the add-ons you've selected to your mobile device.
+        {% endtrans %}</dd>
 
 </dl>
 
