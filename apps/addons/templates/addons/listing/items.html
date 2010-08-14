@@ -1,10 +1,11 @@
 {% from "addons/listing/macros.html" import heading, item_info %}
-{% cache addons %}
+{% set collection = collection or None %}
+{% cache addons, extra=[collection] %}
 {% for addon in addons %}
   <div class="item">
-    {{ heading(addon) }}
+    {{ heading(addon, collection=collection) }}
     <div class="item-info">
-      {{ install_button(addon) }}
+      {{ install_button(addon, collection=collection) }}
       {{ item_info(addon, amo, show_added_date) }}
     </div>
     <blockquote>
