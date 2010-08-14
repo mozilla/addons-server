@@ -4,7 +4,7 @@ from django import forms
 from django.conf import settings
 
 import commonware.log
-from tower import ugettext as _
+from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
 from translations.widgets import TranslationTextInput, TranslationTextarea
@@ -13,8 +13,8 @@ from .models import Collection, CollectionUser
 from . import tasks
 
 privacy_choices = (
-        (False, _('Only I can view this collection.')),
-        (True, _('Anybody can view this collection.')))
+        (False, _lazy('Only I can view this collection.')),
+        (True, _lazy('Anybody can view this collection.')))
 
 apps = ((a.id, a.pretty) for a in amo.APP_USAGE)
 collection_types = ((k, v) for k, v in amo.COLLECTION_CHOICES.iteritems()
@@ -41,7 +41,7 @@ class AddonsForm(forms.Form):
 
     addon = forms.CharField(widget=forms.MultipleHiddenInput, required=False)
     addon_comment = forms.CharField(widget=forms.MultipleHiddenInput,
-                                     required=False)
+                                    required=False)
 
     def clean_addon(self):
         return self.data.getlist('addon')
@@ -107,22 +107,22 @@ class ContributorsForm(forms.Form):
 class CollectionForm(forms.ModelForm):
 
     name = forms.CharField(
-            label=_('Give your collection a name.'),
+            label=_lazy('Give your collection a name.'),
             widget=TranslationTextInput,
             )
-    slug = forms.CharField(label=_('URL:'))
+    slug = forms.CharField(label=_lazy('URL:'))
     description = forms.CharField(
-            label=_('Describe your collections.'),
+            label=_lazy('Describe your collections.'),
             widget=TranslationTextarea,
             required=False)
     listed = forms.ChoiceField(
-            label=_('Who can view your collection?'),
+            label=_lazy('Who can view your collection?'),
             widget=forms.RadioSelect,
             choices=privacy_choices,
             initial=True,
             )
 
-    icon = forms.FileField(label=_('Give your collection an icon.'),
+    icon = forms.FileField(label=_lazy('Give your collection an icon.'),
                            required=False)
 
     def clean_description(self):
