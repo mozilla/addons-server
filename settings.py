@@ -386,8 +386,10 @@ SPHINX_PORT = 3312
 JAVA_BIN = '/usr/bin/java'
 
 # File paths
+ADDON_ICONS_PATH = UPLOADS_PATH + '/addon_icons'
+COLLECTIONS_ICON_PATH = UPLOADS_PATH + '/collection_icons'
+PREVIEWS_PATH = UPLOADS_PATH + '/previews'
 USERPICS_PATH = UPLOADS_PATH + '/userpics'
-COLLECTIONS_ICON_PATH = UPLOADS_PATH + '/addon_icons'
 
 # URL paths
 # paths for images, e.g. mozcdn.com/amo or '/static'
