@@ -13,70 +13,70 @@
 <h3 id="using-addons">{{ _('Using Add-ons') }}</h3>
 <dl class="faq">
     <dt>{{ _('What is an add-on?') }}</dt>
-    <dd>{% trans app_name=request.APP.pretty, 
+    <dd>{% trans app_name=request.APP.pretty,
            learnmore_url="http://support.mozilla.com/kb/Customizing+Firefox+with+add-ons" %}
-        Add-ons are small pieces of software that add new features or 
-        functionality to your installation of {{ app_name }}. Add-ons can 
-        augment {{ app_name }} with new features, foreign language 
+        Add-ons are small pieces of software that add new features or
+        functionality to your installation of {{ app_name }}. Add-ons can
+        augment {{ app_name }} with new features, foreign language
         dictionaries, or change its visual appearance. Through add-ons, you can
-        customize {{ app_name }} to meet your needs and tastes. 
+        customize {{ app_name }} to meet your needs and tastes.
         <a href="{{ learnmore_url }}">Learn more about customization</a>
         {% endtrans %}</dd>
 
     <dt>{{ _('Will add-ons work with my web browser or application?') }}</dt>
-    <dd>{% trans getfirefox_url="http://getfirefox.com", 
+    <dd>{% trans getfirefox_url="http://getfirefox.com",
            getthunderbird_url="http://getthunderbird.com",
            getmobile_url="http://firefox.com/mobile",
            getseamonkey_url="http://getseamonkey.com" %}
-        Add-ons listed in this gallery only work with Mozilla-based 
-        applications, such as <a href="{{ getfirefox_url }}">Firefox</a>, 
-        <a href="{{ getmobile_url }}">Firefox Mobile</a>, 
-        <a href="{{ getseamonkey_url }}">SeaMonkey</a>, and 
-        <a href="{{ getthunderbird_url }}">Thunderbird</a>. However, not all 
-        add-ons work with each of those applications or every version of those 
-        applications. Each add-on specifies which applications and versions it 
-        works with, such as Firefox 2.0 - 3.6.*. For Firefox add-ons, the 
+        Add-ons listed in this gallery only work with Mozilla-based
+        applications, such as <a href="{{ getfirefox_url }}">Firefox</a>,
+        <a href="{{ getmobile_url }}">Firefox Mobile</a>,
+        <a href="{{ getseamonkey_url }}">SeaMonkey</a>, and
+        <a href="{{ getthunderbird_url }}">Thunderbird</a>. However, not all
+        add-ons work with each of those applications or every version of those
+        applications. Each add-on specifies which applications and versions it
+        works with, such as Firefox 2.0 - 3.6.*. For Firefox add-ons, the
         install buttons will indicate whether the add-on is compatible or not.
         {% endtrans %}</dd>
 
      <dt>{{ _('What are the different types of add-ons?') }}</dt>
      <dd>{% trans app_name=request.APP.pretty %}
-        There are several kinds of add-ons that customize {{ app_name }} in 
+        There are several kinds of add-ons that customize {{ app_name }} in
         different ways:{% endtrans %}
         <ul>
-            <li>{% trans app_name=request.APP.pretty, 
+            <li>{% trans app_name=request.APP.pretty,
                    browse_url=url('browse.extensions') %}
-                <strong><a href="{{ browse_url }}">Extensions</a></strong> add 
-                new features to {{ app_name }} or modify existing 
-                functionality. There are extensions that allow you to block 
-                advertisements, download videos from websites, integrate more 
+                <strong><a href="{{ browse_url }}">Extensions</a></strong> add
+                new features to {{ app_name }} or modify existing
+                functionality. There are extensions that allow you to block
+                advertisements, download videos from websites, integrate more
                 closely with social websites, and add features you see in other
                 applications. {% endtrans %}</li>
-            <li>{% trans app_name=request.APP.pretty, 
+            <li>{% trans app_name=request.APP.pretty,
                    browse_url=url('browse.themes') %}
-                <strong><a href="{{ browse_url }}">Themes</a></strong> change 
-                the entire appearance of {{ app_name }}, usually including 
+                <strong><a href="{{ browse_url }}">Themes</a></strong> change
+                the entire appearance of {{ app_name }}, usually including
                 icons, colors, dialogs, and other visual styles.
                 {% endtrans %}</li>
-            <li>{% trans app_name=request.APP.pretty, 
+            <li>{% trans app_name=request.APP.pretty,
                    browse_url=url('browse.personas') %}
-                <strong><a href="{{ browse_url }}">Personas</a></strong> are  
+                <strong><a href="{{ browse_url }}">Personas</a></strong> are
                 lightweight themes that use background images to customize
                 your {{ app_name }} toolbars.{% endtrans %}</li>
-            <li>{% trans app_name=request.APP.pretty, 
+            <li>{% trans app_name=request.APP.pretty,
                    browse_url=url('browse.search-tools') %}
                 <strong><a href="{{ browse_url }}">Search Providers</a>
-                </strong> add additional choices to the search box dropdown. 
+                </strong> add additional choices to the search box dropdown.
                 These providers allow you to quickly search any website.
                 {% endtrans %}</li>
-            <li>{% trans app_name=request.APP.pretty, 
+            <li>{% trans app_name=request.APP.pretty,
                    browse_url=url('browse.language-tools') %}
-                <strong><a href="{{ browse_url }}">Dictionaries & Language 
-                Packs</a></strong> add support for additional languages to 
+                <strong><a href="{{ browse_url }}">Dictionaries & Language
+                Packs</a></strong> add support for additional languages to
                 {{ app_name }}.{% endtrans %}</li>
-            <li>{% trans app_name=request.APP.pretty, 
+            <li>{% trans app_name=request.APP.pretty,
                    browse_url=remora_url('browse/type:7') %}
-            <strong><a href="{{ browse_url }}">Plugins</a></strong> help 
+            <strong><a href="{{ browse_url }}">Plugins</a></strong> help
             {{ app_name }} display or understand different types of media, such
             as Adobe Flash or Apple Quicktime.{% endtrans %}</li>
         </ul>
@@ -87,70 +87,70 @@
            extension_url="http://support.mozilla.com/kb/Using+extensions+with+Firefox",
            theme_url="http://support.mozilla.com/kb/Using+themes+with+Firefox",
            troubleshooting_url="http://support.mozilla.com/kb/Unable+to+install+add-ons" %}
-        In most cases, add-ons can be installed by simply clicking the install 
-        button provided. Add-ons can be managed, disabled, or uninstalled from 
-        the Add-ons Manager in {{ app_name }}. For more detailed instructions, 
-        read <a href="{{ extension_url }}">this article on extensions</a> or 
-        <a href="{{ theme_url }}">this one for themes and Personas</a>. If you 
-        have difficulty installing add-ons, see 
-        <a href="{{ troubleshooting_url }}">Troubleshooting Extensions and 
+        In most cases, add-ons can be installed by simply clicking the install
+        button provided. Add-ons can be managed, disabled, or uninstalled from
+        the Add-ons Manager in {{ app_name }}. For more detailed instructions,
+        read <a href="{{ extension_url }}">this article on extensions</a> or
+        <a href="{{ theme_url }}">this one for themes and Personas</a>. If you
+        have difficulty installing add-ons, see
+        <a href="{{ troubleshooting_url }}">Troubleshooting Extensions and
         Themes</a>.{% endtrans %}</dd>
 
     <dt>{{ _('How do I keep add-ons up-to-date?') }}</dt>
     <dd>{% trans plugincheck_url="http://www.mozilla.com/plugincheck/",
            plugin_url="http://support.mozilla.com/kb/Using+plugins+with+Firefox"  %}
-        Add-ons, unlike plugins, are automatically checked for updates once 
-        every day. In Firefox 4, updates will automatically be installed by 
-        default. Prior versions of Firefox and other applications will alert 
-        you that updates to your add-ons are available. 
-        <a href="{{ plugin_url }}">Plugins</a> are not currently automatically 
-        checked for updates, so be sure to regularly visit the 
-        <a href="{{ plugincheck_url }}">Plugin Check</a> page to stay 
+        Add-ons, unlike plugins, are automatically checked for updates once
+        every day. In Firefox 4, updates will automatically be installed by
+        default. Prior versions of Firefox and other applications will alert
+        you that updates to your add-ons are available.
+        <a href="{{ plugin_url }}">Plugins</a> are not currently automatically
+        checked for updates, so be sure to regularly visit the
+        <a href="{{ plugincheck_url }}">Plugin Check</a> page to stay
         up-to-date.{% endtrans %}</dd>
 
     <dt>{{ _('Are add-ons safe to install?') }}</dt>
     <dd>{% trans learnmore_url="http://blog.mozilla.com/addons/2010/02/15/the-add-on-review-process-and-you/" %}
-        Unless clearly marked otherwise, add-ons available from this gallery 
-        have been checked and approved by Mozilla's team of editors and are 
-        safe to install. We recommend that you only install approved add-ons. 
-        If you wish to install unapproved add-ons or add-ons from third-party 
-        websites, use caution as these add-ons may harm your computer or 
-        violate your privacy. <a href="{{ learnmore_url }}">Learn more about 
+        Unless clearly marked otherwise, add-ons available from this gallery
+        have been checked and approved by Mozilla's team of editors and are
+        safe to install. We recommend that you only install approved add-ons.
+        If you wish to install unapproved add-ons or add-ons from third-party
+        websites, use caution as these add-ons may harm your computer or
+        violate your privacy. <a href="{{ learnmore_url }}">Learn more about
         our approval process</a>{% endtrans %}</dd>
 
 
-    <dt>{% trans app_name=request.APP.pretty %}Can add-ons make 
+    <dt>{% trans app_name=request.APP.pretty %}Can add-ons make
     {{ app_name }} slower?{% endtrans %}</dt>
     <dd>{% trans app_name=request.APP.pretty %}
-        Most add-ons do not cause a perceivable performance decrease in 
-        {{ app_name }}, though installing an excessive number may have adverse 
-        effects. If you suspect an add-on is causing {{ app_name }} to be slow, 
-        try disabling it. Add-ons that cause large start-up performance issues 
+        Most add-ons do not cause a perceivable performance decrease in
+        {{ app_name }}, though installing an excessive number may have adverse
+        effects. If you suspect an add-on is causing {{ app_name }} to be slow,
+        try disabling it. Add-ons that cause large start-up performance issues
         will have warning messages on their details page.{% endtrans %}</dd>
 
-    <dt>{% trans app_name=request.APP.pretty %}{{ app_name }} told me an 
+    <dt>{% trans app_name=request.APP.pretty %}{{ app_name }} told me an
     add-on isn't compatible. Is there a way I can still use it?
     {% endtrans %}</dt>
-    <dd>{% trans app_name=request.APP.pretty, 
+    <dd>{% trans app_name=request.APP.pretty,
            acr_url=url('addons.detail', 15003) + '?src=external-amofaq' %}
-        If an add-on isn't compatible with your version of {{ app_name }}, it 
-        is usually either because your version of {{ app_name }} is outdated 
-        or the add-on author has not yet updated the add-on to be compatible 
-        with a newer version you are using. Mozilla does not recommend trying 
-        to circumvent these compatibility checks, as they can lead to browser 
-        instability or in some cases loss of data. For users who are testing 
-        out alpha or beta versions of Firefox, we offer the 
-        <a href="{{ acr_url }}">Add-on Compatibility Reporter</a> to help 
+        If an add-on isn't compatible with your version of {{ app_name }}, it
+        is usually either because your version of {{ app_name }} is outdated
+        or the add-on author has not yet updated the add-on to be compatible
+        with a newer version you are using. Mozilla does not recommend trying
+        to circumvent these compatibility checks, as they can lead to browser
+        instability or in some cases loss of data. For users who are testing
+        out alpha or beta versions of Firefox, we offer the
+        <a href="{{ acr_url }}">Add-on Compatibility Reporter</a> to help
         add-on developers update their compatibility.{% endtrans %}</dd>
 
     <dt>{{ _('What if I have problems with an add-on?') }}</dt>
     <dd>{% trans app_name=request.APP.pretty,
            troubleshooting_url="http://support.mozilla.com/kb/Troubleshooting+extensions+and+themes" %}
-        Add-ons are usually created by third-party developers from around the 
-        world, so the best way to get help with an add-on is to look for 
+        Add-ons are usually created by third-party developers from around the
+        world, so the best way to get help with an add-on is to look for
         support links on the add-on's homepage or contact the developer. If you
-        are having issues with {{ app_name }} that you suspect are related to 
-        add-ons you have installed, <a href="{{ troubleshooting_url }}">visit 
+        are having issues with {{ app_name }} that you suspect are related to
+        add-ons you have installed, <a href="{{ troubleshooting_url }}">visit
         this support article</a> for troubleshooting tips.{% endtrans %}</dd>
 
 </dl>
@@ -158,26 +158,26 @@
 
 <h3 id="gallery">{{ _('Add-on Gallery') }}</h3>
 <dl class="faq">
-    <dt>{{ _('How do I choose between add-ons that seem to do the same 
+    <dt>{{ _('How do I choose between add-ons that seem to do the same
     thing?') }}</dt>
-    <dd>{{ _('There are often several add-ons that have similar features. To 
-    figure out which is right for you, read the entire description of the 
+    <dd>{{ _('There are often several add-ons that have similar features. To
+    figure out which is right for you, read the entire description of the
     add-on and view its screenshots. If there are still several in the running,
-    read through the add-on\'s ratings, user reviews, and statistics to see 
-    which is most liked by other users. Remember that you can also just try 
+    read through the add-on\'s ratings, user reviews, and statistics to see
+    which is most liked by other users. Remember that you can also just try
     out both and see which you like better.') }}</dd>
 
     <dt>{{ _('What if I can\'t find an add-on I\'m looking for?') }}</dt>
     <dd>{% trans forum_url="https://forums.addons.mozilla.org/viewforum.php?f=28" %}
-         With thousands of add-ons available, there's something for everyone. 
-         But if you're looking for a particular add-on and can't find it, you 
-         might try searching on other sites or posting about it in our 
+         With thousands of add-ons available, there's something for everyone.
+         But if you're looking for a particular add-on and can't find it, you
+         might try searching on other sites or posting about it in our
          <a href="{{ forum_url }}">Add-on Ideas</a> forum.{% endtrans %}</dd>
 
     <dt>{{ _('How much do add-ons cost to purchase?') }}</dt>
-    <dd>{{ _('Add-ons hosted in our gallery are free unless clearly marked 
+    <dd>{{ _('Add-ons hosted in our gallery are free unless clearly marked
     otherwise.') }}</dd>
-    
+
     <dt>{{ _('What does it mean when an add-on asks for contributions?') }}</dt>
     <dd>{{ _('Some add-on authors request users who enjoy an add-on to
         contribute to its development by making a monetary donation. These
@@ -186,21 +186,21 @@
 
     <dt id="beta-addons">{{ _('What are beta add-ons?') }}</dt>
     <dd>
-        <p>{{ _('Beta add-ons are unreviewed versions which represent the 
+        <p>{{ _('Beta add-ons are unreviewed versions which represent the
         latest work of an add-on author. While different authors have different
-        standards for beta code quality, you should assume that these add-ons 
+        standards for beta code quality, you should assume that these add-ons
         are less stable than the general add-on releases.') }}</p>
-        <p>{% trans %}Please note that when you install an add-on from the 
-        "Beta Version" section of an add-on's listing, you will continue to 
-        receive updates for that add-on as they become available. Like the 
-        initial version you installed, all beta releases are unreviewed by 
+        <p>{% trans %}Please note that when you install an add-on from the
+        "Beta Version" section of an add-on's listing, you will continue to
+        receive updates for that add-on as they become available. Like the
+        initial version you installed, all beta releases are unreviewed by
         Mozilla and may harm your computer.{% endtrans %}</p>
     </dd>
 
     <dt>{{ _('How do I report an inappropriate or spam user review?') }}</dt>
-    <dd>{{ _('To report a user review of an add-on, log in with your account 
-    and visit the add-on\'s reviews page. Find the review you wish to report, 
-    click "Report this review" and select a reason. Our editorial team will 
+    <dd>{{ _('To report a user review of an add-on, log in with your account
+    and visit the add-on\'s reviews page. Find the review you wish to report,
+    click "Report this review" and select a reason. Our editorial team will
     investigate the review and take appropriate action.') }}</dd>
 
     <dt>{{ _('How do I report a bug or contact the Mozilla Add-ons team?') }}</dt>
@@ -213,19 +213,18 @@
 <dl class="faq">
 
     <dt>{{ _('What is a collection?') }}</dt>
-    <dd>{{ _('Collections are groups of related add-ons created by users to 
-    share.') }}</dd>
-    
+    <dd>{{ _('Collections are groups of related add-ons created by users to share.') }}</dd>
+
     <dt>{{ _('What is the My Favorites collection?') }}</dt>
     <dd>{{ _('Favorite add-ons are add-ons that you have bookmarked to easily get back to later. You can add an add-on to your favorites collection by clicking "Add to favorites" on its details page.') }}</dd>
-    
+
     <dt>{{ _('What is the Add-on Collector?') }}</dt>
     <dd>{% trans collector_url=remora_url('pages/collector'),
            collector_faq=remora_url('pages/collector_faq') %}
-        The <a href="{{ collector_url }}">Add-on Collector</a> is an add-on 
-        that helps you stay connected to your watched collections and manage 
-        the add-ons in your own collections. It can also automatically publish 
-        to a collection. <a href="{{ collector_url }}">Learn more</a> or visit 
+        The <a href="{{ collector_url }}">Add-on Collector</a> is an add-on
+        that helps you stay connected to your watched collections and manage
+        the add-ons in your own collections. It can also automatically publish
+        to a collection. <a href="{{ collector_url }}">Learn more</a> or visit
         the <a href="{{ collector_faq }}">Collector FAQ</a>.
         {% endtrans %}</dd>
 
@@ -237,17 +236,17 @@
     <dt>{{ _('What are mobile add-ons?') }}</dt>
     <dd>{% trans mobile_url="http://www.mozilla.com/mobile",
            gallery_url=locale_url('mobile') %}
-        Mobile add-ons work with <a href="{{ mobile_url }}">Firefox for 
-        Mobile</a> and add or modify functionality just like desktop add-ons. 
-        You can find add-ons that work with Firefox for Mobile in our 
+        Mobile add-ons work with <a href="{{ mobile_url }}">Firefox for
+        Mobile</a> and add or modify functionality just like desktop add-ons.
+        You can find add-ons that work with Firefox for Mobile in our
         <a href="{{ gallery_url }}">gallery</a>.{% endtrans %}</dd>
 
     <dt>{{ _('Can I install add-ons on my mobile device from my desktop?') }}</dt>
     <dd>{% trans collector_url=url('addons.detail', 11950),
            gallery_url=locale_url('mobile') %}
         Yes! Just head over to the <a href="{{ gallery_url }}">mobile gallery</a>
-        on your desktop and use the Add to Mobile buttons. Then install the 
-        <a href="{{ collector_url }}">Add-on Collector</a> on your mobile device and 
+        on your desktop and use the Add to Mobile buttons. Then install the
+        <a href="{{ collector_url }}">Add-on Collector</a> on your mobile device and
         it will sync the add-ons you've selected to your mobile device.
         {% endtrans %}</dd>
 
@@ -256,14 +255,14 @@
 <h3 id="developers">{{ _('Developer Topics') }}</h3>
 <p>{% trans faq_url=remora_url('pages/developer_faq'),
       hub_url=remora_url('developers') %}
-    Please see our <a href="{{ faq_url }}">Developer FAQ</a> and 
-    <a href="{{ hub_url }}">Developer Hub</a> for answers to add-on 
+    Please see our <a href="{{ faq_url }}">Developer FAQ</a> and
+    <a href="{{ hub_url }}">Developer Hub</a> for answers to add-on
     developer-related questions.{% endtrans %}</p>
 
 <h3>Still have questions?</h3>
 <p>{% trans sumo_url="http://support.mozilla.com", forum_url="https://forums.addons.mozilla.org" %}
-    For general Firefox support, visit our <a href="{{ sumo_url }}">support 
-    website</a>. For general add-on and website questions, visit our 
+    For general Firefox support, visit our <a href="{{ sumo_url }}">support
+    website</a>. For general add-on and website questions, visit our
     <a href="{{ forum_url }}">forum</a>.{% endtrans %}</p>
 
 </div>
