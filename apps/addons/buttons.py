@@ -21,10 +21,12 @@ def install_button(context, addon, version=None, show_eula=True,
     app, lang = context['APP'], context['LANG']
     show_eula = bool(request.GET.get('eula', show_eula))
     src = src or context.get('src') or request.GET.get('src', '')
-    collection = (collection or context.get('collection')
-                  or request.GET.get('collection')
-                  or request.GET.get('collection_id')
-                  or request.GET.get('collection_uuid'))
+    collection = ((collection.uuid if hasattr(collection, 'uuid') else None)
+                   or collection
+                   or context.get('collection')
+                   or request.GET.get('collection')
+                   or request.GET.get('collection_id')
+                   or request.GET.get('collection_uuid'))
     button = install_button_factory(addon, app, lang, version,
                                     show_eula, show_contrib, show_warning,
                                     src, collection, size, detailed)
@@ -170,7 +172,7 @@ class InstallButton(object):
         if self.src:
             url = urlparams(url, src=self.src)
         if self.collection:
-            url = urlparams(url, collection=self.collection.uuid)
+            url = urlparams(url, collection=self.collection)
         return url
 
 

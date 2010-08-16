@@ -144,6 +144,11 @@ class TestButtonSetup(ButtonTest):
         b = self.get_button(collection='ee')
         eq_(b.collection, 'ee')
 
+        c = Mock()
+        c.uuid = 'ff'
+        b = self.get_button(collection=c)
+        eq_(b.collection, 'ff')
+
 
 class TestButton(ButtonTest):
     """Tests for the InstallButton class."""
