@@ -8,7 +8,7 @@ from users.models import UserProfile
 
 task_log = commonware.log.getLogger('z.task')
 
-@task(rate_limit='20/m')
+@task(rate_limit='40/m')
 def _delete_users(data, **kw):
     """Feed me a list of user ids you want to delete from the database.  This
     isn't a flag, it actually deletes rows."""
