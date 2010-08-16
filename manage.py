@@ -52,6 +52,9 @@ setup_environ(settings)
 # pylint: disable-msg=W0611
 import log_settings
 
+import djcelery
+djcelery.setup_loader()
+
 
 if __name__ == "__main__":
     execute_manager(settings)

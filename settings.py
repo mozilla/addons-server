@@ -264,7 +264,7 @@ INSTALLED_APPS = (
     'cake',
 
     # Third party apps
-    'celery',
+    'djcelery',
     'django_nose',
     'piston',
 
