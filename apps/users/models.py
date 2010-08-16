@@ -41,7 +41,8 @@ def create_password(algorithm, raw_password):
 class UserManager(amo.models.ManagerBase):
 
     def request_user(self):
-        return self.transform(UserProfile.request_user_transformer)
+        return (self.extra(select={'request': 1})
+                .transform(UserProfile.request_user_transformer))
 
 
 class UserProfile(amo.models.ModelBase):

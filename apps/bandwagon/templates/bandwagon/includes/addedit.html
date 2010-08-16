@@ -10,7 +10,7 @@
   <p>
     {{ form.errors['slug']|safe }}
     {{ form.slug.label|safe }}
-    {{ url('collections.user', user.get_profile().nickname)|absolutify -}}
+    {{ url('collections.user', amo_user.nickname)|absolutify -}}
     {{ form.slug|safe }}
   </p>
   <p>
