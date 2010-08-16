@@ -257,5 +257,11 @@ class PersonaAuthor(unicode):
     """Stub user until the persona authors get imported."""
 
     @property
+    def id(self):
+        """I don't want to change code depending on PersonaAuthor.id, so I'm
+        just hardcoding 0.  The only code using this is flush_urls."""
+        return 0
+
+    @property
     def display_name(self):
         return self

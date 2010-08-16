@@ -170,7 +170,7 @@ class InstallButton(object):
         if self.src:
             url = urlparams(url, src=self.src)
         if self.collection:
-            url = urlparams(url, collection_id=self.collection.uuid)
+            url = urlparams(url, collection=self.collection.uuid)
         return url
 
 
