@@ -7,6 +7,7 @@ import commonware.log
 from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
+from amo.utils import slug_validator
 from happyforms import Form, ModelForm
 from translations.widgets import TranslationTextInput, TranslationTextarea
 from users.models import UserProfile
@@ -147,11 +148,12 @@ class CollectionForm(ModelForm):
         return description
 
     def clean_slug(self):
-        author = self.initial['author']
         slug = self.cleaned_data['slug']
+        slug_validator(slug)
         if self.instance and self.instance.slug == slug:
             return slug
 
+        author = self.initial['author']
         if author.collections.filter(slug=slug).count():
             raise forms.ValidationError(
                     _('This url is already in use by another collection'))

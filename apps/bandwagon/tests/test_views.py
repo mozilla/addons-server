@@ -1,6 +1,7 @@
+# -*- coding: utf-8 -*-
 from django.utils.datastructures import MultiValueDict
 
-from mock import patch
+from mock import patch, Mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 import test_utils
@@ -19,6 +20,21 @@ def test_addons_form():
     f = forms.AddonsForm(MultiValueDict({'addon': [''],
                                          'addon_comment': ['comment']}))
     eq_(f.is_valid(), True)
+
+
+def test_collections_form_bad_slug():
+    f = forms.CollectionForm(dict(slug=' ', listed=True, name='  '))
+    assert 'slug' in f.errors
+    assert 'name' in f.errors
+
+
+def test_collections_form_unicode_slug():
+    u = Mock()
+    u.collections.filter.return_value.count.return_value = False
+    f = forms.CollectionForm(dict(slug=u'Ελλην', listed=True, name='  '),
+                             initial=dict(author=u))
+    assert 'name' in f.errors
+    assert 'slug' not in f.errors
 
 
 class TestViews(amo.test_utils.ExtraSetup, test_utils.TestCase):

@@ -3,12 +3,14 @@ import operator
 import random
 import re
 import time
+import unicodedata
 import urllib
 import urlparse
 
 from django.conf import settings
 from django.core import paginator
 from django.core.serializers import json
+from django.core.validators import ValidationError, validate_slug
 from django.core.mail import send_mail as django_send_mail
 from django.utils.functional import Promise
 from django.utils.encoding import smart_str, smart_unicode
@@ -197,9 +199,27 @@ def randslice(qs, limit, exclude=None):
     return slice_
 
 
-slug_re = re.compile('[^\w\s-]', re.UNICODE)
+def slugify(s, ok='-'):
+    rv = []
+    for c in smart_unicode(s):
+        cat = unicodedata.category(c)[0]
+        if cat in 'LN' or c in ok:
+            rv.append(c)
+        if cat == 'Z': # space
+            rv.append(' ')
+    return re.sub('[-\s]+', '-', ''.join(rv).strip().lower())
 
 
-def slugify(s):
-    s = slug_re.sub('', smart_unicode(s)).strip().lower()
-    return re.sub('[-\s]+', '-', s)
+def slug_validator(s, ok='-'):
+    """
+    Raise an error if the string has any punctuation characters.
+
+    Regexes don't work here because they won't check alnums in the right
+    locale.
+    """
+    # L and N signify letter/number.
+    # http://www.unicode.org/reports/tr44/tr44-4.html#GC_Values_Table
+    if not all(unicodedata.category(c)[0] in 'LN' or c in ok
+               for c in smart_unicode(s)):
+        raise ValidationError(validate_slug.message,
+                              code=validate_slug.code)

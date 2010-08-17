@@ -14,7 +14,7 @@ import amo
 import amo.models
 from amo.utils import sorted_groupby
 from amo.urlresolvers import reverse
-from addons.models import Addon, AddonCategory, AddonRecommendation
+from addons.models import Addon, AddonRecommendation
 from applications.models import Application
 from users.models import UserProfile
 from translations.fields import TranslatedField, LinkifiedField
@@ -117,7 +117,7 @@ class Collection(amo.models.ModelBase):
 
     def flush_urls(self):
         urls = ['*%s' % self.get_url_path(),
-                self.icon_url,]
+                self.icon_url]
         return urls
 
     def save(self, **kw):
@@ -135,12 +135,8 @@ class Collection(amo.models.ModelBase):
         super(Collection, self).save(**kw)
 
     def clean_slug(self):
-        if self.type == amo.COLLECTION_FAVORITES:
-            self.slug = SPECIAL_SLUGS[amo.COLLECTION_FAVORITES]
-            return
-
-        if self.type == amo.COLLECTION_MOBILE:
-            self.slug = SPECIAL_SLUGS[amo.COLLECTION_MOBILE]
+        if self.type in SPECIAL_SLUGS:
+            self.slug = SPECIAL_SLUGS[self.type]
             return
 
         if self.slug in SPECIAL_SLUGS.values():
@@ -317,7 +313,7 @@ class CollectionAddon(amo.models.ModelBase):
 
     def flush_urls(self):
         urls = ['*/addon/%d/' % self.addon_id,
-                '*%s' % self.collection.get_url_path(),]
+                '*%s' % self.collection.get_url_path()]
         return urls
 
 
@@ -398,7 +394,7 @@ class CollectionSubscription(amo.models.ModelBase):
         db_table = 'collection_subscriptions'
 
     def flush_urls(self):
-        urls = ['*/user/%d/' % self.user_id,]
+        urls = ['*/user/%d/' % self.user_id]
         return urls
 
 
@@ -422,7 +418,7 @@ class CollectionVote(models.Model):
         db_table = 'collections_votes'
 
     def flush_urls(self):
-        urls = ['*%s' % self.collection.get_url_path(),]
+        urls = ['*%s' % self.collection.get_url_path()]
         return urls
 
     @staticmethod
