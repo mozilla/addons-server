@@ -1,3 +1,5 @@
+from django.utils.datastructures import MultiValueDict
+
 from mock import patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
@@ -8,8 +10,15 @@ import amo.test_utils
 from addons.models import Addon
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
+from bandwagon import forms
 from bandwagon.models import Collection, CollectionVote, CollectionUser
 from users.models import UserProfile
+
+
+def test_addons_form():
+    f = forms.AddonsForm(MultiValueDict({'addon': [''],
+                                         'addon_comment': ['comment']}))
+    eq_(f.is_valid(), True)
 
 
 class TestViews(amo.test_utils.ExtraSetup, test_utils.TestCase):
@@ -73,7 +82,6 @@ class TestViews(amo.test_utils.ExtraSetup, test_utils.TestCase):
         self.client.login(username='jbalogh@mozilla.com', password='foo')
         response = self.client.get(c.get_url_path())
         eq_(list(response.context['addons'].object_list), [addon])
-    test_unreviewed_addon.x = 1
 
 
 class TestPrivacy(test_utils.TestCase):

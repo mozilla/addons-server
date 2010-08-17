@@ -47,9 +47,14 @@ class AddonsForm(forms.Form):
         return self.data.getlist('addon')
 
     def clean_addon_comment(self):
-        addon_ids = self.data.getlist('addon')
-        return dict(zip(map(int, addon_ids),
-                        self.data.getlist('addon_comment')))
+        fields = 'addon', 'addon_comment'
+        rv = {}
+        for addon, comment in zip(*map(self.data.getlist, fields)):
+            try:
+                rv[int(addon)] = comment
+            except ValueError:
+                pass
+        return rv
 
     def save(self, collection):
         collection.set_addons(self.cleaned_data['addon'],
