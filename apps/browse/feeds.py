@@ -4,11 +4,12 @@ from django.contrib.syndication.views import Feed
 from django.shortcuts import get_object_or_404
 
 from tower import ugettext as _
+
 import amo
 from amo.urlresolvers import reverse
-from amo.helpers import absolutify, url
+from amo.helpers import absolutify, url, _page_name
 from addons.models import Category
-from views import addon_listing
+from .views import addon_listing
 
 
 class CategoriesRss(Feed):
@@ -29,12 +30,7 @@ class CategoriesRss(Feed):
 
     def title(self, category):
         """Title for the feed as a whole"""
-        # L10n: {category} is the name of the addon category,
-        #       {application} is the name of the app-
-        #       lication (Firefox, Thunderbird, etc)
-        return _('Browse {category} :: Addons for {application}').format(
-            category=category.name,
-            application=unicode(self.request.APP.pretty))
+        return u'%s :: %s' % (category.name, _page_name(self.request.APP))
 
     def link(self, category):
         """Link for the feed as a whole"""
@@ -46,16 +42,12 @@ class CategoriesRss(Feed):
 
     def items(self, category):
         """Return the Addons for this Category to be output as RSS <item>'s"""
-        addons, filter, unreviewed = addon_listing(self.request,
-                                                   self.TYPE,
-                                                   'updated')
-        addons = addons.filter(categories__id=category.id)[:30]
-        return addons
+        addons, _, _ = addon_listing(self.request, self.TYPE, 'updated')
+        return addons.filter(categories__id=category.id)[:30]
 
     def item_title(self, addon):
         """Title for particular addon (<item><title>...</)"""
-        return "{addon_name} {version}".format(addon_name=addon.name,
-                                               version=addon.current_version)
+        return u'%s %s' % (addon.name, addon.current_version)
 
     def item_link(self, addon):
         """Link for a particular addon (<item><link>...</)"""

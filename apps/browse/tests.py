@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 from django import http
 from django.core.cache import cache
+from django.utils import http as urllib
 
-from mock import patch
+import mock
 from nose.tools import eq_, assert_raises
 from pyquery import PyQuery as pq
 
@@ -14,9 +15,11 @@ from amo.urlresolvers import reverse
 from amo.helpers import urlparams
 from addons.models import Addon, Category
 from addons.cron import _update_appsupport
-from browse import views
+from browse import views, feeds
 from browse.views import locale_display_name
+from translations.models import Translation
 from translations.query import order_by_translation
+from versions.models import Version
 
 
 def test_locale_display_name():
@@ -164,7 +167,7 @@ class TestCategoryPages(amo.test_utils.ExtraSetup, test_utils.TestCase):
             if key != 'featured':
                 assert key in dict(views.AddonFilter.opts)
 
-    @patch('browse.views.category_landing')
+    @mock.patch('browse.views.category_landing')
     def test_goto_category_landing(self, landing_mock):
         """We hit a landing page if there's a category and no sorting."""
         landing_mock.return_value = http.HttpResponse()
@@ -261,3 +264,31 @@ class TestFeaturedPage(amo.test_utils.ExtraSetup, test_utils.TestCase):
 
         response = self.client.get(reverse('browse.featured'))
         eq_([1003], [a.id for a in response.context['addons']])
+
+
+class TestFeed(test_utils.TestCase):
+
+    def setUp(self):
+        self.feed = feeds.CategoriesRss()
+        self.u = u'Ελληνικά'
+        self.wut = Translation(localized_string=self.u, locale='el')
+
+        self.feed.request = mock.Mock()
+        self.feed.request.APP.pretty = self.u
+
+        self.category = Category(name=self.u)
+
+        self.addon = Addon(name=self.u, id=2)
+        self.addon._current_version = Version(version='v%s' % self.u)
+
+    def test_title(self):
+        eq_(self.feed.title(self.category),
+            u'%s :: Add-ons for %s' % (self.wut, self.u))
+
+    def test_item_title(self):
+        eq_(self.feed.item_title(self.addon),
+            u'%s v%s' % (self.u, self.u))
+
+    def test_item_guid(self):
+        t = self.feed.item_guid(self.addon)
+        assert t.endswith(u'/addon/2/versions/v%s' % urllib.urlquote(self.u))

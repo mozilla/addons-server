@@ -1,6 +1,7 @@
 import collections
 
 from django import http
+from django.conf import settings
 from django.http import HttpResponsePermanentRedirect
 from django.shortcuts import get_object_or_404
 from django.views.decorators.cache import cache_page
@@ -8,7 +9,6 @@ from django.views.decorators.cache import cache_page
 from tower import ugettext_lazy as _lazy
 import jingo
 import product_details
-import settings
 
 import amo.utils
 from addons.models import Addon, Category
