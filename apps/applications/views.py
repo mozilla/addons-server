@@ -57,4 +57,4 @@ class AppversionsFeed(Feed):
         return self.link()
 
     def item_guid(self, item):
-        return self.item_link() + '%:%s' % item
+        return self.item_link() + '%s:%s' % item
