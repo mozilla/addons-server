@@ -270,14 +270,25 @@ class TestCRUD(test_utils.TestCase):
 
     def test_edit_post(self):
         """Test edit of collection."""
-        self.client.post(self.add_url, self.data, follow=True)
-        url = reverse('collections.edit',
-                      args=['admin', 'pornstar'])
+        self.create_collection()
+        url = reverse('collections.edit', args=['admin', 'pornstar'])
 
         self.client.post(url, {'name': 'HALP', 'slug': 'halp', 'listed': True},
                          follow=True)
         c = Collection.objects.get(slug='halp')
         eq_(unicode(c.name), 'HALP')
+
+    def test_edit_spaces(self):
+        """Let's put lots of spaces and see if they show up."""
+        self.create_collection()
+        url = reverse('collections.edit', args=['admin', 'pornstar'])
+
+        self.client.post(url,
+                         {'name': '  H A L  P ', 'slug': '  halp  ',
+                          'listed': True},
+                         follow=True)
+        c = Collection.objects.get(slug='halp')
+        eq_(unicode(c.name), 'H A L  P')
 
     def test_forbidden_edit(self):
         r = self.client.post(self.add_url, self.data, follow=True)
@@ -351,7 +362,6 @@ class TestCRUD(test_utils.TestCase):
         doc = pq(r.content)
         eq_(len(doc('#collection-delete-link')), 0)
 
-
     def test_form_uneditable_slug(self):
         """
         Editing a mobile or favorite collection should have an uneditable slug.
@@ -371,12 +381,12 @@ class TestCRUD(test_utils.TestCase):
         u = UserProfile.objects.get(nickname='admin')
         Collection(author=u, slug='mobile', type=amo.COLLECTION_MOBILE).save()
         url = reverse('collections.edit', args=['admin', 'mobile'])
-        r = self.client.post(url,
-                             {'name': 'HALP', 'slug': 'halp', 'listed': True},
-                             follow=True)
+        self.client.post(url, {'name': 'HALP', 'slug': 'halp', 'listed': True},
+                         follow=True)
 
         assert not Collection.objects.filter(slug='halp', author=u)
         assert Collection.objects.filter(slug='mobile', author=u)
+
 
 class TestChangeAddon(test_utils.TestCase):
     fixtures = ['users/test_backends']
@@ -464,5 +474,3 @@ class TestChangeAddon(test_utils.TestCase):
                              follow=True)
         self.assertRedirects(r, reverse('collections.detail',
                                         args=['jbalogh', 'mobile']))
-
-

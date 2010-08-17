@@ -7,6 +7,7 @@ import commonware.log
 from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
+from happyforms import Form, ModelForm
 from translations.widgets import TranslationTextInput, TranslationTextarea
 from users.models import UserProfile
 from .models import Collection, CollectionUser
@@ -24,7 +25,7 @@ collection_types = ((k, v) for k, v in amo.COLLECTION_CHOICES.iteritems()
 log = commonware.log.getLogger('z.collections')
 
 
-class AdminForm(forms.Form):
+class AdminForm(Form):
     application = forms.TypedChoiceField(choices=apps, required=False,
                                          coerce=int)
     type = forms.TypedChoiceField(choices=collection_types, required=False,
@@ -36,7 +37,7 @@ class AdminForm(forms.Form):
         collection.save()
 
 
-class AddonsForm(forms.Form):
+class AddonsForm(Form):
     """This form is related to adding addons to a collection."""
 
     addon = forms.CharField(widget=forms.MultipleHiddenInput, required=False)
@@ -69,7 +70,7 @@ class AddonsForm(forms.Form):
                               self.cleaned_data['addon_comment'])
 
 
-class ContributorsForm(forms.Form):
+class ContributorsForm(Form):
     """This form is related to adding contributors to a collection."""
 
     contributor = forms.CharField(widget=forms.MultipleHiddenInput,
@@ -117,7 +118,7 @@ class ContributorsForm(forms.Form):
                                                     collection.id))
 
 
-class CollectionForm(forms.ModelForm):
+class CollectionForm(ModelForm):
 
     name = forms.CharField(
             label=_lazy('Give your collection a name.'),

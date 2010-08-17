@@ -30,3 +30,6 @@ django-pylibmc==0.2.1
 
 # Image cropping
 -e git://github.com/SmileyChris/easy-thumbnails.git#egg=easy_thumbnails
+
+# Better Forms
+-e git://github.com/mozilla/happyforms.git#egg=happyforms
