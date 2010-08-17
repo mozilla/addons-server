@@ -32,6 +32,8 @@ def collection_votes(*ids, **kw):
 @task
 def resize_icon(src, dest):
     """Resizes collection icons to 32x32"""
+    log.info('[%s@%s] Resizing icon.' % (src, resize_icon.rate_limit))
+
     try:
         im = Image.open(src)
         im = processors.scale_and_crop(im, (32, 32))
