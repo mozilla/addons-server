@@ -4,6 +4,7 @@ from pyquery import PyQuery as pq
 import test_utils
 
 import amo
+import amo.test_utils
 from addons.models import Addon
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
@@ -11,8 +12,9 @@ from bandwagon.models import Collection, CollectionVote, CollectionUser
 from users.models import UserProfile
 
 
-class TestViews(test_utils.TestCase):
-    fixtures = ['users/test_backends', 'bandwagon/test_models']
+class TestViews(amo.test_utils.ExtraSetup, test_utils.TestCase):
+    fixtures = ['users/test_backends', 'bandwagon/test_models',
+                'base/addon_3615']
 
     def check_response(self, url, code, to=None):
         response = self.client.get(url, follow=True)
@@ -60,6 +62,18 @@ class TestViews(test_utils.TestCase):
         ]
         for test in tests:
             self.check_response(*test)
+
+    def test_unreviewed_addon(self):
+        u = UserProfile.objects.get(email='jbalogh@mozilla.com')
+        addon = Addon.objects.all()[0]
+        addon.status = amo.STATUS_UNREVIEWED
+        c = u.favorites_collection()
+        c.add_addon(addon)
+
+        self.client.login(username='jbalogh@mozilla.com', password='foo')
+        response = self.client.get(c.get_url_path())
+        eq_(list(response.context['addons'].object_list), [addon])
+    test_unreviewed_addon.x = 1
 
 
 class TestPrivacy(test_utils.TestCase):
