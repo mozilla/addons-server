@@ -41,6 +41,9 @@ urlpatterns = patterns('',
     # Localizable pages.
     ('', include('pages.urls')),
 
+    # App versions.
+    ('pages/appversions/', include('applications.urls')),
+
     # Services
     ('', include('amo.urls')),
 

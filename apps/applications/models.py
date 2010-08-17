@@ -37,3 +37,6 @@ class AppVersion(amo.models.ModelBase):
 
     def __unicode__(self):
         return self.version
+
+    def flush_urls(self):
+        return ['*/pages/appversions/*']

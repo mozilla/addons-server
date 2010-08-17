@@ -1,0 +1,31 @@
+{% extends "base_side_categories.html" %}
+
+{% block title %}{{ page_title(_('Application Versions')) }}{% endblock %}
+
+{% block rss_feed %}
+<link rel="alternate" type="application/rss+xml" title="RSS"
+      href="{{ url('apps.versions.rss') }}">
+{% endblock %}
+
+{% block content %}
+<h1>{{ _('Valid Application Versions') }}</h1>
+<p>{% trans %}
+Add-ons submitted to Mozilla Add-ons must have an install.rdf file with at least
+one of the below applications supported. Only the versions listed below are
+allowed for these applications.
+{% endtrans %}</p>
+
+{% for app in apps %}
+<div class="appversion prose">
+  <h3>
+    <img src="{{ MEDIA_URL }}img/amo2009/app-icons/small/{{ app.short }}.png">
+    {{ app.pretty }}
+  </h3>
+  <ul>
+    <li>{{ _('GUID') }}: <code>{{ app.guid }}</code></li>
+    <li>{{ _('Versions') }}: <code>{{ versions[app.id]|join(', ') }}</code></li>
+  </ul>
+</div>
+{% endfor %}
+
+{% endblock %}

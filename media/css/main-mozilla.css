@@ -3357,3 +3357,7 @@ div.visit-listed-popup {
     display: block;
 }
 /* END Homepage */
+
+.appversion img {
+    vertical-align: middle;
+}
