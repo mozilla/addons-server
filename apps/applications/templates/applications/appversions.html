@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block content %}
-<h1>{{ _('Valid Application Versions') }}</h1>
+<h2>{{ _('Valid Application Versions') }}</h2>
 <p>{% trans %}
 Add-ons submitted to Mozilla Add-ons must have an install.rdf file with at least
 one of the below applications supported. Only the versions listed below are
@@ -27,5 +27,11 @@ allowed for these applications.
   </ul>
 </div>
 {% endfor %}
+
+<p>{% trans url=_('http://developer.mozilla.org/en/docs/Install_Manifests') %}
+If your supported application does not require an install.rdf file, you still
+must include one with the required properties as specified
+<a href="{{ url }}">here</a>.</a>
+{% endtrans %}</p>
 
 {% endblock %}

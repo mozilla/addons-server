@@ -5,7 +5,7 @@ import jingo
 from tower import ugettext as _
 
 import amo
-from amo.helpers import url
+from amo.helpers import url, absolutify
 from .models import AppVersion
 
 
@@ -36,7 +36,7 @@ class AppversionsFeed(Feed):
         return _('Application Versions')
 
     def link(self):
-        return url('apps.versions.rss')
+        return absolutify(url('apps.versions'))
 
     def description(self):
         return _('Acceptable versions for all applications on AMO.')
