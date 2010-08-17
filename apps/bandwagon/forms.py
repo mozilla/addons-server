@@ -44,7 +44,15 @@ class AddonsForm(forms.Form):
                                     required=False)
 
     def clean_addon(self):
-        return map(int, self.data.getlist('addon'))
+
+        addons = []
+        for a in self.data.getlist('addon'):
+            try:
+                addons.append(int(a))
+            except ValueError:
+                pass
+
+        return addons
 
     def clean_addon_comment(self):
         fields = 'addon', 'addon_comment'
