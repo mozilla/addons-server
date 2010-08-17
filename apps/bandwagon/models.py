@@ -325,14 +325,6 @@ class CollectionAddonRecommendation(models.Model):
         db_table = 'collection_addon_recommendations'
 
 
-class CollectionCategory(amo.models.ModelBase):
-    collection = models.ForeignKey(Collection)
-    category = models.ForeignKey(AddonCategory)
-
-    class Meta(amo.models.ModelBase.Meta):
-        db_table = 'collection_categories'
-
-
 class CollectionFeature(amo.models.ModelBase):
     title = TranslatedField()
     tagline = TranslatedField()
