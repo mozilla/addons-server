@@ -2,6 +2,7 @@ from nose.tools import eq_
 import test_utils
 
 import amo
+from amo.helpers import url
 from applications.models import AppVersion, Application
 
 
@@ -43,3 +44,13 @@ class TestApplication(test_utils.TestCase):
         for static_app in amo.APP_USAGE:
             model_app = Application.objects.get(id=static_app.id)
             eq_(unicode(model_app), unicode(static_app.pretty))
+
+
+class TestViews(test_utils.TestCase):
+    fixtures = ['base/appversion']
+
+    def test_appversions(self):
+        eq_(self.client.get(url('apps.appversions')).status_code, 200)
+
+    def test_appversions_feed(self):
+        eq_(self.client.get(url('apps.appversions.rss')).status_code, 200)

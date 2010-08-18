@@ -36,7 +36,7 @@ class AppversionsFeed(Feed):
         return _('Application Versions')
 
     def link(self):
-        return absolutify(url('apps.versions'))
+        return absolutify(url('apps.appversions'))
 
     def description(self):
         return _('Acceptable versions for all applications on AMO.')
