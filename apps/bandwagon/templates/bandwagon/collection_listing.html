@@ -42,9 +42,9 @@
     </ul>
     {% if request.user.is_authenticated() %}
       <ul>
-        <li><a href="#TODO-WATCHING">{{ _("Collections I'm Watching") }}</a></li>
         <li><a href="#TODO-MINE">{{ _("Collections I've Made") }}</a></li>
-        <li><a href="#TODO-FAV">{{ _("My Favorite Add-ons") }}</a></li>
+        <li><a href="{{ url('collections.detail', amo_user.username, 'favorites') }}">
+          {{ _("My Favorite Add-ons") }}</a></li>
       </ul>
     {% endif %}
   </div>
