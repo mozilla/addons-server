@@ -2173,12 +2173,20 @@ ul.review-options > li:not(:first-child) {
     margin-right: .8em;
     font-size: 120%;
 }
+.html-rtl .review h5 {
+    float: right;
+    margin-right: inherit;
+    margin-left: .8em;
+}
 .review p {
     margin: 1em 0 0 0;
 }
 .review .reviewed-on {
     clear: left;
     font-size: .9em;
+}
+.html-rtl .review .reviewed-on {
+    clear: right;
 }
 .review.deleted {
     display: none;
@@ -2242,6 +2250,25 @@ h6.author, .author a {
     top: -2px;
     line-height: 1em;
     width: 1px;
+}
+
+.html-rtl .grouped_ratings .rating_bar {
+    border-left: 0;
+    border-right: 1px solid black;
+    margin-left: 0;
+    margin-right: 72px;
+    padding-right: 0;
+    padding-left: 4em;
+}
+
+.html-rtl .grouped_ratings .rating_bar span.bar {
+    float: right;
+    margin: .4em 0 0 .5em;
+}
+
+.html-rtl .grouped_ratings .rating_bar span.num_ratings {
+    right: inherit;
+    left: -.5em;
 }
 
 
