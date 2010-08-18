@@ -6,7 +6,11 @@
     'rating': _('Highest Rated Collections'),
     'created': _('Recently Added Collections'),
 } %}
-{% set base_url = url('collections.list') %}
+{% if userpage %}
+  {% set base_url = url('collections.user', userpage) %}
+{% else %}
+  {% set base_url = url('collections.list') %}
+{% endif %}
 
 {% block title %}{{ page_title(titles[filter.field]) }}{% endblock %}
 
@@ -15,8 +19,12 @@
 {% block content %}
 <div class="primary">
   <header>
-    {{ breadcrumbs([(base_url, _('Collections')),
-                    (None, filter.title)]) }}
+    {% set crumbs = [(url('collections.list'), _('Collections')),
+                     (None, filter.title)] %}
+    {% if userpage %}
+      {% do crumbs.insert(1, (url('collections.user', userpage), userpage)) %}
+    {% endif %}
+    {{ breadcrumbs(crumbs) }}
     <h2>{{ titles[filter.field] }}</h2>
   </header>
   <div class="featured listing">
@@ -42,7 +50,8 @@
     </ul>
     {% if request.user.is_authenticated() %}
       <ul>
-        <li><a href="#TODO-MINE">{{ _("Collections I've Made") }}</a></li>
+        <li><a href="{{ url('collections.user', amo_user.username) }}">
+          {{ _("Collections I've Made") }}</a></li>
         <li><a href="{{ url('collections.detail', amo_user.username, 'favorites') }}">
           {{ _("My Favorite Add-ons") }}</a></li>
       </ul>

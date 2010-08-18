@@ -93,15 +93,17 @@ class CollectionFilter(BaseFilter):
             return qs.order_by('-created')
 
 
-def collection_listing(request):
+def collection_listing(request, base=None, extra={}):
+    if base is None:
+        base = Collection.objects.listed()
     app = Q(application=request.APP.id) | Q(application=None)
-    base = Collection.objects.listed().filter(app)
+    base = base.filter(app)
     filter = CollectionFilter(request, base, key='sort', default='popular')
     collections = amo.utils.paginate(request, filter.qs)
     votes = get_votes(request, collections.object_list)
     return jingo.render(request, 'bandwagon/collection_listing.html',
-                        {'collections': collections, 'filter': filter,
-                         'collection_votes': votes})
+                        dict(collections=collections, filter=filter,
+                             collection_votes=votes, **extra))
 
 
 def get_votes(request, collections):
@@ -113,7 +115,11 @@ def get_votes(request, collections):
 
 
 def user_listing(request, username):
-    return http.HttpResponse()
+    qs = Collection.objects.filter(author__username=username)
+    if not (request.user.is_authenticated() and
+            request.amo_user.username == username):
+        qs = qs.filter(listed=True)
+    return collection_listing(request, qs, extra={'userpage': username})
 
 
 class CollectionAddonFilter(BaseFilter):
