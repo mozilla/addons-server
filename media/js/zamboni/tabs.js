@@ -48,6 +48,7 @@ Tabs.prototype = {
         var cb = function(e) {
             e.preventDefault();
             self.select($(e.target).attr('href'), true);
+            $("a", this).blur();
         };
         this.tabs.unbind('click', cb).click(cb);
     },

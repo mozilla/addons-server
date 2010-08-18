@@ -21,7 +21,8 @@
       <h3>{{ _('Write a Reply') }}</h3>
       <form method="post" action="{{ url('reviews.reply', addon.id, review.id) }}">
         {{ csrf() }}
-        {{ field(form.title, _('Title:')) }}
+          <label for="id_title">{{ form.title.label|safe }}</label> {{ _('(optional)') }}
+          {{ form.title|safe }}
         {{ field(form.body, _('Reply:')) }}
         <input type="submit" value="{{ _('Submit Your Reply') }}">
         {# L10n: this string is following a <button>. #}

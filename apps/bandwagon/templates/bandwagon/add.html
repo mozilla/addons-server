@@ -13,17 +13,19 @@
 
   {% include 'bandwagon/includes/addedit_errors.html' %}
 
-  <div>
-    <form method="post" action="{{ url('collections.add') }}"
-          enctype="multipart/form-data">
-      {% include 'bandwagon/includes/addedit.html' %}
-      {% include 'bandwagon/includes/addon_selector.html' %}
+  <div class="featured">
+    <div class="featured-inner">
+      <form method="post" action="{{ url('collections.add') }}"
+            enctype="multipart/form-data">
+        {% include 'bandwagon/includes/addedit.html' %}
+        {% include 'bandwagon/includes/addon_selector.html' %}
 
 
-      <p>
-        <input type="submit" value="{{ _('Create Collection') }}">
-      </p>
-    </form>
+        <p>
+          <input type="submit" value="{{ _('Create Collection') }}">
+        </p>
+      </form>
+    </div>
   </div>
 </div>
 

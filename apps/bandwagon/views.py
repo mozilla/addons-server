@@ -303,6 +303,8 @@ def ajax_collection_alter(request, action):
 @login_required
 @owner_required
 def edit(request, collection, username, slug):
+    is_admin = acl.action_allowed(request, 'Admin', '%')
+
     if request.method == 'POST':
         form = forms.CollectionForm(request.POST, request.FILES,
                                     initial=initial_data_from_request(request),
@@ -315,10 +317,23 @@ def edit(request, collection, username, slug):
     else:
         form = forms.CollectionForm(instance=collection)
 
+    addons = collection.addons.all()
+    comments = get_notes(collection).next()
+
+    if is_admin:
+        initial = dict(type=collection.type,
+                       application=collection.application_id)
+        admin_form = forms.AdminForm(initial=initial)
+
     data = dict(collection=collection,
                 form=form,
+                user=request.amo_user,
                 username=username,
-                slug=slug)
+                slug=slug,
+                is_admin=is_admin,
+                admin_form=admin_form,
+                addons=addons,
+                comments=comments)
     return jingo.render(request, 'bandwagon/edit.html', data)
 
 
@@ -343,7 +358,7 @@ def edit_addons(request, collection, username, slug):
 
     data = dict(collection=collection, username=username, slug=slug,
                 addons=addons, comments=comments)
-    return jingo.render(request, 'bandwagon/edit_addons.html', data)
+    return jingo.render(request, 'bandwagon/edit.html', data)
 
 
 @login_required
@@ -375,7 +390,7 @@ def edit_contributors(request, collection, username, slug):
                     reverse('collections.edit_contributors',
                             args=[username, slug]))
 
-    return jingo.render(request, 'bandwagon/edit_contributors.html', data)
+    return jingo.render(request, 'bandwagon/edit.html', data)
 
 
 @login_required

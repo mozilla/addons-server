@@ -1,28 +1,35 @@
 {{ csrf() }}
 
-<h3>{{ _('Collection Description') }}</h3>
+<div class="content">
+  <h3>{{ _('Collection Description') }}</h3>
+</div>
 <fieldset>
-  <p>
-    {{ form.errors['name']|safe }}
-    {{ form.name.label|safe }}
-    {{ form.name|safe }}
-  </p>
+  {{ field(form.name, form.name.label) }}
   {% if not (collection and
              collection.type in amo.COLLECTION_SPECIAL_SLUGS.keys()) %}
-  <p>
-    {{ form.errors['slug']|safe }}
-    {{ form.slug.label|safe }}
-    {{ url('collections.user', amo_user.nickname)|absolutify -}}
-    {{ form.slug|safe }}
-  </p>
+    <p id="collection-form-slug">
+      {{ form.errors['slug']|safe }}
+      <label>{{ form.slug.label|safe }}</label>
+      <span id="slug_edit">
+      {{ url('collections.user', amo_user.nickname)|absolutify -}}
+      {{ form.slug|safe }}
+      </span>
+      <span id="slug_readonly">
+        {{ url('collections.user', user.get_profile().nickname)|absolutify -}}
+          <span id="slug_value">
+            {% if collection and collection.slug %}
+              {{ collection.slug }}
+            {% endif %}
+          </span>
+        <a id="edit_slug" href="#">{{ _('Edit') }}</a>
+      </span>
+    </p>
   {% endif %}
   <p>
-    {{ form.description.label|safe }} {{ _('(optional)') }}
+    <label for="id_description">{{ form.description.label|safe }}</label> {{ _('(optional)') }}
     {{ form.description|safe }}
   </p>
-  <p>
-    {{ form.listed.label|safe }}
-  </p>
+  <label>{{ form.listed.label }}</label>
   {{ form.listed|safe }}
   <p>
     {% if collection %}

@@ -597,6 +597,11 @@ a.button.concealed:active {
       display: inherit;
 }
 
+th, td {
+    text-align: left;
+    padding: 0.308em 0.537em 0.214em 0.231em; /* 4px 7px 3px 7px */
+}
+
 
 /** Button =Popups *********/
 .install {
@@ -604,7 +609,8 @@ a.button.concealed:active {
     padding: 2px 3px 3px;
 }
 
-.install-note .msg {
+.install-note .msg,
+.popup .msg {
     background-repeat: no-repeat;
     min-height: 32px;
 }
@@ -616,7 +622,8 @@ a.button.concealed:active {
 .seamonkey .install-note .msg { background-image: url(../../img/amo2009/app-icons/small/seamonkey.png); }
 
 .install-note .msg.m-unreviewed,
-.install-note .msg.m-selfhosted {
+.install-note .msg.m-selfhosted,
+.popup.warning .msg {
     background-image: url(../../img/zamboni/icons/alert-32x32.png);
 }
 
@@ -624,7 +631,8 @@ a.button.concealed:active {
     background-image: url(../../img/zamboni/icons/no-32x32.png);
 }
 
-.install-note {
+.install-note,
+.popup {
     position: absolute;
     left: -15px;
     margin-top: 5px;
@@ -641,17 +649,20 @@ a.button.concealed:active {
     box-shadow: 0 1px 3px rgba(0,0,0,0.35);
 }
 /* append the left class if the bubble is to the far right */
-.install-note.left {
+.install-note.left,
+.popup.left {
     left: -160px;
 }
 
-.unreviewed .install-note {
+.unreviewed .install-note,
+.popup.warning {
     border-color: #c90;
 }
 
 /* http://nicolasgallagher.com/demo/pure-css-speech-bubbles/bubbles.html */
 /* Creates the larger triangle. */
-.install-note:before {
+.install-note:before,
+.popup:before {
     content: "\00a0";
     display: block; /* reduce the damage in FF3.0 */
     position: absolute;
@@ -663,12 +674,14 @@ a.button.concealed:active {
     border-bottom-color: #2e5186;
 }
 
-.unreviewed .install-note:before {
+.unreviewed .install-note:before,
+.popup.warning:before {
     border-bottom-color: #c90;
 }
 
 /* creates the smaller triangle */
-.install-note:after {
+.install-note:after,
+.popup:after {
     content: "\00a0";
     display: block; /* reduce the damage in FF3.0 */
     position: absolute;
@@ -680,22 +693,26 @@ a.button.concealed:active {
     border-bottom-color: #fff;
 }
 
-.install-note.left:before {
+.install-note.left:before,
+.popup.left:before {
     right: 71px; /* controls horizontal position */
     left: auto;
 }
 
-.install-note.left:after {
+.install-note.left:after,
+.popup.left:after {
     right: 76px; /* value = (:before right) + (:before border-right) - (:after border-right) */
     left: auto;
 }
 
-.install .install-note > * {
+.install .install-note > *,
+.popup.warning > * {
     margin-bottom: 1em;
     padding-left: 50px;
 }
 
-.install .install-note strong {
+.install .install-note strong,
+.popup strong {
     margin: 0;
     color: inherit;
     font-size: inherit;
@@ -1536,7 +1553,9 @@ form .error .note.error {
     font-size: 1.231em;
 }
 
-.listing .contribute {
+.listing .contribute,
+.separated-listing .contribute,
+.collector-note {
     background: #d3edf6;
     float: left;
     padding: 3px 10px;
@@ -1544,6 +1563,12 @@ form .error .note.error {
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
+}
+
+.html-rtl .listing .contribute,
+.html-rtl .separated-listing .contribute,
+.html-rtl .collector-note {
+    float: right;
 }
 
 .listing .contribute a {
@@ -2446,7 +2471,7 @@ h6.author, .author a {
 #collections-new {
     width: 400px;
 }
-#collections-new #id_name {
+.collections-details #id_name {
     display: block;
     width: 99%;
 }
@@ -2542,16 +2567,23 @@ table#addons-list, table#contributors-list {
 }
 #addons-list .comments {
     display: none;
+    margin: 0 0 .2em 42px;
 }
-#addons-list tr {
+#addons-list .comments.hascomment {
+    display: block;
+}
+#addons-list tr,
+#contributors-list tr {
     border-top: 1px dotted #A5BFCE;
 }
 #addons-list tr:hover,
+#contributors-list tr:hover,
 .ui-state-hover {
     background-color: #e4f5fb;
 }
-#addons-list td, #addons-list h3 {
+#addons-list h3 {
     line-height: 36px;
+    display: inline;
     margin: 0;
     padding: 0;
 }
@@ -2565,9 +2597,16 @@ table#addons-list, table#contributors-list {
     width: 300px;
     z-index: 11;
 }
+.ui-autocomplete span {
+    line-height: 32px;
+}
 .ui-autocomplete a {
     display: block;
-    line-height: 32px;
+    padding: 2px;
+    cursor: pointer;
+}
+.ui-autocomplete img {
+    float:left;
 }
 #addons-list a.remove,
 #addons-list a.comment,
@@ -2609,4 +2648,18 @@ table#addons-list, table#contributors-list {
 }
 .collection-admin a.edit {
     background-position: 0 -300px;
+}
+.collection-create .featured-inner {
+    padding: 1em;
+}
+
+#change-owner {
+    left: inherit;
+    right: -44px;
+}
+.contributor span {
+    position: relative;
+}
+.make-owner {
+    margin-left: 1em;
 }

@@ -298,7 +298,8 @@ def license_link(license):
 def field(field, label=None):
     if label is not None:
         field.label = label
-    return jinja2.Markup(u'%s<p>%s%s</p>' % (field.errors, field.label_tag(), field))
+    return jinja2.Markup(u'%s<p>%s%s</p>' %
+                         (field.errors, field.label_tag(), field))
 
 
 @register.inclusion_tag('amo/category-arrow.html')

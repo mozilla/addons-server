@@ -8,6 +8,14 @@
     border-radius: 5px;
 }
 
+.tab-wrapper form {
+    margin-bottom: 0;
+}
+
+.tab-wrapper fieldset {
+    margin: 1em;
+}
+
 .tab-wrapper .tab-nav {
     position: absolute;
     top: -1.85em;
@@ -44,12 +52,11 @@
 .tab-wrapper .tab-panel {
     display: none;
     border: 1px solid #2e5186;
-    padding: 0 1em 1em;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     border-radius: 3px;
     background: #fff;
-    background: -moz-linear-gradient(#fff, #e4f5fb);
+/*    background: -moz-linear-gradient(#fff, #e4f5fb);*/
 }
 
 .tab-wrapper .tab-panel.tab-selected {

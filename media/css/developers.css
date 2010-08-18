@@ -1,9 +1,43 @@
+/* @group Tables */
+
+table {
+    border-bottom: 1px solid #666;
+}
+
+caption {
+    font-weight: bold;
+    padding-bottom: 0.539em; /* 7px */
+    font-size:1.231em; /* 16px */
+}
+
+thead th {
+    border-top: 1px solid #666;
+    border-bottom: 3px solid #666;
+    padding-top: 0;
+    padding-bottom: 0.539em; /* 7px */
+}
+
+tbody {
+    border-top: 3px solid #666; /* not rendered in IE6/7 */
+}
+
+tbody tr th, tbody tr td {
+    border-top: 1px solid #ddd;
+}
+
+th, td {
+    text-align: left;
+    padding: 0.308em 0.537em 0.214em 0.231em; /* 4px 7px 3px 7px */
+}
+
+/* @end */
+
 /** header and main navigation bar */
 .section {
     max-width: 75em;
 }
 
-.developer-hub #content-main, 
+.developer-hub #content-main,
 .developer-hub #dashboard {
   min-height: 30em;
 }
@@ -1351,8 +1385,8 @@ p.summary {
     padding: 5px 25px 5px 5px;
 }
 
-.notice span, 
-.notice-error span, 
+.notice span,
+.notice-error span,
 .notice-success span {
     font-weight: bold;
 }
@@ -1533,7 +1567,7 @@ p.summary {
 }
 
 .developer-hub h2 img {
-  vertical-align: baseline; 
+  vertical-align: baseline;
   margin: 0 8px 0 2px;
 }
 
@@ -1670,7 +1704,7 @@ label.indented {
   line-height: 1.4;
   margin-bottom: 0.25em;
 }
-.html-rtl #dev-subnav .indented { 
+.html-rtl #dev-subnav .indented {
   padding-left: 0;
   padding-right: 20px;
 }
@@ -1716,9 +1750,9 @@ fieldset#addon-categories {
   right: auto;
 }
 
-#author-table, 
-#versions-table, 
-#files-table, 
+#author-table,
+#versions-table,
+#files-table,
 #edit-versions-targetapps-table {
   width: 100%;
 }
@@ -1728,9 +1762,9 @@ fieldset#addon-categories {
     margin-top: 1em;
 }
 
-#create-dev-profile h3, 
-#start-asking h3, 
-#submission-area h3, 
+#create-dev-profile h3,
+#start-asking h3,
+#submission-area h3,
 #step-intro h3 {
   margin-top: 0;
 }
@@ -2040,7 +2074,7 @@ h4.status span {
 #file-upload .disabled {
     color: gray;
 }
-.action-button-container, 
+.action-button-container,
 .add-button-container {
   margin: .5em 0;
 }
@@ -2085,7 +2119,7 @@ label.new-preview {
   margin-bottom: 1em;
 }
 
-#create-dev-profile ul, 
+#create-dev-profile ul,
 #start-asking ul {
   list-style: disc;
   margin: 0 20px 1.5em;

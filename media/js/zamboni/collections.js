@@ -359,49 +359,35 @@ $(document).ready(function(){
     collections.hijack_favorite_button();
 });
 
-/* Slugifier for Collection slug based on Collection name */
-if ($('body.collections-add')) {
-  var url_customized = !!$('#id_slug').val();
-  var slugify = function() {
-      var slug = $('#id_slug');
-      if (!url_customized || !slug.val()) {
-          var s = $('#id_name').val().replace(/[^\w\s-]/g, '');
-          s = s.replace(/[-\s]+/g, '-').toLowerCase();
-          slug.val(s);
-      }
-  }
-
-  $('#id_name').keyup(slugify);
-  $('#id_name').blur(slugify);
-
-  $('#id_slug').change(function() {
-      url_customized = true;
-      if (!$('#id_slug').val()) {
-          url_customized = false;
-          slugify();
-      }
-  });
-}
-
 /* Autocomplete for collection add form. */
-$('#addon-ac').autocomplete({
-      minLength: 3,
-      source: function(request, response) {
+addon_ac = $('#addon-ac');
+if (addon_ac.length) {
+    addon_ac.autocomplete({
+        minLength: 3,
+        width: 300,
+        source: function(request, response) {
           $.getJSON($('#addon-ac').attr('data-src'), {
               q: request.term
           }, response);
-      },
-      focus: function(event, ui) {
+        },
+        focus: function(event, ui) {
           $('#addon-ac').val(ui.item.label);
           return false;
-      },
-			select: function(event, ui) {
-				$('#addon-ac').val(ui.item.label).attr('data-id', ui.item.id)
-        .attr('data-icon', ui.item.icon);
-
-				return false;
-			}
-    });
+        },
+        select: function(event, ui) {
+            $('#addon-ac').val(ui.item.label).attr('data-id', ui.item.id)
+            .attr('data-icon', ui.item.icon);
+            return false;
+        }
+    }).data( "autocomplete" )._renderItem = function( ul, item ) {
+        if (!$("#addons-list input[value='" + item.id + "']").length) {
+            return $( "<li></li>" )
+                .data( "item.autocomplete", item )
+                .append( '<a><img src="' + item.icon + '"/>&nbsp;<span>' + item.label + "</span></a>" )
+                .appendTo( ul );
+        }
+    };
+}
 
 $('#addon-select').click(function() {
     var id = $('#addon-ac').attr('data-id');
@@ -416,19 +402,21 @@ $('#addon-select').click(function() {
     if (id && name && icon) {
 
         var tr = _.template('<tr>' +
-            '<td>' +
+            '<td class="item">' +
             '<input name="addon" value="{{ id }}" type="hidden">' +
-            '<p><img src="{{ icon }}"> {{ name }}' +
-            '</p><p style="display:none">' +
+            '<img src="{{ icon }}"><h3>{{ name }}</h3>' +
+            '<p class="comments">' +
             '<textarea name="addon_comment"></textarea>' +
             '</p></td>' +
-            '<td class="comment">x</td>' +
-            '<td class="remove">x</td>' +
+            '<td>Pending</td>' +
+            '<td><a title="' + gettext('Add a comment') + '" class="comment">' + gettext('Comment') + '</a></td>' +
+            '<td><a title="' + gettext('Remove this add-on from the collection') + '" class="remove">' + gettext('Remove') + '</a></td>' +
             '</tr>'
             );
         var str = tr({id: id, name: name, icon: icon});
         $('#addon-select').closest('tbody').append(str);
     }
+    $('#addon-ac').val('');
     return false;
 });
 
@@ -438,7 +426,7 @@ table.delegate(".remove", "click", function() {
 })
 .delegate(".comment", "click", function() {
     var row = $(this).closest('tr');
-    row.find('textarea').parent().show();
+    row.find('.comments').show();
 });
 
 })();
@@ -451,7 +439,7 @@ if ($('body.collections-contributors')) {
             '{{ name }}' +
             '</td><td>{{ email }}</td>' +
             '<td class="contributor">Contributor</td>' +
-            '<td class="remove">x</td>' +
+            '<td class="remove"><a title="' + gettext("Remove this user as a contributor") + '" class="remove">' + gettext("Remove") + '</a></td>' +
             '</tr>'
             );
 
@@ -475,9 +463,149 @@ if ($('body.collections-contributors')) {
         });
     });
 
-    var table = $('#contributor-ac').closest('table');
+    var table = $('#contributors-list');
     table.delegate(".remove", "click", function() {
         $(this).closest('tr').remove();
     })
+    table.delegate(".make-owner", "click", function(e) {
+        e.preventDefault();
+        $("#change-owner").detach().appendTo($(this).closest("span"));
+    });
+    $("#change-owner-cancel").click(function(e) {
+        e.preventDefault();
+        $("#change-owner").detach().appendTo($("#users-edit .hidden"));
+    });
+    $("#change-owner-submit").click(function(e) {
+        e.preventDefault();
+        var owner_id = $("#change-owner")
+            .parents(".contributor")
+            .children("input[name='contributor']").val();
+
+        $("#change-owner").append('<input type="hidden" name="new_owner" value="' + owner_id + '">');
+        $("#users-edit form").submit();
+    });
 }
+
+
+$(document).ready(function () {
+
+    var url_customized = !!$('#id_slug').val() && ($('#id_slug').val() != makeslug($('#id_name').val()));
+
+    function makeslug(s) {
+        s = s.replace(/[^\w\s-]/g, '');
+        s = s.replace(/[-\s]+/g, '-').toLowerCase();
+        return s
+    }
+
+    function show_slug_edit(e) {
+        $("#slug_readonly").hide();
+        $("#slug_edit").show();
+        $("#id_slug").focus();
+        e.preventDefault();
+    }
+
+    function slugify() {
+      var slug = $('#id_slug');
+      if (!url_customized || !slug.val()) {
+          var s = makeslug($('#id_name').val())
+          slug.val(s);
+          $('#slug_value').text(s);
+      }
+    }
+
+    $('#details-edit form, body.collection-create form, .collection-add-dropdown').delegate('#id_name', 'keyup', slugify)
+        .delegate('#id_name', 'blur', slugify)
+        .delegate('#edit_slug', 'click', show_slug_edit)
+        .delegate('#id_slug', 'change', function() {
+            url_customized = true;
+            if (!$('#id_slug').val()) {
+              url_customized = false;
+              slugify();
+            }
+        });
+
+    /* Add to collection initialization */
+
+    var btn = $('div.collection-add');
+    var dropdown = $('.collection-add-dropdown');
+    if (!btn.length) return;
+
+    btn.show();
+
+    var list_url = btn.attr('data-listurl');
+    var remove_url = btn.attr('data-removeurl');
+    var add_url = btn.attr('data-addurl');
+    var form_url = btn.attr('data-newurl');
+    var addon_id = $('#addon, #persona').attr('data-id');
+
+    function handleToggle(e) {
+        var data = {'addon_id': addon_id,
+                    'id': this.getAttribute('data-id')};
+        var url = this.className == "selected" ? remove_url
+                                               : add_url;
+
+        $(this).addClass('ajax-loading');
+
+        e.preventDefault();
+        $.post(url, data, function(data) {
+            dropdown.removeClass('new-collection');
+            dropdown.html(data);
+        }, 'html');
+    }
+
+    var handleSubmit = function(e) {
+        e.preventDefault();
+        form_data = $('#collections-new form').serialize();
+        $.post(form_url + '?addon_id=' + addon_id, form_data, function(d) {
+            dropdown.html(d);
+        });
+    };
+
+    var handleNew = function(e) {
+        e.preventDefault();
+        $.get(form_url, {'addon_id': addon_id}, function(d) {
+            dropdown.addClass('new-collection');
+            dropdown.html(d);
+            $("#id_name").focus();
+        });
+    };
+
+    var handleClick = function(e) {
+        // If anonymous, show login overlay.
+        dropdown.show();
+        // Make a call to /collections/ajax/list with addon_id
+        if (!z.anonymous) {
+            $.get(list_url, {'addon_id': addon_id}, function(data) {
+                dropdown.html(data);
+                dropdown.removeClass('new-collection');
+            }, 'html');
+        }
+        e.preventDefault();
+
+        // Clear popup when we click outside it.
+        setTimeout(function(){
+            $(document.body).bind('click newPopup', cb);
+        }, 0);
+    };
+    btn.click(handleClick);
+
+    dropdown.delegate('#ajax_collections_list li', 'click', handleToggle)
+        .delegate('#collections-new form', 'submit', handleSubmit)
+        .delegate('#ajax_new_collection', 'click', handleNew)
+        .delegate('#collections-new-cancel', 'click', handleClick);
+
+    var cb = function(e) {
+        _root = dropdown.get(0);
+        // Bail if the click was somewhere on the popup.
+        if (e.type == 'click' &&
+            _root == e.target ||
+            _.indexOf($(e.target).parents(), _root) != -1) {
+            return;
+        }
+        dropdown.hide();
+        $(document.body).unbind('click newPopup', cb);
+    }
+
+
+});
 

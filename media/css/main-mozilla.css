@@ -2796,6 +2796,34 @@ html[xmlns] .clearfix {
     position: relative;
 }
 
+
+.barometer .bars {
+    position: relative;
+}
+.barometer .upbar,
+.barometer .downbar {
+    float: left;
+}
+
+.html-rtl .barometer .upbar,
+.html-rtl .barometer .downbar {
+    float: right;
+}
+
+.barometer .upbar {
+    background-color: #a3e4cf;
+    margin-right: 1%; /* Little bit of space between the bars. */
+}
+
+.html-rtl .barometer .upbar {
+    margin-left: 1%; /* Little bit of space between the bars. */
+    margin-right: 0;
+}
+
+.barometer .downbar {
+    background-color: #ffc3c6;
+}
+
 .barometer .cancel_vote {
     font-size: .9em;
     margin: 0 0 0 .5em;

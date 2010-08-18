@@ -127,17 +127,17 @@ class CollectionForm(ModelForm):
             )
     slug = forms.CharField(label=_lazy('URL:'))
     description = forms.CharField(
-            label=_lazy('Describe your collections.'),
+            label=_lazy('Describe your collection.'),
             widget=TranslationTextarea,
             required=False)
     listed = forms.ChoiceField(
-            label=_lazy('Who can view your collection?'),
+            label=_lazy('Privacy:'),
             widget=forms.RadioSelect,
             choices=privacy_choices,
             initial=True,
             )
 
-    icon = forms.FileField(label=_lazy('Give your collection an icon.'),
+    icon = forms.FileField(label=_lazy('Icon'),
                            required=False)
 
     def clean_description(self):

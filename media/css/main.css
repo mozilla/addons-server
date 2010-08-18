@@ -217,40 +217,6 @@ ul ul, ol ol, ol ul, ul ol {
 
 /* @end */
 
-/* @group Tables */
-
-table {
-    border-bottom: 1px solid #666;
-}
-
-caption {
-    font-weight: bold;
-    padding-bottom: 0.539em; /* 7px */
-    font-size:1.231em; /* 16px */
-}
-
-thead th {
-    border-top: 1px solid #666;
-    border-bottom: 3px solid #666;
-    padding-top: 0;
-    padding-bottom: 0.539em; /* 7px */
-}
-
-tbody {
-    border-top: 3px solid #666; /* not rendered in IE6/7 */
-}
-
-tbody tr th, tbody tr td {
-    border-top: 1px solid #ddd;
-}
-
-th, td {
-    text-align: left;
-    padding: 0.308em 0.537em 0.214em 0.231em; /* 4px 7px 3px 7px */
-}
-
-/* @end */
-
 /* @group Blockquotes */
 
 blockquote {
@@ -4037,7 +4003,8 @@ background-position:left -303px;
 
 .html-rtl .listing .item,
 .html-rtl .separated-listing .item {
-padding:1em 52px 1em 1em;
+    padding:1em 52px 1em 1em;
+    clear: both;
 }
 
 .html-rtl .item .install {

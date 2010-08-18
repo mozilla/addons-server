@@ -1,13 +1,94 @@
-{% extends "bandwagon/edit_base.html" %}
+{% extends "base.html" %}
 
-
-{% block form %}
-<form method="post" action="{{ url('collections.edit', username, slug) }}"
-      enctype="multipart/form-data">
-  {% include 'bandwagon/includes/addedit.html' %}
-  <p>
-    <input type="submit" value="{{ _('Save Changes') }}">
-    {% include 'bandwagon/includes/delete.html' %}
-  </p>
-</form>
+{% block title %}
+{# L10n: %s is the name of the collection. #}
+{{ page_title(_('Edit %s') % collection.name) }}
 {% endblock %}
+{% set owner=(collection.owned_by(amo_user) or is_admin) %}
+
+{% block content %}
+  <div class="secondary">
+  </div>
+  <div class="primary">
+    <header>
+      {{ breadcrumbs([(remora_url('collections'), _('Collections')),
+                      (collection.get_url_path(), collection.name),
+                      (None, _('Edit'))]) }}
+
+      <h2>{{ _('Editing %s') % collection.name }}</h2>
+    </header>
+
+    {% if messages %}
+      <ul class="messages">
+          {% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+          {{- message }}</li>
+          {% endfor %}
+      </ul>
+    {% endif %}
+    <div id="a" class="tab-wrapper">
+      <ul class="tab-nav">
+        {% if owner %}
+        <li>
+          <a href="#details-edit">
+            {{ _('Description') }}</a>
+        </li>
+        {% endif %}
+        <li>
+          <a href="#addons-edit">
+            {{ _('Add-ons') }}</a>
+        </li>
+        {% if owner %}
+        <li>
+          <a href="#users-edit">
+            {{ _('Contributors & More') }}</a>
+        </li>
+        {% endif %}
+      </ul>
+
+    {% if form %}
+    {% include 'bandwagon/includes/addedit_errors.html' %}
+    {% endif %}
+
+    {% if owner %}
+      <div class="tab_panel tab-panel tab-selected" id="details-edit">
+        <form method="post" action="{{ url('collections.edit', username, slug) }}"
+              enctype="multipart/form-data">
+          {% include 'bandwagon/includes/addedit.html' %}
+          <div class="listing-footer">
+            <input type="submit" value="{{ _('Save Changes') }}">
+            {% include 'bandwagon/includes/delete.html' %}
+          </div>
+        </form>
+      </div>
+    {% endif %}
+
+      <div class="tab_panel tab-panel tab-selected" id="addons-edit">
+        <form method="post"
+              action="{{ url('collections.edit_addons', username, slug) }}">
+        {% include 'bandwagon/includes/addon_selector.html' %}
+        {{ csrf() }}
+        <div class="listing-footer">
+          <input type="submit" value="{{ _('Save Changes') }}">
+          {% include 'bandwagon/includes/delete.html' %}
+        </div>
+
+        </form>
+      </div>
+
+    {% if owner %}
+      <div class="tab_panel tab-panel tab-selected" id="users-edit">
+        <form method="post"
+            action="{{ url('collections.edit_contributors', username, slug) }}">
+          {% include 'bandwagon/edit_contributors.html' %}
+          <div class="listing-footer">
+            <input type="submit" value="{{ _('Save Changes') }}">
+            {% include 'bandwagon/includes/delete.html' %}
+          </div>
+        </form>
+      </div>
+    {% endif %}
+    </div>
+  </div> {# primary #}
+{% endblock %}
+

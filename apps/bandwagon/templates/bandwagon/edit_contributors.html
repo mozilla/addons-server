@@ -6,24 +6,21 @@
   <td>
     {{ user.email }}
   </td>
-  <td>
+  <td class="contributor" {% if role == _('Owner') %}colspan="2"{% endif %}>
     {{ role }}
 
     {% if role != _('Owner') %}
     <input type="hidden" name="contributor" value="{{ user.id }}">
-    <a>{{ _('Make Owner') }}</a>
-    <button name="new_owner" value="{{ user.id }}">POTCH IT!</button>
+    <span><a class="make-owner" href="#">Make Owner</a></span>
     {% endif %}
   </td>
   {% if role != _('Owner') %}
-  <td class="remove">x</td>
+  <td class="remove"><a title="{{ _('Remove this user as a contributor') }}" class="remove">{{ _('Remove') }}</a></td>
   {% endif %}
 </tr>
 {% endmacro %}
 
-{% extends "bandwagon/edit_base.html" %}
-{% block bodyclass %}collections-contributors{% endblock %}
-{% block form %}
+<div class="content">
   <h3>{{ _('Collection Contributors') }}</h3>
   <p>
   {% trans %}
@@ -33,47 +30,58 @@
     Contributors must have a Mozilla Add-ons account.
   {% endtrans %}
   </p>
-  <form method="post"
-      action="{{ url('collections.edit_contributors', username, slug) }}">
+</div>
 
-    {{ csrf() }}
-    <fieldset>
-      <table>
-        <thead>
-          <tr>
-            <th>{{ _('User') }}</th>
-            <th>{{ _('Email') }}</th>
-            <th>{{ _('Role') }}</th>
-            <th>{{ _('Remove') }}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td colspan="4">
-              <input id="contributor-ac" data-src="{{ url('users.ajax') }}"
-                     data-self="{{ amo_user.id }}" />
-              <button id="contributor-ac-button">
-                {{ _('Add Contributor') }}
-              </button>
-            </td>
-          </tr>
-          {{ user_row(collection.author, _('Owner')) }}
-          {% for user in collection.users.all() %}
-            {{ user_row(user, _('Contributor')) }}
-          {% endfor %}
-        </tbody>
-      </table>
-    </fieldset>
+{{ csrf() }}
+<fieldset>
+  <table id="contributors-list">
+    <thead>
+      <tr>
+        <th>{{ _('User') }}</th>
+        <th>{{ _('Email') }}</th>
+        <th>{{ _('Role') }}</th>
+        <th>{{ _('Remove') }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td colspan="4">
+          <input id="contributor-ac" data-src="{{ url('users.ajax') }}"
+                 data-self="{{ amo_user.id }}" />
+          <button id="contributor-ac-button">
+            {{ _('Add Contributor') }}
+          </button>
+        </td>
+      </tr>
+      {{ user_row(collection.author, _('Owner')) }}
+      {% for user in collection.users.all() %}
+        {{ user_row(user, _('Contributor')) }}
+      {% endfor %}
+    </tbody>
+  </table>
+</fieldset>
 
-    {% if is_admin %}
+{% if is_admin %}
+  <fieldset>
     <h3>{{ _('Admin Settings') }}</h3>
     {{ admin_form.as_p()|safe }}
-    {% endif %}
+  </fieldset>
+{% endif %}
 
-    <p>
-      <input type="submit" value="{{ _('Save Changes') }}">
-      {% include 'bandwagon/includes/delete.html' %}
+<div class="hidden">
+  <div id="change-owner" class="popup warning left">
+    <p class="msg">
+      {% trans %}
+        <b>Warning:</b> By changing the owner of this collection, you
+        will no longer be able to edit it. You will only be able to
+        add and remove add-ons from it.
+      {% endtrans %}
     </p>
-
-  </form>
-{% endblock %}
+    <p class="register-button">
+      <a class="button" id="change-owner-submit" href="#">{{ _('I Understand- Continue') }}</a>
+      {% trans %}
+        or <a id="change-owner-cancel" href="#">Cancel</a>
+      {% endtrans %}
+    </p>
+  </div>
+</div>
