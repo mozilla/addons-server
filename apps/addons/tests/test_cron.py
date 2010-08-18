@@ -2,7 +2,7 @@ from nose.tools import eq_
 import test_utils
 
 import amo
-import amo.tests
+import amo.test_utils
 from addons import cron
 from addons.models import Addon, AppSupport
 from files.models import File
@@ -24,8 +24,8 @@ class CurrentVersionTestCase(test_utils.TestCase):
         eq_(Addon.objects.filter(_current_version=None, pk=3615).count(), 0)
 
 
-class TestLastUpdated(test_utils.TestCase):
-    fixtures = ('base/addon_3615',)
+class TestLastUpdated(amo.test_utils.ExtraSetup, test_utils.TestCase):
+    fixtures = ('base/addon_3615', 'addons/listed')
 
     def test_personas(self):
         Addon.objects.update(type=amo.ADDON_PERSONA)
@@ -61,8 +61,14 @@ class TestLastUpdated(test_utils.TestCase):
         ids = Addon.objects.values_list('id', flat=True)
         cron._update_appsupport(ids)
 
-        eq_(AppSupport.objects.count(), 1)
+        eq_(AppSupport.objects.count(), 2)
 
         # Run it again to test deletes.
         cron._update_appsupport(ids)
-        eq_(AppSupport.objects.count(), 1)
+        eq_(AppSupport.objects.count(), 2)
+
+    def test_appsupport_listed(self):
+        AppSupport.objects.all().delete()
+        eq_(AppSupport.objects.filter(addon=3723).count(), 0)
+        cron.update_addon_appsupport()
+        eq_(AppSupport.objects.filter(addon=3723, app=1).count(), 1)

@@ -180,8 +180,9 @@ def update_addon_appsupport():
               Q(appsupport__created__isnull=True))
     # Search providers don't list supported apps.
     has_app = Q(versions__apps__isnull=False) | Q(type=amo.ADDON_SEARCH)
-    good = (Q(has_app, versions__files__status__in=amo.VALID_STATUSES) |
-            Q(type=amo.ADDON_PERSONA))
+    has_file = (Q(status=amo.STATUS_LISTED) |
+                Q(versions__files__status__in=amo.VALID_STATUSES))
+    good = Q(has_app, has_file) | Q(type=amo.ADDON_PERSONA)
     ids = (Addon.objects.valid().no_cache().distinct()
            .filter(newish, good).values_list('id', flat=True))
 

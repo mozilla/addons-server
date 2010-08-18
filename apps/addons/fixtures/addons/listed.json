@@ -1,76 +1,5 @@
 [
     {
-        "pk": 366,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string_clean": null,
-            "created": "2007-03-05 13:08:05",
-            "locale": "en-US",
-            "modified": "2007-03-25 17:17:19",
-            "id": 149,
-            "localized_string": "Themes are like new clothes for your %1$s. A theme can change only a few colors, or every piece of %1$s's appearance. It's another great way to personalize %1$s to your tastes."
-        }
-    },
-    {
-        "pk": 192,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string_clean": null,
-            "created": "2007-03-05 13:08:05",
-            "locale": "en-US",
-            "modified": "2007-03-25 17:17:19",
-            "id": 143,
-            "localized_string": "Themes"
-        }
-    },
-    {
-        "pk": 17,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string_clean": null,
-            "created": "2007-03-05 13:08:05",
-            "locale": "en-US",
-            "modified": "2007-03-25 17:17:19",
-            "id": 2,
-            "localized_string": "Theme"
-        }
-    },
-    {
-        "pk": 29876,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string_clean": null,
-            "created": "2007-03-07 22:34:07",
-            "locale": "ja",
-            "modified": "2010-01-03 22:27:06",
-            "id": 15451,
-            "localized_string": "http://f22.aaa.livedoor.jp/~ptdb/firefox/theme.html"
-        }
-    },
-    {
-        "pk": 2,
-        "model": "addons.addontype",
-        "fields": {
-            "description": 149,
-            "name_plural": 143,
-            "modified": "2009-02-06 08:42:28",
-            "name": 2,
-            "created": "2006-08-21 23:53:24"
-        }
-    },
-    {
-        "pk": 29866,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string_clean": null,
-            "created": "2007-03-07 22:34:07",
-            "locale": "ja",
-            "modified": "2008-05-17 22:14:50",
-            "id": 15450,
-            "localized_string": null
-        }
-    },
-    {
         "pk": 5,
         "model": "versions.license",
         "fields": {
@@ -89,8 +18,8 @@
             "last_updated": "2010-01-03 21:26:09",
             "view_source": 0,
             "total_downloads": 418529,
-            "developer_comments": 15453,
-            "inactive": 1,
+            "developer_comments": null,
+            "inactive": 0,
             "average_daily_downloads": 1511,
             "show_beta": 0,
             "the_future": null,
@@ -107,12 +36,12 @@
             "bayesian_rating": 3.6789000000000001,
             "share_count": 0,
             "get_satisfaction_company": "",
-            "homepage": 15451,
+            "homepage": null,
             "support_email": null,
             "public_stats": 0,
             "status": 6,
             "privacy_policy": null,
-            "description": 15452,
+            "description": null,
             "default_locale": "ja",
             "target_locale": null,
             "prerelease": 0,
@@ -120,13 +49,13 @@
             "external_software": 0,
             "highest_status": 4,
             "get_satisfaction_product": "",
-            "name": 15450,
+            "name": null,
             "created": "2006-10-31 23:19:06",
             "type": 2,
             "icon_type": "",
             "annoying": 0,
             "modified": "2010-01-03 22:27:15",
-            "summary": 15454,
+            "summary": null,
             "suggested_amount": null,
             "site_specific": 0,
             "total_reviews": 2,
@@ -135,16 +64,57 @@
         }
     },
     {
+        "pk": 291,
+        "model": "applications.appversion",
+        "fields": {
+            "version_int": 3069900200100,
+            "application": 1,
+            "version": "3.6.*",
+            "modified": null,
+            "created": null
+        }
+    },
+    {
+        "pk": 290,
+        "model": "applications.appversion",
+        "fields": {
+            "version_int": 3060000200100,
+            "application": 1,
+            "version": "3.6",
+            "modified": null,
+            "created": null
+        }
+    },
+    {
         "pk": 89774,
         "model": "versions.version",
         "fields": {
             "license": 5,
-            "created": "2010-01-03 21:26:09",
+            "created": "2010-03-24 16:33:19",
             "releasenotes": null,
             "approvalnotes": null,
-            "modified": "2010-01-03 22:13:50",
+            "modified": "2010-03-24 16:35:26",
             "version": "0",
             "addon": 3723
+        }
+    },
+    {
+        "pk": 1,
+        "model": "applications.application",
+        "fields": {
+            "guid": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}",
+            "modified": "2008-11-03 15:34:59",
+            "created": "2007-03-05 13:09:26"
+        }
+    },
+    {
+        "pk": 73083,
+        "model": "versions.applicationsversions",
+        "fields": {
+            "application": 1,
+            "max": 291,
+            "version": 89774,
+            "min": 290
         }
     }
 ]
