@@ -1,4 +1,5 @@
-import urllib, random
+import random
+import urllib
 
 from django.contrib.syndication.views import Feed
 from django.shortcuts import get_object_or_404
@@ -12,7 +13,38 @@ from addons.models import Addon, Category
 from .views import addon_listing
 
 
-class CategoriesRss(Feed):
+class AddonFeedMixin(object):
+    """Common pieces for add-ons in a feed."""
+
+    def item_link(self, addon):
+        """Link for a particular addon (<item><link>...</)"""
+        return absolutify(reverse('addons.detail', args=[addon.id]))
+
+    def item_title(self, addon):
+        return u'%s %s' % (addon.name, addon.current_version)
+
+    def item_description(self, addon):
+        """Description for particular add-on (<item><description>)"""
+        return unicode(addon.description) or ''
+
+    def item_author_name(self, addon):
+        """Author for a particuar add-on (<item><dc:creator>)"""
+        if addon.listed_authors:
+            return addon.listed_authors[0].display_name
+        else:
+            return ''
+
+    def item_pubdate(self, addon):
+        """Pubdate for a particuar add-on (<item><pubDate>)"""
+        return addon.created
+
+    def item_guid(self, addon):
+        """Guid for a particuar version (<item><guid>)"""
+        return reverse('addons.versions',
+                       args=[addon.id, addon.current_version])
+
+
+class CategoriesRss(AddonFeedMixin, Feed):
 
     category = None
     request = None
@@ -45,27 +77,8 @@ class CategoriesRss(Feed):
         addons, _, _ = addon_listing(self.request, self.TYPE, 'updated')
         return addons.filter(categories__id=category.id)[:30]
 
-    def item_title(self, addon):
-        """Title for particular addon (<item><title>...</)"""
-        return u'%s %s' % (addon.name, addon.current_version)
 
-    def item_link(self, addon):
-        """Link for a particular addon (<item><link>...</)"""
-        return absolutify(reverse('addons.detail', args=[addon.id]))
-
-    def item_description(self, addon):
-        """Description for particular addon (<item><description>...</)"""
-        return addon.description
-
-    def item_guid(self, addon):
-        """Guid for a particuar addon (<item><guid>)"""
-        guid_url = absolutify(reverse('addons.versions', args=[addon.id]))
-        return guid_url + urllib.quote(str(addon.current_version))
-
-    def item_author_name(self, addon):
-        """Author for a particuar review  (<item><dc:creator>)"""
-
-class FeaturedRss(Feed):
+class FeaturedRss(AddonFeedMixin, Feed):
 
     def get_object(self, request):
         self.app = request.APP
@@ -84,32 +97,8 @@ class FeaturedRss(Feed):
         # L10n: %s is an app name.
         return _("Here's a few of our favorite add-ons to help you get"
                  " started customizing %s.") % self.appname
-
     def items(self):
         """Return the Addons to be output as RSS <item>'s"""
         addons = list(Addon.objects.featured(self.app))
         random.shuffle(addons)
         return addons
-
-    def item_title(self, addon):
-        return u'%s %s' % (addon.name, addon.current_version)
-
-    def item_description(self, addon):
-        """Description for particular add-on (<item><description>)"""
-        return unicode(addon.description) or ''
-
-    def item_author_name(self, addon):
-        """Author for a particuar add-on (<item><dc:creator>)"""
-        if addon.listed_authors:
-            return addon.listed_authors[0].display_name
-        else:
-            return ''
-
-    def item_pubdate(self, addon):
-        """Pubdate for a particuar add-on (<item><pubDate>)"""
-        return addon.created
-
-    def item_guid(self, addon):
-        """Guid for a particuar version (<item><guid>)"""
-        return reverse('addons.versions',
-                       args=[addon.id, addon.current_version])

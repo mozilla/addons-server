@@ -10,7 +10,7 @@ import test_utils
 import amo
 import amo.test_utils
 from addons.models import (Addon, AddonPledge, AddonRecommendation, AddonType,
-                           Category, Persona, Preview)
+                           Category, Feature, Persona, Preview)
 from reviews.models import Review
 from users.models import UserProfile
 from versions.models import Version
@@ -192,12 +192,11 @@ class TestAddonModels(amo.test_utils.ExtraSetup, test_utils.TestCase):
 
     def test_is_category_featured(self):
         """Test if an add-on is category featured"""
+        Feature.objects.filter(addon=1001).delete()
         a = Addon.objects.get(pk=1001)
-        assert not a.is_featured(amo.FIREFOX, 'en-US'), (
-            'category featured add-on mistaken for globally featured')
+        assert not a.is_featured(amo.FIREFOX, 'en-US')
 
-        assert a.is_category_featured(amo.FIREFOX, 'en-US'), (
-            'category featured add-on not recognized')
+        assert a.is_category_featured(amo.FIREFOX, 'en-US')
 
     def test_has_eula(self):
         addon = lambda: Addon.objects.get(pk=3615)
