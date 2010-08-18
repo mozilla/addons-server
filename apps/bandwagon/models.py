@@ -357,35 +357,6 @@ class CollectionPromo(amo.models.ModelBase):
             promo_dict[promo_id].collection = collection.next()
 
 
-class CollectionRecommendation(models.Model):
-    collection = models.ForeignKey(Collection, null=True,
-            related_name="collection_one")
-    other_collection = models.ForeignKey(Collection, null=True,
-            related_name="collection_two")
-    score = models.FloatField(blank=True)
-
-    class Meta(amo.models.ModelBase.Meta):
-        db_table = 'collection_recommendations'
-
-
-class CollectionSummary(models.Model):
-    """This materialized view maintains a indexed summary of the text data
-    in a collection to make search faster.
-
-    `id` commented out due to django complaining because id is not actually a
-    primary key here.  This is a candidate for deletion once remora is gone;
-    bug 540638.  As soon as this info is in sphinx, this is method is
-    deprecated.
-    """
-    #id = models.PositiveIntegerField()
-    locale = models.CharField(max_length=10, blank=True)
-    name = models.TextField()
-    description = models.TextField()
-
-    class Meta:
-        db_table = 'collection_search_summary'
-
-
 class CollectionSubscription(amo.models.ModelBase):
     collection = models.ForeignKey(Collection, related_name='subscriptions')
     user = models.ForeignKey(UserProfile)
