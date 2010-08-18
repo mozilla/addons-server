@@ -49,13 +49,14 @@ class UserProfile(amo.models.ModelBase):
 
     nickname = models.CharField(max_length=255, default='', null=True,
                                 blank=True)
-    firstname = models.CharField(max_length=255, default='', null=True, blank=True)
-    lastname = models.CharField(max_length=255, default='', null=True, blank=True)
+    firstname = models.CharField(max_length=255, default='', null=True,
+                                 blank=True)
+    lastname = models.CharField(max_length=255, default='', null=True,
+                                blank=True)
 
     username = models.CharField(max_length=255, default='', unique=True)
     display_name = models.CharField(max_length=255, default='', null=True,
                                     blank=True)
-
 
     password = models.CharField(max_length=255, default='')
     email = models.EmailField(unique=True)
@@ -218,10 +219,15 @@ class UserProfile(amo.models.ModelBase):
         # We don't want to cache these things on every UserProfile; they're
         # only used by a user attached to a request.
         from bandwagon.models import CollectionAddon
+        SPECIAL = amo.COLLECTION_SPECIAL_SLUGS.keys()
         user = users[0]
         qs = CollectionAddon.objects.filter(
-            collection__author=user, collection__type=amo.COLLECTION_MOBILE)
-        user.mobile_addons = qs.values_list('addon', flat=True)
+            collection__author=user, collection__type__in=SPECIAL)
+        addons = dict((type_, []) for type_ in SPECIAL)
+        for addon, ctype in qs.values_list('addon', 'collection__type'):
+            addons[ctype].append(addon)
+        user.mobile_addons = addons[amo.COLLECTION_MOBILE]
+        user.favorite_addons = addons[amo.COLLECTION_FAVORITES]
 
 
 class BlacklistedUsername(amo.models.ModelBase):

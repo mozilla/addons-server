@@ -218,3 +218,5 @@ class TestProfile(UserViewBase):
         request = response.context['request']
         assert hasattr(request.amo_user, 'mobile_addons')
         assert hasattr(request.user.get_profile(), 'mobile_addons')
+        assert hasattr(request.amo_user, 'favorite_addons')
+        assert hasattr(request.user.get_profile(), 'favorite_addons')
