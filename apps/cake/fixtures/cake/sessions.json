@@ -5,6 +5,7 @@
     "fields": {
         "nickname": "fligtard",
         "username": "fligtard",
+        "display_name": "Scott",
         "firstname": "Scott",
         "lastname": "Bakula",
         "emailhidden": 1,
