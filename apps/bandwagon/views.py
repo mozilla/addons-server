@@ -324,6 +324,8 @@ def edit(request, collection, username, slug):
         initial = dict(type=collection.type,
                        application=collection.application_id)
         admin_form = forms.AdminForm(initial=initial)
+    else:
+        admin_form = None
 
     data = dict(collection=collection,
                 form=form,
@@ -357,7 +359,8 @@ def edit_addons(request, collection, username, slug):
         addons.append(ca.addon)
 
     data = dict(collection=collection, username=username, slug=slug,
-                addons=addons, comments=comments)
+                addons=addons, comments=comments,
+                form=forms.CollectionForm(instance=collection))
     return jingo.render(request, 'bandwagon/edit.html', data)
 
 
@@ -390,6 +393,7 @@ def edit_contributors(request, collection, username, slug):
                     reverse('collections.edit_contributors',
                             args=[username, slug]))
 
+    data['form'] = forms.CollectionForm(instance=collection)
     return jingo.render(request, 'bandwagon/edit.html', data)
 
 

@@ -355,7 +355,7 @@ class TestCRUD(test_utils.TestCase):
                       args=['admin', 'pornstar'])
         r = self.client.get(url, follow=True)
         doc = pq(r.content)
-        eq_(doc('form h3').text(), 'Admin Settings')
+        assert 'Admin Settings' in doc('form h3').text()
 
         r = self.client.post(url, dict(application=1, type=0), follow=True)
         eq_(r.status_code, 200)
@@ -371,7 +371,7 @@ class TestCRUD(test_utils.TestCase):
 
         r = self.client.get(url)
         doc = pq(r.content)
-        eq_(len(doc('#collection-delete-link')), 1)
+        eq_(len(doc('#collection-delete-link')), 3)
 
         self.login_regular()
         r = self.client.get(url)
