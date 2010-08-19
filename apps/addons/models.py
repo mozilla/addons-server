@@ -241,7 +241,7 @@ class Addon(amo.models.ModelBase):
 
     @property
     def reviews(self):
-        return Review.objects.filter(version__addon=self, reply_to=None)
+        return Review.objects.filter(addon=self, reply_to=None)
 
     def get_current_version(self):
         """Retrieves the latest version of an addon."""
