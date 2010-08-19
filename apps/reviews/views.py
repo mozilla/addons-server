@@ -111,8 +111,9 @@ def delete(request, addon_id, review_id):
 
 
 def _review_details(request, addon, form):
+    version = addon.current_version and addon.current_version.id
     d = dict(addon_id=addon.id, user_id=request.user.id,
-             version_id=addon.current_version.id,
+             version_id=version,
              ip_address=request.META.get('REMOTE_ADDR', ''))
     d.update(**form.cleaned_data)
     return d

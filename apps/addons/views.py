@@ -171,6 +171,8 @@ def persona_detail(request, addon):
         'category_personas': category_personas,
         'dev_tags': dev_tags,
         'user_tags': user_tags,
+        'review_form': ReviewForm(),
+        'reviews': Review.objects.latest().filter(addon=addon),
         # Remora users persona.author despite there being a display_username
         'author_gallery': settings.PERSONAS_USER_ROOT % persona.author,
         'search_cat': 'personas',
@@ -362,7 +364,6 @@ def developers(request, addon_id, page):
 
 
 def contribute(request, addon_id):
-
     addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
 
     contrib_type = request.GET.get('type', '')
@@ -411,10 +412,8 @@ def contribute(request, addon_id):
 def contribute_url_params(business, addon_id, item_name, return_url,
                           amount='', item_number='',
                           monthly=False, comment=''):
-
-    """Get all the data elements that will be URL params
-       on the Paypal redirect URL"""
-
+    # Get all the data elements that will be URL params
+    # on the Paypal redirect URL.
     data = {'business': business,
             'item_name': item_name,
             'item_number': item_number,

@@ -43,6 +43,10 @@
                 <td>{{ users_list(addon.listed_authors) or
                   persona.display_username }}</td>
               </tr>
+              <tr>
+                <th>{{ _('Rating', 'advanced_search_form_rating') }}</th>
+                <td>{{ addon|reviews_link }}</td>
+              </tr>
               <tr class="meta-stats">
                 <th>{{ _('Daily Users') }}</th>
                 <td>
@@ -107,11 +111,8 @@
     {% endcache %}
   </div>{# /more-personas #}
 
-  {# TODO(davedash): uncomment when we implement reviews on zamboni.
   {{ review_list_box(addon=addon, reviews=addon.reviews) }}
-
   {{ review_add_box(addon=addon) }}
-  #}
 
 </div>{# /primary #}
 

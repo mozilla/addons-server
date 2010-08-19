@@ -15,6 +15,7 @@
             {{ _('<b>{0}</b> users')|f(addon.persona.popularity|numberfmt)|safe }}
           </span>
         {% elif extra == 'rating' %}
+          {# TODO(jbalogh): call this rating when remora is gone. #}
           <span class="reviews">
             {{ addon.average_rating|float|stars }} {{ addon.total_reviews|numberfmt }}
           </span>
@@ -30,11 +31,9 @@
             {{ _('by {0} on {1}')|f(addon.persona.display_username,
                                     addon.created|datetime(dt)) }}
           </p>
-          {#
           <a href="{{ url('reviews.list', addon.id) }}">
             {{ addon.average_rating|float|stars }}
             {{ addon.total_reviews }}</a>
-          #}
           <span class="users">
             {{ _('<b>{0}</b> users')|f(addon.persona.popularity|numberfmt)|safe }}
           </span>
