@@ -30,7 +30,6 @@ def test_collections_form_bad_slug():
 
 def test_collections_form_long_description():
     f = forms.CollectionForm(dict(description='&*' * 200))
-    print f.errors
     assert 'description' in f.errors
 
 

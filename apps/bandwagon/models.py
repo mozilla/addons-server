@@ -157,29 +157,29 @@ class Collection(amo.models.ModelBase):
     def get_url_path(self):
         if settings.NEW_COLLECTIONS:
             return reverse('collections.detail',
-                            args=[self.author_nickname, self.slug])
+                            args=[self.author_username, self.slug])
         else:
             return '/collection/%s' % self.url_slug
 
     def upvote_url(self):
         return reverse('collections.vote',
-                       args=[self.author_nickname, self.slug, 'up'])
+                       args=[self.author_username, self.slug, 'up'])
 
     def downvote_url(self):
         return reverse('collections.vote',
-                       args=[self.author_nickname, self.slug, 'down'])
+                       args=[self.author_username, self.slug, 'down'])
 
     def edit_url(self):
         return reverse('collections.edit',
-                       args=[self.author_nickname, self.slug])
+                       args=[self.author_username, self.slug])
 
     def delete_url(self):
         return reverse('collections.delete',
-                       args=[self.author_nickname, self.slug])
+                       args=[self.author_username, self.slug])
 
     @property
-    def author_nickname(self):
-        return self.author.nickname if self.author else 'anonymous'
+    def author_username(self):
+        return self.author.username if self.author else 'anonymous'
 
     @classmethod
     def get_fallback(cls):

@@ -25,7 +25,7 @@ class TestCollections(test_utils.TestCase):
                )
 
     def setUp(self):
-        self.user = UserProfile.objects.create(nickname='uhhh', email='uh@hh')
+        self.user = UserProfile.objects.create(username='uhhh', email='uh@hh')
         self.other = UserProfile.objects.exclude(id=self.user.id)[0]
 
     def test_icon_url(self):
@@ -135,7 +135,7 @@ class TestRecommendations(test_utils.TestCase):
     ids = [5299, 1843, 2464, 7661, 5369]
 
     def setUp(self):
-        self.user = UserProfile.objects.create(nickname='uhhh', email='uh@hh')
+        self.user = UserProfile.objects.create(username='uhhh', email='uh@hh')
 
     def expected_recs(self):
         scores, ranked = [], {}

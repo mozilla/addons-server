@@ -19,7 +19,7 @@ class FeedTest(test_utils.TestCase):
         self.addon.name = self.wut
 
         self.user = mock.Mock()
-        self.user.nickname = None
+        self.user.username = None
         self.user.firstname = self.u
         self.user.lastname = self.u
 
@@ -43,5 +43,5 @@ class FeedTest(test_utils.TestCase):
         eq_(self.feed.item_author_name(self.review),
             '%s %s' % (self.u, self.u))
 
-        self.user.nickname = self.u
+        self.user.username = self.u
         eq_(self.feed.item_author_name(self.review), self.u)

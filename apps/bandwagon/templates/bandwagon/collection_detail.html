@@ -9,7 +9,7 @@
 {% block content %}
   {% with crumbs = [(url('collections.list'), _('Collections')), (None, c.name)] %}
     {% if c.author %}
-      {% do crumbs.insert(1, (url('collections.user', c.author.nickname), c.author.display_name)) %}
+      {% do crumbs.insert(1, (url('collections.user', c.author.username), c.author.display_name)) %}
     {% endif %}
     {{ breadcrumbs(crumbs) }}
   {% endwith %}
@@ -63,7 +63,7 @@
       {% if c.type == amo.COLLECTION_FAVORITES and c.owned_by(amo_user) %}
         <ul id="collection-favorites-opts">
           <li>
-            <form method="post" action="{{ url('collections.edit_privacy', c.author_nickname, c.slug) }}">
+            <form method="post" action="{{ url('collections.edit_privacy', c.author_username, c.slug) }}">
               {{ csrf() }}
               <button type="submit">
                 {% if c.listed %}
@@ -164,7 +164,7 @@
         {{ ac.name }}</a></li>
     {% endfor %}
     </ul>
-    <a class="more-info" href="{{ url('collections.user', c.author.nickname) }}">
+    <a class="more-info" href="{{ url('collections.user', c.author.username) }}">
       {{ _('See all collections by this user') }}</a>
   </div>
 {% endif %}

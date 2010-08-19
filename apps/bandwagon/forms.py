@@ -92,7 +92,7 @@ class ContributorsForm(Form):
         collection.collectionuser_set.all().delete()
         for user in self.cleaned_data['contributor']:
             CollectionUser(collection=collection, user=user).save()
-            log.info('%s was added to Collection %s' % (user.nickname,
+            log.info('%s was added to Collection %s' % (user.username,
                                                         collection.id))
 
         new_owner = self.cleaned_data['new_owner']
@@ -115,7 +115,7 @@ class ContributorsForm(Form):
             # New owner is no longer a contributor.
             collection.collectionuser_set.filter(user=new_owner).delete()
 
-            log.info('%s now owns Collection %s' % (new_owner.nickname,
+            log.info('%s now owns Collection %s' % (new_owner.username,
                                                     collection.id))
 
 

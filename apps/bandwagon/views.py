@@ -26,11 +26,11 @@ log = commonware.log.getLogger('z.collections')
 
 def get_collection(request, username, slug):
     if (slug in SPECIAL_SLUGS.values() and request.user.is_authenticated()
-        and request.amo_user.nickname == username):
+        and request.amo_user.username == username):
         return getattr(request.amo_user, slug + '_collection')()
     else:
         return get_object_or_404(Collection.objects,
-                                 author__nickname=username, slug=slug)
+                                 author__username=username, slug=slug)
 
 
 def owner_required(f=None, require_owner=True):
@@ -68,10 +68,10 @@ def legacy_directory_redirects(request, page):
         loc = amo.utils.urlparams(base, sort=sorts[page])
     elif request.user.is_authenticated():
         if page == 'mine':
-            loc = reverse('collections.user', args=[request.amo_user.nickname])
+            loc = reverse('collections.user', args=[request.amo_user.username])
         elif page == 'favorites':
             loc = reverse('collections.detail',
-                          args=[request.amo_user.nickname, 'favorites'])
+                          args=[request.amo_user.username, 'favorites'])
     return redirect(loc)
 
 
@@ -416,7 +416,7 @@ def edit_privacy(request, collection, username, slug):
 
 @login_required
 def delete(request, username, slug):
-    collection = get_object_or_404(Collection, author__nickname=username,
+    collection = get_object_or_404(Collection, author__username=username,
                                    slug=slug)
 
     if not acl.check_collection_ownership(request, collection, True):

@@ -11,11 +11,11 @@
       {{ form.errors['slug']|safe }}
       <label>{{ form.slug.label|safe }}</label>
       <span id="slug_edit">
-      {{ url('collections.user', amo_user.nickname)|absolutify -}}
+      {{ url('collections.user', amo_user.username)|absolutify -}}
       {{ form.slug|safe }}
       </span>
       <span id="slug_readonly">
-        {{ url('collections.user', user.get_profile().nickname)|absolutify -}}
+        {{ url('collections.user', user.get_profile().username)|absolutify -}}
           <span id="slug_value">
             {% if collection and collection.slug %}
               {{ collection.slug }}

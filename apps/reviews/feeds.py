@@ -66,8 +66,8 @@ class ReviewsRss(Feed):
     def item_author_name(self, review):
         """Author for a particuar review  (<item><dc:creator>)"""
         user = review.user
-        if user.nickname:
-            return user.nickname.strip()
+        if user.username:
+            return user.username.strip()
         else:
             return '%s %s' % (user.firstname.strip(), user.lastname.strip())
 

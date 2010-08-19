@@ -115,9 +115,9 @@ def favorites_widget(context, addon):
         faved_class = 'faved' if is_favorite else ''
 
         add_url = reverse('collections.alter',
-                          args=[request.amo_user.nickname, 'favorites', 'add'])
+                          args=[request.amo_user.username, 'favorites', 'add'])
         remove_url = reverse('collections.alter',
-                             args=[request.amo_user.nickname,
+                             args=[request.amo_user.username,
                                    'favorites', 'remove'])
 
         c.update(locals())

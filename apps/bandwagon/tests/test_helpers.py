@@ -24,7 +24,7 @@ class TestHelpers(test.TestCase):
 
     def setUp(self):
         self.client.get('/')
-        self.user = UserProfile.objects.create(nickname='uniq', email='uniq')
+        self.user = UserProfile.objects.create(username='uniq', email='uniq')
 
     def test_collection_favorite(self):
         c = {}
