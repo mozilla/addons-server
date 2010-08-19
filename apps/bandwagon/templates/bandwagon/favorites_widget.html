@@ -1,0 +1,13 @@
+<div class="addon-favorite {{ faved_class }}"
+  data-addonid="{{ addon.id }}"
+  data-addurl="{{ add_url }}"
+  data-removeurl="{{ remove_url }}"
+  >
+  <span><a href="#">
+    {% if is_favorite %}
+      {{ _('Remove from favorites') }}
+    {% else %}
+      {{ _('Add to favorites') }}
+    {% endif %}
+  </a></span>
+</div>

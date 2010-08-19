@@ -110,6 +110,7 @@
         {% endif %}
 
         {% if settings.NEW_COLLECTIONS %}
+          {{ favorites_widget(addon) }}
           {% include 'addons/includes/collection_add_widget.html' %}
         {% endif %}
 

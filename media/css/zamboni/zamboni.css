@@ -2663,3 +2663,23 @@ table#addons-list, table#contributors-list {
 .make-owner {
     margin-left: 1em;
 }
+
+
+.addon-favorite span {
+    background-repeat: no-repeat;
+    background-image: url(../../img/zamboni/icons/collections.png);
+    white-space: nowrap;
+    background-position: 0 -500px;
+    padding-left: 20px;
+}
+.addon-favorite:hover span {
+    background-position: 0 -450px;
+}
+.addon-favorite.faved span {
+    background-position: 0 -400px;
+}
+.addon-favorite.ajax-loading span {
+   background-image: url(../../img/zamboni/loading-white.gif);
+   background-position: left bottom;
+}
+

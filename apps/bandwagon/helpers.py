@@ -6,6 +6,7 @@ from tower import ugettext as _
 
 from amo.helpers import login_link
 from cake.urlresolvers import remora_url
+from amo.urlresolvers import reverse
 
 
 @register.inclusion_tag('bandwagon/collection_listing_items.html')
@@ -100,4 +101,23 @@ def barometer(context, collection):
 
     c.update(locals())
     c.update({'c': collection})
+    return c
+
+
+@register.inclusion_tag('bandwagon/favorites_widget.html')
+@jinja2.contextfunction
+def favorites_widget(context, addon):
+    """Displays 'Add to Favorites' widget"""
+    c = dict(context.items())
+    request = c['request']
+    is_favorite = bool(addon.id in request.amo_user.favorite_addons)
+    faved_class = 'faved' if is_favorite else ''
+
+    add_url = reverse('collections.alter',
+                      args=[request.amo_user.nickname, 'favorites', 'add'])
+    remove_url = reverse('collections.alter',
+                         args=[request.amo_user.nickname,
+                               'favorites', 'remove'])
+
+    c.update(locals())
     return c

@@ -64,6 +64,7 @@
           {{ big_install_button(addon, show_warning=False) }}
 
           {% if settings.NEW_COLLECTIONS %}
+            {{ favorites_widget(addon) }}
             {% include 'addons/includes/collection_add_widget.html' %}
           {% endif %}
 

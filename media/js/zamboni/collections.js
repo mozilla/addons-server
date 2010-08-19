@@ -609,3 +609,36 @@ $(document).ready(function () {
 
 });
 
+// Add to favorites functionality
+$(document).ready(function () {
+    $(".addon-favorite a").click(function(e) {
+        e.preventDefault();
+        var tgt = $(this);
+        var widget = $(this).parents(".addon-favorite");
+        var data = {'addon_id': widget.attr('data-addonid')};
+        var faved = widget.hasClass("faved");
+        var url = faved ? widget.attr('data-removeurl') : widget.attr('data-addurl');
+
+        widget.addClass('ajax-loading');
+
+
+        $.ajax({
+            url: url,
+            data: data,
+            type: 'post',
+            success: function(data) {
+                widget.removeClass('ajax-loading');
+                if (faved) {
+                    widget.removeClass("faved");
+                    tgt.text(gettext("Add to favorites"));
+                } else {
+                    widget.addClass("faved");
+                    tgt.text(gettext("Remove from favorites"));
+                }
+            },
+            error: function(xhr) {
+                widget.removeClass('ajax-loading');
+            }
+        });
+    });
+});
