@@ -129,6 +129,7 @@ class CollectionForm(ModelForm):
     description = forms.CharField(
             label=_lazy('Describe your collection.'),
             widget=TranslationTextarea,
+            max_length=200,
             required=False)
     listed = forms.ChoiceField(
             label=_lazy('Privacy:'),

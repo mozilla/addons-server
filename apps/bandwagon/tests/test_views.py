@@ -28,6 +28,12 @@ def test_collections_form_bad_slug():
     assert 'name' in f.errors
 
 
+def test_collections_form_long_description():
+    f = forms.CollectionForm(dict(description='&*' * 200))
+    print f.errors
+    assert 'description' in f.errors
+
+
 def test_collections_form_unicode_slug():
     u = Mock()
     u.collections.filter.return_value.count.return_value = False
