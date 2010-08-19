@@ -152,7 +152,16 @@ class UserProfile(amo.models.ModelBase):
         if not self.resetcode_expires:
             self.resetcode_expires = datetime.now()
 
+        delete_user = None
+        if self.deleted and self.user:
+            delete_user = self.user
+            self.user = None
+            # Delete user after saving this profile.
+
         super(UserProfile, self).save(force_insert, force_update, using)
+
+        if self.deleted and delete_user:
+            delete_user.delete()
 
     def check_password(self, raw_password):
         if '$' not in self.password:

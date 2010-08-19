@@ -11,6 +11,7 @@ from nose.tools import eq_
 import amo.test_utils
 from amo.helpers import urlparams
 from amo.urlresolvers import reverse
+from users.models import UserProfile
 
 
 class UserFormBase(amo.test_utils.ExtraSetup, test_utils.TestCase):
@@ -104,7 +105,7 @@ class TestUserDeleteForm(UserFormBase):
         data = {'password': 'foo', 'confirm': True, }
         r = self.client.post('/en-US/firefox/users/delete', data, follow=True)
         self.assertContains(r, "Profile Deleted")
-        u = User.objects.get(id='4043307').get_profile()
+        u = UserProfile.objects.get(id='4043307')
         eq_(u.email, '')
 
 
@@ -218,7 +219,8 @@ class TestUserLoginForm(UserFormBase):
         r = self.client.post(url, {'username': 'jbalogh@mozilla.com',
                                    'password': 'foo'}, follow=True)
         self.assertNotContains(r, "Welcome, Jeff")
-        self.assertContains(r, "Wrong email address or password!")
+        self.assertContains(r, 'Please enter a correct username and password. '
+                               'Note that both fields are case-sensitive.')
 
 
 class TestUserRegisterForm(UserFormBase):

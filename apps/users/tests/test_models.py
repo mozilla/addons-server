@@ -1,7 +1,6 @@
 from datetime import date
 import hashlib
 
-from django import test
 from django.contrib.auth.models import User
 from django.core import mail
 
@@ -23,8 +22,15 @@ class TestUserProfile(amo.test_utils.ExtraSetup, test_utils.TestCase):
         u = User.objects.get(id='4043307').get_profile()
         eq_(u.email, 'jbalogh@mozilla.com')
         u.anonymize()
-        x = User.objects.get(id='4043307').get_profile()
+        x = UserProfile.objects.get(id='4043307')
         eq_(x.email, "")
+
+    def test_delete(self):
+        """Setting profile to delete should delete related User."""
+        u = User.objects.get(id='4043307').get_profile()
+        u.deleted = True
+        u.save()
+        eq_(len(User.objects.filter(id='4043307')), 0)
 
     def test_email_confirmation_code(self):
         u = User.objects.get(id='4043307').get_profile()
