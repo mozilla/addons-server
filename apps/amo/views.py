@@ -1,6 +1,8 @@
 import os
 import random
+from PIL import Image
 import socket
+import StringIO
 import urllib2
 from urlparse import urlparse
 
@@ -68,6 +70,17 @@ def monitor(request):
         status_summary['memcache'] = False
         log.info('Memcache is not configured.')
 
+    # Check Libraries and versions
+    libraries_results = []
+    status_summary['libraries'] = True
+    try:
+        Image.new('RGB', (16, 16)).save(StringIO.StringIO(), 'JPEG')
+        libraries_results.append(('PIL+JPEG', True, 'Got it!'))
+    except Exception, e:
+        status_summary['libraries'] = False
+        msg = "Failed to create a jpeg image: %s" % e
+        libraries_results.append(('PIL+JPEG', False, msg))
+
     # Check file paths / permissions
     filepaths = (
         (settings.NETAPP_STORAGE, os.R_OK | os.W_OK, "We want read + write."),
@@ -112,6 +125,7 @@ def monitor(request):
 
     return jingo.render(request, 'services/monitor.html',
                         {'memcache_results': memcache_results,
+                         'libraries_results': libraries_results,
                          'filepath_results': filepath_results,
                          'redis_results': redis_results,
                          'hera_results': hera_results,

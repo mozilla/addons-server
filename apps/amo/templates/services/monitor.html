@@ -25,6 +25,21 @@
   <p>There must be a minimum of 2 working servers.</p>
 </div>
 
+<div class="notification-box {{ status(status_summary.libraries) }}">
+  <h2>[libs] Libraries and Versions</h2>
+  <dl>
+  {% for lib, result, msg in libraries_results %}
+    <dt>{{ lib }}</dt>
+    <dd>
+    {% if success %}
+      {{ msg }}
+    {% else %}
+      <strong>{{ msg }}</strong>
+    {% endif %}
+    </dd>
+  {% endfor %}
+  </dl>
+</div>
 <div class="notification-box {{ status(status_summary.filepaths) }}">
   <h2>[Paths] Paths and Permissions</h2>
   <dl>
