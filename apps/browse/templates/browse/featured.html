@@ -4,8 +4,8 @@
   {{ page_title(_('Featured Add-ons')) }}
 {% endblock %}
 
-{% block extrahead %}
-  <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ remora_url('/recommended/format:rss') }}"/>
+{% block rss_feed %}
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ url('browse.featured.rss') }}"/>
 {% endblock %}
 
 {% block content %}
@@ -13,12 +13,12 @@
   <h2>{{ _('Featured Add-ons') }}</h2>
   <p>
     {% trans app=APP.pretty %}
-    Here's a few of our favorite add-ons to help you get started customizing 
+    Here's a few of our favorite add-ons to help you get started customizing
     {{ app }}.
     {% endtrans %}
     {% if APP == amo.FIREFOX %}
       {% trans url="http://www.rockyourfirefox.com?src=amo-featured" %}
-      Be sure to visit 
+      Be sure to visit
       <a href="{{ url }}">Rock Your Firefox</a>
       to learn about other useful add-ons every week!
       {% endtrans %}
