@@ -142,7 +142,7 @@ def collection_detail(request, username, slug):
     if not (c.listed or acl.check_collection_ownership(request, c)):
         return http.HttpResponseForbidden()
     STATUS = amo.VALID_STATUSES
-    base = c.addons.all() & Addon.objects.listed(request.APP, *STATUS)
+    base = Addon.objects.listed(request.APP, *STATUS) & c.addons.all()
     filter = CollectionAddonFilter(request, base,
                                    key='sort', default='popular')
     notes = get_notes(c)
