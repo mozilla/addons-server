@@ -248,8 +248,8 @@ class Collection(amo.models.ModelBase):
              .update(ordering=ordering, modified=now))
 
         for addon, comment in comments.iteritems():
-            c = CollectionAddon.objects.filter(collection=self.id, addon=addon)
-
+            c = (CollectionAddon.objects.using('default')
+                 .filter(collection=self.id, addon=addon))
             if c:
                 c[0].comments = comment
                 c[0].save()
