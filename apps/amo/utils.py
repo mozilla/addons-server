@@ -199,18 +199,22 @@ def randslice(qs, limit, exclude=None):
     return slice_
 
 
-def slugify(s, ok='-'):
+# Extra characters outside of alphanumerics that we'll allow.
+SLUG_OK = '-_'
+
+
+def slugify(s, ok=SLUG_OK):
     rv = []
     for c in smart_unicode(s):
         cat = unicodedata.category(c)[0]
         if cat in 'LN' or c in ok:
             rv.append(c)
-        if cat == 'Z': # space
+        if cat == 'Z':  # space
             rv.append(' ')
     return re.sub('[-\s]+', '-', ''.join(rv).strip().lower())
 
 
-def slug_validator(s, ok='-'):
+def slug_validator(s, ok=SLUG_OK):
     """
     Raise an error if the string has any punctuation characters.
 

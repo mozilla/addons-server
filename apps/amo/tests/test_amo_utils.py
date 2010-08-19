@@ -20,7 +20,9 @@ def test_slug_validator():
 def test_slugify():
     x = '-'.join([u, u])
     y = ' - '.join([u, u])
-    check = lambda x, y: eq_(slugify(x), y)
+    def check(x, y):
+        eq_(slugify(x), y)
+        slug_validator(slugify(x))
     s = [('xx x  - "#$@ x', 'xx-x-x'),
          (u'Bän...g (bang)', u'bäng-bang'),
          (u, u.lower()),
@@ -28,6 +30,7 @@ def test_slugify():
          (y, x.lower()),
          ('    a ', 'a'),
          ('tags/', 'tags'),
+         ('holy_wars', 'holy_wars'),
          # I don't really care what slugify returns.  Just don't crash.
          (u'𘍿', u''),
          (u'ϧ΃𘒬𘓣',  u'\u03e7'),
