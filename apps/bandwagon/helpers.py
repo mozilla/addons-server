@@ -104,20 +104,22 @@ def barometer(context, collection):
     return c
 
 
-@register.inclusion_tag('bandwagon/favorites_widget.html')
+@register.function
 @jinja2.contextfunction
 def favorites_widget(context, addon):
     """Displays 'Add to Favorites' widget"""
     c = dict(context.items())
     request = c['request']
-    is_favorite = bool(addon.id in request.amo_user.favorite_addons)
-    faved_class = 'faved' if is_favorite else ''
+    if (request.user.is_authenticated()):
+        is_favorite = bool(addon.id in request.amo_user.favorite_addons)
+        faved_class = 'faved' if is_favorite else ''
 
-    add_url = reverse('collections.alter',
-                      args=[request.amo_user.nickname, 'favorites', 'add'])
-    remove_url = reverse('collections.alter',
-                         args=[request.amo_user.nickname,
-                               'favorites', 'remove'])
+        add_url = reverse('collections.alter',
+                          args=[request.amo_user.nickname, 'favorites', 'add'])
+        remove_url = reverse('collections.alter',
+                             args=[request.amo_user.nickname,
+                                   'favorites', 'remove'])
 
-    c.update(locals())
-    return c
+        c.update(locals())
+        t = env.get_template('bandwagon/favorites_widget.html').render(**c)
+        return jinja2.Markup(t)
