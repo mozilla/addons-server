@@ -177,14 +177,15 @@ def collection_detail(request, username, slug):
                          'perms': perms})
 
 
-def get_notes(collection):
+def get_notes(collection, raw=False):
     # This might hurt in a big collection with lots of notes.
     # It's a generator so we don't evaluate anything by default.
     notes = CollectionAddon.objects.filter(collection=collection,
                                            comments__isnull=False)
     rv = {}
     for note in notes:
-        rv[note.addon_id] = note.comments
+        rv[note.addon_id] = (note.comments.localized_string if raw
+                             else note.comments)
     yield rv
 
 
@@ -325,12 +326,12 @@ def edit(request, collection, username, slug):
             collection = form.save()
             log.info('%s edited collection %s' %
                      (request.amo_user, collection.id))
-            return http.HttpResponseRedirect(collection.get_url_path())
+            return http.HttpResponseRedirect(collection.edit_url())
     else:
         form = forms.CollectionForm(instance=collection)
 
     addons = collection.addons.all()
-    comments = get_notes(collection).next()
+    comments = get_notes(collection, raw=True).next()
 
     if is_admin:
         initial = dict(type=collection.type,
@@ -353,6 +354,7 @@ def edit(request, collection, username, slug):
 
 @login_required
 @owner_required(require_owner=False)
+@post_required
 def edit_addons(request, collection, username, slug):
     if request.method == 'POST':
         form = forms.AddonsForm(request.POST)
@@ -360,53 +362,30 @@ def edit_addons(request, collection, username, slug):
             form.save(collection)
             log.info('%s added add-ons to %s' %
                      (request.amo_user, collection.id))
-            return http.HttpResponseRedirect(collection.get_url_path())
 
-    collection_addons = collection.collectionaddon_set.all()
-    addons = []
-    comments = {}
-
-    for ca in collection_addons:
-        comments[ca.addon_id] = ca.comments
-        addons.append(ca.addon)
-
-    data = dict(collection=collection, username=username, slug=slug,
-                addons=addons, comments=comments,
-                form=forms.CollectionForm(instance=collection))
-    return jingo.render(request, 'bandwagon/edit.html', data)
+    return http.HttpResponseRedirect(collection.edit_url() + '#addons-edit')
 
 
 @login_required
 @owner_required
+@post_required
 def edit_contributors(request, collection, username, slug):
     is_admin = acl.action_allowed(request, 'Admin', '%')
 
-    data = dict(collection=collection, username=username, slug=slug,
-                is_admin=is_admin)
-
     if is_admin:
-        initial = dict(type=collection.type,
-                       application=collection.application_id)
-        data['admin_form'] = forms.AdminForm(initial=initial)
+        admin_form = forms.AdminForm(request.POST)
+        if admin_form.is_valid():
+            admin_form.save(collection)
 
-    if request.method == 'POST':
-        if is_admin:
-            admin_form = forms.AdminForm(request.POST)
-            if admin_form.is_valid():
-                admin_form.save(collection)
+    form = forms.ContributorsForm(request.POST)
 
-        form = forms.ContributorsForm(request.POST)
-        if form.is_valid():
-            form.save(collection)
-            messages.success(request, _('Your collection has been updated.'))
-            if form.cleaned_data['new_owner']:
-                return http.HttpResponseRedirect(collection.get_url_path())
-            return http.HttpResponseRedirect(
-                    reverse('collections.edit_contributors',
-                            args=[username, slug]))
+    if form.is_valid():
+        form.save(collection)
+        messages.success(request, _('Your collection has been updated.'))
+        if form.cleaned_data['new_owner']:
+            return http.HttpResponseRedirect(collection.get_url_path())
 
-    data['form'] = forms.CollectionForm(instance=collection)
-    return jingo.render(request, 'bandwagon/edit.html', data)
+    return http.HttpResponseRedirect(collection.edit_url() + '#users-edit')
 
 
 @login_required
