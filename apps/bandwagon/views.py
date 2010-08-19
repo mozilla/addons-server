@@ -7,6 +7,7 @@ from django.shortcuts import get_object_or_404, redirect
 
 import commonware.log
 import jingo
+import caching.base as caching
 from tower import ugettext_lazy as _lazy, ugettext as _
 
 import amo.utils
@@ -152,6 +153,12 @@ def collection_detail(request, username, slug):
     addons = amo.utils.paginate(request, filter.qs, per_page=15,
                                 count=count.count())
 
+    # The add-on query is not related to the collection, so we need to manually
+    # hook them up for invalidation.  Bonus: count invalidation.
+    keys = [addons.object_list.flush_key(),
+            count.flush_key()]
+    caching.invalidator.add_to_flush_list({c.flush_key(): keys})
+
     if c.author_id:
         qs = Collection.objects.listed().filter(author=c.author)
         others = amo.utils.randslice(qs, limit=4, exclude=c.id)
@@ -162,8 +169,7 @@ def collection_detail(request, username, slug):
         'view_stats': acl.check_ownership(request, c, require_owner=False),
     }
 
-    tag_ids = c.top_tags
-    tags = Tag.objects.filter(id__in=tag_ids) if tag_ids else []
+    tags = Tag.objects.filter(id__in=c.top_tags) if c.top_tags else []
     return jingo.render(request, 'bandwagon/collection_detail.html',
                         {'collection': c, 'filter': filter,
                          'addons': addons, 'notes': notes,
