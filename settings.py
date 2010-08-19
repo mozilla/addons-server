@@ -360,6 +360,9 @@ MINIFY_BUNDLES = {
             # Collections
             'js/zamboni/jquery-ui/custom-1.8.2.min.js',
             'js/zamboni/collections.js',
+
+            # Users
+            'js/zamboni/users.js',
         ),
     }
 }
@@ -539,6 +542,8 @@ MAX_ICON_UPLOAD_SIZE = 4 * 1024 * 1024
 # switch to zamboni/bandwagon3.
 NEW_COLLECTIONS = True
 
-# RECAPTCHA
+# RECAPTCHA - copy all three statements to settings_local.py
 RECAPTCHA_PUBLIC_KEY = '<your public key>'
 RECAPTCHA_PRIVATE_KEY = '<your private key>'
+RECAPTCHA_URL = ('https://api-secure.recaptcha.net/challenge?k=%s' %
+                 RECAPTCHA_PUBLIC_KEY)
