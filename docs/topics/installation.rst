@@ -4,83 +4,82 @@
 Installing Zamboni
 ==================
 
-We're going to use all the hottest Python tools to set up a nice environment.
-Here we go!
+We're going to use all the hottest tools to set up a nice environment.  Skip
+steps at your own peril. Here we go!
 
 
 Requirements
 ------------
-
 To get started, you'll need:
  * Python 2.6
  * MySQL
  * libxml2 (for building lxml, used in tests)
- * libmemcached
 
-If you're on a Linux distro that splits all its packages into ``-dev``
-and normal stuff, make sure you're getting all those ``-dev`` packages too (see
-below for Ubuntu details).
+:ref:`OS X <osx-packages>` and :ref:`Ubuntu <ubuntu-packages>` instructions
+follow.
 
+There are a lot of advanced dependencies we're going to skip for a fast start.
+They have their own :ref:`section <advanced-install>`.
 
-Use the Source
-~~~~~~~~~~~~~~
-
-Grab zamboni from github with ::
-
-    git clone git://github.com/jbalogh/zamboni.git
-    cd zamboni
-    git submodule update --init
+If you're on a Linux distro that splits all its packages into ``-dev`` and
+normal stuff, make sure you're getting all those ``-dev`` packages.
 
 
-Installing Packages for Ubuntu users
-------------------------------------
-Zamboni uses many packages in production that you may or may not need depending
-on what area you are developing.  For example, if you have MySQL running on a
-separate cluster, you don't need to install it on your development box, although
-you will need the development files.  The following command will install the
-required development files on Ubuntu or, if you're running a recent version, you
-can `install them automatically <apt:python-dev,python-virtualenv,libxml2-dev,libxslt1-dev,libmysqlclient-dev,libmemcached-dev>`_:
+.. _ubuntu-packages:
 
-::
+On Ubuntu
+~~~~~~~~~
+The following command will install the required development files on Ubuntu or,
+if you're running a recent version, you can `install them automatically
+<apt:python-dev,python-virtualenv,libxml2-dev,libxslt1-dev,libmysqlclient-dev,libmemcached-dev>`_::
 
     sudo aptitude install python-dev python-virtualenv libxml2-dev libxslt1-dev libmysqlclient-dev libmemcached-dev
 
 
-Installing Python for OSX users
--------------------------------
-The best solution for OSX is Homebrew_.  Once installed you can install
-software that runs as you, and not have to run any ``sudo`` commands.
+.. _osx-packages:
 
-The following packages will get you set for python:
+On OS X
+~~~~~~~
+The best solution for installing UNIX tools on OSX is Homebrew_.
 
-::
+The following packages will get you set for zamboni::
 
     brew install python libxml2 mysql libmemcached
 
-.. _Homebrew: http://github.com/mxcl/homebrew
+.. _Homebrew: http://github.com/mxcl/homebrew#readme
+
+
+Use the Source
+--------------
+
+Grab zamboni from github with::
+
+    git clone --recursive git://github.com/jbalogh/zamboni.git
+    cd zamboni
+    git clone --recursive git://github.com/jbalogh/zamboni-lib.git vendor
+
+``zamboni.git`` is all the source code.  ``zamboni-lib.git`` is all of our
+pure-Python dependencies.  :ref:`updating` is detailed later on.
 
 
 virtualenv
 ----------
 
 `virtualenv <http://pypi.python.org/pypi/virtualenv>`_ is a tool to create
-isolated Python environments.  We're going to be installing a bunch of packages,
-but we don't want your system littered with all these things you only need for
-zamboni.  Some other piece of software might want an older version than zamboni
-wants, which can create quite a mess.  ::
+isolated Python environments.  We don't want to install packages system-wide
+because that can create quite a mess. ::
 
-    easy_install virtualenv
+    sudo easy_install virtualenv
 
-virtualenv is the only package I install system-wide.  Everything else goes in a
-virtual environment.
+virtualenv is the only Python package I install system-wide.  Everything else
+goes in a virtual environment.
 
 
 virtualenvwrapper
------------------
+~~~~~~~~~~~~~~~~~
 
 `virtualenvwrapper <http://www.doughellmann.com/docs/virtualenvwrapper/>`_
-complements virtualenv by installing some shell functions that make environment
-management smoother.
+is a set of shell functions that make virtualenv easy to work with.
 
 Install it like this::
 
@@ -94,12 +93,14 @@ Then put these lines in your ``~/.bashrc``::
 
 ``exec bash`` and you're set.
 
-.. note:: You should really be using zsh, but you know to ``s/bash/zsh/g`` if
-          you're sailing that ship.
+.. note:: If you didn't have a ``.bashrc`` already, you should make a
+          ``~/.profile`` too::
+
+            echo 'source $HOME/.bashrc' >> ~/.profile
 
 
-virtualenvwrapper Hooks
-~~~~~~~~~~~~~~~~~~~~~~~
+virtualenvwrapper Hooks (optional)
+**********************************
 
 virtualenvwrapper lets you run hooks when creating, activating, and deleting
 virtual environments.  These hooks can change settings, the shell environment,
@@ -107,23 +108,9 @@ or anything else you want to do from a shell script.  For complete hook
 documentation, see
 http://www.doughellmann.com/docs/virtualenvwrapper/hooks.html.
 
-You can find some lovely hooks to get started at http://gist.github.com/234301.
+You can find some lovely hooks to get started at http://gist.github.com/536998.
 The hook files should go in ``$WORKON_HOME`` (``$HOME/.virtualenvs`` from
 above), and ``premkvirtualenv`` should be made executable.
-
-
-premkvirtualenv
-***************
-
-This hook installs pip and ipython into every virtualenv you create.
-
-
-postactivate
-************
-
-This runs whenever you start a virtual environment.  If you have a virtual
-environment named ``zamboni``, ``postactivate`` switches the shell to
-``~/dev/zamboni`` if that directory exists.
 
 
 Getting Packages
@@ -133,88 +120,120 @@ Now we're ready to go, so create an environment for zamboni::
 
     mkvirtualenv --no-site-packages zamboni
 
-That creates a clean environment named zamboni and (for convenience) initializes
-the environment.  You can get out of the environment by restarting your shell or
-calling ``deactivate``.
+That creates a clean environment named zamboni.  You can get out of the
+environment by restarting your shell or calling ``deactivate``.
 
 To get back into the zamboni environment later, type::
 
-    workon zamboni
+    workon zamboni  # requires virtualenvwrapper
 
-If you keep your Python binary in a special place (i.e. you don't want to use
-the system Python), pass the path to mkvirtualenv with ``--python``::
+.. note:: If you want to use a different Python binary, pass the path to
+          mkvirtualenv with ``--python``::
 
-    mkvirtualenv --python=/usr/local/bin/python2.6 --no-site-packages zamboni
+            mkvirtualenv --python=/usr/local/bin/python2.6 --no-site-packages zamboni
 
 
-pip
-~~~
+Finish the install
+~~~~~~~~~~~~~~~~~~
 
-We're going to use pip to install Python packages from `pypi
-<http://pypi.python.org/pypi>`_ and github. ::
+From inside your activated virtualenv, run::
 
-    easy_install pip
+    pip install -r requirements/compiled.txt
 
-Since we're in our zamboni environment, pip was only installed locally, not
-system-wide.
+pip installs a few packages into our new virtualenv that we can't distribute in
+``zamboni-lib``.  These require a C compiler.
 
-zamboni uses a requirements file to tell pip what to install.  Get everything
-you need by running ::
 
-    pip install -r requirements/dev.txt -r requirements/compiled.txt
-
-from the root of your zamboni checkout.
-
+.. _example-settings:
 
 Settings
 --------
 
-Most of zamboni is configured in ``settings.py``, but it's incomplete since we
-don't want to put database passwords into version control.  Put any local
-settings into ``settings_local.py``.  Make sure you have ::
+Most of zamboni is already configured in ``settings.py``, but there's some
+things you need to configure locally.  All your local settings go into
+``settings_local.py``. Make sure you have ::
 
     from settings import *
 
-in your ``settings_local.py`` so that all of the configuration is included.
-The settings template for developers, included below, is at
-:src:`docs/settings/settings_local.dev.py`.
+at the top of your ``settings_local.py``.  The settings template for
+developers, included below, is at :src:`docs/settings/settings_local.dev.py`.
 
 .. literalinclude:: /settings/settings_local.dev.py
 
 I'm overriding the database parameters from ``settings.py`` and then extending
 ``INSTALLED_APPS`` and ``MIDDLEWARE_CLASSES`` to include the `Django Debug
-Toolbar <http://github.com/robhudson/django-debug-toolbar>`_.  It's awesome, and
-I recommend you do the same.
+Toolbar <http://github.com/robhudson/django-debug-toolbar>`_.  It's awesome,
+you want it.
 
 
 Database
 --------
 
-If you have access, I recommend you use http://gist.github.com/273575 to create
-a small database from the production db.  Otherwise, let Django create the
-database schema for you.  Either way, run ::
+If you have access, ask us how to get a copy of the production database.  We're
+still working out how to get useful data for outside contributors.
+
+Let Django sync up the database schema for you::
 
     ./manage.py syncdb --noinput
 
-to get the auth and admin tables from Django.
 
-At the moment, we're tracking Django's trunk, and South does not work.  So we'll
-have to do database migrations manually.  I hope there aren't too many. ::
+Run the Server
+--------------
 
-    ALTER TABLE `users`
-        ADD COLUMN `user_id` INTEGER,
-        ADD CONSTRAINT `user_id_refs_id_eb1f4611` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`);
+If you've gotten the system requirements, downloaded ``zamboni`` and
+``zamboni-lib``, set up your virtualenv with the compiled packages, and
+configured your settings and database, you're good to go.  Run the server::
 
-Then pipe this file into your mysql::
-
-    cat apps/cake/sql/session.sql | mysql ...
-
-What a mess!
+    ./manage.py runserver 0.0.0.0:8000
 
 
-Fin
----
+Contact
+-------
 
-Everything's good to go now so start up the development server. ::
+Come talk to us on irc://irc.mozilla.org/amo if you have questions, issues, or
+compliments.
 
-    python manage.py runserver 0:8000
+
+Testing
+-------
+
+The :ref:`testing` page has more info, but here's the quick way to run
+zamboni's tests::
+
+    ./manage.py test
+
+
+.. _updating:
+
+Updating
+--------
+
+This updates zamboni::
+
+    git checkout master && git pull && git submodule update --init
+
+This updates zamboni-lib in the ``vendor/`` directory::
+
+    pushd vendor && git pull && git submodule update --init && popd
+
+We use `schematic <http://github.com/jbalogh/schematic/>`_ to run migrations::
+
+    ./vendor/src/schematic/schematic migrations
+
+The :doc:`./contributing` page has more on managing branches.
+
+
+Submitting a Patch
+------------------
+
+See the :doc:`./contributing` page.
+
+
+.. _advanced-install:
+
+Advanced Installation
+---------------------
+
+In production we use things like memcached, rabbitmq + celery, sphinx, redis,
+and mongodb.  Learn more about installing these on the
+:doc:`./advanced-installation` page.
