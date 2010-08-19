@@ -221,7 +221,8 @@ class Collection(amo.models.ModelBase):
         order = dict((a, idx) for idx, a in enumerate(addon_ids))
 
         # Partition addon_ids into add/update/remove buckets.
-        existing = set(self.addons.values_list('id', flat=True))
+        existing = set(self.addons.using('default')
+                       .values_list('id', flat=True))
         add, update = [], []
         for addon in addon_ids:
             bucket = update if addon in existing else add
