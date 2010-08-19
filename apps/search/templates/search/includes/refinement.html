@@ -2,11 +2,13 @@
   <a href="{{ item.url }}">{{ item.text }}</a>
 </li>
 {% if item.children %}
-<ul>
-  {% for child in item.children %}
-  <li{% if child.selected %} class="selected"{% endif %}>
-    <a href="{{ child.url }}">{{ child.text }}</a>
+  <li>
+    <ul>
+      {% for child in item.children %}
+      <li{% if child.selected %} class="selected"{% endif %}>
+        <a href="{{ child.url }}">{{ child.text }}</a>
+      </li>
+      {% endfor %}
+    </ul>
   </li>
-  {% endfor %}
-</ul>
 {% endif %}
