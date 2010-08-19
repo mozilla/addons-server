@@ -3078,7 +3078,6 @@ ol.pagination + .num-results {
     padding: 1em 1em 1em 52px;
     position: relative;
     background-color: #FFFFFF;
-    overflow: hidden;
     clear: both;
     background-repeat: repeat-x;
     background-position: left bottom;
