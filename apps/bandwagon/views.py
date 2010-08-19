@@ -85,7 +85,7 @@ class CollectionFilter(BaseFilter):
         qs = self.base_queryset
         if field == 'featured':
             return qs.filter(type=amo.COLLECTION_FEATURED)
-        elif field == 'followers':
+        elif field == 'popular':
             return qs.order_by('-weekly_subscribers')
         elif field == 'rating':
             return qs.order_by('-rating')
