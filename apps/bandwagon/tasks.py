@@ -57,7 +57,7 @@ def collection_meta(*ids, **kw):
             .filter(cnt__gt=1).order_by('-cnt'))
     for c in Collection.objects.no_cache().filter(id__in=ids):
         addon_count = counts.get(c.id, 0)
-        all_personas = c.addon_count == persona_counts.get(c.id, None)
+        all_personas = addon_count == persona_counts.get(c.id, None)
         addons = list(c.addons.values_list('id', flat=True))
         c.top_tags = [t for t, _ in tags.filter(addon__in=addons)[:5]]
         Collection.objects.filter(id=c.id).update(addon_count=addon_count,
