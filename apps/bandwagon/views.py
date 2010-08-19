@@ -98,7 +98,7 @@ def collection_listing(request, base=None, extra={}):
         base = Collection.objects.listed()
     app = Q(application=request.APP.id) | Q(application=None)
     base = base.filter(app)
-    filter = CollectionFilter(request, base, key='sort', default='popular')
+    filter = CollectionFilter(request, base, key='sort', default='featured')
     collections = amo.utils.paginate(request, filter.qs)
     votes = get_votes(request, collections.object_list)
     return jingo.render(request, 'bandwagon/collection_listing.html',
