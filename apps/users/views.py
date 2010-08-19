@@ -1,5 +1,3 @@
-import random
-import string
 from django import http
 from django.conf import settings
 from django.core.mail import send_mail
@@ -310,20 +308,9 @@ def register(request):
         form = forms.UserRegisterForm(request.POST)
 
         if form.is_valid():
-            data = request.POST
-            u = UserProfile()
-            u.email = data.get('email')
-            u.emailhidden = data.get('emailhidden', False)
-            u.firstname = data.get('firstname', None)
-            u.lastname = data.get('lastname', None)
-            u.username = data.get('username', None)
-            u.display_name = data.get('display_name', None)
-            u.homepage = data.get('homepage', None)
-
-            u.set_password(data.get('password'))
-            u.confirmationcode = ''.join(random.sample(
-                                         string.letters + string.digits, 60))
-
+            u = form.save(commit=False)
+            u.set_password(form.cleaned_data['password'])
+            u.generate_confirmationcode()
             u.save()
             u.create_django_user()
             log.info(u"Registered new account for user (%s)", u)
@@ -337,7 +324,8 @@ def register(request):
                      'activate your account by clicking on the link provided '
                      ' in this email.').format(u.email))
             messages.info(request, msg)
-            form = None
+            return http.HttpResponseRedirect(reverse('users.login'))
+
         else:
             messages.error(request, _(('There are errors in this form. Please '
                                        'correct them and resubmit.')))

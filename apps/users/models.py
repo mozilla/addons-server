@@ -141,9 +141,15 @@ class UserProfile(amo.models.ModelBase):
         self.picture_type = ""
         self.save()
 
+    def generate_confirmationcode(self):
+        if not self.confirmationcode:
+            self.confirmationcode = ''.join(random.sample(string.letters +
+                                                          string.digits, 60))
+        return self.confirmationcode
+
     def save(self, force_insert=False, force_update=False, using=None):
         # we have to fix stupid things that we defined poorly in remora
-        if self.resetcode_expires is None:
+        if not self.resetcode_expires:
             self.resetcode_expires = datetime.now()
 
         super(UserProfile, self).save(force_insert, force_update, using)
