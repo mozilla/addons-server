@@ -24,9 +24,12 @@
     {% set sort = 'updated' %}
   {% endif %}
 
-  {% with cat = category.slug if category else 'all' %}
-    <link rel="alternate" type="application/rss+xml" title="RSS"
-          href="{{ url('browse.extensions.rss', cat) }}?sort={{ sort }}">
-  {% endwith %}
+  {% if category %}
+    {% set feed = url('browse.extensions.rss', category.slug) %}
+  {% else %}
+    {% set feed = url('browse.extensions.rss') %}
+  {% endif %}
+  <link rel="alternate" type="application/rss+xml" title="RSS"
+        href="{{ feed }}?sort={{ sort }}">
 {% endwith %}
 {% endblock rss_feed %}

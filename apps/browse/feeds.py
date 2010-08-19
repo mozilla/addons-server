@@ -1,5 +1,4 @@
 import random
-import urllib
 
 from django.contrib.syndication.views import Feed
 from django.shortcuts import get_object_or_404
@@ -50,19 +49,22 @@ class CategoriesRss(AddonFeedMixin, Feed):
     request = None
     TYPE = amo.ADDON_EXTENSION
 
-    def get_object(self, request, category_name):
+    def get_object(self, request, category_name=None):
         """
         Get the Category for which we are about to output
         the RSS feed of its Addons
         """
         self.request = request
+        if category_name is None:
+            return None
         q = Category.objects.filter(application=request.APP.id, type=self.TYPE)
         self.category = get_object_or_404(q, slug=category_name)
         return self.category
 
     def title(self, category):
         """Title for the feed as a whole"""
-        return u'%s :: %s' % (category.name, page_name(self.request.APP))
+        name = category.name if category else _('Extensions')
+        return u'%s :: %s' % (name, page_name(self.request.APP))
 
     def link(self, category):
         """Link for the feed as a whole"""
@@ -70,12 +72,18 @@ class CategoriesRss(AddonFeedMixin, Feed):
 
     def description(self, category):
         """Description for the feed as a whole"""
-        return _('Addons for this category')
+        if category:
+            # L10n: %s is a category name.
+            return _(u'%s Add-ons') % category.name
+        else:
+            return _('Extensions')
 
     def items(self, category):
         """Return the Addons for this Category to be output as RSS <item>'s"""
         addons, _, _ = addon_listing(self.request, self.TYPE, 'updated')
-        return addons.filter(categories__id=category.id)[:30]
+        if category:
+            addons = addons.filter(categories__id=category.id)
+        return addons[:30]
 
 
 class FeaturedRss(AddonFeedMixin, Feed):
@@ -97,6 +105,7 @@ class FeaturedRss(AddonFeedMixin, Feed):
         # L10n: %s is an app name.
         return _("Here's a few of our favorite add-ons to help you get"
                  " started customizing %s.") % self.appname
+
     def items(self):
         """Return the Addons to be output as RSS <item>'s"""
         addons = list(Addon.objects.featured(self.app))
