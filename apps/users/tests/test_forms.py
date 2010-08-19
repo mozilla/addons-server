@@ -5,6 +5,7 @@ from django.utils.http import int_to_base36
 
 import test_utils
 from manage import settings
+from mock import patch
 from nose.tools import eq_
 
 import amo.test_utils
@@ -266,13 +267,17 @@ class TestUserRegisterForm(UserFormBase):
         self.assertContains(r, "You are already logged in")
         self.assertNotContains(r, '<button type="submit">Register</button>')
 
-    def test_success(self):
+    @patch('captcha.fields.ReCaptchaField.clean')
+    def test_success(self, clean):
+        clean = lambda: ''
+
         data = {'email': 'john.connor@sky.net',
                 'password': 'carebears',
                 'password2': 'carebears',
                 'username': 'BigJC',
                 'homepage': ''}
-        r = self.client.post('/en-US/firefox/users/register', data)
+        r = self.client.post('/en-US/firefox/users/register', data,
+                             follow=True)
         self.assertContains(r, "Congratulations!")
 
         u = User.objects.get(email='john.connor@sky.net').get_profile()

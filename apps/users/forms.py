@@ -4,7 +4,9 @@ from django import forms
 from django.contrib.auth import forms as auth_forms
 from django.forms.util import ErrorList
 
+import captcha.fields
 import commonware.log
+import happyforms
 from tower import ugettext as _
 
 from .models import UserProfile, BlacklistedUsername
@@ -66,14 +68,19 @@ class UserDeleteForm(forms.Form):
         super(UserDeleteForm, self).save(**kw)
 
 
-class UserRegisterForm(forms.ModelForm):
-    """For registering users.  We're not building off
+class UserRegisterForm(happyforms.ModelForm):
+    """
+    For registering users.  We're not building off
     d.contrib.auth.forms.UserCreationForm because it doesn't do a lot of the
-    details here, so we'd have to rewrite most of it anyway."""
-    password = forms.CharField(max_length=255, required=False,
-                            widget=forms.PasswordInput(render_value=False))
-    password2 = forms.CharField(max_length=255, required=False,
-                            widget=forms.PasswordInput(render_value=False))
+    details here, so we'd have to rewrite most of it anyway.
+    """
+
+    password = forms.CharField(max_length=255,
+                               widget=forms.PasswordInput(render_value=False))
+
+    password2 = forms.CharField(max_length=255,
+                                widget=forms.PasswordInput(render_value=False))
+    recaptcha = captcha.fields.ReCaptchaField()
 
     class Meta:
         model = UserProfile
@@ -81,7 +88,7 @@ class UserRegisterForm(forms.ModelForm):
     def clean_username(self):
         name = self.cleaned_data['username']
         if BlacklistedUsername.blocked(name):
-            raise forms.ValidationError("This username is invalid.")
+            raise forms.ValidationError(_('This username is invalid.'))
         return name
 
     def clean(self):
@@ -90,13 +97,14 @@ class UserRegisterForm(forms.ModelForm):
         data = self.cleaned_data
 
         # Passwords
-        p1 = data.get("password")
-        p2 = data.get("password2")
+        p1 = data.get('password')
+        p2 = data.get('password2')
 
         if p1 != p2:
-            msg = _("The passwords did not match.")
-            self._errors["password2"] = ErrorList([msg])
-            del data["password2"]
+            msg = _('The passwords did not match.')
+            self._errors['password2'] = ErrorList([msg])
+            if p2:
+                del data['password2']
 
         return data
 
@@ -104,10 +112,18 @@ class UserRegisterForm(forms.ModelForm):
 class UserEditForm(UserRegisterForm):
     oldpassword = forms.CharField(max_length=255, required=False,
                             widget=forms.PasswordInput(render_value=False))
+    password = forms.CharField(max_length=255, required=False,
+                               widget=forms.PasswordInput(render_value=False))
+
+    password2 = forms.CharField(max_length=255, required=False,
+                                widget=forms.PasswordInput(render_value=False))
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)
         super(UserEditForm, self).__init__(*args, **kwargs)
+
+        # TODO: We should inherit from a base form not UserRegisterForm
+        del self.fields['recaptcha']
 
     class Meta:
         model = UserProfile

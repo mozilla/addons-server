@@ -1,4 +1,3 @@
-import json
 import random
 import string
 from django import http
@@ -27,11 +26,12 @@ from .utils import EmailResetCode
 
 log = commonware.log.getLogger('z.users')
 
+
 @login_required(redirect=False)
 @json_view
 def ajax(request):
     """Query for a user matching a given email."""
-    email = request.GET.get('q','').strip()
+    email = request.GET.get('q', '').strip()
     u = get_object_or_404(UserProfile, email=email)
     return dict(id=u.id, name=u.display_name)
 
@@ -306,7 +306,9 @@ def register(request):
         messages.info(request, _("You are already logged in to an account."))
         form = None
     elif request.method == 'POST':
+
         form = forms.UserRegisterForm(request.POST)
+
         if form.is_valid():
             data = request.POST
             u = UserProfile()

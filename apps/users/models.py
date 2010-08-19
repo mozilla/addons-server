@@ -49,10 +49,8 @@ class UserProfile(amo.models.ModelBase):
 
     nickname = models.CharField(max_length=255, default='', null=True,
                                 blank=True)
-    firstname = models.CharField(max_length=255, default='', null=True,
-                                 blank=True)
-    lastname = models.CharField(max_length=255, default='', null=True,
-                                blank=True)
+    firstname = models.CharField(max_length=255, default='', blank=True)
+    lastname = models.CharField(max_length=255, default='', blank=True)
 
     username = models.CharField(max_length=255, default='', unique=True)
     display_name = models.CharField(max_length=255, default='', null=True,

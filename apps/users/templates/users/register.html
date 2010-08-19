@@ -58,6 +58,13 @@
               {{ form.password2|safe }}
               {{ form.password2.errors|safe }}
             </li>
+            <li>
+              <label for="id_recaptcha">
+                {{ _('Are you human?') }} {{ required() }}
+              </label>
+              {{ form.recaptcha|safe }}
+              {{ form.recaptcha.errors|safe }}
+            </li>
           </ul>
         </fieldset>
         <div class="fm-control">

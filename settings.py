@@ -534,8 +534,11 @@ def read_only_mode(env):
 # Uploaded file limits
 MAX_ICON_UPLOAD_SIZE = 4 * 1024 * 1024
 
-
 ## Feature switches
 # Use this to keep collections compatible with remora before we're ready to
 # switch to zamboni/bandwagon3.
 NEW_COLLECTIONS = True
+
+# RECAPTCHA
+RECAPTCHA_PUBLIC_KEY = '<your public key>'
+RECAPTCHA_PRIVATE_KEY = '<your private key>'

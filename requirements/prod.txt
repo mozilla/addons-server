@@ -31,3 +31,7 @@ importlib==1.0.2
 
 # Better Forms
 -e git://github.com/mozilla/happyforms.git#egg=happyforms
+
+# Recaptcha
+-e git://github.com/mozilla/django-recaptcha.git#egg=django-recaptcha
+
