@@ -20,7 +20,7 @@
             "lastname": "smailin",
             "emailhidden": true,
             "user": null,
-            "password": "sha512$462ae92eb45de43d26cd0c8e8eb9f9e901b00789e36b5feb200660cfe22e64ae$4cfca2ef8049637dc75082a6f2600ce7309259a1315c62264f3ff6c460656ea2302740a30cb17d591f3866c78dc3570c9b01a380a4e4857c00cbeecc27a3dd47",
+            "password": "",
             "username": "dsmailin",
             "resetcode_expires": null,
             "resetcode": "",
@@ -40,6 +40,30 @@
         }
     },
     {
+        "pk": 906021,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": "\u0410\u0432\u0442\u043e\u043c\u0430\u0442\u0438\u0447\u0435\u0441\u043a\u0438 \u0441\u0433\u0435\u043d\u0435\u0440\u0438\u0440\u043e\u0432\u0430\u043d\u043d\u044b\u0439 \u0441\u043f\u0438\u0441\u043e\u043a \u0443\u0441\u0442\u0430\u043d\u043e\u0432\u043b\u0435\u043d\u043d\u044b\u0445 \u0443 \u043c\u0435\u043d\u044f \u0434\u043e\u043f\u043e\u043b\u043d\u0435\u043d\u0438\u0439",
+            "created": "2010-02-20 00:50:34",
+            "locale": "en-US",
+            "modified": "2010-02-20 00:50:36",
+            "id": 847345,
+            "localized_string": "\u0410\u0432\u0442\u043e\u043c\u0430\u0442\u0438\u0447\u0435\u0441\u043a\u0438 \u0441\u0433\u0435\u043d\u0435\u0440\u0438\u0440\u043e\u0432\u0430\u043d\u043d\u044b\u0439 \u0441\u043f\u0438\u0441\u043e\u043a \u0443\u0441\u0442\u0430\u043d\u043e\u0432\u043b\u0435\u043d\u043d\u044b\u0445 \u0443 \u043c\u0435\u043d\u044f \u0434\u043e\u043f\u043e\u043b\u043d\u0435\u043d\u0438\u0439"
+        }
+    },
+    {
+        "pk": 906020,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": null,
+            "created": "2010-02-20 00:50:31",
+            "locale": "en-US",
+            "modified": "2010-02-20 00:50:36",
+            "id": 847344,
+            "localized_string": "Home Business Auto"
+        }
+    },
+    {
         "pk": 57181,
         "model": "bandwagon.collection",
         "fields": {
@@ -53,7 +77,7 @@
             "upvotes": 0,
             "icontype": "",
             "type": 1,
-            "description": null,
+            "description": 847345,
             "default_locale": "en-US",
             "monthly_subscribers": 0,
             "downloads": 4,
@@ -61,7 +85,7 @@
             "subscribers": 1,
             "nickname": null,
             "slug": "home-business-auto",
-            "name": null,
+            "name": 847344,
             "created": "2010-02-20 00:50:34",
             "weekly_subscribers": 0,
             "modified": "2010-08-06 10:05:35",
