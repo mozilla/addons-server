@@ -403,7 +403,7 @@ PREVIEW_THUMBNAIL_URL = (STATIC_URL +
         '/img/uploads/previews/thumbs/%s/%d.png?modified=%d')
 PREVIEW_FULL_URL = (STATIC_URL +
         '/img/uploads/previews/full/%s/%d.png?modified=%d')
-USER_PIC_URL = STATIC_URL + '/img/uploads/userpics/%s/%s/%s.png?modified=%d'
+USERPICS_URL = STATIC_URL + '/img/uploads/userpics/%s/%s/%s.png?modified=%d'
 # paths for uploaded extensions
 FILES_URL = STATIC_URL + "/%s/%s/downloads/file/%d/%s?src=%s"
 COLLECTION_ICON_URL = ('%s/%s/%s/images/collection_icon/%%s/%%s' %
@@ -536,6 +536,7 @@ def read_only_mode(env):
 
 # Uploaded file limits
 MAX_ICON_UPLOAD_SIZE = 4 * 1024 * 1024
+MAX_PHOTO_UPLOAD_SIZE = MAX_ICON_UPLOAD_SIZE
 
 ## Feature switches
 # Use this to keep collections compatible with remora before we're ready to

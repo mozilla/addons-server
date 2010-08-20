@@ -1,5 +1,6 @@
 from datetime import datetime
 import hashlib
+import os
 import random
 import re
 import string
@@ -104,12 +105,22 @@ class UserProfile(amo.models.ModelBase):
         return self.addons.valid().filter(addonuser__listed=True).distinct()
 
     @property
-    def picture_url(self):
+    def picture_dir(self):
         split_id = re.match(r'((\d*?)(\d{0,3}?))\d{1,3}$', str(self.id))
+        return os.path.join(settings.USERPICS_PATH, split_id.group(2) or 0,
+                            split_id.group(1) or 0)
+
+    @property
+    def picture_path(self):
+        return os.path.join(self.picture_dir, str(self.id) + '.png')
+
+    @property
+    def picture_url(self):
         if not self.picture_type:
             return settings.MEDIA_URL + '/img/zamboni/anon_user.png'
         else:
-            return settings.USER_PIC_URL % (
+            split_id = re.match(r'((\d*?)(\d{0,3}?))\d{1,3}$', str(self.id))
+            return settings.USERPICS_URL % (
                 split_id.group(2) or 0, split_id.group(1) or 0, self.id,
                 int(time.mktime(self.modified.timetuple())))
 

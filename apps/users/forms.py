@@ -8,9 +8,10 @@ from django.forms.util import ErrorList
 import captcha.fields
 import commonware.log
 import happyforms
-from tower import ugettext as _
+from tower import ugettext as _, ugettext_lazy as _lazy
 
 from .models import UserProfile, BlacklistedUsername
+import tasks
 
 log = commonware.log.getLogger('z.users')
 
@@ -125,6 +126,8 @@ class UserEditForm(UserRegisterForm):
     password2 = forms.CharField(max_length=255, required=False,
                                 widget=forms.PasswordInput(render_value=False))
 
+    photo = forms.FileField(label=_lazy('Profile Photo'), required=False)
+
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)
         super(UserEditForm, self).__init__(*args, **kwargs)
@@ -155,18 +158,49 @@ class UserEditForm(UserRegisterForm):
         super(UserEditForm, self).clean()
         return data
 
+    def clean_photo(self):
+        photo = self.cleaned_data['photo']
+
+        if not photo:
+            return
+
+        if photo.content_type not in ('image/png', 'image/jpeg'):
+            raise forms.ValidationError(
+                    _('Images must be either PNG or JPG.'))
+
+        if photo.size > settings.MAX_PHOTO_UPLOAD_SIZE:
+            raise forms.ValidationError(
+                    _('Please use images smaller than %dMB.' %
+                      (settings.MAX_PHOTO_UPLOAD_SIZE / 1024 / 1024 - 1)))
+
+        return photo
+
     def save(self):
-        super(UserEditForm, self).save()
+        u = super(UserEditForm, self).save(commit=False)
         data = self.cleaned_data
-        amouser = self.request.user.get_profile()
+        photo = data['photo']
+        if photo:
+            u.picture_type = 'image/png'
+            tmp_destination = u.picture_path + '__unconverted'
+
+            if not os.path.exists(u.picture_dir):
+                os.mkdir(u.picture_dir)
+
+            fh = open(tmp_destination, 'w')
+            for chunk in photo.chunks():
+                fh.write(chunk)
+
+            fh.close()
+            tasks.resize_photo.delay(tmp_destination, u.picture_path)
 
         if data['password']:
-            amouser.set_password(data['password'])
-            log.info(u'User (%s) changed their password' % amouser)
+            u.set_password(data['password'])
+            log.info(u'User (%s) changed their password' % u)
 
-        log.debug(u'User (%s) updated their profile' % amouser)
+        log.debug(u'User (%s) updated their profile' % u)
 
-        amouser.save()
+        u.save()
+        return u
 
 
 class BlacklistedUsernameAddForm(forms.Form):
