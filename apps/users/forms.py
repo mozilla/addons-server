@@ -64,11 +64,6 @@ class UserDeleteForm(forms.Form):
                                                           % self.request.user)
             raise forms.ValidationError("")
 
-    def save(self, **kw):
-        log.info(u'User (%s) has successfully deleted their account.'
-                                                        % self.request.user)
-        super(UserDeleteForm, self).save(**kw)
-
 
 class UserRegisterForm(happyforms.ModelForm):
     """
@@ -184,7 +179,7 @@ class UserEditForm(UserRegisterForm):
             tmp_destination = u.picture_path + '__unconverted'
 
             if not os.path.exists(u.picture_dir):
-                os.mkdir(u.picture_dir)
+                os.makedirs(u.picture_dir)
 
             fh = open(tmp_destination, 'w')
             for chunk in photo.chunks():

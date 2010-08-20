@@ -108,6 +108,15 @@ class TestUserDeleteForm(UserFormBase):
         u = UserProfile.objects.get(id='4043307')
         eq_(u.email, '')
 
+    @patch('users.models.UserProfile.is_developer')
+    def test_developer_attempt(self, f):
+        """A developer's attempt to delete one's self must be thwarted."""
+        f = lambda: True
+        self.client.login(username='jbalogh@mozilla.com', password='foo')
+        data = {'password': 'foo', 'confirm': True, }
+        r = self.client.post('/en-US/firefox/users/delete', data, follow=True)
+        self.assertContains(r, 'You cannot delete your account')
+
 
 class TestUserEditForm(UserFormBase):
 

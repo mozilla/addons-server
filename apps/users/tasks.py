@@ -68,7 +68,7 @@ def _delete_users(data, **kw):
 
 @task
 def delete_photo(dst):
-    task_log.info('[%s@%s] Deleting photo.' % (dst, delete_photo.rate_limit))
+    task_log.info('[1@None] Deleting photo: %s.' % dst)
 
     if not dst.startswith(settings.USERPICS_PATH):
         task_log.error("Someone tried deleting something they shouldn't: %s"
@@ -84,7 +84,7 @@ def delete_photo(dst):
 @task
 def resize_photo(src, dst):
     """Resizes userpics to 200x200"""
-    task_log.info('[%s@%s] Resizing photo.' % (dst, resize_photo.rate_limit))
+    task_log.info('[1@None] Resizing photo: %s' % dst)
 
     try:
         im = Image.open(src)

@@ -10,24 +10,23 @@ from PIL import Image
 
 from bandwagon.tasks import resize_icon
 
-class TestTasks(test.TestCase):
 
-    def test_resize_icon(self):
-        somepic = "%s/img/amo2009/tab-mozilla.png" % settings.MEDIA_ROOT
+def test_resize_icon():
+    somepic = "%s/img/amo2009/tab-mozilla.png" % settings.MEDIA_ROOT
 
-        src = tempfile.NamedTemporaryFile(mode='r+w+b', suffix=".png",
-                                          delete=False)
-        dest = tempfile.NamedTemporaryFile(mode='r+w+b', suffix=".png")
+    src = tempfile.NamedTemporaryFile(mode='r+w+b', suffix=".png",
+                                      delete=False)
+    dest = tempfile.NamedTemporaryFile(mode='r+w+b', suffix=".png")
 
-        # resize_icon removes the original
-        shutil.copyfile(somepic, src.name)
+    # resize_icon removes the original
+    shutil.copyfile(somepic, src.name)
 
-        src_image = Image.open(src.name)
-        eq_(src_image.size, (82,31))
+    src_image = Image.open(src.name)
+    eq_(src_image.size, (82,31))
 
-        resize_icon(src.name, dest.name)
+    resize_icon(src.name, dest.name)
 
-        dest_image = Image.open(dest.name)
-        eq_(dest_image.size, (32,12))
+    dest_image = Image.open(dest.name)
+    eq_(dest_image.size, (32,12))
 
-        assert not os.path.exists(src.name)
+    assert not os.path.exists(src.name)
