@@ -1,6 +1,4 @@
-{% load i18n %}
-{# L10n: This is an email.  Whitespace matters! #}
-{% blocktrans %}
+{% load i18n %}{# L10n: This is an email.  Whitespace matters! #}{% blocktrans %}
 {{ domain }} Password Reset
 
 A request was received to reset the password for this account on
