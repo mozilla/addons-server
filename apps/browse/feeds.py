@@ -35,7 +35,7 @@ class AddonFeedMixin(object):
 
     def item_pubdate(self, addon):
         """Pubdate for a particuar add-on (<item><pubDate>)"""
-        return addon.created
+        return addon.last_updated
 
     def item_guid(self, addon):
         """Guid for a particuar version (<item><guid>)"""

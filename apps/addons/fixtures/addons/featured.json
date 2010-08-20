@@ -242,7 +242,7 @@
             "filename": "yahoo_toolbar-10.0.42-fx.xpi",
             "platform": 1,
             "version": 1001,
-            "datestatuschanged": null,
+            "datestatuschanged": "2007-04-04 12:30:11",
             "size": 169
         }
     },
@@ -258,7 +258,7 @@
             "filename": "del.icio.us_bookmarks-1.0.43-fx.xpi",
             "platform": 1,
             "version": 1003,
-            "datestatuschanged": null,
+            "modified": "2007-04-04 12:30:11",
             "size": 169
         }
     }

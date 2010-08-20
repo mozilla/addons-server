@@ -11,10 +11,10 @@ import test_utils
 
 import amo
 import amo.test_utils
+import addons.cron
 from amo.urlresolvers import reverse
 from amo.helpers import urlparams
 from addons.models import Addon, Category
-from addons.cron import _update_appsupport
 from browse import views, feeds
 from browse.views import locale_display_name
 from translations.models import Translation
@@ -257,6 +257,7 @@ class TestLegacyRedirects(test_utils.TestCase):
         redirects('/recommended', '/featured')
         redirects('/recommended/format:rss', '/featured/format:rss')
 
+
 class TestFeaturedPage(amo.test_utils.ExtraSetup, test_utils.TestCase):
     fixtures = ('base/apps', 'addons/featured')
 
@@ -265,6 +266,7 @@ class TestFeaturedPage(amo.test_utils.ExtraSetup, test_utils.TestCase):
 
         response = self.client.get(reverse('browse.featured'))
         eq_([1001, 1003], sorted(a.id for a in response.context['addons']))
+
 
 class TestCategoriesFeed(test_utils.TestCase):
 
@@ -293,8 +295,12 @@ class TestCategoriesFeed(test_utils.TestCase):
         t = self.feed.item_guid(self.addon)
         assert t.endswith(u'/addon/2/versions/v%s' % urllib.urlquote(self.u))
 
+
 class TestFeaturedFeed(amo.test_utils.ExtraSetup, test_utils.TestCase):
     fixtures = ('base/apps', 'addons/featured')
+
+    def setUp(self):
+        addons.cron.addon_last_updated()
 
     def test_feed_elements_present(self):
         """specific elements are present and reasonably well formed"""
