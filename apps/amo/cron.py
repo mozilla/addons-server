@@ -72,6 +72,17 @@ def gc(test_result=True):
         for line in output.split("\n"):
             log.debug(line)
 
+    if settings.USERPICS_PATH:
+        log.debug('Cleaning up uncompressed userpics.')
+
+        cmd = ('find', settings.USERPICS_PATH,
+               '-name', '*__unconverted', '-mtime', '+1', '-type', 'f',
+               '-exec', 'rm', '{}', ';')
+        output = Popen(cmd, stdout=PIPE).communicate()[0]
+
+        for line in output.split("\n"):
+            log.debug(line)
+
     # Paypal only keeps retrying to verify transactions for up to 3 days. If we
     # still have an unverified transaction after 6 days, we might as well get
     # rid of it.
