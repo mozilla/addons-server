@@ -142,14 +142,14 @@ def collection_detail(request, username, slug):
     c = get_collection(request, username, slug)
     if not (c.listed or acl.check_collection_ownership(request, c)):
         return http.HttpResponseForbidden()
-    STATUS = amo.VALID_STATUSES
-    base = Addon.objects.listed(request.APP, *STATUS) & c.addons.all()
+    base = Addon.objects.valid() & c.addons.all()
     filter = CollectionAddonFilter(request, base,
                                    key='sort', default='popular')
     notes = get_notes(c)
     # Go directly to CollectionAddon for the count to avoid joins.
     count = CollectionAddon.objects.filter(
-        Addon.objects.valid_q(STATUS, prefix='addon__'), collection=c.id)
+        Addon.objects.valid_q(amo.VALID_STATUSES, prefix='addon__'),
+        collection=c.id)
     addons = amo.utils.paginate(request, filter.qs, per_page=15,
                                 count=count.count())
 
