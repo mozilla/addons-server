@@ -410,7 +410,7 @@ $('#addon-select').click(function() {
             '</p></td>' +
             '<td>Pending</td>' +
             '<td><a title="' + gettext('Add a comment') + '" class="comment">' + gettext('Comment') + '</a></td>' +
-            '<td><a title="' + gettext('Remove this add-on from the collection') + '" class="remove">' + gettext('Remove') + '</a></td>' +
+            '<td class="remove"><a title="' + gettext('Remove this add-on from the collection') + '" class="remove">' + gettext('Remove') + '</a></td>' +
             '</tr>'
             );
         var str = tr({id: id, name: name, icon: icon});

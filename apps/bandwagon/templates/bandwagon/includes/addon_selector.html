@@ -23,7 +23,7 @@
     <tbody>
       <tr>
         <td colspan="4">
-          <input id="addon-ac" class="medium" data-src="{{ url('search.ajax') }}" />
+          <input id="addon-ac" placeholder="{{ _('Enter the name of the add-on to include') }}" class="long" data-src="{{ url('search.ajax') }}" />
           <button id="addon-select">
             {{ _('Add to Collection') }}
           </button>
@@ -41,7 +41,7 @@
         </td>
         <td>{{ addon.created }}</td>
         <td><a title="{{ _('Add a comment') }}" class="comment">{{ _('Comment') }}</a></td>
-        <td><a title="{{ _('Remove this add-on from the collection') }}" class="remove">{{ _('Remove') }}</a></td>
+        <td class="remove"><a title="{{ _('Remove this add-on from the collection') }}" class="remove">{{ _('Remove') }}</a></td>
       </tr>
       {% endfor %}
     </tbody>

@@ -333,6 +333,11 @@ def edit(request, collection, username, slug):
     addons = collection.addons.all()
     comments = get_notes(collection, raw=True).next()
 
+    base = Collection.objects.listed()
+    app = Q(application=request.APP.id) | Q(application=None)
+    base = base.filter(app)
+    filter = CollectionFilter(request, base, key='sort', default='featured')
+
     if is_admin:
         initial = dict(type=collection.type,
                        application=collection.application_id)
@@ -345,6 +350,7 @@ def edit(request, collection, username, slug):
                 user=request.amo_user,
                 username=username,
                 slug=slug,
+                filter=filter,
                 is_admin=is_admin,
                 admin_form=admin_form,
                 addons=addons,

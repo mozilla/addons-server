@@ -2594,14 +2594,26 @@ table#addons-list, table#contributors-list {
 #addons-list .comments.hascomment {
     display: block;
 }
-#addons-list tr,
-#contributors-list tr {
+td.remove {
+    width: 20px;
+    text-align:center;
+}
+#addons-list thead,
+#contributors-list thead {
+    font-size: .9em;
+}
+#addons-list tbody tr,
+#contributors-list tbody tr {
     border-top: 1px dotted #A5BFCE;
 }
-#addons-list tr:hover,
-#contributors-list tr:hover,
+#addons-list tbody tr:hover,
+#contributors-list tbody tr:hover,
 .ui-state-hover {
     background-color: #e4f5fb;
+}
+#addons-list tbody tr:first-child,
+#contributors-list tbody tr:first-child {
+    background: #B5D9E5;
 }
 #addons-list h3 {
     line-height: 36px;
@@ -2681,6 +2693,7 @@ table#addons-list, table#contributors-list {
 #change-owner {
     left: inherit;
     right: -44px;
+    width: 300px;
 }
 .contributor span {
     position: relative;

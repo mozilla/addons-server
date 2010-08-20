@@ -43,24 +43,7 @@
 </div>
 
 <div class="secondary">
-  <div class="other-categories highlight">
-    <h3>{{ _('Collections') }}</h3>
-    <ul>
-      {% for key, title in filter.opts %}
-        <li id="p-{{ key }}">
-          <a href="{{ base_url|urlparams(sort=key) }}">{{ title }}</a>
-        </li>
-      {% endfor %}
-    </ul>
-    {% if request.user.is_authenticated() %}
-      <ul>
-        <li><a href="{{ url('collections.user', amo_user.username) }}">
-          {{ _("Collections I've Made") }}</a></li>
-        <li><a href="{{ url('collections.detail', amo_user.username, 'favorites') }}">
-          {{ _("My Favorite Add-ons") }}</a></li>
-      </ul>
-    {% endif %}
-  </div>
+  {% include 'bandwagon/includes/collection_sidebar.html' %}
 
   <div>
     <h3>{{ _('Create a New Collection') }}</h3>
