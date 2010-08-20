@@ -35,6 +35,9 @@
         {{ collection_listing_items(collections.object_list) }}
       {% endcache %}
     </div>
+    {% if collections.has_other_pages() %}
+      <div class="listing-footer">{{ collections|paginator }}</div>
+    {% endif %}
   </div>
 </div>
 
