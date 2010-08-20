@@ -1,10 +1,15 @@
 from django.conf import settings
 
 import commonware.log
+import celery.task
 from celeryutils import task
 from hera.contrib.django_utils import flush_urls
 
 log = commonware.log.getLogger('z.task')
+
+
+# We use celery.task.ping in /monitor, so we need it to return results.
+celery.task.PingTask.ignore_result = False
 
 
 @task
