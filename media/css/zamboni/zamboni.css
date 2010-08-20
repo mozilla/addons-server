@@ -2246,6 +2246,11 @@ h6.author, .author a {
     margin-right: .9em;
 }
 
+.article .hreview .show-more {
+    font-weight: normal;
+    float: right;
+}
+
 /* grouped ratings style */
 
 .grouped_ratings .rating_bar {
@@ -2683,4 +2688,3 @@ table#addons-list, table#contributors-list {
    background-image: url(../../img/zamboni/loading-white.gif);
    background-position: left bottom;
 }
-

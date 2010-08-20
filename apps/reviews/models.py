@@ -8,6 +8,7 @@ from django.utils import translation
 from tower import ugettext_lazy as _
 
 import amo.models
+from amo.urlresolvers import reverse
 from translations.fields import TranslatedField
 from translations.models import Translation
 from users.models import UserProfile
@@ -59,6 +60,9 @@ class Review(amo.models.ModelBase):
         db_table = 'reviews'
         ordering = ('-created',)
 
+    def get_url_path(self):
+        return reverse('reviews.detail', args=[self.addon_id, self.id])
+
     def flush_urls(self):
         urls = ['*/addon/%d/' % self.addon_id,
                 '*/addon/%d/reviews/' % self.addon_id,
@@ -86,6 +90,12 @@ class Review(amo.models.ModelBase):
                 rv[id] = locales.itervalues().next()
 
         return rv.values()
+
+    @classmethod
+    def get_replies(cls, reviews):
+        reviews = [r.id for r in reviews]
+        qs = Review.objects.filter(reply_to__in=reviews)
+        return dict((r.reply_to_id, r) for r in qs)
 
     @staticmethod
     def post_save(sender, instance, created, **kwargs):

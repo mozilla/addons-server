@@ -13,6 +13,10 @@
           {% trans user=review.user|user_link, date=review.created|datetime %}
             by {{ user }} on {{ date }}
           {% endtrans %}
+          {% if replies[review.id] %}
+            <a class="show-more" href="{{ replies[review.id].get_url_path() }}">
+              {{ _("Show the developer's reply to this review") }}</a>
+          {% endif %}
         </p>
       </div>
     {% endfor %}

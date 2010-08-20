@@ -116,6 +116,7 @@ def extension_detail(request, addon):
     popular_coll = collections.order_by('-subscribers')[:coll_show_count]
 
     # this user's collections
+    reviews = Review.objects.latest().filter(addon=addon)
     data = {
         'addon': addon,
         'author_addons': author_addons,
@@ -128,10 +129,11 @@ def extension_detail(request, addon):
 
         'recommendations': recommended,
         'review_form': ReviewForm(),
-        'reviews': Review.objects.latest().filter(addon=addon),
+        'reviews': reviews,
+        'replies': Review.get_replies(reviews),
 
         'collections': popular_coll,
-        'other_collection_count': other_coll_count
+        'other_collection_count': other_coll_count,
     }
     return jingo.render(request, 'addons/details.html', data)
 
@@ -163,6 +165,7 @@ def persona_detail(request, addon):
         type=amo.ADDON_PERSONA).exclude(
             pk=addon.pk).select_related('persona')[:3]
 
+    reviews = Review.objects.latest().filter(addon=addon)
     data = {
         'addon': addon,
         'persona': persona,
@@ -172,7 +175,8 @@ def persona_detail(request, addon):
         'dev_tags': dev_tags,
         'user_tags': user_tags,
         'review_form': ReviewForm(),
-        'reviews': Review.objects.latest().filter(addon=addon),
+        'reviews': reviews,
+        'replies': Review.get_replies(reviews),
         # Remora users persona.author despite there being a display_username
         'author_gallery': settings.PERSONAS_USER_ROOT % persona.author,
         'search_cat': 'personas',
@@ -391,9 +395,8 @@ def contribute(request, addon_id):
 
     return_url = "%s?%s" % (reverse('addons.thanks', args=[addon.id]),
                             urllib.urlencode({'uuid': contribution_uuid}))
-    """ L10n: Phrase that will appear on the paypal
-        site specifying who the contribution is for"""
-    contrib_for = _('Contribution for {addon_name}').format(addon_name=addon.name)
+    # L10n: {0} is an add-on name.
+    contrib_for = _(u'Contribution for {0}').format(addon.name)
     redirect_url_params = contribute_url_params(
                             addon.paypal_id,
                             addon.id,
@@ -421,7 +424,8 @@ def contribute_url_params(business, addon_id, item_name, return_url,
             'no_shipping': '1',
             'return': return_url,
             'charset': 'utf-8',
-            'notify_url': "%s%s" % (settings.SERVICES_URL, reverse('amo.paypal'))}
+            'notify_url': "%s%s" % (settings.SERVICES_URL,
+                                    reverse('amo.paypal'))}
 
     if (not monthly):
         data['cmd'] = '_donations'

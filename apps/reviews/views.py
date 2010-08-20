@@ -49,7 +49,7 @@ def review_list(request, addon_id, review_id=None, user_id=None):
     if not reviews.object_list:
         raise http.Http404()
 
-    ctx['replies'] = get_replies(reviews.object_list)
+    ctx['replies'] = Review.get_replies(reviews.object_list)
     if request.user.is_authenticated():
         ctx['review_perms'] = {
             'is_admin': acl.action_allowed(request, 'Admin', 'EditAnyAddon'),
@@ -63,12 +63,6 @@ def review_list(request, addon_id, review_id=None, user_id=None):
     else:
         ctx['review_perms'] = {}
     return jingo.render(request, 'reviews/review_list.html', ctx)
-
-
-def get_replies(reviews):
-    reviews = [r.id for r in reviews]
-    qs = Review.objects.filter(reply_to__in=reviews)
-    return dict((r.reply_to_id, r) for r in qs)
 
 
 def get_flags(request, reviews):
