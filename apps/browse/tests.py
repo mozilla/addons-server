@@ -299,9 +299,6 @@ class TestCategoriesFeed(test_utils.TestCase):
 class TestFeaturedFeed(amo.test_utils.ExtraSetup, test_utils.TestCase):
     fixtures = ('base/apps', 'addons/featured')
 
-    def setUp(self):
-        addons.cron.addon_last_updated()
-
     def test_feed_elements_present(self):
         """specific elements are present and reasonably well formed"""
         url = reverse('browse.featured.rss')
@@ -313,13 +310,4 @@ class TestFeaturedFeed(amo.test_utils.ExtraSetup, test_utils.TestCase):
         eq_(doc('rss channel description')[0].text,
                 "Here's a few of our favorite add-ons to help you get " \
                 "started customizing Firefox.")
-        assert len(doc('rss channel item title')[0].text) > 0
-        item_link = doc('rss channel item link')[0]
-        assert item_link.text.endswith('/addon/1003/') \
-               or item_link.text.endswith('/addon/1001/')
-        item_pubdate = doc('rss channel item pubDate')[0]
-        assert item_pubdate.text == 'Tue, 17 Jan 2006 07:28:30 -0800' \
-               or item_pubdate.text == 'Tue, 02 Jan 2007 16:57:55 -0800'
-        item_guid = doc('rss channel item guid')[0]
-        assert item_guid.text.endswith('/versions/1.0.42') or \
-               item_guid.text.endswith('/versions/1.0.43')
+        eq_(len(doc('rss channel item')), 2)
