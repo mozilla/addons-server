@@ -104,15 +104,28 @@ def barometer(context, collection):
     return c
 
 
+@register.inclusion_tag('addons/includes/collection_add_widget.html')
 @register.function
 @jinja2.contextfunction
-def favorites_widget(context, addon):
+def collection_add_widget(context, addon, condensed=False):
+    """Displays 'Add to Collection' widget"""
+    c = dict(context.items())
+    c.update(locals())
+    return c
+
+
+@register.function
+@jinja2.contextfunction
+def favorites_widget(context, addon, condensed=False):
     """Displays 'Add to Favorites' widget"""
     c = dict(context.items())
     request = c['request']
     if (request.user.is_authenticated()):
         is_favorite = bool(addon.id in request.amo_user.favorite_addons)
         faved_class = 'faved' if is_favorite else ''
+
+        unfaved_text = '' if condensed else _('Add to favorites')
+        faved_text = 'Favorite' if condensed else _('Remove from favorites')
 
         add_url = reverse('collections.alter',
                           args=[request.amo_user.username, 'favorites', 'add'])

@@ -1,29 +1,35 @@
-<div class="collection-add"
+<div class="collection-add{{ ' condensed' if condensed else '' }}"
   data-listurl="{{ url('collections.ajax_list') }}"
   data-addurl="{{ url('collections.ajax_add') }}"
   data-removeurl="{{ url('collections.ajax_remove') }}"
   data-newurl="{{ url('collections.ajax_new') }}"
+  data-addonid="{{ addon.id }}"
   >
-  <span><a href="#">Add to collection</a></span>
-</div>
-<div class="collection-add-dropdown install-note">
-{% if user.is_anonymous() %}
-  <div class="collection-add-login">
-    <p>
-      {% trans %}
-      To create your own collections, you must have an add-ons
-      account.
-      {% endtrans %}
-    </p>
-    <p class="register-button">
-      <a class="button" href="{{ remora_url('users/register') }}">{{ _('Create an Add-ons Account') }}</a>
-    </p>
-
-    <p>
-      {% trans login=login_link() %}
-        or <a href="{{ login }}">log in to your current account</a>
-      {% endtrans %}
-    </p>
+  {% if condensed %}
+    <a href="#"><span></span></a>
+  {% else %}
+    <span><a href="#">Add to collection</a></span>
+  {% endif %}
+  <div class="popup-shim">
+    <div class="collection-add-dropdown popup{{ ' left' if condensed else '' }}">
+      {% if user.is_anonymous() %}
+        <div class="collection-add-login">
+          <p>
+            {% trans %}
+            To create your own collections, you must have an add-ons
+            account.
+            {% endtrans %}
+          </p>
+          <p class="register-button">
+            <a class="button" href="{{ remora_url('users/register') }}">{{ _('Create an Add-ons Account') }}</a>
+          </p>
+          <p>
+            {% trans login=login_link() %}
+              or <a href="{{ login }}">log in to your current account</a>
+            {% endtrans %}
+          </p>
+        </div>
+      {% endif %}
+    </div>
   </div>
-{% endif %}
 </div>

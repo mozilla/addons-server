@@ -328,11 +328,11 @@ class TestCRUD(test_utils.TestCase):
         r = self.client.get(url)
         eq_(r.status_code, 403)
 
-    def test_edit_addons(self):
+    def test_edit_addons_get(self):
         self.create_collection()
         url = reverse('collections.edit_addons', args=['admin', 'pornstar'])
         r = self.client.get(url, follow=True)
-        eq_(r.status_code, 200)
+        eq_(r.status_code, 405)
 
     def test_edit_addons_post(self):
         self.create_collection()
@@ -356,7 +356,7 @@ class TestCRUD(test_utils.TestCase):
     @patch('access.acl.action_allowed')
     def test_admin(self, f):
         self.create_collection()
-        url = reverse('collections.edit_contributors',
+        url = reverse('collections.edit',
                       args=['admin', 'pornstar'])
         r = self.client.get(url, follow=True)
         doc = pq(r.content)
@@ -372,7 +372,7 @@ class TestCRUD(test_utils.TestCase):
         url = reverse('collections.edit_contributors',
                       args=['admin', 'pornstar'])
         self.client.post(url, {'contributor': 999}, follow=True)
-        url = reverse('collections.edit_addons', args=['admin', 'pornstar'])
+        url = reverse('collections.edit', args=['admin', 'pornstar'])
 
         r = self.client.get(url)
         doc = pq(r.content)

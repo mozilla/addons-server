@@ -527,26 +527,26 @@ $(document).ready(function () {
     /* Add to collection initialization */
 
     var btn = $('div.collection-add');
-    var dropdown = $('.collection-add-dropdown');
     if (!btn.length) return;
-
-    btn.show();
 
     var list_url = btn.attr('data-listurl');
     var remove_url = btn.attr('data-removeurl');
     var add_url = btn.attr('data-addurl');
     var form_url = btn.attr('data-newurl');
-    var addon_id = $('#addon, #persona').attr('data-id');
 
     function handleToggle(e) {
+        e.preventDefault();
+
+        var tgt = $(this);
+        var dropdown = tgt.closest(".popup");
+        var addon_id = tgt.closest(".collection-add").attr('data-addonid');
         var data = {'addon_id': addon_id,
-                    'id': this.getAttribute('data-id')};
+                    'id': tgt.attr('data-id')};
         var url = this.className == "selected" ? remove_url
                                                : add_url;
 
         $(this).addClass('ajax-loading');
 
-        e.preventDefault();
         $.post(url, data, function(data) {
             dropdown.removeClass('new-collection');
             dropdown.html(data);
@@ -554,6 +554,9 @@ $(document).ready(function () {
     }
 
     var handleSubmit = function(e) {
+        var tgt = $(this);
+        var dropdown = tgt.parents(".popup");
+        var addon_id = tgt.parents(".collection-add").attr('data-addonid');
         e.preventDefault();
         form_data = $('#collections-new form').serialize();
         $.post(form_url + '?addon_id=' + addon_id, form_data, function(d) {
@@ -562,6 +565,9 @@ $(document).ready(function () {
     };
 
     var handleNew = function(e) {
+        var tgt = $(this);
+        var dropdown = tgt.parents('.collection-add-dropdown');
+        var addon_id = tgt.parents(".collection-add").attr('data-addonid');
         e.preventDefault();
         $.get(form_url, {'addon_id': addon_id}, function(d) {
             dropdown.addClass('new-collection');
@@ -571,50 +577,68 @@ $(document).ready(function () {
     };
 
     var handleClick = function(e) {
+        $('.collection-add-dropdown').hide();
+        var dropdown = $('.collection-add-dropdown', $(this));
+        dropdown.removeClass("new-collection");
+        var addon_id = $(this).attr('data-addonid');
         // If anonymous, show login overlay.
-        dropdown.show();
-        // Make a call to /collections/ajax/list with addon_id
-        if (!z.anonymous) {
+        if (z.anonymous) {
+            dropdown.show();
+        } else {
+            // Make a call to /collections/ajax/list with addon_id
             $.get(list_url, {'addon_id': addon_id}, function(data) {
+                dropdown.show();
                 dropdown.html(data);
-                dropdown.removeClass('new-collection');
+                $("a.outlink", dropdown).click(stopPropagation);
             }, 'html');
         }
         e.preventDefault();
 
+        console.log("click");
+
+        dropdown.unbind('click.popup', stopPropagation);
+        dropdown.bind('click.popup', stopPropagation);
+        dropdown.delegate('#ajax_collections_list li', 'click', handleToggle)
+            .delegate('#collections-new form', 'submit', handleSubmit)
+            .delegate('#ajax_new_collection', 'click', handleNew)
+            .delegate('#collections-new-cancel', 'click', handleClick);
+
         // Clear popup when we click outside it.
         setTimeout(function(){
-            $(document.body).bind('click newPopup', cb);
+            $(document.body).bind('click newPopup', cb(dropdown));
         }, 0);
     };
-    btn.click(handleClick);
+    $(document.body).delegate("div.collection-add", 'click', handleClick);
 
-    dropdown.delegate('#ajax_collections_list li', 'click', handleToggle)
-        .delegate('#collections-new form', 'submit', handleSubmit)
-        .delegate('#ajax_new_collection', 'click', handleNew)
-        .delegate('#collections-new-cancel', 'click', handleClick);
-
-    var cb = function(e) {
-        _root = dropdown.get(0);
-        // Bail if the click was somewhere on the popup.
-        if (e.type == 'click' &&
-            _root == e.target ||
-            _.indexOf($(e.target).parents(), _root) != -1) {
-            return;
-        }
-        dropdown.hide();
-        $(document.body).unbind('click newPopup', cb);
+    function cb(el) {
+        var hider = function function(e) {
+            _root = el.get(0);
+            // Bail if the click was somewhere on the popup.
+            if (e.type == 'click' &&
+                _root == e.target ||
+                _.indexOf($(e.target).parents(), _root) != -1) {
+                return;
+            }
+            el.hide();
+            el.unbind();
+            el.undelegate();
+            $(document.body).unbind('click newPopup', hider);
+        };
+        return hider;
     }
 
+    function stopPropagation(e) {
+        e.stopPropagation();
+    }
 
 });
 
 // Add to favorites functionality
 $(document).ready(function () {
-    $(".addon-favorite a").click(function(e) {
+    $(".addon-favorite").click(function(e) {
         e.preventDefault();
-        var tgt = $(this);
-        var widget = $(this).parents(".addon-favorite");
+        var msg = $(".msg", this);
+        var widget = $(this);
         var data = {'addon_id': widget.attr('data-addonid')};
         var faved = widget.hasClass("faved");
         var url = faved ? widget.attr('data-removeurl') : widget.attr('data-addurl');
@@ -630,10 +654,10 @@ $(document).ready(function () {
                 widget.removeClass('ajax-loading');
                 if (faved) {
                     widget.removeClass("faved");
-                    tgt.text(gettext("Add to favorites"));
+                    msg.text(widget.attr('data-unfavedtext'));
                 } else {
                     widget.addClass("faved");
-                    tgt.text(gettext("Remove from favorites"));
+                    msg.text(widget.attr('data-favedtext'));
                 }
             },
             error: function(xhr) {

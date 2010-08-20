@@ -610,6 +610,14 @@ th, td {
     padding: 2px 3px 3px;
 }
 
+.popup-shim {
+    position: relative;
+}
+
+.popup p:last-child {
+    margin-bottom: 0;
+}
+
 .install-note .msg,
 .popup .msg {
     background-repeat: no-repeat;
@@ -639,8 +647,7 @@ th, td {
     margin-top: 5px;
     z-index: 999;
     background: #fff;
-    width: 300px;
-    padding: 10px 10px 0;
+    padding: 10px;
     border: 3px solid #2e5186;
     -moz-border-radius: 8px;
     -webkit-border-radius: 8px;
@@ -648,6 +655,9 @@ th, td {
     -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.35);
     -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.35);
     box-shadow: 0 1px 3px rgba(0,0,0,0.35);
+}
+.install-note {
+    width: 300px;
 }
 /* append the left class if the bubble is to the far right */
 .install-note.left,
@@ -2461,8 +2471,14 @@ h6.author, .author a {
 .collection-add-dropdown a {
     color: #0055EE;
 }
+.collection-add-dropdown form {
+    margin-bottom: 0;
+}
 .collection-add-dropdown.new-collection {
     width: 410px;
+}
+.collection-add-dropdown.new-collection #id_description {
+    height: 6em;
 }
 
 #collection-form-slug {
@@ -2597,6 +2613,9 @@ table#addons-list, table#contributors-list {
     float: left;
     margin: 2px 1em 0 0;
 }
+#details-edit #id_name {
+    display: block;
+}
 .ui-autocomplete {
     background-color: #fff;
     border: 1px solid black;
@@ -2671,12 +2690,24 @@ table#addons-list, table#contributors-list {
 }
 
 
-.addon-favorite span {
+.collection_widgets {
+    margin-top: .5em;
+}
+
+
+.addon-favorite {
+    cursor: pointer;
+}
+.addon-favorite span,
+.collection-add.condensed a span {
     background-repeat: no-repeat;
     background-image: url(../../img/zamboni/icons/collections.png);
     white-space: nowrap;
     background-position: 0 -500px;
     padding-left: 20px;
+}
+.addon-favorite span.msg {
+    font-weight: bold;
 }
 .addon-favorite:hover span {
     background-position: 0 -450px;
@@ -2687,4 +2718,59 @@ table#addons-list, table#contributors-list {
 .addon-favorite.ajax-loading span {
    background-image: url(../../img/zamboni/loading-white.gif);
    background-position: left bottom;
+}
+
+
+a.outlink {
+    margin-left: 4px;
+    background-repeat: no-repeat;
+    background-image: url(../../img/zamboni/icons/collections.png);
+    white-space: nowrap;
+    padding-left: 16px;
+    background-position: 0 -850px;
+}
+a.outlink:hover {
+    background-position: 0 -900px;
+}
+
+
+.collection-add.condensed a span {
+    background-position: 0 -151px;
+}
+.collection-add.condensed:hover a span {
+    background-position: 0 -101px;
+}
+.collection-add.condensed .collection-add-dropdown {
+    left: -140px;
+    top: 4px;
+}
+.collection-add.condensed .collection-add-dropdown.new-collection {
+    left: -350px;
+    top: 4px;
+}
+
+
+.share-this.condensed {
+    margin-right: 4px;
+    width: 16px;
+    float: none;
+}
+
+.share-this.condensed > a {
+    background-image: url(../../img/zamboni/icons/collections.png);
+    background-repeat: no-repeat;
+    white-space: nowrap;
+    background-position: 0 -600px;
+}
+.share-this.condensed > a:hover {
+    background-position: 0 -550px;
+}
+
+.condensed .share-frame {
+    left: -186px;
+}
+
+.collection_widgets .condensed {
+    margin-right: 4px;
+    display: inline-block;
 }
