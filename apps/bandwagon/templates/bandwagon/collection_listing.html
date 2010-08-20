@@ -32,7 +32,8 @@
                             show_unreviewed=False) }}
     <div class="featured-inner">
       {% cache collections.object_list %}
-        {{ collection_listing_items(collections.object_list) }}
+        {{ collection_listing_items(collections.object_list,
+                                    show_weekly=filter.field == 'popular') }}
       {% endcache %}
     </div>
     {% if collections.has_other_pages() %}
