@@ -2787,3 +2787,10 @@ a.outlink:hover {
     margin-right: 4px;
     display: inline-block;
 }
+
+.collection_widgets > a {
+    background-image: url(../../img/zamboni/icons/collections.png);
+    background-repeat: no-repeat;
+    padding-left: 16px;
+    text-indent: -9000px;
+}

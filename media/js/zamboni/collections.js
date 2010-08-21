@@ -594,8 +594,6 @@ $(document).ready(function () {
         }
         e.preventDefault();
 
-        console.log("click");
-
         dropdown.unbind('click.popup', stopPropagation);
         dropdown.bind('click.popup', stopPropagation);
         dropdown.delegate('#ajax_collections_list li', 'click', handleToggle)
@@ -611,7 +609,7 @@ $(document).ready(function () {
     $(document.body).delegate("div.collection-add", 'click', handleClick);
 
     function cb(el) {
-        var hider = function function(e) {
+        var hider = function(e) {
             _root = el.get(0);
             // Bail if the click was somewhere on the popup.
             if (e.type == 'click' &&

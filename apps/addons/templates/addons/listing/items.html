@@ -7,10 +7,12 @@
     <div class="item-info">
       {{ install_button(addon, collection=collection) }}
       {{ item_info(addon, amo, show_added_date) }}
-      <div class="collection_widgets">
-        {{ favorites_widget(addon, condensed=True) }}
-        {{ collection_add_widget(addon, condensed=True) }}
-      </div>
+      {% if request.user.is_authenticated() %}
+        <div class="collection_widgets">
+          {{ favorites_widget(addon, condensed=True) }}
+          {{ collection_add_widget(addon, condensed=True) }}
+        </div>
+      {% endif %}
     </div>
     <blockquote>
       {% if addon.is_persona() %}
