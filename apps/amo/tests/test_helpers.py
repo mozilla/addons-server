@@ -1,6 +1,8 @@
+# -*- coding: utf-8 -*-
 from datetime import datetime
 
 from django.conf import settings
+from django.utils import encoding
 
 import jingo
 from mock import Mock, patch
@@ -10,7 +12,7 @@ from jinja2.exceptions import FilterArgumentError
 import test_utils
 
 import amo
-from amo import urlresolvers, utils
+from amo import urlresolvers, utils, helpers
 from amo.helpers import wround
 
 
@@ -40,6 +42,12 @@ def test_page_title():
     request.APP = None
     s = render('{{ page_title("%s") }}' % title, {'request': request})
     eq_(s, '%s :: Add-ons' % title)
+
+    # Check the dirty unicodes.
+    request.APP = amo.FIREFOX
+    s = render('{{ page_title(x) }}',
+               {'request': request,
+                'x': encoding.smart_str(u'\u05d0\u05d5\u05e1\u05e3')})
 
 
 def test_breadcrumbs():

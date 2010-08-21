@@ -4,7 +4,7 @@ import math
 import random
 
 from django.conf import settings
-from django.utils import translation
+from django.utils import translation, encoding
 from django.template import defaultfilters
 
 from babel import Locale
@@ -164,7 +164,8 @@ def login_link(context):
 @jinja2.contextfunction
 def page_title(context, title):
     app = context['request'].APP
-    return u'%s :: %s' % (title, page_name(app))
+    return u'%s :: %s' % (encoding.smart_unicode(title),
+                          page_name(app))
 
 
 @register.function
