@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 
 {% block title %}
-{# L10n: %s is the name of the collection. #}
-{{ page_title(_('Edit %s') % collection.name) }}
+{# L10n: {0} is the name of the collection. #}
+{{ page_title(_('Edit {0}')|f(collection.name)) }}
 {% endblock %}
 {% set owner=(collection.owned_by(amo_user) or is_admin) %}
 
@@ -17,7 +17,7 @@
                       (collection.get_url_path(), collection.name),
                       (None, _('Edit'))]) }}
 
-      <h2>{{ _('Editing %s') % collection.name }}</h2>
+      <h2>{{ _('Edit {0}')|f(collection.name) }}</h2>
     </header>
 
     {% if messages %}

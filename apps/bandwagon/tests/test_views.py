@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
+import django.test
 from django.utils.datastructures import MultiValueDict
+from django.utils import encoding
 
 from mock import patch, Mock
 from nose.tools import eq_
@@ -40,6 +42,37 @@ def test_collections_form_unicode_slug():
                              initial=dict(author=u))
     assert 'name' in f.errors
     assert 'slug' not in f.errors
+
+
+class HappyUnicodeClient(django.test.Client):
+    """
+    Django's test client runs urllib.unquote on the path you pass in.
+
+    urlilib.unquote does not understand unicode.  It's going to ruin your life.
+
+    >>> u =  u'\u05d0\u05d5\u05e1\u05e3'
+    >>> encoding.iri_to_uri(u)
+    '%D7%90%D7%95%D7%A1%D7%A3'
+    >>> urllib.unquote(encoding.iri_to_uri(u))
+    '\xd7\x90\xd7\x95\xd7\xa1\xd7\xa3'
+    >>> urllib.unquote(unicode(encoding.iri_to_uri(u)))
+    u'\xd7\x90\xd7\x95\xd7\xa1\xd7\xa3'
+    >>> _ == __
+    False
+
+    It all looks the same but the u on the front of the second string means
+    it's interpreted completely different.  I don't even know.
+    """
+
+    def get(self, path, *args, **kw):
+        path = encoding.smart_str(path)
+        return super(HappyUnicodeClient, self).get(path, *args, **kw)
+
+    def post(self, path, *args, **kw):
+        path = encoding.smart_str(path)
+        return super(HappyUnicodeClient, self).post(path, *args, **kw)
+
+    # Add head, put, options, delete if you need them.
 
 
 class TestViews(amo.test_utils.ExtraSetup, test_utils.TestCase):
@@ -216,15 +249,18 @@ class TestCRUD(test_utils.TestCase):
                )
 
     def setUp(self):
+        self.client = HappyUnicodeClient()
         login = self.client.login(username='admin@mozilla.com',
                                   password='password')
         assert login, "Couldn't log in."
         self.add_url = reverse('collections.add')
+        # Oh god it's unicode.
+        self.slug = u'\u05d0\u05d5\u05e1\u05e3'
         self.data = {
                 'addon': 3615,
-                'addon_comment': "fff",
-                'name': "flagtir's ye ole favorites",
-                'slug': "pornstar",
+                'addon_comment': 'fff',
+                'name': u'קווים תחתונים ומקפים בלבד',
+                'slug': self.slug,
                 'description': '',
                 'listed': 'True',
                 }
@@ -236,7 +272,9 @@ class TestCRUD(test_utils.TestCase):
         assert login, "Couldn't login as regular user."
 
     def create_collection(self):
-        return self.client.post(self.add_url, self.data, follow=True)
+        r = self.client.post(self.add_url, self.data, follow=True)
+        eq_(r.status_code, 200)
+        return r
 
     def test_showform(self):
         """Shows form if logged in."""
@@ -247,9 +285,9 @@ class TestCRUD(test_utils.TestCase):
         """Test submission of addons."""
         # TODO(davedash): Test file uploads, test multiple addons.
         r = self.client.post(self.add_url, self.data, follow=True)
-        eq_(r.request['PATH_INFO'],
-            '/en-US/firefox/collections/admin/pornstar/')
-        c = Collection.objects.get(slug='pornstar')
+        eq_(r.request['PATH_INFO'].decode('utf-8'),
+            '/en-US/firefox/collections/admin/%s/' % self.slug)
+        c = Collection.objects.get(slug=self.slug)
         eq_(unicode(c.name), self.data['name'])
         eq_(c.description, None)
         eq_(c.addons.all()[0].id, 3615)
@@ -276,45 +314,48 @@ class TestCRUD(test_utils.TestCase):
 
         # Make user1 owner of user2s addon.
         url = reverse('collections.edit_contributors',
-                      args=['regularuser', 'pornstar'])
-        self.client.post(url, {'contributor': 4043307, 'new_owner': 4043307},
-                         follow=True)
+                      args=['regularuser', self.slug])
+        r = self.client.post(url,
+                             {'contributor': 4043307, 'new_owner': 4043307},
+                             follow=True)
+        eq_(r.status_code, 200)
         # verify that user1's addon is slug + '-'
-        c = Collection.objects.get(slug='pornstar-')
+        c = Collection.objects.get(slug=self.slug)
         eq_(c.author_id, 4043307)
 
     def test_edit(self):
         self.create_collection()
-        url = reverse('collections.edit', args=['admin', 'pornstar'])
+        url = reverse('collections.edit', args=['admin', self.slug])
         r = self.client.get(url, follow=True)
         eq_(r.status_code, 200)
 
     def test_edit_post(self):
         """Test edit of collection."""
         self.create_collection()
-        url = reverse('collections.edit', args=['admin', 'pornstar'])
+        url = reverse('collections.edit', args=['admin', self.slug])
 
-        self.client.post(url, {'name': 'HALP', 'slug': 'halp', 'listed': True},
-                         follow=True)
+        r = self.client.post(url, {'name': 'HALP', 'slug': 'halp',
+                                   'listed': True}, follow=True)
+        eq_(r.status_code, 200)
         c = Collection.objects.get(slug='halp')
         eq_(unicode(c.name), 'HALP')
 
     def test_edit_spaces(self):
         """Let's put lots of spaces and see if they show up."""
         self.create_collection()
-        url = reverse('collections.edit', args=['admin', 'pornstar'])
+        url = reverse('collections.edit', args=['admin', self.slug])
 
-        self.client.post(url,
-                         {'name': '  H A L  P ', 'slug': '  halp  ',
-                          'listed': True},
-                         follow=True)
+        r = self.client.post(url,
+                             {'name': '  H A L  P ', 'slug': '  halp  ',
+                              'listed': True}, follow=True)
+        eq_(r.status_code, 200)
         c = Collection.objects.get(slug='halp')
         eq_(unicode(c.name), 'H A L  P')
 
     def test_forbidden_edit(self):
         r = self.client.post(self.add_url, self.data, follow=True)
         self.login_regular()
-        url_args = ['admin', 'pornstar']
+        url_args = ['admin', self.slug]
 
         url = reverse('collections.edit', args=url_args)
         r = self.client.get(url)
@@ -330,35 +371,36 @@ class TestCRUD(test_utils.TestCase):
 
     def test_edit_addons_get(self):
         self.create_collection()
-        url = reverse('collections.edit_addons', args=['admin', 'pornstar'])
+        url = reverse('collections.edit_addons', args=['admin', self.slug])
         r = self.client.get(url, follow=True)
         eq_(r.status_code, 405)
 
     def test_edit_addons_post(self):
         self.create_collection()
         url = reverse('collections.edit_addons',
-                      args=['admin', 'pornstar'])
+                      args=['admin', self.slug])
         self.client.post(url, {'addon': 3615}, follow=True)
-        addon = Collection.objects.filter(slug='pornstar')[0].addons.all()[0]
+        addon = Collection.objects.filter(slug=self.slug)[0].addons.all()[0]
         eq_(addon.id, 3615)
 
     def test_delete(self):
         self.create_collection()
-        eq_(len(Collection.objects.filter(slug='pornstar')), 1)
+        eq_(len(Collection.objects.filter(slug=self.slug)), 1)
 
         url = reverse('collections.delete',
-                      args=['admin', 'pornstar'])
+                      args=['admin', self.slug])
         self.client.post(url, dict(sure=0))
-        eq_(len(Collection.objects.filter(slug='pornstar')), 1)
+        eq_(len(Collection.objects.filter(slug=self.slug)), 1)
         self.client.post(url, dict(sure='1'))
-        eq_(len(Collection.objects.filter(slug='pornstar')), 0)
+        eq_(len(Collection.objects.filter(slug=self.slug)), 0)
 
     @patch('access.acl.action_allowed')
     def test_admin(self, f):
         self.create_collection()
         url = reverse('collections.edit',
-                      args=['admin', 'pornstar'])
+                      args=['admin', self.slug])
         r = self.client.get(url, follow=True)
+        eq_(r.status_code, 200)
         doc = pq(r.content)
         assert 'Admin Settings' in doc('form h3').text()
 
@@ -370,9 +412,9 @@ class TestCRUD(test_utils.TestCase):
         self.create_collection()
 
         url = reverse('collections.edit_contributors',
-                      args=['admin', 'pornstar'])
+                      args=['admin', self.slug])
         self.client.post(url, {'contributor': 999}, follow=True)
-        url = reverse('collections.edit', args=['admin', 'pornstar'])
+        url = reverse('collections.edit', args=['admin', self.slug])
 
         r = self.client.get(url)
         doc = pq(r.content)

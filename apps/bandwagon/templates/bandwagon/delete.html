@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}
 {# L10n: %s is the name of the collection. #}
-{{ page_title(_('Delete %s') % collection.name) }}
+{{ page_title(_('Delete {0}')|f(collection.name)) }}
 {% endblock %}
 
 {% block content %}
@@ -10,7 +10,7 @@
                     (collection.get_url_path(), collection.name),
                     (None, _('Delete')),]) }}
 
-    <h2>{{ _('Deleting %s') % collection.name }}</h2>
+    <h2>{{ _('Delete {0}')|f(collection.name) }}</h2>
   </header>
 
   <form method="post" action="{{ url('collections.delete', username, slug) }}">
