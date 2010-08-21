@@ -10,9 +10,7 @@ from amo.middleware import LocaleAndAppURLMiddleware
 
 
 class MiddlewareTest(test.TestCase):
-    """
-    Tests that the locale and app redirection work propperly
-    """
+    """Tests that the locale and app redirection work properly."""
 
     def setUp(self):
         self.rf = test_utils.RequestFactory()
