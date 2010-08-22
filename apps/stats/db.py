@@ -5,6 +5,10 @@ from decimal import Decimal, DivisionByZero
 from django.db import models
 
 import phpserialize as php
+try:
+    import simplejson as json
+except ImportError:
+    import json
 
 import caching.base
 
@@ -539,17 +543,29 @@ class StatsDictField(models.TextField):
             return StatsDict(value)
 
         # string case
-        try:
-            d = php.unserialize(value)
-        except ValueError:
-            d = None
+        if value and value[0] in '[{':
+            # JSON
+            try:
+                d = json.loads(value)
+            except ValueError:
+                d = None
+        else:
+            # phpserialize data
+            try:
+                if isinstance(value, unicode):
+                    value = value.encode('utf8')
+                d = php.unserialize(value, decode_strings=True)
+            except ValueError:
+                d = None
         if isinstance(d, dict):
             return StatsDict(d)
         return None
 
     def get_db_prep_value(self, value):
+        if value is None or value == '':
+            return value
         try:
-            value = php.serialize(dict(value))
+            value = json.dumps(dict(value))
         except TypeError:
             value = None
         return value
