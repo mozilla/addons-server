@@ -36,7 +36,6 @@ def get_collection(request, username, slug):
 
 def owner_required(f=None, require_owner=True):
     """Requires collection to be owner, by someone."""
-
     def decorator(func):
         @functools.wraps(func)
         def wrapper(request, username, slug, *args, **kw):
@@ -48,11 +47,7 @@ def owner_required(f=None, require_owner=True):
                 return http.HttpResponseForbidden(
                         _("This is not the collection you are looking for."))
         return wrapper
-
-    if f:
-        return decorator(f)
-    else:
-        return decorator
+    return decorator(f) if f else decorator
 
 
 def legacy_redirect(request, uuid):

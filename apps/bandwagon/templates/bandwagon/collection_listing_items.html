@@ -31,8 +31,8 @@
         <a title="{{ _('Share this Collection') }}" class="share" href="#"></a>
         <a title="{{ _('Copy this Collection') }}" class="copy" href="#"></a>
         #}
-        {% if c.publishable_by(amo_user) %}
-        <a title="{{ _('Edit this Collection') }}" class="edit" href="{{ c.edit_url() }}"></a>
+        {% if request.check_ownership(c, require_owner=False) %}
+          <a title="{{ _('Edit this Collection') }}" class="edit" href="{{ c.edit_url() }}"></a>
         {% endif %}
       </div>
     {% endif %}  </div>

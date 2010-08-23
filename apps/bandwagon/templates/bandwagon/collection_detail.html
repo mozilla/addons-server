@@ -80,11 +80,11 @@
           </li>
         </ul>
       {% endif %}
-      {% if c.publishable_by(amo_user) %}
+      {% if request.check_ownership(c) %}
         <p class="highlight collection-admin">
           {{ _('More Options:') }}
             <a class="edit" href="{{ c.edit_url() }}">{{ _('Edit Collection') }}</a>
-            {% if c.owned_by(amo_user) %}
+            {% if request.check_ownership(c, require_owner=True) %}
               <a class="delete" href="{{ c.delete_url() }}">{{ _('Delete Collection') }}</a>
             {% endif %}
         </p>
