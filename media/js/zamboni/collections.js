@@ -490,10 +490,21 @@ if ($('body.collections-contributors')) {
 
 $(document).ready(function () {
 
-    var url_customized = !!$('#id_slug').val() && ($('#id_slug').val() != makeslug($('#id_name').val()));
+    var url_customized = false;
+
+    function load_unicode() {
+        $body = $(document.body);
+        $body.append("<script src='" + $body.attr('data-media-url') + "/js/zamboni/unicode.js'></script>");
+    }
+
+    $(document).bind('unicode_loaded', function() {
+        url_customized = !!$('#id_slug').val() && ($('#id_slug').val() != makeslug($('#id_name').val()));
+        slugify();
+    });
 
     function makeslug(s) {
-        s = s.replace(/[^\w\s-]/g, '');
+        var re = new RegExp("[^" + z.unicode_letters + "\s-]")
+        s = s.replace(re, ' ');
         s = s.replace(/[-\s]+/g, '-').toLowerCase();
         return s
     }
@@ -506,12 +517,16 @@ $(document).ready(function () {
     }
 
     function slugify() {
-      var slug = $('#id_slug');
-      if (!url_customized || !slug.val()) {
-          var s = makeslug($('#id_name').val())
-          slug.val(s);
-          $('#slug_value').text(s);
-      }
+        if (z.unicode_letters) {
+            var slug = $('#id_slug');
+            if (!url_customized || !slug.val()) {
+                var s = makeslug($('#id_name').val())
+                slug.val(s);
+                $('#slug_value').text(s);
+            }
+        } else {
+            load_unicode();
+        }
     }
 
     $('#details-edit form, body.collection-create form, .collection-add-dropdown').delegate('#id_name', 'keyup', slugify)
