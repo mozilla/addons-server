@@ -98,9 +98,11 @@
   </ul>
 </div>
 
+{#
 <div class="notification-box {{ status(status_summary.rabbit) }}">
   <h2>[RabbitMQ] celeryd connection</h2>
   <p>Processed a task in {{ rabbit_results.duration|round(4) }} seconds.</p>
 </div>
+#}
 
 {% endblock main_content %}
