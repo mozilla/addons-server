@@ -2574,6 +2574,7 @@ h6.author, .author a {
     float: right;
     color: red;
 }
+.html-rtl .listing-footer .delete {float: left;}
 
 .tab-wrapper .content {
     margin: 1em;
