@@ -123,10 +123,10 @@ def monitor(request):
             status_summary['hera'] = False
 
     # Check Rabbit
-    start = time.time()
-    pong = celery.task.ping()
-    rabbit_results = r = {'duration': time.time() - start}
-    status_summary['rabbit'] = pong == 'pong' and r['duration'] < 1
+    # start = time.time()
+    # pong = celery.task.ping()
+    # rabbit_results = r = {'duration': time.time() - start}
+    # status_summary['rabbit'] = pong == 'pong' and r['duration'] < 1
 
     # If anything broke, send HTTP 500
     if not all(status_summary):
@@ -138,7 +138,7 @@ def monitor(request):
                          'filepath_results': filepath_results,
                          'redis_results': redis_results,
                          'hera_results': hera_results,
-                         'rabbit_results': rabbit_results,
+                         # 'rabbit_results': rabbit_results,
                          'status_summary': status_summary},
                         status=status)
 
