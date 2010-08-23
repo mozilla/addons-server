@@ -179,8 +179,10 @@ def get_notes(collection, raw=False):
                                            comments__isnull=False)
     rv = {}
     for note in notes:
-        rv[note.addon_id] = (note.comments.localized_string if raw
-                             else note.comments)
+        # Watch out for comments in a language we didn't pick up.
+        if note.comments:
+            rv[note.addon_id] = (note.comments.localized_string if raw
+                                 else note.comments)
     yield rv
 
 
