@@ -427,6 +427,7 @@ table.delegate(".remove", "click", function() {
 .delegate(".comment", "click", function() {
     var row = $(this).closest('tr');
     row.find('.comments').show();
+    $('.comments textarea', row).focus();
 });
 
 })();
