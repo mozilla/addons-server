@@ -2648,6 +2648,7 @@ td.remove {
 #addons-list a.remove,
 #addons-list a.comment,
 #contributors-list a.remove {
+    text-decoration: none;
     cursor: pointer;
     display: block;
     width: 16px;
