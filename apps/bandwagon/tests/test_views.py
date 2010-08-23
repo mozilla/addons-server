@@ -603,3 +603,10 @@ class AjaxTest(test_utils.TestCase):
         r = self.client.post(reverse('collections.ajax_remove'),
                              {'addon_id': 3615, 'id': c.id}, follow=True)
         eq_(r.status_code, 403)
+
+    def test_ajax_list_no_addon_id(self):
+        eq_(self.client.get(reverse('collections.ajax_list')).status_code, 400)
+
+    def test_ajax_list_bad_addon_id(self):
+        url = reverse('collections.ajax_list') + '?addon_id=fff'
+        eq_(self.client.get(url).status_code, 400)

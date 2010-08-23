@@ -260,7 +260,10 @@ def ajax_new(request):
 def ajax_list(request):
     # Get collections associated with this user
     collections = request.amo_user.collections.manual()
-    addon_id = int(request.GET['addon_id'])
+    try:
+        addon_id = int(request.GET['addon_id'])
+    except (KeyError, ValueError):
+        return http.HttpResponseBadRequest()
 
     for collection in collections:
         # See if the collections contains the addon
