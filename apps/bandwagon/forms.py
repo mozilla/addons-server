@@ -128,7 +128,7 @@ class CollectionForm(ModelForm):
     slug = forms.CharField(label=_lazy('URL:'))
     description = forms.CharField(
             label=_lazy('Describe your collection.'),
-            widget=TranslationTextarea,
+            widget=forms.Textarea(attrs={'rows': 3}),
             max_length=200,
             required=False)
     listed = forms.ChoiceField(
