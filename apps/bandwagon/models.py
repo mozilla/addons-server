@@ -312,11 +312,6 @@ class CollectionAddon(amo.models.ModelBase):
         db_table = 'addons_collections'
         unique_together = (('addon', 'collection'),)
 
-    def flush_urls(self):
-        urls = ['*/addon/%d/' % self.addon_id,
-                '*%s' % self.collection.get_url_path()]
-        return urls
-
 
 class CollectionAddonRecommendation(models.Model):
     collection = models.ForeignKey(Collection, null=True)
