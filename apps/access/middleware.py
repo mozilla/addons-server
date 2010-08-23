@@ -2,6 +2,7 @@
 This middleware will handle marking users into certain groups and loading
 their ACLs into the request.
 """
+from functools import partial
 
 from access import acl
 from users.models import UserProfile
@@ -10,9 +11,8 @@ from users.models import UserProfile
 class ACLMiddleware(object):
 
     def process_request(self, request):
-        """
-        Keep groups as part of the request.
-        """
+        """Attach authentication/permission helpers to request."""
+        request.check_ownership = partial(acl.check_ownership, request)
 
         # figure out our list of groups...
         if request.user.is_authenticated():
