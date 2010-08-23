@@ -11,6 +11,7 @@ from django.conf import settings
 from django.contrib.sessions.middleware import SessionMiddleware
 from django.http import HttpResponsePermanentRedirect
 from django.middleware import common
+from django.utils.cache import patch_vary_headers
 from django.utils.encoding import iri_to_uri, smart_str
 
 import commonware.log
@@ -67,11 +68,15 @@ class LocaleAndAppURLMiddleware(object):
 
             response = HttpResponsePermanentRedirect(full_path)
 
-            # Vary on Accept-Language if we changed the locale.
+            # Vary on Accept-Language or User-Agent if we changed the locale or
+            # app.
+            old_app = prefixer.app
             old_locale = prefixer.locale
-            new_locale, _, _ = prefixer.split_path(full_path)
+            new_locale, new_app, _ = prefixer.split_path(full_path)
             if old_locale != new_locale:
-                response['Vary'] = 'Accept-Language'
+                patch_vary_headers(response, ['Accept-Language'])
+            if old_app != new_app:
+                patch_vary_headers(response, ['User-Agent'])
             return response
 
         request.path_info = '/' + prefixer.shortened_path

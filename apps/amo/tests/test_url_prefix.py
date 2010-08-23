@@ -47,16 +47,30 @@ class MiddlewareTest(test.TestCase):
         response = self.process('/services')
         assert response is None
 
-    def test_vary_locale(self):
+    def test_vary(self):
         response = self.process('/')
+        eq_(response['Vary'], 'Accept-Language, User-Agent')
+
+        response = self.process('/firefox')
         eq_(response['Vary'], 'Accept-Language')
 
         response = self.process('/en-US')
+        eq_(response['Vary'], 'User-Agent')
+
+        response = self.process('/en-US/thunderbird')
         assert 'Vary' not in response
 
     def test_no_redirect_with_script(self):
         response = self.process('/services', SCRIPT_NAME='/oremj')
         assert response is None
+
+    def test_get_app(self):
+        def check(url, expected, ua):
+            response = self.process(url, HTTP_USER_AGENT=ua)
+            eq_(response['Location'], expected)
+
+        check('/en-US/', '/en-US/firefox/', 'Firefox')
+        check('/de/', '/de/mobile/', 'Fennec')
 
     def test_get_lang(self):
         def check(url, expected):

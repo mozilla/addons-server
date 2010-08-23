@@ -95,6 +95,20 @@ class Prefixer(object):
             else:
                 return '', '', path
 
+    def get_app(self):
+        """
+        Return a valid application string using the User Agent to guess.  Falls
+        back to settings.DEFAULT_APP.
+        """
+        app = settings.DEFAULT_APP
+        ua = self.request.META.get('HTTP_USER_AGENT')
+        if ua:
+            for i in amo.APPS.values():
+                if i.user_agent_string in ua:
+                    app = i.short
+
+        return app
+
     def get_language(self):
         """
         Return a locale code that we support on the site using the
@@ -137,7 +151,7 @@ class Prefixer(object):
             url_parts.append(locale)
 
         if path.partition('/')[0] not in settings.SUPPORTED_NONAPPS:
-            app = self.app if self.app else settings.DEFAULT_APP
+            app = self.app if self.app else self.get_app()
             url_parts.append(app)
 
         url_parts.append(path)

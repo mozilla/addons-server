@@ -11,7 +11,7 @@ from zadmin.models import Config, _config_cache
 def test_no_vary_cookie():
     # We don't break good usage of Vary.
     response = test.Client().get('/')
-    eq_(response['Vary'], 'Accept-Language')
+    eq_(response['Vary'], 'Accept-Language, User-Agent')
 
     # But we do prevent Vary: Cookie.
     response = test.Client().get('/', follow=True)
