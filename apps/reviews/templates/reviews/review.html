@@ -34,12 +34,19 @@
   {% endif %}
   {% if page != 'user' and review.previous_count %}
   <span class="review-note">
-    {% trans cnt=review.previous_count,
-             url=url('reviews.user', addon.id, review.user.id) %}
-      Show the <a href="{{ url }}">previous review</a> submitted by this user.
-    {% pluralize %}
-      Show <a href="{{ url }}">{{ cnt }} previous reviews</a> submitted by this user.
-    {% endtrans %}
+    {% with user_review_url = url('reviews.user', addon.id, review.user.id) %}
+      {% if review.is_latest %}
+        {% trans cnt=review.previous_count %}
+          This user has a <a href="{{ user_review_url }}">previous review</a> of this add-on.
+        {% pluralize %}
+          This user has <a href="{{ user_review_url }}">{{ cnt }} previous reviews</a> of this add-on.
+        {% endtrans %}
+      {% else %}
+        {% trans %}
+          This user has <a href="{{ user_review_url }}">other reviews</a> of this add-on.
+        {% endtrans %}
+      {% endif %}
+    {% endwith %}
   </span>
   {% endif %}
   {% if request.user.is_authenticated() %}
