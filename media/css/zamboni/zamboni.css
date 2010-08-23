@@ -2702,9 +2702,8 @@ td.remove {
     margin-left: 1em;
 }
 
-
 .collection_widgets {
-    margin-top: .5em;
+    margin-top: .2em;
 }
 
 
@@ -2792,5 +2791,24 @@ a.outlink:hover {
     background-image: url(../../img/zamboni/icons/collections.png);
     background-repeat: no-repeat;
     padding-left: 16px;
+    margin-right: .8em;
     text-indent: -9000px;
+}
+.collection_widgets .edit {
+    margin-left: .5em;
+    background-position: 0 -350px;
+}
+.collection_widgets .edit:hover { background-position: 0 -300px; }
+.collection_widgets .copy { background-position: 0 -50px; }
+.collection_widgets .copy:hover { background-position: 0 0px; }
+.collection_widgets .watch { background-position: 0 -750px; }
+.collection_widgets .watch:hover { background-position: 0 -700px; }
+.collection_widgets .share { background-position: 0 -600px; }
+.collection_widgets .share:hover { background-position: 0 -550px; }
+
+
+.addon-favorite.ajax-loazding span,
+.collection-add.ajax-loading span {
+   background-image: url(../../img/zamboni/loading-white.gif);
+   background-position: left bottom;
 }
