@@ -491,20 +491,21 @@ if ($('body.collections-contributors')) {
 $(document).ready(function () {
 
     var url_customized = false;
+    var name_val = $('#id_name').val();
 
     function load_unicode() {
-        $body = $(document.body);
+        var $body = $(document.body);
         $body.append("<script src='" + $body.attr('data-media-url') + "/js/zamboni/unicode.js'></script>");
     }
 
     $(document).bind('unicode_loaded', function() {
-        url_customized = !!$('#id_slug').val() && ($('#id_slug').val() != makeslug($('#id_name').val()));
+        url_customized = !!$('#id_slug').val() && ($('#id_slug').val() != makeslug(name_val));
         slugify();
     });
 
     function makeslug(s) {
-        var re = new RegExp("[^" + z.unicode_letters + "\s-]")
-        s = s.replace(re, ' ');
+        var re = new RegExp("[^\w" + z.unicode_letters + "0-9\s-]+","g");
+        s = $.trim(s.replace(re, ' '));
         s = s.replace(/[-\s]+/g, '-').toLowerCase();
         return s
     }
@@ -522,6 +523,7 @@ $(document).ready(function () {
             if (!url_customized || !slug.val()) {
                 var s = makeslug($('#id_name').val())
                 slug.val(s);
+                name_val = s;
                 $('#slug_value').text(s);
             }
         } else {
