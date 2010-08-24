@@ -87,18 +87,14 @@ class TestStuff(test_utils.TestCase):
         eq_(doc('#aux-nav .tools').length, 0)
 
         # Logged in, regular user = one tools link
-        self.client.login(username='admin@mozilla.com', password='password')
+        self.client.login(username='regular@mozilla.com', password='password')
         doc = get_homepage()
         eq_(doc('#aux-nav .account').length, 1)
         eq_(doc('#aux-nav ul.tools').length, 0)
         eq_(doc('#aux-nav p.tools').length, 1)
 
         # Logged in, admin = multiple links
-        admingroup = Group(rules='Admin:*')
-        admingroup.save()
-        GroupUser.objects.create(group=admingroup, user_id=4043307)
-        cache.clear()
-
+        self.client.login(username='admin@mozilla.com', password='password')
         doc = get_homepage()
         eq_(doc('#aux-nav .account').length, 1)
         eq_(doc('#aux-nav ul.tools').length, 1)
