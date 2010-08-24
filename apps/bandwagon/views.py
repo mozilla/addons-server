@@ -293,7 +293,7 @@ def change_addon(request, collection, action):
         return http.HttpResponseBadRequest()
 
     getattr(collection, action + '_addon')(addon)
-    log.info('%s: %s %s to collection %s' %
+    log.info(u'%s: %s %s to collection %s' %
              (request.amo_user, action, addon.id, collection.id))
 
     if request.is_ajax():
@@ -327,7 +327,7 @@ def edit(request, collection, username, slug):
                                     instance=collection)
         if form.is_valid():
             collection = form.save()
-            log.info('%s edited collection %s' %
+            log.info(u'%s edited collection %s' %
                      (request.amo_user, collection.id))
             return http.HttpResponseRedirect(collection.edit_url())
     else:
@@ -369,7 +369,7 @@ def edit_addons(request, collection, username, slug):
         form = forms.AddonsForm(request.POST)
         if form.is_valid():
             form.save(collection)
-            log.info('%s added add-ons to %s' %
+            log.info(u'%s added add-ons to %s' %
                      (request.amo_user, collection.id))
 
     return http.HttpResponseRedirect(collection.edit_url() + '#addons-edit')
@@ -403,7 +403,7 @@ def edit_contributors(request, collection, username, slug):
 def edit_privacy(request, collection, username, slug):
     collection.listed = not collection.listed
     collection.save()
-    log.info('%s changed privacy on collection %s' %
+    log.info(u'%s changed privacy on collection %s' %
              (request.amo_user, collection.id))
     return redirect(collection.get_url_path())
 
@@ -414,7 +414,7 @@ def delete(request, username, slug):
                                    slug=slug)
 
     if not acl.check_collection_ownership(request, collection, True):
-        log.info('%s is trying to delete collection %s'
+        log.info(u'%s is trying to delete collection %s'
                  % (request.amo_user, collection.id))
         return http.HttpResponseForbidden(
                 _('This is not the collection you are looking for.'))
@@ -424,7 +424,7 @@ def delete(request, username, slug):
     if request.method == 'POST':
         if request.POST['sure'] == '1':
             collection.delete()
-            log.info('%s deleted collection %s' %
+            log.info(u'%s deleted collection %s' %
                      (request.amo_user, collection.id))
             url = reverse('collections.user', args=[username])
             return http.HttpResponseRedirect(url)
