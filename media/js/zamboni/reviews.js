@@ -50,6 +50,7 @@ $(document).ready(function() {
             $review = $(this).parents(".review"),
             rating = $review.attr("data-rating"),
             edit_url = $("a.permalink", $review).attr("href") + "edit";
+            $cancel = $("#review-edit-cancel");
 
         $review.attr("action", edit_url);
         $form.detach().insertAfter($review);
@@ -59,11 +60,15 @@ $(document).ready(function() {
         $review.hide();
         $form.show();
 
-        $("#review-edit-cancel").click(function(e) {
-            e.preventDefault();
-            $form.hide();
+        function done_edit() {
+            $form.unbind().hide();
             $review.show();
-            $(this).die();
+            $cancel.unbind();
+        }
+
+        $cancel.click(function(e) {
+            e.preventDefault();
+            done_edit();
         });
 
         $form.submit(function (e) {
@@ -77,9 +82,7 @@ $(document).ready(function() {
                     $(".stars", $review).removeClass('stars-0 stars-1 stars-2 stars-3 stars-4 stars-5').addClass('stars-' + rating);
                     rating = $review.attr("data-rating", rating);
                     $review.children("p.review-body").text($("#id_body").val());
-                    $review.show();
-                    $form.hide();
-                    $('#review-edit-cancel').die();
+                    done_edit();
                 },
                 dataType: 'json'
             });
