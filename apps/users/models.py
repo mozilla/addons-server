@@ -128,7 +128,7 @@ class UserProfile(amo.models.ModelBase):
         return self._reviews_all.filter(reply_to=None)
 
     def anonymize(self):
-        log.info("User (%s: <%s>) is being anonymized." % (self, self.email))
+        log.info(u"User (%s: <%s>) is being anonymized." % (self, self.email))
         self.email = ""
         self.password = "sha512$Anonymous$Password"
         self.firstname = ""

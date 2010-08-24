@@ -35,7 +35,7 @@ class TestAjax(UserViewBase):
         r = self.client.get(url, follow=True)
         data = json.loads(r.content)
         eq_(data['id'], 9945)
-        eq_(data['name'], 'Justin Scott')
+        eq_(data['name'], u'Justin Scott \u0627\u0644\u062a\u0637\u0628')
 
     def test_forbidden(self):
         url = reverse('users.ajax')

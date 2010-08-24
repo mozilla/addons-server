@@ -179,7 +179,8 @@ class FrontendSearchTest(SphinxTestCase):
         are returning them."""
         resp = self.get_response(q='grapple')
         doc = pq(resp.content)
-        eq_('GrApple Yummy Aronnax', doc('.item h3 a').text())
+        eq_(u'GrApple Yummy Aronnax \u0627\u0644\u062a\u0637\u0628',
+            doc('.item h3 a').text())
 
     def test_tag_refinement(self):
         """Don't show the tag list if there's no tags to be shown."""
@@ -238,7 +239,6 @@ class ViewTest(test_utils.TestCase):
         assert views._get_tags(self.fake_request, tags=[t], selected='yermom')
 
 
-
 class AjaxTest(SphinxTestCase):
     fixtures = ('base/addon_3615',)
 
@@ -253,8 +253,7 @@ class AjaxTest(SphinxTestCase):
                 ('id', addon.id),
                 ('icon', addon.icon_url),
                 ('label', unicode(addon.name)),
-                ('value', unicode(addon.name).lower())
-                )
+                ('value', unicode(addon.name).lower()))
 
         for val, expected in check_me:
             check(val, expected)
@@ -264,5 +263,3 @@ class AjaxTest(SphinxTestCase):
         searchclient.side_effect = SearchError()
         r = self.client.get(reverse('search.ajax') + '?q=del')
         eq_('[]', r.content)
-
-
