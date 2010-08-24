@@ -353,7 +353,7 @@ class CollectionPromo(amo.models.ModelBase):
             promo_dict[promo_id].collection = collection.next()
 
 
-class CollectionSubscription(amo.models.ModelBase):
+class CollectionWatcher(amo.models.ModelBase):
     collection = models.ForeignKey(Collection, related_name='subscriptions')
     user = models.ForeignKey(UserProfile)
 

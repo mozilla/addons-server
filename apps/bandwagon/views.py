@@ -11,14 +11,14 @@ import caching.base as caching
 from tower import ugettext_lazy as _lazy, ugettext as _
 
 import amo.utils
-from amo.decorators import login_required, post_required
+from amo.decorators import login_required, post_required, json_view
 from amo.urlresolvers import reverse
 from access import acl
 from addons.models import Addon
 from addons.views import BaseFilter
 from tags.models import Tag
 from translations.query import order_by_translation
-from .models import (Collection, CollectionAddon,
+from .models import (Collection, CollectionAddon, CollectionWatcher,
                      CollectionVote, SPECIAL_SLUGS)
 from . import forms
 
@@ -432,3 +432,28 @@ def delete(request, username, slug):
             return http.HttpResponseRedirect(collection.get_url_path())
 
     return jingo.render(request, 'bandwagon/delete.html', data)
+
+
+@login_required
+@post_required
+@json_view
+def watch(request, username, slug):
+    """
+    POST /collections/:user/:slug/watch to toggle the user's watching status.
+
+    For ajax, return {watching: true|false}. (reflects the new value)
+    Otherwise, redirect to the collection page.
+    """
+    collection = get_collection(request, username, slug)
+    d = dict(user=request.amo_user, collection=collection)
+    qs = CollectionWatcher.uncached.using('default').filter(**d)
+    watching = not qs  # Flip the bool since we're about to change it.
+    if qs:
+        qs.delete()
+    else:
+        CollectionWatcher.objects.create(**d)
+
+    if request.is_ajax():
+        return {'watching': watching}
+    else:
+        return redirect(collection.get_url_path())

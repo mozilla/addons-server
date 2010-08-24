@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import json
+
 import django.test
 from django.utils.datastructures import MultiValueDict
 from django.utils import encoding
@@ -14,7 +16,8 @@ from addons.models import Addon
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
 from bandwagon import forms
-from bandwagon.models import Collection, CollectionVote, CollectionUser
+from bandwagon.models import (Collection, CollectionVote, CollectionUser,
+                              CollectionWatcher)
 from users.models import UserProfile
 
 
@@ -564,7 +567,7 @@ class AjaxTest(test_utils.TestCase):
 
     def setUp(self):
         assert self.client.login(username='clouserw@gmail.com',
-                                 password='yermom')
+                                 password='password')
         self.user = UserProfile.objects.get(email='clouserw@gmail.com')
         self.other = UserProfile.objects.exclude(id=self.user.id)[0]
 
@@ -628,3 +631,42 @@ class AjaxTest(test_utils.TestCase):
     def test_ajax_list_bad_addon_id(self):
         url = reverse('collections.ajax_list') + '?addon_id=fff'
         eq_(self.client.get(url).status_code, 400)
+
+
+class TestWatching(test_utils.TestCase):
+    fixtures = ['base/users', 'base/collection_57181']
+
+    def setUp(self):
+        self.collection = c = Collection.objects.get(id=57181)
+        self.url = reverse('collections.watch',
+                           args=[c.author.username, c.slug])
+        assert self.client.login(username='clouserw@gmail.com',
+                                 password='password')
+
+        self.qs = CollectionWatcher.objects.filter(user__username='clouserw',
+                                                   collection=57181)
+        eq_(self.qs.count(), 0)
+
+    def test_watch(self):
+        r = self.client.post(self.url, follow=True)
+        eq_(r.status_code, 200)
+        eq_(self.qs.count(), 1)
+
+    def test_unwatch(self):
+        r = self.client.post(self.url, follow=True)
+        eq_(r.status_code, 200)
+        r = self.client.post(self.url, follow=True)
+        eq_(r.status_code, 200)
+        eq_(self.qs.count(), 0)
+
+    def test_amouser_watching(self):
+        r = self.client.post(self.url, follow=True)
+        eq_(r.status_code, 200)
+        r = self.client.get('/en-US/firefox/')
+        eq_(r.context['amo_user'].watching, [57181])
+
+    def test_ajax_response(self):
+        r = self.client.post(self.url, follow=True,
+                             HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        eq_(r.status_code, 200)
+        eq_(json.loads(r.content), {'watching': True})

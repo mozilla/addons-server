@@ -1,17 +1,16 @@
 import datetime
 import itertools
 
-from django.db import connection, connections, transaction
+from django.db import connection, transaction
 from django.db.models import Count
 
 import commonware.log
-import multidb
 from celery.messaging import establish_connection
 from celeryutils import task
 
 import amo
 from amo.utils import chunked, slugify
-from bandwagon.models import (CollectionSubscription,
+from bandwagon.models import (CollectionWatcher,
                               CollectionVote, Collection, CollectionUser)
 import cronjobs
 
@@ -55,7 +54,7 @@ def migrate_collection_users():
 def update_collections_subscribers():
     """Update collections subscribers totals."""
 
-    d = (CollectionSubscription.objects.values('collection_id')
+    d = (CollectionWatcher.objects.values('collection_id')
          .annotate(count=Count('collection'))
          .extra(where=['DATE(created)=%s'], params=[datetime.date.today()]))
 

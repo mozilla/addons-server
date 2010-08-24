@@ -231,7 +231,7 @@ class UserProfile(amo.models.ModelBase):
         """Adds extra goodies to a UserProfile (meant for request.amo_user)."""
         # We don't want to cache these things on every UserProfile; they're
         # only used by a user attached to a request.
-        from bandwagon.models import CollectionAddon
+        from bandwagon.models import CollectionAddon, CollectionWatcher
         SPECIAL = amo.COLLECTION_SPECIAL_SLUGS.keys()
         user = users[0]
         qs = CollectionAddon.objects.filter(
@@ -241,6 +241,8 @@ class UserProfile(amo.models.ModelBase):
             addons[ctype].append(addon)
         user.mobile_addons = addons[amo.COLLECTION_MOBILE]
         user.favorite_addons = addons[amo.COLLECTION_FAVORITES]
+        user.watching = list((CollectionWatcher.objects.filter(user=user)
+                             .values_list('collection', flat=True)))
 
 
 class BlacklistedUsername(amo.models.ModelBase):
