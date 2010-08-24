@@ -174,6 +174,10 @@ class Collection(amo.models.ModelBase):
         return reverse('collections.edit',
                        args=[self.author_username, self.slug])
 
+    def watch_url(self):
+       return reverse('collections.watch',
+                      args=[self.author_username, self.slug])
+
     def delete_url(self):
         return reverse('collections.delete',
                        args=[self.author_username, self.slug])

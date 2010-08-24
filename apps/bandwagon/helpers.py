@@ -120,7 +120,7 @@ def favorites_widget(context, addon, condensed=False):
     """Displays 'Add to Favorites' widget"""
     c = dict(context.items())
     request = c['request']
-    if (request.user.is_authenticated()):
+    if request.user.is_authenticated():
         is_favorite = bool(addon.id in request.amo_user.favorite_addons)
         faved_class = 'faved' if is_favorite else ''
 
@@ -135,4 +135,19 @@ def favorites_widget(context, addon, condensed=False):
 
         c.update(locals())
         t = env.get_template('bandwagon/favorites_widget.html').render(**c)
+        return jinja2.Markup(t)
+
+
+@register.function
+@jinja2.contextfunction
+def collection_widgets(context, collection, condensed=False):
+    """Displays collection widgets"""
+    c = dict(context.items())
+    request = c['request']
+    if collection and request.user.is_authenticated():
+
+        c.update({'condensed': condensed,
+                  'c': collection,
+                 })
+        t = env.get_template('bandwagon/collection_widgets.html').render(**c)
         return jinja2.Markup(t)

@@ -2812,14 +2812,15 @@ a.outlink:hover {
 .collection_widgets .copy:hover { background-position: 0 0px; }
 .collection_widgets .watch { background-position: 0 -750px; }
 .collection_widgets .watch:hover { background-position: 0 -700px;}
-.collection_widgets .watch.watching { background-position: 0 -650px; }
+.collection_widgets .watching { background-position: 0 -650px; }
 .collection_widgets .share { background-position: 0 -600px; }
 .collection_widgets .share:hover { background-position: 0 -550px; }
 
 
 .addon-favorite.ajax-loading span,
 .collection-add.ajax-loading span,
-.collection_widgets > a.ajax-loading {
+.collection_widgets > a.ajax-loading,
+.collection_widgets > a.ajax-loading:hover {
    background-image: url(../../img/zamboni/loading-white.gif);
    background-position: left bottom;
 }
