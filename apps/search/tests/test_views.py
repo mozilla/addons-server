@@ -15,7 +15,8 @@ from search.tests import SphinxTestCase
 from search import views
 from search.client import SearchError
 from addons.models import Addon, Category
-from tags.models import Tag
+from tags.models import AddonTag, Tag
+from users.models import UserProfile
 
 
 def test_parse_bad_type():
@@ -262,3 +263,22 @@ class AjaxTest(SphinxTestCase):
         searchclient.side_effect = SearchError()
         r = self.client.get(reverse('search.ajax') + '?q=del')
         eq_('[]', r.content)
+
+
+class TagTest(SphinxTestCase):
+    fixtures = ('base/apps', 'addons/persona',)
+
+    def setUp(self):
+        u = UserProfile(username='foo')
+        u.save()
+        t = Tag(tag_text='donkeybuttrhino')
+        t.save()
+        a = Addon.objects.all()[0]
+        at = AddonTag(tag=t, user=u, addon=a)
+        at.save()
+        super(TagTest, self).setUp()
+
+    def test_persona_results(self):
+        url = reverse('tags.detail', args=('donkeybuttrhino',))
+        r = self.client.get(url, follow=True)
+        eq_(len(r.context['pager'].object_list), 1)

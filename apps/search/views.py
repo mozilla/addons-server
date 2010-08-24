@@ -1,9 +1,8 @@
 from collections import defaultdict
 from datetime import timedelta, datetime
-import json
 import time
 
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 
 import jingo
 from tower import ugettext as _
@@ -84,6 +83,7 @@ def _get_categories(request, categories, addon_type=None, category=None):
     # Bucket the categories as addon_types so we can display them in a
     # hierarchy.
     bucket = defaultdict(list)
+
     for cat in categories:
         item = MenuItem()
         (item.text, item.url) = (cat.name, urlparams(url, atype=None,
@@ -94,7 +94,8 @@ def _get_categories(request, categories, addon_type=None, category=None):
 
         bucket[cat.type].append(item)
 
-    for key, children in bucket.iteritems():
+    for key in sorted(bucket):
+        children = bucket[key]
         item = MenuItem()
         item.children = children
         (item.text, item.url) = (amo.ADDON_TYPES[key],
@@ -218,6 +219,7 @@ def _collections(request):
         }
 
     return jingo.render(request, 'search/collections.html', c)
+
 
 @json_view
 def ajax_search(request):
