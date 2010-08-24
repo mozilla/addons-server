@@ -44,6 +44,50 @@ $(document).ready(function() {
         el.click();
     };
 
+    $('.primary').delegate('.review-edit', 'click', function(e) {
+        e.preventDefault();
+        var $form = $("#review-edit-form"),
+            $review = $(this).parents(".review"),
+            rating = $review.attr("data-rating"),
+            edit_url = $("a.permalink", $review).attr("href") + "edit";
+
+        $review.attr("action", edit_url);
+        $form.detach().insertAfter($review);
+        $("#id_title").val($review.children("h5").text());
+        $(".ratingwidget input:radio[value=" + rating + "]", $form).click();
+        $("#id_body").val($review.children("p.review-body").text());
+        $review.hide();
+        $form.show();
+
+        $("#review-edit-cancel").click(function(e) {
+            e.preventDefault();
+            $form.hide();
+            $review.show();
+            $(this).die();
+        });
+
+        $form.submit(function (e) {
+            e.preventDefault();
+            $.ajax({type: 'POST',
+                url: edit_url,
+                data: $form.serialize(),
+                success: function(response, status) {
+                    $review.children("h5").text($("#id_title").val());
+                    rating = $(".ratingwidget input:radio:checked", $form).val();
+                    $(".stars", $review).removeClass('stars-0 stars-1 stars-2 stars-3 stars-4 stars-5').addClass('stars-' + rating);
+                    rating = $review.attr("data-rating", rating);
+                    $review.children("p.review-body").text($("#id_body").val());
+                    $review.show();
+                    $form.hide();
+                    $('#review-edit-cancel').die();
+                },
+                dataType: 'json'
+            });
+            return false;
+        });
+    });
+
+
     $('.delete-review').click(function(e) {
         e.preventDefault();
         var target = $(e.target);

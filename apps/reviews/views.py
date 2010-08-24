@@ -30,6 +30,8 @@ def review_list(request, addon_id, review_id=None, user_id=None):
            'grouped_ratings': GroupedRating.get(addon_id)}
     ctx.update(flag_context())
 
+    ctx['form'] = forms.ReviewForm(None)
+
     if review_id is not None:
         ctx['page'] = 'detail'
         # If this is a dev reply, find the first msg for context.

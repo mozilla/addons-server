@@ -8,7 +8,8 @@
 {% endif %}
 <div class="review article {% if is_reply %}reply{% endif %}
             {% if is_flagged %}flagged{% endif %}"
-     id="review-{{ review.id }}">
+     id="review-{{ review.id }}"
+     data-rating="{{ review.rating }}">
   <h5>{{ review.title }}</h5>
   {% if not is_reply %}{{ review.rating|float|stars }}{% endif %}
   <div class="reviewed-on">
@@ -25,9 +26,9 @@
           and review.ip_address != '0.0.0.0' %}
       <span>[{{ review.ip_address }}]</span>
     {% endif %}
-    <a href="{{ url('reviews.detail', addon.id, review.id) }}">#</a>
+    <a class="permalink" href="{{ url('reviews.detail', addon.id, review.id) }}">#</a>
   </div>
-  <p>{{ review.body|nl2br }}</p>
+  <p class="review-body">{{ review.body|nl2br }}</p>
   {% if outdated and not is_reply %}
     {# L10n: {0} is a version number (like 1.01) #}
     <span class="review-note">{{ _('This review is for a previous version of the add-on ({0}).')|f(review.version.version) }}&nbsp;</span>
@@ -63,6 +64,12 @@
       <li>
         <a class="review-delete" href="{{ url('reviews.reply', addon.id, review.id) }}">
           {{ _('Reply to review') }}</a>
+      </li>
+    {% endif %}
+    {% if (review.user.id == request.user.id) %}
+      <li>
+        <a class="review-edit" href="#">
+          {{ _('Edit review') }}</a>
       </li>
     {% endif %}
     {% if perms.can_delete %}

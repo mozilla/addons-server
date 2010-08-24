@@ -58,6 +58,18 @@
   {% endfor %}
   {{ reviews|paginator }}
   {% endblock review_list %}
+  <div class="hidden">
+    <form method="post" id='review-edit-form' action="#" class="review article">
+      {{ csrf() }}
+      {{ field(form.title, _('Title:')) }}
+      {{ field(form.rating, _('Rating:')) }}
+      {{ field(form.body, _('Review:')) }}
+      <p>
+        <input type="submit" value="{{ _('Submit review') }}">
+         or <a href="#" id="review-edit-cancel">Cancel</a>
+      </p>
+    </form>
+  </div>
 </div>
 
 <div class="secondary">
