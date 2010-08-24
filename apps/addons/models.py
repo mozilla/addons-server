@@ -15,8 +15,9 @@ import amo.models
 from amo.fields import DecimalCharField
 from amo.utils import urlparams, sorted_groupby, JSONEncoder
 from amo.urlresolvers import reverse
+from cake.urlresolvers import remora_url
 from reviews.models import Review
-from stats.models import Contribution as ContributionStats, ShareCountTotal
+from stats.models import Contribution as ContributionStats, AddonShareCountTotal
 from translations.fields import (TranslatedField, PurifiedField,
                                  LinkifiedField, translations_with_fallback)
 from users.models import UserProfile, PersonaAuthor
@@ -226,6 +227,9 @@ class Addon(amo.models.ModelBase):
     def type_url(self):
         """The url for this add-on's AddonType."""
         return AddonType(self.type).get_url_path()
+
+    def share_url(self):
+        return remora_url('/addon/share/%s' % self.id)
 
     @amo.cached_property(writable=True)
     def listed_authors(self):
@@ -469,7 +473,7 @@ class Addon(amo.models.ModelBase):
     @caching.cached_method
     def share_counts(self):
         rv = collections.defaultdict(int)
-        rv.update(ShareCountTotal.objects.filter(addon=self)
+        rv.update(AddonShareCountTotal.objects.filter(addon=self)
                   .values_list('service', 'count'))
         return rv
 

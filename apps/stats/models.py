@@ -88,7 +88,7 @@ class UpdateCount(caching.base.CachingMixin, models.Model):
         return ['*/addon/%d/statistics/usage*' % self.addon_id, ]
 
 
-class ShareCount(caching.base.CachingMixin, models.Model):
+class AddonShareCount(caching.base.CachingMixin, models.Model):
     addon = models.ForeignKey('addons.Addon')
     count = models.PositiveIntegerField()
     service = models.CharField(max_length=255, null=True)
@@ -101,7 +101,7 @@ class ShareCount(caching.base.CachingMixin, models.Model):
         db_table = 'stats_share_counts'
 
 
-class ShareCountTotal(caching.base.CachingMixin, models.Model):
+class AddonShareCountTotal(caching.base.CachingMixin, models.Model):
     addon = models.ForeignKey('addons.Addon')
     count = models.PositiveIntegerField()
     service = models.CharField(max_length=255, null=True)
@@ -111,6 +111,18 @@ class ShareCountTotal(caching.base.CachingMixin, models.Model):
 
     class Meta:
         db_table = 'stats_share_counts_totals'
+
+
+# stats_collections_share_counts exists too, but we don't touch it.
+class CollectionShareCountTotal(caching.base.CachingMixin, models.Model):
+    collection = models.ForeignKey('bandwagon.Collection')
+    count = models.PositiveIntegerField()
+    service = models.CharField(max_length=255, null=True)
+
+    objects = caching.base.CachingManager()
+
+    class Meta:
+        db_table = 'stats_collections_share_counts_totals'
 
 
 class ContributionError(Exception):

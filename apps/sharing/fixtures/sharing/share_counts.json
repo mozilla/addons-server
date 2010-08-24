@@ -1,7 +1,7 @@
 [
     {
         "pk": 177155738,
-        "model": "stats.sharecounttotal",
+        "model": "stats.addonsharecounttotal",
         "fields": {
             "count": 13,
             "service": "delicious",
@@ -10,7 +10,7 @@
     },
     {
         "pk": 177155739,
-        "model": "stats.sharecounttotal",
+        "model": "stats.addonsharecounttotal",
         "fields": {
             "count": 29,
             "service": "digg",
@@ -19,7 +19,7 @@
     },
     {
         "pk": 177155741,
-        "model": "stats.sharecounttotal",
+        "model": "stats.addonsharecounttotal",
         "fields": {
             "count": 4,
             "service": "friendfeed",
@@ -28,7 +28,7 @@
     },
     {
         "pk": 177155742,
-        "model": "stats.sharecounttotal",
+        "model": "stats.addonsharecounttotal",
         "fields": {
             "count": 14,
             "service": "myspace",
@@ -37,7 +37,7 @@
     },
     {
         "pk": 177155743,
-        "model": "stats.sharecounttotal",
+        "model": "stats.addonsharecounttotal",
         "fields": {
             "count": 4,
             "service": "twitter",

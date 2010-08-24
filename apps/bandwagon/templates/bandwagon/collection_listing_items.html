@@ -33,6 +33,7 @@
         <a title="{{ _('Share this Collection') }}" class="share" href="#"></a>
         <a title="{{ _('Copy this Collection') }}" class="copy" href="#"></a>
         #}
+        {{ sharing_box(c, show_email=False) }}
         {% if request.check_ownership(c, require_owner=False) %}
           <a title="{{ _('Edit this Collection') }}" class="edit" href="{{ c.edit_url() }}"></a>
         {% endif %}

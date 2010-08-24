@@ -1,11 +1,16 @@
 <div class="share-this">
-  <a class="share" href="#">{{ _('Share this Add-on') }}</a>
+  {% if obj.__class__.__name__ == 'Addon' %}
+    <a class="share" href="#">{{ _('Share this Add-on') }}</a>
+  {% elif obj.__class__.__name__ == 'Collection' %}
+    <a class="share" href="#">{{ _('Share this Collection') }}</a>
+  {% endif %}
   <div class="share-arrow"><div class="share-frame">
-  {% cache addon %}
+  {% cache obj %}
     <div class="share-networks share-content">
       <ul>
         {% for service in services %}
           {% set opts = service_opts[service] %}
+          {% set share_counts = obj.share_counts() %}
           <li class="{{ service.shortname }}">
             <span class="share-link">
               <a class="uniquify" target="{{ opts.target }}" href="{{ opts.url }}">
@@ -13,7 +18,7 @@
               </a>
             </span>
             <span class="share-count">
-              {{ service.count_term(addon.share_counts()[service.shortname]) }}
+              {{ service.count_term(share_counts[service.shortname]) }}
             </span>
           </li>
         {% endfor %}
@@ -21,7 +26,7 @@
     </div>{# /share-networks #}
   {% endcache %}
 
-  {% if request.user.is_authenticated() %}
+  {% if request.user.is_authenticated() and show_email %}
     <div class="share-email share-content">
       <form action="{{ remora_url(service_opts[email_service].url) }}"
         method="post">

@@ -16,8 +16,9 @@ from amo.utils import sorted_groupby
 from amo.urlresolvers import reverse
 from addons.models import Addon, AddonRecommendation
 from applications.models import Application
-from users.models import UserProfile
+from stats.models import CollectionShareCountTotal
 from translations.fields import TranslatedField, LinkifiedField
+from users.models import UserProfile
 
 SPECIAL_SLUGS = amo.COLLECTION_SPECIAL_SLUGS
 
@@ -177,6 +178,10 @@ class Collection(amo.models.ModelBase):
         return reverse('collections.delete',
                        args=[self.author_username, self.slug])
 
+    def share_url(self):
+        return reverse('collections.share',
+                       args=[self.author_username, self.slug])
+
     @property
     def author_username(self):
         return self.author.username if self.author else 'anonymous'
@@ -202,6 +207,13 @@ class Collection(amo.models.ModelBase):
             return settings.COLLECTION_ICON_URL % (self.id, modified)
         else:
             return settings.MEDIA_URL + 'img/amo2009/icons/collection.png'
+
+    @caching.cached_method
+    def share_counts(self):
+        rv = collections.defaultdict(int)
+        rv.update(CollectionShareCountTotal.objects.filter(collection=self)
+                  .values_list('service', 'count'))
+        return rv
 
     def get_recommendations(self):
         """Get a collection of recommended add-ons for this collection."""

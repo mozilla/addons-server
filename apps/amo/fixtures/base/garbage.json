@@ -30,7 +30,7 @@
     },
     {
         "pk": 2567,
-        "model": "stats.sharecount",
+        "model": "stats.addonsharecount",
         "fields": {
             "count": 1,
             "date": "2009-07-27",

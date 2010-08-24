@@ -13,7 +13,7 @@ from cake.models import Session
 from devhub.models import AddonLog, LOG as ADDONLOG
 from files.models import TestResult, TestResultCache
 from sharing.models import SERVICES
-from stats.models import ShareCount, Contribution
+from stats.models import AddonShareCount, Contribution
 
 log = commonware.log.getLogger('z.cron')
 
@@ -33,7 +33,7 @@ def gc(test_result=True):
     Session.objects.filter(expires__lt=two_days_ago_unixtime).delete()
 
     log.debug('Cleaning up sharing services.')
-    ShareCount.objects.exclude(
+    AddonShareCount.objects.exclude(
             service__in=[s.shortname for s in SERVICES]).delete()
 
     # XXX(davedash): I can't seem to run this during testing without triggering

@@ -11,6 +11,7 @@ import caching.base as caching
 from tower import ugettext_lazy as _lazy, ugettext as _
 
 import amo.utils
+import sharing.views
 from amo.decorators import login_required, post_required, json_view
 from amo.urlresolvers import reverse
 from access import acl
@@ -455,3 +456,10 @@ def watch(request, username, slug):
         return {'watching': watching}
     else:
         return redirect(collection.get_url_path())
+
+
+def share(request, username, slug):
+    collection = get_collection(request, username, slug)
+    return sharing.views.share(request, collection,
+                               name=collection.name,
+                               description=collection.description)

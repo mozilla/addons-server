@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
+import urlparse
 
 import django.test
 from django.utils.datastructures import MultiValueDict
@@ -670,3 +671,25 @@ class TestWatching(test_utils.TestCase):
                              HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         eq_(r.status_code, 200)
         eq_(json.loads(r.content), {'watching': True})
+
+
+class TestSharing(test_utils.TestCase):
+    fixtures = ['base/collection_57181']
+
+    def test_twitter_share(self):
+        c = Collection.objects.get(id=57181)
+        r = self.client.get(c.share_url() + '?service=twitter')
+        eq_(r.status_code, 302)
+        loc = urlparse.urlparse(r['Location'])
+        query = dict(urlparse.parse_qsl(loc.query))
+        eq_(loc.netloc, 'twitter.com')
+        status = 'Home Business Auto :: Add-ons for Firefox'
+        assert status in query['status'], query['status']
+
+    def test_404(self):
+        c = Collection.objects.get(id=57181)
+        url = reverse('collections.share', args=[c.author.username, c.slug])
+        r = self.client.get(url)
+        eq_(r.status_code, 404)
+        r = self.client.get(url + '?service=xxx')
+        eq_(r.status_code, 404)
