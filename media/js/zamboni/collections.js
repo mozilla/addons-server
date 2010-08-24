@@ -649,8 +649,10 @@ $(document).ready(function () {
 
 });
 
-// Add to favorites functionality
+
 $(document).ready(function () {
+
+    // Add to favorites functionality
     $(".addon-favorite").click(function(e) {
         e.preventDefault();
         var msg = $(".msg", this);
@@ -681,4 +683,36 @@ $(document).ready(function () {
             }
         });
     });
+
+    // Colleciton watching
+    $(".collection_widgets .watch").click(function(e) {
+        e.preventDefault();
+        var widget = $(this);
+        widget.addClass('ajax-loading');
+
+        var watch_text = gettext("Watch this Collection");
+
+        $.ajax({
+            url: this.href,
+            type: 'POST',
+            success: function(data) {
+                widget.removeClass('ajax-loading');
+                if (data.watching) {
+                    widget.addClass("watching");
+                    watch_text = gettext("Stop Watching");
+                } else {
+                    widget.removeClass("watching");
+                }
+                if (widget.attr("title")) {
+                    widget.attr("title", watch_text);
+                } else {
+                    widget.text(watch_text);
+                }
+            },
+            error: function() {
+                widget.removeClass('ajax-loading');
+            }
+        });
+    });
+
 });

@@ -26,8 +26,10 @@
     </ul>
     {% if request.user.is_authenticated() %}
       <div class="collection_widgets">
+        <a title="{{ _('Stop Watching') if c.is_subscribed(user) else _('Watch this Collection') }}"
+           class="watch{{ ' watching' if c.is_subscribed(user) }}"
+           href="{{ c.get_url_path() + 'watch' }}"></a>
         {#
-        <a title="{{ _('Watch this Collection') }}" class="watch" href="#"></a>
         <a title="{{ _('Share this Collection') }}" class="share" href="#"></a>
         <a title="{{ _('Copy this Collection') }}" class="copy" href="#"></a>
         #}
@@ -35,7 +37,8 @@
           <a title="{{ _('Edit this Collection') }}" class="edit" href="{{ c.edit_url() }}"></a>
         {% endif %}
       </div>
-    {% endif %}  </div>
+    {% endif %}
+  </div>
   <h3>
     <a href="{{ c.get_url_path() }}">
       <img class="icon" width="32" height="32" src="{{ c.icon_url }}">

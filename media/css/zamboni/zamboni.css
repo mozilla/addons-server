@@ -2789,12 +2789,19 @@ a.outlink:hover {
     display: inline-block;
 }
 
+.object-details .collection_widgets {
+    margin-bottom: 1em;
+}
+
 .collection_widgets > a {
     background-image: url(../../img/zamboni/icons/collections.png);
     background-repeat: no-repeat;
-    padding-left: 16px;
+    padding-left: 22px;
     margin-right: .8em;
     text-indent: -9000px;
+}
+.collection_widgets > a[title] {
+    padding-left: 16px;
 }
 .collection_widgets .edit {
     margin-left: .5em;
@@ -2804,13 +2811,15 @@ a.outlink:hover {
 .collection_widgets .copy { background-position: 0 -50px; }
 .collection_widgets .copy:hover { background-position: 0 0px; }
 .collection_widgets .watch { background-position: 0 -750px; }
-.collection_widgets .watch:hover { background-position: 0 -700px; }
+.collection_widgets .watch:hover { background-position: 0 -700px;}
+.collection_widgets .watch.watching { background-position: 0 -650px; }
 .collection_widgets .share { background-position: 0 -600px; }
 .collection_widgets .share:hover { background-position: 0 -550px; }
 
 
-.addon-favorite.ajax-loazding span,
-.collection-add.ajax-loading span {
+.addon-favorite.ajax-loading span,
+.collection-add.ajax-loading span,
+.collection_widgets > a.ajax-loading {
    background-image: url(../../img/zamboni/loading-white.gif);
    background-position: left bottom;
 }
