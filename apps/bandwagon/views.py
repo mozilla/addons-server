@@ -319,8 +319,11 @@ def edit(request, collection, username, slug):
     is_admin = acl.action_allowed(request, 'Admin', '%')
 
     if request.method == 'POST':
+        initial = initial_data_from_request(request)
+        if collection.author_id:  # Don't try to change the author.
+            initial['author'] = collection.author
         form = forms.CollectionForm(request.POST, request.FILES,
-                                    initial=initial_data_from_request(request),
+                                    initial=initial,
                                     instance=collection)
         if form.is_valid():
             collection = form.save()

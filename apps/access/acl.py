@@ -7,16 +7,13 @@ def match_rules(rules, app, action):
     """
     This will match rules found in Group.
     """
-
     for rule in rules.split(','):
-        (rule_app, rule_action) = rule.split(':')
-
+        rule_app, rule_action = rule.split(':')
         if rule_app == '*' or rule_app == app:
             if (rule_action == '*'
                 or rule_action == action
                 or action == '%'):
                 return True
-
     return False
 
 

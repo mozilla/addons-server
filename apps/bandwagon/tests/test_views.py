@@ -250,10 +250,8 @@ class TestCRUD(test_utils.TestCase):
 
     def setUp(self):
         self.client = HappyUnicodeClient()
-        login = self.client.login(username='admin@mozilla.com',
-                                  password='password')
-        assert login, "Couldn't log in."
         self.add_url = reverse('collections.add')
+        self.login_admin()
         # Oh god it's unicode.
         self.slug = u'\u05d0\u05d5\u05e1\u05e3'
         self.data = {
@@ -265,11 +263,13 @@ class TestCRUD(test_utils.TestCase):
                 'listed': 'True',
                 }
 
-    def login_regular(self):
-        login = self.client.login(username='regular@mozilla.com',
-                                  password='password')
+    def login_admin(self):
+        assert self.client.login(username='admin@mozilla.com',
+                                 password='password')
 
-        assert login, "Couldn't login as regular user."
+    def login_regular(self):
+        assert self.client.login(username='regular@mozilla.com',
+                                  password='password')
 
     def create_collection(self):
         r = self.client.post(self.add_url, self.data, follow=True)
@@ -413,7 +413,9 @@ class TestCRUD(test_utils.TestCase):
 
         url = reverse('collections.edit_contributors',
                       args=['admin', self.slug])
-        self.client.post(url, {'contributor': 999}, follow=True)
+        self.client.post(url,
+                         {'contributor': 999, 'application_id': 1, 'type': 1},
+                         follow=True)
         url = reverse('collections.edit', args=['admin', self.slug])
 
         r = self.client.get(url)
@@ -449,6 +451,22 @@ class TestCRUD(test_utils.TestCase):
 
         assert not Collection.objects.filter(slug='halp', author=u)
         assert Collection.objects.filter(slug='mobile', author=u)
+
+    def test_no_changing_owners(self):
+        self.login_regular()
+        self.create_collection()
+        c = Collection.objects.get(slug=self.slug)
+
+        self.login_admin()
+        r = self.client.post(c.edit_url(),
+                             dict(name='new name', slug=self.slug,
+                                  listed=True),
+                             follow=True)
+        eq_(r.status_code, 200)
+
+        newc = Collection.objects.get(slug=self.slug,
+                                      author__username=c.author_username)
+        eq_(unicode(newc.name), 'new name')
 
 
 class TestChangeAddon(test_utils.TestCase):
