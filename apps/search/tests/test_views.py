@@ -179,8 +179,7 @@ class FrontendSearchTest(SphinxTestCase):
         are returning them."""
         resp = self.get_response(q='grapple')
         doc = pq(resp.content)
-        eq_(u'GrApple Yummy Aronnax \u0627\u0644\u062a\u0637\u0628',
-            doc('.item h3 a').text())
+        eq_(u'GrApple Yummy Aronnax', doc('.item h3 a').text())
 
     def test_tag_refinement(self):
         """Don't show the tag list if there's no tags to be shown."""

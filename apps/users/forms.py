@@ -1,6 +1,7 @@
 import os
 
 from django import forms
+from django.conf import settings
 from django.contrib.auth import forms as auth_forms
 from django.forms.util import ErrorList
 
@@ -85,6 +86,12 @@ class UserRegisterForm(happyforms.ModelForm):
     class Meta:
         model = UserProfile
 
+    def __init__(self, *args, **kwargs):
+        super(UserRegisterForm, self).__init__(*args, **kwargs)
+
+        if not settings.RECAPTCHA_PRIVATE_KEY:
+            del self.fields['recaptcha']
+
     def clean_username(self):
         name = self.cleaned_data['username']
         if BlacklistedUsername.blocked(name):
@@ -123,7 +130,8 @@ class UserEditForm(UserRegisterForm):
         super(UserEditForm, self).__init__(*args, **kwargs)
 
         # TODO: We should inherit from a base form not UserRegisterForm
-        del self.fields['recaptcha']
+        if self.fields.get('recaptcha'):
+            del self.fields['recaptcha']
 
     class Meta:
         model = UserProfile

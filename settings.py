@@ -543,7 +543,7 @@ MAX_ICON_UPLOAD_SIZE = 4 * 1024 * 1024
 NEW_COLLECTIONS = True
 
 # RECAPTCHA - copy all three statements to settings_local.py
-RECAPTCHA_PUBLIC_KEY = '<your public key>'
-RECAPTCHA_PRIVATE_KEY = '<your private key>'
+RECAPTCHA_PUBLIC_KEY = ''
+RECAPTCHA_PRIVATE_KEY = ''
 RECAPTCHA_URL = ('https://api-secure.recaptcha.net/challenge?k=%s' %
                  RECAPTCHA_PUBLIC_KEY)

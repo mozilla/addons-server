@@ -61,6 +61,7 @@
               {{ form.password2.errors|safe }}
             </li>
             <li>
+            {% if settings.RECAPTCHA_PRIVATE_KEY %}
             <label for="recaptcha_response_field">
               {{ _('Are you human?') }} {{ required() }}
             </label>
@@ -82,6 +83,12 @@
             </p>
             <p><a href="#" id="recaptcha_help">{{ _("What's this?") }}</a></p>
             {{ form.recaptcha.errors|safe }}
+            {% else %}
+            <p>
+              Welcome Robots, ReCaptcha has been disabled for your convenience.
+              Spam at Wil.
+            </p>
+            {% endif %}
             </li>
           </ul>
         </fieldset>
