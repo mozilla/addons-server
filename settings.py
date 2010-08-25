@@ -344,6 +344,9 @@ MINIFY_BUNDLES = {
             'js/jquery-ui/jqModal.js',
             'js/amo2009/home.js',
 
+            # Homepage
+            'js/zamboni/homepage.js',
+
             # Add-ons details page
             'js/jquery-ui/ui.lightbox.js',
             'js/jquery.autocomplete.min.js',

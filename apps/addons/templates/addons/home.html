@@ -110,10 +110,6 @@
 </div>
 {% endblock content %}
 
-{% block js %}
-<script src="{{ MEDIA_URL }}js/zamboni/homepage.js"></script>
-{% endblock %}
-
 {% block under_categories %}
 {% cache top_tags %}
   {% if top_tags %}
