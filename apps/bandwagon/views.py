@@ -45,8 +45,7 @@ def owner_required(f=None, require_owner=True):
                                               require_owner=require_owner):
                 return func(request, collection, username, slug, *args, **kw)
             else:
-                return http.HttpResponseForbidden(
-                        _("This is not the collection you are looking for."))
+                return http.HttpResponseForbidden()
         return wrapper
     return decorator(f) if f else decorator
 
@@ -415,8 +414,7 @@ def delete(request, username, slug):
     if not acl.check_collection_ownership(request, collection, True):
         log.info(u'%s is trying to delete collection %s'
                  % (request.amo_user, collection.id))
-        return http.HttpResponseForbidden(
-                _('This is not the collection you are looking for.'))
+        return http.HttpResponseForbidden()
 
     data = dict(collection=collection, username=username, slug=slug)
 
