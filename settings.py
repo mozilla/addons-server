@@ -47,7 +47,7 @@ DATABASES = {
     },
 }
 
-DATABASE_ROUTERS = ('multidb.MasterSlaveRouter',)
+DATABASE_ROUTERS = ('multidb.PinningMasterSlaveRouter',)
 
 # Put the aliases for your slave databases in this list.
 SLAVE_DATABASES = []
@@ -197,6 +197,7 @@ MIDDLEWARE_CLASSES = (
     # Munging REMOTE_ADDR must come before ThreadRequest.
     'commonware.middleware.SetRemoteAddrFromForwardedFor',
     'commonware.log.ThreadRequestMiddleware',
+    'multidb.middleware.PinningRouterMiddleware',
 
     'amo.middleware.CommonMiddleware',
     'amo.middleware.NoVarySessionMiddleware',
