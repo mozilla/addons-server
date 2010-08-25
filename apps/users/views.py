@@ -21,6 +21,7 @@ from .models import UserProfile
 from .signals import logged_out
 from .users import forms
 from .utils import EmailResetCode
+import tasks
 
 log = commonware.log.getLogger('z.users')
 
@@ -76,7 +77,7 @@ def confirm_resend(request, user_id):
 
 @login_required
 def delete(request):
-    amouser = request.user.get_profile()
+    amouser = request.amo_user
     if request.method == 'POST':
         form = forms.UserDeleteForm(request.POST, request=request)
         if form.is_valid():
@@ -93,13 +94,29 @@ def delete(request):
 
 
 @login_required
+def delete_photo(request):
+    u = request.amo_user
+
+    if request.method == 'POST':
+        u.picture_type = ''
+        u.save()
+        log.debug(u"User (%s) deleted photo" % user)
+        tasks.delete_photo.delay(u.picture_path)
+        messages.success(request, _('Photo Deleted'))
+        return http.HttpResponseRedirect(reverse('users.edit') +
+                                         '#user-profile')
+
+    return jingo.render(request, 'users/delete_photo.html', dict(user=u))
+
+
+@login_required
 def edit(request):
     amouser = request.user.get_profile()
     if request.method == 'POST':
         # ModelForm alters the instance you pass in.  We need to keep a copy
         # around in case we need to use it below (to email the user)
         original_email = amouser.email
-        form = forms.UserEditForm(request.POST, request=request,
+        form = forms.UserEditForm(request.POST, request.FILES, request=request,
                                   instance=amouser)
         if form.is_valid():
             messages.success(request, _('Profile Updated'))

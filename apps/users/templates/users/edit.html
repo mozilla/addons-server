@@ -17,7 +17,8 @@
     {% endfor %}
   {% endif %}
   <h1>{{ _('Account Settings') }}</h1>
-  <form method="post" action="" class="user-input">
+  <form method="post" action="" class="user-input"
+        enctype="multipart/form-data">
     {{ csrf() }}
     <div id="user-edit" class="tab-wrapper">
       <ul class="tab-nav main">
@@ -73,8 +74,9 @@
           <legend>{{ _('Notifications') }}</legend>
           <p>
             {% trans %}
-            From time to time, Mozilla may send you email about upcoming releases
-            and add-on events. Please select the topics you are interested in below:
+            From time to time, Mozilla may send you email about upcoming
+            releases and add-on events. Please select the topics you are
+            interested in below:
             {% endtrans %}
           </p>
           <ul>
@@ -95,8 +97,8 @@
           </ul>
           <p class="note">
             {% trans %}
-              Mozilla reserves the right to contact you individually about specific
-              concerns with your hosted add-ons.
+              Mozilla reserves the right to contact you individually about
+              specific concerns with your hosted add-ons.
             {% endtrans %}
           </p>
         </fieldset>
@@ -126,12 +128,15 @@
               {{ form.homepage.errors|safe }}
             </li>
             <li class="profile-photo">
-              {# TODO XXX: Change these fields out for whatever we need to do notifications #}
-              {# TODO XXX: Add L10n #}
-                <label for="id_photo">Profile Photo</label>
-                <input type="file" id="id_photo" name="photo">
-                <img src="../media/img/amo2009/site-images/avatar-developer-200x200.jpg" alt="" width="200" height="200" class="avatar photo-large photo" />
-                <a href="#">Delete current photo</a>
+              <label for="id_photo">{{ _('Profile Photo') }}</label>
+              <input type="file" id="id_photo" name="photo">
+              {{ form.photo.errors|safe }}
+              <img src="{{ amouser.picture_url }}" alt=""
+                   class="avatar photo-large photo" />
+
+              {% if amouser.picture_type %}
+              <a href="{{ url('users.delete_photo') }}">{{ _('Delete current photo') }}</a>
+              {% endif %}
             </li>
           </ol>
         </fieldset>

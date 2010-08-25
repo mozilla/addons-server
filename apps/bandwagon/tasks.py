@@ -30,14 +30,14 @@ def collection_votes(*ids, **kw):
 
 
 @task
-def resize_icon(src, dest):
+def resize_icon(src, dst):
     """Resizes collection icons to 32x32"""
-    log.info('[%s@%s] Resizing icon.' % (src, resize_icon.rate_limit))
+    log.info('[1@None] Resizing icon: %s' % dst)
 
     try:
         im = Image.open(src)
         im = processors.scale_and_crop(im, (32, 32))
-        im.save(dest)
+        im.save(dst)
         os.remove(src)
     except Exception, e:
         log.error("Error saving collection icon: %s" % e)
