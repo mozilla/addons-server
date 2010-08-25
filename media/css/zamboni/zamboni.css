@@ -2433,6 +2433,10 @@ h6.author, .author a {
     display: block;
     margin-top: 1em;
 }
+label > .optional {
+    font-weight: normal;
+    color: #888;
+}
 .reply-form textarea {
     margin-bottom: 2em;
     width: 80%;
