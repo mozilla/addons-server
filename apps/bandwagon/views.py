@@ -89,12 +89,15 @@ class CollectionFilter(BaseFilter):
             return qs.order_by('-created')
 
 
-def collection_listing(request, base=None, extra={}):
+def get_filter(request, base=None):
     if base is None:
         base = Collection.objects.listed()
-    app = Q(application=request.APP.id) | Q(application=None)
-    base = base.filter(app)
-    filter = CollectionFilter(request, base, key='sort', default='featured')
+    base = base.filter(Q(application=request.APP.id) | Q(application=None))
+    return CollectionFilter(request, base, key='sort', default='featured')
+
+
+def collection_listing(request, base=None, extra={}):
+    filter = get_filter(request, base)
     collections = amo.utils.paginate(request, filter.qs)
     votes = get_votes(request, collections.object_list)
     return jingo.render(request, 'bandwagon/collection_listing.html',
@@ -234,7 +237,7 @@ def add(request):
     else:
         form = forms.CollectionForm()
 
-    data['form'] = form
+    data.update(form=form, filter=get_filter(request))
     return jingo.render(request, 'bandwagon/add.html', data)
 
 
@@ -336,11 +339,6 @@ def edit(request, collection, username, slug):
     addons = collection.addons.all()
     comments = get_notes(collection, raw=True).next()
 
-    base = Collection.objects.listed()
-    app = Q(application=request.APP.id) | Q(application=None)
-    base = base.filter(app)
-    filter = CollectionFilter(request, base, key='sort', default='featured')
-
     if is_admin:
         initial = dict(type=collection.type,
                        application=collection.application_id)
@@ -353,7 +351,7 @@ def edit(request, collection, username, slug):
                 user=request.amo_user,
                 username=username,
                 slug=slug,
-                filter=filter,
+                filter=get_filter(request),
                 is_admin=is_admin,
                 admin_form=admin_form,
                 addons=addons,
