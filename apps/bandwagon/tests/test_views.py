@@ -152,7 +152,7 @@ class TestPrivacy(test_utils.TestCase):
         eq_(self.client.get(self.url).status_code, 200)
         self.client.logout()
         self.c = Collection.objects.get(slug='favorites',
-                                        author__nickname='jbalogh')
+                                        author__username='jbalogh')
 
     def test_owner(self):
         self.client.login(username='jbalogh@mozilla.com', password='foo')
@@ -435,7 +435,7 @@ class TestCRUD(test_utils.TestCase):
         """
         Editing a mobile or favorite collection should have an uneditable slug.
         """
-        u = UserProfile.objects.get(nickname='admin')
+        u = UserProfile.objects.get(username='admin')
         Collection(author=u, slug='mobile', type=amo.COLLECTION_MOBILE).save()
         url = reverse('collections.edit', args=['admin', 'mobile'])
         r = self.client.get(url, follow=True)
@@ -447,7 +447,7 @@ class TestCRUD(test_utils.TestCase):
         Ignore the slug request change, if some jackass thinks he can change
         it.
         """
-        u = UserProfile.objects.get(nickname='admin')
+        u = UserProfile.objects.get(username='admin')
         Collection(author=u, slug='mobile', type=amo.COLLECTION_MOBILE).save()
         url = reverse('collections.edit', args=['admin', 'mobile'])
         self.client.post(url, {'name': 'HALP', 'slug': 'halp', 'listed': True},
@@ -520,7 +520,7 @@ class TestChangeAddon(test_utils.TestCase):
         r = self.client.post(self.add, {'addon_id': self.addon.id},
                              HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.check_redirect(r)
-        c = Collection.objects.get(author__nickname='jbalogh', slug='mobile')
+        c = Collection.objects.get(author__username='jbalogh', slug='mobile')
         self.assert_(self.addon in c.addons.all())
         eq_(c.addons.count(), 1)
 
@@ -531,7 +531,7 @@ class TestChangeAddon(test_utils.TestCase):
         r = self.client.post(self.add, {'addon_id': self.addon.id},
                              HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.check_redirect(r)
-        c = Collection.objects.get(author__nickname='jbalogh', slug='mobile')
+        c = Collection.objects.get(author__username='jbalogh', slug='mobile')
         self.assert_(self.addon in c.addons.all())
         eq_(c.addons.count(), 1)
 
@@ -544,14 +544,14 @@ class TestChangeAddon(test_utils.TestCase):
                              HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.check_redirect(r)
 
-        c = Collection.objects.get(author__nickname='jbalogh', slug='mobile')
+        c = Collection.objects.get(author__username='jbalogh', slug='mobile')
         eq_(c.addons.count(), 0)
 
     def test_remove_nonexistent(self):
         r = self.client.post(self.remove, {'addon_id': self.addon.id},
                              HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.check_redirect(r)
-        c = Collection.objects.get(author__nickname='jbalogh', slug='mobile')
+        c = Collection.objects.get(author__username='jbalogh', slug='mobile')
         eq_(c.addons.count(), 0)
 
     def test_no_ajax_response(self):
