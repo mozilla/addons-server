@@ -14,7 +14,7 @@ $(document).ready(function(){
 
         // Update the selected tab.
         $('.listing-header .selected').removeClass('selected');
-        $('#' + target).addClass('selected');
+        $('#' + target).addClass('selected').focus();
 
         if (push && history.pushState) {
             history.pushState({target: target}, document.title, link.href);
@@ -34,8 +34,9 @@ $(document).ready(function(){
     }
 
     // Set up our history callback.
-    $(window).bind('popstate', function(e) {
+    $(window).bind('popstate', function(ev) {
         // We don't pushState here because we'd be stuck in this position.
+        var e = ev.originalEvent;
         if (e.state && e.state.target) {
             var a = $('#' + e.state.target + ' a')[0];
             update(a, false);
