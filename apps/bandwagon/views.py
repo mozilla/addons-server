@@ -114,11 +114,16 @@ def get_votes(request, collections):
 
 
 def user_listing(request, username):
-    qs = Collection.objects.filter(author__username=username)
+    qs = (Collection.objects.filter(author__username=username)
+          .order_by('-created'))
     if not (request.user.is_authenticated() and
             request.amo_user.username == username):
         qs = qs.filter(listed=True)
-    return collection_listing(request, qs, extra={'userpage': username})
+    collections = amo.utils.paginate(request, qs)
+    votes = get_votes(request, collections.object_list)
+    return jingo.render(request, 'bandwagon/user_listing.html',
+                        dict(collections=collections, collection_votes=votes,
+                            username=username, filter=get_filter(request)))
 
 
 class CollectionAddonFilter(BaseFilter):

@@ -6,11 +6,8 @@
     'rating': _('Highest Rated Collections'),
     'created': _('Recently Added Collections'),
 } %}
-{% if userpage %}
-  {% set base_url = url('collections.user', userpage) %}
-{% else %}
-  {% set base_url = url('collections.list') %}
-{% endif %}
+
+{% set base_url = url('collections.list') %}
 
 {% block title %}{{ page_title(titles[filter.field]) }}{% endblock %}
 
@@ -21,9 +18,6 @@
   <header>
     {% set crumbs = [(url('collections.list'), _('Collections')),
                      (None, filter.title)] %}
-    {% if userpage %}
-      {% do crumbs.insert(1, (url('collections.user', userpage), userpage)) %}
-    {% endif %}
     {{ breadcrumbs(crumbs) }}
     <h2>{{ titles[filter.field] }}</h2>
   </header>
