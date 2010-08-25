@@ -237,7 +237,7 @@ def add(request):
             log.info('Created collection %s' % collection.id)
             return http.HttpResponseRedirect(collection.get_url_path())
         else:
-            data['addons'] = aform.clean_addon()
+            data['addons'] = Addon.objects.filter(pk__in=aform.clean_addon())
             data['comments'] = aform.clean_addon_comment()
     else:
         form = forms.CollectionForm()

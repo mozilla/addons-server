@@ -280,6 +280,23 @@ class TestCRUD(test_utils.TestCase):
         eq_(r.status_code, 200)
         return r
 
+    def test_add_fail(self):
+        """
+        If we input addons but fail at filling out the form, don't show
+        invisible addons.
+        """
+        data = {
+                'addon': 3615,
+                'addon_comment': 'fff',
+                'description': '',
+                'listed': 'True',
+                }
+
+        r = self.client.post(self.add_url, data, follow=True)
+        eq_(pq(r.content)('.errorlist li')[0].text, 'This field is required.')
+        self.assertContains(r, 'Delicious')
+
+
     def test_fix_slug(self):
         self.data['slug'] = 'some slug'
         self.create_collection()
