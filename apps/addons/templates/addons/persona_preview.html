@@ -31,9 +31,13 @@
             {{ _('by {0} on {1}')|f(addon.persona.display_username,
                                     addon.created|datetime(dt)) }}
           </p>
-          <a href="{{ url('reviews.list', addon.id) }}">
-            {{ addon.average_rating|float|stars }}
-            {{ addon.total_reviews }}</a>
+          {% if addon.total_reviews %}
+            <a href="{{ url('reviews.list', addon.id) }}">
+              {{ addon.average_rating|float|stars }}
+              {{ addon.total_reviews }}</a>
+          {% else %}
+            <span>{{ _('Not yet rated') }}</span>
+          {% endif %}
           <span class="users">
             {{ _('<b>{0}</b> users')|f(addon.persona.popularity|numberfmt)|safe }}
           </span>
