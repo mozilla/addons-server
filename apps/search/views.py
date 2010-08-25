@@ -15,8 +15,7 @@ from addons.models import Category
 from versions.compare import dict_from_int, version_int
 from search import forms
 from search.client import (Client as SearchClient, SearchError,
-                           CollectionsClient, AddonsPersonasClient,
-                           PersonasClient)
+                           CollectionsClient, PersonasClient)
 from search.forms import SearchForm, SecondarySearchForm
 from translations.query import order_by_translation
 
@@ -232,7 +231,7 @@ def ajax_search(request):
     """
 
     q = request.GET.get('q', '')
-    client = AddonsPersonasClient()
+    client = SearchClient()
     try:
         results = client.query(q, limit=10)
         return [dict(id=result.id, label=unicode(result.name),
