@@ -204,6 +204,8 @@ SLUG_OK = '-_'
 
 
 def slugify(s, ok=SLUG_OK):
+    # L and N signify letter/number.
+    # http://www.unicode.org/reports/tr44/tr44-4.html#GC_Values_Table
     rv = []
     for c in smart_unicode(s):
         cat = unicodedata.category(c)[0]
@@ -221,9 +223,6 @@ def slug_validator(s, ok=SLUG_OK):
     Regexes don't work here because they won't check alnums in the right
     locale.
     """
-    # L and N signify letter/number.
-    # http://www.unicode.org/reports/tr44/tr44-4.html#GC_Values_Table
-    if not all(unicodedata.category(c)[0] in 'LN' or c in ok
-               for c in smart_unicode(s)):
+    if not (s and slugify(s) == s):
         raise ValidationError(validate_slug.message,
                               code=validate_slug.code)

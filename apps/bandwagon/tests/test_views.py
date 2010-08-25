@@ -280,6 +280,11 @@ class TestCRUD(test_utils.TestCase):
         eq_(r.status_code, 200)
         return r
 
+    def test_fix_slug(self):
+        self.data['slug'] = 'some slug'
+        self.create_collection()
+        Collection.objects.get(slug='some-slug')
+
     def test_showform(self):
         """Shows form if logged in."""
         r = self.client.get(self.add_url)

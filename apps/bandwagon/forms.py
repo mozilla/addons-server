@@ -7,7 +7,7 @@ import commonware.log
 from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
-from amo.utils import slug_validator
+from amo.utils import slugify, slug_validator
 from happyforms import Form, ModelForm
 from translations.widgets import TranslationTextInput, TranslationTextarea
 from users.models import UserProfile
@@ -149,7 +149,7 @@ class CollectionForm(ModelForm):
         return description
 
     def clean_slug(self):
-        slug = self.cleaned_data['slug']
+        slug = slugify(self.cleaned_data['slug'])
         slug_validator(slug)
         if self.instance and self.instance.slug == slug:
             return slug

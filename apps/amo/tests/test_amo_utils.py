@@ -10,8 +10,8 @@ u = u'Ελληνικά'
 
 
 def test_slug_validator():
-    eq_(slug_validator(u), None)
-    eq_(slug_validator('-'.join([u, u])), None)
+    eq_(slug_validator(u.lower()), None)
+    eq_(slug_validator('-'.join([u.lower(), u.lower()])), None)
     assert_raises(ValidationError, slug_validator, '234.add')
     assert_raises(ValidationError, slug_validator, 'a a a')
     assert_raises(ValidationError, slug_validator, 'tags/')
@@ -32,9 +32,9 @@ def test_slugify():
          ('tags/', 'tags'),
          ('holy_wars', 'holy_wars'),
          # I don't really care what slugify returns.  Just don't crash.
-         (u'𘍿', u''),
+         (u'x𘍿', u'x'),
          (u'ϧ΃𘒬𘓣',  u'\u03e7'),
-         (u'¿', u''),
+         (u'¿x', u'x'),
     ]
     for val, expected in s:
         yield check, val, expected
