@@ -341,7 +341,7 @@ def edit(request, collection, username, slug):
     else:
         form = forms.CollectionForm(instance=collection)
 
-    addons = collection.addons.all()
+    addons = collection.addons.no_cache().all()
     comments = get_notes(collection, raw=True).next()
 
     if is_admin:
