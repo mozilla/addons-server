@@ -17,6 +17,7 @@ from amo.helpers import urlparams
 from addons.models import Addon, Category
 from browse import views, feeds
 from browse.views import locale_display_name
+from files.models import File
 from translations.models import Translation
 from translations.query import order_by_translation
 from versions.models import Version
@@ -231,6 +232,15 @@ class TestCategoryPages(amo.test_utils.ExtraSetup, test_utils.TestCase):
         ids = order_by_translation(qs, 'name')
         assert 57132 in [a.id for a in qs]
         assert 57132 not in [a.id for a in ids]
+
+    def test_jetpack_listing(self):
+        x = File.objects.get(pk=67442)
+        x.jetpack = True
+        x.save()
+
+        url = reverse('browse.extensions') + '?sort=created&jetpack=on'
+        doc = pq(self.client.get(url).content)
+        eq_(len(doc('.item')), 1)
 
 
 class TestLegacyRedirects(test_utils.TestCase):

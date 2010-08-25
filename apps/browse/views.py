@@ -66,6 +66,10 @@ def addon_listing(request, addon_type, default='popular'):
         status.append(amo.STATUS_UNREVIEWED)
 
     qs = Addon.objects.listed(request.APP, *status).filter(type=addon_type)
+
+    if 'jetpack' in request.GET:
+        qs = qs.filter(versions__files__jetpack=True)
+
     filter = AddonFilter(request, qs, 'sort', default)
     return filter.qs, filter, unreviewed
 

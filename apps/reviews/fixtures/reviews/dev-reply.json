@@ -255,6 +255,7 @@
         "pk": 53612,
         "model": "files.file",
         "fields": {
+            "jetpack": 0,
             "status": 4,
             "codereview": 0,
             "hash": "",

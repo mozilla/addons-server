@@ -128,6 +128,7 @@
         "pk": 50621,
         "model": "files.file",
         "fields": {
+            "jetpack": 0,
             "status": 4,
             "codereview": 0,
             "hash": "sha256:9dabb90cf3daed4ce90e8c95fda2e9e4225e97b1e06bbfd7226d29d36497daa5",

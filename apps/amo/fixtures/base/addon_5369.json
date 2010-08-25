@@ -185,6 +185,7 @@
         "pk": 81898,
         "model": "files.file",
         "fields": {
+            "jetpack": 0,
             "status": 4,
             "codereview": false,
             "hash": "sha256:7234276dc6778efce3bf171f41bf942f0764ff7dfdf98048b1c311949e1c535c",

@@ -18,6 +18,7 @@ class File(amo.models.ModelBase):
     size = models.PositiveIntegerField(default=0)
     hash = models.CharField(max_length=255, default='')
     codereview = models.BooleanField(default=False)
+    jetpack = models.BooleanField(default=False)
     status = models.PositiveSmallIntegerField(choices=STATUS_CHOICES,
                 default=0)
     datestatuschanged = models.DateTimeField(null=True)

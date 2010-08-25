@@ -233,6 +233,7 @@
         "pk": 87384,
         "model": "files.file",
         "fields": {
+            "jetpack": 0,
             "status": 4,
             "codereview": false,
             "hash": "sha256:a63f38907f40fcea0d906f7059a88a65f293e02c24fc17362882bc0660bab64b",

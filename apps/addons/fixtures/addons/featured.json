@@ -234,6 +234,7 @@
         "pk": 1001,
         "model": "files.file",
         "fields": {
+            "jetpack": 0,
             "status": 4,
             "codereview": 0,
             "hash": "sha256:5b5a",
@@ -250,6 +251,7 @@
         "pk": 1003,
         "model": "files.file",
         "fields": {
+            "jetpack": 0,
             "status": 4,
             "codereview": 0,
             "hash": "sha256:5b5a",

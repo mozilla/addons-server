@@ -140,6 +140,7 @@
         "pk": 1,
         "model": "files.file",
         "fields": {
+            "jetpack": 0,
             "version": 39083,
             "platform": 1,
             "filename": "sweetaddon-fx-1.0.xpi",
@@ -153,6 +154,7 @@
         "pk": 2,
         "model": "files.file",
         "fields": {
+            "jetpack": 0,
             "version": 2,
             "platform": 1,
             "filename": "suckyaddon-fx-1.0.xpi",

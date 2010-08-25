@@ -659,6 +659,7 @@
         "pk": 42473,
         "model": "files.file",
         "fields": {
+            "jetpack": 0,
             "status": 4,
             "codereview": 0,
             "hash": "sha256:5cea78303c0fd418e90a413bf3afd60887eef146ee9f05152f57e9dfd9307bbd",
@@ -675,6 +676,7 @@
         "pk": 65839,
         "model": "files.file",
         "fields": {
+            "jetpack": 0,
             "status": 4,
             "codereview": 0,
             "hash": "sha256:5514b47abca7ac5175ce73d1af8a5ce6282c03628011179b3e4b9bd72d85c657",
@@ -691,6 +693,7 @@
         "pk": 63183,
         "model": "files.file",
         "fields": {
+            "jetpack": 0,
             "status": 4,
             "codereview": 0,
             "hash": "sha256:129a20b1bfe29abac90fa72f9b259c81e11ce369854de52225f49c11f451a96a",
@@ -707,6 +710,7 @@
         "pk": 58261,
         "model": "files.file",
         "fields": {
+            "jetpack": 0,
             "status": 4,
             "codereview": 0,
             "hash": "sha256:2bf8cd8a8f50cff24e7a3490bff00f35e67a58213624998a40bad10675f94ded",
@@ -723,6 +727,7 @@
         "pk": 57164,
         "model": "files.file",
         "fields": {
+            "jetpack": 0,
             "status": 4,
             "codereview": 0,
             "hash": "sha256:9a3ad712289df0420962fba05ec5cb04232fe6158bdc5a5a27fbe5f3aec5db72",
@@ -739,6 +744,7 @@
         "pk": 73769,
         "model": "files.file",
         "fields": {
+            "jetpack": 0,
             "status": 4,
             "codereview": 0,
             "hash": "sha256:11f73e51cca8e39b941a2dfa256e977ff7397bcced363e46e115c40f9008d5b8",
@@ -755,6 +761,7 @@
         "pk": 56592,
         "model": "files.file",
         "fields": {
+            "jetpack": 0,
             "status": 4,
             "codereview": 0,
             "hash": "sha256:e510f35b0a5557937527687246001a4d364da2171088c30bead071795f7ae4fa",
@@ -771,6 +778,7 @@
         "pk": 73192,
         "model": "files.file",
         "fields": {
+            "jetpack": 0,
             "status": 4,
             "codereview": 0,
             "hash": "sha256:276b9e458fef8f85499a75dcca44912e9790b9cb87235252c7f72ff9aee25798",
@@ -787,6 +795,7 @@
         "pk": 72631,
         "model": "files.file",
         "fields": {
+            "jetpack": 0,
             "status": 4,
             "codereview": 0,
             "hash": "sha256:b234f2114fcd517875a65d6f985ace448de03401083e3765563756836276ad46",

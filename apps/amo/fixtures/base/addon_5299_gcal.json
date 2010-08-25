@@ -197,6 +197,7 @@
         "pk": 33046,
         "model": "files.file",
         "fields": {
+            "jetpack": 0,
             "status": 4,
             "codereview": false,
             "hash": "sha256:114091778b4a4e3991e010ff07921eddd65139ff2f29e83b5a14140f2ca37d22",
@@ -211,6 +212,7 @@
     },
     {
         "fields": {
+            "jetpack": 0,
             "status": 7,
             "codereview": 0,
             "hash": "sha256:4395f9cf4934ecc8f22d367c2a301fd79613b68937c59e676e92e4f0a89a5b92",
