@@ -10,6 +10,7 @@ from pyquery import PyQuery as pq
 
 import amo
 from amo.urlresolvers import reverse
+from bandwagon.models import Collection
 from search.client import (extract_from_query, get_category_id,
                            Client as SearchClient, CollectionsClient,
                            PersonasClient, SearchError, )
@@ -83,6 +84,20 @@ class CollectionsSearchTest(SphinxTestCase):
     def test_zero_results(self):
         r = query("ffffffffffffffffffffuuuuuuuuuuuuuuuuuuuu")
         eq_(r, [])
+
+
+class CollectionsPrivateSearchTest(SphinxTestCase):
+    fixtures = ('base/collection_57181', 'base/apps',)
+
+    def setUp(self):
+        c = Collection.objects.get(pk=57181)
+        c.listed = False
+        c.save()
+        super(CollectionsPrivateSearchTest, self).setUp()
+
+    def test_query(self):
+        r = cquery("")
+        eq_(r, [], "Collection shouldn't show up.")
 
 
 class SearchDownTest(test_utils.TestCase):
