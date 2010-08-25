@@ -258,9 +258,23 @@ class AjaxTest(SphinxTestCase):
         for val, expected in check_me:
             check(val, expected)
 
-    @patch('search.client.AddonsPersonasClient.query')
+    @patch('search.client.Client.query')
     def test_errors(self, searchclient):
         searchclient.side_effect = SearchError()
+        r = self.client.get(reverse('search.ajax') + '?q=del')
+        eq_('[]', r.content)
+
+
+class AjaxDisabledAddonsTest(SphinxTestCase):
+    fixtures = ('base/addon_3615',)
+
+    def setUp(self):
+        a = Addon.objects.get(pk=3615)
+        a.status = amo.STATUS_DISABLED
+        a.save()
+        super(AjaxDisabledAddonsTest, self).setUp()
+
+    def test_json(self):
         r = self.client.get(reverse('search.ajax') + '?q=del')
         eq_('[]', r.content)
 
