@@ -115,6 +115,7 @@ def monitor(request):
     hera_results = []
     status_summary['hera'] = True
     for i in settings.HERA:
+        continue  # XXX TODO Disabled; waiting on bug 585183
         r = {'location': urlparse(i['LOCATION'])[1],
              'result': bool(get_hera(i))}
         hera_results.append(r)
