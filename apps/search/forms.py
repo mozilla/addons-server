@@ -9,8 +9,8 @@ import amo
 from amo import helpers
 from applications.models import AppVersion
 
-types = (amo.ADDON_ANY, amo.ADDON_EXTENSION, amo.ADDON_THEME,
-         amo.ADDON_DICT, amo.ADDON_SEARCH, amo.ADDON_LPAPP)
+types = (amo.ADDON_ANY, amo.ADDON_EXTENSION, amo.ADDON_THEME, amo.ADDON_DICT,
+         amo.ADDON_SEARCH, amo.ADDON_LPAPP, amo.ADDON_PERSONA,)
 
 updated = (
     ('', _lazy(u'Any time')),
