@@ -275,7 +275,8 @@ def ajax_new(request):
 @login_required
 def ajax_list(request):
     # Get collections associated with this user
-    collections = request.amo_user.collections.manual()
+    collections = Collection.objects.publishable_by(request.amo_user)
+
     try:
         addon_id = int(request.GET['addon_id'])
     except (KeyError, ValueError):

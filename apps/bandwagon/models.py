@@ -7,6 +7,7 @@ import uuid
 from django.conf import settings
 from django.core.cache import cache
 from django.db import models, connection
+from django.db.models import Q
 
 import caching.base as caching
 
@@ -56,6 +57,12 @@ class CollectionManager(amo.models.ManagerBase):
     def listed(self):
         """Return public collections only."""
         return self.filter(listed=True)
+
+    def publishable_by(self, user):
+        """Collections that are publishable by a user."""
+        owned_by = Q(author=user.id)
+        publishable_by = Q(users=user.id)
+        return self.filter(owned_by|publishable_by)
 
 
 class Collection(amo.models.ModelBase):
