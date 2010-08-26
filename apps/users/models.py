@@ -122,6 +122,13 @@ class UserProfile(amo.models.ModelBase):
     def welcome_name(self):
         return self.display_name or self.username
 
+    @property
+    def display_name(self):
+        if not self.nickname:
+            return '%s %s' % (self.firstname, self.lastname)
+        else:
+            return self.nickname
+
     @amo.cached_property
     def reviews(self):
         """All reviews that are not dev replies."""
