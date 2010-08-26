@@ -26,7 +26,8 @@ def migrate_collection_users():
     """For all non-anonymous collections with no author, populate the author
     with the first CollectionUser.  Set all other CollectionUsers to
     publishers."""
-
+    # Don't touch the modified date.
+    Collection._meta.get_field('modified').auto_now = False
     collections = (Collection.objects.exclude(type=amo.COLLECTION_ANONYMOUS)
                    .filter(author__isnull=True))
 
@@ -132,6 +133,8 @@ def _update_collections_votes(data, stat, **kw):
 @cronjobs.register
 def collections_add_slugs():
     """Give slugs to any slugless collections."""
+    # Don't touch the modified date.
+    Collection._meta.get_field('modified').auto_now = False
     q = Collection.objects.filter(slug=None)
     ids = q.values_list('id', flat=True)
     task_log.info('%s collections without names' % len(ids))
