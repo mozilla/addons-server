@@ -448,7 +448,7 @@ if ($('body.collections-contributors')) {
         e.preventDefault();
         var email = $('#contributor-ac').val();
         var src = $('#contributor-ac').attr('data-src');
-        var my_id = $('#contributor-ac').attr('data-self');
+        var my_id = $('#contributor-ac').attr('data-owner');
 
         // TODO(potch): Add a fancy failure case.
         $.get(src, {q: email}, function(d) {
