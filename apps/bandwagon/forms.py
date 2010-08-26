@@ -18,7 +18,7 @@ privacy_choices = (
         (False, _lazy('Only I can view this collection.')),
         (True, _lazy('Anybody can view this collection.')))
 
-apps = ((a.id, a.pretty) for a in amo.APP_USAGE)
+apps = (('', None),) + tuple((a.id, a.pretty) for a in amo.APP_USAGE)
 collection_types = ((k, v) for k, v in amo.COLLECTION_CHOICES.iteritems()
         if k not in (amo.COLLECTION_ANONYMOUS, amo.COLLECTION_RECOMMENDED))
 
@@ -28,7 +28,7 @@ log = commonware.log.getLogger('z.collections')
 
 class AdminForm(Form):
     application = forms.TypedChoiceField(choices=apps, required=False,
-                                         coerce=int)
+                                         empty_value=None, coerce=int)
     type = forms.TypedChoiceField(choices=collection_types, required=False,
                                   coerce=int)
 
