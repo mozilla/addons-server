@@ -233,7 +233,7 @@ def ajax_search(request):
     q = request.GET.get('q', '')
     client = SearchClient()
     try:
-        results = client.query(q, limit=10)
+        results = client.query('@name ' + q, limit=10)
         return [dict(id=result.id, label=unicode(result.name),
                      icon=result.icon_url, value=unicode(result.name).lower())
                 for result in results]

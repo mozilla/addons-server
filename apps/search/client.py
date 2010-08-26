@@ -364,6 +364,7 @@ class Client(object):
 
         """
         sc = self.sphinx
+        sc.SetMatchMode(sphinx.SPH_MATCH_EXTENDED2)
 
         # Setup some default parameters for the search.
         fields = ("addon_id, app, category, %s" % self.weight_field)
