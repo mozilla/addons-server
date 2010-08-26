@@ -19,6 +19,7 @@ from addons.models import Addon
 from addons.views import BaseFilter
 from tags.models import Tag
 from translations.query import order_by_translation
+from users.models import UserProfile
 from .models import (Collection, CollectionAddon, CollectionWatcher,
                      CollectionVote, SPECIAL_SLUGS)
 from . import forms
@@ -119,6 +120,7 @@ def get_votes(request, collections):
 
 
 def user_listing(request, username):
+    author = get_object_or_404(UserProfile, username=username)
     qs = (Collection.objects.filter(author__username=username)
           .order_by('-created'))
     if not (request.user.is_authenticated() and
@@ -128,7 +130,7 @@ def user_listing(request, username):
     votes = get_votes(request, collections.object_list)
     return render(request, 'bandwagon/user_listing.html',
                   dict(collections=collections, collection_votes=votes,
-                       username=username, filter=get_filter(request)))
+                       author=author, filter=get_filter(request)))
 
 
 class CollectionAddonFilter(BaseFilter):

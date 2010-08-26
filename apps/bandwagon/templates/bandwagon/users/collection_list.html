@@ -3,10 +3,8 @@
 <ul>
   {% for collection in collections: %}
     <li>
-      {# TODO reverse url #}
       <a class="collection" href="{{ collection.get_url_path() }}">
-        {{ collection.name }}
-      </a>
+        {{ collection.name }}</a>
     </li>
   {% endfor %}
 </ul>
