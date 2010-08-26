@@ -106,11 +106,6 @@ class ContributorsForm(Form):
             if created:
                 cu.save()
 
-            # Check for duplicate slugs.
-            slug = collection.slug
-            while new_owner.collections.filter(slug=slug).count():
-                slug = slug + '-'
-            collection.slug = slug
             collection.save()
             # New owner is no longer a contributor.
             collection.collectionuser_set.filter(user=new_owner).delete()
