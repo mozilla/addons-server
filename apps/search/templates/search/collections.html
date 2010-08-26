@@ -32,6 +32,9 @@
             </div>
           </form>
         </div>
+        {% if settings.NEW_COLLECTIONS %}
+          {{ collection_listing_items(pager.object_list) }}
+        {% else %}
         {% for c in pager.object_list %}
           <div class="item">
             <div class="item-info">
@@ -62,6 +65,7 @@
             <blockquote>{{ c.description|nl2br }}</blockquote>
           </div>
         {% endfor %}
+        {% endif %}
       </div>
       <div class="listing-footer">{{ pager|paginator }}</div>
     {% else %}
