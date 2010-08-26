@@ -96,13 +96,18 @@ def get_filter(request, base=None):
     return CollectionFilter(request, base, key='sort', default='featured')
 
 
+def render(request, template, data={}, extra={}):
+    data.update(dict(search_cat='collections'))
+    return jingo.render(request, template, data, **extra)
+
+
 def collection_listing(request, base=None, extra={}):
     filter = get_filter(request, base)
     collections = amo.utils.paginate(request, filter.qs)
     votes = get_votes(request, collections.object_list)
-    return jingo.render(request, 'bandwagon/collection_listing.html',
-                        dict(collections=collections, filter=filter,
-                             collection_votes=votes, **extra))
+    return render(request, 'bandwagon/collection_listing.html',
+                  dict(collections=collections, filter=filter,
+                       collection_votes=votes, **extra))
 
 
 def get_votes(request, collections):
@@ -121,9 +126,9 @@ def user_listing(request, username):
         qs = qs.filter(listed=True)
     collections = amo.utils.paginate(request, qs)
     votes = get_votes(request, collections.object_list)
-    return jingo.render(request, 'bandwagon/user_listing.html',
-                        dict(collections=collections, collection_votes=votes,
-                            username=username, filter=get_filter(request)))
+    return render(request, 'bandwagon/user_listing.html',
+                  dict(collections=collections, collection_votes=votes,
+                       username=username, filter=get_filter(request)))
 
 
 class CollectionAddonFilter(BaseFilter):
@@ -173,11 +178,10 @@ def collection_detail(request, username, slug):
     }
 
     tags = Tag.objects.filter(id__in=c.top_tags) if c.top_tags else []
-    return jingo.render(request, 'bandwagon/collection_detail.html',
-                        {'collection': c, 'filter': filter,
-                         'addons': addons, 'notes': notes,
-                         'author_collections': others, 'tags': tags,
-                         'perms': perms})
+    return render(request, 'bandwagon/collection_detail.html',
+                  {'collection': c, 'filter': filter, 'addons': addons,
+                   'notes': notes, 'author_collections': others, 'tags': tags,
+                   'perms': perms})
 
 
 def get_notes(collection, raw=False):
@@ -243,7 +247,7 @@ def add(request):
         form = forms.CollectionForm()
 
     data.update(form=form, filter=get_filter(request))
-    return jingo.render(request, 'bandwagon/add.html', data)
+    return render(request, 'bandwagon/add.html', data)
 
 
 def ajax_new(request):
@@ -361,7 +365,7 @@ def edit(request, collection, username, slug):
                 admin_form=admin_form,
                 addons=addons,
                 comments=comments)
-    return jingo.render(request, 'bandwagon/edit.html', data)
+    return render(request, 'bandwagon/edit.html', data)
 
 
 @login_required
@@ -433,7 +437,7 @@ def delete(request, username, slug):
         else:
             return http.HttpResponseRedirect(collection.get_url_path())
 
-    return jingo.render(request, 'bandwagon/delete.html', data)
+    return render(request, 'bandwagon/delete.html', data)
 
 
 @login_required
