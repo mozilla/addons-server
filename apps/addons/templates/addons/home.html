@@ -2,6 +2,8 @@
 
 {% block title %}{{ _('Add-ons for {0}')|f(request.APP.pretty) }}{% endblock %}
 
+{% block bodyclass %}home{% endblock %}
+
 {% block site_stats %}
 {% if downloads and pings %}
 <ul class="stats">

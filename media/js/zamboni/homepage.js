@@ -1,4 +1,8 @@
 $(document).ready(function(){
+    if (!$(document.body).hasClass('home')) {
+        return;
+    }
+
     $('#homepage .listing-header a').click(function(e) {
         e.preventDefault();
         update(this, true);
