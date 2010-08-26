@@ -1,38 +1,5 @@
 [
     {
-        "pk": 1,
-        "model": "applications.application",
-        "fields": {
-            "guid": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}",
-            "modified": "2008-11-03 15:34:59",
-            "created": "2007-03-05 13:09:26"
-        }
-    },
-    {
-        "pk": 560051,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "Hi! I'm a tech blogger (http://smarterware.org) and book author (http://lifehackerbook.com). I started Lifehacker.com.",
-            "created": "2009-08-10 17:07:34",
-            "locale": "en-US",
-            "modified": null,
-            "id": 517666,
-            "localized_string_clean": "Hi! I'm a tech blogger (<a href=\"http://outgoing.mozilla.org/v1/5bd955d53b04e32cb3fb7cc7167eefa438d7dee4/http%3A//smarterware.org\">http://smarterware.org</a>) and book author (<a href=\"http://outgoing.mozilla.org/v1/600b77cd70d2e74c3e2513dff1963a69b0442e80/http%3A//lifehackerbook.com\">http://lifehackerbook.com</a>). I started Lifehacker.com."
-        }
-    },
-    {
-        "pk": 90917,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "Adds collapsible header and sidebar, event title text wrap, colored weekend days, week numbers, and skins to Google Calendar.",
-            "created": "2007-07-08 13:49:43",
-            "locale": "en-US",
-            "modified": "2009-03-09 19:16:20",
-            "id": 58815,
-            "localized_string_clean": "Adds collapsible header and sidebar, event title text wrap, colored weekend days, week numbers, and skins to Google Calendar."
-        }
-    },
-    {
         "pk": 90914,
         "model": "translations.translation",
         "fields": {
@@ -45,42 +12,6 @@
         }
     },
     {
-        "pk": 378388,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "http://groups.google.com/group/better-gmail-2-firefox-extension",
-            "created": "2009-03-09 19:16:20",
-            "locale": "en-US",
-            "modified": null,
-            "id": 340672,
-            "localized_string_clean": null
-        }
-    },
-    {
-        "pk": 378387,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "better-gmail-2-firefox-extension@googlegroups.com",
-            "created": "2009-03-09 19:16:20",
-            "locale": "en-US",
-            "modified": null,
-            "id": 340671,
-            "localized_string_clean": null
-        }
-    },
-    {
-        "pk": 90915,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "http://www.ginatrapani.org/workshop/firefox/bettergcal/",
-            "created": "2007-07-08 13:49:43",
-            "locale": "en-US",
-            "modified": "2009-03-09 19:16:20",
-            "id": 58813,
-            "localized_string_clean": null
-        }
-    },
-    {
         "pk": 90916,
         "model": "translations.translation",
         "fields": {
@@ -88,20 +19,7 @@
             "created": "2007-07-08 13:49:43",
             "locale": "en-US",
             "modified": "2009-03-09 19:16:20",
-            "id": 58814,
-            "localized_string_clean": null
-        }
-    },
-    {
-        "pk": 219039,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "Added Redesigned skin beta; Removed Air Skin (not much style difference) and Slate skin (didn't work); Updated to latest extension code; Updated icon.",
-            "created": "2008-07-06 13:54:05",
-            "locale": "en-US",
-            "modified": "2008-07-06 13:54:18",
-            "id": 182125,
-            "localized_string_clean": "Added Redesigned skin beta; Removed Air Skin (not much style difference) and Slate skin (didn't work); Updated to latest extension code; Updated icon."
+            "id": 58814
         }
     },
     {
@@ -118,55 +36,41 @@
         "model": "addons.addon",
         "fields": {
             "dev_agreement": true,
-            "eula": null,
             "last_updated": "2008-07-07 12:08:01",
+            "_current_version": 49515,
             "view_source": false,
             "enable_thankyou": false,
             "total_downloads": 206990,
-            "developer_comments": null,
             "inactive": false,
             "average_daily_downloads": 207,
             "show_beta": true,
             "guid": "bettergcal@ginatrapani.org",
             "trusted": false,
             "description": 58812,
-            "locale_disambiguation": null,
             "binary": false,
-            "the_future": null,
             "weekly_downloads": 580,
-            "support_url": 340672,
             "paypal_id": "",
             "average_rating": "3.43",
             "wants_contributions": false,
             "average_daily_users": 19616,
             "bayesian_rating": 3.6313200000000001,
             "share_count": 6,
-            "get_satisfaction_company": null,
-            "homepage": 58813,
-            "support_email": 340671,
             "public_stats": false,
             "status": 4,
-            "privacy_policy": null,
             "total_contributions": "0.00",
             "default_locale": "en-US",
-            "target_locale": null,
             "prerelease": false,
-            "thankyou_note": null,
             "admin_review": false,
             "external_software": false,
             "highest_status": 4,
-            "get_satisfaction_product": null,
             "name": 58814,
             "created": "2007-07-08 13:48:03",
             "type": 1,
             "icon_type": "image/png",
             "annoying": 0,
             "modified": "2010-06-25 15:27:34",
-            "summary": 58815,
-            "suggested_amount": null,
             "site_specific": true,
             "total_reviews": 42,
-            "the_reason": null,
             "nomination_date": "2009-03-09 19:16:22"
         }
     },
@@ -184,10 +88,22 @@
         "fields": {
             "license": 13,
             "created": "2008-07-06 13:53:30",
-            "releasenotes": 182125,
             "modified": "2010-03-12 07:45:56",
             "approvalnotes": "",
             "version": "0.3",
+            "addon": 5299
+        }
+    },
+    {
+        "pk": 50000,
+        "model": "versions.version",
+        "fields": {
+            "license": 13,
+            "created": "2009-07-06 13:53:30",
+            "releasenotes": null,
+            "modified": "2010-03-12 07:45:56",
+            "approvalnotes": "",
+            "version": "0.4b",
             "addon": 5299
         }
     },
@@ -218,7 +134,7 @@
             "modified": "2010-02-09 19:50:16",
             "filename": "better_gcal-0.4-fx.xpi",
             "platform": 1,
-            "version": 49515,
+            "version": 50000,
             "size": 24,
             "datestatuschanged": "2009-09-18 12:32:59"
         },
@@ -256,15 +172,14 @@
             "picture_type": "image/jpeg",
             "occupation": "",
             "homepage": "http://ginatrapani.org",
-            "email": "dd+44230311a@davedash.com",
+            "email": "g@gmail.com",
             "location": "",
-            "bio": 517666,
             "firstname": "Gina",
             "deleted": false,
             "lastname": "Trapani",
             "emailhidden": true,
             "user": 60582,
-            "password": "",
+            "password": "sha512$7b5436061f8c0902088c292c057be69fdb17312e2f71607c9c51641f5d876522$08d1d370d89e2ae92755fd03464a7276ca607c431d04a52d659f7a184f3f9918073637d82fc88981c7099c7c46a1137b9fdeb675304eb98801038905a9ee0600",
             "nickname": "60582",
             "username": "60582",
             "display_name": "60582 \u0627\u0644\u062a\u0637\u0628",
@@ -317,6 +232,16 @@
             "version": 49515,
             "min": 1,
             "max": 307
+        }
+    },
+    {
+        "pk": 1237,
+        "model": "addons.appsupport",
+        "fields": {
+            "app": 1,
+            "addon": 5299,
+            "modified": "2010-10-25 18:09:30",
+            "created": "2010-10-25 18:09:30"
         }
     }
 ]

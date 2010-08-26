@@ -1,5 +1,10 @@
+from datetime import datetime, timedelta
+import posixpath
+
 from django import http
+from django.conf import settings
 from django.shortcuts import get_object_or_404, redirect
+from django.utils.encoding import smart_str
 
 import caching.base as caching
 import jingo
@@ -7,7 +12,9 @@ import jingo
 import amo
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
+from access import acl
 from addons.models import Addon
+from files.models import File
 from versions.models import Version
 
 
@@ -44,3 +51,44 @@ def _find_version_page(qs, addon_id, version_num):
         return redirect(urlparams(url, 'version-%s' % version_num, page=page))
     else:
         raise http.Http404()
+
+
+# Should accept junk at the end for filename goodness.
+def download_file(request, file_id, type=None):
+    file = get_object_or_404(File.objects, pk=file_id)
+    addon = get_object_or_404(Addon.objects, pk=file.version.addon_id)
+
+    if (addon.status == amo.STATUS_DISABLED
+        and not acl.check_ownership(request, addon)):
+        raise http.Http404()
+
+    attachment = (type == 'attachment' or not request.APP.browser)
+
+    published = datetime.now() - file.datestatuschanged
+    if (not (settings.DEBUG or attachment)
+        and addon.status == file.status == amo.STATUS_PUBLIC
+        and published > timedelta(minutes=settings.MIRROR_DELAY)):
+        host = settings.MIRROR_URL  # Send it to the mirrors.
+    else:
+        host = settings.LOCAL_MIRROR_URL
+    loc = posixpath.join(*map(smart_str, [host, addon.id, file.filename]))
+    response = http.HttpResponseRedirect(loc)
+    response['X-Target-Digest'] = file.hash
+    return response
+
+
+def download_latest(request, addon_id, type=None, platform=None):
+    if type is None:
+        type = 'xpi'
+    platforms = [amo.PLATFORM_ALL.id]
+    if platform is not None and int(platform)in amo.PLATFORMS:
+        platforms.append(int(platform))
+    addon = get_object_or_404(Addon.objects, pk=addon_id,
+                              _current_version__isnull=False)
+    file = get_object_or_404(File.objects, platform__in=platforms,
+                              version=addon.current_version)
+    url = posixpath.join(reverse('downloads.file', args=[file.id, type]),
+                         file.filename)
+    if request.GET:
+        url += '?' + request.GET.urlencode()
+    return redirect(url)

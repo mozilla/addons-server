@@ -1,11 +1,16 @@
-from nose.tools import eq_
-from pyquery import PyQuery
+from datetime import datetime, timedelta
+from django.conf import settings
+
+import nose
 import mock
 import test_utils
+from nose.tools import eq_
+from pyquery import PyQuery
 
 import amo
 from amo.urlresolvers import reverse
 from addons.models import Addon
+from files.models import File, Platform
 from versions import views
 from versions.models import Version
 from versions.compare import version_int, dict_from_int
@@ -149,3 +154,159 @@ class TestFeeds(test_utils.TestCase):
         # proper date format for item
         item_pubdate = doc('rss channel item pubDate')[0]
         assert item_pubdate.text == 'Thu, 21 May 2009 05:37:15 -0700'
+
+
+class TestDownloadsBase(test_utils.TestCase):
+    fixtures = ['base/apps', 'base/addon_5299_gcal', 'base/admin']
+
+    def setUp(self):
+        self.addon = Addon.objects.get(id=5299)
+        self.file = File.objects.get(id=33046)
+        self.beta_file = File.objects.get(id=64874)
+        self.file_url = reverse('downloads.file', args=[self.file.id])
+        self.latest_url = reverse('downloads.latest', args=[self.addon.id])
+
+    def assert_served_by_host(self, response, host, file_=None):
+        if not file_:
+            file_ = self.file
+        eq_(response.status_code, 302)
+        eq_(response['Location'],
+            '%s/%s/%s' % (host, self.addon.id, file_.filename))
+        eq_(response['X-Target-Digest'], file_.hash)
+
+    def assert_served_locally(self, response, file_=None):
+        self.assert_served_by_host(response, settings.LOCAL_MIRROR_URL, file_)
+
+    def assert_served_by_mirror(self, response):
+        self.assert_served_by_host(response, settings.MIRROR_URL)
+
+
+class TestDownloads(TestDownloadsBase):
+
+    def test_file_404(self):
+        r = self.client.get(reverse('downloads.file', args=[234]))
+        eq_(r.status_code, 404)
+
+    def test_public(self):
+        eq_(self.addon.status, 4)
+        eq_(self.file.status, 4)
+        self.assert_served_by_mirror(self.client.get(self.file_url))
+
+    def test_public_addon_unreviewed_file(self):
+        self.file.status = amo.STATUS_UNREVIEWED
+        self.file.save()
+        self.assert_served_locally(self.client.get(self.file_url))
+
+    def test_unreviewed_addon(self):
+        self.addon.status = amo.STATUS_PENDING
+        self.addon.save()
+        self.assert_served_locally(self.client.get(self.file_url))
+
+    def test_disabled_404(self):
+        self.addon.status = amo.STATUS_DISABLED
+        self.addon.save()
+        eq_(self.client.get(self.file_url).status_code, 404)
+
+    def test_disabled_author(self):
+        # downloads_controller.php claims that add-on authors should be able to
+        # download their disabled files.
+        self.addon.update(status=amo.STATUS_DISABLED)
+        assert self.client.login(username='g@gmail.com', password='password')
+        self.assert_served_locally(self.client.get(self.file_url))
+
+    def test_disabled_admin(self):
+        self.addon.update(status=amo.STATUS_DISABLED)
+        self.client.login(username='jbalogh@mozilla.com', password='password')
+        self.assert_served_locally(self.client.get(self.file_url))
+
+    def test_type_attachment(self):
+        self.assert_served_by_mirror(self.client.get(self.file_url))
+        url = reverse('downloads.file', args=[self.file.id, 'attachment'])
+        self.assert_served_locally(self.client.get(url))
+
+    def test_nonbrowser_app(self):
+        url = self.file_url.replace('firefox', 'sunbird')
+        self.assert_served_locally(self.client.get(url))
+
+    def test_mirror_delay(self):
+        self.file.datestatuschanged = datetime.now()
+        self.file.save()
+        self.assert_served_locally(self.client.get(self.file_url))
+
+        t = datetime.now() - timedelta(minutes=settings.MIRROR_DELAY + 10)
+        self.file.datestatuschanged = t
+        self.file.save()
+        self.assert_served_by_mirror(self.client.get(self.file_url))
+
+    def test_trailing_filename(self):
+        url = self.file_url + self.file.filename
+        self.assert_served_by_mirror(self.client.get(url))
+
+    def test_beta_file(self):
+        url = reverse('downloads.file', args=[self.beta_file.id])
+        self.assert_served_locally(self.client.get(url), self.beta_file)
+
+
+class TestDownloadsLatest(TestDownloadsBase):
+
+    def setUp(self):
+        super(TestDownloadsLatest, self).setUp()
+        self.platform = Platform.objects.create(id=5)
+
+    def assert_served_by_mirror(self, response):
+        # Follow one more hop to hit the downloads.files view.
+        r = self.client.get(response['Location'])
+        super(TestDownloadsLatest, self).assert_served_by_mirror(r)
+
+    def assert_served_locally(self, response):
+        # Follow one more hop to hit the downloads.files view.
+        r = self.client.get(response['Location'])
+        super(TestDownloadsLatest, self).assert_served_locally(r)
+
+    def test_404(self):
+        url = reverse('downloads.latest', args=[123])
+        eq_(self.client.get(url).status_code, 404)
+
+    def test_success(self):
+        assert self.addon.current_version
+        self.assert_served_by_mirror(self.client.get(self.latest_url))
+
+    def test_platform(self):
+        # We still match PLATFORM_ALL.
+        url = reverse('downloads.latest',
+                      kwargs={'addon_id': self.addon.id, 'platform': 5})
+        self.assert_served_by_mirror(self.client.get(url))
+
+        # And now we match the platform in the url.
+        self.file.platform = self.platform
+        self.file.save()
+        self.assert_served_by_mirror(self.client.get(url))
+
+        # But we can't match platform=3.
+        url = reverse('downloads.latest',
+                      kwargs={'addon_id': self.addon.id, 'platform': 3})
+        eq_(self.client.get(url).status_code, 404)
+
+    def test_type(self):
+        url = reverse('downloads.latest',
+                      kwargs={'addon_id': self.addon.id, 'type': 'attachment'})
+        self.assert_served_locally(self.client.get(url))
+
+    def test_platform_and_type(self):
+        url = reverse('downloads.latest',
+                      kwargs={'addon_id': self.addon.id, 'platform': 5,
+                              'type': 'attachment'})
+        self.assert_served_locally(self.client.get(url))
+
+    def test_trailing_filename(self):
+        url = reverse('downloads.latest',
+                      kwargs={'addon_id': self.addon.id, 'platform': 5,
+                              'type': 'attachment'})
+        url += self.file.filename
+        self.assert_served_locally(self.client.get(url))
+
+    def test_query_params(self):
+        url = self.latest_url + '?src=xxx'
+        r = self.client.get(url)
+        eq_(r.status_code, 302)
+        assert r['Location'].endswith('?src=xxx'), r['Location']

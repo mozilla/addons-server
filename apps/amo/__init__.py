@@ -198,6 +198,7 @@ class SUNBIRD:
     short = 'sunbird'
     shortername = 'sb'
     pretty = _(u'Sunbird')
+    browser = False
     types = [ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_LPAPP]
     guid = '{718e30fb-e89b-41dd-9da7-e25a45638b28}'
     min_display_version = 0.2

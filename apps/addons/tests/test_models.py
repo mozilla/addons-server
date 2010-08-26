@@ -26,6 +26,7 @@ class TestAddonManager(test_utils.TestCase):
         eq_(Addon.objects.featured(amo.FIREFOX).count(), 1)
 
     def test_listed(self):
+        Addon.objects.filter(id=5299).update(inactive=True)
         # Should find one addon.
         q = Addon.objects.listed(amo.FIREFOX, amo.STATUS_PUBLIC)
         eq_(len(q.all()), 1)
@@ -98,7 +99,7 @@ class TestAddonModels(test_utils.TestCase):
 
     def test_current_beta_version(self):
         a = Addon.objects.get(pk=5299)
-        eq_(a.current_beta_version.id, 49515)
+        eq_(a.current_beta_version.id, 50000)
 
     def test_current_version_mixed_statuses(self):
         """Mixed file statuses are evil (bug 558237)."""
