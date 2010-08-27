@@ -468,7 +468,6 @@ button.link {
 .subscribers,
 .category,
 .tags,
-.share,
 .digg,
 .delicious,
 .facebook,
@@ -484,10 +483,6 @@ button.link {
 
 .subscribe {
     background-position: 0 2px;
-}
-
-.share {
-    background-position: 0 -100px;
 }
 
 .addons {
@@ -2453,10 +2448,14 @@ ol.pagination li a:active {
 
 /* @group Share This */
 
-.share-this {
-    width: 200px;
-    clear:left;
-    float:left;
+#sharing-popup {
+    width: 280px;
+    left: -55px;
+    padding: 0;
+}
+
+.condensed #sharing-popup.left {
+    left: -184px;
 }
 
 .share-arrow {
@@ -2479,16 +2478,19 @@ ol.pagination li a:active {
     padding: 0;
 }
 
-.share-content {
+#sharing-popup div {
     -moz-border-radius:5px;
     -webkit-border-radius:5px;
     border-radius:5px;
+    margin: 0;
 }
 
 .share-networks ul {
     padding: 0 0 0 0.8em;
     display: table;
+    -moz-box-sizing: border-box;
     margin: 0;
+    width:100%;
 }
 
 .html-rtl .share-networks ul {
@@ -2522,7 +2524,7 @@ ol.pagination li a:active {
     padding-left:15px;
 }
 
-.share-networks li.email {
+.no-email .share-networks li.email {
     display: none; /* shown with js */
 }
 

@@ -3,7 +3,7 @@
   {% for collection in collections %}
   <li {{ collection.has_addon|class_selected(True) }}
       data-id="{{ collection.id }}">
-    <span class="collectionitem">{{ collection.name }}</span><a title="{{ _('View this collection') }}" class="outlink" href="{{ collection.get_url_path() }}"></a>
+    <span>{{ collection.name }}</span><a title="{{ _('View this collection') }}" class="outlink" href="{{ collection.get_url_path() }}"></a>
   </li>
   {% endfor %}
 </ul>

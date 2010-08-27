@@ -486,6 +486,59 @@ jQuery(window).load(function() {
 	document.createElement('abbr');
 });
 
+function makeBlurHideCallback(el) {
+    var hider = function(e) {
+        _root = el.get(0);
+        // Bail if the click was somewhere on the popup.
+        if (e.type == 'click' &&
+            _root == e.target ||
+            _.indexOf($(e.target).parents(), _root) != -1) {
+            return;
+        }
+        el.hide();
+        el.unbind();
+        el.undelegate();
+        $(document.body).unbind('click newPopup', hider);
+    };
+    return hider;
+}
+
+// makes an element into a popup.
+// click_target defines the element/elements that display the popup.
+// opts takes three optional fields:
+//     callback:    a function to run before displaying the popup. Returning
+//                  false from the function cancels the popup.
+//     container:   if set the popup will be appended to the container before
+//                  being displayed.
+//     hideme:      defaults to true, if set to false, popup will not be hidden
+//                  when the user clicks outside of it.
+$.fn.popup = function(click_target, opts) {
+    opts = opts || {};
+
+    var $ct         = $(click_target),
+        $popup      = this,
+        callback    = opts.callback || false,
+        container   = opts.container || false;
+        hideme      = opts.hideme || false;
+
+    $ct.click(function(e) {
+        e.preventDefault();
+        setTimeout(function(){
+            $(document.body).bind('click popup', makeBlurHideCallback($popup));
+        }, 0);
+        var resp = callback ? (callback.apply($popup, [this, e])) : true;
+        if (resp) {
+            $ct.trigger("popup_show", [this, $popup, e]);
+            if (resp.container || container)
+                $popup.detach().appendTo(resp.container || container);
+            setTimeout(function(){
+                $popup.show();
+            }, 0);
+        }
+    });
+    return this;
+};
+
 /* Initialization things that get run on every page. */
 
 $(".hidden").hide(); // hide anything that should be hidden

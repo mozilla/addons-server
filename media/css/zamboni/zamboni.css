@@ -2524,7 +2524,6 @@ label > .optional {
     background-repeat: no-repeat;
     background-position: 0 4px;
     background-image: url(../../img/zamboni/icons/checks.png);
-    font-weight: bold;
 }
 
 #ajax_collections_list li:hover {
@@ -2722,7 +2721,7 @@ td.remove {
     background-image: url(../../img/zamboni/icons/collections.png);
     white-space: nowrap;
     background-position: 0 -500px;
-    padding-left: 20px;
+    padding-left: 22px;
 }
 .addon-favorite span.msg {
     font-weight: bold;
@@ -2797,34 +2796,45 @@ a.outlink:hover {
     margin-bottom: 1em;
 }
 
-.collection_widgets > a {
+.widgets a.widget,
+.widgets .widget > a {
     background-image: url(../../img/zamboni/icons/collections.png);
     background-repeat: no-repeat;
     padding-left: 22px;
     margin-right: .8em;
     text-indent: -9000px;
 }
-.collection_widgets > a[title] {
+.collection_widgets div.widget {
+    display: inline-block;
+}
+.collection_widgets.condensed a.widget,
+.collection_widgets.condensed .widget > a{
     padding-left: 16px;
 }
-.collection_widgets .edit {
+.widgets.condensed a.widget > span,
+.widgets.condensed .widget > a > span {
+    display: none;
+}
+.widgets .edit {
     margin-left: .5em;
     background-position: 0 -350px;
 }
-.collection_widgets .edit:hover { background-position: 0 -300px; }
-.collection_widgets .copy { background-position: 0 -50px; }
-.collection_widgets .copy:hover { background-position: 0 0px; }
-.collection_widgets .watch { background-position: 0 -750px; }
-.collection_widgets .watch:hover { background-position: 0 -700px;}
-.collection_widgets .watching { background-position: 0 -650px; }
-.collection_widgets .share { background-position: 0 -600px; }
-.collection_widgets .share:hover { background-position: 0 -550px; }
+.widgets a.edit:hover { background-position: 0 -300px; }
+.widgets a.copy { background-position: 0 -50px; }
+.widgets a.copy:hover { background-position: 0 0px; }
+.widgets a.watch { background-position: 0 -750px; }
+.widgets a.watch:hover { background-position: 0 -700px;}
+.widgets a.watching { background-position: 0 -650px; }
+.widgets.condensed a.share { background-position: 0 -600px; }
+.widgets a.share, .widgets.condensed a.share:hover { background-position: 0 -550px; }
 
 
 .addon-favorite.ajax-loading span,
 .collection-add.ajax-loading span,
-.collection_widgets > a.ajax-loading,
-.collection_widgets > a.ajax-loading:hover {
+.widgets a.widget.ajax-loading,
+.widgets .widget.ajax-loading > a,
+.widgets > a.widget.ajax-loading:hover,
+.widgets > .widget.ajax-loading > a:hover {
    background-image: url(../../img/zamboni/loading-white.gif);
    background-position: left bottom;
 }

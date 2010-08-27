@@ -2538,7 +2538,7 @@ html[xmlns] .clearfix {
 }
 
 .addon-collections li .collectionitem, .collection-add > span {
-	padding-left: 20px;
+	padding-left: 22px;
 	background-image: url(../../img/amo2009/icons/icons.png);
 	background-repeat: no-repeat;
 	background-position: 0px -300px;

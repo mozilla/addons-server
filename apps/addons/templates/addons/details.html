@@ -110,12 +110,12 @@
         {% endif %}
 
         {% if settings.NEW_COLLECTIONS %}
+        <div class="widgets">
           {{ favorites_widget(addon) }}
           {% include 'addons/includes/collection_add_widget.html' %}
+          {{ sharing_widget(addon) }}
+        </div>
         {% endif %}
-
-        {{ sharing_box(addon) }}
-
       </div>{# /secondary #}
 
     </div>{# /featured-inner #}

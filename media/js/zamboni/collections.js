@@ -531,7 +531,7 @@ $(document).ready(function () {
         }
     }
 
-    $('#details-edit form, body.collection-create form, .collection-add-dropdown').delegate('#id_name', 'keyup', slugify)
+    $('#details-edit form').delegate('#id_name', 'keyup', slugify)
         .delegate('#id_name', 'blur', slugify)
         .delegate('#edit_slug', 'click', show_slug_edit)
         .delegate('#id_slug', 'change', function() {
@@ -617,31 +617,23 @@ $(document).ready(function () {
         dropdown.delegate('#ajax_collections_list li', 'click', handleToggle)
             .delegate('#collections-new form', 'submit', handleSubmit)
             .delegate('#ajax_new_collection', 'click', handleNew)
-            .delegate('#collections-new-cancel', 'click', handleClick);
+            .delegate('#collections-new-cancel', 'click', handleClick)
+            .delegate('#id_name', 'blur', slugify)
+            .delegate('#edit_slug', 'click', show_slug_edit)
+            .delegate('#id_slug', 'change', function() {
+                url_customized = true;
+                if (!$('#id_slug').val()) {
+                  url_customized = false;
+                  slugify();
+                }
+            });
 
         // Clear popup when we click outside it.
         setTimeout(function(){
-            $(document.body).bind('click newPopup', cb(dropdown));
+            $(document.body).bind('click newPopup', makeBlurHideCallback(dropdown));
         }, 0);
     };
     $(document.body).delegate("div.collection-add", 'click', handleClick);
-
-    function cb(el) {
-        var hider = function(e) {
-            _root = el.get(0);
-            // Bail if the click was somewhere on the popup.
-            if (e.type == 'click' &&
-                _root == e.target ||
-                _.indexOf($(e.target).parents(), _root) != -1) {
-                return;
-            }
-            el.hide();
-            el.unbind();
-            el.undelegate();
-            $(document.body).unbind('click newPopup', hider);
-        };
-        return hider;
-    }
 
     function stopPropagation(e) {
         e.stopPropagation();
@@ -713,6 +705,38 @@ $(document).ready(function () {
                 widget.removeClass('ajax-loading');
             }
         });
+    });
+
+    //New sharing interaction
+    $("#sharing-popup").popup(".share.widget a.share", {
+        callback: function(el, $popup) {
+            var $top = $(el).parents(".widgets");
+            var $container = $(".share-me", $top);
+            if ($(this).is(':visible') && $("#sharing-popup", $container).length ) {
+                return false;
+            } else {
+                var $widget = $(".share.widget", $top);
+                var base_url = $widget.attr('data-base-url');
+                var counts = $.parseJSON($widget.attr("data-share-counts"));
+                if (counts) {
+                    for (s in counts) {
+                        if (!counts.hasOwnProperty(s)) continue;
+                        var c = counts[s];
+                        var $li = $("li." + s, this);
+                        $(".share-count", $li).text(c);
+                        $(".uniquify", $li).attr("href", base_url + s);
+                    }
+                } else {
+                    return false;
+                }
+                if ($container.hasClass("left")) {
+                    this.addClass("left");
+                } else {
+                    this.removeClass("left");
+                }
+                return { 'container' : $container };
+            }
+        }
     });
 
 });

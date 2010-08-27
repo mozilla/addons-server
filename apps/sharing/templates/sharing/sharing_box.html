@@ -1,34 +1,23 @@
-<div class="share-this">
-  {% if obj.__class__.__name__ == 'Addon' %}
-    <a class="share" href="#">{{ _('Share this Add-on') }}</a>
-  {% elif obj.__class__.__name__ == 'Collection' %}
-    <a class="share" href="#">{{ _('Share this Collection') }}</a>
-  {% endif %}
-  <div class="share-arrow"><div class="share-frame">
-  {% cache obj %}
-    <div class="share-networks share-content">
-      <ul>
-        {% for service in services %}
-          {% set opts = service_opts[service] %}
-          {% set share_counts = obj.share_counts() %}
-          <li class="{{ service.shortname }}">
-            <span class="share-link">
-              <a class="uniquify" target="{{ opts.target }}" href="{{ opts.url }}">
-                {{ service.label }}
-              </a>
-            </span>
-            <span class="share-count">
-              {{ service.count_term(share_counts[service.shortname]) }}
-            </span>
-          </li>
-        {% endfor %}
-      </ul>
-    </div>{# /share-networks #}
-  {% endcache %}
+<div id="sharing-popup" class="popup">
+  <div class="share-networks share-content">
+    <ul>
+      {% for service in services %}
+        <li class="{{ service.shortname }}">
+          <span class="share-link">
+            <a class="uniquify" target="{{ '_self' if service==EMAIL else '_blank' }}" href="#">
+              {{ service.label }}
+            </a>
+          </span>
+          <span class="share-count">
+          </span>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>{# /share-networks #}
 
-  {% if request.user.is_authenticated() and show_email %}
+  {% if request.user.is_authenticated() or True %}
     <div class="share-email share-content">
-      <form action="{{ remora_url(service_opts[email_service].url) }}"
+      <form action=""
         method="post">
         {{ cake_csrf_token() }}
         {# TODO uncakeify #}
@@ -65,7 +54,4 @@
       </div>
     </div>{# /share-email #}
   {% endif %}
-
-
-  </div></div>{# /share-frame, /share-arrow #}
-</div>{# /share-this #}
+</div>

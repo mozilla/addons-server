@@ -145,7 +145,6 @@ def collection_widgets(context, collection, condensed=False):
     c = dict(context.items())
     request = c['request']
     if collection and request.user.is_authenticated():
-
         c.update({'condensed': condensed,
                   'c': collection,
                  })

@@ -93,7 +93,11 @@
         {% block content %}{% endblock %}
       {% endblock %}
     </div>
-
+    <div class="hidden" id="popup-staging">
+      {{ sharing_box() }}
+      {% block popups %}
+      {% endblock %}
+    </div>
     {# js #}
     {% block site_js %}
       <script src="{{ url('jsi18n') }}/build:{{ BUILD_ID_JS }}"></script>
