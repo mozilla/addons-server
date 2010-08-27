@@ -11,11 +11,12 @@
       </p>
     {% endif %}
 
-    <form method="post" action="{{ url('reviews.add', addon.id) }}">
+    <form disabled method="post" action="{{ url('reviews.add', addon.id) }}">
+      {% set attrs = {} if user.is_authenticated() else {'disabled': 'disabled'} %}
       {{ csrf() }}
-      {{ field(review_form.body, _('Review:')) }}
-      {{ field(review_form.rating, _('Rating:')) }}
-      <input type="submit" value="{{ _('Submit review') }}">
+      {{ field(review_form.body, _('Review:'), **attrs) }}
+      {{ field(review_form.rating, _('Rating:'), **attrs) }}
+      <input type="submit" value="{{ _('Submit review') }}" {{ attrs|xmlattr }}>
     </form>
 
     <div>
