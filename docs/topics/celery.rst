@@ -46,7 +46,7 @@ Then run the following commands: ::
   # Setup rabitty things
   rabbitmqctl add_user zamboni zamboni
   rabbitmqctl add_vhost zamboni
-  rabbitmqctl set_permissions -p zamboni zamboni "" ".*" ".*"
+  rabbitmqctl set_permissions -p zamboni zamboni ".*" ".*" ".*"
 
 Back in safe and happy django-land you should be able to run: ::
 
