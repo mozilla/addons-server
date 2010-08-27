@@ -134,7 +134,6 @@ def SearchForm(request):
 
         # TODO(jbalogh): when we start using this form for zamboni search, it
         # should check that the appid and lver match up using app_versions.
-
         def clean(self):
             d = self.cleaned_data
             raw = self.data
@@ -183,10 +182,18 @@ def SearchForm(request):
 class SecondarySearchForm(forms.Form):
     q = forms.CharField(widget=forms.HiddenInput, required=False)
     cat = forms.CharField(widget=forms.HiddenInput)
-    pp = forms.IntegerField(widget=forms.HiddenInput, required=False)
+    pp = forms.CharField(widget=forms.HiddenInput, required=False)
     sortby = forms.ChoiceField(label=_('Sort By'), choices=collection_sort_by,
                                initial='weekly', required=False)
     page = forms.IntegerField(widget=forms.HiddenInput, required=False)
+
+    def clean_pp(self):
+        d = self.cleaned_data['pp']
+
+        try:
+            return int(d)
+        except:
+            return per_page[0]
 
     def clean(self):
         d = self.cleaned_data

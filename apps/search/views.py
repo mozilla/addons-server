@@ -4,6 +4,7 @@ import time
 
 from django.http import HttpResponseRedirect
 
+import commonware.log
 import jingo
 from tower import ugettext as _
 
@@ -20,6 +21,8 @@ from search.forms import SearchForm, SecondarySearchForm
 from translations.query import order_by_translation
 
 DEFAULT_NUM_RESULTS = 20
+
+log = commonware.log.getLogger('z.search')
 
 
 class MenuItem():
@@ -156,11 +159,12 @@ def _get_sorts(request, sort):
 
 
 def _personas(request):
-    "Handle the request for persona searches."
+    """Handle the request for persona searches."""
     form = SecondarySearchForm(request.GET)
-    form.is_valid()
+    if not form.is_valid():
+        log.error(form.errors)
 
-    query = form.cleaned_data.get('q', '')
+    query = form.data.get('q', '')
 
     search_opts = {}
     search_opts['limit'] = form.cleaned_data.get('pp', DEFAULT_NUM_RESULTS)
