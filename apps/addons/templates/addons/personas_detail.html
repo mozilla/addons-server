@@ -112,7 +112,9 @@
   </div>{# /more-personas #}
 
   {{ review_list_box(addon=addon, reviews=reviews) }}
-  {{ review_add_box(addon=addon) }}
+  {% if request.user.is_authenticated() %}
+    {{ review_add_box(addon=addon) }}
+  {% endif %}
 
 </div>{# /primary #}
 
