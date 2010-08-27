@@ -1,3 +1,4 @@
+import httplib
 import time
 import urllib2
 
@@ -19,7 +20,7 @@ def fetch_ryf_blog():
     url = "http://rockyourfirefox.com/feed/"
     try:
         p = pq(url=url)
-    except urllib2.URLError, e:
+    except (urllib2.URLError, httplib.HTTPException), e:
         log.error("Couldn't open (%s): %s" % (url, e))
         return
 
