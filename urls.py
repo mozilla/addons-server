@@ -67,6 +67,9 @@ urlpatterns = patterns('',
     ('^reviews/display/(\d+)',
       lambda r, id: redirect('reviews.list', id, permanent=True)),
 
+    ('^reviews/add/(\d+)',
+      lambda r, id: redirect('reviews.add', id, permanent=True)),
+
     ('^users/info/(\d+)',
      lambda r, id: redirect('users.profile', id, permanent=True)),
 
