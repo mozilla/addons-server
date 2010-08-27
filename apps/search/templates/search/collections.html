@@ -8,19 +8,18 @@
   {% endif %}
 {% endblock %}
 
-{% block bodyclass %}inverse{% endblock %}
-
 {% block content %}
 <div class="primary" role="main">
-  <h2>{{ _('Collection Search Results') }}</h2>
+  <header class="results-head">
+    {{ breadcrumbs([(None, _('Search'))]) }}
+    <h2>{{ _('Collection Search Results') }}</h2>
+    <h3 class="results-count">{{ showing(query, tag, pager) }}</h3>
+  </header>
   <div class="featured listing">
     {% if pager.object_list %}
       <div class="featured-inner">
         <div class="listing-header">
-          <div class="num-results">
-            {{ pagination_result_count(pager) }}
-          </div>
-          <form class="item-sort go" action="" method="get">
+          <form class="item-sort go" action="">
             <div>
               {{ form['q']|safe }}
               {{ form['cat']|safe }}
@@ -69,48 +68,13 @@
       </div>
       <div class="listing-footer">{{ pager|paginator }}</div>
     {% else %}
-    {% include 'search/no_results.html' %}
+      {% include 'search/no_results.html' %}
     {% endif %}
   </div>
 </div> {# /primary #}
 
 <div class="secondary" role="complementary">
-  <div class="highlight">
-    <h3>{{ _('What are Collections?') }}</h3>
-    <p>
-      {{ _('Collections are groups of related add-ons assembled for easy sharing.') }}
-    </p>
-    <p>
-      <a class="more-info" href="{{ remora_url('collections/add') }}">
-        {{ _('Create a Collection', 'collections_index_a_create') }}
-      </a>
-    </p>
-  </div>
-
-  <div class="highlight">
-    <h3>{{ _('Add-on Collector', 'collections_index_header_collector') }}</h3>
-
-    <p class="teaser-img">
-      <a href="{{ remora_url('pages/collector') }}">
-        <img alt="" src="{{ MEDIA_URL }}img/amo2009/illustrations/logo-collections-download-146x159.png">
-      </a>
-    </p>
-    <p>
-      {{ _("There's a new way to manage and find favorite add-ons.  Comment, share and sync collections, all from your browser.") }}
-    </p>
-    <p>
-      <a class="more-info" href="{{ remora_url('pages/collector') }}">
-        {{ _('Check out Add-on Collector') }}
-      </a>
-    </p>
-  </div>
-</div> {# /secondary #}
-
-{# TODO(davedash): parcel this out into a jinja function. #}
-<div class="secondary">
-  <div id="recently-viewed" class="collections-add">
-    <h3 class="compact-bottom">{{ _('Recently Viewed') }}</h3>
-  </div>
+  {% include 'bandwagon/includes/collection_sidebar.html' %}
 </div>
 
 {% endblock %}

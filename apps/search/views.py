@@ -9,6 +9,7 @@ import jingo
 from tower import ugettext as _
 
 import amo
+import bandwagon.views
 from amo.decorators import json_view
 from amo.helpers import urlparams
 from amo import urlresolvers
@@ -184,12 +185,7 @@ def _personas(request):
 
     pager = amo.utils.paginate(request, results, search_opts['limit'])
 
-    c = {
-            'pager': pager,
-            'form': form,
-            'categories': categories,
-        }
-
+    c = dict(pager=pager, form=form, categories=categories)
     return jingo.render(request, 'search/personas.html', c)
 
 
@@ -207,20 +203,16 @@ def _collections(request):
     search_opts['offset'] = (page - 1) * search_opts['limit']
     search_opts['sort'] = form.cleaned_data.get('sortby')
 
-    client = CollectionsClient()
-
     try:
-        results = client.query(query, **search_opts)
+        results = CollectionsClient().query(query, **search_opts)
     except SearchError:
         return jingo.render(request, 'search/down.html', {}, status=503)
 
     pager = amo.utils.paginate(request, results, search_opts['limit'])
 
-    c = {
-            'pager': pager,
-            'form': form,
-        }
 
+    c = dict(pager=pager, form=form, query=query,
+             filter=bandwagon.views.get_filter(request))
     return jingo.render(request, 'search/collections.html', c)
 
 
