@@ -151,7 +151,7 @@ def add(request, addon_id):
             details = _review_details(request, addon, form)
             review = Review.objects.create(**details)
             log.debug('New review: %s' % review.id)
-            return redirect('reviews.detail', addon_id, review.id)
+            return redirect('reviews.list', addon_id)
     return jingo.render(request, 'reviews/add.html',
                         dict(addon=addon, form=form))
 
