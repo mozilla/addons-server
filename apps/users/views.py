@@ -254,12 +254,12 @@ def login(request):
             log.debug((u'User (%s) logged in successfully with '
                                         '"remember me" set') % user)
         else:
-            log.debug(u"User (%s) logged in successfully" % user)
-    else:
+            user.log_login_attempt(request, True)
+    elif 'username' in request.POST:
         # Hitting POST directly because cleaned_data doesn't exist
-        if 'username' in request.POST:
-            log.debug(u"User (%s) failed to log in" %
-                                            request.POST['username'])
+        user = UserProfile.objects.filter(email=request.POST['username'])
+        if user:
+            user.get().log_login_attempt(request, False)
 
     return r
 

@@ -47,7 +47,11 @@
             "created": "2009-02-02 11:50:31",
             "notes": "",
             "modified": "2010-01-12 15:28:07",
-            "notifyevents": 1
+            "notifyevents": 1,
+            "last_login_attempt": "2010-01-12 15:28:07",
+            "last_login_attempt_ip": "192.168.1.100",
+            "last_login_ip": "192.168.1.101",
+            "failed_login_attempts": 3
         }
     },
     {

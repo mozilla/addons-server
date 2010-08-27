@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.contrib.auth.models import User
 from django.contrib.auth.tokens import default_token_generator
 from django.core import mail
@@ -230,6 +232,32 @@ class TestUserLoginForm(UserFormBase):
         self.assertNotContains(r, "Welcome, Jeff")
         self.assertContains(r, 'Please enter a correct username and password. '
                                'Note that both fields are case-sensitive.')
+
+    def test_successful_login_logging(self):
+        t = datetime.now()
+        # microsecond is not saved in the db
+        t = datetime(t.year, t.month, t.day, t.hour, t.minute, t.second)
+        url = self._get_login_url()
+        self.client.post(url, {'username': 'jbalogh@mozilla.com',
+                               'password': 'foo'}, follow=True)
+        u = UserProfile.objects.get(email='jbalogh@mozilla.com')
+        eq_(u.failed_login_attempts, 0)
+        eq_(u.last_login_attempt_ip, '127.0.0.1')
+        eq_(u.last_login_ip, '127.0.0.1')
+        assert u.last_login_attempt == t or u.last_login_attempt > t
+
+    def test_failed_login_logging(self):
+        t = datetime.now()
+        # microsecond is not saved in the db
+        t = datetime(t.year, t.month, t.day, t.hour, t.minute, t.second)
+        url = self._get_login_url()
+        self.client.post(url, {'username': 'jbalogh@mozilla.com',
+                               'password': 'wrongpassword'})
+        u = UserProfile.objects.get(email='jbalogh@mozilla.com')
+        eq_(u.failed_login_attempts, 4)
+        eq_(u.last_login_attempt_ip, '127.0.0.1')
+        assert u.last_login_ip != '127.0.0.1'
+        assert u.last_login_attempt == t or u.last_login_attempt > t
 
 
 class TestUserRegisterForm(UserFormBase):
