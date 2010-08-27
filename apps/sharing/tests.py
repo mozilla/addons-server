@@ -37,7 +37,7 @@ class SharingHelpersTestCase(test.TestCase):
         cake_csrf_token.__name__ = 'cake_csrf_token'
         jingo.register.function(cake_csrf_token)
 
-        doc = pq(sharing_box(ctx, addon))
+        doc = pq(sharing_box(ctx))
         self.assert_(doc.html())
         self.assertEquals(doc('li').length, len(sharing.SERVICES_LIST))
 

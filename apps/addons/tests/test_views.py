@@ -457,20 +457,6 @@ class TestDetailPage(amo.test_utils.ExtraSetup, test_utils.TestCase):
                                    follow=True)
         eq_(response.status_code, 404)
 
-    def test_login_links(self):
-        """
-        Make sure the login links on this page, redirect back to itself.
-
-        Note: This test needs to be changed if you add/remove a login link from
-        the detail page.
-        """
-        url = reverse('addons.detail', args=[3615])
-        resp = self.client.get(url, follow=True)
-
-        sel = 'a[href$="%s"]' % urlparams(reverse('users.login'), to=url)
-        doc = pq(resp.content)
-        eq_(len(doc(sel)), 5)  # 5 login links
-
     def test_other_author_addons(self):
         """
         Make sure the list of other author addons doesn't include this one.
