@@ -144,7 +144,7 @@ def collection_widgets(context, collection, condensed=False):
     """Displays collection widgets"""
     c = dict(context.items())
     request = c['request']
-    if collection and request.user.is_authenticated():
+    if collection:
         c.update({'condensed': condensed,
                   'c': collection,
                  })

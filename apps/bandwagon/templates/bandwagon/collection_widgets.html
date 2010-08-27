@@ -1,15 +1,17 @@
+<div class="collection_widgets{{ ' condensed' if condensed }} widgets">
 {% if request.user.is_authenticated() %}
   {% set is_watching = c.id in request.amo_user.watching %}
-  <div class="collection_widgets{{ ' condensed' if condensed }} widgets">
       <a title="{{ (_('Stop Watching') if is_watching else _('Watch this Collection')) if condensed }}"
          class="widget watch{{ ' watching' if is_watching }}"
          href="{{ c.watch_url() }}"><span>{{ _('Stop Watching') if is_watching else _('Watch this Collection') }}</span></a>
-      {{ sharing_widget(c, show_email=False) }}
+{% endif %}
+        {{ sharing_widget(c, show_email=False) }}
+{% if request.user.is_authenticated() %}
       {#
       <a title="{{ _('Copy this Collection') }}" class="copy" href="#"></a>
       #}
       {% if request.check_ownership(c, require_owner=False) and condensed %}
         <a title="{{ _('Edit this Collection') }}" class="widget edit" href="{{ c.edit_url() }}"></a>
       {% endif %}
-  </div>
 {% endif %}
+</div>
