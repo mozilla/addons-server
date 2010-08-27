@@ -60,6 +60,9 @@ urlpatterns = patterns('',
     # SAMO/API
     ('^api/', include('api.urls')),
 
+    # Review spam.
+    url('^reviews/spam/$', 'reviews.views.spam', name='reviews.spam'),
+
     # Redirect patterns.
     ('^bookmarks/?$',
       lambda r: redirect('browse.extensions', 'bookmarks', permanent=True)),

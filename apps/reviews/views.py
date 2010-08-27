@@ -1,4 +1,5 @@
 from django import http
+from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect
 
 import commonware.log
@@ -10,7 +11,7 @@ from amo.decorators import post_required, json_view, login_required
 from access import acl
 from addons.models import Addon
 
-from .models import Review, ReviewFlag, GroupedRating
+from .models import Review, ReviewFlag, GroupedRating, Spam
 from . import forms
 
 log = commonware.log.getLogger('z.reviews')
@@ -172,3 +173,39 @@ def edit(request, addon_id, review_id):
         return http.HttpResponse()
     else:
         return json_view.error(form.errors)
+
+
+@login_required
+def spam(request):
+    if not acl.action_allowed(request, 'Admin', 'BattleSpam'):
+        return http.HttpResponseForbidden()
+    spam = Spam()
+
+    if request.method == 'POST':
+        review = Review.objects.get(pk=request.POST['review'])
+        if 'del_review' in request.POST:
+            log.info('SPAM: %s' % review.id)
+            delete(request, request.POST['addon'], review.id)
+            messages.success(request, 'Deleted that review.')
+        elif 'del_user' in request.POST:
+            user = review.user
+            log.info('SPAMMER: %s deleted %s' %
+                     (request.amo_user.username, user.username))
+            if not user.is_developer:
+                Review.objects.filter(user=user).delete()
+                user.anonymize()
+            messages.success(request, 'Deleted that dirty spammer.')
+
+        for reason in spam.reasons():
+            spam.redis.srem(reason, review.id)
+        return redirect('reviews.spam')
+
+    buckets = {}
+    for reason in spam.reasons():
+        ids = spam.redis.smembers(reason)
+        key = reason.split(':')[-1]
+        buckets[key] = (Review.objects.no_cache().filter(id__in=ids)
+                        .select_related('addon'))
+    return jingo.render(request, 'reviews/spam.html',
+                        dict(buckets=buckets,
+                             review_perms=dict(is_admin=True)))

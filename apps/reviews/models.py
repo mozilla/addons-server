@@ -1,3 +1,4 @@
+from datetime import datetime, timedelta
 import itertools
 
 from django.conf import settings
@@ -5,6 +6,8 @@ from django.core.cache import cache
 from django.db import models
 from django.utils import translation
 
+import bleach
+from celery.decorators import task
 from tower import ugettext_lazy as _
 
 import amo.models
@@ -101,6 +104,7 @@ class Review(amo.models.ModelBase):
     def post_save(sender, instance, created, **kwargs):
         if created:
             Review.post_delete(sender, instance)
+            check_spam.delay(instance)
 
     @staticmethod
     def post_delete(sender, instance, **kwargs):
@@ -199,3 +203,35 @@ class GroupedRating(object):
         ratings = [(rating, counts.get(rating, 0)) for rating in range(1, 6)]
         two_days = 60 * 60 * 24 * 2
         cache.set(cls.key(addon), ratings, two_days)
+
+
+class Spam(object):
+
+    def __init__(self):
+        from caching.invalidation import get_redis_backend
+        self.redis = get_redis_backend()
+
+    def add(self, review, reason):
+        reason = 'amo:review:spam:%s' % reason
+        self.redis.sadd(reason, review.id)
+        self.redis.sadd('amo:review:spam:reasons', reason)
+
+    def reasons(self):
+        return self.redis.smembers('amo:review:spam:reasons')
+
+
+@task
+def check_spam(review):
+    spam = Spam()
+    thirty_days = datetime.now() - timedelta(days=30)
+    others = (Review.objects.no_cache().exclude(id=review.id)
+              .filter(user=review.user, created__gte=thirty_days))
+    if len(others) > 10:
+        spam.add(review, 'numbers')
+    if bleach.url_re.search(review.body.localized_string):
+        spam.add(review, 'urls')
+    for other in others:
+        if ((review.title and review.title == other.title)
+            or review.body == other.body):
+            spam.add(review, 'matches')
+            break
