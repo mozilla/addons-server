@@ -296,11 +296,12 @@ def license_link(license):
 
 
 @register.function
-def field(field, label=None):
+def field(field, label=None, **attrs):
     if label is not None:
         field.label = label
     return jinja2.Markup(u'%s<p>%s%s</p>' %
-                         (field.errors, field.label_tag(), field))
+                         (field.errors, field.label_tag(),
+                          field.as_widget(attrs=attrs)))
 
 
 @register.inclusion_tag('amo/category-arrow.html')
