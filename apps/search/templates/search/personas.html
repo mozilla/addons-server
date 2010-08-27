@@ -1,34 +1,28 @@
 {% extends "base.html" %}
+{% from "browse/macros.html" import secondary_categories %}
 
 {% block title %}
 {% if query %}
-{{ page_title(_('Personas Search Results for {0}')|f(query)) }}
+  {{ page_title(_('Personas Search Results for {0}')|f(query)) }}
 {% else %}
-{{ page_title(_('Personas Search Results')) }}
+  {{ page_title(_('Personas Search Results')) }}
 {% endif %}
 {% endblock title %}
 
 {% block content %}
 <div class="primary" role="main">
-  <h2>{{ _('Browse Personas') }}</h2>
+  <header class="results-head">
+    {{ breadcrumbs([(None, _('Search'))]) }}
+    <hgroup>
+      <h2>{{ _('Browse Personas') }}</h2>
+      <h3 class="results-count">{{ showing(query, tag, pager) }}</h3>
+    </hgroup>
+  </header>
 
-  <h3>
-    {% trans plural=pager.paginator.count, count=pager.paginator.count|numberfmt %}
-    {{ count }} Persona {% pluralize %} {{ count }} Personas
-    {% endtrans %}
-  </h3>
   <div class="featured">
     {% if pager.object_list %}
       <div class="featured-inner">
-        <ul class="thumbnails">
-          {% for a in pager.object_list %}
-          <li>
-            {{ persona_preview(a.persona) }}
-            <h4>{{ a.name }}</h4>
-            <em>{{ _('{0} active daily users')|f(a.average_daily_users|numberfmt) }}</em>
-          </li>
-          {% endfor %}
-        </ul>
+        {{ persona_grid(pager.object_list) }}
       </div>
       <div class="listing-footer">{{ pager|paginator }}</div>
     {% else %}
@@ -36,19 +30,5 @@
     {% endif %}
   </div>
 </div>
-<div class="secondary" role="complementary">
-  <div class="categories persona-categories">
-    <h3>{{ _('Personas') }}</h3>
-    <ul>
-    {% cache categories %}
-    {% for cat in categories %}
-      <li>
-        <a href="{{ url('browse.personas', cat.slug) }}">{{ cat.name }}</a>
-        <span class="items">{{ cat.count }}</span>
-      </li>
-    {% endfor %}
-    {% endcache %}
-    </ul>
-  </div>
-</div>
+{{ secondary_categories(_('Personas'), 'browse.personas', categories, filter) }}
 {% endblock %}

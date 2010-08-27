@@ -1,10 +1,17 @@
 {% extends "base.html" %}
 
-{% block title %}{{ page_title(title) }}{% endblock %}
+{% block title %}
+{% if query %}
+  {{ page_title(_('Add-on Search Results for {0}')|f(query)) }}
+{% else %}
+  {{ page_title(_('Add-on Search Results')) }}
+{% endif %}
+{% endblock %}
 
 {% block content %}
 <section class="primary" role="main">
   <header class="results-head">
+    {{ breadcrumbs([(None, _('Search'))]) }}
     <h2>{{ _('Search Results') }}</h2>
     <h3 class="results-count">{{ showing(query, tag, pager) }}</h3>
     {% if sort == 'name' %}

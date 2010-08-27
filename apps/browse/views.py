@@ -247,7 +247,8 @@ class PersonasFilter(BaseFilter):
                     .with_index(personas='personas_movers_idx'))
 
 
-def personas(request, category=None):
+def personas_listing(request, category=None):
+    # Common pieces using by browse and search.
     TYPE = amo.ADDON_PERSONA
     q = Category.objects.filter(application=request.APP.id,
                                 type=TYPE)
@@ -255,15 +256,17 @@ def personas(request, category=None):
 
     base = (Addon.objects.public().filter(type=TYPE)
             .extra(select={'_app': request.APP.id}))
-    featured = base & Addon.objects.featured(request.APP)
-    is_homepage = category is None and 'sort' not in request.GET
 
     if category is not None:
         category = get_object_or_404(q, slug=category)
         base = base.filter(categories__id=category.id)
 
     filter = PersonasFilter(request, base, key='sort', default='up-and-coming')
+    return categories, filter
 
+
+def personas(request, category=None):
+    categories, filter = personas_listing(request, category)
     if 'sort' in request.GET:
         template = 'grid.html'
     else:
@@ -277,13 +280,13 @@ def personas(request, category=None):
         count = base.with_index(addons='type_status_inactive_idx').count()
     addons = amo.utils.paginate(request, filter.qs, 30, count=count)
 
-    search_cat = 'personas'
-
+    featured = base & Addon.objects.featured(request.APP)
+    is_homepage = category is None and 'sort' not in request.GET
     return jingo.render(request, 'browse/personas/' + template,
                         {'categories': categories, 'category': category,
                          'filter': filter, 'addons': addons,
                          'featured': featured, 'is_homepage': is_homepage,
-                         'search_cat': search_cat})
+                         'search_cat': 'personas'})
 
 
 @cache_page(60 * 60 * 24 * 365)

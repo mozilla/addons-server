@@ -10,6 +10,7 @@ from tower import ugettext as _
 
 import amo
 import bandwagon.views
+import browse.views
 from amo.decorators import json_view
 from amo.helpers import urlparams
 from amo import urlresolvers
@@ -172,20 +173,15 @@ def _personas(request):
     page = form.cleaned_data.get('page') or 1
     search_opts['offset'] = (page - 1) * search_opts['limit']
 
-    client = PersonasClient()
-
-    q = Category.objects.filter(application=request.APP.id,
-                                type=amo.ADDON_PERSONA)
-    categories = order_by_translation(q, 'name')
-
     try:
-        results = client.query(query, **search_opts)
+        results = PersonasClient().query(query, **search_opts)
     except SearchError:
         return jingo.render(request, 'search/down.html', {}, status=503)
 
     pager = amo.utils.paginate(request, results, search_opts['limit'])
-
-    c = dict(pager=pager, form=form, categories=categories)
+    categories, filter = browse.views.personas_listing(request)
+    c = dict(pager=pager, form=form, categories=categories, query=query,
+             filter=filter)
     return jingo.render(request, 'search/personas.html', c)
 
 
@@ -238,8 +234,6 @@ def ajax_search(request):
 
 
 def search(request, tag_name=None):
-    title = _('Search Add-ons')
-
     # If the form is invalid we still want to have a query.
     query = request.REQUEST.get('q', '')
 
@@ -272,9 +266,6 @@ def search(request, tag_name=None):
     # TODO: Let's change the form values to something less gross when
     # Remora dies in a fire.
     query = form.cleaned_data['q']
-
-    if query:
-        title = _('Search for %s' % query)
 
     addon_type = form.cleaned_data.get('atype', 0)
     tag = tag_name if tag_name is not None else form.cleaned_data.get('tag')
@@ -337,6 +328,6 @@ def search(request, tag_name=None):
     pager = amo.utils.paginate(request, results, search_opts['limit'])
 
     return jingo.render(request, 'search/results.html', {
-                'pager': pager, 'title': title, 'query': query, 'tag': tag,
+                'pager': pager, 'query': query, 'tag': tag,
                 'versions': versions, 'categories': categories, 'tags': tags,
                 'sort_tabs': sort_tabs, 'sort': sort})

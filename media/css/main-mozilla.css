@@ -2564,7 +2564,7 @@ html[xmlns] .clearfix {
 }
 
 .results-head {width: 100%;}
-.results-head h2 { margin-bottom: 0;}
+.results-head h2 { margin-bottom: 0; margin-top: 0;}
 .results-head h3 {margin-top: 0; font-family: "helvetica neue", arial, helvetica, sans-serif; font-weight: normal; color: #444;}
 
 .results .item .item-info .downloads {display: block; margin-left: 0px;}
