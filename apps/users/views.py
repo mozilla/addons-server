@@ -100,7 +100,7 @@ def delete_photo(request):
     if request.method == 'POST':
         u.picture_type = ''
         u.save()
-        log.debug(u"User (%s) deleted photo" % user)
+        log.debug(u"User (%s) deleted photo" % u)
         tasks.delete_photo.delay(u.picture_path)
         messages.success(request, _('Photo Deleted'))
         return http.HttpResponseRedirect(reverse('users.edit') +
