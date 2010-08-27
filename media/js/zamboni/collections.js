@@ -595,10 +595,12 @@ $(document).ready(function () {
     };
 
     var handleClick = function(e) {
+        $widget = $(this).closest('.collection-add');
         $('.collection-add-dropdown').hide();
         var dropdown = $('.collection-add-dropdown', $(this));
         dropdown.removeClass("new-collection");
         var addon_id = $(this).attr('data-addonid');
+        $widget.addClass("ajax-loading");
         // If anonymous, show login overlay.
         if (z.anonymous) {
             dropdown.show();
@@ -607,6 +609,7 @@ $(document).ready(function () {
             $.get(list_url, {'addon_id': addon_id}, function(data) {
                 dropdown.show();
                 dropdown.html(data);
+                $widget.removeClass("ajax-loading");
                 $("a.outlink", dropdown).click(stopPropagation);
             }, 'html');
         }

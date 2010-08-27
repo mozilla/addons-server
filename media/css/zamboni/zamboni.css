@@ -2830,7 +2830,7 @@ a.outlink:hover {
 
 
 .addon-favorite.ajax-loading span,
-.collection-add.ajax-loading span,
+.collection-add.ajax-loading > span,
 .widgets a.widget.ajax-loading,
 .widgets .widget.ajax-loading > a,
 .widgets > a.widget.ajax-loading:hover,
