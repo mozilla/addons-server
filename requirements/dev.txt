@@ -28,3 +28,6 @@ translate-toolkit==1.6.0
 
 pylint
 -e git://github.com/davedash/django-fixture-magic.git#egg=django_fixture_magic
+
+# Oauth client for tests
+-e git://github.com/simplegeo/python-oauth2.git#egg=python_oauth2

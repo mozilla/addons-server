@@ -1,8 +1,12 @@
 from django.conf import settings
 from django.conf.urls.defaults import patterns, url, include
 
-from . import views
+from piston.resource import Resource
+from piston import authentication
 
+from api import handlers
+from api import views
+from zadmin import jinja_for_django
 
 API_CACHE_TIMEOUT = getattr(settings, 'API_CACHE_TIMEOUT', 500)
 
@@ -60,9 +64,23 @@ for regexp in list_regexps:
     api_patterns += patterns('',
             url(regexp + '/?$', class_view(views.ListView), name='api.list'))
 
+
+ad = dict(authentication=authentication.OAuthAuthentication())
+user_resource = Resource(handler=handlers.UserHandler, **ad)
+
+jfd = lambda a, b, c: jinja_for_django(a, b, context_instance=c)
+authentication.render_to_response = jfd
+
+piston_patterns = patterns('',
+    url(r'^user/$', user_resource, name='api.user'),
+)
+
 urlpatterns = patterns('',
     # Redirect api requests without versions
     url('^((?:addon|search|list)/.*)$', views.redirect_view),
+
+    # Piston
+    url(r'^2/', include(piston_patterns)),
 
     # Append api_version to the real api views
     url(r'^(?P<api_version>\d+|\d+.\d+)/', include(api_patterns)),

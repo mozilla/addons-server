@@ -294,3 +294,9 @@ def redirect_view(request, url):
     dest = get_url_prefix().fix(dest)
 
     return HttpResponsePermanentRedirect(dest)
+
+
+def request_token_ready(request, token):
+    error = request.GET.get('error', '')
+    ctx = {'error': error, 'token': token}
+    return jingo.render(request, 'piston/request_token_ready.html', ctx)

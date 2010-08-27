@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% set consumer = token.consumer.name or _('Anonymous Party') %}
+
+{% block title %}
+
+{% if token.is_approved %}
+  {{ _('Access Granted') }}
+{% else %}
+  {{ _('Access Not Granted') }}
+{% endif %}
+{% endblock %}
+
+{% block content %}
+
+  {% if token.is_approved %}
+
+    <h2>{{ _('Access Granted') }}</h2>
+
+    <p>
+      {% trans %}
+      You have chosen to give access to {{ consumer }}.  They will be
+      able to act on your behalf or retrieve information about you.
+      {% endtrans %}
+    </p>
+
+  {% else %}
+
+    <h2>{{ _('Access Not Granted') }}</h2>
+
+    <p>
+      {% trans %}
+      You have chosen to not give access to {{ consumer }}.  They will not be
+      able to act on your behalf or retrieve information about you.
+      {% endtrans %}
+    </p>
+
+  {% endif %}
+{% endblock %}
+

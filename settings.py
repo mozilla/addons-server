@@ -105,6 +105,8 @@ SITE_URL = 'http://%s' % DOMAIN
 #   Example: https://services.addons.mozilla.org
 SERVICES_URL = 'http://services.%s' % DOMAIN
 
+OAUTH_CALLBACK_VIEW = 'api.views.request_token_ready'
+
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
 MEDIA_ROOT = path('media')
@@ -256,9 +258,13 @@ INSTALLED_APPS = (
     ROOT_PACKAGE,
 
     'cake',
+
+    # Third party apps
     'celery',
     'django_nose',
+    'piston',
 
+    # Django contrib apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
