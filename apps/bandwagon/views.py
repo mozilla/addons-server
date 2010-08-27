@@ -329,7 +329,7 @@ def ajax_collection_alter(request, action):
 
 
 @login_required
-@owner_required
+@owner_required(require_owner=False)
 def edit(request, collection, username, slug):
     is_admin = acl.action_allowed(request, 'Admin', '%')
 

@@ -4,7 +4,7 @@
 {# L10n: {0} is the name of the collection. #}
 {{ page_title(_('Edit {0}')|f(collection.name)) }}
 {% endblock %}
-{% set owner=(collection.owned_by(amo_user) or is_admin) %}
+{% set owner = (collection.owned_by(amo_user) or is_admin) %}
 
 {% block content %}
   <div class="secondary">
@@ -40,8 +40,8 @@
         {% endif %}
       </ul>
 
-    {% if form %}
-    {% include 'bandwagon/includes/addedit_errors.html' %}
+    {% if owner and form %}
+      {% include 'bandwagon/includes/addedit_errors.html' %}
     {% endif %}
 
     {% if owner %}
@@ -64,7 +64,9 @@
         {{ csrf() }}
         <div class="listing-footer">
           <input type="submit" value="{{ _('Save Changes') }}">
-          {% include 'bandwagon/includes/delete.html' %}
+          {% if owner %}
+            {% include 'bandwagon/includes/delete.html' %}
+          {% endif %}
         </div>
 
         </form>
@@ -85,4 +87,3 @@
     </div>
   </div> {# primary #}
 {% endblock %}
-
