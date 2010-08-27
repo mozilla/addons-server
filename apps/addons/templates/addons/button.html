@@ -17,7 +17,7 @@
     {% if not links %}
       {{ _('No compatible versions') }}
     {% endif %}
-    {% if settings.NEW_COLLECTIONS %}
+    {% if settings.ADD_TO_MOBILE %}
     {% if APP == amo.MOBILE %}
       {% if request.user.is_authenticated() %}
         {% set action = url('collections.alter', request.amo_user.username, 'mobile', 'add') %}
