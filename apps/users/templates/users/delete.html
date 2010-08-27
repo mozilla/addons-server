@@ -9,13 +9,7 @@
   <div class="primary">
     <h2>{{ _('Delete User Account') }}</h2>
 
-    {% if messages %}
-      {% for message in messages %}
-        <div class="notification-box {{ message.tags }}">
-          <h2>{{ message }}</h2>
-        </div>
-      {% endfor %}
-    {% endif %}
+    {% include "messages.html" %}
 
     {% if amouser.is_developer %}
       <div class="notification-box info">

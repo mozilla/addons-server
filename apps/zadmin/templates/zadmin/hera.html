@@ -5,15 +5,7 @@
 {% block content %}
 <h2>Hera</h2>
 <div class="primary featured">
-  {% if messages %}
-    {% for message in messages %}
-      {% if message %}
-        <div class="notification-box {{ message.tags }}">
-          <h2>{{ message|safe }}</h2>
-        </div>
-      {% endif %}
-    {% endfor %}
-  {% endif %}
+  {% include "messages.html" %}
   {% if form %}
   <form method="post" action="" class="featured-inner object-lead user-input">
     {{ csrf() }}

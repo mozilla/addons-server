@@ -10,14 +10,7 @@
 <div class="primary" role="main">
   <h2>{{ _('Register') }}</h2>
   <div class="primary featured">
-    {% if messages %}
-      {% for message in messages %}
-        <div class="notification-box {{ message.tags }}">
-          <h2>{{ message }}</h2>
-        </div>
-      {% endfor %}
-    {% endif %}
-
+    {% include "messages.html" %}
     {% if form %}
       <form method="post" action="" class="featured-inner object-lead user-input">
         {{ csrf() }}

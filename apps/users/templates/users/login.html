@@ -5,15 +5,7 @@
 {% block content %}
 
 <div class="primary" role="main">
-  {% if messages %}
-    {% for message in messages %}
-      {% if message %}
-        <div class="notification-box {{ message.tags }}">
-          <h2>{{ message|safe }}</h2>
-        </div>
-      {% endif %}
-    {% endfor %}
-  {% endif %}
+  {% include "messages.html" %}
   {% if form.non_field_errors() %}
       <div class="notification-box error">
         <ul>

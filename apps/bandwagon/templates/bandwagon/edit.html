@@ -19,14 +19,7 @@
       <h2>{{ _('Edit {0}')|f(collection.name) }}</h2>
     </header>
 
-    {% if messages %}
-      <ul class="messages">
-          {% for message in messages %}
-          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
-          {{- message }}</li>
-          {% endfor %}
-      </ul>
-    {% endif %}
+    {% include "messages.html" %}
     <div id="a" class="tab-wrapper">
       <ul class="tab-nav">
         {% if owner %}
