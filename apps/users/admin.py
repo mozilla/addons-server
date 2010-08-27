@@ -18,7 +18,7 @@ class UserAdmin(admin.ModelAdmin):
     # XXX TODO: Ability to change the password (use AdminPasswordChangeForm)
     fieldsets = (
         (None, {
-            'fields': ('email', 'username', 'display_name', 'password',
+            'fields': ('email', 'username', 'password',
                        'bio', 'homepage', 'location', 'occupation',),
         }),
         ('Registration', {

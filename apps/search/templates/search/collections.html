@@ -42,14 +42,6 @@
                 <li class="subscribers">
                   {{ _('<strong>{0}</strong> subscribers')|f(c.subscribers)|safe }}
                 </li>
-                <li>
-                  {{ barometer(c) }}
-                </li>
-                {% if request.user.is_authenticated() %}
-                  <li>
-                    {{ collection_favorite(c) }}
-                  </li>
-                {% endif %}
               </ul>
             </div> {# /item-info #}
             <h3>
