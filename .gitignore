@@ -12,3 +12,4 @@ build.py
 *-min.js
 *-all.js
 vendor
+.noseids
