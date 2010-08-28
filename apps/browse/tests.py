@@ -321,3 +321,10 @@ class TestFeaturedFeed(amo.test_utils.ExtraSetup, test_utils.TestCase):
                 "Here's a few of our favorite add-ons to help you get " \
                 "started customizing Firefox.")
         eq_(len(doc('rss channel item')), 2)
+
+
+class TestPersonas(amo.test_utils.ExtraSetup, test_utils.TestCase):
+    fixtures = ('base/apps', 'addons/featured')
+
+    def test_personas(self):
+        eq_(self.client.get(reverse('browse.personas')).status_code, 200)

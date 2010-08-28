@@ -42,14 +42,10 @@ class PersonaSearchTest(SphinxTestCase):
 
     def test_default_personas_query(self):
         r = self.get_response(cat='personas')
+        eq_(r.status_code, 200)
         doc = pq(r.content)
         eq_(doc('title').text(),
                 'Personas Search Results :: Add-ons for Firefox')
-        eq_(len(doc('.secondary .categories h3')), 1)
-        eq_(doc('.primary h3').text(), '1 Persona')
-        eq_(len(doc('.persona-preview')), 1)
-        eq_(doc('.thumbnails h4').text(), 'My Persona')
-        eq_(doc('.thumbnails em').text(), '55 active daily users')
 
 
 class FrontendSearchTest(SphinxTestCase):
@@ -105,7 +101,7 @@ class FrontendSearchTest(SphinxTestCase):
         resp = self.get_response(q='delicious')
         doc = pq(resp.content)
         el = doc('title')[0].text_content().strip()
-        eq_(el, 'Search for delicious :: Add-ons for Firefox')
+        eq_(el, 'Add-on Search Results for delicious :: Add-ons for Firefox')
 
     def test_redirection(self):
         resp = self.get_response(appid=18)

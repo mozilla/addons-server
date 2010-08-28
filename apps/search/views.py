@@ -14,13 +14,11 @@ import browse.views
 from amo.decorators import json_view
 from amo.helpers import urlparams
 from amo import urlresolvers
-from addons.models import Category
 from versions.compare import dict_from_int, version_int
 from search import forms
 from search.client import (Client as SearchClient, SearchError,
                            CollectionsClient, PersonasClient)
 from search.forms import SearchForm, SecondarySearchForm
-from translations.query import order_by_translation
 
 DEFAULT_NUM_RESULTS = 20
 
@@ -179,7 +177,7 @@ def _personas(request):
         return jingo.render(request, 'search/down.html', {}, status=503)
 
     pager = amo.utils.paginate(request, results, search_opts['limit'])
-    categories, filter = browse.views.personas_listing(request)
+    categories, filter, _ = browse.views.personas_listing(request)
     c = dict(pager=pager, form=form, categories=categories, query=query,
              filter=filter)
     return jingo.render(request, 'search/personas.html', c)
@@ -187,7 +185,6 @@ def _personas(request):
 
 def _collections(request):
     """Handle the request for collections."""
-
     form = SecondarySearchForm(request.GET)
     form.is_valid()
 
@@ -205,8 +202,6 @@ def _collections(request):
         return jingo.render(request, 'search/down.html', {}, status=503)
 
     pager = amo.utils.paginate(request, results, search_opts['limit'])
-
-
     c = dict(pager=pager, form=form, query=query,
              filter=bandwagon.views.get_filter(request))
     return jingo.render(request, 'search/collections.html', c)

@@ -262,11 +262,11 @@ def personas_listing(request, category=None):
         base = base.filter(categories__id=category.id)
 
     filter = PersonasFilter(request, base, key='sort', default='up-and-coming')
-    return categories, filter
+    return categories, filter, base
 
 
 def personas(request, category=None):
-    categories, filter = personas_listing(request, category)
+    categories, filter, base = personas_listing(request, category)
     if 'sort' in request.GET:
         template = 'grid.html'
     else:
