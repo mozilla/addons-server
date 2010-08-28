@@ -122,7 +122,7 @@ class TestCreate(ReviewTest):
         old_cnt = self.qs.count()
         r = self.client.post(self.add, {'body': 'xx', 'rating': 3})
         new = self.qs.get(is_latest=True, user=5293223)
-        self.assertRedirects(r, reverse('reviews.detail', args=[1865, new.id]),
+        self.assertRedirects(r, reverse('reviews.list', args=[1865]),
                              status_code=302)
         eq_(self.qs.count(), old_cnt + 1)
 
