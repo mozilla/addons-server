@@ -73,7 +73,7 @@
     {% endif %}
     <div class="primary prose">
       {% if user.bio %}
-        <h3>{{ _('Who is {0}')|f(user.display_name) }}</h3>
+        <h3>{{ _('Who is {0}')|f(user.name) }}</h3>
         <p class="intro">{{ user.bio }}</p>
       {% endif %}
       {% if addon.the_reason %}
@@ -109,7 +109,7 @@
           <ol>
             {% for author in authors %}
               <li>
-                <a href="#t-author-{{ author.id }}">{{ author.display_name }}</a>
+                <a href="#t-author-{{ author.id }}">{{ author.name }}</a>
               </li>
             {% endfor %}
           </ol>
@@ -122,7 +122,7 @@
                      src="{{ author.picture_url }}"/>
               </div>
               <div class="primary">
-                <h3>{{ author.display_name }}</h3>
+                <h3>{{ author.name }}</h3>
                 <p class="intro">{{ author.bio }}</p>
                 {% with profile = author, about_addons = True,
                         table_class = 'person-info' %}

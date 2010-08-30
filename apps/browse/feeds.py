@@ -29,7 +29,7 @@ class AddonFeedMixin(object):
     def item_author_name(self, addon):
         """Author for a particuar add-on (<item><dc:creator>)"""
         if addon.listed_authors:
-            return addon.listed_authors[0].display_name
+            return addon.listed_authors[0].name
         else:
             return ''
 

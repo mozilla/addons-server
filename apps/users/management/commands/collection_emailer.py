@@ -73,7 +73,7 @@ def fmt(collections, publishers):
 jingo.env.autoescape = False
 template = jingo.env.from_string(u"""\
 {% macro user(u) %}
-{{ u.display_name }} {{ u.get_url_path()|absolutify }}
+{{ u.name }} {{ u.get_url_path()|absolutify }}
 {% endmacro %}
 {% for collection in collections %}
 * {{ collection.name }}

@@ -203,7 +203,7 @@
         Meet the Developers
         {% endtrans %}
       </h3>
-      <img class="avatar" alt="{{ single_dev.display_name }}" height="64"
+      <img class="avatar" alt="{{ single_dev.name }}" height="64"
            width="64" src="{{ single_dev.picture_url }}"/>
       <p>{{ _("Learn why {0} was created and find out what's next for this "
               'add-on.')|f(addon.name) }}</p>
@@ -212,7 +212,7 @@
         {% if addon.listed_authors|length > 1 %}
           {{ _('Meet the Developers') }}
         {% else %}
-          {{ _('Meet {0}')|f(single_dev.display_name) }}
+          {{ _('Meet {0}')|f(single_dev.name) }}
         {% endif %}
         </a>
       </p>

@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 
 {# L10n: {0} is a username. #}
-{% set title = _('Collections by {0}')|f(author.display_name) %}
+{% set title = _('Collections by {0}')|f(author.name) %}
 {% block title %}{{ page_title(title) }}{% endblock %}
 
 {% block content %}
 <div class="primary">
   <header>
     {{ breadcrumbs([(url('collections.list'), _('Collections')),
-                    (None, author.display_name)]) }}
+                    (None, author.name)]) }}
     <h2>{{ title }}</h2>
   </header>
   <div class="featured listing">

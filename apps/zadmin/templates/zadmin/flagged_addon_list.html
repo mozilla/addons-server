@@ -33,7 +33,7 @@
         </td>
         {% if addon.approval %}
           <td>{{ addon.approval.created|datetime('%Y-%m-%d') }}</td>
-          <td>{{ addon.approval.user.display_name }}</td>
+          <td>{{ addon.approval.user.name }}</td>
           <td>{{ addon.approval.comments }}</td>
         {% else %}
           <td colspan="3"></td>

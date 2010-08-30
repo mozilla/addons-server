@@ -32,7 +32,7 @@ def ajax(request):
     """Query for a user matching a given email."""
     email = request.GET.get('q', '').strip()
     u = get_object_or_404(UserProfile, email=email)
-    return dict(id=u.id, name=u.display_name)
+    return dict(id=u.id, name=u.name)
 
 
 def confirm(request, user_id, token):

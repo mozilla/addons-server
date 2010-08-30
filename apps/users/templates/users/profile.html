@@ -1,12 +1,12 @@
 {% extends "base_side_categories.html" %}
 
-{% block title %}{{ page_title(_('User Info for {0}')|f(profile.display_name)) }}{% endblock %}
+{% block title %}{{ page_title(_('User Info for {0}')|f(profile.name)) }}{% endblock %}
 
 {% block content %}
 
 <div class="vcard">
-  {{ breadcrumbs([(None, profile.display_name)]) }}
-  <h2 class="fn n">{{ profile.display_name }}</h2>
+  {{ breadcrumbs([(None, profile.name)]) }}
+  <h2 class="fn n">{{ profile.name }}</h2>
   <div class="featured">
     <div class="featured-inner object-lead">
       <h3>{{ _('About Me')}}</h3>

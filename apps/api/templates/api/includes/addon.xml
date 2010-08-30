@@ -10,11 +10,11 @@
     {% for author in addon.listed_authors -%}
     {%- if api_version >= 1.5 -%}
     <author id="{{ author.id }}">
-      <name>{{ author.display_name }}</name>
+      <name>{{ author.name }}</name>
       <link>{{ author.get_url_path()|absolutify|urlparams(src='api') }}</link>
     </author>
     {%- else -%}
-    <author>{{ author.display_name }}</author>
+    <author>{{ author.name }}</author>
     {%- endif -%}
     {%- endfor %}
     {% endif %}

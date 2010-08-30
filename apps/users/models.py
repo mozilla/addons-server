@@ -130,8 +130,10 @@ class UserProfile(amo.models.ModelBase):
                                        addonuser__listed=True)[:1])
 
     @property
-    def welcome_name(self):
+    def name(self):
         return self.display_name or self.username
+
+    welcome_name = name
 
     @amo.cached_property
     def reviews(self):
@@ -286,5 +288,7 @@ class PersonaAuthor(unicode):
         return 0
 
     @property
-    def display_name(self):
+    def name(self):
         return self
+
+    display_name = name

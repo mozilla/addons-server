@@ -30,10 +30,10 @@
       {% endwith %}
     {% elif reply %}
       {# L10n: {0} is a developer's name. #}
-      <h2>{{ _('Developer reply by {0}')|f(reply.user.display_name) }}</h2>
+      <h2>{{ _('Developer reply by {0}')|f(reply.user.name) }}</h2>
     {% elif reviews %}
       <h2>{% trans cnt=reviews.object_list|length, addon=addon.name,
-                   user=reviews.object_list[0].user.display_name %}
+                   user=reviews.object_list[0].user.name %}
         Review for {{ addon }} by {{ user }}
       {% pluralize %}
         Reviews for {{ addon }} by {{ user }}

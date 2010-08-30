@@ -9,7 +9,7 @@
 {% block content %}
   {% with crumbs = [(url('collections.list'), _('Collections')), (None, c.name)] %}
     {% if c.author %}
-      {% do crumbs.insert(1, (url('collections.user', c.author.username), c.author.display_name)) %}
+      {% do crumbs.insert(1, (url('collections.user', c.author.username), c.author.name)) %}
     {% endif %}
     {{ breadcrumbs(crumbs) }}
   {% endwith %}

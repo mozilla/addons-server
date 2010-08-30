@@ -63,10 +63,10 @@ class VersionsRss(Feed):
     def item_author_name(self, version):
         """Author for a particuar version  (<item><dc:creator>)"""
         # @todo should be able to output a <dc:creator for each author
-        creator = ''
         if version.addon.listed_authors:
-            creator = version.addon.listed_authors[0].display_name
-        return creator
+            return version.addon.listed_authors[0].name
+        else:
+            return ''
 
     def item_pubdate(self, version):
         """Pubdate for a particuar version  (<item><pubDate>)"""

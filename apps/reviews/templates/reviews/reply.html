@@ -1,6 +1,6 @@
 {% extends "reviews/review_list.html" %}
 
-{% set title = _('Reply to review by {0}')|f(review.user.display_name) %}
+{% set title = _('Reply to review by {0}')|f(review.user.name) %}
 
 {% block title %}{{ page_title(title) }}{% endblock %}
 

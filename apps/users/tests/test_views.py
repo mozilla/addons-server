@@ -57,7 +57,7 @@ class TestEdit(UserViewBase):
 
         # The email shouldn't change until they confirm, but the name should
         u = User.objects.get(id='4043307').get_profile()
-        self.assertEquals(u.display_name, 'DJ SurfNTurf')
+        self.assertEquals(u.name, 'DJ SurfNTurf')
         self.assertEquals(u.email, 'jbalogh@mozilla.com')
 
         eq_(len(mail.outbox), 1)

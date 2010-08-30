@@ -16,7 +16,7 @@ def addon_to_dict(addon):
          'name': addon.name,
          'guid': addon.guid,
          'status': addon.status,
-         'author': (addon.listed_authors[0].display_name if
+         'author': (addon.listed_authors[0].name if
                     addon.listed_authors else ''),
          'summary': addon.summary,
          'description': addon.description,

@@ -102,8 +102,8 @@ def delete(request, addon_id, review_id):
     review = get_object_or_404(Review.objects, pk=review_id, addon=addon_id)
     review.delete()
     log.info('DELETE: %s deleted %s by %s ("%s": "%s")' %
-             (request.amo_user.display_name, review_id,
-              review.user.display_name, review.title, review.body))
+             (request.amo_user.name, review_id,
+              review.user.name, review.title, review.body))
     return http.HttpResponse()
 
 
