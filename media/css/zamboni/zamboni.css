@@ -2713,6 +2713,25 @@ td.remove {
     margin-top: .2em;
 }
 
+.collections-landing {
+    padding: 1em;
+    background-image: url(../../img/amo2009/illustrations/logo-collections-220x270.png),
+                      -moz-linear-gradient(#e4f5fb, #ffffff);
+    background-repeat: no-repeat;
+    background-position: 95% 20px, left top;
+}
+.collections-landing p {
+    font-size: 1.4em;
+    padding-right: 250px;
+}
+
+.html-rtl .collections-landing {
+    background-position: 5% 20px, left top;
+}
+.html-rtl .collections-landing p {
+    padding-right: 0;
+    padding-left: 250px;
+}
 
 .addon-favorite {
     cursor: pointer;
