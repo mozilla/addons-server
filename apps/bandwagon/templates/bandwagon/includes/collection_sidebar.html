@@ -17,3 +17,13 @@
     </ul>
   {% endif %}
 </div>
+
+<div>
+  <h3>{{ _('Create a New Collection') }}</h3>
+  <p>{% trans %}
+    Collections make it easy to keep track of favorite add-ons and share your
+    perfectly customized browser with others.
+  {% endtrans %}</p>
+  <a href="{{ url('collections.add') }}" class="button">
+    {{ _('Create a Collection') }}</a>
+</div>
