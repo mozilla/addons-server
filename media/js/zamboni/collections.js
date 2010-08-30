@@ -138,6 +138,10 @@ RecentlyViewed.prototype = {
         } else {
             return JSON.parse(val);
         }
+    },
+
+    clear: function() {
+        delete localStorage[this.storageKey];
     }
 };
 
@@ -150,32 +154,44 @@ collections.recently_viewed = function() {
     }
 
     var recentlyViewed = new RecentlyViewed({
-      storageKey: 'recently-viewed-collections',
-      uniqueFunc: function(e) { return e[1].uuid; }
+        storageKey: 'recently-viewed-collections',
+        uniqueFunc: function(e) { return e[1].uuid; }
     });
-
-    var add_recent = $('#add-to-recents');
-    if (add_recent.size()) {
-        var o = $.dict($.fmap(['title', 'url', 'uuid'], function(key){
-            return [key, $.trim(add_recent.find('.' + key).text())];
-        }));
-        var current_uuid = o.uuid;
-        recentlyViewed.add(o);
-    } else {
-        var current_uuid = '';
-    }
 
     var list = $.map(recentlyViewed.list(), function(e) {
         if (e.uuid != current_uuid) {
-            return '<li><a class="collectionitem" href="' + e.url + '">' + e.title + '</a></li>';
+            return $('<li></li>').append(
+                $('<a class="collectionitem" href="' + e.url + '"></a>')
+                .text(e.disp)
+            )[0];
         }
     });
 
     if (list.length != 0) {
         list = list.slice(0, RECENTLY_VIEWED_LIMIT);
+        var $ul = $('<ul class="addon-collections"></ul>').append($(list));
         $('#recently-viewed')
-          .append('<ul class="addon-collections">' + list.join('') + "</ul>")
+          .append($ul)
+          .append('<a id="clear-recents" href="#">' +
+              gettext('clear recently viewed') +
+              "</a>")
           .show();
+        $('#clear-recents').click(function (e) {
+            e.preventDefault();
+            recentlyViewed.clear();
+            $('#recently-viewed').hide();
+        });
+    }
+
+    var add_recent = $('#add-to-recents');
+    if (add_recent.size()) {
+        var o = $.dict($.fmap(['disp', 'url', 'uuid'], function(key){
+            return [key, $.trim(add_recent.attr('data-' + key))];
+        }));
+        var current_uuid = o.uuid;
+        recentlyViewed.add(o);
+    } else {
+        var current_uuid = '';
     }
 };
 

@@ -11,6 +11,7 @@
 .grouped_ratings li:after,
 .bars:after,
 .item:after,
+.secondary div:after,
 #review-form p:after {
     content: ".";
     display: block;
@@ -2485,7 +2486,8 @@ label > .optional {
     height: 6em;
 }
 
-#collection-form-slug {
+#collection-form-slug,
+#clear-recents {
     font-size: .9em;
 }
 
