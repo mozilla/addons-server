@@ -272,6 +272,13 @@ class TestUserRegisterForm(UserFormBase):
         self.assertFormError(r, 'form', 'username',
                              'This username is invalid.')
 
+    def test_invalid_homepage(self):
+        data = {'homepage': 'example.com:alert(String.fromCharCode(88,83,83)'}
+        m = 'This URL has an invalid format. '
+        m += 'Valid URLs look like http://example.com/my_page.'
+        r = self.client.post('/en-US/firefox/users/register', data)
+        self.assertFormError(r, 'form', 'homepage', m)
+
     def test_already_logged_in(self):
         self.client.login(username='jbalogh@mozilla.com', password='foo')
         r = self.client.get('/users/register', follow=True)
