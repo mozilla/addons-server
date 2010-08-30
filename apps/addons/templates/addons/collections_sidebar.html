@@ -27,11 +27,11 @@
                     num)|f(num|numberfmt)|safe }}
       {% endwith %}
     </span>
-    <span class="subscribers">
+    <span class="followers">
       {% with num=collection.subscribers %}
         {# L10n: {0} is the number of subscribers. #}
-        {{ ngettext("<strong>{0}</strong> subscriber",
-                    "<strong>{0}</strong> subscribers",
+        {{ ngettext("<span>{0}</span> follower",
+                    "<span>{0}</span> followers",
                     num)|f(num|numberfmt)|safe }}
       {% endwith %}
     </span>
