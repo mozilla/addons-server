@@ -321,7 +321,6 @@ models.signals.post_save.connect(Collection.post_save, sender=Collection)
 class CollectionAddon(amo.models.ModelBase):
     addon = models.ForeignKey(Addon)
     collection = models.ForeignKey(Collection)
-    added = models.DateTimeField(auto_now_add=True)
     # category (deprecated: for "Fashion Your Firefox")
     comments = LinkifiedField(null=True)
     downloads = models.PositiveIntegerField(default=0)
