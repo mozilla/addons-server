@@ -18,7 +18,7 @@ from users.models import UserProfile
 task_log = commonware.log.getLogger('z.task')
 
 
-@task(rate_limit='20/m')
+@task
 def add_usernames(data, **kw):
     """Temporary method.  Roll me back in 5.11.9.  See bug 582727."""
 
