@@ -324,6 +324,21 @@ class TestDetailPage(amo.test_utils.ExtraSetup, test_utils.TestCase):
         eq_(hosted('#releasenotes').length, 1)
         eq_(listed('#releasenotes').length, 0)
 
+    def test_more_about(self):
+        # Don't show more about box if there's nothing to populate it.
+        addon = Addon.objects.get(id=3615)
+        addon.developer_comments_id = None
+        addon.description_id = None
+        addon.show_beta = False
+        addon.previews.all().delete()
+        addon.save()
+
+        r = self.client.get(reverse('addons.detail', args=[3615]))
+        doc = pq(r.content)
+
+        eq_(doc('#more-about').length, 0)
+        eq_(doc('.article.userinput').length, 0)
+
     def test_beta(self):
         """Test add-on with a beta channel."""
         my_addonid = 3615

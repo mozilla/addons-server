@@ -121,62 +121,64 @@
     </div>{# /featured-inner #}
   </div>{# /featured #}
 
-  <h3>{{ _('More about this add-on') }}</h3>
-  <div class="article userinput">
-    <p{{ addon.description|locale_html }}>{{ addon.description|nl2br }}</p>
+   {% if addon.description or previews|length > 1 or addon.developer_comments or
+         (addon.show_beta and addon.current_beta_version)  %}
+    <h3 id="more-about">{{ _('More about this add-on') }}</h3>
+    <div class="article userinput">
+      <p{{ addon.description|locale_html }}>{{ addon.description|nl2br }}</p>
 
-    {% if previews|length > 1 %}
-      <h4>{{ _('Image Gallery') }}</h4>
-      {% for preview in previews[1:] %}
-        <a class="screenshot thumbnail" rel="jquery-lightbox"
-          href="{{ preview.image_url }}" title="{{ preview.caption }}">
-            <img src="{{ preview.thumbnail_url }}" alt="" />
-        </a>
-      {% endfor %}
-    {% endif %}
+      {% if previews|length > 1 %}
+        <h4>{{ _('Image Gallery') }}</h4>
+        {% for preview in previews[1:] %}
+          <a class="screenshot thumbnail" rel="jquery-lightbox"
+            href="{{ preview.image_url }}" title="{{ preview.caption }}">
+              <img src="{{ preview.thumbnail_url }}" alt="" />
+          </a>
+        {% endfor %}
+      {% endif %}
 
-    {% if addon.developer_comments %}
-    <h4>{{ _('Developer Comments', 'addons_display_developer_comments') }}</h4>
-      <div class="prose userinput">
-        <p{{ addon.developer_comments|locale_html }}>{{
-          addon.developer_comments|nl2br }}</p>
-      </div>
-    {% endif %}
+      {% if addon.developer_comments %}
+      <h4>{{ _('Developer Comments', 'addons_display_developer_comments') }}</h4>
+        <div class="prose userinput">
+          <p{{ addon.developer_comments|locale_html }}>{{
+            addon.developer_comments|nl2br }}</p>
+        </div>
+      {% endif %}
 
-    {# beta channel #}
-    {% if addon.show_beta and addon.current_beta_version %}
-      <h4 id="beta-channel">{{ _('Beta Channel') }}</h4>
-      <div>
-        <p>
-          {% trans %}
-          The Beta Channel lets you test an experimental new version of this
-          add-on before it's released to the general public. Once you install
-          the beta version, you will continue to get updates from this channel.
-          {% endtrans %}
-          <a href="#install-beta">{{ _('Install beta version') }}</a>
-        </p>
-        <div class="install-beta" id="install-beta">
+      {# beta channel #}
+      {% if addon.show_beta and addon.current_beta_version %}
+        <h4 id="beta-channel">{{ _('Beta Channel') }}</h4>
+        <div>
           <p>
             {% trans %}
-            <strong>Caution:</strong> Beta versions of this add-on have not
-            been reviewed by Mozilla. Once you install a beta version you will
-            continue to receive beta updates from this developer. To stop
-            receiving beta updates, reinstall the default version from the
-            link above.
+            The Beta Channel lets you test an experimental new version of this
+            add-on before it's released to the general public. Once you install
+            the beta version, you will continue to get updates from this channel.
             {% endtrans %}
+            <a href="#install-beta">{{ _('Install beta version') }}</a>
           </p>
-          <dl>
-            <dt class="beta-version">{{ _('Version {0}:')|f(
-              addon.current_beta_version.version) }}</dt>
-            <dd>{{ install_button(addon, version=addon.current_beta_version,
-                                  show_warning=False) }}</dd>
-          </dl>
-        </div>{# /install-beta #}
-      </div>
+          <div class="install-beta" id="install-beta">
+            <p>
+              {% trans %}
+              <strong>Caution:</strong> Beta versions of this add-on have not
+              been reviewed by Mozilla. Once you install a beta version you will
+              continue to receive beta updates from this developer. To stop
+              receiving beta updates, reinstall the default version from the
+              link above.
+              {% endtrans %}
+            </p>
+            <dl>
+              <dt class="beta-version">{{ _('Version {0}:')|f(
+                addon.current_beta_version.version) }}</dt>
+              <dd>{{ install_button(addon, version=addon.current_beta_version,
+                                    show_warning=False) }}</dd>
+            </dl>
+          </div>{# /install-beta #}
+        </div>
+      {% endif %}
+      {# /beta #}
+    </div>{# /article #}
     {% endif %}
-    {# /beta #}
-  </div>{# /article #}
-
   {{ review_list_box(addon=addon, reviews=reviews) }}
 
   {% if request.user.is_authenticated() %}
