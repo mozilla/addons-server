@@ -611,11 +611,11 @@ $(document).ready(function () {
         var dropdown = $('.collection-add-dropdown', $(this));
         dropdown.removeClass("new-collection");
         var addon_id = $(this).attr('data-addonid');
-        $widget.addClass("ajax-loading");
         // If anonymous, show login overlay.
         if (z.anonymous) {
             dropdown.show();
         } else {
+            $widget.addClass("ajax-loading");
             // Make a call to /collections/ajax/list with addon_id
             $.get(list_url, {'addon_id': addon_id}, function(data) {
                 dropdown.show();
