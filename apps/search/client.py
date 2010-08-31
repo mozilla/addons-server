@@ -236,8 +236,8 @@ class Client(object):
     def get_result_set(self, term, result, offset, limit):
         # Return results as a list of add-ons.
         addon_ids = [m['attrs']['addon_id'] for m in result['matches']]
-        log.debug([(m['attrs']['addon_id'], m['attrs']['myweight']) for m in
-                   result['matches']])
+        log.debug([(m['attrs']['addon_id'], m['attrs'].get('myweight')) for m
+                   in result['matches']])
         addons = manual_order(Addon.objects.all(), addon_ids)
         return ResultSet(addons, min(self.total_found, SPHINX_HARD_LIMIT),
                          offset)
