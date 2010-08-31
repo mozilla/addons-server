@@ -158,6 +158,17 @@ collections.recently_viewed = function() {
         uniqueFunc: function(e) { return e[1].uuid; }
     });
 
+    var add_recent = $('#add-to-recents');
+    if (add_recent.size()) {
+        var o = $.dict($.fmap(['disp', 'url', 'uuid'], function(key){
+            return [key, $.trim(add_recent.attr('data-' + key))];
+        }));
+        var current_uuid = o.uuid;
+        recentlyViewed.add(o);
+    } else {
+        var current_uuid = '';
+    }
+
     var list = $.map(recentlyViewed.list(), function(e) {
         if (e.uuid != current_uuid) {
             return $('<li></li>').append(
@@ -183,16 +194,6 @@ collections.recently_viewed = function() {
         });
     }
 
-    var add_recent = $('#add-to-recents');
-    if (add_recent.size()) {
-        var o = $.dict($.fmap(['disp', 'url', 'uuid'], function(key){
-            return [key, $.trim(add_recent.attr('data-' + key))];
-        }));
-        var current_uuid = o.uuid;
-        recentlyViewed.add(o);
-    } else {
-        var current_uuid = '';
-    }
 };
 
 
