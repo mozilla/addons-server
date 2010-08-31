@@ -687,13 +687,13 @@ $(document).ready(function () {
         });
     });
 
-    // Colleciton watching
+    // Colleciton following
     $(".collection_widgets .watch").click(function(e) {
         e.preventDefault();
         var widget = $(this);
         widget.addClass('ajax-loading');
 
-        var watch_text = gettext("Watch this Collection");
+        var follow_text = gettext("Follow this Collection");
 
         $.ajax({
             url: this.href,
@@ -702,14 +702,14 @@ $(document).ready(function () {
                 widget.removeClass('ajax-loading');
                 if (data.watching) {
                     widget.addClass("watching");
-                    watch_text = gettext("Stop Watching");
+                    follow_text = gettext("Stop following");
                 } else {
                     widget.removeClass("watching");
                 }
                 if (widget.attr("title")) {
-                    widget.attr("title", watch_text);
+                    widget.attr("title", follow_text);
                 } else {
-                    widget.text(watch_text);
+                    widget.text(follow_text);
                 }
             },
             error: function() {
@@ -719,8 +719,9 @@ $(document).ready(function () {
     });
 
     //New sharing interaction
+    var $email = $("#sharing-popup li.email");
     $("#sharing-popup").popup(".share.widget a.share", {
-        callback: function(el, $popup) {
+        callback: function(el) {
             var $top = $(el).parents(".widgets");
             var $container = $(".share-me", $top);
             if ($(this).is(':visible') && $("#sharing-popup", $container).length ) {
@@ -729,6 +730,10 @@ $(document).ready(function () {
                 var $widget = $(".share.widget", $top);
                 var base_url = $widget.attr('data-base-url');
                 var counts = $.parseJSON($widget.attr("data-share-counts"));
+                $email.detach();
+                if (!$container.hasClass("no-email")) {
+                    $email.appendTo($(".share-networks ul", this));
+                }
                 if (counts) {
                     for (s in counts) {
                         if (!counts.hasOwnProperty(s)) continue;

@@ -3,20 +3,20 @@
   <div class="item-info">
     <ul>
       <li>{{ barometer(c) }}</li>
-      <li class="subscribers">
+      <li class="followers">
         {% if show_weekly %}
           {% trans cnt=c.weekly_subscribers, num=c.weekly_subscribers|numberfmt %}
-            <strong>{{ num }}</strong> new watcher
+            <span>{{ num }}</span> new follower
           {% pluralize %}
-            <strong>{{ num }}</strong> new watchers
+            <span>{{ num }}</span> new followers
           {% endtrans %}
         {% else %}
           {# L10n: People "watch" collections to get notified of updates.
                    Like Twitter followers. #}
           {% trans cnt=c.subscribers, num=c.subscribers|numberfmt %}
-            <strong>{{ num }}</strong> watcher
+            <span>{{ num }}</span> follower
           {% pluralize %}
-            <strong>{{ num }}</strong> watchers
+            <span>{{ num }}</span> followers
           {% endtrans %}
         {% endif %}
       </li>

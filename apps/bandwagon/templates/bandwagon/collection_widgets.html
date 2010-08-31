@@ -1,9 +1,9 @@
 <div class="collection_widgets{{ ' condensed' if condensed }} widgets">
 {% if request.user.is_authenticated() %}
   {% set is_watching = c.id in request.amo_user.watching %}
-      <a title="{{ (_('Stop Watching') if is_watching else _('Watch this Collection')) if condensed }}"
+      <a title="{{ (_('Stop Following') if is_watching else _('Follow this Collection')) if condensed }}"
          class="widget watch{{ ' watching' if is_watching }}"
-         href="{{ c.watch_url() }}"><span>{{ _('Stop Watching') if is_watching else _('Watch this Collection') }}</span></a>
+         href="{{ c.watch_url() }}"><span>{{ _('Stop Following') if is_watching else _('Follow this Collection') }}</span></a>
 {% endif %}
         {{ sharing_widget(c, show_email=False) }}
 {% if request.user.is_authenticated() %}
