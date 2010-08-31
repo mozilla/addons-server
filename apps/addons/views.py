@@ -176,7 +176,7 @@ def persona_detail(request, addon):
         'user_tags': user_tags,
         'review_form': ReviewForm(),
         'reviews': reviews,
-        'replies': Review.get_replies(reviews),
+        'get_replies': Review.get_replies,
         # Remora users persona.author despite there being a display_username
         'author_gallery': settings.PERSONAS_USER_ROOT % persona.author,
         'search_cat': 'personas',
