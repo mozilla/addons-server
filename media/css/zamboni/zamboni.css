@@ -2715,14 +2715,29 @@ td.remove {
 
 .collections-landing {
     padding: 1em;
+    min-height: 190px;
     background-image: url(../../img/amo2009/illustrations/logo-collections-220x270.png),
                       -moz-linear-gradient(#e4f5fb, #ffffff);
     background-repeat: no-repeat;
-    background-position: 95% 20px, left top;
+    background-position: 95% 30px, left top;
 }
+
 .collections-landing p {
     font-size: 1.4em;
     padding-right: 250px;
+    max-width: 450px;
+    line-height: 1.25em;
+}
+
+.collections-landing .breadcrumbs {
+   margin-bottom: 4px;
+}
+
+.collections-landing h2 {
+   font-family: inherit;  /* this should be Meta eventually */
+   font-size: 2.8em;
+   font-weight: bold;
+   margin-top: 0;
 }
 
 .html-rtl .collections-landing {
