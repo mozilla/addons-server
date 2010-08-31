@@ -470,6 +470,46 @@ span.emaillink .i {
 .html-rtl .notification-box.error h2 {
     background-position: right -150px;
 }
+/* Notification boxes for [z] collections
+   Much of this can be removed when it replaces the default style */
+.notification-box.collection {
+    margin-bottom: 28px;
+    padding: 13px 13px 13px 58px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+    background: #FFFFFF url(../../img/zamboni/notification-success.png) no-repeat 13px 50%;
+    font-family: "helvetica neue", arial, helvetica, sans-serif;
+    color: #444;
+    font-size: 13px;
+}
+.notification-box.collection.success {
+    border: 3px solid #1d4900;
+    background: #FFFFFF url(../../img/zamboni/notification-success.png) no-repeat 13px 50%;
+}
+.notification-box.collection.error {
+    color: #444;
+    border: 3px solid #550b00;
+    background: #FFFFFF url(../../img/zamboni/notification-error.png) no-repeat 13px 50%;
+}
+.html-rtl .notification-box.collection {
+    background-position: 98% 50%;
+    padding: 13px 58px 13px 13px;
+}
+.notification-box.collection h2 {
+    background: none;
+    font-weight: bold;
+    padding: 0;
+    font-family: "helvetica neue", arial, helvetica, sans-serif;
+    font-size: 13px;
+    line-height: 1;
+    min-height: 0;
+}
+.notification-box.collection p {
+    margin: 0;
+}
 
 /** jQuery UI tabs */
 .ui-tabs-hide {
