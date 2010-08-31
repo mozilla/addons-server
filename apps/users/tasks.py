@@ -1,3 +1,4 @@
+from datetime import datetime
 import os
 import random
 
@@ -46,8 +47,10 @@ def add_usernames(data, **kw):
                     name_slug = "%s%s" % (random.randint(1000, 100000),
                                           name_slug)
 
+                now = datetime.now().isoformat(' ')
                 UserProfile.objects.filter(id=user[0]).update(
-                        username=name_slug, display_name=name)
+                        username=name_slug, display_name=name,
+                        modified=now)
             except IntegrityError:
                 task_log.error(u"""F-F-Fail!  I tried setting a user's (id:%s)
                 username to to %s and it was already taken.  This should never
