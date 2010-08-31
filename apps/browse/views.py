@@ -262,18 +262,18 @@ def personas_listing(request, category=None):
         base = base.filter(categories__id=category.id)
 
     filter = PersonasFilter(request, base, key='sort', default='up-and-coming')
-    return categories, filter, base
+    return categories, filter, base, category
 
 
 def personas(request, category=None):
-    categories, filter, base = personas_listing(request, category)
+    categories, filter, base, category = personas_listing(request, category)
     if 'sort' in request.GET:
         template = 'grid.html'
     else:
         template = 'category_landing.html'
 
     if category:
-        count = category.count()
+        count = category.count
     else:
         # Pass the count from base instead of letting it come from
         # filter.qs.count() since that would join against personas.

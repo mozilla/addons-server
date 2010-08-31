@@ -177,7 +177,7 @@ def _personas(request):
         return jingo.render(request, 'search/down.html', {}, status=503)
 
     pager = amo.utils.paginate(request, results, search_opts['limit'])
-    categories, filter, _ = browse.views.personas_listing(request)
+    categories, filter, _, _ = browse.views.personas_listing(request)
     c = dict(pager=pager, form=form, categories=categories, query=query,
              filter=filter)
     return jingo.render(request, 'search/personas.html', c)
