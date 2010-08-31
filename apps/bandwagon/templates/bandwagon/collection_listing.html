@@ -25,7 +25,7 @@
   {% else %}
     <div class="featured">
       <div class="featured-inner collections-landing">
-        {% set crumbs = [(url('collections.list'), _('Collections'))] %}
+        {% set crumbs = [(None, _('Collections'))] %}
         {{ breadcrumbs(crumbs) }}
         <h2>{{ _('Collections') }}</h2>
         <p>
