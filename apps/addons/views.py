@@ -130,7 +130,7 @@ def extension_detail(request, addon):
         'recommendations': recommended,
         'review_form': ReviewForm(),
         'reviews': reviews,
-        'replies': Review.get_replies(reviews),
+        'get_replies': Review.get_replies,
 
         'collections': popular_coll,
         'other_collection_count': other_coll_count,
