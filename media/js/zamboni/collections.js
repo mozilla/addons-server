@@ -296,20 +296,17 @@ $(document).ready(function() {
                 var barometer = the_form.closest('.barometer');
                 var oldvote = $('input.voted', barometer);
                 var newvote = $('input[type="submit"]', the_form);
-                var cancel = $('.cancel_vote', barometer);
 
                 //If the vote cancels an existing vote, cancel said vote
                 if (oldvote.length) {
                     oldvote.get(0).value--;
                     oldvote.removeClass('voted');
-                    cancel.hide();
                 }
 
                 //Render new vote if it wasn't a double
                 if (oldvote.get(0) !== newvote.get(0)) {
                     newvote.get(0).value++;
                     newvote.addClass('voted');
-                    cancel.show();
                 }
             }
         });
@@ -346,11 +343,6 @@ $(document).ready(function() {
         });
     } else {
         $('.barometer form').submit(callback);
-        $('.barometer .cancel_vote').click(function (e) {
-            e.preventDefault();
-            //Clicking 'Remove' re-submits the user's vote, canceling it.
-            $('input.voted', $(this).closest('.barometer')).closest('form').submit();
-        });
     }
 
 })

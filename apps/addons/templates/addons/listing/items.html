@@ -8,9 +8,10 @@
       {{ install_button(addon, collection=collection) }}
       {{ item_info(addon, amo, show_added_date) }}
       {% if request.user.is_authenticated() %}
-        <div class="collection_widgets">
+        <div class="collection_widgets widgets condensed">
           {{ favorites_widget(addon, condensed=True) }}
           {{ collection_add_widget(addon, condensed=True) }}
+          {{ sharing_widget(addon, show_email=True) }}
         </div>
       {% endif %}
     </div>

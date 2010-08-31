@@ -7,7 +7,6 @@
     <input class="{{ down_class }}" value="{{ c.downvotes }}" type="submit"
            title="{{ down_title }}">
   </form>
-  <a class="{{ cancel_class }}" href="#" title="{{ cancel_title }}">{{ _('Remove') }}</a>
   {# L10n: Link to remove a collection vote #}
   {% if user.is_anonymous() %}
     <div class="collection-rate-dropdown install-note">

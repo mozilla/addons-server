@@ -1160,6 +1160,10 @@ table caption {
     font-weight: bold;
 }
 
+.highlight h3 a {
+    font-weight: normal;
+}
+
 .highlight .prose {
     margin: 0;
 }
@@ -2826,11 +2830,6 @@ html[xmlns] .clearfix {
     background-color: #ffc3c6;
 }
 
-.barometer .cancel_vote {
-    font-size: .9em;
-    margin: 0 0 0 .5em;
-}
-
 /* .upvotes and .downvotes are the numbers + thumb images, in inputs. */
 .barometer .upvotes, .barometer .downvotes {
     /* Override native input styling. */
@@ -2840,6 +2839,7 @@ html[xmlns] .clearfix {
     cursor: pointer;
     text-shadow: none;
     -moz-border-radius: 0;
+    font-weight: normal;
 
     padding-top: 0.1em; /* Push the text down a bit. */
     background-repeat: no-repeat;

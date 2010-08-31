@@ -1,5 +1,5 @@
 <div class="other-categories highlight">
-  <h3>{{ _('Collections') }}</h3>
+  <h3><a href="{{ url('collections.list') }}">{{ _('Collections') }}</a></h3>
   <ul>
     {% set base_url = url('collections.list') %}
     {% for key, title in filter.opts %}
