@@ -240,6 +240,10 @@ def add(request):
             collection = form.save()
             if aform.is_valid():
                 aform.save(collection)
+            messages.success(request,
+                             _("""Collection created! 
+                                  Your new collection is shown below."""),
+                             extra_tags='collection')    
             log.info('Created collection %s' % collection.id)
             return http.HttpResponseRedirect(collection.get_url_path())
         else:
