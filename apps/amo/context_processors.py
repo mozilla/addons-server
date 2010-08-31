@@ -33,18 +33,25 @@ def global_settings(request):
 
     if request.user.is_authenticated():
         # TODO(jbalogh): reverse links
+        amo_user = request.amo_user
         account_links.append({
             'text': _('View Profile'),
             'href': request.user.get_profile().get_url_path(),
         })
         account_links.append({'text': _('Edit Profile'),
-                              'href': '/users/edit'})
+                              'href': reverse('users.edit')})
         if request.amo_user.is_developer:
             account_links.append({'text': _('My Add-ons'),
                                   'href': '/developers/addons'})
 
-        account_links.append({'text': _('My Collections'),
-                              'href': '/collections/mine'})
+        account_links.append({
+            'text': _('My Collections'),
+            'href': reverse('collections.user', args=[amo_user.username])})
+        if amo_user.favorite_addons:
+            account_links.append(
+                {'text': _('My Favorites'),
+                 'href': reverse('collections.detail',
+                                 args=[amo_user.username, 'favorites'])})
 
         account_links.append({
             'text': _('Log out'),
