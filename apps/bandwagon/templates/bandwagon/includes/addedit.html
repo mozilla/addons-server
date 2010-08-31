@@ -4,7 +4,7 @@
   <h3>{{ _('Collection Description') }}</h3>
 </div>
 <fieldset>
-  {{ field(form.name, _('Name:')) }}
+  {{ field(form.name, _('Name:'), class='long') }}
   {% if not (collection and
              collection.type in amo.COLLECTION_SPECIAL_SLUGS.keys()) %}
     <p id="collection-form-slug">

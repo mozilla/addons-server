@@ -2666,7 +2666,7 @@ td.input {
     float: left;
     margin: 2px 1em 0 0;
 }
-#details-edit #id_name {
+#id_name {
     display: block;
 }
 .ui-autocomplete {
