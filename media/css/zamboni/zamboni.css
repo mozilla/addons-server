@@ -983,6 +983,10 @@ fieldset legend { /* based on h3 */
     margin: 0.75em 0 0;
 }
 
+.allowed-html {
+    font-size: .8em;
+}
+
 .user-input h3 {
   margin: 0 0 .5em;
 }
