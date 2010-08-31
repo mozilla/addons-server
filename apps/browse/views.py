@@ -273,7 +273,7 @@ def personas(request, category=None):
         template = 'category_landing.html'
 
     if category:
-        count = category.count
+        count = category.count()
     else:
         # Pass the count from base instead of letting it come from
         # filter.qs.count() since that would join against personas.
