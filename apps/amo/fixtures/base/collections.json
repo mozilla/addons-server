@@ -60,8 +60,7 @@
         "pk": 207981,
         "model": "bandwagon.collectionaddon",
         "fields": {
-            "added": "2009-06-09 23:35:10",
-            "created": null,
+            "created": "2009-06-09 23:35:10",
             "downloads": 30,
             "modified": null,
             "comments": null,

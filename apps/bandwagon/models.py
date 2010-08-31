@@ -259,11 +259,11 @@ class Collection(amo.models.ModelBase):
                            "WHERE collection_id=%s AND addon_id IN (%s)" %
                            (self.id, ','.join(map(str, remove))))
         if add:
-            insert = '(%s, %s, %s, NOW(), NOW(), NOW(), 0)'
+            insert = '(%s, %s, %s, NOW(), NOW(), 0)'
             values = [insert % (a, self.id, idx) for a, idx in add]
             cursor.execute("""
                 INSERT INTO addons_collections
-                    (addon_id, collection_id, ordering, added, created,
+                    (addon_id, collection_id, ordering, created,
                      modified, downloads)
                 VALUES %s""" % ','.join(values))
         for addon, ordering in update:
