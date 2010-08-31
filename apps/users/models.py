@@ -53,7 +53,8 @@ class UserProfile(amo.models.ModelBase):
     lastname = models.CharField(max_length=255, default='', blank=True)
 
     username = models.CharField(max_length=255, default='', unique=True)
-    display_name = models.CharField(max_length=255, default='', null=True,
+    _display_name = models.CharField(max_length=255, default='', null=True,
+                                     db_column='display_name',
                                     blank=True)
 
     password = models.CharField(max_length=255, default='')

@@ -1,3 +1,5 @@
+from optparse import make_option
+
 from django.core.management.base import BaseCommand
 from django.db import connection
 
@@ -10,14 +12,31 @@ class Command(BaseCommand):
     http://blog.mozilla.com/addons/2010/07/26/upcoming-changes-to-amo-accounts/
     for details."""
 
+    option_list = BaseCommand.option_list + (
+        make_option('--date', '-d', dest='date',
+                    help='Only process accounts after this date.'),
+        )
+
     def handle(self, *args, **options):
         from users.tasks import add_usernames
         from amo.utils import chunked
 
+        date = options.get('date', False)
+
         print "Getting users..."
         cursor = connection.cursor()
+
+        if date:
         # Doing this directly because I don't want to load 800k user objects
-        cursor.execute("SELECT id, firstname, lastname, nickname FROM users")
+            query = """SELECT id, firstname, lastname, nickname
+                       FROM users
+                       WHERE modified > %s
+                       OR created > %s"""
+            cursor.execute(query, [date, date])
+        else:
+            cursor.execute("SELECT id, firstname, lastname, nickname FROM users")
+
+
         data = cursor.fetchall()
 
         with establish_connection() as conn:

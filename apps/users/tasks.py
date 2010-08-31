@@ -1,3 +1,4 @@
+from datetime import datetime
 import random
 
 from django.contrib.auth.models import User as DjangoUser
@@ -31,7 +32,7 @@ def add_usernames(data, **kw):
         name_slug = slugify(name)
         try:
             UserProfile.objects.filter(id=user[0]).update(username=name_slug,
-                                                          display_name=name)
+                                                          _display_name=name)
         except IntegrityError, e:
             try:
                 name_slug = "%s%s" % (name_slug, user[0])
@@ -42,9 +43,11 @@ def add_usernames(data, **kw):
                     name_slug = "%s%s" % (random.randint(1000,100000),
                                           name_slug)
 
-                UserProfile.objects.filter(id=user[0]).update(username=name_slug,
-                                                              display_name=name)
-            except IntegrityError, e:
+                now = datetime.now().isoformat(' ')
+                UserProfile.objects.filter(id=user[0]).update(
+                        username=name_slug, _display_name=name,
+                        modified=now)
+            except IntegrityError:
                 task_log.error(u"""F-F-Fail!  I tried setting a user's (id:%s)
                 username to to %s and it was already taken.  This should never
                 happen.""" % (user[0], name_slug))
