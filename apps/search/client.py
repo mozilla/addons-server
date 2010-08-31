@@ -219,7 +219,7 @@ class Client(object):
 
         self.weight_field = ('@weight + IF(addon_status=%d, 30, 0) + '
                              'IF(locale_ord=%d, 29, 0) + '
-                             'sqrt(totaldownloads) * 0.2 '
+                             'sqrt(totaldownloads) * 0.4 '
                              'AS myweight ' %
                              (amo.STATUS_PUBLIC, get_locale_ord()))
 
