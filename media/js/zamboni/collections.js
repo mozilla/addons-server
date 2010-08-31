@@ -579,6 +579,7 @@ $(document).ready(function () {
         $.post(url, data, function(data) {
             dropdown.removeClass('new-collection');
             dropdown.html(data);
+            $("a.outlink", dropdown).click(stopPropagation);
         }, 'html');
     }
 
@@ -609,20 +610,26 @@ $(document).ready(function () {
         $widget = $(this).closest('.collection-add');
         $('.collection-add-dropdown').hide();
         var dropdown = $('.collection-add-dropdown', $(this));
-        dropdown.removeClass("new-collection");
         var addon_id = $(this).attr('data-addonid');
+
+        function loadList(e) {
+            if (e) e.preventDefault();
+            $widget.addClass("ajax-loading");
+            // Make a call to /collections/ajax/list with addon_id
+            $.get(list_url, {'addon_id': addon_id}, function(data) {
+                dropdown.removeClass("new-collection");
+                dropdown.html(data);
+                dropdown.show();
+                $widget.removeClass("ajax-loading");
+                $("a.outlink", dropdown).click(stopPropagation);
+            }, 'html');
+        }
+
         // If anonymous, show login overlay.
         if (z.anonymous) {
             dropdown.show();
         } else {
-            $widget.addClass("ajax-loading");
-            // Make a call to /collections/ajax/list with addon_id
-            $.get(list_url, {'addon_id': addon_id}, function(data) {
-                dropdown.show();
-                dropdown.html(data);
-                $widget.removeClass("ajax-loading");
-                $("a.outlink", dropdown).click(stopPropagation);
-            }, 'html');
+            loadList();
         }
         e.preventDefault();
 
@@ -631,7 +638,7 @@ $(document).ready(function () {
         dropdown.delegate('#ajax_collections_list li', 'click', handleToggle)
             .delegate('#collections-new form', 'submit', handleSubmit)
             .delegate('#ajax_new_collection', 'click', handleNew)
-            .delegate('#collections-new-cancel', 'click', handleClick)
+            .delegate('#collections-new-cancel', 'click', loadList)
             .delegate('#id_name', 'blur', slugify)
             .delegate('#edit_slug', 'click', show_slug_edit)
             .delegate('#id_slug', 'change', function() {
