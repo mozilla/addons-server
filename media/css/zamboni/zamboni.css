@@ -2486,6 +2486,30 @@ label > .optional {
     height: 6em;
 }
 
+#id_slug {
+    border-left: 0;
+}
+#id_slug:focus {
+    outline: 0;
+}
+.collection-add-dropdown #id_slug {
+    text-align:right;
+    display:inline-block;
+}
+#slug_edit span {
+    border: 1px solid #5875A0;
+    border-right:0;
+    padding: 2px 2px 2px 5px;
+    background: #eee;
+}
+
+#slug_edit span, #slug_readonly {
+    color: #888;
+}
+#slug_value {
+    color: #222;
+}
+
 #collection-form-slug,
 #clear-recents {
     font-size: .9em;
@@ -2496,12 +2520,10 @@ label > .optional {
     margin-right: 1em;
 }
 
-#collections-new {
-    width: 400px;
-}
 .collections-details #id_name {
     display: block;
-    width: 99%;
+    -moz-box-sizing: border-box;
+    width: 100%;
 }
 
 #ajax_collections_list {
@@ -2590,6 +2612,18 @@ label > .optional {
     z-index: 0;
 }
 
+.tab-wrapper .content h3 {
+    display: none;
+}
+
+.tab-wrapper .content p {
+    margin-top: 2em;
+}
+
+input.placeholder {
+    color: #ccc;
+}
+
 table#addons-list, table#contributors-list {
     width: 100%;
 }
@@ -2617,9 +2651,10 @@ td.remove {
 .ui-state-hover {
     background-color: #e4f5fb;
 }
-#addons-list tbody tr:first-child,
-#contributors-list tbody tr:first-child {
+td.input {
     background: #B5D9E5;
+    padding-top: .5em;
+    padding-bottom: .4em;
 }
 #addons-list h3 {
     line-height: 36px;
@@ -2870,7 +2905,12 @@ a.outlink:hover {
 .widgets a.widget.ajax-loading,
 .widgets .widget.ajax-loading > a,
 .widgets > a.widget.ajax-loading:hover,
+input.ui-autocomplete-loading,
 .widgets > .widget.ajax-loading > a:hover {
    background-image: url(../../img/zamboni/loading-white.gif);
+   background-repeat: no-repeat;
    background-position: left bottom;
+}
+input.ui-autocomplete-loading {
+    background-position: right center;
 }

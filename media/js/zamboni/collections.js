@@ -457,9 +457,11 @@ if ($('body.collections-contributors')) {
         var email = $('#contributor-ac').val();
         var src = $('#contributor-ac').attr('data-src');
         var my_id = $('#contributor-ac').attr('data-owner');
-
+        $('#contributor-ac').addClass("ui-autocomplete-loading");
         // TODO(potch): Add a fancy failure case.
         $.get(src, {q: email}, function(d) {
+
+            $('#contributor-ac').removeClass("ui-autocomplete-loading");
 
             // TODO(potch): gently yell at user if they add someone twice.
             if ($('input[name=contributor][value='+d.id+']').length == 0 &&
@@ -539,7 +541,7 @@ $(document).ready(function () {
         }
     }
 
-    $('#details-edit form').delegate('#id_name', 'keyup', slugify)
+    $('#details-edit form, .collection-create form').delegate('#id_name', 'keyup', slugify)
         .delegate('#id_name', 'blur', slugify)
         .delegate('#edit_slug', 'click', show_slug_edit)
         .delegate('#id_slug', 'change', function() {
