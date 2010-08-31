@@ -158,7 +158,7 @@ class FIREFOX:
     guid = '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}'
     min_display_version = 3.0
     # These versions were relabeled and should not be displayed.
-    exclude_versions = (3.1,)
+    exclude_versions = (3.1, 3.7)
     user_agent_string = 'Firefox'
 
 
