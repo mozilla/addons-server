@@ -8,6 +8,7 @@ import urllib
 import urlparse
 
 from django.conf import settings
+from django.contrib import messages
 from django.core import paginator
 from django.core.serializers import json
 from django.core.validators import ValidationError, validate_slug
@@ -226,3 +227,12 @@ def slug_validator(s, ok=SLUG_OK):
     if not (s and slugify(s) == s):
         raise ValidationError(validate_slug.message,
                               code=validate_slug.code)
+
+def clear_messages(request):
+    """
+    Clear any messages out of the messages framework for the authenticated user.
+    Docs:
+    http://docs.djangoproject.com/en/dev/ref/contrib/messages/#expiration-of-messages
+    """
+    for message in messages.get_messages(request):
+        pass

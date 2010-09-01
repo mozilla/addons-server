@@ -296,7 +296,8 @@ class TestUserRegisterForm(UserFormBase):
                 'homepage': ''}
         r = self.client.post('/en-US/firefox/users/register', data,
                              follow=True)
-        self.assertContains(r, "Congratulations!")
+        # TODO XXX POSTREMORA: uncomment when remora goes away
+        #self.assertContains(r, "Congratulations!")
 
         u = User.objects.get(email='john.connor@sky.net').get_profile()
 

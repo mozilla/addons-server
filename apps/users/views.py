@@ -44,14 +44,22 @@ def confirm(request, user_id, token):
     if user.confirmationcode != token:
         log.info(u"Account confirmation failed for user (%s)", user)
         messages.error(request, _('Invalid confirmation code!'))
-        return http.HttpResponseRedirect(reverse('users.login'))
+
+
+        amo.utils.clear_messages(request)
+        return http.HttpResponseRedirect(reverse('users.login') + '?m=5')
+        # TODO POSTREMORA Replace the above with this line when remora goes away
+        #return http.HttpResponseRedirect(reverse('users.login'))
 
     user.confirmationcode = ''
     user.save()
     messages.success(request, _('Successfully verified!'))
     log.info(u"Account confirmed for user (%s)", user)
 
-    return http.HttpResponseRedirect(reverse('users.login'))
+    amo.utils.clear_messages(request)
+    return http.HttpResponseRedirect(reverse('users.login') + '?m=4')
+    # TODO POSTREMORA Replace the above with this line when remora goes away
+    #return http.HttpResponseRedirect(reverse('users.login'))
 
 
 def confirm_resend(request, user_id):
@@ -341,7 +349,11 @@ def register(request):
                      'activate your account by clicking on the link provided '
                      ' in this email.').format(u.email))
             messages.info(request, msg)
-            return http.HttpResponseRedirect(reverse('users.login'))
+
+            amo.utils.clear_messages(request)
+            return http.HttpResponseRedirect(reverse('users.login') + '?m=3')
+            # TODO POSTREMORA Replace the above with this line when remora goes away
+            #return http.HttpResponseRedirect(reverse('users.login'))
 
         else:
             messages.error(request, _(('There are errors in this form. Please '
