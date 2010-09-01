@@ -20,6 +20,14 @@
         {% include 'bandwagon/includes/addedit.html' %}
         {% include 'bandwagon/includes/addon_selector.html' %}
 
+        <p class="note">
+          {% trans legal='http://www.mozilla.com/about/legal.html#site' %}
+            As noted below and in our
+            <a href="{{ legal }}">Legal Notices</a>, individual collection
+            arrangements are governed by the Creative Commons Attribution
+            Share-Alike License
+          {% endtrans %}
+        </p>
 
         <p>
           <input type="submit" value="{{ _('Create Collection') }}">
