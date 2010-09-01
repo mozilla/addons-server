@@ -793,6 +793,10 @@ p.addon-search-message {
     margin-bottom: 1em;
 }
 
+#addon .featured .widget div {
+    margin-bottom: 0;
+}
+
 #review-box button {
     padding: 0.1em 1em;
     margin-left: 18%;

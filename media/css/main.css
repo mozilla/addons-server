@@ -2483,7 +2483,7 @@ ol.pagination li a:active {
     padding: 0;
 }
 
-#sharing-popup div {
+#sharing-popup div.share-content {
     -moz-border-radius:5px;
     -webkit-border-radius:5px;
     border-radius:5px;
@@ -2579,7 +2579,6 @@ ol.pagination li a:active {
 }
 
 .share-email {
-    background-color: #DAF1FA;
     padding: .8em;
     display: none;
 }
@@ -2591,11 +2590,12 @@ ol.pagination li a:active {
 }
 .share-email .container input,
 .share-email .container textarea {
-    width: 96%;
+    -moz-box-sizing:border-box;
+    display:block;
+    width:100%;
 }
 .share-email .container textarea {
     min-height: 6em;
-    min-width: 25em;
 }
 .share-email .container.buttons {
     margin-bottom: 0;

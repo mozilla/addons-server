@@ -21,32 +21,33 @@
         method="post">
         {{ cake_csrf_token() }}
         {# TODO uncakeify #}
-        <div class="container">
+        <p class="container">
           <label for="FriendEmails">
             {# L10n: Refers to recipients of an add-on recommendation email #}
             {{ _('Enter Email Addresses') }}
           </label>
           <input id="FriendEmails" type="text" value="" name="data[Friend][emails]"
                  placeholder="{{ email_service.placeholders|join(', ') }}"/>
-        </div>
-        <div class="container">
+        </p>
+        <p class="container">
           <label for="FriendMessage">
             {# L10n: When recommending add-ons by email, users can specify a
                      personal message #}
-            {{ _('Message (optional)') }}
+            {{ _('Message') }}
+            <span class="optional">{{ _('(optional)') }}</span>
           </label>
           <textarea id="FriendMessage" name="data[Friend][message]"></textarea>
-        </div>
-        <div class="container emailerror" style="display:none">
+        </pv>
+        <p class="container emailerror" style="display:none">
           <p></p>
-        </div>
-        <div class="container buttons">
+        </p>
+        <p class="container buttons">
           <a href="#" class="close">{{ _('Cancel') }}</a>
-          <button type="submit" class="prominent">
+          <button type="submit">
             {# L10n: Refers to an email #}
             {{ _('Send') }}
           </button>
-        </div>
+        </p>
       </form>
 
       <div class="share-email-success">

@@ -744,6 +744,18 @@ $(document).ready(function () {
                 $email.detach();
                 if (!$container.hasClass("no-email")) {
                     $email.appendTo($(".share-networks ul", this));
+                    var $popup = $(this);
+                    $(".email a", $popup).click(function(e) {
+                        e.preventDefault();
+                        $(".share-email", $popup).show();
+                        $(".share-networks", $popup).hide();
+                    });
+                    $(".share-email a.close", $popup).click(function(e) {
+                        e.preventDefault();
+                        $(".share-networks", $popup).show();
+                        $(".share-email", $popup).hide();
+                    });
+                    $(".share-email form", $popup).attr("action", base_url + 'email');
                 }
                 if (counts) {
                     for (s in counts) {
