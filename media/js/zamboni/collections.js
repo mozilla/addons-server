@@ -755,7 +755,24 @@ $(document).ready(function () {
                         $(".share-networks", $popup).show();
                         $(".share-email", $popup).hide();
                     });
-                    $(".share-email form", $popup).attr("action", base_url + 'email');
+                    $(".share-email form", $popup).submit(function(e) {
+                        e.preventDefault();
+                        var form_data = $(this).serialize();
+                        $.post(base_url + 'email', form_data, function(d) {
+                            if (d.success) {
+                                $(".share-email-success", $popup).show();
+                                setTimeout(function() {
+                                    $(".share-networks", $popup).show();
+                                    $(".share-email", $popup).hide();
+                                    $popup.hide();
+                                }, 800);
+                            } else if (d.error) {
+                                $(".emailerror", $popup).text(d.error);
+                            } else {
+                                $(".emailerror", $popup).text(gettext('Oh no! Please try again later.'));
+                            }
+                        });
+                    });
                 }
                 if (counts) {
                     for (s in counts) {
