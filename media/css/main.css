@@ -590,6 +590,11 @@ h3 .secondary a:link, h3 .secondary a:active, h3 .secondary a:visited, h3 .secon
     color: #003595;
 }
 
+.html-rtl .more-info.n,
+.more-info.n {
+    float: none;
+}
+
 /* @end */
 
 /* @group Generic Image Styles */
