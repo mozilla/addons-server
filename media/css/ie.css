@@ -86,3 +86,8 @@ form fieldset .container {
 #t-introduction {
     display: list-item;
 }
+
+.collections-landing {
+    background-image: url(../../img/amo2009/illustrations/logo-collections-220x270.png);
+    background-position: 95% 30px;
+}
