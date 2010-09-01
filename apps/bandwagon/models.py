@@ -281,7 +281,7 @@ class Collection(amo.models.ModelBase):
 
     def is_subscribed(self, user):
         """Determines if the user is subscribed to this collection."""
-        return self.subscriptions.filter(user=user).exists()
+        return self.following.filter(user=user).exists()
 
     def add_addon(self, addon):
         "Adds an addon to the collection."
@@ -376,7 +376,7 @@ class CollectionPromo(amo.models.ModelBase):
 
 
 class CollectionWatcher(amo.models.ModelBase):
-    collection = models.ForeignKey(Collection, related_name='subscriptions')
+    collection = models.ForeignKey(Collection, related_name='following')
     user = models.ForeignKey(UserProfile)
 
     class Meta(amo.models.ModelBase.Meta):

@@ -10,8 +10,12 @@
   </ul>
   {% if request.user.is_authenticated() %}
     <ul>
-      <li><a href="{{ url('collections.user', amo_user.username) }}">
-        {{ _("Collections I've Made") }}</a></li>
+      <li id="p-following">
+        <a href="{{ url('collections.following') }}">
+          {{ _("Collections I'm Following") }}</a></li>
+      <li id="p-mine">
+        <a href="{{ url('collections.user', amo_user.username) }}">
+          {{ _("Collections I've Made") }}</a></li>
       <li><a href="{{ url('collections.detail', amo_user.username, 'favorites') }}">
         {{ _("My Favorite Add-ons") }}</a></li>
     </ul>

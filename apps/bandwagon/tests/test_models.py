@@ -34,7 +34,7 @@ class TestCollections(test_utils.TestCase):
 
     def test_is_subscribed(self):
         c = Collection.objects.get(pk=512)
-        c.subscriptions.create(user=self.user)
+        c.following.create(user=self.user)
         assert c.is_subscribed(self.user)
 
     def test_translation_default(self):

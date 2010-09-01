@@ -304,7 +304,7 @@ def profile(request, user_id):
         own_coll = []
     if user.display_collections_fav:
         fav_coll = Collection.objects.filter(
-            subscriptions__user=user,
+            following__user=user,
             listed=True).order_by('name')
     else:
         fav_coll = []

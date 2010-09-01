@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% set title = _("Collections I'm Following") %}
+{% block title %}{{ page_title(title) }}{% endblock %}
+
+{% block content %}
+<div class="primary">
+  <header>
+    {{ breadcrumbs([(url('collections.list'), _('Collections')),
+                    (None, title)]) }}
+    <h2>{{ title }}</h2>
+  </header>
+  <div class="featured listing">
+    <div class="featured-inner">
+      {% cache collections.object_list %}
+        {{ collection_listing_items(collections.object_list) }}
+      {% endcache %}
+    </div>
+    {% if collections.has_other_pages() %}
+      <div class="listing-footer">{{ collections|paginator }}</div>
+    {% endif %}
+  </div>
+</div>
+
+<div class="secondary">
+  {% include 'bandwagon/includes/collection_sidebar.html' %}
+</div>
+{% endblock %}

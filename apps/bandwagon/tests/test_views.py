@@ -127,7 +127,7 @@ class TestViews(amo.test_utils.ExtraSetup, test_utils.TestCase):
             ('/collections/mine', 301,
              reverse('collections.user', args=['jbalogh'])),
             ('/collections/favorites/', 301,
-             reverse('collections.detail', args=['jbalogh', 'favorites'])),
+             reverse('collections.following')),
         ]
         for test in tests:
             self.check_response(*test)

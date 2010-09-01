@@ -67,8 +67,7 @@ def legacy_directory_redirects(request, page):
         if page == 'mine':
             loc = reverse('collections.user', args=[request.amo_user.username])
         elif page == 'favorites':
-            loc = reverse('collections.detail',
-                          args=[request.amo_user.username, 'favorites'])
+            loc = reverse('collections.following')
     return redirect(loc)
 
 
@@ -130,7 +129,7 @@ def user_listing(request, username):
     votes = get_votes(request, collections.object_list)
     return render(request, 'bandwagon/user_listing.html',
                   dict(collections=collections, collection_votes=votes,
-                       author=author, filter=get_filter(request)))
+                       page='mine', author=author, filter=get_filter(request)))
 
 
 class CollectionAddonFilter(BaseFilter):
@@ -482,3 +481,15 @@ def share(request, username, slug):
     return sharing.views.share(request, collection,
                                name=collection.name,
                                description=collection.description)
+
+
+@login_required
+def following(request):
+    user = request.amo_user
+    qs = (Collection.objects.filter(following__user=request.amo_user)
+          .order_by('-following__created'))
+    collections = amo.utils.paginate(request, qs)
+    votes = get_votes(request, collections.object_list)
+    return render(request, 'bandwagon/user_listing.html',
+                  dict(collections=collections, votes=votes,
+                       page='following', filter=get_filter(request)))

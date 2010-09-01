@@ -37,7 +37,7 @@ class TestHelpers(test.TestCase):
         eq_(doc('button').text(), u'Add to Favorites')
 
         # Subscribed.
-        collection.subscriptions.create(user=self.user)
+        collection.following.create(user=self.user)
         doc = pq(collection_favorite(c, collection))
         eq_(doc('button').text(), u'Remove from Favorites')
 

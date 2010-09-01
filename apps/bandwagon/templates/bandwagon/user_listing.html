@@ -1,21 +1,37 @@
 {% extends "base.html" %}
 
-{# L10n: {0} is a username. #}
-{% set title = _('Collections by {0}')|f(author.name) %}
+{% if page == 'following' %}
+  {% set title = _("Collections I'm Following") %}
+{% else %}
+  {# L10n: {0} is a username. #}
+  {% set title = _('Collections by {0}')|f(author.name) %}
+{% endif %}
+
 {% block title %}{{ page_title(title) }}{% endblock %}
+
+{% block extrahead %}{{ category_arrow(page, prefix='p') }}{% endblock %}
 
 {% block content %}
 <div class="primary">
   <header>
-    {{ breadcrumbs([(url('collections.list'), _('Collections')),
-                    (None, author.name)]) }}
+    {% if page == 'following' %}
+      {{ breadcrumbs([(url('collections.list'), _('Collections')),
+                      (None, title)]) }}
+    {% else %}
+      {{ breadcrumbs([(url('collections.list'), _('Collections')),
+                      (None, author.name)]) }}
+    {% endif %}
     <h2>{{ title }}</h2>
   </header>
   <div class="featured listing">
     <div class="featured-inner">
-      {% cache collections.object_list %}
-        {{ collection_listing_items(collections.object_list) }}
-      {% endcache %}
+      {% if collections.object_list %}
+        {% cache collections.object_list %}
+          {{ collection_listing_items(collections.object_list) }}
+        {% endcache %}
+      {% else %}
+        <p class="no-results">{{ _('No collections found.') }}</p>
+      {% endif %}
     </div>
     {% if collections.has_other_pages() %}
       <div class="listing-footer">{{ collections|paginator }}</div>
