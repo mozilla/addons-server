@@ -170,7 +170,7 @@ class CollectionForm(ModelForm):
                       (settings.MAX_ICON_UPLOAD_SIZE / 1024 / 1024 - 1)))
         return icon
 
-    def save(self):
+    def save(self, commit=True):
         c = super(CollectionForm, self).save(commit=False)
         c.author = self.initial['author']
         c.application_id = self.initial['application_id']
@@ -179,7 +179,8 @@ class CollectionForm(ModelForm):
         if icon:
             c.icontype = 'image/png'
 
-        c.save()
+        if commit:
+            c.save()
         if icon:
             dirname = os.path.join(settings.COLLECTIONS_ICON_PATH,
                                    str(c.id / 1000), )

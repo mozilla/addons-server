@@ -298,6 +298,12 @@ class TestCRUD(test_utils.TestCase):
         eq_(pq(r.content)('.errorlist li')[0].text, 'This field is required.')
         self.assertContains(r, 'Delicious')
 
+    def test_default_locale(self):
+        r = self.client.post('/he/firefox/collections/add',
+                             self.data, follow=True)
+        eq_(r.status_code, 200)
+        c = Collection.objects.get(slug=self.slug)
+        eq_(c.default_locale, 'he')
 
     def test_fix_slug(self):
         self.data['slug'] = 'some slug'

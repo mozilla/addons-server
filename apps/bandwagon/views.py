@@ -237,13 +237,15 @@ def add(request):
                 initial=initial_data_from_request(request))
         aform = forms.AddonsForm(request.POST)
         if form.is_valid():
-            collection = form.save()
+            collection = form.save(commit=False)
+            collection.default_locale = request.LANG
+            collection.save()
             if aform.is_valid():
                 aform.save(collection)
             messages.success(request,
-                             _("""Collection created! 
+                             _("""Collection created!
                                   Your new collection is shown below."""),
-                             extra_tags='collection')    
+                             extra_tags='collection')
             log.info('Created collection %s' % collection.id)
             return http.HttpResponseRedirect(collection.get_url_path())
         else:
