@@ -311,18 +311,6 @@
         <li><a href="{{ coll.get_url_path() }}"
                class="collectionitem">{{ coll.name }}</a></li>
         {% endfor %}
-        {% if other_collection_count %}
-        {# TODO reverse URL #}
-        <li>
-          <a href="{{ remora_url('/collections/addon/{0}'|f(addon.id)) }}">
-            {% trans count=other_collection_count %}
-            and {{ count }} more collection
-            {% pluralize %}
-            and {{ count }} more collections
-            {% endtrans %}
-          </a>
-        </li>
-        {% endif %}
       </ul>
     {% endif %}
 

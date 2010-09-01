@@ -109,11 +109,8 @@ def extension_detail(request, addon):
         recommended_for__addon=addon)[:5]
 
     # popular collections this addon is part of
-    coll_show_count = 3
     collections = Collection.objects.listed().filter(
         addons=addon, application__id=request.APP.id)
-    other_coll_count = max(0, collections.count() - coll_show_count)
-    popular_coll = collections.order_by('-subscribers')[:coll_show_count]
 
     # this user's collections
     reviews = Review.objects.latest().filter(addon=addon)
@@ -132,8 +129,7 @@ def extension_detail(request, addon):
         'reviews': reviews,
         'get_replies': Review.get_replies,
 
-        'collections': popular_coll,
-        'other_collection_count': other_coll_count,
+        'collections': collections.order_by('-subscribers')[:3],
     }
     return jingo.render(request, 'addons/details.html', data)
 
