@@ -112,8 +112,6 @@ def extension_detail(request, addon):
     collections = Collection.objects.listed().filter(
         addons=addon, application__id=request.APP.id)
 
-    # this user's collections
-    reviews = Review.objects.latest().filter(addon=addon)
     data = {
         'addon': addon,
         'author_addons': author_addons,
@@ -126,7 +124,7 @@ def extension_detail(request, addon):
 
         'recommendations': recommended,
         'review_form': ReviewForm(),
-        'reviews': reviews,
+        'reviews': Review.objects.latest().filter(addon=addon),
         'get_replies': Review.get_replies,
 
         'collections': collections.order_by('-subscribers')[:3],
@@ -161,7 +159,6 @@ def persona_detail(request, addon):
         type=amo.ADDON_PERSONA).exclude(
             pk=addon.pk).select_related('persona')[:3]
 
-    reviews = Review.objects.latest().filter(addon=addon)
     data = {
         'addon': addon,
         'persona': persona,
@@ -171,7 +168,7 @@ def persona_detail(request, addon):
         'dev_tags': dev_tags,
         'user_tags': user_tags,
         'review_form': ReviewForm(),
-        'reviews': reviews,
+        'reviews': Review.objects.latest().filter(addon=addon),
         'get_replies': Review.get_replies,
         # Remora users persona.author despite there being a display_username
         'author_gallery': settings.PERSONAS_USER_ROOT % persona.author,
