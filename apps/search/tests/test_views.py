@@ -138,11 +138,10 @@ class FrontendSearchTest(SphinxTestCase):
     def test_empty_version_selected(self):
         """If a user filters by a version that has no results, that version
         should show up on the filter list anyway."""
-        import nose; raise nose.SkipTest()
-        resp = self.get_response(lver='3.7', q='Bookmarks')
+        resp = self.get_response(lver='3.6', q='adjkhasdjkasjkdhash')
         doc = pq(resp.content)
         el = doc('#refine-compatibility li.selected').text().strip()
-        eq_(el, '3.7')
+        eq_(el, '3.6')
 
     def test_sort_newest(self):
         "Test that we selected the right sort."
