@@ -105,7 +105,8 @@ def test_breadcrumbs():
 @patch('amo.helpers.urlresolvers.reverse')
 def test_url(mock_reverse):
     render('{{ url("viewname", 1, z=2) }}')
-    mock_reverse.assert_called_with('viewname', args=(1,), kwargs={'z': 2})
+    mock_reverse.assert_called_with('viewname', args=(1,), kwargs={'z': 2},
+                                    add_prefix=True)
 
 
 def test_urlparams():
