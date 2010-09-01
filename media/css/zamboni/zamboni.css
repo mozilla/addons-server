@@ -2527,6 +2527,19 @@ label > .optional {
     width: 100%;
 }
 
+#icon_upload {
+  overflow:auto;
+  padding-top:5px;
+}
+
+#icon_upload .icon_preview  {
+  -moz-border-radius:5px 5px 5px 5px;
+  border:1px solid #C1E0EA;
+  float:left;
+  margin-right:10px;
+  padding:8px;
+}
+
 #ajax_collections_list {
     margin: 0 0 .5em 0;
 }

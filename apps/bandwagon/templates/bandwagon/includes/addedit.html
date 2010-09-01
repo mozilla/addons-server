@@ -24,18 +24,21 @@
   </p>
   <label>{{ form.listed.label }}</label>
   {{ form.listed|safe }}
-  <p>
-    {% if collection %}
-    <img src="{{ collection.icon_url }}">
-    {% endif %}
 
+  <br />
+  <label>{{ form.icon.label|safe }}</label> {{ _('(optional)') }}
+
+
+  <div id="icon_upload">
+    {% if collection %}
+      <img src="{{ collection.icon_url }}" class="icon_preview" />
+    {% endif %}
     {{ form.errors['icon']|safe }}
-    {{ form.icon.label|safe }} {{ _('(optional)') }}
     {{ form.icon|safe }}
-  </p>
-  <p>
-  {{ _('PNG and JPG supported.  Image will be resized to 32x32.') }}
-  </p>
-</fieldset>
+    <p class="note">
+    {{ _('PNG and JPG supported.  Image will be resized to 32x32.') }}
+    </p>
+  </div>
+  </fieldset>
 
 
