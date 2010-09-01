@@ -3477,12 +3477,6 @@ background-position:left -303px;
     padding: 0 20px 0 0;
 }
 
-.html-rtl .share {
-    background-position: right -100px;
-    padding: 0 20px 0 0;
-    float: right;
-}
-
 .html-rtl .addons {
     background-position: right -200px;
     padding: 0 20px 7px 0;

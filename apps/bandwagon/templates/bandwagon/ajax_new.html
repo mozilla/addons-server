@@ -4,15 +4,13 @@
   <form>
     <fieldset>
       {{ field(form.name, _('Name:')) }}
+      {% set slug_base = url('collections.user', user.get_profile().username, add_prefix=False) %}
       <p id="collection-form-slug">
         {{ form.errors['slug']|safe }}
         <label>{{ form.slug.label|safe }}</label>
-        <span id="slug_edit">
-        {{ url('collections.user', user.get_profile().username)|absolutify -}}
-        {{ form.slug|safe }}
-        </span>
+        <span id="slug_edit"><span>{{ slug_base }}</span>{{ form.slug|safe }}</span>
         <span id="slug_readonly">
-          {{ url('collections.user', user.get_profile().username)|absolutify -}}<span id="slug_value"></span>
+          {{ slug_base }}<span id="slug_value"></span>
           <a id="edit_slug" href="#">{{ _('Edit') }}</a>
         </span>
       </p>

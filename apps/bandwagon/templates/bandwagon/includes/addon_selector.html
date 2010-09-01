@@ -39,7 +39,11 @@
             <textarea name="addon_comment">{{ comments[addon.id] }}</textarea>
           </p>
         </td>
-        <td>{{ addon.added }}</td>
+        {% if meta %}
+          <td>{{ meta[addon.id].created|datetime }}</td>
+        {% else %}
+          <td>{{ _('Pending') }}</td>
+        {% endif %}
         <td><a title="{{ _('Add a comment') }}" class="comment">{{ _('Comment') }}</a></td>
         <td class="remove"><a title="{{ _('Remove this add-on from the collection') }}" class="remove">{{ _('Remove') }}</a></td>
       </tr>

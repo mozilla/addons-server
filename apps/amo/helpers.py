@@ -42,7 +42,8 @@ def locale_url(url):
 @register.function
 def url(viewname, *args, **kwargs):
     """Helper for Django's ``reverse`` in templates."""
-    return urlresolvers.reverse(viewname, args=args, kwargs=kwargs)
+    add_prefix = kwargs.pop('add_prefix', True)
+    return urlresolvers.reverse(viewname, args=args, kwargs=kwargs, add_prefix=add_prefix)
 
 
 @register.filter

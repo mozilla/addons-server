@@ -47,14 +47,14 @@ def get_app_redirect(app):
 
 
 def reverse(viewname, urlconf=None, args=None, kwargs=None, prefix=None,
-            current_app=None):
+            current_app=None, add_prefix=True):
     """Wraps django's reverse to prepend the correct locale and app."""
     prefixer = get_url_prefix()
     # Blank out the script prefix since we add that in prefixer.fix().
     if prefixer:
         prefix = prefix or '/'
     url = django_reverse(viewname, urlconf, args, kwargs, prefix, current_app)
-    if prefixer:
+    if prefixer and add_prefix:
         return prefixer.fix(url)
     else:
         return url

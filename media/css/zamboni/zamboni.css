@@ -1051,7 +1051,7 @@ select:disabled {
 }
 
 .user-input textarea {
-    width: 98%;
+/*    width: 98%;*/
 }
 
 .user-input .instruct {
@@ -1187,7 +1187,7 @@ form .error .note.error {
 }
 
 #user-profile .trans {
-    width: 96%;
+    width: 100%;
 }
 
 .html-rtl #user-edit #acct-notify {
@@ -2496,10 +2496,6 @@ label > .optional {
 #id_slug:focus {
     outline: 0;
 }
-.collection-add-dropdown #id_slug {
-    text-align:right;
-    display:inline-block;
-}
 #slug_edit span {
     border: 1px solid #5875A0;
     border-right:0;
@@ -2532,6 +2528,8 @@ label > .optional {
 
 #ajax_collections_list {
     margin: 0 0 .5em 0;
+    max-height: 200px;
+    overflow: auto;
 }
 
 #ajax_new_collection {
@@ -2886,6 +2884,15 @@ a.outlink:hover {
 .collection_widgets.condensed .widget > a{
     padding-left: 16px;
 }
+
+.html-rtl .collection_widgets.condensed a.widget,
+.html-rtl .collection_widgets.condensed .widget > a{
+    padding-right: 16px;
+    padding-left: 0;
+    margin-right: 0;
+    margin-left: .8em;
+}
+
 .widgets.condensed a.widget > span,
 .widgets.condensed .widget > a > span {
     display: none;

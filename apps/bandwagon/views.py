@@ -352,6 +352,8 @@ def edit(request, collection, username, slug):
     else:
         form = forms.CollectionForm(instance=collection)
 
+    qs = CollectionAddon.objects.filter(collection=collection)
+    meta = dict((c.addon_id, c) for c in qs)
     addons = collection.addons.no_cache().all()
     comments = get_notes(collection, raw=True).next()
 
@@ -367,6 +369,7 @@ def edit(request, collection, username, slug):
                 user=request.amo_user,
                 username=username,
                 slug=slug,
+                meta=meta,
                 filter=get_filter(request),
                 is_admin=is_admin,
                 admin_form=admin_form,

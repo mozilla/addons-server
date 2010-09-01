@@ -417,7 +417,7 @@ $('#addon-select').click(function() {
             '<p class="comments">' +
             '<textarea name="addon_comment"></textarea>' +
             '</p></td>' +
-            '<td>Pending</td>' +
+            '<td>' + gettext('Pending') + '</td>' +
             '<td><a title="' + gettext('Add a comment') + '" class="comment">' + gettext('Comment') + '</a></td>' +
             '<td class="remove"><a title="' + gettext('Remove this add-on from the collection') + '" class="remove">' + gettext('Remove') + '</a></td>' +
             '</tr>'
@@ -639,6 +639,7 @@ $(document).ready(function () {
             .delegate('#collections-new form', 'submit', handleSubmit)
             .delegate('#ajax_new_collection', 'click', handleNew)
             .delegate('#collections-new-cancel', 'click', loadList)
+            .delegate('#id_name', 'keyup', slugify)
             .delegate('#id_name', 'blur', slugify)
             .delegate('#edit_slug', 'click', show_slug_edit)
             .delegate('#id_slug', 'change', function() {
