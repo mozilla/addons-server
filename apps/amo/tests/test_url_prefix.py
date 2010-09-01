@@ -72,6 +72,9 @@ class MiddlewareTest(test.TestCase):
         check('/en-US/', '/en-US/firefox/', 'Firefox')
         check('/de/', '/de/mobile/', 'Fennec')
 
+        # Mobile gets priority because it has both strings in its UA...
+        check('/de/', '/de/mobile/', 'Firefox Fennec')
+
     def test_get_lang(self):
         def check(url, expected):
             response = self.process(url)

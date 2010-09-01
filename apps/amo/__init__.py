@@ -222,6 +222,8 @@ class MOZILLA:
              ADDON_LPAPP, ADDON_PLUGIN]
     guid = '{86c18b42-e466-45a9-ae7a-9b95ba6f5640}'
 
+# UAs will attempt to match in this order
+APP_DETECT = (MOBILE, FIREFOX, THUNDERBIRD, SEAMONKEY, SUNBIRD)
 APP_USAGE = _apps = (FIREFOX, THUNDERBIRD, MOBILE, SEAMONKEY, SUNBIRD)
 APPS = dict((app.short, app) for app in _apps)
 APP_IDS = dict((app.id, app) for app in _apps)

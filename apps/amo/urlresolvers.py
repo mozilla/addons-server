@@ -100,14 +100,13 @@ class Prefixer(object):
         Return a valid application string using the User Agent to guess.  Falls
         back to settings.DEFAULT_APP.
         """
-        app = settings.DEFAULT_APP
         ua = self.request.META.get('HTTP_USER_AGENT')
         if ua:
-            for i in amo.APPS.values():
-                if i.user_agent_string in ua:
-                    app = i.short
+            for app in amo.APP_DETECT:
+                if app.user_agent_string in ua:
+                    return app.short
 
-        return app
+        return settings.DEFAULT_APP
 
     def get_language(self):
         """
