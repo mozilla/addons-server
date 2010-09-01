@@ -33,6 +33,7 @@ ajax_urls = patterns('',
 
 urlpatterns = patterns('',
     url('^collection/(?P<uuid>[^/]+)/?$', views.legacy_redirect),
+    url('^collections/view/(?P<uuid>[^/]+)/?$', views.legacy_redirect),
 
     url('^collections/$', views.collection_listing, name='collections.list'),
     url('^collections/(editors_picks|popular|mine|favorites)/?$',

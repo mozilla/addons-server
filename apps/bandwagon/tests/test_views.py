@@ -100,6 +100,8 @@ class TestViews(amo.test_utils.ExtraSetup, test_utils.TestCase):
             ('/collection/wut/', 301, url),
             ('/collection/f94d08c7-794d-3ce4-4634-99caa09f9ef4', 301, url),
             ('/collection/f94d08c7-794d-3ce4-4634-99caa09f9ef4/', 301, url),
+            ('/collections/view/f94d08c7-794d-3ce4-4634-99caa09f9ef4', 301, url),
+            ('/collections/view/wut/', 301, url),
             ('/collection/404', 404)]
         for test in tests:
             self.check_response(*test)
