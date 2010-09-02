@@ -170,18 +170,19 @@ class CollectionForm(ModelForm):
                       (settings.MAX_ICON_UPLOAD_SIZE / 1024 / 1024 - 1)))
         return icon
 
-    def save(self, commit=True):
+    def save(self, default_locale=None):
         c = super(CollectionForm, self).save(commit=False)
         c.author = self.initial['author']
         c.application_id = self.initial['application_id']
         icon = self.cleaned_data.get('icon')
 
+        if default_locale:
+            c.default_locale = default_locale
+
+        c.save()
+
         if icon:
             c.icontype = 'image/png'
-
-        if commit:
-            c.save()
-        if icon:
             dirname = os.path.join(settings.COLLECTIONS_ICON_PATH,
                                    str(c.id / 1000), )
 

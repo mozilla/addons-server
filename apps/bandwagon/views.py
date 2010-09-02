@@ -236,8 +236,7 @@ def add(request):
                 initial=initial_data_from_request(request))
         aform = forms.AddonsForm(request.POST)
         if form.is_valid():
-            collection = form.save(commit=False)
-            collection.default_locale = request.LANG
+            collection = form.save(default_locale=request.LANG)
             collection.save()
             if aform.is_valid():
                 aform.save(collection)
