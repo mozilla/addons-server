@@ -1,11 +1,11 @@
 from django import http
-from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect
 
 import commonware.log
 import jingo
 from tower import ugettext as _
 
+from amo import messages
 import amo.utils
 from amo.decorators import post_required, json_view, login_required
 from access import acl

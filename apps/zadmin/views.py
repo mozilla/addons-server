@@ -4,7 +4,6 @@ from django import http
 # I'm so glad we named a function in here settings...
 from django.conf import settings as site_settings
 from django.contrib import admin
-from django.contrib import messages
 from django.shortcuts import redirect
 from django.views import debug
 
@@ -14,6 +13,7 @@ from hera.contrib.django_utils import get_hera, flush_urls
 import jinja2
 import jingo
 
+from amo import messages
 import amo.models
 from addons.models import Addon
 from files.models import Approval

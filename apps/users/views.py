@@ -3,7 +3,6 @@ from django.conf import settings
 from django.core.mail import send_mail
 from django.shortcuts import get_object_or_404
 from django.contrib import auth
-from django.contrib import messages
 from django.template import Context, loader
 
 import commonware.log
@@ -12,6 +11,7 @@ from tower import ugettext as _
 
 
 import amo
+from amo import messages
 from amo.decorators import login_required, json_view
 from amo.urlresolvers import reverse
 from access import acl

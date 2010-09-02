@@ -2,7 +2,6 @@ import functools
 
 from django import http
 from django.db.models import Q
-from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect
 
 import commonware.log
@@ -10,6 +9,7 @@ import jingo
 import caching.base as caching
 from tower import ugettext_lazy as _lazy, ugettext as _
 
+from amo import messages
 import amo.utils
 import sharing.views
 from amo.decorators import login_required, post_required, json_view
