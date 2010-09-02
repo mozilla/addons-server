@@ -490,10 +490,12 @@ function makeBlurHideCallback(el) {
     var hider = function(e) {
         _root = el.get(0);
         // Bail if the click was somewhere on the popup.
-        if (e && e.type == 'click' &&
-            _root == e.target ||
-            _.indexOf($(e.target).parents(), _root) != -1) {
-            return;
+        if (e) {
+            if (e.type == 'click' &&
+                _root == e.target ||
+                _.indexOf($(e.target).parents(), _root) != -1) {
+                return;
+            }
         }
         el.hide();
         el.unbind();
