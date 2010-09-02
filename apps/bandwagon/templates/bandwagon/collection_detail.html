@@ -6,6 +6,11 @@
 
 {% block bodyclass %}inverse{% endblock %}
 
+{% block rss_feed %}
+<link rel="alternate" type="application/rss+xml" title="RSS"
+      href="{{ url('collections.detail.rss', c.author_username, c.slug) }}">
+{% endblock %}
+
 {% block content %}
   {% with crumbs = [(url('collections.list'), _('Collections')), (None, c.name)] %}
     {% if c.author %}

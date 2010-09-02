@@ -96,7 +96,7 @@ class TestViews(amo.test_utils.ExtraSetup, test_utils.TestCase):
         collection = Collection.objects.get(nickname='wut')
         url = collection.get_url_path()
         tests = [
-            ('/collection/wut', 301, url),
+            ('/collection/wut?x=y', 301, url + '?x=y'),
             ('/collection/wut/', 301, url),
             ('/collection/f94d08c7-794d-3ce4-4634-99caa09f9ef4', 301, url),
             ('/collection/f94d08c7-794d-3ce4-4634-99caa09f9ef4/', 301, url),
@@ -736,3 +736,21 @@ class TestSharing(test_utils.TestCase):
         eq_(r.status_code, 404)
         r = self.client.get(url + '?service=xxx')
         eq_(r.status_code, 404)
+
+
+class TestFeeds(test_utils.TestCase):
+    fixtures = ['base/collection_57181']
+
+    def setUp(self):
+        self.collection = c = Collection.objects.get(id=57181)
+        self.feed_url = reverse('collections.detail.rss',
+                                args=[c.author.username, c.slug])
+
+    def test_collection_feed(self):
+        eq_(self.client.get(self.feed_url).status_code, 200)
+
+    def test_feed_redirect(self):
+        r = self.client.get(self.collection.get_url_path() + '?format=rss')
+        eq_(r.status_code, 301)
+        loc = r['Location']
+        assert loc.endswith(self.feed_url), loc

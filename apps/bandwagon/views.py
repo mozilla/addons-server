@@ -55,7 +55,7 @@ def legacy_redirect(request, uuid):
     # Nicknames have a limit of 30, so len == 36 implies a uuid.
     key = 'uuid' if len(uuid) == 36 else 'nickname'
     c = get_object_or_404(Collection.objects, **{key: uuid})
-    return redirect(c.get_url_path())
+    return redirect(c.get_url_path() + '?' + request.GET.urlencode())
 
 
 def legacy_directory_redirects(request, page):
@@ -151,6 +151,10 @@ def collection_detail(request, username, slug):
     c = get_collection(request, username, slug)
     if not (c.listed or acl.check_collection_ownership(request, c)):
         return http.HttpResponseForbidden()
+
+    if request.GET.get('format') == 'rss':
+        return redirect(c.feed_url(), permanent=True)
+
     base = Addon.objects.valid() & c.addons.all()
     filter = CollectionAddonFilter(request, base,
                                    key='sort', default='popular')
