@@ -84,6 +84,12 @@ class UserProfile(amo.models.ModelBase):
     resetcode_expires = models.DateTimeField(default=datetime.now, null=True,
                                              blank=True)
     sandboxshown = models.BooleanField(default=False)
+    last_login_ip = models.CharField(default='', max_length=45, editable=False)
+    last_login_attempt = models.DateTimeField(null=True, editable=False)
+    last_login_attempt_ip = models.CharField(default='', max_length=45,
+                                             editable=False)
+    failed_login_attempts = models.PositiveIntegerField(default=0,
+                                                        editable=False)
 
     user = models.ForeignKey(DjangoUser, null=True, editable=False, blank=True)
 
@@ -206,6 +212,22 @@ class UserProfile(amo.models.ModelBase):
         c = {'domain': domain, 'url': url, }
         send_mail(_("Please confirm your email address"),
                   t.render(Context(c)), None, [self.email])
+
+    def log_login_attempt(self, request, successful):
+        """Log a user's login attempt"""
+        self.last_login_attempt = datetime.now()
+        self.last_login_attempt_ip = request.META['REMOTE_ADDR']
+
+        if successful:
+            log.debug(u"User (%s) logged in successfully" % self)
+            self.failed_login_attempts = 0
+            self.last_login_ip = request.META['REMOTE_ADDR']
+        else:
+            log.debug(u"User (%s) failed to log in" % self)
+            if self.failed_login_attempts < 16777216:
+                self.failed_login_attempts += 1
+
+        self.save()
 
     def create_django_user(self):
         """Make a django.contrib.auth.User for this UserProfile."""
