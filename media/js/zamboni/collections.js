@@ -759,6 +759,8 @@ $(document).ready(function () {
                         e.preventDefault();
                         var form_data = $(this).serialize();
                         $.post(base_url + 'email', form_data, function(d) {
+                            // I know what this looks like, but I can't debug this locally.
+                            console.log(d);
                             if (d.success) {
                                 $(".share-email-success", $popup).show();
                                 setTimeout(function() {

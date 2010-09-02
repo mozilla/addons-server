@@ -1,13 +1,15 @@
-{% if obj.listed %}
-  {% if obj.__class__.__name__ == 'Addon' %}
-    {% set sharemsg = _('Share this Add-on') %}
-  {% elif obj.__class__.__name__ == 'Collection' %}
-    {% set sharemsg = _('Share this Collection') %}
-  {% endif %}
-  <div class="share widget"
-       data-share-counts="{{ counts|json }}"
-       data-base-url="{{ obj.share_url() }}?service=">
-    <a title="{{ sharemsg if condensed }}" class="share" href="#"><span>{{ sharemsg }}</span></a>
+{% if obj.__class__.__name__ == 'Addon' %}
+  {% set sharemsg = _('Share this Add-on') %}
+  {% set listed = True %}
+{% elif obj.__class__.__name__ == 'Collection' %}
+  {% set sharemsg = _('Share this Collection') %}
+  {% set listed = obj.listed %}
+{% endif %}
+{% if listed %}
+<div class="share widget"
+     data-share-counts="{{ counts|json }}"
+     data-base-url="{{ obj.share_url() }}?service=">
+  <a title="{{ sharemsg if condensed }}" class="share" href="#"><span>{{ sharemsg }}</span></a>
   <div class="share-me popup-shim{{ ' left' if condensed }}{{ ' no-email' if not show_email }}"></div>
-  </div>
+</div>
 {% endif %}
