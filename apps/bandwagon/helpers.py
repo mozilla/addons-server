@@ -18,9 +18,9 @@ def collection_listing_items(context, collections, show_weekly=False):
 
 
 @register.function
-def user_collection_list(collections=[], heading=''):
+def user_collection_list(collections=[], heading='', link=None):
     """list of collections, as used on the user profile page"""
-    c = {'collections': collections, 'heading': heading}
+    c = {'collections': collections, 'heading': heading, 'link': link}
     t = env.get_template('bandwagon/users/collection_list.html').render(**c)
     return jinja2.Markup(t)
 

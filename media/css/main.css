@@ -2675,6 +2675,10 @@ ol.pagination li a:active {
     display: block;
     line-height: 1.25;
 }
+
+.secondary-item-list.n h4 a {
+    color: inherit;
+}
 /* @end */
 
 /* @group Breadcrumbs */

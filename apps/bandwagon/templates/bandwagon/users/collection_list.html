@@ -1,5 +1,9 @@
 {% if collections: %}
-<h4>{{ heading }}</h4>
+{% if link %}
+  <h4><a href="{{ link }}">{{ heading }}</a></h4>
+{% else %}
+  <h4>{{ heading }}</h4>
+{% endif %}
 <ul>
   {% for collection in collections: %}
     <li>

@@ -296,16 +296,14 @@ def profile(request, user_id):
 
     # get user's own and favorite collections, if they allowed that
     if user.display_collections:
-        own_coll = Collection.objects.filter(
-            collectionuser__user=user,
-            collectionuser__role=amo.COLLECTION_ROLE_ADMIN,
-            listed=True).order_by('name')
+        own_coll = (Collection.objects.listed().filter(author=user)
+                    .order_by('-created'))[:10]
     else:
         own_coll = []
     if user.display_collections_fav:
-        fav_coll = Collection.objects.filter(
-            following__user=user,
-            listed=True).order_by('name')
+        fav_coll = (Collection.objects.listed()
+                    .filter(following__user=user)
+                    .order_by('-following__created'))[:10]
     else:
         fav_coll = []
 

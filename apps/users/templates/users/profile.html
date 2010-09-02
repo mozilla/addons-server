@@ -85,10 +85,10 @@
 {% if own_coll or fav_coll %}
   <div class="secondary" role="complementary">
     <h3>{{ _('My Collections') }}</h3>
-    <div class="secondary-item-list">
+    <div class="secondary-item-list n">
       {{ user_collection_list(heading=_('Favorites'), collections=fav_coll) }}
-      {{ user_collection_list(heading=_('Created by Me'),
-                              collections=own_coll) }}
+      {{ user_collection_list(heading=_('Created by Me'), collections=own_coll,
+                              link=url('collections.user', profile.username)) }}
     </div>
   </div>{# secondary #}
 {% endif %}
