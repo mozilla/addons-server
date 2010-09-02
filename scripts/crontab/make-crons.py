@@ -5,19 +5,19 @@ from string import Template
 CRONS = {}
 
 COMMON = {
-    'PYTHON_CRON': '/data/virtualenvs/zamboni/bin/python manage.py cron',
+    'MANAGE': '/data/virtualenvs/zamboni/bin/python manage.py',
 }
 
 CRONS['preview'] = {
     'ZAMBONI': '/data/amo_python/src/preview/zamboni',
     'REMORA': 'cd /data/amo/www/addons.mozilla.org-preview/bin',
-    'Z_CRON': 'cd $ZAMBONI; $PYTHON_CRON',
+    'Z_CRON': 'cd $ZAMBONI; $MANAGE cron',
 }
 
 CRONS['prod'] = {
     'ZAMBONI': '/data/amo_python/src/prod/zamboni',
     'REMORA': 'apache cd /data/amo/www/addons.mozilla.org-remora/bin',
-    'Z_CRON': 'apache cd $ZAMBONI; $PYTHON_CRON',
+    'Z_CRON': 'apache cd $ZAMBONI; $MANAGE cron',
 }
 
 # Update each dict with the values from common.
@@ -71,6 +71,7 @@ HOME = /tmp
 #once per day
 30 1 * * * $Z_CRON update_user_ratings
 30 2 * * * $Z_CRON addon_reviews_ratings
+30 3 * * * $MANAGE cleanup
 30 4 * * * $REMORA; php -f maintenance.php gc
 30 5 * * * $REMORA; php -f maintenance.php expired_resetcode
 30 6 * * * $REMORA; php -f maintenance.php category_totals
