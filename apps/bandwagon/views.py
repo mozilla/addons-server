@@ -495,7 +495,7 @@ def share(request, username, slug):
 @login_required
 def following(request):
     user = request.amo_user
-    qs = (Collection.objects.listed().filter(following__user=request.amo_user)
+    qs = (Collection.objects.filter(following__user=request.amo_user)
           .order_by('-following__created'))
     collections = amo.utils.paginate(request, qs)
     votes = get_votes(request, collections.object_list)
