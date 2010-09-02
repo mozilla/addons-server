@@ -11,9 +11,11 @@ from amo.urlresolvers import reverse
 
 @register.inclusion_tag('bandwagon/collection_listing_items.html')
 @jinja2.contextfunction
-def collection_listing_items(context, collections, show_weekly=False):
+def collection_listing_items(context, collections, show_weekly=False,
+                            show_date=None):
     c = dict(context.items())
-    c.update(collections=collections, show_weekly=show_weekly)
+    c.update(collections=collections, show_weekly=show_weekly,
+             show_date=show_date)
     return c
 
 

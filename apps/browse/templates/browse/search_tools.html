@@ -41,7 +41,7 @@
       {{ addon_listing_header(url('browse.search-tools', category.slug),
                               filter.opts, filter.field, unreviewed) }}
       {{ addon_listing_items(addons.object_list, src='category',
-                             show_added_date=(filter.field=='created')) }}
+                             show_date=filter.field) }}
       <div class="listing-footer">
         {{ addons|paginator }}
       </div>

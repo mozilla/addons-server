@@ -43,7 +43,8 @@
                             show_unreviewed=False) }}
     <div class="featured-inner">
       {{ collection_listing_items(collections.object_list,
-                                  show_weekly=filter.field == 'popular') }}
+                                  show_weekly=filter.field == 'popular',
+                                  show_date=filter.field) }}
     </div>
     {% if collections.has_other_pages() %}
       <div class="listing-footer">{{ collections|paginator }}</div>

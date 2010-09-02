@@ -20,10 +20,12 @@
           {% endtrans %}
         {% endif %}
       </li>
-      <li class="modified">
-        {# L10n: {0} is a date. #}
-        {{ _('Updated {0}')|f(c.modified|datetime) }}
-      </li>
+      {% if show_date == 'created' %}
+        <li class="modified">
+          {# L10n: {0} is a date. #}
+          {{ _('Added {0}')|f(c.created|datetime) }}
+        </li>
+      {% endif %}
     </ul>
     {{ collection_widgets(c, condensed=True) }}
   </div>

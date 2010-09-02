@@ -18,7 +18,7 @@
   </h3>
 {% endmacro %}
 
-{% macro item_info(addon, amo, show_added_date) %}
+{% macro item_info(addon, amo, show_date) %}
   {{ addon|reviews_link }}
   {% if addon.status != amo.STATUS_LISTED %}
     <p class="downloads">
@@ -30,9 +30,9 @@
       {% endwith %}
     </p>
     <p class="updated">
-      {% if show_added_date %}
+      {% if show_date in ['created', 'new', 'newest'] %}
       {{ _('Added {0}')|f(addon.created|datetime) }}
-      {% else %}
+      {% elif show_date == 'updated' %}
       {{ _('Updated {0}')|f(addon.last_updated|datetime) }}
       {% endif %}
     </p>
