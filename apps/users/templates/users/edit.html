@@ -10,7 +10,7 @@
 {% block content %}
 <div class="primary" role="main">
   {% include "messages.html" %}
-  <h1>{{ _('Account Settings') }}</h1>
+  <h2>{{ _('Account Settings') }}</h2>
   <form method="post" action="" class="user-input"
         enctype="multipart/form-data">
     {{ csrf() }}
@@ -163,7 +163,7 @@
           <li>
             <label for="id_display_collections_fav" class="check">
               {{ form.display_collections_fav|safe }}
-              {{ _('Display my favorite collections') }}
+              {{ _('Display collections I&quot;m following') }}
             </label>
             {{ form.display_collections_fav.errors|safe }}
           </li>

@@ -1188,6 +1188,7 @@ form .error .note.error {
 
 #user-profile .trans {
     width: 100%;
+    -moz-box-sizing: border-box;
 }
 
 .html-rtl #user-edit #acct-notify {
