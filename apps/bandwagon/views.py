@@ -206,15 +206,19 @@ def collection_vote(request, username, slug, direction):
         return redirect(c.get_url_path())
 
     vote = {'up': 1, 'down': -1}[direction]
-    cv, new = CollectionVote.objects.get_or_create(
-        collection=c, user=request.amo_user, defaults={'vote': vote})
+    qs = (CollectionVote.objects.using('default')
+          .filter(collection=c, user=request.amo_user))
 
-    if not new:
-        if cv.vote == vote:  # Double vote => cancel.
+    if qs:
+        cv = qs[0]
+        if vote == cv.vote:  # Double vote => cancel.
             cv.delete()
         else:
             cv.vote = vote
-            cv.save()
+            cv.save(force_update=True)
+    else:
+        CollectionVote.objects.create(collection=c, user=request.amo_user,
+                                      vote=vote)
 
     if request.is_ajax():
         return http.HttpResponse()
