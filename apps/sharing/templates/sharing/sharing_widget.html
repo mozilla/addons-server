@@ -6,10 +6,11 @@
   {% set listed = obj.listed %}
 {% endif %}
 {% if listed %}
+{% set email_class = ' no-email' if not (show_email and request.user.is_authenticated()) %}
 <div class="share widget"
      data-share-counts="{{ counts|json }}"
      data-base-url="{{ obj.share_url() }}?service=">
   <a title="{{ sharemsg if condensed }}" class="share" href="#"><span>{{ sharemsg }}</span></a>
-  <div class="share-me popup-shim{{ ' left' if condensed }}{{ ' no-email' if not show_email }}"></div>
+  <div class="share-me popup-shim{{ ' left' if condensed }}{{ email_class }}"></div>
 </div>
 {% endif %}
