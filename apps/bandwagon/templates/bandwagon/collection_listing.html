@@ -57,10 +57,12 @@
   <div>
     <h3>{{ _('Add-on Collector') }}</h3>
     <p>{% trans app=request.APP.pretty %}
-      Get updates on watched collections or manage your own collections directly
+      <img id="addon-collector-logo" src="{{ MEDIA_URL }}img/amo2009/illustrations/logo-collections-download-146x159.png"
+           width="146" height="159">
+      Get updates on followed collections or manage your own collections directly
       from {{ app }} with this add-on.
     {% endtrans %}</p>
-    <a href="{{ remora_url('/pages/collector') }}" class="more-info">
+    <a href="{{ remora_url('/pages/collector') }}" class="more-info n">
       {{ _('Check out Add-on Collector') }}</a>
   </div>
 </div>

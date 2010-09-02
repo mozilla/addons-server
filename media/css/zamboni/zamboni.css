@@ -2875,6 +2875,12 @@ a.outlink:hover {
     margin-right: .8em;
     text-indent: -9000px;
 }
+#addon-collector-logo {
+    float: right;
+}
+.html-rtl #addon-collector-logo {
+    float: left;
+}
 .collection_widgets div.widget {
     display: inline-block;
 }
