@@ -2,7 +2,7 @@
   {% for message in messages %}
     <div class="notification-box {{ message.tags }}">
       {# The message is actually formatted inside of message_content.html #}
-      {{ message }}
+      {{ message|safe }}
     </div>
   {% endfor %}
 {% endif %}

@@ -1,6 +1,6 @@
     {% if title %}
-      <h2>{{ title }}</h2>
+      <h2>{{ title|safe }}</h2>
     {% endif %}
     {% if message %}
-      <p>{{ message }}</p>
+      <p>{{ message|safe }}</p>
     {% endif %}

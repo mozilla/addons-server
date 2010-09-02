@@ -244,10 +244,12 @@ def add(request):
             collection.save()
             if aform.is_valid():
                 aform.save(collection)
-            messages.success(request,
-                             _("""Collection created!
-                                  Your new collection is shown below."""),
-                             extra_tags='collection')
+
+            title = _("Collection created!")
+            msg = _(("""Your new collection is shown below. You can <a
+                        href="%(url)s">edit additional settings</a> if you'd
+                        like.""")) % {'url': collection.edit_url()}
+            messages.success(request, title, msg, extra_tags='collection')
             log.info('Created collection %s' % collection.id)
             return http.HttpResponseRedirect(collection.get_url_path())
         else:
@@ -350,6 +352,10 @@ def edit(request, collection, username, slug):
                                     instance=collection)
         if form.is_valid():
             collection = form.save()
+            title = _("Collection updated!")
+            msg = _(("""<a href="%(url)s">View your collection</a> to see the
+                        changes.""")) % {'url': collection.get_url_path()}
+            messages.success(request, title, msg, extra_tags='collection')
             log.info(u'%s edited collection %s' %
                      (request.amo_user, collection.id))
             return http.HttpResponseRedirect(collection.edit_url())
