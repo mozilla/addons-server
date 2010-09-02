@@ -1,3 +1,5 @@
+{% set text = faved_text if is_favorite else unfaved_text %}
+{% set title = _('Remove from favorites') if is_favorite else _('Add to favorites') %}
 <div class="addon-favorite {{ faved_class }}{{ ' condensed' if condensed else '' }}"
   data-addonid="{{ addon.id }}"
   data-addurl="{{ add_url }}"
@@ -6,20 +8,9 @@
   data-unfavedtext="{{ unfaved_text }}"
   >
   {% if condensed %}
-    <span class="msg">
-      {% if is_favorite %}
-        {{ faved_text }}
-      {% else %}
-        {{ unfaved_text }}
-      {% endif %}
-    </span>
+    <span class="msg" title="{{ title }}">{{ text }}</span>
   {% else %}
-    <span><a class="msg" href="#">
-      {% if is_favorite %}
-        {{ faved_text }}
-      {% else %}
-        {{ unfaved_text }}
-      {% endif %}
-    </a></span>
+    <span><a class="msg" href="#" title="{{ title }}">
+        {{ text }}</a></span>
   {% endif %}
 </div>

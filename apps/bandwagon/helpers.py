@@ -119,11 +119,11 @@ def collection_add_widget(context, addon, condensed=False):
 @register.function
 @jinja2.contextfunction
 def favorites_widget(context, addon, condensed=False):
-    """Displays 'Add to Favorites' widget"""
+    """Displays 'Add to Favorites' widget."""
     c = dict(context.items())
     request = c['request']
     if request.user.is_authenticated():
-        is_favorite = bool(addon.id in request.amo_user.favorite_addons)
+        is_favorite = addon.id in request.amo_user.favorite_addons
         faved_class = 'faved' if is_favorite else ''
 
         unfaved_text = '' if condensed else _('Add to favorites')

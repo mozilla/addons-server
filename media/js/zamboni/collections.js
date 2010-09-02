@@ -688,9 +688,11 @@ $(document).ready(function () {
                 if (faved) {
                     widget.removeClass("faved");
                     msg.text(widget.attr('data-unfavedtext'));
+                    msg.attr('title', gettext('Add to favorites'));
                 } else {
                     widget.addClass("faved");
                     msg.text(widget.attr('data-favedtext'));
+                    msg.attr('title', gettext('Remove from favorites'));
                 }
             },
             error: function(xhr) {

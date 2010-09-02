@@ -6,20 +6,18 @@
   data-addonid="{{ addon.id }}"
   >
   {% if condensed %}
-    <a href="#"><span></span></a>
+    <a href="#" title="{{ _('Add to collection') }}"><span></span></a>
   {% else %}
-    <span><a href="#">Add to collection</a></span>
+    <span><a href="#" title="{{ _('Add to collection') }}">
+      {{ _('Add to collection') }}</a></span>
   {% endif %}
   <div class="popup-shim">
     <div class="collection-add-dropdown popup{{ ' left' if condensed else '' }}">
       {% if user.is_anonymous() %}
         <div class="collection-add-login">
-          <p>
-            {% trans %}
-            To create your own collections, you must have an add-ons
-            account.
-            {% endtrans %}
-          </p>
+          <p>{% trans %}
+            To create your own collections, you must have an Mozilla Add-ons account.
+          {% endtrans %}</p>
           <p class="register-button">
             <a class="button" href="{{ remora_url('users/register') }}">{{ _('Create an Add-ons Account') }}</a>
           </p>

@@ -10,7 +10,7 @@
 <div class="share widget"
      data-share-counts="{{ counts|json }}"
      data-base-url="{{ obj.share_url() }}?service=">
-  <a title="{{ sharemsg if condensed }}" class="share" href="#"><span>{{ sharemsg }}</span></a>
+  <a title="{{ sharemsg }}" class="share" href="#"><span>{{ sharemsg }}</span></a>
   <div class="share-me popup-shim{{ ' left' if condensed }}{{ email_class }}"></div>
 </div>
 {% endif %}
