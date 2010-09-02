@@ -246,9 +246,9 @@ def add(request):
                 aform.save(collection)
 
             title = _("Collection created!")
-            msg = _(("""Your new collection is shown below. You can <a
-                        href="%(url)s">edit additional settings</a> if you'd
-                        like.""")) % {'url': collection.edit_url()}
+            msg = _("""Your new collection is shown below. You can <a
+                       href="%(url)s">edit additional settings</a> if you'd
+                       like.""") % {'url': collection.edit_url()}
             messages.success(request, title, msg, extra_tags='collection')
             log.info('Created collection %s' % collection.id)
             return http.HttpResponseRedirect(collection.get_url_path())
