@@ -217,7 +217,7 @@ class Client(object):
         self.sphinx = sphinx.SphinxClient()
         self.sphinx.SetServer(settings.SPHINX_HOST, settings.SPHINX_PORT)
 
-        self.weight_field = ('@weight + IF(addon_status=%d, 30, 0) + '
+        self.weight_field = ('@weight + IF(addon_status=%d, 3500, 0) + '
                              'IF(locale_ord=%d, 29, 0) + '
                              'sqrt(totaldownloads) * 0.4 '
                              'AS myweight ' %
