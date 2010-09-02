@@ -43,7 +43,7 @@ def sendmail(cxn):
         send_to_ids(chunk, published, publishers, cxn)
 
 
-SUBJECT = 'Upcoming changes to your collections'
+SUBJECT = 'New features and changes to your add-on collections'
 FROM = 'Mozilla Add-ons <nobody@mozilla.org>'
 counter = 0
 def send_to_ids(ids, published, publishers, cxn):
@@ -77,7 +77,7 @@ template = jingo.env.from_string(u"""\
 {% endmacro %}
 {% for collection in collections %}
 * {{ collection.name }}
-** Owner: {{ user(collection.author) }}{% for pub in publishers[collection.id] -%}** Publisher: {{ user(pub) }}{%- endfor %}
+** Owner: {{ user(collection.author) }}{% for pub in publishers[collection.id] -%}** Contributor: {{ user(pub) }}{%- endfor %}
 ** Current URL: {{ ('/collection/' + collection.url_slug)|absolutify }}
 ** New URL: {{ collection.get_url_path()|absolutify }}
 {% if not loop.last %}
@@ -90,14 +90,19 @@ template = jingo.env.from_string(u"""\
 blahblah = u"""\
 Dear collection owner,
 
-We're making some changes to the way add-on collections work that will affect
-how your collection is accessed and managed.
+We're excited to announce that a number of new features involving collections
+are now live on the Mozilla Add-ons website. You can read more about these
+changes on our blog:
+http://blog.mozilla.com/addons/2010/09/02/new-collection-features-have-arrived
 
-Collections will now primarily be associated with only one user. If your
-collection has multiple users with access, the first owner will remain and all
-other users will have access level reduced to Publisher.
+As part of these new features, we've made some changes to the way your
+collections work that will affect how it is accessed and managed.
 
-Collections will also get new URLs based on the single owner's nickname. Old
+Collections will now primarily be associated with only one user. If multiple
+people have access to manage your collection, only one owner will remain and
+all other users will have their access level reduced to Contributor.
+
+Collections will also get new URLs based on the single owner's username. Old
 URLs will still work for a while, but the new URLs should be used when linking
 to your collection.
 
@@ -105,27 +110,13 @@ The following is a list of your collections and who the owner will be after
 these changes take place, along with the new URL:
 
 %s
-We expect these changes to take place in the next few weeks. Please see our FAQ
-below if you have any questions.
+If you have any questions, please see our collection migration FAQ:
+http://blog.mozilla.com/addons/collections-faq/
 
 Thanks for creating a collection and sharing add-ons!
 
 The Mozilla Add-ons Team
 
 ---
-
-FAQ:
-How can I change who the new owner will be?
-If the owner listed above is not who should inherit the collection, the easiest
-way to change that is to demote everyone except the new owner to the role of
-publisher right now. When the new system takes effect, the single owner will
-remain owner.
-
-How can I change what my collection's URL will be?
-The collection URL is based on the owner's nickname and the collection's
-nickname. If either of those listed above should be something else, you can
-change them now.
-
-What if I have another question?
-You can ask for help in our forums: https://forums.addons.mozilla.org
+You are receiving this email because you manage a collection on addons.mozilla.org.
 """
