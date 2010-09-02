@@ -27,23 +27,28 @@ def migrate_collection_users():
     publishers."""
     # Don't touch the modified date.
     Collection._meta.get_field('modified').auto_now = False
-    collections = (Collection.objects.exclude(type=amo.COLLECTION_ANONYMOUS)
+    collections = (Collection.objects.no_cache().using('default')
+                   .exclude(type=amo.COLLECTION_ANONYMOUS)
                    .filter(author__isnull=True))
 
+    task_log.info('Fixing users for %s collections.' % len(collections))
     for collection in collections:
-        collectionusers = collection.collectionuser_set.all()
-        if collectionusers:
-            collection.author_id = collectionusers[0].user_id
+        users = (collection.collectionuser_set
+                 .filter(role=amo.COLLECTION_ROLE_ADMIN)
+                 .order_by('id'))
+        if users:
+            collection.author_id = users[0].user_id
             try:
                 collection.save()
-                collectionusers[0].delete()
+                users[0].delete()
             except:
                 task_log.warning("No author found for collection: %d"
                                % collection.id)
 
         else:
-            task_log.warning('No collectionusers found for Collection: %d' %
+            task_log.warning('No users for collection %s. DELETING' %
                              collection.id)
+            collection.delete()
 
     # TODO(davedash): We can just remove this from the model altogether.
     CollectionUser.objects.all().update(role=amo.COLLECTION_ROLE_PUBLISHER)
