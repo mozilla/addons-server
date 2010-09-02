@@ -256,7 +256,8 @@ def add(request):
             msg = _("""Your new collection is shown below. You can <a
                        href="%(url)s">edit additional settings</a> if you'd
                        like.""") % {'url': collection.edit_url()}
-            messages.success(request, title, msg, extra_tags='collection')
+            messages.success(request, title, msg, extra_tags='collection',
+                             message_safe=True)
             log.info('Created collection %s' % collection.id)
             return http.HttpResponseRedirect(collection.get_url_path())
         else:
@@ -367,7 +368,8 @@ def edit(request, collection, username, slug):
             title = _("Collection updated!")
             msg = _(("""<a href="%(url)s">View your collection</a> to see the
                         changes.""")) % {'url': collection.get_url_path()}
-            messages.success(request, title, msg, extra_tags='collection')
+            messages.success(request, title, msg, extra_tags='collection',
+                             message_safe=True)
             log.info(u'%s edited collection %s' %
                      (request.amo_user, collection.id))
             return http.HttpResponseRedirect(collection.edit_url())
