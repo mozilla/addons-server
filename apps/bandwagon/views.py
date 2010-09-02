@@ -1,4 +1,5 @@
 import functools
+import os
 
 from django import http
 from django.db.models import Q
@@ -22,7 +23,7 @@ from translations.query import order_by_translation
 from users.models import UserProfile
 from .models import (Collection, CollectionAddon, CollectionWatcher,
                      CollectionVote, SPECIAL_SLUGS)
-from . import forms
+from . import forms, tasks
 
 log = commonware.log.getLogger('z.collections')
 
@@ -477,6 +478,24 @@ def delete(request, username, slug):
 
 
 @write
+@login_required
+@owner_required
+@json_view
+def delete_icon(request, collection, username, slug):
+
+    log.debug(u"User deleted collection (%s) icon " % slug)
+    tasks.delete_icon(os.path.join(collection.get_img_dir(),
+                    '%d.png' % collection.id))
+
+    collection.icontype = ''
+    collection.save()
+
+    if request.is_ajax():
+        return {'icon': collection.icon_url}
+    else:
+        messages.success(request, _('Icon Deleted'))
+        return redirect(collection.edit_url())
+
 @login_required
 @post_required
 @json_view

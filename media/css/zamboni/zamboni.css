@@ -2527,17 +2527,33 @@ label > .optional {
     width: 100%;
 }
 
+#collection_listed {
+    margin-bottom: 1.5em;
+}
+
+#collection_listed ul label {
+    font-weight: normal;
+}
+
 #icon_upload {
-  overflow:auto;
-  padding-top:5px;
+  padding-top: 5px;
 }
 
 #icon_upload .icon_preview  {
-  -moz-border-radius:5px 5px 5px 5px;
-  border:1px solid #C1E0EA;
-  float:left;
-  margin-right:10px;
-  padding:8px;
+  float: left;
+  text-align: center;
+  margin-right: 10px;
+  line-height: 1em;
+}
+
+#icon_upload .icon_preview img {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border: 1px solid #C1E0EA;
+  padding: 8px;
+  width: 32px;
+  height: 32px;
+  display: block;
 }
 
 #ajax_collections_list {

@@ -1,4 +1,4 @@
-import collections
+import collections, os
 from datetime import datetime
 import hashlib
 import time
@@ -169,6 +169,9 @@ class Collection(amo.models.ModelBase):
         else:
             return '/collection/%s' % self.url_slug
 
+    def get_img_dir(self):
+        return os.path.join(settings.COLLECTIONS_ICON_PATH, str(self.id / 1000))
+
     def upvote_url(self):
         return reverse('collections.vote',
                        args=[self.author_username, self.slug, 'up'])
@@ -187,6 +190,10 @@ class Collection(amo.models.ModelBase):
 
     def delete_url(self):
         return reverse('collections.delete',
+                       args=[self.author_username, self.slug])
+
+    def delete_icon_url(self):
+        return reverse('collections.delete_icon',
                        args=[self.author_username, self.slug])
 
     def share_url(self):

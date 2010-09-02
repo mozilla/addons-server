@@ -498,6 +498,17 @@ if ($('body.collections-contributors')) {
     });
 }
 
+$(document).ready(function() {
+
+    $('#remove_icon').click(function(){
+      $.post($(this).attr('href'), {}, function(d){
+                    $('#icon_upload .icon_preview img').attr('src', d.icon);
+                  });
+      $(this).hide();
+      return false;
+    });
+
+});
 
 $(document).ready(function () {
 

@@ -2,6 +2,7 @@ import logging
 import math
 import os
 
+from django.conf import settings
 from django.db.models import Count
 
 from celeryutils import task
@@ -47,6 +48,20 @@ def resize_icon(src, dst):
         os.remove(src)
     except Exception, e:
         log.error("Error saving collection icon: %s" % e)
+
+@task
+def delete_icon(dst):
+    log.info('[1@None] Deleting icon: %s.' % dst)
+
+    if not dst.startswith(settings.COLLECTIONS_ICON_PATH):
+        log.error("Someone tried deleting something they shouldn't: %s"
+                       % dst)
+        return
+
+    try:
+        os.remove(dst)
+    except Exception, e:
+        log.error("Error deleting icon: %s" % e)
 
 
 @task

@@ -186,12 +186,13 @@ class CollectionForm(ModelForm):
         if default_locale:
             c.default_locale = default_locale
 
+        if icon:
+            c.icontype = 'image/png'
+
         c.save()
 
         if icon:
-            c.icontype = 'image/png'
-            dirname = os.path.join(settings.COLLECTIONS_ICON_PATH,
-                                   str(c.id / 1000), )
+            dirname = c.get_img_dir()
 
             destination = os.path.join(dirname, '%d.png' % c.id)
             tmp_destination = os.path.join(dirname,
@@ -207,6 +208,7 @@ class CollectionForm(ModelForm):
             fh.close()
             tasks.resize_icon.delay(tmp_destination, destination)
             c.save()
+
 
         return c
 
