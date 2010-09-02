@@ -523,10 +523,15 @@ $.fn.popup = function(click_target, opts) {
 
     $ct.click(function(e) {
         e.preventDefault();
+        var hider = makeBlurHideCallback($popup);
         setTimeout(function(){
-            $(document.body).bind('click popup', makeBlurHideCallback($popup));
+            $(document.body).bind('click popup', hider);
         }, 0);
-        var resp = callback ? (callback.apply($popup, [this, e])) : true;
+        var resp = callback ? (callback.call($popup, {
+                click_target: this,
+                evt: e,
+                hider: hider
+            })) : true;
         if (resp) {
             $ct.trigger("popup_show", [this, $popup, e]);
             if (resp.container || container)

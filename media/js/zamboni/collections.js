@@ -735,7 +735,8 @@ $(document).ready(function () {
     //New sharing interaction
     var $email = $("#sharing-popup li.email");
     $("#sharing-popup").popup(".share.widget a.share", {
-        callback: function(el) {
+        callback: function(obj) {
+            var el = obj.click_target;
             var $top = $(el).parents(".widgets");
             var $container = $(".share-me", $top);
             if ($(this).is(':visible') && $("#sharing-popup", $container).length ) {
@@ -769,12 +770,9 @@ $(document).ready(function () {
                                 setTimeout(function() {
                                     $(".share-networks", $popup).show();
                                     $(".share-email", $popup).hide();
-                                    $popup.hide();
-                                    $popup.undelegate();
-                                    $popup.die();
-                                    $popup.unbind();
                                     $(".emailerror", $popup).hide();
                                     $(".share-email-success", $popup).hide();
+                                    obj.hider();
                                 }, 800);
                             } else if (d.error) {
                                 $(".emailerror", $popup).text(d.error);
