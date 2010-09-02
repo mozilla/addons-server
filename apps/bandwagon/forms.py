@@ -136,6 +136,13 @@ class CollectionForm(ModelForm):
     icon = forms.FileField(label=_lazy('Icon'),
                            required=False)
 
+    def __init__(self, *args, **kw):
+        super(CollectionForm, self).__init__(*args, **kw)
+        # You can't edit the slugs for the special types.
+        if (self.instance and
+            self.instance.type in amo.COLLECTION_SPECIAL_SLUGS):
+            del self.fields['slug']
+
     def clean_description(self):
         description = self.cleaned_data['description']
         if description.strip() == '':

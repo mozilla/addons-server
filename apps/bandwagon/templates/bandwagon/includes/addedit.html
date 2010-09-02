@@ -5,8 +5,7 @@
 </div>
 <fieldset>
   {{ field(form.name, _('Name:'), class='long') }}
-  {% if not (collection and
-             collection.type in amo.COLLECTION_SPECIAL_SLUGS.keys()) %}
+  {% if form.slug %}
     <p id="collection-form-slug">
       {{ form.errors['slug']|safe }}
       <label>{{ form.slug.label|safe }}</label>

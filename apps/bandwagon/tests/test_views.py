@@ -403,6 +403,15 @@ class TestCRUD(test_utils.TestCase):
         r = self.client.get(url)
         eq_(r.status_code, 403)
 
+    def test_edit_favorites(self):
+        r = self.client.get(reverse('collections.list'))
+        fav = r.context['request'].amo_user.favorites_collection()
+        r = self.client.post(fav.edit_url(), {'name': 'xxx', 'listed': True})
+        eq_(r.status_code, 302)
+
+        c = Collection.objects.get(id=fav.id)
+        eq_(unicode(c.name), 'xxx')
+
     def test_edit_addons_get(self):
         self.create_collection()
         url = reverse('collections.edit_addons', args=['admin', self.slug])
