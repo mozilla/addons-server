@@ -591,6 +591,7 @@ $(document).ready(function () {
         form_data = $('#collections-new form').serialize();
         $.post(form_url + '?addon_id=' + addon_id, form_data, function(d) {
             dropdown.html(d);
+            $("a.outlink", dropdown).click(stopPropagation);
         });
     };
 
