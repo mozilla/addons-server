@@ -42,10 +42,8 @@
     {{ addon_listing_header(base_url, filter.opts, filter.field,
                             show_unreviewed=False) }}
     <div class="featured-inner">
-      {% cache collections.object_list %}
-        {{ collection_listing_items(collections.object_list,
-                                    show_weekly=filter.field == 'popular') }}
-      {% endcache %}
+      {{ collection_listing_items(collections.object_list,
+                                  show_weekly=filter.field == 'popular') }}
     </div>
     {% if collections.has_other_pages() %}
       <div class="listing-footer">{{ collections|paginator }}</div>

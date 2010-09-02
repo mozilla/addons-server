@@ -12,9 +12,7 @@
   </header>
   <div class="featured listing">
     <div class="featured-inner">
-      {% cache collections.object_list %}
-        {{ collection_listing_items(collections.object_list) }}
-      {% endcache %}
+      {{ collection_listing_items(collections.object_list) }}
     </div>
     {% if collections.has_other_pages() %}
       <div class="listing-footer">{{ collections|paginator }}</div>

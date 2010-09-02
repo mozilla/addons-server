@@ -11,7 +11,7 @@
             <span>{{ num }}</span> new followers
           {% endtrans %}
         {% else %}
-          {# L10n: People "watch" collections to get notified of updates.
+          {# L10n: People "follow" collections to get notified of updates.
                    Like Twitter followers. #}
           {% trans cnt=c.subscribers, num=c.subscribers|numberfmt %}
             <span>{{ num }}</span> follower
@@ -21,6 +21,7 @@
         {% endif %}
       </li>
       <li class="modified">
+        {# L10n: {0} is a date. #}
         {{ _('Updated {0}')|f(c.modified|datetime) }}
       </li>
     </ul>

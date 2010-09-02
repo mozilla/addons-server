@@ -26,9 +26,7 @@
   <div class="featured listing">
     <div class="featured-inner">
       {% if collections.object_list %}
-        {% cache collections.object_list %}
-          {{ collection_listing_items(collections.object_list) }}
-        {% endcache %}
+        {{ collection_listing_items(collections.object_list) }}
       {% else %}
         <p class="no-results">{{ _('No collections found.') }}</p>
       {% endif %}
