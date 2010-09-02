@@ -600,12 +600,12 @@ class CollectionsClient(Client):
 
     def query(self, term, limit=10, offset=0, **kwargs):
         sc = self.sphinx
-        sc.SetSelect("collection_id")
+        weight_field = ('@weight + IF(locale_ord=%d, 29, 0) AS myweight '
+                        % get_locale_ord())
 
+        sc.SetSelect('collection_id, %s' % weight_field)
         sc.SetLimits(min(offset, SPHINX_HARD_LIMIT - 1), limit)
         term = sanitize_query(term)
-
-        self.add_filter('locale_ord', get_locale_ord())
 
         sort_field = 'weekly_subscribers DESC'
 
