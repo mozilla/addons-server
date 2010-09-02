@@ -768,6 +768,9 @@ $(document).ready(function () {
                                     $(".share-networks", $popup).show();
                                     $(".share-email", $popup).hide();
                                     $popup.hide();
+                                    $popup.undelegate();
+                                    $popup.die();
+                                    $popup.unbind();
                                     $(".emailerror", $popup).hide();
                                     $(".share-email-success", $popup).hide();
                                 }, 800);
