@@ -206,6 +206,7 @@ class CollectionForm(ModelForm):
 
             fh.close()
             tasks.resize_icon.delay(tmp_destination, destination)
+            c.save()
 
         return c
 
