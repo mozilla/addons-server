@@ -29,6 +29,8 @@
           <input id="FriendEmails" type="text" value="" name="data[Friend][emails]"
                  placeholder="{{ email_service.placeholders|join(', ') }}"/>
         </p>
+        <p class="container emailerror error" style="display:none">
+        </p>
         <p class="container">
           <label for="FriendMessage">
             {# L10n: When recommending add-ons by email, users can specify a
@@ -37,8 +39,6 @@
             <span class="optional">{{ _('(optional)') }}</span>
           </label>
           <textarea id="FriendMessage" name="data[Friend][message]"></textarea>
-        </p>
-        <p class="container emailerror" style="display:none">
         </p>
         <p class="container buttons">
           <a href="#" class="close">{{ _('Cancel') }}</a>

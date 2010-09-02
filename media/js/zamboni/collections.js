@@ -746,33 +746,37 @@ $(document).ready(function () {
                 if (!$container.hasClass("no-email")) {
                     $email.appendTo($(".share-networks ul", this));
                     var $popup = $(this);
-                    $(".email a", $popup).click(function(e) {
+                    $popup.delegate(".email a", "click", function(e) {
                         e.preventDefault();
                         $(".share-email", $popup).show();
                         $(".share-networks", $popup).hide();
                     });
-                    $(".share-email a.close", $popup).click(function(e) {
+                    $popup.delegate(".share-email a.close", "click", function(e) {
                         e.preventDefault();
                         $(".share-networks", $popup).show();
                         $(".share-email", $popup).hide();
+                        $(".emailerror", $popup).hide();
                     });
-                    $(".share-email form", $popup).submit(function(e) {
+                    $popup.delegate(".share-email form", "submit", function(e) {
                         e.preventDefault();
                         var form_data = $(this).serialize();
                         $.post(base_url + 'email', form_data, function(d) {
                             // I know what this looks like, but I can't debug this locally.
-                            console.log(d);
                             if (d.success) {
                                 $(".share-email-success", $popup).show();
                                 setTimeout(function() {
                                     $(".share-networks", $popup).show();
                                     $(".share-email", $popup).hide();
                                     $popup.hide();
+                                    $(".emailerror", $popup).hide();
+                                    $(".share-email-success", $popup).hide();
                                 }, 800);
                             } else if (d.error) {
                                 $(".emailerror", $popup).text(d.error);
+                                $(".emailerror", $popup).show();
                             } else {
                                 $(".emailerror", $popup).text(gettext('Oh no! Please try again later.'));
+                                $(".emailerror", $popup).show();
                             }
                         }, 'json');
                     });
