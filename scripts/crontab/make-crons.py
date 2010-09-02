@@ -41,6 +41,7 @@ HOME = /tmp
 
 # Every minute!
 * * * * * $Z_CRON fast_current_version
+* * * * * $Z_CRON migrate_collection_users
 
 # Every 30 minutes.
 */30 * * * * $Z_CRON update_addons_current_version

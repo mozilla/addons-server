@@ -8,6 +8,7 @@ HOME = /tmp
 
 # Every minute!
 * * * * * apache cd /data/amo_python/src/prod/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron fast_current_version
+* * * * * apache cd /data/amo_python/src/prod/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron migrate_collection_users
 
 # Every 30 minutes.
 */30 * * * * apache cd /data/amo_python/src/prod/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron update_addons_current_version
