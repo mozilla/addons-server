@@ -771,7 +771,7 @@ $(document).ready(function () {
                             } else {
                                 $(".emailerror", $popup).text(gettext('Oh no! Please try again later.'));
                             }
-                        });
+                        }, 'json');
                     });
                 }
                 if (counts) {
