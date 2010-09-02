@@ -217,8 +217,10 @@ class Client(object):
         self.sphinx = sphinx.SphinxClient()
         self.sphinx.SetServer(settings.SPHINX_HOST, settings.SPHINX_PORT)
 
-        self.weight_field = ("@weight + IF(addon_status=%d, 30, 0) + "
-                             "IF(locale_ord=%d, 29, 0) AS weight" %
+        self.weight_field = ('@weight + IF(addon_status=%d, 3500, 0) + '
+                             'IF(locale_ord=%d, 29, 0) + '
+                             'sqrt(totaldownloads) * 0.4 '
+                             'AS myweight ' %
                              (amo.STATUS_PUBLIC, get_locale_ord()))
 
         # Store meta data about our queries:
@@ -234,8 +236,9 @@ class Client(object):
     def get_result_set(self, term, result, offset, limit):
         # Return results as a list of add-ons.
         addon_ids = [m['attrs']['addon_id'] for m in result['matches']]
+        log.debug([(m['attrs']['addon_id'], m['attrs'].get('myweight')) for m
+                   in result['matches']])
         addons = manual_order(Addon.objects.all(), addon_ids)
-
         return ResultSet(addons, min(self.total_found, SPHINX_HARD_LIMIT),
                          offset)
 
@@ -369,7 +372,7 @@ class Client(object):
         # Setup some default parameters for the search.
         fields = ("addon_id, app, category, %s" % self.weight_field)
 
-        sc.SetFieldWeights({'name': 4})
+        sc.SetFieldWeights({'name': 10})
 
         # Extract and apply various filters.
         (term, includes, excludes, ranges, metas) = extract_filters(
@@ -419,7 +422,7 @@ class Client(object):
         if version:
             self.restrict_version(version)
 
-        sort_field = 'weight DESC'
+        sort_field = 'myweight DESC'
 
         sort_choices = {
                 'newest': 'created DESC',
@@ -438,7 +441,7 @@ class Client(object):
                 raise SearchError("Invalid sort option given: %s" %
                                   kwargs.get('sort'))
 
-        sc.SetSortMode(sphinx.SPH_SORT_EXTENDED, sort_field)
+            sc.SetSortMode(sphinx.SPH_SORT_EXTENDED, sort_field)
 
         sc.SetGroupBy('addon_id', sphinx.SPH_GROUPBY_ATTR, sort_field)
 
@@ -597,12 +600,12 @@ class CollectionsClient(Client):
 
     def query(self, term, limit=10, offset=0, **kwargs):
         sc = self.sphinx
-        sc.SetSelect("collection_id")
+        weight_field = ('@weight + IF(locale_ord=%d, 29, 0) AS myweight '
+                        % get_locale_ord())
 
+        sc.SetSelect('collection_id, %s' % weight_field)
         sc.SetLimits(min(offset, SPHINX_HARD_LIMIT - 1), limit)
         term = sanitize_query(term)
-
-        self.add_filter('locale_ord', get_locale_ord())
 
         sort_field = 'weekly_subscribers DESC'
 
