@@ -175,6 +175,10 @@ class UserProfile(amo.models.ModelBase):
         if not self.resetcode_expires:
             self.resetcode_expires = datetime.now()
 
+        # TODO POSTREMORA (maintain remora's view of user names.)
+        if not self.firstname or self.lastname or self.nickname:
+            self.nickname = self.name
+
         delete_user = None
         if self.deleted and self.user:
             delete_user = self.user
