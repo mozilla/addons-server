@@ -2528,8 +2528,6 @@ label > .optional {
 
 #ajax_collections_list {
     margin: 0 0 .5em 0;
-    max-height: 200px;
-    overflow: auto;
 }
 
 #ajax_new_collection {
