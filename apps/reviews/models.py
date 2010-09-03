@@ -104,7 +104,8 @@ class Review(amo.models.ModelBase):
     def post_save(sender, instance, created, **kwargs):
         if created:
             Review.post_delete(sender, instance)
-            check_spam.delay(instance.id)
+            # Avoid slave lag with the delay.
+            check_spam.apply_async(args=[instance.id], countdown=60)
 
     @staticmethod
     def post_delete(sender, instance, **kwargs):
