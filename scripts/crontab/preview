@@ -31,7 +31,6 @@ HOME = /tmp
 
 #twice per day
 25 1,13 * * * cd /data/amo/www/addons.mozilla.org-preview/bin; /usr/bin/python26 import-personas.py
-25 2,14 * * * cd /data/amo/www/addons.mozilla.org-preview/bin; /usr/bin/python26 maintenance.py collections_ratings
 25 3,15 * * * cd /data/amo_python/src/preview/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron update_addons_collections_downloads
 25 4,16 * * * cd /data/amo_python/src/preview/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron update_collections_total
 

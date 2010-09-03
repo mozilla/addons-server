@@ -64,7 +64,6 @@ HOME = /tmp
 
 #twice per day
 25 1,13 * * * $REMORA; /usr/bin/python26 import-personas.py
-25 2,14 * * * $REMORA; /usr/bin/python26 maintenance.py collections_ratings
 25 3,15 * * * $Z_CRON update_addons_collections_downloads
 25 4,16 * * * $Z_CRON update_collections_total
 
