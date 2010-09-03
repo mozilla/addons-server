@@ -1,4 +1,5 @@
 import logging
+import math
 import os
 
 from django.db.models import Count
@@ -24,8 +25,13 @@ def collection_votes(*ids, **kw):
         v = CollectionVote.objects.filter(collection=collection).using(using)
         votes = dict(v.values_list('vote').annotate(Count('vote')))
         c = Collection.objects.get(id=collection)
-        c.upvotes = votes.get(1, 0)
-        c.downvotes = votes.get(-1, 0)
+        c.upvotes = up = votes.get(1, 0)
+        c.downvotes = down = votes.get(-1, 0)
+        try:
+            # Use log to limit the effect of the multiplier.
+            c.rating = (up - down) * math.log(up + down)
+        except ValueError:
+            c.rating = 0
         c.save()
 
 
