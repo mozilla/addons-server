@@ -183,7 +183,8 @@ class SecondarySearchForm(forms.Form):
     q = forms.CharField(widget=forms.HiddenInput, required=False)
     cat = forms.CharField(widget=forms.HiddenInput)
     pp = forms.CharField(widget=forms.HiddenInput, required=False)
-    sortby = forms.ChoiceField(label=_('Sort By'), choices=collection_sort_by,
+    sortby = forms.ChoiceField(label=_lazy('Sort By'),
+                               choices=collection_sort_by,
                                initial='weekly', required=False)
     page = forms.IntegerField(widget=forms.HiddenInput, required=False)
 
