@@ -19,8 +19,8 @@
     </p>
   {% endif %}
   <p>
-    <label for="id_description">{{ form.description.label|safe }}</label> {{ _('(optional)') }}
-    {{ form.description|safe }}
+  <label for="id_description">{{ form.description.label|safe }}</label>
+  {{ form.description|safe }}
   </p>
     {{ form.icon|safe }}
   <div id="collection_listed">
@@ -29,7 +29,10 @@
   </div>
 
   <div id="icon_form">
-    <label for="id_icon">{{ form.icon.label|safe }}</label> {{ _('(optional)') }}
+    <label for="id_icon">
+      {{ form.icon.label|safe }}
+      <span class="optional">{{ _('(optional)') }}</span>
+    </label>
     <div id="icon_upload">
       {% if collection %}
         <div class="icon_preview">

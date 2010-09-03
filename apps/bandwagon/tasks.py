@@ -54,8 +54,7 @@ def delete_icon(dst):
     log.info('[1@None] Deleting icon: %s.' % dst)
 
     if not dst.startswith(settings.COLLECTIONS_ICON_PATH):
-        log.error("Someone tried deleting something they shouldn't: %s"
-                       % dst)
+        log.error("Someone tried deleting something they shouldn't: %s" % dst)
         return
 
     try:

@@ -482,10 +482,9 @@ def delete(request, username, slug):
 @owner_required
 @json_view
 def delete_icon(request, collection, username, slug):
-
     log.debug(u"User deleted collection (%s) icon " % slug)
     tasks.delete_icon(os.path.join(collection.get_img_dir(),
-                    '%d.png' % collection.id))
+                                   '%d.png' % collection.id))
 
     collection.icontype = ''
     collection.save()
