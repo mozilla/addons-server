@@ -204,8 +204,11 @@ def spam(request):
     for reason in spam.reasons():
         ids = spam.redis.smembers(reason)
         key = reason.split(':')[-1]
-        buckets[key] = (Review.objects.no_cache().filter(id__in=ids)
-                        .select_related('addon'))
+        buckets[key] = Review.objects.no_cache().filter(id__in=ids)
+    reviews = dict((review.addon_id, review) for bucket in buckets.values()
+                                             for review in bucket)
+    for addon in Addon.objects.no_cache().filter(id__in=reviews):
+        reviews[addon.id].addon = addon
     return jingo.render(request, 'reviews/spam.html',
                         dict(buckets=buckets,
                              review_perms=dict(is_admin=True)))
