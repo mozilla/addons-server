@@ -12,7 +12,7 @@ from tower import ugettext_lazy as _lazy, ugettext as _
 from amo import messages
 import amo.utils
 import sharing.views
-from amo.decorators import login_required, post_required, json_view
+from amo.decorators import login_required, post_required, json_view, write
 from amo.urlresolvers import reverse
 from access import acl
 from addons.models import Addon
@@ -203,6 +203,7 @@ def get_notes(collection, raw=False):
     yield rv
 
 
+@write
 @login_required
 def collection_vote(request, username, slug, direction):
     c = get_collection(request, username, slug)
@@ -234,6 +235,7 @@ def initial_data_from_request(request):
     return dict(author=request.amo_user, application_id=request.APP.id)
 
 
+@write
 @login_required
 def add(request):
     "Displays/processes a form to create a collection."
@@ -266,6 +268,8 @@ def add(request):
     return render(request, 'bandwagon/add.html', data)
 
 
+@write
+@login_required
 def ajax_new(request):
     form = forms.CollectionForm(request.POST or None,
         initial={'author': request.amo_user,
@@ -305,6 +309,7 @@ def ajax_list(request):
                 {'collections': collections})
 
 
+@write
 @login_required
 @post_required
 def collection_alter(request, username, slug, action):
@@ -332,6 +337,7 @@ def change_addon(request, collection, action):
     return redirect(url)
 
 
+@write
 @login_required
 @post_required
 def ajax_collection_alter(request, action):
@@ -342,6 +348,7 @@ def ajax_collection_alter(request, action):
     return change_addon(request, c, action)
 
 
+@write
 @login_required
 @owner_required(require_owner=False)
 def edit(request, collection, username, slug):
@@ -393,6 +400,7 @@ def edit(request, collection, username, slug):
     return render(request, 'bandwagon/edit.html', data)
 
 
+@write
 @login_required
 @owner_required(require_owner=False)
 @post_required
@@ -407,6 +415,7 @@ def edit_addons(request, collection, username, slug):
     return http.HttpResponseRedirect(collection.edit_url() + '#addons-edit')
 
 
+@write
 @login_required
 @owner_required
 @post_required
@@ -429,6 +438,7 @@ def edit_contributors(request, collection, username, slug):
     return http.HttpResponseRedirect(collection.edit_url() + '#users-edit')
 
 
+@write
 @login_required
 @owner_required
 @post_required
@@ -440,6 +450,7 @@ def edit_privacy(request, collection, username, slug):
     return redirect(collection.get_url_path())
 
 
+@write
 @login_required
 def delete(request, username, slug):
     collection = get_object_or_404(Collection, author__username=username,
@@ -465,6 +476,7 @@ def delete(request, username, slug):
     return render(request, 'bandwagon/delete.html', data)
 
 
+@write
 @login_required
 @post_required
 @json_view

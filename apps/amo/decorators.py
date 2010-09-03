@@ -1,3 +1,4 @@
+import contextlib
 import functools
 import json
 
@@ -5,6 +6,7 @@ from django import http
 from django.contrib.auth import decorators as auth_decorators
 from django.utils.http import urlquote
 
+from .models import use_master, skip_cache
 from .urlresolvers import reverse
 
 
@@ -58,3 +60,11 @@ def json_view(f):
 
 json_view.error = lambda s: http.HttpResponseBadRequest(
     json.dumps(s), content_type='application/json')
+
+
+def write(f):
+    @functools.wraps(f)
+    def wrapper(*args, **kw):
+        with contextlib.nested(use_master(), skip_cache()):
+            return f(*args, **kw)
+    return wrapper

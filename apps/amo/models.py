@@ -1,12 +1,40 @@
+import contextlib
+import threading
+
 from django.db import models
 from django.utils import translation
 
-import queryset_transform
 
 import caching.base
+import multidb.pinning
+import queryset_transform
 from translations import transformer
 
 from . import signals
+
+
+_locals = threading.local()
+_locals.skip_cache = False
+
+
+@contextlib.contextmanager
+def use_master():
+    """Within this context, all queries go to the master."""
+    multidb.pinning.pin_this_thread()
+    try:
+        yield
+    finally:
+        multidb.pinning.unpin_this_thread()
+
+
+@contextlib.contextmanager
+def skip_cache():
+    """Within this context, no queries come from cache."""
+    _locals.skip_cache = True
+    try:
+        yield
+    finally:
+        _locals.skip_cache = False
 
 
 class TransformQuerySet(queryset_transform.TransformQuerySet):
@@ -57,7 +85,8 @@ CachingQuerySet.__bases__ = (TransformQuerySet,) + CachingQuerySet.__bases__
 class UncachedManagerBase(models.Manager):
 
     def get_query_set(self):
-        return self._with_translations(TransformQuerySet(self.model))
+        qs = self._with_translations(TransformQuerySet(self.model))
+        return qs
 
     def _with_translations(self, qs):
         # Since we're attaching translations to the object, we need to stick
@@ -88,6 +117,8 @@ class ManagerBase(caching.base.CachingManager, UncachedManagerBase):
 
     def get_query_set(self):
         qs = super(ManagerBase, self).get_query_set()
+        if getattr(_locals, 'skip_cache', False):
+            qs = qs.no_cache()
         return self._with_translations(qs)
 
     def raw(self, raw_query, params=None, *args, **kwargs):
