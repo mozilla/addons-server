@@ -17,7 +17,7 @@ class CollectionFeed(AddonFeedMixin, Feed):
     def title(self, c):
         app = page_name(self.request.APP)
         # L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
-        return _('{0} :: Collections :: {1}').format(c.name, app)
+        return _(u'{0} :: Collections :: {1}').format(c.name, app)
 
     def link(self, c):
         return absolutify(c.feed_url())
