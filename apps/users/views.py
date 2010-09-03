@@ -12,7 +12,7 @@ from tower import ugettext as _
 
 import amo
 from amo import messages
-from amo.decorators import login_required, json_view
+from amo.decorators import login_required, json_view, write
 from amo.urlresolvers import reverse
 from access import acl
 from bandwagon.models import Collection
@@ -117,6 +117,7 @@ def delete_photo(request):
     return jingo.render(request, 'users/delete_photo.html', dict(user=u))
 
 
+@write
 @login_required
 def edit(request):
     amouser = request.user.get_profile()
