@@ -30,11 +30,14 @@ class Command(BaseCommand):
         # Doing this directly because I don't want to load 800k user objects
             query = """SELECT id, firstname, lastname, nickname
                        FROM users
-                       WHERE modified > %s
-                       OR created > %s"""
+                       WHERE
+                       username IS NULL AND
+                       (modified > %s
+                       OR created > %s)"""
             cursor.execute(query, [date, date])
         else:
-            cursor.execute("SELECT id, firstname, lastname, nickname FROM users")
+            cursor.execute("""SELECT id, firstname, lastname, nickname FROM users
+                              WHERE username IS NULL""")
 
 
         data = cursor.fetchall()
