@@ -104,7 +104,7 @@ class Review(amo.models.ModelBase):
     def post_save(sender, instance, created, **kwargs):
         if created:
             Review.post_delete(sender, instance)
-            check_spam.delay(instance)
+            check_spam.delay(instance.id)
 
     @staticmethod
     def post_delete(sender, instance, **kwargs):
@@ -221,8 +221,9 @@ class Spam(object):
 
 
 @task
-def check_spam(review):
+def check_spam(review_id):
     spam = Spam()
+    review = Review.objects.using('default').get(id=review_id)
     thirty_days = datetime.now() - timedelta(days=30)
     others = (Review.objects.no_cache().exclude(id=review.id)
               .filter(user=review.user, created__gte=thirty_days))
