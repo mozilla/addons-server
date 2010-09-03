@@ -279,7 +279,7 @@ class Collection(amo.models.ModelBase):
                  .filter(collection=self.id, addon=addon))
             if c:
                 c[0].comments = comment
-                c[0].save()
+                c[0].save(force_update=True)
 
         self.save()
 

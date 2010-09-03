@@ -126,7 +126,7 @@ class TranslationDescriptor(related.ReverseSingleRelatedObjectDescriptor):
             elif to_language(trans.locale) == lang.lower():
                 # Replace the translation in the current language.
                 trans.localized_string = string
-                trans.save()
+                trans.save(force_update=True)
                 return trans
             else:
                 # We already have a translation in a different language.
