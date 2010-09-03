@@ -49,7 +49,8 @@ counter = 0
 def send_to_ids(ids, published, publishers, cxn):
     from bandwagon.models import Collection
     global counter
-    qs = Collection.uncached.select_related('user')
+    qs = (Collection.uncached.filter(created__lte='2010-09-02 16:00:00')
+          .select_related('user'))
     users = {}
     for c in qs.filter(author__in=ids):
         users.setdefault(c.author, []).append(c)
