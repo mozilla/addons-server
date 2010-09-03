@@ -152,7 +152,7 @@ class UserProfile(amo.models.ModelBase):
 
     def anonymize(self):
         log.info(u"User (%s: <%s>) is being anonymized." % (self, self.email))
-        self.email = ""
+        self.email = None
         self.password = "sha512$Anonymous$Password"
         self.firstname = ""
         self.lastname = ""
