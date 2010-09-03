@@ -366,7 +366,8 @@ def edit(request, collection, username, slug):
     else:
         form = forms.CollectionForm(instance=collection)
 
-    qs = CollectionAddon.objects.filter(collection=collection)
+    qs = (CollectionAddon.uncached.using('default')
+          .filter(collection=collection))
     meta = dict((c.addon_id, c) for c in qs)
     addons = collection.addons.no_cache().all()
     comments = get_notes(collection, raw=True).next()
