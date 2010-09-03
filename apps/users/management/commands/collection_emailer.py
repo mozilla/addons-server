@@ -93,7 +93,7 @@ Dear collection owner,
 We're excited to announce that a number of new features involving collections
 are now live on the Mozilla Add-ons website. You can read more about these
 changes on our blog:
-http://blog.mozilla.com/addons/2010/09/02/new-collection-features-have-arrived
+http://blog.mozilla.com/addons/2010/09/03/new-collection-features-have-arrived
 
 As part of these new features, we've made some changes to the way your
 collections work that will affect how it is accessed and managed.
