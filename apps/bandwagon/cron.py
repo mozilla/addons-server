@@ -34,7 +34,6 @@ def migrate_collection_users():
     task_log.info('Fixing users for %s collections.' % len(collections))
     for collection in collections:
         users = (collection.collectionuser_set
-                 .filter(role=amo.COLLECTION_ROLE_ADMIN)
                  .order_by('id'))
         if users:
             collection.author_id = users[0].user_id

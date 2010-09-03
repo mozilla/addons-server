@@ -99,8 +99,7 @@
 <div class="secondary collections-sidebar">
   <img alt="" width="100" height="125"
        src="{{ MEDIA_URL }}img/amo2009/illustrations/logo-collections-100x125.png">
-   {# TODO(jbalogh): reverse #}
-   <h3><a href="{{ remora_url('/collections') }}">{{ _('Collections', 'addons_home_collections') }}</a></h3>
+   <h3><a href="{{ url('collections.list') }}">{{ _('Collections', 'addons_home_collections') }}</a></h3>
    <p>
      {% trans %}
      Collections are groups of related add-ons that anyone can create and share.
