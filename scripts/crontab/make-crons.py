@@ -6,18 +6,19 @@ CRONS = {}
 
 COMMON = {
     'MANAGE': '/data/virtualenvs/zamboni/bin/python manage.py',
+    'Z_CRON': '$DJANGO cron',
 }
 
 CRONS['preview'] = {
     'ZAMBONI': '/data/amo_python/src/preview/zamboni',
     'REMORA': 'cd /data/amo/www/addons.mozilla.org-preview/bin',
-    'Z_CRON': 'cd $ZAMBONI; $MANAGE cron',
+    'DJANGO': 'cd $ZAMBONI; $MANAGE',
 }
 
 CRONS['prod'] = {
     'ZAMBONI': '/data/amo_python/src/prod/zamboni',
     'REMORA': 'apache cd /data/amo/www/addons.mozilla.org-remora/bin',
-    'Z_CRON': 'apache cd $ZAMBONI; $MANAGE cron',
+    'DJANGO': 'apache cd $ZAMBONI; $MANAGE',
 }
 
 # Update each dict with the values from common.
@@ -26,8 +27,15 @@ for key, dict_ in CRONS.items():
 
 # Do any interpolation inside the keys.
 for dict_ in CRONS.values():
-    for key, val in dict_.items():
-        dict_[key] = Template(val).substitute(dict_)
+    while 1:
+        changed = False
+        for key, val in dict_.items():
+            new = Template(val).substitute(dict_)
+            if new != val:
+                changed = True
+                dict_[key] = new
+        if not changed:
+            break
 
 
 cron = """\
@@ -70,7 +78,7 @@ HOME = /tmp
 #once per day
 30 1 * * * $Z_CRON update_user_ratings
 30 2 * * * $Z_CRON addon_reviews_ratings
-30 3 * * * $MANAGE cleanup
+30 3 * * * $DJANGO cleanup
 30 4 * * * $REMORA; php -f maintenance.php gc
 30 5 * * * $REMORA; php -f maintenance.php expired_resetcode
 30 6 * * * $REMORA; php -f maintenance.php category_totals
