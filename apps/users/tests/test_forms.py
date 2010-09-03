@@ -109,7 +109,7 @@ class TestUserDeleteForm(UserFormBase):
         # TODO XXX: Bug 593055
         #self.assertContains(r, "Profile Deleted")
         u = UserProfile.objects.get(id='4043307')
-        eq_(u.email, '')
+        eq_(u.email, None)
 
     @patch('users.models.UserProfile.is_developer')
     def test_developer_attempt(self, f):

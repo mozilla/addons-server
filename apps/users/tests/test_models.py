@@ -23,7 +23,7 @@ class TestUserProfile(amo.test_utils.ExtraSetup, test_utils.TestCase):
         eq_(u.email, 'jbalogh@mozilla.com')
         u.anonymize()
         x = UserProfile.objects.get(id='4043307')
-        eq_(x.email, "")
+        eq_(x.email, None)
 
     def test_delete(self):
         """Setting profile to delete should delete related User."""

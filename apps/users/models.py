@@ -58,7 +58,7 @@ class UserProfile(amo.models.ModelBase):
                                     blank=True)
 
     password = models.CharField(max_length=255, default='')
-    email = models.EmailField(unique=True)
+    email = models.EmailField(unique=True, null=True)
 
     averagerating = models.CharField(max_length=255, blank=True, null=True)
     bio = PurifiedField()
