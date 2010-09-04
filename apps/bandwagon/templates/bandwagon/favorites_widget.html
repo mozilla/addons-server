@@ -1,6 +1,6 @@
 {% set text = faved_text if is_favorite else unfaved_text %}
 {% set title = _('Remove from favorites') if is_favorite else _('Add to favorites') %}
-<div class="addon-favorite {{ faved_class }}{{ ' condensed' if condensed else '' }}"
+<div class="addon-favorite widget {{ faved_class }}{{ ' condensed tooltip' if condensed else '' }}"
   data-addonid="{{ addon.id }}"
   data-addurl="{{ add_url }}"
   data-removeurl="{{ remove_url }}"

@@ -705,6 +705,7 @@ $(document).ready(function () {
                     msg.text(widget.attr('data-favedtext'));
                     msg.attr('title', gettext('Remove from favorites'));
                 }
+                msg.trigger("tooltip_change");
             },
             error: function(xhr) {
                 widget.removeClass('ajax-loading');
@@ -731,8 +732,9 @@ $(document).ready(function () {
                 } else {
                     widget.removeClass("watching");
                 }
-                if (widget.attr("title")) {
+                if (widget.attr("title") || widget.attr("data-oldtitle")) {
                     widget.attr("title", follow_text);
+                    widget.trigger("tooltip_change");
                 } else {
                     widget.text(follow_text);
                 }

@@ -730,6 +730,43 @@ th, td {
     font-size: inherit;
 }
 
+/** hover tooltip styles **/
+#tooltip {
+    display:none;
+    background: #2e5186;
+    color: white;
+    font-size: .9em;
+    -moz-border-radius: .8em;
+    -webkit-border-radius: .8em;
+    max-width: 300px;
+    text-align: center;
+    position: absolute;
+    padding: .1em .8em .2em .8em;
+    pointer-events: none;
+}
+
+#tooltip span {
+    display: block;
+    line-height: 1.2em;
+    max-height: 3.8em;
+    overflow: hidden;
+}
+
+#tooltip:before {
+    content: "\00a0";
+    display: block; /* reduce the damage in FF3.0 */
+    position: absolute;
+    width: 0;
+    height: 0;
+    margin-left: -6px;
+    left: 50%;
+    bottom: -16px;
+    border: solid transparent;
+    border-width: 8px 6px;
+    border-top-color: #2e5186;
+    pointer-events: none;
+}
+
 /** =Search =Suggestions *********/
 .search-form .basic {
     overflow: visible;
@@ -2816,14 +2853,25 @@ td.input {
 .addon-favorite {
     cursor: pointer;
 }
+
 .addon-favorite span,
-.collection-add.condensed a span {
+.condensed .watch {
+    padding-left: 22px;
+}
+
+.addon-favorite span {
     background-repeat: no-repeat;
     background-image: url(../../img/zamboni/icons/collections.png);
     white-space: nowrap;
     background-position: 0 -500px;
-    padding-left: 22px;
 }
+
+.condensed .watch:not(.watching),
+.condensed .addon-favorite:not(.faved) span,
+.collection-add.condensed a span {
+    padding-left: 16px;
+}
+
 .addon-favorite span.msg {
     font-weight: bold;
 }
@@ -2902,7 +2950,6 @@ a.outlink:hover {
     background-image: url(../../img/zamboni/icons/collections.png);
     background-repeat: no-repeat;
     padding-left: 22px;
-    margin-right: .8em;
     text-indent: -9000px;
 }
 #addon-collector-logo {
@@ -2916,7 +2963,8 @@ a.outlink:hover {
 }
 .collection_widgets.condensed a.widget,
 .collection_widgets.condensed .widget > a{
-    padding-left: 16px;
+    padding: 0 0 0 16px;
+    width: 0px;
 }
 
 .html-rtl .collection_widgets.condensed a.widget,
@@ -2925,6 +2973,10 @@ a.outlink:hover {
     padding-left: 0;
     margin-right: 0;
     margin-left: .8em;
+}
+
+.widgets .widget {
+    margin-right: 8px;
 }
 
 .widgets.condensed a.widget > span,
@@ -2940,6 +2992,8 @@ a.outlink:hover {
 .widgets a.copy:hover { background-position: 0 0px; }
 .widgets a.watch { background-position: 0 -750px; }
 .widgets a.watch:hover { background-position: 0 -700px;}
+.widgets a.collection { background-position: 0 -150px; }
+.widgets a.collection:hover { background-position: 0 -100px;}
 .widgets a.watching { background-position: 0 -650px; }
 .widgets.condensed a.share { background-position: 0 -600px; }
 .widgets a.share, .widgets.condensed a.share:hover { background-position: 0 -550px; }

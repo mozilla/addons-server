@@ -342,6 +342,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/tabs.js',
 
             'js/jquery.cookie.js',
+            'js/zamboni/global.js',
             'js/amo2009/global.js',
             'js/jquery-ui/jqModal.js',
             'js/amo2009/home.js',

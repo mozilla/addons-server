@@ -546,6 +546,7 @@ $.fn.popup = function(click_target, opts) {
     return this;
 };
 
+
 /* Initialization things that get run on every page. */
 
 $(".hidden").hide(); // hide anything that should be hidden

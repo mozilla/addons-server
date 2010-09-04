@@ -1,4 +1,4 @@
-<div class="collection-add{{ ' condensed' if condensed else '' }}"
+<div class="collection-add widget collection{{ ' condensed tooltip' if condensed else '' }}"
   data-listurl="{{ url('collections.ajax_list') }}"
   data-addurl="{{ url('collections.ajax_add') }}"
   data-removeurl="{{ url('collections.ajax_remove') }}"
@@ -6,9 +6,9 @@
   data-addonid="{{ addon.id }}"
   >
   {% if condensed %}
-    <a href="#" title="{{ _('Add to collection') }}"><span></span></a>
+    <a class="collection" href="#" title="{{ _('Add to collection') }}"><span></span></a>
   {% else %}
-    <span><a href="#" title="{{ _('Add to collection') }}">
+    <span><a class="collection" href="#" title="{{ _('Add to collection') }}">
       {{ _('Add to collection') }}</a></span>
   {% endif %}
   <div class="popup-shim">
