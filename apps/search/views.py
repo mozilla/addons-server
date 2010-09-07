@@ -17,7 +17,7 @@ from amo import urlresolvers
 from versions.compare import dict_from_int, version_int
 from search import forms
 from search.client import (Client as SearchClient, SearchError,
-                           CollectionsClient, PersonasClient)
+                           CollectionsClient, PersonasClient, sphinx)
 from search.forms import SearchForm, SecondarySearchForm
 
 DEFAULT_NUM_RESULTS = 20
@@ -220,7 +220,9 @@ def ajax_search(request):
     q = request.GET.get('q', '')
     client = SearchClient()
     try:
-        results = client.query('@name ' + q, limit=10)
+
+        results = client.query('@name ' + q, limit=10,
+                               match=sphinx.SPH_MATCH_EXTENDED2)
         return [dict(id=result.id, label=unicode(result.name),
                      icon=result.icon_url, value=unicode(result.name).lower())
                 for result in results]

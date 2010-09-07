@@ -367,6 +367,11 @@ class Client(object):
 
         """
         sc = self.sphinx
+        if 'match' in kwargs:
+            try:
+                sc.SetMatchMode(kwargs['match'])
+            except:
+                log.error('Invalid match mode: %s' % kwargs['match'])
 
         # Setup some default parameters for the search.
         fields = ("addon_id, app, category, %s" % self.weight_field)
