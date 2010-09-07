@@ -367,7 +367,6 @@ class Client(object):
 
         """
         sc = self.sphinx
-        sc.SetMatchMode(sphinx.SPH_MATCH_EXTENDED2)
 
         # Setup some default parameters for the search.
         fields = ("addon_id, app, category, %s" % self.weight_field)
@@ -479,7 +478,7 @@ class Client(object):
         self.total_found = result.get('total_found', 0) if result else 0
 
         if result.get('error'):
-            log.error(result['error'])
+            log.warning(result['error'])
             return []  # Fail silently.
 
         if result and result['total']:
