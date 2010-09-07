@@ -79,7 +79,6 @@ HOME = /tmp
 30 1 * * * $Z_CRON update_user_ratings
 30 2 * * * $Z_CRON addon_reviews_ratings
 30 3 * * * $DJANGO cleanup
-30 4 * * * $REMORA; php -f maintenance.php gc
 30 5 * * * $REMORA; php -f maintenance.php expired_resetcode
 30 6 * * * $REMORA; php -f maintenance.php category_totals
 30 7 * * * $REMORA; php -f maintenance.php collection_subscribers
