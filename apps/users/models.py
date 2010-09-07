@@ -11,7 +11,7 @@ from django.contrib.auth.models import User as DjangoUser
 from django.core.mail import send_mail
 from django.db import models
 from django.template import Context, loader
-from django.utils.encoding import smart_unicode
+from django.utils.encoding import smart_unicode, smart_str
 
 import caching.base as caching
 import commonware.log
@@ -26,7 +26,7 @@ log = commonware.log.getLogger('z.users')
 
 
 def get_hexdigest(algorithm, salt, raw_password):
-    return hashlib.new(algorithm, salt + raw_password).hexdigest()
+    return hashlib.new(algorithm, smart_str(salt + raw_password)).hexdigest()
 
 
 def rand_string(length):

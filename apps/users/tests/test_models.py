@@ -3,6 +3,7 @@ import hashlib
 
 from django.contrib.auth.models import User
 from django.core import mail
+from django.utils import encoding
 
 import test_utils
 from nose.tools import eq_
@@ -132,29 +133,30 @@ class TestUserProfile(amo.test_utils.ExtraSetup, test_utils.TestCase):
 
 
 class TestPasswords(amo.test_utils.ExtraSetup, test_utils.TestCase):
+    utf = u'\u0627\u0644\u062a\u0637\u0628'
 
     def test_invalid_old_password(self):
-        u = UserProfile(password='sekrit')
-        assert u.check_password('sekrit') is False
+        u = UserProfile(password=self.utf)
+        assert u.check_password(self.utf) is False
 
     def test_invalid_new_password(self):
         u = UserProfile()
-        u.set_password('sekrit')
+        u.set_password(self.utf)
         assert u.check_password('wrong') is False
 
     def test_valid_old_password(self):
-        hsh = hashlib.md5('sekrit').hexdigest()
+        hsh = hashlib.md5(encoding.smart_str(self.utf)).hexdigest()
         u = UserProfile(password=hsh)
-        assert u.check_password('sekrit') is True
+        assert u.check_password(self.utf) is True
         # Make sure we updated the old password.
         algo, salt, hsh = u.password.split('$')
         eq_(algo, 'sha512')
-        eq_(hsh, get_hexdigest(algo, salt, 'sekrit'))
+        eq_(hsh, get_hexdigest(algo, salt, self.utf))
 
     def test_valid_new_password(self):
         u = UserProfile()
-        u.set_password('sekrit')
-        assert u.check_password('sekrit') is True
+        u.set_password(self.utf)
+        assert u.check_password(self.utf) is True
 
 
 class TestBlacklistedUsername(amo.test_utils.ExtraSetup, test_utils.TestCase):
