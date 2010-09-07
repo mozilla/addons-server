@@ -628,7 +628,9 @@ class CollectionsClient(Client):
                 raise SearchError("Invalid sort option given: %s" %
                                   kwargs.get('sort'))
 
-        sc.SetSortMode(sphinx.SPH_SORT_EXTENDED, sort_field)
+        sc.SetSortMode(sphinx.SPH_SORT_EXTENDED, 'myweight DESC')
+        self.sphinx.SetGroupBy('collection_id', sphinx.SPH_GROUPBY_ATTR,
+                               sort_field)
 
         self.log_query(term)
 
