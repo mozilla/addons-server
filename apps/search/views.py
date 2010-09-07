@@ -148,7 +148,7 @@ def _get_sorts(request, sort):
             continue
 
         item = MenuItem()
-        (item.text, item.url) = (val, urlparams(url, sort=key))
+        (item.text, item.url) = (val, urlparams(url, sort=key, page=None))
 
         if sort == key:
             item.selected = True
