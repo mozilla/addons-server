@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block bodyclass %}developer-hub{% endblock %}
+
+{% block extrahead %}
+<link rel="stylesheet" media="screen,projection,tv"
+      href="{{ MEDIA_URL }}css/developers.css">
+{% endblock %}
+
+{% block site_header_title %}
+  <a title="{{ _('Return to the Add-on Developer Hub') }}"
+     href="{{ url('devhub.index') }}">
+    {{ _('Add-on <strong>Developer Hub</strong>')|safe }}
+  </a>
+{% endblock %}
+
+{% block aux_nav %}
+  <ul class="change">
+    <li><a class="return" href="{{ url('home') }}">
+      {{ _('Back to Add-ons') }}</a></li>
+  </ul>
+{% endblock %}
+
+{% block navbar %}
+<div id="navbar">
+  <ul class="top">
+    {% if request.user.is_authenticated() and amo_user.is_developer %}
+      <li class="top">
+        <a href="{{ remora_url('/developers/addons') }}" class="controller">
+          {{ _('My Add-ons') }}</a>
+        <ul>
+          {% for addon in amo_user.addons_listed[:7] %}
+            <li><a href="{{ remora_url('/developers/addon/edit/%s' % addon.id) }}">
+              {{ addon.name }}</a></li>
+          {% endfor %}
+          {% if amo_user.addons_listed|length > 7 %}
+            <li><a href="{{ remora_url('/developers/addons') }}">
+              {{ _('more add-ons...') }}</a></li>
+          {% endif %}
+          <li><a href="{{ remora_url('/developers/addon/submit') }}">
+            {{ _('Submit a New Add-on') }}</a></li>
+        </ul>
+      </li>
+    {% endif %}
+    <li class="top">
+      <a href="#" class="controller">{{ _('Documentation') }}</a>
+      <ul>
+        <li><a href="{{ remora_url('/developers/docs/getting-started') }}">
+          {{ _('Getting Started') }}</a></li>
+        <li><a href="{{ remora_url('/developers/docs/policies') }}">
+          {{ _('Add-on Policies') }}</a></li>
+        <li><a href="{{ remora_url('/developers/docs/case-studies') }}">
+          {{ _('Case Studies') }}</a></li>
+        <li><a href="{{ remora_url('/developers/docs/how-to') }}">
+          {{ _('How-to Library') }}</a></li>
+        <li><a href="{{ remora_url('/developers/docs/reference') }}">
+          {{ _('API & Language Reference') }}</a></li>
+      </ul>
+    </li>
+    <li class="top">
+      <a href="#" class="controller">{{ _('Tools') }}</a>
+      <ul>
+        <li><a href="{{ remora_url('/developers/tools/builder') }}">
+          {{ _('Add-on Packager') }}</a></li>
+        <li><a href="{{ remora_url('/developers/addon/validate') }}">
+          {{ _('Add-on Validator') }}</a></li>
+        <li><a href="{{ remora_url('/collection/devel-tools') }}">
+          {{ _('Development Add-ons') }}</a></li>
+      </ul>
+    </li>
+    <li class="top">
+      <a href="#" class="controller">{{ _('Community') }}</a>
+      <ul>
+        <li><a href="http://blog.mozila.com/addons/">
+          {{ _('Add-ons Blog') }}</a></li>
+        <li><a href="https://forums.addons.mozilla.org">
+          {{ _('Add-ons Forum') }}</a></li>
+        <li><a href="{{ remora_url('/developers/community/newsletter') }}">
+          {{ _('about:addons Newsletter') }}</a></li>
+      </ul>
+    </li>
+    <li class="search">
+      {% include "devhub/search.html" %}
+    </li>
+  </ul>
+</div>
+{% endblock %}
+
+{% block footer_secondary %}
+  <img src="{{ MEDIA_URL }}img/amo2009/developers/hub-logo-footer.png" alt="">
+{% endblock footer_secondary %}

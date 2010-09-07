@@ -59,6 +59,7 @@
           </p>
           {% block site_stats %}{% endblock %}
           <div id="aux-nav" role="navigation">
+            {% block aux_nav %}
             <ul id="other-apps" class="change"
                 title="{{ _('Find add-ons for other applications') }}">
               <li>
@@ -74,6 +75,7 @@
                 </ul>
               </li>
             </ul>
+            {% endblock aux_nav %}
             {% if not settings.READ_ONLY %}
               {% include "user_login.html" %}
             {% endif %}
@@ -106,7 +108,18 @@
     {% endblock %}
     {% block js %}{% endblock %}
     {% block footer %}
-      {% include "footer.html" %}
+      <div id="footer" role="contentinfo">
+        <div class="section">
+          <div class="primary">
+            {% include "footer.html" %}
+          </div> {# primary #}
+          <div class="secondary">
+            {% block footer_secondary %}
+              <img src="{{ MEDIA_URL }}img/amo2009/illustrations/logo-add-ons-half.png" alt="">
+            {% endblock %}
+          </div> {# secondary #}
+        </div> {# section #}
+      </div> {# footer #}
     {% endblock %}
     {# Webtrends Stats Tracking #}
     <script defer src="{{ MEDIA_URL }}js/webtrends/webtrends-v0.1.js"></script>

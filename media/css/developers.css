@@ -148,7 +148,7 @@ th, td {
     background-position: 0.3em center;
     background-color: white;
     color: #888;
-    min-width: 15em;
+    min-width: 16em;
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
     border-radius: 2px;
@@ -161,6 +161,7 @@ th, td {
 }
 #navbar #search-submit {
     margin: -.1em 0 .1em .1em;
+    /*padding: 0.3em 0;*/
     padding: 0 .0 .2em 0;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -170,8 +171,14 @@ th, td {
     background-position:left center;
     background-repeat:repeat-x;
     border:1px solid #B9D999;
+/*    width: 12%;*/
 }
 #navbar #search-submit img {
+/*
+    width: 9px;
+    height: 18px;
+    background-image: url(../../img/amo2009/icons/buttons/go-green.gif);
+*/
     width: 16px;
     height: 16px;
     background-image: url(../../img/developers/go-arrow.png);
@@ -183,7 +190,8 @@ th, td {
     border: none;
 }
 .html-rtl #navbar #search-submit img {
-    background-image: url(../../img/developers/go-arrow_rtl.png);
+    background-image: url(../../img/amo2009/icons/buttons/go-green_rtl.gif);
+/*    background-image: url(../../img/developers/go-arrow_rtl.png); */
 }
 
 /** content */
@@ -192,7 +200,7 @@ p.summary {
     line-height: 150%;
 }
 .secondary .highlight ul:last-child {
-    margin-bottom: 0;
+/*    margin-bottom: 0; */
 }
 
 .secondary .button-wrapper {
@@ -469,6 +477,10 @@ p.summary {
 }
 
 /** search */
+.results-head {
+    margin-bottom: 2em;
+}
+
 #search #resultcount {
     font-size: 1.385em;
     margin-bottom: .5em;
@@ -875,6 +887,14 @@ p.summary {
 
 .secondary .addon-list li.active a {
     font-weight: bold;
+}
+
+.secondary-feed {
+    padding: 1em 0 0 1em;
+}
+
+.secondary-feed .subscribe {
+    padding: 2px 0 0 24px;
 }
 
 .addon-feed-outer-wrapper {

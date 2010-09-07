@@ -1,7 +1,7 @@
 {% set search_form = SearchForm(request) %}
 {% set show_advanced = search_form.advanced.data == 'on' %}
 <div class="search-form expanded-search-form {% if show_advanced %}expanded{% endif %}">
-  <form method="get" id="search-form" action="{{ url('search.search') }}">
+  <form id="search-form" action="{{ url('search.search') }}">
     <div class="basic" id="search-query">
       <input id="query" type="text" title="search" name="q"
              {% if not search_form.q.data %}class="placeholder"{% endif %}
@@ -21,7 +21,7 @@
         {%- endfor %}
       </select>
       <button type="submit">
-        <img src="{{ MEDIA_URL}}img/amo2009/blank.gif">
+        <img src="{{ MEDIA_URL }}img/amo2009/blank.gif">
       </button>
     </div> {# search-query #}
     <div id="advanced-link" title="{{ _('Toggle advanced search mode') }}">
