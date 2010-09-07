@@ -344,8 +344,6 @@ def eula(request, addon_id, file_id=None):
 
 def privacy(request, addon_id):
     addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
-    # redirect back to detail if no eula
-    # Todo(skeen): think of a better solution
     if not addon.privacy_policy:
         return http.HttpResponseRedirect(addon.get_url_path())
 
@@ -354,6 +352,8 @@ def privacy(request, addon_id):
 
 def developers(request, addon_id, page):
     addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
+    if addon.is_persona:
+        raise http.Http404()
     author_addons = order_by_translation(addon.authors_other_addons, 'name')
     return jingo.render(request, 'addons/developers.html',
                         {'addon': addon, 'author_addons': author_addons,
