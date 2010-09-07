@@ -12,7 +12,8 @@ import amo.test_utils
 from addons.models import Addon, AddonUser
 from bandwagon.models import Collection
 from reviews.models import Review
-from users.models import UserProfile, get_hexdigest, BlacklistedUsername
+from users.models import UserProfile, get_hexdigest, BlacklistedUsername,\
+                         BlacklistedEmailDomain
 
 
 class TestUserProfile(amo.test_utils.ExtraSetup, test_utils.TestCase):
@@ -165,3 +166,12 @@ class TestBlacklistedUsername(amo.test_utils.ExtraSetup, test_utils.TestCase):
     def test_blocked(self):
         eq_(BlacklistedUsername.blocked('IE6Fan'), True)
         eq_(BlacklistedUsername.blocked('testo'), False)
+
+
+class TestBlacklistedEmailDomain(amo.test_utils.ExtraSetup,
+                                 test_utils.TestCase):
+    fixtures = ['users/test_backends']
+
+    def test_blocked(self):
+        eq_(BlacklistedEmailDomain.blocked('mailinator.com'), True)
+        assert not BlacklistedEmailDomain.blocked('mozilla.com')

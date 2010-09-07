@@ -301,6 +301,16 @@ class TestUserRegisterForm(UserFormBase):
         self.assertFormError(r, 'form', 'username',
                              'This username is invalid.')
 
+    def test_invalid_email_domain(self):
+        data = {'email': 'fake@mailinator.com',
+                'password': 'xxx',
+                'password2': 'xxx',
+                'username': 'trulyfake', }
+        r = self.client.post('/en-US/firefox/users/register', data)
+        self.assertFormError(r, 'form', 'email',
+                             'Please use an email address from a different '
+                             'provider to complete your registration.')
+
     def test_invalid_homepage(self):
         data = {'homepage': 'example.com:alert(String.fromCharCode(88,83,83)'}
         m = 'This URL has an invalid format. '
@@ -352,7 +362,28 @@ class TestBlacklistedUsernameAdminAddForm(UserFormBase):
         url = reverse('admin:users_blacklistedusername_add')
         data = {'usernames': "IE6Fan\nfubar\n\n", }
         r = self.client.post(url, data)
-        msg = '1 new usernames added to the blacklist. '
+        msg = '1 new values added to the blacklist. '
+        msg += '1 duplicates were ignored.'
+        self.assertContains(r, msg)
+        self.assertNotContains(r, 'fubar')
+
+
+class TestBlacklistedEmailDomainAdminAddForm(UserFormBase):
+
+    def test_no_domains(self):
+        self.client.login(username='testo@example.com', password='foo')
+        url = reverse('admin:users_blacklistedemaildomain_add')
+        data = {'domains': "\n\n", }
+        r = self.client.post(url, data)
+        msg = 'Please enter at least one e-mail domain to blacklist.'
+        self.assertFormError(r, 'form', 'domains', msg)
+
+    def test_add(self):
+        self.client.login(username='testo@example.com', password='foo')
+        url = reverse('admin:users_blacklistedemaildomain_add')
+        data = {'domains': "mailinator.com\ntrash-mail.de\n\n", }
+        r = self.client.post(url, data)
+        msg = '1 new values added to the blacklist. '
         msg += '1 duplicates were ignored.'
         self.assertContains(r, msg)
         self.assertNotContains(r, 'fubar')
