@@ -1,0 +1,12 @@
+{% set search_form = SearchForm(request) %}
+<form id="search-form" action="{{ remora_url('/developers/search') }}">
+  <div class="basic" id="search-query">
+    <input id="query" type="text" title="search" name="q"
+           {% if not search_form.q.data %}class="placeholder"{% endif %}
+           value="{{ search_form.q.data or '' }}"
+           placeholder="{{ _('Search developer documentation') }}">
+    <button id="search-submit" type="submit">
+      <img src="{{ MEDIA_URL }}img/amo2009/blank.gif">
+    </button>
+  </div> {# search-query #}
+</form>
