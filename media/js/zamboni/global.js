@@ -49,4 +49,4 @@ jQuery.fn.tooltip = function(tip_el) {
 // Setting up site tooltips.
 $(document).ready(function() {
     $(".tooltip").tooltip("#tooltip");
-})
+});
