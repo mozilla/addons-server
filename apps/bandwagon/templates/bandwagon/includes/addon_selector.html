@@ -40,7 +40,7 @@
           </p>
         </td>
         {% if meta %}
-          <td>{{ meta[addon.id].created|datetime }}</td>
+          <td>{{ meta[addon.id].created|timesince }}</td>
         {% else %}
           <td>{{ _('Pending') }}</td>
         {% endif %}

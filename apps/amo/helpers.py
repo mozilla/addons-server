@@ -43,7 +43,10 @@ def locale_url(url):
 def url(viewname, *args, **kwargs):
     """Helper for Django's ``reverse`` in templates."""
     add_prefix = kwargs.pop('add_prefix', True)
-    return urlresolvers.reverse(viewname, args=args, kwargs=kwargs, add_prefix=add_prefix)
+    return urlresolvers.reverse(viewname,
+                                args=args,
+                                kwargs=kwargs,
+                                add_prefix=add_prefix)
 
 
 @register.filter
@@ -311,3 +314,10 @@ def category_arrow(context, key, prefix):
     d = dict(context.items())
     d.update(key=key, prefix=prefix)
     return d
+
+
+@register.filter
+def timesince(time):
+    ago = defaultfilters.timesince(time)
+    # L10n: relative time in the past, like '4 days ago'
+    return _(u'{0} ago').format(ago)
