@@ -54,14 +54,6 @@ $(document).ready(function(){
         e.stopPropagation();
     });
 
-    $("#tags .developertag, #tags .usertag")
-        .live("mouseover",function(){
-            $(this).addClass("hover");
-            })
-        .live("mouseout",function(){
-            $(this).removeClass("hover");
-            });
-
     $("#addatag").click(function(e){
         $(".addtagform")
             .removeClass("hidden")

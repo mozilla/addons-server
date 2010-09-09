@@ -2556,16 +2556,18 @@ html[xmlns] .clearfix {
 .addon-tags li .removetag {
     display:none;
 }
-.addon-tags li.hover .removetag,
+.addon-tags li:hover .removetag,
 #tags .nojs li .removetag {
     display:inline;
     background: transparent url(../../img/amo2009/icons/cross.png) no-repeat left;
     border: none;
     margin: 0;
+    padding: 0;
+    padding-left: 12px;
     text-indent: -1000px;
     /* IE7 fix in ie7.css */
 }
-.html-rtl .addon-tags li.hover .removetag,
+.html-rtl .addon-tags li:hover .removetag,
 .html-rtl #tags .nojs li .removetag {
     background-position: right;
 }
