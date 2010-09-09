@@ -1,9 +1,8 @@
-<section>
-  <hgroup>
-    <h1>{{ _('Rock Your Firefox Featured Add-on') }}</h1>
-    <h2>{{ ryf.title }}</h2>
-  </hgroup>
-  <blockquote>{{ ryf.excerpt }}</blockquote>
-  <a href="{{ ryf.permalink }}">{{ _('Learn More') }}</a>
+<li class="panel">
+  <div class="feature ryff">
+    <h2>{{ _('Rock Your Firefox Featured Add-on') }}</h2>
+    <h3>{{ ryf.title }}</h3>
+    <p class="desc">{{ ryf.excerpt }}</p>
+    <p class="more"><a href="{{ ryf.permalink }}">{{ _('Learn More') }}</a></p>
   <img alt="" src="{{ ryf.image }}">
-</section>
+</li>

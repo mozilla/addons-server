@@ -378,6 +378,10 @@ MINIFY_BUNDLES = {
             # Users
             'js/zamboni/users.js',
         ),
+        'zamboni/discovery-pane': (
+            'js/zamboni/jquery-1.4.2.min.js',
+            'js/zamboni/discovery_pane.js',
+        ),
     }
 }
 

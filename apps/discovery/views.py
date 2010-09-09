@@ -20,7 +20,6 @@ from .models import DiscoveryModule
 from .forms import DiscoveryModuleForm
 from .modules import registry as module_registry
 
-
 def pane(request, version, platform):
     if 'pre' not in version:
         return jingo.render(request, 'addons/discovery.html')
