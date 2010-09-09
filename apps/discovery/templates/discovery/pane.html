@@ -1,10 +1,16 @@
-{% macro addon_list(list, limit=5) %}
+{% macro addon_list(list, limit=5, sidebar=False) %}
 <ul>
 {# These are JSON add-ons from the API, not Addon objects. #}
 {% for addon in list[:5] %}
   <li data-guid="{{ addon.guid }}" data-summary="{{ addon.summary }}">
-    <a href="{{ addon.learnmore }}">
-      <img src="{{ addon.icon }}">{{ addon.name }}</a>
+    <a href="{{ addon.learnmore }}"><img src="{{ addon.icon }}">
+      {% if sidebar %}
+        {{ addon.name }}
+      {% else %}
+        <h3>{{ addon.name }}</h3>
+        <p class="desc">{{ addon.description }}</p>
+      {% endif %}
+    </a>
   </li>
 {% endfor %}
 </ul>
@@ -13,108 +19,113 @@
 <!DOCTYPE html>
 <html lang="{{ LANG }}" dir="{{ DIR }}">
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=700">
     <title>{{ _('Add-on Discovery Pane') }}</title>
     {{ css('zamboni/discovery-pane') }}
-    <base href="{{ settings.SITE_URL }}">
   </head>
   <body class="html-{{ DIR }}">
-
-    <section id="what-are-addons">
-      <h1>{{ _('What are Add-ons?') }}</h1>
+    <header>
+      <section id="intro">
+      <h1><img src="{{ MEDIA_URL }}img/zamboni/discovery_pane/logo-addons.png"
+               width="87" height="82">{{ _('What are Add-ons?') }}</h1>
       <p>
-        {% if APP == amo.FIREFOX %}
-          {% trans %}
-          Firefox Add-ons are applications that let you personalize your
-          Firefox Web browser. An add-on can be a time-saving sidebar, a
-          shortcut to your favorite sites, or a themed look. There are
-          thousands of add-ons to choose from and nearly 2 billion Firefox
-          Add-ons have been downloaded by more than 100 million people. Start
-          discovering add-ons today!
-          {% endtrans %}
-        {% else %}
-          {% trans app=APP.pretty %}
-          Add-ons are applications that let you personalize {{ app }}. An
-          add-on can be a time-saving sidebar, a helpful toolbar, or a themed
-          look.  There are thousands of add-ons to choose from and nearly 2
-          billion add-ons have been downloaded by more than 100 million people.
-          Start discovering add-ons today!
-          {% endtrans %}
-        {% endif %}
+        {% trans %}
+        Add-ons are applications that let you personalize Firefox with extra
+        functionality or style. Try a time-saving sidebar, a weather notifier,
+        or a themed look to make Firefox your own.
+        {% endtrans %}
+        <a href="#" class="button">{{ _('Learn More') }}</a>
       </p>
-    </section>
+      </section>
+
+
     {% if user.is_authenticated() %}
       <section id="my-account">
-        <h1>{{ _('Welcome, {0}')|f(request.amo_user.welcome_name) }}</h1>
+        <p>{{ _('Welcome, {0}')|f(request.amo_user.welcome_name) }}</p>
         {% trans url=url('home') -%}
-          You're logged in to your <a href="{{ url }}">Mozilla Add-ons</a> account.
-        {%- endtrans %}
-        <ul>
-          <li>
-            <a href="{{ remora_url('/users/edit') }}">{{ _('My Profile') }}</a>
-          </li>
-          <li>
-            <a href="{{ remora_url('/collections/mine') }}">{{ _('My Collections') }}</a>
-          </li>
-        </ul>
+        You're logged in to your <a href="{{ url }}">Mozilla Add-ons</a>
+        account.
+        {%- endtrans %}</p>
+        <div>
+          <a href="{{ url('users.edit') }}">{{ _('My Profile') }}</a>
+          &bull;
+          <a href="{{ url('collections.user', request.amo_user.username) }}">
+            {{ _('My Collections')}}</a>
+        </div>
       </section>
     {% else %}
       <section id="mission">
-        {% trans url="http://www.mozilla.org/" -%}
+         <p>{% trans url="http://www.mozilla.org/" -%}
           Thanks for using Firefox and supporting
           <a href="{{ url }}">Mozilla's mission</a>!
-        {%- endtrans %}
-        <table>
-          {% if addon_downloads %}
-            <tr>
-              <th>{{ _('Add-ons downloaded') }}</th>
-              <td>{{ addon_downloads|numberfmt }}</td>
-            </tr>
-          {% endif %}
-        </table>
+          {%- endtrans %}</p>
+        {% if addon_downloads %}
+          <p id="download-count">
+            {{ _('Add-ons downloaded') }}:
+            <strong>{{ addon_downloads|numberfmt }}</strong>
+          </p>
+        {% endif %}
       </section>
     {% endif %}
+    </header>
 
     <section id="main">
-      {% for module in modules %}
-        {{ module.render()|safe }}
-      {% endfor %}
-    </section>
-    <section id="top-addons">
-      <h1>
-        <a href="{{ url('browse.extensions') }}">{{ _('Top Add-ons') }}</a>
-      </h1>
-      {{ addon_list(top_addons) }}
+
+      <section id="main-feature">
+        <ul id="nav-features">
+          <li id="nav-prev"><a href="#" class="prev">{{ _('Previous') }}</a></li>
+          <li id="nav-next"><a href="#" class="next">{{ _('Next') }}</a></li>
+        </ul>
+
+        <ul class="slider">
+        {% for module in modules %}
+          {{ module.render()|safe }}
+        {% endfor %}
+        </ul>
+      </section>
+
+      <section id="featured-addons">
+        <h2>{{ _('Featured add-ons') }}</h2>
+        <div class="addons">
+          {{ addon_list(featured) }}
+        </div>
+      </section>
     </section>
 
-    <section id="featured-addons">
-      <h1>{{ _('Featured add-ons') }}</h1>
-      {{ addon_list(featured) }}
+
+    <section id="sub">
+      <section id="top-addons">
+        <h2>
+          {{ _('Top Add-ons') }}
+        </h2>
+        {{ addon_list(top_addons, 5, sidebar=True) }}
+        <p class="all">
+          <a href="{{ url('browse.extensions') }}">{{ _('See all ') }}</a>
+        </p>
+      </section>
+      <section id="more-ways">
+        <h2>{{ _('More ways to customize') }}</h2>
+        <ul>
+          <li id="more-addons">
+            <a href="{{ url('browse.extensions') }}">{{ _('Browse all add-ons') }}</a>
+          </li>
+          <li id="more-personas">
+            <a href="{{ url('browse.themes') }}">
+                {{ _('See all themes and Personas') }}</a>
+          </li>
+        </ul>
+        <p class="help">
+          {% trans -%}
+          Need help with an add-on?
+          <a href="#"><strong>Get support</strong></a>
+          {%- endtrans %}
+        </p>
+      </section>
+
     </section>
-    <section id="recs">
-      <h1>{{ _('Get Personal') }}</h1>
-      <p>{% trans %}
-      Tell us what add-ons you're using and we'll suggest new add-ons you might
-      like based on similar users. <a href="#learn-more">Learn more&hellip;</a>
-      {% endtrans %}</p>
-      <button>{{ _('Turn on recommendations') }}</button>
-    </section>
-    <section id="links">
-      <p>{{ _('More ways to customize') }}</p>
-      <ul>
-        <li><a href="{{ url('home') }}">{{ _('Browse all add-ons') }}</a></li>
-        <li><a href="{{ remora_url('/themes') }}">
-          {{ _('See all themes & Personas') }}</a></li>
-      </ul>
-      <p>
-        <FONT face="comic sans" color="tomato">
-          <FONT size="5">DISCLAIMER:</FONT>
-          This page isn't done;
-        </FONT>
-        <FONT size=2 color="chartreuse">
-          <a href="http://blog.fligtar.com/2010/03/24/a-new-front-door/">lots more</a>
-          improvements coming soon!
-        </FONT>
-      </p>
-    </section>
+
+    {{ js('zamboni/discovery-pane') }}
+
   </body>
 </html>

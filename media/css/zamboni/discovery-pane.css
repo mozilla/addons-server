@@ -1,78 +1,608 @@
+@font-face { font-family: 'MetaWebPro-Book'; src:
+    url('http://www.mozilla.com/img/fonts/MetaWebPro-Book.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'MetaWebPro-Bold'; src:
+    url('http://www.mozilla.com/img/fonts/MetaWebPro-Bold.woff') format('woff'); font-weight: bold; font-style: normal; }
+
+/* @Reset *********/
+header, hgroup, nav, section, article, aside, footer { display: block; }
+html, body, form, fieldset, legend, h1, h2, h3, h4, h5, h6, dt, dd { margin: 0; padding: 0; }
+fieldset, a img { border: 0; }
+address, caption, cite, code, dfn, th, var { font-style: inherit; font-weight: inherit; }
+abbr, acronym, dfn { border-bottom: 1px dotted #666; font-variant: normal; cursor: help; }
+input, button, textarea, select, optgroup, option { font-family: inherit; font-size: inherit; font-style: inherit; font-weight: inherit; }
+table { border-collapse: collapse; border-spacing: 0; margin: 0 0 1.286em; }
+caption, th { text-align: left; }
+p, pre, blockquote, dl, ul, ol { margin: 0 0 1.286em; padding: 0; }
+li ul, li ol { margin-bottom: 0; }
+ul, ol { list-style: none; }
+
 body {
-    padding-bottom: 3em;
+    font: 12px/1.33 Helvetica, "Helvetica Neue", Arial, sans-serif;
+    padding: 0 10px 3em;
+    margin: 0 auto;
+    background: #ccd9ea url("../../img/zamboni/discovery_pane/bg-pattern.png");
+    color: #373d48;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.3);
+    max-width: 1150px;
+    min-width: 780px;
 }
 
-body > section {
-    background: #fff;
-
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-
-    border: 1px solid #777;
-    -moz-box-shadow: 0 0 1px #777;
-
-    height: 10em;
-    margin-top: 1%;
-    padding: 1%;
-
-    overflow: hidden;
-}
-
-#what-are-addons, #main, #featured-addons, #recs {
-    float: left;
-    clear: left;
-    width: 68%;
-    margin-left: 1%;
-}
-
-#mission, #my-account, #top-addons, #links {
-    float: right;
-    clear: right;
-    width: 25%;
-}
-
-#main, #top-addons {
-    height: 14em;
-}
-
-/* Hide recommendations for the common case of 0-3 add-ons. */
-#recs {
-    display: none;
+h1, h2, h3 {
+    font-family: MetaWebPro-Book, "Trebuchet MS", sans-serif;
+    font-weight: normal;
 }
 
 h1 {
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
+    font-size: 24px;
 }
 
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+h2 {
+    font-size: 18px;
 }
 
-a:link {
+h3 {
+    font-size: 16px;
+}
+
+a:link, a:visited {
+    color: #144fae;
     text-decoration: none;
+}
+
+a:hover, a:focus, a:active {
+    color: #083681;
+    text-decoration: underline;
+}
+
+a.button {
+    padding: 4px 12px 3px;
+    border: 1px solid rgba(165,175,185,0.75);
+    color: #333;
+    text-decoration: none;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+    background: -moz-linear-gradient(top, rgba(255,255,255,0.5) 0, rgba(235,235,235,0.5) 50%, rgba(215,215,215,0.5) 52%, rgba(240,240,240,0.5) 100%);
+    -moz-border-radius: 3px;
+    -moz-box-shadow: inset 0 0 2px rgba(255,255,255,0.65);
+}
+
+a.button:hover,
+a.button:focus,
+a.button:active {
+    border-color: rgba(165,175,185,1);
+    color: #083681;
+    background: -moz-linear-gradient(top, rgba(255,255,255,0.8) 0, rgba(235,235,235,0.8) 50%, rgba(215,215,215,0.8) 52%, rgba(240,240,240,0.8) 100%);
+}
+
+section > section {
+    background: rgba(255,255,255,0.35) no-repeat;
+    border: 1px solid #a8b8d1;
+    -moz-box-shadow: inset 0 1px 3px rgba(58,78,103,0.15), 0 1px 0 rgba(255,255,255,0.5);
+}
+
+#main {
+    width: 75%;
+    float: left;
+}
+
+.html-rtl #main {
+    float: right;
+}
+
+#main > section {
+    padding: 10px;
+    margin: 0 0 10px;
+    -moz-border-radius: 8px;
+}
+
+#sub {
+    width: 24%;
+    float: right;
+}
+
+.html-rtl #sub {
+    float: left;
+}
+
+#sub > section {
+    padding: 10px;
+    margin: 0 0 10px;
+    -moz-border-radius: 8px;
+}
+
+header {
+    display: block;
+    margin: 0 0 10px;
+    border: solid #a8b8d1;
+    border-width: 0 1px;
+    -moz-border-radius: 0 0 8px 8px;
+    background: -moz-linear-gradient(top, #fff 0, #ecf1f7 100%);
+    -moz-box-shadow: inset 0 -3px 0 rgba(58,78,103,0.05), 0 3px 0 rgba(175,195,220,.3);
+}
+
+/* @Clear floats *********/
+body:after,
+header:after,
+.addons:after {
+    content: ".";
+    display: block;
+    clear: both;
+    height: 0;
+    visibility: hidden;
+}
+
+/* @Introduction *********/
+#intro {
+    position: relative;
+    width: 71%;
+    float: left;
+    padding: 10px 2.25%;
+    border-right: 1px inset rgba(0,0,0,0.25);
+    margin: 0;
+}
+
+.html-rtl #intro {
+    float: right;
+    border-right: 0;
+    border-left: 1px inset rgba(0,0,0,0.25);
+}
+
+#intro h1 {
+    margin: .5em 0 .25em;
+    clear: right;
+}
+
+#intro h1 img {
+    float: left;
+    margin: 10px 20px;
+}
+
+.html-rtl #intro h1 img {
+    float: right;
+}
+
+#intro p {
+    position: relative;
+    padding-right: 120px;
+}
+
+.html-rtl #intro p {
+    padding: 0 0 0 120px;
+}
+
+#intro .button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    max-width: 100px;
+}
+
+.html-rtl #intro .button {
+    right: auto;
+    left: 0;
+}
+
+/* @Mission, @My-account *********/
+#mission, #my-account {
+    padding: 30px 2% 10px;
+    margin: 0;
+    float: right;
+    width: 20%;
+}
+
+.html-rtl #mission,
+.html-rtl #my-account {
+    float: left;
+}
+
+#mission p,
+#my-account p {
+    font: 18px/1.1 MetaWebPro-Book, "Trebuchet MS", sans-serif;
+    margin: 0 0 .5em;
+}
+
+#mission a,
+#mission strong,
+#my-account a,
+#my-account strong {
+    font-family: MetaWebPro-Bold, "Trebuchet MS", sans-serif;
+    font-weight: bold;
+}
+
+#mission #download-count,
+#my-account #download-count {
+    font-size: 1em;
+}
+
+/* @Main @Feature *********/
+#main #main-feature {
+    position: relative;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    -moz-box-shadow: none;
+}
+
+.feature {
+    background: rgba(255,255,255,0.35) no-repeat;
+    border: 1px solid #a8b8d1;
+    -moz-box-shadow: inset 0 1px 3px rgba(58,78,103,0.15), 0 1px 0 rgba(255,255,255,0.5);
+    margin-bottom: 10px;
+    min-height: 240px;
+    padding: 10px 9%;
+    -moz-border-radius: 8px;
+}
+
+#main #main-feature.js {
+    height: 273px;
+    overflow: hidden;
+}
+
+#main-feature.js .feature {
+    height: 251px;
+    position: relative;
+    overflow: hidden;
+    -moz-box-shadow: none;
+}
+
+.slider {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.panel {
+    width: 100%;
+    top: 0;
+}
+
+#nav-features {
+    height: 0;
+    margin: 0;
+    display: none;
+}
+
+#main-feature.js #nav-features {
+    display: block;
+}
+
+#nav-features a {
+    position: absolute;
+    top: 0;
+    margin: 1px;
+    z-index: 10;
+    display: block;
+    height: 271px;
+    width: 4%;
+    text-indent: -999em;
+    text-decoration: none;
+    overflow: hidden;
+    opacity: 0.3;
+    -moz-transition-property: opacity, width;
+    -moz-transition-duration: 0.5s;
+    -moz-transition-timing-function: ease-out;
+}
+
+#nav-features a:hover,
+#nav-features a:active {
+    opacity: 1;
+    width: 7%;
+    -moz-transition-property: opacity, width, background-color;
+    -moz-transition-duration: 0.2s;
+    -moz-transition-timing-function: ease-out;
+}
+
+#nav-features a:focus {
+    outline: 0;
+}
+
+#nav-prev a {
+    left: 0;
+    -moz-border-radius: 8px 0 0 8px;
+    background: url("../../img/zamboni/discovery_pane/arrow-left.png") no-repeat center center, -moz-linear-gradient(left, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.5) 80%);
+    -moz-box-shadow: inset rgba(255,255,255,0.1) 0px 0px 6px, rgba(125,125,125, 0.1) 1px 0px 3px;
+}
+
+.html-rtl #nav-prev a {
+    -moz-border-radius: 0 8px 8px 0;
+}
+
+#nav-prev a:hover,
+#nav-prev a:active {
+    -moz-box-shadow: inset rgba(255,255,255,0.4) 0px 0px 6px, rgba(125,125,125,0.1) 2px 0px 3px;
+}
+
+#nav-next a {
+    right: 0;
+    -moz-border-radius: 0 8px 8px 0;
+    background: url("../../img/zamboni/discovery_pane/arrow-right.png") no-repeat center center, -moz-linear-gradient(right, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.5) 80%);
+    -moz-box-shadow: inset rgba(255,255,255,0.1) 0px 0px 6px, rgba(125,125,125, 0.1) -1px 0px 3px;
+}
+
+.html-rtl #nav-next a {
+    -moz-border-radius: 8px 0 0 8px;
+}
+
+#nav-next a:hover,
+#nav-next a:active {
+    -moz-box-shadow: inset rgba(255,255,255,0.4) 0px 0px 6px, rgba(125,125,125,0.1) -2px 0px 3px;
+}
+
+/* @Rock Your Firefox (@RYFF) *********/
+.ryff {
+    position: relative;
+    overflow: hidden;
+    padding: 10px 10% 10px 230px;
+    background: #fbf1cc url("../../img/zamboni/discovery_pane/bg-ryff.jpg") 5% 0 no-repeat;
+    color: #333;
+}
+
+.ryff h2 {
+    margin: 0 0 10px;
+    white-space: nowrap;
+}
+
+.ryff h3 {
+    margin: 15px 0 .25em;
+    font: bold 36px/1.1 MetaWebPro-Bold, "Trebuchet MS", sans-serif;
+}
+
+.ryff h3 a {
+    color: #333;
+    text-decoration: none;
+}
+
+.ryff .desc img {
+    width: 40%;
+    float: right;
+    margin: 0 0 .5em 10px;
+}
+
+/* @Collection *********/
+.collection h2,
+#featured-addons h2 {
+    max-width: 650px;
+    margin: 10px auto;
+}
+
+.collection .more {
+    text-align: center;
+}
+
+.shopping {
+    background-image: url("../../img/zamboni/discovery_pane/bg-hanger.png"),
+    url("../../img/zamboni/discovery_pane/bg-gift.png");
+    background-position: 107% 20px, 9% 92%;
+    background-repeat: no-repeat;
+}
+
+#featured-addons {
+    padding: 10px 9%;
+}
+
+/* @Addon @boxes *********/
+.addons {
+    max-width: 650px;
+    margin: 0 auto 1em;
+}
+
+.addons li {
+    width: 29%;
+    margin: 0 2% 1em;
+    float: left;
+}
+
+.html-rtl .addons li {
+    float: right;
+}
+
+.addons li:nth-child(4) {
+    clear: left;
+}
+
+.addons li > a {
+    display: block;
+    position: relative;
+    padding: 10px;
+    background: -moz-linear-gradient(top, #fff 0, #ecf1f7 100%);
+    border: 1px solid #b7c3d7;
+    -moz-border-radius: 6px;
+    -moz-box-shadow: inset 0 -2px 0 rgba(58,78,103,0.08), 0 2px 0 rgba(190,210,230,0.5);
+    text-align: center;
+    -moz-transition-property: border-color, -moz-box-shadow;
+    -moz-transition-duration: 0.5s;
+    -moz-transition-timing-function: ease-out;
+}
+
+.addons li > a:hover,
+.addons li > a:focus,
+.addons li > a:active {
+    border-color: rgba(165,175,185,1);
+    -moz-box-shadow: inset 0 -2px 0 rgba(58,78,103,0.1), 0 2px 0 rgba(190,210,230,0.85);
+    box-shadow: inset 0 -2px 0 rgba(58,78,103,0.1), 0 2px 0 rgba(190,210,230,0.85);
+    -moz-transition-property: border-color, -moz-box-shadow;
+    -moz-transition-duration: 0.1s;
+    -moz-transition-timing-function: ease-out;
+    text-decoration: none;
+}
+
+.addons h3 {
+    font-size: 14px;
+    line-height: 1.1;
+    font-weight: bold;
+    font-family: inherit;
+    margin: .25em 0;
+}
+
+.addons li > a:hover h3,
+.addons li > a:focus h3,
+.addons li > a:active h3 {
+    text-decoration: underline;
+}
+
+.addons p.desc {
+    font-size: 11px;
+    text-align: left;
+    max-height: 4em;
+    overflow: hidden;
+    color: #373d48;
+    margin: 0;
+}
+
+.html-rtl .addons p.desc {
+    text-align: right;
+}
+
+.addons img {
+    max-width: 50px;
+}
+
+/* @Top add-ons *********/
+#top-addons {
+    position: relative;
+}
+
+#top-addons h2,
+#more-ways h2 {
+    margin: -10px -10px 0;
+    padding: .45em 50px .45em 10px;
+    background: -moz-linear-gradient(top, #fff 0, #ecf1f7 100%);
+    -moz-box-shadow: inset 0 -3px 0 rgba(58,78,103,0.05), 0 3px 0 rgba(175,195,220,.3);
+    box-shadow: inset 0 -3px 0 rgba(58,78,103,0.05), 0 3px 0 rgba(175,195,220,.3);
+    -moz-border-radius: 8px 8px 0 0;
+    border-bottom: 1px solid #a8b8d1;
+}
+
+#top-addons ul {
+    margin: 0 0 -10px;
+}
+
+#top-addons li,
+#more-ways li {
+    border-bottom: 1px solid #cdd4de;
+    margin: 0 -10px;
+    clear: both;
+    font-size: 13px;
 }
 
 #top-addons ul a {
     display: block;
-    line-height: 1.2em;
+    overflow: hidden;
+    padding: .5em 30px .5em 10px;
+    background: rgba(255,255,255,0.35) url("../../img/zamboni/discovery_pane/arrow-right.png") 95% 50% no-repeat;
+    color: #333;
+    text-decoration: none;
+}
+
+#top-addons ul a:hover,
+#top-addons ul a:focus,
+#top-addons ul a:active {
+    background-color: rgba(255,255,255,0.65);
+    background-position: 96% 50%;
+    -moz-transition-property: background-color, background-position;
+    -moz-transition-duration: 0.1s;
+    -moz-transition-timing-function: ease-out;
+    color: #083681;
+}
+
+#top-addons ul li:last-child a {
+    -moz-border-radius: 0 0 8px 8px;
 }
 
 #top-addons ul a img {
-    margin: 0 .5em -.2em 0;
+    vertical-align: middle;
+    margin: 0 8px 0 0;
 }
 
-#featured-addons li, .collection li {
-    display: inline-block;
-    padding: 0 2em;
-    width: 50px;
-    vertical-align: top;
-    margin-top: 1em;
+#top-addons .all {
+    position: absolute;
+    top: 1.3em;
+    right: 10px;
 }
 
-#main section:not(:first-child) {
-    display: none;
+/* @More ways to customize *********/
+#more-ways ul {
+    margin: 0;
+    font-size: 13px;
 }
+
+#more-ways ul a {
+    display: block;
+    padding: 12px 30px 10px 12px;
+    min-height: 45px;
+    background: rgba(255,255,255,0.1) url("../../img/zamboni/discovery_pane/arrow-right.png") 95% 8px no-repeat;
+    color: #333;
+    text-decoration: none;
+    text-shadow: 0 0 1px #fff;
+}
+
+#more-ways ul a:hover,
+#more-ways ul a:focus,
+#more-ways ul a:active {
+    background-position: 96% 8px;
+    background-color: rgba(255,255,255,0.5);
+    -moz-transition-property: background-position, background-color;
+    -moz-transition-duration: 0.1s;
+    -moz-transition-timing-function: ease-out;
+    color: #083681;
+}
+
+#more-ways #more-addons {
+    background: transparent url("../../img/zamboni/discovery_pane/bg-moreaddons.jpg") 95% 50% no-repeat;
+}
+
+#more-ways #more-personas {
+    background: transparent url("../../img/zamboni/discovery_pane/bg-morepersonas.jpg") 70% 50% no-repeat;
+}
+
+#more-ways .help {
+    margin: 0 -10px -10px;
+    padding: .75em 12px;
+    background: -moz-linear-gradient(top, #fff 0, #ecf1f7 100%);
+    -moz-box-shadow: inset 0 -3px 0 rgba(58,78,103,0.05);
+    box-shadow: inset 0 -3px 0 rgba(58,78,103,0.05);
+    -moz-border-radius: 0 0 8px 8px;
+}
+
+/* @Narrow *********/
+@media screen and (max-width: 815px) {
+    body {
+        margin: 0 10px;
+        min-width: 620px;
+    }
+
+    #main,
+    #sub {
+        width: 100%;
+        float: none;
+    }
+
+    #main #main-feature {
+        height: 290px;
+    }
+
+    .feature {
+        height: 270px;
+    }
+
+    #mission {
+        display: none;
+    }
+
+    #intro {
+        border: 0;
+        width: auto;
+        float: none;
+    }
+
+    #top-addons {
+        width: 46%;
+        float: left;
+    }
+
+    #more-ways {
+        width: 46%;
+        float: right;
+    }
+
+}
+

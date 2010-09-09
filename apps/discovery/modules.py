@@ -67,23 +67,26 @@ class CollectionPromo(PromoModule):
 
     def render(self):
         c = dict(title=self.title, collection=self.collection,
-                 addons=self.get_addons())
+                 cls=self.cls, addons=self.get_addons())
         return jingo.render_to_string(self.request, self.template, c)
 
 
 class ShoppingCollection(CollectionPromo):
     slug = 'Shopping Collection'
     pk = 16651
+    cls = 'shopping'
     title = _('Save cash and have fun with these shopping add-ons')
 
 
 class WebdevCollection(CollectionPromo):
     slug = 'Webdev Collection'
     pk = 10
+    cls = 'webdev'
     title = _('Build the perfect website')
 
 
 class SportsCollection(CollectionPromo):
     slug = 'Sports Collection'
     pk = 33357
+    cls = 'sports'
     title = _('Get the latest scores and highlights')

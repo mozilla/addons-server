@@ -1,17 +1,19 @@
-<section class="collection">
-  <h1>{{ title }}</h1>
-  <ul>
-    {% for addon in addons %}
-      <li>
-        <a href="{{ addon.get_url_path() }}">
-          <img alt="" src="{{ addon.icon_url }}">
-          {{ addon.name }}
-        </a>
-      </li>
-    {% endfor %}
-  </ul>
-  {# L10n: {0} is the name of a collection. #}
-  <p>{% trans name=collection.name, url=collection.get_url_path() %}
-  Find more add-ons in the <a href="{{ url }}">{{ name }}</a> collection.
-  {% endtrans %}</p>
-</section>
+<li class="panel">
+  <div class="feature collection {{ cls }}">
+  <h2>{{ title }}</h2>
+    <ul class="addons">
+      {% for addon in addons %}
+        <li>
+          <a href="{{ addon.get_url_path() }}">
+            <img src="{{ addon.icon_url }}">
+            <h3>{{ addon.name }}</h3>
+            <p class="desc">{{ addon.description }}</p>
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+    <p class="more">{% trans name=collection.name, url=collection.get_url_path() %}
+    Find more add-ons in the <a href="{{ url }}">{{ name }}</a> collection.
+    {% endtrans %}</p>
+  </div>
+</li>
