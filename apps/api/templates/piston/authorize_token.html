@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ _('Authorize access to your data') }}{% endblock %}
+
+{% block content %}
+{% set consumer = token.consumer.name or _('Anonymous Party') %}
+  <h2>
+    {# L10n: consumer is the Oauth Consumer, e.g. FlightDeck #}
+    {{ _('Authorize Token for {0}')|f(consumer) }}
+  </h2>
+  {% trans %}
+  <p>
+    {{ consumer }} wants to be authorized to act on your behalf.  This may
+    include:
+  </p>
+  <ul>
+    <li>Uploading, changing or removing add-ons on your behalf.</li>
+    <li>Uploading, changing or removing versions of addons on your behalf.</li>
+    <li>
+      Learning personal information about you, such as your username and
+      email address (but not your password).
+    </li>
+  </ul>
+  </li>
+  {% endtrans %}
+  <form action="{{ url('oauth.authorize') }}" method="POST">
+    {{ csrf() }}
+    {# TODO(potch): A little help? #}
+    {{ form.as_table()|safe }}
+    <button type="submit">{{ _('Confirm') }}</button>
+  </form>
+{% endblock %}

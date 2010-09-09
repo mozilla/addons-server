@@ -35,3 +35,5 @@ importlib==1.0.2
 # Recaptcha
 -e git://github.com/mozilla/django-recaptcha.git#egg=django-recaptcha
 
+# Django Piston
+-e git://github.com/mozilla/django-piston.git#egg=django-piston

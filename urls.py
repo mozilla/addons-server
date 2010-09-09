@@ -119,6 +119,14 @@ urlpatterns = patterns('',
 
 )
 
+urlpatterns += patterns('piston.authentication',
+    url(r'^oauth/request_token/$', 'oauth_request_token',
+        name='oauth.request_token'),
+    url(r'^oauth/authorize/$', 'oauth_user_auth', name='oauth.authorize'),
+    url(r'^oauth/access_token/$', 'oauth_access_token',
+        name='oauth.access_token'),
+)
+
 if settings.DEBUG:
     # Remove leading and trailing slashes so the regex matches.
     media_url = settings.MEDIA_URL.lstrip('/').rstrip('/')
