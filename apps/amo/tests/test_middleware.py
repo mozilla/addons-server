@@ -1,8 +1,9 @@
 from django import test
-from test_utils import TestCase
 
+from commonware.middleware import HidePasswordOnException
 from nose.tools import eq_
 from pyquery import PyQuery as pq
+from test_utils import TestCase, RequestFactory
 
 from amo.urlresolvers import reverse
 from zadmin.models import Config, _config_cache
@@ -53,3 +54,12 @@ class AdminMessageMiddlewareTest(TestCase):
         r = self.client.get(reverse('home'), follow=True)
         doc = pq(r.content)
         eq_(len(doc('#site-notice')), 0)
+
+
+def test_hide_password_middleware():
+    request = RequestFactory().post('/', dict(x=1, password=2, password2=2))
+    request.POST._mutable = False
+    HidePasswordOnException().process_exception(request, Exception())
+    eq_(request.POST['x'], '1')
+    eq_(request.POST['password'], '******')
+    eq_(request.POST['password2'], '******')
