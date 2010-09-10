@@ -51,10 +51,7 @@ class AddonManager(amo.models.ManagerBase):
         """
         Filter for all featured add-ons for an application in all locales.
         """
-        today = date.today()
-        return self.valid().filter(feature__application=app.id,
-                                   feature__start__lte=today,
-                                   feature__end__gte=today)
+        return self.valid().filter(feature__application=app.id)
 
     def category_featured(self):
         """Get all category-featured add-ons for ``app`` in all locales."""
