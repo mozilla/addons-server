@@ -24,21 +24,6 @@ class TestAddonManager(amo.test_utils.ExtraSetup, test_utils.TestCase):
         eq_(featured.id, 1)
         eq_(Addon.objects.featured(amo.FIREFOX).count(), 1)
 
-        # Mess with the Feature's start and end date.
-        feature = featured.feature_set.all()[0]
-        prev_end = feature.end
-        feature.end = feature.start
-        feature.save()
-        eq_(Addon.objects.featured(amo.FIREFOX).count(), 0)
-        feature.end = prev_end
-
-        feature.start = feature.end
-        eq_(Addon.objects.featured(amo.FIREFOX).count(), 0)
-
-        featured = Addon.objects.featured(amo.THUNDERBIRD)[0]
-        eq_(featured.id, 2)
-        eq_(Addon.objects.featured(amo.THUNDERBIRD).count(), 1)
-
     def test_listed(self):
         # Should find one addon.
         q = Addon.objects.listed(amo.FIREFOX, amo.STATUS_PUBLIC)
