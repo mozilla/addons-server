@@ -352,7 +352,7 @@ def privacy(request, addon_id):
 
 def developers(request, addon_id, page):
     addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
-    if addon.is_persona:
+    if addon.is_persona():
         raise http.Http404()
     author_addons = order_by_translation(addon.authors_other_addons, 'name')
     return jingo.render(request, 'addons/developers.html',
