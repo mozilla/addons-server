@@ -197,3 +197,9 @@ def test_outgoing_url_dirty_unicode():
     bad = (u'http://chupakabr.ru/\u043f\u0440\u043e\u0435\u043a\u0442\u044b/'
            u'\u043c\u0443\u0437\u044b\u043a\u0430-vkontakteru/')
     urlresolvers.get_outgoing_url(bad)  # bug 564057
+
+
+def test_outgoing_url_query_params():
+    url = 'http://xx.com?q=1&v=2'
+    fixed = urlresolvers.get_outgoing_url(url)
+    assert fixed.endswith('http%3A//xx.com%3Fq=1&v=2'), fixed

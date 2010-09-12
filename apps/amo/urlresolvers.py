@@ -171,8 +171,10 @@ def get_outgoing_url(url):
 
     url = encoding.smart_str(url)  # I am safety string.
     hash = hashlib.sha1(settings.REDIRECT_SECRET_KEY + url).hexdigest()
-    return '/'.join(
-        [settings.REDIRECT_URL.rstrip('/'), hash, urllib.quote(url)])
+    # Let '&=' through so query params aren't escaped.  We probably shouldn't
+    # bother to quote the query part at all.
+    return '/'.join([settings.REDIRECT_URL.rstrip('/'), hash,
+                     urllib.quote(url, safe='/&=')])
 
 
 def url_fix(s, charset='utf-8'):
