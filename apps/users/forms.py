@@ -10,7 +10,7 @@ import commonware.log
 import happyforms
 from tower import ugettext as _, ugettext_lazy as _lazy
 
-from .models import UserProfile, BlacklistedUsername
+from .models import UserProfile, BlacklistedUsername, BlacklistedEmailDomain
 import tasks
 
 log = commonware.log.getLogger('z.users')
@@ -87,6 +87,14 @@ class UserRegisterForm(happyforms.ModelForm):
 
         if not settings.RECAPTCHA_PRIVATE_KEY:
             del self.fields['recaptcha']
+
+    def clean_email(self):
+        d = self.cleaned_data['email'].split('@')[-1]
+        if BlacklistedEmailDomain.blocked(d):
+            raise forms.ValidationError(_('Please use an email address from a '
+                                          'different provider to complete '
+                                          'your registration.'))
+        return self.cleaned_data['email']
 
     def clean_username(self):
         name = self.cleaned_data['username']
@@ -214,5 +222,25 @@ class BlacklistedUsernameAddForm(forms.Form):
         if 'usernames' not in data or data['usernames'] == '':
             msg = 'Please enter at least one username to blacklist.'
             self._errors['usernames'] = ErrorList([msg])
+
+        return data
+
+
+class BlacklistedEmailDomainAddForm(forms.Form):
+    """Form for adding blacklisted user e-mail domains in bulk fashion."""
+    domains = forms.CharField(
+            widget=forms.Textarea(attrs={'cols': 40, 'rows': 16}))
+
+    def clean(self):
+        super(BlacklistedEmailDomainAddForm, self).clean()
+        data = self.cleaned_data
+
+        if 'domains' in data:
+            l = filter(None, [s.strip() for s in data['domains'].splitlines()])
+            data['domains'] = os.linesep.join(l)
+
+        if not data.get('domains', ''):
+            msg = 'Please enter at least one e-mail domain to blacklist.'
+            self._errors['domains'] = ErrorList([msg])
 
         return data

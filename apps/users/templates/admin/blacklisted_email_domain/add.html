@@ -1,0 +1,43 @@
+{% extends "admin/base.html" %}
+{% from 'includes/forms.html' import required %}
+{% block extrahead %}
+  {{ super() }}
+  <link rel="stylesheet" href="{{ MEDIA_URL }}css/zamboni/admin-django.css">
+{% endblock %}
+
+{% block title %}{{ page_title('Add Blacklisted E-mail Domains') }}{% endblock %}
+
+{% block bodyclass %}users-blacklistedemaildomain change-form{% endblock %}
+
+{% block content %}
+
+<div class="breadcrumbs">
+  <a href="{{ url('admin:index') }}">Home</a> &rsaquo;
+  <a href="{{ url('admin:app_list', app_label='users') }}">Users</a> &rsaquo;
+  <a href="{{ url('admin:users_blacklistedemaildomain_changelist') }}">Blacklisted e-mail domains</a> &rsaquo;
+  Add
+</div>
+<div id="content" class="colM">
+  <h2>Add Blacklisted E-mail Domains</h2>
+  <div id="content-main">
+
+    {% include "messages.html" %}
+
+    {% if form %}
+      <form method="post" action="">
+        {{ csrf() }}
+        <p>Enter one domain per line.</p>
+        <div class="form-row">
+          {{ form.domains.errors|safe }}
+          <label for="id_usernames">Blacklisted E-mail Domains {{ required() }}</label>
+          {{ form.domains|safe }}
+        </div>
+        <div class="submit-row">
+          <input type="submit" name="_save" class="default" value="Save">
+        </div>
+      </form>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock content %}

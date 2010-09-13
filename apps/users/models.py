@@ -11,7 +11,7 @@ from django.contrib.auth.models import User as DjangoUser
 from django.core.mail import send_mail
 from django.db import models
 from django.template import Context, loader
-from django.utils.encoding import smart_unicode, smart_str
+from django.utils.encoding import smart_str
 
 import caching.base as caching
 import commonware.log
@@ -301,11 +301,33 @@ class BlacklistedUsername(amo.models.ModelBase):
     @classmethod
     def blocked(cls, username):
         """Check to see if a username is in the (cached) blacklist."""
-        username = smart_unicode(username).lower()
         qs = cls.objects.all()
         f = lambda: [u.lower() for u in qs.values_list('username', flat=True)]
         blacklist = caching.cached_with(qs, f, 'blocked')
-        return username in blacklist
+        return username.lower() in blacklist
+
+
+class BlacklistedEmailDomain(amo.models.ModelBase):
+    """Blacklisted user e-mail domains."""
+    domain = models.CharField(max_length=255, unique=True, default='',
+                              blank=False)
+
+    def __unicode__(self):
+        return self.domain
+
+    @classmethod
+    def blocked(cls, domain):
+        qs = cls.objects.all()
+        f = lambda: list(qs.values_list('domain', flat=True))
+        blacklist = caching.cached_with(qs, f, 'blocked')
+        # because there isn't a good way to know if the domain is
+        # "example.com" or "example.co.jp", we'll re-construct it...
+        # so if it's "bad.example.co.jp", the following check the
+        # values in ['bad.example.co.jp', 'example.co.jp', 'co.jp']
+        x = domain.lower().split('.')
+        for d in ['.'.join(x[y:]) for y in range(len(x) - 1)]:
+            if d in blacklist:
+                return True
 
 
 class PersonaAuthor(unicode):

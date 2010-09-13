@@ -164,5 +164,14 @@
             "modified": "2010-07-21 23:32:05",
             "created": "2010-07-21 23:32:05"
         }
+    },
+    {
+        "pk": 1,
+        "model": "users.blacklistedemaildomain",
+        "fields": {
+            "domain": "mailinator.com",
+            "modified": "2010-09-07 00:31:40",
+            "created": "2010-09-07 00:31:40"
+        }
     }
 ]
