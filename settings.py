@@ -196,7 +196,9 @@ MIDDLEWARE_CLASSES = (
 
     # Munging REMOTE_ADDR must come before ThreadRequest.
     'commonware.middleware.SetRemoteAddrFromForwardedFor',
-    'commonware.middleware.FrameOptionsHeader',
+
+    # Commented out for bug 595634; re-enable in bug 596052
+    # 'commonware.middleware.FrameOptionsHeader',
     'commonware.log.ThreadRequestMiddleware',
     'multidb.middleware.PinningRouterMiddleware',
 
