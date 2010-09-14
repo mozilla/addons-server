@@ -1,9 +1,11 @@
 <li class="panel">
   <div class="feature ryff">
-    <h2>{{ _('Rock Your Firefox Featured Add-on') }}</h2>
-    <h3>{{ ryf.title }}</h3>
+    <h2>
+      {{ _('Rock Your Firefox Featured Add-on')}}
+    </h2>
+    <h3><a href="{{ ryf.permalink }}">{{ ryf.title }}</a></h3>
     <p class="desc">
-      <img alt="" src="http://rockyourfirefox.com/rockyourfirefox_content/{{ ryf.image }}">
+      <img src="{{ ryf.get_image_url() }}">
       {{ ryf.excerpt }}
     </p>
     <p class="more"><a href="{{ ryf.permalink }}" class="button">{{ _('Learn More') }}</a></p>
