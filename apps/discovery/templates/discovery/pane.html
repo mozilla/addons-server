@@ -22,7 +22,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=700">
-    <title>{{ _('Add-on Discovery Pane') }}</title>
+    <title>{{ _('Discover Add-ons') }}</title>
     {{ css('zamboni/discovery-pane') }}
     <base target="_blank" href="{{ settings.SITE_URL }}">
   </head>
@@ -37,7 +37,7 @@
         functionality or style. Try a time-saving sidebar, a weather notifier,
         or a themed look to make Firefox your own.
         {% endtrans %}
-        <a href="#" class="button">{{ _('Learn More') }}</a>
+        <a href="{{ url('home') }}" class="button">{{ _('Learn More') }}</a>
       </p>
       </section>
 
@@ -45,10 +45,6 @@
     {% if user.is_authenticated() %}
       <section id="my-account">
         <p>{{ _('Welcome, {0}')|f(request.amo_user.welcome_name) }}</p>
-        {% trans url=url('home') -%}
-        You're logged in to your <a href="{{ url }}">Mozilla Add-ons</a>
-        account.
-        {%- endtrans %}</p>
         <div>
           <a href="{{ url('users.edit') }}">{{ _('My Profile') }}</a>
           &bull;
@@ -88,7 +84,7 @@
       </section>
 
       <section id="featured-addons">
-        <h2>{{ _('Featured add-ons') }}</h2>
+        <h2>{{ _('Featured Add-ons') }}</h2>
         <div class="addons">
           {{ addon_list(featured) }}
         </div>
@@ -118,10 +114,14 @@
           </li>
         </ul>
         <p class="help">
+          This page isn't finished quite yet; look for more
+          improvements coming soon!
+        <!--
           {% trans -%}
           Need help with an add-on?
           <a href="#"><strong>Get support</strong></a>
           {%- endtrans %}
+        -->
         </p>
       </section>
 
