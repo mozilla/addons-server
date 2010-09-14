@@ -4,7 +4,7 @@
 {% for addon in list[:5] %}
   <li data-guid="{{ addon.guid }}" data-summary="{{ addon.summary }}">
     <a href="{{ addon.learnmore|urlparams(src='discovery-pane') }}">
-      <img src="{{ addon.icon }}">
+      <img src="{{ addon.icon }}" width="32" height="32">
       {% if sidebar %}
         {{ addon.name }}
       {% else %}
