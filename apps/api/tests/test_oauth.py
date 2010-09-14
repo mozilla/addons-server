@@ -74,6 +74,18 @@ class OAuthClient(Client):
         return super(OAuthClient, self).get(req.to_url(), HTTP_HOST='api',
                                             **req)
 
+    def post(self, url, consumer=None, token=None, callback=False,
+             verifier=None, data={}):
+        url = get_absolute_url(url)
+        params = _get_args(consumer, callback=callback, verifier=verifier)
+        req = oauth.Request(method="POST", url=url,
+                            parameters=params)
+        signature_method = oauth.SignatureMethod_HMAC_SHA1()
+        req.sign_request(signature_method, consumer, token)
+        return super(OAuthClient, self).post(req.to_url(), HTTP_HOST='api',
+                                             data=data, **req)
+
+
 
 client = OAuthClient()
 token_keys = ('oauth_token_secret', 'oauth_token',)

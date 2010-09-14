@@ -2,11 +2,8 @@ from django.conf import settings
 from django.conf.urls.defaults import patterns, url, include
 
 from piston.resource import Resource
-from piston import authentication
 
-from api import handlers
-from api import views
-from zadmin import jinja_for_django
+from api import authentication, handlers, views
 
 API_CACHE_TIMEOUT = getattr(settings, 'API_CACHE_TIMEOUT', 500)
 
@@ -64,12 +61,8 @@ for regexp in list_regexps:
     api_patterns += patterns('',
             url(regexp + '/?$', class_view(views.ListView), name='api.list'))
 
-
-ad = dict(authentication=authentication.OAuthAuthentication())
+ad = dict(authentication=authentication.AMOOAuthAuthentication())
 user_resource = Resource(handler=handlers.UserHandler, **ad)
-
-jfd = lambda a, b, c: jinja_for_django(a, b, context_instance=c)
-authentication.render_to_response = jfd
 
 piston_patterns = patterns('',
     url(r'^user/$', user_resource, name='api.user'),
