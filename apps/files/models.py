@@ -4,6 +4,8 @@ from django.conf import settings
 from django.db import models
 from django.utils import translation
 
+from uuidfield.fields import UUIDField
+
 import amo.models
 import amo.utils
 from amo.urlresolvers import reverse
@@ -98,6 +100,20 @@ class Platform(amo.models.ModelBase):
 
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'platforms'
+
+
+class FileUpload(amo.models.ModelBase):
+    """Created when a file is uploaded for validation/submission."""
+    uuid = UUIDField(primary_key=True, auto=True)
+    path = models.CharField(max_length=255)
+    name = models.CharField(max_length=255,
+                            help_text="The user's original filename")
+    user = models.ForeignKey('users.UserProfile', null=True)
+    validation = models.TextField(null=True)
+    task_error = models.TextField(null=True)
+
+    class Meta(amo.models.ModelBase.Meta):
+        db_table = 'file_uploads'
 
 
 class TestCase(amo.models.ModelBase):

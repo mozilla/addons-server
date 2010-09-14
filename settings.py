@@ -132,11 +132,11 @@ MEDIA_URL = '/media//'
 TMP_PATH = path('tmp')
 
 # Absolute path to a writable directory shared by all servers. No trailing
-# slash.
-# Example: /data/
+# slash.  Example: /data/
 NETAPP_STORAGE = TMP_PATH
 
-# Absolute path to writable directory for storing addons
+#  File path for storing XPI/JAR files (or any files associated with an
+#  add-on). Example: /mnt/netapp_amo/addons.mozilla.org-remora/files
 ADDONS_PATH = NETAPP_STORAGE + '/addons'
 
 # Absolute path to a writable directory shared by all servers. No trailing

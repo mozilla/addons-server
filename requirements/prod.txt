@@ -16,6 +16,7 @@ django-celery==2.0.2
 # packaging doesn't pick it up.
 importlib==1.0.2
 mongoengine==0.3
+django-uuidfield==0.1
 
 -e git://github.com/jbalogh/django-multidb-router.git#egg=django-multidb-router
 -e git://github.com/jbalogh/django-cache-machine.git@85b0f3ed4#egg=django-cache-machine

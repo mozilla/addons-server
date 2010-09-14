@@ -1,19 +1,16 @@
 from datetime import datetime, timedelta
-import itertools
 
 from django.conf import settings
 from django.core.cache import cache
 from django.db import models
-from django.utils import translation
 
 import bleach
-from celery.decorators import task
+from celeryutils import task
 from tower import ugettext_lazy as _
 
 import amo.models
 from amo.urlresolvers import reverse
 from translations.fields import TranslatedField
-from translations.models import Translation
 from users.models import UserProfile
 from versions.models import Version
 
