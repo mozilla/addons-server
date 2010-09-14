@@ -85,8 +85,8 @@ class WebdevCollection(CollectionPromo):
     title = _('Build the perfect website')
 
 
-class SportsCollection(CollectionPromo):
-    slug = 'Sports Collection'
-    pk = 33357
-    cls = 'sports'
-    title = _('Get the latest scores and highlights')
+class TesterCollection(CollectionPromo):
+    slug = 'Firefox Tester Tools'
+    pk = 82266
+    cls = 'tester'
+    title = _('Help test Firefox with these tools')
