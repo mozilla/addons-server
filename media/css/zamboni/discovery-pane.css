@@ -564,7 +564,7 @@ header:after,
 }
 
 /* @Narrow *********/
-@media screen and (max-width: 815px) {
+@media (max-width: 815px) {
     body {
         margin: 0 10px;
         min-width: 620px;
