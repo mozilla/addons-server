@@ -3,7 +3,8 @@
 {# These are JSON add-ons from the API, not Addon objects. #}
 {% for addon in list[:5] %}
   <li data-guid="{{ addon.guid }}" data-summary="{{ addon.summary }}">
-    <a href="{{ addon.learnmore }}"><img src="{{ addon.icon }}">
+    <a href="{{ addon.learnmore|urlparams(src='discovery-pane') }}">
+      <img src="{{ addon.icon }}">
       {% if sidebar %}
         {{ addon.name }}
       {% else %}
