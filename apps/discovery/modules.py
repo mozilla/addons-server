@@ -53,7 +53,7 @@ class CollectionPromo(PromoModule):
     abstract = True
     template = 'discovery/modules/collection.html'
     title = None
-    limit = 5
+    limit = 3
 
     def __init__(self, *args, **kw):
         super(CollectionPromo, self).__init__(*args, **kw)
@@ -61,7 +61,7 @@ class CollectionPromo(PromoModule):
 
     def get_addons(self):
         addons = self.collection.addons.all()
-        kw = dict(addon_type='ALL', limit=6, app=self.request.APP,
+        kw = dict(addon_type='ALL', limit=self.limit, app=self.request.APP,
                   platform=self.platform, version=self.version, shuffle=True)
         return addon_filter(addons, **kw)
 
