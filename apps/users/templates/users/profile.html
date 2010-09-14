@@ -31,7 +31,10 @@
               <a href="{{ url("users.edit") }}">{{ _('Edit Profile') }}</a>
             {% endif %}
             {% if edit_any_user %}
-              <a href="{{ url("admin:users_userprofile_change", profile.id) }}">{{ _('Manage User') }}</a>
+              {# TODO XXX Once zamboni can delete users, uncomment this line.  bug 595035 #}
+              {# <a href="{{ url("admin:users_userprofile_change", profile.id) }}">{{ _('Manage User') }}</a> #}
+              <a href="{{ remora_url("/admin/users/%s" % profile.id) }}">{{ _('Manage User') }}</a>
+
             {% endif %}
           </p>
         {% endif %}
