@@ -7,7 +7,7 @@
           <a href="{{ addon.get_url_path() }}">
             <img src="{{ addon.icon_url }}">
             <h3>{{ addon.name }}</h3>
-            <p class="desc">{{ addon.summary }}</p>
+            <p class="desc">{{ addon.summary.localized_string }}</p>
           </a>
         </li>
       {% endfor %}
