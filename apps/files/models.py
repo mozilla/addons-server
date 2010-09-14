@@ -5,6 +5,7 @@ from django.db import models
 from django.utils import translation
 
 import amo.models
+import amo.utils
 from amo.urlresolvers import reverse
 from cake.urlresolvers import remora_url
 
@@ -32,6 +33,27 @@ class File(amo.models.ModelBase):
         base = settings.FILES_URL % (lang, app.short, self.id,
                                      self.filename, src)
         return urlparams(base, confirmed=1)
+
+    def generate_filename(self, extension='xpi'):
+        """
+        Files are in the format of:
+        {addon_name}-{version}-{apps}-{platform}
+        """
+        parts = []
+        parts.append(
+                amo.utils.slugify(self.version.addon.name).replace('-', '_'))
+        parts.append(self.version.version)
+
+        if self.version.compatible_apps:
+            apps = '+'.join([a.shortername for a in
+                             self.version.compatible_apps])
+            parts.append(apps)
+
+        if self.platform_id and self.platform_id != amo.PLATFORM_ALL.id:
+            parts.append(amo.PLATFORMS[self.platform_id].shortname)
+
+        self.filename = '-'.join(parts) + '.' + extension
+        return self.filename
 
     def latest_xpi_url(self):
         # TODO(jbalogh): reverse?

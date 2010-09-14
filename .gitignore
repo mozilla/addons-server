@@ -13,3 +13,4 @@ build.py
 *-all.js
 vendor
 .noseids
+tmp/*

@@ -118,8 +118,14 @@ MEDIA_URL = '/media//'
 
 # Absolute path to a writable directory shared by all servers. No trailing
 # slash.
-# Example: /data/uploads
+# Example: /data/
 NETAPP_STORAGE = ''
+
+# Absolute path to a temporary storage area
+TMP_PATH = path('tmp')
+
+# Absolute path to writable directory for storing addons
+ADDONS_PATH = NETAPP_STORAGE + '/warez'
 
 # Absolute path to a writable directory shared by all servers. No trailing
 # slash.

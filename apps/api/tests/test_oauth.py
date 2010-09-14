@@ -20,11 +20,11 @@ With headers:
     oauth_version="1.0"
 """
 import json
-import random
+import os
 import time
 import urlparse
-from hashlib import md5
 
+from django.conf import settings
 from django.test.client import Client
 
 import oauth2 as oauth
@@ -34,6 +34,7 @@ from test_utils import TestCase
 from piston.models import Consumer, Token
 
 from amo.urlresolvers import reverse
+from addons.models import Addon
 
 
 def _get_args(consumer, token=None, callback=False, verifier=None):
@@ -86,7 +87,6 @@ class OAuthClient(Client):
                                              data=data, **req)
 
 
-
 client = OAuthClient()
 token_keys = ('oauth_token_secret', 'oauth_token',)
 
@@ -115,8 +115,8 @@ def get_access_token(consumer, token, authorize=True, verifier=None):
         eq_(r.status_code, 401)
 
 
-class TestOauth(TestCase):
-    fixtures = ('base/users',)
+class BaseOauth(TestCase):
+    fixtures = ('base/users', 'base/appversion', 'base/platforms')
 
     def setUp(self):
         consumers = []
@@ -154,7 +154,7 @@ class TestOauth(TestCase):
         verifier = None
 
         if authorize:
-            r = self.client.post(url, d)
+            r = self.client.post(url, d,)
 
             if callback:
                 redir = r.get('location', None)
@@ -172,15 +172,18 @@ class TestOauth(TestCase):
             piston_token = Token.objects.get()
             assert not piston_token.is_approved, "Token saved."
 
-        token = get_access_token(consumer, token, authorize, verifier)
+        self.token = get_access_token(consumer, token, authorize, verifier)
 
-        r = client.get('api.user', consumer, token)
+        r = client.get('api.user', consumer, self.token)
 
         if authorize:
             data = json.loads(r.content)
             eq_(data['email'], 'admin@mozilla.com')
         else:
             eq_(r.status_code, 401)
+
+
+class TestBasicOauth(BaseOauth):
 
     def test_accepted(self):
         self._oauth_flow(self.accepted_consumer)
@@ -205,3 +208,45 @@ class TestOauth(TestCase):
         c.secret = 'mom'
         r = client.get('oauth.request_token', c)
         eq_(r.content, 'Invalid consumer.')
+
+
+class TestAddon(BaseOauth):
+    def make_create_request(self, data):
+        consumer = self.accepted_consumer
+        self._oauth_flow(consumer)
+        return client.post('api.addons', consumer, self.token, data=data)
+
+    def test_create(self):
+        # License (req'd): MIT, GPLv2, GPLv3, LGPLv2.1, LGPLv3, MIT, BSD, Other
+        # Custom License (if other, req'd)
+        # XPI file... (req'd)
+        # Platform (All by default): 'mac', 'all', 'bsd', 'linux', 'solaris',
+        #   'windows'
+        path = 'apps/api/fixtures/api/helloworld.xpi'
+        xpi = os.path.join(settings.ROOT, path)
+        f = open(xpi)
+
+        data = dict(
+                license_type='other',
+                license_text='This is FREE!',
+                platform='mac',
+                xpi=f,
+                )
+
+        r = self.make_create_request(data)
+
+        eq_(r.status_code, 200, r.content)
+
+        data = json.loads(r.content)
+        id = data['id']
+        name = data['name']
+        eq_(name, 'XUL School Hello World')
+        assert Addon.objects.get(pk=id)
+
+    def test_create_nolicense(self):
+        data = {}
+
+        r = self.make_create_request(data)
+        eq_(r.status_code, 400, r.content)
+        eq_(r.content, 'Bad Request: '
+            'Invalid license data provided: License text missing.')

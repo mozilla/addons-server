@@ -150,6 +150,7 @@ ADDON_SLUGS = {
 # Applications
 class FIREFOX:
     id = 1
+    shortername = 'fx'
     short = 'firefox'
     pretty = _(u'Firefox')
     browser = True
@@ -165,6 +166,7 @@ class FIREFOX:
 class THUNDERBIRD:
     id = 18
     short = 'thunderbird'
+    shortername = 'tb'
     pretty = _(u'Thunderbird')
     browser = True
     types = [ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_LPAPP,
@@ -177,6 +179,7 @@ class THUNDERBIRD:
 class SEAMONKEY:
     id = 59
     short = 'seamonkey'
+    shortername = 'sm'
     pretty = _(u'SeaMonkey')
     browser = True
     types = [ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_SEARCH,
@@ -189,6 +192,7 @@ class SEAMONKEY:
 class SUNBIRD:
     id = 52
     short = 'sunbird'
+    shortername = 'sb'
     pretty = _(u'Sunbird')
     types = [ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_LPAPP]
     guid = '{718e30fb-e89b-41dd-9da7-e25a45638b28}'
@@ -199,6 +203,7 @@ class SUNBIRD:
 class MOBILE:
     id = 60
     short = 'mobile'
+    shortername = 'fn'
     pretty = _(u'Mobile')
     browser = True
     types = [ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_SEARCH,
@@ -216,6 +221,7 @@ class MOZILLA:
     """
     id = 2
     short = 'mz'
+    shortername = 'mz'
     pretty = _(u'Mozilla')
     browser = True
     types = [ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_SEARCH,
@@ -331,7 +337,7 @@ class LICENSE_CUSTOM(_LicenseBase):
     id = -1
     name = _(u'Custom License')
     url = None
-    shortname = None
+    shortname = 'other'
 
 
 class LICENSE_MPL(_LicenseBase):

@@ -1,5 +1,6 @@
 from django import test
 
+from mock import Mock
 from nose.tools import eq_
 
 import amo
@@ -35,3 +36,18 @@ class TestFile(test.TestCase):
     def test_eula_url(self):
         f = File.objects.get(id=67442)
         eq_(f.eula_url(), '/addon/3615/eula/67442')
+
+    def test_generate_filename(self):
+        f = File.objects.get(id=67442)
+        eq_(f.generate_filename(), 'delicious_bookmarks-2.1.072-fx.xpi')
+
+    def test_generate_filename_platform_specific(self):
+        f = File.objects.get(id=67442)
+        f.platform_id = amo.PLATFORM_MAC.id
+        eq_(f.generate_filename(), 'delicious_bookmarks-2.1.072-fx-mac.xpi')
+
+    def test_generate_filename_many_apps(self):
+        f = File.objects.get(id=67442)
+        f.version.compatible_apps = (amo.FIREFOX, amo.THUNDERBIRD)
+        eq_(f.generate_filename(), 'delicious_bookmarks-2.1.072-fx+tb.xpi')
+

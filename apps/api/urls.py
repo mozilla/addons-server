@@ -63,9 +63,11 @@ for regexp in list_regexps:
 
 ad = dict(authentication=authentication.AMOOAuthAuthentication())
 user_resource = Resource(handler=handlers.UserHandler, **ad)
+addons_resource = Resource(handler=handlers.AddonsHandler, **ad)
 
 piston_patterns = patterns('',
     url(r'^user/$', user_resource, name='api.user'),
+    url(r'^addons/$', addons_resource, name='api.addons'),
 )
 
 urlpatterns = patterns('',
