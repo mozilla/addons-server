@@ -1,6 +1,9 @@
+import os
+
 from datetime import datetime
 
 from django.db import models
+from django.conf import settings
 
 import amo.models
 
@@ -15,6 +18,9 @@ class BlogCacheRyf(models.Model):
 
     class Meta:
         db_table = 'blog_cache_ryf'
+
+    def get_image_url(self):
+        return os.path.join(settings.STATIC_URL, 'ryf/', self.image.lstrip('/'))
 
     def __unicode__(self):
         return self.title

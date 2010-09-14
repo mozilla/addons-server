@@ -584,7 +584,8 @@ header:after,
         height: 270px;
     }
 
-    #mission {
+    #mission,
+    #my-account {
         display: none;
     }
 
