@@ -2,7 +2,10 @@
   <div class="feature ryff">
     <h2>{{ _('Rock Your Firefox Featured Add-on') }}</h2>
     <h3>{{ ryf.title }}</h3>
-    <p class="desc">{{ ryf.excerpt }}</p>
-    <p class="more"><a href="{{ ryf.permalink }}">{{ _('Learn More') }}</a></p>
-  <img alt="" src="{{ ryf.image }}">
+    <p class="desc">
+      <img alt="" src="http://rockyourfirefox.com/rockyourfirefox_content/{{ ryf.image }}">
+      {{ ryf.excerpt }}
+    </p>
+    <p class="more"><a href="{{ ryf.permalink }}" class="button">{{ _('Learn More') }}</a></p>
+  </div>
 </li>
