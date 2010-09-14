@@ -1,7 +1,7 @@
 @font-face { font-family: 'MetaWebPro-Book'; src:
-    url('http://www.mozilla.com/img/fonts/MetaWebPro-Book.woff') format('woff'); font-weight: normal; font-style: normal; }
+    url('https://www.mozilla.com/img/fonts/MetaWebPro-Book.woff') format('woff'); font-weight: normal; font-style: normal; }
 @font-face { font-family: 'MetaWebPro-Bold'; src:
-    url('http://www.mozilla.com/img/fonts/MetaWebPro-Bold.woff') format('woff'); font-weight: bold; font-style: normal; }
+    url('https://www.mozilla.com/img/fonts/MetaWebPro-Bold.woff') format('woff'); font-weight: bold; font-style: normal; }
 
 /* @Reset *********/
 header, hgroup, nav, section, article, aside, footer { display: block; }
