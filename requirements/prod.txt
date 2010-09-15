@@ -3,6 +3,8 @@
 -e git://github.com/django/django@36c82ac8#egg=django
 Babel==0.9.5
 phpserialize==1.2
+python-daemon==1.5.5
+lockfile==0.8
 python-memcached==1.45
 pyquery==0.4
 South==0.7
