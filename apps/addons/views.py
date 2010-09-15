@@ -408,6 +408,14 @@ def contribute(request, addon_id):
 def contribute_url_params(business, addon_id, item_name, return_url,
                           amount='', item_number='',
                           monthly=False, comment=''):
+
+    lang = translation.get_language()
+    try:
+        paypal_lang = settings.PAYPAL_COUNTRYMAP[lang]
+    except KeyError:
+        lang = lang.split('-')[0]
+        paypal_lang = settings.PAYPAL_COUNTRYMAP.get(lang, 'US')
+
     # Get all the data elements that will be URL params
     # on the Paypal redirect URL.
     data = {'business': business,
@@ -417,12 +425,13 @@ def contribute_url_params(business, addon_id, item_name, return_url,
             'no_shipping': '1',
             'return': return_url,
             'charset': 'utf-8',
+            'lc': paypal_lang,
             'notify_url': "%s%s" % (settings.SERVICES_URL,
                                     reverse('amo.paypal'))}
 
-    if (not monthly):
+    if not monthly:
         data['cmd'] = '_donations'
-        if (amount):
+        if amount:
             data['amount'] = amount
     else:
         data.update({
@@ -432,7 +441,7 @@ def contribute_url_params(business, addon_id, item_name, return_url,
             'a3': amount,  # recurring contribution amount
             'no_note': '1'})  # required: no "note" text field for user
 
-    if (comment):
+    if comment:
         data['custom'] = comment
 
     return data

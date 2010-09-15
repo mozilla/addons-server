@@ -4,6 +4,7 @@ from datetime import datetime
 from django import test
 from django.conf import settings
 from django.core.cache import cache
+from django.utils import translation
 
 from mock import Mock
 from nose.tools import eq_
@@ -14,6 +15,7 @@ import amo
 import amo.test_utils
 from amo.helpers import urlparams
 from amo.urlresolvers import reverse
+from addons import views
 from addons.models import Addon, AddonUser
 from users.models import UserProfile
 from tags.models import Tag, AddonTag
@@ -618,3 +620,17 @@ class TestPrivacyPolicy(amo.test_utils.ExtraSetup, test_utils.TestCase):
         r = self.client.get(reverse('addons.privacy', args=[11730]),
                             follow=True)
         self.assertRedirects(r, reverse('addons.detail', args=[11730]))
+
+
+def test_paypal_language_code():
+    def check(lc):
+        d = views.contribute_url_params('bz', 32, 'name', 'url')
+        eq_(d['lc'], lc)
+
+    check('US')
+
+    translation.activate('it')
+    check('IT')
+
+    translation.activate('ru-DE')
+    check('RU')
