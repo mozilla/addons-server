@@ -1,48 +1,52 @@
 $(document).ready(function() {
-    var report = $('.review-reason').parent().html();
-    $('.flag-review').addPopup(report)
-        .bind('newPopup', function(e, popup) {
-            // If there's a click on one of the flag links, submit it.
-            // If they pick other, show the extra text field.
-            $(popup).click(function(e) {
-                var parent = $(this).parent(),
-                    url = parent.find('.flag-review').attr('href');
-                if ($(e.target).filter('a').length) {
-                    e.preventDefault();
-                    var flag = $(e.target).attr('href').slice(1);
-                    if (flag == 'review_flag_reason_other') {
-                        // Show the Other form and bind the submit.
-                        parent.addClass('other').find('input[type=text]').focus();
-                        $(this).find('form').submit(function(e){
-                            e.preventDefault();
-                            var note = parent.find('#id_note').val();
-                            if (!note) {
-                                alert(gettext('Your input is required'));
-                                return false;
-                            }
-                            addFlag(parent, url, 'review_flag_reason_other',
-                                    note);
-                        });
-                    } else {
-                        addFlag(parent, url, flag, '');
-                    }
+    var report = $('.review-reason').html();
+
+    $(".review-reason").popup(".flag-review", {
+        delegate: $(document.body),
+        width: 'inherit',
+        callback: function(obj) {
+            var ct = $(obj.click_target),
+                $popup = this;
+
+            function addFlag(flag, note) {
+                $.ajax({type: 'POST',
+                        url: ct.attr("href"),
+                        data: {flag: flag, note: note},
+                        success: function() {
+                            $popup.removeClass("other")
+                                  .hideMe();
+                            ct.replaceWith(gettext('Flagged for review'));
+                        },
+                        error: function(){ },
+                        dataType: 'json'
+                });
+            };
+
+            $popup.delegate("li a", "click", function(e) {
+                e.preventDefault();
+                var el = $(e.target);
+                if (el.attr("href") == "#review_flag_reason_other") {
+                    $popup.addClass('other')
+                          .delegate("form", "submit", function(e) {
+                              e.preventDefault();
+                              var note = $popup.find('#id_note').val();
+                              if (!note) {
+                                  alert(gettext('Your input is required'));
+                              } else {
+                                  addFlag('review_flag_reason_other', note);
+                              }
+                          })
+                          .find('input[type=text]')
+                          .focus();
+                } else {
+                    addFlag(el.attr("href").slice(1));
                 }
             });
-        });
 
-    var addFlag = function(el, url, flag, note) {
-        $.ajax({type: 'POST',
-                url: url,
-                data: {flag: flag, note: note},
-                success: function() {
-                    el.find('.flag-review')
-                        .replaceWith(gettext('Flagged for review'));
-                },
-                error: function(){ },
-                dataType: 'json'
-        });
-        el.click();
-    };
+            $popup.html(report);
+            return { pointTo: ct };
+        }
+    });
 
     $('.primary').delegate('.review-edit', 'click', function(e) {
         e.preventDefault();

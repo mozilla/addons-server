@@ -1,4 +1,4 @@
-jQuery(function($) {
+$(document).ready(function() {
     var homepageSlider = AmoSlideshow();
     if ($(document.body).hasClass('user-login')) {
         // If the user login detected, switch to the second item to skip intro.

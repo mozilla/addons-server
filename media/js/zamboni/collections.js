@@ -479,22 +479,24 @@ if ($('body.collections-contributors')) {
     table.delegate(".remove", "click", function() {
         $(this).closest('tr').remove();
     })
-    table.delegate(".make-owner", "click", function(e) {
-        e.preventDefault();
-        $("#change-owner").detach().appendTo($(this).closest("span"));
-    });
-    $("#change-owner-cancel").click(function(e) {
-        e.preventDefault();
-        $("#change-owner").detach().appendTo($("#users-edit .hidden"));
+    $("#change-owner").popup(".make-owner", {
+        callback: function (obj) {
+            var $popup = this,
+                ct = $(obj.click_target);
+            $popup.delegate("#change-owner-cancel", "click", function(e) {
+                e.preventDefault();
+                $popup.hideMe();
+            });
+            $popup.attr("data-newowner", ct.parents(".contributor")
+                                           .children("input[name='contributor']").val()
+            );
+            return { pointTo: ct };
+        }
     });
     $("#change-owner-submit").click(function(e) {
         e.preventDefault();
-        var owner_id = $("#change-owner")
-            .parents(".contributor")
-            .children("input[name='contributor']").val();
-
-        $("#change-owner").append('<input type="hidden" name="new_owner" value="' + owner_id + '">');
-        $("#users-edit form").submit();
+        var owner_id = $("#change-owner").attr("data-newowner");
+        $("#users-edit form").append('<input type="hidden" name="new_owner" value="' + owner_id + '">').submit();
     });
 }
 
@@ -566,108 +568,100 @@ $(document).ready(function () {
 
     /* Add to collection initialization */
 
-    var btn = $('div.collection-add');
-    if (!btn.length) return;
+    $("#add-to-collection").popup(".widgets .collection-add", {
+        width: 200,
+        offset: {x: 8},
+        callback: function(obj) {
+            var $widget = this,
+                ct = $(obj.click_target),
+                list_url    = ct.attr('data-listurl'),
+                remove_url  = ct.attr('data-removeurl'),
+                add_url     = ct.attr('data-addurl'),
+                form_url    = ct.attr('data-newurl'),
+                addon_id    = ct.attr('data-addonid');
 
-    var list_url = btn.attr('data-listurl');
-    var remove_url = btn.attr('data-removeurl');
-    var add_url = btn.attr('data-addurl');
-    var form_url = btn.attr('data-newurl');
+            if (z.anonymous) {
+                return {pointTo: ct};
+            }
 
-    function handleToggle(e) {
-        e.preventDefault();
+            function loadList(e) {
+                if (e) e.preventDefault();
+                ct.addClass("ajax-loading");
+                // Make a call to /collections/ajax/list with addon_id
+                $.get(list_url, {'addon_id': addon_id}, renderList, 'html');
+            }
 
-        var tgt = $(this);
-        var dropdown = tgt.closest(".popup");
-        var addon_id = tgt.closest(".collection-add").attr('data-addonid');
-        var data = {'addon_id': addon_id,
-                    'id': tgt.attr('data-id')};
-        var url = this.className == "selected" ? remove_url
-                                               : add_url;
+            function renderList(data) {
+                $widget.removeClass("new-collection");
+                $widget.html(data);
+                $widget.show();
+                ct.removeClass("ajax-loading");
+                $("a.outlink", $widget).click(stopPropagation);
+                $widget.setWidth(200);
+                $widget.setPos(ct);
+                $widget.render();
+            }
 
-        $(this).addClass('ajax-loading');
+            function handleToggle(e) {
+                e.preventDefault();
 
-        $.post(url, data, function(data) {
-            dropdown.removeClass('new-collection');
-            dropdown.html(data);
-            $("a.outlink", dropdown).click(stopPropagation);
-        }, 'html');
-    }
+                var tgt = $(this);
+                var data = {'addon_id': addon_id,
+                            'id': tgt.attr('data-id')};
+                var url = this.className == "selected" ? remove_url
+                                                       : add_url;
 
-    var handleSubmit = function(e) {
-        var tgt = $(this);
-        var dropdown = tgt.parents(".popup");
-        var addon_id = tgt.parents(".collection-add").attr('data-addonid');
-        e.preventDefault();
-        form_data = $('#collections-new form').serialize();
-        $.post(form_url + '?addon_id=' + addon_id, form_data, function(d) {
-            dropdown.html(d);
-            $("a.outlink", dropdown).click(stopPropagation);
-        });
-    };
+                $(this).addClass('ajax-loading');
+                $.post(url, data, function(data) {
+                    $widget.removeClass('new-collection');
+                    $widget.html(data);
+                    $("a.outlink", $widget).click(stopPropagation);
+                }, 'html');
+            }
 
-    var handleNew = function(e) {
-        var tgt = $(this);
-        var dropdown = tgt.parents('.collection-add-dropdown');
-        var addon_id = tgt.parents(".collection-add").attr('data-addonid');
-        e.preventDefault();
-        $.get(form_url, {'addon_id': addon_id}, function(d) {
-            dropdown.addClass('new-collection');
-            dropdown.html(d);
-            $("#id_name").focus();
-        });
-    };
+            var handleSubmit = function(e) {
+                e.preventDefault();
+                var tgt = $(this);
+                ct.addClass('ajax-loading');
+                form_data = $('#add-to-collection form').serialize();
+                $.post(form_url + '?addon_id=' + addon_id, form_data, renderList, 'html');
+            };
 
-    var handleClick = function(e) {
-        $widget = $(this).closest('.collection-add');
-        $('.collection-add-dropdown').hide();
-        var dropdown = $('.collection-add-dropdown', $(this));
-        var addon_id = $(this).attr('data-addonid');
+            var handleNew = function(e) {
+                e.preventDefault();
+                var tgt = $(this);
+                $.get(form_url, {'addon_id': addon_id}, function(d) {
+                    $widget.addClass('new-collection');
+                    $widget.html(d);
+                    $widget.setWidth(410);
+                    $widget.setPos(ct);
+                    $("#id_name").focus();
+                });
+            };
 
-        function loadList(e) {
-            if (e) e.preventDefault();
-            $widget.addClass("ajax-loading");
-            // Make a call to /collections/ajax/list with addon_id
-            $.get(list_url, {'addon_id': addon_id}, function(data) {
-                dropdown.removeClass("new-collection");
-                dropdown.html(data);
-                dropdown.show();
-                $widget.removeClass("ajax-loading");
-                $("a.outlink", dropdown).click(stopPropagation);
-            }, 'html');
-        }
+            $widget.hideMe();
+            $widget.unbind('click.popup', stopPropagation);
+            $widget.bind('click.popup', stopPropagation);
+            $widget.delegate('#ajax_collections_list li', 'click', handleToggle)
+                .delegate('#ajax_new_collection', 'click', handleNew)
+                .delegate('#collections-new-cancel', 'click', loadList)
+                .delegate('#add-to-collection form', 'submit', handleSubmit)
+                .delegate('#id_name', 'keyup', slugify)
+                .delegate('#id_name', 'blur', slugify)
+                .delegate('#edit_slug', 'click', show_slug_edit)
+                .delegate('#id_slug', 'change', function() {
+                    url_customized = true;
+                    if (!$('#id_slug').val()) {
+                      url_customized = false;
+                      slugify();
+                    }
+                });
 
-        // If anonymous, show login overlay.
-        if (z.anonymous) {
-            dropdown.show();
-        } else {
             loadList();
+
+            return false;
         }
-        e.preventDefault();
-
-        dropdown.unbind('click.popup', stopPropagation);
-        dropdown.bind('click.popup', stopPropagation);
-        dropdown.delegate('#ajax_collections_list li', 'click', handleToggle)
-            .delegate('#collections-new form', 'submit', handleSubmit)
-            .delegate('#ajax_new_collection', 'click', handleNew)
-            .delegate('#collections-new-cancel', 'click', loadList)
-            .delegate('#id_name', 'keyup', slugify)
-            .delegate('#id_name', 'blur', slugify)
-            .delegate('#edit_slug', 'click', show_slug_edit)
-            .delegate('#id_slug', 'change', function() {
-                url_customized = true;
-                if (!$('#id_slug').val()) {
-                  url_customized = false;
-                  slugify();
-                }
-            });
-
-        // Clear popup when we click outside it.
-        setTimeout(function(){
-            $(document.body).bind('click newPopup', makeBlurHideCallback(dropdown));
-        }, 0);
-    };
-    $(document.body).delegate("div.collection-add", 'click', handleClick);
+    });
 
     function stopPropagation(e) {
         e.stopPropagation();
@@ -679,16 +673,15 @@ $(document).ready(function () {
 $(document).ready(function () {
 
     // Add to favorites functionality
-    $(".addon-favorite").click(function(e) {
+    $(".widget.favorite").click(function(e) {
         e.preventDefault();
-        var msg = $(".msg", this);
         var widget = $(this);
         var data = {'addon_id': widget.attr('data-addonid')};
         var faved = widget.hasClass("faved");
         var url = faved ? widget.attr('data-removeurl') : widget.attr('data-addurl');
+        var condensed = widget.hasClass("condensed");
 
         widget.addClass('ajax-loading');
-
 
         $.ajax({
             url: url,
@@ -698,14 +691,14 @@ $(document).ready(function () {
                 widget.removeClass('ajax-loading');
                 if (faved) {
                     widget.removeClass("faved");
-                    msg.text(widget.attr('data-unfavedtext'));
-                    msg.attr('title', gettext('Add to favorites'));
+                    if (condensed) widget.attr('title', gettext('Add to favorites'));
+                        else widget.text(widget.attr('data-unfavedtext'));
                 } else {
                     widget.addClass("faved");
-                    msg.text(widget.attr('data-favedtext'));
-                    msg.attr('title', gettext('Remove from favorites'));
+                    if (condensed) widget.attr('title', gettext('Remove from favorites'));
+                        else widget.text(widget.attr('data-favedtext'));
                 }
-                msg.trigger("tooltip_change");
+                widget.trigger("tooltip_change");
             },
             error: function(xhr) {
                 widget.removeClass('ajax-loading');
@@ -732,7 +725,7 @@ $(document).ready(function () {
                 } else {
                     widget.removeClass("watching");
                 }
-                if (widget.attr("title") || widget.attr("data-oldtitle")) {
+                if (widget.hasClass('condensed')) {
                     widget.attr("title", follow_text);
                     widget.trigger("tooltip_change");
                 } else {
@@ -748,73 +741,66 @@ $(document).ready(function () {
     //New sharing interaction
     var $email = $("#sharing-popup li.email");
     var old_email_text = $("#sharing-popup .share-email-success p");
-    $("#sharing-popup").popup(".share.widget a.share", {
+    $("#sharing-popup").popup(".share.widget", {
+        width: 280,
+        offset: {x: 8},
         callback: function(obj) {
-            var el = obj.click_target;
-            var $top = $(el).parents(".widgets");
-            var $container = $(".share-me", $top);
-            if ($(this).is(':visible') && $("#sharing-popup", $container).length ) {
-                return false;
-            } else {
-                var $widget = $(".share.widget", $top);
-                var base_url = $widget.attr('data-base-url');
-                var counts = $.parseJSON($widget.attr("data-share-counts"));
-                $email.detach();
-                if (!$container.hasClass("no-email")) {
-                    $email.appendTo($(".share-networks ul", this));
-                    var $popup = $(this);
-                    $popup.delegate(".email a", "click", function(e) {
-                        e.preventDefault();
-                        $(".share-email", $popup).show();
-                        $(".share-networks", $popup).hide();
-                    });
-                    $popup.delegate(".share-email a.close", "click", function(e) {
-                        e.preventDefault();
-                        $(".share-networks", $popup).show();
-                        $(".share-email", $popup).hide();
-                        $(".emailerror", $popup).hide();
-                    });
-                    $popup.delegate(".share-email form", "submit", function(e) {
-                        e.preventDefault();
-                        var form_data = $(this).serialize();
-                        $(".emailerror", $popup).hide();
-                        $(".share-email-success p", $popup).text(gettext('Sending Emails...'));
-                        $(".share-email-success", $popup).show();
-                        $.post(base_url + 'email', form_data, function(d) {
-                            if (d.success) {
-                                $(".share-email-success p", $popup).text(old_email_text);
-                                setTimeout(function() {
-                                    $(".share-networks", $popup).show();
-                                    $(".share-email", $popup).hide();
-                                    $(".share-email-success", $popup).hide();
-                                    obj.hider();
-                                }, 800);
-                            } else {
+            var ret = {};
+            var el = $(obj.click_target);
+            var $popup = this;
+            var base_url = el.attr('data-base-url');
+            var counts = $.parseJSON(el.attr("data-share-counts"));
+            $popup.hideMe();
+            $email.detach();
+            if (!el.hasClass("no-email")) {
+                $("#sharing-popup .share-networks ul").append($email);
+                $popup.delegate(".email a", "click", function(e) {
+                    e.preventDefault();
+                    $(".share-email", $popup).show();
+                    $(".share-networks", $popup).hide();
+                });
+                $popup.delegate(".share-email a.close", "click", function(e) {
+                    e.preventDefault();
+                    $(".share-networks", $popup).show();
+                    $(".share-email", $popup).hide();
+                    $(".emailerror", $popup).hide();
+                });
+                $popup.delegate(".share-email form", "submit", function(e) {
+                    e.preventDefault();
+                    var form_data = $(this).serialize();
+                    $(".emailerror", $popup).hide();
+                    $(".share-email-success p", $popup).text(gettext('Sending Emails...'));
+                    $(".share-email-success", $popup).show();
+                    $.post(base_url + 'email', form_data, function(d) {
+                        if (d.success) {
+                            $(".share-email-success p", $popup).text(old_email_text);
+                            setTimeout(function() {
+                                $(".share-networks", $popup).show();
+                                $(".share-email", $popup).hide();
                                 $(".share-email-success", $popup).hide();
-                                $(".emailerror", $popup).text(d.error || gettext('Oh no! Please try again later.'));
-                                $(".emailerror", $popup).show();
-                            }
-                        }, 'json');
-                    });
-                }
-                if (counts) {
-                    for (s in counts) {
-                        if (!counts.hasOwnProperty(s)) continue;
-                        var c = counts[s];
-                        var $li = $("li." + s, this);
-                        $(".share-count", $li).text(c);
-                        $(".uniquify", $li).attr("href", base_url + s);
-                    }
-                } else {
-                    return false;
-                }
-                if ($container.hasClass("left")) {
-                    this.addClass("left");
-                } else {
-                    this.removeClass("left");
-                }
-                return { 'container' : $container };
+                                obj.hider();
+                            }, 800);
+                        } else {
+                            $(".share-email-success", $popup).hide();
+                            $(".emailerror", $popup).text(d.error || gettext('Oh no! Please try again later.'));
+                            $(".emailerror", $popup).show();
+                        }
+                    }, 'json');
+                });
             }
+            if (counts) {
+                for (s in counts) {
+                    if (!counts.hasOwnProperty(s)) continue;
+                    var c = counts[s];
+                    var $li = $("li." + s, this);
+                    $(".share-count", $li).text(c);
+                    $(".uniquify", $li).attr("href", base_url + s);
+                }
+            } else {
+                return false;
+            }
+            ret.pointTo = obj.click_target;
+            return ret;
         }
     });
 

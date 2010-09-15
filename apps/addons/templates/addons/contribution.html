@@ -64,11 +64,9 @@
           addon.suggested_amount|currencyfmt('USD')) }}</p>
       {% endif %}
       {% if show_help %}
-        <p>
-          <a class="toggle-help" href="#contribute-why">
+          <a id="contribute-more-info" href="#contribute-why">
             {{ _("What's this?") }}{# msgctxt addons_display_a_license_what #}
           </a>
-        </p>
       {% endif %}
     </div>{# /suggestion #}
   </div>{# /aux #}
@@ -134,15 +132,17 @@
     </div>{# /contribute-box #}
   {% endif %}
 
-  <div id="contribute-why" class="toggle-info">
-    <p class="dropdown">
-      {% trans %}
-      Mozilla is committed to supporting a vibrant and healthy developer
-      ecosystem. Your optional contribution helps sustain further development
-      of this add-on.
-      {% endtrans %}
-    </p>
-    <a class="close" href="#">{{ _('close') }}</a>
-  </div>{# /why #}
 
 </div>{# /notification #}
+
+<div class="hidden">
+  <div id="contribute-why" class="popup">
+    <p class="msg">
+      {% trans %}
+        Mozilla is committed to supporting a vibrant and healthy developer
+        ecosystem. Your optional contribution helps sustain further development
+        of this add-on.
+      {% endtrans %}
+    </p>
+  </div>
+</div>

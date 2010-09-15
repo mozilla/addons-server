@@ -7,13 +7,9 @@
 {% endif %}
 {% if listed %}
 {% set email_class = ' no-email' if not (show_email and request.user.is_authenticated()) %}
-<div class="share widget{{ ' condensed tooltip' if condensed }}"
+<a class="share widget{{ ' condensed tooltip' if condensed }}{{ email_class }}"
      data-share-counts="{{ counts|json }}"
-     data-base-url="{{ obj.share_url() }}?service=">
-  <a title="{{ sharemsg }}"
-     class="share" href="#">
-        <span>{{ sharemsg }}</span>
-  </a>
-  <div class="share-me popup-shim{{ ' left' if condensed }}{{ email_class }}"></div>
-</div>
+     data-base-url="{{ obj.share_url() }}?service="
+     title="{{ sharemsg }}"
+     href="#">{{ sharemsg if not condensed }}</a>
 {% endif %}

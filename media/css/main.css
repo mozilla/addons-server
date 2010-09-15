@@ -1519,6 +1519,11 @@ form.favorite {
     color: #666666;
     font-weight: bold;
 }
+.notification .suggestion {
+    margin: 0;
+    color: #666666;
+    font-weight: bold;
+}
 .notification .aux {
     overflow: hidden;
     width: 100%;
@@ -2454,33 +2459,13 @@ ol.pagination li a:active {
 /* @group Share This */
 
 #sharing-popup {
-    width: 280px;
-    left: -55px;
     padding: 0;
-}
-
-.condensed #sharing-popup.left {
-    left: -194px;
 }
 
 .share-arrow {
     background-image: url(../../img/amo2009/icons/pointer.gif) no-repeat 30px top;
     padding-top: 7px;
     display: none;
-}
-
-.secondary .share-frame {
-    position:absolute;
-}
-
-.share-frame {
-    background-color:#FFFFFF;
-    border: 1px solid #2E5186;
-    -moz-border-radius:5px;
-    -webkit-border-radius:5px;
-    border-radius:5px;
-    overflow: hidden;
-    padding: 0;
 }
 
 #sharing-popup div.share-content {
@@ -2765,7 +2750,6 @@ form.addon-feedback div.container {
     -moz-border-radius: 3px 3px 0 0;
     border-radius: 3px 3px 0 0;
     padding: 0.1em 0 0.1em 0.25em;
-    overflow: hidden;
     line-height: 2.5em;
 }
 .listing-header ul {

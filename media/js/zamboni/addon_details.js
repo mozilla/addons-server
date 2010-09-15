@@ -73,6 +73,10 @@ $(document).ready(function() {
     var etiquette_box = $("#addons-display-review-etiquette").hide();
     $("#short-review").focus(function() { etiquette_box.show("fast"); } );
 
+    $("#contribute-why").popup("#contribute-more-info", {
+        pointTo: "#contribute-more-info"
+    });
+
 });
 
 /* get satisfaction initialization */

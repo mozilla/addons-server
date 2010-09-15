@@ -12,6 +12,7 @@
 .bars:after,
 .item:after,
 .secondary > div:after,
+.listing-header:after,
 #review-form p:after {
     content: ".";
     display: block;
@@ -614,6 +615,9 @@ th, td {
 .popup-shim {
     position: relative;
 }
+div.popup-shim {
+    display: inline-block;
+}
 
 .popup p:last-child {
     margin-bottom: 0;
@@ -684,6 +688,7 @@ th, td {
     top: -20px; /* value = - border-top-width - border-bottom-width */
     border: 10px solid transparent;
     border-bottom-color: #2e5186;
+    pointer-events: none;
 }
 
 .unreviewed .install-note:before,
@@ -703,6 +708,7 @@ th, td {
     top: -10px; /* value = - border-top-width - border-bottom-width */
     border: 5px solid transparent;
     border-bottom-color: #fff;
+    pointer-events: none;
 }
 
 .install-note.left:before,
@@ -741,7 +747,7 @@ th, td {
     max-width: 300px;
     text-align: center;
     position: absolute;
-    padding: .1em .8em .2em .8em;
+    padding: .2em .8em .3em .8em;
     pointer-events: none;
 }
 
@@ -2446,12 +2452,6 @@ h6.author, .author a {
 .highlight h5 {
     font-size: 120%;
 }
-.review-reason {
-    padding: 1em;
-}
-.review-reason.left {
-    left: -200px;
-}
 .review.reply {
     margin-left: 4em;
     background: #f0f6f2;
@@ -2515,16 +2515,13 @@ label > .optional {
     right: -76px;
 }
 
-.collection-add-dropdown a {
-    color: #0055EE;
+.popup h3 {
+    margin-top: 0;
 }
-.collection-add-dropdown form {
+#add-to-collection form {
     margin-bottom: 0;
 }
-.collection-add-dropdown.new-collection {
-    width: 410px;
-}
-.collection-add-dropdown.new-collection #id_description {
+#add-to-collection.new-collection #id_description {
     height: 6em;
 }
 
@@ -2799,11 +2796,6 @@ td.input {
     padding: 1em;
 }
 
-#change-owner {
-    left: inherit;
-    right: -44px;
-    width: 300px;
-}
 .contributor span {
     position: relative;
 }
@@ -2811,10 +2803,8 @@ td.input {
     margin-left: 1em;
 }
 
-.collection_widgets {
-    margin-top: .2em;
-}
 
+/* collections landing module */
 .collections-landing {
     padding: 1em;
     min-height: 190px;
@@ -2850,42 +2840,6 @@ td.input {
     padding-left: 250px;
 }
 
-.addon-favorite {
-    cursor: pointer;
-}
-
-.addon-favorite span,
-.condensed .watch {
-    padding-left: 22px;
-}
-
-.addon-favorite span {
-    background-repeat: no-repeat;
-    background-image: url(../../img/zamboni/icons/collections.png);
-    white-space: nowrap;
-    background-position: 0 -500px;
-}
-
-.condensed .watch:not(.watching),
-.condensed .addon-favorite:not(.faved) span,
-.collection-add.condensed a span {
-    padding-left: 16px;
-}
-
-.addon-favorite span.msg {
-    font-weight: bold;
-}
-.addon-favorite:hover span {
-    background-position: 0 -450px;
-}
-.addon-favorite.faved span {
-    background-position: 0 -400px;
-}
-.addon-favorite.ajax-loading span {
-   background-image: url(../../img/zamboni/loading-white.gif);
-   background-position: left bottom;
-}
-
 
 a.outlink {
     margin-left: 4px;
@@ -2900,116 +2854,83 @@ a.outlink:hover {
 }
 
 
-.collection-add.condensed a span {
-    background-position: 0 -151px;
-}
-.collection-add.condensed:hover a span {
-    background-position: 0 -101px;
-}
-.collection-add.condensed .collection-add-dropdown {
-    left: -140px;
-    top: 4px;
-}
-.collection-add.condensed .collection-add-dropdown.new-collection {
-    left: -350px;
-    top: 4px;
-}
 
-
-.share-this.condensed {
-    margin-right: 4px;
-    width: 16px;
-    float: none;
-}
-
-.share-this.condensed > a {
-    background-image: url(../../img/zamboni/icons/collections.png);
-    background-repeat: no-repeat;
-    white-space: nowrap;
-    background-position: 0 -600px;
-}
-.share-this.condensed > a:hover {
-    background-position: 0 -550px;
-}
-
-.condensed .share-frame {
-    left: -186px;
-}
-
-.collection_widgets .condensed {
-    margin-right: 4px;
-    display: inline-block;
-}
-
-.object-details .collection_widgets {
-    margin-bottom: 1em;
-}
-
-.widgets a.widget,
-.widgets .widget > a {
-    background-image: url(../../img/zamboni/icons/collections.png);
-    background-repeat: no-repeat;
-    padding-left: 22px;
-    text-indent: -9000px;
-}
 #addon-collector-logo {
     float: right;
 }
 .html-rtl #addon-collector-logo {
     float: left;
 }
-.collection_widgets div.widget {
-    display: inline-block;
-}
-.collection_widgets.condensed a.widget,
-.collection_widgets.condensed .widget > a{
-    padding: 0 0 0 16px;
-    width: 0px;
+
+
+/* Widgets! they're just fancy <a> tags donchaknow */
+.collection_widgets {
+    margin-top: .5em;
 }
 
-.html-rtl .collection_widgets.condensed a.widget,
-.html-rtl .collection_widgets.condensed .widget > a{
-    padding-right: 16px;
-    padding-left: 0;
+.collection_widgets .condensed {
+    margin-right: 4px;
+}
+
+.object-details .collection_widgets {
+    margin-bottom: 1em;
+}
+.widget {
+    background-image: url(../../img/zamboni/icons/collections.png);
+    background-repeat: no-repeat;
+    padding-left: 22px;
+    margin-right: 1em;
+    height: 16px;
+    line-height: 16px;
+}
+.widget.condensed {
+    margin-right: 8px;
+    padding-left: 16px;
+    width: 16px;
+}
+.html-rtl .widget.condensed {
     margin-right: 0;
     margin-left: .8em;
-}
-
-.widgets .widget {
-    margin-right: 8px;
-}
-
-.widgets.condensed a.widget > span,
-.widgets.condensed .widget > a > span {
-    display: none;
 }
 .widgets .edit {
     margin-left: .5em;
     background-position: 0 -350px;
 }
-.widgets a.edit:hover { background-position: 0 -300px; }
-.widgets a.copy { background-position: 0 -50px; }
-.widgets a.copy:hover { background-position: 0 0px; }
-.widgets a.watch { background-position: 0 -750px; }
-.widgets a.watch:hover { background-position: 0 -700px;}
-.widgets a.collection { background-position: 0 -150px; }
-.widgets a.collection:hover { background-position: 0 -100px;}
-.widgets a.watching { background-position: 0 -650px; }
-.widgets.condensed a.share { background-position: 0 -600px; }
-.widgets a.share, .widgets.condensed a.share:hover { background-position: 0 -550px; }
+#addon .widgets {
+    clear:left;
+}
+#addon .widget {
+    display: block;
+    margin-bottom: 1em;
+    float: left;
+}
+.html-rtl #addon .widget { float: right; }
+.widget.edit:hover { background-position: 0 -300px; }
+.widget.edit:hover { background-position: 0 -300px; }
+.widget.copy { background-position: 0 -50px; }
+.widget.copy:hover { background-position: 0 0px; }
+.widget.watch { background-position: 0 -750px; }
+.widget.watch:hover { background-position: 0 -700px;}
+.widget.watching { background-position: 0 -650px; }
+.widget.favorite { background-position: 0 -500px; }
+.widget.favorite:hover { background-position: 0 -450px; }
+.widget.favorite.faved { background-position: 0 -400px; }
+.widget.condensed.collection { background-position: 0 -150px; }
+.widget.collection, .widget.condensed.collection:hover { background-position: 0 -100px;}
+.widget.condensed.share { background-position: 0 -600px; }
+.widget.share, .widget.condensed.share:hover { background-position: 0 -550px; }
 
-
-.addon-favorite.ajax-loading span,
-.collection-add.ajax-loading > span,
-.widgets a.widget.ajax-loading,
-.widgets .widget.ajax-loading > a,
-.widgets > a.widget.ajax-loading:hover,
-input.ui-autocomplete-loading,
-.widgets > .widget.ajax-loading > a:hover {
+.widgets .widget.ajax-loading,
+.widgets .widget:hover.ajax-loading,
+input.ui-autocomplete-loading {
    background-image: url(../../img/zamboni/loading-white.gif);
    background-repeat: no-repeat;
    background-position: left bottom;
 }
 input.ui-autocomplete-loading {
     background-position: right center;
+}
+
+#popup-staging .popup {
+    display: none;
 }
