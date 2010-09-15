@@ -70,7 +70,7 @@
   {% with info, error = redis_results %}
     {% if info %}
       <ul>
-        {% for k, v in info.items() %}
+        {% for k, v in info|dictsort %}
           <li><code>{{ k }}: {{ v }}</code></li>
         {% endfor %}
       </ul>
