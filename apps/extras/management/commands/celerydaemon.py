@@ -3,7 +3,7 @@ from optparse import make_option
 from django.core.management.base import BaseCommand
 
 import daemon
-import lockfile
+import daemon.pidlockfile
 from celery.bin.celeryd import run_worker, OPTION_LIST
 
 
@@ -20,7 +20,7 @@ class Command(BaseCommand):
     def handle(self, *args, **opts):
         pidfile = None
         if opts['pidfile']:
-            pidfile = lockfile.FileLock(opts['pidfile'])
+            pidfile = daemon.pidlockfile.PIDLockFile(opts['pidfile'])
             del opts['pidfile']
 
         with daemon.DaemonContext(pidfile=pidfile):
