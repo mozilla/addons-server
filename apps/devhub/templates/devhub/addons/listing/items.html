@@ -1,0 +1,38 @@
+{% from "devhub/addons/listing/macros.html" import dev_heading, dev_item_info, dev_item_actions %}
+{% set collection = collection or None %}
+{% set username = request.amo_user.username if request.user.is_authenticated() else '' %}
+{% for addon in addons %}
+  <div class="item">
+    {{ dev_heading(addon) }}
+    <div class="item-info">
+      {{ dev_item_info(addon, amo) }}
+    </div>
+    <blockquote>
+      <ul class="item-details">
+        {# L10n: {0} is a version number. #}
+        <li>{{ _('<strong>Latest version:</strong> {0}'|
+                 f(addon.current_version))|safe }}</li>
+
+        {# L10n: {0} is a date. #}
+        <li>{{ _('<strong>Last updated:</strong> {0}'|
+                 f(addon.last_updated|datetime))|safe }}</li>
+
+        <li>
+          <strong>{{ _('Status:') }}</strong>
+          {% if addon.inactive %}
+            <span class="inactive-1">{{ _('Inactive') }}</span>
+          {% else %}
+            <span class="inactive-0">{{ _('Active') }}</span>
+          {% endif %}
+          {% trans status_key=addon.status,
+                   status_value=amo.STATUS_CHOICES[addon.status] %}
+            and <span class="status-{{ status_key }}">{{ status_value }}</span>
+          {% endtrans %}
+        </li>
+      </ul>
+      <div class="item-actions">
+        {{ dev_item_actions(addon, amo) }}
+      </div>
+    </blockquote>
+  </div>
+{% endfor %}

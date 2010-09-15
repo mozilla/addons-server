@@ -345,6 +345,9 @@ MINIFY_BUNDLES = {
         'zamboni/discovery-pane': (
             'css/zamboni/discovery-pane.css',
         ),
+        'zamboni/devhub': (
+            'css/zamboni/developers.css',
+        ),
     },
     'js': {
         # JS files common to the entire site.
@@ -389,6 +392,9 @@ MINIFY_BUNDLES = {
         'zamboni/discovery-pane': (
             'js/zamboni/jquery-1.4.2.min.js',
             'js/zamboni/discovery_pane.js',
+        ),
+        'zamboni/devhub': (
+            'js/zamboni/devhub.js',
         ),
     }
 }

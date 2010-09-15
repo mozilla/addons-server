@@ -6,9 +6,8 @@
 
 
 {% block title %}
-{# TODO(gkoberger): Rumor has it cvan has an awesome replacement on the way #}
 {# L10n: {0} is the add-on name. #}
-{{ page_title(_('Manage {0}')|f(addon.name)) }}
+{{ dev_page_title(_('Manage {0}')|f(addon.name)) }}
 {% endblock %}
 
 {% macro empty_unless(truthy) %}
@@ -27,10 +26,8 @@
 
 {% block content %}
 <header>
-  {# TODO(gkoberger?): cvan is improving this. #}
-  {{ breadcrumbs([(url('devhub.index'), _('Developer Hub')),
-                  (remora_url('/developers/addons'), _('My Add-ons')),
-                  (None, addon.name)], add_default=False) }}
+  {{ dev_breadcrumbs([(url('devhub.addons'), _('My Add-ons')),
+                      (None, addon.name)]) }}
   <h2>{{ _('Manage {0}')|f(addon.name) }}</h2>
 </header>
 

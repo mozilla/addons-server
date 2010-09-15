@@ -1,0 +1,92 @@
+{% extends "devhub/base.html" %}
+
+{% block bodyclass %}{{ super() }} inverse{% endblock %}
+
+{% block title %}{{ dev_page_title(_('Manage My Add-ons')) }}{% endblock %}
+
+{% block content %}
+<header>
+  {{ dev_breadcrumbs([(None, _('My Add-ons'))]) }}
+  <hgroup>
+    <h2>{{ _('Manage My Add-ons') }}</h2>
+
+    {% if addons %}
+      {% set cnt = addons.paginator.count %}
+      {# L10n: {0} is an integer. #}
+      <h3>{{ ngettext('<b>{0}</b> add-on', '<b>{0}</b> add-ons',cnt)|f(cnt|numberfmt)|safe }}</h3>
+    {% endif %}
+  </hgroup>
+</header>
+
+{% if not addons %}
+  <div class="action-needed">
+    <h3>{{ _('Welcome to the Developer Dashboard') }}</h3>
+    <p>
+    {% trans %}
+      You don't currently have any add-ons hosted on Mozilla Add-ons. To learn
+      how the process works and submit your first add-on, click Get Started
+      below.
+    {% endtrans %}
+    </p>
+    <p class="button-wrapper">
+      <a href="{{ remora_url('/developers/addon/submit') }}"
+         class="action-button rounded">{{ _('Get Started') }}</a>
+    </p>
+  </div>
+{% else %}
+  <section id="dashboard" class="primary" role="main">
+    <div class="featured listing">
+      <div class="featured-inner">
+        {% set url_base = url('devhub.addons') %}
+        {% if addons.paginator.num_pages > 1 %}
+          {{ addon_listing_header(url_base, sort_opts, sorting) }}
+        {% endif %}
+
+        {{ dev_addon_listing_items(addons.object_list) }}
+
+        {% if addons.paginator.num_pages > 1 %}
+          <div class="listing-footer">
+            {{ addons|paginator }}
+          </div>
+        {% endif %}
+      </div>{# /featured-inner #}
+    </div>
+  </section>
+
+  <section id="dashboard-sidebar" class="secondary" role="complementary">
+    <p id="submit-addon">
+      <a href="{{ remora_url('/developers/addon/submit') }}"
+         class="button prominent">{{ _('Submit a New Add-on') }}</a>
+    </p>
+    <div class="recent-activity">
+      <h3>
+        {{ _('Recent Activity') }}
+{# TODO: Add URL for user's 'Recent Activity' feed. #}
+        <a href="#" class="subscribe-feed" title="{{ _('Subscribe to this feed') }}">
+          {{ _('Subscribe to this feed') }}</a>
+      </h3>
+      <ul>
+{# TODO: Replace with real Recent Activity. #}
+        <li>
+          Version 1.3 of Test Pilot added.
+          <span class="activity-timestamp">30 min ago by Mozilla Labs</span>
+        </li>
+        <li>
+          Version 1.2 of Test Pilot added.
+          <span class="activity-timestamp">1 week ago by Mozilla Labs</span>
+        </li>
+        <li>
+          Version 1.2 of Test Pilot added.
+          <span class="activity-timestamp">3 weeks ago by Mozilla Labs</span>
+        </li>
+        <li>
+          Firefox Sync of Test Pilot approved for release.
+          <span class="activity-timestamp">3 months ago by Mozilla Labs</span>
+        </li>
+      </ul>
+      <p class="older-activity"><a href="{{ url('devhub.addons.activity') }}">
+        {{ _('Older activity for My Add-ons') }}</a></p>
+    </div>
+  </section>
+{% endif %}
+{% endblock %}

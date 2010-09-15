@@ -1,14 +1,17 @@
 {% extends "devhub/base.html" %}
 
 {% block title %}
-{{ page_title(_('Recent Activity for My Add-ons')) }}
+{{ dev_page_title(_('Recent Activity for My Add-ons')) }}
+{% endblock %}
+
+{% block rss_feed %}
+{# TODO: Add ``<link>`` to 'Recent Activity' RSS feed. #}
 {% endblock %}
 
 {% block content %}
 <header>
-  {{ breadcrumbs([(url('devhub.index'), _('Developer Hub')),
-                  (remora_url('/developers/addons'), _('My Add-ons')),
-                  (None, _('Recent Activity'))], add_default=False) }}
+  {{ dev_breadcrumbs([(url('devhub.addons'), _('My Add-ons')),
+                      (None, _('Recent Activity'))]) }}
   <h2>{{ _('Recent Activity for My Add-ons') }}</h2>
 </header>
 

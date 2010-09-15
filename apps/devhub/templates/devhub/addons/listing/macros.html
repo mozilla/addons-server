@@ -1,0 +1,73 @@
+{% macro dev_heading(addon) %}
+  <h4>
+    <a href="{{ addon.get_url_path() }}">
+      <img class="icon" width="32" height="32" src="{{ addon.icon_url }}"
+           alt="{{ addon.name }}">
+      {{ addon.name }}</a>
+  </h4>
+{% endmacro %}
+
+{% macro dev_item_info(addon, amo) %}
+  {{ addon|reviews_link }}
+  {% if addon.status != amo.STATUS_LISTED %}
+    <p class="downloads">
+      {% with num=addon.weekly_downloads %}
+        {# L10n: {0} is the number of downloads. #}
+        {{ ngettext("<strong>{0}</strong> weekly download",
+                    "<strong>{0}</strong> weekly downloads",
+                    num)|f(num|numberfmt)|safe }}
+      {% endwith %}
+    </p>
+  {% endif %}
+  <p class="users">
+    {% with num=addon.average_daily_users %}
+      {# L10n: {0} is the number of active users. #}
+      {{ ngettext("<strong>{0}</strong> active users",
+                  "<strong>{0}</strong> active users",
+                  num)|f(num|numberfmt)|safe }}
+    {% endwith %}
+  </p>
+{% endmacro %}
+
+{% macro dev_item_actions(addon, amo) %}
+  <h5>{{ _('Actions') }}</h5>
+  <ul>
+    <li>
+{# TODO: Add URL for 'Manage Add-on' page. #}
+      <a href="{{ url('devhub.addons.edit', addon.id) }}" class="tooltip"
+         title="{{ _("Edit details about this add-on's listing.") }}">
+        {{ _('Edit Listing') }}</a>
+    </li>
+    <li>
+{# TODO: Add URL for 'Manage Version' page. #}
+      <a href="#" class="tooltip"
+         title="{{ _('Upload a new version of this add-on.') }}">
+        {{ _('New Version') }}</a>
+    </li>
+    <li>
+{# TODO: Add 'compat-error' class to anchor if addon is incompatibile with latest version of Firefox, Thunderbird, mobile, etc. #}
+      <a href="#" class="tooltip"
+         title="{{ _('View and update application compatibility ranges.') }}">
+        {{ _('Compatibility') }}</a>
+    </li>
+    <li>
+      <a href="{{ url('stats.overview', addon.id) }}" class="tooltip"
+         title="{{ _('Daily statistics on downloads and users.') }}">
+        {{ _('Statistics') }}</a>
+    </li>
+    <li>
+      <a href="#" class="more-actions-view more-actions">{{ _('More') }}</a>
+        <div class="more-actions-view-dropdown popup hidden">
+          <ul>
+{# TODO: Add URLs for 'Manage Add-on' pages. #}
+            <li><a href="#">{{ _('Manage Authors & License') }}</a></li>
+            <li><a href="#">{{ _('Manage Payments') }}</a></li>
+            <li><a href="#">{{ _('Manage Status & Versions') }}</a></li>
+            <li class="item-group"><a href="#">
+              {{ _('View Add-on Listing') }}</a></li>
+            <li><a href="#">{{ _('View Recent Changes') }}</a></li>
+          </ul>
+        </div>
+    </li>
+  </ul>
+{% endmacro %}
