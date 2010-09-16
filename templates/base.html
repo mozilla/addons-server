@@ -101,7 +101,7 @@
     <div id="popup-staging">
       {{ sharing_box() }}
       <div id="add-to-collection" class="popup">
-        {% if user.is_anonymous() %}
+        {% if request.user.is_anonymous() %}
           <div class="collection-add-login">
             <p>{% trans %}
               To create your own collections, you must have a Mozilla Add-ons account.
