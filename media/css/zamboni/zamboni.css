@@ -2883,6 +2883,10 @@ a.outlink:hover {
     height: 16px;
     line-height: 16px;
 }
+.html-rtl .widget {
+    margin-right: 0;
+    margin-left: 1em;
+}
 .widget.condensed {
     margin-right: 8px;
     padding-left: 16px;
