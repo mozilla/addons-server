@@ -1,4 +1,5 @@
 import os
+from smtplib import SMTPException
 
 from django import forms
 from django.conf import settings
@@ -24,7 +25,12 @@ class PasswordResetForm(auth_forms.PasswordResetForm):
     def save(self, **kw):
         for user in self.users_cache:
             log.info(u'Password reset email sent for user (%s)' % user)
-        super(PasswordResetForm, self).save(**kw)
+        try:
+            # Django calls send_mail() directly and has no option to pass
+            # in fail_silently, so we have to catch the SMTP error ourselves
+            super(PasswordResetForm, self).save(**kw)
+        except SMTPException, e:
+            log.error("Failed to send mail for (%s): %s" % (user, e))
 
 
 class SetPasswordForm(auth_forms.SetPasswordForm):
