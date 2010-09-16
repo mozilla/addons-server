@@ -5,6 +5,7 @@ import random
 from django.conf import settings
 from django.contrib.auth.models import User as DjangoUser
 from django.db import IntegrityError
+from django.db import connection, transaction
 
 import commonware.log
 from celery.decorators import task
@@ -45,3 +46,16 @@ def resize_photo(src, dst):
         os.remove(src)
     except Exception, e:
         task_log.error("Error saving userpic: %s" % e)
+
+
+@task(rate_limit='3/m')
+def fix_users_with_photos(ids):
+    """Temporary code, see bug 596477.  Delete me after 5.12."""
+    task_log.info('[%s@%s] Adding photo flag to users' %
+                  (len(ids), fix_users_with_photos.rate_limit))
+    cursor = connection.cursor()
+
+    query = "UPDATE users SET picture_type='image/png' WHERE id IN(%s)"
+    query = query % ','.join([str(i) for i in ids])
+    cursor.execute(query)
+    transaction.commit_unless_managed()
