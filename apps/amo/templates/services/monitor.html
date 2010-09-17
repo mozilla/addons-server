@@ -84,7 +84,6 @@
 <div class="notification-box {{ status(status_summary.hera) }}">
   <h2>[Zeus] Connection Tests (Hera)</h2>
   <ul>
-      <li>Check is disabled.  Waiting on bug 585183</li>
   {% for result in hera_results %}
     <li>{{ result.location }}:
     {% if result.result %}
