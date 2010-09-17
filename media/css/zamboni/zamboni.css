@@ -2893,12 +2893,7 @@ a.outlink:hover {
     width: 16px;
 }
 .html-rtl .widget.condensed {
-    margin-right: 0;
     margin-left: .8em;
-}
-.widgets .edit {
-    margin-left: .5em;
-    background-position: 0 -350px;
 }
 #addon .widgets {
     clear:left;
@@ -2909,7 +2904,7 @@ a.outlink:hover {
     float: left;
 }
 .html-rtl #addon .widget { float: right; }
-.widget.edit:hover { background-position: 0 -300px; }
+.widget.edit { background-position: 0 -350px; }
 .widget.edit:hover { background-position: 0 -300px; }
 .widget.copy { background-position: 0 -50px; }
 .widget.copy:hover { background-position: 0 0px; }

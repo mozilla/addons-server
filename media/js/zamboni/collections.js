@@ -778,7 +778,7 @@ $(document).ready(function () {
                                 $(".share-networks", $popup).show();
                                 $(".share-email", $popup).hide();
                                 $(".share-email-success", $popup).hide();
-                                obj.hider();
+                                $popup.hideMe();
                             }, 800);
                         } else {
                             $(".share-email-success", $popup).hide();

@@ -68,8 +68,10 @@
           {{ big_install_button(addon, show_warning=False) }}
 
           {% if settings.NEW_COLLECTIONS %}
+          <div class="widgets">
             {{ favorites_widget(addon) }}
             {% include 'addons/includes/collection_add_widget.html' %}
+          </div>
           {% endif %}
 
           {# TODO(davedash): Remove until zamboni does sharing

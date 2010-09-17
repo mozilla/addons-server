@@ -16,6 +16,7 @@ jQuery.fn.tooltip = function(tip_el) {
         $tgt, $title;
 
     function setTip() {
+        if (!$tgt) return;
         var pos = $tgt.offset();
 
         $msg.text($title.attr("title"));
