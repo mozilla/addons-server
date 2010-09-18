@@ -28,5 +28,18 @@ def validator(upload_id, **kw):
 
 
 def _validator(upload):
-    time.sleep(3)
-    return 'oh nice'
+    # TODO(basta): this should be two lines.
+    # from addon_validator import validate
+    # return validate(path, format='json')
+    from cStringIO import StringIO
+    import validator.main as addon_validator
+    from validator.errorbundler import ErrorBundle
+    from validator.constants import PACKAGE_ANY
+    output = StringIO()
+    # I have no idea what these params mean.
+    eb = ErrorBundle(output, True)
+    eb.determined = True
+    eb.save_resource('listed', True)
+    addon_validator.prepare_package(eb, upload.path, PACKAGE_ANY)
+    eb.print_json()
+    return output.getvalue()
