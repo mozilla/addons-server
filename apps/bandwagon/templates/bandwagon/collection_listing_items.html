@@ -20,7 +20,7 @@
           {% endtrans %}
         {% endif %}
       </li>
-      {% if show_date == 'created' %}
+      {% if show_date in ['created', 'newest'] %}
         <li class="modified">
           {# L10n: {0} is a date. #}
           {{ _('Added {0}')|f(c.created|datetime) }}

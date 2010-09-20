@@ -202,7 +202,7 @@ def _collections(request):
         return jingo.render(request, 'search/down.html', {}, status=503)
 
     pager = amo.utils.paginate(request, results, search_opts['limit'])
-    c = dict(pager=pager, form=form, query=query,
+    c = dict(pager=pager, form=form, query=query, opts=search_opts,
              filter=bandwagon.views.get_filter(request))
     return jingo.render(request, 'search/collections.html', c)
 

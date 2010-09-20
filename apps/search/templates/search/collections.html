@@ -32,7 +32,8 @@
           </form>
         </div>
         {% if settings.NEW_COLLECTIONS %}
-          {{ collection_listing_items(pager.object_list) }}
+          {{ collection_listing_items(pager.object_list,
+                                      show_date=opts.sort) }}
         {% else %}
         {% for c in pager.object_list %}
           <div class="item">
