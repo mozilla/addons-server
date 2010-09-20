@@ -11,8 +11,9 @@ import commonware.log
 import happyforms
 from tower import ugettext as _, ugettext_lazy as _lazy
 
+from amo.utils import slug_validator
 from .models import UserProfile, BlacklistedUsername, BlacklistedEmailDomain
-import tasks
+from . import tasks
 
 log = commonware.log.getLogger('z.users')
 
@@ -104,6 +105,7 @@ class UserRegisterForm(happyforms.ModelForm):
 
     def clean_username(self):
         name = self.cleaned_data['username']
+        slug_validator(name)
         if BlacklistedUsername.blocked(name):
             raise forms.ValidationError(_('This username is invalid.'))
         return name

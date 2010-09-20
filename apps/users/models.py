@@ -47,7 +47,7 @@ class UserManager(amo.models.ManagerBase):
 
 
 class UserProfile(amo.models.ModelBase):
-
+    # nickname, firstname, & lastname are deprecated.
     nickname = models.CharField(max_length=255, default='', null=True,
                                 blank=True)
     firstname = models.CharField(max_length=255, default='', blank=True)
