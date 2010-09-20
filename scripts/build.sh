@@ -25,7 +25,7 @@ source $VENV/bin/activate
 pip install -q -r requirements/dev.txt -r requirements/compiled.txt
 
 # Create paths we want for addons
-if [ ! -d "/tmp/warez"]; then
+if [ ! -d "/tmp/warez" ]; then
     mkdir /tmp/warez
 fi
 
