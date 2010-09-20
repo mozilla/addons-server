@@ -24,6 +24,11 @@ source $VENV/bin/activate
 
 pip install -q -r requirements/dev.txt -r requirements/compiled.txt
 
+# Create paths we want for addons
+if [ ! -d "/tmp/warez"]; then
+    mkdir /tmp/warez
+fi
+
 cat > settings_local.py <<SETTINGS
 from settings import *
 ROOT_URLCONF = 'workspace.urls'
@@ -35,6 +40,7 @@ DATABASES['default']['TEST_CHARSET'] = 'utf8'
 DATABASES['default']['TEST_COLLATION'] = 'utf8_general_ci'
 CACHE_BACKEND = 'caching.backends.locmem://'
 CELERY_ALWAYS_EAGER = True
+ADDONS_PATH = '/tmp/warez'
 SETTINGS
 
 
