@@ -1,0 +1,29 @@
+{# TODO(gkoberger) This needs to be finished #}
+<section class="secondary" role="complementary">
+<div class="highlight" id="edit-addon-nav">
+
+  <h3>{{ addon.name }}</h3>
+
+  <div>
+    <ul class="refinements">
+      <li {% if page == "edit" %}class="selected"{% endif %}>
+      <a href="#">{{ _('Edit Add-on Listing') }}</a>
+      </li>
+      <li><a href="#">{{ _('Manage Authors & License') }}</a></li>
+      <li><a href="#">{{ _('Manage Developer Profile') }}</a></li>
+      <li><a href="#">{{ _('Manage Payments') }}</a></li>
+      <li><a href="#">{{ _('Manage Status & Versions') }}</a></li>
+    </ul>
+  </div>
+
+  <div id="refine-activity">
+    <ul class="refinements">
+      <li><a href="#">{{ _('View Add-on Listing') }}</a></li>
+      <li><a href="#">{{ _('View Recent Changed') }}</a></li>
+      <li><a href="#">{{ _('View Statistics Dashboard') }}</a></li>
+    </ul>
+  </div>
+
+</div>
+</section>
+

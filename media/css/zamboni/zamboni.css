@@ -739,7 +739,7 @@ div.popup-shim {
 /** hover tooltip styles **/
 #tooltip {
     display:none;
-    background: #2e5186;
+    background: #2A4364;
     color: white;
     font-size: .9em;
     -moz-border-radius: .8em;
@@ -749,6 +749,7 @@ div.popup-shim {
     position: absolute;
     padding: .2em .8em .3em .8em;
     pointer-events: none;
+    padding:10px;
 }
 
 #tooltip span {
@@ -769,7 +770,7 @@ div.popup-shim {
     bottom: -16px;
     border: solid transparent;
     border-width: 8px 6px;
-    border-top-color: #2e5186;
+    border-top-color: #2A4364;
     pointer-events: none;
 }
 

@@ -1,0 +1,97 @@
+
+/* Edit addon. */
+
+#edit-addon .label {
+    margin-right:5px;
+}
+
+#edit-addon h3 input {
+    font-size: 11px;
+}
+
+#edit-addon .item {
+    background-color: #FFFFFF;
+    background-position: left bottom;
+    background-repeat: repeat-x;
+    clear: both;
+    padding: 5px 13px;
+    position: relative;
+    border: 1px solid #C9E8F3;
+    margin: 0 0 1em;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+}
+
+#edit-addon h3:first-child {
+    margin-top: 0;
+}
+
+
+#edit-addon table {
+    margin: 0;
+    width: 100%;
+}
+
+#edit-addon table th {
+    width: 130px;
+    vertical-align: top;
+    padding: 8px 20px 8px 0;
+    border-top: 1px dashed #ADD0DC;
+}
+
+#edit-addon table td {
+    padding: 8px 0;
+    border-top: 1px dashed #ADD0DC;
+}
+
+#edit-addon table, #edit-addon tbody {
+    border-top: medium none;
+    border-bottom: medium none;
+}
+
+#edit-addon table tr:first-child td,
+#edit-addon table tr:first-child th {
+    border-top: medium none;
+}
+
+#edit-addon table .screenshot.thumbnail {
+    width: 100px;
+    height: 75px;
+}
+
+#edit-addon .help {
+    -moz-border-radius: 20px;
+    -webkit-border-radius :20px;
+    border-radius: 20px;
+    background-color: #DDDDDD;
+    color: white;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    height: 18px;
+    line-height: 1.3em;
+    margin-top: 0;
+    text-align: center;
+    text-decoration :none;
+    width: 18px;
+}
+
+#edit-addon tr:hover .help {
+    background-color: #CCC;
+}
+
+#edit-addon tr:hover .help:hover {
+    background-color: #2A4364;
+}
+
+#edit-addon .empty {
+    color: #999999;
+    font-style: italic;
+}
+
+#edit-addon-nav div:last-child ul.refinements {
+    border-bottom: 0 none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
