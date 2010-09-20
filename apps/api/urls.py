@@ -68,6 +68,7 @@ addons_resource = Resource(handler=handlers.AddonsHandler, **ad)
 piston_patterns = patterns('',
     url(r'^user/$', user_resource, name='api.user'),
     url(r'^addons/$', addons_resource, name='api.addons'),
+    url(r'^addon/(?P<addon_id>\d+)$', addons_resource, name='api.addon'),
 )
 
 urlpatterns = patterns('',

@@ -5,6 +5,8 @@ from piston.handler import BaseHandler
 from piston.utils import rc, throttle
 from tower import ugettext as _
 
+from access import acl
+from addons.forms import AddonForm
 from addons.models import Addon
 from users.models import UserProfile
 from versions.forms import LicenseForm, XPIForm
@@ -26,9 +28,9 @@ class UserHandler(BaseHandler):
 
 
 class AddonsHandler(BaseHandler):
-    allowed_methods = ('POST',)
+    allowed_methods = ('POST', 'PUT')
     model = Addon
-    fields = ('id', 'name', )
+    fields = ('id', 'name', 'eula')
     exclude = ('highest_status', 'icon_type')
 
     # Custom handler so translated text doesn't look weird
@@ -63,4 +65,16 @@ class AddonsHandler(BaseHandler):
 
         a = new_file_form.create_addon(user=request.amo_user,
                                        license_id=license_id)
+        return a
+
+    @throttle(10, 60 * 60)  # allow 10 updates an hour
+    def update(self, request, addon_id):
+        a = Addon.objects.get(pk=addon_id)
+        if not acl.check_ownership(request, a):
+            return rc.FORBIDDEN
+
+        form = AddonForm(request.PUT, instance=a)
+        if not form.is_valid():
+            return rc.BAD_REQUEST
+        a = form.save()
         return a

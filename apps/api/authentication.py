@@ -14,7 +14,6 @@ class AMOOAuthAuthentication(authentication.OAuthAuthentication):
 
     def is_authenticated(self, request):
         rv = super(AMOOAuthAuthentication, self).is_authenticated(request)
-
         if rv:
             ACLMiddleware().process_request(request)
         return rv

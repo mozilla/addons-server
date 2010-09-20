@@ -35,6 +35,7 @@ from piston.models import Consumer, Token
 
 from amo.urlresolvers import reverse
 from addons.models import Addon
+from translations.models import Translation
 
 
 def _get_args(consumer, token=None, callback=False, verifier=None):
@@ -59,7 +60,12 @@ def _get_args(consumer, token=None, callback=False, verifier=None):
 
 
 def get_absolute_url(url):
-    return 'http://%s%s' % ('api', reverse(url))
+    if isinstance(url, tuple):
+        url = reverse(url[0], args=url[1:])
+    else:
+        url = reverse(url)
+
+    return 'http://%s%s' % ('api', url)
 
 
 class OAuthClient(Client):
@@ -67,7 +73,7 @@ class OAuthClient(Client):
     def get(self, url, consumer=None, token=None, callback=False,
             verifier=None):
         url = get_absolute_url(url)
-        req = oauth.Request(method="GET", url=url,
+        req = oauth.Request(method='GET', url=url,
                             parameters=_get_args(consumer, callback=callback,
                                                  verifier=verifier))
         signature_method = oauth.SignatureMethod_HMAC_SHA1()
@@ -79,14 +85,22 @@ class OAuthClient(Client):
              verifier=None, data={}):
         url = get_absolute_url(url)
         params = _get_args(consumer, callback=callback, verifier=verifier)
-        req = oauth.Request(method="POST", url=url,
-                            parameters=params)
+        req = oauth.Request(method='POST', url=url, parameters=params)
         signature_method = oauth.SignatureMethod_HMAC_SHA1()
         req.sign_request(signature_method, consumer, token)
         return super(OAuthClient, self).post(req.to_url(), HTTP_HOST='api',
                                              data=data, **req)
 
-
+    def put(self, url, consumer=None, token=None, callback=False,
+            verifier=None, data={}):
+        url = get_absolute_url(url)
+        params = _get_args(consumer, callback=callback, verifier=verifier)
+        params.update(data)
+        req = oauth.Request(method='PUT', url=url, parameters=params)
+        signature_method = oauth.SignatureMethod_HMAC_SHA1()
+        req.sign_request(signature_method, consumer, token)
+        return super(OAuthClient, self).put(req.to_url(), HTTP_HOST='api',
+                                            data=req, **req)
 client = OAuthClient()
 token_keys = ('oauth_token_secret', 'oauth_token',)
 
@@ -164,7 +178,7 @@ class BaseOauth(TestCase):
             else:
                 eq_(r.status_code, 200)
 
-            piston_token = Token.objects.get()
+            piston_token = Token.objects.get(key=token.key)
             assert piston_token.is_approved, "Token not saved."
         else:
             del d['authorize_access']
@@ -211,10 +225,25 @@ class TestBasicOauth(BaseOauth):
 
 
 class TestAddon(BaseOauth):
-    def make_create_request(self, data):
+
+    def setUp(self):
+        super(TestAddon, self).setUp()
         consumer = self.accepted_consumer
         self._oauth_flow(consumer)
-        return client.post('api.addons', consumer, self.token, data=data)
+        path = 'apps/api/fixtures/api/helloworld.xpi'
+        xpi = os.path.join(settings.ROOT, path)
+        f = open(xpi)
+
+        self.create_data = dict(
+                license_type='other',
+                license_text='This is FREE!',
+                platform='mac',
+                xpi=f,
+                )
+
+    def make_create_request(self, data):
+        return client.post('api.addons', self.accepted_consumer, self.token,
+                           data=data)
 
     def test_create(self):
         # License (req'd): MIT, GPLv2, GPLv3, LGPLv2.1, LGPLv3, MIT, BSD, Other
@@ -222,18 +251,8 @@ class TestAddon(BaseOauth):
         # XPI file... (req'd)
         # Platform (All by default): 'mac', 'all', 'bsd', 'linux', 'solaris',
         #   'windows'
-        path = 'apps/api/fixtures/api/helloworld.xpi'
-        xpi = os.path.join(settings.ROOT, path)
-        f = open(xpi)
 
-        data = dict(
-                license_type='other',
-                license_text='This is FREE!',
-                platform='mac',
-                xpi=f,
-                )
-
-        r = self.make_create_request(data)
+        r = self.make_create_request(self.create_data)
 
         eq_(r.status_code, 200, r.content)
 
@@ -250,3 +269,47 @@ class TestAddon(BaseOauth):
         eq_(r.status_code, 400, r.content)
         eq_(r.content, 'Bad Request: '
             'Invalid license data provided: License text missing.')
+
+    def test_update(self):
+        # create an addon
+        r = self.make_create_request(self.create_data)
+        data = json.loads(r.content)
+        id = data['id']
+
+        # icon, homepage, support email,
+        # support website, get satisfaction, gs_optional field, allow source
+        # viewing, set flags
+        data = dict(
+                name='fu',
+                default_locale='fr',
+                homepage='mozilla.com',
+                support_email='go@away.com',
+                support_url='http://google.com/',
+                description='it sucks',
+                summary='sucks',
+                developer_comments='i made it suck hard.',
+                eula='love it',
+                privacy_policy='aybabtu',
+                the_reason='for shits',
+                the_future='is gone',
+                view_source=1,
+                prerelease=1,
+                binary=1,
+                site_specific=1,
+                get_satisfaction_company='yermom',
+                get_satisfaction_product='yer face',
+        )
+
+        r = client.put(('api.addon', id), self.accepted_consumer, self.token,
+                       data=data)
+        eq_(r.status_code, 200, r.content)
+
+        a = Addon.objects.get(pk=id)
+        for field, expected in data.iteritems():
+            value = getattr(a, field)
+            if isinstance(value, Translation):
+                value = unicode(value)
+
+            eq_(value, expected,
+                "'%s' didn't match: got '%s' instead of '%s'"
+                % (field, getattr(a, field), expected))

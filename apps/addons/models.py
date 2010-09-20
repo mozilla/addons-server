@@ -17,7 +17,8 @@ from amo.utils import urlparams, sorted_groupby, JSONEncoder
 from amo.urlresolvers import reverse
 from cake.urlresolvers import remora_url
 from reviews.models import Review
-from stats.models import Contribution as ContributionStats, AddonShareCountTotal
+from stats.models import (Contribution as ContributionStats,
+                          AddonShareCountTotal)
 from translations.fields import (TranslatedField, PurifiedField,
                                  LinkifiedField, translations_with_fallback)
 from users.models import UserProfile, PersonaAuthor
