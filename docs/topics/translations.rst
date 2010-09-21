@@ -20,13 +20,6 @@ A minimal Addon model looks like this::
         name = TranslatedField()
         description = TranslatedField()
 
-:class:`amo.models.ModelBase` inherits from
-:class:`translations.fields.TranslatedFieldMixin`, which fetches all of a
-model's translations during initialization.  It first tries to fetch strings for
-the current locale, and then looks for any missing strings in the default
-locale.  If you want to change this behavior, it should be enough to override
-:meth:`~translations.fields.TranslatedFieldMixin.fetch_translations`.
-
 
 Creating New Translations
 -------------------------
@@ -45,9 +38,6 @@ helpers behind :class:`~translations.fields.TranslatedField`, use
 .. module:: translations.fields
 
 .. autoclass:: translations.fields.TranslatedField
-
-.. autoclass:: translations.fields.TranslatedFieldMixin
-    :members:
 
 
 ``translations.models``
