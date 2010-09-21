@@ -225,7 +225,7 @@ class Client(object):
 
         self.weight_field = ('@weight + IF(addon_status=%d, 3500, 0) + '
                              'IF(locale_ord=%d, 29, 0) + '
-                             'sqrt(totaldownloads) * 0.4 '
+                             'sqrt(weeklydownloads) * 0.4 '
                              'AS myweight ' %
                              (amo.STATUS_PUBLIC, get_locale_ord()))
 
@@ -382,7 +382,7 @@ class Client(object):
         # Setup some default parameters for the search.
         fields = ("addon_id, app, category, %s" % self.weight_field)
 
-        sc.SetFieldWeights({'name': 10})
+        sc.SetFieldWeights({'name': 100})
 
         # Extract and apply various filters.
         (term, includes, excludes, ranges, metas) = extract_filters(

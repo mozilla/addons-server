@@ -252,3 +252,21 @@ class SearchTest(SphinxTestCase):
 
     def test_summary(self):
         eq_(query("bookmarking")[0].id, 3615)  # Should get us Delicious
+
+
+class RankingTest(SphinxTestCase):
+    """This test assures that we don't regress our rankings."""
+
+    fixtures = ('base/users',
+                'base/addon_1833_yoono',
+                'base/addon_9825_fastestfox',
+               )
+
+    def test_twitter(self):
+        """
+        Search for twitter should yield Yoono before FastestFox since Yoono has
+        "twitter" in it's name field.
+        """
+        r = query('twitter')
+        eq_(r[0].id, 1833)
+        eq_(r[1].id, 9825)
