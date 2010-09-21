@@ -17,6 +17,8 @@
 </ul>
 {% endmacro %}
 
+{% set app = request.APP.pretty %}
+
 <!DOCTYPE html>
 <html lang="{{ LANG }}" dir="{{ DIR }}">
   <head>
@@ -33,9 +35,9 @@
                width="87" height="82">{{ _('What are Add-ons?') }}</h1>
       <p>
         {% trans %}
-        Add-ons are applications that let you personalize Firefox with extra
+        Add-ons are applications that let you personalize {{ app }} with extra
         functionality or style. Try a time-saving sidebar, a weather notifier,
-        or a themed look to make Firefox your own.
+        or a themed look to make {{ app }} your own.
         {% endtrans %}
         <a href="{{ url('home') }}" class="button">{{ _('Learn More') }}</a>
       </p>
@@ -55,7 +57,7 @@
     {% else %}
       <section id="mission">
          <p>{% trans url="http://www.mozilla.org/" -%}
-          Thanks for using Firefox and supporting
+          Thanks for using {{ app }} and supporting
           <a href="{{ url }}">Mozilla's mission</a>!
           {%- endtrans %}</p>
         {% if addon_downloads %}
