@@ -127,10 +127,11 @@ class TestLicense(test_utils.TestCase):
         lic = License()
         for licensetype in amo.LICENSES:
             lic.license_type = licensetype
-            if not licensetype.shortname:
+            if licensetype in (amo.LICENSE_CUSTOM, amo.LICENSE_COPYRIGHT,
+                               amo.LICENSE_CC_BY_NC_SA):
                 assert not lic.text
             else:
-                assert lic.text
+                assert lic.text, "No license text for %s" % licensetype
 
 
 class TestViews(amo.test_utils.ExtraSetup, test_utils.TestCase):
