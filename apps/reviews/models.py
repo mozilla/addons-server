@@ -42,8 +42,8 @@ class Review(amo.models.ModelBase):
                                  related_name='replies', db_column='reply_to')
 
     rating = models.PositiveSmallIntegerField(null=True)
-    title = TranslatedField()
-    body = TranslatedField()
+    title = TranslatedField(require_locale=False)
+    body = TranslatedField(require_locale=False)
     ip_address = models.CharField(max_length=255, default='0.0.0.0')
 
     editorreview = models.BooleanField(default=False)
@@ -73,26 +73,6 @@ class Review(amo.models.ModelBase):
                 '*/addon/%d/reviews/%d/' % (self.addon_id, self.id),
                 '*/user/%d/' % self.user_id, ]
         return urls
-
-    @classmethod
-    def fetch_translations(cls, ids, lang):
-        if not ids:
-            return []
-
-        rv = {}
-        ts = Translation.objects.filter(id__in=ids)
-
-        # If a translation exists for the current language, use it.  Otherwise,
-        # make do with whatever is available.  (Reviewers only write reviews in
-        # their language).
-        for id, translations in itertools.groupby(ts, lambda t: t.id):
-            locales = dict((t.locale, t) for t in translations)
-            if lang in locales:
-                rv[id] = locales[lang]
-            else:
-                rv[id] = locales.itervalues().next()
-
-        return rv.values()
 
     @classmethod
     def get_replies(cls, reviews):
@@ -127,23 +107,6 @@ class Review(amo.models.ModelBase):
         user_dict = dict((u.id, u) for u in users)
         for review in reviews:
             review.user = user_dict[review.user_id]
-
-        # Attach translations. Some of these will be picked up by the
-        # Translation transformer, but reviews have special requirements
-        # (see fetch_translations).
-        names = dict((f.attname, f.name)
-                     for f in Review._meta.translated_fields)
-        ids, trans = {}, {}
-        for review in reviews:
-            for attname, name in names.items():
-                trans_id = getattr(review, attname)
-                if getattr(review, name) is None and trans_id is not None:
-                    ids[trans_id] = attname
-                    trans[trans_id] = review
-        translations = Review.fetch_translations(trans.keys(),
-                                                 translation.get_language())
-        for t in translations:
-            setattr(trans[t.id], names[ids[t.id]], t)
 
         # Attach versions.
         versions = dict((r.version_id, r) for r in reviews)
