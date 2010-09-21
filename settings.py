@@ -440,6 +440,13 @@ SPHINX_TIMEOUT = 1
 
 JAVA_BIN = '/usr/bin/java'
 
+# Mongo Settings
+MONGO_HOST = 'localhost'
+MONGO_PORT = 27017
+MONGO_DATABASE = 'zamboni'
+MONGO_USERNAME = None
+MONGO_PASSWORD = None
+
 # File paths
 ADDON_ICONS_PATH = UPLOADS_PATH + '/addon_icons'
 COLLECTIONS_ICON_PATH = UPLOADS_PATH + '/collection_icons'

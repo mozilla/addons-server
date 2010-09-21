@@ -1,5 +1,5 @@
 import collections
-from datetime import date
+from datetime import date, datetime
 import itertools
 import json
 import time
@@ -10,6 +10,7 @@ from django.db.models import Q, Sum
 
 import caching.base as caching
 import commonware.log
+import mongoengine
 
 import amo.models
 from amo.fields import DecimalCharField
@@ -827,3 +828,11 @@ class AppSupport(amo.models.ModelBase):
 
     class Meta:
         db_table = 'appsupport'
+
+class AddonLog(mongoengine.Document):
+    """A MongoDB model for logging add-on changes"""
+
+    # TODO XXX Schema is in bug 592590
+    blah = mongoengine.StringField(max_length=500, required=True)
+    created = mongoengine.DateTimeField(default=datetime.now)
+

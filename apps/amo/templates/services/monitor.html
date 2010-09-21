@@ -105,4 +105,18 @@
 </div>
 #}
 
+<div class="notification-box {{ status(status_summary.mongo) }}">
+  <h2>[Mongo] Connection Test</h2>
+  <ul>
+    <li>
+    {{ settings.MONGO_HOST }}:{{ settings.MONGO_PORT }}/{{settings.MONGO_DATABASE}}:
+    {% if status_summary.mongo %}
+      Success
+    {% else %}
+      <strong>Failed</strong>.  Grep log for z.mongo.
+    {% endif %}
+    </li>
+  </ul>
+</div>
+
 {% endblock main_content %}

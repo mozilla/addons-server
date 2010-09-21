@@ -19,6 +19,7 @@ import commonware.log
 import jingo
 import phpserialize as php
 
+import mongoutils
 from hera.contrib.django_utils import get_hera
 from stats.models import Contribution, ContributionError, SubscriptionEvent
 from . import log
@@ -127,6 +128,10 @@ def monitor(request):
     # rabbit_results = r = {'duration': time.time() - start}
     # status_summary['rabbit'] = pong == 'pong' and r['duration'] < 1
 
+    # Check Mongo
+    mongo_results = []
+    status_summary['mongo'] = mongoutils.connect_mongo()
+
     # If anything broke, send HTTP 500
     if not all(status_summary):
         status = 500
@@ -137,6 +142,7 @@ def monitor(request):
                          'filepath_results': filepath_results,
                          'redis_results': redis_results,
                          'hera_results': hera_results,
+                         'mongo_results': mongo_results,
                          # 'rabbit_results': rabbit_results,
                          'status_summary': status_summary},
                         status=status)
