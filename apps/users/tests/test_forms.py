@@ -3,6 +3,7 @@ from datetime import datetime
 from django.contrib.auth.models import User
 from django.contrib.auth.tokens import default_token_generator
 from django.core import mail
+from django.core.validators import validate_slug
 from django.utils.http import int_to_base36
 
 import test_utils
@@ -293,6 +294,14 @@ class TestUserRegisterForm(UserFormBase):
         eq_(len(mail.outbox), 0)
 
     def test_invalid_username(self):
+        data = {'email': 'testo@example.com',
+                'password': 'xxx',
+                'password2': 'xxx',
+                'username': 'Todd/Rochelle', }
+        r = self.client.post('/en-US/firefox/users/register', data)
+        self.assertFormError(r, 'form', 'username', validate_slug.message)
+
+    def test_blacklisted_username(self):
         data = {'email': 'testo@example.com',
                 'password': 'xxx',
                 'password2': 'xxx',

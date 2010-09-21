@@ -105,7 +105,7 @@ class UserRegisterForm(happyforms.ModelForm):
 
     def clean_username(self):
         name = self.cleaned_data['username']
-        slug_validator(name)
+        slug_validator(name, lower=False)
         if BlacklistedUsername.blocked(name):
             raise forms.ValidationError(_('This username is invalid.'))
         return name
