@@ -72,13 +72,13 @@ class Collection(amo.models.ModelBase):
     RECOMMENDATION_LIMIT = 15  # Maximum number of add-ons to recommend.
 
     uuid = models.CharField(max_length=36, blank=True, unique=True)
-    name = TranslatedField()
+    name = TranslatedField(require_locale=False)
     # nickname is deprecated.  Use slug.
     nickname = models.CharField(max_length=30, blank=True, unique=True,
                                 null=True)
     slug = models.CharField(max_length=30, blank=True, null=True)
 
-    description = LinkifiedField()
+    description = LinkifiedField(require_locale=False)
     default_locale = models.CharField(max_length=10, default='en-US',
                                       db_column='defaultlocale')
     type = models.PositiveIntegerField(db_column='collection_type',

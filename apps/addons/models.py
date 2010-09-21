@@ -19,8 +19,7 @@ from cake.urlresolvers import remora_url
 from reviews.models import Review
 from stats.models import (Contribution as ContributionStats,
                           AddonShareCountTotal)
-from translations.fields import (TranslatedField, PurifiedField,
-                                 LinkifiedField, translations_with_fallback)
+from translations.fields import TranslatedField, PurifiedField, LinkifiedField
 from users.models import UserProfile, PersonaAuthor
 from versions.models import Version
 
@@ -237,9 +236,6 @@ class Addon(amo.models.ModelBase):
     @classmethod
     def get_fallback(cls):
         return cls._meta.get_field('default_locale')
-
-    def fetch_translations(self, ids, lang):
-        return translations_with_fallback(ids, lang, self.default_locale)
 
     @property
     def reviews(self):
