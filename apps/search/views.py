@@ -144,7 +144,8 @@ def _get_sorts(request, sort):
     items.append(item)
 
     for key, val in sorts:
-        if key == '':
+        # TODO(davedash): Remove 'name' altogether if nobody complains.
+        if key == '' or key == 'name':
             continue
 
         item = MenuItem()

@@ -22,9 +22,11 @@ updated = (
     ('1 year ago', _lazy(u'Past Year')),
 )
 
+# TODO(davedash): Remove 'name' altogether if nobody complains.
 sort_by = (
     ('', _lazy(u'Keyword Match')),
     ('newest', _lazy(u'Newest', 'advanced_search_form_newest')),
+    ('updated', _lazy(u'Updated', 'advanced_search_form_updated')),
     ('name', _lazy(u'Name', 'advanced_search_form_name')),
     ('averagerating', _lazy(u'Rating', 'advanced_search_form_rating')),
     ('weeklydownloads', _lazy(u'Popularity',
