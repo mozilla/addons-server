@@ -28,7 +28,7 @@ class TestLastUpdated(amo.test_utils.ExtraSetup, test_utils.TestCase):
     fixtures = ('base/addon_3615', 'addons/listed')
 
     def test_personas(self):
-        Addon.objects.update(type=amo.ADDON_PERSONA)
+        Addon.objects.update(type=amo.ADDON_PERSONA, status=amo.STATUS_PUBLIC)
 
         cron.addon_last_updated()
         for addon in Addon.objects.all():

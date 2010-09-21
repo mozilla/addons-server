@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 
-from django.db import connection, connections, transaction
-from django.db.models import Max, Q, F
+from django.db import connections, transaction
+from django.db.models import Q, F
 
 import commonware.log
 from celery.messaging import establish_connection
@@ -144,24 +144,7 @@ def _change_last_updated(next):
 @cronjobs.register
 def addon_last_updated():
     next = {}
-
-    public = (Addon.uncached.filter(status=amo.STATUS_PUBLIC,
-        versions__files__status=amo.STATUS_PUBLIC).values('id')
-        .annotate(last_updated=Max('versions__files__datestatuschanged')))
-
-    exp = (Addon.uncached.exclude(status=amo.STATUS_PUBLIC)
-           .filter(versions__files__status__in=amo.VALID_STATUSES)
-           .values('id')
-           .annotate(last_updated=Max('versions__files__created')))
-
-    listed = (Addon.uncached.filter(status=amo.STATUS_LISTED)
-              .values('id')
-              .annotate(last_updated=Max('versions__created')))
-
-    personas = (Addon.uncached.filter(type=amo.ADDON_PERSONA)
-                .extra(select={'last_updated': 'created'}))
-
-    for q in (public, exp, listed, personas):
+    for q in Addon._last_updated_queries().values():
         for addon, last_updated in q.values_list('id', 'last_updated'):
             next[addon] = last_updated
 
@@ -194,24 +177,5 @@ def update_addon_appsupport():
 @task(rate_limit='30/m')
 @transaction.commit_manually
 def _update_appsupport(ids, **kw):
-    task_log.info("[%s@%s] Updating addons app_support." %
-                   (len(ids), _update_appsupport.rate_limit))
-    delete = 'DELETE FROM appsupport WHERE addon_id IN (%s)'
-    insert = """INSERT INTO appsupport (addon_id, app_id, created, modified)
-                VALUES %s"""
-
-    addons = Addon.uncached.filter(id__in=ids).no_transforms()
-    apps = [(addon.id, app.id) for addon in addons
-            for app in addon.compatible_apps]
-    s = ','.join('(%s, %s, NOW(), NOW())' % x for x in apps)
-
-    if not apps:
-        return
-
-    cursor = connection.cursor()
-    cursor.execute(delete % ','.join(map(str, ids)))
-    cursor.execute(insert % s)
-    transaction.commit()
-
-    # All our updates were sql, so invalidate manually.
-    Addon.objects.invalidate(*addons)
+    from .tasks import update_appsupport
+    update_appsupport(ids)

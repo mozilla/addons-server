@@ -6,7 +6,7 @@ import time
 
 from django.conf import settings
 from django.db import models
-from django.db.models import Q, Sum
+from django.db.models import Q, Sum, Max
 
 import caching.base as caching
 import commonware.log
@@ -24,7 +24,7 @@ from translations.fields import TranslatedField, PurifiedField, LinkifiedField
 from users.models import UserProfile, PersonaAuthor
 from versions.models import Version
 
-from . import query
+from . import query, signals
 
 log = commonware.log.getLogger('z.addons')
 
@@ -275,6 +275,7 @@ class Addon(amo.models.ModelBase):
             self._current_version = current_version
             try:
                 self.save()
+                signals.version_changed.send(sender=self)
                 return True
             except Exception, e:
                 log.error('Could not save version %s for addon %s (%s)' %
@@ -471,6 +472,35 @@ class Addon(amo.models.ModelBase):
         rv.update(AddonShareCountTotal.objects.filter(addon=self)
                   .values_list('service', 'count'))
         return rv
+
+    @classmethod
+    def _last_updated_queries(cls):
+        """
+        Get the queries used to calculate addon.last_updated.
+        """
+        public = (Addon.uncached.filter(status=amo.STATUS_PUBLIC,
+            versions__files__status=amo.STATUS_PUBLIC)
+            .exclude(type=amo.ADDON_PERSONA).values('id')
+            .annotate(last_updated=Max('versions__files__datestatuschanged')))
+
+        exp = (Addon.uncached.exclude(status=amo.STATUS_PUBLIC)
+               .filter(versions__files__status__in=amo.VALID_STATUSES)
+               .values('id')
+               .annotate(last_updated=Max('versions__files__created')))
+
+        listed = (Addon.uncached.filter(status=amo.STATUS_LISTED)
+                  .values('id')
+                  .annotate(last_updated=Max('versions__created')))
+
+        personas = (Addon.uncached.filter(type=amo.ADDON_PERSONA)
+                    .extra(select={'last_updated': 'created'}))
+        return dict(public=public, exp=exp, listed=listed, personas=personas)
+
+
+def version_changed(sender, **kw):
+    from . import tasks
+    tasks.version_changed.delay(sender.id)
+signals.version_changed.connect(version_changed)
 
 
 class Persona(caching.CachingMixin, models.Model):
