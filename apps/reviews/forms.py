@@ -20,5 +20,5 @@ class ReviewFlagForm(forms.ModelForm):
     def clean(self):
         data = super(ReviewFlagForm, self).clean()
         if 'note' in data and data['note'].strip():
-            data['flag'] = 'review_flag_reason_other'
+            data['flag'] = ReviewFlag.OTHER
         return data

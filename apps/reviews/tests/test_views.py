@@ -36,33 +36,33 @@ class TestFlag(ReviewTest):
         eq_(response.status_code, 401)
 
     def test_new_flag(self):
-        response = self.client.post(self.url, {'flag': 'spam'})
+        response = self.client.post(self.url, {'flag': ReviewFlag.SPAM})
         eq_(response.status_code, 200)
         eq_(response.content, '{"msg": "Thanks; this review has been '
                                        'flagged for editor approval."}')
-        eq_(ReviewFlag.objects.filter(flag='spam').count(), 1)
+        eq_(ReviewFlag.objects.filter(flag=ReviewFlag.SPAM).count(), 1)
         eq_(Review.objects.filter(editorreview=True).count(), 1)
 
     def test_update_flag(self):
-        response = self.client.post(self.url, {'flag': 'spam'})
+        response = self.client.post(self.url, {'flag': ReviewFlag.SPAM})
         eq_(response.status_code, 200)
-        eq_(ReviewFlag.objects.filter(flag='spam').count(), 1)
+        eq_(ReviewFlag.objects.filter(flag=ReviewFlag.SPAM).count(), 1)
         eq_(Review.objects.filter(editorreview=True).count(), 1)
 
-        response = self.client.post(self.url, {'flag': 'language'})
+        response = self.client.post(self.url, {'flag': ReviewFlag.LANGUAGE})
         eq_(response.status_code, 200)
-        eq_(ReviewFlag.objects.filter(flag='language').count(), 1)
+        eq_(ReviewFlag.objects.filter(flag=ReviewFlag.LANGUAGE).count(), 1)
         eq_(ReviewFlag.objects.count(), 1)
         eq_(Review.objects.filter(editorreview=True).count(), 1)
 
     def test_flag_with_note(self):
-        response = self.client.post(self.url, {'flag': 'spam', 'note': 'xxx'})
+        response = self.client.post(self.url,
+                                    {'flag': ReviewFlag.OTHER, 'note': 'xxx'})
         eq_(response.status_code, 200)
-        eq_(ReviewFlag.objects.filter(flag='review_flag_reason_other').count(),
+        eq_(ReviewFlag.objects.filter(flag=ReviewFlag.OTHER).count(),
             1)
         eq_(ReviewFlag.objects.count(), 1)
-        eq_(ReviewFlag.objects.get(flag='review_flag_reason_other').note,
-            'xxx')
+        eq_(ReviewFlag.objects.get(flag=ReviewFlag.OTHER).note, 'xxx')
         eq_(Review.objects.filter(editorreview=True).count(), 1)
 
     def test_bad_flag(self):
