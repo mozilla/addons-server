@@ -164,11 +164,8 @@ class Collection(amo.models.ModelBase):
                     return
 
     def get_url_path(self):
-        if settings.NEW_COLLECTIONS:
-            return reverse('collections.detail',
-                            args=[self.author_username, self.slug])
-        else:
-            return '/collection/%s' % self.url_slug
+        return reverse('collections.detail',
+                        args=[self.author_username, self.slug])
 
     def get_img_dir(self):
         return os.path.join(settings.COLLECTIONS_ICON_PATH, str(self.id / 1000))

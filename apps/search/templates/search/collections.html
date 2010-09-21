@@ -31,41 +31,8 @@
             </div>
           </form>
         </div>
-        {% if settings.NEW_COLLECTIONS %}
-          {{ collection_listing_items(pager.object_list,
-                                      show_date=opts.sort) }}
-        {% else %}
-        {% for c in pager.object_list %}
-          <div class="item">
-            <div class="item-info">
-              <ul>
-                <li class="addons">
-                  {{ _('<strong>{0}</strong> add-ons')|f(c.addon_count)|safe }}
-                </li>
-                <li class="subscribers">
-                  {{ _('<strong>{0}</strong> subscribers')|f(c.subscribers)|safe }}
-                </li>
-                <li>
-                  {{ barometer(c) }}
-                </li>
-                {% if request.user.is_authenticated() %}
-                  <li>
-                    {{ collection_favorite(c) }}
-                  </li>
-                {% endif %}
-              </ul>
-            </div> {# /item-info #}
-            <h3>
-              <a href="{{ c.get_url_path() }}">{{ c.name }}</a>
-              <span>{{ _('created by {0}')|f(c.author|user_link)|safe }}</span>
-              <a href="{{ c.get_url_path() }}">
-                <img class="icon" alt="" src="{{ c.icon_url }}">
-              </a>
-            </h3>
-            <blockquote>{{ c.description|nl2br }}</blockquote>
-          </div>
-        {% endfor %}
-        {% endif %}
+        {{ collection_listing_items(pager.object_list,
+                                    show_date=opts.sort) }}
       </div>
       <div class="listing-footer">{{ pager|paginator }}</div>
     {% else %}
