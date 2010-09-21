@@ -318,6 +318,19 @@ class TranslationTestCase(ExtraAppTestCase):
             '.html</a> .')
         eq_(m.linkified.localized_string, s)
 
+    def test_require_locale(self):
+        obj = TranslatedModel.objects.get(id=1)
+        eq_(unicode(obj.no_locale), 'blammo')
+        eq_(obj.no_locale.locale, 'en-US')
+
+        # Switch the translation to a locale we wouldn't pick up by default.
+        obj.no_locale.locale = 'fr'
+        obj.no_locale.save()
+
+        obj = TranslatedModel.objects.get(id=1)
+        eq_(unicode(obj.no_locale), 'blammo')
+        eq_(obj.no_locale.locale, 'fr')
+
 
 def test_translation_bool():
     t = lambda s: Translation(localized_string=s)

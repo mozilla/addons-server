@@ -8,6 +8,7 @@ class TranslatedModel(amo.models.ModelBase):
     name = TranslatedField()
     description = TranslatedField()
     default_locale = models.CharField(max_length=10)
+    no_locale = TranslatedField(require_locale=False)
 
 
 class UntranslatedModel(amo.models.ModelBase):

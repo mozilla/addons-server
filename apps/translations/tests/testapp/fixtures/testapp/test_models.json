@@ -70,6 +70,17 @@
         }
     },
     {
+        "pk": 10,
+        "model": "translations.translation",
+        "fields": {
+            "id": 10,
+            "locale": "en-US",
+            "localized_string": "blammo",
+            "created": "2007-03-05 16:06:55",
+            "modified": "2007-03-21 13:42:36"
+        }
+    },
+    {
         "pk": 20,
         "model": "translations.purifiedtranslation",
         "fields": {
@@ -98,6 +109,7 @@
             "id": 1,
             "name": 1,
             "description": 2,
+            "no_locale": 10,
             "default_locale": "de",
             "created": "2007-03-05 16:06:55",
             "modified": "2007-03-21 13:42:36"

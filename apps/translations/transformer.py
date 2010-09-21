@@ -11,6 +11,8 @@ isnull = """IF(!ISNULL({t1}.localized_string), {t1}.{col}, {t2}.{col})
             AS {name}_{col}"""
 join = """LEFT OUTER JOIN translations {t}
           ON ({t}.id={model}.{name} AND {t}.locale={locale})"""
+no_locale_join = """LEFT OUTER JOIN translations {t}
+                    ON {t}.id={model}.{name}"""
 
 trans_fields = [f.name for f in Translation._meta.fields]
 
@@ -31,22 +33,27 @@ def build_query(model, connection):
 
     # Add the selects and joins for each translated field on the model.
     for field in model._meta.translated_fields:
-        # Add the primary and (possibly) fallback locale parameters.
-        params.append(translation.get_language())
         if isinstance(fallback, models.Field):
             fallback_str = '%s.%s' % (qn(model._meta.db_table),
                                       qn(fallback.column))
         else:
             fallback_str = '%s'
-            params.append(fallback)
 
         name = field.column
         d = {'t1': 't1_' + name, 't2': 't2_' + name,
              'model': qn(model._meta.db_table), 'name': name}
 
         selects.extend(isnull.format(col=f, **d) for f in trans_fields)
-        for table, locale in (('t1', '%s'), ('t2', fallback_str)):
-            joins.append(join.format(t=d[table], locale=locale, **d))
+
+        joins.append(join.format(t=d['t1'], locale='%s', **d))
+        params.append(translation.get_language())
+
+        if field.require_locale:
+            joins.append(join.format(t=d['t2'], locale=fallback_str, **d))
+            if not isinstance(fallback, models.Field):
+                params.append(fallback)
+        else:
+            joins.append(no_locale_join.format(t=d['t2'], **d))
 
     # ids will be added later on.
     sql = """SELECT {model}.{pk}, {selects} FROM {model} {joins}

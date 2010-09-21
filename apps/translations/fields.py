@@ -10,7 +10,13 @@ from .widgets import TranslationWidget, TranslationTextInput
 
 
 class TranslatedField(models.ForeignKey):
-    """A foreign key to the translations table."""
+    """
+    A foreign key to the translations table.
+
+    If require_locale=False, the fallback join will not use a locale.  Instead,
+    we will look for 1) a translation in the current locale and 2) fallback
+    with any translation matching the foreign key.
+    """
     to = Translation
 
     def __init__(self, **kwargs):
@@ -18,6 +24,7 @@ class TranslatedField(models.ForeignKey):
         # Django wants to default to translations.autoid, but we need id.
         options = dict(null=True, to_field='id', unique=True, blank=True)
         kwargs.update(options)
+        self.require_locale = kwargs.pop('require_locale', True)
         super(TranslatedField, self).__init__(self.to, **kwargs)
 
     @property
