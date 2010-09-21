@@ -149,7 +149,7 @@ class UserEditForm(UserRegisterForm):
 
     class Meta:
         model = UserProfile
-        exclude = ['password']
+        exclude = ('password', 'picture_type')
 
     def clean(self):
 
