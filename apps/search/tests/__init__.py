@@ -30,13 +30,13 @@ class SphinxTestCase(amo.test_utils.ExtraSetup,
 
             os.environ['DJANGO_ENVIRONMENT'] = 'test'
 
-            if os.path.exists(settings.SPHINX_CATALOG_PATH):
-                shutil.rmtree(settings.SPHINX_CATALOG_PATH)
-            if os.path.exists(settings.SPHINX_DATA_PATH):
-                shutil.rmtree(settings.SPHINX_DATA_PATH)
+            if os.path.exists(settings.TEST_SPHINX_CATALOG_PATH):
+                shutil.rmtree(settings.TEST_SPHINX_CATALOG_PATH)
+            if os.path.exists(settings.TEST_SPHINX_LOG_PATH):
+                shutil.rmtree(settings.TEST_SPHINX_LOG_PATH)
 
-            os.makedirs('/tmp/data/sphinx')
-            os.makedirs('/tmp/log/searchd')
+            os.makedirs(settings.TEST_SPHINX_CATALOG_PATH)
+            os.makedirs(settings.TEST_SPHINX_LOG_PATH)
             reindex()
             start_sphinx()
             time.sleep(1)

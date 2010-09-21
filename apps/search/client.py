@@ -1,4 +1,5 @@
 from collections import defaultdict
+import os
 import random
 import re
 import socket
@@ -215,7 +216,12 @@ class Client(object):
 
     def __init__(self):
         self.sphinx = sphinx.SphinxClient()
-        self.sphinx.SetServer(settings.SPHINX_HOST, settings.SPHINX_PORT)
+
+        if os.environ.get('DJANGO_ENVIRONMENT') == 'test':
+            self.sphinx.SetServer(settings.SPHINX_HOST,
+                                  settings.TEST_SPHINX_PORT)
+        else:
+            self.sphinx.SetServer(settings.SPHINX_HOST, settings.SPHINX_PORT)
 
         self.weight_field = ('@weight + IF(addon_status=%d, 3500, 0) + '
                              'IF(locale_ord=%d, 29, 0) + '
