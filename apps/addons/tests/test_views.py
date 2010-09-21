@@ -5,6 +5,7 @@ from django import test
 from django.conf import settings
 from django.core.cache import cache
 from django.utils import translation
+from django.utils.encoding import iri_to_uri
 
 from mock import Mock
 from nose.tools import eq_
@@ -12,12 +13,13 @@ import test_utils
 from pyquery import PyQuery as pq
 
 import amo
-from amo.helpers import urlparams
+from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 from addons import views
 from addons.models import Addon, AddonUser
 from users.models import UserProfile
 from tags.models import Tag, AddonTag
+from translations.helpers import truncate
 from translations.query import order_by_translation
 
 import re
@@ -622,3 +624,19 @@ def test_paypal_language_code():
 
     translation.activate('ru-DE')
     check('RU')
+
+
+class TestAddonSharing(test_utils.TestCase):
+    fixtures = ['base/apps',
+                'base/addon_3615']
+
+    def test_redirect_sharing(self):
+        addon = Addon.objects.get(id=3615)
+        r = self.client.get(reverse('addons.share', args=[3615]),
+                            {'service': 'delicious'})
+        url = absolutify(unicode(addon.get_url_path()))
+        summary = truncate(addon.summary, length=250)
+        eq_(r.status_code, 302)
+        assert iri_to_uri(addon.name) in r['Location']
+        assert iri_to_uri(url) in r['Location']
+        assert iri_to_uri(summary) in r['Location']
