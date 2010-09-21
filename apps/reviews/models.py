@@ -158,9 +158,10 @@ models.signals.post_delete.connect(Review.post_delete, sender=Review)
 # TODO: translate old flags.
 class ReviewFlag(amo.models.ModelBase):
     FLAGS = (
-        ('spam', _('Spam or otherwise non-review content')),
-        ('language', _('Inappropriate language/dialog')),
-        ('bug_support', _('Misplaced bug report or support request')),
+        ('review_flag_reason_spam', _('Spam or otherwise non-review content')),
+        ('review_flag_reason_language', _('Inappropriate language/dialog')),
+        ('review_flag_reason_bug_support',
+         _('Misplaced bug report or support request')),
         ('review_flag_reason_other', _('Other (please specify)')),
     )
 
