@@ -203,3 +203,12 @@ def test_outgoing_url_query_params():
     url = 'http://xx.com?q=1&v=2'
     fixed = urlresolvers.get_outgoing_url(url)
     assert fixed.endswith('http%3A//xx.com%3Fq=1&v=2'), fixed
+
+    url = 'http://xx.com?q=1&amp;v=2'
+    fixed = urlresolvers.get_outgoing_url(url)
+    assert fixed.endswith('http%3A//xx.com%3Fq=1&v=2'), fixed
+
+    # Check XSS vectors.
+    url = 'http://xx.com?q=1&amp;v=2" style="123"'
+    fixed = urlresolvers.get_outgoing_url(url)
+    assert fixed.endswith('%3A//xx.com%3Fq=1&v=2%22%20style=%22123%22'), fixed

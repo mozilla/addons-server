@@ -9,6 +9,8 @@ from django.utils import encoding
 from django.utils.thread_support import currentThread
 from django.utils.translation.trans_real import parse_accept_lang_header
 
+import jinja2
+
 import amo.models
 
 # Get a pointer to Django's reverse because we're going to hijack it after we
@@ -169,7 +171,7 @@ def get_outgoing_url(url):
     if urlparse(url).netloc == urlparse(settings.REDIRECT_URL).netloc:
         return url
 
-    url = encoding.smart_str(url)  # I am safety string.
+    url = encoding.smart_str(jinja2.utils.Markup(url).unescape())
     hash = hashlib.sha1(settings.REDIRECT_SECRET_KEY + url).hexdigest()
     # Let '&=' through so query params aren't escaped.  We probably shouldn't
     # bother to quote the query part at all.
