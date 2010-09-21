@@ -59,7 +59,7 @@
   {% endif %}
   <div class="secondary" role="complementary">
     <div class="vcard">
-      <img class="avatar photo photo-large" alt=""
+      <img class="avatar photo" alt=""
            src="{{ user.picture_url }}"/>
       {% with profile = user, about_addons = True,
               table_class = 'person-info' %}
@@ -118,7 +118,7 @@
           {% for author in authors %}
             <li class="vcard" id="t-author-{{ author.id }}">
               <div class="secondary">
-                <img class="avatar photo-large photo" alt=""
+                <img class="avatar photo" alt=""
                      src="{{ author.picture_url }}"/>
               </div>
               <div class="primary">

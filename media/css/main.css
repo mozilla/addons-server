@@ -642,16 +642,6 @@ img.avatar {
     border: 3px solid #FFFFFF;
 }
 
-img.photo-large {
-    padding: 5px;
-    background-color: #FFFFFF;
-    width: 200px;
-    max-width: 99.9%;
-    border: none;
-    border-bottom: 1px solid #B5D9E5;
-    border-right: 1px solid #B5D9E5;
-}
-
 .screenshot.thumbnail {
     border: 3px solid #C9E8F3;
     float: left;

@@ -126,7 +126,7 @@
               <input type="file" id="id_photo" name="photo">
               {{ form.photo.errors|safe }}
               <img src="{{ amouser.picture_url }}" alt=""
-                   class="avatar photo-large photo" />
+                   class="avatar photo" />
 
               {% if amouser.picture_type %}
               <a href="{{ url('users.delete_photo') }}">{{ _('Delete current photo') }}</a>
