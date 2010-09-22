@@ -1,3 +1,4 @@
+import json
 import os
 import random
 from PIL import Image
@@ -10,8 +11,10 @@ from urlparse import urlparse
 from django import http
 from django.conf import settings
 from django.core.cache import cache, parse_backend_uri
+from django.http import HttpResponse, HttpResponseBadRequest
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
 
 import caching.invalidation
 import celery.task
@@ -25,6 +28,7 @@ from stats.models import Contribution, ContributionError, SubscriptionEvent
 from . import log
 
 paypal_log = commonware.log.getLogger('z.paypal')
+csp_log = commonware.log.getLogger('z.csp')
 
 
 def check_redis():
@@ -262,3 +266,18 @@ def handler500(request):
 def loaded(request):
     return http.HttpResponse('%s' % request.META['wsgi.loaded'],
                              content_type='text/plain')
+
+@csrf_exempt
+@require_POST
+def cspreport(request):
+    """Accept CSP reports and log them."""
+    try:
+        v = json.loads(request.raw_post_data)['csp-report']
+        msg = ("CSP Violation Report:  (Request: %s) (Blocked: %s) (Rule: %s)"
+               % (v['request'], v['blocked-uri'], v['violated-directive']))
+        csp_log.warning(msg)
+    except Exception:
+        csp_log.debug("Got a malformed violation report.  Ignoring...")
+        return HttpResponseBadRequest()
+
+    return HttpResponse()

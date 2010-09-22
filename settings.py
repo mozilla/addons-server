@@ -221,6 +221,8 @@ MIDDLEWARE_CLASSES = (
     'commonware.log.ThreadRequestMiddleware',
     'multidb.middleware.PinningRouterMiddleware',
 
+    'csp.middleware.CSPMiddleware',
+
     'amo.middleware.CommonMiddleware',
     'amo.middleware.NoVarySessionMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -257,6 +259,7 @@ INSTALLED_APPS = (
     'blocklist',
     'browse',
     'cronjobs',
+    'csp',
     'devhub',
     'discovery',
     'editors',
@@ -563,6 +566,21 @@ LOGGING = {
         'z.task': {'level': logging.INFO},
     },
 }
+
+# CSP Settings
+CSP_REPORT_URI = '/services/csp/report'
+CSP_POLICY_URI = '/services/csp/policy'
+CSP_REPORT_ONLY = True
+
+CSP_ALLOW = ("'self'",)
+CSP_IMG_SRC = ("'self'", STATIC_URL, "statse.webtrendslive.com",)
+CSP_SCRIPT_SRC = ("'self'", STATIC_URL,)
+CSP_STYLE_SRC = ("'self'", STATIC_URL,)
+CSP_OBJECT_SRC = ("'none'",)
+CSP_MEDIA_SRC = ("'none'",)
+CSP_FRAME_SRC = ("http://youtube-nocookie.com",)
+CSP_FONT_SRC = ("'self'", "fonts.mozilla.com",)
+CSP_FRAME_ANCESTORS = ("'none'",) # We also send x-frame-options
 
 # If you don't want experimental add-ons to show up in any search results or
 # have detail pages, flip this switch
