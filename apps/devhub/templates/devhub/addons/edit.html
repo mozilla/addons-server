@@ -6,20 +6,6 @@
 {{ dev_page_title(title, addon) }}
 {% endblock %}
 
-{% macro empty_unless(truthy) %}
-    {% if truthy %}
-        {{ caller() }}
-    {% else %}
-        <span class="empty">{{ _('None') }}</span>
-    {% endif %}
-{% endmacro %}
-
-{% macro tip(name, tip) %}
-  <span class="label">{{ name }}</span>
-  <span class="help tooltip" title="{{ tip }}">?</span>
-{% endmacro %}
-
-
 {% block content %}
 <header>
   {{ dev_breadcrumbs(addon) }}
@@ -28,282 +14,28 @@
 
 <section class="primary" role="main">
 <div id="edit-addon">
-  <h3>
-    {{ _('Basic Information') }}
-    <input type="submit" value="{{ _('Edit') }}">
-  </h3>
-  <div class="item">
-  <table>
-    <caption>{{ _('Basic Information for {0}')|f(addon.name) }}</caption>
-    <tbody>
-      <tr>
-        <th>{{ _('Name') }}</th>
-        <td> {{ addon.name }}</td>
-      </tr>
-      <tr>
-        <th>
-          {{ tip(_("Add-on URL"),
-                 _("Choose a short, unique URL slug for your add-on.")) }}
-        </th>
-        <td>
-          {# TODO: Eventually this needs a slug. #}
-          <a href="{{ addon.get_url_path() }}">
-            {{ settings.SITE_URL }}/&hellip;/
-          {{ addon.id }}</a>
-        </td>
-      </tr>
-      <tr>
-        <th>
-          {{ tip(_("Summary"),
-                 _("A short explanation of your add-on's basic functionality
-                   that is displayed in search and browse listings, as well as
-                   at the top of your add-on's details page.")) }}
-        </th>
-        <td>
-          {{ addon.summary|nl2br }}
-        </td>
-      </tr>
-      <tr>
-        <th>
-          {{ tip(_("Categories"),
-                 _("Categories are the primary way users browse through add-ons.
-                    Choose any that fit your add-on's functionality for the most
-                    exposure.")) }}
-        </th>
-        <td>
-          {{ addon.categories.all()|join(' &middot; ')|safe }}
-        </td>
-      </tr>
-      <tr>
-        <th>
 
-
-          {{ tip(_("Tags"),
-                 _("Tags help users find your add-on and should be short
-                    descriptors such as tabs, toolbar, or twitter.")) }}
-        </th>
-        <td>
-          {% call empty_unless(tags_dev) %}
-            {{ tags_dev|join(', ') }}
-          {% endcall %}
-        </td>
-      </tr>
-      <tr>
-        <th>{{ _('User Tags') }}</th>
-        <td>
-          {% call empty_unless(tags_user) %}
-            {{ tags_user|join(', ') }}
-          {% endcall %}
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<h3>
-  {{ _('Images and Videos') }} <input type="submit" value="{{ _('Edit') }}">
-</h3>
-<div class="item">
-  <table>
-      <caption>{{ _('Add-on Details for {0}')|f(addon.name) }}</caption>
-      <tbody>
-        <tr>
-          <th>
-          {{ tip(_("Add-on Icon"),
-                 _("Upload an icon for your add-on or choose from one of ours.
-                    The icon is displayed nearly everywhere your add-on is.
-                    Uploaded images will be resized to 32 x 32 pixels and must be
-                    one of the following image types: .png, .jpg, .gif")) }}
-          </th>
-          <td>
-            <img src="{{ addon.icon_url }}">
-          </td>
-        </tr>
-
-        <tr>
-          <th>{{ _('Screenshots and Videos') }}</th>
-          <td>
-            {% if previews %}
-              {% for preview in preview %}
-              <img src="{{ preview.thumbnail_url }}">
-              {% endfor %}
-            {% endif %}
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="edit-addon-section" id="edit-addon-basic">
+    {% include 'devhub/includes/addon_edit_basic.html' %}
   </div>
 
-  <h3>
-    {{ _('Add-on Details') }} <input type="submit" value="{{ _('Edit') }}">
-  </h3>
-  <div class="item">
-    <table>
-      <caption>{{ _('Add-on Details for {0}')|f(addon.name) }}</caption>
-      <tbody>
-        <tr>
-          <th>
-            {{ tip(_("Description"),
-                   _("A longer explanation of features, functionality, and other
-                      relevant information. This field is only displayed on the
-                      add-on's details page.")) }}
-          </th>
-          <td>
-            {% call empty_unless(addon.description) %}
-              {{ addon.description }}
-            {% endcall %}
-          </td>
-        </tr>
-        <tr>
-          <th>
-            {{ tip(_("Default Locale"),
-                   _("Information about your add-on is displayed in this locale
-                      unless you override it with a locale-specific translation.")) }}
-          </th>
-          <td>
-            {{ addon.default_locale }}
-          </td>
-        </tr>
-        <tr>
-          <th>
-          {{ tip(_("Homepage"),
-                 _("If your add-on has another homepage, enter its address here.
-                   If your website is localized into other languages, multiple
-                   translations of this field can be added.")) }}
-          </th>
-          <td>
-            {% call empty_unless(addon.homepage) %}
-              {{ addon.homepage }}
-            {% endcall %}
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  {#
+  <div class="edit-addon-section" id="edit-addon-media">
+    {% include 'devhub/includes/addon_edit_media.html' %}
+  </div>
+  #}
+
+  <div class="edit-addon-section" id="edit-addon-details">
+    {% include 'devhub/includes/addon_edit_details.html' %}
   </div>
 
-  <h3>
-    {{ _('Support Information') }} <input type="submit" value="{{ _('Edit') }}">
-  </h3>
-  <div class="item">
-    <table>
-      <caption>{{ _('Support Information for {0}')|f(addon.name) }}</caption>
-      <tbody>
-        <tr>
-          <th>
-            {{ tip(_("Email"),
-                   _("If you wish to display an e-mail address for support inquiries,
-                      enter it here. If you have different addresses for each language,
-                      multiple translations of this field can be added.")) }}
-          </th>
-          <td>
-            {% call empty_unless(addon.support_email) %}
-              {{ addon.support_email }}
-            {% endcall %}
-          </td>
-        </tr>
-        <tr>
-          <th>
-            {{ tip(_("Website"),
-                   _("If your add-on has a support website or forum, enter its
-                      address here. If your website is localized into other
-                      languages, multiple translations of this field can be added.")) }}
-          </th>
-          <td>
-            {% call empty_unless(addon.support_url) %}
-              {{ addon.support_url }}
-            {% endcall %}
-          </td>
-        </tr>
-        <tr>
-          <th>{{ _('Get Satisfaction') }}</th>
-          <td>
-            {% if addon.get_satisfaction_company %}
-              {{ addon.get_satisfaction_company }}
-              {% if addon.get_satisfaction_product %}
-                &raquo; {{ addon.get_satisfaction_product }}
-              {% endif %}
-            {% else %}
-            <span class="empty">{{ _('Not Used') }}</span>
-            {% endif %}
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="edit-addon-section" id="edit-addon-support">
+    {% include 'devhub/includes/addon_edit_support.html' %}
   </div>
 
-  <h3>
-    {{ _('Technical Details') }} <input type="submit" value="{{ _('Edit') }}">
-  </h3>
-  <div class="item">
-    <table>
-      <caption>{{ _('Technical Details for {0}')|f(addon.name) }}</caption>
-      <tbody>
-        <tr>
-          <th>
-            {{ tip(_("Developer Comments"),
-                   _("Any information end users may want to know that isn't
-                      necessarily applicable to the add-on summary or description.
-                      Common uses include listing known major bugs, information on
-                      how to report bugs, anticipated release date of a new version,
-                      etc.")) }}
-          </th>
-          <td>
-            {% call empty_unless(addon.developer_comments) %}
-              {{ addon.developer_comments|nl2br }}
-            {% endcall %}
-          </td>
-        </tr>
-        <tr>
-          <th>{{ _('Required Add-ons') }}</th>
-          <td>
-            {# TODO(gkoberger) #}
-            <strong>{{ _('Coming Soon') }}</strong>
-          </td>
-        </tr>
-        <tr>
-          <th>
-            {{ tip(_("Add-on flags"),
-                  _("These flags are used to classify add-ons.")) }}
-          </th>
-          <td>
-            {# TODO(gkoberger) #}
-            <strong>{{ _('Coming Soon') }}</strong>
-          </td>
-        </tr>
-
-        <tr>
-          <th>
-            {{ tip(_("View source?"),
-                   _("Whether the source of your add-on can be displayed in our
-                      online viewer.")) }}
-            </th>
-          <td>
-            {% if addon.view_source %}
-              {{ _("Yes, this add-on's source code is publicly viewable") }}
-            {% else %}
-              {{ _("No, this add-on's source code is not publicly viewable") }}
-            {% endif %}
-          </td>
-        </tr>
-
-        <tr>
-          <th>
-            <abbr title="{{ _('Universally unique identifier') }}" class="label">
-              {{ _('UUID') }}
-            </abbr>
-            <span class="help tooltip" title="{% trans -%}The UUID of your
-              add-on is specified in its install manifest and uniquely
-              identifies it. You cannot change your UUID once it has been
-              submitted.{%- endtrans %}">?</span>
-          </th>
-          <td>
-            {{ addon.guid }}
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="edit-addon-section" id="edit-addon-technical">
+    {% include 'devhub/includes/addon_edit_technical.html' %}
   </div>
-
 
 </div>
 </section>

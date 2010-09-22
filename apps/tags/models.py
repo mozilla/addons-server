@@ -38,6 +38,16 @@ class Tag(amo.models.ModelBase):
 
         return urls
 
+    def save_tag(self, addon):
+        tag, _ = Tag.objects.get_or_create(tag_text=self.tag_text)
+        AddonTag.objects.get_or_create(addon=addon, tag=tag)
+
+        return tag
+
+    def remove_tag(self, addon):
+        tag, created = Tag.objects.get_or_create(tag_text=self.tag_text)
+        addontag = AddonTag.objects.get(addon=addon, tag=tag)
+        addontag.delete()
 
 class TagStat(amo.models.ModelBase):
     tag = models.OneToOneField(Tag, primary_key=True)
@@ -50,7 +60,6 @@ class TagStat(amo.models.ModelBase):
 class AddonTag(amo.models.ModelBase):
     addon = models.ForeignKey('addons.Addon', related_name='addon_tags')
     tag = models.ForeignKey(Tag, related_name='addon_tags')
-    user = models.ForeignKey('users.UserProfile')
 
     class Meta:
         db_table = 'users_tags_addons'

@@ -7,6 +7,7 @@ import time
 from django.conf import settings
 from django.db import models
 from django.db.models import Q, Sum, Max
+from django.utils.translation import trans_real as translation
 
 import caching.base as caching
 import commonware.log
@@ -92,6 +93,8 @@ class AddonManager(amo.models.ManagerBase):
 class Addon(amo.models.ModelBase):
     STATUS_CHOICES = amo.STATUS_CHOICES.items()
     CONTRIB_CHOICES = sorted(amo.CONTRIB_CHOICES.items())
+    LOCALES = [(translation.to_locale(k), v) for k, v in
+                    settings.LANGUAGES.items()]
 
     guid = models.CharField(max_length=255, unique=True, null=True)
     slug = models.CharField(max_length=30)
@@ -192,6 +195,9 @@ class Addon(amo.models.ModelBase):
     dependencies = models.ManyToManyField('self', symmetrical=False,
                                           through='AddonDependency',
                                           related_name='addons')
+
+    categories = models.ManyToManyField('Category',
+                                         related_name='addons')
 
     _current_version = models.ForeignKey(Version, related_name='___ignore',
             db_column='current_version', null=True)
@@ -427,12 +433,8 @@ class Addon(amo.models.ModelBase):
     @amo.cached_property
     def tags_partitioned_by_developer(self):
         "Returns a tuple of developer tags and user tags for this addon."
-        tags = self.tags.not_blacklisted()
-        if self.is_persona:
-            return models.query.EmptyQuerySet(), tags
-        user_tags = tags.exclude(addon_tags__user__in=self.listed_authors)
-        dev_tags = tags.exclude(id__in=[t.id for t in user_tags])
-        return dev_tags, user_tags
+
+        return self.tags.none(), self.tags.not_blacklisted()
 
     @amo.cached_property
     def compatible_apps(self):
@@ -627,7 +629,7 @@ class AddonCategory(caching.CachingMixin, models.Model):
 
     @classmethod
     def creatured(cls):
-        """Get a dict of {addon: [app,..]} for all creatured add-ons."""
+        """Get a dict of {addon: [app,..]} of all category featured add-ons."""
         qs = cls.objects.filter(feature=True)
         f = lambda: list(qs.values_list('addon', 'category__application'))
         vals = caching.cached_with(qs, f, 'creatured')
@@ -763,9 +765,6 @@ class Category(amo.models.ModelBase):
     count = models.IntegerField('Addon count')
     weight = models.IntegerField(
         help_text='Category weight used in sort ordering')
-
-    addons = models.ManyToManyField(Addon, through='AddonCategory',
-                                    related_name='categories')
 
     class Meta:
         db_table = 'categories'

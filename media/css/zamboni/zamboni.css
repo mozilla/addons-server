@@ -59,6 +59,7 @@ header hgroup h3 {
 ul.errorlist {
     margin-bottom: 0;
     color: #c00;
+    clear: both;
 }
 
 .html-ltr a.more-link:after {
@@ -755,8 +756,6 @@ div.popup-shim {
 #tooltip span {
     display: block;
     line-height: 1.2em;
-    max-height: 3.8em;
-    overflow: hidden;
 }
 
 #tooltip:before {
@@ -2624,12 +2623,6 @@ label > .optional {
     margin: 0;
 }
 
-#slug_edit {
-    display: none;
-}
-#slug_value {
-    font-weight: bold;
-}
 #ajax_collections_list li {
     cursor: pointer;
     padding-left: 30px;

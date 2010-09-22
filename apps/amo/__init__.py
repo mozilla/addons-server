@@ -141,6 +141,9 @@ ADDON_SLUGS = {
     ADDON_SEARCH: 'search-tools',
 }
 
+# Edit addon information
+MAX_TAGS = 20
+MAX_CATEGORY = 2
 
 # Applications
 class FIREFOX:

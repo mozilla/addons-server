@@ -256,12 +256,12 @@
   <div id="support" class="highlight">
     <h3 class="compact-bottom">{{ _('Need help with this add-on?') }}</h3>
     <ul class="xoxo">
-      {% if addon.has_satisfaction %}
+      {% if get_satisfaction_company %}
         {# get satisfaction only supports en-US so no L10n here #}
         <li>Ask others on
           <a href="#" id="feedback_btn" class="feedback_btn"
-            data-company="{{ addon.get_satisfaction_company }}"
-            data-product="{{ addon.get_satisfaction_product }}"
+            data-company="{{ get_satisfaction_company }}"
+            data-product="{{ get_satisfaction_product }}"
              >Get Satisfaction</a>
         </li>
       {% endif %}

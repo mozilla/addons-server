@@ -1,0 +1,99 @@
+{% from "devhub/includes/macros.html" import tip, empty_unless, flags %}
+
+<form method="post" action="{{ url('devhub.addons.section', addon.id,
+  'technical', 'edit') }}">
+  <h3>
+    {{ _('Technical Details') }}
+    {% if not editable %}
+      <a href="{{ url('devhub.addons.section', addon.id, 'technical', 'edit') }}" class="button">
+        {{ _('Edit') }}</a>
+    {% endif %}
+  </h3>
+  <div class="item">
+    <div class="item_wrapper">
+      <table>
+        <caption>{{ _('Technical Details for {0}')|f(addon.name) }}</caption>
+        <tbody>
+          <tr>
+            <th>
+              {{ tip(_("Developer Comments"),
+                     _("Any information end users may want to know that isn't
+                       necessarily applicable to the add-on summary or description.
+                       Common uses include listing known major bugs, information on
+                       how to report bugs, anticipated release date of a new version,
+                       etc.")) }}
+            </th>
+            <td>
+              {% if editable %}
+                {{ form.developer_comments|safe }}
+                {{ form.developer_comments.errors|safe }}
+              {% else %}
+                {% call empty_unless(addon.developer_comments) %}
+                {{ addon.developer_comments|nl2br }}
+                {% endcall %}
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <th>{{ _('Required Add-ons') }}</th>
+            <td>
+              {# TODO(cvan) #}
+              <strong>{{ _('Coming Soon') }}</strong>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              {{ tip(_("Add-on flags"),
+                     _("These flags are used to classify add-ons.")) }}
+            </th>
+            <td>
+              {{ flags(_("This is a site-specific add-on."),
+                       form.site_specific if editable else addon.site_specific, editable) }}
+
+              {{ flags(_("This add-on requres external software."),
+                       form.external_software if editable else addon.external_software, editable) }}
+
+              {{ flags(_("This add-on contains binary components."),
+                       form.binary if editable else addon.binary, editable) }}
+            </td>
+          </tr>
+
+          <tr>
+            <th>
+              {{ tip(_("View source?"),
+                     _("Whether the source of your add-on can be displayed in our
+                       online viewer.")) }}
+            </th>
+            <td>
+              {{ flags(_("This add-on's source code is publicly viewable."),
+                       addon.view_source if not editable else form.view_source, editable,
+                       _("No, this add-on's source code is not publicly viewable.")) }}
+            </td>
+          </tr>
+
+          <tr>
+            <th>
+              <abbr title="{{ _('Universally unique identifier') }}" class="label">
+                {{ _('UUID') }}
+              </abbr>
+              <span class="help tooltip" title="{% trans -%}The UUID of your
+                add-on is specified in its install manifest and uniquely
+                identifies it. You cannot change your UUID once it has been
+                submitted.{%- endtrans %}">?</span>
+            </th>
+            <td>
+              {{ addon.guid }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    {% if editable %}
+    <div class="listing-footer">
+      <button>{{ _('Save Changes') }}</button> {{ _('or') }}
+      <a href="{{ url('devhub.addons.section', addon.id, 'technical') }}"
+        class="addon-edit-cancel">
+        {{ _('Cancel') }}</a>
+    </div>
+    {% endif %}
+  </div>
