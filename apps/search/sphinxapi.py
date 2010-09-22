@@ -21,7 +21,8 @@ from struct import *
 
 
 # Zamboni customizations
-Z_SPHINX_TIMEOUT = 1
+from django.conf import settings
+Z_SPHINX_TIMEOUT = settings.SPHINX_TIMEOUT
 
 # known searchd commands
 SEARCHD_COMMAND_SEARCH  = 0

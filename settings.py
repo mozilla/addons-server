@@ -419,6 +419,8 @@ TEST_SPHINXQL_PORT = 3407
 TEST_SPHINX_CATALOG_PATH = TMP_PATH + '/test/data/sphinx'
 TEST_SPHINX_LOG_PATH = TMP_PATH + '/test/log/searchd'
 
+SPHINX_TIMEOUT = 1
+
 JAVA_BIN = '/usr/bin/java'
 
 # File paths
