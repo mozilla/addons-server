@@ -1,10 +1,12 @@
+# -*- coding: utf-8 -*-
 from django import test
 
-from mock import Mock
 from nose.tools import eq_
 
 import amo
+from addons.models import Addon
 from files.models import File
+from versions.models import Version
 
 
 class TestFile(test.TestCase):
@@ -51,3 +53,11 @@ class TestFile(test.TestCase):
         f.version.compatible_apps = (amo.FIREFOX, amo.THUNDERBIRD)
         eq_(f.generate_filename(), 'delicious_bookmarks-2.1.072-fx+tb.xpi')
 
+    def test_generate_filename_ja(self):
+        f = File()
+        f.version = Version(version='0.1.7')
+        f.version.compatible_apps = (amo.FIREFOX,)
+        f.version.addon = Addon(name=u' フォクすけといっしょ')
+        eq_(f.generate_filename(),
+            u'\u30d5\u30a9\u30af\u3059\u3051\u3068\u3044\u3063\u3057\u3087'
+            '-0.1.7-fx.xpi')
