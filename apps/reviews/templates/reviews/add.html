@@ -41,7 +41,8 @@
   {% endtrans %}
 </div>
 
-<form method="post" id='review-form' action="{{ url('reviews.add', addon.id) }}">
+<form method="post" class="review-form" id="review-form"
+      action="{{ url('reviews.add', addon.id) }}">
   {{ csrf() }}
   {{ field(form.title, _('Title:')) }}
   {{ field(form.rating, _('Rating:')) }}

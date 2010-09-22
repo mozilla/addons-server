@@ -59,7 +59,8 @@
   {{ reviews|paginator }}
   {% endblock review_list %}
   <div class="hidden">
-    <form method="post" id='review-edit-form' action="#" class="review article">
+    <form method="post" id="review-edit-form" action="#"
+          class="review article review-form">
       {{ csrf() }}
       {{ field(form.title, _('Title:')) }}
       {{ field(form.rating, _('Rating:')) }}

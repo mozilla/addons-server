@@ -13,7 +13,7 @@
 .item:after,
 .secondary > div:after,
 .listing-header:after,
-#review-form p:after {
+.review-form p:after {
     content: ".";
     display: block;
     clear: both;
@@ -2400,7 +2400,7 @@ h6.author, .author a {
     padding-left: 48%;
 }
 
-#review-form p > label {
+.review-form p > label {
     float: left;
     width: 8em;
 }
@@ -2409,17 +2409,17 @@ h6.author, .author a {
     margin: 2em 1em 0 1em;
 }
 
-#review-form textarea {
+.review-form textarea {
     margin: 1em 0 1em 0;
     clear: left;
 }
 
-#review-form .ratingwidget {
+.review-form .ratingwidget {
     float: left;
     margin-bottom:0;
 }
 
-#review-form input[type='text'] {
+.review-form input[type='text'] {
     width: 15em;
 }
 
