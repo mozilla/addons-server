@@ -12,6 +12,7 @@ from celery.decorators import task
 from easy_thumbnails import processors
 from PIL import Image
 
+import amo.signals
 from . import cron
 from amo.utils import slugify
 from users.models import UserProfile
@@ -59,3 +60,13 @@ def fix_users_with_photos(ids):
     query = query % ','.join([str(i) for i in ids])
     cursor.execute(query)
     transaction.commit_unless_managed()
+
+
+# Temporary task to make auth.User rows for old users.
+@task(rate_limit='100/m')
+def make_django_user(*ids, **kw):
+    task_log.info('[%s@%s] Making Django babies.' %
+                  (len(ids), make_django_user.rate_limit))
+    with amo.signals.hera_disabled():
+        for user in UserProfile.uncached.filter(id__in=ids):
+            user.create_django_user()
