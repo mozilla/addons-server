@@ -1,6 +1,7 @@
 # -*- coding: utf8 -*-
 import json
 import math
+import os
 
 from django.core.cache import cache
 from django.conf import settings
@@ -312,6 +313,8 @@ class APITest(TestCase):
         # Shut down sphinx if it's configured.
         if settings.SPHINX_SEARCHD and settings.SPHINX_INDEXER:
             stop_sphinx()
+
+        os.environ['DJANGO_ENVIRONMENT'] = 'test'
         response = self.client.get("/en-US/firefox/api/1.2/search/foo")
         self.assertContains(response, "Could not connect to Sphinx search.",
                             status_code=503)
