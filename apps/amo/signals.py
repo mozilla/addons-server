@@ -1,3 +1,5 @@
+import contextlib
+
 from django.db import models
 
 from . import tasks
@@ -10,5 +12,20 @@ def flush_front_end_cache(sender, instance, **kwargs):
     if urls:
         tasks.flush_front_end_cache_urls.apply_async(args=[urls])
 
-models.signals.post_save.connect(flush_front_end_cache)
-models.signals.post_delete.connect(flush_front_end_cache)
+
+def _connect():
+    models.signals.post_save.connect(flush_front_end_cache)
+    models.signals.post_delete.connect(flush_front_end_cache)
+
+def _disconnect():
+    models.signals.post_save.disconnect(flush_front_end_cache)
+    models.signals.post_delete.disconnect(flush_front_end_cache)
+
+
+@contextlib.contextmanager
+def hera_disabled():
+    _disconnect()
+    try:
+        yield
+    finally:
+        _connect()

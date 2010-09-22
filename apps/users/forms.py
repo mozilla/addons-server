@@ -12,7 +12,8 @@ import happyforms
 from tower import ugettext as _, ugettext_lazy as _lazy
 
 from amo.utils import slug_validator
-from .models import UserProfile, BlacklistedUsername, BlacklistedEmailDomain
+from .models import (UserProfile, BlacklistedUsername, BlacklistedEmailDomain,
+                     DjangoUser)
 from . import tasks
 
 log = commonware.log.getLogger('z.users')
@@ -23,6 +24,16 @@ class AuthenticationForm(auth_forms.AuthenticationForm):
 
 
 class PasswordResetForm(auth_forms.PasswordResetForm):
+
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        self.users_cache = UserProfile.objects.filter(email__iexact=email)
+        if not self.users_cache:
+            raise forms.ValidationError(
+                _("That e-mail address doesn't have an associated user "
+                  "account. Are you sure you've registered?"))
+        return email
+
     def save(self, **kw):
         for user in self.users_cache:
             log.info(u'Password reset email sent for user (%s)' % user)
@@ -35,11 +46,12 @@ class PasswordResetForm(auth_forms.PasswordResetForm):
 
 
 class SetPasswordForm(auth_forms.SetPasswordForm):
-    def __init__(self, user, *args, **kwargs):
-        super(SetPasswordForm, self).__init__(user, *args, **kwargs)
-        if self.user:
-            # We store our password in the users table, not auth_user like
-            # Django expects
+
+    def __init__(self, *args, **kwargs):
+        super(SetPasswordForm, self).__init__(*args, **kwargs)
+        # We store our password in the users table, not auth_user like
+        # Django expects.
+        if isinstance(self.user, DjangoUser):
             self.user = self.user.get_profile()
 
     def save(self, **kw):

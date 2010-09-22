@@ -147,6 +147,21 @@ class ModelBase(caching.base.CachingMixin, models.Model):
     def get_absolute_url(self, *args, **kwargs):
         return self.get_url_path(*args, **kwargs)
 
+    def update(self, **kw):
+        """
+        Shortcut for doing an UPDATE on this object.
+
+        If _signal=False is in ``kw`` the post_save signal won't be sent.
+        """
+        signal = kw.pop('_signal', True)
+        cls = self.__class__
+        cls.objects.filter(pk=self.pk).update(**kw)
+        for k, v in kw.items():
+            setattr(self, k, v)
+        if signal:
+            models.signals.post_save.send(sender=cls, instance=self,
+                                          created=False)
+
 
 def manual_order(qs, pks, pk_name='id'):
     """
