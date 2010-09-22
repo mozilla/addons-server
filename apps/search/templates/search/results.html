@@ -8,6 +8,11 @@
 {% endif %}
 {% endblock %}
 
+{% block extrahead %}
+<meta name="WT.oss" content="{{ query }}">
+<meta name="WT.oss_r" content="{{ pager.paginator.count }}">
+{% endblock %}
+
 {% block content %}
 <section class="primary" role="main">
   <header class="results-head">
@@ -19,7 +24,6 @@
     <p><em>{{ _('Sorting by name includes only {0}
       results.')|f(settings.LANGUAGES.get(LANG.lower())) }}</em></p>
     {% endif %}
-
   </header>
 
   <div class="listing results">
