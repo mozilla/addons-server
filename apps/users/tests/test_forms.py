@@ -87,6 +87,14 @@ class TestPasswordResetForm(UserFormBase):
         assert mail.outbox[0].subject.find('Password reset') == 0
         assert mail.outbox[0].body.find('pwreset/%s' % self.uidb36) > 0
 
+    def test_amo_user_but_no_django_user(self):
+        # Password reset should work without a Django user.
+        self.user_profile.update(user=None, _signal=True)
+        self.user.delete()
+        self.client.post('/en-US/firefox/users/pwreset',
+                        {'email': self.user.email})
+        eq_(len(mail.outbox), 1)
+
 
 class TestUserDeleteForm(UserFormBase):
 
@@ -106,7 +114,7 @@ class TestUserDeleteForm(UserFormBase):
     def test_success(self):
         self.client.login(username='jbalogh@mozilla.com', password='foo')
         data = {'password': 'foo', 'confirm': True, }
-        r = self.client.post('/en-US/firefox/users/delete', data, follow=True)
+        self.client.post('/en-US/firefox/users/delete', data, follow=True)
         # TODO XXX: Bug 593055
         #self.assertContains(r, "Profile Deleted")
         u = UserProfile.objects.get(id='4043307')
@@ -115,7 +123,7 @@ class TestUserDeleteForm(UserFormBase):
     @patch('users.models.UserProfile.is_developer')
     def test_developer_attempt(self, f):
         """A developer's attempt to delete one's self must be thwarted."""
-        f = lambda: True
+        f.return_value = True
         self.client.login(username='jbalogh@mozilla.com', password='foo')
         data = {'password': 'foo', 'confirm': True, }
         r = self.client.post('/en-US/firefox/users/delete', data, follow=True)
@@ -335,15 +343,15 @@ class TestUserRegisterForm(UserFormBase):
 
     @patch('captcha.fields.ReCaptchaField.clean')
     def test_success(self, clean):
-        clean = lambda: ''
+        clean.return_value = ''
 
         data = {'email': 'john.connor@sky.net',
                 'password': 'carebears',
                 'password2': 'carebears',
                 'username': 'BigJC',
                 'homepage': ''}
-        r = self.client.post('/en-US/firefox/users/register', data,
-                             follow=True)
+        self.client.post('/en-US/firefox/users/register', data,
+                         follow=True)
         # TODO XXX POSTREMORA: uncomment when remora goes away
         #self.assertContains(r, "Congratulations!")
 

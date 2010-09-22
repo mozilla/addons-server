@@ -145,6 +145,14 @@ class UserProfile(amo.models.ModelBase):
 
     welcome_name = name
 
+    @property
+    def last_login(self):
+        """Make UserProfile look more like auth.User."""
+        # Django expects this to be non-null, so fake a login attempt.
+        if not self.last_login_attempt:
+            self.update(last_login_attempt=datetime.now())
+        return self.last_login_attempt
+
     @amo.cached_property
     def reviews(self):
         """All reviews that are not dev replies."""
