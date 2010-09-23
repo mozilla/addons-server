@@ -30,8 +30,10 @@ class PasswordResetForm(auth_forms.PasswordResetForm):
         self.users_cache = UserProfile.objects.filter(email__iexact=email)
         if not self.users_cache:
             raise forms.ValidationError(
-                _("That e-mail address doesn't have an associated user "
-                  "account. Are you sure you've registered?"))
+                _('An email has been sent to the requested account with further
+                  information. If you do not receive an email then please
+                  confirm you have entered the same email
+                  address used during account registration.'))
         return email
 
     def save(self, **kw):
