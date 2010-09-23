@@ -51,8 +51,12 @@ def extract_filters(term, kwargs):
 
     # We should always have an 'app' except for the admin.
     if 'app' in kwargs:
-        # We add SEARCH_ENGINE_APP since search engines work on all apps.
-        filters['app'] = [kwargs['app'], SEARCH_ENGINE_APP]
+        filters['app'] = [kwargs['app']]
+
+        # We add personas and search engines if the current app supports them.
+        if (amo.APP_IDS.get(kwargs['app']) in
+            amo.APP_TYPE_SUPPORT[amo.ADDON_SEARCH]):
+            filters['app'].append(SEARCH_ENGINE_APP)
 
         if (amo.APP_IDS.get(kwargs['app']) in
             amo.APP_TYPE_SUPPORT[amo.ADDON_PERSONA]):
