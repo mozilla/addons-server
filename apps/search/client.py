@@ -22,6 +22,9 @@ from versions.models import AppVersion
 from .utils import convert_version, crc32
 
 m_dot_n_re = re.compile(r'^\d+\.\d+$')
+
+# We overload the APP field in sphinx for Search tools and personas
+PERSONA_APP = 98
 SEARCH_ENGINE_APP = 99
 BIG_INTEGER = 10000000    # Used for SetFilterRange
 MAX_TAGS = 10             # Number of tags we return by default.
@@ -49,7 +52,11 @@ def extract_filters(term, kwargs):
     # We should always have an 'app' except for the admin.
     if 'app' in kwargs:
         # We add SEARCH_ENGINE_APP since search engines work on all apps.
-        filters['app'] = (kwargs['app'], SEARCH_ENGINE_APP, )
+        filters['app'] = [kwargs['app'], SEARCH_ENGINE_APP]
+
+        if (amo.APP_IDS.get(kwargs['app']) in
+            amo.APP_TYPE_SUPPORT[amo.ADDON_PERSONA]):
+            filters['app'].append(PERSONA_APP)
 
     (term, platform) = extract_from_query(term, 'platform', '\w+', kwargs)
 
@@ -462,7 +469,6 @@ class Client(object):
         self.query_index += 1
 
         self.log_query(term)
-
         try:
             results = sc.RunQueries()
         except socket.timeout:
