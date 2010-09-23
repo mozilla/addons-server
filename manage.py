@@ -56,6 +56,9 @@ import log_settings
 import djcelery
 djcelery.setup_loader()
 
+import async_signals
+async_signals.start_the_machine()
+
 
 if __name__ == "__main__":
     execute_manager(settings)
