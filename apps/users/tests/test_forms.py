@@ -75,9 +75,10 @@ class TestPasswordResetForm(UserFormBase):
 
         eq_(len(mail.outbox), 0)
         self.assertFormError(r, 'form', 'email',
-                             ("That e-mail address doesn't have an "
-                              "associated user account. Are you sure "
-                              "you've registered?"))
+            ("An email has been sent to the requested account with further "
+             "information. If you do not receive an email then please confirm "
+             "you have entered the same email address used during "
+             "account registration."))
 
     def test_request_success(self):
         self.client.post('/en-US/firefox/users/pwreset',
