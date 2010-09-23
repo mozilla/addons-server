@@ -304,7 +304,8 @@ def search(request, tag_name=None):
 
     try:
         results = client.query(query, **search_opts)
-    except SearchError:
+    except SearchError, e:
+        log.error('Sphinx Error: %s' %e)
         return jingo.render(request, 'search/down.html', locals(), status=503)
 
     version_filters = client.meta['versions']
