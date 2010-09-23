@@ -603,3 +603,6 @@ RECAPTCHA_PUBLIC_KEY = ''
 RECAPTCHA_PRIVATE_KEY = ''
 RECAPTCHA_URL = ('https://api-secure.recaptcha.net/challenge?k=%s' %
                  RECAPTCHA_PUBLIC_KEY)
+
+# Send Django signals asynchronously on a background thread.
+ASYNC_SIGNALS = True
