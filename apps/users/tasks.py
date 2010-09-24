@@ -1,20 +1,15 @@
-from datetime import datetime
 import os
-import random
 
 from django.conf import settings
-from django.contrib.auth.models import User as DjangoUser
-from django.db import IntegrityError
 from django.db import connection, transaction
 
 import commonware.log
-from celery.decorators import task
+from celeryutils import task
 from easy_thumbnails import processors
 from PIL import Image
 
 import amo.signals
 from . import cron
-from amo.utils import slugify
 from users.models import UserProfile
 
 task_log = commonware.log.getLogger('z.task')

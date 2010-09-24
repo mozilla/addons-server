@@ -1,16 +1,27 @@
 import functools
+import uuid
 
 from django import http
-from django.shortcuts import get_object_or_404
+from django.conf import settings
+from django.shortcuts import get_object_or_404, redirect
 
-from tower import ugettext as _, ugettext_lazy as _lazy
+import commonware.log
 import jingo
+import path
+from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo.utils
 from amo.decorators import login_required
 from access import acl
 from addons.models import Addon
 from addons.views import BaseFilter
+from files.models import FileUpload
+from . import tasks
+
+log = commonware.log.getLogger('z.devhub')
+
+# Acceptable extensions.
+EXTENSIONS = ('.xpi', '.jar', '.xml')
 
 
 def owner_required(f=None, require_owner=True):
@@ -77,3 +88,31 @@ def addons_edit(request, addon_id, addon):
         }
 
     return jingo.render(request, 'devhub/addons/edit.html', data)
+
+
+def upload(request):
+    if request.method == 'POST' and 'upload' in request.FILES:
+        upload = request.FILES['upload']
+        loc = path.path(settings.ADDONS_PATH) / 'temp' / uuid.uuid4().hex
+        if not loc.dirname().exists():
+            loc.dirname().makedirs()
+        ext = path.path(upload.name).ext
+        if ext in EXTENSIONS:
+            loc += ext
+        log.info('UPLOAD: %r (%s bytes) to %r' %
+                 (upload.name, upload.size, loc))
+        with open(loc, 'wb') as fd:
+            for chunk in upload:
+                fd.write(chunk)
+        user = getattr(request, 'amo_user', None)
+        fu = FileUpload.objects.create(path=loc, name=upload.name, user=user)
+        task = tasks.validator.delay(fu.pk)
+        return redirect('devhub.upload_detail', fu.pk)
+
+    return jingo.render(request, 'devhub/upload.html')
+
+
+def upload_detail(request, uuid):
+    upload = get_object_or_404(FileUpload.uncached, uuid=uuid)
+    return jingo.render(request, 'devhub/validation.html',
+                        dict(upload=upload))
