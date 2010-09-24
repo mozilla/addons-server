@@ -7,6 +7,7 @@ from nose.tools import eq_
 import test_utils
 
 import amo
+import amo.test_utils
 from amo.urlresolvers import reverse
 from applications.models import Application
 from bandwagon.models import Collection, SyncedCollection, CollectionToken
@@ -16,9 +17,9 @@ from discovery.models import DiscoveryModule
 from discovery.modules import registry
 
 
-class RecsTest(test_utils.TestCase):
-    fixtures = ('base/appversion', 'base/addon-recs', 'base/addon_5299_gcal',
-                'base/category', 'base/featured',)
+class RecsTest(amo.test_utils.ExtraSetup, test_utils.TestCase):
+    fixtures = ['base/apps', 'base/appversion', 'base/addon-recs',
+                'base/addon_5299_gcal', 'base/category', 'base/featured']
 
     @classmethod
     def setup_class(cls):
