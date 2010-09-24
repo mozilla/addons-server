@@ -56,6 +56,11 @@ class TransformQuerySet(queryset_transform.TransformQuerySet):
             qs = qs.transform(transformer.get_trans)
         return qs
 
+    def transform(self, fn):
+        from . import decorators
+        f = decorators.skip_cache(fn)
+        return super(TransformQuerySet, self).transform(f)
+
 
 class RawQuerySet(models.query.RawQuerySet):
     """A RawQuerySet with __len__."""

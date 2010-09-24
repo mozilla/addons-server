@@ -6,7 +6,7 @@ from django import http
 from django.contrib.auth import decorators as auth_decorators
 from django.utils.http import urlquote
 
-from .models import use_master, skip_cache
+from . import models as context
 from .urlresolvers import reverse
 
 
@@ -62,9 +62,21 @@ json_view.error = lambda s: http.HttpResponseBadRequest(
     json.dumps(s), content_type='application/json')
 
 
-def write(f):
+def skip_cache(f):
     @functools.wraps(f)
     def wrapper(*args, **kw):
-        with contextlib.nested(use_master(), skip_cache()):
+        with context.skip_cache():
             return f(*args, **kw)
     return wrapper
+
+
+def use_master(f):
+    @functools.wraps(f)
+    def wrapper(*args, **kw):
+        with context.use_master():
+            return f(*args, **kw)
+    return wrapper
+
+
+def write(f):
+    return use_master(skip_cache(f))
