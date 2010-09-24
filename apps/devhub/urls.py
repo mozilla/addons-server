@@ -16,7 +16,7 @@ urlpatterns = patterns('',
 
     url('^addons$', views.addons_dashboard, name='devhub.addons'),
     url('^addons/activity$', views.addons_activity,
-        name='devhub.addons_activity'),
+        name='devhub.addons.activity'),
     url('^upload$', views.upload, name='devhub.upload'),
     url('^upload/([^/]+)$', views.upload_detail,
         name='devhub.upload_detail'),

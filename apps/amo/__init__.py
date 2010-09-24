@@ -4,6 +4,7 @@ Miscellaneous helpers that make Django compatible with AMO.
 from licenses import license_text
 
 import commonware.log
+from product_details import firefox_versions, thunderbird_versions
 from tower import ugettext_lazy as _
 
 
@@ -160,6 +161,7 @@ class FIREFOX:
     min_display_version = 3.0
     # These versions were relabeled and should not be displayed.
     exclude_versions = (3.1, 3.7)
+    latest_version = firefox_versions['LATEST_FIREFOX_VERSION']
     user_agent_string = 'Firefox'
 
 
@@ -173,6 +175,7 @@ class THUNDERBIRD:
              ADDON_PERSONA]
     guid = '{3550f703-e582-4d05-9a08-453d09bdfdc6}'
     min_display_version = 1.0
+    latest_version = thunderbird_versions['LATEST_THUNDERBIRD_VERSION']
     user_agent_string = 'Thunderbird'
 
 
@@ -186,6 +189,7 @@ class SEAMONKEY:
              ADDON_LPAPP, ADDON_PLUGIN]
     guid = '{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}'
     min_display_version = 1.0
+    latest_version = None
     user_agent_string = 'SeaMonkey'
 
 
@@ -197,6 +201,7 @@ class SUNBIRD:
     types = [ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_LPAPP]
     guid = '{718e30fb-e89b-41dd-9da7-e25a45638b28}'
     min_display_version = 0.2
+    latest_version = None
     user_agent_string = 'Sunbird'
 
 
@@ -210,6 +215,7 @@ class MOBILE:
              ADDON_LPAPP]
     guid = '{a23983c0-fd0e-11dc-95ff-0800200c9a66}'
     min_display_version = 0.1
+    latest_version = None
     user_agent_string = 'Fennec'
 
 

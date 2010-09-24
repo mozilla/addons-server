@@ -45,8 +45,8 @@
         {{ _('New Version') }}</a>
     </li>
     <li>
-{# TODO: Add 'compat-error' class to anchor if addon is incompatibile with latest version of Firefox, Thunderbird, mobile, etc. #}
-      <a href="#" class="tooltip"
+      <a href="#"
+         class="tooltip{% if addon.incompatible_latest_apps() %} compat-error{% endif %}"
          title="{{ _('View and update application compatibility ranges.') }}">
         {{ _('Compatibility') }}</a>
     </li>

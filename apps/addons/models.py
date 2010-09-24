@@ -22,6 +22,7 @@ from stats.models import (Contribution as ContributionStats,
                           AddonShareCountTotal)
 from translations.fields import TranslatedField, PurifiedField, LinkifiedField
 from users.models import UserProfile, PersonaAuthor
+from versions.compare import version_int
 from versions.models import Version
 
 from . import query, signals
@@ -440,6 +441,14 @@ class Addon(amo.models.ModelBase):
             return self.current_version.compatible_apps
         else:
             return {}
+
+    def incompatible_latest_apps(self):
+        """Returns a list of applications with which this add-on is
+        incompatible (based on the latest version).
+
+        """
+        return [a for a, v in self.compatible_apps.items()
+                if version_int(v.max.version) < version_int(a.latest_version)]
 
     @caching.cached_method
     def has_author(self, user, roles=None):
