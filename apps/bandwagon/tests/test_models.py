@@ -6,8 +6,9 @@ import test_utils
 
 import amo
 from addons.models import Addon, AddonRecommendation
-from bandwagon.models import (Collection, CollectionUser, SyncedCollection,
-                              RecommendedCollection)
+from bandwagon.models import (Collection, CollectionUser, CollectionWatcher,
+                              SyncedCollection, RecommendedCollection)
+from bandwagon import tasks
 from users.models import UserProfile
 
 
@@ -17,12 +18,8 @@ def get_addons(c):
 
 
 class TestCollections(test_utils.TestCase):
-    fixtures = ('base/apps',
-                'base/users',
-                'base/addon_3615',
-                'base/collections',
-                'bandwagon/test_models'
-               )
+    fixtures = ['base/apps', 'base/users', 'base/addon_3615',
+                'base/collections', 'bandwagon/test_models']
 
     def setUp(self):
         self.user = UserProfile.objects.create(username='uhhh', email='uh@hh')
@@ -128,6 +125,14 @@ class TestCollections(test_utils.TestCase):
         eq_(c.slug, 'boom-1')
         c = Collection.objects.create(author=self.user, slug='boom')
         eq_(c.slug, 'boom-2')
+
+    def test_watchers(self):
+        def check(num):
+            eq_(Collection.objects.get(id=512).subscribers, num)
+        tasks.collection_watchers(512)
+        check(0)
+        CollectionWatcher.objects.create(collection_id=512, user=self.user)
+        check(1)
 
 
 class TestRecommendations(test_utils.TestCase):

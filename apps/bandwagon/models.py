@@ -63,7 +63,7 @@ class CollectionManager(amo.models.ManagerBase):
         """Collections that are publishable by a user."""
         owned_by = Q(author=user.id)
         publishable_by = Q(users=user.id)
-        return self.filter(owned_by|publishable_by)
+        return self.filter(owned_by | publishable_by)
 
 
 class Collection(amo.models.ModelBase):
@@ -168,7 +168,8 @@ class Collection(amo.models.ModelBase):
                         args=[self.author_username, self.slug])
 
     def get_img_dir(self):
-        return os.path.join(settings.COLLECTIONS_ICON_PATH, str(self.id / 1000))
+        return os.path.join(settings.COLLECTIONS_ICON_PATH,
+                            str(self.id / 1000))
 
     def upvote_url(self):
         return reverse('collections.vote',
@@ -183,8 +184,8 @@ class Collection(amo.models.ModelBase):
                        args=[self.author_username, self.slug])
 
     def watch_url(self):
-       return reverse('collections.watch',
-                      args=[self.author_username, self.slug])
+        return reverse('collections.watch',
+                        args=[self.author_username, self.slug])
 
     def delete_url(self):
         return reverse('collections.delete',
@@ -395,6 +396,17 @@ class CollectionWatcher(amo.models.ModelBase):
         urls = ['*/user/%d/' % self.user_id]
         return urls
 
+    @staticmethod
+    def post_save_or_delete(sender, instance, **kw):
+        from . import tasks
+        tasks.collection_watchers(instance.collection_id, using='default')
+
+
+models.signals.post_save.connect(CollectionWatcher.post_save_or_delete,
+                                 sender=CollectionWatcher)
+models.signals.post_delete.connect(CollectionWatcher.post_save_or_delete,
+                                   sender=CollectionWatcher)
+
 
 class CollectionUser(models.Model):
     collection = models.ForeignKey(Collection)
@@ -428,7 +440,7 @@ class CollectionVote(models.Model):
 models.signals.post_save.connect(CollectionVote.post_save_or_delete,
                                  sender=CollectionVote)
 models.signals.post_delete.connect(CollectionVote.post_save_or_delete,
-                                 sender=CollectionVote)
+                                   sender=CollectionVote)
 
 
 class SyncedCollection(Collection):

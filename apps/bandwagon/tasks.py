@@ -12,7 +12,8 @@ from PIL import Image
 import amo
 from tags.models import Tag
 from . import cron  # Pull in tasks run through cron.
-from .models import Collection, CollectionAddon, CollectionVote
+from .models import (Collection, CollectionAddon, CollectionVote,
+                     CollectionWatcher)
 
 log = logging.getLogger('z.task')
 
@@ -49,6 +50,7 @@ def resize_icon(src, dst):
     except Exception, e:
         log.error("Error saving collection icon: %s" % e)
 
+
 @task
 def delete_icon(dst):
     log.info('[1@None] Deleting icon: %s.' % dst)
@@ -82,6 +84,17 @@ def collection_meta(*ids, **kw):
         c.top_tags = [t for t, _ in tags.filter(addons__in=addons)[:5]]
         Collection.objects.filter(id=c.id).update(addon_count=addon_count,
                                                   all_personas=all_personas)
+
+
+@task
+def collection_watchers(*ids, **kw):
+    log.info('[%s@%s] Updating collection watchers.' %
+             (len(ids), collection_watchers.rate_limit))
+    using = kw.get('using')
+    for pk in ids:
+        watchers = (CollectionWatcher.objects.filter(collection=pk)
+                    .using(using).count())
+        Collection.objects.get(pk=pk).update(subscribers=watchers)
 
 
 @task(rate_limit='10/m')
