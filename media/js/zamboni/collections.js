@@ -567,7 +567,7 @@ $(document).ready(function () {
         });
 
     /* Add to collection initialization */
-
+    var loginHtml = $("#add-to-collection").html();
     $("#add-to-collection").popup(".widgets .collection-add", {
         width: 200,
         offset: {x: 8},
@@ -588,7 +588,15 @@ $(document).ready(function () {
                 if (e) e.preventDefault();
                 ct.addClass("ajax-loading");
                 // Make a call to /collections/ajax/list with addon_id
-                $.get(list_url, {'addon_id': addon_id}, renderList, 'html');
+                $.ajax({
+                    url: list_url,
+                    data: {'addon_id': addon_id},
+                    success: renderList,
+                    error: function() {
+                        renderList(loginHtml);
+                    },
+                    dataType: 'html'
+                });
             }
 
             function renderList(data) {

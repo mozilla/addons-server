@@ -271,7 +271,7 @@ def add(request):
 
 
 @write
-@login_required
+@login_required(redirect=False)
 def ajax_new(request):
     form = forms.CollectionForm(request.POST or None,
         initial={'author': request.amo_user,
@@ -292,7 +292,7 @@ def ajax_new(request):
     return jingo.render(request, 'bandwagon/ajax_new.html', {'form': form})
 
 
-@login_required
+@login_required(redirect=False)
 def ajax_list(request):
     # Get collections associated with this user
     collections = Collection.objects.publishable_by(request.amo_user)
