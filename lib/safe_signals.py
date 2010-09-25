@@ -36,6 +36,7 @@ def safe_send(self, sender, **named):
 
 
 safe_send.__doc__ = Signal.send_robust.__doc__
+unsafe_send = Signal.send
 
 
 def start_the_machine():
