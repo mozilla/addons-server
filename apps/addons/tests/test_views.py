@@ -529,17 +529,6 @@ class TestDetailPage(amo.test_utils.ExtraSetup, test_utils.TestCase):
         assert any(th.text.strip().lower() == 'works with'
                    for th in headings)
 
-    def test_collections_login_form(self):
-        # logged out
-        r = self.client.get(reverse('addons.detail', args=[3615]))
-        doc = (pq(r.content))
-        eq_(len(doc('.collection-add-login')), 1)
-        # logged in
-        self.client.login(username='regular@mozilla.com', password='password')
-        r = self.client.get(reverse('addons.detail', args=[3615]))
-        doc = (pq(r.content))
-        eq_(len(doc('.collection-add-login')), 0)
-
 
 class TestTagsBox(amo.test_utils.ExtraSetup, test_utils.TestCase):
     fixtures = ['base/addontag', 'base/apps']
