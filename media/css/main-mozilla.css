@@ -1089,11 +1089,12 @@ table caption {
     margin: 0;
 }
 
-.prose.userinput ul {
+.userinput ul {
     list-style-type: disc;
 }
 
-.prose ul li {
+.prose ul li,
+.userinput ul li {
     margin-left: 1em;
 }
 
