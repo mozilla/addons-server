@@ -2094,6 +2094,7 @@ var contributions = {
     init: function() {
         // prepare overlay content
         var cb = $('#contribute-box');
+        var contrib_limit = parseFloat($('#contrib-too-much').attr('data-max-amount'));
         cb.find('li label').click(function(e) {
             e.preventDefault();
             $(this).siblings(':radio').attr('checked', 'checked');
@@ -2110,7 +2111,19 @@ var contributions = {
                 $(this).val(txt.substr(0, limit));
             }
             counter.text(limit - Math.min(txt.length, limit));
-        }).keyup();
+        }).keyup().end()
+        .find('#contrib-too-much').hide().end()
+        .find('form').submit(function() {
+            var contrib_type = $(this).find('input:checked').val();
+            if (contrib_type == 'onetime' || contrib_type == 'monthly') {
+                var amt = $(this).find('input[name="'+contrib_type+'-amount"]').val();
+                if (amt > contrib_limit) {
+                    $(this).find('#contrib-too-much').show();
+                    return false;
+                }
+            }
+            return true;
+        });
 
         // enable overlay; make sure we have the jqm package available.
         if (!cb.jqm) {
@@ -2131,6 +2144,7 @@ var contributions = {
                 },
                 onHide: function(hash) {
                     if ($.browser.opera) this.inputs.css('visibility', 'visible');
+                    hash.w.find('#contrib-too-much').hide();
                     hash.w.fadeOut();
                     hash.o.remove();
                 },

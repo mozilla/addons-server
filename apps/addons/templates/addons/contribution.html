@@ -85,6 +85,11 @@
         </p>
 
         <h4>{{ _('How much would you like to contribute?') }}</h4>
+        <div class="error" id="contrib-too-much"
+             data-max-amount="{{ settings.MAX_CONTRIBUTION }}">
+            {{ _('The maximum contribution amount is {0}.')|f(
+               settings.MAX_CONTRIBUTION|currencyfmt('USD')) }}
+        </div>
         <ul>
           <li>
             <input type="radio" name="type" value="suggested"
