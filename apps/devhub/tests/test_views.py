@@ -78,10 +78,10 @@ class TestNav(HubTest):
         doc = pq(r.content)
 
         # There should be 8 items in this menu.
-        eq_(doc('#navbar ul li.top:first-child ul li').length, 8)
+        eq_(doc('#navbar ul li.top').eq(0).find('ul li').length, 8)
 
         # This should be the 8th anchor, after the 7 addons.
-        eq_(doc('#navbar ul li.top:first-child li a').eq(7).text(),
+        eq_(doc('#navbar ul li.top').eq(0).find('li a').eq(7).text(),
             'Submit a New Add-on')
 
         addon = Addon.objects.get(id=57132)
@@ -91,7 +91,7 @@ class TestNav(HubTest):
 
         r = self.client.get(self.url)
         doc = pq(r.content)
-        eq_(doc('#navbar ul li.top:first-child li a').eq(7).text(),
+        eq_(doc('#navbar ul li.top').eq(0).find('li a').eq(7).text(),
             'more add-ons...')
 
 
