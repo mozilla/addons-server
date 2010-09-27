@@ -24,11 +24,12 @@ import os
 import time
 import urlparse
 
+from django import forms
 from django.conf import settings
 from django.test.client import Client
 
 import oauth2 as oauth
-from mock import Mock
+from mock import Mock, patch
 from nose.tools import eq_
 from test_utils import TestCase
 from piston.models import Consumer, Token
@@ -36,6 +37,7 @@ from piston.models import Consumer, Token
 from amo.urlresolvers import reverse
 from addons.models import Addon
 from translations.models import Translation
+from versions.models import AppVersion
 
 
 def _get_args(consumer, token=None, callback=False, verifier=None):
@@ -130,7 +132,8 @@ def get_access_token(consumer, token, authorize=True, verifier=None):
 
 
 class BaseOauth(TestCase):
-    fixtures = ('base/users', 'base/appversion', 'base/platforms')
+    fixtures = ('base/users', 'base/appversion', 'base/platforms',
+                'base/licenses')
 
     def setUp(self):
         consumers = []
@@ -241,9 +244,22 @@ class TestAddon(BaseOauth):
                 xpi=f,
                 )
 
+        path = 'apps/api/fixtures/api/helloworld-0.2.xpi'
+        self.version_data = dict(
+                license_type='bsd',
+                platform='windows',
+                xpi=open(os.path.join(settings.ROOT, path)),
+                )
+
+
     def make_create_request(self, data):
         return client.post('api.addons', self.accepted_consumer, self.token,
                            data=data)
+
+    def create_addon(self):
+        r = self.make_create_request(self.create_data)
+        eq_(r.status_code, 200, r.content)
+        return json.loads(r.content)
 
     def test_create(self):
         # License (req'd): MIT, GPLv2, GPLv3, LGPLv2.1, LGPLv3, MIT, BSD, Other
@@ -252,11 +268,7 @@ class TestAddon(BaseOauth):
         # Platform (All by default): 'mac', 'all', 'bsd', 'linux', 'solaris',
         #   'windows'
 
-        r = self.make_create_request(self.create_data)
-
-        eq_(r.status_code, 200, r.content)
-
-        data = json.loads(r.content)
+        data = self.create_addon()
         id = data['id']
         name = data['name']
         eq_(name, 'XUL School Hello World')
@@ -272,8 +284,7 @@ class TestAddon(BaseOauth):
 
     def test_update(self):
         # create an addon
-        r = self.make_create_request(self.create_data)
-        data = json.loads(r.content)
+        data = self.create_addon()
         id = data['id']
 
         # icon, homepage, support email,
@@ -313,3 +324,83 @@ class TestAddon(BaseOauth):
             eq_(value, expected,
                 "'%s' didn't match: got '%s' instead of '%s'"
                 % (field, getattr(a, field), expected))
+
+    @patch('api.handlers.XPIForm.clean_xpi')
+    def test_xpi_failure(self, f):
+        f.side_effect = forms.ValidationError('F')
+        r = self.make_create_request(self.create_data)
+        eq_(r.status_code, 400)
+
+    def test_fake_license(self):
+        data = self.create_data.copy()
+        data['license_type'] = 'fff'
+
+        r = self.make_create_request(data)
+        eq_(r.status_code, 400, r.content)
+        eq_(r.content, 'Bad Request: Invalid license data provided: '
+            'Select a valid choice. fff is not one of the available choices.')
+
+    def test_license_confusion(self):
+        """Pre-defined license + text == wrong."""
+        data = self.create_data.copy()
+        data['license_type'] = 'bsd'
+
+        r = self.make_create_request(data)
+        eq_(r.status_code, 400, r.content)
+        eq_(r.content, 'Bad Request: Invalid license data provided: '
+            'Select "other" if supplying a custom license.')
+
+    @patch('zipfile.ZipFile.namelist')
+    def test_bad_zip(self, namelist):
+        namelist.return_value = ('..', )
+        r = self.make_create_request(self.create_data)
+        eq_(r.status_code, 400, r.content)
+
+    @patch('versions.models.AppVersion.objects.get')
+    def test_bad_appversion(self, get):
+        get.side_effect = AppVersion.DoesNotExist()
+        data = self.create_addon()
+        assert data, "We didn't get data."
+
+    def test_wrong_guid(self):
+        data = self.create_addon()
+        id = data['id']
+        addon = Addon.objects.get(pk=id)
+        addon.guid = 'XXX'
+        addon.save()
+
+        # Upload new version of file
+        r = client.post(('api.versions', id,), self.accepted_consumer,
+                        self.token, data=self.version_data)
+        eq_(r.status_code, 400)
+        eq_(r.content, 'Bad Request: Add-on did not validate: '
+            "GUID doesn't match add-on")
+
+    def test_duplicate_guid(self):
+        self.create_addon()
+        data = self.create_data.copy()
+        data['xpi'] = self.version_data['xpi']
+        r = self.make_create_request(data)
+        eq_(r.status_code, 400)
+        eq_(r.content, 'Bad Request: Add-on did not validate: '
+            'Duplicate GUID found.')
+
+    def test_new_version(self):
+        # Create an addon and let's use this for the new version.
+        data = self.create_addon()
+        id = data['id']
+
+        # Upload new version of file
+        r = client.post(('api.versions', id,), self.accepted_consumer,
+                        self.token, data=self.version_data)
+
+        eq_(r.status_code, 200, r.content)
+        # validate that the addon has 2 versions
+        a = Addon.objects.get(pk=id)
+        eq_(a.versions.all().count(), 2)
+
+        # validate the version number
+        v = a.versions.get(version='0.2')
+        eq_(v.version, '0.2')
+        # validate any new version data
+        eq_(v.files.get().amo_platform.shortname, 'windows')

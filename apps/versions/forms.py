@@ -36,14 +36,11 @@ class LicenseForm(happyforms.Form):
 
         if type in license_ids:
             return type
-        else:
-            raise forms.ValidationError(_('Invalid License, use "other".'))
 
     def clean(self):
         # Raise error if we get text and something other than other
         # or if we get no text with other.
-
-        type = self.cleaned_data['license_type']
+        type = self.cleaned_data.get('license_type', 'other')
         text = self.cleaned_data['license_text']
 
         if type == 'other' and not text:
@@ -55,13 +52,14 @@ class LicenseForm(happyforms.Form):
 
         return self.cleaned_data
 
-    def get_id_or_create(self):
+    def get_or_create(self):
         """Gives us an existing license.id or a new id for a license."""
         data = self.cleaned_data
         if data['license_type'] == 'other':
-            return License.objects.create(text=data['license_text']).id
+            return License.objects.create(text=data['license_text'])
         else:
-            return data['license_type']
+            builtin = license_ids[data['license_type']]
+            return License.objects.get(builtin=builtin)
 
 
 def get_text_value(xml, tag):
@@ -71,9 +69,9 @@ def get_text_value(xml, tag):
         return textnode.wholeText
 
 
-def parse_xpi(xpi):
+def parse_xpi(xpi, addon=None):
     # Extract to /tmp
-    path = os.path.join(settings.TMP_PATH, str(int(time.time())))
+    path = os.path.join(settings.TMP_PATH, str(time.time()))
     os.makedirs(path)
 
     # Validating that we have no member files that try to break out of
@@ -113,7 +111,9 @@ def parse_xpi(xpi):
 
     guid = get_text_value(rdf, 'id')
 
-    if Addon.objects.filter(guid=guid):
+    if addon and addon.guid != guid:
+        raise forms.ValidationError(_("GUID doesn't match add-on"))
+    if not addon and Addon.objects.filter(guid=guid):
         raise forms.ValidationError(_('Duplicate GUID found.'))
 
     shutil.rmtree(path)
@@ -141,16 +141,20 @@ class XPIForm(happyforms.Form):
 
     xpi = forms.FileField(required=True)
 
+    def __init__(self, data, files, addon=None):
+        self.addon = addon
+        super(XPIForm, self).__init__(data, files)
+
     def clean_platform(self):
         return self.cleaned_data['platform'] or amo.PLATFORM_ALL.shortname
 
     def clean_xpi(self):
         # TODO(basta): connect to addon validator.
         xpi = self.cleaned_data['xpi']
-        self.cleaned_data.update(parse_xpi(xpi))
+        self.cleaned_data.update(parse_xpi(xpi, self.addon))
         return xpi
 
-    def create_addon(self, user, license_id=None):
+    def create_addon(self, user, license=None):
         data = self.cleaned_data
         a = Addon(guid=data['guid'],
                   name=data['name'],
@@ -161,9 +165,9 @@ class XPIForm(happyforms.Form):
         a.save()
         AddonUser(addon=a, user=user).save()
 
-        # Save Version, attach custom License or built-in
-        version = self._save_version(addon=a, license_id=license_id)
-        self._save_file(version)
+        self.addon = a
+        # Save Version, attach License
+        self.create_version(license=license)
         log.info('Addon %d saved' % a.id)
         return a
 
@@ -190,9 +194,9 @@ class XPIForm(happyforms.Form):
         f.save()
         return f
 
-    def _save_version(self, addon, license_id=None):
+    def create_version(self, license=None):
         data = self.cleaned_data
-        v = Version(addon=addon, license_id=license_id,
+        v = Version(addon=self.addon, license=license,
                     version=data['version'])
         v.save()
         apps = data['apps']
@@ -200,4 +204,6 @@ class XPIForm(happyforms.Form):
             av = ApplicationsVersions(version=v, min=app.min, max=app.max,
                                       application_id=app.id)
             av.save()
+
+        self._save_file(v)
         return v

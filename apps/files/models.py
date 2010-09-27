@@ -6,6 +6,7 @@ from django.utils import translation
 
 from uuidfield.fields import UUIDField
 
+import amo
 import amo.models
 import amo.utils
 from amo.urlresolvers import reverse
@@ -28,6 +29,11 @@ class File(amo.models.ModelBase):
 
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'files'
+
+    @property
+    def amo_platform(self):
+        # TODO: Ideally this would be ``platform``.
+        return amo.PLATFORMS[self.platform_id]
 
     def get_url_path(self, app, src):
         from amo.helpers import urlparams
