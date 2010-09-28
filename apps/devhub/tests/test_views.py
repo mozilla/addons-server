@@ -1,3 +1,4 @@
+from django.core.cache import cache
 from django.utils import encoding, translation
 
 import jingo
