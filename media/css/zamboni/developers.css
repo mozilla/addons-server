@@ -81,6 +81,7 @@
 
 #edit-addon tr:hover .help:hover {
     background-color: #2A4364;
+    cursor: help;
 }
 
 #edit-addon .empty {
