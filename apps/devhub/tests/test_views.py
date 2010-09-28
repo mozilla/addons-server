@@ -42,7 +42,7 @@ class HubTest(amo.test_utils.ExtraSetup, test_utils.TestCase):
             new_addon.save()
 
             self.num_addon_clones += 1
-        return addon.id
+        cache.clear()
 
 
 class TestNav(HubTest):
