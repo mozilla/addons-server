@@ -1,5 +1,8 @@
 from django.conf.urls.defaults import patterns, url, include
 
+from urlconf_decorator import decorate
+
+from amo.decorators import write
 from . import views
 
 # These will all start with /addon/<addon_id>/
@@ -8,7 +11,7 @@ detail_patterns = patterns('',
         name='devhub.addons.edit'),
 )
 
-urlpatterns = patterns('',
+urlpatterns = decorate(write, patterns('',
     url('^$', views.index, name='devhub.index'),
 
     # URLs for a single add-on.
@@ -20,4 +23,4 @@ urlpatterns = patterns('',
     url('^upload$', views.upload, name='devhub.upload'),
     url('^upload/([^/]+)$', views.upload_detail,
         name='devhub.upload_detail'),
-)
+))

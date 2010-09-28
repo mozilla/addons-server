@@ -1,4 +1,3 @@
-from django.core.cache import cache
 from django.utils import encoding, translation
 
 import jingo
@@ -43,7 +42,6 @@ class HubTest(amo.test_utils.ExtraSetup, test_utils.TestCase):
             new_addon.save()
 
             self.num_addon_clones += 1
-        cache.clear()
 
 
 class TestNav(HubTest):
