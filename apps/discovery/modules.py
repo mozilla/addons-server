@@ -1,3 +1,4 @@
+import caching.base as caching
 import jingo
 from tower import ugettext_lazy as _
 
@@ -63,7 +64,8 @@ class CollectionPromo(PromoModule):
         addons = self.collection.addons.all()
         kw = dict(addon_type='ALL', limit=self.limit, app=self.request.APP,
                   platform=self.platform, version=self.version, shuffle=True)
-        return addon_filter(addons, **kw)
+        f = lambda: addon_filter(addons, **kw)
+        return caching.cached_with(addons, f, repr(kw))
 
     def render(self):
         c = dict(title=self.title, collection=self.collection,
