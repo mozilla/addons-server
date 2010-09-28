@@ -20,21 +20,23 @@ _locals.skip_cache = False
 @contextlib.contextmanager
 def use_master():
     """Within this context, all queries go to the master."""
+    old = getattr(multidb.pinning._locals, 'pinned', False)
     multidb.pinning.pin_this_thread()
     try:
         yield
     finally:
-        multidb.pinning.unpin_this_thread()
+        multidb.pinning._locals.pinned = old
 
 
 @contextlib.contextmanager
 def skip_cache():
     """Within this context, no queries come from cache."""
+    old = getattr(_locals, 'skip_cache', False)
     _locals.skip_cache = True
     try:
         yield
     finally:
-        _locals.skip_cache = False
+        _locals.skip_cache = old
 
 
 class TransformQuerySet(queryset_transform.TransformQuerySet):
