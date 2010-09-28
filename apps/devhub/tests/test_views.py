@@ -19,10 +19,13 @@ class HubTest(amo.test_utils.ExtraSetup, test_utils.TestCase):
 
     def setUp(self):
         translation.activate('en-US')
+
         self.url = reverse('devhub.index')
         self.login_as_developer()
         eq_(self.client.get(self.url).status_code, 200)
+
         self.user_profile = UserProfile.objects.get(id=999)
+        self.num_addon_clones = 0
 
     def login_as_developer(self):
         self.client.login(username='regular@mozilla.com', password='password')
@@ -35,8 +38,10 @@ class HubTest(amo.test_utils.ExtraSetup, test_utils.TestCase):
             AddonUser.objects.create(user=self.user_profile, addon=addon)
 
             new_addon = Addon.objects.get(id=addon.id)
-            new_addon.name = 'addon-%s' % i
+            new_addon.name = 'addon-%s' % self.num_addon_clones
             new_addon.save()
+
+            self.num_addon_clones += 1
         return addon.id
 
 
@@ -84,10 +89,7 @@ class TestNav(HubTest):
         eq_(doc('#navbar ul li.top').eq(0).find('li a').eq(7).text(),
             'Submit a New Add-on')
 
-        addon = Addon.objects.get(id=57132)
-        addon.id = addon.guid = None
-        addon.save()
-        AddonUser.objects.create(user=self.user_profile, addon=addon)
+        self.clone_addon(1)
 
         r = self.client.get(self.url)
         doc = pq(r.content)
@@ -120,10 +122,6 @@ class TestDashboard(HubTest):
 
         r = self.client.get(self.url)
         doc = pq(r.content)
-
-        # Check the titles of the new add-ons.
-        eq_(doc('.item h4 a').text().split(),
-            ['addon-%s' % i for i in xrange(10)])
 
         # There should be 10 add-on listing items.
         eq_(len(doc('.item .item-info')), 10)
