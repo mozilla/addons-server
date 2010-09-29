@@ -84,7 +84,11 @@ function update_page_state() {
         fetch_top_charts();
     }
     set_loading($("#head-chart").parents('.featured'));
-    AMO.StatsManager.getSeries(AMO.getSeriesList(), page_state.data_range, updateSeries);
+    Series.get({
+        metric: AMO.getReportName(),
+        fields: page_state.chart_fields,
+        time:   page_state.data_range
+    }, updateSeries);
     if (AMO.aggregate_stats_field && typeof page_state.data_range == 'string') {
         show_aggregate_stats(AMO.aggregate_stats_field, page_state.data_range);
     }
@@ -129,7 +133,7 @@ function numberLabelFormatter(i) { return Highcharts.numberFormat(i, 0); }
 function currencyLabelFormatter(i) { return '$' + Highcharts.numberFormat(this.value, 2); }
 
 function repeat(str, n) {
-  return new Array( n + 1 ).join( str );
+  if (n) return new Array( n + 1 ).join( str );
 }
 
 function Timer() {
@@ -464,11 +468,6 @@ $(document).ready(function () {
     AMO.aggregate_stats_field = $(".stats-aggregate").getData("field");
     AMO.getAddonId = function () { return page_state.addon_id };
     AMO.getReportName = function () { return page_state.report_name };
-    AMO.getSeriesList = function () {        return {
-            "metric": page_state.report_name,
-            "fields": page_state.chart_fields
-        }
-    };
     AMO.getStatsBaseURL = function () { return stats_base_url };
 
     AMO.StatsManager.init();
@@ -534,7 +533,11 @@ $(document).ready(function () {
                 page_state.report_name = new_report;
                 page_state.data_fields = new_series;
                 set_loading($("#head-chart").parents('.featured'));
-                AMO.StatsManager.getSeries(AMO.getSeriesList(), page_state.data_range, initCharts);
+                Series.get({
+                    metric: AMO.getReportName(),
+                    fields: page_state.chart_fields,
+                    time:   page_state.data_range
+                }, initCharts);
             }
             e.preventDefault();
         });
@@ -563,7 +566,11 @@ $(document).ready(function () {
             show_aggregate_stats(AMO.aggregate_stats_field, page_state.data_range);
         }
 
-        AMO.StatsManager.getSeries(AMO.getSeriesList(), page_state.data_range, initCharts);
+        Series.get({
+            metric: AMO.getReportName(),
+            fields: page_state.chart_fields,
+            time:   page_state.data_range
+        }, initCharts);
 
         LoadBar.off();
         if (csvTable) {

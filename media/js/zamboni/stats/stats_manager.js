@@ -1,7 +1,7 @@
 // (function () {
 
     // Versioning for offline storage
-    var version = "5";
+    var version = "7";
 
     // where all the time-series data for the page is kept
     var datastore = {};
@@ -33,7 +33,6 @@
     function start_hash_check() {
         hashInterval = setInterval(get_page_state, 500);
     }
-    
 
     LoadBar = {
         bar : $("#lm"),
@@ -52,6 +51,36 @@
             LoadBar.isOn = false;
         }
     };
+
+    // Worker pool for Web Worker management
+
+    var stats_worker_url = z.media_url+"js/zamboni/stats/stats_worker.js";
+    
+    var StatsWorkerPool = new WorkerPool(4);
+
+    var breakdown_metrics = {
+        "apps"      : "applications",
+        "locales"   : "locales",
+        "sources"   : "sources",
+        "os"        : "oses",
+        "versions"  : "versions",
+        "statuses"  : "statuses"
+    };
+
+    function generateSeriesMenu(data) {
+        var job = {
+            task: "getFieldList",
+            data: data.blob
+        };
+        StatsWorkerPool.queueJob(stats_worker_url, job, function(msg) {
+            if (msg.success && msg.result) {
+                var m = msg.result;
+                for (var i=0;i<m.length;i++) {
+                    //console.log(AMO.StatsManager.getPrettyName(data.metric, m[i]));
+                }
+            }
+        }, this);
+    }
 
     // date management helpers
 
@@ -133,6 +162,74 @@
     document.onbeforeunload = function () {
         AMO.StatsManager.write_local();
     }
+    
+    Series = new AsyncCache(
+        function miss(key, set) {
+            if (typeof key.time === "string") {
+                var seriesStart = ago(key.time);
+                var seriesEnd = today();
+            } else if (typeof key.time === "object") {
+                var seriesStart = key.time.start;
+                var seriesEnd = key.time.end;
+            } else {
+                return false;
+            }
+            var metric = key.metric,
+                fields = key.fields,
+                out    = {};
+            AMO.StatsManager.getDataRange(metric, seriesStart, seriesEnd, function() {
+                for (var j=0; j<fields.length; j++) {
+                    if (metric in breakdown_metrics)
+                        fields[j] = breakdown_metrics[metric] + "|" + fields[j];
+                    out[fields[j]] = [];
+                }
+                chunkfor({
+                    start: seriesStart,
+                    end: seriesEnd,
+                    step: millis("1 day"),
+                    chunk_size: 10,
+                    inner: function (i) {
+                        if (ds[i]) {
+                            var row = (metric == 'apps') ? AMO.StatsManager.collapseVersions(ds[i], 2) : ds[i];
+                            for (var j=0; j<fields.length; j++) {
+                                var val = AMO.StatsManager.getField(row, fields[j]);
+                                var point = {
+                                    x : i,
+                                    y : val ? parseFloat(val) : null
+                                };
+                                out[fields[j]].push(point);
+                            }
+                        }
+                    },
+                    callback: function () {
+                        var ret = [];
+                        for (var j=0; j<fields.length; j++) {
+                            ret.push({
+                                type: 'line',
+                                name: AMO.StatsManager.getPrettyName(metric, fields[j].split("|").slice(-1)[0]),
+                                id: fields[j],
+                                data: out[fields[j]]
+                            });
+                        }
+                        set(ret);
+                    },
+                    ctx: this
+                });
+            });
+        },
+        function hash(key) {
+            var time;
+            if (typeof key.time === "string") {
+                time = key.time.replace(/\s/g, '_');
+            } else if (typeof time === "object") {
+                time = key.time.start + "_" + key.time.end;
+            }
+            return [key.metric,key.fields.join("_"),time].join('_');
+        }
+    );
+
+    Page = new AsyncCache(
+    );
 
     AMO.StatsManager = {
 
@@ -233,7 +330,7 @@
                         end: data.length,
                         step: 1,
                         chunk_size: 50,
-                        inner: function (i) {
+                        inner: function(i) {
                             var datekey = parseInt(Date.parse(data[i].date));
                             maxdate = Math.max(datekey, maxdate);
                             mindate = Math.min(datekey, mindate);
@@ -317,75 +414,6 @@
             }
 
             finished();
-        },
-
-        getSeries: function (seriesList, time, callback) {
-            metric = seriesList.metric;
-            if (typeof time === "string") {
-                var cacheKey = metric + "_" + time.replace(/\s/g, '_');
-
-                var seriesStart = ago(time);
-                var seriesEnd = today();
-            } else if (typeof time === "object" && time.custom) {
-                var cacheKey = metric + "_" + time.start + "_" + time.end;
-
-                var seriesStart = time.start;
-                var seriesEnd = time.end;
-            } else {
-                return false;
-            }
-
-            if (seriesCache[cacheKey]) {
-
-                callback.call(this, seriesCache[cacheKey]);
-
-            } else {
-
-                AMO.StatsManager.getDataRange(metric, seriesStart, seriesEnd, function() {
-                    var out = {};
-                    var fields = seriesList.fields;
-                    var ds = datastore[metric];
-
-                    for (var j=0; j<fields.length; j++) {
-                        out[fields[j]] = [];
-                    }
-
-                    chunkfor({
-                        start: seriesStart,
-                        end: seriesEnd,
-                        step: millis("1 day"),
-                        chunk_size: 10,
-                        inner: function (i) {
-                            if (ds[i]) {
-                                var row = (metric == 'apps') ? AMO.StatsManager.collapseVersions(ds[i], 2) : ds[i];
-                                for (var j=0; j<fields.length; j++) {
-                                    var val = AMO.StatsManager.getField(row, fields[j]);
-                                    var point = {
-                                        x : i,
-                                        y : val ? parseFloat(val) : null
-                                    };
-                                    out[fields[j]].push(point);
-                                }
-                            }
-                        },
-                        callback: function () {
-                            var ret = [];
-                            for (var j=0; j<fields.length; j++) {
-                                ret.push({
-                                    type: 'line',
-                                    name: AMO.StatsManager.getPrettyName(metric, fields[j].split("|").slice(-1)[0]),
-                                    id: fields[j],
-                                    data: out[fields[j]]
-                                });
-                            }
-                            seriesCache[cacheKey] = ret;
-                            callback.call(this, ret);
-                        },
-                        ctx: this
-                    });
-
-                });
-            }
         },
 
         getPage: function(metric, num, callback, size) {
@@ -533,6 +561,10 @@
             }
         },
 
+        getAvailableFields: function(metric, start, end, callback) {
+            
+        },
+
         processRange: function(field, start, end, callback) {
             var metric = field.metric;
 
@@ -544,40 +576,35 @@
             AMO.StatsManager.getDataRange(metric, start, end, function () {
                 var ds = datastore[metric];
 
-                var sum = 0;
-                var max = {nodata: true};
-                var min = {nodata: true};
-
-                var nodata = true;
-
+                var chunk = [];
                 for (var i=start; i<end; i+= millis("1 day")) {
                     if (ds[i] !== undefined) {
-                        var datum = AMO.StatsManager.getField(ds[i], field.name);
-                        if (datum !== undefined) {
-                            var val = parseFloat(datum);
-                            if (nodata) {
-                                min = val;
-                                max = val;
-                            }
-                            nodata = false;
-                            max = Math.max(max, val);
-                            min = Math.min(min, val);
-                            sum += val;
-                        }
+                        chunk.push(ds[i]);
                     }
                 }
-
-                if (nodata) {
-                    var ret = {nodata: true};
-                } else {
-                    seriesCache[sumKey] = sum;
-                    seriesCache[meanKey] = sum / ((end - start) / millis("1 day"));
-                    seriesCache[maxKey] = max;
-                    seriesCache[minKey] = min;
-                }
-
-                callback.call(this);
-
+                
+                var job = {
+                    task: "computeAggregates",
+                    data: {
+                        fieldName: field.name,
+                        data: chunk
+                    }
+                };
+                StatsWorkerPool.queueJob(stats_worker_url, job, function(msg, worker) {
+                    if ('success' in msg && msg.success) {
+                        var result = msg.result;
+                        if (result.nodata) {
+                            var ret = {nodata: true};
+                        } else {
+                            seriesCache[sumKey]  = result.sum;
+                            seriesCache[meanKey] = result.mean;
+                            seriesCache[maxKey]  = result.max;
+                            seriesCache[minKey]  = result.min;
+                        }
+                        callback.call(this);
+                    }
+                    return true;
+                }, this);
             });
         },
 
