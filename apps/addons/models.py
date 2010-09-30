@@ -95,6 +95,7 @@ class Addon(amo.models.ModelBase):
     CONTRIB_CHOICES = sorted(amo.CONTRIB_CHOICES.items())
 
     guid = models.CharField(max_length=255, unique=True, null=True)
+    slug = models.CharField(max_length=30)
     name = TranslatedField()
     default_locale = models.CharField(max_length=10,
                                       default=settings.LANGUAGE_CODE,

@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
+import itertools
 
-from django.db import connections, transaction
+from django.db import connections, transaction, IntegrityError
 from django.db.models import Q, F
 
 import commonware.log
@@ -9,7 +10,7 @@ from celeryutils import task
 import multidb
 
 import amo
-from amo.utils import chunked
+from amo.utils import chunked, slugify
 import cronjobs
 
 from .models import Addon
@@ -179,3 +180,26 @@ def update_addon_appsupport():
 def _update_appsupport(ids, **kw):
     from .tasks import update_appsupport
     update_appsupport(ids)
+
+
+@cronjobs.register
+def addons_add_slugs():
+    """Give slugs to any slugless addons."""
+    Addon._meta.get_field('modified').auto_now = False
+    q = Addon.objects.filter(slug=None).order_by('id')
+    ids = q.values_list('id', flat=True)
+    task_log.info('%s addons without slugs' % len(ids))
+    max_length = Addon._meta.get_field('slug').max_length
+    cnt = itertools.count()
+    # Chunk it so we don't do huge queries.
+    for chunk in chunked(ids, 300):
+        for c in q.no_cache().filter(id__in=chunk):
+            slug = slugify(c.name)[:max_length]
+            try:
+                c.update(slug=slug)
+            except IntegrityError:
+                tail = '-%s' % c.id
+                slug = "%s%s" % (slug[:max_length - len(tail)], tail)
+                c.update(slug=slug)
+
+            task_log.info(u'%s. %s => %s' % (next(cnt), c.name, c.slug))
