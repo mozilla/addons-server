@@ -13,10 +13,11 @@ from tower import ugettext_lazy as _lazy
 import amo.utils
 from amo.decorators import login_required
 from access import acl
-from addons.models import Addon
+from addons.models import Addon, AddonUser, AddonLog
 from addons.views import BaseFilter
 from files.models import FileUpload
 from . import tasks
+from .forms import AuthorFormSet
 
 log = commonware.log.getLogger('z.devhub')
 
@@ -35,6 +36,19 @@ def dev_required(f):
             return f(request, addon_id, addon, *args, **kw)
         else:
             return http.HttpResponseForbidden()
+    return wrapper
+
+
+def owner_for_post_required(f):
+    @functools.wraps(f)
+    def wrapper(request, addon_id, addon, *args, **kw):
+        is_admin = acl.action_allowed(request, 'Admin', 'EditAnyAddon')
+        qs = addon.authors.filter(addonuser__role=amo.AUTHOR_ROLE_OWNER,
+                                  user=request.amo_user)
+        if request.method == 'POST' and not (is_admin or qs):
+            return http.HttpResponseForbidden()
+        else:
+            return f(request, addon_id, addon, *args, **kw)
     return wrapper
 
 
@@ -86,6 +100,25 @@ def addons_edit(request, addon_id, addon):
         }
 
     return jingo.render(request, 'devhub/addons/edit.html', data)
+
+
+@dev_required
+@owner_for_post_required
+def addons_owner(request, addon_id, addon):
+    qs = AddonUser.objects.filter(addon=addon)
+    user_form = AuthorFormSet(request.POST or None, queryset=qs)
+    if request.method == 'POST':
+        if user_form.is_valid():
+            authors = user_form.save(commit=False)
+            for author in authors:
+                action = 'change' if author.id else 'add'
+                author.addon = addon
+                author.save()
+                AddonLog.log(AddonUser, request, addon=addon,
+                             action=action, author=author)
+            return redirect('devhub.addons.owner', addon_id)
+    return jingo.render(request, 'devhub/addons/owner.html',
+                        dict(addon=addon, user_form=user_form))
 
 
 def upload(request):

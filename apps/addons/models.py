@@ -21,7 +21,7 @@ from reviews.models import Review
 from stats.models import (Contribution as ContributionStats,
                           AddonShareCountTotal)
 from translations.fields import TranslatedField, PurifiedField, LinkifiedField
-from users.models import UserProfile, PersonaAuthor
+from users.models import UserProfile, PersonaAuthor, UserForeignKey
 from versions.compare import version_int
 from versions.models import Version
 
@@ -718,7 +718,7 @@ class AddonType(amo.models.ModelBase):
 
 class AddonUser(caching.CachingMixin, models.Model):
     addon = models.ForeignKey(Addon)
-    user = models.ForeignKey('users.UserProfile')
+    user = UserForeignKey()
     role = models.SmallIntegerField(default=amo.AUTHOR_ROLE_OWNER,
                                     choices=amo.AUTHOR_CHOICES)
     listed = models.BooleanField(default=True)

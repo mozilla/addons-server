@@ -1,14 +1,11 @@
-from django.utils import encoding, translation
+from django.utils import translation
 
-import jingo
-from mock import Mock
 from nose.tools import eq_, assert_not_equal
 from pyquery import PyQuery as pq
 import test_utils
 
 import amo
 import amo.test_utils
-from amo.tests.test_helpers import render
 from amo.urlresolvers import reverse
 from addons.models import Addon, AddonUser
 from users.models import UserProfile
@@ -141,3 +138,116 @@ class TestDashboard(HubTest):
         # There should be a listing header and pagination footer.
         eq_(doc('#addon-list-options').length, 1)
         eq_(doc('.listing-footer .pagination').length, 1)
+
+
+class TestOwnership(test_utils.TestCase):
+    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
+
+    def setUp(self):
+        self.url = reverse('devhub.addons.owner', args=[3615])
+        assert self.client.login(username='del@icio.us', password='password')
+
+    def formset(self, *args, **kw):
+        # def f(*args, prefix='form') is a syntax error.
+        prefix = kw.pop('prefix', 'form')
+        initial_count = kw.pop('initial_count', 0)
+        data = {prefix + '-TOTAL_FORMS': len(args),
+                prefix + '-INITIAL_FORMS': initial_count}
+        for idx, d in enumerate(args):
+            data.update(('%s-%s-%s' % (prefix, idx, k), v)
+                        for k, v in d.items())
+        return data
+
+    def test_success_add_user(self):
+        q = (AddonUser.objects.no_cache().filter(addon=3615)
+             .values_list('user', flat=True))
+        eq_(list(q.all()), [55021])
+
+        f = self.client.get(self.url).context['user_form'].initial_forms[0]
+        u = dict(user='regular@mozilla.com', listed=True,
+                 role=amo.AUTHOR_ROLE_DEV)
+        data = self.formset(f.initial, u, initial_count=1)
+        r = self.client.post(self.url, data)
+        eq_(r.status_code, 302)
+        eq_(list(q.all()), [55021, 999])
+
+    def test_success_edit_user(self):
+        # Add an author b/c we can't edit anything about the current one.
+        f = self.client.get(self.url).context['user_form'].initial_forms[0]
+        u = dict(user='regular@mozilla.com', listed=True,
+                 role=amo.AUTHOR_ROLE_DEV)
+        data = self.formset(f.initial, u, initial_count=1)
+        self.client.post(self.url, data)
+        eq_(AddonUser.objects.get(addon=3615, user=999).listed, True)
+
+        # Edit the user we just added.
+        one, two = self.client.get(self.url).context['user_form'].initial_forms
+        two.initial['listed'] = False
+        data = self.formset(one.initial, two.initial, initial_count=2)
+        r = self.client.post(self.url, data)
+        eq_(r.status_code, 302)
+        eq_(AddonUser.objects.no_cache().get(addon=3615, user=999).listed,
+            False)
+
+    def test_success_delete_user(self):
+        data = self.formset(dict(user='regular@mozilla.com', listed=True,
+                                 role=amo.AUTHOR_ROLE_OWNER))
+        self.client.post(self.url, data)
+
+        one, two = self.client.get(self.url).context['user_form'].initial_forms
+        one.initial['DELETE'] = True
+        data = self.formset(one.initial, two.initial, initial_count=2)
+        r = self.client.post(self.url, data)
+        eq_(r.status_code, 302)
+        eq_(999, AddonUser.objects.get(addon=3615).user_id)
+
+    def test_switch_owner(self):
+        # See if we can transfer ownership in one POST.
+        f = self.client.get(self.url).context['user_form'].initial_forms[0]
+        f.initial['user'] = 'regular@mozilla.com'
+        data = self.formset(f.initial, initial_count=1)
+        r = self.client.post(self.url, data)
+        eq_(r.status_code, 302)
+        eq_(999, AddonUser.objects.get(addon=3615).user_id)
+
+    def test_only_owner_can_edit(self):
+        f = self.client.get(self.url).context['user_form'].initial_forms[0]
+        u = dict(user='regular@mozilla.com', listed=True,
+                 role=amo.AUTHOR_ROLE_DEV)
+        data = self.formset(f.initial, u, initial_count=1)
+        self.client.post(self.url, data)
+
+        self.client.login(username='regular@mozilla.com', password='password')
+        self.client.post(self.url, data, follow=True)
+
+        # Try deleting the other AddonUser
+        one, two = self.client.get(self.url).context['user_form'].initial_forms
+        one.initial['DELETE'] = True
+        data = self.formset(one.initial, two.initial, initial_count=2)
+        r = self.client.post(self.url, data, follow=True)
+        eq_(r.status_code, 403)
+        eq_(AddonUser.objects.filter(addon=3615).count(), 2)
+
+    def test_must_have_listed(self):
+        f = self.client.get(self.url).context['user_form'].initial_forms[0]
+        f.initial['listed'] = False
+        data = self.formset(f.initial, initial_count=1)
+        r = self.client.post(self.url, data)
+        eq_(r.context['user_form'].non_form_errors(),
+            ['At least one author must be listed.'])
+
+    def test_must_have_owner(self):
+        f = self.client.get(self.url).context['user_form'].initial_forms[0]
+        f.initial['role'] = amo.AUTHOR_ROLE_DEV
+        data = self.formset(f.initial, initial_count=1)
+        r = self.client.post(self.url, data)
+        eq_(r.context['user_form'].non_form_errors(),
+            ['Must have at least one owner.'])
+
+    def test_must_have_owner_delete(self):
+        f = self.client.get(self.url).context['user_form'].initial_forms[0]
+        f.initial['DELETE'] = True
+        data = self.formset(f.initial, initial_count=1)
+        r = self.client.post(self.url, data)
+        eq_(r.context['user_form'].non_form_errors(),
+            ['Must have at least one owner.'])

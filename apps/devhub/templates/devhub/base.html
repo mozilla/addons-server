@@ -96,3 +96,5 @@
 {% block js %}
   {{ js('zamboni/devhub') }}
 {% endblock %}
+
+{% block outer_content %}{% include "messages.html" %}{% endblock %}
