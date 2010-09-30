@@ -8,6 +8,7 @@ def test_app_in_fragment_cache_key(cache_mock):
     cache_mock.return_value = ''
     request = mock.Mock()
     request.APP.id = '<app>'
+    request.user.is_authenticated.return_value = False
     request.groups = []
     template = jingo.env.from_string('{% cache 1 %}{% endcache %}')
     jingo.render(request, template)
