@@ -8,7 +8,7 @@ from django.shortcuts import get_object_or_404, redirect
 import commonware.log
 import jingo
 import path
-from tower import ugettext as _, ugettext_lazy as _lazy
+from tower import ugettext_lazy as _lazy
 
 import amo.utils
 from amo.decorators import login_required
@@ -24,19 +24,18 @@ log = commonware.log.getLogger('z.devhub')
 EXTENSIONS = ('.xpi', '.jar', '.xml')
 
 
-def owner_required(f=None, require_owner=True):
+def dev_required(f):
     """Requires user to be add-on owner or admin"""
-    def decorator(func):
-        @functools.wraps(func)
-        def wrapper(request, addon_id, *args, **kw):
-            addon = get_object_or_404(Addon, id=addon_id)
-            if acl.check_addon_ownership(request, addon,
-                                         require_owner=require_owner):
-                return func(request, addon_id, addon, *args, **kw)
-            else:
-                return http.HttpResponseForbidden()
-        return wrapper
-    return decorator(f) if f else decorator
+    @login_required
+    @functools.wraps(f)
+    def wrapper(request, addon_id, *args, **kw):
+        addon = get_object_or_404(Addon, id=addon_id)
+        if acl.check_addon_ownership(request, addon,
+                                     require_owner=False):
+            return f(request, addon_id, addon, *args, **kw)
+        else:
+            return http.HttpResponseForbidden()
+    return wrapper
 
 
 class AddonFilter(BaseFilter):
@@ -74,8 +73,7 @@ def addons_activity(request):
     return jingo.render(request, 'devhub/addons/activity.html')
 
 
-@login_required
-@owner_required(require_owner=False)
+@dev_required
 def addons_edit(request, addon_id, addon):
     tags_dev, tags_user = addon.tags_partitioned_by_developer
 
@@ -106,7 +104,7 @@ def upload(request):
                 fd.write(chunk)
         user = getattr(request, 'amo_user', None)
         fu = FileUpload.objects.create(path=loc, name=upload.name, user=user)
-        task = tasks.validator.delay(fu.pk)
+        tasks.validator.delay(fu.pk)
         return redirect('devhub.upload_detail', fu.pk)
 
     return jingo.render(request, 'devhub/upload.html')
