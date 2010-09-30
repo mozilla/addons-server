@@ -14,7 +14,10 @@ class FragmentCacheExtension(caching.ext.FragmentCacheExtension):
         if isinstance(request, jinja2.runtime.Undefined):
             key = name
         else:
-            key = '%s:%s' % (name, request.APP.id)
+            if request.user.is_authenticated():
+                return caller()
+            else:
+                key = '%s:%s' % (name, request.APP.id)
         sup = super(FragmentCacheExtension, self)._cache_support
         return sup(key, obj, timeout, extra, caller)
 
