@@ -13,7 +13,6 @@ pep8==0.5
 -e git://github.com/jbalogh/django-debug-cache-panel#egg=cache_panel
 -e git://github.com/django-extensions/django-extensions.git#egg=django_extensions
 -e git://github.com/dcramer/django-devserver.git#egg=django_devserver
--e git://github.com/mozilla/django-csp.git#egg=django_csp
 werkzeug
 ipython==0.10
 sqlparse==0.1.1
