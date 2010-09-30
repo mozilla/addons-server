@@ -253,7 +253,7 @@ def login(request):
                       '<a href="%s">resend the confirmation message</a> '
                       'to your email address mentioned above.') % url)
             messages.error(request, msg1)
-            messages.info(request, msg2)
+            messages.info(request, msg2, title_safe=True)
             return jingo.render(request, 'users/login.html',
                                 {'form': forms.AuthenticationForm()})
 
