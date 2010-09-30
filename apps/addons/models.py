@@ -865,6 +865,7 @@ class AppSupport(amo.models.ModelBase):
     class Meta:
         db_table = 'appsupport'
 
+
 class AddonLog(mongoengine.Document):
     """A MongoDB model for logging add-on changes"""
 
@@ -872,3 +873,10 @@ class AddonLog(mongoengine.Document):
     blah = mongoengine.StringField(max_length=500, required=True)
     created = mongoengine.DateTimeField(default=datetime.now)
 
+    @staticmethod
+    def log(sender, request, **kw):
+        # Grab request.user, ask the cls param how to format the record, turn
+        # objects into (model.__class__, pk) pairs for serialization, store all
+        # the pieces in mongo (along with the context needed to format the log
+        # record).
+        pass
