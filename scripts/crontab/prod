@@ -28,7 +28,6 @@ HOME = /tmp
 
 #every 3 hours
 20 */3 * * * apache cd /data/amo/www/addons.mozilla.org-remora/bin; php -f compatibility_report.php
-20 */3 * * * apache cd /data/amo/www/addons.mozilla.org-remora/bin; /usr/bin/python26 maintenance.py collection_addon_count
 
 #twice per day
 25 1,13 * * * apache cd /data/amo/www/addons.mozilla.org-remora/bin; /usr/bin/python26 import-personas.py
