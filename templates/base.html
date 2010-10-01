@@ -92,6 +92,8 @@
           {% include "search.html" %}
         </div>
         {% endblock %}
+        {# outer_content is for something you want above content on every page. #}
+        {% block outer_content %}{% endblock %}
         {% block content %}{% endblock %}
       {% endblock %}
     </div>

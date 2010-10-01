@@ -110,8 +110,7 @@ class TestCheckOwnership(TestCase):
 
     def test_author_roles(self):
         f = self.addon.authors.filter
-        roles = (amo.AUTHOR_ROLE_ADMINOWNER, amo.AUTHOR_ROLE_ADMIN,
-                 amo.AUTHOR_ROLE_OWNER, amo.AUTHOR_ROLE_DEV)
+        roles = (amo.AUTHOR_ROLE_OWNER, amo.AUTHOR_ROLE_DEV)
 
         check_addon_ownership(self.request, self.addon, True)
         eq_(f.call_args[1]['addonuser__role__in'], roles)

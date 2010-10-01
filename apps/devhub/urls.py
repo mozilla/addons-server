@@ -9,6 +9,8 @@ from . import views
 detail_patterns = patterns('',
     url('^edit$', views.addons_edit,
         name='devhub.addons.edit'),
+    url('^ownership$', views.addons_owner,
+        name='devhub.addons.owner'),
 )
 
 urlpatterns = decorate(write, patterns('',

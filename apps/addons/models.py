@@ -21,7 +21,7 @@ from reviews.models import Review
 from stats.models import (Contribution as ContributionStats,
                           AddonShareCountTotal)
 from translations.fields import TranslatedField, PurifiedField, LinkifiedField
-from users.models import UserProfile, PersonaAuthor
+from users.models import UserProfile, PersonaAuthor, UserForeignKey
 from versions.compare import version_int
 from versions.models import Version
 
@@ -456,14 +456,12 @@ class Addon(amo.models.ModelBase):
         """True if ``user`` is an author with any of the specified ``roles``.
 
         ``roles`` should be a list of valid roles (see amo.AUTHOR_ROLE_*). If
-        not specified, then has_author will return true if the user has any
-        role other than amo.AUTHOR_ROLE_NONE.
+        not specified, has_author will return true if the user has any role.
         """
         if user is None:
             return False
         if roles is None:
-            roles = amo.AUTHOR_CHOICES.keys()
-            roles.remove(amo.AUTHOR_ROLE_NONE)
+            roles = dict(amo.AUTHOR_CHOICES).keys()
         return AddonUser.objects.filter(addon=self, user=user,
                                         role__in=roles).exists()
 
@@ -719,12 +717,10 @@ class AddonType(amo.models.ModelBase):
 
 
 class AddonUser(caching.CachingMixin, models.Model):
-    AUTHOR_CHOICES = amo.AUTHOR_CHOICES.items()
-
     addon = models.ForeignKey(Addon)
-    user = models.ForeignKey('users.UserProfile')
+    user = UserForeignKey()
     role = models.SmallIntegerField(default=amo.AUTHOR_ROLE_OWNER,
-                                    choices=AUTHOR_CHOICES)
+                                    choices=amo.AUTHOR_CHOICES)
     listed = models.BooleanField(default=True)
     position = models.IntegerField(default=0)
 
@@ -869,6 +865,7 @@ class AppSupport(amo.models.ModelBase):
     class Meta:
         db_table = 'appsupport'
 
+
 class AddonLog(mongoengine.Document):
     """A MongoDB model for logging add-on changes"""
 
@@ -876,3 +873,10 @@ class AddonLog(mongoengine.Document):
     blah = mongoengine.StringField(max_length=500, required=True)
     created = mongoengine.DateTimeField(default=datetime.now)
 
+    @staticmethod
+    def log(sender, request, **kw):
+        # Grab request.user, ask the cls param how to format the record, turn
+        # objects into (model.__class__, pk) pairs for serialization, store all
+        # the pieces in mongo (along with the context needed to format the log
+        # record).
+        pass

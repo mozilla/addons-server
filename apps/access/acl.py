@@ -63,8 +63,7 @@ def check_addon_ownership(request, addon, require_owner=False):
     if addon.status == amo.STATUS_DISABLED:
         return False
 
-    roles = (amo.AUTHOR_ROLE_ADMINOWNER, amo.AUTHOR_ROLE_ADMIN,
-             amo.AUTHOR_ROLE_OWNER, amo.AUTHOR_ROLE_DEV)
+    roles = (amo.AUTHOR_ROLE_OWNER, amo.AUTHOR_ROLE_DEV)
     if not require_owner:
         roles += (amo.AUTHOR_ROLE_VIEWER,)
 

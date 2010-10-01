@@ -6,12 +6,14 @@ import re
 import string
 import time
 
+from django import forms
 from django.conf import settings
 from django.contrib.auth.models import User as DjangoUser
 from django.core.mail import send_mail
 from django.db import models
 from django.template import Context, loader
 from django.utils.encoding import smart_str
+from django.utils.functional import lazy
 
 import caching.base as caching
 import commonware.log
@@ -44,6 +46,40 @@ class UserManager(amo.models.ManagerBase):
     def request_user(self):
         return (self.extra(select={'request': 1})
                 .transform(UserProfile.request_user_transformer))
+
+
+class UserForeignKey(models.ForeignKey):
+    """
+    A replacement for  models.ForeignKey('users.UserProfile').
+
+    This field uses UserEmailField to make form fields key off the user's email
+    instead of the primary key id.  We also hook up autocomplete automatically.
+    """
+
+    def __init__(self, *args, **kw):
+        super(UserForeignKey, self).__init__(UserProfile, *args, **kw)
+
+    def value_from_object(self, obj):
+        return getattr(obj, self.name).email
+
+    def formfield(self, **kw):
+        defaults = {'form_class': UserEmailField}
+        defaults.update(kw)
+        return models.Field.formfield(self, **defaults)
+
+
+class UserEmailField(forms.EmailField):
+
+    def clean(self, value):
+        try:
+            return UserProfile.objects.get(email=value)
+        except UserProfile.DoesNotExist:
+            raise forms.ValidationError(_('No user with that email.'))
+
+    def widget_attrs(self, widget):
+        lazy_reverse = lazy(reverse, str)
+        return {'class': 'email-autocomplete',
+                'data-src': lazy_reverse('users.ajax')}
 
 
 class UserProfile(amo.models.ModelBase):
