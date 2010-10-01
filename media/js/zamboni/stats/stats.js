@@ -83,12 +83,11 @@ function update_page_state() {
         show_overview_stats(page_state.data_range);
         fetch_top_charts();
     }
-    set_loading($("#head-chart").parents('.featured'));
-    Series.get({
+    // set_loading($("#head-chart").parents('.featured'));
+    headerChart.render({
         metric: AMO.getReportName(),
-        fields: page_state.chart_fields,
         time:   page_state.data_range
-    }, updateSeries);
+    });
     if (AMO.aggregate_stats_field && typeof page_state.data_range == 'string') {
         show_aggregate_stats(AMO.aggregate_stats_field, page_state.data_range);
     }
@@ -109,7 +108,7 @@ function update_page_state() {
         return false;
     }
     
-    var seriesURL = AMO.getStatsBaseURL() + ([metric,"day",Highcharts.dateFormat('%Y%m%d', start),Highcharts.dateFormat('%Y%m%d', end)]).join("-") + ".csv";
+    var seriesURL = AMO.getStatsBaseURL() + ([AMO.getReportName(),"day",Highcharts.dateFormat('%Y%m%d', start),Highcharts.dateFormat('%Y%m%d', end)]).join("-") + ".csv";
     $('#export_data').attr('href', seriesURL);
     
     if (capabilities.replaceState) {
@@ -129,7 +128,7 @@ function downloadFormatter(y) { return Highcharts.numberFormat(y, 0) + ' downloa
 function userFormatter(y) { return Highcharts.numberFormat(y, 0) + ' users'; }
 function currencyFormatter(y) { return '$' + Highcharts.numberFormat(y, 2); }
 
-function numberLabelFormatter(i) { return Highcharts.numberFormat(i, 0); }
+function numberLabelFormatter(i) { return Highcharts.numberFormat(this.value, 0); }
 function currencyLabelFormatter(i) { return '$' + Highcharts.numberFormat(this.value, 2); }
 
 function repeat(str, n) {
@@ -150,15 +149,6 @@ Timer.prototype.lap = function(msg) {
 
 var t = new Timer();
 
-function updateSeries(cfg) {
-    for (var i=0; i<cfg.length; i++) {
-        var series = mainChart.get(cfg[i].id);
-        if (series) {
-            series.setData(cfg[i].data);
-        }
-    }
-}
-
 function draw_diff(el, current, previous) {
     if (current.nodata || previous.nodata) return;
     var diffel = $(el);
@@ -172,70 +162,185 @@ function draw_diff(el, current, previous) {
     diffel.text((diff >= 0 ? '+' : '') + diff + "%");
 }
 
+function SeriesChart() {
+    var chartObj;
+    var currentView;
+    var $fieldList = $("#fieldList");
+    var $fieldMenu = $("#fieldMenu");
+    var $legend;
 
-function initCharts(cfg) {
-    if (mainChart) {
-        mainChart.destroy();
+    function drawLegend() {
+        if (currentView.metric in breakdown_metrics) {
+            var fields = chartObj.series;
+            if (!$(".chart_legend").length) {
+                $legend = $("<ul class='chart_legend'></ul>");
+                $(".listing-header").append($legend);
+            }
+            var markup = ["<li><a id='changeFields' href='#'>change</a></li>"];
+            for (var i = 0; i < fields.length; i++) {
+               markup.push(
+                   "<li class='series' data-field='",fields[i].id,"'>",
+                   "<b class='seriesdot' style='background:",
+                   fields[i].color,
+                   "'>&nbsp;</b>",
+                   fields[i].name,
+                   "</li>");
+            }
+            $(".chart_legend").empty();
+            $legend.html(markup.join(''));
+        }
     }
-    mainChart = new Highcharts.Chart({
-        chart: {
-          renderTo: 'head-chart',
-          zoomType: 'x',
-          events: {
-              redraw: done_loading,
-              load: done_loading
-          },          
-          margin: [30,20,30,70]
-        },
-        credits: { enabled: false },
+
+    function drawFieldMenu() {
+        var job = {
+            task: "getFieldList",
+            data: AMO.StatsManager.getDataSlice(
+                currentView.metric,
+                currentView.time,
+                breakdown_metrics[currentView.metric]
+            )
+        };
+        StatsWorkerPool.queueJob(stats_worker_url, job, function(msg, worker) {
+            if ('success' in msg && msg.success) {
+                var result = msg.result;
+                menu = [];
+                for (var i=0; i<result.length; i++) {
+                    var v = result[i],
+                        name = AMO.StatsManager.getPrettyName(
+                            currentView.metric, v.split('|').join('_'));
+                    menu.push([name,v]);
+                }
+                menu = menu.sort(function(a,b) { return a[0] > b[0] ? 1 : -1; });
+                $fieldList.html($.map(menu, function(n) {
+                    return "<li><label><input type='checkbox' name='field' value='" + n[1] + "'> " + n[0] + "</label></li>";
+                }).join(''));
+                $.each(currentView.fields, function(i,v) {
+                    $("input[value='"+v+"']", $fieldList).attr('checked',true);
+                });
+            }
+            return true;
+        }, this);
+    }
+    
+    this.init = function(cfg) {
+        if (chartObj) chartObj.destroy();
+        chartObj = new Highcharts.Chart(cfg);
+        $("#fieldMenuPopup").popup("#changeFields", {
+            delegate: $(".listing-header"),
+            container: $(document.body),
+            width: "auto",
+            callback: function(obj) {
+                var $popup = $(this),
+                    cf = currentView.fields;
+                return {"pointTo": obj.click_target};
+            }
+        });
+        // $fieldMenu.submit(function(e) {
+        $fieldMenu.delegate('input', 'change', function(e) {
+            e.preventDefault();
+            var newFields = [];
+            $.map($(":checked", $fieldMenu), function(n) {
+                newFields.push($(n).val());
+            });
+            self.render({'fields': newFields});
+            csvTable.setColumns(newFields);
+        });
+    };
+    this.render = function(view) {
+        var newView = $.extend({}, currentView, view);
+        dbg("rendering", newView);
+        Series.get(newView, function(seriesSet) {
+            var s = chartObj.series;
+            while(chartObj.series.length) {
+                chartObj.series[0].remove(false);
+            }
+            for (var i=0; i<seriesSet.length; i++) {
+                chartObj.addSeries(seriesSet[i], false);
+            }
+            dbg(chartObj.series);
+            chartObj.redraw();
+            currentView = newView;
+            if ('fields' in view) {
+                drawLegend();
+            }
+            if ('time' in view) {
+                drawFieldMenu();
+            }
+        });
+    };
+    this.chart = function() { return chartObj; };
+    var self = this;
+}
+
+headerChart = new SeriesChart();
+chartConfig = {
+    chart: {
+      renderTo: 'head-chart',
+      zoomType: 'x',
+      events: {
+          redraw: done_loading,
+          load: done_loading
+      },          
+      margin: [30,20,30,70]
+    },
+    credits: { enabled: false },
+    title: {
+        text: null
+    },
+    xAxis: {
+        type: 'datetime',
+        maxZoom: 7 * 24 * 3600000, // seven days
+        title: {
+            text: null
+        }
+    },
+    yAxis: {
         title: {
             text: null
         },
-        xAxis: {
-            type: 'datetime',
-            maxZoom: 7 * 24 * 3600000, // seven days
-            title: {
-                text: null
-            }
+        labels: {
+            formatter: numberLabelFormatter
         },
-        yAxis: {
-            title: {
-                text: null
-            },
-            startOnTick: false,
-            showFirstLabel: false
-        },
-        tooltip: {
-            formatter: function() {
-                return dayFormatter(new Date(this.x)) + '<br/>'+
-                    "<b>" + downloadFormatter(this.y) + "</b>";
-            }
-        },
-        legend: {
-            enabled: false
-        },
-        plotOptions: {
-            line: {
-                lineWidth: 1,
-                animation: false,
-                marker: {
-                    enabled: false,
-                    states: {
-                       hover: {
-                          enabled: true,
-                          radius: 3
-                       }
-                    }
-                 },
-             states: {
-                hover: {
-                   lineWidth: 1
+        startOnTick: false,
+        showFirstLabel: false
+    },
+    tooltip: {
+        formatter: function() {
+            return dayFormatter(new Date(this.x)) + '<br/>'+
+                "<b>" + downloadFormatter(this.y) + "</b>";
+        }
+    },
+    legend: {
+        enabled: false
+    },
+    plotOptions: {
+        line: {
+            lineWidth: 2,
+            animation: false,
+            shadow: false,
+            marker: {
+                enabled: false,
+                states: {
+                   hover: {
+                      enabled: true,
+                      radius: 5
+                   }
                 }
-             }
-          }
-       },
-       series: cfg
-    });
+             },
+         states: {
+            hover: {
+               lineWidth: 2
+            }
+         }
+      }
+   }
+};
+
+function done_loading() {
+    dbg("doneloading");
+}
+
+function initCharts(cfg) {
     if (mainChart.series.length > 1) {
         $(".listing-header").append($("<ul class='chart_legend'></ul>"));
         $legend = $('.chart_legend');
@@ -243,11 +348,6 @@ function initCharts(cfg) {
            $legend.append($("<li style='display:block;float:right'><b class='seriesdot' style='background:" + mainChart.series[i].color + "'>&nbsp;</b>" + mainChart.series[i].name + "</li>"));
         }
     }
-    
-    function done_loading() {
-        $(mainChart.container).parents('.featured').addClass('loaded');
-    }
-
 }
 
 
@@ -266,7 +366,15 @@ function initTopChart(el) {
     }
 
     if (table) {
-        var topchart1 = new Highcharts.Chart({
+        var data = [];
+        for (var i = 0; i < rows.length; i++) {
+           var row = $(rows[i]).children();
+           data.push(
+              [$(row[0]).text(), fancyParse($(row[1]).text())]
+           );
+        }
+        
+        var options = {
            chart: {
               renderTo: container,
               margin: 0,
@@ -289,18 +397,6 @@ function initTopChart(el) {
            plotOptions: {
               pie: {
                  allowPointSelect: true,
-                 data: 'datatable',
-                 dataParser: function(data) {
-                    var result = [];
-                    // loop through the rows and get the data depending on the series (this) name
-                    for (var i = 0; i < rows.length; i++) {
-                       var row = $(rows[i]).children();
-                       result.push(
-                          [$(row[0]).text(), fancyParse($(row[1]).text())]
-                       );
-                    }
-                    return result;
-                 },
                  dataLabels: {
                     enabled: false,
                     color: '#333'
@@ -312,13 +408,15 @@ function initTopChart(el) {
            legend: {
               enabled:false
            },
-              series: [{
-              type: 'pie',
+           series: [{
+                type: 'pie',
+                data: data
            }]
-        });
+        };
+        var topchart1 = new Highcharts.Chart(options);
         for (var i = 0; i < rows.length; i++) {
            var row = $(rows[i]).children();
-           $(row[0]).append($("<b class='seriesdot' style='background:" + topchart1.series[0].data[i].color + "'>&nbsp;</b>"));
+           $(row[0]).append($("<b class='seriesdot' style='background:" + topchart1.series[0].data.color + "'>&nbsp;</b>"));
         }
     } // end if(table)
 }
@@ -344,35 +442,44 @@ function fetch_top_charts() {
             field = tableEl.getData("field"),
             tbody = ["<tbody>"];
 
-        if (report && field) {
-            AMO.StatsManager.getRankedList({metric:report,name:field}, start, end, function (results) {
-                var sums = results.sums;
-                for (i=0; i<Math.min(sums.length, 5); i++) {
-                    var sum = sums[i];
-                    tbody.push("<tr>");
-                    tbody.push("<td>", AMO.StatsManager.getPrettyName(report, sum.field), "</td>");
-                    tbody.push("<td>", sum.sum, "</td>");
-                    tbody.push("<td>(", (sum.pct > 0 ? sum.pct : '<1'), "%)</td>");
-                    tbody.push("</tr>");
+        function renderTopChart(results) {
+            var sums = results.sums;
+            for (i=0; i<Math.min(sums.length, 5); i++) {
+                var sum = sums[i];
+                tbody.push("<tr>");
+                tbody.push("<td>", AMO.StatsManager.getPrettyName(report, sum.field), "</td>");
+                tbody.push("<td>", sum.sum, "</td>");
+                tbody.push("<td>(", (sum.pct > 0 ? sum.pct : '<1'), "%)</td>");
+                tbody.push("</tr>");
+            }
+            if (sums.length > 5) {
+                var othersum = 0;
+                for (i=5; i<sums.length; i++) {
+                    othersum += sums[i].sum;
                 }
-                if (sums.length > 5) {
-                    var othersum = 0;
-                    for (i=5; i<sums.length; i++) {
-                        othersum += sums[i].sum;
-                    }
-                    var pct = Math.floor(othersum * 100 / results.total);
-                    tbody.push("<tr>");
-                    tbody.push("<td>" + gettext('Other') + "</td>");
-                    tbody.push("<td>", othersum, "</td>");
-                    tbody.push("<td>(", (pct > 0 ? pct : '&lt;1'), "%)</td>");
-                    tbody.push("</tr>");
+                var pct = Math.floor(othersum * 100 / results.total);
+                tbody.push("<tr>");
+                tbody.push("<td>" + gettext('Other') + "</td>");
+                tbody.push("<td>", othersum, "</td>");
+                tbody.push("<td>(", (pct > 0 ? pct : '&lt;1'), "%)</td>");
+                tbody.push("</tr>");
 
+            }
+            tbody.push("</tbody>");
+            tableEl.html(tbody.join(''));
+            initTopChart(toplist);
+            $(toplist).addClass('loaded');
+        }
+            
+        if (report && field) {
+            RankedList.get({
+                metric: report,
+                field: field,
+                time: {
+                    start: start,
+                    end: end
                 }
-                tbody.push("</tbody>");
-                tableEl.html(tbody.join(''));
-                initTopChart(toplist);
-                $(toplist).addClass('loaded');
-            });
+            }, renderTopChart);
         }
     });
 }
@@ -391,7 +498,6 @@ function show_overview_stats () {
     }
     AMO.StatsManager.getSum({metric: "downloads", name: "count"}, start, end, function(sum_range) {
         $("#sum_downloads_range").text(Highcharts.numberFormat(sum_range, 0));
-        
     });
     AMO.StatsManager.getMean({metric: "usage", name: "count"}, start, end, function(mean_range) {
         $("#sum_usage_range").text(Highcharts.numberFormat(mean_range, 0));
@@ -420,7 +526,7 @@ function show_aggregate_stats (_field, range) {
                             $("#mean_range").text(Highcharts.numberFormat(mean_range, 0));
                             $("#mean_prev_range").text(Highcharts.numberFormat(mean_prev_range, 0));
                             draw_diff($("#mean_diff"), mean_range, mean_prev_range);
-                            draw_diff($("#mean_prev_diff"), mean_prev_range, mean_3x_range);
+                            draw_diff($("#mean_prev_diff"), mean_prev_range, mean_3x_range);                            
                         });
                     });
                 });
@@ -429,12 +535,14 @@ function show_aggregate_stats (_field, range) {
     });
 }
 
+var csvTable;
+
 $(document).ready(function () {
-    var csvTable;
     jQuery.fn.getData = function(name) {
         return this.attr("data-" + name);
     };
-
+    headerChart.init(chartConfig);
+    
     var $report_el = $(".primary");
     var data_range = $report_el.getData("range");
     page_state.addon_id = $report_el.getData("addon_id");
@@ -532,12 +640,12 @@ $(document).ready(function () {
                 $target.parent().addClass("selected");
                 page_state.report_name = new_report;
                 page_state.data_fields = new_series;
-                set_loading($("#head-chart").parents('.featured'));
-                Series.get({
+                // set_loading($("#head-chart").parents('.featured'));
+                headerChart.render({
                     metric: AMO.getReportName(),
                     fields: page_state.chart_fields,
                     time:   page_state.data_range
-                }, initCharts);
+                });
             }
             e.preventDefault();
         });
@@ -566,11 +674,11 @@ $(document).ready(function () {
             show_aggregate_stats(AMO.aggregate_stats_field, page_state.data_range);
         }
 
-        Series.get({
+        headerChart.render({
             metric: AMO.getReportName(),
             fields: page_state.chart_fields,
             time:   page_state.data_range
-        }, initCharts);
+        });
 
         LoadBar.off();
         if (csvTable) {

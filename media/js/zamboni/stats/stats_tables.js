@@ -34,8 +34,8 @@ function PageTable(_el) {
     var columns = [];
     var barColumns = [];
     $th.each(function (i, v) {
-        $v = $(v);
-        var col = {};
+        var $v = $(v),
+            col = {};
         col.field = $v.getData("field");
         col.format = $v.getData("format");
         if ($v.getData("bar_column")) {
@@ -109,12 +109,15 @@ PageTable.prototype.gotoPage = function(num) {
         }
     } else {
         var that = this;
-        AMO.StatsManager.getPage(this.report, num, function (data) {
+        Page.get({
+            metric: this.report,
+            num: num
+        }, function (data) {
             that.addPage(data);
         });
     }
 };
-PageTable.prototype.addPage = function (data) {
+PageTable.prototype.addPage = function(data) {
     if (data.nodata) {
         this.tableEl.parent().addClass("loaded");
     }
@@ -170,7 +173,35 @@ PageTable.prototype.paginate = function (e) {
         this.gotoPage(page);
     }
 }
-
+PageTable.prototype.setColumns = function(cols) {
+    var that = this;
+    if (this.report in breakdown_metrics) {
+        cols = $.map(cols, function(c) {
+                c = breakdown_metrics[that.report] + "|" + c;
+            return {field: c, format: 'number'};
+        });
+    }
+    cols.unshift({field: 'date', format: 'date'});
+    var thead = [];
+    $.each(cols, function(i, c) {
+        thead.push(
+            "<th data-format='",
+            c.format,
+            "' data-field='",
+            c.field,
+            "'>");
+        if (c.field.indexOf('|') > -1 ) {
+            thead.push(AMO.StatsManager.getPrettyName(this.report, c.field.split('|').splice(1).join('|')));
+        } else {
+            thead.push(c.field[0].toUpperCase() + c.field.substr(1));
+        }
+        thead.push('</th>');
+    });
+    $("thead", this.tableEl).html(thead.join(''));
+    this.columns = cols;
+    this.pages = [];
+    this.gotoPage(this.currentpage);
+}
 
 function BarTable(_cfg) {
     this.tableEl = _cfg.el;

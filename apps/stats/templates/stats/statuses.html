@@ -1,7 +1,7 @@
 {% extends "stats/stats.html" %}
 
 {% block chart_config %}
-  data-series="statuses|userEnabled,statuses|userDisabled"
+  data-series="userEnabled,userDisabled"
 {% endblock %}
 
 {% block stats %}
@@ -27,12 +27,12 @@
               {{_('Disabled')}}
           </th>
           <th 
-            data-field="userEnabled,incompatible"
+            data-field="statuses|userEnabled,incompatible"
             data-format="number">
               {{_('Enabled (incompatible)')}}
           </th>
           <th 
-            data-field="userDisabled,incompatible"
+            data-field="statuses|userDisabled,incompatible"
             data-format="number">
               {{_('Disabled (incompatible)')}}
           </th>

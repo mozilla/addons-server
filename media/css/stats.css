@@ -38,6 +38,12 @@ table {
 
 .tabular {
     margin: 1em;
+    overflow-x: auto;
+}
+
+.csv-table td {
+    min-width: 100px;
+    white-space:nowrap;
 }
 
 /**
@@ -68,6 +74,7 @@ div.statbox {
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
+    background: #fff;
 }
 
 .secondary > aside,
@@ -197,6 +204,8 @@ background:#003595;
 .listing-header ul.chart_legend li {
     margin: 0 .5em;
     line-height: 2.5em;
+    display: block;
+    float: right;
 }
 
 /**
@@ -478,3 +487,25 @@ table.stats-aggregate tbody span.change.minus {
 .loadmessage.off {
     top: -2.5em;
 }
+
+/* Field Menu */
+#fieldMenu, #fieldList {
+    margin-bottom: 0;
+}
+#fieldList label {
+    display: block;
+    white-space: nowrap;
+    padding-right: 2em;
+}
+#fieldList label:hover {
+    background: #ccf;
+}
+#fieldMenu button {
+    width: 100%;
+}
+#fieldList {
+    max-height: 300px;
+    min-width: 160px;
+    overflow-y: auto;
+}
+

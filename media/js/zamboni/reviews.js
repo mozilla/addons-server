@@ -36,6 +36,7 @@ $(document).ready(function() {
                                   addFlag('review_flag_reason_other', note);
                               }
                           })
+                          .setPos(ct)
                           .find('input[type=text]')
                           .focus();
                 } else {

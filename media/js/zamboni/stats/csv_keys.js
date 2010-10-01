@@ -114,6 +114,14 @@ csv_keys = {
         "zh-TW":  gettext('Chinese (Traditional)'),
         "zu":  gettext('Zulu')
     },
+    os: {
+        "WINNT": gettext('Windows'),
+        "Darwin": gettext('Mac'),
+        "null": gettext('unknown')
+    },
+    sources: {
+        "null": gettext('unknown')
+    },
     apps : {
         '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}' : gettext('Firefox'),
         '{86c18b42-e466-45a9-ae7a-9b95ba6f5640}' : gettext('Mozilla'),

@@ -91,7 +91,7 @@
         </form>
       </div>
     {% endif %}
-    <div class="featured loading">
+    <div class="featured">
       <div class="featured-inner chart">
         <div class="listing-header">
           {% block chart_menu %}
@@ -110,6 +110,14 @@
     {% endblock %}
     {% block csvtable %}
     {% endblock %}
+    <div class="hidden">
+      <div id="fieldMenuPopup" class="popup">
+        <form id="fieldMenu">
+          <ul id="fieldList">
+          </ul>
+        </form>
+      </div>
+    </div>
   </div>
 {% endblock %}
 

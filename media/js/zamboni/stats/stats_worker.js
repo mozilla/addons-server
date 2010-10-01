@@ -25,6 +25,48 @@ function getField(record, field) {
 }
 
 self.tasks = {
+    "computeRankings": function(data) {
+        var v, datum, sorted_sums,
+            total = 0;
+            sums = {};
+        
+        for (var i=0; i<data.length; i++) {
+            datum = data[i];
+            for (var j in datum) {
+                if (datum.hasOwnProperty(j)) {
+                    if (!sums[j]) {
+                        sums[j] = 0;
+                    };
+                    v = parseFloat(datum[j]);
+                    sums[j] += v;
+                    total += v;
+                }
+            }
+        }
+
+        sorted_sums = [];
+        total = Math.floor(total/data.length);
+        for (var i in sums) {
+            v = Math.floor(sums[i]/data.length);
+            sorted_sums.push({
+                'field': i,
+                'sum': v,
+                'pct': Math.floor(v*100/total)
+            });
+        }
+
+        sorted_sums.sort(function (a,b) {
+            return b.sum-a.sum;
+        })
+
+        postMessage({
+            success: true,
+            result: {
+                'sums': sorted_sums,
+                'total': total
+            }
+        });
+    },
     "getFieldList": function(data) {
         var fields = {},
             result = [];
