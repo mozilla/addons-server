@@ -221,7 +221,7 @@ MIDDLEWARE_CLASSES = (
     'commonware.log.ThreadRequestMiddleware',
     'multidb.middleware.PinningRouterMiddleware',
 
-    #'csp.middleware.CSPMiddleware',
+    'csp.middleware.CSPMiddleware',
 
     'amo.middleware.CommonMiddleware',
     'amo.middleware.NoVarySessionMiddleware',
