@@ -1,5 +1,4 @@
 from datetime import datetime, timedelta
-import itertools
 
 from django.db import connections, transaction, IntegrityError
 from django.db.models import Q, F
@@ -188,9 +187,10 @@ def addons_add_slugs():
     Addon._meta.get_field('modified').auto_now = False
     q = Addon.objects.filter(slug=None).order_by('id')
     ids = q.values_list('id', flat=True)
-    task_log.info('%s addons without slugs' % len(ids))
+    cnt = 0
+    total = len(ids)
+    task_log.info('%s addons without slugs' % total)
     max_length = Addon._meta.get_field('slug').max_length
-    cnt = itertools.count()
     # Chunk it so we don't do huge queries.
     for chunk in chunked(ids, 300):
         for c in q.no_cache().filter(id__in=chunk):
@@ -201,5 +201,5 @@ def addons_add_slugs():
                 tail = '-%s' % c.id
                 slug = "%s%s" % (slug[:max_length - len(tail)], tail)
                 c.update(slug=slug)
-
-            task_log.info(u'%s. %s => %s' % (next(cnt), c.name, c.slug))
+        cnt += 300
+        task_log.info('Slugs added to %s/%s add-ons.' % (cnt, total))
