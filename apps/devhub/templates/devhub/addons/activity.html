@@ -10,8 +10,7 @@
 
 {% block content %}
 <header>
-  {{ dev_breadcrumbs([(url('devhub.addons'), _('My Add-ons')),
-                      (None, _('Recent Activity'))]) }}
+  {{ dev_breadcrumbs(items=[(None, _('Recent Activity'))]) }}
   <h2>{{ _('Recent Activity for My Add-ons') }}</h2>
 </header>
 

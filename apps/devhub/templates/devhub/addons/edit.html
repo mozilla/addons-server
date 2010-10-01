@@ -1,13 +1,9 @@
 {% extends "devhub/base.html" %}
 
-
-{# FOR THOSE OF YOU WHO CRINGE WHEN YOU SEE <TABLE>:
-  deal with it :) #}
-
+{% set title = _('Edit Add-on Listing') %}
 
 {% block title %}
-{# L10n: {0} is the add-on name. #}
-{{ dev_page_title(_('Manage {0}')|f(addon.name)) }}
+{{ dev_page_title(title, addon) }}
 {% endblock %}
 
 {% macro empty_unless(truthy) %}
@@ -26,9 +22,8 @@
 
 {% block content %}
 <header>
-  {{ dev_breadcrumbs([(url('devhub.addons'), _('My Add-ons')),
-                      (None, addon.name)]) }}
-  <h2>{{ _('Manage {0}')|f(addon.name) }}</h2>
+  {{ dev_breadcrumbs(addon) }}
+  <h2>{{ title }}</h2>
 </header>
 
 <section class="primary" role="main">

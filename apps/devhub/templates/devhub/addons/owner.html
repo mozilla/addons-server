@@ -1,8 +1,15 @@
 {% extends "devhub/base.html" %}
 
-{% block title %}{{ dev_page_title(_('TODO {0}')|f(addon.name)) }}{% endblock %}
+{% set title = _('Manage Authors & License') %}
+{% block title %}
+{{ dev_page_title(title, addon) }}
+{% endblock %}
 
 {% block content %}
+<header>
+  {{ dev_breadcrumbs(addon) }}
+  <h2>{{ title }}</h2>
+</header>
 <section class="primary" role="main">
 <form method="post" action="">
   {{ csrf() }}
@@ -12,4 +19,5 @@
   <button type="submit">GO GO GO</button>
 </form>
 </section>
+{% include "devhub/includes/addons_edit_nav.html" %}
 {% endblock %}

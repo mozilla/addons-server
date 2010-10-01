@@ -4,7 +4,7 @@ import jinja2
 from jingo import env, register
 from tower import ugettext as _
 
-from amo import urlresolvers
+from amo.urlresolvers import reverse
 from amo.helpers import breadcrumbs, page_title
 from addons.helpers import new_context
 
@@ -17,25 +17,28 @@ def dev_addon_listing_items(context, addons, src=None, notes={}):
 
 @register.function
 @jinja2.contextfunction
-def dev_page_title(context, title=None):
-    """
-    Wrapper function for ``page_title``, passing 'Developer Hub' as the root
-    page title. If no title is passed, page title defaults to 'Developer Hub'.
-    """
-    if title:
-        title_chunk = '%s :: ' % encoding.smart_unicode(title)
+def dev_page_title(context, title=None, addon=None):
+    """Wrapper for devhub page titles."""
+    if addon:
+        title = u'%s :: %s' % (title, addon.name)
     else:
-        title_chunk = ''
-    return page_title(context, '%s%s' % (title_chunk, _('Developer Hub')))
+        devhub = _('Developer Hub')
+        title = '%s :: %s' % (title, devhub) if title else devhub
+    return page_title(context, title)
 
 
 @register.function
 @jinja2.contextfunction
-def dev_breadcrumbs(context, items=list(), add_default=False):
+def dev_breadcrumbs(context, addon=None, items=None, add_default=False):
     """
     Wrapper function for ``breadcrumbs``. Prepends 'Developer Hub' breadcrumb
     to ``items`` argument, and ``add_default`` argument defaults to False.
     Accepts: [(url, label)]
     """
-    crumbs = [(urlresolvers.reverse('devhub.index'), _('Developer Hub'))]
-    return breadcrumbs(context, crumbs + items, add_default)
+    crumbs = [(reverse('devhub.index'), _('Developer Hub')),
+              (reverse('devhub.addons'), _('My Add-ons'))]
+    if items:
+        crumbs.extend(items)
+    if addon:
+        crumbs.append((None, addon.name))
+    return breadcrumbs(context, crumbs, add_default)
