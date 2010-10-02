@@ -1,50 +1,5 @@
 [
     {
-        "pk": 1,
-        "model": "applications.application",
-        "fields": {
-            "guid": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}",
-            "modified": "2008-11-03 15:34:59",
-            "created": "2007-03-05 13:09:26"
-        }
-    },
-    {
-        "pk": 139618,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "Designed to fit well in the Mac OS X environment.",
-            "created": "2008-03-10 14:31:39",
-            "locale": "en-US",
-            "modified": "2008-08-08 17:22:35",
-            "id": 104239,
-            "localized_string_clean": "Designed to fit well in the Mac OS X environment."
-        }
-    },
-    {
-        "pk": 139615,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "The theme is equally available on: http://www.takebacktheweb.org/\r\nand there as well with some customizing hints. ",
-            "created": "2008-03-10 14:31:39",
-            "locale": "en-US",
-            "modified": "2008-08-08 17:22:35",
-            "id": 104236,
-            "localized_string_clean": "The theme is equally available on: <a href=\"http://outgoing.mozilla.org/v1/2b78f2fc4a40942f91d75804e49bd907218858cc/http%3A//www.takebacktheweb.org/\">http://www.takebacktheweb.org/</a>\nand there as well with some customizing hints. "
-        }
-    },
-    {
-        "pk": 139616,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "http://www.takebacktheweb.org/",
-            "created": "2008-03-10 14:31:39",
-            "locale": "en-US",
-            "modified": "2008-08-08 17:22:35",
-            "id": 104237,
-            "localized_string_clean": null
-        }
-    },
-    {
         "pk": 139617,
         "model": "translations.translation",
         "fields": {
@@ -57,20 +12,12 @@
         }
     },
     {
-        "pk": 3,
-        "model": "files.platform",
-        "fields": {
-            "icontype": "",
-            "modified": "2008-04-07 08:16:55",
-            "created": "2007-03-05 13:09:27"
-        }
-    },
-    {
         "pk": 6704,
         "model": "addons.addon",
         "fields": {
             "dev_agreement": true,
             "eula": null,
+            "_current_version": 94144,
             "last_updated": "2010-02-08 06:27:41",
             "view_source": false,
             "enable_thankyou": false,
@@ -81,7 +28,6 @@
             "show_beta": true,
             "guid": "{b1fad17a-3b98-c743-ed56-85c722d622d3}",
             "trusted": false,
-            "description": 104236,
             "locale_disambiguation": null,
             "binary": false,
             "the_future": null,
@@ -94,7 +40,6 @@
             "bayesian_rating": 4.5252699999999999,
             "share_count": 1,
             "get_satisfaction_company": "",
-            "homepage": 104237,
             "support_email": null,
             "public_stats": false,
             "status": 4,
@@ -109,12 +54,12 @@
             "highest_status": 4,
             "get_satisfaction_product": "",
             "name": 104238,
+            "description": 104238,
             "created": "2008-03-10 14:30:42",
             "type": 2,
             "icon_type": "image/png",
             "annoying": 0,
             "modified": "2010-05-28 09:01:58",
-            "summary": 104239,
             "suggested_amount": null,
             "site_specific": false,
             "total_reviews": 36,
@@ -234,6 +179,16 @@
             "version": 94144,
             "min": 279,
             "max": 282
+        }
+    },
+    {
+        "pk": 1078,
+        "model": "addons.appsupport",
+        "fields": {
+            "app": 1,
+            "addon": 6704,
+            "modified": "2010-10-02 07:03:07",
+            "created": "2010-10-02 07:03:07"
         }
     }
 ]

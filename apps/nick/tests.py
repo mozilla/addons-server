@@ -4,12 +4,11 @@ from django.core.cache import cache
 from nose.tools import eq_
 import test_utils
 
-import amo.test_utils
 from amo.urlresolvers import reverse
 from applications.models import Application
 
 
-class TestViews(amo.test_utils.ExtraSetup, test_utils.TestCase):
+class TestViews(test_utils.TestCase):
     fixtures = ('base/users', 'base/addon_3615', 'base/addon_59',
                 'nick/test_views',)
 

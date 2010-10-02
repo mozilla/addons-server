@@ -1,5 +1,17 @@
 [
     {
+        "pk": 410718,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": null,
+            "created": "2009-04-30 16:54:06",
+            "locale": "en-US",
+            "modified": "2009-08-31 07:58:03",
+            "id": 410718,
+            "localized_string": "IPv6 Google Search"
+        }
+    },
+    {
         "pk": 410711,
         "model": "translations.translation",
         "fields": {
@@ -74,7 +86,7 @@
             "external_software": 0,
             "highest_status": 4,
             "get_satisfaction_product": null,
-            "name": null,
+            "name": 410718,
             "created": "2009-04-30 16:42:42",
             "type": 4,
             "icon_type": "image/gif",
@@ -85,7 +97,8 @@
             "site_specific": 0,
             "total_reviews": 0,
             "the_reason": null,
-            "nomination_date": "2009-06-27 12:21:35"
+            "nomination_date": "2009-06-27 12:21:35",
+            "_current_version": 68776
         }
     },
     {
@@ -155,6 +168,16 @@
             "version": 120,
             "datestatuschanged": "2008-08-27 14:29:14",
             "size": 1
+        }
+    },
+    {
+        "pk": 1012,
+        "model": "addons.appsupport",
+        "fields": {
+            "app": 1,
+            "addon": 11730,
+            "modified": "2010-10-01 21:20:54",
+            "created": "2010-10-01 21:20:54"
         }
     }
 ]

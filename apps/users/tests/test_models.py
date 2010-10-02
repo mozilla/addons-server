@@ -8,7 +8,7 @@ from django.utils import encoding
 import test_utils
 from nose.tools import eq_
 
-import amo.test_utils
+import amo
 from addons.models import Addon, AddonUser
 from bandwagon.models import Collection
 from reviews.models import Review
@@ -16,7 +16,7 @@ from users.models import UserProfile, get_hexdigest, BlacklistedUsername,\
                          BlacklistedEmailDomain
 
 
-class TestUserProfile(amo.test_utils.ExtraSetup, test_utils.TestCase):
+class TestUserProfile(test_utils.TestCase):
     fixtures = ('base/addon_3615', 'base/user_2519', 'users/test_backends',
                 'base/apps',)
 
@@ -133,7 +133,7 @@ class TestUserProfile(amo.test_utils.ExtraSetup, test_utils.TestCase):
         eq_(c.slug, 'favorites')
 
 
-class TestPasswords(amo.test_utils.ExtraSetup, test_utils.TestCase):
+class TestPasswords(test_utils.TestCase):
     utf = u'\u0627\u0644\u062a\u0637\u0628'
 
     def test_invalid_old_password(self):
@@ -160,7 +160,7 @@ class TestPasswords(amo.test_utils.ExtraSetup, test_utils.TestCase):
         assert u.check_password(self.utf) is True
 
 
-class TestBlacklistedUsername(amo.test_utils.ExtraSetup, test_utils.TestCase):
+class TestBlacklistedUsername(test_utils.TestCase):
     fixtures = ['users/test_backends']
 
     def test_blocked(self):
@@ -168,8 +168,7 @@ class TestBlacklistedUsername(amo.test_utils.ExtraSetup, test_utils.TestCase):
         eq_(BlacklistedUsername.blocked('testo'), False)
 
 
-class TestBlacklistedEmailDomain(amo.test_utils.ExtraSetup,
-                                 test_utils.TestCase):
+class TestBlacklistedEmailDomain(test_utils.TestCase):
     fixtures = ['users/test_backends']
 
     def test_blocked(self):

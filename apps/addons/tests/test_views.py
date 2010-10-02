@@ -12,7 +12,6 @@ import test_utils
 from pyquery import PyQuery as pq
 
 import amo
-import amo.test_utils
 from amo.helpers import urlparams
 from amo.urlresolvers import reverse
 from addons import views
@@ -24,13 +23,13 @@ from translations.query import order_by_translation
 import re
 
 
-class TestHomepage(amo.test_utils.ExtraSetup, test_utils.TestCase):
-    fixtures = ('base/apps',
+class TestHomepage(test_utils.TestCase):
+    fixtures = ['base/apps',
                 'base/users',
                 'base/addon_3615',
                 'base/collections',
                 'base/global-stats',
-                'base/featured')
+                'base/featured']
 
     def setUp(self):
         super(TestHomepage, self).setUp()
@@ -106,8 +105,8 @@ class TestPromobox(test_utils.TestCase):
         eq_(response.status_code, 200)
 
 
-class TestContributeInstalled(amo.test_utils.ExtraSetup, test_utils.TestCase):
-    fixtures = ('base/apps', 'base/addon_592',)
+class TestContributeInstalled(test_utils.TestCase):
+    fixtures = ['base/apps', 'base/addon_592']
 
     def test_no_header_block(self):
         # bug 565493, Port post-install contributions page
@@ -126,8 +125,8 @@ class TestContributeInstalled(amo.test_utils.ExtraSetup, test_utils.TestCase):
         eq_(title[:37], 'Thank you for installing Gmail S/MIME')
 
 
-class TestContribute(amo.test_utils.ExtraSetup, test_utils.TestCase):
-    fixtures = ('base/apps', 'base/addon_3615', 'base/addon_592',)
+class TestContribute(test_utils.TestCase):
+    fixtures = ['base/apps', 'base/addon_3615', 'base/addon_592']
 
     def test_invalid_is_404(self):
         """we get a 404 in case of invalid addon id"""
@@ -246,9 +245,9 @@ class TestContribute(amo.test_utils.ExtraSetup, test_utils.TestCase):
         assert r['Location'].startswith(settings.PAYPAL_CGI_URL)
 
 
-class TestDeveloperPages(amo.test_utils.ExtraSetup, test_utils.TestCase):
-    fixtures = ('base/apps', 'base/addon_3615', 'base/addon_592', 'base/users',
-                'addons/eula+contrib-addon',)
+class TestDeveloperPages(test_utils.TestCase):
+    fixtures = ['base/apps', 'base/addon_3615', 'base/addon_592', 'base/users',
+                'addons/eula+contrib-addon']
 
     def test_meet_the_dev_title(self):
         r = self.client.get(reverse('addons.meet', args=[592]))
@@ -281,14 +280,14 @@ class TestDeveloperPages(amo.test_utils.ExtraSetup, test_utils.TestCase):
         assert pq(r.content)('#contribute-button')
 
 
-class TestDetailPage(amo.test_utils.ExtraSetup, test_utils.TestCase):
-    fixtures = ('base/apps',
+class TestDetailPage(test_utils.TestCase):
+    fixtures = ['base/apps',
                 'base/addon_3615',
                 'base/users',
                 'base/addon_59',
                 'base/addon_4594_a9',
                 'addons/listed',
-                'addons/persona')
+                'addons/persona']
 
     def test_anonymous_user(self):
         """Does the page work for an anonymous user?"""
@@ -530,7 +529,7 @@ class TestDetailPage(amo.test_utils.ExtraSetup, test_utils.TestCase):
                    for th in headings)
 
 
-class TestTagsBox(amo.test_utils.ExtraSetup, test_utils.TestCase):
+class TestTagsBox(test_utils.TestCase):
     fixtures = ['base/addontag', 'base/apps']
 
     def test_tag_box(self):
@@ -579,7 +578,7 @@ def test_unicode_redirect():
     eq_(response.status_code, 301)
 
 
-class TestEula(amo.test_utils.ExtraSetup, test_utils.TestCase):
+class TestEula(test_utils.TestCase):
     fixtures = ['addons/eula+contrib-addon', 'base/apps']
 
     def test_current_version(self):
@@ -601,7 +600,7 @@ class TestEula(amo.test_utils.ExtraSetup, test_utils.TestCase):
         self.assertRedirects(r, reverse('addons.detail', args=[11730]))
 
 
-class TestPrivacyPolicy(amo.test_utils.ExtraSetup, test_utils.TestCase):
+class TestPrivacyPolicy(test_utils.TestCase):
     fixtures = ['addons/eula+contrib-addon', 'base/apps']
 
     def test_redirect_no_eula(self):

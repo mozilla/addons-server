@@ -1,13 +1,12 @@
 from nose.tools import eq_
 import test_utils
 
-import amo.test_utils
 from amo.urlresolvers import reverse
 from access.models import GroupUser
 from reviews.models import Review, ReviewFlag
 
 
-class ReviewTest(amo.test_utils.ExtraSetup, test_utils.TestCase):
+class ReviewTest(test_utils.TestCase):
     fixtures = ['base/apps', 'reviews/dev-reply.json', 'base/admin']
 
 

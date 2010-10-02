@@ -8,7 +8,6 @@ from django.test.client import Client
 import test_utils
 from nose.tools import eq_
 
-import amo.test_utils
 from access.models import Group, GroupUser
 from amo.helpers import urlparams
 from amo.pyquery_wrapper import PyQuery
@@ -16,8 +15,7 @@ from amo.urlresolvers import reverse
 from users.utils import EmailResetCode
 
 
-class UserViewBase(amo.test_utils.ExtraSetup, test_utils.TestCase):
-
+class UserViewBase(test_utils.TestCase):
     fixtures = ['users/test_backends']
 
     def setUp(self):

@@ -8,7 +8,6 @@ from nose.tools import eq_, assert_not_equal
 import test_utils
 
 import amo
-import amo.test_utils
 from addons.models import (Addon, AddonPledge, AddonRecommendation, AddonType,
                            Category, Feature, Persona, Preview)
 from reviews.models import Review
@@ -16,8 +15,8 @@ from users.models import UserProfile
 from versions.models import Version
 
 
-class TestAddonManager(amo.test_utils.ExtraSetup, test_utils.TestCase):
-    fixtures = ('base/addon_5299_gcal', 'addons/test_manager',)
+class TestAddonManager(test_utils.TestCase):
+    fixtures = ['base/addon_5299_gcal', 'addons/test_manager']
 
     def test_featured(self):
         featured = Addon.objects.featured(amo.FIREFOX)[0]
@@ -66,8 +65,8 @@ class TestAddonManager(amo.test_utils.ExtraSetup, test_utils.TestCase):
                     "unreviewed() must return unreviewed addons.")
 
 
-class TestAddonModels(amo.test_utils.ExtraSetup, test_utils.TestCase):
-    fixtures = ('base/apps',
+class TestAddonModels(test_utils.TestCase):
+    fixtures = ['base/apps',
                 'base/users',
                 'base/addon_5299_gcal',
                 'base/addon_3615',
@@ -75,7 +74,7 @@ class TestAddonModels(amo.test_utils.ExtraSetup, test_utils.TestCase):
                 'base/addon_6704_grapple.json',
                 'base/addon_4664_twitterbar',
                 'addons/featured',
-                'addons/invalid_latest_version',)
+                'addons/invalid_latest_version']
 
 
     def test_current_version(self):

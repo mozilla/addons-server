@@ -5,13 +5,11 @@ import time
 from nose import SkipTest
 import test_utils
 
-import amo.test_utils
 from manage import settings
 from search.utils import start_sphinx, stop_sphinx, reindex
 
 
-class SphinxTestCase(amo.test_utils.ExtraSetup,
-                     test_utils.TransactionTestCase):
+class SphinxTestCase(test_utils.TransactionTestCase):
     """
     This test case type can setUp and tearDown the sphinx daemon.  Use this
     when testing any feature that requires sphinx.

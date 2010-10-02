@@ -1,134 +1,5 @@
 [
     {
-        "pk": 1,
-        "model": "applications.application",
-        "fields": {
-            "guid": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}",
-            "modified": "2008-11-03 15:34:59",
-            "created": "2007-03-05 13:09:26"
-        }
-    },
-    {
-        "pk": 423920,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "contact me: yongqli@smarterfox.com",
-            "created": "2009-05-22 18:29:17",
-            "locale": "en-US",
-            "modified": null,
-            "id": 385329,
-            "localized_string_clean": "contact me: yongqli@smarterfox.com"
-        }
-    },
-    {
-        "pk": 636532,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "I am currently working on a feature that shows results from other, more specialized, search engines when you are on Google. Since I think of FastestFox as a collection of helpful shortcuts, in many ways it will never be feature complete.",
-            "created": "2009-10-19 21:53:51",
-            "locale": "en-US",
-            "modified": null,
-            "id": 589297,
-            "localized_string_clean": null
-        }
-    },
-    {
-        "pk": 636531,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "I spend most of the time on my computer in Firefox, so I thought it would be really cool if I could modify Firefox\u2019s behavior to suit my habits better. It started out as having very few features \u2014 in the beginning all it would do was to add a box to Wikipedia. I gradually added features that I thought would be useful and it steadily grew more and more popular as I did that.",
-            "created": "2009-10-19 21:53:50",
-            "locale": "en-US",
-            "modified": null,
-            "id": 589296,
-            "localized_string_clean": null
-        }
-    },
-    {
-        "pk": 349893,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "FastestFox respects your privacy. During the operation of the add-on, URLs from smarterfox.com may be loaded in order to provide you with certain functionality. For example, API calls may be issued to determine whether or not there are any Amazon or OneRiot search results, or Surf Canyon-powered FastestFox Refinements (Privacy Policy available at surfcanyon.com/privacy), for your search term. These can be disabled from Tools -> Add-ons -> FastestFox. When URLs are loaded from smarterfox.com, your IP address is sent by your browser, but no information is ever actively collected from your system. No information about you will ever be sold to a third party without your permission. Links created by FastestFox, such as those in the popup-bubble, may redirect you to smarterfox.com first in order to collect aggregate data in order to make FastestFox better. This privacy policy may change in the future, but a current version will always be available on addons.mozilla.org or smarterfox.com/privacy.",
-            "created": "2009-01-23 04:12:19",
-            "locale": "en-US",
-            "modified": "2010-02-18 01:33:37",
-            "id": 312141,
-            "localized_string_clean": null
-        }
-    },
-    {
-        "pk": 516962,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "Please send all bug reports to yong@smarterfox.com instead of posting it here so that I can follow up with you. I try to respond to all emails within 2 days.",
-            "created": "2009-07-11 22:58:38",
-            "locale": "en-US",
-            "modified": "2009-07-16 23:36:51",
-            "id": 475578,
-            "localized_string_clean": "Please send all bug reports to yong@smarterfox.com instead of posting it here so that I can follow up with you. I try to respond to all emails within 2 days."
-        }
-    },
-    {
-        "pk": 316731,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "Save time by speeding up repetitive tasks. Get faster, parallelized downloads, see definitions, auto-load the next page, improve searching, and more. FastestFox will dramatically enhance your productivity!",
-            "created": "2008-12-01 08:06:23",
-            "locale": "en-US",
-            "modified": "2010-03-23 06:21:00",
-            "id": 279140,
-            "localized_string_clean": "Save time by speeding up repetitive tasks. Get faster, parallelized downloads, see definitions, auto-load the next page, improve searching, and more. FastestFox will dramatically enhance your productivity!"
-        }
-    },
-    {
-        "pk": 316747,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "See the previews below, it should be self-explanatory. Click to enlarge image.\r\n\r\n<b>NEW</b>: enhanced Google searches with related queries and results\r\n\r\n\"Download page media\" will find currently playing videos and allow you to save them to your computer.\r\n\r\nTo open the qLauncher, press Ctrl + Space. You can change this in the options dialog.\r\n\r\nAll the options are in Tools -> FastestFox. You can easily disable any feature you don't want.\r\n\r\n\r\n<a href=\"https://chrome.google.com/extensions/detail/mmffncokckfccddfenhkhnllmlobdahm\" target=\"_blank\"><b>NEW</b>: Now also available for Google Chrome!</a>\r\n\r\nThe \"related results\" fetches relevant results from other search engines such as Amazon, OneRiot and SurfCanyon.",
-            "created": "2008-12-01 08:10:34",
-            "locale": "en-US",
-            "modified": "2010-02-22 01:38:53",
-            "id": 279141,
-            "localized_string_clean": "See the previews below, it should be self-explanatory. Click to enlarge image.\n\n<b>NEW</b>: enhanced Google searches with related queries and results\n\n\"Download page media\" will find currently playing videos and allow you to save them to your computer.\n\nTo open the qLauncher, press Ctrl + Space. You can change this in the options dialog.\n\nAll the options are in Tools -&gt; FastestFox. You can easily disable any feature you don't want.\n\n\n<a href=\"http://outgoing.mozilla.org/v1/8fc55b2b6c6cf1896d1ef95ade269de7b2012e16/https%3A//chrome.google.com/extensions/detail/mmffncokckfccddfenhkhnllmlobdahm\"><b>NEW</b>: Now also available for Google Chrome!</a>\n\nThe \"related results\" fetches relevant results from other search engines such as Amazon, OneRiot and SurfCanyon."
-        }
-    },
-    {
-        "pk": 416806,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "http://smarterfox.com",
-            "created": "2009-05-08 23:07:37",
-            "locale": "en-US",
-            "modified": "2009-09-15 00:47:40",
-            "id": 378388,
-            "localized_string_clean": null
-        }
-    },
-    {
-        "pk": 316760,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "support@smarterfox.com",
-            "created": "2008-12-01 08:18:04",
-            "locale": "en-US",
-            "modified": "2009-05-08 23:07:37",
-            "id": 279142,
-            "localized_string_clean": null
-        }
-    },
-    {
-        "pk": 316726,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "http://smarterfox.com",
-            "created": "2008-12-01 08:06:23",
-            "locale": "en-US",
-            "modified": "2009-09-15 00:47:39",
-            "id": 279138,
-            "localized_string_clean": null
-        }
-    },
-    {
         "pk": 316727,
         "model": "translations.translation",
         "fields": {
@@ -141,36 +12,24 @@
         }
     },
     {
-        "pk": 1,
-        "model": "files.platform",
-        "fields": {
-            "icontype": "",
-            "modified": "2008-04-07 08:16:55",
-            "created": "2007-03-05 13:09:27"
-        }
-    },
-    {
         "pk": 9825,
         "model": "addons.addon",
         "fields": {
             "dev_agreement": true,
             "eula": null,
+            "_current_version": 106789,
             "last_updated": "2010-05-12 04:10:20",
             "view_source": false,
             "enable_thankyou": false,
             "total_downloads": 6539812,
-            "developer_comments": 475578,
             "inactive": false,
             "average_daily_downloads": 12201,
             "show_beta": true,
             "guid": "smarterwiki@wikiatic.com",
             "trusted": false,
-            "description": 279141,
             "locale_disambiguation": null,
             "binary": false,
-            "the_future": 589297,
             "weekly_downloads": 80506,
-            "support_url": 378388,
             "paypal_id": "yongqli@10gic.net",
             "average_rating": "4.85",
             "wants_contributions": false,
@@ -178,11 +37,8 @@
             "bayesian_rating": 4.7745499999999996,
             "share_count": 34,
             "get_satisfaction_company": "",
-            "homepage": 279138,
-            "support_email": 279142,
             "public_stats": false,
             "status": 4,
-            "privacy_policy": 312141,
             "total_contributions": "0.00",
             "default_locale": "en-US",
             "target_locale": null,
@@ -198,11 +54,9 @@
             "icon_type": "image/png",
             "annoying": 1,
             "modified": "2010-05-24 16:53:39",
-            "summary": 279140,
             "suggested_amount": null,
             "site_specific": false,
             "total_reviews": 205,
-            "the_reason": 589296,
             "nomination_date": "2009-03-30 01:27:58"
         }
     },
@@ -271,7 +125,6 @@
             "email": "dd+7a75e64c6@davedash.com",
             "location": "",
             "username": "2837503",
-            "bio": 385329,
             "failed_login_attempts": 0,
             "firstname": "Yongqian",
             "deleted": false,
@@ -349,7 +202,15 @@
             "addon": 9825,
             "tag": 3063
         }
+    },
+    {
+        "pk": 4,
+        "model": "addons.appsupport",
+        "fields": {
+            "app": 1,
+            "addon": 9825,
+            "modified": "2010-10-04 13:01:45",
+            "created": "2010-10-04 13:01:45"
+        }
     }
-
-
 ]

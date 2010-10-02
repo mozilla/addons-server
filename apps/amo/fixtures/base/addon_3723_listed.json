@@ -1,20 +1,10 @@
 [
     {
-        "pk": 29876,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "http://f22.aaa.livedoor.jp/~ptdb/firefox/theme.html",
-            "created": "2007-03-07 22:34:07",
-            "locale": "ja",
-            "modified": "2010-01-03 22:27:06",
-            "id": 15451,
-            "localized_string_clean": null
-        }
-    },
-    {
         "pk": 3723,
         "model": "addons.addon",
         "fields": {
+            "_current_version": 89774,
+            "last_updated": "2010-01-03 21:26:09",
             "dev_agreement": false,
             "eula": null,
             "last_updated": "2010-01-03 21:26:09",
@@ -40,7 +30,6 @@
             "bayesian_rating": 3.6833499999999999,
             "share_count": 0,
             "get_satisfaction_company": "",
-            "homepage": 15451,
             "support_email": null,
             "public_stats": false,
             "status": 6,

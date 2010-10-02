@@ -12,7 +12,6 @@ from pyquery import PyQuery as pq
 import test_utils
 
 import amo
-import amo.test_utils
 from addons.models import Addon
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
@@ -79,7 +78,7 @@ class HappyUnicodeClient(django.test.Client):
     # Add head, put, options, delete if you need them.
 
 
-class TestViews(amo.test_utils.ExtraSetup, test_utils.TestCase):
+class TestViews(test_utils.TestCase):
     fixtures = ['users/test_backends', 'bandwagon/test_models',
                 'base/addon_3615']
 

@@ -1,14 +1,5 @@
 [
     {
-        "pk": 1,
-        "model": "applications.application",
-        "fields": {
-            "guid": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}",
-            "modified": "2008-11-03 15:34:59",
-            "created": "2007-03-05 13:09:26"
-        }
-    },
-    {
         "pk": 492164,
         "model": "translations.translation",
         "fields": {
@@ -33,53 +24,6 @@
         }
     },
     {
-        "pk": 99727,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "Meet Cooliris, the 3D Wall that speeds up search on Google Images, YouTube, Flickr, and more. Enjoy the richest way to view photos from Facebook, Picasa, and even your own computer. On our infinite 3D Wall, you can effortlessly scroll though thousands of images and videos in seconds without having to click from page to page. Our Channels feature even lets you surf the latest news, TV episodes, and more, on in one place. For details see: http://www.cooliris.com/desktop\r\n\r\n--------------------------------------------------------------------------------------------------------------------------\r\nMac OS X 10.4 and Mac PowerPC are not supported on Cooliris v1.11.1+ \r\nTo use Cooliris version 1.10 or earlier, please visit \r\nhttps://addons.mozilla.org/en-US/firefox/addons/versions/5579\r\n--------------------------------------------------------------------------------------------------------------------------\r\n\r\nHOW TO USE COOLIRIS \r\nLaunch Cooliris any from your browser toolbar, or visit one of many hundreds of supported sites and click the Cooliris icon that appears as you mouseover images and videos. \r\n\r\nFor example, to enjoy Cooliris on Google Images:\r\n1. Go to http://images.google.com\r\n2. Search as you normally do, e.g. \"mountains\" \r\n3. Mouseover any thumbnail image from your search results\r\n4. Click the Cooliris icon that appears (or just click the Cooliris toolbar icon).\r\n\r\nCooliris also works on Facebook, Flickr, YouTube, MySpace, Picasa Web Albums, and many more. See http://www.cooliris.com/product/supported. You can also search major providers within Cooliris with the built-in search box in the top right corner of the Cooliris interface.\r\n\r\nTo lay back to watch TV episodes or the latest news in our Channels feature, just click the Cooliris icon on your browser toolbar and click the Channels button.\r\n\r\nTIPS & TRICKS\r\n- For the best experience, use Firefox 3.5.2+ \r\n- Open items from the Wall to a new tab by CTRL-clicking \"go to webpage\" icon\r\n- Hide/show the Cooliris menu bars by pressing F8 (for PC) or Alt+Esc (for Mac)\r\n- Share your 3D Wall view by cutting and pasting its URL\r\n- Save your favorite 3D Wall view to your browser's bookmarks or set it as your homepage\r\n \r\nSPREAD THE LOVE!\r\nTell a friend or post about Cooliris at http://www.cooliris.com/tell-a-friend\r\nOr, if you're interested in what's coming next, join our beta community at http://cooliris.com/beta/signup\r\n\r\nSYSTEM REQUIREMENTS for Cooliris v.1.11+\r\n- Intel-based Core Duo processor or better.\r\n- If you're using a Mac, Cooliris works only on Mac OS X 10.5, and v10.6. \r\n- Firefox 3.5.2+ highly recommended. There are know bugs/conflicts with 3.5 and 3.5.1.\r\n- Update your graphics software for the best experience (http://www.cooliris.com/support/?p=self-help)\r\n\r\n--------------------------------------------------------------------------------------------------------------------------\r\n\r\nOTHER RECOMMENDED ADDONS\r\nTry CoolPreviews (https://addons.mozilla.org/en-US/firefox/addon/2207), our other Firefox recommended addon. If you like Cooliris for videos and images, you'll love CoolPreviews for news and search - preview links without leaving your current page or tab.\r\n\r\n--------------------------------------------------------------------------------------------------------------------------\r\nBy downloading Cooliris from Firefox Add-ons, you agree to the terms of our EULA and Privacy Policy. To see our current EULA and Privacy Policy, please visit http://www.cooliris.com/legal/.",
-            "created": "2007-08-24 08:59:33",
-            "locale": "en-US",
-            "modified": "2010-05-05 15:55:47",
-            "id": 67129,
-            "localized_string_clean": "Meet Cooliris, the 3D Wall that speeds up search on Google Images, YouTube, Flickr, and more. Enjoy the richest way to view photos from Facebook, Picasa, and even your own computer. On our infinite 3D Wall, you can effortlessly scroll though thousands of images and videos in seconds without having to click from page to page. Our Channels feature even lets you surf the latest news, TV episodes, and more, on in one place. For details see: <a href=\"http://outgoing.mozilla.org/v1/cea3aa9e04ff5583b699338ff36a7f1e6d19e12f/http%3A//www.cooliris.com/desktop\">http://www.cooliris.com/desktop</a>\n\n--------------------------------------------------------------------------------------------------------------------------\nMac OS X 10.4 and Mac PowerPC are not supported on Cooliris v1.11.1+ \nTo use Cooliris version 1.10 or earlier, please visit \n<a href=\"http://outgoing.mozilla.org/v1/9aabcc1da4fa0710d1cb0e2e578ebaf081821633/https%3A//addons.mozilla.org/en-US/firefox/addons/versions/5579\">https://addons.mozilla.org/en-US/firefox/addons/versions/5579</a>\n--------------------------------------------------------------------------------------------------------------------------\n\nHOW TO USE COOLIRIS \nLaunch Cooliris any from your browser toolbar, or visit one of many hundreds of supported sites and click the Cooliris icon that appears as you mouseover images and videos. \n\nFor example, to enjoy Cooliris on Google Images:\n1. Go to <a href=\"http://outgoing.mozilla.org/v1/c00c1a2c6c01676cb12ed5b06d397e980df8f635/http%3A//images.google.com\">http://images.google.com</a>\n2. Search as you normally do, e.g. \"mountains\" \n3. Mouseover any thumbnail image from your search results\n4. Click the Cooliris icon that appears (or just click the Cooliris toolbar icon).\n\nCooliris also works on Facebook, Flickr, YouTube, MySpace, Picasa Web Albums, and many more. See <a href=\"http://outgoing.mozilla.org/v1/c95e3cce542f6a636795364d10cedb4ff5635868/http%3A//www.cooliris.com/product/supported.\">http://www.cooliris.com/product/supported.</a> You can also search major providers within Cooliris with the built-in search box in the top right corner of the Cooliris interface.\n\nTo lay back to watch TV episodes or the latest news in our Channels feature, just click the Cooliris icon on your browser toolbar and click the Channels button.\n\nTIPS &amp; TRICKS\n- For the best experience, use Firefox 3.5.2+ \n- Open items from the Wall to a new tab by CTRL-clicking \"go to webpage\" icon\n- Hide/show the Cooliris menu bars by pressing F8 (for PC) or Alt+Esc (for Mac)\n- Share your 3D Wall view by cutting and pasting its URL\n- Save your favorite 3D Wall view to your browser's bookmarks or set it as your homepage\n \nSPREAD THE LOVE!\nTell a friend or post about Cooliris at <a href=\"http://outgoing.mozilla.org/v1/dc11951eea35cf484adfd6731d100da1f9f431bd/http%3A//www.cooliris.com/tell-a-friend\">http://www.cooliris.com/tell-a-friend</a>\nOr, if you're interested in what's coming next, join our beta community at <a href=\"http://outgoing.mozilla.org/v1/c2031e0643268cc63d28575ddaf4563eddfe82ce/http%3A//cooliris.com/beta/signup\">http://cooliris.com/beta/signup</a>\n\nSYSTEM REQUIREMENTS for Cooliris v.1.11+\n- Intel-based Core Duo processor or better.\n- If you're using a Mac, Cooliris works only on Mac OS X 10.5, and v10.6. \n- Firefox 3.5.2+ highly recommended. There are know bugs/conflicts with 3.5 and 3.5.1.\n- Update your graphics software for the best experience (<a href=\"http://outgoing.mozilla.org/v1/aab02bdfc3f0a867dc0c07507e463b577c954b71/http%3A//www.cooliris.com/support/%3Fp%3Dself-help\">http://www.cooliris.com/support/?p=self-help</a>)\n\n--------------------------------------------------------------------------------------------------------------------------\n\nOTHER RECOMMENDED ADDONS\nTry CoolPreviews (<a href=\"http://outgoing.mozilla.org/v1/944c5ddbd330bf4734a81c2199cbde0e4d2271be/https%3A//addons.mozilla.org/en-US/firefox/addon/2207\">https://addons.mozilla.org/en-US/firefox/addon/2207</a>), our other Firefox recommended addon. If you like Cooliris for videos and images, you'll love CoolPreviews for news and search - preview links without leaving your current page or tab.\n\n--------------------------------------------------------------------------------------------------------------------------\nBy downloading Cooliris from Firefox Add-ons, you agree to the terms of our EULA and Privacy Policy. To see our current EULA and Privacy Policy, please visit <a href=\"http://outgoing.mozilla.org/v1/5f5397fcde5f83cb1e206ab5a3e451fb89ee748e/http%3A//www.cooliris.com/legal/.\">http://www.cooliris.com/legal/.</a>"
-        }
-    },
-    {
-        "pk": 99664,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "The Cooliris 3D Wall -- Simply the fastest and most stunning way to browse photos and videos from the Web or your desktop. Effortlessly scroll an infinite \"3D Wall\" of your content from Facebook, Google Images, YouTube, Flickr, and hundreds more.",
-            "created": "2007-08-24 00:04:46",
-            "locale": "en-US",
-            "modified": "2009-06-30 23:49:47",
-            "id": 67069,
-            "localized_string_clean": "The Cooliris 3D Wall -- Simply the fastest and most stunning way to browse photos and videos from the Web or your desktop. Effortlessly scroll an infinite \"3D Wall\" of your content from Facebook, Google Images, YouTube, Flickr, and hundreds more."
-        }
-    },
-    {
-        "pk": 166427,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "http://www.cooliris.com/support/",
-            "created": "2008-05-01 15:45:18",
-            "locale": "en-US",
-            "modified": "2009-03-25 17:32:37",
-            "id": 130187
-        }
-    },
-    {
-        "pk": 99657,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "http://www.cooliris.com",
-            "created": "2007-08-24 00:04:46",
-            "locale": "en-US",
-            "modified": "2009-03-25 17:32:37",
-            "id": 67066,
-            "localized_string_clean": null
-        }
-    },
-    {
         "pk": 99658,
         "model": "translations.translation",
         "fields": {
@@ -92,37 +36,16 @@
         }
     },
     {
-        "pk": 801679,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "- Added compatibility with Firefox 3.6 \r\n- Improved performance and security.\r\n",
-            "created": "2010-01-06 18:17:24",
-            "locale": "en-US",
-            "modified": null,
-            "id": 748021,
-            "localized_string_clean": "- Added compatibility with Firefox 3.6 \n- Improved performance and security.\n"
-        }
-    },
-    {
-        "pk": 3,
-        "model": "files.platform",
-        "fields": {
-            "icontype": "",
-            "modified": "2008-04-07 08:16:55",
-            "created": "2007-03-05 13:09:27"
-        }
-    },
-    {
         "pk": 5579,
         "model": "addons.addon",
         "fields": {
             "dev_agreement": true,
             "eula": null,
-            "last_updated": "2010-01-06 18:20:04",
+            "_current_version": 90119,
+            "last_updated": "2010-01-06 18:15:53",
             "view_source": false,
             "enable_thankyou": false,
             "total_downloads": 19521947,
-            "developer_comments": 67129,
             "inactive": false,
             "average_daily_downloads": 19502,
             "show_beta": true,
@@ -133,7 +56,6 @@
             "binary": false,
             "the_future": null,
             "weekly_downloads": 81392,
-            "support_url": 130187,
             "paypal_id": "",
             "average_rating": "3.98",
             "wants_contributions": false,
@@ -141,7 +63,6 @@
             "bayesian_rating": 3.9809700000000001,
             "share_count": 36,
             "get_satisfaction_company": "",
-            "homepage": 67066,
             "support_email": null,
             "public_stats": false,
             "status": 4,
@@ -161,7 +82,6 @@
             "icon_type": "image/png",
             "annoying": 0,
             "modified": "2010-05-24 16:53:43",
-            "summary": 67069,
             "suggested_amount": null,
             "site_specific": false,
             "total_reviews": 1173,
@@ -185,7 +105,6 @@
         "fields": {
             "license": 329,
             "created": "2010-01-06 18:16:40",
-            "releasenotes": 748021,
             "modified": "2010-01-06 18:21:34",
             "approvalnotes": "",
             "version": "1.11.6",

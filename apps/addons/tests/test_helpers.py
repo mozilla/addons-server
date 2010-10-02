@@ -1,21 +1,16 @@
-import jingo
 import test_utils
 from mock import Mock
 from nose.tools import eq_
 from pyquery import PyQuery
 
 import amo
-import amo.test_utils
 from addons.helpers import statusflags, flag, support_addon, contribution
 from addons.models import Addon
 
 
-class TestHelpers(amo.test_utils.ExtraSetup, test_utils.TestCase):
-    fixtures = ('base/apps', 'base/addon_3615', 'base/addon_4664_twitterbar',
-                'addons/featured.json',)
-
-    def setUp(self):
-        jingo.load_helpers()
+class TestHelpers(test_utils.TestCase):
+    fixtures = ['base/apps', 'base/addon_3615', 'base/addon_4664_twitterbar',
+                'addons/featured.json']
 
     def test_statusflags(self):
         ctx = {'APP': amo.FIREFOX, 'LANG': 'en-US'}

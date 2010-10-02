@@ -163,7 +163,8 @@
         "fields": {
             "dev_agreement": true,
             "eula": null,
-            "last_updated": "2010-04-30 01:00:40",
+            "_current_version": 90149,
+            "last_updated": "2009-08-27 14:29:14",
             "view_source": true,
             "enable_thankyou": false,
             "total_downloads": 80189574,
@@ -208,7 +209,6 @@
             "summary": null,
             "suggested_amount": "5.00",
             "site_specific": false,
-            "_current_version": null,
             "total_reviews": 1801,
             "the_reason": null,
             "nomination_date": "2008-06-17 21:52:36"

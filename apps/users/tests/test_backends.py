@@ -4,17 +4,11 @@ from django.core.cache import cache
 
 import test_utils
 
-import amo.test_utils
 from users.models import UserProfile
 
 
-class TestAmoUserBackend(amo.test_utils.ExtraSetup, test_utils.TestCase):
+class TestAmoUserBackend(test_utils.TestCase):
     fixtures = ['users/test_backends']
-
-    def setUp(self):
-        cache.clear()
-
-    tearDown = setUp
 
     def test_success_without_user(self):
         """Make sure a contrib.auth.User gets created when we log in."""

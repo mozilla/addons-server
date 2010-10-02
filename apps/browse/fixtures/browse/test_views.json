@@ -50,6 +50,8 @@
         "pk": 3439,
         "model": "addons.addon",
         "fields": {
+            "_current_version": 58463,
+            "last_updated": "2009-01-03 11:55:47",
             "dev_agreement": 0,
             "view_source": 0,
             "total_downloads": 683268,
@@ -92,6 +94,8 @@
         "pk": 3497,
         "model": "addons.addon",
         "fields": {
+            "_current_version": 79773,
+            "last_updated": "2009-10-02 06:00:28",
             "dev_agreement": 1,
             "view_source": 0,
             "total_downloads": 14853651,
@@ -176,6 +180,8 @@
         "pk": 6526,
         "model": "addons.addon",
         "fields": {
+            "_current_version": 77260,
+            "last_updated": "2009-10-05 12:58:01",
             "dev_agreement": 1,
             "view_source": 1,
             "total_downloads": 167176,
@@ -218,6 +224,8 @@
         "pk": 9192,
         "model": "addons.addon",
         "fields": {
+            "_current_version": 72900,
+            "last_updated": "2009-07-10 08:40:37",
             "dev_agreement": 1,
             "view_source": 0,
             "total_downloads": 17448,
@@ -260,6 +268,8 @@
         "pk": 3790,
         "model": "addons.addon",
         "fields": {
+            "_current_version": 70873,
+            "last_updated": "2009-07-24 18:11:20",
             "dev_agreement": 1,
             "view_source": 0,
             "total_downloads": 17466,
@@ -302,6 +312,8 @@
         "pk": 4443,
         "model": "addons.addon",
         "fields": {
+            "_current_version": 88879,
+            "last_updated": "2010-01-05 13:03:36",
             "dev_agreement": 1,
             "view_source": 0,
             "total_downloads": 4531,
@@ -344,6 +356,8 @@
         "pk": 9702,
         "model": "addons.addon",
         "fields": {
+            "_current_version": 71407,
+            "last_updated": "2009-07-11 15:59:43",
             "dev_agreement": 1,
             "view_source": 0,
             "total_downloads": 8990,
@@ -386,6 +400,8 @@
         "pk": 9730,
         "model": "addons.addon",
         "fields": {
+            "_current_version": 88168,
+            "last_updated": "2009-12-22 12:40:41",
             "dev_agreement": 1,
             "view_source": 0,
             "total_downloads": 4278,
@@ -428,6 +444,8 @@
         "pk": 49897,
         "model": "addons.addon",
         "fields": {
+            "_current_version": 87551,
+            "last_updated": "2010-01-14 09:51:01",
             "name": 15000,
             "dev_agreement": 1,
             "view_source": 1,
@@ -806,6 +824,86 @@
             "version": 87551,
             "datestatuschanged": "2010-01-14 09:51:01",
             "size": 176
+        }
+    },
+    {
+        "pk": 1091,
+        "model": "addons.appsupport",
+        "fields": {
+            "app": 1,
+            "addon": 3439,
+            "modified": "2010-10-02 07:05:48",
+            "created": "2010-10-02 07:05:48"
+        }
+    },
+    {
+        "pk": 1092,
+        "model": "addons.appsupport",
+        "fields": {
+            "app": 1,
+            "addon": 3497,
+            "modified": "2010-10-02 07:05:48",
+            "created": "2010-10-02 07:05:48"
+        }
+    },
+    {
+        "pk": 1093,
+        "model": "addons.appsupport",
+        "fields": {
+            "app": 1,
+            "addon": 3790,
+            "modified": "2010-10-02 07:05:48",
+            "created": "2010-10-02 07:05:48"
+        }
+    },
+    {
+        "pk": 1094,
+        "model": "addons.appsupport",
+        "fields": {
+            "app": 1,
+            "addon": 6526,
+            "modified": "2010-10-02 07:05:48",
+            "created": "2010-10-02 07:05:48"
+        }
+    },
+    {
+        "pk": 1095,
+        "model": "addons.appsupport",
+        "fields": {
+            "app": 1,
+            "addon": 9192,
+            "modified": "2010-10-02 07:05:48",
+            "created": "2010-10-02 07:05:48"
+        }
+    },
+    {
+        "pk": 1096,
+        "model": "addons.appsupport",
+        "fields": {
+            "app": 1,
+            "addon": 9702,
+            "modified": "2010-10-02 07:05:48",
+            "created": "2010-10-02 07:05:48"
+        }
+    },
+    {
+        "pk": 1097,
+        "model": "addons.appsupport",
+        "fields": {
+            "app": 1,
+            "addon": 9730,
+            "modified": "2010-10-02 07:05:48",
+            "created": "2010-10-02 07:05:48"
+        }
+    },
+    {
+        "pk": 1098,
+        "model": "addons.appsupport",
+        "fields": {
+            "app": 1,
+            "addon": 49897,
+            "modified": "2010-10-02 07:05:48",
+            "created": "2010-10-02 07:05:48"
         }
     }
 ]

@@ -10,7 +10,6 @@ from pyquery import PyQuery as pq
 import test_utils
 
 import amo
-import amo.test_utils
 import addons.cron
 from amo.urlresolvers import reverse
 from amo.helpers import urlparams
@@ -34,7 +33,7 @@ def test_locale_display_name():
     assert_raises(KeyError, check, 'fake-lang', '', '')
 
 
-class TestLanguageTools(amo.test_utils.ExtraSetup, test_utils.TestCase):
+class TestLanguageTools(test_utils.TestCase):
     fixtures = ['browse/test_views']
 
     def setUp(self):
@@ -89,7 +88,7 @@ class TestLanguageTools(amo.test_utils.ExtraSetup, test_utils.TestCase):
         eq_(list(response.context['locales']), [])
 
 
-class TestThemes(amo.test_utils.ExtraSetup, test_utils.TestCase):
+class TestThemes(test_utils.TestCase):
     fixtures = ('base/category', 'base/addon_6704_grapple', 'base/addon_3615')
 
     def setUp(self):
@@ -153,7 +152,7 @@ class TestThemes(amo.test_utils.ExtraSetup, test_utils.TestCase):
         eq_(actual_count, expected_count)
 
 
-class TestCategoryPages(amo.test_utils.ExtraSetup, test_utils.TestCase):
+class TestCategoryPages(test_utils.TestCase):
     fixtures = ('base/apps', 'base/category', 'base/addon_3615',
                 'base/featured', 'addons/featured', 'browse/nameless-addon')
 
@@ -268,7 +267,7 @@ class TestLegacyRedirects(test_utils.TestCase):
         redirects('/recommended/format:rss', '/featured/format:rss')
 
 
-class TestFeaturedPage(amo.test_utils.ExtraSetup, test_utils.TestCase):
+class TestFeaturedPage(test_utils.TestCase):
     fixtures = ('base/apps', 'addons/featured')
 
     def test_featured_addons(self):
@@ -306,7 +305,7 @@ class TestCategoriesFeed(test_utils.TestCase):
         assert t.endswith(u'/addon/2/versions/v%s' % urllib.urlquote(self.u))
 
 
-class TestFeaturedFeed(amo.test_utils.ExtraSetup, test_utils.TestCase):
+class TestFeaturedFeed(test_utils.TestCase):
     fixtures = ('base/apps', 'addons/featured')
 
     def test_feed_elements_present(self):
@@ -323,7 +322,7 @@ class TestFeaturedFeed(amo.test_utils.ExtraSetup, test_utils.TestCase):
         eq_(len(doc('rss channel item')), 2)
 
 
-class TestPersonas(amo.test_utils.ExtraSetup, test_utils.TestCase):
+class TestPersonas(test_utils.TestCase):
     fixtures = ('base/apps', 'addons/featured')
 
     def test_personas(self):

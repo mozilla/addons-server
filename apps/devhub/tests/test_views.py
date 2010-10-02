@@ -5,13 +5,12 @@ from pyquery import PyQuery as pq
 import test_utils
 
 import amo
-import amo.test_utils
 from amo.urlresolvers import reverse
 from addons.models import Addon, AddonUser
 from users.models import UserProfile
 
 
-class HubTest(amo.test_utils.ExtraSetup, test_utils.TestCase):
+class HubTest(test_utils.TestCase):
     fixtures = ('browse/nameless-addon', 'base/users')
 
     def setUp(self):

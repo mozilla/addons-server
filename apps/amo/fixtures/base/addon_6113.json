@@ -1,66 +1,9 @@
 [
     {
-        "pk": 1,
-        "model": "applications.application",
-        "fields": {
-            "guid": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}",
-            "modified": "2008-11-03 15:34:59",
-            "created": "2007-03-05 13:09:26"
-        }
-    },
-    {
-        "pk": 117842,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "NewTongWenTang is a tool to switch display Chinese content between traditional and simplified glyphs (\u4e2d\u6587\u7e41\u7c21\u9ad4\u4e92\u8f49\u5de5\u5177)",
-            "created": "2007-11-30 23:29:27",
-            "locale": "en-US",
-            "modified": "2009-04-08 23:04:52",
-            "id": 84542,
-            "localized_string_clean": "NewTongWenTang is a tool to switch display Chinese content between traditional and simplified glyphs (\u4e2d\u6587\u7e41\u7c21\u9ad4\u4e92\u8f49\u5de5\u5177)"
-        }
-    },
-    {
-        "pk": 117833,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "Features:\r\n - To switch display Chinese webpage between traditional and simplified glyphs\r\n - Auto-fix mis-mapped convertion content between traditional and simplified glyphs\r\n - Convert the chinese content of clipboard between traditional and simplified\r\n\r\nRemark: \r\nThis extension is a modded version of from the addon \"Tong Wen Tang \u540c\u6587\u5802\" which originally developed by http://tongwen.mozdev.org/",
-            "created": "2007-11-30 23:29:26",
-            "locale": "en-US",
-            "modified": "2009-04-08 23:04:52",
-            "id": 84539,
-            "localized_string_clean": "Features:\n - To switch display Chinese webpage between traditional and simplified glyphs\n - Auto-fix mis-mapped convertion content between traditional and simplified glyphs\n - Convert the chinese content of clipboard between traditional and simplified\n\nRemark: \nThis extension is a modded version of from the addon \"Tong Wen Tang \u540c\u6587\u5802\" which originally developed by <a href=\"http://outgoing.mozilla.org/v1/4334a8aab6f2b228d21cf5397a5d4e33161ff219/http%3A//tongwen.mozdev.org/\">http://tongwen.mozdev.org/</a>"
-        }
-    },
-    {
-        "pk": 346361,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "http://of.openfoundry.org/projects/333/rt",
-            "created": "2009-01-17 00:09:32",
-            "locale": "en-US",
-            "modified": "2009-03-29 00:13:47",
-            "id": 308593,
-            "localized_string_clean": null
-        }
-    },
-    {
-        "pk": 117836,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "http://of.openfoundry.org/projects/333/rt",
-            "created": "2007-11-30 23:29:27",
-            "locale": "en-US",
-            "modified": "2009-04-08 23:04:52",
-            "id": 84540,
-            "localized_string_clean": null
-        }
-    },
-    {
         "pk": 117839,
         "model": "translations.translation",
         "fields": {
-            "localized_string": "\u65b0\u540c\u6587\u5802 (New Tong Wen Tang)",
+            "localized_string": "\u65b0\u540c\u6587\u5802 (New Tong Wen Tang) Firefox",
             "created": "2007-11-30 23:29:27",
             "locale": "en-US",
             "modified": "2009-04-08 23:04:52",
@@ -69,20 +12,12 @@
         }
     },
     {
-        "pk": 1,
-        "model": "files.platform",
-        "fields": {
-            "icontype": "",
-            "modified": "2008-04-07 08:16:55",
-            "created": "2007-03-05 13:09:27"
-        }
-    },
-    {
         "pk": 6113,
         "model": "addons.addon",
         "fields": {
             "dev_agreement": true,
             "eula": null,
+            "_current_version": 94363,
             "last_updated": "2010-02-03 18:42:00",
             "view_source": true,
             "enable_thankyou": false,
@@ -93,12 +28,10 @@
             "show_beta": true,
             "guid": "{22870005-adef-4c9d-ae36-d0e1f2f27e5a}",
             "trusted": false,
-            "description": 84539,
             "locale_disambiguation": null,
             "binary": false,
             "the_future": null,
             "weekly_downloads": 5726,
-            "support_url": 308593,
             "paypal_id": "",
             "average_rating": "4.33",
             "wants_contributions": false,
@@ -106,7 +39,6 @@
             "bayesian_rating": 4.2418399999999998,
             "share_count": 3,
             "get_satisfaction_company": "",
-            "homepage": 84540,
             "support_email": null,
             "public_stats": true,
             "status": 4,
@@ -121,12 +53,12 @@
             "highest_status": 4,
             "get_satisfaction_product": "",
             "name": 84541,
+            "description": 84541,
             "created": "2007-11-30 23:22:01",
             "type": 1,
             "icon_type": "image/png",
             "annoying": 0,
             "modified": "2010-05-28 09:01:59",
-            "summary": 84542,
             "suggested_amount": null,
             "site_specific": false,
             "total_reviews": 49,
@@ -238,6 +170,16 @@
             "version": 94363,
             "min": 82,
             "max": 291
+        }
+    },
+    {
+        "pk": 1216,
+        "model": "addons.appsupport",
+        "fields": {
+            "app": 1,
+            "addon": 6113,
+            "modified": "2010-10-04 13:10:38",
+            "created": "2010-10-04 13:10:38"
         }
     }
 ]

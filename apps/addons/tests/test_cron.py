@@ -2,14 +2,13 @@ from nose.tools import eq_
 import test_utils
 
 import amo
-import amo.test_utils
 from addons import cron
 from addons.models import Addon, AppSupport
 from files.models import File
 
 
 class CurrentVersionTestCase(test_utils.TestCase):
-    fixtures = ('base/addon_3615',)
+    fixtures = ['base/addon_3615']
 
     def test_addons(self):
         Addon.objects.filter(pk=3615).update(_current_version=None)
@@ -24,8 +23,8 @@ class CurrentVersionTestCase(test_utils.TestCase):
         eq_(Addon.objects.filter(_current_version=None, pk=3615).count(), 0)
 
 
-class TestLastUpdated(amo.test_utils.ExtraSetup, test_utils.TestCase):
-    fixtures = ('base/addon_3615', 'addons/listed')
+class TestLastUpdated(test_utils.TestCase):
+    fixtures = ['base/addon_3615', 'addons/listed']
 
     def test_personas(self):
         Addon.objects.update(type=amo.ADDON_PERSONA, status=amo.STATUS_PUBLIC)

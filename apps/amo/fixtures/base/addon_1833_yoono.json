@@ -1,14 +1,5 @@
 [
     {
-        "pk": 1,
-        "model": "applications.application",
-        "fields": {
-            "guid": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}",
-            "modified": "2008-11-03 15:34:59",
-            "created": "2007-03-05 13:09:26"
-        }
-    },
-    {
         "pk": 426250,
         "model": "translations.translation",
         "fields": {
@@ -17,102 +8,6 @@
             "locale": "en-US",
             "modified": null,
             "id": 387641,
-            "localized_string_clean": null
-        }
-    },
-    {
-        "pk": 526280,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "We've got a ton of new stuff on the way and you can keep up to date on the latest announcements by checking out our blog here:  http://blog.yoono.com/.  We update our product regularly with new features, improvements, and bug fixes!",
-            "created": "2009-07-17 15:08:15",
-            "locale": "en-US",
-            "modified": null,
-            "id": 484679,
-            "localized_string_clean": null
-        }
-    },
-    {
-        "pk": 526279,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "Yoono has been developing add-ons for Firefox since 2005 and is a big believer in the power of extending the software platform that users spend the majority of their time in on a daily basis.  As users of the web and social media ourselves, we have evolved the idea of Yoono over time in order to meet the growing need for a way to simplify the way you interact with the many popular web services out there today.  \r\n\r\nWe created the current version of Yoono because we wanted to provide users a simple way to unify their social networks and other services like instant messaging and allow them to access these services at any time from anywhere they are on the web.  Having all your friend updates in a real time stream and being able to interact with your friends and all your networks at once as you browse the web is, we believe, an amazing experience and something we hope you will enjoy as well. ",
-            "created": "2009-07-17 15:08:14",
-            "locale": "en-US",
-            "modified": null,
-            "id": 484678,
-            "localized_string_clean": null
-        }
-    },
-    {
-        "pk": 70165,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "View our Privacy Policy at http://www.yoono.com/privacy.html",
-            "created": "2007-03-26 00:44:33",
-            "locale": "en-US",
-            "modified": "2009-05-28 09:55:29",
-            "id": 39659,
-            "localized_string_clean": null
-        }
-    },
-    {
-        "pk": 15746,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "Support for this add-on is provided by Yoono.  Visit us at http://www.yoono.com/help.html for an FAQ or check out our Get Satisfaction support page at http://support.yoono.com\r\n\r\nWant to learn more about Yoono?  Visit us at http://www.yoono.com\r\n\r\n",
-            "created": "2007-03-05 13:10:30",
-            "locale": "en-US",
-            "modified": "2010-03-02 16:58:26",
-            "id": 7958,
-            "localized_string_clean": "Support for this add-on is provided by Yoono.  Visit us at <a href=\"http://outgoing.mozilla.org/v1/ca04539e8552e2f895d80a92c9397632c75fca31/http%3A//www.yoono.com/help.html\">http://www.yoono.com/help.html</a> for an FAQ or check out our Get Satisfaction support page at <a href=\"http://outgoing.mozilla.org/v1/146b7fb5d3b9e6ab0c2ebe35f361a82984704c43/http%3A//support.yoono.com\">http://support.yoono.com</a>\n\nWant to learn more about Yoono?  Visit us at <a href=\"http://outgoing.mozilla.org/v1/d096063c65e55b4793ccb1ece2517c7cd119a25c/http%3A//www.yoono.com\">http://www.yoono.com</a>\n\n"
-        }
-    },
-    {
-        "pk": 15748,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "All your social networks and instant messaging in one easy to use app - it's the #1 downloaded social networking add-on for Firefox. Get all your updates, update your status and share across Facebook, Twitter, LinkedIn and more - all at once! ",
-            "created": "2007-03-05 13:10:30",
-            "locale": "en-US",
-            "modified": "2010-02-17 10:43:32",
-            "id": 7959,
-            "localized_string_clean": "All your social networks and instant messaging in one easy to use app - it's the #1 downloaded social networking add-on for Firefox. Get all your updates, update your status and share across Facebook, Twitter, LinkedIn and more - all at once! "
-        }
-    },
-    {
-        "pk": 15744,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "Yoono is a powerful but easy to use sidebar for Firefox that helps you simplify your online social life by connecting you to Facebook, MySpace, Twitter, LinkedIn, Flickr, Friendfeed, AIM, Yahoo IM and more...all in one place.  Yoono is also the easiest way to share stuff with all your social networks - share links, images and video from the page you're viewing across all your networks simultaneously.  \r\n<ul>\r\n<li><strong>* Connect to all your social networks</strong> and never miss another status update from friends or family. You're connected wherever you are on the web.\r\n<li><strong>* Update your status</strong> across all your social networks at the same time.\r\n<li><strong>* All your IM services right in your browser sidebar</strong> to easily chat while your surf the web - no more logging on to multiple services. \r\n<li><strong>* Easily share links, images, and video</strong> from the page you are viewing with all your social networks at the same time.\r\n<li><strong>* Discover cool stuff</strong> with the discovery widget that shows you related websites, images, videos and more as you browse.\r\n</ul>\r\n\r\n<strong>YOONO 7 ENHANCEMENTS:</strong>\r\n\r\nWe are committed to giving you regular updates and improvements to Yoono - version 7 includes:\r\n\r\n  * LinkedIn support\r\n  * Support for Twitter lists (view in Yoono - more support coming soon)\r\n  * Improved performance - we've rewritten a lot of the underlying code to make this the fastest and least resource intensive version of Yoono yet.\r\n  * Support for multiple account set up for Twitter, Facebook, MySpace, and more.\r\n  * <strong>New in 7.1</strong> - Support for column mode - set up unlimited personalized columns to create a streaming social dashboard in a dedicated browser tab\r\n  * Profile selector that enables switching between user profiles (i.e. Twitter accounts) within browser tabs via a profile selector to the left of the URL bar.\r\n  * Groups - you can create Yoono groups and add users from any service (Facebook, Twitter, LinkedIn, etc.) to your group, then filter your stream by group.  \r\n  * Support for Facebook Inbox Messages and Notifications\r\n  * Support for Twitter's new retweet functionality\r\n  * Upload pics and more from your computer via our new partner yFrog (or other hosting services)\r\n  * Full text search of your updates stream so you can see what your friends are saying about a particular topic.  We're leveraging SQLite in HTML 5 to create a client side store of your updates and can store up to 25,000 of your recent updates.\r\n  * Connection improvements for Twitter, Facebook, and instant messaging services\r\n  * Spell check\r\n  * Improved pop up alert design & configuration options\r\n  * New default skin & UI design enhancements\r\n  * Simplified Read/Unread indicator (yellow background for new updates, fades away when read)\r\n  * Sign In/Out - you can now sign out of Yoono for more privacy.  If you are using as an unregistered user there is no password protection but you can disconnect from all services.  If you are a registered user you can password protect Yoono.\r\n  * Font size selection capability\r\n  * Bug fixes\r\n\r\n<strong>ALSO NEW FROM YOONO \u2013 UPDATED YOONO DESKTOP v1.6!</strong>\r\n\r\nWe have also updated our Yoono Desktop application with the features above \u2013 it's everything you love about Yoono as a standalone desktop client.  Available as a beta for Windows and Mac at http://www.yoono.com/desktop_features.html .  Give it a try!\r\n\r\n<strong>WHAT PEOPLE ARE SAYING ABOUT YOONO:</strong>\r\n\r\n\u201cThe Social Network Plugin You\u2019ve Been Waiting For\u201d <strong>- Techcrunch</strong>\r\n\r\n\"Yoono social dashboard blows past Seesmic, TweetDeck in Facebook monthly users\" <strong>VentureBeat</strong>\r\n\r\n\"If you've got a good reason to have an account at several places, and want to look at them all easily, Yoono is the way to go.\" <strong>- PCWorld</strong>\r\n\r\n\u201cYoono now offering an elegant solution to social networking clutter\u201d <strong>-Webware</strong>\r\n\r\nSee what users are saying at: http://search.twitter.com/search?q=yoono\r\n\r\nAvailable for Windows, Mac and Linux.",
-            "created": "2007-03-05 13:10:30",
-            "locale": "en-US",
-            "modified": "2010-03-09 11:38:11",
-            "id": 7957,
-            "localized_string_clean": "Yoono is a powerful but easy to use sidebar for Firefox that helps you simplify your online social life by connecting you to Facebook, MySpace, Twitter, LinkedIn, Flickr, Friendfeed, AIM, Yahoo IM and more...all in one place.  Yoono is also the easiest way to share stuff with all your social networks - share links, images and video from the page you're viewing across all your networks simultaneously.  \n<ul><li><strong>* Connect to all your social networks</strong> and never miss another status update from friends or family. You're connected wherever you are on the web.\n</li><li><strong>* Update your status</strong> across all your social networks at the same time.\n</li><li><strong>* All your IM services right in your browser sidebar</strong> to easily chat while your surf the web - no more logging on to multiple services. \n</li><li><strong>* Easily share links, images, and video</strong> from the page you are viewing with all your social networks at the same time.\n</li><li><strong>* Discover cool stuff</strong> with the discovery widget that shows you related websites, images, videos and more as you browse.\n</li></ul><strong>YOONO 7 ENHANCEMENTS:</strong>\n\nWe are committed to giving you regular updates and improvements to Yoono - version 7 includes:\n\n  * LinkedIn support\n  * Support for Twitter lists (view in Yoono - more support coming soon)\n  * Improved performance - we've rewritten a lot of the underlying code to make this the fastest and least resource intensive version of Yoono yet.\n  * Support for multiple account set up for Twitter, Facebook, MySpace, and more.\n  * <strong>New in 7.1</strong> - Support for column mode - set up unlimited personalized columns to create a streaming social dashboard in a dedicated browser tab\n  * Profile selector that enables switching between user profiles (i.e. Twitter accounts) within browser tabs via a profile selector to the left of the URL bar.\n  * Groups - you can create Yoono groups and add users from any service (Facebook, Twitter, LinkedIn, etc.) to your group, then filter your stream by group.  \n  * Support for Facebook Inbox Messages and Notifications\n  * Support for Twitter's new retweet functionality\n  * Upload pics and more from your computer via our new partner yFrog (or other hosting services)\n  * Full text search of your updates stream so you can see what your friends are saying about a particular topic.  We're leveraging SQLite in HTML 5 to create a client side store of your updates and can store up to 25,000 of your recent updates.\n  * Connection improvements for Twitter, Facebook, and instant messaging services\n  * Spell check\n  * Improved pop up alert design &amp; configuration options\n  * New default skin &amp; UI design enhancements\n  * Simplified Read/Unread indicator (yellow background for new updates, fades away when read)\n  * Sign In/Out - you can now sign out of Yoono for more privacy.  If you are using as an unregistered user there is no password protection but you can disconnect from all services.  If you are a registered user you can password protect Yoono.\n  * Font size selection capability\n  * Bug fixes\n\n<strong>ALSO NEW FROM YOONO \u2013 UPDATED YOONO DESKTOP v1.6!</strong>\n\nWe have also updated our Yoono Desktop application with the features above \u2013 it's everything you love about Yoono as a standalone desktop client.  Available as a beta for Windows and Mac at <a href=\"http://outgoing.mozilla.org/v1/fffb4a10e48e709e9bdfdc03a339fe72cdd665b4/http%3A//www.yoono.com/desktop_features.html\">http://www.yoono.com/desktop_features.html</a> .  Give it a try!\n\n<strong>WHAT PEOPLE ARE SAYING ABOUT YOONO:</strong>\n\n\u201cThe Social Network Plugin You\u2019ve Been Waiting For\u201d <strong>- Techcrunch</strong>\n\n\"Yoono social dashboard blows past Seesmic, TweetDeck in Facebook monthly users\" <strong>VentureBeat</strong>\n\n\"If you've got a good reason to have an account at several places, and want to look at them all easily, Yoono is the way to go.\" <strong>- PCWorld</strong>\n\n\u201cYoono now offering an elegant solution to social networking clutter\u201d <strong>-Webware</strong>\n\nSee what users are saying at: <a href=\"http://outgoing.mozilla.org/v1/48d3aeeebccd51a4398793ed743769d6cb1959ca/http%3A//search.twitter.com/search%3Fq%3Dyoono\">http://search.twitter.com/search?q=yoono</a>\n\nAvailable for Windows, Mac and Linux."
-        }
-    },
-    {
-        "pk": 192118,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "http://www.yoono.com/help.html",
-            "created": "2008-06-16 18:31:21",
-            "locale": "en-US",
-            "modified": "2009-05-28 09:56:52",
-            "id": 155177,
-            "localized_string_clean": null
-        }
-    },
-    {
-        "pk": 15743,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "http://www.yoono.com",
-            "created": "2007-03-05 13:10:30",
-            "locale": "en-US",
-            "modified": "2009-02-22 03:50:51",
-            "id": 7956,
             "localized_string_clean": null
         }
     },
@@ -129,48 +24,24 @@
         }
     },
     {
-        "pk": 1002998,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "Minor release with a security fix and a few bug fixes.",
-            "created": "2010-03-25 14:26:46",
-            "locale": "en-US",
-            "modified": null,
-            "id": 941433,
-            "localized_string_clean": "Minor release with a security fix and a few bug fixes."
-        }
-    },
-    {
-        "pk": 1,
-        "model": "files.platform",
-        "fields": {
-            "icontype": "",
-            "modified": "2008-04-07 08:16:55",
-            "created": "2007-03-05 13:09:27"
-        }
-    },
-    {
         "pk": 1833,
         "model": "addons.addon",
         "fields": {
             "dev_agreement": true,
             "eula": null,
+            "_current_version": 101235,
             "last_updated": "2010-03-26 08:22:39",
             "view_source": false,
             "enable_thankyou": false,
             "total_downloads": 4396083,
-            "developer_comments": 7958,
             "inactive": false,
             "average_daily_downloads": 4155,
             "show_beta": true,
             "guid": "{d9284e50-81fc-11da-a72b-0800200c9a66}",
             "trusted": false,
-            "description": 7957,
             "locale_disambiguation": null,
             "binary": false,
-            "the_future": 484679,
             "weekly_downloads": 53380,
-            "support_url": 155177,
             "paypal_id": "affiliate-fr@yoono.com",
             "average_rating": "4.24",
             "wants_contributions": true,
@@ -178,11 +49,9 @@
             "bayesian_rating": 4.2253800000000004,
             "share_count": 14,
             "get_satisfaction_company": "yoono",
-            "homepage": 7956,
             "support_email": null,
             "public_stats": false,
             "status": 4,
-            "privacy_policy": 39659,
             "total_contributions": "0.00",
             "default_locale": "en-US",
             "target_locale": null,
@@ -198,11 +67,9 @@
             "icon_type": "image/png",
             "annoying": 1,
             "modified": "2010-05-25 14:41:27",
-            "summary": 7959,
             "suggested_amount": "5.00",
             "site_specific": false,
             "total_reviews": 272,
-            "the_reason": 484678,
             "nomination_date": "2009-03-11 03:33:29"
         }
     },
@@ -222,7 +89,6 @@
         "fields": {
             "license": 180,
             "created": "2010-03-25 14:25:14",
-            "releasenotes": 941433,
             "modified": "2010-03-25 14:26:53",
             "approvalnotes": "Uncompressed version and diff file emailed to Jorge Villalobos separately.  Email tpringle@yoono.com if needed for these files or more info.",
             "version": "7.1.6",
@@ -342,6 +208,16 @@
             "version": 101235,
             "min": 233,
             "max": 303
+        }
+    },
+    {
+        "pk": 3,
+        "model": "addons.appsupport",
+        "fields": {
+            "app": 1,
+            "addon": 1833,
+            "modified": "2010-10-04 13:01:45",
+            "created": "2010-10-04 13:01:45"
         }
     }
 ]

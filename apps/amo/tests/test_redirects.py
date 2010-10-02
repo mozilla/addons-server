@@ -4,13 +4,11 @@ from nose.tools import eq_
 import test_utils
 
 import amo
-import amo.test_utils
 from addons.models import Category
 from applications.models import Application
 
 
-class TestRedirects(amo.test_utils.ExtraSetup, test_utils.TestCase):
-
+class TestRedirects(test_utils.TestCase):
     fixtures = ['base/apps', 'reviews/test_models', 'base/global-stats']
 
     def test_persona_category(self):

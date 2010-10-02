@@ -13,6 +13,8 @@
         "pk": 3723,
         "model": "addons.addon",
         "fields": {
+            "_current_version": 89774,
+            "last_updated": "2010-03-24 16:33:19",
             "dev_agreement": 0,
             "eula": null,
             "last_updated": "2010-01-03 21:26:09",
@@ -70,8 +72,8 @@
             "version_int": 3069900200100,
             "application": 1,
             "version": "3.6.*",
-            "modified": null,
-            "created": null
+            "modified": "2006-10-31 23:19:06",
+            "created": "2006-10-31 23:19:06"
         }
     },
     {
@@ -81,8 +83,8 @@
             "version_int": 3060000200100,
             "application": 1,
             "version": "3.6",
-            "modified": null,
-            "created": null
+            "modified": "2006-10-31 23:19:06",
+            "created": "2006-10-31 23:19:06"
         }
     },
     {
@@ -115,6 +117,16 @@
             "max": 291,
             "version": 89774,
             "min": 290
+        }
+    },
+    {
+        "pk": 1118,
+        "model": "addons.appsupport",
+        "fields": {
+            "app": 1,
+            "addon": 3723,
+            "modified": "2010-10-02 07:22:41",
+            "created": "2010-10-02 07:22:41"
         }
     }
 ]

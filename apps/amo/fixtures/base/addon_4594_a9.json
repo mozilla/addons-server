@@ -12,54 +12,6 @@
         }
     },
     {
-        "pk": 522467,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "I work on addons.mozilla.org.",
-            "created": "2009-07-15 17:46:47",
-            "locale": "en-US",
-            "modified": "2009-07-15 18:02:14",
-            "id": 480997,
-            "localized_string_clean": "I work on addons.mozilla.org."
-        }
-    },
-    {
-        "pk": 60217,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "Amazon's A9 search engine",
-            "created": "2007-03-07 22:59:16",
-            "locale": "en-US",
-            "modified": "2008-03-26 21:51:50",
-            "id": 38147,
-            "localized_string_clean": "Amazon's A9 search engine"
-        }
-    },
-    {
-        "pk": 60190,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "Amazon's A9 search engine",
-            "created": "2007-03-07 22:59:16",
-            "locale": "en-US",
-            "modified": "2008-03-26 21:51:50",
-            "id": 38144,
-            "localized_string_clean": "Amazon's A9 search engine"
-        }
-    },
-    {
-        "pk": 60199,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "http://a9.com/",
-            "created": "2007-03-07 22:59:16",
-            "locale": "en-US",
-            "modified": "2008-03-26 21:51:50",
-            "id": 38145,
-            "localized_string_clean": null
-        }
-    },
-    {
         "pk": 60208,
         "model": "translations.translation",
         "fields": {
@@ -69,18 +21,6 @@
             "modified": "2008-03-26 21:51:50",
             "id": 38146,
             "localized_string_clean": null
-        }
-    },
-    {
-        "pk": 144332,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "Update to XML (bug 419920)",
-            "created": "2008-03-26 21:51:43",
-            "locale": "en-US",
-            "modified": "2008-03-26 21:51:50",
-            "id": 108832,
-            "localized_string_clean": "Update to XML (bug 419920)"
         }
     },
     {
@@ -98,6 +38,7 @@
         "fields": {
             "dev_agreement": false,
             "eula": null,
+            "_current_version": 42352,
             "last_updated": "2008-03-26 21:52:58",
             "view_source": true,
             "enable_thankyou": false,
@@ -108,7 +49,6 @@
             "show_beta": true,
             "guid": null,
             "trusted": false,
-            "description": 38144,
             "locale_disambiguation": null,
             "binary": false,
             "the_future": null,
@@ -121,7 +61,6 @@
             "bayesian_rating": 3.5960800000000002,
             "share_count": 0,
             "get_satisfaction_company": null,
-            "homepage": 38145,
             "support_email": null,
             "public_stats": true,
             "status": 4,
@@ -141,7 +80,6 @@
             "icon_type": "image/png",
             "annoying": 0,
             "modified": "2010-05-24 17:32:41",
-            "summary": 38147,
             "suggested_amount": null,
             "site_specific": true,
             "total_reviews": 12,
@@ -165,7 +103,6 @@
         "fields": {
             "license": 312,
             "created": "2008-03-26 21:51:24",
-            "releasenotes": 108832,
             "modified": "2009-06-29 21:11:38",
             "approvalnotes": "",
             "version": "20080326",
@@ -222,7 +159,6 @@
             "homepage": "http://micropipes.com/blog/",
             "email": "dd+5dc5f88b0@davedash.com",
             "location": "Portland, OR",
-            "bio": 480997,
             "firstname": "Wil",
             "deleted": false,
             "lastname": "Clouser",
@@ -249,6 +185,16 @@
             "role": 5,
             "listed": true,
             "user": 10482
+        }
+    },
+    {
+        "pk": 1233,
+        "model": "addons.appsupport",
+        "fields": {
+            "app": 1,
+            "addon": 4594,
+            "modified": "2010-10-02 07:51:54",
+            "created": "2010-10-02 07:51:54"
         }
     }
 ]

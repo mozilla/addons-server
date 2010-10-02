@@ -32,6 +32,7 @@
         "pk": 1,
         "model": "addons.addon",
         "fields": {
+            "_current_version": 24007,
             "dev_agreement": 1,
             "eula": null,
             "public_stats": 0,
@@ -85,6 +86,7 @@
         "pk": 2,
         "model": "addons.addon",
         "fields": {
+            "_current_version": 2,
             "dev_agreement": 1,
             "eula": null,
             "public_stats": 0,
@@ -297,6 +299,16 @@
             "version": 2,
             "datestatuschanged": null,
             "size": 169
+        }
+    },
+    {
+        "pk": 1186,
+        "model": "addons.appsupport",
+        "fields": {
+            "app": 1,
+            "addon": 1,
+            "modified": "2010-10-02 07:30:34",
+            "created": "2010-10-02 07:30:34"
         }
     }
 ]

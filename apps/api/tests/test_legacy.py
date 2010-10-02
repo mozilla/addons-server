@@ -13,7 +13,6 @@ from test_utils import TestCase
 from nose.tools import eq_
 
 import amo
-import amo.test_utils
 import api
 import api.utils
 from addons.models import Addon
@@ -34,8 +33,7 @@ def test_json_not_implemented():
 
 
 class UtilsTest(TestCase):
-
-    fixtures = ('base/addon_3615',)
+    fixtures = ['base/addon_3615']
 
     def test_dict(self):
         "Verify that we're getting dict."
@@ -89,9 +87,8 @@ class ControlCharacterTest(TestCase):
 
 
 class APITest(TestCase):
-
-    fixtures = ('base/apps', 'base/addon_3615', 'base/addon_4664_twitterbar',
-                'base/addon_5299_gcal', )
+    fixtures = ['base/apps', 'base/addon_3615', 'base/addon_4664_twitterbar',
+                'base/addon_5299_gcal']
 
     def test_api_caching(self):
         response = self.client.get('/en-US/firefox/api/1.5/addon/3615')
@@ -318,13 +315,12 @@ class APITest(TestCase):
         response = self.client.get("/en-US/firefox/api/1.2/search/foo")
         self.assertContains(response, "Could not connect to Sphinx search.",
                             status_code=503)
-
     test_sphinx_off.sphinx = True
 
 
-class ListTest(amo.test_utils.ExtraSetup, TestCase):
+class ListTest(TestCase):
     """Tests the list view with various urls."""
-    fixtures = ('base/apps', 'base/addon_3615', 'base/featured',)
+    fixtures = ['base/apps', 'base/addon_3615', 'base/featured']
 
     def test_defaults(self):
         """
@@ -423,7 +419,7 @@ class ListTest(amo.test_utils.ExtraSetup, TestCase):
 
 
 class SeamonkeyFeaturedTest(TestCase):
-    fixtures = ('base/seamonkey',)
+    fixtures = ['base/seamonkey']
 
     def test_seamonkey_wankery(self):
         """
@@ -435,10 +431,9 @@ class SeamonkeyFeaturedTest(TestCase):
 
 
 class SearchTest(SphinxTestCase):
-
-    fixtures = ('base/apps', 'base/addon_6113', 'base/addon_40',
+    fixtures = ['base/apps', 'base/addon_6113', 'base/addon_40',
                 'base/addon_3615', 'base/addon_6704_grapple',
-                'base/addon_4664_twitterbar',)
+                'base/addon_4664_twitterbar']
 
     no_results = """<searchresults total_results="0">"""
 
@@ -506,12 +501,13 @@ class SearchTest(SphinxTestCase):
 
     def test_total_results(self):
         """
-        The search for firebug should result in 2 total addons, even though
-        we limit (and therefore show) only 1.
+        The search for firefox should result in 2 total addons, even though we
+        limit (and therefore show) only 1.
         """
         response = self.client.get(
-                "/en-US/firefox/api/1.2/search/a/all/1")
-        self.assertContains(response, """<searchresults total_results="3">""")
+                "/en-US/firefox/api/1.2/search/firefox/all/1")
+        self.assertContains(response, """<searchresults total_results="2">""")
+        self.assertContains(response, "</addon>", 1)
 
     def test_sandbox_search(self):
         """

@@ -69,6 +69,7 @@
         "fields": {
             "dev_agreement": 0,
             "eula": null,
+            "_current_version": 66081,
             "last_updated": "2009-04-18 10:34:12",
             "view_source": 0,
             "enable_thankyou": 0,
@@ -139,6 +140,16 @@
             "version": 66081,
             "size": 5,
             "datestatuschanged": "2009-04-18 10:34:12"
+        }
+    },
+    {
+        "pk": 1205,
+        "model": "addons.appsupport",
+        "fields": {
+            "app": 1,
+            "addon": 11399,
+            "modified": "2010-10-04 13:03:48",
+            "created": "2010-10-04 13:03:48"
         }
     }
 ]

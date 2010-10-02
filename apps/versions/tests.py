@@ -4,7 +4,6 @@ import mock
 import test_utils
 
 import amo
-import amo.test_utils
 from amo.urlresolvers import reverse
 from addons.models import Addon
 from versions import views
@@ -31,8 +30,6 @@ def test_dict_from_int():
 
 
 class TestVersion(test_utils.TestCase):
-    """Test methods of the version class."""
-
     fixtures = ['base/addon_3615']
 
     def test_compatible_apps(self):
@@ -134,7 +131,7 @@ class TestLicense(test_utils.TestCase):
                 assert lic.text, "No license text for %s" % licensetype
 
 
-class TestViews(amo.test_utils.ExtraSetup, test_utils.TestCase):
+class TestViews(test_utils.TestCase):
     fixtures = ['addons/eula+contrib-addon', 'base/apps']
 
     def setUp(self):
@@ -172,8 +169,8 @@ class TestViews(amo.test_utils.ExtraSetup, test_utils.TestCase):
         eq_(doc('.version').attr('id'), 'version-%s' % version)
 
 
-class TestFeeds(amo.test_utils.ExtraSetup, test_utils.TestCase):
-    fixtures = ['base/apps', 'addons/versions']
+class TestFeeds(test_utils.TestCase):
+    fixtures = ['addons/eula+contrib-addon', 'base/apps']
 
     def test_feed_elements_present(self):
         """specific elements are present and reasonably well formed"""

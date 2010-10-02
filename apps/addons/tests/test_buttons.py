@@ -5,7 +5,6 @@ from pyquery import PyQuery
 import test_utils
 
 import amo
-import amo.test_utils
 from amo.urlresolvers import reverse
 from addons.buttons import install_button
 
@@ -399,7 +398,6 @@ class TestButtonHtml(ButtonTest):
 
     def test_multi_platform(self):
         self.version.all_files = self.platform_files
-        names = [p.name for p in self.platforms]
         doc = self.render()
         eq_(doc('.button').length, 2)
 
@@ -441,7 +439,7 @@ class TestButtonHtml(ButtonTest):
         eq_(doc('.contrib .os').text(), '')
 
 
-class TestViews(amo.test_utils.ExtraSetup, test_utils.TestCase):
+class TestViews(test_utils.TestCase):
     fixtures = ['addons/eula+contrib-addon', 'base/apps']
 
     def test_eula_with_contrib_roadblock(self):

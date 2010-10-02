@@ -9,60 +9,15 @@
         "pk": 4664
     },
     {
-        "pk": 1,
-        "model": "applications.application",
-        "fields": {
-            "guid": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}",
-            "modified": "2008-11-03 15:34:59",
-            "created": "2007-03-05 13:09:26"
-        }
-    },
-    {
-        "pk": 523901,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "I'm thinking of adding more features that would be useful for the times when you actually do visit Twitter.com (like to read your friends' messages.)  Maybe better trending topics in the sidebar, adding a retweet button, or possibly integrated image upload.",
-            "created": "2009-07-16 12:40:03",
-            "locale": "en-US",
-            "modified": null,
-            "id": 482382,
-            "localized_string_clean": null
-        }
-    },
-    {
-        "pk": 523900,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "I wanted a way to quickly and easily update Twitter without visiting the site, and TwitterBar had been abandoned by its original author, so I took over development and started fixing it up and adding features.",
-            "created": "2009-07-16 12:40:02",
-            "locale": "en-US",
-            "modified": null,
-            "id": 482381,
-            "localized_string_clean": null
-        }
-    },
-    {
-        "pk": 65260,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "Post to Twitter from your address bar.",
-            "created": "2007-03-17 05:29:25",
-            "locale": "en-US",
-            "modified": "2010-04-14 08:24:14",
-            "id": 38754,
-            "localized_string_clean": "Post to Twitter from your address bar."
-        }
-    },
-    {
         "pk": 65220,
         "model": "translations.translation",
         "fields": {
-            "localized_string": "TwitterBar allows you to post to Twitter from Firefox's address bar. A small Twitter icon sits to the right of your address bar; clicking on it will post your tweet, and you can hover your mouse over it to see how many characters you have left.\r\n\r\nYou can also post by typing \"--post\" at the end of your tweet.  Clicking the Twitter icon when visiting a webpage will send a tweet containing the URL of the webpage you are currently viewing.\r\n\r\nAs of version 2.9, you can post to multiple Twitter accounts.  To post to a specific account, just type --@account_name at the end of your tweet (but before typing --post). e.g., \"Tweeting from my personal account. --@jimmy2424 --post\".  (If you have authorized more than one account but don't specify which one to post to, you'll be asked to select from a list.)\r\n \r\nTo add a new account, just type --account in the URL bar. You'll be prompted to sign into Twitter with the new account.\r\n\r\nYou can manage your accounts from the options dialog. Just type --options in the URL bar.",
+            "localized_string": "TwitterBar allows you to post to Twitter from Firefox",
             "created": "2007-03-17 05:29:25",
             "locale": "en-US",
             "modified": "2010-04-14 08:24:16",
             "id": 38750,
-            "localized_string_clean": "TwitterBar allows you to post to Twitter from Firefox's address bar. A small Twitter icon sits to the right of your address bar; clicking on it will post your tweet, and you can hover your mouse over it to see how many characters you have left.\n\nYou can also post by typing \"--post\" at the end of your tweet.  Clicking the Twitter icon when visiting a webpage will send a tweet containing the URL of the webpage you are currently viewing.\n\nAs of version 2.9, you can post to multiple Twitter accounts.  To post to a specific account, just type --@account_name at the end of your tweet (but before typing --post). e.g., \"Tweeting from my personal account. --@jimmy2424 --post\".  (If you have authorized more than one account but don't specify which one to post to, you'll be asked to select from a list.)\n \nTo add a new account, just type --account in the URL bar. You'll be prompted to sign into Twitter with the new account.\n\nYou can manage your accounts from the options dialog. Just type --options in the URL bar."
+            "localized_string_clean": "TwitterBar allows you to post to Twitter from Firefox"
         }
     },
     {
@@ -140,6 +95,7 @@
         "fields": {
             "dev_agreement": true,
             "eula": null,
+            "_current_version": 104904,
             "last_updated": "2010-04-26 17:09:43",
             "view_source": true,
             "enable_thankyou": false,
@@ -153,7 +109,6 @@
             "description": 38750,
             "locale_disambiguation": null,
             "binary": false,
-            "the_future": 482382,
             "weekly_downloads": 13849,
             "support_url": 130757,
             "paypal_id": "cfinke+premier@gmail.com",
@@ -183,11 +138,9 @@
             "icon_type": "image/png",
             "annoying": 2,
             "modified": "2010-05-24 17:21:28",
-            "summary": 38754,
             "suggested_amount": "5.00",
             "site_specific": true,
             "total_reviews": 131,
-            "the_reason": 482381,
             "nomination_date": "2009-03-23 12:20:04"
         }
     },
@@ -391,6 +344,15 @@
         },
         "model": "addons.preview",
         "pk": 20397
+    },
+    {
+        "pk": 1214,
+        "model": "addons.appsupport",
+        "fields": {
+            "app": 1,
+            "addon": 4664,
+            "modified": "2010-10-04 13:10:38",
+            "created": "2010-10-04 13:10:38"
+        }
     }
-
 ]

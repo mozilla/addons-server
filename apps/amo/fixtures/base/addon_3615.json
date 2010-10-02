@@ -47,36 +47,34 @@
         "pk": 29035,
         "model": "translations.translation",
         "fields": {
-            "localized_string": "Thanks everyone for the feedback and comments (keep them coming!). Please use our Yahoo discussion group listed in the description, so that we can respond to you. \r\n\r\nThanks for the input and giving it a try.\r\n\r\nIf you'd like to help us test new versions of our extension, check the files section of our group: http://tech.groups.yahoo.com/group/delicious-firefox-extension/files/",
+            "localized_string": "Thanks everyone",
             "created": "2007-03-05 13:10:42",
             "locale": "en-US",
             "modified": "2009-08-04 05:31:11",
-            "id": 15003,
-            "localized_string_clean": "Thanks everyone for the feedback and comments (keep them coming!). Please use our Yahoo discussion group listed in the description, so that we can respond to you. \n\nThanks for the input and giving it a try.\n\nIf you'd like to help us test new versions of our extension, check the files section of our group: <a href=\"http://outgoing.mozilla.org/v1/11cc225384a1c603d7bbac6dce2bbf374df721b5/http%3A//tech.groups.yahoo.com/group/delicious-firefox-extension/files/\">http://tech.groups.yahoo.com/group/delicious-firefox-extension/files/</a>"
+            "id": 15003
         }
     },
     {
         "pk": 29036,
         "model": "translations.translation",
         "fields": {
-            "localized_string": "Delicious Bookmarks is the official Firefox add-on for Delicious, the world's leading social bookmarking service (formerly del.icio.us).  It integrates your bookmarks and tags with Firefox and keeps them in sync for easy, convenient access.",
+            "localized_string": "Delicious Bookmarks is the official",
             "created": "2007-03-05 13:10:42",
             "locale": "en-US",
             "modified": "2009-03-26 07:41:10",
-            "id": 15004,
-            "localized_string_clean": "Delicious Bookmarks is the official Firefox add-on for Delicious, the world's leading social bookmarking service (formerly del.icio.us).  It integrates your bookmarks and tags with Firefox and keeps them in sync for easy, convenient access."
+            "id": 15004
         }
     },
     {
         "pk": 29034,
         "model": "translations.translation",
         "fields": {
-            "localized_string": "This extension integrates your browser with Delicious (http://delicious.com), the leading social bookmarking service on the Web.  It does this by augmenting the bookmarking functionality in Firefox with an enhanced experience that offers the following advantages:\r\n\r\n- Search and browse your Delicious bookmarks\r\n- Keep up to date on your Network and Links For You\r\n- Access your bookmarks from any computer at any time\r\n- Keep your bookmarks organized using tags\r\n- Share your bookmarks with friends or anyone on the Web\r\n- Import your existing Firefox bookmarks\r\n\r\nWe've also included a Classic Mode for those who want the basic Delicious buttons without any sync or search features.  This option is available when you install the add-on, and can be accessed later from the Delicious menu in Firefox.\r\n\r\nFor a product tour and more details about this extension, please visit:\r\nhttp://delicious.com/help/quicktour/firefox\r\n\r\nFor product feedback, commentary & enhancement requests, please post to our discussion group, found here:\r\nhttp://tech.groups.yahoo.com/group/delicious-firefox-extension/\r\n\r\nor try the Delicious support forums:\r\n\r\nhttp://support.delicious.com/\r\n",
+            "localized_string": "This extension integrates your browser with Delicious (http://delicious.com), the leading social bookmarking service on the Web.",
             "created": "2007-03-05 13:10:42",
             "locale": "en-US",
             "modified": "2009-04-29 11:20:57",
             "id": 15002,
-            "localized_string_clean": "This extension integrates your browser with Delicious (<a href=\"http://outgoing.mozilla.org/v1/a7340d008b54ff0918a3557cf5d67290465ab799/http%3A//delicious.com\">http://delicious.com</a>), the leading social bookmarking service on the Web.  It does this by augmenting the bookmarking functionality in Firefox with an enhanced experience that offers the following advantages:\n\n- Search and browse your Delicious bookmarks\n- Keep up to date on your Network and Links For You\n- Access your bookmarks from any computer at any time\n- Keep your bookmarks organized using tags\n- Share your bookmarks with friends or anyone on the Web\n- Import your existing Firefox bookmarks\n\nWe've also included a Classic Mode for those who want the basic Delicious buttons without any sync or search features.  This option is available when you install the add-on, and can be accessed later from the Delicious menu in Firefox.\n\nFor a product tour and more details about this extension, please visit:\n<a href=\"http://outgoing.mozilla.org/v1/a3cf93f00bf5dca52074b4bf0a82641e5fe6279b/http%3A//delicious.com/help/quicktour/firefox\">http://delicious.com/help/quicktour/firefox</a>\n\nFor product feedback, commentary &amp; enhancement requests, please post to our discussion group, found here:\n<a href=\"http://outgoing.mozilla.org/v1/08b600e7fa4c8ea6ffac340408e7f9fac86ad631/http%3A//tech.groups.yahoo.com/group/delicious-firefox-extension/\">http://tech.groups.yahoo.com/group/delicious-firefox-extension/</a>\n\nor try the Delicious support forums:\n\n<a href=\"http://outgoing.mozilla.org/v1/9e35223eb87a45ca46c57a36bb8af20f14227e30/http%3A//support.delicious.com/\">http://support.delicious.com/</a>\n"
+            "localized_string_clean": "This extension integrates your browser with Delicious (<a href=\"http://outgoing.mozilla.org/v1/a7340d008b54ff0918a3557cf5d67290465ab799/http%3A//delicious.com\">http://delicious.com</a>), the leading social bookmarking service on the Web."
         }
     },
     {
@@ -131,12 +129,11 @@
         "pk": 697692,
         "model": "translations.translation",
         "fields": {
-            "localized_string": "Fix for an important bug, non-ascii content was not getting saved properly.",
+            "localized_string": "Fix for an important bug",
             "created": "2009-10-21 10:02:38",
             "locale": "en-US",
             "modified": null,
-            "id": 650353,
-            "localized_string_clean": "Fix for an important bug, non-ascii content was not getting saved properly."
+            "id": 650353
         }
     },
     {
@@ -152,6 +149,7 @@
         "pk": 3615,
         "model": "addons.addon",
         "fields": {
+            "_current_version": 81551,
             "dev_agreement": true,
             "eula": 42021,
             "last_updated": "2009-10-21 09:58:40",
@@ -361,6 +359,16 @@
             "category": 22,
             "feature": 1,
             "addon": 3615
+        }
+    },
+    {
+        "pk": 1028,
+        "model": "addons.appsupport",
+        "fields": {
+            "app": 1,
+            "addon": 3615,
+            "modified": "2010-10-01 21:37:07",
+            "created": "2010-10-01 21:37:07"
         }
     }
 ]

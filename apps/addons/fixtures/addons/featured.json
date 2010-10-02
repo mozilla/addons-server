@@ -3,6 +3,8 @@
         "pk": 1001,
         "model": "addons.addon",
         "fields": {
+            "_current_version": 1001,
+            "last_updated": "2007-04-04 12:30:11",
             "dev_agreement": 1,
             "eula": null,
             "view_source": 0,
@@ -134,6 +136,7 @@
         "pk": 1003,
         "model": "addons.addon",
         "fields": {
+            "_current_version": 1003,
             "dev_agreement": 1,
             "eula": null,
             "view_source": 1,

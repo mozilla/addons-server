@@ -11,14 +11,12 @@ from manage import settings
 from mock import patch
 from nose.tools import eq_
 
-import amo.test_utils
 from amo.helpers import urlparams
 from amo.urlresolvers import reverse
 from users.models import UserProfile
 
 
-class UserFormBase(amo.test_utils.ExtraSetup, test_utils.TestCase):
-
+class UserFormBase(test_utils.TestCase):
     fixtures = ['users/test_backends']
 
     def setUp(self):
