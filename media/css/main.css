@@ -1231,10 +1231,6 @@ form.favorite {
     text-align: right;
     clear: none;
 }
-#footer .secondary img {
-    max-width: 190px;
-    width: 100%;
-}
 #footer p {
     margin-bottom: 0;
     margin-left: 60px;
