@@ -123,7 +123,7 @@ class AddonsHandler(BaseHandler):
 
 
 class VersionsHandler(BaseHandler):
-    allowed_methods = ('POST', 'PUT', )
+    allowed_methods = ('POST', 'PUT', 'DELETE',)
     model = Version
     exclude = ('approvalnotes', )
 
@@ -163,3 +163,9 @@ class VersionsHandler(BaseHandler):
 
         v = new_file_form.update_version(license)
         return v
+
+    @check_addon_and_version
+    @throttle(10, 60 * 60)  # allow 10 deletes an hour
+    def delete(self, request, addon, version):
+        version.delete()
+        return rc.DELETED

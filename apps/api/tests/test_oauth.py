@@ -82,6 +82,17 @@ class OAuthClient(Client):
         return super(OAuthClient, self).get(req.to_url(), HTTP_HOST='api',
                                             **req)
 
+    def delete(self, url, consumer=None, token=None, callback=False,
+               verifier=None):
+        url = get_absolute_url(url)
+        req = oauth.Request(method='DELETE', url=url,
+                            parameters=_get_args(consumer, callback=callback,
+                                                 verifier=verifier))
+        signature_method = oauth.SignatureMethod_HMAC_SHA1()
+        req.sign_request(signature_method, consumer, token)
+        return super(OAuthClient, self).delete(req.to_url(), HTTP_HOST='api',
+                                               **req)
+
     def post(self, url, consumer=None, token=None, callback=False,
              verifier=None, data={}):
         url = get_absolute_url(url)
@@ -537,3 +548,14 @@ class TestAddon(BaseOauth):
         r = client.put(('api.addon', id), self.accepted_consumer, self.token,
                        data=data)
         eq_(r.status_code, 401, r.content)
+
+    def test_delete_version(self):
+        data = self.create_addon()
+        id = data['id']
+
+        a = Addon.objects.get(pk=id)
+        v = a.versions.get()
+        r = client.delete(('api.version', id, v.id), self.accepted_consumer,
+                          self.token)
+        eq_(r.status_code, 204, r.content)
+        eq_(a.versions.count(), 0)
