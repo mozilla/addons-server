@@ -410,10 +410,10 @@ $('#addon-select').click(function() {
 
     if (id && name && icon) {
 
-        var tr = _.template('<tr>' +
+        var tr = template('<tr>' +
             '<td class="item">' +
-            '<input name="addon" value="{{ id }}" type="hidden">' +
-            '<img src="{{ icon }}"><h3>{{ name }}</h3>' +
+            '<input name="addon" value="{id}" type="hidden">' +
+            '<img src="{icon}"><h3>{name}</h3>' +
             '<p class="comments">' +
             '<textarea name="addon_comment"></textarea>' +
             '</p></td>' +
@@ -443,11 +443,11 @@ table.delegate(".remove", "click", function() {
 
 if ($('body.collections-contributors')) {
 
-    var user_row = _.template('<tr>' +
+    var user_row = template('<tr>' +
             '<td>' +
-            '<input name="contributor" value="{{ id }}" type="hidden">' +
-            '{{ name }}' +
-            '</td><td>{{ email }}</td>' +
+            '<input name="contributor" value="{id}" type="hidden">' +
+            '{name}' +
+            '</td><td>{email}</td>' +
             '<td class="contributor">Contributor</td>' +
             '<td class="remove"><a title="' + gettext("Remove this user as a contributor") + '" class="remove">' + gettext("Remove") + '</a></td>' +
             '</tr>'

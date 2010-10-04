@@ -45,11 +45,13 @@ $(document).ready(function(){
  * >>> format('{x}', {x: 1})
  * "1"
  */
-var format = function(s, args) {
+function format(s, args) {
     var re = /\{([^}]+)\}/g;
     return s.replace(re, function(_, match){ return args[match]; });
 }
-
+function template(s) {
+    return function(args) { return format(s, args); };
+}
 
 /* Fake the placeholder attribute since Firefox doesn't support it. */
 jQuery.fn.placeholder = function(new_value) {
@@ -106,14 +108,6 @@ var escape_ = function(s){
 
 jQuery.fn.safeText = function() {
     return escape_(this.text());
-};
-
-
-/** Underscore.js extensions **/
-_.templateSettings = {
-    start: '{{',
-    end: '}}',
-    interpolate: /\{\{([^}]+)\}\}/g
 };
 
 

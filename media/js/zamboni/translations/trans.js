@@ -1,16 +1,16 @@
 (function($) {
 
 /* These match the widgets generated in Python. */
-var fragment = 'trans_{{ name }}_{{ lang }}';
-var tab = _.template('<li><a href="#' + fragment + '" ' +
-                            'title="{{ language }}">{{ lang }}</a></li>');
-var trans = _.template('<div class="transbox">' +
+var fragment = 'trans_{name}_{lang}';
+var tab = template('<li><a href="#' + fragment + '" ' +
+                            'title="{language}">{lang}</a></li>');
+var trans = template('<div class="transbox">' +
                        '<textarea id="' + fragment + '" '+
-                                 'data-locale="{{ lang }}" ' +
-                                 'name="{{ name }}_{{ lang }}">' +
-                       '{{ content }}</textarea></div>');
-var remove = _.template('<input type="hidden" ' +
-                               'name="{{ name }}_{{ lang }}_delete">')
+                                 'data-locale="{lang}" ' +
+                                 'name="{name}_{lang}">' +
+                       '{content}</textarea></div>');
+var remove = template('<input type="hidden" ' +
+                               'name="{name}_{lang}_delete">')
 
 
 /* Add a new locale to a translation box. */
@@ -43,7 +43,7 @@ var addLocale = function(transbox) {
         transbox.find('.transbox:last').after(trans(d));
 
         // Switch to textarea.
-        transbox[0].tab.reset().select('#' + _.template(fragment, d));
+        transbox[0].tab.reset().select('#' + format(fragment, d));
 
         // Find a non-disabled locale.
         updateLocaleSelection();
