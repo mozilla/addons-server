@@ -15,56 +15,56 @@ def report_menu(context, addon, report):
         {
             'name': 'overview',
             'url': '/',
-            'title': 'Overview',
+            'title': _('Overview'),
         },
         {
             'name': 'downloads',
             'url': '/downloads/',
-            'title': 'Downloads',
+            'title': _('Downloads'),
             'children': [
                 {
                     'name': 'sources',
                     'url': '/downloads/sources/',
-                    'title': 'by Download Source',
+                    'title': _('by Download Source'),
                 },
             ]
         },
         {
             'name': 'usage',
             'url': '/usage/',
-            'title': 'Daily Users',
+            'title': _('Daily Users'),
             'children': [
                 {
                     'name': 'versions',
                     'url': '/usage/versions/',
-                    'title': 'by Add-on Version'
+                    'title': _('by Add-on Version')
                 },
                 {
                     'name': 'apps',
                     'url': '/usage/applications/',
-                    'title': 'by Application'
+                    'title': _('by Application')
                 },
                 {
                     'name': 'locales',
                     'url': '/usage/languages/',
-                    'title': 'by Language'
+                    'title': _('by Language')
                 },
                 {
                     'name': 'os',
                     'url': '/usage/os/',
-                    'title': 'by Operating System'
+                    'title': _('by Operating System')
                 },
                 {
                     'name': 'status',
                     'url': '/usage/status/',
-                    'title': 'by Add-on Status'
+                    'title': _('by Add-on Status')
                 },
             ]
         },
         {
             'name': 'contributions',
             'url': '/contributions/',
-            'title': 'Contributions'
+            'title': _('Contributions')
         },
     ]
 

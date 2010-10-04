@@ -657,7 +657,7 @@ $(document).ready(function () {
         }
     }
 
-    LoadBar.on("Loading the latest data&hellip;");
+    LoadBar.on(gettext("Loading the latest data&hellip;"));
     //Get initial dataset
     if (datastore[page_state.report_name] && datastore[page_state.report_name].maxdate) {
         var fetchStart = datastore[page_state.report_name].maxdate - millis("1 day");

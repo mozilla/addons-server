@@ -25,20 +25,20 @@
 
   <div class="criteria range">
     <ul>
-      <li>For Last:</li>
+      <li>{{ _('For Last:') }}</li>
       <li data-range="7 days"
           {% if range=='7' %}class="selected"{% endif %}>
-          <a href="#">7 Days</a></li>
+          <a href="#">{{ _('7 Days') }}</a></li>
       <li data-range="30 days"
           {% if range=='30' %}class="selected"{% endif %}>
-          <a href="#">30 Days</a></li>
+          <a href="#">{{ _('30 Days') }}</a></li>
       <li data-range="90 days"
           {% if range=='90' %}class="selected"{% endif %}>
-          <a href="#">90 Days</a></li>
+          <a href="#">{{ _('90 Days') }}</a></li>
       <li class="divider"></li>
       <li data-range="custom"
           {% if range=='custom' %}class="selected"{% endif %}>
-          <a href="#">Custom</a></li>
+          <a href="#">{{ _('Custom') }}</a></li>
     </ul>
   </div>
 
@@ -46,19 +46,21 @@
   <h2 class="addon"{{ addon.name|locale_html }}>
     <img src="{{ addon.icon_url }}" class="icon"/>
     <span>
-      Statistics for {{ addon.name }}
+      {# L10n: {0} is an add-on name #}
+      {{ _('Statistics for {0}')|f(addon.name) }}
     </span>
   </h2>
-  <h4 class="author">{{ _('by') }} {{ users_list(addon.listed_authors) }}</h4>
+  {# L10n: {0} is an add-on author #}
+  <h4 class="author">{{ _('by {0}')|f(users_list(addon.listed_authors))|safe }}</h4>
   </hgroup>
 {% endblock %}
 
 {% block content %}
-  <div id="lm" class="loadmessage"><span>Loading the latest data&hellip;</span></div>
+  <div id="lm" class="loadmessage"><span>{{ _('Loading the latest data&hellip;') }}</span></div>
   <div class="secondary">
     {{ report_menu(addon, report) }}
     <aside class="highlight">
-      Notable Stats and tips will go here.
+      {{ _('Notable Stats and tips will go here.') }}
       <pre id="dbgout"></pre>
     </aside>
   </div>
@@ -77,17 +79,17 @@
     {% if true %}
       <div class="custom criteria">
         <form id="date-range-form">
-          <label for="date-range-start">From</label>
+          <label for="date-range-start">{{ _('From') }}</label>
           <input type="date" id="date-range-start" />
-          <label for="date-range-end">To</label>
+          <label for="date-range-end">{{ _('To') }}</label>
           <input type="date" id="date-range-end" />
-          <label for="date-range-grouping">grouped by</label>
+          <label for="date-range-grouping">{{ _('grouped by') }}</label>
           <select id="date-range-grouping">
-            <option >day</option>
-            <option >month</option>
-            <option >year</option>
+            <option >{{ _('day') }}</option>
+            <option >{{ _('month') }}</option>
+            <option >{{ _('year') }}</option>
           </select>
-          <button id="date-range-submit" type="submit">Update</button>
+          <button id="date-range-submit" type="submit">{{ _('Update') }}</button>
         </form>
       </div>
     {% endif %}

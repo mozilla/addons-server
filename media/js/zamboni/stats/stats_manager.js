@@ -398,7 +398,7 @@
                 if (needed < 0) {
                     callback.call(this);
                 } else {
-                    if (!quiet) LoadBar.on("Loading&hellip;");
+                    if (!quiet) LoadBar.on(gettext("Loading&hellip;"));
                 }
             }
 

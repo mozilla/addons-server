@@ -1,6 +1,6 @@
 {% set show_contributions = false %}
 <div class="secondary-item-list report-menu">
-  <h3>Add-On Statistics</h3>
+  <h3>{{ _('Add-On Statistics') }}</h3>
   <ul>
     {% for item in report_tree %}
       {% if item.name != 'contributions' or show_contributions %}
