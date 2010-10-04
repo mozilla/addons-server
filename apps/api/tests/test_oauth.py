@@ -22,11 +22,13 @@ With headers:
 import json
 import os
 import time
+import urllib
 import urlparse
 
 from django import forms
 from django.conf import settings
-from django.test.client import Client
+from django.test.client import (encode_multipart, Client, FakePayload,
+                                BOUNDARY, MULTIPART_CONTENT)
 
 import oauth2 as oauth
 from mock import Mock, patch
@@ -37,7 +39,7 @@ from piston.models import Consumer, Token
 from amo.urlresolvers import reverse
 from addons.models import Addon
 from translations.models import Translation
-from versions.models import AppVersion
+from versions.models import AppVersion, Version
 
 
 def _get_args(consumer, token=None, callback=False, verifier=None):
@@ -48,9 +50,6 @@ def _get_args(consumer, token=None, callback=False, verifier=None):
             oauth_timestamp=int(time.time()),
             oauth_version='1.0',
             )
-
-    if token:
-        d['oauth_token'] = token
 
     if callback:
         d['oauth_callback'] = 'http://testserver/foo'
@@ -94,15 +93,35 @@ class OAuthClient(Client):
                                              data=data, **req)
 
     def put(self, url, consumer=None, token=None, callback=False,
-            verifier=None, data={}):
+            verifier=None, data={}, content_type=MULTIPART_CONTENT, **kwargs):
+        """
+        Send a resource to the server using PUT.
+        """
         url = get_absolute_url(url)
         params = _get_args(consumer, callback=callback, verifier=verifier)
-        params.update(data)
         req = oauth.Request(method='PUT', url=url, parameters=params)
+
         signature_method = oauth.SignatureMethod_HMAC_SHA1()
         req.sign_request(signature_method, consumer, token)
-        return super(OAuthClient, self).put(req.to_url(), HTTP_HOST='api',
-                                            data=req, **req)
+
+        post_data = encode_multipart(BOUNDARY, data)
+
+        parsed = urlparse.urlparse(url)
+        query_string = urllib.urlencode(req, doseq=True)
+        r = {
+            'CONTENT_LENGTH': len(post_data),
+            'CONTENT_TYPE':   content_type,
+            'PATH_INFO':      urllib.unquote(parsed[2]),
+            'QUERY_STRING':   query_string,
+            'REQUEST_METHOD': 'PUT',
+            'wsgi.input':     FakePayload(post_data),
+            'HTTP_HOST':      'api',
+        }
+        r.update(req)
+
+        response = self.request(**r)
+        return response
+
 client = OAuthClient()
 token_keys = ('oauth_token_secret', 'oauth_token',)
 
@@ -251,7 +270,6 @@ class TestAddon(BaseOauth):
                 xpi=open(os.path.join(settings.ROOT, path)),
                 )
 
-
     def make_create_request(self, data):
         return client.post('api.addons', self.accepted_consumer, self.token,
                            data=data)
@@ -325,6 +343,20 @@ class TestAddon(BaseOauth):
                 "'%s' didn't match: got '%s' instead of '%s'"
                 % (field, getattr(a, field), expected))
 
+    @patch('api.handlers.AddonForm.is_valid')
+    def test_update_fail(self, is_valid):
+        data = self.create_addon()
+        id = data['id']
+        is_valid.return_value = False
+        r = client.put(('api.addon', id), self.accepted_consumer, self.token,
+                       data=data)
+        eq_(r.status_code, 400, r.content)
+
+    def test_update_nonexistant(self):
+        r = client.put(('api.addon', 0), self.accepted_consumer, self.token,
+                       data={})
+        eq_(r.status_code, 410, r.content)
+
     @patch('api.handlers.XPIForm.clean_xpi')
     def test_xpi_failure(self, f):
         f.side_effect = forms.ValidationError('F')
@@ -385,7 +417,7 @@ class TestAddon(BaseOauth):
         eq_(r.content, 'Bad Request: Add-on did not validate: '
             'Duplicate GUID found.')
 
-    def test_new_version(self):
+    def test_create_version(self):
         # Create an addon and let's use this for the new version.
         data = self.create_addon()
         id = data['id']
@@ -404,3 +436,104 @@ class TestAddon(BaseOauth):
         eq_(v.version, '0.2')
         # validate any new version data
         eq_(v.files.get().amo_platform.shortname, 'windows')
+
+    def test_create_version_bad_license(self):
+        data = self.create_addon()
+        id = data['id']
+        data = self.version_data.copy()
+        data['license_type'] = 'fu'
+        r = client.post(('api.versions', id,), self.accepted_consumer,
+                        self.token, data=data)
+
+        eq_(r.status_code, 400, r.content)
+
+    def test_update_version_bad_license(self):
+        data = self.create_addon()
+        id = data['id']
+        a = Addon.objects.get(pk=id)
+        v = a.versions.get()
+        path = 'apps/api/fixtures/api/helloworld-0.2.xpi'
+        data = dict(
+                release_notes='fukyeah',
+                license_type='FFFF',
+                platform='windows',
+                xpi=open(os.path.join(settings.ROOT, path)),
+                )
+        r = client.put(('api.version', id, v.id), self.accepted_consumer,
+                       self.token, data=data, content_type=MULTIPART_CONTENT)
+        eq_(r.status_code, 200, r.content)
+        data = json.loads(r.content)
+        id = data['id']
+        v = Version.objects.get(pk=id)
+        eq_(str(v.license.text), 'This is FREE!')
+
+    def test_update_version(self):
+        # Create an addon
+        data = self.create_addon()
+        id = data['id']
+
+        # verify version
+        a = Addon.objects.get(pk=id)
+        v = a.versions.get()
+
+        eq_(v.version, '0.1')
+
+        path = 'apps/api/fixtures/api/helloworld-0.2.xpi'
+        data = dict(
+                release_notes='fukyeah',
+                license_type='bsd',
+                platform='windows',
+                xpi=open(os.path.join(settings.ROOT, path)),
+                )
+
+        # upload new version
+        r = client.put(('api.version', id, v.id), self.accepted_consumer,
+                       self.token, data=data, content_type=MULTIPART_CONTENT)
+        eq_(r.status_code, 200, r.content[:1000])
+
+        # verify data
+        v = a.versions.get()
+        eq_(v.version, '0.2')
+        eq_(str(v.releasenotes), 'fukyeah')
+
+    def test_update_version_bad_xpi(self):
+        data = self.create_addon()
+        id = data['id']
+
+        # verify version
+        a = Addon.objects.get(pk=id)
+        v = a.versions.get()
+
+        eq_(v.version, '0.1')
+
+        data = dict(
+                release_notes='fukyeah',
+                license_type='bsd',
+                platform='windows',
+                )
+
+        # upload new version
+        r = client.put(('api.version', id, v.id), self.accepted_consumer,
+                       self.token, data=data, content_type=MULTIPART_CONTENT)
+        eq_(r.status_code, 400)
+
+    def test_update_version_bad_id(self):
+        r = client.put(('api.version', 0, 0), self.accepted_consumer,
+                       self.token, data={}, content_type=MULTIPART_CONTENT)
+        eq_(r.status_code, 410, r.content)
+
+    @patch('access.acl.check_ownership')
+    def test_not_my_addon(self, acl):
+        data = self.create_addon()
+        id = data['id']
+        a = Addon.objects.get(pk=id)
+        v = a.versions.get()
+        acl.return_value = False
+
+        r = client.put(('api.version', id, v.id), self.accepted_consumer,
+                       self.token, data={}, content_type=MULTIPART_CONTENT)
+        eq_(r.status_code, 401, r.content)
+
+        r = client.put(('api.addon', id), self.accepted_consumer, self.token,
+                       data=data)
+        eq_(r.status_code, 401, r.content)

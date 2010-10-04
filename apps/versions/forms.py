@@ -138,11 +138,16 @@ class XPIForm(happyforms.Form):
     platform = forms.ChoiceField(
                 choices=[(p.shortname, p.name) for p in amo.PLATFORMS.values()
                          if p != amo.PLATFORM_ANY], required=False,)
-
+    release_notes = forms.CharField(required=False)
     xpi = forms.FileField(required=True)
 
-    def __init__(self, data, files, addon=None):
+    def __init__(self, data, files, addon=None, version=None):
         self.addon = addon
+
+        if version:
+            self.version = version
+            self.addon = version.addon
+
         super(XPIForm, self).__init__(data, files)
 
     def clean_platform(self):
@@ -194,16 +199,32 @@ class XPIForm(happyforms.Form):
         f.save()
         return f
 
+    def _save_apps(self, version):
+        # clear old app versions
+        version.apps.all().delete()
+        apps = self.cleaned_data['apps']
+
+        for app in apps:
+            ApplicationsVersions(version=version, min=app.min, max=app.max,
+                                 application_id=app.id).save()
+
     def create_version(self, license=None):
         data = self.cleaned_data
         v = Version(addon=self.addon, license=license,
-                    version=data['version'])
+                    version=data['version'],
+                    releasenotes=data['release_notes'])
         v.save()
-        apps = data['apps']
-        for app in apps:
-            av = ApplicationsVersions(version=v, min=app.min, max=app.max,
-                                      application_id=app.id)
-            av.save()
+        self._save_apps(v)
+        self._save_file(v)
+        return v
 
+    def update_version(self, license=None):
+        data = self.cleaned_data
+        v = self.version
+        v.license = license
+        v.version = data['version']
+        v.releasenotes = data['release_notes']
+        v.save()
+        self._save_apps(v)
         self._save_file(v)
         return v
