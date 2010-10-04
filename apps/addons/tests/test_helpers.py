@@ -63,7 +63,13 @@ class TestHelpers(amo.test_utils.ExtraSetup, test_utils.TestCase):
     def test_contribution_box(self):
         a = Addon.objects.get(pk=4664)
         a.suggested_amount = '12'
-        s = contribution({'LANG': 'en-us', 'APP': amo.FIREFOX}, a)
+
+        settings = Mock()
+        settings.MAX_CONTRIBUTION = 5
+
+        c = {'LANG': 'en-us', 'APP': amo.FIREFOX, 'settings': settings}
+
+        s = contribution(c, a)
         doc = PyQuery(s)
         # make sure input boxes are rendered correctly (bug 555867)
         assert doc('input[name=onetime-amount]').length == 1
