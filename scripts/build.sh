@@ -4,13 +4,15 @@
 cd $WORKSPACE
 VENV=$WORKSPACE/venv
 
-echo "Starting build on executor $EXECUTOR_NUMBER..."
+echo "Starting build on executor $EXECUTOR_NUMBER..." `date`
 
 if [ -z $1 ]; then
     echo "Warning: You should provide a unique name for this job to prevent database collisions."
     echo "Usage: ./build.sh <name>"
     echo "Continuing, but don't say you weren't warned."
 fi
+
+echo "Setup..." `date`
 
 # Make sure there's no old pyc files around.
 find . -name '*.pyc' | xargs rm
@@ -51,7 +53,7 @@ ASYNC_SIGNALS = False
 SETTINGS
 
 
-echo "Starting tests..."
+echo "Starting tests..." `date`
 export FORCE_DB='yes sir'
 
 # with-coverage excludes sphinx so it doesn't conflict with real builds.
@@ -63,7 +65,7 @@ else
 fi
 
 
-echo "Building documentation..."
+echo "Building documentation..." `date`
 cd docs
 make clean dirhtml SPHINXOPTS='-q'
 cd $WORKSPACE
