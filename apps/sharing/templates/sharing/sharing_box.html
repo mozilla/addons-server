@@ -4,7 +4,7 @@
       {% for service in services %}
         <li class="{{ service.shortname }}">
           <span class="share-link">
-            <a class="uniquify" target="{{ '_self' if service==EMAIL else '_blank' }}" href="#">
+            <a class="uniquify" target="_self">
               {{ service.label }}
             </a>
           </span>
@@ -14,44 +14,4 @@
       {% endfor %}
     </ul>
   </div>{# /share-networks #}
-
-  {% if request.user.is_authenticated() or True %}
-    <div class="share-email share-content">
-      <form action=""
-        method="post">
-        {{ cake_csrf_token() }}
-        {# TODO uncakeify #}
-        <p class="container">
-          <label for="FriendEmails">
-            {# L10n: Refers to recipients of an add-on recommendation email #}
-            {{ _('Enter Email Addresses') }}
-          </label>
-          <input id="FriendEmails" type="text" value="" name="data[Friend][emails]"
-                 placeholder="{{ email_service.placeholders|join(', ') }}"/>
-        </p>
-        <p class="container emailerror error" style="display:none">
-        </p>
-        <p class="container">
-          <label for="FriendMessage">
-            {# L10n: When recommending add-ons by email, users can specify a
-                     personal message #}
-            {{ _('Message') }}
-            <span class="optional">{{ _('(optional)') }}</span>
-          </label>
-          <textarea id="FriendMessage" name="data[Friend][message]"></textarea>
-        </p>
-        <p class="container buttons">
-          <a href="#" class="close">{{ _('Cancel') }}</a>
-          <button type="submit">
-            {# L10n: Refers to an email #}
-            {{ _('Send') }}
-          </button>
-        </p>
-      </form>
-
-      <div class="share-email-success">
-        <p>{{ _('Emails sent!') }}</p>
-      </div>
-    </div>{# /share-email #}
-  {% endif %}
 </div>

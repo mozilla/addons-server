@@ -8,12 +8,10 @@ from .models import ServiceBase, EMAIL
 
 @register.inclusion_tag('sharing/sharing_widget.html')
 @jinja2.contextfunction
-def sharing_widget(context, obj, show_email=True, condensed=False):
+def sharing_widget(context, obj, condensed=False):
     c = dict(context.items())
 
     services = list(sharing.SERVICES_LIST)
-    if not show_email:
-        services.remove(EMAIL)
 
     share_counts = obj.share_counts()
     counts = {}
@@ -23,7 +21,6 @@ def sharing_widget(context, obj, show_email=True, condensed=False):
 
     c.update({
         'condensed': condensed,
-        'show_email': show_email,
         'base_url': obj.share_url(),
         'counts': counts,
         'services': services,
@@ -42,6 +39,5 @@ def sharing_box(context):
         'request': request,
         'user': request.user,
         'services': sharing.SERVICES_LIST,
-        'email_service': EMAIL,
     })
     return c

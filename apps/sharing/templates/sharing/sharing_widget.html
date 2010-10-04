@@ -6,8 +6,7 @@
   {% set listed = obj.listed %}
 {% endif %}
 {% if listed %}
-{% set email_class = ' no-email' if not (show_email and request.user.is_authenticated()) %}
-<a class="share widget{{ ' condensed tooltip' if condensed }}{{ email_class }}"
+<a class="share widget{{ ' condensed tooltip' if condensed }}"
      data-share-counts="{{ counts|json }}"
      data-base-url="{{ obj.share_url() }}?service="
      title="{{ sharemsg }}"

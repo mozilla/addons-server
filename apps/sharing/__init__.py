@@ -5,6 +5,5 @@ from . import models
 
 
 SERVICES_LIST = (models.DIGG, models.FACEBOOK, models.DELICIOUS,
-                 models.MYSPACE, models.FRIENDFEED, models.TWITTER,
-                 models.EMAIL)
+                 models.MYSPACE, models.FRIENDFEED, models.TWITTER)
 SERVICES = dict((service.shortname, service) for service in SERVICES_LIST)

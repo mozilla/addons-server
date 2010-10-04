@@ -747,8 +747,6 @@ $(document).ready(function () {
     });
 
     //New sharing interaction
-    var $email = $("#sharing-popup li.email");
-    var old_email_text = $("#sharing-popup .share-email-success p");
     $("#sharing-popup").popup(".share.widget", {
         width: 280,
         offset: {x: 8},
@@ -759,43 +757,6 @@ $(document).ready(function () {
             var base_url = el.attr('data-base-url');
             var counts = $.parseJSON(el.attr("data-share-counts"));
             $popup.hideMe();
-            $email.detach();
-            if (!el.hasClass("no-email")) {
-                $("#sharing-popup .share-networks ul").append($email);
-                $popup.delegate(".email a", "click", function(e) {
-                    e.preventDefault();
-                    $(".share-email", $popup).show();
-                    $(".share-networks", $popup).hide();
-                });
-                $popup.delegate(".share-email a.close", "click", function(e) {
-                    e.preventDefault();
-                    $(".share-networks", $popup).show();
-                    $(".share-email", $popup).hide();
-                    $(".emailerror", $popup).hide();
-                });
-                $popup.delegate(".share-email form", "submit", function(e) {
-                    e.preventDefault();
-                    var form_data = $(this).serialize();
-                    $(".emailerror", $popup).hide();
-                    $(".share-email-success p", $popup).text(gettext('Sending Emails...'));
-                    $(".share-email-success", $popup).show();
-                    $.post(base_url + 'email', form_data, function(d) {
-                        if (d.success) {
-                            $(".share-email-success p", $popup).text(old_email_text);
-                            setTimeout(function() {
-                                $(".share-networks", $popup).show();
-                                $(".share-email", $popup).hide();
-                                $(".share-email-success", $popup).hide();
-                                $popup.hideMe();
-                            }, 800);
-                        } else {
-                            $(".share-email-success", $popup).hide();
-                            $(".emailerror", $popup).text(d.error || gettext('Oh no! Please try again later.'));
-                            $(".emailerror", $popup).show();
-                        }
-                    }, 'json');
-                });
-            }
             if (counts) {
                 for (s in counts) {
                     if (!counts.hasOwnProperty(s)) continue;
