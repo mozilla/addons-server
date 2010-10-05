@@ -16,8 +16,9 @@ from access import acl
 from addons.models import Addon, AddonUser, AddonLog
 from addons.views import BaseFilter
 from files.models import FileUpload
+from versions.models import License
 from . import tasks
-from .forms import AuthorFormSet
+from .forms import AuthorFormSet, LicenseForm
 
 log = commonware.log.getLogger('z.devhub')
 
@@ -105,20 +106,43 @@ def addons_edit(request, addon_id, addon):
 @dev_required
 @owner_for_post_required
 def addons_owner(request, addon_id, addon):
+    forms = []
+    # Authors.
     qs = AddonUser.objects.filter(addon=addon)
     user_form = AuthorFormSet(request.POST or None, queryset=qs)
-    if request.method == 'POST':
-        if user_form.is_valid():
-            authors = user_form.save(commit=False)
-            for author in authors:
-                action = 'change' if author.id else 'add'
-                author.addon = addon
-                author.save()
-                AddonLog.log(AddonUser, request, addon=addon,
-                             action=action, author=author)
-            return redirect('devhub.addons.owner', addon_id)
+    forms.append(user_form)
+    # License. Clear out initial data if it's a builtin license.
+    qs = addon.versions.order_by('-version')[:1]
+    version = qs[0] if qs else None
+    if version:
+        instance, initial = version.license, None
+        if getattr(instance, 'builtin', None):
+            instance, initial = None, {'builtin': instance.builtin}
+        license_form = LicenseForm(request.POST or None, initial=initial,
+                                   instance=instance)
+        forms.append(license_form)
+
+    if request.method == 'POST' and all([form.is_valid() for form in forms]):
+        # Authors.
+        authors = user_form.save(commit=False)
+        for author in authors:
+            action = 'change' if author.id else 'add'
+            author.addon = addon
+            author.save()
+            AddonLog.log(AddonUser, request, addon=addon,
+                         action=action, author=author)
+        # License.
+        if version:
+            license = license_form.save()
+            addon.current_version.update(license=license)
+            AddonLog.log(License, request, addon=addon, license=license)
+        return redirect('devhub.addons.owner', addon_id)
+
+    license_urls = dict(License.objects.builtins()
+                        .values_list('builtin', 'url'))
     return jingo.render(request, 'devhub/addons/owner.html',
-                        dict(addon=addon, user_form=user_form))
+        dict(addon=addon, user_form=user_form, version=version,
+             license_form=version and license_form, license_urls=license_urls))
 
 
 def upload(request):

@@ -15,30 +15,31 @@ attrs = 'name="{name}_{locale}" data-locale="{locale}" {attrs}'
 input = u'<input %s value="{value}">' % attrs
 textarea = u'<textarea %s>{value}</textarea>' % attrs
 
+
 def get_string(x):
+    locale = translation.get_language()
     try:
-        return (Translation.objects.filter(id=x)
+        return (Translation.objects.filter(id=x, locale=locale)
                 .filter(localized_string__isnull=False)
                 .values_list('localized_string', flat=True)[0])
     except IndexError:
         return u''
+
 
 class TranslationTextInput(forms.widgets.TextInput):
     """A simple textfield replacement for collecting translated names."""
 
     def _format_value(self, value):
         if isinstance(value, long):
-            # ^^^ twss
-            value = get_string(value)
-
+            return get_string(value)
         return value
 
 
 class TranslationTextarea(forms.widgets.Textarea):
+
     def render(self, name, value, attrs=None):
         if isinstance(value, long):
             value = get_string(value)
-
         return super(TranslationTextarea, self).render(name, value, attrs)
 
 
@@ -60,7 +61,7 @@ class TranslationWidget(forms.widgets.Textarea):
         try:
             trans_id = int(value)
             widgets.update(trans_widgets(trans_id, widget))
-        except (TypeError, ValueError), e:
+        except (TypeError, ValueError):
             pass
 
         languages = dict((i.lower(), j) for i, j in settings.LANGUAGES.items())
