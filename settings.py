@@ -577,10 +577,13 @@ CSP_REPORT_ONLY = True
 
 CSP_ALLOW = ("'self'",)
 CSP_IMG_SRC = ("'self'", STATIC_URL,
-               "https://www.getpersonas.com",
+               "https://api-secure.recaptcha.net",
+               "https://www.google.com", # Recaptcha actually comes from google
                "https://statse.webtrendslive.com",
-               "https://api-secure.recaptcha.net", )
-CSP_SCRIPT_SRC = ("'self'", STATIC_URL,)
+               "https://www.getpersonas.com",)
+CSP_SCRIPT_SRC = ("'self'", STATIC_URL,
+                  "https://www.google.com", # Recaptcha
+                  )
 CSP_STYLE_SRC = ("'self'", STATIC_URL,)
 CSP_OBJECT_SRC = ("'none'",)
 CSP_MEDIA_SRC = ("'none'",)
