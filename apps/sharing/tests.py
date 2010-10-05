@@ -1,5 +1,3 @@
-from datetime import date, timedelta
-
 from django import test
 from django.contrib.auth.models import User as DjangoUser
 from django.utils import translation, encoding
@@ -13,18 +11,13 @@ from addons.models import Addon
 import amo
 import sharing
 from sharing.helpers import sharing_box
-from sharing.models import DIGG, FACEBOOK
-from stats.models import AddonShareCount
+from sharing import DIGG, FACEBOOK
 
 
 class SharingHelpersTestCase(test.TestCase):
     fixtures = ['base/addon_3615']
 
     def test_sharing_box(self):
-        addon = Addon.objects.get(id=3615)
-
-        jingo.load_helpers()
-
         request = Mock()
         request.user = DjangoUser()
         request.APP = amo.FIREFOX

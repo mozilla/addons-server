@@ -12,7 +12,7 @@ from bandwagon.models import Collection
 from cake.models import Session
 from devhub.models import AddonLog, LOG as ADDONLOG
 from files.models import TestResult, TestResultCache
-from sharing.models import SERVICES
+from sharing import SERVICES_LIST
 from stats.models import AddonShareCount, Contribution
 
 log = commonware.log.getLogger('z.cron')
@@ -34,7 +34,7 @@ def gc(test_result=True):
 
     log.debug('Cleaning up sharing services.')
     AddonShareCount.objects.exclude(
-            service__in=[s.shortname for s in SERVICES]).delete()
+            service__in=[s.shortname for s in SERVICES_LIST]).delete()
 
     # XXX(davedash): I can't seem to run this during testing without triggering
     # an error: "test_remora.nose_c doesn't exist"

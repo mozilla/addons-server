@@ -3,7 +3,6 @@ import jinja2
 
 import sharing
 from amo.helpers import login_link
-from .models import ServiceBase, EMAIL
 
 
 @register.inclusion_tag('sharing/sharing_widget.html')
