@@ -14,6 +14,7 @@ import test_utils
 import amo
 from amo import urlresolvers, utils, helpers
 from amo.helpers import wround
+from versions.models import License
 
 
 def render(s, context={}):
@@ -212,22 +213,30 @@ def test_external_url():
         settings.REDIRECT_SECRET_KEY = secretkey
 
 
-def test_license_link():
-    expected = {
-        amo.LICENSE_MIT: (
-            '<ul class="license"><li class="text"><a href="http://www.'
-            'opensource.org/licenses/mit-license.php">MIT/X11 License</a>'
-            '</li></ul>'),
-        amo.LICENSE_COPYRIGHT: (
-            '<ul class="license"><li class="icon copyr"></li><li class="text">'
-            'All Rights Reserved</li></ul>'),
-        amo.LICENSE_CC_BY_NC_SA: (
-            '<ul class="license"><li class="icon cc-attrib"></li><li class='
-            '"icon cc-noncom"></li><li class="icon cc-share"></li><li class='
-            '"text"><a href="http://creativecommons.org/licenses/by-nc-sa/'
-            '3.0/" title="Creative Commons Attribution-Noncommercial-Share '
-            'Alike 3.0">Some rights reserved</a></li></ul>'),
-    }
-    for lic, ex in expected.items():
-        s = render('{{ license_link(lic) }}', {'lic': lic})
-        eq_(s, ex)
+class TestLicenseLink(test_utils.TestCase):
+
+    def test_license_link(self):
+        mit = License.objects.create(
+            name='MIT/X11 License', builtin=6, url='http://m.it')
+        copyright = License.objects.create(
+            name='All Rights Reserved', icons='copyr', builtin=7)
+        cc = License.objects.create(
+            name='Creative Commons', url='http://cre.at', builtin=8,
+            some_rights=True, icons='cc-attrib cc-noncom cc-share')
+        cc.save()
+        expected = {
+            mit: (
+                '<ul class="license"><li class="text">'
+                '<a href="http://m.it">MIT/X11 License</a></li></ul>'),
+            copyright: (
+                '<ul class="license"><li class="icon copyr"></li>'
+                '<li class="text">All Rights Reserved</li></ul>'),
+            cc: (
+                '<ul class="license"><li class="icon cc-attrib"></li>'
+                '<li class="icon cc-noncom"></li><li class="icon cc-share">'
+                '</li><li class="text"><a href="http://cre.at" '
+                'title="Creative Commons">Some rights reserved</a></li></ul>'),
+        }
+        for lic, ex in expected.items():
+            s = render('{{ license_link(lic) }}', {'lic': lic})
+            eq_(s, ex)

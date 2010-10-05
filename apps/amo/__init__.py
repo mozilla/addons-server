@@ -323,6 +323,7 @@ class _LicenseBase(object):
     shortname = None
     icons = None     # CSS classes. See zamboni.css for a list.
     linktext = None  # Link text distinct from full license name.
+    on_form = True
 
     @classmethod
     def text(cls):
@@ -395,6 +396,7 @@ class LICENSE_COPYRIGHT(_LicenseBase):
     url = None
     shortname = None
     icons = ('copyr',)
+    on_form = False
 
 
 class LICENSE_CC_BY_NC_SA(_LicenseBase):
@@ -404,6 +406,7 @@ class LICENSE_CC_BY_NC_SA(_LicenseBase):
     url = 'http://creativecommons.org/licenses/by-nc-sa/3.0/'
     shortname = None
     icons = ('cc-attrib', 'cc-noncom', 'cc-share')
+    on_form = False
 
 LICENSES = (LICENSE_CUSTOM, LICENSE_COPYRIGHT, LICENSE_MPL, LICENSE_GPL2,
             LICENSE_GPL3, LICENSE_LGPL21, LICENSE_LGPL3, LICENSE_MIT,
