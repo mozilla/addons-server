@@ -559,3 +559,20 @@ class TestAddon(BaseOauth):
                           self.token)
         eq_(r.status_code, 204, r.content)
         eq_(a.versions.count(), 0)
+
+    def test_retrieve_versions(self):
+        data = self.create_addon()
+        id = data['id']
+
+        a = Addon.objects.get(pk=id)
+        v = a.versions.get()
+
+        r = client.get(('api.versions', id), self.accepted_consumer,
+                       self.token)
+        eq_(r.status_code, 200, r.content)
+        data = json.loads(r.content)
+        for attr in ('id', 'version',):
+            expect = getattr(v, attr)
+            val = data[0].get(attr)
+            eq_(expect, val,
+                'Got "%s" was expecting "%s" for "%s".' % (val, expect, attr,))

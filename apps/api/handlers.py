@@ -123,7 +123,7 @@ class AddonsHandler(BaseHandler):
 
 
 class VersionsHandler(BaseHandler):
-    allowed_methods = ('POST', 'PUT', 'DELETE',)
+    allowed_methods = ('POST', 'PUT', 'DELETE', 'GET',)
     model = Version
     exclude = ('approvalnotes', )
 
@@ -169,3 +169,7 @@ class VersionsHandler(BaseHandler):
     def delete(self, request, addon, version):
         version.delete()
         return rc.DELETED
+
+    @check_addon_and_version
+    def read(self, request, addon):
+        return addon.versions.all()
