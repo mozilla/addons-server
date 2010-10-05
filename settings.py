@@ -576,8 +576,10 @@ CSP_POLICY_URI = '/services/csp/policy'
 CSP_REPORT_ONLY = True
 
 CSP_ALLOW = ("'self'",)
-CSP_IMG_SRC = ("'self'", STATIC_URL, "statse.webtrendslive.com",
-               "api-secure.recaptcha.net",)
+CSP_IMG_SRC = ("'self'", STATIC_URL,
+               "https://www.getpersonas.com",
+               "https://statse.webtrendslive.com",
+               "https://api-secure.recaptcha.net", )
 CSP_SCRIPT_SRC = ("'self'", STATIC_URL,)
 CSP_STYLE_SRC = ("'self'", STATIC_URL,)
 CSP_OBJECT_SRC = ("'none'",)
