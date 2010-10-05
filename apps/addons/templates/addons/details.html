@@ -36,6 +36,10 @@
 
           {{ big_install_button(addon, show_warning=False) }}
 
+          {% if settings.PERFORMANCE_WARNINGS %}
+            {{ performance_note(amount=30) }}
+          {% endif %}
+
           {% if addon.takes_contributions %}
             {{ contribution(addon=addon, src='addon-detail',
                 text=_('The developer of this add-on asks that you help '

@@ -633,3 +633,6 @@ RECAPTCHA_URL = ('https://api-secure.recaptcha.net/challenge?k=%s' %
 
 # Send Django signals asynchronously on a background thread.
 ASYNC_SIGNALS = True
+
+# Performance notes on add-ons
+PERFORMANCE_NOTES = False

@@ -1,0 +1,31 @@
+{% if listing %}
+  <div class="performance-note">
+    {{ _('This add-on can slow down your browser.') }}
+    &nbsp;<a href="#">{{ _('More&hellip;')|safe }}</a>
+    <div class="popup warning hidden">
+      <p class="msg">
+        {% trans %}
+          <b>Performance warning:</b> Installing this add-on can slow down
+          your browser's start-up by <b>{{ amount }}%</b>.
+        {% endtrans %}
+      </p>
+      <p>
+        {# TODO potch replace href with performance dashboard link #}
+        <a href="#">{{ _('Learn More&hellip;')|safe }}</a>
+      </p>
+    </div>
+  </div>
+{% else %}
+  <div class="notification performance-note">
+    <span></span>
+    <div>
+      <h3>{{ _('This add-on can slow down your browser.') }}</h3>
+      {% trans %}
+        Installing this add-on can slow down
+        your browser's start-up by <b>{{ amount }}%</b>.
+      {% endtrans %}
+      {# TODO potch replace href with performance dashboard link #}
+      <br/><a href="#">{{ _('Learn More&hellip;')|safe }}</a>
+    </div>
+  </div>
+{% endif %}

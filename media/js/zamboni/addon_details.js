@@ -52,6 +52,17 @@ var addons_display = {
 
 /* general initialization */
 $(document).ready(function() {
+    //performance warnings
+    $(".performance-note .popup").each(function(i,p) {
+        var $p = $(p),
+            $a = $p.siblings("a").first();
+        $p.removeClass("hidden")
+          .popup($a, {
+            width: 300,
+            pointTo: $a
+        });
+    });
+
     if ($('#addon.primary').length == 0) return;
 
     addons_display.init({
@@ -72,7 +83,6 @@ $(document).ready(function() {
 
     var etiquette_box = $("#addons-display-review-etiquette").hide();
     $("#short-review").focus(function() { etiquette_box.show("fast"); } );
-
 });
 
 /* get satisfaction initialization */

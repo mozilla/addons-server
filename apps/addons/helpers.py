@@ -47,6 +47,12 @@ def support_addon(addon):
     return jinja2.Markup(t.render(addon=addon))
 
 
+@register.inclusion_tag('addons/performance_note.html')
+@jinja2.contextfunction
+def performance_note(context, amount, listing=False):
+    return dict(listing=listing, amount=amount)
+
+
 @register.inclusion_tag('addons/contribution.html')
 @jinja2.contextfunction
 def contribution(context, addon, text='', src='', show_install=False,

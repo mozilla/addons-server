@@ -1616,7 +1616,8 @@ form .error .note.error {
 
 .listing .contribute,
 .separated-listing .contribute,
-.collector-note {
+.collector-note,
+.item .performance-note {
     background: #d3edf6;
     float: left;
     padding: 3px 10px;
@@ -1638,6 +1639,28 @@ form .error .note.error {
 
 .html-rtl .listing .contribute {
     float: right;
+}
+
+.primary .performance-note h3 {
+    font: normal bold 14px "helvetica neue", helvetica,arial,sans-serif;
+    line-height: 1.2em;
+    margin: 0;
+}
+.primary .performance-note span:first-child {
+    float: left;
+    width: 32px;
+    height: 32px;
+    background: url("../../img/zamboni/notifications.png") no-repeat 0px -226px;
+}
+.primary .performance-note {
+    background: #fff3cc;
+}
+.primary .performance-note div {
+    margin-left: 45px;
+}
+.item .performance-note {
+    background: url("../../img/zamboni/notifications.png") no-repeat 7px -300px #fff3cc;
+    padding-left: 28px;
 }
 
 .listing .item {
