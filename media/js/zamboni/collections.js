@@ -289,10 +289,14 @@ $(document).ready(function() {
      * On success we update the vote counts,
      * and show/hide the 'Remove' link.
      */
+     var vote_in_progress = false;
      var callback = function(e) {
         e.preventDefault();
+        if (vote_in_progress) return;
+        vote_in_progress=true;
         var the_form = $(this);
         $.post(this.action, $(this).serialize(), function(content, status, xhr) {
+            vote_in_progress = false
             if (xhr.status == 200) {
                 var barometer = the_form.closest('.barometer');
                 var oldvote = $('input.voted', barometer);
@@ -619,7 +623,8 @@ $(document).ready(function () {
                 var url = this.className == "selected" ? remove_url
                                                        : add_url;
 
-                $(this).addClass('ajax-loading');
+                if (tgt.hasClass('ajax-loading')) return;
+                tgt.addClass('ajax-loading');
                 $.post(url, data, function(data) {
                     $widget.removeClass('new-collection');
                     $widget.html(data);
@@ -630,6 +635,7 @@ $(document).ready(function () {
             var handleSubmit = function(e) {
                 e.preventDefault();
                 var tgt = $(this);
+                if (ct.hasClass('ajax-loading')) return;
                 ct.addClass('ajax-loading');
                 form_data = $('#add-to-collection form').serialize();
                 $.post(form_url + '?addon_id=' + addon_id, form_data, renderList, 'html');
@@ -689,6 +695,7 @@ $(document).ready(function () {
         var url = faved ? widget.attr('data-removeurl') : widget.attr('data-addurl');
         var condensed = widget.hasClass("condensed");
 
+        if (widget.hasClass('ajax-loading')) return;
         widget.addClass('ajax-loading');
 
         $.ajax({
@@ -718,6 +725,7 @@ $(document).ready(function () {
     $(".collection_widgets .watch").click(function(e) {
         e.preventDefault();
         var widget = $(this);
+        if (widget.hasClass('ajax-loading')) return;
         widget.addClass('ajax-loading');
 
         var follow_text = gettext("Follow this Collection");
