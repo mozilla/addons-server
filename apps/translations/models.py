@@ -145,3 +145,10 @@ class TranslationSequence(models.Model):
 
     class Meta:
         db_table = 'translations_seq'
+
+
+def delete_translation(obj, fieldname):
+    field = obj._meta.get_field(fieldname)
+    trans = getattr(obj, field.name)
+    obj.update(**{field.name:None})
+    Translation.objects.filter(id=trans.id).delete()
