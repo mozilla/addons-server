@@ -165,6 +165,32 @@ class TestOwnership(test_utils.TestCase):
     def get_version(self):
         return Version.objects.no_cache().get(id=self.version.id)
 
+    def get_addon(self):
+        return Addon.objects.no_cache().get(id=self.addon.id)
+
+
+class TestEditPolicy(TestOwnership):
+
+    def formset(self, *args, **kw):
+        init = self.client.get(self.url).context['user_form'].initial_forms
+        args = args + tuple(f.initial for f in init)
+        return super(TestEditPolicy, self).formset(*args, **kw)
+
+    def test_edit_eula(self):
+        old_eula = self.addon.eula
+        data = self.formset(eula='new eula', has_eula=True)
+        r = self.client.post(self.url, data)
+        eq_(r.status_code, 302)
+        addon = self.get_addon()
+        eq_(unicode(addon.eula), 'new eula')
+        eq_(addon.eula.id, old_eula.id)
+
+    def test_delete_eula(self):
+        assert self.addon.eula
+        r = self.client.post(self.url, self.formset(has_eula=False))
+        eq_(r.status_code, 302)
+        eq_(self.get_addon().eula, None)
+
 
 class TestEditLicense(TestOwnership):
 

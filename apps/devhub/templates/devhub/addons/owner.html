@@ -13,11 +13,11 @@
 <section class="primary" role="main">
 <form method="post" action="">
   {{ csrf() }}
-  <table>
-    {{ user_form|safe }}
-  </table>
-
-  <table>{{ license_form|safe }}</table>
+  <table>{{ user_form|safe }}</table>
+  {% if version %}
+    <table>{{ license_form|safe }}</table>
+  {% endif %}
+  <table>{{ policy_form|safe }}</table>
   <button type="submit">GO GO GO</button>
 </form>
 </section>

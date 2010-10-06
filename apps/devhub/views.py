@@ -18,7 +18,7 @@ from addons.views import BaseFilter
 from files.models import FileUpload
 from versions.models import License
 from . import tasks
-from .forms import AuthorFormSet, LicenseForm
+from .forms import AuthorFormSet, LicenseForm, PolicyForm
 
 log = commonware.log.getLogger('z.devhub')
 
@@ -121,6 +121,11 @@ def addons_owner(request, addon_id, addon):
         license_form = LicenseForm(request.POST or None, initial=initial,
                                    instance=instance)
         forms.append(license_form)
+    # Policy.
+    policy_form = PolicyForm(request.POST or None, instance=addon,
+                             initial=dict(has_priv=bool(addon.privacy_policy),
+                                          has_eula=bool(addon.eula)))
+    forms.append(policy_form)
 
     if request.method == 'POST' and all([form.is_valid() for form in forms]):
         # Authors.
@@ -136,13 +141,18 @@ def addons_owner(request, addon_id, addon):
             license = license_form.save()
             addon.current_version.update(license=license)
             AddonLog.log(License, request, addon=addon, license=license)
+        # Policy.
+        policy_form.save(addon=addon)
+        AddonLog.log(Addon, request, action='policy', form=policy_form)
+
         return redirect('devhub.addons.owner', addon_id)
 
     license_urls = dict(License.objects.builtins()
                         .values_list('builtin', 'url'))
     return jingo.render(request, 'devhub/addons/owner.html',
         dict(addon=addon, user_form=user_form, version=version,
-             license_form=version and license_form, license_urls=license_urls))
+             license_form=version and license_form, license_urls=license_urls,
+             policy_form=policy_form))
 
 
 def upload(request):

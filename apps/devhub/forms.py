@@ -5,8 +5,9 @@ import happyforms
 from tower import ugettext as _
 
 import amo
-from addons.models import AddonUser
+from addons.models import Addon, AddonUser
 from translations.widgets import TranslationTextarea, TranslationTextInput
+from translations.models import delete_translation
 from versions.models import License
 
 
@@ -78,3 +79,22 @@ def LicenseForm(*args, **kw):
             return super(_Form, self).save(commit)
 
     return _Form(*args, **kw)
+
+
+class PolicyForm(happyforms.ModelForm):
+    """Form for editing the add-ons EULA and privacy policy."""
+    has_eula = forms.BooleanField(required=False)
+    eula = forms.CharField(widget=TranslationTextarea(), required=False)
+    has_priv = forms.BooleanField(required=False)
+    privacy_policy = forms.CharField(widget=TranslationTextarea(),
+                                     required=False)
+
+    class Meta:
+        model = Addon
+        fields = ('eula', 'privacy_policy')
+
+    def save(self, addon, commit=True):
+        super(PolicyForm, self).save(commit)
+        for k, field in (('has_eula', 'eula'), ('has_priv', 'privacy_policy')):
+            if not self.cleaned_data[k]:
+                delete_translation(addon, field)
