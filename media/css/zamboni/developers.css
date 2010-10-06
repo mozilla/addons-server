@@ -139,7 +139,7 @@
 }
 
 .compat-error {
-    background: url(../../img/zamboni/notification-error-small.png) 0 50% no-repeat;
+    background: url(../../img/zamboni/notifications.png) 0px -164px no-repeat;
     padding-left: 15px;
 }
 .item-actions a.compat-error {
