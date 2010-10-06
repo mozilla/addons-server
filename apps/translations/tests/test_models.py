@@ -183,7 +183,9 @@ class TranslationTestCase(ExtraAppTestCase):
         # Don't try checking that the model's name value is en-US.  It will be
         # one of the other locales, but we don't know which one.  You just set
         # the name to a dict, deal with it.
-        get_model().name = strings
+        m = get_model()
+        m.name = strings
+        m.save()
 
         # en-US was not touched.
         trans_eq(get_model().name, 'some name', 'en-US')
@@ -200,6 +202,7 @@ class TranslationTestCase(ExtraAppTestCase):
         strings = {'de': None, 'fr': 'oui'}
         o = TranslatedModel.objects.get(id=1)
         o.name = strings
+        o.save()
 
         # Shouldn't see de since that's NULL now.
         ws = widgets.trans_widgets(o.name_id, lambda *args: None)

@@ -96,7 +96,6 @@ class Translation(caching.base.CachingMixin, models.Model):
         try:
             trans = cls.objects.get(**q)
             trans.localized_string = string
-            trans.save(force_update=True)
         except cls.DoesNotExist:
             trans = cls.objects.create(localized_string=string, **q)
 

@@ -81,6 +81,16 @@ def switch(obj, new_model):
     return new_model(**dict(fields))
 
 
+def save_on_signal(obj, trans):
+    """Connect signals so the translation gets saved during obj.save()."""
+    signal = models.signals.pre_save
+    def cb(sender, instance, **kw):
+        if instance is obj:
+            trans.save(force_update=True)
+            signal.disconnect(cb)
+    signal.connect(cb, sender=obj.__class__, weak=False)
+
+
 class TranslationDescriptor(related.ReverseSingleRelatedObjectDescriptor):
     """
     Descriptor that handles creating and updating Translations given strings.
@@ -129,18 +139,19 @@ class TranslationDescriptor(related.ReverseSingleRelatedObjectDescriptor):
             if trans is None and trans_id is not None:
                 # This locale doesn't have a translation set, but there are
                 # translations in another locale, so we have an id already.
-                return self.model.new(string, lang, id=trans_id)
+                translation = self.model.new(string, lang, id=trans_id)
             elif to_language(trans.locale) == lang.lower():
                 # Replace the translation in the current language.
                 trans.localized_string = string
-                trans.save(force_update=True)
-                return trans
+                translation = trans
             else:
                 # We already have a translation in a different language.
-                return self.model.new(string, lang, id=trans.id)
+                translation = self.model.new(string, lang, id=trans.id)
         except AttributeError:
             # Create a brand new translation.
-            return self.model.new(string, lang)
+            translation = self.model.new(string, lang)
+        save_on_signal(instance, translation)
+        return translation
 
     def translation_from_dict(self, instance, lang, dict_):
         """
