@@ -16,7 +16,6 @@ import amo.models
 from amo.fields import DecimalCharField
 from amo.utils import urlparams, sorted_groupby, JSONEncoder
 from amo.urlresolvers import reverse
-from cake.urlresolvers import remora_url
 from reviews.models import Review
 from stats.models import (Contribution as ContributionStats,
                           AddonShareCountTotal)
@@ -229,7 +228,7 @@ class Addon(amo.models.ModelBase):
         return AddonType(self.type).get_url_path()
 
     def share_url(self):
-        return remora_url('/addon/share/%s' % self.id)
+        return reverse('addons.share', args=(self.id,))
 
     @amo.cached_property(writable=True)
     def listed_authors(self):

@@ -21,9 +21,11 @@ from amo.urlresolvers import reverse
 from bandwagon.models import Collection, CollectionFeature, CollectionPromo
 from reviews.forms import ReviewForm
 from reviews.models import Review
+from sharing.views import share as share_redirect
 from stats.models import GlobalStat, Contribution
 from tags.models import Tag
 from translations.query import order_by_translation
+from translations.helpers import truncate
 from .models import Addon
 
 
@@ -445,3 +447,10 @@ def contribute_url_params(business, addon_id, item_name, return_url,
         data['custom'] = comment
 
     return data
+
+
+def share(request, addon_id):
+    """Add-on sharing"""
+    addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
+    return share_redirect(request, addon, name=addon.name,
+                          description=truncate(addon.summary, length=250))
