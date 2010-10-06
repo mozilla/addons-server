@@ -50,8 +50,8 @@ class TranslatedField(models.ForeignKey):
         else:
             cls._meta.translated_fields = [self]
 
-        # Set up a unique related name.
-        self.rel.related_name = '%s_%s_set' % (cls.__name__, name)
+        # Set up a unique related name.  The + means it's hidden.
+        self.rel.related_name = '%s_%s_set+' % (cls.__name__, name)
 
         # Replace the normal descriptor with our custom descriptor.
         setattr(cls, self.name, TranslationDescriptor(self))
