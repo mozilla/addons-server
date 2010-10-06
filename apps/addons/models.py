@@ -879,3 +879,34 @@ class AddonLog(mongoengine.Document):
         # the pieces in mongo (along with the context needed to format the log
         # record).
         pass
+
+
+class PerformanceAppversions(amo.models.ModelBase):
+    """Add-on performance appversions.  This table is pretty much the same as
+    `appversions` but is separate because we need to push the perf stuff now
+    and I'm scared to mess with `appversions` because remora uses it in some
+    sensitive places.  If we survive past 2012 and people suddenly have too
+    much time on their hands, consider merging the two."""
+
+    APP_CHOICES = [('fx', 'Firefox')]
+
+    app = models.CharField(max_length=255, choices=APP_CHOICES)
+    version = models.CharField(max_length=255, db_index=True)
+
+    class Meta:
+        db_table = 'perf_appversions'
+
+
+class Performance(amo.models.ModelBase):
+    """Add-on performance numbers.  A bit denormalized."""
+
+    TEST_CHOICES = [('ts', 'Startup Time')]
+
+    addon = models.ForeignKey(Addon)
+    average = models.FloatField(default=0, db_index=True)
+    appversion = models.ForeignKey('PerformanceAppVersions')
+    os = models.CharField(max_length=255)
+    test = models.CharField(max_length=50, choices=TEST_CHOICES)
+
+    class Meta:
+        db_table = 'perf_results'
