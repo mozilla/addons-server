@@ -1,4 +1,5 @@
 {% cache addon, extra=[api_version] %}
+{% set new_api = (api_version >= 1.5) %}
 <addon id="{{ addon.id }}">
   <name>{{ addon.name }}</name>
   <type id="{{ addon.type }}">{{ amo.ADDON_TYPE[addon.type] }}</type>
@@ -8,7 +9,7 @@
   <authors>
     {% if not addon.is_persona() %}
     {% for author in addon.listed_authors -%}
-    {%- if api_version >= 1.5 -%}
+    {%- if new_api -%}
     <author id="{{ author.id }}">
       <name>{{ author.name }}</name>
       <link>{{ author.get_url_path()|absolutify|urlparams(src='api') }}</link>
@@ -19,8 +20,10 @@
     {%- endfor %}
     {% endif %}
   </authors>
-  <summary>{{ addon.summary }}</summary>
-  <description>{{ addon.description }}</description>
+  <summary>{{ addon.summary|strip_html(new_api) }}</summary>
+
+  <description>{{ addon.description|strip_html(new_api) }}</description>
+
   <icon>{{ addon.icon_url }}</icon>
   <compatible_applications>
     {%- if addon.current_version -%}
@@ -44,8 +47,8 @@
     {%- endfor -%}
     {%- endif -%}
   </all_compatible_os>
-  <eula>{{ addon.eula }}</eula>
-  {%- if api_version >= 1.5 -%}
+  <eula>{{ addon.eula|strip_html(new_api) }}</eula>
+  {%- if new_api -%}
   <previews>
     {%- for preview in addon.previews.all() -%}
     <preview primary="{{ preview.highlight|int }}">
@@ -73,7 +76,7 @@
     size="{{ file.size * 1024 }}">{{ file.get_url_path(APP, 'api') }}</install>
   {% endfor -%}
   {%- endif -%}
-  {%- if api_version >= 1.5 %}
+  {%- if new_api %}
     {%- if addon.current_beta_version -%}
     {%- for file in addon.current_beta_version.all_files -%}
     <install hash="{{ file.hash }}" os="{{ file.platform.name }}"

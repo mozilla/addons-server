@@ -22,6 +22,10 @@ def render(s, context={}):
     return t.render(**context)
 
 
+def test_strip_html():
+    eq_('Hey Brother!', render('{{ "Hey <b>Brother!</b>"|strip_html }}'))
+
+
 def test_strip_controls():
     """We want control codes like \x0c to disappear."""
     eq_('I ove you', render('{{ "I \x0cove you"|strip_controls }}'))

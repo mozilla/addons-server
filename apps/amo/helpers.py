@@ -2,6 +2,7 @@ import collections
 import json as jsonlib
 import math
 import random
+import re
 
 from django.conf import settings
 from django.utils import translation, encoding
@@ -252,6 +253,15 @@ def strip_controls(s):
     control_trans = dict((n, None) for n in xrange(32) if n not in [10, 13])
     return unicode(s).translate(control_trans)
 
+
+@register.filter
+def strip_html(s, just_kidding=False):
+    """Strips HTML.  Confirm lets us opt out easily."""
+    if just_kidding:
+        return s
+    else:
+        s = re.sub(r'&lt;.*?&gt;', '', unicode(s))
+        return re.sub(r'<.*?>', '', s)
 
 @register.filter
 def external_url(url):

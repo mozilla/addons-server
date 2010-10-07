@@ -82,8 +82,31 @@ class ControlCharacterTest(TestCase):
     def test(self):
         a = Addon.objects.get(pk=3615)
         a.name = "I ove You"
+        a.save()
         response = make_call('addon/3615')
         self.assertNotContains(response, '')
+
+
+class StripHTMLTest(TestCase):
+    fixtures = ('base/addon_3615',)
+
+    def test(self):
+        """For API < 1.5 we remove HTML."""
+        a = Addon.objects.get(pk=3615)
+        a.eula = '<i>free</i> stock tips'
+        a.summary = '<i>xxx video</i>s'
+        a.description = 'FFFF<b>UUUU</b>'
+        a.save()
+        r = make_call('addon/3615', version=1.5)
+        doc = pq(r.content)
+        eq_(doc('eula').html(), '<i>free</i> stock tips')
+        eq_(doc('summary').html(), '&lt;i&gt;xxx video&lt;/i&gt;s')
+        eq_(doc('description').html(), 'FFFF<b>UUUU</b>')
+        r = make_call('addon/3615')
+        doc = pq(r.content)
+        eq_(doc('eula').html(), 'free stock tips')
+        eq_(doc('summary').html(), 'xxx videos')
+        eq_(doc('description').html(), 'FFFFUUUU')
 
 
 class APITest(TestCase):
