@@ -189,6 +189,10 @@ class Addon(amo.models.ModelBase):
     authors = models.ManyToManyField('users.UserProfile', through='AddonUser',
                                      related_name='addons')
 
+    dependencies = models.ManyToManyField('self', symmetrical=False,
+                                          through='AddonDependency',
+                                          related_name='addons')
+
     _current_version = models.ForeignKey(Version, related_name='___ignore',
             db_column='current_version', null=True)
 
@@ -730,6 +734,14 @@ class AddonUser(caching.CachingMixin, models.Model):
 
     def flush_urls(self):
         return self.addon.flush_urls() + self.user.flush_urls()
+
+
+class AddonDependency(models.Model):
+    addon = models.ForeignKey(Addon, related_name='addons_dependencies')
+    dependent_addon = models.ForeignKey(Addon, related_name='dependent_on')
+
+    class Meta:
+        db_table = 'addons_dependencies'
 
 
 class BlacklistedGuid(amo.models.ModelBase):
