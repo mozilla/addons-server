@@ -14,6 +14,7 @@ MYSQL_PASS = s['PASSWORD']
 MYSQL_USER = s['USER']
 MYSQL_HOST = s.get('HOST', 'localhost')
 MYSQL_NAME = s['NAME']
+TEST_NAME = s.get('TEST_NAME', 'test_' + MYSQL_NAME)
 
 CATALOG_PATH = settings.SPHINX_CATALOG_PATH
 LOG_PATH = settings.SPHINX_LOG_PATH
@@ -26,7 +27,7 @@ if MYSQL_HOST.endswith('.sock'):
     MYSQL_HOST = 'localhost'
 
 if os.environ.get('DJANGO_ENVIRONMENT') == 'test':
-    MYSQL_NAME = 'test_' + MYSQL_NAME
+    MYSQL_NAME = TEST_NAME
     CATALOG_PATH = settings.TEST_SPHINX_CATALOG_PATH
     LOG_PATH = settings.TEST_SPHINX_LOG_PATH
     LISTEN_PORT = settings.TEST_SPHINX_PORT
