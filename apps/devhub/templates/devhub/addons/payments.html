@@ -1,0 +1,22 @@
+{% extends "devhub/base.html" %}
+
+{% set title = _('Manage Payments') %}
+{% block title %}{{ dev_page_title(title, addon) }}{% endblock %}
+
+{% block content %}
+<header>
+  {{ dev_breadcrumbs(addon) }}
+  <h2>{{ title }}</h2>
+</header>
+<section class="primary" role="main">
+  <h3>{{ _('Contributions') }}</h3>
+  <p>{{ _('Voluntary contributions provide a way for users to support your add-on financially. With contributions, you can:') }}</p>
+  <ul>
+    <li>{{ _('Ask for donations in most places your add-on appears') }}</li>
+    <li>{{ _('Allow users to make payments with a credit card or PayPal account') }}</li>
+    <li>{{ _('Receive contributions in your PayPal account or send them to a charity') }}</li>
+  </ul>
+  <a href="#setup" class="button">{{ _('Set Up Contributions') }}</a>
+</section>
+{% include "devhub/includes/addons_edit_nav.html" %}
+{% endblock %}

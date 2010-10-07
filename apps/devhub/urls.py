@@ -12,6 +12,7 @@ detail_patterns = patterns('',
     url('^$', lambda r: redirect('devhub.addons.edit', permanent=True)),
     url('^edit$', views.addons_edit, name='devhub.addons.edit'),
     url('^ownership$', views.addons_owner, name='devhub.addons.owner'),
+    url('^payments$', views.addons_payments, name='devhub.addons.payments'),
 )
 
 urlpatterns = decorate(write, patterns('',

@@ -155,6 +155,12 @@ def addons_owner(request, addon_id, addon):
              policy_form=policy_form))
 
 
+@dev_required
+def addons_payments(request, addon_id, addon):
+    return jingo.render(request, 'devhub/addons/payments.html',
+                        dict(addon=addon))
+
+
 def upload(request):
     if request.method == 'POST' and 'upload' in request.FILES:
         upload = request.FILES['upload']
