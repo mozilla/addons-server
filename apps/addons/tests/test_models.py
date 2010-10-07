@@ -8,8 +8,9 @@ from nose.tools import eq_, assert_not_equal
 import test_utils
 
 import amo
-from addons.models import (Addon, AddonPledge, AddonRecommendation, AddonType,
-                           Category, Feature, Persona, Preview)
+from addons.models import (Addon, AddonDependency, AddonPledge,
+                           AddonRecommendation, AddonType, Category, Feature,
+                           Persona, Preview)
 from reviews.models import Review
 from users.models import UserProfile
 from versions.models import Version
@@ -295,6 +296,25 @@ class TestAddonRecommendations(test_utils.TestCase):
         for addon, recs in itertools.groupby(q, lambda x: x.addon_id):
             for rec in recs:
                 eq_(scores[addon][rec.other_addon_id], rec.score)
+
+
+
+class TestAddonDependencies(test_utils.TestCase):
+    fixtures = ['base/addon_5299_gcal',
+                'base/addon_3615',
+                'base/addon_3723_listed',
+                'base/addon_6704_grapple',
+                'base/addon_4664_twitterbar']
+
+    def test_dependencies(self):
+        ids = [3615, 3723, 6704, 4664]
+        a = Addon.objects.get(id=5299)
+
+        for dependent_id in ids:
+            AddonDependency(addon=a,
+                dependent_addon=Addon.objects.get(id=dependent_id)).save()
+
+        eq_([a.id for a in a.dependencies.all()], ids)
 
 
 class TestListedAddonTwoVersions(test_utils.TestCase):
