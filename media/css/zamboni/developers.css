@@ -3,7 +3,11 @@
     margin-right:5px;
 }
 
-#edit-addon h3 input {
+#edit-addon .edit-addon-section {
+    margin-bottom:3em;
+}
+
+#edit-addon h3 a {
     font-size: 11px;
 }
 
@@ -12,13 +16,23 @@
     background-position: left bottom;
     background-repeat: repeat-x;
     clear: both;
-    padding: 5px 13px;
     position: relative;
     border: 1px solid #C9E8F3;
     margin: 0 0 1em;
     -moz-border-radius: 8px;
     -webkit-border-radius: 8px;
     border-radius: 8px;
+}
+
+#edit-addon .listing-footer {
+    -moz-border-radius: 0 0 8px 8px;
+    -webkit-border-radius: 0 0 8px 8px;
+    border-top: 1px solid #C9E8F3;
+    padding: 9px;
+}
+
+#edit-addon .item_wrapper {
+    padding: 5px 13px;
 }
 
 #edit-addon h3:first-child {
@@ -94,6 +108,30 @@
     margin-bottom: 0;
     padding-bottom: 0;
 }
+
+#id_tags, #id_name {
+    width: 80%;
+}
+
+#id_homepage, #id_support_url, #id_support_email {
+    width: 60%;
+}
+
+#slug_edit span, #id_slug {
+  font-family: Verdana !important;
+  /** This is so they match up size-wise **/
+}
+
+
+#edit-addon label {
+    font-weight: normal;
+}
+
+#addon_categories_edit li {
+    float: left;
+    width: 250px;
+}
+
 /* @end */
 
 /* @group Dashboard */
@@ -101,6 +139,7 @@
     background-color: #fff;
     border: 3px solid #c8e8f3;
     -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
     border-radius: 6px;
     padding: 15px;
 }
