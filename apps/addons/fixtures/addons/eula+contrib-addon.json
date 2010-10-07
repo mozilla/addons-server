@@ -38,8 +38,6 @@
         "pk": 6,
         "model": "versions.license",
         "fields": {
-            "_custom_text": null,
-            "_name_field": 2,
             "modified": "2009-04-30 23:48:48",
             "created": "2009-04-30 23:48:48"
         }

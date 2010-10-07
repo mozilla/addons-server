@@ -84,8 +84,7 @@
         "pk": 282,
         "model": "versions.license",
         "fields": {
-            "_custom_text": 436038,
-            "_name_field": -1,
+            "text": 436038,
             "modified": "2009-06-21 20:51:55",
             "created": "2009-06-21 20:51:54"
         }

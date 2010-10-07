@@ -8,7 +8,8 @@ import caching.base
 import amo.models
 from applications.models import Application, AppVersion
 from files.models import File
-from translations.fields import TranslatedField, PurifiedField
+from translations.fields import (TranslatedField, PurifiedField,
+                                 LinkifiedField)
 from users.models import UserProfile
 
 from . import compare
@@ -99,58 +100,33 @@ class Version(amo.models.ModelBase):
             version.all_files = file_dict.get(v_id, [])
 
 
+class LicenseManager(amo.models.ManagerBase):
+
+    def builtins(self):
+        return self.filter(builtin__gt=0).order_by('builtin')
+
+
 class License(amo.models.ModelBase):
-    """
-    Custom as well as built-in licenses.
-    A name of -1 indicates a custom license, all names >= 0 are built-in.
-    Built-in licenses are defined in amo.__init__
-    """
+    OTHER = 0
 
-    _name_field = models.IntegerField(null=False,
-                                      default=amo.LICENSE_CUSTOM.id,
-                                      db_column='name')
-    _custom_text = TranslatedField(db_column='text')
+    name = TranslatedField(db_column='name')
+    url = models.URLField(null=True)
+    builtin = models.PositiveIntegerField(default=OTHER)
+    text = LinkifiedField()
+    on_form = models.BooleanField(default=False,
+        help_text='Is this a license choice in the devhub?')
+    some_rights = models.BooleanField(default=False,
+        help_text='Show "Some Rights Reserved" instead of the license name?')
+    icons = models.CharField(max_length=255, null=True,
+        help_text='Space-separated list of icon identifiers.')
 
-    class Meta(amo.models.ModelBase.Meta):
+    objects = LicenseManager()
+
+    class Meta:
         db_table = 'licenses'
 
     def __unicode__(self):
-        return self.name
-
-    @property
-    def license_type(self):
-        return amo.LICENSE_IDS.get(self._name_field, amo.LICENSE_CUSTOM)
-
-    @license_type.setter
-    def license_type(self, license):
-        assert license in amo.LICENSES
-        self._name_field = license.id
-
-    @property
-    def is_custom(self):
-        """is this a custom, not built-in, license?"""
-        return self.license_type.id == amo.LICENSE_CUSTOM.id
-
-    @property
-    def name(self):
-        return self.license_type.name
-
-    @property
-    def text(self):
-        if self.is_custom:
-            return self._custom_text
-        else:
-            return self.license_type.text()
-
-    @text.setter
-    def text(self, value):
-        if value:
-            self.license_type = amo.LICENSE_CUSTOM
-        self._custom_text = value
-
-    @property
-    def url(self):
-        return self.license_type.url
+        return '%s %s' % (self.id, self.name)
 
 
 class VersionComment(amo.models.ModelBase):

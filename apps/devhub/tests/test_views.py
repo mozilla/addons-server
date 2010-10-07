@@ -8,6 +8,7 @@ import amo
 from amo.urlresolvers import reverse
 from addons.models import Addon, AddonUser
 from users.models import UserProfile
+from versions.models import License, Version
 
 
 class HubTest(test_utils.TestCase):
@@ -145,17 +146,148 @@ class TestOwnership(test_utils.TestCase):
     def setUp(self):
         self.url = reverse('devhub.addons.owner', args=[3615])
         assert self.client.login(username='del@icio.us', password='password')
+        self.addon = Addon.objects.get(id=3615)
+        self.version = self.addon.current_version
 
     def formset(self, *args, **kw):
         # def f(*args, prefix='form') is a syntax error.
         prefix = kw.pop('prefix', 'form')
         initial_count = kw.pop('initial_count', 0)
         data = {prefix + '-TOTAL_FORMS': len(args),
-                prefix + '-INITIAL_FORMS': initial_count}
+                prefix + '-INITIAL_FORMS': initial_count,
+                'builtin': License.OTHER, 'text': 'filler'}
         for idx, d in enumerate(args):
             data.update(('%s-%s-%s' % (prefix, idx, k), v)
                         for k, v in d.items())
+        data.update(kw)
         return data
+
+    def get_version(self):
+        return Version.objects.no_cache().get(id=self.version.id)
+
+    def get_addon(self):
+        return Addon.objects.no_cache().get(id=self.addon.id)
+
+
+class TestEditPolicy(TestOwnership):
+
+    def formset(self, *args, **kw):
+        init = self.client.get(self.url).context['user_form'].initial_forms
+        args = args + tuple(f.initial for f in init)
+        return super(TestEditPolicy, self).formset(*args, **kw)
+
+    def test_edit_eula(self):
+        old_eula = self.addon.eula
+        data = self.formset(eula='new eula', has_eula=True)
+        r = self.client.post(self.url, data)
+        eq_(r.status_code, 302)
+        addon = self.get_addon()
+        eq_(unicode(addon.eula), 'new eula')
+        eq_(addon.eula.id, old_eula.id)
+
+    def test_delete_eula(self):
+        assert self.addon.eula
+        r = self.client.post(self.url, self.formset(has_eula=False))
+        eq_(r.status_code, 302)
+        eq_(self.get_addon().eula, None)
+
+
+class TestEditLicense(TestOwnership):
+
+    def setUp(self):
+        super(TestEditLicense, self).setUp()
+        self.version.license = None
+        self.version.save()
+        self.license = License.objects.create(builtin=1, name='bsd',
+                                              on_form=True)
+
+    def formset(self, *args, **kw):
+        init = self.client.get(self.url).context['user_form'].initial_forms
+        args = args + tuple(f.initial for f in init)
+        data = super(TestEditLicense, self).formset(*args, **kw)
+        if 'text' not in kw:
+            del data['text']
+        return data
+
+    def test_success_add_builtin(self):
+        data = self.formset(builtin=1)
+        r = self.client.post(self.url, data)
+        eq_(r.status_code, 302)
+        eq_(self.license, self.get_version().license)
+
+    def test_success_add_custom(self):
+        data = self.formset(builtin=License.OTHER, text='text', name='name')
+        r = self.client.post(self.url, data)
+        eq_(r.status_code, 302)
+        license = self.get_version().license
+        eq_(unicode(license.text), 'text')
+        eq_(unicode(license.name), 'name')
+        eq_(license.builtin, License.OTHER)
+
+    def test_success_edit_custom(self):
+        data = self.formset(builtin=License.OTHER, text='text', name='name')
+        r = self.client.post(self.url, data)
+        license_one = self.get_version().license
+
+        data = self.formset(builtin=License.OTHER, text='woo', name='name')
+        r = self.client.post(self.url, data)
+        eq_(r.status_code, 302)
+        license_two = self.get_version().license
+        eq_(unicode(license_two.text), 'woo')
+        eq_(unicode(license_two.name), 'name')
+        eq_(license_two.builtin, License.OTHER)
+        eq_(license_two.id, license_one.id)
+
+    def test_success_switch_license(self):
+        data = self.formset(builtin=1)
+        r = self.client.post(self.url, data)
+        license_one = self.get_version().license
+
+        data = self.formset(builtin=License.OTHER, text='text', name='name')
+        r = self.client.post(self.url, data)
+        eq_(r.status_code, 302)
+        license_two = self.get_version().license
+        eq_(unicode(license_two.text), 'text')
+        eq_(unicode(license_two.name), 'name')
+        eq_(license_two.builtin, License.OTHER)
+        assert license_one != license_two
+
+        # Make sure the old license wasn't edited.
+        license = License.objects.get(builtin=1)
+        eq_(unicode(license.name), 'bsd')
+
+        data = self.formset(builtin=1)
+        r = self.client.post(self.url, data)
+        eq_(r.status_code, 302)
+        license_three = self.get_version().license
+        eq_(license_three, license_one)
+
+    def test_custom_has_text(self):
+        data = self.formset(builtin=License.OTHER, name='name')
+        r = self.client.post(self.url, data)
+        eq_(r.status_code, 200)
+        self.assertFormError(r, 'license_form', None,
+                             'License text is required when choosing Other.')
+
+    def test_custom_has_name(self):
+        data = self.formset(builtin=License.OTHER, text='text')
+        r = self.client.post(self.url, data)
+        eq_(r.status_code, 302)
+        license = self.get_version().license
+        eq_(unicode(license.text), 'text')
+        eq_(unicode(license.name), 'Custom License')
+        eq_(license.builtin, License.OTHER)
+
+    def test_no_version(self):
+        # Make sure nothing bad happens if there's no version.
+        self.addon.update(_current_version=None)
+        Version.objects.all().delete()
+        data = self.formset(builtin=License.OTHER, text='text')
+        r = self.client.post(self.url, data)
+        eq_(r.status_code, 302)
+
+
+class TestEditAuthor(TestOwnership):
 
     def test_success_add_user(self):
         q = (AddonUser.objects.no_cache().filter(addon=3615)

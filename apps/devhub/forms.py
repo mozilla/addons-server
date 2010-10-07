@@ -1,13 +1,17 @@
 from django import forms
 from django.forms.models import modelformset_factory, BaseModelFormSet
 
+import happyforms
 from tower import ugettext as _
 
 import amo
-from addons.models import AddonUser
+from addons.models import Addon, AddonUser
+from translations.widgets import TranslationTextarea, TranslationTextInput
+from translations.models import delete_translation
+from versions.models import License
 
 
-class AuthorForm(forms.ModelForm):
+class AuthorForm(happyforms.ModelForm):
 
     class Meta:
         model = AddonUser
@@ -36,3 +40,61 @@ class BaseAuthorFormSet(BaseModelFormSet):
 
 AuthorFormSet = modelformset_factory(AddonUser, formset=BaseAuthorFormSet,
                                      form=AuthorForm, can_delete=True)
+
+
+def LicenseForm(*args, **kw):
+    # This needs to be lazy so we get the right translations.
+    cs = [(x.builtin, x.name)
+          for x in License.objects.builtins().filter(on_form=True)]
+    cs.append((License.OTHER, _('Other')))
+
+    class _Form(happyforms.ModelForm):
+        builtin = forms.TypedChoiceField(choices=cs, coerce=int,
+                                         widget=forms.RadioSelect())
+        name = forms.CharField(widget=TranslationTextInput(),
+                               required=False, initial=_('Custom License'))
+        text = forms.CharField(widget=TranslationTextarea(), required=False)
+
+        class Meta:
+            model = License
+            fields = ('builtin', 'name', 'text')
+
+        def clean_name(self):
+            name = self.cleaned_data['name']
+            return name.strip() or _('Custom License')
+
+        def clean(self):
+            data = self.cleaned_data
+            if self.errors:
+                return data
+            elif data['builtin'] == License.OTHER and not data['text']:
+                raise forms.ValidationError(
+                    _('License text is required when choosing Other.'))
+            return data
+
+        def save(self, commit=True):
+            builtin = self.cleaned_data['builtin']
+            if builtin != License.OTHER:
+                return License.objects.get(builtin=builtin)
+            return super(_Form, self).save(commit)
+
+    return _Form(*args, **kw)
+
+
+class PolicyForm(happyforms.ModelForm):
+    """Form for editing the add-ons EULA and privacy policy."""
+    has_eula = forms.BooleanField(required=False)
+    eula = forms.CharField(widget=TranslationTextarea(), required=False)
+    has_priv = forms.BooleanField(required=False)
+    privacy_policy = forms.CharField(widget=TranslationTextarea(),
+                                     required=False)
+
+    class Meta:
+        model = Addon
+        fields = ('eula', 'privacy_policy')
+
+    def save(self, addon, commit=True):
+        super(PolicyForm, self).save(commit)
+        for k, field in (('has_eula', 'eula'), ('has_priv', 'privacy_policy')):
+            if not self.cleaned_data[k]:
+                delete_translation(addon, field)

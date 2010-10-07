@@ -1,12 +1,11 @@
 from django import forms
-from django.conf import settings
 from django.db import models
 from django.db.models.fields import related
 from django.utils import translation as translation_utils
 from django.utils.translation.trans_real import to_language
 
 from .models import Translation, PurifiedTranslation, LinkifiedTranslation
-from .widgets import TranslationWidget, TranslationTextInput
+from .widgets import TranslationWidget
 
 
 class TranslatedField(models.ForeignKey):

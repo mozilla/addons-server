@@ -7,7 +7,7 @@ import amo
 from amo.urlresolvers import reverse
 from addons.models import Addon
 from versions import views
-from versions.models import License, Version
+from versions.models import Version
 from versions.compare import version_int, dict_from_int
 
 
@@ -83,52 +83,6 @@ class TestVersion(test_utils.TestCase):
         assert self._get_version(amo.STATUS_UNREVIEWED).is_unreviewed
         assert self._get_version(amo.STATUS_PENDING).is_unreviewed
         assert not self._get_version(amo.STATUS_PUBLIC).is_unreviewed
-
-
-class TestLicense(test_utils.TestCase):
-    """Test built-in as well as custom licenses."""
-
-    def test_defaults(self):
-        lic = License()
-        lic.save()
-        assert lic.is_custom, 'Custom license not recognized.'
-        assert lic.license_type is amo.LICENSE_CUSTOM  # default
-        assert not lic.text
-
-        lic.license_type = amo.LICENSE_MPL
-        assert not lic.is_custom, 'Built-in license not recognized.'
-        assert lic.text
-        eq_(lic.url, amo.LICENSE_MPL.url)
-
-    def test_license(self):
-        """Test getters and setters for license."""
-        mylicense = amo.LICENSE_MPL
-
-        lic = License()
-        lic.license_type = mylicense
-        lic.save()
-        eq_(lic.license_type, mylicense)
-
-    def test_custom_text(self):
-        """Test getters and setters for custom text."""
-        mytext = 'OMG'
-
-        lic = License()
-        lic.text = mytext
-        lic.save()
-        lic2 = License.objects.get(pk=lic.pk)
-        eq_(unicode(lic2.text), mytext)
-
-    def test_builtin_text(self):
-        """Get license text for all built-in licenses."""
-        lic = License()
-        for licensetype in amo.LICENSES:
-            lic.license_type = licensetype
-            if licensetype in (amo.LICENSE_CUSTOM, amo.LICENSE_COPYRIGHT,
-                               amo.LICENSE_CC_BY_NC_SA):
-                assert not lic.text
-            else:
-                assert lic.text, "No license text for %s" % licensetype
 
 
 class TestViews(test_utils.TestCase):

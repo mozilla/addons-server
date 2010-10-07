@@ -271,21 +271,23 @@ def license_link(license):
     """Link to a code license, incl. icon where applicable."""
     if not license:
         return ''
+    if not license.builtin:
+        return _('Custom License')
     lic_icon = lambda name: '<li class="icon %s"></li>' % name
 
     parts = []
     parts.append('<ul class="license">')
     if license.icons:
-        for i in license.icons:
+        for i in license.icons.split():
             parts.append(lic_icon(i))
 
     # TODO link to custom license page
     parts.append('<li class="text">')
 
     if license.url:
-        if license.linktext:
-            title = ' title="%s"' % unicode(license.name)
-            linktext = license.linktext
+        if license.some_rights:
+            title = ' title="%s"' % license.name
+            linktext = _('Some rights reserved')
         else:
             title = ''
             linktext = license.name
