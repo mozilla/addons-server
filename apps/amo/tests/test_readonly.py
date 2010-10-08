@@ -42,12 +42,12 @@ class ReadOnlyModeTest(test_utils.TestCase):
     def test_login_error(self):
         # This tries to do a db write.
         r = self.client.get(reverse('users.login'))
-        eq_(r.status_code, 500)
+        eq_(r.status_code, 503)
         title = pq(r.content)('title').text()
         assert title.startswith('Maintenance in progress'), title
 
     def test_bail_on_post(self):
         r = self.client.post('/en-US/firefox/')
-        eq_(r.status_code, 500)
+        eq_(r.status_code, 503)
         title = pq(r.content)('title').text()
         assert title.startswith('Maintenance in progress'), title

@@ -161,11 +161,11 @@ class ReadOnlyMiddleware(object):
 
     def process_request(self, request):
         if request.method == 'POST':
-            return jingo.render(request, 'amo/read-only.html', status=500)
+            return jingo.render(request, 'amo/read-only.html', status=503)
 
     def process_exception(self, request, exception):
         if isinstance(exception, mysql.OperationalError):
-            return jingo.render(request, 'amo/read-only.html', status=500)
+            return jingo.render(request, 'amo/read-only.html', status=503)
 
 
 timing_log = commonware.log.getLogger('z.timer')
