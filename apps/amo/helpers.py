@@ -5,7 +5,8 @@ import random
 import re
 
 from django.conf import settings
-from django.utils import translation, encoding
+from django.utils import translation
+from django.utils.encoding import smart_unicode
 from django.template import defaultfilters
 
 from babel import Locale
@@ -18,6 +19,7 @@ from tower import ugettext as _
 import amo
 from amo import utils, urlresolvers
 from addons.models import Category
+from translations.models import Translation
 from translations.query import order_by_translation
 
 # Yanking filters from Django.
@@ -169,8 +171,7 @@ def login_link(context):
 @jinja2.contextfunction
 def page_title(context, title):
     app = context['request'].APP
-    return u'%s :: %s' % (encoding.smart_unicode(title),
-                          page_name(app))
+    return u'%s :: %s' % (smart_unicode(title), page_name(app))
 
 
 @register.function
@@ -260,7 +261,7 @@ def strip_html(s, just_kidding=False):
     if just_kidding:
         return s
     else:
-        s = re.sub(r'&lt;.*?&gt;', '', unicode(s))
+        s = re.sub(r'&lt;.*?&gt;', '', smart_unicode(s, errors='ignore'))
         return re.sub(r'<.*?>', '', s)
 
 @register.filter
