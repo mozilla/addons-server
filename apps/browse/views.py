@@ -290,7 +290,7 @@ def personas(request, category=None):
 
 
 @cache_page(60 * 60 * 24 * 365)
-def legacy_redirects(request, type_, category=None, format=None):
+def legacy_redirects(request, type_, category=None, sort=None, format=None):
     type_slug = amo.ADDON_SLUGS.get(int(type_), 'extensions')
     if not category or category == 'all':
         url = reverse('browse.%s' % type_slug)
@@ -301,9 +301,11 @@ def legacy_redirects(request, type_, category=None, format=None):
         else:
             url = reverse('browse.%s' % type_slug, args=[cat.slug])
     mapping = {'updated': 'updated', 'newest': 'created', 'name': 'name',
-                'weeklydownloads': 'popular', 'averagerating': 'rating'}
+               'weeklydownloads': 'popular', 'averagerating': 'rating'}
     if 'sort' in request.GET and request.GET['sort'] in mapping:
         url += '?sort=%s' % mapping[request.GET['sort']]
+    elif sort in mapping:
+        url += '?sort=%s' % mapping[sort]
     return HttpResponsePermanentRedirect(url)
 
 

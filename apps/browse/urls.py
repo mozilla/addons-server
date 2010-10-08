@@ -26,7 +26,7 @@ urlpatterns = patterns('',
         name='browse.personas'),
 
     url('^browse/type:(?P<type_>\d)(?:/cat:(?P<category>\d+))?'
-        '(?:/format:(?P<format>[^/]+).*)?',
+        '(?:/sort:(?P<sort>[^/]+))?(?:/format:(?P<format>[^/]+).*)?',
         views.legacy_redirects),
 
     url('^search-tools/(?P<category>[^/]+)?$', views.search_tools,
