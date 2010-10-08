@@ -420,12 +420,12 @@ CONTRIB_PASSIVE = 1
 CONTRIB_AFTER = 2
 CONTRIB_ROADBLOCK = 3
 
-CONTRIB_CHOICES = {
-    CONTRIB_NONE: 'None',
-    CONTRIB_PASSIVE: 'Passive; user shown message next to download button',
-    CONTRIB_AFTER: 'User shown splash screen after download',
-    CONTRIB_ROADBLOCK: 'Roadblock; User shown splash screen before download',
-}
+CONTRIB_CHOICES = (
+    (CONTRIB_PASSIVE,
+     _("Only ask on this add-on's page and developer profile")),
+    (CONTRIB_AFTER, _("Ask after users start downloading this add-on")),
+    (CONTRIB_ROADBLOCK, _("Ask before users can download this add-on")),
+)
 
 # Personas
 PERSONAS_ADDON_ID = 10900  # Add-on ID of the Personas Plus Add-on
@@ -463,3 +463,6 @@ COLLECTION_AUTHOR_CHOICES = {
     COLLECTION_ROLE_PUBLISHER: 'Publisher',
     COLLECTION_ROLE_ADMIN: 'Admin',
 }
+
+# Contributions.
+FOUNDATION_ORG = 1  # The charities.id of the Mozilla Foundation.
