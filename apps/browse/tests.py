@@ -257,8 +257,8 @@ class TestLegacyRedirects(test_utils.TestCase):
         redirects('/browse/type:1/cat:all/', '/extensions/')
         redirects('/browse/type:1/cat:72', '/extensions/alerts-updates/')
         redirects('/browse/type:1/cat:72/', '/extensions/alerts-updates/')
-        redirects('/browse/type:1/cat:4/sort:newest/format:rss',
-                  '/extensions/web-development/format:rss?sort=created')
+        redirects('/browse/type:1/cat:72/sort:newest/format:rss',
+                  '/extensions/alerts-updates/format:rss?sort=created')
         redirects('/browse/type:1/cat:72/sort:weeklydownloads/format:rss',
                   '/extensions/alerts-updates/format:rss?sort=popular')
 
