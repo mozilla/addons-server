@@ -196,7 +196,7 @@ class Addon(amo.models.ModelBase):
                                           through='AddonDependency',
                                           related_name='addons')
 
-    categories = models.ManyToManyField('Category', through='AddonCategory',
+    categories = models.ManyToManyField('Category',
                                          related_name='addons')
 
     _current_version = models.ForeignKey(Version, related_name='___ignore',
