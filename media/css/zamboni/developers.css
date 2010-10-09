@@ -49,12 +49,12 @@
     width: 130px;
     vertical-align: top;
     padding: 8px 20px 8px 0;
-    border-top: 1px dashed #ADD0DC;
+    border-top: 1px dotted #ADD0DC;
 }
 
 #edit-addon table td {
     padding: 8px 0;
-    border-top: 1px dashed #ADD0DC;
+    border-top: 1px dotted #ADD0DC;
 }
 
 #edit-addon table, #edit-addon tbody {
@@ -72,7 +72,8 @@
     height: 75px;
 }
 
-#edit-addon .help {
+#edit-addon .help,
+#edit-addon .remove {
     -moz-border-radius: 20px;
     -webkit-border-radius :20px;
     border-radius: 20px;
@@ -89,6 +90,14 @@
     width: 18px;
 }
 
+#edit-addon .remove {
+    cursor: pointer;
+    line-height: 16px;
+    float: right;
+    margin-top: 2px;
+}
+
+#edit-addon .remove:hover,
 #edit-addon tr:hover .help {
     background-color: #CCC;
 }
@@ -210,7 +219,7 @@
     font-size: 1.1em;
 }
 .item-group {
-    border-top: 1px dashed #aecfda;
+    border-top: 1px dotted #aecfda;
     margin-top: 0.5em;
     padding-top: 0.5em;
 }
@@ -322,6 +331,66 @@ h3 a.subscribe-feed:hover {
 
 /* @end */
 
+/* @group Ownership */
+#author_list .email-autocomplete {
+    width: 220px;
+    padding-right:20px;
+}
+#author_list {
+    padding-top: 4px;
+}
+#author_list li {
+    padding: 8px 0;
+    border-bottom: 1px dotted #ADD0DC;
+}
+#author_list .blank {
+    border: 0;
+}
+#author_list li > label,
+#author_list li > input,
+#author_list li > select {
+    margin-right: .5em;
+}
+#author_list .handle {
+    width: 20px;
+    height: 16px;
+    display: inline-block;
+    cursor: move;
+    background: url(../../img/zamboni/icons/icon-draggable.png) no-repeat 0 center;
+}
+#author_list .blank * {
+    display: none;
+}
+#author_list .blank .email-autocomplete {
+    display: inline;
+    margin-left: 23px;
+}
+input.invalid {
+    background: url(../../img/zamboni/notifications.png) no-repeat 229px -160px;
+}
+input.valid {
+    background: url(../../img/zamboni/notifications.png) no-repeat 226px -367px;
+}
+.license-other input {
+    margin-bottom: 1em;
+}
+#edit-addon .priv label,
+#edit-addon .eula label,
+#edit-addon .license-other label {
+    font-weight: bold;
+    margin-bottom: .5em;
+}
+#edit-addon .priv,
+#edit-addon .eula,
+#edit-addon .license-other {
+    margin: 16px 0 0 32px;
+}
+.eula label,
+.priv label {
+    font-weight: bold;
+}
+/* @end */
+
 /* @group Recent Activity */
 .secondary-feed {
     padding: 1em 0 0 1em;
@@ -343,39 +412,6 @@ h3 a.subscribe-feed:hover {
 .inactive-1 { color: red; }
 /* @end */
 
-/* @group Tables */
-
-table {
-    border-bottom: 1px solid #666;
-}
-
-caption {
-    font-weight: bold;
-    padding-bottom: 0.539em; /* 7px */
-    font-size:1.231em; /* 16px */
-}
-
-thead th {
-    border-top: 1px solid #666;
-    border-bottom: 3px solid #666;
-    padding-top: 0;
-    padding-bottom: 0.539em; /* 7px */
-}
-
-tbody {
-    border-top: 3px solid #666; /* not rendered in IE6/7 */
-}
-
-tbody tr th, tbody tr td {
-    border-top: 1px solid #ddd;
-}
-
-th, td {
-    text-align: left;
-    padding: 0.308em 0.537em 0.214em 0.231em; /* 4px 7px 3px 7px */
-}
-
-/* @end */
 
 /* @group Header and main navigation bar */
 .section {

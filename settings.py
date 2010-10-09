@@ -369,6 +369,7 @@ MINIFY_BUNDLES = {
         # JS files common to the entire site.
         'common': (
             'js/zamboni/jquery-1.4.2.min.js',
+            'js/zamboni/jquery-ui/custom-1.8.5.min.js',
             'js/zamboni/underscore-min.js',
             'js/amo2009/addons.js',
             'js/zamboni/init.js',
@@ -399,7 +400,6 @@ MINIFY_BUNDLES = {
             'js/zamboni/personas.js',
 
             # Collections
-            'js/zamboni/jquery-ui/custom-1.8.2.min.js',
             'js/zamboni/collections.js',
 
             # Users

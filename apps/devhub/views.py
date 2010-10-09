@@ -159,7 +159,7 @@ def addons_owner(request, addon_id, addon):
     return jingo.render(request, 'devhub/addons/owner.html',
         dict(addon=addon, user_form=user_form, version=version,
              license_form=version and license_form, license_urls=license_urls,
-             policy_form=policy_form))
+             policy_form=policy_form, license_other_val=License.OTHER))
 
 
 @dev_required

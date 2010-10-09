@@ -15,7 +15,7 @@ class AuthorForm(happyforms.ModelForm):
 
     class Meta:
         model = AddonUser
-        exclude = ('addon', 'position')
+        exclude = ('addon')
 
 
 class BaseAuthorFormSet(BaseModelFormSet):
@@ -50,10 +50,12 @@ def LicenseForm(*args, **kw):
 
     class _Form(happyforms.ModelForm):
         builtin = forms.TypedChoiceField(choices=cs, coerce=int,
-                                         widget=forms.RadioSelect())
+                                         widget=forms.RadioSelect(attrs={'class': 'license'}))
         name = forms.CharField(widget=TranslationTextInput(),
+                               label="What is your license\'s name?",
                                required=False, initial=_('Custom License'))
-        text = forms.CharField(widget=TranslationTextarea(), required=False)
+        text = forms.CharField(widget=TranslationTextarea(), required=False,
+                               label="Provide the text of your license.")
 
         class Meta:
             model = License
@@ -83,11 +85,16 @@ def LicenseForm(*args, **kw):
 
 class PolicyForm(happyforms.ModelForm):
     """Form for editing the add-ons EULA and privacy policy."""
-    has_eula = forms.BooleanField(required=False)
-    eula = forms.CharField(widget=TranslationTextarea(), required=False)
-    has_priv = forms.BooleanField(required=False)
+    has_eula = forms.BooleanField(required=False,
+                                  label=_("This add-on has an End User License Agreement"))
+    eula = forms.CharField(widget=TranslationTextarea(),
+                           required=False,
+                           label="Please specify your add-on\'s End User License Agreement:")
+    has_priv = forms.BooleanField(required=False,
+                                  label=_("This add-on has a Privacy Policy"))
     privacy_policy = forms.CharField(widget=TranslationTextarea(),
-                                     required=False)
+                                     required=False,
+                                     label=_('Please specify your add-on\'s privacy policy:'))
 
     class Meta:
         model = Addon

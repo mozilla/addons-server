@@ -10,16 +10,84 @@
   {{ dev_breadcrumbs(addon) }}
   <h2>{{ title }}</h2>
 </header>
-<section class="primary" role="main">
-<form method="post" action="">
+<section id="edit-addon" class="primary" role="main">
+<form method="post" class="item" action="">
   {{ csrf() }}
-  <table>{{ user_form|safe }}</table>
-  {% if version %}
-    <table>{{ license_form|safe }}</table>
-  {% endif %}
-  <table>{{ policy_form|safe }}</table>
-  <button type="submit">GO GO GO</button>
+  <div class="item_wrapper">
+    <table>
+      {{ user_form.management_form|safe }}
+      <tr>
+        <th>Authors</th>
+        <td>
+          <ul id="author_list">
+          {% for form in user_form.forms %}
+          <li class="{{ 'blank' if loop.last else 'author' }} initial">
+            <span class="handle">&nbsp;</span>
+            {{ form.user|safe }}
+            {{ form.role|safe }}
+            {{ form.listed|safe }}{{ form.listed.label_tag()|safe }}
+            {{ form.id|safe }}
+            <span class="js-hidden delete">{{ form.DELETE|safe }}{{ form.DELETE.label_tag()|safe }}</span>
+            <span class="js-hidden position">{{ form.position|safe }}</span>
+            <a href="#" class="remove">x</a>
+          </li>
+          {% endfor %}
+        </td>
+      </tr>
+      <tr>
+        <th>License</th>
+        <td>
+          {% if version %}
+            {{ license_form.builtin|safe }}
+          {% endif %}
+          <div class="license-other {{ 'hidden' if not license_form.initial.builtin == license_other_val }}"
+               data-val="{{ license_other_val }}">
+            {{ license_form.name.label_tag()|safe }}
+            {{ license_form.name|safe }}
+            {{ license_form.text.label_tag()|safe }}
+            {{ license_form.text|safe }}
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th>{{ _('EULA') }}</th>
+        <td>
+          {{ policy_form.has_eula|safe }}
+          {{ policy_form.has_eula.label_tag()|safe }}
+          <div class="eula {{ 'hidden' if not policy_form.initial.has_eula }}">
+            {{ policy_form.eula.label_tag()|safe }}
+            {{ policy_form.eula|safe }}
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th>{{ _('Privacy Policy') }}</th>
+        <td>
+          {{ policy_form.has_priv|safe }}
+          {{ policy_form.has_priv.label_tag()|safe }}
+          <div class="priv {{ 'hidden' if not policy_form.initial.has_priv }}">
+            {{ policy_form.privacy_policy.label_tag()|safe }}
+            {{ policy_form.privacy_policy|safe }}
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="listing-footer"><button type="submit">{{ _('Save Changes') }}</button></div>
 </form>
+{% with form=user_form.empty_form %}
+<div id="user-form-template" class="hidden">
+  <li class="blank">
+    <span class="handle">&nbsp;</span>
+    {{ form.user|safe }}
+    {{ form.role|safe }}
+    {{ form.listed|safe }}{{ form.listed.label_tag()|safe }}
+    <span class="js-hidden">{{ form.DELETE|safe }}{{ form.DELETE.label_tag()|safe }}</span>
+    <span class="js-hidden position">{{ form.position|safe }}</span>
+    <a href="#" class="remove">x</a>
+  </li>
+</div>
+{% endwith %}
 </section>
 {% include "devhub/includes/addons_edit_nav.html" %}
 {% endblock %}
