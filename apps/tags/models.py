@@ -60,6 +60,7 @@ class TagStat(amo.models.ModelBase):
 class AddonTag(amo.models.ModelBase):
     addon = models.ForeignKey('addons.Addon', related_name='addon_tags')
     tag = models.ForeignKey(Tag, related_name='addon_tags')
+    user = models.ForeignKey('users.UserProfile')
 
     class Meta:
         db_table = 'users_tags_addons'
