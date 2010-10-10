@@ -18,8 +18,8 @@ from addons.views import BaseFilter
 from files.models import FileUpload
 from versions.models import License
 from . import tasks
-from .forms import (AuthorFormSet, LicenseForm, PolicyForm, CharityForm,
-                    ContribForm)
+from .forms import (AuthorFormSet, LicenseForm, PolicyForm, ProfileForm,
+                    CharityForm, ContribForm)
 
 log = commonware.log.getLogger('z.devhub')
 
@@ -83,7 +83,6 @@ def dashboard(request):
                          'sort_opts': filter.opts})
 
 
-# TODO: If user is not a developer, redirect to url('devhub.addons').
 @login_required
 def activity(request):
     return jingo.render(request, 'devhub/addons/activity.html')
@@ -190,6 +189,18 @@ def disable_payments(request, addon_id, addon):
     addon.update(wants_contributions=False)
     return redirect('devhub.addons.payments', addon_id)
 
+
+@dev_required
+def profile(request, addon_id, addon):
+    profile_form = ProfileForm(request.POST or None, instance=addon)
+
+    if request.method == 'POST' and profile_form.is_valid():
+        profile_form.save()
+        AddonLog.log(Addon, request, action='profile', form=profile_form)
+        return redirect('devhub.addons.profile', addon_id)
+
+    return jingo.render(request, 'devhub/addons/profile.html',
+                        dict(addon=addon, profile_form=profile_form))
 
 def upload(request):
     if request.method == 'POST' and 'upload' in request.FILES:

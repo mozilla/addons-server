@@ -12,7 +12,7 @@ import amo
 import paypal
 from amo.urlresolvers import reverse
 from addons.models import Addon, AddonUser, Charity
-from devhub.forms import ContribForm
+from devhub.forms import ContribForm, ProfileForm
 from users.models import UserProfile
 from versions.models import License, Version
 
@@ -563,3 +563,97 @@ class TestEdit(test_utils.TestCase):
         r = self.client.get('/en-US/developers/addon/3615/', follow=True)
         url = reverse('devhub.addons.edit', args=[3615])
         self.assertRedirects(r, url, 301)
+
+
+class TestProfile(test_utils.TestCase):
+    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
+
+    def setUp(self):
+        self.url = reverse('devhub.addons.profile', args=[3615])
+        assert self.client.login(username='del@icio.us', password='password')
+        self.addon = Addon.objects.get(id=3615)
+        self.version = self.addon.current_version
+
+    def get_addon(self):
+        return Addon.objects.no_cache().get(id=self.addon.id)
+
+    def enable_addon_contributions(self):
+        self.addon.wants_contributions = True
+        self.addon.paypal_id = 'somebody'
+        self.addon.save()
+
+    def post(self, *args, **kw):
+        d = dict(*args, **kw)
+        eq_(self.client.post(self.url, d).status_code, 302)
+
+    def check(self, **kw):
+        addon = self.get_addon()
+        for k, v in kw.items():
+            if k in ('the_reason', 'the_future'):
+                eq_(getattr(getattr(addon, k), 'localized_string'), unicode(v))
+            else:
+                eq_(getattr(addon, k), v)
+
+    def test_without_contributions_labels(self):
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        eq_(doc('label[for=id_the_reason] .optional').length, 1)
+        eq_(doc('label[for=id_the_future] .optional').length, 1)
+
+    def test_without_contributions_fields_optional(self):
+        self.post(the_reason='', the_future='')
+        self.check(the_reason='', the_future='')
+
+        self.post(the_reason='to be cool', the_future='')
+        self.check(the_reason='to be cool', the_future='')
+
+        self.post(the_reason='', the_future='hot stuff')
+        self.check(the_reason='', the_future='hot stuff')
+
+        self.post(the_reason='to be hot', the_future='cold stuff')
+        self.check(the_reason='to be hot', the_future='cold stuff')
+
+    def test_profile_form_initial(self):
+        eq_(ProfileForm.initial(self.addon)['the_reason'], None)
+        eq_(ProfileForm.initial(self.addon)['the_future'], None)
+        self.addon.the_reason = 'to be bad'
+        self.addon.the_future = 'sick stuff'
+        eq_(ProfileForm.initial(self.addon)['the_reason'].localized_string,
+            'to be bad')
+        eq_(ProfileForm.initial(self.addon)['the_future'].localized_string,
+            'sick stuff')
+
+    def test_with_contributions_labels(self):
+        self.enable_addon_contributions()
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        assert doc('label[for=id_the_reason] .req').length, \
+               'the_reason field should be required.'
+        assert doc('label[for=id_the_future] .req').length, \
+               'the_future field should be required.'
+
+    def test_with_contributions_fields_required(self):
+        self.enable_addon_contributions()
+
+        d = dict(the_reason='', the_future='')
+        r = self.client.post(self.url, d)
+        eq_(r.status_code, 200)
+        self.assertFormError(r, 'profile_form', 'the_reason',
+                             'This field is required.')
+        self.assertFormError(r, 'profile_form', 'the_future',
+                             'This field is required.')
+
+        d = dict(the_reason='to be cool', the_future='')
+        r = self.client.post(self.url, d)
+        eq_(r.status_code, 200)
+        self.assertFormError(r, 'profile_form', 'the_future',
+                             'This field is required.')
+
+        d = dict(the_reason='', the_future='hot stuff')
+        r = self.client.post(self.url, d)
+        eq_(r.status_code, 200)
+        self.assertFormError(r, 'profile_form', 'the_reason',
+                             'This field is required.')
+
+        self.post(the_reason='to be hot', the_future='cold stuff')
+        self.check(the_reason='to be hot', the_future='cold stuff')

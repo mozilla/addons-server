@@ -419,6 +419,16 @@ class Addon(amo.models.ModelBase):
         """Is add-on featured in any category for this app?"""
         return app.id in self._creatured_apps
 
+    def is_profile_public(self):
+        """Is developer profile public (completed)?"""
+        return ((self.the_reason and self.the_reason.localized_string) and
+                (self.the_future and self.the_future.localized_string))
+
+    def has_profile(self):
+        """Is developer profile (partially or entirely) completed?"""
+        return ((self.the_reason and self.the_reason.localized_string) or
+                (self.the_future and self.the_future.localized_string))
+
     @amo.cached_property(writable=True)
     def _creatured_apps(self):
         """Return a list of the apps where this add-on is creatured."""

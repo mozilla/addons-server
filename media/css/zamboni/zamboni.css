@@ -1123,7 +1123,7 @@ form label .note {
     margin-bottom: .5em;
 }
 
-abbr.req {
+.req {
     color: #d52f2f;
     font-weight: bold;
 }

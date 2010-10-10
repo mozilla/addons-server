@@ -1,0 +1,75 @@
+{% from 'includes/forms.html' import required %}
+
+{% if addon.has_profile %}
+  <h3>{{ _('Manage Your Developer Profile') }}</h3>
+{% else %}
+  <h3>{{ _('Create a Developer Profile') }}</h3>
+{% endif %}
+
+<p>
+  {% trans %}
+    Your developer profile will tell users about you, why you made this
+    add-on, and what's next for the add-on. This profile is required for
+    add-ons requesting contributions, but can be useful for any developer
+    interested in connecting with users.
+  {% endtrans %}
+</p>
+
+<h4>{{ _('Make sure your user profile is up to date.') }}</h4>
+<p>
+  {% trans url=url('users.edit') %}
+    <a href="{{ url }}"><strong>Update your user profile.</strong></a>
+  {% endtrans %}
+</p>
+
+<div class="container">
+  <label for="id_the_reason">
+    {{ profile_form.the_reason.label|safe }}
+    {% if addon.takes_contributions %}
+      {{ required() }}
+      <span class="req">
+        {{ _('(required since this add-on accepts contributions)') }}
+      </span>
+    {% else %}
+      <span class="optional">{{ _('(optional)') }}</span>
+    {% endif %}
+  </label>
+  <span class="help">
+    {% trans %}
+      Whether it was an idea while in line at the grocery store or the
+      solution to one of life's great problems, share your story.
+    {% endtrans %}
+  </span>
+  {{ profile_form.the_reason.errors|safe }}
+  {{ profile_form.the_reason|safe }}
+</div>
+
+<div class="container">
+  <label for="id_the_future">
+    {{ profile_form.the_future.label|safe }}
+    {% if addon.takes_contributions %}
+      {{ required() }}
+      <span class="req">
+        {{ _('(required since this add-on accepts contributions)') }}
+      </span>
+    {% else %}
+      <span class="optional">{{ _('(optional)') }}</span>
+    {% endif %}
+  </label>
+  <span class="help">
+    {% trans %}
+      Telling your users what's coming soon will give them something to
+      look forward to.
+    {% endtrans %}
+  </span>
+  {{ profile_form.the_future.errors|safe }}
+  {{ profile_form.the_future|safe }}
+</div>
+
+{% set button_label = _('Save Changes') if addon.has_profile else _('Create Profile') %}
+
+<p class="item-group">
+  <button>{{ button_label }}</button> {{ _('or') }}
+  <a href="{{ url('devhub.addons.edit', addon.id) }}">
+    {{ _('Cancel') }}</a>
+</p>

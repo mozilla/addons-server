@@ -1,0 +1,18 @@
+{% extends "devhub/base.html" %}
+
+{% set title = _('Manage Developer Profile') %}
+{% block title %}{{ dev_page_title(title, addon) }}{% endblock %}
+
+{% block content %}
+<header>
+  {{ dev_breadcrumbs(addon) }}
+  <h2>{{ title }}</h2>
+</header>
+<section class="primary" role="main">
+  <form method="post" action="{{ url('devhub.addons.profile', addon.id) }}">
+    {{ csrf() }}
+    {% include "devhub/includes/addons_create_profile.html" %}
+  </form>
+</section>
+{% include "devhub/includes/addons_edit_nav.html" %}
+{% endblock %}

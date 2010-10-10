@@ -1,7 +1,7 @@
 {% set urls = (
   (url('devhub.addons.edit', addon.id), _('Edit Add-on Listing')),
   (url('devhub.addons.owner', addon.id), _('Manage Authors & License')),
-  ('#', _('Manage Developer Profile')),
+  (url('devhub.addons.profile', addon.id), _('Manage Developer Profile')),
   (url('devhub.addons.payments', addon.id), _('Manage Payments')),
   ('#', _('Manage Status & Versions')),
 ) %}

@@ -199,6 +199,47 @@ class TestAddonModels(test_utils.TestCase):
 
         assert a.is_category_featured(amo.FIREFOX, 'en-US')
 
+    def test_is_profile_public(self):
+        """Test if an add-on's developer profile is complete (public)."""
+        addon = lambda: Addon.objects.get(pk=3615)
+        assert not addon().is_profile_public()
+
+        a = addon()
+        a.the_reason = 'some reason'
+        a.save()
+        assert not addon().is_profile_public()
+
+        a.the_future = 'some future'
+        a.save()
+        assert addon().is_profile_public()
+
+        a.the_reason = ''
+        a.the_future = ''
+        a.save()
+        assert not addon().is_profile_public()
+
+    def test_has_profile(self):
+        """Test if an add-on's developer profile is (partially or entirely)
+        completed.
+
+        """
+        addon = lambda: Addon.objects.get(pk=3615)
+        assert not addon().has_profile()
+
+        a = addon()
+        a.the_reason = 'some reason'
+        a.save()
+        assert addon().has_profile()
+
+        a.the_future = 'some future'
+        a.save()
+        assert addon().has_profile()
+
+        a.the_reason = ''
+        a.the_future = ''
+        a.save()
+        assert not addon().has_profile()
+
     def test_has_eula(self):
         addon = lambda: Addon.objects.get(pk=3615)
         assert addon().has_eula
