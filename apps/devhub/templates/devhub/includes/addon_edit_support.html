@@ -1,6 +1,6 @@
 {% from "devhub/includes/macros.html" import tip, empty_unless %}
 
-<form method="post" action="{{ url('devhub.addons.section', addon.id, 'support', 'edit') }}"">
+<form method="post" action="{{ url('devhub.addons.section', addon.id, 'support', 'edit') }}">
   <h3>
     {{ _('Support Information') }}
     {% if not editable %}
