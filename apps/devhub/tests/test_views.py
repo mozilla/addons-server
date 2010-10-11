@@ -446,12 +446,22 @@ class TestEditPayments(test_utils.TestCase):
         self.assertFormError(r, 'contrib_form', None,
                              'PayPal id required to accept contributions.')
 
-    def test_bad_paypal_id(self):
+    def test_bad_paypal_id_dev(self):
         self.paypal_mock.return_value = False, 'error'
         d = dict(recipient='dev', suggested_amount=2, paypal_id='greed@dev',
                  annoying=amo.CONTRIB_AFTER)
         r = self.client.post(self.url, d)
         self.assertFormError(r, 'contrib_form', None, 'error')
+
+    def test_bad_paypal_id_charity(self):
+        self.paypal_mock.return_value = False, 'error'
+        d = dict(recipient='org', suggested_amount=11.5,
+                 annoying=amo.CONTRIB_PASSIVE)
+        d.update({'charity-name': 'fligtar fund',
+                  'charity-url': 'http://feed.me',
+                  'charity-paypal': 'greed@org'})
+        r = self.client.post(self.url, d)
+        self.assertFormError(r, 'charity_form', 'paypal', 'error')
 
     def test_paypal_timeout(self):
         self.paypal_mock.side_effect = socket.timeout()

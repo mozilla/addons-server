@@ -114,6 +114,11 @@ class CharityForm(happyforms.ModelForm):
     class Meta:
         model = Charity
 
+    def clean_paypal(self):
+        check_paypal_id(self.cleaned_data['paypal'])
+        return self.cleaned_data['paypal']
+
+
 
 class ContribForm(happyforms.ModelForm):
     RECIPIENTS = (('dev', _lazy('The developers of this add-on')),
@@ -123,6 +128,11 @@ class ContribForm(happyforms.ModelForm):
     recipient = forms.ChoiceField(choices=RECIPIENTS,
                                   widget=forms.RadioSelect())
 
+    class Meta:
+        model = Addon
+        fields = ('paypal_id', 'suggested_amount', 'annoying')
+        widgets = {'annoying': forms.RadioSelect()}
+
     @staticmethod
     def initial(addon):
         if addon.charity:
@@ -131,11 +141,6 @@ class ContribForm(happyforms.ModelForm):
             recip = 'dev'
         return {'recipient': recip,
                 'annoying': addon.annoying or amo.CONTRIB_PASSIVE}
-
-    class Meta:
-        model = Addon
-        fields = ('paypal_id', 'suggested_amount', 'annoying')
-        widgets = {'annoying': forms.RadioSelect()}
 
     def clean(self):
         if self.cleaned_data['recipient'] == 'dev':
