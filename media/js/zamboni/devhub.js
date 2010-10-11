@@ -109,7 +109,6 @@ function initAuthorFields() {
         if (tgt.val().length > 2) {
             if (timeout) clearTimeout(timeout);
             timeout = setTimeout(function () {
-                //if (request) request.abort();
                 tgt.addClass("ui-autocomplete-loading")
                    .removeClass("invalid")
                    .removeClass("valid");
