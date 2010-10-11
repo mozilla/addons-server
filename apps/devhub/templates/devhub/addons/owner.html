@@ -34,21 +34,21 @@
           {% endfor %}
         </td>
       </tr>
-      <tr>
-        <th>License</th>
-        <td>
-          {% if version %}
+      {% if version %}
+        <tr>
+          <th>License</th>
+          <td>
             {{ license_form.builtin|safe }}
-          {% endif %}
-          <div class="license-other {{ 'hidden' if not license_form.initial.builtin == license_other_val }}"
-               data-val="{{ license_other_val }}">
-            {{ license_form.name.label_tag()|safe }}
-            {{ license_form.name|safe }}
-            {{ license_form.text.label_tag()|safe }}
-            {{ license_form.text|safe }}
-          </div>
-        </td>
-      </tr>
+            <div class="license-other {{ 'hidden' if not license_form.initial.builtin == license_other_val }}"
+              data-val="{{ license_other_val }}">
+              {{ license_form.name.label_tag()|safe }}
+              {{ license_form.name|safe }}
+              {{ license_form.text.label_tag()|safe }}
+              {{ license_form.text|safe }}
+            </div>
+          </td>
+        </tr>
+      {% endif %}
       <tr>
         <th>{{ _('EULA') }}</th>
         <td>

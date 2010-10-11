@@ -296,7 +296,7 @@ class TestEditAuthor(TestOwnership):
 
         f = self.client.get(self.url).context['user_form'].initial_forms[0]
         u = dict(user='regular@mozilla.com', listed=True,
-                 role=amo.AUTHOR_ROLE_DEV)
+                 role=amo.AUTHOR_ROLE_DEV, position=0)
         data = self.formset(f.initial, u, initial_count=1)
         r = self.client.post(self.url, data)
         eq_(r.status_code, 302)
@@ -306,7 +306,7 @@ class TestEditAuthor(TestOwnership):
         # Add an author b/c we can't edit anything about the current one.
         f = self.client.get(self.url).context['user_form'].initial_forms[0]
         u = dict(user='regular@mozilla.com', listed=True,
-                 role=amo.AUTHOR_ROLE_DEV)
+                 role=amo.AUTHOR_ROLE_DEV, position=1)
         data = self.formset(f.initial, u, initial_count=1)
         self.client.post(self.url, data)
         eq_(AddonUser.objects.get(addon=3615, user=999).listed, True)
@@ -322,7 +322,7 @@ class TestEditAuthor(TestOwnership):
 
     def test_success_delete_user(self):
         data = self.formset(dict(user='regular@mozilla.com', listed=True,
-                                 role=amo.AUTHOR_ROLE_OWNER))
+                                 role=amo.AUTHOR_ROLE_OWNER, position=1))
         self.client.post(self.url, data)
 
         one, two = self.client.get(self.url).context['user_form'].initial_forms
@@ -344,7 +344,7 @@ class TestEditAuthor(TestOwnership):
     def test_only_owner_can_edit(self):
         f = self.client.get(self.url).context['user_form'].initial_forms[0]
         u = dict(user='regular@mozilla.com', listed=True,
-                 role=amo.AUTHOR_ROLE_DEV)
+                 role=amo.AUTHOR_ROLE_DEV, position=0)
         data = self.formset(f.initial, u, initial_count=1)
         self.client.post(self.url, data)
 
