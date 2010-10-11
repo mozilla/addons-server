@@ -468,6 +468,11 @@ class SearchTest(SphinxTestCase):
                 '2587%25E5%25A0%2582/all/10/WINNT/3.6', version=1.2)
         self.assertContains(resp, '<addon id="6113">')
 
+    def test_guid_query(self):
+        r = make_call('search/guid:{22870005-adef-4c9d-ae36-d0e1f2f27e5a},'
+                      '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}')
+        eq_(['3615', '6113'],  [a.attrib['id'] for a in pq(r.content)('addon')])
+
     def test_zero_results(self):
         """
         Tests that the search API correctly gives us zero results found.
