@@ -1,12 +1,15 @@
 from decimal import Decimal
+import socket
 
 from django.utils import translation
 
+import mock
 from nose.tools import eq_, assert_not_equal
 from pyquery import PyQuery as pq
 import test_utils
 
 import amo
+import paypal
 from amo.urlresolvers import reverse
 from addons.models import Addon, AddonUser, Charity
 from devhub.forms import ContribForm
@@ -396,6 +399,9 @@ class TestEditPayments(test_utils.TestCase):
             id=amo.FOUNDATION_ORG, name='moz', url='$$.moz', paypal='moz.pal')
         self.url = reverse('devhub.addons.payments', args=[self.addon.id])
         assert self.client.login(username='del@icio.us', password='password')
+        self.paypal_mock = mock.Mock()
+        self.paypal_mock.return_value = (True, None)
+        paypal.check_paypal_id = self.paypal_mock
 
     def get_addon(self):
         return Addon.objects.no_cache().get(id=3615)
@@ -426,7 +432,8 @@ class TestEditPayments(test_utils.TestCase):
     def test_success_charity(self):
         d = dict(recipient='org', suggested_amount=11.5,
                  annoying=amo.CONTRIB_PASSIVE)
-        d.update({'charity-name': 'fligtar fund', 'charity-url': 'http://feed.me',
+        d.update({'charity-name': 'fligtar fund',
+                  'charity-url': 'http://feed.me',
                   'charity-paypal': 'greed@org'})
         self.post(d)
         self.check(paypal_id='', suggested_amount=Decimal('11.50'),
@@ -438,6 +445,21 @@ class TestEditPayments(test_utils.TestCase):
         r = self.client.post(self.url, d)
         self.assertFormError(r, 'contrib_form', None,
                              'PayPal id required to accept contributions.')
+
+    def test_bad_paypal_id(self):
+        self.paypal_mock.return_value = False, 'error'
+        d = dict(recipient='dev', suggested_amount=2, paypal_id='greed@dev',
+                 annoying=amo.CONTRIB_AFTER)
+        r = self.client.post(self.url, d)
+        self.assertFormError(r, 'contrib_form', None, 'error')
+
+    def test_paypal_timeout(self):
+        self.paypal_mock.side_effect = socket.timeout()
+        d = dict(recipient='dev', suggested_amount=2, paypal_id='greed@dev',
+                 annoying=amo.CONTRIB_AFTER)
+        r = self.client.post(self.url, d)
+        self.assertFormError(r, 'contrib_form', None,
+                             'Could not validate PayPal id.')
 
     def test_charity_details_reqd(self):
         d = dict(recipient='org', suggested_amount=11.5,

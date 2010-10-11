@@ -1,3 +1,5 @@
+import socket
+
 from django import forms
 from django.forms.models import modelformset_factory, BaseModelFormSet
 
@@ -5,6 +7,7 @@ import happyforms
 from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
+import paypal
 from addons.models import Addon, AddonUser, Charity
 from translations.widgets import TranslationTextarea, TranslationTextInput
 from translations.models import delete_translation
@@ -144,3 +147,9 @@ def check_paypal_id(paypal_id):
     if not paypal_id:
         raise forms.ValidationError(
             _('PayPal id required to accept contributions.'))
+    try:
+        valid, msg = paypal.check_paypal_id(paypal_id)
+        if not valid:
+            raise forms.ValidationError(msg)
+    except socket.error:
+        raise forms.ValidationError(_('Could not validate PayPal id.'))
