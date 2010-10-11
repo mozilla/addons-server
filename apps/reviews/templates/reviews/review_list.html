@@ -31,7 +31,7 @@
     {% elif reply %}
       {# L10n: {0} is a developer's name. #}
       <h2>{{ _('Developer reply by {0}')|f(reply.user.name) }}</h2>
-    {% elif reviews %}
+    {% elif reviews.object_list %}
       <h2>{% trans cnt=reviews.object_list|length, addon=addon.name,
                    user=reviews.object_list[0].user.name %}
         Review for {{ addon }} by {{ user }}
@@ -46,8 +46,11 @@
 {% endblock %}
 <div class="primary" role="main">
 
-
   {% block review_list %}
+  {% if not reviews.object_list %}
+    <p><a href="{{ url('reviews.add', addon.id) }}">
+      {{ _('Be the first to write a review.') }}</a><p>
+  {% endif %}
   {% for review in reviews.object_list %}
     {% include "reviews/review.html" %}
     {% if review.id in replies %}
