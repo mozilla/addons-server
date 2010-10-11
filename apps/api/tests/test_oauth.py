@@ -268,15 +268,16 @@ class TestAddon(BaseOauth):
         f = open(xpi)
 
         self.create_data = dict(
-                license_type='other',
-                license_text='This is FREE!',
+                builtin=0,
+                name='FREEDOM',
+                text='This is FREE!',
                 platform='mac',
                 xpi=f,
                 )
 
         path = 'apps/api/fixtures/api/helloworld-0.2.xpi'
         self.version_data = dict(
-                license_type='bsd',
+                builtin=2,
                 platform='windows',
                 xpi=open(os.path.join(settings.ROOT, path)),
                 )
@@ -309,7 +310,8 @@ class TestAddon(BaseOauth):
         r = self.make_create_request(data)
         eq_(r.status_code, 400, r.content)
         eq_(r.content, 'Bad Request: '
-            'Invalid license data provided: License text missing.')
+            'Invalid data provided: This field is required. (builtin)')
+
 
     def test_update(self):
         # create an addon
@@ -376,22 +378,13 @@ class TestAddon(BaseOauth):
 
     def test_fake_license(self):
         data = self.create_data.copy()
-        data['license_type'] = 'fff'
+        data['builtin'] = 'fff'
 
         r = self.make_create_request(data)
         eq_(r.status_code, 400, r.content)
-        eq_(r.content, 'Bad Request: Invalid license data provided: '
-            'Select a valid choice. fff is not one of the available choices.')
-
-    def test_license_confusion(self):
-        """Pre-defined license + text == wrong."""
-        data = self.create_data.copy()
-        data['license_type'] = 'bsd'
-
-        r = self.make_create_request(data)
-        eq_(r.status_code, 400, r.content)
-        eq_(r.content, 'Bad Request: Invalid license data provided: '
-            'Select "other" if supplying a custom license.')
+        eq_(r.content, 'Bad Request: Invalid data provided: '
+            'Select a valid choice. fff is not one of the available choices. '
+            '(builtin)')
 
     @patch('zipfile.ZipFile.namelist')
     def test_bad_zip(self, namelist):
@@ -452,7 +445,7 @@ class TestAddon(BaseOauth):
         data = self.create_addon()
         id = data['id']
         data = self.version_data.copy()
-        data['license_type'] = 'fu'
+        data['builtin'] = 'fu'
         r = client.post(('api.versions', id,), self.accepted_consumer,
                         self.token, data=data)
 
