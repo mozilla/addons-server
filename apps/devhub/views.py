@@ -4,19 +4,16 @@ import uuid
 from django import http
 from django.conf import settings
 from django.shortcuts import get_object_or_404, redirect
-from django.utils.translation import trans_real as translation
 
 import commonware.log
 import jingo
 import path
-from tower import ugettext as _, ugettext_lazy as _lazy
+from tower import ugettext_lazy as _lazy
 
 import amo.utils
-from amo import messages
-from amo.decorators import login_required, write
+from amo.decorators import login_required
 from access import acl
 from addons.models import Addon, AddonUser, AddonLog
-from addons.forms import *
 from addons.views import BaseFilter
 from files.models import FileUpload
 from versions.models import License
@@ -28,7 +25,6 @@ log = commonware.log.getLogger('z.devhub')
 # Acceptable extensions.
 EXTENSIONS = ('.xpi', '.jar', '.xml')
 
-log = commonware.log.getLogger('z.addons')
 
 def dev_required(f):
     """Requires user to be add-on owner or admin"""
@@ -40,7 +36,7 @@ def dev_required(f):
                                      require_owner=False):
             return f(request, addon_id, addon, *args, **kw)
         else:
-            return http.HttpResponseNotFound()
+            return http.HttpResponseForbidden()
     return wrapper
 
 
@@ -95,7 +91,6 @@ def addons_activity(request):
 @dev_required
 def addons_edit(request, addon_id, addon):
     tags_dev, tags_user = addon.tags_partitioned_by_developer
-    lang = settings.LANGUAGES[translation.to_language(addon.default_locale)]
 
     data = {
         'page': 'edit',
@@ -103,8 +98,6 @@ def addons_edit(request, addon_id, addon):
         'tags_user': [tag.tag_text for tag in tags_dev],
         'tags_dev': [tag.tag_text for tag in tags_user],
         'previews': addon.previews.all(),
-        'editable': False,
-        'lang': lang,
         }
 
     return jingo.render(request, 'devhub/addons/edit.html', data)
@@ -194,52 +187,3 @@ def upload_detail(request, uuid):
     upload = get_object_or_404(FileUpload.uncached, uuid=uuid)
     return jingo.render(request, 'devhub/validation.html',
                         dict(upload=upload))
-
-
-@dev_required
-def addons_section(request, addon_id, addon, section, editable=False):
-    models = {'basic' : AddonFormBasic,
-              'details' : AddonFormDetails,
-              'support' : AddonFormSupport,
-              'technical' : AddonFormTechnical }
-
-    if section not in models:
-        return http.HttpResponseForbidden()
-
-    if editable:
-        if request.method == 'POST':
-            form = models[section](request.POST, request.FILES,
-                                  instance=addon)
-            if form.is_valid():
-
-                addon = form.save(addon)
-
-                #TODO(gkoberger): Put this back when non-ajax save is finished
-                title = _("Addon updated!")
-                msg = _("""<a href="%(url)s">View your addon</a> to see the
-                          changes.""") % {'url': addon.get_url_path()}
-                #messages.success(request, title, msg, extra_tags='addon',
-                #                 message_safe=True)
-                log.info(u'%s edited addon %s' %
-                         (request.amo_user, addon.id))
-                editable = False
-        else:
-            form = models[section](instance=addon)
-    else:
-        form = False
-
-    tags_dev, tags_user = addon.tags_partitioned_by_developer
-
-    lang = settings.LANGUAGES[translation.to_language(addon.default_locale)]
-
-    data = {'addon': addon,
-            'form': form,
-            'lang': lang,
-            'editable': editable,
-            'tags_user': [tag.tag_text for tag in tags_dev],
-            'tags_dev': [tag.tag_text for tag in tags_user],
-            }
-
-    return jingo.render(request, 'devhub/includes/addon_edit_' +
-                                  section + '.html', data)
-

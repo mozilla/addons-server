@@ -4,9 +4,8 @@
 import os
 import logging
 import socket
-import product_details
 
-from django.utils.translation import trans_real as translation
+import product_details
 
 try:
     # If we have build ids available, we'll grab them here and add them to our

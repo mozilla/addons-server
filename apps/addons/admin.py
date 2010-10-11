@@ -50,6 +50,7 @@ class FeatureAdmin(admin.ModelAdmin):
 
 
 class CategoryAdmin(admin.ModelAdmin):
+    raw_id_fields = ('addons',)
     list_display = ('name', 'application', 'type', 'count')
     list_filter = ('application', 'type')
 

@@ -10,9 +10,8 @@ from tower import ugettext as _
 from access import acl
 from addons.forms import AddonForm
 from addons.models import Addon
-from devhub.forms import LicenseForm
 from users.models import UserProfile
-from versions.forms import XPIForm
+from versions.forms import LicenseForm, XPIForm
 from versions.models import Version
 
 log = commonware.log.getLogger('z.api')
@@ -54,13 +53,12 @@ def check_addon_and_version(f):
     return wrapper
 
 
-
-def _form_error(f):
+def _license_form_error(f):
     resp = rc.BAD_REQUEST
-    error = ','.join(['%s (%s)' % (v[0], k) for k, v in f.errors.iteritems()])
+    error = ','.join([e[0] for e in f.errors.values()])
     resp.write(': ' +
-               # L10n: {0} is comma separated data errors.
-               _(u'Invalid data provided: {0}').format(error))
+               # L10n: {0} is comma separated errors for license.
+               _(u'Invalid license data provided: {0}').format(error))
     log.debug(error)
     return resp
 
@@ -101,14 +99,14 @@ class AddonsHandler(BaseHandler):
         license_form = LicenseForm(request.POST)
 
         if not license_form.is_valid():
-            return _form_error(license_form)
+            return _license_form_error(license_form)
 
         new_file_form = XPIForm(request.POST, request.FILES)
 
         if not new_file_form.is_valid():
             return _xpi_form_error(new_file_form, request)
 
-        license = license_form.save()
+        license = license_form.get_or_create()
 
         a = new_file_form.create_addon(user=request.amo_user,
                                        license=license)
@@ -119,7 +117,7 @@ class AddonsHandler(BaseHandler):
     def update(self, request, addon):
         form = AddonForm(request.PUT, instance=addon)
         if not form.is_valid():
-            return _form_error(form)
+            return rc.BAD_REQUEST
         a = form.save()
         return a
 
@@ -136,14 +134,14 @@ class VersionsHandler(BaseHandler):
         license_form = LicenseForm(request.POST)
 
         if not license_form.is_valid():
-            return _form_error(license_form)
+            return _license_form_error(license_form)
 
         new_file_form = XPIForm(request.POST, request.FILES, addon=addon)
 
         if not new_file_form.is_valid():
             return _xpi_form_error(new_file_form, request)
 
-        license = license_form.save()
+        license = license_form.get_or_create()
         v = new_file_form.create_version(license=license)
         return v
 
@@ -154,7 +152,7 @@ class VersionsHandler(BaseHandler):
         license_form = LicenseForm(request.POST)
 
         if license_form.is_valid():
-            license = license_form.save()
+            license = license_form.get_or_create()
         else:
             license = version.license
 

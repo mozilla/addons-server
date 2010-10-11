@@ -8,14 +8,11 @@ from . import views
 
 # These will all start with /addon/<addon_id>/
 detail_patterns = patterns('',
-
     # Redirect to the edit page from the base.
     url('^$', lambda r: redirect('devhub.addons.edit', permanent=True)),
     url('^edit$', views.addons_edit, name='devhub.addons.edit'),
     url('^ownership$', views.addons_owner, name='devhub.addons.owner'),
     url('^payments$', views.addons_payments, name='devhub.addons.payments'),
-    url('^edit_(?P<section>[^/]+)(?:/(?P<editable>[^/]+))?$', views.addons_section,
-            name='devhub.addons.section')
 )
 
 urlpatterns = decorate(write, patterns('',
@@ -23,10 +20,8 @@ urlpatterns = decorate(write, patterns('',
 
     # URLs for a single add-on.
     ('^addon/(?P<addon_id>\d+)/', include(detail_patterns)),
-
     # Redirect people who have /addons/ instead of /addon/.
     ('^addons/\d+/.*', lambda r: redirect(r.path.replace('addons', 'addon', 1))),
-    url('^addon/(?P<addon_id>\d+)/', include(detail_patterns)),
 
     # Redirect to /addons/ at the base.
     url('^addon$', lambda r: redirect('devhub.addons', permanent=True)),

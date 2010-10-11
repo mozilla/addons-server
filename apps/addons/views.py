@@ -100,6 +100,12 @@ def extension_detail(request, addon):
     # tags
     dev_tags, user_tags = addon.tags_partitioned_by_developer
 
+    current_user_tags = []
+
+    if request.user.is_authenticated():
+        current_user_tags = user_tags.filter(
+                addon_tags__user=request.amo_user)
+
     # addon recommendations
     recommended = Addon.objects.valid().only_translations().filter(
         recommended_for__addon=addon)[:5]
@@ -116,6 +122,7 @@ def extension_detail(request, addon):
 
         'dev_tags': dev_tags,
         'user_tags': user_tags,
+        'current_user_tags': current_user_tags,
 
         'recommendations': recommended,
         'review_form': ReviewForm(),

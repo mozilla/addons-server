@@ -23,6 +23,45 @@ license_ids = dict((license.shortname, license.id) for license in amo.LICENSES)
 log = commonware.log.getLogger('z.addons')
 
 
+class LicenseForm(happyforms.Form):
+    license_type = forms.ChoiceField(choices=license_ids.iteritems(),
+                                     required=False)
+    license_text = forms.CharField(required=False)
+
+    def clean_license_type(self):
+        type = self.cleaned_data['license_type']
+
+        if not type:
+            return 'other'
+
+        if type in license_ids:
+            return type
+
+    def clean(self):
+        # Raise error if we get text and something other than other
+        # or if we get no text with other.
+        type = self.cleaned_data.get('license_type', 'other')
+        text = self.cleaned_data['license_text']
+
+        if type == 'other' and not text:
+            raise forms.ValidationError(_('License text missing.'))
+
+        if text and type != 'other':
+            raise forms.ValidationError(
+                    _('Select "other" if supplying a custom license.'))
+
+        return self.cleaned_data
+
+    def get_or_create(self):
+        """Gives us an existing license.id or a new id for a license."""
+        data = self.cleaned_data
+        if data['license_type'] == 'other':
+            return License.objects.create(text=data['license_text'])
+        else:
+            builtin = license_ids[data['license_type']]
+            return License.objects.get(builtin=builtin)
+
+
 def get_text_value(xml, tag):
     node = xml.getElementsByTagName('em:%s' % tag)[0]
     if node.childNodes:
