@@ -152,6 +152,9 @@ class TestButtonSetup(ButtonTest):
 class TestButton(ButtonTest):
     """Tests for the InstallButton class."""
 
+    def setUp(self):
+        self.client.get('/')
+
     def test_plain_button(self):
         b = self.get_button()
         eq_(b.button_class, ['download'])
@@ -305,7 +308,7 @@ class TestButton(ButtonTest):
         b.show_contrib = True
         text, url, _ = b.file_details(file)
         eq_(text, 'Continue to Download&nbsp;&rarr;')
-        eq_(url, '/addon/2/contribute/roadblock/?eula=')
+        eq_(url, '/en-US/firefox/addon/2/contribute/roadblock/?eula=')
 
     def test_file_details_unreviewed(self):
         file = self.get_file(amo.PLATFORM_ALL)
