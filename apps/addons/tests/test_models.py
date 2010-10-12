@@ -307,14 +307,14 @@ class TestAddonDependencies(test_utils.TestCase):
                 'base/addon_4664_twitterbar']
 
     def test_dependencies(self):
-        ids = [3615, 3723, 6704, 4664]
+        ids = [3615, 3723, 4664, 6704]
         a = Addon.objects.get(id=5299)
 
         for dependent_id in ids:
             AddonDependency(addon=a,
                 dependent_addon=Addon.objects.get(id=dependent_id)).save()
 
-        eq_([a.id for a in a.dependencies.all()], ids)
+        eq_(sorted([a.id for a in a.dependencies.all()]), ids)
 
 
 class TestListedAddonTwoVersions(test_utils.TestCase):

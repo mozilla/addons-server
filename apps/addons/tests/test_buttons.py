@@ -5,6 +5,7 @@ from pyquery import PyQuery
 import test_utils
 
 import amo
+import amo.models
 from amo.urlresolvers import reverse
 from addons.buttons import install_button
 
@@ -13,9 +14,9 @@ def setup():
     jingo.load_helpers()
 
 
-class ButtonTest(object):
+class ButtonTest(test_utils.TestCase):
 
-    def setup(self):
+    def setUp(self):
         self.addon = Mock()
         self.addon.is_featured.return_value = False
         self.addon.is_category_featured.return_value = False
@@ -90,7 +91,7 @@ class TestButtonSetup(ButtonTest):
         b = self.get_button(show_eula=False)
         assert b.show_eula
 
-        self.setup()
+        self.setUp()
         self.addon.has_eula = False
         b = self.get_button()
         assert not b.show_eula
@@ -152,9 +153,6 @@ class TestButtonSetup(ButtonTest):
 class TestButton(ButtonTest):
     """Tests for the InstallButton class."""
 
-    def setUp(self):
-        self.client.get('/')
-
     def test_plain_button(self):
         b = self.get_button()
         eq_(b.button_class, ['download'])
@@ -193,7 +191,7 @@ class TestButton(ButtonTest):
         b = self.get_button(show_warning=False)
         assert not b.show_warning
 
-        self.setup()
+        self.setUp()
         self.addon.status = amo.STATUS_LISTED
         b = self.get_button()
         assert b.show_warning
