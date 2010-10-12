@@ -88,18 +88,6 @@ TOWER_KEYWORDS = {
 # to load the internationalization machinery.
 USE_I18N = True
 
-# Paypal is an awful place that doesn't understand locales.  Instead they have
-# country codes.  This maps our locales to their codes.
-PAYPAL_COUNTRYMAP = {
-    'af': 'ZA', 'ar': 'EG', 'ca': 'ES', 'cs': 'CZ', 'cy': 'GB', 'da': 'DK',
-    'de': 'DE', 'de-AT': 'AT', 'de-CH': 'CH', 'el': 'GR', 'en-GB': 'GB',
-    'eu': 'BS', 'fa': 'IR', 'fi': 'FI', 'fr': 'FR', 'he': 'IL', 'hu': 'HU',
-    'id': 'ID', 'it': 'IT', 'ja': 'JP', 'ko': 'KR', 'mn': 'MN', 'nl': 'NL',
-    'pl': 'PL', 'ro': 'RO', 'ru': 'RU', 'sk': 'SK', 'sq': 'AL', 'sr': 'CS',
-    'tr': 'TR', 'uk': 'UA', 'vi': 'VI',
-}
-
-
 # The host currently running the site.  Only use this in code for good reason;
 # the site is designed to run on a cluster and should continue to support that
 HOSTNAME = socket.gethostname()
@@ -497,8 +485,24 @@ LOGOUT_REDIRECT_URL = "/"
 CAKE_SESSION_TIMEOUT = 8640
 
 # PayPal Settings
-PAYPAL_CGI_URL = 'https://www.paypal.com/cgi-bin/webscr'
+PAYPAL_API_URL = 'https://api-3t.paypal.com/nvp'
+PAYPAL_API_VERSION = '50'
 PAYPAL_BN = ''
+PAYPAL_CGI_URL = 'https://www.paypal.com/cgi-bin/webscr'
+PAYPAL_PASSWORD = ''
+PAYPAL_SIGNATURE = ''
+PAYPAL_USER = ''
+
+# Paypal is an awful place that doesn't understand locales.  Instead they have
+# country codes.  This maps our locales to their codes.
+PAYPAL_COUNTRYMAP = {
+    'af': 'ZA', 'ar': 'EG', 'ca': 'ES', 'cs': 'CZ', 'cy': 'GB', 'da': 'DK',
+    'de': 'DE', 'de-AT': 'AT', 'de-CH': 'CH', 'el': 'GR', 'en-GB': 'GB',
+    'eu': 'BS', 'fa': 'IR', 'fi': 'FI', 'fr': 'FR', 'he': 'IL', 'hu': 'HU',
+    'id': 'ID', 'it': 'IT', 'ja': 'JP', 'ko': 'KR', 'mn': 'MN', 'nl': 'NL',
+    'pl': 'PL', 'ro': 'RO', 'ru': 'RU', 'sk': 'SK', 'sq': 'AL', 'sr': 'CS',
+    'tr': 'TR', 'uk': 'UA', 'vi': 'VI',
+}
 
 # Contribution limit, one time and monthly
 MAX_CONTRIBUTION = 1000

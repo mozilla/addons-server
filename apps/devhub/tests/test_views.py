@@ -1,12 +1,18 @@
+from decimal import Decimal
+import socket
+
 from django.utils import translation
 
+import mock
 from nose.tools import eq_, assert_not_equal
 from pyquery import PyQuery as pq
 import test_utils
 
 import amo
+import paypal
 from amo.urlresolvers import reverse
-from addons.models import Addon, AddonUser
+from addons.models import Addon, AddonUser, Charity
+from devhub.forms import ContribForm
 from users.models import UserProfile
 from versions.models import License, Version
 
@@ -382,3 +388,125 @@ class TestEditAuthor(TestOwnership):
         r = self.client.post(self.url, data)
         eq_(r.context['user_form'].non_form_errors(),
             ['Must have at least one owner.'])
+
+
+class TestEditPayments(test_utils.TestCase):
+    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
+
+    def setUp(self):
+        self.addon = self.get_addon()
+        self.foundation = Charity.objects.create(
+            id=amo.FOUNDATION_ORG, name='moz', url='$$.moz', paypal='moz.pal')
+        self.url = reverse('devhub.addons.payments', args=[self.addon.id])
+        assert self.client.login(username='del@icio.us', password='password')
+        self.paypal_mock = mock.Mock()
+        self.paypal_mock.return_value = (True, None)
+        paypal.check_paypal_id = self.paypal_mock
+
+    def get_addon(self):
+        return Addon.objects.no_cache().get(id=3615)
+
+    def post(self, *args, **kw):
+        d = dict(*args, **kw)
+        eq_(self.client.post(self.url, d).status_code, 302)
+
+    def check(self, **kw):
+        addon = self.get_addon()
+        for k, v in kw.items():
+            eq_(getattr(addon, k), v)
+        assert addon.wants_contributions
+        assert addon.takes_contributions
+
+    def test_success_dev(self):
+        self.post(recipient='dev', suggested_amount=2, paypal_id='greed@dev',
+                  annoying=amo.CONTRIB_AFTER)
+        self.check(paypal_id='greed@dev', suggested_amount=2,
+                   annoying=amo.CONTRIB_AFTER)
+
+    def test_success_foundation(self):
+        self.post(recipient='moz', suggested_amount=2, paypal_id='greed@dev',
+                  annoying=amo.CONTRIB_ROADBLOCK)
+        self.check(paypal_id='greed@dev', suggested_amount=2,
+                   charity=self.foundation, annoying=amo.CONTRIB_ROADBLOCK)
+
+    def test_success_charity(self):
+        d = dict(recipient='org', suggested_amount=11.5,
+                 annoying=amo.CONTRIB_PASSIVE)
+        d.update({'charity-name': 'fligtar fund',
+                  'charity-url': 'http://feed.me',
+                  'charity-paypal': 'greed@org'})
+        self.post(d)
+        self.check(paypal_id='', suggested_amount=Decimal('11.50'),
+                   charity=Charity.objects.get(name='fligtar fund'))
+
+    def test_dev_paypal_reqd(self):
+        d = dict(recipient='dev', suggested_amount=2,
+                 annoying=amo.CONTRIB_PASSIVE)
+        r = self.client.post(self.url, d)
+        self.assertFormError(r, 'contrib_form', None,
+                             'PayPal id required to accept contributions.')
+
+    def test_bad_paypal_id_dev(self):
+        self.paypal_mock.return_value = False, 'error'
+        d = dict(recipient='dev', suggested_amount=2, paypal_id='greed@dev',
+                 annoying=amo.CONTRIB_AFTER)
+        r = self.client.post(self.url, d)
+        self.assertFormError(r, 'contrib_form', None, 'error')
+
+    def test_bad_paypal_id_charity(self):
+        self.paypal_mock.return_value = False, 'error'
+        d = dict(recipient='org', suggested_amount=11.5,
+                 annoying=amo.CONTRIB_PASSIVE)
+        d.update({'charity-name': 'fligtar fund',
+                  'charity-url': 'http://feed.me',
+                  'charity-paypal': 'greed@org'})
+        r = self.client.post(self.url, d)
+        self.assertFormError(r, 'charity_form', 'paypal', 'error')
+
+    def test_paypal_timeout(self):
+        self.paypal_mock.side_effect = socket.timeout()
+        d = dict(recipient='dev', suggested_amount=2, paypal_id='greed@dev',
+                 annoying=amo.CONTRIB_AFTER)
+        r = self.client.post(self.url, d)
+        self.assertFormError(r, 'contrib_form', None,
+                             'Could not validate PayPal id.')
+
+    def test_charity_details_reqd(self):
+        d = dict(recipient='org', suggested_amount=11.5,
+                 annoying=amo.CONTRIB_PASSIVE)
+        r = self.client.post(self.url, d)
+        self.assertFormError(r, 'charity_form', 'name',
+                             'This field is required.')
+        eq_(self.get_addon().suggested_amount, None)
+
+    def test_switch_charity_to_dev(self):
+        self.test_success_charity()
+        self.test_success_dev()
+        eq_(self.get_addon().charity, None)
+        eq_(self.get_addon().charity_id, None)
+
+    def test_switch_charity_to_foundation(self):
+        self.test_success_charity()
+        self.test_success_foundation()
+        # This will break if we start cleaning up licenses.
+        old_charity = Charity.objects.get(name='fligtar fund')
+        assert old_charity.id != self.foundation
+
+    def test_switch_foundation_to_charity(self):
+        self.test_success_foundation()
+        self.test_success_charity()
+        moz = Charity.objects.get(id=self.foundation.id)
+        eq_(moz.name, 'moz')
+        eq_(moz.url, '$$.moz')
+        eq_(moz.paypal, 'moz.pal')
+
+    def test_contrib_form_initial(self):
+        eq_(ContribForm.initial(self.addon)['recipient'], 'dev')
+        self.addon.charity = self.foundation
+        eq_(ContribForm.initial(self.addon)['recipient'], 'moz')
+        self.addon.charity_id = amo.FOUNDATION_ORG + 1
+        eq_(ContribForm.initial(self.addon)['recipient'], 'org')
+
+        eq_(ContribForm.initial(self.addon)['annoying'], amo.CONTRIB_PASSIVE)
+        self.addon.annoying = amo.CONTRIB_AFTER
+        eq_(ContribForm.initial(self.addon)['annoying'], amo.CONTRIB_AFTER)

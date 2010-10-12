@@ -1,11 +1,14 @@
+import socket
+
 from django import forms
 from django.forms.models import modelformset_factory, BaseModelFormSet
 
 import happyforms
-from tower import ugettext as _
+from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
-from addons.models import Addon, AddonUser
+import paypal
+from addons.models import Addon, AddonUser, Charity
 from translations.widgets import TranslationTextarea, TranslationTextInput
 from translations.models import delete_translation
 from versions.models import License
@@ -104,3 +107,54 @@ class PolicyForm(happyforms.ModelForm):
         for k, field in (('has_eula', 'eula'), ('has_priv', 'privacy_policy')):
             if not self.cleaned_data[k]:
                 delete_translation(addon, field)
+
+
+class CharityForm(happyforms.ModelForm):
+
+    class Meta:
+        model = Charity
+
+    def clean_paypal(self):
+        check_paypal_id(self.cleaned_data['paypal'])
+        return self.cleaned_data['paypal']
+
+
+
+class ContribForm(happyforms.ModelForm):
+    RECIPIENTS = (('dev', _lazy('The developers of this add-on')),
+                  ('moz', _lazy('The Mozilla Foundation')),
+                  ('org', _lazy('An organization of my choice')))
+
+    recipient = forms.ChoiceField(choices=RECIPIENTS,
+                                  widget=forms.RadioSelect())
+
+    class Meta:
+        model = Addon
+        fields = ('paypal_id', 'suggested_amount', 'annoying')
+        widgets = {'annoying': forms.RadioSelect()}
+
+    @staticmethod
+    def initial(addon):
+        if addon.charity:
+            recip = 'moz' if addon.charity_id == amo.FOUNDATION_ORG else 'org'
+        else:
+            recip = 'dev'
+        return {'recipient': recip,
+                'annoying': addon.annoying or amo.CONTRIB_PASSIVE}
+
+    def clean(self):
+        if self.cleaned_data['recipient'] == 'dev':
+            check_paypal_id(self.cleaned_data['paypal_id'])
+        return self.cleaned_data
+
+
+def check_paypal_id(paypal_id):
+    if not paypal_id:
+        raise forms.ValidationError(
+            _('PayPal id required to accept contributions.'))
+    try:
+        valid, msg = paypal.check_paypal_id(paypal_id)
+        if not valid:
+            raise forms.ValidationError(msg)
+    except socket.error:
+        raise forms.ValidationError(_('Could not validate PayPal id.'))

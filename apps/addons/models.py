@@ -11,6 +11,7 @@ from django.db.models import Q, Sum, Max
 import caching.base as caching
 import commonware.log
 import mongoengine
+from tower import ugettext_lazy as _
 
 import amo.models
 from amo.fields import DecimalCharField
@@ -91,7 +92,6 @@ class AddonManager(amo.models.ManagerBase):
 
 class Addon(amo.models.ModelBase):
     STATUS_CHOICES = amo.STATUS_CHOICES.items()
-    CONTRIB_CHOICES = sorted(amo.CONTRIB_CHOICES.items())
 
     guid = models.CharField(max_length=255, unique=True, null=True)
     slug = models.CharField(max_length=30)
@@ -153,7 +153,6 @@ class Addon(amo.models.ModelBase):
                             help_text="Does the add-on contain a binary?")
     dev_agreement = models.BooleanField(default=False,
                             help_text="Has the dev agreement been signed?")
-    wants_contributions = models.BooleanField(default=False)
     show_beta = models.BooleanField(default=True)
 
     nomination_date = models.DateTimeField(null=True,
@@ -165,18 +164,21 @@ class Addon(amo.models.ModelBase):
         max_length=255, blank=True, null=True,
         help_text="For dictionaries and language packs")
 
+    wants_contributions = models.BooleanField(default=False)
     paypal_id = models.CharField(max_length=255, blank=True)
+    charity = models.ForeignKey('Charity', null=True)
     # TODO(jbalogh): remove nullify_invalid once remora dies.
-    suggested_amount = DecimalCharField(max_digits=8, decimal_places=2,
-                                        nullify_invalid=True,
-                                        blank=True, null=True,
-                                        help_text="Requested donation amount.")
+    suggested_amount = DecimalCharField(
+        max_digits=8, decimal_places=2, nullify_invalid=True, blank=True,
+        null=True, help_text=_(u'Users have the option of contributing more '
+                               'or less than this amount.'))
 
     total_contributions = DecimalCharField(max_digits=8, decimal_places=2,
                                            nullify_invalid=True, blank=True,
                                            null=True)
 
-    annoying = models.PositiveIntegerField(choices=CONTRIB_CHOICES, default=0)
+    annoying = models.PositiveIntegerField(choices=amo.CONTRIB_CHOICES,
+                                           default=0)
     enable_thankyou = models.BooleanField(default=False,
         help_text="Should the thankyou note be sent to contributors?")
     thankyou_note = TranslatedField()
@@ -471,7 +473,7 @@ class Addon(amo.models.ModelBase):
     @property
     def takes_contributions(self):
         # TODO(jbalogh): config.paypal_disabled
-        return self.wants_contributions and self.paypal_id
+        return self.wants_contributions and (self.paypal_id or self.charity_id)
 
     @property
     def has_eula(self):
@@ -922,3 +924,12 @@ class Performance(amo.models.ModelBase):
 
     class Meta:
         db_table = 'perf_results'
+
+
+class Charity(amo.models.ModelBase):
+    name = models.CharField(max_length=255)
+    url = models.URLField()
+    paypal = models.CharField(max_length=255)
+
+    class Meta:
+        db_table = 'charities'

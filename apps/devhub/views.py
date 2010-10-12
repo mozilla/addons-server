@@ -18,7 +18,8 @@ from addons.views import BaseFilter
 from files.models import FileUpload
 from versions.models import License
 from . import tasks
-from .forms import AuthorFormSet, LicenseForm, PolicyForm
+from .forms import (AuthorFormSet, LicenseForm, PolicyForm, CharityForm,
+                    ContribForm)
 
 log = commonware.log.getLogger('z.devhub')
 
@@ -157,8 +158,30 @@ def addons_owner(request, addon_id, addon):
 
 @dev_required
 def addons_payments(request, addon_id, addon):
+    charity = None if addon.charity_id == amo.FOUNDATION_ORG else addon.charity
+    charity_form = CharityForm(request.POST or None, instance=charity,
+                               prefix='charity')
+    contrib_form = ContribForm(request.POST or None, instance=addon,
+                               initial=ContribForm.initial(addon))
+    if request.method == 'POST':
+        if contrib_form.is_valid():
+            addon, valid = contrib_form.save(commit=False), True
+            addon.wants_contributions = True
+            recipient = contrib_form.cleaned_data['recipient']
+            if recipient == 'dev':
+                addon.charity = None
+            elif recipient == 'moz':
+                addon.charity_id = amo.FOUNDATION_ORG
+            elif recipient == 'org':
+                valid = charity_form.is_valid()
+                if valid:
+                    addon.charity = charity_form.save()
+            if valid:
+                addon.save()
+                return redirect('devhub.addons.payments', addon_id)
     return jingo.render(request, 'devhub/addons/payments.html',
-                        dict(addon=addon))
+                        dict(addon=addon, charity_form=charity_form,
+                            contrib_form=contrib_form))
 
 
 def upload(request):
