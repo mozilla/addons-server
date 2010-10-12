@@ -27,6 +27,7 @@ import urlparse
 
 from django import forms
 from django.conf import settings
+from django.core import mail
 from django.test.client import (encode_multipart, Client, FakePayload,
                                 BOUNDARY, MULTIPART_CONTENT)
 
@@ -37,7 +38,7 @@ from test_utils import TestCase
 from piston.models import Consumer, Token
 
 from amo.urlresolvers import reverse
-from addons.models import Addon
+from addons.models import Addon, BlacklistedGuid
 from translations.models import Translation
 from versions.models import AppVersion, Version
 
@@ -312,6 +313,18 @@ class TestAddon(BaseOauth):
         eq_(r.content, 'Bad Request: '
             'Invalid data provided: This field is required. (builtin)')
 
+    def test_delete(self):
+        data = self.create_addon()
+        id = data['id']
+        guid = data['guid']
+
+        r = client.delete(('api.addon', id), self.accepted_consumer,
+                          self.token)
+        eq_(r.status_code, 204, r.content)
+        eq_(Addon.objects.filter(pk=id).count(), 0, "Didn't delete.")
+
+        assert BlacklistedGuid.objects.filter(guid=guid)
+        eq_(len(mail.outbox), 1)
 
     def test_update(self):
         # create an addon

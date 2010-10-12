@@ -54,7 +54,6 @@ def check_addon_and_version(f):
     return wrapper
 
 
-
 def _form_error(f):
     resp = rc.BAD_REQUEST
     error = ','.join(['%s (%s)' % (v[0], k) for k, v in f.errors.iteritems()])
@@ -84,9 +83,9 @@ class UserHandler(BaseHandler):
 
 
 class AddonsHandler(BaseHandler):
-    allowed_methods = ('POST', 'PUT',)
+    allowed_methods = ('POST', 'PUT', 'DELETE',)
     model = Addon
-    fields = ('id', 'name', 'eula')
+    fields = ('id', 'name', 'eula', 'guid',)
     exclude = ('highest_status', 'icon_type')
 
     # Custom handler so translated text doesn't look weird
@@ -122,6 +121,12 @@ class AddonsHandler(BaseHandler):
             return _form_error(form)
         a = form.save()
         return a
+
+    @check_addon_and_version
+    @throttle(5, 60 * 60)  # Allow 5 delete per hour
+    def delete(self, request, addon):
+        addon.delete(user=request.amo_user, msg='Deleted via API')
+        return rc.DELETED
 
 
 class VersionsHandler(BaseHandler):

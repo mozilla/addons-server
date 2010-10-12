@@ -33,6 +33,8 @@ ADMINS = (
 )
 MANAGERS = ADMINS
 
+FLIGTAR = 'amo-admins@mozilla.org'
+
 DATABASES = {
     'default': {
         'NAME': 'zamboni',
@@ -580,19 +582,19 @@ CSP_REPORT_ONLY = True
 
 CSP_ALLOW = ("'self'",)
 CSP_IMG_SRC = ("'self'", STATIC_URL,
-               "https://www.google.com", # Recaptcha actually comes from google
+               "https://www.google.com",  # Recaptcha comes from google
                "https://statse.webtrendslive.com",
                "https://www.getpersonas.com",)
 CSP_SCRIPT_SRC = ("'self'", STATIC_URL,
                   "https://api-secure.recaptcha.net",
-                  "https://www.google.com", # Recaptcha
+                  "https://www.google.com",  # Recaptcha
                   )
 CSP_STYLE_SRC = ("'self'", STATIC_URL,)
 CSP_OBJECT_SRC = ("'none'",)
 CSP_MEDIA_SRC = ("'none'",)
 CSP_FRAME_SRC = ("'none'",)
 CSP_FONT_SRC = ("'self'", "fonts.mozilla.com",)
-CSP_FRAME_ANCESTORS = ("'none'",) # We also send x-frame-options:DENY
+CSP_FRAME_ANCESTORS = ("'none'",)  # We also send x-frame-options:DENY
 
 # If you don't want experimental add-ons to show up in any search results or
 # have detail pages, flip this switch

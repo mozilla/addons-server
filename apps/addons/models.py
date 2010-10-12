@@ -5,7 +5,7 @@ import json
 import time
 
 from django.conf import settings
-from django.db import models
+from django.db import models, transaction
 from django.db.models import Q, Sum, Max
 from django.utils.translation import trans_real as translation
 
@@ -16,7 +16,7 @@ from tower import ugettext_lazy as _
 
 import amo.models
 from amo.fields import DecimalCharField
-from amo.utils import urlparams, sorted_groupby, JSONEncoder
+from amo.utils import send_mail, urlparams, sorted_groupby, JSONEncoder
 from amo.urlresolvers import reverse
 from reviews.models import Review
 from stats.models import (Contribution as ContributionStats,
@@ -208,6 +208,32 @@ class Addon(amo.models.ModelBase):
 
     def __unicode__(self):
         return '%s: %s' % (self.id, self.name)
+
+    @transaction.commit_on_success
+    def delete(self, user, msg):
+        log.debug('Adding guid to blacklist: %s' % self.guid)
+        BlacklistedGuid(guid=self.guid, comments=msg).save()
+        log.debug('Deleting add-on: %s' % self.id)
+
+        authors = [u.email for u in self.authors.all()]
+        to = [settings.FLIGTAR] + authors
+        email_msg = """
+        The following add-on was deleted.
+        ADD-ON: %s
+        ID: %s
+        GUID: %s
+        AUTHORS: %s
+        TOTAL DOWNLOADS: %s
+        AVERAGE DAILY USERS: %s
+        NOTES: %s
+        """ % (self.name, self.id, self.guid, authors, self.total_downloads,
+               self.average_daily_users, msg)
+        log.debug('Sending delete email for add-on %s' % self.id)
+        subject = 'Deleting add-on %s' % self.id
+
+        rv = super(Addon, self).delete()
+        send_mail(subject, email_msg, recipient_list=to)
+        return rv
 
     def flush_urls(self):
         urls = ['*/addon/%d/' % self.id,  # Doesn't take care of api
