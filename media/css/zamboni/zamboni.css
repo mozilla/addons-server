@@ -2928,8 +2928,8 @@ a.outlink:hover {
     float: left;
 }
 .html-rtl #addon .widget,
-.html-rtl #persona .widget { 
-    float: right; 
+.html-rtl #persona .widget {
+    float: right;
 }
 
 .widget.edit { background-position: 0 -350px; }
