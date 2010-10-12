@@ -17,7 +17,7 @@
     <table>
       {{ user_form.management_form|safe }}
       <tr>
-        <th>Authors</th>
+        <th>{{ _('Authors') }}</th>
         <td>
           <ul id="author_list">
           {% for form in user_form.forms %}
@@ -36,7 +36,7 @@
       </tr>
       {% if version %}
         <tr>
-          <th>License</th>
+          <th>{{ _('License') }}</th>
           <td>
             {{ license_form.builtin|safe }}
             <div class="license-other {{ 'hidden' if not license_form.initial.builtin == license_other_val }}"
