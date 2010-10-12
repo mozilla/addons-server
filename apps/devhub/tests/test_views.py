@@ -510,3 +510,30 @@ class TestEditPayments(test_utils.TestCase):
         eq_(ContribForm.initial(self.addon)['annoying'], amo.CONTRIB_PASSIVE)
         self.addon.annoying = amo.CONTRIB_AFTER
         eq_(ContribForm.initial(self.addon)['annoying'], amo.CONTRIB_AFTER)
+
+
+
+class TestDisablePayments(test_utils.TestCase):
+    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
+
+    def setUp(self):
+        self.addon = Addon.objects.get(id=3615)
+        self.addon.update(wants_contributions=True, paypal_id='woohoo')
+        self.pay_url = reverse('devhub.addons.payments', args=[self.addon.id])
+        self.disable_url = reverse('devhub.addons.payments.disable',
+                                   args=[self.addon.id])
+        assert self.client.login(username='del@icio.us', password='password')
+
+    def test_statusbar_visible(self):
+        r = self.client.get(self.pay_url)
+        self.assertContains(r, '<div id="status-bar">')
+
+        self.addon.update(wants_contributions=False)
+        r = self.client.get(self.pay_url)
+        self.assertNotContains(r, '<div id="status-bar">')
+
+    def test_disable(self):
+        r = self.client.post(self.disable_url)
+        eq_(r.status_code, 302)
+        assert(r['Location'].endswith(self.pay_url))
+        eq_(Addon.uncached.get(id=3615).wants_contributions, False)

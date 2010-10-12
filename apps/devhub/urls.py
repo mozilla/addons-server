@@ -13,6 +13,8 @@ detail_patterns = patterns('',
     url('^edit$', views.addons_edit, name='devhub.addons.edit'),
     url('^ownership$', views.addons_owner, name='devhub.addons.owner'),
     url('^payments$', views.addons_payments, name='devhub.addons.payments'),
+    url('^payments/disable$', views.disable_payments,
+        name='devhub.addons.payments.disable'),
 )
 
 urlpatterns = decorate(write, patterns('',

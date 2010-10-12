@@ -9,6 +9,15 @@
   <h2>{{ title }}</h2>
 </header>
 <section class="primary" role="main">
+  {% if addon.takes_contributions %}
+    <div id="status-bar">
+      <p>{{ _('You are currently requesting <b>contributions</b> from users')|safe }}</p>
+      <form method="post" action="{{ url('devhub.addons.payments.disable', addon.id) }}">
+        {{ csrf() }}
+        <button type="submit">{{ _('Disable Contributions') }}</button>
+      </form>
+    </div>
+  {% endif %}
   <div id="intro">
     <h3>{{ _('Contributions') }}</h3>
     <p>{{ _('Voluntary contributions provide a way for users to support your add-on financially. With contributions, you can:') }}</p>

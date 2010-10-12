@@ -11,7 +11,7 @@ import path
 from tower import ugettext_lazy as _lazy
 
 import amo.utils
-from amo.decorators import login_required
+from amo.decorators import login_required, post_required
 from access import acl
 from addons.models import Addon, AddonUser, AddonLog
 from addons.views import BaseFilter
@@ -182,6 +182,13 @@ def addons_payments(request, addon_id, addon):
     return jingo.render(request, 'devhub/addons/payments.html',
                         dict(addon=addon, charity_form=charity_form,
                             contrib_form=contrib_form))
+
+
+@dev_required
+@post_required
+def disable_payments(request, addon_id, addon):
+    addon.update(wants_contributions=False)
+    return redirect('devhub.addons.payments', addon_id)
 
 
 def upload(request):
