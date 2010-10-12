@@ -748,6 +748,7 @@ class AddonDependency(models.Model):
 
 class BlacklistedGuid(amo.models.ModelBase):
     guid = models.CharField(max_length=255, unique=True)
+    comments = models.TextField(default='', blank=True)
 
     class Meta:
         db_table = 'blacklisted_guids'
