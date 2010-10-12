@@ -1,5 +1,6 @@
 import itertools
 import operator
+import os
 import random
 import re
 import time
@@ -16,7 +17,9 @@ from django.core.mail import send_mail as django_send_mail
 from django.utils.functional import Promise
 from django.utils.encoding import smart_str, smart_unicode
 
+from easy_thumbnails import processors
 import pytz
+from PIL import Image
 
 from . import log
 from translations.models import Translation
@@ -168,7 +171,7 @@ def chunked(seq, n):
     [6, 7]
     """
     for i in xrange(0, len(seq), n):
-        yield seq[i:i+n]
+        yield seq[i:i + n]
 
 
 def urlencode(items):
@@ -229,11 +232,23 @@ def slug_validator(s, ok=SLUG_OK, lower=True):
         raise ValidationError(validate_slug.message,
                               code=validate_slug.code)
 
+
 def clear_messages(request):
     """
-    Clear any messages out of the messages framework for the authenticated user.
+    Clear any messages out of the messages framework for the authenticated
+    user.
     Docs:
     http://docs.djangoproject.com/en/dev/ref/contrib/messages/#expiration-of-messages
     """
     for message in messages.get_messages(request):
         pass
+
+
+def resize_image(src, dst, size):
+    """Resizes and image from src, to dst."""
+    if src == dst:
+        raise Exception("src and dst can't be the same: %s" % src)
+    im = Image.open(src)
+    im = processors.scale_and_crop(im, size)
+    im.save(dst)
+    os.remove(src)

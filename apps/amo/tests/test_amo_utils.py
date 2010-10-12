@@ -3,7 +3,7 @@ from django.core.validators import ValidationError
 
 from nose.tools import eq_, assert_raises
 
-from amo.utils import slug_validator, slugify
+from amo.utils import slug_validator, slugify, resize_image
 
 
 u = u'Ελληνικά'
@@ -20,6 +20,7 @@ def test_slug_validator():
 def test_slugify():
     x = '-'.join([u, u])
     y = ' - '.join([u, u])
+
     def check(x, y):
         eq_(slugify(x), y)
         slug_validator(slugify(x))
@@ -38,3 +39,8 @@ def test_slugify():
     ]
     for val, expected in s:
         yield check, val, expected
+
+
+def test_resize_image():
+    # src and dst shouldn't be the same.
+    assert_raises(Exception, resize_image, 't', 't', 'z')

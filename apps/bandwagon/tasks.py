@@ -6,10 +6,9 @@ from django.conf import settings
 from django.db.models import Count
 
 from celeryutils import task
-from easy_thumbnails import processors
-from PIL import Image
 
 import amo
+from amo.utils import resize_image
 from tags.models import Tag
 from . import cron  # Pull in tasks run through cron.
 from .models import (Collection, CollectionAddon, CollectionVote,
@@ -43,10 +42,7 @@ def resize_icon(src, dst):
     log.info('[1@None] Resizing icon: %s' % dst)
 
     try:
-        im = Image.open(src)
-        im = processors.scale_and_crop(im, (32, 32))
-        im.save(dst)
-        os.remove(src)
+        resize_image(src, dst, (32, 32))
     except Exception, e:
         log.error("Error saving collection icon: %s" % e)
 

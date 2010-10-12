@@ -5,10 +5,9 @@ from django.db import connection, transaction
 
 import commonware.log
 from celeryutils import task
-from easy_thumbnails import processors
-from PIL import Image
 
 import amo.signals
+from amo.utils import resize_image
 from . import cron
 from users.models import UserProfile
 
@@ -36,10 +35,7 @@ def resize_photo(src, dst):
     task_log.info('[1@None] Resizing photo: %s' % dst)
 
     try:
-        im = Image.open(src)
-        im = processors.scale_and_crop(im, (200, 200))
-        im.save(dst)
-        os.remove(src)
+        resize_image(src, dst, (200, 200))
     except Exception, e:
         task_log.error("Error saving userpic: %s" % e)
 
