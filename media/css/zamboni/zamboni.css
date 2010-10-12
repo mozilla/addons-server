@@ -2927,7 +2927,11 @@ a.outlink:hover {
     margin-bottom: 1em;
     float: left;
 }
-.html-rtl #addon .widget { float: right; }
+.html-rtl #addon .widget,
+.html-rtl #persona .widget { 
+    float: right; 
+}
+
 .widget.edit { background-position: 0 -350px; }
 .widget.edit:hover { background-position: 0 -300px; }
 .widget.copy { background-position: 0 -50px; }

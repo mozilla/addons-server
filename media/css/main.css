@@ -3382,7 +3382,7 @@ ul.further-navigation li a {
 
 .html-rtl {
     text-align: right;
-    direction: rtl
+    direction: rtl;
 }
 
 .html-rtl .primary {
