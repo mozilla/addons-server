@@ -1,6 +1,11 @@
 import httplib
+import os
+import shutil
 import time
 import urllib2
+from tempfile import NamedTemporaryFile
+
+from django.conf import settings
 
 import commonware.log
 from pyquery import PyQuery as pq
@@ -10,6 +15,8 @@ import cronjobs
 from .models import BlogCacheRyf
 
 log = commonware.log.getLogger('z.cron')
+
+RYF_IMAGE_PATH = os.path.join(settings.NETAPP_STORAGE, 'ryf')
 
 
 @cronjobs.register
@@ -59,12 +66,21 @@ def fetch_ryf_blog():
                   "Fligtar said this would never happen." % page.permalink)
         return
 
-    # Image sources look like this:
-    #    http://rockyourfirefox.com/rockyourfirefox_content/
-    #                       uploads/2010/04/Nature-SprinG-Persona1-672x367.jpg
-    # This turns the above example into:
-    #    /uploads/2010/04/Nature-SprinG-Persona1-672x367.jpg
-    # which we'll load off of static.amo; bug 561160
-    page.image = image[offset:]
+    try:
+        img = urllib2.urlopen(image)
+    except urllib2.HTTPError, e:
+        log.error("Error fetching ryf image: %s" % e)
+        return
 
+    img_tmp = NamedTemporaryFile(delete=False)
+    img_tmp.write(img.read())
+    img_tmp.close()
+
+    image_basename = os.path.basename(image)
+
+    if not os.path.exists(RYF_IMAGE_PATH):
+        os.makedirs(RYF_IMAGE_PATH)
+    shutil.move(img_tmp.name, os.path.join(RYF_IMAGE_PATH, image_basename))
+
+    page.image = image_basename
     page.save()
