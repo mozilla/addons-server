@@ -32,13 +32,18 @@ class BaseAuthorFormSet(BaseModelFormSet):
     def clean(self):
         if any(self.errors):
             return
-        data = [f.cleaned_data for f in self.forms
-                if not f.cleaned_data.get('DELETE', False)]
+        # cleaned_data could be None if it's the empty extra form.
+        data = filter(None, [f.cleaned_data for f in self.forms
+                             if not f.cleaned_data.get('DELETE', False)])
         if not any(d['role'] == amo.AUTHOR_ROLE_OWNER for d in data):
             raise forms.ValidationError(_('Must have at least one owner.'))
         if not any(d['listed'] for d in data):
             raise forms.ValidationError(
                 _('At least one author must be listed.'))
+        users = [d['user'] for d in data]
+        if sorted(users) != sorted(set(users)):
+            raise forms.ValidationError(
+                _('An author can only be listed once.'))
 
 
 AuthorFormSet = modelformset_factory(AddonUser, formset=BaseAuthorFormSet,

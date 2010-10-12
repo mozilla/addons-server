@@ -210,6 +210,7 @@ class TestEditLicense(TestOwnership):
     def formset(self, *args, **kw):
         init = self.client.get(self.url).context['user_form'].initial_forms
         args = args + tuple(f.initial for f in init)
+        kw['initial_count'] = len(init)
         data = super(TestEditLicense, self).formset(*args, **kw)
         if 'text' not in kw:
             del data['text']
@@ -318,13 +319,25 @@ class TestEditAuthor(TestOwnership):
         eq_(AddonUser.objects.get(addon=3615, user=999).listed, True)
 
         # Edit the user we just added.
-        one, two = self.client.get(self.url).context['user_form'].initial_forms
-        two.initial['listed'] = False
-        data = self.formset(one.initial, two.initial, initial_count=2)
+        user_form = self.client.get(self.url).context['user_form']
+        one, two = user_form.initial_forms
+        del two.initial['listed']
+        empty = dict(user='', listed=True, role=5, position=0)
+        data = self.formset(one.initial, two.initial, empty, initial_count=2)
         r = self.client.post(self.url, data)
         eq_(r.status_code, 302)
         eq_(AddonUser.objects.no_cache().get(addon=3615, user=999).listed,
             False)
+
+    def test_add_user_twice(self):
+        f = self.client.get(self.url).context['user_form'].initial_forms[0]
+        u = dict(user='regular@mozilla.com', listed=True,
+                 role=amo.AUTHOR_ROLE_DEV, position=1)
+        data = self.formset(f.initial, u, u, initial_count=1)
+        r = self.client.post(self.url, data)
+        eq_(r.status_code, 200)
+        eq_(r.context['user_form'].non_form_errors(),
+            ['An author can only be listed once.'])
 
     def test_success_delete_user(self):
         data = self.formset(dict(user='regular@mozilla.com', listed=True,
