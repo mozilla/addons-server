@@ -453,8 +453,8 @@ class Addon(amo.models.ModelBase):
         incompatible (based on the latest version).
 
         """
-        return [a for a, v in self.compatible_apps.items()
-                if version_int(v.max.version) < version_int(a.latest_version)]
+        return [a for a, v in self.compatible_apps.items() if v and
+                version_int(v.max.version) < version_int(a.latest_version)]
 
     @caching.cached_method
     def has_author(self, user, roles=None):

@@ -11,9 +11,10 @@ import amo
 from addons.models import (Addon, AddonDependency, AddonPledge,
                            AddonRecommendation, AddonType, Category, Feature,
                            Persona, Preview)
+from applications.models import AppVersion
 from reviews.models import Review
 from users.models import UserProfile
-from versions.models import Version
+from versions.models import ApplicationsVersions, Version
 
 
 class TestAddonManager(test_utils.TestCase):
@@ -73,10 +74,10 @@ class TestAddonModels(test_utils.TestCase):
                 'base/addon_3615',
                 'base/addon_3723_listed',
                 'base/addon_6704_grapple.json',
+                'base/addon_4594_a9',
                 'base/addon_4664_twitterbar',
                 'addons/featured',
                 'addons/invalid_latest_version']
-
 
     def test_current_version(self):
         """
@@ -116,6 +117,21 @@ class TestAddonModels(test_utils.TestCase):
 
         # Make sure the updated version is now considered current.
         eq_(a.current_version.id, v.id)
+
+    def test_incompatible_latest_apps(self):
+        a = Addon.objects.get(pk=3615)
+        eq_(a.incompatible_latest_apps(), [])
+
+        av = ApplicationsVersions.objects.get(pk=47881)
+        av.max = AppVersion.objects.get(pk=97)  # Firefox 2.0
+        av.save()
+
+        a = Addon.objects.get(pk=3615)
+        eq_(a.incompatible_latest_apps(), [amo.FIREFOX])
+
+        # Check a search engine addon.
+        a = Addon.objects.get(pk=4594)
+        eq_(a.incompatible_latest_apps(), [])
 
     def test_icon_url(self):
         """
@@ -298,7 +314,6 @@ class TestAddonRecommendations(test_utils.TestCase):
                 eq_(scores[addon][rec.other_addon_id], rec.score)
 
 
-
 class TestAddonDependencies(test_utils.TestCase):
     fixtures = ['base/addon_5299_gcal',
                 'base/addon_3615',
@@ -314,7 +329,7 @@ class TestAddonDependencies(test_utils.TestCase):
             AddonDependency(addon=a,
                 dependent_addon=Addon.objects.get(id=dependent_id)).save()
 
-        eq_(sorted([a.id for a in a.dependencies.all()]), ids)
+        eq_(sorted([a.id for a in a.dependencies.all()]), sorted(ids))
 
 
 class TestListedAddonTwoVersions(test_utils.TestCase):
