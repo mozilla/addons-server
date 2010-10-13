@@ -109,7 +109,7 @@ def addons_edit(request, addon_id, addon):
 def addons_owner(request, addon_id, addon):
     forms = []
     # Authors.
-    qs = AddonUser.objects.filter(addon=addon)
+    qs = AddonUser.objects.filter(addon=addon).order_by('position')
     user_form = AuthorFormSet(request.POST or None, queryset=qs)
     forms.append(user_form)
     # License. Clear out initial data if it's a builtin license.

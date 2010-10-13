@@ -366,6 +366,12 @@ h3 a.subscribe-feed:hover {
     display: inline;
     margin-left: 23px;
 }
+.author .errorlist {
+    display: none;
+}
+input.formerror {
+    border-color: #c00;
+}
 input.invalid {
     background: url(../../img/zamboni/notifications.png) no-repeat 229px -160px;
 }

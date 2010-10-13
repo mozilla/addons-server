@@ -19,10 +19,12 @@
       <tr>
         <th>{{ _('Authors') }}</th>
         <td>
+          {{ user_form.non_form_errors()|safe }}
           <ul id="author_list">
           {% for form in user_form.forms %}
-          <li class="{{ 'blank' if loop.last else 'author' }} initial">
+          <li class="author initial">
             <span class="handle">&nbsp;</span>
+            {{ form.user.errors|safe }}
             {{ form.user|safe }}
             {{ form.role|safe }}
             {{ form.listed|safe }}{{ form.listed.label_tag()|safe }}
@@ -39,10 +41,13 @@
           <th>{{ _('License') }}</th>
           <td>
             {{ license_form.builtin|safe }}
-            <div class="license-other {{ 'hidden' if not license_form.initial.builtin == license_other_val }}"
+            <div class="license-other {{ 'js-hidden' if not (license_form.initial.builtin == license_other_val or license_form.errors) }}"
               data-val="{{ license_other_val }}">
+              {{ license_form.non_field_errors()|safe }}
+              {{ license_form.name.errors|safe }}
               {{ license_form.name.label_tag()|safe }}
               {{ license_form.name|safe }}
+              {{ license_form.text.errors|safe }}
               {{ license_form.text.label_tag()|safe }}
               {{ license_form.text|safe }}
             </div>
@@ -55,6 +60,7 @@
           {{ policy_form.has_eula|safe }}
           {{ policy_form.has_eula.label_tag()|safe }}
           <div class="eula {{ 'hidden' if not policy_form.initial.has_eula }}">
+            {{ policy_form.eula.errors|safe }}
             {{ policy_form.eula.label_tag()|safe }}
             {{ policy_form.eula|safe }}
           </div>
@@ -66,6 +72,7 @@
           {{ policy_form.has_priv|safe }}
           {{ policy_form.has_priv.label_tag()|safe }}
           <div class="priv {{ 'hidden' if not policy_form.initial.has_priv }}">
+            {{ policy_form.privacy_policy.errors|safe }}
             {{ policy_form.privacy_policy.label_tag()|safe }}
             {{ policy_form.privacy_policy|safe }}
           </div>

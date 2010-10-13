@@ -22,12 +22,14 @@ function addonFormSubmit() {
     })(parent_div);
 }
 
-$("#author_list .blank .email-autocomplete, #user-form-template .email-autocomplete")
-    .val("")
+$("#user-form-template .email-autocomplete")
     .attr("placeholder", gettext("Enter a new author's email address"));
 
 $(document).ready(function() {
-    initAuthorFields();
+
+    if ($("#author_list").length) {
+        initAuthorFields();
+    }
 
     $("#id_has_eula").change(function (e) {
         if ($(this).attr("checked")) {
@@ -57,7 +59,7 @@ function initAuthorFields() {
     var request = false,
         timeout = false,
         manager = $("#id_form-TOTAL_FORMS"),
-        empty_form = $("#user-form-template").html().replace(/__prefix__/g, "{0}"),
+        empty_form = template($("#user-form-template").html().replace(/__prefix__/g, "{0}")),
         author_list = $("#author_list");
     author_list.sortable({
         items: ".author",
@@ -66,7 +68,16 @@ function initAuthorFields() {
         tolerance: "pointer",
         update: renumberAuthors
     });
-    renumberAuthors();
+    addAuthorRow();
+
+    $(".author .errorlist").each(function() {
+        $(this).parent()
+            .find(".email-autocomplete")
+            .addClass("tooltip")
+            .addClass("invalid")
+            .addClass("formerror")
+            .attr("title", $(this).text());
+    });
 
     $("#author_list").delegate(".email-autocomplete", "keypress", validateUser)
     .delegate(".email-autocomplete", "keyup", validateUser)
@@ -87,24 +98,27 @@ function initAuthorFields() {
     });
     function renumberAuthors() {
         author_list.children(".author").each(function(i, el) {
-            $(el).find(".position input").attr("value", i);
+            $(this).find(".position input").val(i);
         });
     }
-    function validateUser (e) {
+    function addAuthorRow() {
+        var numForms = author_list.children(".author").length;
+        author_list.append(empty_form([numForms]))
+                   .sortable("refresh");
+        author_list.find(".blank .email-autocomplete")
+                   .placeholder();
+        manager.val(author_list.children(".author").length);
+        renumberAuthors();
+    }
+    function validateUser(e) {
         var tgt = $(this),
-            row = tgt.parents("li"),
-            numForms = manager.val();
+            row = tgt.parents("li");
         if (row.hasClass("blank")) {
             tgt.removeClass("placeholder")
                .attr("placeholder", undefined);
             row.removeClass("blank")
                .addClass("author");
-            author_list.append(format(empty_form, [numForms]))
-                       .sortable("refresh");
-            author_list.find(".blank .email-autocomplete")
-                       .placeholder();
-            manager.val(author_list.children(".author").length);
-            renumberAuthors();
+            addAuthorRow();
         }
         if (tgt.val().length > 2) {
             if (timeout) clearTimeout(timeout);

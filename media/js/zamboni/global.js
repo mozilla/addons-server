@@ -36,12 +36,14 @@ jQuery.fn.tooltip = function(tip_el) {
     $(document.body).bind("tooltip_change", setTip);
     $targets.live("mouseover", function (e) {
         $tgt = $(this);
+        if ($tgt.hasClass("formerror")) $tip.addClass("error");
         $title = $tgt.attr('title') ? $tgt : $("[title]", $tgt).first();
         if ($title.length) {
             setTip();
         }
     }).live("mouseout", function (e) {
-        $tip.hide();
+        $tip.hide()
+            .removeClass("error");
         if ($title.length) {
             $tgt = $(this);
             $title.attr('title', $title.attr('data-oldtitle'))

@@ -47,7 +47,7 @@ class BaseAuthorFormSet(BaseModelFormSet):
 
 
 AuthorFormSet = modelformset_factory(AddonUser, formset=BaseAuthorFormSet,
-                                     form=AuthorForm, can_delete=True)
+                                     form=AuthorForm, can_delete=True, extra=0)
 
 
 def LicenseForm(*args, **kw):

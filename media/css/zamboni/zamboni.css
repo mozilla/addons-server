@@ -752,6 +752,10 @@ div.popup-shim {
     padding:10px;
 }
 
+#tooltip.error {
+    background: #6C1a1a;
+}
+
 #tooltip span {
     display: block;
     line-height: 1.2em;
@@ -773,6 +777,10 @@ div.popup-shim {
     border-top-color: #2A4364;
     pointer-events: none;
 }
+#tooltip.error:before {
+    border-top-color: #6C1a1a;
+}
+
 
 /** =Search =Suggestions *********/
 .search-form .basic {
