@@ -2044,7 +2044,8 @@ form .error .note.error {
     margin: 0;
 }
 
-.other-categories ul + ul {
+.other-categories ul + ul,
+.other-categories .divider {
     border-top: 1px dotted #94BFCE;
     margin-top: 1em;
     padding-top: 1em;
@@ -2053,6 +2054,20 @@ form .error .note.error {
 .other-categories ul li {
     padding: 0 1em;
     font-size: 1.05em;
+}
+
+#search-tools-sidebar h3 {
+    margin-bottom: 0.55em;
+}
+
+#search-tools-sidebar h4 {
+    margin-top: 0;
+    margin-bottom: 0.55em;
+    font-style: italic;
+    font-family: georgia, serif;
+    font-size: 1.0em;
+    font-weight: normal;
+    color: #565656;
 }
 
 /** Add-on detail page buttons. **/

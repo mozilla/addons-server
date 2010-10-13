@@ -1,10 +1,14 @@
 # -*- coding: utf-8 -*-
+import datetime
+from datetime import timedelta
+from urlparse import urlparse
+
 from django import http
 from django.core.cache import cache
 from django.utils import http as urllib
 
 import mock
-from nose.tools import eq_, assert_raises
+from nose.tools import eq_, assert_raises, set_trace
 from pyquery import PyQuery as pq
 
 import test_utils
@@ -13,7 +17,8 @@ import amo
 import addons.cron
 from amo.urlresolvers import reverse
 from amo.helpers import urlparams
-from addons.models import Addon, Category
+from applications.models import Application
+from addons.models import Addon, Category, AppSupport, Feature
 from browse import views, feeds
 from browse.views import locale_display_name
 from files.models import File
@@ -241,6 +246,42 @@ class TestCategoryPages(test_utils.TestCase):
         doc = pq(self.client.get(url).content)
         eq_(len(doc('.item')), 1)
 
+class TestSearchToolsPages(test_utils.TestCase):
+    fixtures = ('base/apps', 'base/featured', 'addons/featured')
+
+    def test_landing_page(self):
+
+        # pretend addons are all search related
+        Addon.objects.update(type=amo.ADDON_SEARCH)
+
+        # feature only the FoxyProxy Standard add-on:
+        Feature.objects.all().delete()
+        foxy = Addon.objects.get(name__localized_string='FoxyProxy Standard')
+        Feature(addon=foxy, application_id=amo.FIREFOX.id,
+                start=datetime.datetime.now(),
+                end=datetime.datetime.now() + timedelta(days=30)).save()
+
+        response = self.client.get(reverse('browse.search-tools'))
+
+        # should have only featured add-ons:
+        eq_(sorted([a.name.localized_string
+                    for a in response.context['addons'].object_list]),
+            [u'FoxyProxy Standard'])
+
+    def test_sidebar_extensions_links(self):
+        response = self.client.get(reverse('browse.search-tools'))
+        doc = pq(response.content)
+
+        links = doc('#search-tools-sidebar a')
+
+        eq_([a.text.strip() for a in links],
+            ['Most Popular', 'Recently Added'])
+
+        search_ext_url = urlparse(reverse('browse.extensions',
+                                    kwargs=dict(category='search-tools')))
+
+        eq_(urlparse(links[0].attrib['href']).path, search_ext_url.path)
+        eq_(urlparse(links[1].attrib['href']).path, search_ext_url.path)
 
 class TestLegacyRedirects(test_utils.TestCase):
     fixtures = ('base/category.json',)
