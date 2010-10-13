@@ -550,3 +550,16 @@ class TestDisablePayments(test_utils.TestCase):
         eq_(r.status_code, 302)
         assert(r['Location'].endswith(self.pay_url))
         eq_(Addon.uncached.get(id=3615).wants_contributions, False)
+
+
+class TestEdit(test_utils.TestCase):
+    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
+
+    def setUp(self):
+        assert self.client.login(username='del@icio.us', password='password')
+
+    def test_redirect(self):
+        # /addon/:id => /addon/:id/edit
+        r = self.client.get('/en-US/developers/addon/3615/', follow=True)
+        url = reverse('devhub.addons.edit', args=[3615])
+        self.assertRedirects(r, url, 301)

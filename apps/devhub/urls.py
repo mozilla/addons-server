@@ -9,7 +9,8 @@ from . import views
 # These will all start with /addon/<addon_id>/
 detail_patterns = patterns('',
     # Redirect to the edit page from the base.
-    url('^$', lambda r: redirect('devhub.addons.edit', permanent=True)),
+    url('^$', lambda r, addon_id: redirect('devhub.addons.edit', addon_id,
+                                           permanent=True)),
     url('^edit$', views.addons_edit, name='devhub.addons.edit'),
     url('^ownership$', views.addons_owner, name='devhub.addons.owner'),
     url('^payments$', views.addons_payments, name='devhub.addons.payments'),
