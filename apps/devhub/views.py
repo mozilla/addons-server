@@ -11,7 +11,7 @@ import path
 from tower import ugettext_lazy as _lazy
 
 import amo.utils
-from amo.decorators import login_required, post_required
+from amo.decorators import json_view, login_required, post_required
 from access import acl
 from addons.models import Addon, AddonUser, AddonLog
 from addons.views import BaseFilter
@@ -212,8 +212,18 @@ def upload(request):
 
     return jingo.render(request, 'devhub/upload.html')
 
+@json_view
+def json_upload_detail(upload):
+    r = dict(upload=upload.uuid, validation=upload.validation,
+             error=upload.task_error)
+    return r
+
 
 def upload_detail(request, uuid):
     upload = get_object_or_404(FileUpload.uncached, uuid=uuid)
+
+    if request.is_ajax():
+        return json_upload_detail(upload)
+
     return jingo.render(request, 'devhub/validation.html',
                         dict(upload=upload))
