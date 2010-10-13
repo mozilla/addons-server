@@ -74,7 +74,7 @@ def index(request):
 
 
 @login_required
-def addons_dashboard(request):
+def dashboard(request):
     TYPE = amo.ADDON_ANY
     addons, filter = addon_listing(request, TYPE)
     addons = amo.utils.paginate(request, addons, per_page=10)
@@ -85,12 +85,12 @@ def addons_dashboard(request):
 
 # TODO: If user is not a developer, redirect to url('devhub.addons').
 @login_required
-def addons_activity(request):
+def activity(request):
     return jingo.render(request, 'devhub/addons/activity.html')
 
 
 @dev_required
-def addons_edit(request, addon_id, addon):
+def edit(request, addon_id, addon):
     tags_dev, tags_user = addon.tags_partitioned_by_developer
 
     data = {
@@ -106,7 +106,7 @@ def addons_edit(request, addon_id, addon):
 
 @dev_required
 @owner_for_post_required
-def addons_owner(request, addon_id, addon):
+def ownership(request, addon_id, addon):
     forms = []
     # Authors.
     qs = AddonUser.objects.filter(addon=addon).order_by('position')
@@ -157,7 +157,7 @@ def addons_owner(request, addon_id, addon):
 
 
 @dev_required
-def addons_payments(request, addon_id, addon):
+def payments(request, addon_id, addon):
     charity = None if addon.charity_id == amo.FOUNDATION_ORG else addon.charity
     charity_form = CharityForm(request.POST or None, instance=charity,
                                prefix='charity')

@@ -11,9 +11,9 @@ detail_patterns = patterns('',
     # Redirect to the edit page from the base.
     url('^$', lambda r, addon_id: redirect('devhub.addons.edit', addon_id,
                                            permanent=True)),
-    url('^edit$', views.addons_edit, name='devhub.addons.edit'),
-    url('^ownership$', views.addons_owner, name='devhub.addons.owner'),
-    url('^payments$', views.addons_payments, name='devhub.addons.payments'),
+    url('^edit$', views.edit, name='devhub.addons.edit'),
+    url('^ownership$', views.ownership, name='devhub.addons.owner'),
+    url('^payments$', views.payments, name='devhub.addons.payments'),
     url('^payments/disable$', views.disable_payments,
         name='devhub.addons.payments.disable'),
 )
@@ -28,8 +28,8 @@ urlpatterns = decorate(write, patterns('',
 
     # Redirect to /addons/ at the base.
     url('^addon$', lambda r: redirect('devhub.addons', permanent=True)),
-    url('^addons$', views.addons_dashboard, name='devhub.addons'),
-    url('^addons/activity$', views.addons_activity,
+    url('^addons$', views.dashboard, name='devhub.addons'),
+    url('^addons/activity$', views.activity,
         name='devhub.addons.activity'),
     url('^upload$', views.upload, name='devhub.upload'),
     url('^upload/([^/]+)$', views.upload_detail,
