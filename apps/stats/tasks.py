@@ -272,6 +272,8 @@ class _JSONUpdater(object):
         qs = qs.exclude(**kw4)
         if self.ids:
             qs = qs.filter(addon__in=self.ids)
+        if self.handled_objs is not None:
+            qs = qs[:self.handled_objs]
         self.report(str(qs.query))
         any_objs = False
         for obj in qs:
