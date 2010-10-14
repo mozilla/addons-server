@@ -613,16 +613,6 @@ class TestProfile(test_utils.TestCase):
         self.post(the_reason='to be hot', the_future='cold stuff')
         self.check(the_reason='to be hot', the_future='cold stuff')
 
-    def test_profile_form_initial(self):
-        eq_(ProfileForm.initial(self.addon)['the_reason'], None)
-        eq_(ProfileForm.initial(self.addon)['the_future'], None)
-        self.addon.the_reason = 'to be bad'
-        self.addon.the_future = 'sick stuff'
-        eq_(ProfileForm.initial(self.addon)['the_reason'].localized_string,
-            'to be bad')
-        eq_(ProfileForm.initial(self.addon)['the_future'].localized_string,
-            'sick stuff')
-
     def test_with_contributions_labels(self):
         self.enable_addon_contributions()
         r = self.client.get(self.url)

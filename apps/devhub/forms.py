@@ -114,31 +114,23 @@ class PolicyForm(happyforms.ModelForm):
                 delete_translation(addon, field)
 
 
-class ProfileForm(happyforms.ModelForm):
-    the_reason = forms.CharField(widget=TranslationTextarea(), required=False,
-                                 label=_("Why did you make this add-on?"))
-    the_future = forms.CharField(widget=TranslationTextarea(), required=False,
-                                 label=_("What's next for this add-on?"))
+def ProfileForm(*args, **kw):
+     # If the add-on takes contributions, then both fields are required.
+    fields_required = bool(kw['instance'].takes_contributions)
 
-    class Meta:
-        model = Addon
-        fields = ('the_reason', 'the_future')
+    class _Form(happyforms.ModelForm):
+        the_reason = forms.CharField(widget=TranslationTextarea(),
+                                     required=fields_required,
+                                     label=_("Why did you make this add-on?"))
+        the_future = forms.CharField(widget=TranslationTextarea(),
+                                     required=fields_required,
+                                     label=_("What's next for this add-on?"))
 
-    @staticmethod
-    def initial(addon):
-        return {'the_reason': addon.the_reason, 'the_future': addon.the_future}
+        class Meta:
+            model = Addon
+            fields = ('the_reason', 'the_future')
 
-    def clean_the_reason(self):
-        the_reason = self.cleaned_data['the_reason']
-        if not the_reason and self.instance.takes_contributions:
-            raise forms.ValidationError(_('This field is required.'))
-        return the_reason
-
-    def clean_the_future(self):
-        the_future = self.cleaned_data['the_future']
-        if not the_future and self.instance.takes_contributions:
-            raise forms.ValidationError(_('This field is required.'))
-        return the_future
+    return _Form(*args, **kw)
 
 
 class CharityForm(happyforms.ModelForm):

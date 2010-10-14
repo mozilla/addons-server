@@ -421,13 +421,11 @@ class Addon(amo.models.ModelBase):
 
     def is_profile_public(self):
         """Is developer profile public (completed)?"""
-        return ((self.the_reason and self.the_reason.localized_string) and
-                (self.the_future and self.the_future.localized_string))
+        return self.the_reason and self.the_future
 
     def has_profile(self):
         """Is developer profile (partially or entirely) completed?"""
-        return ((self.the_reason and self.the_reason.localized_string) or
-                (self.the_future and self.the_future.localized_string))
+        return self.the_reason or self.the_future
 
     @amo.cached_property(writable=True)
     def _creatured_apps(self):
@@ -487,7 +485,7 @@ class Addon(amo.models.ModelBase):
 
     @property
     def has_eula(self):
-        return self.eula and self.eula.localized_string
+        return self.eula
 
     @caching.cached_method
     def share_counts(self):
