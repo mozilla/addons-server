@@ -7,7 +7,7 @@
           <a href="{{ addon.get_url_path()|urlparams(src='discovery-pane') }}">
             <img src="{{ addon.icon_url }}" width="32" height="32">
             <h3>{{ addon.name }}</h3>
-            <p class="desc">{{ addon.summary.localized_string }}</p>
+            <p class="desc">{{ addon.summary.localized_string|strip_html }}</p>
           </a>
         </li>
       {% endfor %}
