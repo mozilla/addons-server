@@ -207,6 +207,22 @@
     <dd>{% trans contact_url=remora_url('developers/docs/policies/contact') %}
         Please visit our <a href="{{ contact_url }}">Contact page</a>.{% endtrans %}</dd>
 
+    <dt id="license">{{ _('What is a Source Code License?') }}</dt>
+    <dd><p>{% trans url="http://en.wikipedia.org/wiki/Open-source_license" %}
+        The source code used to create an add-on is an exclusive copyright of
+        the add-on author, unless otherwise declared in a source code license.
+        Many add-ons on this site have <a href="{{ url }}" lang="en">open
+            source licenses</a> that make the source code publicly available for
+        copy and reuse under conditions determined by the
+        author. Most authors choose widely known open source licenses like the
+        GPL or BSD licenses instead of making up their own.{% endtrans %}</p>
+
+        <p>{% trans url="http://www.mozilla.com/firefox/organic/" %}
+        Firefox and other Mozilla software are <a href="{{ url }}">open source</a>.
+        {% endtrans %}</p>
+    </dd>
+
+
 </dl>
 
 <h3 id="collections">{{ _('Collections and Favorites') }}</h3>
