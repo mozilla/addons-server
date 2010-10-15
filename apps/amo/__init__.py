@@ -70,14 +70,14 @@ STATUS_LISTED = 6
 STATUS_BETA = 7
 
 STATUS_CHOICES = {
-    STATUS_NULL: 'Null',
-    STATUS_UNREVIEWED: 'Not reviewed',
-    STATUS_PENDING: 'Pending approval',
-    STATUS_NOMINATED: 'Nominated to be public',
-    STATUS_PUBLIC: 'Public',
-    STATUS_DISABLED: 'Disabled',
-    STATUS_LISTED: 'Listed',
-    STATUS_BETA: 'Beta',
+    STATUS_NULL: _('Null'),
+    STATUS_UNREVIEWED: _('Not reviewed'),
+    STATUS_PENDING: _('Pending approval'),
+    STATUS_NOMINATED: _('Nominated to be public'),
+    STATUS_PUBLIC: _('Public'),
+    STATUS_DISABLED: _('Disabled'),
+    STATUS_LISTED: _('Listed'),
+    STATUS_BETA: _('Beta'),
 }
 
 UNREVIEWED_STATUSES = (STATUS_UNREVIEWED, STATUS_PENDING, STATUS_NOMINATED)
