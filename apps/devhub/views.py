@@ -4,6 +4,7 @@ import uuid
 from django import http
 from django.conf import settings
 from django.shortcuts import get_object_or_404, redirect
+from django.utils.translation import trans_real as translation
 
 import commonware.log
 import jingo
@@ -13,6 +14,7 @@ from tower import ugettext_lazy as _lazy
 import amo.utils
 from amo.decorators import login_required, post_required
 from access import acl
+from addons.forms import AddonFormBasic
 from addons.models import Addon, AddonUser, AddonLog
 from addons.views import BaseFilter
 from files.models import FileUpload
@@ -90,15 +92,13 @@ def activity(request):
 
 @dev_required
 def edit(request, addon_id, addon):
-    tags_dev, tags_user = addon.tags_partitioned_by_developer
 
     data = {
-        'page': 'edit',
-        'addon': addon,
-        'tags_user': [tag.tag_text for tag in tags_dev],
-        'tags_dev': [tag.tag_text for tag in tags_user],
-        'previews': addon.previews.all(),
-        }
+       'page': 'edit',
+       'addon': addon,
+       'tags': addon.tags.not_blacklisted().values_list('tag_text', flat=True),
+       'previews': addon.previews.all(),
+       }
 
     return jingo.render(request, 'devhub/addons/edit.html', data)
 
@@ -202,6 +202,7 @@ def profile(request, addon_id, addon):
     return jingo.render(request, 'devhub/addons/profile.html',
                         dict(addon=addon, profile_form=profile_form))
 
+
 def upload(request):
     if request.method == 'POST' and 'upload' in request.FILES:
         upload = request.FILES['upload']
@@ -228,3 +229,38 @@ def upload_detail(request, uuid):
     upload = get_object_or_404(FileUpload.uncached, uuid=uuid)
     return jingo.render(request, 'devhub/validation.html',
                         dict(upload=upload))
+
+
+@dev_required
+def addons_section(request, addon_id, addon, section, editable=False):
+
+    models = {'basic': AddonFormBasic}
+
+    if section not in models:
+        return http.HttpResponseNotFound()
+
+    if editable:
+        if request.method == 'POST':
+            form = models[section](request.POST, request.FILES,
+                                  instance=addon)
+            if form.is_valid():
+                addon = form.save(addon)
+                editable = False
+
+                AddonLog.log(models[section], request, addon=addon,
+                             action='edit '+section)
+        else:
+            form = models[section](instance=addon)
+    else:
+        form = False
+
+    tags = addon.tags.not_blacklisted().values_list('tag_text', flat=True)
+
+    data = {'addon': addon,
+            'form': form,
+            'lang': lang,
+            'editable': editable,
+            'tags': tags}
+
+    return jingo.render(request,
+                        'devhub/includes/addon_edit_%s.html' % section, data)

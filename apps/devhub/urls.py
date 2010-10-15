@@ -17,7 +17,8 @@ detail_patterns = patterns('',
     url('^payments/disable$', views.disable_payments,
         name='devhub.addons.payments.disable'),
     url('^profile$', views.profile, name='devhub.addons.profile'),
-)
+    url('^edit_(?P<section>[^/]+)(?:/(?P<editable>[^/]+))?$',
+        views.addons_section, name='devhub.addons.section'))
 
 urlpatterns = decorate(write, patterns('',
     url('^$', views.index, name='devhub.index'),
@@ -25,7 +26,8 @@ urlpatterns = decorate(write, patterns('',
     # URLs for a single add-on.
     ('^addon/(?P<addon_id>\d+)/', include(detail_patterns)),
     # Redirect people who have /addons/ instead of /addon/.
-    ('^addons/\d+/.*', lambda r: redirect(r.path.replace('addons', 'addon', 1))),
+    ('^addons/\d+/.*',
+     lambda r: redirect(r.path.replace('addons', 'addon', 1))),
 
     # Redirect to /addons/ at the base.
     url('^addon$', lambda r: redirect('devhub.addons', permanent=True)),
@@ -34,5 +36,4 @@ urlpatterns = decorate(write, patterns('',
         name='devhub.addons.activity'),
     url('^upload$', views.upload, name='devhub.upload'),
     url('^upload/([^/]+)$', views.upload_detail,
-        name='devhub.upload_detail'),
-))
+        name='devhub.upload_detail')))

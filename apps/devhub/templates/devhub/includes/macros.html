@@ -1,0 +1,29 @@
+{% macro tip(name, tip) %}
+  <span class="label">{{ name }}</span>
+  <span class="help tooltip" title="{{ tip }}">?</span>
+{% endmacro %}
+
+{% macro empty_unless(truthy) %}
+  {% if truthy %}
+    {{ caller() }}
+  {% else %}
+    <span class="empty">{{ _('None') }}</span>
+  {% endif %}
+{% endmacro %}
+
+{% macro flags(text, element, editable, alt_text=False) %}
+  {% if editable %}
+    <div>
+      {{ element|safe }}
+      {{ element.errors|safe }}
+      <label for="id_{{ element.html_name }}">{{ text }}
+    </div>
+  {% elif element %}
+    {{ text }}
+  {% elif alt_text %}
+    {# This is what's shown if the element is false #}
+    {# Defaults to nothing #}
+    {{ alt_text }}
+  {% endif %}
+{% endmacro %}
+

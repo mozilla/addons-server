@@ -1,0 +1,106 @@
+{% from "devhub/includes/macros.html" import tip, empty_unless %}
+
+<form method="post" action="{{ url('devhub.addons.section', addon.id, 'basic', 'edit') }}">
+  <h3>
+    {{ _('Basic Information') }}
+    {% if not editable %}
+      <a href="{{ url('devhub.addons.section', addon.id, 'basic', 'edit') }}" class="button">
+        {{ _('Edit') }}</a>
+    {% endif %}
+  </h3>
+  <div class="item">
+    <div class="item_wrapper">
+      <table>
+        {# L10n: {0} is the addon name #}
+        <caption>{{ _('Basic Information for {0}')|f(addon.name) }}</caption>
+        <tbody>
+          <tr>
+            <th>{{ _("Name") }}</th>
+            <td>
+              {% if editable %}
+                {{ form.name|safe }}
+                {{ form.name.errors|safe }}
+              {% else %}
+                {{ addon.name }}
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <th>
+              {{ tip(_("Add-on URL"),
+                 _("Choose a short, unique URL slug for your add-on.")) }}
+            </th>
+            <td id="slug_edit">
+              {% if editable %}
+                <span>{{ settings.SITE_URL }}/&hellip;/</span>{{ form.slug|safe }}
+                {{ form.slug.errors|safe }}
+              {% else %}
+                <a href="{{ addon.get_url_path() }}">
+                  {{ settings.SITE_URL }}/&hellip;/{{ addon.slug }}</a>
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <th>
+              {{ tip(_("Summary"),
+                 _("A short explanation of your add-on's basic functionality
+                    that is displayed in search and browse listings, as well as
+                    at the top of your add-on's details page.")) }}
+            </th>
+            <td>
+              {% if editable %}
+                {{ form.summary|safe }}
+                {{ form.summary.errors|safe }}
+              {% else %}
+                {{ addon.summary|nl2br }}
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <th>
+              {{ tip(_("Categories"),
+                     _("Categories are the primary way users browse through add-ons.
+                        Choose any that fit your add-on's functionality for the most
+                        exposure.")) }}
+            </th>
+            <td id="addon_categories_edit">
+              {% if editable %}
+                {# TODO(gkoberger): Add categories #}
+                <strong>Coming Soon</strong>
+              {% else %}
+                {{ addon.categories.all()|join(' &middot; ')|safe }}
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <th>
+              {{ tip(_("Tags"),
+                     _("Tags help users find your add-on and should be short
+                        descriptors such as tabs, toolbar, or twitter.  You
+                        may have a maximum of {0} tags.").format(amo.MAX_TAGS)) }}
+            </th>
+            <td>
+              {% if editable %}
+                {# TODO(gkoberger): Add tags #}
+                <strong>Coming Soon</strong>
+              {% else %}
+                {% call empty_unless(tags) %}
+                  {{ tags|join(', ') }}
+                {% endcall %}
+              {% endif %}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    {% if editable %}
+    <div class="listing-footer">
+      <button type="submit">{{ _('Save Changes') }}</button> {{ _('or') }}
+      <a href="{{ url('devhub.addons.section', addon.id, 'basic') }}"
+        class="addon-edit-cancel">
+        {{ _('Cancel') }}</a>
+    </div>
+    {% endif %}
+  </div>
+</form>
+

@@ -525,7 +525,6 @@ class TestEditPayments(test_utils.TestCase):
         eq_(ContribForm.initial(self.addon)['annoying'], amo.CONTRIB_AFTER)
 
 
-
 class TestDisablePayments(test_utils.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']
 
@@ -553,16 +552,65 @@ class TestDisablePayments(test_utils.TestCase):
 
 
 class TestEdit(test_utils.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
+    fixtures = ['base/apps', 'base/users', 'base/addon_3615',
+                'base/addon_5579']
 
     def setUp(self):
+        super(TestEdit, self).setUp()
+        self.addon = self.get_addon()
         assert self.client.login(username='del@icio.us', password='password')
+        self.url = reverse('devhub.addons.edit', args=[self.addon.id])
+        self.url_section = reverse('devhub.addons.section',
+                                   args=[self.addon.id, 'basic', 'edit'])
+
+    def get_addon(self):
+        return Addon.objects.no_cache().get(id=3615)
 
     def test_redirect(self):
         # /addon/:id => /addon/:id/edit
         r = self.client.get('/en-US/developers/addon/3615/', follow=True)
         url = reverse('devhub.addons.edit', args=[3615])
         self.assertRedirects(r, url, 301)
+
+    def test_edit_basic(self):
+        old_name = self.addon.name
+
+        data = dict(name='new name',
+                    slug='test_addon',
+                    summary='new summary')
+
+        r = self.client.post(self.url_section, data)
+        eq_(r.status_code, 200)
+        addon = self.get_addon()
+
+        eq_(unicode(addon.name), data['name'])
+        eq_(addon.name.id, old_name.id)
+
+        eq_(unicode(addon.slug), data['slug'])
+        eq_(unicode(addon.summary), data['summary'])
+
+    def test_edit_basic_slugs_unique(self):
+        Addon.objects.get(id=5579).update(slug='test_slug')
+
+        data = dict(name='new name',
+                    slug='test_slug',
+                    summary='new summary')
+
+        r = self.client.post(self.url_section, data)
+        eq_(r.status_code, 200)
+
+        self.assertFormError(r, 'form', 'slug', 'This slug is already in use.')
+
+    def test_edit_basic_name_not_empty(self):
+
+        data = dict(name='',
+                    slug=self.addon.slug,
+                    summary=self.addon.summary)
+
+        r = self.client.post(self.url_section, data)
+        eq_(r.status_code, 200)
+
+        self.assertFormError(r, 'form', 'name', 'This field is required.')
 
 
 class TestProfile(test_utils.TestCase):

@@ -3,7 +3,24 @@ from django import forms
 import happyforms
 
 from addons.models import Addon
-from translations.widgets import TranslationTextInput
+from amo.utils import slug_validator
+from tower import ugettext as _
+from translations.widgets import TranslationTextInput, TranslationTextarea
+
+
+class AddonFormBasic(happyforms.ModelForm):
+    name = forms.CharField(widget=TranslationTextInput, max_length=70)
+    slug = forms.CharField(max_length=30)
+    summary = forms.CharField(widget=TranslationTextarea, max_length=250)
+
+    def clean_slug(self):
+        target = self.cleaned_data['slug']
+        slug_validator(target, lower=False)
+
+        if self.cleaned_data['slug'] != self.instance.slug:
+            if Addon.objects.filter(slug=target).exists():
+                raise forms.ValidationError(_('This slug is already in use.'))
+        return target
 
 
 class AddonForm(happyforms.ModelForm):
