@@ -18,10 +18,10 @@ from addons.forms import (AddonFormBasic, AddonFormDetails, AddonFormSupport,
 from addons.models import Addon, AddonUser, AddonLog
 from addons.views import BaseFilter
 from files.models import FileUpload
-from versions.models import License
+from versions.models import License, Version
 from . import tasks
 from .forms import (AuthorFormSet, LicenseForm, PolicyForm, ProfileForm,
-                    CharityForm, ContribForm)
+                    CharityForm, ContribForm, VersionForm)
 
 log = commonware.log.getLogger('z.devhub')
 
@@ -265,3 +265,20 @@ def addons_section(request, addon_id, addon, section, editable=False):
 
     return jingo.render(request,
                         'devhub/includes/addon_edit_%s.html' % section, data)
+
+
+@dev_required
+def version_edit(request, addon_id, addon, version_id):
+    version = get_object_or_404(Version, pk=version_id)
+    version_form = VersionForm(request.POST or None, instance=version)
+    if request.method == 'POST' and version_form.is_valid():
+        version_form.save()
+        return redirect('devhub.versions.edit', addon_id, version_id)
+    return jingo.render(request, 'devhub/versions/edit.html',
+                        dict(addon=addon, version=version,
+                             version_form=version_form))
+
+
+@dev_required
+def version_list(request, addon_id, addon):
+    return http.HttpResponse('All right then!')

@@ -783,3 +783,28 @@ class TestProfile(test_utils.TestCase):
 
         self.post(the_reason='to be hot', the_future='cold stuff')
         self.check(the_reason='to be hot', the_future='cold stuff')
+
+
+class TestVersionEdit(test_utils.TestCase):
+    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
+
+    def setUp(self):
+        assert self.client.login(username='del@icio.us', password='password')
+        self.addon = self.get_addon()
+        self.version = self.get_version()
+        self.url = reverse('devhub.versions.edit',
+                           args=[3615, self.version.id])
+
+    def get_addon(self):
+        return Addon.objects.no_cache().get(id=3615)
+
+    def get_version(self):
+        return self.get_addon().current_version
+
+    def test_edit_notes(self):
+        r = self.client.post(self.url,
+                             dict(releasenotes='xx', approvalnotes='yy'))
+        eq_(r.status_code, 302)
+        version = self.get_version()
+        eq_(unicode(version.releasenotes), 'xx')
+        eq_(unicode(version.approvalnotes), 'yy')

@@ -11,7 +11,7 @@ import paypal
 from addons.models import Addon, AddonUser, Charity
 from translations.widgets import TranslationTextarea, TranslationTextInput
 from translations.models import delete_translation
-from versions.models import License
+from versions.models import License, Version
 
 
 class AuthorForm(happyforms.ModelForm):
@@ -181,3 +181,12 @@ def check_paypal_id(paypal_id):
             raise forms.ValidationError(msg)
     except socket.error:
         raise forms.ValidationError(_('Could not validate PayPal id.'))
+
+
+class VersionForm(happyforms.ModelForm):
+    releasenotes = forms.CharField(widget=TranslationTextarea(),
+                                   required=False)
+
+    class Meta:
+        model = Version
+        fields = ('releasenotes', 'approvalnotes')

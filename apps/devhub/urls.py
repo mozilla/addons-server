@@ -18,7 +18,12 @@ detail_patterns = patterns('',
         name='devhub.addons.payments.disable'),
     url('^profile$', views.profile, name='devhub.addons.profile'),
     url('^edit_(?P<section>[^/]+)(?:/(?P<editable>[^/]+))?$',
-        views.addons_section, name='devhub.addons.section'))
+        views.addons_section, name='devhub.addons.section'),
+
+    url('^versions/$', views.version_list, name='devhub.versions'),
+    url('^versions/(?P<version_id>[^/]+)$', views.version_edit,
+        name='devhub.versions.edit'),
+)
 
 urlpatterns = decorate(write, patterns('',
     url('^$', views.index, name='devhub.index'),

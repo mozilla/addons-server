@@ -1,0 +1,27 @@
+{% extends "devhub/base.html" %}
+
+{% set title = _('Manage Version {0}')|f(version.version) %}
+
+{% block title %}{{ dev_page_title(title, addon) }}{% endblock %}
+
+{% block content %}
+<header>
+  {{ dev_breadcrumbs(addon) }}
+  {# L10n: {0} is an add-on name. #}
+  <h2>{{ _('Manage {0}')|f(addon.name) }}</h2>
+</header>
+<section class="primary" role="main">
+  <h3>{{ title }}</h3>
+  <a href="{{ url('devhub.versions', addon.id) }}">{{ _('Back to All Versions') }}</a>
+  <div class="listing featured">
+    <div class="featured-inner">
+      <form method="post" action="">
+        {{ csrf() }}
+        <table>{{ version_form|safe }}</table>
+        <button type="submit">GO GO GO</button>
+      </form>
+    </div>
+  </div>
+</section>
+{% include "devhub/includes/addons_edit_nav.html" %}
+{% endblock %}
