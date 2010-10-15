@@ -4,7 +4,6 @@ import uuid
 from django import http
 from django.conf import settings
 from django.shortcuts import get_object_or_404, redirect
-from django.utils.translation import trans_real as translation
 
 import commonware.log
 import jingo
@@ -14,7 +13,7 @@ from tower import ugettext_lazy as _lazy
 import amo.utils
 from amo.decorators import login_required, post_required
 from access import acl
-from addons.forms import AddonFormBasic
+from addons.forms import AddonFormBasic, AddonFormDetails
 from addons.models import Addon, AddonUser, AddonLog
 from addons.views import BaseFilter
 from files.models import FileUpload
@@ -233,8 +232,8 @@ def upload_detail(request, uuid):
 
 @dev_required
 def addons_section(request, addon_id, addon, section, editable=False):
-
-    models = {'basic': AddonFormBasic}
+    models = {'basic': AddonFormBasic,
+              'details': AddonFormDetails}
 
     if section not in models:
         return http.HttpResponseNotFound()
@@ -248,7 +247,7 @@ def addons_section(request, addon_id, addon, section, editable=False):
                 editable = False
 
                 AddonLog.log(models[section], request, addon=addon,
-                             action='edit '+section)
+                             action='edit ' + section)
         else:
             form = models[section](instance=addon)
     else:
@@ -258,7 +257,6 @@ def addons_section(request, addon_id, addon, section, editable=False):
 
     data = {'addon': addon,
             'form': form,
-            'lang': lang,
             'editable': editable,
             'tags': tags}
 

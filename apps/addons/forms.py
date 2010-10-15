@@ -23,6 +23,16 @@ class AddonFormBasic(happyforms.ModelForm):
         return target
 
 
+class AddonFormDetails(happyforms.ModelForm):
+    description = forms.CharField(widget=TranslationTextarea)
+    default_locale = forms.TypedChoiceField(choices=Addon.LOCALES)
+    homepage = forms.URLField(widget=TranslationTextInput)
+
+    class Meta:
+        mode = Addon
+        fields = ('description', 'default_locale', 'homepage')
+
+
 class AddonForm(happyforms.ModelForm):
     name = forms.CharField(widget=TranslationTextInput,)
     homepage = forms.CharField(widget=TranslationTextInput,)

@@ -12,7 +12,7 @@ import amo
 import paypal
 from amo.urlresolvers import reverse
 from addons.models import Addon, AddonUser, Charity
-from devhub.forms import ContribForm, ProfileForm
+from devhub.forms import ContribForm
 from users.models import UserProfile
 from versions.models import License, Version
 
@@ -560,8 +560,10 @@ class TestEdit(test_utils.TestCase):
         self.addon = self.get_addon()
         assert self.client.login(username='del@icio.us', password='password')
         self.url = reverse('devhub.addons.edit', args=[self.addon.id])
-        self.url_section = reverse('devhub.addons.section',
-                                   args=[self.addon.id, 'basic', 'edit'])
+        self.url_basic = reverse('devhub.addons.section',
+                                 args=[self.addon.id, 'basic', 'edit'])
+        self.url_details = reverse('devhub.addons.section',
+                                   args=[self.addon.id, 'details', 'edit'])
 
     def get_addon(self):
         return Addon.objects.no_cache().get(id=3615)
@@ -579,7 +581,7 @@ class TestEdit(test_utils.TestCase):
                     slug='test_addon',
                     summary='new summary')
 
-        r = self.client.post(self.url_section, data)
+        r = self.client.post(self.url_basic, data)
         eq_(r.status_code, 200)
         addon = self.get_addon()
 
@@ -596,7 +598,7 @@ class TestEdit(test_utils.TestCase):
                     slug='test_slug',
                     summary='new summary')
 
-        r = self.client.post(self.url_section, data)
+        r = self.client.post(self.url_basic, data)
         eq_(r.status_code, 200)
 
         self.assertFormError(r, 'form', 'slug', 'This slug is already in use.')
@@ -607,10 +609,34 @@ class TestEdit(test_utils.TestCase):
                     slug=self.addon.slug,
                     summary=self.addon.summary)
 
-        r = self.client.post(self.url_section, data)
+        r = self.client.post(self.url_basic, data)
         eq_(r.status_code, 200)
 
         self.assertFormError(r, 'form', 'name', 'This field is required.')
+
+    def test_edit_details(self):
+        data = dict(description='New description with <em>html</em>!',
+                    default_locale='es-ES',
+                    homepage='http://twitter.com/fligtarsmom')
+
+        r = self.client.post(self.url_details, data)
+        eq_(r.status_code, 200)
+        addon = self.get_addon()
+
+        for k in data:
+            eq_(unicode(getattr(addon, k)), data[k])
+
+    def test_edit_details_locale(self):
+        addon = self.get_addon()
+        addon.update(default_locale='en-US')
+
+        url_details = reverse('devhub.addons.section',
+                              args=[self.addon.id, 'details'])
+
+        r = self.client.get(url_details)
+        doc = pq(r.content)
+
+        eq_(doc('.addon_edit_locale').eq(0).text(), "English (US)")
 
 
 class TestProfile(test_utils.TestCase):

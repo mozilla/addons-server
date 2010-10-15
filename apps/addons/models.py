@@ -93,7 +93,7 @@ class AddonManager(amo.models.ManagerBase):
 
 class Addon(amo.models.ModelBase):
     STATUS_CHOICES = amo.STATUS_CHOICES.items()
-    LOCALES = [(translation.to_language(k), v) for k, v in
+    LOCALES = [(translation.to_locale(k).replace('_', '-'), v) for k, v in
                settings.LANGUAGES.items()]
 
     guid = models.CharField(max_length=255, unique=True, null=True)
@@ -251,6 +251,9 @@ class Addon(amo.models.ModelBase):
     @property
     def reviews(self):
         return Review.objects.filter(addon=self, reply_to=None)
+
+    def language_ascii(self):
+        return settings.LANGUAGES[translation.to_language(self.default_locale)]
 
     def get_current_version(self):
         """Retrieves the latest version of an addon."""
