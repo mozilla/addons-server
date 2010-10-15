@@ -22,6 +22,7 @@ import commonware.log
 import jingo
 import phpserialize as php
 
+import amo
 import mongoutils
 from hera.contrib.django_utils import get_hera
 from stats.models import Contribution, ContributionError, SubscriptionEvent
@@ -152,6 +153,17 @@ def monitor(request):
                         status=status)
 
 
+def robots(request):
+    """Generate a robots.txt"""
+    if not settings.ENGAGE_ROBOTS:
+        template = "Disallow: /"
+    else:
+        template = jingo.render(request, 'amo/robots.html',
+                                {'apps': amo.APP_USAGE})
+
+    return HttpResponse(template, mimetype="text/plain")
+
+
 @csrf_exempt
 def paypal(request):
     """
@@ -266,6 +278,7 @@ def handler500(request):
 def loaded(request):
     return http.HttpResponse('%s' % request.META['wsgi.loaded'],
                              content_type='text/plain')
+
 
 @csrf_exempt
 @require_POST

@@ -14,6 +14,7 @@ services_patterns = patterns('',
 )
 
 urlpatterns = patterns('',
+    url('^robots.txt$', views.robots, name='robots.txt'),
     ('^services/', include(services_patterns)),
 
     url('^opensearch.xml$', 'api.views.render_xml',

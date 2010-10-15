@@ -267,6 +267,7 @@ def strip_html(s, just_kidding=False):
         s = re.sub(r'&lt;.*?&gt;', '', smart_unicode(s, errors='ignore'))
         return re.sub(r'<.*?>', '', s)
 
+
 @register.filter
 def external_url(url):
     """Bounce a URL off outgoing.mozilla.org."""
@@ -330,6 +331,11 @@ def category_arrow(context, key, prefix):
     d = dict(context.items())
     d.update(key=key, prefix=prefix)
     return d
+
+
+@register.filter
+def replace(string, one, two):
+    return string.replace(one, two)
 
 
 @register.filter
