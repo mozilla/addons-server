@@ -1,4 +1,5 @@
 from decimal import Decimal
+import re
 import socket
 
 from django.utils import translation
@@ -560,13 +561,16 @@ class TestEdit(test_utils.TestCase):
         self.addon = self.get_addon()
         assert self.client.login(username='del@icio.us', password='password')
         self.url = reverse('devhub.addons.edit', args=[self.addon.id])
-        self.url_basic = reverse('devhub.addons.section',
-                                 args=[self.addon.id, 'basic', 'edit'])
-        self.url_details = reverse('devhub.addons.section',
-                                   args=[self.addon.id, 'details', 'edit'])
 
     def get_addon(self):
         return Addon.objects.no_cache().get(id=3615)
+
+    def get_url(self, section, edit=False):
+        args = [self.addon.id, section]
+        if edit:
+            args.append('edit')
+
+        return reverse('devhub.addons.section', args=args)
 
     def test_redirect(self):
         # /addon/:id => /addon/:id/edit
@@ -581,7 +585,7 @@ class TestEdit(test_utils.TestCase):
                     slug='test_addon',
                     summary='new summary')
 
-        r = self.client.post(self.url_basic, data)
+        r = self.client.post(self.get_url('basic', True), data)
         eq_(r.status_code, 200)
         addon = self.get_addon()
 
@@ -598,7 +602,7 @@ class TestEdit(test_utils.TestCase):
                     slug='test_slug',
                     summary='new summary')
 
-        r = self.client.post(self.url_basic, data)
+        r = self.client.post(self.get_url('basic', True), data)
         eq_(r.status_code, 200)
 
         self.assertFormError(r, 'form', 'slug', 'This slug is already in use.')
@@ -609,7 +613,7 @@ class TestEdit(test_utils.TestCase):
                     slug=self.addon.slug,
                     summary=self.addon.summary)
 
-        r = self.client.post(self.url_basic, data)
+        r = self.client.post(self.get_url('basic', True), data)
         eq_(r.status_code, 200)
 
         self.assertFormError(r, 'form', 'name', 'This field is required.')
@@ -619,7 +623,7 @@ class TestEdit(test_utils.TestCase):
                     default_locale='es-ES',
                     homepage='http://twitter.com/fligtarsmom')
 
-        r = self.client.post(self.url_details, data)
+        r = self.client.post(self.get_url('details', True), data)
         eq_(r.status_code, 200)
         addon = self.get_addon()
 
@@ -630,13 +634,43 @@ class TestEdit(test_utils.TestCase):
         addon = self.get_addon()
         addon.update(default_locale='en-US')
 
-        url_details = reverse('devhub.addons.section',
-                              args=[self.addon.id, 'details'])
+        r = self.client.get(self.get_url('details', False))
 
-        r = self.client.get(url_details)
         doc = pq(r.content)
 
         eq_(doc('.addon_edit_locale').eq(0).text(), "English (US)")
+
+    def test_edit_support(self):
+        data = dict(support_email='sjobs@apple.com',
+                    support_url='http://apple.com/')
+
+        r = self.client.post(self.get_url('support', True), data)
+        eq_(r.status_code, 200)
+        addon = self.get_addon()
+
+        for k in data:
+            eq_(unicode(getattr(addon, k)), data[k])
+
+    def test_edit_support_getsatisfaction(self):
+        urls = [("getsatisfaction.com/abc/products/def", 'abcdef'),  # GS URL
+                ("getsatisfaction.com/abc/", 'abc'),  # No company
+                ("google.com", None)]  # Delete GS
+
+        for (url, val) in urls:
+            data = dict(support_email='abc@def.com',
+                        support_url=url)
+
+            r = self.client.post(self.get_url('support', True), data)
+            eq_(r.status_code, 200)
+
+            r = self.client.get(self.get_url('support', False))
+            doc = pq(r.content)
+
+            result = doc('.addon_edit_gs').eq(0).text()
+
+            result = re.sub('\W', '', result) if result else None
+
+            eq_(result, val)
 
 
 class TestProfile(test_utils.TestCase):

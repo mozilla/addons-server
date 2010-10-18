@@ -1,3 +1,5 @@
+import re
+
 from django import forms
 
 import happyforms
@@ -31,6 +33,33 @@ class AddonFormDetails(happyforms.ModelForm):
     class Meta:
         mode = Addon
         fields = ('description', 'default_locale', 'homepage')
+
+
+class AddonFormSupport(happyforms.ModelForm):
+    support_url = forms.URLField(widget=TranslationTextInput)
+    support_email = forms.EmailField(widget=TranslationTextInput)
+
+    def save(self, addon, commit=False):
+        instance = self.instance
+
+        # If there's a GetSatisfaction URL entered, we'll extract the product
+        # and company name and save it to the DB.
+        gs_regex = "getsatisfaction\.com/(\w*)(?:/products/(\w*))?"
+        match = re.search(gs_regex, instance.support_url.localized_string)
+
+        company = product = None
+
+        if match:
+            company, product = match.groups()
+
+        instance.get_satisfaction_company = company
+        instance.get_satisfaction_product = product
+
+        return super(AddonFormSupport, self).save()
+
+    class Meta:
+        mode = Addon
+        fields = ('support_email', 'support_url')
 
 
 class AddonForm(happyforms.ModelForm):

@@ -13,7 +13,7 @@ from tower import ugettext_lazy as _lazy
 import amo.utils
 from amo.decorators import login_required, post_required
 from access import acl
-from addons.forms import AddonFormBasic, AddonFormDetails
+from addons.forms import AddonFormBasic, AddonFormDetails, AddonFormSupport
 from addons.models import Addon, AddonUser, AddonLog
 from addons.views import BaseFilter
 from files.models import FileUpload
@@ -233,7 +233,8 @@ def upload_detail(request, uuid):
 @dev_required
 def addons_section(request, addon_id, addon, section, editable=False):
     models = {'basic': AddonFormBasic,
-              'details': AddonFormDetails}
+              'details': AddonFormDetails,
+              'support': AddonFormSupport}
 
     if section not in models:
         return http.HttpResponseNotFound()

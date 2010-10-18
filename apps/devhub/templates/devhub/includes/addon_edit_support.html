@@ -1,0 +1,79 @@
+{% from "devhub/includes/macros.html" import tip, empty_unless %}
+
+<form method="post" action="{{ url('devhub.addons.section', addon.id, 'support', 'edit') }}">
+  <h3>
+    {{ _('Support Information') }}
+    {% if not editable %}
+      <a href="{{ url('devhub.addons.section', addon.id, 'support', 'edit') }}" class="button">
+        {{ _('Edit') }}</a>
+    {% endif %}
+  </h3>
+  <div class="item">
+    <div class="item_wrapper">
+      <table>
+        {# L10n: {0} is an addon name #}
+        <caption>{{ _('Support Information for {0}')|f(addon.name) }}</caption>
+        <tbody>
+          <tr>
+            <th>
+              {{ tip(_("Email"),
+                     _("If you wish to display an e-mail address for support inquiries,
+                       enter it here. If you have different addresses for each language,
+                       multiple translations of this field can be added.")) }}
+            </th>
+            <td>
+              {% if editable %}
+                {{ form.support_email|safe }}
+                {{ form.support_email.errors|safe }}
+              {% else %}
+                {% call empty_unless(addon.support_email) %}
+                  {{ addon.support_email }}
+                {% endcall %}
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <th>
+              {{ tip(_("Website"),
+                     _("If your add-on has a support website or forum, enter its
+                       address here. If your website is localized into other
+                       languages, multiple translations of this field can be added.  If
+                       you use a GetSatisfaction URL, users will be able to interact with
+                       a GetSatisfaction widget.")) }}
+            </th>
+            <td>
+              {% if editable %}
+                {{ form.support_url|safe }}
+                {{ form.support_url.errors|safe }}
+              {% else %}
+                {% call empty_unless(addon.support_url) %}
+                  {{ addon.support_url }}
+                {% endcall %}
+              {% endif %}
+            </td>
+          </tr>
+          {% if addon.get_satisfaction_company and not editable %}
+          <tr>
+            <th>{{ _('Get Satisfaction') }}</th>
+            <td class="addon_edit_gs">
+                {{ addon.get_satisfaction_company }}
+                {% if addon.get_satisfaction_product %}
+                &raquo; {{ addon.get_satisfaction_product }}
+                {% endif %}
+              </td>
+          </tr>
+          {% endif %}
+        </tbody>
+      </table>
+    </div>
+    {% if editable %}
+    <div class="listing-footer">
+      <button>{{ _('Save Changes') }}</button> {{ _('or') }}
+      <a href="{{ url('devhub.addons.section', addon.id, 'support') }}"
+        class="addon-edit-cancel">
+        {{ _('Cancel') }}</a>
+    </div>
+    {% endif %}
+  </div>
+</form>
+
