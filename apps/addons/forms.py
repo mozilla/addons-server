@@ -31,7 +31,7 @@ class AddonFormDetails(happyforms.ModelForm):
     homepage = forms.URLField(widget=TranslationTextInput)
 
     class Meta:
-        mode = Addon
+        model = Addon
         fields = ('description', 'default_locale', 'homepage')
 
 
@@ -58,8 +58,17 @@ class AddonFormSupport(happyforms.ModelForm):
         return super(AddonFormSupport, self).save()
 
     class Meta:
-        mode = Addon
+        model = Addon
         fields = ('support_email', 'support_url')
+
+
+class AddonFormTechnical(forms.ModelForm):
+    developer_comments = forms.CharField(widget=TranslationTextarea)
+
+    class Meta:
+        model = Addon
+        fields = ('developer_comments', 'view_source', 'site_specific',
+                  'external_software', 'binary')
 
 
 class AddonForm(happyforms.ModelForm):
