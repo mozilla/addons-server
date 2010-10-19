@@ -1,6 +1,7 @@
 import socket
 
 from django import forms
+from django.db.models import Q
 from django.forms.models import modelformset_factory, BaseModelFormSet
 
 import happyforms
@@ -9,9 +10,10 @@ from tower import ugettext as _, ugettext_lazy as _lazy
 import amo
 import paypal
 from addons.models import Addon, AddonUser, Charity
+from applications.models import Application, AppVersion
 from translations.widgets import TranslationTextarea, TranslationTextInput
 from translations.models import delete_translation
-from versions.models import License, Version
+from versions.models import License, Version, ApplicationsVersions
 
 
 class AuthorForm(happyforms.ModelForm):
@@ -21,13 +23,19 @@ class AuthorForm(happyforms.ModelForm):
         exclude = ('addon')
 
 
-class BaseAuthorFormSet(BaseModelFormSet):
+class BaseModelFormSet(BaseModelFormSet):
+    """
+    Override the parent's is_valid to prevent deleting all forms.
+    """
 
     def is_valid(self):
         # clean() won't get called in is_valid() if all the rows are getting
         # deleted. We can't allow deleting everything.
-        rv = super(BaseAuthorFormSet, self).is_valid()
+        rv = super(BaseModelFormSet, self).is_valid()
         return rv and not any(self.errors) and not bool(self.non_form_errors())
+
+
+class BaseAuthorFormSet(BaseModelFormSet):
 
     def clean(self):
         if any(self.errors):
@@ -190,3 +198,72 @@ class VersionForm(happyforms.ModelForm):
     class Meta:
         model = Version
         fields = ('releasenotes', 'approvalnotes')
+
+
+class ApplicationChoiceField(forms.ModelChoiceField):
+
+    def label_from_instance(self, obj):
+        return obj.id
+
+
+class AppVersionChoiceField(forms.ModelChoiceField):
+
+    def label_from_instance(self, obj):
+        return obj.version
+
+
+class CompatForm(happyforms.ModelForm):
+    application = ApplicationChoiceField(Application.objects.all(),
+                                         widget=forms.HiddenInput)
+    min = AppVersionChoiceField(AppVersion.objects.none())
+    max = AppVersionChoiceField(AppVersion.objects.none())
+
+    class Meta:
+        model = ApplicationsVersions
+        fields = ('application', 'min', 'max')
+
+    def __init__(self, *args, **kw):
+        super(CompatForm, self).__init__(*args, **kw)
+        if self.initial:
+            app = self.initial['application']
+        else:
+            app = self.data[self.add_prefix('application')]
+        self.app = amo.APP_IDS[int(app)]
+        qs = AppVersion.objects.filter(application=app).order_by('version_int')
+        self.fields['min'].queryset = qs.filter(~Q(version__contains='*'))
+        self.fields['max'].queryset = qs.all()
+
+    def clean(self):
+        min = self.cleaned_data.get('min')
+        max = self.cleaned_data.get('max')
+        if not (min and max and min.version_int < max.version_int):
+            raise forms.ValidationError(_('Invalid version range'))
+        return self.cleaned_data
+
+
+class BaseCompatFormSet(BaseModelFormSet):
+
+    def __init__(self, *args, **kw):
+        super(BaseCompatFormSet, self).__init__(*args, **kw)
+        # We always want a form for each app, so force extras for apps
+        # the add-on does not already have.
+        qs = kw['queryset'].values_list('application', flat=True)
+        apps = [a for a in amo.APP_USAGE if a.id not in qs]
+        self.initial = ([{} for _ in qs] +
+                        [{'application': a.id} for a in apps])
+        self.extra = len(amo.APP_GUIDS) - len(self.forms)
+        self._construct_forms()
+
+    def clean(self):
+        if any(self.errors):
+            return
+        apps = [f for f in self.forms
+                if not f.cleaned_data.get('DELETE', False)]
+        if not apps:
+            raise forms.ValidationError(
+                _('Need at least one compatible application.'))
+
+
+CompatFormSet = modelformset_factory(
+    ApplicationsVersions, formset=BaseCompatFormSet,
+    form=CompatForm, can_delete=True, extra=0)

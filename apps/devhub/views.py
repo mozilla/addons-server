@@ -21,7 +21,7 @@ from files.models import FileUpload
 from versions.models import License, Version
 from . import tasks
 from .forms import (AuthorFormSet, LicenseForm, PolicyForm, ProfileForm,
-                    CharityForm, ContribForm, VersionForm)
+                    CharityForm, ContribForm, VersionForm, CompatFormSet)
 
 log = commonware.log.getLogger('z.devhub')
 
@@ -269,14 +269,20 @@ def addons_section(request, addon_id, addon, section, editable=False):
 
 @dev_required
 def version_edit(request, addon_id, addon, version_id):
-    version = get_object_or_404(Version, pk=version_id)
+    version = get_object_or_404(Version, pk=version_id, addon=addon)
     version_form = VersionForm(request.POST or None, instance=version)
-    if request.method == 'POST' and version_form.is_valid():
+    compat_form = CompatFormSet(request.POST or None,
+                                queryset=version.apps.all())
+    forms = [version_form, compat_form]
+    if request.method == 'POST' and all([form.is_valid() for form in forms]):
         version_form.save()
+        for compat in compat_form.save(commit=False):
+            compat.version = version
+            compat.save()
         return redirect('devhub.versions.edit', addon_id, version_id)
     return jingo.render(request, 'devhub/versions/edit.html',
-                        dict(addon=addon, version=version,
-                             version_form=version_form))
+        dict(addon=addon, version=version, version_form=version_form,
+             compat_form=compat_form))
 
 
 @dev_required

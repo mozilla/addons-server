@@ -4,6 +4,13 @@
 
 {% block title %}{{ dev_page_title(title, addon) }}{% endblock %}
 
+{% macro compat(form) %}
+  <tr><th>
+    <img src="{{ MEDIA_URL }}img/amo2009/app-icons/small/{{ form.app.short }}.png">
+  </th></tr>
+  {{ form|safe }}
+{% endmacro %}
+
 {% block content %}
 <header>
   {{ dev_breadcrumbs(addon) }}
@@ -18,6 +25,13 @@
       <form method="post" action="">
         {{ csrf() }}
         <table>
+          {{ compat_form.management_form|safe }}
+          {% for form in compat_form.initial_forms %}
+            {{ compat(form) }}
+          {% endfor %}
+          {% for form in compat_form.extra_forms %}
+            {{ compat(form) }}
+          {% endfor %}
           {{ version_form|safe }}
           <tr>
             <th>{{ _('License') }}</th>
