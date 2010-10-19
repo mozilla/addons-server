@@ -1,60 +1,18 @@
 from datetime import datetime
+import json
 
 from django.db import models
 
+import commonware.log
+
+import amo
 import amo.models
+from addons.models import Addon
+from users.models import UserProfile
 from translations.fields import TranslatedField
 
 
-LOG = {
-    'Create Add-on': 1,
-    'Edit Properties': 2,
-    'Edit Descriptions': 3,
-    'Edit Categories': 4,
-    'Add User with Role': 5,
-    'Remove User with Role': 6,
-    'Edit Contributions': 7,
-
-    'Set Inactive': 8,
-    'Unset Inactive': 9,
-    'Set Public Stats': 10,
-    'Unset Public Stats': 11,
-    'Change Status': 12,
-
-    'Add Preview': 13,
-    'Edit Preview': 14,
-    'Delete Preview': 15,
-
-    'Add Version': 16,
-    'Edit Version': 17,
-    'Delete Version': 18,
-    'Add File to Version': 19,
-    'Delete File from Version': 20,
-
-    'Approve Version': 21,
-    'Retain Version': 22,
-    'Escalate Version': 23,
-    'Request Version': 24,
-
-    'Add Tag': 25,
-    'Remove Tag': 26,
-
-    'Add to Collection': 27,
-    'Remove from Collection': 28,
-
-    'Add Review': 29,
-
-    'Add Recommended Category': 31,
-    'Remove Recommended Category': 32,
-
-    'Add Recommended': 33,
-    'Remove Recommended': 34,
-
-    'Add Appversion': 35,
-
-    'Custom Text': 98,
-    'Custom HTML': 99,
-}
+log = commonware.log.getLogger('devhub')
 
 
 class HubPromo(amo.models.ModelBase):
@@ -95,8 +53,139 @@ class HubEvent(amo.models.ModelBase):
         return ['*/developers*']
 
 
-class AddonLog(models.Model):
-    TYPES = [(value, key) for key, value in LOG.items()]
+class AddonLog(amo.models.ModelBase):
+    """
+    This table is for indexing the activity log by addon.
+    """
+    addon = models.ForeignKey(Addon)
+    activity_log = models.ForeignKey('ActivityLog')
+
+    class Meta:
+        db_table = 'log_activity_addon'
+        ordering = ('-created',)
+
+
+class UserLog(amo.models.ModelBase):
+    """
+    This table is for indexing the activity log by user.
+    Note: This includes activity performed unto the user.
+    """
+    activity_log = models.ForeignKey('ActivityLog')
+    user = models.ForeignKey(UserProfile)
+
+    class Meta:
+        db_table = 'log_activity_user'
+        ordering = ('-created',)
+
+
+class ActivityLogManager(amo.models.ManagerBase):
+    def for_addon(self, addon, limit=20, offset=0):
+        vals = (AddonLog.objects.filter(addon=addon)[offset:limit]
+                .values_list('activity_log', flat=True))
+        return self.filter(pk__in=list(vals))
+
+    def for_user(self, user, limit=20, offset=0):
+        vals = (UserLog.objects.filter(user=user)[offset:limit]
+                    .values_list('activity_log', flat=True))
+        return self.filter(pk__in=list(vals))
+
+
+class ActivityLog(amo.models.ModelBase):
+    TYPES = [(value, key) for key, value in amo.LOG.items()]
+    user = models.ForeignKey('users.UserProfile', null=True)
+    action = models.SmallIntegerField(choices=TYPES, db_index=True)
+    _arguments = models.TextField(blank=True, db_column='arguments')
+    objects = ActivityLogManager()
+
+    @property
+    def arguments(self):
+
+        try:
+            # d is a structure:
+            # ``d = [{'addons.addon'=12}, {'addons.addon'=1}, ... ]``
+            d = json.loads(self._arguments)
+        except:
+            log.debug('unserializing data from addon_log failed: %s' % self.id)
+            return None
+
+        objs = []
+        for item in d:
+            # item has only one element.
+            model_name, pk = item.items()[0]
+            if model_name == 'str':
+                objs.append(pk)
+            else:
+                (app_label, model_name) = model_name.split('.')
+                model = models.loading.get_model(app_label, model_name)
+                objs.extend(model.objects.filter(pk=pk))
+
+        return objs
+
+    @arguments.setter
+    def arguments(self, args=[]):
+        """
+        Takes an object or a tuple of objects and serializes them and stores it
+        in the db as a json string.
+        """
+        if args is None:
+            args = []
+
+        if not isinstance(args, (list, tuple)):
+            args = (args,)
+
+        serialize_me = []
+
+        for arg in args:
+            if isinstance(arg, str):
+                serialize_me.append({'str': arg})
+            else:
+                serialize_me.append(dict(((unicode(arg._meta), arg.pk),)))
+
+        self._arguments = json.dumps(serialize_me)
+
+    @classmethod
+    def log(cls, request, action, arguments=None):
+        """
+        e.g. ActivityLog.log(request, amo.LOG.CREATE_ADDON, []),
+             ActivityLog.log(request, amo.LOG.ADD_FILE_TO_VERSION,
+                             (file, version))
+        """
+        al = cls(user=request.amo_user, action=action.id)
+        al.arguments = arguments
+        al.save()
+
+        if not isinstance(arguments, (list, tuple)):
+            arguments = (arguments,)
+        for arg in arguments:
+            if isinstance(arg, Addon):
+                AddonLog(addon=arg, activity_log=al).save()
+            elif isinstance(arg, UserProfile):
+                # Index by any user who is mentioned as an argument.
+                UserLog(activity_log=al, user=arg).save()
+
+        # Index by every request user
+        UserLog(activity_log=al, user=request.amo_user).save()
+
+    # TODO(davedash): Support other types.
+    def to_string(self, type='default'):
+        log_type = amo.LOG_BY_ID[self.action]
+        arguments = self.arguments
+        addon = None
+        for arg in arguments:
+            if isinstance(arg, Addon) and not addon:
+                addon = arg
+                break
+        return log_type.format.format(*arguments, user=self.user, addon=addon)
+
+    def __unicode__(self):
+        return self.to_string()
+
+    class Meta:
+        db_table = 'log_activity'
+
+
+class LegacyAddonLog(models.Model):
+    TYPES = [(value, key) for key, value in amo.LOG.items()]
 
     addon = models.ForeignKey('addons.Addon', null=True, blank=True)
     user = models.ForeignKey('users.UserProfile', null=True)

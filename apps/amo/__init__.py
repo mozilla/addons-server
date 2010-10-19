@@ -7,6 +7,7 @@ import commonware.log
 from product_details import firefox_versions, thunderbird_versions
 from tower import ugettext_lazy as _
 
+from .log import LOG, LOG_BY_ID, LOG_KEEP
 
 # Every app should have its own logger.
 log = commonware.log.getLogger('z.amo')

@@ -10,7 +10,7 @@ import commonware.log
 import amo
 from bandwagon.models import Collection
 from cake.models import Session
-from devhub.models import AddonLog, LOG as ADDONLOG
+from devhub.models import ActivityLog
 from files.models import TestResult, TestResultCache
 from sharing import SERVICES_LIST
 from stats.models import AddonShareCount, Contribution
@@ -91,24 +91,9 @@ def gc(test_result=True):
                                 created__lt=six_days_ago).delete()
 
     log.debug('Removing old entries from add-on news feeds.')
-    keep = (
-            ADDONLOG['Create Add-on'],
-            ADDONLOG['Add User with Role'],
-            ADDONLOG['Remove User with Role'],
-            ADDONLOG['Set Inactive'],
-            ADDONLOG['Unset Inactive'],
-            ADDONLOG['Change Status'],
-            ADDONLOG['Add Version'],
-            ADDONLOG['Delete Version'],
-            ADDONLOG['Approve Version'],
-            ADDONLOG['Retain Version'],
-            ADDONLOG['Escalate Version'],
-            ADDONLOG['Request Version'],
-            ADDONLOG['Add Recommended'],
-            ADDONLOG['Remove Recommended'],
-            )
-    AddonLog.objects.filter(created__lt=three_months_ago).exclude(
-            type__in=keep).delete()
+
+    ActivityLog.objects.filter(created__lt=three_months_ago).exclude(
+            action__in=amo.LOG_KEEP).delete()
 
     log.debug('Cleaning up anonymous collections.')
     Collection.objects.filter(created__lt=two_days_ago,

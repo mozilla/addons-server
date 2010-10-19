@@ -66,11 +66,10 @@
     },
     {
         "pk": 1,
-        "model": "devhub.addonlog",
+        "model": "devhub.activitylog",
         "fields": {
             "created": "2000-01-01",
-            "addon": 59,
-            "type": 99
+            "action": 99
         }
     },
     {
