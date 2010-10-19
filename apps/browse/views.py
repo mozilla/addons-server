@@ -309,12 +309,26 @@ def legacy_redirects(request, type_, category=None, sort=None, format=None):
     return HttpResponsePermanentRedirect(url)
 
 
+class SearchToolsFilter(AddonFilter):
+    opts = (('featured', _lazy(u'Featured')),
+            ('name', _lazy(u'Name')),
+            ('updated', _lazy(u'Updated')),
+            ('created', _lazy(u'Created')),
+            ('popular', _lazy(u'Downloads')),
+            ('rating', _lazy(u'Rating')))
+
+class SearchExtensionsFilter(AddonFilter):
+    opts = (('popular', _lazy(u'Most Popular')),
+            ('created', _lazy(u'Recently Added')),)
+
 def search_tools(request, category=None):
     APP, TYPE = request.APP, amo.ADDON_SEARCH
     qs = Category.objects.filter(application=APP.id, type=TYPE)
     categories = order_by_translation(qs, 'name')
 
-    addons, filter, unreviewed = addon_listing(request, TYPE)
+    base_addons_qs, _, unreviewed = addon_listing(request, TYPE)
+    filter = SearchToolsFilter(request, base_addons_qs, 'sort', 'featured')
+    addons = filter.qs
 
     if category is not None:
         category = get_object_or_404(qs, slug=category)
@@ -322,9 +336,15 @@ def search_tools(request, category=None):
 
     addons = amo.utils.paginate(request, addons)
 
+    base = (Addon.objects.listed(request.APP, amo.STATUS_PUBLIC)
+                         .filter(type=amo.ADDON_EXTENSION))
+    search_extensions = SearchExtensionsFilter(
+                            request, base, 'sort', 'popular')
+
     return jingo.render(request, 'browse/search_tools.html',
                         {'categories': categories, 'category': category,
                          'addons': addons, 'filter': filter,
+                         'search_extensions_filter': search_extensions,
                          'unreviewed': unreviewed})
 
 
