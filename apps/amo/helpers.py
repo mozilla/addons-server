@@ -260,6 +260,9 @@ def strip_html(s, just_kidding=False):
     """Strips HTML.  Confirm lets us opt out easily."""
     if just_kidding:
         return s
+
+    if not s:
+        return ''
     else:
         s = re.sub(r'&lt;.*?&gt;', '', smart_unicode(s, errors='ignore'))
         return re.sub(r'<.*?>', '', s)
