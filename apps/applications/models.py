@@ -30,6 +30,11 @@ class AppVersion(amo.models.ModelBase):
         db_table = 'appversions'
         ordering = ['-version_int']
 
+    def save(self, *args, **kw):
+        if not self.version_int:
+            self.version_int = compare.version_int(self.version)
+        return super(AppVersion, self).save(*args, **kw)
+
     def __init__(self, *args, **kwargs):
         super(AppVersion, self).__init__(*args, **kwargs)
         # Add all the major, minor, ..., version attributes to the object.
