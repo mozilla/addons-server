@@ -26,6 +26,10 @@ def test_strip_html():
     eq_('Hey Brother!', render('{{ "Hey <b>Brother!</b>"|strip_html }}'))
 
 
+def test_strip_html_none():
+    eq_('', render('{{ a|strip_html }}', {'a': None}))
+    eq_('', render('{{ a|strip_html(True) }}', {'a': None}))
+
 def test_strip_controls():
     """We want control codes like \x0c to disappear."""
     eq_('I ove you', render('{{ "I \x0cove you"|strip_controls }}'))
