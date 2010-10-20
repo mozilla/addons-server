@@ -856,7 +856,7 @@ class TestVersionEdit(test_utils.TestCase):
         r = self.client.post(self.url, d)
         eq_(r.status_code, 302)
         apps = self.get_version().compatible_apps.keys()
-        eq_(apps, [amo.FIREFOX, amo.THUNDERBIRD])
+        eq_(sorted(apps), sorted([amo.FIREFOX, amo.THUNDERBIRD]))
 
     def test_update_appversion(self):
         av = self.version.apps.get()
