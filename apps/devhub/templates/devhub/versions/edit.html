@@ -1,0 +1,73 @@
+{% extends "devhub/base.html" %}
+
+{% set title = _('Manage Version {0}')|f(version.version) %}
+
+{% block title %}{{ dev_page_title(title, addon) }}{% endblock %}
+
+{% macro compat(form) %}
+  <tr><th>
+    <img src="{{ MEDIA_URL }}img/amo2009/app-icons/small/{{ form.app.short }}.png">
+  </th></tr>
+  {{ form|safe }}
+{% endmacro %}
+
+{% block content %}
+<header>
+  {{ dev_breadcrumbs(addon) }}
+  {# L10n: {0} is an add-on name. #}
+  <h2>{{ _('Manage {0}')|f(addon.name) }}</h2>
+</header>
+<section class="primary" role="main">
+  <h3>{{ title }}</h3>
+  <a href="{{ url('devhub.versions', addon.id) }}">{{ _('Back to All Versions') }}</a>
+  <div class="listing featured">
+    <div class="featured-inner">
+      <form method="post" action="">
+        {{ csrf() }}
+        <table>
+          {{ compat_form.management_form|safe }}
+          {% for form in compat_form.initial_forms %}
+            {{ compat(form) }}
+          {% endfor %}
+          {% for form in compat_form.extra_forms %}
+            {{ compat(form) }}
+          {% endfor %}
+          {{ version_form|safe }}
+          <tr>
+            <th>{{ _('License') }}</th>
+            <td>
+              {{ version.license.name }}
+              {% if version.license.url %}
+                <a href="{{ version.license.url }}">{{ _('Details') }}</a>
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <th>{{ _('Approval Status') }}</th>
+            <td>
+              <ul>
+                {% for file in version.all_files %}
+                <li>
+                  {% trans file=file.id, platform=file.amo_platform.name,
+                           created=file.created|datetime,
+                           status=amo.STATUS_CHOICES[file.status],
+                           status_date=file.datestatuschanged|datetime %}
+                     File {{ file }} ({{ platform }}) created on {{ created }}
+                     and changed to {{ status }} on {{ status_date }}
+                  {% endtrans %}
+                </li>
+                {% endfor %}
+              </ul>
+            </td>
+          </tr>
+        </table>
+        <p class="item-group">
+          <button type="submit">{{ _('Save Changes') }}</button> {{ _('or') }}
+          <a href="{{ url('devhub.versions', addon.id) }}">{{ _('Cancel') }}</a>
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+{% include "devhub/includes/addons_edit_nav.html" %}
+{% endblock %}

@@ -2,6 +2,7 @@ from decimal import Decimal
 import re
 import socket
 
+from django import forms
 from django.utils import translation
 
 import mock
@@ -13,7 +14,8 @@ import amo
 import paypal
 from amo.urlresolvers import reverse
 from addons.models import Addon, AddonUser, Charity
-from devhub.forms import ContribForm
+from applications.models import AppVersion
+from devhub.forms import ContribForm, ProfileForm
 from users.models import UserProfile
 from versions.models import License, Version
 
@@ -147,6 +149,24 @@ class TestDashboard(HubTest):
         eq_(doc('.listing-footer .pagination').length, 1)
 
 
+def formset(*args, **kw):
+    """
+    Build up a formset-happy POST.
+
+    *args is a sequence of forms going into the formset.
+    prefix and initial_count can be set in **kw.
+    """
+    prefix = kw.pop('prefix', 'form')
+    initial_count = kw.pop('initial_count', 0)
+    data = {prefix + '-TOTAL_FORMS': len(args),
+            prefix + '-INITIAL_FORMS': initial_count}
+    for idx, d in enumerate(args):
+        data.update(('%s-%s-%s' % (prefix, idx, k), v)
+                    for k, v in d.items())
+    data.update(kw)
+    return data
+
+
 class TestOwnership(test_utils.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']
 
@@ -157,17 +177,9 @@ class TestOwnership(test_utils.TestCase):
         self.version = self.addon.current_version
 
     def formset(self, *args, **kw):
-        # def f(*args, prefix='form') is a syntax error.
-        prefix = kw.pop('prefix', 'form')
-        initial_count = kw.pop('initial_count', 0)
-        data = {prefix + '-TOTAL_FORMS': len(args),
-                prefix + '-INITIAL_FORMS': initial_count,
-                'builtin': License.OTHER, 'text': 'filler'}
-        for idx, d in enumerate(args):
-            data.update(('%s-%s-%s' % (prefix, idx, k), v)
-                        for k, v in d.items())
-        data.update(kw)
-        return data
+        defaults = {'builtin': License.OTHER, 'text': 'filler'}
+        defaults.update(kw)
+        return formset(*args, **defaults)
 
     def get_version(self):
         return Version.objects.no_cache().get(id=self.version.id)
@@ -783,3 +795,118 @@ class TestProfile(test_utils.TestCase):
 
         self.post(the_reason='to be hot', the_future='cold stuff')
         self.check(the_reason='to be hot', the_future='cold stuff')
+
+
+def initial(form):
+    """Gather initial data from the form into a dict."""
+    data = {}
+    for name, field in form.fields.items():
+        if form.is_bound:
+            data[name] = form[name].data
+        else:
+            data[name] = form.initial.get(name, field.initial)
+        # The browser sends nothing for an unchecked checkbox.
+        if isinstance(field, forms.BooleanField):
+            val = field.to_python(data[name])
+            if not val:
+                del data[name]
+    return data
+
+
+class TestVersionEdit(test_utils.TestCase):
+    fixtures = ['base/apps', 'base/users', 'base/addon_3615',
+                'base/thunderbird']
+
+    def setUp(self):
+        assert self.client.login(username='del@icio.us', password='password')
+        self.addon = self.get_addon()
+        self.version = self.get_version()
+        self.url = reverse('devhub.versions.edit',
+                           args=[3615, self.version.id])
+        self.v1 = AppVersion(application_id=amo.FIREFOX.id, version='1.0')
+        self.v4 = AppVersion(application_id=amo.FIREFOX.id, version='4.0')
+        for v in self.v1, self.v4:
+            v.save()
+
+    def get_addon(self):
+        return Addon.objects.no_cache().get(id=3615)
+
+    def get_version(self):
+        return self.get_addon().current_version
+
+    def formset(self, *args, **kw):
+        defaults = {'approvalnotes': 'xxx'}
+        defaults.update(kw)
+        return formset(*args, **defaults)
+
+    def test_edit_notes(self):
+        f = self.client.get(self.url).context['compat_form'].initial_forms[0]
+        d = formset(initial(f), releasenotes='xx', approvalnotes='yy',
+                    initial_count=1)
+        r = self.client.post(self.url, d)
+        eq_(r.status_code, 302)
+        version = self.get_version()
+        eq_(unicode(version.releasenotes), 'xx')
+        eq_(unicode(version.approvalnotes), 'yy')
+
+    def test_add_appversion(self):
+        f = self.client.get(self.url).context['compat_form'].initial_forms[0]
+        d = self.formset(initial(f), dict(application=18, min=28, max=29),
+                         initial_count=1)
+        r = self.client.post(self.url, d)
+        eq_(r.status_code, 302)
+        apps = self.get_version().compatible_apps.keys()
+        eq_(apps, [amo.FIREFOX, amo.THUNDERBIRD])
+
+    def test_update_appversion(self):
+        av = self.version.apps.get()
+        eq_(av.min.version, '2.0')
+        eq_(av.max.version, '3.7a1pre')
+        f = self.client.get(self.url).context['compat_form'].initial_forms[0]
+        d = initial(f)
+        d.update(min=self.v1.id, max=self.v4.id)
+        r = self.client.post(self.url,
+                             self.formset(d, initial_count=1))
+        eq_(r.status_code, 302)
+        av = self.version.apps.get()
+        eq_(av.min.version, '1.0')
+        eq_(av.max.version, '4.0')
+
+    def test_delete_appversion(self):
+        # Add thunderbird compat so we can delete firefox.
+        self.test_add_appversion()
+        f = self.client.get(self.url).context['compat_form']
+        d = map(initial, f.initial_forms)
+        d[0]['DELETE'] = True
+        r = self.client.post(self.url, self.formset(*d, initial_count=2))
+        eq_(r.status_code, 302)
+        apps = self.get_version().compatible_apps.keys()
+        eq_(apps, [amo.THUNDERBIRD])
+
+    def test_unique_apps(self):
+        f = self.client.get(self.url).context['compat_form'].initial_forms[0]
+        dupe = initial(f)
+        del dupe['id']
+        d = self.formset(initial(f), dupe, initial_count=1)
+        r = self.client.post(self.url, d)
+        eq_(r.status_code, 200)
+        # Because of how formsets work, the second form is expected to be a
+        # tbird version range.  We got an error, so we're good.
+
+    def test_require_appversion(self):
+        old_av = self.version.apps.get()
+        f = self.client.get(self.url).context['compat_form'].initial_forms[0]
+        d = initial(f)
+        d['DELETE'] = True
+        r = self.client.post(self.url, self.formset(d, initial_count=1))
+        eq_(r.status_code, 200)
+        eq_(self.version.apps.get(), old_av)
+
+    def test_proper_min_max(self):
+        f = self.client.get(self.url).context['compat_form'].initial_forms[0]
+        d = initial(f)
+        d['min'], d['max'] = d['max'], d['min']
+        r = self.client.post(self.url, self.formset(d, initial_count=1))
+        eq_(r.status_code, 200)
+        eq_(r.context['compat_form'].forms[0].non_field_errors(),
+            ['Invalid version range'])

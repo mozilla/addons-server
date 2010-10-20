@@ -1,0 +1,33 @@
+[
+    {
+        "pk": 18,
+        "model": "applications.application",
+        "fields": {
+            "guid": "{3550f703-e582-4d05-9a08-453d09bdfdc6}",
+            "modified": "2008-06-17 08:29:00",
+            "created": "2007-03-05 13:09:26"
+        }
+    },
+    {
+        "pk": 29,
+        "model": "applications.appversion",
+        "fields": {
+            "version_int": 3020000001000,
+            "application": 18,
+            "version": "3.2a1pre",
+            "modified": "2008-06-17 08:29:00",
+            "created": "2007-03-05 13:09:26"
+        }
+    },
+    {
+        "pk": 28,
+        "model": "applications.appversion",
+        "fields": {
+            "version_int": 3000000200100,
+            "application": 18,
+            "version": "3.0",
+            "modified": "2008-06-17 08:29:00",
+            "created": "2007-03-05 13:09:26"
+        }
+    }
+]

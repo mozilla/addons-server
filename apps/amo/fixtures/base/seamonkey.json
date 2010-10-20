@@ -1,131 +1,19 @@
 [
     {
-        "pk": 67984,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string_clean": null,
-            "created": "2007-03-22 20:51:22",
-            "locale": "en-US",
-            "modified": "2007-03-26 20:06:20",
-            "id": 39111,
-            "localized_string": "Extensions are small add-ons that add new functionality to %1$s, from a simple toolbar button to a completely new feature. They allow you to customize %1$s to fit your own needs and preferences, while letting us keep %1$s itself light and lean."
-        }
-    },
-    {
-        "pk": 68015,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string_clean": null,
-            "created": "2007-03-22 21:16:47",
-            "locale": "en-US",
-            "modified": "2007-03-26 20:06:20",
-            "id": 39112,
-            "localized_string": "Extensions"
-        }
-    },
-    {
-        "pk": 67951,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string_clean": null,
-            "created": "2007-03-22 20:51:22",
-            "locale": "en-US",
-            "modified": "2007-03-26 20:06:20",
-            "id": 39109,
-            "localized_string": "Extension"
-        }
-    },
-    {
-        "pk": 590473,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string_clean": null,
-            "created": "2009-09-04 14:57:13",
-            "locale": "en-US",
-            "modified": null,
-            "id": 546726,
-            "localized_string": "We're always looking for new user scripts and suggestions for the add-on. Meet up with the developers and other users at the Better Webapps Google Group: http://groups.google.com/group/better-gmail-2-firefox-extension"
-        }
-    },
-    {
-        "pk": 590472,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string_clean": null,
-            "created": "2009-09-04 14:57:12",
-            "locale": "en-US",
-            "modified": "2009-09-04 15:00:48",
-            "id": 546725,
-            "localized_string": "After blogging about dozens of fantastic user scripts and styles that make Gmail and other webapps better, I decided to compile them all into a single add-on. Now you don't have to do all the work of installing Greasemonkey and Stylish and hunting down those scripts and styles individually. This add-on does it for you.\r\n\r\nOnly the hard work and generosity of the user script and style developers who contributed to this add-on made it possible. See the Help tab in its Options dialog for a full list of people who added ingredients to this bowl of \"stone soup\" (Wikipedia that). \r\n\r\nBetter Gmail 2 is the second iteration of this add-on that works on the latest version of Gmail's web pages. I hope you find it useful!"
-        }
-    },
-    {
-        "pk": 116676,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string_clean": "Add useful extra features to Gmail, like hierarchical labels, an unread message icon on your browser tab, file attachment icons, and more. ",
-            "created": "2007-11-26 03:52:51",
-            "locale": "en-US",
-            "modified": "2009-06-18 10:58:01",
-            "id": 83417,
-            "localized_string": "Add useful extra features to Gmail, like hierarchical labels, an unread message icon on your browser tab, file attachment icons, and more. "
-        }
-    },
-    {
         "pk": 116671,
         "model": "translations.translation",
         "fields": {
-            "localized_string_clean": "Add useful extra features to Gmail, like hierarchical labels, an unread message icon on your browser tab, file attachment icons, and more. \n\nBetter Gmail 2 compiles the best Greasemonkey user scripts for Gmail into a single package, including:\n<ul><li><b><a href=\"http://outgoing.mozilla.org/v1/f5cb1437930466cdfc082958cdf25abc8d5cc9a0/http%3A//userstyles.org/styles/4725\">Add Row Highlights</a></b>: Highlights the letter rows in the new Gmail when you hover over them with the mouse cursor.</li><li><b><a href=\"http://outgoing.mozilla.org/v1/2a89fba93c8f523bc3ad7904e9cc3afc284eebc1/http%3A//userstyles.org/style/show/226\">Attachment Icons</a></b>: See what kind of attachment an email has in list view.</li><li><b><a href=\"http://outgoing.mozilla.org/v1/8c10a313bd2478a675b0d8cc017b9d7401da8e37/http%3A//userstyles.org/styles/5545\">Attachment Icons (Native)</a></b>: Same as attachment icons, but uses icon images native to your system.</li><li><b><a href=\"http://outgoing.mozilla.org/v1/ce3f2abf588d63f64f55ce3a161737594dc05365/http%3A//userscripts.org/scripts/show/14256\">Bottom Post in Reply (Plain Text only)</a></b>: Inserts cursor after the quoted message in plain text replies automatically.</li><li><b><a href=\"http://outgoing.mozilla.org/v1/297dc2d035864c5b1de85d960eead2f12aede4cf/http%3A//www.arend-von-reinersdorff.com/folders4gmail/\">Folders4Gmail</a></b>: Lists labels in a folder-like hierarchy. </li><li><b><a href=\"http://outgoing.mozilla.org/v1/9a4100025423718dd650bb56d7175053dd0110b1/http%3A//userstyles.org/styles/7897\">Hide Chat</a></b>:  Hides Gmail's Chat box in the sidebar.</li><li><b><a href=\"http://outgoing.mozilla.org/v1/6b1c7b570725c2ebafdc7c3940dd2583ee6d4a45/http%3A//userstyles.org/styles/4724\">Hide Invites Box</a></b>: Hides the Gmail invites box on the sidebar.</li><li><b><a href=\"http://outgoing.mozilla.org/v1/78f5ee79b793ead5769fb7ffbb18a5c6cbecb263/http%3A//userstyles.org/styles/15849\">Hide Labels in Message Row</a></b>: Hides the labels that appear in a message row unless the user hovers over the message. </li><li><b><a href=\"http://outgoing.mozilla.org/v1/c8746e061890ce197fb1e8f11b9e570f98847fc3/http%3A//userscripts.org/scripts/show/22660\">Hide Spam Count</a></b>: Hides Gmail's Spam message count.</li><li><b><a href=\"http://outgoing.mozilla.org/v1/8ed959bbd74452808ca0b4bd1904db3c99ff4211/http%3A//userscripts.org/scripts/show/10253\">Inbox Count First</a></b>: See unread message count first on Gmail tab title.</li><li><b><a href=\"http://outgoing.mozilla.org/v1/3d79e05b93dc49f3a08d45950285d68e62b31f28/http%3A//userscripts.org/scripts/show/39432\">Show Unread Message Count on Favicon (Bogs)</a></b>: Shows the number of unread Gmail messages in the favicon in your Firefox tab.</li><li><b><a href=\"http://outgoing.mozilla.org/v1/9e6d7724c6c35a31bb0ccc6deac7906b08c98adf/http%3A//userscripts.org/scripts/show/24430\">Show Unread Message Count on Favicon (Wooley)</a></b>:  Alerts you to the status of your Gmail inbox through distinct favicons.</li></ul>\nAll scripts copyright their original authors. ",
             "created": "2007-11-26 03:52:51",
             "locale": "en-US",
             "modified": "2010-03-15 23:26:28",
             "id": 83414,
-            "localized_string": "Add useful extra features to Gmail, like hierarchical labels, an unread message icon on your browser tab, file attachment icons, and more. \r\n\r\nBetter Gmail 2 compiles the best Greasemonkey user scripts for Gmail into a single package, including:\r\n<ul><li><b><a href=\"http://userstyles.org/styles/4725\">Add Row Highlights</a></b>: Highlights the letter rows in the new Gmail when you hover over them with the mouse cursor.</li><li><b><a href=\"http://userstyles.org/style/show/226\">Attachment Icons</a></b>: See what kind of attachment an email has in list view.</li><li><b><a href=\"http://userstyles.org/styles/5545\" onclick=\"javascript:window.open('http://userstyles.org/styles/5545');return false;\">Attachment Icons (Native)</a></b>: Same as attachment icons, but uses icon images native to your system.</li><li><b><a href=\"http://userscripts.org/scripts/show/14256\" onclick=\"javascript:window.open('http://userscripts.org/scripts/show/14256');return false;\">Bottom Post in Reply (Plain Text only)</a></b>: Inserts cursor after the quoted message in plain text replies automatically.</li><li><b><a href=\"http://www.arend-von-reinersdorff.com/folders4gmail/\" onclick=\"javascript:window.open('http://www.arend-von-reinersdorff.com/folders4gmail/');return false;\">Folders4Gmail</a></b>: Lists labels in a folder-like hierarchy. </li><li><b><a href=\"http://userstyles.org/styles/7897\" onclick=\"javascript:window.open('http://userstyles.org/styles/7897');return false;\">Hide Chat</a></b>:  Hides Gmail's Chat box in the sidebar.</li><li><b><a href=\"http://userstyles.org/styles/4724\" onclick=\"javascript:window.open('http://userstyles.org/styles/4724');return false;\">Hide Invites Box</a></b>: Hides the Gmail invites box on the sidebar.</li><li><b><a href=\"http://userstyles.org/styles/15849\" onclick=\"javascript:window.open('http://userstyles.org/styles/15849');return false;\">Hide Labels in Message Row</a></b>: Hides the labels that appear in a message row unless the user hovers over the message. </li><li><b><a href=\"http://userscripts.org/scripts/show/22660\" onclick=\"javascript:window.open('http://userscripts.org/scripts/show/22660');return false;\">Hide Spam Count</a></b>: Hides Gmail's Spam message count.</li><li><b><a href=\"http://userscripts.org/scripts/show/10253\" onclick=\"javascript:window.open('http://userscripts.org/scripts/show/10253');return false;\">Inbox Count First</a></b>: See unread message count first on Gmail tab title.</li><li><b><a href=\"http://userscripts.org/scripts/show/39432\" onclick=\"javascript:window.open('http://userscripts.org/scripts/show/39432');return false;\">Show Unread Message Count on Favicon (Bogs)</a></b>: Shows the number of unread Gmail messages in the favicon in your Firefox tab.</li><li><b><a href=\"http://userscripts.org/scripts/show/24430\" onclick=\"javascript:window.open('http://userscripts.org/scripts/show/24430');return false;\">Show Unread Message Count on Favicon (Wooley)</a></b>:  Alerts you to the status of your Gmail inbox through distinct favicons.</li></ul>\r\nAll scripts copyright their original authors. "
-        }
-    },
-    {
-        "pk": 153078,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string_clean": null,
-            "created": "2008-04-07 20:33:05",
-            "locale": "en-US",
-            "modified": "2009-03-09 18:52:40",
-            "id": 117314,
-            "localized_string": "http://groups.google.com/group/better-gmail-2-firefox-extension"
-        }
-    },
-    {
-        "pk": 153077,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string_clean": null,
-            "created": "2008-04-07 20:33:05",
-            "locale": "en-US",
-            "modified": "2009-03-09 18:52:40",
-            "id": 117313,
-            "localized_string": "better-gmail-2-firefox-extension@googlegroups.com"
-        }
-    },
-    {
-        "pk": 116672,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string_clean": null,
-            "created": "2007-11-26 03:52:51",
-            "locale": "en-US",
-            "modified": "2009-09-04 14:49:39",
-            "id": 83415,
-            "localized_string": "http://groups.google.com/group/better-gmail-2-firefox-extension"
+            "localized_string": "Add useful extra features to Gmail"
         }
     },
     {
         "pk": 1,
         "model": "addons.addontype",
         "fields": {
-            "description": 39111,
-            "name_plural": 39112,
-            "name": 39109,
             "modified": "2009-02-06 08:42:28",
             "created": "2006-08-21 23:53:19"
         }
@@ -143,35 +31,11 @@
         }
     },
     {
-        "pk": 937861,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string_clean": "Updated Folders4Gmail and Hide Spam Count to work with Gmail's recent \"New Window\" change (<a href=\"http://outgoing.mozilla.org/v1/3b7603404621badcdffb1e4bdf8dd625fcb8661b/http%3A//gmailblog.blogspot.com/2010/03/fast-new-windows.html\">http://gmailblog.blogspot.com/2010/03/fast-new-windows.html</a>)",
-            "created": "2010-03-04 22:03:28",
-            "locale": "en-US",
-            "modified": null,
-            "id": 878116,
-            "localized_string": "Updated Folders4Gmail and Hide Spam Count to work with Gmail's recent \"New Window\" change (http://gmailblog.blogspot.com/2010/03/fast-new-windows.html)"
-        }
-    },
-    {
         "pk": 13,
         "model": "versions.license",
         "fields": {
             "modified": "2009-05-01 05:00:44",
             "created": "2009-05-01 05:00:44"
-        }
-    },
-    {
-        "pk": 218201,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string_clean": "Updated Redesigned skin to eliminate the \"white bar\" bug (clear Firefox's cache after installing the update to see the fix); Added Hide Gmail chat skin; removed mailto: script (here's the best way to set Gmail as Firefox's mailto: handler: <a href=\"http://outgoing.mozilla.org/v1/3eb89cf2b48f73a2df2f73659c1a5fb023788cb0/http%3A//lifehacker.com/392287\">http://lifehacker.com/392287</a>)",
-            "created": "2008-07-05 13:26:59",
-            "locale": "en-US",
-            "modified": "2008-07-05 13:27:32",
-            "id": 181282,
-            "localized_string": "Updated Redesigned skin to eliminate the \"white bar\" bug (clear Firefox's cache after installing the update to see the fix); Added Hide Gmail chat skin; removed mailto: script (here's the best way to set Gmail as Firefox's mailto: handler: http://lifehacker.com/392287)"
         }
     },
     {
@@ -192,9 +56,7 @@
             "trusted": 0,
             "locale_disambiguation": null,
             "binary": 0,
-            "the_future": 546726,
             "weekly_downloads": 7760,
-            "support_url": 117314,
             "paypal_id": "",
             "average_rating": "3.99",
             "wants_contributions": 0,
@@ -202,8 +64,6 @@
             "bayesian_rating": 3.9922300000000002,
             "share_count": 23,
             "get_satisfaction_company": null,
-            "homepage": 83415,
-            "support_email": 117313,
             "public_stats": 1,
             "status": 4,
             "privacy_policy": null,
@@ -222,11 +82,9 @@
             "icon_type": "image/png",
             "annoying": 0,
             "modified": "2010-03-09 10:33:46",
-            "summary": 83417,
             "suggested_amount": null,
             "site_specific": 1,
             "total_reviews": 453,
-            "the_reason": 546725,
             "nomination_date": "2009-03-09 18:52:42"
         }
     },
@@ -236,7 +94,6 @@
         "fields": {
             "license": 13,
             "created": "2010-03-04 22:02:04",
-            "releasenotes": 878116,
             "approvalnotes": "thank you for your time!",
             "modified": "2010-03-04 22:07:17",
             "version": "0.9.8.1",
@@ -258,7 +115,6 @@
         "fields": {
             "license": null,
             "created": "2008-07-05 13:24:40",
-            "releasenotes": 181282,
             "approvalnotes": "",
             "modified": "2008-07-05 13:27:34",
             "version": "0.5.2",
