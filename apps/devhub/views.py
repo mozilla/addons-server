@@ -21,9 +21,7 @@ from addons.models import Addon, AddonUser, AddonLog
 from addons.views import BaseFilter
 from files.models import FileUpload
 from versions.models import License, Version
-from . import tasks
-from .forms import (AuthorFormSet, LicenseForm, PolicyForm, ProfileForm,
-                    CharityForm, ContribForm, VersionForm, CompatFormSet)
+from . import forms, tasks
 
 log = commonware.log.getLogger('z.devhub')
 
@@ -108,11 +106,11 @@ def edit(request, addon_id, addon):
 @dev_required
 @owner_for_post_required
 def ownership(request, addon_id, addon):
-    forms = []
+    fs = []
     # Authors.
     qs = AddonUser.objects.filter(addon=addon).order_by('position')
-    user_form = AuthorFormSet(request.POST or None, queryset=qs)
-    forms.append(user_form)
+    user_form = forms.AuthorFormSet(request.POST or None, queryset=qs)
+    fs.append(user_form)
     # License. Clear out initial data if it's a builtin license.
     qs = addon.versions.order_by('-version')[:1]
     version = qs[0] if qs else None
@@ -120,16 +118,17 @@ def ownership(request, addon_id, addon):
         instance, initial = version.license, None
         if getattr(instance, 'builtin', None):
             instance, initial = None, {'builtin': instance.builtin}
-        license_form = LicenseForm(request.POST or None, initial=initial,
-                                   instance=instance)
-        forms.append(license_form)
+        license_form = forms.LicenseForm(request.POST or None, initial=initial,
+                                         instance=instance)
+        fs.append(license_form)
     # Policy.
-    policy_form = PolicyForm(request.POST or None, instance=addon,
-                             initial=dict(has_priv=bool(addon.privacy_policy),
-                                          has_eula=bool(addon.eula)))
-    forms.append(policy_form)
+    policy_form = forms.PolicyForm(
+        request.POST or None, instance=addon,
+        initial=dict(has_priv=bool(addon.privacy_policy),
+                     has_eula=bool(addon.eula)))
+    fs.append(policy_form)
 
-    if request.method == 'POST' and all([form.is_valid() for form in forms]):
+    if request.method == 'POST' and all([form.is_valid() for form in fs]):
         # Authors.
         authors = user_form.save(commit=False)
         for author in authors:
@@ -160,10 +159,10 @@ def ownership(request, addon_id, addon):
 @dev_required
 def payments(request, addon_id, addon):
     charity = None if addon.charity_id == amo.FOUNDATION_ORG else addon.charity
-    charity_form = CharityForm(request.POST or None, instance=charity,
-                               prefix='charity')
-    contrib_form = ContribForm(request.POST or None, instance=addon,
-                               initial=ContribForm.initial(addon))
+    charity_form = forms.CharityForm(request.POST or None, instance=charity,
+                                     prefix='charity')
+    contrib_form = forms.ContribForm(request.POST or None, instance=addon,
+                                     initial=forms.ContribForm.initial(addon))
     if request.method == 'POST':
         if contrib_form.is_valid():
             addon, valid = contrib_form.save(commit=False), True
@@ -197,7 +196,7 @@ def disable_payments(request, addon_id, addon):
 
 @dev_required
 def profile(request, addon_id, addon):
-    profile_form = ProfileForm(request.POST or None, instance=addon)
+    profile_form = forms.ProfileForm(request.POST or None, instance=addon)
 
     if request.method == 'POST' and profile_form.is_valid():
         profile_form.save()
@@ -228,6 +227,7 @@ def upload(request):
         return redirect('devhub.upload_detail', fu.pk)
 
     return jingo.render(request, 'devhub/upload.html')
+
 
 @json_view
 def json_upload_detail(upload):
@@ -285,11 +285,11 @@ def addons_section(request, addon_id, addon, section, editable=False):
 @dev_required
 def version_edit(request, addon_id, addon, version_id):
     version = get_object_or_404(Version, pk=version_id, addon=addon)
-    version_form = VersionForm(request.POST or None, instance=version)
-    compat_form = CompatFormSet(request.POST or None,
-                                queryset=version.apps.all())
-    forms = [version_form, compat_form]
-    if request.method == 'POST' and all([form.is_valid() for form in forms]):
+    version_form = forms.VersionForm(request.POST or None, instance=version)
+    compat_form = forms.CompatFormSet(request.POST or None,
+                                      queryset=version.apps.all())
+    fs = [version_form, compat_form]
+    if request.method == 'POST' and all([form.is_valid() for form in fs]):
         version_form.save()
         for compat in compat_form.save(commit=False):
             compat.version = version
