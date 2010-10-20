@@ -8,8 +8,9 @@
   {{ dev_breadcrumbs(addon) }}
   <h2>{{ title }}</h2>
 </header>
-<section class="primary" role="main">
-  {% if addon.takes_contributions %}
+<section class="primary payments" role="main" id="edit-addon">
+  {% set contrib = addon.takes_contributions %}
+  {% if contrib %}
     <div id="status-bar">
       <p>{{ _('You are currently requesting <b>contributions</b> from users')|safe }}</p>
       <form method="post" action="{{ url('devhub.addons.payments.disable', addon.id) }}">
@@ -17,26 +18,67 @@
         <button type="submit">{{ _('Disable Contributions') }}</button>
       </form>
     </div>
+  {% else %}
+    <div class="intro">
+      <h3>{{ _('Contributions') }}</h3>
+      <p>{{ _('Voluntary contributions provide a way for users to support your add-on financially. With contributions, you can:') }}</p>
+      <ul>
+        <li>{{ _('Ask for donations in most places your add-on appears') }}</li>
+        <li>{{ _('Allow users to make payments with a credit card or PayPal account') }}</li>
+        <li>{{ _('Receive contributions in your PayPal account or send them to an organization of your choice') }}</li>
+      </ul>
+      <div class="button-wrapper">
+        <a href="#setup" id="do-setup" class="button prominent">{{ _('Set Up Contributions') }}</a>
+      </div>
+    </div>
   {% endif %}
-  <div id="intro">
-    <h3>{{ _('Contributions') }}</h3>
-    <p>{{ _('Voluntary contributions provide a way for users to support your add-on financially. With contributions, you can:') }}</p>
-    <ul>
-      <li>{{ _('Ask for donations in most places your add-on appears') }}</li>
-      <li>{{ _('Allow users to make payments with a credit card or PayPal account') }}</li>
-      <li>{{ _('Receive contributions in your PayPal account or send them to a charity') }}</li>
-    </ul>
-    <a href="#setup" class="button">{{ _('Set Up Contributions') }}</a>
-  </div>
 
-  <div id="setup">
-    <h3>{{ _('Set up Contributions') }}</h3>
-    <p>{{ _('Fill in the fields below to begin asking for voluntary contributions from users.') }}</p>
+  <div id="setup" class="{{ 'hidden' if not contrib }}">
+    <h3>{{  _('Contributions') if contrib else _('Set up Contributions') }}</h3>
+    <p class="{{ 'hidden' if contrib }}">{{ _('Fill in the fields below to begin asking for voluntary contributions from users.') }}</p>
     <form method="post" action="">
       {{ csrf() }}
-      <table>{{ contrib_form|safe }}</table>
-      <table>{{ charity_form|safe }}</table>
-      <button type="submit">GO GO GO</button>
+      {% set values = contrib_form.data if contrib_form.is_bound else contrib_form.initial %}
+      <div>
+        {{ contrib_form.non_field_errors()|safe }}
+        {{ contrib_form.recipient.errors|safe }}
+        <b>{{ _('Who will receive contributions to this add-on?') }}</b>
+        {{ contrib_form.recipient|safe }}
+        <div id="org-org" class="brform paypal {{ 'hidden' if (values.recipient != 'org') }}">
+          {{ charity_form.non_field_errors()|safe }}
+          {{ charity_form.name.errors|safe }}
+          <label for="id_charity-name">{{ _('What is the name of the organization?') }}</label>
+          {{ charity_form.name|safe }}
+          {{ charity_form.url.errors|safe }}
+          <label for="id_charity-url">{{ _('What is the URL of the organization?') }}</label>
+          {{ charity_form.url|safe }}
+          {{ charity_form.paypal.errors|safe }}
+          <label for="id_charity-paypal">{{ _('What is the PayPal ID of the charity?') }}</label>
+          {{ charity_form.paypal|safe }}
+        </div>
+      </div>
+      <div id="org-dev" class="brform paypal {{ 'hidden' if (values.recipient != 'dev') }}">
+        {{ contrib_form.paypal_id.errors|safe }}
+        <label for="id_paypal_id">{{ _('What is your PayPal ID?') }}</label>
+        <div>{{ contrib_form.paypal_id|safe }} <a class="extra" href="{{ settings.PAYPAL_CGI_URL + '?cmd=_registration-run' }}">{{ _('Sign up for Paypal') }}</a></div>
+      </div>
+      <div class="brform">
+        {{ contrib_form.suggested_amount.errors|safe }}
+        <label for="id_suggested_amount">{{ _('What is your suggested contribution?') }}</label>
+        <div class="extra">{{ contrib_form.suggested_amount.help_text }}</div>
+        <div>{{ contrib_form.suggested_amount|safe }} USD</div>
+      </div>
+      <div class="nag">
+        {{ contrib_form.annoying.errors|safe }}
+        <b>{{ _('When should users be asked for contributions?') }}</b>
+        {{ contrib_form.annoying|safe }}
+      </div>
+      <button type="submit">{{ _('Save Changes') if contrib else _('Activate Contributions') }}</button>
+      <span class="{{ 'hidden' if contrib }}">
+        {% trans %}
+          or <a id="setup-cancel" href="#">Cancel</a>
+        {% endtrans %}
+      </span>
     </form>
   </div>
 </section>

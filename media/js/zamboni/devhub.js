@@ -46,9 +46,86 @@ $("#user-form-template .email-autocomplete")
 
 $(document).ready(function() {
 
+    //Ownership
     if ($("#author_list").length) {
         initAuthorFields();
     }
+
+    //Payments
+    if ($('.payments').length) {
+        initPayments();
+    }
+});
+
+function initPayments() {
+    var previews = [
+        "img/zamboni/contributions/passive.png",
+        "img/zamboni/contributions/after.png",
+        "img/zamboni/contributions/roadblock.png",
+    ],
+        media_url = $("body").attr("data-media-url"),
+        to = false,
+        img = $("<img id='contribution-preview'/>");
+        moz = $("input[value=moz]");
+    img.hide().appendTo($("body"));
+    moz.parent().after(
+        $("<a class='extra' target='_blank' href='http://www.mozilla.org/foundation/donate.html'>"+gettext('Learn more')+"</a>"));
+    $(".nag li label").each(function (i,v) {
+        var pl = new Image();
+        pl.src = media_url + previews[i];
+        $(this).after(format(" &nbsp;<a class='extra' href='{0}{1}'>{2}</a>", [media_url, previews[i], gettext('Example')]));
+    });
+    $(".nag").delegate("a.extra", "mouseover", function(e) {
+        var tgt = $(this);
+        img.attr("src", tgt.attr("href")).css({
+            position: 'absolute',
+            'pointer-events': 'none',
+            top: tgt.offset().top-350,
+            left: ($(document).width()-755)/2
+        });
+        clearTimeout(to);
+        to = setTimeout(function() {
+            img.fadeIn(100);
+        }, 300);
+    }).delegate("a.extra", "mouseout", function(e) {
+        clearTimeout(to);
+        img.fadeOut(100);
+    })
+    .delegate("a.extra", "click", function(e) {
+        e.preventDefault();
+    });
+    $("#do-setup").click(function (e) {
+        e.preventDefault();
+        $("#setup").removeClass("hidden").show();
+        $(".intro").hide();
+    });
+    $("#setup-cancel").click(function (e) {
+        e.preventDefault();
+        $(".intro").show();
+        $("#setup").hide();
+    });
+    $(".recipient").change(function (e) {
+        var v = $(this).val();
+        $(".paypal").hide(200);
+        $(format("#org-{0}", [v])).removeClass("hidden").show(200);
+    });
+}
+
+
+function initAuthorFields() {
+    var request = false,
+        timeout = false,
+        manager = $("#id_form-TOTAL_FORMS"),
+        empty_form = template($("#user-form-template").html().replace(/__prefix__/g, "{0}")),
+        author_list = $("#author_list");
+    author_list.sortable({
+        items: ".author",
+        handle: ".handle",
+        containment: author_list,
+        tolerance: "pointer",
+        update: renumberAuthors
+    });
+    addAuthorRow();
 
     $("#id_has_eula").change(function (e) {
         if ($(this).attr("checked")) {
@@ -72,22 +149,6 @@ $(document).ready(function() {
             $(".license-other").hide();
         }
     });
-});
-
-function initAuthorFields() {
-    var request = false,
-        timeout = false,
-        manager = $("#id_form-TOTAL_FORMS"),
-        empty_form = template($("#user-form-template").html().replace(/__prefix__/g, "{0}")),
-        author_list = $("#author_list");
-    author_list.sortable({
-        items: ".author",
-        handle: ".handle",
-        containment: author_list,
-        tolerance: "pointer",
-        update: renumberAuthors
-    });
-    addAuthorRow();
 
     $(".author .errorlist").each(function() {
         $(this).parent()

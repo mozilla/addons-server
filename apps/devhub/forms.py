@@ -149,12 +149,15 @@ class ContribForm(happyforms.ModelForm):
                   ('org', _lazy('An organization of my choice')))
 
     recipient = forms.ChoiceField(choices=RECIPIENTS,
-                                  widget=forms.RadioSelect())
+                    widget=forms.RadioSelect(attrs={'class': 'recipient'}))
 
     class Meta:
         model = Addon
         fields = ('paypal_id', 'suggested_amount', 'annoying')
-        widgets = {'annoying': forms.RadioSelect()}
+        widgets = {
+            'annoying': forms.RadioSelect(),
+            'suggested_amount': forms.TextInput(attrs={'class': 'short'}),
+        }
 
     @staticmethod
     def initial(addon):
@@ -166,8 +169,11 @@ class ContribForm(happyforms.ModelForm):
                 'annoying': addon.annoying or amo.CONTRIB_PASSIVE}
 
     def clean(self):
-        if self.cleaned_data['recipient'] == 'dev':
-            check_paypal_id(self.cleaned_data['paypal_id'])
+        try:
+            if not self.errors and self.cleaned_data['recipient'] == 'dev':
+                check_paypal_id(self.cleaned_data['paypal_id'])
+        except forms.ValidationError, e:
+            self.errors['paypal_id'] = self.error_class(e.messages)
         return self.cleaned_data
 
 

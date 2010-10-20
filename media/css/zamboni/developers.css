@@ -1,3 +1,12 @@
+/*clearfix*/
+.brform:after,
+#status-bar:after {
+    content: ".";
+    display: block;
+    clear: both;
+    height: 0;
+    visibility: hidden;
+}
 /* @group Edit addon */
 #edit-addon .label {
     margin-right:5px;
@@ -394,6 +403,77 @@ input.valid {
 .eula label,
 .priv label {
     font-weight: bold;
+}
+/* @end */
+
+/* @group Payments */
+.payments .intro {
+    background-color: #FFFFFF;
+    border: 1px solid #C9E8F3;
+    padding: 1em;
+    width: 300px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    display: inline-block;
+}
+.payments .intro ul {
+    list-style-type: disc;
+    padding: 0 0 .5em 1em;
+    margin-bottom: 1em;
+    border-bottom: 1px dotted #ADD0DC;
+}
+.payments .intro ul,
+.payments .intro p {
+    font-size: .9em;
+}
+.payments .intro .button-wrapper {
+    text-align: center;
+}
+#edit-addon .brform label,
+#edit-addon .b {
+    font-weight: 500;
+}
+.brform > label,
+.brform > input,
+.brform > div,
+.brform > ul {
+    float: left;
+    clear: left;
+}
+.payments form > div {
+    margin-bottom: 2em;
+}
+.paypal {
+    margin-left: 2em;
+}
+.extra {
+    font-size: .9em;
+}
+a.extra {
+    margin-left: .5em;
+}
+#status-bar form {
+    float: right;
+    margin: 0;
+    padding: 0;
+    font-size: .9em;
+    font-weight: 500;
+}
+#status-bar p {
+    float: left;
+    margin: 0;
+    padding: 0;
+    line-height: 22px;
+}
+#status-bar {
+    padding: .5em 1em;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    margin-bottom: 2em;
+    background: #fff;
+    border: 1px solid #C9E8F3;
 }
 /* @end */
 

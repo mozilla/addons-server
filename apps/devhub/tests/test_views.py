@@ -457,7 +457,7 @@ class TestEditPayments(test_utils.TestCase):
         d = dict(recipient='dev', suggested_amount=2,
                  annoying=amo.CONTRIB_PASSIVE)
         r = self.client.post(self.url, d)
-        self.assertFormError(r, 'contrib_form', None,
+        self.assertFormError(r, 'contrib_form', 'paypal_id',
                              'PayPal id required to accept contributions.')
 
     def test_bad_paypal_id_dev(self):
@@ -465,7 +465,7 @@ class TestEditPayments(test_utils.TestCase):
         d = dict(recipient='dev', suggested_amount=2, paypal_id='greed@dev',
                  annoying=amo.CONTRIB_AFTER)
         r = self.client.post(self.url, d)
-        self.assertFormError(r, 'contrib_form', None, 'error')
+        self.assertFormError(r, 'contrib_form', 'paypal_id', 'error')
 
     def test_bad_paypal_id_charity(self):
         self.paypal_mock.return_value = False, 'error'
@@ -482,7 +482,7 @@ class TestEditPayments(test_utils.TestCase):
         d = dict(recipient='dev', suggested_amount=2, paypal_id='greed@dev',
                  annoying=amo.CONTRIB_AFTER)
         r = self.client.post(self.url, d)
-        self.assertFormError(r, 'contrib_form', None,
+        self.assertFormError(r, 'contrib_form', 'paypal_id',
                              'Could not validate PayPal id.')
 
     def test_charity_details_reqd(self):

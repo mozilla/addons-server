@@ -9,7 +9,9 @@ import commonware.log
 import jingo
 import path
 from tower import ugettext_lazy as _lazy
+from tower import ugettext as _
 
+from amo import messages
 import amo.utils
 from amo.decorators import json_view, login_required, post_required
 from access import acl
@@ -177,7 +179,10 @@ def payments(request, addon_id, addon):
                     addon.charity = charity_form.save()
             if valid:
                 addon.save()
+                messages.success(request, _('Changes successfully saved.'))
                 return redirect('devhub.addons.payments', addon_id)
+    if charity_form.errors or contrib_form.errors:
+        messages.error(request, _('There were errors in your submission.'))
     return jingo.render(request, 'devhub/addons/payments.html',
                         dict(addon=addon, charity_form=charity_form,
                             contrib_form=contrib_form))
