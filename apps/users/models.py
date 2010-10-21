@@ -308,8 +308,11 @@ class UserProfile(amo.models.ModelBase):
 
     def special_collection(self, type_, defaults):
         from bandwagon.models import Collection
-        c, _ = Collection.objects.get_or_create(
+        c, new = Collection.objects.get_or_create(
             author=self, type=type_, defaults=defaults)
+        if new:
+            # Do an extra query to make sure this gets transformed.
+            c = Collection.objects.get(id=c.id)
         return c
 
     @staticmethod

@@ -15,6 +15,7 @@ import mongoengine
 from tower import ugettext_lazy as _
 
 import amo.models
+import sharing.utils as sharing
 from amo.fields import DecimalCharField
 from amo.utils import send_mail, urlparams, sorted_groupby, JSONEncoder
 from amo.urlresolvers import reverse
@@ -201,6 +202,9 @@ class Addon(amo.models.ModelBase):
     _current_version = models.ForeignKey(Version, related_name='___ignore',
             db_column='current_version', null=True)
 
+    # This gets overwritten in the transformer.
+    share_counts = collections.defaultdict(int)
+
     objects = AddonManager()
 
     class Meta:
@@ -368,6 +372,9 @@ class Addon(amo.models.ModelBase):
         for addon in addons:
             addon._creatured_apps = creatured.get(addon.id, [])
 
+        # Attach sharing stats.
+        sharing.attach_share_counts(AddonShareCountTotal, 'addon', addon_dict)
+
     @amo.cached_property
     def current_beta_version(self):
         """Retrieves the latest version of an addon, in the beta channel."""
@@ -518,13 +525,6 @@ class Addon(amo.models.ModelBase):
     @property
     def has_eula(self):
         return self.eula
-
-    @caching.cached_method
-    def share_counts(self):
-        rv = collections.defaultdict(int)
-        rv.update(AddonShareCountTotal.objects.filter(addon=self)
-                  .values_list('service', 'count'))
-        return rv
 
     @classmethod
     def _last_updated_queries(cls):

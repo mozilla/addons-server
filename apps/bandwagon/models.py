@@ -14,6 +14,7 @@ import caching.base as caching
 
 import amo
 import amo.models
+import sharing.utils as sharing
 from amo.utils import sorted_groupby
 from amo.urlresolvers import reverse
 from addons.models import Addon, AddonRecommendation
@@ -112,6 +113,9 @@ class Collection(amo.models.ModelBase):
     addon_index = models.CharField(max_length=40, null=True, db_index=True,
         help_text='Custom index for the add-ons in this collection')
     recommended_collection = models.ForeignKey('self', null=True)
+
+    # This gets overwritten in the transformer.
+    share_counts = collections.defaultdict(int)
 
     objects = CollectionManager()
 
@@ -229,13 +233,6 @@ class Collection(amo.models.ModelBase):
         else:
             return settings.MEDIA_URL + 'img/amo2009/icons/collection.png'
 
-    @caching.cached_method
-    def share_counts(self):
-        rv = collections.defaultdict(int)
-        rv.update(CollectionShareCountTotal.objects.filter(collection=self)
-                  .values_list('service', 'count'))
-        return rv
-
     def get_recommendations(self):
         """Get a collection of recommended add-ons for this collection."""
         if self.recommended_collection:
@@ -318,6 +315,9 @@ class Collection(amo.models.ModelBase):
                        UserProfile.objects.filter(id__in=author_ids))
         for c in collections:
             c.author = authors.get(c.author_id)
+        c_dict = dict((c.pk, c) for c in collections)
+        sharing.attach_share_counts(CollectionShareCountTotal, 'collection',
+                                    c_dict)
 
     @staticmethod
     def post_save(sender, instance, **kwargs):

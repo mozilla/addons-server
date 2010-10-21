@@ -12,11 +12,10 @@ def sharing_widget(context, obj, condensed=False):
 
     services = list(sharing.SERVICES_LIST)
 
-    share_counts = obj.share_counts()
     counts = {}
     for service in services:
         short = service.shortname
-        counts[short] = service.count_term(share_counts[short])
+        counts[short] = service.count_term(obj.share_counts[short])
 
     c.update({
         'condensed': condensed,

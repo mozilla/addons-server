@@ -317,9 +317,11 @@ class SearchToolsFilter(AddonFilter):
             ('popular', _lazy(u'Downloads')),
             ('rating', _lazy(u'Rating')))
 
+
 class SearchExtensionsFilter(AddonFilter):
     opts = (('popular', _lazy(u'Most Popular')),
             ('created', _lazy(u'Recently Added')),)
+
 
 def search_tools(request, category=None):
     APP, TYPE = request.APP, amo.ADDON_SEARCH
