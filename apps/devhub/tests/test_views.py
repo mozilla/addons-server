@@ -987,3 +987,10 @@ class TestVersionEditCompat(TestVersionEdit):
         eq_(r.status_code, 200)
         eq_(r.context['compat_form'].forms[0].non_field_errors(),
             ['Invalid version range'])
+
+
+class TestAddonSubmission(test_utils.TestCase):
+    def test_step1_submit(self):
+        # Sanity check to make sure the page loads without error:
+        response = self.client.get(reverse('devhub.submit_addon'))
+        assert len(response.context['agreement_text'])

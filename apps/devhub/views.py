@@ -1,4 +1,6 @@
+import codecs
 import functools
+import os
 import uuid
 
 from django import http
@@ -317,3 +319,17 @@ def version_bounce(request, addon_id, addon, version):
         return redirect('devhub.versions.edit', addon_id, vs[0].id)
     else:
         raise http.Http404()
+
+
+def submit_addon(request):
+    base = os.path.join(os.path.dirname(amo.__file__), '..', '..', 'locale')
+    # Note that the agreement is not localized (for legal reasons)
+    # but the official version is stored in en_US
+    agrmt = os.path.join(base,
+                'en_US', 'pages', 'docs', 'policies', 'agreement.thtml')
+    f = codecs.open(agrmt, encoding='utf8')
+    agreement_text = f.read()
+    f.close()
+
+    return jingo.render(request, 'devhub/addons/submit/getting-started.html',
+                        {'agreement_text': agreement_text})

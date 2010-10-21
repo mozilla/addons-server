@@ -686,3 +686,36 @@ a.extra {
     padding: 3px 35px 3px 15px;
 }
 /* @end */
+
+/* @group Add-on Submission */
+#agreement-container {
+    margin: 0 0 10px 0;
+    padding: 15px;
+    max-height: 300px;
+    overflow: auto;
+    background-color: #fff;
+    border: 1px solid #6a89b0;
+}
+ol.submit-addon-progress {
+    color: #94969a;
+}
+ol.submit-addon-progress li.current {
+    color: #565656;
+    font-weight: bold;
+}
+#agreement-extra-links {
+    text-align: right;
+    margin-bottom: 2em;
+    font-size: 90%;
+}
+#agreement-extra-links span {
+    padding: 0 0.5em;
+}
+#agreement-buttons {
+    border-top: 1px dotted #A4CFDE;
+    padding-top: 0.8em;
+}
+.addon-submission-process h3:nth-of-type(1) {
+    margin-top: 0.75em;
+}
+/* @end */

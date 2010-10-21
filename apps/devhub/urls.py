@@ -35,6 +35,9 @@ urlpatterns = decorate(write, patterns('',
     ('^addons/\d+/.*',
      lambda r: redirect(r.path.replace('addons', 'addon', 1))),
 
+    # Add-on submission
+    url('^addon/submit$', views.submit_addon, name='devhub.submit_addon'),
+
     # Redirect to /addons/ at the base.
     url('^addon$', lambda r: redirect('devhub.addons', permanent=True)),
     url('^addons$', views.dashboard, name='devhub.addons'),
