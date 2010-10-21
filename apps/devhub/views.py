@@ -288,16 +288,19 @@ def version_edit(request, addon_id, addon, version_id):
     version_form = forms.VersionForm(request.POST or None, instance=version)
     compat_form = forms.CompatFormSet(request.POST or None,
                                       queryset=version.apps.all())
-    fs = [version_form, compat_form]
+    file_form = forms.FileFormSet(request.POST or None, prefix='files',
+                                  queryset=version.files.all())
+    fs = [version_form, compat_form, file_form]
     if request.method == 'POST' and all([form.is_valid() for form in fs]):
         version_form.save()
+        file_form.save()
         for compat in compat_form.save(commit=False):
             compat.version = version
             compat.save()
         return redirect('devhub.versions.edit', addon_id, version_id)
     return jingo.render(request, 'devhub/versions/edit.html',
         dict(addon=addon, version=version, version_form=version_form,
-             compat_form=compat_form))
+             compat_form=compat_form, file_form=file_form))
 
 
 @dev_required

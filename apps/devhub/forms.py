@@ -11,6 +11,7 @@ import amo
 import paypal
 from addons.models import Addon, AddonUser, Charity
 from applications.models import Application, AppVersion
+from files.models import File
 from translations.widgets import TranslationTextarea, TranslationTextInput
 from translations.models import delete_translation
 from versions.models import License, Version, ApplicationsVersions
@@ -273,3 +274,41 @@ class BaseCompatFormSet(BaseModelFormSet):
 CompatFormSet = modelformset_factory(
     ApplicationsVersions, formset=BaseCompatFormSet,
     form=CompatForm, can_delete=True, extra=0)
+
+
+class FileForm(happyforms.ModelForm):
+    _choices = [(k, amo.STATUS_CHOICES[k]) for k in
+                (amo.STATUS_BETA, amo.STATUS_UNREVIEWED)]
+    status = forms.TypedChoiceField(coerce=int, choices=_choices)
+    platform = File._meta.get_field('platform').formfield(empty_label=None)
+
+    class Meta:
+        model = File
+        fields = ('status', 'platform')
+
+    def __init__(self, *args, **kw):
+        super(FileForm, self).__init__(*args, **kw)
+        # Make sure the current status is in the status <select>.
+        status = kw['instance'].status
+        field = self.fields['status']
+        if status not in dict(field.choices).keys():
+            # Rebind and add so the original choices aren't changed.
+            field.choices = (field.choices +
+                             [(status, amo.STATUS_CHOICES[status])])
+
+
+class BaseFileFormSet(BaseModelFormSet):
+
+    def clean(self):
+        if any(self.errors):
+            return
+        files = [f.cleaned_data for f in self.forms
+                 if not f.cleaned_data.get('DELETE', False)]
+        platforms = [f['platform'] for f in files]
+        if sorted(platforms) != sorted(set(platforms)):
+            raise forms.ValidationError(
+                _('A platform can only be chosen once.'))
+
+
+FileFormSet = modelformset_factory(File, formset=BaseFileFormSet,
+                                   form=FileForm, can_delete=True, extra=0)
