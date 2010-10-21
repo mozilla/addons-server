@@ -24,6 +24,7 @@ class ButtonTest(test_utils.TestCase):
         self.addon.has_eula = False
         self.addon.status = amo.STATUS_PUBLIC
         self.addon.id = 2
+        self.addon.type = amo.ADDON_EXTENSION
 
         self.version = v = Mock()
         v.is_unreviewed = False

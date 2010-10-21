@@ -480,7 +480,7 @@ class Addon(amo.models.ModelBase):
     def compatible_apps(self):
         """Shortcut to get compatible apps for the current version."""
         # Search providers and personas don't list their supported apps.
-        if self.type in (amo.ADDON_SEARCH, amo.ADDON_PERSONA):
+        if self.type in amo.NO_COMPAT:
             return dict((app, None) for app in
                         amo.APP_TYPE_SUPPORT[self.type])
         if self.current_version:

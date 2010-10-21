@@ -141,6 +141,11 @@ ADDON_SLUGS = {
     ADDON_SEARCH: 'search-tools',
 }
 
+# These types don't maintain app compatibility in the db.  Instead, we look at
+# APP.types and APP_TYPE_SUPPORT to figure out where they are compatible.
+NO_COMPAT = (ADDON_SEARCH, ADDON_PERSONA)
+HAS_COMPAT = dict((t, t not in NO_COMPAT) for t in ADDON_TYPES)
+
 
 # Applications
 class FIREFOX:
