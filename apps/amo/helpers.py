@@ -334,11 +334,6 @@ def category_arrow(context, key, prefix):
 
 
 @register.filter
-def replace(string, one, two):
-    return string.replace(one, two)
-
-
-@register.filter
 def timesince(time):
     ago = defaultfilters.timesince(time)
     # L10n: relative time in the past, like '4 days ago'
