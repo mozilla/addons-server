@@ -68,7 +68,7 @@ def addon_listing(request, addon_type, Filter=AddonFilter, default='popular'):
     qs = Addon.objects.listed(request.APP, *status).filter(type=addon_type)
 
     if 'jetpack' in request.GET:
-        qs = qs.filter(versions__files__jetpack=True)
+        qs = qs.filter(_current_version__files__jetpack=True)
 
     filter = Filter(request, qs, 'sort', default)
     return filter.qs, filter, unreviewed
