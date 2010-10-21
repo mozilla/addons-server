@@ -3,7 +3,7 @@ import functools
 from django.db import transaction
 
 import commonware.log
-from piston.handler import BaseHandler
+from piston.handler import AnonymousBaseHandler, BaseHandler
 from piston.utils import rc, throttle
 from tower import ugettext as _
 
@@ -13,7 +13,7 @@ from addons.models import Addon
 from devhub.forms import LicenseForm
 from users.models import UserProfile
 from versions.forms import XPIForm
-from versions.models import Version
+from versions.models import Version, ApplicationsVersions
 
 log = commonware.log.getLogger('z.api')
 
@@ -129,10 +129,67 @@ class AddonsHandler(BaseHandler):
         return rc.DELETED
 
 
-class VersionsHandler(BaseHandler):
+class ApplicationsVersionsHandler(AnonymousBaseHandler):
+    model = ApplicationsVersions
+    allowed_methods = ('GET', )
+    fields = ('application', 'max', 'min',)
+
+    @classmethod
+    def application(cls, av):
+        return unicode(av.application)
+
+    @classmethod
+    def max(cls, av):
+        return av.max.version
+
+    @classmethod
+    def min(cls, av):
+        return av.min.version
+
+
+class BaseVersionHandler(object):
+    # Custom handler so translated text doesn't look weird
+    @classmethod
+    def release_notes(cls, version):
+        if version.releasenotes:
+            return version.releasenotes.localized_string
+
+    @classmethod
+    def license(cls, version):
+        if version.license:
+            return unicode(version.license)
+
+    @classmethod
+    def current(cls, version):
+        return (version.id == version.addon._current_version_id)
+
+
+class AnonymousVersionsHandler(AnonymousBaseHandler, BaseVersionHandler):
+    model = Version
+    allowed_methods = ('GET',)
+    fields = ('id', 'addon_id', 'created', 'release_notes', 'version',
+              'license', 'current', 'apps' )
+
+    def read(self, request, addon_id, version_id=None):
+        if version_id:
+            try:
+                return Version.objects.get(pk=version_id)
+            except:
+                return rc.NOT_HERE
+        try:
+            addon = Addon.objects.get(pk=addon_id)
+        except:
+            return rc.NOT_HERE
+
+        return addon.versions.all()
+
+
+class VersionsHandler(BaseHandler, BaseVersionHandler):
     allowed_methods = ('POST', 'PUT', 'DELETE', 'GET',)
     model = Version
+    fields = AnonymousVersionsHandler.fields
     exclude = ('approvalnotes', )
+    anonymous = AnonymousVersionsHandler
 
     @check_addon_and_version
     @throttle(5, 60 * 60)  # 5 new versions an hour
