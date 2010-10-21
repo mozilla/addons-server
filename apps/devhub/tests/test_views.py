@@ -15,7 +15,8 @@ import paypal
 from amo.urlresolvers import reverse
 from addons.models import Addon, AddonUser, Charity
 from applications.models import AppVersion
-from devhub.forms import ContribForm, ProfileForm
+from devhub.forms import ContribForm
+from files.models import File, Platform
 from users.models import UserProfile
 from versions.models import License, Version
 
@@ -157,7 +158,7 @@ def formset(*args, **kw):
     prefix and initial_count can be set in **kw.
     """
     prefix = kw.pop('prefix', 'form')
-    initial_count = kw.pop('initial_count', 0)
+    initial_count = kw.pop('initial_count', len(args))
     data = {prefix + '-TOTAL_FORMS': len(args),
             prefix + '-INITIAL_FORMS': initial_count}
     for idx, d in enumerate(args):
@@ -353,8 +354,10 @@ class TestEditAuthor(TestOwnership):
             ['An author can only be listed once.'])
 
     def test_success_delete_user(self):
+        # Add a new user so we have one to delete.
         data = self.formset(dict(user='regular@mozilla.com', listed=True,
-                                 role=amo.AUTHOR_ROLE_OWNER, position=1))
+                                 role=amo.AUTHOR_ROLE_OWNER, position=1),
+                            initial_count=0)
         self.client.post(self.url, data)
 
         one, two = self.client.get(self.url).context['user_form'].initial_forms
@@ -839,15 +842,89 @@ class TestVersionEdit(test_utils.TestCase):
         defaults.update(kw)
         return formset(*args, **defaults)
 
+
+class TestVersionEditDetails(TestVersionEdit):
+
+    def setUp(self):
+        super(TestVersionEditDetails, self).setUp()
+        ctx = self.client.get(self.url).context
+        compat = initial(ctx['compat_form'].forms[0])
+        files = initial(ctx['file_form'].forms[0])
+        self.initial = formset(compat, **formset(files, prefix='files'))
+
+    def formset(self, *args, **kw):
+        defaults = dict(self.initial)
+        defaults.update(kw)
+        return super(TestVersionEditDetails, self).formset(*args, **defaults)
+
     def test_edit_notes(self):
-        f = self.client.get(self.url).context['compat_form'].initial_forms[0]
-        d = formset(initial(f), releasenotes='xx', approvalnotes='yy',
-                    initial_count=1)
+        d = self.formset(releasenotes='xx', approvalnotes='yy')
         r = self.client.post(self.url, d)
         eq_(r.status_code, 302)
         version = self.get_version()
         eq_(unicode(version.releasenotes), 'xx')
         eq_(unicode(version.approvalnotes), 'yy')
+
+    def test_version_number_redirect(self):
+        url = self.url.replace(str(self.version.id), self.version.version)
+        r = self.client.get(url, follow=True)
+        self.assertRedirects(r, self.url)
+
+
+class TestVersionEditFiles(TestVersionEdit):
+
+    def setUp(self):
+        super(TestVersionEditFiles, self).setUp()
+        f = self.client.get(self.url).context['compat_form'].initial_forms[0]
+        self.compat = initial(f)
+
+    def formset(self, *args, **kw):
+        compat = formset(self.compat, initial_count=1)
+        compat.update(kw)
+        return super(TestVersionEditFiles, self).formset(*args, **compat)
+
+    def test_edit_status(self):
+        f = self.client.get(self.url).context['file_form'].forms[0]
+        # Public is one of the choices since the file is currently public.
+        eq_([x[0] for x in f.fields['status'].choices],
+            [amo.STATUS_BETA, amo.STATUS_UNREVIEWED, amo.STATUS_PUBLIC])
+        # Switch the status to Beta.
+        data = initial(f)
+        data['status'] = amo.STATUS_BETA
+        r = self.client.post(self.url, self.formset(data, prefix='files'))
+        eq_(r.status_code, 302)
+        eq_(self.version.files.get().status, amo.STATUS_BETA)
+
+        # Beta and unreviewed are the only choices.
+        f = self.client.get(self.url).context['file_form'].forms[0]
+        eq_([x[0] for x in f.fields['status'].choices],
+            [amo.STATUS_BETA, amo.STATUS_UNREVIEWED])
+
+    def test_unique_platforms(self):
+        for platform in amo.PLATFORMS:
+            k, _ = Platform.objects.get_or_create(id=platform)
+        # Move the existing file to Linux.
+        f = self.version.files.get()
+        f.update(platform=Platform.objects.get(id=amo.PLATFORM_LINUX.id))
+        # And make a new file for Mac.
+        File.objects.create(version=self.version,
+                            platform_id=amo.PLATFORM_MAC.id)
+
+        forms = map(initial,
+                    self.client.get(self.url).context['file_form'].forms)
+        forms[1]['platform'] = forms[0]['platform']
+        r = self.client.post(self.url, self.formset(*forms, prefix='files'))
+        eq_(r.status_code, 200)
+        eq_(r.context['file_form'].non_form_errors(),
+            ['A platform can only be chosen once.'])
+
+
+class TestVersionEditCompat(TestVersionEdit):
+
+    def formset(self, *args, **kw):
+        defaults = formset(prefix='files')
+        defaults.update(kw)
+        return super(TestVersionEditCompat, self).formset(*args, **defaults)
 
     def test_add_appversion(self):
         f = self.client.get(self.url).context['compat_form'].initial_forms[0]

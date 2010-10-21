@@ -21,8 +21,9 @@ detail_patterns = patterns('',
         views.addons_section, name='devhub.addons.section'),
 
     url('^versions/$', views.version_list, name='devhub.versions'),
-    url('^versions/(?P<version_id>[^/]+)$', views.version_edit,
+    url('^versions/(?P<version_id>\d+)$', views.version_edit,
         name='devhub.versions.edit'),
+    url('^versions/(?P<version>[^/]+)$', views.version_bounce),
 )
 
 urlpatterns = decorate(write, patterns('',

@@ -19,7 +19,7 @@ class File(amo.models.ModelBase):
     version = models.ForeignKey('versions.Version', related_name='files')
     platform = models.ForeignKey('Platform')
     filename = models.CharField(max_length=255, default='')
-    size = models.PositiveIntegerField(default=0)
+    size = models.PositiveIntegerField(default=0)  # kilobytes
     hash = models.CharField(max_length=255, default='')
     codereview = models.BooleanField(default=False)
     jetpack = models.BooleanField(default=False)
@@ -106,6 +106,9 @@ class Platform(amo.models.ModelBase):
 
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'platforms'
+
+    def __unicode__(self):
+        return unicode(amo.PLATFORMS[self.id].name)
 
 
 class FileUpload(amo.models.ModelBase):

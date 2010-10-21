@@ -25,6 +25,24 @@
       <form method="post" action="">
         {{ csrf() }}
         <table>
+          {{ file_form.management_form|safe }}
+          {% for form in file_form.forms %}
+            {% with file = form.instance %}
+              <tr>
+                <td><a href="{{ file.get_url_path(amo.FIREFOX, 'devhub') }}">
+                    {{ file.filename }}</a></td>
+                <td>{{ (file.size * 1000)|filesizeformat }}</td>
+                <td>{{ form.platform|safe }}</td>
+                <td>{{ form.status|safe }}</td>
+                <td>
+                  {{ form.DELETE|safe }}
+                  {{ form.id|safe }}
+                </td>
+              </tr>
+            {% endwith %}
+          {% endfor %}
+        </table>
+        <table>
           {{ compat_form.management_form|safe }}
           {% for form in compat_form.initial_forms %}
             {{ compat(form) }}
