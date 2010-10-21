@@ -172,8 +172,7 @@ class UserProfile(amo.models.ModelBase):
 
     @amo.cached_property
     def is_developer(self):
-        return bool(self.addons.filter(authors=self,
-                                       addonuser__listed=True)[:1])
+        return self.addonuser_set.exists()
 
     @property
     def name(self):
