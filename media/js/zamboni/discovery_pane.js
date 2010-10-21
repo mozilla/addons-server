@@ -1,16 +1,3 @@
-// Loops through all boxes to find the tallest.
-// Then loops again to set all boxes to the height of the tallest box.
-function addonHeights() {
-  $('#main-feature .addons, #featured-addons .addons').each(function(){
-    var maxHeight = 0;
-
-    $(this).find('li a').height('auto').each(function(){
-      var height = $(this).height();
-      if (maxHeight < height) { maxHeight = height; }
-    }).height(maxHeight);
-  });
-}
-
 /**
  * jCarouselLite - jQuery plugin to navigate images/any content in a carousel style widget.
  * @requires jQuery v1.2 or above
@@ -173,7 +160,6 @@ $.fn.jCarouselLite = function(o) {
           liSize = o.vertical ? height(li) : panelWidth;
           ul.css(sizeCss, ulSize+"px").css(animCss, -(curr*liSize));
           // Recalculate heights in case text wraps
-          addonHeights();
         });
 
     });
@@ -191,7 +177,32 @@ function height(el) {
 
 })(jQuery);
 
-
+$.fn.vtruncate = function() {
+    this.each(function() {
+        var $el = $(this),
+            oldtext = $el.attr("oldtext") || $el.text(),
+            txt = oldtext.split(" ");
+            cutoff = txt.length;
+        if ($el.attr("oldtext")) {
+            $el.text(oldtext);
+        }
+        $el.attr("oldtext", oldtext);
+        while ((this.scrollHeight - this.offsetHeight) > 1 && cutoff > 0) {
+            cutoff--;
+            $el.html(txt.slice(0,cutoff).join(" ")+"&hellip;");
+        }
+        //If truncating by word wasn't enough, we truncate by letter.
+        if (cutoff < 1) {
+            txt = oldtext.split("");
+            cutoff = txt.length;
+            while ((this.scrollHeight - this.offsetHeight) > 1 && cutoff > 0) {
+                cutoff--;
+                $el.html(txt.slice(0,cutoff).join(" ")+"&hellip;");
+            }
+        }
+        $el.attr("title", oldtext);
+    });
+};
 
 $(document).ready(function(){
   // Set up the carousel
@@ -203,7 +214,22 @@ $(document).ready(function(){
   // Set the width of panels (jCarousel requires a pixel width but our page is liquid, so we'll set the width in px on pageload and on resize)
   var panelWidth = $("#main").width();
     $("#main-feature, #main-feature .panel").css({width:panelWidth});
-  // Set the heights of addon boxes
-  addonHeights();
+  //trim the description text to fit.
+  $("p.desc").vtruncate();
+  $(window).resize(debounce(function() {
+      $("p.desc").vtruncate();
+  }, 200));
 });
+
+function debounce(fn, ms, ctxt) {
+    var ctx = ctxt || window;
+    var to, del = ms, fun = fn;
+    return function () {
+        var args = arguments;
+        clearTimeout(to);
+        to = setTimeout(function() {
+            fun.apply(ctx, args);
+        },del);
+    };
+}
 

@@ -380,28 +380,38 @@ header:after,
 }
 
 /* @Addon @boxes *********/
-.addons {
+.addons ul,
+ul.addons {
+    width: 100%;
     max-width: 650px;
     margin: 0 auto 1em;
 }
 
 .addons li {
-    width: 29%;
-    margin: 0 2% 1em;
     float: left;
+    width: 30%;
+    position: relative;
+    margin-right: 5%;
+    margin-bottom: 5%;
 }
 
 .html-rtl .addons li {
     float: right;
 }
 
-.addons li:nth-child(4) {
-    clear: left;
+.addons li:nth-child(3n) {
+    margin-right: 0;
 }
 
 .addons li > a {
     display: block;
+    display: -moz-box;
+    -moz-box-orient: vertical;
+    -moz-box-align: center;
     position: relative;
+    height: 120px;
+    width: 100%;
+    width: -moz-calc(100% - 22px);
     padding: 10px;
     background: -moz-linear-gradient(top, #fff 0, #ecf1f7 100%);
     border: 1px solid #b7c3d7;
@@ -439,10 +449,10 @@ header:after,
 }
 
 .addons p.desc {
+    -moz-box-flex:1;
+    overflow:hidden;
     font-size: 11px;
     text-align: left;
-    max-height: 4em;
-    overflow: hidden;
     color: #373d48;
     margin: 0;
 }
