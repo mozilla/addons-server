@@ -329,6 +329,8 @@ class UserProfile(amo.models.ModelBase):
         user.favorite_addons = addons[amo.COLLECTION_FAVORITES]
         user.watching = list((CollectionWatcher.objects.filter(user=user)
                              .values_list('collection', flat=True)))
+        # Touch this @cached_property so the answer is cached with the object.
+        user.is_developer
 
 
 class BlacklistedUsername(amo.models.ModelBase):
