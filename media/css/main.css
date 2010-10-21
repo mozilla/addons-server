@@ -550,17 +550,17 @@ h3 .secondary a:link, h3 .secondary a:active, h3 .secondary a:visited, h3 .secon
 
 /* @group hReviews */
 
-.hreview {
+.review-detail {
     border-bottom: 1px dotted #B5D9E5;
     padding: 0.5em 0 1em 0;
     margin-bottom: 0.5em;
 }
 
-.hreview p {
+.review-detail p {
     margin-bottom: 0;
 }
 
-.hreview:last-child {
+.review-detail:last-child {
     border-bottom: none;
 }
 

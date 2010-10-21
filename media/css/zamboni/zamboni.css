@@ -2351,7 +2351,7 @@ h6.author, .author a {
     margin-right: .9em;
 }
 
-.article .hreview .show-more {
+.article .review-detail .show-more {
     font-weight: normal;
     float: right;
 }

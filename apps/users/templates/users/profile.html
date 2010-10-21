@@ -63,7 +63,7 @@
     {% if reviews %}
       {% for review in reviews %}
         {% set addon = review.addon %}
-        <div class="hreview">
+        <div class="review-detail">
           <h4 class="summary">
             <a class="url" href="{{ addon.get_url_path() }}">{{ addon.name }}</a>
           </h4>
