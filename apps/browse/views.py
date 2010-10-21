@@ -53,7 +53,7 @@ class AddonFilter(BaseFilter):
             ('rating', _lazy(u'Rating')))
 
 
-def addon_listing(request, addon_type, default='popular'):
+def addon_listing(request, addon_type, Filter=AddonFilter, default='popular'):
     # Set up the queryset and filtering for themes & extension listing pages.
     status = [amo.STATUS_PUBLIC]
 
@@ -70,7 +70,7 @@ def addon_listing(request, addon_type, default='popular'):
     if 'jetpack' in request.GET:
         qs = qs.filter(versions__files__jetpack=True)
 
-    filter = AddonFilter(request, qs, 'sort', default)
+    filter = Filter(request, qs, 'sort', default)
     return filter.qs, filter, unreviewed
 
 
@@ -328,9 +328,8 @@ def search_tools(request, category=None):
     qs = Category.objects.filter(application=APP.id, type=TYPE)
     categories = order_by_translation(qs, 'name')
 
-    base_addons_qs, _, unreviewed = addon_listing(request, TYPE)
-    filter = SearchToolsFilter(request, base_addons_qs, 'sort', 'featured')
-    addons = filter.qs
+    addons, filter, unreviewed = addon_listing(
+        request, TYPE, SearchToolsFilter, 'featured')
 
     if category is not None:
         category = get_object_or_404(qs, slug=category)
