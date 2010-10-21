@@ -306,3 +306,14 @@ def version_edit(request, addon_id, addon, version_id):
 @dev_required
 def version_list(request, addon_id, addon):
     return http.HttpResponse('All right then!')
+
+
+@dev_required
+def version_bounce(request, addon_id, addon, version):
+    # Use filter since there could be dupes.
+    vs = (Version.objects.filter(version=version, addon=addon)
+          .order_by('-created'))
+    if vs:
+        return redirect('devhub.versions.edit', addon_id, vs[0].id)
+    else:
+        raise http.Http404()

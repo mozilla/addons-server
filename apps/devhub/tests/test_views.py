@@ -865,6 +865,11 @@ class TestVersionEditDetails(TestVersionEdit):
         eq_(unicode(version.releasenotes), 'xx')
         eq_(unicode(version.approvalnotes), 'yy')
 
+    def test_version_number_redirect(self):
+        url = self.url.replace(str(self.version.id), self.version.version)
+        r = self.client.get(url, follow=True)
+        self.assertRedirects(r, self.url)
+
 
 class TestVersionEditFiles(TestVersionEdit):
 
