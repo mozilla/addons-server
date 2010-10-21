@@ -18,7 +18,7 @@ import addons.cron
 from amo.urlresolvers import reverse
 from amo.helpers import urlparams
 from applications.models import Application
-from addons.models import Addon, Category, AppSupport, Feature
+from addons.models import Addon, AddonCategory, Category, AppSupport, Feature
 from browse import views, feeds
 from browse.views import locale_display_name
 from files.models import File
@@ -247,26 +247,44 @@ class TestCategoryPages(test_utils.TestCase):
         eq_(len(doc('.item')), 1)
 
 class TestSearchToolsPages(test_utils.TestCase):
-    fixtures = ('base/apps', 'base/featured', 'addons/featured')
+    fixtures = ('base/apps', 'base/featured', 'addons/featured',
+                'base/category', 'addons/listed')
 
     def test_landing_page(self):
 
-        # pretend addons are all search related
+        # pretend all Add-ons are search-related:
         Addon.objects.update(type=amo.ADDON_SEARCH)
 
-        # feature only the FoxyProxy Standard add-on:
+        # ...except one which will be an extension in the search category:
+        limon = Addon.objects.get(
+                name__localized_string='Limon free English-Hebrew dictionary')
+        limon.type = amo.ADDON_EXTENSION
+        limon.status = amo.STATUS_PUBLIC
+        limon.save()
+        AppSupport(addon=limon, app_id=amo.FIREFOX.id).save()
+
+        # un-feature all others:
         Feature.objects.all().delete()
+
+        # feature foxy :
         foxy = Addon.objects.get(name__localized_string='FoxyProxy Standard')
         Feature(addon=foxy, application_id=amo.FIREFOX.id,
                 start=datetime.datetime.now(),
                 end=datetime.datetime.now() + timedelta(days=30)).save()
 
+        # feature Limon Dictionary as a category feature:
+        c = Category.objects.get(slug='search-tools')
+        cat = AddonCategory(addon=limon, feature=True)
+        c.addoncategory_set.add(cat)
+        c.save()
+
         response = self.client.get(reverse('browse.search-tools'))
 
         # should have only featured add-ons:
+        ob = response.context['addons'].object_list
         eq_(sorted([a.name.localized_string
                     for a in response.context['addons'].object_list]),
-            [u'FoxyProxy Standard'])
+            [u'FoxyProxy Standard', u'Limon free English-Hebrew dictionary'])
 
     def test_sidebar_extensions_links(self):
         response = self.client.get(reverse('browse.search-tools'))
@@ -282,6 +300,24 @@ class TestSearchToolsPages(test_utils.TestCase):
 
         eq_(urlparse(links[0].attrib['href']).path, search_ext_url.path)
         eq_(urlparse(links[1].attrib['href']).path, search_ext_url.path)
+
+    def test_other_pages_exclude_extensions(self):
+
+        # pretend all Add-ons are search-related:
+        Addon.objects.update(type=amo.ADDON_SEARCH)
+
+        # randomly make one an extension to be sure it is filtered out:
+        Addon.objects.valid()[0].update(type=amo.ADDON_EXTENSION)
+
+        for sort_key in ('name', 'updated', 'created', 'popular', 'rating'):
+            url = reverse('browse.search-tools') + '?sort=' + sort_key
+            r = self.client.get(url)
+            all_addons = r.context['addons'].object_list
+            assert len(all_addons)
+            for addon in all_addons:
+                assert addon.type == amo.ADDON_SEARCH, (
+                            "sort=%s; Unexpected Add-on type for %r" % (
+                                                        sort_key, addon))
 
 class TestLegacyRedirects(test_utils.TestCase):
     fixtures = ('base/category.json',)

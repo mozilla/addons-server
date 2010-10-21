@@ -81,7 +81,7 @@ class CategoriesRss(AddonFeedMixin, Feed):
 
     def items(self, category):
         """Return the Addons for this Category to be output as RSS <item>'s"""
-        addons, _, _ = addon_listing(self.request, self.TYPE,
+        addons, _, _ = addon_listing(self.request, [self.TYPE],
                                      default='updated')
         if category:
             addons = addons.filter(categories__id=category.id)

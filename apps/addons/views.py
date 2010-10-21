@@ -221,9 +221,6 @@ class BaseFilter(object):
     def _filter(self, field):
         return getattr(self, 'filter_%s' % field)()
 
-    def filter_featured(self):
-        return Addon.objects.featured(self.request.APP)
-
     def filter_popular(self):
         return (Addon.objects.order_by('-weekly_downloads')
                 .with_index(addons='downloads_type_idx'))

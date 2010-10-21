@@ -1,6 +1,7 @@
 import collections
 
 from django import http
+from django.db.models import Q
 from django.conf import settings
 from django.http import HttpResponsePermanentRedirect
 from django.shortcuts import get_object_or_404
@@ -53,7 +54,7 @@ class AddonFilter(BaseFilter):
             ('rating', _lazy(u'Rating')))
 
 
-def addon_listing(request, addon_type, Filter=AddonFilter, default='popular'):
+def addon_listing(request, addon_types, Filter=AddonFilter, default='popular'):
     # Set up the queryset and filtering for themes & extension listing pages.
     status = [amo.STATUS_PUBLIC]
 
@@ -65,7 +66,8 @@ def addon_listing(request, addon_type, Filter=AddonFilter, default='popular'):
     if unreviewed:
         status.append(amo.STATUS_UNREVIEWED)
 
-    qs = Addon.objects.listed(request.APP, *status).filter(type=addon_type)
+    qs = (Addon.objects.listed(request.APP, *status)
+                       .filter(type__in=addon_types))
 
     if 'jetpack' in request.GET:
         qs = qs.filter(_current_version__files__jetpack=True)
@@ -132,7 +134,7 @@ def themes(request, category=None):
                                 type=amo.ADDON_THEME)
     categories = order_by_translation(q, 'name')
 
-    addons, filter, unreviewed = addon_listing(request, amo.ADDON_THEME)
+    addons, filter, unreviewed = addon_listing(request, [amo.ADDON_THEME])
 
     if category is not None:
         try:
@@ -166,7 +168,7 @@ def extensions(request, category=None):
     if 'sort' not in request.GET and category:
         return category_landing(request, category)
 
-    addons, filter, unreviewed = addon_listing(request, TYPE)
+    addons, filter, unreviewed = addon_listing(request, [TYPE])
 
     if category:
         addons = addons.filter(categories__id=category.id)
@@ -317,6 +319,36 @@ class SearchToolsFilter(AddonFilter):
             ('popular', _lazy(u'Downloads')),
             ('rating', _lazy(u'Rating')))
 
+    def filter(self, field):
+        """Get the queryset for the given field."""
+        # Ensure that we can combine distinct filters
+        # (like the featured filter)
+        this_filter = self._filter(field)
+        if this_filter.query.distinct:
+            base_qs = self.base_queryset.distinct()
+        else:
+            base_qs = self.base_queryset
+        return this_filter & base_qs
+
+    def filter_featured(self):
+        # Featured search add-ons in all locales:
+        featured_search = Q(
+            type=amo.ADDON_SEARCH,
+            feature__application=self.request.APP.id)
+
+        # Featured search-tool extensions:
+        featured_search_ext = Q(
+            type=amo.ADDON_EXTENSION,
+            addoncategory__category__slug='search-tools',
+            addoncategory__feature=True)
+
+        q = Addon.objects.valid().filter(
+                        featured_search | featured_search_ext)
+
+        # Need to make the query distinct because
+        # one addon can be in multiple categories (see
+        # addoncategory join above)
+        return q.distinct()
 
 class SearchExtensionsFilter(AddonFilter):
     opts = (('popular', _lazy(u'Most Popular')),
@@ -328,8 +360,16 @@ def search_tools(request, category=None):
     qs = Category.objects.filter(application=APP.id, type=TYPE)
     categories = order_by_translation(qs, 'name')
 
+    # Feature page should list both extensions and search Add-ons
+    # but other pages should only list search Add-ons
+
+    types = [TYPE]
+    default = 'featured'
+    if request.GET.get('sort', default) == 'featured':
+        types.append(amo.ADDON_EXTENSION)
+
     addons, filter, unreviewed = addon_listing(
-        request, TYPE, SearchToolsFilter, 'featured')
+        request, types, SearchToolsFilter, default)
 
     if category is not None:
         category = get_object_or_404(qs, slug=category)
