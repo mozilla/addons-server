@@ -4,6 +4,7 @@ import urllib
 import urlparse
 
 from django.conf import settings
+from django.utils.http import urlencode
 
 
 def check_paypal_id(name):
@@ -21,7 +22,7 @@ def check_paypal_id(name):
              method='BMCreateButton',
              l_buttonvar0='business=%s' % name)
     with socket_timeout(10):
-        r = urllib.urlopen(settings.PAYPAL_API_URL, urllib.urlencode(d))
+        r = urllib.urlopen(settings.PAYPAL_API_URL, urlencode(d))
     response = dict(urlparse.parse_qsl(r.read()))
     valid = response['ACK'] == 'Success'
     msg = None if valid else response['L_LONGMESSAGE0']
