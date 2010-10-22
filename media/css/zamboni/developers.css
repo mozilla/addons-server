@@ -106,12 +106,13 @@
     margin-top: 2px;
 }
 
-#edit-addon .remove:hover,
+#edit-addon .author:hover .remove,
 #edit-addon tr:hover .help {
     background-color: #CCC;
 }
 
-#edit-addon tr:hover .help:hover {
+#edit-addon tr:hover .help:hover,
+#edit-addon .author .remove:hover {
     background-color: #2A4364;
     cursor: help;
 }
