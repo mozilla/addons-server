@@ -279,6 +279,15 @@ class TestDeveloperPages(test_utils.TestCase):
         assert pq(r.content)('.section-teaser')
         assert pq(r.content)('#contribute-button')
 
+    def test_get_old_version(self):
+        url = reverse('addons.meet', args=[11730])
+        r = self.client.get(url)
+        eq_(r.context['version'].version, '20090521')
+
+        r = self.client.get('%s?version=%s' % (url, '20080521'))
+        eq_(r.context['version'].version, '20080521')
+    test_get_old_version.x = 1
+
 
 class TestLicensePage(test_utils.TestCase):
     fixtures = ['base/apps', 'base/addon_3615']

@@ -29,6 +29,7 @@ class ButtonTest(test_utils.TestCase):
         self.version = v = Mock()
         v.is_unreviewed = False
         v.is_beta = False
+        v.version = 'v1'
         self.addon.current_version = v
 
         self.file = self.get_file(amo.PLATFORM_ALL)
@@ -307,7 +308,8 @@ class TestButton(ButtonTest):
         b.show_contrib = True
         text, url, _ = b.file_details(file)
         eq_(text, 'Continue to Download&nbsp;&rarr;')
-        eq_(url, '/en-US/firefox/addon/2/contribute/roadblock/?eula=')
+        eq_(url,
+            '/en-US/firefox/addon/2/contribute/roadblock/?eula=&version=v1')
 
     def test_file_details_unreviewed(self):
         file = self.get_file(amo.PLATFORM_ALL)

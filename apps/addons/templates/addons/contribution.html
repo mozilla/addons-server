@@ -54,7 +54,8 @@
       {% if show_install %}
         {# L10n: Click Contribute button OR Install button #}
         <span class="continue">{{ _('or') }}</span>
-        {{ install_button(addon, show_contrib=False) }}
+        {% set ver = version or None %}
+        {{ install_button(addon, version=ver, show_contrib=False) }}
       {% endif %}
     </div>{# /button-wrapper #}
 

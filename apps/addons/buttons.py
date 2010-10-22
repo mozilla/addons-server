@@ -164,7 +164,7 @@ class InstallButton(object):
 			# L10n: please keep &nbsp; in the string so the &rarr; does not wrap
             text = _('Continue to Download&nbsp;&rarr;')
             roadblock = reverse('addons.roadblock', args=[self.addon.id])
-            url = urlparams(roadblock, eula='')
+            url = urlparams(roadblock, eula='', version=self.version.version)
 
         return text, url, os
 
