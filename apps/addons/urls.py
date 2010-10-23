@@ -9,6 +9,7 @@ from . import views
 detail_patterns = patterns('',
     url('^$', views.addon_detail, name='addons.detail'),
     url('^eula/(?P<file_id>\d+)?$', views.eula, name='addons.eula'),
+    url('^license/(?P<version>[^/]+)?', views.license, name='addons.license'),
     url('^privacy/', views.privacy, name='addons.privacy'),
     url('^share$', views.share, name='addons.share'),
     url('^developers$', views.developers,
@@ -51,4 +52,5 @@ urlpatterns = patterns('',
      lambda r, addon_id: redirect('addons.privacy',
                                   addon_id, permanent=True)),
 
+    ('^versions/license/(\d+)$', views.license_redirect),
 )

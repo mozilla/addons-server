@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
+import re
 
 from django import test
 from django.conf import settings
@@ -7,7 +8,6 @@ from django.core.cache import cache
 from django.utils import translation
 from django.utils.encoding import iri_to_uri
 
-from mock import Mock
 from nose.tools import eq_
 import test_utils
 from pyquery import PyQuery as pq
@@ -21,8 +21,6 @@ from users.models import UserProfile
 from tags.models import Tag, AddonTag
 from translations.helpers import truncate
 from translations.query import order_by_translation
-
-import re
 
 
 class TestHomepage(test_utils.TestCase):
@@ -280,6 +278,43 @@ class TestDeveloperPages(test_utils.TestCase):
         # Make sure it has multiple devs.
         assert pq(r.content)('.section-teaser')
         assert pq(r.content)('#contribute-button')
+
+
+class TestLicensePage(test_utils.TestCase):
+    fixtures = ['base/apps', 'base/addon_3615']
+
+    def setUp(self):
+        self.addon = Addon.objects.get(id=3615)
+        self.version = self.addon.current_version
+
+    def test_legacy_redirect(self):
+        r = self.client.get('/versions/license/%s' % self.version.id,
+                            follow=True)
+        self.assertRedirects(r, self.version.license_url(), 301)
+
+    def test_explicit_version(self):
+        url = reverse('addons.license', args=[3615, self.version.version])
+        r = self.client.get(url)
+        eq_(r.status_code, 200)
+        eq_(r.context['version'], self.version)
+
+    def test_implicit_version(self):
+        url = reverse('addons.license', args=[3615])
+        r = self.client.get(url)
+        eq_(r.status_code, 200)
+        eq_(r.context['version'], self.addon.current_version)
+
+    def test_no_license(self):
+        self.version.update(license=None)
+        url = reverse('addons.license', args=[3615])
+        r = self.client.get(url)
+        eq_(r.status_code, 404)
+
+    def test_no_version(self):
+        self.addon.versions.all().delete()
+        url = reverse('addons.license', args=[3615])
+        r = self.client.get(url)
+        eq_(r.status_code, 404)
 
 
 class TestDetailPage(test_utils.TestCase):

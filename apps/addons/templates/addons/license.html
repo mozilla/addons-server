@@ -1,0 +1,30 @@
+{% extends "base_side_categories.html" %}
+
+{% block title %}
+  {{ page_title(_('Source Code License for {addon}'))|f(addon=addon.name) }}
+{% endblock %}
+
+{% set license = version.license %}
+
+{% block content %}
+<header>
+  {{ breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type] ),
+                  (url('addons.detail',addon.id), addon.name),
+                  (None, _('License'))]) }}
+  <h2 class="name"{{ addon.name|locale_html }}>
+    <span>
+      {{ addon.name }}
+    </span>
+    {% if version and not addon.is_selfhosted() %}
+      <span class="version">{{ version.version }}</span>
+    {% endif %}
+  </h2>
+  <h3>{{ _('Source Code License') }}</h3>
+</header>
+  {% if license.url %}
+    <a href="{{ license.url }}">{{ license.name }}</a>
+  {% else %}
+    <h4>{{ license.name }}</h4>
+    <pre width="100%">{{ license.text|nl2br }}</pre>
+  {% endif %}
+{% endblock %}
