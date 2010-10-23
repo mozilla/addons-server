@@ -4,7 +4,7 @@ import uuid
 from django import http
 from django.conf import settings
 from django.db.models import Q
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.utils.translation import trans_real as translation
 from django.utils import http as urllib
 
@@ -26,6 +26,7 @@ from stats.models import GlobalStat, Contribution
 from tags.models import Tag
 from translations.query import order_by_translation
 from translations.helpers import truncate
+from versions.models import Version
 from .models import Addon
 
 
@@ -357,12 +358,17 @@ def privacy(request, addon_id):
 
 def developers(request, addon_id, page):
     addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
+    if 'version' in request.GET:
+        version = get_object_or_404(addon.versions,
+                                    version=request.GET['version'])
+    else:
+        version = addon.current_version
     if addon.is_persona():
         raise http.Http404()
     author_addons = order_by_translation(addon.authors_other_addons, 'name')
     return jingo.render(request, 'addons/developers.html',
                         {'addon': addon, 'author_addons': author_addons,
-                         'page': page})
+                         'page': page, 'version': version})
 
 
 def contribute(request, addon_id):
@@ -457,3 +463,20 @@ def share(request, addon_id):
     addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
     return share_redirect(request, addon, name=addon.name,
                           description=truncate(addon.summary, length=250))
+
+
+def license(request, addon_id, version=None):
+    addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
+    if version is not None:
+        version = get_object_or_404(addon.versions, version=version)
+    else:
+        version = addon.current_version
+    if not (version and version.license):
+        raise http.Http404()
+    return jingo.render(request, 'addons/license.html',
+                        dict(addon=addon, version=version))
+
+
+def license_redirect(request, version):
+    version = get_object_or_404(Version, pk=version)
+    return redirect(version.license_url(), permanent=True)

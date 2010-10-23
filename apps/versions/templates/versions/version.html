@@ -42,8 +42,7 @@
     {% if license.builtin %}
       {{ license_link(license) }}
     {% else %}
-      {# TODO reverse URL, merge with license_link. #}
-      <a href="{{ remora_url('/versions/license/{0}'|f(version.id)) }}">
+      <a href="{{ version.license_url() }}">
         {{ license.name }}</a>
     {% endif %}
   {% endif %}

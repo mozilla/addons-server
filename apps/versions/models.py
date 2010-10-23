@@ -5,6 +5,7 @@ from django.db import models
 
 import caching.base
 
+from amo.urlresolvers import reverse
 import amo.models
 from applications.models import Application, AppVersion
 from files.models import File
@@ -32,6 +33,9 @@ class Version(amo.models.ModelBase):
 
     def __unicode__(self):
         return self.version
+
+    def license_url(self):
+        return reverse('addons.license', args=[self.addon_id, self.version])
 
     def flush_urls(self):
         return self.addon.flush_urls()
