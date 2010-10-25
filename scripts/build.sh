@@ -33,7 +33,7 @@ fi
 
 cat > settings_local.py <<SETTINGS
 from settings import *
-ROOT_URLCONF = 'workspace.urls'
+ROOT_URLCONF = '%s.urls' % ROOT_PACKAGE
 LOG_LEVEL = logging.ERROR
 # Database name has to be set because of sphinx
 DATABASES['default']['NAME'] = 'zamboni_$1'
