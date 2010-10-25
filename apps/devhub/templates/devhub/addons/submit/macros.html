@@ -1,20 +1,20 @@
 {% macro addon_submission_process(current_step) %}
 <div class="highlight">
-	<hgroup>
-		<h3>{{ _('Submission Process') }}</h3>
-	</hgroup>
-	<ol class="submit-addon-progress">
-	  {% for slug, text in (('start', _('Getting Started')),
-	                        ('upload', _('Upload your add-on')),
-	                        ('describe', _('Describe your add-on')),
-	                        ('add-media', _('Add images and videos')),
-	                        ('select-license', _('Select a license')),
-	                        ('select-review', _('Select a review process')),
-	                        ('review', _('Review your choices')),
-	                        ('done', _("You're done!"))): %}
-	  {% set cls = 'current' if current_step == slug else '' %}
-		<li class="{{ cls }}">{{ text }}</li>
+  <hgroup>
+    <h3>{{ _('Submission Process') }}</h3>
+  </hgroup>
+  <ol class="submit-addon-progress">
+    {% for slug, text in (('start', _('Getting Started')),
+                          ('upload', _('Upload your add-on')),
+                          ('describe', _('Describe your add-on')),
+                          ('add-media', _('Add images and videos')),
+                          ('select-license', _('Select a license')),
+                          ('select-review', _('Select a review process')),
+                          ('review', _('Review your choices')),
+                          ('done', _("You're done!"))): %}
+    {% set cls = 'current' if current_step == slug else '' %}
+    <li class="{{ cls }}">{{ text }}</li>
     {% endfor %}
-	</ol>
+  </ol>
 </div>
 {% endmacro %}
