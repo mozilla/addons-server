@@ -993,4 +993,5 @@ class TestAddonSubmission(test_utils.TestCase):
     def test_step1_submit(self):
         # Sanity check to make sure the page loads without error:
         response = self.client.get(reverse('devhub.submit_addon'))
+        eq_(response.status_code, 200)
         assert len(response.context['agreement_text'])
