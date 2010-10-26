@@ -319,6 +319,8 @@ class Addon(amo.models.ModelBase):
             try:
                 self.save()
                 signals.version_changed.send(sender=self)
+                log.debug('Current version changed: %r to %s' %
+                          (self, current_version))
                 return True
             except Exception, e:
                 log.error('Could not save version %s for addon %s (%s)' %
