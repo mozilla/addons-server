@@ -321,7 +321,8 @@ def version_bounce(request, addon_id, addon, version):
         raise http.Http404()
 
 
-def submit_addon(request):
+@login_required
+def submit(request):
     base = os.path.join(os.path.dirname(amo.__file__), '..', '..', 'locale')
     # Note that the agreement is not localized (for legal reasons)
     # but the official version is stored in en_US
@@ -333,3 +334,14 @@ def submit_addon(request):
 
     return jingo.render(request, 'devhub/addons/submit/getting-started.html',
                         {'agreement_text': agreement_text})
+
+
+@login_required
+def submit_finished(request, addon_id):
+    addon = get_object_or_404(Addon, id=addon_id)
+    sp = addon.current_version.supported_platforms
+    is_platform_specific = sp != [amo.PLATFORM_ALL]
+
+    return jingo.render(request, 'devhub/addons/submit/finished.html',
+                        {'addon': addon,
+                         'is_platform_specific': is_platform_specific})

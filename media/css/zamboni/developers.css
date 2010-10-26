@@ -718,4 +718,17 @@ ol.submit-addon-progress li.current {
 .addon-submission-process h3:nth-of-type(1) {
     margin-top: 0.75em;
 }
+div.done-next-steps p {
+    margin-bottom: 0.3em;
+}
+div.done-next-steps ul {
+    list-style: inside disc;
+}
+div.done-next-steps ul li {
+    margin-bottom: 0.3em;
+}
+#submitted-addon-url {
+    font-size: 1.3em;
+    padding-left: 5em;
+}
 /* @end */

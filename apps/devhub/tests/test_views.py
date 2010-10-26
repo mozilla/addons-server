@@ -3,10 +3,11 @@ import re
 import socket
 
 from django import forms
+from django.conf import settings
 from django.utils import translation
 
 import mock
-from nose.tools import eq_, assert_not_equal
+from nose.tools import eq_, assert_not_equal, set_trace
 from pyquery import PyQuery as pq
 import test_utils
 
@@ -990,8 +991,67 @@ class TestVersionEditCompat(TestVersionEdit):
 
 
 class TestAddonSubmission(test_utils.TestCase):
+    fixtures = ['base/addon_3615', 'base/addon_5579', 'base/users']
+
+    def setUp(self):
+        super(TestAddonSubmission, self).setUp()
+        assert self.client.login(username='del@icio.us', password='password')
+
     def test_step1_submit(self):
         # Sanity check to make sure the page loads without error:
-        response = self.client.get(reverse('devhub.submit_addon'))
+        response = self.client.get(reverse('devhub.submit'))
         eq_(response.status_code, 200)
         assert len(response.context['agreement_text'])
+
+    def test_finish_submitting_addon(self):
+        addon = Addon.objects.get(
+                        name__localized_string='Delicious Bookmarks')
+        eq_(addon.current_version.supported_platforms, [amo.PLATFORM_ALL])
+
+        response = self.client.get(reverse('devhub.submit.finished',
+                                    kwargs=dict(addon_id=addon.id)))
+        eq_(response.status_code, 200)
+        doc = pq(response.content)
+
+        eq_(response.status_code, 200)
+        eq_(response.context['addon'].name.localized_string,
+            u"Delicious Bookmarks")
+
+        abs_url = settings.SITE_URL + "/en-US/firefox/addon/3615/"
+        eq_(doc("a#submitted-addon-url").text().strip(), abs_url)
+        eq_(doc("a#submitted-addon-url").attr('href'),
+            "/en-US/firefox/addon/3615/")
+
+        next_steps = doc(".done-next-steps li a")
+
+        # edit listing of freshly submitted add-on...
+        eq_(next_steps[0].attrib['href'],
+            reverse('devhub.addons.edit',
+                    kwargs=dict(addon_id=addon.id)))
+
+        # edit your developer profile...
+        eq_(next_steps[1].attrib['href'],
+            reverse('users.edit') + '#user-profile')
+
+        # keep up with your add-on's activity feed:
+        eq_(next_steps[2].attrib['href'], reverse('devhub.addons.activity'))
+
+    def test_finish_submitting_platform_specific_addon(self):
+        # mac-only Add-on:
+        addon = Addon.objects.get(name__localized_string='Cooliris')
+        response = self.client.get(reverse('devhub.submit.finished',
+                                    kwargs=dict(addon_id=addon.id)))
+        eq_(response.status_code, 200)
+        doc = pq(response.content)
+        next_steps = doc(".done-next-steps li a")
+
+        # upload more platform specific files...
+        eq_(next_steps[0].attrib['href'],
+            reverse('devhub.versions.edit', kwargs=dict(
+                                addon_id=addon.id,
+                                version_id=addon.current_version.id)))
+
+        # edit listing of freshly submitted add-on...
+        eq_(next_steps[1].attrib['href'],
+            reverse('devhub.addons.edit',
+                    kwargs=dict(addon_id=addon.id)))

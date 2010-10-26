@@ -24,6 +24,9 @@ detail_patterns = patterns('',
     url('^versions/(?P<version_id>\d+)$', views.version_edit,
         name='devhub.versions.edit'),
     url('^versions/(?P<version>[^/]+)$', views.version_bounce),
+
+    url('^submit-finished$',
+        views.submit_finished, name='devhub.submit.finished'),
 )
 
 urlpatterns = decorate(write, patterns('',
@@ -36,7 +39,7 @@ urlpatterns = decorate(write, patterns('',
      lambda r: redirect(r.path.replace('addons', 'addon', 1))),
 
     # Add-on submission
-    url('^addon/submit$', views.submit_addon, name='devhub.submit_addon'),
+    url('^addon/submit$', views.submit, name='devhub.submit'),
 
     # Redirect to /addons/ at the base.
     url('^addon$', lambda r: redirect('devhub.addons', permanent=True)),
