@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import HubPromo, HubEvent, AddonLog
+from .models import HubPromo, HubEvent, ActivityLog
 
 
 class HubPromoAdmin(admin.ModelAdmin):
@@ -13,11 +13,11 @@ class HubEventAdmin(admin.ModelAdmin):
 
 
 class HubNewsAdmin(admin.ModelAdmin):
-    list_display = ('addon', 'user', 'type', 'notes')
-    raw_id_fields = ('addon', 'user')
-    list_filter = ('type',)
+    list_display = ('user', 'action', 'arguments')
+    raw_id_fields = ('user',)
+    list_filter = ('action',)
 
 
 admin.site.register(HubPromo, HubPromoAdmin)
 admin.site.register(HubEvent, HubEventAdmin)
-admin.site.register(AddonLog, HubNewsAdmin)
+admin.site.register(ActivityLog, HubNewsAdmin)
