@@ -36,11 +36,10 @@ class File(amo.models.ModelBase):
         return amo.PLATFORMS[self.platform_id]
 
     def get_url_path(self, app, src):
+        # TODO: remove app
         from amo.helpers import urlparams
-        lang = translation.get_language()
-        base = settings.FILES_URL % (lang, app.short, self.id,
-                                     self.filename, src)
-        return urlparams(base, confirmed=1)
+        url = reverse('downloads.file', args=[self.id]) + self.filename
+        return urlparams(url, src=src)
 
     def generate_filename(self, extension='xpi'):
         """
@@ -64,13 +63,12 @@ class File(amo.models.ModelBase):
         return self.filename
 
     def latest_xpi_url(self):
-        # TODO(jbalogh): reverse?
         addon = self.version.addon_id
-        url = ['/downloads/latest/%s' % addon]
+        kw = {'addon_id': addon}
         if self.platform_id != amo.PLATFORM_ALL.id:
-            url.append('platform:%s' % self.platform_id)
-        url.append('addon-%s-latest%s' % (addon, self.extension))
-        return remora_url(os.path.join(*url))
+            kw['platform'] = self.platform_id
+        url = reverse('downloads.latest', kwargs=kw)
+        return os.path.join(url, 'addon-%s-latest%s' % (addon, self.extension))
 
     def eula_url(self):
         return reverse('addons.eula', args=[self.version.addon_id, self.id])

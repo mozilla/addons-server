@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django import test
 
+import test_utils
 from nose.tools import eq_
 
 import amo
@@ -9,7 +10,7 @@ from files.models import File
 from versions.models import Version
 
 
-class TestFile(test.TestCase):
+class TestFile(test_utils.TestCase):
     """
     Tests the methods of the File model.
     """
@@ -20,7 +21,7 @@ class TestFile(test.TestCase):
         f = File.objects.get(id=67442)
         url = f.get_absolute_url(amo.FIREFOX, src='src')
         expected = ('/firefox/downloads/file/67442/'
-                    'delicious_bookmarks-2.1.072-fx.xpi?src=src&confirmed=1')
+                    'delicious_bookmarks-2.1.072-fx.xpi?src=src')
         assert url.endswith(expected), url
 
     def test_latest_url(self):
@@ -37,7 +38,7 @@ class TestFile(test.TestCase):
 
     def test_eula_url(self):
         f = File.objects.get(id=67442)
-        eq_(f.eula_url(), '/addon/3615/eula/67442')
+        eq_(f.eula_url(), '/en-US/firefox/addon/3615/eula/67442')
 
     def test_generate_filename(self):
         f = File.objects.get(id=67442)
