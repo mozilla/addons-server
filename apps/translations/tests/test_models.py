@@ -18,11 +18,12 @@ from translations.query import order_by_translation
 def ids(qs):
     return [o.id for o in qs]
 
+
 class TranslationFixturelessTestCase(test.TestCase):
     "We want to be able to rollback stuff."
 
     def test_whitespace(self):
-        t = Translation(localized_string='     khaaaaaan!    ', id=999 )
+        t = Translation(localized_string='     khaaaaaan!    ', id=999)
         t.save()
         eq_('khaaaaaan!', t.localized_string)
 
@@ -197,6 +198,15 @@ class TranslationTestCase(ExtraAppTestCase):
         # fr was added.
         translation.activate('fr')
         trans_eq(get_model().name, 'oui', 'fr')
+
+    def test_dict_bad_locale(self):
+        m = TranslatedModel.objects.get(id=1)
+        m.name = {'de': 'oof', 'xxx': 'bam', 'es-ES': 'si'}
+        m.save()
+
+        ts = Translation.objects.filter(id=m.name_id)
+        eq_(sorted(ts.values_list('locale', flat=True)),
+            ['de', 'en-US', 'es-ES'])
 
     def test_widget(self):
         strings = {'de': None, 'fr': 'oui'}

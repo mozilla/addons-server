@@ -1,4 +1,5 @@
 from django import forms
+from django.conf import settings
 from django.db import models
 from django.db.models.fields import related
 from django.utils import translation as translation_utils
@@ -119,7 +120,6 @@ class TranslationDescriptor(related.ReverseSingleRelatedObjectDescriptor):
         elif hasattr(value, 'items'):
             value = self.translation_from_dict(instance, lang, value)
 
-
         # Don't let this be set to None, because Django will then blank out the
         # foreign key for this object.  That's incorrect for translations.
         if value is not None:
@@ -160,6 +160,8 @@ class TranslationDescriptor(related.ReverseSingleRelatedObjectDescriptor):
         """
         rv = None
         for locale, string in dict_.items():
+            if locale.lower() not in settings.LANGUAGES:
+                continue
             # The Translation is created and saved in here.
             trans = self.translation_from_string(instance, locale, string)
 
