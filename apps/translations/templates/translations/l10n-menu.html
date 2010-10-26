@@ -1,0 +1,26 @@
+<div class="transbox-new" data-default="{{ default_locale }}" id="l10n-menu">
+  {% set dl = languages[default_locale] %}
+  <p>
+  {% trans %}
+    Localize for: <a id="change-locale" href="#">{{ dl }}</a>
+  {% endtrans %}
+  </p>
+  <div id="locale-popup" class="popup hidden">
+    <section>
+      <div><a href="#{{ default_locale }}">
+        {{ dl }}
+      </a></div>
+      <ul id="existing_locales">
+      </ul>
+      <ul id="all_locales">
+        {% for lang, title in languages|dictsort %}
+          {% if lang != default_locale %}
+            <li>
+              <a href="#{{ lang }}">{{ title }}</a>
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </section>
+  </div>
+</div>

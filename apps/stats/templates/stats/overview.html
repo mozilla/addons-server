@@ -26,36 +26,36 @@
 {% block stats %}
     <div class="featured">
       <div class="featured-inner two-up">
-        <div><a href="#">{{ addon.total_downloads|numberfmt }} Downloads</a><br/><small><span id="sum_downloads_range"></span> in last 30 days</small></div>
-        <div><div><a href="#">{{ addon.average_daily_users|numberfmt }} Daily Users</a><br/><small><span id="sum_usage_range"></span> in last 30 days</small></div></div>
+        <div><a href="downloads/">{{ _('{0} Downloads')|f(addon.total_downloads|numberfmt) }}</a><br/><small>{{ _('{0} in last 30 days')|f('<span id="sum_downloads_range"></span>')|safe }}</small></div>
+        <div><div><a href="usage/">{{ _('{0} Daily Users')|f(addon.average_daily_users|numberfmt) }}</a><br/><small>{{ _('{0} in last 30 days')|f('<span id="sum_usage_range"></span>')|safe }}</small></div></div>
       </div>
     </div>
     <div class="toplists">
       <div class="toplist loading">
         <div class="statbox">
-          <h3>Most Used Applications</h3>
+          <h3>{{ _('Most Used Applications') }}</h3>
           <div class="piechart"></div>
           <table data-report="apps" data-field="applications">
           </table>
-          <a href="apps/">See More Applications...</a>
+          <a href="apps/">{{ _('See More Applications...') }}</a>
         </div>
       </div>
       <div class="toplist loading">
         <div class="statbox">
-          <h3>Most Used Languages</h3>
+          <h3>{{ _('Most Used Languages') }}</h3>
           <div class="piechart"></div>
           <table data-report="locales" data-field="locales">
           </table>
-          <a href="locales/">See More languages...</a>
+          <a href="locales/">{{ _('See More languages...') }}</a>
         </div>
       </div>
       <div class="toplist loading">
         <div class='statbox'>
-          <h3>Most Used OSes</h3>
+          <h3>{{ _('Most Used OSes') }}</h3>
           <div class="piechart"></div>
           <table data-report="os" data-field="oses">
           </table>
-          <a href="os/">See more operating systems...</a>
+          <a href="os/">{{ _('See more operating systems...') }}</a>
         </div>
       </div>
     </div>
