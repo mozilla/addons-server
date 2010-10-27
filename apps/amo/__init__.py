@@ -71,7 +71,7 @@ STATUS_LISTED = 6
 STATUS_BETA = 7
 
 STATUS_CHOICES = {
-    STATUS_NULL: _('Null'),
+    STATUS_NULL: _('Incomplete'),
     STATUS_UNREVIEWED: _('Not reviewed'),
     STATUS_PENDING: _('Pending approval'),
     STATUS_NOMINATED: _('Nominated to be public'),
