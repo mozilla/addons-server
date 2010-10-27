@@ -1036,6 +1036,10 @@ class TestAddonSubmission(test_utils.TestCase):
         # keep up with your add-on's activity feed:
         eq_(next_steps[2].attrib['href'], reverse('devhub.addons.activity'))
 
+        # view wait times:
+        eq_(next_steps[3].attrib['href'],
+            "https://forums.addons.mozilla.org/viewforum.php?f=21")
+
     def test_finish_submitting_platform_specific_addon(self):
         # mac-only Add-on:
         addon = Addon.objects.get(name__localized_string='Cooliris')
