@@ -399,6 +399,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/discovery_pane.js',
         ),
         'zamboni/devhub': (
+            'js/zamboni/truncation.js',
             'js/zamboni/devhub.js',
         ),
     }

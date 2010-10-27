@@ -7,6 +7,7 @@ $(document).ready(function() {
         }
     });
 
+    truncateFields();
     $('#edit-addon').delegate('h3 a', 'click', function(e){
         e.preventDefault();
 
@@ -27,6 +28,18 @@ $(document).ready(function() {
     });
 });
 
+function truncateFields() {
+    var originalHTML = $("#addon_description").html();
+    $("#addon_description").delegate("a.truncate_expand", "click", function(e) {
+        e.preventDefault();
+        $("#addon_description").html(originalHTML).css('max-height','none');
+
+    })
+    .vtruncate({
+        truncText: format("&hellip; <a href='#' class='truncate_expand'>{0}</a>",[gettext("More")])
+    });
+}
+
 function addonFormSubmit() {
     parent_div = $(this);
 
@@ -35,6 +48,7 @@ function addonFormSubmit() {
         $.post($(parent_div).find('form').attr('action'),
                 $(this).serialize(), function(d){
                     $(parent_div).html(d).each(addonFormSubmit);
+                    truncateFields();
                 });
             return false;
         });

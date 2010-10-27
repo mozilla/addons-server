@@ -181,7 +181,7 @@ $.fn.vtruncate = function() {
     this.each(function() {
         var $el = $(this),
             oldtext = $el.attr("oldtext") || $el.text(),
-            txt = oldtext.split(" ");
+            txt = oldtext.split(" "),
             cutoff = txt.length;
         if ($el.attr("oldtext")) {
             $el.text(oldtext);

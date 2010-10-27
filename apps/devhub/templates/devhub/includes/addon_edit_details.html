@@ -26,7 +26,7 @@
                 {{ form.description.errors|safe }}
               {% else %}
                 {% call empty_unless(addon.description) %}
-                  {{ addon.description }}
+                  <div id="addon_description">{{ addon.description }}</div>
                 {% endcall %}
               {% endif %}
             </td>
