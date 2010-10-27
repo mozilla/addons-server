@@ -379,7 +379,6 @@ MINIFY_BUNDLES = {
 
             # Add-ons details page
             'js/jquery-ui/ui.lightbox.js',
-            'js/zamboni/tags.js',
             'js/get-satisfaction-v2.js',
             'js/zamboni/contributions.js',
             'js/zamboni/addon_details.js',

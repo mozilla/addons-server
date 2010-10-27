@@ -609,15 +609,6 @@ class TestDetailPage(test_utils.TestCase):
         response = forward_to(u'\u271D')
         eq_(response.status_code, 400)
 
-    def test_remove_tag_button(self):
-        self.client.login(username='regular@mozilla.com', password='password')
-        tag = Tag(tag_text='f')
-        tag.save()
-        AddonTag(addon=Addon.objects.get(pk=3615), tag=tag, user_id=999).save()
-        r = self.client.get(reverse('addons.detail', args=[3615]))
-        doc = pq(r.content)
-        assert len(doc('#tags li input.removetag'))
-
     def test_detailed_review_link(self):
         self.client.login(username='regular@mozilla.com', password='password')
         r = self.client.get(reverse('addons.detail', args=[3615]))
@@ -653,7 +644,7 @@ class TestTagsBox(test_utils.TestCase):
         """Verify that we don't show duplicate tags."""
         r = self.client.get(reverse('addons.detail', args=[8680]), follow=True)
         doc = pq(r.content)
-        eq_('SEO', doc('#tags ul').children().text())
+        eq_('SEO', doc('#tagbox ul').children().text())
 
 
 class TestEulaPolicyRedirects(test_utils.TestCase):

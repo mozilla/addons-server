@@ -292,8 +292,7 @@
   {% endif %}
   {# /support #}
 
-  {{ tags_box(addon=addon, dev_tags=dev_tags, user_tags=user_tags,
-              current_user_tags=current_user_tags) }}
+  {{ tags_box(addon=addon, tags=tags) }}
 
   {# addon recommendations #}
   {% if recommendations %}

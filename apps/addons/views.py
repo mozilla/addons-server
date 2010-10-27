@@ -106,13 +106,7 @@ def extension_detail(request, addon):
     author_addons = order_by_translation(addon.authors_other_addons, 'name')
 
     # tags
-    dev_tags, user_tags = addon.tags_partitioned_by_developer
-
-    current_user_tags = []
-
-    if request.user.is_authenticated():
-        current_user_tags = user_tags.filter(
-                addon_tags__user=request.amo_user)
+    tags = addon.tags.not_blacklisted()
 
     # addon recommendations
     recommended = Addon.objects.valid().only_translations().filter(
@@ -127,10 +121,7 @@ def extension_detail(request, addon):
         'author_addons': author_addons,
 
         'src': src,
-
-        'dev_tags': dev_tags,
-        'user_tags': user_tags,
-        'current_user_tags': current_user_tags,
+        'tags': tags,
 
         'recommendations': recommended,
         'review_form': ReviewForm(),

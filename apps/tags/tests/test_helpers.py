@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from django import test
 
 import jingo
@@ -10,8 +8,7 @@ from pyquery import PyQuery as pq
 
 import amo
 from addons.models import Addon
-from tags.models import Tag
-from tags.helpers import tag_list
+from tags.models import AddonTag, Tag
 
 
 class TestHelpers(test.TestCase):
@@ -25,17 +22,14 @@ class TestHelpers(test.TestCase):
         request.user = addon.authors.all()[0].create_django_user()
         request.groups = ()
 
-        tags = addon.tags.filter(blacklisted=False)
-        dev_tags = tags.filter(addon_tags__user__in=addon.authors.all())
-        user_tags = tags.exclude(addon_tags__user__in=addon.authors.all())
+        tags = addon.tags.not_blacklisted()
 
         ctx = {
             'APP': amo.FIREFOX,
             'LANG': 'en-us',
             'request': request,
             'addon': addon,
-            'dev_tags': dev_tags,
-            'user_tags': user_tags,
+            'tags': tags
         }
 
         # initialize jingo
@@ -47,28 +41,14 @@ class TestHelpers(test.TestCase):
         # no tags, no list
         s = render('{{ tag_list(addon) }}', ctx)
         self.assertEqual(s.strip(), "")
-        return
 
-        # regular lists
-        s = render('{{ tag_list(addon, dev_tags=dev_tags) }}', ctx)
+        s = render('{{ tag_list(addon, tags=tags) }}', ctx)
         assert s, "Non-empty tags must return tag list."
         doc = pq(s)
-        eq_(doc('li.developertag').length, len(dev_tags))
-        eq_(doc('li').length, len(dev_tags))
+        eq_(doc('li').length, len(tags))
 
-        s = render('{{ tag_list(addon, user_tags=user_tags) }}', ctx)
-        assert s, "Non-empty tags must return tag list."
-        doc = pq(s)
-        eq_(doc('li.usertag').length, len(user_tags))
-        eq_(doc('li').length, len(user_tags))
 
-        s = render("""{{ tag_list(addon, dev_tags=dev_tags,
-                                  user_tags=user_tags) }}""", ctx)
-        assert s, "Non-empty tags must return tag list."
-        doc = pq(s)
-        eq_(doc('li.usertag').length, len(user_tags))
-        eq_(doc('li.developertag').length, len(dev_tags))
-        eq_(doc('li').length, len(user_tags)+len(dev_tags))
-
-        # delete buttons are shown
-        assert doc('li input.removetag').length > 0
+def create_tags(addon, author, number):
+    for x in range(0, number):
+        tag = Tag.objects.create(tag_text='tag %s' % x, blacklisted=False)
+        AddonTag.objects.create(tag=tag, addon=addon, user=author)

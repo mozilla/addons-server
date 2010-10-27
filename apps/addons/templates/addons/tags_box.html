@@ -2,32 +2,6 @@
   <h3 class="compact-bottom">{{ _('Tags', 'tags_header_tags_title') }}</h3>
 
   <div id="tagbox">
-    {{ tag_list(addon, dev_tags=dev_tags, user_tags=user_tags,
-                current_user_tags=current_user_tags) }}
+    {{ tag_list(addon, tags=tags) }}
   </div>
-
-  {% if user.is_authenticated() %}
-  <a href="#" id="addatag">{{ _('Add a tag') }}</a>
-    <div class="addtagform hidden">
-      <form id="tagForm" action="{{ remora_url('/tags/add/') }}"
-            method="post">{# TODO reverse URL #}
-        {{ cake_csrf_token() }}
-        <input type="text" id="newTag" name="newTag"/>
-        <input type="hidden" name="addonid" id="addtagformaddonid" value="{{ addon.id }}"/>
-        <button id="addtagbutton">{{ _('Add', 'tags_add_tag_button') }}</button>
-      </form>
-      <span class="hint">
-        {% trans %}
-          Comma-separated, minimum of 2 characters.  Example:
-          <span class="example">ocean, sail boat, water</span>
-        {% endtrans %}
-      </span>
-    </div>
-  {% else %}
-    {% trans register='/users/register', login=login_link() %}
-      {# TODO reverse URL #}
-      <a href="{{ register }}">Register</a> or
-      <a href="{{ login }}">Log in</a> to add tags
-    {% endtrans %}
-  {% endif %}
 </div>

@@ -2527,55 +2527,18 @@ html[xmlns] .clearfix {
 }
 
 /** tag styles **/
-.addon-tags .usertag .tagitem {
-    padding-left: 20px;
-    background-image: url(../../img/amo2009/icons/icons.png);
-    background-repeat: no-repeat;
-    background-position: 0px -600px;
-}
-
-.html-rtl .addon-tags .usertag .tagitem {
-    background-position: 100% -600px;
-    padding-left: 0;
-    padding-right: 20px;
-}
-
-.addon-tags .developertag .tagitem {
+.addon-tags .tag .tagitem {
     padding-left: 20px;
     background-image: url(../../img/amo2009/icons/icons.png);
     background-repeat: no-repeat;
     background-position: 0px -1400px;
 }
 
-.html-rtl .addon-tags .developertag .tagitem {
+.html-rtl .addon-tags .tag .tagitem {
     background-position: 100% -1400px;
     padding-left: 0;
     padding-right: 20px;
 }
-
-
-.addon-tags li .removetag {
-    display:none;
-}
-.addon-tags li:hover .removetag,
-#tags .nojs li .removetag {
-    display:inline;
-    background: transparent url(../../img/amo2009/icons/cross.png) no-repeat left;
-    border: none;
-    margin: 0;
-    padding: 0;
-    padding-left: 12px;
-    text-indent: -1000px;
-    /* IE7 fix in ie7.css */
-}
-.html-rtl .addon-tags li:hover .removetag,
-.html-rtl #tags .nojs li .removetag {
-    background-position: right;
-}
-
-.addon-tags form.remove-tags { margin-bottom: 0;}
-.addon-tags form.remove-tags .removetag { vertical-align: bottom; margin-left: 3px; }
-.html-rtl .addon-tags form.remove-tags .removetag { margin-left: 0; margin-right: 3px; }
 
 #tagbox #tagMessage {
     background-color: #FFFFFF;

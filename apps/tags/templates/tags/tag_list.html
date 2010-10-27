@@ -3,29 +3,13 @@
   <a href="{{ remora_url('/tag/'+tag.tag_text) }}" class="tagitem">
     {{ tag.tag_text }}
   </a>
-  {% if is_tag_admin
-        or (request.user.is_authenticated()
-            and addon and addon.has_author(request.amo_user))
-        or tag in current_user_tags %}
-    <input type="submit" title="{{ _('Remove', 'tags_alt_remove_tag') }}"
-           name="tagid" value="{{ tag.id }}" class="removetag"/>
-  {% endif %}
 </li>
 {%- endmacro %}
 
-{% if dev_tags or user_tags %}
-<form id="tags" class="remove-tags" method="post"
-      action="{{ remora_url('/tags/remove/') }}">{# TODO reverse URL #}
-  {{ cake_csrf_token() }}
-  <input type="hidden" name="addonid" value="{{ addon.id }}" />
-  <input type="hidden" name="ajax" value="0" />
+{% if tags %}
   <ul class="addon-tags nojs" id="addonid-{{ addon.id }}">
-    {% for tag in dev_tags %}
-      {{ tag_li(tag, addon=addon, css_class='developertag') }}
-    {% endfor %}
-    {% for tag in user_tags %}
-      {{ tag_li(tag, addon=addon, css_class='usertag') }}
+    {% for tag in tags %}
+      {{ tag_li(tag, addon=addon, css_class='tag') }}
     {% endfor %}
   </ul>
-</form>
 {% endif %}
