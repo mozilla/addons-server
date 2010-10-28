@@ -5,6 +5,8 @@ from django.shortcuts import redirect
 from django.views.i18n import javascript_catalog
 from django.views.decorators.cache import cache_page
 
+import versions.urls
+
 admin.autodiscover()
 
 handler404 = 'amo.views.handler404'
@@ -25,6 +27,9 @@ urlpatterns = patterns('',
 
     # Collections.
     ('', include('bandwagon.urls')),
+
+    # Downloads.
+    ('^downloads/', include(versions.urls.download_patterns)),
 
     # Users
     ('', include('users.urls')),

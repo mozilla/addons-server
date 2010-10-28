@@ -441,6 +441,11 @@ MONGO_DATABASE = 'zamboni'
 MONGO_USERNAME = None
 MONGO_PASSWORD = None
 
+# Add-on download settings.
+MIRROR_DELAY = 30  # Minutes before we serve downloads from mirrors.
+MIRROR_URL = 'http://releases.mozilla.org/pub/mozilla.org/addons'
+LOCAL_MIRROR_URL = '%s/files' % SITE_URL
+
 # File paths
 ADDON_ICONS_PATH = UPLOADS_PATH + '/addon_icons'
 COLLECTIONS_ICON_PATH = UPLOADS_PATH + '/collection_icons'

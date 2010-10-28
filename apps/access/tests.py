@@ -104,10 +104,6 @@ class TestCheckOwnership(TestCase):
         eq_(True, check_addon_ownership(self.request, self.addon,
                                   require_owner=True))
 
-    def test_addon_status(self):
-        self.addon.status = amo.STATUS_DISABLED
-        eq_(False, check_addon_ownership(self.request, self.addon))
-
     def test_author_roles(self):
         f = self.addon.authors.filter
         roles = (amo.AUTHOR_ROLE_OWNER, amo.AUTHOR_ROLE_DEV)
