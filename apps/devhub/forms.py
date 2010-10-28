@@ -251,7 +251,7 @@ class CompatForm(happyforms.ModelForm):
         min = self.cleaned_data.get('min')
         max = self.cleaned_data.get('max')
         if not (min and max and min.version_int < max.version_int):
-            raise forms.ValidationError(_('Invalid version range'))
+            raise forms.ValidationError(_('Invalid version range.'))
         return self.cleaned_data
 
 
@@ -271,8 +271,8 @@ class BaseCompatFormSet(BaseModelFormSet):
     def clean(self):
         if any(self.errors):
             return
-        apps = [f for f in self.forms
-                if not f.cleaned_data.get('DELETE', False)]
+        apps = filter(None, [f.cleaned_data for f in self.forms
+                             if not f.cleaned_data.get('DELETE', False)])
         if not apps:
             raise forms.ValidationError(
                 _('Need at least one compatible application.'))

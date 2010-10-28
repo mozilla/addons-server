@@ -2,12 +2,12 @@
 {% set collection = collection or None %}
 {% set username = request.amo_user.username if request.user.is_authenticated() else '' %}
 {% for addon in addons %}
-  <div class="item">
+  <div class="item" data-addonid="{{ addon.id }}">
     {{ dev_heading(addon) }}
     <div class="item-info">
       {{ dev_item_info(addon, amo) }}
     </div>
-    <blockquote>
+    <div class="item-main">
       <ul class="item-details">
         {# L10n: {0} is a version number. #}
         <li>{{ _('<strong>Latest version:</strong> {0}'|
@@ -33,6 +33,6 @@
       <div class="item-actions">
         {{ dev_item_actions(addon, amo) }}
       </div>
-    </blockquote>
+    </div>
   </div>
 {% endfor %}

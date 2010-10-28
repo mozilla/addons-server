@@ -27,3 +27,29 @@
   {% endif %}
 {% endmacro %}
 
+{% macro compat(form, is_extra_form=False) %}
+  <tr{% if is_extra_form %} class="app-extra-orig{{ ' app-extra' if not form.errors }}"{% endif %}>
+    <td class="app {{ form.app.short }}">{{ form.app.pretty }}</td>
+    <td class="select">
+      <div>
+        <label>{{ form.min.label|safe }}</label> {{ form.min|safe }}
+        {{ form.non_field_errors()|safe }}
+        {{ form.min.errors|safe }}
+      </div>
+      <div><span class="range">&ndash;</span></div>
+      <div>
+        <label>{{ form.max.label|safe }}</label> {{ form.max|safe }}
+        {{ form.max.errors|safe }}
+      </div>
+    </td>
+    <td class="remove">
+      <div>
+        <label>{{ form.DELETE.label|safe }} {{ form.DELETE|safe }}</label>
+        {{ form.application|safe }}
+        {{ form.id|safe }}
+        <a href="#" class="remove"
+           title="{{ _('Remove this application') }}">x</a>
+      </div>
+    </td>
+  </td>
+{% endmacro %}

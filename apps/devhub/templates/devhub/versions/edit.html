@@ -47,6 +47,7 @@
         </table>
         <table>
           {% if compat_form %}
+          {{ compat_form.non_form_errors()|safe }}
           {{ compat_form.management_form|safe }}
           {% for form in compat_form.initial_forms %}
             {{ compat(form) }}

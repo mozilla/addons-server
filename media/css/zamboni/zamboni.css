@@ -620,21 +620,23 @@ div.popup-shim {
     display: inline-block;
 }
 
-.popup p:last-child {
+.popup p:last-child,
+.popup ul:last-child {
     margin-bottom: 0;
 }
 
 .install-note .msg,
-.popup .msg {
+.popup .msg,
+.app {
     background-repeat: no-repeat;
     min-height: 32px;
 }
 
-.firefox .install-note .msg { background-image: url(../../img/amo2009/app-icons/small/firefox.png); }
-.thunderbird .install-note .msg { background-image: url(../../img/amo2009/app-icons/small/thunderbird.png); }
-.mobile .install-note .msg { background-image: url(../../img/amo2009/app-icons/small/mobile.png); }
-.sunbird .install-note .msg { background-image: url(../../img/amo2009/app-icons/small/sunbird.png); }
-.seamonkey .install-note .msg { background-image: url(../../img/amo2009/app-icons/small/seamonkey.png); }
+.firefox .install-note .msg, .firefox.app { background-image: url(../../img/amo2009/app-icons/small/firefox.png); }
+.thunderbird .install-note .msg, .thunderbird.app { background-image: url(../../img/amo2009/app-icons/small/thunderbird.png); }
+.mobile .install-note .msg, .mobile.app { background-image: url(../../img/amo2009/app-icons/small/mobile.png); }
+.sunbird .install-note .msg, .sunbird.app { background-image: url(../../img/amo2009/app-icons/small/sunbird.png); }
+.seamonkey .install-note .msg, .seamonkey.app { background-image: url(../../img/amo2009/app-icons/small/seamonkey.png); }
 
 .install-note .msg.m-unreviewed,
 .install-note .msg.m-selfhosted,
@@ -652,7 +654,6 @@ div.popup-shim {
     position: absolute;
     left: -15px;
     margin-top: 5px;
-    z-index: 999;
     background: #fff;
     padding: 10px;
     border: 3px solid #2e5186;
@@ -691,6 +692,24 @@ div.popup-shim {
     border-color: #c90;
 }
 
+.popup.error {
+    border-color: #6c1a1a;
+    color: #333;
+}
+
+.modal-overlay {
+    background-color: #fff;
+    height: 100%;
+    -khtml-opacity: 0.75;
+    -moz-opacity: 0.75;
+    opacity: 0.75;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2000;
+}
+
 /* http://nicolasgallagher.com/demo/pure-css-speech-bubbles/bubbles.html */
 /* Creates the larger triangle. */
 .install-note:before,
@@ -710,6 +729,10 @@ div.popup-shim {
 .unreviewed .install-note:before,
 .popup.warning:before {
     border-bottom-color: #c90;
+}
+
+.popup.error:before {
+    border-bottom-color: #6c1a1a;
 }
 
 /* creates the smaller triangle */
@@ -2980,13 +3003,17 @@ a.outlink:hover {
 
 .widgets .widget.ajax-loading,
 .widgets .widget:hover.ajax-loading,
-input.ui-autocomplete-loading {
+input.ui-autocomplete-loading,
+.modal.ajax-loading {
    background-image: url(../../img/zamboni/loading-white.gif);
    background-repeat: no-repeat;
    background-position: left bottom;
 }
 input.ui-autocomplete-loading {
     background-position: right center;
+}
+.modal.ajax-loading {
+    background-position: center center;
 }
 
 #popup-staging .popup {

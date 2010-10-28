@@ -23,7 +23,9 @@ $(document).ready(function() {
 
 
 $(document).ready(function() {
-    $(".more-actions-view-dropdown").popup(".more-actions-view", {
+    $.ajaxSetup({cache: false});
+
+    $('.more-actions-popup').popup('.more-actions', {
         width: 'inherit',
         offset: {x: 15},
         callback: function(obj) {
@@ -32,6 +34,9 @@ $(document).ready(function() {
     });
 
     truncateFields();
+
+    initCompatibility();
+
     $('#edit-addon').delegate('h3 a', 'click', function(e){
         e.preventDefault();
 
@@ -484,6 +489,7 @@ function initAuthorFields() {
     }
 }
 
+
 function resetModal(obj) {
 
     upload = $("<input type='file'>").attr('name', 'upload')
@@ -503,4 +509,113 @@ function resetModal(obj) {
     $('#upload-status-bar').removeClass('progress-idle');
 
     return true;
+}
+
+
+function initCompatibility() {
+    $('p.add-app a').live('click', function(e) {
+        e.preventDefault();
+        var outer = $(this).closest('form');
+
+        $('tr.app-extra', outer).each(function() {
+            addAppRow(this);
+        });
+
+        $('.new-apps', outer).toggle();
+
+        $('.new-apps ul').delegate('a', 'click', function(e) {
+            e.preventDefault();
+            var extraAppRow = $('tr.app-extra td[class=' + $(this).attr('class') + ']', outer);
+            extraAppRow.parents('tr').find('input:checkbox').removeAttr('checked')
+                       .closest('tr').removeClass('app-extra');
+
+            $(this).closest('li').remove();
+
+            if (!$('tr.app-extra', outer).length)
+                $('p.add-app', outer).hide();
+        });
+    });
+
+    $('.compat-versions .remove').live('click', function(e) {
+        e.preventDefault();
+        var appRow = $(this).closest('tr');
+
+        appRow.addClass('app-extra');
+
+        if (!appRow.hasClass('app-extra-orig'))
+            appRow.find('input:checkbox').attr('checked', true);
+
+        $('p.add-app:hidden', $(this).closest('form')).show();
+        addAppRow(appRow);
+    });
+
+    $('.compat-update-modal').modal('a.compat-update', {
+        delegate: $('.item-actions li.compat, .compat-error-popup'),
+        hideme: false,
+        emptyme: true,
+        callback: compatModalCallback
+    });
+
+    $('.compat-error-popup').popup('.compat-error', {
+        width: '450px',
+        callback: function(obj) {
+            var $popup = this;
+            $popup.delegate('.close, .compat-update', 'click', function(e) {
+                e.preventDefault();
+                $popup.hideMe();
+            });
+            return {pointTo: $(obj.click_target)};
+        }
+    });
+}
+
+
+function addAppRow(obj) {
+    var outer = $(obj).closest('form'),
+        appClass = $('td.app', obj).attr('class');
+    if (!$('.new-apps ul', outer).length)
+        $('.new-apps', outer).html('<ul></ul>');
+    if ($('.new-apps ul a[class=' + appClass + ']', outer).length)
+        return;
+    var appLabel = $('td.app', obj).text(),
+        appHTML = '<li><a href="#" class="' + appClass + '">' + appLabel + '</a></li>';
+    $('.new-apps ul', outer).append(appHTML);
+}
+
+
+function compatModalCallback(obj) {
+    var $widget = this,
+        ct = $(obj.click_target),
+        form_url = ct.attr('data-updateurl');
+
+    if ($widget.hasClass('ajax-loading'))
+        return;
+    $widget.addClass('ajax-loading');
+
+    $widget.load(form_url, function(e) {
+        $widget.removeClass('ajax-loading');
+    });
+
+    $('form.compat-versions').live('submit', function(e) {
+        e.preventDefault();
+        $widget.empty();
+
+        if ($widget.hasClass('ajax-loading'))
+            return;
+        $widget.addClass('ajax-loading');
+
+        var widgetForm = $(this);
+        $.post(widgetForm.attr('action'), widgetForm.serialize(), function(data) {
+            $widget.removeClass('ajax-loading');
+            if ($(data).find('.errorlist').length) {
+                $widget.html(data);
+            } else {
+                var c = $('.item[data-addonid=' + widgetForm.attr('data-addonid') + '] .item-actions li.compat');
+                c.load(c.attr('data-src'));
+                $widget.hideMe();
+            }
+        });
+    });
+
+    return {pointTo: ct};
 }

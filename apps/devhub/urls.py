@@ -29,11 +29,20 @@ detail_patterns = patterns('',
         views.submit_finished, name='devhub.submit.finished'),
 )
 
+ajax_patterns = patterns('',
+    url('^versions/compatibility/status$',
+        views.ajax_compat_status, name='devhub.ajax.compat.status'),
+    url('^versions/(?P<version_id>\d+)/compatibility$',
+        views.ajax_compat_update, name='devhub.ajax.compat.update'),
+)
+
 urlpatterns = decorate(write, patterns('',
     url('^$', views.index, name='devhub.index'),
 
     # URLs for a single add-on.
     ('^addon/(?P<addon_id>\d+)/', include(detail_patterns)),
+    ('^ajax/addon/(?P<addon_id>\d+)/', include(ajax_patterns)),
+
     # Redirect people who have /addons/ instead of /addon/.
     ('^addons/\d+/.*',
      lambda r: redirect(r.path.replace('addons', 'addon', 1))),

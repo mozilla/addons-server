@@ -92,6 +92,28 @@ def dashboard(request):
                          'sort_opts': filter.opts})
 
 
+@dev_required
+def ajax_compat_status(request, addon_id, addon):
+    return jingo.render(request, 'devhub/addons/ajax_compat_status.html',
+                        dict(addon=addon))
+
+
+@dev_required
+def ajax_compat_update(request, addon_id, addon, version_id):
+    if not addon.accepts_compatible_apps():
+        raise http.Http404()
+    version = get_object_or_404(Version, pk=version_id, addon=addon)
+    compat_form = forms.CompatFormSet(request.POST or None,
+                                      queryset=version.apps.all())
+    if request.method == 'POST' and compat_form.is_valid():
+        for compat in compat_form.save(commit=False):
+            compat.version = version
+            compat.save()
+    return jingo.render(request, 'devhub/addons/ajax_compat_update.html',
+                        dict(addon=addon, version=version,
+                             compat_form=compat_form))
+
+
 @login_required
 def activity(request):
     return jingo.render(request, 'devhub/addons/activity.html')
@@ -297,7 +319,7 @@ def version_edit(request, addon_id, addon, version_id):
 
     file_form = forms.FileFormSet(request.POST or None, prefix='files',
                                   queryset=version.files.all())
-    data= {'version_form': version_form, 'file_form': file_form}
+    data = {'version_form': version_form, 'file_form': file_form}
 
     # https://bugzilla.mozilla.org/show_bug.cgi?id=605941
     # remove compatability from the version edit page for search engines

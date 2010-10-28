@@ -36,6 +36,7 @@
 #edit-addon .listing-footer {
     -moz-border-radius: 0 0 8px 8px;
     -webkit-border-radius: 0 0 8px 8px;
+    border-radius: 0 0 8px 8px;
     border-top: 1px solid #C9E8F3;
     padding: 9px;
 }
@@ -82,7 +83,7 @@
 }
 
 #edit-addon .help,
-#edit-addon .remove {
+a.remove {
     -moz-border-radius: 20px;
     -webkit-border-radius :20px;
     border-radius: 20px;
@@ -99,7 +100,7 @@
     width: 18px;
 }
 
-#edit-addon .remove {
+a.remove {
     cursor: pointer;
     line-height: 16px;
     float: right;
@@ -107,6 +108,7 @@
 }
 
 #edit-addon .author:hover .remove,
+a.remove:hover,
 #edit-addon tr:hover .help {
     background-color: #CCC;
 }
@@ -158,7 +160,107 @@
 
 /* @end */
 
+/* @group Version Compatibility */
+
+.compat-update-modal {
+    min-height: 425px;
+}
+.compat-update-modal > :first-child {
+    margin-top: 0;
+}
+.compat-update-modal > :last-child {
+    margin-bottom: 0;
+}
+
+.compat-versions table {
+    width: 100%;
+}
+.compat-versions tbody {
+    border: 1px solid #000;
+    border-width: 1px 0;
+}
+.compat-versions thead th {
+    color: #888;
+}
+.compat-versions tbody tr:not(:last-child) {
+    border-bottom: 1px dotted #a5bfce;
+}
+
+.compat-versions td.app,
+.new-apps a.app {
+    font-weight: bold;
+    min-height: 24px;
+    padding-left: 35px;
+}
+.compat-versions td.app {
+    background-position: 0 0.5em;
+    -moz-background-size: auto 24px;
+    -wekbkit-background-size: auto 24px;
+    background-size: auto 24px;
+    line-height: 30px;
+    vertical-align: top;
+}
+.new-apps a.app {
+    background-position: 0 50%;
+    -moz-background-size: auto 16px;
+    -wekbkit-background-size: auto 16px;
+    background-size: auto 16px;
+    line-height: 24px;
+}
+
+.compat-versions p.add-app {
+    margin-top: -1em;
+}
+.compat-versions p.add-app a,
+.new-apps a.app {
+    display: block;
+}
+.compat-versions p.add-app + .new-apps {
+    margin: -1em 0 1em;
+}
+
+.compat-versions thead th,
+.compat-versions table + p,
+.compat-versions .errorlist {
+    font-size: 0.85em;
+}
+.compat-versions .errorlist {
+    margin-bottom: 0;
+}
+
+.compat-versions td.select {
+    display: table-row;
+}
+.compat-versions td.select div {
+    display: table-cell;
+    padding: 0 0.5em 0;
+}
+.compat-versions td.select div:first-child {
+    padding-left: 0;
+}
+.compat-versions td.select select {
+    width: 120px;
+}
+
+.compat-versions td label,
+.compat-versions td.remove input {
+    position: absolute;
+    left: -9999px;
+}
+.compat-versions td.remove div {
+    position: relative;
+    top: 0.308em;
+}
+
+.compat-versions tr.app-extra,
+.compat-versions .new-apps {
+    display: none;
+}
+
+/* @end */
+
 /* @group Dashboard */
+
 .action-needed {
     background-color: #fff;
     border: 3px solid #c8e8f3;
@@ -177,8 +279,7 @@
 
 .action-needed .button-wrapper:last-child,
 .item ul.item-details,
-.item .item-actions ul,
-.popup ul {
+.item .item-actions ul {
     margin-bottom: 0;
 }
 
@@ -201,14 +302,6 @@
     color: #05e;
 }
 
-.compat-error {
-    background: url(../../img/zamboni/notifications.png) 0px -164px no-repeat;
-    padding-left: 15px;
-}
-.item-actions a.compat-error {
-    color: #c00;
-}
-
 .item-actions h5,
 .item-actions>ul,
 .item-actions>ul>li {
@@ -216,6 +309,9 @@
 }
 .item-actions>ul>li {
     margin-right: 4px;
+}
+.item-actions>ul>li:after {
+    margin: 0 0 4px 4px;
 }
 .item-actions>ul>li:not(:last-child):after {
     background-color: #aaa;
@@ -231,32 +327,25 @@
 .item-actions:hover>ul>li:not(:last-child):after {
     background-color: #555;
 }
-.item-actions ul li ul {
-    font-size: 1.1em;
-}
-.item-group {
-    border-top: 1px dotted #aecfda;
-    margin-top: 0.5em;
-    padding-top: 0.5em;
-}
 
 .item-actions h5 {
     font-size: 1em;
-    margin-right: 8px;
+    margin-right: 4px;
 }
 .item-actions h5:after {
     content: ":";
 }
 
-.listing .item blockquote {
-    overflow-x: visible; /* Undoing ``hidden`` so 'More' popup can breathe. */
+a.more-actions {
+    position: relative;
 }
 a.more-actions:after {
     border-color: #aaa transparent transparent;
     border-style: solid;
     border-width: 3px 3px 0;
     content: "";
-    float: right;
+    position: absolute;
+    top: -2px;
     height: 0;
     margin: 8px 0 0 4px;
     width: 0;
@@ -268,6 +357,34 @@ a.more-actions:after:hover {
     text-decoration: none;
 }
 
+.more-actions-popup li a {
+    display: block;
+}
+.more-actions-popup .item-group {
+    border-top: 1px dotted #aecfda;
+    margin-top: 0.5em;
+    padding-top: 0.5em;
+}
+
+/* @group Compatibility */
+
+.compat-error {
+    background: url(../../img/zamboni/notifications.png) 0px -164px no-repeat;
+    padding-left: 15px;
+}
+.item-actions a.compat-error {
+    color: #c00;
+}
+
+.compat-error-popup.popup {
+    padding: 15px;
+}
+.compat-error-popup.popup .msg {
+    padding-left: 45px;
+}
+
+/* @end */
+
 #submit-addon {
     margin-bottom: 3em;
 }
@@ -275,7 +392,7 @@ a.more-actions:after:hover {
 #submit-addon a.button:visited {
     background: #5af;
     background: -moz-linear-gradient(top, #acf, #5af);
-    background: -webkit-gradient(linear, left top, left bottom, #acf, #5af);
+    background: -webkit-gradient(linear, left top, left bottom, from(#acf), to(#5af));
     -moz-border-radius: 8px;
     -webkit-border-radius: 8px;
     border-radius: 8px;
@@ -287,15 +404,15 @@ a.more-actions:after:hover {
 #submit-addon a.button:hover,
 #submit-addon a.button:focus {
     border-color: #25f;
-    -moz-box-shadow: inset 0 0 2px rgba(255, 255, 255, 1);
-    -webkit-box-shadow: inset 0 0 2px rgba(255, 255, 255, 1);
-    box-shadow: inset 0 0 2px rgba(255, 255, 255, 1);
+    -moz-box-shadow: inset 0 0 2px #fff;
+    -webkit-box-shadow: inset 0 0 2px #fff;
+    box-shadow: inset 0 0 2px #fff;
 }
 #submit-addon a.button:active {
     border-color: #03c;
     background: #7bf;
     background: -moz-linear-gradient(top, #5af, #7bf);
-    background: -webkit-gradient(linear, left top, left bottom, #39f, #7bf);
+    background: -webkit-gradient(linear, left top, left bottom, from(#5af), to(#7bf));
     -moz-box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
     -webkit-box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
     box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);

@@ -502,6 +502,10 @@ class Addon(amo.models.ModelBase):
         else:
             return {}
 
+    def accepts_compatible_apps(self):
+        """True if this add-on lists compatible apps."""
+        return self.type not in amo.NO_COMPAT
+
     def incompatible_latest_apps(self):
         """Returns a list of applications with which this add-on is
         incompatible (based on the latest version).

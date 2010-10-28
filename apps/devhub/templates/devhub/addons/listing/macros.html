@@ -39,16 +39,13 @@
         {{ _('Edit Listing') }}</a>
     </li>
     <li>
-{# TODO: Add URL for 'Manage Version' page. #}
-      <a href="#" class="tooltip"
+      <a href="{{ url('devhub.versions', addon.id) }}" class="tooltip"
          title="{{ _('Upload a new version of this add-on.') }}">
         {{ _('New Version') }}</a>
     </li>
-    <li>
-      <a href="#"
-         class="tooltip{% if addon.incompatible_latest_apps() %} compat-error{% endif %}"
-         title="{{ _('View and update application compatibility ranges.') }}">
-        {{ _('Compatibility') }}</a>
+    <li class="compat"
+        data-src="{{ url('devhub.ajax.compat.status', addon.id) }}">
+      {% include "devhub/addons/ajax_compat_status.html" %}
     </li>
     <li>
       <a href="{{ url('stats.overview', addon.id) }}" class="tooltip"
@@ -56,18 +53,18 @@
         {{ _('Statistics') }}</a>
     </li>
     <li>
-      <a href="#" class="more-actions-view more-actions">{{ _('More') }}</a>
-        <div class="more-actions-view-dropdown popup hidden">
-          <ul>
+      <a href="#" class="more-actions">{{ _('More') }}</a>
+      <div class="more-actions-popup popup hidden">
+        <ul>
 {# TODO: Add URLs for 'Manage Add-on' pages. #}
-            <li><a href="#">{{ _('Manage Authors & License') }}</a></li>
-            <li><a href="#">{{ _('Manage Payments') }}</a></li>
-            <li><a href="#">{{ _('Manage Status & Versions') }}</a></li>
-            <li class="item-group"><a href="#">
-              {{ _('View Add-on Listing') }}</a></li>
-            <li><a href="#">{{ _('View Recent Changes') }}</a></li>
-          </ul>
-        </div>
+          <li><a href="#">{{ _('Manage Authors & License') }}</a></li>
+          <li><a href="#">{{ _('Manage Payments') }}</a></li>
+          <li><a href="#">{{ _('Manage Status & Versions') }}</a></li>
+          <li class="item-group"><a href="#">
+            {{ _('View Add-on Listing') }}</a></li>
+          <li><a href="#">{{ _('View Recent Changes') }}</a></li>
+        </ul>
+      </div>
     </li>
   </ul>
 {% endmacro %}

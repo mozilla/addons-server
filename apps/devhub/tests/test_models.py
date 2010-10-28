@@ -68,4 +68,3 @@ class TestActivityLog(test_utils.TestCase):
         eq_(len(entries), 1)
         entries = ActivityLog.objects.for_user(u)
         eq_(len(entries), 1)
-

@@ -44,7 +44,7 @@ jQuery.fn.tooltip = function(tip_el) {
     }).live("mouseout", function (e) {
         $tip.hide()
             .removeClass("error");
-        if ($title.length) {
+        if ($title && $title.length) {
             $tgt = $(this);
             $title.attr('title', $title.attr('data-oldtitle'))
                   .attr('data-oldtitle', '');
@@ -195,18 +195,19 @@ $.fn.popup = function(click_target, o) {
     return $popup;
 };
 
+
 // makes an element into a modal.
-// click_target defines the element/elements that trigger the popup.
+// click_target defines the element/elements that trigger the modal.
 // currently presumes the given element uses the '.modal' style
 // o takes the following optional fields:
-//     callback:    a function to run before displaying the popup. Returning
-//                  false from the function cancels the popup.
-//     container:   if set the popup will be appended to the container before
+//     callback:    a function to run before displaying the modal. Returning
+//                  false from the function cancels the modal.
+//     container:   if set the modal will be appended to the container before
 //                  being displayed.
-//     width:       the width of the popup.
+//     width:       the width of the modal.
 //     delegate:    delegates the click handling of the click_target to the
 //                  specified parent element.
-//     hideme:      defaults to true, if set to false, popup will not be hidden
+//     hideme:      defaults to true, if set to false, modal will not be hidden
 //                  when the user clicks outside of it.
 // note: all options may be overridden and modified by returning them in an
 //       object from the callback.
@@ -221,8 +222,9 @@ $.fn.modal = function(click_target, o) {
         callback:   false,
         onresize:   function(){$modal.setPos();},
         hideme:     true,
+        emptyme:    false,
         offset:     {},
-        width:      300
+        width:      450
     }, o);
 
     $modal.setWidth = function(w) {
@@ -247,11 +249,16 @@ $.fn.modal = function(click_target, o) {
     };
 
     $modal.hideMe = function() {
+        var p = $modal.o;
         $modal.hide();
         $modal.unbind();
         $modal.undelegate();
         $(document.body).unbind('click newmodal', $modal.hider);
         $(window).bind('resize', $modal.o.onresize);
+        $('.modal-overlay').remove();
+        if (p.emptyme) {
+            $modal.empty();
+        }
         return $modal;
     };
 
@@ -282,6 +289,7 @@ $.fn.modal = function(click_target, o) {
         $ct.trigger("modal_show", [$modal]);
         if (p.container && p.container.length)
             $modal.detach().appendTo(p.container);
+        $('<div class="modal-overlay"></div>').appendTo('body');
         $modal.setPos();
         setTimeout(function(){
             $modal.show();

@@ -20,11 +20,11 @@ from devhub.forms import ContribForm
 from devhub.models import ActivityLog
 from files.models import File, Platform
 from users.models import UserProfile
-from versions.models import License, Version
+from versions.models import ApplicationsVersions, License, Version
 
 
 class HubTest(test_utils.TestCase):
-    fixtures = ('browse/nameless-addon', 'base/users')
+    fixtures = ['browse/nameless-addon', 'base/users']
 
     def setUp(self):
         translation.activate('en-US')
@@ -131,10 +131,7 @@ class TestDashboard(HubTest):
         r = self.client.get(self.url)
         doc = pq(r.content)
 
-        # There should be 10 add-on listing items.
         eq_(len(doc('.item .item-info')), 10)
-
-        # There should be neither a listing header nor a pagination footer.
         eq_(doc('#addon-list-options').length, 0)
         eq_(doc('.listing-footer .pagination').length, 0)
 
@@ -144,12 +141,58 @@ class TestDashboard(HubTest):
         r = self.client.get(self.url + '?page=2')
         doc = pq(r.content)
 
-        # There should be 10 add-on listing items.
         eq_(len(doc('.item .item-info')), 5)
-
-        # There should be a listing header and pagination footer.
         eq_(doc('#addon-list-options').length, 1)
         eq_(doc('.listing-footer .pagination').length, 1)
+
+
+class TestUpdateCompatibility(test_utils.TestCase):
+    fixtures = ['base/apps', 'base/users', 'base/addon_4594_a9',
+                'base/addon_3615']
+
+    def setUp(self):
+        self.url = reverse('devhub.addons')
+
+    def test_no_compat(self):
+        assert self.client.login(username='admin@mozilla.com',
+                                 password='password')
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        assert not doc('.item[data-addonid=4594] .tooltip.compat-update')
+        a = Addon.objects.get(pk=4594)
+        r = self.client.get(reverse('devhub.ajax.compat.update',
+                                    args=[a.id, a.current_version.id]))
+        eq_(r.status_code, 404)
+
+    def test_compat(self):
+        a = Addon.objects.get(pk=3615)
+        assert self.client.login(username='del@icio.us', password='password')
+
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        cu = doc('.item[data-addonid=3615] .tooltip.compat-update')
+        assert cu
+
+        update_url = reverse('devhub.ajax.compat.update',
+                             args=[a.id, a.current_version.id])
+        eq_(cu.attr('data-updateurl'), update_url)
+
+        status_url = reverse('devhub.ajax.compat.status', args=[a.id])
+        eq_(doc('.item[data-addonid=3615] li.compat').attr('data-src'),
+            status_url)
+
+        assert doc('.item[data-addonid=3615] .compat-update-modal')
+
+    def test_incompat(self):
+        av = ApplicationsVersions.objects.get(pk=47881)
+        av.max = AppVersion.objects.get(pk=97)  # Firefox 2.0
+        av.save()
+        assert self.client.login(username='del@icio.us', password='password')
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        assert doc('.item[data-addonid=3615] .tooltip.compat-error')
+        assert doc('.item[data-addonid=3615] .compat-error-popup .app.%s' %
+                   amo.FIREFOX.short)
 
 
 def formset(*args, **kw):
@@ -1060,7 +1103,7 @@ class TestVersionEditCompat(TestVersionEdit):
         r = self.client.post(self.url, self.formset(d, initial_count=1))
         eq_(r.status_code, 200)
         eq_(r.context['compat_form'].forms[0].non_field_errors(),
-            ['Invalid version range'])
+            ['Invalid version range.'])
 
 
 class TestAddonSubmission(test_utils.TestCase):
