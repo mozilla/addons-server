@@ -1,8 +1,12 @@
+DROP TABLE IF EXISTS log_activity_addon;
+DROP TABLE IF EXISTS log_activity_user;
+DROP TABLE IF EXISTS log_activity;
+
 CREATE TABLE `log_activity_addon` (
     `id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
     `created` datetime NOT NULL,
     `modified` datetime NOT NULL,
-    `addon_id` integer NOT NULL,
+    `addon_id` integer UNSIGNED NOT NULL,
     `activity_log_id` integer NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
 ;
@@ -12,7 +16,7 @@ CREATE TABLE `log_activity_user` (
     `created` datetime NOT NULL,
     `modified` datetime NOT NULL,
     `activity_log_id` integer NOT NULL,
-    `user_id` integer NOT NULL
+    `user_id` integer UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
 ;
 ALTER TABLE `log_activity_user` ADD CONSTRAINT `user_id_refs_id_e987c199` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
@@ -20,7 +24,7 @@ CREATE TABLE `log_activity` (
     `id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
     `created` datetime NOT NULL,
     `modified` datetime NOT NULL,
-    `user_id` integer,
+    `user_id` integer UNSIGNED,
     `action` smallint NOT NULL,
     `arguments` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
