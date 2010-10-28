@@ -1085,3 +1085,31 @@ class TestAddonSubmission(test_utils.TestCase):
         eq_(next_steps[1].attrib['href'],
             reverse('devhub.addons.edit',
                     kwargs=dict(addon_id=addon.id)))
+
+    def test_finish_addon_for_prelim_review(self):
+        addon = Addon.objects.get(pk=3615)
+        addon.status = amo.STATUS_UNREVIEWED
+        addon.admin_review_type = amo.ADMIN_REVIEW_PRELIM
+        addon.save()
+
+        response = self.client.get(reverse('devhub.submit.finished',
+                                    kwargs=dict(addon_id=addon.id)))
+        eq_(response.status_code, 200)
+        doc = pq(response.content)
+        exp = 'Your add-on has been submitted to the Preliminary Review queue'
+        intro = doc('.addon-submission-process p').text()
+        assert exp in intro, ('Unexpected intro: %s' % intro.strip())
+
+    def test_finish_addon_for_full_review(self):
+        addon = Addon.objects.get(pk=3615)
+        addon.status = amo.STATUS_UNREVIEWED
+        addon.admin_review_type = amo.ADMIN_REVIEW_FULL
+        addon.save()
+
+        response = self.client.get(reverse('devhub.submit.finished',
+                                    kwargs=dict(addon_id=addon.id)))
+        eq_(response.status_code, 200)
+        doc = pq(response.content)
+        exp = 'Your add-on has been submitted to the Full Review queue'
+        intro = doc('.addon-submission-process p').text()
+        assert exp in intro, ('Unexpected intro: %s' % intro.strip())

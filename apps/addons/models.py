@@ -149,6 +149,9 @@ class Addon(amo.models.ModelBase):
     public_stats = models.BooleanField(default=False, db_column='publicstats')
     prerelease = models.BooleanField(default=False)
     admin_review = models.BooleanField(default=False, db_column='adminreview')
+    admin_review_type = models.PositiveIntegerField(
+                                    choices=amo.ADMIN_REVIEW_TYPES.items(),
+                                    default=amo.ADMIN_REVIEW_FULL)
     site_specific = models.BooleanField(default=False,
                                         db_column='sitespecific')
     external_software = models.BooleanField(default=False,

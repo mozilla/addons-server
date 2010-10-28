@@ -16,8 +16,9 @@
 <section class="primary addon-submission-process" role="main">
   <h3>{{ _("You're all set!") }}</h3>
   <p>
+  {% set prelim_or_full = amo.ADMIN_REVIEW_TYPES[addon.admin_review_type] %}
   {% trans %}
-    Your add-on has been submitted to the (Preliminary|Full) Review queue
+    Your add-on has been submitted to the {{ prelim_or_full }} Review queue
     and you'll receive an email once it's been reviewed by an editor. In the
     meantime, you and your friends can install the add-on directly from its
     details page:
