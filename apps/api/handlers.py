@@ -1,16 +1,18 @@
 import functools
 
 from django.db import transaction
+from django import forms
 
 import commonware.log
 from piston.handler import AnonymousBaseHandler, BaseHandler
 from piston.utils import rc, throttle
 from tower import ugettext as _
 
+import amo
 from access import acl
 from addons.forms import AddonForm
 from addons.models import Addon
-from devhub.forms import LicenseForm
+from devhub.forms import LicenseForm, CompatFormSet
 from users.models import UserProfile
 from versions.forms import XPIForm
 from versions.models import Version, ApplicationsVersions
@@ -85,7 +87,7 @@ class UserHandler(BaseHandler):
 class AddonsHandler(BaseHandler):
     allowed_methods = ('POST', 'PUT', 'DELETE',)
     model = Addon
-    fields = ('id', 'name', 'eula', 'guid',)
+    fields = ('id', 'name', 'eula', 'guid', 'current_version',)
     exclude = ('highest_status', 'icon_type')
 
     # Custom handler so translated text doesn't look weird
@@ -129,14 +131,11 @@ class AddonsHandler(BaseHandler):
         return rc.DELETED
 
 
-class ApplicationsVersionsHandler(AnonymousBaseHandler):
-    model = ApplicationsVersions
-    allowed_methods = ('GET', )
-    fields = ('application', 'max', 'min',)
+class BaseApplicationsVersionsHandler(object):
 
     @classmethod
     def application(cls, av):
-        return unicode(av.application)
+        return amo.APP_IDS[av.application_id].short
 
     @classmethod
     def max(cls, av):
@@ -145,6 +144,47 @@ class ApplicationsVersionsHandler(AnonymousBaseHandler):
     @classmethod
     def min(cls, av):
         return av.min.version
+
+
+class AnonymousApplicationsVersionsHandler(AnonymousBaseHandler,
+                                  BaseApplicationsVersionsHandler):
+    allowed_methods = ('GET', )
+    model = ApplicationsVersions
+    fields = ('application', 'max', 'min',)
+
+
+class ApplicationsVersionsHandler(BaseHandler,
+                                  BaseApplicationsVersionsHandler):
+    allowed_methods = ('PUT', 'GET')
+    model = ApplicationsVersions
+    anonymous = AnonymousApplicationsVersionsHandler
+    fields = AnonymousApplicationsVersionsHandler.fields
+
+    @check_addon_and_version
+    @throttle(10, 60 * 60)
+    def update(self, request, addon, version):
+        """
+        Note: This API is unfriendly for public usage due to its use of
+        formsets.
+        """
+        form = CompatFormSet(request.PUT or None, queryset=version.apps.all())
+        if not form.is_valid():
+            resp = rc.BAD_REQUEST
+            if not form.is_bound:
+                errors = _('No data')
+            else:
+                errors = ' '.join(form.non_form_errors() +
+                        [f.non_field_errors().as_text()[2:]
+                        for f in form.forms if f.non_field_errors()])
+            resp.write(': %s' % errors)
+            return resp
+
+        compats = []
+        for compat in form.save(commit=False):
+            compat.version = version
+            compat.save()
+            compats.append(compat)
+        return compats
 
 
 class BaseVersionHandler(object):
@@ -168,7 +208,7 @@ class AnonymousVersionsHandler(AnonymousBaseHandler, BaseVersionHandler):
     model = Version
     allowed_methods = ('GET',)
     fields = ('id', 'addon_id', 'created', 'release_notes', 'version',
-              'license', 'current', 'apps' )
+              'license', 'current', 'apps',)
 
     def read(self, request, addon_id, version_id=None):
         if version_id:

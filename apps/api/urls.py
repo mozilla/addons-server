@@ -65,6 +65,8 @@ ad = dict(authentication=authentication.AMOOAuthAuthentication())
 user_resource = Resource(handler=handlers.UserHandler, **ad)
 addons_resource = Resource(handler=handlers.AddonsHandler, **ad)
 version_resource = Resource(handler=handlers.VersionsHandler, **ad)
+compatibility_resource = Resource(
+        handler=handlers.ApplicationsVersionsHandler, **ad)
 
 piston_patterns = patterns('',
     url(r'^user/$', user_resource, name='api.user'),
@@ -74,6 +76,8 @@ piston_patterns = patterns('',
         name='api.versions'),
     url(r'^addon/(?P<addon_id>\d+)/version/(?P<version_id>\d+)$',
         version_resource, name='api.version'),
+    url(r'^addon/(?P<addon_id>\d+)/version/(?P<version_id>\d+)/compatibility$',
+        compatibility_resource, name='api.compatibility'),
 )
 
 urlpatterns = patterns('',

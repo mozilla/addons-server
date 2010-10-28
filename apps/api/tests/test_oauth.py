@@ -162,9 +162,16 @@ def get_access_token(consumer, token, authorize=True, verifier=None):
         eq_(r.status_code, 401)
 
 
-class BaseOauth(TestCase):
+class BasePiston(TestCase):
+    """Base TestCase class for Piston."""
     fixtures = ('base/users', 'base/appversion', 'base/platforms',
                 'base/licenses')
+
+    def _login(self):
+        self.client.login(username='admin@mozilla.com', password='password')
+
+
+class BaseOauth(BasePiston):
 
     def setUp(self):
         consumers = []
@@ -176,9 +183,6 @@ class BaseOauth(TestCase):
         self.accepted_consumer = consumers[0]
         self.pending_consumer = consumers[1]
         self.canceled_consumer = consumers[2]
-
-    def _login(self):
-        self.client.login(username='admin@mozilla.com', password='password')
 
     def _oauth_flow(self, consumer, authorize=True, callback=False):
         """
@@ -258,23 +262,18 @@ class TestBasicOauth(BaseOauth):
         eq_(r.content, 'Invalid consumer.')
 
 
+def create_data():
+    f = open(os.path.join(settings.ROOT,
+                          'apps/api/fixtures/api/helloworld.xpi'))
+    return dict(builtin=0, name='FREEDOM', text='This is FREE!',
+                   platform='mac', xpi=f,)
+
 class TestAddon(BaseOauth):
 
     def setUp(self):
         super(TestAddon, self).setUp()
         consumer = self.accepted_consumer
         self._oauth_flow(consumer)
-        path = 'apps/api/fixtures/api/helloworld.xpi'
-        xpi = os.path.join(settings.ROOT, path)
-        f = open(xpi)
-
-        self.create_data = dict(
-                builtin=0,
-                name='FREEDOM',
-                text='This is FREE!',
-                platform='mac',
-                xpi=f,
-                )
 
         path = 'apps/api/fixtures/api/helloworld-0.2.xpi'
         self.version_data = dict(
@@ -288,7 +287,7 @@ class TestAddon(BaseOauth):
                            data=data)
 
     def create_addon(self):
-        r = self.make_create_request(self.create_data)
+        r = self.make_create_request(create_data())
         eq_(r.status_code, 200, r.content)
         return json.loads(r.content)
 
@@ -386,11 +385,11 @@ class TestAddon(BaseOauth):
     @patch('api.handlers.XPIForm.clean_xpi')
     def test_xpi_failure(self, f):
         f.side_effect = forms.ValidationError('F')
-        r = self.make_create_request(self.create_data)
+        r = self.make_create_request(create_data())
         eq_(r.status_code, 400)
 
     def test_fake_license(self):
-        data = self.create_data.copy()
+        data = create_data()
         data['builtin'] = 'fff'
 
         r = self.make_create_request(data)
@@ -402,7 +401,7 @@ class TestAddon(BaseOauth):
     @patch('zipfile.ZipFile.namelist')
     def test_bad_zip(self, namelist):
         namelist.return_value = ('..', )
-        r = self.make_create_request(self.create_data)
+        r = self.make_create_request(create_data())
         eq_(r.status_code, 400, r.content)
 
     @patch('versions.models.AppVersion.objects.get')
@@ -427,7 +426,7 @@ class TestAddon(BaseOauth):
 
     def test_duplicate_guid(self):
         self.create_addon()
-        data = self.create_data.copy()
+        data = create_data()
         data['xpi'] = self.version_data['xpi']
         r = self.make_create_request(data)
         eq_(r.status_code, 400)
@@ -513,6 +512,34 @@ class TestAddon(BaseOauth):
         eq_(v.version, '0.2')
         eq_(str(v.releasenotes), 'fukyeah')
 
+    def test_update_version_compatability(self):
+        # Create an addon
+        data = self.create_addon()
+        id = data['id']
+
+        # verify version
+        a = Addon.objects.get(pk=id)
+        v = a.versions.get()
+        eq_(v.version, '0.1')
+        data = {
+                'form-TOTAL_FORMS': 1,
+                'form-INITIAL_FORMS': 1,
+                'form-MAX_NUM_FORMS': '',
+                'form-0-id': v.apps.get().id,
+                'form-0-min': 311,
+                'form-0-max': 313,
+                'form-0-application': 1,
+               }
+        # upload new version
+        r = client.put(('api.compatibility', id, v.id), self.accepted_consumer,
+                       self.token, data=data, content_type=MULTIPART_CONTENT)
+        eq_(r.status_code, 200, r.content[:1000])
+        data = json.loads(r.content)
+
+        eq_(data[0]['application'], 'firefox')
+        eq_(data[0]['min'], '3.7a3')
+        eq_(data[0]['max'], '3.7a4')
+
     def test_update_version_bad_xpi(self):
         data = self.create_addon()
         id = data['id']
@@ -582,3 +609,44 @@ class TestAddon(BaseOauth):
             val = data[0].get(attr)
             eq_(expect, val,
                 'Got "%s" was expecting "%s" for "%s".' % (val, expect, attr,))
+
+
+class TestAddonSansOauth(BasePiston):
+    """OAuth is not required if you are logged in.  So let's try some stuff."""
+
+    def create_addon(self):
+        self._login()
+        r = self.client.post(reverse('api.addons'), create_data())
+        eq_(r.status_code, 200, r.content)
+        return json.loads(r.content)
+
+    def test_update_version_compatability_bad_form(self):
+        data = self.create_addon()
+        id = data['id']
+
+        # verify version
+        a = Addon.objects.get(pk=id)
+        v = a.versions.get()
+
+        eq_(v.version, '0.1')
+        # upload new version
+        r = self.client.put(reverse('api.compatibility', args=(id, v.id,)))
+        eq_(r.status_code, 400, r.content[:1000])
+        eq_(r.content, 'Bad Request: No data')
+
+    def test_version_anonymous(self):
+        r = self.client.get(reverse('api.versions', args=(999,)))
+        eq_(r.status_code, 410)
+
+        data = self.create_addon()
+        id = data['id']
+
+        self.client.logout()
+        r = self.client.get(reverse('api.versions', args=(id,)))
+        eq_(r.status_code, 200)
+        a = Addon.objects.get()
+        v = a.versions.get()
+        r = self.client.get(reverse('api.version', args=(id, v.id)))
+        eq_(r.status_code, 200)
+        r = self.client.get(reverse('api.version', args=(id, 999)))
+        eq_(r.status_code, 410)
