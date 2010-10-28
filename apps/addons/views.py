@@ -465,7 +465,12 @@ def share(request, addon_id):
 def license(request, addon_id, version=None):
     addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
     if version is not None:
-        version = get_object_or_404(addon.versions, version=version)
+        vs = addon.versions.filter(version=version,
+                                   files__status__in=amo.VALID_STATUSES)
+        if vs:
+            version = vs[0]
+        else:
+            raise http.Http404()
     else:
         version = addon.current_version
     if not (version and version.license):
