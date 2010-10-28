@@ -6,7 +6,7 @@ from django.utils import translation as translation_utils
 from django.utils.translation.trans_real import to_language
 
 from .models import Translation, PurifiedTranslation, LinkifiedTranslation
-from .widgets import TranslationWidget
+from .widgets import TransInput, TransTextarea
 
 
 class TranslatedField(models.ForeignKey):
@@ -24,6 +24,7 @@ class TranslatedField(models.ForeignKey):
         # Django wants to default to translations.autoid, but we need id.
         options = dict(null=True, to_field='id', unique=True, blank=True)
         kwargs.update(options)
+        self.short = kwargs.pop('short', True)
         self.require_locale = kwargs.pop('require_locale', True)
         super(TranslatedField, self).__init__(self.to, **kwargs)
 
@@ -57,7 +58,8 @@ class TranslatedField(models.ForeignKey):
         setattr(cls, self.name, TranslationDescriptor(self))
 
     def formfield(self, **kw):
-        defaults = {'form_class': TranslationFormField}
+        widget = TransInput if self.short else TransTextarea
+        defaults = {'form_class': TranslationFormField, 'widget': widget}
         defaults.update(kw)
         return super(TranslatedField, self).formfield(**defaults)
 
@@ -177,12 +179,11 @@ class TranslationDescriptor(related.ReverseSingleRelatedObjectDescriptor):
 
 
 class TranslationFormField(forms.Field):
-    widget = TranslationWidget
-
     def __init__(self, *args, **kwargs):
         for k in ('queryset', 'to_field_name'):
             if k in kwargs:
                 del kwargs[k]
+        self.widget = kwargs.pop('widget', TransInput)
         super(TranslationFormField, self).__init__(*args, **kwargs)
 
     def clean(self, value):
