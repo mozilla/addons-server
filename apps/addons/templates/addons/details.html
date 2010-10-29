@@ -127,6 +127,10 @@
          (addon.show_beta and addon.current_beta_version)  %}
     <h3 id="more-about">{{ _('More about this add-on') }}</h3>
     <div class="article userinput">
+      {% if addon.id == 4664 or addon.id == 144983 %}
+        {# This is for Bug 595561. #}
+        {% include 'addons/qr_code.html' %}
+      {% endif %}
       <p{{ addon.description|locale_html }}>{{ addon.description|nl2br }}</p>
 
       {% if previews|length > 1 %}

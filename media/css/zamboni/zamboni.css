@@ -2977,3 +2977,22 @@ input.ui-autocomplete-loading {
 #popup-staging .popup {
     display: none;
 }
+
+
+/** Add-on detail page QR Code area. Feature test from Bug 595561 **/
+#addon-qr-code {
+    -moz-border-radius: 5px;
+    background-color: #C8E8F3;
+    border: 6px solid #C8E8F3;
+    color: #223355;
+    float: right;
+    font-size: 0.9em;
+    margin-left: 0.5em;
+    width: 172px;
+}
+
+.html-rtl #addon-qr-code {
+    float: left;
+    margin-left: 0;
+    margin-right: 0.5em;
+}

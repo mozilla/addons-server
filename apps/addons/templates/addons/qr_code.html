@@ -1,0 +1,9 @@
+{# Bug 595561: testing QR codes for a couple addons.
+   Image path is temporary for testing. #}
+<div id="addon-qr-code">
+  <img src="{{ MEDIA_URL }}img/zamboni/qr_code_test/{{ addon.id }}.jpg"
+       alt="{{ _("QR code for add-on") }}" />
+  {{ _("Want {0} on your mobile Firefox?  Scan this QR code to install directly
+  to your phone.  (You'll need a QR reader.  Search your phone's marketplace if
+  don't have one.)")|f(addon.name) }}
+</div>
