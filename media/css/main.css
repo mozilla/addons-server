@@ -942,6 +942,12 @@ form.favorite {
 }
 .policy-statement {
     margin-bottom: 1em;
+    max-height: 300px;
+    overflow: auto;
+    padding:2px 5px;
+    background-color: #fff;
+    border: 1px solid #5875A0;
+    color:#666666;
 }
 
 .prose {

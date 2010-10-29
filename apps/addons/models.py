@@ -120,8 +120,8 @@ class Addon(amo.models.ModelBase):
 
     summary = LinkifiedField()
     developer_comments = PurifiedField(db_column='developercomments')
-    eula = TranslatedField()
-    privacy_policy = TranslatedField(db_column='privacypolicy')
+    eula = PurifiedField()
+    privacy_policy = PurifiedField(db_column='privacypolicy')
     the_reason = TranslatedField()
     the_future = TranslatedField()
 

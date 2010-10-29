@@ -31,7 +31,7 @@
     {% endtrans %}
   </p>
 </div>
-<textarea class="policy-statement" readonly="readonly" cols="80" rows="20">{{ addon.eula }}</textarea>
+<div class="policy-statement">{{ addon.eula }}</div>
 {{ install_button(addon, version=version, show_contrib=False,
                   show_eula=False, show_warning=False) }}
 <p class="policy-link">
