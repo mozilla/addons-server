@@ -27,7 +27,7 @@ class TestFile(test_utils.TestCase):
     def test_latest_url(self):
         # With platform.
         f = File.objects.get(id=74797)
-        base = '/en-US/firefox/downloads/latest/'
+        base = '/firefox/downloads/latest/'
         expected = base + '{0}/platform:3/addon-{0}-latest.xpi'
         eq_(expected.format(f.version.addon_id), f.latest_xpi_url())
 

@@ -56,7 +56,8 @@ def _find_version_page(qs, addon_id, version_num):
 # Should accept junk at the end for filename goodness.
 def download_file(request, file_id, type=None):
     file = get_object_or_404(File.objects, pk=file_id)
-    addon = get_object_or_404(Addon.objects, pk=file.version.addon_id)
+    addon = get_object_or_404(Addon.objects.all().no_transforms(),
+                              pk=file.version.addon_id)
 
     if (addon.status == amo.STATUS_DISABLED
         and not acl.check_ownership(request, addon)):
@@ -64,10 +65,16 @@ def download_file(request, file_id, type=None):
 
     attachment = (type == 'attachment' or not request.APP.browser)
 
-    published = datetime.now() - file.datestatuschanged
-    if (not (settings.DEBUG or attachment)
-        and addon.status == file.status == amo.STATUS_PUBLIC
-        and published > timedelta(minutes=settings.MIRROR_DELAY)):
+    if file.datestatuschanged:
+        published = datetime.now() - file.datestatuschanged
+    else:
+        published = timedelta(minutes=0)
+
+    if attachment:
+        host = posixpath.join(settings.LOCAL_MIRROR_URL, '_attachments')
+    elif (addon.status == file.status == amo.STATUS_PUBLIC
+          and published > timedelta(minutes=settings.MIRROR_DELAY)
+          and not settings.DEBUG):
         host = settings.MIRROR_URL  # Send it to the mirrors.
     else:
         host = settings.LOCAL_MIRROR_URL
@@ -77,16 +84,19 @@ def download_file(request, file_id, type=None):
     return response
 
 
-def download_latest(request, addon_id, type=None, platform=None):
-    if type is None:
-        type = 'xpi'
+def download_latest(request, addon_id, type='xpi', platform=None):
+    addon = get_object_or_404(Addon.objects.all().no_transforms(),
+                              pk=addon_id, _current_version__isnull=False)
     platforms = [amo.PLATFORM_ALL.id]
-    if platform is not None and int(platform)in amo.PLATFORMS:
+    if platform is not None and int(platform) in amo.PLATFORMS:
         platforms.append(int(platform))
-    addon = get_object_or_404(Addon.objects, pk=addon_id,
-                              _current_version__isnull=False)
-    file = get_object_or_404(File.objects, platform__in=platforms,
-                              version=addon.current_version)
+    files = File.objects.filter(platform__in=platforms,
+                                version=addon._current_version_id)
+    try:
+        # If there's a file matching our platform, it'll float to the end.
+        file = sorted(files, key=lambda f: f.platform_id == platforms[-1])[-1]
+    except IndexError:
+        raise http.Http404()
     url = posixpath.join(reverse('downloads.file', args=[file.id, type]),
                          file.filename)
     if request.GET:

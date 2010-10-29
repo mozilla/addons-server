@@ -170,7 +170,7 @@ class THUNDERBIRD:
     short = 'thunderbird'
     shortername = 'tb'
     pretty = _(u'Thunderbird')
-    browser = True
+    browser = False
     types = [ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_LPAPP,
              ADDON_PERSONA]
     guid = '{3550f703-e582-4d05-9a08-453d09bdfdc6}'

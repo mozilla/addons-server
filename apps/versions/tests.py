@@ -1,7 +1,6 @@
 from datetime import datetime, timedelta
 from django.conf import settings
 
-import nose
 import mock
 import test_utils
 from nose.tools import eq_
@@ -174,8 +173,11 @@ class TestDownloadsBase(test_utils.TestCase):
             '%s/%s/%s' % (host, self.addon.id, file_.filename))
         eq_(response['X-Target-Digest'], file_.hash)
 
-    def assert_served_locally(self, response, file_=None):
-        self.assert_served_by_host(response, settings.LOCAL_MIRROR_URL, file_)
+    def assert_served_locally(self, response, file_=None, attachment=False):
+        host = settings.LOCAL_MIRROR_URL
+        if attachment:
+            host += '/_attachments'
+        self.assert_served_by_host(response, host, file_)
 
     def assert_served_by_mirror(self, response):
         self.assert_served_by_host(response, settings.MIRROR_URL)
@@ -222,11 +224,11 @@ class TestDownloads(TestDownloadsBase):
     def test_type_attachment(self):
         self.assert_served_by_mirror(self.client.get(self.file_url))
         url = reverse('downloads.file', args=[self.file.id, 'attachment'])
-        self.assert_served_locally(self.client.get(url))
+        self.assert_served_locally(self.client.get(url), attachment=True)
 
     def test_nonbrowser_app(self):
-        url = self.file_url.replace('firefox', 'sunbird')
-        self.assert_served_locally(self.client.get(url))
+        url = self.file_url.replace('firefox', 'thunderbird')
+        self.assert_served_locally(self.client.get(url), attachment=True)
 
     def test_mirror_delay(self):
         self.file.datestatuschanged = datetime.now()
@@ -246,6 +248,10 @@ class TestDownloads(TestDownloadsBase):
         url = reverse('downloads.file', args=[self.beta_file.id])
         self.assert_served_locally(self.client.get(url), self.beta_file)
 
+    def test_null_datestatuschanged(self):
+        self.file.update(datestatuschanged=None)
+        self.assert_served_locally(self.client.get(self.file_url))
+
 
 class TestDownloadsLatest(TestDownloadsBase):
 
@@ -258,10 +264,11 @@ class TestDownloadsLatest(TestDownloadsBase):
         r = self.client.get(response['Location'])
         super(TestDownloadsLatest, self).assert_served_by_mirror(r)
 
-    def assert_served_locally(self, response):
+    def assert_served_locally(self, response, file_=None, attachment=False):
         # Follow one more hop to hit the downloads.files view.
         r = self.client.get(response['Location'])
-        super(TestDownloadsLatest, self).assert_served_locally(r)
+        super(TestDownloadsLatest, self).assert_served_locally(
+            r, file_, attachment)
 
     def test_404(self):
         url = reverse('downloads.latest', args=[123])
@@ -290,20 +297,28 @@ class TestDownloadsLatest(TestDownloadsBase):
     def test_type(self):
         url = reverse('downloads.latest',
                       kwargs={'addon_id': self.addon.id, 'type': 'attachment'})
-        self.assert_served_locally(self.client.get(url))
+        self.assert_served_locally(self.client.get(url), attachment=True)
 
     def test_platform_and_type(self):
         url = reverse('downloads.latest',
                       kwargs={'addon_id': self.addon.id, 'platform': 5,
                               'type': 'attachment'})
-        self.assert_served_locally(self.client.get(url))
+        self.assert_served_locally(self.client.get(url), attachment=True)
 
     def test_trailing_filename(self):
         url = reverse('downloads.latest',
                       kwargs={'addon_id': self.addon.id, 'platform': 5,
                               'type': 'attachment'})
         url += self.file.filename
-        self.assert_served_locally(self.client.get(url))
+        self.assert_served_locally(self.client.get(url), attachment=True)
+
+    def test_platform_multiple_objects(self):
+        p = Platform.objects.create(id=3)
+        f = File.objects.create(platform=p, version=self.file.version,
+                                filename='unst.xpi')
+        url = reverse('downloads.latest',
+                      kwargs={'addon_id': self.addon.id, 'platform': 3})
+        self.assert_served_locally(self.client.get(url), file_=f)
 
     def test_query_params(self):
         url = self.latest_url + '?src=xxx'
