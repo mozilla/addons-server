@@ -872,6 +872,32 @@ class TestVersionEditDetails(TestVersionEdit):
         self.assertRedirects(r, self.url)
 
 
+class TestVersionEditSearchEngine(TestVersionEdit):
+    # https://bugzilla.mozilla.org/show_bug.cgi?id=605941
+    fixtures = ['base/apps', 'base/users',
+                'base/thunderbird', 'base/addon_4594_a9.json']
+
+    def setUp(self):
+        assert self.client.login(username='admin@mozilla.com',
+                                 password='password')
+        self.url = reverse('devhub.versions.edit',
+                           args=[4594, 42352])
+
+    def test_search_engine_edit(self):
+        dd = self.formset(prefix="files", releasenotes='xx',
+                          approvalnotes='yy')
+        r = self.client.post(self.url, dd)
+        eq_(r.status_code, 302)
+        version = Addon.objects.no_cache().get(id=4594).current_version
+        eq_(unicode(version.releasenotes), 'xx')
+        eq_(unicode(version.approvalnotes), 'yy')
+
+    def test_no_compat(self):
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        assert not doc("#id_form-TOTAL_FORMS")
+
+
 class TestVersionEditFiles(TestVersionEdit):
 
     def setUp(self):

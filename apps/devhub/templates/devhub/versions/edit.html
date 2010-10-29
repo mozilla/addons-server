@@ -43,6 +43,7 @@
           {% endfor %}
         </table>
         <table>
+          {% if compat_form %}
           {{ compat_form.management_form|safe }}
           {% for form in compat_form.initial_forms %}
             {{ compat(form) }}
@@ -50,6 +51,8 @@
           {% for form in compat_form.extra_forms %}
             {{ compat(form) }}
           {% endfor %}
+          {% endif %}
+
           {{ version_form|safe }}
           <tr>
             <th>{{ _('License') }}</th>
@@ -79,6 +82,7 @@
             </td>
           </tr>
         </table>
+
         <p class="item-group">
           <button type="submit">{{ _('Save Changes') }}</button> {{ _('or') }}
           <a href="{{ url('devhub.versions', addon.id) }}">{{ _('Cancel') }}</a>

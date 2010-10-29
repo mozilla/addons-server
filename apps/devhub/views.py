@@ -13,6 +13,7 @@ import path
 from tower import ugettext_lazy as _lazy
 from tower import ugettext as _
 
+import amo
 from amo import messages
 import amo.utils
 from amo.decorators import json_view, login_required, post_required
@@ -288,21 +289,30 @@ def addons_section(request, addon_id, addon, section, editable=False):
 def version_edit(request, addon_id, addon, version_id):
     version = get_object_or_404(Version, pk=version_id, addon=addon)
     version_form = forms.VersionForm(request.POST or None, instance=version)
-    compat_form = forms.CompatFormSet(request.POST or None,
-                                      queryset=version.apps.all())
+
     file_form = forms.FileFormSet(request.POST or None, prefix='files',
                                   queryset=version.files.all())
-    fs = [version_form, compat_form, file_form]
-    if request.method == 'POST' and all([form.is_valid() for form in fs]):
-        version_form.save()
-        file_form.save()
-        for compat in compat_form.save(commit=False):
-            compat.version = version
-            compat.save()
+    data= {'version_form': version_form, 'file_form': file_form}
+
+    # https://bugzilla.mozilla.org/show_bug.cgi?id=605941
+    # remove compatability from the version edit page for search engines
+    if addon.type != amo.ADDON_SEARCH:
+        compat_form = forms.CompatFormSet(request.POST or None,
+                                      queryset=version.apps.all())
+        data['compat_form'] = compat_form
+
+    if (request.method == 'POST' and
+        all([form.is_valid() for form in data.values()])):
+        data['version_form'].save()
+        data['file_form'].save()
+        if 'compat_form' in data:
+            for compat in data['compat_form'].save(commit=False):
+                compat.version = version
+                compat.save()
         return redirect('devhub.versions.edit', addon_id, version_id)
-    return jingo.render(request, 'devhub/versions/edit.html',
-        dict(addon=addon, version=version, version_form=version_form,
-             compat_form=compat_form, file_form=file_form))
+
+    data.update({'addon': addon, 'version': version})
+    return jingo.render(request, 'devhub/versions/edit.html', data)
 
 
 @dev_required
