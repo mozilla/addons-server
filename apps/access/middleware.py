@@ -5,7 +5,7 @@ their ACLs into the request.
 from functools import partial
 
 from access import acl
-from users.models import UserProfile
+from users.models import RequestUser
 
 
 class ACLMiddleware(object):
@@ -16,8 +16,7 @@ class ACLMiddleware(object):
 
         # figure out our list of groups...
         if request.user.is_authenticated():
-            amo_user = (UserProfile.objects.request_user()
-                        .get(pk=request.user.pk))
+            amo_user = RequestUser.objects.get(pk=request.user.pk)
             request.user._profile_cache = request.amo_user = amo_user
             request.groups = request.amo_user.groups.all()
 

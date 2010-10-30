@@ -41,13 +41,6 @@ def create_password(algorithm, raw_password):
     return '$'.join([algorithm, salt, hsh])
 
 
-class UserManager(amo.models.ManagerBase):
-
-    def request_user(self):
-        return (self.extra(select={'request': 1})
-                .transform(UserProfile.request_user_transformer))
-
-
 class UserForeignKey(models.ForeignKey):
     """
     A replacement for  models.ForeignKey('users.UserProfile').
@@ -128,8 +121,6 @@ class UserProfile(amo.models.ModelBase):
                                                         editable=False)
 
     user = models.ForeignKey(DjangoUser, null=True, editable=False, blank=True)
-
-    objects = UserManager()
 
     class Meta:
         db_table = 'users'
@@ -315,11 +306,36 @@ class UserProfile(amo.models.ModelBase):
             c = Collection.objects.get(id=c.id)
         return c
 
+
+class RequestUserManager(amo.models.ManagerBase):
+
+    def get_query_set(self):
+        qs = super(RequestUserManager, self).get_query_set()
+        return qs.transform(RequestUser.transformer)
+
+
+class RequestUser(UserProfile):
+    """
+    A RequestUser has extra attributes we don't care about for normal users.
+    """
+
+    objects = RequestUserManager()
+
+    def __init__(self, *args, **kw):
+        super(RequestUser, self).__init__(*args, **kw)
+        self.mobile_addons = []
+        self.favorite_addons = []
+        self.watching = []
+
+    class Meta:
+        proxy = True
+
     @staticmethod
-    def request_user_transformer(users):
-        """Adds extra goodies to a UserProfile (meant for request.amo_user)."""
+    def transformer(users):
         # We don't want to cache these things on every UserProfile; they're
         # only used by a user attached to a request.
+        if not users:
+            return
         from bandwagon.models import CollectionAddon, CollectionWatcher
         SPECIAL = amo.COLLECTION_SPECIAL_SLUGS.keys()
         user = users[0]
@@ -334,6 +350,12 @@ class UserProfile(amo.models.ModelBase):
                              .values_list('collection', flat=True)))
         # Touch this @cached_property so the answer is cached with the object.
         user.is_developer
+
+    def _cache_keys(self):
+        # Add UserProfile.cache_key so RequestUser gets invalidated when the
+        # UserProfile is changed.
+        keys = super(RequestUser, self)._cache_keys()
+        return keys + (UserProfile(id=self.id).cache_key,)
 
 
 class BlacklistedUsername(amo.models.ModelBase):
