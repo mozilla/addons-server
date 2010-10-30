@@ -1004,6 +1004,8 @@ class TestVersionEditCompat(TestVersionEdit):
         d['DELETE'] = True
         r = self.client.post(self.url, self.formset(d, initial_count=1))
         eq_(r.status_code, 200)
+        eq_(r.context['compat_form'].non_form_errors(),
+            ['Need at least one compatible application.'])
         eq_(self.version.apps.get(), old_av)
 
     def test_proper_min_max(self):
