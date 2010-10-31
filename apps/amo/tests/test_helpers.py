@@ -13,7 +13,6 @@ import test_utils
 
 import amo
 from amo import urlresolvers, utils, helpers
-from amo.helpers import wround
 from versions.models import License
 
 
@@ -161,24 +160,6 @@ def test_urlparams():
 def test_urlparams_unicode():
     url = u'/xx?evil=reco\ufffd\ufffd\ufffd\u02f5'
     utils.urlparams(url)
-
-
-def test_wround():
-    # Invalid input formats.
-    assert_raises(TypeError, wround, None)
-    assert_raises(TypeError, wround, 'yadayada')
-    assert_raises(TypeError, wround, '0')
-
-    # Integers as well as floats should work.
-    assert_almost_equal(wround(5, 2), 5)
-    assert_almost_equal(wround(5.001, 2), 5)
-
-    # Invalid method
-    assert_raises(FilterArgumentError, wround, 0, 2, 'new')
-    assert_raises(FilterArgumentError, wround, 0, -2)
-
-    assert_almost_equal(wround(4.1, 1, 'floor'), 4.1)
-    eq_(wround(4.1, method='floor'), 4)
 
 
 def test_isotime():

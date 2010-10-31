@@ -180,7 +180,7 @@ class APITest(TestCase):
         response = self.client.get('/en-US/firefox/api/%.1f/addon/4664' %
                                    api.CURRENT_VERSION)
         self.assertContains(response, '<rating>%d</rating>' %
-                            int(math.ceil(a.bayesian_rating)))
+                            int(math.ceil(a.average_rating)))
 
     def test_addon_detail(self):
         """
