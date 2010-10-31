@@ -680,6 +680,13 @@ class TestEditPayments(test_utils.TestCase):
         self.assertFormError(r, 'contrib_form', 'paypal_id',
                              'Could not validate PayPal id.')
 
+    def test_max_suggested_amount(self):
+        too_much = settings.MAX_CONTRIBUTION + 1
+        msg = ('Please enter a suggested amount less than $%d.' %
+               settings.MAX_CONTRIBUTION)
+        r = self.client.post(self.url, {'suggested_amount': too_much})
+        self.assertFormError(r, 'contrib_form', 'suggested_amount', msg)
+
     def test_charity_details_reqd(self):
         d = dict(recipient='org', suggested_amount=11.5,
                  annoying=amo.CONTRIB_PASSIVE)

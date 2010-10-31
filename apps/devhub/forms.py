@@ -1,6 +1,7 @@
 import socket
 
 from django import forms
+from django.conf import settings
 from django.db.models import Q
 from django.forms.models import modelformset_factory, BaseModelFormSet
 
@@ -191,6 +192,14 @@ class ContribForm(happyforms.ModelForm):
             data['thankyou_note'] = None
             data['enable_thankyou'] = False
         return data
+
+    def clean_suggested_amount(self):
+        amount = self.cleaned_data['suggested_amount']
+        if amount > settings.MAX_CONTRIBUTION:
+            msg = _(u'Please enter a suggested amount less than ${0}.').format(
+                    settings.MAX_CONTRIBUTION)
+            raise forms.ValidationError(msg)
+        return amount
 
 
 def check_paypal_id(paypal_id):
