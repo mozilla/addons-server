@@ -26,8 +26,13 @@ class TestCollections(test_utils.TestCase):
         self.other = UserProfile.objects.exclude(id=self.user.id)[0]
 
     def test_icon_url(self):
+
+        # Has no icon
         c = Collection.objects.get(pk=512)
         assert c.icon_url.endswith('img/amo2009/icons/collection.png')
+
+        c.type = amo.COLLECTION_FAVORITES
+        assert c.icon_url.endswith('img/amo2009/icons/heart.png')
 
     def test_is_subscribed(self):
         c = Collection.objects.get(pk=512)
