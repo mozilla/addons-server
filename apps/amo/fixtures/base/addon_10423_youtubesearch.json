@@ -1,0 +1,222 @@
+[
+    {
+        "pk": 347696,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "Important note: This add-on is NOT endorsed or approved by Google Inc.\r\n\r\nThis add-on is provided as is without any guarantees or warranty. In connection with the software, the Author, David Iglesias \"ditman\" makes no warranties of any kind, either express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, of title, or of noninfringement of third party rights. Use of the software by a user is at the user's risk.",
+            "created": "2009-01-19 08:48:55",
+            "locale": "en-US",
+            "modified": "2009-03-20 08:10:18",
+            "id": 309908,
+            "localized_string_clean": null
+        }
+    },
+    {
+        "pk": 347679,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "This add-on will add an improved version of YouTube's search engine, now with search suggestions!\r\n\r\nThanks all who voted for helping this add-on to become public! Please keep leaving feedback!",
+            "created": "2009-01-19 08:33:37",
+            "locale": "en-US",
+            "modified": "2009-03-20 08:10:18",
+            "id": 309892,
+            "localized_string_clean": "This add-on will add an improved version of YouTube's search engine, now with search suggestions!\n\nThanks all who voted for helping this add-on to become public! Please keep leaving feedback!"
+        }
+    },
+    {
+        "pk": 347682,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "This add-on searches for YouTube videos. It uses Google Suggest API to retrieve search suggestions from user input, without the need to log in to YouTube.\r\n\r\nThanks to all who helped this add-on to go public! Your comments were essential for this to come out :) Thanks! \r\n\r\nPlease, let me know your comments and suggestions and if it worked for you. Leave your comments! Thanks people!",
+            "created": "2009-01-19 08:48:54",
+            "locale": "en-US",
+            "modified": "2009-03-20 08:10:16",
+            "id": 309894,
+            "localized_string_clean": "This add-on searches for YouTube videos. It uses Google Suggest API to retrieve search suggestions from user input, without the need to log in to YouTube.\n\nThanks to all who helped this add-on to go public! Your comments were essential for this to come out :) Thanks! \n\nPlease, let me know your comments and suggestions and if it worked for you. Leave your comments! Thanks people!"
+        }
+    },
+    {
+        "pk": 347686,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "http://www.ditman.net",
+            "created": "2009-01-19 08:39:34",
+            "locale": "en-US",
+            "modified": "2009-03-20 08:10:18",
+            "id": 309897,
+            "localized_string_clean": null
+        }
+    },
+    {
+        "pk": 347685,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "http://www.youtube.com",
+            "created": "2009-01-19 08:39:33",
+            "locale": "en-US",
+            "modified": "2009-03-20 08:10:18",
+            "id": 309896,
+            "localized_string_clean": null
+        }
+    },
+    {
+        "pk": 347684,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "YouTube",
+            "created": "2009-01-19 08:39:33",
+            "locale": "en-US",
+            "modified": "2009-03-20 08:10:18",
+            "id": 309895,
+            "localized_string_clean": null
+        }
+    },
+    {
+        "pk": 1,
+        "model": "files.platform",
+        "fields": {
+            "icontype": "",
+            "modified": "2008-04-07 08:16:55",
+            "created": "2007-03-05 13:09:27"
+        }
+    },
+    {
+        "pk": 10423,
+        "model": "addons.addon",
+        "fields": {
+            "dev_agreement": false,
+            "eula": 309908,
+            "last_updated": "2009-03-19 11:34:47",
+            "view_source": false,
+            "enable_thankyou": false,
+            "total_downloads": 1682348,
+            "developer_comments": null,
+            "inactive": false,
+            "average_daily_downloads": 2930,
+            "show_beta": true,
+            "admin_review_type": 1,
+            "guid": null,
+            "trusted": false,
+            "description": 309894,
+            "locale_disambiguation": null,
+            "binary": false,
+            "the_future": null,
+            "weekly_downloads": 51417,
+            "support_url": 309897,
+            "paypal_id": "",
+            "average_rating": 4.8399999999999999,
+            "wants_contributions": false,
+            "average_daily_users": 0,
+            "bayesian_rating": 4.7886899999999999,
+            "share_count": 1,
+            "highest_status": 4,
+            "homepage": 309896,
+            "support_email": null,
+            "public_stats": false,
+            "status": 4,
+            "privacy_policy": null,
+            "total_contributions": "0.00",
+            "default_locale": "en-US",
+            "target_locale": null,
+            "prerelease": false,
+            "thankyou_note": null,
+            "total_reviews": 75,
+            "admin_review": false,
+            "slug": "youtube",
+            "external_software": false,
+            "charity": null,
+            "get_satisfaction_product": null,
+            "name": 309895,
+            "created": "2009-01-19 15:28:14",
+            "type": 4,
+            "icon_type": "image/png",
+            "annoying": 0,
+            "modified": "2010-08-05 16:15:51",
+            "summary": 309892,
+            "suggested_amount": null,
+            "site_specific": false,
+            "_current_version": 61037,
+            "get_satisfaction_company": null,
+            "the_reason": null,
+            "nomination_date": "2009-03-20 08:10:20"
+        }
+    },
+    {
+        "pk": 61037,
+        "model": "versions.version",
+        "fields": {
+            "license": null,
+            "created": "2009-01-19 15:28:14",
+            "releasenotes": null,
+            "modified": "2009-01-19 15:28:14",
+            "approvalnotes": null,
+            "version": "20090119",
+            "addon": 10423
+        }
+    },
+    {
+        "pk": 45246,
+        "model": "files.file",
+        "fields": {
+            "status": 4,
+            "codereview": false,
+            "hash": "sha256:9eae789eebe7b58ce79a47cc9f31160b4b8cbd084cf3ab0ca8292b482ca1f4b6",
+            "created": "2009-01-19 15:28:14",
+            "jetpack": false,
+            "modified": "2009-03-19 11:34:47",
+            "filename": "-20090119.xml",
+            "platform": 1,
+            "version": 61037,
+            "size": 4,
+            "datestatuschanged": "2009-03-19 11:34:47"
+        }
+    },
+    {
+        "pk": 3907389,
+        "model": "users.userprofile",
+        "fields": {
+            "sandboxshown": false,
+            "display_collections_fav": false,
+            "display_collections": false,
+            "averagerating": "4.84",
+            "display_name": "ditman",
+            "confirmationcode": "",
+            "notifycompat": true,
+            "picture_type": "",
+            "occupation": "",
+            "homepage": "http://www.ditman.net",
+            "email": "dd+cd76c8bd7@davedash.com",
+            "location": "",
+            "username": "ditman",
+            "bio": null,
+            "failed_login_attempts": 0,
+            "firstname": "David",
+            "deleted": false,
+            "lastname": "Iglesias",
+            "emailhidden": true,
+            "last_login_attempt_ip": "",
+            "last_login_attempt": null,
+            "password": "",
+            "nickname": "ditman",
+            "resetcode_expires": null,
+            "resetcode": "",
+            "created": "2009-01-19 15:19:21",
+            "notes": null,
+            "modified": "2009-01-19 15:19:53",
+            "last_login_ip": "",
+            "notifyevents": true,
+            "user": null
+        }
+    },
+    {
+        "pk": 9453,
+        "model": "addons.addonuser",
+        "fields": {
+            "position": 0,
+            "addon": 10423,
+            "role": 5,
+            "listed": true,
+            "user": 3907389
+        }
+    }
+]

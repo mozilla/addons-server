@@ -114,6 +114,8 @@ def extract_filters(term, kwargs):
         guids_crc = []
 
         for guid in guids.split(','):
+            if not guid:
+                continue
             guids_crc.append(crc32(guid.lower()))
 
         filters['guid_ord'] = guids_crc

@@ -12,7 +12,6 @@ import jingo
 from test_utils import TestCase
 from nose.tools import eq_
 
-import amo
 import api
 import api.utils
 from addons.models import Addon
@@ -454,9 +453,9 @@ class SeamonkeyFeaturedTest(TestCase):
 
 
 class SearchTest(SphinxTestCase):
-    fixtures = ['base/apps', 'base/addon_6113', 'base/addon_40',
+    fixtures = ('base/apps', 'base/addon_6113', 'base/addon_40',
                 'base/addon_3615', 'base/addon_6704_grapple',
-                'base/addon_4664_twitterbar']
+                'base/addon_4664_twitterbar', 'base/addon_10423_youtubesearch')
 
     no_results = """<searchresults total_results="0">"""
 
@@ -471,7 +470,18 @@ class SearchTest(SphinxTestCase):
     def test_guid_query(self):
         r = make_call('search/guid:{22870005-adef-4c9d-ae36-d0e1f2f27e5a},'
                       '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}')
-        eq_(['3615', '6113'],  [a.attrib['id'] for a in pq(r.content)('addon')])
+        eq_(['3615', '6113'], [a.attrib['id'] for a in pq(r.content)('addon')])
+
+    def test_guid_empty(self):
+        """
+        Bug: https://bugzilla.mozilla.org/show_bug.cgi?id=607044
+        guid:foo, should search for just 'foo' and not empty guids.
+        """
+        r = make_call('search/guid:koberger,')
+        doc = pq(r.content)
+        # No addons should exist with guid koberger and the , should not
+        # indicate that we are searching for null guid.
+        eq_(len(doc('addon')), 0)
 
     def test_zero_results(self):
         """
