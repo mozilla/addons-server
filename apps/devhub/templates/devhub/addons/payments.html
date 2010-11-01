@@ -73,6 +73,20 @@
         <b>{{ _('When should users be asked for contributions?') }}</b>
         {{ contrib_form.annoying|safe }}
       </div>
+      <div>
+        <b>{{ _('Send a thank-you note?') }}</b><br>
+        {{ contrib_form.enable_thankyou|safe }}
+        <label for="{{ contrib_form.enable_thankyou.auto_id }}">
+          {{ _("We'll automatically email users who contribute to your add-on with this message.") }}</label>
+        <div class="thankyou-note {{ 'hidden' if not contrib_form.initial.enable_thankyou }}">
+          <div class="extra">{% trans %}
+            We recommend thanking the user and telling them how much you appreciate their
+            support. You might also want to tell them about what's next for your add-on and
+            about any other add-ons you've made for them to try.
+          {% endtrans %}</div>
+          {{ contrib_form.thankyou_note|safe }}
+        </div>
+      </div>
       <button type="submit">{{ _('Save Changes') if contrib else _('Activate Contributions') }}</button>
       <span class="{{ 'hidden' if contrib }}">
         {% trans %}

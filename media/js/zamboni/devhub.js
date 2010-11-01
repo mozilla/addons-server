@@ -123,6 +123,13 @@ function initPayments() {
         $(".paypal").hide(200);
         $(format("#org-{0}", [v])).removeClass("hidden").show(200);
     });
+    $("#id_enable_thankyou").change(function (e) {
+        if ($(this).attr("checked")) {
+            $(".thankyou-note").show().removeClass("hidden");
+        } else {
+            $(".thankyou-note").hide();
+        }
+    }).change();
 }
 
 

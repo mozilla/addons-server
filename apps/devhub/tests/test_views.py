@@ -541,6 +541,33 @@ class TestEditPayments(test_utils.TestCase):
         self.addon.annoying = amo.CONTRIB_AFTER
         eq_(ContribForm.initial(self.addon)['annoying'], amo.CONTRIB_AFTER)
 
+    def test_enable_thankyou(self):
+        d = dict(enable_thankyou='on', thankyou_note='woo',
+                 annoying=1, recipient='moz')
+        r = self.client.post(self.url, d)
+        eq_(r.status_code, 302)
+        addon = self.get_addon()
+        eq_(addon.enable_thankyou, True)
+        eq_(unicode(addon.thankyou_note), 'woo')
+
+    def test_enable_thankyou_unchecked_with_text(self):
+        d = dict(enable_thankyou='', thankyou_note='woo',
+                 annoying=1, recipient='moz')
+        r = self.client.post(self.url, d)
+        eq_(r.status_code, 302)
+        addon = self.get_addon()
+        eq_(addon.enable_thankyou, False)
+        eq_(addon.thankyou_note, None)
+
+    def test_enable_thankyou_no_text(self):
+        d = dict(enable_thankyou='on', thankyou_note='',
+                 annoying=1, recipient='moz')
+        r = self.client.post(self.url, d)
+        eq_(r.status_code, 302)
+        addon = self.get_addon()
+        eq_(addon.enable_thankyou, False)
+        eq_(addon.thankyou_note, None)
+
 
 class TestDisablePayments(test_utils.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']
