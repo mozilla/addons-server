@@ -52,7 +52,7 @@ $(document).ready(function() {
 
     $('.addon-edit-cancel').live('click', function(){
         parent_div = $(this).closest('.edit-addon-section');
-        parent_div.load($(this).attr('href'));
+        parent_div.load($(this).attr('href'), z.refreshL10n);
         return false;
     });
 });
@@ -89,6 +89,7 @@ function addonFormSubmit() {
                 });
             return false;
         });
+        z.refreshL10n();
     })(parent_div);
 }
 

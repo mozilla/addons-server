@@ -15,7 +15,8 @@
         <tbody>
           <tr>
             <th>
-              {{ tip(_("Description"),
+              <label for="description">{{ _('Description') }}</label>
+              {{ tip(None, 
                      _("A longer explanation of features, functionality, and other
                         relevant information. This field is only displayed on the
                         add-on's details page.")) }}

@@ -372,6 +372,7 @@ MINIFY_BUNDLES = {
             'js/amo2009/global.js',
             'js/jquery-ui/jqModal.js',
             'js/amo2009/home.js',
+            'js/zamboni/l10n.js',
 
             # Homepage
             'js/zamboni/homepage.js',

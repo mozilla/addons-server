@@ -14,11 +14,6 @@
     {% endif %}
 {% endmacro %}
 
-{% macro tip(name, tip) %}
-  <span class="label">{{ name }}</span>
-  <span class="help tooltip" title="{{ tip }}">?</span>
-{% endmacro %}
-
 
 {% block content %}
 <header>
@@ -27,6 +22,7 @@
 </header>
 
 <section class="primary" role="main">
+{{ l10n_menu() }}
 <div id="edit-addon">
 
   <div class="edit-addon-section" id="edit-addon-basic">
