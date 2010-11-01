@@ -67,7 +67,7 @@
   {%- else -%}
   <thumbnail>{{ addon.thumbnail_url }}</thumbnail>
   {%- endif -%}
-  <rating>{{ addon.average_rating|round(0,'ceil')|int }}</rating>
+  <rating>{{ addon.average_rating|round|int }}</rating>
   <learnmore>{{ addon.get_url_path()|absolutify|urlparams(src='api') }}</learnmore>
   {%- if addon.current_version -%}
   {%- for file in addon.current_version.all_files -%}

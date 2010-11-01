@@ -1,6 +1,5 @@
 # -*- coding: utf8 -*-
 import json
-import math
 import os
 
 from django.core.cache import cache
@@ -171,15 +170,11 @@ class APITest(TestCase):
         self.assertContains(response, '<eula></eula>')
 
     def test_addon_detail_rating(self):
-        """
-        We use the ceiling value of average rating for an addon.
-        See https://bugzilla.mozilla.org/show_bug.cgi?id=546542.
-        """
         a = Addon.objects.get(pk=4664)
         response = self.client.get('/en-US/firefox/api/%.1f/addon/4664' %
                                    api.CURRENT_VERSION)
         self.assertContains(response, '<rating>%d</rating>' %
-                            int(math.ceil(a.average_rating)))
+                            int(round(a.average_rating)))
 
     def test_addon_detail(self):
         """
@@ -208,7 +203,7 @@ class APITest(TestCase):
         self.assertContains(response, "<os>ALL</os>")
         self.assertContains(response, "<eula>")
         self.assertContains(response, "/icons/no-preview.png</thumbnail>")
-        self.assertContains(response, "<rating>4</rating>")
+        self.assertContains(response, "<rating>3</rating>")
         self.assertContains(response,
                 "/en-US/firefox/addon/3615/?src=api</learnmore>")
         self.assertContains(response,
