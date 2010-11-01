@@ -29,7 +29,7 @@ class TestFile(test_utils.TestCase):
         filesystem """
         file = File.objects.get(pk=67442)
         filename = file.file_path
-        if not os.path.exists:
+        if not os.path.exists(os.path.dirname(filename)):
             os.makedirs(os.path.dirname(filename))
         assert not os.path.exists(filename), 'File exists at: %s' % filename
         try:
