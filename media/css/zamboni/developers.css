@@ -150,7 +150,8 @@
     width: 250px;
 }
 
-#addon_description {
+#addon_description,
+#developer_comments {
     max-height: 6.4em;
     overflow: hidden;
 }

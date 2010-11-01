@@ -29,7 +29,7 @@
                 {{ form.developer_comments.errors|safe }}
               {% else %}
                 {% call empty_unless(addon.developer_comments) %}
-                  {{ addon.developer_comments|nl2br }}
+                  <div id="developer_comments">{{ addon.developer_comments|nl2br }}</div>
                 {% endcall %}
               {% endif %}
             </td>

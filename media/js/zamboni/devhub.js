@@ -1,4 +1,18 @@
 $(document).ready(function() {
+
+    //Ownership
+    if ($("#author_list").length) {
+        initAuthorFields();
+    }
+
+    //Payments
+    if ($('.payments').length) {
+        initPayments();
+    }
+});
+
+
+$(document).ready(function() {
     $(".more-actions-view-dropdown").popup(".more-actions-view", {
         width: 'inherit',
         offset: {x: 15},
@@ -28,17 +42,25 @@ $(document).ready(function() {
     });
 });
 
-function truncateFields() {
-    var originalHTML = $("#addon_description").html();
-    $("#addon_description").delegate("a.truncate_expand", "click", function(e) {
-        e.preventDefault();
-        $("#addon_description").html(originalHTML).css('max-height','none');
 
-    })
-    .vtruncate({
-        truncText: format("&hellip; <a href='#' class='truncate_expand'>{0}</a>",[gettext("More")])
+function truncateFields() {
+    var els = [
+            "#addon_description",
+            "#developer_comments"
+        ];
+    $(els.join(', ')).each(function(i,el) {
+        var $el = $(el),
+            originalHTML = $el.html();
+        $el.delegate("a.truncate_expand", "click", function(e) {
+            e.preventDefault();
+            $el.html(originalHTML).css('max-height','none');
+        })
+        .vtruncate({
+            truncText: format("&hellip; <a href='#' class='truncate_expand'>{0}</a>",[gettext("More")])
+        });
     });
 }
+
 
 function addonFormSubmit() {
     parent_div = $(this);
@@ -55,21 +77,10 @@ function addonFormSubmit() {
     })(parent_div);
 }
 
+
 $("#user-form-template .email-autocomplete")
     .attr("placeholder", gettext("Enter a new author's email address"));
 
-$(document).ready(function() {
-
-    //Ownership
-    if ($("#author_list").length) {
-        initAuthorFields();
-    }
-
-    //Payments
-    if ($('.payments').length) {
-        initPayments();
-    }
-});
 
 function initPayments() {
     var previews = [
