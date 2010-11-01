@@ -22,6 +22,7 @@ from addons.forms import (AddonFormBasic, AddonFormDetails, AddonFormSupport,
                           AddonFormTechnical)
 from addons.models import Addon, AddonUser, AddonLog
 from addons.views import BaseFilter
+from devhub.models import ActivityLog
 from files.models import FileUpload
 from versions.models import License, Version
 from . import forms, tasks
@@ -305,6 +306,12 @@ def version_edit(request, addon_id, addon, version_id):
         all([form.is_valid() for form in data.values()])):
         data['version_form'].save()
         data['file_form'].save()
+
+        for deleted in data['file_form'].deleted_forms:
+            file = deleted.cleaned_data['id']
+            ActivityLog(request, amo.LOG.DELETE_FILE_FROM_VERSION,
+                        (file, addon))
+
         if 'compat_form' in data:
             for compat in data['compat_form'].save(commit=False):
                 compat.version = version
