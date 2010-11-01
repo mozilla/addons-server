@@ -217,7 +217,7 @@ class Addon(amo.models.ModelBase):
         return '%s: %s' % (self.id, self.name)
 
     @transaction.commit_on_success
-    def delete(self, user, msg):
+    def delete(self, msg):
         log.debug('Adding guid to blacklist: %s' % self.guid)
         BlacklistedGuid(guid=self.guid, comments=msg).save()
         log.debug('Deleting add-on: %s' % self.id)

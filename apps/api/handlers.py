@@ -127,7 +127,7 @@ class AddonsHandler(BaseHandler):
     @check_addon_and_version
     @throttle(5, 60 * 60)  # Allow 5 delete per hour
     def delete(self, request, addon):
-        addon.delete(user=request.amo_user, msg='Deleted via API')
+        addon.delete(msg='Deleted via API')
         return rc.DELETED
 
 
