@@ -910,6 +910,15 @@ class TestVersionEditFiles(TestVersionEdit):
         compat.update(kw)
         return super(TestVersionEditFiles, self).formset(*args, **compat)
 
+    def test_delete_file(self):
+        eq_(self.version.files.count(), 1)
+        forms = map(initial,
+                    self.client.get(self.url).context['file_form'].forms)
+        forms[0]['DELETE'] = True
+        r = self.client.post(self.url, self.formset(*forms, prefix='files'))
+        eq_(r.status_code, 302)
+        eq_(self.version.files.count(), 0)
+
     def test_edit_status(self):
         f = self.client.get(self.url).context['file_form'].forms[0]
         # Public is one of the choices since the file is currently public.

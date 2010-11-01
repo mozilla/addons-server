@@ -2,15 +2,12 @@ import os
 
 from django.conf import settings
 from django.db import models
-from django.utils import translation
 
 from uuidfield.fields import UUIDField
 
-import amo
 import amo.models
 import amo.utils
 from amo.urlresolvers import reverse
-from cake.urlresolvers import remora_url
 
 
 class File(amo.models.ModelBase):
@@ -74,8 +71,24 @@ class File(amo.models.ModelBase):
         return reverse('addons.eula', args=[self.version.addon_id, self.id])
 
     @property
+    def file_path(self):
+        return os.path.join(settings.ADDONS_PATH, str(self.version.addon_id),
+                            self.filename)
+
+    @property
     def extension(self):
         return os.path.splitext(self.filename)[-1]
+
+
+def cleanup_file(sender, instance, **kw):
+    """ On delete of the file object from the database, unlink the file from
+    the file system """
+    filename = instance.file_path
+    if os.path.exists(filename):
+        os.remove(filename)
+
+models.signals.post_delete.connect(cleanup_file,
+            sender=File, dispatch_uid='cleanup_file')
 
 
 class Approval(amo.models.ModelBase):

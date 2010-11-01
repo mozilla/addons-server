@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from django import test
+import os
 
 import test_utils
 from nose.tools import eq_
@@ -23,6 +23,30 @@ class TestFile(test_utils.TestCase):
         expected = ('/firefox/downloads/file/67442/'
                     'delicious_bookmarks-2.1.072-fx.xpi?src=src')
         assert url.endswith(expected), url
+
+    def test_delete(self):
+        """ Test that when the File object is deleted, it is removed from the
+        filesystem """
+        file = File.objects.get(pk=67442)
+        filename = file.file_path
+        if not os.path.exists:
+            os.makedirs(os.path.dirname(filename))
+        assert not os.path.exists(filename), 'File exists at: %s' % filename
+        try:
+            open(filename, 'w')
+            assert os.path.exists(filename)
+            file.delete()
+            assert not os.path.exists(filename)
+        finally:
+            if os.path.exists(filename):
+                os.remove(filename)
+
+        # test that the file object can be deleted without the file
+        # being present
+        file = File.objects.get(pk=74797)
+        filename = file.file_path
+        assert not os.path.exists(filename), 'File exists at: %s' % filename
+        file.delete()
 
     def test_latest_url(self):
         # With platform.
