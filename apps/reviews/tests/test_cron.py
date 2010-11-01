@@ -27,7 +27,7 @@ class TestDenormalization(test_utils.TestCase):
     def _check_addon(self):
         addon = Addon.objects.get(id=72)
         eq_(addon.total_reviews, 3)
-        eq_(addon.average_rating, '2.3333')
+        assert_almost_equal(addon.average_rating, 2.3333, places=2)
         assert_almost_equal(addon.bayesian_rating, 2.2499, places=2)
 
     def test_denorms(self):
@@ -59,5 +59,5 @@ class TestDenormalization(test_utils.TestCase):
         Review.objects.all().delete()
         addon = Addon.objects.get(id=72)
         eq_(addon.total_reviews, 0)
-        eq_(addon.average_rating, '0')
+        eq_(addon.average_rating, 0)
         eq_(addon.bayesian_rating, 0)

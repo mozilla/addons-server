@@ -125,8 +125,8 @@ class Addon(amo.models.ModelBase):
     the_reason = TranslatedField()
     the_future = TranslatedField()
 
-    average_rating = models.CharField(max_length=255, default=0, null=True,
-                                      db_column='averagerating')
+    average_rating = models.FloatField(max_length=255, default=0, null=True,
+                                       db_column='averagerating')
     bayesian_rating = models.FloatField(default=0, db_index=True,
                                         db_column='bayesianrating')
     total_reviews = models.PositiveIntegerField(default=0,
