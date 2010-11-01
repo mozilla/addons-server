@@ -16,7 +16,7 @@ import happyforms
 import amo
 from addons.models import Addon, AddonUser
 from files.models import File
-from versions.models import ApplicationsVersions, AppVersion, Version
+from versions.models import ApplicationsVersions, AppVersion, License, Version
 
 license_ids = dict((license.shortname, license.id) for license in amo.LICENSES)
 
@@ -189,64 +189,3 @@ class XPIForm(happyforms.Form):
         self._save_apps(v)
         self._save_file(v)
         return v
-
-
-class CompatabilityForm(happyforms.Form):
-    application = forms.ChoiceField(required=True,
-            choices=[(a.short, a.short) for a in amo.APP_USAGE])
-    min = forms.CharField(required=True)
-    max = forms.CharField(required=True)
-
-    def __init__(self, data, files=None, version=None):
-        self.version = version
-        super(CompatabilityForm, self).__init__(data, files)
-
-    def clean(self):
-        """Check that the version makes sense and min < max."""
-        data = self.cleaned_data
-        if self.errors:
-            return data
-
-        app = amo.APPS[data['application']]
-        min = AppVersion.objects.filter(application=app.id,
-                                        version=data['min'])
-        if not min:
-            raise forms.ValidationError(
-                    _('{app} has no {version} version').format(
-                        app=app.pretty, version=data['min']))
-        min = min[0]
-
-        max = AppVersion.objects.filter(application=app.id,
-                                        version=data['max'])
-
-        if not max:
-            raise forms.ValidationError(
-                    _('{app} has no {version} version').format(
-                        app=app.pretty, version=data['max']))
-
-        max = max[0]
-
-        if min.version_int > max.version_int:
-            raise forms.ValidationError(
-                    _('Minimum version is greater than '
-                      'maximum supported version.'))
-
-        return(dict(app=app, min=min, max=max))
-
-    def save(self):
-        if not self.version:
-            return
-
-        data = self.cleaned_data
-
-        # check existing AVs
-        try:
-            c = self.version.apps.get(application=data['app'].id)
-        except ApplicationsVersions.DoesNotExist:
-            c = ApplicationsVersions(application_id=data['app'].id,
-                                     version=self.version)
-
-        c.min = data['min']
-        c.max = data['max']
-        c.save()
-        return c
