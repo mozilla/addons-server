@@ -355,37 +355,53 @@ class SearchExtensionsFilter(AddonFilter):
             ('created', _lazy(u'Recently Added')),)
 
 
+def search_sidebar_extensions(request):
+    """Returns a filter of search extensions for the search tools sidebar."""
+    base = (Addon.objects.listed(request.APP, amo.STATUS_PUBLIC)
+                         .filter(type=amo.ADDON_EXTENSION))
+    return SearchExtensionsFilter(request, base, 'sort', 'popular')
+
 def search_tools(request, category=None):
+    """View the search tools page.
+
+    The default landing page will show you both featured
+    extensions and featured search Add-ons.  However, any
+    other type of sorting on this page will not show extensions.
+
+    Since it's uncommon for a category to have
+    featured add-ons the default view for a category will land you
+    on popular add-ons instead.  Note also that CSS will hide the
+    sort-by-featured link.
+    """
     APP, TYPE = request.APP, amo.ADDON_SEARCH
     qs = Category.objects.filter(application=APP.id, type=TYPE)
     categories = order_by_translation(qs, 'name')
 
-    # Feature page should list both extensions and search Add-ons
-    # but other pages should only list search Add-ons
-
     types = [TYPE]
-    default = 'featured'
-    if request.GET.get('sort', default) == 'featured':
-        types.append(amo.ADDON_EXTENSION)
+    if category:
+        # Category pages do not have features.
+        # Sort by popular add-ons instead.
+        default = 'popular'
+    else:
+        default = 'featured'
+        # When the non-category page is featured, include extensions.
+        if request.GET.get('sort', default) == 'featured':
+            types.append(amo.ADDON_EXTENSION)
 
     addons, filter, unreviewed = addon_listing(
         request, types, SearchToolsFilter, default)
 
-    if category is not None:
+    if category:
         category = get_object_or_404(qs, slug=category)
         addons = addons.filter(categories__id=category.id)
 
     addons = amo.utils.paginate(request, addons)
 
-    base = (Addon.objects.listed(request.APP, amo.STATUS_PUBLIC)
-                         .filter(type=amo.ADDON_EXTENSION))
-    search_extensions = SearchExtensionsFilter(
-                            request, base, 'sort', 'popular')
-
     return jingo.render(request, 'browse/search_tools.html',
                         {'categories': categories, 'category': category,
                          'addons': addons, 'filter': filter,
-                         'search_extensions_filter': search_extensions,
+                         'search_extensions_filter':
+                                        search_sidebar_extensions(request),
                          'unreviewed': unreviewed})
 
 

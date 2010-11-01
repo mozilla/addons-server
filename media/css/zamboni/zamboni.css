@@ -2996,3 +2996,9 @@ input.ui-autocomplete-loading {
     margin-left: 0;
     margin-right: 0.5em;
 }
+
+/** Hide Featured tab on Search Tools landing page when there's a category **/
+/** Bug 605670 **/
+.search-tools-for-cat li a[href$="?sort=featured"] {
+    display: none;
+}

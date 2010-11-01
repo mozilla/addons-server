@@ -246,13 +246,20 @@ class TestCategoryPages(test_utils.TestCase):
         doc = pq(self.client.get(url).content)
         eq_(len(doc('.item')), 1)
 
+
 class TestSearchToolsPages(test_utils.TestCase):
     fixtures = ('base/apps', 'base/featured', 'addons/featured',
                 'base/category', 'addons/listed')
 
+    def setUp(self):
+        super(TestSearchToolsPages, self).setUp()
+        # Transform bookmarks into a search category:
+        bookmarks = (Category.objects.filter(slug='bookmarks')
+                                     .update(type=amo.ADDON_SEARCH))
+
     def test_landing_page(self):
 
-        # pretend all Add-ons are search-related:
+        # Pretend all Add-ons are search-related:
         Addon.objects.update(type=amo.ADDON_SEARCH)
 
         # ...except one which will be an extension in the search category:
@@ -263,40 +270,52 @@ class TestSearchToolsPages(test_utils.TestCase):
         limon.save()
         AppSupport(addon=limon, app_id=amo.FIREFOX.id).save()
 
-        # un-feature all others:
+        # Un-feature all others:
         Feature.objects.all().delete()
 
-        # feature foxy :
+        # Feature foxy :
         foxy = Addon.objects.get(name__localized_string='FoxyProxy Standard')
         Feature(addon=foxy, application_id=amo.FIREFOX.id,
                 start=datetime.datetime.now(),
                 end=datetime.datetime.now() + timedelta(days=30)).save()
 
-        # feature Limon Dictionary as a category feature:
+        # Feature Limon Dictionary as a category feature:
         c = Category.objects.get(slug='search-tools')
         cat = AddonCategory(addon=limon, feature=True)
         c.addoncategory_set.add(cat)
         c.save()
 
         response = self.client.get(reverse('browse.search-tools'))
+        eq_(response.status_code, 200)
+        doc = pq(response.content)
 
-        # should have only featured add-ons:
+        # Should have only featured add-ons:
         ob = response.context['addons'].object_list
         eq_(sorted([a.name.localized_string
                     for a in response.context['addons'].object_list]),
             [u'FoxyProxy Standard', u'Limon free English-Hebrew dictionary'])
 
+        # Ensure that all heading links have the proper base URL
+        # between the category / no category cases.
+        sort_links = [urlparse(a.attrib['href']).path for a in
+                      doc('.listing-header ul li a')]
+        eq_(set(sort_links), set([reverse('browse.search-tools')]))
+
     def test_sidebar_extensions_links(self):
         response = self.client.get(reverse('browse.search-tools'))
+        eq_(response.status_code, 200)
         doc = pq(response.content)
 
         links = doc('#search-tools-sidebar a')
 
-        eq_([a.text.strip() for a in links],
-            ['Most Popular', 'Recently Added'])
+        eq_([a.text.strip() for a in links], [
+             # Search Extensions
+             'Most Popular', 'Recently Added',
+             # Search Providers
+             'Bookmarks'])
 
         search_ext_url = urlparse(reverse('browse.extensions',
-                                    kwargs=dict(category='search-tools')))
+                                  kwargs=dict(category='search-tools')))
 
         eq_(urlparse(links[0].attrib['href']).path, search_ext_url.path)
         eq_(urlparse(links[1].attrib['href']).path, search_ext_url.path)
@@ -318,6 +337,40 @@ class TestSearchToolsPages(test_utils.TestCase):
                 assert addon.type == amo.ADDON_SEARCH, (
                             "sort=%s; Unexpected Add-on type for %r" % (
                                                         sort_key, addon))
+
+    def test_no_featured_addons_by_category(self):
+
+        Feature.objects.all().delete()
+
+        # Pretend Foxy is a bookmarks related search add-on
+        foxy = Addon.objects.get(name__localized_string='FoxyProxy Standard')
+        foxy.type = amo.ADDON_SEARCH
+        foxy.save()
+        bookmarks = Category.objects.get(slug='bookmarks')
+        bookmarks.addoncategory_set.add(
+                            AddonCategory(addon=foxy, feature=False))
+        bookmarks.save()
+
+        response = self.client.get(reverse('browse.search-tools',
+                                           args=('bookmarks',)))
+        eq_(response.status_code, 200)
+        doc = pq(response.content)
+
+        eq_([a.name.localized_string
+                for a in response.context['addons'].object_list],
+            [u'FoxyProxy Standard'])
+        eq_(response.context['filter'].field, 'popular')
+
+        eq_(doc('title').text(),
+            'Bookmarks :: Search Tools :: Add-ons for Firefox')
+
+        # Ensure that all heading links have the proper base URL
+        # between the category / no category cases.
+        sort_links = [urlparse(a.attrib['href']).path for a in
+                      doc('.listing-header ul li a')]
+        eq_(set(sort_links), set([reverse('browse.search-tools',
+                                          args=('bookmarks',))]))
+
 
 class TestLegacyRedirects(test_utils.TestCase):
     fixtures = ('base/category.json',)
