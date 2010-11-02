@@ -40,6 +40,15 @@ class Version(amo.models.ModelBase):
     def flush_urls(self):
         return self.addon.flush_urls()
 
+    def files_status(self):
+        statuses = {}
+        for file in self.files.all():
+            statuses[file.status] = statuses.get(file.status, 0) + 1
+
+        # Tupleize and add status name
+        choices = amo.STATUS_CHOICES
+        return [(unicode(amo.STATUS_CHOICES[s]), c) for s, c in statuses.items()]
+
     @amo.cached_property(writable=True)
     def compatible_apps(self):
         """Get a mapping of {APP: ApplicationVersion}."""

@@ -24,6 +24,9 @@
     <div class="featured-inner">
       <form method="post" action="">
         {{ csrf() }}
+
+        <a href="#" class="add-file button">Add File</a>
+
         <table>
           {{ file_form.management_form|safe }}
           {% for form in file_form.forms %}

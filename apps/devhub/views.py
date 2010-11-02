@@ -26,6 +26,8 @@ from devhub.models import ActivityLog
 from files.models import FileUpload
 from versions.models import License, Version
 from . import forms, tasks
+from .forms import (AuthorFormSet, LicenseForm, PolicyForm, ProfileForm,
+                    CharityForm, ContribForm)
 
 log = commonware.log.getLogger('z.devhub')
 
@@ -324,7 +326,18 @@ def version_edit(request, addon_id, addon, version_id):
 
 @dev_required
 def version_list(request, addon_id, addon):
-    return http.HttpResponse('All right then!')
+    addon = get_object_or_404(Addon.objects.valid(), pk=addon_id)
+    qs = (addon.versions.filter(files__status__in=amo.VALID_STATUSES)
+          .distinct().order_by('-created'))
+    versions = amo.utils.paginate(request, qs)
+    versions.object_list = list(versions.object_list)
+    Version.transformer(versions.object_list)
+
+    data = {'addon': addon,
+            'versions': versions,
+            'addon_status': amo.STATUS_CHOICES[addon.status] }
+
+    return jingo.render(request, 'devhub/addons/versions.html', data)
 
 
 @dev_required

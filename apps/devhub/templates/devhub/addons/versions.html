@@ -1,0 +1,201 @@
+{% extends "devhub/base.html" %}
+
+{% set title = _('Versions') %}
+{% block title %}{{ dev_page_title(title, addon) }}{% endblock %}
+
+{% macro display_status(status, status_id) %}
+
+  {# TODO(gkoberger): There are a lot of things wrong with this; this whole
+                      macro will be replaced once the status flags are redone.
+                      I didn't want to bother "doing it right", though, when I'd
+                      just have to change it in a few days #}
+  <div>
+    <strong class="version-status {{ 'version-unreviewed' if status_id in amo.UNREVIEWED_STATUSES
+                                      else 'version-' + status.lower().replace(' ', '-') }}">
+      {# L10n: The status of the addon #}
+      {% trans %}
+        This add-on is <span>{{ status }}</span>.
+      {% endtrans %}
+    </strong>
+
+    {# TODO(gkoberger): Not trans'd yet, since it's gibberish #}
+    Explanation about what this means and how it will affect this add-on's
+    visibility ipsum dolor sit amet, consectetur adipiscing elit.
+    <a href="#">{{ _('Link to more...') }}</a>
+
+    <div class="version-status-actions">
+      {# TODO(gkoberger): If statements to decide what's shown; but wait until
+                          the status flags are done #}
+      <a href="#" id="cancel-review">{{ _('Cancel Review Request') }}</a> &middot;
+      <a href="#" id="disable-addon">{{ _('Disable Add-on') }}</a> &middot;
+      <a href="#" id="delete-addon">{{ _('Delete Add-on') }}</a>
+    </div>
+  </div>
+{% endmacro %}
+
+{% block content %}
+<header>
+  {{ dev_breadcrumbs(addon) }}
+  <h2>{{ title }}</h2>
+</header>
+<section id="edit-addon" class="primary" role="main">
+
+  <h3>{{ _('Current Status') }}</h3>
+  <div class="item" id="version-status">
+
+    {{ display_status(status=addon_status, status_id=addon.status) }}
+
+    {% if addon.inactive %}
+      {{ display_status(status=_('Disabled by Admins')) }}
+    {% endif %}
+
+    {% if addon.trusted %}
+      {{ display_status(status=_('Trusted')) }}
+    {% endif %}
+  </div>
+
+  <h3>{{ _('Version History') }}</h3>
+  <div class="item" id="version-list">
+    <div class="item_wrapper">
+      <table>
+        <tr>
+          <th>{{ _('Version') }}</th>
+          <th>{{ _('Submitted') }}</th>
+          <th>{{ _('Status') }}</th>
+          <th>{{ _('Validation') }}</th>
+          <th class="version-delete">{{ _('Delete') }}</th>
+        </tr>
+        <tr>
+          <td colspan="5">
+            <a href="#" class="button">{{ _('Upload a New Version') }}</a>
+          </td>
+        </tr>
+        {% for version in versions.object_list %}
+        <tr>
+          <td>
+            <strong>
+              <a href="{{ url('devhub.versions.edit', addon.id, version.id) }}"
+                 title="{{ _('Edit this version') }}">
+                {{ _('Version {0}', 'addon_display_header_version')|f(version.version) }}</a>
+            </strong>
+          </td>
+          <td>
+            <span title="{{ version.created|isotime }}">
+              {{ version.created|datetime }}
+            </span>
+          </td>
+          <td class="file-status">
+            {% for (status, count) in version.files_status() %}
+            <div>
+              {# L10n: {0} is the number of files, {1} is the status #}
+              {{ ngettext('{0} file is {1}', '{0} files are {1}', count)
+                          .format(count, status) }}
+            </div>
+            {% endfor %}
+          </td>
+          <td>
+            {# TODO(gkoberger): Add validation in when it's implemented #}
+            <strong>Coming Soon</strong>
+          </td>
+          <td class="version-delete">
+            <a href="#" class="remove" data-version="{{ version.id }}">x</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </div>
+
+</section>
+
+<div id="modals">
+  <div id="modal-delete-version" class="modal modal_delete">
+    <form method="post" action="">
+      <h2>{{ _('Delete Add-on Version') }}</h2>
+      <p>{{ _('Deleting your add-on version will remove it from the site.') }}</p>
+      <input type="hidden" name="version_id" class="version_id">
+      <input type="hidden" name="addon_id" class="addon_id" value="{{ addon.id }}">
+      <a href="#" class="button">{{ _('Delete Add-on Version') }}</a>
+      {{ _('or') }} <a href="#" class="close">{{ _('Cancel') }}</a>
+    </form>
+  </div>
+
+
+  <div id="modal-delete" class="modal modal_delete">
+    <form method="post" action="">
+      <h2>{{ _('Delete Add-on') }}</h2>
+      <p>
+        {% trans %}
+          Deleting your add-on will permanently remove it from the site and prevent
+          its GUID from being submitted ever again, even by you.  The existing users
+          of your add-on will remain on this update channel and never recieve updates
+          again.
+        {% endtrans %}
+      </p>
+      <p>
+      <strong>{{ _('Enter your password to confirm your decision:') }}</strong>
+        <input type="password" name="password">
+      </p>
+      <input type="hidden" name="addon_id" class="addon_id" value="{{ addon.id }}">
+      <button type="submit">{{ _('Delete Add-on') }}</button>
+      {{ _('or') }} <a href="#" class="close">{{ _('Cancel') }}</a>
+    </form>
+  </div>
+
+  <div id="modal-delete-version" class="modal modal_delete">
+    <form method="post" action="">
+      <h2>Delete Add-on Version</h2>
+      <p>
+        {% trans %}
+          Deleting your add-on version will remove it from the site.
+        {% endtrans %}
+      </p>
+      <input type="hidden" name="addon_id" class="addon_id" value="{{ addon.id }}">
+      <button type="submit">{{ _('Delete Add-on Version') }}</button>
+      {{ _('or') }} <a href="#" class="close">{{ _('Cancel') }}</a>
+    </form>
+  </div>
+
+  <div id="modal-disable" class="modal">
+    <form method="post" action="">
+      <h2>{{ _('Disable Add-on') }}</h2>
+      <p>
+        {% trans %}
+          Disabling your add-on will prevent it from appearing anywhere in our
+          gallery and will stop users from receiving automatic updates.
+        {% endtrans %}
+      </p>
+      <p>
+        {% trans %}
+          Are you sure you wish to disable your add-on?
+        {% endtrans %}
+      </p>
+      <input type="hidden" name="addon_id" class="addon_id" value="{{ addon.id }}">
+      <button type="submit">{{ _('Delete Add-on Version') }}</button>
+      {{ _('or') }} <a href="#" class="close">{{ _('Cancel') }}</a>
+    </form>
+  </div>
+
+  <div id="modal-cancel" class="modal">
+    <form method="post" action="">
+      <h2>{{ _('Cancel Review Request') }}</h2>
+      <p>
+        {% trans %}
+          Canceling your review request will disable your add-on.  If you'd prefer
+          to have another version reviewed, simply upload the new version instead.
+        {% endtrans %}
+      </p>
+      <p>
+        {% trans %}
+          Are you sure you wish to cancel your review request?
+        {% endtrans %}
+      </p>
+      <input type="hidden" name="addon_id" class="addon_id" value="{{ addon.id }}">
+      <button type="submit">{{ _('Delete Add-on Version') }}</button>
+      {{ _('or') }} <a href="#" class="close">{{ _('Cancel') }}</a>
+    </div>
+  </form>
+</div>
+
+{% include "devhub/includes/addons_edit_nav.html" %}
+{% endblock %}

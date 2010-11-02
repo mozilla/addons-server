@@ -484,6 +484,210 @@ a.extra {
 }
 /* @end */
 
+
+/* @group Versions */
+
+#version-status > div {
+    border-top: 1px dotted #ADD0DC;
+    margin: 0 10px;
+    padding: 10px 0;
+}
+
+#version-status > div:first-child {
+    border-top: 0;
+}
+
+#version-status strong {
+    display: block;
+}
+
+#version-status .version-changed {
+    color: #AAA;
+    display: block;
+    font-size: 11px;
+}
+
+#version-list .file-status {
+    text-transform: lowercase;
+}
+
+#version-list table {
+    width: 100%;
+}
+
+#version-list table th {
+    color: #888;
+    font-size: 11px;
+    padding: 0 0 5px 0;
+}
+
+#version-list table th.version-delete {
+    width: 35px;
+}
+
+#version-list table .version-delete {
+    text-align: right;
+}
+
+#version-list .version-delete .remove {
+    float: none;
+    margin: 0;
+}
+
+.version-status span {
+    color: #38A532;
+    text-transform: lowercase;
+}
+
+.version-status.version-unreviewed span,
+.version-status.version-beta span {
+    color: #4C8B97;
+}
+
+.version-status.version-disabled span,
+.version-status.version-null span,
+.version-status.version-disabled-by-admins{
+    color: #991B0F;
+}
+
+.version-status-actions {
+    border-top: 1px dotted #ADD0DC;
+    margin-top: 10px;
+    padding-top: 5px;
+}
+
+#modals {
+    display: none;
+}
+
+/* @end */
+
+/* @group Upload Version */
+.upload-file {
+    padding: 20px;
+}
+
+#upload-file {
+    margin: 0;
+}
+
+#upload-file h3 {
+    margin-top: 0;
+}
+
+#upload-file > div {
+    margin-top: 1em;
+}
+
+#upload-file .upload-status {
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    border:1px solid #D2ECF5;
+    margin-bottom: 1em;
+    padding: 10px;
+}
+
+#upload-file .upload-status div {
+    margin-top: 1em;
+    line-height: 1em;
+}
+
+#upload-file .upload-details {
+    font-size: 11px;
+    color: #999;
+}
+
+#upload-file .upload-status div:first-child {
+    margin-top: 0;
+}
+
+#upload-file .upload-status strong {
+    display: block;
+}
+
+#upload-file p {
+    margin-bottom: 1em;
+}
+
+#upload-status-bar {
+    background-color: #F2F2F2;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    height: 20px;
+}
+
+#upload-status-bar.bar-fail {
+    background-color: #D81916;
+}
+
+#upload-status-bar.bar-success {
+    background-color: #325487;
+}
+
+#upload-status-bar div {
+    background-color: #8BC5FA;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    width: 0%;
+    height: 20px;
+}
+
+#upload-status-bar.progress-idle,
+#upload-status-bar.progress-idle div {
+    background-image: url('../../img/developers/progress.gif');
+}
+
+#upload-status-bar.progress-idle {
+    background-position: 0 -26px;
+}
+
+#upload-status-results ul {
+    font-size: 11px;
+    line-height: 1.4em;
+    list-style: disc inside none;
+    margin: 0 0 0 24px;
+    padding-top: 3px;
+}
+
+#upload-status-results {
+    background-repeat: no-repeat;
+    display: none;
+}
+
+#upload-status-results a {
+    color: #359AFF;
+    display: block;
+    font-size: 12px;
+    padding-left: 24px;
+    padding-top: 5px;
+}
+
+#upload-status-results.status-fail,
+#upload-status-results.status-pass {
+    display: block;
+}
+
+#upload-status-results strong {
+    background-image:url("../../img/zamboni/icons/checks.png");
+    background-repeat:no-repeat;
+    padding:2px 0 2px 24px;
+}
+
+#upload-status-results.status-fail strong {
+    color: #D81916;
+    background-position:0 -120px;
+}
+
+#upload-status-results.status-pass strong {
+    color: #325487;
+    background-position:0 -80px;
+}
+
+/* @end */
+
 /* @group Recent Activity */
 .secondary-feed {
     padding: 1em 0 0 1em;

@@ -647,7 +647,8 @@ div.popup-shim {
 }
 
 .install-note,
-.popup {
+.popup,
+.modal {
     position: absolute;
     left: -15px;
     margin-top: 5px;
@@ -661,6 +662,20 @@ div.popup-shim {
     -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.35);
     -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.35);
     box-shadow: 0 1px 3px rgba(0,0,0,0.35);
+    z-index: 2001; /* because of devhub title */
+}
+.modal form {
+    margin: 0;
+}
+.modal h2 {
+    margin-top: 0;
+    color: #2E5186;
+}
+.modal_delete {
+    border-color: #6E0C06;
+}
+.modal_delete h2 {
+    color: #6E0C06;
 }
 .install-note {
     width: 300px;
