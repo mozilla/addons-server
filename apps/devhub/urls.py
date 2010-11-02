@@ -47,5 +47,5 @@ urlpatterns = decorate(write, patterns('',
     url('^addons/activity$', views.activity,
         name='devhub.addons.activity'),
     url('^upload$', views.upload, name='devhub.upload'),
-    url('^upload/([^/]+)$', views.upload_detail,
+    url('^upload/([^/]+)(?:/([^/]+))?$', views.upload_detail,
         name='devhub.upload_detail')))

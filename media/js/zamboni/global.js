@@ -194,3 +194,110 @@ $.fn.popup = function(click_target, o) {
 
     return $popup;
 };
+
+// makes an element into a modal.
+// click_target defines the element/elements that trigger the popup.
+// currently presumes the given element uses the '.modal' style
+// o takes the following optional fields:
+//     callback:    a function to run before displaying the popup. Returning
+//                  false from the function cancels the popup.
+//     container:   if set the popup will be appended to the container before
+//                  being displayed.
+//     width:       the width of the popup.
+//     delegate:    delegates the click handling of the click_target to the
+//                  specified parent element.
+//     hideme:      defaults to true, if set to false, popup will not be hidden
+//                  when the user clicks outside of it.
+// note: all options may be overridden and modified by returning them in an
+//       object from the callback.
+$.fn.modal = function(click_target, o) {
+    o = o || {};
+
+    var $ct         = $(click_target),
+        $modal      = this;
+
+    $modal.o = $.extend({
+        delegate:   false,
+        callback:   false,
+        onresize:   function(){$modal.setPos();},
+        hideme:     true,
+        offset:     {},
+        width:      300
+    }, o);
+
+    $modal.setWidth = function(w) {
+        $modal.css({width: w});
+        return $modal;
+    }
+
+    $modal.setPos = function(offset) {
+        offset = offset || $modal.o.offset;
+
+        $modal.detach().appendTo("body");
+        var toX = ($(window).width() - $modal.outerWidth()) / 2,
+            toY = ($(window).height() - $modal.outerHeight()) / 2;
+        $modal.css({
+            'left': toX,
+            'top': toY,
+            'right': 'inherit',
+            'bottom': 'inherit',
+            'position': 'fixed'
+        });
+        return $modal;
+    };
+
+    $modal.hideMe = function() {
+        $modal.hide();
+        $modal.unbind();
+        $modal.undelegate();
+        $(document.body).unbind('click newmodal', $modal.hider);
+        $(window).bind('resize', $modal.o.onresize);
+        return $modal;
+    };
+
+    function handler(e) {
+        e.preventDefault();
+        var resp = o.callback ? (o.callback.call($modal, {
+                click_target: this,
+                evt: e
+            })) : true;
+        $modal.o = $.extend({click_target: this}, $modal.o, resp);
+        if (resp) {
+            $modal.render();
+        }
+    }
+
+    $modal.render = function() {
+        var p = $modal.o;
+        $modal.hider = makeBlurHideCallback($modal);
+        if (p.hideme) {
+            setTimeout(function(){
+                $(document.body).bind('click modal', $modal.hider);
+            }, 0);
+        }
+        $modal.delegate('.close', 'click', function(e){
+            e.preventDefault();
+            $modal.hideMe();
+        });
+        $ct.trigger("modal_show", [$modal]);
+        if (p.container && p.container.length)
+            $modal.detach().appendTo(p.container);
+        $modal.setPos();
+        setTimeout(function(){
+            $modal.show();
+        }, 0);
+
+        $(window).bind('resize', p.onresize);
+        return $modal;
+    };
+
+    if ($modal.o.delegate) {
+        $($modal.o.delegate).delegate(click_target, "click", handler);
+    } else {
+        $ct.click(handler);
+    }
+
+    $modal.setWidth($modal.o.width);
+
+    return $modal;
+};

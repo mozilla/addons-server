@@ -1,5 +1,6 @@
 import codecs
 import functools
+import json
 import os
 import uuid
 
@@ -230,22 +231,23 @@ def upload(request):
         user = getattr(request, 'amo_user', None)
         fu = FileUpload.objects.create(path=loc, name=upload.name, user=user)
         tasks.validator.delay(fu.pk)
-        return redirect('devhub.upload_detail', fu.pk)
+        return redirect('devhub.upload_detail', fu.pk, 'json')
 
     return jingo.render(request, 'devhub/upload.html')
 
 
 @json_view
 def json_upload_detail(upload):
-    r = dict(upload=upload.uuid, validation=upload.validation,
+    validation = json.loads(upload.validation) if upload.validation else ""
+    r = dict(upload=upload.uuid, validation=validation,
              error=upload.task_error)
     return r
 
 
-def upload_detail(request, uuid):
+def upload_detail(request, uuid, format='html'):
     upload = get_object_or_404(FileUpload.uncached, uuid=uuid)
 
-    if request.is_ajax():
+    if format == 'json' or request.is_ajax():
         return json_upload_detail(upload)
 
     return jingo.render(request, 'devhub/validation.html',

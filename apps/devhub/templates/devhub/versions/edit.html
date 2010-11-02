@@ -93,6 +93,48 @@
       </form>
     </div>
   </div>
+  <div class="add-file-modal upload-file modal hidden">
+    <form method="post" id="upload-file" action="{{ url('devhub.upload') }}"
+          enctype="multipart/form-data">
+      <h3>{{ _('Upload a New File') }}</h3>
+      <div class="upload-file-box">
+        <p>
+          {% trans %}
+            Files added to reviewed versions must be reviewed before they
+            will be available for download.
+          {% endtrans %}
+        </p>
+
+        {{ csrf() }}
+
+        <label for="upload-file-input" class="brform">
+          {{ _('Select the add-on file to upload.') }}
+        </label>
+        <input type="file" id="upload-file-input" name="upload" />
+        <div class="upload-details">
+          {{ _('Your add-on should end with .xpi or .jar.') }}
+        </div>
+      </div>
+
+      <div class="upload-status">
+        <strong id="upload-status-text"></strong>
+        <div id="upload-status-bar">
+          <div></div>
+        </div>
+        {# TODO(gkoberger): Add %, kb's uploaded, cancel link #}
+        <div id="upload-status-results"></div>
+      </div>
+
+      <div class="upload-status-button-add">
+        <button class="button">{{ _('Add File') }}</button> or
+        <a href="#" class="upload-file-cancel">{{ _('Cancel') }}</a>
+      </div>
+      <div class="upload-status-button-close">
+        <a href="#" class="upload-file-reset button"></a> or
+        <a href="#" class="upload-file-cancel"></a>
+      </div>
+    </form>
+  </div>
 </section>
 {% include "devhub/includes/addons_edit_nav.html" %}
 {% endblock %}
