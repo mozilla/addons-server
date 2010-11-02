@@ -70,7 +70,6 @@ Most tests are in this category.  Our test classes extend
 :class:`test_utils.TestCase` and follow the standard rules for unit tests.
 We're using JSON fixtures for the data.
 
-
 Selenium Tests
 ~~~~~~~~~~~~~~
 Selenium tests should go under ``tests/selenium/`` in your apps' directory.
@@ -88,6 +87,17 @@ usually in the fixtues.  For example, some featured items have expiration dates.
 
 We can usually save our future-selves time by setting these expirations far in
 the future.
+
+
+Localization Tests
+------------------
+If you want test that your localization works then you can add in locales
+in the test directory. For an example see ``devhub/tests/locale``. These locales
+are not in the normal path so should not show up unless you add them to the 
+`LOCALE_PATH`. If you change the .po files for these test locales, you will
+need to recompile the .mo files manually, for example::
+
+    msgfmt --check-format -o django.mo django.po
 
 
 .. _`Django's Unit Testing`: http://docs.djangoproject.com/en/dev/topics/testing

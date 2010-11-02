@@ -1,7 +1,7 @@
 from collections import namedtuple
 
 from celery.datastructures import AttributeDict
-from tower import ugettext as _
+from tower import ugettext_lazy as _
 
 __all__ = ('LOG', 'LOG_BY_ID', 'LOG_KEEP',)
 
@@ -15,6 +15,7 @@ class CREATE_ADDON:
 
 
 class EDIT_PROPERTIES:
+    """ Expects: addon """
     id = 2
     format = _(u'{user.name} edited addon {addon.name} properties')
 
@@ -213,6 +214,27 @@ class ADD_APPVERSION:
     format = _(u'addon now supports {0} {1.min}-{1.max}')
 
 
+class CHANGE_USER_WITH_ROLE:
+    """ Expects: author.user, role, addon """
+    id = 36
+    format = _(u'{user.name} changed {0.name} for '
+               'addon {addon} with {1}')
+    keep = True
+
+
+class CHANGE_LICENSE:
+    """ Expects: license, addon """
+    id = 37
+    format = _(u'{user.name} changed {addon} to '
+               'use license {0.name}')
+
+
+class CHANGE_POLICY:
+    """ Expects: addon """
+    id = 38
+    format = _(u'{user.name} changed {addon} policy')
+
+
 class CUSTOM_TEXT:
     id = 98
     format = '{0}'
@@ -233,6 +255,7 @@ LOGS = (CREATE_ADDON, EDIT_PROPERTIES, EDIT_DESCRIPTIONS, EDIT_CATEGORIES,
         ADD_TO_COLLECTION, REMOVE_FROM_COLLECTION, ADD_REVIEW,
         ADD_RECOMMENDED_CATEGORY, REMOVE_RECOMMENDED_CATEGORY, ADD_RECOMMENDED,
         REMOVE_RECOMMENDED, ADD_APPVERSION, CUSTOM_TEXT, CUSTOM_HTML,
+        CHANGE_USER_WITH_ROLE, CHANGE_LICENSE, CHANGE_POLICY
         )
 LOG_BY_ID = dict((l.id, l) for l in LOGS)
 LOG = AttributeDict((l.__name__, l) for l in LOGS)

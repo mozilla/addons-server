@@ -2,10 +2,15 @@ from nose.tools import eq_
 from mock import Mock
 import test_utils
 
+from django.utils.importlib import import_module
+from django.conf import settings
+
 import amo
 from addons.models import Addon
 from devhub.models import ActivityLog
 from users.models import UserProfile
+
+from tower import activate, deactivate_all
 
 
 class TestActivityLog(test_utils.TestCase):
@@ -68,3 +73,24 @@ class TestActivityLog(test_utils.TestCase):
         eq_(len(entries), 1)
         entries = ActivityLog.objects.for_user(u)
         eq_(len(entries), 1)
+
+    def test_user_log_localizes(self):
+        """Tests that the activity log can be localized correctly"""
+        paths = list(settings.LOCALE_PATHS)
+        path = import_module(settings.SETTINGS_MODULE).path
+        locale_path = path('apps/devhub/tests/locale')
+
+        if locale_path not in paths:
+            paths.append(locale_path)
+
+        settings.LOCALE_PATHS = tuple(paths)
+
+        self.test_user_log_as_argument()
+        entries = ActivityLog.objects.for_user(self.request.amo_user)
+
+        assert '(ZZ)' not in entries[0].to_string()
+        try:
+            activate('zz')
+            assert entries[0].to_string().startswith('(ZZ)')
+        finally:
+            deactivate_all()

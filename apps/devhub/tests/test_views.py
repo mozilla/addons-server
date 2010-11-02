@@ -412,6 +412,20 @@ class TestEditAuthor(TestOwnership):
         eq_(r.status_code, 302)
         eq_(999, AddonUser.objects.get(addon=3615).user_id)
 
+    def test_logs(self):
+        # A copy of switch ownership to test logs
+        f = self.client.get(self.url).context['user_form'].initial_forms[0]
+        f.initial['user'] = 'regular@mozilla.com'
+        data = self.formset(f.initial, initial_count=1)
+        o = ActivityLog.objects
+        eq_(o.count(), 0)
+        r = self.client.post(self.url, data)
+        eq_(o.filter(action=amo.LOG.CHANGE_USER_WITH_ROLE.id).count(), 1)
+        eq_(o.filter(action=amo.LOG.CHANGE_LICENSE.id).count(), 1)
+        eq_(o.filter(action=amo.LOG.CHANGE_POLICY.id).count(), 1)
+        eq_(r.status_code, 302)
+        eq_(999, AddonUser.objects.get(addon=3615).user_id)
+
     def test_switch_owner(self):
         # See if we can transfer ownership in one POST.
         f = self.client.get(self.url).context['user_form'].initial_forms[0]
@@ -759,6 +773,14 @@ class TestEdit(test_utils.TestCase):
 
             eq_(result, val)
 
+    def test_log(self):
+        data = {'developer_comments': 'This is a test'}
+        o = ActivityLog.objects
+        eq_(o.count(), 0)
+        r = self.client.post(self.get_url('technical', True), data)
+        eq_(r.status_code, 200)
+        eq_(o.filter(action=amo.LOG.EDIT_PROPERTIES.id).count(), 1)
+
     def test_technical_on(self):
         # Turn everything on
         data = dict(developer_comments='Test comment!',
@@ -844,6 +866,14 @@ class TestProfile(test_utils.TestCase):
                'the_reason field should be required.'
         assert doc('label[for=id_the_future] .req').length, \
                'the_future field should be required.'
+
+    def test_log(self):
+        self.enable_addon_contributions()
+        d = dict(the_reason='because', the_future='i can')
+        o = ActivityLog.objects
+        eq_(o.count(), 0)
+        r = self.client.post(self.url, d)
+        eq_(o.filter(action=amo.LOG.EDIT_PROPERTIES.id).count(), 1)
 
     def test_with_contributions_fields_required(self):
         self.enable_addon_contributions()

@@ -136,7 +136,7 @@ class ActivityLog(amo.models.ModelBase):
         serialize_me = []
 
         for arg in args:
-            if isinstance(arg, (str, unicode)):
+            if isinstance(arg, basestring):
                 serialize_me.append({'str': arg})
             else:
                 serialize_me.append(dict(((unicode(arg._meta), arg.pk),)))
