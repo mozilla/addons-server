@@ -200,24 +200,24 @@ class TestAddonModels(test_utils.TestCase):
 
         assert a.is_category_featured(amo.FIREFOX, 'en-US')
 
-    def test_is_profile_public(self):
+    def test_has_full_profile(self):
         """Test if an add-on's developer profile is complete (public)."""
         addon = lambda: Addon.objects.get(pk=3615)
-        assert not addon().is_profile_public()
+        assert not addon().has_full_profile()
 
         a = addon()
         a.the_reason = 'some reason'
         a.save()
-        assert not addon().is_profile_public()
+        assert not addon().has_full_profile()
 
         a.the_future = 'some future'
         a.save()
-        assert addon().is_profile_public()
+        assert addon().has_full_profile()
 
         a.the_reason = ''
         a.the_future = ''
         a.save()
-        assert not addon().is_profile_public()
+        assert not addon().has_full_profile()
 
     def test_has_profile(self):
         """Test if an add-on's developer profile is (partially or entirely)

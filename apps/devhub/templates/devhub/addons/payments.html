@@ -9,8 +9,8 @@
   <h2>{{ title }}</h2>
 </header>
 <section class="primary payments" role="main" id="edit-addon">
-  {% set contrib = addon.takes_contributions %}
-  {% if contrib %}
+  {% set contrib = addon.takes_contributions and addon.has_full_profile() or errors %}
+  {% if contrib and not errors %}
     <div id="status-bar">
       <p>{{ _('You are currently requesting <b>contributions</b> from users')|safe }}</p>
       <form method="post" action="{{ url('devhub.addons.payments.disable', addon.id) }}">
@@ -18,7 +18,7 @@
         <button type="submit">{{ _('Disable Contributions') }}</button>
       </form>
     </div>
-  {% else %}
+  {% elif not errors %}
     <div class="intro">
       <h3>{{ _('Contributions') }}</h3>
       <p>{{ _('Voluntary contributions provide a way for users to support your add-on financially. With contributions, you can:') }}</p>
@@ -88,6 +88,11 @@
           {{ contrib_form.thankyou_note|safe }}
         </div>
       </div>
+      {% if not addon.has_full_profile() %}
+        {% with slim=True %}
+          {% include "devhub/includes/addons_create_profile.html" %}
+        {% endwith %}
+      {% endif %}
       <button type="submit">{{ _('Save Changes') if contrib else _('Activate Contributions') }}</button>
       <span class="{{ 'hidden' if contrib }}">
         {% trans %}

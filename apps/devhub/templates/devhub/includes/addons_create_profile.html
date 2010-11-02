@@ -1,6 +1,19 @@
 {% from 'includes/forms.html' import required %}
 
-{% if addon.has_profile %}
+{% macro maybe_required() %}
+  {% if not slim %}
+    {% if addon.takes_contributions %}
+      {{ required() }}
+      <span class="req">
+        {{ _('(required since this add-on accepts contributions)') }}
+      </span>
+    {% else %}
+      <span class="optional">{{ _('(optional)') }}</span>
+    {% endif %}
+  {% endif %}
+{% endmacro %}
+
+{% if addon.has_profile() %}
   <h3>{{ _('Manage Your Developer Profile') }}</h3>
 {% else %}
   <h3>{{ _('Create a Developer Profile') }}</h3>
@@ -25,14 +38,7 @@
 <div class="container">
   <label for="id_the_reason">
     {{ profile_form.the_reason.label|safe }}
-    {% if addon.takes_contributions %}
-      {{ required() }}
-      <span class="req">
-        {{ _('(required since this add-on accepts contributions)') }}
-      </span>
-    {% else %}
-      <span class="optional">{{ _('(optional)') }}</span>
-    {% endif %}
+    {{ maybe_required() }}
   </label>
   <span class="help">
     {% trans %}
@@ -47,14 +53,7 @@
 <div class="container">
   <label for="id_the_future">
     {{ profile_form.the_future.label|safe }}
-    {% if addon.takes_contributions %}
-      {{ required() }}
-      <span class="req">
-        {{ _('(required since this add-on accepts contributions)') }}
-      </span>
-    {% else %}
-      <span class="optional">{{ _('(optional)') }}</span>
-    {% endif %}
+    {{ maybe_required() }}
   </label>
   <span class="help">
     {% trans %}
@@ -65,11 +64,3 @@
   {{ profile_form.the_future.errors|safe }}
   {{ profile_form.the_future|safe }}
 </div>
-
-{% set button_label = _('Save Changes') if addon.has_profile else _('Create Profile') %}
-
-<p class="item-group">
-  <button>{{ button_label }}</button> {{ _('or') }}
-  <a href="{{ url('devhub.addons.edit', addon.id) }}">
-    {{ _('Cancel') }}</a>
-</p>

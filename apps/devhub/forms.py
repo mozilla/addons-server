@@ -127,6 +127,7 @@ class PolicyForm(happyforms.ModelForm):
 def ProfileForm(*args, **kw):
      # If the add-on takes contributions, then both fields are required.
     fields_required = bool(kw['instance'].takes_contributions)
+    fields_required = kw.pop('required', False) or fields_required
 
     class _Form(happyforms.ModelForm):
         the_reason = forms.CharField(widget=TranslationTextarea(),

@@ -12,6 +12,14 @@
   <form method="post" action="{{ url('devhub.addons.profile', addon.id) }}">
     {{ csrf() }}
     {% include "devhub/includes/addons_create_profile.html" %}
+
+    {% set button_label = _('Save Changes') if addon.has_profile else _('Create Profile') %}
+
+    <p class="item-group">
+      <button>{{ button_label }}</button> {{ _('or') }}
+      <a href="{{ url('devhub.addons.edit', addon.id) }}">
+        {{ _('Cancel') }}</a>
+    </p>
   </form>
 </section>
 {% include "devhub/includes/addons_edit_nav.html" %}

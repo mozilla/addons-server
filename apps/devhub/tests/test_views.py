@@ -604,6 +604,8 @@ class TestEditPayments(test_utils.TestCase):
 
     def setUp(self):
         self.addon = self.get_addon()
+        self.addon.the_reason = self.addon.the_future = '...'
+        self.addon.save()
         self.foundation = Charity.objects.create(
             id=amo.FOUNDATION_ORG, name='moz', url='$$.moz', paypal='moz.pal')
         self.url = reverse('devhub.addons.payments', args=[self.addon.id])
@@ -633,9 +635,9 @@ class TestEditPayments(test_utils.TestCase):
                    annoying=amo.CONTRIB_AFTER)
 
     def test_success_foundation(self):
-        self.post(recipient='moz', suggested_amount=2, paypal_id='greed@dev',
+        self.post(recipient='moz', suggested_amount=2,
                   annoying=amo.CONTRIB_ROADBLOCK)
-        self.check(paypal_id='greed@dev', suggested_amount=2,
+        self.check(paypal_id='', suggested_amount=2,
                    charity=self.foundation, annoying=amo.CONTRIB_ROADBLOCK)
 
     def test_success_charity(self):
@@ -760,6 +762,8 @@ class TestDisablePayments(test_utils.TestCase):
 
     def setUp(self):
         self.addon = Addon.objects.get(id=3615)
+        self.addon.the_reason = self.addon.the_future = '...'
+        self.addon.save()
         self.addon.update(wants_contributions=True, paypal_id='woohoo')
         self.pay_url = reverse('devhub.addons.payments', args=[self.addon.id])
         self.disable_url = reverse('devhub.addons.payments.disable',
@@ -779,6 +783,89 @@ class TestDisablePayments(test_utils.TestCase):
         eq_(r.status_code, 302)
         assert(r['Location'].endswith(self.pay_url))
         eq_(Addon.uncached.get(id=3615).wants_contributions, False)
+
+
+class TestPaymentsProfile(test_utils.TestCase):
+    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
+
+    def setUp(self):
+        self.addon = a = self.get_addon()
+        self.url = reverse('devhub.addons.payments', args=[self.addon.id])
+        # Make sure all the payment/profile data is clear.
+        assert not (a.wants_contributions or a.paypal_id or a.the_reason
+                    or a.the_future or a.takes_contributions)
+        assert self.client.login(username='del@icio.us', password='password')
+        self.paypal_mock = mock.Mock()
+        self.paypal_mock.return_value = (True, None)
+        paypal.check_paypal_id = self.paypal_mock
+
+    def get_addon(self):
+        return Addon.objects.get(id=3615)
+
+    def test_intro_box(self):
+        # We don't have payments/profile set up, so we see the intro.
+        doc = pq(self.client.get(self.url).content)
+        assert doc('.intro')
+        assert doc('#setup.hidden')
+
+    def test_status_bar(self):
+        # We don't have payments/profile set up, so no status bar.
+        doc = pq(self.client.get(self.url).content)
+        assert not doc('#status-bar')
+
+    def test_profile_form_exists(self):
+        doc = pq(self.client.get(self.url).content)
+        assert doc('#id_the_reason')
+        assert doc('#id_the_future')
+
+    def test_profile_form_success(self):
+        d = dict(recipient='dev', suggested_amount=2, paypal_id='xx@yy',
+                 annoying=amo.CONTRIB_ROADBLOCK, the_reason='xxx',
+                 the_future='yyy')
+        r = self.client.post(self.url, d)
+        eq_(r.status_code, 302)
+
+        # The profile form is gone, we're accepting contributions.
+        doc = pq(self.client.get(self.url).content)
+        assert not doc('.intro')
+        assert not doc('#setup.hidden')
+        assert doc('#status-bar')
+        assert not doc('#id_the_reason')
+        assert not doc('#id_the_future')
+
+        addon = self.get_addon()
+        eq_(unicode(addon.the_reason), 'xxx')
+        eq_(unicode(addon.the_future), 'yyy')
+        eq_(addon.wants_contributions, True)
+
+    def test_profile_required(self):
+        def check_page(request):
+            doc = pq(request.content)
+            assert not doc('.intro')
+            assert not doc('#setup.hidden')
+            assert not doc('#status-bar')
+            assert doc('#id_the_reason')
+            assert doc('#id_the_future')
+
+        d = dict(recipient='dev', suggested_amount=2, paypal_id='xx@yy',
+                 annoying=amo.CONTRIB_ROADBLOCK)
+        r = self.client.post(self.url, d)
+        eq_(r.status_code, 200)
+        self.assertFormError(r, 'profile_form', 'the_reason',
+                             'This field is required.')
+        self.assertFormError(r, 'profile_form', 'the_future',
+                             'This field is required.')
+        check_page(r)
+        eq_(self.get_addon().wants_contributions, False)
+
+        d = dict(recipient='dev', suggested_amount=2, paypal_id='xx@yy',
+                 annoying=amo.CONTRIB_ROADBLOCK, the_reason='xxx')
+        r = self.client.post(self.url, d)
+        eq_(r.status_code, 200)
+        self.assertFormError(r, 'profile_form', 'the_future',
+                             'This field is required.')
+        check_page(r)
+        eq_(self.get_addon().wants_contributions, False)
 
 
 class TestEdit(test_utils.TestCase):

@@ -265,28 +265,41 @@ def payments(request, addon_id, addon):
                                      prefix='charity')
     contrib_form = forms.ContribForm(request.POST or None, instance=addon,
                                      initial=forms.ContribForm.initial(addon))
+    profile_form = forms.ProfileForm(request.POST or None, instance=addon,
+                                     required=True)
     if request.method == 'POST':
         if contrib_form.is_valid():
-            addon, valid = contrib_form.save(commit=False), True
+            addon = contrib_form.save(commit=False)
             addon.wants_contributions = True
-            recipient = contrib_form.cleaned_data['recipient']
-            if recipient == 'dev':
-                addon.charity = None
-            elif recipient == 'moz':
-                addon.charity_id = amo.FOUNDATION_ORG
-            elif recipient == 'org':
-                valid = charity_form.is_valid()
+            valid = _save_charity(addon, contrib_form, charity_form)
+            if not addon.has_profile():
+                valid &= profile_form.is_valid()
                 if valid:
-                    addon.charity = charity_form.save()
+                    profile_form.save()
             if valid:
                 addon.save()
                 messages.success(request, _('Changes successfully saved.'))
                 return redirect('devhub.addons.payments', addon_id)
-    if charity_form.errors or contrib_form.errors:
+    errors = charity_form.errors or contrib_form.errors or profile_form.errors
+    if errors:
         messages.error(request, _('There were errors in your submission.'))
     return jingo.render(request, 'devhub/addons/payments.html',
-                        dict(addon=addon, charity_form=charity_form,
-                            contrib_form=contrib_form))
+        dict(addon=addon, charity_form=charity_form, errors=errors,
+             contrib_form=contrib_form, profile_form=profile_form))
+
+
+def _save_charity(addon, contrib_form, charity_form):
+    recipient = contrib_form.cleaned_data['recipient']
+    if recipient == 'dev':
+        addon.charity = None
+    elif recipient == 'moz':
+        addon.charity_id = amo.FOUNDATION_ORG
+    elif recipient == 'org':
+        if charity_form.is_valid():
+            addon.charity = charity_form.save()
+        else:
+            return False
+    return True
 
 
 @dev_required

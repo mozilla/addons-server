@@ -465,7 +465,7 @@ class Addon(amo.models.ModelBase):
         """Is add-on featured in any category for this app?"""
         return app.id in self._creatured_apps
 
-    def is_profile_public(self):
+    def has_full_profile(self):
         """Is developer profile public (completed)?"""
         return self.the_reason and self.the_future
 
