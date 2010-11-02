@@ -309,8 +309,8 @@ def version_edit(request, addon_id, addon, version_id):
 
         for deleted in data['file_form'].deleted_forms:
             file = deleted.cleaned_data['id']
-            ActivityLog(request, amo.LOG.DELETE_FILE_FROM_VERSION,
-                        (file, addon))
+            ActivityLog.log(request, amo.LOG.DELETE_FILE_FROM_VERSION,
+                        (file.filename, file.version, addon))
 
         if 'compat_form' in data:
             for compat in data['compat_form'].save(commit=False):

@@ -17,6 +17,7 @@ from amo.urlresolvers import reverse
 from addons.models import Addon, AddonUser, Charity
 from applications.models import AppVersion
 from devhub.forms import ContribForm
+from devhub.models import ActivityLog
 from files.models import File, Platform
 from users.models import UserProfile
 from versions.models import License, Version
@@ -942,7 +943,15 @@ class TestVersionEditFiles(TestVersionEdit):
         forms = map(initial,
                     self.client.get(self.url).context['file_form'].forms)
         forms[0]['DELETE'] = True
+        eq_(ActivityLog.objects.count(), 0)
         r = self.client.post(self.url, self.formset(*forms, prefix='files'))
+
+        eq_(ActivityLog.objects.count(), 1)
+        log = ActivityLog.objects.all()[0]
+        eq_(log.to_string(), u'55021 \u0627\u0644\u062a\u0637\u0628 deleted '
+                              'file delicious_bookmarks-2.1.072-fx.xpi from '
+                              '3615: Delicious Bookmarks '
+                              'version 2.1.072')
         eq_(r.status_code, 302)
         eq_(self.version.files.count(), 0)
 

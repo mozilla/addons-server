@@ -136,7 +136,7 @@ class ActivityLog(amo.models.ModelBase):
         serialize_me = []
 
         for arg in args:
-            if isinstance(arg, str):
+            if isinstance(arg, (str, unicode)):
                 serialize_me.append({'str': arg})
             else:
                 serialize_me.append(dict(((unicode(arg._meta), arg.pk),)))
@@ -175,6 +175,7 @@ class ActivityLog(amo.models.ModelBase):
             if isinstance(arg, Addon) and not addon:
                 addon = arg
                 break
+
         return log_type.format.format(*arguments, user=self.user, addon=addon)
 
     def __unicode__(self):
