@@ -355,12 +355,6 @@ class SearchExtensionsFilter(AddonFilter):
             ('created', _lazy(u'Recently Added')),)
 
 
-def search_sidebar_extensions(request):
-    """Returns a filter of search extensions for the search tools sidebar."""
-    base = (Addon.objects.listed(request.APP, amo.STATUS_PUBLIC)
-                         .filter(type=amo.ADDON_EXTENSION))
-    return SearchExtensionsFilter(request, base, 'sort', 'popular')
-
 def search_tools(request, category=None):
     """View the search tools page.
 
@@ -397,11 +391,14 @@ def search_tools(request, category=None):
 
     addons = amo.utils.paginate(request, addons)
 
+    base = (Addon.objects.listed(request.APP, amo.STATUS_PUBLIC)
+                         .filter(type=amo.ADDON_EXTENSION))
+    sidebar_ext = SearchExtensionsFilter(request, base, 'sort', 'popular')
+
     return jingo.render(request, 'browse/search_tools.html',
                         {'categories': categories, 'category': category,
                          'addons': addons, 'filter': filter,
-                         'search_extensions_filter':
-                                        search_sidebar_extensions(request),
+                         'search_extensions_filter': sidebar_ext,
                          'unreviewed': unreviewed})
 
 
