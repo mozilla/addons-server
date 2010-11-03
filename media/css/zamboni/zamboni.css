@@ -2605,7 +2605,7 @@ label > .optional {
 #add-to-collection form {
     margin-bottom: 0;
 }
-#add-to-collection.new-collection #id_description {
+#add-to-collection #id_description {
     height: 6em;
 }
 

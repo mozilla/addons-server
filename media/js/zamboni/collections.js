@@ -604,12 +604,12 @@ $(document).ready(function () {
             }
 
             function renderList(data) {
-                $widget.removeClass("new-collection");
                 $widget.html(data);
                 $widget.show();
                 ct.removeClass("ajax-loading");
                 $("a.outlink", $widget).click(stopPropagation);
-                $widget.setWidth(200);
+                if (!$(".errorlist li", $widget).length)
+                    $widget.setWidth(200);
                 $widget.setPos(ct);
                 $widget.render();
             }
@@ -626,7 +626,6 @@ $(document).ready(function () {
                 if (tgt.hasClass('ajax-loading')) return;
                 tgt.addClass('ajax-loading');
                 $.post(url, data, function(data) {
-                    $widget.removeClass('new-collection');
                     $widget.html(data);
                     $("a.outlink", $widget).click(stopPropagation);
                 }, 'html');
@@ -645,7 +644,6 @@ $(document).ready(function () {
                 e.preventDefault();
                 var tgt = $(this);
                 $.get(form_url, {'addon_id': addon_id}, function(d) {
-                    $widget.addClass('new-collection');
                     $widget.html(d);
                     $widget.setWidth(410);
                     $widget.setPos(ct);
