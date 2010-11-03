@@ -2611,6 +2611,7 @@ label > .optional {
 
 #id_slug {
     border-left: 0;
+    display: none;
 }
 #id_slug:focus {
     outline: 0;
