@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    if (!$("#l10n-menu").length) return;
     var locales = [];
         dl = $('.default_locale').attr('href').substring(1);
         currentLocale = dl;
