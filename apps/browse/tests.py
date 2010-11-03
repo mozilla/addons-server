@@ -288,9 +288,7 @@ class BaseSearchToolsTest(test_utils.TestCase):
 class TestSearchToolsPages(BaseSearchToolsTest):
 
     def test_landing_page(self):
-
         self.setup_featured_tools_and_extensions()
-
         response = self.client.get(reverse('browse.search-tools'))
         eq_(response.status_code, 200)
         doc = pq(response.content)
@@ -327,10 +325,8 @@ class TestSearchToolsPages(BaseSearchToolsTest):
         eq_(urlparse(links[1].attrib['href']).path, search_ext_url.path)
 
     def test_other_pages_exclude_extensions(self):
-
         # pretend all Add-ons are search-related:
         Addon.objects.update(type=amo.ADDON_SEARCH)
-
         # randomly make one an extension to be sure it is filtered out:
         Addon.objects.valid()[0].update(type=amo.ADDON_EXTENSION)
 
@@ -345,9 +341,7 @@ class TestSearchToolsPages(BaseSearchToolsTest):
                                                         sort_key, addon))
 
     def test_no_featured_addons_by_category(self):
-
         Feature.objects.all().delete()
-
         # Pretend Foxy is a bookmarks related search add-on
         foxy = Addon.objects.get(name__localized_string='FoxyProxy Standard')
         foxy.type = amo.ADDON_SEARCH
@@ -399,9 +393,7 @@ class TestSearchToolsPages(BaseSearchToolsTest):
 class TestSearchToolsFeed(BaseSearchToolsTest):
 
     def test_featured_search_tools(self):
-
         self.setup_featured_tools_and_extensions()
-
         url = reverse('browse.search-tools.rss') + '?sort=featured'
         r = self.client.get(url)
         eq_(r.status_code, 200)
@@ -413,7 +405,7 @@ class TestSearchToolsFeed(BaseSearchToolsTest):
         rel_link = reverse('browse.search-tools.rss') + '?sort=featured'
         assert link.endswith(rel_link), ('Unexpected link: %r' % link)
         eq_(doc('rss channel description')[0].text,
-            "Search tools and search related extensions")
+            "Search tools and search-related extensions")
 
         # There should be two features: one search tool and one extension.
         eq_(sorted([e.text for e in doc('rss channel item title')]),
@@ -421,7 +413,6 @@ class TestSearchToolsFeed(BaseSearchToolsTest):
              'Limon free English-Hebrew dictionary 0.5.3'])
 
     def test_search_tools_no_sorting(self):
-
         url = reverse('browse.search-tools.rss')
         r = self.client.get(url)
         eq_(r.status_code, 200)
@@ -432,7 +423,6 @@ class TestSearchToolsFeed(BaseSearchToolsTest):
         assert link.endswith(rel_link), ('Unexpected link: %r' % link)
 
     def test_search_tools_by_name(self):
-
         # Pretend Foxy is a search add-on
         (Addon.objects.filter(name__localized_string='FoxyProxy Standard')
                       .update(type=amo.ADDON_SEARCH))
@@ -449,7 +439,6 @@ class TestSearchToolsFeed(BaseSearchToolsTest):
             ['FoxyProxy Standard 2.17'])
 
     def test_search_tools_within_a_category(self):
-
         # Pretend Foxy is the only bookmarks related search add-on
         AddonCategory.objects.all().delete()
         foxy = Addon.objects.get(name__localized_string='FoxyProxy Standard')
@@ -481,7 +470,6 @@ class TestSearchToolsFeed(BaseSearchToolsTest):
             ['FoxyProxy Standard 2.17'])
 
     def test_non_ascii_titles(self):
-
         bookmarks = Category.objects.get(slug='bookmarks')
         bookmarks.name = u'Ivan Krstić'
         bookmarks.save()

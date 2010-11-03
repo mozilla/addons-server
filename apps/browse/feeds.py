@@ -128,7 +128,7 @@ class SearchToolsRss(AddonFeedMixin, Feed):
             # L10n: %s is a category name.
             return _(u'Search tools relating to %s') % self.category.name
         elif self.show_featured:
-            return _('Search tools and search related extensions')
+            return _('Search tools and search-related extensions')
         else:
             return _('Search tools')
 
@@ -160,8 +160,8 @@ class SearchToolsRss(AddonFeedMixin, Feed):
         - when viewing categories or any other sorting, do not
           include extensions.
         """
-        addons, _, _ = addon_listing(self.request, self.TYPES,
-                                     SearchToolsFilter, default='popular')
+        addons, filter, unreviewed = addon_listing(self.request, self.TYPES,
+                                        SearchToolsFilter, default='popular')
         if self.category:
             addons = addons.filter(categories__id=self.category.id)
         return addons[:30]
