@@ -55,7 +55,6 @@
   {% endcache %}
 {% endif %}
 
-{% set reviews = profile.reviews %}
 {% cache reviews %}
 <div class="primary" id="userprofile-reviews">
   <h3>{{ _('My Reviews') }}</h3>

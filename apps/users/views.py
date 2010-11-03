@@ -14,6 +14,7 @@ import amo
 from amo import messages
 from amo.decorators import login_required, json_view, write
 from amo.urlresolvers import reverse
+from addons.models import Addon
 from access import acl
 from bandwagon.models import Collection
 
@@ -317,8 +318,19 @@ def profile(request, user_id):
     else:
         addons = []
 
+    def get_addons(reviews):
+        if not reviews:
+            return
+        qs = (Addon.objects.all().only_translations()
+              .filter(id__in=set(r.addon_id for r in reviews)))
+        addons = dict((addon.id, addon) for addon in qs)
+        for review in reviews:
+            review.addon = addons.get(review.addon_id)
+    reviews = user.reviews.transform(get_addons)
+
     return jingo.render(request, 'users/profile.html',
                         {'profile': user, 'own_coll': own_coll,
+                         'reviews': reviews,
                          'fav_coll': fav_coll, 'edit_any_user': edit_any_user,
                          'addons': addons, 'own_profile': own_profile})
 
