@@ -9,6 +9,16 @@ $(document).ready(function() {
     if ($('.payments').length) {
         initPayments();
     }
+
+    // Edit Versions
+    if($('#upload-file').length) {
+        initEditVersions();
+    }
+
+    // View versions
+    if($('#version-list').length) {
+        initVersions();
+    }
 });
 
 
@@ -81,28 +91,6 @@ function addonFormSubmit() {
 $("#user-form-template .email-autocomplete")
     .attr("placeholder", gettext("Enter a new author's email address"));
 
-$(document).ready(function() {
-
-    //Ownership
-    if ($("#author_list").length) {
-        initAuthorFields();
-    }
-
-    //Payments
-    if ($('.payments').length) {
-        initPayments();
-    }
-
-    // Edit Versions
-    if($('#upload-file').length) {
-        initEditVersions();
-    }
-
-    // View versions
-    if($('#version-list').length) {
-        initVersions();
-    }
-});
 
 function initVersions() {
     $('#modals').hide();

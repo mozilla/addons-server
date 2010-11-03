@@ -184,8 +184,10 @@ class Addon(amo.models.ModelBase):
                                            nullify_invalid=True, blank=True,
                                            null=True)
 
-    annoying = models.PositiveIntegerField(choices=amo.CONTRIB_CHOICES,
-                                           default=0)
+    annoying = models.PositiveIntegerField(
+        choices=amo.CONTRIB_CHOICES, default=0,
+        help_text="Users will always be asked in the Add-ons"
+                  " Manager (Firefox 4 and above)")
     enable_thankyou = models.BooleanField(default=False,
         help_text="Should the thankyou note be sent to contributors?")
     thankyou_note = TranslatedField()

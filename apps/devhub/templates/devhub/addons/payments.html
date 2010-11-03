@@ -66,11 +66,12 @@
         {{ contrib_form.suggested_amount.errors|safe }}
         <label for="id_suggested_amount">{{ _('What is your suggested contribution?') }}</label>
         <div class="extra">{{ contrib_form.suggested_amount.help_text }}</div>
-        <div>{{ contrib_form.suggested_amount|safe }} USD</div>
+        <div>{{ contrib_form.suggested_amount|safe }} USD {{ _('(Example: 3.99)') }}</div>
       </div>
       <div class="nag">
         {{ contrib_form.annoying.errors|safe }}
         <b>{{ _('When should users be asked for contributions?') }}</b>
+        <div class="extra">{{ contrib_form.annoying.help_text }}</div>
         {{ contrib_form.annoying|safe }}
       </div>
       <div>
