@@ -10,11 +10,15 @@ from django.utils import http as urllib
 
 import caching.base as caching
 import jingo
+import commonware.log
+
 from tower import ugettext_lazy as _lazy
 from tower import ugettext as _
 
 import amo
+from amo import messages
 from amo.utils import sorted_groupby, randslice
+from amo.utils import send_mail
 from amo.helpers import absolutify
 from amo import urlresolvers
 from amo.urlresolvers import reverse
@@ -28,6 +32,9 @@ from translations.query import order_by_translation
 from translations.helpers import truncate
 from versions.models import Version
 from .models import Addon
+from .forms import AbuseForm
+
+log = commonware.log.getLogger('z.addons')
 
 
 def author_addon_clicked(f):
@@ -132,6 +139,9 @@ def extension_detail(request, addon):
 
         'collections': collections.order_by('-subscribers')[:3],
     }
+    if settings.REPORT_ABUSE:
+        data['abuse_form'] = AbuseForm(request=request)
+
     return jingo.render(request, 'addons/details.html', data)
 
 
@@ -177,6 +187,8 @@ def persona_detail(request, addon):
         'author_gallery': settings.PERSONAS_USER_ROOT % persona.author,
         'search_cat': 'personas',
     }
+    if settings.REPORT_ABUSE:
+        data['abuse_form'] = AbuseForm(request=request)
 
     return jingo.render(request, 'addons/personas_detail.html', data)
 
@@ -478,3 +490,32 @@ def license(request, addon_id, version=None):
 def license_redirect(request, version):
     version = get_object_or_404(Version, pk=version)
     return redirect(version.license_url(), permanent=True)
+
+
+def report_abuse(request, addon_id):
+    if not settings.REPORT_ABUSE:
+        raise http.Http404()
+
+    addon = get_object_or_404(Addon, pk=addon_id)
+    form = AbuseForm(request.POST or None, request=request)
+    if request.method == "POST" and form.is_valid():
+        if request.user.is_anonymous():
+            user_name = 'An anonymous user'
+        else:
+            user_name = '%s (%s)' % (request.amo_user.name,
+                                     request.amo_user.email)
+
+        subject = 'Abuse Report for %s' % addon.name
+        msg = u'%s reported abuse for %s (%s%s).\n\n%s'
+        msg = msg % (user_name, addon.name, settings.SITE_URL,
+                     reverse('addons.detail', args=[addon.pk]),
+                     form.cleaned_data['text'])
+
+        messages.success(request, _('Abuse reported.'))
+        log.debug('Abuse reported by %s for %s.' % (user_name, addon_id))
+        send_mail(subject, msg, recipient_list=(settings.FLIGTAR,))
+
+    else:
+        return jingo.render(request, 'addons/report_abuse_full.html',
+                            {'addon': addon, 'abuse_form': form, })
+    return redirect(reverse('addons.detail', args=[addon.pk]))

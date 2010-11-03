@@ -116,6 +116,10 @@
     {{ review_add_box(addon=addon) }}
   {% endif %}
 
+  {% if abuse_form %}
+  {{ report_abuse(hide=True, addon=addon) }}
+  {% endif %}
+
 </div>{# /primary #}
 
 <div id="persona-side" class="secondary" role="navigation">

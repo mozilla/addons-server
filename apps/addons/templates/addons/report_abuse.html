@@ -1,0 +1,19 @@
+<div id="addon" class="primary">
+  <form method="post" action="{{ url('addons.abuse', addon.pk) }}">
+    <fieldset class="abuse">
+      {% if hide %}<legend><a href="#">{{ _('Report Abuse') }}</a></legend>{% endif %}
+      <ol>
+        <li>
+          {{ csrf() }}
+          {{ abuse_form.as_p()|safe }}
+        </li>
+        <li>
+          <button type="submit">{{ _('Send Report') }}</button>
+          {% if hide %}
+          or <button type="reset" class="link">{{ _('Cancel') }}</button>
+          {% endif %}
+        </li>
+      </ol>
+    </fieldset>
+  </form>
+</div>

@@ -27,6 +27,7 @@
 {# TODO(fwenzel): "add-on has been added to collection" notification #}
 
 <div id="addon" class="primary" role="main" data-id="{{ addon.id }}">
+  {% include "messages.html" %}
   <div class="featured">
     <div class="featured-inner object-lead inverse">
 
@@ -197,6 +198,10 @@
   {{ version_detail(addon, version, src="addon-detail-version") }}
   {% endif %}
 
+  {% if abuse_form %}
+  {{ report_abuse(hide=True, addon=addon) }}
+  {% endif %}
+
 </div>{# /primary #}
 
 <div class="secondary" role="navigation">
@@ -325,4 +330,5 @@
   {# /collections #}
 
 </div>{# /secondary #}
+
 {% endblock content %}

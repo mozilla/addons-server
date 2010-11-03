@@ -1,6 +1,7 @@
 import re
 
 from django import forms
+from django.conf import settings
 
 import happyforms
 
@@ -91,3 +92,19 @@ class AddonForm(happyforms.ModelForm):
                   'get_satisfaction_product',)
 
         exclude = ('status', )
+
+import captcha.fields
+
+class AbuseForm(happyforms.Form):
+    recaptcha = captcha.fields.ReCaptchaField(label='')
+    text = forms.CharField(required=True,
+                           label=_('Please report abuse in the form below.'),
+                           widget=forms.Textarea())
+
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request')
+        super(AbuseForm, self).__init__(*args, **kwargs)
+
+        if (not self.request.user.is_anonymous() or
+            not settings.RECAPTCHA_PRIVATE_KEY):
+            del self.fields['recaptcha']

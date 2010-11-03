@@ -158,3 +158,9 @@ def persona_preview(context, persona, size='large', linked=True, extra=None,
 @jinja2.contextfunction
 def persona_grid(context, addons):
     return new_context(**locals())
+
+
+@register.inclusion_tag('addons/report_abuse.html')
+@jinja2.contextfunction
+def report_abuse(context, hide, addon):
+    return new_context(**locals())

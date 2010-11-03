@@ -1962,10 +1962,10 @@ form .error .note.error {
     font-weight: bold;
 }
 
-.abuse legend span {
+.abuse legend a {
     padding-left: 25px;
     color: #05e;
-    background: transparent url("../../img/amo2009/icons/icons.png") 0 -1700px no-repeat;
+    background: transparent url("../../img/zamboni/notifications.png") 0 -305px no-repeat;
 }
 
 .html-rtl .abuse legend span {

@@ -653,3 +653,6 @@ ASYNC_SIGNALS = True
 
 # Performance notes on add-ons
 PERFORMANCE_NOTES = False
+
+# flag to turn on or off Abuse reports
+REPORT_ABUSE = True
