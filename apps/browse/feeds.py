@@ -9,7 +9,7 @@ import amo
 from amo.urlresolvers import reverse
 from amo.helpers import absolutify, url, page_name
 from addons.models import Addon, Category
-from .views import addon_listing
+from .views import addon_listing, SearchToolsFilter
 
 
 class AddonFeedMixin(object):
@@ -113,3 +113,70 @@ class FeaturedRss(AddonFeedMixin, Feed):
         addons = list(Addon.objects.featured(self.app))
         random.shuffle(addons)
         return addons
+
+
+class SearchToolsRss(AddonFeedMixin, Feed):
+
+    category = None
+    request = None
+    TYPES = None
+    sort = ''
+
+    def description(self):
+        """Description of this feed."""
+        if self.category:
+            # L10n: %s is a category name.
+            return _(u'Search tools relating to %s') % self.category.name
+        elif self.show_featured:
+            return _('Search tools and search related extensions')
+        else:
+            return _('Search tools')
+
+    def get_object(self, request, category=None):
+        if category:
+            # Note that we don't need to include extensions
+            # when looking up a category
+            qs = Category.objects.filter(application=request.APP.id,
+                                         type=amo.ADDON_SEARCH)
+            self.category = get_object_or_404(qs, slug=category)
+        else:
+            self.category = None
+        self.request = request
+        self.sort = self.request.GET.get('sort', 'popular')
+        self.show_featured = self.sort == 'featured'
+        self.TYPES = [amo.ADDON_SEARCH]
+        if not self.category and self.show_featured:
+            self.TYPES.append(amo.ADDON_EXTENSION)
+
+        # We don't actually need to return anything, just hijacking the hook.
+        return None
+
+    def items(self):
+        """Return search related Add-ons to be output as RSS <item>'s
+
+        Just like on the landing page, the following rules apply:
+        - when viewing featured search tools, include
+          extensions in the search category
+        - when viewing categories or any other sorting, do not
+          include extensions.
+        """
+        addons, _, _ = addon_listing(self.request, self.TYPES,
+                                     SearchToolsFilter, default='popular')
+        if self.category:
+            addons = addons.filter(categories__id=self.category.id)
+        return addons[:30]
+
+    def link(self, category):
+        """Link for the feed as a whole"""
+        if self.category:
+            base = url('browse.search-tools.rss', self.category.slug)
+        else:
+            base = url('browse.search-tools.rss')
+        return absolutify(base + '?sort=' + self.sort)
+
+    def title(self):
+        """Title for the feed as a whole"""
+        base = _('Search Tools')
+        if self.category:
+            base = u'%s :: %s' % (self.category.name, base)
+        return u'%s :: %s' % (base, page_name(self.request.APP))

@@ -1,5 +1,5 @@
 from django.conf.urls.defaults import patterns, url
-from browse.feeds import CategoriesRss
+from browse.feeds import CategoriesRss, SearchToolsRss
 from . import views
 from browse.feeds import FeaturedRss
 
@@ -28,6 +28,9 @@ urlpatterns = patterns('',
     url('^browse/type:(?P<type_>\d)(?:/cat:(?P<category>\d+))?'
         '(?:/sort:(?P<sort>[^/]+))?(?:/format:(?P<format>[^/]+).*)?',
         views.legacy_redirects),
+
+    url('^search-tools/(?:(?P<category>[^/]+)/)?format:rss$',
+        SearchToolsRss(), name='browse.search-tools.rss'),
 
     url('^search-tools/(?P<category>[^/]+)?$', views.search_tools,
         name='browse.search-tools'),
