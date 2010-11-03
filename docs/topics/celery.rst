@@ -32,13 +32,14 @@ Celery depends on RabbitMQ.  If you use ``homebrew`` you can install this:
 Setting up rabbitmq invovles some configuration.  You may want to define the
 following ::
 
-  $HOSTNAME = 'mylaptop.local'
+  # On a Mac, you can find this in System Preferences > Sharing
+  export HOSTNAME='<laptop name>.local'
 
 Then run the following commands: ::
 
   # Set your host up so it's semi-permanent
   sudo scutil --set HostName $HOSTNAME
-  cat 127.0.0.1 $HOSTNAME | sudo tee /etc/hosts
+  cat 127.0.0.1 $HOSTNAME | sudo tee -a /etc/hosts
 
   # RabbitMQ insists on writing to /var
   sudo rabbitmq-server -detached
