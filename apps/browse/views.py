@@ -165,7 +165,7 @@ def extensions(request, category=None):
         q = Category.objects.filter(application=request.APP.id, type=TYPE)
         category = get_object_or_404(q, slug=category)
 
-    if 'sort' not in request.GET and category:
+    if 'sort' not in request.GET and category and category.count > 4:
         return category_landing(request, category)
 
     addons, filter, unreviewed = addon_listing(request, [TYPE])
@@ -269,10 +269,6 @@ def personas_listing(request, category=None):
 
 def personas(request, category=None):
     categories, filter, base, category = personas_listing(request, category)
-    if 'sort' in request.GET:
-        template = 'grid.html'
-    else:
-        template = 'category_landing.html'
 
     if category:
         count = category.count
@@ -280,6 +276,12 @@ def personas(request, category=None):
         # Pass the count from base instead of letting it come from
         # filter.qs.count() since that would join against personas.
         count = base.with_index(addons='type_status_inactive_idx').count()
+
+    if 'sort' in request.GET or count < 5:
+        template = 'grid.html'
+    else:
+        template = 'category_landing.html'
+
     addons = amo.utils.paginate(request, filter.qs, 30, count=count)
 
     featured = base & Addon.objects.featured(request.APP)

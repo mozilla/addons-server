@@ -180,13 +180,20 @@ class TestCategoryPages(test_utils.TestCase):
         self.client.get(reverse('browse.extensions'))
         assert not landing_mock.called
 
-        slug = Category.objects.all()[0].slug
-        category_url = reverse('browse.extensions', args=[slug])
+        category = Category.objects.all()[0]
+        category_url = reverse('browse.extensions', args=[category.slug])
+
         self.client.get('%s?sort=created' % category_url)
         assert not landing_mock.called
 
         self.client.get(category_url)
         assert landing_mock.called
+
+        # Category with less than 5 addons bypasses landing page
+        category.count = 4
+        category.save()
+        r = self.client.get(category_url)
+        eq_(landing_mock.call_count, 1)
 
     def test_creatured_addons(self):
         """Make sure the creatured add-ons are for the right category."""
