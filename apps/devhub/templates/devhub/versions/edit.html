@@ -25,7 +25,7 @@
       <form method="post" action="">
         {{ csrf() }}
 
-        <a href="#" class="add-file button">Add File</a>
+        <a href="#" class="add-file button">{{ _('Add File') }}</a>
 
         <table>
           {{ file_form.management_form|safe }}

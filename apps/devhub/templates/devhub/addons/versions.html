@@ -10,8 +10,7 @@
                       I didn't want to bother "doing it right", though, when I'd
                       just have to change it in a few days #}
   <div>
-    <strong class="version-status {{ 'version-unreviewed' if status_id in amo.UNREVIEWED_STATUSES
-                                      else 'version-' + status.lower().replace(' ', '-') }}">
+    <strong class="version-status">
       {# L10n: The status of the addon #}
       {% trans %}
         This add-on is <span>{{ status }}</span>.
@@ -104,6 +103,11 @@
         {% endfor %}
       </table>
     </div>
+    {% if versions.paginator.num_pages > 1 %}
+      <div class="listing-footer">
+        {{ versions|paginator }}
+      </div>
+    {% endif %}
   </div>
 
 </section>
@@ -144,7 +148,7 @@
 
   <div id="modal-delete-version" class="modal modal_delete">
     <form method="post" action="">
-      <h2>Delete Add-on Version</h2>
+      <h2>{{ _('Delete Add-on Version') }}</h2>
       <p>
         {% trans %}
           Deleting your add-on version will remove it from the site.
@@ -171,7 +175,7 @@
         {% endtrans %}
       </p>
       <input type="hidden" name="addon_id" class="addon_id" value="{{ addon.id }}">
-      <button type="submit">{{ _('Delete Add-on Version') }}</button>
+      <button type="submit">{{ _('Disable Add-on') }}</button>
       {{ _('or') }} <a href="#" class="close">{{ _('Cancel') }}</a>
     </form>
   </div>

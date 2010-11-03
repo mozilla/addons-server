@@ -19,16 +19,13 @@ from amo import messages
 import amo.utils
 from amo.decorators import json_view, login_required, post_required
 from access import acl
-from addons.forms import (AddonFormBasic, AddonFormDetails, AddonFormSupport,
-                          AddonFormTechnical)
+import addons.forms
 from addons.models import Addon, AddonUser, AddonLog
 from addons.views import BaseFilter
 from devhub.models import ActivityLog
 from files.models import FileUpload
 from versions.models import License, Version
 from . import forms, tasks
-from .forms import (AuthorFormSet, LicenseForm, PolicyForm, ProfileForm,
-                    CharityForm, ContribForm)
 
 log = commonware.log.getLogger('z.devhub')
 
@@ -278,10 +275,10 @@ def upload_detail(request, uuid, format='html'):
 
 @dev_required
 def addons_section(request, addon_id, addon, section, editable=False):
-    models = {'basic': AddonFormBasic,
-              'details': AddonFormDetails,
-              'support': AddonFormSupport,
-              'technical': AddonFormTechnical}
+    models = {'basic': addons.forms.AddonFormBasic,
+              'details': addons.forms.AddonFormDetails,
+              'support': addons.forms.AddonFormSupport,
+              'technical': addons.forms.AddonFormTechnical}
 
     if section not in models:
         return http.HttpResponseNotFound()

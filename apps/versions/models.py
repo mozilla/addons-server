@@ -41,13 +41,12 @@ class Version(amo.models.ModelBase):
         return self.addon.flush_urls()
 
     def files_status(self):
-        statuses = {}
+        statuses = []
         for file in self.files.all():
-            statuses[file.status] = statuses.get(file.status, 0) + 1
-
-        # Tupleize and add status name
-        choices = amo.STATUS_CHOICES
-        return [(unicode(amo.STATUS_CHOICES[s]), c) for s, c in statuses.items()]
+            # Uses unicode since ngettext didn't like the lazy trans proxies.
+            statuses.append((unicode(amo.STATUS_CHOICES[file.status]),
+                             file.status))
+        return statuses
 
     @amo.cached_property(writable=True)
     def compatible_apps(self):
