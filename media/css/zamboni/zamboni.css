@@ -3039,8 +3039,8 @@ input.ui-autocomplete-loading {
 }
 
 /** Hide Featured tab on Search Tools landing page when there's a category **/
-/** Bug 605670 **/
-.search-tools-for-cat li a[href$="?sort=featured"] {
+/** Bug 605670, 609318 **/
+.search-tools-for-cat li a[href*="?sort=featured"] {
     display: none;
 }
 /** l10n */
