@@ -119,7 +119,7 @@
     <h3>{{ _('Popular Tags') }}</h3>
     <div>
       {% for tag in top_tags|list|shuffle if tag.tagstat %}
-        {{ tag_link(tag, min_tag_count, max_tag_count)|safe }}
+        {{ tag_link(tag, min_tag_count, max_tag_count, min_level=3)|safe }}
       {% endfor %}
     </div>
     <p class="more">

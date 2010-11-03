@@ -34,9 +34,9 @@ def range_convert(value, old_min, old_max, new_min, new_max):
 
 
 @register.function
-def tag_link(tag, min_count, max_count):
+def tag_link(tag, min_count, max_count, min_level=1):
     """create the tag cloud link with the poper tagLevel class"""
-    factor = range_convert(tag.tagstat.num_addons, 0, max_count, 1, 10)
+    factor = max(range_convert(tag.tagstat.num_addons, 0, max_count, 1, 10),min_level)
     hyperlink = u'<a class="tagLevel%d tag" href="%s">%s</a>'
     return hyperlink % (factor,
                         reverse('tags.detail', args=[tag.tag_text.lower()]),
