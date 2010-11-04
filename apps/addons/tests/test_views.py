@@ -21,6 +21,7 @@ from users.models import UserProfile
 from tags.models import Tag, AddonTag
 from translations.helpers import truncate
 from translations.query import order_by_translation
+from versions.models import Version
 
 
 def norm(s):
@@ -290,7 +291,14 @@ class TestDeveloperPages(test_utils.TestCase):
 
         r = self.client.get('%s?version=%s' % (url, '20080521'))
         eq_(r.context['version'].version, '20080521')
-    test_get_old_version.x = 1
+
+    def test_duplicate_version_number(self):
+        qs = Version.objects.filter(addon=11730)
+        qs.update(version='1.x')
+        eq_(qs.count(), 2)
+        url = reverse('addons.meet', args=[11730]) + '?version=1.x'
+        r = self.client.get(url)
+        eq_(r.context['version'].version, '1.x')
 
 
 class TestLicensePage(test_utils.TestCase):
@@ -328,6 +336,13 @@ class TestLicensePage(test_utils.TestCase):
         url = reverse('addons.license', args=[3615])
         r = self.client.get(url)
         eq_(r.status_code, 404)
+
+    def test_duplicate_version_number(self):
+        Version.objects.create(addon=self.addon, version=self.version.version)
+        url = reverse('addons.license', args=[3615, self.version.version])
+        r = self.client.get(url)
+        eq_(r.status_code, 200)
+        eq_(r.context['version'], self.addon.current_version)
 
 
 class TestDetailPage(test_utils.TestCase):

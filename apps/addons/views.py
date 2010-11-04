@@ -4,7 +4,7 @@ import uuid
 from django import http
 from django.conf import settings
 from django.db.models import Q
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_list_or_404, get_object_or_404, redirect
 from django.utils.translation import trans_real as translation
 from django.utils import http as urllib
 
@@ -356,8 +356,8 @@ def privacy(request, addon_id):
 def developers(request, addon_id, page):
     addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
     if 'version' in request.GET:
-        version = get_object_or_404(addon.versions,
-                                    version=request.GET['version'])
+        qs = addon.versions.filter(files__status__in=amo.VALID_STATUSES)
+        version = get_list_or_404(qs, version=request.GET['version'])[0]
     else:
         version = addon.current_version
     if addon.is_persona():
@@ -465,7 +465,8 @@ def share(request, addon_id):
 def license(request, addon_id, version=None):
     addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
     if version is not None:
-        version = get_object_or_404(addon.versions, version=version)
+        qs = addon.versions.filter(files__status__in=amo.VALID_STATUSES)
+        version = get_list_or_404(qs, version=version)[0]
     else:
         version = addon.current_version
     if not (version and version.license):
