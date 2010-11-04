@@ -1,4 +1,4 @@
-{% from "devhub/includes/macros.html" import tip, empty_unless %}
+{% from "devhub/includes/macros.html" import tip, empty_unless, trans_readonly %}
 
 <form method="post" action="{{ url('devhub.addons.section', addon.id, 'basic', 'edit') }}">
   <h3>
@@ -15,13 +15,13 @@
         <caption>{{ _('Basic Information for {0}')|f(addon.name) }}</caption>
         <tbody>
           <tr>
-            <th>{{ _("Name") }}</th>
+            <th><label for="name">{{ _("Name") }}</label></th>
             <td>
               {% if editable %}
                 {{ form.name|safe }}
                 {{ form.name.errors|safe }}
               {% else %}
-                {{ addon.name }}
+                {{ trans_readonly('name', addon.name) }}
               {% endif %}
             </td>
           </tr>
@@ -44,7 +44,8 @@
           </tr>
           <tr>
             <th>
-              {{ tip(_("Summary"),
+              <label for="summary">{{ _("Summary") }}</label>
+              {{ tip(None,
                  _("A short explanation of your add-on's basic functionality
                     that is displayed in search and browse listings, as well as
                     at the top of your add-on's details page.")) }}

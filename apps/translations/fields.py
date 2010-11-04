@@ -59,7 +59,7 @@ class TranslatedField(models.ForeignKey):
 
     def formfield(self, **kw):
         widget = TransInput if self.short else TransTextarea
-        defaults = {'form_class': TranslationFormField, 'widget': widget}
+        defaults = {'form_class': TransField, 'widget': widget}
         defaults.update(kw)
         return super(TranslatedField, self).formfield(**defaults)
 
@@ -178,13 +178,13 @@ class TranslationDescriptor(related.ReverseSingleRelatedObjectDescriptor):
         return rv
 
 
-class TranslationFormField(forms.Field):
+class TransField(forms.Field):
     def __init__(self, *args, **kwargs):
         for k in ('queryset', 'to_field_name'):
             if k in kwargs:
                 del kwargs[k]
         self.widget = kwargs.pop('widget', TransInput)
-        super(TranslationFormField, self).__init__(*args, **kwargs)
+        super(TransField, self).__init__(*args, **kwargs)
 
     def clean(self, value):
         return dict(value)

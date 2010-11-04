@@ -11,16 +11,18 @@ from addons.models import Addon
 from amo.utils import slug_validator
 from tags.models import Tag
 from tower import ugettext as _, ungettext as ngettext
-from translations.widgets import (TranslationTextInput, TranslationTextarea,
-                                  TransTextarea)
-from translations.fields import TranslatedField, PurifiedField, LinkifiedField
+from translations.widgets import (TranslationTextInput, TranslationTextarea)
+from translations.fields import (TransTextarea, TransInput, TransField)
 
 
 class AddonFormBasic(happyforms.ModelForm):
-    name = forms.CharField(widget=TranslationTextInput, max_length=50)
     slug = forms.CharField(max_length=30)
-    summary = forms.CharField(widget=TranslationTextarea, max_length=250)
+    summary = forms.CharField(widget=TransTextarea, max_length=250)
     tags = forms.CharField(required=False)
+
+    class Meta:
+        model = Addon
+        fields = ('name', 'summary')
 
     def __init__(self, *args, **kw):
         self.request = kw.pop('request')
@@ -66,6 +68,7 @@ class AddonFormBasic(happyforms.ModelForm):
                         min_len).format(min_len))
         return target
 
+
     def clean_slug(self):
         target = self.cleaned_data['slug']
         slug_validator(target, lower=False)
@@ -78,7 +81,6 @@ class AddonFormBasic(happyforms.ModelForm):
 
 class AddonFormDetails(happyforms.ModelForm):
     default_locale = forms.TypedChoiceField(choices=Addon.LOCALES)
-    homepage = forms.URLField(widget=TranslationTextInput)
 
     def __init__(self, *args, **kw):
         self.request = kw.pop('request')
@@ -90,8 +92,8 @@ class AddonFormDetails(happyforms.ModelForm):
 
 
 class AddonFormSupport(happyforms.ModelForm):
-    support_url = forms.URLField(widget=TranslationTextInput)
-    support_email = forms.EmailField(widget=TranslationTextInput)
+    support_url = forms.URLField(widget=TransInput)
+    support_email = forms.EmailField(widget=TransInput)
 
     def __init__(self, *args, **kw):
         self.request = kw.pop('request')
@@ -121,7 +123,7 @@ class AddonFormSupport(happyforms.ModelForm):
 
 
 class AddonFormTechnical(forms.ModelForm):
-    developer_comments = forms.CharField(widget=TranslationTextarea,
+    developer_comments = forms.CharField(widget=TransTextarea,
                                          required=False)
 
     def __init__(self, *args, **kw):
@@ -136,12 +138,13 @@ class AddonFormTechnical(forms.ModelForm):
 
 class AddonForm(happyforms.ModelForm):
     name = forms.CharField(widget=TranslationTextInput,)
+    homepage = forms.CharField(widget=TranslationTextInput,)
     eula = forms.CharField(widget=TranslationTextInput,)
+    description = forms.CharField(widget=TranslationTextInput,)
+    developer_comments = forms.CharField(widget=TranslationTextInput,)
     privacy_policy = forms.CharField(widget=TranslationTextInput,)
     the_future = forms.CharField(widget=TranslationTextInput,)
     the_reason = forms.CharField(widget=TranslationTextInput,)
-    support_url = forms.CharField(widget=TranslationTextInput,)
-    summary = forms.CharField(widget=TranslationTextInput,)
     support_email = forms.CharField(widget=TranslationTextInput,)
 
     class Meta:

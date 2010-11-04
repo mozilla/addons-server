@@ -1,13 +1,14 @@
 <div class="transbox-new" data-default="{{ default_locale }}" id="l10n-menu">
   {% set dl = languages[default_locale] %}
   <p>
+  {# l10n: {0} is a language name, like 'French' #}
   {% trans %}
     Localize for: <a id="change-locale" href="#">{{ dl }}</a>
   {% endtrans %}
   </p>
   <div id="locale-popup" class="popup hidden">
     <section>
-      <div><a class="default_locale" href="#{{ default_locale }}">
+      <div><a class="default-locale" href="#{{ default_locale }}">
         {{ dl }}
       </a></div>
       <ul id="existing_locales">
@@ -22,5 +23,17 @@
         {% endfor %}
       </ul>
     </section>
+  </div>
+  <div id="modal-l10n-unsaved" class="modal hidden">
+    <p class="msg">
+    {# l10n: {0} is a language name, like 'French' #}
+    {% trans %}
+      You have unsaved changes in the <b>{0}</b> locale.
+      Would you like to save your changes before switching locales?
+    {% endtrans %}
+    </p>
+    <button id="l10n-save-changes" class="button">{{ _('Save Changes') }}</button>
+    <button id="l10n-discard-changes" class="button">{{ _('Discard Changes') }}</button>
+    {{ _('or') }} <a id="l10n-cancel-changes" href="#">{{ _('Cancel') }}</a>
   </div>
 </div>

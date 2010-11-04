@@ -3080,6 +3080,9 @@ input.ui-autocomplete-loading {
 #l10n-menu p {
     margin: 0;
 }
+.html-rtl #l10n-menu {
+    float: left;
+}
 #change-locale {
     padding-right: 16px;
 }
@@ -3108,7 +3111,18 @@ input.ui-autocomplete-loading {
     display: inline-block;
     float: right;
 }
-#locale-popup section > *:not(:last-child) {
-    border-bottom: 1px dotted #a4cfde;
+#locale-popup section > div,
+#locale-popup section > ul {
+    border-top: 1px dotted #a4cfde;
+    margin-bottom: 0;
+}
+#locale-popup section > div:first-child,
+#locale-popup section > ul:first-child {
+    border-top: none;
+}
+
+.trans .cloned {
+    color: #ccc;
+    font-style: italic;
 }
 /* end l10n */

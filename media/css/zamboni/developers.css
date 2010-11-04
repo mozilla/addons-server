@@ -134,11 +134,15 @@ a.remove:hover,
     padding-bottom: 0;
 }
 
-#id_tags, #id_name {
+#trans-tags input,
+#trans-name input {
     width: 80%;
 }
 
-#id_homepage, #id_support_url, #id_support_email {
+/*#id_homepage, #id_support_url, #id_support_email {*/
+#trans-support_email input,
+#trans-homepage input,
+#trans-support_url input {
     width: 60%;
 }
 

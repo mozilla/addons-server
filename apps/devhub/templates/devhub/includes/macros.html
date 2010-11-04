@@ -13,6 +13,12 @@
   {% endif %}
 {% endmacro %}
 
+{% macro trans_readonly(name, dict) %}
+  <div class="trans" data-name"{{ name }}">
+    {{ dict|pprint }}
+  </div>
+{% endmacro %}
+
 {% macro flags(text, element, editable, alt_text=False) %}
   {% if editable %}
     <div>

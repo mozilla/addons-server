@@ -16,7 +16,8 @@
         <tbody>
           <tr>
             <th>
-              {{ tip(_("Email"),
+              <label for="support_email">{{ _("Email") }}</label>
+              {{ tip(None,
                      _("If you wish to display an e-mail address for support inquiries,
                        enter it here. If you have different addresses for each language,
                        multiple translations of this field can be added.")) }}
@@ -34,7 +35,8 @@
           </tr>
           <tr>
             <th>
-              {{ tip(_("Website"),
+              <label for="support_url">{{ _("Website") }}</label>
+              {{ tip(None,
                      _("If your add-on has a support website or forum, enter its
                        address here. If your website is localized into other
                        languages, multiple translations of this field can be added.  If
