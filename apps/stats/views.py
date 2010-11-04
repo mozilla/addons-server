@@ -17,6 +17,7 @@ from amo.urlresolvers import reverse
 
 import unicode_csv
 from .db import DayAvg, Avg
+from .decorators import allow_cross_site_request
 from .models import DownloadCount, UpdateCount, Contribution
 from .utils import csv_prep, csv_dynamic_prep
 
@@ -265,6 +266,7 @@ thirty_days = 60 * 60 * 24 * 30
 
 
 @cache_control(max_age=thirty_days)
+@allow_cross_site_request
 def render_csv(request, addon, stats, fields):
     """Render a stats series in CSV."""
     # Start with a header from the template.
@@ -286,6 +288,7 @@ def render_csv(request, addon, stats, fields):
 
 
 @cache_control(max_age=thirty_days)
+@allow_cross_site_request
 def render_json(request, addon, stats):
     """Render a stats series in JSON."""
     response = http.HttpResponse(mimetype='text/json')
