@@ -814,6 +814,7 @@ class TestReportAbuse(test_utils.TestCase):
 
     def setUp(self):
         settings.REPORT_ABUSE = True
+        settings.RECAPTCHA_PRIVATE_KEY = 'something'
 
     @patch('captcha.fields.ReCaptchaField.clean')
     def test_abuse_anonymous(self, clean):

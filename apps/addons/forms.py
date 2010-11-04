@@ -11,6 +11,8 @@ from tower import ugettext as _
 from translations.widgets import TranslationTextInput, TranslationTextarea, TransTextarea
 from translations.fields import TranslatedField, PurifiedField, LinkifiedField
 
+import captcha.fields
+
 
 class AddonFormBasic(happyforms.ModelForm):
     name = forms.CharField(widget=TranslationTextInput, max_length=70)
@@ -93,7 +95,6 @@ class AddonForm(happyforms.ModelForm):
 
         exclude = ('status', )
 
-import captcha.fields
 
 class AbuseForm(happyforms.Form):
     recaptcha = captcha.fields.ReCaptchaField(label='')
