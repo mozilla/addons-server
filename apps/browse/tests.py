@@ -261,13 +261,20 @@ class BaseSearchToolsTest(test_utils.TestCase):
         # Pretend all Add-ons are search-related:
         Addon.objects.update(type=amo.ADDON_SEARCH)
 
-        # ...except one which will be an extension in the search category:
+        # One will be an extension in the search category:
         limon = Addon.objects.get(
                 name__localized_string='Limon free English-Hebrew dictionary')
         limon.type = amo.ADDON_EXTENSION
         limon.status = amo.STATUS_PUBLIC
         limon.save()
         AppSupport(addon=limon, app_id=amo.FIREFOX.id).save()
+
+        # Another will be a search add-on in the search category:
+        readit = Addon.objects.get(name__localized_string='Read It Later')
+        readit.type = amo.ADDON_SEARCH
+        readit.status = amo.STATUS_PUBLIC
+        readit.save()
+        AppSupport(addon=readit, app_id=amo.FIREFOX.id).save()
 
         # Un-feature all others:
         Feature.objects.all().delete()
@@ -278,11 +285,11 @@ class BaseSearchToolsTest(test_utils.TestCase):
                 start=datetime.datetime.now(),
                 end=datetime.datetime.now() + timedelta(days=30)).save()
 
-        # Feature Limon Dictionary as a category feature:
-        c = Category.objects.get(slug='search-tools')
-        cat = AddonCategory(addon=limon, feature=True)
-        c.addoncategory_set.add(cat)
-        c.save()
+        # Feature Limon Dictionary and Read It Later as a category feature:
+        s = Category.objects.get(slug='search-tools')
+        s.addoncategory_set.add(AddonCategory(addon=limon, feature=True))
+        s.addoncategory_set.add(AddonCategory(addon=readit, feature=True))
+        s.save()
 
 
 class TestSearchToolsPages(BaseSearchToolsTest):
@@ -297,7 +304,8 @@ class TestSearchToolsPages(BaseSearchToolsTest):
         ob = response.context['addons'].object_list
         eq_(sorted([a.name.localized_string
                     for a in response.context['addons'].object_list]),
-            [u'FoxyProxy Standard', u'Limon free English-Hebrew dictionary'])
+            [u'FoxyProxy Standard', u'Limon free English-Hebrew dictionary',
+             u'Read It Later'])
 
         # Ensure that all heading links have the proper base URL
         # between the category / no category cases.
@@ -410,7 +418,8 @@ class TestSearchToolsFeed(BaseSearchToolsTest):
         # There should be two features: one search tool and one extension.
         eq_(sorted([e.text for e in doc('rss channel item title')]),
             ['FoxyProxy Standard 2.17',
-             'Limon free English-Hebrew dictionary 0.5.3'])
+             'Limon free English-Hebrew dictionary 0.5.3',
+             'Read It Later 2.0.3'])
 
     def test_search_tools_no_sorting(self):
         url = reverse('browse.search-tools.rss')

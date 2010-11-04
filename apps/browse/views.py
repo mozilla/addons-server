@@ -336,14 +336,15 @@ class SearchToolsFilter(AddonFilter):
             type=amo.ADDON_SEARCH,
             feature__application=self.request.APP.id)
 
-        # Featured search-tool extensions:
-        featured_search_ext = Q(
-            type=amo.ADDON_EXTENSION,
+        # Featured in the search-tools category:
+        featured_search_cat = Q(
+            type__in=(amo.ADDON_EXTENSION, amo.ADDON_SEARCH),
+            addoncategory__category__application=self.request.APP.id,
             addoncategory__category__slug='search-tools',
             addoncategory__feature=True)
 
         q = Addon.objects.valid().filter(
-                        featured_search | featured_search_ext)
+                        featured_search | featured_search_cat)
 
         # Need to make the query distinct because
         # one addon can be in multiple categories (see
