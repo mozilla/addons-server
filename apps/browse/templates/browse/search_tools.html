@@ -19,9 +19,14 @@
 {% endblock %}
 
 {% block rss_feed %}
-  {% set feed = url('browse.search-tools.rss', category.slug) if category else url('browse.search-tools.rss') %}
+  {# Point to remora until zamboni is ready. #}
+  {% set mapping = {'created': 'newest',
+                    'popular': 'weeklydownloads',
+                    'rating': 'averagerating'} %}
+  {% set sorting = mapping.get(filter.field, filter.field) %}
+  {% set cat = category.id if category else 'all' %}
   <link rel="alternate" type="application/rss+xml" title="RSS"
-        href="{{ feed }}?sort={{ filter.field }}">
+        href="/{{ LANG }}/{{ APP.short }}/browse/type:{{ amo.ADDON_SEARCH }}/cat:{{ cat }}/format:rss?sort={{ sorting }}">
 {% endblock rss_feed %}
 
 {% block content %}
