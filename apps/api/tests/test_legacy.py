@@ -228,6 +228,13 @@ class APITest(TestCase):
         response = make_call('addon/4664', version=1.5)
         self.assertNotContains(response, settings.SITE_URL + settings.SITE_URL)
 
+    def test_absolute_install_url(self):
+        response = make_call('addon/4664', version=1.2)
+        doc = pq(response.content)
+        url = doc('install').text()
+        expected = '%s/firefox/downloads/file' % settings.SITE_URL
+        assert url.startswith(expected), url
+
     def test_15_addon_detail(self):
         """
         For an api>1.5 we need to verify we have:
