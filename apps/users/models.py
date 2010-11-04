@@ -90,7 +90,7 @@ class UserProfile(amo.models.ModelBase):
     email = models.EmailField(unique=True, null=True)
 
     averagerating = models.CharField(max_length=255, blank=True, null=True)
-    bio = PurifiedField()
+    bio = PurifiedField(short=False)
     confirmationcode = models.CharField(max_length=255, default='',
                                         blank=True)
     deleted = models.BooleanField(default=False)
