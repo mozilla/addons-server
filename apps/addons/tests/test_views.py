@@ -812,6 +812,9 @@ class TestReportAbuse(test_utils.TestCase):
                 'base/addon_3615',
                 'base/users']
 
+    def setUp(self):
+        settings.REPORT_ABUSE = True
+
     @patch('captcha.fields.ReCaptchaField.clean')
     def test_abuse_anonymous(self, clean):
         clean.return_value = ""
