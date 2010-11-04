@@ -379,24 +379,6 @@ class TestSearchToolsPages(BaseSearchToolsTest):
         eq_(set(sort_links), set([reverse('browse.search-tools',
                                           args=('bookmarks',))]))
 
-    def test_rss_links_per_page(self):
-
-        def get_link(url):
-            r = self.client.get(url)
-            eq_(r.status_code, 200)
-            doc = pq(r.content)
-            return doc('head link[type="application/rss+xml"]').attr('href')
-
-        eq_(get_link(reverse('browse.search-tools')),
-            reverse('browse.search-tools.rss') + '?sort=featured')
-
-        eq_(get_link(reverse('browse.search-tools') + '?sort=name'),
-            reverse('browse.search-tools.rss') + '?sort=name')
-
-        eq_(get_link(reverse('browse.search-tools', args=('bookmarks',))),
-            reverse('browse.search-tools.rss',
-                    args=('bookmarks',)) + '?sort=popular')
-
 
 class TestSearchToolsFeed(BaseSearchToolsTest):
 
