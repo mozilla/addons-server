@@ -11,7 +11,9 @@
       <label>{{ form.slug.label|safe }}</label>
       {% set username = collection.author_username if collection else amo_user.username %}
       {% set slug_base = url('collections.user', username)|absolutify %}
-      <span id="slug_edit"><span>{{ slug_base }}</span>{{ form.slug|safe }}</span>
+      <span id="slug_edit" class="edit_with_prefix edit_initially_hidden">
+        <span>{{ slug_base }}</span>{{ form.slug|safe }}
+      </span>
       <span id="slug_readonly">
         {{ slug_base }}<span id="slug_value">{% if collection and collection.slug %}{{ collection.slug }}{% endif %}</span>
         <a id="edit_slug" href="#">{{ _('Edit') }}</a>

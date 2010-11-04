@@ -32,7 +32,9 @@
             </th>
             <td id="slug_edit">
               {% if editable %}
-                <span>{{ settings.SITE_URL }}/&hellip;/</span>{{ form.slug|safe }}
+                <div class="edit_with_prefix">
+                  <span>{{ settings.SITE_URL }}/&hellip;/</span>{{ form.slug|safe }}
+                </div>
                 {{ form.slug.errors|safe }}
               {% else %}
                 <a href="{{ addon.get_url_path() }}">

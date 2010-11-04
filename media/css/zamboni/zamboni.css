@@ -2609,25 +2609,35 @@ label > .optional {
     height: 6em;
 }
 
-#id_slug {
-    border-left: 0;
-}
-#id_slug:focus {
-    outline: 0;
-}
-#slug_edit {
-    display: none;
-}
-#slug_edit span {
+.edit_with_prefix span, .edit_with_suffix span {
     border: 1px solid #5875A0;
-    border-right:0;
-    padding: 2px 2px 2px 5px;
     background: #eee;
-}
-
-#slug_edit span, #slug_readonly {
     color: #888;
 }
+.edit_with_prefix input:focus, .edit_with_suffix input:focus {
+    outline: 0;
+}
+
+.edit_with_prefix span {
+    border-right: 0 none;
+    padding: 2px 2px 2px 5px;
+}
+.edit_with_prefix input {
+    border-left: 0 none;
+}
+
+.edit_with_suffix span {
+    border-left: 0 none;
+    padding: 2px 5px 2px 2px;
+}
+.edit_with_suffix input {
+    border-right: 0 none;
+}
+
+.edit_initially_hidden {
+    display: none;
+}
+
 #slug_value {
     font-weight: bold;
     color: #222;
