@@ -148,7 +148,7 @@ class SearchTest(SphinxTestCase):
         eq_(query('guid:{4C197C8F-A50F-4B49-A2D2-ED922C95612F}')[0].id, 592)
 
     def test_guid_filter_email(self):
-        eq_(query('guid:yslow@yahoo-inc.com')[0].id, 5369)
+        eq_(query('guid:xxx, yslow@yahoo-inc.com')[0].id, 5369)
 
     def test_alpha_sort(self):
         "This verifies that alpha sort is case insensitive."

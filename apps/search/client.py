@@ -107,16 +107,16 @@ def extract_filters(term, kwargs):
         metas['type'] = addon_type
 
     # Guid filtering..
-    (term, guids) = extract_from_query(term, 'guid', '[{}@_\.,\-0-9a-zA-Z]+',
+    (term, guids) = extract_from_query(term, 'guid', '[\s{}@_\.,\-0-9a-zA-Z]+',
                                        end_of_word_boundary=False)
 
     if guids:
         guids_crc = []
 
-        for guid in guids.split(','):
+        for guid in [s.strip() for s in guids.split(',')]:
             if not guid:
                 continue
-            guids_crc.append(crc32(guid.strip().lower()))
+            guids_crc.append(crc32(guid.lower()))
 
         filters['guid_ord'] = guids_crc
 
