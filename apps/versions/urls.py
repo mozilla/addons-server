@@ -13,7 +13,7 @@ urlpatterns = patterns('',
 download_patterns = patterns('',
     # .* at the end to match filenames.
     # /file/:id/type:attachment
-    url('^file/(?P<file_id>\d+)/(?:type:(?P<type>\w+))?.*',
+    url('^file/(?P<file_id>\d+)(?:/type:(?P<type>\w+))?(?:/.*)?',
         views.download_file, name='downloads.file'),
 
     # /latest/1865/type:xpi/platform:5
