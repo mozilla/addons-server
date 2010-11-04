@@ -35,7 +35,8 @@ class File(amo.models.ModelBase):
     def get_url_path(self, app, src):
         # TODO: remove app
         from amo.helpers import urlparams, absolutify
-        url = reverse('downloads.file', args=[self.id]) + self.filename
+        url = os.path.join(reverse('downloads.file', args=[self.id]),
+                           self.filename)
         # Firefox's Add-on Manager needs absolute urls.
         return absolutify(urlparams(url, src=src))
 
