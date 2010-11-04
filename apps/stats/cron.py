@@ -46,11 +46,12 @@ def update_global_totals(date=None):
     """Update global statistics totals."""
 
     today = date or datetime.date.today()
-    today_jobs = [dict(job=job, date=today) for job in tasks._get_daily_jobs()]
+    today_jobs = [dict(job=job, date=today) for job in
+                  tasks._get_daily_jobs(date)]
 
     max_update = date or UpdateCount.objects.aggregate(max=Max('date'))['max']
     metrics_jobs = [dict(job=job, date=max_update) for job in
-                    tasks._get_metrics_jobs()]
+                    tasks._get_metrics_jobs(date)]
 
     with establish_connection() as conn:
         for kw in today_jobs + metrics_jobs:

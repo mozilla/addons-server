@@ -63,8 +63,8 @@ def update_global_totals(job, date):
     log.info("[%s] Updating global statistics totals (%s) for (%s)" %
                    (update_global_totals.rate_limit, job, date))
 
-    jobs = _get_daily_jobs()
-    jobs.update(_get_metrics_jobs())
+    jobs = _get_daily_jobs(date)
+    jobs.update(_get_metrics_jobs(date))
 
     num = jobs[job]()
 
