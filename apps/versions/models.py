@@ -8,8 +8,9 @@ from django.db import models
 import commonware.log
 import caching.base
 
-from amo.urlresolvers import reverse
+import amo
 import amo.models
+from amo.urlresolvers import reverse
 from applications.models import Application, AppVersion
 from files.models import File, Platform
 from translations.fields import (TranslatedField, PurifiedField,
@@ -77,6 +78,10 @@ class Version(amo.models.ModelBase):
 
     def get_url_path(self):
         return reverse('addons.versions', args=(self.addon.id, self.version,))
+
+    def delete(self):
+        amo.log(amo.LOG.DELETE_VERSION, self.addon, self)
+        super(Version, self).delete()
 
     @amo.cached_property(writable=True)
     def compatible_apps(self):

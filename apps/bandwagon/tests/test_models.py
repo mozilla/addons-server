@@ -8,6 +8,7 @@ import amo
 from addons.models import Addon, AddonRecommendation
 from bandwagon.models import (Collection, CollectionUser, CollectionWatcher,
                               SyncedCollection, RecommendedCollection)
+from devhub.models import ActivityLog
 from bandwagon import tasks
 from users.models import UserProfile
 
@@ -17,13 +18,22 @@ def get_addons(c):
     return list(q.values_list('id', flat=True))
 
 
+def activitylog_count(type):
+    qs = ActivityLog.objects
+    if type:
+        qs = qs.filter(action=type.id)
+    return qs.count()
+
+
 class TestCollections(test_utils.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/addon_3615',
-                'base/collections', 'bandwagon/test_models']
+    fixtures = ('base/apps', 'base/users', 'base/addon_3615',
+                'base/addon_10423_youtubesearch', 'base/addon_1833_yoono',
+                'base/collections', 'bandwagon/test_models')
 
     def setUp(self):
         self.user = UserProfile.objects.create(username='uhhh', email='uh@hh')
         self.other = UserProfile.objects.exclude(id=self.user.id)[0]
+        amo.set_user(self.user)
 
     def test_icon_url(self):
 
@@ -87,6 +97,7 @@ class TestCollections(test_utils.TestCase):
         random.shuffle(addons)
         c.set_addons(addons)
         eq_(get_addons(c), addons)
+        eq_(activitylog_count(amo.LOG.ADD_TO_COLLECTION), len(addons))
 
         # Check update.
         random.shuffle(addons)
@@ -94,8 +105,10 @@ class TestCollections(test_utils.TestCase):
         eq_(get_addons(c), addons)
 
         # Check delete.
+        delete_cnt = len(addons) - 2
         addons = addons[:2]
         c.set_addons(addons)
+        eq_(activitylog_count(amo.LOG.REMOVE_FROM_COLLECTION), delete_cnt)
         eq_(get_addons(c), addons)
         eq_(c.addons.count(), len(addons))
 
@@ -108,6 +121,7 @@ class TestCollections(test_utils.TestCase):
         c = Collection.objects.create(author=self.user)
         eq_(c.addon_count, 0)
         c.add_addon(Addon.objects.all()[0])
+        eq_(activitylog_count(amo.LOG.ADD_TO_COLLECTION), 1)
         c = Collection.objects.get(id=c.id)
         assert not c.from_cache
         eq_(c.addon_count, 1)
@@ -146,6 +160,7 @@ class TestRecommendations(test_utils.TestCase):
 
     def setUp(self):
         self.user = UserProfile.objects.create(username='uhhh', email='uh@hh')
+        amo.set_user(self.user)
 
     def expected_recs(self):
         scores, ranked = [], {}

@@ -25,6 +25,7 @@ class EDIT_DESCRIPTIONS:
     format = _(u'{user.name} edited addon {addon} description')
 
 
+# TODO(gkoberger): Log this type
 class EDIT_CATEGORIES:
     id = 4
     format = _(u'{user.name} edited categories for {addon}')
@@ -49,30 +50,35 @@ class EDIT_CONTRIBUTIONS:
     format = _(u'{user.name} edited contributions for {addon}')
 
 
+# TODO(gkoberger): Log these types when editing statuses
 class SET_INACTIVE:
     id = 8
     format = _(u'{addon} set inactive')
     keep = True
 
 
+# TODO(gkoberger): Log these types when editing statuses
 class UNSET_INACTIVE:
     id = 9
     format = _(u'{user.name} activated addon {addon}')
     keep = True
 
 
+# TODO(davedash): Log these types when pages are present
 class SET_PUBLIC_STATS:
     id = 10
     format = _(u'{user.name} set stats public for {addon}')
     keep = True
 
 
+# TODO(davedash): Log these types when pages are present
 class UNSET_PUBLIC_STATS:
     id = 11
     format = _(u'{user.name} set stats private for {addon}')
     keep = True
 
 
+# TODO(gkoberger): Log these types when editing statuses
 class CHANGE_STATUS:
     id = 12
     # L10n: {0} is the status
@@ -80,16 +86,19 @@ class CHANGE_STATUS:
     keep = True
 
 
+# TODO(gkoberger): Do this in 604152
 class ADD_PREVIEW:
     id = 13
     format = _(u'{user.name} added preview to {addon}')
 
 
+# TODO(gkoberger): Do this in 604152
 class EDIT_PREVIEW:
     id = 14
     format = _(u'{user.name} edited preview for {addon}')
 
 
+# TODO(gkoberger): Do this in 604152
 class DELETE_PREVIEW:
     id = 15
     format = _(u'{user.name} deleted preview from {addon}')
@@ -128,18 +137,21 @@ class DELETE_FILE_FROM_VERSION:
     format = _(u'File {0} deleted from {version} of {addon}')
 
 
+# TODO(davedash): When editor tools exist
 class APPROVE_VERSION:
     id = 21
     format = _(u'Version {0.version} of {addon} approved')
     keep = True
 
 
+# TODO(davedash): When editor tools exist
 class RETAIN_VERSION:
     id = 22
     format = _(u'{user.name} retained version {0.version} of {addon}')
     keep = True
 
 
+# TODO(davedash): When editor tools exist
 class ESCALATE_VERSION:
     id = 23
     # L10n: {0.version} is the version of an addon.
@@ -147,6 +159,7 @@ class ESCALATE_VERSION:
     keep = True
 
 
+# TODO(davedash): When editor tools exist
 class REQUEST_VERSION:
     id = 24
     # L10n: {0.version} is the version of an addon.
@@ -155,12 +168,14 @@ class REQUEST_VERSION:
     keep = True
 
 
+# TODO(gkoberger): When he does 606248
 class ADD_TAG:
     id = 25
     # L10n: {0} is the tag name.
     format = _(u'{user.name} added tag {0} to {addon}')
 
 
+# TODO(gkoberger): When he does 606248
 class REMOVE_TAG:
     id = 26
     # L10n: {0} is the tag name.
@@ -182,6 +197,7 @@ class ADD_REVIEW:
     format = _(u'{review} for {addon} written.')
 
 
+# TODO(davedash): Add these when we do the admin site
 class ADD_RECOMMENDED_CATEGORY:
     id = 31
     # L10n: {0} is a category name.
@@ -210,7 +226,7 @@ class ADD_APPVERSION:
     id = 35
     # L10n: {0} is the application, {1.min/max} is the min/max version of the
     # app
-    format = _(u'addon now supports {0} {1.min}-{1.max}')
+    format = _(u'{addon} {version} now supports {0} {1.min}-{1.max}')
 
 
 class CHANGE_USER_WITH_ROLE:
@@ -261,28 +277,32 @@ LOG = AttributeDict((l.__name__, l) for l in LOGS)
 LOG_KEEP = (l.id for l in LOGS if hasattr(l, 'keep'))
 
 
-def log(request, action, arguments=None):
+def log(action, *args):
     """
-    e.g. amo.log(request, amo.LOG.CREATE_ADDON, []),
-         amo.log(request, amo.LOG.ADD_FILE_TO_VERSION,
-                         (file, version))
+    e.g. amo.log(amo.LOG.CREATE_ADDON, []),
+         amo.log(amo.LOG.ADD_FILE_TO_VERSION, file, version)
     """
     from devhub.models import ActivityLog, AddonLog, UserLog
     from addons.models import Addon
     from users.models import UserProfile
+    from amo import get_user, logger_log
 
-    al = ActivityLog(user=request.amo_user, action=action.id)
-    al.arguments = arguments
+    user = get_user()
+
+    if not user:
+        logger_log.warning('Activity log called with no user: %s' % action.id)
+        return
+
+    al = ActivityLog(user=user, action=action.id)
+    al.arguments = args
     al.save()
 
-    if not isinstance(arguments, (list, tuple)):
-        arguments = (arguments,)
-    for arg in arguments:
+    for arg in args:
         if isinstance(arg, Addon):
             AddonLog(addon=arg, activity_log=al).save()
         elif isinstance(arg, UserProfile):
             # Index by any user who is mentioned as an argument.
             UserLog(activity_log=al, user=arg).save()
 
-    # Index by every request user
-    UserLog(activity_log=al, user=request.amo_user).save()
+    # Index by every user
+    UserLog(activity_log=al, user=user).save()

@@ -63,36 +63,33 @@ class TestActivity(HubTest):
         """Start with one user, two add-ons."""
         super(TestActivity, self).setUp()
         self.clone_addon(2)
-        self.request = mock.Mock()
-        self.request.amo_user = self.user_profile
+        amo.set_user(self.user_profile)
         self.addon, self.addon2 = list(self.user_profile.addons.all())
 
     def log_creates(self, num, addon=None):
         if not addon:
             addon = self.addon
         for i in xrange(num):
-            amo.log(self.request, amo.LOG.CREATE_ADDON, addon)
+            amo.log(amo.LOG.CREATE_ADDON, addon)
 
     def log_updates(self, num):
         version = Version.objects.create(version='1', addon=self.addon)
         for i in xrange(num):
-            amo.log(self.request, amo.LOG.ADD_VERSION,
-                            (self.addon, version))
+            amo.log(amo.LOG.ADD_VERSION, self.addon, version)
 
     def log_status(self, num):
         for i in xrange(num):
-            amo.log(self.request, amo.LOG.SET_INACTIVE, (self.addon))
+            amo.log(amo.LOG.SET_INACTIVE, self.addon)
 
     def log_collection(self, num):
         for i in xrange(num):
             c = Collection(name='foo %d' % i)
-            amo.log(self.request, amo.LOG.ADD_TO_COLLECTION,
-                            (self.addon, c))
+            amo.log(amo.LOG.ADD_TO_COLLECTION, self.addon, c)
 
     def log_review(self, num):
         r = Review(addon=self.addon)
         for i in xrange(num):
-            amo.log(self.request, amo.LOG.ADD_REVIEW, (self.addon, r))
+            amo.log(amo.LOG.ADD_REVIEW, self.addon, r)
 
     def get_response(self, **kwargs):
         url = reverse('devhub.feed_all')
@@ -657,6 +654,12 @@ class TestEditPayments(test_utils.TestCase):
             eq_(getattr(addon, k), v)
         assert addon.wants_contributions
         assert addon.takes_contributions
+
+    def test_logging(self):
+        count = ActivityLog.objects.all().count()
+        self.post(recipient='dev', suggested_amount=2, paypal_id='greed@dev',
+                  annoying=amo.CONTRIB_AFTER)
+        eq_(ActivityLog.objects.all().count(), count + 1)
 
     def test_success_dev(self):
         self.post(recipient='dev', suggested_amount=2, paypal_id='greed@dev',

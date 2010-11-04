@@ -3,6 +3,7 @@ import test_utils
 
 from amo.urlresolvers import reverse
 from access.models import GroupUser
+from devhub.models import ActivityLog
 from reviews.models import Review, ReviewFlag
 
 
@@ -112,6 +113,7 @@ class TestCreate(ReviewTest):
         self.add = reverse('reviews.add', args=[1865])
         self.client.login(username='root_x@ukr.net', password='password')
         self.qs = Review.objects.filter(addon=1865)
+        self.log_count = ActivityLog.objects.count
 
     def test_no_rating(self):
         r = self.client.post(self.add, {'body': 'no rating'})
@@ -119,11 +121,13 @@ class TestCreate(ReviewTest):
 
     def test_review_success(self):
         old_cnt = self.qs.count()
+        log_count = self.log_count()
         r = self.client.post(self.add, {'body': 'xx', 'rating': 3})
-        new = self.qs.get(is_latest=True, user=5293223)
         self.assertRedirects(r, reverse('reviews.list', args=[1865]),
                              status_code=302)
         eq_(self.qs.count(), old_cnt + 1)
+        # We should have an ADD_REVIEW entry now.
+        eq_(self.log_count(), log_count + 1)
 
     def test_new_reply(self):
         self.client.login(username='trev@adblockplus.org', password='password')

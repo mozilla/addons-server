@@ -5,13 +5,12 @@ from django.conf import settings
 
 import happyforms
 
+import amo
+import captcha.fields
 from addons.models import Addon
 from amo.utils import slug_validator
 from tower import ugettext as _
-from translations.widgets import TranslationTextInput, TranslationTextarea, TransTextarea
-from translations.fields import TranslatedField, PurifiedField, LinkifiedField
-
-import captcha.fields
+from translations.widgets import TranslationTextInput, TranslationTextarea
 
 
 class AddonFormBasic(happyforms.ModelForm):
@@ -95,6 +94,15 @@ class AddonForm(happyforms.ModelForm):
                   'get_satisfaction_product',)
 
         exclude = ('status', )
+
+    def save(self):
+        desc = self.data.get('description')
+        if desc and desc != unicode(self.instance.description):
+            amo.log(amo.LOG.EDIT_DESCRIPTIONS, self.instance)
+        if self.changed_data:
+            amo.log(amo.LOG.EDIT_PROPERTIES, self.instance)
+
+        super(AddonForm, self).save()
 
 
 class AbuseForm(happyforms.Form):

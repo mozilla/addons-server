@@ -263,10 +263,16 @@ class Collection(amo.models.ModelBase):
 
         cursor = connection.cursor()
         now = datetime.now()
+
+        log_this = (self.type == amo.COLLECTION_NORMAL)
         if remove:
             cursor.execute("DELETE FROM addons_collections "
                            "WHERE collection_id=%s AND addon_id IN (%s)" %
                            (self.id, ','.join(map(str, remove))))
+            if log_this:
+                for addon in remove:
+                    amo.log(amo.LOG.REMOVE_FROM_COLLECTION,
+                            (Addon, addon), self)
         if add:
             insert = '(%s, %s, %s, NOW(), NOW(), 0)'
             values = [insert % (a, self.id, idx) for a, idx in add]
@@ -275,6 +281,10 @@ class Collection(amo.models.ModelBase):
                     (addon_id, collection_id, ordering, created,
                      modified, downloads)
                 VALUES %s""" % ','.join(values))
+            if log_this:
+                for addon_id, idx in add:
+                    amo.log(amo.LOG.ADD_TO_COLLECTION,
+                            (Addon, addon_id), self)
         for addon, ordering in update:
             (CollectionAddon.objects.filter(collection=self.id, addon=addon)
              .update(ordering=ordering, modified=now))
@@ -295,10 +305,12 @@ class Collection(amo.models.ModelBase):
     def add_addon(self, addon):
         "Adds an addon to the collection."
         CollectionAddon.objects.get_or_create(addon=addon, collection=self)
+        amo.log(amo.LOG.ADD_TO_COLLECTION, addon, self)
         self.save()  # To invalidate Collection.
 
     def remove_addon(self, addon):
         CollectionAddon.objects.filter(addon=addon, collection=self).delete()
+        amo.log(amo.LOG.REMOVE_FROM_COLLECTION, addon, self)
         self.save()  # To invalidate Collection.
 
     def owned_by(self, user):

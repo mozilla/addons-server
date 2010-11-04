@@ -99,7 +99,8 @@ class TestViews(test_utils.TestCase):
             ('/collection/wut/', 301, url),
             ('/collection/f94d08c7-794d-3ce4-4634-99caa09f9ef4', 301, url),
             ('/collection/f94d08c7-794d-3ce4-4634-99caa09f9ef4/', 301, url),
-            ('/collections/view/f94d08c7-794d-3ce4-4634-99caa09f9ef4', 301, url),
+            ('/collections/view/f94d08c7-794d-3ce4-4634-99caa09f9ef4', 301,
+             url),
             ('/collections/view/wut/', 301, url),
             ('/collection/404', 404)]
         for test in tests:
@@ -136,6 +137,7 @@ class TestViews(test_utils.TestCase):
         addon = Addon.objects.all()[0]
         addon.status = amo.STATUS_UNREVIEWED
         c = u.favorites_collection()
+        amo.set_user(u)
         c.add_addon(addon)
 
         self.client.login(username='jbalogh@mozilla.com', password='foo')

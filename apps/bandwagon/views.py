@@ -497,6 +497,7 @@ def delete_icon(request, collection, username, slug):
         messages.success(request, _('Icon Deleted'))
         return redirect(collection.edit_url())
 
+
 @login_required
 @post_required
 @json_view
@@ -531,7 +532,6 @@ def share(request, username, slug):
 
 @login_required
 def following(request):
-    user = request.amo_user
     qs = (Collection.objects.filter(following__user=request.amo_user)
           .order_by('-following__created'))
     collections = amo.utils.paginate(request, qs)

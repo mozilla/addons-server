@@ -260,18 +260,15 @@ def ownership(request, addon_id, addon):
                      else amo.LOG.REMOVE_USER_WITH_ROLE
             author.addon = addon
             author.save()
-            amo.log(request, action,
-                            (author.user, author.get_role_display(), addon))
+            amo.log(action, author.user, author.get_role_display(), addon)
         # License.
         if version:
             license = license_form.save()
             addon.current_version.update(license=license)
-            amo.log(request, amo.LOG.CHANGE_LICENSE,
-                            (license, addon))
+            amo.log(amo.LOG.CHANGE_LICENSE, license, addon)
         # Policy.
         policy_form.save(addon=addon)
-        amo.log(request, amo.LOG.CHANGE_POLICY,
-                        (addon, policy_form.instance))
+        amo.log(amo.LOG.CHANGE_POLICY, addon, policy_form.instance)
 
         return redirect('devhub.addons.owner', addon_id)
 
@@ -304,6 +301,8 @@ def payments(request, addon_id, addon):
             if valid:
                 addon.save()
                 messages.success(request, _('Changes successfully saved.'))
+                amo.log(amo.LOG.EDIT_CONTRIBUTIONS, addon)
+
                 return redirect('devhub.addons.payments', addon_id)
     errors = charity_form.errors or contrib_form.errors or profile_form.errors
     if errors:
@@ -350,8 +349,7 @@ def profile(request, addon_id, addon):
 
     if request.method == 'POST' and profile_form.is_valid():
         profile_form.save()
-        amo.log(request, amo.LOG.EDIT_PROPERTIES,
-                        (addon))
+        amo.log(amo.LOG.EDIT_PROPERTIES, addon)
 
         return redirect('devhub.addons.profile', addon_id)
 
@@ -420,7 +418,7 @@ def addons_section(request, addon_id, addon, section, editable=False):
             if form.is_valid():
                 addon = form.save(addon)
                 editable = False
-                amo.log(request, amo.LOG.EDIT_PROPERTIES, (addon))
+                amo.log(amo.LOG.EDIT_PROPERTIES, addon)
         else:
             form = models[section](instance=addon)
     else:
@@ -460,8 +458,8 @@ def version_edit(request, addon_id, addon, version_id):
 
         for deleted in data['file_form'].deleted_forms:
             file = deleted.cleaned_data['id']
-            amo.log(request, amo.LOG.DELETE_FILE_FROM_VERSION,
-                    (file.filename, file.version, addon))
+            amo.log(amo.LOG.DELETE_FILE_FROM_VERSION,
+                    file.filename, file.version, addon)
 
         if 'compat_form' in data:
             for compat in data['compat_form'].save(commit=False):
@@ -490,7 +488,7 @@ def version_add_file(request, addon_id, addon, version_id):
     if not form.is_valid():
         return json_view.error(json.dumps(form.errors))
     upload = get_object_or_404(FileUpload, pk=form.cleaned_data['upload'])
-    f = File.from_upload(upload, version, form.cleaned_data['platform'])
+    File.from_upload(upload, version, form.cleaned_data['platform'])
     return {}
 
 

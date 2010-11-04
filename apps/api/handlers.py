@@ -83,9 +83,9 @@ class UserHandler(BaseHandler):
 
 
 class AddonsHandler(BaseHandler):
-    allowed_methods = ('POST', 'PUT', 'DELETE',)
+    allowed_methods = ('POST', 'PUT', 'DELETE')
     model = Addon
-    fields = ('id', 'name', 'eula', 'guid',)
+    fields = ('id', 'name', 'eula', 'guid')
     exclude = ('highest_status', 'icon_type')
 
     # Custom handler so translated text doesn't look weird
@@ -102,15 +102,14 @@ class AddonsHandler(BaseHandler):
         if not license_form.is_valid():
             return _form_error(license_form)
 
-        new_file_form = XPIForm(request.POST, request.FILES)
+        new_file_form = XPIForm(request, request.POST, request.FILES)
 
         if not new_file_form.is_valid():
             return _xpi_form_error(new_file_form, request)
 
         license = license_form.save()
 
-        a = new_file_form.create_addon(user=request.amo_user,
-                                       license=license)
+        a = new_file_form.create_addon(license=license)
         return a
 
     @check_addon_and_version
@@ -132,7 +131,7 @@ class AddonsHandler(BaseHandler):
 class ApplicationsVersionsHandler(AnonymousBaseHandler):
     model = ApplicationsVersions
     allowed_methods = ('GET', )
-    fields = ('application', 'max', 'min',)
+    fields = ('application', 'max', 'min')
 
     @classmethod
     def application(cls, av):
@@ -168,7 +167,7 @@ class AnonymousVersionsHandler(AnonymousBaseHandler, BaseVersionHandler):
     model = Version
     allowed_methods = ('GET',)
     fields = ('id', 'addon_id', 'created', 'release_notes', 'version',
-              'license', 'current', 'apps' )
+              'license', 'current', 'apps')
 
     def read(self, request, addon_id, version_id=None):
         if version_id:
@@ -185,7 +184,7 @@ class AnonymousVersionsHandler(AnonymousBaseHandler, BaseVersionHandler):
 
 
 class VersionsHandler(BaseHandler, BaseVersionHandler):
-    allowed_methods = ('POST', 'PUT', 'DELETE', 'GET',)
+    allowed_methods = ('POST', 'PUT', 'DELETE', 'GET')
     model = Version
     fields = AnonymousVersionsHandler.fields
     exclude = ('approvalnotes', )
@@ -200,7 +199,8 @@ class VersionsHandler(BaseHandler, BaseVersionHandler):
         if not license_form.is_valid():
             return _form_error(license_form)
 
-        new_file_form = XPIForm(request.POST, request.FILES, addon=addon)
+        new_file_form = XPIForm(request, request.POST, request.FILES,
+                                addon=addon)
 
         if not new_file_form.is_valid():
             return _xpi_form_error(new_file_form, request)
@@ -220,7 +220,8 @@ class VersionsHandler(BaseHandler, BaseVersionHandler):
         else:
             license = version.license
 
-        new_file_form = XPIForm(request.PUT, request.FILES, version=version)
+        new_file_form = XPIForm(request, request.PUT, request.FILES,
+                                version=version)
 
         if not new_file_form.is_valid():
             return _xpi_form_error(new_file_form, request)

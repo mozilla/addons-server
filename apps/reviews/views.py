@@ -149,6 +149,7 @@ def add(request, addon_id):
         if form.is_valid():
             details = _review_details(request, addon, form)
             review = Review.objects.create(**details)
+            amo.log(amo.LOG.ADD_REVIEW, addon, review)
             log.debug('New review: %s' % review.id)
             return redirect('reviews.list', addon_id)
     return jingo.render(request, 'reviews/add.html',

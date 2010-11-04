@@ -16,7 +16,7 @@ import happyforms
 import amo
 from addons.models import Addon, AddonUser
 from files.models import File
-from versions.models import ApplicationsVersions, AppVersion, License, Version
+from versions.models import ApplicationsVersions, AppVersion, Version
 
 license_ids = dict((license.shortname, license.id) for license in amo.LICENSES)
 
@@ -102,8 +102,9 @@ class XPIForm(happyforms.Form):
     release_notes = forms.CharField(required=False)
     xpi = forms.FileField(required=True)
 
-    def __init__(self, data, files, addon=None, version=None):
+    def __init__(self, request, data, files, addon=None, version=None):
         self.addon = addon
+        self.request = request
 
         if version:
             self.version = version
@@ -120,7 +121,7 @@ class XPIForm(happyforms.Form):
         self.cleaned_data.update(parse_xpi(xpi, self.addon))
         return xpi
 
-    def create_addon(self, user, license=None):
+    def create_addon(self, license=None):
         data = self.cleaned_data
         a = Addon(guid=data['guid'],
                   name=data['name'],
@@ -129,11 +130,12 @@ class XPIForm(happyforms.Form):
                   homepage=data['homepage'],
                   description=data['description'])
         a.save()
-        AddonUser(addon=a, user=user).save()
+        AddonUser(addon=a, user=self.request.amo_user).save()
 
         self.addon = a
         # Save Version, attach License
         self.create_version(license=license)
+        amo.log(amo.LOG.CREATE_ADDON, a)
         log.info('Addon %d saved' % a.id)
         return a
 
@@ -166,8 +168,10 @@ class XPIForm(happyforms.Form):
         apps = self.cleaned_data['apps']
 
         for app in apps:
-            ApplicationsVersions(version=version, min=app.min, max=app.max,
-                                 application_id=app.id).save()
+            av = ApplicationsVersions.objects.create(version=version,
+                    min=app.min, max=app.max, application_id=app.id)
+            amo.log(amo.LOG.ADD_APPVERSION,
+                    version, version.addon, app.appdata.short, av)
 
     def create_version(self, license=None):
         data = self.cleaned_data
@@ -175,6 +179,7 @@ class XPIForm(happyforms.Form):
                     version=data['version'],
                     releasenotes=data['release_notes'])
         v.save()
+        amo.log(amo.LOG.ADD_VERSION, v.addon, v)
         self._save_apps(v)
         self._save_file(v)
         return v
@@ -186,6 +191,7 @@ class XPIForm(happyforms.Form):
         v.version = data['version']
         v.releasenotes = data['release_notes']
         v.save()
+        amo.log(amo.LOG.EDIT_VERSION, v.addon, v)
         self._save_apps(v)
         self._save_file(v)
         return v

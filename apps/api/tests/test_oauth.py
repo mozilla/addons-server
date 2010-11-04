@@ -37,8 +37,10 @@ from nose.tools import eq_
 from test_utils import TestCase
 from piston.models import Consumer, Token
 
+import amo
 from amo.urlresolvers import reverse
 from addons.models import Addon, BlacklistedGuid
+from devhub.models import ActivityLog
 from translations.models import Translation
 from versions.models import AppVersion, Version
 
@@ -258,6 +260,13 @@ class TestBasicOauth(BaseOauth):
         eq_(r.content, 'Invalid consumer.')
 
 
+def activitylog_count(type=None):
+    qs = ActivityLog.objects
+    if type:
+        qs = qs.filter(action=type.id)
+    return qs.count()
+
+
 class TestAddon(BaseOauth):
 
     def setUp(self):
@@ -288,8 +297,11 @@ class TestAddon(BaseOauth):
                            data=data)
 
     def create_addon(self):
+        current_count = activitylog_count(amo.LOG.CREATE_ADDON)
         r = self.make_create_request(self.create_data)
         eq_(r.status_code, 200, r.content)
+        # 1 new add-on
+        eq_(activitylog_count(amo.LOG.CREATE_ADDON), current_count + 1)
         return json.loads(r.content)
 
     def test_create(self):
@@ -355,9 +367,13 @@ class TestAddon(BaseOauth):
                 get_satisfaction_product='yer face',
         )
 
+        current_count = activitylog_count()
         r = client.put(('api.addon', id), self.accepted_consumer, self.token,
                        data=data)
         eq_(r.status_code, 200, r.content)
+
+        # EDIT_PROPERTIES, EDIT_DESCRIPTIONS
+        eq_(activitylog_count(), current_count + 2)
 
         a = Addon.objects.get(pk=id)
         for field, expected in data.iteritems():
@@ -439,11 +455,17 @@ class TestAddon(BaseOauth):
         data = self.create_addon()
         id = data['id']
 
+        log_count = activitylog_count()
+
         # Upload new version of file
         r = client.post(('api.versions', id,), self.accepted_consumer,
                         self.token, data=self.version_data)
 
         eq_(r.status_code, 200, r.content)
+
+        # verify we've logged a new version and a new app version
+        eq_(log_count + 2, activitylog_count())
+
         # validate that the addon has 2 versions
         a = Addon.objects.get(pk=id)
         eq_(a.versions.all().count(), 2)
@@ -503,11 +525,14 @@ class TestAddon(BaseOauth):
                 xpi=open(os.path.join(settings.ROOT, path)),
                 )
 
+        log_count = activitylog_count()
         # upload new version
         r = client.put(('api.version', id, v.id), self.accepted_consumer,
                        self.token, data=data, content_type=MULTIPART_CONTENT)
         eq_(r.status_code, 200, r.content[:1000])
 
+        # verify we've logged a version update and a new app version
+        eq_(activitylog_count(), log_count + 2)
         # verify data
         v = a.versions.get()
         eq_(v.version, '0.2')
@@ -561,8 +586,12 @@ class TestAddon(BaseOauth):
 
         a = Addon.objects.get(pk=id)
         v = a.versions.get()
+
+        log_count = activitylog_count()
         r = client.delete(('api.version', id, v.id), self.accepted_consumer,
                           self.token)
+        eq_(activitylog_count(), log_count + 1)
+
         eq_(r.status_code, 204, r.content)
         eq_(a.versions.count(), 0)
 
