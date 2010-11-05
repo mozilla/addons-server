@@ -672,3 +672,6 @@ PERFORMANCE_NOTES = False
 REPORT_ABUSE = True
 
 REDIS_BACKENDS = {'master': 'redis://localhost:6379?socket_timeout=0.5'}
+
+# Directory of JavaScript test files for django_qunit to run
+QUNIT_TEST_DIRECTORY = os.path.join(MEDIA_ROOT, 'js', 'zamboni', 'tests')

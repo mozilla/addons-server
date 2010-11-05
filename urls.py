@@ -135,6 +135,19 @@ urlpatterns += patterns('piston.authentication',
         name='oauth.access_token'),
 )
 
+if 'django_qunit' in settings.INSTALLED_APPS:
+
+    def zamboni_qunit(request, path):
+        import django_qunit.views
+        import jingo
+        ctx = django_qunit.views.get_suite_context(request, path)
+        return jingo.render(request, 'qunit.html', ctx)
+
+    urlpatterns += patterns('',
+        url(r'^qunit/(?P<path>.*)', zamboni_qunit),
+        url(r'^_qunit/', include('django_qunit.urls'))
+    )
+
 if settings.DEBUG:
     # Remove leading and trailing slashes so the regex matches.
     media_url = settings.MEDIA_URL.lstrip('/').rstrip('/')

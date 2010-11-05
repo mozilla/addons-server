@@ -1,0 +1,6 @@
+{
+    "name": "Main Test Suite",
+    "extra_media_urls": [
+        "js/zamboni/devhub.js"
+    ]
+}
