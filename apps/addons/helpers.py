@@ -1,5 +1,3 @@
-from django.conf import settings
-
 import jinja2
 
 from jingo import register, env
@@ -161,5 +159,5 @@ def persona_grid(context, addons):
 
 @register.inclusion_tag('addons/report_abuse.html')
 @jinja2.contextfunction
-def report_abuse(context, hide, addon):
+def addon_report_abuse(context, hide, addon):
     return new_context(**locals())

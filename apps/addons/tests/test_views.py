@@ -4,23 +4,22 @@ import re
 
 from django import test
 from django.conf import settings
+from django.core import mail
 from django.core.cache import cache
 from django.utils import translation
 from django.utils.encoding import iri_to_uri
-from django.core import mail
 
 from nose.tools import eq_
 import test_utils
 from pyquery import PyQuery as pq
-from mock import patch
 
 import amo
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
+from amo.tests.test_helpers import AbuseBase, AbuseDisabledBase
 from addons import views
 from addons.models import Addon, AddonUser
 from users.models import UserProfile
-from tags.models import Tag, AddonTag
 from translations.helpers import truncate
 from translations.query import order_by_translation
 from versions.models import Version
@@ -797,7 +796,7 @@ class TestAddonSharing(test_utils.TestCase):
         assert iri_to_uri(summary) in r['Location']
 
 
-class TestReportAbuse(test_utils.TestCase):
+class TestReportAbuse(AbuseBase, test_utils.TestCase):
     fixtures = ['addons/persona',
                 'base/apps',
                 'base/addon_3615',
@@ -806,26 +805,7 @@ class TestReportAbuse(test_utils.TestCase):
     def setUp(self):
         settings.REPORT_ABUSE = True
         settings.RECAPTCHA_PRIVATE_KEY = 'something'
-
-    @patch('captcha.fields.ReCaptchaField.clean')
-    def test_abuse_anonymous(self, clean):
-        clean.return_value = ""
-        self.client.post(reverse('addons.abuse', args=[3615]),
-                         {'text': 'spammy'})
-        eq_(len(mail.outbox), 1)
-        assert 'spammy' in mail.outbox[0].body
-
-    def test_abuse_anonymous_fails(self):
-        r = self.client.post(reverse('addons.abuse', args=[3615]),
-                             {'text': 'spammy'})
-        assert 'recaptcha' in r.context['abuse_form'].errors
-
-    def test_abuse_logged_in(self):
-        self.client.login(username='regular@mozilla.com', password='password')
-        self.client.post(reverse('addons.abuse', args=[3615]),
-                         {'text': 'spammy'})
-        eq_(len(mail.outbox), 1)
-        assert 'spammy' in mail.outbox[0].body
+        self.full_page = reverse('addons.abuse', args=[3615])
 
     def test_abuse_persona(self):
         r = self.client.get(reverse('addons.detail', args=[15663]))
@@ -840,7 +820,7 @@ class TestReportAbuse(test_utils.TestCase):
         assert 'spammy' in mail.outbox[0].body
 
 
-class TestReportAbuseDisabled(test_utils.TestCase):
+class TestReportAbuseDisabled(AbuseDisabledBase, test_utils.TestCase):
     fixtures = ['addons/persona',
                 'base/apps',
                 'base/addon_3615',
@@ -848,6 +828,8 @@ class TestReportAbuseDisabled(test_utils.TestCase):
 
     def setUp(self):
         settings.REPORT_ABUSE = False
+        self.full_page = reverse('addons.abuse', args=[3615])
+        self.inline_page = reverse('addons.detail', args=[3615])
 
     def tearDown(self):
         settings.REPORT_ABUSE = True
@@ -856,22 +838,3 @@ class TestReportAbuseDisabled(test_utils.TestCase):
         r = self.client.get(reverse('addons.detail', args=[15663]))
         doc = pq(r.content)
         assert not doc("fieldset.abuse")
-
-    def test_abuse_fails_anonymous(self):
-        r = self.client.get(reverse('addons.detail', args=[3615]))
-        doc = pq(r.content)
-        assert not doc("fieldset.abuse")
-
-        res = self.client.post(reverse('addons.abuse', args=[3615]),
-                               {'text': 'spammy'})
-        eq_(res.status_code, 404)
-
-    def test_abuse_fails_logged_in(self):
-        self.client.login(username='regular@mozilla.com', password='password')
-        r = self.client.get(reverse('addons.detail', args=[3615]))
-        doc = pq(r.content)
-        assert not doc("fieldset.abuse")
-
-        res = self.client.post(reverse('addons.abuse', args=[3615]),
-                               {'text': 'spammy'})
-        eq_(res.status_code, 404)

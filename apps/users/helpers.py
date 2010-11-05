@@ -10,9 +10,9 @@ def emaillink(email):
     if not email:
         return ""
 
-    fallback = email[::-1] # reverse
+    fallback = email[::-1]  # reverse
     # inject junk somewhere
-    i = random.randint(0, len(email)-1)
+    i = random.randint(0, len(email) - 1)
     fallback = u"%s%s%s" % (jinja2.escape(fallback[:i]),
                             u'<span class="i">null</span>',
                             jinja2.escape(fallback[i:]))
@@ -51,3 +51,12 @@ def user_vcard(user, table_class='person-info',
          'about_addons': about_addons}
     t = env.get_template('users/vcard.html').render(**c)
     return jinja2.Markup(t)
+
+
+@register.inclusion_tag('users/report_abuse.html')
+@jinja2.contextfunction
+def user_report_abuse(context, hide, profile):
+    new = dict(context.items())
+    new.update({'hide': hide, 'profile': profile,
+                'abuse_form': context['abuse_form']})
+    return new

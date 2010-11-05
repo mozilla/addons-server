@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}{{ page_title(addon.name) }}{% endblock %}
-
+{% block js %}{% include("amo/recaptcha_js.html") %}{% endblock %}
 {% block bodyclass %}inverse{% endblock %}
 
 {% block content %}
@@ -199,7 +199,7 @@
   {% endif %}
 
   {% if abuse_form %}
-  {{ report_abuse(hide=True, addon=addon) }}
+  {{ addon_report_abuse(hide=True, addon=addon) }}
   {% endif %}
 
 </div>{# /primary #}

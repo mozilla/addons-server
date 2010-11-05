@@ -1,0 +1,21 @@
+<form method="post" action="{{ url('users.abuse', profile.pk) }}">
+  <fieldset class="abuse">
+    {% if hide %}<legend><a href="#">{{ _('Report user') }}</a></legend>{% endif %}
+    <ol {% if hide %}class="hide"{% endif %}>
+      <li>
+        {{ csrf() }}
+        {% if abuse_form.has_recaptcha %}
+          {{ recaptcha(abuse_form) }}
+        {% endif %}
+        {{ abuse_form.text|safe }}
+        {{ abuse_form.text.errors|safe }}
+      </li>
+      <li>
+        <button type="submit">{{ _('Send Report') }}</button>
+        {% if hide %}
+        or <button type="reset" class="link">{{ _('Cancel') }}</button>
+        {% endif %}
+      </li>
+    </ol>
+  </fieldset>
+</form>

@@ -3,7 +3,7 @@
 {% set title = _('Report abuse for {0}')|f(addon.name) %}
 
 {% block title %}{{ page_title(title) }}{% endblock %}
-
+{% block js %}{% include("amo/recaptcha_js.html") %}{% endblock %}
 {% block content %}
 
 <header>
@@ -13,6 +13,6 @@
   <h2>{{ title }}</h2>
 </header>
 
-{{ report_abuse(hide=False, addon=addon) }}
+{{ addon_report_abuse(hide=False, addon=addon) }}
 
 {% endblock %}

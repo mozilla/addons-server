@@ -1,0 +1,17 @@
+{% extends "base_side_categories.html" %}
+
+{% set title = _('Report user {0}')|f(profile.name) %}
+
+{% block title %}{{ page_title(title) }}{% endblock %}
+{% block js %}{% include("amo/recaptcha_js.html") %}{% endblock %}
+{% block content %}
+
+<header>
+  {{ breadcrumbs([(profile.get_url_path(), profile.name),
+                  (None, _('Report user'))]) }}
+  <h2>{{ title }}</h2>
+</header>
+
+{{ user_report_abuse(hide=False, profile=profile) }}
+
+{% endblock %}

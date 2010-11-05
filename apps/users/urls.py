@@ -20,6 +20,7 @@ detail_patterns = patterns('',
     url('^confirm/(?P<token>[-\w]+)$', views.confirm, name='users.confirm'),
     url(r'^emailchange/(?P<token>[-\w]+={0,3})/(?P<hash>[\w]+)$',
                         views.emailchange, name="users.emailchange"),
+    url('^abuse', views.report_abuse, name='users.abuse'),
 )
 
 users_patterns = patterns('',

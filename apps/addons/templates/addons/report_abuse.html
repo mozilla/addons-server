@@ -1,8 +1,8 @@
 <div id="addon" class="primary">
   <form method="post" action="{{ url('addons.abuse', addon.pk) }}">
     <fieldset class="abuse">
-      {% if hide %}<legend><a href="#">{{ _('Report Abuse') }}</a></legend>{% endif %}
-      <ol>
+      {% if hide %}<legend><a href="#" class="abuse-image">{{ _('Report Abuse') }}</a></legend>{% endif %}
+      <ol {% if hide %}style="display: none"{% endif %}>
         <li>
           <p>{% trans url=remora_url('developers/docs/policies') %}
             If you suspect this add-on violates <a href="{{ url }}">our policies</a> or
@@ -11,7 +11,11 @@
         </li>
         <li>
           {{ csrf() }}
-          {{ abuse_form.as_p()|safe }}
+          {% if abuse_form.has_recaptcha %}
+            {{ recaptcha(abuse_form) }}
+          {% endif %}
+          {{ abuse_form.text|safe }}
+          {{ abuse_form.text.errors|safe }}
         </li>
         <li>
           <button type="submit">{{ _('Send Report') }}</button>

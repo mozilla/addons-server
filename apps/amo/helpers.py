@@ -303,3 +303,11 @@ def timesince(time):
     ago = defaultfilters.timesince(time)
     # L10n: relative time in the past, like '4 days ago'
     return _(u'{0} ago').format(ago)
+
+
+@register.inclusion_tag('amo/recaptcha.html')
+@jinja2.contextfunction
+def recaptcha(context, form):
+    d = dict(context.items())
+    d.update(form=form)
+    return d

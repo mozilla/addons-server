@@ -1,15 +1,21 @@
 {% extends "base_side_categories.html" %}
 
 {% block title %}{{ page_title(_('User Info for {0}')|f(profile.name)) }}{% endblock %}
-
+{% block js %}{% include("amo/recaptcha_js.html") %}{% endblock %}
 {% block content %}
 
 <div class="vcard">
   {{ breadcrumbs([(None, profile.name)]) }}
   <h2 class="fn n">{{ profile.name }}</h2>
+  {% include "messages.html" %}
   <div class="featured">
     <div class="featured-inner object-lead">
       <h3>{{ _('About Me')}}</h3>
+      {% if abuse_form %}
+      {{ user_report_abuse(hide=True, profile=profile) }}
+      {% endif %}
+
+
       <img class="avatar thumbnail" alt="" src="{{ profile.picture_url }}"/>
       <div class="object-content">
         {% if profile.is_developer %}

@@ -2,6 +2,7 @@
 from datetime import datetime
 
 from django.conf import settings
+from django.core import mail
 from django.utils import encoding
 
 import jingo
@@ -28,6 +29,7 @@ def test_strip_html():
 def test_strip_html_none():
     eq_('', render('{{ a|strip_html }}', {'a': None}))
     eq_('', render('{{ a|strip_html(True) }}', {'a': None}))
+
 
 def test_strip_controls():
     """We want control codes like \x0c to disappear."""
@@ -229,3 +231,41 @@ class TestLicenseLink(test_utils.TestCase):
         for lic, ex in expected.items():
             s = render('{{ license_link(lic) }}', {'lic': lic})
             eq_(s, ex)
+
+
+class AbuseBase:
+    @patch('captcha.fields.ReCaptchaField.clean')
+    def test_abuse_anonymous(self, clean):
+        clean.return_value = ""
+        self.client.post(self.full_page, {'text': 'spammy'})
+        eq_(len(mail.outbox), 1)
+        assert 'spammy' in mail.outbox[0].body
+
+    def test_abuse_anonymous_fails(self):
+        r = self.client.post(self.full_page, {'text': 'spammy'})
+        assert 'recaptcha' in r.context['abuse_form'].errors
+
+    def test_abuse_logged_in(self):
+        self.client.login(username='regular@mozilla.com', password='password')
+        self.client.post(self.full_page, {'text': 'spammy'})
+        eq_(len(mail.outbox), 1)
+        assert 'spammy' in mail.outbox[0].body
+
+
+class AbuseDisabledBase:
+    def test_abuse_fails_anonymous(self):
+        r = self.client.get(self.inline_page)
+        doc = PyQuery(r.content)
+        assert not doc("fieldset.abuse")
+
+        res = self.client.post(self.full_page, {'text': 'spammy'})
+        eq_(res.status_code, 404)
+
+    def test_abuse_fails_logged_in(self):
+        self.client.login(username='regular@mozilla.com', password='password')
+        r = self.client.get(self.inline_page)
+        doc = PyQuery(r.content)
+        assert not doc("fieldset.abuse")
+
+        res = self.client.post(self.full_page)
+        eq_(res.status_code, 404)

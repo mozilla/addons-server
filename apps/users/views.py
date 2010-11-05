@@ -1,7 +1,7 @@
 from django import http
 from django.conf import settings
 from django.core.mail import send_mail
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.contrib import auth
 from django.template import Context, loader
 
@@ -12,8 +12,10 @@ from tower import ugettext as _
 
 import amo
 from amo import messages
+from amo.utils import send_mail as amo_send_mail
 from amo.decorators import login_required, json_view, write
 from amo.urlresolvers import reverse
+from amo.forms import AbuseForm
 from addons.models import Addon
 from access import acl
 from bandwagon.models import Collection
@@ -46,10 +48,10 @@ def confirm(request, user_id, token):
         log.info(u"Account confirmation failed for user (%s)", user)
         messages.error(request, _('Invalid confirmation code!'))
 
-
         amo.utils.clear_messages(request)
         return http.HttpResponseRedirect(reverse('users.login') + '?m=5')
-        # TODO POSTREMORA Replace the above with this line when remora goes away
+        # TODO POSTREMORA Replace the above with this line when
+        # remora goes away
         #return http.HttpResponseRedirect(reverse('users.login'))
 
     user.confirmationcode = ''
@@ -328,11 +330,14 @@ def profile(request, user_id):
             review.addon = addons.get(review.addon_id)
     reviews = user.reviews.transform(get_addons)
 
-    return jingo.render(request, 'users/profile.html',
-                        {'profile': user, 'own_coll': own_coll,
-                         'reviews': reviews,
-                         'fav_coll': fav_coll, 'edit_any_user': edit_any_user,
-                         'addons': addons, 'own_profile': own_profile})
+    data = {'profile': user, 'own_coll': own_coll, 'reviews': reviews,
+            'fav_coll': fav_coll, 'edit_any_user': edit_any_user,
+            'addons': addons, 'own_profile': own_profile}
+
+    if settings.REPORT_ABUSE:
+        data['abuse_form'] = AbuseForm(request=request)
+
+    return jingo.render(request, 'users/profile.html', data)
 
 
 def register(request):
@@ -363,7 +368,8 @@ def register(request):
 
             amo.utils.clear_messages(request)
             return http.HttpResponseRedirect(reverse('users.login') + '?m=3')
-            # TODO POSTREMORA Replace the above with this line when remora goes away
+            # TODO POSTREMORA Replace the above with this line
+            # when remora goes away
             #return http.HttpResponseRedirect(reverse('users.login'))
 
         else:
@@ -372,3 +378,32 @@ def register(request):
     else:
         form = forms.UserRegisterForm()
     return jingo.render(request, 'users/register.html', {'form': form, })
+
+
+def report_abuse(request, user_id):
+    if not settings.REPORT_ABUSE:
+        raise http.Http404()
+
+    user = get_object_or_404(UserProfile, pk=user_id)
+    form = AbuseForm(request.POST or None, request=request)
+    if request.method == "POST" and form.is_valid():
+        if request.user.is_anonymous():
+            user_name = 'An anonymous user'
+        else:
+            user_name = '%s (%s)' % (request.amo_user.name,
+                                     request.amo_user.email)
+
+        subject = 'Report for %s' % user.name
+        msg = u'%s reported for %s (%s%s).\n\n%s'
+        msg = msg % (user_name, user.name, settings.SITE_URL,
+                     reverse('users.profile', args=[user.pk]),
+                     form.cleaned_data['text'])
+
+        messages.success(request, _('User reported.'))
+        log.debug('User %s reported by %s.' % (user_id, user_name))
+        amo_send_mail(subject, msg, recipient_list=(settings.FLIGTAR,))
+
+    else:
+        return jingo.render(request, 'users/report_abuse_full.html',
+                            {'profile': user, 'abuse_form': form, })
+    return redirect(reverse('users.profile', args=[user.pk]))

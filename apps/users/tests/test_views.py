@@ -1,5 +1,6 @@
 import json
 
+from django.conf import settings
 from django.core import mail
 from django.core.cache import cache
 from django.contrib.auth.models import User
@@ -7,11 +8,13 @@ from django.test.client import Client
 
 import test_utils
 from nose.tools import eq_
+from pyquery import PyQuery as pq
 
 from access.models import Group, GroupUser
 from amo.helpers import urlparams
 from amo.pyquery_wrapper import PyQuery
 from amo.urlresolvers import reverse
+from amo.tests.test_helpers import AbuseBase, AbuseDisabledBase
 from users.utils import EmailResetCode
 
 
@@ -223,3 +226,24 @@ class TestProfile(UserViewBase):
         assert hasattr(request.user.get_profile(), 'mobile_addons')
         assert hasattr(request.amo_user, 'favorite_addons')
         assert hasattr(request.user.get_profile(), 'favorite_addons')
+
+
+class TestReportAbuse(AbuseBase, test_utils.TestCase):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        settings.REPORT_ABUSE = True
+        settings.RECAPTCHA_PRIVATE_KEY = 'something'
+        self.full_page = reverse('users.abuse', args=[10482])
+
+
+class TestReportAbuseDisabled(AbuseDisabledBase, test_utils.TestCase):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        settings.REPORT_ABUSE = False
+        self.inline_page = reverse('users.profile', args=[10482])
+        self.full_page = reverse('users.abuse', args=[10482])
+
+    def tearDown(self):
+        settings.REPORT_ABUSE = True

@@ -2,9 +2,7 @@
 {% from 'includes/forms.html' import required %}
 
 {% block title %}{{ page_title(_('New User Registration')) }}{% endblock %}
-{% block js %}
-<script type="text/javascript" src="{{ settings.RECAPTCHA_URL }}"></script>
-{% endblock %}
+{% block js %}{% include("amo/recaptcha_js.html") %}{% endblock %}
 {% block content %}
 
 <div class="primary" role="main">
@@ -55,27 +53,7 @@
             </li>
             <li>
             {% if settings.RECAPTCHA_PRIVATE_KEY %}
-            <label for="recaptcha_response_field">
-              {{ _('Are you human?') }} {{ required() }}
-            </label>
-            {% trans %}
-              <p>
-                Please enter <strong>both words</strong> below,
-                <strong>separated by a space</strong>.
-              </p>
-              <p>
-                If this is hard to read, you can
-                <a href="#" id="recaptcha_different">try different words</a> or
-                <a href="#" id="recaptcha_audio">listen to something</a> instead.
-              </p>
-            {% endtrans %}
-            <div id="recaptcha_image"></div>
-            <p>
-              <input type="text" name="recaptcha_response_field"
-                     id="recaptcha_response_field" size="30" />
-            </p>
-            <p><a href="#" id="recaptcha_help">{{ _("What's this?") }}</a></p>
-            {{ form.recaptcha.errors|safe }}
+            {{ recaptcha(form) }}
             {% else %}
             <p>
               Welcome Robots, ReCaptcha has been disabled for your convenience.

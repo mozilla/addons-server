@@ -17,6 +17,7 @@ from tower import ugettext as _
 
 import amo
 from amo import messages
+from amo.forms import AbuseForm
 from amo.utils import sorted_groupby, randslice
 from amo.utils import send_mail
 from amo.helpers import absolutify
@@ -32,7 +33,6 @@ from translations.query import order_by_translation
 from translations.helpers import truncate
 from versions.models import Version
 from .models import Addon
-from .forms import AbuseForm
 
 log = commonware.log.getLogger('z.addons')
 

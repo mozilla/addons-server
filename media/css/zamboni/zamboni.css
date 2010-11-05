@@ -1966,7 +1966,11 @@ form .error .note.error {
     font-weight: bold;
 }
 
-.abuse legend a {
+.abuse ol.hidden {
+    display: none;
+}
+
+.abuse legend a.abuse-image {
     padding-left: 25px;
     color: #05e;
     background: transparent url("../../img/zamboni/notifications.png") 0 -305px no-repeat;
