@@ -66,7 +66,8 @@ class AddonFormSupport(happyforms.ModelForm):
 
 
 class AddonFormTechnical(forms.ModelForm):
-    developer_comments = forms.CharField(widget=TranslationTextarea)
+    developer_comments = forms.CharField(widget=TranslationTextarea,
+                                         required=False)
 
     class Meta:
         model = Addon
