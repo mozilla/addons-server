@@ -99,7 +99,7 @@ class AddonForm(happyforms.ModelForm):
 class AbuseForm(happyforms.Form):
     recaptcha = captcha.fields.ReCaptchaField(label='')
     text = forms.CharField(required=True,
-                           label=_('Please report abuse in the form below.'),
+                           label='',
                            widget=forms.Textarea())
 
     def __init__(self, *args, **kwargs):

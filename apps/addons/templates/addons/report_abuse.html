@@ -4,6 +4,12 @@
       {% if hide %}<legend><a href="#">{{ _('Report Abuse') }}</a></legend>{% endif %}
       <ol>
         <li>
+          <p>{% trans url=remora_url('developers/docs/policies') %}
+            If you suspect this add-on violates <a href="{{ url }}">our policies</a> or
+            has security or privacy issues, please use the form below to describe your
+            concerns. Please do not use this form for any other reason.{% endtrans %}</p>
+        </li>
+        <li>
           {{ csrf() }}
           {{ abuse_form.as_p()|safe }}
         </li>
