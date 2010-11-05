@@ -15,12 +15,14 @@ from tower import ugettext_lazy as _lazy
 from tower import ugettext as _
 
 import amo
-from amo import messages
 import amo.utils
+from amo import messages
+from amo.helpers import urlparams
+from amo.utils import MenuItem
 from amo.decorators import json_view, login_required, post_required
 from access import acl
-import addons.forms
-from addons.models import Addon, AddonUser, AddonLog
+from addons import forms as addon_forms
+from addons.models import Addon, AddonUser
 from addons.views import BaseFilter
 from devhub.models import ActivityLog
 from files.models import FileUpload
@@ -111,9 +113,79 @@ def ajax_compat_update(request, addon_id, addon, version_id):
                              compat_form=compat_form))
 
 
+def _get_addons(request, addons, addon_id):
+    """Create a list of ``MenuItem``s for the activity feed."""
+    items = []
+    url = request.get_full_path()
+
+    a = MenuItem()
+    a.selected = (not addon_id)
+    (a.text, a.url) = (_('All My Add-ons'), urlparams(url, page=None,
+                                                      addon=None))
+    items.append(a)
+
+    for addon in addons:
+        item = MenuItem()
+        item.selected = (addon.id == addon_id)
+        (item.text, item.url) = (addon.name, urlparams(url, page=None,
+                                                       addon=addon.id))
+        items.append(item)
+
+    return items
+
+
+def _get_activities(request, action):
+    url = request.get_full_path()
+    choices = (None, 'updates', 'status', 'collections', 'reviews')
+    text = {None: _('All Activity'),
+            'updates': _('Add-on Updates'),
+            'status': _('Add-on Status'),
+            'collections': _('User Collections'),
+            'reviews': _('User Reviews'),
+            }
+
+    items = []
+    for c in choices:
+        i = MenuItem()
+        i.text = text[c]
+        i.url, i.selected = urlparams(url, page=None, action=c), (action == c)
+        items.append(i)
+
+    return items
+
+
+def _get_filter(action):
+    filters = dict(updates=(amo.LOG.ADD_VERSION, amo.LOG.ADD_FILE_TO_VERSION),
+                   status=(amo.LOG.SET_INACTIVE, amo.LOG.UNSET_INACTIVE,
+                           amo.LOG.CHANGE_STATUS, amo.LOG.APPROVE_VERSION,),
+                   collections=(amo.LOG.ADD_TO_COLLECTION,
+                            amo.LOG.REMOVE_FROM_COLLECTION,),
+                   reviews=(amo.LOG.ADD_REVIEW,))
+
+    return filters.get(action)
+
+
 @login_required
 def activity(request):
-    return jingo.render(request, 'devhub/addons/activity.html')
+    addons_all = request.amo_user.addons.all()
+
+    try:
+        addon_id = int(request.GET.get('addon'))
+        addons = addons_all.filter(pk=addon_id)
+    except (ValueError, TypeError):
+        addon_id = None
+        addons = addons_all
+
+    action = request.GET.get('action')
+    activities = _get_activities(request, action)
+    filter = _get_filter(action)
+    addon_items = _get_addons(request, addons_all, addon_id)
+    items = ActivityLog.objects.for_addons(addons)
+    if filter:
+        items = items.filter(action__in=[i.id for i in filter])
+    pager = amo.utils.paginate(request, items, 20)
+    data = dict(addons=addon_items, pager=pager, activities=activities)
+    return jingo.render(request, 'devhub/addons/activity.html', data)
 
 
 @dev_required
@@ -280,10 +352,10 @@ def upload_detail(request, uuid, format='html'):
 
 @dev_required
 def addons_section(request, addon_id, addon, section, editable=False):
-    models = {'basic': addons.forms.AddonFormBasic,
-              'details': addons.forms.AddonFormDetails,
-              'support': addons.forms.AddonFormSupport,
-              'technical': addons.forms.AddonFormTechnical}
+    models = {'basic': addon_forms.AddonFormBasic,
+              'details': addon_forms.AddonFormDetails,
+              'support': addon_forms.AddonFormSupport,
+              'technical': addon_forms.AddonFormTechnical}
 
     if section not in models:
         return http.HttpResponseNotFound()
@@ -360,7 +432,8 @@ def version_list(request, addon_id, addon):
 
     data = {'addon': addon,
             'versions': versions,
-            'addon_status': amo.STATUS_CHOICES[addon.status] }
+            'addon_status': amo.STATUS_CHOICES[addon.status],
+           }
 
     return jingo.render(request, 'devhub/addons/versions.html', data)
 

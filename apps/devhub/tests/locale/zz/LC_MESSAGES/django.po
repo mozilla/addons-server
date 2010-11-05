@@ -17,5 +17,5 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "{user.name} added {0.name} to addon {addon.name} with role {1}"
-msgstr "(ZZ) {user.name} added {0.name} to addon {addon.name} with role {1}"
+msgid "{user.name} added {0.name} to addon {addon} with role {1}"
+msgstr "(ZZ) {user.name} added {0.name} to addon {addon} with role {1}"

@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block rss_feed %}
-{# TODO: Add ``<link>`` to 'Recent Activity' RSS feed. #}
+{# TODO(davedash): Add ``<link>`` to 'Recent Activity' RSS feed. #}
 {% endblock %}
 
 {% block content %}
@@ -17,14 +17,25 @@
 <section class="primary" role="main">
   <div class="listing results">
     <div class="results-inner">
+      {% if pager.object_list %}
+        {% for item in pager.object_list %}
+        <div class="item">
+          <p>{{ item|safe }}</p>
+          <p>
+          {% trans user=item.user|user_link, ago=item.created|timesince %}
+          {{ ago }} by {{ user }}
+          {% endtrans %}
+          </p>
 
-{# TODO(cvan): Add item for each activity update. #}
-      <div class="item">
-        <p><a href="#">Version 1.3</a> of <a href="#">Test Pilot</a> added.</p>
-        <p>30 min ago by <a href="#">Mozilla Labs</a></p>
-      </div>
-
+        </div>
+        {% endfor %}
+      {% else %}
+        <p class="no-results">{{ _('No results found.') }}</p>
+      {% endif %}
     </div>
+    {% if pager.has_other_pages() %}
+      <div class="listing-footer">{{ pager|paginator }}</div>
+    {% endif %}
   </div>
 </section>
 
@@ -37,17 +48,9 @@
       <h5>{{ _('Add-on') }}</h5>
 
       <ul class="refinements">
-{# TODO(cvan): Add list items for each refinement item. #}
-        <li class="selected">
-          <a href="#">{{ _('All My Add-ons') }}</a>
-        </li>
-        <li><a href="#">{{ _('Firefox Sync') }}</a></li>
-        <li><a href="#">{{ _('Personas Plus') }}</a></li>
-        <li><a href="#">{{ _('Test Pilot') }}</a></li>
-
-        {# for item in addons #}
-        {# include 'devhub/includes/refinement.html' #}
-        {# endfor #}
+        {% for item in addons %}
+        {% include 'includes/refinement.html' %}
+        {% endfor %}
       </ul>
     </div>
 
@@ -55,18 +58,9 @@
       <h5>{{ _('Activity') }}</h5>
 
       <ul class="refinements">
-{# TODO(cvan): Add list items for each refinement item. #}
-        <li class="selected">
-          <a href="#">{{ _('All Activity') }}</a>
-        </li>
-        <li><a href="#">{{ _('Add-on Updates') }}</a></li>
-        <li><a href="#">{{ _('Add-on Status') }}</a></li>
-        <li><a href="#">{{ _('User Collections') }}</a></li>
-        <li><a href="#">{{ _('User Reviews') }}</a></li>
-
-        {# for item in activities #}
-        {# include 'devhub/includes/refinement.html' #}
-        {# endfor #}
+        {% for item in activities %}
+        {% include 'includes/refinement.html' %}
+        {% endfor %}
       </ul>
     </div>
 

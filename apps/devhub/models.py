@@ -1,16 +1,20 @@
+from copy import copy
 from datetime import datetime
 import json
 
 from django.db import models
 
 import commonware.log
+from tower import ugettext_lazy as _
 
 import amo
 import amo.models
 from addons.models import Addon
-from users.models import UserProfile
+from bandwagon.models import Collection
+from reviews.models import Review
 from translations.fields import TranslatedField
-
+from users.models import UserProfile
+from versions.models import Version
 
 log = commonware.log.getLogger('devhub')
 
@@ -79,13 +83,20 @@ class UserLog(amo.models.ModelBase):
 
 
 class ActivityLogManager(amo.models.ManagerBase):
-    def for_addon(self, addon, limit=20, offset=0):
-        vals = (AddonLog.objects.filter(addon=addon)[offset:limit]
-                .values_list('activity_log', flat=True))
-        return self.filter(pk__in=list(vals))
+    def for_addons(self, addons):
+        if isinstance(addons, Addon):
+            addons = (addons,)
 
-    def for_user(self, user, limit=20, offset=0):
-        vals = (UserLog.objects.filter(user=user)[offset:limit]
+        vals = (AddonLog.objects.filter(addon__in=addons)
+                .values_list('activity_log', flat=True))
+
+        if vals:
+            return self.filter(pk__in=list(vals))
+        else:
+            return self.none()
+
+    def for_user(self, user):
+        vals = (UserLog.objects.filter(user=user)
                     .values_list('activity_log', flat=True))
         return self.filter(pk__in=list(vals))
 
@@ -169,22 +180,48 @@ class ActivityLog(amo.models.ModelBase):
     # TODO(davedash): Support other types.
     def to_string(self, type='default'):
         log_type = amo.LOG_BY_ID[self.action]
-        arguments = self.arguments
-        addon = None
-        for arg in arguments:
-            if isinstance(arg, Addon) and not addon:
-                addon = arg
-                break
 
-        return log_type.format.format(*arguments, user=self.user, addon=addon)
+        # We need to copy arguments so we can remove elements from it
+        # while we loop over self.arguments.
+        arguments = copy(self.arguments)
+        addon = None
+        review = None
+        version = None
+        collection = None
+        for arg in self.arguments:
+            if isinstance(arg, Addon) and not addon:
+                addon = u'<a href="%s">%s</a>' % (arg.get_url_path(), arg.name)
+                arguments.remove(arg)
+            if isinstance(arg, Review) and not review:
+                review = u'<a href="%s">%s</a>' % (arg.get_url_path(),
+                                                   _('Review'))
+                arguments.remove(arg)
+            if isinstance(arg, Version) and not version:
+                text = _('Version %s') % arg.version
+                version = u'<a href="%s">%s</a>' % (arg.get_url_path(), text)
+                arguments.remove(arg)
+            if isinstance(arg, Collection) and not collection:
+                collection = u'<a href="%s">%s</a>' % (arg.get_url_path(),
+                                                       arg.name)
+                arguments.remove(arg)
+
+        try:
+            data = dict(user=self.user, addon=addon, review=review,
+                        version=version, collection=collection)
+            return log_type.format.format(*arguments, **data)
+        except (AttributeError, KeyError, IndexError):
+            log.warning('%d contains garbage data' % self.id)
+            return 'Something magical happened.'
 
     def __unicode__(self):
         return self.to_string()
 
     class Meta:
         db_table = 'log_activity'
+        ordering = ('-created',)
 
 
+# TODO(davedash): Remove after we finish the import.
 class LegacyAddonLog(models.Model):
     TYPES = [(value, key) for key, value in amo.LOG.items()]
 

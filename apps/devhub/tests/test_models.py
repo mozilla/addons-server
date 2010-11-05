@@ -26,11 +26,11 @@ class TestActivityLog(test_utils.TestCase):
         request = self.request
         a = Addon.objects.get()
         ActivityLog.log(request, amo.LOG['CREATE_ADDON'], a)
-        entries = ActivityLog.objects.for_addon(a)
+        entries = ActivityLog.objects.for_addons(a)
         eq_(len(entries), 1)
         eq_(entries[0].arguments[0], a)
-        eq_(unicode(entries[0]),
-            'Joe CamelCase created addon Delicious Bookmarks')
+        for x in ('Delicious Bookmarks', 'was created.'):
+            assert x in unicode(entries[0])
 
     def test_json_failboat(self):
         request = self.request

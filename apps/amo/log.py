@@ -10,30 +10,30 @@ _LOG = namedtuple('LOG', 'id format')
 
 class CREATE_ADDON:
     id = 1
-    format = _(u'{user.name} created addon {addon.name}')
+    format = _(u'{addon} was created.')
     keep = True
 
 
 class EDIT_PROPERTIES:
     """ Expects: addon """
     id = 2
-    format = _(u'{user.name} edited addon {addon.name} properties')
+    format = _(u'{user.name} edited addon {addon} properties')
 
 
 class EDIT_DESCRIPTIONS:
     id = 3
-    format = _(u'{user.name} edited addon {addon.name} description')
+    format = _(u'{user.name} edited addon {addon} description')
 
 
 class EDIT_CATEGORIES:
     id = 4
-    format = _(u'{user.name} edited categories for {addon.name}')
+    format = _(u'{user.name} edited categories for {addon}')
 
 
 class ADD_USER_WITH_ROLE:
     id = 5
     format = _(u'{user.name} added {0.name} to '
-               'addon {addon.name} with role {1}')
+               'addon {addon} with role {1}')
     keep = True
 
 
@@ -46,18 +46,18 @@ class REMOVE_USER_WITH_ROLE:
 
 class EDIT_CONTRIBUTIONS:
     id = 7
-    format = _(u'{user.name} edited contributions for {addon.name}')
+    format = _(u'{user.name} edited contributions for {addon}')
 
 
 class SET_INACTIVE:
     id = 8
-    format = _(u'{user.name} set addon {addon.name} inactive')
+    format = _(u'{addon} set inactive')
     keep = True
 
 
 class UNSET_INACTIVE:
     id = 9
-    format = _(u'{user.name} activated addon {addon.name}')
+    format = _(u'{user.name} activated addon {addon}')
     keep = True
 
 
@@ -97,7 +97,7 @@ class DELETE_PREVIEW:
 
 class ADD_VERSION:
     id = 16
-    format = _(u'{user.name} added version {0.version} to {addon}')
+    format = _(u'{version} added to {addon}.')
     keep = True
 
 
@@ -125,8 +125,7 @@ class DELETE_FILE_FROM_VERSION:
     should be strings and not the object.
     """
     id = 20
-    format = _(u'{user.name} deleted file {0} '
-               'from {addon} version {1}')
+    format = _(u'File {0} deleted from {version} of {addon}')
 
 
 class APPROVE_VERSION:
@@ -170,17 +169,17 @@ class REMOVE_TAG:
 
 class ADD_TO_COLLECTION:
     id = 27
-    format = _(u'{user.name} added addon {addon} to a collection {0.name}')
+    format = _(u'{addon} added to {collection}.')
 
 
 class REMOVE_FROM_COLLECTION:
     id = 28
-    forma = _(u'{user.name} removed addon {addon} from a collection {0.name}')
+    forma = _(u'{addon} removed from {collection}')
 
 
 class ADD_REVIEW:
     id = 29
-    format = _(u'{user.name} wrote a review about {addon}')
+    format = _(u'{review} for {addon} written.')
 
 
 class ADD_RECOMMENDED_CATEGORY:
