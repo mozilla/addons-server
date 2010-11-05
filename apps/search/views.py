@@ -11,9 +11,10 @@ from tower import ugettext as _
 import amo
 import bandwagon.views
 import browse.views
+from amo import urlresolvers
 from amo.decorators import json_view
 from amo.helpers import urlparams
-from amo import urlresolvers
+from amo.utils import MenuItem
 from versions.compare import dict_from_int, version_int
 from search import forms
 from search.client import (Client as SearchClient, SearchError,
@@ -23,10 +24,6 @@ from search.forms import SearchForm, SecondarySearchForm
 DEFAULT_NUM_RESULTS = 20
 
 log = commonware.log.getLogger('z.search')
-
-
-class MenuItem():
-    url, text, selected, children = ('', '', False, [])
 
 
 def _get_versions(request, versions, version):
@@ -305,7 +302,7 @@ def search(request, tag_name=None):
     try:
         results = client.query(query, **search_opts)
     except SearchError, e:
-        log.error('Sphinx Error: %s' %e)
+        log.error('Sphinx Error: %s' % e)
         return jingo.render(request, 'search/down.html', locals(), status=503)
 
     version_filters = client.meta['versions']

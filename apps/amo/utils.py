@@ -252,3 +252,8 @@ def resize_image(src, dst, size):
     im = processors.scale_and_crop(im, size)
     im.save(dst)
     os.remove(src)
+
+
+class MenuItem():
+    """Refinement item with nestable children for use in menus."""
+    url, text, selected, children = ('', '', False, [])

@@ -32,7 +32,7 @@
       <div class="listing-header">
         <ul title="{{ _('Sort results by&hellip;')|safe }}">
           {% for item in sort_tabs %}
-          {% include 'search/includes/refinement.html' %}
+          {% include 'includes/refinement.html' %}
           {% endfor %}
         </ul>
       </div>
@@ -60,7 +60,7 @@
 
       <ul class="refinements">
         {% for item in versions %}
-        {% include 'search/includes/refinement.html' %}
+        {% include 'includes/refinement.html' %}
         {% endfor %}
       </ul>
     </div>
@@ -70,7 +70,7 @@
 
       <ul class="refinements">
         {% for item in categories %}
-        {% include 'search/includes/refinement.html' %}
+        {% include 'includes/refinement.html' %}
         {% endfor %}
       </ul>
     </div>
@@ -80,7 +80,7 @@
 
       <ul class="refinements addon-tags">
         {% for item in tags %}
-        {% include 'search/includes/refinement.html' %}
+        {% include 'includes/refinement.html' %}
         {% endfor %}
       </ul>
     </div>
