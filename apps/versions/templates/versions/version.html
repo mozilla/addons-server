@@ -1,6 +1,6 @@
 {# addon, version, request #}
 <div class="version {{ itemclass }}" id="version-{{ version.version }}">
-  <h3><a href="{{ url('addons.versions', addon.id, version.version) }}"
+  <h3><a href="{{ version.get_url_path() }}"
         title="{{ _('Permanent link to this version') }}">
        {{ _('Version {0}', 'addon_display_header_version')|f(version.version) }}</a>
     <span title="{{ version.created|isotime }}">{{

@@ -41,8 +41,7 @@ class VersionsRss(Feed):
 
     def item_link(self, version):
         """Link for a particular version (<item><link>)"""
-        return absolutify(reverse('addons.versions', args=[version.addon_id,
-                                                           version.version]))
+        return absolutify(version.get_url_path())
 
     def item_title(self, version):
         """Title for particular version (<item><title>)"""

@@ -48,6 +48,9 @@ class Version(amo.models.ModelBase):
                              file.status))
         return statuses
 
+    def get_url_path(self):
+        return reverse('addons.versions', args=(self.addon.id, self.version,))
+
     @amo.cached_property(writable=True)
     def compatible_apps(self):
         """Get a mapping of {APP: ApplicationVersion}."""
