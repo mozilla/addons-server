@@ -742,3 +742,142 @@ function compatModalCallback(obj) {
 
     return {pointTo: ct};
 }
+
+$(document).ready(function() {
+
+    function buildResults(data) {
+        var suite = $('#addon-validator-suite'),
+            msgMap = buildMsgMap(data.messages);
+        $('.suite-summary span', suite).text(data.result_summary);
+        $('.result-summary', suite).css('visibility', 'visible');
+        $('.suite-summary', suite).show();
+
+        for (var tierNum in msgMap) {
+            var tierData = msgMap[tierNum],
+                tier = $('[class~="test-tier"]' +
+                         '[data-tier="' + tierNum + '"]'),
+                resContainer = $('#suite-results-tier-' + tierNum),
+                results = $('.tier-results', resContainer),
+                errorsTxt, warningsTxt, summaryMsg;
+
+            results.empty();
+            // e.g. '1 error, 3 warnings'
+            summaryMsg = format(ngettext('{0} error', '{0} errors',
+                                         tierData.errors),
+                                         [tierData.errors]) + ', ' +
+                         format(ngettext('{0} warning', '{0} warnings',
+                                         tierData.warnings),
+                                         [tierData.warnings]);
+            $('.tier-summary', tier).text(summaryMsg);
+            $('.result-summary', resContainer).text(summaryMsg);
+
+            tier.removeClass('ajax-loading');
+            results.removeClass('ajax-loading');
+            if (tierData.errors > 0 || tierData.warnings > 0) {
+                tier.addClass('tests-failed');
+                results.addClass('tests-failed');
+            } else {
+                tier.addClass('tests-passed');
+                results.addClass('tests-passed');
+                results.append('<span>' +
+                               gettext('All tests passed successfully.') +
+                               '</span>');
+            }
+
+            $.each(tierData.messages, function(i, msg) {
+                var msgDiv = $('<div class="msg"><h5></h5></div>'),
+                    prefix = msg['type']=='warning' ? gettext('Warning')
+                                                    : gettext('Error');
+                msgDiv.attr('id', msgId(msg.uid));
+                msgDiv.addClass('msg-' + msg['type']);
+                $('h5', msgDiv).text(msg.message);
+                if (typeof(msg.description) === 'string') {
+                    // TODO(kumar) ask Matt to make the JSON format
+                    // more consistent.
+                    // Currently it can be either of these:
+                    //      descripion: "foo"
+                    //      description: ["foo", "bar"]
+                    msg.description = [msg.description];
+                }
+                $.each(msg.description, function(i, val) {
+                    msgDiv.append('<p>' + prefix + ': ' + val + '</p>');
+                });
+                // TODO(kumar) add context, line no., etc
+                results.append(msgDiv);
+            });
+        }
+    }
+
+    function buildMsgMap(messages) {
+        // The tiers will not apper in the JSON
+        // if there are no errors.  FIXME?
+        var msgMap = {
+            1: {errors: 0, warnings: 0, messages: []},
+            2: {errors: 0, warnings: 0, messages: []},
+            3: {errors: 0, warnings: 0, messages: []},
+            4: {errors: 0, warnings: 0, messages: []}
+        };
+        $.each(messages, function(i, msg) {
+            msgMap[msg.tier].messages.push(msg);
+            if (msg['type'] == 'error') {
+                msgMap[msg.tier].errors += 1;
+            }
+            else if (msg['type'] == 'warning') {
+                msgMap[msg.tier].warnings += 1;
+            }
+        });
+        return msgMap;
+    }
+
+    function msgId(hash) {
+        return 'v-msg-' + hash;
+    }
+
+    function prepareToGetResults(el) {
+        $('.test-tier, .tier-results', el).removeClass('tests-failed',
+                                                       'tests-passed');
+        $('.test-tier, .tier-results', el).addClass('ajax-loading');
+        $('.tier-results', el).empty();
+        $('.tier-results', el).append('<span>' +
+                                      gettext('Running tests...') +
+                                      '</span>');
+        $('.result-summary', el).text('.').css('visibility', 'hidden');
+        $('.test-tier .tier-summary', el).text(gettext('Running tests...'));
+        $('.suite-summary', el).hide();
+    }
+
+    $('#addon-validator-suite').live('validate', function(e) {
+        var el = $(this),
+            url = el.attr('data-validateurl'),
+            addon_id = el.attr('data-addonid');
+
+        prepareToGetResults(el);
+
+        $.ajax({type: 'POST',
+                url: url,
+                data: {addon_id: addon_id},
+                success: function(data) {
+                    buildResults(data);
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    $('.test-tier, .tier-results', el).removeClass(
+                                                            'ajax-loading');
+                    // TODO(kumar) show the actual error message?
+                    $('.test-tier, .tier-results', el).addClass(
+                                                            'tests-failed');
+                    buildResults({messages: []});
+                },
+                dataType: 'json'
+        });
+    });
+
+    // Validate when the page loads.
+    $('#addon-validator-suite').trigger('validate');
+
+    // Setup revalidate link.
+    $('#addon-validator-suite .suite-summary a').click(function(e) {
+        $('#addon-validator-suite').trigger('validate');
+        e.preventDefault();
+    });
+
+});
