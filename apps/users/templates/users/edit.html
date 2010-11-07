@@ -125,7 +125,8 @@
               <label for="id_photo">{{ _('Profile Photo') }}</label>
               <input type="file" id="id_photo" name="photo">
               {{ form.photo.errors|safe }}
-              <img src="{{ amouser.picture_url }}" alt=""
+              <img src="{{ amouser.picture_url }}"
+                   alt="{% if not amouser.picture_type %}{{ _('No Photo') }}{% endif %}"
                    class="avatar photo" />
 
               {% if amouser.picture_type %}
