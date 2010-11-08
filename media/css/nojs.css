@@ -120,3 +120,7 @@ form.go button {
 .flag-review, .delete-review {
     display: none;
 }
+
+.js-hidden {
+    display: block;
+}

@@ -1,8 +1,6 @@
 /* Global initialization script */
 z = {};
 
-$(".js-hidden").hide();
-
 $(document).ready(function(){
 
     // Initialize install buttons.

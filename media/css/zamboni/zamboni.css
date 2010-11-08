@@ -110,6 +110,10 @@ ul.errorlist {
     clear: right;
 }
 
+.js-hidden {
+    display: none;
+}
+
 /** Generic Button *********/
 a.button:link,
 a.button:visited,
