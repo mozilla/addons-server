@@ -350,7 +350,7 @@ $(document).ready(function() {
         $('.barometer form').submit(callback);
     }
 
-})
+});
 
 $(document).ready(function(){
     var c = collections;
@@ -430,7 +430,6 @@ $('#addon-select').click(function() {
         $('#addon-select').closest('tbody').append(str);
     }
     $('#addon-ac').val('');
-    return false;
 });
 
 var table = $('#addon-ac').closest('table')
