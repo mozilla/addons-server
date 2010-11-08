@@ -309,10 +309,10 @@ a.remove:hover,
 .item-actions a {
     color: #aaa;
 }
-.item-actions:hover {
+#dashboard .item:hover .item-actions {
     color: #555;
 }
-.item-actions:hover a {
+#dashboard .item:hover .item-actions a {
     color: #05e;
 }
 
