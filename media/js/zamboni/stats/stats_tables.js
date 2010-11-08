@@ -191,7 +191,7 @@ PageTable.prototype.setColumns = function(cols) {
             c.field,
             "'>");
         if (c.field.indexOf('|') > -1 ) {
-            thead.push(AMO.StatsManager.getPrettyName(this.report, c.field.split('|').splice(1).join('|')));
+            thead.push(AMO.StatsManager.getPrettyName(that.report, c.field.split('|').splice(1).join('|')));
         } else {
             thead.push(c.field[0].toUpperCase() + c.field.substr(1));
         }
