@@ -784,15 +784,15 @@ div.popup-shim {
     display:none;
     background: #2A4364;
     color: white;
-    font-size: .9em;
+    font-size: 11px;
+    border: 1px solid #fff;
     -moz-border-radius: .8em;
     -webkit-border-radius: .8em;
     max-width: 300px;
     text-align: center;
     position: absolute;
-    padding: .2em .8em .3em .8em;
+    padding: 0.5em 1em;
     pointer-events: none;
-    padding:10px;
 }
 
 #tooltip.error {

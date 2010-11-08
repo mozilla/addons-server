@@ -13,6 +13,7 @@ jQuery.fn.tooltip = function(tip_el) {
     var $tip = $(tip_el),
         $msg = $('span', $tip),
         $targets = this,
+        timeout = false,
         $tgt, $title;
 
     function setTip() {
@@ -27,10 +28,12 @@ jQuery.fn.tooltip = function(tip_el) {
             toX = pos.left + $tgt.innerWidth() / 2 - tw,
             toY = pos.top - $tgt.innerHeight() - th - 1;
 
-        $tip.css({
-            left:   toX + "px",
-            top:    toY + "px"
-        }).show();
+        timeout = setTimeout(function () {
+            $tip.css({
+                left:   toX + "px",
+                top:    toY + "px"
+            }).show();
+        }, 300);
     }
 
     $(document.body).bind("tooltip_change", setTip);
@@ -42,6 +45,7 @@ jQuery.fn.tooltip = function(tip_el) {
             setTip();
         }
     }).live("mouseout", function (e) {
+        clearTimeout(timeout);
         $tip.hide()
             .removeClass("error");
         if ($title && $title.length) {
