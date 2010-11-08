@@ -198,6 +198,7 @@ class SEAMONKEY:
              ADDON_LPAPP, ADDON_PLUGIN]
     guid = '{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}'
     min_display_version = 1.0
+    exclude_versions = (1.5,)
     latest_version = None
     user_agent_string = 'SeaMonkey'
 
