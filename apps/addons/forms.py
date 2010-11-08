@@ -15,7 +15,7 @@ import captcha.fields
 
 
 class AddonFormBasic(happyforms.ModelForm):
-    name = forms.CharField(widget=TranslationTextInput, max_length=70)
+    name = forms.CharField(widget=TranslationTextInput, max_length=50)
     slug = forms.CharField(max_length=30)
     summary = forms.CharField(widget=TranslationTextarea, max_length=250)
 
