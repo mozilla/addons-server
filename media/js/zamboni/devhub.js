@@ -439,14 +439,19 @@ function initAuthorFields() {
             } else {
                 row.remove();
                 manager.val(author_list.children(".author").length);
-                renumberAuthors();
             }
+            renumberAuthors();
         }
     });
     function renumberAuthors() {
         author_list.children(".author").each(function(i, el) {
             $(this).find(".position input").val(i);
         });
+        if ($(".author:visible").length > 1) {
+            $(".author .remove").show();
+        } else {
+            $(".author .remove").hide();
+        }
     }
     function addAuthorRow() {
         var numForms = author_list.children(".author").length;
