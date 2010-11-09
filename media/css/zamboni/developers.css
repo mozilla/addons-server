@@ -8,8 +8,7 @@
     visibility: hidden;
 }
 /* @group Edit addon */
-#edit-addon .label,
-#edit-addon th label {
+#edit-addon .label {
     margin-right:5px;
 }
 
@@ -83,7 +82,6 @@
     height: 75px;
 }
 
-
 #edit-addon .help,
 a.remove {
     -moz-border-radius: 20px;
@@ -101,9 +99,7 @@ a.remove {
     text-decoration :none;
     width: 18px;
 }
-#edit-addon .help {
-    vertical-align: top;
-}
+
 a.remove {
     cursor: pointer;
     line-height: 16px;
@@ -149,16 +145,6 @@ a.remove:hover,
 
 #edit-addon label {
     font-weight: normal;
-}
-#edit-addon th label {
-    font-weight: bold;
-    display: inline-block;
-}
-#edit-addon th label .locale{
-    font-weight: normal;
-    font-size: .9em;
-    color: #888;
-    display: block;
 }
 
 #addon_categories_edit li {

@@ -7,8 +7,7 @@ import happyforms
 from addons.models import Addon
 from amo.utils import slug_validator
 from tower import ugettext as _
-from translations.widgets import TranslationTextInput, TranslationTextarea, TransTextarea
-from translations.fields import TranslatedField, PurifiedField, LinkifiedField
+from translations.widgets import TranslationTextInput, TranslationTextarea
 
 
 class AddonFormBasic(happyforms.ModelForm):
@@ -27,6 +26,7 @@ class AddonFormBasic(happyforms.ModelForm):
 
 
 class AddonFormDetails(happyforms.ModelForm):
+    description = forms.CharField(widget=TranslationTextarea)
     default_locale = forms.TypedChoiceField(choices=Addon.LOCALES)
     homepage = forms.URLField(widget=TranslationTextInput)
 
@@ -73,7 +73,10 @@ class AddonFormTechnical(forms.ModelForm):
 
 class AddonForm(happyforms.ModelForm):
     name = forms.CharField(widget=TranslationTextInput,)
+    homepage = forms.CharField(widget=TranslationTextInput,)
     eula = forms.CharField(widget=TranslationTextInput,)
+    description = forms.CharField(widget=TranslationTextInput,)
+    developer_comments = forms.CharField(widget=TranslationTextInput,)
     privacy_policy = forms.CharField(widget=TranslationTextInput,)
     the_future = forms.CharField(widget=TranslationTextInput,)
     the_reason = forms.CharField(widget=TranslationTextInput,)

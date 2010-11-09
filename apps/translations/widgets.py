@@ -89,7 +89,7 @@ class TransMulti(forms.widgets.MultiWidget):
 
     def format_output(self, widgets):
         s = super(TransMulti, self).format_output(widgets)
-        return '<div class="trans" data-name="%s">%s</div>' % (self.name, s)
+        return '<div data-name="%s">%s</div>' % (self.name, s)
 
 
 class _TransWidget(object):

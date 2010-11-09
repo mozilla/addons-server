@@ -3034,6 +3034,7 @@ input.ui-autocomplete-loading {
     display: none;
 }
 
+
 /** Add-on detail page QR Code area. Feature test from Bug 595561 **/
 #addon-qr-code {
     -moz-border-radius: 5px;
@@ -3057,39 +3058,3 @@ input.ui-autocomplete-loading {
 .search-tools-for-cat li a[href*="?sort=featured"] {
     display: none;
 }
-/** l10n */
-#l10n-menu {
-    float: right;
-}
-#change-locale {
-    padding-right: 16px;
-}
-#change-locale:after {
-    position: relative;
-    top: 12px;
-    left: 4px;
-    content: "\00a0";
-    display: inline-block; /* reduce the damage in FF3.0 */
-    width: 0;
-    height: 0;
-    border: 4px solid transparent;
-    border-style: solid;
-    border-top-color: #003595;
-}
-#locale-popup section {
-    display: block;
-    overflow-y: auto;
-    height: 300px;
-    line-height: 30px;
-}
-#locale-popup section a {
-    display: block;
-}
-#locale-popup section a.remove {
-    display: inline-block;
-    float: right;
-}
-#locale-popup section > *:not(:last-child) {
-    border-bottom: 1px dotted #a4cfde;
-}
-/* end l10n */

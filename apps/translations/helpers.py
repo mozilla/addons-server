@@ -34,14 +34,3 @@ def truncate(s, length=255, killwords=False, end='...'):
     if hasattr(s, '__truncate__'):
         return s.__truncate__(length, killwords, end)
     return jinja2.filters.do_truncate(s, length, killwords, end)
-
-
-@register.inclusion_tag('translations/trans-menu.html')
-@jinja2.contextfunction
-def l10n_menu(context, default_locale='en-us'):
-    """generates the locale menu for zamboni l10n"""
-    languages = dict((i.lower(), j) for i, j in settings.LANGUAGES.items())
-    c = dict(context.items())
-    c.update(locals())
-    return c
-
