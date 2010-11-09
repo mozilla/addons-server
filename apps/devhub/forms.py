@@ -312,7 +312,8 @@ CompatFormSet = modelformset_factory(
 
 
 class NewAddonForm(happyforms.Form):
-    upload = forms.ModelChoiceField(queryset=FileUpload.objects.all(),
+    upload = forms.ModelChoiceField(widget=forms.HiddenInput,
+                                    queryset=FileUpload.objects.all(),
         error_messages={'invalid_choice': _lazy('There was an error with your '
                                                 'upload. Please try again.')})
     platform = File._meta.get_field('platform').formfield(empty_label=None,

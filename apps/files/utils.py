@@ -21,6 +21,42 @@ def get_text_value(xml, tag):
         return textnode.wholeText
 
 
+class WorkingZipFile(zipfile.ZipFile):
+    def _extract_member(self, member, targetpath, pwd):
+        """Extract the ZipInfo object 'member' to a physical
+           file on the path targetpath.
+        """
+        # build the destination pathname, replacing
+        # forward slashes to platform specific separators.
+        if targetpath[-1:] in (os.path.sep, os.path.altsep):
+            targetpath = targetpath[:-1]
+
+        # don't include leading "/" from file name if present
+        if member.filename[0] == '/':
+            targetpath = os.path.join(targetpath, member.filename[1:])
+        else:
+            targetpath = os.path.join(targetpath, member.filename)
+
+        targetpath = os.path.normpath(targetpath)
+
+        # Create all upper directories if necessary.
+        upperdirs = os.path.dirname(targetpath)
+        if upperdirs and not os.path.exists(upperdirs):
+            os.makedirs(upperdirs)
+
+        if member.filename[-1] == '/':
+            os.mkdir(targetpath)
+            return targetpath
+
+        source = self.open(member, pwd=pwd)
+        target = file(targetpath, "wb")
+        shutil.copyfileobj(source, target)
+        source.close()
+        target.close()
+
+        return targetpath
+
+
 def parse_xpi(xpi, addon=None):
     from addons.models import Addon
     # Extract to /tmp
@@ -30,7 +66,7 @@ def parse_xpi(xpi, addon=None):
     # Validating that we have no member files that try to break out of
     # the destination path.  NOTE: This will be obsolete when this bug is
     # fixed: http://bugs.python.org/issue6972
-    zip = zipfile.ZipFile(xpi)
+    zip = WorkingZipFile(xpi)
 
     for f in zip.namelist():
         if '..' in f or f.startswith('/'):

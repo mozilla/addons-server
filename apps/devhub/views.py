@@ -648,7 +648,6 @@ def submit(request, step):
                         {'agreement_text': agreement_text, 'step': step})
 
 
-@json_view
 @login_required
 @submit_step(2)
 def submit_addon(request, step):
@@ -661,11 +660,9 @@ def submit_addon(request, step):
             addon = Addon.from_upload(data['upload'], data['platform'])
             AddonUser(addon=addon, user=request.amo_user).save()
             SubmitStep.objects.create(addon=addon, step=3)
-            return {'location': reverse('devhub.submit.3', args=[addon.id])}
-        else:
-            return json_view.error(form.errors)
-    return jingo.render(request, 'devhub/addons/submit/start.html',
-                        {'agreement_text': 'xx', 'step': step})
+            return redirect('devhub.submit.3', addon.id)
+    return jingo.render(request, 'devhub/addons/submit/upload.html',
+                        {'step': step, 'new_file_form': form})
 
 
 @dev_required

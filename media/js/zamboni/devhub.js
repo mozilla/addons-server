@@ -3,6 +3,7 @@ $(document).ready(function() {
     //Ownership
     if ($("#author_list").length) {
         initAuthorFields();
+        initLicenseFields();
     }
 
     //Payments
@@ -23,7 +24,25 @@ $(document).ready(function() {
     // Submission process
     if($('.addon-submission-process').length) {
         initSubmit();
+        initLicenseFields();
     }
+
+    // Upload form submit
+    $('.upload-status').removeClass("hidden");
+    $('.upload-status').bind('upload-success', function() {
+        $("#submit-upload-file-finish").attr("disabled", false);
+    }).bind('upload-error', function() {
+        $("#submit-upload-file-finish").attr("disabled", true);
+    });
+    $("#submit-upload").delegate("#upload-file-input", 'change', function(e) {
+        $('#upload-status-bar').attr('class', '');
+        $('#upload-status-text').text("");
+        $('#upload-status-results').text("").attr("class", "");
+        $('#upload-status-bar div').css('width', 0).show();
+        $('#upload-status-bar').removeClass('progress-idle');
+        fileUpload($(this), $(this).closest(".invisible-upload").attr('data-upload-url'));
+        $('.upload-status').show();
+    });
 });
 
 
@@ -147,10 +166,217 @@ function initSubmit() {
     $('#id_slug').each(slugify);
 }
 
-function initEditVersions() {
-    var file = {},
-        xhr = false;
+var file = {},
+    xhr = false;
 
+function fileUpload(img, url) {
+    var f = img[0].files[0];
+
+    file = {};
+    file.name = f.name || f.fileName;
+    file.size = f.size;
+    file.data = '';
+    file.aborted = false;
+
+    // Make sure it's an xpi or jar.
+
+    if(!file.name.match(/\.(xpi|jar)$/i)) {
+        error = gettext("The package is not of a recognized type.");
+        j = {};
+        j.validation = {"errors":1, "messages":[]};
+        j.validation.messages.push({"type":"error", "message":error});
+
+        addonUploaded(j, file);
+        return false;
+    }
+
+    // Prepare the progress bar and status
+
+    text = format(gettext('Preparing {0}'), [file.name]);
+    $('#upload-status-text').text(text);
+
+    updateStatus(0);
+
+    // Wrap in a setTimeout so it doesn't freeze the browser before
+    // the status above can be set.
+
+    setTimeout(function(){
+        xhr = new XMLHttpRequest();
+        xhr.upload.addEventListener("progress", function(e) {
+            if (e.lengthComputable) {
+                var pct = Math.round((e.loaded * 100) / e.total) + "%";
+                $('#upload-status-bar div').animate({'width': pct},
+                    {duration: 500, step:updateStatus });
+            }
+        }, false);
+
+        var token = $("#upload-file input[name=csrfmiddlewaretoken]").val();
+
+        xhr.open("POST", url, true);
+
+        xhr.onreadystatechange = onupload;
+        xhr.setRequestHeader("Content-Type", "application/octet-stream");
+
+        xhr.setRequestHeader("Content-Length", file.size);
+        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+
+        xhr.setRequestHeader('Content-Disposition', 'file; name="upload";');
+        xhr.setRequestHeader("X-File-Name", file.name);
+        xhr.setRequestHeader("X-File-Size", file.size);
+
+        xhr.send(f);
+    }, 10);
+
+    return true;
+}
+
+function abortUpload(e) {
+   e.preventDefault();
+   file.aborted = true;
+   if(xhr) xhr.abort();
+}
+
+function textSize(bytes) {
+    // Based on code by Cary Dunn (http://bit.ly/d8qbWc).
+    var s = ['bytes', 'kb', 'MB', 'GB', 'TB', 'PB'];
+    if(bytes == 0) return bytes + " " + s[1];
+    var e = Math.floor( Math.log(bytes) / Math.log(1024) );
+    return (bytes / Math.pow(1024, Math.floor(e))).toFixed(2)+" "+s[e];
+}
+
+function updateStatus( percentage ) {
+    p = Math.round(percentage);
+    size = (p / 100) * file.size;
+    // L10n: {0} is the percent of the file that has been uploaded.
+    $('#uploadstatus_percent').text(format(gettext('{0}% complete'), [p]));
+    // L10n: "{bytes uploaded} of {total filesize}".
+    $('#uploadstatus_progress').text(format(gettext('{0} of {1}'),
+                                            [textSize(size),
+                                             textSize(file.size)]))
+                               .attr({'value': size, 'max': file.size});
+}
+
+
+function onupload() {
+    if(xhr.readyState == 4) $('#uploadstatus_abort').hide();
+
+    if (xhr.readyState == 4 && xhr.responseText &&
+        (xhr.status == 200 || xhr.status == 304)) {
+        $('#upload-status-bar div').animate({'width': '100%'},
+            {duration: 500,
+             step:updateStatus,
+             complete: function() {
+                text = format(gettext('Validating {0}'), [file.name]);
+                $('#upload-status-text').text(text);
+
+                $(this).parent().addClass('progress-idle');
+
+                try {
+                    json = JSON.parse(xhr.responseText);
+                } catch(err) {
+                    // The server isn't returning proper JSON
+                    error = gettext("There was an error with your upload.");
+                    addonError(error);
+                    return false;
+                }
+
+                addonUploaded(json);
+                }
+            });
+    } else if(xhr.readyState == 4) {
+        // Some sort of error, so display error and prompt them for round 2
+        if(file.aborted) {
+            addonError(gettext("You aborted the add-on upload."));
+        } else {
+            addonError(gettext("We were unable to connect to the server."));
+        }
+
+
+    }
+}
+
+function addonError(message) {
+    $('#upload-status-bar').removeClass('progress-idle')
+                           .addClass('bar-fail');
+    $('#upload-status-bar div').fadeOut();
+
+    body = "<strong>" + message + "</strong>";
+
+    $('#upload-status-results').html(body).addClass('status-fail');
+    $('.upload-status-button-add').hide();
+    $('.upload-status-button-close').show();
+}
+
+function addonUploaded(json) {
+    $('#uploadstatus_abort').hide();
+
+    v = json.validation;
+
+    if(!v) {
+        setTimeout(function(){
+            $.getJSON(json.url, addonUploaded);
+        }, 1000);
+    } else {
+        $('#upload-status-bar').removeClass('progress-idle')
+                               .addClass('bar-' +
+                                         (v.errors ? 'fail' : 'success'));
+        $('#upload-status-bar div').fadeOut();
+
+        text = format(gettext('Validated {0}'), [file.name]);
+        $('#upload-status-text').text(text);
+
+        // TODO(gkoberger): Use templates here, rather than +'s
+
+        var body = "<strong>";
+        if(!v.errors) {
+            $("#upload-file-finish").attr("disabled", false);
+            $("#id_upload").val(json.upload);
+            $(".upload-status").trigger("upload-success");
+            body += format(ngettext(
+                    "Your add-on passed validation with no errors and {0} warning.",
+                    "Your add-on passed validation with no errors and {0} warnings.",
+                    v.warnings), [v.warnings]);
+        } else {
+            $(".upload-status").trigger("upload-error");
+            body += format(ngettext(
+                    "Your add-on failed validation with {0} error.",
+                    "Your add-on failed validation with {0} errors.",
+                    v.errors), [v.errors]);
+        }
+        body += "</strong>";
+
+        body += "<ul>";
+        if(v.errors) {
+            $.each(v.messages, function(k, t) {
+                if(t.type == "error") {
+                    body += "<li>" + t.message + "</li>";
+                }
+            });
+        }
+        body += "</ul>";
+
+        // TODO(gkoberger): Add a link when it becomes available
+
+        body += format('<a href="{0}">{1}</a>',
+                       [json.full_report_url,
+                        gettext('See full validation report')]);
+
+        statusclass = v.errors ? 'status-fail' : 'status-pass';
+        $('#upload-status-results').html(body).addClass(statusclass);
+        resetFileInput();
+    }
+
+}
+
+
+function resetFileInput() {
+    upload = $("<input type='file'>").attr('name', 'upload')
+                                     .attr('id', 'upload-file-input');
+    $('#upload-file-input').replaceWith(upload); // Clear file input
+}
+
+
+function initEditVersions() {
     // Hide the modal
     $('.upload-status').hide();
 
@@ -207,144 +433,6 @@ function initEditVersions() {
         row.next().hide();
     });
 
-    function fileUpload(img, url) {
-        var f = img[0].files[0];
-
-        file = {};
-        file.name = f.name || f.fileName;
-        file.size = f.size;
-        file.data = '';
-        file.aborted = false;
-
-        // Make sure it's an xpi or jar.
-
-        if(!file.name.match(/\.(xpi|jar)$/i)) {
-            error = gettext("The package is not of a recognized type.");
-            j = {};
-            j.validation = {"errors":1, "messages":[]};
-            j.validation.messages.push({"type":"error", "message":error});
-
-            addonUploaded(j, file);
-            return false;
-        }
-
-        // Prepare the progress bar and status
-
-        text = format(gettext('Preparing {0}'), [file.name]);
-        $('#upload-status-text').text(text);
-
-        updateStatus(0);
-
-        // Wrap in a setTimeout so it doesn't freeze the browser before
-        // the status above can be set.
-
-        setTimeout(function(){
-            xhr = new XMLHttpRequest();
-            xhr.upload.addEventListener("progress", function(e) {
-                if (e.lengthComputable) {
-                    var pct = Math.round((e.loaded * 100) / e.total) + "%";
-                    $('#upload-status-bar div').animate({'width': pct},
-                        {duration: 500, step:updateStatus });
-                }
-            }, false);
-
-            var token = $("#upload-file input[name=csrfmiddlewaretoken]").val();
-
-            xhr.open("POST", url, true);
-
-            xhr.onreadystatechange = onupload;
-            xhr.setRequestHeader("Content-Type", "application/octet-stream");
-
-            xhr.setRequestHeader("Content-Length", file.size);
-            xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-
-            xhr.setRequestHeader('Content-Disposition', 'file; name="upload";');
-            xhr.setRequestHeader("X-File-Name", file.name);
-            xhr.setRequestHeader("X-File-Size", file.size);
-
-            xhr.send(f);
-        }, 10);
-
-        return true;
-    }
-
-    function abortUpload(e) {
-       e.preventDefault();
-       file.aborted = true;
-       if(xhr) xhr.abort();
-    }
-
-    function textSize(bytes) {
-        // Based on code by Cary Dunn (http://bit.ly/d8qbWc).
-        var s = ['bytes', 'kb', 'MB', 'GB', 'TB', 'PB'];
-        if(bytes == 0) return bytes + " " + s[1];
-        var e = Math.floor( Math.log(bytes) / Math.log(1024) );
-        return (bytes / Math.pow(1024, Math.floor(e))).toFixed(2)+" "+s[e];
-    }
-
-    function updateStatus( percentage ) {
-        p = Math.round(percentage);
-        size = (p / 100) * file.size;
-        // L10n: {0} is the percent of the file that has been uploaded.
-        $('#uploadstatus_percent').text(format(gettext('{0}% complete'), [p]));
-        // L10n: "{bytes uploaded} of {total filesize}".
-        $('#uploadstatus_progress').text(format(gettext('{0} of {1}'),
-                                                [textSize(size),
-                                                 textSize(file.size)]))
-                                   .attr({'value': size, 'max': file.size});
-    }
-
-
-    function onupload() {
-        if(xhr.readyState == 4) $('#uploadstatus_abort').hide();
-
-        if (xhr.readyState == 4 && xhr.responseText &&
-            (xhr.status == 200 || xhr.status == 304)) {
-            $('#upload-status-bar div').animate({'width': '100%'},
-                {duration: 500,
-                 step:updateStatus,
-                 complete: function() {
-                    text = format(gettext('Validating {0}'), [file.name]);
-                    $('#upload-status-text').text(text);
-
-                    $(this).parent().addClass('progress-idle');
-
-                    try {
-                        json = JSON.parse(xhr.responseText);
-                    } catch(err) {
-                        // The server isn't returning proper JSON
-                        error = gettext("There was an error with your upload.");
-                        addonError(error);
-                        return false;
-                    }
-
-                    addonUploaded(json);
-                    }
-                });
-        } else if(xhr.readyState == 4) {
-            // Some sort of error, so display error and prompt them for round 2
-            if(file.aborted) {
-                addonError(gettext("You aborted the add-on upload."));
-            } else {
-                addonError(gettext("We were unable to connect to the server."));
-            }
-
-
-        }
-    }
-
-    function addonError(message) {
-        $('#upload-status-bar').removeClass('progress-idle')
-                               .addClass('bar-fail');
-        $('#upload-status-bar div').fadeOut();
-
-        body = "<strong>" + message + "</strong>";
-
-        $('#upload-status-results').html(body).addClass('status-fail');
-        $('.upload-status-button-add').hide();
-        $('.upload-status-button-close').show();
-    }
-
     function resetModal(fileInput) {
         if (fileInput === undefined) fileInput = true;
 
@@ -369,72 +457,6 @@ function initEditVersions() {
         $('#uploadstatus_abort').show();
 
         return true;
-    }
-
-    function resetFileInput() {
-        upload = $("<input type='file'>").attr('name', 'upload')
-                                         .attr('id', 'upload-file-input');
-        $('#upload-file-input').replaceWith(upload); // Clear file input
-        upload[0].addEventListener("change", fileInputSubmit, false);
-    }
-
-    function addonUploaded(json) {
-        $('#uploadstatus_abort').hide();
-
-        v = json.validation;
-
-        if(!v) {
-            setTimeout(function(){
-                $.getJSON(json.url, addonUploaded);
-            }, 1000);
-        } else {
-            $('#upload-status-bar').removeClass('progress-idle')
-                                   .addClass('bar-' +
-                                             (v.errors ? 'fail' : 'success'));
-            $('#upload-status-bar div').fadeOut();
-
-            text = format(gettext('Validated {0}'), [file.name]);
-            $('#upload-status-text').text(text);
-
-            // TODO(gkoberger): Use templates here, rather than +'s
-
-            var body = "<strong>";
-            if(!v.errors) {
-                $("#upload-file-finish").attr("disabled", false);
-                $("#id_upload").val(json.upload);
-                body += format(ngettext(
-                        "Your add-on passed validation with no errors and {0} warning.",
-                        "Your add-on passed validation with no errors and {0} warnings.",
-                        v.warnings), [v.warnings]);
-            } else {
-                body += format(ngettext(
-                        "Your add-on failed validation with {0} error.",
-                        "Your add-on failed validation with {0} errors.",
-                        v.errors), [v.errors]);
-            }
-            body += "</strong>";
-
-            body += "<ul>";
-            if(v.errors) {
-                $.each(v.messages, function(k, t) {
-                    if(t.type == "error") {
-                        body += "<li>" + t.message + "</li>";
-                    }
-                });
-            }
-            body += "</ul>";
-
-            // TODO(gkoberger): Add a link when it becomes available
-
-            body += format('<a href="{0}">{1}</a>',
-                           [json.full_report_url,
-                            gettext('See full validation report')]);
-
-            statusclass = v.errors ? 'status-fail' : 'status-pass';
-            $('#upload-status-results').html(body).addClass(statusclass);
-            resetFileInput();
-        }
-
     }
 }
 
@@ -499,22 +521,7 @@ function initPayments() {
     }).change();
 }
 
-
-function initAuthorFields() {
-    var request = false,
-        timeout = false,
-        manager = $("#id_form-TOTAL_FORMS"),
-        empty_form = template($("#user-form-template").html().replace(/__prefix__/g, "{0}")),
-        author_list = $("#author_list");
-    author_list.sortable({
-        items: ".author",
-        handle: ".handle",
-        containment: author_list,
-        tolerance: "pointer",
-        update: renumberAuthors
-    });
-    addAuthorRow();
-
+function initLicenseFields() {
     $("#id_has_eula").change(function (e) {
         if ($(this).attr("checked")) {
             $(".eula").show().removeClass("hidden");
@@ -537,6 +544,22 @@ function initAuthorFields() {
             $(".license-other").hide();
         }
     });
+}
+
+function initAuthorFields() {
+    var request = false,
+        timeout = false,
+        manager = $("#id_form-TOTAL_FORMS"),
+        empty_form = template($("#user-form-template").html().replace(/__prefix__/g, "{0}")),
+        author_list = $("#author_list");
+    author_list.sortable({
+        items: ".author",
+        handle: ".handle",
+        containment: author_list,
+        tolerance: "pointer",
+        update: renumberAuthors
+    });
+    addAuthorRow();
 
     $(".author .errorlist").each(function() {
         $(this).parent()

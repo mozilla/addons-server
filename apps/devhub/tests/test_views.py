@@ -2349,15 +2349,13 @@ class TestCreateAddon(files.tests.UploadTest, test_utils.TestCase):
     def test_unique_name(self):
         ReverseNameLookup.add('xpi name', 34)
         r = self.post()
-        assert_json_error(r, None, 'This add-on name is already in use. '
-                                   'Please choose another.')
+        eq_(r.context['new_file_form'].non_field_errors(),
+            ['This add-on name is already in use. '
+             'Please choose another.'])
 
     def test_success(self):
         eq_(Addon.objects.count(), 0)
         r = self.post()
-        eq_(r.status_code, 200)
-        eq_(r['Content-Type'], 'application/json')
         addon = Addon.objects.get()
-        eq_(json.loads(r.content)['location'],
-            reverse('devhub.submit.3', args=[addon.id]))
-        assert SubmitStep.objects.get(addon=addon, step=3)
+        self.assertRedirects(r, reverse('devhub.submit.3',
+                                        args=[addon.id]))
