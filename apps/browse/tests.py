@@ -332,6 +332,12 @@ class TestSearchToolsPages(BaseSearchToolsTest):
         eq_(urlparse(links[0].attrib['href']).path, search_ext_url.path)
         eq_(urlparse(links[1].attrib['href']).path, search_ext_url.path)
 
+    def test_search_tools_arent_friends_with_everyone(self):
+        # Search tools only show up for Firefox
+        response = self.client.get('/en-US/thunderbird/search-tools/')
+        doc = pq(response.content)
+        assert not doc('#search-tools-sidebar')
+
     def test_other_pages_exclude_extensions(self):
         # pretend all Add-ons are search-related:
         Addon.objects.update(type=amo.ADDON_SEARCH)
