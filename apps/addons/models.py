@@ -601,7 +601,8 @@ class Persona(caching.CachingMixin, models.Model):
                 self.icon_url,
                 self.preview_url,
                 self.header_url,
-                self.footer_url, ]
+                self.footer_url,
+                self.update_url, ]
 
         return urls
 
@@ -639,6 +640,10 @@ class Persona(caching.CachingMixin, models.Model):
         return self._image_url(self.footer, ssl=False)
 
     @amo.cached_property
+    def update_url(self):
+        return settings.PERSONAS_UPDATE_URL % self.persona_id
+
+    @amo.cached_property
     def json_data(self):
         """Persona JSON Data for Browser/extension preview."""
         hexcolor = lambda color: '#%s' % color
@@ -658,6 +663,7 @@ class Persona(caching.CachingMixin, models.Model):
             'footerURL': self.footer_url,
             'previewURL': self.preview_url,
             'iconURL': self.icon_url,
+            'updateURL': self.update_url,
         }, separators=(',', ':'), cls=JSONEncoder)
 
 

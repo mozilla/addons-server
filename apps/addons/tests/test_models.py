@@ -333,6 +333,10 @@ class TestPersonaModel(test_utils.TestCase):
         assert mypersona.thumb_url.endswith('/7/6/9876/preview.jpg')
         assert mypersona.preview_url.endswith('/7/6/9876/preview_large.jpg')
 
+    def test_update_url(self):
+        p = Persona(id=1234, persona_id=9876)
+        assert p.update_url.endswith('9876')
+
 
 class TestPreviewModel(test_utils.TestCase):
 
