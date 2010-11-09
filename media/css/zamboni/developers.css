@@ -802,19 +802,25 @@ a.extra {
 }
 
 #upload-status-results strong {
-    background-image:url("../../img/zamboni/icons/checks.png");
-    background-repeat:no-repeat;
-    padding:2px 0 2px 24px;
+    background-image: url("../../img/zamboni/icons/checks.png");
+    background-repeat: no-repeat;
+    padding: 2px 0 2px 24px;
 }
 
 #upload-status-results.status-fail strong {
     color: #D81916;
-    background-position:0 -120px;
+    background-position: 0 -120px;
 }
 
 #upload-status-results.status-pass strong {
     color: #325487;
-    background-position:0 -80px;
+    background-position: 0 -80px;
+}
+
+#upload-file .upload-status #uploadstatus {
+    color: #777777;
+    font-size: 11px;
+    margin-top: 4px;
 }
 
 /* @end */

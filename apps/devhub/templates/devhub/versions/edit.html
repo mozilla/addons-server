@@ -123,7 +123,15 @@
         <div id="upload-status-bar">
           <div></div>
         </div>
-        {# TODO(gkoberger): Add %, kb's uploaded, cancel link #}
+        <div id="uploadstatus">
+          <span id="uploadstatus_percent"></span>
+          &middot;
+          <progress id="uploadstatus_progress"></progress>
+          <span id="uploadstatus_abort">
+            &middot;
+            <a href="#">{{ _('Cancel') }}</a>
+          </span>
+        </div>
         <div id="upload-status-results"></div>
       </div>
 

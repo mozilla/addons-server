@@ -18,6 +18,7 @@ import amo
 import amo.utils
 from amo import messages
 from amo.helpers import urlparams
+from amo.urlresolvers import reverse
 from amo.utils import MenuItem
 from amo.decorators import json_view, login_required, post_required
 from access import acl
@@ -311,21 +312,24 @@ def profile(request, addon_id, addon):
 
 
 def upload(request):
-    if request.method == 'POST' and 'upload' in request.FILES:
-        upload = request.FILES['upload']
+    if request.method == 'POST':
+        #TODO(gkoberger): Bug 610800 - Don't load uploads into memory.
+        upload = request.raw_post_data
+        upload_name = request.META['HTTP_X_FILE_NAME']
+        upload_size = request.META['HTTP_X_FILE_SIZE']
         loc = path.path(settings.ADDONS_PATH) / 'temp' / uuid.uuid4().hex
         if not loc.dirname().exists():
             loc.dirname().makedirs()
-        ext = path.path(upload.name).ext
+        ext = path.path(upload_name).ext
         if ext in EXTENSIONS:
             loc += ext
         log.info('UPLOAD: %r (%s bytes) to %r' %
-                 (upload.name, upload.size, loc))
+                 (upload_name, upload_size, loc))
         with open(loc, 'wb') as fd:
             for chunk in upload:
                 fd.write(chunk)
         user = getattr(request, 'amo_user', None)
-        fu = FileUpload.objects.create(path=loc, name=upload.name, user=user)
+        fu = FileUpload.objects.create(path=loc, name=upload_name, user=user)
         tasks.validator.delay(fu.pk)
         return redirect('devhub.upload_detail', fu.pk, 'json')
 
@@ -335,8 +339,9 @@ def upload(request):
 @json_view
 def json_upload_detail(upload):
     validation = json.loads(upload.validation) if upload.validation else ""
+    url = reverse('devhub.upload_detail', args=[upload.uuid, 'json'])
     r = dict(upload=upload.uuid, validation=validation,
-             error=upload.task_error)
+             error=upload.task_error, url=url)
     return r
 
 
