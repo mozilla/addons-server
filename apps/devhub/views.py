@@ -440,6 +440,8 @@ def version_edit(request, addon_id, addon, version_id):
     version = get_object_or_404(Version, pk=version_id, addon=addon)
     version_form = forms.VersionForm(request.POST or None, instance=version)
 
+    new_file_form = forms.NewFileForm(request.POST or None)
+
     file_form = forms.FileFormSet(request.POST or None, prefix='files',
                                   queryset=version.files.all())
     data = {'version_form': version_form, 'file_form': file_form}
@@ -467,7 +469,7 @@ def version_edit(request, addon_id, addon, version_id):
                 compat.save()
         return redirect('devhub.versions.edit', addon_id, version_id)
 
-    data.update({'addon': addon, 'version': version})
+    data.update({'addon': addon, 'version': version, 'new_file_form': new_file_form})
     return jingo.render(request, 'devhub/versions/edit.html', data)
 
 
@@ -489,7 +491,10 @@ def version_add_file(request, addon_id, addon, version_id):
         return json_view.error(json.dumps(form.errors))
     upload = get_object_or_404(FileUpload, pk=form.cleaned_data['upload'])
     File.from_upload(upload, version, form.cleaned_data['platform'])
-    return {}
+    file_form = forms.FileFormSet(prefix='files', queryset=version.files.all())
+    # TODO (jbalogh): get the right form
+    return jingo.render(request, 'devhub/includes/version_file.html', 
+                        {'form': file_form.forms[-1]})
 
 
 @dev_required

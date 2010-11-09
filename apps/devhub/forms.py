@@ -218,6 +218,8 @@ def check_paypal_id(paypal_id):
 class VersionForm(happyforms.ModelForm):
     releasenotes = forms.CharField(widget=TranslationTextarea(),
                                    required=False)
+    approvalnotes = forms.CharField(widget=TranslationTextarea(),
+                                    required=False)
 
     class Meta:
         model = Version
@@ -296,7 +298,8 @@ CompatFormSet = modelformset_factory(
 class NewFileForm(happyforms.Form):
     # Points to a FileUpload.uuid.
     upload = forms.CharField(max_length=36)
-    platform = File._meta.get_field('platform').formfield(empty_label=None)
+    platform = File._meta.get_field('platform').formfield(empty_label=None,
+                    widget=forms.RadioSelect(attrs={'class': 'platform'}))
 
 
 class FileForm(happyforms.ModelForm):

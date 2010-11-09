@@ -8,7 +8,7 @@
   {{ dev_breadcrumbs(addon) }}
   <h2>{{ title }}</h2>
 </header>
-<section class="primary payments" role="main" id="edit-addon">
+<section class="primary payments devhub-form" role="main">
   {% set contrib = addon.takes_contributions and addon.has_full_profile() or errors %}
   {% if contrib and not errors %}
     <div id="status-bar">

@@ -9,20 +9,20 @@ form.select-review:after {
     visibility: hidden;
 }
 /* @group Edit addon */
-#edit-addon .label,
-#edit-addon th label {
+.devhub-form .label,
+.devhub-form th label {
     margin-right:5px;
 }
 
-#edit-addon .edit-addon-section {
+.devhub-form .edit-addon-section {
     margin-bottom:3em;
 }
 
-#edit-addon h3 a {
+.devhub-form h3 a {
     font-size: 11px;
 }
 
-#edit-addon .item {
+.devhub-form .item {
     background-color: #FFFFFF;
     background-position: left bottom;
     background-repeat: repeat-x;
@@ -35,7 +35,7 @@ form.select-review:after {
     border-radius: 8px;
 }
 
-#edit-addon .listing-footer {
+.devhub-form .listing-footer {
     -moz-border-radius: 0 0 8px 8px;
     -webkit-border-radius: 0 0 8px 8px;
     border-radius: 0 0 8px 8px;
@@ -43,49 +43,49 @@ form.select-review:after {
     padding: 9px;
 }
 
-#edit-addon .item_wrapper {
+.devhub-form .item_wrapper {
     padding: 5px 13px;
 }
 
-#edit-addon h3:first-child {
+.devhub-form h3:first-child {
     margin-top: 0;
 }
 
 
-#edit-addon table {
+.devhub-form table {
     margin: 0;
     width: 100%;
 }
 
-#edit-addon table th {
+.devhub-form table th {
     width: 130px;
     vertical-align: top;
     padding: 8px 20px 8px 0;
     border-top: 1px dotted #ADD0DC;
 }
 
-#edit-addon table td {
+.devhub-form table td {
     padding: 8px 0;
     border-top: 1px dotted #ADD0DC;
 }
 
-#edit-addon table, #edit-addon tbody {
+.devhub-form table, .devhub-form tbody {
     border-top: medium none;
     border-bottom: medium none;
 }
 
-#edit-addon table tr:first-child td,
-#edit-addon table tr:first-child th {
+.devhub-form table tr:first-child td,
+.devhub-form table tr:first-child th {
     border-top: medium none;
 }
 
-#edit-addon table .screenshot.thumbnail {
+.devhub-form table .screenshot.thumbnail {
     width: 100px;
     height: 75px;
 }
 
 
-#edit-addon .help,
+.devhub-form .help,
 a.remove {
     -moz-border-radius: 20px;
     -webkit-border-radius :20px;
@@ -102,7 +102,7 @@ a.remove {
     text-decoration :none;
     width: 18px;
 }
-#edit-addon .help {
+.devhub-form .help {
     vertical-align: top;
 }
 a.remove {
@@ -112,24 +112,24 @@ a.remove {
     margin-top: 2px;
 }
 
-#edit-addon .author:hover .remove,
+.devhub-form .author:hover .remove,
 a.remove:hover,
-#edit-addon tr:hover .help {
+.devhub-form tr:hover .help {
     background-color: #CCC;
 }
 
-#edit-addon tr:hover .help:hover,
-#edit-addon .author .remove:hover {
+.devhub-form tr:hover .help:hover,
+.devhub-form .author .remove:hover {
     background-color: #2A4364;
     cursor: help;
 }
 
-#edit-addon .empty {
+.devhub-form .empty {
     color: #999999;
     font-style: italic;
 }
 
-#edit-addon-nav div:last-child ul.refinements {
+.devhub-form-nav div:last-child ul.refinements {
     border-bottom: 0 none;
     margin-bottom: 0;
     padding-bottom: 0;
@@ -152,14 +152,14 @@ a.remove:hover,
     font-size:10px;
 }
 
-#edit-addon label {
+.devhub-form label {
     font-weight: normal;
 }
-#edit-addon th label {
+.devhub-form th label {
     font-weight: bold;
     display: inline-block;
 }
-#edit-addon th label .locale{
+.devhub-form th label .locale{
     font-weight: normal;
     font-size: .9em;
     color: #888;
@@ -413,8 +413,8 @@ a.more-actions:after:hover {
 #submit-addon {
     margin-bottom: 3em;
 }
-#submit-addon a.button:link,
-#submit-addon a.button:visited {
+.cta a.button:link,
+.cta a.button:visited {
     background: #5af;
     background: -moz-linear-gradient(top, #acf, #5af);
     background: -webkit-gradient(linear, left top, left bottom, from(#acf), to(#5af));
@@ -426,14 +426,14 @@ a.more-actions:after:hover {
     padding: 0.75em 0.95em;
     text-align: center;
 }
-#submit-addon a.button:hover,
-#submit-addon a.button:focus {
+.cta a.button:hover,
+.cta a.button:focus {
     border-color: #25f;
     -moz-box-shadow: inset 0 0 2px #fff;
     -webkit-box-shadow: inset 0 0 2px #fff;
     box-shadow: inset 0 0 2px #fff;
 }
-#submit-addon a.button:active {
+.cta a.button:active {
     border-color: #03c;
     background: #7bf;
     background: -moz-linear-gradient(top, #5af, #7bf);
@@ -554,15 +554,15 @@ input.valid {
 .license-other input {
     margin-bottom: 1em;
 }
-#edit-addon .priv label,
-#edit-addon .eula label,
-#edit-addon .license-other label {
+.devhub-form .priv label,
+.devhub-form .eula label,
+.devhub-form .license-other label {
     font-weight: bold;
     margin-bottom: .5em;
 }
-#edit-addon .priv,
-#edit-addon .eula,
-#edit-addon .license-other {
+.devhub-form .priv,
+.devhub-form .eula,
+.devhub-form .license-other {
     margin: 16px 0 0 32px;
 }
 .eula label,
@@ -595,8 +595,8 @@ input.valid {
 .payments .intro .button-wrapper {
     text-align: center;
 }
-#edit-addon .brform label,
-#edit-addon .b {
+.devhub-form .brform label,
+.devhub-form .b {
     font-weight: 500;
 }
 .brform > label,
@@ -1143,3 +1143,75 @@ form.select-review .errorlist {
 /* @end */
 
 /* @end */
+
+/** Invisible file inputs */
+.invisible-upload {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.invisible-upload input {
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 1;
+    outline: none;
+}
+
+.invisible-upload:hover input {
+    font-size: 1000px;
+}
+
+.invisible-upload a.button {
+    position: relative;
+    display: inline-block;
+}
+
+.invisible-upload:hover a.button,
+.invisible-upload.focused a.button {
+    border-color: #25f;
+    -moz-box-shadow: inset 0 0 2px #fff;
+    -webkit-box-shadow: inset 0 0 2px #fff;
+    box-shadow: inset 0 0 2px #fff;
+
+}
+
+.invisible-upload a.link {
+    text-decoration: none;
+    color: #0055EE;
+}
+
+.invisible-upload:hover a.link,
+.invisible-upload.focused a.link {
+    text-decoration: underline;
+}
+/* @end */
+
+#upload-file li {
+    float: left;
+    margin-right: 8px;
+}
+#upload-file ul {
+    overflow: hidden;
+    margin-bottom: 1em;
+}
+
+#file-list { margin-bottom: 1em;}
+#file-list tr {
+    border-bottom: 1px dotted #ADD0DC;
+}
+
+.devhub-form .compat-versions tbody {
+    border: 0;
+}
+
+.devhub-form .compat-versions p.add-app {
+    margin-top: 1em;
+}

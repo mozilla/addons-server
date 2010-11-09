@@ -156,13 +156,7 @@ function initEditVersions() {
     $modal = $(".add-file-modal").modal(".add-file", {
         width: '450px',
         hideme: false,
-        callback:resetModal
-    });
-
-    // Reset link
-    $('.upload-file-reset').click(function(e) {
-        e.preventDefault();
-        resetModal();
+        callback: resetModal
     });
 
     // Cancel link
@@ -175,15 +169,27 @@ function initEditVersions() {
     $('#uploadstatus_abort a').click(abortUpload);
 
     // Upload form submit
-    $('#upload-file').submit(function(e){
-        e.preventDefault();
-
-        $('.upload-status-button-add, .upload-status-button-close').hide();
-
-        fileUpload($('#upload-file-input'), $(this).attr('action'));
-
-        $('.upload-file-box').hide();
+    $("#upload-file").delegate("#upload-file-input", 'change', function(e) {
+        resetModal(false);
+        fileUpload($(this), $(this).closest('form').attr('action'));
         $('.upload-status').show();
+    });
+
+    $("#upload-file-finish").click(function (e) {
+        e.preventDefault();
+        $tgt = $(this);
+        if ($tgt.attr("disabled")) return;
+        $.post($tgt.attr("data-url"), $("#upload-file").serialize(), function (resp) {
+            $("#file-list tbody").append(resp);
+            $("#id_files-TOTAL_FORMS").val($("#file-list tr").length);
+            $modal.hideMe();
+        });
+    });
+    
+    $("#file-list").delegate("a.remove", "click", function() {
+        $tr = $(this).closest("tr").first();
+        $tr.hide().find(".delete input").attr("checked", "checked");
+        $("#id_files-TOTAL_FORMS").val($("#file-list tr").length);
     });
 
     function fileUpload(img, url) {
@@ -322,21 +328,12 @@ function initEditVersions() {
         $('#upload-status-results').html(body).addClass('status-fail');
         $('.upload-status-button-add').hide();
         $('.upload-status-button-close').show();
-
-        text_reset = gettext('Try Again');
-        text_cancel = gettext('Cancel');
-
-        inputDiv = $('.upload-status-button-close');
-        $('.upload-file-reset', inputDiv).text(text_reset);
-        $('.upload-file-cancel', inputDiv).text(text_cancel);
     }
 
-    function resetModal(obj) {
+    function resetModal(fileInput) {
+        if (fileInput === undefined) fileInput = true;
 
         file = {name: '', size: 0, data: '', aborted: false};
-
-        upload = $("<input type='file'>").attr('name', 'upload')
-                                         .attr('id', 'upload-file-input');
 
         $('.upload-file-box').show();
         $('.upload-status').hide();
@@ -346,15 +343,23 @@ function initEditVersions() {
 
         $('#upload-status-bar').attr('class', '');
         $('#upload-status-text').text("");
-        $('#upload-file-input').replaceWith(upload); // Clear file input
+        if (fileInput) resetFileInput(); // Clear file input
         $('#upload-status-results').text("").attr("class", "");
         $('#upload-status-bar div').css('width', 0).show();
         $('#upload-status-bar').removeClass('progress-idle');
+        $("#upload-file-finish").attr("disabled", true);
+        
 
         updateStatus(0);
         $('#uploadstatus_abort').show();
 
         return true;
+    }
+    
+    function resetFileInput() {
+        upload = $("<input type='file'>").attr('name', 'upload')
+                                         .attr('id', 'upload-file-input');
+        $('#upload-file-input').replaceWith(upload); // Clear file input
     }
 
     function addonUploaded(json) {
@@ -379,6 +384,8 @@ function initEditVersions() {
 
             var body = "<strong>";
             if(!v.errors) {
+                $("#upload-file-finish").attr("disabled", false);
+                $("#id_upload").val(json.upload);
                 body += format(ngettext(
                         "Your add-on passed validation with no errors and {0} warning.",
                         "Your add-on passed validation with no errors and {0} warnings.",
@@ -409,23 +416,11 @@ function initEditVersions() {
 
             statusclass = v.errors ? 'status-fail' : 'status-pass';
             $('#upload-status-results').html(body).addClass(statusclass);
-
-            $('.upload-status-button-add').hide();
-            $('.upload-status-button-close').show();
-
-            inputDiv = $('.upload-status-button-close');
-
-            if(v.errors) {
-                text_reset = gettext('Try Again');
-                text_cancel = gettext('Cancel');
-            } else {
-                text_reset = gettext('Upload Another');
-                text_cancel = gettext('Finish Uploading');
-            }
-
-            $('.upload-file-reset', inputDiv).text(text_reset);
-            $('.upload-file-cancel', inputDiv).text(text_cancel);
         }
+
+        statusclass = v.errors ? 'status-fail' : 'status-pass';
+        $('#upload-status-results').html(body).addClass(statusclass);
+        resetFileInput();
     }
 }
 
@@ -626,7 +621,7 @@ function initCompatibility() {
         $('.new-apps ul').delegate('a', 'click', function(e) {
             e.preventDefault();
             var extraAppRow = $('tr.app-extra td[class=' + $(this).attr('class') + ']', outer);
-            extraAppRow.parents('tr').find('input:checkbox').removeAttr('checked')
+            extraAppRow.parents('tr.app-extra').find('input:checkbox').removeAttr('checked')
                        .closest('tr').removeClass('app-extra');
 
             $(this).closest('li').remove();

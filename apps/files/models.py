@@ -35,7 +35,7 @@ class File(amo.models.ModelBase):
         db_table = 'files'
 
     def __unicode__(self):
-        return self.id
+        return unicode(self.id)
 
     @property
     def amo_platform(self):

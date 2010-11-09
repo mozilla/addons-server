@@ -1,15 +1,10 @@
 {% extends "devhub/base.html" %}
 
+{% from "devhub/includes/macros.html" import tip, empty_unless, compat %}
+
 {% set title = _('Manage Version {0}')|f(version.version) %}
 
 {% block title %}{{ dev_page_title(title, addon) }}{% endblock %}
-
-{% macro compat(form) %}
-  <tr><th>
-    <img src="{{ MEDIA_URL }}img/amo2009/app-icons/small/{{ form.app.short }}.png">
-  </th></tr>
-  {{ form|safe }}
-{% endmacro %}
 
 {% block content %}
 <header>
@@ -17,54 +12,74 @@
   {# L10n: {0} is an add-on name. #}
   <h2>{{ _('Manage {0}')|f(addon.name) }}</h2>
 </header>
-<section class="primary" role="main">
+<section class="primary devhub-form" role="main">
   <h3>{{ title }}</h3>
   <a href="{{ url('devhub.versions', addon.id) }}">{{ _('Back to All Versions') }}</a>
-  <div class="listing featured">
-    <div class="featured-inner">
-      <form method="post" action="">
+  <form method="post" action="">
+    <div class="item">
+      <div class="item_wrapper">
         {{ csrf() }}
-
-        <a href="#" class="add-file button">{{ _('Add File') }}</a>
-
         <table>
-          {{ file_form.management_form|safe }}
-          {{ file_form.non_form_errors()|safe }}
-          {% for form in file_form.forms %}
-            {% with file = form.instance %}
-              <tr>
-                <td><a href="{{ file.get_url_path(amo.FIREFOX, 'devhub') }}">
-                    {{ file.filename }}</a></td>
-                <td>{{ (file.size * 1000)|filesizeformat }}</td>
-                <td>{{ form.platform|safe }}</td>
-                <td>{{ form.status|safe }}</td>
-                <td>
-                  {{ form.DELETE|safe }}
-                  {{ form.id|safe }}
-                </td>
-              </tr>
-            {% endwith %}
-          {% endfor %}
-        </table>
-        <table>
-          {% if compat_form %}
-          {{ compat_form.non_form_errors()|safe }}
-          {{ compat_form.management_form|safe }}
-          {% for form in compat_form.initial_forms %}
-            {{ compat(form) }}
-          {% endfor %}
-          {% for form in compat_form.extra_forms %}
-            {{ compat(form) }}
-          {% endfor %}
-          {% endif %}
-
-          {{ version_form|safe }}
           <tr>
-            <th>{{ _('License') }}</th>
+            <th>{{ _("Files") }}</th>
+            <td>
+              {{ file_form.management_form|safe }}
+              {{ file_form.non_form_errors()|safe }}
+              <table id="file-list">
+                <tbody>
+                  {% for form in file_form.forms %}
+                    {% include "devhub/includes/version_file.html" %}
+                  {% endfor %}
+                </tbody>
+              </table>
+              <a href="#" class="add-file button">{{ _('Upload Another File') }}</a>
+            </td>
+          </tr>
+          <tr>
+            <th>{{ tip(_("Compatibility"),
+                       _("Adjusting application information here will allow users to install your
+                          add-on even if the install manifest in the package indicates that the
+                          add-on is incompatible.")) }}</th>
+            <td class="compat-versions">
+                {{ compat_form.non_form_errors()|safe }}
+                {{ compat_form.management_form|safe }}
+                <table>
+                  <tbody>
+                    {% for form in compat_form.initial_forms %}
+                      {{ compat(form) }}
+                    {% endfor %}
+                    {% for form in compat_form.extra_forms %}
+                      {{ compat(form, is_extra_form=True) }}
+                    {% endfor %}
+                  </tbody>
+                </table>
+                <p class="add-app">
+                  <a href="#">{{ _('Add Another Application&hellip;')|safe }}</a>
+                </p>
+                <div class="new-apps"></div>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <label for="releasenotes">{{ _("Release Notes") }}</label>
+              {{ tip(None, "Information about changes in this release, new features,
+                            known bugs, and other useful information specific to this
+                            release/version. This information is also shown in the
+                            Add-ons Manager when updating.") }}
+            </th>
+            <td>
+              {{ version_form.releasenotes.errors|safe }}
+              {{ version_form.releasenotes|safe }}
+            </td>
+          </tr>
+          <tr>
+            <th>
+              {{ _("License") }}
+            </th>
             <td>
               {{ version.license.name }}
               {% if version.license.url %}
-                <a href="{{ version.license.url }}">{{ _('Details') }}</a>
+                <a class="extra" href="{{ version.license.url }}">{{ _('Details') }}</a>
               {% endif %}
             </td>
           </tr>
@@ -85,16 +100,27 @@
                 {% endfor %}
               </ul>
             </td>
+            <tr>
+              <th>
+                <label for="approvalnotes">{{ _("Notes for Reviewers") }}</label>
+                {{ tip(None, "Optionally, enter any information that may be useful
+                              to the Editor reviewing this add-on, such as test
+                              account information.") }}
+              </th>
+              <td>
+                {{ version_form.approvalnotes.errors|safe }}
+                {{ version_form.approvalnotes|safe }}
+              </td>
+            </tr>
           </tr>
         </table>
-
-        <p class="item-group">
-          <button type="submit">{{ _('Save Changes') }}</button> {{ _('or') }}
-          <a href="{{ url('devhub.versions', addon.id) }}">{{ _('Cancel') }}</a>
-        </p>
-      </form>
+      </div>
+      <div class="listing-footer">
+        <button type="submit">{{ _('Save Changes') }}</button> {{ _('or') }}
+        <a href="{{ url('devhub.versions', addon.id) }}">{{ _('Cancel') }}</a>
+      </div>
     </div>
-  </div>
+  </form>
   <div class="add-file-modal upload-file modal hidden">
     <form method="post" id="upload-file" action="{{ url('devhub.upload') }}"
           enctype="multipart/form-data">
@@ -108,11 +134,16 @@
         </p>
 
         {{ csrf() }}
+        <label>{{ _('Select the target platform for this file.') }}</label>
+        {{ new_file_form.platform|safe }}
+        <div class="hidden">
+        {{ new_file_form.upload|safe }}
+        </div>
 
-        <label for="upload-file-input" class="brform">
-          {{ _('Select the add-on file to upload.') }}
-        </label>
-        <input type="file" id="upload-file-input" name="upload" />
+        <div class="invisible-upload" id="upload-file-widget">
+          <a class="button prominent" href="#">{{ _('Select a File') }}</a>
+          <input type="file" id="upload-file-input">
+        </div>
         <div class="upload-details">
           {{ _('Your add-on should end with .xpi or .jar.') }}
         </div>
@@ -136,12 +167,8 @@
       </div>
 
       <div class="upload-status-button-add">
-        <button class="button">{{ _('Add File') }}</button> or
+        <button id="upload-file-finish" disabled data-url="{{ url('devhub.versions.add_file', addon.id, version.id) }}" class="button">{{ _('Add File') }}</button> or
         <a href="#" class="upload-file-cancel">{{ _('Cancel') }}</a>
-      </div>
-      <div class="upload-status-button-close">
-        <a href="#" class="upload-file-reset button"></a> or
-        <a href="#" class="upload-file-cancel"></a>
       </div>
     </form>
   </div>
