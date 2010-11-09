@@ -9,20 +9,17 @@ import amo
 import captcha.fields
 from addons.models import Addon
 from amo.utils import slug_validator
-from tags.models import Tag
-from tower import ugettext as _, ungettext as ngettext
-from translations.widgets import (TranslationTextInput, TranslationTextarea)
-from translations.fields import (TransTextarea, TransInput, TransField)
+from tower import ugettext as _
+from translations.widgets import TranslationTextInput
+from translations.fields import TransField, TransTextarea
+from translations.forms import TranslationFormMixin
 
 
-class AddonFormBasic(happyforms.ModelForm):
+class AddonFormBasic(TranslationFormMixin, happyforms.ModelForm):
+    name = TransField(max_length=70)
     slug = forms.CharField(max_length=30)
-    summary = forms.CharField(widget=TransTextarea, max_length=250)
+    summary = TransField(widget=TransTextarea, max_length=250)
     tags = forms.CharField(required=False)
-
-    class Meta:
-        model = Addon
-        fields = ('name', 'summary')
 
     def __init__(self, *args, **kw):
         self.request = kw.pop('request')
@@ -91,9 +88,13 @@ class AddonFormDetails(happyforms.ModelForm):
         fields = ('description', 'default_locale', 'homepage')
 
 
-class AddonFormSupport(happyforms.ModelForm):
-    support_url = forms.URLField(widget=TransInput)
-    support_email = forms.EmailField(widget=TransInput)
+class AddonFormSupport(TranslationFormMixin, happyforms.ModelForm):
+    support_url = TransField.adapt(forms.URLField)
+    support_email = TransField.adapt(forms.EmailField)
+
+    class Meta:
+        model = Addon
+        fields = ('support_email', 'support_url')
 
     def __init__(self, *args, **kw):
         self.request = kw.pop('request')
@@ -117,18 +118,10 @@ class AddonFormSupport(happyforms.ModelForm):
 
         return super(AddonFormSupport, self).save(commit)
 
-    class Meta:
-        model = Addon
-        fields = ('support_email', 'support_url')
 
 
-class AddonFormTechnical(forms.ModelForm):
-    developer_comments = forms.CharField(widget=TransTextarea,
-                                         required=False)
-
-    def __init__(self, *args, **kw):
-        self.request = kw.pop('request')
-        super(AddonFormTechnical, self).__init__(*args, **kw)
+class AddonFormTechnical(TranslationFormMixin, forms.ModelForm):
+    developer_comments = TransField(widget=TransTextarea)
 
     class Meta:
         model = Addon

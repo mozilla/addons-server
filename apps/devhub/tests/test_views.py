@@ -8,7 +8,7 @@ from django.conf import settings
 from django.utils import translation
 
 import mock
-from nose.tools import eq_, assert_not_equal, assert_raises
+from nose.tools import eq_, assert_not_equal
 from pyquery import PyQuery as pq
 import test_utils
 
@@ -1111,6 +1111,24 @@ class TestEdit(test_utils.TestCase):
         eq_(r.status_code, 200)
 
         self.assertFormError(r, 'form', 'name', 'This field is required.')
+
+    def test_edit_basic_name_max_length(self):
+        data = dict(name='xx' * 70, slug=self.addon.slug,
+                    summary=self.addon.summary)
+        r = self.client.post(self.get_url('basic', True), data)
+        eq_(r.status_code, 200)
+        self.assertFormError(r, 'form', 'name',
+                             'Ensure this value has at most 70 '
+                             'characters (it has 140).')
+
+    def test_edit_basic_summary_max_length(self):
+        data = dict(name=self.addon.name, slug=self.addon.slug,
+                    summary='x' * 251)
+        r = self.client.post(self.get_url('basic', True), data)
+        eq_(r.status_code, 200)
+        self.assertFormError(r, 'form', 'summary',
+                             'Ensure this value has at most 250 '
+                             'characters (it has 251).')
 
     def test_edit_details(self):
         data = dict(description='New description with <em>html</em>!',

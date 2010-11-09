@@ -178,13 +178,95 @@ class TranslationDescriptor(related.ReverseSingleRelatedObjectDescriptor):
         return rv
 
 
-class TransField(forms.Field):
+class _TransField(object):
+
     def __init__(self, *args, **kwargs):
+        self.default_locale = settings.LANGUAGE_CODE
         for k in ('queryset', 'to_field_name'):
             if k in kwargs:
                 del kwargs[k]
         self.widget = kwargs.pop('widget', TransInput)
-        super(TransField, self).__init__(*args, **kwargs)
+        super(_TransField, self).__init__(*args, **kwargs)
 
     def clean(self, value):
-        return dict(value)
+        return super(_TransField, self).clean(dict(value))
+
+    def to_python(self, value):
+        return value
+
+    def validate(self, value):
+        # Only run the required check on the default locale.
+        locale = self.default_locale
+        try:
+            return super(_TransField, self).validate(value.get(locale, ''))
+        except forms.ValidationError, e:
+            e.messages = LocaleList(e.messages, locale)
+            raise e
+
+    def run_validators(self, value):
+        # Run validation over data in each locale.
+        errors = LocaleList()
+        for locale, val in value.items():
+            try:
+                super(_TransField, self).run_validators(val)
+            except forms.ValidationError, e:
+                errors.extend(e.messages, locale)
+        if errors:
+            raise LocaleValidationError(errors)
+
+
+class LocaleValidationError(forms.ValidationError):
+
+    def __init__(self, messages, code=None, params=None):
+        self.messages = messages
+
+
+class TransField(_TransField, forms.CharField):
+    """
+    A CharField subclass that can deal with multiple locales.
+
+    Most validators are run over the data for each locale.  The required
+    validator is only run on the default_locale, which is hooked up to the
+    instance with TranslationFormMixin.
+    """
+
+    @staticmethod
+    def adapt(cls):
+        """Get a new TransField that subclasses cls instead of CharField."""
+        return type('Trans%s' % cls.__name__, (_TransField, cls), {})
+
+
+# Subclass list so that isinstance(list) in Django works.
+class LocaleList(dict):
+    """
+    List-like objects that maps list elements to a locale.
+
+    >>> LocaleList([1, 2], 'en')
+    [1, 2]
+    ['en', 'en']
+
+    This is useful for validation error lists where we want to associate an
+    error with a locale.
+    """
+
+    def __init__(self, seq=None, locale=None):
+        self.seq, self.locales = [], []
+        if seq:
+            assert seq and locale
+            self.extend(seq, locale)
+
+    def __iter__(self):
+        return iter(self.zip())
+
+    def extend(self, seq, locale):
+        self.seq.extend(seq)
+        self.locales.extend([locale] * len(seq))
+
+    def __nonzero__(self):
+        return bool(self.seq)
+
+    def __contains__(self, item):
+        return item in self.seq
+
+    def zip(self):
+        return zip(self.locales, self.seq)
