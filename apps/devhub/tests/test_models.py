@@ -25,17 +25,32 @@ class TestActivityLog(test_utils.TestCase):
     def test_basic(self):
         request = self.request
         a = Addon.objects.get()
-        ActivityLog.log(request, amo.LOG['CREATE_ADDON'], a)
+        amo.log(request, amo.LOG['CREATE_ADDON'], a)
         entries = ActivityLog.objects.for_addons(a)
         eq_(len(entries), 1)
         eq_(entries[0].arguments[0], a)
         for x in ('Delicious Bookmarks', 'was created.'):
             assert x in unicode(entries[0])
 
+    def test_pseudo_objects(self):
+        """
+        If we give an argument of (Addon, 3615) ensure we get
+        Addon.objects.get(pk=3615).
+        """
+        a = ActivityLog()
+        a.arguments = [(Addon, 3615)]
+        eq_(a.arguments[0], Addon.objects.get(pk=3615))
+
+    def test_bad_arguments(self):
+        a = ActivityLog()
+        a.arguments = []
+        a.action = amo.LOG.ADD_USER_WITH_ROLE.id
+        eq_(a.to_string(), 'Something magical happened.')
+
     def test_json_failboat(self):
         request = self.request
         a = Addon.objects.get()
-        ActivityLog.log(request, amo.LOG['CREATE_ADDON'], a)
+        amo.log(request, amo.LOG['CREATE_ADDON'], a)
         entry = ActivityLog.objects.get()
         entry._arguments = 'failboat?'
         entry.save()
@@ -43,19 +58,19 @@ class TestActivityLog(test_utils.TestCase):
 
     def test_no_arguments(self):
         request = self.request
-        ActivityLog.log(request, amo.LOG['CUSTOM_HTML'])
+        amo.log(request, amo.LOG['CUSTOM_HTML'])
         entry = ActivityLog.objects.get()
         eq_(entry.arguments, [])
 
     def test_output(self):
         request = self.request
-        ActivityLog.log(request, amo.LOG['CUSTOM_TEXT'], 'hi there')
+        amo.log(request, amo.LOG['CUSTOM_TEXT'], 'hi there')
         entry = ActivityLog.objects.get()
         eq_(unicode(entry), 'hi there')
 
     def test_user_log(self):
         request = self.request
-        ActivityLog.log(request, amo.LOG['CUSTOM_TEXT'], 'hi there')
+        amo.log(request, amo.LOG['CUSTOM_TEXT'], 'hi there')
         entries = ActivityLog.objects.for_user(request.amo_user)
         eq_(len(entries), 1)
 
@@ -67,7 +82,7 @@ class TestActivityLog(test_utils.TestCase):
         request = self.request
         u = UserProfile(username='Marlboro Manatee')
         u.save()
-        ActivityLog.log(request, amo.LOG['ADD_USER_WITH_ROLE'],
+        amo.log(request, amo.LOG['ADD_USER_WITH_ROLE'],
                 (u, 'developer', Addon.objects.get()))
         entries = ActivityLog.objects.for_user(request.amo_user)
         eq_(len(entries), 1)

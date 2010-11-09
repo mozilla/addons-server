@@ -174,7 +174,7 @@ class ADD_TO_COLLECTION:
 
 class REMOVE_FROM_COLLECTION:
     id = 28
-    forma = _(u'{addon} removed from {collection}')
+    format = _(u'{addon} removed from {collection}')
 
 
 class ADD_REVIEW:
@@ -259,3 +259,30 @@ LOGS = (CREATE_ADDON, EDIT_PROPERTIES, EDIT_DESCRIPTIONS, EDIT_CATEGORIES,
 LOG_BY_ID = dict((l.id, l) for l in LOGS)
 LOG = AttributeDict((l.__name__, l) for l in LOGS)
 LOG_KEEP = (l.id for l in LOGS if hasattr(l, 'keep'))
+
+
+def log(request, action, arguments=None):
+    """
+    e.g. amo.log(request, amo.LOG.CREATE_ADDON, []),
+         amo.log(request, amo.LOG.ADD_FILE_TO_VERSION,
+                         (file, version))
+    """
+    from devhub.models import ActivityLog, AddonLog, UserLog
+    from addons.models import Addon
+    from users.models import UserProfile
+
+    al = ActivityLog(user=request.amo_user, action=action.id)
+    al.arguments = arguments
+    al.save()
+
+    if not isinstance(arguments, (list, tuple)):
+        arguments = (arguments,)
+    for arg in arguments:
+        if isinstance(arg, Addon):
+            AddonLog(addon=arg, activity_log=al).save()
+        elif isinstance(arg, UserProfile):
+            # Index by any user who is mentioned as an argument.
+            UserLog(activity_log=al, user=arg).save()
+
+    # Index by every request user
+    UserLog(activity_log=al, user=request.amo_user).save()

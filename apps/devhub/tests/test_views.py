@@ -71,28 +71,28 @@ class TestActivity(HubTest):
         if not addon:
             addon = self.addon
         for i in xrange(num):
-            ActivityLog.log(self.request, amo.LOG.CREATE_ADDON, addon)
+            amo.log(self.request, amo.LOG.CREATE_ADDON, addon)
 
     def log_updates(self, num):
         version = Version.objects.create(version='1', addon=self.addon)
         for i in xrange(num):
-            ActivityLog.log(self.request, amo.LOG.ADD_VERSION,
+            amo.log(self.request, amo.LOG.ADD_VERSION,
                             (self.addon, version))
 
     def log_status(self, num):
         for i in xrange(num):
-            ActivityLog.log(self.request, amo.LOG.SET_INACTIVE, (self.addon))
+            amo.log(self.request, amo.LOG.SET_INACTIVE, (self.addon))
 
     def log_collection(self, num):
         for i in xrange(num):
             c = Collection(name='foo %d' % i)
-            ActivityLog.log(self.request, amo.LOG.ADD_TO_COLLECTION,
+            amo.log(self.request, amo.LOG.ADD_TO_COLLECTION,
                             (self.addon, c))
 
     def log_review(self, num):
         r = Review(addon=self.addon)
         for i in xrange(num):
-            ActivityLog.log(self.request, amo.LOG.ADD_REVIEW, (self.addon, r))
+            amo.log(self.request, amo.LOG.ADD_REVIEW, (self.addon, r))
 
     def get_response(self, **kwargs):
         url = reverse('devhub.feed_all')

@@ -160,33 +160,14 @@ class ActivityLog(amo.models.ModelBase):
         for arg in args:
             if isinstance(arg, basestring):
                 serialize_me.append({'str': arg})
+            elif isinstance(arg, tuple):
+                # Instead of passing an addon instance you can pass a tuple:
+                # (Addon, 3) for Addon with pk=3
+                serialize_me.append(dict(((unicode(arg[0]._meta), arg[1]),)))
             else:
                 serialize_me.append(dict(((unicode(arg._meta), arg.pk),)))
 
         self._arguments = json.dumps(serialize_me)
-
-    @classmethod
-    def log(cls, request, action, arguments=None):
-        """
-        e.g. ActivityLog.log(request, amo.LOG.CREATE_ADDON, []),
-             ActivityLog.log(request, amo.LOG.ADD_FILE_TO_VERSION,
-                             (file, version))
-        """
-        al = cls(user=request.amo_user, action=action.id)
-        al.arguments = arguments
-        al.save()
-
-        if not isinstance(arguments, (list, tuple)):
-            arguments = (arguments,)
-        for arg in arguments:
-            if isinstance(arg, Addon):
-                AddonLog(addon=arg, activity_log=al).save()
-            elif isinstance(arg, UserProfile):
-                # Index by any user who is mentioned as an argument.
-                UserLog(activity_log=al, user=arg).save()
-
-        # Index by every request user
-        UserLog(activity_log=al, user=request.amo_user).save()
 
     # TODO(davedash): Support other types.
     def to_string(self, type='default'):
@@ -221,7 +202,7 @@ class ActivityLog(amo.models.ModelBase):
                         version=version, collection=collection)
             return log_type.format.format(*arguments, **data)
         except (AttributeError, KeyError, IndexError):
-            log.warning('%d contains garbage data' % self.id)
+            log.warning('%d contains garbage data' % (self.id or 0))
             return 'Something magical happened.'
 
     def __unicode__(self):

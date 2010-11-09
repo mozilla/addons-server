@@ -21,7 +21,7 @@ from easy_thumbnails import processors
 import pytz
 from PIL import Image
 
-from . import log
+from . import logger_log as log
 from translations.models import Translation
 from versions.models import ApplicationsVersions
 

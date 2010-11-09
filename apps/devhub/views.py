@@ -260,17 +260,17 @@ def ownership(request, addon_id, addon):
                      else amo.LOG.REMOVE_USER_WITH_ROLE
             author.addon = addon
             author.save()
-            ActivityLog.log(request, action,
+            amo.log(request, action,
                             (author.user, author.get_role_display(), addon))
         # License.
         if version:
             license = license_form.save()
             addon.current_version.update(license=license)
-            ActivityLog.log(request, amo.LOG.CHANGE_LICENSE,
+            amo.log(request, amo.LOG.CHANGE_LICENSE,
                             (license, addon))
         # Policy.
         policy_form.save(addon=addon)
-        ActivityLog.log(request, amo.LOG.CHANGE_POLICY,
+        amo.log(request, amo.LOG.CHANGE_POLICY,
                         (addon, policy_form.instance))
 
         return redirect('devhub.addons.owner', addon_id)
@@ -350,7 +350,7 @@ def profile(request, addon_id, addon):
 
     if request.method == 'POST' and profile_form.is_valid():
         profile_form.save()
-        ActivityLog.log(request, amo.LOG.EDIT_PROPERTIES,
+        amo.log(request, amo.LOG.EDIT_PROPERTIES,
                         (addon))
 
         return redirect('devhub.addons.profile', addon_id)
@@ -420,8 +420,7 @@ def addons_section(request, addon_id, addon, section, editable=False):
             if form.is_valid():
                 addon = form.save(addon)
                 editable = False
-                ActivityLog.log(request, amo.LOG.EDIT_PROPERTIES,
-                                (addon))
+                amo.log(request, amo.LOG.EDIT_PROPERTIES, (addon))
         else:
             form = models[section](instance=addon)
     else:
@@ -461,8 +460,8 @@ def version_edit(request, addon_id, addon, version_id):
 
         for deleted in data['file_form'].deleted_forms:
             file = deleted.cleaned_data['id']
-            ActivityLog.log(request, amo.LOG.DELETE_FILE_FROM_VERSION,
-                            (file.filename, file.version, addon))
+            amo.log(request, amo.LOG.DELETE_FILE_FROM_VERSION,
+                    (file.filename, file.version, addon))
 
         if 'compat_form' in data:
             for compat in data['compat_form'].save(commit=False):
