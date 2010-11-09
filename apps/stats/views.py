@@ -5,9 +5,9 @@ from datetime import date, datetime
 from django import http
 from django.shortcuts import get_object_or_404
 from django.utils import simplejson
+from django.utils.cache import add_never_cache_headers, patch_cache_control
 from django.core.serializers.json import DjangoJSONEncoder
 from django.core.exceptions import PermissionDenied
-from django.views.decorators.cache import cache_control
 
 import jingo
 
@@ -261,11 +261,19 @@ def addon_contributions_queryset(addon, start_date, end_date):
                                      amount__gt=0,
                                      created__range=(start_date, end_date))
 
-# 30 days in seconds:
-thirty_days = 60 * 60 * 24 * 30
+
+# 7 days in seconds
+seven_days = 60 * 60 * 24 * 7
 
 
-@cache_control(max_age=thirty_days)
+def fudge_headers(response, stats):
+    """For https://bugzilla.mozilla.org/show_bug.cgi?id=605647"""
+    if not len(stats):
+        add_never_cache_headers(response)
+    else:
+        patch_cache_control(response, max_age=seven_days)
+
+
 @allow_cross_site_request
 def render_csv(request, addon, stats, fields):
     """Render a stats series in CSV."""
@@ -280,14 +288,15 @@ def render_csv(request, addon, stats, fields):
     # XXX: The list() performance penalty here might be big enough to
     # consider changing the sort order at lower levels.
     writer = unicode_csv.UnicodeWriter(response)
-    for row in reversed(list(stats)):
+    stats_list = list(stats)
+    for row in reversed(stats_list):
         writer.writerow(row)
 
+    fudge_headers(response, stats_list)
     response['Content-Type'] = 'text/plain; charset=utf-8'
     return response
 
 
-@cache_control(max_age=thirty_days)
 @allow_cross_site_request
 def render_json(request, addon, stats):
     """Render a stats series in JSON."""
@@ -298,5 +307,6 @@ def render_json(request, addon, stats):
         stats = list(stats)
 
     # Django's encoder supports date and datetime.
+    fudge_headers(response, stats)
     simplejson.dump(stats, response, cls=DjangoJSONEncoder)
     return response

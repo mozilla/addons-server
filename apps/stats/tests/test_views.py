@@ -241,6 +241,28 @@ class TestCSVs(TestSeriesBase):
             testname = 'test_%s' % view[6:]  # everything after 'stats.'
             assert hasattr(self, testname), "no test for '%s'" % view
 
+    def test_cache(self):
+        """Test that the csv or json is sending a cache header of 7 days"""
+        response = self.get_view_response('stats.contributions_detail',
+                                          format='csv')
+        eq_(response["cache-control"], 'max-age=604800')
+
+        response = self.get_view_response('stats.contributions_detail',
+                                          format='json')
+        eq_(response["cache-control"], 'max-age=604800')
+
+    def test_no_cache(self):
+        """Test that the csv or json is not caching, due to lack of data"""
+        self.url_args = {'start': '20200101', 'end': '20200130', 'addon_id': 4}
+        response = self.get_view_response('stats.versions_series',
+                                          group='day', format='csv')
+        eq_(response["cache-control"], 'max-age=0')
+
+        self.url_args = {'start': '20200101', 'end': '20200130', 'addon_id': 4}
+        response = self.get_view_response('stats.versions_series',
+                                          group='day', format='json')
+        eq_(response["cache-control"], 'max-age=0')
+
     def test_usage_series_no_data(self):
         self.url_args = {'start': '20010101', 'end': '20010130', 'addon_id': 4}
         response = self.get_view_response('stats.versions_series',
@@ -249,8 +271,8 @@ class TestCSVs(TestSeriesBase):
         eq_(response.status_code, 200)
         rows = list(csv.reader(response.content.split('\n')))
         eq_(len(rows), 10)
-        eq_(rows[8], ['# Fields: []']) # Header is present
-        eq_(rows[9], []) # There is no data
+        eq_(rows[8], ['# Fields: []'])  # Header is present
+        eq_(rows[9], [])  # There is no data
 
 
 class TestCacheControl(TestSeriesBase):
