@@ -267,8 +267,8 @@ seven_days = 60 * 60 * 24 * 7
 
 
 def fudge_headers(response, stats):
-    """For https://bugzilla.mozilla.org/show_bug.cgi?id=605647"""
-    if not len(stats):
+    """Alter cache headers. Don't cache content where data could be missing."""
+    if not stats:
         add_never_cache_headers(response)
     else:
         patch_cache_control(response, max_age=seven_days)

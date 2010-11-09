@@ -242,7 +242,7 @@ class TestCSVs(TestSeriesBase):
             assert hasattr(self, testname), "no test for '%s'" % view
 
     def test_cache(self):
-        """Test that the csv or json is sending a cache header of 7 days"""
+        """Test that the csv or json is sending a cache header of 7 days."""
         response = self.get_view_response('stats.contributions_detail',
                                           format='csv')
         eq_(response["cache-control"], 'max-age=604800')
@@ -252,7 +252,7 @@ class TestCSVs(TestSeriesBase):
         eq_(response["cache-control"], 'max-age=604800')
 
     def test_no_cache(self):
-        """Test that the csv or json is not caching, due to lack of data"""
+        """Test that the csv or json is not caching, due to lack of data."""
         self.url_args = {'start': '20200101', 'end': '20200130', 'addon_id': 4}
         response = self.get_view_response('stats.versions_series',
                                           group='day', format='csv')
