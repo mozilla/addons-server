@@ -116,7 +116,7 @@ class Addon(amo.models.ModelBase):
     homepage = TranslatedField()
     support_email = TranslatedField(db_column='supportemail')
     support_url = TranslatedField(db_column='supporturl')
-    description = PurifiedField(short=False)
+    description = PurifiedField()
 
     summary = LinkifiedField()
     developer_comments = PurifiedField(db_column='developercomments')

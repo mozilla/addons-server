@@ -208,6 +208,16 @@ class TranslationTestCase(ExtraAppTestCase):
         eq_(sorted(ts.values_list('locale', flat=True)),
             ['de', 'en-US', 'es-ES'])
 
+    def test_widget(self):
+        strings = {'de': None, 'fr': 'oui'}
+        o = TranslatedModel.objects.get(id=1)
+        o.name = strings
+        o.save()
+
+        # Shouldn't see de since that's NULL now.
+        ws = widgets.trans_widgets(o.name_id, lambda *args: None)
+        eq_(sorted(dict(ws).keys()), ['en-us', 'fr'])
+
     def test_sorting(self):
         """Test translation comparisons in Python code."""
         b = Translation.new('bbbb', 'de')
@@ -353,7 +363,7 @@ def test_translation_unicode():
 
 def test_widget_value_from_datadict():
     data = {'f_en-US': 'woo', 'f_de': 'herr', 'f_fr_delete': ''}
-    actual = widgets.TransMulti().value_from_datadict(data, [], 'f')
+    actual = widgets.TranslationWidget().value_from_datadict(data, [], 'f')
     expected = {'en-US': 'woo', 'de': 'herr', 'fr': None}
     eq_(actual, expected)
 

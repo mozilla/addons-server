@@ -1,8 +1,19 @@
 from django import forms
+from django.conf import settings
+from django.forms.util import flatatt
 from django.utils import translation
 from django.utils.translation.trans_real import to_language
 
+import jinja2
+
+import jingo
+
 from .models import Translation
+
+
+attrs = 'name="{name}_{locale}" data-locale="{locale}" {attrs}'
+input = u'<input %s value="{value}">' % attrs
+textarea = u'<textarea %s>{value}</textarea>' % attrs
 
 
 def get_string(x):
@@ -32,41 +43,32 @@ class TranslationTextarea(forms.widgets.Textarea):
         return super(TranslationTextarea, self).render(name, value, attrs)
 
 
-class TransMulti(forms.widgets.MultiWidget):
-    """
-    Builds the inputs for a translatable field.
+class TranslationWidget(forms.widgets.Textarea):
 
-    The backend dumps all the available translations into a set of widgets
-    wrapped in div.trans and javascript handles the rest of the UI.
-    """
-
-    def __init__(self):
-        # We set up the widgets in render since every Translation needs a
-        # different number of widgets.
-        super(TransMulti, self).__init__(widgets=[])
+    # Django expects ForeignKey widgets to have a choices attribute.
+    choices = None
 
     def render(self, name, value, attrs=None):
-        self.name = name
-        value = self.decompress(value)
-        if value:
-            self.widgets = [self.widget() for _ in value]
-        else:
-            # Give an empty widget in the current locale.
-            self.widgets = [self.widget()]
-            value = [Translation(locale=translation.get_language())]
-        return super(TransMulti, self).render(name, value, attrs)
 
-    def decompress(self, value):
-        if not value:
-            return []
-        elif isinstance(value, long):
-            # We got a foreign key to the translation table.
-            qs = Translation.objects.filter(id=value)
-            return list(qs.filter(localized_string__isnull=False))
-        elif isinstance(value, dict):
-            # We're getting a datadict, there was a validation error.
-            return [Translation(locale=k, localized_string=v)
-                    for k, v in value.items()]
+        attrs = self.build_attrs(attrs)
+        widget = widget_builder(name, attrs)
+        id = attrs.pop('id')
+
+        lang = translation.get_language()
+        widgets = {}
+        widgets[lang] = widget(lang, value='')
+
+        try:
+            trans_id = int(value)
+            widgets.update(trans_widgets(trans_id, widget))
+        except (TypeError, ValueError):
+            pass
+
+        languages = dict((i.lower(), j) for i, j in settings.LANGUAGES.items())
+
+        template = jingo.env.get_template('translations/transbox.html')
+        return template.render(id=id, name=name, widgets=widgets,
+                               languages=languages)
 
     def value_from_datadict(self, data, files, name):
         # All the translations for this field are called {name}_{locale}, so
@@ -87,31 +89,21 @@ class TransMulti(forms.widgets.MultiWidget):
                     rv[locale(key)] = data[key]
         return rv
 
-    def format_output(self, widgets):
-        s = super(TransMulti, self).format_output(widgets)
-        return '<div data-name="%s">%s</div>' % (self.name, s)
+
+def trans_widgets(trans_id, widget):
+    translations = (Translation.objects.filter(id=trans_id)
+                    .filter(localized_string__isnull=False)
+                    .values_list('locale', 'localized_string'))
+    return [(to_language(locale), widget(locale, val))
+            for locale, val in translations if val is not None]
 
 
-class _TransWidget(object):
-    """
-    Widget mixin that adds a Translation locale to the lang attribute and the
-    input name.
-    """
+def widget_builder(name, attrs):
 
-    def render(self, name, value, attrs=None):
-        attrs = attrs or {}
-        lang = to_language(value.locale)
-        attrs.update(lang=lang)
-        # Use rsplit to drop django's name_idx numbering.  (name_0 => name)
-        name = '%s_%s' % (name.rsplit('_', 1)[0], lang)
-        return super(_TransWidget, self).render(name, value, attrs)
-
-
-# TransInput and TransTextarea are MultiWidgets that know how to set up our
-# special translation attributes.
-class TransInput(TransMulti):
-    widget = type('_TextInput', (_TransWidget, forms.widgets.TextInput), {})
-
-
-class TransTextarea(TransMulti):
-    widget = type('_Textarea', (_TransWidget, forms.widgets.Textarea), {})
+    def widget(locale, value):
+        locale = to_language(locale)
+        value = jinja2.escape(value)
+        attrs_ = dict(id='trans_%s_%s' % (name, locale), **attrs)
+        return textarea.format(name=name, locale=locale,
+                               attrs=flatatt(attrs_), value=value)
+    return widget
