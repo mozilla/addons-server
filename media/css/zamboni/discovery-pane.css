@@ -16,6 +16,10 @@ p, pre, blockquote, dl, ul, ol { margin: 0 0 1.286em; padding: 0; }
 li ul, li ol { margin-bottom: 0; }
 ul, ol { list-style: none; }
 
+html {
+    height: 100%;
+}
+
 body {
     font: 12px/1.33 Helvetica, "Helvetica Neue", Arial, sans-serif;
     padding: 0 10px 3em;
@@ -51,25 +55,6 @@ a:link, a:visited {
 a:hover, a:focus, a:active {
     color: #083681;
     text-decoration: underline;
-}
-
-a.button {
-    padding: 4px 12px 3px;
-    border: 1px solid rgba(165,175,185,0.75);
-    color: #333;
-    text-decoration: none;
-    text-shadow: 0 1px 0 rgba(255,255,255,0.5);
-    background: -moz-linear-gradient(top, rgba(255,255,255,0.5) 0, rgba(235,235,235,0.5) 50%, rgba(215,215,215,0.5) 52%, rgba(240,240,240,0.5) 100%);
-    border-radius: 3px;
-    box-shadow: inset 0 0 2px rgba(255,255,255,0.65);
-}
-
-a.button:hover,
-a.button:focus,
-a.button:active {
-    border-color: rgba(165,175,185,1);
-    color: #083681;
-    background: -moz-linear-gradient(top, rgba(255,255,255,0.8) 0, rgba(235,235,235,0.8) 50%, rgba(215,215,215,0.8) 52%, rgba(240,240,240,0.8) 100%);
 }
 
 section > section {
@@ -613,3 +598,357 @@ ul.addons {
 
 }
 
+/* @Detail page *********/
+body.detail {
+    padding: 20px;
+    background: #e0e8f3 none;
+    margin: 0;
+}
+
+.detail #main,
+.detail #reviews {
+    padding-left: 85px;
+    width: auto;
+    float: none;
+    position: relative;
+}
+
+.html-rtl.detail #main,
+.html-rtl.detail #reviews {
+    padding-left: 0;
+    padding-right: 85px;
+    width: auto;
+    float: none;
+    position: relative;
+}
+
+#main hgroup {
+    margin: 0 0 1.6em;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.8);
+}
+
+h1.addon {
+    color: #000;
+    font-weight: bold;
+}
+
+h1.addon .version {
+    font-size: .833em;
+    font-weight: normal;
+    color: #76787b;
+}
+
+h1.addon .icon {
+    max-width: 65px;
+    position: absolute;
+    left: 0;
+}
+
+.html-rtl h1.addon .icon {
+    left: auto;
+    right: 0;
+}
+
+h2.author {
+    font: bold 1em Helvetica, "Helvetica Neue", Arial, sans-serif;
+}
+
+#install li {
+    display: inline;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.html-rtl #install li { 
+    margin: 0 0 0 10px; 
+}
+
+.addon-info li {
+    clear: both;
+    overflow: hidden;
+    padding-left: 110px;
+    padding-bottom: .5em;
+    margin-bottom: .5em;
+    border-bottom: 2px groove rgba(255,255,255,.25);
+}
+
+.html-rtl .addon-info li {
+    padding-left: 0;
+    padding-right: 110px;
+}
+
+.addon-info li:last-child {
+    border: 0;
+}
+
+.addon-info h3 { 
+    font: bold 1em/1.3 Helvetica, "Helvetica Neue", Arial, sans-serif;
+    color: #76787b; 
+    width: 100px;
+    float: left;
+    margin-left: -110px; 
+}
+
+.html-rtl .addon-info h3 {
+    float: right;
+    margin: 0 -110px 0 0;
+}
+
+.addon-info p {
+    margin: 0;
+}
+
+.addon-info .stars {
+    margin: -1px 8px 0 0;
+    vertical-align: middle;
+}
+
+.html-rtl .addon-info .stars {
+    float: right;
+    margin: -1px 0 0 8px;
+}
+
+/* @Reviews *********/
+#reviews h1 {
+    background: #e0e8f3;
+    padding-right: 8px;
+    position: relative;
+    z-index: 99;
+    float: left;
+}
+
+.html-rtl #reviews h1 {
+    float: right;
+    padding: 0 0 0 8px;
+}
+
+#reviews #reviews-list {
+    border-top: 2px groove rgba(255,255,255,.25);
+    padding-top: 1.75em;
+    clear: both;
+    position: relative;
+    top: -.75em;
+}
+
+#reviews .review {
+    margin: 0 0 1.5em;
+    padding: 0 0 .25em;
+    border-bottom: 2px groove rgba(255,255,255,.25);
+}
+
+#reviews .rev-title {
+    font: bold 1em Helvetica, "Helvetica Neue", Arial, sans-serif;
+    margin: 0 0 .25em;
+}
+
+#reviews .stars {
+    float: none;
+    display: inline-block;
+    margin: -3px 0 0;
+    vertical-align: middle;
+}
+
+#reviews .rev-author {
+    font: 1em Helvetica, "Helvetica Neue", Arial, sans-serif;
+    color: #76787b;
+    margin: 0 0 .5em;
+}
+
+#reviews .all {
+    font-weight: bold;
+}
+
+/* @Star ratings *********/
+.stars {
+    text-indent: -999em;
+    background: url(img/stars.png) 0 50% no-repeat;
+    margin-right: .5em;
+    width: 65px;
+    float: left;
+}
+.stars-4 { background-position: -13px 50%; }
+.stars-3 { background-position: -26px 50%; }
+.stars-2 { background-position: -39px 50%; }
+.stars-1 { background-position: -52px 50%; }
+.stars-0 { background-position: -65px 50%; }
+
+
+/* @Buttons *********/
+a.button {
+    padding: 4px 12px 3px;
+    border: 1px solid rgba(165,175,185,0.75);
+    color: #333;
+    text-decoration: none;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+    background: -moz-linear-gradient(top, rgba(255,255,255,0.5) 0, rgba(235,235,235,0.5) 50%, rgba(215,215,215,0.5) 52%, rgba(240,240,240,0.5) 100%);
+    border-radius: 3px;
+    box-shadow: inset 0 0 2px rgba(255,255,255,0.65);
+}
+
+a.button:hover,
+a.button:focus,
+a.button:active {
+    border-color: rgba(165,175,185,1);
+    color: #083681;
+    background: -moz-linear-gradient(top, rgba(255,255,255,0.8) 0, rgba(235,235,235,0.8) 50%, rgba(215,215,215,0.8) 52%, rgba(240,240,240,0.8) 100%);
+}
+
+/** @Blue @Button *********/
+a.button.action {
+    font-weight: bold;
+    color: #fff;
+    background: -moz-linear-gradient(top, #7bf 40%, #39f 60%);
+    border-color: #05e;
+    text-shadow: 0 -1px 0 #05e;
+}
+
+/** @Green @button *********/
+a.button.add {
+    font-weight: bold;
+    color: #fff;
+    background: -moz-linear-gradient(top, #93c85e 30%, #55a802 55%);
+    border-color: #3a7404;
+    text-shadow: 0 -1px 0 #3a7404;
+}
+
+a.button.add:hover,
+a.button.add:focus {
+    border-color: #1a5404;
+}
+
+a.button.add:active {
+    border-color: #1a5404;
+    background: -moz-linear-gradient(#55a802 40%, #83c046 65%);
+}
+
+.button.add b {
+    padding: 4px 16px 3px 12px;
+    margin: 0 0 0 -12px;
+    width: 16px;
+    background: transparent url("../../img/zamboni/icons/button-icons.png") 25% 0 no-repeat;
+}
+
+.html-rtl .button b {
+    padding: 4px 12px 3px 16px;
+    margin: 0 -12px 0 0;
+}
+
+.button span {
+    border-left: 2px groove rgba(150,150,150,0.35);
+    padding: 4px 0 3px 12px;
+    margin: 0 2px 0 -2px;
+    display: inline-block;
+    line-height: 1.2;
+    white-space: normal;
+}
+
+.html-rtl .button span {
+    border-left: 0;
+    border-right: 2px groove rgba(150,150,150,0.35);
+    padding: 4px 8px 3px 6px;
+    margin: 0 -2px 0 2px;
+}
+
+
+/* @Images *********/
+#images {
+    margin: 0 0 1.6em;
+    background: rgba(255,255,255,0.35) no-repeat;
+    border: 1px solid #a8b8d1;
+    box-shadow: inset 0 1px 3px rgba(58,78,103,0.15), 0 1px 0 rgba(255,255,255,0.5);
+    min-height: 140px;
+    border-radius: 8px;
+}
+
+#images.js {
+    height: 140px;
+    overflow: hidden;
+}
+
+#images .panel {
+    width: 33%;
+    float: left;
+    margin: 0 0 10px;
+    top: 0;
+}
+
+#images.js .panel {
+    width: 33%;
+    margin: 0 -3px;
+    padding: 15px 0;
+    text-align: center;
+    height: 110px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: none;
+}
+
+#images a img {
+    border: 1px solid #a9a9a9;
+    max-width: 95%;
+    max-height: 100%;
+    -moz-box-shadow: 0 1px 3px rgba(0,0,0,.15);
+}
+
+#images a:hover img,
+#images a:focus img,
+#images a:active img {
+    border-color: inherit;
+}
+
+#nav-images {
+    height: 0;
+    margin: 0;
+    display: none;
+}
+
+#images.js #nav-images {
+    display: block;
+}
+
+#nav-images a {
+    position: absolute;
+    top: 0;
+    margin: 1px;
+    z-index: 10;
+    display: block;
+    height: 140px;
+    width: 4%;
+    text-indent: -999em;
+    text-decoration: none;
+    overflow: hidden;
+    opacity: 0.3;
+    -moz-transition-property: opacity, width;
+    -moz-transition-duration: 0.5s;
+    -moz-transition-timing-function: ease-out;
+}
+
+#nav-images a:hover,
+#nav-images a:active {
+    opacity: 1;
+    width: 7%;
+    -moz-transition-property: opacity, width, background-color;
+    -moz-transition-duration: 0.2s;
+    -moz-transition-timing-function: ease-out;
+}
+
+#nav-images a:focus {
+    outline: 0;
+}
+
+body.eula { 
+  height: 80%; 
+}
+
+body.eula #main {
+  height: 80%;
+}
+
+#eula {
+    padding: 15px;
+    margin: 0 0 1.6em;
+    overflow: auto;
+    max-height: 80%;
+    background: #f3f8fb;
+    -moz-border-radius: 8px;
+}

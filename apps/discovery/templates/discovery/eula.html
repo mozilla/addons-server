@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="{{ LANG }}" dir="{{ DIR }}">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=770">
+  <title>Add-on Name End User License Agreement</title>
+	{{ css('zamboni/discovery-pane') }}
+	<base target="_blank" href="{{ settings.SITE_URL }}">
+</head>
+<body class="html-{{ DIR }} detail eula">
+
+	<section id="main">
+    <hgroup>
+      <h1 class="addon">
+        <img src="{{ addon.icon }}" width="65" height="65"> 
+        Add-on Name 
+        <span class="version">1.0.1</span>
+      </h1>
+      <h2 class="author">By: 
+        <a href="#">Author Name</a>
+      </h2>
+    </hgroup>
+
+	  <h3>End-User License Agreement</h3>
+	  <p>Add-on name requires that you accept the following End-User License Agreement before installation can proceed:</p>
+	  
+	  <article id="eula">
+      <p>Full text of EULA. Box will scroll when it overflows.</p>
+	  </article>
+		
+		<ul id="install">
+		  <!-- An .add button without the empty b or the span will have no icon or dividing line, just a green button -->
+		  <li><a href="#" class="button add">Accept and Install</a></li>
+		  <li><a href="#" class="button">Cancel Installation</a></li>
+		</ul>
+
+  </section>
+	
+{{ js('zamboni/discovery-pane') }}
+
+</body>
+</html>

@@ -53,9 +53,7 @@ $.fn.jCarouselLite = function(o) {
         ul.css({margin: "0", padding: "0", position: "relative", "list-style-type": "none", "z-index": "1"});
         div.css({overflow: "hidden", position: "relative", "z-index": "2", left: "0"});
 
-        var panelWidth = $("#main").width();
-
-        var liSize = o.vertical ? height(li) : panelWidth;  // Full li size(incl margin)-Used for animation
+        var liSize = o.vertical ? height(li) : width(li);   // Full li size(incl margin)-Used for animation
         var ulSize = liSize * itemLength;                   // size of full ul(total length, not just for the visible items)
         var divSize = liSize * v;                           // size of entire div(total length for just the visible items)
 
@@ -63,18 +61,6 @@ $.fn.jCarouselLite = function(o) {
         ul.css(sizeCss, ulSize+"px").css(animCss, -(curr*liSize));
 
         div.css(sizeCss, divSize+"px");                     // Width of the DIV. length of visible images
-
-        // Adjust dimensions for liquid width
-/*
-        $(window).resize(function(){
-          panelWidth = $("#main").width();
-          $("#main-feature, #main-feature .panel").css({width:panelWidth});
-          liSize = o.vertical ? height(li) : panelWidth;
-          ul.css(sizeCss, ulSize+"px").css(animCss, -(curr*liSize));
-          addonHeights();
-        });
-*/
-
 
         if(o.btnPrev)
             $(o.btnPrev).click(function() {
@@ -156,10 +142,10 @@ $.fn.jCarouselLite = function(o) {
         // Change panel widths on resize to keep the page liquid
         $(window).resize(function(){
           panelWidth = $("#main").width();
-          $("#main-feature, #main-feature .panel").css({width:panelWidth});
-          liSize = o.vertical ? height(li) : panelWidth;
+          $("#main-feature, #main-feature .panel, #images").css({width:panelWidth});
+          $("#images .panel").css({width:panelWidth/3});
+          liSize = o.vertical ? height(li) : width(li);
           ul.css(sizeCss, ulSize+"px").css(animCss, -(curr*liSize));
-          // Recalculate heights in case text wraps
         });
 
     });
@@ -211,9 +197,15 @@ $(document).ready(function(){
       btnPrev: "#nav-prev a",
       visible: 1
   });
+  $("#images").addClass("js").jCarouselLite({
+      btnNext: "#nav-next a",
+      btnPrev: "#nav-prev a", 
+      visible: 3
+  });
   // Set the width of panels (jCarousel requires a pixel width but our page is liquid, so we'll set the width in px on pageload and on resize)
   var panelWidth = $("#main").width();
-    $("#main-feature, #main-feature .panel").css({width:panelWidth});
+    $("#main-feature, #main-feature .panel, #images").css({width:panelWidth});
+    $("#images .panel").css({width:panelWidth/3}); // We show three images at a time, so the width of each is one third the total
   //trim the description text to fit.
   $("p.desc").vtruncate();
   $(window).resize(debounce(function() {
