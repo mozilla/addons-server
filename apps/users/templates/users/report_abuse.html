@@ -3,6 +3,10 @@
     {% if hide %}<legend><a href="#">{{ _('Report user') }}</a></legend>{% endif %}
     <ol {% if hide %}class="hide"{% endif %}>
       <li>
+        <p>{% trans %}Please describe why you are reporting this user,
+        such as for spam or an inappropriate picture.{% endtrans %}</p>
+      </li>
+      <li>
         {{ csrf() }}
         {% if abuse_form.has_recaptcha %}
           {{ recaptcha(abuse_form) }}

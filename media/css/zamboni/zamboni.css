@@ -1956,6 +1956,14 @@ form .error .note.error {
     padding: 0;
 }
 
+.abuse-wrapper legend {
+    float: right;
+}
+
+.abuse-wrapper ol {
+    padding-top: 3em;
+}
+
 .abuse label {
     font-weight: normal;
 }
