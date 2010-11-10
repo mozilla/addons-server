@@ -95,7 +95,10 @@ class TestActivity(HubTest):
             ActivityLog.log(self.request, amo.LOG.ADD_REVIEW, (self.addon, r))
 
     def get_pq(self, **kwargs):
-        url = reverse('devhub.addons.activity')
+        url = reverse('devhub.feed_all')
+        if 'addon' in kwargs:
+            url = reverse('devhub.feed', args=(kwargs['addon'],))
+
         if kwargs:
             url += '?' + urlencode(kwargs)
         r = self.client.get(url, follow=True)
@@ -1492,7 +1495,7 @@ class TestAddonSubmission(test_utils.TestCase):
             reverse('users.edit') + '#user-profile')
 
         # keep up with your add-on's activity feed:
-        eq_(next_steps[2].attrib['href'], reverse('devhub.addons.activity'))
+        eq_(next_steps[2].attrib['href'], reverse('devhub.feed_all'))
 
         # view wait times:
         eq_(next_steps[3].attrib['href'],

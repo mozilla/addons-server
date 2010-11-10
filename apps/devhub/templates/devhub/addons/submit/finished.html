@@ -40,7 +40,7 @@
       <li>{{ _('Provide more details about your add-on by <a href="{0}">editing its listing</a>')|f(edit_url)|safe }}</li>
       {% set profile_url = url('users.edit') + '#user-profile' %}
       <li>{{ _('Tell your users why you created this add-on in your <a href="{0}">Developer Profile</a>')|f(profile_url)|safe }}</li>
-      <li>{{ _('View and subscribe to your add-on\'s  <a href="{0}">activity feed</a> to stay updated on reviews, collections, and more.')|f(url('devhub.addons.activity'))|safe }}</li>
+      <li>{{ _('View and subscribe to your add-on\'s  <a href="{0}">activity feed</a> to stay updated on reviews, collections, and more.')|f(url('devhub.feed_all'))|safe }}</li>
       <li>View approximate review queue <a
 href="https://forums.addons.mozilla.org/viewforum.php?f=21">wait times</a>.</li>
     </ul>

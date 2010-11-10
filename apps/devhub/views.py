@@ -20,6 +20,7 @@ from amo import messages
 from amo.helpers import urlparams
 from amo.urlresolvers import reverse
 from amo.utils import MenuItem
+from amo.urlresolvers import reverse
 from amo.decorators import json_view, login_required, post_required
 from access import acl
 from addons import forms as addon_forms
@@ -119,19 +120,20 @@ def ajax_compat_update(request, addon_id, addon, version_id):
 def _get_addons(request, addons, addon_id):
     """Create a list of ``MenuItem``s for the activity feed."""
     items = []
-    url = request.get_full_path()
 
     a = MenuItem()
     a.selected = (not addon_id)
-    (a.text, a.url) = (_('All My Add-ons'), urlparams(url, page=None,
-                                                      addon=None))
+    (a.text, a.url) = (_('All My Add-ons'), reverse('devhub.feed_all'))
     items.append(a)
 
     for addon in addons:
         item = MenuItem()
-        item.selected = (addon.id == addon_id)
-        (item.text, item.url) = (addon.name, urlparams(url, page=None,
-                                                       addon=addon.id))
+        try:
+            item.selected = (addon_id and addon.id == int(addon_id))
+        except ValueError:
+            pass  # We won't get here... EVER
+        url = reverse('devhub.feed', args=(addon.id,))
+        (item.text, item.url) = (addon.name, url)
         items.append(item)
 
     return items
@@ -169,14 +171,12 @@ def _get_filter(action):
 
 
 @login_required
-def activity(request):
+def feed(request, addon_id=None):
     addons_all = request.amo_user.addons.all()
 
-    try:
-        addon_id = int(request.GET.get('addon'))
-        addons = addons_all.filter(pk=addon_id)
-    except (ValueError, TypeError):
-        addon_id = None
+    if addon_id:
+        addons = get_object_or_404(addons_all, pk=addon_id)
+    else:
         addons = addons_all
 
     action = request.GET.get('action')

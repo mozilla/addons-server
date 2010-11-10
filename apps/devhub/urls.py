@@ -55,8 +55,8 @@ urlpatterns = decorate(write, patterns('',
     # Redirect to /addons/ at the base.
     url('^addon$', lambda r: redirect('devhub.addons', permanent=True)),
     url('^addons$', views.dashboard, name='devhub.addons'),
-    url('^addons/activity$', views.activity,
-        name='devhub.addons.activity'),
+    url('^feed$', views.feed, name='devhub.feed_all'),
+    url('^feed/(?P<addon_id>\d+)$', views.feed, name='devhub.feed'),
     url('^upload$', views.upload, name='devhub.upload'),
     url('^upload/([^/]+)(?:/([^/]+))?$', views.upload_detail,
         name='devhub.upload_detail')))
