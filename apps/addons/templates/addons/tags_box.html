@@ -1,3 +1,4 @@
+{% if tags %}
 <div class="clearboth">
   <h3 class="compact-bottom">{{ _('Tags', 'tags_header_tags_title') }}</h3>
 
@@ -5,3 +6,4 @@
     {{ tag_list(addon, tags=tags) }}
   </div>
 </div>
+{% endif %}
