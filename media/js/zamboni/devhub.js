@@ -170,8 +170,6 @@ function initEditVersions() {
     function fileUpload(img, url) {
         var f = img[0].files[0];
 
-        console.log(f);
-
         file = {};
         file.name = f.name || f.fileName;
         file.size = f.size;
