@@ -201,7 +201,7 @@
 
 <div class="secondary" role="navigation">
 
-  {% if addon.is_profile_public and addon.listed_authors %}
+  {% if addon.is_profile_public() and addon.listed_authors %}
   <div class="highlight">
     {% with single_dev = addon.listed_authors|random %}
       <h3 class="compact-bottom">
