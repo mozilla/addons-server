@@ -16,6 +16,7 @@ import test_utils
 import amo
 from amo import urlresolvers, utils, helpers
 from amo.utils import is_animated_image
+from translations.utils import truncate
 from versions.models import License
 
 
@@ -112,6 +113,14 @@ def test_breadcrumbs():
     eq_(crumbs.eq(1).attr('href'), '/foo')
     eq_(crumbs.eq(2).text(), 'bar')
     eq_(crumbs.eq(2).attr('href'), '/bar')
+
+    # truncated breadcrumb
+    s = render("""{{ breadcrumbs([('/foo', 'Long Addon Title is Looooooong'),],
+                                 crumb_size=15) }}'""",
+               {'request': req_app})
+    doc = PyQuery(s)
+    crumbs = doc('li>a')
+    eq_(truncate('Long Addon Title is Loooooooong', 15), crumbs.eq(1).text())
 
 
 @patch('amo.helpers.urlresolvers.reverse')

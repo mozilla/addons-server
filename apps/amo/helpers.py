@@ -21,6 +21,7 @@ from amo import utils, urlresolvers
 from addons.models import Category
 from translations.models import Translation
 from translations.query import order_by_translation
+from translations.utils import truncate
 
 # Yanking filters from Django.
 register.filter(defaultfilters.slugify)
@@ -176,7 +177,7 @@ def page_title(context, title):
 
 @register.function
 @jinja2.contextfunction
-def breadcrumbs(context, items=list(), add_default=True):
+def breadcrumbs(context, items=list(), add_default=True, crumb_size=40):
     """
     show a list of breadcrumbs. If url is None, it won't be a link.
     Accepts: [(url, label)]
@@ -194,6 +195,7 @@ def breadcrumbs(context, items=list(), add_default=True):
         except TypeError:
             crumbs.append(items)
 
+    crumbs = [(url, truncate(label, crumb_size)) for (url, label) in crumbs]
     c = {'breadcrumbs': crumbs}
     t = env.get_template('amo/breadcrumbs.html').render(**c)
     return jinja2.Markup(t)
