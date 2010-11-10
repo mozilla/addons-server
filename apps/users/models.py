@@ -303,7 +303,7 @@ class UserProfile(amo.models.ModelBase):
             author=self, type=type_, defaults=defaults)
         if new:
             # Do an extra query to make sure this gets transformed.
-            c = Collection.objects.get(id=c.id)
+            c = Collection.objects.using('default').get(id=c.id)
         return c
 
 
