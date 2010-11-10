@@ -1115,6 +1115,7 @@ class TestVersionEditSearchEngine(TestVersionEdit):
     def test_search_engine_edit(self):
         dd = self.formset(prefix="files", releasenotes='xx',
                           approvalnotes='yy')
+
         r = self.client.post(self.url, dd)
         eq_(r.status_code, 302)
         version = Addon.objects.no_cache().get(id=4594).current_version
@@ -1188,9 +1189,42 @@ class TestVersionEditFiles(TestVersionEdit):
                     self.client.get(self.url).context['file_form'].forms)
         forms[1]['platform'] = forms[0]['platform']
         r = self.client.post(self.url, self.formset(*forms, prefix='files'))
+        doc = pq(r.content)
+        assert doc('#id_files-0-platform')
         eq_(r.status_code, 200)
         eq_(r.context['file_form'].non_form_errors(),
             ['A platform can only be chosen once.'])
+
+
+class TestPlatformSearch(TestVersionEdit):
+    fixtures = ['base/apps', 'base/users',
+                'base/thunderbird', 'base/addon_4594_a9.json']
+
+    def setUp(self):
+        assert self.client.login(username='admin@mozilla.com',
+                                 password='password')
+        self.url = reverse('devhub.versions.edit',
+                           args=[4594, 42352])
+        self.version = Version.objects.get(id=42352)
+        self.file = self.version.files.all()[0]
+        for platform in amo.PLATFORMS:
+            k, _ = Platform.objects.get_or_create(id=platform)
+
+    def test_no_platform_search_engine(self):
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert not doc('#id_files-0-platform')
+
+    def test_changing_platform_search_engine(self):
+        dd = self.formset({'id': int(self.file.pk),
+                           'status': self.file.status,
+                           'platform': amo.PLATFORM_LINUX.id},
+                           prefix='files', releasenotes='xx',
+                           approvalnotes='yy')
+        response = self.client.post(self.url, dd)
+        eq_(response.status_code, 302)
+        uncached = Version.uncached.get(id=42352).files.all()[0]
+        eq_(amo.PLATFORM_ALL.id, uncached.platform.id)
 
 
 class TestVersionEditCompat(TestVersionEdit):

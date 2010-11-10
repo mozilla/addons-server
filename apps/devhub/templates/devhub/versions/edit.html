@@ -29,6 +29,7 @@
 
         <table>
           {{ file_form.management_form|safe }}
+          {{ file_form.non_form_errors()|safe }}
           {% for form in file_form.forms %}
             {% with file = form.instance %}
               <tr>

@@ -312,6 +312,9 @@ class FileForm(happyforms.ModelForm):
             field.choices = (field.choices +
                              [(status, amo.STATUS_CHOICES[status])])
 
+        if kw['instance'].version.addon.type == amo.ADDON_SEARCH:
+            del self.fields['platform']
+
 
 class BaseFileFormSet(BaseModelFormSet):
 
@@ -320,10 +323,12 @@ class BaseFileFormSet(BaseModelFormSet):
             return
         files = [f.cleaned_data for f in self.forms
                  if not f.cleaned_data.get('DELETE', False)]
-        platforms = [f['platform'] for f in files]
-        if sorted(platforms) != sorted(set(platforms)):
-            raise forms.ValidationError(
-                _('A platform can only be chosen once.'))
+
+        if self.forms and 'platform' in self.forms[0].fields:
+            platforms = [f['platform'] for f in files]
+            if sorted(platforms) != sorted(set(platforms)):
+                raise forms.ValidationError(
+                    _('A platform can only be chosen once.'))
 
 
 FileFormSet = modelformset_factory(File, formset=BaseFileFormSet,

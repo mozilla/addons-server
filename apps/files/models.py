@@ -5,6 +5,7 @@ from django.db import models
 
 from uuidfield.fields import UUIDField
 
+import amo
 import amo.models
 import amo.utils
 from amo.urlresolvers import reverse
@@ -14,7 +15,7 @@ class File(amo.models.ModelBase):
     STATUS_CHOICES = amo.STATUS_CHOICES.items()
 
     version = models.ForeignKey('versions.Version', related_name='files')
-    platform = models.ForeignKey('Platform')
+    platform = models.ForeignKey('Platform', default=amo.PLATFORM_ALL.id)
     filename = models.CharField(max_length=255, default='')
     size = models.PositiveIntegerField(default=0)  # kilobytes
     hash = models.CharField(max_length=255, default='')
