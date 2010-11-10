@@ -147,6 +147,10 @@ a.remove:hover,
   /** This is so they match up size-wise **/
 }
 
+#slug_edit a {
+    font-size:10px;
+}
+
 #edit-addon label {
     font-weight: normal;
 }
