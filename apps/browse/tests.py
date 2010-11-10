@@ -339,6 +339,17 @@ class TestSearchToolsPages(BaseSearchToolsTest):
         eq_(urlparse(links[0].attrib['href']).path, search_ext_url.path)
         eq_(urlparse(links[1].attrib['href']).path, search_ext_url.path)
 
+    def test_additional_resources(self):
+        for prefix, app in (
+                ('/en-US/firefox', amo.FIREFOX.pretty),
+                ('/en-US/seamonkey', amo.SEAMONKEY.pretty)):
+            app = unicode(app) # get the proxied unicode obj
+            response = self.client.get('%s/search-tools/' % prefix)
+            eq_(response.status_code, 200)
+            doc = pq(response.content)
+            txt = doc('#additional-resources ul li:eq(0)').text()
+            assert txt.endswith(app), "Expected %r got: %r" % (app, txt)
+
     def test_search_tools_arent_friends_with_everyone(self):
         # Search tools only show up for Firefox
         response = self.client.get('/en-US/thunderbird/search-tools/')
