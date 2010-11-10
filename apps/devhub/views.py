@@ -25,6 +25,7 @@ from access import acl
 from addons import forms as addon_forms
 from addons.models import Addon, AddonUser
 from addons.views import BaseFilter
+from cake.urlresolvers import remora_url
 from devhub.models import ActivityLog
 from files.models import FileUpload
 from translations.models import delete_translation
@@ -486,7 +487,10 @@ def submit(request):
     agrmt = os.path.join(base,
                 'en_US', 'pages', 'docs', 'policies', 'agreement.thtml')
     f = codecs.open(agrmt, encoding='utf8')
-    agreement_text = f.read()
+    # The %1$s is a placeholder in the template shared by Remora.
+    # There is currently only one of them.
+    agreement_text = f.read().replace(u'%1$s',
+                                      remora_url('/pages/developer_faq'), 1)
     f.close()
 
     return jingo.render(request, 'devhub/addons/submit/getting-started.html',

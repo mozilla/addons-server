@@ -1449,10 +1449,17 @@ class TestAddonSubmission(test_utils.TestCase):
         assert self.client.login(username='del@icio.us', password='password')
 
     def test_step1_submit(self):
-        # Sanity check to make sure the page loads without error:
         response = self.client.get(reverse('devhub.submit'))
         eq_(response.status_code, 200)
+        doc = pq(response.content)
         assert len(response.context['agreement_text'])
+        links = doc('#agreement-container a')
+        assert len(links)
+        for ln in links:
+            href = ln.attrib['href']
+            assert not href.startswith('%'), (
+                "Looks like link %r to %r is still a placeholder" % (href,
+                                                                     ln.text))
 
     def test_finish_submitting_addon(self):
         addon = Addon.objects.get(
