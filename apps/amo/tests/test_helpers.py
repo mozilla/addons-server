@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
+import os
 
 from django.conf import settings
 from django.core import mail
@@ -14,6 +15,7 @@ import test_utils
 
 import amo
 from amo import urlresolvers, utils, helpers
+from amo.utils import is_animated_image
 from versions.models import License
 
 
@@ -269,3 +271,17 @@ class AbuseDisabledBase:
 
         res = self.client.post(self.full_page)
         eq_(res.status_code, 404)
+
+
+def get_image_path(name):
+    return os.path.join(settings.ROOT, 'apps', 'amo', 'tests', 'images', name)
+
+
+class TestAnimatedImages(test_utils.TestCase):
+
+    def test_animated_images(self):
+        assert is_animated_image(open(get_image_path('animated.png')))
+        assert not is_animated_image(open(get_image_path('non-animated.png')))
+
+        assert is_animated_image(open(get_image_path('animated.gif')))
+        assert not is_animated_image(open(get_image_path('non-animated.gif')))

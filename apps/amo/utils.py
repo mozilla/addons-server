@@ -254,6 +254,30 @@ def resize_image(src, dst, size):
     os.remove(src)
 
 
+def is_animated_image(photo, size=100000):
+    img = Image.open(photo)
+    if img.format == 'PNG':
+        photo.seek(0)
+        data = ''
+        while True:
+            chunk = photo.read(size)
+            if not chunk:
+                break
+            data += chunk
+            acTL, IDAT = data.find('acTL'), data.find('IDAT')
+            if acTL > -1 and acTL < IDAT:
+                return True
+        return False
+    elif img.format == 'GIF':
+        # See the PIL docs for how this works:
+        # http://www.pythonware.com/library/pil/handbook/introduction.htm
+        try:
+            img.seek(1)
+        except EOFError:
+            return False
+        return True
+
+
 class MenuItem():
     """Refinement item with nestable children for use in menus."""
     url, text, selected, children = ('', '', False, [])
