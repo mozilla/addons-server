@@ -515,16 +515,26 @@ def submit(request):
                                       remora_url('/pages/developer_faq'), 1)
     f.close()
 
-    return jingo.render(request, 'devhub/addons/submit/getting-started.html',
+    return jingo.render(request, 'devhub/addons/submit/start.html',
                         {'agreement_text': agreement_text})
 
 
-@login_required
-def submit_finished(request, addon_id):
-    addon = get_object_or_404(Addon, id=addon_id)
+@dev_required
+def submit_done(request, addon_id, addon):
     sp = addon.current_version.supported_platforms
     is_platform_specific = sp != [amo.PLATFORM_ALL]
 
-    return jingo.render(request, 'devhub/addons/submit/finished.html',
+    return jingo.render(request, 'devhub/addons/submit/done.html',
                         {'addon': addon,
                          'is_platform_specific': is_platform_specific})
+
+
+@dev_required
+def submit_select_review(request, addon_id, addon):
+    review_type_form = forms.ReviewTypeForm(request.POST or None)
+    if request.method == 'POST' and review_type_form.is_valid():
+        addon.status = review_type_form.cleaned_data['review_type']
+        addon.save()
+        return redirect('devhub.submit.done', addon_id)
+    return jingo.render(request, 'devhub/addons/submit/select-review.html',
+                        {'addon': addon, 'review_type_form': review_type_form})

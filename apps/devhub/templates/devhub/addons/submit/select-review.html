@@ -1,0 +1,67 @@
+{% extends "devhub/addons/submit/base.html" %}
+
+{% set current_step = 'select-review' %}
+{% set learn_more_url = remora_url('/developers/docs/policies/reviews#selection') %}
+
+{% block primary %}
+<h3>{{ _('Step 6. Select a Review Process') }}</h3>
+<p>
+  {% trans %}
+    All add-ons hosted in our gallery must be reviewed by an editor before
+    they appear in categories or search results. While waiting for review,
+    your add-on can still be accessed through its direct URL. Please choose
+    the review process below that best fits your add-on.
+  {% endtrans %}
+</p>
+<form class="select-review" action="" method="post">
+  {{ csrf() }}
+  {{ review_type_form.non_field_errors()|safe }}
+  {{ review_type_form.review_type|safe }}
+  {{ review_type_form.review_type.errors|safe }}
+  <div class="review-type">
+    <div class="highlight">
+      <h4>{{ _('Full Review') }}</h4>
+      <p>
+        {% trans url=learn_more_url %}
+          A complete review of your add-on's source and functionality.
+          <a href="{{ url }}">Learn more&hellip;</a>
+        {% endtrans %}
+      </p>
+      <ul>
+        <li>{{ _('Appropriate for polished add-ons') }}</li>
+        <li>{{ _('Review should take place within 10 days') }}</li>
+        <li>{{ _('Review of subsequent versions within 5 days') }}</li>
+        <li>{{ _('Warning-free installation and no feature limitations') }}</li>
+      </ul>
+      <p class="submit-buttons">
+        <button type="submit" name="review_type" value="{{ amo.STATUS_NOMINATED }}">
+          {{ _('Choose Full Review') }}
+        </button>
+      </p>
+    </div>
+  </div>
+  <div class="review-type">
+    <div class="highlight">
+      <h4>{{ _('Preliminary Review') }}</h4>
+      <p>
+        {% trans url=learn_more_url %}
+          A faster review of your add-on's source for any major problems.
+          <a href="{{ url }}">Learn more&hellip;</a>
+        {% endtrans %}
+      </p>
+      <ul>
+        <li>{{ _('Appropriate for experimental add-ons') }}</li>
+        <li>{{ _('Review should take place within 3 days') }}</li>
+        <li>{{ _('Some feature limitations') }}</li>
+        <li>{{ _('Binary and obfuscated add-ons ineligible') }}</li>
+        <li>{{ _('Cannot request Full Review for 10 days') }}</li>
+      </ul>
+      <p class="submit-buttons">
+        <button type="submit" name="review_type" value="{{ amo.STATUS_UNREVIEWED }}">
+          {{ _('Choose Preliminary Review') }}
+        </button>
+      </p>
+    </div>
+  </div>
+</form>
+{% endblock %}

@@ -10,10 +10,8 @@
                           ('add-media', _('Add images and videos')),
                           ('select-license', _('Select a license')),
                           ('select-review', _('Select a review process')),
-                          ('review', _('Review your choices')),
                           ('done', _("You're done!"))): %}
-    {% set cls = 'current' if current_step == slug else '' %}
-    <li class="{{ cls }}">{{ text }}</li>
+    <li{% if current_step == slug %} class="current"{% endif %}>{{ text }}</li>
     {% endfor %}
   </ol>
 </div>

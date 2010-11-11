@@ -1,0 +1,43 @@
+{% extends "devhub/addons/submit/base.html" %}
+
+{% set current_step = 'start' %}
+
+{% block primary %}
+<h3>{{ _('Step 1. Getting Started') }}</h3>
+<p>
+{% trans %}
+  Hosting your add-on in our gallery is the best way to expose your work
+  to millions of Firefox users. We'll provide everything you need to
+  distribute and update your add-on for free.
+{% endtrans %}
+</p>
+<p>
+{% trans %}
+  To complete this submission process you'll need your add-on
+  package (.xpi, .jar, or .xml) and at least one screenshot of
+  your add-on in action.
+{% endtrans %}
+</p>
+<p>
+{% trans %}
+  When you're ready to begin, please read and accept our <strong>Add-on
+  Developer Agreement</strong>:
+{% endtrans %}
+</p>
+<div id="agreement-container">
+  {{ agreement_text|safe }}
+</div>
+<div id="agreement-extra-links">
+  <a href="{{ remora_url('/developers/docs/policies/agreement') }}">
+    {{ _('Printable Version') }}</a>
+  <span>&bull;</span>
+  <a href="{{ remora_url('/developers/docs/policies') }}">
+    {{ _('Additional Add-on Policies') }}</a>
+</div>
+<div class="submit-buttons">
+  <button id="accept-agreement" type="button">
+    {{ _('I Accept this Agreement') }}
+  </button>
+  {{ _('or <a href="{0}">Cancel</a>')|f(url('devhub.index'))|safe }}
+</div>
+{% endblock %}

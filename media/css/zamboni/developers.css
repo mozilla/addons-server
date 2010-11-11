@@ -1,6 +1,7 @@
 /*clearfix*/
 .brform:after,
-#status-bar:after {
+#status-bar:after,
+form.select-review:after {
     content: ".";
     display: block;
     clear: both;
@@ -1062,8 +1063,9 @@ ol.submit-addon-progress li.current {
 #agreement-extra-links span {
     padding: 0 0.5em;
 }
-#agreement-buttons {
+.submit-buttons {
     border-top: 1px dotted #A4CFDE;
+    margin-bottom: 0;
     padding-top: 0.8em;
 }
 .addon-submission-process h3:nth-of-type(1) {
@@ -1072,7 +1074,8 @@ ol.submit-addon-progress li.current {
 div.done-next-steps p {
     margin-bottom: 0.3em;
 }
-div.done-next-steps ul {
+div.done-next-steps ul,
+.review-type ul {
     list-style: inside disc;
 }
 div.done-next-steps ul li {
@@ -1082,4 +1085,37 @@ div.done-next-steps ul li {
     font-size: 1.3em;
     padding-left: 5em;
 }
+
+/* @group Select a Review Process */
+
+form.select-review .errorlist {
+    margin-bottom: 1.5em;
+}
+
+.review-type {
+    float: left;
+    width: 50%;
+}
+.review-type .highlight {
+    background-color: #fff;
+    border: 1px solid #c8e8f3;
+    margin-right: 0.5em;
+}
+.review-type + .review-type .highlight {
+    margin: 0 0 0 0.5em;
+}
+
+.review-type h4 {
+    margin-bottom: 0;
+}
+.review-type p,
+.review-type ul {
+    margin-top: 0.5em;
+}
+.review-type ul {
+    min-height: 8em;
+}
+
+/* @end */
+
 /* @end */

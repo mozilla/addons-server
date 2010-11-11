@@ -1480,6 +1480,9 @@ class TestAddonSubmission(test_utils.TestCase):
         super(TestAddonSubmission, self).setUp()
         assert self.client.login(username='del@icio.us', password='password')
 
+    def get_addon(self):
+        return Addon.objects.no_cache().get(pk=3615)
+
     def test_step1_submit(self):
         response = self.client.get(reverse('devhub.submit'))
         eq_(response.status_code, 200)
@@ -1493,13 +1496,41 @@ class TestAddonSubmission(test_utils.TestCase):
                 "Looks like link %r to %r is still a placeholder" % (href,
                                                                      ln.text))
 
+    def test_step6_select_review(self):
+        url = reverse('devhub.submit.select_review', args=[3615])
+        r = self.client.get(url)
+        eq_(r.status_code, 200)
+
+        r = self.client.post(url, {'dummy': 'text'})
+        eq_(r.status_code, 200)
+        self.assertFormError(r, 'review_type_form', 'review_type',
+                             'A review type must be selected.')
+
+        d = dict(review_type='jetsfool')
+        r = self.client.post(url, d)
+        eq_(r.status_code, 200)
+        self.assertFormError(r, 'review_type_form', 'review_type',
+                             'Select a valid choice. jetsfool is not one of '
+                             'the available choices.')
+
+        # Preliminary Review.
+        d = dict(review_type=amo.STATUS_UNREVIEWED)
+        r = self.client.post(url, d)
+        eq_(r.status_code, 302)
+        eq_(self.get_addon().status, amo.STATUS_UNREVIEWED)
+
+        # Full Review.
+        d = dict(review_type=amo.STATUS_NOMINATED)
+        r = self.client.post(url, d)
+        eq_(r.status_code, 302)
+        eq_(self.get_addon().status, amo.STATUS_NOMINATED)
+
     def test_finish_submitting_addon(self):
         addon = Addon.objects.get(
                         name__localized_string='Delicious Bookmarks')
         eq_(addon.current_version.supported_platforms, [amo.PLATFORM_ALL])
 
-        response = self.client.get(reverse('devhub.submit.finished',
-                                    kwargs=dict(addon_id=addon.id)))
+        response = self.client.get(reverse('devhub.submit.done', args=[3615]))
         eq_(response.status_code, 200)
         doc = pq(response.content)
 
@@ -1533,8 +1564,9 @@ class TestAddonSubmission(test_utils.TestCase):
     def test_finish_submitting_platform_specific_addon(self):
         # mac-only Add-on:
         addon = Addon.objects.get(name__localized_string='Cooliris')
-        response = self.client.get(reverse('devhub.submit.finished',
-                                    kwargs=dict(addon_id=addon.id)))
+        AddonUser.objects.create(user=UserProfile.objects.get(pk=55021),
+                                 addon=addon)
+        response = self.client.get(reverse('devhub.submit.done', args=[5579]))
         eq_(response.status_code, 200)
         doc = pq(response.content)
         next_steps = doc(".done-next-steps li a")
@@ -1553,11 +1585,9 @@ class TestAddonSubmission(test_utils.TestCase):
     def test_finish_addon_for_prelim_review(self):
         addon = Addon.objects.get(pk=3615)
         addon.status = amo.STATUS_UNREVIEWED
-        addon.admin_review_type = amo.ADMIN_REVIEW_PRELIM
         addon.save()
 
-        response = self.client.get(reverse('devhub.submit.finished',
-                                    kwargs=dict(addon_id=addon.id)))
+        response = self.client.get(reverse('devhub.submit.done', args=[3615]))
         eq_(response.status_code, 200)
         doc = pq(response.content)
         exp = 'Your add-on has been submitted to the Preliminary Review queue'
@@ -1566,12 +1596,10 @@ class TestAddonSubmission(test_utils.TestCase):
 
     def test_finish_addon_for_full_review(self):
         addon = Addon.objects.get(pk=3615)
-        addon.status = amo.STATUS_UNREVIEWED
-        addon.admin_review_type = amo.ADMIN_REVIEW_FULL
+        addon.status = amo.STATUS_NOMINATED
         addon.save()
 
-        response = self.client.get(reverse('devhub.submit.finished',
-                                    kwargs=dict(addon_id=addon.id)))
+        response = self.client.get(reverse('devhub.submit.done', args=[3615]))
         eq_(response.status_code, 200)
         doc = pq(response.content)
         exp = 'Your add-on has been submitted to the Full Review queue'

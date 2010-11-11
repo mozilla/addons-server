@@ -68,6 +68,8 @@ STATUS_PUBLIC = 4
 STATUS_DISABLED = 5
 STATUS_LISTED = 6
 STATUS_BETA = 7
+STATUS_LITE = 8
+STATUS_LITE_AND_NOMINATED = 9
 
 STATUS_CHOICES = {
     STATUS_NULL: _('Incomplete'),
@@ -78,11 +80,15 @@ STATUS_CHOICES = {
     STATUS_DISABLED: _('Disabled'),
     STATUS_LISTED: _('Listed'),
     STATUS_BETA: _('Beta'),
+    STATUS_LITE: _('Preliminarily reviewed'),
+    STATUS_LITE_AND_NOMINATED:
+        _('Preliminarily reviewed and awaiting full review'),
 }
 
 UNREVIEWED_STATUSES = (STATUS_UNREVIEWED, STATUS_PENDING, STATUS_NOMINATED)
 VALID_STATUSES = (STATUS_UNREVIEWED, STATUS_PENDING, STATUS_NOMINATED,
-                  STATUS_PUBLIC, STATUS_LISTED, STATUS_BETA)
+                  STATUS_PUBLIC, STATUS_LISTED, STATUS_BETA, STATUS_LITE,
+                  STATUS_LITE_AND_NOMINATED)
 
 # Types of administrative review queues for an add-on:
 ADMIN_REVIEW_FULL = 1

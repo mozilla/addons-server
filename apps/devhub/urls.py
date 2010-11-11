@@ -6,6 +6,14 @@ from urlconf_decorator import decorate
 from amo.decorators import write
 from . import views
 
+
+# These will all start with /addon/<addon_id>/submit/
+submit_patterns = patterns('',
+    url('^select-review$', views.submit_select_review,
+        name='devhub.submit.select_review'),
+    url('^done$', views.submit_done, name='devhub.submit.done'),
+)
+
 # These will all start with /addon/<addon_id>/
 detail_patterns = patterns('',
     # Redirect to the edit page from the base.
@@ -27,10 +35,10 @@ detail_patterns = patterns('',
         name='devhub.versions.edit'),
     url('^versions/(?P<version>[^/]+)$', views.version_bounce),
 
-    url('^submit-finished$',
-        views.submit_finished, name='devhub.submit.finished'),
+    url('^submit/', include(submit_patterns)),
 )
 
+# These will all start with /ajax/addon/<addon_id>/
 ajax_patterns = patterns('',
     url('^versions/compatibility/status$',
         views.ajax_compat_status, name='devhub.ajax.compat.status'),
@@ -59,4 +67,5 @@ urlpatterns = decorate(write, patterns('',
     url('^feed/(?P<addon_id>\d+)$', views.feed, name='devhub.feed'),
     url('^upload$', views.upload, name='devhub.upload'),
     url('^upload/([^/]+)(?:/([^/]+))?$', views.upload_detail,
-        name='devhub.upload_detail')))
+        name='devhub.upload_detail')),
+)

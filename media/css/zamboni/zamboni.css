@@ -48,7 +48,8 @@ header hgroup h2 {
     margin-top: 0.2em;
 }
 
-header hgroup h3 {
+header hgroup h3,
+.highlight h4 {
     margin-top: 0;
     color: #666;
     font-family: "helvetica neue", arial, helvetica, sans-serif;
