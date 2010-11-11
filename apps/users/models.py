@@ -132,7 +132,9 @@ class UserProfile(amo.models.ModelBase):
         return reverse('users.profile', args=[self.id])
 
     def flush_urls(self):
-        urls = ['*/user/%d/' % self.id]
+        urls = ['*/user/%d/' % self.id,
+                self.picture_url,
+                ]
 
         return urls
 

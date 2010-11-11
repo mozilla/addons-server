@@ -251,7 +251,8 @@ class Addon(amo.models.ModelBase):
                 '*/addon/%d/privacy/' % self.id,
                 '*/addon/%d/versions/*' % self.id,
                 '*/api/*/addon/%d' % self.id,
-                # TODO(clouserw) preview images
+                self.icon_url,
+                self.thumbnail_url,
                 ]
         urls.extend('*/user/%d/' % u.id for u in self.listed_authors)
 

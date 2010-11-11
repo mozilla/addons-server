@@ -1329,6 +1329,8 @@ class TestVersionEditFiles(TestVersionEdit):
                               'Bookmarks</a>')
         eq_(r.status_code, 302)
         eq_(self.version.files.count(), 0)
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
 
     def test_edit_status(self):
         f = self.client.get(self.url).context['file_form'].forms[0]

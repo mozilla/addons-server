@@ -1,14 +1,17 @@
 from datetime import date
 import hashlib
+from urlparse import urlparse
 
 from django.contrib.auth.models import User
 from django.core import mail
 from django.utils import encoding
 
-import test_utils
+from mock import patch
 from nose.tools import eq_
+import test_utils
 
 import amo
+from amo.signals import _connect, _disconnect
 from addons.models import Addon, AddonUser
 from bandwagon.models import Collection
 from reviews.models import Review
@@ -174,3 +177,20 @@ class TestBlacklistedEmailDomain(test_utils.TestCase):
     def test_blocked(self):
         eq_(BlacklistedEmailDomain.blocked('mailinator.com'), True)
         assert not BlacklistedEmailDomain.blocked('mozilla.com')
+
+
+class TestFlushURLs(test_utils.TestCase):
+    fixtures = ['base/user_2519']
+
+    def setUp(self):
+        _connect()
+
+    def tearDown(self):
+        _disconnect()
+
+    @patch('amo.tasks.flush_front_end_cache_urls.apply_async')
+    def test_flush(self, flush):
+        user = UserProfile.objects.get(pk=2519)
+        user.save()
+        assert user.picture_url in flush.call_args[1]['args'][0]
+        assert urlparse(user.picture_url).query.find('modified') > -1
