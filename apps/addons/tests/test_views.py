@@ -253,8 +253,10 @@ class TestContribute(test_utils.TestCase):
 
 
 class TestDeveloperPages(test_utils.TestCase):
-    fixtures = ['base/apps', 'base/addon_3615', 'base/addon_592', 'base/users',
-                'addons/eula+contrib-addon']
+    fixtures = ['base/apps', 'base/addon_3615', 'base/addon_592',
+                'base/users', 'addons/eula+contrib-addon',
+                'addons/addon_228106_info+dev+bio.json',
+                'addons/addon_228107_multiple-devs.json']
 
     def test_meet_the_dev_title(self):
         r = self.client.get(reverse('addons.meet', args=[592]))
@@ -270,6 +272,36 @@ class TestDeveloperPages(test_utils.TestCase):
         r = self.client.get(reverse('addons.meet', args=[11730]))
         button = pq(r.content)('.install-button a.button').attr('href')
         assert button.endswith('?src=developers'), button
+
+    def test_nl2br_info(self):
+        r = self.client.get(reverse('addons.meet', args=[228106]))
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        author_parts = [pq(p).html() for p in doc('.addon-info p')]
+        eq_(author_parts[0],
+            'Bio: This is line one.<br/><br/>This is line two')
+        eq_(author_parts[1],
+            'Why: This is line one.<br/><br/>This is line two')
+        eq_(author_parts[2],
+            'Future: This is line one.<br/><br/>This is line two')
+
+    def test_nl2br_info_for_multiple_devs(self):
+        # Get an Add-on that has multiple developers,
+        # which will trigger the else block in the template.
+        r = self.client.get(reverse('addons.meet', args=[228107]))
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        author_parts = [pq(p).html() for p in doc('.addon-author-info p')]
+        eq_(author_parts[0],
+            'Bio1: This is line one.<br/><br/>This is line two')
+        eq_(author_parts[1],
+            'Bio2: This is line one.<br/><br/>This is line two')
+
+        info_parts = [pq(p).html() for p in doc('.addon-info p')]
+        eq_(info_parts[0],
+            'Why: This is line one.<br/><br/>This is line two')
+        eq_(info_parts[1],
+            'Future: This is line one.<br/><br/>This is line two')
 
     def test_roadblock_src(self):
         url = reverse('addons.roadblock', args=[11730]) + '?src=addondetail'

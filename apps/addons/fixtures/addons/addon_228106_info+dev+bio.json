@@ -1,0 +1,260 @@
+[
+    {
+        "pk": 117445,
+        "model": "versions.version",
+        "fields": {
+            "license": null,
+            "created": "2010-09-12 07:17:04",
+            "releasenotes": null,
+            "approvalnotes": null,
+            "modified": "2010-09-12 07:17:04",
+            "version": "1.0",
+            "addon": 228106
+        }
+    },
+    {
+        "pk": 1399506,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": null,
+            "created": "2010-09-12 07:28:44",
+            "locale": "en-US",
+            "modified": null,
+            "id": 1325266,
+            "localized_string": "Thank You for your generous contribution"
+        }
+    },
+    {
+        "pk": 1399505,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": null,
+            "created": "2010-09-12 07:27:48",
+            "locale": "en-US",
+            "modified": null,
+            "id": 1325265,
+            "localized_string": "Future: This is line one.\n\nThis is line two"
+        }
+    },
+    {
+        "pk": 1399504,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": null,
+            "created": "2010-09-12 07:27:48",
+            "locale": "en-US",
+            "modified": null,
+            "id": 1325264,
+            "localized_string": "Why: This is line one.\n\nThis is line two"
+        }
+    },
+    {
+        "pk": 1399491,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": "it does cool stuff",
+            "created": "2010-09-12 07:17:04",
+            "locale": "en-US",
+            "modified": null,
+            "id": 1325251,
+            "localized_string": "it does cool stuff"
+        }
+    },
+    {
+        "pk": 1399498,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": "Do step 1, then do step 2",
+            "created": "2010-09-12 07:23:53",
+            "locale": "en-US",
+            "modified": null,
+            "id": 1325258,
+            "localized_string": "Do step 1, then do step 2"
+        }
+    },
+    {
+        "pk": 1399503,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": null,
+            "created": "2010-09-12 07:25:39",
+            "locale": "en-US",
+            "modified": null,
+            "id": 1325263,
+            "localized_string": "nobody@nowhere.com"
+        }
+    },
+    {
+        "pk": 1399489,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": null,
+            "created": "2010-09-12 07:17:04",
+            "locale": "en-US",
+            "modified": null,
+            "id": 1325249,
+            "localized_string": "http://www.somewhere.com/"
+        }
+    },
+    {
+        "pk": 1399490,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": null,
+            "created": "2010-09-12 07:17:04",
+            "locale": "en-US",
+            "modified": null,
+            "id": 1325250,
+            "localized_string": "My Cool Add-on"
+        }
+    },
+    {
+        "pk": 228106,
+        "model": "addons.addon",
+        "fields": {
+            "dev_agreement": true,
+            "eula": null,
+            "last_updated": "2010-09-12 07:17:04",
+            "view_source": false,
+            "enable_thankyou": true,
+            "total_downloads": 327,
+            "developer_comments": null,
+            "inactive": false,
+            "average_daily_downloads": 14,
+            "show_beta": true,
+            "admin_review_type": 1,
+            "the_future": 1325265,
+            "trusted": false,
+            "total_contributions": "0.00",
+            "locale_disambiguation": null,
+            "binary": false,
+            "guid": "nobody@nowhere.com",
+            "weekly_downloads": 75,
+            "support_url": null,
+            "paypal_id": "nobody@nowhere.com",
+            "average_rating": 0.0,
+            "wants_contributions": true,
+            "average_daily_users": 38,
+            "bayesian_rating": 0.0,
+            "share_count": 0,
+            "charity": null,
+            "homepage": 1325249,
+            "support_email": 1325263,
+            "public_stats": false,
+            "status": 1,
+            "privacy_policy": null,
+            "description": 1325258,
+            "default_locale": "en-US",
+            "target_locale": null,
+            "get_satisfaction_product": "",
+            "prerelease": false,
+            "thankyou_note": 1325266,
+            "admin_review": false,
+            "slug": "my-addon",
+            "external_software": false,
+            "highest_status": 1,
+            "get_satisfaction_company": "",
+            "name": 1325250,
+            "created": "2010-09-12 07:17:04",
+            "type": 1,
+            "icon_type": "image/png",
+            "annoying": 2,
+            "modified": "2010-09-12 15:01:38",
+            "summary": 1325251,
+            "suggested_amount": "5.00",
+            "site_specific": false,
+            "_current_version": 117445,
+            "total_reviews": 0,
+            "the_reason": 1325264,
+            "nomination_date": null
+        }
+    },
+    {
+        "pk": 999999,
+        "model": "addons.appsupport",
+        "fields": {
+            "app": 1,
+            "addon": 228106,
+            "modified": "2010-10-02 07:22:41",
+            "created": "2010-10-02 07:22:41"
+        }
+    },
+    {
+        "pk": 5468632,
+        "model": "auth.user",
+        "fields": {
+            "username": "the-author@nowehere.com",
+            "first_name": "",
+            "last_name": "",
+            "is_active": true,
+            "is_superuser": false,
+            "is_staff": false,
+            "last_login": "2010-09-12 21:57:18",
+            "groups": [],
+            "user_permissions": [],
+            "password": "nope",
+            "email": "the-author@nowehere.com",
+            "date_joined": "2010-09-12 07:19:31"
+        }
+    },
+    {
+        "pk": 1399510,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": "Bio: This is line one.\n\nThis is line two",
+            "created": "2010-09-12 07:34:47",
+            "locale": "en-us",
+            "modified": "2010-09-12 07:34:47",
+            "id": 1325270,
+            "localized_string": "Bio: This is line one.\n\nThis is line two"
+        }
+    },
+    {
+        "pk": 5468632,
+        "model": "users.userprofile",
+        "fields": {
+            "sandboxshown": false,
+            "display_collections_fav": false,
+            "display_collections": true,
+            "occupation": "",
+            "display_name": "The Author",
+            "confirmationcode": "",
+            "location": "",
+            "picture_type": "image/png",
+            "averagerating": "",
+            "homepage": "",
+            "email": "the-author@nowehere.com",
+            "notifycompat": false,
+            "username": "theauthor",
+            "bio": 1325270,
+            "failed_login_attempts": 0,
+            "firstname": "",
+            "deleted": false,
+            "lastname": "",
+            "emailhidden": false,
+            "last_login_attempt_ip": "",
+            "last_login_attempt": null,
+            "password": "nope",
+            "nickname": "theauthor",
+            "resetcode_expires": null,
+            "resetcode": "",
+            "created": "2010-09-12 07:19:31",
+            "notes": "",
+            "modified": "2010-09-12 07:34:47",
+            "last_login_ip": "",
+            "notifyevents": false,
+            "user": 5468632
+        }
+    },
+    {
+        "pk": 22048,
+        "model": "addons.addonuser",
+        "fields": {
+            "position": 2,
+            "listed": true,
+            "role": 4,
+            "user": 5468632,
+            "addon": 228106
+        }
+    }
+]

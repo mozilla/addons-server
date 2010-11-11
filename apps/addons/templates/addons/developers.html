@@ -72,18 +72,18 @@
     {% if page != "installed" and addon.takes_contributions %}
       {{ contrib }}
     {% endif %}
-    <div class="primary prose">
+    <div class="primary prose addon-info">
       {% if user.bio %}
         <h3>{{ _('Who is {0}')|f(user.name) }}</h3>
-        <p class="intro">{{ user.bio }}</p>
+        <p class="intro">{{ user.bio|nl2br }}</p>
       {% endif %}
       {% if addon.the_reason %}
         <h3>{{ _("Why was {0} created?")|f(addon.name) }}</h3>
-        <p>{{ addon.the_reason }}</p>
+        <p>{{ addon.the_reason|nl2br }}</p>
       {% endif %}
       {% if addon.the_future %}
         <h3>{{ _("What's next for {0}")|f(addon.name) }}</h3>
-        <p>{{ addon.the_future }}</p>
+        <p>{{ addon.the_future|nl2br }}</p>
       {% endif %}
     </div>
     {% if author_addons %}
@@ -123,9 +123,9 @@
                      alt="{% if not author.picture_type %}{{ _('No Photo') }}{% endif %}"
                      src="{{ author.picture_url }}"/>
               </div>
-              <div class="primary">
+              <div class="primary addon-author-info">
                 <h3>{{ author.name }}</h3>
-                <p class="intro">{{ author.bio }}</p>
+                <p class="intro">{{ author.bio|nl2br }}</p>
                 {% with profile = author, about_addons = True,
                         table_class = 'person-info' %}
                   {% include "users/vcard.html" %}
@@ -144,16 +144,16 @@
       {% endwith %}
     </div>
   {% endif %}
-  <div class="primary prose">
+  <div class="primary prose addon-info">
     {% if addon.the_reason %}
       {# L10n: {0} is the name of the add-on #}
       <h3>{{ _("Why was {0} created?")|f(addon.name) }}</h3>
-      <p>{{ addon.the_reason }}</p>
+      <p>{{ addon.the_reason|nl2br }}</p>
     {% endif %}
     {% if addon.the_future %}
       {# L10n: {0} is the name of the add-on #}
       <h3>{{ _("What's next for {0}")|f(addon.name) }}</h3>
-      <p>{{ addon.the_future }}</p>
+      <p>{{ addon.the_future|nl2br }}</p>
     {% endif %}
   </div>
 {% endif %}
