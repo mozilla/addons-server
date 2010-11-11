@@ -75,10 +75,7 @@ function makeBlurHideCallback(el) {
                 return;
             }
         }
-        el.hide();
-        el.unbind();
-        el.undelegate();
-        $(document.body).unbind('click newPopup', hider);
+        el.hideMe();
     };
     return hider;
 }
