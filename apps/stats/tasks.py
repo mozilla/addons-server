@@ -102,16 +102,6 @@ def _get_daily_jobs(date=None):
                 date=date).aggregate(sum=Sum('count'))['sum'],
 
         # Add-on counts
-        'addon_count_public': Addon.objects.filter(
-                created__lte=date, status=amo.STATUS_PUBLIC, inactive=0).count,
-        'addon_count_pending': Version.objects.filter(
-                created__lte=date, files__status=amo.STATUS_PENDING).count,
-        'addon_count_experimental': Addon.objects.filter(
-                created__lte=date, status=amo.STATUS_UNREVIEWED,
-                inactive=0).count,
-        'addon_count_nominated': Addon.objects.filter(
-                created__lte=date, status=amo.STATUS_NOMINATED,
-                inactive=0).count,
         'addon_count_new': Addon.objects.extra(**extra).count,
 
         # Version counts
@@ -132,20 +122,39 @@ def _get_daily_jobs(date=None):
         'collection_count_total': Collection.objects.filter(
                 created__lte=date).count,
         'collection_count_new': Collection.objects.extra(**extra).count,
-        'collection_count_private': Collection.objects.filter(listed=0).count,
-        'collection_count_public': Collection.objects.filter(
-                created__lte=date, listed=1).count,
         'collection_count_autopublishers': Collection.objects.filter(
                 created__lte=date, type=amo.COLLECTION_SYNCHRONIZED).count,
-        'collection_count_editorspicks': Collection.objects.filter(
-                created__lte=date, type=amo.COLLECTION_FEATURED).count,
-        'collection_count_normal': Collection.objects.filter(
-                created__lte=date, type=amo.COLLECTION_NORMAL).count,
 
         'collection_addon_downloads': (lambda:
             AddonCollectionCount.objects.filter(date__lte=date).aggregate(
                 sum=Sum('count'))['sum']),
     }
+
+    # If we're processing today's stats, we'll do some extras.  We don't do
+    # these for re-processed stats because they change over time (eg. add-ons
+    # move from sandbox -> public
+    if date == datetime.date.today():
+        stats.update({
+        'addon_count_experimental': Addon.objects.filter(
+                created__lte=date, status=amo.STATUS_UNREVIEWED,
+                inactive=0).count,
+        'addon_count_nominated': Addon.objects.filter(
+                created__lte=date, status=amo.STATUS_NOMINATED,
+                inactive=0).count,
+        'addon_count_public': Addon.objects.filter(
+                created__lte=date, status=amo.STATUS_PUBLIC, inactive=0).count,
+        'addon_count_pending': Version.objects.filter(
+                created__lte=date, files__status=amo.STATUS_PENDING).count,
+
+        'collection_count_private': Collection.objects.filter(
+                created__lte=date, listed=0).count,
+        'collection_count_public': Collection.objects.filter(
+                created__lte=date, listed=1).count,
+        'collection_count_editorspicks': Collection.objects.filter(
+                created__lte=date, type=amo.COLLECTION_FEATURED).count,
+        'collection_count_normal': Collection.objects.filter(
+                created__lte=date, type=amo.COLLECTION_NORMAL).count,
+            })
 
     return stats
 
