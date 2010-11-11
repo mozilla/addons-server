@@ -480,6 +480,7 @@ REDIRECT_SECRET_KEY = ''
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 SESSION_COOKIE_AGE = 1209600
 SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN  # bug 608797
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 # These should have app+locale at the start to avoid redirects
