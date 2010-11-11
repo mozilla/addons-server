@@ -545,9 +545,13 @@ function initAuthorFields() {
             $(this).find(".position input").val(i);
         });
         if ($(".author:visible").length > 1) {
+            author_list.sortable("enable");
             $(".author .remove").show();
+            $(".author .handle").css('visibility','visible');
         } else {
+            author_list.sortable("disable");
             $(".author .remove").hide();
+            $(".author .handle").css('visibility','hidden');
         }
     }
     function addAuthorRow() {
