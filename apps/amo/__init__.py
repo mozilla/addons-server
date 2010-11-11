@@ -1,15 +1,27 @@
 """
 Miscellaneous helpers that make Django compatible with AMO.
 """
-from licenses import license_text
+import threading
 
 import commonware.log
 from product_details import firefox_versions, thunderbird_versions
 from tower import ugettext_lazy as _
 
+from licenses import license_text
 from .log import LOG, LOG_BY_ID, LOG_KEEP, log
 
 logger_log = commonware.log.getLogger('z.amo')
+
+_locals = threading.local()
+_locals.user = None
+
+
+def get_user():
+    return _locals.user
+
+
+def set_user(user):
+    _locals.user = user
 
 
 def cached_property(*args, **kw):
@@ -22,7 +34,8 @@ def cached_property(*args, **kw):
 
 
 class CachedProperty(object):
-    """A decorator that converts a function into a lazy property.  The
+    """
+    A decorator that converts a function into a lazy property.  The
     function wrapped is called the first time to retrieve the result
     and than that calculated result is used the next time you access
     the value::

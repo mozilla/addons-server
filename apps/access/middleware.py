@@ -4,6 +4,7 @@ their ACLs into the request.
 """
 from functools import partial
 
+import amo
 from access import acl
 from users.models import RequestUser
 
@@ -17,8 +18,16 @@ class ACLMiddleware(object):
         # figure out our list of groups...
         if request.user.is_authenticated():
             amo_user = RequestUser.objects.get(pk=request.user.pk)
+            amo.set_user(amo_user)
             request.user._profile_cache = request.amo_user = amo_user
             request.groups = request.amo_user.groups.all()
 
             if acl.action_allowed(request, 'Admin', '%'):
                 request.user.is_staff = True
+
+    def process_response(self, request, response):
+        amo.set_user(None)
+        return response
+
+    def process_exception(self, request, exception):
+        amo.set_user(None)
