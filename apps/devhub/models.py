@@ -1,7 +1,6 @@
 from copy import copy
 from datetime import datetime
 import json
-import uuid
 
 from django.db import models
 
@@ -22,15 +21,10 @@ log = commonware.log.getLogger('devhub')
 
 
 class RssKey(models.Model):
-    key = UUIDField(db_column='rsskey', max_length=36, unique=True)
+    key = UUIDField(db_column='rsskey', auto=True, unique=True)
     addon = models.ForeignKey(Addon, null=True, unique=True)
     user = models.ForeignKey(UserProfile, null=True, unique=True)
     created = models.DateField(default=datetime.now)
-
-    def save(self, *args, **kwargs):
-        if not self.key:
-            self.key = str(uuid.uuid1())
-        super(RssKey, self).save(*args, **kwargs)
 
     class Meta:
         db_table = 'hubrsskeys'
