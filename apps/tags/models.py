@@ -38,6 +38,17 @@ class Tag(amo.models.ModelBase):
 
         return urls
 
+    def save_tag(self, addon, user):
+        tag, _ = Tag.objects.get_or_create(tag_text=self.tag_text)
+        AddonTag.objects.get_or_create(addon=addon, tag=tag, user=user)
+        amo.log(amo.LOG.ADD_TAG, tag, addon)
+        return tag
+
+    def remove_tag(self, addon, user):
+        tag, created = Tag.objects.get_or_create(tag_text=self.tag_text)
+        AddonTag.objects.filter(addon=addon, tag=tag).delete()
+        amo.log(amo.LOG.REMOVE_TAG, tag, addon)
+
 
 class TagStat(amo.models.ModelBase):
     tag = models.OneToOneField(Tag, primary_key=True)

@@ -414,13 +414,13 @@ def addons_section(request, addon_id, addon, section, editable=False):
     if editable:
         if request.method == 'POST':
             form = models[section](request.POST, request.FILES,
-                                  instance=addon)
+                                  instance=addon, request=request)
             if form.is_valid():
                 addon = form.save(addon)
                 editable = False
                 amo.log(amo.LOG.EDIT_PROPERTIES, addon)
         else:
-            form = models[section](instance=addon)
+            form = models[section](instance=addon, request=request)
     else:
         form = False
 

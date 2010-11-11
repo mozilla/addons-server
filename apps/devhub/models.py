@@ -13,6 +13,7 @@ import amo.models
 from addons.models import Addon
 from bandwagon.models import Collection
 from reviews.models import Review
+from tags.models import Tag
 from translations.fields import TranslatedField
 from users.models import UserProfile
 from versions.models import Version
@@ -180,6 +181,8 @@ class ActivityLog(amo.models.ModelBase):
         review = None
         version = None
         collection = None
+        tag = None
+
         for arg in self.arguments:
             if isinstance(arg, Addon) and not addon:
                 addon = u'<a href="%s">%s</a>' % (arg.get_url_path(), arg.name)
@@ -196,7 +199,9 @@ class ActivityLog(amo.models.ModelBase):
                 collection = u'<a href="%s">%s</a>' % (arg.get_url_path(),
                                                        arg.name)
                 arguments.remove(arg)
-
+            if isinstance(arg, Tag) and not tag:
+                tag = u'<a href="%s">%s</a>' % (arg.get_url_path(),
+                                                arg.tag_text)
         try:
             data = dict(user=self.user, addon=addon, review=review,
                         version=version, collection=collection)

@@ -9,14 +9,61 @@ import amo
 import captcha.fields
 from addons.models import Addon
 from amo.utils import slug_validator
-from tower import ugettext as _
-from translations.widgets import TranslationTextInput, TranslationTextarea
+from tags.models import Tag
+from tower import ugettext as _, ungettext as ngettext
+from translations.widgets import (TranslationTextInput, TranslationTextarea,
+                                  TransTextarea)
+from translations.fields import TranslatedField, PurifiedField, LinkifiedField
 
 
 class AddonFormBasic(happyforms.ModelForm):
     name = forms.CharField(widget=TranslationTextInput, max_length=50)
     slug = forms.CharField(max_length=30)
     summary = forms.CharField(widget=TranslationTextarea, max_length=250)
+    tags = forms.CharField()
+
+    def __init__(self, *args, **kw):
+        self.request = kw.pop('request')
+        super(AddonFormBasic, self).__init__(*args, **kw)
+
+        self.fields['tags'].initial = ', '.join(tag.tag_text for tag in
+                                                self.instance.tags.all())
+
+    def save(self, addon, commit=False):
+        tags_new = self.cleaned_data['tags']
+        tags_old = [t.tag_text for t in addon.tags.all()]
+
+        # Add new tags.
+        for t in set(tags_new) - set(tags_old):
+            Tag(tag_text=t).save_tag(addon, self.request.amo_user)
+
+        # Remove old tags.
+        for t in set(tags_old) - set(tags_new):
+            Tag(tag_text=t).remove_tag(addon, self.request.amo_user)
+
+        return super(AddonFormBasic, self).save()
+
+    def clean_tags(self):
+        target = [t.strip() for t in self.cleaned_data['tags'].split(',')]
+
+        max_tags = amo.MAX_TAGS
+        min_len = amo.MIN_TAG_LENGTH
+        total = len(target)
+        tags_short = [t for t in target if len(t.strip()) < min_len]
+
+        if total > max_tags:
+            raise forms.ValidationError(ngettext(
+                                        'You have {0} too many tags.',
+                                        'You have {0} too many tags.',
+                                        total - max_tags)
+                                        .format(total - max_tags))
+
+        if tags_short:
+            raise forms.ValidationError(ngettext(
+                        'All tags must be at least {0} character.',
+                        'All tags must be at least {0} characters.',
+                        min_len).format(min_len))
+        return target
 
     def clean_slug(self):
         target = self.cleaned_data['slug']
@@ -32,6 +79,10 @@ class AddonFormDetails(happyforms.ModelForm):
     default_locale = forms.TypedChoiceField(choices=Addon.LOCALES)
     homepage = forms.URLField(widget=TranslationTextInput)
 
+    def __init__(self, *args, **kw):
+        self.request = kw.pop('request')
+        super(AddonFormDetails, self).__init__(*args, **kw)
+
     class Meta:
         model = Addon
         fields = ('description', 'default_locale', 'homepage')
@@ -41,7 +92,11 @@ class AddonFormSupport(happyforms.ModelForm):
     support_url = forms.URLField(widget=TranslationTextInput)
     support_email = forms.EmailField(widget=TranslationTextInput)
 
-    def save(self, addon, commit=False):
+    def __init__(self, *args, **kw):
+        self.request = kw.pop('request')
+        super(AddonFormSupport, self).__init__(*args, **kw)
+
+    def save(self, addon, commit=True):
         instance = self.instance
 
         # If there's a GetSatisfaction URL entered, we'll extract the product
@@ -57,7 +112,7 @@ class AddonFormSupport(happyforms.ModelForm):
         instance.get_satisfaction_company = company
         instance.get_satisfaction_product = product
 
-        return super(AddonFormSupport, self).save()
+        return super(AddonFormSupport, self).save(commit)
 
     class Meta:
         model = Addon
@@ -67,6 +122,10 @@ class AddonFormSupport(happyforms.ModelForm):
 class AddonFormTechnical(forms.ModelForm):
     developer_comments = forms.CharField(widget=TranslationTextarea,
                                          required=False)
+
+    def __init__(self, *args, **kw):
+        self.request = kw.pop('request')
+        super(AddonFormTechnical, self).__init__(*args, **kw)
 
     class Meta:
         model = Addon

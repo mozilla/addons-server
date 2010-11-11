@@ -168,18 +168,14 @@ class REQUEST_VERSION:
     keep = True
 
 
-# TODO(gkoberger): When he does 606248
 class ADD_TAG:
     id = 25
-    # L10n: {0} is the tag name.
-    format = _(u'{user.name} added tag {0} to {addon}')
+    format = _(u'{tag} added to {addon}')
 
 
-# TODO(gkoberger): When he does 606248
 class REMOVE_TAG:
     id = 26
-    # L10n: {0} is the tag name.
-    format = _(u'{user.name} removed tag {0} from {addon}')
+    format = _(u'{tag} removed from {addon}')
 
 
 class ADD_TO_COLLECTION:

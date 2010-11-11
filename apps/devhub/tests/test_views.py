@@ -22,6 +22,7 @@ from devhub.forms import ContribForm
 from devhub.models import ActivityLog, RssKey
 from files.models import File, Platform
 from reviews.models import Review
+from tags.models import Tag
 from users.models import UserProfile
 from versions.models import ApplicationsVersions, License, Version
 
@@ -910,6 +911,11 @@ class TestEdit(test_utils.TestCase):
         self.addon = self.get_addon()
         assert self.client.login(username='del@icio.us', password='password')
         self.url = reverse('devhub.addons.edit', args=[self.addon.id])
+        self.user = UserProfile.objects.get(pk=55021)
+
+        self.tags = ['tag3', 'tag2', 'tag1']
+        for t in self.tags:
+            Tag(tag_text=t).save_tag(self.addon, self.user)
 
     def get_addon(self):
         return Addon.objects.no_cache().get(id=3615)
@@ -932,7 +938,8 @@ class TestEdit(test_utils.TestCase):
 
         data = dict(name='new name',
                     slug='test_addon',
-                    summary='new summary')
+                    summary='new summary',
+                    tags=', '.join(self.tags))
 
         r = self.client.post(self.get_url('basic', True), data)
         eq_(r.status_code, 200)
@@ -944,20 +951,100 @@ class TestEdit(test_utils.TestCase):
         eq_(unicode(addon.slug), data['slug'])
         eq_(unicode(addon.summary), data['summary'])
 
+        self.tags.sort()
+        eq_([unicode(t) for t in addon.tags.all()], self.tags)
+
     def test_edit_basic_slugs_unique(self):
         Addon.objects.get(id=5579).update(slug='test_slug')
 
         data = dict(name='new name',
                     slug='test_slug',
-                    summary='new summary')
+                    summary='new summary',
+                    tags=','.join(self.tags))
 
         r = self.client.post(self.get_url('basic', True), data)
         eq_(r.status_code, 200)
 
         self.assertFormError(r, 'form', 'slug', 'This slug is already in use.')
 
-    def test_edit_basic_name_not_empty(self):
+    def test_edit_basic_add_tag(self):
+        count = ActivityLog.objects.all().count()
+        self.tags.insert(0, 'tag4')
+        data = dict(name='new name',
+                    slug='test_slug',
+                    summary='new summary',
+                    tags=', '.join(self.tags))
 
+        r = self.client.post(self.get_url('basic', True), data)
+        eq_(r.status_code, 200)
+
+        doc = pq(r.content)
+
+        result = doc('#addon_tags_edit').eq(0).text()
+
+        self.tags.sort()
+        eq_(result, ', '.join(self.tags))
+
+        eq_(ActivityLog.objects.filter(action=amo.LOG.ADD_TAG.id).count(),
+                                        count + 1)
+
+    def test_edit_basic_remove_tag(self):
+        self.tags.remove('tag2')
+
+        count = ActivityLog.objects.all().count()
+
+        data = dict(name='new name',
+                    slug='test_slug',
+                    summary='new summary',
+                    tags=', '.join(self.tags))
+
+        r = self.client.post(self.get_url('basic', True), data)
+        eq_(r.status_code, 200)
+
+        doc = pq(r.content)
+
+        result = doc('#addon_tags_edit').eq(0).text()
+
+        self.tags.sort()
+        eq_(result, ', '.join(self.tags))
+
+        eq_(ActivityLog.objects.filter(action=amo.LOG.REMOVE_TAG.id).count(),
+            count + 1)
+
+    def test_edit_basic_minlength_tags(self):
+        tags = self.tags
+        tags.append('a' * (amo.MIN_TAG_LENGTH - 1))
+
+        data = dict(name='new name',
+                    slug='test_slug',
+                    summary='new summary',
+                    tags=', '.join(tags))
+
+        r = self.client.post(self.get_url('basic', True), data)
+        eq_(r.status_code, 200)
+
+        self.assertFormError(r, 'form', 'tags',
+                             'All tags must be at least %d characters.' %
+                             amo.MIN_TAG_LENGTH)
+
+    def test_edit_basic_max_tags(self):
+        tags = self.tags
+
+        for i in range(amo.MAX_TAGS + 1):
+            tags.append('test%d' % i)
+
+        data = dict(name='new name',
+                    slug='test_slug',
+                    summary='new summary',
+                    tags=', '.join(tags))
+
+        r = self.client.post(self.get_url('basic', True), data)
+        eq_(r.status_code, 200)
+
+        self.assertFormError(r, 'form', 'tags', 'You have %d too many tags.' %
+                                                 (len(tags) - amo.MAX_TAGS))
+
+    def test_edit_basic_name_not_empty(self):
         data = dict(name='',
                     slug=self.addon.slug,
                     summary=self.addon.summary)

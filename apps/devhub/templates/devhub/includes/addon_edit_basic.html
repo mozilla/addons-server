@@ -81,10 +81,16 @@
                         descriptors such as tabs, toolbar, or twitter.  You
                         may have a maximum of {0} tags.").format(amo.MAX_TAGS)) }}
             </th>
-            <td>
+            <td id="addon_tags_edit">
               {% if editable %}
-                {# TODO(gkoberger): Add tags #}
-                <strong>Coming Soon</strong>
+                {{ form.tags|safe }}
+                {{ form.tags.errors|safe }}
+                <div class="edit-addon-details">
+                  {{ ngettext('Comma-separated, minimum of {0} character.',
+                              'Comma-separated, minimum of {0} characters.',
+                              amo.MIN_TAG_LENGTH)|f(amo.MIN_TAG_LENGTH) }}
+                  {{ _('Example: ocean, sail boat, water.') }}
+                </div>
               {% else %}
                 {% call empty_unless(tags) %}
                   {{ tags|join(', ') }}

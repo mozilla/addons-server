@@ -169,6 +169,10 @@ ADDON_SLUGS = {
     ADDON_SEARCH: 'search-tools',
 }
 
+# Edit addon information
+MAX_TAGS = 20
+MIN_TAG_LENGTH = 2
+
 # These types don't maintain app compatibility in the db.  Instead, we look at
 # APP.types and APP_TYPE_SUPPORT to figure out where they are compatible.
 NO_COMPAT = (ADDON_SEARCH, ADDON_PERSONA)

@@ -177,6 +177,12 @@ a.remove:hover,
     overflow: hidden;
 }
 
+.edit-addon-details {
+    padding-top: 3px;
+    font-size: 0.8em;
+    color: #555;
+}
+
 /* @end */
 
 /* @group Version Compatibility */
