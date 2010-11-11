@@ -1,11 +1,13 @@
 from copy import copy
 from datetime import datetime
 import json
+import uuid
 
 from django.db import models
 
 import commonware.log
 from tower import ugettext_lazy as _
+from uuidfield.fields import UUIDField
 
 import amo
 import amo.models
@@ -17,6 +19,21 @@ from users.models import UserProfile
 from versions.models import Version
 
 log = commonware.log.getLogger('devhub')
+
+
+class RssKey(models.Model):
+    key = UUIDField(db_column='rsskey', max_length=36, unique=True)
+    addon = models.ForeignKey(Addon, null=True, unique=True)
+    user = models.ForeignKey(UserProfile, null=True, unique=True)
+    created = models.DateField(default=datetime.now)
+
+    def save(self, *args, **kwargs):
+        if not self.key:
+            self.key = str(uuid.uuid1())
+        super(RssKey, self).save(*args, **kwargs)
+
+    class Meta:
+        db_table = 'hubrsskeys'
 
 
 class HubPromo(amo.models.ModelBase):

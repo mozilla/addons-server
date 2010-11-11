@@ -7,6 +7,7 @@ import uuid
 from django import http
 from django.conf import settings
 from django.shortcuts import get_object_or_404, redirect
+from django.utils.http import urlquote
 
 import commonware.log
 import jingo
@@ -18,7 +19,6 @@ import amo
 import amo.utils
 from amo import messages
 from amo.helpers import urlparams
-from amo.urlresolvers import reverse
 from amo.utils import MenuItem
 from amo.urlresolvers import reverse
 from amo.decorators import json_view, login_required, post_required
@@ -27,11 +27,12 @@ from addons import forms as addon_forms
 from addons.models import Addon, AddonUser
 from addons.views import BaseFilter
 from cake.urlresolvers import remora_url
-from devhub.models import ActivityLog
+from devhub.models import ActivityLog, RssKey
 from files.models import FileUpload
 from translations.models import delete_translation
 from versions.models import License, Version
-from . import forms, tasks
+
+from . import forms, tasks, feeds
 
 log = commonware.log.getLogger('z.devhub')
 
@@ -159,7 +160,7 @@ def _get_activities(request, action):
     return items
 
 
-def _get_filter(action):
+def _get_items(action, addons):
     filters = dict(updates=(amo.LOG.ADD_VERSION, amo.LOG.ADD_FILE_TO_VERSION),
                    status=(amo.LOG.SET_INACTIVE, amo.LOG.UNSET_INACTIVE,
                            amo.LOG.CHANGE_STATUS, amo.LOG.APPROVE_VERSION,),
@@ -167,27 +168,49 @@ def _get_filter(action):
                             amo.LOG.REMOVE_FROM_COLLECTION,),
                    reviews=(amo.LOG.ADD_REVIEW,))
 
-    return filters.get(action)
-
-
-@login_required
-def feed(request, addon_id=None):
-    addons_all = request.amo_user.addons.all()
-
-    if addon_id:
-        addons = get_object_or_404(addons_all, pk=addon_id)
-    else:
-        addons = addons_all
-
-    action = request.GET.get('action')
-    activities = _get_activities(request, action)
-    filter = _get_filter(action)
-    addon_items = _get_addons(request, addons_all, addon_id)
+    filter = filters.get(action)
     items = ActivityLog.objects.for_addons(addons)
     if filter:
         items = items.filter(action__in=[i.id for i in filter])
+
+    return items
+
+
+def feed(request, addon_id=None):
+    if request.GET.get('privaterss'):
+        return feeds.ActivityFeedRSS()(request)
+
+    if not request.user.is_authenticated():
+        url = reverse('users.login')
+        p = urlquote(request.get_full_path())
+        return http.HttpResponseRedirect('%s?to=%s' % (url, p))
+    else:
+        addons_all = request.amo_user.addons.all()
+
+        if addon_id:
+            try:
+                key = RssKey.objects.get(addon=addon_id)
+            except RssKey.DoesNotExist:
+                key = RssKey.objects.create(addon_id=addon_id)
+
+            rssurl = urlparams(reverse('devhub.feed', args=(addon_id,)),
+                               privaterss=key.key)
+            addons = get_object_or_404(addons_all, pk=addon_id)
+        else:
+            key, __ = RssKey.objects.get_or_create(user=request.amo_user)
+            rssurl = urlparams(reverse('devhub.feed_all'), privaterss=key.key)
+            addons = addons_all
+
+    action = request.GET.get('action')
+
+    items = _get_items(action, addons)
+
+    activities = _get_activities(request, action)
+    addon_items = _get_addons(request, addons_all, addon_id)
+
     pager = amo.utils.paginate(request, items, 20)
-    data = dict(addons=addon_items, pager=pager, activities=activities)
+    data = dict(addons=addon_items, pager=pager, activities=activities,
+                rss=rssurl)
     return jingo.render(request, 'devhub/addons/activity.html', data)
 
 

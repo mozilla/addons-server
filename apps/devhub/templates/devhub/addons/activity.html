@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block rss_feed %}
-{# TODO(davedash): Add ``<link>`` to 'Recent Activity' RSS feed. #}
+<link rel="alternate" type="application/rss+xml" title="RSS" href="{{ rss }}">
 {% endblock %}
 
 {% block content %}
@@ -66,8 +66,7 @@
 
   </div> {# refine-results #}
   <p class="secondary-feed">
-{# TODO(cvan): Add URL for feed. #}
-    <a href="#" class="subscribe">{{ _('Subscribe to this feed') }}</a>
+    <a href="{{ rss }}" class="subscribe">{{ _('Subscribe to this feed') }}</a>
   </p>
 </section>
 {% endblock %}

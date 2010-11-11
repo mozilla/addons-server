@@ -19,7 +19,7 @@ from addons.models import Addon, AddonUser, Charity
 from applications.models import AppVersion
 from bandwagon.models import Collection
 from devhub.forms import ContribForm
-from devhub.models import ActivityLog
+from devhub.models import ActivityLog, RssKey
 from files.models import File, Platform
 from reviews.models import Review
 from users.models import UserProfile
@@ -94,15 +94,18 @@ class TestActivity(HubTest):
         for i in xrange(num):
             ActivityLog.log(self.request, amo.LOG.ADD_REVIEW, (self.addon, r))
 
-    def get_pq(self, **kwargs):
+    def get_response(self, **kwargs):
         url = reverse('devhub.feed_all')
         if 'addon' in kwargs:
             url = reverse('devhub.feed', args=(kwargs['addon'],))
 
         if kwargs:
             url += '?' + urlencode(kwargs)
-        r = self.client.get(url, follow=True)
-        return pq(r.content)
+
+        return self.client.get(url, follow=True)
+
+    def get_pq(self, **kwargs):
+        return pq(self.get_response(**kwargs).content)
 
     def test_items(self):
         self.log_creates(10)
@@ -175,6 +178,30 @@ class TestActivity(HubTest):
         # we just show addon2
         doc = self.get_pq(addon=self.addon2.id)
         eq_(len(doc('.item')), 13)
+
+    def test_rss(self):
+        self.log_creates(5)
+        # This will give us a new RssKey
+        r = self.get_response()
+        key = RssKey.objects.get()
+        r = self.get_response(privaterss=key.key)
+        eq_(r['content-type'], 'application/rss+xml')
+
+    def test_rss_single(self):
+        self.log_creates(5)
+        self.log_creates(13, self.addon2)
+
+        # This will give us a new RssKey
+        r = self.get_response(addon=self.addon.id)
+        key = RssKey.objects.get()
+        r = self.get_response(privaterss=key.key)
+        eq_(r['content-type'], 'application/rss+xml')
+        eq_(len(pq(r.content)('item')), 5)
+
+    def test_logged_out(self):
+        self.client.logout()
+        r = self.get_response()
+        eq_(r.redirect_chain[0][1], 302)
 
 
 class TestNav(HubTest):
