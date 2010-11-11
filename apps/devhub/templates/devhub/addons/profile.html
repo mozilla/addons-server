@@ -9,11 +9,35 @@
   <h2>{{ title }}</h2>
 </header>
 <section class="primary" role="main">
+  {% set remove_url = url('devhub.addons.profile.remove', addon.id) %}
+  {% if addon.has_full_profile() and addon.takes_contributions %}
+    <div id="status-bar">
+      <p>{% trans url=addon.meet_the_dev_url() %}
+        Your <a href="{{ url }}">developer profile</a> is currently
+        <strong>public</strong> and <strong>required</strong> for contributions.
+      {% endtrans %}</p>
+      <form method="post" action="{{ remove_url }}">
+        {{ csrf() }}
+        <button type="submit">{{ _('Remove Both') }}</button>
+      </form>
+    </div>
+  {% elif addon.has_profile() %}
+    <div id="status-bar">
+      <p>{% trans url=addon.meet_the_dev_url() %}
+        Your <a href="{{ url }}">developer profile</a> is currently
+        <strong>public</strong>.
+      {% endtrans %}</p>
+      <form method="post" action="{{ remove_url }}">
+        {{ csrf() }}
+        <button type="submit">{{ _('Remove Profile') }}</button>
+      </form>
+    </div>
+  {% endif %}
   <form method="post" action="{{ url('devhub.addons.profile', addon.id) }}">
     {{ csrf() }}
     {% include "devhub/includes/addons_create_profile.html" %}
 
-    {% set button_label = _('Save Changes') if addon.has_profile else _('Create Profile') %}
+    {% set button_label = _('Save Changes') if addon.has_profile() else _('Create Profile') %}
 
     <p class="item-group">
       <button>{{ button_label }}</button> {{ _('or') }}

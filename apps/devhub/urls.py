@@ -17,6 +17,8 @@ detail_patterns = patterns('',
     url('^payments/disable$', views.disable_payments,
         name='devhub.addons.payments.disable'),
     url('^profile$', views.profile, name='devhub.addons.profile'),
+    url('^profile/remove$', views.remove_profile,
+        name='devhub.addons.profile.remove'),
     url('^edit_(?P<section>[^/]+)(?:/(?P<editable>[^/]+))?$',
         views.addons_section, name='devhub.addons.section'),
 

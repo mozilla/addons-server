@@ -1025,7 +1025,7 @@ class TestEdit(test_utils.TestCase):
         eq_(addon.view_source, False)
 
 
-class TestProfile(test_utils.TestCase):
+class TestProfileBase(test_utils.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']
 
     def setUp(self):
@@ -1053,6 +1053,61 @@ class TestProfile(test_utils.TestCase):
                 eq_(getattr(getattr(addon, k), 'localized_string'), unicode(v))
             else:
                 eq_(getattr(addon, k), v)
+
+
+class TestProfileStatusBar(TestProfileBase):
+
+    def setUp(self):
+        super(TestProfileStatusBar, self).setUp()
+        self.remove_url = reverse('devhub.addons.profile.remove',
+                                  args=[self.addon.id])
+
+    def test_no_status_bar(self):
+        self.addon.the_reason = self.addon.the_future = None
+        self.addon.save()
+        assert not pq(self.client.get(self.url).content)('#status-bar')
+
+    def test_status_bar_no_contrib(self):
+        self.addon.the_reason = self.addon.the_future = '...'
+        self.addon.wants_contributions = False
+        self.addon.save()
+        doc = pq(self.client.get(self.url).content)
+        assert doc('#status-bar')
+        eq_(doc('#status-bar button').text(), 'Remove Profile')
+
+    def test_status_bar_with_contrib(self):
+        self.addon.the_reason = self.addon.the_future = '...'
+        self.addon.wants_contributions = True
+        self.addon.paypal_id = 'xxx'
+        self.addon.save()
+        doc = pq(self.client.get(self.url).content)
+        assert doc('#status-bar')
+        eq_(doc('#status-bar button').text(), 'Remove Both')
+
+    def test_remove_profile(self):
+        self.addon.the_reason = self.addon.the_future = '...'
+        self.addon.save()
+        self.client.post(self.remove_url)
+        addon = self.get_addon()
+        eq_(addon.the_reason, None)
+        eq_(addon.the_future, None)
+        eq_(addon.takes_contributions, False)
+        eq_(addon.wants_contributions, False)
+
+    def test_remove_both(self):
+        self.addon.the_reason = self.addon.the_future = '...'
+        self.addon.wants_contributions = True
+        self.addon.paypal_id = 'xxx'
+        self.addon.save()
+        self.client.post(self.remove_url)
+        addon = self.get_addon()
+        eq_(addon.the_reason, None)
+        eq_(addon.the_future, None)
+        eq_(addon.takes_contributions, False)
+        eq_(addon.wants_contributions, False)
+
+
+class TestProfile(TestProfileBase):
 
     def test_without_contributions_labels(self):
         r = self.client.get(self.url)

@@ -27,6 +27,7 @@ from addons.models import Addon, AddonUser
 from addons.views import BaseFilter
 from devhub.models import ActivityLog
 from files.models import FileUpload
+from translations.models import delete_translation
 from versions.models import License, Version
 from . import forms, tasks
 
@@ -272,7 +273,7 @@ def payments(request, addon_id, addon):
             addon = contrib_form.save(commit=False)
             addon.wants_contributions = True
             valid = _save_charity(addon, contrib_form, charity_form)
-            if not addon.has_profile():
+            if not addon.has_full_profile():
                 valid &= profile_form.is_valid()
                 if valid:
                     profile_form.save()
@@ -307,6 +308,16 @@ def _save_charity(addon, contrib_form, charity_form):
 def disable_payments(request, addon_id, addon):
     addon.update(wants_contributions=False)
     return redirect('devhub.addons.payments', addon_id)
+
+
+@dev_required
+@post_required
+def remove_profile(request, addon_id, addon):
+    delete_translation(addon, 'the_reason')
+    delete_translation(addon, 'the_future')
+    if addon.wants_contributions:
+        addon.update(wants_contributions=False)
+    return redirect('devhub.addons.profile', addon_id)
 
 
 @dev_required
