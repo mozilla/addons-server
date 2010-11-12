@@ -473,6 +473,14 @@ def version_edit(request, addon_id, addon, version_id):
     return jingo.render(request, 'devhub/versions/edit.html', data)
 
 
+@dev_required
+def version_add(request, addon_id, addon):
+    if request.method == 'POST':
+        upload = get_object_or_404(FileUpload, pk=request.POST['upload'])
+        v = Version.from_upload(upload, addon)
+        return redirect('devhub.versions.edit', addon.id, v.id)
+
+
 @json_view
 @dev_required
 @post_required

@@ -5,17 +5,20 @@ import os
 from django.conf import settings
 from django.db import models
 
+import commonware.log
 import caching.base
 
 from amo.urlresolvers import reverse
 import amo.models
 from applications.models import Application, AppVersion
-from files.models import File
+from files.models import File, Platform
 from translations.fields import (TranslatedField, PurifiedField,
                                  LinkifiedField)
 from users.models import UserProfile
 
 from . import compare
+
+log = commonware.log.getLogger('z.versions')
 
 
 class Version(amo.models.ModelBase):
@@ -35,6 +38,24 @@ class Version(amo.models.ModelBase):
 
     def __unicode__(self):
         return self.version
+
+    @classmethod
+    def from_upload(cls, upload, addon):
+        # TODO: license, relnotes
+        from versions.forms import parse_xpi
+        data = parse_xpi(upload.path, addon)
+        v = cls.objects.create(addon=addon, version=data['version'])
+        log.debug('New version: %r (%s) from %r' % (v, v.id, upload))
+        # TODO: platforms?
+        File.from_upload(upload, v,
+                         Platform.objects.get(id=amo.PLATFORM_ALL.id))
+        # appversions
+        AV = ApplicationsVersions
+        for app in data['apps']:
+            AV(version=v, min=app.min, max=app.max,
+               application_id=app.id).save()
+        # TODO: share more with XPIForm
+        return v
 
     @property
     def path_prefix(self):
