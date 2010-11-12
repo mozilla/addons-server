@@ -158,7 +158,11 @@ class Platform(amo.models.ModelBase):
         db_table = 'platforms'
 
     def __unicode__(self):
-        return unicode(amo.PLATFORMS[self.id].name)
+        if self.id in amo.PLATFORMS:
+            return unicode(amo.PLATFORMS[self.id].name)
+        else:
+            log.warning('Invalid platform')
+            return ''
 
 
 class FileUpload(amo.models.ModelBase):
