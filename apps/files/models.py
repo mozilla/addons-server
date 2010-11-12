@@ -1,14 +1,19 @@
 import os
+import zipfile
 
 from django.conf import settings
 from django.db import models
 
+import commonware
+import path
 from uuidfield.fields import UUIDField
 
 import amo
 import amo.models
 import amo.utils
 from amo.urlresolvers import reverse
+
+log = commonware.log.getLogger('z.files')
 
 
 class File(amo.models.ModelBase):
@@ -19,14 +24,18 @@ class File(amo.models.ModelBase):
     filename = models.CharField(max_length=255, default='')
     size = models.PositiveIntegerField(default=0)  # kilobytes
     hash = models.CharField(max_length=255, default='')
+    # TODO: delete this column
     codereview = models.BooleanField(default=False)
     jetpack = models.BooleanField(default=False)
     status = models.PositiveSmallIntegerField(choices=STATUS_CHOICES,
-                default=0)
-    datestatuschanged = models.DateTimeField(null=True)
+                                              default=amo.STATUS_UNREVIEWED)
+    datestatuschanged = models.DateTimeField(null=True, auto_now_add=True)
 
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'files'
+
+    def __unicode__(self):
+        return self.id
 
     @property
     def amo_platform(self):
@@ -40,6 +49,33 @@ class File(amo.models.ModelBase):
                            self.filename)
         # Firefox's Add-on Manager needs absolute urls.
         return absolutify(urlparams(url, src=src))
+
+    @classmethod
+    def from_upload(cls, upload, version, platform):
+        f = cls(version=version, platform=platform)
+        upload.path = path.path(upload.path)
+        f.filename = f.generate_filename(extension=upload.path.ext)
+        f.size = upload.path.size
+        # TODO: f.hash = upload.hash
+        # TODO: jetpack
+        f.save()
+        log.debug('New file: %r from %r' % (f, upload))
+        # Detect addon-sdk-built addons.
+        f.jetpack = cls.is_jetpack(upload.path)
+        # Move the uploaded file from the temp location.
+        dest = path.path(version.path_prefix)
+        if not dest.exists():
+            dest.makedirs()
+        upload.path.rename(dest / f.filename)
+        return f
+
+    @classmethod
+    def is_jetpack(cls, path):
+        try:
+            names = zipfile.ZipFile(path).namelist()
+            return 'harness-options.json' in names
+        except zipfile.BadZipfile:
+            return False
 
     def generate_filename(self, extension='xpi'):
         """
@@ -137,6 +173,9 @@ class FileUpload(amo.models.ModelBase):
 
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'file_uploads'
+
+    def __unicode__(self):
+        return self.uuid
 
 
 class TestCase(amo.models.ModelBase):

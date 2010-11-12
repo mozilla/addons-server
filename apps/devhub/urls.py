@@ -33,6 +33,8 @@ detail_patterns = patterns('',
     url('^versions/$', views.version_list, name='devhub.versions'),
     url('^versions/(?P<version_id>\d+)$', views.version_edit,
         name='devhub.versions.edit'),
+    url('^versions/(?P<version_id>\d+)/add$', views.version_add_file,
+        name='devhub.versions.add_file'),
     url('^versions/(?P<version>[^/]+)$', views.version_bounce),
 
     url('^submit/', include(submit_patterns)),

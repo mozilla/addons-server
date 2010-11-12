@@ -28,7 +28,7 @@ from addons.models import Addon, AddonUser
 from addons.views import BaseFilter
 from cake.urlresolvers import remora_url
 from devhub.models import ActivityLog, RssKey
-from files.models import FileUpload
+from files.models import File, FileUpload
 from translations.models import delete_translation
 from versions.models import License, Version
 
@@ -471,6 +471,19 @@ def version_edit(request, addon_id, addon, version_id):
 
     data.update({'addon': addon, 'version': version})
     return jingo.render(request, 'devhub/versions/edit.html', data)
+
+
+@json_view
+@dev_required
+@post_required
+def version_add_file(request, addon_id, addon, version_id):
+    version = get_object_or_404(Version, pk=version_id, addon=addon)
+    form = forms.NewFileForm(request.POST)
+    if not form.is_valid():
+        return json_view.error(json.dumps(form.errors))
+    upload = get_object_or_404(FileUpload, pk=form.cleaned_data['upload'])
+    f = File.from_upload(upload, version, form.cleaned_data['platform'])
+    return {}
 
 
 @dev_required

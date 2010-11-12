@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import itertools
+import os
 
+from django.conf import settings
 from django.db import models
 
 import caching.base
@@ -33,6 +35,10 @@ class Version(amo.models.ModelBase):
 
     def __unicode__(self):
         return self.version
+
+    @property
+    def path_prefix(self):
+        return os.path.join(settings.ADDONS_PATH, str(self.addon_id))
 
     def license_url(self):
         return reverse('addons.license', args=[self.addon_id, self.version])

@@ -293,6 +293,12 @@ CompatFormSet = modelformset_factory(
     form=CompatForm, can_delete=True, extra=0)
 
 
+class NewFileForm(happyforms.Form):
+    # Points to a FileUpload.uuid.
+    upload = forms.CharField(max_length=36)
+    platform = File._meta.get_field('platform').formfield(empty_label=None)
+
+
 class FileForm(happyforms.ModelForm):
     _choices = [(k, amo.STATUS_CHOICES[k]) for k in
                 (amo.STATUS_BETA, amo.STATUS_UNREVIEWED)]
