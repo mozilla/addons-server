@@ -533,6 +533,20 @@ def submit(request):
     return jingo.render(request, 'devhub/addons/submit/start.html',
                         {'agreement_text': agreement_text})
 
+@login_required
+def submit_describe(request, addon_id):
+    addon = get_object_or_404(Addon, id=addon_id)
+
+    form = addon_forms.AddonFormBasic((request.POST or None), instance=addon)
+    if request.method == 'POST' and form.is_valid():
+        addon = form.save(addon)
+        amo.log(amo.LOG.EDIT_DESCRIPTIONS, addon)
+
+        return redirect('devhub.submit.add_media')
+
+    return jingo.render(request, 'devhub/addons/submit/describe.html',
+                        {'form': form, 'addon': addon})
+
 
 @login_required
 def submit_addon(request):

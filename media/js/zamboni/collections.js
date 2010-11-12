@@ -517,55 +517,23 @@ $(document).ready(function() {
 
 $(document).ready(function () {
 
-    var url_customized = false;
     var name_val = $('#id_name').val();
 
-    function load_unicode() {
-        var $body = $(document.body);
-        $body.append("<script src='" + $body.attr('data-media-url') + "/js/zamboni/unicode.js'></script>");
-    }
-
     $(document).bind('unicode_loaded', function() {
-        url_customized = !!$('#id_slug').val() && ($('#id_slug').val() != makeslug(name_val));
+        $('#id_slug').attr('data-customized', (!!$('#id_slug').val() &&
+                           ($('#id_slug').val() != makeslug(name_val))) ? 1 : 0);
         slugify();
     });
 
-    function makeslug(s) {
-        var re = new RegExp("[^\w" + z.unicode_letters + "0-9\s-]+","g");
-        s = $.trim(s.replace(re, ' '));
-        s = s.replace(/[-\s]+/g, '-').toLowerCase();
-        return s
-    }
-
-    function show_slug_edit(e) {
-        $("#slug_readonly").hide();
-        $("#slug_edit").show();
-        $("#id_slug").focus();
-        e.preventDefault();
-    }
-
-    function slugify() {
-        if (z.unicode_letters) {
-            var slug = $('#id_slug');
-            if (!url_customized || !slug.val()) {
-                var s = makeslug($('#id_name').val())
-                slug.val(s);
-                name_val = s;
-                $('#slug_value').text(s);
-            }
-        } else {
-            load_unicode();
-        }
-    }
-
-    $('#details-edit form, .collection-create form').delegate('#id_name', 'keyup', slugify)
+    $('#details-edit form, .collection-create form')
+        .delegate('#id_name', 'keyup', slugify)
         .delegate('#id_name', 'blur', slugify)
         .delegate('#edit_slug', 'click', show_slug_edit)
         .delegate('#id_slug', 'change', function() {
-            url_customized = true;
+            $('#id_slug').attr('data-customized', 1);
             if (!$('#id_slug').val()) {
-              url_customized = false;
-              slugify();
+                $('#id_slug').attr('data-customized', 0);
+                slugify();
             }
         });
 
@@ -661,9 +629,9 @@ $(document).ready(function () {
                 .delegate('#id_name', 'blur', slugify)
                 .delegate('#edit_slug', 'click', show_slug_edit)
                 .delegate('#id_slug', 'change', function() {
-                    url_customized = true;
+                    $('#id_slug').attr('data-customized', 1);
                     if (!$('#id_slug').val()) {
-                      url_customized = false;
+                      $('#id_slug').attr('data-customized', 0);
                       slugify();
                     }
                 });

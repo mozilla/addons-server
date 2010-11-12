@@ -19,6 +19,11 @@ $(document).ready(function() {
     if($('#version-list').length) {
         initVersions();
     }
+
+    // Submission process
+    if($('.addon-submission-process').length) {
+        initSubmit();
+    }
 });
 
 
@@ -124,6 +129,20 @@ function initVersions() {
           });
 
 
+}
+
+function initSubmit() {
+    $('#submit-describe form').delegate('#id_name', 'keyup', slugify)
+        .delegate('#id_name', 'blur', slugify)
+        .delegate('#edit_slug', 'click', show_slug_edit)
+        .delegate('#id_slug', 'change', function() {
+            $('#id_slug').attr('data-customized', 1);
+            if (!$('#id_slug').val()) {
+                $('#id_slug').attr('data-customized', 0);
+                slugify;
+            }
+        });
+    $('#id_slug').each(slugify);
 }
 
 function initEditVersions() {

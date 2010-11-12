@@ -481,6 +481,22 @@ h3 a.subscribe-feed:hover {
     background-position: 0 -16px;
 }
 
+.addon-submission-process form div.addon-submission-field {
+    margin-bottom: 1em;
+    display: block;
+}
+
+.addon-submission-process form label {
+    display: block;
+    padding-bottom: 3px;
+}
+
+.addon-submission-process #id_name {
+    width: 300px;
+    display: inline-block;
+    margin-right: 10px;
+}
+
 /* @end */
 
 /* @group Ownership */
@@ -1063,7 +1079,9 @@ ol.submit-addon-progress li.current {
 #agreement-extra-links span {
     padding: 0 0.5em;
 }
-.submit-buttons {
+.submit-buttons,
+#agreement-buttons,
+.addon-submission-process .submission-buttons{
     border-top: 1px dotted #A4CFDE;
     margin-bottom: 0;
     padding-top: 0.8em;

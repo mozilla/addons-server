@@ -1,0 +1,71 @@
+{% extends "devhub/base.html" %}
+{% from "devhub/addons/submit/macros.html" import addon_submission_process %}
+
+{% set title = _('Submit a New Add-on') %}
+
+{% block title %}
+{{ dev_page_title(title) }}
+{% endblock %}
+
+
+{% block content %}
+<header>
+  {{ dev_breadcrumbs(items=[(None, _('Submit Add-on'))]) }}
+  <h2>{{ title }}</h2>
+</header>
+<section class="primary addon-submission-process" id="submit-describe" role="main">
+  <div>
+    <h3>{{ _('Step 3. Describe your addon') }}</h3>
+    <form method="post" class="item" action="">
+      {{ csrf() }}
+      <div class="addon-submission-field">
+        <label for="id_name">{{ _("Your add-on's name and version:") }}</label>
+        {{ form.name|safe }}
+
+        {# TODO(gkoberger): Add in actual version when it becomes available #}
+        <input type="text" disabled value="1.2" size="6" />
+
+        {{ form.name.errors|safe }}
+      </div>
+      <div class="addon-submission-field">
+        <label>{{ _("Your add-on's detail page will be:") }}</label>
+        <span id="slug_edit" class="edit_with_prefix edit_initially_hidden">
+          <span>{{ settings.SITE_URL }}</span>{{ form.slug|safe }}
+        </span>
+        <span id="slug_readonly">
+          {{ settings.SITE_URL }}/&hellip;/<span id="slug_value"></span>
+          <a id="edit_slug" href="#">{{ _('Edit') }}</a>
+        </span>
+      </div>
+      <div class="addon-submission-field">
+        <label>{{ _('Provide a brief summary of your add-on:') }}</label>
+        {{ form.summary|safe }}
+        {{ form.summary.errors|safe }}
+        <div class="edit-addon-details">
+          {% trans %}
+            This summary will be shown with your add-on in listings and searches.
+          {% endtrans %}
+        </div>
+      </div>
+      <div class="addon-submission-field">
+        <label>
+          {{ _('Select 1 or 2 categories that best describe your add-on:') }}
+        </label>
+        Coming Soon
+        {# TODO(gkoberger): See bug 606246 #}
+      </div>
+      <div class="submission-buttons addon-submission-field">
+        <button type="submit">
+          {{ _('Continue') }}
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="secondary" role="complementary">
+{{ addon_submission_process('describe') }}
+</section>
+
+{% endblock content %}
+
