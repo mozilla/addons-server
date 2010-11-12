@@ -17,7 +17,8 @@ from tower import ugettext_lazy as _
 import amo.models
 import sharing.utils as sharing
 from amo.fields import DecimalCharField
-from amo.utils import send_mail, urlparams, sorted_groupby, JSONEncoder
+from amo.utils import (send_mail, urlparams, sorted_groupby, JSONEncoder,
+                       slugify)
 from amo.urlresolvers import reverse
 from reviews.models import Review
 from stats.models import (Contribution as ContributionStats,
@@ -243,6 +244,19 @@ class Addon(amo.models.ModelBase):
         rv = super(Addon, self).delete()
         send_mail(subject, email_msg, recipient_list=to)
         return rv
+
+    @classmethod
+    def from_upload(cls, upload):
+        from versions.forms import parse_xpi
+        data = parse_xpi(upload.path)
+        keys = 'guid name type homepage description'.split()
+        addon = Addon(**dict((k, data[k]) for k in keys))
+        addon.status = amo.STATUS_NULL
+        addon.slug = slugify(addon.name)
+        addon.save()
+        Version.from_upload(upload, addon)
+        log.debug('New addon %r from %r' % (addon, upload))
+        return addon
 
     def flush_urls(self):
         urls = ['*/addon/%d/' % self.id,  # Doesn't take care of api
