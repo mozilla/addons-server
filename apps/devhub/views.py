@@ -496,12 +496,8 @@ def version_add_file(request, addon_id, addon, version_id):
 
 @dev_required
 def version_list(request, addon_id, addon):
-    addon = get_object_or_404(Addon.objects.valid(), pk=addon_id)
-    qs = (addon.versions.filter(files__status__in=amo.VALID_STATUSES)
-          .distinct().order_by('-created'))
+    qs = addon.versions.order_by('-created').transform(Version.transformer)
     versions = amo.utils.paginate(request, qs)
-    versions.object_list = list(versions.object_list)
-    Version.transformer(versions.object_list)
 
     data = {'addon': addon,
             'versions': versions,
