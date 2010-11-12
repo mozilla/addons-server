@@ -38,6 +38,15 @@ def test_users_list():
     # handle None gracefully
     eq_(user_link(None), '')
 
+def test_short_users_list():
+    """Test the option to shortened the users list to a certain size."""
+    # short list with 'others'
+    u1 = UserProfile(username='oscar', display_name='Oscar the Grouch', pk=1)
+    u2 = UserProfile(username='grover', display_name='Grover', pk=2)
+    u3 = UserProfile(username='cookies!', display_name='Cookie Monster', pk=3)
+    shortlist = users_list([u1, u2, u3], size=2)
+    eq_(shortlist, ', '.join((user_link(u1), user_link(u2))) + ', others')
+
 
 def test_user_link_unicode():
     """make sure helper won't choke on unicode input"""

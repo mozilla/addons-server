@@ -34,7 +34,7 @@
               <a href="{{ addon.get_url_path() }}">
                 {{ addon.name.localized_string|truncate(35) }}</a>
               <span>
-                {% trans users=users_list(addon.listed_authors) %}
+                {% trans users=users_list(addon.listed_authors, size=2) %}
                   by {{ users }}
                 {% endtrans %}
               </span>

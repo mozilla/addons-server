@@ -11,7 +11,7 @@
           alt="{{ addon.name }}">
       {{ addon.name }}</a>
     <span>
-      {% trans users=users_list(addon.listed_authors) %}
+      {% trans users=users_list(addon.listed_authors, size=2) %}
         by {{ users }}
       {% endtrans %}
     </span>

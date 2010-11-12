@@ -3,6 +3,7 @@ import random
 import jinja2
 
 from jingo import register, env
+from tower import ugettext as _
 
 
 @register.filter
@@ -31,10 +32,16 @@ def user_link(user):
 
 
 @register.function
-def users_list(users):
+def users_list(users, size=None):
     if not users:
         return ''
-    return jinja2.Markup(', '.join(map(_user_link, users)))
+
+    tail = []
+    if size and size < len(users):
+        users = users[:size]
+        tail = [_('others', 'user_list_others')]
+
+    return jinja2.Markup(', '.join(map(_user_link, users) + tail))
 
 
 def _user_link(user):
