@@ -1,3 +1,5 @@
+import errno
+import os
 import re
 
 from django import forms
@@ -9,6 +11,7 @@ from tower import ugettext as _, ungettext as ngettext
 import amo
 import captcha.fields
 from addons.models import Addon, ReverseNameLookup
+from addons.widgets import IconWidgetRenderer
 from amo.utils import slug_validator
 from applications.models import AppVersion
 from tags.models import Tag
@@ -96,6 +99,30 @@ class AddonFormBasic(AddonFormBase):
             if Addon.objects.filter(slug=target).exists():
                 raise forms.ValidationError(_('This slug is already in use.'))
         return target
+
+
+def icons():
+    """
+    Generates a list of tuples for the default icons for add-ons,
+    in the format (psuedo-mime-type, description).
+    """
+    icons = [('image/jpeg', 'jpeg'), ('image/png', 'png'), ('', 'default')]
+    dir_list=os.listdir(settings.ADDON_ICONS_DEFAULT_PATH)
+    for fn in dir_list:
+        if ('%s' % 32) in fn and not "default" in fn:
+            icon_name = fn.split('-')[0];
+            icons.append(('icon/%s' % icon_name, icon_name))
+    return icons
+
+
+class AddonFormMedia(AddonFormBase):
+    icon_upload = forms.FileField(required=False)
+    icon_type = forms.CharField(widget=forms.RadioSelect(
+            renderer=IconWidgetRenderer, choices=icons()), required=False)
+
+    class Meta:
+        model = Addon
+        fields = ('icon_upload', 'icon_type')
 
 
 class AddonFormDetails(AddonFormBase):

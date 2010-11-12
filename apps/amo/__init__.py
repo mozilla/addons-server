@@ -159,6 +159,12 @@ ADDON_TYPES = {
     ADDON_PERSONA: _(u'Personas'),
 }
 
+# Icons
+ADDON_ICONS = {
+    ADDON_ANY: 'default-addon.png',
+    ADDON_THEME: 'default-theme.png'
+}
+
 # We use these slugs in browse page urls.
 ADDON_SLUGS = {
     ADDON_EXTENSION: 'extensions',
@@ -183,6 +189,9 @@ ADDON_SLUGS_UPDATE = {
 # Edit addon information
 MAX_TAGS = 20
 MIN_TAG_LENGTH = 2
+
+# Icon upload sizes
+ADDON_ICON_SIZES = [32, 48, 64]
 
 # These types don't maintain app compatibility in the db.  Instead, we look at
 # APP.types and APP_TYPE_SUPPORT to figure out where they are compatible.

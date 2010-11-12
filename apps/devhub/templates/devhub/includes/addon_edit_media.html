@@ -1,0 +1,83 @@
+{% from "devhub/includes/macros.html" import tip, empty_unless %}
+
+<form method="post" action="{{ url('devhub.addons.section', addon.id, 'media', 'edit') }}"
+      data-uploadurl="{{ url('devhub.addons.icon_upload', addon.id) }}">
+  <h3>
+    {{ _('Images and Videos') }}
+    {% if not editable %}
+      <a href="#" data-editurl="{{ url('devhub.addons.section', addon.id, 'media', 'edit') }}" class="button">
+      {{ _('Edit') }}</a>
+    {% endif %}
+  </h3>
+  <div class="item">
+    <div class="item_wrapper">
+      <table>
+        <caption>{{ _('Add-on Media for {0}')|f(addon.name) }}</caption>
+        <tbody>
+          <tr>
+            <th>
+              {{ tip(_("Add-on icon"),
+                     _("Upload an icon for your add-on or choose from one of ours. The
+                       icon is displayed nearly everywhere your add-on is. Uploaded
+                       images will be resized to 32 x 32 pixels and must be one of
+                       the following image types: .png, .jpg, .gif")) }}
+            </th>
+            <td>
+              {% if editable %}
+                <div id="icon_preview">
+                  <div class="icon_preview" id="icon_preview_32">
+                    <img src="{{ addon.icon_url }}">
+                  </div>
+                  <div class="edit-media-details">
+                    {# L10n: The size of the icon #}
+                    {{ _('32x32px') }}
+                    {{ tip(None,
+                           _("Used in listings of add-ons, like search results
+                              and featured add-ons.")) }}
+                  </div>
+
+                  <div class="icon_preview" id="icon_preview_64">
+                    <img src="{{ addon.get_icon_url(64) }}">
+                  </div>
+                  <div class="edit-media-details">
+                    {# L10n: The size of the icon #}
+                    {{ _('64x64px') }}
+                    {{ tip(None,
+                           _("Used in add-on detail pages.")) }}
+                  </div>
+                </div>
+                <ul id="icons_default">
+                  {{ form.icon_type|safe }}
+                </ul>
+                {{ form.icon_upload|safe }}
+                {{ form.icon_upload.errors|safe }}
+                <div class="edit-media-details">
+                  <div id="edit-icon-error"></div>
+                  {% trans %}
+                  PNG and JPG supported. Icons resized to 64x64 pixels if larger.
+                  {% endtrans %}
+                </div>
+
+              {% else %}
+                <div id="icon_preview_readonly">
+                    <img src="{{ addon.get_icon_url(64) }}">
+                    <img src="{{ addon.icon_url }}">
+                </div>
+              {% endif %}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    {% if editable %}
+    <div class="listing-footer">
+      <button>{{ _('Save Changes') }}</button> {{ _('or') }}
+        <a href="{{ url('devhub.addons.section', addon.id, 'media') }}"
+          class="addon-edit-cancel">
+          {{ _('Cancel') }}</a>
+    </div>
+    {% endif %}
+  </div>
+</form>
+
+

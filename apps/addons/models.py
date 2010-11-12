@@ -347,6 +347,34 @@ class Addon(amo.models.ModelBase):
                           (current_version, self.id, e))
         return False
 
+    def get_icon_url(self, size):
+        """
+        Returns either the addon's icon url, or a default.
+        """
+        icon_type_split = self.icon_type.split('/')
+
+        # Get the closest allowed size without going over
+        if size not in amo.ADDON_ICON_SIZES and size >= amo.ADDON_ICON_SIZES[0]:
+            size = [s for s in amo.ADDON_ICON_SIZES if s < size][-1]
+        elif size < amo.ADDON_ICON_SIZES[0]:
+            size = amo.ADDON_ICON_SIZES[0]
+
+        # Figure out what to return for an image URL
+        if self.type == amo.ADDON_PERSONA:
+            return self.persona.icon_url
+        if not self.icon_type:
+            if self.type == amo.ADDON_THEME:
+                icon = amo.ADDON_ICONS[amo.ADDON_THEME]
+            else:
+                icon = amo.ADDON_ICONS[amo.ADDON_ANY]
+            return settings.ADDON_ICON_BASE_URL + icon
+        elif icon_type_split[0] == 'icon':
+           return '%s/%s-%s.png' % (settings.ADDON_ICONS_DEFAULT_URL,
+                                    icon_type_split[1], size)
+        else:
+            return settings.ADDON_ICON_URL % (
+                    self.id, int(time.mktime(self.modified.timetuple())))
+
     @property
     def current_version(self):
         "Returns the current_version field or updates it if needed."
@@ -415,21 +443,7 @@ class Addon(amo.models.ModelBase):
 
     @property
     def icon_url(self):
-        """
-        Returns either the addon's icon url, or a default.
-        """
-        if self.type == amo.ADDON_PERSONA:
-            return self.persona.icon_url
-        if not self.icon_type:
-            if self.type == amo.ADDON_THEME:
-                icon = 'default-theme.png'
-            else:
-                icon = 'default-addon.png'
-            return settings.MEDIA_URL + 'img/amo2009/icons/' + icon
-
-        else:
-            return settings.ADDON_ICON_URL % (
-                    self.id, int(time.mktime(self.modified.timetuple())))
+        return self.get_icon_url(32)
 
     @property
     def authors_other_addons(self):

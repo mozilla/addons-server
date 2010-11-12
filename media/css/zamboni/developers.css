@@ -193,6 +193,116 @@ tr:hover a.remove:hover {
     color: #555;
 }
 
+.edit-media-details {
+    padding-bottom: 5px;
+    padding-top: 3px;
+    font-size: 0.9em;
+    color: #444;
+}
+
+.edit-media-details .help {
+    font-size: 12px;
+    height: 16px;
+    width: 16px;
+}
+
+#edit-icon-error {
+    color: red;
+}
+
+#icons_default {
+    border: 1px solid #6A89AC;
+    max-height: 86px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding: 5px;
+}
+
+#icon_preview_readonly img {
+    margin-right: 20px;
+}
+
+#icon_preview {
+    float: right;
+    margin-left: 10px;
+    width: 76px;
+}
+
+#icon_preview .icon_preview {
+    border: 1px solid #6A89AC;
+    text-align: center;
+    padding: 5px;
+}
+
+#icon_preview .icon_preview img {
+    vertical-align: middle;
+}
+
+#icon_preview_32 {
+    line-height: 32px;
+    width: 32px;
+    height: 32px;
+}
+
+#icon_preview_32 img {
+    max-width: 32px;
+    max-height: 32px;
+}
+
+#icon_preview_48 {
+    line-height: 48px;
+    width: 48px;
+    height: 48px;
+}
+
+#icon_preview_48 img {
+    max-width: 48px;
+    max-height: 48px;
+}
+
+#icon_preview_64 {
+    line-height: 64px;
+    width: 64px;
+    height: 64px;
+}
+
+#icon_preview_64 img {
+    max-width: 64px;
+    max-height: 64px;
+}
+
+#icons_default label {
+    display: none;
+}
+
+#icons_default li {
+    display: inline-block;
+}
+
+#icons_default li.hide {
+    display: none;
+}
+
+#icons_default li a {
+    padding:8px;
+    display:block;
+    -moz-border-radius: 3px;
+}
+
+#icons_default li a:hover {
+    background-color:#eee;
+}
+
+#icons_default li a img {
+    display: block;
+}
+
+#icons_default li a.active {
+    border: 1px solid #CADBFA;
+    background-color: #E8F0FD;
+    padding: 7px;
+}
+
 /* @end */
 
 /* @group Version Compatibility */

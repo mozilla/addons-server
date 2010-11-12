@@ -248,14 +248,16 @@ def clear_messages(request):
         pass
 
 
-def resize_image(src, dst, size):
+def resize_image(src, dst, size, remove_src=True):
     """Resizes and image from src, to dst."""
     if src == dst:
         raise Exception("src and dst can't be the same: %s" % src)
     im = Image.open(src)
     im = processors.scale_and_crop(im, size)
-    im.save(dst)
-    os.remove(src)
+    im.save(dst, 'png')
+
+    if(remove_src):
+        os.remove(src)
 
 
 def is_animated_image(photo, size=100000):

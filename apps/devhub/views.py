@@ -3,8 +3,11 @@ import collections
 import functools
 import json
 import os
+import re
+import uuid
 
 from django import http
+from django.core.files.uploadedfile import UploadedFile
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.http import urlquote
 
@@ -462,8 +465,43 @@ def upload_detail(request, uuid, format='html'):
 
 
 @dev_required
+@json_view
+def addons_icon_upload(request, addon_id, addon):
+    icon = request.raw_post_data
+
+    if icon:
+        dirname = settings.ADDON_ICONS_PATH
+        tmp_destination = os.path.join(dirname, '%s-temp' % addon.id)
+
+        # Creates all folders that don't exist without throwing an error if it
+        # does exist already.
+        if not os.path.exists(dirname):
+            try:
+                os.makedirs(dirname)
+            except OSError as exc:
+                if exc.errno == errno.EEXIST:
+                    pass
+                else: raise
+
+        fh = open(tmp_destination, 'w')
+        for chunk in icon:
+            fh.write(chunk)
+
+        fh.close()
+
+        for size in amo.ADDON_ICON_SIZES:
+            destination = os.path.join(dirname, '%s-%s' % (addon.id, size))
+            tasks.resize_icon.delay(tmp_destination, destination, size)
+        os.remove(tmp_destination)
+
+    # This is a bit over-confident; it'll return something legitimate when we
+    # do more testing (bug 614450).
+    return {'success': True}
+
+@dev_required
 def addons_section(request, addon_id, addon, section, editable=False):
     models = {'basic': addon_forms.AddonFormBasic,
+              'media': addon_forms.AddonFormMedia,
               'details': addon_forms.AddonFormDetails,
               'support': addon_forms.AddonFormSupport,
               'technical': addon_forms.AddonFormTechnical}
@@ -484,7 +522,10 @@ def addons_section(request, addon_id, addon, section, editable=False):
     else:
         form = False
 
-    tags = addon.tags.not_blacklisted().values_list('tag_text', flat=True)
+    tags = []
+
+    if section == 'basic':
+        tags = addon.tags.not_blacklisted().values_list('tag_text', flat=True)
 
     data = {'addon': addon,
             'form': form,
@@ -493,7 +534,6 @@ def addons_section(request, addon_id, addon, section, editable=False):
 
     return jingo.render(request,
                         'devhub/includes/addon_edit_%s.html' % section, data)
-
 
 @dev_required
 def version_edit(request, addon_id, addon, version_id):

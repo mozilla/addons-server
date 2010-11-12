@@ -456,10 +456,13 @@ ADDON_ICONS_PATH = UPLOADS_PATH + '/addon_icons'
 COLLECTIONS_ICON_PATH = UPLOADS_PATH + '/collection_icons'
 PREVIEWS_PATH = UPLOADS_PATH + '/previews'
 USERPICS_PATH = UPLOADS_PATH + '/userpics'
+ADDON_ICONS_DEFAULT_PATH = 'media/img/addon-icons'
 
 # URL paths
 # paths for images, e.g. mozcdn.com/amo or '/static'
 STATIC_URL = SITE_URL
+ADDON_ICONS_DEFAULT_URL = MEDIA_URL + '/img/addon-icons'
+ADDON_ICON_BASE_URL = MEDIA_URL + 'img/amo2009/icons/'
 ADDON_ICON_URL = "%s/%s/%s/images/addon_icon/%%d/%%s" % (
         STATIC_URL, LANGUAGE_CODE, DEFAULT_APP)
 PREVIEW_THUMBNAIL_URL = (STATIC_URL +

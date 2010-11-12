@@ -9,6 +9,7 @@ from django.core import management
 from celeryutils import task
 
 from amo.decorators import write
+from amo.utils import resize_image
 from files.models import FileUpload
 
 log = logging.getLogger('z.devhub.task')
@@ -61,3 +62,17 @@ def _validator(upload):
     addon_validator.prepare_package(eb, upload.path, PACKAGE_ANY)
     eb.print_json()
     return output.getvalue()
+
+
+@task
+@write
+def resize_icon(src, dst, size, **kw):
+    """Resizes addon icons."""
+    log.info('[1@None] Resizing icon: %s' % dst)
+
+    try:
+        resize_image(src, dst, (size, size), False)
+    except Exception, e:
+        log.error("Error saving addon icon: %s" % e)
+
+

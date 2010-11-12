@@ -1,5 +1,10 @@
 $(document).ready(function() {
 
+    // Edit Add-on
+    if($("#edit-addon").length){
+        initEditAddon();
+    }
+
     //Ownership
     if ($("#author_list").length) {
         initAuthorFields();
@@ -61,17 +66,6 @@ $(document).ready(function() {
 
     initCompatibility();
 
-    $('#edit-addon').delegate('h3 a', 'click', function(e){
-        e.preventDefault();
-
-        parent_div = $(this).closest('.edit-addon-section');
-        a = $(this);
-
-        (function(parent_div, a){
-            parent_div.load($(a).attr('data-editurl'), addonFormSubmit);
-        })(parent_div, a);
-    });
-
     $('.addon-edit-cancel').live('click', function(){
         parent_div = $(this).closest('.edit-addon-section');
         parent_div.load($(this).attr('href'), z.refreshL10n);
@@ -103,13 +97,13 @@ function addonFormSubmit() {
     parent_div = $(this);
 
     (function(parent_div){
-        $('form', parent_div).submit(function(){
+        $('form', parent_div).submit(function(e){
+            e.preventDefault();
         $.post($(parent_div).find('form').attr('action'),
                 $(this).serialize(), function(d){
                     $(parent_div).html(d).each(addonFormSubmit);
                     truncateFields();
                 });
-            return false;
         });
         z.refreshL10n();
     })(parent_div);
@@ -119,6 +113,77 @@ function addonFormSubmit() {
 $("#user-form-template .email-autocomplete")
     .attr("placeholder", gettext("Enter a new author's email address"));
 
+function initEditAddon() {
+
+    $('#edit-addon').delegate('h3 a', 'click', function(e){
+        e.preventDefault();
+
+        a = e.target;
+        parent_div = $(a).closest('.edit-addon-section');
+
+        (function(parent_div, a){
+            parent_div.load($(a).attr('data-editurl'), addonFormSubmit);
+        })(parent_div, a);
+
+        return false;
+    });
+
+    // Icon stuff.
+
+    $('#edit-addon-media').delegate('form', 'submit', function(e){
+        e.preventDefault();
+
+        if($('input[name=icon_type]:checked').val().match(/^image\//)) {
+            file = $('#id_icon_upload')[0].files[0];
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", $(this).attr('data-uploadurl'), true);
+            xhr.overrideMimeType('text/plain; charset=x-user-defined-binary');
+            xhr.setRequestHeader("Content-Type", "application/octet-stream");
+            xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+
+            xhr.setRequestHeader('Content-length', file.size);
+
+            xhr.send(file);
+        }
+    });
+
+    $('#edit-addon-media').delegate('#icons_default a', 'click', function(e){
+        e.preventDefault();
+
+        $('#edit-icon-error').hide();
+
+        $parent = $(this).closest('li');
+        $('input', $parent).attr('checked', true);
+        $('#icons_default a.active').removeClass('active');
+        $(this).addClass('active');
+
+        $("#id_icon_upload").val("")
+
+        $('#icon_preview_32 img').attr('src', $('img', $parent).attr('src'));
+        $('#icon_preview_64 img').attr('src', $('img',
+                $parent).attr('src').replace(/32/, '64'));
+    });
+
+    $('#edit-addon').delegate('#id_icon_upload', 'change', function(){
+        $('#edit-icon-error').hide();
+        file = $('#id_icon_upload')[0].files[0];
+
+        if(file.type == 'image/jpeg' || file.type == 'image/png') {
+            $('#icons_default input:checked').attr('checked', false);
+
+            $('input[name=icon_type][value='+file.type+']', $('#icons_default'))
+                                                          .attr('checked', true)
+
+            $('#icons_default a.active').removeClass('active');
+            $('#icon_preview img').attr('src', file.getAsDataURL());
+        } else {
+            error = gettext('This filetype is not supported.');
+            $('#edit-icon-error').text(error).show();
+            $('#id_icon_upload').val("");
+        }
+    });
+}
 
 function initVersions() {
     $('#modals').hide();
