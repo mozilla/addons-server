@@ -79,7 +79,7 @@ def update_global_totals(job, date):
         cursor.execute(q, p)
         transaction.commit_unless_managed()
     except Exception, e:
-        log.critical("Failed to update global stats: (%s): %s" % (p, e)
+        log.critical("Failed to update global stats: (%s): %s" % (p, e))
 
     log.debug("Committed global stats details: (%s) has (%s) for (%s)" % tuple(p))
 
