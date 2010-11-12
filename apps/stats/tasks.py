@@ -74,9 +74,14 @@ def update_global_totals(job, date):
                 (%s, %s, %s)"""
     p = [job, num or 0, date]
 
-    cursor = connection.cursor()
-    cursor.execute(q, p)
-    transaction.commit_unless_managed()
+    try:
+        cursor = connection.cursor()
+        cursor.execute(q, p)
+        transaction.commit_unless_managed()
+    except Exception, e:
+        log.critical("Failed to update global stats: (%s): %s" % (p, e)
+
+    log.debug("Committed global stats details: (%s) has (%s) for (%s)" % tuple(p))
 
 
 def _get_daily_jobs(date=None):
