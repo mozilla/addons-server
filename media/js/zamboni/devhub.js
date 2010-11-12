@@ -298,7 +298,7 @@ function initEditVersions() {
                                .addClass('bar-fail');
         $('#upload-status-bar div').fadeOut();
 
-        body  = "<strong>" + message + "</strong>";
+        body = "<strong>" + message + "</strong>";
 
         $('#upload-status-results').html(body).addClass('status-fail');
         $('.upload-status-button-add').hide();
@@ -314,11 +314,7 @@ function initEditVersions() {
 
     function resetModal(obj) {
 
-        file = {};
-        file.name = ""
-        file.size = 0;
-        file.data = '';
-        file.aborted = false;
+        file = {name: '', size: 0, data: '', aborted: false};
 
         upload = $("<input type='file'>").attr('name', 'upload')
                                          .attr('id', 'upload-file-input');
