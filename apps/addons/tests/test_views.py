@@ -667,6 +667,18 @@ class TestDetailPage(test_utils.TestCase):
         assert any(th.text.strip().lower() == 'works with'
                    for th in headings)
 
+    def test_show_profile(self):
+        addon = Addon.objects.get(id=3615)
+        url = reverse('addons.detail', args=[addon.id])
+        selector = '.secondary a[href="%s"]' % addon.meet_the_dev_url()
+
+        assert not (addon.the_reason or addon.the_future)
+        assert not pq(self.client.get(url).content)(selector)
+
+        addon.the_reason = addon.the_future = '...'
+        addon.save()
+        assert pq(self.client.get(url).content)(selector)
+
 
 class TestTagsBox(test_utils.TestCase):
     fixtures = ['base/addontag', 'base/apps']
