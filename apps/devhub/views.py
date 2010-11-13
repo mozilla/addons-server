@@ -46,11 +46,13 @@ def dev_required(f):
     @functools.wraps(f)
     def wrapper(request, addon_id, *args, **kw):
         addon = get_object_or_404(Addon, id=addon_id)
-        if acl.check_addon_ownership(request, addon,
-                                     require_owner=False):
+        # Require an owner for POST requests.
+        if request.method == 'POST':
+            if acl.check_ownership(request, addon, require_owner=True):
+                return f(request, addon_id, addon, *args, **kw)
+        elif acl.check_ownership(request, addon, require_owner=False):
             return f(request, addon_id, addon, *args, **kw)
-        else:
-            return http.HttpResponseForbidden()
+        return http.HttpResponseForbidden()
     return wrapper
 
 

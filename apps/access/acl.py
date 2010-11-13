@@ -57,7 +57,7 @@ def check_addon_ownership(request, addon, require_owner=False):
     """Check if request.user has owner permissions for the add-on."""
     if not request.user.is_authenticated():
         return False
-    if not require_owner and action_allowed(request, 'Admin', 'EditAnyAddon'):
+    if action_allowed(request, 'Admin', 'EditAnyAddon'):
         return True
 
     roles = (amo.AUTHOR_ROLE_OWNER, amo.AUTHOR_ROLE_DEV)

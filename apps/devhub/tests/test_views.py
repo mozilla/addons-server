@@ -362,6 +362,41 @@ def formset(*args, **kw):
     return data
 
 
+class TestDevRequired(test_utils.TestCase):
+    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
+
+    def setUp(self):
+        self.get_url = reverse('devhub.addons.payments', args=[3615])
+        self.post_url = reverse('devhub.addons.payments.disable', args=[3615])
+        assert self.client.login(username='del@icio.us', password='password')
+        self.addon = Addon.objects.get(id=3615)
+        self.au = AddonUser.objects.get(user__email='del@icio.us',
+                                        addon=self.addon)
+        eq_(self.au.role, amo.AUTHOR_ROLE_OWNER)
+
+    def test_anon(self):
+        self.client.logout()
+        r = self.client.get(self.get_url, follow=True)
+        login = reverse('users.login')
+        self.assertRedirects(r, '%s?to=%s' % (login, self.get_url))
+
+    def test_dev_get(self):
+        eq_(self.client.get(self.get_url).status_code, 200)
+
+    def test_dev_post(self):
+        self.assertRedirects(self.client.post(self.post_url), self.get_url)
+
+    def test_viewer_get(self):
+        self.au.role = amo.AUTHOR_ROLE_VIEWER
+        self.au.save()
+        eq_(self.client.get(self.get_url).status_code, 200)
+
+    def test_viewer_post(self):
+        self.au.role = amo.AUTHOR_ROLE_VIEWER
+        self.au.save()
+        eq_(self.client.post(self.get_url).status_code, 403)
+
+
 class TestOwnership(test_utils.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']
 
