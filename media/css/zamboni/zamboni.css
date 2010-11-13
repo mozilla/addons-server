@@ -2233,7 +2233,7 @@ form .error .note.error {
     float: none;
 }
 
-.addon-rating,
+td .addon-rating,
 .listing.compact .item .meta .addon-rating,
 .listing.compact .item .meta .downloads,
 .listing.compact .item .meta .updated {
