@@ -44,7 +44,10 @@
 <form method="post" class="review-form" id="review-form"
       action="{{ url('reviews.add', addon.id) }}">
   {{ csrf() }}
-  {{ field(form.title, _('Title:')) }}
+  <p>
+    <label for="id_title">{{ _('Title:') }} <span class="optional">{{ _('(optional)') }}</span></label>
+    {{ form.title|safe }}
+  </p>
   {{ field(form.rating, _('Rating:')) }}
   {{ field(form.body, _('Review:')) }}
   <input type="submit" value="{{ _('Submit review') }}">
