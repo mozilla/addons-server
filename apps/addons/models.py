@@ -952,11 +952,13 @@ class AppSupport(amo.models.ModelBase):
 
 
 class PerformanceAppversions(amo.models.ModelBase):
-    """Add-on performance appversions.  This table is pretty much the same as
+    """
+    Add-on performance appversions.  This table is pretty much the same as
     `appversions` but is separate because we need to push the perf stuff now
     and I'm scared to mess with `appversions` because remora uses it in some
     sensitive places.  If we survive past 2012 and people suddenly have too
-    much time on their hands, consider merging the two."""
+    much time on their hands, consider merging the two.
+    """
 
     APP_CHOICES = [('fx', 'Firefox')]
 
@@ -975,7 +977,8 @@ class Performance(amo.models.ModelBase):
     addon = models.ForeignKey(Addon)
     average = models.FloatField(default=0, db_index=True)
     appversion = models.ForeignKey('PerformanceAppVersions')
-    os = models.CharField(max_length=255)
+    # TODO(clouserw): Replace this field below with what you really want.
+    # os = models.CharField(max_length=255)
     test = models.CharField(max_length=50, choices=TEST_CHOICES)
 
     class Meta:
