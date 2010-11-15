@@ -45,7 +45,7 @@
   <div class="featured listing {{ 'search-tools-for-cat' if category else '' }}">
     <div class="featured-inner">
       {{ addon_listing_header(url('browse.search-tools', category=category.slug),
-                              filter.opts, filter.field, unreviewed) }}
+                              filter.opts, filter.field) }}
       {{ addon_listing_items(addons.object_list, src='category',
                              show_date=filter.field) }}
       <div class="listing-footer">

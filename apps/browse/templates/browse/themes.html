@@ -50,7 +50,7 @@
   <div id="addon-listing" class="featured listing">
     <div class="featured-inner">
       {% with url_base=url('browse.themes', category.slug) %}
-        {{ addon_listing_header(url_base, sort_opts, sorting, unreviewed) }}
+        {{ addon_listing_header(url_base, sort_opts, sorting) }}
       {% endwith %}
       {% cache themes.object_list %}
       {% for row in themes.object_list|batch(4) %}

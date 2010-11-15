@@ -126,8 +126,7 @@ def addon_listing_items_compact(context, addons, show_date=False,
 
 @register.inclusion_tag('addons/listing_header.html')
 @jinja2.contextfunction
-def addon_listing_header(context, url_base, sort_opts, selected,
-                         unreviewed=None, show_unreviewed=True):
+def addon_listing_header(context, url_base, sort_opts, selected):
     return new_context(**locals())
 
 

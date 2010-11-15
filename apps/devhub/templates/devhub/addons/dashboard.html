@@ -39,7 +39,7 @@
       <div class="featured-inner">
         {% set url_base = url('devhub.addons') %}
         {% if addons.paginator.num_pages > 1 %}
-          {{ addon_listing_header(url_base, sort_opts, sorting, show_unreviewed=False) }}
+          {{ addon_listing_header(url_base, sort_opts, sorting) }}
         {% endif %}
 
         {{ dev_addon_listing_items(addons.object_list) }}
