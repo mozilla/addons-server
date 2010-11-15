@@ -60,6 +60,19 @@ AuthorFormSet = modelformset_factory(AddonUser, formset=BaseAuthorFormSet,
                                      form=AuthorForm, can_delete=True, extra=0)
 
 
+class DeleteForm(happyforms.Form):
+    password = forms.CharField()
+
+    def __init__(self, request):
+        self.user = request.amo_user
+        super(DeleteForm, self).__init__(request.POST)
+
+    def clean_password(self):
+        data = self.cleaned_data
+        if not self.user.check_password(data['password']):
+            raise forms.ValidationError(_('Password incorrect.'))
+
+
 def LicenseForm(*args, **kw):
     # This needs to be lazy so we get the right translations.
     cs = [(x.builtin, x.name)

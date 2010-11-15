@@ -937,6 +937,30 @@ class TestPaymentsProfile(test_utils.TestCase):
         eq_(self.get_addon().wants_contributions, False)
 
 
+class TestDelete(test_utils.TestCase):
+    fixtures = ('base/apps', 'base/users', 'base/addon_3615',
+                'base/addon_5579',)
+
+    def setUp(self):
+        self.addon = self.get_addon()
+        assert self.client.login(username='del@icio.us', password='password')
+        self.url = reverse('devhub.addons.delete', args=[self.addon.id])
+
+    def get_addon(self):
+        return Addon.objects.no_cache().get(id=3615)
+
+    def test_post_nopw(self):
+        r = self.client.post(self.url, follow=True)
+        eq_(pq(r.content)('.notification-box').text(),
+                          'Password was incorrect. Add-on was not deleted.')
+
+    def test_post(self):
+        r = self.client.post(self.url, dict(password='password'), follow=True)
+        eq_(pq(r.content)('.notification-box').text(), 'Add-on deleted.')
+        self.assertRaises(Addon.DoesNotExist, self.get_addon)
+
+
+
 class TestEdit(test_utils.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615',
                 'base/addon_5579']

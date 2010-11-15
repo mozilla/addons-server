@@ -231,6 +231,20 @@ def edit(request, addon_id, addon):
 
 @dev_required
 @owner_for_post_required
+def delete(request, addon_id, addon):
+    form = forms.DeleteForm(request)
+    if form.is_valid():
+        addon.delete('Removed via devhub')
+        messages.success(request, _('Add-on deleted.'))
+        return redirect(reverse('devhub.addons'))
+    else:
+        messages.error(request,
+                       _('Password was incorrect.  Add-on was not deleted.'))
+        return redirect(reverse('devhub.versions', args=(addon_id,)))
+
+
+@dev_required
+@owner_for_post_required
 def ownership(request, addon_id, addon):
     fs = []
     # Authors.

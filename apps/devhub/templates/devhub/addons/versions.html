@@ -126,19 +126,21 @@
 
 
   <div id="modal-delete" class="modal modal_delete">
-    <form method="post" action="">
+    <form method="post" action="{{ url('devhub.addons.delete', addon.id) }}">
+      {{ csrf() }}
       <h2>{{ _('Delete Add-on') }}</h2>
       <p>
         {% trans %}
-          Deleting your add-on will permanently remove it from the site and prevent
-          its GUID from being submitted ever again, even by you.  The existing users
-          of your add-on will remain on this update channel and never recieve updates
+          Deleting your add-on will permanently remove it from the site and
+          prevent its GUID from being submitted ever again, even by you.  The
+          existing users of your add-on will remain on this update channel and
+          never recieve updates
           again.
         {% endtrans %}
       </p>
       <p>
       <strong>{{ _('Enter your password to confirm your decision:') }}</strong>
-        <input type="password" name="password">
+        <input type="password" name="password" autocomplete="off">
       </p>
       <input type="hidden" name="addon_id" class="addon_id" value="{{ addon.id }}">
       <button type="submit">{{ _('Delete Add-on') }}</button>
