@@ -1125,7 +1125,9 @@ form.select-review .errorlist {
 }
 
 .review-type h4 {
-    margin-bottom: 0;
+    color: #666;
+    font-size: 16px;
+    margin: 0;
 }
 .review-type p,
 .review-type ul {
