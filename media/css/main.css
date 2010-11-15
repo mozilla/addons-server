@@ -1136,8 +1136,15 @@ form.favorite {
     position: relative;
 }
 
+#aux-nav p.tools,
 #aux-nav > ul:not(:last-of-type) > li {
     background: url(../../img/amo2009/bg/border-header-user-options.gif) no-repeat top left;
+}
+
+#aux-nav p.tools a,
+#aux-nav ul.change a.return {
+    display: block;
+    padding: 0.7em 1em 0.5em;
 }
 
 #aux-nav > ul li ul li {
@@ -1149,6 +1156,7 @@ form.favorite {
     padding: 0.3em 1em;
 }
 
+#aux-nav p.tools,
 #aux-nav > ul.change li ul li {
     padding: 0;
 }

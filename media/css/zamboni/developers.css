@@ -884,11 +884,6 @@ a.extra {
     min-height: 30em;
 }
 
-#aux-nav ul.change a.return {
-    display: block;
-    padding: 0.7em 1em 0.5em 1em;
-}
-
 #navbar a, #navbar a:active, #navbar a:hover, #navbar a:focus, #navbar a:visited {
     color: white;
     text-decoration: none;
