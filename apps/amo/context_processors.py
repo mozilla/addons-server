@@ -8,6 +8,7 @@ from tower import ugettext as _
 import amo
 from amo.urlresolvers import reverse
 from access import acl
+from cake.urlresolvers import remora_url
 
 
 def app(request):
@@ -55,7 +56,7 @@ def global_settings(request):
 
         account_links.append({
             'text': _('Log out'),
-            'href': '/users/logout?to=' + urlquote(request.path),
+            'href': remora_url('/users/logout?to=' + urlquote(request.path)),
         })
 
         tools_links.append({'text': _('Developer Hub'),
