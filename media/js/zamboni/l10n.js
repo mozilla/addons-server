@@ -1,4 +1,18 @@
 $(document).ready(function () {
+    var bio = $('.trans[data-name=bio]');
+
+    if (bio.length) {
+        var lang = format('[lang="{0}"]', [$('html').attr('lang')]),
+            en_us = '[lang="en-us"]';
+        if ($(lang, bio).length) {
+            $(format(':not({0})', [lang]), bio).hide();
+        } else if ($(en_us, bio).length) {
+            $(format(':not({0})', [en_us]), bio).hide();
+        } else {
+            $(':not(:first-child)', bio).hide();
+        }
+    }
+
     if (!$("#l10n-menu").length) return;
     var locales = [],
         dl = $('.default-locale').attr('href').substring(1),
@@ -154,7 +168,7 @@ $(document).ready(function () {
                 label.children(".locale").remove();
                 label.append(format("<span class='locale'>{0}</span>",[$("#change-locale").text()]));
             }
-        
+
         });
         $(format(".trans [lang!={0}]:visible", [currentLocale])).hide();
         $(format(".trans [lang={0}]", [lang])).show();
@@ -167,8 +181,8 @@ $(document).ready(function () {
         });
         locales = _.keys(seen_locales);
     }
-    
+
     z.refreshL10n = function() {
         updateLocale();
-    };
+    }
 });
