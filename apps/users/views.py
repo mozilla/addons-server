@@ -123,7 +123,8 @@ def delete_photo(request):
 @write
 @login_required
 def edit(request):
-    amouser = request.user.get_profile()
+    # Don't use request.amo_user since it has too much caching.
+    amouser = UserProfile.objects.get(pk=request.user.id)
     if request.method == 'POST':
         # ModelForm alters the instance you pass in.  We need to keep a copy
         # around in case we need to use it below (to email the user)

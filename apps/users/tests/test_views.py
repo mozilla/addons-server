@@ -15,6 +15,7 @@ from amo.helpers import urlparams
 from amo.pyquery_wrapper import PyQuery
 from amo.urlresolvers import reverse
 from amo.tests.test_helpers import AbuseBase, AbuseDisabledBase
+from users.models import UserProfile
 from users.utils import EmailResetCode
 
 
@@ -25,7 +26,10 @@ class UserViewBase(test_utils.TestCase):
         self.client = Client()
         self.client.get('/')
         self.user = User.objects.get(id='4043307')
-        self.user_profile = self.user.get_profile()
+        self.user_profile = self.get_profile()
+
+    def get_profile(self):
+        return UserProfile.objects.get(id=self.user.id)
 
 
 class TestAjax(UserViewBase):
@@ -46,14 +50,18 @@ class TestAjax(UserViewBase):
 
 class TestEdit(UserViewBase):
 
-    def test_email_change_mail_sent(self):
+    def setUp(self):
+        super(TestEdit, self).setUp()
         self.client.login(username='jbalogh@mozilla.com', password='foo')
+        self.url = reverse('users.edit')
 
+    def test_email_change_mail_sent(self):
         data = {'username': 'jbalogh',
                 'email': 'jbalogh.changed@mozilla.com',
                 'display_name': 'DJ SurfNTurf', }
 
-        r = self.client.post('/en-US/firefox/users/edit', data, follow=True)
+        r = self.client.post(self.url, data, follow=True)
+        self.assertRedirects(r, self.url)
         self.assertContains(r, "An email has been sent to %s" % data['email'])
 
         # The email shouldn't change until they confirm, but the name should
@@ -64,6 +72,24 @@ class TestEdit(UserViewBase):
         eq_(len(mail.outbox), 1)
         assert mail.outbox[0].subject.find('Please confirm your email') == 0
         assert mail.outbox[0].body.find('%s/emailchange/' % self.user.id) > 0
+
+    def test_edit_bio(self):
+        eq_(self.get_profile().bio, None)
+
+        data = {'username': 'jbalogh',
+                'email': 'jbalogh.changed@mozilla.com',
+                'bio': 'xxx unst unst'}
+
+        r = self.client.post(self.url, data, follow=True)
+        self.assertRedirects(r, self.url)
+        self.assertContains(r, data['bio'])
+        eq_(unicode(self.get_profile().bio), data['bio'])
+
+        data['bio'] = 'yyy unst unst'
+        r = self.client.post(self.url, data, follow=True)
+        self.assertRedirects(r, self.url)
+        self.assertContains(r, data['bio'])
+        eq_(unicode(self.get_profile().bio), data['bio'])
 
 
 class TestEmailChange(UserViewBase):

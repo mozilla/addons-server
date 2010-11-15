@@ -1,4 +1,5 @@
 from django.db import models, connection
+from django.utils import encoding
 
 from bleach import Bleach
 import caching.base
@@ -66,6 +67,13 @@ class Translation(caching.base.CachingMixin, models.Model):
     @property
     def cache_key(self):
         return self._cache_key(self.id)
+
+    @classmethod
+    def _cache_key(cls, pk):
+        # Hard-coding the class name here so that subclasses don't try to cache
+        # themselves under something like "o:translations.purifiedtranslation".
+        key_parts = ('o', 'translations.translation', pk)
+        return ':'.join(map(encoding.smart_unicode, key_parts))
 
     @classmethod
     def new(cls, string, locale, id=None):
@@ -150,5 +158,5 @@ class TranslationSequence(models.Model):
 def delete_translation(obj, fieldname):
     field = obj._meta.get_field(fieldname)
     trans = getattr(obj, field.name)
-    obj.update(**{field.name:None})
+    obj.update(**{field.name: None})
     Translation.objects.filter(id=trans.id).delete()
