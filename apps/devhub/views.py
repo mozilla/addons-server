@@ -495,7 +495,7 @@ def version_add_file(request, addon_id, addon, version_id):
     File.from_upload(upload, version, form.cleaned_data['platform'])
     file_form = forms.FileFormSet(prefix='files', queryset=version.files.all())
     # TODO (jbalogh): get the right form
-    return jingo.render(request, 'devhub/includes/version_file.html', 
+    return jingo.render(request, 'devhub/includes/version_file.html',
                         {'form': file_form.forms[-1]})
 
 
@@ -540,7 +540,8 @@ def submit(request):
     return jingo.render(request, 'devhub/addons/submit/start.html',
                         {'agreement_text': agreement_text})
 
-@login_required
+
+@dev_required
 def submit_describe(request, addon_id):
     addon = get_object_or_404(Addon, id=addon_id)
 
