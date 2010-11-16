@@ -1754,3 +1754,64 @@ class TestAddonSubmission(test_utils.TestCase):
         exp = 'Your add-on has been submitted to the Full Review queue'
         intro = doc('.addon-submission-process p').text()
         assert exp in intro, ('Unexpected intro: %s' % intro.strip())
+
+
+class TestAddonSubmissionDescribe(test_utils.TestCase):
+    fixtures = ['base/addon_3615', 'base/addon_5579', 'base/users']
+
+    def setUp(self):
+        super(TestAddonSubmissionDescribe, self).setUp()
+        self.url = reverse('devhub.submit.describe', args=[3615])
+        assert self.client.login(username='del@icio.us', password='password')
+
+    def test_submit(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+
+        # Post and be redirected.
+        d = {'name': 'Test name',
+             'slug': 'testname',
+             'summary': 'Hello!'}
+        r = self.client.post(self.url, d)
+        eq_(r.status_code, 302)
+
+    def test_submit_name_required(self):
+        # Make sure name is required.
+        r = self.client.post(self.url, {'dummy': 'text'})
+        eq_(r.status_code, 200)
+        self.assertFormError(r, 'form', 'name', 'This field is required.')
+
+    def test_submit_name_length(self):
+        # Make sure the name isn't too long.
+        r = self.client.post(self.url, {'name': 'a' * 51})
+        eq_(r.status_code, 200)
+        error = 'Ensure this value has at most 50 characters (it has 51).'
+        self.assertFormError(r, 'form', 'name', error)
+
+    def test_submit_slug_invalid(self):
+        # Submit an invalid slug.
+        d = dict(slug='slug!!! aksl23%%')
+        r = self.client.post(self.url, d)
+        eq_(r.status_code, 200)
+        self.assertFormError(r, 'form', 'slug', "Enter a valid 'slug' " +
+                    "consisting of letters, numbers, underscores or hyphens.")
+
+    def test_submit_slug_required(self):
+        # Make sure the slug is required.
+        r = self.client.post(self.url, {'dummy': 'text'})
+        eq_(r.status_code, 200)
+        self.assertFormError(r, 'form', 'slug', 'This field is required.')
+
+    def test_submit_summary_required(self):
+        # Make sure summary is required.
+        r = self.client.post(self.url, {'dummy': 'text'})
+        eq_(r.status_code, 200)
+        self.assertFormError(r, 'form', 'summary', 'This field is required.')
+
+    def test_submit_summary_length(self):
+        # Summary is too long.
+        r = self.client.post(self.url, {'summary': 'a' * 251})
+        eq_(r.status_code, 200)
+        error = 'Ensure this value has at most 250 characters (it has 251).';
+        self.assertFormError(r, 'form', 'summary', error)
+
