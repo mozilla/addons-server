@@ -1,6 +1,7 @@
 /*clearfix*/
 .brform:after,
 #status-bar:after,
+#addon-validator-suite .tiers:after,
 form.select-review:after {
     content: ".";
     display: block;
@@ -1230,3 +1231,150 @@ form.select-review .errorlist {
 .devhub-form .compat-versions p.add-app {
     margin-top: 1em;
 }
+
+/* @group Add-on validator suite */
+#addon-validator-suite {
+    width: 56em;
+    color: #929292;
+}
+#addon-validator-suite .suite,
+#addon-validator-suite .suite-container,
+#addon-validator-suite .results .tier-results {
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    background-color: #fff;
+}
+#addon-validator-suite .suite h4 {
+    color: #497ae1;
+}
+#addon-validator-suite .suite .ajax-loading h4 {
+    color: #929292;
+}
+#addon-validator-suite .suite {
+    border: 1px solid #4f6697;
+}
+#addon-validator-suite .suite-container {
+    border: 4px solid #b5d9e5;
+    margin-bottom: 0;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;
+}
+#addon-validator-suite .test-tier {
+    padding: 52px 1em 0 1em;
+    margin: 1em 0 1em 0;
+    width: 21%;
+    float: left;
+    text-align: center;
+    border-left: 1px dashed #b9cedb;
+}
+#addon-validator-suite .test-tier:first-child {
+    border-left: none;
+}
+#addon-validator-suite .suite .tests-passed {
+    background: url("../../img/developers/suite-pass.png") no-repeat top;
+}
+#addon-validator-suite .suite .ajax-loading {
+    background: url("../../img/developers/suite-running.gif") no-repeat top;
+}
+#addon-validator-suite .suite .tests-failed {
+    background: url("../../img/developers/suite-fail.png") no-repeat top;
+}
+#addon-validator-suite .suite-summary {
+    display: none;
+    text-align: center;
+    color: #626363;
+    padding: 0.5em;
+    border-top: 1px solid #bbcad7;
+    background: #f7fbfd url("../../img/developers/suite-summary-bg.jpg") repeat-x top;
+}
+#addon-validator-suite .results .tier-results {
+    border: 1px solid #b5d9e5;
+    margin: 0 4px 4px 4px;
+    background-color: #fff;
+}
+#addon-validator-suite .results {
+    background: none;
+    border: none;
+}
+#addon-validator-suite .results h4 {
+    font-size: 1.4em;
+    font-weight: normal;
+    font-family: georgia,serif;
+    margin: 0 0 0.4em 4px;
+}
+#addon-validator-suite .results .tier-results {
+    height: 10em;
+}
+#addon-validator-suite .results .ajax-loading,
+#addon-validator-suite .results .tests-passed,
+#addon-validator-suite .results .tests-failed {
+    height: auto;
+}
+#addon-validator-suite .results .tests-passed,
+#addon-validator-suite .results .ajax-loading {
+    padding: 100px 0 45px 0;
+    text-align: center;
+}
+#addon-validator-suite .results .tests-passed {
+    background: #fff url("../../img/developers/suite-pass.png") no-repeat center 50px;
+}
+#addon-validator-suite .results .ajax-loading {
+    background: #fff url("../../img/developers/suite-running.gif") no-repeat center 50px;
+}
+#addon-validator-suite .result {
+    margin-top: 1.8em;
+}
+#addon-validator-suite .result-summary {
+    margin-top: 1.8em;
+    visibility: hidden;
+}
+#addon-validator-suite .result-header {
+    padding-bottom: 0.5em;
+}
+#addon-validator-suite .result h4 {
+    float: left;
+    margin-right: 1em;
+}
+#addon-validator-suite ul.result-nav {
+    float: right;
+    font-size: 0.9em;
+    padding-right: 4px;
+}
+#addon-validator-suite ul.result-nav li {
+    display: inline;
+}
+#addon-validator-suite ul.result-nav li:before {
+    content: "|";
+    margin: 0.3em;
+}
+#addon-validator-suite ul.result-nav li:first-child:before {
+    content: "";
+}
+#addon-validator-suite .msg {
+    margin: 0 1em;
+    padding: 0.8em 1em 1em 45px;
+}
+#addon-validator-suite .msg {
+    border-top: 1px dashed #b9cedb;
+}
+#addon-validator-suite .msg:first-child {
+    border-top: none;
+}
+#addon-validator-suite .msg h5 {
+    font-weight: bold;
+    color: #565656;
+}
+#addon-validator-suite .msg p {
+    margin: 0;
+}
+#addon-validator-suite .msg-error {
+    background: transparent url("../../img/developers/test-fail.png") no-repeat 0 1.1em;
+    color: #ff0000;
+}
+#addon-validator-suite .msg-warning {
+    background: transparent url("../../img/developers/test-warning.png") no-repeat 0 1.1em;
+    color: #6b6b6b;
+}
+/* @end */

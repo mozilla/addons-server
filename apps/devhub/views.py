@@ -432,6 +432,97 @@ def upload(request):
     return jingo.render(request, 'devhub/upload.html')
 
 
+@dev_required
+def validate(request, addon_id, addon):
+    return jingo.render(request, 'devhub/addons/validate.html',
+                        dict(addon=addon))
+
+
+@json_view
+@dev_required
+def validation_results(request, addon_id, addon):
+    import time
+    time.sleep(1)
+    return {
+        "errors": 1,
+        "detected_type": "extension",
+        "result_summary": _("Add-on failed validation with 1 error and 2 warnings."),
+        "success": False,
+        "warnings": 2,
+        "notices": 0,
+        "message_tree": {
+            "testcases_targetapplication": {
+                "__messages": [],
+                "__warnings": 1,
+                "__errors": 1,
+                "__notices": 0,
+                "test_targetedapplications": {
+                    "invalid_max_version": {
+                        "__messages": ["96dc9924ec4c11df991a001cc4d80ee4"],
+                        "__warnings": 0,
+                        "__errors": 1,
+                        "__notices": 0
+                    },
+                    "__notices": 0,
+                    "missing_seamonkey_installjs": {
+                        "__messages": ["96dca428ec4c11df991a001cc4d80ee4"],
+                        "__warnings": 1,
+                        "__errors": 0,
+                        "__notices": 0
+                    },
+                    "__warnings": 1,
+                    "__errors": 1,
+                    "__messages": []
+                }
+            }
+        },
+        "messages": [
+            {
+                "context": None,
+                "description": ["The maximum version that was specified is not an acceptable version number for the Mozilla product that it corresponds with.", "Version \"4.0b2pre\" isn't compatible with {ec8030f7-c20a-464f-9b0e-13a3a9e97384}."],
+                "column": 0,
+                "id": ["testcases_targetapplication", "test_targetedapplications", "invalid_max_version"],
+                "file": "install.rdf",
+                "tier": 1,
+                "message": "Invalid maximum version number",
+                "type": "error",
+                "line": 0,
+                "uid": "afdc9924ec4c11df991a001cc4d80ee4"
+            },
+            {
+                "context": None,
+                "description": "Some kind of warning.",
+                "column": 0,
+                "id": ["testcases_targetapplication", "test_targetedapplications", "missing_seamonkey_installjs"],
+                "file": "install.rdf",
+                "tier": 1,
+                "message": "This is not a good idea.",
+                "type": "warning",
+                "line": 0,
+                "uid": "ffdca428ec4c11df991a001cc4d80eg5"
+            },
+            {
+                "context": None,
+                "description": "SeaMonkey requires install.js, which was not found. install.rdf indicates that the addon supports SeaMonkey.",
+                "column": 0,
+                "id": ["testcases_targetapplication", "test_targetedapplications", "missing_seamonkey_installjs"],
+                "file": "install.rdf",
+                "tier": 2,
+                "message": "Missing install.js for SeaMonkey.",
+                "type": "warning",
+                "line": 0,
+                "uid": "96dca428ec4c11df991a001cc4d80ee4"
+            }
+        ],
+        "rejected": False,
+        "metadata": {
+            "version": "1.3a.20100704",
+            "id": "developer@somewhere.org",
+            "name": "The Add One"
+        }
+    }
+
+
 @json_view
 def json_upload_detail(upload):
     validation = json.loads(upload.validation) if upload.validation else ""
