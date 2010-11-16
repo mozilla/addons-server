@@ -1,12 +1,12 @@
 import collections
-from datetime import date
 import itertools
 import json
 import time
+from datetime import date
 
 from django.conf import settings
 from django.db import models, transaction
-from django.db.models import Q, Sum, Max
+from django.db.models import Q, Sum, Max, signals as dbsignals
 from django.utils.translation import trans_real as translation
 
 import caching.base as caching
@@ -19,6 +19,7 @@ from amo.fields import DecimalCharField
 from amo.utils import (send_mail, urlparams, sorted_groupby, JSONEncoder,
                        slugify)
 from amo.urlresolvers import reverse
+from addons.utils import ReverseNameLookup
 from reviews.models import Review
 from stats.models import (Contribution as ContributionStats,
                           AddonShareCountTotal)
@@ -573,6 +574,20 @@ class Addon(amo.models.ModelBase):
         personas = (Addon.uncached.filter(type=amo.ADDON_PERSONA)
                     .extra(select={'last_updated': 'created'}))
         return dict(public=public, exp=exp, listed=listed, personas=personas)
+
+
+def update_name_table(sender, **kw):
+    from . import cron
+    addon = kw['instance']
+    cron._build_reverse_name_lookup.delay({addon.name_id: addon.id},
+                                          clear=True)
+dbsignals.post_save.connect(update_name_table, sender=Addon)
+
+
+def clear_name_table(sender, **kw):
+    addon = kw['instance']
+    ReverseNameLookup.delete(addon.id)
+dbsignals.pre_delete.connect(clear_name_table, sender=Addon)
 
 
 def version_changed(sender, **kw):

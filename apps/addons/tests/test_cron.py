@@ -1,10 +1,24 @@
 from nose.tools import eq_
 import test_utils
 
+from redisutils import mock_redis
+
 import amo
 from addons import cron
 from addons.models import Addon, AppSupport
+from addons.utils import ReverseNameLookup
 from files.models import File
+
+
+class TestBuildReverseNameLookup(test_utils.TestCase):
+    fixtures = ('base/addon_3615',)
+
+    def setUp(self):
+        mock_redis()
+
+    def test_lookup(self):
+        cron.build_reverse_name_lookup()
+        eq_(ReverseNameLookup.get('Delicious Bookmarks'), 3615)
 
 
 class CurrentVersionTestCase(test_utils.TestCase):

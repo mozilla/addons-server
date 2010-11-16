@@ -9,13 +9,42 @@ from celeryutils import task
 import multidb
 
 import amo
-from amo.utils import chunked, slugify
 import cronjobs
-
-from .models import Addon
+from amo.utils import chunked, slugify
+from addons.models import Addon
+from addons.utils import ReverseNameLookup
+from translations.models import Translation
 
 log = commonware.log.getLogger('z.cron')
 task_log = commonware.log.getLogger('z.task')
+
+
+@cronjobs.register
+def build_reverse_name_lookup():
+    """Builds a Reverse Name lookup table in REDIS."""
+
+    # Get all add-on name ids
+    names = (Addon.objects.filter(
+        name__isnull=False, type__in=[amo.ADDON_EXTENSION, amo.ADDON_THEME])
+        .values_list('name_id', 'id'))
+
+    for chunk in chunked(names, 100):
+        _build_reverse_name_lookup.delay(dict(chunk))
+
+
+@task
+def _build_reverse_name_lookup(names, **kw):
+    clear = kw.get('clear', False)
+    translations = (Translation.objects.filter(id__in=names)
+                    .values_list('id', 'localized_string'))
+
+    if clear:
+        for addon_id in names.values():
+            ReverseNameLookup.delete(addon_id)
+
+    for t_id, string in translations:
+        if string:
+            ReverseNameLookup.add(string, names[t_id])
 
 
 @cronjobs.register

@@ -669,3 +669,5 @@ PERFORMANCE_NOTES = False
 
 # flag to turn on or off Abuse reports
 REPORT_ABUSE = True
+
+REDIS_BACKENDS = {'master': 'redis://localhost:6379?socket_timeout=0.5'}

@@ -8,12 +8,22 @@ from tower import ugettext as _, ungettext as ngettext
 
 import amo
 import captcha.fields
-from addons.models import Addon
+from addons.models import Addon, ReverseNameLookup
 from amo.utils import slug_validator
 from tags.models import Tag
-from translations.widgets import TranslationTextInput
 from translations.fields import TransField, TransTextarea
 from translations.forms import TranslationFormMixin
+from translations.widgets import TranslationTextInput
+
+
+def clean_name(name, instance=None):
+    id = ReverseNameLookup.get(name)
+
+    # If we get an id and either there's no instance or the instance.id != id.
+    if id and (not instance or id != instance.id):
+        raise forms.ValidationError(_('This add-on name is already in use.  '
+                                      'Please choose another.'))
+    return name
 
 
 class AddonFormBase(TranslationFormMixin, happyforms.ModelForm):
@@ -33,6 +43,12 @@ class AddonFormBasic(AddonFormBase):
         super(AddonFormBasic, self).__init__(*args, **kw)
         self.fields['tags'].initial = ', '.join(tag.tag_text for tag in
                                                 self.instance.tags.all())
+        # Do not simply append validators, as validators will persist between
+        # instances.
+        validate_name = lambda x: clean_name(x, self.instance)
+        name_validators = list(self.fields['name'].validators)
+        name_validators.append(validate_name)
+        self.fields['name'].validators = name_validators
 
     def save(self, addon, commit=False):
         tags_new = self.cleaned_data['tags']
@@ -70,7 +86,6 @@ class AddonFormBasic(AddonFormBase):
                         'All tags must be at least {0} characters.',
                         min_len).format(min_len))
         return target
-
 
     def clean_slug(self):
         target = self.cleaned_data['slug']
@@ -117,7 +132,6 @@ class AddonFormSupport(AddonFormBase):
         return super(AddonFormSupport, self).save(commit)
 
 
-
 class AddonFormTechnical(AddonFormBase):
     developer_comments = TransField(widget=TransTextarea)
 
@@ -148,6 +162,10 @@ class AddonForm(happyforms.ModelForm):
                   'get_satisfaction_product',)
 
         exclude = ('status', )
+
+    def clean_name(self):
+        name = self.cleaned_data['name']
+        return clean_name(name)
 
     def save(self):
         desc = self.data.get('description')
