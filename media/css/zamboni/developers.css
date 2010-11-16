@@ -14,12 +14,16 @@ form.select-review:after {
     margin-right:5px;
 }
 
-.devhub-form .edit-addon-section {
+#edit-addon .edit-addon-section {
     margin-bottom:3em;
 }
 
-.devhub-form h3 a {
+#edit-addon h3 a {
     font-size: 11px;
+}
+
+#edit-addon h3:first-child {
+    margin-top: 0;
 }
 
 .devhub-form .item {
@@ -46,11 +50,6 @@ form.select-review:after {
 .devhub-form .item_wrapper {
     padding: 5px 13px;
 }
-
-.devhub-form h3:first-child {
-    margin-top: 0;
-}
-
 
 .devhub-form table {
     margin: 0;

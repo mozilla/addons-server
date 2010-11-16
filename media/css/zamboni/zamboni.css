@@ -3077,6 +3077,9 @@ input.ui-autocomplete-loading {
 #l10n-menu {
     float: right;
 }
+#l10n-menu p {
+    margin: 0;
+}
 #change-locale {
     padding-right: 16px;
 }
