@@ -18,6 +18,21 @@ class SendMailTest(test.TestCase):
         assert success
         eq_(len(mail.outbox), 0)
 
+    def test_blacklist_flag(self):
+        to = 'nobody@mozilla.org'
+        settings.EMAIL_BLACKLIST = (to,)
+        success = send_mail('test subject', 'test body',
+                            recipient_list=[to], fail_silently=False,
+                            use_blacklist=True)
+        assert success
+        eq_(len(mail.outbox), 0)
+
+        success = send_mail('test subject', 'test body',
+                            recipient_list=[to], fail_silently=False,
+                            use_blacklist=False)
+        assert success
+        eq_(len(mail.outbox), 1)
+
     def test_success(self):
         to = 'nobody@mozilla.org'
         settings.EMAIL_BLACKLIST = ()

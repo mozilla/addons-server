@@ -10,7 +10,7 @@ from tower import ugettext as _
 
 from amo.models import ModelBase
 from amo.fields import DecimalCharField
-from amo.utils import send_mail as amo_send_mail
+from amo.utils import send_mail
 
 from .db import StatsDictField, StatsManager
 
@@ -249,7 +249,7 @@ class Contribution(caching.base.CachingMixin, models.Model):
                     addon_name=self.addon.name)
 
         # Send the email
-        if amo_send_mail(subject, body, from_email, [to_email],
+        if send_mail(subject, body, from_email, [to_email],
                      fail_silently=True):
             # Clear out contributor identifying information.
             del(self.post_data['payer_email'])

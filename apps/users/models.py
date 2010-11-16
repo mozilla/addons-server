@@ -9,7 +9,6 @@ import time
 from django import forms
 from django.conf import settings
 from django.contrib.auth.models import User as DjangoUser
-from django.core.mail import send_mail
 from django.db import models
 from django.template import Context, loader
 from django.utils.encoding import smart_str
@@ -242,6 +241,7 @@ class UserProfile(amo.models.ModelBase):
         self.password = create_password(algorithm, raw_password)
 
     def email_confirmation_code(self):
+        from amo.utils import send_mail
         log.debug("Sending account confirmation code for user (%s)", self)
 
         url = "%s%s" % (settings.SITE_URL,
@@ -251,7 +251,8 @@ class UserProfile(amo.models.ModelBase):
         t = loader.get_template('users/email/confirm.ltxt')
         c = {'domain': domain, 'url': url, }
         send_mail(_("Please confirm your email address"),
-                  t.render(Context(c)), None, [self.email])
+                  t.render(Context(c)), None, [self.email],
+                  use_blacklist=False)
 
     def log_login_attempt(self, request, successful):
         """Log a user's login attempt"""

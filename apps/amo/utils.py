@@ -110,7 +110,7 @@ def paginate(request, queryset, per_page=20, count=None):
 
 
 def send_mail(subject, message, from_email=None, recipient_list=None,
-              fail_silently=False):
+              fail_silently=False, use_blacklist=True):
     """
     A wrapper around django.core.mail.send_mail.
 
@@ -123,12 +123,16 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
         from_email = settings.DEFAULT_FROM_EMAIL
 
     # Prune blacklisted emails.
-    white_list = []
-    for email in recipient_list:
-        if email.lower() in settings.EMAIL_BLACKLIST:
-            log.debug('Blacklisted email removed from list: %s' % email)
-        else:
-            white_list.append(email)
+    if use_blacklist:
+        white_list = []
+        for email in recipient_list:
+            if email.lower() in settings.EMAIL_BLACKLIST:
+                log.debug('Blacklisted email removed from list: %s' % email)
+            else:
+                white_list.append(email)
+    else:
+        white_list = recipient_list
+
     try:
         if white_list:
             result = django_send_mail(subject, message, from_email, white_list,

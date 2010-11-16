@@ -1,6 +1,5 @@
 from django import http
 from django.conf import settings
-from django.core.mail import send_mail
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib import auth
 from django.template import Context, loader
@@ -12,10 +11,10 @@ from tower import ugettext as _
 
 import amo
 from amo import messages
-from amo.utils import send_mail as amo_send_mail
 from amo.decorators import login_required, json_view, write
-from amo.urlresolvers import reverse
 from amo.forms import AbuseForm
+from amo.urlresolvers import reverse
+from amo.utils import send_mail
 from addons.models import Addon
 from access import acl
 from bandwagon.models import Collection
@@ -154,7 +153,8 @@ def edit(request):
                 c = {'domain': domain, 'url': url, }
                 send_mail(_(("Please confirm your email address "
                              "change at %s") % domain),
-                    t.render(Context(c)), None, [amouser.email])
+                    t.render(Context(c)), None, [amouser.email],
+                    use_blacklist=False)
 
                 # Reset the original email back.  We aren't changing their
                 # address until they confirm the new one
@@ -402,7 +402,7 @@ def report_abuse(request, user_id):
 
         messages.success(request, _('User reported.'))
         log.debug('User %s reported by %s.' % (user_id, user_name))
-        amo_send_mail(subject, msg, recipient_list=(settings.FLIGTAR,))
+        send_mail(subject, msg, recipient_list=(settings.FLIGTAR,))
 
     else:
         return jingo.render(request, 'users/report_abuse_full.html',
