@@ -20,7 +20,7 @@ class AddonFormBasic(happyforms.ModelForm):
     name = forms.CharField(widget=TranslationTextInput, max_length=50)
     slug = forms.CharField(max_length=30)
     summary = forms.CharField(widget=TranslationTextarea, max_length=250)
-    tags = forms.CharField()
+    tags = forms.CharField(required=False)
 
     def __init__(self, *args, **kw):
         self.request = kw.pop('request')
@@ -44,7 +44,8 @@ class AddonFormBasic(happyforms.ModelForm):
         return super(AddonFormBasic, self).save()
 
     def clean_tags(self):
-        target = [t.strip() for t in self.cleaned_data['tags'].split(',')]
+        target = [t.strip() for t in self.cleaned_data['tags'].split(',')
+                  if t.strip()]
 
         max_tags = amo.MAX_TAGS
         min_len = amo.MIN_TAG_LENGTH
