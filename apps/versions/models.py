@@ -42,9 +42,9 @@ class Version(amo.models.ModelBase):
 
     @classmethod
     def from_upload(cls, upload, addon):
+        from . import utils
         # TODO: license, relnotes
-        from versions.forms import parse_xpi
-        data = parse_xpi(upload.path, addon)
+        data = utils.parse_xpi(upload.path, addon)
         v = cls.objects.create(addon=addon, version=data['version'])
         log.debug('New version: %r (%s) from %r' % (v, v.id, upload))
         # TODO: platforms?

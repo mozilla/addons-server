@@ -471,7 +471,7 @@ def version_edit(request, addon_id, addon, version_id):
                 compat.save()
         return redirect('devhub.versions.edit', addon_id, version_id)
 
-    data.update({'addon': addon, 'version': version, 'new_file_form': new_file_form})
+    data.update(addon=addon, version=version, new_file_form=new_file_form)
     return jingo.render(request, 'devhub/versions/edit.html', data)
 
 
@@ -495,7 +495,7 @@ def version_add_file(request, addon_id, addon, version_id):
     File.from_upload(upload, version, form.cleaned_data['platform'])
     file_form = forms.FileFormSet(prefix='files', queryset=version.files.all())
     # TODO (jbalogh): get the right form
-    return jingo.render(request, 'devhub/includes/version_file.html', 
+    return jingo.render(request, 'devhub/includes/version_file.html',
                         {'form': file_form.forms[-1]})
 
 
@@ -539,6 +539,7 @@ def submit(request):
 
     return jingo.render(request, 'devhub/addons/submit/start.html',
                         {'agreement_text': agreement_text})
+
 
 @login_required
 def submit_describe(request, addon_id):
