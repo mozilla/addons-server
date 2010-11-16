@@ -555,7 +555,7 @@ def submit(request):
                         {'agreement_text': agreement_text})
 
 
-@login_required
+@dev_required
 def submit_describe(request, addon_id):
     addon = get_object_or_404(Addon, id=addon_id)
 
