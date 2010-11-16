@@ -559,11 +559,11 @@ def submit(request):
 def submit_describe(request, addon_id):
     addon = get_object_or_404(Addon, id=addon_id)
 
-    form = addon_forms.AddonFormBasic((request.POST or None), instance=addon)
+    form = addon_forms.AddonFormBasic(request.POST or None, instance=addon,
+                                      request=request)
     if request.method == 'POST' and form.is_valid():
         addon = form.save(addon)
         amo.log(amo.LOG.EDIT_DESCRIPTIONS, addon)
-
         return redirect('devhub.submit.add_media')
 
     return jingo.render(request, 'devhub/addons/submit/describe.html',
