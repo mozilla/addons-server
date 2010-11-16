@@ -45,7 +45,12 @@ class Version(amo.models.ModelBase):
         from . import utils
         # TODO: license, relnotes
         data = utils.parse_xpi(upload.path, addon)
-        v = cls.objects.create(addon=addon, version=data['version'])
+        try:
+            license = addon.versions.latest().license_id
+        except Version.DoesNotExist:
+            license = None
+        v = cls.objects.create(addon=addon, version=data['version'],
+                               license_id=license)
         log.debug('New version: %r (%s) from %r' % (v, v.id, upload))
         # TODO: platforms?
         File.from_upload(upload, v,
