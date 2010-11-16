@@ -37,7 +37,7 @@
   {{ dev_breadcrumbs(addon) }}
   <h2>{{ title }}</h2>
 </header>
-<section id="edit-addon" class="primary devhub-form" role="main">
+<section id="edit-addon" class="primary" role="main">
 
   <h3>{{ _('Current Status') }}</h3>
   <div class="item" id="version-status">
@@ -113,17 +113,6 @@
 </section>
 
 <div id="modals">
-  <div id="modal-delete-version" class="modal modal_delete">
-    <form method="post" action="">
-      <h2>{{ _('Delete Add-on Version') }}</h2>
-      <p>{{ _('Deleting your add-on version will remove it from the site.') }}</p>
-      <input type="hidden" name="version_id" class="version_id">
-      <input type="hidden" name="addon_id" class="addon_id" value="{{ addon.id }}">
-      <a href="#" class="button">{{ _('Delete Add-on Version') }}</a>
-      {{ _('or') }} <a href="#" class="close">{{ _('Cancel') }}</a>
-    </form>
-  </div>
-
 
   <div id="modal-delete" class="modal modal_delete">
     <form method="post" action="{{ url('devhub.addons.delete', addon.id) }}">
@@ -197,11 +186,12 @@
         {% endtrans %}
       </p>
       <input type="hidden" name="addon_id" class="addon_id" value="{{ addon.id }}">
-      <button type="submit">{{ _('Delete Add-on Version') }}</button>
-      {{ _('or') }} <a href="#" class="close">{{ _('Cancel') }}</a>
+      <button type="submit">{{ _('Cancel Review Request') }}</button>
+      {{ _('or') }} <a href="#" class="close">{{ _('Close') }}</a>
     </div>
   </form>
 </div>
 
 {% include "devhub/includes/addons_edit_nav.html" %}
 {% endblock %}
+
