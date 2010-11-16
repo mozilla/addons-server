@@ -556,9 +556,7 @@ def submit(request):
 
 
 @dev_required
-def submit_describe(request, addon_id):
-    addon = get_object_or_404(Addon, id=addon_id)
-
+def submit_describe(request, addon_id, addon):
     form = addon_forms.AddonFormBasic(request.POST or None, instance=addon,
                                       request=request)
     if request.method == 'POST' and form.is_valid():

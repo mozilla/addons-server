@@ -11,6 +11,7 @@ from . import views
 submit_patterns = patterns('',
     url('^select-review$', views.submit_select_review,
         name='devhub.submit.select_review'),
+    url('^describe$', views.submit_describe, name='devhub.submit.describe'),
     url('^done$', views.submit_done, name='devhub.submit.done'),
 )
 
@@ -65,8 +66,6 @@ urlpatterns = decorate(write, patterns('',
     url('^addon/submit$', views.submit, name='devhub.submit'),
     url('^addon/submit/new$', views.submit_addon,
         name='devhub.submit.addon'),
-    url('^addon/submit/3/(?P<addon_id>\d+)/$', views.submit_describe,
-        name='devhub.submit.describe'),
 
     # Redirect to /addons/ at the base.
     url('^addon$', lambda r: redirect('devhub.addons', permanent=True)),
