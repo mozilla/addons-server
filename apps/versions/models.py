@@ -73,14 +73,6 @@ class Version(amo.models.ModelBase):
     def flush_urls(self):
         return self.addon.flush_urls()
 
-    def files_status(self):
-        statuses = []
-        for file in self.files.all():
-            # Uses unicode since ngettext didn't like the lazy trans proxies.
-            statuses.append((unicode(amo.STATUS_CHOICES[file.status]),
-                             file.status))
-        return statuses
-
     def get_url_path(self):
         return reverse('addons.versions', args=(self.addon.id, self.version,))
 

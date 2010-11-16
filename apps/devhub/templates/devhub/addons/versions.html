@@ -17,13 +17,11 @@
       {% endtrans %}
     </strong>
 
-    {# TODO(gkoberger): Not trans'd yet, since it's gibberish #}
-    Explanation about what this means and how it will affect this add-on's
-    visibility ipsum dolor sit amet, consectetur adipiscing elit.
-    <a href="#">{{ _('Link to more...') }}</a>
+    {# TODO(?): This should eventually have text describing the status, as
+       well as a link to more information about it. #}
 
     <div class="version-status-actions">
-      {# TODO(gkoberger): If statements to decide what's shown; but wait until
+      {# TODO(gkoberger): 'if' statements to decide what's shown; but wait until
                           the status flags are done #}
       <a href="#" id="cancel-review">{{ _('Cancel Review Request') }}</a> &middot;
       <a href="#" id="disable-addon">{{ _('Disable Add-on') }}</a> &middot;
@@ -84,7 +82,7 @@
             </span>
           </td>
           <td class="file-status">
-            {% for (status, count) in version.files_status() %}
+            {% for (count, status) in dev_files_status(version.files.all()): %}
             <div>
               {# L10n: {0} is the number of files, {1} is the status #}
               {{ ngettext('{0} file is {1}', '{0} files are {1}', count)
