@@ -143,6 +143,7 @@
           Deleting your add-on version will remove it from the site.
         {% endtrans %}
       </p>
+      {{ csrf() }}
       <input type="hidden" name="addon_id" class="addon_id" value="{{ addon.id }}">
       <button type="submit">{{ _('Delete Add-on Version') }}</button>
       {{ _('or') }} <a href="#" class="close">{{ _('Cancel') }}</a>
@@ -163,6 +164,7 @@
           Are you sure you wish to disable your add-on?
         {% endtrans %}
       </p>
+      {{ csrf() }}
       <input type="hidden" name="addon_id" class="addon_id" value="{{ addon.id }}">
       <button type="submit">{{ _('Disable Add-on') }}</button>
       {{ _('or') }} <a href="#" class="close">{{ _('Cancel') }}</a>
@@ -183,6 +185,7 @@
           Are you sure you wish to cancel your review request?
         {% endtrans %}
       </p>
+      {{ csrf() }}
       <input type="hidden" name="addon_id" class="addon_id" value="{{ addon.id }}">
       <button type="submit">{{ _('Cancel Review Request') }}</button>
       {{ _('or') }} <a href="#" class="close">{{ _('Close') }}</a>
@@ -192,4 +195,3 @@
 
 {% include "devhub/includes/addons_edit_nav.html" %}
 {% endblock %}
-
