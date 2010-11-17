@@ -402,7 +402,14 @@ if (addon_ac.length) {
     };
 }
 
-$('#addon-select').click(function() {
+$('#addon-ac').keydown(function(e) {
+    if (e.which == 13) {
+        e.preventDefault();
+        $('#addon-select').click();
+    }
+});
+$('#addon-select').click(function(e) {
+    e.preventDefault();
     var id = $('#addon-ac').attr('data-id');
     var name = $('#addon-ac').val();
     var icon = $('#addon-ac').attr('data-icon');
