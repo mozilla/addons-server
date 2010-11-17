@@ -16,7 +16,7 @@ from translations.forms import TranslationFormMixin
 
 
 class AddonFormBasic(TranslationFormMixin, happyforms.ModelForm):
-    name = TransField(max_length=70)
+    name = TransField(max_length=50)
     slug = forms.CharField(max_length=30)
     summary = TransField(widget=TransTextarea, max_length=250)
     tags = forms.CharField(required=False)

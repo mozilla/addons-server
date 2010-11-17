@@ -1,7 +1,7 @@
 $(document).ready(function () {
     if (!$("#l10n-menu").length) return;
-    var locales = [];
-        dl = $('.default-locale').attr('href').substring(1);
+    var locales = [],
+        dl = $('.default-locale').attr('href').substring(1),
         currentLocale = dl,
         unsavedModalMsg = $('#modal-l10n-unsaved .msg').html(),
         unsavedModal = $('#modal-l10n-unsaved').modal(),
@@ -10,35 +10,43 @@ $(document).ready(function () {
     $(".primary").delegate(".trans input, .trans textarea", "change keyup paste blur", checkTranslation);
     $("form").submit(function () {
         $(this).find(".trans .cloned").remove();
-    })
-    
+    });
+
+    function popuplateTranslations(el) { //load in the initial values of the translations
+        el.find(".trans input[lang], .trans textarea[lang]").each(function() {
+            var $input = $(this),
+                $trans = $input.closest(".trans"),
+                transKey = $trans.attr("data-name")+'_'+$input.attr('lang');
+            translations[transKey] = $input.val();
+        });
+    }
+
     function checkTranslation(e, t) {
-        var cloned_class="cloned";
         var $input = e.originalEvent ? $(this) : $(format("[lang={0}]", [e]), t),
             $trans = $input.closest(".trans"),
-            lang = e.originalEvent ? $input.attr("lang") : e;
+            lang = e.originalEvent ? $input.attr("lang") : e,
             $dl = $(format("[lang={0}]", [dl]), $trans),
             transKey = $trans.attr("data-name")+'_'+lang;
-        if (lang == dl) {
-            cloned_class="";
-            $input.removeClass("cloned");
-        }
         if (!(transKey in translations)) {
             translations[transKey] = $input.val();
         }
-        if (lang != dl && $input.val() == $dl.val() && $input.val().trim().length) {
-            $input.addClass(cloned_class).removeClass("unsaved");
-        } else if (!$input.val().trim().length) {
-            if (e.originalEvent && e.type == "focusout") {
-                $input.val($dl.val()).addClass(cloned_class).removeClass("unsaved");
+        if (lang != dl) {
+            if ($input.val() == $dl.val() && $input.val().trim().length) {
+                $input.addClass("cloned");
+            } else if (!$input.val().trim().length) {
+                if (e.originalEvent && e.type == "focusout") {
+                    $input.val($dl.val()).addClass("cloned");
+                } else {
+                    $input.removeClass("cloned");
+                }
             } else {
-                $input.removeClass(cloned_class).removeClass("unsaved");
+                $input.removeClass("cloned");
             }
+        }
+        if (translations[transKey] != $input.val()) {
+            $input.addClass("unsaved");
         } else {
-            $input.removeClass(cloned_class);
-            if (translations[transKey] != $input.val()) {
-                $input.addClass("unsaved")
-            }
+            $input.removeClass("unsaved");
         }
     }
 
@@ -74,17 +82,28 @@ $(document).ready(function () {
                             var $form = $(this);
                             $.post($form.attr('action'), $form.serialize(), function(d) {
                                 var $resp = $(d);
+                                // Add locale names to error messages
+                                $resp.find(".errorlist li[data-lang]:not(.l10n)").each(function() {
+                                    var err = $(this),
+                                        t = err.text(),
+                                        l = $(format("#locale-popup [href$={0}]", [err.attr('data-lang')])).first().text();
+                                    err.text(format("{0}: ",[l])+t).addClass("l10n");
+                                });
                                 numFormsLeft--;
                                 if ($resp.find(".errorlist").length) { //display errors if they occur
                                     $form.html($resp.html());
                                     updateLocale();
                                     erroredForms++;
                                 } else { //clean up the errors we inserted
+                                    popuplateTranslations($form);
+                                    $form.find(".unsaved").removeClass("unsaved");
                                     $form.find(".errorlist").remove();
                                 }
                                 if (numFormsLeft < 1) {
                                     if (erroredForms) {
-                                        window.scrollTo(0,$(".l10n-error").offset().top);
+                                        window.scrollTo(0,$(".errorlist .l10n").closest("form").offset().top);
+                                        $(".errorlist").first().siblings(".trans")
+                                            .find("input:visible, textarea:visible").focus();
                                     } else {
                                         updateLocale(new_locale);
                                     }
@@ -148,8 +167,8 @@ $(document).ready(function () {
         });
         locales = _.keys(seen_locales);
     }
-
+    
     z.refreshL10n = function() {
         updateLocale();
-    }
+    };
 });

@@ -21,7 +21,7 @@
                 {{ form.name|safe }}
                 {{ form.name.errors|safe }}
               {% else %}
-                {{ trans_readonly('name', addon.name) }}
+                {{ addon.name }}
               {% endif %}
             </td>
           </tr>
