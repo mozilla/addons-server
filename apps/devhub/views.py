@@ -555,6 +555,17 @@ def submit(request):
                         {'agreement_text': agreement_text})
 
 
+@login_required
+def submit_addon(request):
+    if request.method == 'POST':
+        upload = get_object_or_404(FileUpload, pk=request.POST['upload'])
+        addon = Addon.from_upload(upload)
+        AddonUser(addon=addon, user=request.amo_user).save()
+        SubmitStep.objects.create(addon=addon, step=2)
+        # TODO: bounce to step 3.
+        return redirect('devhub.addons.edit', addon.id)
+
+
 @dev_required
 def submit_describe(request, addon_id, addon):
     form = addon_forms.AddonFormBasic(request.POST or None, instance=addon,
@@ -568,14 +579,16 @@ def submit_describe(request, addon_id, addon):
                         {'form': form, 'addon': addon})
 
 
-@login_required
-def submit_addon(request):
-    if request.method == 'POST':
-        upload = get_object_or_404(FileUpload, pk=request.POST['upload'])
-        addon = Addon.from_upload(upload)
-        AddonUser(addon=addon, user=request.amo_user).save()
-        # TODO: bounce to step 3.
-        return redirect('devhub.addons.edit', addon.id)
+@dev_required
+def submit_select_review(request, addon_id, addon):
+    review_type_form = forms.ReviewTypeForm(request.POST or None)
+    if request.method == 'POST' and review_type_form.is_valid():
+        addon.status = review_type_form.cleaned_data['review_type']
+        addon.save()
+        SubmitStep.objects.filter(addon=addon).delete()
+        return redirect('devhub.submit.done', addon_id)
+    return jingo.render(request, 'devhub/addons/submit/select-review.html',
+                        {'addon': addon, 'review_type_form': review_type_form})
 
 
 @dev_required
@@ -586,14 +599,3 @@ def submit_done(request, addon_id, addon):
     return jingo.render(request, 'devhub/addons/submit/done.html',
                         {'addon': addon,
                          'is_platform_specific': is_platform_specific})
-
-
-@dev_required
-def submit_select_review(request, addon_id, addon):
-    review_type_form = forms.ReviewTypeForm(request.POST or None)
-    if request.method == 'POST' and review_type_form.is_valid():
-        addon.status = review_type_form.cleaned_data['review_type']
-        addon.save()
-        return redirect('devhub.submit.done', addon_id)
-    return jingo.render(request, 'devhub/addons/submit/select-review.html',
-                        {'addon': addon, 'review_type_form': review_type_form})
