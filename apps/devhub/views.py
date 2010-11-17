@@ -601,8 +601,7 @@ def submit_addon(request):
         addon = Addon.from_upload(upload)
         AddonUser(addon=addon, user=request.amo_user).save()
         SubmitStep.objects.create(addon=addon, step=2)
-        # TODO: bounce to step 3.
-        return redirect('devhub.addons.edit', addon.id)
+        return redirect('devhub.submit.describe', addon.id)
     return http.HttpResponse()
 
 
