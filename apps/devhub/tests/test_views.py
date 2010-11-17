@@ -177,6 +177,22 @@ class TestActivity(HubTest):
         doc = self.get_pq(addon=self.addon2.id)
         eq_(len(doc('.item')), 13)
 
+    def test_filter_addon_admin(self):
+        """Admins should be able to see specific pages."""
+        self.log_creates(10)
+        assert self.client.login(username='admin@mozilla.com',
+                                 password='password')
+        r = self.get_response(addon=self.addon.id)
+        eq_(r.status_code, 200)
+
+    def test_filter_addon_otherguy(self):
+        """Make sure nobody else can see my precious add-on feed."""
+        self.log_creates(10)
+        assert self.client.login(username='clouserw@gmail.com',
+                                 password='password')
+        r = self.get_response(addon=self.addon.id)
+        eq_(r.status_code, 403)
+
     def test_rss(self):
         self.log_creates(5)
         # This will give us a new RssKey

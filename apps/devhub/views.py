@@ -202,7 +202,10 @@ def feed(request, addon_id=None):
 
             rssurl = urlparams(reverse('devhub.feed', args=(addon_id,)),
                                privaterss=key.key)
-            addons = get_object_or_404(addons_all, pk=addon_id)
+            addons = get_object_or_404(Addon, pk=addon_id)
+
+            if not acl.check_ownership(request, addons):
+                return http.HttpResponseForbidden()
         else:
             key, __ = RssKey.objects.get_or_create(user=request.amo_user)
             rssurl = urlparams(reverse('devhub.feed_all'), privaterss=key.key)
