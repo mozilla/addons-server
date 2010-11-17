@@ -1,7 +1,5 @@
 {% extends "devhub/addons/submit/base.html" %}
 
-{% set current_step = 'start' %}
-
 {% block primary %}
 <h3>{{ _('Step 1. Getting Started') }}</h3>
 <p>
@@ -35,9 +33,12 @@
     {{ _('Additional Add-on Policies') }}</a>
 </div>
 <div class="submit-buttons">
-  <button id="accept-agreement" type="button">
-    {{ _('I Accept this Agreement') }}
-  </button>
+  <form method="post" action="">
+    {{ csrf() }}
+    <button id="accept-agreement" type="submit">
+      {{ _('I Accept this Agreement') }}
+    </button>
   {{ _('or <a href="{0}">Cancel</a>')|f(url('devhub.index'))|safe }}
+  </form>
 </div>
 {% endblock %}
