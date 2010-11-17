@@ -4,27 +4,33 @@ from django import forms
 from django.conf import settings
 
 import happyforms
+from tower import ugettext as _, ungettext as ngettext
 
 import amo
 import captcha.fields
 from addons.models import Addon
 from amo.utils import slug_validator
-from tower import ugettext as _
+from tags.models import Tag
 from translations.widgets import TranslationTextInput
 from translations.fields import TransField, TransTextarea
 from translations.forms import TranslationFormMixin
 
 
-class AddonFormBasic(TranslationFormMixin, happyforms.ModelForm):
+class AddonFormBase(TranslationFormMixin, happyforms.ModelForm):
+
+    def __init__(self, *args, **kw):
+        self.request = kw.pop('request')
+        super(AddonFormBase, self).__init__(*args, **kw)
+
+
+class AddonFormBasic(AddonFormBase):
     name = TransField(max_length=50)
     slug = forms.CharField(max_length=30)
     summary = TransField(widget=TransTextarea, max_length=250)
     tags = forms.CharField(required=False)
 
     def __init__(self, *args, **kw):
-        self.request = kw.pop('request')
         super(AddonFormBasic, self).__init__(*args, **kw)
-
         self.fields['tags'].initial = ', '.join(tag.tag_text for tag in
                                                 self.instance.tags.all())
 
@@ -76,29 +82,21 @@ class AddonFormBasic(TranslationFormMixin, happyforms.ModelForm):
         return target
 
 
-class AddonFormDetails(happyforms.ModelForm):
+class AddonFormDetails(AddonFormBase):
     default_locale = forms.TypedChoiceField(choices=Addon.LOCALES)
-
-    def __init__(self, *args, **kw):
-        self.request = kw.pop('request')
-        super(AddonFormDetails, self).__init__(*args, **kw)
 
     class Meta:
         model = Addon
         fields = ('description', 'default_locale', 'homepage')
 
 
-class AddonFormSupport(TranslationFormMixin, happyforms.ModelForm):
+class AddonFormSupport(AddonFormBase):
     support_url = TransField.adapt(forms.URLField)
     support_email = TransField.adapt(forms.EmailField)
 
     class Meta:
         model = Addon
         fields = ('support_email', 'support_url')
-
-    def __init__(self, *args, **kw):
-        self.request = kw.pop('request')
-        super(AddonFormSupport, self).__init__(*args, **kw)
 
     def save(self, addon, commit=True):
         instance = self.instance
@@ -120,7 +118,7 @@ class AddonFormSupport(TranslationFormMixin, happyforms.ModelForm):
 
 
 
-class AddonFormTechnical(TranslationFormMixin, forms.ModelForm):
+class AddonFormTechnical(AddonFormBase):
     developer_comments = TransField(widget=TransTextarea)
 
     class Meta:

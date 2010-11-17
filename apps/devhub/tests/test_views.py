@@ -8,7 +8,7 @@ from django.conf import settings
 from django.utils import translation
 
 import mock
-from nose.tools import eq_, assert_not_equal
+from nose.tools import eq_, assert_not_equal, assert_raises
 from pyquery import PyQuery as pq
 import test_utils
 
@@ -1118,7 +1118,7 @@ class TestEdit(test_utils.TestCase):
         r = self.client.post(self.get_url('basic', True), data)
         eq_(r.status_code, 200)
         self.assertFormError(r, 'form', 'name',
-                             'Ensure this value has at most 70 '
+                             'Ensure this value has at most 50 '
                              'characters (it has 140).')
 
     def test_edit_basic_summary_max_length(self):
