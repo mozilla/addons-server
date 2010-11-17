@@ -1815,3 +1815,20 @@ class TestAddonSubmissionDescribe(test_utils.TestCase):
         error = 'Ensure this value has at most 250 characters (it has 251).';
         self.assertFormError(r, 'form', 'summary', error)
 
+
+class TestSubmitStep2(test_utils.TestCase):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        self.client.login(username='regular@mozilla.com', password='password')
+
+    def test_step_2_with_cookie(self):
+        r = self.client.post(reverse('devhub.submit'))
+        self.assertRedirects(r, reverse('devhub.submit.addon'))
+        r = self.client.get(reverse('devhub.submit.addon'))
+        eq_(r.status_code, 200)
+
+    def test_step_2_no_cookie(self):
+        # We require a cookie that gets set in step 1.
+        r = self.client.get(reverse('devhub.submit.addon'), follow=True)
+        self.assertRedirects(r, reverse('devhub.submit'))

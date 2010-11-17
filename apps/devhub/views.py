@@ -39,6 +39,9 @@ log = commonware.log.getLogger('z.devhub')
 # Acceptable extensions.
 EXTENSIONS = ('.xpi', '.jar', '.xml')
 
+# We use a session cookie to make sure people see the dev agreement.
+DEV_AGREEMENT_COOKIE = 'yes-I-read-the-dev-agreement'
+
 
 def dev_required(f):
     """Requires user to be add-on owner or admin"""
@@ -539,9 +542,14 @@ def version_bounce(request, addon_id, addon, version):
 
 @login_required
 def submit(request):
+    if request.method == 'POST':
+        response = redirect('devhub.submit.addon')
+        response.set_cookie(DEV_AGREEMENT_COOKIE)
+        return response
+
     base = os.path.join(os.path.dirname(amo.__file__), '..', '..', 'locale')
     # Note that the agreement is not localized (for legal reasons)
-    # but the official version is stored in en_US
+    # but the official version is stored in en_US.
     agrmt = os.path.join(base,
                 'en_US', 'pages', 'docs', 'policies', 'agreement.thtml')
     f = codecs.open(agrmt, encoding='utf8')
@@ -557,6 +565,8 @@ def submit(request):
 
 @login_required
 def submit_addon(request):
+    if DEV_AGREEMENT_COOKIE not in request.COOKIES:
+        return redirect('devhub.submit')
     if request.method == 'POST':
         upload = get_object_or_404(FileUpload, pk=request.POST['upload'])
         addon = Addon.from_upload(upload)
@@ -564,6 +574,7 @@ def submit_addon(request):
         SubmitStep.objects.create(addon=addon, step=2)
         # TODO: bounce to step 3.
         return redirect('devhub.addons.edit', addon.id)
+    return http.HttpResponse()
 
 
 @dev_required
