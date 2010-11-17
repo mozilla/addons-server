@@ -8,7 +8,7 @@ from addons.models import Version
 import amo
 from amo.utils import chunked
 from amo.urlresolvers import reverse
-from files.models import File, Platform
+from files.models import File
 
 
 class Command(BaseCommand):

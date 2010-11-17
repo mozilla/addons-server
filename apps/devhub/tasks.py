@@ -1,6 +1,5 @@
 import logging
 import sys
-import time
 import traceback
 
 from celeryutils import task
