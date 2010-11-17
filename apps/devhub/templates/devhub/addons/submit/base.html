@@ -1,5 +1,4 @@
 {% extends "devhub/base.html" %}
-{% from "devhub/addons/submit/macros.html" import addon_submission_process %}
 
 {% set title = _('Submit a New Add-on') %}
 
@@ -13,7 +12,7 @@
   <h2>{{ title }}</h2>
 </header>
 <section class="secondary" role="complementary">
-  {{ addon_submission_process(current_step) }}
+  {% include "devhub/addons/submit/sidebar.html" %}
 </section>
 <section class="primary addon-submission-process" role="main">
   {% block primary %}{% endblock %}

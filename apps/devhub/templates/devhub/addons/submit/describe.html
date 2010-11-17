@@ -1,5 +1,4 @@
-{% extends "devhub/base.html" %}
-{% from "devhub/addons/submit/macros.html" import addon_submission_process %}
+{% extends "devhub/addons/submit/base.html" %}
 
 {% set title = _('Submit a New Add-on') %}
 
@@ -8,11 +7,7 @@
 {% endblock %}
 
 
-{% block content %}
-<header>
-  {{ dev_breadcrumbs(items=[(None, _('Submit Add-on'))]) }}
-  <h2>{{ title }}</h2>
-</header>
+{% block primary %}
 <section class="primary addon-submission-process" id="submit-describe" role="main">
   <div>
     <h3>{{ _('Step 3. Describe your addon') }}</h3>
@@ -62,10 +57,4 @@
     </form>
   </div>
 </section>
-
-<section class="secondary" role="complementary">
-{{ addon_submission_process('describe') }}
-</section>
-
-{% endblock content %}
-
+{% endblock primary %}

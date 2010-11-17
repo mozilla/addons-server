@@ -1,0 +1,38 @@
+{# Steps below HAS_ADDON don't have an addon associated.  Once we have an
+   addon we can't go back below that line. #}
+{% set HAS_ADDON, MAX = 3, 7 %}
+
+<div class="highlight">
+  <hgroup>
+    <h3>{{ _('Submission Process') }}</h3>
+  </hgroup>
+  <ol class="submit-addon-progress">
+    {% for text in _('Getting Started'),
+                   _('Upload your add-on'),
+                   _('Describe your add-on'),
+                   _('Add images and videos'),
+                   _('Select a license'),
+                   _('Select a review process'),
+                   _("You're done!"): %}
+    <li {% if step.current == loop.index %}class="current"{% endif %}>
+      {% if step.current < HAS_ADDON %}
+        {% if loop.index <= step.current %}
+          <a href="{{ url('devhub.submit.%s' % loop.index) }}">{{ text }}</a>
+        {% else %}
+          {{ text }}
+        {% endif %}
+      {% else %}
+        {# 1. We have an addon, so don't link to non-addon steps.
+           2. Don't link steps above the max step the addon has reached.
+           3. If step.max == MAX the addon is done, so we only show the final page. #}
+        {% if loop.index < HAS_ADDON or loop.index > step.max or step.max == MAX %}
+          {{ text }}
+        {% else %}
+          <a href="{{ url('devhub.submit.%s' % loop.index, addon.id) }}">
+            {{ text }}</a>
+        {% endif %}
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ol>
+</div>

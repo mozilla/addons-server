@@ -1075,7 +1075,8 @@ a.extra {
 ol.submit-addon-progress {
     color: #94969a;
 }
-ol.submit-addon-progress li.current {
+ol.submit-addon-progress li.current,
+ol.submit-addon-progress li.current a {
     color: #565656;
     font-weight: bold;
 }

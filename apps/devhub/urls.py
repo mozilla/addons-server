@@ -9,10 +9,11 @@ from . import views
 
 # These will all start with /addon/<addon_id>/submit/
 submit_patterns = patterns('',
-    url('^select-review$', views.submit_select_review,
-        name='devhub.submit.select_review'),
-    url('^describe$', views.submit_describe, name='devhub.submit.describe'),
-    url('^done$', views.submit_done, name='devhub.submit.done'),
+    url('^3$', views.submit_describe, name='devhub.submit.3'),
+    url('^4$', views.submit_describe, name='devhub.submit.4'),
+    url('^5$', views.submit_describe, name='devhub.submit.5'),
+    url('^6$', views.submit_select_review, name='devhub.submit.6'),
+    url('^7$', views.submit_done, name='devhub.submit.7'),
 )
 
 # These will all start with /addon/<addon_id>/
@@ -63,9 +64,9 @@ urlpatterns = decorate(write, patterns('',
      lambda r: redirect(r.path.replace('addons', 'addon', 1))),
 
     # Add-on submission
-    url('^addon/submit$', views.submit, name='devhub.submit'),
-    url('^addon/submit/new$', views.submit_addon,
-        name='devhub.submit.addon'),
+    url('^addon/submit/1$', views.submit, name='devhub.submit.1'),
+    url('^addon/submit/2$', views.submit_addon,
+        name='devhub.submit.2'),
 
     # Redirect to /addons/ at the base.
     url('^addon$', lambda r: redirect('devhub.addons', permanent=True)),

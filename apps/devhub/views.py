@@ -1,4 +1,5 @@
 import codecs
+import collections
 import functools
 import json
 import os
@@ -541,38 +542,39 @@ def version_bounce(request, addon_id, addon, version):
         raise http.Http404()
 
 
-_steps = {}
+Step = collections.namedtuple('Step', 'current max')
 
 
-def submit_step(step, url_name):
-    """
-    Wraps the function with a decorator that bounces to the right step.
-
-    The (step, url_name) pair is used if we need to redirect.
-    """
+def submit_step(step):
+    """Wraps the function with a decorator that bounces to the right step."""
     def decorator(f):
         @functools.wraps(f)
         def wrapper(request, *args, **kw):
-            addon_id = kw['addon_id']
-            on_step = SubmitStep.objects.filter(addon=addon_id)
-            if on_step:
-                # The step was too high, so bounce to the saved step.
-                if on_step[0].step < step:
-                    url = _steps[on_step[0].step]
-                    return redirect(url, addon_id)
-            else:
-                # We couldn't find a step, so we must be done.
-                return redirect('devhub.submit.done', addon_id)
+            max_step = 7
+            # We only bounce on pages with an addon id.
+            if 'addon_id' in kw:
+                addon_id = kw['addon_id']
+                on_step = SubmitStep.objects.filter(addon=addon_id)
+                if on_step:
+                    max_step = on_step[0].step
+                    if max_step < step:
+                        # The step was too high, so bounce to the saved step.
+                        return redirect('devhub.submit.%s' % max_step,
+                                        addon_id)
+                elif step != max_step:
+                    # We couldn't find a step, so we must be done.
+                    return redirect('devhub.submit.7', addon_id)
+            kw['step'] = Step(step, max_step)
             return f(request, *args, **kw)
         return wrapper
-    _steps[step] = url_name
     return decorator
 
 
 @login_required
-def submit(request):
+@submit_step(1)
+def submit(request, step):
     if request.method == 'POST':
-        response = redirect('devhub.submit.addon')
+        response = redirect('devhub.submit.2')
         response.set_cookie(DEV_AGREEMENT_COOKIE)
         return response
 
@@ -589,25 +591,27 @@ def submit(request):
     f.close()
 
     return jingo.render(request, 'devhub/addons/submit/start.html',
-                        {'agreement_text': agreement_text})
+                        {'agreement_text': agreement_text, 'step': step})
 
 
 @login_required
-def submit_addon(request):
+@submit_step(2)
+def submit_addon(request, step):
     if DEV_AGREEMENT_COOKIE not in request.COOKIES:
-        return redirect('devhub.submit')
+        return redirect('devhub.submit.1')
     if request.method == 'POST':
         upload = get_object_or_404(FileUpload, pk=request.POST['upload'])
         addon = Addon.from_upload(upload)
         AddonUser(addon=addon, user=request.amo_user).save()
         SubmitStep.objects.create(addon=addon, step=2)
-        return redirect('devhub.submit.describe', addon.id)
-    return http.HttpResponse()
+        return redirect('devhub.submit.3', addon.id)
+    return jingo.render(request, 'devhub/addons/submit/start.html',
+                        {'agreement_text': 'xx', 'step': step})
 
 
 @dev_required
-@submit_step(3, 'devhub.submit.describe')
-def submit_describe(request, addon_id, addon):
+@submit_step(3)
+def submit_describe(request, addon_id, addon, step):
     form = addon_forms.AddonFormBasic(request.POST or None, instance=addon,
                                       request=request)
     if request.method == 'POST' and form.is_valid():
@@ -617,27 +621,29 @@ def submit_describe(request, addon_id, addon):
         return redirect('devhub.submit.add_media')
 
     return jingo.render(request, 'devhub/addons/submit/describe.html',
-                        {'form': form, 'addon': addon})
+                        {'form': form, 'addon': addon, 'step': step})
 
 
 @dev_required
-@submit_step(6, 'devhub.submit.select_review')
-def submit_select_review(request, addon_id, addon):
+@submit_step(6)
+def submit_select_review(request, addon_id, addon, step):
     review_type_form = forms.ReviewTypeForm(request.POST or None)
     if request.method == 'POST' and review_type_form.is_valid():
         addon.status = review_type_form.cleaned_data['review_type']
         addon.save()
         SubmitStep.objects.filter(addon=addon).delete()
-        return redirect('devhub.submit.done', addon_id)
+        return redirect('devhub.submit.7', addon_id)
     return jingo.render(request, 'devhub/addons/submit/select-review.html',
-                        {'addon': addon, 'review_type_form': review_type_form})
+                        {'addon': addon, 'review_type_form': review_type_form,
+                         'step': step})
 
 
 @dev_required
-def submit_done(request, addon_id, addon):
+@submit_step(7)
+def submit_done(request, addon_id, addon, step):
     sp = addon.current_version.supported_platforms
     is_platform_specific = sp != [amo.PLATFORM_ALL]
 
     return jingo.render(request, 'devhub/addons/submit/done.html',
-                        {'addon': addon,
+                        {'addon': addon, 'step': step,
                          'is_platform_specific': is_platform_specific})

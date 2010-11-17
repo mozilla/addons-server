@@ -1652,7 +1652,7 @@ class TestSubmitBase(test_utils.TestCase):
 class TestSubmitStep1(TestSubmitBase):
 
     def test_step1_submit(self):
-        response = self.client.get(reverse('devhub.submit'))
+        response = self.client.get(reverse('devhub.submit.1'))
         eq_(response.status_code, 200)
         doc = pq(response.content)
         assert len(response.context['agreement_text'])
@@ -1672,15 +1672,15 @@ class TestSubmitStep2(test_utils.TestCase):
         self.client.login(username='regular@mozilla.com', password='password')
 
     def test_step_2_with_cookie(self):
-        r = self.client.post(reverse('devhub.submit'))
-        self.assertRedirects(r, reverse('devhub.submit.addon'))
-        r = self.client.get(reverse('devhub.submit.addon'))
+        r = self.client.post(reverse('devhub.submit.1'))
+        self.assertRedirects(r, reverse('devhub.submit.2'))
+        r = self.client.get(reverse('devhub.submit.2'))
         eq_(r.status_code, 200)
 
     def test_step_2_no_cookie(self):
         # We require a cookie that gets set in step 1.
-        r = self.client.get(reverse('devhub.submit.addon'), follow=True)
-        self.assertRedirects(r, reverse('devhub.submit'))
+        r = self.client.get(reverse('devhub.submit.2'), follow=True)
+        self.assertRedirects(r, reverse('devhub.submit.1'))
 
 
 class TestSubmitStep3(test_utils.TestCase):
@@ -1688,7 +1688,7 @@ class TestSubmitStep3(test_utils.TestCase):
 
     def setUp(self):
         super(TestSubmitStep3, self).setUp()
-        self.url = reverse('devhub.submit.describe', args=[3615])
+        self.url = reverse('devhub.submit.3', args=[3615])
         assert self.client.login(username='del@icio.us', password='password')
         SubmitStep.objects.create(addon_id=3615, step=3)
 
@@ -1750,7 +1750,7 @@ class TestSubmitStep6(TestSubmitBase):
     def setUp(self):
         super(TestSubmitStep6, self).setUp()
         SubmitStep.objects.create(addon_id=3615, step=6)
-        self.url = reverse('devhub.submit.select_review', args=[3615])
+        self.url = reverse('devhub.submit.6', args=[3615])
 
     def test_get(self):
         r = self.client.get(self.url)
@@ -1794,7 +1794,7 @@ class TestSubmitStep7(TestSubmitBase):
                         name__localized_string='Delicious Bookmarks')
         eq_(addon.current_version.supported_platforms, [amo.PLATFORM_ALL])
 
-        response = self.client.get(reverse('devhub.submit.done', args=[3615]))
+        response = self.client.get(reverse('devhub.submit.7', args=[3615]))
         eq_(response.status_code, 200)
         doc = pq(response.content)
 
@@ -1830,7 +1830,7 @@ class TestSubmitStep7(TestSubmitBase):
         addon = Addon.objects.get(name__localized_string='Cooliris')
         AddonUser.objects.create(user=UserProfile.objects.get(pk=55021),
                                  addon=addon)
-        response = self.client.get(reverse('devhub.submit.done', args=[5579]))
+        response = self.client.get(reverse('devhub.submit.7', args=[5579]))
         eq_(response.status_code, 200)
         doc = pq(response.content)
         next_steps = doc(".done-next-steps li a")
@@ -1851,7 +1851,7 @@ class TestSubmitStep7(TestSubmitBase):
         addon.status = amo.STATUS_UNREVIEWED
         addon.save()
 
-        response = self.client.get(reverse('devhub.submit.done', args=[3615]))
+        response = self.client.get(reverse('devhub.submit.7', args=[3615]))
         eq_(response.status_code, 200)
         doc = pq(response.content)
         exp = 'Your add-on has been submitted to the Preliminary Review queue'
@@ -1863,7 +1863,7 @@ class TestSubmitStep7(TestSubmitBase):
         addon.status = amo.STATUS_NOMINATED
         addon.save()
 
-        response = self.client.get(reverse('devhub.submit.done', args=[3615]))
+        response = self.client.get(reverse('devhub.submit.7', args=[3615]))
         eq_(response.status_code, 200)
         doc = pq(response.content)
         exp = 'Your add-on has been submitted to the Full Review queue'
@@ -1877,26 +1877,81 @@ class TestSubmitSteps(test_utils.TestCase):
     def setUp(self):
         assert self.client.login(username='del@icio.us', password='password')
 
+    def assert_linked(self, doc, numbers):
+        """Check that the nth <li> in the steps list is a link."""
+        lis = doc('.submit-addon-progress li')
+        eq_(len(lis), 7)
+        for idx, li in enumerate(lis):
+            links = pq(li)('a')
+            if (idx + 1) in numbers:
+                eq_(len(links), 1)
+            else:
+                eq_(len(links), 0)
+
+    def assert_highlight(self, doc, num):
+        """Check that the nth <li> is marked as .current."""
+        lis = doc('.submit-addon-progress li')
+        assert pq(lis[num - 1]).hasClass('current')
+        eq_(len(pq('.current', lis)), 1)
+
     def test_step_1(self):
-        r = self.client.get(reverse('devhub.submit'))
+        r = self.client.get(reverse('devhub.submit.1'))
         eq_(r.status_code, 200)
 
     def test_on_step_6(self):
         # Hitting the step we're supposed to be on is a 200.
         SubmitStep.objects.create(addon_id=3615, step=6)
-        r = self.client.get(reverse('devhub.submit.select_review',
+        r = self.client.get(reverse('devhub.submit.6',
                                     args=[3615]))
         eq_(r.status_code, 200)
 
     def test_skip_step_6(self):
         # We get bounced back to step 3.
         SubmitStep.objects.create(addon_id=3615, step=3)
-        r = self.client.get(reverse('devhub.submit.select_review',
+        r = self.client.get(reverse('devhub.submit.6',
                                     args=[3615]), follow=True)
-        self.assertRedirects(r, reverse('devhub.submit.describe', args=[3615]))
+        self.assertRedirects(r, reverse('devhub.submit.3', args=[3615]))
 
     def test_all_done(self):
         # There's no SubmitStep, so we must be done.
-        r = self.client.get(reverse('devhub.submit.select_review',
+        r = self.client.get(reverse('devhub.submit.6',
                                     args=[3615]), follow=True)
-        self.assertRedirects(r, reverse('devhub.submit.done', args=[3615]))
+        self.assertRedirects(r, reverse('devhub.submit.7', args=[3615]))
+
+    def test_menu_step_1(self):
+        doc = pq(self.client.get(reverse('devhub.submit.1')).content)
+        self.assert_linked(doc, [1])
+        self.assert_highlight(doc, 1)
+
+    def test_menu_step_2(self):
+        r = self.client.post(reverse('devhub.submit.1'))
+        doc = pq(self.client.get(reverse('devhub.submit.2')).content)
+        self.assert_linked(doc, [1, 2])
+        self.assert_highlight(doc, 2)
+
+    def test_menu_step_3(self):
+        SubmitStep.objects.create(addon_id=3615, step=3)
+        url = reverse('devhub.submit.3', args=[3615])
+        doc = pq(self.client.get(url).content)
+        self.assert_linked(doc, [3])
+        self.assert_highlight(doc, 3)
+
+    def test_menu_step_3_from_6(self):
+        SubmitStep.objects.create(addon_id=3615, step=6)
+        url = reverse('devhub.submit.3', args=[3615])
+        doc = pq(self.client.get(url).content)
+        self.assert_linked(doc, [3, 4, 5, 6])
+        self.assert_highlight(doc, 3)
+
+    def test_menu_step_6(self):
+        SubmitStep.objects.create(addon_id=3615, step=6)
+        url = reverse('devhub.submit.6', args=[3615])
+        doc = pq(self.client.get(url).content)
+        self.assert_linked(doc, [3, 4, 5, 6])
+        self.assert_highlight(doc, 6)
+
+    def test_menu_step_7(self):
+        url = reverse('devhub.submit.7', args=[3615])
+        doc = pq(self.client.get(url).content)
+        self.assert_linked(doc, [])
+        self.assert_highlight(doc, 7)
