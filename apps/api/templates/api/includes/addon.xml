@@ -90,8 +90,8 @@
     {%- if addon.wants_contributions -%}
     <contribution_data>
       <link>{{ addon.contribution_url|absolutify|urlparams(source='api') }}</link>
-      <suggested_amount currency="USD">
-        {{ addon.suggested_amount }}
+      <suggested_amount currency="USD" ammount="{{ addon.suggested_amount }}">
+        {{ addon.suggested_amount|currencyfmt('USD') }}
       </suggested_amount>
       <meet_developers>
         {{ addon.meet_the_dev_url()|absolutify|urlparams(src='api') }}
