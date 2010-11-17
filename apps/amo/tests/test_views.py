@@ -137,7 +137,7 @@ class TestPaypal(test_utils.TestCase):
     @patch('amo.views.urllib2.urlopen')
     def test_not_verified(self, urlopen):
         urlopen.return_value = self.urlopener('xxx')
-        response = self.client.post(self.url)
+        response = self.client.post(self.url, {'foo': 'bar'})
         assert isinstance(response, http.HttpResponseForbidden)
 
     @patch('amo.views.urllib2.urlopen')
@@ -194,7 +194,7 @@ class TestPaypal(test_utils.TestCase):
     @patch('amo.views.urllib2.urlopen')
     def test_any_exception(self, urlopen):
         urlopen.side_effect = Exception()
-        response = self.client.post(self.url, {})
+        response = self.client.post(self.url)
         eq_(response.status_code, 500)
         eq_(response.content, 'Unknown error.')
 

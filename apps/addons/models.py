@@ -205,7 +205,7 @@ class Addon(amo.models.ModelBase):
                                           related_name='addons')
 
     _current_version = models.ForeignKey(Version, related_name='___ignore',
-            db_column='current_version', null=True)
+            db_column='current_version', null=True, on_delete=models.SET_NULL)
 
     # This gets overwritten in the transformer.
     share_counts = collections.defaultdict(int)

@@ -109,6 +109,11 @@ class UserRegisterForm(happyforms.ModelForm):
         if not settings.RECAPTCHA_PRIVATE_KEY:
             del self.fields['recaptcha']
 
+        errors = {'invalid': _('This URL has an invalid format. '
+                               'Valid URLs look like '
+                               'http://example.com/my_page.')}
+        self.fields['homepage'].error_messages = errors
+
     def clean_email(self):
         d = self.cleaned_data['email'].split('@')[-1]
         if BlacklistedEmailDomain.blocked(d):

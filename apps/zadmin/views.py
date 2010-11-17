@@ -28,9 +28,10 @@ def flagged(request):
 
     if request.method == 'POST':
         ids = map(int, request.POST.getlist('addon_id'))
+        addons = list(addons)
         Addon.objects.filter(id__in=ids).update(admin_review=False)
         # The sql update doesn't invalidate anything, do it manually.
-        invalid = [addon for addon in addons if addon.id in ids]
+        invalid = [addon for addon in addons if addon.pk in ids]
         Addon.objects.invalidate(*invalid)
         return redirect('zadmin.flagged')
 

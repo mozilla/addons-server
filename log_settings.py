@@ -65,5 +65,4 @@ for logger in cfg['loggers'].values() + [cfg['root']]:
     if logger is not cfg['root'] and 'propagate' not in logger:
         logger['propagate'] = False
 
-
 dictconfig.dictConfig(cfg)

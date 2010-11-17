@@ -122,7 +122,10 @@ class File(amo.models.ModelBase):
 def cleanup_file(sender, instance, **kw):
     """ On delete of the file object from the database, unlink the file from
     the file system """
-    filename = instance.file_path
+    try:
+        filename = instance.file_path
+    except models.ObjectDoesNotExist:
+        return
     if os.path.exists(filename):
         os.remove(filename)
 

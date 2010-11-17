@@ -532,7 +532,7 @@ class StatsDictField(models.TextField):
     description = 'A dictionary of counts stored as serialized php.'
     __metaclass__ = models.SubfieldBase
 
-    def db_type(self):
+    def db_type(self, connection):
         return 'text'
 
     def to_python(self, value):
@@ -561,7 +561,7 @@ class StatsDictField(models.TextField):
             return StatsDict(d)
         return None
 
-    def get_db_prep_value(self, value):
+    def get_db_prep_value(self, value, connection, prepared=False):
         if value is None or value == '':
             return value
         try:

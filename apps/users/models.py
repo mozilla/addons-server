@@ -97,10 +97,7 @@ class UserProfile(amo.models.ModelBase):
     display_collections_fav = models.BooleanField(default=False)
     emailhidden = models.BooleanField(default=False)
     homepage = models.URLField(max_length=255, blank=True, default='',
-                               verify_exists=False, error_messages={
-                               'invalid': _('This URL has an invalid format. '
-                                            'Valid URLs look like '
-                                            'http://example.com/my_page.')})
+                               verify_exists=False)
     location = models.CharField(max_length=255, blank=True, default='')
     notes = models.TextField(blank=True, null=True)
     notifycompat = models.BooleanField(default=True)

@@ -155,12 +155,12 @@ SECRET_KEY = 'r#%9w^o_80)7f%!_ir5zx$tu3mupw9u%&s!)-_q%gy7i+fhx#)'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.load_template_source',
-    'django.template.loaders.app_directories.load_template_source',
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.core.context_processors.auth',
+    'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.debug',
     'django.core.context_processors.media',
     'django.core.context_processors.request',
@@ -580,11 +580,12 @@ HERA = [{'USERNAME': '',
 LOG_LEVEL = logging.DEBUG
 HAS_SYSLOG = True  # syslog is used if HAS_SYSLOG and NOT DEBUG.
 SYSLOG_TAG = "http_app_addons"
-# See PEP 391 and log_settings.py for formatting help.  Each section of LOGGING
-# will get merged into the corresponding section of log_settings.py.
-# Handlers and log levels are set up automatically based on LOG_LEVEL and DEBUG
-# unless you set them here.  Messages will not propagate through a logger
-# unless propagate: True is set.
+# See PEP 391 and log_settings.py for formatting help.  Each section of
+# LOGGING will get merged into the corresponding section of
+# log_settings.py. Handlers and log levels are set up automatically based
+# on LOG_LEVEL and DEBUG unless you set them here.  Messages will not
+# propagate through a logger unless propagate: True is set.
+LOGGING_CONFIG = None
 LOGGING = {
     'loggers': {
         'amqplib': {'handlers': ['null']},

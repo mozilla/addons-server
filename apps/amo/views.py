@@ -209,39 +209,49 @@ def _paypal(request):
     if request.method != 'POST':
         return http.HttpResponseNotAllowed(['POST'])
 
+    if not request.META['CONTENT_LENGTH']:
+        post = {}
+        raw = ""
+    else:
+        # Copying request.POST to avoid this issue:
+        # http://code.djangoproject.com/ticket/12522
+        post = request.POST.copy()
+        raw = request.raw_post_data
+
     # Check that the request is valid and coming from PayPal.
-    data = '%s&%s' % ('cmd=_notify-validate', request.raw_post_data)
+    data = '%s&%s' % ('cmd=_notify-validate', raw)
     paypal_response = urllib2.urlopen(settings.PAYPAL_CGI_URL,
                                       data, 20).readline()
+
     if paypal_response != 'VERIFIED':
         msg = ("Expecting 'VERIFIED' from PayPal, got '%s'. "
                "Failing." % paypal_response)
         _log_error_with_data(msg, request)
         return http.HttpResponseForbidden('Invalid confirmation')
 
-    if request.POST.get('txn_type', '').startswith('subscr_'):
-        SubscriptionEvent.objects.create(post_data=php.serialize(request.POST))
+    if post.get('txn_type', '').startswith('subscr_'):
+        SubscriptionEvent.objects.create(post_data=php.serialize(post))
         return http.HttpResponse('Success!')
 
     # We only care about completed transactions.
-    if request.POST.get('payment_status') != 'Completed':
+    if post.get('payment_status') != 'Completed':
         return http.HttpResponse('Payment not completed')
 
     # Make sure transaction has not yet been processed.
     if (Contribution.objects
-                   .filter(transaction_id=request.POST['txn_id']).count()) > 0:
+                   .filter(transaction_id=post['txn_id']).count()) > 0:
         return http.HttpResponse('Transaction already processed')
 
     # Fetch and update the contribution - item_number is the uuid we created.
     try:
-        c = Contribution.objects.get(uuid=request.POST['item_number'])
+        c = Contribution.objects.get(uuid=post['item_number'])
     except Contribution.DoesNotExist:
         key = "%s%s:%s" % (settings.CACHE_PREFIX, 'contrib',
-                           request.POST['item_number'])
+                           post['item_number'])
         count = cache.get(key, 0) + 1
 
         paypal_log.warning('Contribution (uuid=%s) not found for IPN request '
-                           '#%s.' % (request.POST['item_number'], count))
+                           '#%s.' % (post['item_number'], count))
         if count > 10:
             msg = ("Paypal sent a transaction that we don't know "
                    "about and we're giving up on it.")
@@ -251,10 +261,10 @@ def _paypal(request):
         cache.set(key, count, 1209600)  # This is 2 weeks.
         return http.HttpResponseServerError('Contribution not found')
 
-    c.transaction_id = request.POST['txn_id']
-    c.amount = request.POST['mc_gross']
+    c.transaction_id = post['txn_id']
+    c.amount = post['mc_gross']
     c.uuid = None
-    c.post_data = php.serialize(request.POST)
+    c.post_data = php.serialize(post)
     c.save()
 
     # Send thankyou email.

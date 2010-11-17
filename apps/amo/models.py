@@ -39,6 +39,31 @@ def skip_cache():
         _locals.skip_cache = old
 
 
+# This is sadly a copy and paste of annotate to get around this
+# ticket http://code.djangoproject.com/ticket/14707
+def annotate(self, *args, **kwargs):
+
+    for arg in args:
+        if arg.default_alias in kwargs:
+            raise ValueError("The %s named annotation conflicts with the "
+                             "default name for another annotation."
+                             % arg.default_alias)
+        kwargs[arg.default_alias] = arg
+
+    obj = self._clone()
+
+    obj._setup_aggregate_query(kwargs.keys())
+
+    # Add the aggregates to the query
+    for (alias, aggregate_expr) in kwargs.items():
+        obj.query.add_aggregate(aggregate_expr, self.model, alias,
+            is_summary=False)
+
+    return obj
+
+models.query.QuerySet.annotate = annotate
+
+
 class TransformQuerySet(queryset_transform.TransformQuerySet):
 
     def pop_transforms(self):

@@ -13,6 +13,8 @@ log = commonware.log.getLogger('z.cake')
 
 
 class SessionBackend:
+    supports_anonymous_user = False
+    supports_object_permissions = False
 
     def authenticate(self, session):
         """
