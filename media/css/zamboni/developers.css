@@ -113,7 +113,8 @@ a.remove {
 
 .devhub-form .author:hover .remove,
 a.remove:hover,
-.devhub-form tr:hover .help {
+.devhub-form tr:hover .help,
+.devhub-form tr:hover .remove {
     background-color: #CCC;
 }
 
@@ -121,6 +122,10 @@ a.remove:hover,
 .devhub-form .author .remove:hover {
     background-color: #2A4364;
     cursor: help;
+}
+
+.devhub-form tr:hover .remove:hover {
+    background-color: #2A4364;
 }
 
 .devhub-form .empty {
