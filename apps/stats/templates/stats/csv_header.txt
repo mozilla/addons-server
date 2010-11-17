@@ -1,10 +1,5 @@
-#    addons.mozilla.org Statistics for add-on {{ addon.id }}
+#    addons.mozilla.org Statistics for add-on {{ addon.name }}
 #
 #    Generated {{ timestamp }}
 #    from {{ request.build_absolute_uri() }}
-#
-#    This data is provided "AS IS" and is subject to Mozilla's Legal Disclaimers
-#    and Limitations policy, available at http://www.mozilla.com/en-US/about/legal.html.
-#
-# Fields: [{{ fields|join(';')|safe }}]
 

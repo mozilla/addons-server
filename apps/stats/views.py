@@ -280,14 +280,14 @@ def render_csv(request, addon, stats, fields):
     # Start with a header from the template.
     ts = time.strftime('%c %z')
     response = jingo.render(request, 'stats/csv_header.txt',
-                            {'addon': addon, 'fields': fields,
-                             'timestamp': ts})
+                            {'addon': addon, 'timestamp': ts})
 
     # For remora compatibility, reverse the output so oldest data
     # is first.
     # XXX: The list() performance penalty here might be big enough to
     # consider changing the sort order at lower levels.
     writer = unicode_csv.UnicodeWriter(response)
+    writer.writerow(fields)
     stats_list = list(stats)
     for row in reversed(stats_list):
         writer.writerow(row)

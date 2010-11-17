@@ -96,6 +96,7 @@ class TestSeriesSecurity(TestSeriesBase):
 
 class TestCSVs(TestSeriesBase):
     """Tests for CSV output of all known series views."""
+    first_row = 5
 
     def test_downloads_series(self):
         response = self.get_view_response('stats.downloads_series',
@@ -103,7 +104,7 @@ class TestCSVs(TestSeriesBase):
 
         eq_(response.status_code, 200, 'unexpected http status')
         rows = list(csv.reader(response.content.split('\n')))
-        row = rows[9]  # the first row of data after the header
+        row = rows[self.first_row]  # the first row of data after the header
         eq_(len(row), 2, 'unexpected row length')
         date, count = row
         eq_(date, '2009-06-01', 'unexpected date string: %s' % date)
@@ -115,7 +116,7 @@ class TestCSVs(TestSeriesBase):
 
         eq_(response.status_code, 200, 'unexpected http status')
         rows = list(csv.reader(response.content.split('\n')))
-        row = rows[9]  # the first row of data after the header
+        row = rows[self.first_row]  # the first row of data after the header
         eq_(len(row), 2, 'unexpected row length')
         date, ave = row
         eq_(date, '2009-06-01', 'unexpected date string: %s' % date)
@@ -127,7 +128,7 @@ class TestCSVs(TestSeriesBase):
 
         eq_(response.status_code, 200, 'unexpected http status')
         rows = list(csv.reader(response.content.split('\n')))
-        row = rows[9]  # the first row of data after the header
+        row = rows[self.first_row]  # the first row of data after the header
         eq_(len(row), 4, 'unexpected row length')
         date, total, count, ave = row
         eq_(date, '2009-06-02', 'unexpected date string: %s' % date)
@@ -141,7 +142,7 @@ class TestCSVs(TestSeriesBase):
 
         eq_(response.status_code, 200, 'unexpected http status')
         rows = list(csv.reader(response.content.split('\n')))
-        row = rows[9]  # the first row of data after the header
+        row = rows[self.first_row]  # the first row of data after the header
         eq_(len(row), 5, 'unexpected row length')
         date, count, source1, source2, source3 = row
         eq_(date, '2009-06-01', 'unexpected date string: %s' % date)
@@ -156,7 +157,7 @@ class TestCSVs(TestSeriesBase):
 
         eq_(response.status_code, 200, 'unexpected http status')
         rows = list(csv.reader(response.content.split('\n')))
-        row = rows[9]  # the first row of data after the header
+        row = rows[self.first_row]  # the first row of data after the header
         eq_(len(row), 5, 'unexpected row length')
         date, count, os1, os2, os3 = row
         eq_(date, '2009-06-01', 'unexpected date string: %s' % date)
@@ -171,7 +172,7 @@ class TestCSVs(TestSeriesBase):
 
         eq_(response.status_code, 200, 'unexpected http status')
         rows = list(csv.reader(response.content.split('\n')))
-        row = rows[9]  # the first row of data after the header
+        row = rows[self.first_row]  # the first row of data after the header
         eq_(len(row), 3, 'unexpected row length')
         date, count, locale1 = row
         eq_(date, '2009-06-01', 'unexpected date string: %s' % date)
@@ -184,7 +185,7 @@ class TestCSVs(TestSeriesBase):
 
         eq_(response.status_code, 200, 'unexpected http status')
         rows = list(csv.reader(response.content.split('\n')))
-        row = rows[9]  # the first row of data after the header
+        row = rows[self.first_row]  # the first row of data after the header
         eq_(len(row), 4, 'unexpected row length')
         date, count, status1, status2 = row
         eq_(date, '2009-06-01', 'unexpected date string: %s' % date)
@@ -198,7 +199,7 @@ class TestCSVs(TestSeriesBase):
 
         eq_(response.status_code, 200, 'unexpected http status')
         rows = list(csv.reader(response.content.split('\n')))
-        row = rows[9]  # the first row of data after the header
+        row = rows[self.first_row]  # the first row of data after the header
         eq_(len(row), 4, 'unexpected row length')
         date, count, version1, version2 = row
         eq_(date, '2009-06-01', 'unexpected date string: %s' % date)
@@ -212,7 +213,7 @@ class TestCSVs(TestSeriesBase):
 
         eq_(response.status_code, 200, 'unexpected http status')
         rows = list(csv.reader(response.content.split('\n')))
-        row = rows[9]  # the first row of data after the header
+        row = rows[self.first_row]  # the first row of data after the header
         eq_(len(row), 3, 'unexpected row length')
         date, count, app1 = row
         eq_(date, '2009-06-01', 'unexpected date string: %s' % date)
@@ -225,7 +226,7 @@ class TestCSVs(TestSeriesBase):
 
         eq_(response.status_code, 200, 'unexpected http status')
         rows = list(csv.reader(response.content.split('\n')))
-        row = rows[9]  # the first row of data after the header
+        row = rows[self.first_row]  # the first row of data after the header
         eq_(len(row), 6, 'unexpected row length')
         date, amount, requested, name, email, comment = row
         eq_(date, '2009-06-02', 'unexpected date string: %s' % date)
@@ -270,9 +271,9 @@ class TestCSVs(TestSeriesBase):
 
         eq_(response.status_code, 200)
         rows = list(csv.reader(response.content.split('\n')))
-        eq_(len(rows), 10)
-        eq_(rows[8], ['# Fields: []'])  # Header is present
-        eq_(rows[9], [])  # There is no data
+        eq_(len(rows), 6)
+        eq_(rows[4], [])  # No fields
+        eq_(rows[self.first_row], [])  # There is no data
 
 
 class TestCacheControl(TestSeriesBase):
