@@ -39,7 +39,10 @@ Then run the following commands: ::
 
   # Set your host up so it's semi-permanent
   sudo scutil --set HostName $HOSTNAME
-  cat 127.0.0.1 $HOSTNAME | sudo tee -a /etc/hosts
+
+  # Update your hosts by either:
+  # 1) Manually editing /etc/hosts
+  # 2) `echo 127.0.0.1 $HOSTNAME >> /etc/hosts`
 
   # RabbitMQ insists on writing to /var
   sudo rabbitmq-server -detached
