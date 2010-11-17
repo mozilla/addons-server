@@ -6,14 +6,14 @@ import uuid
 
 from django import http
 from django.conf import settings
+from django.db.models import F
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.http import urlquote
 
 import commonware.log
 import jingo
 import path
-from tower import ugettext_lazy as _lazy
-from tower import ugettext as _
+from tower import ugettext_lazy as _lazy, ugettext as _
 
 import amo
 import amo.utils
@@ -27,7 +27,7 @@ from addons import forms as addon_forms
 from addons.models import Addon, AddonUser
 from addons.views import BaseFilter
 from cake.urlresolvers import remora_url
-from devhub.models import ActivityLog, RssKey
+from devhub.models import ActivityLog, RssKey, SubmitStep
 from files.models import File, FileUpload
 from translations.models import delete_translation
 from versions.models import License, Version
@@ -49,12 +49,13 @@ def dev_required(f):
     @functools.wraps(f)
     def wrapper(request, addon_id, *args, **kw):
         addon = get_object_or_404(Addon, id=addon_id)
+        fun = lambda: f(request, addon_id=addon_id, addon=addon, *args, **kw)
         # Require an owner for POST requests.
         if request.method == 'POST':
             if acl.check_ownership(request, addon, require_owner=True):
-                return f(request, addon_id, addon, *args, **kw)
+                return fun()
         elif acl.check_ownership(request, addon, require_owner=False):
-            return f(request, addon_id, addon, *args, **kw)
+            return fun()
         return http.HttpResponseForbidden()
     return wrapper
 
@@ -540,6 +541,34 @@ def version_bounce(request, addon_id, addon, version):
         raise http.Http404()
 
 
+_steps = {}
+
+
+def submit_step(step, url_name):
+    """
+    Wraps the function with a decorator that bounces to the right step.
+
+    The (step, url_name) pair is used if we need to redirect.
+    """
+    def decorator(f):
+        @functools.wraps(f)
+        def wrapper(request, *args, **kw):
+            addon_id = kw['addon_id']
+            on_step = SubmitStep.objects.filter(addon=addon_id)
+            if on_step:
+                # The step was too high, so bounce to the saved step.
+                if on_step[0].step < step:
+                    url = _steps[on_step[0].step]
+                    return redirect(url, addon_id)
+            else:
+                # We couldn't find a step, so we must be done.
+                return redirect('devhub.submit.done', addon_id)
+            return f(request, *args, **kw)
+        return wrapper
+    _steps[step] = url_name
+    return decorator
+
+
 @login_required
 def submit(request):
     if request.method == 'POST':
@@ -578,12 +607,14 @@ def submit_addon(request):
 
 
 @dev_required
+@submit_step(3, 'devhub.submit.describe')
 def submit_describe(request, addon_id, addon):
     form = addon_forms.AddonFormBasic(request.POST or None, instance=addon,
                                       request=request)
     if request.method == 'POST' and form.is_valid():
         addon = form.save(addon)
         amo.log(amo.LOG.EDIT_DESCRIPTIONS, addon)
+        SubmitStep.objects.filter(addon=addon).update(step=F('step') + 1)
         return redirect('devhub.submit.add_media')
 
     return jingo.render(request, 'devhub/addons/submit/describe.html',
@@ -591,6 +622,7 @@ def submit_describe(request, addon_id, addon):
 
 
 @dev_required
+@submit_step(6, 'devhub.submit.select_review')
 def submit_select_review(request, addon_id, addon):
     review_type_form = forms.ReviewTypeForm(request.POST or None)
     if request.method == 'POST' and review_type_form.is_valid():

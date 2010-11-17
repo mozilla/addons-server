@@ -234,3 +234,11 @@ class LegacyAddonLog(models.Model):
 
     class Meta:
         db_table = 'addonlogs'
+
+
+class SubmitStep(models.Model):
+    addon = models.ForeignKey(Addon)
+    step = models.IntegerField()
+
+    class Meta:
+        db_table = 'submit_step'
