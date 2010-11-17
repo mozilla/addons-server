@@ -1,0 +1,24 @@
+<tr>
+  <th>{{ _('EULA') }}</th>
+  <td>
+    {{ policy_form.has_eula|safe }}
+    {{ policy_form.has_eula.label_tag()|safe }}
+    <div class="eula {{ 'hidden' if not policy_form.initial.has_eula }}">
+      {{ policy_form.eula.errors|safe }}
+      {{ policy_form.eula.label_tag()|safe }}
+      {{ policy_form.eula|safe }}
+    </div>
+  </td>
+</tr>
+<tr>
+  <th>{{ _('Privacy Policy') }}</th>
+  <td>
+    {{ policy_form.has_priv|safe }}
+    {{ policy_form.has_priv.label_tag()|safe }}
+    <div class="priv {{ 'hidden' if not policy_form.initial.has_priv }}">
+      {{ policy_form.privacy_policy.errors|safe }}
+      {{ policy_form.privacy_policy.label_tag()|safe }}
+      {{ policy_form.privacy_policy|safe }}
+    </div>
+  </td>
+</tr>

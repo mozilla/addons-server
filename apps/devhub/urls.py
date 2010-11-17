@@ -11,7 +11,7 @@ from . import views
 submit_patterns = patterns('',
     url('^3$', views.submit_describe, name='devhub.submit.3'),
     url('^4$', views.submit_describe, name='devhub.submit.4'),
-    url('^5$', views.submit_describe, name='devhub.submit.5'),
+    url('^5$', views.submit_license, name='devhub.submit.5'),
     url('^6$', views.submit_select_review, name='devhub.submit.6'),
     url('^7$', views.submit_done, name='devhub.submit.7'),
 )

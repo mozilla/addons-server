@@ -256,57 +256,71 @@ def delete(request, addon_id, addon):
         return redirect(reverse('devhub.versions', args=(addon_id,)))
 
 
-@dev_required
-@owner_for_post_required
-def ownership(request, addon_id, addon):
-    fs = []
-    # Authors.
-    qs = AddonUser.objects.filter(addon=addon).order_by('position')
-    user_form = forms.AuthorFormSet(request.POST or None, queryset=qs)
-    fs.append(user_form)
-    # License. Clear out initial data if it's a builtin license.
+def _license_form(request, addon, save=False):
     qs = addon.versions.order_by('-version')[:1]
     version = qs[0] if qs else None
     if version:
         instance, initial = version.license, None
+        # Clear out initial data if it's a builtin license.
         if getattr(instance, 'builtin', None):
             instance, initial = None, {'builtin': instance.builtin}
         license_form = forms.LicenseForm(request.POST or None, initial=initial,
                                          instance=instance)
-        fs.append(license_form)
-    # Policy.
+
+    if save and version and license_form.is_valid():
+        license = license_form.save()
+        version.update(license=license)
+        amo.log(amo.LOG.CHANGE_LICENSE, license, addon)
+
+    license_urls = dict(License.objects.builtins()
+                        .values_list('builtin', 'url'))
+    return dict(license_urls=license_urls, version=version,
+                license_form=version and license_form,
+                license_other_val=License.OTHER)
+
+
+def _policy_form(request, addon, save=False):
     policy_form = forms.PolicyForm(
         request.POST or None, instance=addon,
         initial=dict(has_priv=bool(addon.privacy_policy),
                      has_eula=bool(addon.eula)))
+    if save and policy_form.is_valid():
+        policy_form.save(addon=addon)
+        amo.log(amo.LOG.CHANGE_POLICY, addon, policy_form.instance)
+    return policy_form
+
+
+@dev_required
+@owner_for_post_required
+def ownership(request, addon_id, addon):
+    fs, ctx = [], {}
+    # Authors.
+    qs = AddonUser.objects.filter(addon=addon).order_by('position')
+    user_form = forms.AuthorFormSet(request.POST or None, queryset=qs)
+    fs.append(user_form)
+    # Versions.
+    ctx.update(_license_form(request, addon))
+    if ctx['license_form']:
+        fs.append(ctx['license_form'])
+    # Policy.
+    policy_form = _policy_form(request, addon)
     fs.append(policy_form)
 
     if request.method == 'POST' and all([form.is_valid() for form in fs]):
         # Authors.
         authors = user_form.save(commit=False)
         for author in authors:
-            action = amo.LOG.CHANGE_USER_WITH_ROLE if author.id \
-                     else amo.LOG.REMOVE_USER_WITH_ROLE
+            action = (amo.LOG.CHANGE_USER_WITH_ROLE if author.id
+                      else amo.LOG.REMOVE_USER_WITH_ROLE)
             author.addon = addon
             author.save()
             amo.log(action, author.user, author.get_role_display(), addon)
-        # License.
-        if version:
-            license = license_form.save()
-            addon.current_version.update(license=license)
-            amo.log(amo.LOG.CHANGE_LICENSE, license, addon)
-        # Policy.
-        policy_form.save(addon=addon)
-        amo.log(amo.LOG.CHANGE_POLICY, addon, policy_form.instance)
-
+        _license_form(request, addon, save=True)
+        _policy_form(request, addon, save=True)
         return redirect('devhub.addons.owner', addon_id)
 
-    license_urls = dict(License.objects.builtins()
-                        .values_list('builtin', 'url'))
-    return jingo.render(request, 'devhub/addons/owner.html',
-        dict(addon=addon, user_form=user_form, version=version,
-             license_form=version and license_form, license_urls=license_urls,
-             policy_form=policy_form, license_other_val=License.OTHER))
+    ctx.update(addon=addon, user_form=user_form, policy_form=policy_form)
+    return jingo.render(request, 'devhub/addons/owner.html', ctx)
 
 
 @dev_required
@@ -625,11 +639,30 @@ def submit_describe(request, addon_id, addon, step):
     if request.method == 'POST' and form.is_valid():
         addon = form.save(addon)
         amo.log(amo.LOG.EDIT_DESCRIPTIONS, addon)
-        SubmitStep.objects.filter(addon=addon).update(step=F('step') + 1)
-        return redirect('devhub.submit.add_media')
+        SubmitStep.objects.filter(addon=addon).update(step=4)
+        return redirect('devhub.submit.4', addon.id)
 
     return jingo.render(request, 'devhub/addons/submit/describe.html',
                         {'form': form, 'addon': addon, 'step': step})
+
+
+@dev_required
+@submit_step(5)
+def submit_license(request, addon_id, addon, step):
+    fs, ctx = [], {}
+    # Versions.
+    ctx.update(_license_form(request, addon))
+    fs.append(ctx['license_form'])
+    # Policy.
+    policy_form = _policy_form(request, addon)
+    fs.append(policy_form)
+    if request.method == 'POST' and all([form.is_valid() for form in fs]):
+        _license_form(request, addon, save=True)
+        _policy_form(request, addon, save=True)
+        SubmitStep.objects.filter(addon=addon).update(step=6)
+        return redirect('devhub.submit.6', addon.id)
+    ctx.update(addon=addon, policy_form=policy_form, step=step)
+    return jingo.render(request, 'devhub/addons/submit/license.html', ctx)
 
 
 @dev_required

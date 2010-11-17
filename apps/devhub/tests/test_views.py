@@ -1673,6 +1673,9 @@ class TestSubmitBase(test_utils.TestCase):
     def get_addon(self):
         return Addon.objects.no_cache().get(pk=3615)
 
+    def get_step(self):
+        return SubmitStep.objects.get(addon=self.get_addon())
+
 
 class TestSubmitStep1(TestSubmitBase):
 
@@ -1769,6 +1772,39 @@ class TestSubmitStep3(test_utils.TestCase):
         error = 'Ensure this value has at most 250 characters (it has 251).'
         self.assertFormError(r, 'form', 'summary', error)
 
+class TestSubmitStep5(TestSubmitBase):
+
+    def setUp(self):
+        super(TestSubmitStep5, self).setUp()
+        SubmitStep.objects.create(addon_id=3615, step=5)
+        self.url = reverse('devhub.submit.5', args=[3615])
+        self.next_step = reverse('devhub.submit.6', args=[3615])
+        License.objects.create(builtin=3, on_form=True)
+
+    def test_get(self):
+        eq_(self.client.get(self.url).status_code, 200)
+
+    def test_set_license(self):
+        r = self.client.post(self.url, {'builtin': 3})
+        self.assertRedirects(r, self.next_step)
+        eq_(self.get_addon().current_version.license.builtin, 3)
+        eq_(self.get_step().step, 6)
+
+    def test_license_error(self):
+        r = self.client.post(self.url, {'builtin': 4})
+        eq_(r.status_code, 200)
+        self.assertFormError(r, 'license_form', 'builtin',
+                             'Select a valid choice. 4 is not one of '
+                             'the available choices.')
+        eq_(self.get_step().step, 5)
+
+    def test_set_eula(self):
+        r = self.client.post(self.url, dict(builtin=3, has_eula=True,
+                                            eula='xxx'))
+        self.assertRedirects(r, self.next_step)
+        eq_(unicode(self.get_addon().eula), 'xxx')
+        eq_(self.get_step().step, 6)
+
 
 class TestSubmitStep6(TestSubmitBase):
 
@@ -1800,16 +1836,14 @@ class TestSubmitStep6(TestSubmitBase):
         r = self.client.post(self.url, d)
         eq_(r.status_code, 302)
         eq_(self.get_addon().status, amo.STATUS_UNREVIEWED)
-        assert_raises(SubmitStep.DoesNotExist,
-                      SubmitStep.objects.get, addon=3615)
+        assert_raises(SubmitStep.DoesNotExist, self.get_step)
 
     def test_full_review(self):
         d = dict(review_type=amo.STATUS_NOMINATED)
         r = self.client.post(self.url, d)
         eq_(r.status_code, 302)
         eq_(self.get_addon().status, amo.STATUS_NOMINATED)
-        assert_raises(SubmitStep.DoesNotExist,
-                      SubmitStep.objects.get, addon=3615)
+        assert_raises(SubmitStep.DoesNotExist, self.get_step)
 
 
 class TestSubmitStep7(TestSubmitBase):
