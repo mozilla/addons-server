@@ -40,6 +40,7 @@
         <tr>
           <th>{{ _('License') }}</th>
           <td>
+            {{ license_form.builtin.errors|safe }}
             {{ license_form.builtin|safe }}
             <div class="license-other {{ 'js-hidden' if not (license_form.initial.builtin == license_other_val or license_form.errors) }}"
               data-val="{{ license_other_val }}">
