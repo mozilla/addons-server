@@ -6,14 +6,14 @@ import uuid
 
 from django import http
 from django.conf import settings
+from django.db.models import F
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.http import urlquote
 
 import commonware.log
 import jingo
 import path
-from tower import ugettext_lazy as _lazy
-from tower import ugettext as _
+from tower import ugettext_lazy as _lazy, ugettext as _
 
 import amo
 import amo.utils
@@ -27,7 +27,7 @@ from addons import forms as addon_forms
 from addons.models import Addon, AddonUser
 from addons.views import BaseFilter
 from cake.urlresolvers import remora_url
-from devhub.models import ActivityLog, RssKey
+from devhub.models import ActivityLog, RssKey, SubmitStep
 from files.models import File, FileUpload
 from translations.models import delete_translation
 from versions.models import License, Version
@@ -39,6 +39,9 @@ log = commonware.log.getLogger('z.devhub')
 # Acceptable extensions.
 EXTENSIONS = ('.xpi', '.jar', '.xml')
 
+# We use a session cookie to make sure people see the dev agreement.
+DEV_AGREEMENT_COOKIE = 'yes-I-read-the-dev-agreement'
+
 
 def dev_required(f):
     """Requires user to be add-on owner or admin"""
@@ -46,12 +49,13 @@ def dev_required(f):
     @functools.wraps(f)
     def wrapper(request, addon_id, *args, **kw):
         addon = get_object_or_404(Addon, id=addon_id)
+        fun = lambda: f(request, addon_id=addon_id, addon=addon, *args, **kw)
         # Require an owner for POST requests.
         if request.method == 'POST':
             if acl.check_ownership(request, addon, require_owner=True):
-                return f(request, addon_id, addon, *args, **kw)
+                return fun()
         elif acl.check_ownership(request, addon, require_owner=False):
-            return f(request, addon_id, addon, *args, **kw)
+            return fun()
         return http.HttpResponseForbidden()
     return wrapper
 
@@ -537,11 +541,44 @@ def version_bounce(request, addon_id, addon, version):
         raise http.Http404()
 
 
+_steps = {}
+
+
+def submit_step(step, url_name):
+    """
+    Wraps the function with a decorator that bounces to the right step.
+
+    The (step, url_name) pair is used if we need to redirect.
+    """
+    def decorator(f):
+        @functools.wraps(f)
+        def wrapper(request, *args, **kw):
+            addon_id = kw['addon_id']
+            on_step = SubmitStep.objects.filter(addon=addon_id)
+            if on_step:
+                # The step was too high, so bounce to the saved step.
+                if on_step[0].step < step:
+                    url = _steps[on_step[0].step]
+                    return redirect(url, addon_id)
+            else:
+                # We couldn't find a step, so we must be done.
+                return redirect('devhub.submit.done', addon_id)
+            return f(request, *args, **kw)
+        return wrapper
+    _steps[step] = url_name
+    return decorator
+
+
 @login_required
 def submit(request):
+    if request.method == 'POST':
+        response = redirect('devhub.submit.addon')
+        response.set_cookie(DEV_AGREEMENT_COOKIE)
+        return response
+
     base = os.path.join(os.path.dirname(amo.__file__), '..', '..', 'locale')
     # Note that the agreement is not localized (for legal reasons)
-    # but the official version is stored in en_US
+    # but the official version is stored in en_US.
     agrmt = os.path.join(base,
                 'en_US', 'pages', 'docs', 'policies', 'agreement.thtml')
     f = codecs.open(agrmt, encoding='utf8')
@@ -555,27 +592,45 @@ def submit(request):
                         {'agreement_text': agreement_text})
 
 
+@login_required
+def submit_addon(request):
+    if DEV_AGREEMENT_COOKIE not in request.COOKIES:
+        return redirect('devhub.submit')
+    if request.method == 'POST':
+        upload = get_object_or_404(FileUpload, pk=request.POST['upload'])
+        addon = Addon.from_upload(upload)
+        AddonUser(addon=addon, user=request.amo_user).save()
+        SubmitStep.objects.create(addon=addon, step=2)
+        return redirect('devhub.submit.describe', addon.id)
+    return http.HttpResponse()
+
+
 @dev_required
+@submit_step(3, 'devhub.submit.describe')
 def submit_describe(request, addon_id, addon):
     form = addon_forms.AddonFormBasic(request.POST or None, instance=addon,
                                       request=request)
     if request.method == 'POST' and form.is_valid():
         addon = form.save(addon)
         amo.log(amo.LOG.EDIT_DESCRIPTIONS, addon)
+        SubmitStep.objects.filter(addon=addon).update(step=F('step') + 1)
         return redirect('devhub.submit.add_media')
 
     return jingo.render(request, 'devhub/addons/submit/describe.html',
                         {'form': form, 'addon': addon})
 
 
-@login_required
-def submit_addon(request):
-    if request.method == 'POST':
-        upload = get_object_or_404(FileUpload, pk=request.POST['upload'])
-        addon = Addon.from_upload(upload)
-        AddonUser(addon=addon, user=request.amo_user).save()
-        # TODO: bounce to step 3.
-        return redirect('devhub.addons.edit', addon.id)
+@dev_required
+@submit_step(6, 'devhub.submit.select_review')
+def submit_select_review(request, addon_id, addon):
+    review_type_form = forms.ReviewTypeForm(request.POST or None)
+    if request.method == 'POST' and review_type_form.is_valid():
+        addon.status = review_type_form.cleaned_data['review_type']
+        addon.save()
+        SubmitStep.objects.filter(addon=addon).delete()
+        return redirect('devhub.submit.done', addon_id)
+    return jingo.render(request, 'devhub/addons/submit/select-review.html',
+                        {'addon': addon, 'review_type_form': review_type_form})
 
 
 @dev_required
@@ -586,14 +641,3 @@ def submit_done(request, addon_id, addon):
     return jingo.render(request, 'devhub/addons/submit/done.html',
                         {'addon': addon,
                          'is_platform_specific': is_platform_specific})
-
-
-@dev_required
-def submit_select_review(request, addon_id, addon):
-    review_type_form = forms.ReviewTypeForm(request.POST or None)
-    if request.method == 'POST' and review_type_form.is_valid():
-        addon.status = review_type_form.cleaned_data['review_type']
-        addon.save()
-        return redirect('devhub.submit.done', addon_id)
-    return jingo.render(request, 'devhub/addons/submit/select-review.html',
-                        {'addon': addon, 'review_type_form': review_type_form})

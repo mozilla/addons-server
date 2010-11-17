@@ -8,7 +8,7 @@ from django.conf import settings
 from django.utils import translation
 
 import mock
-from nose.tools import eq_, assert_not_equal
+from nose.tools import eq_, assert_not_equal, assert_raises
 from pyquery import PyQuery as pq
 import test_utils
 
@@ -19,7 +19,7 @@ from addons.models import Addon, AddonUser, Charity
 from applications.models import AppVersion
 from bandwagon.models import Collection
 from devhub.forms import ContribForm
-from devhub.models import ActivityLog, RssKey
+from devhub.models import ActivityLog, RssKey, SubmitStep
 from files.models import File, Platform
 from reviews.models import Review
 from tags.models import Tag
@@ -960,7 +960,6 @@ class TestDelete(test_utils.TestCase):
         self.assertRaises(Addon.DoesNotExist, self.get_addon)
 
 
-
 class TestEdit(test_utils.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615',
                 'base/addon_5579']
@@ -1622,15 +1621,17 @@ class TestVersionEditCompat(TestVersionEdit):
             ['Invalid version range.'])
 
 
-class TestAddonSubmission(test_utils.TestCase):
+class TestSubmitBase(test_utils.TestCase):
     fixtures = ['base/addon_3615', 'base/addon_5579', 'base/users']
 
     def setUp(self):
-        super(TestAddonSubmission, self).setUp()
         assert self.client.login(username='del@icio.us', password='password')
 
     def get_addon(self):
         return Addon.objects.no_cache().get(pk=3615)
+
+
+class TestSubmitStep1(TestSubmitBase):
 
     def test_step1_submit(self):
         response = self.client.get(reverse('devhub.submit'))
@@ -1645,34 +1646,130 @@ class TestAddonSubmission(test_utils.TestCase):
                 "Looks like link %r to %r is still a placeholder" % (href,
                                                                      ln.text))
 
-    def test_step6_select_review(self):
-        url = reverse('devhub.submit.select_review', args=[3615])
-        r = self.client.get(url)
+
+class TestSubmitStep2(test_utils.TestCase):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        self.client.login(username='regular@mozilla.com', password='password')
+
+    def test_step_2_with_cookie(self):
+        r = self.client.post(reverse('devhub.submit'))
+        self.assertRedirects(r, reverse('devhub.submit.addon'))
+        r = self.client.get(reverse('devhub.submit.addon'))
         eq_(r.status_code, 200)
 
-        r = self.client.post(url, {'dummy': 'text'})
+    def test_step_2_no_cookie(self):
+        # We require a cookie that gets set in step 1.
+        r = self.client.get(reverse('devhub.submit.addon'), follow=True)
+        self.assertRedirects(r, reverse('devhub.submit'))
+
+
+class TestSubmitStep3(test_utils.TestCase):
+    fixtures = ['base/addon_3615', 'base/addon_5579', 'base/users']
+
+    def setUp(self):
+        super(TestSubmitStep3, self).setUp()
+        self.url = reverse('devhub.submit.describe', args=[3615])
+        assert self.client.login(username='del@icio.us', password='password')
+        SubmitStep.objects.create(addon_id=3615, step=3)
+
+    def test_submit(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+
+        # Post and be redirected.
+        d = {'name': 'Test name',
+             'slug': 'testname',
+             'summary': 'Hello!'}
+        r = self.client.post(self.url, d)
+        eq_(r.status_code, 302)
+        eq_(SubmitStep.objects.get(addon=3615).step, 4)
+
+    def test_submit_name_required(self):
+        # Make sure name is required.
+        r = self.client.post(self.url, {'dummy': 'text'})
+        eq_(r.status_code, 200)
+        self.assertFormError(r, 'form', 'name', 'This field is required.')
+
+    def test_submit_name_length(self):
+        # Make sure the name isn't too long.
+        r = self.client.post(self.url, {'name': 'a' * 51})
+        eq_(r.status_code, 200)
+        error = 'Ensure this value has at most 50 characters (it has 51).'
+        self.assertFormError(r, 'form', 'name', error)
+
+    def test_submit_slug_invalid(self):
+        # Submit an invalid slug.
+        d = dict(slug='slug!!! aksl23%%')
+        r = self.client.post(self.url, d)
+        eq_(r.status_code, 200)
+        self.assertFormError(r, 'form', 'slug', "Enter a valid 'slug' " +
+                    "consisting of letters, numbers, underscores or hyphens.")
+
+    def test_submit_slug_required(self):
+        # Make sure the slug is required.
+        r = self.client.post(self.url, {'dummy': 'text'})
+        eq_(r.status_code, 200)
+        self.assertFormError(r, 'form', 'slug', 'This field is required.')
+
+    def test_submit_summary_required(self):
+        # Make sure summary is required.
+        r = self.client.post(self.url, {'dummy': 'text'})
+        eq_(r.status_code, 200)
+        self.assertFormError(r, 'form', 'summary', 'This field is required.')
+
+    def test_submit_summary_length(self):
+        # Summary is too long.
+        r = self.client.post(self.url, {'summary': 'a' * 251})
+        eq_(r.status_code, 200)
+        error = 'Ensure this value has at most 250 characters (it has 251).'
+        self.assertFormError(r, 'form', 'summary', error)
+
+
+class TestSubmitStep6(TestSubmitBase):
+
+    def setUp(self):
+        super(TestSubmitStep6, self).setUp()
+        SubmitStep.objects.create(addon_id=3615, step=6)
+        self.url = reverse('devhub.submit.select_review', args=[3615])
+
+    def test_get(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+
+    def test_require_review_type(self):
+        r = self.client.post(self.url, {'dummy': 'text'})
         eq_(r.status_code, 200)
         self.assertFormError(r, 'review_type_form', 'review_type',
                              'A review type must be selected.')
 
+    def test_bad_review_type(self):
         d = dict(review_type='jetsfool')
-        r = self.client.post(url, d)
+        r = self.client.post(self.url, d)
         eq_(r.status_code, 200)
         self.assertFormError(r, 'review_type_form', 'review_type',
                              'Select a valid choice. jetsfool is not one of '
                              'the available choices.')
 
-        # Preliminary Review.
+    def test_prelim_review(self):
         d = dict(review_type=amo.STATUS_UNREVIEWED)
-        r = self.client.post(url, d)
+        r = self.client.post(self.url, d)
         eq_(r.status_code, 302)
         eq_(self.get_addon().status, amo.STATUS_UNREVIEWED)
+        assert_raises(SubmitStep.DoesNotExist,
+                      SubmitStep.objects.get, addon=3615)
 
-        # Full Review.
+    def test_full_review(self):
         d = dict(review_type=amo.STATUS_NOMINATED)
-        r = self.client.post(url, d)
+        r = self.client.post(self.url, d)
         eq_(r.status_code, 302)
         eq_(self.get_addon().status, amo.STATUS_NOMINATED)
+        assert_raises(SubmitStep.DoesNotExist,
+                      SubmitStep.objects.get, addon=3615)
+
+
+class TestSubmitStep7(TestSubmitBase):
 
     def test_finish_submitting_addon(self):
         addon = Addon.objects.get(
@@ -1756,62 +1853,32 @@ class TestAddonSubmission(test_utils.TestCase):
         assert exp in intro, ('Unexpected intro: %s' % intro.strip())
 
 
-class TestAddonSubmissionDescribe(test_utils.TestCase):
-    fixtures = ['base/addon_3615', 'base/addon_5579', 'base/users']
+class TestSubmitSteps(test_utils.TestCase):
+    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
 
     def setUp(self):
-        super(TestAddonSubmissionDescribe, self).setUp()
-        self.url = reverse('devhub.submit.describe', args=[3615])
         assert self.client.login(username='del@icio.us', password='password')
 
-    def test_submit(self):
-        r = self.client.get(self.url)
+    def test_step_1(self):
+        r = self.client.get(reverse('devhub.submit'))
         eq_(r.status_code, 200)
 
-        # Post and be redirected.
-        d = {'name': 'Test name',
-             'slug': 'testname',
-             'summary': 'Hello!'}
-        r = self.client.post(self.url, d)
-        eq_(r.status_code, 302)
-
-    def test_submit_name_required(self):
-        # Make sure name is required.
-        r = self.client.post(self.url, {'dummy': 'text'})
+    def test_on_step_6(self):
+        # Hitting the step we're supposed to be on is a 200.
+        SubmitStep.objects.create(addon_id=3615, step=6)
+        r = self.client.get(reverse('devhub.submit.select_review',
+                                    args=[3615]))
         eq_(r.status_code, 200)
-        self.assertFormError(r, 'form', 'name', 'This field is required.')
 
-    def test_submit_name_length(self):
-        # Make sure the name isn't too long.
-        r = self.client.post(self.url, {'name': 'a' * 51})
-        eq_(r.status_code, 200)
-        error = 'Ensure this value has at most 50 characters (it has 51).'
-        self.assertFormError(r, 'form', 'name', error)
+    def test_skip_step_6(self):
+        # We get bounced back to step 3.
+        SubmitStep.objects.create(addon_id=3615, step=3)
+        r = self.client.get(reverse('devhub.submit.select_review',
+                                    args=[3615]), follow=True)
+        self.assertRedirects(r, reverse('devhub.submit.describe', args=[3615]))
 
-    def test_submit_slug_invalid(self):
-        # Submit an invalid slug.
-        d = dict(slug='slug!!! aksl23%%')
-        r = self.client.post(self.url, d)
-        eq_(r.status_code, 200)
-        self.assertFormError(r, 'form', 'slug', "Enter a valid 'slug' " +
-                    "consisting of letters, numbers, underscores or hyphens.")
-
-    def test_submit_slug_required(self):
-        # Make sure the slug is required.
-        r = self.client.post(self.url, {'dummy': 'text'})
-        eq_(r.status_code, 200)
-        self.assertFormError(r, 'form', 'slug', 'This field is required.')
-
-    def test_submit_summary_required(self):
-        # Make sure summary is required.
-        r = self.client.post(self.url, {'dummy': 'text'})
-        eq_(r.status_code, 200)
-        self.assertFormError(r, 'form', 'summary', 'This field is required.')
-
-    def test_submit_summary_length(self):
-        # Summary is too long.
-        r = self.client.post(self.url, {'summary': 'a' * 251})
-        eq_(r.status_code, 200)
-        error = 'Ensure this value has at most 250 characters (it has 251).';
-        self.assertFormError(r, 'form', 'summary', error)
-
+    def test_all_done(self):
+        # There's no SubmitStep, so we must be done.
+        r = self.client.get(reverse('devhub.submit.select_review',
+                                    args=[3615]), follow=True)
+        self.assertRedirects(r, reverse('devhub.submit.done', args=[3615]))
