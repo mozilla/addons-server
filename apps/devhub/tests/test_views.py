@@ -1416,7 +1416,7 @@ def initial(form):
 
 class TestVersionEdit(test_utils.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615',
-                'base/thunderbird']
+                'base/thunderbird', 'base/platforms']
 
     def setUp(self):
         assert self.client.login(username='del@icio.us', password='password')
@@ -1468,11 +1468,17 @@ class TestVersionEditDetails(TestVersionEdit):
         r = self.client.get(url, follow=True)
         self.assertRedirects(r, self.url)
 
+    def test_supported_platforms(self):
+        res = self.client.get(self.url)
+        choices = res.context['new_file_form'].fields['platform'].choices
+        eq_(len(choices), len(amo.SUPPORTED_PLATFORMS))
+
 
 class TestVersionEditSearchEngine(TestVersionEdit):
     # https://bugzilla.mozilla.org/show_bug.cgi?id=605941
     fixtures = ['base/apps', 'base/users',
-                'base/thunderbird', 'base/addon_4594_a9.json']
+                'base/thunderbird', 'base/addon_4594_a9.json',
+                'base/platforms']
 
     def setUp(self):
         assert self.client.login(username='admin@mozilla.com',
@@ -1546,8 +1552,6 @@ class TestVersionEditFiles(TestVersionEdit):
             [amo.STATUS_BETA, amo.STATUS_UNREVIEWED])
 
     def test_unique_platforms(self):
-        for platform in amo.PLATFORMS:
-            k, _ = Platform.objects.get_or_create(id=platform)
         # Move the existing file to Linux.
         f = self.version.files.get()
         f.update(platform=Platform.objects.get(id=amo.PLATFORM_LINUX.id))
