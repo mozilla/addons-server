@@ -61,29 +61,23 @@
     <div class="recent-activity">
       <h3>
         {{ _('Recent Activity') }}
-{# TODO: Add URL for user's 'Recent Activity' feed. #}
-        <a href="#" class="subscribe-feed" title="{{ _('Subscribe to this feed') }}">
+        <a href="{{ rss }}" class="subscribe-feed" title="{{ _('Subscribe to this feed') }}">
           {{ _('Subscribe to this feed') }}</a>
       </h3>
-      <ul>
-{# TODO: Replace with real Recent Activity. #}
-        <li>
-          Version 1.3 of Test Pilot added.
-          <span class="activity-timestamp">30 min ago by Mozilla Labs</span>
-        </li>
-        <li>
-          Version 1.2 of Test Pilot added.
-          <span class="activity-timestamp">1 week ago by Mozilla Labs</span>
-        </li>
-        <li>
-          Version 1.2 of Test Pilot added.
-          <span class="activity-timestamp">3 weeks ago by Mozilla Labs</span>
-        </li>
-        <li>
-          Firefox Sync of Test Pilot approved for release.
-          <span class="activity-timestamp">3 months ago by Mozilla Labs</span>
-        </li>
-      </ul>
+      {% if items %}
+        <ul>
+          {% for item in items %}
+            <li class="item">
+              {{ item|safe }}
+              <span class="activity-timestamp">
+              {% trans user=item.user|user_link, ago=item.created|timesince %}
+              {{ ago }} by {{ user }}
+              {% endtrans %}
+              </span>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
       <p class="older-activity"><a href="{{ url('devhub.feed_all') }}">
         {{ _('Older activity for My Add-ons') }}</a></p>
     </div>

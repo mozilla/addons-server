@@ -98,9 +98,10 @@ def dashboard(request):
     TYPE = amo.ADDON_ANY
     addons, filter = addon_listing(request, TYPE)
     addons = amo.utils.paginate(request, addons, per_page=10)
-    return jingo.render(request, 'devhub/addons/dashboard.html',
-                        {'addons': addons, 'sorting': filter.field,
-                         'sort_opts': filter.opts})
+    data = dict(addons=addons, sorting=filter.field,
+                items=_get_items(None, request.amo_user.addons.all())[:4],
+                sort_opts=filter.opts, rss=_get_rss_feed(request))
+    return jingo.render(request, 'devhub/addons/dashboard.html', data)
 
 
 @dev_required
@@ -183,6 +184,11 @@ def _get_items(action, addons):
     return items
 
 
+def _get_rss_feed(request):
+    key, __ = RssKey.objects.get_or_create(user=request.amo_user)
+    return urlparams(reverse('devhub.feed_all'), privaterss=key.key)
+
+
 def feed(request, addon_id=None):
     if request.GET.get('privaterss'):
         return feeds.ActivityFeedRSS()(request)
@@ -207,8 +213,7 @@ def feed(request, addon_id=None):
             if not acl.check_ownership(request, addons):
                 return http.HttpResponseForbidden()
         else:
-            key, __ = RssKey.objects.get_or_create(user=request.amo_user)
-            rssurl = urlparams(reverse('devhub.feed_all'), privaterss=key.key)
+            rssurl = _get_rss_feed(request)
             addons = addons_all
 
     action = request.GET.get('action')

@@ -105,6 +105,15 @@ class TestActivity(HubTest):
     def get_pq(self, **kwargs):
         return pq(self.get_response(**kwargs).content)
 
+    def test_dashboard(self):
+        """Make sure the dashboard is getting data."""
+        self.log_creates(10)
+        r = self.client.get(reverse('devhub.addons'))
+        doc = pq(r.content)
+        eq_(len(doc('li.item')), 4)
+        eq_(doc('.subscribe-feed').attr('href')[:-32],
+            reverse('devhub.feed_all') + '?privaterss=')
+
     def test_items(self):
         self.log_creates(10)
         doc = self.get_pq()
