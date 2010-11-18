@@ -1,6 +1,10 @@
+import json
 import logging
+import os
 import sys
 import traceback
+
+from django.core import management
 
 from celeryutils import task
 
@@ -27,6 +31,17 @@ def validator(upload_id, **kw):
 
 
 def _validator(upload):
+    # Monkeypatch the validator's hard-coded applications & versions.
+    from validator.testcases import targetapplication as testcase
+    cmd = management.load_command_class('applications', 'dump_apps')
+    if not os.path.exists(cmd.JSON_PATH):
+        cmd.handle()
+    apps = json.load(open(cmd.JSON_PATH))
+
+    testcase.APPLICATIONS = dict((d['guid'], d['name']) for d in apps.values())
+    versions = dict((d['guid'], d['versions']) for d in apps.values())
+    testcase.APPROVED_APPLICATIONS = versions
+
     # TODO(basta): this should be two lines.
     # from addon_validator import validate
     # return validate(path, format='json')
