@@ -1,0 +1,20 @@
+{% extends "devhub/addons/submit/base.html" %}
+
+{% block primary %}
+<h3>{{ _('Step 5. Select a License') }}</h3>
+<p>{% trans %}
+  We require all add-ons to indicate the terms under which their source code is
+  licensed. Please select a license from the list below or enter a custom license.
+{% endtrans %}</p>
+
+<form method="post" class="item" action="">
+  {{ csrf() }}
+  <table>
+    {% include "devhub/includes/license_form.html" %}
+    {% include "devhub/includes/policy_form.html" %}
+  </table>
+  <div class="submission-buttons addon-submission-field">
+    <button type="submit">{{ _('Continue') }}</button>
+  </div>
+</form>
+{% endblock %}
