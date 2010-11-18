@@ -1,0 +1,17 @@
+{% extends "devhub/base.html" %}
+
+{% block content %}
+<h3>Let's talk about {{ addon.name }}</h3>
+<p>Right now it's
+{% if step %}
+  on <b>step {{ step.step }}</b>.
+{% else %}
+  not in the submission process.
+{% endif %}
+</p>
+<form method="post" action="">
+  {{ csrf() }}
+  <p>I want this add-on to be on step <input type=numeric name=step size=1>.</p>
+  <p><button type=submit>Make it so</button></p>
+</form>
+{% endblock %}

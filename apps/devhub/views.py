@@ -690,3 +690,22 @@ def submit_done(request, addon_id, addon, step):
     return jingo.render(request, 'devhub/addons/submit/done.html',
                         {'addon': addon, 'step': step,
                          'is_platform_specific': is_platform_specific})
+
+
+@login_required
+def submit_bump(request, addon_id):
+    if not acl.action_allowed(request, 'Admin', 'EditSubmitStep'):
+        return http.HttpResponseForbidden()
+    addon = get_object_or_404(Addon, pk=addon_id)
+    step = SubmitStep.objects.filter(addon=addon)
+    step = step[0] if step else None
+    if request.method == 'POST' and request.POST.get('step'):
+        new_step = request.POST['step']
+        if step:
+            step.step = new_step
+        else:
+            step = SubmitStep(addon=addon, step=new_step)
+        step.save()
+        return redirect('devhub.submit.bump', addon.id)
+    return jingo.render(request, 'devhub/addons/submit/bump.html',
+                        dict(addon=addon, step=step))

@@ -14,6 +14,7 @@ submit_patterns = patterns('',
     url('^5$', views.submit_license, name='devhub.submit.5'),
     url('^6$', views.submit_select_review, name='devhub.submit.6'),
     url('^7$', views.submit_done, name='devhub.submit.7'),
+    url('^bump$', views.submit_bump, name='devhub.submit.bump'),
 )
 
 # These will all start with /addon/<addon_id>/
