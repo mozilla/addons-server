@@ -325,7 +325,7 @@ function load_unicode() {
 }
 
 function makeslug(s) {
-    var re = new RegExp("[^\w" + z.unicode_letters + "0-9\s-]+","g");
+    var re = new RegExp("[^\\w" + z.unicode_letters + "\\s-]+","g");
     s = $.trim(s.replace(re, ' '));
     s = s.replace(/[-\s]+/g, '-').toLowerCase();
     return s
