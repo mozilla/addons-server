@@ -204,7 +204,7 @@ class ActivityLog(amo.models.ModelBase):
                                                 arg.tag_text)
         try:
             data = dict(user=self.user, addon=addon, review=review,
-                        version=version, collection=collection)
+                        version=version, collection=collection, tag=tag)
             return log_type.format.format(*arguments, **data)
         except (AttributeError, KeyError, IndexError):
             log.warning('%d contains garbage data' % (self.id or 0))

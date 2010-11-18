@@ -1067,7 +1067,10 @@ class TestEdit(test_utils.TestCase):
 
         self.tags.sort()
         eq_(result, ', '.join(self.tags))
-
+        eq_((ActivityLog.objects.for_addons(self.addon)
+             .get(action=amo.LOG.ADD_TAG.id)).to_string(),
+            '<a href="/en-US/firefox/tag/tag4">tag4</a> added to '
+            '<a href="/en-US/firefox/addon/3615/">new name</a>')
         eq_(ActivityLog.objects.filter(action=amo.LOG.ADD_TAG.id).count(),
                                         count + 1)
 
