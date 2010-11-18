@@ -414,11 +414,9 @@ function initEditVersions() {
 
             statusclass = v.errors ? 'status-fail' : 'status-pass';
             $('#upload-status-results').html(body).addClass(statusclass);
+            resetFileInput();
         }
 
-        statusclass = v.errors ? 'status-fail' : 'status-pass';
-        $('#upload-status-results').html(body).addClass(statusclass);
-        resetFileInput();
     }
 }
 
