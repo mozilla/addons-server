@@ -542,9 +542,12 @@ BROKER_VHOST = 'zamboni'
 BROKER_CONNECTION_TIMEOUT = 0.1
 CELERY_RESULT_BACKEND = 'amqp'
 CELERY_IGNORE_RESULT = True
-# We have separate celeryds for processing the devhub as fast as possible.
+# We have separate celeryds for processing devhub & images as fast as possible.
 CELERY_ROUTES = {
     'devhub.tasks.validator': {'queue': 'devhub'},
+    'bandwagon.tasks.resize_icon': {'queue': 'images'},
+    'users.tasks.resize_photo': {'queue': 'images'},
+    'users.tasks.delete_photo': {'queue': 'images'},
 }
 
 
