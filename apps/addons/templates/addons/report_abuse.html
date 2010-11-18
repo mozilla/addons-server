@@ -1,7 +1,10 @@
 <div id="addon" class="primary">
   <form method="post" action="{{ url('addons.abuse', addon.pk) }}">
     <fieldset class="abuse">
-      {% if hide %}<legend><a href="{{ url('addons.abuse', addon.pk) }}" class="abuse-image">{{ _('Report Abuse') }}</a></legend>{% endif %}
+      {% if hide %}
+      <legend><a href="{{ remora_url('developers/docs/policies/contact') }}"
+                 class="abuse-image">{{ _('Report Abuse') }}</a></legend>
+      {% endif %}
       <ol {% if hide %}style="display: none"{% endif %}>
         <li>
           <p>{% trans url=remora_url('developers/docs/policies') %}
