@@ -332,10 +332,12 @@ class TestUpdateCompatibility(test_utils.TestCase):
                                  password='password')
         r = self.client.get(self.url)
         doc = pq(r.content)
-        assert not doc('.item[data-addonid=4594] .tooltip.compat-update')
+        assert not doc('.item[data-addonid=4594] li.compat')
         a = Addon.objects.get(pk=4594)
         r = self.client.get(reverse('devhub.ajax.compat.update',
                                     args=[a.id, a.current_version.id]))
+        eq_(r.status_code, 404)
+        r = self.client.get(reverse('devhub.ajax.compat.status', args=[a.id]))
         eq_(r.status_code, 404)
 
     def test_compat(self):

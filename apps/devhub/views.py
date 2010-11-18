@@ -106,6 +106,8 @@ def dashboard(request):
 
 @dev_required
 def ajax_compat_status(request, addon_id, addon):
+    if not (addon.accepts_compatible_apps() and addon.current_version):
+        raise http.Http404()
     return jingo.render(request, 'devhub/addons/ajax_compat_status.html',
                         dict(addon=addon))
 

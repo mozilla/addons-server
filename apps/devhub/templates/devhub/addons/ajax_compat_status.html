@@ -1,31 +1,29 @@
-{% if addon.accepts_compatible_apps() and addon.current_version %}
-  {% set apps = addon.incompatible_latest_apps() %}
-  {% set update_url = url('devhub.ajax.compat.update', addon.id, addon.current_version.id) %}
-  <a class="tooltip {% if apps %}compat-error{% else %}compat-update{% endif %}"
-     data-updateurl="{{ update_url }}" href="#"
-     title="{{ _('View and update application compatibility ranges.') }}">
-    {{ _('Compatibility') }}</a>
-  {% if apps %}
-    {% set app = apps[0] %}
-    <div class="compat-error-popup popup error hidden">
-      <div class="{{ app.short }} app">
-        <p class="msg">
-          {% trans app_name=app.pretty, app_version=app.latest_version %}
-            This add-on is incompatible with <b>{{ app_name }}
-            {{ app_version }}</b>, the latest release of {{ app_name }}.
-            Please consider updating your add-on's compatibility info, or
-            uploading a newer version of this add-on.
-          {% endtrans %}
-        </p>
-        <p>
-          <a href="#" class="button compat-update"
-             data-updateurl="{{ update_url }}">{{ _('Update Compatibility') }}</a>
-          <a href="{{ url('devhub.versions', addon.id) }}" class="button">
-            {{ _('Upload New Version') }}</a>
-          {% trans %}or <a href="#" class="close">Ignore</a>{% endtrans %}
-        </p>
-      </div>
-    </div>
-  {% endif %}
-  <div class="compat-update-modal modal hidden"></div>
+{% set apps = addon.incompatible_latest_apps() %}
+{% set update_url = url('devhub.ajax.compat.update', addon.id, addon.current_version.id) %}
+<a class="tooltip {% if apps %}compat-error{% else %}compat-update{% endif %}"
+   data-updateurl="{{ update_url }}" href="#"
+   title="{{ _('View and update application compatibility ranges.') }}">
+{{ _('Compatibility') }}</a>
+{% if apps %}
+{% set app = apps[0] %}
+<div class="compat-error-popup popup error hidden">
+  <div class="{{ app.short }} app">
+    <p class="msg">
+      {% trans app_name=app.pretty, app_version=app.latest_version %}
+        This add-on is incompatible with <b>{{ app_name }}
+        {{ app_version }}</b>, the latest release of {{ app_name }}.
+        Please consider updating your add-on's compatibility info, or
+        uploading a newer version of this add-on.
+      {% endtrans %}
+    </p>
+    <p>
+      <a href="#" class="button compat-update"
+         data-updateurl="{{ update_url }}">{{ _('Update Compatibility') }}</a>
+      <a href="{{ url('devhub.versions', addon.id) }}" class="button">
+        {{ _('Upload New Version') }}</a>
+      {% trans %}or <a href="#" class="close">Ignore</a>{% endtrans %}
+    </p>
+  </div>
+</div>
 {% endif %}
+<div class="compat-update-modal modal hidden"></div>
