@@ -4,7 +4,7 @@
   <h3>
     {{ _('Technical Details') }}
     {% if not editable %}
-      <a href="{{ url('devhub.addons.section', addon.id, 'technical', 'edit') }}" class="button">
+      <a href="#" data-editurl="{{ url('devhub.addons.section', addon.id, 'technical', 'edit') }}" class="button">
         {{ _('Edit') }}</a>
     {% endif %}
   </h3>

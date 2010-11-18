@@ -49,10 +49,8 @@ $(document).ready(function() {
         a = $(this);
 
         (function(parent_div, a){
-            parent_div.load($(a).attr('href'), addonFormSubmit);
+            parent_div.load($(a).attr('data-editurl'), addonFormSubmit);
         })(parent_div, a);
-
-        return false;
     });
 
     $('.addon-edit-cancel').live('click', function(){
@@ -185,7 +183,7 @@ function initEditVersions() {
             $modal.hideMe();
         });
     });
-    
+
     $("#file-list").delegate("a.remove", "click", function() {
         $tr = $(this).closest("tr").first();
         $tr.hide().find(".delete input").attr("checked", "checked");
@@ -348,14 +346,14 @@ function initEditVersions() {
         $('#upload-status-bar div').css('width', 0).show();
         $('#upload-status-bar').removeClass('progress-idle');
         $("#upload-file-finish").attr("disabled", true);
-        
+
 
         updateStatus(0);
         $('#uploadstatus_abort').show();
 
         return true;
     }
-    
+
     function resetFileInput() {
         upload = $("<input type='file'>").attr('name', 'upload')
                                          .attr('id', 'upload-file-input');

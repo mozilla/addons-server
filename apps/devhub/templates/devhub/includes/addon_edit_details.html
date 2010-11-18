@@ -4,7 +4,7 @@
   <h3>
     {{ _('Add-on Details') }}
     {% if not editable %}
-      <a href="{{ url('devhub.addons.section', addon.id, 'details', 'edit') }}" class="button">
+      <a href="#" data-editurl="{{ url('devhub.addons.section', addon.id, 'details', 'edit') }}" class="button">
       {{ _('Edit') }}</a>
     {% endif %}
   </h3>
@@ -16,7 +16,7 @@
           <tr>
             <th>
               <label for="description">{{ _('Description') }}</label>
-              {{ tip(None, 
+              {{ tip(None,
                      _("A longer explanation of features, functionality, and other
                         relevant information. This field is only displayed on the
                         add-on's details page.")) }}
