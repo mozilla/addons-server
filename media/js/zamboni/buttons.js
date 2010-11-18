@@ -12,7 +12,8 @@ z.button.after = {'contrib': function(xpi_url, status) {
 }};
 
 var vc = new VersionCompare(),
-    notavail = '<div class="extra"><span class="notavail">{0}</span></div>';
+    notavail = '<div class="extra"><span class="notavail">{0}</span></div>',
+    download_re = new RegExp('(/downloads/(?:latest|file)/\\d+)');
 
 /* Called by the jQuery plugin to set up a single button. */
 var installButton = function() {
@@ -28,6 +29,14 @@ var installButton = function() {
         var $this = $(this);
         if ($this.hasattr('data-realurl')) {
             $this.attr('href', $this.attr('data-realurl'));
+        }
+
+        /* If we're on the mobile site but it's not a mobile browser, force
+         * the download url to type:attachment.
+         */
+        if (z.app === 'mobile' && !z.appMatchesUserAgent) {
+            var href = $this.attr('href');
+            $this.attr('href', href.replace(download_re, '$1/type:attachment'));
         }
     });
 
