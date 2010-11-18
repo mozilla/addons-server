@@ -1,0 +1,48 @@
+[
+    {
+        "pk": 1,
+        "model": "perf.performanceosversion",
+        "fields": {
+            "version": "10.6",
+            "os": "mac",
+            "modified": "2010-11-18 14:52:54",
+            "created": "2010-11-18 14:52:54"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "perf.performanceappversions",
+        "fields": {
+            "app": "fx",
+            "version": "3.6",
+            "modified": "2010-11-18 14:43:00",
+            "created": "2010-11-18 14:43:00"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "perf.performance",
+        "fields": {
+            "created": "2010-11-18 14:53:11",
+            "average": 5.2117100000000001,
+            "modified": "2010-11-18 14:53:11",
+            "appversion": 1,
+            "test": "ts",
+            "osversion": 1,
+            "addon": 3615
+        }
+    },
+    {
+        "pk": 2,
+        "model": "perf.performance",
+        "fields": {
+            "created": "2010-11-18 14:53:11",
+            "average": 14.849299999999999,
+            "modified": "2010-11-18 14:53:11",
+            "appversion": 1,
+            "test": "ts",
+            "osversion": 1,
+            "addon": 5299
+        }
+    }
+]

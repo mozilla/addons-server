@@ -43,6 +43,9 @@ urlpatterns = patterns('',
     # AMO admin (not django admin).
     ('^admin/', include('zadmin.urls')),
 
+    # Performance wall of shame.
+    ('^performance/', include('perf.urls')),
+
     # Nick's special pages.
     ('^nickspages/', include('nick.urls')),
 

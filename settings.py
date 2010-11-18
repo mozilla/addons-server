@@ -259,6 +259,7 @@ INSTALLED_APPS = (
     'jingo_minify',
     'nick',
     'pages',
+    'perf',
     'reviews',
     'search',
     'sharing',
