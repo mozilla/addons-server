@@ -179,7 +179,9 @@ function initEditVersions() {
         if ($tgt.attr("disabled")) return;
         $.post($tgt.attr("data-url"), $("#upload-file").serialize(), function (resp) {
             $("#file-list tbody").append(resp);
-            $("#id_files-TOTAL_FORMS").val($("#file-list tr").length);
+            var new_total = $("#file-list tr").length;
+            $("#id_files-TOTAL_FORMS").val(new_total);
+            $("#id_files-INITIAL_FORMS").val(new_total);
             $modal.hideMe();
         });
     });
