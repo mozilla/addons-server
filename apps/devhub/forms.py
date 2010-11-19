@@ -12,7 +12,7 @@ import amo
 import paypal
 from addons.models import Addon, AddonUser, Charity
 from applications.models import Application, AppVersion
-from files.models import File, Platform
+from files.models import File
 from translations.widgets import TranslationTextarea, TranslationTextInput
 from translations.models import delete_translation
 from versions.models import License, Version, ApplicationsVersions
@@ -314,9 +314,8 @@ class NewFileForm(happyforms.Form):
     upload = forms.CharField(max_length=36)
     platform = File._meta.get_field('platform').formfield(empty_label=None,
                     widget=forms.RadioSelect(attrs={'class': 'platform'}))
-    platforms = [ (p.id, p.name) for p in amo.SUPPORTED_PLATFORMS.values() ]
-    platforms.sort()
-    platform.choices = platforms
+    platform.choices = sorted((p.id, p.name)
+                              for p in amo.SUPPORTED_PLATFORMS.values())
 
 
 class FileForm(happyforms.ModelForm):
