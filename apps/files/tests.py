@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
+import hashlib
 import os
+import shutil
+import tempfile
 
 from django import forms
 from django.conf import settings
@@ -7,10 +10,10 @@ from django.conf import settings
 import test_utils
 from nose.tools import eq_
 
-import amo
+import amo.utils
 from addons.models import Addon
 from applications.models import Application, AppVersion
-from files.models import File
+from files.models import File, FileUpload
 from files.utils import parse_xpi
 from versions.models import Version
 
@@ -159,3 +162,31 @@ class TestParseXpi(test_utils.TestCase):
     # parse_theme
     # parse_langpack
     # parse_search_engine?
+
+
+class TestFileUpload(test_utils.TestCase):
+
+    def setUp(self):
+        self._addons_path = settings.ADDONS_PATH
+        settings.ADDONS_PATH = tempfile.mkdtemp()
+        self.data = 'file contents'
+
+    def tearDown(self):
+        shutil.rmtree(settings.ADDONS_PATH)
+        settings.ADDONS_PATH = self._addons_path
+
+    def upload(self):
+        # The data should be in chunks.
+        data = list(amo.utils.chunked(self.data, 3))
+        return FileUpload.from_post(data, 'filename.xpi',
+                                    len(self.data))
+
+    def test_from_post_write_file(self):
+        eq_(open(self.upload().path).read(), self.data)
+
+    def test_from_post_filename(self):
+        eq_(self.upload().name, 'filename.xpi')
+
+    def test_from_post_hash(self):
+        hash = hashlib.sha256(self.data).hexdigest()
+        eq_(self.upload().hash, 'sha256:%s' % hash)

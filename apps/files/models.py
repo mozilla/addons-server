@@ -1,4 +1,6 @@
+import hashlib
 import os
+import uuid
 import zipfile
 
 from django.conf import settings
@@ -14,6 +16,9 @@ import amo.utils
 from amo.urlresolvers import reverse
 
 log = commonware.log.getLogger('z.files')
+
+# Acceptable extensions.
+EXTENSIONS = ('.xpi', '.jar', '.xml')
 
 
 class File(amo.models.ModelBase):
@@ -174,6 +179,7 @@ class FileUpload(amo.models.ModelBase):
     path = models.CharField(max_length=255)
     name = models.CharField(max_length=255,
                             help_text="The user's original filename")
+    hash = models.CharField(max_length=255, default='')
     user = models.ForeignKey('users.UserProfile', null=True)
     validation = models.TextField(null=True)
     task_error = models.TextField(null=True)
@@ -183,6 +189,23 @@ class FileUpload(amo.models.ModelBase):
 
     def __unicode__(self):
         return self.uuid
+
+    @classmethod
+    def from_post(cls, chunks, filename, size):
+        loc = path.path(settings.ADDONS_PATH) / 'temp' / uuid.uuid4().hex
+        if not loc.dirname().exists():
+            loc.dirname().makedirs()
+        ext = path.path(filename).ext
+        if ext in EXTENSIONS:
+            loc += ext
+        log.info('UPLOAD: %r (%s bytes) to %r' % (filename, size, loc))
+        hash = hashlib.sha256()
+        with open(loc, 'wb') as fd:
+            for chunk in chunks:
+                hash.update(chunk)
+                fd.write(chunk)
+        return cls.objects.create(path=loc, name=filename,
+                                  hash='sha256:%s' % hash.hexdigest())
 
 
 class TestCase(amo.models.ModelBase):

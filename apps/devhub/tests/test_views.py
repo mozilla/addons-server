@@ -1,5 +1,8 @@
+import json
 import re
+import shutil
 import socket
+import tempfile
 from decimal import Decimal
 from urllib import urlencode
 
@@ -20,7 +23,7 @@ from applications.models import AppVersion
 from bandwagon.models import Collection
 from devhub.forms import ContribForm
 from devhub.models import ActivityLog, RssKey, SubmitStep
-from files.models import File, Platform
+from files.models import File, FileUpload, Platform
 from reviews.models import Review
 from tags.models import Tag
 from users.models import UserProfile
@@ -2058,3 +2061,49 @@ class TestSubmitSteps(test_utils.TestCase):
         doc = pq(self.client.get(url).content)
         self.assert_linked(doc, [])
         self.assert_highlight(doc, 7)
+
+
+class TestUpload(test_utils.TestCase):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        self.url = reverse('devhub.upload')
+        self._addons_path = settings.ADDONS_PATH
+        settings.ADDONS_PATH = tempfile.mkdtemp()
+
+    def tearDown(self):
+        shutil.rmtree(settings.ADDONS_PATH)
+        settings.ADDONS_PATH = self._addons_path
+
+    def post(self):
+        data = 'some data'
+        return self.client.post(self.url, data, content_type='text',
+                                HTTP_X_FILE_NAME='filename.xpi',
+                                HTTP_X_FILE_SIZE=len(data))
+
+    def test_no_x_filesize(self):
+        r = self.client.post(self.url, 'some data', content_type='text')
+        eq_(r.status_code, 400)
+
+    def test_create_fileupload(self):
+        self.post()
+        upload = FileUpload.objects.get()
+        eq_(upload.name, 'filename.xpi')
+        eq_(open(upload.path).read(), 'some data')
+
+    def test_fileupload_user(self):
+        self.client.login(username='regular@mozilla.com', password='password')
+        self.post()
+        user = UserProfile.objects.get(email='regular@mozilla.com')
+        eq_(FileUpload.objects.get().user, user)
+
+    def test_fileupload_validation(self):
+        self.post()
+        validation = json.loads(FileUpload.objects.get().validation)
+        eq_(validation['success'], False)
+
+    def test_redirect(self):
+        r = self.post()
+        upload = FileUpload.objects.get()
+        url = reverse('devhub.upload_detail', args=[upload.pk, 'json'])
+        self.assertRedirects(r, url)

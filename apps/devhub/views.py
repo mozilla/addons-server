@@ -3,17 +3,13 @@ import collections
 import functools
 import json
 import os
-import uuid
 
 from django import http
-from django.conf import settings
-from django.db.models import F
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.http import urlquote
 
 import commonware.log
 import jingo
-import path
 from tower import ugettext_lazy as _lazy, ugettext as _
 
 import amo
@@ -37,8 +33,6 @@ from . import forms, tasks, feeds
 
 log = commonware.log.getLogger('z.devhub')
 
-# Acceptable extensions.
-EXTENSIONS = ('.xpi', '.jar', '.xml')
 
 # We use a session cookie to make sure people see the dev agreement.
 DEV_AGREEMENT_COOKIE = 'yes-I-read-the-dev-agreement'
@@ -405,22 +399,16 @@ def profile(request, addon_id, addon):
 def upload(request):
     if request.method == 'POST':
         #TODO(gkoberger): Bug 610800 - Don't load uploads into memory.
-        upload = request.raw_post_data
-        upload_name = request.META['HTTP_X_FILE_NAME']
-        upload_size = request.META['HTTP_X_FILE_SIZE']
-        loc = path.path(settings.ADDONS_PATH) / 'temp' / uuid.uuid4().hex
-        if not loc.dirname().exists():
-            loc.dirname().makedirs()
-        ext = path.path(upload_name).ext
-        if ext in EXTENSIONS:
-            loc += ext
-        log.info('UPLOAD: %r (%s bytes) to %r' %
-                 (upload_name, upload_size, loc))
-        with open(loc, 'wb') as fd:
-            for chunk in upload:
-                fd.write(chunk)
-        user = getattr(request, 'amo_user', None)
-        fu = FileUpload.objects.create(path=loc, name=upload_name, user=user)
+        filedata = request.raw_post_data
+        try:
+            filename = request.META['HTTP_X_FILE_NAME']
+            size = request.META['HTTP_X_FILE_SIZE']
+        except KeyError:
+            return http.HttpResponseBadRequest()
+        fu = FileUpload.from_post([filedata], filename, size)
+        if request.user.is_authenticated():
+            fu.user = request.amo_user
+            fu.save()
         tasks.validator.delay(fu.pk)
         return redirect('devhub.upload_detail', fu.pk, 'json')
 
