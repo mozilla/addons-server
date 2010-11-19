@@ -45,9 +45,18 @@ cfg = {
         'null': {
             '()': NullHandler,
         },
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler'
+        },
     },
     'loggers': {
         'z': {},
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
     },
     'root': {},
 }
