@@ -519,6 +519,15 @@ def version_edit(request, addon_id, addon, version_id):
 
 
 @dev_required
+@post_required
+def version_delete(request, addon_id, addon):
+    version_id = request.POST.get('version_id')
+    version = get_object_or_404(Version, pk=version_id, addon=addon)
+    version.delete()
+    return redirect('devhub.versions', addon_id)
+
+
+@dev_required
 def version_add(request, addon_id, addon):
     if request.method == 'POST':
         upload = get_object_or_404(FileUpload, pk=request.POST['upload'])

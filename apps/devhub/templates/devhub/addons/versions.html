@@ -135,7 +135,7 @@
   </div>
 
   <div id="modal-delete-version" class="modal modal_delete">
-    <form method="post" action="">
+    <form method="post" action="{{ url('devhub.versions.delete', addon.id) }}">
       <h2>{{ _('Delete Add-on Version') }}</h2>
       <p>
         {% trans %}
@@ -143,6 +143,7 @@
         {% endtrans %}
       </p>
       {{ csrf() }}
+      <input type="hidden" name="version_id" class="version_id">
       <input type="hidden" name="addon_id" class="addon_id" value="{{ addon.id }}">
       <button type="submit">{{ _('Delete Add-on Version') }}</button>
       {{ _('or') }} <a href="#" class="close">{{ _('Cancel') }}</a>

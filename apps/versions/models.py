@@ -77,7 +77,7 @@ class Version(amo.models.ModelBase):
         return reverse('addons.versions', args=(self.addon.id, self.version,))
 
     def delete(self):
-        amo.log(amo.LOG.DELETE_VERSION, self.addon, self)
+        amo.log(amo.LOG.DELETE_VERSION, self.addon, str(self.version))
         super(Version, self).delete()
 
     @amo.cached_property(writable=True)

@@ -35,6 +35,8 @@ detail_patterns = patterns('',
         views.addons_section, name='devhub.addons.section'),
 
     url('^versions/$', views.version_list, name='devhub.versions'),
+    url('^versions/delete$', views.version_delete,
+        name='devhub.versions.delete'),
     url('^versions/add$', views.version_add, name='devhub.versions.add'),
     url('^versions/(?P<version_id>\d+)$', views.version_edit,
         name='devhub.versions.edit'),

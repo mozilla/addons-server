@@ -117,7 +117,7 @@ class EDIT_VERSION:
 
 class DELETE_VERSION:
     id = 18
-    format = _(u'{user.name} deleted version {0.version} from {addon}')
+    format = _(u'{user.name} deleted version {0} from {addon}')
     keep = True
 
 

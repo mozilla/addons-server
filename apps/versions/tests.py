@@ -9,7 +9,9 @@ from pyquery import PyQuery
 import amo
 from amo.urlresolvers import reverse
 from addons.models import Addon
+from devhub.models import ActivityLog
 from files.models import File, Platform
+from users.models import UserProfile
 from versions import views, utils
 from versions.models import Version
 from versions.compare import version_int, dict_from_int
@@ -39,7 +41,7 @@ def test_dict_from_int():
 
 
 class TestVersion(test_utils.TestCase):
-    fixtures = ['base/addon_3615']
+    fixtures = ['base/addon_3615', 'base/admin']
 
     def test_compatible_apps(self):
         v = Version.objects.get(pk=81551)
@@ -92,6 +94,25 @@ class TestVersion(test_utils.TestCase):
         assert self._get_version(amo.STATUS_UNREVIEWED).is_unreviewed
         assert self._get_version(amo.STATUS_PENDING).is_unreviewed
         assert not self._get_version(amo.STATUS_PUBLIC).is_unreviewed
+
+    def test_version_delete(self):
+        version = Version.objects.get(pk=81551)
+        version.delete()
+        assert Addon.uncached.get(pk=3615)
+
+    def test_version_delete_files(self):
+        version = Version.objects.get(pk=81551)
+        eq_(version.files.count(), 1)
+        version.delete()
+        eq_(version.files.count(), 0)
+
+    def test_version_delete_logs(self):
+        user = UserProfile.objects.get(pk=55021)
+        amo.set_user(user)
+        version = Version.objects.get(pk=81551)
+        eq_(ActivityLog.objects.count(), 0)
+        version.delete()
+        eq_(ActivityLog.objects.count(), 1)
 
 
 class TestViews(test_utils.TestCase):

@@ -1421,9 +1421,13 @@ class TestVersion(test_utils.TestCase):
     def setUp(self):
         assert self.client.login(username='del@icio.us', password='password')
         self.addon = Addon.objects.get(id=3615)
+        self.version = Version.objects.get(id=81551)
         self.url = reverse('devhub.versions', args=[3615])
 
-    def testVersionStatusPublic(self):
+        self.delete_url = reverse('devhub.versions.delete', args=[3615])
+        self.delete_data = {'addon_id': self.addon.pk, 'version_id': self.version.pk}
+
+    def test_version_status_public(self):
         res = self.client.get(self.url)
         doc = pq(res.content)
         assert doc('.version-status')
@@ -1434,6 +1438,15 @@ class TestVersion(test_utils.TestCase):
         doc = pq(res.content)
         assert doc('.version-status.version-disabled')
 
+    def test_delete_version(self):
+        res = self.client.post(self.delete_url, self.delete_data)
+        assert not Version.objects.filter(pk=81551).exists()
+
+    def test_cant_delete_version(self):
+        self.client.logout()
+        res = self.client.post(self.delete_url, self.delete_data)
+        eq_(res.status_code, 302)
+        assert Version.objects.filter(pk=81551).exists()
 
 class TestVersionEdit(test_utils.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615',
