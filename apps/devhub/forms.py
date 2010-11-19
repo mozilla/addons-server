@@ -117,14 +117,15 @@ def LicenseForm(*args, **kw):
 class PolicyForm(happyforms.ModelForm):
     """Form for editing the add-ons EULA and privacy policy."""
     has_eula = forms.BooleanField(required=False,
-        label=_('This add-on has an End User License Agreement'))
+        label=_lazy('This add-on has an End User License Agreement'))
     eula = forms.CharField(widget=TranslationTextarea(), required=False,
-        label=_("Please specify your add-on's End User License Agreement:"))
-    has_priv = forms.BooleanField(required=False,
-                                  label=_("This add-on has a Privacy Policy"))
+        label=_lazy("Please specify your add-on's "
+                    "End User License Agreement:"))
+    has_priv = forms.BooleanField(
+        required=False, label=_lazy("This add-on has a Privacy Policy"))
     privacy_policy = forms.CharField(
         widget=TranslationTextarea(), required=False,
-        label=_("Please specify your add-on's privacy policy:"))
+        label=_lazy("Please specify your add-on's privacy policy:"))
 
     class Meta:
         model = Addon
