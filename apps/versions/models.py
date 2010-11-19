@@ -12,6 +12,7 @@ import amo
 import amo.models
 from amo.urlresolvers import reverse
 from applications.models import Application, AppVersion
+from files import utils
 from files.models import File, Platform
 from translations.fields import (TranslatedField, PurifiedField,
                                  LinkifiedField)
@@ -42,7 +43,6 @@ class Version(amo.models.ModelBase):
 
     @classmethod
     def from_upload(cls, upload, addon):
-        from . import utils
         # TODO: license, relnotes
         data = utils.parse_xpi(upload.path, addon)
         try:

@@ -10,9 +10,10 @@ import amo
 from amo.urlresolvers import reverse
 from addons.models import Addon
 from devhub.models import ActivityLog
+from files import utils
 from files.models import File, Platform
 from users.models import UserProfile
-from versions import views, utils
+from versions import views
 from versions.models import Version
 from versions.compare import version_int, dict_from_int
 

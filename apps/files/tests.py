@@ -1,12 +1,17 @@
 # -*- coding: utf-8 -*-
 import os
 
+from django import forms
+from django.conf import settings
+
 import test_utils
 from nose.tools import eq_
 
 import amo
 from addons.models import Addon
+from applications.models import Application, AppVersion
 from files.models import File
+from files.utils import parse_xpi
 from versions.models import Version
 
 
@@ -86,3 +91,71 @@ class TestFile(test_utils.TestCase):
         eq_(f.generate_filename(),
             u'\u30d5\u30a9\u30af\u3059\u3051\u3068\u3044\u3063\u3057\u3087'
             '-0.1.7-fx.xpi')
+
+
+class TestParseXpi(test_utils.TestCase):
+    fixtures = ['base/apps']
+
+    def setUp(self):
+        for version in ('3.0', '3.6.*'):
+            AppVersion.objects.create(application_id=1, version=version)
+
+    def parse(self, addon=None):
+        path = 'apps/files/fixtures/files/extension.xpi'
+        xpi = os.path.join(settings.ROOT, path)
+        return parse_xpi(xpi, addon)
+
+    def test_parse_basics(self):
+        # Everything but the apps
+        exp = {'guid': 'guid@xpi',
+               'name': 'xpi name',
+               'description': 'xpi description',
+               'version': '0.1',
+               'homepage': 'http://homepage.com',
+               'type': 1}
+        parsed = self.parse()
+        for key, value in exp.items():
+            eq_(parsed[key], value)
+
+    def test_parse_apps(self):
+        exp = (amo.FIREFOX,
+               amo.FIREFOX.id,
+               AppVersion.objects.get(version='3.0'),
+               AppVersion.objects.get(version='3.6.*'))
+        eq_(self.parse()['apps'], [exp])
+
+    def test_parse_apps_bad_appver(self):
+        AppVersion.objects.all().delete()
+        eq_(self.parse()['apps'], [])
+
+    def test_parse_apps_bad_guid(self):
+        Application.objects.all().delete()
+        eq_(self.parse()['apps'], [])
+
+    def test_guid_match(self):
+        addon = Addon.objects.create(guid='guid@xpi', type=1)
+        eq_(self.parse(addon)['guid'], 'guid@xpi')
+
+    def test_guid_nomatch(self):
+        addon = Addon.objects.create(guid='xxx', type=1)
+        with self.assertRaises(forms.ValidationError) as e:
+            self.parse(addon)
+        eq_(e.exception.messages, ["GUID doesn't match add-on"])
+
+    def test_guid_dupe(self):
+        Addon.objects.create(guid='guid@xpi', type=1)
+        with self.assertRaises(forms.ValidationError) as e:
+            self.parse()
+        eq_(e.exception.messages, ['Duplicate GUID found.'])
+
+    def test_match_type(self):
+        addon = Addon.objects.create(guid='guid@xpi', type=4)
+        with self.assertRaises(forms.ValidationError) as e:
+            self.parse(addon)
+        eq_(e.exception.messages,
+            ['<em:type> does not match existing add-on'])
+
+    # parse_dictionary
+    # parse_theme
+    # parse_langpack
+    # parse_search_engine?

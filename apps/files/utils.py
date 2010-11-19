@@ -11,7 +11,6 @@ from django.conf import settings
 from tower import ugettext as _
 
 import amo
-from addons.models import Addon
 from applications.models import AppVersion
 
 
@@ -23,6 +22,7 @@ def get_text_value(xml, tag):
 
 
 def parse_xpi(xpi, addon=None):
+    from addons.models import Addon
     # Extract to /tmp
     path = os.path.join(settings.TMP_PATH, str(time.time()))
     os.makedirs(path)
@@ -63,20 +63,24 @@ def parse_xpi(xpi, addon=None):
             apps.append(App(appdata=app, id=app.id, min=min, max=max))
 
     guid = get_text_value(rdf, 'id')
+    addon_type = XPI_TYPES.get(get_text_value(rdf, 'type'))
 
     if addon and addon.guid != guid:
         raise forms.ValidationError(_("GUID doesn't match add-on"))
     if not addon and Addon.objects.filter(guid=guid):
         raise forms.ValidationError(_('Duplicate GUID found.'))
 
-    shutil.rmtree(path)
+    if addon and addon.type != addon_type:
+        raise forms.ValidationError(
+            _('<em:type> does not match existing add-on'))
 
+    shutil.rmtree(path)
     return dict(
         guid=guid,
         name=get_text_value(rdf, 'name'),
         description=get_text_value(rdf, 'description'),
         version=get_text_value(rdf, 'version'),
         homepage=get_text_value(rdf, 'homepageURL'),
-        type=XPI_TYPES.get(get_text_value(rdf, 'type')),
+        type=addon_type,
         apps=apps,
     )

@@ -246,7 +246,7 @@ class Addon(amo.models.ModelBase):
 
     @classmethod
     def from_upload(cls, upload):
-        from versions.forms import parse_xpi
+        from files.utils import parse_xpi
         data = parse_xpi(upload.path)
         keys = 'guid name type homepage description'.split()
         addon = Addon(**dict((k, data[k]) for k in keys))

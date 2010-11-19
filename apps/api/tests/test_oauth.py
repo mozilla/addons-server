@@ -273,7 +273,7 @@ class TestAddon(BaseOauth):
         super(TestAddon, self).setUp()
         consumer = self.accepted_consumer
         self._oauth_flow(consumer)
-        path = 'apps/api/fixtures/api/helloworld.xpi'
+        path = 'apps/files/fixtures/files/extension.xpi'
         xpi = os.path.join(settings.ROOT, path)
         f = open(xpi)
 
@@ -285,7 +285,7 @@ class TestAddon(BaseOauth):
                 xpi=f,
                 )
 
-        path = 'apps/api/fixtures/api/helloworld-0.2.xpi'
+        path = 'apps/files/fixtures/files/extension-0.2.xpi'
         self.version_data = dict(
                 builtin=2,
                 platform='windows',
@@ -314,7 +314,7 @@ class TestAddon(BaseOauth):
         data = self.create_addon()
         id = data['id']
         name = data['name']
-        eq_(name, 'XUL School Hello World')
+        eq_(name, 'xpi name')
         assert Addon.objects.get(pk=id)
 
     def test_create_nolicense(self):
@@ -491,7 +491,7 @@ class TestAddon(BaseOauth):
         id = data['id']
         a = Addon.objects.get(pk=id)
         v = a.versions.get()
-        path = 'apps/api/fixtures/api/helloworld-0.2.xpi'
+        path = 'apps/files/fixtures/files/extension-0.2.xpi'
         data = dict(
                 release_notes='fukyeah',
                 license_type='FFFF',
@@ -517,7 +517,7 @@ class TestAddon(BaseOauth):
 
         eq_(v.version, '0.1')
 
-        path = 'apps/api/fixtures/api/helloworld-0.2.xpi'
+        path = 'apps/files/fixtures/files/extension-0.2.xpi'
         data = dict(
                 release_notes='fukyeah',
                 license_type='bsd',

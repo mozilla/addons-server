@@ -10,8 +10,8 @@ import happyforms
 import amo
 from addons.models import Addon, AddonUser
 from files.models import File
+from files.utils import parse_xpi
 from versions.models import ApplicationsVersions, Version
-from versions.utils import parse_xpi
 
 license_ids = dict((license.shortname, license.id) for license in amo.LICENSES)
 
