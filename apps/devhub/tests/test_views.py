@@ -1414,6 +1414,27 @@ def initial(form):
     return data
 
 
+class TestVersion(test_utils.TestCase):
+    fixtures = ['base/users',
+                'base/addon_3615']
+
+    def setUp(self):
+        assert self.client.login(username='del@icio.us', password='password')
+        self.addon = Addon.objects.get(id=3615)
+        self.url = reverse('devhub.versions', args=[3615])
+
+    def testVersionStatusPublic(self):
+        res = self.client.get(self.url)
+        doc = pq(res.content)
+        assert doc('.version-status')
+
+        self.addon.status = amo.STATUS_DISABLED
+        self.addon.save()
+        res = self.client.get(self.url)
+        doc = pq(res.content)
+        assert doc('.version-status.version-disabled')
+
+
 class TestVersionEdit(test_utils.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615',
                 'base/thunderbird', 'base/platforms']
@@ -1781,6 +1802,7 @@ class TestSubmitStep3(test_utils.TestCase):
         error = 'Ensure this value has at most 250 characters (it has 251).'
         self.assertFormError(r, 'form', 'summary', error)
 
+
 class TestSubmitStep5(TestSubmitBase):
 
     def setUp(self):
@@ -1992,7 +2014,7 @@ class TestSubmitSteps(test_utils.TestCase):
         self.assert_highlight(doc, 1)
 
     def test_menu_step_2(self):
-        r = self.client.post(reverse('devhub.submit.1'))
+        self.client.post(reverse('devhub.submit.1'))
         doc = pq(self.client.get(reverse('devhub.submit.2')).content)
         self.assert_linked(doc, [1, 2])
         self.assert_highlight(doc, 2)

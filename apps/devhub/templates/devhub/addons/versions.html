@@ -10,7 +10,7 @@
                       I didn't want to bother "doing it right", though, when I'd
                       just have to change it in a few days #}
   <div>
-    <strong class="version-status">
+    <strong class="version-status {{ status_id|status_css }}">
       {# L10n: The status of the addon #}
       {% trans %}
         This add-on is <span>{{ status }}</span>.
