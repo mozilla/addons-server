@@ -2064,7 +2064,7 @@ class TestSubmitSteps(test_utils.TestCase):
 
 
 class TestUpload(test_utils.TestCase):
-    fixtures = ['base/users']
+    fixtures = ['base/apps', 'base/users']
 
     def setUp(self):
         self.url = reverse('devhub.upload')
