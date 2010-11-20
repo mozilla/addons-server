@@ -72,7 +72,7 @@ def parse_xpi(xpi, addon=None):
 
     if addon and addon.type != addon_type:
         raise forms.ValidationError(
-            _('<em:type> does not match existing add-on'))
+            _("<em:type> doesn't match add-on"))
 
     shutil.rmtree(path)
     return dict(

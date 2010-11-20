@@ -1,8 +1,6 @@
 import json
 import re
-import shutil
 import socket
-import tempfile
 from decimal import Decimal
 from urllib import urlencode
 
@@ -16,6 +14,7 @@ from pyquery import PyQuery as pq
 import test_utils
 
 import amo
+import files.tests
 import paypal
 from amo.urlresolvers import reverse
 from addons.models import Addon, AddonUser, Charity
@@ -1436,7 +1435,8 @@ class TestVersion(test_utils.TestCase):
         self.url = reverse('devhub.versions', args=[3615])
 
         self.delete_url = reverse('devhub.versions.delete', args=[3615])
-        self.delete_data = {'addon_id': self.addon.pk, 'version_id': self.version.pk}
+        self.delete_data = {'addon_id': self.addon.pk,
+                            'version_id': self.version.pk}
 
     def test_version_status_public(self):
         res = self.client.get(self.url)
@@ -1450,7 +1450,7 @@ class TestVersion(test_utils.TestCase):
         assert doc('.version-status.version-disabled')
 
     def test_delete_version(self):
-        res = self.client.post(self.delete_url, self.delete_data)
+        self.client.post(self.delete_url, self.delete_data)
         assert not Version.objects.filter(pk=81551).exists()
 
     def test_cant_delete_version(self):
@@ -1458,6 +1458,7 @@ class TestVersion(test_utils.TestCase):
         res = self.client.post(self.delete_url, self.delete_data)
         eq_(res.status_code, 302)
         assert Version.objects.filter(pk=81551).exists()
+
 
 class TestVersionEdit(test_utils.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615',
@@ -2071,17 +2072,12 @@ class TestSubmitSteps(test_utils.TestCase):
         self.assert_highlight(doc, 7)
 
 
-class TestUpload(test_utils.TestCase):
+class TestUpload(files.tests.UploadTest):
     fixtures = ['base/apps', 'base/users']
 
     def setUp(self):
+        super(TestUpload, self).setUp()
         self.url = reverse('devhub.upload')
-        self._addons_path = settings.ADDONS_PATH
-        settings.ADDONS_PATH = tempfile.mkdtemp()
-
-    def tearDown(self):
-        shutil.rmtree(settings.ADDONS_PATH)
-        settings.ADDONS_PATH = self._addons_path
 
     def post(self):
         data = 'some data'
@@ -2115,3 +2111,76 @@ class TestUpload(test_utils.TestCase):
         upload = FileUpload.objects.get()
         url = reverse('devhub.upload_detail', args=[upload.pk, 'json'])
         self.assertRedirects(r, url)
+
+
+class TestVersionAddFile(files.tests.UploadTest, test_utils.TestCase):
+    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
+
+    def setUp(self):
+        super(TestVersionAddFile, self).setUp()
+        xpi = open(self.xpi_path('extension')).read()
+        self.upload = FileUpload.from_post([xpi], filename='extension.xpi',
+                                           size=1234)
+        self.addon = Addon.objects.get(id=3615)
+        self.version = self.addon.current_version
+        self.addon.update(guid='guid@xpi')
+        self.version.update(version='0.1')
+        Platform.objects.create(id=amo.PLATFORM_MAC.id)
+        self.url = reverse('devhub.versions.add_file',
+                           args=[self.addon.id, self.version.id])
+        assert self.client.login(username='del@icio.us', password='password')
+
+    def post(self, platform=amo.PLATFORM_MAC):
+        return self.client.post(self.url, dict(upload=self.upload.pk,
+                                               platform=platform.id))
+
+    def assert_json_error(self, request, field, msg):
+        eq_(request.status_code, 400)
+        eq_(request['Content-Type'], 'application/json')
+        field = '__all__' if field is None else field
+        content = json.loads(request.content)
+        assert field in content, '%r not in %r' % (field, content)
+        eq_(content[field], [msg])
+
+    def test_guid_matches(self):
+        self.addon.update(guid='something.different')
+        r = self.post()
+        self.assert_json_error(r, None, "GUID doesn't match add-on")
+
+    def test_version_matches(self):
+        self.version.update(version='2.0')
+        r = self.post()
+        self.assert_json_error(r, None, "Version doesn't match")
+
+    def test_platform_limits(self):
+        r = self.post(platform=amo.PLATFORM_ALL)
+        self.assert_json_error(r, 'platform',
+                               'Select a valid choice. That choice is not '
+                               'one of the available choices.')
+
+    def test_type_matches(self):
+        self.addon.update(type=amo.ADDON_THEME)
+        r = self.post()
+        self.assert_json_error(r, None, "<em:type> doesn't match add-on")
+
+    def test_file_platform(self):
+        # Check that we're creating a new file with the requested platform.
+        qs = self.version.files
+        eq_(len(qs.all()), 1)
+        assert not qs.filter(platform=amo.PLATFORM_MAC.id)
+        self.post()
+        eq_(len(qs.all()), 2)
+        assert qs.get(platform=amo.PLATFORM_MAC.id)
+
+    def test_upload_not_found(self):
+        r = self.client.post(self.url, dict(upload='xxx',
+                                            platform=amo.PLATFORM_MAC.id))
+        self.assert_json_error(r, 'upload',
+                               'There was an error with your upload. '
+                               'Please try again.')
+
+    def test_success_html(self):
+        r = self.post()
+        eq_(r.status_code, 200)
+        new_file = self.version.files.get(platform=amo.PLATFORM_MAC.id)
+        eq_(r.context['form'].instance, new_file)

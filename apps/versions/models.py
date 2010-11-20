@@ -28,7 +28,7 @@ class Version(amo.models.ModelBase):
     license = models.ForeignKey('License', null=True)
     releasenotes = PurifiedField()
     approvalnotes = models.TextField(default='', null=True)
-    version = models.CharField(max_length=255, default=0)
+    version = models.CharField(max_length=255, default='0.1')
 
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'versions'

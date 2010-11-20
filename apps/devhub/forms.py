@@ -12,7 +12,8 @@ import amo
 import paypal
 from addons.models import Addon, AddonUser, Charity
 from applications.models import Application, AppVersion
-from files.models import File
+from files.models import File, FileUpload, Platform
+from files.utils import parse_xpi
 from translations.widgets import TranslationTextarea, TranslationTextInput
 from translations.models import delete_translation
 from versions.models import License, Version, ApplicationsVersions
@@ -310,12 +311,32 @@ CompatFormSet = modelformset_factory(
 
 
 class NewFileForm(happyforms.Form):
-    # Points to a FileUpload.uuid.
-    upload = forms.CharField(max_length=36)
+    upload = forms.ModelChoiceField(queryset=FileUpload.objects.all(),
+        error_messages={'invalid_choice': _lazy('There was an error with your '
+                                                'upload. Please try again.')})
     platform = File._meta.get_field('platform').formfield(empty_label=None,
                     widget=forms.RadioSelect(attrs={'class': 'platform'}))
     platform.choices = sorted((p.id, p.name)
                               for p in amo.SUPPORTED_PLATFORMS.values())
+
+    def __init__(self, *args, **kw):
+        self.addon = kw.pop('addon')
+        self.version = kw.pop('version')
+        super(NewFileForm, self).__init__(*args, **kw)
+        # Don't allow platforms we already have.
+        existing = (File.objects.filter(version=self.version)
+                    .values_list('platform', flat=True))
+        platform = self.fields['platform']
+        ids = [p[0] for p in platform.choices if p[0] not in existing]
+        platform.queryset = Platform.objects.filter(id__in=ids)
+
+    def clean(self):
+        # Check for errors in the xpi.
+        if not self.errors:
+            xpi = parse_xpi(self.cleaned_data['upload'].path, self.addon)
+            if xpi['version'] != self.version.version:
+                raise forms.ValidationError("Version doesn't match")
+        return self.cleaned_data
 
 
 class FileForm(happyforms.ModelForm):

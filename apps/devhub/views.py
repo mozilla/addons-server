@@ -473,7 +473,8 @@ def version_edit(request, addon_id, addon, version_id):
     version = get_object_or_404(Version, pk=version_id, addon=addon)
     version_form = forms.VersionForm(request.POST or None, instance=version)
 
-    new_file_form = forms.NewFileForm(request.POST or None)
+    new_file_form = forms.NewFileForm(request.POST or None,
+                                      addon=addon, version=version)
 
     file_form = forms.FileFormSet(request.POST or None, prefix='files',
                                   queryset=version.files.all())
@@ -528,15 +529,15 @@ def version_add(request, addon_id, addon):
 @post_required
 def version_add_file(request, addon_id, addon, version_id):
     version = get_object_or_404(Version, pk=version_id, addon=addon)
-    form = forms.NewFileForm(request.POST)
+    form = forms.NewFileForm(request.POST, addon=addon, version=version)
     if not form.is_valid():
-        return json_view.error(json.dumps(form.errors))
-    upload = get_object_or_404(FileUpload, pk=form.cleaned_data['upload'])
-    File.from_upload(upload, version, form.cleaned_data['platform'])
+        return json_view.error(form.errors)
+    upload = form.cleaned_data['upload']
+    new_file = File.from_upload(upload, version, form.cleaned_data['platform'])
     file_form = forms.FileFormSet(prefix='files', queryset=version.files.all())
-    # TODO (jbalogh): get the right form
+    form = [f for f in file_form.forms if f.instance == new_file]
     return jingo.render(request, 'devhub/includes/version_file.html',
-                        {'form': file_form.forms[-1]})
+                        {'form': form[0]})
 
 
 @dev_required

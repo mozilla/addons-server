@@ -7,15 +7,37 @@ import tempfile
 from django import forms
 from django.conf import settings
 
+import path
 import test_utils
 from nose.tools import eq_
 
 import amo.utils
 from addons.models import Addon
 from applications.models import Application, AppVersion
-from files.models import File, FileUpload
+from files.models import File, FileUpload, Platform
 from files.utils import parse_xpi
 from versions.models import Version
+
+
+class UploadTest(test_utils.TestCase):
+    """
+    Base for tests that mess with file uploads, safely using temp directories.
+    """
+
+    def setUp(self):
+        self._addons_path = settings.ADDONS_PATH
+        settings.ADDONS_PATH = tempfile.mkdtemp()
+        self._rename = path.path.rename
+        path.path.rename = path.path.copy
+
+    def tearDown(self):
+        shutil.rmtree(settings.ADDONS_PATH)
+        settings.ADDONS_PATH = self._addons_path
+        path.path.rename = self._rename
+
+    def xpi_path(self, name):
+        path = 'apps/files/fixtures/files/%s.xpi' % name
+        return os.path.join(settings.ROOT, path)
 
 
 class TestFile(test_utils.TestCase):
@@ -156,7 +178,7 @@ class TestParseXpi(test_utils.TestCase):
         with self.assertRaises(forms.ValidationError) as e:
             self.parse(addon)
         eq_(e.exception.messages,
-            ['<em:type> does not match existing add-on'])
+            ["<em:type> doesn't match add-on"])
 
     # parse_dictionary
     # parse_theme
@@ -164,16 +186,11 @@ class TestParseXpi(test_utils.TestCase):
     # parse_search_engine?
 
 
-class TestFileUpload(test_utils.TestCase):
+class TestFileUpload(UploadTest):
 
     def setUp(self):
-        self._addons_path = settings.ADDONS_PATH
-        settings.ADDONS_PATH = tempfile.mkdtemp()
+        super(TestFileUpload, self).setUp()
         self.data = 'file contents'
-
-    def tearDown(self):
-        shutil.rmtree(settings.ADDONS_PATH)
-        settings.ADDONS_PATH = self._addons_path
 
     def upload(self):
         # The data should be in chunks.
@@ -190,3 +207,29 @@ class TestFileUpload(test_utils.TestCase):
     def test_from_post_hash(self):
         hash = hashlib.sha256(self.data).hexdigest()
         eq_(self.upload().hash, 'sha256:%s' % hash)
+
+
+class TestFileFromUpload(UploadTest):
+    fixtures = ['base/apps']
+
+    def setUp(self):
+        super(TestFileFromUpload, self).setUp()
+        appver = {amo.FIREFOX: ['3.0', '3.6', '3.6.*', '4.0b6'],
+                  amo.MOBILE: ['0.1', '2.0a1pre']}
+        for app, versions in appver.items():
+            for version in versions:
+                AppVersion(application_id=app.id, version=version).save()
+        self.platform = Platform.objects.get(id=amo.PLATFORM_ALL.id)
+
+    def upload(self, name):
+        d = dict(path=self.xpi_path(name), name='%s.xpi' % name,
+                 hash='sha256:%s' % name)
+        return FileUpload.objects.create(**d)
+
+    def test_is_jetpack(self):
+        addon = Addon.objects.create(guid='guid@jetpack',
+                                     type=amo.ADDON_EXTENSION)
+        version = Version.objects.create(addon=addon)
+        upload = self.upload('jetpack')
+        f = File.from_upload(upload, version, self.platform)
+        assert File.objects.get(id=f.id).jetpack
