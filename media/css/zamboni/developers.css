@@ -1061,6 +1061,9 @@ a.extra {
     background-position: 95% 50%;
     padding: 3px 35px 3px 15px;
 }
+.undo {
+    float: right;
+}
 /* @end */
 
 /* @group Add-on Submission */

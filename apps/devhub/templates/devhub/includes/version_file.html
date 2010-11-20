@@ -15,4 +15,12 @@
       <a class="remove" href="#">x</a>
     </td>
   </tr>
+  <tr class="hide">
+    <td colspan="4">
+      <span class="delete-msg error_message">{% trans %}This file will be deleted on save.{% endtrans %}</span>
+    </td>
+    <td>
+      <a class="undo" href="#">{{ _("Undo") }}</a>
+    </td>
+  </tr>
 {% endwith %}

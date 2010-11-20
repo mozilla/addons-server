@@ -187,9 +187,17 @@ function initEditVersions() {
     });
 
     $("#file-list").delegate("a.remove", "click", function() {
-        $tr = $(this).closest("tr").first();
-        $tr.hide().find(".delete input").attr("checked", "checked");
-        $("#id_files-TOTAL_FORMS").val($("#file-list tr").length);
+        var row = $(this).parent().parent();
+        $("input:first", row).attr("checked", true);
+        row.hide();
+        row.next().show();
+    });
+
+    $("#file-list").delegate("a.undo", "click", function() {
+        var row = $(this).parent().parent().prev();
+        $("input:first", row).attr("checked", false);
+        row.show();
+        row.next().hide();
     });
 
     function fileUpload(img, url) {
