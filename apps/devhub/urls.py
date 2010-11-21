@@ -51,6 +51,8 @@ detail_patterns = patterns('',
 ajax_patterns = patterns('',
     url('^versions/compatibility/status$',
         views.ajax_compat_status, name='devhub.ajax.compat.status'),
+    url('^versions/compatibility/error$',
+        views.ajax_compat_error, name='devhub.ajax.compat.error'),
     url('^versions/(?P<version_id>\d+)/compatibility$',
         views.ajax_compat_update, name='devhub.ajax.compat.update'),
 )

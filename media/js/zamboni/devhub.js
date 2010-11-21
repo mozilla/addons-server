@@ -655,20 +655,35 @@ function initCompatibility() {
     });
 
     $('.compat-update-modal').modal('a.compat-update', {
-        delegate: $('.item-actions li.compat, .compat-error-popup'),
+        delegate: $('.item-actions li.compat'),
         hideme: false,
         emptyme: true,
         callback: compatModalCallback
     });
 
-    $('.compat-error-popup').popup('.compat-error', {
+    $('.compat-error-popup').popup('a.compat-error', {
+        delegate: $('.item-actions li.compat'),
+        emptyme: true,
         width: '450px',
         callback: function(obj) {
-            var $popup = this;
-            $popup.delegate('.close, .compat-update', 'click', function(e) {
-                e.preventDefault();
-                $popup.hideMe();
+            var $popup = this,
+                ct = $(obj.click_target),
+                error_url = ct.attr('data-errorurl');
+
+            if (ct.hasClass('ajax-loading'))
+                return;
+            ct.addClass('ajax-loading');
+            $popup.load(error_url, function(e) {
+                ct.removeClass('ajax-loading');
             });
+
+            $('.compat-update-modal').modal('a.compat-update', {
+                delegate: $('.compat-error-popup'),
+                hideme: false,
+                emptyme: true,
+                callback: compatModalCallback
+            });
+
             return {pointTo: $(obj.click_target)};
         }
     });
@@ -696,7 +711,6 @@ function compatModalCallback(obj) {
     if ($widget.hasClass('ajax-loading'))
         return;
     $widget.addClass('ajax-loading');
-
     $widget.load(form_url, function(e) {
         $widget.removeClass('ajax-loading');
     });

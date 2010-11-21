@@ -76,6 +76,9 @@ function makeBlurHideCallback(el) {
             }
         }
         el.hideMe();
+        if (el.o.emptyme) {
+            el.empty();
+        }
     };
     return hider;
 }
@@ -94,8 +97,10 @@ function makeBlurHideCallback(el) {
 //     width:       the width of the popup.
 //     delegate:    delegates the click handling of the click_target to the
 //                  specified parent element.
-//     hideme:      defaults to true, if set to false, popup will not be hidden
+//     hideme:      defaults to true; if set to false, popup will not be hidden
 //                  when the user clicks outside of it.
+//     emptyme:     defaults to false; if set to true, popup will be cleared
+//                  after it is hidden.
 // note: all options may be overridden and modified by returning them in an
 //       object from the callback.
 $.fn.popup = function(click_target, o) {
@@ -109,6 +114,7 @@ $.fn.popup = function(click_target, o) {
         callback:   false,
         container:  false,
         hideme:     true,
+        emptyme:    false,
         pointTo:    false,
         offset:     {},
         width:      300
@@ -150,6 +156,7 @@ $.fn.popup = function(click_target, o) {
         $popup.unbind();
         $popup.undelegate();
         $(document.body).unbind('click newPopup', $popup.hider);
+
         return $popup;
     };
 
@@ -208,8 +215,10 @@ $.fn.popup = function(click_target, o) {
 //     width:       the width of the modal.
 //     delegate:    delegates the click handling of the click_target to the
 //                  specified parent element.
-//     hideme:      defaults to true, if set to false, modal will not be hidden
+//     hideme:      defaults to true; if set to false, modal will not be hidden
 //                  when the user clicks outside of it.
+//     emptyme:     defaults to false; if set to true, modal will be cleared
+//                  after it is hidden.
 // note: all options may be overridden and modified by returning them in an
 //       object from the callback.
 $.fn.modal = function(click_target, o) {
@@ -255,11 +264,8 @@ $.fn.modal = function(click_target, o) {
         $modal.unbind();
         $modal.undelegate();
         $(document.body).unbind('click newmodal', $modal.hider);
-        $(window).bind('resize', $modal.o.onresize);
+        $(window).bind('resize', p.onresize);
         $('.modal-overlay').remove();
-        if (p.emptyme) {
-            $modal.empty();
-        }
         return $modal;
     };
 
@@ -283,6 +289,7 @@ $.fn.modal = function(click_target, o) {
                 $(document.body).bind('click modal', $modal.hider);
             }, 0);
         }
+        $('.popup').hide();
         $modal.delegate('.close', 'click', function(e){
             e.preventDefault();
             $modal.hideMe();

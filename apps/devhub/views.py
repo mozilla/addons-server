@@ -107,6 +107,14 @@ def ajax_compat_status(request, addon_id, addon):
 
 
 @dev_required
+def ajax_compat_error(request, addon_id, addon):
+    if not (addon.accepts_compatible_apps() and addon.current_version):
+        raise http.Http404()
+    return jingo.render(request, 'devhub/addons/ajax_compat_error.html',
+                        dict(addon=addon))
+
+
+@dev_required
 def ajax_compat_update(request, addon_id, addon, version_id):
     if not addon.accepts_compatible_apps():
         raise http.Http404()

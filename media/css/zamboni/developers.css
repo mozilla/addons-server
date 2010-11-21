@@ -112,7 +112,7 @@ a.remove {
 }
 
 .devhub-form .author:hover .remove,
-a.remove:hover,
+tr:hover a.remove,
 .devhub-form tr:hover .help,
 .devhub-form tr:hover .remove {
     background-color: #CCC;
@@ -124,7 +124,8 @@ a.remove:hover,
     cursor: help;
 }
 
-.devhub-form tr:hover .remove:hover {
+.devhub-form tr:hover .remove:hover,
+tr:hover a.remove:hover {
     background-color: #2A4364;
 }
 
@@ -357,7 +358,7 @@ a.remove:hover,
     width: 2px;
     margin: 0 0 4px 4px;
 }
-.item-actions:hover>ul>li:not(:last-child):after {
+.item:hover .item-actions>ul>li:not(:last-child):after {
     background-color: #555;
 }
 
@@ -383,7 +384,7 @@ a.more-actions:after {
     margin: 8px 0 0 4px;
     width: 0;
 }
-.item-actions:hover a.more-actions:after {
+.item:hover .item-actions a.more-actions:after {
     border-color: #05e transparent transparent;
 }
 a.more-actions:after:hover {
@@ -405,12 +406,18 @@ a.more-actions:after:hover {
     background: url(../../img/zamboni/notifications.png) 0px -164px no-repeat;
     padding-left: 15px;
 }
-.item-actions a.compat-error {
+#dashboard .item .item-actions a.compat-error {
     color: #c00;
+}
+.tooltip.ajax-loading {
+    -moz-background-size: auto 12px;
+    -wekbkit-background-size: auto 12px;
+    background-size: auto 12px;
 }
 
 .compat-error-popup.popup {
     padding: 15px;
+    min-height: 100px;
 }
 .compat-error-popup.popup .msg {
     padding-left: 45px;

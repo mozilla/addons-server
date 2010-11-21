@@ -3034,7 +3034,9 @@ a.outlink:hover {
 .widgets .widget.ajax-loading,
 .widgets .widget:hover.ajax-loading,
 input.ui-autocomplete-loading,
-.modal.ajax-loading {
+.modal.ajax-loading,
+.tooltip.ajax-loading,
+.tooltip:hover.ajax-loading {
    background-image: url(../../img/zamboni/loading-white.gif);
    background-repeat: no-repeat;
    background-position: left bottom;
