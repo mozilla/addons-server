@@ -1,0 +1,29 @@
+{% extends "discovery/addons/base.html" %}
+
+{% block title %}
+  {# L10n: {0} is the name of the add-on #}
+  {{ page_title(_('End-User License Agreement for {0}')|f(addon.name)) }}
+{% endblock %}
+
+{% block bodyclass %}eula{% endblock %}
+
+{% block main %}
+<h3>{{ _('End-User License Agreement') }}</h3>
+<p>
+  {% trans addon_name=addon.name %}
+    {{ addon_name }} requires that you accept the following End-User License
+    Agreement before installation can proceed:
+  {% endtrans %}
+</p>
+<article id="eula">
+  <p>{{ addon.eula }}</p>
+</article>
+<ul id="install">
+  <li>
+    {{ install_button(addon, version=version, show_contrib=False,
+                      show_eula=False, show_warning=False) }}
+  </li>
+  <li><a href="{{ url('addons.detail', addon.id) + referrer_src }}" class="button">
+    {{ _('Cancel Installation') }}</a></li>
+</ul>
+{% endblock %}

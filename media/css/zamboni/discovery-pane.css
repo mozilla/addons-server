@@ -1,8 +1,3 @@
-@font-face { font-family: 'MetaWebPro-Book'; src:
-    url('https://www.mozilla.com/img/fonts/MetaWebPro-Book.woff') format('woff'); font-weight: normal; font-style: normal; }
-@font-face { font-family: 'MetaWebPro-Bold'; src:
-    url('https://www.mozilla.com/img/fonts/MetaWebPro-Bold.woff') format('woff'); font-weight: bold; font-style: normal; }
-
 /* @Reset *********/
 header, hgroup, nav, section, article, aside, footer { display: block; }
 html, body, form, fieldset, legend, h1, h2, h3, h4, h5, h6, dt, dd { margin: 0; padding: 0; }
@@ -21,7 +16,7 @@ html {
 }
 
 body {
-    font: 12px/1.33 Helvetica, "Helvetica Neue", Arial, sans-serif;
+    font: 12px/1.33 "Lucida Grande", "Lucida Sans", Helvetica, Arial, sans-serif;
     padding: 0 10px 3em;
     margin: 0 auto;
     color: #373d48;
@@ -31,7 +26,6 @@ body {
 }
 
 h1, h2, h3 {
-    font-family: MetaWebPro-Book, "Trebuchet MS", sans-serif;
     font-weight: normal;
 }
 
@@ -180,7 +174,8 @@ header:after,
 
 #mission p,
 #my-account p {
-    font: 15px/1.1 MetaWebPro-Book, "Trebuchet MS", sans-serif;
+    font-size: 15px;
+    line-height: 1.1;
     margin: 0 0 .5em;
 }
 
@@ -188,7 +183,6 @@ header:after,
 #mission strong,
 #my-account a,
 #my-account strong {
-    font-family: MetaWebPro-Bold, "Trebuchet MS", sans-serif;
     font-weight: bold;
 }
 
@@ -279,36 +273,45 @@ header:after,
     outline: 0;
 }
 
-#nav-prev a {
+.nav-prev a,
+#lightbox-nav a#lightbox-nav-btnPrev {
     left: 0;
     border-radius: 8px 0 0 8px;
-    background: url("../../img/zamboni/discovery_pane/arrow-left.png") no-repeat center center, -moz-linear-gradient(left, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.5) 80%);
+    background: url("../../img/zamboni/discovery_pane/arrow-left.png") no-repeat center center, -moz-linear-gradient(left, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.5) 80%) !important;
     box-shadow: inset rgba(255,255,255,0.1) 0px 0px 6px, rgba(125,125,125, 0.1) 1px 0px 3px;
 }
 
-.html-rtl #nav-prev a {
+.html-rtl .nav-prev a,
+.html-rtl #lightbox-nav a#lightbox-nav-btnPrev {
     border-radius: 0 8px 8px 0;
 }
 
-#nav-prev a:hover,
-#nav-prev a:active {
+.nav-prev a:hover,
+.nav-prev a:active {
     box-shadow: inset rgba(255,255,255,0.4) 0px 0px 6px, rgba(125,125,125,0.1) 2px 0px 3px;
 }
 
-#nav-next a {
+.nav-next a,
+#lightbox-nav a#lightbox-nav-btnNext {
     right: 0;
     border-radius: 0 8px 8px 0;
-    background: url("../../img/zamboni/discovery_pane/arrow-right.png") no-repeat center center, -moz-linear-gradient(right, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.5) 80%);
+    background: url("../../img/zamboni/discovery_pane/arrow-right.png") no-repeat center center, -moz-linear-gradient(right, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.5) 80%) !important;
     box-shadow: inset rgba(255,255,255,0.1) 0px 0px 6px, rgba(125,125,125, 0.1) -1px 0px 3px;
 }
 
-.html-rtl #nav-next a {
+.html-rtl .nav-next a,
+.html-rtl #lightbox-nav a#lightbox-nav-btnNext {
     border-radius: 8px 0 0 8px;
 }
 
-#nav-next a:hover,
-#nav-next a:active {
+.nav-next a:hover,
+.nav-next a:active {
     box-shadow: inset rgba(255,255,255,0.4) 0px 0px 6px, rgba(125,125,125,0.1) -2px 0px 3px;
+}
+
+.nav-prev .disabled,
+.nav-next .disabled {
+    visibility: hidden;
 }
 
 /* @Rock Your Firefox (@RYFF) *********/
@@ -327,7 +330,9 @@ header:after,
 
 .ryff h3 {
     margin: 15px 0 .25em;
-    font: bold 36px/1.1 MetaWebPro-Bold, "Trebuchet MS", sans-serif;
+    font-size: 36px;
+    font-weight: bold;
+    line-height: 1.1;
 }
 
 .ryff h3 a {
@@ -434,7 +439,7 @@ ul.addons {
 
 .addons p.desc {
     -moz-box-flex:1;
-    overflow:hidden;
+    overflow: hidden;
     font-size: 11px;
     text-align: left;
     color: #373d48;
@@ -606,17 +611,17 @@ body.detail {
 }
 
 .detail #main,
-.detail #reviews {
-    padding-left: 85px;
+.detail #addon-reviews {
+    padding-left: 52px;
     width: auto;
     float: none;
     position: relative;
 }
 
 .html-rtl.detail #main,
-.html-rtl.detail #reviews {
+.html-rtl.detail #addon-reviews {
     padding-left: 0;
-    padding-right: 85px;
+    padding-right: 52px;
     width: auto;
     float: none;
     position: relative;
@@ -639,7 +644,7 @@ h1.addon .version {
 }
 
 h1.addon .icon {
-    max-width: 65px;
+    max-width: 32px;
     position: absolute;
     left: 0;
 }
@@ -650,17 +655,28 @@ h1.addon .icon {
 }
 
 h2.author {
-    font: bold 1em Helvetica, "Helvetica Neue", Arial, sans-serif;
-}
-
-#install li {
-    display: inline;
-    margin-right: 10px;
+    font-size: 1em;
     font-weight: bold;
 }
 
-.html-rtl #install li { 
-    margin: 0 0 0 10px; 
+.install-shell .install,
+.install-shell .extra,
+#install,
+#install li {
+    display: inline-block;
+}
+#install li {
+    margin-right: 10px;
+}
+#install li {
+    font-weight: bold;
+}
+.html-rtl #install li {
+    margin: 0 0 0 10px;
+}
+
+.featuredaddon .install-button + strong {
+    display: none;
 }
 
 .addon-info li {
@@ -681,12 +697,14 @@ h2.author {
     border: 0;
 }
 
-.addon-info h3 { 
-    font: bold 1em/1.3 Helvetica, "Helvetica Neue", Arial, sans-serif;
-    color: #76787b; 
+.addon-info h3 {
+    color: #76787b;
+    font-size: 1em;
+    font-weight: bold;
+    line-height: 1.3;
     width: 100px;
     float: left;
-    margin-left: -110px; 
+    margin-left: -110px;
 }
 
 .html-rtl .addon-info h3 {
@@ -709,7 +727,8 @@ h2.author {
 }
 
 /* @Reviews *********/
-#reviews h1 {
+#addon-reviews h3,
+body.eula h3 {
     background: #e0e8f3;
     padding-right: 8px;
     position: relative;
@@ -717,12 +736,14 @@ h2.author {
     float: left;
 }
 
-.html-rtl #reviews h1 {
+.html-rtl #addon-reviews h3,
+.html-rtl body.eula h3 {
     float: right;
     padding: 0 0 0 8px;
 }
 
-#reviews #reviews-list {
+#addon-reviews .article,
+body.eula h3 + p {
     border-top: 2px groove rgba(255,255,255,.25);
     padding-top: 1.75em;
     clear: both;
@@ -730,38 +751,40 @@ h2.author {
     top: -.75em;
 }
 
-#reviews .review {
+#addon-reviews .review-detail {
     margin: 0 0 1.5em;
     padding: 0 0 .25em;
     border-bottom: 2px groove rgba(255,255,255,.25);
 }
 
-#reviews .rev-title {
-    font: bold 1em Helvetica, "Helvetica Neue", Arial, sans-serif;
+#addon-reviews .rev-title {
+    font-weight: bold;
+    font-size: 1em;
     margin: 0 0 .25em;
 }
 
-#reviews .stars {
+#addon-reviews .stars {
     float: none;
     display: inline-block;
     margin: -3px 0 0;
     vertical-align: middle;
 }
 
-#reviews .rev-author {
-    font: 1em Helvetica, "Helvetica Neue", Arial, sans-serif;
+#addon-reviews .rev-author {
+    font-size: 1em;
     color: #76787b;
     margin: 0 0 .5em;
 }
 
-#reviews .all {
+#addon-reviews .more-info,
+p.users {
     font-weight: bold;
 }
 
 /* @Star ratings *********/
 .stars {
     text-indent: -999em;
-    background: url(img/stars.png) 0 50% no-repeat;
+    background: url(../../img/amo2009/icons/stars.png) 0 50% no-repeat;
     margin-right: .5em;
     width: 65px;
     float: left;
@@ -771,7 +794,6 @@ h2.author {
 .stars-2 { background-position: -39px 50%; }
 .stars-1 { background-position: -52px 50%; }
 .stars-0 { background-position: -65px 50%; }
-
 
 /* @Buttons *********/
 a.button {
@@ -794,7 +816,7 @@ a.button:active {
 }
 
 /** @Blue @Button *********/
-a.button.action {
+a.button.go {
     font-weight: bold;
     color: #fff;
     background: -moz-linear-gradient(top, #7bf 40%, #39f 60%);
@@ -803,6 +825,7 @@ a.button.action {
 }
 
 /** @Green @button *********/
+a.button.download,
 a.button.add {
     font-weight: bold;
     color: #fff;
@@ -811,16 +834,20 @@ a.button.add {
     text-shadow: 0 -1px 0 #3a7404;
 }
 
+a.button.download:hover,
+a.button.download:focus,
 a.button.add:hover,
 a.button.add:focus {
     border-color: #1a5404;
 }
 
+a.button.download:active,
 a.button.add:active {
     border-color: #1a5404;
     background: -moz-linear-gradient(#55a802 40%, #83c046 65%);
 }
 
+.button.download b,
 .button.add b {
     padding: 4px 16px 3px 12px;
     margin: 0 0 0 -12px;
@@ -849,15 +876,64 @@ a.button.add:active {
     margin: 0 -2px 0 2px;
 }
 
-
 /* @Images *********/
+#jquery-overlay {
+    background-color: rgba(216, 225, 239, 0.75) !important;
+    opacity: 1 !important;
+}
+#lightbox-container-image-data-box {
+    font: 10px/1.4 "Lucida Grande", "Lucida Sans", Helvetica, Arial, sans-serif !important;
+}
+
+#lightbox-secNav-btnClose img {
+    display: none;
+}
+a#lightbox-secNav-btnClose:after {
+    content: "\D7";
+}
+a#lightbox-secNav-btnClose {
+    -moz-border-radius: 20px;
+    -webkit-border-radius :20px;
+    border-radius: 20px;
+    background-color: #ddd;
+    color: #fff;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    height: 25px;
+    line-height: 22px;
+    margin-top: 2px;
+    padding-bottom: 0;
+    text-align: center;
+    text-decoration: none;
+    width: 25px;
+}
+
+#jquery-lightbox:hover a#lightbox-secNav-btnClose {
+    background-color: #ccc;
+}
+
+#jquery-lightbox:hover a#lightbox-secNav-btnClose:hover {
+    background-color: #2a4364;
+}
+
 #images {
-    margin: 0 0 1.6em;
+    margin: 0 0 16px;
     background: rgba(255,255,255,0.35) no-repeat;
     border: 1px solid #a8b8d1;
     box-shadow: inset 0 1px 3px rgba(58,78,103,0.15), 0 1px 0 rgba(255,255,255,0.5);
-    min-height: 140px;
+    max-height: 140px;
+    display: none;
+    overflow: hidden;
     border-radius: 8px;
+}
+
+#images + .addon-info {
+    margin-top: 158px;
+}
+
+#images + .addon-info.js {
+    margin-top: 0;
 }
 
 #images.js {
@@ -896,17 +972,18 @@ a.button.add:active {
     border-color: inherit;
 }
 
-#nav-images {
+#images .nav-images {
     height: 0;
     margin: 0;
     display: none;
 }
 
-#images.js #nav-images {
+#images.js .nav-images {
     display: block;
 }
 
-#nav-images a {
+.nav-images a,
+#lightbox-nav a {
     position: absolute;
     top: 0;
     margin: 1px;
@@ -922,26 +999,31 @@ a.button.add:active {
     -moz-transition-duration: 0.5s;
     -moz-transition-timing-function: ease-out;
 }
+#lightbox-nav a {
+    min-width: 3em;
+}
 
-#nav-images a:hover,
-#nav-images a:active {
+.nav-images a:hover,
+.nav-images a:active,
+#lightbox-nav a:hover,
+#lightbox-nav a:active {
     opacity: 1;
     width: 7%;
     -moz-transition-property: opacity, width, background-color;
     -moz-transition-duration: 0.2s;
     -moz-transition-timing-function: ease-out;
 }
-
-#nav-images a:focus {
+#lightbox-nav a:hover,
+#lightbox-nav a:active {
+    min-width: 4em;
+}
+.nav-images a:focus {
     outline: 0;
 }
 
-body.eula { 
-  height: 80%; 
-}
-
+body.eula,
 body.eula #main {
-  height: 80%;
+    height: 80%;
 }
 
 #eula {
@@ -950,5 +1032,10 @@ body.eula #main {
     overflow: auto;
     max-height: 80%;
     background: #f3f8fb;
-    -moz-border-radius: 8px;
+    border-radius: 8px;
+    border: 2px groove rgba(255,255,255,.25);
+}
+
+#eula p:last-child {
+    margin-bottom: 0;
 }

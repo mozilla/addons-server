@@ -1,0 +1,70 @@
+{% extends "discovery/addons/base.html" %}
+
+{% set previews = addon.previews.all() %}
+
+{% block extrahead %}
+  {% for preview in previews %}
+    <link rel="prefetch" href="{{ preview.image_url }}">
+  {% endfor %}
+{% endblock %}
+
+{% block main %}
+<p{{ addon.summary|locale_html }}>{{ addon.summary|nl2br }}</p>
+
+<ul id="install">
+  <li>{{ install_button(addon, show_contrib=False, show_warning=False, show_eula=False) }}</li>
+  <li><a href="{{ url('addons.detail', addon.id) + referrer_src }}"
+         class="button">{{ _('Learn More') }}</a></li>
+  {% if not addon.privacy_policy %}
+    <li><a href="{{ url('addons.privacy', addon.id) + referrer_src }}">
+      {{ _('View Privacy Policy') }}</a></li>
+  {% endif %}
+</ul>
+
+{% if previews|length > 1 %}
+  <div id="images">
+    <ul class="nav-images">
+      <li class="nav-prev"><a href="#" class="prev">{{ _('Previous') }}</a></li>
+      <li class="nav-next"><a href="#" class="next">{{ _('Next') }}</a></li>
+    </ul>
+    <ul class="slider">
+      {% for preview in previews %}
+        <li class="panel">
+          <a class="screenshot thumbnail" rel="jquery-lightbox"
+             href="{{ preview.image_url }}" title="{{ preview.caption }}">
+            <img src="{{ preview.thumbnail_url }}">
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endif %}
+
+<ul class="addon-info">
+  <li>
+    <h3>{{ _('Rating') }}</h3>
+    {{ addon|reviews_link }}
+  </li>
+  <li>
+    <h3>{{ _('Active Users') }}</h3>
+    <p class="users">{{ addon.average_daily_users|numberfmt }}</p>
+  </li>
+  <li>
+    <h3>{{ _('Last Updated') }}</h3>
+    <p><time datetime="{{ addon.last_updated|isotime }}">{{
+      addon.last_updated|datetime }}</time></p>
+  </li>
+  {% if addon.homepage %}
+    <li>
+      <h3>{{ _('Website') }}</h3>
+      <p><a href="{{ addon.homepage|external_url }}">{{ addon.homepage }}</a></p>
+    </li>
+  {% endif %}
+</ul>
+{% endblock %}
+
+{% block secondary %}
+<section id="addon-reviews">
+  {{ review_list_box(addon=addon, reviews=reviews) }}
+</section>
+{% endblock %}

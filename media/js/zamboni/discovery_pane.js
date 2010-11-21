@@ -141,11 +141,11 @@ $.fn.jCarouselLite = function(o) {
 
         // Change panel widths on resize to keep the page liquid
         $(window).resize(function(){
-          panelWidth = $("#main").width();
-          $("#main-feature, #main-feature .panel, #images").css({width:panelWidth});
-          $("#images .panel").css({width:panelWidth/3});
-          liSize = o.vertical ? height(li) : width(li);
-          ul.css(sizeCss, ulSize+"px").css(animCss, -(curr*liSize));
+            panelWidth = $("#main").width();
+            $("#main-feature, #main-feature .panel, #images").css({width: panelWidth});
+            $("#images .panel").css({width: panelWidth/3 - 10});
+            liSize = o.vertical ? height(li) : width(li);
+            ul.css(sizeCss, ulSize+"px").css(animCss, -(curr*liSize));
         });
 
     });
@@ -162,6 +162,7 @@ function height(el) {
 };
 
 })(jQuery);
+
 
 $.fn.vtruncate = function() {
     this.each(function() {
@@ -190,28 +191,41 @@ $.fn.vtruncate = function() {
     });
 };
 
+
 $(document).ready(function(){
-  // Set up the carousel
-  $("#main-feature").addClass("js").jCarouselLite({
-      btnNext: "#nav-next a",
-      btnPrev: "#nav-prev a",
-      visible: 1
-  });
-  $("#images").addClass("js").jCarouselLite({
-      btnNext: "#nav-next a",
-      btnPrev: "#nav-prev a", 
-      visible: 3
-  });
-  // Set the width of panels (jCarousel requires a pixel width but our page is liquid, so we'll set the width in px on pageload and on resize)
-  var panelWidth = $("#main").width();
-    $("#main-feature, #main-feature .panel, #images").css({width:panelWidth});
-    $("#images .panel").css({width:panelWidth/3}); // We show three images at a time, so the width of each is one third the total
-  //trim the description text to fit.
-  $("p.desc").vtruncate();
-  $(window).resize(debounce(function() {
-      $("p.desc").vtruncate();
-  }, 200));
+    // Set up the carousel
+    $("#main-feature").addClass("js").jCarouselLite({
+        btnNext: ".nav-next a",
+        btnPrev: ".nav-prev a",
+        visible: 1
+    });
+    $("#images").fadeIn("slow").addClass("js").jCarouselLite({
+        btnNext: ".nav-next a",
+        btnPrev: ".nav-prev a",
+        visible: 3,
+        circular: false
+    });
+    $(".addon-info").addClass("js");
+    // Set up the lightbox
+    var lb_baseurl = document.body.getAttribute("data-media-url") + "img/jquery-lightbox/";
+    $("li.panel a[rel=jquery-lightbox]").lightBox({
+        overlayOpacity: 0.6,
+        imageBlank: lb_baseurl + "lightbox-blank.gif",
+        imageLoading: lb_baseurl + "lightbox-ico-loading.gif",
+        containerResizeSpeed: 350
+    });
+    // Set the width of panels (jCarousel requires a pixel width but our page is liquid, so we'll set the width in px on pageload and on resize)
+    var panelWidth = $("#main").width();
+    $("#main-feature, #main-feature .panel, #images").css({width: panelWidth});
+    // We show three images at a time, so the width of each is roughly one third the total
+    $("#images .panel").css({width: panelWidth/3 - 10});
+    //trim the description text to fit.
+    $("p.desc").vtruncate();
+    $(window).resize(debounce(function() {
+        $("p.desc").vtruncate();
+    }, 200));
 });
+
 
 function debounce(fn, ms, ctxt) {
     var ctx = ctxt || window;
@@ -224,4 +238,3 @@ function debounce(fn, ms, ctxt) {
         },del);
     };
 }
-

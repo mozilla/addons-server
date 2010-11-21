@@ -4,7 +4,7 @@ import uuid
 from django import http
 from django.contrib import admin
 from django.forms.models import modelformset_factory
-from django.shortcuts import redirect
+from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.csrf import csrf_exempt
 
 import jingo
@@ -14,11 +14,13 @@ import api.utils
 import api.views
 from addons.models import Addon
 from bandwagon.models import Collection, SyncedCollection, CollectionToken
+from reviews.models import Review
 from stats.models import GlobalStat
 
 from .models import DiscoveryModule
 from .forms import DiscoveryModuleForm
 from .modules import registry as module_registry
+
 
 def pane(request, version, platform):
 
@@ -145,6 +147,28 @@ def _recommendations(request, limit, token, recs):
                        for pk in ids]}
     content = json.dumps(data, cls=amo.utils.JSONEncoder)
     return http.HttpResponse(content, content_type='application/json')
+
+
+def addon_detail(request, addon_id):
+    addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
+    return jingo.render(request, 'discovery/addons/detail.html',
+                        {'addon': addon,
+                         'reviews': Review.objects.latest().filter(addon=addon),
+                         'get_replies': Review.get_replies,
+                         'src': 'discovery-pane'})
+
+
+def addon_eula(request, addon_id, file_id):
+    addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
+    if not addon.eula:
+        return http.HttpResponseRedirect(addon.get_url_path())
+    if file_id is not None:
+        version = get_object_or_404(addon.versions, files__id=file_id)
+    else:
+        version = addon.current_version
+    return jingo.render(request, 'discovery/addons/eula.html',
+                        {'addon': addon, 'version': version,
+                         'src': 'discovery-pane'})
 
 
 def get_addon_ids(guids):
