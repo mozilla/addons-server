@@ -6,8 +6,8 @@ from jingo import register, env
 from tower import ugettext as _
 
 
-@register.filter
-def emaillink(email):
+@register.function
+def emaillink(email, title=None):
     if not email:
         return ""
 
@@ -20,7 +20,13 @@ def emaillink(email):
     # replace @ and .
     fallback = fallback.replace('@', '&#x0040;').replace('.', '&#x002E;')
 
-    node = u'<span class="emaillink">%s</span>' % fallback
+    if title:
+        title = jinja2.escape(title)
+    else:
+        title = '<span class="emaillink">%s</span>' % fallback
+
+    node = u'<a href="#">%s</a><span class="emaillink js-hidden">%s</span>' % (
+        title, fallback)
     return jinja2.Markup(node)
 
 

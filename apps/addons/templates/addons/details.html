@@ -282,8 +282,8 @@
         </li>
       {% endif %}
       {% if addon.support_email %}
-        <li><a href="mailto:{{ addon.support_email }}">{{
-          _('E-mail your question') }}</a></li>
+        <li>{{ emaillink(addon.support_email.localized_string,
+                         _('E-mail your question')) }}</li>
       {% endif %}
       {% if addon.support_url %}
         <li><a href="{{ addon.support_url|external_url }}">{{

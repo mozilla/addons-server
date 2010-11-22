@@ -19,10 +19,8 @@ $(document).ready(function(){
     // Initialize email links
     $('span.emaillink').each(function() {
         $(this).find('.i').remove();
-        em = $(this).text().split('').reverse().join('');
-        a = $('<a>').attr('href', 'mailto:' + em)
-            .text(em);
-        $(this).replaceWith(a);
+        var em = $(this).text().split('').reverse().join('');
+        $(this).prev('a').attr('href', 'mailto:' + em);
     });
 
     // Set up input placeholders.

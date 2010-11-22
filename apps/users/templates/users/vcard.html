@@ -30,7 +30,7 @@
       {% if not profile.emailhidden %}
         <tr>
           <th>{{ _('Email address') }}</th>
-          <td>{{ profile.email|emaillink }}</td>
+          <td>{{ emaillink(profile.email) }}</td>
         </tr>
       {% endif %}
       <tr>

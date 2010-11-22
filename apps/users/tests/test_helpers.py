@@ -13,11 +13,22 @@ def test_emaillink():
     obfuscated = unicode(emaillink(email))
 
     # remove junk
-    m = re.match(r'<span class="emaillink">(.*?)<span class="i">null</span>'
-                 '(.*)</span>', obfuscated)
+    m = re.match(r'<a href="#"><span class="emaillink">(.*?)'
+                  '<span class="i">null</span>(.*)</span></a>'
+                  '<span class="emaillink js-hidden">(.*?)'
+                  '<span class="i">null</span>(.*)</span>', obfuscated)
     obfuscated = (''.join((m.group(1), m.group(2)))
                   .replace('&#x0040;', '@').replace('&#x002E;', '.'))[::-1]
+    eq_(email, obfuscated)
 
+    title = 'E-mail your question'
+    obfuscated = unicode(emaillink(email, title))
+    m = re.match(r'<a href="#">(.*)</a>'
+                  '<span class="emaillink js-hidden">(.*?)'
+                  '<span class="i">null</span>(.*)</span>', obfuscated)
+    eq_(title, m.group(1))
+    obfuscated = (''.join((m.group(2), m.group(3)))
+                  .replace('&#x0040;', '@').replace('&#x002E;', '.'))[::-1]
     eq_(email, obfuscated)
 
 
