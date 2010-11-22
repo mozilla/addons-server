@@ -166,12 +166,15 @@ function initEditVersions() {
     // Abort upload
     $('#uploadstatus_abort a').click(abortUpload);
 
-    // Upload form submit
-    $("#upload-file").delegate("#upload-file-input", 'change', function(e) {
+    // Upload form submit. TODO(potch) figure out why this isn't working in 4.x.
+    // $("#upload-file").delegate("#upload-file-input", 'change', fileInputSubmit);
+
+    function fileInputSubmit(e) {
+        var $tgt = e.originalEvent ? $(this) : $(e.target);
         resetModal(false);
-        fileUpload($(this), $(this).closest('form').attr('action'));
+        fileUpload($tgt, $tgt.closest('form').attr('action'));
         $('.upload-status').show();
-    });
+    }
 
     $("#upload-file-finish").click(function (e) {
         e.preventDefault();
@@ -368,6 +371,7 @@ function initEditVersions() {
         upload = $("<input type='file'>").attr('name', 'upload')
                                          .attr('id', 'upload-file-input');
         $('#upload-file-input').replaceWith(upload); // Clear file input
+        upload[0].addEventListener("change", fileInputSubmit, false);
     }
 
     function addonUploaded(json) {
