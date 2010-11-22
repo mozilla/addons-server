@@ -1208,6 +1208,18 @@ class TestEdit(test_utils.TestCase):
         for k in data:
             eq_(unicode(getattr(addon, k)), data[k])
 
+    def test_edit_basic_homepage_optional(self):
+        data = dict(description='New description with <em>html</em>!',
+                    default_locale='es-ES',
+                    homepage='')
+
+        r = self.client.post(self.get_url('details', True), data)
+        eq_(r.status_code, 200)
+        addon = self.get_addon()
+
+        for k in data:
+            eq_(unicode(getattr(addon, k)), data[k])
+
     def test_edit_details_locale(self):
         addon = self.get_addon()
         addon.update(default_locale='en-US')
@@ -1249,6 +1261,28 @@ class TestEdit(test_utils.TestCase):
             result = re.sub('\W', '', result) if result else None
 
             eq_(result, val)
+
+    def test_edit_support_optional_url(self):
+        data = dict(support_email='sjobs@apple.com',
+                    support_url='')
+
+        r = self.client.post(self.get_url('support', True), data)
+        eq_(r.status_code, 200)
+        addon = self.get_addon()
+
+        for k in data:
+            eq_(unicode(getattr(addon, k)), data[k])
+
+    def test_edit_support_optional_email(self):
+        data = dict(support_email='',
+                    support_url='http://apple.com/')
+
+        r = self.client.post(self.get_url('support', True), data)
+        eq_(r.status_code, 200)
+        addon = self.get_addon()
+
+        for k in data:
+            eq_(unicode(getattr(addon, k)), data[k])
 
     def test_log(self):
         data = {'developer_comments': 'This is a test'}

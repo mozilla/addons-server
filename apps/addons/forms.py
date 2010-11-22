@@ -107,8 +107,8 @@ class AddonFormDetails(AddonFormBase):
 
 
 class AddonFormSupport(AddonFormBase):
-    support_url = TransField.adapt(forms.URLField)
-    support_email = TransField.adapt(forms.EmailField)
+    support_url = TransField.adapt(forms.URLField, {'required': False})
+    support_email = TransField.adapt(forms.EmailField, {'required': False})
 
     class Meta:
         model = Addon
@@ -144,7 +144,7 @@ class AddonFormTechnical(AddonFormBase):
 
 class AddonForm(happyforms.ModelForm):
     name = forms.CharField(widget=TranslationTextInput,)
-    homepage = forms.CharField(widget=TranslationTextInput,)
+    homepage = forms.CharField(widget=TranslationTextInput, required=False)
     eula = forms.CharField(widget=TranslationTextInput,)
     description = forms.CharField(widget=TranslationTextInput,)
     developer_comments = forms.CharField(widget=TranslationTextInput,)

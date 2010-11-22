@@ -231,9 +231,9 @@ class TransField(_TransField, forms.CharField):
     """
 
     @staticmethod
-    def adapt(cls):
+    def adapt(cls, opts={}):
         """Get a new TransField that subclasses cls instead of CharField."""
-        return type('Trans%s' % cls.__name__, (_TransField, cls), {})
+        return type('Trans%s' % cls.__name__, (_TransField, cls), opts)
 
 
 # Subclass list so that isinstance(list) in Django works.
