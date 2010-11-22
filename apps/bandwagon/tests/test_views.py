@@ -413,6 +413,31 @@ class TestCRUD(test_utils.TestCase):
         c = Collection.objects.get(id=fav.id)
         eq_(unicode(c.name), 'xxx')
 
+    def test_edit_contrib_tab(self):
+        self.create_collection()
+        url = reverse('collections.edit', args=['admin', self.slug])
+        r = self.client.get(url)
+        doc = pq(r.content)
+        eq_(doc('.tab-nav li a[href$=users-edit]').length, 1)
+        eq_(doc('#users-edit').length, 1)
+
+    def test_edit_no_contrib_tab(self):
+        self.create_collection()
+        c = Collection.uncached.get(slug=self.slug)
+        url = c.edit_url()
+
+        c.update(type=amo.COLLECTION_FAVORITES)
+        r = self.client.get(url)
+        doc = pq(r.content)
+        eq_(doc('.tab-nav li a[href$=users-edit]').length, 0)
+        eq_(doc('#users-edit').length, 0)
+
+        c.update(type=amo.COLLECTION_SYNCHRONIZED)
+        r = self.client.get(url)
+        doc = pq(r.content)
+        eq_(doc('.tab-nav li a[href$=users-edit]').length, 0)
+        eq_(doc('#users-edit').length, 0)
+
     def test_edit_addons_get(self):
         self.create_collection()
         url = reverse('collections.edit_addons', args=['admin', self.slug])
