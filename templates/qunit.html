@@ -29,6 +29,16 @@
 	<ol id="qunit-tests"></ol>
   <div id="qunit-fixture">test markup, will be hidden</div>
 
+  {# The following HTML can be applied to #qunit-fixture in test setup #}
+  <div id="addon-validator-template">
+    <div class="addon-validator-suite" id="addon-validator-suite-test"
+         data-validateurl="/validate" data-addonid="1">
+      {% with validate_url="/validate" %}
+        {% include "devhub/addons/includes/validation_test_results.html" %}
+      {% endwith %}
+    </div>
+  </div>
+
   <script src="{{ url('jsi18n') }}/build:{{ BUILD_ID_JS }}"></script>
   {{ js('common') }}
   <script async defer src="{{ url('addons.buttons.js') }}/build:{{ BUILD_ID_JS }}"></script>

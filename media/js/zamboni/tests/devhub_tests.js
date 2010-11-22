@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
 function pushTiersAndResults(tiers, results) {
-    var $suite = $('#addon-validator-suite');
+    var $suite = $('#addon-validator-suite-test');
     $.each(['1','2','3','4'], function(i, val) {
         tiers.push($('[class~="test-tier"][data-tier="' + val + '"]',
                                                                 $suite));
@@ -18,49 +18,7 @@ var validatorFixtures = {
             contentType: 'text/json',
             dataType: 'json'
         };
-        $("#qunit-fixture").append(
-            '<div id="addon-validator-suite" ' +
-                   'data-validateurl="/validate" data-addonid="1" >' +
-                '<div class="test-tier" data-tier="1">' +
-                    '<h4>General Tests</h4>' +
-                    '<div class="tier-summary"></div>' +
-                '</div>' +
-                '<div class="test-tier" data-tier="2">' +
-                    '<h4>Security Tests</h4>' +
-                    '<div class="tier-summary"></div>' +
-                '</div>' +
-                '<div class="test-tier" data-tier="3">' +
-                    '<h4>Localization Tests</h4>' +
-                    '<div class="tier-summary"></div>' +
-                '</div>' +
-                '<div class="test-tier" data-tier="4">' +
-                    '<h4>Extension Tests</h4>' +
-                    '<div class="tier-summary"></div>' +
-                '</div>' +
-                '<div class="suite-summary">' +
-                    '<span></span>' +
-                    '<a href="/link-to-this-page">Revalidate</a>' +
-                '</div>' +
-                '<div class="results">' +
-                    '<div class="result" id="suite-results-tier-1">' +
-                        '<div class="result-summary"></div>' +
-                        '<div class="tier-results" data-tier="1"></div>' +
-                    '</div>' +
-                    '<div class="result" id="suite-results-tier-2">' +
-                        '<div class="result-summary"></div>' +
-                        '<div class="tier-results" data-tier="2"></div>' +
-                    '</div>' +
-                    '<div class="result" id="suite-results-tier-3">' +
-                        '<div class="result-summary"></div>' +
-                        '<div class="tier-results" data-tier="3"></div>' +
-                    '</div>' +
-                    '<div class="result" id="suite-results-tier-4">' +
-                        '<div class="result-summary"></div>' +
-                        '<div class="tier-results" data-tier="4"></div>' +
-                    '</div>' +
-                '</div>' +
-            '</div>'
-        );
+        $("#qunit-fixture").append($("#addon-validator-template").html());
     },
     teardown: function() {
         $.mockjaxClear();
@@ -71,7 +29,7 @@ var validatorFixtures = {
 module('Validator: Passing Validation', $.extend({}, validatorFixtures));
 
 asyncTest('Test passing', function() {
-    var $suite = $('#addon-validator-suite'), tiers=[], results=[];
+    var $suite = $('#addon-validator-suite-test'), tiers=[], results=[];
 
     $.mockjax({
         url: '/validate',
@@ -96,7 +54,7 @@ asyncTest('Test passing', function() {
         }
     });
 
-    $('#addon-validator-suite').trigger('validate');
+    $('#addon-validator-suite-test').trigger('validate');
 
     tests.waitFor(function() {
         return $('[class~="test-tier"][data-tier="1"]', $suite).hasClass(
@@ -111,9 +69,11 @@ asyncTest('Test passing', function() {
                 'Checking class: ' + tier.attr('class'));
             equals($('.tier-summary', tier).text(),
                    '0 errors, 0 warnings');
+            // Note: still not sure why there is a period at the end
+            // here (even though it's getting cleared)
             equals($('#suite-results-tier-' + tierN.toString() +
                      ' .result-summary').text(),
-                   '0 errors, 0 warnings');
+                   '0 errors, 0 warnings.');
         });
         $.each(results, function(i, result) {
             ok(result.hasClass('tests-passed'),
@@ -131,7 +91,7 @@ asyncTest('Test passing', function() {
 module('Validator: Failing Validation', $.extend({}, validatorFixtures));
 
 asyncTest('Test failing', function() {
-    var $suite = $('#addon-validator-suite'), tiers=[], results=[];
+    var $suite = $('#addon-validator-suite-test'), tiers=[], results=[];
 
     $.mockjax({
         url: '/validate',
@@ -206,7 +166,7 @@ asyncTest('Test failing', function() {
         }
     });
 
-    $('#addon-validator-suite').trigger('validate');
+    $('#addon-validator-suite-test').trigger('validate');
 
     tests.waitFor(function() {
         return $('[class~="test-tier"][data-tier="1"]', $suite).hasClass(
@@ -247,9 +207,9 @@ asyncTest('Test failing', function() {
             }
         });
         equals($('#suite-results-tier-1 .result-summary').text(),
-               '1 error, 0 warnings');
+               '1 error, 0 warnings.');
         equals($('#suite-results-tier-2 .result-summary').text(),
-               '0 errors, 1 warning');
+               '0 errors, 1 warning.');
         missingInstall = $('#v-msg-96dca428ec4c11df991a001cc4d80ee4', $suite);
         equals(missingInstall.length, 1);
         equals(missingInstall.parent().attr('data-tier'), "2",
@@ -283,7 +243,7 @@ asyncTest('Test failing', function() {
 module('Validator: 500 Error response', $.extend({}, validatorFixtures));
 
 asyncTest('Test 500 error', function() {
-    var $suite = $('#addon-validator-suite'), tiers=[], results=[];
+    var $suite = $('#addon-validator-suite-test'), tiers=[], results=[];
 
     $.mockjax({
         url: '/validate',
@@ -291,7 +251,7 @@ asyncTest('Test 500 error', function() {
         responseText: '500 Internal Error'
     });
 
-    $('#addon-validator-suite').trigger('validate');
+    $('#addon-validator-suite-test').trigger('validate');
 
     tests.waitFor(function() {
         return $('[class~="test-tier"][data-tier="1"]', $suite).hasClass(
@@ -318,14 +278,14 @@ asyncTest('Test 500 error', function() {
 module('Validator: Timeout', $.extend({}, validatorFixtures));
 
 asyncTest('Test timeout', function() {
-    var $suite = $('#addon-validator-suite'), tiers=[], results=[];
+    var $suite = $('#addon-validator-suite-test'), tiers=[], results=[];
 
     $.mockjax({
         url: '/validate',
         isTimeout: true
     });
 
-    $('#addon-validator-suite').trigger('validate');
+    $('#addon-validator-suite-test').trigger('validate');
 
     tests.waitFor(function() {
         return $('[class~="test-tier"][data-tier="1"]', $suite).hasClass(

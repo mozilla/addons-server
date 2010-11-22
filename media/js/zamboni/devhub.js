@@ -745,11 +745,10 @@ function compatModalCallback(obj) {
 
 $(document).ready(function() {
 
-    function buildResults(data) {
-        var suite = $('#addon-validator-suite'),
-            msgMap = buildMsgMap(data.messages);
+    function buildResults(suite, data) {
+        var msgMap = buildMsgMap(data.messages);
         $('.suite-summary span', suite).text(data.result_summary);
-        $('.result-summary', suite).css('visibility', 'visible');
+        $('.result-summary', suite).text('').css('visibility', 'visible');
         $('.suite-summary', suite).show();
 
         for (var tierNum in msgMap) {
@@ -846,7 +845,7 @@ $(document).ready(function() {
         $('.suite-summary', el).hide();
     }
 
-    $('#addon-validator-suite').live('validate', function(e) {
+    $('.addon-validator-suite').live('validate', function(e) {
         var el = $(this),
             url = el.attr('data-validateurl'),
             addon_id = el.attr('data-addonid');
@@ -857,7 +856,7 @@ $(document).ready(function() {
                 url: url,
                 data: {addon_id: addon_id},
                 success: function(data) {
-                    buildResults(data);
+                    buildResults(el, data);
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown) {
                     $('.test-tier, .tier-results', el).removeClass(
@@ -865,7 +864,7 @@ $(document).ready(function() {
                     // TODO(kumar) show the actual error message?
                     $('.test-tier, .tier-results', el).addClass(
                                                             'tests-failed');
-                    buildResults({messages: []});
+                    buildResults(el, {messages: []});
                 },
                 dataType: 'json'
         });
