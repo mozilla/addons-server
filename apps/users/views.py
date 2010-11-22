@@ -14,7 +14,7 @@ from amo import messages
 from amo.decorators import login_required, json_view, write
 from amo.forms import AbuseForm
 from amo.urlresolvers import reverse
-from amo.utils import send_mail
+from amo.utils import send_mail, send_abuse_report
 from addons.models import Addon
 from access import acl
 from bandwagon.models import Collection
@@ -388,22 +388,9 @@ def report_abuse(request, user_id):
     user = get_object_or_404(UserProfile, pk=user_id)
     form = AbuseForm(request.POST or None, request=request)
     if request.method == "POST" and form.is_valid():
-        if request.user.is_anonymous():
-            user_name = 'An anonymous user'
-        else:
-            user_name = '%s (%s)' % (request.amo_user.name,
-                                     request.amo_user.email)
-
-        subject = 'Report for %s' % user.name
-        msg = u'%s reported for %s (%s%s).\n\n%s'
-        msg = msg % (user_name, user.name, settings.SITE_URL,
-                     reverse('users.profile', args=[user.pk]),
-                     form.cleaned_data['text'])
-
+        url = reverse('users.profile', args=[user.pk])
+        send_abuse_report(request, user, url, form.cleaned_data['text'])
         messages.success(request, _('User reported.'))
-        log.debug('User %s reported by %s.' % (user_id, user_name))
-        send_mail(subject, msg, recipient_list=(settings.FLIGTAR,))
-
     else:
         return jingo.render(request, 'users/report_abuse_full.html',
                             {'profile': user, 'abuse_form': form, })

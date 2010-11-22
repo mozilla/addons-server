@@ -18,8 +18,7 @@ from tower import ugettext as _
 import amo
 from amo import messages
 from amo.forms import AbuseForm
-from amo.utils import sorted_groupby, randslice
-from amo.utils import send_mail
+from amo.utils import sorted_groupby, randslice, send_abuse_report
 from amo.helpers import absolutify
 from amo import urlresolvers
 from amo.urlresolvers import reverse
@@ -490,22 +489,9 @@ def report_abuse(request, addon_id):
     addon = get_object_or_404(Addon, pk=addon_id)
     form = AbuseForm(request.POST or None, request=request)
     if request.method == "POST" and form.is_valid():
-        if request.user.is_anonymous():
-            user_name = 'An anonymous user'
-        else:
-            user_name = '%s (%s)' % (request.amo_user.name,
-                                     request.amo_user.email)
-
-        subject = 'Abuse Report for %s' % addon.name
-        msg = u'%s reported abuse for %s (%s%s).\n\n%s'
-        msg = msg % (user_name, addon.name, settings.SITE_URL,
-                     reverse('addons.detail', args=[addon.pk]),
-                     form.cleaned_data['text'])
-
+        url = reverse('addons.detail', args=[addon.pk])
+        send_abuse_report(request, addon, url, form.cleaned_data['text'])
         messages.success(request, _('Abuse reported.'))
-        log.debug('Abuse reported by %s for %s.' % (user_name, addon_id))
-        send_mail(subject, msg, recipient_list=(settings.FLIGTAR,))
-
     else:
         return jingo.render(request, 'addons/report_abuse_full.html',
                             {'addon': addon, 'abuse_form': form, })

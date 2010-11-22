@@ -285,3 +285,20 @@ def is_animated_image(photo, size=100000):
 class MenuItem():
     """Refinement item with nestable children for use in menus."""
     url, text, selected, children = ('', '', False, [])
+
+
+def send_abuse_report(request, obj, url, message):
+    """Send email about an abusive addon/user/relationship."""
+    if request.user.is_anonymous():
+        user_name = 'An anonymous user'
+    else:
+        user_name = '%s (%s)' % (request.amo_user.name,
+                                 request.amo_user.email)
+
+    subject = 'Abuse Report for %s' % obj.name
+    msg = u'%s reported abuse for %s (%s%s).\n\n%s'
+    msg = msg % (user_name, obj.name, settings.SITE_URL, url, message)
+    msg += '\n\nhttp://translate.google.com/#auto|en|%s' % message
+
+    log.debug('Abuse reported by %s for %s.' % (user_name, obj))
+    send_mail(subject, msg, recipient_list=(settings.FLIGTAR,))
