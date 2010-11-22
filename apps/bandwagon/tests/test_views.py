@@ -490,7 +490,7 @@ class TestCRUD(test_utils.TestCase):
         r = self.client.get(url)
         eq_(r.status_code, 200)
         doc = pq(r.content)
-        eq_(len(doc('a.delete')), 3)
+        eq_(len(doc('a.delete')), 2)
 
         # TODO: bug 590305
         return
