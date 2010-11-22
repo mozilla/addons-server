@@ -5,6 +5,8 @@ import jinja2
 
 from jingo import register
 
+from .models import Translation
+
 
 @register.filter
 def locale_html(translatedfield):
@@ -45,3 +47,10 @@ def l10n_menu(context, default_locale='en-us'):
     c = dict(context.items())
     c.update({'languages': languages, 'default_locale': default_locale})
     return c
+
+
+@register.filter
+def all_locales(field):
+    html = (u'<span %s>%s</span>' % (locale_html(t), jinja2.escape(t))
+            for t in Translation.objects.filter(id=field.id))
+    return jinja2.Markup('<div class="trans">%s</div>' % ''.join(html))
