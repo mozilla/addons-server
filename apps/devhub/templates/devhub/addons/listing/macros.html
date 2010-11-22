@@ -1,9 +1,10 @@
-{% macro dev_heading(addon) %}
+{% macro dev_heading(addon, amo) %}
   <h4>
-    <a href="{{ addon.get_url_path() }}">
+    {% set is_complete = addon.status != amo.STATUS_NULL %}
+    {% if is_complete %}<a href="{{ addon.get_url_path() }}">{% endif %}
       <img class="icon" width="32" height="32" src="{{ addon.icon_url }}"
            alt="{{ addon.name }}">
-      {{ addon.name }}</a>
+      {{ addon.name }}{% if complete %}</a>{% endif %}
   </h4>
 {% endmacro %}
 

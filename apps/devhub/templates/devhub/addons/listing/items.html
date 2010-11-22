@@ -3,7 +3,7 @@
 {% set username = request.amo_user.username if request.user.is_authenticated() else '' %}
 {% for addon in addons %}
   <div class="item" data-addonid="{{ addon.id }}">
-    {{ dev_heading(addon) }}
+    {{ dev_heading(addon, amo) }}
     <div class="item-info">
       {{ dev_item_info(addon, amo) }}
     </div>

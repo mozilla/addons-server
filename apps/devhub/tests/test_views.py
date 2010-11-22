@@ -35,29 +35,26 @@ class HubTest(test_utils.TestCase):
 
     def setUp(self):
         translation.activate('en-US')
-
         self.url = reverse('devhub.index')
         self.login_as_developer()
         eq_(self.client.get(self.url).status_code, 200)
-
         self.user_profile = UserProfile.objects.get(id=999)
-        self.num_addon_clones = 0
 
     def login_as_developer(self):
         self.client.login(username='regular@mozilla.com', password='password')
 
-    def clone_addon(self, num_copies, addon_id=57132):
-        for i in xrange(num_copies):
+    def clone_addon(self, num, addon_id=57132):
+        ids = []
+        for i in xrange(num):
             addon = Addon.objects.get(id=addon_id)
             addon.id = addon.guid = None
             addon.save()
             AddonUser.objects.create(user=self.user_profile, addon=addon)
-
             new_addon = Addon.objects.get(id=addon.id)
-            new_addon.name = 'addon-%s' % self.num_addon_clones
+            new_addon.name = str(addon.id)
             new_addon.save()
-
-            self.num_addon_clones += 1
+            ids.append(addon.id)
+        return ids
 
 
 class TestActivity(HubTest):
@@ -295,7 +292,7 @@ class TestDashboard(HubTest):
         doc = pq(r.content)
         eq_(doc('.item item').length, 0)
 
-    def test_addons_items(self):
+    def test_addon_pagination(self):
         """Check that the correct info. is displayed for each add-on:
         namely, that add-ons are paginated at 10 items per page, and that
         when there is more than one page, the 'Sort by' header and pagination
@@ -303,24 +300,35 @@ class TestDashboard(HubTest):
 
         """
         # Create 10 add-ons.
-        self.clone_addon(10)
-
+        addons = self.clone_addon(10)
         r = self.client.get(self.url)
         doc = pq(r.content)
-
         eq_(len(doc('.item .item-info')), 10)
         eq_(doc('#addon-list-options').length, 0)
         eq_(doc('.listing-footer .pagination').length, 0)
 
         # Create 5 add-ons.
         self.clone_addon(5)
-
         r = self.client.get(self.url + '?page=2')
         doc = pq(r.content)
-
         eq_(len(doc('.item .item-info')), 5)
         eq_(doc('#addon-list-options').length, 1)
         eq_(doc('.listing-footer .pagination').length, 1)
+
+    def test_addon_link(self):
+        a_pk = self.clone_addon(1)[0]
+        a = Addon.objects.get(pk=a_pk)
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        eq_(a.status, amo.STATUS_PUBLIC)
+        assert doc('.item[data-addonid=%s] h4 a' % a_pk)
+
+    def test_addon_no_link(self):
+        a_pk = self.clone_addon(1)[0]
+        a = Addon.objects.get(pk=a_pk).update(status=amo.STATUS_NULL)
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        assert not doc('.item[data-addonid=%s] h4 a' % a_pk)
 
 
 class TestUpdateCompatibility(test_utils.TestCase):
