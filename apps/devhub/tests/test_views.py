@@ -379,8 +379,6 @@ class TestUpdateCompatibility(test_utils.TestCase):
         r = self.client.get(self.url)
         doc = pq(r.content)
         assert doc('.item[data-addonid=3615] .tooltip.compat-error')
-        assert doc('.item[data-addonid=3615] .compat-error-popup .app.%s' %
-                   amo.FIREFOX.short)
 
 
 def formset(*args, **kw):

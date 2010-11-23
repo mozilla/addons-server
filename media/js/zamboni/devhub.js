@@ -655,14 +655,14 @@ function initCompatibility() {
     });
 
     $('.compat-update-modal').modal('a.compat-update', {
-        delegate: $('.item-actions li.compat'),
+        delegate: $('.item-actions'),
         hideme: false,
         emptyme: true,
         callback: compatModalCallback
     });
 
     $('.compat-error-popup').popup('a.compat-error', {
-        delegate: $('.item-actions li.compat'),
+        delegate: $('.item-actions'),
         emptyme: true,
         width: '450px',
         callback: function(obj) {
