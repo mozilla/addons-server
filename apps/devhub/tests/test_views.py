@@ -299,7 +299,7 @@ class TestDashboard(HubTest):
 
         """
         # Create 10 add-ons.
-        addons = self.clone_addon(10)
+        self.clone_addon(10)
         r = self.client.get(self.url)
         doc = pq(r.content)
         eq_(len(doc('.item .item-info')), 10)
@@ -324,7 +324,7 @@ class TestDashboard(HubTest):
 
     def test_addon_no_link(self):
         a_pk = self.clone_addon(1)[0]
-        a = Addon.objects.get(pk=a_pk).update(status=amo.STATUS_NULL)
+        Addon.objects.get(pk=a_pk).update(status=amo.STATUS_NULL)
         r = self.client.get(self.url)
         doc = pq(r.content)
         assert not doc('.item[data-addonid=%s] h4 a' % a_pk)
@@ -2113,21 +2113,18 @@ class TestUpload(files.tests.UploadTest):
         self.assertRedirects(r, url)
 
 
-class TestVersionAddFile(files.tests.UploadTest, test_utils.TestCase):
+class UploadTest(files.tests.UploadTest, test_utils.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']
 
     def setUp(self):
-        super(TestVersionAddFile, self).setUp()
+        super(UploadTest, self).setUp()
         xpi = open(self.xpi_path('extension')).read()
         self.upload = FileUpload.from_post([xpi], filename='extension.xpi',
                                            size=1234)
         self.addon = Addon.objects.get(id=3615)
         self.version = self.addon.current_version
         self.addon.update(guid='guid@xpi')
-        self.version.update(version='0.1')
         Platform.objects.create(id=amo.PLATFORM_MAC.id)
-        self.url = reverse('devhub.versions.add_file',
-                           args=[self.addon.id, self.version.id])
         assert self.client.login(username='del@icio.us', password='password')
 
     def post(self, platform=amo.PLATFORM_MAC):
@@ -2141,6 +2138,15 @@ class TestVersionAddFile(files.tests.UploadTest, test_utils.TestCase):
         content = json.loads(request.content)
         assert field in content, '%r not in %r' % (field, content)
         eq_(content[field], [msg])
+
+
+class TestVersionAddFile(UploadTest):
+
+    def setUp(self):
+        super(TestVersionAddFile, self).setUp()
+        self.version.update(version='0.1')
+        self.url = reverse('devhub.versions.add_file',
+                           args=[self.addon.id, self.version.id])
 
     def test_guid_matches(self):
         self.addon.update(guid='something.different')
@@ -2184,3 +2190,21 @@ class TestVersionAddFile(files.tests.UploadTest, test_utils.TestCase):
         eq_(r.status_code, 200)
         new_file = self.version.files.get(platform=amo.PLATFORM_MAC.id)
         eq_(r.context['form'].instance, new_file)
+
+
+class TestAddVersion(UploadTest):
+
+    def setUp(self):
+        super(TestAddVersion, self).setUp()
+        self.url = reverse('devhub.versions.add', args=[self.addon.id])
+
+    def test_unique_version_num(self):
+        self.version.update(version='0.1')
+        r = self.post()
+        self.assert_json_error(r, None, 'Version 0.1 already exists')
+
+    def test_success(self):
+        r = self.post()
+        version = self.addon.versions.get(version='0.1')
+        self.assertRedirects(r, reverse('devhub.versions.edit',
+                                        args=[self.addon.id, version.id]))

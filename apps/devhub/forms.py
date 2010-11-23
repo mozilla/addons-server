@@ -310,7 +310,7 @@ CompatFormSet = modelformset_factory(
     form=CompatForm, can_delete=True, extra=0)
 
 
-class NewFileForm(happyforms.Form):
+class NewVersionForm(happyforms.Form):
     upload = forms.ModelChoiceField(queryset=FileUpload.objects.all(),
         error_messages={'invalid_choice': _lazy('There was an error with your '
                                                 'upload. Please try again.')})
@@ -321,6 +321,20 @@ class NewFileForm(happyforms.Form):
 
     def __init__(self, *args, **kw):
         self.addon = kw.pop('addon')
+        super(NewVersionForm, self).__init__(*args, **kw)
+
+    def clean(self):
+        if not self.errors:
+            xpi = parse_xpi(self.cleaned_data['upload'].path, self.addon)
+            if self.addon.versions.filter(version=xpi['version']):
+                raise forms.ValidationError(
+                    _('Version %s already exists') % xpi['version'])
+        return self.cleaned_data
+
+
+class NewFileForm(NewVersionForm):
+
+    def __init__(self, *args, **kw):
         self.version = kw.pop('version')
         super(NewFileForm, self).__init__(*args, **kw)
         # Don't allow platforms we already have.
@@ -335,7 +349,7 @@ class NewFileForm(happyforms.Form):
         if not self.errors:
             xpi = parse_xpi(self.cleaned_data['upload'].path, self.addon)
             if xpi['version'] != self.version.version:
-                raise forms.ValidationError("Version doesn't match")
+                raise forms.ValidationError(_("Version doesn't match"))
         return self.cleaned_data
 
 

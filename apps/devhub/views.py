@@ -517,11 +517,15 @@ def version_delete(request, addon_id, addon):
 
 
 @dev_required
+@post_required
 def version_add(request, addon_id, addon):
-    if request.method == 'POST':
-        upload = get_object_or_404(FileUpload, pk=request.POST['upload'])
-        v = Version.from_upload(upload, addon)
+    form = forms.NewVersionForm(request.POST, addon=addon)
+    if form.is_valid():
+        v = Version.from_upload(form.cleaned_data['upload'], addon,
+                                form.cleaned_data['platform'])
         return redirect('devhub.versions.edit', addon.id, v.id)
+    else:
+        return json_view.error(form.errors)
 
 
 @json_view

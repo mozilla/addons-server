@@ -13,7 +13,7 @@ import amo.models
 from amo.urlresolvers import reverse
 from applications.models import Application, AppVersion
 from files import utils
-from files.models import File, Platform
+from files.models import File
 from translations.fields import (TranslatedField, PurifiedField,
                                  LinkifiedField)
 from users.models import UserProfile
@@ -42,7 +42,7 @@ class Version(amo.models.ModelBase):
         return self.version
 
     @classmethod
-    def from_upload(cls, upload, addon):
+    def from_upload(cls, upload, addon, platform):
         # TODO: license, relnotes
         data = utils.parse_xpi(upload.path, addon)
         try:
@@ -52,9 +52,7 @@ class Version(amo.models.ModelBase):
         v = cls.objects.create(addon=addon, version=data['version'],
                                license_id=license)
         log.debug('New version: %r (%s) from %r' % (v, v.id, upload))
-        # TODO: platforms?
-        File.from_upload(upload, v,
-                         Platform.objects.get(id=amo.PLATFORM_ALL.id))
+        File.from_upload(upload, v, platform)
         # appversions
         AV = ApplicationsVersions
         for app in data['apps']:
