@@ -317,7 +317,9 @@ def profile(request, user_id):
         request.amo_user.id == user.id)
 
     if user.is_developer:
-        addons = amo.utils.paginate(request, user.addons_listed)
+        addons = amo.utils.paginate(
+                    request,
+                    user.addons_listed.order_by('-weekly_downloads'))
     else:
         addons = []
 

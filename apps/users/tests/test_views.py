@@ -11,6 +11,7 @@ from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 from access.models import Group, GroupUser
+from addons.models import Addon, AddonUser
 from amo.helpers import urlparams
 from amo.pyquery_wrapper import PyQuery
 from amo.urlresolvers import reverse
@@ -199,6 +200,8 @@ class TestRegistration(UserViewBase):
 
 
 class TestProfile(UserViewBase):
+    fixtures = ['base/featured',
+                'users/test_backends']
 
     def test_edit_buttons(self):
         """Ensure admin/user edit buttons are shown."""
@@ -252,6 +255,18 @@ class TestProfile(UserViewBase):
         assert hasattr(request.user.get_profile(), 'mobile_addons')
         assert hasattr(request.amo_user, 'favorite_addons')
         assert hasattr(request.user.get_profile(), 'favorite_addons')
+
+    def test_profile_addons_sort(self):
+        u = UserProfile.objects.get(id=9945)
+
+        for a in Addon.objects.public():
+            AddonUser.objects.create(user=u, addon=a)
+
+        r = self.client.get(reverse('users.profile', args=[9945]))
+        downloads = [int(PyQuery(node).html().replace(',', ''))
+                     for node in PyQuery(r.content)('p.downloads strong')]
+        assert all(downloads[i] >= downloads[i+1]
+                   for i in xrange(len(downloads)-1))
 
 
 class TestReportAbuse(AbuseBase, test_utils.TestCase):
