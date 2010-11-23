@@ -36,6 +36,7 @@ from mock import Mock, patch
 from nose.tools import eq_
 from test_utils import TestCase
 from piston.models import Consumer, Token
+from redisutils import mock_redis, reset_redis
 
 import amo
 from amo.urlresolvers import reverse
@@ -291,6 +292,10 @@ class TestAddon(BaseOauth):
                 platform='windows',
                 xpi=open(os.path.join(settings.ROOT, path)),
                 )
+        self._redis = mock_redis()
+
+    def tearDown(self):
+        reset_redis(self._redis)
 
     def make_create_request(self, data):
         return client.post('api.addons', self.accepted_consumer, self.token,

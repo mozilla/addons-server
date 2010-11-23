@@ -1013,6 +1013,10 @@ class TestEdit(test_utils.TestCase):
         self.tags = ['tag3', 'tag2', 'tag1']
         for t in self.tags:
             Tag(tag_text=t).save_tag(self.addon, self.user)
+        self._redis = mock_redis()
+
+    def tearDown(self):
+        reset_redis(self._redis)
 
     def get_addon(self):
         return Addon.objects.no_cache().get(id=3615)
@@ -1777,6 +1781,10 @@ class TestSubmitStep3(test_utils.TestCase):
         self.url = reverse('devhub.submit.3', args=[3615])
         assert self.client.login(username='del@icio.us', password='password')
         SubmitStep.objects.create(addon_id=3615, step=3)
+        self._redis = mock_redis()
+
+    def tearDown(self):
+        reset_redis(self._redis)
 
     def test_submit(self):
         r = self.client.get(self.url)
