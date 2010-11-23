@@ -45,6 +45,7 @@ if DEBUG:
 
 # If you're not running on SSL you'll want this to be False.
 SESSION_COOKIE_SECURE = False
+SESSION_COOKIE_DOMAIN = None
 
 # Run tasks immediately, don't try using the queue.
 CELERY_ALWAYS_EAGER = True
