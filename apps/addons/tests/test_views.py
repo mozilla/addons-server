@@ -19,6 +19,7 @@ from amo.urlresolvers import reverse
 from amo.tests.test_helpers import AbuseBase, AbuseDisabledBase
 from addons import views
 from addons.models import Addon, AddonUser
+from files.models import File
 from users.models import UserProfile
 from translations.helpers import truncate
 from translations.query import order_by_translation
@@ -882,3 +883,152 @@ class TestReportAbuseDisabled(AbuseDisabledBase, test_utils.TestCase):
         r = self.client.get(reverse('addons.detail', args=[15663]))
         doc = pq(r.content)
         assert not doc("fieldset.abuse")
+
+
+class TestUpdate(test_utils.TestCase):
+    fixtures = ['base/addon_3615',
+                'base/platforms',
+                'base/seamonkey']
+
+    def setUp(self):
+        self.addon_one = Addon.objects.get(pk=3615)
+        self.url = reverse('addons.update')
+        self.good_data = {
+            'id': '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}',
+            'version': '2.0.58',
+            'reqVersion': 1,
+            'appID': '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}',
+            'appVersion': '3.7a1pre'
+        }
+
+        self.mac = amo.PLATFORM_MAC
+        self.win = amo.PLATFORM_WIN
+
+    def test_bad_guid(self):
+        data = self.good_data.copy()
+        data["id"] = "garbage"
+        res = self.client.get(self.url, data)
+        eq_(res.status_code, 200)
+        eq_(res.context['row'], {})
+
+    def test_no_platform(self):
+        file = File.objects.get(pk=67442)
+        file.platform_id = self.win.id
+        file.save()
+
+        data = self.good_data.copy()
+        data["appOS"] = self.win.shortname
+        res = self.client.get(self.url, data)
+        eq_(res.context['row']['file_id'], file.pk)
+
+        data["appOS"] = self.mac.shortname
+        res = self.client.get(self.url, data)
+        eq_(res.context['row'], {})
+
+    def test_different_platform(self):
+        file = File.objects.get(pk=67442)
+        file.platform_id = self.win.id
+        file.save()
+        file_pk = file.pk
+
+        file.id = None
+        file.platform_id = self.mac.id
+        file.save()
+        mac_file_pk = file.pk
+
+        data = self.good_data.copy()
+        data["appOS"] = self.win.shortname
+        res = self.client.get(self.url, data)
+        eq_(res.context['row']['file_id'], file_pk)
+
+        data["appOS"] = self.mac.shortname
+        res = self.client.get(self.url, data)
+        eq_(res.context['row']['file_id'], mac_file_pk)
+
+    def test_good_version(self):
+        res = self.client.get(self.url, self.good_data)
+        eq_(res.status_code, 200)
+        row = res.context['row']
+        assert row['hash'].startswith('sha256:3808b13e')
+        eq_(row['min'], '2.0')
+        eq_(row['max'], '3.7a1pre')
+
+    def test_beta_version(self):
+        file = File.objects.get(pk=67442)
+        file.status = amo.STATUS_BETA
+        file.save()
+
+        beta_version = '2.0.58 beta'
+
+        version = file.version
+        version.version = beta_version
+        version.save()
+
+        data = self.good_data.copy()
+        res = self.client.get(self.url, data)
+        eq_(res.context['row'], {})
+
+        data["version"] = beta_version
+        res = self.client.get(self.url, data)
+        eq_(res.context['row']['file_id'], file.pk)
+
+    def test_no_app_version(self):
+        data = self.good_data.copy()
+        data['appVersion'] = '1.4'
+        res = self.client.get(self.url, data)
+        eq_(res.status_code, 200)
+        assert not res.context['row']
+
+    def test_low_app_version(self):
+        data = self.good_data.copy()
+        data['appVersion'] = '2.0'
+        res = self.client.get(self.url, data)
+        eq_(res.status_code, 200)
+        row = res.context['row']
+        assert row['hash'].startswith('sha256:3808b13e')
+        eq_(row['min'], '2.0')
+        eq_(row['max'], '3.7a1pre')
+
+    def test_content_type(self):
+        res = self.client.get(self.url, self.good_data)
+        eq_(res['content-type'], 'text/xml')
+
+    def test_appguid(self):
+        res = self.client.get(self.url, self.good_data)
+        assert res.content.find(self.good_data['appID']) > -1
+
+    def test_hash(self):
+        res = self.client.get(self.url, self.good_data)
+        assert res.content.find('updateHash') > -1
+
+        file = File.objects.get(pk=67442)
+        file.hash = ''
+        file.save()
+
+        res = self.client.get(self.url, self.good_data)
+        eq_(res.content.find('updateHash'), -1)
+
+    def test_releasenotes(self):
+        res = self.client.get(self.url, self.good_data)
+        assert res.content.find('updateInfoURL') > -1
+
+        version = Version.objects.get(pk=81551)
+        version.update(releasenotes=None)
+
+        res = self.client.get(self.url, self.good_data)
+        eq_(res.content.find('updateInfoURL'), -1)
+
+    def test_sea_monkey(self):
+        data = {
+            'id': 'bettergmail2@ginatrapani.org',
+            'version': '1',
+            'appID': '{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}',
+            'reqVersion': 1,
+            'appVersion': '1.0'
+        }
+        res = self.client.get(reverse('addons.update'), data)
+        row = res.context['row']
+        assert row['hash'].startswith('sha256:9d9a389')
+        eq_(row['min'], '1.0')
+        eq_(row['version'], '0.5.2')
+        assert res.content.find(data['appID']) > -1

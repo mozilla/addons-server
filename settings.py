@@ -142,11 +142,12 @@ ADMIN_MEDIA_PREFIX = '/admin-media/'
 # paths that don't require an app prefix
 SUPPORTED_NONAPPS = ('admin', 'developers', 'editors', 'img',
                      'jsi18n', 'localizers', 'media', 'robots.txt',
-                     'statistics', 'services')
+                     'statistics', 'services', 'update')
 DEFAULT_APP = 'firefox'
 
 # paths that don't require a locale prefix
-SUPPORTED_NONLOCALES = ('img', 'media', 'robots.txt', 'services', 'downloads')
+SUPPORTED_NONLOCALES = ('img', 'media', 'robots.txt', 'services', 'downloads',
+                        'update')
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'r#%9w^o_80)7f%!_ir5zx$tu3mupw9u%&s!)-_q%gy7i+fhx#)'

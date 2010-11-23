@@ -4,7 +4,8 @@ from nose.tools import eq_
 from redisutils import mock_redis, reset_redis
 from addons import forms, cron
 from addons.models import Addon
-
+import amo
+from applications.models import AppVersion
 
 class FormsTest(test_utils.TestCase):
     fixtures = ('base/addon_3615',)
@@ -45,3 +46,56 @@ class FormsTest(test_utils.TestCase):
         f = forms.AddonFormBasic(dict(name=self.existing_name), request=None,
                                  instance=delicious)
         eq_(f.errors.get('name'), None)
+
+class TestUpdate(test_utils.TestCase):
+    fixtures = ['base/addon_3615',
+                'base/platforms']
+
+    def setUp(self):
+        self.good_data = {
+            'id': '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}',
+            'version': '2.0.58',
+            'reqVersion': 1,
+            'appID': '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}',
+            'appVersion': '3.7a1pre'
+        }
+
+    def test_beta(self):
+        data = self.good_data.copy()
+        for good in ['1.0a', '1.0beta2', '1.0 beta2']:
+            data['version'] = good
+            form = forms.UpdateForm(data)
+            assert form.is_valid()
+            assert form.is_beta_version
+
+        for bad in ['1.0', 'beta 1.0', '1.0 beta 2']:
+            data['version'] = bad
+            form = forms.UpdateForm(data)
+            assert form.is_valid()
+            assert not form.is_beta_version
+
+    def test_app_os(self):
+        data = self.good_data.copy()
+        data['appOS'] = 'something %s penguin' % amo.PLATFORM_LINUX.shortname
+        form = forms.UpdateForm(data)
+        assert form.is_valid()
+        eq_(form.cleaned_data['appOS'], amo.PLATFORM_LINUX)
+
+    def test_app_version_fails(self):
+        data = self.good_data.copy()
+        del data['appID']
+        form = forms.UpdateForm(data)
+        assert not form.is_valid()
+
+    def test_app_version_wrong(self):
+        data = self.good_data.copy()
+        data['appVersion'] = '87.6'
+        form = forms.UpdateForm(data)
+        assert not form.is_valid()
+
+    def test_app_version(self):
+        data = self.good_data.copy()
+        form = forms.UpdateForm(data)
+        assert form.is_valid()
+        valid = AppVersion.objects.get(id=282)
+        eq_(form.cleaned_data['appVersion'], valid)

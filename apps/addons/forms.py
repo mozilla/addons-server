@@ -10,6 +10,7 @@ import amo
 import captcha.fields
 from addons.models import Addon, ReverseNameLookup
 from amo.utils import slug_validator
+from applications.models import AppVersion
 from tags.models import Tag
 from translations.fields import TransField, TransTextarea
 from translations.forms import TranslationFormMixin
@@ -190,3 +191,48 @@ class AbuseForm(happyforms.Form):
         if (not self.request.user.is_anonymous() or
             not settings.RECAPTCHA_PRIVATE_KEY):
             del self.fields['recaptcha']
+
+
+beta_re = re.compile('(a|alpha|b|beta|pre|rc)\d*$')
+
+
+class UpdateForm(happyforms.Form):
+    reqVersion = forms.CharField(required=True)
+    # Order is important, version validation requires an id.
+    id = forms.ModelChoiceField(required=True,
+                                to_field_name='guid',
+                                queryset=Addon.objects.all())
+    version = forms.CharField(required=True)
+    appID = forms.CharField(required=True)
+    # Order is important, appVersion validation requires an appID.
+    appVersion = forms.CharField(required=True)
+    appOS = forms.CharField(required=False)
+
+    @property
+    def addon(self):
+        return self.cleaned_data.get('id')
+
+    @property
+    def is_beta_version(self):
+        return beta_re.search(self.cleaned_data.get('version', ''))
+
+    def clean_appOS(self):
+        data = self.cleaned_data['appOS']
+        for platform in [amo.PLATFORM_LINUX, amo.PLATFORM_BSD,
+                 amo.PLATFORM_MAC, amo.PLATFORM_WIN,
+                 amo.PLATFORM_SUN]:
+            if platform.shortname in data:
+                return platform
+
+    def clean_appVersion(self):
+        data = self.cleaned_data['appVersion']
+        id = self.cleaned_data.get('appID', None)
+        if not id:
+            raise forms.ValidationError(_('AppID is required.'))
+        try:
+            app = AppVersion.objects.get(version=data,
+                                         application__guid=id)
+        except AppVersion.DoesNotExist:
+            raise forms.ValidationError(_('Unknown version %s for app %s'
+                                          % (data, id)))
+        return app

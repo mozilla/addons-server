@@ -54,4 +54,6 @@ urlpatterns = patterns('',
                                   addon_id, permanent=True)),
 
     ('^versions/license/(\d+)$', views.license_redirect),
+
+    url('^update$', views.update, name='addons.update'),
 )

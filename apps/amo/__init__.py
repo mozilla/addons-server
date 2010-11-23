@@ -169,6 +169,17 @@ ADDON_SLUGS = {
     ADDON_SEARCH: 'search-tools',
 }
 
+# These are used in the update API.
+ADDON_SLUGS_UPDATE = {
+    ADDON_EXTENSION: 'extension',
+    ADDON_THEME: 'theme',
+    ADDON_DICT: 'extension',
+    ADDON_SEARCH: 'search',
+    ADDON_LPAPP: 'item',
+    ADDON_LPADDON: 'extension',
+    ADDON_PLUGIN: 'plugin'
+}
+
 # Edit addon information
 MAX_TAGS = 20
 MIN_TAG_LENGTH = 2
