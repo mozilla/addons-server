@@ -1,7 +1,7 @@
 import test_utils
 from nose.tools import eq_
 
-from redisutils import mock_redis
+from redisutils import mock_redis, reset_redis
 
 from addons.models import Addon
 from addons.utils import ReverseNameLookup
@@ -12,9 +12,12 @@ class TestReverseNameLookup(test_utils.TestCase):
     fixtures = ('base/addon_3615',)
 
     def setUp(self):
-        mock_redis()
+        self._redis = mock_redis()
         cron.build_reverse_name_lookup()
         self.addon = Addon.objects.get()
+
+    def tearDown(self):
+        reset_redis(self._redis)
 
     def test_delete_addon(self):
         eq_(ReverseNameLookup.get('Delicious Bookmarks'), 3615)

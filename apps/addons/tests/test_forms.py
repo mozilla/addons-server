@@ -1,7 +1,7 @@
 import test_utils
 from nose.tools import eq_
 
-from redisutils import mock_redis
+from redisutils import mock_redis, reset_redis
 from addons import forms, cron
 from addons.models import Addon
 
@@ -10,11 +10,14 @@ class FormsTest(test_utils.TestCase):
     fixtures = ('base/addon_3615',)
 
     def setUp(self):
-        mock_redis()
+        self._redis = mock_redis()
         cron.build_reverse_name_lookup()
         self.existing_name = 'Delicious Bookmarks'
         self.error_msg = ('This add-on name is already in use. '
                           'Please choose another.')
+
+    def tearDown(self):
+        reset_redis(self._redis)
 
     def test_new(self):
         """

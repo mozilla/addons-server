@@ -11,7 +11,7 @@ from django.utils import translation
 import mock
 from nose.tools import eq_, assert_not_equal, assert_raises
 from pyquery import PyQuery as pq
-from redisutils import mock_redis
+from redisutils import mock_redis, reset_redis
 import test_utils
 
 import amo
@@ -2219,7 +2219,7 @@ class TestCreateAddon(files.tests.UploadTest, test_utils.TestCase):
 
     def setUp(self):
         super(TestCreateAddon, self).setUp()
-        mock_redis()
+        self._redis = mock_redis()
         xpi = open(self.xpi_path('extension')).read()
         self.upload = FileUpload.from_post([xpi], filename='extension.xpi',
                                            size=1234)
@@ -2227,6 +2227,9 @@ class TestCreateAddon(files.tests.UploadTest, test_utils.TestCase):
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
         self.client.post(reverse('devhub.submit.1'))
+
+    def tearDown(self):
+        reset_redis(self._redis)
 
     def post(self, platform=amo.PLATFORM_ALL):
         return self.client.post(self.url, dict(upload=self.upload.pk,

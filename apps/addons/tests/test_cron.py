@@ -1,7 +1,7 @@
 from nose.tools import eq_
 import test_utils
 
-from redisutils import mock_redis
+from redisutils import mock_redis, reset_redis
 
 import amo
 from addons import cron
@@ -14,7 +14,10 @@ class TestBuildReverseNameLookup(test_utils.TestCase):
     fixtures = ('base/addon_3615',)
 
     def setUp(self):
-        mock_redis()
+        self._redis = mock_redis()
+
+    def tearDown(self):
+        reset_redis(self._redis)
 
     def test_lookup(self):
         cron.build_reverse_name_lookup()
