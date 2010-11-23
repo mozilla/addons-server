@@ -142,15 +142,6 @@ class Version(amo.models.ModelBase):
             version.all_files = file_dict.get(v_id, [])
 
 
-def update_status(sender, instance, **kw):
-    instance.addon.update_status(using='default')
-
-models.signals.post_save.connect(update_status, sender=Version,
-                                 dispatch_uid='version_update_status')
-models.signals.post_delete.connect(update_status, sender=Version,
-                                   dispatch_uid='version_update_status')
-
-
 class LicenseManager(amo.models.ManagerBase):
 
     def builtins(self):
