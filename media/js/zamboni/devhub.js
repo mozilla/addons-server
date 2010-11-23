@@ -426,9 +426,9 @@ function initEditVersions() {
 
             // TODO(gkoberger): Add a link when it becomes available
 
-            body += "<a href='#'>";
-            body += gettext('See full validation report');
-            body += '</a>';
+            body += format('<a href="{0}">{1}</a>',
+                           [json.full_report_url,
+                            gettext('See full validation report')]);
 
             statusclass = v.errors ? 'status-fail' : 'status-pass';
             $('#upload-status-results').html(body).addClass(statusclass);
@@ -746,8 +746,16 @@ function compatModalCallback(obj) {
 $(document).ready(function() {
 
     function buildResults(suite, data) {
-        var msgMap = buildMsgMap(data.messages);
-        $('.suite-summary span', suite).text(data.result_summary);
+        var validation = data.validation,
+            msgMap = buildMsgMap(validation.messages),
+            summaryTxt;
+
+        if (validation.errors > 0 || validation.warnings > 0) {
+            summaryTxt = gettext('Add-on failed validation.');
+        } else {
+            summaryTxt = gettext('Add-on passed validation.');
+        }
+        $('.suite-summary span', suite).text(summaryTxt);
         $('.result-summary', suite).text('').css('visibility', 'visible');
         $('.suite-summary', suite).show();
 
@@ -845,26 +853,53 @@ $(document).ready(function() {
         $('.suite-summary', el).hide();
     }
 
+    // Displays a global error on all tiers.
+    // NOTE: this can probably be simplified if the JSON format is updated.
+    function messagesForAllTiers(header, description) {
+        return [
+            {'type':'error', message: header,
+             description: [description], tier: 1, uuid: '1'},
+            {'type':'error', message: header,
+             description: [description], tier: 2, uuid: '2'},
+            {'type':'error', message: header,
+             description: [description], tier: 3, uuid: '3'},
+            {'type':'error', message: header,
+             description: [description], tier: 4, uuid: '4'}
+        ]
+    }
+
     $('.addon-validator-suite').live('validate', function(e) {
         var el = $(this),
-            url = el.attr('data-validateurl'),
-            addon_id = el.attr('data-addonid');
+            url = el.attr('data-validateurl');
 
         prepareToGetResults(el);
 
         $.ajax({type: 'POST',
                 url: url,
-                data: {addon_id: addon_id},
+                data: {},
                 success: function(data) {
+                    if (data.validation == '') {
+                        // Note: traceback is in data.task_error
+                        data.validation = {};
+                        data.validation.messages = messagesForAllTiers(
+                            gettext('Error'),
+                            gettext('Validation task could not complete ' +
+                                    'or completed with errors'));
+                    }
                     buildResults(el, data);
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown) {
                     $('.test-tier, .tier-results', el).removeClass(
                                                             'ajax-loading');
-                    // TODO(kumar) show the actual error message?
                     $('.test-tier, .tier-results', el).addClass(
                                                             'tests-failed');
-                    buildResults(el, {messages: []});
+                    buildResults(el, {
+                        validation: {
+                            messages: messagesForAllTiers(
+                                            gettext('Error'),
+                                            gettext('Internal server error'))
+                        }
+                    });
                 },
                 dataType: 'json'
         });

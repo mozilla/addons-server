@@ -2165,12 +2165,63 @@ class TestUpload(files.tests.UploadTest):
         assert fu.validation
         validation = json.loads(fu.validation)
         eq_(validation['success'], False)
+        # The current interface depends on this JSON structure:
+        eq_(validation['errors'], 1)
+        eq_(validation['warnings'], 0)
+        assert len(validation['messages'])
+        msg = validation['messages'][0]
+        assert 'uid' in msg, "Unexpected: %r" % msg
+        eq_(msg['type'], u'error')
+        eq_(msg['message'], u'The XPI could not be opened.')
+        eq_(msg['description'], u'')
 
     def test_redirect(self):
         r = self.post()
         upload = FileUpload.objects.get()
         url = reverse('devhub.upload_detail', args=[upload.pk, 'json'])
         self.assertRedirects(r, url)
+
+
+class TestUploadDetail(files.tests.UploadTest):
+    fixtures = ['base/apps', 'base/users']
+
+    def post(self):
+        data = 'some data'
+        return self.client.post(reverse('devhub.upload'),
+                                data, content_type='text',
+                                HTTP_X_FILE_NAME='filename.xpi',
+                                HTTP_X_FILE_SIZE=len(data))
+
+    def test_detail_json(self):
+        self.post()
+        upload = FileUpload.objects.get()
+        r = self.client.get(reverse('devhub.upload_detail',
+                                    args=[upload.uuid, 'json']))
+        eq_(r.status_code, 200)
+        data = json.loads(r.content)
+        eq_(data['url'],
+            reverse('devhub.upload_detail', args=[upload.uuid, 'json']))
+        eq_(data['full_report_url'],
+            reverse('devhub.upload_detail', args=[upload.uuid]))
+        # We must have tiers
+        assert len(data['validation']['messages'])
+        msg = data['validation']['messages'][0]
+        eq_(msg['tier'], 1)
+
+    def test_detail_view(self):
+        self.post()
+        upload = FileUpload.objects.get()
+        r = self.client.get(reverse('devhub.upload_detail',
+                                    args=[upload.uuid]))
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        eq_(doc('header h2').text(), 'Validation Results for filename.xpi')
+        suite = doc('#addon-validator-suite')
+        eq_(suite.attr('data-validateurl'),
+            reverse('devhub.upload_detail', args=[upload.uuid, 'json']))
+        eq_(doc('.suite-summary a').text(), 'Revalidate')
+        eq_(doc('.suite-summary a').attr('href'),
+           reverse('devhub.upload_detail', args=[upload.uuid]))
 
 
 def assert_json_error(request, field, msg):
