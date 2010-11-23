@@ -4,12 +4,19 @@
 {% block js %}{% include("amo/recaptcha_js.html") %}{% endblock %}
 {% block bodyclass %}inverse{% endblock %}
 
+{% set previews = addon.previews.all() %}
+
+{% block extrahead %}
+  {% for preview in previews %}
+    <link rel="prefetch" href="{{ preview.image_url }}">
+  {% endfor %}
+{% endblock %}
+
 {% block content %}
 {{ breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
                 (None, addon.name)]) }}
 
 {% set version = addon.current_version %}
-{% set previews = addon.previews.all() %}
 
 <hgroup>
   <h2 class="addon"{{ addon.name|locale_html }}>
