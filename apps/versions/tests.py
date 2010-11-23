@@ -386,7 +386,7 @@ class TestFromUpload(test_utils.TestCase):
         self.mock_parse_xpi(version='4.0')
         self.mock_file_from_upload()
         addon = self.get_addon()
-        version = Version.from_upload(mock.Mock(), addon)
+        version = Version.from_upload(mock.Mock(), addon, mock.Mock())
         eq_(version.license_id, addon.current_version.license_id)
 
     def test_carry_over_license_no_version(self):
@@ -395,5 +395,5 @@ class TestFromUpload(test_utils.TestCase):
         addon = self.get_addon()
         addon.update(_current_version=None)
         addon.versions.all().delete()
-        version = Version.from_upload(mock.Mock(), addon)
+        version = Version.from_upload(mock.Mock(), addon, mock.Mock())
         eq_(version.license_id, None)
