@@ -11,6 +11,7 @@ from django.utils import translation
 import mock
 from nose.tools import eq_, assert_not_equal, assert_raises
 from pyquery import PyQuery as pq
+from redisutils import mock_redis
 import test_utils
 
 import amo
@@ -18,6 +19,7 @@ import files.tests
 import paypal
 from amo.urlresolvers import reverse
 from addons.models import Addon, AddonUser, Charity
+from addons.utils import ReverseNameLookup
 from applications.models import AppVersion
 from bandwagon.models import Collection
 from devhub.forms import ContribForm
@@ -1749,6 +1751,7 @@ class TestSubmitStep1(TestSubmitBase):
 
 
 class TestSubmitStep2(test_utils.TestCase):
+    # More tests in TestCreateAddon.
     fixtures = ['base/users']
 
     def setUp(self):
@@ -2113,6 +2116,15 @@ class TestUpload(files.tests.UploadTest):
         self.assertRedirects(r, url)
 
 
+def assert_json_error(request, field, msg):
+    eq_(request.status_code, 400)
+    eq_(request['Content-Type'], 'application/json')
+    field = '__all__' if field is None else field
+    content = json.loads(request.content)
+    assert field in content, '%r not in %r' % (field, content)
+    eq_(content[field], [msg])
+
+
 class UploadTest(files.tests.UploadTest, test_utils.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']
 
@@ -2131,14 +2143,6 @@ class UploadTest(files.tests.UploadTest, test_utils.TestCase):
         return self.client.post(self.url, dict(upload=self.upload.pk,
                                                platform=platform.id))
 
-    def assert_json_error(self, request, field, msg):
-        eq_(request.status_code, 400)
-        eq_(request['Content-Type'], 'application/json')
-        field = '__all__' if field is None else field
-        content = json.loads(request.content)
-        assert field in content, '%r not in %r' % (field, content)
-        eq_(content[field], [msg])
-
 
 class TestVersionAddFile(UploadTest):
 
@@ -2151,23 +2155,23 @@ class TestVersionAddFile(UploadTest):
     def test_guid_matches(self):
         self.addon.update(guid='something.different')
         r = self.post()
-        self.assert_json_error(r, None, "GUID doesn't match add-on")
+        assert_json_error(r, None, "GUID doesn't match add-on")
 
     def test_version_matches(self):
         self.version.update(version='2.0')
         r = self.post()
-        self.assert_json_error(r, None, "Version doesn't match")
+        assert_json_error(r, None, "Version doesn't match")
 
     def test_platform_limits(self):
         r = self.post(platform=amo.PLATFORM_ALL)
-        self.assert_json_error(r, 'platform',
+        assert_json_error(r, 'platform',
                                'Select a valid choice. That choice is not '
                                'one of the available choices.')
 
     def test_type_matches(self):
         self.addon.update(type=amo.ADDON_THEME)
         r = self.post()
-        self.assert_json_error(r, None, "<em:type> doesn't match add-on")
+        assert_json_error(r, None, "<em:type> doesn't match add-on")
 
     def test_file_platform(self):
         # Check that we're creating a new file with the requested platform.
@@ -2181,7 +2185,7 @@ class TestVersionAddFile(UploadTest):
     def test_upload_not_found(self):
         r = self.client.post(self.url, dict(upload='xxx',
                                             platform=amo.PLATFORM_MAC.id))
-        self.assert_json_error(r, 'upload',
+        assert_json_error(r, 'upload',
                                'There was an error with your upload. '
                                'Please try again.')
 
@@ -2201,10 +2205,48 @@ class TestAddVersion(UploadTest):
     def test_unique_version_num(self):
         self.version.update(version='0.1')
         r = self.post()
-        self.assert_json_error(r, None, 'Version 0.1 already exists')
+        assert_json_error(r, None, 'Version 0.1 already exists')
 
     def test_success(self):
         r = self.post()
         version = self.addon.versions.get(version='0.1')
         self.assertRedirects(r, reverse('devhub.versions.edit',
                                         args=[self.addon.id, version.id]))
+
+
+class TestCreateAddon(files.tests.UploadTest, test_utils.TestCase):
+    fixtures = ['base/apps', 'base/users']
+
+    def setUp(self):
+        super(TestCreateAddon, self).setUp()
+        mock_redis()
+        xpi = open(self.xpi_path('extension')).read()
+        self.upload = FileUpload.from_post([xpi], filename='extension.xpi',
+                                           size=1234)
+        self.url = reverse('devhub.submit.2')
+        assert self.client.login(username='regular@mozilla.com',
+                                 password='password')
+        self.client.post(reverse('devhub.submit.1'))
+
+    def post(self, platform=amo.PLATFORM_ALL):
+        return self.client.post(self.url, dict(upload=self.upload.pk,
+                                               platform=platform.id))
+
+    def assert_json_error(self, *args):
+        UploadTest().assert_json_error(self, *args)
+
+    def test_unique_name(self):
+        ReverseNameLookup.add('xpi name', 34)
+        r = self.post()
+        assert_json_error(r, None, 'This add-on name is already in use. '
+                                   'Please choose another.')
+
+    def test_success(self):
+        eq_(Addon.objects.count(), 0)
+        r = self.post()
+        eq_(r.status_code, 200)
+        eq_(r['Content-Type'], 'application/json')
+        addon = Addon.objects.get()
+        eq_(json.loads(r.content)['location'],
+            reverse('devhub.submit.3', args=[addon.id]))
+        assert SubmitStep.objects.get(addon=addon, step=3)

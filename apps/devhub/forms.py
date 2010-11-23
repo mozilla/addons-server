@@ -9,6 +9,7 @@ import happyforms
 from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
+import addons.forms
 import paypal
 from addons.models import Addon, AddonUser, Charity
 from applications.models import Application, AppVersion
@@ -310,7 +311,7 @@ CompatFormSet = modelformset_factory(
     form=CompatForm, can_delete=True, extra=0)
 
 
-class NewVersionForm(happyforms.Form):
+class NewAddonForm(happyforms.Form):
     upload = forms.ModelChoiceField(queryset=FileUpload.objects.all(),
         error_messages={'invalid_choice': _lazy('There was an error with your '
                                                 'upload. Please try again.')})
@@ -318,6 +319,15 @@ class NewVersionForm(happyforms.Form):
                     widget=forms.RadioSelect(attrs={'class': 'platform'}))
     platform.choices = sorted((p.id, p.name)
                               for p in amo.SUPPORTED_PLATFORMS.values())
+
+    def clean(self):
+        if not self.errors:
+            xpi = parse_xpi(self.cleaned_data['upload'].path)
+            addons.forms.clean_name(xpi['name'])
+        return self.cleaned_data
+
+
+class NewVersionForm(NewAddonForm):
 
     def __init__(self, *args, **kw):
         self.addon = kw.pop('addon')

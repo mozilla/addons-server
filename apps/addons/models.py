@@ -246,7 +246,7 @@ class Addon(amo.models.ModelBase):
         return rv
 
     @classmethod
-    def from_upload(cls, upload):
+    def from_upload(cls, upload, platform):
         from files.utils import parse_xpi
         data = parse_xpi(upload.path)
         keys = 'guid name type homepage description'.split()
@@ -254,7 +254,7 @@ class Addon(amo.models.ModelBase):
         addon.status = amo.STATUS_NULL
         addon.slug = slugify(addon.name)
         addon.save()
-        Version.from_upload(upload, addon)
+        Version.from_upload(upload, addon, platform)
         log.debug('New addon %r from %r' % (addon, upload))
         return addon
 

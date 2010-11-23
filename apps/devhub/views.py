@@ -620,17 +620,22 @@ def submit(request, step):
                         {'agreement_text': agreement_text, 'step': step})
 
 
+@json_view
 @login_required
 @submit_step(2)
 def submit_addon(request, step):
     if DEV_AGREEMENT_COOKIE not in request.COOKIES:
         return redirect('devhub.submit.1')
+    form = forms.NewAddonForm(request.POST or None)
     if request.method == 'POST':
-        upload = get_object_or_404(FileUpload, pk=request.POST['upload'])
-        addon = Addon.from_upload(upload)
-        AddonUser(addon=addon, user=request.amo_user).save()
-        SubmitStep.objects.create(addon=addon, step=2)
-        return redirect('devhub.submit.3', addon.id)
+        if form.is_valid():
+            data = form.cleaned_data
+            addon = Addon.from_upload(data['upload'], data['platform'])
+            AddonUser(addon=addon, user=request.amo_user).save()
+            SubmitStep.objects.create(addon=addon, step=3)
+            return {'location': reverse('devhub.submit.3', args=[addon.id])}
+        else:
+            return json_view.error(form.errors)
     return jingo.render(request, 'devhub/addons/submit/start.html',
                         {'agreement_text': 'xx', 'step': step})
 
