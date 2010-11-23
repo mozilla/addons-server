@@ -260,6 +260,15 @@ def delete(request, addon_id, addon):
         return redirect(reverse('devhub.versions', args=(addon_id,)))
 
 
+@dev_required
+@post_required
+def disable(request, addon_id, addon):
+    addon.status = amo.STATUS_DISABLED
+    addon.save()
+    amo.log(amo.LOG.CHANGE_STATUS, addon.get_status_display(), addon)
+    return redirect('devhub.versions', addon_id)
+
+
 def _license_form(request, addon, save=False):
     qs = addon.versions.order_by('-version')[:1]
     version = qs[0] if qs else None

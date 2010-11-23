@@ -1438,6 +1438,7 @@ class TestVersion(test_utils.TestCase):
         self.version = Version.objects.get(id=81551)
         self.url = reverse('devhub.versions', args=[3615])
 
+        self.disable_url = reverse('devhub.addons.disable', args=[3615])
         self.delete_url = reverse('devhub.versions.delete', args=[3615])
         self.delete_data = {'addon_id': self.addon.pk,
                             'version_id': self.version.pk}
@@ -1496,6 +1497,19 @@ class TestVersion(test_utils.TestCase):
         eq_(res.status_code, 302)
         eq_(self.addon.versions.count(), 1)
         eq_(Addon.objects.get(id=3615).status, amo.STATUS_UNREVIEWED)
+
+    def test_version_disable(self):
+        res = self.client.post(self.disable_url)
+        eq_(res.status_code, 302)
+        eq_(Addon.objects.get(id=3615).status, amo.STATUS_DISABLED)
+        eq_(ActivityLog.objects.all().count(), 1)
+
+    def test_cant_version_disable(self):
+        status = self.addon.status
+        self.client.logout()
+        res = self.client.post(self.disable_url)
+        eq_(res.status_code, 302)
+        eq_(Addon.objects.get(id=3615).status, status)
 
 
 class TestVersionEdit(test_utils.TestCase):

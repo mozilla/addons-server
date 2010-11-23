@@ -124,6 +124,10 @@ function initVersions() {
 
     $('#modal-disable').modal('#disable-addon',
         { width: 400,
+          callback:function(d){
+                $('.version_id', this).val($(d.click_target).attr('data-version'));
+                return true;
+            }
           });
 
 
