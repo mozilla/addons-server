@@ -187,14 +187,14 @@ function initEditVersions() {
     });
 
     $("#file-list").delegate("a.remove", "click", function() {
-        var row = $(this).parent().parent();
+        var row = $(this).closest("tr");
         $("input:first", row).attr("checked", true);
         row.hide();
         row.next().show();
     });
 
     $("#file-list").delegate("a.undo", "click", function() {
-        var row = $(this).parent().parent().prev();
+        var row = $(this).closest("tr").prev();
         $("input:first", row).attr("checked", false);
         row.show();
         row.next().hide();
