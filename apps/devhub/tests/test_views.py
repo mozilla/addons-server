@@ -331,6 +331,28 @@ class TestDashboard(HubTest):
         doc = pq(r.content)
         assert not doc('.item[data-addonid=%s] h4 a' % a_pk)
 
+    def test_show_hide_statistics(self):
+        a_pk = self.clone_addon(1)[0]
+
+        def get_links():
+            r = self.client.get(self.url)
+            doc = pq(r.content)
+            links = [a.text.strip() for a in
+                     doc('.item[data-addonid=%s] .item-actions a' % a_pk)]
+            return links
+
+        # when Active and Public show statistics
+        Addon.objects.get(pk=a_pk).update(inactive=False,
+                                          status=amo.STATUS_PUBLIC)
+        links = get_links()
+        assert 'Statistics' in links, ('Unexpected: %r' % links)
+
+        # when Active and Incomplete hide statistics
+        Addon.objects.get(pk=a_pk).update(inactive=False,
+                                          status=amo.STATUS_NULL)
+        links = get_links()
+        assert 'Statistics' not in links, ('Unexpected: %r' % links)
+
 
 class TestUpdateCompatibility(test_utils.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_4594_a9',

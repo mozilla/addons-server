@@ -50,11 +50,13 @@
       {% include "devhub/addons/ajax_compat_status.html" %}
     </li>
    {% endif %}
+    {% if addon.status != amo.STATUS_NULL and not addon.inactive %}
     <li>
       <a href="{{ url('stats.overview', addon.id) }}" class="tooltip"
          title="{{ _('Daily statistics on downloads and users.') }}">
         {{ _('Statistics') }}</a>
     </li>
+    {% endif %}
     <li>
       <a href="#" class="more-actions">{{ _('More') }}</a>
       <div class="more-actions-popup popup hidden">
