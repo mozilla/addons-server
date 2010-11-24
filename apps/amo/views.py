@@ -26,8 +26,8 @@ import amo
 import mongoutils
 from hera.contrib.django_utils import get_hera
 from stats.models import Contribution, ContributionError, SubscriptionEvent
-from . import log
 
+monitor_log = commonware.log.getLogger('z.monitor')
 paypal_log = commonware.log.getLogger('z.paypal')
 csp_log = commonware.log.getLogger('z.csp')
 
@@ -37,7 +37,7 @@ def check_redis():
     try:
         return redis.info(), None
     except Exception, e:
-        log.critical('Failed to chat with redis: (%s)' % e)
+        monitor_log.critical('Failed to chat with redis: (%s)' % e)
         return None, e
 
 
@@ -62,7 +62,7 @@ def monitor(request):
             except Exception, e:
                 result = False
                 status_summary['memcache'] = False
-                log.critical('Failed to connect to memcached (%s): %s' %
+                monitor_log.critical('Failed to connect to memcached (%s): %s' %
                                                                     (host, e))
             else:
                 result = True
@@ -72,11 +72,11 @@ def monitor(request):
             memcache_results.append((ip, port, result))
         if len(memcache_results) < 2:
             status_summary['memcache'] = False
-            log.warning('You should have 2+ memcache servers.  You have %s.' %
+            monitor_log.warning('You should have 2+ memcache servers.  You have %s.' %
                                                         len(memcache_results))
     if not memcache_results:
         status_summary['memcache'] = False
-        log.info('Memcache is not configured.')
+        monitor_log.info('Memcache is not configured.')
 
     # Check Libraries and versions
     libraries_results = []
