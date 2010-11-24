@@ -234,6 +234,7 @@ class LegacyAddonLog(models.Model):
 
     class Meta:
         db_table = 'addonlogs'
+        ordering = ('id',)
 
 
 class SubmitStep(models.Model):

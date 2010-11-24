@@ -26,6 +26,8 @@ def add_redis(f):
 
         try:
             import redisutils
+            # TODO(davedash): This should be our persistence layer when that's
+            # set in production.
             redis = redisutils.connections['master']
             pipe = redis.pipeline(transaction=True)
             ret = f(cls, redis, pipe, *args, **kw)
@@ -77,3 +79,19 @@ class ReverseNameLookup(object):
         for hash in hashes:
             pipe.delete('%s:%s' % (cls.prefix, hash))
         pipe.delete('%s:%d' % (cls.prefix, addon_id))
+
+
+#TODO(davedash): remove after remora
+class ActivityLogMigrationTracker(object):
+    """This tracks what id of the addonlog we're on."""
+    key = 'amo:activitylog:migration'
+
+    @add_redis
+    def __init__(self, redis, pipe):
+        self.redis = redis
+
+    def get(self):
+        return self.redis.get(self.key)
+
+    def set(self, value):
+        return self.redis.set(self.key, value)

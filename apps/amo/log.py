@@ -51,20 +51,20 @@ class EDIT_CONTRIBUTIONS:
 
 class USER_DISABLE:
     id = 8
-    format = _(u'{user.name} disabled addon {addon}')
+    format = _(u'{addon} set inactive.')
     keep = True
 
 
 class USER_ENABLE:
     id = 9
-    format = _(u'{user.name} enabled addon {addon}')
+    format = _(u'{addon} activated.')
     keep = True
 
 
 # TODO(davedash): Log these types when pages are present
 class SET_PUBLIC_STATS:
     id = 10
-    format = _(u'{user.name} set stats public for {addon}')
+    format = _(u'Stats set public for {addon}.')
     keep = True
 
 
@@ -79,7 +79,7 @@ class UNSET_PUBLIC_STATS:
 class CHANGE_STATUS:
     id = 12
     # L10n: {0} is the status
-    format = _(u'{user.name} changed {addon} status to {0}')
+    format = _(u'{addon} status changed to {0}')
     keep = True
 
 
@@ -114,7 +114,9 @@ class EDIT_VERSION:
 
 class DELETE_VERSION:
     id = 18
-    format = _(u'{user.name} deleted version {0} from {addon}')
+    # Note, {0} is a string not a version since the version is deleted.
+    # L10n: {0} is the version number
+    format = _(u'Version {0} deleted from {addon}.')
     keep = True
 
 
@@ -137,14 +139,14 @@ class DELETE_FILE_FROM_VERSION:
 # TODO(davedash): When editor tools exist
 class APPROVE_VERSION:
     id = 21
-    format = _(u'Version {0.version} of {addon} approved')
+    format = _(u'{addon} {version} approved.')
     keep = True
 
 
 # TODO(davedash): When editor tools exist
 class RETAIN_VERSION:
     id = 22
-    format = _(u'{user.name} retained version {0.version} of {addon}')
+    format = _(u'{addon} {version} retained.')
     keep = True
 
 
@@ -152,7 +154,7 @@ class RETAIN_VERSION:
 class ESCALATE_VERSION:
     id = 23
     # L10n: {0.version} is the version of an addon.
-    format = _(u'{user.name} escalated review of {addon} {0.version}')
+    format = _(u'Review escalated for {addon} {version}.')
     keep = True
 
 
@@ -160,8 +162,7 @@ class ESCALATE_VERSION:
 class REQUEST_VERSION:
     id = 24
     # L10n: {0.version} is the version of an addon.
-    format = _(u'{user.name} requested more information regarding '
-               '{addon} {0.version}')
+    format = _(u'More information regarding {addon} {version} was requested.')
     keep = True
 
 
@@ -205,13 +206,13 @@ class REMOVE_RECOMMENDED_CATEGORY:
 
 class ADD_RECOMMENDED:
     id = 33
-    format = _(u'{addon} is now featured')
+    format = _(u'{addon} is now featured.')
     keep = True
 
 
 class REMOVE_RECOMMENDED:
     id = 34
-    format = _(u'{addon} is no longer featured')
+    format = _(u'{addon} is no longer featured.')
     keep = True
 
 
@@ -265,10 +266,10 @@ LOGS = (CREATE_ADDON, EDIT_PROPERTIES, EDIT_DESCRIPTIONS, EDIT_CATEGORIES,
         )
 LOG_BY_ID = dict((l.id, l) for l in LOGS)
 LOG = AttributeDict((l.__name__, l) for l in LOGS)
-LOG_KEEP = (l.id for l in LOGS if hasattr(l, 'keep'))
+LOG_KEEP = [l.id for l in LOGS if hasattr(l, 'keep')]
 
 
-def log(action, *args):
+def log(action, *args, **kw):
     """
     e.g. amo.log(amo.LOG.CREATE_ADDON, []),
          amo.log(amo.LOG.ADD_FILE_TO_VERSION, file, version)
@@ -278,7 +279,7 @@ def log(action, *args):
     from users.models import UserProfile
     from amo import get_user, logger_log
 
-    user = get_user()
+    user = kw.get('user', get_user())
 
     if not user:
         logger_log.warning('Activity log called with no user: %s' % action.id)
@@ -287,6 +288,10 @@ def log(action, *args):
     al = ActivityLog(user=user, action=action.id)
     al.arguments = args
     al.save()
+    if 'created' in kw:
+        al.created = kw['created']
+        # Double save necessary since django resets the created date on save.
+        al.save()
 
     for arg in args:
         if isinstance(arg, Addon):
