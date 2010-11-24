@@ -351,7 +351,10 @@ class Addon(amo.models.ModelBase):
         """
         Returns either the addon's icon url, or a default.
         """
-        icon_type_split = self.icon_type.split('/')
+
+        icon_type_split = []
+        if self.icon_type:
+            icon_type_split = self.icon_type.split('/')
 
         # Get the closest allowed size without going over
         if size not in amo.ADDON_ICON_SIZES and size >= amo.ADDON_ICON_SIZES[0]:

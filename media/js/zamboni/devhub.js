@@ -48,6 +48,11 @@ $(document).ready(function() {
         fileUpload($(this), $(this).closest(".invisible-upload").attr('data-upload-url'));
         $('.upload-status').show();
     });
+
+    // Submission > Media
+    if($('#submit-media').length) {
+        initUploadIcon();
+    }
 });
 
 
@@ -128,8 +133,10 @@ function initEditAddon() {
         return false;
     });
 
-    // Icon stuff.
+    initUploadIcon();
+}
 
+function initUploadIcon() {
     $('#edit-addon-media').delegate('form', 'submit', function(e){
         e.preventDefault();
 
@@ -148,7 +155,7 @@ function initEditAddon() {
         }
     });
 
-    $('#edit-addon-media').delegate('#icons_default a', 'click', function(e){
+    $('#edit-addon-media, #submit-media').delegate('#icons_default a', 'click', function(e){
         e.preventDefault();
 
         $('#edit-icon-error').hide();
@@ -165,7 +172,7 @@ function initEditAddon() {
                 $parent).attr('src').replace(/32/, '64'));
     });
 
-    $('#edit-addon').delegate('#id_icon_upload', 'change', function(){
+    $('#edit-addon, #submit-media').delegate('#id_icon_upload', 'change', function(){
         $('#edit-icon-error').hide();
         file = $('#id_icon_upload')[0].files[0];
 

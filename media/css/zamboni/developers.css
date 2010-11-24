@@ -216,6 +216,7 @@ tr:hover a.remove:hover {
     overflow-x: hidden;
     overflow-y: scroll;
     padding: 5px;
+    background-color: #fff;
 }
 
 #icon_preview_readonly img {
@@ -232,6 +233,7 @@ tr:hover a.remove:hover {
     border: 1px solid #6A89AC;
     text-align: center;
     padding: 5px;
+    background-color: #fff;
 }
 
 #icon_preview .icon_preview img {

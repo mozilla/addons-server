@@ -10,6 +10,7 @@ from tower import ugettext as _, ungettext as ngettext
 
 import amo
 import captcha.fields
+from amo.utils import slug_validator
 from addons.models import Addon, ReverseNameLookup
 from addons.widgets import IconWidgetRenderer
 from amo.utils import slug_validator

@@ -467,7 +467,10 @@ def upload_detail(request, uuid, format='html'):
 @dev_required
 @json_view
 def addons_icon_upload(request, addon_id, addon):
-    icon = request.raw_post_data
+    if request.FILES:
+        icon = request.FILES['icon_upload']
+    else:
+        icon = request.raw_post_data
 
     if icon:
         dirname = settings.ADDON_ICONS_PATH
@@ -717,6 +720,24 @@ def submit_describe(request, addon_id, addon, step):
         return redirect('devhub.submit.4', addon.id)
 
     return jingo.render(request, 'devhub/addons/submit/describe.html',
+                        {'form': form, 'addon': addon, 'step': step})
+
+
+@dev_required
+@submit_step(4)
+def submit_media(request, addon_id, addon, step):
+    form = addon_forms.AddonFormMedia(request.POST or None, instance=addon,
+                                      request=request)
+    if request.method == 'POST' and form.is_valid():
+
+        if request.FILES:
+            addons_icon_upload(request, addon_id)
+
+        addon = form.save(addon)
+        SubmitStep.objects.filter(addon=addon).update(step=5)
+        return redirect('devhub.submit.5', addon.id)
+
+    return jingo.render(request, 'devhub/addons/submit/media.html',
                         {'form': form, 'addon': addon, 'step': step})
 
 

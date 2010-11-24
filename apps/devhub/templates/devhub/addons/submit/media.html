@@ -1,0 +1,68 @@
+{% from "devhub/includes/macros.html" import tip %}
+
+{% extends "devhub/addons/submit/base.html" %}
+
+{% set title = _('Submit a New Add-on') %}
+
+{% block title %}
+{{ dev_page_title(title) }}
+{% endblock %}
+
+
+{% block primary %}
+<section class="primary addon-submission-process" id="submit-media" role="main">
+  <div>
+    <h3>{{ _('Step 3. Add Images and Videos') }}</h3>
+    <p>
+    {% trans %}
+    Custom icons and screenshots draw attention to your add-on and help users
+    understand what it does. We strongly recommend uploading a custom icon, as in
+    some areas of the website, only your add-on's icon and name will appear.
+    {% endtrans %}
+    </p>
+    <form method="post" class="item" action="" enctype="multipart/form-data">
+      {{ csrf() }}
+      <div class="addon-submission-field">
+        <div id="icon_preview" class="devhub-form">
+          <div class="icon_preview" id="icon_preview_32">
+            <img src="{{ addon.icon_url }}">
+          </div>
+          <div class="edit-media-details">
+            {# L10n: The size of the icon #}
+            {{ _('32x32px') }}
+            {{ tip(None,
+            _("Used in listings of add-ons, like search results and featured add-ons.")) }}
+          </div>
+
+          <div class="icon_preview" id="icon_preview_64">
+            <img src="{{ addon.get_icon_url(64) }}">
+          </div>
+          <div class="edit-media-details">
+            {# L10n: The size of the icon #}
+            {{ _('64x64px') }}
+            {{ tip(None,
+            _("Used in add-on detail pages.")) }}
+          </div>
+        </div>
+        <ul id="icons_default">
+          {{ form.icon_type|safe }}
+        </ul>
+        {{ form.icon_upload|safe }}
+        {{ form.icon_upload.errors|safe }}
+        <div class="edit-media-details">
+          <div id="edit-icon-error"></div>
+          {% trans %}
+          PNG and JPG supported. Icons resized to 64x64 pixels if larger.
+          {% endtrans %}
+        </div>
+      </div>
+      <div class="submission-buttons addon-submission-field">
+        <button type="submit">
+          {{ _('Continue') }}
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+{% endblock primary %}
+
