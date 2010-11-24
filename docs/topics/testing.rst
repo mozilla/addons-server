@@ -93,13 +93,57 @@ Localization Tests
 ------------------
 If you want test that your localization works then you can add in locales
 in the test directory. For an example see ``devhub/tests/locale``. These locales
-are not in the normal path so should not show up unless you add them to the 
+are not in the normal path so should not show up unless you add them to the
 `LOCALE_PATH`. If you change the .po files for these test locales, you will
 need to recompile the .mo files manually, for example::
 
     msgfmt --check-format -o django.mo django.po
 
 
+JavaScript Tests
+----------------
+
+Frontend JavaScript is currently tested with QUnit_, a simple set of
+functions for test setup/teardown and assertions.
+
+Running JavaScript Tests
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can run the tests a few different ways but during development you
+probably want to run them in a web browser by opening this page:
+http://127.0.0.1:8000/en-US/firefox/qunit/
+
+Before you can load that page, you'll need to adjust your settings_local.py
+file so it includes django-qunit:
+
+.. code-block:: python
+
+  INSTALLED_APPS += (
+      # ...
+      'django_qunit',
+  )
+
+Writing JavaScript Tests
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+QUnit_ tests for the HTML page above are discovered automatically.  Just add
+some_test.js to ``media/js/zamboni/tests/`` and it will run in the suite.  If
+you need to include a library file to test against, edit
+``media/js/zamboni/tests/suite.json``.
+
+QUnit_ has some good examples for writing tests.  Here are a few
+additional tips:
+
+* Any HTML you need should go in #qunit-fixture since that is automatically
+  emptied after each test.
+* To make a useful test based on an actual production template, you can create
+  a snippet and include that in ``templates/qunit.html`` assigned to it own
+  div.  During test setup, copy that div into #qunit-fixture
+* You can use `$.mockjax`_ to test how your code handles server responses,
+  errors, and timeouts.
+
 .. _`Django's Unit Testing`: http://docs.djangoproject.com/en/dev/topics/testing
 .. _`Selenium RC Server`: http://seleniumhq.org/projects/remote-control/
 .. _`the docs`: http://docs.djangoproject.com/en/dev/topics/testing#id1
+.. _Qunit: http://docs.jquery.com/Qunit
+.. _`$.mockjax`: http://enterprisejquery.com/2010/07/mock-your-ajax-requests-with-mockjax-for-rapid-development/
