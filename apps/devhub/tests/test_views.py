@@ -2160,7 +2160,10 @@ class TestUpload(files.tests.UploadTest):
 
     def test_fileupload_validation(self):
         self.post()
-        validation = json.loads(FileUpload.objects.get().validation)
+        fu = FileUpload.objects.get()
+        # If this fails check fu.task_error.
+        assert fu.validation
+        validation = json.loads(fu.validation)
         eq_(validation['success'], False)
 
     def test_redirect(self):
