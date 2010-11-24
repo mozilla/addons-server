@@ -91,6 +91,7 @@ def monitor(request):
 
     # Check file paths / permissions
     filepaths = (
+        (settings.TMP_PATH, os.R_OK | os.W_OK, "We want read + write."),
         (settings.NETAPP_STORAGE, os.R_OK | os.W_OK, "We want read + write."),
         (settings.UPLOADS_PATH, os.R_OK | os.W_OK, "We want read + write."),
         (settings.ADDON_ICONS_PATH,
@@ -99,6 +100,8 @@ def monitor(request):
             os.R_OK | os.W_OK, "We want read + write."),
         (settings.PREVIEWS_PATH, os.R_OK | os.W_OK, "We want read + write."),
         (settings.USERPICS_PATH, os.R_OK | os.W_OK, "We want read + write."),
+        (settings.SPHINX_CATALOG_PATH, os.R_OK | os.W_OK, "We want read + write."),
+        (settings.SPHINX_LOG_PATH, os.R_OK | os.W_OK, "We want read + write."),
     )
     filepath_results = []
     filepath_status = True
