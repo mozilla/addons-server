@@ -3,6 +3,7 @@ import hashlib
 import os
 import shutil
 import tempfile
+import zipfile
 
 from django import forms
 from django.conf import settings
@@ -15,7 +16,7 @@ import amo.utils
 from addons.models import Addon
 from applications.models import Application, AppVersion
 from files.models import File, FileUpload, Platform
-from files.utils import parse_xpi
+from files.utils import parse_xpi, WorkingZipFile
 from versions.models import Version
 
 
@@ -233,3 +234,29 @@ class TestFileFromUpload(UploadTest):
         upload = self.upload('jetpack')
         f = File.from_upload(upload, version, self.platform)
         assert File.objects.get(id=f.id).jetpack
+
+
+class TestZip(test_utils.TestCase):
+
+    def test_zip(self):
+        # This zip contains just one file chrome/ that we expect
+        # to be unzipped as a directory, not a file.
+        xpi = os.path.join(os.path.dirname(__file__), 'fixtures',
+                           'files', 'directory-test.xpi')
+
+        # This is to work around: http://bugs.python.org/issue6972
+        # If this test fails, it's hopefully because this python bug is
+        # fixed and you can remove WorkingZip from files/utils.py.
+        try:
+            dest = tempfile.mkdtemp()
+            zipfile.ZipFile(xpi).extractall(dest)
+            assert not os.path.isdir(os.path.join(dest, 'chrome'))
+        finally:
+            shutil.rmtree(dest)
+
+        try:
+            dest = tempfile.mkdtemp()
+            WorkingZipFile(xpi).extractall(dest)
+            assert os.path.isdir(os.path.join(dest, 'chrome'))
+        finally:
+            shutil.rmtree(dest)
