@@ -1,6 +1,7 @@
 """
 Miscellaneous helpers that make Django compatible with AMO.
 """
+import re
 import threading
 
 import commonware.log
@@ -532,3 +533,6 @@ COLLECTION_AUTHOR_CHOICES = {
 
 # Contributions.
 FOUNDATION_ORG = 1  # The charities.id of the Mozilla Foundation.
+
+VERSION_BETA = re.compile('(a|alpha|b|beta|pre|rc)\d*$')
+VERSION_SEARCH = re.compile('\.(\d+)$')

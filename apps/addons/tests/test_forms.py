@@ -7,6 +7,7 @@ from addons.models import Addon
 import amo
 from applications.models import AppVersion
 
+
 class FormsTest(test_utils.TestCase):
     fixtures = ('base/addon_3615',)
 
@@ -47,9 +48,11 @@ class FormsTest(test_utils.TestCase):
                                  instance=delicious)
         eq_(f.errors.get('name'), None)
 
+
 class TestUpdate(test_utils.TestCase):
     fixtures = ['base/addon_3615',
-                'base/platforms']
+                'base/platforms',
+                'base/appversion']
 
     def setUp(self):
         self.good_data = {
@@ -89,9 +92,16 @@ class TestUpdate(test_utils.TestCase):
 
     def test_app_version_wrong(self):
         data = self.good_data.copy()
-        data['appVersion'] = '87.6'
+        data['appVersion'] = '67.7'
         form = forms.UpdateForm(data)
         assert not form.is_valid()
+
+    def test_app_version_search(self):
+        data = self.good_data.copy()
+        data['appVersion'] = '3.6.12'
+        form = forms.UpdateForm(data)
+        assert form.is_valid()
+        assert form.cleaned_data['appVersion'].version == '3.6.*'
 
     def test_app_version(self):
         data = self.good_data.copy()

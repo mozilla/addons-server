@@ -1,6 +1,7 @@
 import collections
 import itertools
 import json
+import operator
 import time
 from datetime import date
 
@@ -27,6 +28,7 @@ from translations.fields import TranslatedField, PurifiedField, LinkifiedField
 from users.models import UserProfile, PersonaAuthor, UserForeignKey
 from versions.compare import version_int
 from versions.models import Version
+from files.models import File
 
 from . import query, signals
 
@@ -330,6 +332,68 @@ class Addon(amo.models.ModelBase):
 
         except (IndexError, Version.DoesNotExist):
             return None
+
+    def get_current_version_for_client(self, client_version, client_app,
+                                             client_platform):
+        """Similar to get_current_version, however it also takes into
+        account the client asking for the update.
+
+        client_version: the current version of the addon being used
+        client_app: the current version of the application being used
+        client_platform: the client os
+        """
+        # Now do the client app version handling.
+        filters = [
+            Q(apps__application=client_app.application),
+            Q(apps__max__version_int__gte=client_app.version_int),
+            Q(apps__min__version_int__lte=client_app.version_int),
+        ]
+
+        # Now do the status handling.
+        status = amo.STATUS_NULL
+        if self.status == amo.STATUS_PUBLIC:
+            if amo.VERSION_BETA.search(client_version):
+                files = File.objects.filter(version__version=client_version,
+                                            version__addon=self.pk)[:1]
+                if files and files[0].status:
+                    status = files[0].status
+                else:
+                    status = amo.STATUS_BETA
+            else:
+                status = amo.STATUS_PUBLIC
+            filters.append(Q(files__status=status))
+        else:
+            filters.extend([
+                Q(files__status__gt=status),
+                Q(version=client_version)
+            ])
+
+        # Now add in platform handling.
+        client_platforms = [amo.PLATFORM_ALL.id]
+        if client_platform:
+            client_platforms.append(client_platform.id)
+        filters.append(Q(files__platform__in=client_platforms))
+
+        version, file = None, None
+        try:
+            order = ("-apps__max__version_int", "-pk")
+            version = (self.versions.filter(reduce(operator.and_, filters))
+                                    .order_by(*order))[0]
+        except IndexError:
+            pass
+
+        if version:
+            # Remora removes this query by putting an AND on the
+            # INNER JOIN, I don't think theres a way to do this in
+            # Django, but it would be nice to remove this query.
+            filters = [Q(platform__in=client_platforms)]
+            if status == amo.STATUS_NULL:
+                filters.append(Q(status__gt=status))
+            else:
+                filters.append(Q(status=status))
+            file = version.files.filter(reduce(operator.and_, filters))[0]
+
+        return version, file
 
     def update_current_version(self):
         "Returns true if we updated the current_version field."

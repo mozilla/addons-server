@@ -14,6 +14,7 @@ from amo.signals import _connect, _disconnect
 from addons.models import (Addon, AddonDependency, AddonPledge,
                            AddonRecommendation, AddonType, Category, Feature,
                            Persona, Preview)
+from files.models import File
 from applications.models import AppVersion
 from reviews.models import Review
 from users.models import UserProfile
@@ -428,3 +429,174 @@ class TestFlushURLs(test_utils.TestCase):
         for url in (preview.thumbnail_url, preview.image_url):
             assert url in flush.call_args[1]['args'][0]
             assert self.is_url_hashed(url), url
+
+
+class TestUpdate(test_utils.TestCase):
+    fixtures = ['addons/update',
+                'base/platforms']
+
+    def setUp(self):
+        self.addon = Addon.objects.get(id=1865)
+        self.get = self.addon.get_current_version_for_client
+        self.platform = None
+        self.appversion = AppVersion.objects.get(pk=291)
+
+    def test_low_client(self):
+        """Test a low client number. 86 is version 3.0a1 of Firefox,
+        which means we have version int of 3000000001100
+        and hence version 1.0.2 of the addon."""
+        appversion = AppVersion.objects.get(pk=86)
+        version, file = self.get('', appversion, self.platform)
+        eq_(version.version, '1.0.2')
+
+    def test_new_client(self):
+        """Test a high client number. 291 is version 3.0.12 of Firefox,
+        which means we have a version int of 3069900200100
+        and hence version 1.2.2 of the addon."""
+        version, file = self.get('', self.appversion, self.platform)
+        eq_(version.version, '1.2.2')
+
+    def test_public_not_beta(self):
+        """If the addon status is public and you are not asking
+        for a beta version, then you get a public version."""
+        version = Version.objects.get(pk=115509)
+        for file in version.files.all():
+            file.status = amo.STATUS_PENDING
+            file.save()
+        # We've made 1.2.2 pending so that it will not be selected
+        # and the highest version is 1.2.1
+
+        eq_(self.addon.status, amo.STATUS_PUBLIC)
+        version, file = self.get('1.2', self.appversion, self.platform)
+        eq_(version.version, '1.2.1')
+
+    def test_public_beta(self):
+        """If the addon status is public and you are asking
+        for a beta version and there are no beta upgrades, then
+        you won't get an update."""
+        version, file = self.get('1.2beta', self.appversion, self.platform)
+        assert not version
+
+    def test_public_pending_not_exists(self):
+        """If the addon status is public and you are asking
+        for a beta version we look up a version based on the
+        file version at that point. In this case, because the
+        file is pending, we are looking for another version
+        with a file pending. This ends up being itself."""
+        version = Version.objects.get(pk=105387)
+        version.version = '1.2beta'
+        version.save()
+
+        # set the current version to pending
+        file = version.files.all()[0]
+        file.status = amo.STATUS_PENDING
+        file.save()
+
+        version, file = self.get('1.2beta', self.appversion, self.platform)
+        eq_(version.version, '1.2beta')
+
+    def test_public_pending_no_file_no_beta(self):
+        """If the addon status is public and you are asking
+        for a beta version we look up a version based on the
+        file version at that point. If there are no files,
+        we look for a beta. That does not exist."""
+        version = Version.objects.get(pk=105387)
+        version.version = '1.2beta'
+        version.save()
+
+        version.files.all().delete()
+
+        version, file = self.get('1.2beta', self.appversion, self.platform)
+        assert not version
+
+    def test_public_pending_no_file_has_beta(self):
+        """If the addon status is public and you are asking
+        for a beta version we look up a version based on the
+        file version at that point. If there are no files,
+        we look for a beta. That does exist."""
+        version = Version.objects.get(pk=105387)
+        version.version = '1.2beta'
+        version.save()
+
+        version.files.all().delete()
+
+        version = Version.objects.get(pk=112396)
+        file = version.files.all()[0]
+        file.status = amo.STATUS_BETA
+        file.save()
+
+        version, file = self.get('1.2beta', self.appversion, self.platform)
+        eq_(version.version, '1.2.1')
+
+    def test_public_pending_exists(self):
+        """If the addon status is public and you are asking
+        for a beta version we look up a version based on the
+        file version at that point. In this case, because the
+        file is pending, we are looking for another version
+        with a file pending. That does exist."""
+        version = Version.objects.get(pk=105387)
+        version.version = '1.2beta'
+        version.save()
+
+        # set the current version to pending
+        file = version.files.all()[0]
+        file.status = amo.STATUS_PENDING
+        file.save()
+
+        version = Version.objects.get(pk=112396)
+        file = version.files.all()[0]
+        file.status = amo.STATUS_PENDING
+        file.save()
+
+        version, file = self.get('1.2beta', self.appversion, self.platform)
+        eq_(version.version, '1.2.1')
+
+    def test_not_public(self):
+        """If the addon status is not public, then the update only
+        looks for files within that one version."""
+        addon = self.addon
+        addon.status = amo.STATUS_PENDING
+        addon.save()
+
+        version, file = self.get('1.2.1', self.appversion, self.platform)
+        eq_(version.version, '1.2.1')
+
+    def test_platform_does_not_exist(self):
+        """If client passes a platform, find that specific platform."""
+        version = Version.objects.get(pk=115509)
+        for file in version.files.all():
+            file.platform_id = amo.PLATFORM_LINUX.id
+            file.save()
+
+        version, file = self.get('1.2', self.appversion, self.platform)
+        eq_(version.version, '1.2.1')
+
+    def test_platform_exists(self):
+        """If client passes a platform, find that specific platform."""
+        version = Version.objects.get(pk=115509)
+        for file in version.files.all():
+            file.platform_id = amo.PLATFORM_LINUX.id
+            file.save()
+
+        version, file = self.get('1.2', self.appversion, amo.PLATFORM_LINUX)
+        eq_(version.version, '1.2.2')
+
+    def test_file_for_platform(self):
+        """If client passes a platform, make sure we get the right file."""
+        version = Version.objects.get(pk=115509)
+        file_one = version.files.all()[0]
+        file_one.platform_id = amo.PLATFORM_LINUX.id
+        file_one.save()
+
+        file_two = File(version=version, filename='foo', hash='bar',
+                        platform_id=amo.PLATFORM_WIN.id,
+                        status=amo.STATUS_PUBLIC)
+        file_two.save()
+
+        version, file = self.get('1.2', self.appversion, amo.PLATFORM_LINUX)
+        eq_(version.version, '1.2.2')
+        eq_(file.pk, file_one.pk)
+
+        version, file = self.get('1.2', self.appversion, amo.PLATFORM_WIN)
+        eq_(version.version, '1.2.2')
+        eq_(file.pk, file_two.pk)

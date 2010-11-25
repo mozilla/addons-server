@@ -9,7 +9,6 @@ from django.utils.datastructures import SortedDict
 from django.utils.translation import trans_real as translation
 from django.utils import http as urllib
 from django.views.decorators.cache import cache_page
-from django.db import connection
 
 import caching.base as caching
 import jingo
@@ -26,7 +25,6 @@ from amo.helpers import absolutify
 from amo import urlresolvers
 from amo.urlresolvers import reverse
 from bandwagon.models import Collection, CollectionFeature, CollectionPromo
-from files.models import File
 from reviews.forms import ReviewForm
 from reviews.models import Review
 from sharing.views import share as share_redirect
@@ -510,82 +508,21 @@ def update(request):
 
     if form.is_valid():
         data = form.cleaned_data
-        query['id'] = form.addon.pk
-        query['app_id'] = form.cleaned_data['appID']
-        query['platform'] = amo.PLATFORM_ALL.id
-
-        app_os = data.get('appOS')
-        if app_os:
-            query['specific_platform'] = app_os.id
-
-        query['status'] = amo.STATUS_PUBLIC
-        if form.cleaned_data['id'].status == amo.STATUS_PUBLIC:
-            if form.is_beta_version:
-                version = data['version']
-                files = File.objects.filter(version__version=version,
-                                            version__addon=form.addon.pk)[:1]
-                if files and files[0].status:
-                    query['status'] = files[0].status
-        else:
-            query['status'] = amo.STATUS_NULL
-            query['version'] = data['version']
-
-        query['max'] = query['min'] = data['appVersion'].version_int
-
-        # This raw SQL query is a port of the remora code, it is retained
-        # as raw SQL as the simplest route. Although there
-        # is possible room for optimisation here.
-        sql = """
-            SELECT
-                addons.guid as guid, addons.addontype_id as type,
-                applications.guid as appguid,
-                appmin.version as min, appmax.version as max,
-                files.id as file_id, files.hash, files.filename,
-                versions.id as version_id, versions.releasenotes,
-                versions.version as version
-            FROM versions
-            INNER JOIN addons
-                ON addons.id = versions.addon_id AND addons.id = %s
-            INNER JOIN applications_versions
-                ON applications_versions.version_id = versions.id
-            INNER JOIN applications
-                ON applications_versions.application_id = applications.id
-                AND applications.guid = %s
-            INNER JOIN appversions appmin
-                ON appmin.id = applications_versions.min
-            INNER JOIN appversions appmax
-                ON appmax.id = applications_versions.max
-            INNER JOIN files
-                ON files.version_id = versions.id AND (files.platform_id = %s
-            """
-        if 'specific_platform' in query:
-            sql += ' OR files.platform_id = %s'
-
-        if 'version' in query:
-            sql += ') WHERE files.status > %s AND versions.version = %s '
-        else:
-            sql += ') WHERE files.status = %s '
-
-        sql += """
-            AND (appmin.version_int >= %s OR appmax.version_int <= %s)
-            ORDER BY
-                appmax.version_int DESC,
-                versions.id DESC
-            LIMIT 1"""
-
-        cursor = connection.cursor()
-        cursor.execute(sql, query.values())
-        result = cursor.fetchone()
-        if result:
-            row = dict(zip(['guid', 'type', 'appguid', 'min', 'max',
-                            'file_id', 'hash', 'filename', 'version_id',
-                            'releasenotes', 'version'],
-                            list(result)))
-            uri = reverse('downloads.file', args=[row['file_id'],
-                                                  row['filename']])
-            row['uri'] = absolutify(uri)
-            row['type'] = amo.ADDON_SLUGS_UPDATE.get(row['type'])
+        addon = data['id']
+        guid = data['appID']
+        version, file = addon.get_current_version_for_client(data['version'],
+                            data['appVersion'], data['appOS'])
+        if version and file:
+            application_version = version.apps.get(application__guid=guid)
+            return jingo.render(request, 'addons/update.rdf', {
+                                    'addon': addon,
+                                    'application_version': application_version,
+                                    'appversion': data['appVersion'],
+                                    'file': file,
+                                    'guid': guid,
+                                    'type': amo.ADDON_SLUGS_UPDATE[addon.type],
+                                    'version': version,
+                                }, content_type="text/xml")
 
     return jingo.render(request, 'addons/update.rdf',
-                        {'query': query, 'row': row},
-                        content_type="text/xml")
+                        {}, content_type="text/xml")

@@ -1,0 +1,1779 @@
+[
+  {
+    "pk": 1865,
+    "model": "addons.addon",
+    "fields": {
+      "dev_agreement": true,
+      "eula": null,
+      "last_updated": "2010-08-17 13:31:08",
+      "view_source": true,
+      "enable_thankyou": false,
+      "total_downloads": 0,
+      "developer_comments": null,
+      "inactive": false,
+      "average_daily_downloads": 0,
+      "show_beta": true,
+      "admin_review_type": 1,
+      "the_future": null,
+      "trusted": true,
+      "total_contributions": "0.00",
+      "locale_disambiguation": null,
+      "binary": false,
+      "guid": "{d10d0bf8-f5b5-c8b4-a8b2-2b9879e08c5d}",
+      "weekly_downloads": 0,
+      "support_url": 118320,
+      "paypal_id": "accounting@mozilla.org",
+      "average_rating": 4.702,
+      "wants_contributions": false,
+      "average_daily_users": 0,
+      "bayesian_rating": 0,
+      "share_count": 0,
+      "charity": null,
+      "homepage": 8086,
+      "support_email": null,
+      "public_stats": true,
+      "status": 4,
+      "privacy_policy": null,
+      "description": 8087,
+      "default_locale": "en-US",
+      "target_locale": null,
+      "get_satisfaction_product": null,
+      "prerelease": false,
+      "thankyou_note": null,
+      "admin_review": false,
+      "external_software": false,
+      "highest_status": 4,
+      "get_satisfaction_company": null,
+      "name": 8085,
+      "created": "2006-01-17 07:28:30",
+      "type": 1,
+      "icon_type": "image/png",
+      "annoying": 1,
+      "modified": "2010-08-17 14:20:20",
+      "summary": 8089,
+      "suggested_amount": "5.00",
+      "site_specific": false,
+      "_current_version": 115509,
+      "total_reviews": 0,
+      "the_reason": 509754,
+      "nomination_date": "2008-06-17 21:52:36"
+    }
+  },
+  {
+    "pk": 115509,
+    "model": "versions.version",
+    "fields": {
+      "license": 5,
+      "created": "2010-08-17 13:32:40",
+      "releasenotes": 1261263,
+      "approvalnotes": "",
+      "modified": "2010-09-14 12:50:58",
+      "version": "1.2.2",
+      "addon": 1865
+    }
+  },
+  {
+    "pk": 112396,
+    "model": "versions.version",
+    "fields": {
+      "license": 5,
+      "created": "2010-07-09 14:56:11",
+      "releasenotes": 1186682,
+      "approvalnotes": "",
+      "modified": "2010-08-16 23:11:50",
+      "version": "1.2.1",
+      "addon": 1865
+    }
+  },
+  {
+    "pk": 105387,
+    "model": "versions.version",
+    "fields": {
+      "license": 5,
+      "created": "2010-04-30 01:01:33",
+      "releasenotes": 1062105,
+      "approvalnotes": "",
+      "modified": "2010-07-09 13:59:24",
+      "version": "1.2",
+      "addon": 1865
+    }
+  },
+  {
+    "pk": 90149,
+    "model": "versions.version",
+    "fields": {
+      "license": 5,
+      "created": "2010-01-07 00:16:35",
+      "releasenotes": 748202,
+      "approvalnotes": "",
+      "modified": "2010-04-08 11:12:53",
+      "version": "1.1.3",
+      "addon": 1865
+    }
+  },
+  {
+    "pk": 87404,
+    "model": "versions.version",
+    "fields": {
+      "license": 5,
+      "created": "2009-12-12 00:23:58",
+      "releasenotes": 717153,
+      "approvalnotes": "",
+      "modified": "2009-12-14 23:21:27",
+      "version": "1.1.2",
+      "addon": 1865
+    }
+  },
+  {
+    "pk": 75952,
+    "model": "versions.version",
+    "fields": {
+      "license": 5,
+      "created": "2009-08-12 08:48:06",
+      "releasenotes": 519636,
+      "approvalnotes": "",
+      "modified": "2009-08-16 23:50:06",
+      "version": "1.1.1",
+      "addon": 1865
+    }
+  },
+  {
+    "pk": 73316,
+    "model": "versions.version",
+    "fields": {
+      "license": 5,
+      "created": "2009-07-13 07:54:54",
+      "releasenotes": 477478,
+      "approvalnotes": "",
+      "modified": "2009-08-08 16:11:47",
+      "version": "1.1",
+      "addon": 1865
+    }
+  },
+  {
+    "pk": 66463,
+    "model": "versions.version",
+    "fields": {
+      "license": 5,
+      "created": "2009-04-15 07:55:05",
+      "releasenotes": 363946,
+      "approvalnotes": "",
+      "modified": "2009-07-07 06:15:33",
+      "version": "1.0.2",
+      "addon": 1865
+    }
+  },
+  {
+    "pk": 96877,
+    "model": "files.file",
+    "fields": {
+      "status": 4,
+      "codereview": false,
+      "hash": "sha256:2bb766a6b096e9724df3a584bbe4f2e0ca687f1cd199e1a2c0ce58d4d8487284",
+      "created": "2010-08-17 13:32:40",
+      "jetpack": false,
+      "modified": "2010-09-14 12:50:57",
+      "filename": "adblock_plus-1.2.2-fx+sm+tb+fn.xpi",
+      "platform": 1,
+      "version": 115509,
+      "datestatuschanged": "2010-08-17 13:31:08",
+      "size": 301
+    }
+  },
+  {
+    "pk": 93728,
+    "model": "files.file",
+    "fields": {
+      "status": 4,
+      "codereview": false,
+      "hash": "sha256:47e9ebad2704dec097ad733e86339dbf022403b675ccdb6c5002f3409457742c",
+      "created": "2010-07-09 14:56:13",
+      "jetpack": false,
+      "modified": "2010-08-16 23:11:44",
+      "filename": "adblock_plus-1.2.1-fx+sm+tb+fn.xpi",
+      "platform": 1,
+      "version": 112396,
+      "datestatuschanged": "2010-07-09 08:11:17",
+      "size": 301
+    }
+  },
+  {
+    "pk": 87896,
+    "model": "files.file",
+    "fields": {
+      "status": 4,
+      "codereview": false,
+      "hash": "sha256:7d76646447f24d3216c184eace26daeb0ddcdfad92985ea3630567be19b34c3f",
+      "created": "2010-04-30 01:01:36",
+      "jetpack": false,
+      "modified": "2010-07-09 13:59:20",
+      "filename": "adblock_plus-1.2-fx+sm+tb+fn.xpi",
+      "platform": 1,
+      "version": 105387,
+      "datestatuschanged": "2010-04-30 01:00:40",
+      "size": 300
+    }
+  },
+  {
+    "pk": 74835,
+    "model": "files.file",
+    "fields": {
+      "status": 4,
+      "codereview": false,
+      "hash": "sha256:e691e8230286883726203768bb1d22c9d19ded7165523a298edddc1cb25e886c",
+      "created": "2010-01-07 00:23:58",
+      "jetpack": false,
+      "modified": "2010-04-08 11:12:48",
+      "filename": "adblock_plus-1.1.3-fx+sm+tb+fn.xpi",
+      "platform": 1,
+      "version": 90149,
+      "datestatuschanged": "2010-01-07 00:23:41",
+      "size": 300
+    }
+  },
+  {
+    "pk": 72495,
+    "model": "files.file",
+    "fields": {
+      "status": 4,
+      "codereview": false,
+      "hash": "sha256:00cc4d9f885972bdf3e33d1c0f1c82a76ebba5adfbf70c150f939c31fabe371a",
+      "created": "2009-12-12 00:24:02",
+      "jetpack": false,
+      "modified": "2009-12-14 23:21:26",
+      "filename": "adblock_plus-1.1.2-fx+sm+tb+fn.xpi",
+      "platform": 1,
+      "version": 87404,
+      "datestatuschanged": "2009-12-12 00:22:42",
+      "size": 300
+    }
+  },
+  {
+    "pk": 61695,
+    "model": "files.file",
+    "fields": {
+      "status": 4,
+      "codereview": false,
+      "hash": "sha256:da192da1d8157a416ffb699a55cfaee96800f8a659bccfb76ec84858207f57cd",
+      "created": "2009-08-12 08:48:07",
+      "jetpack": false,
+      "modified": "2009-08-16 23:50:05",
+      "filename": "adblock_plus-1.1.1-fx+sm+tb.xpi",
+      "platform": 1,
+      "version": 75952,
+      "datestatuschanged": "2009-08-12 08:48:03",
+      "size": 290
+    }
+  },
+  {
+    "pk": 58749,
+    "model": "files.file",
+    "fields": {
+      "status": 4,
+      "codereview": false,
+      "hash": "sha256:51009af16300413c0d1d959774ee1eed3fa464fd43b56f77b650ef9b62b840a4",
+      "created": "2009-07-13 07:54:55",
+      "jetpack": false,
+      "modified": "2009-08-08 16:11:46",
+      "filename": "adblock_plus-1.1-fx+sm+tb.xpi",
+      "platform": 1,
+      "version": 73316,
+      "datestatuschanged": "2009-07-13 07:54:51",
+      "size": 294
+    }
+  },
+  {
+    "pk": 51047,
+    "model": "files.file",
+    "fields": {
+      "status": 4,
+      "codereview": false,
+      "hash": "sha256:c05b37f533569125578b95fa80d7b1df9161180a5c213eb25ce24277f0a93f59",
+      "created": "2009-04-15 07:55:05",
+      "jetpack": false,
+      "modified": "2009-07-07 06:15:32",
+      "filename": "adblock_plus-1.0.2-fx+sm+tb.xpi",
+      "platform": 1,
+      "version": 66463,
+      "datestatuschanged": "2009-04-15 07:55:05",
+      "size": 309
+    }
+  },
+  {
+    "pk": 88490,
+    "model": "versions.applicationsversions",
+    "fields": {
+      "application": 1,
+      "max": 350,
+      "version": 115509,
+      "min": 296
+    }
+  },
+  {
+    "pk": 88491,
+    "model": "versions.applicationsversions",
+    "fields": {
+      "application": 59,
+      "max": 338,
+      "version": 115509,
+      "min": 284
+    }
+  },
+  {
+    "pk": 88492,
+    "model": "versions.applicationsversions",
+    "fields": {
+      "application": 18,
+      "max": 344,
+      "version": 115509,
+      "min": 288
+    }
+  },
+  {
+    "pk": 88493,
+    "model": "versions.applicationsversions",
+    "fields": {
+      "application": 60,
+      "max": 318,
+      "version": 115509,
+      "min": 308
+    }
+  },
+  {
+    "pk": 85064,
+    "model": "versions.applicationsversions",
+    "fields": {
+      "application": 1,
+      "max": 335,
+      "version": 112396,
+      "min": 296
+    }
+  },
+  {
+    "pk": 85065,
+    "model": "versions.applicationsversions",
+    "fields": {
+      "application": 59,
+      "max": 327,
+      "version": 112396,
+      "min": 284
+    }
+  },
+  {
+    "pk": 85066,
+    "model": "versions.applicationsversions",
+    "fields": {
+      "application": 18,
+      "max": 298,
+      "version": 112396,
+      "min": 288
+    }
+  },
+  {
+    "pk": 85067,
+    "model": "versions.applicationsversions",
+    "fields": {
+      "application": 60,
+      "max": 318,
+      "version": 112396,
+      "min": 308
+    }
+  },
+  {
+    "pk": 77550,
+    "model": "versions.applicationsversions",
+    "fields": {
+      "application": 1,
+      "max": 329,
+      "version": 105387,
+      "min": 296
+    }
+  },
+  {
+    "pk": 77551,
+    "model": "versions.applicationsversions",
+    "fields": {
+      "application": 59,
+      "max": 327,
+      "version": 105387,
+      "min": 284
+    }
+  },
+  {
+    "pk": 77552,
+    "model": "versions.applicationsversions",
+    "fields": {
+      "application": 18,
+      "max": 298,
+      "version": 105387,
+      "min": 288
+    }
+  },
+  {
+    "pk": 77553,
+    "model": "versions.applicationsversions",
+    "fields": {
+      "application": 60,
+      "max": 318,
+      "version": 105387,
+      "min": 308
+    }
+  },
+  {
+    "pk": 51626,
+    "model": "versions.applicationsversions",
+    "fields": {
+      "application": 1,
+      "max": 314,
+      "version": 90149,
+      "min": 296
+    }
+  },
+  {
+    "pk": 64478,
+    "model": "versions.applicationsversions",
+    "fields": {
+      "application": 18,
+      "max": 298,
+      "version": 90149,
+      "min": 288
+    }
+  },
+  {
+    "pk": 68488,
+    "model": "versions.applicationsversions",
+    "fields": {
+      "application": 59,
+      "max": 274,
+      "version": 90149,
+      "min": 284
+    }
+  },
+  {
+    "pk": 69138,
+    "model": "versions.applicationsversions",
+    "fields": {
+      "application": 60,
+      "max": 305,
+      "version": 90149,
+      "min": 295
+    }
+  },
+  {
+    "pk": 50543,
+    "model": "versions.applicationsversions",
+    "fields": {
+      "application": 1,
+      "max": 282,
+      "version": 87404,
+      "min": 296
+    }
+  },
+  {
+    "pk": 64301,
+    "model": "versions.applicationsversions",
+    "fields": {
+      "application": 18,
+      "max": 260,
+      "version": 87404,
+      "min": 288
+    }
+  },
+  {
+    "pk": 68386,
+    "model": "versions.applicationsversions",
+    "fields": {
+      "application": 59,
+      "max": 274,
+      "version": 87404,
+      "min": 284
+    }
+  },
+  {
+    "pk": 69111,
+    "model": "versions.applicationsversions",
+    "fields": {
+      "application": 60,
+      "max": 249,
+      "version": 87404,
+      "min": 295
+    }
+  },
+  {
+    "pk": 44775,
+    "model": "versions.applicationsversions",
+    "fields": {
+      "application": 1,
+      "max": 282,
+      "version": 75952,
+      "min": 271
+    }
+  },
+  {
+    "pk": 63713,
+    "model": "versions.applicationsversions",
+    "fields": {
+      "application": 18,
+      "max": 260,
+      "version": 75952,
+      "min": 263
+    }
+  },
+  {
+    "pk": 68012,
+    "model": "versions.applicationsversions",
+    "fields": {
+      "application": 59,
+      "max": 274,
+      "version": 75952,
+      "min": 264
+    }
+  },
+  {
+    "pk": 43079,
+    "model": "versions.applicationsversions",
+    "fields": {
+      "application": 1,
+      "max": 279,
+      "version": 73316,
+      "min": 271
+    }
+  },
+  {
+    "pk": 63572,
+    "model": "versions.applicationsversions",
+    "fields": {
+      "application": 18,
+      "max": 260,
+      "version": 73316,
+      "min": 263
+    }
+  },
+  {
+    "pk": 67936,
+    "model": "versions.applicationsversions",
+    "fields": {
+      "application": 59,
+      "max": 274,
+      "version": 73316,
+      "min": 264
+    }
+  },
+  {
+    "pk": 38608,
+    "model": "versions.applicationsversions",
+    "fields": {
+      "application": 1,
+      "max": 258,
+      "version": 66463,
+      "min": 97
+    }
+  },
+  {
+    "pk": 63202,
+    "model": "versions.applicationsversions",
+    "fields": {
+      "application": 18,
+      "max": 260,
+      "version": 66463,
+      "min": 101
+    }
+  },
+  {
+    "pk": 67700,
+    "model": "versions.applicationsversions",
+    "fields": {
+      "application": 59,
+      "max": 274,
+      "version": 66463,
+      "min": 103
+    }
+  },
+  {
+    "pk": 1,
+    "model": "applications.application",
+    "fields": {
+      "guid": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}",
+      "modified": "2008-11-03 15:34:59",
+      "created": "2007-03-05 13:09:26"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "applications.application",
+    "fields": {
+      "guid": "{86c18b42-e466-45a9-ae7a-9b95ba6f5640}",
+      "modified": "2008-11-03 15:35:00",
+      "created": "2007-03-05 13:09:26"
+    }
+  },
+  {
+    "pk": 18,
+    "model": "applications.application",
+    "fields": {
+      "guid": "{3550f703-e582-4d05-9a08-453d09bdfdc6}",
+      "modified": "2008-06-17 08:29:00",
+      "created": "2007-03-05 13:09:26"
+    }
+  },
+  {
+    "pk": 52,
+    "model": "applications.application",
+    "fields": {
+      "guid": "{718e30fb-e89b-41dd-9da7-e25a45638b28}",
+      "modified": "2008-06-17 08:29:01",
+      "created": "2007-03-05 13:09:26"
+    }
+  },
+  {
+    "pk": 59,
+    "model": "applications.application",
+    "fields": {
+      "guid": "{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}",
+      "modified": "2008-06-17 08:29:01",
+      "created": "2007-03-05 13:09:26"
+    }
+  },
+  {
+    "pk": 60,
+    "model": "applications.application",
+    "fields": {
+      "guid": "{a23983c0-fd0e-11dc-95ff-0800200c9a66}",
+      "modified": "2010-09-28 10:50:30",
+      "created": "2008-10-28 18:25:09"
+    }
+  },
+  {
+    "pk": 350,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 4000000108000,
+      "application": 1,
+      "version": "4.0b8pre",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 349,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 4000000107100,
+      "application": 1,
+      "version": "4.0b7",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 348,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 4000000107000,
+      "application": 1,
+      "version": "4.0b7pre",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 347,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 4000000106100,
+      "application": 1,
+      "version": "4.0b6",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 346,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 4000000106000,
+      "application": 1,
+      "version": "4.0b6pre",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 345,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 4000000105100,
+      "application": 1,
+      "version": "4.0b5",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 342,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 4000000105000,
+      "application": 1,
+      "version": "4.0b5pre",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 341,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 4000000104100,
+      "application": 1,
+      "version": "4.0b4",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 336,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 4000000104000,
+      "application": 1,
+      "version": "4.0b4pre",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 335,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 4000000103100,
+      "application": 1,
+      "version": "4.0b3",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 333,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 4000000103000,
+      "application": 1,
+      "version": "4.0b3pre",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 332,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 4000000102100,
+      "application": 1,
+      "version": "4.0b2",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 352,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 4000000102000,
+      "application": 60,
+      "version": "4.0b2pre",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 330,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 4000000102000,
+      "application": 1,
+      "version": "4.0b2pre",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 329,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 4000000101100,
+      "application": 1,
+      "version": "4.0b1",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 326,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3070000006000,
+      "application": 1,
+      "version": "3.7a6pre",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 325,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3070000005100,
+      "application": 1,
+      "version": "3.7a5",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 314,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3070000005000,
+      "application": 1,
+      "version": "3.7a5pre",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 313,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3070000004100,
+      "application": 1,
+      "version": "3.7a4",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 312,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3070000004000,
+      "application": 1,
+      "version": "3.7a4pre",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 311,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3070000003100,
+      "application": 1,
+      "version": "3.7a3",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 307,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3070000003000,
+      "application": 1,
+      "version": "3.7a3pre",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 306,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3070000002100,
+      "application": 1,
+      "version": "3.7a2",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 303,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3070000002000,
+      "application": 1,
+      "version": "3.7a2pre",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 302,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3070000001100,
+      "application": 1,
+      "version": "3.7a1",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 282,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3070000001000,
+      "application": 1,
+      "version": "3.7a1pre",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 291,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3069900200100,
+      "application": 1,
+      "version": "3.6.*",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 337,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3060400200100,
+      "application": 1,
+      "version": "3.6.4",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 290,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3060000200100,
+      "application": 1,
+      "version": "3.6",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 293,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3060000102100,
+      "application": 1,
+      "version": "3.6b2",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 279,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3060000101000,
+      "application": 1,
+      "version": "3.6b1pre",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 281,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3060000002000,
+      "application": 1,
+      "version": "3.6a2pre",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 280,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3060000001100,
+      "application": 1,
+      "version": "3.6a1",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 258,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3060000001000,
+      "application": 1,
+      "version": "3.6a1pre",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 267,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3059900200100,
+      "application": 1,
+      "version": "3.5.*",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 268,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3050000200100,
+      "application": 1,
+      "version": "3.5",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 270,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3050000105000,
+      "application": 1,
+      "version": "3.5b5pre",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 269,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3050000104100,
+      "application": 1,
+      "version": "3.5b4",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 266,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3050000104000,
+      "application": 1,
+      "version": "3.5b4pre",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 344,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3030000001000,
+      "application": 18,
+      "version": "3.3a1pre",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 298,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3020000001000,
+      "application": 18,
+      "version": "3.2a1pre",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 323,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3019900200100,
+      "application": 18,
+      "version": "3.1.*",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 322,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3010000200100,
+      "application": 18,
+      "version": "3.1",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 317,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3010000200000,
+      "application": 18,
+      "version": "3.1pre",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 261,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3010000103100,
+      "application": 1,
+      "version": "3.1b3",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 253,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3010000103000,
+      "application": 1,
+      "version": "3.1b3pre",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 316,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3010000102100,
+      "application": 18,
+      "version": "3.1b2",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 252,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3010000102100,
+      "application": 1,
+      "version": "3.1b2",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 310,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3010000102000,
+      "application": 18,
+      "version": "3.1b2pre",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 245,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3010000102000,
+      "application": 1,
+      "version": "3.1b2pre",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 246,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3010000101100,
+      "application": 1,
+      "version": "3.1b1",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 309,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3010000101100,
+      "application": 18,
+      "version": "3.1b1",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 239,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3010000101000,
+      "application": 1,
+      "version": "3.1b1pre",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 300,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3010000101000,
+      "application": 18,
+      "version": "3.1b1pre",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 240,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3010000002100,
+      "application": 1,
+      "version": "3.1a2",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 236,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3010000002000,
+      "application": 1,
+      "version": "3.1a2pre",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 235,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3010000001100,
+      "application": 1,
+      "version": "3.1a1",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 299,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3010000001100,
+      "application": 18,
+      "version": "3.1a1",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 234,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3010000001000,
+      "application": 1,
+      "version": "3.1a1pre",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 260,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3010000001000,
+      "application": 18,
+      "version": "3.1a1pre",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 289,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3009900200100,
+      "application": 18,
+      "version": "3.0.*",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 232,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3009900200100,
+      "application": 1,
+      "version": "3.0.*",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 296,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3001200200100,
+      "application": 1,
+      "version": "3.0.12",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 292,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3001100200100,
+      "application": 1,
+      "version": "3.0.11",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 271,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3000900200100,
+      "application": 1,
+      "version": "3.0.9",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 340,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3000400200100,
+      "application": 18,
+      "version": "3.0.4",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 301,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3000100200100,
+      "application": 18,
+      "version": "3.0.1",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 233,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3000000200100,
+      "application": 1,
+      "version": "3.0",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 288,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3000000200100,
+      "application": 18,
+      "version": "3.0",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 287,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3000000200000,
+      "application": 18,
+      "version": "3.0pre",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 228,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3000000200000,
+      "application": 1,
+      "version": "3.0pre",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 229,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3000000105100,
+      "application": 1,
+      "version": "3.0b5",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 225,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3000000105000,
+      "application": 1,
+      "version": "3.0b5pre",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 286,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3000000104100,
+      "application": 18,
+      "version": "3.0b4",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 224,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3000000104100,
+      "application": 1,
+      "version": "3.0b4",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 278,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3000000104000,
+      "application": 18,
+      "version": "3.0b4pre",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 219,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3000000104000,
+      "application": 1,
+      "version": "3.0b4pre",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 218,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3000000103100,
+      "application": 1,
+      "version": "3.0b3",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 277,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3000000103100,
+      "application": 18,
+      "version": "3.0b3",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 263,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3000000103000,
+      "application": 18,
+      "version": "3.0b3pre",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 217,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3000000103000,
+      "application": 1,
+      "version": "3.0b3pre",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 213,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3000000102100,
+      "application": 1,
+      "version": "3.0b2",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 262,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3000000102100,
+      "application": 18,
+      "version": "3.0b2",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 255,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3000000102000,
+      "application": 18,
+      "version": "3.0b2pre",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 216,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3000000102000,
+      "application": 1,
+      "version": "3.0b2pre",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 211,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3000000101100,
+      "application": 1,
+      "version": "3.0b1",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 254,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3000000101100,
+      "application": 18,
+      "version": "3.0b1",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 238,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3000000101000,
+      "application": 18,
+      "version": "3.0b1pre",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 205,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3000000009100,
+      "application": 1,
+      "version": "3.0a9",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 199,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3000000008100,
+      "application": 1,
+      "version": "3.0a8",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 200,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3000000008000,
+      "application": 1,
+      "version": "3.0a8pre",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 196,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3000000007100,
+      "application": 1,
+      "version": "3.0a7",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 194,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3000000006100,
+      "application": 1,
+      "version": "3.0a6",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 191,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3000000005100,
+      "application": 1,
+      "version": "3.0a5",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 190,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3000000004100,
+      "application": 1,
+      "version": "3.0a4",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 122,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3000000003100,
+      "application": 1,
+      "version": "3.0a3",
+      "modified": null,
+      "created": "2007-03-05 13:09:26"
+    }
+  },
+  {
+    "pk": 244,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3000000003100,
+      "application": 18,
+      "version": "3.0a3",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 114,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3000000002100,
+      "application": 1,
+      "version": "3.0a2",
+      "modified": null,
+      "created": "2007-03-05 13:09:26"
+    }
+  },
+  {
+    "pk": 237,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3000000002100,
+      "application": 18,
+      "version": "3.0a2",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 231,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3000000002000,
+      "application": 18,
+      "version": "3.0a2pre",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 86,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3000000001100,
+      "application": 1,
+      "version": "3.0a1",
+      "modified": null,
+      "created": "2007-03-05 13:09:26"
+    }
+  },
+  {
+    "pk": 89,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3000000001100,
+      "application": 18,
+      "version": "3.0a1",
+      "modified": null,
+      "created": "2007-03-05 13:09:26"
+    }
+  },
+  {
+    "pk": 221,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 3000000001000,
+      "application": 18,
+      "version": "3.0a1pre",
+      "modified": null,
+      "created": null
+    }
+  }
+]

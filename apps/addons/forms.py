@@ -1,4 +1,3 @@
-import errno
 import os
 import re
 
@@ -13,7 +12,6 @@ import captcha.fields
 from amo.utils import slug_validator
 from addons.models import Addon, ReverseNameLookup
 from addons.widgets import IconWidgetRenderer
-from amo.utils import slug_validator
 from applications.models import AppVersion
 from tags.models import Tag
 from translations.fields import TransField, TransTextarea
@@ -108,7 +106,7 @@ def icons():
     in the format (psuedo-mime-type, description).
     """
     icons = [('image/jpeg', 'jpeg'), ('image/png', 'png'), ('', 'default')]
-    dir_list=os.listdir(settings.ADDON_ICONS_DEFAULT_PATH)
+    dir_list = os.listdir(settings.ADDON_ICONS_DEFAULT_PATH)
     for fn in dir_list:
         if ('%s' % 32) in fn and not "default" in fn:
             icon_name = fn.split('-')[0];
@@ -221,15 +219,10 @@ class AbuseForm(happyforms.Form):
             del self.fields['recaptcha']
 
 
-beta_re = re.compile('(a|alpha|b|beta|pre|rc)\d*$')
-
-
 class UpdateForm(happyforms.Form):
     reqVersion = forms.CharField(required=True)
     # Order is important, version validation requires an id.
-    id = forms.ModelChoiceField(required=True,
-                                to_field_name='guid',
-                                queryset=Addon.objects.all())
+    id = forms.CharField(required=True)
     version = forms.CharField(required=True)
     appID = forms.CharField(required=True)
     # Order is important, appVersion validation requires an appID.
@@ -237,12 +230,16 @@ class UpdateForm(happyforms.Form):
     appOS = forms.CharField(required=False)
 
     @property
-    def addon(self):
-        return self.cleaned_data.get('id')
-
-    @property
     def is_beta_version(self):
-        return beta_re.search(self.cleaned_data.get('version', ''))
+        return amo.VERSION_BETA.search(self.cleaned_data.get('version', ''))
+
+    def clean_id(self):
+        data = self.cleaned_data['id']
+        try:
+            addon = Addon.objects.get(guid=data)
+        except Addon.DoesNotExist:
+            raise forms.ValidationError(_('Id is required.'))
+        return addon
 
     def clean_appOS(self):
         data = self.cleaned_data['appOS']
@@ -253,14 +250,18 @@ class UpdateForm(happyforms.Form):
                 return platform
 
     def clean_appVersion(self):
-        data = self.cleaned_data['appVersion']
+        data = [self.cleaned_data['appVersion']]
         id = self.cleaned_data.get('appID', None)
         if not id:
             raise forms.ValidationError(_('AppID is required.'))
+
+        if amo.VERSION_SEARCH.search(data[0]):
+            data.append(amo.VERSION_SEARCH.sub('.*', data[0]))
         try:
-            app = AppVersion.objects.get(version=data,
-                                         application__guid=id)
-        except AppVersion.DoesNotExist:
+            app = (AppVersion.objects.filter(version__in=data,
+                                             application__guid=id)
+                                     .order_by('-version'))[0]
+        except IndexError:
             raise forms.ValidationError(_('Unknown version %s for app %s'
                                           % (data, id)))
         return app

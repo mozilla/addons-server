@@ -909,7 +909,7 @@ class TestUpdate(test_utils.TestCase):
         data["id"] = "garbage"
         res = self.client.get(self.url, data)
         eq_(res.status_code, 200)
-        eq_(res.context['row'], {})
+        assert not 'version' in res.context
 
     def test_no_platform(self):
         file = File.objects.get(pk=67442)
@@ -919,11 +919,11 @@ class TestUpdate(test_utils.TestCase):
         data = self.good_data.copy()
         data["appOS"] = self.win.shortname
         res = self.client.get(self.url, data)
-        eq_(res.context['row']['file_id'], file.pk)
+        eq_(res.context['file'].pk, file.pk)
 
         data["appOS"] = self.mac.shortname
         res = self.client.get(self.url, data)
-        eq_(res.context['row'], {})
+        assert not 'version' in res.context
 
     def test_different_platform(self):
         file = File.objects.get(pk=67442)
@@ -937,21 +937,20 @@ class TestUpdate(test_utils.TestCase):
         mac_file_pk = file.pk
 
         data = self.good_data.copy()
-        data["appOS"] = self.win.shortname
+        data['appOS'] = self.win.shortname
         res = self.client.get(self.url, data)
-        eq_(res.context['row']['file_id'], file_pk)
+        eq_(res.context['file'].id, file_pk)
 
-        data["appOS"] = self.mac.shortname
+        data['appOS'] = self.mac.shortname
         res = self.client.get(self.url, data)
-        eq_(res.context['row']['file_id'], mac_file_pk)
+        eq_(res.context['file'].id, mac_file_pk)
 
     def test_good_version(self):
         res = self.client.get(self.url, self.good_data)
         eq_(res.status_code, 200)
-        row = res.context['row']
-        assert row['hash'].startswith('sha256:3808b13e')
-        eq_(row['min'], '2.0')
-        eq_(row['max'], '3.7a1pre')
+        assert res.context['file'].hash.startswith('sha256:3808b13e')
+        eq_(res.context['application_version'].min.version, '2.0')
+        eq_(res.context['application_version'].max.version, '3.7a1pre')
 
     def test_beta_version(self):
         file = File.objects.get(pk=67442)
@@ -966,28 +965,27 @@ class TestUpdate(test_utils.TestCase):
 
         data = self.good_data.copy()
         res = self.client.get(self.url, data)
-        eq_(res.context['row'], {})
+        assert not version in res.context
 
         data["version"] = beta_version
         res = self.client.get(self.url, data)
-        eq_(res.context['row']['file_id'], file.pk)
+        eq_(res.context['file'].id, file.pk)
 
     def test_no_app_version(self):
         data = self.good_data.copy()
         data['appVersion'] = '1.4'
         res = self.client.get(self.url, data)
         eq_(res.status_code, 200)
-        assert not res.context['row']
+        assert 'version' not in res.context
 
     def test_low_app_version(self):
         data = self.good_data.copy()
         data['appVersion'] = '2.0'
         res = self.client.get(self.url, data)
         eq_(res.status_code, 200)
-        row = res.context['row']
-        assert row['hash'].startswith('sha256:3808b13e')
-        eq_(row['min'], '2.0')
-        eq_(row['max'], '3.7a1pre')
+        assert res.context['file'].hash.startswith('sha256:3808b13e')
+        eq_(res.context['application_version'].min.version, '2.0')
+        eq_(res.context['application_version'].max.version, '3.7a1pre')
 
     def test_content_type(self):
         res = self.client.get(self.url, self.good_data)
@@ -1027,8 +1025,7 @@ class TestUpdate(test_utils.TestCase):
             'appVersion': '1.0'
         }
         res = self.client.get(reverse('addons.update'), data)
-        row = res.context['row']
-        assert row['hash'].startswith('sha256:9d9a389')
-        eq_(row['min'], '1.0')
-        eq_(row['version'], '0.5.2')
+        assert res.context['file'].hash.startswith('sha256:9d9a389')
+        eq_(res.context['application_version'].min.version, '1.0')
+        eq_(res.context['application_version'].version.version, '0.5.2')
         assert res.content.find(data['appID']) > -1
