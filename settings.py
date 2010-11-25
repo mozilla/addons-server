@@ -456,7 +456,7 @@ ADDON_ICONS_PATH = UPLOADS_PATH + '/addon_icons'
 COLLECTIONS_ICON_PATH = UPLOADS_PATH + '/collection_icons'
 PREVIEWS_PATH = UPLOADS_PATH + '/previews'
 USERPICS_PATH = UPLOADS_PATH + '/userpics'
-ADDON_ICONS_DEFAULT_PATH = 'media/img/addon-icons'
+ADDON_ICONS_DEFAULT_PATH = os.path.join(MEDIA_ROOT, 'img/addon-icons')
 
 # URL paths
 # paths for images, e.g. mozcdn.com/amo or '/static'
