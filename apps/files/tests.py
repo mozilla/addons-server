@@ -3,7 +3,6 @@ import hashlib
 import os
 import shutil
 import tempfile
-import zipfile
 
 from django import forms
 from django.conf import settings
@@ -244,16 +243,10 @@ class TestZip(test_utils.TestCase):
         xpi = os.path.join(os.path.dirname(__file__), 'fixtures',
                            'files', 'directory-test.xpi')
 
-        # This is to work around: http://bugs.python.org/issue6972
-        # If this test fails, it's hopefully because this python bug is
-        # fixed and you can remove WorkingZip from files/utils.py.
-        try:
-            dest = tempfile.mkdtemp()
-            zipfile.ZipFile(xpi).extractall(dest)
-            assert not os.path.isdir(os.path.join(dest, 'chrome'))
-        finally:
-            shutil.rmtree(dest)
-
+        # This is to work around: http://bugs.python.org/issue4710
+        # which was fixed in Python 2.6.2. If the required version
+        # of Python for zamboni goes to 2.6.2 or above, this can
+        # be removed.
         try:
             dest = tempfile.mkdtemp()
             WorkingZipFile(xpi).extractall(dest)

@@ -65,7 +65,7 @@ def parse_xpi(xpi, addon=None):
 
     # Validating that we have no member files that try to break out of
     # the destination path.  NOTE: This will be obsolete when this bug is
-    # fixed: http://bugs.python.org/issue6972
+    # fixed: http://bugs.python.org/issue4710 (it was fixed in Python 2.6.2)
     zip = WorkingZipFile(xpi)
 
     for f in zip.namelist():
