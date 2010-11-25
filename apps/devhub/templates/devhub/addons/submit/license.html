@@ -7,12 +7,43 @@
   licensed. Please select a license from the list below or enter a custom license.
 {% endtrans %}</p>
 
-<form method="post" class="item" action="">
+<form method="post" class="item devhub-form submit-license" action="">
   {{ csrf() }}
-  <table>
-    {% include "devhub/includes/license_form.html" %}
-    {% include "devhub/includes/policy_form.html" %}
-  </table>
+  <b>{{ _('Select a license for your add-on:') }}</b>
+  <div class="addon-submission-field">
+    {{ license_form.builtin.errors|safe }}
+    {{ license_form.builtin|safe }}
+    {% set show_other = (license_form.initial.builtin == license_other_val or license_form.errors) %}
+    <div class="license-other {{ 'js-hidden' if not show_other }}"
+         data-val="{{ license_other_val }}">
+      {{ license_form.non_field_errors()|safe }}
+      {{ license_form.name.errors|safe }}
+      {{ license_form.name.label_tag()|safe }}
+      {{ license_form.name|safe }}
+      {{ license_form.text.errors|safe }}
+      {{ license_form.text.label_tag()|safe }}
+      {{ license_form.text|safe }}
+    </div>
+  </div>
+  {% set values = policy_form.data if policy_form.is_bound else policy_form.initial %}
+  <div>
+    {{ policy_form.has_eula|safe }}
+    {{ policy_form.has_eula.label_tag()|safe }}
+    <div class="eula {{ 'hidden' if not values.has_eula }}">
+      {{ policy_form.eula.errors|safe }}
+      {{ policy_form.eula.label_tag()|safe }}
+      {{ policy_form.eula|safe }}
+    </div>
+  </div>
+  <div class="addon-submission-field">
+    {{ policy_form.has_priv|safe }}
+    {{ policy_form.has_priv.label_tag()|safe }}
+    <div class="priv {{ 'hidden' if not values.has_priv }}">
+      {{ policy_form.privacy_policy.errors|safe }}
+      {{ policy_form.privacy_policy.label_tag()|safe }}
+      {{ policy_form.privacy_policy|safe }}
+    </div>
+  </div>
   <div class="submission-buttons addon-submission-field">
     <button type="submit">{{ _('Continue') }}</button>
   </div>

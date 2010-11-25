@@ -623,6 +623,10 @@ h3 a.subscribe-feed:hover {
     display: block;
     padding-bottom: 3px;
 }
+.submit-license input[type=checkbox] + label {
+    display: inline;
+    padding-bottom: 0;
+}
 
 .addon-submission-process #id_name {
     width: 300px;
