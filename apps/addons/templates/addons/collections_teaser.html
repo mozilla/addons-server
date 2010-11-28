@@ -5,6 +5,9 @@
     <div class="teaser-header">
       <ol>
         <li><a href="#t-introduction">{{ _('Introduction') }}</a></li>
+        {% if settings.BETA_PROMO and LANG == 'en-US' %}
+          <li><a href="#t-fx4beta">{{ _('Firefox 4 Beta') }}</a></li>
+        {% endif %}
         {% for feature in promobox.features() %}
             <li><a href="#t-{{ feature.title|slugify }}">{{ feature.title }}</a></li>
         {% endfor %}
@@ -48,6 +51,11 @@
           </div>
         </div>
       </li>
+      {% if settings.BETA_PROMO and LANG == 'en-US' %}
+        <li id="t-fx4beta">
+          <a href="http://www.mozilla.com/en-US/firefox/beta/"></a>
+        </li>
+      {% endif %}
       {% set collections = promobox.collections() %}
       {% for feature in promobox.features() %}
         <li id="t-{{ feature.title|slugify }}" class="addon-view">
