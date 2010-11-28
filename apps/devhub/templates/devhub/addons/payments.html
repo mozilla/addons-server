@@ -6,6 +6,7 @@
 {% block content %}
 <header>
   {{ dev_breadcrumbs(addon) }}
+  {{ l10n_menu() }}
   <h2>{{ title }}</h2>
 </header>
 <section class="primary payments devhub-form" role="main">
@@ -86,6 +87,7 @@
             about any other add-ons you've made for them to try.
           {% endtrans %}</div>
           {{ contrib_form.thankyou_note|safe }}
+          <label for="thankyou_note"></label>
         </div>
       </div>
       {% if not addon.has_full_profile() %}

@@ -74,7 +74,7 @@ $(document).ready(function () {
                     unsavedModal.children(".msg")
                         .html(format(unsavedModalMsg,[$("#change-locale").text()]));
                     unsavedModal.render();
-                    $("#l10n-save-changes").click(function () {
+                    $("#l10n-save-changes").unbind().click(function () {
                         var unsavedForms = $('form:has(.trans .unsaved)');
                         var numFormsLeft = unsavedForms.length;
                         var erroredForms = 0;
@@ -156,7 +156,7 @@ $(document).ready(function () {
             }
         
         });
-        $(format(".trans [lang!={0}]:visible", [currentLocale])).hide();
+        $(format(".trans [lang!={0}]", [currentLocale])).hide();
         $(format(".trans [lang={0}]", [lang])).show();
     }
 
@@ -171,4 +171,5 @@ $(document).ready(function () {
     z.refreshL10n = function() {
         updateLocale();
     };
+    updateLocale();
 });

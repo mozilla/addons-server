@@ -16,6 +16,7 @@ from applications.models import Application, AppVersion
 from files.models import File, FileUpload, Platform
 from files.utils import parse_xpi
 from translations.widgets import TranslationTextarea, TranslationTextInput
+from translations.fields import TransTextarea, TransInput, TransField
 from translations.models import delete_translation
 from versions.models import License, Version, ApplicationsVersions
 
@@ -146,10 +147,10 @@ def ProfileForm(*args, **kw):
     fields_required = kw.pop('required', False) or fields_required
 
     class _Form(happyforms.ModelForm):
-        the_reason = forms.CharField(widget=TranslationTextarea(),
+        the_reason = TransField(widget=TransTextarea(),
                                      required=fields_required,
                                      label=_("Why did you make this add-on?"))
-        the_future = forms.CharField(widget=TranslationTextarea(),
+        the_future = TransField(widget=TransTextarea(),
                                      required=fields_required,
                                      label=_("What's next for this add-on?"))
 
@@ -177,7 +178,7 @@ class ContribForm(happyforms.ModelForm):
 
     recipient = forms.ChoiceField(choices=RECIPIENTS,
                     widget=forms.RadioSelect(attrs={'class': 'recipient'}))
-    thankyou_note = forms.CharField(widget=TranslationTextarea(),
+    thankyou_note = TransField(widget=TransTextarea(),
                                     required=False)
 
     class Meta:
