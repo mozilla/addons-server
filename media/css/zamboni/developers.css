@@ -841,6 +841,14 @@ a.extra {
     padding-top: 5px;
 }
 
+.delete-button {
+    background: #c22;
+    background: -moz-linear-gradient(top, #f77, #c22);
+    background: -webkit-gradient(linear, left top, left bottom, from(#f77), to(#c22));
+    border-color: #ad1212;
+    text-shadow: 0 -1px #e00;
+}
+
 #modals {
     display: none;
 }
