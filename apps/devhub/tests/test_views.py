@@ -1020,8 +1020,8 @@ class TestDelete(test_utils.TestCase):
 
 
 class TestEdit(test_utils.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/addon_3615',
-                'base/addon_5579']
+    fixtures = ('base/apps', 'base/users', 'base/addon_3615',
+                'base/addon_5579')
 
     def setUp(self):
         super(TestEdit, self).setUp()
@@ -1319,6 +1319,13 @@ class TestEdit(test_utils.TestCase):
         eq_(addon.external_software, False)
         eq_(addon.site_specific, False)
         eq_(addon.view_source, False)
+
+    def test_nav_links(self):
+        url = reverse('devhub.addons.edit', args=[3615])
+        activity_url = reverse('devhub.feed', args=[3615])
+        r = self.client.get(url)
+        doc = pq(r.content)
+        eq_(doc('#refine-activity a').eq(1).attr('href'), activity_url)
 
 
 class TestProfileBase(test_utils.TestCase):

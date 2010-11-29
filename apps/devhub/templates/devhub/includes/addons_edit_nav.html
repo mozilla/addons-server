@@ -21,7 +21,8 @@
     <ul class="refinements">
       <li><a href="{{ addon.get_url_path() }}">
         {{ _('View Add-on Listing') }}</a></li>
-      <li><a href="#">{{ _('View Recent Changes') }}</a></li>
+      <li><a href="{{ url('devhub.feed', addon.id) }}">
+        {{ _('View Recent Changes') }}</a></li>
       <li><a href="#">{{ _('View Statistics Dashboard') }}</a></li>
     </ul>
   </div>
