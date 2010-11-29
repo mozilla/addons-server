@@ -4,6 +4,7 @@ import hashlib
 from django.utils.encoding import smart_str
 
 import commonware.log
+from redis.exceptions import ConnectionError
 
 from translations.models import Translation
 
@@ -26,12 +27,12 @@ def add_redis(f):
         try:
             import redisutils
             redis = redisutils.connections['master']
-        except AttributeError:
+            pipe = redis.pipeline(transaction=True)
+            ret = f(cls, redis, pipe, *args, **kw)
+        except (AttributeError, ConnectionError):
             log.warning('Redis not available for %s' % f)
             return
 
-        pipe = redis.pipeline(transaction=True)
-        ret = f(cls, redis, pipe, *args, **kw)
         if return_pipe:
             return pipe
         else:
