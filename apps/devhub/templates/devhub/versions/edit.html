@@ -32,7 +32,9 @@
                   {% endfor %}
                 </tbody>
               </table>
+              {% if version.is_allowed_upload() %}
               <a href="#" class="add-file button">{{ _('Upload Another File') }}</a>
+              {% endif %}
             </td>
           </tr>
           {% if compat_form %}

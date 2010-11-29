@@ -1657,6 +1657,18 @@ class TestVersionEditDetails(TestVersionEdit):
         choices = res.context['new_file_form'].fields['platform'].choices
         eq_(len(choices), len(amo.SUPPORTED_PLATFORMS))
 
+    def test_can_upload(self):
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        assert doc('a.add-file')
+
+    @mock.patch('versions.models.Version.is_allowed_upload')
+    def test_not_upload(self, allowed):
+        allowed.return_value = False
+        res = self.client.get(self.url)
+        doc = pq(res.content)
+        assert not doc('a.add-file')
+
 
 class TestVersionEditSearchEngine(TestVersionEdit):
     # https://bugzilla.mozilla.org/show_bug.cgi?id=605941
@@ -1684,6 +1696,18 @@ class TestVersionEditSearchEngine(TestVersionEdit):
         r = self.client.get(self.url)
         doc = pq(r.content)
         assert not doc("#id_form-TOTAL_FORMS")
+
+    def test_no_upload(self):
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        assert not doc('a.add-file')
+
+    @mock.patch('versions.models.Version.is_allowed_upload')
+    def test_can_upload(self, allowed):
+        allowed.return_value = True
+        res = self.client.get(self.url)
+        doc = pq(res.content)
+        assert doc('a.add-file')
 
 
 class TestVersionEditFiles(TestVersionEdit):

@@ -96,6 +96,15 @@ class Version(amo.models.ModelBase):
         return list(set(amo.PLATFORMS[f.platform_id]
                         for f in self.all_files))
 
+    def is_allowed_upload(self):
+        """Check that a file can be uploaded based on the files
+        per platform for that type of addon."""
+        if self.addon.type == amo.ADDON_SEARCH:
+            return not bool(len(self.all_files))
+        else:
+            return bool(set(amo.SUPPORTED_PLATFORMS.values()) -
+                        set(self.supported_platforms))
+
     @amo.cached_property
     def has_files(self):
         return bool(self.all_files)

@@ -42,7 +42,7 @@ def test_dict_from_int():
 
 
 class TestVersion(test_utils.TestCase):
-    fixtures = ['base/addon_3615', 'base/admin']
+    fixtures = ['base/addon_3615', 'base/admin', 'base/platforms']
 
     def test_compatible_apps(self):
         v = Version.objects.get(pk=81551)
@@ -114,6 +114,45 @@ class TestVersion(test_utils.TestCase):
         eq_(ActivityLog.objects.count(), 0)
         version.delete()
         eq_(ActivityLog.objects.count(), 1)
+
+    def test_version_is_allowed_upload(self):
+        version = Version.objects.get(pk=81551)
+        assert version.is_allowed_upload()
+
+    def test_version_is_not_allowed_upload(self):
+        version = Version.objects.get(pk=81551)
+        for platform in [amo.PLATFORM_LINUX.id,
+                         amo.PLATFORM_WIN.id,
+                         amo.PLATFORM_BSD.id]:
+            file = File(platform_id=platform, version=version)
+            file.save()
+        assert version.is_allowed_upload()
+        file = File(platform_id=amo.PLATFORM_MAC.id, version=version)
+        file.save()
+        version = Version.uncached.get(pk=81551)
+        assert not version.is_allowed_upload()
+
+    def test_version_is_not_allowed_upload_full(self):
+        version = Version.objects.get(pk=81551)
+        for platform in [amo.PLATFORM_LINUX.id,
+                         amo.PLATFORM_WIN.id,
+                         amo.PLATFORM_MAC.id]:
+            file = File(platform_id=platform, version=version)
+            file.save()
+        assert not version.is_allowed_upload()
+
+    def test_version_is_allowed_upload_search(self):
+        version = Version.objects.get(pk=81551)
+        version.addon.type = amo.ADDON_SEARCH
+        version.addon.save()
+        version.files.all()[0].delete()
+        assert version.is_allowed_upload()
+
+    def test_version_is_not_allowed_upload_search(self):
+        version = Version.objects.get(pk=81551)
+        version.addon.type = amo.ADDON_SEARCH
+        version.addon.save()
+        assert not version.is_allowed_upload()
 
 
 class TestViews(test_utils.TestCase):
