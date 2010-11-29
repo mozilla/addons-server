@@ -628,6 +628,8 @@ ENGAGE_ROBOTS = False
 # Read-only mode setup.
 READ_ONLY = False
 
+# Do you want the Fx4 beta promo to show up?  bug 592690
+BETA_PROMO = True
 
 # Turn on read-only mode in settings_local.py by putting this line
 # at the VERY BOTTOM: read_only_mode(globals())
