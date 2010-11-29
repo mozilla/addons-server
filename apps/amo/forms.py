@@ -1,8 +1,12 @@
+from copy import copy
+
 from django import forms
 from django.conf import settings
 
 import captcha.fields
 import happyforms
+
+from translations.models import Translation
 
 
 class AbuseForm(happyforms.Form):
@@ -21,3 +25,29 @@ class AbuseForm(happyforms.Form):
             not settings.RECAPTCHA_PRIVATE_KEY):
             del self.fields['recaptcha']
             self.has_recaptcha = False
+
+
+class AMOModelForm(happyforms.ModelForm):
+    def _get_changed_data(self):
+        """
+        The standard modelform thinks the Translation PKs are the initial
+        values.  We need to dig deeper to assert whether there are indeed
+        changes.
+        """
+        if self._changed_data is None:
+            changed = copy(super(AMOModelForm, self)._get_changed_data())
+            for field in changed:
+                if hasattr(self.instance, field):
+                    # Let's see if these are actual changes.
+                    initial = getattr(self.instance, field)
+                    if hasattr(initial, 'localized_string') and initial.id:
+                        # We need to compare to the model in the database, not
+                        # the dirty instance.
+                        real = Translation.objects.get(id=initial.id,
+                                                       locale=initial.locale)
+
+                        if real.localized_string == self.cleaned_data[field]:
+                            self._changed_data.remove(field)
+
+        return self._changed_data
+    changed_data = property(_get_changed_data)

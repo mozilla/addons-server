@@ -523,6 +523,8 @@ class TestEditLicense(TestOwnership):
         r = self.client.post(self.url, data)
         eq_(r.status_code, 302)
         eq_(self.license, self.get_version().license)
+        eq_(ActivityLog.objects.filter(
+            action=amo.LOG.CHANGE_LICENSE.id).count(), 1)
 
     def test_success_add_custom(self):
         data = self.formset(builtin=License.OTHER, text='text', name='name')
@@ -664,8 +666,6 @@ class TestEditAuthor(TestOwnership):
         eq_(o.count(), 0)
         r = self.client.post(self.url, data)
         eq_(o.filter(action=amo.LOG.CHANGE_USER_WITH_ROLE.id).count(), 1)
-        eq_(o.filter(action=amo.LOG.CHANGE_LICENSE.id).count(), 1)
-        eq_(o.filter(action=amo.LOG.CHANGE_POLICY.id).count(), 1)
         eq_(r.status_code, 302)
         eq_(999, AddonUser.objects.get(addon=3615).user_id)
 

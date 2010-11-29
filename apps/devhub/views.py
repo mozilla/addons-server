@@ -284,9 +284,11 @@ def _license_form(request, addon, save=False):
                                          instance=instance)
 
     if save and version and license_form.is_valid():
+        changed = license_form.changed_data
         license = license_form.save()
-        version.update(license=license)
-        amo.log(amo.LOG.CHANGE_LICENSE, license, addon)
+        if changed:
+            version.update(license=license)
+            amo.log(amo.LOG.CHANGE_LICENSE, license, addon)
 
     license_urls = dict(License.objects.builtins()
                         .values_list('builtin', 'url'))
@@ -301,8 +303,9 @@ def _policy_form(request, addon, save=False):
         initial=dict(has_priv=bool(addon.privacy_policy),
                      has_eula=bool(addon.eula)))
     if save and policy_form.is_valid():
-        policy_form.save(addon=addon)
-        amo.log(amo.LOG.CHANGE_POLICY, addon, policy_form.instance)
+        policy_form.save()
+        if 'privacy_policy' in policy_form.changed_data:
+            amo.log(amo.LOG.CHANGE_POLICY, addon, policy_form.instance)
     return policy_form
 
 
@@ -327,10 +330,15 @@ def ownership(request, addon_id, addon):
         authors = user_form.save(commit=False)
         for author in authors:
             action = (amo.LOG.CHANGE_USER_WITH_ROLE if author.id
-                      else amo.LOG.REMOVE_USER_WITH_ROLE)
+                      else amo.LOG.ADD_USER_WITH_ROLE)
             author.addon = addon
             author.save()
             amo.log(action, author.user, author.get_role_display(), addon)
+
+        for author in user_form.deleted_objects:
+            amo.log(amo.LOG.REMOVE_USER_WITH_ROLE, author.user,
+                    author.get_role_display(), addon)
+
         _license_form(request, addon, save=True)
         _policy_form(request, addon, save=True)
         return redirect('devhub.addons.owner', addon_id)

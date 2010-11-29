@@ -33,15 +33,14 @@ class EDIT_CATEGORIES:
 
 class ADD_USER_WITH_ROLE:
     id = 5
-    format = _(u'{user.name} added {0.name} to '
-               'addon {addon} with role {1}')
+    format = _(u'{0.name}({1}) added to {addon}.')
     keep = True
 
 
 class REMOVE_USER_WITH_ROLE:
     id = 6
     # L10n: {0} is the user being removed, {1} is their role.
-    format = _(u'{user.name} removed {0} with role {1}')
+    format = _(u'{0.name}({1}) removed from {addon}.')
     keep = True
 
 
@@ -228,22 +227,20 @@ class ADD_APPVERSION:
 class CHANGE_USER_WITH_ROLE:
     """ Expects: author.user, role, addon """
     id = 36
-    format = _(u'{user.name} changed {0.name} for '
-               'addon {addon} with {1}')
+    # L10n: {0} is a user, {1} is their role
+    format = _(u'{0.name} role changed to {1} for {addon}.')
     keep = True
 
 
 class CHANGE_LICENSE:
     """ Expects: license, addon """
     id = 37
-    format = _(u'{user.name} changed {addon} to '
-               'use license {0.name}')
+    format = _(u'{addon} is now licensed under {0.name}.')
 
 
 class CHANGE_POLICY:
-    """ Expects: addon """
     id = 38
-    format = _(u'{user.name} changed {addon} policy')
+    format = _(u'{addon} policy changed.')
 
 
 class CUSTOM_TEXT:

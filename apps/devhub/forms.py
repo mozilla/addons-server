@@ -12,6 +12,7 @@ import amo
 import addons.forms
 import paypal
 from addons.models import Addon, AddonUser, Charity
+from amo.forms import AMOModelForm
 from applications.models import Application, AppVersion
 from files.models import File, FileUpload, Platform
 from files.utils import parse_xpi
@@ -82,7 +83,7 @@ def LicenseForm(*args, **kw):
           for x in License.objects.builtins().filter(on_form=True)]
     cs.append((License.OTHER, _('Other')))
 
-    class _Form(happyforms.ModelForm):
+    class _Form(AMOModelForm):
         builtin = forms.TypedChoiceField(choices=cs, coerce=int,
             widget=forms.RadioSelect(attrs={'class': 'license'}))
         name = forms.CharField(widget=TranslationTextInput(),
@@ -109,6 +110,8 @@ def LicenseForm(*args, **kw):
             return data
 
         def save(self, commit=True):
+            if not self.changed_data:
+                return self.initial
             builtin = self.cleaned_data['builtin']
             if builtin != License.OTHER:
                 return License.objects.get(builtin=builtin)
@@ -117,7 +120,7 @@ def LicenseForm(*args, **kw):
     return _Form(*args, **kw)
 
 
-class PolicyForm(happyforms.ModelForm):
+class PolicyForm(AMOModelForm):
     """Form for editing the add-ons EULA and privacy policy."""
     has_eula = forms.BooleanField(required=False,
         label=_lazy('This add-on has an End User License Agreement'))
@@ -134,11 +137,13 @@ class PolicyForm(happyforms.ModelForm):
         model = Addon
         fields = ('eula', 'privacy_policy')
 
-    def save(self, addon, commit=True):
+    def save(self, commit=True):
+        if not self.changed_data:
+            return
         super(PolicyForm, self).save(commit)
         for k, field in (('has_eula', 'eula'), ('has_priv', 'privacy_policy')):
             if not self.cleaned_data[k]:
-                delete_translation(addon, field)
+                delete_translation(self.instance, field)
 
 
 def ProfileForm(*args, **kw):
