@@ -943,8 +943,8 @@ class TestPaymentsProfile(test_utils.TestCase):
 
     def test_profile_form_exists(self):
         doc = pq(self.client.get(self.url).content)
-        assert doc('#id_the_reason')
-        assert doc('#id_the_future')
+        assert doc('#trans-the_reason')
+        assert doc('#trans-the_future')
 
     def test_profile_form_success(self):
         d = dict(recipient='dev', suggested_amount=2, paypal_id='xx@yy',
@@ -958,8 +958,8 @@ class TestPaymentsProfile(test_utils.TestCase):
         assert not doc('.intro')
         assert not doc('#setup.hidden')
         assert doc('#status-bar')
-        assert not doc('#id_the_reason')
-        assert not doc('#id_the_future')
+        assert not doc('#trans-the_reason')
+        assert not doc('#trans-the_future')
 
         addon = self.get_addon()
         eq_(unicode(addon.the_reason), 'xxx')
@@ -972,8 +972,8 @@ class TestPaymentsProfile(test_utils.TestCase):
             assert not doc('.intro')
             assert not doc('#setup.hidden')
             assert not doc('#status-bar')
-            assert doc('#id_the_reason')
-            assert doc('#id_the_future')
+            assert doc('#trans-the_reason')
+            assert doc('#trans-the_future')
 
         d = dict(recipient='dev', suggested_amount=2, paypal_id='xx@yy',
                  annoying=amo.CONTRIB_ROADBLOCK)
@@ -1408,8 +1408,8 @@ class TestProfile(TestProfileBase):
     def test_without_contributions_labels(self):
         r = self.client.get(self.url)
         doc = pq(r.content)
-        eq_(doc('label[for=id_the_reason] .optional').length, 1)
-        eq_(doc('label[for=id_the_future] .optional').length, 1)
+        eq_(doc('label[for=the_reason] .optional').length, 1)
+        eq_(doc('label[for=the_future] .optional').length, 1)
 
     def test_without_contributions_fields_optional(self):
         self.post(the_reason='', the_future='')
@@ -1428,9 +1428,9 @@ class TestProfile(TestProfileBase):
         self.enable_addon_contributions()
         r = self.client.get(self.url)
         doc = pq(r.content)
-        assert doc('label[for=id_the_reason] .req').length, \
+        assert doc('label[for=the_reason] .req').length, \
                'the_reason field should be required.'
-        assert doc('label[for=id_the_future] .req').length, \
+        assert doc('label[for=the_future] .req').length, \
                'the_future field should be required.'
 
     def test_log(self):

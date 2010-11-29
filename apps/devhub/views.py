@@ -417,6 +417,7 @@ def profile(request, addon_id, addon):
     if request.method == 'POST' and profile_form.is_valid():
         profile_form.save()
         amo.log(amo.LOG.EDIT_PROPERTIES, addon)
+        return redirect('devhub.addons.profile', addon_id)
 
     return jingo.render(request, 'devhub/addons/profile.html',
                         dict(addon=addon, profile_form=profile_form))

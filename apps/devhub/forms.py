@@ -19,6 +19,7 @@ from files.utils import parse_xpi
 from translations.widgets import TranslationTextarea, TranslationTextInput
 from translations.fields import TransTextarea, TransInput, TransField
 from translations.models import delete_translation
+from translations.forms import TranslationFormMixin
 from versions.models import License, Version, ApplicationsVersions
 
 
@@ -151,7 +152,7 @@ def ProfileForm(*args, **kw):
     fields_required = bool(kw['instance'].takes_contributions)
     fields_required = kw.pop('required', False) or fields_required
 
-    class _Form(happyforms.ModelForm):
+    class _Form(TranslationFormMixin, happyforms.ModelForm):
         the_reason = TransField(widget=TransTextarea(),
                                      required=fields_required,
                                      label=_("Why did you make this add-on?"))
@@ -176,7 +177,7 @@ class CharityForm(happyforms.ModelForm):
         return self.cleaned_data['paypal']
 
 
-class ContribForm(happyforms.ModelForm):
+class ContribForm(TranslationFormMixin, happyforms.ModelForm):
     RECIPIENTS = (('dev', _lazy('The developers of this add-on')),
                   ('moz', _lazy('The Mozilla Foundation')),
                   ('org', _lazy('An organization of my choice')))
@@ -212,7 +213,7 @@ class ContribForm(happyforms.ModelForm):
         except forms.ValidationError, e:
             self.errors['paypal_id'] = self.error_class(e.messages)
         if not (data.get('enable_thankyou') and data.get('thankyou_note')):
-            data['thankyou_note'] = None
+            data['thankyou_note'] = {}
             data['enable_thankyou'] = False
         return data
 
