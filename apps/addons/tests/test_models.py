@@ -15,7 +15,7 @@ from addons.models import (Addon, AddonDependency, AddonPledge,
                            AddonRecommendation, AddonType, Category, Feature,
                            Persona, Preview)
 from files.models import File
-from applications.models import AppVersion
+from applications.models import Application, AppVersion
 from reviews.models import Review
 from users.models import UserProfile
 from versions.models import ApplicationsVersions, Version
@@ -439,21 +439,23 @@ class TestUpdate(test_utils.TestCase):
         self.addon = Addon.objects.get(id=1865)
         self.get = self.addon.get_current_version_for_client
         self.platform = None
-        self.appversion = AppVersion.objects.get(pk=291)
+        self.version_int = 3069900200100
+        self.app = Application.objects.get(id=1)
 
     def test_low_client(self):
         """Test a low client number. 86 is version 3.0a1 of Firefox,
         which means we have version int of 3000000001100
         and hence version 1.0.2 of the addon."""
-        appversion = AppVersion.objects.get(pk=86)
-        version, file = self.get('', appversion, self.platform)
+        version, file = self.get('', '3000000001100',
+                                 self.app, self.platform)
         eq_(version.version, '1.0.2')
 
     def test_new_client(self):
         """Test a high client number. 291 is version 3.0.12 of Firefox,
         which means we have a version int of 3069900200100
         and hence version 1.2.2 of the addon."""
-        version, file = self.get('', self.appversion, self.platform)
+        version, file = self.get('', self.version_int,
+                                 self.app, self.platform)
         eq_(version.version, '1.2.2')
 
     def test_public_not_beta(self):
@@ -467,14 +469,16 @@ class TestUpdate(test_utils.TestCase):
         # and the highest version is 1.2.1
 
         eq_(self.addon.status, amo.STATUS_PUBLIC)
-        version, file = self.get('1.2', self.appversion, self.platform)
+        version, file = self.get('1.2', self.version_int,
+                                 self.app, self.platform)
         eq_(version.version, '1.2.1')
 
     def test_public_beta(self):
         """If the addon status is public and you are asking
         for a beta version and there are no beta upgrades, then
         you won't get an update."""
-        version, file = self.get('1.2beta', self.appversion, self.platform)
+        version, file = self.get('1.2beta', self.version_int,
+                                 self.app, self.platform)
         assert not version
 
     def test_public_pending_not_exists(self):
@@ -492,7 +496,8 @@ class TestUpdate(test_utils.TestCase):
         file.status = amo.STATUS_PENDING
         file.save()
 
-        version, file = self.get('1.2beta', self.appversion, self.platform)
+        version, file = self.get('1.2beta', self.version_int,
+                                 self.app, self.platform)
         eq_(version.version, '1.2beta')
 
     def test_public_pending_no_file_no_beta(self):
@@ -506,7 +511,8 @@ class TestUpdate(test_utils.TestCase):
 
         version.files.all().delete()
 
-        version, file = self.get('1.2beta', self.appversion, self.platform)
+        version, file = self.get('1.2beta', self.version_int,
+                                 self.app, self.platform)
         assert not version
 
     def test_public_pending_no_file_has_beta(self):
@@ -525,7 +531,8 @@ class TestUpdate(test_utils.TestCase):
         file.status = amo.STATUS_BETA
         file.save()
 
-        version, file = self.get('1.2beta', self.appversion, self.platform)
+        version, file = self.get('1.2beta', self.version_int,
+                                 self.app, self.platform)
         eq_(version.version, '1.2.1')
 
     def test_public_pending_exists(self):
@@ -548,7 +555,8 @@ class TestUpdate(test_utils.TestCase):
         file.status = amo.STATUS_PENDING
         file.save()
 
-        version, file = self.get('1.2beta', self.appversion, self.platform)
+        version, file = self.get('1.2beta', self.version_int,
+                                 self.app, self.platform)
         eq_(version.version, '1.2.1')
 
     def test_not_public(self):
@@ -558,7 +566,8 @@ class TestUpdate(test_utils.TestCase):
         addon.status = amo.STATUS_PENDING
         addon.save()
 
-        version, file = self.get('1.2.1', self.appversion, self.platform)
+        version, file = self.get('1.2.1', self.version_int,
+                                 self.app, self.platform)
         eq_(version.version, '1.2.1')
 
     def test_platform_does_not_exist(self):
@@ -568,7 +577,8 @@ class TestUpdate(test_utils.TestCase):
             file.platform_id = amo.PLATFORM_LINUX.id
             file.save()
 
-        version, file = self.get('1.2', self.appversion, self.platform)
+        version, file = self.get('1.2', self.version_int,
+                                 self.app, self.platform)
         eq_(version.version, '1.2.1')
 
     def test_platform_exists(self):
@@ -578,7 +588,8 @@ class TestUpdate(test_utils.TestCase):
             file.platform_id = amo.PLATFORM_LINUX.id
             file.save()
 
-        version, file = self.get('1.2', self.appversion, amo.PLATFORM_LINUX)
+        version, file = self.get('1.2', self.version_int,
+                                 self.app, amo.PLATFORM_LINUX)
         eq_(version.version, '1.2.2')
 
     def test_file_for_platform(self):
@@ -593,10 +604,12 @@ class TestUpdate(test_utils.TestCase):
                         status=amo.STATUS_PUBLIC)
         file_two.save()
 
-        version, file = self.get('1.2', self.appversion, amo.PLATFORM_LINUX)
+        version, file = self.get('1.2', self.version_int,
+                                 self.app, amo.PLATFORM_LINUX)
         eq_(version.version, '1.2.2')
         eq_(file.pk, file_one.pk)
 
-        version, file = self.get('1.2', self.appversion, amo.PLATFORM_WIN)
+        version, file = self.get('1.2', self.version_int,
+                                 self.app, amo.PLATFORM_WIN)
         eq_(version.version, '1.2.2')
         eq_(file.pk, file_two.pk)

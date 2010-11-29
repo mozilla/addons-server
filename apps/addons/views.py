@@ -508,19 +508,20 @@ def update(request):
 
     if form.is_valid():
         data = form.cleaned_data
-        addon = data['id']
-        guid = data['appID']
-        version, file = addon.get_current_version_for_client(data['version'],
-                            data['appVersion'], data['appOS'])
+        version, file = data['id'].get_current_version_for_client(
+                            data['version'], form.version_int,
+                            data['appID'], data['appOS'])
         if version and file:
-            application_version = version.apps.get(application__guid=guid)
+            # Would also like to remove this lookup at some point.
+            application_version = version.apps.get(application=data['appID'])
+            addon_type = amo.ADDON_SLUGS_UPDATE[data['id'].type]
             return jingo.render(request, 'addons/update.rdf', {
-                                    'addon': addon,
+                                    'addon': data['id'],
+                                    'application': data['appID'],
                                     'application_version': application_version,
                                     'appversion': data['appVersion'],
                                     'file': file,
-                                    'guid': guid,
-                                    'type': amo.ADDON_SLUGS_UPDATE[addon.type],
+                                    'type': addon_type,
                                     'version': version,
                                 }, content_type="text/xml")
 

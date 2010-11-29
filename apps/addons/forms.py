@@ -12,11 +12,12 @@ import captcha.fields
 from amo.utils import slug_validator
 from addons.models import Addon, ReverseNameLookup
 from addons.widgets import IconWidgetRenderer
-from applications.models import AppVersion
+from applications.models import Application
 from tags.models import Tag
 from translations.fields import TransField, TransTextarea
 from translations.forms import TranslationFormMixin
 from translations.widgets import TranslationTextInput
+from versions.compare import version_int
 
 
 def clean_name(name, instance=None):
@@ -234,9 +235,8 @@ class UpdateForm(happyforms.Form):
         return amo.VERSION_BETA.search(self.cleaned_data.get('version', ''))
 
     def clean_id(self):
-        data = self.cleaned_data['id']
         try:
-            addon = Addon.objects.get(guid=data)
+            addon = Addon.objects.get(guid=self.cleaned_data['id'])
         except Addon.DoesNotExist:
             raise forms.ValidationError(_('Id is required.'))
         return addon
@@ -244,24 +244,18 @@ class UpdateForm(happyforms.Form):
     def clean_appOS(self):
         data = self.cleaned_data['appOS']
         for platform in [amo.PLATFORM_LINUX, amo.PLATFORM_BSD,
-                 amo.PLATFORM_MAC, amo.PLATFORM_WIN,
-                 amo.PLATFORM_SUN]:
+                         amo.PLATFORM_MAC, amo.PLATFORM_WIN,
+                         amo.PLATFORM_SUN]:
             if platform.shortname in data:
                 return platform
 
-    def clean_appVersion(self):
-        data = [self.cleaned_data['appVersion']]
-        id = self.cleaned_data.get('appID', None)
-        if not id:
-            raise forms.ValidationError(_('AppID is required.'))
+    @property
+    def version_int(self):
+        return version_int(self.cleaned_data['appVersion'])
 
-        if amo.VERSION_SEARCH.search(data[0]):
-            data.append(amo.VERSION_SEARCH.sub('.*', data[0]))
+    def clean_appID(self):
         try:
-            app = (AppVersion.objects.filter(version__in=data,
-                                             application__guid=id)
-                                     .order_by('-version'))[0]
-        except IndexError:
-            raise forms.ValidationError(_('Unknown version %s for app %s'
-                                          % (data, id)))
+            app = Application.objects.get(guid=self.cleaned_data['appID'])
+        except:
+            raise forms.ValidationError(_('Unknown application guid.'))
         return app

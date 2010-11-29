@@ -13,7 +13,7 @@
     <em:version>{{ version.version }}</em:version>
     <em:targetApplication>
         <RDF:Description>
-            <em:id>{{ guid }}</em:id>
+            <em:id>{{ application.guid }}</em:id>
             <em:minVersion>{{ application_version.min }}</em:minVersion>
             <em:maxVersion>{{ application_version.max }}</em:maxVersion>
             <em:updateLink>{{ url('downloads.file', file.id, file.filename)|absolutify }}</em:updateLink>

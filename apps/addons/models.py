@@ -333,20 +333,22 @@ class Addon(amo.models.ModelBase):
         except (IndexError, Version.DoesNotExist):
             return None
 
-    def get_current_version_for_client(self, client_version, client_app,
-                                             client_platform):
-        """Similar to get_current_version, however it also takes into
+    def get_current_version_for_client(self, client_version, version_int,
+                                       client_app, client_platform):
+        """
+        Similar to get_current_version, however it also takes into
         account the client asking for the update.
 
         client_version: the current version of the addon being used
-        client_app: the current version of the application being used
+        version_int: the version of the client
+        client_app: the app of the application being used
         client_platform: the client os
         """
         # Now do the client app version handling.
         filters = [
-            Q(apps__application=client_app.application),
-            Q(apps__max__version_int__gte=client_app.version_int),
-            Q(apps__min__version_int__lte=client_app.version_int),
+            Q(apps__application=client_app),
+            Q(apps__max__version_int__gte=version_int),
+            Q(apps__min__version_int__lte=version_int),
         ]
 
         # Now do the status handling.

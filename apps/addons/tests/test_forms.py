@@ -5,7 +5,6 @@ from redisutils import mock_redis, reset_redis
 from addons import forms, cron
 from addons.models import Addon
 import amo
-from applications.models import AppVersion
 
 
 class FormsTest(test_utils.TestCase):
@@ -94,18 +93,13 @@ class TestUpdate(test_utils.TestCase):
         data = self.good_data.copy()
         data['appVersion'] = '67.7'
         form = forms.UpdateForm(data)
-        assert not form.is_valid()
-
-    def test_app_version_search(self):
-        data = self.good_data.copy()
-        data['appVersion'] = '3.6.12'
-        form = forms.UpdateForm(data)
+        # If you pass through the wrong version that's fine
+        # you will just end up with no updates because your
+        # version_int will be out.
         assert form.is_valid()
-        assert form.cleaned_data['appVersion'].version == '3.6.*'
 
     def test_app_version(self):
         data = self.good_data.copy()
         form = forms.UpdateForm(data)
         assert form.is_valid()
-        valid = AppVersion.objects.get(id=282)
-        eq_(form.cleaned_data['appVersion'], valid)
+        eq_(form.version_int, 3070000001000)
