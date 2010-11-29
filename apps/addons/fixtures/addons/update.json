@@ -643,7 +643,7 @@
       "created": "2008-10-28 18:25:09"
     }
   },
-  {
+{
     "pk": 350,
     "model": "applications.appversion",
     "fields": {
@@ -771,17 +771,6 @@
       "version_int": 4000000102100,
       "application": 1,
       "version": "4.0b2",
-      "modified": null,
-      "created": null
-    }
-  },
-  {
-    "pk": 352,
-    "model": "applications.appversion",
-    "fields": {
-      "version_int": 4000000102000,
-      "application": 60,
-      "version": "4.0b2pre",
       "modified": null,
       "created": null
     }
@@ -936,8 +925,8 @@
       "version_int": 3069900200100,
       "application": 1,
       "version": "3.6.*",
-      "modified": null,
-      "created": null
+      "modified": "2010-11-29 11:31:36",
+      "created": "2010-11-29 11:31:36"
     }
   },
   {
@@ -1073,61 +1062,6 @@
     }
   },
   {
-    "pk": 344,
-    "model": "applications.appversion",
-    "fields": {
-      "version_int": 3030000001000,
-      "application": 18,
-      "version": "3.3a1pre",
-      "modified": null,
-      "created": null
-    }
-  },
-  {
-    "pk": 298,
-    "model": "applications.appversion",
-    "fields": {
-      "version_int": 3020000001000,
-      "application": 18,
-      "version": "3.2a1pre",
-      "modified": null,
-      "created": null
-    }
-  },
-  {
-    "pk": 323,
-    "model": "applications.appversion",
-    "fields": {
-      "version_int": 3019900200100,
-      "application": 18,
-      "version": "3.1.*",
-      "modified": null,
-      "created": null
-    }
-  },
-  {
-    "pk": 322,
-    "model": "applications.appversion",
-    "fields": {
-      "version_int": 3010000200100,
-      "application": 18,
-      "version": "3.1",
-      "modified": null,
-      "created": null
-    }
-  },
-  {
-    "pk": 317,
-    "model": "applications.appversion",
-    "fields": {
-      "version_int": 3010000200000,
-      "application": 18,
-      "version": "3.1pre",
-      "modified": null,
-      "created": null
-    }
-  },
-  {
     "pk": 261,
     "model": "applications.appversion",
     "fields": {
@@ -1150,34 +1084,12 @@
     }
   },
   {
-    "pk": 316,
-    "model": "applications.appversion",
-    "fields": {
-      "version_int": 3010000102100,
-      "application": 18,
-      "version": "3.1b2",
-      "modified": null,
-      "created": null
-    }
-  },
-  {
     "pk": 252,
     "model": "applications.appversion",
     "fields": {
       "version_int": 3010000102100,
       "application": 1,
       "version": "3.1b2",
-      "modified": null,
-      "created": null
-    }
-  },
-  {
-    "pk": 310,
-    "model": "applications.appversion",
-    "fields": {
-      "version_int": 3010000102000,
-      "application": 18,
-      "version": "3.1b2pre",
       "modified": null,
       "created": null
     }
@@ -1205,33 +1117,11 @@
     }
   },
   {
-    "pk": 309,
-    "model": "applications.appversion",
-    "fields": {
-      "version_int": 3010000101100,
-      "application": 18,
-      "version": "3.1b1",
-      "modified": null,
-      "created": null
-    }
-  },
-  {
     "pk": 239,
     "model": "applications.appversion",
     "fields": {
       "version_int": 3010000101000,
       "application": 1,
-      "version": "3.1b1pre",
-      "modified": null,
-      "created": null
-    }
-  },
-  {
-    "pk": 300,
-    "model": "applications.appversion",
-    "fields": {
-      "version_int": 3010000101000,
-      "application": 18,
       "version": "3.1b1pre",
       "modified": null,
       "created": null
@@ -1271,45 +1161,12 @@
     }
   },
   {
-    "pk": 299,
-    "model": "applications.appversion",
-    "fields": {
-      "version_int": 3010000001100,
-      "application": 18,
-      "version": "3.1a1",
-      "modified": null,
-      "created": null
-    }
-  },
-  {
     "pk": 234,
     "model": "applications.appversion",
     "fields": {
       "version_int": 3010000001000,
       "application": 1,
       "version": "3.1a1pre",
-      "modified": null,
-      "created": null
-    }
-  },
-  {
-    "pk": 260,
-    "model": "applications.appversion",
-    "fields": {
-      "version_int": 3010000001000,
-      "application": 18,
-      "version": "3.1a1pre",
-      "modified": null,
-      "created": null
-    }
-  },
-  {
-    "pk": 289,
-    "model": "applications.appversion",
-    "fields": {
-      "version_int": 3009900200100,
-      "application": 18,
-      "version": "3.0.*",
       "modified": null,
       "created": null
     }
@@ -1359,56 +1216,12 @@
     }
   },
   {
-    "pk": 340,
-    "model": "applications.appversion",
-    "fields": {
-      "version_int": 3000400200100,
-      "application": 18,
-      "version": "3.0.4",
-      "modified": null,
-      "created": null
-    }
-  },
-  {
-    "pk": 301,
-    "model": "applications.appversion",
-    "fields": {
-      "version_int": 3000100200100,
-      "application": 18,
-      "version": "3.0.1",
-      "modified": null,
-      "created": null
-    }
-  },
-  {
     "pk": 233,
     "model": "applications.appversion",
     "fields": {
       "version_int": 3000000200100,
       "application": 1,
       "version": "3.0",
-      "modified": null,
-      "created": null
-    }
-  },
-  {
-    "pk": 288,
-    "model": "applications.appversion",
-    "fields": {
-      "version_int": 3000000200100,
-      "application": 18,
-      "version": "3.0",
-      "modified": null,
-      "created": null
-    }
-  },
-  {
-    "pk": 287,
-    "model": "applications.appversion",
-    "fields": {
-      "version_int": 3000000200000,
-      "application": 18,
-      "version": "3.0pre",
       "modified": null,
       "created": null
     }
@@ -1447,34 +1260,12 @@
     }
   },
   {
-    "pk": 286,
-    "model": "applications.appversion",
-    "fields": {
-      "version_int": 3000000104100,
-      "application": 18,
-      "version": "3.0b4",
-      "modified": null,
-      "created": null
-    }
-  },
-  {
     "pk": 224,
     "model": "applications.appversion",
     "fields": {
       "version_int": 3000000104100,
       "application": 1,
       "version": "3.0b4",
-      "modified": null,
-      "created": null
-    }
-  },
-  {
-    "pk": 278,
-    "model": "applications.appversion",
-    "fields": {
-      "version_int": 3000000104000,
-      "application": 18,
-      "version": "3.0b4pre",
       "modified": null,
       "created": null
     }
@@ -1502,28 +1293,6 @@
     }
   },
   {
-    "pk": 277,
-    "model": "applications.appversion",
-    "fields": {
-      "version_int": 3000000103100,
-      "application": 18,
-      "version": "3.0b3",
-      "modified": null,
-      "created": null
-    }
-  },
-  {
-    "pk": 263,
-    "model": "applications.appversion",
-    "fields": {
-      "version_int": 3000000103000,
-      "application": 18,
-      "version": "3.0b3pre",
-      "modified": null,
-      "created": null
-    }
-  },
-  {
     "pk": 217,
     "model": "applications.appversion",
     "fields": {
@@ -1546,28 +1315,6 @@
     }
   },
   {
-    "pk": 262,
-    "model": "applications.appversion",
-    "fields": {
-      "version_int": 3000000102100,
-      "application": 18,
-      "version": "3.0b2",
-      "modified": null,
-      "created": null
-    }
-  },
-  {
-    "pk": 255,
-    "model": "applications.appversion",
-    "fields": {
-      "version_int": 3000000102000,
-      "application": 18,
-      "version": "3.0b2pre",
-      "modified": null,
-      "created": null
-    }
-  },
-  {
     "pk": 216,
     "model": "applications.appversion",
     "fields": {
@@ -1585,28 +1332,6 @@
       "version_int": 3000000101100,
       "application": 1,
       "version": "3.0b1",
-      "modified": null,
-      "created": null
-    }
-  },
-  {
-    "pk": 254,
-    "model": "applications.appversion",
-    "fields": {
-      "version_int": 3000000101100,
-      "application": 18,
-      "version": "3.0b1",
-      "modified": null,
-      "created": null
-    }
-  },
-  {
-    "pk": 238,
-    "model": "applications.appversion",
-    "fields": {
-      "version_int": 3000000101000,
-      "application": 18,
-      "version": "3.0b1pre",
       "modified": null,
       "created": null
     }
@@ -1700,17 +1425,6 @@
     }
   },
   {
-    "pk": 244,
-    "model": "applications.appversion",
-    "fields": {
-      "version_int": 3000000003100,
-      "application": 18,
-      "version": "3.0a3",
-      "modified": null,
-      "created": null
-    }
-  },
-  {
     "pk": 114,
     "model": "applications.appversion",
     "fields": {
@@ -1722,58 +1436,80 @@
     }
   },
   {
-    "pk": 237,
-    "model": "applications.appversion",
-    "fields": {
-      "version_int": 3000000002100,
-      "application": 18,
-      "version": "3.0a2",
-      "modified": null,
-      "created": null
-    }
-  },
-  {
-    "pk": 231,
-    "model": "applications.appversion",
-    "fields": {
-      "version_int": 3000000002000,
-      "application": 18,
-      "version": "3.0a2pre",
-      "modified": null,
-      "created": null
-    }
-  },
-  {
     "pk": 86,
     "model": "applications.appversion",
     "fields": {
       "version_int": 3000000001100,
       "application": 1,
       "version": "3.0a1",
+      "modified": "2010-11-29 11:31:37",
+      "created": "2007-03-05 13:09:26"
+    }
+  },
+  {
+    "pk": 99,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 2000099200100,
+      "application": 1,
+      "version": "2.0.0.*",
       "modified": null,
       "created": "2007-03-05 13:09:26"
     }
   },
   {
-    "pk": 89,
+    "pk": 223,
     "model": "applications.appversion",
     "fields": {
-      "version_int": 3000000001100,
-      "application": 18,
-      "version": "3.0a1",
-      "modified": null,
-      "created": "2007-03-05 13:09:26"
-    }
-  },
-  {
-    "pk": 221,
-    "model": "applications.appversion",
-    "fields": {
-      "version_int": 3000000001000,
-      "application": 18,
-      "version": "3.0a1pre",
+      "version_int": 2000008200100,
+      "application": 1,
+      "version": "2.0.0.8",
       "modified": null,
       "created": null
+    }
+  },
+  {
+    "pk": 230,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 2000004200100,
+      "application": 1,
+      "version": "2.0.0.4",
+      "modified": null,
+      "created": null
+    }
+  },
+  {
+    "pk": 97,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 2000000200100,
+      "application": 1,
+      "version": "2.0",
+      "modified": null,
+      "created": "2007-03-05 13:09:26"
+    }
+  },
+  {
+    "pk": 106,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 2000000102100,
+      "application": 1,
+      "version": "2.0b2",
+      "modified": null,
+      "created": "2007-03-05 13:09:26"
+    }
+  },
+  {
+    "pk": 85,
+    "model": "applications.appversion",
+    "fields": {
+      "version_int": 2000000101100,
+      "application": 1,
+      "version": "2.0b1",
+      "modified": null,
+      "created": "2007-03-05 13:09:26"
     }
   }
 ]
