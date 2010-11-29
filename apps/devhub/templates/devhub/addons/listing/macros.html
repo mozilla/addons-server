@@ -1,10 +1,9 @@
 {% macro dev_heading(addon, amo) %}
   <h4>
-    {% set is_complete = addon.status != amo.STATUS_NULL %}
+    {% set is_complete = not addon.is_incomplete() %}
     {% if is_complete %}<a href="{{ addon.get_url_path() }}">{% endif %}
-      <img class="icon" width="32" height="32" src="{{ addon.icon_url }}"
-           alt="{{ addon.name }}">
-      {{ addon.name }}{% if complete %}</a>{% endif %}
+    <img class="icon" width="32" height="32" src="{{ addon.icon_url }}">
+    {{ addon.name }}{% if is_complete %}</a>{% endif %}
   </h4>
 {% endmacro %}
 
@@ -28,53 +27,4 @@
                   num)|f(num|numberfmt)|safe }}
     {% endwith %}
   </p>
-{% endmacro %}
-
-{% macro dev_item_actions(addon, amo) %}
-  <h5>{{ _('Actions') }}</h5>
-  <ul>
-    <li>
-      <a href="{{ url('devhub.addons.edit', addon.id) }}" class="tooltip"
-         title="{{ _("Edit details about this add-on's listing.") }}">
-        {{ _('Edit Listing') }}</a>
-    </li>
-    <li>
-      <a href="{{ url('devhub.versions', addon.id) }}" class="tooltip"
-         title="{{ _('Upload a new version of this add-on.') }}">
-        {{ _('New Version') }}</a>
-    </li>
-    {% if addon.accepts_compatible_apps() and addon.current_version %}
-    <li class="compat"
-        data-src="{{ url('devhub.ajax.compat.status', addon.id) }}">
-      {% include "devhub/addons/ajax_compat_status.html" %}
-    </li>
-   {% endif %}
-    {% if addon.status != amo.STATUS_NULL and not addon.inactive %}
-    <li>
-      <a href="{{ url('stats.overview', addon.id) }}" class="tooltip"
-         title="{{ _('Daily statistics on downloads and users.') }}">
-        {{ _('Statistics') }}</a>
-    </li>
-    {% endif %}
-    <li>
-      <a href="#" class="more-actions">{{ _('More') }}</a>
-      <div class="more-actions-popup popup hidden">
-        <ul>
-          <li><a href="{{ url('devhub.addons.owner', addon.id) }}">
-            {{ _('Manage Authors & License') }}</a></li>
-          <li><a href="{{ url('devhub.addons.payments', addon.id) }}">
-            {{ _('Manage Payments') }}</a></li>
-          <li><a href="{{ url('devhub.versions', addon.id) }}">
-            {{ _('Manage Status & Versions') }}</a></li>
-          <li class="item-group">
-            <a href="{{ addon.get_url_path() }}">
-            {{ _('View Add-on Listing') }}</a></li>
-          <li><a href="{{ url('devhub.feed', addon.id) }}">
-            {{ _('View Recent Changes') }}</a></li>
-        </ul>
-      </div>
-    </li>
-  </ul>
-  <div class="compat-error-popup popup error hidden"></div>
-  <div class="compat-update-modal modal hidden"></div>
 {% endmacro %}

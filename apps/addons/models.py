@@ -554,6 +554,9 @@ class Addon(amo.models.ModelBase):
     def is_unreviewed(self):
         return self.status in amo.UNREVIEWED_STATUSES
 
+    def is_incomplete(self):
+        return self.status == amo.STATUS_NULL
+
     def is_featured(self, app, lang):
         """is add-on globally featured for this app and language?"""
         qs = Addon.objects.featured(app)

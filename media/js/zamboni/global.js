@@ -180,6 +180,10 @@ $.fn.popup = function(click_target, o) {
                 $(document.body).bind('click popup', $popup.hider);
             }, 0);
         }
+        $popup.delegate('.close', 'click', function(e) {
+            e.preventDefault();
+            $popup.hideMe();
+        });
         $ct.trigger("popup_show", [$popup]);
         if (p.container && p.container.length)
             $popup.detach().appendTo(p.container);
@@ -290,7 +294,7 @@ $.fn.modal = function(click_target, o) {
             }, 0);
         }
         $('.popup').hide();
-        $modal.delegate('.close', 'click', function(e){
+        $modal.delegate('.close', 'click', function(e) {
             e.preventDefault();
             $modal.hideMe();
         });

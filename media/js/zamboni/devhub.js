@@ -69,6 +69,16 @@ $(document).ready(function() {
       });
     });
 
+    $('.modal-delete').each(function() {
+        var el = $(this);
+        el.modal(el.closest('li').find('.delete-addon'), {
+            width: 400,
+            callback: function(obj) {
+                return {pointTo: $(obj.click_target)};
+            }
+        });
+    });
+
     truncateFields();
 
     initCompatibility();
@@ -839,6 +849,7 @@ function compatModalCallback(obj) {
 
     return {pointTo: ct};
 }
+
 
 $(document).ready(function() {
 

@@ -48,6 +48,7 @@ detail_patterns = patterns('',
     url('^versions/(?P<version>[^/]+)$', views.version_bounce),
 
     url('^submit/', include(submit_patterns)),
+    url('^submit/resume$', views.submit_resume, name='devhub.submit.resume'),
 )
 
 # These will all start with /ajax/addon/<addon_id>/

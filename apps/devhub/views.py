@@ -92,8 +92,7 @@ def index(request):
 
 @login_required
 def dashboard(request):
-    TYPE = amo.ADDON_ANY
-    addons, filter = addon_listing(request, TYPE)
+    addons, filter = addon_listing(request, addon_type=amo.ADDON_ANY)
     addons = amo.utils.paginate(request, addons, per_page=10)
     data = dict(addons=addons, sorting=filter.field,
                 items=_get_items(None, request.amo_user.addons.all())[:4],
@@ -507,6 +506,7 @@ def addons_icon_upload(request, addon_id, addon):
     # do more testing (bug 614450).
     return {'success': True}
 
+
 @dev_required
 def addons_section(request, addon_id, addon, section, editable=False):
     models = {'basic': addon_forms.AddonFormBasic,
@@ -544,6 +544,7 @@ def addons_section(request, addon_id, addon, section, editable=False):
     return jingo.render(request,
                         'devhub/includes/addon_edit_%s.html' % section, data)
 
+
 @dev_required
 def version_edit(request, addon_id, addon, version_id):
     version = get_object_or_404(Version, pk=version_id, addon=addon)
@@ -556,9 +557,7 @@ def version_edit(request, addon_id, addon, version_id):
                                   queryset=version.files.all())
     data = {'version_form': version_form, 'file_form': file_form}
 
-    # https://bugzilla.mozilla.org/show_bug.cgi?id=605941
-    # remove compatability from the version edit page for search engines
-    if addon.type != amo.ADDON_SEARCH:
+    if addon.accepts_compatible_apps():
         compat_form = forms.CompatFormSet(request.POST or None,
                                       queryset=version.apps.all())
         data['compat_form'] = compat_form
@@ -789,6 +788,13 @@ def submit_done(request, addon_id, addon, step):
     return jingo.render(request, 'devhub/addons/submit/done.html',
                         {'addon': addon, 'step': step,
                          'is_platform_specific': is_platform_specific})
+
+
+@dev_required
+def submit_resume(request, addon_id, addon):
+    step = SubmitStep.objects.filter(addon=addon)
+    step = step[0].step if step else 7
+    return redirect('devhub.submit.%s' % step, addon_id)
 
 
 @login_required

@@ -1,0 +1,65 @@
+<h5>{{ _('Actions') }}</h5>
+<ul>
+{% if addon.is_incomplete() %}
+  <li>
+    <a href="{{ url('devhub.submit.resume', addon.id) }}" class="tooltip"
+       title="{{ _("Resume the submission process for this add-on.")}}">
+    {{ _('Resume') }}</a>
+  </li>
+  <li>
+    <a href="#" class="delete-addon tooltip"
+       title="{{ _('Delete this add-on.') }}">{{ _('Delete') }}</a>
+    <div class="modal-delete modal hidden">
+      {% include "devhub/addons/listing/delete_form.html" %}
+    </div>
+  </li>
+{% else %}
+  <li>
+    <a href="{{ url('devhub.addons.edit', addon.id) }}" class="tooltip"
+       title="{{ _("Edit details about this add-on's listing.") }}">
+      {{ _('Edit Listing') }}</a>
+  </li>
+  <li>
+    <a href="{{ url('devhub.versions', addon.id) }}" class="tooltip"
+       title="{{ _('Upload a new version of this add-on.') }}">
+      {{ _('New Version') }}</a>
+  </li>
+  {% if addon.accepts_compatible_apps() and addon.current_version %}
+  <li class="compat"
+      data-src="{{ url('devhub.ajax.compat.status', addon.id) }}">
+    {% include "devhub/addons/ajax_compat_status.html" %}
+    <div class="compat-error-popup popup error hidden"></div>
+    <div class="compat-update-modal modal hidden"></div>
+  </li>
+  {% endif %}
+  {% if not addon.inactive %}
+  <li>
+    <a href="{{ url('stats.overview', addon.id) }}" class="tooltip"
+       title="{{ _('Daily statistics on downloads and users.') }}">
+      {{ _('Statistics') }}</a>
+  </li>
+  {% endif %}
+  <li>
+    <a href="#" class="more-actions">{{ _('More') }}</a>
+    <div class="more-actions-popup popup hidden">
+      {% set manage_urls = (
+        (url('devhub.addons.owner', addon.id), _('Manage Authors & License')),
+        (url('devhub.addons.profile', addon.id), _('Manage Developer Profile')),
+        (url('devhub.addons.payments', addon.id), _('Manage Payments')),
+        (url('devhub.versions', addon.id), _('Manage Status & Versions'))) %}
+      <ul>
+        {% for url, title in manage_urls %}
+          <li><a href="{{ url }}">{{ title }}</a></li>
+        {% endfor %}
+      </ul>
+      {% set view_urls = ((addon.get_url_path(), _('View Add-on Listing')),
+                          (url('devhub.feed', addon.id), _('View Recent Changes'))) %}
+      <ul>
+        {% for url, title in view_urls %}
+          <li><a href="{{ url }}">{{ title }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </li>
+</ul>
+{% endif %}

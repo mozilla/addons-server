@@ -131,12 +131,12 @@ tr:hover a.remove:hover {
 }
 
 .devhub-form .empty {
-    color: #999999;
+    color: #999;
     font-style: italic;
 }
 
-.devhub-form-nav div:last-child ul.refinements {
-    border-bottom: 0 none;
+ul.refinements:last-child {
+    border-bottom-width: 0;
     margin-bottom: 0;
     padding-bottom: 0;
 }
@@ -426,7 +426,8 @@ span.locale{
 
 .action-needed .button-wrapper:last-child,
 .item ul.item-details,
-.item .item-actions ul {
+.item .item-actions ul,
+.item > p {
     margin-bottom: 0;
 }
 
@@ -471,7 +472,7 @@ span.locale{
     width: 2px;
     margin: 0 0 4px 4px;
 }
-.item:hover .item-actions>ul>li:not(:last-child):after {
+#dashboard .item:hover .item-actions>ul>li:not(:last-child):after {
     background-color: #555;
 }
 
@@ -484,6 +485,7 @@ span.locale{
 }
 
 a.more-actions {
+    display: block;
     position: relative;
 }
 a.more-actions:after {
@@ -492,12 +494,12 @@ a.more-actions:after {
     border-width: 3px 3px 0;
     content: "";
     position: absolute;
-    top: -2px;
+    top: 0;
     height: 0;
     margin: 8px 0 0 4px;
     width: 0;
 }
-.item:hover .item-actions a.more-actions:after {
+#dashboard .item:hover .item-actions a.more-actions:after {
     border-color: #05e transparent transparent;
 }
 a.more-actions:after:hover {
@@ -507,10 +509,10 @@ a.more-actions:after:hover {
 .more-actions-popup li a {
     display: block;
 }
-.more-actions-popup .item-group {
-    border-top: 1px dotted #aecfda;
-    margin-top: 0.5em;
-    padding-top: 0.5em;
+.more-actions-popup ul:first-child {
+    border-bottom: 1px dotted #aecfda;
+    margin-bottom: 0.5em;
+    padding-bottom: 0.5em;
 }
 
 /* @group Compatibility */

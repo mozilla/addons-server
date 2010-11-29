@@ -4,19 +4,24 @@
 {% for addon in addons %}
   <div class="item" data-addonid="{{ addon.id }}">
     {{ dev_heading(addon, amo) }}
-    <div class="item-info">
-      {{ dev_item_info(addon, amo) }}
-    </div>
-    <div class="item-main">
+    {% if addon.is_incomplete() %}
+      <p>
+        {% trans %}
+          This add-on will be deleted automatically after a few days if the
+          submission process is not completed.
+        {% endtrans %}
+      </p>
+    {% else %}
+      <div class="item-info">
+        {{ dev_item_info(addon, amo) }}
+      </div>
       <ul class="item-details">
         {# L10n: {0} is a version number. #}
         <li>{{ _('<strong>Latest version:</strong> {0}'|
                  f(addon.current_version))|safe }}</li>
-
         {# L10n: {0} is a date. #}
         <li>{{ _('<strong>Last updated:</strong> {0}'|
                  f(addon.last_updated|datetime))|safe }}</li>
-
         <li>
           <strong>{{ _('Status:') }}</strong>
           {% if addon.inactive %}
@@ -30,9 +35,9 @@
           {% endtrans %}
         </li>
       </ul>
-      <div class="item-actions">
-        {{ dev_item_actions(addon, amo) }}
-      </div>
+    {% endif %}
+    <div class="item-actions">
+      {% include "devhub/addons/listing/item_actions.html" %}
     </div>
   </div>
 {% endfor %}

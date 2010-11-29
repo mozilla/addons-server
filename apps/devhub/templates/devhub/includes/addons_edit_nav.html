@@ -5,26 +5,22 @@
   (url('devhub.addons.payments', addon.id), _('Manage Payments')),
   (url('devhub.versions', addon.id), _('Manage Status & Versions')),
 ) %}
-
 <section class="secondary" role="complementary">
-<div class="highlight" id="edit-addon-nav">
-  <h3>{{ addon.name }}</h3>
-  <div>
+  <div class="highlight" id="edit-addon-nav">
+    <h3>{{ addon.name }}</h3>
     <ul class="refinements">
       {% for url, title in urls %}
         <li {{ request.path|class_selected(url) }}>
           <a href="{{ url }}">{{ title }}</a></li>
       {% endfor %}
     </ul>
-  </div>
-  <div id="refine-activity">
     <ul class="refinements">
       <li><a href="{{ addon.get_url_path() }}">
         {{ _('View Add-on Listing') }}</a></li>
       <li><a href="{{ url('devhub.feed', addon.id) }}">
         {{ _('View Recent Changes') }}</a></li>
-      <li><a href="#">{{ _('View Statistics Dashboard') }}</a></li>
+      <li><a href="{{ url('stats.overview', addon.id) }}">
+        {{ _('View Statistics Dashboard') }}</a></li>
     </ul>
   </div>
-</div>
 </section>

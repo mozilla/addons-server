@@ -2,17 +2,9 @@
 
 {% extends "devhub/addons/submit/base.html" %}
 
-{% set title = _('Submit a New Add-on') %}
-
-{% block title %}
-{{ dev_page_title(title) }}
-{% endblock %}
-
-
 {% block primary %}
-<section class="primary addon-submission-process" id="submit-media" role="main">
-  <div>
-    <h3>{{ _('Step 3. Add Images and Videos') }}</h3>
+  <section class="primary addon-submission-process" id="submit-media" role="main">
+    <h3>{{ _('Step 4. Add Images and Videos') }}</h3>
     <p>
     {% trans %}
     Custom icons and screenshots draw attention to your add-on and help users
@@ -62,7 +54,5 @@
         </button>
       </div>
     </form>
-  </div>
-</section>
+  </section>
 {% endblock primary %}
-

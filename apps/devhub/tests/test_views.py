@@ -287,6 +287,13 @@ class TestDashboard(HubTest):
         self.url = reverse('devhub.addons')
         eq_(self.client.get(self.url).status_code, 200)
 
+    def get_action_links(self, addon_id):
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        links = [a.text.strip() for a in
+                 doc('.item[data-addonid=%s] .item-actions li > a' % addon_id)]
+        return links
+
     def test_no_addons(self):
         """Check that no add-ons are displayed for this user."""
         r = self.client.get(self.url)
@@ -316,42 +323,39 @@ class TestDashboard(HubTest):
         eq_(doc('#addon-list-options').length, 1)
         eq_(doc('.listing-footer .pagination').length, 1)
 
-    def test_addon_link(self):
-        a_pk = self.clone_addon(1)[0]
-        a = Addon.objects.get(pk=a_pk)
-        r = self.client.get(self.url)
-        doc = pq(r.content)
-        eq_(a.status, amo.STATUS_PUBLIC)
-        assert doc('.item[data-addonid=%s] h4 a' % a_pk)
-
-    def test_addon_no_link(self):
-        a_pk = self.clone_addon(1)[0]
-        Addon.objects.get(pk=a_pk).update(status=amo.STATUS_NULL)
-        r = self.client.get(self.url)
-        doc = pq(r.content)
-        assert not doc('.item[data-addonid=%s] h4 a' % a_pk)
-
     def test_show_hide_statistics(self):
         a_pk = self.clone_addon(1)[0]
-
-        def get_links():
-            r = self.client.get(self.url)
-            doc = pq(r.content)
-            links = [a.text.strip() for a in
-                     doc('.item[data-addonid=%s] .item-actions a' % a_pk)]
-            return links
 
         # when Active and Public show statistics
         Addon.objects.get(pk=a_pk).update(inactive=False,
                                           status=amo.STATUS_PUBLIC)
-        links = get_links()
+        links = self.get_action_links(a_pk)
         assert 'Statistics' in links, ('Unexpected: %r' % links)
 
         # when Active and Incomplete hide statistics
         Addon.objects.get(pk=a_pk).update(inactive=False,
                                           status=amo.STATUS_NULL)
-        links = get_links()
+        links = self.get_action_links(a_pk)
         assert 'Statistics' not in links, ('Unexpected: %r' % links)
+
+    def test_complete_addon_item(self):
+        a_pk = self.clone_addon(1)[0]
+        a = Addon.objects.get(pk=a_pk)
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        eq_(a.status, amo.STATUS_PUBLIC)
+        assert doc('.item[data-addonid=%s] ul.item-details' % a_pk)
+        assert doc('.item[data-addonid=%s] h4 a' % a_pk)
+        assert not doc('.item[data-addonid=%s] > p' % a_pk)
+
+    def test_incomplete_addon_item(self):
+        a_pk = self.clone_addon(1)[0]
+        Addon.objects.get(pk=a_pk).update(status=amo.STATUS_NULL)
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        assert not doc('.item[data-addonid=%s] ul.item-details' % a_pk)
+        assert not doc('.item[data-addonid=%s] h4 a' % a_pk)
+        assert doc('.item[data-addonid=%s] > p' % a_pk)
 
 
 class TestUpdateCompatibility(test_utils.TestCase):
@@ -1341,7 +1345,8 @@ class TestEdit(test_utils.TestCase):
         activity_url = reverse('devhub.feed', args=[3615])
         r = self.client.get(url)
         doc = pq(r.content)
-        eq_(doc('#refine-activity a').eq(1).attr('href'), activity_url)
+        eq_(doc('#edit-addon-nav ul:last').find('li a').eq(1).attr('href'),
+            activity_url)
 
     def get_l10n_urls(self):
         id = 3615
@@ -2225,6 +2230,25 @@ class TestSubmitStep7(TestSubmitBase):
         assert exp in intro, ('Unexpected intro: %s' % intro.strip())
 
 
+class TestResumeStep(TestSubmitBase):
+
+    def setUp(self):
+        super(TestResumeStep, self).setUp()
+        self.url = reverse('devhub.submit.resume', args=[3615])
+
+    def test_no_step_redirect(self):
+        r = self.client.get(self.url, follow=True)
+        self.assertRedirects(r, reverse('devhub.submit.7', args=[3615]), 302)
+
+    def test_step_redirects(self):
+        SubmitStep.objects.create(addon_id=3615, step=1)
+        for i in xrange(3, 7):
+            SubmitStep.objects.filter(addon=self.get_addon()).update(step=i)
+            r = self.client.get(self.url, follow=True)
+            self.assertRedirects(r, reverse('devhub.submit.%s' % i,
+                                            args=[3615]))
+
+
 class TestSubmitSteps(test_utils.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']
 
@@ -2541,3 +2565,30 @@ class TestCreateAddon(files.tests.UploadTest, test_utils.TestCase):
         addon = Addon.objects.get()
         self.assertRedirects(r, reverse('devhub.submit.3',
                                         args=[addon.id]))
+
+
+class TestDeleteAddon(test_utils.TestCase):
+    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
+
+    def setUp(self):
+        super(TestDeleteAddon, self).setUp()
+        self.url = reverse('devhub.addons.delete', args=[3615])
+        assert self.client.login(username='del@icio.us', password='password')
+        self.addon = Addon.objects.get(id=3615)
+
+    def post(self, *args, **kw):
+        r = self.client.post(self.url, dict(*args, **kw))
+        eq_(r.status_code, 302)
+        return r
+
+    def test_bad_password(self):
+        r = self.post(password='turd')
+        eq_(r.context['title'],
+            'Password was incorrect. Add-on was not deleted.')
+        eq_(Addon.objects.count(), 1)
+
+    def test_success(self):
+        r = self.post(password='password')
+        eq_(r.context['title'], 'Add-on deleted.')
+        eq_(Addon.objects.count(), 0)
+        self.assertRedirects(r, reverse('devhub.addons'))
