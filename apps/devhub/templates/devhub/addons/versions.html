@@ -43,7 +43,7 @@
     {{ display_status(status=addon_status, status_id=addon.status) }}
 
     {% if addon.inactive %}
-      {{ display_status(status=_('Disabled by Admins')) }}
+      {{ display_status(status=_('Inactive')) }}
     {% endif %}
 
     {% if addon.trusted %}

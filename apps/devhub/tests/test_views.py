@@ -1500,15 +1500,28 @@ class TestVersion(test_utils.TestCase):
                             'version_id': self.version.pk}
 
     def test_version_status_public(self):
-        res = self.client.get(self.url)
-        doc = pq(res.content)
+
+        def get_doc():
+            res = self.client.get(self.url)
+            eq_(res.status_code, 200)
+            return pq(res.content)
+
+        doc = get_doc()
         assert doc('.version-status')
 
         self.addon.status = amo.STATUS_DISABLED
         self.addon.save()
-        res = self.client.get(self.url)
-        doc = pq(res.content)
+        doc = get_doc()
         assert doc('.version-status.version-disabled')
+        status = doc('strong.version-status').text()
+        assert unicode(amo.STATUS_CHOICES[amo.STATUS_DISABLED]) in status, (
+                                            'Unexpected status: %r' % status)
+
+        self.addon.inactive = True
+        self.addon.save()
+        doc = get_doc()
+        status = doc('strong.version-status').text()
+        assert 'Inactive' in status, ('Unexpected status: %r' % status)
 
     def test_delete_version(self):
         self.client.post(self.delete_url, self.delete_data)

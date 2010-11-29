@@ -91,7 +91,7 @@ STATUS_CHOICES = {
     STATUS_PENDING: _('Pending approval'),
     STATUS_NOMINATED: _('Nominated to be public'),
     STATUS_PUBLIC: _('Public'),
-    STATUS_DISABLED: _('Disabled'),
+    STATUS_DISABLED: _('Disabled by Admins'),
     STATUS_LISTED: _('Listed'),
     STATUS_BETA: _('Beta'),
     STATUS_LITE: _('Preliminarily reviewed'),
