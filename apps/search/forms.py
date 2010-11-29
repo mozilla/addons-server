@@ -74,7 +74,11 @@ _Cat = collections.namedtuple('Cat', 'id name weight type')
 
 def get_search_groups(app):
     sub = []
-    for type_ in (amo.ADDON_DICT, amo.ADDON_SEARCH, amo.ADDON_THEME):
+
+    types_ = [t for t in (amo.ADDON_DICT, amo.ADDON_SEARCH, amo.ADDON_THEME)
+                if t in app.types]
+
+    for type_ in types_:
         sub.append(_Cat(0, amo.ADDON_TYPES[type_], 0, type_))
     sub.extend(helpers.sidebar(app)[0])
     sub = [('%s,%s' % (a.type, a.id), a.name) for a in

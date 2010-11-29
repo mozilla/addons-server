@@ -56,3 +56,14 @@ class TestSearchForm(test_utils.TestCase):
             doc = pq(r.content)
             eq_(len(doc('.cat-all [value=personas]')), 0,
                 '%s shows personas' % app)
+
+    def test_no_search_tools(self):
+        """The Search Tools category should not be included for non-browser
+        applications."""
+
+        for app in ('thunderbird', 'sunbird'):
+            r = self.client.get('/en-US/%s/' % app, follow=True)
+            self.assertNotContains(r, 'Search Tools')
+
+        r = self.client.get('/en-US/firefox', follow=True)
+        self.assertContains(r, 'Search Tools')
