@@ -458,6 +458,26 @@ class TestUpdate(test_utils.TestCase):
                                  self.app, self.platform)
         eq_(version.version, '1.2.2')
 
+    def test_new_client_ordering(self):
+        """Given the following:
+        * Version 15 (1 day old), max application_version 3.6*
+        * Version 12 (1 month old), max application_version 3.7a
+        We want version 15, even though version 12 is for a higher version.
+        This was found in https://bugzilla.mozilla.org/show_bug.cgi?id=615641.
+        """
+        application_version = ApplicationsVersions.objects.get(pk=77550)
+        application_version.max_id = 350
+        application_version.save()
+
+        # Version 1.2.2 is now a lower max version.
+        application_version = ApplicationsVersions.objects.get(pk=88490)
+        application_version.max_id = 329
+        application_version.save()
+
+        version, file = self.get('', self.version_int,
+                                 self.app, self.platform)
+        eq_(version.version, '1.2.2')
+
     def test_public_not_beta(self):
         """If the addon status is public and you are not asking
         for a beta version, then you get a public version."""

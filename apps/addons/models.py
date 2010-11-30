@@ -378,7 +378,7 @@ class Addon(amo.models.ModelBase):
 
         version, file = None, None
         try:
-            order = ("-apps__max__version_int", "-pk")
+            order = ("-created",)
             version = (self.versions.filter(reduce(operator.and_, filters))
                                     .order_by(*order))[0]
         except IndexError:
