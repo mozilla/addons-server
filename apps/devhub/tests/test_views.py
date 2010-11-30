@@ -791,7 +791,7 @@ class TestEditPayments(test_utils.TestCase):
                  annoying=amo.CONTRIB_PASSIVE)
         r = self.client.post(self.url, d)
         self.assertFormError(r, 'contrib_form', 'paypal_id',
-                             'PayPal id required to accept contributions.')
+                             'PayPal ID required to accept contributions.')
 
     def test_bad_paypal_id_dev(self):
         self.paypal_mock.return_value = False, 'error'

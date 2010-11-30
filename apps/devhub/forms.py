@@ -229,7 +229,7 @@ class ContribForm(TranslationFormMixin, happyforms.ModelForm):
 def check_paypal_id(paypal_id):
     if not paypal_id:
         raise forms.ValidationError(
-            _('PayPal id required to accept contributions.'))
+            _('PayPal ID required to accept contributions.'))
     try:
         valid, msg = paypal.check_paypal_id(paypal_id)
         if not valid:
