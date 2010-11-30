@@ -400,6 +400,10 @@ MINIFY_BUNDLES = {
             # Fix-up outgoing links
             'js/zamboni/outgoing_links.js',
         ),
+        'zamboni/discovery-promo': (
+            'js/zamboni/jquery-1.4.2.min.js',
+            'js/zamboni/discovery_pane.js',
+        ),
         'zamboni/discovery-pane': (
             'js/zamboni/discovery_pane.js',
         ),
