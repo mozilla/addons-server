@@ -16,7 +16,7 @@
             <em:id>{{ application.guid }}</em:id>
             <em:minVersion>{{ application_version.min }}</em:minVersion>
             <em:maxVersion>{{ application_version.max }}</em:maxVersion>
-            <em:updateLink>{{ url('downloads.file', file.id, file.filename)|absolutify }}</em:updateLink>
+            <em:updateLink>{{ file.get_url_path(release=True) }}</em:updateLink>
 {% if version.releasenotes %}
             <em:updateInfoURL>{{ settings.SITE_URL }}{{ remora_url('/versions/updateInfo/%s/' % version.pk) }}%APP_LOCALE%/</em:updateInfoURL>
 {% endif %}

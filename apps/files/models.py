@@ -2,6 +2,7 @@ import hashlib
 import os
 import uuid
 import zipfile
+import urlparse
 
 from django.conf import settings
 from django.db import models
@@ -47,13 +48,18 @@ class File(amo.models.ModelBase):
         # TODO: Ideally this would be ``platform``.
         return amo.PLATFORMS[self.platform_id]
 
-    def get_url_path(self, app, src):
-        # TODO: remove app
+    def get_url_path(self, src=None, release=False):
+        if release:
+            return urlparse.urljoin(settings.MIRROR_URL, '%s/%s' % (
+                                    self.version.addon_id, self.filename))
+
         from amo.helpers import urlparams, absolutify
         url = os.path.join(reverse('downloads.file', args=[self.id]),
                            self.filename)
         # Firefox's Add-on Manager needs absolute urls.
-        return absolutify(urlparams(url, src=src))
+        if src:
+            return absolutify(urlparams(url, src=src))
+        return absolutify(url)
 
     @classmethod
     def from_upload(cls, upload, version, platform):

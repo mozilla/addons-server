@@ -995,6 +995,12 @@ class TestUpdate(test_utils.TestCase):
         res = self.client.get(self.url, self.good_data)
         assert res.content.find(self.good_data['appID']) > -1
 
+    def test_url(self):
+        res = self.client.get(self.url, self.good_data)
+        assert 'updateLink' in res.content
+        assert settings.MIRROR_URL in res.content
+        print res.content
+
     def test_hash(self):
         res = self.client.get(self.url, self.good_data)
         assert res.content.find('updateHash') > -1
