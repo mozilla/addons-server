@@ -146,6 +146,16 @@ ul.refinements:last-child {
     width: 80%;
 }
 
+#submit-describe #trans-name {
+    display: inline-block;
+    margin-right: 15px;
+    width: 375px;
+}
+
+#submit-describe #trans-name input {
+    width: 370px;
+}
+
 /*#id_homepage, #id_support_url, #id_support_email {*/
 #trans-support_email input,
 #trans-homepage input,
