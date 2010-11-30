@@ -512,8 +512,8 @@ def update(request):
                             data['version'], form.version_int,
                             data['appID'], data['appOS'])
         if version and file:
-            # Would also like to remove this lookup at some point.
-            application_version = version.apps.get(application=data['appID'])
+            app = amo.APP_IDS[data['appID'].id]
+            application_version = version.compatible_apps[app]
             addon_type = amo.ADDON_SLUGS_UPDATE[data['id'].type]
             return jingo.render(request, 'addons/update.rdf', {
                                     'addon': data['id'],

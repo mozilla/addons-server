@@ -12,7 +12,6 @@ import captcha.fields
 from amo.utils import slug_validator
 from addons.models import Addon, ReverseNameLookup
 from addons.widgets import IconWidgetRenderer
-from applications.models import Application
 from tags.models import Tag
 from translations.fields import TransField, TransTextarea
 from translations.forms import TranslationFormMixin
@@ -236,7 +235,8 @@ class UpdateForm(happyforms.Form):
 
     def clean_id(self):
         try:
-            addon = Addon.objects.get(guid=self.cleaned_data['id'])
+            addon = (Addon.objects.all().no_transforms()
+                     .get(guid=self.cleaned_data['id']))
         except Addon.DoesNotExist:
             raise forms.ValidationError(_('Id is required.'))
         return addon
@@ -255,7 +255,6 @@ class UpdateForm(happyforms.Form):
 
     def clean_appID(self):
         try:
-            app = Application.objects.get(guid=self.cleaned_data['appID'])
-        except:
+            return amo.APP_GUIDS[self.cleaned_data['appID']]
+        except KeyError:
             raise forms.ValidationError(_('Unknown application guid.'))
-        return app

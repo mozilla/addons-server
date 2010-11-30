@@ -346,7 +346,7 @@ class Addon(amo.models.ModelBase):
         """
         # Now do the client app version handling.
         filters = [
-            Q(apps__application=client_app),
+            Q(apps__application=client_app.id),
             Q(apps__max__version_int__gte=version_int),
             Q(apps__min__version_int__lte=version_int),
         ]
@@ -367,7 +367,7 @@ class Addon(amo.models.ModelBase):
         else:
             filters.extend([
                 Q(files__status__gt=status),
-                Q(version=client_version)
+                Q(version=client_version),
             ])
 
         # Now add in platform handling.
@@ -380,20 +380,19 @@ class Addon(amo.models.ModelBase):
         try:
             order = ("-created",)
             version = (self.versions.filter(reduce(operator.and_, filters))
-                                    .order_by(*order))[0]
+                       .transform(Version.transformer).order_by(*order))[0]
         except IndexError:
             pass
 
         if version:
-            # Remora removes this query by putting an AND on the
-            # INNER JOIN, I don't think theres a way to do this in
-            # Django, but it would be nice to remove this query.
+            files = [f for f in version.all_files
+                     if f.platform_id in client_platforms]
             filters = [Q(platform__in=client_platforms)]
             if status == amo.STATUS_NULL:
-                filters.append(Q(status__gt=status))
+                files = [f for f in files if f.status > status]
             else:
-                filters.append(Q(status=status))
-            file = version.files.filter(reduce(operator.and_, filters))[0]
+                files = [f for f in files if f.status == status]
+            file = files[0]
 
         return version, file
 
