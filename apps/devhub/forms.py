@@ -17,7 +17,7 @@ from applications.models import Application, AppVersion
 from files.models import File, FileUpload, Platform
 from files.utils import parse_xpi
 from translations.widgets import TranslationTextarea, TranslationTextInput
-from translations.fields import TransTextarea, TransInput, TransField
+from translations.fields import TransTextarea, TransField
 from translations.models import delete_translation
 from translations.forms import TranslationFormMixin
 from versions.models import License, Version, ApplicationsVersions
@@ -132,7 +132,7 @@ class PolicyForm(AMOModelForm):
         required=False, label=_lazy("This add-on has a Privacy Policy"))
     privacy_policy = forms.CharField(
         widget=TranslationTextarea(), required=False,
-        label=_lazy("Please specify your add-on's privacy policy:"))
+        label=_lazy("Please specify your add-on's Privacy Policy:"))
 
     class Meta:
         model = Addon

@@ -500,6 +500,13 @@ class TestEditPolicy(TestOwnership):
         eq_(r.status_code, 302)
         eq_(self.get_addon().eula, None)
 
+    def test_capitalization(self):
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        assert ('privacy policy' not in
+                doc('label[for=id_privacy_policy]').text())
+        assert 'Privacy Policy' in doc('label[for=id_privacy_policy]').text()
+
 
 class TestEditLicense(TestOwnership):
 
