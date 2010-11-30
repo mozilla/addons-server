@@ -4,6 +4,7 @@ from nose.tools import eq_
 from redisutils import mock_redis, reset_redis
 from addons import forms, cron
 from addons.models import Addon
+from addons.forms import AddonFormDetails
 import amo
 
 
@@ -46,6 +47,10 @@ class FormsTest(test_utils.TestCase):
         f = forms.AddonFormBasic(dict(name=self.existing_name), request=None,
                                  instance=delicious)
         eq_(f.errors.get('name'), None)
+
+    def test_locales(self):
+        form = AddonFormDetails(request={})
+        eq_(form.fields['default_locale'].choices[0][0], 'af')
 
 
 class TestUpdate(test_utils.TestCase):

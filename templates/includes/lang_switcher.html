@@ -1,7 +1,7 @@
 <form class="languages go" method="get" action="">
   <label for="language">{{ _('Other languages:') }}</label>
   <select id="language" name="lang" dir="ltr">
-    {% for code, name in LANGUAGES|dictsort -%}
+    {% for code, name in LANGUAGES.items() -%}
       <option value="{{ code }}" {{ code|ifeq(LANG|lower, "selected") }}>
         {{ name }}
       </option>
