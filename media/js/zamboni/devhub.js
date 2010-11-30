@@ -85,12 +85,15 @@ function addLicensePreviews() {
 $(document).ready(function() {
     $.ajaxSetup({cache: false});
 
-    $('.more-actions-popup').popup('.more-actions', {
+    $('.more-actions-popup').each(function() {
+      var el = $(this);
+      el.popup(el.closest('li').find('.more-actions'), {
         width: 'inherit',
         offset: {x: 15},
         callback: function(obj) {
             return {pointTo: $(obj.click_target)};
         }
+      });
     });
 
     truncateFields();

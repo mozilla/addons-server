@@ -34,7 +34,6 @@
   <h5>{{ _('Actions') }}</h5>
   <ul>
     <li>
-{# TODO: Add URL for 'Manage Add-on' page. #}
       <a href="{{ url('devhub.addons.edit', addon.id) }}" class="tooltip"
          title="{{ _("Edit details about this add-on's listing.") }}">
         {{ _('Edit Listing') }}</a>
@@ -61,13 +60,17 @@
       <a href="#" class="more-actions">{{ _('More') }}</a>
       <div class="more-actions-popup popup hidden">
         <ul>
-{# TODO: Add URLs for 'Manage Add-on' pages. #}
-          <li><a href="#">{{ _('Manage Authors & License') }}</a></li>
-          <li><a href="#">{{ _('Manage Payments') }}</a></li>
-          <li><a href="#">{{ _('Manage Status & Versions') }}</a></li>
-          <li class="item-group"><a href="#">
+          <li><a href="{{ url('devhub.addons.owner', addon.id) }}">
+            {{ _('Manage Authors & License') }}</a></li>
+          <li><a href="{{ url('devhub.addons.payments', addon.id) }}">
+            {{ _('Manage Payments') }}</a></li>
+          <li><a href="{{ url('devhub.versions', addon.id) }}">
+            {{ _('Manage Status & Versions') }}</a></li>
+          <li class="item-group">
+            <a href="{{ addon.get_url_path() }}">
             {{ _('View Add-on Listing') }}</a></li>
-          <li><a href="#">{{ _('View Recent Changes') }}</a></li>
+          <li><a href="{{ url('devhub.feed', addon.id) }}">
+            {{ _('View Recent Changes') }}</a></li>
         </ul>
       </div>
     </li>
