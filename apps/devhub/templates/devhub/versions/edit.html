@@ -64,17 +64,19 @@
           </tr>
           {% endif %}
           <tr>
+          {% with field = version_form.releasenotes %}
             <th>
-              <label for="releasenotes">{{ _("Release Notes") }}</label>
+              <label for="{{ field.auto_id }}">{{ _("Release Notes") }}</label>
               {{ tip(None, "Information about changes in this release, new features,
                             known bugs, and other useful information specific to this
                             release/version. This information is also shown in the
                             Add-ons Manager when updating.") }}
             </th>
             <td>
-              {{ version_form.releasenotes.errors|safe }}
-              {{ version_form.releasenotes|safe }}
+              {{ field.errors|safe }}
+              {{ field|safe }}
             </td>
+          {% endwith %}
           </tr>
           <tr>
             <th>
@@ -104,18 +106,20 @@
                 {% endfor %}
               </ul>
             </td>
-            <tr>
-              <th>
-                <label for="approvalnotes">{{ _("Notes for Reviewers") }}</label>
-                {{ tip(None, "Optionally, enter any information that may be useful
-                              to the Editor reviewing this add-on, such as test
-                              account information.") }}
-              </th>
-              <td>
-                {{ version_form.approvalnotes.errors|safe }}
-                {{ version_form.approvalnotes|safe }}
-              </td>
-            </tr>
+          </tr>
+          <tr>
+          {% with field = version_form.approvalnotes %}
+            <th>
+              <label for="{{ field.auto_id }}">{{ _("Notes for Reviewers") }}</label>
+              {{ tip(None, "Optionally, enter any information that may be useful
+                            to the Editor reviewing this add-on, such as test
+                            account information.") }}
+            </th>
+            <td>
+              {{ field.errors|safe }}
+              {{ field|safe }}
+            </td>
+          {% endwith %}
           </tr>
         </table>
       </div>
