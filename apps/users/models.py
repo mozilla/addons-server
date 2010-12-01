@@ -9,6 +9,7 @@ import time
 from django import forms
 from django.conf import settings
 from django.contrib.auth.models import User as DjangoUser
+from django.core import validators
 from django.db import models
 from django.template import Context, loader
 from django.utils.encoding import smart_str
@@ -63,6 +64,8 @@ class UserForeignKey(models.ForeignKey):
 class UserEmailField(forms.EmailField):
 
     def clean(self, value):
+        if value in validators.EMPTY_VALUES:
+            raise forms.ValidationError(self.error_messages['required'])
         try:
             return UserProfile.objects.get(email=value)
         except UserProfile.DoesNotExist:

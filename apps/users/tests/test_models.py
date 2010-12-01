@@ -2,6 +2,7 @@ from datetime import date
 import hashlib
 from urlparse import urlparse
 
+from django import forms
 from django.contrib.auth.models import User
 from django.core import mail
 from django.utils import encoding
@@ -15,8 +16,8 @@ from amo.signals import _connect, _disconnect
 from addons.models import Addon, AddonUser
 from bandwagon.models import Collection
 from reviews.models import Review
-from users.models import UserProfile, get_hexdigest, BlacklistedUsername,\
-                         BlacklistedEmailDomain
+from users.models import (UserProfile, get_hexdigest, BlacklistedUsername,
+                         BlacklistedEmailDomain, UserEmailField)
 
 
 class TestUserProfile(test_utils.TestCase):
@@ -194,3 +195,21 @@ class TestFlushURLs(test_utils.TestCase):
         user.save()
         assert user.picture_url in flush.call_args[1]['args'][0]
         assert urlparse(user.picture_url).query.find('modified') > -1
+
+
+class TestUserEmailField(test_utils.TestCase):
+    fixtures = ['base/user_2519']
+
+    def test_success(self):
+        user = UserProfile.objects.get(pk=2519)
+        eq_(UserEmailField().clean(user.email), user)
+
+    def test_failure(self):
+        with self.assertRaises(forms.ValidationError):
+            UserEmailField().clean('xxx')
+
+    def test_empty_email(self):
+        UserProfile.objects.create(email='')
+        with self.assertRaises(forms.ValidationError) as e:
+            UserEmailField().clean('')
+        eq_(e.exception.messages[0], 'This field is required.')
