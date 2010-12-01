@@ -24,7 +24,7 @@
       {# TODO(gkoberger): 'if' statements to decide what's shown; but wait until
                           the status flags are done #}
       <a href="#" id="cancel-review">{{ _('Cancel Review Request') }}</a> &middot;
-      <a href="#" id="disable-addon">{{ _('Disable Add-on') }}</a> &middot;
+      {% if not addon.is_disabled %}<a href="#" id="disable-addon">{{ _('Disable Add-on') }}</a> &middot;{% endif %}
       <a href="#" id="delete-addon">{{ _('Delete Add-on') }}</a>
     </div>
   </div>
@@ -150,6 +150,7 @@
     </form>
   </div>
 
+  {% if not addon.is_disabled %}
   <div id="modal-disable" class="modal">
     <form method="post" action="{{ url('devhub.addons.disable', addon.id) }}">
       <h2>{{ _('Disable Add-on') }}</h2>
@@ -171,6 +172,7 @@
       {{ _('or') }} <a href="#" class="close">{{ _('Cancel') }}</a>
     </form>
   </div>
+  {% endif %}
 
   <div id="modal-cancel" class="modal">
     <form method="post" action="">

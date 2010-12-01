@@ -1597,6 +1597,20 @@ class TestVersion(test_utils.TestCase):
         eq_(res.status_code, 302)
         eq_(Addon.objects.get(id=3615).status, status)
 
+    def test_disable_button(self):
+        res = self.client.get(self.url)
+        doc = pq(res.content)
+        assert doc('#modal-disable')
+        assert doc('#disable-addon')
+
+    def test_not_disable_button(self):
+        self.addon.status = amo.STATUS_DISABLED
+        self.addon.save()
+        res = self.client.get(self.url)
+        doc = pq(res.content)
+        assert not doc('#modal-disable')
+        assert not doc('#disable-addon')
+
 
 class TestVersionEdit(test_utils.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615',

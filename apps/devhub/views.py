@@ -266,8 +266,7 @@ def delete(request, addon_id, addon):
 @dev_required
 @post_required
 def disable(request, addon_id, addon):
-    addon.status = amo.STATUS_DISABLED
-    addon.save()
+    addon.update(status=amo.STATUS_DISABLED)
     amo.log(amo.LOG.CHANGE_STATUS, addon.get_status_display(), addon)
     return redirect('devhub.versions', addon_id)
 

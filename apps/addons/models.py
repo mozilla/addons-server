@@ -423,7 +423,8 @@ class Addon(amo.models.ModelBase):
             icon_type_split = self.icon_type.split('/')
 
         # Get the closest allowed size without going over
-        if size not in amo.ADDON_ICON_SIZES and size >= amo.ADDON_ICON_SIZES[0]:
+        if (size not in amo.ADDON_ICON_SIZES and
+            size >= amo.ADDON_ICON_SIZES[0]):
             size = [s for s in amo.ADDON_ICON_SIZES if s < size][-1]
         elif size < amo.ADDON_ICON_SIZES[0]:
             size = amo.ADDON_ICON_SIZES[0]
@@ -438,8 +439,8 @@ class Addon(amo.models.ModelBase):
                 icon = amo.ADDON_ICONS[amo.ADDON_ANY]
             return settings.ADDON_ICON_BASE_URL + icon
         elif icon_type_split[0] == 'icon':
-           return '%s/%s-%s.png' % (settings.ADDON_ICONS_DEFAULT_URL,
-                                    icon_type_split[1], size)
+            return '%s/%s-%s.png' % (settings.ADDON_ICONS_DEFAULT_URL,
+                                     icon_type_split[1], size)
         else:
             return settings.ADDON_ICON_URL % (
                     self.id, int(time.mktime(self.modified.timetuple())))
@@ -543,6 +544,10 @@ class Addon(amo.models.ModelBase):
 
     def is_persona(self):
         return self.type == amo.ADDON_PERSONA
+
+    @property
+    def is_disabled(self):
+        return self.status == amo.STATUS_DISABLED
 
     def is_selfhosted(self):
         return self.status == amo.STATUS_LISTED
