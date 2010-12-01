@@ -21,7 +21,7 @@ import paypal
 from amo.urlresolvers import reverse
 from addons.models import Addon, AddonUser, Charity
 from addons.utils import ReverseNameLookup
-from applications.models import AppVersion
+from applications.models import Application, AppVersion
 from bandwagon.models import Collection
 from devhub.forms import ContribForm, LicenseForm
 from devhub.models import ActivityLog, RssKey, SubmitStep
@@ -1724,6 +1724,25 @@ class TestVersionEditDetails(TestVersionEdit):
         res = self.client.get(self.url)
         doc = pq(res.content)
         assert not doc('a.add-file')
+
+    def test_add(self):
+        res = self.client.get(self.url)
+        doc = pq(res.content)
+        assert res.context['compat_form'].extra_forms
+        assert doc('p.add-app')[0].attrib['class'] == 'add-app'
+
+    def test_add_not(self):
+        Application(id=52).save()
+        for id in [18, 52, 59, 60]:
+            av = AppVersion(application_id=id, version='1')
+            av.save()
+            ApplicationsVersions(application_id=id, min=av, max=av,
+                                 version=self.version).save()
+
+        res = self.client.get(self.url)
+        doc = pq(res.content)
+        assert not res.context['compat_form'].extra_forms
+        assert doc('p.add-app')[0].attrib['class'] == 'add-app hide'
 
 
 class TestVersionEditSearchEngine(TestVersionEdit):
