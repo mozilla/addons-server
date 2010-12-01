@@ -177,7 +177,7 @@ class License(amo.models.ModelBase):
         db_table = 'licenses'
 
     def __unicode__(self):
-        return '%s %s' % (self.id, self.name)
+        return unicode(self.name)
 
 
 class VersionComment(amo.models.ModelBase):

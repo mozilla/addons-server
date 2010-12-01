@@ -4,6 +4,7 @@ from django import forms
 from django.conf import settings
 from django.db.models import Q
 from django.forms.models import modelformset_factory, BaseModelFormSet
+from django.utils.safestring import mark_safe
 
 import happyforms
 from tower import ugettext as _, ugettext_lazy as _lazy
@@ -78,15 +79,36 @@ class DeleteForm(happyforms.Form):
             raise forms.ValidationError(_('Password incorrect.'))
 
 
+class LicenseChoiceRadio(forms.widgets.RadioFieldRenderer):
+
+    def __iter__(self):
+        for i, choice in enumerate(self.choices):
+            yield LicenseRadioInput(self.name, self.value, self.attrs.copy(),
+                                    choice, i)
+
+
+class LicenseRadioInput(forms.widgets.RadioInput):
+
+    def __init__(self, name, value, attrs, choice, index):
+        super(LicenseRadioInput, self).__init__(name, value, attrs, choice,
+                                                index)
+        license = choice[1]  # Choice is a tuple (object.id, object).
+        link = '<a class="xx extra" href="%s" target="_blank">%s</a>'
+        if hasattr(license, 'url'):
+            details = link % (license.url, _('Details'))
+            self.choice_label = mark_safe(self.choice_label + details)
+
+
 def LicenseForm(*args, **kw):
     # This needs to be lazy so we get the right translations.
-    cs = [(x.builtin, x.name)
+    cs = [(x.builtin, x)
           for x in License.objects.builtins().filter(on_form=True)]
     cs.append((License.OTHER, _('Other')))
 
     class _Form(AMOModelForm):
         builtin = forms.TypedChoiceField(choices=cs, coerce=int,
-            widget=forms.RadioSelect(attrs={'class': 'license'}))
+            widget=forms.RadioSelect(attrs={'class': 'license'},
+                                     renderer=LicenseChoiceRadio))
         name = forms.CharField(widget=TranslationTextInput(),
                                label=_("What is your license's name?"),
                                required=False, initial=_('Custom License'))

@@ -23,7 +23,7 @@ from addons.models import Addon, AddonUser, Charity
 from addons.utils import ReverseNameLookup
 from applications.models import AppVersion
 from bandwagon.models import Collection
-from devhub.forms import ContribForm
+from devhub.forms import ContribForm, LicenseForm
 from devhub.models import ActivityLog, RssKey, SubmitStep
 from files.models import File, FileUpload, Platform
 from reviews.models import Review
@@ -515,7 +515,7 @@ class TestEditLicense(TestOwnership):
         self.version.license = None
         self.version.save()
         self.license = License.objects.create(builtin=1, name='bsd',
-                                              on_form=True)
+                                              url='license.url', on_form=True)
 
     def formset(self, *args, **kw):
         init = self.client.get(self.url).context['user_form'].initial_forms
@@ -604,6 +604,15 @@ class TestEditLicense(TestOwnership):
         data = self.formset(builtin=License.OTHER, text='text')
         r = self.client.post(self.url, data)
         eq_(r.status_code, 302)
+
+    def test_license_details_links(self):
+        # Check that builtin licenses get details links.
+        doc = pq(unicode(LicenseForm()))
+        for license in License.objects.builtins():
+            radio = 'input.license[value=%s]' % license.builtin
+            eq_(doc(radio).parent().text(), unicode(license.name) + ' Details')
+            eq_(doc(radio + '+ a').attr('href'), license.url)
+        eq_(doc('input[name=builtin]:last-child').parent().text(), 'Other')
 
 
 class TestEditAuthor(TestOwnership):
