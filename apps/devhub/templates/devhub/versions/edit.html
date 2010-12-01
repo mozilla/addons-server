@@ -8,7 +8,8 @@
 
 {% block content %}
 <header>
-  {{ dev_breadcrumbs(addon) }}
+  {{ dev_breadcrumbs(addon, items=[(url('devhub.versions', addon.id), _('Versions')),
+                                   (None, title)]) }}
   {# L10n: {0} is an add-on name. #}
   <h2>{{ _('Manage {0}')|f(addon.name) }}</h2>
 </header>

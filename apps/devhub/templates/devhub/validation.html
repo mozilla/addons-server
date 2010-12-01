@@ -6,7 +6,7 @@
 
 {% block content %}
 <header>
-  {{ dev_breadcrumbs(addon) }}
+  {{ dev_breadcrumbs(addon, items=[(None, title)]) }}
   <h2>{{ title }}</h2>
 </header>
 <div class="addon-validator-suite" id="addon-validator-suite"

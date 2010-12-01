@@ -30,24 +30,34 @@ def dev_page_title(context, title=None, addon=None):
 
 @register.function
 @jinja2.contextfunction
-def dev_breadcrumbs(context, addon=None, items=None, add_default=False,
-                    link_my_addons=True):
+def dev_breadcrumbs(context, addon=None, items=None, add_default=False):
     """
-    Wrapper function for ``breadcrumbs``. Prepends 'Developer Hub' breadcrumb
-    to ``items`` argument, and ``add_default`` argument defaults to False.
-    Accepts: [(url, label)]
-    addon: adds in a non-linked breadcrumb to the addon
-    link_my_addons: makes "My Add-ons" url linked, defaults to True
+    Wrapper function for ``breadcrumbs``. Prepends 'Developer Hub'
+    breadcrumbs.
+
+    **items**
+        list of [(url, label)] to be inserted after Add-on.
+    **addon**
+        Adds the Add-on name to the end of the trail.  If items are
+        specified then the Add-on will be linked.
+    **add_default**
+        Prepends trail back to home when True.  Default is False.
     """
-    crumbs = [(reverse('devhub.index'), _('Developer Hub')), ]
-    if link_my_addons:
-        crumbs.append((reverse('devhub.addons'), _('My Add-ons')))
-    else:
+    crumbs = [(reverse('devhub.index'), _('Developer Hub'))]
+    if not addon and not items:
+        # We are at the end of the crumb trail.
         crumbs.append((None, _('My Add-ons')))
+    else:
+        crumbs.append((reverse('devhub.addons'), _('My Add-ons')))
+    if addon:
+        if items:
+            url = reverse('devhub.addons.edit', args=[addon.id])
+        else:
+            # The Addon is the end of the trail.
+            url = None
+        crumbs.append((url, addon.name))
     if items:
         crumbs.extend(items)
-    if addon:
-        crumbs.append((None, addon.name))
     return breadcrumbs(context, crumbs, add_default)
 
 
