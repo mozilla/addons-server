@@ -114,6 +114,83 @@ ul.errorlist {
     display: none;
 }
 
+/************************************/
+/*             GRADIENTS            */
+/************************************/
+/*  If you made a gradient, add it here. 
+ *  If you want to use an existing gradient, add your selector here.
+**/
+
+/* 'listing header' */
+.listing-header {
+    background-color: #E0EFFD;
+    background: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        from(#FFFFFF),
+        to(#E0EFFD)
+    );
+    background: -moz-linear-gradient(#FFFFFF, #E0EFFD);
+}
+
+/* 'listing footer' */
+.listing-footer,
+.tab-wrapper .fm-control,
+.section-teaser .teaser-header {
+    background-color: #E0EFFD;
+    background: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        from(#E0EFFD),
+        to(#FFFFFF)
+    );
+    background: -moz-linear-gradient(#E0EFFD, #FFFFFF);
+}
+
+/* 'listing item' */
+.object-lead,
+.listing .item {
+    background-color: #E0EFFD;
+    background: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        from(#FFFFFF),
+        to(#F6FBFF)
+    );
+    background: -moz-linear-gradient(#FFFFFF, #F6FBFF);
+}
+
+/* 'Mozilla' */
+.categories h2,
+.categories h3,
+div.header-search form,
+span.new  {
+    background: #33589f;
+    background: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        from(rgb(42,65,135)),
+        to(rgb(59,105,177))
+    );
+    background: -moz-linear-gradient(
+        center bottom,
+        rgb(42,65,135) 0%,
+        rgb(59,105,177) 100%
+    );
+    background: linear-gradient(
+        center bottom,
+        rgb(42,65,135) 0%,
+        rgb(59,105,177) 100%
+    );
+}
+
+/***** END GRADIENTS *******/
+
+
 /** Generic Button *********/
 a.button:link,
 a.button:visited,
@@ -125,12 +202,12 @@ input[type=button] {
     background: #39f url("../../img/zamboni/button-blue.png") 0 50% repeat-x;
     background: -moz-linear-gradient(top, #7bf 40%, #39f 60%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(40%, #7bf), color-stop(60%, #39f));
-    border: 1px solid #05e;
+    border: 1px solid #3d6db5;
     padding: 0 .95em;
     margin: 0;
     display: inline-block;
     line-height: 1.538;
-    text-shadow: 0 -1px 0 #05e;
+    text-shadow: 0 -1px 0 #3d6db5;
     -moz-box-shadow: inset 0 0 1px rgba(255,255,255,0.1);
     -webkit-box-shadow: inset 0 0 1px rgba(255,255,255,0.1);
     box-shadow: inset 0 0 1px rgba(255,255,255,0.1);
@@ -240,7 +317,7 @@ button.link {
     box-shadow: none;
     border: 0;
     font-weight: bold;
-    color: #05e;
+    color: #3d6db5;
 }
 
 button.link:hover,
@@ -322,9 +399,9 @@ a.button.go:visited,
 button.go,
 input[type=submit].go,
 input[type=button].go {
-    color: #05e;
+    color: #3d6db5;
     background: #fff none;
-    border-color: #b5d9e5;
+    border-color: #E0EFFD;
     text-shadow: 0 1px 0 #fff;
     -moz-box-shadow: inset 0 0 3px #c0e1ee;
     -webkit-box-shadow: inset 0 0 3px #c0e1ee;
@@ -338,7 +415,7 @@ input[type=submit].go:hover,
 input[type=button].go:hover,
 input[type=submit].go:focus,
 input[type=button].go:focus {
-    color: #05e;
+    color: #3d6db5;
     border-color: #a8cedd;
 }
 
@@ -403,7 +480,7 @@ input[type=submit].status,
 input[type=button].status {
     color: #333;
     background: #fff none;
-    border-color: #b5d9e5;
+    border-color: #E0EFFD;
     text-shadow: 0 1px 0 #fff;
     -moz-box-shadow: inset 0 0 3px #c0e1ee;
     -webkit-box-shadow: inset 0 0 3px #c0e1ee;
@@ -436,7 +513,7 @@ input[type=submit].concealed,
 input[type=button].concealed {
     color: #859fae;
     background: #fff none;
-    border-color: #b5d9e5;
+    border-color: #E0EFFD;
     text-shadow: 0 1px 0 #fff;
     -moz-box-shadow: inset 0 0 3px #c0e1ee;
     -webkit-box-shadow: inset 0 0 3px #c0e1ee;
@@ -1005,7 +1082,7 @@ ul.license li.copyr { background-position: 0 -260px; }
 
 /** Persona Homepage **/
 .personas-featured .persona-list-3col {
-    border: 1px solid #b5d9e5;
+    border: 1px solid #E0EFFD;
     -moz-border-radius: 5px;
 }
 
@@ -1274,7 +1351,7 @@ form .error .note.error {
 }
 
 #user-profile .avatar {
-    border: 3px solid #c8e8f3;
+    border: 3px solid #e0effd;
     padding: 0;
     margin-top: 1em;
 }
@@ -1408,7 +1485,7 @@ form .error .note.error {
 }
 
 #featured-addons .preview a {
-    border: 3px solid #c8e8f3;
+    border: 3px solid #e0effd;
     display: block;
     max-width: 200px;
     height: 155px;
@@ -1494,7 +1571,7 @@ form .error .note.error {
 }
 
 .category-landing .addons-column ul {
-    border: 1px solid #b5d9e5;
+    border: 1px solid #E0EFFD;
     -moz-border-radius: 5px;
     padding: 0;
     margin: 0;
@@ -1505,7 +1582,7 @@ form .error .note.error {
 }
 
 .category-landing .addons-column ul li {
-    border-top: 1px dotted #b5d9e5;
+    border-top: 1px dotted #E0EFFD;
     overflow: hidden;
     padding: 0;
     position: relative;
@@ -1542,7 +1619,7 @@ form .error .note.error {
 .category-landing .addons-column ul li a .name {
     font-size: 1em;
     font-weight: bold;
-    color: #05e;
+    color: #3d6db5;
     padding: 8px 0 0;
     margin-left: 0;
     display: block;
@@ -1588,7 +1665,7 @@ form .error .note.error {
 .category-landing .view-all a:link,
 .category-landing .view-all a:visited {
     font-size: 1em;
-    color: #05e;
+    color: #3d6db5;
     padding-right: 10px;
     background: transparent url(../../img/zamboni/icons/arrow-right-blue.png) 100% 55% no-repeat;
 }
@@ -1606,7 +1683,7 @@ form .error .note.error {
 }
 
 .category-landing .featured.personas .view-all {
-    border-top: 1px dotted #B5D9E5;
+    border-top: 1px dotted #E0EFFD;
     padding: 2px 7px;
     margin: -15px 0 0;
     text-align: right;
@@ -1618,8 +1695,8 @@ form .error .note.error {
 
 /** =Search results *********/
 .results {
-    border: 4px solid #b5d9e5;
-    background-color: #b5d9e5;
+    border: 4px solid #E0EFFD;
+    background-color: #E0EFFD;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
@@ -1667,7 +1744,7 @@ form .error .note.error {
 .separated-listing .contribute,
 .collector-note,
 .item .performance-note {
-    background: #d3edf6;
+    background: #E0EFFD;
     float: left;
     padding: 3px 10px;
     margin-top: 0.5em;
@@ -1792,9 +1869,9 @@ form .error .note.error {
     padding: 6px 8px 6px 28px;
     background: #ffc url("../../img/zamboni/icons/suggest-help.png") 6px .5em no-repeat;
     border: 1px solid #fc6;
-    -moz-box-shadow: 2px 2px 0 #b5d9e5;
-    -webkit-box-shadow: 2px 2px 0 #b5d9e5;
-    box-shadow: 2px 2px 0 #b5d9e5;
+    -moz-box-shadow: 2px 2px 0 #E0EFFD;
+    -webkit-box-shadow: 2px 2px 0 #E0EFFD;
+    box-shadow: 2px 2px 0 #E0EFFD;
     top: 0;
     right: 0;
 }
@@ -1834,7 +1911,7 @@ form .error .note.error {
 #refine-results,
 .versions .primary > .warning {
     background: #fff;
-    border: 1px solid #c8e8f3;
+    border: 1px solid #e0effd;
 }
 
 .versions .primary > .warning h2 {
@@ -1855,7 +1932,7 @@ form .error .note.error {
     padding-top: .5em;
     margin-top: 1em;
     clear: right;
-    border-top: 1px dotted #B5D9E5;
+    border-top: 1px dotted #E0EFFD;
 }
 
 .version a.source-code {
@@ -1926,7 +2003,7 @@ form .error .note.error {
 }
 
 .secondary ul.refinements li a {
-    color: #05e;
+    color: #3d6db5;
     padding: 0 0 0 10px;
     font-weight: bold;
     font-size: .923em;
@@ -1980,7 +2057,7 @@ form .error .note.error {
 
 .abuse legend a.abuse-image {
     padding-left: 25px;
-    color: #05e;
+    color: #3d6db5;
     background: transparent url("../../img/zamboni/notifications.png") 0 -305px no-repeat;
 }
 
@@ -2541,7 +2618,7 @@ h6.author, .author a {
 }
 
 .review:hover ul.review-options > li > a {
-    color: #0055EE;
+    color: #3d6db5;
 }
 .review-wrapper {
     position: relative;
@@ -2566,7 +2643,7 @@ h6.author, .author a {
 }
 
 .review.reply-form {
-    background: #C8E8F3;
+    background: #e0effd;
     border: 0;
 }
 .reply-form form {
@@ -2824,7 +2901,7 @@ td.remove {
     background-color: #e4f5fb;
 }
 td.input {
-    background: #B5D9E5;
+    background: #E0EFFD;
     padding-top: .5em;
     padding-bottom: .4em;
 }
@@ -3053,8 +3130,8 @@ input.ui-autocomplete-loading {
 /** Add-on detail page QR Code area. Feature test from Bug 595561 **/
 #addon-qr-code {
     -moz-border-radius: 5px;
-    background-color: #C8E8F3;
-    border: 6px solid #C8E8F3;
+    background-color: #e0effd;
+    border: 6px solid #e0effd;
     color: #223355;
     float: right;
     font-size: 0.9em;

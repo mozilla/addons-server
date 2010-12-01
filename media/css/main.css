@@ -49,10 +49,10 @@ table {
 /* @end */
 
 html {
-    background-color: #fafdfe;
-    background-image: url(../../img/amo2009/bg/body.jpg);
-    background-position: top center;
-    background-repeat: no-repeat;
+    background-color: #fff;
+    background-image: url(../../img/zamboni/global/bg-header.png);
+    background-position: left top;
+    background-repeat: repeat-x;
 }
 
 body {
@@ -60,9 +60,6 @@ body {
     color:#444444;
     font-size:13px;
     line-height:1.538em; /* Baseline grid of 20px */
-    background-image: url(../../img/amo2009/bg/header-border.png);
-    background-repeat: repeat-x;
-    background-position: top left;
     position: relative;
     min-width: 780px;
 }
@@ -92,7 +89,7 @@ strong {
 
 a:link,
 button.link span {
-    color: #0055EE;
+    color: #3d6db5;
     text-decoration: none;
 }
 a:visited {
@@ -113,10 +110,11 @@ button.link:active span {
 
 body,
 #title,
-.categories h3,
 .item h3,
-.section-teaser .addon-view h3 {
+.section-teaser .addon-view h3,
+div.header-search input.text {
     font-family: "helvetica neue", arial, helvetica, sans-serif;
+    font-style: normal;
 }
 
 h2,
@@ -127,6 +125,7 @@ h3,
 .stats strong,
 h4.step {
     font-family: georgia, serif;
+    font-style: italic;
 }
 
 pre, code, kbd, tt, samp, tt {
@@ -534,7 +533,6 @@ span.new {
     -moz-border-radius: 8px;
     -webkit-border-radius: 8px;
     border-radius: 8px;
-    background-image: url(../../img/amo2009/bg/heading-dark-blue.jpg);
     background-repeat: repeat-x;
     background-position: bottom left;
     border:  1px solid #021437;
@@ -551,7 +549,7 @@ h3 .secondary a:link, h3 .secondary a:active, h3 .secondary a:visited, h3 .secon
 /* @group hReviews */
 
 .review-detail {
-    border-bottom: 1px dotted #B5D9E5;
+    border-bottom: 1px dotted #e0effd;
     padding: 0.5em 0 1em 0;
     margin-bottom: 0.5em;
 }
@@ -580,7 +578,7 @@ h3 .secondary a:link, h3 .secondary a:active, h3 .secondary a:visited, h3 .secon
     background-repeat: no-repeat;
     background-position:right -153px;
     padding-right: 1em;
-    color: #0055EE;
+    color: #3d6db5;
 }
 
 .more-info:hover,
@@ -669,25 +667,9 @@ a:hover.button,
 a:focus.button,
 a:active.button,
 button,input[type=submit],input[type=button] {
-    background-image: url(../../img/amo2009/bg/button-blue.jpg);
-    background-color:#73B9FF;
-    background-position:center center;
-    background-repeat:repeat-x;
-    padding:0 0.6em 0 0.5em;
-    -moz-border-radius: 13px;
-    -webkit-border-radius: 8px;
-    border-radius: 10px;
-    color:#FFFFFF;
     font-family:helvetica, arial, sans-serif;
     text-decoration:none;
-    font-size:1em;
-    text-shadow:-1px -1px 1px #196CF2;
     white-space:nowrap;
-    overflow:visible;
-    cursor:pointer;
-    border:1px solid #258BFF;
-    margin:0.3em 0;
-    vertical-align:middle;
 }
 
 a:link.button,
@@ -885,7 +867,7 @@ button.add-to-fav {
     background-repeat: no-repeat;
     -moz-border-radius: 0;
     border:none;
-    color: #0055EE;
+    color: #3d6db5;
     cursor:pointer;
     text-shadow:none;
     white-space: normal;
@@ -976,7 +958,7 @@ form.favorite {
     padding: 0 2%;
     margin: 0 auto;
     max-width: 90em;
-    min-width: 20em;
+    min-width: 960px;
     position: relative;
     min-height: 55em;
 }
@@ -1052,26 +1034,9 @@ form.favorite {
 /* @group Stats */
 
 .stats {
-    font-size: 0.923em;
-    text-align: right;
+    font-size: 1em;
     padding: 0;
-    float: right;
-    color: #223355;
-    display: table;
-    border-collapse: collapse;
-    margin: -8em 0 0;
-}
-
-.stats li {
-    line-height: 1.2em;
-    border-bottom: 1px dotted #94BFCE;
-    padding: 0.2em 0;
-    line-height: 1.25em;
-    display: table-row-group;
-}
-
-.stats li a {
-    display: table-row;
+    margin: -46px 0 0 80px;
 }
 
 .stats li:last-child {
@@ -1079,17 +1044,13 @@ form.favorite {
 }
 
 .stats strong, .stats span {
-    display: table-cell;
     padding: 0.1em 0.2em;
 }
 
-.stats span {
-    text-align: left;
-}
-
 .stats strong {
-    color: #C63717;
-    font-size: 1.33em;
+    color: #333;
+    font-size: 1.3em;
+    font-style: italic;
     font-weight: normal;
 }
 
@@ -1098,11 +1059,7 @@ form.favorite {
 /* @group Aux nav */
 
 #aux-nav {
-    position: absolute;
-    top: 5px;
-    right: 0;
-    margin: 0 0 0 100px;
-    font-size: 0.923em;
+    font-size: 1em;
     padding: 0;
     text-align: right;
     color: #757778;
@@ -1111,7 +1068,7 @@ form.favorite {
 #aux-nav p.context,
 #aux-nav ul {
     float: right;
-    padding: 0.7em 1em 0 0;
+    padding: 0.5em 1em 0 0;
 }
 
 #aux-nav a:link,
@@ -1119,15 +1076,11 @@ form.favorite {
 #aux-nav a:hover,
 #aux-nav a:focus,
 #aux-nav a:active {
-    font-weight: bold;
+    color: #3d6db5;
     white-space: nowrap;
 }
 
 /* @group Change */
-
-#aux-nav > ul.change {
-    background: url(../../img/amo2009/bg/border-header-user-options.gif) no-repeat top right;
-}
 
 #aux-nav > ul {
     margin: 0;
@@ -1136,15 +1089,10 @@ form.favorite {
     position: relative;
 }
 
-#aux-nav p.tools,
-#aux-nav > ul:not(:last-of-type) > li {
-    background: url(../../img/amo2009/bg/border-header-user-options.gif) no-repeat top left;
-}
-
 #aux-nav p.tools a,
 #aux-nav ul.change a.return {
     display: block;
-    padding: 0.7em 1em 0.5em;
+    padding: 0.5em 1em 0.5em;
 }
 
 #aux-nav > ul li ul li {
@@ -1192,7 +1140,7 @@ form.favorite {
 #aux-nav > ul a.controller:hover,
 #aux-nav > ul a.controller:active {
     display: block;
-    padding: 0.7em 20px 0.5em 1em;
+    padding: 0.5em 20px 0.5em 1em;
     background: url(../../img/amo2009/icons/arrows.gif) no-repeat;
     background-position: 95% -65px;
 }
@@ -1217,62 +1165,6 @@ form.favorite {
 }
 
 /* @end */
-
-/* @end */
-
-/* @group Footer */
-
-#footer {
-    background-image: url(../../img/amo2009/bg/footer.png);
-    background-repeat: repeat-x;
-    background-position: 0 50px;
-    clear: both;
-    padding-bottom: 1em;
-}
-#footer .section {
-    min-height: 0;
-}
-#footer .primary {
-    float: left;
-    padding-top: 70px;
-    background-image: url(../../img/amo2009/logo-mozilla.gif);
-    background-repeat: no-repeat;
-    background-position: 0 70px;
-    clear: none;
-}
-#footer .secondary {
-    float: right;
-    text-align: right;
-    clear: none;
-}
-#footer p {
-    margin-bottom: 0;
-    margin-left: 60px;
-    margin-right: 1em;
-}
-#footer ul {
-    font-size: 0.846em;
-    line-height: 1.273;
-    margin-top: 0.3em;
-    padding: 0;
-    margin-left: 60px;
-    margin-right: 1.273em;
-}
-#footer ul li {
-    display: inline;
-    margin-right: 1em;
-}
-#footer .disclaimer {
-    font-size: 0.846em;
-    line-height: 1.273;
-    color: #666666;
-    margin-right: 1.273em;
-}
-
-#footer .languages {
-    float: right;
-    margin: 0;
-}
 
 /* @end */
 
@@ -1376,8 +1268,8 @@ form.favorite {
 /* @group Featured */
 
 .featured {
-    border: 4px solid #B5D9E5;
-    background-color: #B5D9E5;
+    border: 4px solid #e0effd;
+    background-color: #e0effd;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
@@ -1443,7 +1335,7 @@ form.favorite {
 
 .notification {
     background-color: #FFFFFF;
-    border: 1px solid #C8E8F3;
+    border: 1px solid #e0effd;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
@@ -1661,7 +1553,7 @@ form.favorite {
 /* @group Highlights */
 
 .highlight {
-    background-color: #C8E8F3;
+    background-color: #e0effd;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
@@ -1718,7 +1610,7 @@ form.favorite {
 /* @group Categories list */
 
 .categories {
-    background-color: #C8E8F3;
+    background-color: #e0effd;
     color: #444444;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -1757,10 +1649,8 @@ form.favorite {
     -webkit-border-radius: 5px;
     border-radius: 5px;
     font-size: 1.231em;
-    background-image: url(../../img/amo2009/bg/heading-dark-blue.jpg);
     background-repeat: repeat-x;
     background-position: bottom left;
-    border:  1px solid #021437;
     font-weight: normal;
 }
 
@@ -2411,7 +2301,7 @@ ol.pagination span.prev  {
     background-image: url(../../img/amo2009/icons/arrows.gif);
     background-repeat: no-repeat;
     background-position: 5px -420px;
-    color: #0055EE;
+    color: #3d6db5;
     padding-right:0.7em;
     padding-left: 15px;
 }
@@ -2420,7 +2310,7 @@ ol.pagination span.next {
     background-image: url(../../img/amo2009/icons/arrows.gif);
     background-repeat: no-repeat;
     background-position: 95% -340px;
-    color: #0055EE;
+    color: #3d6db5;
     padding-left:0.7em;
     padding-right: 15px;
 }
@@ -2740,10 +2630,6 @@ form.addon-feedback div.container {
 /* @group Listing - Header */
 
 .listing-header {
-    background-color: #F0F8FC;
-    background-image: url(../../img/amo2009/bg/listing-header.gif);
-    background-repeat: repeat-x;
-    background-position: bottom left;
     border-bottom: 1px solid #A5BFCE;
     -webkit-border-top-right-radius: 3px;
     -webkit-border-top-left-radius: 3px;
@@ -2787,9 +2673,7 @@ form.addon-feedback div.container {
 .listing-header li.selected a:focus,
 .listing-header li.selected a:active {
     color: #fff;
-    background-color: #223355;
-    border-color: #001133;
-    border-width: 1px 0 0 1px;
+    background-color: #294087;
 }
 
 .listing-header .num-results {
@@ -2818,7 +2702,6 @@ form.addon-feedback div.container {
 
 .listing-footer {
     background-color: #FFFFFF;
-    background-image: url(../../img/amo2009/bg/listing-footer.gif);
     background-repeat: repeat-x;
     background-position: left top;
     border-top: 1px solid #A5BFCE;
@@ -2908,7 +2791,7 @@ ol.pagination + .num-results {
 
 .item .meta {
     font-size: 0.923em; /* 12px */
-    border-top: 1px dotted #B5D9E5;
+    border-top: 1px dotted #e0effd;
     padding-top: 0.3em;
 }
 .item .meta .addons {
@@ -3090,7 +2973,6 @@ ol.pagination + .num-results {
 
 .listing .item {
     border-bottom: 1px solid #D6E9F0;
-    background-image: url(../../img/amo2009/bg/listing-item.png);
     margin: 0 0 0 0;
 }
 
@@ -3193,14 +3075,13 @@ ol.pagination + .num-results {
 .object-lead {
     padding: 1em;
     margin: 0;
-    background-image: url(../../img/amo2009/bg/listing-item.png);
     background-repeat: repeat-x;
     background-position: left bottom;
     position: relative;
 }
 
 .object-lead img.avatar {
-    border: 3px solid #C8E8F3;
+    border: 3px solid #e0effd;
     float: left;
     margin-right: 1em;
 }
@@ -3249,7 +3130,7 @@ ol.pagination + .num-results {
 }
 
 .object-lead .notification {
-    background-color: #C8E8F3;
+    background-color: #e0effd;
     border: none;
     margin-top: 2em;
     margin-bottom: 1em;

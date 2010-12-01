@@ -1,0 +1,29 @@
+<div id="footer-right">
+    {% block lang_form %}
+    {% endblock %}
+</div>
+
+<div id="footer-logo"><a href="http://mozilla.com/" title="{{ _('Back to home page') }}">{{ _('Firefox') }}</a></div>
+
+<div id="footer-menu" role="navigation">
+  {% block menu_links %}
+    {% include 'global/menu_links.html' %}
+  {% endblock %}
+</div>
+
+<div id="copyright">
+  <p id="footer-links">
+    <a href="http://mozilla.com/privacy-policy.html">{{ _('Privacy Policy') }}</a> &nbsp;|&nbsp;
+    <a href="http://mozilla.com/about/legal.html">{{ _('Legal Notices') }}</a> &nbsp;|&nbsp;
+    <a href="http://mozilla.com/legal/fraud-report/index.html">{{ _('Report Trademark Abuse') }}</a>
+  </p>
+  <p>
+    {% trans %}
+      Except where otherwise <a href="http://mozilla.com/about/legal.html#site">noted</a>,
+      content on this site is licensed under the <br />
+      <a href="http://creativecommons.org/licenses/by-sa/3.0/">
+        Creative Commons Attribution Share-Alike License v3.0
+      </a> or any later version.
+    {% endtrans %}
+  </p>
+</div>

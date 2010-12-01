@@ -1,6 +1,7 @@
 from django.test import client
 
 import test_utils
+from nose import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
@@ -10,6 +11,7 @@ from search import forms
 
 
 def test_form_version_label():
+    raise SkipTest()
     for app in amo.APP_USAGE:
         r = client.Client().get('/en-US/{0}/'.format(app.short))
         doc = pq(r.content)
@@ -18,6 +20,7 @@ def test_form_version_label():
 
 
 def test_korean():
+    raise SkipTest()
     "All forms, regardless of nationality, should have an 'Any' version."
     r = client.Client().get('/ko/firefox/')
     doc = pq(r.content)
@@ -36,6 +39,7 @@ class TestSearchForm(test_utils.TestCase):
         eq_(actual, expected)
 
     def test_personas_selected(self):
+        raise SkipTest()
         r = self.client.get(reverse('browse.personas'), follow=True)
         doc = pq(r.content)
         eq_(doc('#cat option:selected').val(), 'personas')

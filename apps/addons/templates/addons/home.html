@@ -6,9 +6,8 @@
 
 {% block site_stats %}
 {% if downloads and pings %}
-<ul class="stats">
+<div class="stats">
   {% if downloads.count > 0 %}
-  <li>
     <a href="{{ url('statistics.dashboard') }}">
       {% trans plural=downloads.count, count=downloads.count|numberfmt %}
         <strong>{{ count }}</strong><span>add-on downloaded</span>
@@ -16,20 +15,8 @@
         <strong>{{ count }}</strong><span>add-ons downloaded</span>
       {% endtrans %}
     </a>
-  </li>
   {% endif %}
-  {% if pings.count > 0 %}
-  <li>
-    <a href="{{ url('statistics.dashboard') }}">
-      {% trans plural=pings.count, count=pings.count|numberfmt %}
-        <strong>{{ count }}</strong><span>add-on in use</span>
-      {% pluralize %}
-        <strong>{{ count }}</strong><span>add-ons in use</span>
-      {% endtrans %}
-    </a>
-  </li>
-  {% endif %}
-</ul>
+</div>
 {% endif %}
 {% endblock %}
 
