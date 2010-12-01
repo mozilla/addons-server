@@ -27,6 +27,11 @@ $(document).ready(function () {
             lang = e.originalEvent ? $input.attr("lang") : e,
             $dl = $(format("[lang={0}]", [dl]), $trans),
             transKey = $trans.attr("data-name")+'_'+lang;
+        if ($input.length == 0) {
+            // No translation of this element exists for the
+            // requested language.
+            return;
+        }
         if (!(transKey in translations)) {
             translations[transKey] = $input.val();
         }
