@@ -46,18 +46,8 @@
     <div class="section">
 
       {% block site_header %}
-        <div id="header" role="banner">
-          <p id="title">
-            {% block site_header_title %}
-              {% include "header_title.html" %}
-            {% endblock site_header_title %}
-          </p>
-
-          <p id="brand">
-            <a href="http://www.mozilla.com/" title="{{ _('Mozilla') }}"
-               accesskey="1">{{ _('Mozilla') }}</a>
-          </p>
-          {% block site_stats %}{% endblock %}
+        {% include "amo_header.html" %}
+        <div class="amo-header">
           <div id="aux-nav" role="navigation">
             {% block aux_nav %}
             <ul id="other-apps" class="change"
@@ -80,6 +70,13 @@
               {% include "user_login.html" %}
             {% endif %}
           </div>
+          <div class="header-search" role="search">
+            {% block search_form %}
+            {% include 'search.html' %}
+            {% endblock %}
+          </div>
+          {% include "header_title.html" %}
+          {% block site_stats %}{% endblock %}
         </div>
       {% endblock site_header %}
 
@@ -87,10 +84,6 @@
          on the side of the page. #}
       {% block main_content %}
         {% block navbar %}
-        <div class="stand-alone-options">
-          {% include "categories.html" %}
-          {% include "search.html" %}
-        </div>
         {% endblock %}
         {# outer_content is for something you want above content on every page. #}
         {% block outer_content %}{% endblock %}
@@ -130,14 +123,7 @@
     {% block footer %}
       <div id="footer" role="contentinfo">
         <div class="section">
-          <div class="primary">
-            {% include "footer.html" %}
-          </div> {# primary #}
-          <div class="secondary">
-            {% block footer_secondary %}
-              <img src="{{ MEDIA_URL }}img/amo2009/illustrations/footer-logo.png" alt="">
-            {% endblock %}
-          </div> {# secondary #}
+          {% include "footer.html" %}
         </div> {# section #}
       </div> {# footer #}
     {% endblock %}

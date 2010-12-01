@@ -103,12 +103,12 @@ class TestStuff(test_utils.TestCase):
     def test_heading(self):
         def title_eq(url, expected):
             response = self.client.get(url, follow=True)
-            actual = PyQuery(response.content)('#title').text()
+            actual = PyQuery(response.content)('.site-title img').attr('alt')
             eq_(expected, actual)
 
-        title_eq('/firefox', 'Add-ons for Firefox')
-        title_eq('/thunderbird', 'Add-ons for Thunderbird')
-        title_eq('/mobile', 'Mobile Add-ons for Firefox')
+        title_eq('/firefox', 'Firefox')
+        title_eq('/thunderbird', 'Thunderbird')
+        title_eq('/mobile', 'Firefox Mobile')
 
     def test_xenophobia(self):
         r = self.client.get(reverse('home'), follow=True)

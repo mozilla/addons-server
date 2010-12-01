@@ -229,7 +229,7 @@ span.emaillink .i {
 /* Translation Box Element */
 .graybox {
     background-color: #fff;
-    border: 3px solid #c8e8f3;
+    border: 3px solid #e0effd;
     padding: 15px;
 }
 .graybox.errors {
@@ -309,7 +309,7 @@ span.emaillink .i {
 }
 .translation-box .translation-tab.selected {
     border: 1px solid #2E5186;
-    background-color: #C8E8F3;
+    background-color: #e0effd;
     border-bottom: none;
     color: #1D587F;
 }
@@ -396,7 +396,7 @@ span.emaillink .i {
     background-color: #def1f8;
     margin-bottom: 10px;
     display: none;
-    border: 1px solid #c8e8f3;
+    border: 1px solid #e0effd;
     -moz-border-radius: 6px;
     border-radius: 6px;
 }
@@ -420,7 +420,7 @@ span.emaillink .i {
     -moz-border-radius: 8px;
     -webkit-border-radius: 8px;
     border-radius: 8px;
-    background-color: #C8E8F3;
+    background-color: #e0effd;
 }
 .notification-box.error {
     border-color: #C63717;
@@ -1549,12 +1549,6 @@ html[xmlns] .clearfix {
 }
 /* END Search engines & Themes Landing pages */
 
-/** Footer language selector **/
-#language {
-    margin: 0 0.5em 0 0;
-}
-/** END Footer language selector **/
-
 /*** =Browse Thumbs ***/
 .browse-thumbs .featured,
 .browse-thumbs .featured-inner {
@@ -1828,6 +1822,7 @@ html[xmlns] .clearfix {
 /**
  * Tag classes, from 1 to 10, 10 being the largest
  */
+
 .tagLevel1 {font-size: 1.2em;}
 .tagLevel2 {font-size: 1.4em;}
 .tagLevel3 {font-size: 1.6em;}
@@ -2663,18 +2658,6 @@ div.visit-listed-popup {
 }
 
 /* END Beta Channel */
-
-/* locale-only checkbox in footer */
-#locale-only-wrapper {
-    font-weight:normal;
-    font-size:11px;
-    padding-left: 15px;
-}
-.html-rtl #locale-only-wrapper {
-    padding-right: 15px;
-}
-
-/* END locale-only checkbox in footer */
 
 /* Homepage */
 .collections-sidebar > img {

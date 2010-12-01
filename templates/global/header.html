@@ -1,0 +1,15 @@
+<div id="header">
+  <div id="nav-access">
+    <a href="#nav-main">{{ _('skip to navigation') }}</a>
+    <a href="#lang_form">{{ _('switch language') }}</a>
+  </div>
+
+  <h1><a href="http://www.mozilla.com/" title="{{ _('Back to Mozilla.com') }}">{{ _('Firefox') }}</a></h1>
+  <a class="mozilla" href="http://www.mozilla.org/">{{ _('visit {0}')|f('<span>mozilla</span>')|safe }}</a>
+
+  <div id="nav-main" role="navigation">
+    {% block menu_links %}
+      {% include "global/menu_links.html" %}
+    {% endblock %}
+  </div>
+</div>

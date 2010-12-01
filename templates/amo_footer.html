@@ -1,0 +1,20 @@
+{% extends "global/footer.html" %}
+
+{% block menu_links %}
+  {% include "menu_links.html" %}
+{% endblock %}
+
+{% block lang_form %}
+  <img src="{{ MEDIA_URL }}img/zamboni/footer-logo-med.png" alt="">
+  <form class="languages go" id="lang_form" method="get" action="">
+    <label for="language">{{ _('Other languages') }}</label>
+    <select id="language" name="lang" dir="ltr">
+      {% for code, name in LANGUAGES|dictsort -%}
+        <option value="{{ code }}" {{ code|ifeq(LANG|lower, "selected") }}>
+          {{ name }}
+        </option>
+      {%- endfor %}
+    </select>
+    <button type="submit">{{ _('Go') }}</button>
+  </form>
+{% endblock %}
