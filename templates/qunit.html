@@ -38,6 +38,25 @@
       {% endwith %}
     </div>
   </div>
+  <div id="l10n-translation">
+    <div data-name="summary" class="trans" id="trans-summary">
+      <textarea lang="en-us" name="summary_en-us" cols="40" rows="10"
+                id="id_summary_0" style="display: block;">
+      Firebug integrates with Firefox to put a wealth of development tools...
+      </textarea>
+      <textarea lang="ja" name="summary_ja" cols="40" rows="10" id="id_summary_1"
+                style="display: none;">
+      Firebug は、Web ページを閲覧中にクリック一つで使える豊富な開発ツールを Firefox に統合します。あなたはあらゆる
+      </textarea>
+    </div>
+  </div>
+  <div id="l10n-menu">
+    <ul>
+      <li><a href="#en-us" class="default-locale">English (US)</a></li>
+      <li><a href="#ja">日本語</a></li>
+      <li><a href="#id">Bahasa Indonesia</a></li>
+    </ul>
+  </div>
 
   <script src="{{ url('jsi18n') }}/build:{{ BUILD_ID_JS }}"></script>
   {{ js('common') }}

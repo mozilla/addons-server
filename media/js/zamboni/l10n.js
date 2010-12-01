@@ -168,8 +168,8 @@ $(document).ready(function () {
         locales = _.keys(seen_locales);
     }
     
-    z.refreshL10n = function() {
-        updateLocale();
+    z.refreshL10n = function(lang) {
+        updateLocale(lang);
     };
     updateLocale();
 });
