@@ -119,7 +119,6 @@
     {% for cat in categories %}
       <li id="c-{{ cat.id }}">
         <a href="{{ url('browse.themes', cat.slug) }}">{{ cat.name }}</a>
-        <span class="items">{{ cat.count }}</span>
       </li>
     {% endfor %}
     {% endcache %}

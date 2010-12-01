@@ -1902,13 +1902,6 @@ form .error .note.error {
     content: '\02013\00a0';
 }
 
-.other-categories .items {
-    color: rgb(114, 142, 164);
-    font-size: 10px; /* or the corresponding size in em's  */
-    margin-left: 0.25em;
-    vertical-align: 1px;
-}
-
 #refine-results h5 {
     color: #235;
 }

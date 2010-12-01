@@ -1787,22 +1787,6 @@ form.favorite {
     padding-bottom: 0.8em;
 }
 
-.subcategories .items,
-.categories .items {
-    color: white;
-    background-color: #94BFCE;
-    -moz-border-radius: 7px;
-    -webkit-border-radius: 7px;
-    border-radius: 7px;
-    margin-left: 0.1em;
-    padding: 1px 5px;
-    font-size: 0.856em;
-    font-weight: bold;
-}
-.html-rtl .categories .items {
-    unicode-bidi: embed;
-}
-
 .stand-alone-options #categoriesdropdown:not(:target) {
     display: none;
 }
