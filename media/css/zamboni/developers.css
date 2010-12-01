@@ -1410,6 +1410,9 @@ form.select-review .errorlist {
     text-align: center;
     color: #626363;
     padding: 0.5em;
+    -webkit-border-radius: 0 0 8px 8px;
+    -moz-border-radius: 0 0 8px 8px;
+    border-radius: 0 0 8px 8px;
     border-top: 1px solid #bbcad7;
     background: #f7fbfd url("../../img/developers/suite-summary-bg.jpg") repeat-x top;
 }
@@ -1448,7 +1451,7 @@ form.select-review .errorlist {
     background: #fff url("../../img/developers/suite-running.gif") no-repeat center 50px;
 }
 #addon-validator-suite .result {
-    margin-top: 1.8em;
+    margin-top: 2.85em;
 }
 #addon-validator-suite .result-summary {
     margin-top: 1.8em;
