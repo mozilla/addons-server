@@ -14,27 +14,28 @@
 {{ l10n_menu() }}
 <form method="post" class="item" action="">
   {{ csrf() }}
+  {{ user_form.management_form|safe }}
   <div class="item_wrapper">
     <table>
-      {{ user_form.management_form|safe }}
       <tr>
         <th>{{ _('Authors') }}</th>
         <td>
           {{ user_form.non_form_errors()|safe }}
           <ul id="author_list">
           {% for form in user_form.forms %}
-          <li class="author initial">
-            <span class="handle">&nbsp;</span>
-            {{ form.user.errors|safe }}
-            {{ form.user|safe }}
-            {{ form.role|safe }}
-            {{ form.listed|safe }}{{ form.listed.label_tag()|safe }}
-            {{ form.id|safe }}
-            <span class="js-hidden delete">{{ form.DELETE|safe }}{{ form.DELETE.label_tag()|safe }}</span>
-            <span class="js-hidden position">{{ form.position|safe }}</span>
-            <a href="#" class="remove">x</a>
-          </li>
+            <li class="author initial">
+              <span class="handle">&nbsp;</span>
+              {{ form.user.errors|safe }}
+              {{ form.user|safe }}
+              {{ form.role|safe }}
+              {{ form.listed|safe }}{{ form.listed.label_tag()|safe }}
+              {{ form.id|safe }}
+              <span class="js-hidden delete">{{ form.DELETE|safe }}{{ form.DELETE.label_tag()|safe }}</span>
+              <span class="js-hidden position">{{ form.position|safe }}</span>
+              <a href="#" class="remove">x</a>
+            </li>
           {% endfor %}
+          </ul>
         </td>
       </tr>
       {% include "devhub/includes/license_form.html" %}
@@ -44,7 +45,7 @@
   <div class="listing-footer"><button type="submit">{{ _('Save Changes') }}</button></div>
 </form>
 {% with form=user_form.empty_form %}
-<div id="user-form-template" class="hidden">
+<ul id="user-form-template" class="hidden">
   <li class="blank">
     <span class="handle">&nbsp;</span>
     {{ form.user|safe }}
@@ -54,7 +55,7 @@
     <span class="js-hidden position">{{ form.position|safe }}</span>
     <a href="#" class="remove">x</a>
   </li>
-</div>
+</ul>
 {% endwith %}
 </section>
 {% include "devhub/includes/addons_edit_nav.html" %}
