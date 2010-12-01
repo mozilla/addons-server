@@ -2,7 +2,6 @@ import hashlib
 import os
 import uuid
 import zipfile
-import urlparse
 
 from django.conf import settings
 from django.db import models
@@ -50,8 +49,8 @@ class File(amo.models.ModelBase):
 
     def get_url_path(self, src=None, release=False):
         if release:
-            return urlparse.urljoin(settings.MIRROR_URL, '%s/%s' % (
-                                    self.version.addon_id, self.filename))
+            return os.path.join(settings.MIRROR_URL,
+                                str(self.version.addon_id), self.filename)
 
         from amo.helpers import urlparams, absolutify
         url = os.path.join(reverse('downloads.file', args=[self.id]),

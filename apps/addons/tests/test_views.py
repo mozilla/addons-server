@@ -996,10 +996,10 @@ class TestUpdate(test_utils.TestCase):
         assert res.content.find(self.good_data['appID']) > -1
 
     def test_url(self):
+        settings.MIRROR_URL = 'http://releases.mozilla.org/.../addons'
         res = self.client.get(self.url, self.good_data)
         assert 'updateLink' in res.content
         assert settings.MIRROR_URL in res.content
-        print res.content
 
     def test_hash(self):
         res = self.client.get(self.url, self.good_data)
