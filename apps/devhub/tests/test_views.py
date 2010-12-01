@@ -1346,6 +1346,39 @@ class TestEdit(test_utils.TestCase):
         doc = pq(r.content)
         eq_(doc('#refine-activity a').eq(1).attr('href'), activity_url)
 
+    def get_l10n_urls(self):
+        id = 3615
+        paths = ('devhub.addons.edit', 'devhub.addons.profile',
+                 'devhub.addons.payments', 'devhub.addons.owner')
+        return [reverse(p, args=[id]) for p in paths]
+
+    def test_l10n(self):
+        for url in self.get_l10n_urls():
+            r = self.client.get(url)
+            doc = pq(r.content)
+            eq_(doc('#l10n-menu').attr('data-default'), 'en-US')
+
+    def test_l10n_not_us(self):
+        addon = Addon.objects.get(id=3615)
+        addon.default_locale = "fr"
+        addon.save()
+
+        for url in self.get_l10n_urls():
+            r = self.client.get(url)
+            doc = pq(r.content)
+            eq_(doc('#l10n-menu').attr('data-default'), 'fr')
+
+    def test_l10n_not_us_id_url(self):
+        addon = Addon.objects.get(id=3615)
+        addon.default_locale = "fr"
+        addon.save()
+
+        for url in self.get_l10n_urls():
+            url = '/id' + url[6:]
+            r = self.client.get(url)
+            doc = pq(r.content)
+            eq_(doc('#l10n-menu').attr('data-default'), 'fr')
+
 
 class TestProfileBase(test_utils.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']
