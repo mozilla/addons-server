@@ -263,10 +263,9 @@ class TestProfile(UserViewBase):
             AddonUser.objects.create(user=u, addon=a)
 
         r = self.client.get(reverse('users.profile', args=[9945]))
-        downloads = [int(PyQuery(node).html().replace(',', ''))
-                     for node in PyQuery(r.content)('p.downloads strong')]
-        assert all(downloads[i] >= downloads[i+1]
-                   for i in xrange(len(downloads)-1))
+        addons = r.context['addons'].object_list
+        assert all(addons[i].weekly_downloads >= addons[i+1].weekly_downloads
+                   for i in xrange(len(addons)-1))
 
 
 class TestReportAbuse(AbuseBase, test_utils.TestCase):
