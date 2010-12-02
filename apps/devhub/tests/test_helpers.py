@@ -53,7 +53,7 @@ class TestDevBreadcrumbs(unittest.TestCase):
         crumbs = doc('li')
         eq_(crumbs.text(), 'Add-ons Developer Hub My Add-ons')
         eq_(crumbs.eq(1).children('a').attr('href'), reverse('devhub.index'))
-        eq_(crumbs.eq(2).children('a'), [m])
+        eq_(crumbs.eq(2).children('a'), [])
 
     def test_with_items(self):
         s = render("""{{ dev_breadcrumbs(items=[('/foo', 'foo'),
