@@ -588,7 +588,6 @@ def version_delete(request, addon_id, addon):
     version_id = request.POST.get('version_id')
     version = get_object_or_404(Version, pk=version_id, addon=addon)
     version.delete()
-    addon.update_status(using='default')
     return redirect('devhub.versions', addon_id)
 
 
