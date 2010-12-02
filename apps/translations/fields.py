@@ -86,6 +86,7 @@ def switch(obj, new_model):
 def save_on_signal(obj, trans):
     """Connect signals so the translation gets saved during obj.save()."""
     signal = models.signals.pre_save
+
     def cb(sender, instance, **kw):
         if instance is obj:
             trans.save(force_update=True)
@@ -189,30 +190,27 @@ class _TransField(object):
         super(_TransField, self).__init__(*args, **kwargs)
 
     def clean(self, value):
-        return super(_TransField, self).clean(dict(value))
-
-    def to_python(self, value):
-        return value
-
-    def validate(self, value):
-        # Only run the required check on the default locale.
-        locale = self.default_locale
-        try:
-            return super(_TransField, self).validate(value.get(locale, ''))
-        except forms.ValidationError, e:
-            e.messages = LocaleList(e.messages, locale)
-            raise e
-
-    def run_validators(self, value):
-        # Run validation over data in each locale.
         errors = LocaleList()
+
+        # Raise an exception if the default locale is required and not present
+        if self.default_locale.lower() not in value:
+            value[self.default_locale.lower()] = None
+
+        # Now, loop through them and validate them separately.
         for locale, val in value.items():
             try:
+                # Only the default locale can be required; all non-default
+                # fields are automatically optional.
+                if self.default_locale.lower() == locale:
+                    super(_TransField, self).validate(val)
                 super(_TransField, self).run_validators(val)
             except forms.ValidationError, e:
                 errors.extend(e.messages, locale)
+
         if errors:
             raise LocaleValidationError(errors)
+
+        return value
 
 
 class LocaleValidationError(forms.ValidationError):

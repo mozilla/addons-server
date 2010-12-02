@@ -157,8 +157,8 @@ class AddonFormDetails(AddonFormBase):
 
 
 class AddonFormSupport(AddonFormBase):
-    support_url = TransField.adapt(forms.URLField, {'required': False})
-    support_email = TransField.adapt(forms.EmailField, {'required': False})
+    support_url = TransField.adapt(forms.URLField)(required=False)
+    support_email = TransField.adapt(forms.EmailField)(required=False)
 
     class Meta:
         model = Addon

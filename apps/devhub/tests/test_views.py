@@ -1282,9 +1282,9 @@ class TestEdit(test_utils.TestCase):
             eq_(unicode(getattr(addon, k)), data[k])
 
     def test_edit_support_getsatisfaction(self):
-        urls = [("getsatisfaction.com/abc/products/def", 'abcdef'),  # GS URL
-                ("getsatisfaction.com/abc/", 'abc'),  # No company
-                ("google.com", None)]  # Delete GS
+        urls = [("http://getsatisfaction.com/abc/products/def", 'abcdef'),
+                ("http://getsatisfaction.com/abc/", 'abc'),  # No company
+                ("http://google.com", None)]  # Delete GS
 
         for (url, val) in urls:
             data = dict(support_email='abc@def.com',
@@ -1293,8 +1293,9 @@ class TestEdit(test_utils.TestCase):
             r = self.client.post(self.get_url('support', True), data)
             eq_(r.context['form'].errors, {})
 
-            r = self.client.get(self.get_url('support', False))
             result = pq(r.content)('.addon_edit_gs').eq(0).text()
+            doc = pq(r.content)
+            result = doc('.addon_edit_gs').eq(0).text()
 
             result = re.sub('\W', '', result) if result else None
 
