@@ -2473,7 +2473,7 @@ class TestVersionAddFile(UploadTest):
     def test_guid_matches(self):
         self.addon.update(guid='something.different')
         r = self.post()
-        assert_json_error(r, None, "GUID doesn't match add-on")
+        assert_json_error(r, None, "UUID doesn't match add-on")
 
     def test_version_matches(self):
         self.version.update(version='2.0')

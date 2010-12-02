@@ -104,9 +104,9 @@ def parse_xpi(xpi, addon=None):
     addon_type = XPI_TYPES.get(get_text_value(rdf, 'type'))
 
     if addon and addon.guid != guid:
-        raise forms.ValidationError(_("GUID doesn't match add-on"))
+        raise forms.ValidationError(_("UUID doesn't match add-on"))
     if not addon and Addon.objects.filter(guid=guid):
-        raise forms.ValidationError(_('Duplicate GUID found.'))
+        raise forms.ValidationError(_('Duplicate UUID found.'))
 
     if addon and addon.type != addon_type:
         raise forms.ValidationError(

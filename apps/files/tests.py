@@ -165,13 +165,13 @@ class TestParseXpi(test_utils.TestCase):
         addon = Addon.objects.create(guid='xxx', type=1)
         with self.assertRaises(forms.ValidationError) as e:
             self.parse(addon)
-        eq_(e.exception.messages, ["GUID doesn't match add-on"])
+        eq_(e.exception.messages, ["UUID doesn't match add-on"])
 
     def test_guid_dupe(self):
         Addon.objects.create(guid='guid@xpi', type=1)
         with self.assertRaises(forms.ValidationError) as e:
             self.parse()
-        eq_(e.exception.messages, ['Duplicate GUID found.'])
+        eq_(e.exception.messages, ['Duplicate UUID found.'])
 
     def test_match_type(self):
         addon = Addon.objects.create(guid='guid@xpi', type=4)
