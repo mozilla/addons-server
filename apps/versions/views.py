@@ -1,10 +1,7 @@
-from datetime import datetime, timedelta
 import posixpath
 
 from django import http
-from django.conf import settings
 from django.shortcuts import get_object_or_404, redirect
-from django.utils.encoding import smart_str
 
 import caching.base as caching
 import jingo
@@ -65,20 +62,7 @@ def download_file(request, file_id, type=None):
 
     attachment = (type == 'attachment' or not request.APP.browser)
 
-    if file.datestatuschanged:
-        published = datetime.now() - file.datestatuschanged
-    else:
-        published = timedelta(minutes=0)
-
-    if attachment:
-        host = posixpath.join(settings.LOCAL_MIRROR_URL, '_attachments')
-    elif (addon.status == file.status == amo.STATUS_PUBLIC
-          and published > timedelta(minutes=settings.MIRROR_DELAY)
-          and not settings.DEBUG):
-        host = settings.MIRROR_URL  # Send it to the mirrors.
-    else:
-        host = settings.LOCAL_MIRROR_URL
-    loc = posixpath.join(*map(smart_str, [host, addon.id, file.filename]))
+    loc = file.get_mirror(addon, attachment=attachment)
     response = http.HttpResponseRedirect(loc)
     response['X-Target-Digest'] = file.hash
     return response

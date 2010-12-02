@@ -1,10 +1,13 @@
+from datetime import datetime, timedelta
 import hashlib
 import os
+import posixpath
 import uuid
 import zipfile
 
 from django.conf import settings
 from django.db import models
+from django.utils.encoding import smart_str
 
 import commonware
 import path
@@ -47,18 +50,34 @@ class File(amo.models.ModelBase):
         # TODO: Ideally this would be ``platform``.
         return amo.PLATFORMS[self.platform_id]
 
-    def get_url_path(self, src=None, release=False):
-        if release:
-            return os.path.join(settings.MIRROR_URL,
-                                str(self.version.addon_id), self.filename)
+    def get_mirror(self, addon, attachment=False):
+        if self.datestatuschanged:
+            published = datetime.now() - self.datestatuschanged
+        else:
+            published = timedelta(minutes=0)
 
+        # This is based on the logic of what gets copied to the mirror
+        # at: http://bit.ly/h5qm4o
+        if attachment:
+            host = posixpath.join(settings.LOCAL_MIRROR_URL, '_attachments')
+        elif (addon.status == amo.STATUS_PUBLIC
+              and not addon.inactive
+              and self.status in (amo.STATUS_PUBLIC, amo.STATUS_BETA)
+              and published > timedelta(minutes=settings.MIRROR_DELAY)
+              and not settings.DEBUG):
+            host = settings.MIRROR_URL  # Send it to the mirrors.
+        else:
+            host = settings.LOCAL_MIRROR_URL
+
+        return posixpath.join(*map(smart_str, [host, addon.id, self.filename]))
+
+    def get_url_path(self, app, src):
+        # TODO: remove app
         from amo.helpers import urlparams, absolutify
         url = os.path.join(reverse('downloads.file', args=[self.id]),
                            self.filename)
         # Firefox's Add-on Manager needs absolute urls.
-        if src:
-            return absolutify(urlparams(url, src=src))
-        return absolutify(url)
+        return absolutify(urlparams(url, src=src))
 
     @classmethod
     def from_upload(cls, upload, version, platform):

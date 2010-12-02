@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from datetime import datetime
+from datetime import datetime, timedelta
 import re
 
 from django import test
@@ -904,6 +904,15 @@ class TestUpdate(test_utils.TestCase):
         self.mac = amo.PLATFORM_MAC
         self.win = amo.PLATFORM_WIN
 
+        self.old_mirror_url = settings.MIRROR_URL
+        settings.MIRROR_URL = 'http://releases.m.o/'
+        self.old_local_url = settings.LOCAL_MIRROR_URL
+        settings.LOCAL_MIRROR_URL = 'http://addons.m.o/'
+
+    def tearDown(self):
+        settings.MIRROR_URL = self.old_mirror_url
+        settings.LOCAL_MIRROR_URL = self.old_local_url
+
     def test_bad_guid(self):
         data = self.good_data.copy()
         data["id"] = "garbage"
@@ -996,10 +1005,29 @@ class TestUpdate(test_utils.TestCase):
         assert res.content.find(self.good_data['appID']) > -1
 
     def test_url(self):
-        settings.MIRROR_URL = 'http://releases.mozilla.org/.../addons'
         res = self.client.get(self.url, self.good_data)
-        assert 'updateLink' in res.content
-        assert settings.MIRROR_URL in res.content
+        assert settings.MIRROR_URL in res.context['url']
+
+    def test_url_local_recent(self):
+        a_bit_ago = datetime.now() - timedelta(seconds=60)
+        File.objects.get(pk=67442).update(datestatuschanged=a_bit_ago)
+        res = self.client.get(self.url, self.good_data)
+        assert settings.LOCAL_MIRROR_URL in res.context['url']
+
+    def test_url_local_beta(self):
+        file = File.objects.get(pk=67442)
+        file.status = amo.STATUS_BETA
+        file.save()
+
+        beta_version = '2.0.58 beta'
+        file.version.update(version=beta_version)
+
+        data = self.good_data.copy()
+        data["version"] = beta_version
+        res = self.client.get(self.url, data)
+        eq_(res.context['file'].id, file.pk)
+
+        assert settings.LOCAL_MIRROR_URL in res.context['url']
 
     def test_hash(self):
         res = self.client.get(self.url, self.good_data)

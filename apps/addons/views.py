@@ -515,6 +515,7 @@ def update(request):
             app = amo.APP_IDS[data['appID'].id]
             application_version = version.compatible_apps[app]
             addon_type = amo.ADDON_SLUGS_UPDATE[data['id'].type]
+            url = file.get_mirror(data['id'])
             return jingo.render(request, 'addons/update.rdf', {
                                     'addon': data['id'],
                                     'application': data['appID'],
@@ -522,6 +523,7 @@ def update(request):
                                     'appversion': data['appVersion'],
                                     'file': file,
                                     'type': addon_type,
+                                    'url': url,
                                     'version': version,
                                 }, content_type="text/xml")
 

@@ -12,7 +12,6 @@ from amo.urlresolvers import reverse
 from addons.models import Addon
 from applications.models import AppVersion
 from devhub.models import ActivityLog
-from files import utils
 from files.models import File, FileUpload, Platform
 from users.models import UserProfile
 from versions import views
@@ -247,8 +246,8 @@ class TestDownloadsBase(test_utils.TestCase):
             host += '/_attachments'
         self.assert_served_by_host(response, host, file_)
 
-    def assert_served_by_mirror(self, response):
-        self.assert_served_by_host(response, settings.MIRROR_URL)
+    def assert_served_by_mirror(self, response, file_=None):
+        self.assert_served_by_host(response, settings.MIRROR_URL, file_)
 
 
 class TestDownloads(TestDownloadsBase):
@@ -258,8 +257,8 @@ class TestDownloads(TestDownloadsBase):
         eq_(r.status_code, 404)
 
     def test_public(self):
-        eq_(self.addon.status, 4)
-        eq_(self.file.status, 4)
+        eq_(self.addon.status, amo.STATUS_PUBLIC)
+        eq_(self.file.status, amo.STATUS_PUBLIC)
         self.assert_served_by_mirror(self.client.get(self.file_url))
 
     def test_public_addon_unreviewed_file(self):
@@ -314,10 +313,27 @@ class TestDownloads(TestDownloadsBase):
 
     def test_beta_file(self):
         url = reverse('downloads.file', args=[self.beta_file.id])
-        self.assert_served_locally(self.client.get(url), self.beta_file)
+        self.assert_served_by_mirror(self.client.get(url),
+                                     file_=self.beta_file)
 
     def test_null_datestatuschanged(self):
         self.file.update(datestatuschanged=None)
+        self.assert_served_locally(self.client.get(self.file_url))
+
+    def test_public_addon_beta_file(self):
+        self.addon.update(status=amo.STATUS_PUBLIC)
+        self.file.update(status=amo.STATUS_BETA)
+        self.assert_served_by_mirror(self.client.get(self.file_url))
+
+    def test_beta_addon_beta_file(self):
+        self.addon.update(status=amo.STATUS_BETA)
+        self.file.update(status=amo.STATUS_BETA)
+        self.assert_served_locally(self.client.get(self.file_url))
+
+    def test_public_but_inactive_addon(self):
+        self.addon.update(status=amo.STATUS_PUBLIC,
+                          inactive=True)
+        self.file.update(status=amo.STATUS_BETA)
         self.assert_served_locally(self.client.get(self.file_url))
 
 
