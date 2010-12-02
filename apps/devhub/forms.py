@@ -308,7 +308,7 @@ class CompatForm(happyforms.ModelForm):
     def clean(self):
         min = self.cleaned_data.get('min')
         max = self.cleaned_data.get('max')
-        if not (min and max and min.version_int < max.version_int):
+        if not (min and max and min.version_int <= max.version_int):
             raise forms.ValidationError(_('Invalid version range.'))
         return self.cleaned_data
 

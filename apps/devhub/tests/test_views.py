@@ -1952,6 +1952,15 @@ class TestVersionEditCompat(TestVersionEdit):
         eq_(r.context['compat_form'].forms[0].non_field_errors(),
             ['Invalid version range.'])
 
+    def test_same_min_max(self):
+        f = self.client.get(self.url).context['compat_form'].initial_forms[0]
+        d = initial(f)
+        d['min'] = d['max']
+        r = self.client.post(self.url, self.formset(d, initial_count=1))
+        eq_(r.status_code, 302)
+        av = self.version.apps.all()[0]
+        eq_(av.min, av.max)
+
 
 class TestSubmitBase(test_utils.TestCase):
     fixtures = ['base/addon_3615', 'base/addon_5579', 'base/users']
