@@ -1014,7 +1014,7 @@ class TestUpdate(test_utils.TestCase):
         res = self.client.get(self.url, self.good_data)
         assert settings.LOCAL_MIRROR_URL in res.context['url']
 
-    def test_url_local_beta(self):
+    def test_url_remote_beta(self):
         file = File.objects.get(pk=67442)
         file.status = amo.STATUS_BETA
         file.save()
@@ -1027,7 +1027,7 @@ class TestUpdate(test_utils.TestCase):
         res = self.client.get(self.url, data)
         eq_(res.context['file'].id, file.pk)
 
-        assert settings.LOCAL_MIRROR_URL in res.context['url']
+        assert settings.MIRROR_URL in res.context['url']
 
     def test_hash(self):
         res = self.client.get(self.url, self.good_data)
