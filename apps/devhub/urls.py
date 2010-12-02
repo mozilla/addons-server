@@ -9,6 +9,7 @@ from . import views
 
 # These will all start with /addon/<addon_id>/submit/
 submit_patterns = patterns('',
+    url('^$', lambda r, addon_id: redirect('devhub.submit.7', addon_id)),
     url('^3$', views.submit_describe, name='devhub.submit.3'),
     url('^4$', views.submit_media, name='devhub.submit.4'),
     url('^5$', views.submit_license, name='devhub.submit.5'),
@@ -73,6 +74,8 @@ urlpatterns = decorate(write, patterns('',
      lambda r: redirect(r.path.replace('addons', 'addon', 1))),
 
     # Add-on submission
+    url('^addon/submit/$',
+        lambda r: redirect('devhub.submit.1', permanent=True)),
     url('^addon/submit/1$', views.submit, name='devhub.submit.1'),
     url('^addon/submit/2$', views.submit_addon,
         name='devhub.submit.2'),
