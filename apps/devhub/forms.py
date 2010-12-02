@@ -206,8 +206,7 @@ class ContribForm(TranslationFormMixin, happyforms.ModelForm):
 
     recipient = forms.ChoiceField(choices=RECIPIENTS,
                     widget=forms.RadioSelect(attrs={'class': 'recipient'}))
-    thankyou_note = TransField(widget=TransTextarea(),
-                                    required=False)
+    thankyou_note = TransField(widget=TransTextarea(), required=False)
 
     class Meta:
         model = Addon
@@ -234,7 +233,9 @@ class ContribForm(TranslationFormMixin, happyforms.ModelForm):
                 check_paypal_id(data['paypal_id'])
         except forms.ValidationError, e:
             self.errors['paypal_id'] = self.error_class(e.messages)
-        if not (data.get('enable_thankyou') and data.get('thankyou_note')):
+        # thankyou_note is a dict since it's a Translation.
+        if not (data.get('enable_thankyou') and
+                any(data.get('thankyou_note').values())):
             data['thankyou_note'] = {}
             data['enable_thankyou'] = False
         return data
