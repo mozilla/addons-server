@@ -1,13 +1,12 @@
 import codecs
 import collections
+import errno
 import functools
 import json
 import os
-import re
-import uuid
 
 from django import http
-from django.core.files.uploadedfile import UploadedFile
+from django.conf import settings
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.http import urlquote
 
@@ -489,7 +488,8 @@ def addons_icon_upload(request, addon_id, addon):
             except OSError as exc:
                 if exc.errno == errno.EEXIST:
                     pass
-                else: raise
+                else:
+                    raise
 
         fh = open(tmp_destination, 'w')
         for chunk in icon:
