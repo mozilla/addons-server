@@ -50,6 +50,11 @@ class Translation(caching.base.CachingMixin, models.Model):
         return (bool(self.localized_string) and
                 bool(self.localized_string.strip()))
 
+    def __eq__(self, other):
+        # Django implements an __eq__ that only checks pks.  We need to check
+        # the strings if we're dealing with existing vs. unsaved Translations.
+        return self.__cmp__(other) == 0
+
     def __cmp__(self, other):
         if hasattr(other, 'localized_string'):
             return cmp(self.localized_string, other.localized_string)

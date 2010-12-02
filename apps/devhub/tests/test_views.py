@@ -2103,6 +2103,7 @@ class TestSubmitStep5(TestSubmitBase):
         eq_(self.get_step().step, 5)
 
     def test_set_eula(self):
+        self.get_addon().update(eula=None, privacy_policy=None)
         r = self.client.post(self.url, dict(builtin=3, has_eula=True,
                                             eula='xxx'))
         self.assertRedirects(r, self.next_step)

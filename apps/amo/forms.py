@@ -6,7 +6,7 @@ from django.conf import settings
 import captcha.fields
 import happyforms
 
-from translations.models import Translation
+from translations.fields import TranslatedField
 
 
 class AbuseForm(happyforms.Form):
@@ -28,26 +28,31 @@ class AbuseForm(happyforms.Form):
 
 
 class AMOModelForm(happyforms.ModelForm):
+
     def _get_changed_data(self):
         """
         The standard modelform thinks the Translation PKs are the initial
         values.  We need to dig deeper to assert whether there are indeed
         changes.
         """
+        Model = self._meta.model
         if self._changed_data is None:
             changed = copy(super(AMOModelForm, self)._get_changed_data())
-            for field in changed:
-                if hasattr(self.instance, field):
-                    # Let's see if these are actual changes.
-                    initial = getattr(self.instance, field)
-                    if hasattr(initial, 'localized_string') and initial.id:
-                        # We need to compare to the model in the database, not
-                        # the dirty instance.
-                        real = Translation.objects.get(id=initial.id,
-                                                       locale=initial.locale)
+            fields = [(name, Model._meta.get_field(name))
+                      for name in changed]
+            trans = [name for name, field in fields
+                     if isinstance(field, TranslatedField)]
+            # If there are translated fields, pull the model from the database
+            # and do comparisons.
+            if trans:
+                try:
+                    orig = Model.objects.get(pk=self.instance.pk)
+                except Model.DoesNotExist:
+                    return self._changed_data
 
-                        if real.localized_string == self.cleaned_data[field]:
-                            self._changed_data.remove(field)
+                for field in trans:
+                    if getattr(orig, field) == getattr(self.instance, field):
+                        self._changed_data.remove(field)
 
         return self._changed_data
     changed_data = property(_get_changed_data)
