@@ -40,8 +40,8 @@ def truncate(s, length=255, killwords=False, end='...'):
 @jinja2.contextfunction
 def l10n_menu(context, default_locale='en-us'):
     """Generates the locale menu for zamboni l10n."""
+    default_locale = default_locale.lower()
     languages = dict((i.lower(), j) for i, j in settings.LANGUAGES.items())
     c = dict(context.items())
-    c.update(locals())
+    c.update({'languages': languages, 'default_locale': default_locale})
     return c
-

@@ -1355,26 +1355,21 @@ class TestEdit(test_utils.TestCase):
         return [reverse(p, args=[id]) for p in paths]
 
     def test_l10n(self):
+        Addon.objects.get(id=3615).update(default_locale='en-US')
         for url in self.get_l10n_urls():
             r = self.client.get(url)
             doc = pq(r.content)
-            eq_(doc('#l10n-menu').attr('data-default'), 'en-US')
+            eq_(doc('#l10n-menu').attr('data-default'), 'en-us')
 
     def test_l10n_not_us(self):
-        addon = Addon.objects.get(id=3615)
-        addon.default_locale = "fr"
-        addon.save()
-
+        Addon.objects.get(id=3615).update(default_locale='fr')
         for url in self.get_l10n_urls():
             r = self.client.get(url)
             doc = pq(r.content)
             eq_(doc('#l10n-menu').attr('data-default'), 'fr')
 
     def test_l10n_not_us_id_url(self):
-        addon = Addon.objects.get(id=3615)
-        addon.default_locale = "fr"
-        addon.save()
-
+        Addon.objects.get(id=3615).update(default_locale='fr')
         for url in self.get_l10n_urls():
             url = '/id' + url[6:]
             r = self.client.get(url)
