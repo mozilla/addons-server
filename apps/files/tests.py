@@ -219,7 +219,11 @@ class TestFileFromUpload(UploadTest):
         for app, versions in appver.items():
             for version in versions:
                 AppVersion(application_id=app.id, version=version).save()
-        self.platform = Platform.objects.get(id=amo.PLATFORM_ALL.id)
+        self.platform = Platform.objects.create(id=amo.PLATFORM_MAC.id)
+        self.addon = Addon.objects.create(guid='guid@jetpack',
+                                          type=amo.ADDON_EXTENSION,
+                                          name='xxx')
+        self.version = Version.objects.create(addon=self.addon)
 
     def upload(self, name):
         d = dict(path=self.xpi_path(name), name='%s.xpi' % name,
@@ -227,12 +231,14 @@ class TestFileFromUpload(UploadTest):
         return FileUpload.objects.create(**d)
 
     def test_is_jetpack(self):
-        addon = Addon.objects.create(guid='guid@jetpack',
-                                     type=amo.ADDON_EXTENSION)
-        version = Version.objects.create(addon=addon)
         upload = self.upload('jetpack')
-        f = File.from_upload(upload, version, self.platform)
+        f = File.from_upload(upload, self.version, self.platform)
         assert File.objects.get(id=f.id).jetpack
+
+    def test_filename(self):
+        upload = self.upload('jetpack')
+        f = File.from_upload(upload, self.version, self.platform)
+        eq_(f.filename, 'xxx-0.1-mac.xpi')
 
 
 class TestZip(test_utils.TestCase):

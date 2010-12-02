@@ -52,13 +52,12 @@ class Version(amo.models.ModelBase):
         v = cls.objects.create(addon=addon, version=data['version'],
                                license_id=license)
         log.debug('New version: %r (%s) from %r' % (v, v.id, upload))
-        File.from_upload(upload, v, platform)
         # appversions
         AV = ApplicationsVersions
         for app in data['apps']:
             AV(version=v, min=app.min, max=app.max,
                application_id=app.id).save()
-        # TODO: share more with XPIForm
+        File.from_upload(upload, v, platform)
         return v
 
     @property

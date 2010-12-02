@@ -86,7 +86,7 @@ class File(amo.models.ModelBase):
         except zipfile.BadZipfile:
             return False
 
-    def generate_filename(self, extension='xpi'):
+    def generate_filename(self, extension='.xpi'):
         """
         Files are in the format of:
         {addon_name}-{version}-{apps}-{platform}
@@ -104,7 +104,7 @@ class File(amo.models.ModelBase):
         if self.platform_id and self.platform_id != amo.PLATFORM_ALL.id:
             parts.append(amo.PLATFORMS[self.platform_id].shortname)
 
-        self.filename = '-'.join(parts) + '.' + extension
+        self.filename = '-'.join(parts) + extension
         return self.filename
 
     def latest_xpi_url(self):

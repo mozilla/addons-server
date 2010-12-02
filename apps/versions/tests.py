@@ -7,11 +7,13 @@ from nose.tools import eq_
 from pyquery import PyQuery
 
 import amo
+import files.tests
 from amo.urlresolvers import reverse
 from addons.models import Addon
+from applications.models import AppVersion
 from devhub.models import ActivityLog
 from files import utils
-from files.models import File, Platform
+from files.models import File, FileUpload, Platform
 from users.models import UserProfile
 from versions import views
 from versions.models import Version
@@ -393,46 +395,47 @@ class TestDownloadsLatest(TestDownloadsBase):
         assert r['Location'].endswith('?src=xxx'), r['Location']
 
 
-class TestFromUpload(test_utils.TestCase):
+class TestFromUpload(files.tests.UploadTest, test_utils.TestCase):
     fixtures = ['base/apps', 'base/addon_3615', 'base/users']
 
     def setUp(self):
-        self._parse_xpi = utils.parse_xpi
-        self._from_upload = File.from_upload
-
-    def tearDown(self):
-        utils.parse_xpi = self._parse_xpi
-        File.from_upload = self._from_upload
-
-    def mock_parse_xpi(self, **kw):
-        addon = self.get_addon()
-        d = dict(guid=addon.guid, name=addon.name, description=addon.name,
-                 homepage=addon.homepage, type=addon.type, apps=[])
-        d.update(kw)
-        utils.parse_xpi = mock.Mock()
-        utils.parse_xpi.return_value = d
-
-    def mock_file_from_upload(self):
-        @classmethod
-        def from_upload(cls, upload, version, platform):
-            return File.objects.create(version=version)
-        File.from_upload = from_upload
-
-    def get_addon(self):
-        return Addon.objects.get(id=3615)
+        super(TestFromUpload, self).setUp()
+        xpi = open(self.xpi_path('extension')).read()
+        self.upload = FileUpload.from_post([xpi], filename='extension.xpi',
+                                           size=1234)
+        self.addon = Addon.objects.get(id=3615)
+        self.addon.update(guid='guid@xpi')
+        self.platform = Platform.objects.create(id=amo.PLATFORM_MAC.id)
+        for version in ('3.0', '3.6.*'):
+            AppVersion.objects.create(application_id=1, version=version)
 
     def test_carry_over_old_license(self):
-        self.mock_parse_xpi(version='4.0')
-        self.mock_file_from_upload()
-        addon = self.get_addon()
-        version = Version.from_upload(mock.Mock(), addon, mock.Mock())
-        eq_(version.license_id, addon.current_version.license_id)
+        version = Version.from_upload(self.upload, self.addon, self.platform)
+        eq_(version.license_id, self.addon.current_version.license_id)
 
     def test_carry_over_license_no_version(self):
-        self.mock_parse_xpi(version='4.0')
-        self.mock_file_from_upload()
-        addon = self.get_addon()
-        addon.update(_current_version=None)
-        addon.versions.all().delete()
-        version = Version.from_upload(mock.Mock(), addon, mock.Mock())
+        self.addon.versions.all().delete()
+        version = Version.from_upload(self.upload, self.addon, self.platform)
         eq_(version.license_id, None)
+
+    def test_app_versions(self):
+        version = Version.from_upload(self.upload, self.addon, self.platform)
+        assert amo.FIREFOX in version.compatible_apps
+        app = version.compatible_apps[amo.FIREFOX]
+        eq_(app.min.version, '3.0')
+        eq_(app.max.version, '3.6.*')
+
+    def test_version_number(self):
+        version = Version.from_upload(self.upload, self.addon, self.platform)
+        eq_(version.version, '0.1')
+
+    def test_file_platform(self):
+        version = Version.from_upload(self.upload, self.addon, self.platform)
+        files = version.all_files
+        eq_(len(files), 1)
+        eq_(files[0].platform, self.platform)
+
+    def test_file_name(self):
+        version = Version.from_upload(self.upload, self.addon, self.platform)
+        files = version.all_files
+        eq_(files[0].filename, u'delicious_bookmarks-0.1-fx-mac.xpi')
