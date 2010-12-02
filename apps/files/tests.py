@@ -125,8 +125,8 @@ class TestParseXpi(test_utils.TestCase):
         for version in ('3.0', '3.6.*'):
             AppVersion.objects.create(application_id=1, version=version)
 
-    def parse(self, addon=None):
-        path = 'apps/files/fixtures/files/extension.xpi'
+    def parse(self, addon=None, filename='extension.xpi'):
+        path = 'apps/files/fixtures/files/' + filename
         xpi = os.path.join(settings.ROOT, path)
         return parse_xpi(xpi, addon)
 
@@ -179,6 +179,10 @@ class TestParseXpi(test_utils.TestCase):
             self.parse(addon)
         eq_(e.exception.messages,
             ["<em:type> doesn't match add-on"])
+
+    def test_unknown_app(self):
+        data = self.parse(filename='theme-invalid-app.jar')
+        eq_(data['apps'], [])
 
     # parse_dictionary
     # parse_theme

@@ -84,6 +84,8 @@ def parse_xpi(xpi, addon=None):
     App = collections.namedtuple('App', 'appdata id min max')
     for node in rdf.getElementsByTagName('em:targetApplication'):
         app = amo.APP_GUIDS.get(get_text_value(node, 'id'))
+        if not app:
+            continue
         min_val = get_text_value(node, 'minVersion')
         max_val = get_text_value(node, 'maxVersion')
 
