@@ -1,55 +1,5 @@
 /** Addons Display page */
 
-// note: this overwrites the same object in amo2009/addons.js
-var addons_display = {
-    /**
-     * initialization
-     */
-    init: function(options) {
-        this.options = options;
-        $('.rollover-reveal').rolloverReveal({ enable_rollover: false });
-
-        $('#coll_publish button').click(this.coll_publish);
-    },
-
-    /**
-     * publish an add-on to a collection
-     */
-    coll_publish: function() {
-        var coll_uuid = $('#coll_publish option:selected').val();
-        if (!coll_uuid)
-            return false;
-        else if (coll_uuid == 'new')
-            return true;
-        var addon_id = $('#coll_publish input[name=\'data[addon_id]\']').val();
-
-        $.post(addons_display.options.jsonURL+'/addon/add', {
-                sessionCheck: $('#coll_publish div.hsession>input[name=sessionCheck]').val(),
-                collection_uuid: coll_uuid,
-                addon_id: addon_id
-            },
-            function(data) {
-                if (data.error) {
-                    var msg = $('<div class="error">'+data.error_message+'</div>');
-                    $('#coll_publish>button').after(msg);
-                    msg.delay(3000, function(){ $(this).fadeRemove(); });
-                } else {
-                    var coll_uuid = $('#coll_publish option:selected');
-                    var msg = $('<div>'
-                                +format(gettext('{0} has been added to the {1} collection.'),
-                                    [data.name, '<a href="'+addons_display.options.collViewURL
-                                                +coll_uuid.val()+'">'+coll_uuid.safeText()+'</a>'])
-                                +'</div>');
-                    $('#coll_publish button').after(msg);
-                    msg.delay(10000, function(){ $(this).fadeRemove(); });
-                    coll_uuid.remove();
-                }
-            }, 'json'
-        );
-        return false;
-    }
-}
-
 /* general initialization */
 $(document).ready(function() {
     //performance warnings
@@ -76,11 +26,6 @@ $(document).ready(function() {
     }
 
     if ($('#addon.primary').length == 0) return;
-
-    addons_display.init({
-        jsonURL: $('#coll_publish').attr('data-json-url'),
-        collViewURL: $('#coll_publish').attr('data-detail-url')
-    });
 
     var lb_baseurl = z.media_url+'img/jquery-lightbox/';
     $("a[rel=jquery-lightbox]").lightBox({

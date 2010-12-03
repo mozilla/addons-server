@@ -8,8 +8,8 @@ $(document).ready(function(){
             min = $el.attr('data-min'),
             max = $el.attr('data-max')
             vc = new VersionCompare();
-        if (vc.compareVersions(gBrowserVersion, min) < 0
-            || vc.compareVersions(gBrowserVersion, max) > 0) {
+        if (vc.compareVersions(z.browserVersion, min) < 0
+            || vc.compareVersions(z.browserVersion, max) > 0) {
             $el.addClass('incompatible');
             var msg = format(gettext('This theme is incompatible with your version of {0}'),
                              [z.appName]);
