@@ -1022,6 +1022,8 @@ class TestUpdate(test_utils.TestCase):
         beta_version = '2.0.58 beta'
         file.version.update(version=beta_version)
 
+        self.addon_one.update(status=amo.STATUS_PUBLIC)
+
         data = self.good_data.copy()
         data["version"] = beta_version
         res = self.client.get(self.url, data)
