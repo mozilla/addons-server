@@ -7,8 +7,7 @@
     {% endif %}
 
     <a href="{{ addon.get_url_path() + collection_path }}">
-      <img class="icon" width="32" height="32" src="{{ addon.icon_url }}"
-          alt="{{ addon.name }}">
+      <img class="icon" width="32" height="32" src="{{ addon.icon_url }}">
       {{ addon.name }}</a>
     <span>
       {% trans users=users_list(addon.listed_authors, size=2) %}
