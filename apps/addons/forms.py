@@ -15,6 +15,7 @@ from addons.widgets import IconWidgetRenderer
 from tags.models import Tag
 from translations.fields import TransField, TransTextarea
 from translations.forms import TranslationFormMixin
+from translations.models import Translation
 from translations.widgets import TranslationTextInput
 from versions.compare import version_int
 
@@ -109,7 +110,7 @@ def icons():
     dir_list = os.listdir(settings.ADDON_ICONS_DEFAULT_PATH)
     for fn in dir_list:
         if ('%s' % 32) in fn and not "default" in fn:
-            icon_name = fn.split('-')[0];
+            icon_name = fn.split('-')[0]
             icons.append(('icon/%s' % icon_name, icon_name))
     return icons
 
@@ -130,6 +131,29 @@ class AddonFormDetails(AddonFormBase):
     class Meta:
         model = Addon
         fields = ('description', 'default_locale', 'homepage')
+
+    def clean(self):
+        # Make sure we have the required translations in the new locale.
+        required = 'name', 'summary', 'description'
+        data = self.cleaned_data
+        if not self.errors and 'default_locale' in self.changed_data:
+            fields = dict((k, getattr(self.instance, k + '_id'))
+                          for k in required)
+            locale = self.cleaned_data['default_locale']
+            ids = filter(None, fields.values())
+            qs = (Translation.objects.filter(locale=locale, id__in=ids,
+                                             localized_string__isnull=False)
+                  .values_list('id', flat=True))
+            missing = [k for k, v in fields.items() if v not in qs]
+            # They might be setting description right now.
+            if 'description' in missing and locale in data['description']:
+                missing.remove('description')
+            if missing:
+                raise forms.ValidationError(
+                    _('Before changing you default locale you must have a '
+                      'name, summary, and description in that locale. '
+                      'You are missing %s.') % ', '.join(map(repr, missing)))
+        return data
 
 
 class AddonFormSupport(AddonFormBase):

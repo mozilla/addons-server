@@ -1119,9 +1119,7 @@ class TestEdit(test_utils.TestCase):
         r = self.client.post(self.get_url('basic', True), data)
         eq_(r.status_code, 200)
 
-        doc = pq(r.content)
-
-        result = doc('#addon_tags_edit').eq(0).text()
+        result = pq(r.content)('#addon_tags_edit').eq(0).text()
 
         self.tags.sort()
         eq_(result, ', '.join(self.tags))
@@ -1145,9 +1143,7 @@ class TestEdit(test_utils.TestCase):
         r = self.client.post(self.get_url('basic', True), data)
         eq_(r.status_code, 200)
 
-        doc = pq(r.content)
-
-        result = doc('#addon_tags_edit').eq(0).text()
+        result = pq(r.content)('#addon_tags_edit').eq(0).text()
 
         self.tags.sort()
         eq_(result, ', '.join(self.tags))
@@ -1183,8 +1179,6 @@ class TestEdit(test_utils.TestCase):
                     tags=', '.join(tags))
 
         r = self.client.post(self.get_url('basic', True), data)
-        eq_(r.status_code, 200)
-
         self.assertFormError(r, 'form', 'tags', 'You have %d too many tags.' %
                                                  (len(tags) - amo.MAX_TAGS))
 
@@ -1194,15 +1188,12 @@ class TestEdit(test_utils.TestCase):
                     summary=self.addon.summary)
 
         r = self.client.post(self.get_url('basic', True), data)
-        eq_(r.status_code, 200)
-
         self.assertFormError(r, 'form', 'name', 'This field is required.')
 
     def test_edit_basic_name_max_length(self):
         data = dict(name='xx' * 70, slug=self.addon.slug,
                     summary=self.addon.summary)
         r = self.client.post(self.get_url('basic', True), data)
-        eq_(r.status_code, 200)
         self.assertFormError(r, 'form', 'name',
                              'Ensure this value has at most 50 '
                              'characters (it has 140).')
@@ -1211,18 +1202,17 @@ class TestEdit(test_utils.TestCase):
         data = dict(name=self.addon.name, slug=self.addon.slug,
                     summary='x' * 251)
         r = self.client.post(self.get_url('basic', True), data)
-        eq_(r.status_code, 200)
         self.assertFormError(r, 'form', 'summary',
                              'Ensure this value has at most 250 '
                              'characters (it has 251).')
 
     def test_edit_details(self):
         data = dict(description='New description with <em>html</em>!',
-                    default_locale='es-ES',
+                    default_locale='en-US',
                     homepage='http://twitter.com/fligtarsmom')
 
         r = self.client.post(self.get_url('details', True), data)
-        eq_(r.status_code, 200)
+        eq_(r.context['form'].errors, {})
         addon = self.get_addon()
 
         for k in data:
@@ -1230,15 +1220,47 @@ class TestEdit(test_utils.TestCase):
 
     def test_edit_basic_homepage_optional(self):
         data = dict(description='New description with <em>html</em>!',
-                    default_locale='es-ES',
-                    homepage='')
+                    default_locale='en-US', homepage='')
 
         r = self.client.post(self.get_url('details', True), data)
-        eq_(r.status_code, 200)
+        eq_(r.context['form'].errors, {})
         addon = self.get_addon()
 
         for k in data:
             eq_(unicode(getattr(addon, k)), data[k])
+
+    def test_edit_default_locale_required_trans(self):
+        # name, summary, and description are required in the new locale.
+        description, homepage = map(unicode, [self.addon.description,
+                                              self.addon.homepage])
+        # TODO: description should get fixed up with the form.
+        fields = ['description', 'name', 'summary']
+        error = ('Before changing you default locale you must have a name, '
+                 'summary, and description in that locale. '
+                 'You are missing %s.')
+        missing = lambda f: error % ', '.join(map(repr, f))
+
+        d = dict(description=description, homepage=homepage,
+                 default_locale='fr')
+        r = self.client.post(self.get_url('details', True), d)
+        self.assertFormError(r, 'form', None, missing(fields))
+
+        # Now we have a name.
+        self.addon.name = {'fr': 'fr name'}
+        fields.remove('name')
+        r = self.client.post(self.get_url('details', True), d)
+        self.assertFormError(r, 'form', None, missing(fields))
+
+        # Now we have a summary.
+        self.addon.summary = {'fr': 'fr summary'}
+        fields.remove('summary')
+        r = self.client.post(self.get_url('details', True), d)
+        self.assertFormError(r, 'form', None, missing(fields))
+
+        # Now we're sending an fr description with the form.
+        d['description_fr'] = 'fr description'
+        r = self.client.post(self.get_url('details', True), d)
+        eq_(r.context['form'].errors, {})
 
     def test_edit_details_locale(self):
         addon = self.get_addon()
@@ -1246,16 +1268,14 @@ class TestEdit(test_utils.TestCase):
 
         r = self.client.get(self.get_url('details', False))
 
-        doc = pq(r.content)
-
-        eq_(doc('.addon_edit_locale').eq(0).text(), "English (US)")
+        eq_(pq(r.content)('.addon_edit_locale').eq(0).text(), "English (US)")
 
     def test_edit_support(self):
         data = dict(support_email='sjobs@apple.com',
                     support_url='http://apple.com/')
 
         r = self.client.post(self.get_url('support', True), data)
-        eq_(r.status_code, 200)
+        eq_(r.context['form'].errors, {})
         addon = self.get_addon()
 
         for k in data:
@@ -1271,12 +1291,10 @@ class TestEdit(test_utils.TestCase):
                         support_url=url)
 
             r = self.client.post(self.get_url('support', True), data)
-            eq_(r.status_code, 200)
+            eq_(r.context['form'].errors, {})
 
             r = self.client.get(self.get_url('support', False))
-            doc = pq(r.content)
-
-            result = doc('.addon_edit_gs').eq(0).text()
+            result = pq(r.content)('.addon_edit_gs').eq(0).text()
 
             result = re.sub('\W', '', result) if result else None
 
@@ -1287,7 +1305,7 @@ class TestEdit(test_utils.TestCase):
                     support_url='')
 
         r = self.client.post(self.get_url('support', True), data)
-        eq_(r.status_code, 200)
+        eq_(r.context['form'].errors, {})
         addon = self.get_addon()
 
         for k in data:
@@ -1298,7 +1316,7 @@ class TestEdit(test_utils.TestCase):
                     support_url='http://apple.com/')
 
         r = self.client.post(self.get_url('support', True), data)
-        eq_(r.status_code, 200)
+        eq_(r.context['form'].errors, {})
         addon = self.get_addon()
 
         for k in data:
@@ -1309,7 +1327,7 @@ class TestEdit(test_utils.TestCase):
         o = ActivityLog.objects
         eq_(o.count(), 0)
         r = self.client.post(self.get_url('technical', True), data)
-        eq_(r.status_code, 200)
+        eq_(r.context['form'].errors, {})
         eq_(o.filter(action=amo.LOG.EDIT_PROPERTIES.id).count(), 1)
 
     def test_technical_on(self):
@@ -1321,7 +1339,7 @@ class TestEdit(test_utils.TestCase):
                     view_source='on')
 
         r = self.client.post(self.get_url('technical', True), data)
-        eq_(r.status_code, 200)
+        eq_(r.context['form'].errors, {})
 
         addon = self.get_addon()
         for k in data:
@@ -1358,23 +1376,20 @@ class TestEdit(test_utils.TestCase):
         Addon.objects.get(id=3615).update(default_locale='en-US')
         for url in self.get_l10n_urls():
             r = self.client.get(url)
-            doc = pq(r.content)
-            eq_(doc('#l10n-menu').attr('data-default'), 'en-us')
+            eq_(pq(r.content)('#l10n-menu').attr('data-default'), 'en-us')
 
     def test_l10n_not_us(self):
         Addon.objects.get(id=3615).update(default_locale='fr')
         for url in self.get_l10n_urls():
             r = self.client.get(url)
-            doc = pq(r.content)
-            eq_(doc('#l10n-menu').attr('data-default'), 'fr')
+            eq_(pq(r.content)('#l10n-menu').attr('data-default'), 'fr')
 
     def test_l10n_not_us_id_url(self):
         Addon.objects.get(id=3615).update(default_locale='fr')
         for url in self.get_l10n_urls():
             url = '/id' + url[6:]
             r = self.client.get(url)
-            doc = pq(r.content)
-            eq_(doc('#l10n-menu').attr('data-default'), 'fr')
+            eq_(pq(r.content)('#l10n-menu').attr('data-default'), 'fr')
 
 
 class TestProfileBase(test_utils.TestCase):
