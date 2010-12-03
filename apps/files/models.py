@@ -147,9 +147,25 @@ class File(amo.models.ModelBase):
         return os.path.splitext(self.filename)[-1]
 
 
+def update_status(sender, instance, **kw):
+    if not kw.get('raw'):
+        try:
+            instance.version.addon.update_status(using='default')
+        except models.ObjectDoesNotExist:
+            pass
+
+models.signals.post_save.connect(update_status, sender=File,
+                                 dispatch_uid='version_update_status')
+
+models.signals.post_delete.connect(update_status, sender=File,
+                                   dispatch_uid='version_update_status')
+
+
 def cleanup_file(sender, instance, **kw):
     """ On delete of the file object from the database, unlink the file from
     the file system """
+    if kw.get('raw') or not instance.filename:
+        return
     try:
         filename = instance.file_path
     except models.ObjectDoesNotExist:
@@ -157,8 +173,8 @@ def cleanup_file(sender, instance, **kw):
     if os.path.exists(filename):
         os.remove(filename)
 
-models.signals.post_delete.connect(cleanup_file,
-            sender=File, dispatch_uid='cleanup_file')
+models.signals.post_delete.connect(cleanup_file, sender=File,
+                                   dispatch_uid='cleanup_file')
 
 
 class Approval(amo.models.ModelBase):

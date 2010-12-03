@@ -55,8 +55,8 @@ class TestFile(test_utils.TestCase):
         assert url.endswith(expected), url
 
     def test_delete(self):
-        """ Test that when the File object is deleted, it is removed from the
-        filesystem """
+        """Test that when the File object is deleted, it is removed from the
+        filesystem."""
         file = File.objects.get(pk=67442)
         filename = file.file_path
         if not os.path.exists(os.path.dirname(filename)):
@@ -76,6 +76,12 @@ class TestFile(test_utils.TestCase):
         file = File.objects.get(pk=74797)
         filename = file.file_path
         assert not os.path.exists(filename), 'File exists at: %s' % filename
+        file.delete()
+
+    def test_delete_signal(self):
+        """Test that if there's no filename, the signal is ok."""
+        file = File.objects.get(pk=67442)
+        file.update(filename='')
         file.delete()
 
     def test_latest_url(self):

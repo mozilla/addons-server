@@ -321,8 +321,8 @@ class TestDownloads(TestDownloadsBase):
         self.assert_served_locally(self.client.get(self.file_url))
 
     def test_public_addon_beta_file(self):
-        self.addon.update(status=amo.STATUS_PUBLIC)
         self.file.update(status=amo.STATUS_BETA)
+        self.addon.update(status=amo.STATUS_PUBLIC)
         self.assert_served_by_mirror(self.client.get(self.file_url))
 
     def test_beta_addon_beta_file(self):

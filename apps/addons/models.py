@@ -460,6 +460,10 @@ class Addon(amo.models.ModelBase):
         if not self.versions.using(using).count():
             self.update(status=amo.STATUS_NULL)
         elif not (self.versions.using(using)
+                               .filter(files__isnull=False)
+                               .count()):
+            self.update(status=amo.STATUS_NULL)
+        elif not (self.versions.using(using)
                                .filter(files__status=amo.STATUS_PUBLIC)
                                .count()):
             self.update(status=amo.STATUS_UNREVIEWED)

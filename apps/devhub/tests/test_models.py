@@ -112,6 +112,7 @@ class TestVersion(test_utils.TestCase):
     def setUp(self):
         self.addon = Addon.objects.get(pk=3615)
         self.version = Version.objects.get(pk=81551)
+        self.file = File.objects.get(pk=67442)
 
     def test_version_delete_status_null(self):
         self.version.delete()
@@ -145,3 +146,16 @@ class TestVersion(test_utils.TestCase):
         self.version.delete()
         eq_(self.addon.versions.count(), 1)
         eq_(Addon.objects.get(id=3615).status, amo.STATUS_UNREVIEWED)
+
+    def test_file_delete_status_null(self):
+        eq_(self.addon.versions.count(), 1)
+        self.file.delete()
+        eq_(self.addon.versions.count(), 1)
+        eq_(Addon.objects.get(pk=3615).status, amo.STATUS_NULL)
+
+    def test_file_delete_status_null_multiple(self):
+        version_two, file_two = self._extra_version_and_file(amo.STATUS_NULL)
+        self.file.delete()
+        eq_(self.addon.status, amo.STATUS_PUBLIC)
+        file_two.delete()
+        eq_(self.addon.status, amo.STATUS_NULL)
