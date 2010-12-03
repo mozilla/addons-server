@@ -2146,7 +2146,7 @@ class TestSubmitStep7(TestSubmitBase):
 
         # edit your developer profile...
         eq_(next_steps[1].attrib['href'],
-            reverse('users.edit') + '#user-profile')
+            reverse('devhub.addons.profile', args=[addon.id]))
 
         # keep up with your add-on's activity feed:
         eq_(next_steps[2].attrib['href'], reverse('devhub.feed_all'))
