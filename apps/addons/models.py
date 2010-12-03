@@ -553,7 +553,12 @@ class Addon(amo.models.ModelBase):
 
     @property
     def is_disabled(self):
-        return self.status == amo.STATUS_DISABLED
+        """True if this Addon is disabled.
+
+        It could be disabled by an admin or disabled by the developer
+        (aka deactivated)
+        """
+        return self.status == amo.STATUS_DISABLED or self.inactive
 
     def is_selfhosted(self):
         return self.status == amo.STATUS_LISTED

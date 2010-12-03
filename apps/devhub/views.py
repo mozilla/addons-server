@@ -175,7 +175,7 @@ def _get_activities(request, action):
 
 def _get_items(action, addons):
     filters = dict(updates=(amo.LOG.ADD_VERSION, amo.LOG.ADD_FILE_TO_VERSION),
-                   status=(amo.LOG.SET_INACTIVE, amo.LOG.UNSET_INACTIVE,
+                   status=(amo.LOG.USER_DEACTIVATE, amo.LOG.USER_ACTIVATE,
                            amo.LOG.CHANGE_STATUS, amo.LOG.APPROVE_VERSION,),
                    collections=(amo.LOG.ADD_TO_COLLECTION,
                             amo.LOG.REMOVE_FROM_COLLECTION,),
@@ -262,10 +262,17 @@ def delete(request, addon_id, addon):
 
 
 @dev_required
+def enable(request, addon_id, addon):
+    addon.update(inactive=False)
+    amo.log(amo.LOG.USER_ACTIVATE, addon)
+    return redirect('devhub.versions', addon_id)
+
+
+@dev_required
 @post_required
 def disable(request, addon_id, addon):
-    addon.update(status=amo.STATUS_DISABLED)
-    amo.log(amo.LOG.CHANGE_STATUS, addon.get_status_display(), addon)
+    addon.update(inactive=True)
+    amo.log(amo.LOG.USER_DEACTIVATE, addon)
     return redirect('devhub.versions', addon_id)
 
 
@@ -624,9 +631,34 @@ def version_list(request, addon_id, addon):
     qs = addon.versions.order_by('-created').transform(Version.transformer)
     versions = amo.utils.paginate(request, qs)
 
+    if addon.inactive:
+        # This is a special case pseudo status code
+        addon_status_code = 'disabled'
+    else:
+        lookup = {
+            amo.STATUS_PUBLIC: 'fully-approved',
+            amo.STATUS_BETA: 'beta',
+            amo.STATUS_UNREVIEWED: 'unreviewed',
+            amo.STATUS_DISABLED: 'disabled-by-admins',
+            amo.STATUS_NULL: 'null'
+        }
+        addon_status_code = lookup[addon.status]
+
+    # TODO(Kumar) this status list is incomplete
+    statuses = {
+        'fully-approved': _('This add-on has been <span>fully '
+                            'approved</span>.'),
+        'beta': _('This add-on is in <span>beta</span>.'),
+        'disabled': _('This add-on has been <span>disabled</span>.'),
+        'disabled-by-admins': _('This add-on has been <span>disabled by '
+                                'the admins</span>.'),
+        'unreviewed': _('This add-on is <span>awaiting full review</span>.'),
+        'null': _('This add-on is <span>incomplete</span>.'),
+    }
     data = {'addon': addon,
             'versions': versions,
-            'addon_status': amo.STATUS_CHOICES[addon.status],
+            'addon_status': statuses[addon_status_code],
+            'addon_status_code': addon_status_code
            }
 
     return jingo.render(request, 'devhub/addons/versions.html', data)

@@ -261,16 +261,26 @@ class AjaxTest(SphinxTestCase):
         eq_('[]', r.content)
 
 
-class AjaxDisabledAddonsTest(SphinxTestCase):
+class TestAdminDisabledAddons(SphinxTestCase):
     fixtures = ('base/addon_3615',)
 
     def setUp(self):
-        a = Addon.objects.get(pk=3615)
-        a.status = amo.STATUS_DISABLED
-        a.save()
-        super(AjaxDisabledAddonsTest, self).setUp()
+        a = Addon.objects.get(pk=3615).update(status=amo.STATUS_DISABLED)
+        super(TestAdminDisabledAddons, self).setUp()
 
-    def test_json(self):
+    def test_search(self):
+        r = self.client.get(reverse('search.ajax') + '?q=del')
+        eq_('[]', r.content)
+
+
+class TestUserDisabledAddons(SphinxTestCase):
+    fixtures = ('base/addon_3615',)
+
+    def setUp(self):
+        a = Addon.objects.get(pk=3615).update(inactive=True)
+        super(TestUserDisabledAddons, self).setUp()
+
+    def test_search(self):
         r = self.client.get(reverse('search.ajax') + '?q=del')
         eq_('[]', r.content)
 

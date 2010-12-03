@@ -71,16 +71,3 @@ def dev_files_status(files):
 
     return [(count, unicode(amo.STATUS_CHOICES[status])) for
             (status, count) in status_count.items()]
-
-
-@register.filter
-def status_css(status_id):
-    lookup = {
-        amo.STATUS_BETA: 'beta',
-        amo.STATUS_UNREVIEWED: 'unreviewed',
-        amo.STATUS_DISABLED: 'disabled',
-        amo.STATUS_NULL: 'null'
-    }
-    if status_id in lookup:
-        return 'version-%s' % lookup[status_id]
-    return ''

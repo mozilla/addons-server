@@ -56,7 +56,7 @@ def download_file(request, file_id, type=None):
     addon = get_object_or_404(Addon.objects.all().no_transforms(),
                               pk=file.version.addon_id)
 
-    if (addon.status == amo.STATUS_DISABLED
+    if ((addon.status == amo.STATUS_DISABLED or addon.inactive)
         and not acl.check_ownership(request, addon)):
         raise http.Http404()
 
