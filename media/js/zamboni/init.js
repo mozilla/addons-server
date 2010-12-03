@@ -51,7 +51,7 @@ function template(s) {
     return function(args) { return format(s, args); };
 }
 
-/* Fake the placeholder attribute since Firefox doesn't support it. */
+/* Fake the placeholder attribute since Firefox 3.6 doesn't support it. */
 jQuery.fn.placeholder = function(new_value) {
 
     if (new_value) {
@@ -104,30 +104,9 @@ var escape_ = function(s){
 };
 
 
-jQuery.fn.safeText = function() {
-    return escape_(this.text());
-};
-
-
 /* is ``key`` in obj? */
 _.haskey = function(obj, key) {
     return typeof obj[key] !== "undefined";
-};
-
-
-/* Turn a list of (key, value) pairs into an object. */
-_.dict = function(arr) {
-    var rv = {};
-    for (k in arr) {
-        var pair = arr[k];
-        rv[pair[0]] = pair[1];
-    }
-    return rv;
-};
-
-_.items = function(o) {
-    return _.zip(_.keys(o), _.values(o));
-
 };
 
 
