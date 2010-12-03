@@ -107,7 +107,7 @@ class TestThemes(test_utils.TestCase):
             category.save()
 
         self.base_url = reverse('browse.themes')
-        self.exp_url = urlparams(self.base_url)
+        self.exp_url = urlparams(self.base_url, unreviewed=True)
 
     def test_default_sort(self):
         """Default sort should be by popular."""

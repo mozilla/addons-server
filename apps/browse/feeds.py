@@ -81,7 +81,8 @@ class CategoriesRss(AddonFeedMixin, Feed):
 
     def items(self, category):
         """Return the Addons for this Category to be output as RSS <item>'s"""
-        addons, _ = addon_listing(self.request, [self.TYPE], default='updated')
+        addons, _, _ = addon_listing(self.request, [self.TYPE],
+                                     default='updated')
         if category:
             addons = addons.filter(categories__id=category.id)
         return addons[:30]
@@ -159,8 +160,8 @@ class SearchToolsRss(AddonFeedMixin, Feed):
         - when viewing categories or any other sorting, do not
           include extensions.
         """
-        addons, filter = addon_listing(self.request, self.TYPES,
-                                       SearchToolsFilter, default='popular')
+        addons, filter, unreviewed = addon_listing(self.request, self.TYPES,
+                                        SearchToolsFilter, default='popular')
         if self.category:
             addons = addons.filter(categories__id=self.category.id)
         return addons[:30]

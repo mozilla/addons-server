@@ -58,6 +58,14 @@ def addon_listing(request, addon_types, Filter=AddonFilter, default='popular'):
     # Set up the queryset and filtering for themes & extension listing pages.
     status = [amo.STATUS_PUBLIC]
 
+    if request.GET.get('unreviewed', False) and not settings.SANDBOX_PANIC:
+        unreviewed = 'on'
+    else:
+        unreviewed = None
+
+    if unreviewed:
+        status.append(amo.STATUS_UNREVIEWED)
+
     qs = (Addon.objects.listed(request.APP, *status)
                        .filter(type__in=addon_types))
 
@@ -65,7 +73,7 @@ def addon_listing(request, addon_types, Filter=AddonFilter, default='popular'):
         qs = qs.filter(_current_version__files__jetpack=True)
 
     filter = Filter(request, qs, 'sort', default)
-    return filter.qs, filter
+    return filter.qs, filter, unreviewed
 
 
 def _get_locales(addons):
@@ -126,7 +134,7 @@ def themes(request, category=None):
                                 type=amo.ADDON_THEME)
     categories = order_by_translation(q, 'name')
 
-    addons, filter = addon_listing(request, [amo.ADDON_THEME])
+    addons, filter, unreviewed = addon_listing(request, [amo.ADDON_THEME])
 
     if category is not None:
         try:
@@ -146,6 +154,7 @@ def themes(request, category=None):
                          'themes': themes, 'category': category,
                          'sorting': filter.field,
                          'sort_opts': filter.opts,
+                         'unreviewed': unreviewed,
                          'search_cat': search_cat})
 
 
@@ -159,7 +168,7 @@ def extensions(request, category=None):
     if 'sort' not in request.GET and category and category.count > 4:
         return category_landing(request, category)
 
-    addons, filter = addon_listing(request, [TYPE])
+    addons, filter, unreviewed = addon_listing(request, [TYPE])
 
     if category:
         addons = addons.filter(categories__id=category.id)
@@ -171,6 +180,7 @@ def extensions(request, category=None):
 
     return jingo.render(request, 'browse/extensions.html',
                         {'category': category, 'addons': addons,
+                         'unreviewed': unreviewed,
                          'sorting': filter.field,
                          'sort_opts': filter.opts,
                          'search_cat': search_cat})
@@ -375,7 +385,8 @@ def search_tools(request, category=None):
         if request.GET.get('sort', default) == 'featured':
             types.append(amo.ADDON_EXTENSION)
 
-    addons, filter = addon_listing(request, types, SearchToolsFilter, default)
+    addons, filter, unreviewed = addon_listing(
+        request, types, SearchToolsFilter, default)
 
     if category:
         category = get_object_or_404(qs, slug=category)
@@ -390,7 +401,8 @@ def search_tools(request, category=None):
     return jingo.render(request, 'browse/search_tools.html',
                         {'categories': categories, 'category': category,
                          'addons': addons, 'filter': filter,
-                         'search_extensions_filter': sidebar_ext})
+                         'search_extensions_filter': sidebar_ext,
+                         'unreviewed': unreviewed})
 
 
 def featured(request, category=None):

@@ -3,9 +3,24 @@
     <li>{{ _('Sort by:') }}</li>
     {% for value, title in sort_opts %}
       <li {{ value|class_selected(selected) }}>
-      <a href="{{ url_base|urlparams(sort=value) }}">
+      <a href="{{ url_base|urlparams(unreviewed=unreviewed, sort=value) }}">
         {{ title }}</a>
       </li>
     {% endfor %}
+    {% if show_unreviewed %}
+      <li class="perpage">
+        {% if not settings.SANDBOX_PANIC %}
+        <form action="" method="get" class="go">
+          <input type="hidden" name="sort" value="{{ selected }}">
+          <label>
+            <input type="checkbox" name="unreviewed"
+                  {{ unreviewed|ifeq("on", "checked") }}>
+            {{ _('Show unreviewed add-ons') }}
+          </label>
+          <button type="submit">{{ _('Go') }}</button>
+        </form>
+        {% endif %}
+      </li>
+    {% endif %}
   </ul>
 </div>

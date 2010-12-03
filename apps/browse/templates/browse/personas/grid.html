@@ -9,7 +9,8 @@
   </header>
   <div class="featured listing">
     <div class="featured-inner">
-      {{ addon_listing_header(url_base, filter.opts, filter.field) }}
+      {{ addon_listing_header(url_base, filter.opts, filter.field,
+                              show_unreviewed=False) }}
       {{ persona_grid(addons.object_list) }}
       <div class="listing-footer">
         {{ addons|paginator }}

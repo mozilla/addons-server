@@ -39,7 +39,8 @@
     </div>
   {% endif %}
   <div class="featured listing">
-    {{ addon_listing_header(base_url, filter.opts, filter.field) }}
+    {{ addon_listing_header(base_url, filter.opts, filter.field,
+                            show_unreviewed=False) }}
     <div class="featured-inner">
       {{ collection_listing_items(collections.object_list,
                                   show_weekly=filter.field == 'popular',
