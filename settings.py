@@ -345,12 +345,12 @@ MINIFY_BUNDLES = {
             'css/main-mozilla.css',
             'css/jquery-lightbox.css',
             'css/autocomplete.css',
-            'css/global/headerfooter.css',
         ),
         'zamboni/z': (
             'css/zamboni/zamboni.css',
             'css/zamboni/tags.css',
             'css/zamboni/tabs.css',
+            'css/global/headerfooter.css',
         ),
         'zamboni/discovery-pane': (
             'css/zamboni/discovery-pane.css',
