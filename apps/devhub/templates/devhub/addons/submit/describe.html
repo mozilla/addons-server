@@ -1,7 +1,7 @@
 {% extends "devhub/addons/submit/base.html" %}
 
 {% block primary %}
-<section class="primary addon-submission-process" id="submit-describe" role="main">
+<section class="addon-submission-process" id="submit-describe" role="main">
   <div>
     <h3>{{ _('Step 3. Describe your addon') }}</h3>
     <form method="post" class="item" action="">
@@ -33,6 +33,9 @@
           {% trans %}
             This summary will be shown with your add-on in listings and searches.
           {% endtrans %}
+          <div id="word-count" class="word-count"
+               data-maxlength="{{ form.summary.field.max_length }}">
+          </div>
         </div>
       </div>
       <div class="addon-submission-field">

@@ -30,6 +30,7 @@ $(document).ready(function() {
     if($('.addon-submission-process').length) {
         initSubmit();
         initLicenseFields();
+        initWordCount();
     }
 
     // Upload form submit
@@ -603,6 +604,17 @@ function initPayments() {
             $(".thankyou-note").hide();
         }
     }).change();
+}
+
+function initWordCount() {
+    var countWords = function(){
+       $wc = $('#word-count');
+       left = $wc.attr('data-maxlength') - $(this).val().length;
+       $wc.html(format(gettext('<strong>{0}</strong> characters left'),
+                       [left])).toggleClass('error', left < 0);
+    };
+
+    $('#id_summary_0').bind('keyup blur', countWords).trigger('blur');
 }
 
 function initLicenseFields() {

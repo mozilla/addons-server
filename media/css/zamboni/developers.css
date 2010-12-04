@@ -169,7 +169,15 @@ ul.refinements:last-child {
 }
 
 #slug_edit a {
-    font-size:10px;
+    font-size: 10px;
+}
+
+.word-count {
+    float: right;
+}
+
+.html-rtl .word-count {
+    float: left;
 }
 
 .devhub-form label {
