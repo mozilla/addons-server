@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% set title = _('Slow Performing Add-ons') %}
-{% set worst = (perfs[addons[0].id].average - baseline) / baseline %}
+{% set worst = addons[0].ts_slowness %}
 {% set app = APP.pretty %}
 
 {% block title %}{{ page_title(title) }}{% endblock %}
@@ -43,15 +43,14 @@
     <tbody>
       {% for addon in addons %}
       <tr>
-        {% set perf = perfs[addon.id] %}
         <td># {{ loop.index }}</td>
         <td>
           <img src="{{ addon.icon_url }}" class="icon">
           <a href="{{ addon.get_url_path() }}">{{ addon.name }}</a>
           {{ _('by') }} {{ users_list(addon.listed_authors) }}
         </td>
-        {% with num = (perf.average - baseline) / baseline %}
-          <td>{{ _('{0}% slower')|f((100 * num)|int) }}</td>
+        {% with num = addon.ts_slowness %}
+          <td>{{ _('{0}% slower')|f(num|int) }}</td>
           <td><div class="bar" style="background-color: red; width: {{ num / worst * 100 }}%">&nbsp</div></td>
         {% endwith %}
       </tr>

@@ -24,7 +24,7 @@
         "model": "perf.performance",
         "fields": {
             "created": "2010-11-18 14:53:11",
-            "average": 5.2117100000000001,
+            "average": 5.21,
             "modified": "2010-11-18 14:53:11",
             "appversion": 1,
             "test": "ts",
@@ -37,12 +37,25 @@
         "model": "perf.performance",
         "fields": {
             "created": "2010-11-18 14:53:11",
-            "average": 14.849299999999999,
+            "average": 14.84,
             "modified": "2010-11-18 14:53:11",
             "appversion": 1,
             "test": "ts",
             "osversion": 1,
             "addon": 5299
+        }
+    },
+    {
+        "pk": 4,
+        "model": "perf.performance",
+        "fields": {
+            "created": "2010-11-18 14:53:11",
+            "average": 1.2,
+            "modified": "2010-11-18 14:53:11",
+            "appversion": 1,
+            "test": "ts",
+            "osversion": 1,
+            "addon": null
         }
     }
 ]
