@@ -145,6 +145,9 @@ class Addon(amo.models.ModelBase):
                                               db_column='sharecount')
     last_updated = models.DateTimeField(db_index=True, null=True,
         help_text='Last time this add-on had a file/version update')
+    ts_slowness = models.FloatField(db_index=True, null=True,
+        help_text='How much slower this add-on makes browser ts tests. '
+                  'Read as {addon.ts_slowness}% slower.')
 
     inactive = models.BooleanField(default=False, db_index=True)
     trusted = models.BooleanField(default=False)

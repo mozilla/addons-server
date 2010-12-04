@@ -34,7 +34,7 @@ class Performance(amo.models.ModelBase):
 
     TEST_CHOICES = [('ts', 'Startup Time')]
 
-    addon = models.ForeignKey('addons.Addon')
+    addon = models.ForeignKey('addons.Addon', null=True)
     average = models.FloatField(default=0, db_index=True)
     appversion = models.ForeignKey(PerformanceAppVersions)
     osversion = models.ForeignKey(PerformanceOSVersion)
