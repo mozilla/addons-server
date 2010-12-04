@@ -35,6 +35,13 @@ li.usertag {
     overflow: hidden;
 }
 
+html {
+    background-color: #fff;
+    background-image: url(../../img/zamboni/global/bg-header.png);
+    background-position: left top;
+    background-repeat: repeat-x;
+}
+
 header {
     display: block;
 }

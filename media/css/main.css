@@ -48,13 +48,6 @@ table {
 
 /* @end */
 
-html {
-    background-color: #fff;
-    background-image: url(../../img/zamboni/global/bg-header.png);
-    background-position: left top;
-    background-repeat: repeat-x;
-}
-
 body {
     margin: 0 auto;
     color:#444444;
