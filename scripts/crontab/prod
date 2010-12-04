@@ -44,7 +44,8 @@ HOME = /tmp
 30 8 * * * apache cd /data/amo/www/addons.mozilla.org-remora/bin; /usr/bin/python26 maintenance.py personas_adu
 30 9 * * * apache cd /data/amo/www/addons.mozilla.org-remora/bin; /usr/bin/python26 maintenance.py share_count_totals
 30 10 * * * apache cd /data/amo/www/addons.mozilla.org-remora/bin; /usr/bin/python26 build-recommendations.py addons
-30 16 * * * apache cd /data/amo_python/src/prod/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron collection_meta
+30 20 * * * apache cd /data/amo_python/src/prod/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron update_perf
+30 23 * * * apache cd /data/amo_python/src/prod/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron collection_meta
 
 #Once per day after 2100 PST (after metrics is done)
 35 21 * * * apache cd /data/amo_python/src/prod/zamboni; /data/virtualenvs/zamboni/bin/python manage.py cron update_addon_download_totals

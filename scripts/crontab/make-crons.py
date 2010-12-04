@@ -85,7 +85,8 @@ HOME = /tmp
 30 8 * * * $REMORA; /usr/bin/python26 maintenance.py personas_adu
 30 9 * * * $REMORA; /usr/bin/python26 maintenance.py share_count_totals
 30 10 * * * $REMORA; /usr/bin/python26 build-recommendations.py addons
-30 16 * * * $Z_CRON collection_meta
+30 20 * * * $Z_CRON update_perf
+30 23 * * * $Z_CRON collection_meta
 
 #Once per day after 2100 PST (after metrics is done)
 35 21 * * * $Z_CRON update_addon_download_totals
