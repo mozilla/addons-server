@@ -630,7 +630,7 @@ url(../../img/zamboni/global/header-logos.png) 15px 0 no-repeat;
 }
 
 #social-footer a:after {
-    content: ' »';
+    content: ' \00bb';
 }
 
 #social-footer a:link,
