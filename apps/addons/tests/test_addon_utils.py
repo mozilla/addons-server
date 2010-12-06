@@ -30,3 +30,9 @@ class TestReverseNameLookup(test_utils.TestCase):
         self.addon.save()
         eq_(ReverseNameLookup.get('Delicious Bookmarks'), None)
         eq_(ReverseNameLookup.get('boo'), 3615)
+
+    def test_get_strip(self):
+        eq_(ReverseNameLookup.get('Delicious Bookmarks   '), 3615)
+
+    def test_get_case(self):
+        eq_(ReverseNameLookup.get('delicious bookmarks'), 3615)

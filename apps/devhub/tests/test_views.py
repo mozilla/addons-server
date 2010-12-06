@@ -18,6 +18,7 @@ import amo
 import files.tests
 import paypal
 from amo.urlresolvers import reverse
+from addons import cron
 from addons.models import Addon, AddonUser, Charity
 from addons.utils import ReverseNameLookup
 from applications.models import Application, AppVersion
@@ -2082,6 +2083,7 @@ class TestSubmitStep3(test_utils.TestCase):
         assert self.client.login(username='del@icio.us', password='password')
         SubmitStep.objects.create(addon_id=3615, step=3)
         self._redis = mock_redis()
+        cron.build_reverse_name_lookup()
 
     def tearDown(self):
         reset_redis(self._redis)
@@ -2097,6 +2099,24 @@ class TestSubmitStep3(test_utils.TestCase):
         r = self.client.post(self.url, d)
         eq_(r.status_code, 302)
         eq_(SubmitStep.objects.get(addon=3615).step, 4)
+
+    def test_submit_name_unique(self):
+        # Make sure name is unique.
+        r = self.client.post(self.url, {'name': 'Cooliris'})
+        error = 'This add-on name is already in use. Please choose another.'
+        self.assertFormError(r, 'form', 'name', error)
+
+    def test_submit_name_unique_strip(self):
+        # Make sure we can't sneak in a name by adding a space or two.
+        r = self.client.post(self.url, {'name': '  Cooliris  '})
+        error = 'This add-on name is already in use. Please choose another.'
+        self.assertFormError(r, 'form', 'name', error)
+
+    def test_submit_name_unique_case(self):
+        # Make sure unique names aren't case sensitive.
+        r = self.client.post(self.url, {'name': 'cooliris'})
+        error = 'This add-on name is already in use. Please choose another.'
+        self.assertFormError(r, 'form', 'name', error)
 
     def test_submit_name_required(self):
         # Make sure name is required.

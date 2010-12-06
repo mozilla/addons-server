@@ -47,6 +47,7 @@ class ReverseNameLookup(object):
     @classmethod
     @add_redis
     def add(cls, redis, pipe, name, addon_id):
+        name = name.lower().strip()
         hash = safe_key(name)
         pipe.set('%s:%s' % (cls.prefix, hash), addon_id)
         pipe.sadd('%s:%d' % (cls.prefix, addon_id), hash)
@@ -54,6 +55,7 @@ class ReverseNameLookup(object):
     @classmethod
     @add_redis
     def get(cls, redis, pipe, key):
+        key = key.lower().strip()
         val = redis.get('%s:%s' % (cls.prefix, safe_key(key)))
         if val:
             return int(val)
@@ -66,8 +68,7 @@ class ReverseNameLookup(object):
                         .values('localized_string', flat=True))
         for translation in translations:
             if translation:
-                cls.add(translation.localized_string, addon.id,
-                        pipe=True)
+                cls.add(translation.localized_string, addon.id, pipe=True)
 
     @classmethod
     @add_redis

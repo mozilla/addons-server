@@ -24,6 +24,7 @@
           {{ settings.SITE_URL }}/&hellip;/<span id="slug_value"></span>
           <a id="edit_slug" href="#">{{ _('Edit') }}</a>
         </span>
+        {{ form.slug.errors|safe }}
       </div>
       <div class="addon-submission-field">
         <label>{{ _('Provide a brief summary of your add-on:') }}</label>
