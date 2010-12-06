@@ -3439,18 +3439,12 @@ background-position:left -303px;
 
 /* @end */
 
-/* @group Header */
-
-.html-rtl #header #title {
-    direction: ltr;
-    text-align: right;
-}
-
 /* @group Stats */
 
 .html-rtl .stats {
-    text-align: left;
-    float: left;
+    text-align: right;
+    float: right;
+    margin: -46px 80px 0 0;
 }
 
 .html-rtl .stats li {
@@ -3474,24 +3468,6 @@ background-position:left -303px;
 
 /* @end */
 
-/* @group Brand */
-
-.html-rtl #brand {
-    left: auto;
-    right: 0;
-}
-
-.html-rtl #brand a:link,
-.html-rtl #brand a:visited,
-.html-rtl #brand a:hover,
-.html-rtl #brand a:focus,
-.html-rtl #brand a:active {
-    background-position: top right;
-    text-indent: 5000px;
-}
-
-/* @end */
-
 /* @group Aux nav */
 
 .html-rtl #aux-nav {
@@ -3503,38 +3479,6 @@ background-position:left -303px;
 }
 
 /* @end */
-
-/* @group Footer */
-
-.html-rtl #footer .primary {
-    float: right;
-    background-position: right 70px;
-}
-.html-rtl #footer .secondary {
-    float: left;
-    text-align: left;
-}
-.html-rtl #footer p {
-    margin-right: 60px;
-    margin-left: 1em;
-}
-.html-rtl #footer ul {
-    margin-right: 60px;
-    margin-left: 1.273em;
-}
-.html-rtl #footer ul li {
-    display: inline;
-    margin-right: 0;
-    margin-left: 1em;
-}
-.html-rtl #footer .disclaimer {
-    margin-left: 1.273em;
-    margin-right: 60px;
-}
-
-.html-rtl #footer .languages {
-    float: left;
-}
 
 .html-rtl .stars {
     float: right;

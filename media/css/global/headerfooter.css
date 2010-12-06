@@ -343,6 +343,11 @@ div.header-search {
     float: right;
 }
 
+.html-rtl div.header-search {
+    clear: left;
+    float: left;
+}
+
 div.header-search input.text {
     width: 285px;
 }
@@ -617,6 +622,11 @@ url(../../img/zamboni/global/header-logos.png) 15px 0 no-repeat;
     position: absolute;
     right: 25px;
     top: -64px;
+}
+
+.html-rtl #footer-right img {
+    right: auto;
+    left: 25px;
 }
 
 #social-footer {
