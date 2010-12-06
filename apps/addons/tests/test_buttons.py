@@ -329,10 +329,10 @@ class TestButton(ButtonTest):
         collection = Mock()
         collection.uuid = 'xxx'
         b = self.get_button(collection=collection)
-        eq_(b.fix_link('foo.com'), 'foo.com?collection=xxx')
+        eq_(b.fix_link('foo.com'), 'foo.com?collection_id=xxx')
 
         b = self.get_button(collection=collection, src='src')
-        eq_(b.fix_link('foo.com'), 'foo.com?src=src&collection=xxx')
+        eq_(b.fix_link('foo.com'), 'foo.com?src=src&collection_id=xxx')
 
     def test_links(self):
         self.version.all_files = self.platform_files
