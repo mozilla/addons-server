@@ -108,7 +108,7 @@
       {{ csrf() }}
       <input type="hidden" name="version_id" class="version_id">
       <input type="hidden" name="addon_id" class="addon_id" value="{{ addon.id }}">
-      <button type="submit">{{ _('Delete Add-on Version') }}</button>
+      <button type="submit" class="delete-button">{{ _('Delete Add-on Version') }}</button>
       {{ _('or') }} <a href="#" class="close">{{ _('Cancel') }}</a>
     </form>
   </div>
