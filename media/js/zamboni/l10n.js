@@ -146,8 +146,8 @@ $(document).ready(function () {
         $("#change-locale").text($(format("#locale-popup [href$={0}]", [lang])).first().text());
         $(".trans").each(function () {
             var $el = $(this),
-                field = $el.attr('data-name');
-                label = $(format("label[for={0}]",[field]));
+                field = $el.attr('data-name'),
+                label = $(format("label[data-for={0}]",[field]));
             if (!$el.children(format("[lang={0}]",[lang])).length) {
                 var $ni = $el.children(format("[lang={0}]",[dl])).clone();
                 $ni.attr('id',format('id_{0}_{1}',[field,lang])).addClass("cloned")
@@ -158,8 +158,10 @@ $(document).ready(function () {
             if (label.length) {
                 label.children(".locale").remove();
                 label.append(format("<span class='locale'>{0}</span>",[$("#change-locale").text()]));
+                label_for = $el.children(format("[lang={0}]",[lang])).attr('id');
+                label.attr('for', label_for);
             }
-        
+
         });
         $(format(".trans [lang!={0}]", [currentLocale])).hide();
         $(format(".trans [lang={0}]", [lang])).show();
@@ -172,9 +174,10 @@ $(document).ready(function () {
         });
         locales = _.keys(seen_locales);
     }
-    
+
     z.refreshL10n = function(lang) {
         updateLocale(lang);
     };
     updateLocale();
 });
+

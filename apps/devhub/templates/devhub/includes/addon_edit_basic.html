@@ -15,7 +15,7 @@
         <caption>{{ _('Basic Information for {0}')|f(addon.name) }}</caption>
         <tbody>
           <tr>
-            <th><label for="name">{{ _("Name") }}</label></th>
+            <th><label data-for="name">{{ _("Name") }}</label></th>
             <td>
               {% if editable %}
                 {{ form.name|safe }}
@@ -44,7 +44,7 @@
           </tr>
           <tr>
             <th>
-              <label for="summary">{{ _("Summary") }}</label>
+              <label data-for="summary">{{ _("Summary") }}</label>
               {{ tip(None,
                  _("A short explanation of your add-on's basic functionality
                     that is displayed in search and browse listings, as well as
