@@ -630,37 +630,8 @@ def version_add_file(request, addon_id, addon, version_id):
 def version_list(request, addon_id, addon):
     qs = addon.versions.order_by('-created').transform(Version.transformer)
     versions = amo.utils.paginate(request, qs)
-
-    if addon.inactive:
-        # This is a special case pseudo status code
-        addon_status_code = 'disabled'
-    else:
-        lookup = {
-            amo.STATUS_PUBLIC: 'fully-approved',
-            amo.STATUS_BETA: 'beta',
-            amo.STATUS_UNREVIEWED: 'unreviewed',
-            amo.STATUS_DISABLED: 'disabled-by-admins',
-            amo.STATUS_NULL: 'null'
-        }
-        addon_status_code = lookup[addon.status]
-
-    # TODO(Kumar) this status list is incomplete
-    statuses = {
-        'fully-approved': _('This add-on has been <span>fully '
-                            'approved</span>.'),
-        'beta': _('This add-on is in <span>beta</span>.'),
-        'disabled': _('This add-on has been <span>disabled</span>.'),
-        'disabled-by-admins': _('This add-on has been <span>disabled by '
-                                'the admins</span>.'),
-        'unreviewed': _('This add-on is <span>awaiting full review</span>.'),
-        'null': _('This add-on is <span>incomplete</span>.'),
-    }
     data = {'addon': addon,
-            'versions': versions,
-            'addon_status': statuses[addon_status_code],
-            'addon_status_code': addon_status_code
-           }
-
+            'versions': versions}
     return jingo.render(request, 'devhub/addons/versions.html', data)
 
 

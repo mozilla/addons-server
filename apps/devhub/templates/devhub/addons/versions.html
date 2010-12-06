@@ -9,11 +9,11 @@
   <h2>{{ title }}</h2>
 </header>
 <section id="edit-addon" class="primary devhub-form" role="main">
-
   <h3>{{ _('Current Status') }}</h3>
   <div class="item" id="version-status">
     <div>
-      <strong class="version-status version-{{ addon_status_code }}">{{ addon_status|safe }}</strong>
+      {% set status_code, status = addon_status(addon) %}
+      <strong class="version-status version-{{ status_code }}">{{ status|safe }}</strong>
 
       {# TODO(?): This should eventually have text describing the status, as
          well as a link to more information about it. #}
@@ -113,7 +113,7 @@
     </form>
   </div>
 
-  {% if not addon.inactive %}
+  {% if not addon.disabled_by_user %}
   <div id="modal-disable" class="modal">
     <form method="post" action="{{ url('devhub.addons.disable', addon.id) }}">
       <h3>{{ _('Disable Add-on') }}</h3>
