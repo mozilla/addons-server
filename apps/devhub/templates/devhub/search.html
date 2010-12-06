@@ -1,12 +1,10 @@
 {% set search_form = SearchForm(request) %}
-<form id="search-form" action="{{ remora_url('/developers/search') }}">
-  <div class="basic" id="search-query">
-    <input id="query" type="text" title="search" name="q"
-           {% if not search_form.q.data %}class="placeholder"{% endif %}
-           value="{{ search_form.q.data or '' }}"
+<form action="{{ remora_url('/developers/search') }}" method="get">
+  <span class="wrap"> 
+    <input type="text" name="q"
+           class="text {% if not search_form.q.data %}placeholder{% endif %}"
+           value="{{ search_form.q.data or '' }}" required="required"
            placeholder="{{ _('Search developer documentation') }}">
-    <button id="search-submit" type="submit">
-      <img src="{{ MEDIA_URL }}img/amo2009/blank.gif">
-    </button>
-  </div> {# search-query #}
+  </span> {# search-query #}
+  <input type="image" class="submit go-button" src="{{ settings.MEDIA_URL }}img/zamboni/global/btn-search.png" title="{{ _('Search') }}" alt="{{ _('Search') }}" />
 </form>
