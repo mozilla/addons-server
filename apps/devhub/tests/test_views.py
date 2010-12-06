@@ -1711,6 +1711,56 @@ class TestVersion(test_utils.TestCase):
         assert not doc('#modal-disable')
         assert not doc('#disable-addon')
 
+    def test_cancel_wrong_status(self):
+        cancel_url = reverse('devhub.addons.cancel', args=[3615])
+        for status in amo.STATUS_CHOICES:
+            if status in amo.STATUS_UNDER_REVIEW:
+                continue
+
+            self.addon.update(status=status)
+            self.client.post(cancel_url)
+            eq_(Addon.objects.get(id=3615).status, status)
+
+    def test_cancel(self):
+        cancel_url = reverse('devhub.addons.cancel', args=[3615])
+        for status in amo.STATUS_CHOICES:
+            if status not in amo.STATUS_UNDER_REVIEW:
+                continue
+
+            self.addon.update(status=status, highest_status=amo.STATUS_BETA)
+            self.client.post(cancel_url)
+            eq_(Addon.objects.get(id=3615).status, amo.STATUS_BETA)
+
+    def test_not_cancel(self):
+        self.client.logout()
+        cancel_url = reverse('devhub.addons.cancel', args=[3615])
+        eq_(self.addon.status, amo.STATUS_PUBLIC)
+        res = self.client.post(cancel_url)
+        eq_(res.status_code, 302)
+        eq_(Addon.objects.get(id=3615).status, amo.STATUS_PUBLIC)
+
+    def test_cancel_button(self):
+        for status in amo.STATUS_CHOICES:
+            if status not in amo.STATUS_UNDER_REVIEW:
+                continue
+
+            self.addon.update(status=status)
+            res = self.client.get(self.url)
+            doc = pq(res.content)
+            assert doc('#cancel-review')
+            assert doc('#modal-cancel')
+
+    def test_not_cancel_button(self):
+        for status in amo.STATUS_CHOICES:
+            if status in amo.STATUS_UNDER_REVIEW:
+                continue
+
+            self.addon.update(status=status)
+            res = self.client.get(self.url)
+            doc = pq(res.content)
+            assert not doc('#cancel-review')
+            assert not doc('#modal-cancel')
+
 
 class TestVersionEdit(test_utils.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615',

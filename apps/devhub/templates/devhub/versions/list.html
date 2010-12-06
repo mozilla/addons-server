@@ -50,7 +50,7 @@
       {% endif %}
 
       <div class="version-status-actions">
-        {% if not addon.is_disabled and amo.status in amo.STATUS_UNDER_REVIEW %}
+        {% if not addon.is_disabled and addon.is_under_review %}
           <a href="#" id="cancel-review">{{ _('Cancel Review Request') }}</a> &middot;
         {% endif %}
         {% if addon.disabled_by_user %}
@@ -168,13 +168,15 @@
   </div>
   {% endif %}
 
+  {% if not addon.is_disabled and addon.is_under_review %}
   <div id="modal-cancel" class="modal">
-    <form method="post" action="">
+    <form method="post" action="{{ url('devhub.addons.cancel', addon.id) }}">
       <h3>{{ _('Cancel Review Request') }}</h3>
       <p>
         {% trans %}
-          Canceling your review request will disable your add-on.  If you'd prefer
-          to have another version reviewed, simply upload the new version instead.
+          Canceling your review request will reset the addons status.
+          If you'd prefer to have another
+          version reviewed, simply upload the new version instead.
         {% endtrans %}
       </p>
       <p>
@@ -188,6 +190,7 @@
       {{ _('or') }} <a href="#" class="close">{{ _('Close') }}</a>
     </form>
   </div>
+  {% endif %}
 </div>
 
 {% include "devhub/includes/addons_edit_nav.html" %}

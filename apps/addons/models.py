@@ -583,6 +583,10 @@ class Addon(amo.models.ModelBase):
     def is_selfhosted(self):
         return self.status == amo.STATUS_LISTED
 
+    @property
+    def is_under_review(self):
+        return self.status in amo.STATUS_UNDER_REVIEW
+
     def is_unreviewed(self):
         return self.status in amo.UNREVIEWED_STATUSES
 
