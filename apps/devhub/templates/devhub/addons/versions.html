@@ -3,52 +3,33 @@
 {% set title = _('Versions') %}
 {% block title %}{{ dev_page_title(title, addon) }}{% endblock %}
 
-{% macro display_status(status, status_id) %}
-
-  {# TODO(gkoberger): There are a lot of things wrong with this; this whole
-                      macro will be replaced once the status flags are redone.
-                      I didn't want to bother "doing it right", though, when I'd
-                      just have to change it in a few days #}
-  <div>
-    <strong class="version-status {{ status_id|status_css }}">
-      {# L10n: The status of the addon #}
-      {% trans %}
-        This add-on is <span>{{ status }}</span>.
-      {% endtrans %}
-    </strong>
-
-    {# TODO(?): This should eventually have text describing the status, as
-       well as a link to more information about it. #}
-
-    <div class="version-status-actions">
-      {# TODO(gkoberger): 'if' statements to decide what's shown; but wait until
-                          the status flags are done #}
-      <a href="#" id="cancel-review">{{ _('Cancel Review Request') }}</a> &middot;
-      {% if not addon.is_disabled %}<a href="#" id="disable-addon">{{ _('Disable Add-on') }}</a> &middot;{% endif %}
-      <a href="#" id="delete-addon">{{ _('Delete Add-on') }}</a>
-    </div>
-  </div>
-{% endmacro %}
-
 {% block content %}
 <header>
   {{ dev_breadcrumbs(addon, items=[(None, title)]) }}
   <h2>{{ title }}</h2>
 </header>
 <section id="edit-addon" class="primary devhub-form" role="main">
-
   <h3>{{ _('Current Status') }}</h3>
   <div class="item" id="version-status">
+    <div>
+      {% set status_code, status = addon_status(addon) %}
+      <strong class="version-status version-{{ status_code }}">{{ status|safe }}</strong>
 
-    {{ display_status(status=addon_status, status_id=addon.status) }}
+      {# TODO(?): This should eventually have text describing the status, as
+         well as a link to more information about it. #}
 
-    {% if addon.inactive %}
-      {{ display_status(status=_('Inactive')) }}
-    {% endif %}
-
-    {% if addon.trusted %}
-      {{ display_status(status=_('Trusted')) }}
-    {% endif %}
+      <div class="version-status-actions">
+        {# TODO(gkoberger): 'if' statements to decide what's shown; but wait until
+                            the status flags are done #}
+        <a href="#" id="cancel-review">{{ _('Cancel Review Request') }}</a> &middot;
+        {% if addon.disabled_by_user %}
+          <a href="{{ url('devhub.addons.enable', addon.id) }}" id="enable-addon">{{ _('Enable Add-on') }}</a> &middot;
+        {% else %}
+          <a href="#" id="disable-addon">{{ _('Disable Add-on') }}</a> &middot;
+        {% endif %}
+        <a href="#" id="delete-addon">{{ _('Delete Add-on') }}</a>
+      </div>
+    </div>
   </div>
 
   <h3>{{ _('Version History') }}</h3>
@@ -132,7 +113,7 @@
     </form>
   </div>
 
-  {% if not addon.is_disabled %}
+  {% if not addon.disabled_by_user %}
   <div id="modal-disable" class="modal">
     <form method="post" action="{{ url('devhub.addons.disable', addon.id) }}">
       <h3>{{ _('Disable Add-on') }}</h3>

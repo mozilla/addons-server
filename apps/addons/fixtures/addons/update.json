@@ -10,7 +10,7 @@
       "enable_thankyou": false,
       "total_downloads": 0,
       "developer_comments": null,
-      "inactive": false,
+      "disabled_by_user": false,
       "average_daily_downloads": 0,
       "show_beta": true,
       "admin_review_type": 1,

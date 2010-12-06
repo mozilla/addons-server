@@ -81,7 +81,7 @@ class TestActivity(HubTest):
 
     def log_status(self, num):
         for i in xrange(num):
-            amo.log(amo.LOG.SET_INACTIVE, self.addon)
+            amo.log(amo.LOG.USER_DISABLE, self.addon)
 
     def log_collection(self, num):
         for i in xrange(num):
@@ -327,13 +327,13 @@ class TestDashboard(HubTest):
         a_pk = self.clone_addon(1)[0]
 
         # when Active and Public show statistics
-        Addon.objects.get(pk=a_pk).update(inactive=False,
+        Addon.objects.get(pk=a_pk).update(disabled_by_user=False,
                                           status=amo.STATUS_PUBLIC)
         links = self.get_action_links(a_pk)
         assert 'Statistics' in links, ('Unexpected: %r' % links)
 
         # when Active and Incomplete hide statistics
-        Addon.objects.get(pk=a_pk).update(inactive=False,
+        Addon.objects.get(pk=a_pk).update(disabled_by_user=False,
                                           status=amo.STATUS_NULL)
         links = self.get_action_links(a_pk)
         assert 'Statistics' not in links, ('Unexpected: %r' % links)
@@ -1562,11 +1562,13 @@ class TestVersion(test_utils.TestCase):
 
     def setUp(self):
         assert self.client.login(username='del@icio.us', password='password')
+        self.user = UserProfile.objects.get(email='del@icio.us')
         self.addon = Addon.objects.get(id=3615)
         self.version = Version.objects.get(id=81551)
         self.url = reverse('devhub.versions', args=[3615])
 
         self.disable_url = reverse('devhub.addons.disable', args=[3615])
+        self.enable_url = reverse('devhub.addons.enable', args=[3615])
         self.delete_url = reverse('devhub.versions.delete', args=[3615])
         self.delete_data = {'addon_id': self.addon.pk,
                             'version_id': self.version.pk}
@@ -1584,16 +1586,15 @@ class TestVersion(test_utils.TestCase):
         self.addon.status = amo.STATUS_DISABLED
         self.addon.save()
         doc = get_doc()
-        assert doc('.version-status.version-disabled')
-        status = doc('strong.version-status').text()
-        assert unicode(amo.STATUS_CHOICES[amo.STATUS_DISABLED]) in status, (
-                                            'Unexpected status: %r' % status)
+        assert doc('.version-status.version-disabled-by-admins')
+        eq_(doc('strong.version-status').text(),
+            'This add-on has been disabled by the admins .')
 
-        self.addon.inactive = True
+        self.addon.disabled_by_user = True
         self.addon.save()
         doc = get_doc()
-        status = doc('strong.version-status').text()
-        assert 'Inactive' in status, ('Unexpected status: %r' % status)
+        eq_(doc('strong.version-status').text(),
+            'This add-on has been disabled .')
 
     def test_delete_version(self):
         self.client.post(self.delete_url, self.delete_data)
@@ -1605,30 +1606,110 @@ class TestVersion(test_utils.TestCase):
         eq_(res.status_code, 302)
         assert Version.objects.filter(pk=81551).exists()
 
-    def test_version_disable(self):
+    def test_version_delete_status_null(self):
+        res = self.client.post(self.delete_url, self.delete_data)
+        eq_(res.status_code, 302)
+        eq_(self.addon.versions.count(), 0)
+        eq_(Addon.objects.get(id=3615).status, amo.STATUS_NULL)
+
+    def _extra_version_and_file(self, status):
+        version = Version.objects.get(id=81551)
+
+        version_two = Version(addon=self.addon,
+                              license=version.license,
+                              version='1.2.3')
+        version_two.save()
+
+        file_two = File(status=status, version=version_two)
+        file_two.save()
+        return version_two, file_two
+
+    def test_version_delete_status(self):
+        self._extra_version_and_file(amo.STATUS_PUBLIC)
+
+        res = self.client.post(self.delete_url, self.delete_data)
+        eq_(res.status_code, 302)
+        eq_(self.addon.versions.count(), 1)
+        eq_(Addon.objects.get(id=3615).status, amo.STATUS_PUBLIC)
+
+    def test_version_delete_status_unreviewd(self):
+        self._extra_version_and_file(amo.STATUS_BETA)
+
+        res = self.client.post(self.delete_url, self.delete_data)
+        eq_(res.status_code, 302)
+        eq_(self.addon.versions.count(), 1)
+        eq_(Addon.objects.get(id=3615).status, amo.STATUS_UNREVIEWED)
+
+    def test_user_can_disable_addon(self):
+        self.addon.update(status=amo.STATUS_PUBLIC,
+                          disabled_by_user=False)
         res = self.client.post(self.disable_url)
         eq_(res.status_code, 302)
-        eq_(Addon.objects.get(id=3615).status, amo.STATUS_DISABLED)
-        eq_(ActivityLog.objects.all().count(), 1)
+        addon = Addon.objects.get(id=3615)
+        eq_(addon.disabled_by_user, True)
+        eq_(addon.status, amo.STATUS_PUBLIC)
 
-    def test_cant_version_disable(self):
-        status = self.addon.status
+        entry = ActivityLog.objects.get()
+        eq_(entry.action, amo.LOG.USER_DISABLE.id)
+        msg = entry.to_string()
+        assert self.user.name in msg, ("Unexpected: %r" % msg)
+        assert self.addon.name.__unicode__() in msg, ("Unexpected: %r" % msg)
+
+    def test_user_can_enable_addon(self):
+        self.addon.update(status=amo.STATUS_PUBLIC,
+                          disabled_by_user=True)
+        res = self.client.get(self.enable_url)
+        eq_(res.status_code, 302)
+        addon = Addon.objects.get(id=3615)
+        eq_(addon.disabled_by_user, False)
+        eq_(addon.status, amo.STATUS_PUBLIC)
+
+        entry = ActivityLog.objects.get()
+        eq_(entry.action, amo.LOG.USER_ENABLE.id)
+        msg = entry.to_string()
+        assert self.user.name in msg, ("Unexpected: %r" % msg)
+        assert unicode(self.addon.name) in msg, ("Unexpected: %r" % msg)
+
+    def test_unprivileged_user_cant_disable_addon(self):
+        self.addon.update(disabled_by_user=False)
         self.client.logout()
         res = self.client.post(self.disable_url)
         eq_(res.status_code, 302)
-        eq_(Addon.objects.get(id=3615).status, status)
+        eq_(Addon.objects.get(id=3615).disabled_by_user, False)
 
-    def test_disable_button(self):
+    def test_non_owner_cant_disable_addon(self):
+        self.addon.update(disabled_by_user=False)
+        self.client.logout()
+        assert self.client.login(username='regular@mozilla.com',
+                                 password='password')
+        res = self.client.post(self.disable_url)
+        eq_(res.status_code, 403)
+        eq_(Addon.objects.get(id=3615).disabled_by_user, False)
+
+    def test_non_owner_cant_enable_addon(self):
+        self.addon.update(disabled_by_user=False)
+        self.client.logout()
+        assert self.client.login(username='regular@mozilla.com',
+                                 password='password')
+        res = self.client.get(self.enable_url)
+        eq_(res.status_code, 403)
+        eq_(Addon.objects.get(id=3615).disabled_by_user, False)
+
+    def test_show_disable_button(self):
+        self.addon.update(disabled_by_user=False)
         res = self.client.get(self.url)
         doc = pq(res.content)
         assert doc('#modal-disable')
         assert doc('#disable-addon')
+        assert not doc('#enable-addon')
 
-    def test_not_disable_button(self):
-        self.addon.status = amo.STATUS_DISABLED
-        self.addon.save()
+    def test_show_enable_button(self):
+        self.addon.update(disabled_by_user=True)
         res = self.client.get(self.url)
         doc = pq(res.content)
+        a = doc('#enable-addon')
+        assert a, "Expected Enable addon link"
+        eq_(a.attr('href'), self.enable_url)
         assert not doc('#modal-disable')
         assert not doc('#disable-addon')
 

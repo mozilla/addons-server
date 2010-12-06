@@ -40,7 +40,7 @@
             "view_source": false,
             "enable_thankyou": false,
             "total_downloads": 169327,
-            "inactive": false,
+            "disabled_by_user": false,
             "average_daily_downloads": 160,
             "show_beta": true,
             "guid": "{4c197c8f-a50f-4b49-a2d2-ed922c95612f}",

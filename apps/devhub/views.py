@@ -175,7 +175,7 @@ def _get_activities(request, action):
 
 def _get_items(action, addons):
     filters = dict(updates=(amo.LOG.ADD_VERSION, amo.LOG.ADD_FILE_TO_VERSION),
-                   status=(amo.LOG.SET_INACTIVE, amo.LOG.UNSET_INACTIVE,
+                   status=(amo.LOG.USER_DISABLE, amo.LOG.USER_ENABLE,
                            amo.LOG.CHANGE_STATUS, amo.LOG.APPROVE_VERSION,),
                    collections=(amo.LOG.ADD_TO_COLLECTION,
                             amo.LOG.REMOVE_FROM_COLLECTION,),
@@ -262,10 +262,17 @@ def delete(request, addon_id, addon):
 
 
 @dev_required
+def enable(request, addon_id, addon):
+    addon.update(disabled_by_user=False)
+    amo.log(amo.LOG.USER_ENABLE, addon)
+    return redirect('devhub.versions', addon_id)
+
+
+@dev_required
 @post_required
 def disable(request, addon_id, addon):
-    addon.update(status=amo.STATUS_DISABLED)
-    amo.log(amo.LOG.CHANGE_STATUS, addon.get_status_display(), addon)
+    addon.update(disabled_by_user=True)
+    amo.log(amo.LOG.USER_DISABLE, addon)
     return redirect('devhub.versions', addon_id)
 
 
@@ -623,12 +630,8 @@ def version_add_file(request, addon_id, addon, version_id):
 def version_list(request, addon_id, addon):
     qs = addon.versions.order_by('-created').transform(Version.transformer)
     versions = amo.utils.paginate(request, qs)
-
     data = {'addon': addon,
-            'versions': versions,
-            'addon_status': amo.STATUS_CHOICES[addon.status],
-           }
-
+            'versions': versions}
     return jingo.render(request, 'devhub/addons/versions.html', data)
 
 

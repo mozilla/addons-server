@@ -32,7 +32,7 @@
     <div class="compat-update-modal modal hidden"></div>
   </li>
   {% endif %}
-  {% if not addon.inactive %}
+  {% if not addon.disabled_by_user %}
   <li>
     <a href="{{ url('stats.overview', addon.id) }}" class="tooltip"
        title="{{ _('Daily statistics on downloads and users.') }}">

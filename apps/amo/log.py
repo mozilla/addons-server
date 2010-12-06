@@ -49,17 +49,15 @@ class EDIT_CONTRIBUTIONS:
     format = _(u'{user.name} edited contributions for {addon}')
 
 
-# TODO(gkoberger): Log these types when editing statuses
-class SET_INACTIVE:
+class USER_DISABLE:
     id = 8
-    format = _(u'{addon} set inactive')
+    format = _(u'{user.name} disabled addon {addon}')
     keep = True
 
 
-# TODO(gkoberger): Log these types when editing statuses
-class UNSET_INACTIVE:
+class USER_ENABLE:
     id = 9
-    format = _(u'{user.name} activated addon {addon}')
+    format = _(u'{user.name} enabled addon {addon}')
     keep = True
 
 
@@ -255,7 +253,7 @@ class CUSTOM_HTML:
 
 LOGS = (CREATE_ADDON, EDIT_PROPERTIES, EDIT_DESCRIPTIONS, EDIT_CATEGORIES,
         ADD_USER_WITH_ROLE, REMOVE_USER_WITH_ROLE, EDIT_CONTRIBUTIONS,
-        SET_INACTIVE, UNSET_INACTIVE, SET_PUBLIC_STATS, UNSET_PUBLIC_STATS,
+        USER_DISABLE, USER_ENABLE, SET_PUBLIC_STATS, UNSET_PUBLIC_STATS,
         CHANGE_STATUS, ADD_PREVIEW, EDIT_PREVIEW, DELETE_PREVIEW,
         ADD_VERSION, EDIT_VERSION, DELETE_VERSION, ADD_FILE_TO_VERSION,
         DELETE_FILE_FROM_VERSION, APPROVE_VERSION, RETAIN_VERSION,

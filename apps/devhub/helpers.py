@@ -73,14 +73,30 @@ def dev_files_status(files):
             (status, count) in status_count.items()]
 
 
-@register.filter
-def status_css(status_id):
-    lookup = {
-        amo.STATUS_BETA: 'beta',
-        amo.STATUS_UNREVIEWED: 'unreviewed',
-        amo.STATUS_DISABLED: 'disabled',
-        amo.STATUS_NULL: 'null'
+@register.function
+def addon_status(addon):
+    if addon.disabled_by_user:
+        # This is a special case pseudo status code
+        status_code = 'disabled'
+    else:
+        lookup = {
+            amo.STATUS_PUBLIC: 'fully-approved',
+            amo.STATUS_BETA: 'beta',
+            amo.STATUS_UNREVIEWED: 'unreviewed',
+            amo.STATUS_DISABLED: 'disabled-by-admins',
+            amo.STATUS_NULL: 'null'
+        }
+        status_code = lookup[addon.status]
+
+    # TODO(Kumar) this status list is incomplete
+    statuses = {
+        'fully-approved': _('This add-on has been <span>fully '
+                            'approved</span>.'),
+        'beta': _('This add-on is in <span>beta</span>.'),
+        'disabled': _('This add-on has been <span>disabled</span>.'),
+        'disabled-by-admins': _('This add-on has been <span>disabled by '
+                                'the admins</span>.'),
+        'unreviewed': _('This add-on is <span>awaiting full review</span>.'),
+        'null': _('This add-on is <span>incomplete</span>.'),
     }
-    if status_id in lookup:
-        return 'version-%s' % lookup[status_id]
-    return ''
+    return status_code, statuses[status_code]

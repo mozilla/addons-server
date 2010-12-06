@@ -34,7 +34,7 @@
             "view_source": false,
             "enable_thankyou": false,
             "total_downloads": 4396083,
-            "inactive": false,
+            "disabled_by_user": false,
             "average_daily_downloads": 4155,
             "show_beta": true,
             "guid": "{d9284e50-81fc-11da-a72b-0800200c9a66}",

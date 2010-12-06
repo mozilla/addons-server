@@ -46,7 +46,7 @@
             "view_source": false,
             "enable_thankyou": false,
             "total_downloads": 19521947,
-            "inactive": false,
+            "disabled_by_user": false,
             "average_daily_downloads": 19502,
             "show_beta": true,
             "guid": "piclens@cooliris.com",
