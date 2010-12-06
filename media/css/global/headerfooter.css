@@ -348,10 +348,6 @@ div.header-search {
     float: left;
 }
 
-div.header-search input.text {
-    width: 285px;
-}
-
 div.header-search span.wrap {
     width: 288px;
 }
@@ -378,7 +374,7 @@ div.header-search input.text {
     outline: none;
     box-shadow: none;
     font-size: 16px;
-    width: 200px;
+    width: 270px;
     height: 26px;
     line-height: 25px;
 }

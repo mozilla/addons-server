@@ -82,11 +82,12 @@
           {{ _('about:addons Newsletter') }}</a></li>
       </ul>
     </li>
-    <li class="search">
-      {% include "devhub/search.html" %}
-    </li>
   </ul>
 </div>
+{% endblock %}
+
+{% block search_form %}
+{% include "devhub/search.html" %}
 {% endblock %}
 
 {% block footer_secondary %}
