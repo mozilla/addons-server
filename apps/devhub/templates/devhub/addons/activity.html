@@ -22,8 +22,11 @@
         <div class="item">
           <p>{{ item|safe }}</p>
           <p>
-          {% trans user=item.user|user_link, ago=item.created|timesince %}
-          {{ ago }} by {{ user }}
+          {% trans user=item.user|user_link, ago=item.created|timesince,
+                   iso=item.created|isotime,
+                   pretty=item.created|babel_datetime %}
+          <time datetime="{{ iso }}" title="{{ pretty }}">{{ ago }}</time>
+          by {{ user }}
           {% endtrans %}
           </p>
 

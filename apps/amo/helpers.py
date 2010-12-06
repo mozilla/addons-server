@@ -34,6 +34,11 @@ register.function(dict)
 register.function(utils.randslice)
 
 
+@register.filter
+def babel_datetime(t, format='medium'):
+    return _get_format().datetime(t, format=format)
+
+
 @register.function
 def locale_url(url):
     """Take a URL and give it the locale prefix."""
