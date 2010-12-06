@@ -41,7 +41,7 @@
             "view_source": false,
             "enable_thankyou": false,
             "total_downloads": 206990,
-            "inactive": false,
+            "disabled_by_user": false,
             "average_daily_downloads": 207,
             "show_beta": true,
             "guid": "bettergcal@ginatrapani.org",

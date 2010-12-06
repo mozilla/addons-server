@@ -23,7 +23,7 @@
             "enable_thankyou": false,
             "total_downloads": 386882,
             "developer_comments": null,
-            "inactive": false,
+            "disabled_by_user": false,
             "average_daily_downloads": 786,
             "show_beta": true,
             "guid": "{22870005-adef-4c9d-ae36-d0e1f2f27e5a}",

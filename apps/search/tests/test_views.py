@@ -277,7 +277,7 @@ class TestUserDisabledAddons(SphinxTestCase):
     fixtures = ('base/addon_3615',)
 
     def setUp(self):
-        a = Addon.objects.get(pk=3615).update(inactive=True)
+        a = Addon.objects.get(pk=3615).update(disabled_by_user=True)
         super(TestUserDisabledAddons, self).setUp()
 
     def test_search(self):

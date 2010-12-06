@@ -30,7 +30,7 @@ class TestAddonManager(test_utils.TestCase):
         eq_(Addon.objects.featured(amo.FIREFOX).count(), 1)
 
     def test_listed(self):
-        Addon.objects.filter(id=5299).update(inactive=True)
+        Addon.objects.filter(id=5299).update(disabled_by_user=True)
         # Should find one addon.
         q = Addon.objects.listed(amo.FIREFOX, amo.STATUS_PUBLIC)
         eq_(len(q.all()), 1)
@@ -38,13 +38,13 @@ class TestAddonManager(test_utils.TestCase):
         addon = q[0]
         eq_(addon.id, 1)
 
-        # Making it inactive hides it.
-        addon.inactive = True
+        # Disabling hides it.
+        addon.disabled_by_user = True
         addon.save()
         eq_(q.count(), 0)
 
         # If we search for public or unreviewed we find it.
-        addon.inactive = False
+        addon.disabled_by_user = False
         addon.status = amo.STATUS_UNREVIEWED
         addon.save()
         eq_(q.count(), 0)

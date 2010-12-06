@@ -24,8 +24,8 @@
                  f(addon.last_updated|datetime))|safe }}</li>
         <li>
           <strong>{{ _('Status:') }}</strong>
-          {% if addon.inactive %}
-            <span class="inactive-1">{{ _('Inactive') }}</span>
+          {% if addon.disabled_by_user %}
+            <span class="inactive-1">{{ _('Disabled') }}</span>
           {% else %}
             <span class="inactive-0">{{ _('Active') }}</span>
           {% endif %}

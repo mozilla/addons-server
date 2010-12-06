@@ -175,7 +175,7 @@ def _get_activities(request, action):
 
 def _get_items(action, addons):
     filters = dict(updates=(amo.LOG.ADD_VERSION, amo.LOG.ADD_FILE_TO_VERSION),
-                   status=(amo.LOG.USER_DEACTIVATE, amo.LOG.USER_ACTIVATE,
+                   status=(amo.LOG.USER_DISABLE, amo.LOG.USER_ENABLE,
                            amo.LOG.CHANGE_STATUS, amo.LOG.APPROVE_VERSION,),
                    collections=(amo.LOG.ADD_TO_COLLECTION,
                             amo.LOG.REMOVE_FROM_COLLECTION,),
@@ -263,16 +263,16 @@ def delete(request, addon_id, addon):
 
 @dev_required
 def enable(request, addon_id, addon):
-    addon.update(inactive=False)
-    amo.log(amo.LOG.USER_ACTIVATE, addon)
+    addon.update(disabled_by_user=False)
+    amo.log(amo.LOG.USER_ENABLE, addon)
     return redirect('devhub.versions', addon_id)
 
 
 @dev_required
 @post_required
 def disable(request, addon_id, addon):
-    addon.update(inactive=True)
-    amo.log(amo.LOG.USER_DEACTIVATE, addon)
+    addon.update(disabled_by_user=True)
+    amo.log(amo.LOG.USER_DISABLE, addon)
     return redirect('devhub.versions', addon_id)
 
 

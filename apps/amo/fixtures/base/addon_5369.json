@@ -22,7 +22,7 @@
             "view_source": false,
             "enable_thankyou": false,
             "total_downloads": 1861589,
-            "inactive": false,
+            "disabled_by_user": false,
             "average_daily_downloads": 1798,
             "show_beta": true,
             "guid": "yslow@yahoo-inc.com",

@@ -67,7 +67,7 @@ class AddonManager(amo.models.ManagerBase):
     def listed(self, app, *status):
         """
         Listed add-ons have a version with a file matching ``status`` and are
-        not inactive.  Personas and self-hosted add-ons will be returned too.
+        not disabled.  Personas and self-hosted add-ons will be returned too.
         """
         if len(status) == 0:
             status = [amo.STATUS_PUBLIC]
@@ -78,7 +78,7 @@ class AddonManager(amo.models.ManagerBase):
         """
         Return a Q object that selects a valid Addon with the given statuses.
 
-        An add-on is valid if it's not inactive and has a current version.
+        An add-on is valid if not disabled and has a current version.
         ``prefix`` can be used if you're not working with Addon directly and
         need to hop across a join, e.g. ``prefix='addon__'`` in
         CollectionAddon.
@@ -92,7 +92,7 @@ class AddonManager(amo.models.ManagerBase):
             return Q(*args, **kw)
 
         return q(q(type=amo.ADDON_PERSONA) | q(_current_version__isnull=False),
-                 inactive=False, status__in=status)
+                 disabled_by_user=False, status__in=status)
 
 
 class Addon(amo.models.ModelBase):
@@ -149,7 +149,8 @@ class Addon(amo.models.ModelBase):
         help_text='How much slower this add-on makes browser ts tests. '
                   'Read as {addon.ts_slowness}% slower.')
 
-    inactive = models.BooleanField(default=False, db_index=True)
+    disabled_by_user = models.BooleanField(default=False, db_index=True,
+                                           db_column='inactive')
     trusted = models.BooleanField(default=False)
     view_source = models.BooleanField(default=False, db_column='viewsource')
     public_stats = models.BooleanField(default=False, db_column='publicstats')
@@ -556,9 +557,8 @@ class Addon(amo.models.ModelBase):
         """True if this Addon is disabled.
 
         It could be disabled by an admin or disabled by the developer
-        (aka deactivated)
         """
-        return self.status == amo.STATUS_DISABLED or self.inactive
+        return self.status == amo.STATUS_DISABLED or self.disabled_by_user
 
     def is_selfhosted(self):
         return self.status == amo.STATUS_LISTED

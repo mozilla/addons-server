@@ -61,7 +61,7 @@ class File(amo.models.ModelBase):
         if attachment:
             host = posixpath.join(settings.LOCAL_MIRROR_URL, '_attachments')
         elif (addon.status == amo.STATUS_PUBLIC
-              and not addon.inactive
+              and not addon.disabled_by_user
               and self.status in (amo.STATUS_PUBLIC, amo.STATUS_BETA)
               and published > timedelta(minutes=settings.MIRROR_DELAY)
               and not settings.DEBUG):

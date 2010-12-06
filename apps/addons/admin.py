@@ -29,10 +29,10 @@ class AddonAdmin(admin.ModelAdmin):
                        'share_count'),
         }),
         ('Truthiness', {
-            'fields': ('inactive', 'trusted', 'view_source', 'public_stats',
-                       'prerelease', 'admin_review', 'site_specific',
-                       'external_software', 'binary', 'dev_agreement',
-                       'show_beta'),
+            'fields': ('disabled_by_user', 'trusted', 'view_source',
+                       'public_stats', 'prerelease', 'admin_review',
+                       'site_specific', 'external_software', 'binary',
+                       'dev_agreement', 'show_beta'),
         }),
         ('Money', {
             'fields': ('wants_contributions', 'paypal_id', 'suggested_amount',

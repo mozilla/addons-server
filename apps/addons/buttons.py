@@ -281,7 +281,7 @@ def smorgasbord(request):
 
     # Self-Hosted.
     addons.append(Addon.objects.filter(status=amo.STATUS_LISTED,
-                                       inactive=False)[0])
+                                       disabled_by_user=False)[0])
     addons[-1].tag = 'self-hosted'
 
     # EULA.

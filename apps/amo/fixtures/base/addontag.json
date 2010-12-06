@@ -76,7 +76,7 @@
             "enable_thankyou": 0,
             "total_downloads": 86000,
             "developer_comments": 558043,
-            "inactive": 0,
+            "disabled_by_user": 0,
             "average_daily_downloads": 158,
             "show_beta": 1,
             "guid": "toolbar@sape.ru",

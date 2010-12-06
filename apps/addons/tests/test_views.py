@@ -403,10 +403,10 @@ class TestDetailPage(test_utils.TestCase):
         eq_(response.status_code, 200)
         eq_(response.context['addon'].id, 15663)
 
-    def test_inactive_addon(self):
+    def test_disabled_addon(self):
         """Do not display disabled add-ons."""
         myaddon = Addon.objects.get(id=3615)
-        myaddon.inactive = True
+        myaddon.disabled_by_user = True
         myaddon.save()
         response = self.client.get(reverse('addons.detail', args=[myaddon.id]),
                                    follow=True)

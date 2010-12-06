@@ -31,7 +31,7 @@ def sendmail(cfg, cxn):
     from amo.utils import chunked
     counter = itertools.count()
     qs = (AddonUser.objects.filter(addon__status=cfg['status'],
-                                   addon__inactive=False,
+                                   addon__disabled_by_user=False,
                                    user__email__isnull=False)
           .order_by('user').values_list('user__email', 'addon'))
     qs = [(user, [addon for user, addon in vals])

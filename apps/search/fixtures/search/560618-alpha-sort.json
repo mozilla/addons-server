@@ -74,7 +74,7 @@
             "view_source": 0,
             "enable_thankyou": 0,
             "total_downloads": 24333,
-            "inactive": 0,
+            "disabled_by_user": 0,
             "average_daily_downloads": 75,
             "show_beta": 1,
             "guid": null,

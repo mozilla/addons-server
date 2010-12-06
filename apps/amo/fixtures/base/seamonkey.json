@@ -49,7 +49,7 @@
             "enable_thankyou": 0,
             "total_downloads": 3709920,
             "developer_comments": null,
-            "inactive": 0,
+            "disabled_by_user": 0,
             "average_daily_downloads": 4380,
             "show_beta": 1,
             "guid": "bettergmail2@ginatrapani.org",

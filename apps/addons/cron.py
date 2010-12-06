@@ -65,7 +65,8 @@ def fast_current_version():
 @cronjobs.register
 def update_addons_current_version():
     """Update the current_version field of the addons."""
-    d = (Addon.objects.filter(inactive=False, status__in=amo.VALID_STATUSES)
+    d = (Addon.objects.filter(disabled_by_user=False,
+                              status__in=amo.VALID_STATUSES)
          .exclude(type=amo.ADDON_PERSONA).values_list('id'))
 
     with establish_connection() as conn:

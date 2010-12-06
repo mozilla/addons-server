@@ -276,7 +276,7 @@ class TestDownloads(TestDownloadsBase):
         eq_(self.client.get(self.file_url).status_code, 404)
 
     def test_user_disabled_404(self):
-        self.addon.update(inactive=True)
+        self.addon.update(disabled_by_user=True)
         eq_(self.client.get(self.file_url).status_code, 404)
 
     def test_admin_disabled_ok_for_author(self):
@@ -292,12 +292,12 @@ class TestDownloads(TestDownloadsBase):
         self.assert_served_locally(self.client.get(self.file_url))
 
     def test_user_disabled_ok_for_author(self):
-        self.addon.update(inactive=True)
+        self.addon.update(disabled_by_user=True)
         assert self.client.login(username='g@gmail.com', password='password')
         self.assert_served_locally(self.client.get(self.file_url))
 
     def test_user_disabled_ok_for_admin(self):
-        self.addon.update(inactive=True)
+        self.addon.update(disabled_by_user=True)
         self.client.login(username='jbalogh@mozilla.com', password='password')
         self.assert_served_locally(self.client.get(self.file_url))
 

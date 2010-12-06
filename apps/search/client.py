@@ -40,6 +40,8 @@ def extract_filters(term, kwargs):
     returns a cleaned term without said options and a dictionary of
     filter names and filter values."""
 
+     # Note: even though inactive is called disabled_by_user in
+     # the model, this index is based on the db column.
     filters = {'inactive': 0}
     excludes = {}
     ranges = {}

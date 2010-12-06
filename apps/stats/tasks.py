@@ -142,12 +142,12 @@ def _get_daily_jobs(date=None):
         stats.update({
         'addon_count_experimental': Addon.objects.filter(
                 created__lte=date, status=amo.STATUS_UNREVIEWED,
-                inactive=0).count,
+                disabled_by_user=0).count,
         'addon_count_nominated': Addon.objects.filter(
                 created__lte=date, status=amo.STATUS_NOMINATED,
-                inactive=0).count,
+                disabled_by_user=0).count,
         'addon_count_public': Addon.objects.filter(
-                created__lte=date, status=amo.STATUS_PUBLIC, inactive=0).count,
+                created__lte=date, status=amo.STATUS_PUBLIC, disabled_by_user=0).count,
         'addon_count_pending': Version.objects.filter(
                 created__lte=date, files__status=amo.STATUS_PENDING).count,
 

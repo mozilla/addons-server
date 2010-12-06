@@ -91,7 +91,7 @@
             "enable_thankyou": false,
             "total_downloads": 1682348,
             "developer_comments": null,
-            "inactive": false,
+            "disabled_by_user": false,
             "average_daily_downloads": 2930,
             "show_beta": true,
             "admin_review_type": 1,
