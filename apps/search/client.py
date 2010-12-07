@@ -97,9 +97,7 @@ def extract_filters(term, kwargs):
         excludes['addon_status'] = (excludes['addon_status'] +
                                     amo.UNREVIEWED_STATUSES)
 
-    if 'before' in kwargs:
-        ranges['modified'] = (kwargs['before'], THE_FUTURE)
-
+    # Type/category filters
     (term, addon_type) = extract_from_query(term, 'type', '\w+', kwargs)
 
     if addon_type:

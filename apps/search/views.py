@@ -1,6 +1,4 @@
 from collections import defaultdict
-from datetime import timedelta, datetime
-import time
 
 from django.http import HttpResponseRedirect
 
@@ -265,7 +263,6 @@ def search(request, tag_name=None):
     addon_type = form.cleaned_data.get('atype', 0)
     tag = tag_name if tag_name is not None else form.cleaned_data.get('tag')
     page = form.cleaned_data['page']
-    last_updated = form.cleaned_data.get('lup')
     sort = form.cleaned_data.get('sort')
 
     search_opts['version'] = form.cleaned_data.get('lver')
@@ -274,21 +271,6 @@ def search(request, tag_name=None):
     search_opts['sort'] = sort
     search_opts['app'] = request.APP.id
     search_opts['offset'] = (page - 1) * search_opts['limit']
-
-    delta_dict = {
-            '1 day ago': timedelta(days=1),
-            '1 week ago': timedelta(days=7),
-            '1 month ago': timedelta(days=30),
-            '3 months ago': timedelta(days=90),
-            '6 months ago': timedelta(days=180),
-            '1 year ago': timedelta(days=365),
-            }
-
-    delta = delta_dict.get(last_updated)
-
-    if delta:
-        search_opts['before'] = int(
-                time.mktime((datetime.now() - delta).timetuple()))
 
     if category:
         search_opts['category'] = category

@@ -107,14 +107,6 @@ class FrontendSearchTest(SphinxTestCase):
         resp = self.get_response(appid=18)
         self.assertRedirects(resp, '/en-US/thunderbird/search/?appid=18')
 
-    def test_last_updated(self):
-        """
-        Verify that we have no new things in the last day.
-        """
-        resp = self.get_response(lup='1 day ago')
-        doc = pq(resp.content)
-        eq_(doc('.item').length, 0)
-
     def test_category(self):
         """
         Verify that we have nothing in category 72.
@@ -265,7 +257,7 @@ class TestAdminDisabledAddons(SphinxTestCase):
     fixtures = ('base/addon_3615',)
 
     def setUp(self):
-        a = Addon.objects.get(pk=3615).update(status=amo.STATUS_DISABLED)
+        Addon.objects.get(pk=3615).update(status=amo.STATUS_DISABLED)
         super(TestAdminDisabledAddons, self).setUp()
 
     def test_search(self):
@@ -277,7 +269,7 @@ class TestUserDisabledAddons(SphinxTestCase):
     fixtures = ('base/addon_3615',)
 
     def setUp(self):
-        a = Addon.objects.get(pk=3615).update(disabled_by_user=True)
+        Addon.objects.get(pk=3615).update(disabled_by_user=True)
         super(TestUserDisabledAddons, self).setUp()
 
     def test_search(self):
