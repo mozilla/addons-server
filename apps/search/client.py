@@ -66,17 +66,6 @@ def extract_filters(term, kwargs):
             amo.APP_TYPE_SUPPORT[amo.ADDON_PERSONA]):
             filters['app'].append(PERSONA_APP)
 
-    (term, platform) = extract_from_query(term, 'platform', '\w+', kwargs)
-
-    if platform:
-        if not isinstance(platform, int):
-            platform = amo.PLATFORM_DICT.get(platform)
-            if platform:
-                platform = platform.id
-        # If they are seeking out PLATFORM_ALL they mean no platform filtering
-        if platform and platform != amo.PLATFORM_ALL.id:
-            filters['platform'] = (platform, amo.PLATFORM_ALL.id,)
-
     # Locale filtering
     if 'locale' in kwargs:
         filters['locale_ord'] = crc32(kwargs['locale'])
@@ -96,6 +85,18 @@ def extract_filters(term, kwargs):
     if settings.SANDBOX_PANIC:
         excludes['addon_status'] = (excludes['addon_status'] +
                                     amo.UNREVIEWED_STATUSES)
+
+    (term, platform) = extract_from_query(term, 'platform', '\w+', kwargs)
+
+    # platform filtering
+    if platform:
+        if not isinstance(platform, int):
+            platform = amo.PLATFORM_DICT.get(platform)
+            if platform:
+                platform = platform.id
+        # If they are seeking out PLATFORM_ALL they mean no platform filtering
+        if platform and platform != amo.PLATFORM_ALL.id:
+            metas['platform'] = (platform, amo.PLATFORM_ALL.id,)
 
     # Type/category filters
     (term, addon_type) = extract_from_query(term, 'type', '\w+', kwargs)
@@ -431,6 +432,9 @@ class Client(object):
                 self.add_meta_query('tag', term)
                 self.remove_filters(2)
 
+            if 'platforms' in kwargs['meta']:
+                self.add_meta_query('platform', term)
+
         sc.SetSelect(fields)
 
         self.apply_meta_filters()
@@ -493,6 +497,10 @@ class Client(object):
                                                                 **kwargs)
             if 'tags' in kwargs['meta']:
                 self.meta['tags'] = self._tags_meta(results, **kwargs)
+
+            if 'platforms' in kwargs['meta']:
+                self.meta['platforms'] = self._platforms_meta(results,
+                                                              **kwargs)
 
         result = results[self.queries['primary']]
         self.total_found = result.get('total_found', 0) if result else 0
@@ -568,6 +576,18 @@ class Client(object):
                 qs = qs.filter(application=kwargs['app'])
             categories = order_by_translation(qs, 'name')
         return categories
+
+    def _platforms_meta(self, results, **kwargs):
+        r = results[self.queries['platform']]
+
+        if 'matches' not in r:
+            return []
+
+        platforms = set()
+        for m in r['matches']:
+            platforms.update(m['attrs']['platform'])
+
+        return platforms
 
     def _tags_meta(self, results, **kwargs):
         r = results[self.queries['tag']]
