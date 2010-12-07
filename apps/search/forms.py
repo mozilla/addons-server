@@ -115,7 +115,7 @@ def SearchForm(request):
         pid = forms.TypedChoiceField(label=_('Platform'),
                 choices=[(p[0], p[1].name) for p in amo.PLATFORMS.iteritems()
                          if p[1] != amo.PLATFORM_ANY], required=False,
-                coerce=int, empty_value=amo.PLATFORM_ALL.id)
+                coerce=int, empty_value=amo.PLATFORM_ANY.id)
 
         lup = forms.ChoiceField(label=_('Last Updated'), choices=updated,
                                 required=False)
@@ -222,4 +222,3 @@ class SecondarySearchForm(forms.Form):
             return
         self._clean_fields()
         self._clean_form()
-

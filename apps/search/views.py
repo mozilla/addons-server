@@ -106,6 +106,27 @@ def _get_categories(request, categories, addon_type=None, category=None):
     return items
 
 
+def _get_platforms(request, platforms, selected=None):
+    items = []
+    url = request.get_full_path()
+
+    if amo.PLATFORM_ALL.id in platforms:
+        platforms = amo.PLATFORMS.keys()
+
+    for platform in platforms:
+        if platform == amo.PLATFORM_ALL.id:
+            continue
+        item = MenuItem()
+        p = amo.PLATFORMS[platform]
+        (item.text, item.url) = (p.name,
+                                 urlparams(url, pid=(p.id or None), page=None))
+        if p.id == selected:
+            item.selected = True
+        items.append(item)
+
+    return items
+
+
 def _get_tags(request, tags, selected):
     items = []
     url = request.get_full_path()
@@ -231,7 +252,7 @@ def search(request, tag_name=None):
     query = request.REQUEST.get('q', '')
 
     search_opts = {
-            'meta': ('versions', 'categories', 'tags'),
+            'meta': ('versions', 'categories', 'tags', 'platforms'),
             'version': None,
             }
 
@@ -301,11 +322,13 @@ def search(request, tag_name=None):
     categories = _get_categories(request, client.meta['categories'],
                                  addon_type, category)
     tags = _get_tags(request, client.meta['tags'], tag)
+    platforms = _get_platforms(request, client.meta['platforms'],
+                               search_opts['platform'])
     sort_tabs = _get_sorts(request, sort)
 
     pager = amo.utils.paginate(request, results, search_opts['limit'])
 
-    return jingo.render(request, 'search/results.html', {
-                'pager': pager, 'query': query, 'tag': tag,
-                'versions': versions, 'categories': categories, 'tags': tags,
-                'sort_tabs': sort_tabs, 'sort': sort})
+    context = dict(pager=pager, query=query, tag=tag, platforms=platforms,
+                   versions=versions, categories=categories, tags=tags,
+                   sort_tabs=sort_tabs, sort=sort)
+    return jingo.render(request, 'search/results.html', context)
