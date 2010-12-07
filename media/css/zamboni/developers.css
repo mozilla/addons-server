@@ -10,9 +10,8 @@ form.select-review:after {
     visibility: hidden;
 }
 /* @group Edit addon */
-.devhub-form .label,
-.devhub-form th label {
-    margin-right:5px;
+.devhub-form .tip {
+    margin-left: 3px;
 }
 
 #edit-addon .edit-addon-section {
@@ -185,7 +184,7 @@ ul.refinements:last-child {
 }
 .devhub-form th label {
     font-weight: bold;
-    display: inline-block;
+    display: inline;
 }
 span.locale{
     font-weight: normal;

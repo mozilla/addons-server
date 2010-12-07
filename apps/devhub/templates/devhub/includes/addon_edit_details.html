@@ -15,11 +15,15 @@
         <tbody>
           <tr>
             <th>
-              <label data-for="description">{{ _('Description') }}</label>
-              {{ tip(None,
-                     _("A longer explanation of features, functionality, and other
-                        relevant information. This field is only displayed on the
-                        add-on's details page.")) }}
+              <label data-for="description">
+                {{ _('Description') }}
+                {{ tip(None,
+                       _("Any information end users may want to know that isn't
+                          necessarily applicable to the add-on summary or description.
+                          Common uses include listing known major bugs, information on
+                          how to report bugs, anticipated release date of a new version,
+                          etc.")) }}
+            </label>
             </th>
             <td>
               {% if editable %}
@@ -49,11 +53,15 @@
           </tr>
           <tr>
             <th>
-              <label data-for="homepage">{{ _("Homepage") }}</label>
-              {{ tip(None,
-                     _("If your add-on has another homepage, enter its address here.
-                        If your website is localized into other languages, multiple
-                        translations of this field can be added.")) }}
+              <label data-for="homepage">
+                {{ _("Homepage") }}
+                {{ tip(None,
+                       _("Any information end users may want to know that isn't
+                          necessarily applicable to the add-on summary or description.
+                          Common uses include listing known major bugs, information on
+                          how to report bugs, anticipated release date of a new version,
+                          etc.")) }}
+              </label>
             </th>
             <td>
               {% if editable %}
