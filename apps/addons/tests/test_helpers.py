@@ -46,8 +46,8 @@ class TestHelpers(test_utils.TestCase):
         a = Addon(id=12)
         eq_(support_addon(a), '')
 
-        # TODO(jbalogh): check the url when using reverse
         a.wants_contributions = a.paypal_id = True
+        a.status = amo.STATUS_PUBLIC
         eq_(PyQuery(support_addon(a))('a').text(), 'Support this add-on')
 
         a.suggested_amount = '12'

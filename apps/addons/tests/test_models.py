@@ -281,6 +281,41 @@ class TestAddonModels(test_utils.TestCase):
         assert new_reply.pk not in review_list, (
             'Developer reply must not show up in review list.')
 
+    def test_takes_contributions(self):
+        a = Addon(status=amo.STATUS_PUBLIC, wants_contributions=True,
+                  paypal_id='$$')
+        assert a.takes_contributions
+
+        a.status = amo.STATUS_UNREVIEWED
+        assert not a.takes_contributions
+        a.status = amo.STATUS_PUBLIC
+
+        a.wants_contributions = False
+        assert not a.takes_contributions
+        a.wants_contributions = True
+
+        a.paypal_id = None
+        assert not a.takes_contributions
+
+        a.charity_id = 12
+        assert a.takes_contributions
+
+    def test_show_beta(self):
+        # Addon.current_beta_version will be empty, so show_beta is False.
+        a = Addon(status=amo.STATUS_PUBLIC)
+        assert not a.show_beta
+
+    @patch('addons.models.Addon.current_beta_version')
+    def test_show_beta_with_beta_version(self, beta_mock):
+        beta_mock.return_value = object()
+        # Fake current_beta_version to return something truthy.
+        a = Addon(status=amo.STATUS_PUBLIC)
+        assert a.show_beta
+
+        # We have a beta version but status has to be public.
+        a.status = amo.STATUS_UNREVIEWED
+        assert not a.show_beta
+
 
 class TestCategoryModel(test_utils.TestCase):
 

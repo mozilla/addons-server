@@ -32,7 +32,7 @@ class AddonAdmin(admin.ModelAdmin):
             'fields': ('disabled_by_user', 'trusted', 'view_source',
                        'public_stats', 'prerelease', 'admin_review',
                        'site_specific', 'external_software', 'binary',
-                       'dev_agreement', 'show_beta'),
+                       'dev_agreement'),
         }),
         ('Money', {
             'fields': ('wants_contributions', 'paypal_id', 'suggested_amount',

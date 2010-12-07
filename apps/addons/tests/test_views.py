@@ -430,7 +430,6 @@ class TestDetailPage(test_utils.TestCase):
         addon = Addon.objects.get(id=3615)
         addon.developer_comments_id = None
         addon.description_id = None
-        addon.show_beta = False
         addon.previews.all().delete()
         addon.save()
 
@@ -452,12 +451,12 @@ class TestDetailPage(test_utils.TestCase):
         mybetafile = myaddon.versions.all()[0].files.all()[0]
         mybetafile.status = amo.STATUS_BETA
         mybetafile.save()
+        myaddon.update(status=amo.STATUS_PUBLIC)
         beta = get_pq_content()
         eq_(beta('#beta-channel').length, 1)
 
-        # Now hide it.
-        myaddon.show_beta = False
-        myaddon.save()
+        # Now hide it.  Beta is only shown for STATUS_PUBLIC.
+        myaddon.update(status=amo.STATUS_UNREVIEWED)
         beta = get_pq_content()
         eq_(beta('#beta-channel').length, 0)
 

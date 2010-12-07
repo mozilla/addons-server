@@ -132,7 +132,7 @@
   </div>{# /featured #}
 
    {% if addon.description or previews|length > 1 or addon.developer_comments or
-         (addon.show_beta and addon.current_beta_version)  %}
+         addon.show_beta  %}
     <h3 id="more-about">{{ _('More about this add-on') }}</h3>
     <div class="article userinput">
       {% if addon.id == 4664 or addon.id == 144983 %}
@@ -160,7 +160,7 @@
       {% endif %}
 
       {# beta channel #}
-      {% if addon.show_beta and addon.current_beta_version %}
+      {% if addon.show_beta %}
         <h4 id="beta-channel">{{ _('Beta Channel') }}</h4>
         <div>
           <p>

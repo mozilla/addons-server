@@ -167,7 +167,6 @@ class Addon(amo.models.ModelBase):
                             help_text="Does the add-on contain a binary?")
     dev_agreement = models.BooleanField(default=False,
                             help_text="Has the dev agreement been signed?")
-    show_beta = models.BooleanField(default=True)
 
     nomination_date = models.DateTimeField(null=True,
                                            db_column='nominationdate')
@@ -510,6 +509,10 @@ class Addon(amo.models.ModelBase):
         # Attach sharing stats.
         sharing.attach_share_counts(AddonShareCountTotal, 'addon', addon_dict)
 
+    @property
+    def show_beta(self):
+        return self.status == amo.STATUS_PUBLIC and self.current_beta_version
+
     @amo.cached_property
     def current_beta_version(self):
         """Retrieves the latest version of an addon, in the beta channel."""
@@ -656,7 +659,8 @@ class Addon(amo.models.ModelBase):
     @property
     def takes_contributions(self):
         # TODO(jbalogh): config.paypal_disabled
-        return self.wants_contributions and (self.paypal_id or self.charity_id)
+        return (self.status == amo.STATUS_PUBLIC and self.wants_contributions
+                and (self.paypal_id or self.charity_id))
 
     @property
     def has_eula(self):
