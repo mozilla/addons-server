@@ -1,0 +1,8 @@
+<div id="refine-{{ thing }}">
+  <h5>{{ title }}</h5>
+  <ul class="refinements">
+    {% for item in items %}
+    {% include 'includes/refinement.html' %}
+    {% endfor %}
+  </ul>
+</div>

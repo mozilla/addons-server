@@ -55,36 +55,10 @@
 
     <h3>{{ _('Refine Results') }}</h3>
 
-    <div id="refine-compatibility">
-      <h5>Compatible with</h5>
+    {{ refinements(versions, _('Compatible with'), 'compatibility') }}
+    {{ refinements(categories, _('Categories'), 'category') }}
+    {{ refinements(tags, _('Tags'), 'tags') }}
 
-      <ul class="refinements">
-        {% for item in versions %}
-        {% include 'includes/refinement.html' %}
-        {% endfor %}
-      </ul>
-    </div>
-
-    <div id="refine-category">
-      <h5>{{ _('Categories') }}</h5>
-
-      <ul class="refinements">
-        {% for item in categories %}
-        {% include 'includes/refinement.html' %}
-        {% endfor %}
-      </ul>
-    </div>
-    {% if tags %}
-    <div id="refine-tags">
-      <h5>{{ _('Tags') }}</h5>
-
-      <ul class="refinements addon-tags">
-        {% for item in tags %}
-        {% include 'includes/refinement.html' %}
-        {% endfor %}
-      </ul>
-    </div>
-    {% endif %}
   </div>
 </section>
 {% endblock %}
