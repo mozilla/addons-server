@@ -2317,6 +2317,14 @@ class TestSubmitStep7(TestSubmitBase):
         intro = doc('.addon-submission-process p').text()
         assert exp in intro, ('Unexpected intro: %s' % intro.strip())
 
+    def test_incomplete_addon_no_versions(self):
+        addon = Addon.objects.get(pk=3615)
+        addon.update(status=amo.STATUS_NULL)
+        addon.versions.all().delete()
+        r = self.client.get(reverse('devhub.submit.7', args=[3615]),
+                                   follow=True)
+        self.assertRedirects(r, reverse('devhub.versions', args=[3615]))
+
 
 class TestResumeStep(TestSubmitBase):
 

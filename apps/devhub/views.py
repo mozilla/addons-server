@@ -784,6 +784,9 @@ def submit_select_review(request, addon_id, addon, step):
 @dev_required
 @submit_step(7)
 def submit_done(request, addon_id, addon, step):
+    # Bounce to the versions page if they don't have any versions.
+    if not addon.versions.exists():
+        return redirect('devhub.versions', addon_id)
     sp = addon.current_version.supported_platforms
     is_platform_specific = sp != [amo.PLATFORM_ALL]
 
