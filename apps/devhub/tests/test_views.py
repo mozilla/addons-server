@@ -2525,6 +2525,20 @@ class TestUploadDetail(files.tests.UploadTest):
            reverse('devhub.upload_detail', args=[upload.uuid]))
 
 
+class TestUploadValidation(files.tests.UploadTest):
+    fixtures = ['base/apps', 'base/users',
+                'devhub/invalid-id-uploaded-xpi.json']
+    
+    def test_no_html_in_messages(self):
+        upload = FileUpload.objects.get(name='invalid-id-20101206.xpi')
+        r = self.client.get(reverse('devhub.upload_detail',
+                                    args=[upload.uuid, 'json']))
+        eq_(r.status_code, 200)
+        data = json.loads(r.content)
+        msg = data['validation']['messages'][0]
+        eq_(msg['message'], 'The value of &lt;em:id&gt; is invalid.')
+
+
 def assert_json_error(request, field, msg):
     eq_(request.status_code, 400)
     eq_(request['Content-Type'], 'application/json')

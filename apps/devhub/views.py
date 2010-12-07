@@ -12,6 +12,7 @@ from django.utils.http import urlquote
 
 import commonware.log
 import jingo
+import jinja2
 from tower import ugettext_lazy as _lazy, ugettext as _
 
 import amo
@@ -452,12 +453,16 @@ def json_upload_detail(upload):
     url = reverse('devhub.upload_detail', args=[upload.uuid, 'json'])
     full_report_url = reverse('devhub.upload_detail', args=[upload.uuid])
 
-    # TODO(Kumar) once we upgrade amo-validator, this
-    # tier hack can go away.  (bug 614575)
     if validation:
-        for i, msg in enumerate(validation['messages']):
-            # pretend all messages are for tier 1 (General Tests)
-            validation['messages'][i]['tier'] = 1
+        for msg in validation['messages']:
+            # TODO(Kumar) once we upgrade amo-validator, this
+            # tier hack can go away.  (bug 614575)
+            #
+            # Pretend all messages are for tier 1 (General Tests)
+            msg['tier'] = 1
+            for k, v in msg.items():
+                if isinstance(v, basestring):
+                    msg[k] = jinja2.escape(v)
 
     r = dict(upload=upload.uuid, validation=validation,
              error=upload.task_error, url=url,
