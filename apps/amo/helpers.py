@@ -1,6 +1,5 @@
 import collections
 import json as jsonlib
-import math
 import random
 import re
 
@@ -12,14 +11,12 @@ from django.template import defaultfilters
 from babel import Locale
 from babel.support import Format
 import jinja2
-from jinja2.exceptions import FilterArgumentError
 from jingo import register, env
 from tower import ugettext as _
 
 import amo
 from amo import utils, urlresolvers
 from addons.models import Category
-from translations.models import Translation
 from translations.query import order_by_translation
 from translations.utils import truncate
 
@@ -46,6 +43,14 @@ def locale_url(url):
     script = prefixer.request.META['SCRIPT_NAME']
     parts = [script, prefixer.locale, url.lstrip('/')]
     return '/'.join(parts)
+
+
+@register.inclusion_tag('includes/refinements.html')
+@jinja2.contextfunction
+def refinements(context, items, title, thing):
+    d = dict(context.items())
+    d.update(items=items, title=title, thing=thing)
+    return d
 
 
 @register.function
