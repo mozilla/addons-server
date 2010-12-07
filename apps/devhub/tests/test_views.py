@@ -2155,6 +2155,15 @@ class TestSubmitStep3(test_utils.TestCase):
         error = 'Ensure this value has at most 250 characters (it has 251).'
         self.assertFormError(r, 'form', 'summary', error)
 
+    def test_check_version(self):
+        addon = Addon.objects.get(pk=3615)
+
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        version = doc("#current_version").val()
+
+        eq_(version, addon.current_version.version)
+
 
 class TestSubmitStep5(TestSubmitBase):
 

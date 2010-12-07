@@ -10,8 +10,9 @@
         <label for="id_name">{{ _("Your add-on's name and version:") }}</label>
         {{ form.name|safe }}
 
-        {# TODO(gkoberger): Add in actual version when it becomes available #}
-        <input type="text" disabled value="1.2" size="6" />
+        {% set version = addon.current_version %}
+        <input type="text" disabled id="current_version"
+               value="{{ version.version }}" size="6" />
 
         {{ form.name.errors|safe }}
       </div>
