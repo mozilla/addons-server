@@ -632,7 +632,7 @@ def version_list(request, addon_id, addon):
     versions = amo.utils.paginate(request, qs)
     data = {'addon': addon,
             'versions': versions}
-    return jingo.render(request, 'devhub/addons/versions.html', data)
+    return jingo.render(request, 'devhub/versions/list.html', data)
 
 
 @dev_required

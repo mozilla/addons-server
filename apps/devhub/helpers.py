@@ -71,32 +71,3 @@ def dev_files_status(files):
 
     return [(count, unicode(amo.STATUS_CHOICES[status])) for
             (status, count) in status_count.items()]
-
-
-@register.function
-def addon_status(addon):
-    if addon.disabled_by_user:
-        # This is a special case pseudo status code
-        status_code = 'disabled'
-    else:
-        lookup = {
-            amo.STATUS_PUBLIC: 'fully-approved',
-            amo.STATUS_BETA: 'beta',
-            amo.STATUS_UNREVIEWED: 'unreviewed',
-            amo.STATUS_DISABLED: 'disabled-by-admins',
-            amo.STATUS_NULL: 'null'
-        }
-        status_code = lookup[addon.status]
-
-    # TODO(Kumar) this status list is incomplete
-    statuses = {
-        'fully-approved': _('This add-on has been <span>fully '
-                            'approved</span>.'),
-        'beta': _('This add-on is in <span>beta</span>.'),
-        'disabled': _('This add-on has been <span>disabled</span>.'),
-        'disabled-by-admins': _('This add-on has been <span>disabled by '
-                                'the admins</span>.'),
-        'unreviewed': _('This add-on is <span>awaiting full review</span>.'),
-        'null': _('This add-on is <span>incomplete</span>.'),
-    }
-    return status_code, statuses[status_code]

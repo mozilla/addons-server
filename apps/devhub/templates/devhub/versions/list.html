@@ -3,6 +3,10 @@
 {% set title = _('Versions') %}
 {% block title %}{{ dev_page_title(title, addon) }}{% endblock %}
 
+{% macro status(cls, msg) %}
+<strong class="status-{{ cls }}">{{ msg|safe }}</strong>
+{% endmacro %}
+
 {% block content %}
 <header>
   {{ dev_breadcrumbs(addon, items=[(None, title)]) }}
@@ -12,16 +16,43 @@
   <h3>{{ _('Current Status') }}</h3>
   <div class="item" id="version-status">
     <div>
-      {% set status_code, status = addon_status(addon) %}
-      <strong class="version-status version-{{ status_code }}">{{ status|safe }}</strong>
-
-      {# TODO(?): This should eventually have text describing the status, as
-         well as a link to more information about it. #}
+      {% if addon.disabled_by_user %}
+        {{ status('disabled', _('This add-on has been <b>disabled</b>.')) }}
+        {{ _("Your add-on is disabled and will not show up in our gallery or update service.") }}
+      {% elif addon.status == amo.STATUS_NULL %}
+        {{ status('incomplete', _('This add-on is <b>incomplete</b>.')) }}
+        {{ _('Please complete your add-on.') }}
+      {% elif addon.status == amo.STATUS_UNREVIEWED %}
+        {{ status('unreviewed',  _('This add-on is <b>awaiting preliminary review</b>.')) }}
+        {{ _('ASK FLIGTAR') }}
+      {% elif addon.status == amo.STATUS_NOMINATED %}
+        {{ status('nominated', _('This add-on is <b>awaiting full review</b>.')) }}
+        {{ _('ASK FLIGTAR') }}
+      {% elif addon.status == amo.STATUS_PUBLIC %}
+        {{ status('fully-approved', _('This add-on has been <b>fully approved</b>.')) }}
+        {{ _('ASK FLIGTAR') }}
+      {% elif addon.status == amo.STATUS_DISABLED %}
+        {{ status('admin-disabled', _('This add-on has been <b>disabled by the admins</b>.')) }}
+        {{ _('ASK FLIGTAR') }}
+      {% elif addon.status == amo.STATUS_LITE %}
+        {{ status('lite', _('This add-on has been <b>preliminarily approved</b>.')) }}
+        {{ _('ASK FLIGTAR') }}
+      {% elif addon.status == amo.STATUS_LITE_AND_NOMINATED %}
+        {{ status('lite-nom', _('This add-on has been <b>preliminarily approved</b> and is <b>awaiting full review</b>.')) }}
+        {{ _('ASK FLIGTAR') }}
+      {% elif addon.status == amo.STATUS_PURGATORY %}
+        {{ status('purgatory', _('Please select a review option.')) }}
+        {% trans url=remora_url('developers/docs/policies/reviews#selection') %}
+          All add-ons hosted in our gallery must now be reviewed by an editor. If you
+          wish to continue hosting your add-on, please select a review process from the
+          choices below. <a href="{{ url }}">Learn more about the review choices.</a>
+        {% endtrans %}
+      {% endif %}
 
       <div class="version-status-actions">
-        {# TODO(gkoberger): 'if' statements to decide what's shown; but wait until
-                            the status flags are done #}
-        <a href="#" id="cancel-review">{{ _('Cancel Review Request') }}</a> &middot;
+        {% if not addon.is_disabled and amo.status in amo.STATUS_UNDER_REVIEW %}
+          <a href="#" id="cancel-review">{{ _('Cancel Review Request') }}</a> &middot;
+        {% endif %}
         {% if addon.disabled_by_user %}
           <a href="{{ url('devhub.addons.enable', addon.id) }}" id="enable-addon">{{ _('Enable Add-on') }}</a> &middot;
         {% else %}

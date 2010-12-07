@@ -108,6 +108,10 @@ VALID_STATUSES = (STATUS_UNREVIEWED, STATUS_PENDING, STATUS_NOMINATED,
                   STATUS_PUBLIC, STATUS_LISTED, STATUS_BETA, STATUS_LITE,
                   STATUS_LITE_AND_NOMINATED, STATUS_PURGATORY)
 
+# An add-on in one of these statuses is awaiting a review.
+STATUS_UNDER_REVIEW = (STATUS_UNREVIEWED, STATUS_NOMINATED,
+                       STATUS_LITE_AND_NOMINATED)
+
 # Types of administrative review queues for an add-on:
 ADMIN_REVIEW_FULL = 1
 ADMIN_REVIEW_PRELIM = 2

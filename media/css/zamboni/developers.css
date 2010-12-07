@@ -842,19 +842,16 @@ a.extra {
     margin: 0;
 }
 
-.version-status span {
+#version-status strong b {
     color: #38A532;
     text-transform: lowercase;
 }
 
-.version-status.version-unreviewed span,
-.version-status.version-beta span {
+#version-status .status-unreviewed b {
     color: #4C8B97;
 }
 
-.version-status.version-disabled span,
-.version-status.version-null span,
-.version-status.version-disabled-by-admins{
+#version-status :-moz-any(.status-disabled, .status-incomplete, .status-admin-disabled) b {
     color: #991B0F;
 }
 

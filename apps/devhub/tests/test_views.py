@@ -1582,19 +1582,18 @@ class TestVersion(test_utils.TestCase):
             return pq(res.content)
 
         doc = get_doc()
-        assert doc('.version-status')
+        assert doc('#version-status')
 
         self.addon.status = amo.STATUS_DISABLED
         self.addon.save()
         doc = get_doc()
-        assert doc('.version-status.version-disabled-by-admins')
-        eq_(doc('strong.version-status').text(),
+        assert doc('#version-status .status-admin-disabled')
+        eq_(doc('#version-status strong').text(),
             'This add-on has been disabled by the admins .')
 
-        self.addon.disabled_by_user = True
-        self.addon.save()
+        self.addon.update(disabled_by_user=True)
         doc = get_doc()
-        eq_(doc('strong.version-status').text(),
+        eq_(doc('#version-status strong').text(),
             'This add-on has been disabled .')
 
     def test_delete_version(self):
