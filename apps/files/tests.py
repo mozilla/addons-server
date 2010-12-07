@@ -196,6 +196,40 @@ class TestParseXpi(test_utils.TestCase):
     # parse_search_engine?
 
 
+class TestParseAlternateXpi(test_utils.TestCase):
+    # This install.rdf is completely different from our other xpis.
+    fixtures = ['base/apps']
+
+    def setUp(self):
+        for version in ('3.0', '4.0b3pre'):
+            AppVersion.objects.create(application_id=1, version=version)
+
+    def parse(self, filename='alt-rdf.xpi'):
+        path = 'apps/files/fixtures/files/' + filename
+        xpi = os.path.join(settings.ROOT, path)
+        return parse_xpi(xpi)
+
+    def test_parse_basics(self):
+        # Everything but the apps.
+        exp = {'guid': '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}',
+               'name': 'Delicious Bookmarks',
+               'description': 'Access your bookmarks wherever you go and keep '
+                              'them organized no matter how many you have.',
+               'homepage': 'http://delicious.com',
+               'type': amo.ADDON_EXTENSION,
+               'version': '2.1.106'}
+        parsed = self.parse()
+        for key, value in exp.items():
+            eq_(parsed[key], value)
+
+    def test_parse_apps(self):
+        exp = (amo.FIREFOX,
+               amo.FIREFOX.id,
+               AppVersion.objects.get(version='3.0'),
+               AppVersion.objects.get(version='4.0b3pre'))
+        eq_(self.parse()['apps'], [exp])
+
+
 class TestFileUpload(UploadTest):
 
     def setUp(self):

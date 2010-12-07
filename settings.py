@@ -600,6 +600,7 @@ LOGGING = {
     'loggers': {
         'amqplib': {'handlers': ['null']},
         'caching': {'handlers': ['null']},
+        'rdflib': {'handlers': ['null']},
         'suds': {'handlers': ['null']},
         'z.sphinx': {'level': logging.INFO},
         'z.task': {'level': logging.INFO},
