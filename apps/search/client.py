@@ -36,9 +36,11 @@ log = commonware.log.getLogger('z.sphinx')
 
 
 def extract_filters(term, kwargs):
-    """Pulls all the filtering options out of kwargs and the term and
-    returns a cleaned term without said options and a dictionary of
-    filter names and filter values."""
+    """
+    Pulls all the filtering options out of kwargs and the term and returns a
+    cleaned term without said options and a dictionary of filter names and
+    filter values.
+    """
 
     filters = {'inactive': 0}
     excludes = {}
@@ -138,12 +140,6 @@ def extract_filters(term, kwargs):
         else:
             metas['tag'] = -1
 
-    # TODO:
-    # In the interest of having working code sooner than later, we're
-    # skipping the following... for now:
-    #   * GUID filter
-    #   * Num apps filter
-
     return (term, filters, excludes, ranges, metas)
 
 
@@ -169,8 +165,10 @@ class ResultSet(object):
         return iter(self.queryset)
 
     def __getitem__(self, k):
-        """`queryset` doesn't contain all `total` items, just the items for the
-        current page, so we need to adjust `k`"""
+        """
+        `queryset` doesn't contain all `total` items, just the items for the
+        current page, so we need to adjust `k`.
+        """
         if isinstance(k, slice) and k.start >= self.offset:
             k = slice(k.start - self.offset, k.stop - self.offset)
         elif isinstance(k, int):
@@ -373,7 +371,7 @@ class Client(object):
 
         limit: limits the number of results.
         admin: if present we are in "admin" mode which lets you find addons
-            without files and overrides any 'xenophobia' settings.
+            without files.
         type: specifies an addon_type by id
         sort: specifies a specific sort mode.  acceptable values are 'newest',
             'updated, 'name', 'averagerating' or 'weeklydownloads'.  If no
@@ -381,7 +379,6 @@ class Client(object):
         'app': specifies which application_id to limit searches by
         'version': specifies which version of an app (as specified) that
             addons need to be compatble
-        'xenophobia': restricts addons to the users own locale
         'locale': restricts addons to the specified locale
 
         """
