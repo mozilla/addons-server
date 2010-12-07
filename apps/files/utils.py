@@ -17,42 +17,6 @@ from applications.models import AppVersion
 log = logging.getLogger('files.utils')
 
 
-class WorkingZipFile(zipfile.ZipFile):
-    def _extract_member(self, member, targetpath, pwd):
-        """Extract the ZipInfo object 'member' to a physical
-           file on the path targetpath.
-        """
-        # build the destination pathname, replacing
-        # forward slashes to platform specific separators.
-        if targetpath[-1:] in (os.path.sep, os.path.altsep):
-            targetpath = targetpath[:-1]
-
-        # don't include leading "/" from file name if present
-        if member.filename[0] == '/':
-            targetpath = os.path.join(targetpath, member.filename[1:])
-        else:
-            targetpath = os.path.join(targetpath, member.filename)
-
-        targetpath = os.path.normpath(targetpath)
-
-        # Create all upper directories if necessary.
-        upperdirs = os.path.dirname(targetpath)
-        if upperdirs and not os.path.exists(upperdirs):
-            os.makedirs(upperdirs)
-
-        if member.filename[-1] == '/':
-            os.mkdir(targetpath)
-            return targetpath
-
-        source = self.open(member, pwd=pwd)
-        target = file(targetpath, "wb")
-        shutil.copyfileobj(source, target)
-        source.close()
-        target.close()
-
-        return targetpath
-
-
 class Extractor(object):
     """Extract add-on info from an install.rdf."""
     TYPES = {'2': amo.ADDON_EXTENSION, '4': amo.ADDON_THEME,
@@ -125,18 +89,11 @@ def parse_xpi(xpi, addon=None):
     path = os.path.join(settings.TMP_PATH, str(time.time()))
     os.makedirs(path)
     try:
-
-        # Validating that we have no member files that try to break out of
-        # the destination path.  NOTE: This will be obsolete when this bug is
-        # fixed: http://bugs.python.org/issue4710 (fixed in Python 2.6.2)
-        zip = WorkingZipFile(xpi)
-
+        zip = zipfile.ZipFile(xpi)
         for f in zip.namelist():
             if '..' in f or f.startswith('/'):
                 raise forms.ValidationError(_('Invalid archive.'))
-
         zip.extractall(path)
-
         rdf = Extractor.parse(os.path.join(path, 'install.rdf'))
     except Exception:
         log.error('XPI parse error', exc_info=True)

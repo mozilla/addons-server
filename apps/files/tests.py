@@ -3,6 +3,7 @@ import hashlib
 import os
 import shutil
 import tempfile
+import zipfile
 
 from django import forms
 from django.conf import settings
@@ -16,7 +17,7 @@ import amo.utils
 from addons.models import Addon
 from applications.models import Application, AppVersion
 from files.models import File, FileUpload, Platform
-from files.utils import parse_xpi, WorkingZipFile
+from files.utils import parse_xpi
 from versions.models import Version
 
 
@@ -312,7 +313,7 @@ class TestZip(test_utils.TestCase):
         # be removed.
         try:
             dest = tempfile.mkdtemp()
-            WorkingZipFile(xpi).extractall(dest)
+            zipfile.ZipFile(xpi).extractall(dest)
             assert os.path.isdir(os.path.join(dest, 'chrome'))
         finally:
             shutil.rmtree(dest)
