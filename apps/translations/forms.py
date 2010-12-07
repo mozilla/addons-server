@@ -59,5 +59,5 @@ class LocaleErrorList(ErrorList):
             else:
                 e, extra = item, ''
             li.append((extra, conditional_escape(force_unicode(e))))
-        return mark_safe('<ul class="errorlist">%s<ul>' %
+        return mark_safe('<ul class="errorlist">%s</ul>' %
                          ''.join(u'<li%s>%s</li>' % x for x in li))
