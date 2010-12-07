@@ -7,6 +7,7 @@ import tempfile
 from django import forms
 from django.conf import settings
 
+import mock
 import path
 import test_utils
 from nose.tools import eq_
@@ -129,7 +130,8 @@ class TestParseXpi(test_utils.TestCase):
 
     def setUp(self):
         for version in ('3.0', '3.6.*'):
-            AppVersion.objects.create(application_id=1, version=version)
+            AppVersion.objects.create(application_id=amo.FIREFOX.id,
+                                      version=version)
 
     def parse(self, addon=None, filename='extension.xpi'):
         path = 'apps/files/fixtures/files/' + filename
@@ -202,7 +204,8 @@ class TestParseAlternateXpi(test_utils.TestCase):
 
     def setUp(self):
         for version in ('3.0', '4.0b3pre'):
-            AppVersion.objects.create(application_id=1, version=version)
+            AppVersion.objects.create(application_id=amo.FIREFOX.id,
+                                      version=version)
 
     def parse(self, filename='alt-rdf.xpi'):
         path = 'apps/files/fixtures/files/' + filename
@@ -228,6 +231,16 @@ class TestParseAlternateXpi(test_utils.TestCase):
                AppVersion.objects.get(version='3.0'),
                AppVersion.objects.get(version='4.0b3pre'))
         eq_(self.parse()['apps'], [exp])
+
+    @mock.patch('files.utils.rdflib.Graph')
+    def test_no_manifest_node(self, graph_mock):
+        rdf_mock = mock.Mock()
+        graph_mock.return_value.parse.return_value = rdf_mock
+        rdf_mock.triples.return_value = iter([])
+        rdf_mock.subjects.return_value = iter([])
+        with self.assertRaises(forms.ValidationError) as e:
+            self.parse()
+        eq_(e.exception.messages, ['Could not parse install.rdf.'])
 
 
 class TestFileUpload(UploadTest):

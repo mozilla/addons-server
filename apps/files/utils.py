@@ -1,4 +1,5 @@
 import collections
+import logging
 import os
 import shutil
 import time
@@ -12,6 +13,8 @@ from tower import ugettext as _
 
 import amo
 from applications.models import AppVersion
+
+log = logging.getLogger('files.utils')
 
 
 class WorkingZipFile(zipfile.ZipFile):
@@ -90,10 +93,10 @@ class Extractor(object):
             self.root = self.rdf.subjects(None, self.manifest).next()
 
     def find(self, name, ctx=None):
-        # ctx is like the context in a jquery selector.
+        """Like $() for install.rdf, where name is the selector."""
         if ctx is None:
             ctx = self.root
-        # predicate is like the css selector; it maps to <em:{name}>.
+        # predicate it maps to <em:{name}>.
         match = list(self.rdf.objects(ctx, predicate=self.uri(name)))
         # These come back as rdflib.Literal, which subclasses unicode.
         if match:
@@ -121,19 +124,25 @@ def parse_xpi(xpi, addon=None):
     # Extract to /tmp
     path = os.path.join(settings.TMP_PATH, str(time.time()))
     os.makedirs(path)
+    try:
 
-    # Validating that we have no member files that try to break out of
-    # the destination path.  NOTE: This will be obsolete when this bug is
-    # fixed: http://bugs.python.org/issue4710 (it was fixed in Python 2.6.2)
-    zip = WorkingZipFile(xpi)
+        # Validating that we have no member files that try to break out of
+        # the destination path.  NOTE: This will be obsolete when this bug is
+        # fixed: http://bugs.python.org/issue4710 (fixed in Python 2.6.2)
+        zip = WorkingZipFile(xpi)
 
-    for f in zip.namelist():
-        if '..' in f or f.startswith('/'):
-            raise forms.ValidationError(_('Invalid archive.'))
+        for f in zip.namelist():
+            if '..' in f or f.startswith('/'):
+                raise forms.ValidationError(_('Invalid archive.'))
 
-    zip.extractall(path)
+        zip.extractall(path)
 
-    rdf = Extractor.parse(os.path.join(path, 'install.rdf'))
+        rdf = Extractor.parse(os.path.join(path, 'install.rdf'))
+    except Exception:
+        log.error('XPI parse error', exc_info=True)
+        raise forms.ValidationError(_('Could not parse install.rdf.'))
+    finally:
+        shutil.rmtree(path)
 
     if addon and addon.guid != rdf['guid']:
         raise forms.ValidationError(_("UUID doesn't match add-on"))
@@ -143,6 +152,4 @@ def parse_xpi(xpi, addon=None):
     if addon and addon.type != rdf['type']:
         raise forms.ValidationError(
             _("<em:type> doesn't match add-on"))
-
-    shutil.rmtree(path)
     return rdf
