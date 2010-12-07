@@ -1652,7 +1652,6 @@ class TestVersion(test_utils.TestCase):
         entry = ActivityLog.objects.get()
         eq_(entry.action, amo.LOG.USER_DISABLE.id)
         msg = entry.to_string()
-        assert self.user.name in msg, ("Unexpected: %r" % msg)
         assert self.addon.name.__unicode__() in msg, ("Unexpected: %r" % msg)
 
     def test_user_can_enable_addon(self):
@@ -1667,7 +1666,6 @@ class TestVersion(test_utils.TestCase):
         entry = ActivityLog.objects.get()
         eq_(entry.action, amo.LOG.USER_ENABLE.id)
         msg = entry.to_string()
-        assert self.user.name in msg, ("Unexpected: %r" % msg)
         assert unicode(self.addon.name) in msg, ("Unexpected: %r" % msg)
 
     def test_unprivileged_user_cant_disable_addon(self):
@@ -2528,7 +2526,7 @@ class TestUploadDetail(files.tests.UploadTest):
 class TestUploadValidation(files.tests.UploadTest):
     fixtures = ['base/apps', 'base/users',
                 'devhub/invalid-id-uploaded-xpi.json']
-    
+
     def test_no_html_in_messages(self):
         upload = FileUpload.objects.get(name='invalid-id-20101206.xpi')
         r = self.client.get(reverse('devhub.upload_detail',
