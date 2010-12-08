@@ -440,11 +440,13 @@ function addonUploaded(json) {
         }
         body += "</ul>";
 
-        // TODO(gkoberger): Add a link when it becomes available
-
-        body += format('<a href="{0}">{1}</a>',
-                       [json.full_report_url,
-                        gettext('See full validation report')]);
+        if (json.full_report_url) {
+            // There might not be a link to the full report
+            // if we get an early error like unsupported type.
+            body += format('<a href="{0}">{1}</a>',
+                           [json.full_report_url,
+                            gettext('See full validation report')]);
+        }
 
         statusclass = v.errors ? 'status-fail' : 'status-pass';
         $('#upload-status-results').html(body).addClass(statusclass);
