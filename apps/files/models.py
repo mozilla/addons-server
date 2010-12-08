@@ -154,9 +154,6 @@ def update_status(sender, instance, **kw):
         except models.ObjectDoesNotExist:
             pass
 
-models.signals.post_save.connect(update_status, sender=File,
-                                 dispatch_uid='version_update_status')
-
 models.signals.post_delete.connect(update_status, sender=File,
                                    dispatch_uid='version_update_status')
 

@@ -457,15 +457,13 @@ class Addon(amo.models.ModelBase):
         return self._current_version
 
     def update_status(self, using=None):
-        if not self.versions.using(using).count():
+        if not self.versions.using(using).exists():
             self.update(status=amo.STATUS_NULL)
         elif not (self.versions.using(using)
-                               .filter(files__isnull=False)
-                               .count()):
+                      .filter(files__isnull=False).exists()):
             self.update(status=amo.STATUS_NULL)
         elif not (self.versions.using(using)
-                               .filter(files__status=amo.STATUS_PUBLIC)
-                               .count()):
+                      .filter(files__status=amo.STATUS_PUBLIC).exists()):
             self.update(status=amo.STATUS_UNREVIEWED)
 
     @staticmethod
