@@ -2,8 +2,7 @@ $(document).ready(function(){
 
 var transFixture = {
     setup: function() {
-        this.sandbox = tests.createSandbox();
-        this.sandbox.append($("#l10n-translation").html());
+        this.sandbox = tests.createSandbox('#l10n-translation');
     },
     teardown: function() {
         this.sandbox.remove();

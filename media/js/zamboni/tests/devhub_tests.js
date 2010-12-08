@@ -11,14 +11,13 @@ function pushTiersAndResults($suite, tiers, results) {
 
 var validatorFixtures = {
     setup: function() {
-        this.sandbox = tests.createSandbox();
+        this.sandbox = tests.createSandbox('#addon-validator-template');
         $.mockjaxSettings = {
             status: 200,
             responseTime: 0,
             contentType: 'text/json',
             dataType: 'json'
         };
-        $(this.sandbox).append($("#addon-validator-template").html());
     },
     teardown: function() {
         $.mockjaxClear();

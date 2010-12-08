@@ -57,15 +57,19 @@ tests.waitFor = function(checkCondition, config) {
 
 tests._sbCounter = 0;
 
-tests.createSandbox = function() {
+tests.createSandbox = function(tmpl) {
     /*
-        Returns a jQuery object for a temporary, unique div.
+        Returns a jQuery object for a temporary, unique div filled with html
+        from a template.
+
+        tmpl: an optional jQuery locator from which to copy html.  This would
+              typically be the ID of a div in qunit.html
 
         Example::
 
             module('Group of tests', {
                 setup: function() {
-                    this.sandbox = tests.createSandbox();
+                    this.sandbox = tests.createSandbox('#foobar-template');
                 },
                 teardown: function() {
                     this.sandbox.remove();
@@ -78,6 +82,9 @@ tests.createSandbox = function() {
     */
     tests._sbCounter++;
     var sb = $('<div id="sandbox-'+tests._sbCounter.toString()+'"></div>');
+    if (tmpl) {
+        sb.append($(tmpl).html());
+    }
     $('#sandbox').append(sb);
     return sb;
 };
