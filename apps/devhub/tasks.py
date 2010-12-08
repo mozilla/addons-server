@@ -74,5 +74,3 @@ def resize_icon(src, dst, size, **kw):
         resize_image(src, dst, (size, size), False)
     except Exception, e:
         log.error("Error saving addon icon: %s" % e)
-
-

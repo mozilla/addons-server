@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from datetime import datetime
 import hashlib
 import os
 import shutil
@@ -17,7 +18,7 @@ import amo.utils
 from addons.models import Addon
 from applications.models import Application, AppVersion
 from files.models import File, FileUpload, Platform
-from files.utils import parse_xpi
+from files.utils import parse_xpi, parse_search, parse_addon
 from versions.models import Version
 
 
@@ -37,9 +38,12 @@ class UploadTest(test_utils.TestCase):
         settings.ADDONS_PATH = self._addons_path
         path.path.rename = self._rename
 
-    def xpi_path(self, name):
-        path = 'apps/files/fixtures/files/%s.xpi' % name
+    def file_path(self, name):
+        path = 'apps/files/fixtures/files/%s' % name
         return os.path.join(settings.ROOT, path)
+
+    def xpi_path(self, name):
+        return self.file_path(name + '.xpi')
 
 
 class TestFile(test_utils.TestCase):
@@ -193,6 +197,11 @@ class TestParseXpi(test_utils.TestCase):
         data = self.parse(filename='theme-invalid-app.jar')
         eq_(data['apps'], [])
 
+    def test_bad_zipfile(self):
+        with self.assertRaises(forms.ValidationError) as e:
+            self.parse(filename='search.xml')
+        eq_(e.exception.messages, ['Could not parse install.rdf.'])
+
     # parse_dictionary
     # parse_theme
     # parse_langpack
@@ -317,3 +326,48 @@ class TestZip(test_utils.TestCase):
             assert os.path.isdir(os.path.join(dest, 'chrome'))
         finally:
             shutil.rmtree(dest)
+
+
+class TestParseSearch(test_utils.TestCase):
+
+    def parse(self, filename='search.xml'):
+        path = 'apps/files/fixtures/files/' + filename
+        return parse_search(os.path.join(settings.ROOT, path))
+
+    def extract(self):
+        # This is the expected return value from extract_search.
+        return {'url': {u'type': u'text/html', u'template':
+                        u'http://www.yyy.com?q={searchTerms}'},
+                'xmlns': u'http://a9.com/-/spec/opensearch/1.1/',
+                'name': u'search tool',
+                'description': u'Search Engine for Firefox'}
+
+    def test_basics(self):
+        # This test breaks if the day changes. Have fun with that!
+        eq_(self.parse(), {
+            'guid': None,
+            'name': 'search tool',
+            'version': datetime.now().strftime('%Y%m%d'),
+            'summary': 'Search Engine for Firefox',
+            'type': amo.ADDON_SEARCH})
+
+    @mock.patch('files.utils.extract_search')
+    def test_extract_search_error(self, extract_mock):
+        extract_mock.side_effect = Exception
+        with self.assertRaises(forms.ValidationError) as e:
+            self.parse()
+        assert e.exception.messages[0].startswith('Could not parse ')
+
+
+@mock.patch('files.utils.parse_xpi')
+@mock.patch('files.utils.parse_search')
+def test_parse_addon(search_mock, xpi_mock):
+    addon = mock.sentinel.addon
+    parse_addon('file.xpi', addon)
+    xpi_mock.assert_called_with('file.xpi', addon)
+
+    parse_addon('file.xml', addon)
+    search_mock.assert_called_with('file.xml', addon)
+
+    parse_addon('file.jar', addon)
+    xpi_mock.assert_called_with('file.jar', addon)
