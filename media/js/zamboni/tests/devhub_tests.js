@@ -350,4 +350,59 @@ asyncTest('Test task error', function() {
     });
 });
 
+module('Validator: suport html', $.extend({}, validatorFixtures));
+
+asyncTest('Test html', function() {
+    var $suite = $('#addon-validator-suite-test'), err;
+
+    $.mockjax({
+        url: '/validate',
+        status: 200,
+        response: function(settings) {
+            this.responseText = {
+                "validation": {
+                    "errors": 1,
+                    "success": false,
+                    "warnings": 0,
+                    "ending_tier": 3,
+                    "messages": [{
+                        "context": null,
+                        "description": "The values supplied for &lt;em:id&gt; in the install.rdf file is not a valid UUID string.",
+                        "column": 0,
+                        "line": 0,
+                        "file": "install.rdf",
+                        "tier": 1,
+                        "message": "The value of &lt;em:id&gt; is invalid.",
+                        "type": "error",
+                        "id": ["testcases_installrdf", "_test_id", "invalid"],
+                        "uid": "3793e550026111e082c3c42c0301fe38"
+                    }],
+                    "rejected": false,
+                    "detected_type": "extension",
+                    "notices": 0,
+                    "metadata": {
+                        "version": "2",
+                        "name": "OddNodd",
+                        "id": "oddnoddd"
+                    }
+                }
+            };
+        }
+    });
+
+    $('#addon-validator-suite-test').trigger('validate');
+
+    tests.waitFor(function() {
+        return $('[class~="test-tier"][data-tier="1"]', $suite).hasClass(
+                                                            'tests-failed');
+    }).thenDo(function() {
+        err = $('#v-msg-3793e550026111e082c3c42c0301fe38', $suite);
+        equals($('h5', err).text(),
+               'The value of <em:id> is invalid.');
+        equals($('p', err).text(),
+               'Error: The values supplied for <em:id> in the install.rdf file is not a valid UUID string.');
+        start();
+    });
+});
+
 });

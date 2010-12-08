@@ -917,7 +917,7 @@ $(document).ready(function() {
                                                     : gettext('Error');
                 msgDiv.attr('id', msgId(msg.uid));
                 msgDiv.addClass('msg-' + msg['type']);
-                $('h5', msgDiv).text(msg.message);
+                $('h5', msgDiv).html(msg.message);
                 if (typeof(msg.description) === 'string') {
                     // TODO(kumar) ask Matt to make the JSON format
                     // more consistent.
