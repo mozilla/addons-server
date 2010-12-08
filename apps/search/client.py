@@ -47,7 +47,6 @@ def extract_filters(term, kwargs):
     filters = {'inactive': 0}
     excludes = {}
     ranges = {}
-    metas = {}
 
     # Status filtering
     if 'status' in kwargs:
@@ -96,7 +95,7 @@ def extract_filters(term, kwargs):
                 platform = platform.id
         # If they are seeking out PLATFORM_ALL they mean no platform filtering
         if platform and platform != amo.PLATFORM_ALL.id:
-            metas['platform'] = (platform, amo.PLATFORM_ALL.id,)
+            filters['platform'] = (platform, amo.PLATFORM_ALL.id,)
 
     # Type/category filters
     (term, addon_type) = extract_from_query(term, 'type', '\w+', kwargs)
@@ -107,7 +106,7 @@ def extract_filters(term, kwargs):
                          in amo.ADDON_TYPE.items())
             addon_type = types.get(addon_type.lower())
 
-        metas['type'] = addon_type
+        filters['type'] = addon_type
 
     # Guid filtering..
     (term, guids) = extract_from_query(term, 'guid', '[\s{}@_\.,\-0-9a-zA-Z]+',
@@ -130,18 +129,18 @@ def extract_filters(term, kwargs):
         if not isinstance(category, int):
             category = get_category_id(category, kwargs['app'])
 
-        metas['category'] = category
+        filters['category'] = category
 
     (term, tag) = extract_from_query(term, 'tag', '\w+', kwargs)
 
     if tag:
         tag = Tag.objects.filter(tag_text=tag)[:1]
         if tag:
-            metas['tag'] = tag[0].id
+            filters['tag'] = tag[0].id
         else:
-            metas['tag'] = -1
+            filters['tag'] = -1
 
-    return (term, filters, excludes, ranges, metas)
+    return (term, filters, excludes, ranges)
 
 
 def get_locale_ord():
@@ -225,7 +224,6 @@ class SearchError(Exception):
 
 class Client(object):
     """A search client that queries sphinx for addons."""
-
     def __init__(self):
         self.sphinx = sphinx.SphinxClient()
 
@@ -304,7 +302,6 @@ class Client(object):
         # SetFilterRange requires a max and min even if you just want a
         # lower-bound.  To work-around this limitation we set max_ver's
         # upperbound to be ridiculously large.
-
         if high_int:
             sc.SetFilterRange('max_ver', low_int, MAX_VERSION)
             sc.SetFilterRange('min_ver', 0, high_int)
@@ -323,32 +320,18 @@ class Client(object):
         self.sphinx.SetSelect(field)
         self.sphinx.SetGroupBy(field, sphinx.SPH_GROUPBY_ATTR)
 
-        # We are adding back all the other meta filters.  This way we can find
-        # out all of the possible values of this particular field after we
-        # filter down the search.
-        filters = self.apply_meta_filters(exclude=field)
         self.sphinx.AddQuery(term, 'addons')
 
-        # We roll back our client and store a pointer to this filter.
-        self.remove_filters(len(filters))
+        # We store a pointer to this filter.
         self.queries[field] = self.query_index
         self.query_index += 1
         self.sphinx.ResetGroupBy()
 
-    def apply_meta_filters(self, exclude=None):
-        """Apply any meta filters, excluding the filter listed in `exclude`."""
-
-        filters = [f for field, f in self.meta_filters.iteritems()
-                   if field != exclude]
-        self.sphinx._filters.extend(filters)
-        return filters
-
-    def remove_filters(self, num):
+    def remove_filter(self, idx):
         """Remove the `num` last filters from the sphinx query."""
-        if num:
-            self.sphinx._filters = self.sphinx._filters[:-num]
+        return self.sphinx._filters.pop(idx)
 
-    def add_filter(self, field, values, meta=False, exclude=False):
+    def add_filter(self, field, values, exclude=False):
         """
         Filters the current sphinx query.  `meta` means we can save pull this
         filter out for meta queries.
@@ -360,9 +343,7 @@ class Client(object):
             values = (values,)
 
         self.sphinx.SetFilter(field, values, exclude)
-
-        if meta:
-            self.meta_filters[field] = self.sphinx._filters.pop()
+        return len(self.sphinx._filters) - 1
 
     def query(self, term, limit=10, offset=0, **kwargs):
         """
@@ -396,8 +377,7 @@ class Client(object):
         sc.SetFieldWeights({'name': 100})
 
         # Extract and apply various filters.
-        (term, includes, excludes, ranges, metas) = extract_filters(
-                term, kwargs)
+        (term, includes, excludes, ranges) = extract_filters(term, kwargs)
 
         for filter, value in includes.iteritems():
             self.add_filter(filter, value)
@@ -407,9 +387,6 @@ class Client(object):
 
         for filter, value in ranges.iteritems():
             self.sphinx.SetFilterRange(filter, value[0], value[1])
-
-        for filter, value in metas.iteritems():
-            self.add_filter(filter, value, meta=True)
 
         # Sanitize the term before we start adding queries.
         term = sanitize_query(term)
@@ -427,17 +404,18 @@ class Client(object):
                 self.add_meta_query('category', term)
 
             if 'tags' in kwargs['meta']:
+                idx = self.add_filter('locale_ord', get_locale_ord())
                 sc.SetFilterRange('tag', 0, BIG_INTEGER)
-                self.add_filter('locale_ord', get_locale_ord())
                 self.add_meta_query('tag', term)
-                self.remove_filters(2)
+                # remove the locale_ord
+                self.remove_filter(idx)
+                # remove the range filter, which is now where idx is
+                self.remove_filter(idx)
 
             if 'platforms' in kwargs['meta']:
                 self.add_meta_query('platform', term)
 
         sc.SetSelect(fields)
-
-        self.apply_meta_filters()
 
         # Version filtering.
         (term, version) = extract_from_query(term, 'version', '[0-9.]+',
