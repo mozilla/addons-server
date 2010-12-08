@@ -528,8 +528,7 @@ class Addon(amo.models.ModelBase):
         """
         Return other addons by the author(s) of this addon
         """
-        return (Addon.objects.valid().only_translations()
-                  .exclude(id=self.id)
+        return (Addon.objects.valid().exclude(id=self.id)
                   .filter(addonuser__listed=True,
                           authors__in=self.listed_authors).distinct())
 

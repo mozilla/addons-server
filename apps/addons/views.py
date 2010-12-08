@@ -111,7 +111,7 @@ def extension_detail(request, addon):
     tags = addon.tags.not_blacklisted()
 
     # addon recommendations
-    recommended = Addon.objects.valid().only_translations().filter(
+    recommended = Addon.objects.valid().filter(
         recommended_for__addon=addon)[:5]
 
     # popular collections this addon is part of

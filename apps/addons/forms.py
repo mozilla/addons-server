@@ -259,8 +259,7 @@ class UpdateForm(happyforms.Form):
 
     def clean_id(self):
         try:
-            addon = (Addon.objects.all().no_transforms()
-                     .get(guid=self.cleaned_data['id']))
+            addon = Addon.objects.get(guid=self.cleaned_data['id'])
         except Addon.DoesNotExist:
             raise forms.ValidationError(_('Id is required.'))
         return addon

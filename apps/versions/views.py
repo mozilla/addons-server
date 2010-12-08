@@ -53,8 +53,7 @@ def _find_version_page(qs, addon_id, version_num):
 # Should accept junk at the end for filename goodness.
 def download_file(request, file_id, type=None):
     file = get_object_or_404(File.objects, pk=file_id)
-    addon = get_object_or_404(Addon.objects.all().no_transforms(),
-                              pk=file.version.addon_id)
+    addon = get_object_or_404(Addon.objects, pk=file.version.addon_id)
 
     if (addon.is_disabled
         and not acl.check_ownership(request, addon)):
@@ -69,7 +68,7 @@ def download_file(request, file_id, type=None):
 
 
 def download_latest(request, addon_id, type='xpi', platform=None):
-    addon = get_object_or_404(Addon.objects.all().no_transforms(),
+    addon = get_object_or_404(Addon.objects,
                               pk=addon_id, _current_version__isnull=False)
     platforms = [amo.PLATFORM_ALL.id]
     if platform is not None and int(platform) in amo.PLATFORMS:
