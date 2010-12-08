@@ -455,11 +455,10 @@ def json_upload_detail(upload):
 
     if validation:
         for msg in validation['messages']:
-            # TODO(Kumar) once we upgrade amo-validator, this
-            # tier hack can go away.  (bug 614575)
-            #
-            # Pretend all messages are for tier 1 (General Tests)
-            msg['tier'] = 1
+            if msg['tier'] == 0:
+                # We can't display a message if it's on tier 0.
+                # Should get fixed soon in bug 617481
+                msg['tier'] = 1
             for k, v in msg.items():
                 if isinstance(v, basestring):
                     msg[k] = jinja2.escape(v)
