@@ -884,7 +884,7 @@ $(document).ready(function() {
         for (var tierNum in msgMap) {
             var tierData = msgMap[tierNum],
                 tier = $('[class~="test-tier"]' +
-                         '[data-tier="' + tierNum + '"]'),
+                         '[data-tier="' + tierNum + '"]', suite),
                 resContainer = $('#suite-results-tier-' + tierNum),
                 results = $('.tier-results', resContainer),
                 errorsTxt, warningsTxt, summaryMsg;
@@ -911,6 +911,9 @@ $(document).ready(function() {
                 results.append('<span>' +
                                gettext('All tests passed successfully.') +
                                '</span>');
+                // There might still be some messages below
+                // but we don't care about showing them.
+                continue;
             }
 
             $.each(tierData.messages, function(i, msg) {

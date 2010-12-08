@@ -411,4 +411,53 @@ asyncTest('Test html', function() {
     });
 });
 
+module('Validator: no msgs when passing', validatorFixtures);
+
+asyncTest('Test no msgs', function() {
+    var $suite = $('.addon-validator-suite', this.sandbox);
+
+    $.mockjax({
+        url: '/validate',
+        status: 200,
+        response: function(settings) {
+            this.responseText = {
+                "validation": {
+                    "errors": 0,
+                    "success": true,
+                    "warnings": 0,
+                    "ending_tier": 0,
+                    "messages": [{
+                        "context": null,
+                        "description": "",
+                        "column": 0,
+                        "line": 0,
+                        "file": "",
+                        "tier": 1,
+                        "message": "OpenSearch provider confirmed.",
+                        "type": "notice",
+                        "id": ["main", "test_search", "confirmed"],
+                        "uid": "dd5dab88026611e082c3c42c0301fe38"
+                    }],
+                    "rejected": false,
+                    "detected_type": "search",
+                    "notices": 1,
+                    "message_tree": {},
+                    "metadata": {}
+                }
+            };
+        }
+    });
+
+    $suite.trigger('validate');
+
+    tests.waitFor(function() {
+        return $('[class~="test-tier"][data-tier="1"]', $suite).hasClass(
+                                                            'tests-passed');
+    }).thenDo(function() {
+        equals($('[class~="msg-notice"] h5').text(), '');
+        equals($('[class~="msg-notice"] p').text(), '');
+        start();
+    });
+});
+
 });
