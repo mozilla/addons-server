@@ -324,8 +324,7 @@ def profile(request, user_id):
     def get_addons(reviews):
         if not reviews:
             return
-        qs = (Addon.objects.all().only_translations()
-              .filter(id__in=set(r.addon_id for r in reviews)))
+        qs = Addon.objects.filter(id__in=set(r.addon_id for r in reviews))
         addons = dict((addon.id, addon) for addon in qs)
         for review in reviews:
             review.addon = addons.get(review.addon_id)
