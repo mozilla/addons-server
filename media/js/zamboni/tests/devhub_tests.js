@@ -459,4 +459,23 @@ asyncTest('Test no msgs', function() {
     });
 });
 
+module('addonUploaded', {
+    setup: function() {
+        this.sandbox = tests.createSandbox('#addon-upload-template');
+    },
+    teardown: function() {
+        this.sandbox.remove();
+    }
+});
+
+test('JSON error', function() {
+    addonUploaded({
+        validation: false,
+        error: "Traceback (most recent call last):...NameError"
+    });
+    ok($('#upload-status-bar', this.sandbox).hasClass('bar-fail'));
+    equals($('#upload-status-text', this.sandbox).text(),
+           'Unexpected server error while validating.')
+});
+
 });

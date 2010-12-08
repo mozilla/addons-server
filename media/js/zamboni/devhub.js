@@ -393,7 +393,16 @@ function addonError(message) {
 function addonUploaded(json) {
     $('#uploadstatus_abort').hide();
 
-    v = json.validation;
+    var v = json.validation;
+
+    if (json.error) {
+        $('#upload-status-bar').removeClass('progress-idle')
+                               .addClass('bar-fail');
+        $('#upload-status-bar div').fadeOut();
+        $('#upload-status-text').text(gettext(
+            'Unexpected server error while validating.'));
+        return;
+    }
 
     if(!v) {
         setTimeout(function(){
