@@ -265,7 +265,7 @@ function fileUpload(img, url) {
 
     // Make sure it's an xpi or jar.
 
-    if(!file.name.match(/\.(xpi|jar)$/i)) {
+    if(!file.name.match(/\.(xpi|jar|xml)$/i)) {
         error = gettext("The package is not of a recognized type.");
         j = {};
         j.validation = {"errors":1, "messages":[]};
