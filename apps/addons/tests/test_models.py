@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, datetime
 import itertools
 from urlparse import urlparse
 
@@ -10,6 +10,7 @@ from nose.tools import eq_, assert_not_equal
 import test_utils
 
 import amo
+import files.tests
 from amo import set_user
 from amo.signals import _connect, _disconnect
 from addons.models import (Addon, AddonDependency, AddonPledge,
@@ -17,7 +18,7 @@ from addons.models import (Addon, AddonDependency, AddonPledge,
                            Persona, Preview)
 from applications.models import Application, AppVersion
 from devhub.models import ActivityLog
-from files.models import File
+from files.models import File, FileUpload, Platform
 from reviews.models import Review
 from users.models import UserProfile
 from versions.models import ApplicationsVersions, Version
@@ -678,3 +679,56 @@ class TestUpdate(test_utils.TestCase):
                                  self.app, amo.PLATFORM_WIN)
         eq_(version.version, '1.2.2')
         eq_(file.pk, file_two.pk)
+
+
+class TestAddonFromUpload(files.tests.UploadTest):
+    fixtures = ['base/apps']
+
+    def setUp(self):
+        super(TestAddonFromUpload, self).setUp()
+        self.platform = Platform.objects.create(id=amo.PLATFORM_MAC.id)
+        for version in ('3.0', '3.6.*'):
+            AppVersion.objects.create(application_id=1, version=version)
+
+    def get_upload(self, filename):
+        d = open(self.file_path(filename)).read()
+        return FileUpload.from_post([d], filename=filename, size=1234)
+
+    def test_xpi_attributes(self):
+        addon = Addon.from_upload(self.get_upload('extension.xpi'),
+                                  self.platform)
+        eq_(addon.name, 'xpi name')
+        eq_(addon.guid, 'guid@xpi')
+        eq_(addon.type, amo.ADDON_EXTENSION)
+        eq_(addon.status, amo.STATUS_NULL)
+        eq_(addon.homepage, 'http://homepage.com')
+        eq_(addon.description, 'xpi description')
+        eq_(addon.slug, 'xpi-name')
+
+    def test_xpi_version(self):
+        addon = Addon.from_upload(self.get_upload('extension.xpi'),
+                                  self.platform)
+        v = addon.versions.get()
+        eq_(v.version, '0.1')
+        eq_(v.files.get().platform_id, self.platform.id)
+        eq_(v.files.get().status, amo.STATUS_UNREVIEWED)
+
+    def test_search_attributes(self):
+        addon = Addon.from_upload(self.get_upload('search.xml'),
+                                  self.platform)
+        eq_(addon.name, 'search tool')
+        eq_(addon.guid, None)
+        eq_(addon.type, amo.ADDON_SEARCH)
+        eq_(addon.status, amo.STATUS_NULL)
+        eq_(addon.homepage, None)
+        eq_(addon.description, None)
+        eq_(addon.slug, 'search-tool')
+        eq_(addon.summary, 'Search Engine for Firefox')
+
+    def test_search_version(self):
+        addon = Addon.from_upload(self.get_upload('search.xml'),
+                                  self.platform)
+        v = addon.versions.get()
+        eq_(v.version, datetime.now().strftime('%Y%m%d'))
+        eq_(v.files.get().platform_id, amo.PLATFORM_ALL.id)
+        eq_(v.files.get().status, amo.STATUS_UNREVIEWED)

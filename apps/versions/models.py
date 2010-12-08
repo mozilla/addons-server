@@ -13,7 +13,7 @@ import amo.models
 from amo.urlresolvers import reverse
 from applications.models import Application, AppVersion
 from files import utils
-from files.models import File
+from files.models import File, Platform
 from translations.fields import (TranslatedField, PurifiedField,
                                  LinkifiedField)
 from users.models import UserProfile
@@ -43,8 +43,7 @@ class Version(amo.models.ModelBase):
 
     @classmethod
     def from_upload(cls, upload, addon, platform):
-        # TODO: license, relnotes
-        data = utils.parse_xpi(upload.path, addon)
+        data = utils.parse_addon(upload.path, addon)
         try:
             license = addon.versions.latest().license_id
         except Version.DoesNotExist:
@@ -54,9 +53,11 @@ class Version(amo.models.ModelBase):
         log.debug('New version: %r (%s) from %r' % (v, v.id, upload))
         # appversions
         AV = ApplicationsVersions
-        for app in data['apps']:
+        for app in data.get('apps', []):
             AV(version=v, min=app.min, max=app.max,
                application_id=app.id).save()
+        if addon.type == amo.ADDON_SEARCH:
+            platform = Platform.objects.get(id=amo.PLATFORM_ALL.id)
         File.from_upload(upload, v, platform)
         return v
 

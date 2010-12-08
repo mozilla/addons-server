@@ -270,10 +270,10 @@ class Addon(amo.models.ModelBase):
 
     @classmethod
     def from_upload(cls, upload, platform):
-        from files.utils import parse_xpi
-        data = parse_xpi(upload.path)
-        keys = 'guid name type homepage description'.split()
-        addon = Addon(**dict((k, data[k]) for k in keys))
+        from files.utils import parse_addon
+        data = parse_addon(upload.path)
+        fields = cls._meta.get_all_field_names()
+        addon = Addon(**dict((k, v) for k, v in data.items() if k in fields))
         addon.status = amo.STATUS_NULL
         addon.save()
         Version.from_upload(upload, addon, platform)
