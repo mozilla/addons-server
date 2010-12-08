@@ -54,3 +54,30 @@ tests.waitFor = function(checkCondition, config) {
         }
     }
 };
+
+tests._sbCounter = 0;
+
+tests.createSandbox = function() {
+    /*
+        Returns a jQuery object for a temporary, unique div.
+
+        Example::
+
+            module('Group of tests', {
+                setup: function() {
+                    this.sandbox = tests.createSandbox();
+                },
+                teardown: function() {
+                    this.sandbox.remove();
+                }
+            });
+
+            test('some test', function() {
+                this.sandbox.append('...');
+            });
+    */
+    tests._sbCounter++;
+    var sb = $('<div id="sandbox-'+tests._sbCounter.toString()+'"></div>');
+    $('#sandbox').append(sb);
+    return sb;
+};

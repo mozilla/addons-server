@@ -1,7 +1,6 @@
 $(document).ready(function(){
 
-function pushTiersAndResults(tiers, results) {
-    var $suite = $('#addon-validator-suite-test');
+function pushTiersAndResults($suite, tiers, results) {
     $.each(['1','2','3','4'], function(i, val) {
         tiers.push($('[class~="test-tier"][data-tier="' + val + '"]',
                                                                 $suite));
@@ -12,24 +11,27 @@ function pushTiersAndResults(tiers, results) {
 
 var validatorFixtures = {
     setup: function() {
+        this.sandbox = tests.createSandbox();
         $.mockjaxSettings = {
             status: 200,
             responseTime: 0,
             contentType: 'text/json',
             dataType: 'json'
         };
-        $("#qunit-fixture").append($("#addon-validator-template").html());
+        $(this.sandbox).append($("#addon-validator-template").html());
     },
     teardown: function() {
         $.mockjaxClear();
+        this.sandbox.remove();
     }
 };
 
 
-module('Validator: Passing Validation', $.extend({}, validatorFixtures));
+module('Validator: Passing Validation', validatorFixtures);
 
 asyncTest('Test passing', function() {
-    var $suite = $('#addon-validator-suite-test'), tiers=[], results=[];
+    var $suite = $('.addon-validator-suite', this.sandbox),
+        tiers=[], results=[];
 
     $.mockjax({
         url: '/validate',
@@ -54,13 +56,13 @@ asyncTest('Test passing', function() {
         }
     });
 
-    $('#addon-validator-suite-test').trigger('validate');
+    $suite.trigger('validate');
 
     tests.waitFor(function() {
         return $('[class~="test-tier"][data-tier="1"]', $suite).hasClass(
                                                             'tests-passed');
     }).thenDo(function() {
-        pushTiersAndResults(tiers, results);
+        pushTiersAndResults($suite, tiers, results);
         $.each(tiers, function(i, tier) {
             var tierN = i+1;
             ok(tier.hasClass('tests-passed'),
@@ -88,10 +90,11 @@ asyncTest('Test passing', function() {
 });
 
 
-module('Validator: Failing Validation', $.extend({}, validatorFixtures));
+module('Validator: Failing Validation', validatorFixtures);
 
 asyncTest('Test failing', function() {
-    var $suite = $('#addon-validator-suite-test'), tiers=[], results=[];
+    var $suite = $('.addon-validator-suite', this.sandbox),
+        tiers=[], results=[];
 
     $.mockjax({
         url: '/validate',
@@ -166,14 +169,14 @@ asyncTest('Test failing', function() {
         }
     });
 
-    $('#addon-validator-suite-test').trigger('validate');
+    $suite.trigger('validate');
 
     tests.waitFor(function() {
         return $('[class~="test-tier"][data-tier="1"]', $suite).hasClass(
                                                             'tests-failed');
     }).thenDo(function() {
         var missingInstall, invalidVer;
-        pushTiersAndResults(tiers, results);
+        pushTiersAndResults($suite, tiers, results);
         $.each(tiers, function(i, tier) {
             var tierN = i+1;
             equals(tier.hasClass('ajax-loading'), false,
@@ -240,10 +243,11 @@ asyncTest('Test failing', function() {
 });
 
 
-module('Validator: 500 Error response', $.extend({}, validatorFixtures));
+module('Validator: 500 Error response', validatorFixtures);
 
 asyncTest('Test 500 error', function() {
-    var $suite = $('#addon-validator-suite-test'), tiers=[], results=[];
+    var $suite = $('.addon-validator-suite', this.sandbox),
+        tiers=[], results=[];
 
     $.mockjax({
         url: '/validate',
@@ -251,13 +255,13 @@ asyncTest('Test 500 error', function() {
         responseText: '500 Internal Error'
     });
 
-    $('#addon-validator-suite-test').trigger('validate');
+    $suite.trigger('validate');
 
     tests.waitFor(function() {
         return $('[class~="test-tier"][data-tier="1"]', $suite).hasClass(
                                                             'tests-failed');
     }).thenDo(function() {
-        pushTiersAndResults(tiers, results);
+        pushTiersAndResults($suite, tiers, results);
         $.each(tiers, function(i, tier) {
             ok(tier.hasClass('tests-failed'),
                 'Checking class: ' + tier.attr('class'));
@@ -277,23 +281,24 @@ asyncTest('Test 500 error', function() {
 });
 
 
-module('Validator: Timeout', $.extend({}, validatorFixtures));
+module('Validator: Timeout', validatorFixtures);
 
 asyncTest('Test timeout', function() {
-    var $suite = $('#addon-validator-suite-test'), tiers=[], results=[];
+    var $suite = $('.addon-validator-suite', this.sandbox),
+        tiers=[], results=[];
 
     $.mockjax({
         url: '/validate',
         isTimeout: true
     });
 
-    $('#addon-validator-suite-test').trigger('validate');
+    $suite.trigger('validate');
 
     tests.waitFor(function() {
         return $('[class~="test-tier"][data-tier="1"]', $suite).hasClass(
                                                             'tests-failed');
     }).thenDo(function() {
-        pushTiersAndResults(tiers, results);
+        pushTiersAndResults($suite, tiers, results);
         $.each(tiers, function(i, tier) {
             ok(tier.hasClass('tests-failed'),
                 'Checking class: ' + tier.attr('class'));
@@ -310,10 +315,11 @@ asyncTest('Test timeout', function() {
     });
 });
 
-module('Validator: task error', $.extend({}, validatorFixtures));
+module('Validator: task error', validatorFixtures);
 
 asyncTest('Test task error', function() {
-    var $suite = $('#addon-validator-suite-test'), tiers=[], results=[];
+    var $suite = $('.addon-validator-suite', this.sandbox),
+        tiers=[], results=[];
 
     $.mockjax({
         url: '/validate',
@@ -325,13 +331,13 @@ asyncTest('Test task error', function() {
             "error": "Traceback (most recent call last):\n  File \"/Users/kumar/dev/zamboni/apps/devhub/tasks.py\", line 23, in validator\n    result = _validator(upload)\n  File \"/Users/kumar/dev/zamboni/apps/devhub/tasks.py\", line 49, in _validator\n    import validator.main as addon_validator\n  File \"/Users/kumar/dev/zamboni/vendor/src/amo-validator/validator/main.py\", line 17, in <module>\n    import validator.testcases.l10ncompleteness\n  File \"/Users/kumar/dev/zamboni/vendor/src/amo-validator/validator/testcases/l10ncompleteness.py\", line 3, in <module>\n    import chardet\nImportError: No module named chardet\n"}
     });
 
-    $('#addon-validator-suite-test').trigger('validate');
+    $suite.trigger('validate');
 
     tests.waitFor(function() {
         return $('[class~="test-tier"][data-tier="1"]', $suite).hasClass(
                                                             'tests-failed');
     }).thenDo(function() {
-        pushTiersAndResults(tiers, results);
+        pushTiersAndResults($suite, tiers, results);
         $.each(tiers, function(i, tier) {
             ok(tier.hasClass('tests-failed'),
                'Checking class: ' + tier.attr('class'));
@@ -350,10 +356,10 @@ asyncTest('Test task error', function() {
     });
 });
 
-module('Validator: suport html', $.extend({}, validatorFixtures));
+module('Validator: suport html', validatorFixtures);
 
 asyncTest('Test html', function() {
-    var $suite = $('#addon-validator-suite-test'), err;
+    var $suite = $('.addon-validator-suite', this.sandbox), err;
 
     $.mockjax({
         url: '/validate',
@@ -390,7 +396,7 @@ asyncTest('Test html', function() {
         }
     });
 
-    $('#addon-validator-suite-test').trigger('validate');
+    $suite.trigger('validate');
 
     tests.waitFor(function() {
         return $('[class~="test-tier"][data-tier="1"]', $suite).hasClass(
