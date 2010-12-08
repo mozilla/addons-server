@@ -574,6 +574,10 @@ class Addon(amo.models.ModelBase):
                     .extra(select={'last_updated': 'created'}))
         return dict(public=public, exp=exp, listed=listed, personas=personas)
 
+    @amo.cached_property(writable=True)
+    def all_categories(self):
+        return list(self.categories.all())
+
 
 def version_changed(sender, **kw):
     from . import tasks
