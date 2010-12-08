@@ -465,6 +465,9 @@ class Addon(amo.models.ModelBase):
         elif not (self.versions.using(using)
                       .filter(files__status=amo.STATUS_PUBLIC).exists()):
             self.update(status=amo.STATUS_UNREVIEWED)
+        else:
+            return
+        amo.log(amo.LOG.CHANGE_STATUS, self.get_status_display(), self)
 
     @staticmethod
     def transformer(addons):

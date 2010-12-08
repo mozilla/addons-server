@@ -10,12 +10,14 @@ from nose.tools import eq_, assert_not_equal
 import test_utils
 
 import amo
+from amo import set_user
 from amo.signals import _connect, _disconnect
 from addons.models import (Addon, AddonDependency, AddonPledge,
                            AddonRecommendation, AddonType, Category, Feature,
                            Persona, Preview)
-from files.models import File
 from applications.models import Application, AppVersion
+from devhub.models import ActivityLog
+from files.models import File
 from reviews.models import Review
 from users.models import UserProfile
 from versions.models import ApplicationsVersions, Version
@@ -315,6 +317,14 @@ class TestAddonModels(test_utils.TestCase):
         # We have a beta version but status has to be public.
         a.status = amo.STATUS_UNREVIEWED
         assert not a.show_beta
+
+    def test_update_logs(self):
+        addon = Addon.objects.get(id=3615)
+        set_user(UserProfile.objects.all()[0])
+        addon.versions.all().delete()
+
+        entries = ActivityLog.objects.all()
+        eq_(entries[0].action, amo.LOG.CHANGE_STATUS.id)
 
 
 class TestCategoryModel(test_utils.TestCase):
