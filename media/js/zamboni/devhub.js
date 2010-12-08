@@ -263,8 +263,6 @@ function fileUpload(img, url) {
     file.data = '';
     file.aborted = false;
 
-    // Make sure it's an xpi or jar.
-
     if(!file.name.match(/\.(xpi|jar|xml)$/i)) {
         error = gettext("The package is not of a recognized type.");
         j = {};
