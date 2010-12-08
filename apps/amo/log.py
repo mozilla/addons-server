@@ -17,12 +17,12 @@ class CREATE_ADDON:
 class EDIT_PROPERTIES:
     """ Expects: addon """
     id = 2
-    format = _(u'{user.name} edited addon {addon} properties')
+    format = _(u'{user.name} edited add-on {addon} properties')
 
 
 class EDIT_DESCRIPTIONS:
     id = 3
-    format = _(u'{user.name} edited addon {addon} description')
+    format = _(u'{user.name} edited add-on {addon} description')
 
 
 # TODO(gkoberger): Log this type
