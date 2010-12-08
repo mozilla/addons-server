@@ -293,7 +293,7 @@ class APITest(TestCase):
 
         tags = {
                 'suggested_amount': (
-                    {'currency': 'USD', 'ammount': '5.00'}, '$5.00'),
+                    {'currency': 'USD', 'amount': '5.00'}, '$5.00'),
                 'created': ({'epoch': '1174134235'}, '2007-03-17T12:23:55Z'),
                 'last_updated': (
                     {'epoch': '1272326983'}, '2010-04-27T00:09:43Z'),
