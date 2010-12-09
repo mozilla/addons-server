@@ -32,6 +32,7 @@
         "pk": 1,
         "model": "addons.addon",
         "fields": {
+            "slug": "24007",
             "_current_version": 24007,
             "dev_agreement": 1,
             "eula": null,
@@ -85,6 +86,7 @@
         "pk": 2,
         "model": "addons.addon",
         "fields": {
+            "slug": "2",
             "_current_version": 2,
             "dev_agreement": 1,
             "eula": null,
@@ -138,6 +140,7 @@
         "pk": 3,
         "model": "addons.addon",
         "fields": {
+            "slug": "3",
             "dev_agreement": 1,
             "eula": null,
             "public_stats": 0,

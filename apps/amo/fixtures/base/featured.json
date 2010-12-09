@@ -31,6 +31,7 @@
         "pk": 15679,
         "model": "addons.addon",
         "fields": {
+            "slug": "15679",
             "dev_agreement": 0,
             "last_updated": "2009-03-30 23:18:20",
             "average_daily_downloads": 0,
@@ -155,6 +156,7 @@
         "pk": 6912,
         "model": "addons.addon",
         "fields": {
+            "slug": "6912",
             "dev_agreement": 1,
             "last_updated": "2009-05-29 21:25:25",
             "view_source": 1,
@@ -200,6 +202,7 @@
         "pk": 7661,
         "model": "addons.addon",
         "fields": {
+            "slug": "7661",
             "dev_agreement": 1,
             "_current_version": 88798,
             "last_updated": "2009-12-24 18:30:00",
@@ -246,6 +249,7 @@
         "pk": 2464,
         "model": "addons.addon",
         "fields": {
+            "slug": "2464",
             "dev_agreement": 1,
             "_current_version": 90952,
             "last_updated": "2010-01-12 20:50:11",
@@ -292,6 +296,7 @@
         "pk": 3481,
         "model": "addons.addon",
         "fields": {
+            "slug": "3481",
             "dev_agreement": 1,
             "_current_version": 91189,
             "last_updated": "2010-01-14 11:39:32",
@@ -460,6 +465,7 @@
         "pk": 11870,
         "model": "addons.addon",
         "fields": {
+            "slug": "11870",
             "dev_agreement": 1,
             "eula": null,
             "_current_version": 68019,

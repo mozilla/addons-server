@@ -3,6 +3,7 @@
         "pk": 3723,
         "model": "addons.addon",
         "fields": {
+            "slug": "3723",
             "_current_version": 89774,
             "last_updated": "2010-01-03 21:26:09",
             "dev_agreement": false,

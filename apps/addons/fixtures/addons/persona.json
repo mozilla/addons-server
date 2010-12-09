@@ -74,6 +74,7 @@
         "pk": 15663,
         "model": "addons.addon",
         "fields": {
+            "slug": "15663",
             "dev_agreement": 0,
             "eula": null,
             "last_updated": "2009-03-30 23:17:40",

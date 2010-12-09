@@ -36,6 +36,7 @@
         "pk": 4594,
         "model": "addons.addon",
         "fields": {
+            "slug": "4594",
             "dev_agreement": false,
             "eula": null,
             "_current_version": 42352,

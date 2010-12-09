@@ -14,6 +14,7 @@
         "pk": 4,
         "model": "addons.addon",
         "fields": {
+            "slug": "4",
             "type": 1,
             "status": 4,
             "highest_status": 4,
@@ -27,6 +28,7 @@
         "pk": 5,
         "model": "addons.addon",
         "fields": {
+            "slug": "5",
             "type": 1,
             "status": 4,
             "highest_status": 4,

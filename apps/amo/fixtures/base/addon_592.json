@@ -34,6 +34,7 @@
         "pk": 592,
         "model": "addons.addon",
         "fields": {
+            "slug": "592",
             "dev_agreement": true,
             "_current_version": 104749,
             "last_updated": "2010-04-24 11:33:30",
