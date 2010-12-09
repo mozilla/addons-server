@@ -469,7 +469,7 @@ class TestAddon(BaseOauth):
         eq_(r.status_code, 200, r.content)
 
         # verify we've logged a new version and a new app version
-        eq_(log_count + 2, activitylog_count())
+        eq_(log_count + 3, activitylog_count())
 
         # validate that the addon has 2 versions
         a = Addon.objects.get(pk=id)
@@ -537,7 +537,7 @@ class TestAddon(BaseOauth):
         eq_(r.status_code, 200, r.content[:1000])
 
         # verify we've logged a version update and a new app version
-        eq_(activitylog_count(), log_count + 2)
+        eq_(activitylog_count(), log_count + 3)
         # verify data
         v = a.versions.get()
         eq_(v.version, '0.2')
@@ -595,7 +595,7 @@ class TestAddon(BaseOauth):
         log_count = activitylog_count()
         r = client.delete(('api.version', id, v.id), self.accepted_consumer,
                           self.token)
-        eq_(activitylog_count(), log_count + 1)
+        eq_(activitylog_count(), log_count + 2)
 
         eq_(r.status_code, 204, r.content)
         eq_(a.versions.count(), 0)

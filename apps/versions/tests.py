@@ -114,7 +114,7 @@ class TestVersion(test_utils.TestCase):
         version = Version.objects.get(pk=81551)
         eq_(ActivityLog.objects.count(), 0)
         version.delete()
-        eq_(ActivityLog.objects.count(), 1)
+        eq_(ActivityLog.objects.count(), 2)
 
     def test_version_is_allowed_upload(self):
         version = Version.objects.get(pk=81551)
