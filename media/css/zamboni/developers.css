@@ -851,7 +851,9 @@ a.extra {
     color: #4C8B97;
 }
 
-#version-status :-moz-any(.status-disabled, .status-incomplete, .status-admin-disabled) b {
+#version-status .status-disabled b,
+#version-status .status-incomplete b,
+#version-status .status-admin-disabled b {
     color: #991B0F;
 }
 
