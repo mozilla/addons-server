@@ -12,7 +12,11 @@ addon_patterns = patterns('',
 
 
 urlpatterns = patterns('',
+    ('^addon/(?P<addon_id>\d+)$',
+     lambda r, addon_id: redirect('discovery.addons.detail',
+                                  addon_id, permanent=True)),
     url('^addon/(?P<addon_id>\d+)/', include(addon_patterns)),
+
     url('^recs$', views.recommendations, name='discovery.recs'),
     url('^(?P<version>[^/]+)/(?P<platform>[^/]+)$', views.pane,
         name='discovery.pane'),

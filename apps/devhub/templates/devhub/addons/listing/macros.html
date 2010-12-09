@@ -8,7 +8,7 @@
 {% endmacro %}
 
 {% macro dev_item_info(addon, amo) %}
-  {{ addon|reviews_link }}
+  {{ reviews_link(addon) }}
   {% if addon.status != amo.STATUS_LISTED %}
     <p class="downloads">
       {% with num=addon.weekly_downloads %}

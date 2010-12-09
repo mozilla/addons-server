@@ -86,7 +86,7 @@
               {# XXX future feature: 'Localizations' ... #}
               <tr>
                 <th>{{ _('Rating', 'advanced_search_form_rating') }}</th>
-                <td>{{ addon|reviews_link }}</td>
+                <td>{{ reviews_link(addon) }}</td>
               </tr>
               {% if not addon.is_selfhosted() %}
                 <tr class="meta-stats">

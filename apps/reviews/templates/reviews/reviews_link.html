@@ -1,6 +1,10 @@
-{% set base = url('addons.detail', addon.id)|urlparams('reviews') %}
-{% if collection_uuid %}
-  {% set base = base|urlparams(collection_uuid=collection_uuid) %}
+{% if link_to_list %}
+  {% set base = url('reviews.list', addon.id) %}
+{% else %}
+  {% set base = url('addons.detail', addon.id)|urlparams('reviews') %}
+  {% if collection_uuid %}
+    {% set base = base|urlparams(collection_uuid=collection_uuid) %}
+  {% endif %}
 {% endif %}
 
 <p class="addon-rating">

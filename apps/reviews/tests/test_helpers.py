@@ -4,6 +4,7 @@ import jingo
 from pyquery import PyQuery
 
 from addons.models import Addon
+from amo.urlresolvers import reverse
 
 
 def setup():
@@ -33,7 +34,7 @@ def test_stars_max():
 
 def test_reviews_link():
     a = Addon(average_rating=4, total_reviews=37, id=1)
-    s = render('{{ myaddon|reviews_link }}', {'myaddon': a})
+    s = render('{{ reviews_link(myaddon) }}', {'myaddon': a})
     eq_(PyQuery(s)('strong').text(), '37 reviews')
 
     # without collection uuid
@@ -41,11 +42,17 @@ def test_reviews_link():
 
     # with collection uuid
     myuuid = 'f19a8822-1ee3-4145-9440-0a3640201fe6'
-    s = render('{{ myaddon|reviews_link(myuuid) }}', {'myaddon': a,
-                                                      'myuuid': myuuid})
+    s = render('{{ reviews_link(myaddon, myuuid) }}', {'myaddon': a,
+                                                       'myuuid': myuuid})
     eq_(PyQuery(s)('a').attr('href'),
         '/addon/1/?collection_uuid=%s#reviews' % myuuid)
 
     z = Addon(average_rating=0, total_reviews=0, id=1)
-    s = render('{{ myaddon|reviews_link }}', {'myaddon': z})
+    s = render('{{ reviews_link(myaddon) }}', {'myaddon': z})
     eq_(PyQuery(s)('strong').text(), 'Not yet rated')
+
+    # with link
+    u = reverse('reviews.list', args=[1])
+    s = render('{{ reviews_link(myaddon, link_to_list=True) }}',
+               {'myaddon': a})
+    eq_(PyQuery(s)('a').attr('href'), u)

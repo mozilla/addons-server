@@ -13,10 +13,10 @@
 
 <ul id="install">
   <li>{{ install_button(addon, show_contrib=False, show_warning=False, show_eula=False) }}</li>
-  <li><a href="{{ url('addons.detail', addon.id) + referrer_src }}"
+  <li><a href="{{ url('addons.detail', addon.id)|urlparams(src=src) }}"
          class="button">{{ _('Learn More') }}</a></li>
   {% if not addon.privacy_policy %}
-    <li><a href="{{ url('addons.privacy', addon.id) + referrer_src }}">
+    <li><a href="{{ url('addons.privacy', addon.id)|urlparams(src=src) }}">
       {{ _('View Privacy Policy') }}</a></li>
   {% endif %}
 </ul>
@@ -43,7 +43,7 @@
 <ul class="addon-info">
   <li>
     <h3>{{ _('Rating') }}</h3>
-    {{ addon|reviews_link }}
+    {{ reviews_link(addon, link_to_list=True) }}
   </li>
   <li>
     <h3>{{ _('Active Users') }}</h3>

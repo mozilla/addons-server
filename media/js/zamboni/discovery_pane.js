@@ -62,15 +62,23 @@ $.fn.jCarouselLite = function(o) {
 
         div.css(sizeCss, divSize+"px");                     // Width of the DIV. length of visible images
 
-        if(o.btnPrev)
+        if(o.btnPrev) {
             $(o.btnPrev).click(function() {
                 return go(curr-o.scroll);
             });
+            if (!o.circular) {
+                $(o.btnPrev).addClass("disabled");
+            }
+        }
 
-        if(o.btnNext)
+        if(o.btnNext) {
             $(o.btnNext).click(function() {
                 return go(curr+o.scroll);
             });
+            if (!o.circular && itemLength > o.visible) {
+                $(o.btnNext).addClass("disabled");
+            }
+        }
 
         if(o.btnGo)
             $.each(o.btnGo, function(i, val) {
@@ -155,7 +163,7 @@ function css(el, prop) {
     return parseInt($.css(el[0], prop)) || 0;
 };
 function width(el) {
-    return  el[0].offsetWidth + css(el, 'marginLeft') + css(el, 'marginRight');
+    return el[0].offsetWidth + css(el, 'marginLeft') + css(el, 'marginRight');
 };
 function height(el) {
     return el[0].offsetHeight + css(el, 'marginTop') + css(el, 'marginBottom');
@@ -193,7 +201,9 @@ $.fn.vtruncate = function() {
 
 
 $(document).ready(function(){
-    // Set up the carousel
+    $(".install a").attr("target", "_self");
+
+    // Set up the carousel.
     $("#main-feature").addClass("js").jCarouselLite({
         btnNext: ".nav-next a",
         btnPrev: ".nav-prev a",
@@ -206,7 +216,8 @@ $(document).ready(function(){
         circular: false
     });
     $(".addon-info").addClass("js");
-    // Set up the lightbox
+
+    // Set up the lightbox.
     var lb_baseurl = document.body.getAttribute("data-media-url") + "img/jquery-lightbox/";
     $("li.panel a[rel=jquery-lightbox]").lightBox({
         overlayOpacity: 0.6,
@@ -214,12 +225,15 @@ $(document).ready(function(){
         imageLoading: lb_baseurl + "lightbox-ico-loading.gif",
         containerResizeSpeed: 350
     });
-    // Set the width of panels (jCarousel requires a pixel width but our page is liquid, so we'll set the width in px on pageload and on resize)
+
+    // Set the width of panels (jCarousel requires a pixel width but our page
+    // is liquid, so we'll set the width in px on pageload and on resize).
     var panelWidth = $("#main").width();
     $("#main-feature, #main-feature .panel, #images").css({width: panelWidth});
-    // We show three images at a time, so the width of each is roughly one third the total
+    // We show three images at a time, so the width of each is roughly 1/3.
     $("#images .panel").css({width: panelWidth/3 - 10});
-    //trim the description text to fit.
+
+    // Trim the description text to fit.
     $("p.desc").vtruncate();
     $(window).resize(debounce(function() {
         $("p.desc").vtruncate();

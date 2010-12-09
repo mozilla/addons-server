@@ -155,7 +155,7 @@ def addon_detail(request, addon_id):
                         {'addon': addon,
                          'reviews': Review.objects.latest().filter(addon=addon),
                          'get_replies': Review.get_replies,
-                         'src': 'discovery-pane'})
+                         'src': 'discovery-pane-details'})
 
 
 def addon_eula(request, addon_id, file_id):
@@ -168,7 +168,7 @@ def addon_eula(request, addon_id, file_id):
         version = addon.current_version
     return jingo.render(request, 'discovery/addons/eula.html',
                         {'addon': addon, 'version': version,
-                         'src': 'discovery-pane'})
+                         'src': 'discovery-pane-eula'})
 
 
 def get_addon_ids(guids):

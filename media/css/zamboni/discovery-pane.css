@@ -665,6 +665,7 @@ h2.author {
 #install li {
     display: inline-block;
 }
+.install-shell .install,
 #install li {
     margin-right: 10px;
 }

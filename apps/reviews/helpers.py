@@ -20,10 +20,10 @@ def stars(num):
         return jinja2.Markup(s)
 
 
-@jingo.register.filter
-def reviews_link(addon, collection_uuid=None):
+@jingo.register.function
+def reviews_link(addon, collection_uuid=None, link_to_list=False):
     t = jingo.env.get_template('reviews/reviews_link.html')
-    return jinja2.Markup(t.render(addon=addon,
+    return jinja2.Markup(t.render(addon=addon, link_to_list=link_to_list,
                                   collection_uuid=collection_uuid))
 
 
