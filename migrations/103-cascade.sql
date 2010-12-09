@@ -1,5 +1,5 @@
 ALTER TABLE `log_activity_user`
-      MODIFY COLUMN `user_id` INTEGER UNSIGNED NOT NULL;
+      MODIFY COLUMN `user_id` INT(11) UNSIGNED NOT NULL;
 
 ALTER TABLE `log_activity_user` DROP FOREIGN KEY `user_id_refs_id_e987c199`;
 
