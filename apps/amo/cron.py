@@ -1,6 +1,8 @@
 import calendar
 from datetime import datetime, timedelta
+import re
 from subprocess import Popen, PIPE
+import urllib2
 
 from django.conf import settings
 
@@ -147,3 +149,56 @@ def _migrate_logs(items, **kw):
                        % item.object1_id)
         elif item.type == amo.LOG.DELETE_VERSION.id:
             amo.log(amo.LOG_BY_ID[item.type], item.addon, item.name1, **kw)
+
+
+@cronjobs.register
+def dissolve_outgoing_urls():
+    """Over time, some outgoing.m.o URLs have been encoded several times in the
+    db.  This removes the layers of encoding and sets URLs to their real value.
+    The app will take care of sending things through outgoing.m.o.  See bug
+    608117."""
+
+    needle = 'outgoing.mozilla.org'
+
+    users = (UserProfile.objects.filter(homepage__contains=needle)
+             .values_list('id', 'homepage'))
+
+    if not users:
+        print "Didn't find any add-ons with messed up homepages."
+        return
+
+    print 'Found %s users to fix.  Sending them to celeryd.' % len(users)
+
+    for chunk in chunked(users, 100):
+        _dissolve_outgoing_urls.delay(chunk)
+
+
+@task(rate_limit='60/h')
+def _dissolve_outgoing_urls(items, **kw):
+    log.info('[%s@%s] Dissolving outgoing urls' %
+             (len(items), _dissolve_outgoing_urls.rate_limit))
+
+    regex = re.compile('^http://outgoing.mozilla.org/v1/[0-9a-f]+/(.*?)$')
+
+    def peel_the_onion(url):
+        match = regex.match(url)
+
+        if not match:
+            return None
+
+        new = urllib2.unquote(match.group(1))
+        are_we_there_yet = peel_the_onion(new)  # That's right. You love it.
+
+        if not are_we_there_yet:
+            return new
+        else:
+            return are_we_there_yet
+
+    for user in items:
+        url = peel_the_onion(user[1])
+
+        # 20 or so of these are just to outgoing.m.o, so just whack them
+        if url == 'http://outgoing.mozilla.org':
+            url = None
+
+        UserProfile.objects.filter(pk=user[0]).update(homepage=url)
