@@ -101,7 +101,7 @@ class Addon(amo.models.ModelBase):
                settings.LANGUAGES.items()]
 
     guid = models.CharField(max_length=255, unique=True, null=True)
-    slug = models.CharField(max_length=30)
+    slug = models.CharField(max_length=30, unique=True)
     name = TranslatedField()
     default_locale = models.CharField(max_length=10,
                                       default=settings.LANGUAGE_CODE,
@@ -224,6 +224,24 @@ class Addon(amo.models.ModelBase):
     def __unicode__(self):
         return '%s: %s' % (self.id, self.name)
 
+    def save(self, **kw):
+        self.clean_slug()
+        super(Addon, self).save(**kw)
+
+    def clean_slug(self):
+        if not self.slug:
+            self.slug = slugify(self.name)[:27]
+        qs = Addon.objects.values_list('slug', 'id')
+        match = qs.filter(slug=self.slug)
+        if match and match[0][1] != self.id:
+            slugs = dict(qs.filter(slug__startswith='%s-' % self.slug))
+            slugs.update(match)
+            for idx in range(len(slugs)):
+                new = '%s-%s' % (self.slug, idx + 1)
+                if new not in slugs:
+                    self.slug = new
+                    return
+
     @transaction.commit_on_success
     def delete(self, msg):
         log.debug('Adding guid to blacklist: %s' % self.guid)
@@ -257,7 +275,6 @@ class Addon(amo.models.ModelBase):
         keys = 'guid name type homepage description'.split()
         addon = Addon(**dict((k, data[k]) for k in keys))
         addon.status = amo.STATUS_NULL
-        addon.slug = slugify(addon.name)
         addon.save()
         Version.from_upload(upload, addon, platform)
         log.debug('New addon %r from %r' % (addon, upload))
