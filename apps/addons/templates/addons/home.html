@@ -5,7 +5,7 @@
 {% block bodyclass %}home{% endblock %}
 
 {% block site_stats %}
-{% if downloads and pings %}
+{% if downloads %}
 <div class="stats">
   {% if downloads.count > 0 %}
     <a href="{{ url('statistics.dashboard') }}">

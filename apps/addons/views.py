@@ -272,22 +272,19 @@ def home(request):
 
     # Global stats.
     try:
-        gs = GlobalStat.objects
-        downloads = gs.filter(name='addon_total_downloads').latest()
-        pings = gs.filter(name='addon_total_updatepings').latest()
+        downloads = (GlobalStat.objects.filter(name='addon_total_downloads')
+                     .latest())
     except GlobalStat.DoesNotExist:
-        downloads = pings = None
+        downloads = None
 
     # Top tags.
     top_tags = Tag.objects.not_blacklisted().select_related(
         'tagstat').order_by('-tagstat__num_addons')[:10]
 
     return jingo.render(request, 'addons/home.html',
-                        {'downloads': downloads, 'pings': pings,
+                        {'downloads': downloads, 'top_tags': top_tags,
                          'filter': filter, 'addon_sets': addon_sets,
-                         'collections': collections, 'promobox': promobox,
-                         'top_tags': top_tags,
-                        })
+                         'collections': collections, 'promobox': promobox})
 
 
 class CollectionPromoBox(object):
