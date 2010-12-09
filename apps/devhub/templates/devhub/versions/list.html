@@ -55,7 +55,7 @@
         {% endif %}
         {% if addon.disabled_by_user %}
           <a href="{{ url('devhub.addons.enable', addon.id) }}" id="enable-addon">{{ _('Enable Add-on') }}</a> &middot;
-        {% else %}
+        {% elif not addon.is_disabled %}
           <a href="#" id="disable-addon">{{ _('Disable Add-on') }}</a> &middot;
         {% endif %}
         <a href="#" id="delete-addon">{{ _('Delete Add-on') }}</a>
@@ -147,7 +147,7 @@
     </form>
   </div>
 
-  {% if not addon.disabled_by_user %}
+  {% if not addon.disabled_by_user and not addon.is_disabled %}
   <div id="modal-disable" class="modal">
     <form method="post" action="{{ url('devhub.addons.disable', addon.id) }}">
       <h3>{{ _('Disable Add-on') }}</h3>

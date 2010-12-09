@@ -1701,6 +1701,13 @@ class TestVersion(test_utils.TestCase):
         assert doc('#disable-addon')
         assert not doc('#enable-addon')
 
+    def test_not_show_disable(self):
+        self.addon.update(status=amo.STATUS_DISABLED, disabled_by_user=False)
+        res = self.client.get(self.url)
+        doc = pq(res.content)
+        assert not doc('#modal-disable')
+        assert not doc('#disable-addon')
+
     def test_show_enable_button(self):
         self.addon.update(disabled_by_user=True)
         res = self.client.get(self.url)
