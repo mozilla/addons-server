@@ -129,7 +129,8 @@ ul.errorlist {
 **/
 
 /* 'listing header' */
-.listing-header {
+.listing-header,
+#aux-nav > ul li ul li {
     background-color: #E0EFFD;
     background: -webkit-gradient(
         linear,
