@@ -278,19 +278,34 @@ class TestUserDisabledAddons(SphinxTestCase):
 
 
 class TagTest(SphinxTestCase):
-    fixtures = ('base/apps', 'addons/persona',)
+    fixtures = ('base/apps', 'addons/persona', 'base/addon_3615')
 
     def setUp(self):
-        u = UserProfile(username='foo')
-        u.save()
-        t = Tag(tag_text='donkeybuttrhino')
-        t.save()
-        a = Addon.objects.all()[0]
-        at = AddonTag(tag=t, user=u, addon=a)
-        at.save()
+        u = UserProfile.objects.create(username='foo')
+        a = Addon.objects.get(pk=15663)
+
+        tags = ('donkeybuttrhino', 'bar', 'foo')
+        for tag in tags:
+            t = Tag.objects.create(tag_text=tag)
+            AddonTag.objects.create(tag=t, user=u, addon=a)
+
+        t = Tag.objects.create(tag_text='bar2')
+        a = Addon.objects.get(pk=3615)
+        AddonTag.objects.create(tag=t, user=u, addon=a)
+
         super(TagTest, self).setUp()
 
     def test_persona_results(self):
         url = reverse('tags.detail', args=('donkeybuttrhino',))
         r = self.client.get(url, follow=True)
         eq_(len(r.context['pager'].object_list), 1)
+
+    def test_related_tags_change(self):
+        url = reverse('tags.detail', args=('bar',))
+        r = self.client.get(url, follow=True)
+        old_related_tags = pq(r.content)('#refine-tags li a').text()
+
+        url = reverse('tags.detail', args=('bar2',))
+        r = self.client.get(url, follow=True)
+        new_related_tags = pq(r.content)('#refine-tags li a').text()
+        assert old_related_tags != new_related_tags
