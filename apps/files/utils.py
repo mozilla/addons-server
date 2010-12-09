@@ -1,8 +1,10 @@
 import collections
+from datetime import datetime
 import logging
 import os
 import shutil
 import time
+from xml.dom import minidom
 import zipfile
 
 from django import forms
@@ -15,6 +17,10 @@ import amo
 from applications.models import AppVersion
 
 log = logging.getLogger('files.utils')
+
+
+class ParseError(forms.ValidationError):
+    pass
 
 
 class Extractor(object):
@@ -82,6 +88,60 @@ class Extractor(object):
         return rv
 
 
+class xquery(object):
+    """Enough jquery-ness to get by."""
+
+    def __init__(self, dom):
+        self.dom = dom
+
+    def __call__(self, tag):
+        return xquery(self.dom.getElementsByTagName(tag))
+
+    def __iter__(self):
+        return iter(self.dom)
+
+    def attr(self, name):
+        return self.first().attributes[name].value
+
+    def attrs(self):
+        return dict(self.first().attributes.items())
+
+    def text(self):
+        return self.first().childNodes[0].wholeText
+
+    def first(self):
+        if isinstance(self.dom, minidom.Element):
+            return self.dom
+        return self.dom[0]
+
+
+def extract_search(content):
+    rv = {}
+    dom = xquery(minidom.parse(content))
+    rv['xmlns'] = dom('OpenSearchDescription').attr('xmlns')
+    rv['name'] = dom('ShortName').text()
+    rv['description'] = dom('Description').text()
+    urls = [xquery(d).attrs() for d in dom('Url')]
+    rv['url'] = [u for u in urls if u['type'] == 'text/html'][0]
+    return rv
+
+
+def parse_search(filename, addon=None):
+    try:
+        data = extract_search(open(filename))
+    except forms.ValidationError:
+        raise
+    except Exception:
+        log.error('OpenSearch parse error', exc_info=True)
+        raise forms.ValidationError(_('Could not parse %s.') % filename)
+
+    return {'guid': None,
+            'type': amo.ADDON_SEARCH,
+            'name': data['name'],
+            'summary': data['description'],
+            'version': datetime.now().strftime('%Y%m%d')}
+
+
 def parse_xpi(xpi, addon=None):
     """Extract and parse an XPI."""
     from addons.models import Addon
@@ -95,6 +155,8 @@ def parse_xpi(xpi, addon=None):
                 raise forms.ValidationError(_('Invalid archive.'))
         zip.extractall(path)
         rdf = Extractor.parse(os.path.join(path, 'install.rdf'))
+    except forms.ValidationError:
+        raise
     except Exception:
         log.error('XPI parse error', exc_info=True)
         raise forms.ValidationError(_('Could not parse install.rdf.'))
@@ -110,3 +172,12 @@ def parse_xpi(xpi, addon=None):
         raise forms.ValidationError(
             _("<em:type> doesn't match add-on"))
     return rdf
+
+
+def parse_addon(pkg, addon=None):
+    """pkg is a filepath or a django.core.files.UploadedFile."""
+    name = getattr(pkg, 'name', pkg)
+    if name.endswith('.xml'):
+        return parse_search(pkg, addon)
+    else:
+        return parse_xpi(pkg, addon)

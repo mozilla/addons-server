@@ -418,19 +418,23 @@ class TestDownloadsLatest(TestDownloadsBase):
         assert r['Location'].endswith('?src=xxx'), r['Location']
 
 
-class TestFromUpload(files.tests.UploadTest, test_utils.TestCase):
+class TestVersionFromUpload(files.tests.UploadTest, test_utils.TestCase):
     fixtures = ['base/apps', 'base/addon_3615', 'base/users']
 
     def setUp(self):
-        super(TestFromUpload, self).setUp()
-        xpi = open(self.xpi_path('extension')).read()
-        self.upload = FileUpload.from_post([xpi], filename='extension.xpi',
+        super(TestVersionFromUpload, self).setUp()
+        xpi = open(self.file_path(self.filename)).read()
+        self.upload = FileUpload.from_post([xpi], filename=self.filename,
                                            size=1234)
         self.addon = Addon.objects.get(id=3615)
         self.addon.update(guid='guid@xpi')
         self.platform = Platform.objects.create(id=amo.PLATFORM_MAC.id)
         for version in ('3.0', '3.6.*'):
             AppVersion.objects.create(application_id=1, version=version)
+
+
+class TestExtensionVersionFromUpload(TestVersionFromUpload):
+    filename = 'extension.xpi'
 
     def test_carry_over_old_license(self):
         version = Version.from_upload(self.upload, self.addon, self.platform)
@@ -462,3 +466,28 @@ class TestFromUpload(files.tests.UploadTest, test_utils.TestCase):
         version = Version.from_upload(self.upload, self.addon, self.platform)
         files = version.all_files
         eq_(files[0].filename, u'delicious_bookmarks-0.1-fx-mac.xpi')
+
+
+class TestSearchVersionFromUpload(TestVersionFromUpload):
+    filename = 'search.xml'
+
+    def setUp(self):
+        super(TestSearchVersionFromUpload, self).setUp()
+        self.addon.versions.all().delete()
+        self.addon.update(type=amo.ADDON_SEARCH)
+        self.now = datetime.now().strftime('%Y%m%d')
+
+    def test_version_number(self):
+        version = Version.from_upload(self.upload, self.addon, self.platform)
+        eq_(version.version, self.now)
+
+    def test_file_name(self):
+        version = Version.from_upload(self.upload, self.addon, self.platform)
+        files = version.all_files
+        eq_(files[0].filename, u'delicious_bookmarks-%s.xml' % self.now)
+
+    def test_file_platform(self):
+        version = Version.from_upload(self.upload, self.addon, self.platform)
+        files = version.all_files
+        eq_(len(files), 1)
+        eq_(files[0].platform, Platform.objects.get(id=amo.PLATFORM_ALL.id))

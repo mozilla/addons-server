@@ -16,7 +16,7 @@ from addons.models import Addon, AddonUser, Charity
 from amo.forms import AMOModelForm
 from applications.models import Application, AppVersion
 from files.models import File, FileUpload, Platform
-from files.utils import parse_xpi
+from files.utils import parse_addon
 from translations.widgets import TranslationTextarea, TranslationTextInput
 from translations.fields import TransTextarea, TransField
 from translations.models import delete_translation
@@ -353,7 +353,7 @@ class NewAddonForm(happyforms.Form):
 
     def clean(self):
         if not self.errors:
-            xpi = parse_xpi(self.cleaned_data['upload'].path)
+            xpi = parse_addon(self.cleaned_data['upload'].path)
             addons.forms.clean_name(xpi['name'])
         return self.cleaned_data
 
@@ -366,7 +366,7 @@ class NewVersionForm(NewAddonForm):
 
     def clean(self):
         if not self.errors:
-            xpi = parse_xpi(self.cleaned_data['upload'].path, self.addon)
+            xpi = parse_addon(self.cleaned_data['upload'].path, self.addon)
             if self.addon.versions.filter(version=xpi['version']):
                 raise forms.ValidationError(
                     _('Version %s already exists') % xpi['version'])
@@ -388,7 +388,7 @@ class NewFileForm(NewVersionForm):
     def clean(self):
         # Check for errors in the xpi.
         if not self.errors:
-            xpi = parse_xpi(self.cleaned_data['upload'].path, self.addon)
+            xpi = parse_addon(self.cleaned_data['upload'].path, self.addon)
             if xpi['version'] != self.version.version:
                 raise forms.ValidationError(_("Version doesn't match"))
         return self.cleaned_data

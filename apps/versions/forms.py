@@ -10,7 +10,7 @@ import happyforms
 import amo
 from addons.models import Addon, AddonUser
 from files.models import File
-from files.utils import parse_xpi
+from files.utils import parse_addon
 from versions.models import ApplicationsVersions, Version
 
 license_ids = dict((license.shortname, license.id) for license in amo.LICENSES)
@@ -46,7 +46,7 @@ class XPIForm(happyforms.Form):
     def clean_xpi(self):
         # TODO(basta): connect to addon validator.
         xpi = self.cleaned_data['xpi']
-        self.cleaned_data.update(parse_xpi(xpi, self.addon))
+        self.cleaned_data.update(parse_addon(xpi, self.addon))
         return xpi
 
     def create_addon(self, license=None):
