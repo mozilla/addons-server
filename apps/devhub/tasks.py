@@ -32,16 +32,6 @@ def validator(upload_id, **kw):
 
 
 def _validator(upload):
-    # Monkeypatch the validator's hard-coded applications & versions.
-    from validator.testcases import targetapplication as testcase
-    cmd = management.load_command_class('applications', 'dump_apps')
-    if not os.path.exists(cmd.JSON_PATH):
-        cmd.handle()
-    apps = json.load(open(cmd.JSON_PATH))
-
-    # TODO(Kumar) remove this when it lands in amo-validator (bug 614574)
-    import validator.constants
-    validator.constants.SPIDERMONKEY_INSTALLATION = 'js'
 
     # TODO(basta): this should be two lines.
     # from addon_validator import validate
@@ -51,10 +41,13 @@ def _validator(upload):
     from validator.errorbundler import ErrorBundle
     from validator.constants import PACKAGE_ANY
     output = StringIO()
-    # I have no idea what these params mean.
-    eb = ErrorBundle(output, True)
-    eb.determined = True
-    eb.save_resource('listed', True)
+
+    # determined=True
+    #   continue validating each tier even if one has an error
+    # listed=True
+    #   the add-on is hosted on AMO
+    eb = ErrorBundle(pipe=output, no_color=True,
+                     determined=True, listed=True)
     addon_validator.prepare_package(eb, upload.path, PACKAGE_ANY)
     eb.print_json()
     return output.getvalue()
