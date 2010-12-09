@@ -3186,10 +3186,7 @@ input.ui-autocomplete-loading {
 #locale-popup section a {
     display: block;
 }
-#locale-popup section a.remove {
-    display: inline-block;
-    float: right;
-}
+
 #locale-popup section > div,
 #locale-popup section > ul {
     border-top: 1px dotted #a4cfde;
@@ -3198,6 +3195,16 @@ input.ui-autocomplete-loading {
 #locale-popup section > div:first-child,
 #locale-popup section > ul:first-child {
     border-top: none;
+}
+
+#existing_locales a.remove {
+    float: right;
+    display: block;
+    margin: 4px;
+}
+
+#existing_locales a.remove:hover {
+    background-color: #2A4364;
 }
 
 .trans .cloned {

@@ -21,6 +21,22 @@ $(document).ready(function () {
         });
     }
 
+    function showExistingLocales() {
+        discoverLocales();
+        $el = $("#existing_locales").empty();
+        $("#all_locales li").show();
+        $.each(_.without(locales, dl), function() {
+            var locale_row = $(format("#all_locales a[href$={0}]",[this])).parent();
+            if (locale_row.length) {
+                $el.append(format("<li><a title='{msg}'class='remove' href='#'>x</a>{row}</li>",
+                    {   msg: gettext('Remove this localization'),
+                        row: locale_row.html()
+                    }));
+                locale_row.hide();
+            }
+        });
+    }
+
     function checkTranslation(e, t) {
         var $input = e.originalEvent ? $(this) : $(format("[lang={0}]", [e]), t),
             $trans = $input.closest(".trans"),
@@ -59,18 +75,22 @@ $(document).ready(function () {
         pointTo: "#change-locale",
         width: 200,
         callback: function() {
-            discoverLocales();
-            $el = $("#existing_locales").empty();
-            $("#all_locales li").show();
-            $.each(_.without(locales, dl), function() {
-                var locale_row = $(format("#all_locales a[href$={0}]",[this])).parent();
-                if (locale_row.length) {
-                    $el.append("<li>" + locale_row.html() + "</li>");
-                    locale_row.hide();
-                }
-            });
+            showExistingLocales();
 
-            $("#locale-popup").delegate('a', 'click', function (e) {
+            $("#locale-popup").delegate('a.remove', 'click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                var toRemove = $(this).closest("li").find("a:not(.remove)").attr("href").substring(1);
+                $(format(".trans [lang={0}]", [toRemove])).each(function () {
+                    var n = $(this).attr('name');
+                    $(this).attr('name', n + '_delete').attr('lang', toRemove + '_delete');
+                });
+                if (currentLocale == toRemove) {
+                    updateLocale(dl);
+                }
+                showExistingLocales();
+            });
+            $("#locale-popup").delegate('a:not(.remove)', 'click', function (e) {
                 e.preventDefault();
                 $tgt = $(this);
                 var new_locale = $tgt.attr("href").substring(1);
