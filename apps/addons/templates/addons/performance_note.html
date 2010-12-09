@@ -11,7 +11,7 @@
       </p>
       <p>
         {# TODO potch replace href with performance dashboard link #}
-        <a href="#">{{ _('Learn More&hellip;')|safe }}</a>
+        <a href="{{ url('perf.index' )}}">{{ _('Learn More&hellip;')|safe }}</a>
       </p>
     </div>
   </div>
@@ -25,7 +25,7 @@
         your browser's start-up by <b>{{ amount }}%</b>.
       {% endtrans %}
       {# TODO potch replace href with performance dashboard link #}
-      <br/><a href="#">{{ _('Learn More&hellip;')|safe }}</a>
+      <br/><a href="{{ url('perf.index' )}}">{{ _('Learn More&hellip;')|safe }}</a>
     </div>
   </div>
 {% endif %}

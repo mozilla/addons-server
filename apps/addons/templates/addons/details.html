@@ -44,8 +44,8 @@
 
           {{ big_install_button(addon, show_warning=False) }}
 
-          {% if settings.PERFORMANCE_WARNINGS %}
-            {{ performance_note(amount=30) }}
+          {% if settings.PERF_THRESHOLD and addon.ts_slowness >= settings.PERF_THRESHOLD %}
+            {{ performance_note(amount=addon.ts_slowness) }}
           {% endif %}
 
           {% if addon.takes_contributions %}
