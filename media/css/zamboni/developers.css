@@ -27,6 +27,11 @@ form.select-review:after {
     margin-top: 0;
 }
 
+#version-status .version-last-updated {
+    float: right;
+    color: #888888;
+}
+
 .devhub-form .item {
     background-color: #FFFFFF;
     background-position: left bottom;
