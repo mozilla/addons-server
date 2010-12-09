@@ -201,7 +201,7 @@ $.fn.vtruncate = function() {
 
 
 $(document).ready(function(){
-    $(".install a").attr("target", "_self");
+    $(".install-action a").attr("target", "_self");
 
     // Set up the carousel.
     $("#main-feature").addClass("js").jCarouselLite({
