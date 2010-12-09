@@ -39,10 +39,6 @@ def _validator(upload):
         cmd.handle()
     apps = json.load(open(cmd.JSON_PATH))
 
-    testcase.APPLICATIONS = dict((d['guid'], d['name']) for d in apps.values())
-    versions = dict((d['guid'], d['versions']) for d in apps.values())
-    testcase.APPROVED_APPLICATIONS = versions
-
     # TODO(Kumar) remove this when it lands in amo-validator (bug 614574)
     import validator.constants
     validator.constants.SPIDERMONKEY_INSTALLATION = 'js'
