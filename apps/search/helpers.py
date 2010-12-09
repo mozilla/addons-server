@@ -8,8 +8,11 @@ from . import forms
 
 
 @jingo.register.function
-def SearchForm(request):
-    return forms.SearchForm(request)
+def SimpleSearchForm(request, search_cat):
+    data = request.GET
+    if search_cat and 'cat' not in request.GET:
+        data = dict(request.GET, cat=search_cat)
+    return forms.SimpleSearchForm(data)
 
 
 @jingo.register.function
