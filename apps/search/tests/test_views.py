@@ -309,3 +309,27 @@ class TagTest(SphinxTestCase):
         r = self.client.get(url, follow=True)
         new_related_tags = pq(r.content)('#refine-tags li a').text()
         assert old_related_tags != new_related_tags
+
+
+class TestSearchboxTarget(test_utils.TestCase):
+    # Check that we search within addons/personas/collections as appropriate.
+
+    def check(self, url, placeholder, cat):
+        doc = pq(self.client.get(url).content)('.header-search form')
+        eq_(doc('input[name=q]').attr('placeholder'), placeholder)
+        eq_(doc('input[name=cat]').val(), cat)
+
+    def test_addons_is_default(self):
+        self.check(reverse('home'), 'search for add-ons', 'all')
+
+    def test_themes(self):
+        self.check(reverse('browse.themes'), 'search for add-ons',
+                   '%s,0' % amo.ADDON_THEME)
+
+    def test_collections(self):
+        self.check(reverse('collections.list'), 'search for collections',
+                   'collections')
+
+    def test_personas(self):
+        self.check(reverse('browse.personas'), 'search for personas',
+                   'personas')

@@ -111,14 +111,10 @@ def language_tools(request, category=None):
     addons = (Addon.objects.public()
               .filter(appsupport__app=request.APP.id, type__in=types,
                       target_locale__isnull=False).exclude(target_locale=''))
-
     locales = _get_locales(addons)
-
-    search_cat = '%s,0' % amo.ADDON_DICT
-
     return jingo.render(request, 'browse/language_tools.html',
                         {'locales': locales, 'addons': addons,
-                         'search_cat': search_cat})
+                         'search_cat': '%s,0' % amo.ADDON_DICT})
 
 
 def themes(request, category=None):
@@ -137,16 +133,12 @@ def themes(request, category=None):
 
     count = addons.with_index(addons='type_status_inactive_idx').count()
     themes = amo.utils.paginate(request, addons, count=count)
-
-    # Pre-selected category for search form
-    search_cat = '%s,0' % amo.ADDON_THEME
-
     return jingo.render(request, 'browse/themes.html',
                         {'categories': categories,
                          'themes': themes, 'category': category,
                          'sorting': filter.field,
                          'sort_opts': filter.opts,
-                         'search_cat': search_cat})
+                         'search_cat': '%s,0' % amo.ADDON_THEME})
 
 
 def extensions(request, category=None):
@@ -166,9 +158,7 @@ def extensions(request, category=None):
 
     count = addons.with_index(addons='type_status_inactive_idx').count()
     addons = amo.utils.paginate(request, addons, count=count)
-
     search_cat = '%s,%s' % (TYPE, category.id if category else 0)
-
     return jingo.render(request, 'browse/extensions.html',
                         {'category': category, 'addons': addons,
                          'sorting': filter.field,
@@ -198,12 +188,9 @@ def category_landing(request, category):
             .filter(categories__id=category.id))
     filter = CategoryLandingFilter(request, base, category,
                                    key='browse', default='featured')
-
-    search_cat = '%s,%s' % (category.type, category.id)
-
     return jingo.render(request, 'browse/category_landing.html',
                         {'category': category, 'filter': filter,
-                         'search_cat': search_cat})
+                         'search_cat': '%s,%s' % (category.type, category.id)})
 
 
 def creatured(request, category):

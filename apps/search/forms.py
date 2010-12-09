@@ -92,13 +92,33 @@ def get_search_groups(app):
     return top_level[:1] + sub + top_level[1:], top_level
 
 
+SEARCH_CHOICES = (
+    ('all', _lazy('search for add-ons')),
+    ('collections', _lazy('search for collections')),
+    ('personas', _lazy('search for personas')))
+
+
+class SimpleSearchForm(forms.Form):
+    """Powers the search box on every page."""
+    q = forms.CharField(required=False)
+    cat = forms.CharField(required=False, widget=forms.HiddenInput)
+    choices = dict(SEARCH_CHOICES)
+
+    def clean_cat(self):
+        self.data = dict(self.data.items())
+        return self.data.setdefault('cat', 'all')
+
+    def placeholder(self):
+        val = self.clean_cat()
+        return self.choices.get(val, self.choices['all'])
+
+
 def SearchForm(request):
 
     current_app = request.APP or amo.FIREFOX
     search_groups, top_level = get_search_groups(current_app)
 
-    class _SearchForm(forms.Form):
-        q = forms.CharField(required=False)
+    class _SearchForm(SimpleSearchForm):
 
         cat = forms.ChoiceField(choices=search_groups, required=False)
 
