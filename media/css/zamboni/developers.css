@@ -1452,6 +1452,7 @@ form.select-review .errorlist {
 }
 #addon-validator-suite .results .ajax-loading,
 #addon-validator-suite .results .tests-passed,
+#addon-validator-suite .results .tests-passed-warnings,
 #addon-validator-suite .results .tests-failed {
     height: auto;
 }

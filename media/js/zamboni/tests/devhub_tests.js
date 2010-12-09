@@ -182,7 +182,6 @@ asyncTest('Test failing', function() {
                 'Checking class: ' + tier.attr('class'));
             switch (tierN) {
                 case 1:
-                case 2:
                     ok(tier.hasClass('tests-failed'),
                        'Checking class: ' + tier.attr('class'));
                     break;
@@ -198,8 +197,11 @@ asyncTest('Test failing', function() {
                    'Checking class: ' + result.attr('class'));
             switch (tierN) {
                 case 1:
-                case 2:
                     ok(result.hasClass('tests-failed'),
+                       'Checking class: ' + result.attr('class'));
+                    break;
+                case 2:
+                    ok(result.hasClass('tests-passed-warnings'),
                        'Checking class: ' + result.attr('class'));
                     break;
                 default:
@@ -208,10 +210,10 @@ asyncTest('Test failing', function() {
                     break;
             }
         });
-        equals($('#suite-results-tier-1 .result-summary').text(),
-               '1 error, 0 warnings.');
-        equals($('#suite-results-tier-2 .result-summary').text(),
-               '0 errors, 1 warning.');
+        equals($('#suite-results-tier-1 .result-summary', $suite).text(),
+               '1 error, 0 warnings');
+        equals($('#suite-results-tier-2 .result-summary', $suite).text(),
+               '0 errors, 1 warning');
         missingInstall = $('#v-msg-96dca428ec4c11df991a001cc4d80ee4', $suite);
         equals(missingInstall.length, 1);
         equals(missingInstall.parent().attr('data-tier'), "2",
@@ -453,8 +455,8 @@ asyncTest('Test no msgs', function() {
         return $('[class~="test-tier"][data-tier="1"]', $suite).hasClass(
                                                             'tests-passed');
     }).thenDo(function() {
-        equals($('[class~="msg-notice"] h5').text(), '');
-        equals($('[class~="msg-notice"] p').text(), '');
+        equals($('[class~="msg-notice"] h5', $suite).text(), '');
+        equals($('[class~="msg-notice"] p', $suite).text(), '');
         start();
     });
 });

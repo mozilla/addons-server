@@ -909,9 +909,12 @@ $(document).ready(function() {
 
             tier.removeClass('ajax-loading');
             results.removeClass('ajax-loading');
-            if (tierData.errors > 0 || tierData.warnings > 0) {
+            if (tierData.errors > 0) {
                 tier.addClass('tests-failed');
                 results.addClass('tests-failed');
+            } else if (tierData.warnings > 0) {
+                tier.addClass('tests-passed');
+                results.addClass('tests-passed-warnings');
             } else {
                 tier.addClass('tests-passed');
                 results.addClass('tests-passed');
