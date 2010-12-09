@@ -1263,6 +1263,11 @@ class TestEdit(test_utils.TestCase):
         r = self.client.post(self.get_url('details', True), d)
         eq_(r.context['form'].errors, {})
 
+    def test_edit_default_locale_frontend_error(self):
+        d = dict(description='xx', homepage='yy', default_locale='fr')
+        r = self.client.post(self.get_url('details', True), d)
+        self.assertContains(r, 'Before changing you default locale you must')
+
     def test_edit_details_locale(self):
         addon = self.get_addon()
         addon.update(default_locale='en-US')
