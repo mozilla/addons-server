@@ -32,7 +32,7 @@
                 {{ form.support_email.errors|safe }}
               {% else %}
                 {% call empty_unless(addon.support_email) %}
-                  {{ addon.support_email }}
+                  {{ addon|all_locales('support_email') }}
                 {% endcall %}
               {% endif %}
             </td>
@@ -55,7 +55,7 @@
                 {{ form.support_url.errors|safe }}
               {% else %}
                 {% call empty_unless(addon.support_url) %}
-                  {{ addon.support_url }}
+                  {{ addon|all_locales('support_url') }}
                 {% endcall %}
               {% endif %}
             </td>

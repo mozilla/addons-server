@@ -21,7 +21,7 @@
                 {{ form.name|safe }}
                 {{ form.name.errors|safe }}
               {% else %}
-                {{ addon.name|all_locales }}
+                {{ addon|all_locales('name') }}
               {% endif %}
             </td>
           </tr>
@@ -59,7 +59,7 @@
                 {{ form.summary|safe }}
                 {{ form.summary.errors|safe }}
               {% else %}
-                {{ addon.summary|all_locales }}
+                {{ addon|all_locales('summary') }}
               {% endif %}
             </td>
           </tr>

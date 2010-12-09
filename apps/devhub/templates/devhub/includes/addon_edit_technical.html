@@ -32,7 +32,7 @@
                 {{ form.developer_comments.errors|safe }}
               {% else %}
                 {% call empty_unless(addon.developer_comments) %}
-                  <div id="developer_comments">{{ addon.developer_comments|nl2br }}</div>
+                  <div id="developer_comments">{{ addon|all_locales('developer_comments') }}</div>
                 {% endcall %}
               {% endif %}
             </td>

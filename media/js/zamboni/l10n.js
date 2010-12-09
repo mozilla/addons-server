@@ -1,3 +1,9 @@
+// Yes, this is out here for a reason.
+// We want to hide the non-default locales as fast as possible.
+if ($('.default-locale').length) {
+    $(format(".trans :not([lang={0}])", [$('.default-locale').attr('href').substring(1)])).hide();
+}
+
 $(document).ready(function () {
     if (!$("#l10n-menu").length) return;
     var locales = [],
@@ -43,7 +49,7 @@ $(document).ready(function () {
             lang = e.originalEvent ? $input.attr("lang") : e,
             $dl = $(format("[lang={0}]", [dl]), $trans),
             transKey = $trans.attr("data-name")+'_'+lang;
-        if ($input.length == 0) {
+        if ($input.length == 0 || $input.is('span')) {
             // No translation of this element exists for the
             // requested language.
             return;
@@ -168,10 +174,13 @@ $(document).ready(function () {
             var $el = $(this),
                 field = $el.attr('data-name'),
                 label = $(format("label[data-for={0}]",[field]));
-            if (!$el.children(format("[lang={0}]",[lang])).length) {
+            if (!$el.find(format("[lang={0}]",[lang])).length) {
                 var $ni = $el.children(format("[lang={0}]",[dl])).clone();
-                $ni.attr('id',format('id_{0}_{1}',[field,lang])).addClass("cloned")
-                   .attr("lang", lang).attr('name',[field,lang].join('_'));
+                $ni.addClass("cloned").attr("lang", lang);
+                if ($ni.is(':not(span)')) {
+                    $ni.attr('id',format('id_{0}_{1}',[field,lang]))
+                       .attr('name',[field,lang].join('_'));
+                }
                 $el.append($ni);
             }
             checkTranslation(lang, $el);

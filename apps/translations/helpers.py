@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.utils import translation
+from django.utils.translation.trans_real import to_language
 
 import jinja2
 
@@ -50,7 +51,13 @@ def l10n_menu(context, default_locale='en-us'):
 
 
 @register.filter
-def all_locales(field):
-    html = (u'<span %s>%s</span>' % (locale_html(t), jinja2.escape(t))
+def all_locales(addon, field_name):
+    field = getattr(addon, field_name)
+    if not (addon and field):
+        return
+    html = (u'<span lang="%s">%s</span>' %
+            (to_language(t.locale), jinja2.escape(t))
             for t in Translation.objects.filter(id=field.id))
-    return jinja2.Markup('<div class="trans">%s</div>' % ''.join(html))
+    data_name = (u'data-name="%s"' % field_name) if field_name else ''
+    return jinja2.Markup('<div class="trans" %s>%s</div>' %
+                         (data_name, ''.join(html)))
