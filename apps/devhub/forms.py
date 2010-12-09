@@ -386,6 +386,10 @@ class NewFileForm(NewVersionForm):
         platform.queryset = Platform.objects.filter(id__in=ids)
 
     def clean(self):
+        if not self.version.is_allowed_upload():
+            raise forms.ValidationError(
+                _('You cannot upload any more files for this version.'))
+
         # Check for errors in the xpi.
         if not self.errors:
             xpi = parse_addon(self.cleaned_data['upload'].path, self.addon)

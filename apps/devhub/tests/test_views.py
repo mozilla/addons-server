@@ -2681,6 +2681,14 @@ class TestVersionAddFile(UploadTest):
                                'There was an error with your upload. '
                                'Please try again.')
 
+    @mock.patch('versions.models.Version.is_allowed_upload')
+    def test_cant_upload(self, allowed):
+        """Test that if is_allowed_upload fails, the upload will fail."""
+        allowed.return_value = False
+        res = self.post()
+        assert_json_error(res, '__all__',
+                          'You cannot upload any more files for this version.')
+
     def test_success_html(self):
         r = self.post()
         eq_(r.status_code, 200)

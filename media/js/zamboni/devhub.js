@@ -455,6 +455,12 @@ function addonUploaded(json) {
                             gettext('See full validation report')]);
         }
 
+        if (json.validation.detected_type == 'search') {
+            $("#create-addon .platform").hide();
+        } else {
+            $("#create-addon .platform:hidden").show();
+        }
+
         statusclass = v.errors ? 'status-fail' : 'status-pass';
         $('#upload-status-results').html(body).addClass(statusclass);
         resetFileInput();

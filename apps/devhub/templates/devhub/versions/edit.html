@@ -141,10 +141,11 @@
             will be available for download.
           {% endtrans %}
         </p>
-
         {{ csrf() }}
+        <div class="platform{% if addon.type == amo.ADDON_SEARCH %} hide{% endif %}">
         <label>{{ _('Select the target platform for this file.') }}</label>
         {{ new_file_form.platform|safe }}
+        </div>
         <div class="hidden">
         {{ new_file_form.upload|safe }}
         </div>
