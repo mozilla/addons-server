@@ -17,7 +17,7 @@ $(document).ready(function() {
     }
 
     // Edit Versions
-    if($('#upload-file').length) {
+    if($('.edit-version').length) {
         initEditVersions();
     }
 
@@ -31,16 +31,27 @@ $(document).ready(function() {
         initSubmit();
         initLicenseFields();
         initWordCount();
+        $('.upload-status').bind('upload-success', function() {
+            $("#submit-upload-file-finish").attr("disabled", false);
+        }).bind('upload-error', function() {
+            $("#submit-upload-file-finish").attr("disabled", true);
+        });
     }
 
     // Upload form submit
+    if('.upload-status') {
+        initUploadControls();
+    }
+
+    // Submission > Media
+    if($('#submit-media').length) {
+        initUploadIcon();
+    }
+});
+
+function initUploadControls() {
     $('.upload-status').removeClass("hidden");
-    $('.upload-status').bind('upload-success', function() {
-        $("#submit-upload-file-finish").attr("disabled", false);
-    }).bind('upload-error', function() {
-        $("#submit-upload-file-finish").attr("disabled", true);
-    });
-    $("#submit-upload").delegate("#upload-file-input", 'change', function(e) {
+    $(".invisible-upload").delegate("#upload-file-input", "change", function(e) {
         $('#upload-status-bar').attr('class', '');
         $('#upload-status-text').text("");
         $('#upload-status-results').text("").attr("class", "");
@@ -49,12 +60,7 @@ $(document).ready(function() {
         fileUpload($(this), $(this).closest(".invisible-upload").attr('data-upload-url'));
         $('.upload-status').show();
     });
-
-    // Submission > Media
-    if($('#submit-media').length) {
-        initUploadIcon();
-    }
-});
+}
 
 $(document).ready(function() {
     $.ajaxSetup({cache: false});
@@ -401,19 +407,15 @@ function addonUploaded(json) {
         text = format(gettext('Validated {0}'), [file.name]);
         $('#upload-status-text').text(text);
 
-        // TODO(gkoberger): Use templates here, rather than +'s
-
         var body = "<strong>";
         if(!v.errors) {
-            $("#upload-file-finish").attr("disabled", false);
-            $("#id_upload").val(json.upload);
-            $(".upload-status").trigger("upload-success");
+            $(".upload-status").trigger("upload-success", [json]);
             body += format(ngettext(
                     "Your add-on passed validation with no errors and {0} warning.",
                     "Your add-on passed validation with no errors and {0} warnings.",
                     v.warnings), [v.warnings]);
         } else {
-            $(".upload-status").trigger("upload-error");
+            $(".upload-status").trigger("upload-error", [json]);
             body += format(ngettext(
                     "Your add-on failed validation with {0} error.",
                     "Your add-on failed validation with {0} errors.",
@@ -461,9 +463,6 @@ function resetFileInput() {
 
 
 function initEditVersions() {
-    // Hide the modal
-    $('.upload-status').hide();
-
     // Modal box
     $modal = $(".add-file-modal").modal(".add-file", {
         width: '450px',
@@ -480,21 +479,19 @@ function initEditVersions() {
     // Abort upload
     $('#uploadstatus_abort a').click(abortUpload);
 
-    // Upload form submit. TODO(potch) figure out why this isn't working in 4.x.
-    // $("#upload-file").delegate("#upload-file-input", 'change', fileInputSubmit);
-
-    function fileInputSubmit(e) {
-        var $tgt = e.originalEvent ? $(this) : $(e.target);
-        resetModal(false);
-        fileUpload($tgt, $tgt.closest('form').attr('action'));
-        $('.upload-status').show();
-    }
+    // Handle uploader events
+    $('.upload-status').bind('upload-success', function(e,json) {
+        $("#upload-file-finish").attr("disabled", false);
+        $("#id_upload").val(json.upload);
+    }).bind('upload-error', function() {
+        $("#upload-file-finish").attr("disabled", true);
+    });
 
     $("#upload-file-finish").click(function (e) {
         e.preventDefault();
         $tgt = $(this);
         if ($tgt.attr("disabled")) return;
-        $.post($tgt.attr("data-url"), $("#upload-file").serialize(), function (resp) {
+        $.post($("#upload-file").attr("action"), $("#upload-file").serialize(), function (resp) {
             $("#file-list tbody").append(resp);
             var new_total = $("#file-list tr").length;
             $("#id_files-TOTAL_FORMS").val(new_total);

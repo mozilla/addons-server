@@ -13,7 +13,7 @@
   {# L10n: {0} is an add-on name. #}
   <h2>{{ _('Manage {0}')|f(addon.name) }}</h2>
 </header>
-<section class="primary devhub-form" role="main">
+<section class="primary devhub-form edit-version" role="main">
   <h3>{{ title }}</h3>
   <a href="{{ url('devhub.versions', addon.id) }}">{{ _('Back to All Versions') }}</a>
   <form method="post" action="">
@@ -131,7 +131,7 @@
     </div>
   </form>
   <div class="add-file-modal upload-file modal hidden">
-    <form method="post" id="upload-file" action="{{ url('devhub.upload') }}"
+    <form method="post" id="upload-file" action="{{ url('devhub.versions.add_file', addon.id, version.id) }}"
           enctype="multipart/form-data">
       <h3>{{ _('Upload a New File') }}</h3>
       <div class="upload-file-box">
@@ -150,7 +150,7 @@
         {{ new_file_form.upload|safe }}
         </div>
 
-        <div class="invisible-upload" id="upload-file-widget">
+        <div class="invisible-upload" id="upload-file-widget" data-upload-url="{{ url('devhub.upload') }}">
           <a class="button prominent" href="#">{{ _('Select a File') }}</a>
           <input type="file" id="upload-file-input">
         </div>
@@ -177,7 +177,7 @@
       </div>
 
       <div class="upload-status-button-add">
-        <button id="upload-file-finish" disabled data-url="{{ url('devhub.versions.add_file', addon.id, version.id) }}" class="button">{{ _('Add File') }}</button> or
+        <button id="upload-file-finish" disabled class="button">{{ _('Add File') }}</button> or
         <a href="#" class="upload-file-cancel">{{ _('Cancel') }}</a>
       </div>
     </form>
