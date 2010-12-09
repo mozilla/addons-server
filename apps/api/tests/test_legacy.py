@@ -310,6 +310,11 @@ class APITest(TestCase):
         for needle in needles:
             self.assertContains(response, needle)
 
+    def test_no_suggested_amount(self):
+        Addon.objects.filter(id=4664).update(suggested_amount=None)
+        response = make_call('addon/4664', version=1.5)
+        assert '<suggested_amount' not in response.content
+
     def test_beta_channel(self):
         """
         This tests that addons with files in beta will have those files

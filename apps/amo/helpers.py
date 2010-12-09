@@ -153,6 +153,8 @@ def numberfmt(num, format=None):
 
 @register.filter
 def currencyfmt(num, currency):
+    if num is None:
+        return ''
     return _get_format().currency(num, currency)
 
 

@@ -29,6 +29,11 @@ def test_strip_html():
     eq_('Hey Brother!', render('{{ "Hey <b>Brother!</b>"|strip_html }}'))
 
 
+def test_currencyfmt():
+    eq_(helpers.currencyfmt(None, 'USD'), '')
+    eq_(helpers.currencyfmt(5, 'USD'), '$5.00')
+
+
 def test_strip_html_none():
     eq_('', render('{{ a|strip_html }}', {'a': None}))
     eq_('', render('{{ a|strip_html(True) }}', {'a': None}))
