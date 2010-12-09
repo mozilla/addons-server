@@ -10,7 +10,7 @@
   </h3>
   <div class="item">
     <div class="item_wrapper">
-      {{ form.non_field_errors()|safe }}
+      {% if editable %}{{ form.non_field_errors()|safe }}{% endif %}
       <table>
         <caption>{{ _('Add-on Details for {0}')|f(addon.name) }}</caption>
         <tbody>

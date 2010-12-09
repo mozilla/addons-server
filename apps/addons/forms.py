@@ -150,7 +150,7 @@ class AddonFormDetails(AddonFormBase):
                 missing.remove('description')
             if missing:
                 raise forms.ValidationError(
-                    _('Before changing you default locale you must have a '
+                    _('Before changing your default locale you must have a '
                       'name, summary, and description in that locale. '
                       'You are missing %s.') % ', '.join(map(repr, missing)))
         return data

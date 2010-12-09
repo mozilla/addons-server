@@ -1236,7 +1236,7 @@ class TestEdit(test_utils.TestCase):
                                               self.addon.homepage])
         # TODO: description should get fixed up with the form.
         fields = ['description', 'name', 'summary']
-        error = ('Before changing you default locale you must have a name, '
+        error = ('Before changing your default locale you must have a name, '
                  'summary, and description in that locale. '
                  'You are missing %s.')
         missing = lambda f: error % ', '.join(map(repr, f))
@@ -1266,7 +1266,7 @@ class TestEdit(test_utils.TestCase):
     def test_edit_default_locale_frontend_error(self):
         d = dict(description='xx', homepage='yy', default_locale='fr')
         r = self.client.post(self.get_url('details', True), d)
-        self.assertContains(r, 'Before changing you default locale you must')
+        self.assertContains(r, 'Before changing your default locale you must')
 
     def test_edit_details_locale(self):
         addon = self.get_addon()
