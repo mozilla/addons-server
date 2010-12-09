@@ -88,9 +88,9 @@
     </div>
     {% if author_addons %}
       <div role="complementary" class="secondary">
-        {% with other_addon_class = "secondary-item-list" %}
+        <div class="secondary-item-list">
           {% include "addons/author_other_addons.html" %}
-        {% endwith %}
+        </div>
       </div>
     {% endif %}
   </div>
@@ -139,9 +139,9 @@
   </div>  {# primary #}
   {% if author_addons %}
     <div role="complementary" class="secondary">
-      {% with other_addon_class = "secondary-item-list" %}
+      <div class="secondary-item-list">
         {% include "addons/author_other_addons.html" %}
-      {% endwith %}
+      </div>
     </div>
   {% endif %}
   <div class="primary prose addon-info">
