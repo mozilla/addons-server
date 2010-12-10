@@ -38,6 +38,16 @@ def _validator(upload):
     from validator.testcases import scripting
     scripting.SPIDERMONKEY = None
 
+    # TODO(Kumar) remove this when there is
+    # an easier way.  See bug 618364
+    import json
+    import os
+    import validator
+    with open(os.path.join(os.path.dirname(validator.__file__),
+                           'app_versions.json')) as f:
+        from validator.testcases import targetapplication
+        targetapplication.APPROVED_APPLICATIONS = json.loads(f.read())
+
     # TODO(basta): this should be two lines.
     # from addon_validator import validate
     # return validate(path, format='json')
