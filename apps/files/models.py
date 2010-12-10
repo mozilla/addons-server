@@ -124,7 +124,7 @@ class File(amo.models.ModelBase):
             parts.append(amo.PLATFORMS[self.platform_id].shortname)
 
         self.filename = '-'.join(parts) + extension
-        return smart_str(self.filename)
+        return self.filename
 
     def latest_xpi_url(self):
         addon = self.version.addon_id
