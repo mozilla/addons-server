@@ -198,6 +198,7 @@ ADDON_SLUGS_UPDATE = {
 # Edit addon information
 MAX_TAGS = 20
 MIN_TAG_LENGTH = 2
+MAX_CATEGORIES = 2
 
 # Icon upload sizes
 ADDON_ICON_SIZES = [32, 48, 64]

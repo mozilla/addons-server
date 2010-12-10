@@ -22,7 +22,7 @@ import paypal
 from amo.urlresolvers import reverse
 from amo.tests.test_helpers import get_image_path
 from addons import cron
-from addons.models import Addon, AddonUser, Charity
+from addons.models import Addon, AddonUser, Charity, Category, AddonCategory
 from addons.utils import ReverseNameLookup
 from applications.models import Application, AppVersion
 from bandwagon.models import Collection
@@ -1063,15 +1063,22 @@ class TestEdit(test_utils.TestCase):
 
     def setUp(self):
         super(TestEdit, self).setUp()
-        self.addon = self.get_addon()
+        addon = self.get_addon()
         assert self.client.login(username='del@icio.us', password='password')
-        self.url = reverse('devhub.addons.edit', args=[self.addon.id])
+        self.url = reverse('devhub.addons.edit', args=[addon.id])
         self.user = UserProfile.objects.get(pk=55021)
+
+        AddonCategory.objects.filter(addon=addon,
+                category=Category.objects.get(id=23)).delete()
+        AddonCategory.objects.filter(addon=addon,
+                category=Category.objects.get(id=24)).delete()
 
         self.tags = ['tag3', 'tag2', 'tag1']
         for t in self.tags:
-            Tag(tag_text=t).save_tag(self.addon, self.user)
+            Tag(tag_text=t).save_tag(addon, self.user)
         self._redis = mock_redis()
+
+        self.addon = self.get_addon()
 
     def tearDown(self):
         reset_redis(self._redis)
@@ -1098,6 +1105,7 @@ class TestEdit(test_utils.TestCase):
         data = dict(name='new name',
                     slug='test_addon',
                     summary='new summary',
+                    categories=['22'],
                     tags=', '.join(self.tags))
 
         r = self.client.post(self.get_url('basic', True), data)
@@ -1119,6 +1127,7 @@ class TestEdit(test_utils.TestCase):
         data = dict(name='new name',
                     slug='test_slug',
                     summary='new summary',
+                    categories=['22'],
                     tags=','.join(self.tags))
 
         r = self.client.post(self.get_url('basic', True), data)
@@ -1132,6 +1141,7 @@ class TestEdit(test_utils.TestCase):
         data = dict(name='new name',
                     slug='test_slug',
                     summary='new summary',
+                    categories=['22'],
                     tags=', '.join(self.tags))
 
         r = self.client.post(self.get_url('basic', True), data)
@@ -1156,6 +1166,7 @@ class TestEdit(test_utils.TestCase):
         data = dict(name='new name',
                     slug='test_slug',
                     summary='new summary',
+                    categories=['22'],
                     tags=', '.join(self.tags))
 
         r = self.client.post(self.get_url('basic', True), data)
@@ -1176,6 +1187,7 @@ class TestEdit(test_utils.TestCase):
         data = dict(name='new name',
                     slug='test_slug',
                     summary='new summary',
+                    categories=[22],
                     tags=', '.join(tags))
 
         r = self.client.post(self.get_url('basic', True), data)
@@ -1194,15 +1206,104 @@ class TestEdit(test_utils.TestCase):
         data = dict(name='new name',
                     slug='test_slug',
                     summary='new summary',
+                    categories=[22],
                     tags=', '.join(tags))
 
         r = self.client.post(self.get_url('basic', True), data)
         self.assertFormError(r, 'form', 'tags', 'You have %d too many tags.' %
                                                  (len(tags) - amo.MAX_TAGS))
 
+    def test_edit_basic_categories_add(self):
+        eq_([c.id for c in self.get_addon().categories.all()], [22])
+
+        data = dict(name='new name!',
+                    slug='test_slug',
+                    summary='new summary',
+                    categories=[22, 23],
+                    tags=', '.join(self.tags))
+
+        self.client.post(self.get_url('basic', True), data)
+
+        categories = self.get_addon().categories.all()
+
+        eq_(categories[0].id, 22)
+        eq_(categories[1].id, 23)
+
+    def test_edit_basic_categories_addandremove(self):
+        AddonCategory(addon=self.addon, category_id=23).save()
+
+        eq_([c.id for c in self.get_addon().categories.all()], [22, 23])
+
+        data = dict(name='new name!',
+                    slug='test_slug',
+                    summary='new summary',
+                    categories=[22, 24],
+                    tags=', '.join(self.tags))
+
+        self.client.post(self.get_url('basic', True), data)
+
+        category_ids_new = [c.id for c in self.get_addon().categories.all()]
+
+        eq_(category_ids_new, [22, 24])
+
+    def test_edit_basic_categories_remove(self):
+        category = Category.objects.get(id=23)
+        AddonCategory(addon=self.addon, category=category).save()
+
+        eq_([c.id for c in self.get_addon().categories.all()], [22, 23])
+
+        data = dict(name='new name!',
+                    slug='test_slug',
+                    summary='new summary',
+                    categories=[22],
+                    tags=', '.join(self.tags))
+
+        self.client.post(self.get_url('basic', True), data)
+
+        category_ids_new = [c.id for c in self.get_addon().categories.all()]
+
+        eq_(category_ids_new, [22])
+
+    def test_edit_basic_categories_required(self):
+        data = dict(name='new name',
+                    slug='test_slug',
+                    summary='new summary',
+                    categories=[],
+                    tags=', '.join(self.tags))
+
+        r = self.client.post(self.get_url('basic', True), data)
+        self.assertFormError(r, 'form', 'categories',
+                             'This field is required.')
+
+    def test_edit_basic_categories_max(self):
+        data = dict(name='new name',
+                    slug='test_slug',
+                    summary='new summary',
+                    categories=[22, 23, 24],
+                    tags=', '.join(self.tags))
+
+        r = self.client.post(self.get_url('basic', True), data)
+
+        error = 'You can only have 2 categories.'
+        self.assertFormError(r, 'form', 'categories', error)
+
+    def test_edit_basic_categories_nonexistent(self):
+        data = dict(name='new name',
+                    slug='test_slug',
+                    summary='new summary',
+                    categories=[100],
+                    tags=', '.join(self.tags))
+
+        r = self.client.post(self.get_url('basic', True), data)
+        # Users will only get this if they're messing with the form, so a
+        # human readable error isn't necessary.
+        err = 'Select a valid choice. 100 is not one of the available choices.'
+        self.assertFormError(r, 'form', 'categories', err)
+
     def test_edit_basic_name_not_empty(self):
         data = dict(name='',
                     slug=self.addon.slug,
+                    categories=['22'],
                     summary=self.addon.summary)
 
         r = self.client.post(self.get_url('basic', True), data)
@@ -1210,6 +1311,7 @@ class TestEdit(test_utils.TestCase):
 
     def test_edit_basic_name_max_length(self):
         data = dict(name='xx' * 70, slug=self.addon.slug,
+                    categories=['22'],
                     summary=self.addon.summary)
         r = self.client.post(self.get_url('basic', True), data)
         self.assertFormError(r, 'form', 'name',
@@ -1218,6 +1320,7 @@ class TestEdit(test_utils.TestCase):
 
     def test_edit_basic_summary_max_length(self):
         data = dict(name=self.addon.name, slug=self.addon.slug,
+                    categories=['22'],
                     summary='x' * 251)
         r = self.client.post(self.get_url('basic', True), data)
         self.assertFormError(r, 'form', 'summary',
@@ -2257,6 +2360,14 @@ class TestSubmitStep3(test_utils.TestCase):
         self._redis = mock_redis()
         cron.build_reverse_name_lookup()
 
+        AddonCategory.objects.filter(addon=self.get_addon(),
+                category=Category.objects.get(id=23)).delete()
+        AddonCategory.objects.filter(addon=self.get_addon(),
+                category=Category.objects.get(id=24)).delete()
+
+    def get_addon(self):
+        return Addon.objects.no_cache().get(id=3615)
+
     def tearDown(self):
         reset_redis(self._redis)
 
@@ -2267,6 +2378,7 @@ class TestSubmitStep3(test_utils.TestCase):
         # Post and be redirected.
         d = {'name': 'Test name',
              'slug': 'testname',
+             'categories': ['22'],
              'summary': 'Hello!'}
         r = self.client.post(self.url, d)
         eq_(r.status_code, 302)
@@ -2329,6 +2441,67 @@ class TestSubmitStep3(test_utils.TestCase):
         eq_(r.status_code, 200)
         error = 'Ensure this value has at most 250 characters (it has 251).'
         self.assertFormError(r, 'form', 'summary', error)
+
+    def test_submit_categories_required(self):
+        r = self.client.post(self.url, {'summary': 'Hello.', 'categories': []})
+        self.assertFormError(r, 'form', 'categories',
+                             'This field is required.')
+
+    def test_submit_categories_max(self):
+        r = self.client.post(self.url, {'categories': ['22', '23', '24']})
+        error = 'You can only have 2 categories.'
+        self.assertFormError(r, 'form', 'categories', error)
+
+    def test_submit_categories_add(self):
+        eq_([c.id for c in self.get_addon().categories.all()], [22])
+
+        data = dict(name='new name!',
+                    slug='test_slug',
+                    summary='new summary',
+                    categories=[22, 23],
+                    tags='ab, cd, ef')
+
+        self.client.post(self.url, data)
+
+        categories = self.get_addon().categories.all()
+
+        eq_(categories[0].id, 22)
+        eq_(categories[1].id, 23)
+
+    def test_submit_categories_addandremove(self):
+        AddonCategory(addon=self.get_addon(), category_id=23).save()
+
+        eq_([c.id for c in self.get_addon().categories.all()], [22, 23])
+
+        data = dict(name='new name!',
+                    slug='test_slug',
+                    summary='new summary',
+                    categories=[22, 24],
+                    tags='ab, cd, ef')
+
+        self.client.post(self.url, data)
+
+        category_ids_new = [c.id for c in self.get_addon().categories.all()]
+
+        eq_(category_ids_new, [22, 24])
+
+    def test_submit_categories_remove(self):
+        category = Category.objects.get(id=23)
+        AddonCategory(addon=self.get_addon(), category=category).save()
+
+        eq_([c.id for c in self.get_addon().categories.all()], [22, 23])
+
+        data = dict(name='new name!',
+                    slug='test_slug',
+                    summary='new summary',
+                    categories=[22],
+                    tags='ab, cd, ef')
+
+        self.client.post(self.url, data)
+
+        category_ids_new = [c.id for c in self.get_addon().categories.all()]
+
+        eq_(category_ids_new, [22])
 
     def test_check_version(self):
         addon = Addon.objects.get(pk=3615)

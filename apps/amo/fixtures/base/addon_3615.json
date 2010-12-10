@@ -352,10 +352,58 @@
         }
     },
     {
+        "pk": 24,
+        "model": "addons.category",
+        "fields": {
+            "count": 901,
+            "description": null,
+            "weight": 0,
+            "created": "2007-03-05 13:09:27",
+            "modified": "2010-02-23 19:17:32",
+            "application": 1,
+            "type": 1,
+            "slug": "social",
+            "name": null
+        }
+    },
+    {
+        "pk": 23,
+        "model": "addons.category",
+        "fields": {
+            "count": 901,
+            "description": null,
+            "weight": 0,
+            "created": "2007-03-05 13:09:27",
+            "modified": "2010-02-23 19:17:32",
+            "application": 1,
+            "type": 1,
+            "slug": "feeds",
+            "name": null
+        }
+    },
+    {
         "pk": 6343,
         "model": "addons.addoncategory",
         "fields": {
             "category": 22,
+            "feature": 1,
+            "addon": 3615
+        }
+    },
+    {
+        "pk": 6344,
+        "model": "addons.addoncategory",
+        "fields": {
+            "category": 23,
+            "feature": 1,
+            "addon": 3615
+        }
+    },
+    {
+        "pk": 6345,
+        "model": "addons.addoncategory",
+        "fields": {
+            "category": 24,
             "feature": 1,
             "addon": 3615
         }

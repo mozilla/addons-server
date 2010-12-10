@@ -44,8 +44,8 @@
         <label>
           {{ _('Select 1 or 2 categories that best describe your add-on:') }}
         </label>
-        Coming Soon
-        {# TODO(gkoberger): See bug 606246 #}
+        {{ form.categories|safe }}
+        {{ form.categories.errors|safe }}
       </div>
       <div class="submission-buttons addon-submission-field">
         <button type="submit">

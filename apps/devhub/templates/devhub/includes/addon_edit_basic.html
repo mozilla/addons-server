@@ -72,8 +72,8 @@
             </th>
             <td id="addon_categories_edit">
               {% if editable %}
-                {# TODO(gkoberger): Add categories #}
-                <strong>Coming Soon</strong>
+                {{ form.categories|safe }}
+                {{ form.categories.errors|safe }}
               {% else %}
                 {{ addon.categories.all()|join(' &middot; ')|safe }}
               {% endif %}

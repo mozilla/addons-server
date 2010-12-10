@@ -207,6 +207,8 @@ class Addon(amo.models.ModelBase):
     authors = models.ManyToManyField('users.UserProfile', through='AddonUser',
                                      related_name='addons')
 
+    categories = models.ManyToManyField('Category', through='AddonCategory')
+
     dependencies = models.ManyToManyField('self', symmetrical=False,
                                           through='AddonDependency',
                                           related_name='addons')
@@ -495,7 +497,6 @@ class Addon(amo.models.ModelBase):
                       .filter(files__status=amo.STATUS_PUBLIC).exists()):
             self.update(status=amo.STATUS_UNREVIEWED)
             amo.log(amo.LOG.CHANGE_STATUS, self.get_status_display(), self)
-
 
     @staticmethod
     def transformer(addons):
@@ -1023,8 +1024,7 @@ class Category(amo.models.ModelBase):
     weight = models.IntegerField(
         help_text='Category weight used in sort ordering')
 
-    addons = models.ManyToManyField(Addon, through='AddonCategory',
-                                    related_name='categories')
+    addons = models.ManyToManyField(Addon, through='AddonCategory')
 
     class Meta:
         db_table = 'categories'
