@@ -50,6 +50,15 @@
       {% endif %}
 
       <div class="version-status-actions">
+        {% set req = {amo.STATUS_PUBLIC: _('Request Full Review'),
+                      amo.STATUS_LITE: _('Request Preliminary Review')} %}
+        {% for status in addon.can_request_review() %}
+          <form method="post"
+                action="{{ url('devhub.request-review', addon.id, status) }}">
+            {{ csrf() }}
+            <button class="link" type="submit">{{ req[status] }}</button> &middot;
+          </form>
+        {% endfor %}
         {% if not addon.is_disabled and addon.is_under_review %}
           <a href="#" id="cancel-review">{{ _('Cancel Review Request') }}</a> &middot;
         {% endif %}

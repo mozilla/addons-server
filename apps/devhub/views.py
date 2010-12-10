@@ -788,3 +788,31 @@ def submit_bump(request, addon_id):
         return redirect('devhub.submit.bump', addon.id)
     return jingo.render(request, 'devhub/addons/submit/bump.html',
                         dict(addon=addon, step=step))
+
+
+# You can only request one of the new review tracks.
+REQUEST_REVIEW = (amo.STATUS_PUBLIC, amo.STATUS_LITE)
+
+@dev_required
+@post_required
+def request_review(request, addon_id, addon, status):
+    status_req = int(status)
+    if status_req not in addon.can_request_review():
+        return http.HttpResponseBadRequest()
+    elif status_req == amo.STATUS_PUBLIC:
+        if addon.status == amo.STATUS_LITE:
+            new_status = amo.STATUS_LITE_AND_NOMINATED
+        else:
+            new_status = amo.STATUS_NOMINATED
+    elif status_req == amo.STATUS_LITE:
+        if addon.status in (amo.STATUS_PUBLIC, amo.STATUS_LITE_AND_NOMINATED):
+            new_status = amo.STATUS_LITE
+        else:
+            new_status = amo.STATUS_UNREVIEWED
+
+    addon.update(status=new_status)
+    msg = {amo.STATUS_LITE: _('Preliminary Review Requested.'),
+           amo.STATUS_PUBLIC: _('Full Review Requested.')}
+    messages.success(request, msg[status_req])
+    amo.log(amo.LOG.CHANGE_STATUS, addon.get_status_display(), addon)
+    return redirect('devhub.versions', addon.id)

@@ -50,6 +50,9 @@ detail_patterns = patterns('',
 
     url('^submit/', include(submit_patterns)),
     url('^submit/resume$', views.submit_resume, name='devhub.submit.resume'),
+    url('^request-review/(?P<status>[%s])$'
+        % ''.join(map(str, views.REQUEST_REVIEW)),
+        views.request_review, name='devhub.request-review'),
 )
 
 # These will all start with /ajax/addon/<addon_id>/
