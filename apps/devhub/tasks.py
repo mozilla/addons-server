@@ -33,6 +33,11 @@ def validator(upload_id, **kw):
 
 def _validator(upload):
 
+    # TODO(Kumar) remove this once we sort
+    # out the js environment. See bug 614574
+    from validator.testcases import scripting
+    scripting.SPIDERMONKEY = None
+
     # TODO(basta): this should be two lines.
     # from addon_validator import validate
     # return validate(path, format='json')
