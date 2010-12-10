@@ -88,41 +88,12 @@ class Extractor(object):
         return rv
 
 
-class xquery(object):
-    """Enough jquery-ness to get by."""
-
-    def __init__(self, dom):
-        self.dom = dom
-
-    def __call__(self, tag):
-        return xquery(self.dom.getElementsByTagName(tag))
-
-    def __iter__(self):
-        return iter(self.dom)
-
-    def attr(self, name):
-        return self.first().attributes[name].value
-
-    def attrs(self):
-        return dict(self.first().attributes.items())
-
-    def text(self):
-        return self.first().childNodes[0].wholeText
-
-    def first(self):
-        if isinstance(self.dom, minidom.Element):
-            return self.dom
-        return self.dom[0]
-
-
 def extract_search(content):
     rv = {}
-    dom = xquery(minidom.parse(content))
-    rv['xmlns'] = dom('OpenSearchDescription').attr('xmlns')
-    rv['name'] = dom('ShortName').text()
-    rv['description'] = dom('Description').text()
-    urls = [xquery(d).attrs() for d in dom('Url')]
-    rv['url'] = [u for u in urls if u['type'] == 'text/html'][0]
+    dom = minidom.parse(content)
+    text = lambda x: dom.getElementsByTagName(x)[0].childNodes[0].wholeText
+    rv['name'] = text('ShortName')
+    rv['description'] = text('Description')
     return rv
 
 
