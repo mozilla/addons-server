@@ -2996,3 +2996,70 @@ class TestDeleteAddon(test_utils.TestCase):
         eq_(r.context['title'], 'Add-on deleted.')
         eq_(Addon.objects.count(), 0)
         self.assertRedirects(r, reverse('devhub.addons'))
+
+
+class TestRequestReview(test_utils.TestCase):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        self.addon = Addon.objects.create(type=1, name='xxx')
+        self.redirect_url = reverse('devhub.versions', args=[self.addon.id])
+        self.lite_url = reverse('devhub.request-review',
+                                args=[self.addon.id, amo.STATUS_LITE])
+        self.public_url = reverse('devhub.request-review',
+                                  args=[self.addon.id, amo.STATUS_PUBLIC])
+        assert self.client.login(username='admin@mozilla.com',
+                                 password='password')
+
+    def get_addon(self):
+        return Addon.objects.get(id=self.addon.id)
+
+    def check(self, old_status, url, new_status):
+        self.addon.update(status=old_status)
+        r = self.client.post(url)
+        self.assertRedirects(r, self.redirect_url)
+        eq_(self.get_addon().status, new_status)
+
+    def check_400(self, url):
+        r = self.client.post(url)
+        eq_(r.status_code, 400)
+
+    def test_404(self):
+        bad_url = self.public_url.replace(str(amo.STATUS_PUBLIC), '0')
+        eq_(self.client.post(bad_url).status_code, 404)
+
+    def test_public(self):
+        self.addon.update(status=amo.STATUS_PUBLIC)
+        self.check_400(self.lite_url)
+        self.check_400(self.public_url)
+
+    def test_disabled_by_user_to_lite(self):
+        self.addon.update(disabled_by_user=True)
+        self.check_400(self.lite_url)
+
+    def test_disabled_by_admin(self):
+        self.addon.update(status=amo.STATUS_DISABLED)
+        self.check_400(self.lite_url)
+
+    def test_lite_to_lite(self):
+        self.addon.update(status=amo.STATUS_LITE)
+        self.check_400(self.lite_url)
+
+    def test_lite_to_public(self):
+        self.check(amo.STATUS_LITE, self.public_url,
+                   amo.STATUS_LITE_AND_NOMINATED)
+
+    def test_purgatory_to_lite(self):
+        self.check(amo.STATUS_PURGATORY, self.lite_url, amo.STATUS_UNREVIEWED)
+
+    def test_purgatory_to_public(self):
+        self.check(amo.STATUS_PURGATORY, self.public_url, amo.STATUS_NOMINATED)
+
+    def test_lite_and_nominated_to_public(self):
+        self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
+        self.check_400(self.public_url)
+
+    def test_lite_and_nominated(self):
+        self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
+        self.check_400(self.lite_url)
+        self.check_400(self.public_url)
