@@ -732,3 +732,22 @@ class TestAddonFromUpload(files.tests.UploadTest):
         eq_(v.version, datetime.now().strftime('%Y%m%d'))
         eq_(v.files.get().platform_id, amo.PLATFORM_ALL.id)
         eq_(v.files.get().status, amo.STATUS_UNREVIEWED)
+
+
+def test_can_request_review():
+    def check(status, exp, kw={}):
+        addon = Addon(status=status, **kw)
+        eq_(addon.can_request_review(), exp)
+    lite, public = (amo.STATUS_LITE,), (amo.STATUS_PUBLIC,)
+    both = lite + public
+    tests = [(amo.STATUS_NULL, both),
+             (amo.STATUS_UNREVIEWED, public),
+             (amo.STATUS_NOMINATED, lite),
+             (amo.STATUS_PUBLIC, ()),
+             (amo.STATUS_DISABLED, ()),
+             (amo.STATUS_LITE, public),
+             (amo.STATUS_LITE_AND_NOMINATED, ()),
+             (amo.STATUS_PURGATORY, both)]
+    yield check, amo.STATUS_NULL, (), {'disabled_by_user': True}
+    for status, exp in tests:
+        yield check, status, exp

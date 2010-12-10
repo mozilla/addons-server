@@ -580,6 +580,18 @@ class Addon(amo.models.ModelBase):
         except IndexError:
             return settings.MEDIA_URL + '/img/amo2009/icons/no-preview.png'
 
+    def can_request_review(self):
+        """Return the statuses an add-on can request."""
+        if self.is_disabled or self.status in (amo.STATUS_PUBLIC,
+                                               amo.STATUS_LITE_AND_NOMINATED):
+            return ()
+        elif self.status == amo.STATUS_NOMINATED:
+            return (amo.STATUS_LITE,)
+        elif self.status in (amo.STATUS_UNREVIEWED, amo.STATUS_LITE):
+            return (amo.STATUS_PUBLIC,)
+        else:
+            return (amo.STATUS_LITE, amo.STATUS_PUBLIC)
+
     def is_persona(self):
         return self.type == amo.ADDON_PERSONA
 
