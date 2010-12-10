@@ -102,6 +102,12 @@ class AddonFormBasic(AddonFormBase):
         total = len(target)
         tags_short = [t for t in target if len(t.strip()) < min_len]
 
+        for t in target:
+            tag = Tag.objects.filter(tag_text=t)
+            if len(tag) > 0 and tag[0].blacklisted:
+                raise forms.ValidationError(_("The tag '{0}' isn't allowed")
+                                            .format(t))
+
         if total > max_tags:
             raise forms.ValidationError(ngettext(
                                         'You have {0} too many tags.',
@@ -114,6 +120,7 @@ class AddonFormBasic(AddonFormBase):
                         'All tags must be at least {0} character.',
                         'All tags must be at least {0} characters.',
                         min_len).format(min_len))
+
         return target
 
     def clean_slug(self):

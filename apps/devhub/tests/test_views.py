@@ -1158,6 +1158,21 @@ class TestEdit(test_utils.TestCase):
         eq_(ActivityLog.objects.filter(action=amo.LOG.ADD_TAG.id).count(),
                                         count + 1)
 
+    def test_edit_basic_blacklisted_tag(self):
+        Tag.objects.get_or_create(tag_text='..', blacklisted=True)
+
+        data = dict(name='new name',
+                    slug='test_slug',
+                    summary='new summary',
+                    categories=['22'],
+                    tags='..')
+
+        r = self.client.post(self.get_url('basic', True), data)
+        eq_(r.status_code, 200)
+
+        error = "The tag '..' isn't allowed";
+        self.assertFormError(r, 'form', 'tags', error)
+
     def test_edit_basic_remove_tag(self):
         self.tags.remove('tag2')
 
