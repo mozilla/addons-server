@@ -1405,7 +1405,7 @@ class TestEdit(test_utils.TestCase):
         eq_(Image.open(dest).size, (48, 48))
 
     def test_edit_media_uploadedicon_wrongtype(self):
-        img = "%s/js/common-min.js" % settings.MEDIA_ROOT
+        img = "%s/js/zamboni/devhub.js" % settings.MEDIA_ROOT
         src_image = open(img, 'rb')
 
         data = dict(icon_type='image/png',
