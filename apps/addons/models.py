@@ -479,17 +479,23 @@ class Addon(amo.models.ModelBase):
         return self._current_version
 
     def update_status(self, using=None):
-        if not self.versions.using(using).exists():
+        if (self.status != amo.STATUS_NULL and
+            not self.versions.using(using).exists()):
             self.update(status=amo.STATUS_NULL)
-        elif not (self.versions.using(using)
+            amo.log(amo.LOG.CHANGE_STATUS, self.get_status_display(), self)
+
+        elif (self.status != amo.STATUS_NULL and
+              not self.versions.using(using)
                       .filter(files__isnull=False).exists()):
             self.update(status=amo.STATUS_NULL)
-        elif not (self.versions.using(using)
+            amo.log(amo.LOG.CHANGE_STATUS, self.get_status_display(), self)
+
+        elif (self.status != amo.STATUS_UNREVIEWED and
+              not self.versions.using(using)
                       .filter(files__status=amo.STATUS_PUBLIC).exists()):
             self.update(status=amo.STATUS_UNREVIEWED)
-        else:
-            return
-        amo.log(amo.LOG.CHANGE_STATUS, self.get_status_display(), self)
+            amo.log(amo.LOG.CHANGE_STATUS, self.get_status_display(), self)
+
 
     @staticmethod
     def transformer(addons):

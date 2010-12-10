@@ -621,6 +621,20 @@ class TestEditLicense(TestOwnership):
             eq_(doc(radio + '+ a').attr('href'), license.url)
         eq_(doc('input[name=builtin]:last-child').parent().text(), 'Other')
 
+    def test_license_logs(self):
+        data = self.formset(builtin=License.OTHER, text='text')
+        self.version.files.all().delete()
+        self.version.addon.update(status=amo.STATUS_PUBLIC)
+        self.client.post(self.url, data)
+        eq_(ActivityLog.objects.all().count(), 3)
+
+        self.version.license = License.objects.all()[1]
+        self.version.license.save()
+
+        data = self.formset(builtin=License.OTHER, text='text')
+        self.client.post(self.url, data)
+        eq_(ActivityLog.objects.all().count(), 4)
+
 
 class TestEditAuthor(TestOwnership):
 
