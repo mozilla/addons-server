@@ -1,4 +1,4 @@
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 import itertools
 from urlparse import urlparse
 
@@ -326,6 +326,23 @@ class TestAddonModels(test_utils.TestCase):
 
         entries = ActivityLog.objects.all()
         eq_(entries[0].action, amo.LOG.CHANGE_STATUS.id)
+
+    def test_can_request_review_waiting_period(self):
+        now = datetime.now()
+        a = Addon.objects.create(type=1)
+        v = Version.objects.create(addon=a)
+        # The first LITE version is only 5 days old, no dice.
+        f = File.objects.create(status=amo.STATUS_LITE, version=v)
+        f.update(datestatuschanged=now - timedelta(days=5))
+        # TODO(andym): can this go in Addon.objects.create? bug 618444
+        a.update(status=amo.STATUS_LITE)
+        eq_(a.can_request_review(), ())
+
+        # Now the first LITE is > 10 days old, change can happen.
+        v = Version.objects.create(addon=a)
+        f = File.objects.create(status=amo.STATUS_LITE, version=v)
+        f.update(datestatuschanged=now - timedelta(days=11))
+        eq_(a.can_request_review(), (amo.STATUS_PUBLIC,))
 
 
 class TestCategoryModel(test_utils.TestCase):

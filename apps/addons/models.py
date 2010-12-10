@@ -4,7 +4,7 @@ import json
 import os
 import operator
 import time
-from datetime import date
+from datetime import date, datetime, timedelta
 
 from django.conf import settings
 from django.db import models, transaction
@@ -22,6 +22,7 @@ from amo.utils import (send_mail, urlparams, sorted_groupby, JSONEncoder,
                        slugify)
 from amo.urlresolvers import reverse
 from addons.utils import ReverseNameLookup
+from files.models import File
 from reviews.models import Review
 from stats.models import (Contribution as ContributionStats,
                           AddonShareCountTotal)
@@ -29,7 +30,6 @@ from translations.fields import TranslatedField, PurifiedField, LinkifiedField
 from users.models import UserProfile, PersonaAuthor, UserForeignKey
 from versions.compare import version_int
 from versions.models import Version
-from files.models import File
 
 from . import query, signals
 
@@ -587,8 +587,16 @@ class Addon(amo.models.ModelBase):
             return ()
         elif self.status == amo.STATUS_NOMINATED:
             return (amo.STATUS_LITE,)
-        elif self.status in (amo.STATUS_UNREVIEWED, amo.STATUS_LITE):
+        elif self.status == amo.STATUS_UNREVIEWED:
             return (amo.STATUS_PUBLIC,)
+        elif self.status == amo.STATUS_LITE:
+            # You must wait 10 days after your first LITE approval to go FULL.
+            qs = (File.objects.filter(version__addon=self, status=self.status)
+                  .order_by('created').values_list('datestatuschanged'))[:1]
+            if qs and datetime.now() - qs[0][0] < timedelta(days=10):
+                return ()
+            else:
+                return (amo.STATUS_PUBLIC,)
         else:
             return (amo.STATUS_LITE, amo.STATUS_PUBLIC)
 
