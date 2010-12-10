@@ -1,12 +1,10 @@
 import codecs
 import collections
-import errno
 import functools
 import json
 import os
 
 from django import http
-from django.conf import settings
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.http import urlquote
 
@@ -489,45 +487,6 @@ def upload_detail(request, uuid, format='html'):
 
 
 @dev_required
-@json_view
-def addons_icon_upload(request, addon_id, addon):
-    if request.FILES:
-        icon = request.FILES['icon_upload']
-    else:
-        icon = request.raw_post_data
-
-    if icon:
-        dirname = settings.ADDON_ICONS_PATH
-        tmp_destination = os.path.join(dirname, '%s-temp' % addon.id)
-
-        # Creates all folders that don't exist without throwing an error if it
-        # does exist already.
-        if not os.path.exists(dirname):
-            try:
-                os.makedirs(dirname)
-            except OSError as exc:
-                if exc.errno == errno.EEXIST:
-                    pass
-                else:
-                    raise
-
-        fh = open(tmp_destination, 'w')
-        for chunk in icon:
-            fh.write(chunk)
-
-        fh.close()
-
-        for size in amo.ADDON_ICON_SIZES:
-            destination = os.path.join(dirname, '%s-%s' % (addon.id, size))
-            tasks.resize_icon.delay(tmp_destination, destination, size)
-        os.remove(tmp_destination)
-
-    # This is a bit over-confident; it'll return something legitimate when we
-    # do more testing (bug 614450).
-    return {'success': True}
-
-
-@dev_required
 def addons_section(request, addon_id, addon, section, editable=False):
     models = {'basic': addon_forms.AddonFormBasic,
               'media': addon_forms.AddonFormMedia,
@@ -749,10 +708,6 @@ def submit_media(request, addon_id, addon, step):
     form = addon_forms.AddonFormMedia(request.POST or None, instance=addon,
                                       request=request)
     if request.method == 'POST' and form.is_valid():
-
-        if request.FILES:
-            addons_icon_upload(request, addon_id)
-
         addon = form.save(addon)
         SubmitStep.objects.filter(addon=addon).update(step=5)
         return redirect('devhub.submit.5', addon.id)

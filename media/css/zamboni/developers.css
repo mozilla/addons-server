@@ -229,10 +229,6 @@ span.locale{
     width: 16px;
 }
 
-#edit-icon-error {
-    color: red;
-}
-
 #icons_default {
     border: 1px solid #6A89AC;
     max-height: 86px;

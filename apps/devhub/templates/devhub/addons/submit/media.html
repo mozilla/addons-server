@@ -39,14 +39,19 @@
         <ul id="icons_default">
           {{ form.icon_type|safe }}
         </ul>
-        {{ form.icon_upload|safe }}
-        {{ form.icon_upload.errors|safe }}
+        <div class="invisible-upload">
+          <a class="button" href="#">{{ _('Upload a Custom Icon...') }}</a>
+          {{ form.icon_upload|safe }}
+        </div>
         <div class="edit-media-details">
-          <div id="edit-icon-error"></div>
           {% trans %}
           PNG and JPG supported. Icons resized to 64x64 pixels if larger.
           {% endtrans %}
         </div>
+        {{ form.icon_upload.errors|safe }}
+        <ul class="errorlist">
+          <li id="edit-icon-error"></li>
+        </ul>
       </div>
       <div class="submission-buttons addon-submission-field">
         <button type="submit">

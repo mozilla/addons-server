@@ -37,8 +37,6 @@ detail_patterns = patterns('',
         name='devhub.addons.profile.remove'),
     url('^edit_(?P<section>[^/]+)(?:/(?P<editable>[^/]+))?$',
         views.addons_section, name='devhub.addons.section'),
-    url('^icon_upload$',
-        views.addons_icon_upload, name='devhub.addons.icon_upload'),
 
     url('^versions/$', views.version_list, name='devhub.versions'),
     url('^versions/delete$', views.version_delete,

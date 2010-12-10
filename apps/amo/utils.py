@@ -256,7 +256,7 @@ def resize_image(src, dst, size, remove_src=True):
     im = processors.scale_and_crop(im, size)
     im.save(dst, 'png')
 
-    if(remove_src):
+    if remove_src:
         os.remove(src)
 
 

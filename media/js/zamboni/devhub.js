@@ -115,9 +115,9 @@ function addonFormSubmit() {
     parent_div = $(this);
 
     (function(parent_div){
-        $('form', parent_div).submit(function(e){
+        $('form', parent_div.not('#edit-addon-media')).submit(function(e){
             e.preventDefault();
-        $.post($(parent_div).find('form').attr('action'),
+            $.post($(parent_div).find('form').attr('action'),
                 $(this).serialize(), function(d){
                     $(parent_div).html(d).each(addonFormSubmit);
                     truncateFields();
@@ -150,23 +150,7 @@ function initEditAddon() {
 }
 
 function initUploadIcon() {
-    $('#edit-addon-media').delegate('form', 'submit', function(e){
-        e.preventDefault();
-
-        if($('input[name=icon_type]:checked').val().match(/^image\//)) {
-            file = $('#id_icon_upload')[0].files[0];
-
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", $(this).attr('data-uploadurl'), true);
-            xhr.overrideMimeType('text/plain; charset=x-user-defined-binary');
-            xhr.setRequestHeader("Content-Type", "application/octet-stream");
-            xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-
-            xhr.setRequestHeader('Content-length', file.size);
-
-            xhr.send(file);
-        }
-    });
+    $('#edit-addon-media').delegate('form', 'submit', multipartUpload);
 
     $('#edit-addon-media, #submit-media').delegate('#icons_default a', 'click', function(e){
         e.preventDefault();
@@ -373,8 +357,6 @@ function onupload() {
         } else {
             addonError(gettext("We were unable to connect to the server."));
         }
-
-
     }
 }
 
@@ -825,6 +807,60 @@ function initCompatibility() {
             return {pointTo: $(obj.click_target)};
         }
     });
+}
+
+function multipartUpload(e) {
+    e.preventDefault();
+
+    var xhr = new XMLHttpRequest(),
+        boundary = "BoUnDaRyStRiNg";
+
+    xhr.open("POST", $(this).attr('action'), true)
+    xhr.overrideMimeType('text/plain; charset=x-user-defined-binary');
+    xhr.setRequestHeader('Content-length', false);
+    xhr.setRequestHeader("Content-Type", "multipart/form-data;" +
+                                         "boundary=" + boundary);
+
+    // Sorry this is so ugly.
+    content = [
+        "Content-Type: multipart/form-data; boundary=" + boundary,
+        "",
+        "--" + boundary,
+        "Content-Disposition: form-data; name=\"icon_type\"",
+        "",
+        $('input[name="icon_type"]:checked', $('#icons_default')).val(),
+
+        "--" + boundary,
+        "Content-Disposition: form-data; name=\"csrfmiddlewaretoken\"",
+        "",
+        $('input[name="csrfmiddlewaretoken"]', $('#edit-addon-media')).val()];
+
+    if($('input[name=icon_type]:checked').val().match(/^image\//)) {
+        // There's a file to be uploaded.
+
+        var file = $('#id_icon_upload')[0].files[0],
+            data = file.getAsBinary();
+
+        image = [
+            "--" + boundary,
+            "Content-Disposition: form-data; name=\"icon_upload\";" +
+            "filename=\"" + file.name + "\"",
+            "Content-Type: " + file.type,
+            "",
+            data,
+            "--" + boundary + "--"];
+
+        content = $.merge(content, image);
+    }
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.responseText &&
+            (xhr.status == 200 || xhr.status == 304)) {
+            $('#edit-addon-media').html(xhr.responseText);
+        }
+    };
+
+    xhr.sendAsBinary(content.join('\r\n'));
 }
 
 

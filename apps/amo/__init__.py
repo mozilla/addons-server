@@ -171,7 +171,7 @@ ADDON_TYPES = {
 # Icons
 ADDON_ICONS = {
     ADDON_ANY: 'default-addon.png',
-    ADDON_THEME: 'default-theme.png'
+    ADDON_THEME: 'default-theme.png',
 }
 
 # We use these slugs in browse page urls.
@@ -192,7 +192,7 @@ ADDON_SLUGS_UPDATE = {
     ADDON_SEARCH: 'search',
     ADDON_LPAPP: 'item',
     ADDON_LPADDON: 'extension',
-    ADDON_PLUGIN: 'plugin'
+    ADDON_PLUGIN: 'plugin',
 }
 
 # Edit addon information

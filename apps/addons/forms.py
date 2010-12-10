@@ -12,6 +12,7 @@ import captcha.fields
 from amo.utils import slug_validator
 from addons.models import Addon, ReverseNameLookup
 from addons.widgets import IconWidgetRenderer
+from devhub import tasks
 from tags.models import Tag
 from translations.fields import TransField, TransTextarea
 from translations.forms import TranslationFormMixin
@@ -108,9 +109,9 @@ def icons():
     """
     icons = [('image/jpeg', 'jpeg'), ('image/png', 'png'), ('', 'default')]
     dir_list = os.listdir(settings.ADDON_ICONS_DEFAULT_PATH)
-    for fn in dir_list:
-        if ('%s' % 32) in fn and not "default" in fn:
-            icon_name = fn.split('-')[0]
+    for fname in dir_list:
+        if '32' in fname and not 'default' in fname:
+            icon_name = fname.split('-')[0]
             icons.append(('icon/%s' % icon_name, icon_name))
     return icons
 
@@ -123,6 +124,41 @@ class AddonFormMedia(AddonFormBase):
     class Meta:
         model = Addon
         fields = ('icon_upload', 'icon_type')
+
+    def save(self, addon, commit=True):
+        if self.request.FILES:
+            icon = self.request.FILES['icon_upload']
+            dirname = addon.get_icon_dir()
+            tmp_destination = os.path.join(dirname, '%s-temp' % addon.id)
+
+            if not os.path.exists(dirname):
+                os.makedirs(dirname)
+
+            with open(tmp_destination, 'wb+') as icon_file:
+                for chunk in icon.read():
+                    icon_file.write(chunk)
+
+            destination = os.path.join(dirname, '%s' % addon.id)
+            tasks.resize_icon.delay(tmp_destination, destination,
+                                    amo.ADDON_ICON_SIZES)
+
+        return super(AddonFormMedia, self).save(commit)
+
+    def clean_icon_upload(self):
+        icon = self.cleaned_data['icon_upload']
+
+        if not icon:
+            return
+
+        if icon.content_type not in ('image/png', 'image/jpeg'):
+            raise forms.ValidationError(
+                    _('Icons must be either PNG or JPG.'))
+
+            if icon.size > settings.MAX_ICON_UPLOAD_SIZE:
+                raise forms.ValidationError(
+                        _('Please use images smaller than %dMB.' %
+                            (settings.MAX_ICON_UPLOAD_SIZE / 1024 / 1024 - 1)))
+        return icon
 
 
 class AddonFormDetails(AddonFormBase):

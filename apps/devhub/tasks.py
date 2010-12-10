@@ -58,13 +58,19 @@ def _validator(upload):
     return output.getvalue()
 
 
-@task
-@write
+@task(queue='images')
 def resize_icon(src, dst, size, **kw):
     """Resizes addon icons."""
     log.info('[1@None] Resizing icon: %s' % dst)
 
     try:
-        resize_image(src, dst, (size, size), False)
+        if isinstance(size, list):
+            for s in size:
+                resize_image(src, '%s-%s.png' % (dst, s), (s, s),
+                             remove_src=False)
+            os.remove(src)
+        else:
+            resize_image(src, dst, (size, size), remove_src=True)
+
     except Exception, e:
         log.error("Error saving addon icon: %s" % e)

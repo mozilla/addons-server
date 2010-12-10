@@ -1,4 +1,5 @@
 import json
+import os
 import re
 import socket
 from decimal import Decimal
@@ -10,6 +11,7 @@ from django.utils import translation
 
 import mock
 from nose.tools import eq_, assert_not_equal, assert_raises
+from PIL import Image
 from pyquery import PyQuery as pq
 from redisutils import mock_redis, reset_redis
 import test_utils
@@ -1329,6 +1331,90 @@ class TestEdit(test_utils.TestCase):
         for k in data:
             eq_(unicode(getattr(addon, k)), data[k])
 
+    def test_edit_media_defaulticon(self):
+        data = dict(icon_type='')
+
+        r = self.client.post(self.get_url('media', True), data)
+        eq_(r.context['form'].errors, {})
+        addon = self.get_addon()
+
+        assert addon.get_icon_url(64).endswith('icons/default-addon.png')
+
+        for k in data:
+            eq_(unicode(getattr(addon, k)), data[k])
+
+    def test_edit_media_preuploadedicon(self):
+        data = dict(icon_type='icon/appearance')
+
+        r = self.client.post(self.get_url('media', True), data)
+        eq_(r.context['form'].errors, {})
+        addon = self.get_addon()
+
+        assert addon.get_icon_url(64).endswith('icons/appearance-64.png')
+
+        for k in data:
+            eq_(unicode(getattr(addon, k)), data[k])
+
+    def test_edit_media_uploadedicon(self):
+        img = "%s/img/amo2009/tab-mozilla.png" % settings.MEDIA_ROOT
+        src_image = open(img, 'rb')
+
+        data = dict(icon_type='image/png',
+                    icon_upload=src_image)
+
+        r = self.client.post(self.get_url('media', True), data)
+        eq_(r.context['form'].errors, {})
+        addon = self.get_addon()
+
+        addon.get_icon_url(64).endswith('%s/%s-64.png' %
+                (settings.ADDON_ICONS_DEFAULT_URL, addon.id))
+
+        eq_(data['icon_type'], 'image/png')
+
+        # Check that it was actually uploaded
+        dirname = addon.get_icon_dir()
+        dest = os.path.join(dirname, '%s-32.png' % addon.id)
+
+        assert os.path.exists(dest)
+
+        eq_(Image.open(dest).size, (32, 12))
+
+    def test_edit_media_uploadedicon_noresize(self):
+        img = "%s/img/amo2009/notifications/error.png" % settings.MEDIA_ROOT
+        src_image = open(img, 'rb')
+
+        data = dict(icon_type='image/png',
+                    icon_upload=src_image)
+
+        r = self.client.post(self.get_url('media', True), data)
+        eq_(r.context['form'].errors, {})
+        addon = self.get_addon()
+
+        addon.get_icon_url(64).endswith('%s/%s-64.png' %
+                (settings.ADDON_ICONS_DEFAULT_URL, addon.id))
+
+        eq_(data['icon_type'], 'image/png')
+
+        # Check that it was actually uploaded
+        dirname = os.path.join(settings.ADDON_ICONS_PATH,
+                               '%s' % (addon.id / 1000))
+        dest = os.path.join(dirname, '%s-64.png' % addon.id)
+
+        assert os.path.exists(dest)
+
+        eq_(Image.open(dest).size, (48, 48))
+
+    def test_edit_media_uploadedicon_wrongtype(self):
+        img = "%s/js/common-min.js" % settings.MEDIA_ROOT
+        src_image = open(img, 'rb')
+
+        data = dict(icon_type='image/png',
+                    icon_upload=src_image)
+
+        r = self.client.post(self.get_url('media', True), data)
+        error = 'Icons must be either PNG or JPG.'
+        self.assertFormError(r, 'form', 'icon_upload', error)
+
     def test_log(self):
         data = {'developer_comments': 'This is a test'}
         o = ActivityLog.objects
@@ -2225,6 +2311,96 @@ class TestSubmitStep3(test_utils.TestCase):
         version = doc("#current_version").val()
 
         eq_(version, addon.current_version.version)
+
+
+class TestSubmitStep4(TestSubmitBase):
+
+    def setUp(self):
+        super(TestSubmitStep4, self).setUp()
+        SubmitStep.objects.create(addon_id=3615, step=5)
+        self.url = reverse('devhub.submit.4', args=[3615])
+        self.next_step = reverse('devhub.submit.5', args=[3615])
+
+    def test_get(self):
+        eq_(self.client.get(self.url).status_code, 200)
+
+    def test_post(self):
+        data = dict(icon_type='')
+        r = self.client.post(self.url, data)
+        eq_(r.status_code, 302)
+        eq_(self.get_step().step, 5)
+
+    def test_edit_media_defaulticon(self):
+        data = dict(icon_type='')
+        self.client.post(self.url, data)
+
+        addon = self.get_addon()
+
+        eq_('/'.join(addon.get_icon_url(64).split('/')[-2:]),
+            'icons/default-addon.png')
+
+        for k in data:
+            eq_(unicode(getattr(addon, k)), data[k])
+
+    def test_edit_media_preuploadedicon(self):
+        data = dict(icon_type='icon/appearance')
+        self.client.post(self.url, data)
+
+        addon = self.get_addon()
+
+        eq_('/'.join(addon.get_icon_url(64).split('/')[-2:]),
+            'addon-icons/appearance-64.png')
+
+        for k in data:
+            eq_(unicode(getattr(addon, k)), data[k])
+
+    def test_edit_media_uploadedicon(self):
+        img = "%s/img/amo2009/tab-mozilla.png" % settings.MEDIA_ROOT
+        src_image = open(img, 'rb')
+
+        data = dict(icon_type='image/png',
+                    icon_upload=src_image)
+
+        self.client.post(self.url, data)
+        addon = self.get_addon()
+
+        eq_('/'.join(addon.get_icon_url(64).split('/')[-3:-1]),
+            'addon_icon/%s' % addon.id)
+
+        eq_(data['icon_type'], 'image/png')
+
+        # Check that it was actually uploaded
+        dirname = os.path.join(settings.ADDON_ICONS_PATH,
+                               '%s' % (addon.id / 1000))
+        dest = os.path.join(dirname, '%s-32.png' % addon.id)
+
+        assert os.path.exists(dest)
+
+        eq_(Image.open(dest).size, (32, 12))
+
+    def test_edit_media_uploadedicon_noresize(self):
+        img = "%s/img/amo2009/notifications/error.png" % settings.MEDIA_ROOT
+        src_image = open(img, 'rb')
+
+        data = dict(icon_type='image/png',
+                    icon_upload=src_image)
+
+        self.client.post(self.url, data)
+        addon = self.get_addon()
+
+        eq_('/'.join(addon.get_icon_url(64).split('/')[-3:-1]),
+            'addon_icon/%s' % addon.id)
+
+        eq_(data['icon_type'], 'image/png')
+
+        # Check that it was actually uploaded
+        dirname = os.path.join(settings.ADDON_ICONS_PATH,
+                               '%s' % (addon.id / 1000))
+        dest = os.path.join(dirname, '%s-64.png' % addon.id)
+
+        assert os.path.exists(dest)
+
+        eq_(Image.open(dest).size, (48, 48))
 
 
 class TestSubmitStep5(TestSubmitBase):

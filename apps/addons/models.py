@@ -1,6 +1,7 @@
 import collections
 import itertools
 import json
+import os
 import operator
 import time
 from datetime import date
@@ -431,6 +432,10 @@ class Addon(amo.models.ModelBase):
                 log.error('Could not save version %s for addon %s (%s)' %
                           (current_version, self.id, e))
         return False
+
+    def get_icon_dir(self):
+        return os.path.join(settings.ADDON_ICONS_PATH,
+                            '%s' % (self.id / 1000))
 
     def get_icon_url(self, size):
         """
