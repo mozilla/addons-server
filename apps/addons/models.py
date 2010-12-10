@@ -482,14 +482,11 @@ class Addon(amo.models.ModelBase):
         if self.status == amo.STATUS_NULL:
             return
 
-        if (self.status != amo.STATUS_NULL and
-            not self.versions.using(using).exists()):
+        if not self.versions.using(using).exists():
             self.update(status=amo.STATUS_NULL)
             amo.log(amo.LOG.CHANGE_STATUS, self.get_status_display(), self)
 
-        elif (self.status != amo.STATUS_NULL and
-              not self.versions.using(using)
-                      .filter(files__isnull=False).exists()):
+        elif not self.versions.using(using).filter(files__isnull=False).exists():
             self.update(status=amo.STATUS_NULL)
             amo.log(amo.LOG.CHANGE_STATUS, self.get_status_display(), self)
 

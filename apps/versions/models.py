@@ -161,6 +161,7 @@ def update_status(sender, instance, **kw):
 models.signals.post_save.connect(update_status, sender=Version,
                                  dispatch_uid='version_update_status')
 
+
 models.signals.post_delete.connect(update_status, sender=Version,
                                    dispatch_uid='version_update_status')
 
