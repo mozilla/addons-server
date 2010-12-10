@@ -479,6 +479,9 @@ class Addon(amo.models.ModelBase):
         return self._current_version
 
     def update_status(self, using=None):
+        if self.status == amo.STATUS_NULL:
+            return
+
         if (self.status != amo.STATUS_NULL and
             not self.versions.using(using).exists()):
             self.update(status=amo.STATUS_NULL)
