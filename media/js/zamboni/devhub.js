@@ -31,8 +31,9 @@ $(document).ready(function() {
         initSubmit();
         initLicenseFields();
         initWordCount();
-        $('.upload-status').bind('upload-success', function() {
+        $('.upload-status').bind('upload-success', function(e, json) {
             $("#submit-upload-file-finish").attr("disabled", false);
+            $("#id_upload").val(json.upload);
         }).bind('upload-error', function() {
             $("#submit-upload-file-finish").attr("disabled", true);
         });
