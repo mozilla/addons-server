@@ -75,7 +75,7 @@ You can read more about this change in our announcement post:
 http://blog.mozilla.com/addons/2010/10/06/discontinuing-several-features-of-amo/
 
 If you wish for your {addon} to stay on addons.mozilla.org, please convert it to
-fully-hosted no later than December 21. Once our new Developer Tools
+fully-hosted no later than December 24. Once our new Developer Tools
 launch, support for managing self-hosted add-ons will be removed and any
 remaining self-hosted add-ons will be disabled.
 
