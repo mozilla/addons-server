@@ -20,6 +20,7 @@ import amo
 import files.tests
 import paypal
 from amo.urlresolvers import reverse
+from amo.tests.test_helpers import get_image_path
 from addons import cron
 from addons.models import Addon, AddonUser, Charity
 from addons.utils import ReverseNameLookup
@@ -1399,7 +1400,6 @@ class TestEdit(test_utils.TestCase):
         dirname = os.path.join(settings.ADDON_ICONS_PATH,
                                '%s' % (addon.id / 1000))
         dest = os.path.join(dirname, '%s-64.png' % addon.id)
-
         assert os.path.exists(dest)
 
         eq_(Image.open(dest).size, (48, 48))
@@ -1414,6 +1414,13 @@ class TestEdit(test_utils.TestCase):
         r = self.client.post(self.get_url('media', True), data)
         error = 'Icons must be either PNG or JPG.'
         self.assertFormError(r, 'form', 'icon_upload', error)
+
+    def test_icon_animated(self):
+        filehandle = open(get_image_path('animated.png'), 'rb')
+        data = {'icon_type': 'image/png', 'icon_upload': filehandle}
+        res = self.client.post(self.get_url('media', True), data)
+        eq_(res.context['form'].errors['icon_upload'][0],
+            u'Icons cannot be animated.')
 
     def test_log(self):
         data = {'developer_comments': 'This is a test'}
@@ -2401,6 +2408,27 @@ class TestSubmitStep4(TestSubmitBase):
         assert os.path.exists(dest)
 
         eq_(Image.open(dest).size, (48, 48))
+
+    def test_client_lied(self):
+        filehandle = open(get_image_path('non-animated.gif'), 'rb')
+        data = {'icon_type': 'image/png', 'icon_upload': filehandle}
+        res = self.client.post(self.url, data)
+        eq_(res.context['form'].errors['icon_upload'][0],
+            u'Icons must be either PNG or JPG.')
+
+    def test_icon_animated(self):
+        filehandle = open(get_image_path('animated.png'), 'rb')
+        data = {'icon_type': 'image/png', 'icon_upload': filehandle}
+        res = self.client.post(self.url, data)
+        eq_(res.context['form'].errors['icon_upload'][0],
+            u'Icons cannot be animated.')
+
+    def test_icon_non_animated(self):
+        filehandle = open(get_image_path('non-animated.png'), 'rb')
+        data = {'icon_type': 'image/png', 'icon_upload': filehandle}
+        res = self.client.post(self.url, data)
+        eq_(res.status_code, 302)
+        eq_(self.get_step().step, 5)
 
 
 class TestSubmitStep5(TestSubmitBase):

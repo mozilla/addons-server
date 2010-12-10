@@ -260,28 +260,44 @@ def resize_image(src, dst, size, remove_src=True):
         os.remove(src)
 
 
-def is_animated_image(photo, size=100000):
-    img = Image.open(photo)
-    if img.format == 'PNG':
-        photo.seek(0)
-        data = ''
-        while True:
-            chunk = photo.read(size)
-            if not chunk:
-                break
-            data += chunk
-            acTL, IDAT = data.find('acTL'), data.find('IDAT')
-            if acTL > -1 and acTL < IDAT:
-                return True
-        return False
-    elif img.format == 'GIF':
-        # See the PIL docs for how this works:
-        # http://www.pythonware.com/library/pil/handbook/introduction.htm
+class ImageCheck(object):
+
+    def __init__(self, image):
+        self._img = image
+
+    def is_image(self):
         try:
-            img.seek(1)
-        except EOFError:
+            self._img.seek(0)
+            self.img = Image.open(self._img)
+            return True
+        except IOError:
             return False
-        return True
+
+    def is_animated(self, size=100000):
+        if not self.is_image():
+            return False
+
+        img = self.img
+        if img.format == 'PNG':
+            self._img.seek(0)
+            data = ''
+            while True:
+                chunk = self._img.read(size)
+                if not chunk:
+                    break
+                data += chunk
+                acTL, IDAT = data.find('acTL'), data.find('IDAT')
+                if acTL > -1 and acTL < IDAT:
+                    return True
+            return False
+        elif img.format == 'GIF':
+            # See the PIL docs for how this works:
+            # http://www.pythonware.com/library/pil/handbook/introduction.htm
+            try:
+                img.seek(1)
+            except EOFError:
+                return False
+            return True
 
 
 class MenuItem():

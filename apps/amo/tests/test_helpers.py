@@ -8,14 +8,14 @@ from django.utils import encoding
 
 import jingo
 from mock import Mock, patch
-from nose.tools import eq_, assert_almost_equal, assert_raises
+from nose.tools import eq_
 from pyquery import PyQuery
-from jinja2.exceptions import FilterArgumentError
+
 import test_utils
 
 import amo
 from amo import urlresolvers, utils, helpers
-from amo.utils import is_animated_image
+from amo.utils import ImageCheck
 from translations.utils import truncate
 from versions.models import License
 
@@ -294,8 +294,18 @@ def get_image_path(name):
 class TestAnimatedImages(test_utils.TestCase):
 
     def test_animated_images(self):
-        assert is_animated_image(open(get_image_path('animated.png')))
-        assert not is_animated_image(open(get_image_path('non-animated.png')))
+        img = ImageCheck(open(get_image_path('animated.png')))
+        assert img.is_animated()
+        img = ImageCheck(open(get_image_path('non-animated.png')))
+        assert not img.is_animated()
 
-        assert is_animated_image(open(get_image_path('animated.gif')))
-        assert not is_animated_image(open(get_image_path('non-animated.gif')))
+        img = ImageCheck(open(get_image_path('animated.gif')))
+        assert img.is_animated()
+        img = ImageCheck(open(get_image_path('non-animated.gif')))
+        assert not img.is_animated()
+
+    def test_junk(self):
+        img = ImageCheck(open(__file__, 'rb'))
+        assert not img.is_image()
+        img = ImageCheck(open(get_image_path('non-animated.gif')))
+        assert img.is_image()

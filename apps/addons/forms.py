@@ -9,7 +9,7 @@ from tower import ugettext as _, ungettext as ngettext
 
 import amo
 import captcha.fields
-from amo.utils import slug_validator
+from amo.utils import ImageCheck, slug_validator
 from addons.models import Addon, ReverseNameLookup
 from addons.widgets import IconWidgetRenderer
 from devhub import tasks
@@ -128,6 +128,7 @@ class AddonFormMedia(AddonFormBase):
     def save(self, addon, commit=True):
         if self.request.FILES:
             icon = self.request.FILES['icon_upload']
+            icon.seek(0)
             dirname = addon.get_icon_dir()
             tmp_destination = os.path.join(dirname, '%s-temp' % addon.id)
 
@@ -150,14 +151,19 @@ class AddonFormMedia(AddonFormBase):
         if not icon:
             return
 
-        if icon.content_type not in ('image/png', 'image/jpeg'):
-            raise forms.ValidationError(
-                    _('Icons must be either PNG or JPG.'))
+        check = ImageCheck(icon)
+        if (not check.is_image() or
+            icon.content_type not in ('image/png', 'image/jpeg', 'image/jpg')):
+            raise forms.ValidationError(_('Icons must be either PNG or JPG.'))
 
-            if icon.size > settings.MAX_ICON_UPLOAD_SIZE:
-                raise forms.ValidationError(
-                        _('Please use images smaller than %dMB.' %
-                            (settings.MAX_ICON_UPLOAD_SIZE / 1024 / 1024 - 1)))
+        if check.is_animated():
+            raise forms.ValidationError(_('Icons cannot be animated.'))
+
+        if icon.size > settings.MAX_ICON_UPLOAD_SIZE:
+            raise forms.ValidationError(
+                    _('Please use images smaller than %dMB.' %
+                        (settings.MAX_ICON_UPLOAD_SIZE / 1024 / 1024 - 1)))
+
         return icon
 
 

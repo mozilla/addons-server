@@ -705,8 +705,9 @@ def submit_describe(request, addon_id, addon, step):
 @dev_required
 @submit_step(4)
 def submit_media(request, addon_id, addon, step):
-    form = addon_forms.AddonFormMedia(request.POST or None, instance=addon,
-                                      request=request)
+    form = addon_forms.AddonFormMedia(request.POST or None, request.FILES,
+                                      instance=addon, request=request)
+
     if request.method == 'POST' and form.is_valid():
         addon = form.save(addon)
         SubmitStep.objects.filter(addon=addon).update(step=5)
