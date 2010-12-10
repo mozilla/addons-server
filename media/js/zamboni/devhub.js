@@ -94,6 +94,7 @@ $(document).ready(function() {
     $('.addon-edit-cancel').live('click', function(){
         parent_div = $(this).closest('.edit-addon-section');
         parent_div.load($(this).attr('href'), function() {
+            hideSameSizedIcons();
             z.refreshL10n();
         });
         return false;
@@ -155,6 +156,7 @@ function initEditAddon() {
         return false;
     });
 
+    hideSameSizedIcons();
     initUploadIcon();
 }
 
@@ -857,10 +859,23 @@ function multipartUpload(e) {
         if (xhr.readyState == 4 && xhr.responseText &&
             (xhr.status == 200 || xhr.status == 304)) {
             $('#edit-addon-media').html(xhr.responseText);
+
+            hideSameSizedIcons();
         }
     };
 
     xhr.sendAsBinary(content.join('\r\n'));
+}
+
+function hideSameSizedIcons() {
+    icon_sizes = [];
+    $('#icon_preview_readonly img').show().each(function(){
+        size = $(this).width() + 'x' + $(this).height();
+        if($.inArray(size, icon_sizes) >= 0) {
+            $(this).hide();
+        }
+        icon_sizes.push(size)
+    });
 }
 
 
