@@ -936,7 +936,7 @@ $(document).ready(function() {
             msgMap = buildMsgMap(validation.messages),
             summaryTxt;
 
-        if (validation.errors > 0 || validation.warnings > 0) {
+        if (validation.errors > 0) {
             summaryTxt = gettext('Add-on failed validation.');
         } else {
             summaryTxt = gettext('Add-on passed validation.');

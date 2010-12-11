@@ -40,7 +40,7 @@ asyncTest('Test passing', function() {
                     "errors": 0,
                     "detected_type": "extension",
                     "success": true,
-                    "warnings": 0,
+                    "warnings": 1,
                     "notices": 0,
                     "message_tree": {},
                     "messages": [],
