@@ -4,10 +4,13 @@ import tempfile
 
 from django.conf import settings
 
+import mock
+import test_utils
 from nose.tools import eq_
 from PIL import Image
 
-from devhub.tasks import resize_icon
+from files.models import FileUpload
+from devhub.tasks import resize_icon, validator
 
 
 def test_resize_icon_shrink():
@@ -77,3 +80,34 @@ def _uploader(resize_size, final_size):
         eq_(dest_image.size, final_size)
 
     assert not os.path.exists(src.name)
+
+
+class TestValidator(test_utils.TestCase):
+
+    def setUp(self):
+        self.upload = FileUpload.objects.create()
+        assert not self.upload.valid
+
+    def get_upload(self):
+        return FileUpload.objects.get(pk=self.upload.pk)
+
+    @mock.patch('devhub.tasks._validator')
+    def test_pass_validation(self, _mock):
+        _mock.return_value = '{"errors": 0}'
+        validator(self.upload.pk)
+        assert self.get_upload().valid
+
+    @mock.patch('devhub.tasks._validator')
+    def test_fail_validation(self, _mock):
+        _mock.return_value = '{"errors": 2}'
+        validator(self.upload.pk)
+        assert not self.get_upload().valid
+
+    @mock.patch('devhub.tasks._validator')
+    def test_validation_error(self, _mock):
+        _mock.side_effect = Exception
+        eq_(self.upload.task_error, None)
+        with self.assertRaises(Exception):
+            validator(self.upload.pk)
+        error = self.get_upload().task_error
+        assert error.startswith('Traceback (most recent call last)'), error

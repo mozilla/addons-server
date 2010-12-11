@@ -3037,6 +3037,7 @@ class UploadTest(files.tests.UploadTest, test_utils.TestCase):
         xpi = open(self.xpi_path('extension')).read()
         self.upload = FileUpload.from_post([xpi], filename='extension.xpi',
                                            size=1234)
+        self.upload.update(valid=True)
         self.addon = Addon.objects.get(id=3615)
         self.version = self.addon.current_version
         self.addon.update(guid='guid@xpi')
@@ -3135,6 +3136,7 @@ class TestCreateAddon(files.tests.UploadTest, test_utils.TestCase):
         xpi = open(self.xpi_path('extension')).read()
         self.upload = FileUpload.from_post([xpi], filename='extension.xpi',
                                            size=1234)
+        self.upload.update(valid=True)
         self.url = reverse('devhub.submit.2')
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
