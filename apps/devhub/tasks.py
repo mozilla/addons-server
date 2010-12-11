@@ -4,8 +4,6 @@ import os
 import sys
 import traceback
 
-from django.core import management
-
 from celeryutils import task
 
 from amo.decorators import write
@@ -22,7 +20,8 @@ def validator(upload_id, **kw):
     upload = FileUpload.objects.get(pk=upload_id)
     try:
         result = _validator(upload)
-        upload.update(validation=result)
+        upload.validation = result
+        upload.save()  # We want to hit the custom save().
     except:
         # Store the error with the FileUpload job, then raise
         # it for normal logging.
@@ -40,8 +39,6 @@ def _validator(upload):
 
     # TODO(Kumar) remove this when there is
     # an easier way.  See bug 618364
-    import json
-    import os
     import validator
     with open(os.path.join(os.path.dirname(validator.__file__),
                            'app_versions.json')) as f:
