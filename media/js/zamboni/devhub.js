@@ -986,7 +986,8 @@ $(document).ready(function() {
             $.each(tierData.messages, function(i, msg) {
                 var msgDiv = $('<div class="msg"><h5></h5></div>'),
                     prefix = msg['type']=='warning' ? gettext('Warning')
-                                                    : gettext('Error');
+                                                    : gettext('Error'),
+                    ctxDiv, lines, code, innerCode;
                 msgDiv.attr('id', msgId(msg.uid));
                 msgDiv.addClass('msg-' + msg['type']);
                 $('h5', msgDiv).html(msg.message);
@@ -999,9 +1000,26 @@ $(document).ready(function() {
                     msg.description = [msg.description];
                 }
                 $.each(msg.description, function(i, val) {
-                    msgDiv.append('<p>' + prefix + ': ' + val + '</p>');
+                    msgDiv.append(format('<p>{0}: {1}</p>', [prefix, val]));
                 });
-                // TODO(kumar) add context, line no., etc
+                if (msg.context) {
+                    ctxDiv = $(format(
+                        '<div class="context">' +
+                            '<div class="file">{0}:</div></div>',
+                                                        [msg.file]));
+                    code = $('<div class="code"></div>');
+                    lines = $('<div class="lines"></div>');
+                    code.append(lines);
+                    innerCode = $('<div class="inner-code"></div>');
+                    code.append(innerCode);
+                    $.each(msg.context, function(n, c) {
+                        lines.append(
+                            $(format('<div>{0}</div>', [msg.line + n])));
+                        innerCode.append($(format('<div>{0}</div>', [c])));
+                    });
+                    ctxDiv.append(code);
+                    msgDiv.append(ctxDiv);
+                }
                 results.append(msgDiv);
             });
         }

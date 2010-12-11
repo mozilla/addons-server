@@ -454,6 +454,17 @@ def upload(request):
     return jingo.render(request, 'devhub/upload.html')
 
 
+def escape_all(v):
+    """Escape html in JSON value, including nested list items."""
+    if isinstance(v, basestring):
+        return jinja2.escape(v)
+    elif isinstance(v, list):
+        for i, lv in enumerate(v):
+            v[i] = escape_all(lv)
+
+    return v
+
+
 @json_view
 def json_upload_detail(upload):
     validation = json.loads(upload.validation) if upload.validation else ""
@@ -467,8 +478,7 @@ def json_upload_detail(upload):
                 # Should get fixed soon in bug 617481
                 msg['tier'] = 1
             for k, v in msg.items():
-                if isinstance(v, basestring):
-                    msg[k] = jinja2.escape(v)
+                msg[k] = escape_all(v)
 
     r = dict(upload=upload.uuid, validation=validation,
              error=upload.task_error, url=url,

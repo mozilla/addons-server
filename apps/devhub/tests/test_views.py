@@ -3018,6 +3018,8 @@ class TestUploadValidation(files.tests.UploadTest):
         data = json.loads(r.content)
         msg = data['validation']['messages'][0]
         eq_(msg['message'], 'The value of &lt;em:id&gt; is invalid.')
+        eq_(sorted(msg['context']),
+            [[u'&lt;foo/&gt;'], u'&lt;em:description&gt;...'])
 
 
 def assert_json_error(request, field, msg):

@@ -1530,4 +1530,42 @@ form.select-review .errorlist {
     background: transparent url("../../img/developers/test-warning.png") no-repeat 0 1.1em;
     color: #6b6b6b;
 }
+#addon-validator-suite .context {
+    margin: 0.5em 0 0 1em;
+    padding: 0.4em;
+    color: #868686;
+    border: 1px solid #f3f3f3;
+    background-color: #f9f9f9;
+    font-family: "Courier New", Courier, monospace;
+}
+#addon-validator-suite .context .file {
+    font-size: 105%;
+    margin-bottom: 0.3em;
+}
+#addon-validator-suite .context .lines {
+    float: left;
+    background-color: #f9f9f9;
+}
+#addon-validator-suite .context .inner-code {
+    float: left;
+    padding-left: 0.2em;
+}
+#addon-validator-suite .context .code:last-child:after {
+    content: ".";
+    display: block;
+    clear: both;
+    height: 0;
+    visibility: hidden;
+}
+#addon-validator-suite .context .code {
+    font-size: 95%;
+    background-color: #f3f3f3;
+}
+#addon-validator-suite .context .lines div,
+#addon-validator-suite .context .inner-code div {
+    padding: 0.1em;
+}
+#addon-validator-suite .context .lines div {
+    margin-right: 0.3em;
+}
 /* @end */
