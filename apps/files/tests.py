@@ -275,6 +275,28 @@ class TestFileUpload(UploadTest):
         hash = hashlib.sha256(self.data).hexdigest()
         eq_(self.upload().hash, 'sha256:%s' % hash)
 
+    def test_save_without_validation(self):
+        f = FileUpload.objects.create()
+        assert not f.valid
+
+    def test_save_with_validation(self):
+        f = FileUpload.objects.create(validation='{"errors": 0}')
+        assert f.valid
+
+        f = FileUpload.objects.create(validation='wtf')
+        assert not f.valid
+
+    def test_update_with_validation(self):
+        f = FileUpload.objects.create()
+        f.validation = '{"errors": 0}'
+        f.save()
+        assert f.valid
+
+    def test_update_without_validation(self):
+        f = FileUpload.objects.create()
+        f.save()
+        assert not f.valid
+
 
 class TestFileFromUpload(UploadTest):
     fixtures = ['base/apps']

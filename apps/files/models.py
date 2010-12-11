@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 import hashlib
+import json
 import os
 import posixpath
 import uuid
@@ -217,6 +218,7 @@ class FileUpload(amo.models.ModelBase):
                             help_text="The user's original filename")
     hash = models.CharField(max_length=255, default='')
     user = models.ForeignKey('users.UserProfile', null=True)
+    valid = models.BooleanField(default=False)
     validation = models.TextField(null=True)
     task_error = models.TextField(null=True)
 
@@ -225,6 +227,15 @@ class FileUpload(amo.models.ModelBase):
 
     def __unicode__(self):
         return self.uuid
+
+    def save(self, *args, **kw):
+        if self.validation:
+            try:
+                if json.loads(self.validation)['errors'] == 0:
+                    self.valid = True
+            except Exception:
+                log.error('Invalid validation json: %r' % self)
+        super(FileUpload, self).save()
 
     @classmethod
     def from_post(cls, chunks, filename, size):
