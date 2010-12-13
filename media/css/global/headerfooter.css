@@ -404,6 +404,12 @@ div.header-search input.submit {
     text-transform: uppercase;
     vertical-align: top;
 }
+html[lang=it] .site-title a {
+    font-size: 32px;
+}
+html[lang=it] #nav-main a {
+    font-size: 11px;
+}
 
 .site-title img {
     vertical-align: bottom;
@@ -606,7 +612,7 @@ url(../../img/zamboni/global/header-logos.png) 15px 0 no-repeat;
 #footer-menu li {
     display: table-cell;
     width: 10%;
-    padding-top: 11px;
+    padding: 11px 16px 0 0;
     float: none;
 }
 
