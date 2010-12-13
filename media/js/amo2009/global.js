@@ -318,29 +318,6 @@ jQuery(function($) {
 	})
 
 	contributions.init();
-
-	// listing where interaction is inline
-	$('.home .listing div:first').addClass('interactive');
-
-	function tabClickFactory(className) {
-		return function(){
-			$(this).parents('ul').find('li').removeClass('selected');
-			$($(this).parents('li')[0]).addClass('selected');
-			$(this).parents('.listing').attr('class','featured listing');
-			$(this).parents('.listing').addClass(className);
-			return false;
-		}
-	}
-	$(".home a[href^='#recommended']").click(tabClickFactory('show-recommended'));
-	$(".home a[href^='#popular']").click(tabClickFactory('show-popular'));
-	$(".home a[href^='#added']").click(tabClickFactory('show-added'));
-	$(".home a[href^='#updated']").click(tabClickFactory('show-updated'));
-});
-
-// Submit on locale choice
-jQuery(function($) {
-  var f = $('form.languages');
-  f.find('input').change(function(){ this.form.submit(); });
 });
 
 jQuery(window).load(function() {
