@@ -26,9 +26,6 @@ $(document).ready(function(){
     // Set up input placeholders.
     $('input[placeholder]').placeholder();
 
-    // Set up advanced search box.
-    z.searchBox();
-
     if (z.readonly) {
         $('form[method=post]')
             .before(gettext('This feature is temporarily disabled while we perform website maintenance. Please check back a little later.'))

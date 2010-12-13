@@ -20,16 +20,6 @@ form fieldset .container {
     width: auto;
 }
 
-.expanded-search-form .advanced {
-    padding-top: 1em;
-}
-
-/** Search form **/
-.search-form .basic {
-    min-height: 3em;
-}
-/** END Search form **/
-
 /** add-on details page **/
 .addon-cats li {
     padding: 0 .5em;

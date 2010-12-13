@@ -1,7 +1,6 @@
 /* Clearfix!!! */
 #persona #more-personas:after,
 .listing .item:after,
-.search-form .basic:after,
 .section:after,
 .notification .aux:after,
 .aux .button-wrapper:after,
@@ -305,15 +304,6 @@ button.prominent,
 input[type=button].prominent,
 input[type=submit].prominent {
     font-size: 1.2em;
-}
-
-/* big search button */
-.search-form .basic button {
-    top: .35em;
-    right: 1.5%;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
 }
 
 /* Some buttons look like links */
@@ -908,13 +898,6 @@ div.popup-shim {
 
 
 /** =Search =Suggestions *********/
-.search-form .basic {
-    overflow: visible;
-}
-
-.search-form .basic * {
-    vertical-align: baseline;
-}
 
 #search-suggest {
     background: #fff;

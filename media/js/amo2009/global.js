@@ -281,22 +281,6 @@ jQuery(function($) {
         $el.detach();
     });
 
-	// advanced form dropdown
-	var advancedForm = new DropdownArea();
-	// set up variables for object
-	advancedForm.trigger = ($('#advanced-link a')); // node
-	advancedForm.target = ('.advanced'); // reference
-	advancedForm.targetParent = ('.search-form'); // reference
-	advancedForm.hideOnBodyClick = false;
-    advancedForm.callbackFunction = function() {
-        // TODO(jbalogh): advanced is only in zamboni; this should all move to
-        // the search init when remora dies.
-        // This gets called *before* the hide toggle, so logic is backwards.
-        var val = $(this.targetParent).hasClass('expanded') ? 'off' : 'on';
-        $(this.target).find('[name=advanced]').val(val);
-    };
-	advancedForm.init();
-
 	// account dropdown in auxillary menu
 	var accountDropdown = new DropdownArea();
 	// set up variables for object

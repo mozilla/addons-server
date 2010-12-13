@@ -27,17 +27,6 @@
     padding: 1em;
 }
 
-#search-query .query-label {
-    color: #000;
-    position: absolute;
-    left: 2.5em;
-}
-
-.html-rtl #search-query .query-label {
-    left: auto;
-    right: 2.5em;
-}
-
 .primary.full,
 .secondary.full {
     width: 100%;
@@ -1039,15 +1028,6 @@ table caption {
 
 /** END Highlight styles **/
 
-/** Category dropdown/search container tweaks **/
-
-.stand-alone-options {
-    z-index: 500; /** fixes issue with category dropdown menu appearing *behind* addon detail page images (stacking context bug) **/
-	height:5em; /** both children are position:absolute so needs a defined height or it will collapse **/
-}
-
-/** END Category dropdown/search container tweaks **/
-
 /** Header tweaks **/
 #header {
     z-index: 2000;
@@ -1138,36 +1118,6 @@ div.collector-firstrun-favorite {
 
 .html-rtl .new, .html-rtl .listing-header li {
   unicode-bidi: embed;
-}
-
-.search-form .basic button img {
-    width: 9px;
-    height: 18px;
-    background-image: url(../../img/amo2009/icons/buttons/go-green.gif);
-}
-.html-rtl .search-form .basic button img {
-    background-image: url(../../img/amo2009/icons/buttons/go-green_rtl.gif);
-}
-
-.html-rtl #advanced-link {
-    right: auto;
-    left: 30px;
-}
-.html-rtl #advanced-link a:link,
-.html-rtl #advanced-link a:visited,
-.html-rtl #advanced-link a:hover,
-.html-rtl #advanced-link a:focus,
-.html-rtl #advanced-link a:active {
-    padding-left: 20px;
-    padding-right: 1em;
-    background-position: 5% -591px;
-}
-.html-rtl .expanded #advanced-link a:link,
-.html-rtl .expanded #advanced-link a:visited,
-.html-rtl .expanded #advanced-link a:hover,
-.html-rtl .expanded #advanced-link a:focus,
-.html-rtl .expanded #advanced-link a:active {
-    background-position: 5% -641px;
 }
 
 .html-rtl .meta .subscribers,
@@ -1304,25 +1254,6 @@ a:focus.button.negative {
 /** END Adding focus outlines to buttons **/
 
 
-/** Search form **/
-
-.html-rtl .search-form .basic input,
-.search-form .basic input {
-    text-indent: 0;
-    width: 40%;
-}
-
-.search-form .basic input {
-    padding-left: 2em;
-}
-
-.html-rtl .search-form .basic input {
-    padding-left: 0;
-    padding-right: 2em;
-}
-
-/** END Search form **/
-
 /** FAQ and Validation Pages **/
 
 dl.faq dt:target, dl.validation dt:target { color: #df731b; }
@@ -1393,21 +1324,6 @@ dl.faq dt:target, dl.validation dt:target { color: #df731b; }
 }
 /** END Installation instruction overlays **/
 
-/** Advanced search form **/
-.expanded-search-form .advanced {
-    display: none;
-    padding: 1em;
-}
-
-/* For no-js: show the advanced search when targeting the form. */
-.search-form.expanded .advanced {
-    display: block;
-}
-
-.search-form fieldset {
-    margin: 0;
-}
-/** END Advanced search form **/
 
 /* Clearfix! */
 .browse-thumbs .thumbs:after,
@@ -1416,7 +1332,6 @@ dl.faq dt:target, dl.validation dt:target { color: #df731b; }
 .barometer:after,
 .vcard:after,
 #addon-install:after,
-.stand-alone-options:after,
 .stars:after, .notification:after,
 .featured-inner:after,
 .article.userinput:after,
@@ -1933,11 +1848,6 @@ html[xmlns] .clearfix {
 
 /** Login and Registration Page **/
 
-.login .search-form,
-.register .search-form {
-    margin-bottom: 0;
-}
-
 #login,
 #register {
     padding-top: 1.5em;
@@ -2231,12 +2141,6 @@ html[xmlns] .clearfix {
     padding-right: 35px;
 }
 /** END Hub pages **/
-
-/** personas pages */
-.personas .search-form {
-    margin-bottom: 0;
-}
-/* END personas pages */
 
 /**.personas-feature feature box */
 .personas-feature, .description-active {

@@ -5,6 +5,6 @@
            class="text {% if not search_form.q.data %}placeholder{% endif %}"
            value="{{ search_form.q.data or '' }}"
            placeholder="{{ _('Search developer documentation') }}">
-  </span> {# search-query #}
+  </span>
   <input type="image" class="submit go-button" src="{{ settings.MEDIA_URL }}img/zamboni/global/btn-search.png" title="{{ _('Search') }}">
 </form>
