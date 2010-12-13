@@ -281,46 +281,6 @@ jQuery(function($) {
         $el.detach();
     });
 
-	// Categories dropdown only on pages where it is not in secondary
-	if($('#categories').parents('.secondary').length == 0) {
-		var categories = new DropdownArea();
-		// add class to style differently
-		$('#categories').addClass('dropdown-categories');
-
-		// set up images for dropdown
-        var categoryContainer = $('#categories :first-child')[0];
-        if (categoryContainer) {
-            var clickableCategories = $(categoryContainer);
-            clickableCategories.prepend('<img src="/img/amo2009/icons/category-dropdown-down.gif" alt="" /> ');
-
-            // stop the accidental selection during double click
-            clickableCategories.each(function(){
-                this.onselectstart = function () { return false; }
-                this.onmousedown = function () { return false; }
-            });
-
-            // set up variables for object
-            categories.trigger = clickableCategories; // node
-            categories.target = '#categories>ul'; // reference
-            categories.targetParent = '#categories'; // reference
-            categories.callbackFunction = function() {
-                if($('#categories>ul:visible').length){
-                    $('#categories img').attr('src', '/img/amo2009/icons/category-dropdown-down.gif');
-                } else {
-                    $('#categories img').attr('src', '/img/amo2009/icons/category-dropdown-up.gif');
-                }
-            };
-
-            // initialise dropdown area
-            categories.init();
-        }
-	} else {
-        // Turn the link into a span so it's not deceptively clickable.
-        var e = $('#categories h3');
-        e.html('<span>' + e.text() + '</span>');
-    }
-
-
 	// advanced form dropdown
 	var advancedForm = new DropdownArea();
 	// set up variables for object
