@@ -16,13 +16,12 @@
 
     {% block site_css %}
       {{ css('common') }}
-      {{ css('zamboni/z') }}
-      <!--[if IE]><link rel="stylesheet" href="{{ MEDIA_URL }}css/ie.css"><![endif]-->
-      <!--[if IE 7]><link rel="stylesheet" href="{{ MEDIA_URL }}css/ie7.css"><![endif]-->
+      <!--[if IE]><link rel="stylesheet" href="{{ MEDIA_URL }}css/legacy/ie.css"><![endif]-->
+      <!--[if IE 7]><link rel="stylesheet" href="{{ MEDIA_URL }}css/legacy/ie7.css"><![endif]-->
     {% endblock %}
 
     {% block extrahead %}{% endblock %}
-    <noscript><link rel="stylesheet" href="{{ MEDIA_URL }}css/nojs.css"></noscript>
+    <noscript><link rel="stylesheet" href="{{ MEDIA_URL }}css/legacy/nojs.css"></noscript>
   </head>
   <body class="html-{{ DIR }} {{ request.APP.short }} {% block bodyclass %}{% endblock %}"
         data-app="{{ request.APP.short }}"

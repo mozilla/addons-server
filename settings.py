@@ -117,7 +117,7 @@ MEDIA_ROOT = path('media')
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
-MEDIA_URL = '/media//'
+MEDIA_URL = '/media/'
 
 # Absolute path to a temporary storage area
 TMP_PATH = path('tmp')
@@ -341,12 +341,10 @@ MINIFY_BUNDLES = {
     'css': {
         # CSS files common to the entire site.
         'common': (
-            'css/main.css',
-            'css/main-mozilla.css',
-            'css/jquery-lightbox.css',
-            'css/autocomplete.css',
-        ),
-        'zamboni/z': (
+            'css/legacy/main.css',
+            'css/legacy/main-mozilla.css',
+            'css/legacy/jquery-lightbox.css',
+            'css/legacy/autocomplete.css',
             'css/zamboni/zamboni.css',
             'css/zamboni/tags.css',
             'css/zamboni/tabs.css',
@@ -354,7 +352,7 @@ MINIFY_BUNDLES = {
         ),
         'zamboni/discovery-pane': (
             'css/zamboni/discovery-pane.css',
-            'css/jquery-lightbox.css',
+            'css/legacy/jquery-lightbox.css',
         ),
         'zamboni/devhub': (
             'css/zamboni/developers.css',
