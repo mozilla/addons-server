@@ -71,6 +71,7 @@
             </th>
             <td id="addon_categories_edit">
               {% if editable %}
+                <p>{{ _('Select <b>up to 2</b> categories for this add-on.')|safe }}</p>
                 {{ form.categories|safe }}
                 {{ form.categories.errors|safe }}
               {% else %}
