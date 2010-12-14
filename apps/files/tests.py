@@ -366,6 +366,12 @@ class TestFileFromUpload(UploadTest):
         f = File.from_upload(upload, self.version, self.platform, parse_data=d)
         assert not f.no_restart
 
+    def test_utf8(self):
+        upload = self.upload(u'jétpack')
+        self.version.addon.name = u'jéts!'
+        f = File.from_upload(upload, self.version, self.platform)
+        eq_(f.filename, u'jéts-0.1-mac.xpi')
+
 
 class TestZip(test_utils.TestCase):
 

@@ -84,7 +84,7 @@ class File(amo.models.ModelBase):
     @classmethod
     def from_upload(cls, upload, version, platform, parse_data={}):
         f = cls(version=version, platform=platform)
-        upload.path = path.path(upload.path)
+        upload.path = path.path(smart_str(upload.path))
         f.filename = f.generate_filename(extension=upload.path.ext)
         f.size = upload.path.size
         f.jetpack = cls.is_jetpack(upload.path)
@@ -96,7 +96,7 @@ class File(amo.models.ModelBase):
         dest = path.path(version.path_prefix)
         if not dest.exists():
             dest.makedirs()
-        upload.path.rename(dest / f.filename)
+        upload.path.rename(dest / smart_str(f.filename))
         FileValidation.from_json(f, upload.validation)
         return f
 
