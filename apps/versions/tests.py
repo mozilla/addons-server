@@ -423,9 +423,7 @@ class TestVersionFromUpload(files.tests.UploadTest, test_utils.TestCase):
 
     def setUp(self):
         super(TestVersionFromUpload, self).setUp()
-        xpi = open(self.file_path(self.filename)).read()
-        self.upload = FileUpload.from_post([xpi], filename=self.filename,
-                                           size=1234)
+        self.upload = self.get_upload(self.filename)
         self.addon = Addon.objects.get(id=3615)
         self.addon.update(guid='guid@xpi')
         self.platform = Platform.objects.create(id=amo.PLATFORM_MAC.id)

@@ -46,6 +46,14 @@ class UploadTest(test_utils.TestCase):
     def xpi_path(self, name):
         return self.file_path(name + '.xpi')
 
+    def get_upload(self, filename, validation=None):
+        xpi = open(self.file_path(filename)).read()
+        upload = FileUpload.from_post([xpi], filename=filename, size=1234)
+        upload.validation = (validation or
+                             json.dumps(dict(errors=0, warnings=1, notices=2)))
+        upload.save()
+        return upload
+
 
 class TestFile(test_utils.TestCase):
     """

@@ -707,10 +707,6 @@ class TestAddonFromUpload(files.tests.UploadTest):
         for version in ('3.0', '3.6.*'):
             AppVersion.objects.create(application_id=1, version=version)
 
-    def get_upload(self, filename):
-        d = open(self.file_path(filename)).read()
-        return FileUpload.from_post([d], filename=filename, size=1234)
-
     def test_xpi_attributes(self):
         addon = Addon.from_upload(self.get_upload('extension.xpi'),
                                   self.platform)

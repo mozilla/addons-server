@@ -3036,11 +3036,7 @@ class UploadTest(files.tests.UploadTest, test_utils.TestCase):
 
     def setUp(self):
         super(UploadTest, self).setUp()
-        v = json.dumps(dict(errors=0, warnings=1, notices=2))
-        xpi = open(self.xpi_path('extension')).read()
-        self.upload = FileUpload.from_post([xpi], filename='extension.xpi',
-                                           size=1234)
-        self.upload.update(valid=True, validation=v)
+        self.upload = self.get_upload('extension.xpi')
         self.addon = Addon.objects.get(id=3615)
         self.version = self.addon.current_version
         self.addon.update(guid='guid@xpi')
@@ -3136,11 +3132,7 @@ class TestCreateAddon(files.tests.UploadTest, test_utils.TestCase):
     def setUp(self):
         super(TestCreateAddon, self).setUp()
         self._redis = mock_redis()
-        xpi = open(self.xpi_path('extension')).read()
-        v = json.dumps(dict(errors=0, warnings=1, notices=2))
-        self.upload = FileUpload.from_post([xpi], filename='extension.xpi',
-                                           size=1234)
-        self.upload.update(valid=True, validation=v)
+        self.upload = self.get_upload('extension.xpi')
         self.url = reverse('devhub.submit.2')
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
