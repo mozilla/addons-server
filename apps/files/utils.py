@@ -40,6 +40,7 @@ class Extractor(object):
             'version': self.find('version'),
             'homepage': self.find('homepageURL'),
             'description': self.find('description'),
+            'no_restart': self.find('bootstrap') == 'true',
             'apps': self.apps(),
         }
 

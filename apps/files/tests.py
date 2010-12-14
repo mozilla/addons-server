@@ -354,6 +354,18 @@ class TestFileFromUpload(UploadTest):
         f = File.from_upload(upload, self.version, self.platform)
         eq_(f.hash, upload.hash)
 
+    def test_no_restart_true(self):
+        upload = self.upload('jetpack')
+        d = parse_addon(upload.path)
+        f = File.from_upload(upload, self.version, self.platform, parse_data=d)
+        assert f.no_restart
+
+    def test_no_restart_false(self):
+        upload = self.upload('extension')
+        d = parse_addon(upload.path)
+        f = File.from_upload(upload, self.version, self.platform, parse_data=d)
+        assert not f.no_restart
+
 
 class TestZip(test_utils.TestCase):
 

@@ -39,6 +39,7 @@ class File(amo.models.ModelBase):
     status = models.PositiveSmallIntegerField(choices=STATUS_CHOICES,
                                               default=amo.STATUS_UNREVIEWED)
     datestatuschanged = models.DateTimeField(null=True, auto_now_add=True)
+    no_restart = models.BooleanField(default=False)
 
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'files'
@@ -81,13 +82,14 @@ class File(amo.models.ModelBase):
         return absolutify(urlparams(url, src=src))
 
     @classmethod
-    def from_upload(cls, upload, version, platform):
+    def from_upload(cls, upload, version, platform, parse_data={}):
         f = cls(version=version, platform=platform)
         upload.path = path.path(upload.path)
         f.filename = f.generate_filename(extension=upload.path.ext)
         f.size = upload.path.size
         f.jetpack = cls.is_jetpack(upload.path)
         f.hash = upload.hash
+        f.no_restart = parse_data.get('no_restart', False)
         f.save()
         log.debug('New file: %r from %r' % (f, upload))
         # Move the uploaded file from the temp location.

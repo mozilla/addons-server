@@ -58,7 +58,7 @@ class Version(amo.models.ModelBase):
                application_id=app.id).save()
         if addon.type == amo.ADDON_SEARCH:
             platform = Platform.objects.get(id=amo.PLATFORM_ALL.id)
-        File.from_upload(upload, v, platform)
+        File.from_upload(upload, v, platform, parse_data=data)
         return v
 
     @property
