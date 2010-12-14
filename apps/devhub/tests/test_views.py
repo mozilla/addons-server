@@ -2673,6 +2673,17 @@ class TestSubmitStep5(TestSubmitBase):
         eq_(unicode(self.get_addon().eula), 'xxx')
         eq_(self.get_step().step, 6)
 
+    def test_set_eula_nomsg(self):
+        """
+        You should not get punished with a 500 for not writing your EULA...
+        but perhaps you shoudl feel shame for lying to us.  This test does not
+        test for shame.
+        """
+        self.get_addon().update(eula=None, privacy_policy=None)
+        r = self.client.post(self.url, dict(builtin=3, has_eula=True))
+        self.assertRedirects(r, self.next_step)
+        eq_(self.get_step().step, 6)
+
 
 class TestSubmitStep6(TestSubmitBase):
 

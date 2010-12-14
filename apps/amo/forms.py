@@ -38,8 +38,9 @@ class AMOModelForm(happyforms.ModelForm):
         Model = self._meta.model
         if self._changed_data is None:
             changed = copy(super(AMOModelForm, self)._get_changed_data())
+            fieldnames = [f.name for f in Model._meta.fields]
             fields = [(name, Model._meta.get_field(name))
-                      for name in changed]
+                      for name in changed if name in fieldnames]
             trans = [name for name, field in fields
                      if isinstance(field, TranslatedField)]
             # If there are translated fields, pull the model from the database
