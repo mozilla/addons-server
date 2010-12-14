@@ -41,7 +41,8 @@ class AddonFormBase(TranslationFormMixin, happyforms.ModelForm):
 class AddonFormBasic(AddonFormBase):
     name = TransField(max_length=50)
     slug = forms.CharField(max_length=30)
-    summary = TransField(widget=TransTextarea(attrs={'rows': 4}), max_length=250)
+    summary = TransField(widget=TransTextarea(attrs={'rows': 4}),
+                         max_length=250)
     tags = forms.CharField(required=False)
     categories = forms.ModelMultipleChoiceField(queryset=False,
             widget=forms.CheckboxSelectMultiple)

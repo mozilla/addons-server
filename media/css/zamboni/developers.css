@@ -177,6 +177,10 @@ ul.refinements:last-child {
     font-size: 10px;
 }
 
+#addon_tags_edit input {
+    width: 80%;
+}
+
 .word-count {
     float: right;
 }
