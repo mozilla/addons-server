@@ -1,7 +1,9 @@
 {% extends "global/footer.html" %}
 
 {% block menu_links %}
-  {% include "menu_links.html" %}
+  {% if request.APP == amo.FIREFOX or request.APP == amo.MOBILE %}
+    {% include "menu_links.html" %}
+  {% endif %}
 {% endblock %}
 
 {% block lang_form %}

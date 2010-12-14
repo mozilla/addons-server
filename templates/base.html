@@ -43,9 +43,14 @@
       </div>
     {% endif %}
     <div class="section">
-
       {% block site_header %}
-        {% include "amo_header.html" %}
+        {% if request.APP == amo.FIREFOX or request.APP == amo.MOBILE %}
+          {% include "amo_header.html" %}
+        {% else %}
+          <div id="minimal-header"><a class="mozilla" href="http://www.mozilla.org/">
+              {{ _('visit <span>mozilla.org</span>')|safe }}
+          </a></div>
+        {% endif %}
         <div class="amo-header">
           <div id="aux-nav" role="navigation">
             {% block aux_nav %}
