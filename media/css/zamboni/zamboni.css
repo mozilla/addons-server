@@ -124,7 +124,7 @@ ul.errorlist {
 /************************************/
 /*             GRADIENTS            */
 /************************************/
-/*  If you made a gradient, add it here. 
+/*  If you made a gradient, add it here.
  *  If you want to use an existing gradient, add your selector here.
 **/
 
@@ -721,9 +721,9 @@ div.popup-shim {
     min-height: 32px;
 }
 
+.mobile .install-note .msg, .mobile.app,
 .firefox .install-note .msg, .firefox.app { background-image: url(../../img/amo2009/app-icons/small/firefox.png); }
 .thunderbird .install-note .msg, .thunderbird.app { background-image: url(../../img/amo2009/app-icons/small/thunderbird.png); }
-.mobile .install-note .msg, .mobile.app { background-image: url(../../img/amo2009/app-icons/small/mobile.png); }
 .sunbird .install-note .msg, .sunbird.app { background-image: url(../../img/amo2009/app-icons/small/sunbird.png); }
 .seamonkey .install-note .msg, .seamonkey.app { background-image: url(../../img/amo2009/app-icons/small/seamonkey.png); }
 
