@@ -87,10 +87,9 @@ class File(amo.models.ModelBase):
         f.filename = f.generate_filename(extension=upload.path.ext)
         f.size = upload.path.size
         f.jetpack = cls.is_jetpack(upload.path)
-        # TODO: f.hash = upload.hash
+        f.hash = upload.hash
         f.save()
         log.debug('New file: %r from %r' % (f, upload))
-        # Detect addon-sdk-built addons.
         # Move the uploaded file from the temp location.
         dest = path.path(version.path_prefix)
         if not dest.exists():

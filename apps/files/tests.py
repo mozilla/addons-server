@@ -341,6 +341,11 @@ class TestFileFromUpload(UploadTest):
         eq_(fv.warnings, 1)
         eq_(fv.notices, 2)
 
+    def test_file_hash(self):
+        upload = self.upload('jetpack')
+        f = File.from_upload(upload, self.version, self.platform)
+        eq_(f.hash, upload.hash)
+
 
 class TestZip(test_utils.TestCase):
 
