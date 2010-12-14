@@ -340,7 +340,7 @@ STANDALONE_DOMAINS = [
 MINIFY_BUNDLES = {
     'css': {
         # CSS files common to the entire site.
-        'common': (
+        'zamboni/css': (
             'css/legacy/main.css',
             'css/legacy/main-mozilla.css',
             'css/legacy/jquery-lightbox.css',
