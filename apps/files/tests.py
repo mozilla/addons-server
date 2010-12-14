@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
 import hashlib
+import json
 import os
 import shutil
 import tempfile
@@ -17,7 +18,7 @@ from nose.tools import eq_
 import amo.utils
 from addons.models import Addon
 from applications.models import Application, AppVersion
-from files.models import File, FileUpload, Platform
+from files.models import File, FileUpload, FileValidation, Platform
 from files.utils import parse_xpi, parse_search, parse_addon
 from versions.models import Version
 
@@ -315,8 +316,9 @@ class TestFileFromUpload(UploadTest):
         self.version = Version.objects.create(addon=self.addon)
 
     def upload(self, name):
+        v = json.dumps(dict(errors=0, warnings=1, notices=2))
         d = dict(path=self.xpi_path(name), name='%s.xpi' % name,
-                 hash='sha256:%s' % name)
+                 hash='sha256:%s' % name, validation=v)
         return FileUpload.objects.create(**d)
 
     def test_is_jetpack(self):
@@ -328,6 +330,16 @@ class TestFileFromUpload(UploadTest):
         upload = self.upload('jetpack')
         f = File.from_upload(upload, self.version, self.platform)
         eq_(f.filename, 'xxx-0.1-mac.xpi')
+
+    def test_file_validation(self):
+        upload = self.upload('jetpack')
+        file = File.from_upload(upload, self.version, self.platform)
+        fv = FileValidation.objects.get(file=file)
+        eq_(fv.validation, upload.validation)
+        eq_(fv.valid, True)
+        eq_(fv.errors, 0)
+        eq_(fv.warnings, 1)
+        eq_(fv.notices, 2)
 
 
 class TestZip(test_utils.TestCase):

@@ -96,6 +96,7 @@ class File(amo.models.ModelBase):
         if not dest.exists():
             dest.makedirs()
         upload.path.rename(dest / f.filename)
+        FileValidation.from_json(f, upload.validation)
         return f
 
     @classmethod
@@ -253,6 +254,27 @@ class FileUpload(amo.models.ModelBase):
                 fd.write(chunk)
         return cls.objects.create(path=loc, name=filename,
                                   hash='sha256:%s' % hash.hexdigest())
+
+
+class FileValidation(amo.models.ModelBase):
+    file = models.ForeignKey(File)
+    valid = models.BooleanField(default=False)
+    errors = models.IntegerField(default=0)
+    warnings = models.IntegerField(default=0)
+    notices = models.IntegerField(default=0)
+    validation = models.TextField()
+
+    class Meta:
+        db_table = 'file_validation'
+
+    @classmethod
+    def from_json(cls, file, validation):
+        js = json.loads(validation)
+        new = cls(file=file, validation=validation, errors=js['errors'],
+                  warnings=js['warnings'], notices=js['notices'])
+        new.valid = new.errors == 0
+        new.save()
+        return new
 
 
 class TestCase(amo.models.ModelBase):
