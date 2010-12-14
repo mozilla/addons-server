@@ -101,14 +101,15 @@ class TestStuff(test_utils.TestCase):
         eq_(doc('#aux-nav p.tools').length, 0)
 
     def test_heading(self):
-        def title_eq(url, expected):
+        def title_eq(url, alt, text):
             response = self.client.get(url, follow=True)
-            actual = PyQuery(response.content)('.site-title img').attr('alt')
-            eq_(expected, actual)
+            doc = PyQuery(response.content)
+            eq_(alt, doc('.site-title img').attr('alt'))
+            eq_(text, doc('.site-title').text())
 
-        title_eq('/firefox', 'Firefox')
-        title_eq('/thunderbird', 'Thunderbird')
-        title_eq('/mobile', 'Firefox Mobile')
+        title_eq('/firefox', 'Firefox', 'Add-ons')
+        title_eq('/thunderbird', 'Thunderbird', 'Add-ons')
+        title_eq('/mobile', 'Firefox', 'Mobile Add-ons')
 
     def test_xenophobia(self):
         r = self.client.get(reverse('home'), follow=True)
