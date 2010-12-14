@@ -1,6 +1,6 @@
 SET FOREIGN_KEY_CHECKS=0;
 
--- ALTER TABLE `addons_collections` DROP FOREIGN KEY `addons_collections_ibfk_3`;
+ALTER TABLE `addons_collections` DROP FOREIGN KEY `addons_collections_ibfk_3`;
 
 ALTER TABLE `addons_collections`
     ADD CONSTRAINT `addons_collections_ibfk_3`
