@@ -40,10 +40,10 @@ class TransMulti(forms.widgets.MultiWidget):
     wrapped in div.trans and javascript handles the rest of the UI.
     """
 
-    def __init__(self):
+    def __init__(self, attrs=None):
         # We set up the widgets in render since every Translation needs a
         # different number of widgets.
-        super(TransMulti, self).__init__(widgets=[])
+        super(TransMulti, self).__init__(widgets=[], attrs=attrs)
 
     def render(self, name, value, attrs=None):
         self.name = name
@@ -99,7 +99,7 @@ class _TransWidget(object):
     """
 
     def render(self, name, value, attrs=None):
-        attrs = attrs or {}
+        attrs = self.build_attrs(attrs)
         lang = to_language(value.locale)
         attrs.update(lang=lang)
         # Use rsplit to drop django's name_idx numbering.  (name_0 => name)
