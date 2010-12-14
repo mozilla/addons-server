@@ -30,6 +30,7 @@ class File(amo.models.ModelBase):
     status = models.PositiveSmallIntegerField(choices=STATUS_CHOICES,
                                               default=amo.STATUS_UNREVIEWED)
     datestatuschanged = models.DateTimeField(null=True, auto_now_add=True)
+    no_restart = models.BooleanField(default=False)
 
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'files'
