@@ -1,8 +1,10 @@
+# -*- coding: utf-8 -*-
 from datetime import date, datetime, timedelta
 import itertools
 from urlparse import urlparse
 
 from django.conf import settings
+from django.core import mail
 from django.core.cache import cache
 
 from mock import patch
@@ -125,6 +127,13 @@ class TestAddonModels(test_utils.TestCase):
 
         # Make sure the updated version is now considered current.
         eq_(a.current_version.id, v.id)
+
+    def test_delete(self):
+        """Test deleting add-ons."""
+        a = Addon.objects.get(pk=3615)
+        a.name = u'é'
+        a.delete('bye')
+        eq_(len(mail.outbox), 1)
 
     def test_incompatible_latest_apps(self):
         a = Addon.objects.get(pk=3615)

@@ -253,7 +253,7 @@ class Addon(amo.models.ModelBase):
 
         authors = [u.email for u in self.authors.all()]
         to = [settings.FLIGTAR] + authors
-        email_msg = """
+        email_msg = u"""
         The following add-on was deleted.
         ADD-ON: %s
         ID: %s
