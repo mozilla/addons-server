@@ -203,13 +203,6 @@
     -webkit-transition: background 0.1s ease-in;
 }
 
-#nav-main ul li.current span,
-#nav-main ul li.current a,
-#nav-main ul li.current a:link,
-#nav-main ul li.current a:visited {
-    height: 26px;
-}
-
 #nav-main ul li li.current span,
 #nav-main ul li li.current a,
 #nav-main ul li li.current a:link,
