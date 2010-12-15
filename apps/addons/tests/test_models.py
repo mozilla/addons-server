@@ -750,6 +750,11 @@ class TestAddonFromUpload(files.tests.UploadTest):
         eq_(v.files.get().platform_id, amo.PLATFORM_ALL.id)
         eq_(v.files.get().status, amo.STATUS_UNREVIEWED)
 
+    def test_no_homepage(self):
+        addon = Addon.from_upload(self.get_upload('extension-no-homepage.xpi'),
+                                  self.platform)
+        eq_(addon.homepage, None)
+
 
 def test_can_request_review():
     def check(status, exp, kw={}):
