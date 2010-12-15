@@ -1,6 +1,9 @@
 from django import forms
 from django.conf import settings
+from django.utils.encoding import force_unicode
+from django.utils.html import conditional_escape
 from django.utils.safestring import mark_safe
+from tower import ugettext as _
 
 
 class IconWidgetRenderer(forms.RadioSelect.renderer):
@@ -19,5 +22,71 @@ class IconWidgetRenderer(forms.RadioSelect.renderer):
             else:
                 o = "<li class='hide'>%s</li>" % w
             output.append(o)
+        return mark_safe(u'\n'.join(output))
+
+
+class CategoriesSelectMultiple(forms.CheckboxSelectMultiple):
+    """
+    Widget that formats the Categories checkboxes.
+    """
+    def __init__(self, **kwargs):
+        super(self.__class__, self).__init__(**kwargs)
+
+    def render(self, name, value, attrs=None):
+        if value is None: value = []
+        has_id = attrs and 'id' in attrs
+        final_attrs = self.build_attrs(attrs, name=name)
+
+        choices = []
+        other = None
+
+        for c in self.choices:
+            if c[1] == 'Other':
+                other = (c[0],
+                         _("My add-on doesn't fit into any of the categories"))
+            else:
+                choices.append(c)
+
+        choices= list(enumerate(choices))
+        choices_size = len(choices)
+
+        columns = []
+
+        # Left column
+        columns.append(choices[:len(choices) / 2])
+
+        # Right column
+        columns.append(choices[len(choices) / 2:])
+
+        # "Other" column
+        if other:
+            columns.append([(choices_size,other)])
+
+        output = []
+        for (k, column) in enumerate(columns):
+            if k == 2:
+                # We know it's the "other" column
+                output.append(u'<ul class="other">')
+            else:
+                output.append(u'<ul>')
+
+            str_values = set([force_unicode(v) for v in value])
+            for i, (option_value, option_label) in column:
+                if has_id:
+                    final_attrs = dict(final_attrs, id='%s_%s' % (
+                            attrs['id'], i))
+                    label_for = u' for="%s"' % final_attrs['id']
+                else:
+                    label_for = ''
+
+                cb = forms.CheckboxInput(
+                    final_attrs, check_test=lambda value: value in str_values)
+                option_value = force_unicode(option_value)
+                rendered_cb = cb.render(name, option_value)
+                option_label = conditional_escape(force_unicode(option_label))
+                output.append(u'<li><label%s>%s %s</label></li>' % (
+                        label_for, rendered_cb, option_label))
+            output.append(u'</ul>')
+
         return mark_safe(u'\n'.join(output))
 

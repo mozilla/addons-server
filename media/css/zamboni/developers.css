@@ -241,9 +241,9 @@ label.above-the-field .locale {
     margin-left: 0.5em;
 }
 
-#addon_categories_edit li {
+#addon_categories_edit ul {
     float: left;
-    width: 250px;
+    margin-right: 20px;
 }
 
 /*

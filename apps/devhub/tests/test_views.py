@@ -1195,6 +1195,38 @@ class TestEdit(test_utils.TestCase):
         error = 'You can only have 2 categories.'
         self.assertFormError(r, 'form', 'categories', error)
 
+    def test_edit_basic_categories_other_success(self):
+        category_other = Category.objects.get(id=22)
+        category_other.name = 'Other'
+        category_other.save()
+
+        data = dict(name='new name',
+                    slug='test_slug',
+                    summary='new summary',
+                    categories=[22], # 22 is now 'other'
+                    tags=', '.join(self.tags))
+
+        r = self.client.post(self.get_url('basic', True), data)
+
+        eq_(r.context['form'].errors, {})
+
+    def test_edit_basic_categories_other_failure(self):
+        category_other = Category.objects.get(id=22)
+        category_other.name = 'Other'
+        category_other.save()
+
+        data = dict(name='new name',
+                    slug='test_slug',
+                    summary='new summary',
+                    categories=[22, 23], # 22 is now 'other'
+                    tags=', '.join(self.tags))
+
+        r = self.client.post(self.get_url('basic', True), data)
+
+        error = ("The category 'Other' can not be combined with "
+                 "additional categories.")
+        self.assertFormError(r, 'form', 'categories', error)
+
     def test_edit_basic_categories_nonexistent(self):
         data = dict(name='new name',
                     slug='test_slug',

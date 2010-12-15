@@ -11,7 +11,7 @@ import amo
 import captcha.fields
 from amo.utils import ImageCheck, slug_validator, slugify
 from addons.models import Addon, ReverseNameLookup, Category, AddonCategory
-from addons.widgets import IconWidgetRenderer
+from addons.widgets import IconWidgetRenderer, CategoriesSelectMultiple
 from devhub import tasks
 from tags.models import Tag
 from translations.fields import TransField, TransTextarea
@@ -46,7 +46,7 @@ class AddonFormBasic(AddonFormBase):
                          max_length=250)
     tags = forms.CharField(required=False)
     categories = forms.ModelMultipleChoiceField(queryset=False,
-            widget=forms.CheckboxSelectMultiple)
+            widget=CategoriesSelectMultiple)
 
     def __init__(self, *args, **kw):
         super(AddonFormBasic, self).__init__(*args, **kw)
@@ -137,6 +137,7 @@ class AddonFormBasic(AddonFormBase):
     def clean_categories(self):
         # TODO(gkoberger): When we support multiple categories, this needs
         # to be changed so they can have 2 categories per application.
+        categories = self.cleaned_data['categories']
         max_cat = amo.MAX_CATEGORIES
         total = len(self.cleaned_data['categories'].all())
         if total > max_cat:
@@ -144,6 +145,14 @@ class AddonFormBasic(AddonFormBase):
                                           'You can only have {0} category.',
                                           'You can only have {0} categories.',
                                           max_cat).format(max_cat))
+
+        has_other = len([i.name for i in categories if i.name=="Other"]) > 0
+
+        if has_other and total > 1:
+            raise forms.ValidationError(_("The category 'Other' can not be "
+                                          "combined with additional "
+                                          "categories."))
+
         return self.cleaned_data['categories']
 
 
