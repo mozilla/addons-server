@@ -158,4 +158,6 @@ def parse_addon(pkg, addon=None):
 
 def nfd_str(u):
     """Uses NFD to normalize unicode strings."""
-    return unicodedata.normalize('NFD', u).encode('utf-8')
+    if isinstance(u, unicode):
+        return unicodedata.normalize('NFD', u).encode('utf-8')
+    return u
