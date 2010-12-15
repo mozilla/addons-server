@@ -4,7 +4,7 @@
       enctype="multipart/form-data">
   {{ csrf() }}
   <h3>
-    {{ _('Images and Videos') }}
+    {{ _('Images') }}
     {% if not editable %}
       <a href="#" data-editurl="{{ url('devhub.addons.section', addon.id, 'media', 'edit') }}" class="button">
       {{ _('Edit') }}</a>
