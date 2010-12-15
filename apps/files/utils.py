@@ -1,11 +1,12 @@
 import collections
-from datetime import datetime
 import logging
 import os
 import shutil
 import time
-from xml.dom import minidom
+import unicodedata
 import zipfile
+from datetime import datetime
+from xml.dom import minidom
 
 from django import forms
 from django.conf import settings
@@ -153,3 +154,8 @@ def parse_addon(pkg, addon=None):
         return parse_search(pkg, addon)
     else:
         return parse_xpi(pkg, addon)
+
+
+def nfd_str(u):
+    """Uses NFD to normalize unicode strings."""
+    return unicodedata.normalize('NFD', u).encode('utf-8')
