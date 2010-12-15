@@ -861,8 +861,8 @@ h4.author a {
 
 table caption {
     position: absolute;
-    top: -30000px;
-    left: -9000px;
+    top: -60000px;
+    opacity: 0;
 }
 #addon-summary table th {
     color: #223355;
