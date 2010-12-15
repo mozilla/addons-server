@@ -869,6 +869,14 @@ a.extra {
     padding-top: 5px;
 }
 
+.version-status-actions form {
+    display: inline;
+}
+
+.version-status-actions button.link {
+    font-weight: normal;
+}
+
 .delete-button {
     background: #c22;
     background: -moz-linear-gradient(top, #f77, #c22);

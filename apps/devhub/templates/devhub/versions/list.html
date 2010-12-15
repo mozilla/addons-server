@@ -49,7 +49,7 @@
         {% endtrans %}
       {% endif %}
 
-      <div class="version-status-actions">
+      <div class="version-status-actions item-actions">
         {% set req = {amo.STATUS_PUBLIC: _('Request Full Review'),
                       amo.STATUS_LITE: _('Request Preliminary Review')} %}
         {% for status in addon.can_request_review() %}
