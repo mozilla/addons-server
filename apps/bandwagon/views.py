@@ -73,10 +73,10 @@ def legacy_directory_redirects(request, page):
 
 
 class CollectionFilter(BaseFilter):
-    opts = (('featured', _lazy('Featured')),
-            ('popular', _lazy('Popular')),
-            ('rating', _lazy('Highest Rated')),
-            ('created', _lazy('Recently Added')))
+    opts = (('featured', _lazy(u'Featured')),
+            ('popular', _lazy(u'Popular')),
+            ('rating', _lazy(u'Highest Rated')),
+            ('created', _lazy(u'Recently Added')))
 
     def filter(self, field):
         qs = self.base_queryset
@@ -134,9 +134,9 @@ def user_listing(request, username):
 
 
 class CollectionAddonFilter(BaseFilter):
-    opts = (('added', _lazy('Added')),
-            ('popular', _lazy('Popularity')),
-            ('name', _lazy('Name')))
+    opts = (('added', _lazy(u'Added')),
+            ('popular', _lazy(u'Popularity')),
+            ('name', _lazy(u'Name')))
 
     def filter(self, field):
         if field == 'added':

@@ -188,10 +188,10 @@ def extensions(request, category=None):
 
 class CategoryLandingFilter(BaseFilter):
 
-    opts = (('featured', _lazy('Featured')),
-            ('created', _lazy('Recently Added')),
-            ('popular', _lazy('Top Downloads')),
-            ('rating', _lazy('Top Rated')))
+    opts = (('featured', _lazy(u'Featured')),
+            ('created', _lazy(u'Recently Added')),
+            ('popular', _lazy(u'Top Downloads')),
+            ('rating', _lazy(u'Top Rated')))
 
     def __init__(self, request, base, category, key, default):
         self.category = category
@@ -228,10 +228,10 @@ def creatured(request, category):
 
 class PersonasFilter(BaseFilter):
 
-    opts = (('up-and-coming', _lazy('Up & Coming')),
-            ('created', _lazy('Recently Added')),
-            ('popular', _lazy('Most Popular')),
-            ('rating', _lazy('Top Rated')))
+    opts = (('up-and-coming', _lazy(u'Up & Coming')),
+            ('created', _lazy(u'Recently Added')),
+            ('popular', _lazy(u'Most Popular')),
+            ('rating', _lazy(u'Top Rated')))
 
     def _filter(self, field):
         qs = Addon.objects
