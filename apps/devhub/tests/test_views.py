@@ -1154,7 +1154,7 @@ class TestEdit(test_utils.TestCase):
         eq_((ActivityLog.objects.for_addons(self.addon)
              .get(action=amo.LOG.ADD_TAG.id)).to_string(),
             '<a href="/en-US/firefox/tag/tag4">tag4</a> added to '
-            '<a href="/en-US/firefox/addon/3615/">new name</a>')
+            '<a href="/en-US/firefox/addon/3615/">new name</a>.')
         eq_(ActivityLog.objects.filter(action=amo.LOG.ADD_TAG.id).count(),
                                         count + 1)
 
@@ -2162,7 +2162,7 @@ class TestVersionEditFiles(TestVersionEdit):
                               'deleted from <a href="/en-US/firefox/addon/3615'
                               '/versions/2.1.072">Version 2.1.072</a> of <a '
                               'href="/en-US/firefox/addon/3615/">Delicious '
-                              'Bookmarks</a>')
+                              'Bookmarks</a>.')
         eq_(r.status_code, 302)
         eq_(self.version.files.count(), 0)
         r = self.client.get(self.url)

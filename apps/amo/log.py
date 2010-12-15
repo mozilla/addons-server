@@ -17,18 +17,18 @@ class CREATE_ADDON:
 class EDIT_PROPERTIES:
     """ Expects: addon """
     id = 2
-    format = _(u'{user.name} edited add-on {addon} properties')
+    format = _(u'{addon} properties edited.')
 
 
 class EDIT_DESCRIPTIONS:
     id = 3
-    format = _(u'{user.name} edited add-on {addon} description')
+    format = _(u'{addon} description edited.')
 
 
 # TODO(gkoberger): Log this type
 class EDIT_CATEGORIES:
     id = 4
-    format = _(u'{user.name} edited categories for {addon}')
+    format = _(u'Categories edited for {addon}.')
 
 
 class ADD_USER_WITH_ROLE:
@@ -46,7 +46,7 @@ class REMOVE_USER_WITH_ROLE:
 
 class EDIT_CONTRIBUTIONS:
     id = 7
-    format = _(u'{user.name} edited contributions for {addon}')
+    format = _(u'Contributions for {addon}.')
 
 
 class USER_DISABLE:
@@ -71,7 +71,7 @@ class SET_PUBLIC_STATS:
 # TODO(davedash): Log these types when pages are present
 class UNSET_PUBLIC_STATS:
     id = 11
-    format = _(u'{user.name} set stats private for {addon}')
+    format = _(u'{addon} stats set to private.')
     keep = True
 
 
@@ -79,26 +79,26 @@ class UNSET_PUBLIC_STATS:
 class CHANGE_STATUS:
     id = 12
     # L10n: {0} is the status
-    format = _(u'{addon} status changed to {0}')
+    format = _(u'{addon} status changed to {0}.')
     keep = True
 
 
 # TODO(gkoberger): Do this in 604152
 class ADD_PREVIEW:
     id = 13
-    format = _(u'{user.name} added preview to {addon}')
+    format = _(u'Preview added to {addon}.')
 
 
 # TODO(gkoberger): Do this in 604152
 class EDIT_PREVIEW:
     id = 14
-    format = _(u'{user.name} edited preview for {addon}')
+    format = _(u'Preview edited for {addon}.')
 
 
 # TODO(gkoberger): Do this in 604152
 class DELETE_PREVIEW:
     id = 15
-    format = _(u'{user.name} deleted preview from {addon}')
+    format = _(u'Preview deleted from {addon}.')
 
 
 class ADD_VERSION:
@@ -109,7 +109,7 @@ class ADD_VERSION:
 
 class EDIT_VERSION:
     id = 17
-    format = _(u'{user.name} edited version {0.version} of {addon}')
+    format = _(u'{version} edited for {addon}.')
 
 
 class DELETE_VERSION:
@@ -122,18 +122,17 @@ class DELETE_VERSION:
 
 class ADD_FILE_TO_VERSION:
     id = 19
-    format = _(u'{user.name} added file {0.name} to '
-               'version {0.version} of {addon}')
+    format = _(u'File {0.name} added to {version} of {addon}.')
 
 
 class DELETE_FILE_FROM_VERSION:
-    """ Expecting: addon, filename, version
-
+    """
+    Expecting: addon, filename, version
     Because the file is being deleted, filename and version
     should be strings and not the object.
     """
     id = 20
-    format = _(u'File {0} deleted from {version} of {addon}')
+    format = _(u'File {0} deleted from {version} of {addon}.')
 
 
 # TODO(davedash): When editor tools exist
@@ -168,12 +167,12 @@ class REQUEST_VERSION:
 
 class ADD_TAG:
     id = 25
-    format = _(u'{tag} added to {addon}')
+    format = _(u'{tag} added to {addon}.')
 
 
 class REMOVE_TAG:
     id = 26
-    format = _(u'{tag} removed from {addon}')
+    format = _(u'{tag} removed from {addon}.')
 
 
 class ADD_TO_COLLECTION:
@@ -183,7 +182,7 @@ class ADD_TO_COLLECTION:
 
 class REMOVE_FROM_COLLECTION:
     id = 28
-    format = _(u'{addon} removed from {collection}')
+    format = _(u'{addon} removed from {collection}.')
 
 
 class ADD_REVIEW:
@@ -195,13 +194,13 @@ class ADD_REVIEW:
 class ADD_RECOMMENDED_CATEGORY:
     id = 31
     # L10n: {0} is a category name.
-    format = _(u'{addon} featured in {0}')
+    format = _(u'{addon} featured in {0}.')
 
 
 class REMOVE_RECOMMENDED_CATEGORY:
     id = 32
     # L10n: {0} is a category name.
-    format = _(u'{addon} no longer featured in {0}')
+    format = _(u'{addon} no longer featured in {0}.')
 
 
 class ADD_RECOMMENDED:
@@ -220,7 +219,7 @@ class ADD_APPVERSION:
     id = 35
     # L10n: {0} is the application, {1.min/max} is the min/max version of the
     # app
-    format = _(u'{addon} {version} now supports {0} {1.min}-{1.max}')
+    format = _(u'{addon} {version} now supports {0} {1.min}-{1.max}.')
 
 
 class CHANGE_USER_WITH_ROLE:
