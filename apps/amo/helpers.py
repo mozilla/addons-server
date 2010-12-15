@@ -21,7 +21,7 @@ from amo import utils, urlresolvers
 from addons.models import Category
 from translations.models import Translation
 from translations.query import order_by_translation
-from translations.utils import truncate
+from translations.helpers import truncate
 
 # Yanking filters from Django.
 register.filter(defaultfilters.slugify)
