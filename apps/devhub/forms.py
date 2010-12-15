@@ -117,15 +117,15 @@ def LicenseForm(*args, **kw):
 class PolicyForm(happyforms.ModelForm):
     """Form for editing the add-ons EULA and privacy policy."""
     has_eula = forms.BooleanField(required=False,
-        label=_lazy('This add-on has an End User License Agreement'))
+        label=_lazy(u'This add-on has an End User License Agreement'))
     eula = forms.CharField(widget=TranslationTextarea(), required=False,
-        label=_lazy("Please specify your add-on's "
+        label=_lazy(u"Please specify your add-on's "
                     "End User License Agreement:"))
     has_priv = forms.BooleanField(
-        required=False, label=_lazy("This add-on has a Privacy Policy"))
+        required=False, label=_lazy(u"This add-on has a Privacy Policy"))
     privacy_policy = forms.CharField(
         widget=TranslationTextarea(), required=False,
-        label=_lazy("Please specify your add-on's privacy policy:"))
+        label=_lazy(u"Please specify your add-on's privacy policy:"))
 
     class Meta:
         model = Addon
@@ -169,9 +169,9 @@ class CharityForm(happyforms.ModelForm):
 
 
 class ContribForm(happyforms.ModelForm):
-    RECIPIENTS = (('dev', _lazy('The developers of this add-on')),
-                  ('moz', _lazy('The Mozilla Foundation')),
-                  ('org', _lazy('An organization of my choice')))
+    RECIPIENTS = (('dev', _lazy(u'The developers of this add-on')),
+                  ('moz', _lazy(u'The Mozilla Foundation')),
+                  ('org', _lazy(u'An organization of my choice')))
 
     recipient = forms.ChoiceField(choices=RECIPIENTS,
                     widget=forms.RadioSelect(attrs={'class': 'recipient'}))

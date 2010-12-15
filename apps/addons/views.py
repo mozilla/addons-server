@@ -245,10 +245,10 @@ class BaseFilter(object):
 
 
 class HomepageFilter(BaseFilter):
-    opts = (('featured', _lazy('Featured')),
-            ('popular', _lazy('Popular')),
-            ('new', _lazy('Recently Added')),
-            ('updated', _lazy('Recently Updated')))
+    opts = (('featured', _lazy(u'Featured')),
+            ('popular', _lazy(u'Popular')),
+            ('new', _lazy(u'Recently Added')),
+            ('updated', _lazy(u'Recently Updated')))
 
     filter_new = BaseFilter.filter_created
 

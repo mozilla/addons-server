@@ -77,18 +77,18 @@ class ShoppingCollection(CollectionPromo):
     slug = 'Shopping Collection'
     pk = 16651
     cls = 'shopping'
-    title = _('Save cash and have fun with these shopping add-ons')
+    title = _(u'Save cash and have fun with these shopping add-ons')
 
 
 class WebdevCollection(CollectionPromo):
     slug = 'Webdev Collection'
     pk = 10
     cls = 'webdev'
-    title = _('Build the perfect website')
+    title = _(u'Build the perfect website')
 
 
 class TesterCollection(CollectionPromo):
     slug = 'Firefox Tester Tools'
     pk = 82266
     cls = 'tester'
-    title = _('Help test Firefox with these tools')
+    title = _(u'Help test Firefox with these tools')
