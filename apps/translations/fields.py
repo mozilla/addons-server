@@ -132,6 +132,9 @@ class TranslationDescriptor(related.ReverseSingleRelatedObjectDescriptor):
             if not isinstance(value, self.model):
                 value = switch(value, self.model)
             super(TranslationDescriptor, self).__set__(instance, value)
+        elif getattr(instance, self.field.attname, None) is None:
+            super(TranslationDescriptor, self).__set__(instance, None)
+
 
     def translation_from_string(self, instance, lang, string):
         """Create, save, and return a Translation from a string."""

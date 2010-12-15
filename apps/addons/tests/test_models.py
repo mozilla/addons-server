@@ -344,6 +344,10 @@ class TestAddonModels(test_utils.TestCase):
         f.update(datestatuschanged=now - timedelta(days=11))
         eq_(a.can_request_review(), (amo.STATUS_PUBLIC,))
 
+    def test_none_homepage(self):
+        # There was an odd error when a translation was set to None.
+        Addon.objects.create(homepage=None, type=amo.ADDON_EXTENSION)
+
 
 class TestCategoryModel(test_utils.TestCase):
 
