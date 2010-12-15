@@ -75,7 +75,7 @@ $.fn.jCarouselLite = function(o) {
             $(o.btnNext).click(function() {
                 return go(curr+o.scroll);
             });
-            if (!o.circular && itemLength > o.visible) {
+            if (!o.circular && itemLength < o.visible) {
                 $(o.btnNext).addClass("disabled");
             }
         }
