@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.utils import translation
 from django.utils.translation.trans_real import to_language
+from django.utils.encoding import smart_unicode
 
 import jinja2
 
@@ -36,7 +37,7 @@ def truncate(s, length=255, killwords=False, end='...'):
         return ''
     if hasattr(s, '__truncate__'):
         return s.__truncate__(length, killwords, end)
-    return jinja2.filters.do_truncate(s, length, killwords, end)
+    return jinja2.filters.do_truncate(smart_unicode(s), length, killwords, end)
 
 
 @register.inclusion_tag('translations/trans-menu.html')
