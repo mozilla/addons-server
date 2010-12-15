@@ -55,14 +55,21 @@
             });
         };
 
-        QUnit.log = function(result, message) {
+        QUnit.log = function(result, message, details) {
             // Strip out html:
             message = message.replace(/<(?:.|\s)*?>/g, '');
-            postMsg({
+            var msg = {
                 action: 'log',
                 result: result,
-                message: message
-            });
+                message: message,
+                stacktrace: null
+            };
+            if (details) {
+                if (typeof(details.source) !== 'undefined') {
+                    msg.stacktrace = details.source;
+                }
+            }
+            postMsg(msg);
         };
 
         QUnit.moduleStart = function(name) {
