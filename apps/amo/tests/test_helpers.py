@@ -16,7 +16,6 @@ import test_utils
 import amo
 from amo import urlresolvers, utils, helpers
 from amo.utils import ImageCheck
-from translations.utils import truncate
 from versions.models import License
 
 
@@ -68,64 +67,72 @@ def test_page_title():
                 'x': encoding.smart_str(u'\u05d0\u05d5\u05e1\u05e3')})
 
 
-def test_breadcrumbs():
-    req_noapp = Mock()
-    req_noapp.APP = None
-    req_app = Mock()
-    req_app.APP = amo.FIREFOX
+class TestBreadcrumbs(object):
 
-    # default, no app
-    s = render('{{ breadcrumbs() }}', {'request': req_noapp})
-    doc = PyQuery(s)
-    crumbs = doc('li>a')
-    eq_(len(crumbs), 1)
-    eq_(crumbs.text(), 'Add-ons')
-    eq_(crumbs.attr('href'), urlresolvers.reverse('home'))
+    def setUp(self):
+        self.req_noapp = Mock()
+        self.req_noapp.APP = None
+        self.req_app = Mock()
+        self.req_app.APP = amo.FIREFOX
 
-    # default, with app
-    s = render('{{ breadcrumbs() }}', {'request': req_app})
-    doc = PyQuery(s)
-    crumbs = doc('li>a')
-    eq_(len(crumbs), 1)
-    eq_(crumbs.text(), 'Add-ons for Firefox')
-    eq_(crumbs.attr('href'), urlresolvers.reverse('home'))
+    def test_no_app(self):
+        s = render('{{ breadcrumbs() }}', {'request': self.req_noapp})
+        doc = PyQuery(s)
+        crumbs = doc('li>a')
+        eq_(len(crumbs), 1)
+        eq_(crumbs.text(), 'Add-ons')
+        eq_(crumbs.attr('href'), urlresolvers.reverse('home'))
 
-    # no default, no items => no breadcrumbs for you
-    s = render('{{ breadcrumbs(add_default=False) }}', {'request': req_app})
-    eq_(len(s), 0)
+    def test_with_app(self):
+        s = render('{{ breadcrumbs() }}', {'request': self.req_app})
+        doc = PyQuery(s)
+        crumbs = doc('li>a')
+        eq_(len(crumbs), 1)
+        eq_(crumbs.text(), 'Add-ons for Firefox')
+        eq_(crumbs.attr('href'), urlresolvers.reverse('home'))
 
-    # no default, some items
-    s = render("""{{ breadcrumbs([('/foo', 'foo'),
-                                  ('/bar', 'bar')],
-                                 add_default=False) }}'""",
-               {'request': req_app})
-    doc = PyQuery(s)
-    crumbs = doc('li>a')
-    eq_(len(crumbs), 2)
-    eq_(crumbs.eq(0).text(), 'foo')
-    eq_(crumbs.eq(0).attr('href'), '/foo')
-    eq_(crumbs.eq(1).text(), 'bar')
-    eq_(crumbs.eq(1).attr('href'), '/bar')
+    def test_no_add_default(self):
+        s = render('{{ breadcrumbs(add_default=False) }}',
+                   {'request': self.req_app})
+        eq_(len(s), 0)
 
-    # default, some items
-    s = render("""{{ breadcrumbs([('/foo', 'foo'),
-                                  ('/bar', 'bar')]) }}'""",
-               {'request': req_app})
-    doc = PyQuery(s)
-    crumbs = doc('li>a')
-    eq_(len(crumbs), 3)
-    eq_(crumbs.eq(1).text(), 'foo')
-    eq_(crumbs.eq(1).attr('href'), '/foo')
-    eq_(crumbs.eq(2).text(), 'bar')
-    eq_(crumbs.eq(2).attr('href'), '/bar')
+    def test_items(self):
+        s = render("""{{ breadcrumbs([('/foo', 'foo'),
+                                      ('/bar', 'bar')],
+                                     add_default=False) }}'""",
+                   {'request': self.req_app})
+        doc = PyQuery(s)
+        crumbs = doc('li>a')
+        eq_(len(crumbs), 2)
+        eq_(crumbs.eq(0).text(), 'foo')
+        eq_(crumbs.eq(0).attr('href'), '/foo')
+        eq_(crumbs.eq(1).text(), 'bar')
+        eq_(crumbs.eq(1).attr('href'), '/bar')
 
-    # truncated breadcrumb
-    s = render("""{{ breadcrumbs([('/foo', 'Long Addon Title is Looooooong'),],
-                                 crumb_size=15) }}'""",
-               {'request': req_app})
-    doc = PyQuery(s)
-    crumbs = doc('li>a')
-    eq_(truncate('Long Addon Title is Loooooooong', 15), crumbs.eq(1).text())
+    def test_items_with_default(self):
+        s = render("""{{ breadcrumbs([('/foo', 'foo'),
+                                      ('/bar', 'bar')]) }}'""",
+                   {'request': self.req_app})
+        doc = PyQuery(s)
+        crumbs = doc('li>a')
+        eq_(len(crumbs), 3)
+        eq_(crumbs.eq(1).text(), 'foo')
+        eq_(crumbs.eq(1).attr('href'), '/foo')
+        eq_(crumbs.eq(2).text(), 'bar')
+        eq_(crumbs.eq(2).attr('href'), '/bar')
+
+    def test_truncate(self):
+        s = render("""{{ breadcrumbs([('/foo', 'abcd efghij'),],
+                                     crumb_size=5) }}'""",
+                   {'request': self.req_app})
+        doc = PyQuery(s)
+        crumbs = doc('li>a')
+        eq_('abcd ...', crumbs.eq(1).text())
+
+    def test_xss(self):
+        s = render("{{ breadcrumbs([('/foo', '<script>')]) }}",
+                   {'request': self.req_app})
+        assert '&lt;script&gt;' in s, s
 
 
 @patch('amo.helpers.urlresolvers.reverse')
