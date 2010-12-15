@@ -133,6 +133,7 @@ class TestBreadcrumbs(object):
         s = render("{{ breadcrumbs([('/foo', '<script>')]) }}",
                    {'request': self.req_app})
         assert '&lt;script&gt;' in s, s
+        assert '<script>' not in s
 
 
 @patch('amo.helpers.urlresolvers.reverse')
