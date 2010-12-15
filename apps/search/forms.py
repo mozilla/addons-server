@@ -34,11 +34,11 @@ sort_by = (
 )
 
 collection_sort_by = (
-    ('weekly', _lazy('Most popular this week')),
-    ('monthly', _lazy('Most popular this month')),
-    ('all', _lazy('Most popular all time')),
-    ('rating', _lazy('Highest Rated')),
-    ('newest', _lazy('Newest')),
+    ('weekly', _lazy(u'Most popular this week')),
+    ('monthly', _lazy(u'Most popular this month')),
+    ('all', _lazy(u'Most popular all time')),
+    ('rating', _lazy(u'Highest Rated')),
+    ('newest', _lazy(u'Newest')),
 )
 
 per_page = (20, 50, )
@@ -209,7 +209,7 @@ class SecondarySearchForm(forms.Form):
     q = forms.CharField(widget=forms.HiddenInput, required=False)
     cat = forms.CharField(widget=forms.HiddenInput)
     pp = forms.CharField(widget=forms.HiddenInput, required=False)
-    sortby = forms.ChoiceField(label=_lazy('Sort By'),
+    sortby = forms.ChoiceField(label=_lazy(u'Sort By'),
                                choices=collection_sort_by,
                                initial='weekly', required=False)
     page = forms.IntegerField(widget=forms.HiddenInput, required=False)

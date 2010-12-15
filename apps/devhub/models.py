@@ -5,7 +5,7 @@ import json
 from django.db import models
 
 import commonware.log
-from tower import ugettext_lazy as _
+from tower import ugettext as _
 from uuidfield.fields import UUIDField
 
 import amo

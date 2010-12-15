@@ -156,7 +156,7 @@ class UserEditForm(UserRegisterForm):
     password2 = forms.CharField(max_length=255, required=False,
                                 widget=forms.PasswordInput(render_value=False))
 
-    photo = forms.FileField(label=_lazy('Profile Photo'), required=False)
+    photo = forms.FileField(label=_lazy(u'Profile Photo'), required=False)
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)

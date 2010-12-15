@@ -15,8 +15,8 @@ from .models import Collection, CollectionUser
 from . import tasks
 
 privacy_choices = (
-        (False, _lazy('Only I can view this collection.')),
-        (True, _lazy('Anybody can view this collection.')))
+        (False, _lazy(u'Only I can view this collection.')),
+        (True, _lazy(u'Anybody can view this collection.')))
 
 apps = (('', None),) + tuple((a.id, a.pretty) for a in amo.APP_USAGE)
 collection_types = ((k, v) for k, v in amo.COLLECTION_CHOICES.iteritems()
@@ -117,23 +117,23 @@ class ContributorsForm(Form):
 class CollectionForm(ModelForm):
 
     name = forms.CharField(
-            label=_lazy('Give your collection a name.'),
+            label=_lazy(u'Give your collection a name.'),
             widget=TranslationTextInput,
             )
-    slug = forms.CharField(label=_lazy('URL:'))
+    slug = forms.CharField(label=_lazy(u'URL:'))
     description = forms.CharField(
-            label=_lazy('Describe your collection.'),
+            label=_lazy(u'Describe your collection.'),
             widget=TranslationTextarea(attrs={'rows': 3}),
             max_length=200,
             required=False)
     listed = forms.ChoiceField(
-            label=_lazy('Privacy:'),
+            label=_lazy(u'Privacy:'),
             widget=forms.RadioSelect,
             choices=privacy_choices,
             initial=True,
             )
 
-    icon = forms.FileField(label=_lazy('Icon'),
+    icon = forms.FileField(label=_lazy(u'Icon'),
                            required=False)
 
     def __init__(self, *args, **kw):

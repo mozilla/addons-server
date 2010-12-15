@@ -121,10 +121,10 @@ class ReviewFlag(amo.models.ModelBase):
     LANGUAGE = 'review_flag_reason_language'
     SUPPORT = 'review_flag_reason_bug_support'
     OTHER = 'review_flag_reason_other'
-    FLAGS = ((SPAM, _('Spam or otherwise non-review content')),
-             (LANGUAGE, _('Inappropriate language/dialog')),
-             (SUPPORT, _('Misplaced bug report or support request')),
-             (OTHER, _('Other (please specify)')),
+    FLAGS = ((SPAM, _(u'Spam or otherwise non-review content')),
+             (LANGUAGE, _(u'Inappropriate language/dialog')),
+             (SUPPORT, _(u'Misplaced bug report or support request')),
+             (OTHER, _(u'Other (please specify)')),
     )
 
     review = models.ForeignKey(Review)

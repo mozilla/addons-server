@@ -87,19 +87,19 @@ STATUS_LITE_AND_NOMINATED = 9
 STATUS_PURGATORY = 10  # A temporary home; bug 614686
 
 STATUS_CHOICES = {
-    STATUS_NULL: _('Incomplete'),
-    STATUS_UNREVIEWED: _('Not reviewed'),
-    STATUS_PENDING: _('Pending approval'),
-    STATUS_NOMINATED: _('Nominated to be public'),
-    STATUS_PUBLIC: _('Public'),
-    STATUS_DISABLED: _('Disabled by Admins'),
-    STATUS_LISTED: _('Listed'),
-    STATUS_BETA: _('Beta'),
-    STATUS_LITE: _('Preliminarily reviewed'),
+    STATUS_NULL: _(u'Incomplete'),
+    STATUS_UNREVIEWED: _(u'Not reviewed'),
+    STATUS_PENDING: _(u'Pending approval'),
+    STATUS_NOMINATED: _(u'Nominated to be public'),
+    STATUS_PUBLIC: _(u'Public'),
+    STATUS_DISABLED: _(u'Disabled by Admins'),
+    STATUS_LISTED: _(u'Listed'),
+    STATUS_BETA: _(u'Beta'),
+    STATUS_LITE: _(u'Preliminarily reviewed'),
     STATUS_LITE_AND_NOMINATED:
-        _('Preliminarily reviewed and awaiting full review'),
+        _(u'Preliminarily reviewed and awaiting full review'),
     STATUS_PURGATORY:
-        _('Pending a review choice'),
+        _(u'Pending a review choice'),
 }
 
 UNREVIEWED_STATUSES = (STATUS_UNREVIEWED, STATUS_PENDING, STATUS_NOMINATED,
@@ -117,8 +117,8 @@ ADMIN_REVIEW_FULL = 1
 ADMIN_REVIEW_PRELIM = 2
 
 ADMIN_REVIEW_TYPES = {
-    ADMIN_REVIEW_FULL: _('Full'),
-    ADMIN_REVIEW_PRELIM: _('Preliminary'),
+    ADMIN_REVIEW_FULL: _(u'Full'),
+    ADMIN_REVIEW_PRELIM: _(u'Preliminary'),
 }
 
 # Add-on author roles.
@@ -127,9 +127,9 @@ AUTHOR_ROLE_DEV = 4
 AUTHOR_ROLE_OWNER = 5
 
 AUTHOR_CHOICES = (
-    (AUTHOR_ROLE_OWNER, _('Owner')),
-    (AUTHOR_ROLE_DEV, _('Developer')),
-    (AUTHOR_ROLE_VIEWER, _('Viewer')),
+    (AUTHOR_ROLE_OWNER, _(u'Owner')),
+    (AUTHOR_ROLE_DEV, _(u'Developer')),
+    (AUTHOR_ROLE_VIEWER, _(u'Viewer')),
 )
 
 # Addon types
@@ -316,7 +316,7 @@ del _app, _type
 # Platforms
 class PLATFORM_ANY:
     id = 0
-    name = _('Any')
+    name = _(u'Any')
     shortname = 'any'
     # API name is not translated
     api_name = u'ALL'
@@ -324,42 +324,42 @@ class PLATFORM_ANY:
 
 class PLATFORM_ALL:
     id = 1
-    name = _('All')
+    name = _(u'All')
     shortname = 'all'
     api_name = u'ALL'
 
 
 class PLATFORM_LINUX:
     id = 2
-    name = _('Linux')
+    name = _(u'Linux')
     shortname = 'linux'
     api_name = u'Linux'
 
 
 class PLATFORM_MAC:
     id = 3
-    name = _('Mac OS X')
+    name = _(u'Mac OS X')
     shortname = 'mac'
     api_name = u'Darwin'
 
 
 class PLATFORM_BSD:
     id = 4
-    name = _('BSD')
+    name = _(u'BSD')
     shortname = 'bsd'
     api_name = u'BSD_OS'
 
 
 class PLATFORM_WIN:
     id = 5
-    name = _('Windows')
+    name = _(u'Windows')
     shortname = 'windows'
     api_name = u'WINNT'
 
 
 class PLATFORM_SUN:
     id = 6
-    name = _('Solaris')
+    name = _(u'Solaris')
     shortname = 'solaris'
     api_name = 'SunOS'
 
@@ -496,9 +496,9 @@ CONTRIB_ROADBLOCK = 3
 
 CONTRIB_CHOICES = (
     (CONTRIB_PASSIVE,
-     _("Only ask on this add-on's page and developer profile")),
-    (CONTRIB_AFTER, _("Ask after users start downloading this add-on")),
-    (CONTRIB_ROADBLOCK, _("Ask before users can download this add-on")),
+     _(u"Only ask on this add-on's page and developer profile")),
+    (CONTRIB_AFTER, _(u"Ask after users start downloading this add-on")),
+    (CONTRIB_ROADBLOCK, _(u"Ask before users can download this add-on")),
 )
 
 # Personas
