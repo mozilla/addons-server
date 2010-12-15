@@ -5,7 +5,7 @@ from string import Template
 CRONS = {}
 
 COMMON = {
-    'MANAGE': '/data/virtualenvs/zamboni/bin/python manage.py',
+    'MANAGE': '/usr/bin/python26 manage.py',
     'Z_CRON': '$DJANGO cron',
 }
 
