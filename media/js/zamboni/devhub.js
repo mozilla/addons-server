@@ -412,13 +412,11 @@ function addonUploaded(json) {
 
         var body = "<strong>";
         if(!v.errors) {
-            $(".upload-status").trigger("upload-success", [json]);
             body += format(ngettext(
                     "Your add-on passed validation with no errors and {0} warning.",
                     "Your add-on passed validation with no errors and {0} warnings.",
                     v.warnings), [v.warnings]);
         } else {
-            $(".upload-status").trigger("upload-error", [json]);
             body += format(ngettext(
                     "Your add-on failed validation with {0} error.",
                     "Your add-on failed validation with {0} errors.",
@@ -426,13 +424,26 @@ function addonUploaded(json) {
         }
         body += "</strong>";
 
+        var numErrors = 0,
+            max = 5,
+            overflowed = false;
         body += "<ul>";
         if(v.errors) {
             $.each(v.messages, function(k, t) {
                 if(t.type == "error") {
-                    body += "<li>" + t.message + "</li>";
+                    numErrors++;
+                    if (numErrors <= max) {
+                        body += '<li>' + t.message + '</li>';
+                    } else {
+                        overflowed = true;
+                    }
                 }
             });
+            if (overflowed) {
+                // L10n: first argument is the number of errors.
+                body += '<li>' + format(gettext('...and {0} more'),
+                                        [numErrors-max]) + '</li>';
+            }
         }
         body += "</ul>";
 
@@ -453,6 +464,12 @@ function addonUploaded(json) {
         statusclass = v.errors ? 'status-fail' : 'status-pass';
         $('#upload-status-results').html(body).addClass(statusclass);
         resetFileInput();
+
+        if(!v.errors) {
+            $(".upload-status").trigger("upload-success", [json]);
+        } else {
+            $(".upload-status").trigger("upload-error", [json]);
+        }
     }
 
 }
@@ -487,6 +504,7 @@ function initEditVersions() {
         $("#upload-file-finish").attr("disabled", false);
         $("#id_upload").val(json.upload);
     }).bind('upload-error', function() {
+        $modal.setPos(); // Reposition since the error report has been added.
         $("#upload-file-finish").attr("disabled", true);
     });
 

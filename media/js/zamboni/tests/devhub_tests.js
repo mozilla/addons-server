@@ -537,4 +537,52 @@ test('JSON error', function() {
            'Unexpected server error while validating.')
 });
 
+test('Too many messages', function() {
+    addonUploaded({
+        validation: {
+            "errors": 7,
+            "success": false,
+            "warnings": 0,
+            "ending_tier": 3,
+            "messages": [{
+                "message": "Invalid maximum version number",
+                "type": "error"
+            },
+            {
+                "message": "Missing translation file",
+                "type": "error"
+            },
+            {
+                "message": "Missing translation file",
+                "type": "error"
+            },
+            {
+                "message": "Missing translation file",
+                "type": "error"
+            },
+            {
+                "message": "Missing translation file",
+                "type": "error"
+            },
+            {
+                "message": "Missing translation file",
+                "type": "error"
+            },
+            {
+                "message": "Missing translation file",
+                "type": "error"
+            }],
+            "rejected": false,
+            "detected_type": "extension",
+            "notices": 0,
+        },
+        error: null,
+        full_report_url: '/full-report'
+    });
+    equals($('#upload-status-results ul li', this.sandbox).length, 6);
+    equals($('#upload-status-results ul li:eq(5)', this.sandbox).text(),
+           '...and 2 more');
+});
+
+
 });
