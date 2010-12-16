@@ -4,6 +4,7 @@ import os
 
 from django.conf import settings
 from django.db import models
+import jinja2
 
 import commonware.log
 import caching.base
@@ -38,7 +39,7 @@ class Version(amo.models.ModelBase):
         self.__dict__.update(compare.version_dict(self.version or ''))
 
     def __unicode__(self):
-        return self.version
+        return jinja2.escape(self.version)
 
     @classmethod
     def from_upload(cls, upload, addon):

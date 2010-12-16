@@ -11,8 +11,7 @@
       <ul class="item-details">
         {# L10n: {0} is a version number. #}
         <li>{{ _('<strong>Latest version:</strong> {0}'|
-                 f(addon.current_version))|safe }}</li>
-
+                 f(addon.current_version))|xssafe }}</li>
         {# L10n: {0} is a date. #}
         <li>{{ _('<strong>Last updated:</strong> {0}'|
                  f(addon.last_updated|datetime))|safe }}</li>
