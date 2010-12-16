@@ -32,6 +32,17 @@ register.function(utils.randslice)
 
 
 @register.filter
+def xssafe(value):
+    """
+    Like |safe but for strings with interpolation.
+
+    By using |xssafe you assert that you have written tests proving an
+    XSS can't happen here.
+    """
+    return jinja2.Markup(value)
+
+
+@register.filter
 def babel_datetime(t, format='medium'):
     return _get_format().datetime(t, format=format)
 
