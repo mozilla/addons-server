@@ -5,6 +5,7 @@ import json
 from django.db import models
 
 import commonware.log
+import jinja2
 from tower import ugettext as _
 from uuidfield.fields import UUIDField
 
@@ -185,7 +186,8 @@ class ActivityLog(amo.models.ModelBase):
 
         for arg in self.arguments:
             if isinstance(arg, Addon) and not addon:
-                addon = u'<a href="%s">%s</a>' % (arg.get_url_path(), arg.name)
+                addon = u'<a href="%s">%s</a>' % (arg.get_url_path(),
+                                                  jinja2.escape(arg.name))
                 arguments.remove(arg)
             if isinstance(arg, Review) and not review:
                 review = u'<a href="%s">%s</a>' % (arg.get_url_path(),
@@ -193,15 +195,16 @@ class ActivityLog(amo.models.ModelBase):
                 arguments.remove(arg)
             if isinstance(arg, Version) and not version:
                 text = _('Version %s') % arg.version
-                version = u'<a href="%s">%s</a>' % (arg.get_url_path(), text)
+                version = u'<a href="%s">%s</a>' % (arg.get_url_path(),
+                                                    jinja2.escape(text))
                 arguments.remove(arg)
             if isinstance(arg, Collection) and not collection:
                 collection = u'<a href="%s">%s</a>' % (arg.get_url_path(),
-                                                       arg.name)
+                                                       jinja2.escape(arg.name))
                 arguments.remove(arg)
             if isinstance(arg, Tag) and not tag:
                 tag = u'<a href="%s">%s</a>' % (arg.get_url_path(),
-                                                arg.tag_text)
+                                                jinja2.escape(arg.tag_text))
         try:
             data = dict(user=self.user, addon=addon, review=review,
                         version=version, collection=collection, tag=tag)

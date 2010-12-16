@@ -1,7 +1,6 @@
 import re
 import socket
 from decimal import Decimal
-from urllib import urlencode
 
 from django import forms
 from django.conf import settings
@@ -17,11 +16,9 @@ import paypal
 from amo.urlresolvers import reverse
 from addons.models import Addon, AddonUser, Charity
 from applications.models import AppVersion
-from bandwagon.models import Collection
 from devhub.forms import ContribForm
-from devhub.models import ActivityLog, RssKey, SubmitStep
+from devhub.models import ActivityLog, SubmitStep
 from files.models import File, Platform
-from reviews.models import Review
 from tags.models import Tag
 from users.models import UserProfile
 from versions.models import ApplicationsVersions, License, Version
@@ -55,176 +52,6 @@ class HubTest(test_utils.TestCase):
             new_addon.save()
 
             self.num_addon_clones += 1
-
-
-class TestActivity(HubTest):
-    """Test the activity feed."""
-
-    def setUp(self):
-        """Start with one user, two add-ons."""
-        super(TestActivity, self).setUp()
-        self.clone_addon(2)
-        amo.set_user(self.user_profile)
-        self.addon, self.addon2 = list(self.user_profile.addons.all())
-
-    def log_creates(self, num, addon=None):
-        if not addon:
-            addon = self.addon
-        for i in xrange(num):
-            amo.log(amo.LOG.CREATE_ADDON, addon)
-
-    def log_updates(self, num):
-        version = Version.objects.create(version='1', addon=self.addon)
-        for i in xrange(num):
-            amo.log(amo.LOG.ADD_VERSION, self.addon, version)
-
-    def log_status(self, num):
-        for i in xrange(num):
-            amo.log(amo.LOG.SET_INACTIVE, self.addon)
-
-    def log_collection(self, num):
-        for i in xrange(num):
-            c = Collection(name='foo %d' % i)
-            amo.log(amo.LOG.ADD_TO_COLLECTION, self.addon, c)
-
-    def log_review(self, num):
-        r = Review(addon=self.addon)
-        for i in xrange(num):
-            amo.log(amo.LOG.ADD_REVIEW, self.addon, r)
-
-    def get_response(self, **kwargs):
-        url = reverse('devhub.feed_all')
-        if 'addon' in kwargs:
-            url = reverse('devhub.feed', args=(kwargs['addon'],))
-
-        if kwargs:
-            url += '?' + urlencode(kwargs)
-
-        return self.client.get(url, follow=True)
-
-    def get_pq(self, **kwargs):
-        return pq(self.get_response(**kwargs).content)
-
-    def test_dashboard(self):
-        """Make sure the dashboard is getting data."""
-        self.log_creates(10)
-        r = self.client.get(reverse('devhub.addons'))
-        doc = pq(r.content)
-        eq_(len(doc('li.item')), 4)
-        eq_(doc('.subscribe-feed').attr('href')[:-32],
-            reverse('devhub.feed_all') + '?privaterss=')
-
-    def test_items(self):
-        self.log_creates(10)
-        doc = self.get_pq()
-        eq_(len(doc('.item')), 10)
-
-    def test_filter_updates(self):
-        self.log_creates(10)
-        self.log_updates(10)
-        doc = self.get_pq()
-        eq_(len(doc('.item')), 20)
-        doc = self.get_pq(action='updates')
-        eq_(len(doc('.item')), 10)
-
-    def test_filter_status(self):
-        self.log_creates(10)
-        self.log_status(5)
-        doc = self.get_pq()
-        eq_(len(doc('.item')), 15)
-        doc = self.get_pq(action='status')
-        eq_(len(doc('.item')), 5)
-
-    def test_filter_collections(self):
-        self.log_creates(10)
-        self.log_collection(3)
-        doc = self.get_pq()
-        eq_(len(doc('.item')), 13)
-        doc = self.get_pq(action='collections')
-        eq_(len(doc('.item')), 3)
-
-    def test_filter_reviews(self):
-        self.log_creates(10)
-        self.log_review(10)
-        doc = self.get_pq()
-        eq_(len(doc('.item')), 20)
-        doc = self.get_pq(action='reviews')
-        eq_(len(doc('.item')), 10)
-
-    def test_pagination(self):
-        self.log_review(21)
-        doc = self.get_pq()
-
-        # 20 items on page 1.
-        eq_(len(doc('.item')), 20)
-
-        # 1 item on page 2
-        doc = self.get_pq(page=2)
-        eq_(len(doc('.item')), 1)
-
-        # we have a pagination thingy
-        eq_(len(doc('.pagination')), 1)
-        assert doc('.listing-footer')
-
-    def test_no_pagination(self):
-        doc = self.get_pq()
-        assert not doc('.listing-footer')
-
-    def test_filter_addon(self):
-        self.log_creates(10)
-        self.log_creates(13, self.addon2)
-
-        # We show everything without filters
-        doc = self.get_pq()
-        eq_(len(doc('.item')), 20)
-
-        # We just show addon1
-        doc = self.get_pq(addon=self.addon.id)
-        eq_(len(doc('.item')), 10)
-
-        # we just show addon2
-        doc = self.get_pq(addon=self.addon2.id)
-        eq_(len(doc('.item')), 13)
-
-    def test_filter_addon_admin(self):
-        """Admins should be able to see specific pages."""
-        self.log_creates(10)
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
-        r = self.get_response(addon=self.addon.id)
-        eq_(r.status_code, 200)
-
-    def test_filter_addon_otherguy(self):
-        """Make sure nobody else can see my precious add-on feed."""
-        self.log_creates(10)
-        assert self.client.login(username='clouserw@gmail.com',
-                                 password='password')
-        r = self.get_response(addon=self.addon.id)
-        eq_(r.status_code, 403)
-
-    def test_rss(self):
-        self.log_creates(5)
-        # This will give us a new RssKey
-        r = self.get_response()
-        key = RssKey.objects.get()
-        r = self.get_response(privaterss=key.key)
-        eq_(r['content-type'], 'application/rss+xml')
-
-    def test_rss_single(self):
-        self.log_creates(5)
-        self.log_creates(13, self.addon2)
-
-        # This will give us a new RssKey
-        r = self.get_response(addon=self.addon.id)
-        key = RssKey.objects.get()
-        r = self.get_response(privaterss=key.key)
-        eq_(r['content-type'], 'application/rss+xml')
-        eq_(len(pq(r.content)('item')), 5)
-
-    def test_logged_out(self):
-        self.client.logout()
-        r = self.get_response()
-        eq_(r.redirect_chain[0][1], 302)
 
 
 class TestNav(HubTest):
