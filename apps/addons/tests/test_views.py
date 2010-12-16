@@ -389,19 +389,35 @@ class TestDetailPage(test_utils.TestCase):
                 'addons/listed',
                 'addons/persona']
 
-    def test_anonymous_user(self):
-        """Does the page work for an anonymous user?"""
-        # extensions
+    def test_anonymous_extension(self):
         response = self.client.get(reverse('addons.detail', args=[3615]),
                                    follow=True)
         eq_(response.status_code, 200)
         eq_(response.context['addon'].id, 3615)
 
-        # personas
+    def test_anonymous_persona(self):
         response = self.client.get(reverse('addons.detail', args=[15663]),
                                    follow=True)
         eq_(response.status_code, 200)
         eq_(response.context['addon'].id, 15663)
+
+    def test_review_microdata_extension(self):
+        a = Addon.objects.get(id=3615)
+        a.name = '<script>alert("fff")</script>'
+        a.save()
+        response = self.client.get(reverse('addons.detail', args=[3615]))
+        html = pq(response.content)('table caption').html()
+        assert '&lt;script&gt;alert("fff")&lt;/script&gt;' in html
+        assert '<script>' not in html
+
+    def test_review_microdata_personas(self):
+        a = Addon.objects.get(id=15663)
+        a.name = '<script>alert("fff")</script>'
+        a.save()
+        response = self.client.get(reverse('addons.detail', args=[15663]))
+        html = pq(response.content)('table caption').html()
+        assert '&lt;script&gt;alert("fff")&lt;/script&gt;' in html
+        assert '<script>' not in html
 
     def test_disabled_addon(self):
         """Do not display disabled add-ons."""
