@@ -35,6 +35,17 @@ def test_locale_html():
         eq_(s, ' lang="%s" dir="rtl"' % testfield.locale)
 
 
+def test_locale_html_xss():
+    """Test for nastiness-removal in the transfield's locale"""
+    testfield = Mock()
+
+    # same language: no need for attributes
+    testfield.locale = '<script>alert(1)</script>'
+    s = locale_html(testfield)
+    assert '<script>' not in s
+    assert '&lt;script&gt;alert(1)&lt;/script&gt;' in s
+
+
 def test_empty_locale_html():
     """locale_html must still work if field is None."""
     s = locale_html(None)
