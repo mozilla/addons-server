@@ -51,6 +51,8 @@ def truncate(html, length, killwords=False, end='...'):
     Return a slice of ``html`` <= length chars.
 
     killwords and end are currently ignored.
+
+    ONLY USE FOR KNOWN-SAFE HTML.
     """
     tree = html5lib.parseFragment(html, encoding='utf-8')
     if text_length(tree) <= length:
