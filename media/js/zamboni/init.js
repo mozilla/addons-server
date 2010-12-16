@@ -6,11 +6,6 @@ $(document).ready(function(){
     // Initialize install buttons.
     $('.install').installButton();
 
-    // Initialize any translation boxes. See: translations/trans.js
-    if ($.fn.transbox) {
-        $('.trans').transbox();
-    }
-
     // Initialize any tabbed interfaces.  See: tabs.js
     if ($.fn.tabify) {
         $('.tab-wrapper').tabify();
