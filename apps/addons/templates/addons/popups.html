@@ -133,6 +133,7 @@
   <li><a class="installer" href="{href}">{msg}</a></li>
 {% endmacro %}
 
+{# These all go through normal Jinja templating. #}
 z.button.messages = {
   learn_more: {{ learn_more()|json|safe }},
   learn_more_personas: {{ learn_more_personas()|json|safe }},
