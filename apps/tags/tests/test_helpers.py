@@ -8,7 +8,12 @@ from pyquery import PyQuery as pq
 
 import amo
 from addons.models import Addon
-from tags.models import AddonTag, Tag
+from tags.models import AddonTag, Tag, TagStat
+from tags.helpers import tag_link
+
+from django.core.urlresolvers import NoReverseMatch
+
+xss = "<script>alert('xss')</script>"
 
 
 class TestHelpers(test.TestCase):
@@ -46,6 +51,15 @@ class TestHelpers(test.TestCase):
         assert s, "Non-empty tags must return tag list."
         doc = pq(s)
         eq_(doc('li').length, len(tags))
+
+    def test_helper(self):
+        addon = Addon.objects.get(pk=3615)
+        tag = addon.tags.all()[0]
+        tag.tag_text = xss
+        tag.save()
+        TagStat.objects.create(tag=tag, num_addons=1)
+
+        self.assertRaises(NoReverseMatch, tag_link, tag, 1, 1)
 
 
 def create_tags(addon, author, number):

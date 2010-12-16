@@ -1,4 +1,4 @@
-from jingo import register
+from jingo import register, env
 import jinja2
 from access import acl
 from amo.urlresolvers import reverse
@@ -28,8 +28,8 @@ def range_convert(value, old_min, old_max, new_min, new_max):
 @register.function
 def tag_link(tag, min_count, max_count, min_level=1):
     """create the tag cloud link with the poper tagLevel class"""
-    factor = max(range_convert(tag.tagstat.num_addons, 0, max_count, 1, 10),min_level)
-    hyperlink = u'<a class="tagLevel%d tag" href="%s">%s</a>'
-    return hyperlink % (factor,
-                        reverse('tags.detail', args=[tag.tag_text.lower()]),
-                        tag.tag_text)
+    factor = max(range_convert(tag.tagstat.num_addons, 0, max_count, 1, 10),
+                 min_level)
+    t = env.get_template('tags/tag_link.html').render({'factor': factor,
+                                                       'tag': tag})
+    return jinja2.Markup(t)
