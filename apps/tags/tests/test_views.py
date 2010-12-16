@@ -79,13 +79,13 @@ class TestXSSURLFail(test_utils.TestCase):
 
     def test_tags_xss_home(self):
         """Test xss tag home."""
-        url = reverse('home')
-        self.assertRaises(NoReverseMatch, self.client.get, url)
+        self.assertRaises(NoReverseMatch, reverse,
+                          'tags.detail', args=[self.xss])
 
     def test_tags_xss_cloud(self):
         """Test xss tag cloud."""
-        url = reverse('tags.top_cloud')
-        self.assertRaises(NoReverseMatch, self.client.get, url)
+        self.assertRaises(NoReverseMatch, reverse,
+                          'tags.top_cloud', args=[self.xss])
 
 
 class TestNoTags(test_utils.TestCase):
