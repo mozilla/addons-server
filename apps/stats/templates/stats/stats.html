@@ -51,7 +51,7 @@
     </span>
   </h2>
   {# L10n: {0} is an add-on author #}
-  <h4 class="author">{{ _('by {0}')|f(users_list(addon.listed_authors))|safe }}</h4>
+  <h4 class="author">{{ _('by {0}')|f(users_list(addon.listed_authors))|xssafe }}</h4>
   </hgroup>
 {% endblock %}
 
@@ -135,5 +135,3 @@
 <script src="{{ MEDIA_URL }}js/zamboni/stats/stats_tables.js"></script>
 <script src="{{ MEDIA_URL }}js/zamboni/stats/stats.js"></script>
 {% endblock %}
-
-

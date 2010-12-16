@@ -30,7 +30,7 @@
     {% if is_platform_specific %}
       {% set files_url = url('devhub.versions.edit',
                               addon.id, addon.current_version.id) %}
-      <li>{{ _('<a href="{0}">Upload</a> another platform-specific file to this version.')|f(files_url)|safe }}</li>
+      <li>{{ _('<a href="{0}">Upload</a> another platform-specific file to this version.')|f(files_url)|xssafe }}</li>
     {% endif %}
     {% set edit_url = url('devhub.addons.edit', addon.id) %}
     <li>{{ _('Provide more details about your add-on by <a href="{0}">editing its listing</a>.')|f(edit_url)|safe }}</li>

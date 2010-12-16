@@ -254,8 +254,35 @@ class TestLicenseLink(test_utils.TestCase):
         }
         for lic, ex in expected.items():
             s = render('{{ license_link(lic) }}', {'lic': lic})
+            s = ''.join([ s.strip() for s in s.split('\n') ])
             eq_(s, ex)
 
+    def test_license_link_xss(self):
+        mit = License.objects.create(
+            name='<script>', builtin=6, url='<script>')
+        copyright = License.objects.create(
+            name='<script>', icons='<script>', builtin=7)
+        cc = License.objects.create(
+            name='<script>', url='<script>', builtin=8,
+            some_rights=True, icons='<script> cc-noncom cc-share')
+        cc.save()
+        expected = {
+            mit: (
+                '<ul class="license"><li class="text">'
+                '<a href="&lt;script&gt;">&lt;script&gt;</a></li></ul>'),
+            copyright: (
+                '<ul class="license"><li class="icon &lt;script&gt;"></li>'
+                '<li class="text">&lt;script&gt;</li></ul>'),
+            cc: (
+                '<ul class="license"><li class="icon &lt;script&gt;"></li>'
+                '<li class="icon cc-noncom"></li><li class="icon cc-share">'
+                '</li><li class="text"><a href="&lt;script&gt;" '
+                'title="&lt;script&gt;">Some rights reserved</a></li></ul>'),
+        }
+        for lic, ex in expected.items():
+            s = render('{{ license_link(lic) }}', {'lic': lic})
+            s = ''.join([ s.strip() for s in s.split('\n') ])
+            eq_(s, ex)
 
 class AbuseBase:
     @patch('captcha.fields.ReCaptchaField.clean')

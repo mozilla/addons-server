@@ -278,32 +278,9 @@ def license_link(license):
         return ''
     if not license.builtin:
         return _('Custom License')
-    lic_icon = lambda name: '<li class="icon %s"></li>' % name
 
-    parts = []
-    parts.append('<ul class="license">')
-    if license.icons:
-        for i in license.icons.split():
-            parts.append(lic_icon(i))
-
-    # TODO link to custom license page
-    parts.append('<li class="text">')
-
-    if license.url:
-        if license.some_rights:
-            title = ' title="%s"' % license.name
-            linktext = _('Some rights reserved')
-        else:
-            title = ''
-            linktext = license.name
-
-        parts.append(u'<a href="%s"%s>%s</a>' % (
-                     license.url, title, linktext))
-    else:
-        parts.append(unicode(license.name))
-    parts.append('</li></ul>')
-
-    return jinja2.Markup(''.join(parts))
+    t = env.get_template('amo/license_link.html').render({'license':license})
+    return jinja2.Markup(t)
 
 
 @register.function
