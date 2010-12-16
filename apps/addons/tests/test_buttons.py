@@ -1,3 +1,5 @@
+import jinja2
+
 import jingo
 from mock import patch, Mock, sentinel
 from nose.tools import eq_
@@ -7,7 +9,7 @@ import test_utils
 import amo
 import amo.models
 from amo.urlresolvers import reverse
-from addons.buttons import install_button
+from addons.buttons import install_button, big_install_button
 
 
 def setup():
@@ -441,6 +443,15 @@ class TestButtonHtml(ButtonTest):
         self.addon.meet_the_dev_url.return_value = 'addon.url'
         doc = self.render()
         eq_(doc('.contrib .os').text(), '')
+
+    @patch('addons.buttons.install_button')
+    @patch('addons.helpers.statusflags')
+    def test_big_install_button_xss(self, flags_mock, button_mock):
+        # Make sure there's no xss in statusflags.
+        button_mock.return_value = jinja2.Markup('<b>button</b>')
+        flags_mock.return_value = xss = '<script src="x.js">'
+        s = big_install_button(self.context, self.addon)
+        assert xss not in s, s
 
 
 class TestViews(test_utils.TestCase):

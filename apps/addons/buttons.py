@@ -43,8 +43,9 @@ def big_install_button(context, addon, **kwargs):
     from addons.helpers import statusflags
     b = install_button(context, addon, detailed=True, size='prominent',
                        **kwargs)
+    flags = jinja2.escape(statusflags(context, addon))
     s = u'<div class="install-wrapper %s">%s</div>'
-    return jinja2.Markup(s % (statusflags(context, addon), b))
+    return jinja2.Markup(s % (flags, b))
 
 
 def install_button_factory(*args, **kwargs):
