@@ -74,7 +74,7 @@ if [[ $2 = 'with-coverage' ]]; then
     coverage run manage.py test -v 2 --noinput --logging-clear-handlers --with-xunit -a'!sphinx'
     coverage xml $(find apps lib -name '*.py')
 else
-    python manage.py test --noinput --logging-clear-handlers --with-xunit
+    python manage.py test -v 2 --noinput --logging-clear-handlers --with-xunit
 fi
 
 
