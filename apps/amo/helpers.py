@@ -287,6 +287,7 @@ def license_link(license):
 def field(field, label=None, **attrs):
     if label is not None:
         field.label = label
+    # HTML from Django is already escaped.
     return jinja2.Markup(u'%s<p>%s%s</p>' %
                          (field.errors, field.label_tag(),
                           field.as_widget(attrs=attrs)))
