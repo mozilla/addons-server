@@ -155,14 +155,15 @@ class InstallButton(object):
             text, os = _('Download'), amo.PLATFORMS[platform]
 
         if self.show_eula:
-			# L10n: please keep &nbsp; in the string so the &rarr; does not wrap
-            text, url = _('Continue to Download&nbsp;&rarr;'), file.eula_url()
+            # L10n: please keep &nbsp; in the string so &rarr; does not wrap.
+            text = jinja2.Markup(_('Continue to Download&nbsp;&rarr;'))
+            url = file.eula_url()
         elif self.accept_eula:
             text = _('Accept and Download')
         elif self.show_contrib:
             # The eula doesn't exist or has been hit already.
-			# L10n: please keep &nbsp; in the string so the &rarr; does not wrap
-            text = _('Continue to Download&nbsp;&rarr;')
+            # L10n: please keep &nbsp; in the string so &rarr; does not wrap.
+            text = jinja2.Markup(_('Continue to Download&nbsp;&rarr;'))
             roadblock = reverse('addons.roadblock', args=[self.addon.id])
             url = urlparams(roadblock, eula='', version=self.version.version)
 
@@ -193,8 +194,9 @@ class SelfHostedInstallButton(InstallButton):
     button_class = ['go']
 
     def links(self):
-		# L10n: please keep &nbsp; in the string so the &rarr; does not wrap
-        return [Link(_('Continue to Website&nbsp;&rarr;'), self.addon.homepage)]
+        # L10n: please keep &nbsp; in the string so the &rarr; does not wrap
+        return [Link(jinja2.Markup(_('Continue to Website&nbsp;&rarr;')),
+                     self.addon.homepage)]
 
 
 class PersonaInstallButton(InstallButton):
