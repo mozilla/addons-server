@@ -77,7 +77,7 @@
             </div>
           {% endfor %}
           <p class="lead">
-            {% set link = '<a href="{0}">{1}</a>'|f(collection.get_url_path(), collection.name) %}
+            {% set link = '<a href="{0}">{1}</a>'|f(collection.get_url_path(), collection.name|e) %}
             {{ _('Like these? Find more add-ons in the {0} collection.')|f(link)|safe }}
           </p>
         </li>
