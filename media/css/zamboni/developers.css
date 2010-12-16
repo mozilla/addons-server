@@ -181,11 +181,11 @@ ul.refinements:last-child {
     width: 80%;
 }
 
-.word-count {
+.char-count {
     float: right;
 }
 
-.html-rtl .word-count {
+.html-rtl .char-count {
     float: left;
 }
 
@@ -196,7 +196,7 @@ ul.refinements:last-child {
     font-weight: bold;
     display: inline;
 }
-span.locale{
+span.locale {
     font-weight: normal;
     font-size: .9em;
     color: #888;

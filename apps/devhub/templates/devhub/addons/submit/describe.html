@@ -35,9 +35,9 @@
           {% trans %}
             This summary will be shown with your add-on in listings and searches.
           {% endtrans %}
-          <div id="word-count" class="word-count"
-               data-maxlength="{{ form.summary.field.max_length }}">
-          </div>
+          <div class="char-count"
+               data-for-startswith="{{ form.summary.auto_id }}_"
+               data-maxlength="{{ form.summary.field.max_length }}"></div>
         </div>
       </div>
       <div class="addon-submission-field">

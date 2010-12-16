@@ -30,7 +30,7 @@ $(document).ready(function() {
     if($('.addon-submission-process').length) {
         initSubmit();
         initLicenseFields();
-        initWordCount();
+        initCharCount();
         $('.upload-status').bind('upload-success', function(e, json) {
             $("#submit-upload-file-finish").attr("disabled", false);
             $("#id_upload").val(json.upload);
@@ -134,6 +134,7 @@ function addonFormSubmit() {
                 });
         });
         z.refreshL10n();
+        initCharCount();
     })(parent_div);
 }
 
@@ -623,15 +624,23 @@ function initPayments() {
     }).change();
 }
 
-function initWordCount() {
-    var countWords = function(){
-       $wc = $('#word-count');
-       left = $wc.attr('data-maxlength') - $(this).val().length;
-       $wc.html(format(gettext('<strong>{0}</strong> characters left'),
-                       [left])).toggleClass('error', left < 0);
+function initCharCount() {
+    var countChars = function(el, cc) {
+        var left = cc.attr('data-maxlength') - $(el).val().length;
+        cc.html(format(ngettext('<b>{0}</b> character left.',
+                                '<b>{0}</b> characters left.', left), [left]))
+          .toggleClass('error', left < 0);
     };
-
-    $('#id_summary_0').bind('keyup blur', countWords).trigger('blur');
+    $('.char-count').each(function() {
+        var $cc = $(this),
+            $form = $(this).closest('form');
+        if ($cc.attr('data-for-startswith') !== undefined) {
+            var $el = $('textarea[id^=' + $cc.attr('data-for-startswith') + ']', $form);
+        } else {
+            var $el = $('textarea#' + $cc.attr('data-for'), $form);
+        }
+        $el.bind('keyup focus blur', function() { countChars(this, $cc) });
+    });
 }
 
 function initLicenseFields() {

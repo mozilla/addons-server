@@ -57,6 +57,9 @@
               {% if editable %}
                 {{ form.summary|safe }}
                 {{ form.summary.errors|safe }}
+                <div class="char-count"
+                     data-for-startswith="{{ form.summary.auto_id }}_"
+                     data-maxlength="{{ form.summary.field.max_length }}"></div>
               {% else %}
                 {{ addon|all_locales('summary') }}
               {% endif %}
