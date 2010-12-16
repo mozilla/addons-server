@@ -7,12 +7,12 @@
   {{ field(form.name, _('Name:'), class='long') }}
   {% if form.slug %}
     <p id="collection-form-slug">
-      {{ form.errors['slug']|safe }}
-      <label>{{ form.slug.label|safe }}</label>
+      {{ form.errors['slug'] }}
+      <label>{{ form.slug.label }}</label>
       {% set username = collection.author_username if collection else amo_user.username %}
       {% set slug_base = url('collections.user', username)|absolutify %}
       <span id="slug_edit" class="edit_with_prefix edit_initially_hidden">
-        <span>{{ slug_base }}</span>{{ form.slug|safe }}
+        <span>{{ slug_base }}</span>{{ form.slug }}
       </span>
       <span id="slug_readonly">
         {{ slug_base }}<span id="slug_value">{% if collection and collection.slug %}{{ collection.slug }}{% endif %}</span>
@@ -21,18 +21,18 @@
     </p>
   {% endif %}
   <p>
-  <label for="id_description">{{ form.description.label|safe }}</label>
-  {{ form.description|safe }}
+  <label for="id_description">{{ form.description.label }}</label>
+  {{ form.description }}
   </p>
 
   <div id="collection_listed">
     <label>{{ form.listed.label }}</label>
-    {{ form.listed|safe }}
+    {{ form.listed }}
   </div>
 
   <div id="icon_form">
     <label for="id_icon">
-      {{ form.icon.label|safe }}
+      {{ form.icon.label }}
       <span class="optional">{{ _('(optional)') }}</span>
     </label>
     <div id="icon_upload">
@@ -45,8 +45,8 @@
         </div>
       {% endif %}
 
-      {{ form.errors['icon']|safe }}
-      {{ form.icon|safe }}
+      {{ form.errors['icon'] }}
+      {{ form.icon }}
 
       <p class="note">
       {{ _('PNG and JPG supported.  Image will be resized to 32x32.') }}

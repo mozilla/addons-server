@@ -26,20 +26,20 @@
           <ul>
             <li>
               <label for="id_username">{{ _('Username') }} {{ required() }}</label>
-              {{ form.username|safe }}
-              {{ form.username.errors|safe }}
+              {{ form.username }}
+              {{ form.username.errors }}
             </li>
             <li>
               <label for="id_email">{{ _('Email Address') }} {{ required() }}</label>
-              {{ form.email|safe }}
-              {{ form.email.errors|safe }}
+              {{ form.email }}
+              {{ form.email.errors }}
             </li>
             <li>
               <label for="id_emailhidden" class="check">
-                {{ form.emailhidden|safe }}
+                {{ form.emailhidden }}
                 {{ _('Hide email address from other users') }}
               </label>
-              {{ form.emailhidden.errors|safe }}
+              {{ form.emailhidden.errors }}
             </li>
           </ul>
         </fieldset>
@@ -49,18 +49,18 @@
           <ol>
             <li>
               <label for="id_password">{{ _('Old Password') }}</label>
-              {{ form.oldpassword|safe }}
-              {{ form.oldpassword.errors|safe }}
+              {{ form.oldpassword }}
+              {{ form.oldpassword.errors }}
             </li>
             <li>
               <label for="id_password">{{ _('New Password') }}</label>
-              {{ form.password|safe }}
-              {{ form.password.errors|safe }}
+              {{ form.password }}
+              {{ form.password.errors }}
             </li>
             <li>
               <label for="id_password2">{{ _('Confirm New Password') }}</label>
-              {{ form.password2|safe }}
-              {{ form.password2.errors|safe }}
+              {{ form.password2 }}
+              {{ form.password2.errors }}
             </li>
           </ol>
         </fieldset>
@@ -77,17 +77,17 @@
           <ul>
             <li>
               <label for="id_notifycompat" class="check">
-                {{ form.notifycompat|safe }}
+                {{ form.notifycompat }}
                 {{ _('Add-on compatibility (recommended)') }}
               </label>
-              {{ form.notifycompat.errors|safe }}
+              {{ form.notifycompat.errors }}
             </li>
             <li>
               <label for="id_notifyevents" class="check">
-                {{ form.notifyevents|safe }}
+                {{ form.notifyevents }}
                 {{ _('Upcoming events and contests') }}
               </label>
-              {{ form.notifyevents.errors|safe }}
+              {{ form.notifyevents.errors }}
             </li>
           </ul>
           <p class="note">
@@ -104,28 +104,28 @@
           <ol>
             <li>
               <label for="id_display_name">{{ _('Display Name') }}</label>
-              {{ form.display_name|safe }}
-              {{ form.display_name.errors|safe }}
+              {{ form.display_name }}
+              {{ form.display_name.errors }}
             </li>
             <li>
               <label for="id_location">{{ _('Location') }}</label>
-              {{ form.location|safe }}
-              {{ form.location.errors|safe }}
+              {{ form.location }}
+              {{ form.location.errors }}
             </li>
             <li>
               <label for="id_occupation">{{ _('Occupation') }}</label>
-              {{ form.occupation|safe }}
-              {{ form.occupation.errors|safe }}
+              {{ form.occupation }}
+              {{ form.occupation.errors }}
             </li>
             <li>
               <label for="id_homepage">{{ _('Homepage') }}</label>
-              {{ form.homepage|safe }}
-              {{ form.homepage.errors|safe }}
+              {{ form.homepage }}
+              {{ form.homepage.errors }}
             </li>
             <li class="profile-photo">
               <label for="id_photo">{{ _('Profile Photo') }}</label>
               <input type="file" id="id_photo" name="photo">
-              {{ form.photo.errors|safe }}
+              {{ form.photo.errors }}
               <img src="{{ amouser.picture_url }}"
                    alt="{% if not amouser.picture_type %}{{ _('No Photo') }}{% endif %}"
                    class="avatar photo" />
@@ -144,25 +144,25 @@
               This text will appear publicly on your user info page.
             {%- endtrans %}
           </p>
-          {{ form.bio|safe }}
+          {{ form.bio }}
           {{ some_html_tip() }}
-          {{ form.bio.errors|safe }}
+          {{ form.bio.errors }}
         </fieldset> {# /.profile-detail #}
 
         <ul>
           <li>
             <label for="id_display_collections" class="check">
-              {{ form.display_collections|safe }}
+              {{ form.display_collections }}
               {{ _('Display the collections I have created') }}
             </label>
-            {{ form.display_collections.errors|safe }}
+            {{ form.display_collections.errors }}
           </li>
           <li>
             <label for="id_display_collections_fav" class="check">
-              {{ form.display_collections_fav|safe }}
+              {{ form.display_collections_fav }}
               {{ _("Display collections I'm following") }}
             </label>
-            {{ form.display_collections_fav.errors|safe }}
+            {{ form.display_collections_fav.errors }}
           </li>
         </ul>
 

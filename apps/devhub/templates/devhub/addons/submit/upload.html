@@ -16,7 +16,7 @@
     <input disabled type="file" id="upload-file-input" />
   </span>
   <div class="extra">{{ _('We accept .xpi, .jar, and .xml files.') }}</div>
-  {{ new_addon_form.non_field_errors()|safe }}
+  {{ new_addon_form.non_field_errors() }}
   <section id="upload-file">
     <div class="upload-status hidden">
       <strong id="upload-status-text"></strong>
@@ -28,9 +28,9 @@
     </div>
       <div class="platform">
       <label>{{ _('Select the target platform(s) for this file.') }}</label>
-      {{ new_addon_form.errors['platforms']|safe }}
-      {{ new_addon_form.platforms|safe }}
-      {{ new_addon_form.upload|safe }}
+      {{ new_addon_form.errors.platforms }}
+      {{ new_addon_form.platforms }}
+      {{ new_addon_form.upload }}
       </div>
       <div class="submission-buttons addon-submission-field">
         <button id="submit-upload-file-finish" disabled=disabled type="submit">

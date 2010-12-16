@@ -54,43 +54,43 @@
       {{ csrf() }}
       {% set values = contrib_form.data if contrib_form.is_bound else contrib_form.initial %}
       <div>
-        {{ contrib_form.non_field_errors()|safe }}
-        {{ contrib_form.recipient.errors|safe }}
+        {{ contrib_form.non_field_errors() }}
+        {{ contrib_form.recipient.errors }}
         <b>{{ _('Who will receive contributions to this add-on?') }}</b>
-        {{ contrib_form.recipient|safe }}
+        {{ contrib_form.recipient }}
         <div id="org-org" class="brform paypal {{ 'hidden' if (values.recipient != 'org') }}">
-          {{ charity_form.non_field_errors()|safe }}
-          {{ charity_form.name.errors|safe }}
+          {{ charity_form.non_field_errors() }}
+          {{ charity_form.name.errors }}
           <label for="id_charity-name">{{ _('What is the name of the organization?') }}</label>
-          {{ charity_form.name|safe }}
-          {{ charity_form.url.errors|safe }}
+          {{ charity_form.name }}
+          {{ charity_form.url.errors }}
           <label for="id_charity-url">{{ _('What is the URL of the organization?') }}</label>
-          {{ charity_form.url|safe }}
-          {{ charity_form.paypal.errors|safe }}
+          {{ charity_form.url }}
+          {{ charity_form.paypal.errors }}
           <label for="id_charity-paypal">{{ _('What is the PayPal ID of the organization?') }}</label>
-          {{ charity_form.paypal|safe }}
+          {{ charity_form.paypal }}
         </div>
       </div>
       <div id="org-dev" class="brform paypal {{ 'hidden' if (values.recipient != 'dev') }}">
-        {{ contrib_form.paypal_id.errors|safe }}
+        {{ contrib_form.paypal_id.errors }}
         <label for="id_paypal_id">{{ _('What is your PayPal ID?') }}</label>
-        <div>{{ contrib_form.paypal_id|safe }} <a class="extra" href="{{ settings.PAYPAL_CGI_URL + '?cmd=_registration-run' }}">{{ _('Sign up for Paypal') }}</a></div>
+        <div>{{ contrib_form.paypal_id }} <a class="extra" href="{{ settings.PAYPAL_CGI_URL + '?cmd=_registration-run' }}">{{ _('Sign up for Paypal') }}</a></div>
       </div>
       <div class="brform">
-        {{ contrib_form.suggested_amount.errors|safe }}
+        {{ contrib_form.suggested_amount.errors }}
         <label for="id_suggested_amount">{{ _('What is your suggested contribution?') }}</label>
         <div class="extra">{{ contrib_form.suggested_amount.help_text }}</div>
-        <div>{{ contrib_form.suggested_amount|safe }} USD {{ _('(Example: 3.99)') }}</div>
+        <div>{{ contrib_form.suggested_amount }} USD {{ _('(Example: 3.99)') }}</div>
       </div>
       <div class="nag">
-        {{ contrib_form.annoying.errors|safe }}
+        {{ contrib_form.annoying.errors }}
         <b>{{ _('When should users be asked for contributions?') }}</b>
         <div class="extra">{{ contrib_form.annoying.help_text }}</div>
-        {{ contrib_form.annoying|safe }}
+        {{ contrib_form.annoying }}
       </div>
       <div>
         <b>{{ _('Send a thank-you note?') }}</b><br>
-        {{ contrib_form.enable_thankyou|safe }}
+        {{ contrib_form.enable_thankyou }}
         <label for="{{ contrib_form.enable_thankyou.auto_id }}">
           {{ _("We'll automatically email users who contribute to your add-on with this message.") }}</label>
         <div class="thankyou-note {{ 'hidden' if not contrib_form.initial.enable_thankyou }}">
@@ -99,8 +99,8 @@
             support. You might also want to tell them about what's next for your add-on and
             about any other add-ons you've made for them to try.
           {% endtrans %}</div>
-          {{ contrib_form.thankyou_note.errors|safe }}
-          {{ contrib_form.thankyou_note|safe }}
+          {{ contrib_form.thankyou_note.errors }}
+          {{ contrib_form.thankyou_note }}
           <label data-for="thankyou_note"></label>
         </div>
       </div>

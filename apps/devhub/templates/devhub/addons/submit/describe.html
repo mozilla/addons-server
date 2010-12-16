@@ -9,18 +9,17 @@
     {{ csrf() }}
     <div class="addon-submission-field">
       <label for="id_name">{{ _("Your add-on's name and version:") }}</label>
-      {{ form.name|safe }}
+      {{ form.name }}
 
       {% set version = addon.current_version %}
       <input type="text" disabled id="current_version"
              value="{{ version.version }}" size="6">
-
-      {{ form.name.errors|safe }}
+      {{ form.name.errors }}
     </div>
     <div class="addon-submission-field">
       <label>{{ _("Your add-on's detail page will be:") }}</label>
       <div id="slug_edit" class="edit_with_prefix edit_initially_hidden">
-        <span>{{ settings.SITE_URL }}</span>{{ form.slug|safe }}
+        <span>{{ settings.SITE_URL }}</span>{{ form.slug }}
         <div class="edit-addon-details">
           {{ _('Please use only letters, numbers, and dashes in your URL.') }}
         </div>
@@ -29,12 +28,12 @@
         {{ settings.SITE_URL }}/&hellip;/<span id="slug_value"></span>
         <a id="edit_slug" href="#">{{ _('Edit') }}</a>
       </span>
-      {{ form.slug.errors|safe }}
+      {{ form.slug.errors }}
     </div>
     <div class="addon-submission-field">
       <label>{{ _('Provide a brief summary of your add-on:') }}</label>
-      {{ form.summary|safe }}
-      {{ form.summary.errors|safe }}
+      {{ form.summary }}
+      {{ form.summary.errors }}
       <div class="edit-addon-details">
         {% trans %}
           This summary will be shown with your add-on in listings and searches.
@@ -46,16 +45,16 @@
     </div>
     <div class="addon-submission-field"
          data-max-categories="{{ amo.MAX_CATEGORIES }}">
-      {{ cat_form.non_form_errors()|safe }}
-      {{ cat_form.management_form|safe }}
+      {{ cat_form.non_form_errors() }}
+      {{ cat_form.management_form }}
       {% for form in cat_form.initial_forms %}
         {{ select_cats(amo.MAX_CATEGORIES, form) }}
       {% endfor %}
     </div>
     <div class="addon-submission-field">
       <label>{{ _('Provide a more detailed description of your add-on:') }}</label>
-      {{ form.description|safe }}
-      {{ form.description.errors|safe }}
+      {{ form.description }}
+      {{ form.description.errors }}
       <div class="edit-addon-details">
         {{ _("The description will appear on your add-on's detail page.") }}
         {{ some_html_tip() }}

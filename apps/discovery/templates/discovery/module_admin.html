@@ -4,14 +4,14 @@
 
 {% macro field(form, name) %}
 <td class="{{ name }} {% if form[name].errors %}error{% endif %}">
-  {{ form[name]|safe }}
+  {{ form[name] }}
 </td>
 {% endmacro %}
 
 {% block content %}
 <h1>{{ self.title() }} for {{ APP.pretty }}</h1>
 <form method="post" action="" id="discovery-modules">
-  {{ formset.management_form|safe }}
+  {{ formset.management_form }}
   {{ csrf() }}
   <table>
     <thead>
@@ -23,7 +23,7 @@
       {% for form in formset.forms %}
       {% if form.errors %}
       <tr><td colspan="3">
-        {% for errors in form.errors.values() %}{{ errors|safe }}{% endfor %}
+        {% for errors in form.errors.values() %}{{ errors }}{% endfor %}
       </td></tr>
       {% endif %}
       <tr>
@@ -36,7 +36,7 @@
           <input type="hidden" name="{{ form.app.html_name }}"
                  value="{{ form.initial.app }}">
           {% for field in form.hidden_fields() %}
-            {{ field|safe }}
+            {{ field }}
           {% endfor %}
         </td>
         {{ field(form, 'locales') }}

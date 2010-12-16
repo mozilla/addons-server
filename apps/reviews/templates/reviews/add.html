@@ -46,7 +46,7 @@
   {{ csrf() }}
   <p>
     <label for="id_title">{{ _('Title:') }} <span class="optional">{{ _('(optional)') }}</span></label>
-    {{ form.title|safe }}
+    {{ form.title }}
   </p>
   {{ field(form.rating, _('Rating:')) }}
   {{ field(form.body, _('Review:')) }}

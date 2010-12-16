@@ -16,9 +16,9 @@
 </p>
 <form class="select-review" action="" method="post">
   {{ csrf() }}
-  {{ review_type_form.non_field_errors()|safe }}
-  {{ review_type_form.review_type|safe }}
-  {{ review_type_form.review_type.errors|safe }}
+  {{ review_type_form.non_field_errors() }}
+  {{ review_type_form.review_type }}
+  {{ review_type_form.review_type.errors }}
   <div class="review-type">
     <div class="highlight">
       <h4>{{ _('Full Review') }}</h4>

@@ -38,7 +38,7 @@
 
 <div class="container">
   <label class="optional above-the-field" for="the_reason" data-for="the_reason">
-    {{ profile_form.the_reason.label|safe }}
+    {{ profile_form.the_reason.label }}
     {{ maybe_required() }}
   </label>
   <span class="help">
@@ -47,14 +47,14 @@
       solution to one of life's great problems, share your story.
     {% endtrans %}
   </span>
-  {{ profile_form.the_reason.errors|safe }}
-  {{ profile_form.the_reason|safe }}
+  {{ profile_form.the_reason.errors }}
+  {{ profile_form.the_reason }}
   {{ some_html_tip() }}
 </div>
 
 <div class="container">
   <label for="the_future" data-for="the_future" class="above-the-field">
-    {{ profile_form.the_future.label|safe }}
+    {{ profile_form.the_future.label }}
     {{ maybe_required() }}
   </label>
   <span class="help">
@@ -63,7 +63,7 @@
       look forward to.
     {% endtrans %}
   </span>
-  {{ profile_form.the_future.errors|safe }}
-  {{ profile_form.the_future|safe }}
+  {{ profile_form.the_future.errors }}
+  {{ profile_form.the_future }}
   {{ some_html_tip() }}
 </div>

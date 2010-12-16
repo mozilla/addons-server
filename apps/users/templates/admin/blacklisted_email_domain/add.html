@@ -28,9 +28,9 @@
         {{ csrf() }}
         <p>Enter one domain per line.</p>
         <div class="form-row">
-          {{ form.domains.errors|safe }}
+          {{ form.domains.errors }}
           <label for="id_usernames">Blacklisted E-mail Domains {{ required() }}</label>
-          {{ form.domains|safe }}
+          {{ form.domains }}
         </div>
         <div class="submit-row">
           <input type="submit" name="_save" class="default" value="Save">

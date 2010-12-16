@@ -18,8 +18,8 @@
         <ul>
           <li>
             <label for="id_email">{{ _('Email Address') }} {{ required() }}</label>
-            {{ form.email|safe }}
-            {{ form.email.errors|safe }}
+            {{ form.email }}
+            {{ form.email.errors }}
           </li>
         </ul>
       </fieldset>

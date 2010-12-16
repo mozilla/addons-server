@@ -25,8 +25,8 @@
           <tr>
             <th>{{ _("Files") }}</th>
             <td>
-              {{ file_form.management_form|safe }}
-              {{ file_form.non_form_errors()|safe }}
+              {{ file_form.management_form }}
+              {{ file_form.non_form_errors() }}
               <table id="file-list">
                 <tbody>
                   {% for form in file_form.forms %}
@@ -46,8 +46,8 @@
                           add-on even if the install manifest in the package indicates that the
                           add-on is incompatible.")) }}</th>
             <td class="compat-versions">
-                {{ compat_form.non_form_errors()|safe }}
-                {{ compat_form.management_form|safe }}
+                {{ compat_form.non_form_errors() }}
+                {{ compat_form.management_form }}
                 <table>
                   <tbody>
                     {% for form in compat_form.initial_forms %}
@@ -78,8 +78,8 @@
               </label>
             </th>
             <td>
-              {{ field.errors|safe }}
-              {{ field|safe }}
+              {{ field.errors }}
+              {{ field }}
               {{ some_html_tip() }}
             </td>
           {% endwith %}
@@ -116,8 +116,8 @@
                               account information.")) }}
             </th>
             <td>
-              {{ field.errors|safe }}
-              {{ field|safe }}
+              {{ field.errors }}
+              {{ field }}
             </td>
           {% endwith %}
           </tr>

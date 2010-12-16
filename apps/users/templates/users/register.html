@@ -16,40 +16,40 @@
           <ul>
             <li>
               <label for="id_username">{{ _('Username') }} {{ required() }}</label>
-              {{ form.username|safe }}
-              {{ form.username.errors|safe }}
+              {{ form.username }}
+              {{ form.username.errors }}
             </li>
             <li>
               <label for="id_display_name">{{ _('Display name') }}</label>
-              {{ form.display_name|safe }}
-              {{ form.display_name.errors|safe }}
+              {{ form.display_name }}
+              {{ form.display_name.errors }}
             </li>
             <li>
               <label for="id_homepage">{{ _('Homepage') }}</label>
-              {{ form.homepage|safe }}
-              {{ form.homepage.errors|safe }}
+              {{ form.homepage }}
+              {{ form.homepage.errors }}
             </li>
             <li>
               <label for="id_email">{{ _('Email Address') }} {{ required() }}</label>
-              {{ form.email|safe }}
-              {{ form.email.errors|safe }}
+              {{ form.email }}
+              {{ form.email.errors }}
             </li>
             <li class="check">
               <label for="id_emailhidden" class="check">
-                {{ form.emailhidden|safe }}
+                {{ form.emailhidden }}
                 {{ _('Hide email address from other users') }}
               </label>
-              {{ form.emailhidden.errors|safe }}
+              {{ form.emailhidden.errors }}
             </li>
             <li>
               <label for="id_password">{{ _('Password') }} {{ required() }}</label>
-              {{ form.password|safe }}
-              {{ form.password.errors|safe }}
+              {{ form.password }}
+              {{ form.password.errors }}
             </li>
             <li>
               <label for="id_password2">{{ _('Confirm password') }} {{ required() }}</label>
-              {{ form.password2|safe }}
-              {{ form.password2.errors|safe }}
+              {{ form.password2 }}
+              {{ form.password2.errors }}
             </li>
             <li>
             {% if settings.RECAPTCHA_PRIVATE_KEY %}

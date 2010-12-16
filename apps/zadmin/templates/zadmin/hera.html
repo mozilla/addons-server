@@ -18,13 +18,13 @@
       <ul>
         <li>
         <label for="id_prefix">Prefix</label>
-          {{ form.flushprefix|safe }}
-          {{ form.flushprefix.errors|safe }}
+          {{ form.flushprefix }}
+          {{ form.flushprefix.errors }}
           <p class="note">A prefix to prepend to all your patterns.  I suggest <strong>{{ settings.SITE_URL }}</strong></p>
         </li>
         <li>
-          {{ form.flushlist|safe }}
-          {{ form.flushlist.errors|safe }}
+          {{ form.flushlist }}
+          {{ form.flushlist.errors }}
           <p class="note">A new-line separated list of simple expressions (wildcards allowed) which will be flushed from
           the front end cache.  Examples: <strong>/*addon/1865*</strong> or <strong>/de/jsi18n*</strong></p>
         </li>

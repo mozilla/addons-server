@@ -16,13 +16,13 @@
             <li>
               <label for="id_new_password1">{{ _('New password') }} {{ required() }}
               </label>
-              {{ form.new_password1|safe }}
-              {{ form.new_password1.errors|safe }}
+              {{ form.new_password1 }}
+              {{ form.new_password1.errors }}
             </li>
             <li>
               <label for="id_new_password2">{{ _('Confirm password') }} {{ required() }}</label>
-              {{ form.new_password2|safe }}
-              {{ form.new_password2.errors|safe }}
+              {{ form.new_password2 }}
+              {{ form.new_password2.errors }}
             </li>
           </ul>
         </fieldset>

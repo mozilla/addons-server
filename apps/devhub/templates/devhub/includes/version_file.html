@@ -5,12 +5,12 @@
         {{ file.filename }}</a>
     </td>
     <td>{{ (file.size * 1024)|filesizeformat }}</td>
-    <td>{{ form.platform|safe }}</td>
+    <td>{{ form.platform }}</td>
     <td>{{ status_choices(addon)[file.status] }}</td>
     <td>
       <span class="js-hidden">
-        <span class="delete">{{ form.DELETE|safe }}</span>
-        {{ form.id|safe }}
+        <span class="delete">{{ form.DELETE }}</span>
+        {{ form.id }}
       </span>
       <a class="remove" href="#">x</a>
     </td>

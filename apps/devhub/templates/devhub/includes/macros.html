@@ -25,8 +25,8 @@
 {% macro flags(text, element, editable, alt_text=False) %}
   {% if editable %}
     <div>
-      {{ element|safe }}
-      {{ element.errors|safe }}
+      {{ element }}
+      {{ element.errors }}
       <label for="id_{{ element.html_name }}">{{ text }}
     </div>
   {% elif element %}
@@ -43,21 +43,21 @@
     <td class="app {{ form.app.short }}">{{ form.app.pretty }}</td>
     <td class="select">
       <div>
-        <label>{{ form.min.label|safe }}</label> {{ form.min|safe }}
-        {{ form.non_field_errors()|safe }}
-        {{ form.min.errors|safe }}
+        <label>{{ form.min.label }}</label> {{ form.min }}
+        {{ form.non_field_errors() }}
+        {{ form.min.errors }}
       </div>
       <div><span class="range">&ndash;</span></div>
       <div>
-        <label>{{ form.max.label|safe }}</label> {{ form.max|safe }}
-        {{ form.max.errors|safe }}
+        <label>{{ form.max.label }}</label> {{ form.max }}
+        {{ form.max.errors }}
       </div>
     </td>
     <td class="remove">
       <div>
-        <label>{{ form.DELETE.label|safe }} {{ form.DELETE|safe }}</label>
-        {{ form.application|safe }}
-        {{ form.id|safe }}
+        <label>{{ form.DELETE.label }} {{ form.DELETE }}</label>
+        {{ form.application }}
+        {{ form.id }}
         <a href="#" class="remove"
            title="{{ _('Remove this application') }}">x</a>
       </div>
@@ -72,8 +72,8 @@
     <label>{{ ngettext('Select <b>up to {0}</b> {1} category for this add-on:',
                        'Select <b>up to {0}</b> {1} categories for this add-on:',
                        max)|f(max, form.app.pretty)|safe }}</label>
-    {{ form.application|safe }}
-    {{ form.categories|safe }}
-    {{ form.categories.errors|safe }}
+    {{ form.application }}
+    {{ form.categories }}
+    {{ form.categories.errors }}
   </div>
 {% endmacro %}

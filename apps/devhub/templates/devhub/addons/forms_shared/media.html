@@ -50,7 +50,7 @@
                 </div>
               </div>
               <ul id="icons_default">
-                {{ form.icon_type|safe }}
+                {{ form.icon_type }}
               </ul>
               <div class="invisible-upload">
                 <a class="button" href="#">{{ _('Upload a Custom Icon...') }}</a>
@@ -58,7 +58,7 @@
                        data-upload-url="{{ url('devhub.addons.upload_icon', addon.slug) }}">
               </div>
               <div class="js-hidden">
-                {{ form.icon_upload_hash|safe }}
+                {{ form.icon_upload_hash }}
               </div>
               <div class="edit-media-details">
                 {% trans %}
@@ -94,8 +94,8 @@
             <div class="{{ "edit-previews-submit" if context == 'submit' }}">
             {% if editable %}
               {% if preview_form: %}
-                {{ preview_form.management_form|safe }}
-                {{ preview_form.non_form_errors()|safe }}
+                {{ preview_form.management_form }}
+                {{ preview_form.non_form_errors() }}
                 <div id="file-list">
                   {% for form in preview_form.forms %}
                     <div class="preview">
@@ -106,22 +106,22 @@
                       {% else %}
                         <div class="preview-thumb"></div>
                       {% endif %}
-                      {{ form.id|safe }}
-                      <span class="js-hidden delete">{{ form.DELETE|safe }}{{ form.DELETE.label_tag()|safe }}</span>
+                      {{ form.id }}
+                      <span class="js-hidden delete">{{ form.DELETE }}{{ form.DELETE.label_tag() }}</span>
                       <div class="edit-previews-text">
                         <label data-for="{{ form.prefix }}-{{ form.caption.name }}" class="above-the-field">
                           {{ _('Please provide a caption for this screenshot:') }}
                         </label>
-                        {{ form.caption|safe }}
+                        {{ form.caption }}
                         <a href="#" class="remove">x</a>
                       </div>
                       <div class="js-hidden position">
-                        {{ form.position|safe }}
+                        {{ form.position }}
                       </div>
                       <div class="preview_extra">
-                        {{ form.upload_hash|safe }}
+                        {{ form.upload_hash }}
                       </div>
-                      {{ form.errors|safe }}
+                      {{ form.errors }}
                     </div>
                   {% endfor %}
                 </div>

@@ -26,7 +26,7 @@
   <form action="{{ url('oauth.authorize') }}" method="POST">
     {{ csrf() }}
     {# TODO(potch): A little help? #}
-    {{ form.as_table()|safe }}
+    {{ form.as_table() }}
     <button type="submit">{{ _('Confirm') }}</button>
   </form>
 {% endblock %}

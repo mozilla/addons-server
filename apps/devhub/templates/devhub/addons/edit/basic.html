@@ -19,8 +19,8 @@
             <th><label data-for="name">{{ _("Name") }}</label></th>
             <td>
               {% if editable %}
-                {{ form.name|safe }}
-                {{ form.name.errors|safe }}
+                {{ form.name }}
+                {{ form.name.errors }}
               {% else %}
                 {{ addon|all_locales('name') }}
               {% endif %}
@@ -34,9 +34,9 @@
             <td id="slug_edit">
               {% if editable %}
                 <div class="edit_with_prefix">
-                  <span>{{ settings.SITE_URL }}/&hellip;/</span>{{ form.slug|safe }}
+                  <span>{{ settings.SITE_URL }}/&hellip;/</span>{{ form.slug }}
                 </div>
-                {{ form.slug.errors|safe }}
+                {{ form.slug.errors }}
               {% else %}
                 {{ settings.SITE_URL }}/&hellip;/{{ addon.slug }}
                 <a href="{{ addon.get_url_path() }}">{{ _('View Listing') }}</a>
@@ -56,8 +56,8 @@
             </th>
             <td>
               {% if editable %}
-                {{ form.summary|safe }}
-                {{ form.summary.errors|safe }}
+                {{ form.summary }}
+                {{ form.summary.errors }}
                 <div class="char-count"
                      data-for-startswith="{{ form.summary.auto_id }}_"
                      data-maxlength="{{ form.summary.field.max_length }}"></div>
@@ -76,8 +76,8 @@
             <td id="addon_categories_edit"
                 data-max-categories="{{ amo.MAX_CATEGORIES }}">
               {% if editable %}
-                {{ cat_form.non_form_errors()|safe }}
-                {{ cat_form.management_form|safe }}
+                {{ cat_form.non_form_errors() }}
+                {{ cat_form.management_form }}
                 {% for form in cat_form.initial_forms %}
                   {{ select_cats(amo.MAX_CATEGORIES, form) }}
                 {% endfor %}
@@ -104,8 +104,8 @@
             </th>
             <td id="addon_tags_edit">
               {% if editable %}
-                {{ form.tags|safe }}
-                {{ form.tags.errors|safe }}
+                {{ form.tags }}
+                {{ form.tags.errors }}
                 <div class="edit-addon-details">
                   {{ ngettext('Comma-separated, minimum of {0} character.',
                               'Comma-separated, minimum of {0} characters.',

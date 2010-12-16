@@ -22,8 +22,8 @@
       <form method="post" action="{{ url('reviews.reply', addon.slug, review.id) }}">
         {{ csrf() }}
         <p>
-          <label for="id_title">{{ form.title.label|safe }} <span class="optional">{{ _('(optional)') }}</span></label>
-          {{ form.title|safe }}
+          <label for="id_title">{{ form.title.label }} <span class="optional">{{ _('(optional)') }}</span></label>
+          {{ form.title }}
         </p>
         {{ field(form.body, _('Reply:')) }}
         <input type="submit" value="{{ _('Submit Your Reply') }}">
