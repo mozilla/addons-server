@@ -20,7 +20,7 @@
           {% set link = url('devhub.versions.edit', addon.id, addon.current_version.id) %}
           {# L10n: {0} is a version number. #}
           <li>{{ _('<strong>Latest version:</strong> <a href="{0}">{1}</a>'|
-                   f(link, addon.current_version))|safe }}</li>
+                   f(link, addon.current_version))|xssafe }}</li>
         {% endif %}
         {# L10n: {0} is a date. #}
         <li>{{ _('<strong>Last updated:</strong> {0}'|

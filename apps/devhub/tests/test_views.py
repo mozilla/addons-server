@@ -3137,6 +3137,17 @@ class TestAddVersion(UploadTest):
                                         args=[self.addon.id, version.id]))
 
 
+class TestVersionXSS(UploadTest):
+
+    def test_unique_version_num(self):
+        self.version.update(
+                version='<script>alert("Happy XSS-Xmas");</script>')
+        r = self.client.get(reverse('devhub.addons'))
+        eq_(r.status_code, 200)
+        assert '<script>alert' not in r.content
+        assert '&lt;script&gt;alert' in r.content
+
+
 class TestCreateAddon(files.tests.UploadTest, test_utils.TestCase):
     fixtures = ['base/apps', 'base/users']
 
