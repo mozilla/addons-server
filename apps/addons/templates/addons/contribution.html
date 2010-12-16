@@ -47,7 +47,7 @@
         {# The id triggers a dropdown, so don't expose it if there isn't a
            suggested amount (i.e., only one choice). #}
         {% if has_suggested %}id="contribute-button"{% endif %}
-        href="{{ url('addons.contribute', addon.id)|urlparams(source=src) }}">
+        href="{{ url('addons.contribute', addon.id)|urlparams(src=src) }}">
         <b></b>{{ _('Contribute') }}
       </a>
 

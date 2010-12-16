@@ -1,5 +1,5 @@
 {% if addon.takes_contributions %}
-  {% set base = url('addons.contribute', addon.id)|urlparams(source='direct') %}
+  {% set base = url('addons.contribute', addon.id)|urlparams(src='direct') %}
   <div class="contribute">
     {% if addon.suggested_amount is not none %}
     {% trans url=base|urlparams(type='suggested')|escape,
