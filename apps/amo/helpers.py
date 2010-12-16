@@ -31,6 +31,17 @@ register.function(dict)
 register.function(utils.randslice)
 
 
+@register.filter
+def xssafe(value):
+    """
+    Like |safe but for strings with interpolation.
+
+    By using |xssafe you assert that you have written tests proving an
+    XSS can't happen here.
+    """
+    return jinja2.Markup(value)
+
+
 @register.function
 def locale_url(url):
     """Take a URL and give it the locale prefix."""
