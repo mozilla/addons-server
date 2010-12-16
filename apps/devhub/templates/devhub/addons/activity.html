@@ -20,7 +20,7 @@
       {% if pager.object_list %}
         {% for item in pager.object_list %}
         <div class="item">
-          <p>{{ item|safe }}</p>
+          <p>{{ item|xssafe }}</p>
           <p>
           {% trans user=item.user|user_link, ago=item.created|timesince,
                    iso=item.created|isotime,
