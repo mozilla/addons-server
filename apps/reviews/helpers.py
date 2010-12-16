@@ -17,7 +17,7 @@ def stars(num):
         msg = _('Rated %s out of 5 stars') % rating
         s = (u'<span class="stars stars-{num}" title="{title}">{msg}</span>'
              .format(num=num, title=title, msg=msg))
-        return jinja2.Markup(s)
+        return jinja2.Markup(s)  # Inspected by #10
 
 
 @jingo.register.function
