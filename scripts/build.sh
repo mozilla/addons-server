@@ -71,7 +71,7 @@ export FORCE_DB='yes sir'
 
 # with-coverage excludes sphinx so it doesn't conflict with real builds.
 if [[ $2 = 'with-coverage' ]]; then
-    coverage run manage.py test --noinput --logging-clear-handlers --with-xunit -a'!sphinx'
+    coverage run manage.py test -v 2 --noinput --logging-clear-handlers --with-xunit -a'!sphinx'
     coverage xml $(find apps lib -name '*.py')
 else
     python manage.py test --noinput --logging-clear-handlers --with-xunit
