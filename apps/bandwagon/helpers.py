@@ -127,7 +127,7 @@ def favorites_widget(context, addon, condensed=False):
         faved_class = 'faved' if is_favorite else ''
 
         unfaved_text = '' if condensed else _('Add to favorites')
-        faved_text = 'Favorite' if condensed else _('Remove from favorites')
+        faved_text = _('Favorite') if condensed else _('Remove from favorites')
 
         add_url = reverse('collections.alter',
                           args=[request.amo_user.username, 'favorites', 'add'])
