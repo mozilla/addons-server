@@ -270,9 +270,13 @@ def enable(request, addon_id, addon):
 @dev_required
 @owner_for_post_required
 def cancel(request, addon_id, addon):
-    if addon.is_under_review:
-        addon.update(status=addon.highest_status)
+    if addon.status in amo.STATUS_UNDER_REVIEW:
+        if addon.status == amo.STATUS_LITE_AND_NOMINATED:
+            addon.update(status=amo.STATUS_LITE)
+        else:
+            addon.update(status=amo.STATUS_NULL)
         amo.log(amo.LOG.CHANGE_STATUS, addon.get_status_display(), addon)
+
     return redirect('devhub.versions', addon_id)
 
 

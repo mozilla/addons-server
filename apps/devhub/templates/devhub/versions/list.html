@@ -188,8 +188,19 @@
     <form method="post" action="{{ url('devhub.addons.cancel', addon.id) }}">
       <h3>{{ _('Cancel Review Request') }}</h3>
       <p>
+        {% if addon.status == amo.STATUS_LITE_AND_NOMINATED %}
+          {% trans %}
+            Canceling your review request will leave your
+            add-on as preliminarily reviewed.
+          {% endtrans %}
+        {% else %}
+          {% trans %}
+            Canceling your review request will mark your add-on incomplete.
+            If you do not complete your add-on after several days
+            by re-requesting review, it will be deleted.
+          {% endtrans %}
+        {% endif %}
         {% trans %}
-          Canceling your review request will reset the addons status.
           If you'd prefer to have another
           version reviewed, simply upload the new version instead.
         {% endtrans %}

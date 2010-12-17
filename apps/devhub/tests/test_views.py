@@ -1814,13 +1814,14 @@ class TestVersion(test_utils.TestCase):
 
     def test_cancel(self):
         cancel_url = reverse('devhub.addons.cancel', args=[3615])
-        for status in amo.STATUS_CHOICES:
-            if status not in amo.STATUS_UNDER_REVIEW:
-                continue
+        self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
+        self.client.post(cancel_url)
+        eq_(Addon.objects.get(id=3615).status, amo.STATUS_LITE)
 
-            self.addon.update(status=status, highest_status=amo.STATUS_BETA)
+        for status in (amo.STATUS_UNREVIEWED, amo.STATUS_NOMINATED):
+            self.addon.update(status=status)
             self.client.post(cancel_url)
-            eq_(Addon.objects.get(id=3615).status, amo.STATUS_BETA)
+            eq_(Addon.objects.get(id=3615).status, amo.STATUS_NULL)
 
     def test_not_cancel(self):
         self.client.logout()
