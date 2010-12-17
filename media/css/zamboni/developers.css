@@ -1079,8 +1079,7 @@ a.extra {
 #navbar ul.top {
     overflow: visible;
 }
-#navbar li.top,
-#navbar li.search {
+#navbar li.top {
     float: left;
     border-right: 1px solid #455c87;
     list-style: none;
@@ -1092,10 +1091,6 @@ a.extra {
 }
 #navbar li.top a.controller {
     border-right: 1px solid #1e2e4c;
-}
-#navbar li.search {
-    float: right;
-    border: none;
 }
 #navbar li.top:hover,
 #navbar li.top.selected {
@@ -1138,63 +1133,6 @@ a.extra {
 #navbar li.top ul li:last-child,
 #navbar li.top ul li:last-child a {
     border: none;
-}
-
-#navbar li.search form {
-    position: relative;
-    padding: .3em .5em .1em 1.3em;
-    margin: 0;
-}
-#navbar #query {
-    background-image: url(../../img/developers/devhub_search.png);
-    background-repeat: no-repeat;
-    background-position: 0.3em center;
-    background-color: white;
-    color: #888;
-    min-width: 16em;
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
-    border-radius: 2px;
-    padding: .1em 0 .1em 1.6em;
-    cursor: pointer;
-}
-.html-rtl #navbar #query {
-    background-position: 98% center;
-    padding: .1em 1.6em .1em 0;
-}
-#navbar #search-submit {
-    margin: -.1em 0 .1em .1em;
-    /*padding: 0.3em 0;*/
-    padding: 0 .0 .2em 0;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    background-color:#6FB727;
-    background-image:url(../../img/amo2009/bg/button-green.jpg);
-    background-position:left center;
-    background-repeat:repeat-x;
-    border:1px solid #B9D999;
-/*    width: 12%;*/
-}
-#navbar #search-submit img {
-/*
-    width: 9px;
-    height: 18px;
-    background-image: url(../../img/amo2009/icons/buttons/go-green.gif);
-*/
-    width: 16px;
-    height: 16px;
-    background-image: url(../../img/developers/go-arrow.png);
-    background-repeat: no-repeat;
-    vertical-align: bottom;
-    margin: 0;
-    padding: 0;
-    display: inline;
-    border: none;
-}
-.html-rtl #navbar #search-submit img {
-    background-image: url(../../img/amo2009/icons/buttons/go-green_rtl.gif);
-/*    background-image: url(../../img/developers/go-arrow_rtl.png); */
 }
 /* @end */
 
