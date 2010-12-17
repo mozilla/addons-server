@@ -1,0 +1,5 @@
+<div class="trans" data-name="{{ field_name }}">
+  {% for trans in translations %}
+    <span lang="{{ trans.locale|to_language }}">{{ trans }}</span>
+  {% endfor %}
+</div>

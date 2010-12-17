@@ -4,7 +4,7 @@
 {% block title %}{{ dev_page_title(title, addon) }}{% endblock %}
 
 {% macro status(cls, msg) %}
-<strong class="status-{{ cls }}">{{ msg|safe }}</strong>
+<strong class="status-{{ cls }}">{{ msg }}</strong>
 {% endmacro %}
 
 {% block content %}
@@ -17,28 +17,28 @@
   <div class="item" id="version-status">
     <div>
       {% if addon.disabled_by_user %}
-        {{ status('disabled', _('This add-on has been <b>disabled</b>.')) }}
+        {{ status('disabled', _('This add-on has been <b>disabled</b>.')|safe) }}
         {{ _("Your add-on is disabled and will not show up in our gallery or update service.") }}
       {% elif addon.status == amo.STATUS_NULL %}
-        {{ status('incomplete', _('This add-on is <b>incomplete</b>.')) }}
+        {{ status('incomplete', _('This add-on is <b>incomplete</b>.')|safe) }}
         {{ _('Please complete your add-on.') }}
       {% elif addon.status == amo.STATUS_UNREVIEWED %}
-        {{ status('unreviewed',  _('This add-on is <b>awaiting preliminary review</b>.')) }}
+        {{ status('unreviewed',  _('This add-on is <b>awaiting preliminary review</b>.')|safe) }}
         {{ _('ASK FLIGTAR') }}
       {% elif addon.status == amo.STATUS_NOMINATED %}
-        {{ status('nominated', _('This add-on is <b>awaiting full review</b>.')) }}
+        {{ status('nominated', _('This add-on is <b>awaiting full review</b>.')|safe) }}
         {{ _('ASK FLIGTAR') }}
       {% elif addon.status == amo.STATUS_PUBLIC %}
-        {{ status('fully-approved', _('This add-on has been <b>fully approved</b>.')) }}
+        {{ status('fully-approved', _('This add-on has been <b>fully approved</b>.')|safe) }}
         {{ _('ASK FLIGTAR') }}
       {% elif addon.status == amo.STATUS_DISABLED %}
-        {{ status('admin-disabled', _('This add-on has been <b>disabled by the admins</b>.')) }}
+        {{ status('admin-disabled', _('This add-on has been <b>disabled by the admins</b>.')|safe) }}
         {{ _('ASK FLIGTAR') }}
       {% elif addon.status == amo.STATUS_LITE %}
-        {{ status('lite', _('This add-on has been <b>preliminarily approved</b>.')) }}
+        {{ status('lite', _('This add-on has been <b>preliminarily approved</b>.')|safe) }}
         {{ _('ASK FLIGTAR') }}
       {% elif addon.status == amo.STATUS_LITE_AND_NOMINATED %}
-        {{ status('lite-nom', _('This add-on has been <b>preliminarily approved</b> and is <b>awaiting full review</b>.')) }}
+        {{ status('lite-nom', _('This add-on has been <b>preliminarily approved</b> and is <b>awaiting full review</b>.')|safe) }}
         {{ _('ASK FLIGTAR') }}
       {% elif addon.status == amo.STATUS_PURGATORY %}
         {{ status('purgatory', _('Please select a review option.')) }}

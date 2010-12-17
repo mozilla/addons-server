@@ -50,7 +50,7 @@
          {% endif %}>
         <b></b>
         <span>
-          {{ link.text|safe }}
+          {{ link.text }}
           {% if link.os %}
             <span class="os" data-os="{{ link.os.name }}">
               {% if not (b.show_eula or b.show_contrib) %}

@@ -5,12 +5,14 @@ from django.utils.encoding import smart_unicode
 
 import jinja2
 
-from jingo import register
+import jingo
 
 from .models import Translation
 
+jingo.register.filter(to_language)
 
-@register.filter
+
+@jingo.register.filter
 def locale_html(translatedfield):
     """HTML attributes for languages different than the site language"""
     if not translatedfield:
@@ -27,7 +29,7 @@ def locale_html(translatedfield):
             (jinja2.escape(translatedfield.locale), textdir))
 
 
-@register.filter
+@jingo.register.filter
 def truncate(s, length=255, killwords=False, end='...'):
     """
     Wrapper for jinja's truncate that checks if the object has a
@@ -40,7 +42,7 @@ def truncate(s, length=255, killwords=False, end='...'):
     return jinja2.filters.do_truncate(smart_unicode(s), length, killwords, end)
 
 
-@register.inclusion_tag('translations/trans-menu.html')
+@jingo.register.inclusion_tag('translations/trans-menu.html')
 @jinja2.contextfunction
 def l10n_menu(context, default_locale='en-us'):
     """Generates the locale menu for zamboni l10n."""
@@ -51,14 +53,12 @@ def l10n_menu(context, default_locale='en-us'):
     return c
 
 
-@register.filter
+@jingo.register.filter
 def all_locales(addon, field_name):
     field = getattr(addon, field_name)
     if not (addon and field):
         return
-    html = (u'<span lang="%s">%s</span>' %
-            (to_language(t.locale), jinja2.escape(t))
-            for t in Translation.objects.filter(id=field.id))
-    data_name = (u'data-name="%s"' % field_name) if field_name else ''
-    return jinja2.Markup('<div class="trans" %s>%s</div>' %
-                         (data_name, ''.join(html)))
+    ctx = dict(addon=addon, field=field, field_name=field_name,
+               translations=Translation.objects.filter(id=field.id))
+    t = jingo.env.get_template('translations/all-locales.html')
+    return jinja2.Markup(t.render(ctx))

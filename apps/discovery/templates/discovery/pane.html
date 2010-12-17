@@ -80,7 +80,7 @@
 
         <ul class="slider">
         {% for module in modules %}
-          {{ module.render()|safe }}
+          {{ module.render() }}
         {% endfor %}
         </ul>
       </section>

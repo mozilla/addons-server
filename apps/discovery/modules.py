@@ -1,5 +1,6 @@
 import caching.base as caching
 import jingo
+import jinja2
 from tower import ugettext_lazy as _
 
 from api.views import addon_filter
@@ -45,9 +46,9 @@ class RockYourFirefox(PromoModule):
     slug = 'Rock Your Firefox'
 
     def render(self):
-        return jingo.render_to_string(
+        return jinja2.Markup(jingo.render_to_string(
             self.request, 'discovery/modules/ryf.html',
-            {'ryf': BlogCacheRyf.objects.get()})
+            {'ryf': BlogCacheRyf.objects.get()}))
 
 
 class CollectionPromo(PromoModule):
@@ -70,7 +71,8 @@ class CollectionPromo(PromoModule):
     def render(self):
         c = dict(title=self.title, collection=self.collection,
                  cls=self.cls, addons=self.get_addons())
-        return jingo.render_to_string(self.request, self.template, c)
+        return jinja2.Markup(
+            jingo.render_to_string(self.request, self.template, c))
 
 
 class ShoppingCollection(CollectionPromo):

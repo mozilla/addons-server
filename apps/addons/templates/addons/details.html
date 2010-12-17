@@ -57,7 +57,7 @@
 
           <table itemscope itemtype="http://data-vocabulary.org/Review-aggregate">
             {% with addon_name='<span itemprop="itemreviewed">{0}</span>'|f(addon.name|e) %}
-              <caption>{{ _('Add-on Information for {0}')|f(addon_name)|safe }}</caption>
+              <caption>{{ _('Add-on Information for {0}')|f(addon_name)|xssafe }}</caption>
             {% endwith %}
             <tbody>
               <tr>
