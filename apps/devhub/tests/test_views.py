@@ -1088,6 +1088,33 @@ class TestEdit(test_utils.TestCase):
 
         eq_(category_ids_new, [22, 24])
 
+    def test_edit_basic_categories_xss(self):
+        category_other = Category.objects.get(id=22)
+        category_other.name = '<script>alert("test");</script>'
+        category_other.save()
+
+        data = dict(name='new name!',
+                    slug='test_slug',
+                    summary='new summary',
+                    categories=[22, 24],
+                    tags=', '.join(self.tags))
+
+        r = self.client.post(self.get_url('basic', True), data)
+
+        assert '<script>alert' not in r.content
+        assert '&lt;script&gt;alert' in r.content
+
+    def test_edit_basic_categories_other_success(self):
+        data = dict(name='new name',
+                    slug='test_slug',
+                    summary='new summary',
+                    categories=[22],  # 22 is now 'other'
+                    tags=', '.join(self.tags))
+
+        r = self.client.post(self.get_url('basic', True), data)
+
+        eq_(r.context['form'].errors, {})
+
     def test_edit_basic_categories_remove(self):
         category = Category.objects.get(id=23)
         AddonCategory(addon=self.addon, category=category).save()

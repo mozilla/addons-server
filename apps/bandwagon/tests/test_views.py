@@ -283,6 +283,30 @@ class TestCRUD(test_utils.TestCase):
         eq_(r.status_code, 200)
         return r
 
+    def test_listing_xss(self):
+        c = Collection.objects.get(id=80)
+        assert self.client.login(username='clouserw@gmail.com',
+                                 password='password')
+
+        url = reverse('collections.watch', args=[c.author.username, c.slug])
+
+        user = UserProfile.objects.get(id='10482')
+        user.display_name = "<script>alert(1)</script>"
+        user.save()
+
+        r = self.client.post(url, follow=True)
+        eq_(r.status_code, 200)
+
+        qs = CollectionWatcher.objects.filter(user__username='clouserw',
+                                              collection=80)
+        eq_(qs.count(), 1)
+
+        r = self.client.get('/en-US/firefox/collections/following/',
+                            follow=True)
+
+        assert '&lt;script&gt;alert' in r.content
+        assert '<script>alert' not in r.content
+
     def test_add_fail(self):
         """
         If we input addons but fail at filling out the form, don't show

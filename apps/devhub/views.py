@@ -241,7 +241,7 @@ def edit(request, addon_id, addon):
        'addon': addon,
        'tags': addon.tags.not_blacklisted().values_list('tag_text', flat=True),
        'previews': addon.previews.all(),
-       }
+       'categories': enumerate(addon.categories.all())}
 
     return jingo.render(request, 'devhub/addons/edit.html', data)
 
@@ -521,13 +521,16 @@ def addons_section(request, addon_id, addon, section, editable=False):
         form = False
 
     tags = []
+    categories = []
 
     if section == 'basic':
         tags = addon.tags.not_blacklisted().values_list('tag_text', flat=True)
+        categories = enumerate(addon.categories.all())
 
     data = {'addon': addon,
             'form': form,
             'editable': editable,
+            'categories': categories,
             'tags': tags}
 
     return jingo.render(request,
@@ -802,6 +805,7 @@ def submit_bump(request, addon_id):
 
 # You can only request one of the new review tracks.
 REQUEST_REVIEW = (amo.STATUS_PUBLIC, amo.STATUS_LITE)
+
 
 @dev_required
 @post_required

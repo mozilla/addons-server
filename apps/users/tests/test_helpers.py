@@ -41,6 +41,14 @@ def test_user_link():
     eq_(user_link(None), '')
 
 
+def test_user_link_xss():
+    u = UserProfile(username='jconnor',
+                    display_name='<script>alert(1)</script>', pk=1)
+    url = reverse('users.profile', args=[1])
+    html =  "&lt;script&gt;alert(1)&lt;/script&gt;"
+    eq_(user_link(u), '<a href="%s">%s</a>' % (url, html))
+
+
 def test_users_list():
     u1 = UserProfile(username='jconnor', display_name='John Connor', pk=1)
     u2 = UserProfile(username='sconnor', display_name='Sarah Connor', pk=2)
@@ -48,6 +56,7 @@ def test_users_list():
 
     # handle None gracefully
     eq_(user_link(None), '')
+
 
 def test_short_users_list():
     """Test the option to shortened the users list to a certain size."""
@@ -61,6 +70,7 @@ def test_short_users_list():
 
 def test_user_link_unicode():
     """make sure helper won't choke on unicode input"""
-    u = UserProfile(username=u'jmüller', display_name=u'Jürgen Müller', pk=1)
+    u = UserProfile(username=u'jmüller', display_name=u'Jürgen Müller',
+                    pk=1)
     eq_(user_link(u), u'<a href="%s">Jürgen Müller</a>' %
         reverse('users.profile', args=[1]))

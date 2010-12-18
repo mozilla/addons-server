@@ -78,7 +78,9 @@
                 {{ form.categories|safe }}
                 {{ form.categories.errors|safe }}
               {% else %}
-                {{ addon.categories.all()|join(' &middot; ')|safe }}
+                {% for i, addon in categories %}
+                  {{ ' &middot; '|safe if i > 0 }}{{ addon|e|xssafe }}
+                {% endfor %}
               {% endif %}
             </td>
           </tr>

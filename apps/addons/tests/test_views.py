@@ -20,6 +20,7 @@ from amo.tests.test_helpers import AbuseBase, AbuseDisabledBase
 from addons import views
 from addons.models import Addon, AddonUser
 from files.models import File
+from users.helpers import users_list
 from users.models import UserProfile
 from translations.helpers import truncate
 from translations.query import order_by_translation
@@ -668,6 +669,16 @@ class TestDetailPage(test_utils.TestCase):
         # We shouldn't show an avatar since this has no listed_authors.
         doc = pq(r.content)
         eq_(0, len(doc('.avatar')))
+
+    def test_authors_xss(self):
+        name = '<script>alert(1)</script>'
+        user = UserProfile.objects.create(username='test',
+                                          display_name=name)
+
+        output = users_list([user])
+
+        assert "&lt;script&gt;alert" in output
+        assert "<script>alert" not in output
 
     def test_search_engine_works_with(self):
         """We don't display works-with info for search engines."""
