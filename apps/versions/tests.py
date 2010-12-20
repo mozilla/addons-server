@@ -118,10 +118,12 @@ class TestVersion(test_utils.TestCase):
 
     def test_version_is_allowed_upload(self):
         version = Version.objects.get(pk=81551)
+        version.files.all().delete()
         assert version.is_allowed_upload()
 
     def test_version_is_not_allowed_upload(self):
         version = Version.objects.get(pk=81551)
+        version.files.all().delete()
         for platform in [amo.PLATFORM_LINUX.id,
                          amo.PLATFORM_WIN.id,
                          amo.PLATFORM_BSD.id]:
@@ -135,6 +137,7 @@ class TestVersion(test_utils.TestCase):
 
     def test_version_is_not_allowed_upload_full(self):
         version = Version.objects.get(pk=81551)
+        version.files.all().delete()
         for platform in [amo.PLATFORM_LINUX.id,
                          amo.PLATFORM_WIN.id,
                          amo.PLATFORM_MAC.id]:
@@ -153,6 +156,10 @@ class TestVersion(test_utils.TestCase):
         version = Version.objects.get(pk=81551)
         version.addon.type = amo.ADDON_SEARCH
         version.addon.save()
+        assert not version.is_allowed_upload()
+
+    def test_version_is_allowed_upload_all(self):
+        version = Version.objects.get(pk=81551)
         assert not version.is_allowed_upload()
 
 

@@ -1941,7 +1941,9 @@ class TestVersionEditDetails(TestVersionEdit):
         choices = res.context['new_file_form'].fields['platform'].choices
         eq_(len(choices), len(amo.SUPPORTED_PLATFORMS))
 
-    def test_can_upload(self):
+    @mock.patch('versions.models.Version.is_allowed_upload')
+    def test_can_upload(self, allowed):
+        allowed.return_value = True
         r = self.client.get(self.url)
         doc = pq(r.content)
         assert doc('a.add-file')
@@ -2079,6 +2081,25 @@ class TestVersionEditFiles(TestVersionEdit):
         eq_(r.status_code, 200)
         eq_(r.context['file_form'].non_form_errors(),
             ['A platform can only be chosen once.'])
+
+    def test_all_platforms(self):
+        File.objects.create(version=self.version,
+                            platform_id=amo.PLATFORM_MAC.id)
+        forms = self.client.get(self.url).context['file_form'].forms
+        forms = map(initial, forms)
+        res = self.client.post(self.url, self.formset(*forms, prefix='files'))
+        eq_(res.context['file_form'].non_form_errors()[0],
+            'All cannot be chosen with any other platform.')
+
+    def test_all_platforms_and_delete(self):
+        File.objects.create(version=self.version,
+                    platform_id=amo.PLATFORM_MAC.id)
+        forms = self.client.get(self.url).context['file_form'].forms
+        forms = map(initial, forms)
+        # A test that we don't check the platform for deleted files.
+        forms[1]['DELETE'] = 1
+        self.client.post(self.url, self.formset(*forms, prefix='files'))
+        eq_(self.version.files.count(), 1)
 
 
 class TestPlatformSearch(TestVersionEdit):
@@ -2931,7 +2952,8 @@ class UploadTest(files.tests.UploadTest, test_utils.TestCase):
         self.addon = Addon.objects.get(id=3615)
         self.version = self.addon.current_version
         self.addon.update(guid='guid@xpi')
-        Platform.objects.create(id=amo.PLATFORM_MAC.id)
+        if not Platform.objects.filter(id=amo.PLATFORM_MAC.id):
+            Platform.objects.create(id=amo.PLATFORM_MAC.id)
         assert self.client.login(username='del@icio.us', password='password')
 
     def post(self, platform=amo.PLATFORM_MAC):
@@ -2940,12 +2962,18 @@ class UploadTest(files.tests.UploadTest, test_utils.TestCase):
 
 
 class TestVersionAddFile(UploadTest):
+    fixtures = ['base/apps', 'base/users',
+                'base/addon_3615', 'base/platforms']
 
     def setUp(self):
         super(TestVersionAddFile, self).setUp()
         self.version.update(version='0.1')
         self.url = reverse('devhub.versions.add_file',
                            args=[self.addon.slug, self.version.id])
+
+        files = self.version.files.all()[0]
+        files.platform_id = amo.PLATFORM_LINUX.id
+        files.save()
 
     def test_guid_matches(self):
         self.addon.update(guid='something.different')
@@ -2958,7 +2986,7 @@ class TestVersionAddFile(UploadTest):
         assert_json_error(r, None, "Version doesn't match")
 
     def test_platform_limits(self):
-        r = self.post(platform=amo.PLATFORM_ALL)
+        r = self.post(platform=amo.PLATFORM_BSD)
         assert_json_error(r, 'platform',
                                'Select a valid choice. That choice is not '
                                'one of the available choices.')

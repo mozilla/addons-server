@@ -102,9 +102,12 @@ class Version(amo.models.ModelBase):
         per platform for that type of addon."""
         if self.addon.type == amo.ADDON_SEARCH:
             return not bool(len(self.all_files))
+        elif amo.PLATFORM_ALL in self.supported_platforms:
+            return False
         else:
-            return bool(set(amo.SUPPORTED_PLATFORMS.values()) -
-                        set(self.supported_platforms))
+            available = amo.SUPPORTED_PLATFORMS.values()
+            available.remove(amo.PLATFORM_ALL)
+            return bool(set(available) - set(self.supported_platforms))
 
     @amo.cached_property
     def has_files(self):

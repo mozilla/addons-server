@@ -431,7 +431,13 @@ class BaseFileFormSet(BaseModelFormSet):
                  if not f.cleaned_data.get('DELETE', False)]
 
         if self.forms and 'platform' in self.forms[0].fields:
-            platforms = [f['platform'] for f in files]
+            platforms = [f['platform'].id for f in files]
+
+            if amo.PLATFORM_ALL.id in platforms and len(files) > 1:
+                raise forms.ValidationError(
+                    _('The platfom All cannot be combined '
+                      'with specific platforms.'))
+
             if sorted(platforms) != sorted(set(platforms)):
                 raise forms.ValidationError(
                     _('A platform can only be chosen once.'))
