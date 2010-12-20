@@ -11,7 +11,7 @@
       </p>
     {% endif %}
 
-    <form disabled method="post" action="{{ url('reviews.add', addon.id) }}">
+    <form disabled method="post" action="{{ url('reviews.add', addon.slug) }}">
       {% set attrs = {} if user.is_authenticated() else {'disabled': 'disabled'} %}
       {{ csrf() }}
       {{ field(review_form.body, _('Review:'), **attrs) }}
@@ -38,7 +38,7 @@
       {# TODO reverse url #}
       <p><a href="{{ remora_url('/pages/review_guide') }}">{{ _('Review Guidelines') }}</a></p>
       <p>
-        <a href="{{ url('reviews.add', addon.id) }}">
+        <a href="{{ url('reviews.add', addon.slug) }}">
           {{ _('Detailed Review') }}</a>
       </p>
     </div>

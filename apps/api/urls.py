@@ -50,7 +50,7 @@ list_regexps = build_urls(base_list_regexp, appendages)
 
 api_patterns = patterns('',
     # Addon_details
-    url('addon/(?P<addon_id>\d+)$', class_view(views.AddonDetailView),
+    url('addon/(?P<addon_id>[^/]+)$', class_view(views.AddonDetailView),
         name='api.addon_detail'),)
 
 for regexp in search_regexps:
@@ -69,10 +69,10 @@ version_resource = Resource(handler=handlers.VersionsHandler, **ad)
 piston_patterns = patterns('',
     url(r'^user/$', user_resource, name='api.user'),
     url(r'^addons/$', addons_resource, name='api.addons'),
-    url(r'^addon/(?P<addon_id>\d+)$', addons_resource, name='api.addon'),
-    url(r'^addon/(?P<addon_id>\d+)/versions$', version_resource,
+    url(r'^addon/(?P<addon_id>[^/]+)$', addons_resource, name='api.addon'),
+    url(r'^addon/(?P<addon_id>[^/]+)/versions$', version_resource,
         name='api.versions'),
-    url(r'^addon/(?P<addon_id>\d+)/version/(?P<version_id>\d+)$',
+    url(r'^addon/(?P<addon_id>[^/]+)/version/(?P<version_id>\d+)$',
         version_resource, name='api.version'),
 )
 

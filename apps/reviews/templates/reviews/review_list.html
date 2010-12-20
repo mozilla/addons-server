@@ -7,14 +7,14 @@
 
 {% block rss_feed %}
 <link  rel="alternate" type="application/rss+xml"
-       title="RSS" href="{{ url('reviews.list', addon.id) }}format:rss">
+       title="RSS" href="{{ url('reviews.list', addon.slug) }}format:rss">
 {% endblock %}
 
 {% block content %}
 {% block review_header %}
 <header>
   {# Give a link back to reviews if we're looking at user reviews or a detail page. #}
-  {% with link = None if page == 'list' else url('reviews.list', addon.id) %}
+  {% with link = None if page == 'list' else url('reviews.list', addon.slug) %}
     {{ breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
                     (addon.get_url_path(), addon.name),
                     (link, _('Reviews'))]) }}
@@ -48,7 +48,7 @@
 
   {% block review_list %}
   {% if not reviews.object_list %}
-    <p><a href="{{ url('reviews.add', addon.id) }}">
+    <p><a href="{{ url('reviews.add', addon.slug) }}">
       {{ _('Be the first to write a review.') }}</a><p>
   {% endif %}
   {% for review in reviews.object_list %}
@@ -112,7 +112,7 @@
     {% endif %}
     {% if not review_perms.is_author %}
       <div>
-        <a class="button" href="{{ url('reviews.add', addon.id) }}">
+        <a class="button" href="{{ url('reviews.add', addon.slug) }}">
           {{ _('Write a New Review') }}</a>
       </div>
     {% endif %}

@@ -10,7 +10,7 @@
   <h2>{{ title }}</h2>
 </header>
 <section class="primary" role="main">
-  {% set remove_url = url('devhub.addons.profile.remove', addon.id) %}
+  {% set remove_url = url('devhub.addons.profile.remove', addon.slug) %}
   {% if addon.has_full_profile() and addon.takes_contributions %}
     <div id="status-bar">
       <p>{% trans url=addon.meet_the_dev_url() %}
@@ -34,7 +34,7 @@
       </form>
     </div>
   {% endif %}
-  <form method="post" action="{{ url('devhub.addons.profile', addon.id) }}">
+  <form method="post" action="{{ url('devhub.addons.profile', addon.slug) }}">
     {{ csrf() }}
     {% include "devhub/includes/addons_create_profile.html" %}
 
@@ -42,7 +42,7 @@
 
     <p class="item-group">
       <button>{{ button_label }}</button> {{ _('or') }}
-      <a href="{{ url('devhub.addons.edit', addon.id) }}">
+      <a href="{{ url('devhub.addons.edit', addon.slug) }}">
         {{ _('Cancel') }}</a>
     </p>
   </form>

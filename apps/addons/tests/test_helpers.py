@@ -43,7 +43,7 @@ class TestHelpers(test_utils.TestCase):
         eq_(flag(ctx, featured), '<h5 class="flag">Featured</h5>')
 
     def test_support_addon(self):
-        a = Addon(id=12)
+        a = Addon(id=12, type=1)
         eq_(support_addon(a), '')
 
         a.wants_contributions = a.paypal_id = True

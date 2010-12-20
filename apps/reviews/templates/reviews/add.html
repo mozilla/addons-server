@@ -9,7 +9,7 @@
 <header>
   {{ breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
                   (addon.get_url_path(), addon.name),
-                  (url('reviews.list', addon.id), _('Reviews')),
+                  (url('reviews.list', addon.slug), _('Reviews')),
                   (None, _('Add'))]) }}
   <h2>{{ title }}</h2>
 </header>
@@ -42,7 +42,7 @@
 </div>
 
 <form method="post" class="review-form" id="review-form"
-      action="{{ url('reviews.add', addon.id) }}">
+      action="{{ url('reviews.add', addon.slug) }}">
   {{ csrf() }}
   <p>
     <label for="id_title">{{ _('Title:') }} <span class="optional">{{ _('(optional)') }}</span></label>

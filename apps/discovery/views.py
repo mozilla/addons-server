@@ -12,6 +12,7 @@ import jingo
 import amo.utils
 import api.utils
 import api.views
+from addons.decorators import addon_view_factory
 from addons.models import Addon
 from bandwagon.models import Collection, SyncedCollection, CollectionToken
 from reviews.models import Review
@@ -20,6 +21,8 @@ from stats.models import GlobalStat
 from .models import DiscoveryModule
 from .forms import DiscoveryModuleForm
 from .modules import registry as module_registry
+
+addon_view = addon_view_factory(Addon.objects.valid())
 
 
 def pane(request, version, platform):
@@ -149,17 +152,17 @@ def _recommendations(request, limit, token, recs):
     return http.HttpResponse(content, content_type='application/json')
 
 
-def addon_detail(request, addon_id):
-    addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
+@addon_view
+def addon_detail(request, addon):
+    reviews = Review.objects.latest().filter(addon=addon)
     return jingo.render(request, 'discovery/addons/detail.html',
-                        {'addon': addon,
-                         'reviews': Review.objects.latest().filter(addon=addon),
+                        {'addon': addon, 'reviews': reviews,
                          'get_replies': Review.get_replies,
                          'src': 'discovery-pane-details'})
 
 
-def addon_eula(request, addon_id, file_id):
-    addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
+@addon_view
+def addon_eula(request, addon, file_id):
     if not addon.eula:
         return http.HttpResponseRedirect(addon.get_url_path())
     if file_id is not None:

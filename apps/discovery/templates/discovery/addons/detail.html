@@ -14,17 +14,17 @@
 <ul id="install">
   <li class="install-action">
     {% if addon.has_eula %}
-      <a href="{{ url('discovery.addons.eula', addon.id) }}"
+      <a href="{{ url('discovery.addons.eula', addon.slug) }}"
          class="button eula go installer">
          {# L10n: please keep &nbsp; in the string so the &rarr; does not wrap #}
          {{ _('Continue to Download&nbsp;&rarr;')|safe }}</a>
     {% else %}
       {{ install_button(addon, show_contrib=False, show_warning=False) }}
     {% endif %}</li>
-  <li><a href="{{ url('addons.detail', addon.id)|urlparams(src=src) }}"
+  <li><a href="{{ url('addons.detail', addon.slug)|urlparams(src=src) }}"
          class="button">{{ _('Learn More') }}</a></li>
   {% if not addon.privacy_policy %}
-    <li><a href="{{ url('addons.privacy', addon.id)|urlparams(src=src) }}">
+    <li><a href="{{ url('addons.privacy', addon.slug)|urlparams(src=src) }}">
       {{ _('View Privacy Policy') }}</a></li>
   {% endif %}
 </ul>

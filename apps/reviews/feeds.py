@@ -40,7 +40,7 @@ class ReviewsRss(Feed):
 
     def item_link(self, review):
         """Link for a particular review (<item><link>)"""
-        return absolutify(reverse('reviews.detail', args=[self.addon.id,
+        return absolutify(reverse('reviews.detail', args=[self.addon.slug,
                                                           review.id]))
 
     def item_title(self, review):
@@ -60,7 +60,7 @@ class ReviewsRss(Feed):
 
     def item_guid(self, review):
         """Guid for a particuar review  (<item><guid>)"""
-        guid_url = absolutify(reverse('reviews.list', args=[self.addon.id]))
+        guid_url = absolutify(reverse('reviews.list', args=[self.addon.slug]))
         return guid_url + urllib.quote(str(review.id))
 
     def item_author_name(self, review):

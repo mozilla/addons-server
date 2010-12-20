@@ -13,7 +13,7 @@
 {% macro langtool(addons, text) %}
   {% for addon in addons %}
   <p>
-    <a href="{{ url('addons.detail', addon.id) }}">{{ text }}</a>
+    <a href="{{ url('addons.detail', addon.slug) }}">{{ text }}</a>
     ({{ _('{0} KB')|f(addon.file_size) }})
     {% if addon.locale_disambiguation %}
       <br>({{ addon.locale_disambiguation }})

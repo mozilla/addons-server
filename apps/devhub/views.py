@@ -22,6 +22,7 @@ from amo.urlresolvers import reverse
 from amo.decorators import json_view, login_required, post_required
 from access import acl
 from addons import forms as addon_forms
+from addons.decorators import addon_view
 from addons.models import Addon, AddonUser
 from addons.views import BaseFilter
 from cake.urlresolvers import remora_url
@@ -41,11 +42,11 @@ DEV_AGREEMENT_COOKIE = 'yes-I-read-the-dev-agreement'
 
 def dev_required(f):
     """Requires user to be add-on owner or admin"""
+    @addon_view
     @login_required
     @functools.wraps(f)
-    def wrapper(request, addon_id, *args, **kw):
-        addon = get_object_or_404(Addon, id=addon_id)
-        fun = lambda: f(request, addon_id=addon_id, addon=addon, *args, **kw)
+    def wrapper(request, addon, *args, **kw):
+        fun = lambda: f(request, addon_id=addon.id, addon=addon, *args, **kw)
         # Require an owner for POST requests.
         if request.method == 'POST':
             if acl.check_ownership(request, addon, require_owner=True):
@@ -145,8 +146,8 @@ def _get_addons(request, addons, addon_id):
             item.selected = (addon_id and addon.id == int(addon_id))
         except ValueError:
             pass  # We won't get here... EVER
-        url = reverse('devhub.feed', args=(addon.id,))
-        (item.text, item.url) = (addon.name, url)
+        url = reverse('devhub.feed', args=[addon.slug])
+        item.text, item.url = addon.name, url
         items.append(item)
 
     return items
@@ -205,14 +206,14 @@ def feed(request, addon_id=None):
         addons_all = request.amo_user.addons.all()
 
         if addon_id:
+            addons = get_object_or_404(Addon.objects.id_or_slug(addon_id))
             try:
-                key = RssKey.objects.get(addon=addon_id)
+                key = RssKey.objects.get(addon=addons)
             except RssKey.DoesNotExist:
-                key = RssKey.objects.create(addon_id=addon_id)
+                key = RssKey.objects.create(addon=addons)
 
-            rssurl = urlparams(reverse('devhub.feed', args=(addon_id,)),
+            rssurl = urlparams(reverse('devhub.feed', args=[addon_id]),
                                privaterss=key.key)
-            addons = get_object_or_404(Addon, pk=addon_id)
 
             if not acl.check_ownership(request, addons):
                 return http.HttpResponseForbidden()
@@ -253,18 +254,18 @@ def delete(request, addon_id, addon):
     if form.is_valid():
         addon.delete('Removed via devhub')
         messages.success(request, _('Add-on deleted.'))
-        return redirect(reverse('devhub.addons'))
+        return redirect('devhub.addons')
     else:
         messages.error(request,
                        _('Password was incorrect.  Add-on was not deleted.'))
-        return redirect(reverse('devhub.versions', args=(addon_id,)))
+        return redirect('devhub.versions', addon.slug)
 
 
 @dev_required
 def enable(request, addon_id, addon):
     addon.update(disabled_by_user=False)
     amo.log(amo.LOG.USER_ENABLE, addon)
-    return redirect('devhub.versions', addon_id)
+    return redirect('devhub.versions', addon.slug)
 
 
 @dev_required
@@ -276,8 +277,7 @@ def cancel(request, addon_id, addon):
         else:
             addon.update(status=amo.STATUS_NULL)
         amo.log(amo.LOG.CHANGE_STATUS, addon.get_status_display(), addon)
-
-    return redirect('devhub.versions', addon_id)
+    return redirect('devhub.versions', addon.slug)
 
 
 @dev_required
@@ -285,7 +285,7 @@ def cancel(request, addon_id, addon):
 def disable(request, addon_id, addon):
     addon.update(disabled_by_user=True)
     amo.log(amo.LOG.USER_DISABLE, addon)
-    return redirect('devhub.versions', addon_id)
+    return redirect('devhub.versions', addon.slug)
 
 
 def _license_form(request, addon, save=False):
@@ -357,7 +357,7 @@ def ownership(request, addon_id, addon):
 
         _license_form(request, addon, save=True)
         _policy_form(request, addon, save=True)
-        return redirect('devhub.addons.owner', addon_id)
+        return redirect('devhub.addons.owner', addon.slug)
 
     ctx.update(addon=addon, user_form=user_form, policy_form=policy_form)
     return jingo.render(request, 'devhub/addons/owner.html', ctx)
@@ -386,7 +386,7 @@ def payments(request, addon_id, addon):
                 messages.success(request, _('Changes successfully saved.'))
                 amo.log(amo.LOG.EDIT_CONTRIBUTIONS, addon)
 
-                return redirect('devhub.addons.payments', addon_id)
+                return redirect('devhub.addons.payments', addon.slug)
     errors = charity_form.errors or contrib_form.errors or profile_form.errors
     if errors:
         messages.error(request, _('There were errors in your submission.'))
@@ -413,7 +413,7 @@ def _save_charity(addon, contrib_form, charity_form):
 @post_required
 def disable_payments(request, addon_id, addon):
     addon.update(wants_contributions=False)
-    return redirect('devhub.addons.payments', addon_id)
+    return redirect('devhub.addons.payments', addon.slug)
 
 
 @dev_required
@@ -423,7 +423,7 @@ def remove_profile(request, addon_id, addon):
     delete_translation(addon, 'the_future')
     if addon.wants_contributions:
         addon.update(wants_contributions=False)
-    return redirect('devhub.addons.profile', addon_id)
+    return redirect('devhub.addons.profile', addon.slug)
 
 
 @dev_required
@@ -433,7 +433,7 @@ def profile(request, addon_id, addon):
     if request.method == 'POST' and profile_form.is_valid():
         profile_form.save()
         amo.log(amo.LOG.EDIT_PROPERTIES, addon)
-        return redirect('devhub.addons.profile', addon_id)
+        return redirect('devhub.addons.profile', addon.slug)
 
     return jingo.render(request, 'devhub/addons/profile.html',
                         dict(addon=addon, profile_form=profile_form))
@@ -572,7 +572,7 @@ def version_edit(request, addon_id, addon, version_id):
             for compat in data['compat_form'].save(commit=False):
                 compat.version = version
                 compat.save()
-        return redirect('devhub.versions.edit', addon_id, version_id)
+        return redirect('devhub.versions.edit', addon.slug, version_id)
 
     data.update(addon=addon, version=version, new_file_form=new_file_form)
     return jingo.render(request, 'devhub/versions/edit.html', data)
@@ -584,7 +584,7 @@ def version_delete(request, addon_id, addon):
     version_id = request.POST.get('version_id')
     version = get_object_or_404(Version, pk=version_id, addon=addon)
     version.delete()
-    return redirect('devhub.versions', addon_id)
+    return redirect('devhub.versions', addon.slug)
 
 
 @dev_required
@@ -594,7 +594,7 @@ def version_add(request, addon_id, addon):
     if form.is_valid():
         v = Version.from_upload(form.cleaned_data['upload'], addon,
                                 form.cleaned_data['platform'])
-        return redirect('devhub.versions.edit', addon.id, v.id)
+        return redirect('devhub.versions.edit', addon.slug, v.id)
     else:
         return json_view.error(form.errors)
 
@@ -630,7 +630,7 @@ def version_bounce(request, addon_id, addon, version):
     vs = (Version.objects.filter(version=version, addon=addon)
           .order_by('-created'))
     if vs:
-        return redirect('devhub.versions.edit', addon_id, vs[0].id)
+        return redirect('devhub.versions.edit', addon.slug, vs[0].id)
     else:
         raise http.Http404()
 
@@ -645,18 +645,18 @@ def submit_step(step):
         def wrapper(request, *args, **kw):
             max_step = 7
             # We only bounce on pages with an addon id.
-            if 'addon_id' in kw:
-                addon_id = kw['addon_id']
-                on_step = SubmitStep.objects.filter(addon=addon_id)
+            if 'addon' in kw:
+                addon = kw['addon']
+                on_step = SubmitStep.objects.filter(addon=addon)
                 if on_step:
                     max_step = on_step[0].step
                     if max_step < step:
                         # The step was too high, so bounce to the saved step.
                         return redirect('devhub.submit.%s' % max_step,
-                                        addon_id)
+                                        addon.slug)
                 elif step != max_step:
                     # We couldn't find a step, so we must be done.
-                    return redirect('devhub.submit.7', addon_id)
+                    return redirect('devhub.submit.7', addon.slug)
             kw['step'] = Step(step, max_step)
             return f(request, *args, **kw)
         return wrapper
@@ -699,7 +699,7 @@ def submit_addon(request, step):
             addon = Addon.from_upload(data['upload'], data['platform'])
             AddonUser(addon=addon, user=request.amo_user).save()
             SubmitStep.objects.create(addon=addon, step=3)
-            return redirect('devhub.submit.3', addon.id)
+            return redirect('devhub.submit.3', addon.slug)
     return jingo.render(request, 'devhub/addons/submit/upload.html',
                         {'step': step, 'new_file_form': form})
 
@@ -713,7 +713,7 @@ def submit_describe(request, addon_id, addon, step):
         addon = form.save(addon)
         amo.log(amo.LOG.EDIT_DESCRIPTIONS, addon)
         SubmitStep.objects.filter(addon=addon).update(step=4)
-        return redirect('devhub.submit.4', addon.id)
+        return redirect('devhub.submit.4', addon.slug)
 
     return jingo.render(request, 'devhub/addons/submit/describe.html',
                         {'form': form, 'addon': addon, 'step': step})
@@ -728,7 +728,7 @@ def submit_media(request, addon_id, addon, step):
     if request.method == 'POST' and form.is_valid():
         addon = form.save(addon)
         SubmitStep.objects.filter(addon=addon).update(step=5)
-        return redirect('devhub.submit.5', addon.id)
+        return redirect('devhub.submit.5', addon.slug)
 
     return jingo.render(request, 'devhub/addons/submit/media.html',
                         {'form': form, 'addon': addon, 'step': step})
@@ -748,7 +748,7 @@ def submit_license(request, addon_id, addon, step):
         _license_form(request, addon, save=True)
         _policy_form(request, addon, save=True)
         SubmitStep.objects.filter(addon=addon).update(step=6)
-        return redirect('devhub.submit.6', addon.id)
+        return redirect('devhub.submit.6', addon.slug)
     ctx.update(addon=addon, policy_form=policy_form, step=step)
     return jingo.render(request, 'devhub/addons/submit/license.html', ctx)
 
@@ -761,7 +761,7 @@ def submit_select_review(request, addon_id, addon, step):
         addon.status = review_type_form.cleaned_data['review_type']
         addon.save()
         SubmitStep.objects.filter(addon=addon).delete()
-        return redirect('devhub.submit.7', addon_id)
+        return redirect('devhub.submit.7', addon.slug)
     return jingo.render(request, 'devhub/addons/submit/select-review.html',
                         {'addon': addon, 'review_type_form': review_type_form,
                          'step': step})
@@ -772,7 +772,7 @@ def submit_select_review(request, addon_id, addon, step):
 def submit_done(request, addon_id, addon, step):
     # Bounce to the versions page if they don't have any versions.
     if not addon.versions.exists():
-        return redirect('devhub.versions', addon_id)
+        return redirect('devhub.versions', addon.slug)
     sp = addon.current_version.supported_platforms
     is_platform_specific = sp != [amo.PLATFORM_ALL]
 
@@ -785,14 +785,14 @@ def submit_done(request, addon_id, addon, step):
 def submit_resume(request, addon_id, addon):
     step = SubmitStep.objects.filter(addon=addon)
     step = step[0].step if step else 7
-    return redirect('devhub.submit.%s' % step, addon_id)
+    return redirect('devhub.submit.%s' % step, addon.slug)
 
 
 @login_required
-def submit_bump(request, addon_id):
+@dev_required
+def submit_bump(request, addon_id, addon):
     if not acl.action_allowed(request, 'Admin', 'EditSubmitStep'):
         return http.HttpResponseForbidden()
-    addon = get_object_or_404(Addon, pk=addon_id)
     step = SubmitStep.objects.filter(addon=addon)
     step = step[0] if step else None
     if request.method == 'POST' and request.POST.get('step'):
@@ -802,7 +802,7 @@ def submit_bump(request, addon_id):
         else:
             step = SubmitStep(addon=addon, step=new_step)
         step.save()
-        return redirect('devhub.submit.bump', addon.id)
+        return redirect('devhub.submit.bump', addon.slug)
     return jingo.render(request, 'devhub/addons/submit/bump.html',
                         dict(addon=addon, step=step))
 
@@ -833,4 +833,4 @@ def request_review(request, addon_id, addon, status):
            amo.STATUS_PUBLIC: _('Full Review Requested.')}
     messages.success(request, msg[status_req])
     amo.log(amo.LOG.CHANGE_STATUS, addon.get_status_display(), addon)
-    return redirect('devhub.versions', addon.id)
+    return redirect('devhub.versions', addon.slug)

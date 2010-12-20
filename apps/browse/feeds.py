@@ -17,7 +17,7 @@ class AddonFeedMixin(object):
 
     def item_link(self, addon):
         """Link for a particular addon (<item><link>...</)"""
-        return absolutify(reverse('addons.detail', args=[addon.id]))
+        return absolutify(reverse('addons.detail', args=[addon.slug]))
 
     def item_title(self, addon):
         return u'%s %s' % (addon.name, addon.current_version)
@@ -39,9 +39,9 @@ class AddonFeedMixin(object):
 
     def item_guid(self, addon):
         """Guid for a particuar version (<item><guid>)"""
-        url = reverse('addons.versions',
-                      args=[addon.id, addon.current_version])
-        return absolutify(url)
+        url_ = reverse('addons.versions',
+                       args=[addon.slug, addon.current_version])
+        return absolutify(url_)
 
 
 class CategoriesRss(AddonFeedMixin, Feed):

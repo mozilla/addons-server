@@ -54,7 +54,7 @@
                       amo.STATUS_LITE: _('Request Preliminary Review')} %}
         {% for status in addon.can_request_review() %}
           <form method="post"
-                action="{{ url('devhub.request-review', addon.id, status) }}">
+                action="{{ url('devhub.request-review', addon.slug, status) }}">
             {{ csrf() }}
             <button class="link" type="submit">{{ req[status] }}</button> &middot;
           </form>
@@ -63,7 +63,7 @@
           <a href="#" id="cancel-review">{{ _('Cancel Review Request') }}</a> &middot;
         {% endif %}
         {% if addon.disabled_by_user %}
-          <a href="{{ url('devhub.addons.enable', addon.id) }}" id="enable-addon">{{ _('Enable Add-on') }}</a> &middot;
+          <a href="{{ url('devhub.addons.enable', addon.slug) }}" id="enable-addon">{{ _('Enable Add-on') }}</a> &middot;
         {% elif not addon.is_disabled %}
           <a href="#" id="disable-addon">{{ _('Disable Add-on') }}</a> &middot;
         {% endif %}
@@ -98,7 +98,7 @@
         <tr>
           <td>
             <strong>
-              <a href="{{ url('devhub.versions.edit', addon.id, version.id) }}"
+              <a href="{{ url('devhub.versions.edit', addon.slug, version.id) }}"
                  title="{{ _('Edit this version') }}">
                 {{ _('Version {0}', 'addon_display_header_version')|f(version.version) }}</a>
             </strong>
@@ -144,7 +144,7 @@
   </div>
 
   <div id="modal-delete-version" class="modal modal-delete">
-    <form method="post" action="{{ url('devhub.versions.delete', addon.id) }}">
+    <form method="post" action="{{ url('devhub.versions.delete', addon.slug) }}">
       <h3>{{ _('Delete Version') }}</h3>
       <p>
         {% trans %}
@@ -161,7 +161,7 @@
 
   {% if not addon.disabled_by_user and not addon.is_disabled %}
   <div id="modal-disable" class="modal">
-    <form method="post" action="{{ url('devhub.addons.disable', addon.id) }}">
+    <form method="post" action="{{ url('devhub.addons.disable', addon.slug) }}">
       <h3>{{ _('Disable Add-on') }}</h3>
       <p>
         {% trans %}
@@ -185,7 +185,7 @@
 
   {% if not addon.is_disabled and addon.is_under_review %}
   <div id="modal-cancel" class="modal">
-    <form method="post" action="{{ url('devhub.addons.cancel', addon.id) }}">
+    <form method="post" action="{{ url('devhub.addons.cancel', addon.slug) }}">
       <h3>{{ _('Cancel Review Request') }}</h3>
       <p>
         {% if addon.status == amo.STATUS_LITE_AND_NOMINATED %}

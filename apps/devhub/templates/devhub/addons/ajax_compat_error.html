@@ -1,5 +1,5 @@
 {% set apps = addon.incompatible_latest_apps() %}
-{% set update_url = url('devhub.ajax.compat.update', addon.id, addon.current_version.id) %}
+{% set update_url = url('devhub.ajax.compat.update', addon.slug, addon.current_version.slug) %}
 {% if apps %}
   {% set app = apps[0] %}
   <div class="{{ app.short }} app">
@@ -12,7 +12,7 @@
       {% endtrans %}
     </p>
     <p>
-      {% trans update_url=update_url, version_url=url('devhub.versions', addon.id) %}
+      {% trans update_url=update_url, version_url=url('devhub.versions', addon.slug) %}
         <a href="#" class="button compat-update"
            data-updateurl="{{ update_url }}">Update Compatibility</a>
         <a href="{{ version_url }}" class="button">Upload New Version</a>

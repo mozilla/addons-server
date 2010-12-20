@@ -159,6 +159,7 @@
         "pk": 1865,
         "model": "addons.addon",
         "fields": {
+            "slug": "a1865",
             "dev_agreement": true,
             "eula": null,
             "_current_version": 90149,

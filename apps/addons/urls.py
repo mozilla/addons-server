@@ -37,7 +37,7 @@ urlpatterns = patterns('',
     url('^$', views.home, name='home'),
 
     # URLs for a single add-on.
-    ('^addon/(?P<addon_id>\d+)/', include(detail_patterns)),
+    ('^addon/(?P<addon_id>[^/]+)/', include(detail_patterns)),
 
     # Accept extra junk at the end for a cache-busting build id.
     url('^addons/buttons.js(?:/.+)?$', 'addons.buttons.js'),

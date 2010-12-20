@@ -8,8 +8,8 @@
 
 {% block content %}
 <header>
-  {{ breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type] ),
-                  (url('addons.detail',addon.id), addon.name),
+  {{ breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
+                  (url('addons.detail', addon.slug), addon.name),
                   (None, _('License'))]) }}
   <h2 class="name"{{ addon.name|locale_html }}>
     <span>

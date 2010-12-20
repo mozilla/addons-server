@@ -8,16 +8,14 @@ from django.core.cache import cache
 from django.utils import http as urllib
 
 import mock
-from nose.tools import eq_, assert_raises, set_trace
+from nose.tools import eq_, assert_raises
 from pyquery import PyQuery as pq
 
 import test_utils
 
 import amo
-import addons.cron
 from amo.urlresolvers import reverse
 from amo.helpers import urlparams
-from applications.models import Application
 from addons.models import Addon, AddonCategory, Category, AppSupport, Feature
 from browse import views, feeds
 from browse.views import locale_display_name
@@ -192,7 +190,7 @@ class TestCategoryPages(test_utils.TestCase):
         # Category with less than 5 addons bypasses landing page
         category.count = 4
         category.save()
-        r = self.client.get(category_url)
+        self.client.get(category_url)
         eq_(landing_mock.call_count, 1)
 
     def test_creatured_addons(self):
@@ -261,8 +259,7 @@ class BaseSearchToolsTest(test_utils.TestCase):
     def setUp(self):
         super(BaseSearchToolsTest, self).setUp()
         # Transform bookmarks into a search category:
-        bookmarks = (Category.objects.filter(slug='bookmarks')
-                                     .update(type=amo.ADDON_SEARCH))
+        Category.objects.filter(slug='bookmarks').update(type=amo.ADDON_SEARCH)
 
     def setup_featured_tools_and_extensions(self):
         # Pretend all Add-ons are search-related:
@@ -308,7 +305,6 @@ class TestSearchToolsPages(BaseSearchToolsTest):
         doc = pq(response.content)
 
         # Should have only featured add-ons:
-        ob = response.context['addons'].object_list
         eq_(sorted([a.name.localized_string
                     for a in response.context['addons'].object_list]),
             [u'FoxyProxy Standard', u'Limon free English-Hebrew dictionary',
@@ -343,7 +339,7 @@ class TestSearchToolsPages(BaseSearchToolsTest):
         for prefix, app in (
                 ('/en-US/firefox', amo.FIREFOX.pretty),
                 ('/en-US/seamonkey', amo.SEAMONKEY.pretty)):
-            app = unicode(app) # get the proxied unicode obj
+            app = unicode(app)  # get the proxied unicode obj
             response = self.client.get('%s/search-tools/' % prefix)
             eq_(response.status_code, 200)
             doc = pq(response.content)
@@ -568,7 +564,7 @@ class TestCategoriesFeed(test_utils.TestCase):
 
         self.category = Category(name=self.u)
 
-        self.addon = Addon(name=self.u, id=2)
+        self.addon = Addon(name=self.u, id=2, type=1, slug='xx')
         self.addon._current_version = Version(version='v%s' % self.u)
 
     def test_title(self):
@@ -581,7 +577,9 @@ class TestCategoriesFeed(test_utils.TestCase):
 
     def test_item_guid(self):
         t = self.feed.item_guid(self.addon)
-        assert t.endswith(u'/addon/2/versions/v%s' % urllib.urlquote(self.u))
+        url = u'/addon/%s/versions/v%s' % (self.addon.slug,
+                                           urllib.urlquote(self.u))
+        assert t.endswith(url), t
 
 
 class TestFeaturedFeed(test_utils.TestCase):

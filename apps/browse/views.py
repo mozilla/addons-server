@@ -2,7 +2,6 @@ import collections
 
 from django import http
 from django.db.models import Q
-from django.conf import settings
 from django.http import HttpResponsePermanentRedirect
 from django.shortcuts import get_object_or_404
 from django.views.decorators.cache import cache_page
@@ -87,7 +86,7 @@ def _get_locales(addons):
 
     # We don't need the whole add-on so only store the parts in use.
     def slim(addon):
-        return {'id': addon.id,
+        return {'slug': addon.slug,
                 'file_size': addon.current_version.all_files[0].size,
                 'locale_disambiguation': addon.locale_disambiguation}
 
@@ -329,6 +328,7 @@ class SearchToolsFilter(AddonFilter):
         # one addon can be in multiple categories (see
         # addoncategory join above)
         return q.distinct()
+
 
 class SearchExtensionsFilter(AddonFilter):
     opts = (('popular', _lazy(u'Most Popular')),

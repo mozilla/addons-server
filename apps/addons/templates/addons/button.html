@@ -70,7 +70,7 @@
 
 {% if b.detailed %}
   {% if addon.privacy_policy %}
-    <a class="privacy-policy" href="{{ url('addons.privacy', addon.id) }}">
+    <a class="privacy-policy" href="{{ url('addons.privacy', addon.slug) }}">
       <strong>{{ _('View privacy policy') }}</strong>
     </a>
   {% endif %}

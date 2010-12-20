@@ -144,10 +144,10 @@
       {% if previews|length > 1 %}
         <h4>{{ _('Image Gallery') }}</h4>
         {% for preview in previews[1:] %}
-          <a class="screenshot thumbnail" rel="jquery-lightbox"
-            href="{{ preview.image_url }}" title="{{ preview.caption }}">
-              <img src="{{ preview.thumbnail_url }}" alt="" />
-          </a>
+        <a class="screenshot thumbnail" rel="jquery-lightbox"
+          href="{{ preview.image_url }}" title="{{ preview.caption }}">
+            <img src="{{ preview.thumbnail_url }}" alt="" />
+        </a>
         {% endfor %}
       {% endif %}
 
@@ -308,7 +308,7 @@
     <ul class="addon-otheraddons">
       {% for rec in recommendations %}
       <li>
-      <a href="{{ url('addons.detail', addon_id=rec.id) }}?src=oftenusedwith"
+      <a href="{{ url('addons.detail', addon_id=rec.slug) }}?src=oftenusedwith"
          class="addonitem">{{ rec.name }}</a>
       </li>
       {% endfor %}

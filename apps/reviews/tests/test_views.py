@@ -14,12 +14,12 @@ class ReviewTest(test_utils.TestCase):
 class TestViews(ReviewTest):
 
     def test_dev_reply(self):
-        url = reverse('reviews.detail', args=[1865, 218468])
+        url = reverse('reviews.detail', args=['a1865', 218468])
         r = self.client.get(url)
         eq_(r.status_code, 200)
 
     def test_404_user_page(self):
-        url = reverse('reviews.user', args=[1865, 233452342])
+        url = reverse('reviews.user', args=['a1865', 233452342])
         r = self.client.get(url)
         eq_(r.status_code, 404)
 
@@ -27,7 +27,7 @@ class TestViews(ReviewTest):
 class TestFlag(ReviewTest):
 
     def setUp(self):
-        self.url = reverse('reviews.flag', args=[1865, 218468])
+        self.url = reverse('reviews.flag', args=['a1865', 218468])
         self.client.login(username='jbalogh@mozilla.com', password='password')
 
     def test_no_login(self):
@@ -74,7 +74,7 @@ class TestFlag(ReviewTest):
 class TestDelete(ReviewTest):
 
     def setUp(self):
-        self.url = reverse('reviews.delete', args=[1865, 218207])
+        self.url = reverse('reviews.delete', args=['a1865', 218207])
         self.client.login(username='jbalogh@mozilla.com', password='password')
 
     def test_no_login(self):
@@ -88,7 +88,7 @@ class TestDelete(ReviewTest):
         eq_(response.status_code, 403)
 
     def test_404(self):
-        url = reverse('reviews.delete', args=[1865, 0])
+        url = reverse('reviews.delete', args=['a1865', 0])
         response = self.client.post(url)
         eq_(response.status_code, 404)
 
@@ -110,7 +110,7 @@ class TestDelete(ReviewTest):
 class TestCreate(ReviewTest):
 
     def setUp(self):
-        self.add = reverse('reviews.add', args=[1865])
+        self.add = reverse('reviews.add', args=['a1865'])
         self.client.login(username='root_x@ukr.net', password='password')
         self.qs = Review.objects.filter(addon=1865)
         self.log_count = ActivityLog.objects.count
@@ -123,7 +123,7 @@ class TestCreate(ReviewTest):
         old_cnt = self.qs.count()
         log_count = self.log_count()
         r = self.client.post(self.add, {'body': 'xx', 'rating': 3})
-        self.assertRedirects(r, reverse('reviews.list', args=[1865]),
+        self.assertRedirects(r, reverse('reviews.list', args=['a1865']),
                              status_code=302)
         eq_(self.qs.count(), old_cnt + 1)
         # We should have an ADD_REVIEW entry now.
@@ -132,16 +132,18 @@ class TestCreate(ReviewTest):
     def test_new_reply(self):
         self.client.login(username='trev@adblockplus.org', password='password')
         Review.objects.filter(reply_to__isnull=False).delete()
-        url = reverse('reviews.reply', args=[1865, 218207])
+        url = reverse('reviews.reply', args=['a1865', 218207])
         r = self.client.post(url, {'body': 'unst unst'})
-        self.assertRedirects(r, reverse('reviews.detail', args=[1865, 218207]))
+        self.assertRedirects(r,
+                             reverse('reviews.detail', args=['a1865', 218207]))
         eq_(self.qs.filter(reply_to=218207).count(), 1)
 
     def test_double_reply(self):
         self.client.login(username='trev@adblockplus.org', password='password')
-        url = reverse('reviews.reply', args=[1865, 218207])
+        url = reverse('reviews.reply', args=['a1865', 218207])
         r = self.client.post(url, {'body': 'unst unst'})
-        self.assertRedirects(r, reverse('reviews.detail', args=[1865, 218207]))
+        self.assertRedirects(r,
+                             reverse('reviews.detail', args=['a1865', 218207]))
         eq_(self.qs.filter(reply_to=218207).count(), 1)
         review = Review.objects.get(id=218468)
         eq_('%s' % review.body, 'unst unst')
@@ -153,21 +155,21 @@ class TestEdit(ReviewTest):
         self.client.login(username='root_x@ukr.net', password='password')
 
     def test_edit(self):
-        url = reverse('reviews.edit', args=[1865, 218207])
+        url = reverse('reviews.edit', args=['a1865', 218207])
         r = self.client.post(url, {'rating': 2, 'body': 'woo woo'},
                              X_REQUESTED_WITH='XMLHttpRequest')
         eq_(r.status_code, 200)
         eq_('%s' % Review.objects.get(id=218207).body, 'woo woo')
 
     def test_edit_not_owner(self):
-        url = reverse('reviews.edit', args=[1865, 218468])
+        url = reverse('reviews.edit', args=['a1865', 218468])
         r = self.client.post(url, {'rating': 2, 'body': 'woo woo'},
                              X_REQUESTED_WITH='XMLHttpRequest')
         eq_(r.status_code, 403)
 
     def test_edit_reply(self):
         self.client.login(username='trev@adblockplus.org', password='password')
-        url = reverse('reviews.edit', args=[1865, 218468])
+        url = reverse('reviews.edit', args=['a1865', 218468])
         r = self.client.post(url, {'title': 'fo', 'body': 'shizzle'},
                              X_REQUESTED_WITH='XMLHttpRequest')
         eq_(r.status_code, 200)

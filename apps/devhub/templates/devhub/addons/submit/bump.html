@@ -4,7 +4,7 @@
 <h3>Let's talk about {{ addon.name }}</h3>
 <p>Right now it's
 {% if step %}
-  on <b><a href="{{ url('devhub.submit.{0}'.format(step.step), addon.id) }}">step {{ step.step }}</a></b>.
+  on <b><a href="{{ url('devhub.submit.{0}'.format(step.step), addon.slug) }}">step {{ step.step }}</a></b>.
 {% else %}
   not in the submission process.
 {% endif %}

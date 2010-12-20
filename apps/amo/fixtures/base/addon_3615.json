@@ -149,7 +149,7 @@
         "pk": 3615,
         "model": "addons.addon",
         "fields": {
-            "slug": "delicious-bookmarks",
+            "slug": "a3615",
             "_current_version": 81551,
             "dev_agreement": true,
             "eula": 42021,

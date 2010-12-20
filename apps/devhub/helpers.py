@@ -51,7 +51,7 @@ def dev_breadcrumbs(context, addon=None, items=None, add_default=False):
         crumbs.append((reverse('devhub.addons'), _('My Add-ons')))
     if addon:
         if items:
-            url = reverse('devhub.addons.edit', args=[addon.id])
+            url = reverse('devhub.addons.edit', args=[addon.slug])
         else:
             # The Addon is the end of the trail.
             url = None

@@ -46,12 +46,12 @@ Nick's Special Featured Add-ons Page for {{ request.APP.pretty }}
     {% cache query %}
     {% for addon in addons.object_list %}
     <tr>
-      <td><a href="{{ url('addons.detail', addon.id) }}"
+      <td><a href="{{ url('addons.detail', addon.slug) }}"
              title="{{ addon.name }}">{{ addon.id }}</a></td>
       <td>{{ addon.name.localized_string|truncate(20, True) }}</td>
       <td>{{ addon.first_category }}</td>
       <td>{{ addon.average_rating }}</td>
-      <td><a href="{{ url('reviews.list', addon.id) }}">
+      <td><a href="{{ url('reviews.list', addon.slug) }}">
           {{ addon.total_reviews}}</a></td>
       {% set supports = addon.current_version.compatible_apps %}
       {% if request.APP in supports %}

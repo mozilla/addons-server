@@ -12,7 +12,7 @@ from amo.urlresolvers import reverse
 from addons.models import Addon
 from applications.models import AppVersion
 from devhub.models import ActivityLog
-from files.models import File, FileUpload, Platform
+from files.models import File, Platform
 from users.models import UserProfile
 from versions import views
 from versions.models import Version
@@ -162,15 +162,16 @@ class TestViews(test_utils.TestCase):
     def setUp(self):
         self.old_perpage = views.PER_PAGE
         views.PER_PAGE = 1
+        self.addon = Addon.objects.get(id=11730)
 
     def tearDown(self):
         views.PER_PAGE = self.old_perpage
 
     def test_version_detail(self):
-        base = '/en-US/firefox/addon/11730/versions/'
-        a = Addon.objects.get(id=11730)
-        urls = [(v.version, reverse('addons.versions', args=[a.id, v.version]))
-                for v in a.versions.all()]
+        base = '/en-US/firefox/addon/%s/versions/' % self.addon.slug
+        urls = [(v.version, reverse('addons.versions',
+                                    args=[self.addon.slug, v.version]))
+                for v in self.addon.versions.all()]
 
         version, url = urls[0]
         r = self.client.get(url, follow=True)
@@ -181,16 +182,17 @@ class TestViews(test_utils.TestCase):
         self.assertRedirects(r, base + '?page=2#version-%s' % version)
 
     def test_version_detail_404(self):
-        r = self.client.get(reverse('addons.versions', args=[11730, 2]))
+        r = self.client.get(reverse('addons.versions',
+                                    args=[self.addon.slug, 2]))
         eq_(r.status_code, 404)
 
     def test_version_link(self):
         addon = Addon.objects.get(id=11730)
         version = addon.current_version.version
-        url = reverse('addons.versions', args=[addon.id])
+        url = reverse('addons.versions', args=[addon.slug])
         doc = PyQuery(self.client.get(url).content)
         link = doc('.version h3 > a').attr('href')
-        eq_(link, reverse('addons.versions', args=[addon.id, version]))
+        eq_(link, reverse('addons.versions', args=[addon.slug, version]))
         eq_(doc('.version').attr('id'), 'version-%s' % version)
 
 
@@ -214,7 +216,7 @@ class TestFeeds(test_utils.TestCase):
         assert len(doc('rss channel item title')[0].text) > 0
         # link present and well formed
         item_link = doc('rss channel item link')[0]
-        assert item_link.text.endswith('/addon/11730/versions/20090521')
+        assert item_link.text.endswith('/addon/a11730/versions/20090521')
         # guid present
         assert len(doc('rss channel item guid')[0].text) > 0
         # proper date format for item
@@ -230,7 +232,7 @@ class TestDownloadsBase(test_utils.TestCase):
         self.file = File.objects.get(id=33046)
         self.beta_file = File.objects.get(id=64874)
         self.file_url = reverse('downloads.file', args=[self.file.id])
-        self.latest_url = reverse('downloads.latest', args=[self.addon.id])
+        self.latest_url = reverse('downloads.latest', args=[self.addon.slug])
 
     def assert_served_by_host(self, response, host, file_=None):
         if not file_:
@@ -372,7 +374,7 @@ class TestDownloadsLatest(TestDownloadsBase):
     def test_platform(self):
         # We still match PLATFORM_ALL.
         url = reverse('downloads.latest',
-                      kwargs={'addon_id': self.addon.id, 'platform': 5})
+                      kwargs={'addon_id': self.addon.slug, 'platform': 5})
         self.assert_served_by_mirror(self.client.get(url))
 
         # And now we match the platform in the url.
@@ -382,23 +384,23 @@ class TestDownloadsLatest(TestDownloadsBase):
 
         # But we can't match platform=3.
         url = reverse('downloads.latest',
-                      kwargs={'addon_id': self.addon.id, 'platform': 3})
+                      kwargs={'addon_id': self.addon.slug, 'platform': 3})
         eq_(self.client.get(url).status_code, 404)
 
     def test_type(self):
-        url = reverse('downloads.latest',
-                      kwargs={'addon_id': self.addon.id, 'type': 'attachment'})
+        url = reverse('downloads.latest', kwargs={'addon_id': self.addon.slug,
+                                                  'type': 'attachment'})
         self.assert_served_locally(self.client.get(url), attachment=True)
 
     def test_platform_and_type(self):
         url = reverse('downloads.latest',
-                      kwargs={'addon_id': self.addon.id, 'platform': 5,
+                      kwargs={'addon_id': self.addon.slug, 'platform': 5,
                               'type': 'attachment'})
         self.assert_served_locally(self.client.get(url), attachment=True)
 
     def test_trailing_filename(self):
         url = reverse('downloads.latest',
-                      kwargs={'addon_id': self.addon.id, 'platform': 5,
+                      kwargs={'addon_id': self.addon.slug, 'platform': 5,
                               'type': 'attachment'})
         url += self.file.filename
         self.assert_served_locally(self.client.get(url), attachment=True)
@@ -408,7 +410,7 @@ class TestDownloadsLatest(TestDownloadsBase):
         f = File.objects.create(platform=p, version=self.file.version,
                                 filename='unst.xpi')
         url = reverse('downloads.latest',
-                      kwargs={'addon_id': self.addon.id, 'platform': 3})
+                      kwargs={'addon_id': self.addon.slug, 'platform': 3})
         self.assert_served_locally(self.client.get(url), file_=f)
 
     def test_query_params(self):

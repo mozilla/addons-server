@@ -8,14 +8,14 @@
 
 {% block content %}
 <header>
-  {{ dev_breadcrumbs(addon, items=[(url('devhub.versions', addon.id), _('Versions')),
+  {{ dev_breadcrumbs(addon, items=[(url('devhub.versions', addon.slug), _('Versions')),
                                    (None, title)]) }}
   {# L10n: {0} is an add-on name. #}
   <h2>{{ _('Manage {0}')|f(addon.name) }}</h2>
 </header>
 <section class="primary devhub-form edit-version" role="main">
   <h3>{{ title }}</h3>
-  <a href="{{ url('devhub.versions', addon.id) }}">{{ _('Back to All Versions') }}</a>
+  <a href="{{ url('devhub.versions', addon.slug) }}">{{ _('Back to All Versions') }}</a>
   <form method="post" action="">
     <div class="item">
       <div class="item_wrapper">
@@ -126,12 +126,12 @@
       </div>
       <div class="listing-footer">
         <button type="submit">{{ _('Save Changes') }}</button> {{ _('or') }}
-        <a href="{{ url('devhub.versions', addon.id) }}">{{ _('Cancel') }}</a>
+        <a href="{{ url('devhub.versions', addon.slug) }}">{{ _('Cancel') }}</a>
       </div>
     </div>
   </form>
   <div class="add-file-modal upload-file modal hidden">
-    <form method="post" id="upload-file" action="{{ url('devhub.versions.add_file', addon.id, version.id) }}"
+    <form method="post" id="upload-file" action="{{ url('devhub.versions.add_file', addon.slug, version.id) }}"
           enctype="multipart/form-data">
       <h3>{{ _('Upload a New File') }}</h3>
       <div class="upload-file-box">

@@ -1,9 +1,9 @@
 {% set urls = (
-  (url('devhub.addons.edit', addon.id), _('Edit Add-on Listing')),
-  (url('devhub.addons.owner', addon.id), _('Manage Authors & License')),
-  (url('devhub.addons.profile', addon.id), _('Manage Developer Profile')),
-  (url('devhub.addons.payments', addon.id), _('Manage Payments')),
-  (url('devhub.versions', addon.id), _('Manage Status & Versions')),
+  (url('devhub.addons.edit', addon.slug), _('Edit Add-on Listing')),
+  (url('devhub.addons.owner', addon.slug), _('Manage Authors & License')),
+  (url('devhub.addons.profile', addon.slug), _('Manage Developer Profile')),
+  (url('devhub.addons.payments', addon.slug), _('Manage Payments')),
+  (url('devhub.versions', addon.slug), _('Manage Status & Versions')),
 ) %}
 <section class="secondary" role="complementary">
   <div class="highlight" id="edit-addon-nav">
@@ -17,9 +17,9 @@
     <ul class="refinements">
       <li><a href="{{ addon.get_url_path() }}">
         {{ _('View Add-on Listing') }}</a></li>
-      <li><a href="{{ url('devhub.feed', addon.id) }}">
+      <li><a href="{{ url('devhub.feed', addon.slug) }}">
         {{ _('View Recent Changes') }}</a></li>
-      <li><a href="{{ url('stats.overview', addon.id) }}">
+      <li><a href="{{ url('stats.overview', addon.slug) }}">
         {{ _('View Statistics Dashboard') }}</a></li>
     </ul>
   </div>

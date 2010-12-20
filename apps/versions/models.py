@@ -67,13 +67,13 @@ class Version(amo.models.ModelBase):
         return os.path.join(settings.ADDONS_PATH, str(self.addon_id))
 
     def license_url(self):
-        return reverse('addons.license', args=[self.addon_id, self.version])
+        return reverse('addons.license', args=[self.addon.slug, self.version])
 
     def flush_urls(self):
         return self.addon.flush_urls()
 
     def get_url_path(self):
-        return reverse('addons.versions', args=(self.addon.id, self.version,))
+        return reverse('addons.versions', args=[self.addon.slug, self.version])
 
     def delete(self):
         amo.log(amo.LOG.DELETE_VERSION, self.addon, str(self.version))

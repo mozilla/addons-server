@@ -26,7 +26,7 @@ class TestRedirects(test_utils.TestCase):
     def test_persona(self):
         """`/persona/\d+` should go to `/addon/\d+`."""
         r = self.client.get(u'persona/4', follow=True)
-        assert r.redirect_chain[-1][0].endswith('/en-US/firefox/addon/4/')
+        assert r.redirect_chain[-1][0].endswith('/en-US/firefox/addon/a4/')
 
     def test_contribute_installed(self):
         """`/addon/\d+/about` should go to
@@ -58,7 +58,7 @@ class TestRedirects(test_utils.TestCase):
 
     def test_reviews(self):
         response = self.client.get('/reviews/display/4', follow=True)
-        self.assertRedirects(response, '/en-US/firefox/addon/4/reviews/',
+        self.assertRedirects(response, '/en-US/firefox/addon/a4/reviews/',
                              status_code=301)
 
     def test_browse(self):
@@ -172,7 +172,7 @@ class TestRedirects(test_utils.TestCase):
 
     def test_addons_versions(self):
         r = self.client.get('/addons/versions/4', follow=True)
-        self.assertRedirects(r, '/en-US/firefox/addon/4/versions/',
+        self.assertRedirects(r, '/en-US/firefox/addon/a4/versions/',
                              status_code=301)
 
     def test_addons_versions_rss(self):

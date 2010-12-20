@@ -56,7 +56,7 @@ def report():
             print 'Version: %s - %s files' % (version.pk,
                                               version.files.count())
             print 'URL: %s' % reverse('devhub.versions.edit',
-                                      args=[version.addon.pk,
+                                      args=[version.addon.slug,
                                             version.pk])
             hashes = []
             for file in version.all_files:

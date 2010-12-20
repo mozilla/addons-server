@@ -17,7 +17,7 @@
       </div>
       <ul class="item-details">
         {% if addon.current_version %}
-          {% set link = url('devhub.versions.edit', addon.id, addon.current_version.id) %}
+          {% set link = url('devhub.versions.edit', addon.slug, addon.current_version.id) %}
           {# L10n: {0} is a version number. #}
           <li>{{ _('<strong>Latest version:</strong> <a href="{0}">{1}</a>'|
                    f(link, addon.current_version))|xssafe }}</li>

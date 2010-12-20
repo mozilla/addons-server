@@ -10,6 +10,7 @@ import amo
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
 from access import acl
+from addons.decorators import addon_view_factory
 from addons.models import Addon
 from files.models import File
 from versions.models import Version
@@ -18,10 +19,11 @@ from versions.models import Version
 # The version detail page redirects to the version within pagination, so we
 # need to enforce the number of versions per page.
 PER_PAGE = 30
+addon_view = addon_view_factory(Addon.objects.valid())
 
 
-def version_list(request, addon_id):
-    addon = get_object_or_404(Addon.objects.valid(), pk=addon_id)
+@addon_view
+def version_list(request, addon):
     qs = (addon.versions.filter(files__status__in=amo.VALID_STATUSES)
           .distinct().order_by('-created'))
     versions = amo.utils.paginate(request, qs, PER_PAGE)
@@ -31,18 +33,18 @@ def version_list(request, addon_id):
                         {'addon': addon, 'versions': versions})
 
 
-def version_detail(request, addon_id, version_num):
-    addon = get_object_or_404(Addon.objects.valid(), pk=addon_id)
+@addon_view
+def version_detail(request, addon, version_num):
     qs = (addon.versions.filter(files__status__in=amo.VALID_STATUSES)
           .distinct().order_by('-created'))
     # Use cached_with since values_list won't be cached.
-    f = lambda: _find_version_page(qs, addon_id, version_num)
-    return caching.cached_with(qs, f, 'vd:%s:%s' % (addon_id, version_num))
+    f = lambda: _find_version_page(qs, addon, version_num)
+    return caching.cached_with(qs, f, 'vd:%s:%s' % (addon.id, version_num))
 
 
-def _find_version_page(qs, addon_id, version_num):
+def _find_version_page(qs, addon, version_num):
     ids = list(qs.values_list('version', flat=True))
-    url = reverse('addons.versions', args=[addon_id])
+    url = reverse('addons.versions', args=[addon.slug])
     if version_num in ids:
         page = 1 + ids.index(version_num) / PER_PAGE
         return redirect(urlparams(url, 'version-%s' % version_num, page=page))
@@ -67,9 +69,8 @@ def download_file(request, file_id, type=None):
     return response
 
 
-def download_latest(request, addon_id, type='xpi', platform=None):
-    addon = get_object_or_404(Addon.objects,
-                              pk=addon_id, _current_version__isnull=False)
+@addon_view_factory(Addon.objects.filter(_current_version__isnull=False))
+def download_latest(request, addon, type='xpi', platform=None):
     platforms = [amo.PLATFORM_ALL.id]
     if platform is not None and int(platform) in amo.PLATFORMS:
         platforms.append(int(platform))

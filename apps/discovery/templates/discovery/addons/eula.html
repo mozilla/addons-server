@@ -23,7 +23,7 @@
     {{ install_button(addon, version=version, show_contrib=False,
                       show_eula=False, show_warning=False) }}
   </li>
-  <li><a href="{{ url('discovery.addons.detail', addon.id) }}" class="button">
+  <li><a href="{{ url('discovery.addons.detail', addon.slug) }}" class="button">
     {{ _('Cancel Installation') }}</a></li>
 </ul>
 {% endblock %}

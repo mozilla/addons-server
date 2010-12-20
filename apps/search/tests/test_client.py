@@ -179,7 +179,7 @@ class SearchTest(SphinxTestCase):
 
         Note: These change if you change the fixtures.
         """
-        eq_(query("", limit=1, sort='newest')[0].id, 11399)
+        eq_(query("", limit=1, sort='newest')[0].id, 5369)
         eq_(query("", limit=1, sort='updated')[0].id, 592,
             'Sort by updated is incorrect.')
         eq_(query("", limit=1, sort='name')[0].id, 11399)

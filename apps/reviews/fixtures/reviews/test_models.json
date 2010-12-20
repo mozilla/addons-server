@@ -62,6 +62,7 @@
         "fields": {
             "type": 1,
             "status": 4,
+            "slug": "a4",
             "highest_status": 4,
             "description": null,
             "modified": "2008-05-22 11:59:13",

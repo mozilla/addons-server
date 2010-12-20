@@ -39,7 +39,7 @@
         "pk": 5579,
         "model": "addons.addon",
         "fields": {
-            "slug": "5579",
+            "slug": "a5579",
             "dev_agreement": true,
             "eula": null,
             "_current_version": 90119,
