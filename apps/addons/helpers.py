@@ -48,7 +48,7 @@ def support_addon(addon):
 @register.inclusion_tag('addons/performance_note.html')
 @jinja2.contextfunction
 def performance_note(context, amount, listing=False):
-    return dict(listing=listing, amount=amount)
+    return new_context(**locals())
 
 
 @register.inclusion_tag('addons/contribution.html')
