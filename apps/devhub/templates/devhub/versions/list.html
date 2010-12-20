@@ -68,9 +68,12 @@
           <a href="#" id="disable-addon">{{ _('Disable Add-on') }}</a> &middot;
         {% endif %}
         <a href="#" id="delete-addon">{{ _('Delete Add-on') }}</a>
-        <span class="version-last-updated">
-        {{ _('Last updated: {0}')|f(addon.last_updated|datetime) }}
-        </span>
+        {% set current = addon.get_current_version() %}
+        {% if current %}
+          <span class="version-changed">
+          {{ _('Displayed version: {0}')|f(current.version) }}
+          </span>
+        {% endif %}
       </div>
     </div>
   </div>
