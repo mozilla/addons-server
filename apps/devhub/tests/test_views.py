@@ -32,6 +32,26 @@ from users.models import UserProfile
 from versions.models import ApplicationsVersions, License, Version
 
 
+def assert_no_validation_errors(validation):
+    """Assert that the validation (JSON) does not contain a traceback.
+
+    Note that this does not test whether the addon passed
+    validation or not.
+    """
+    if hasattr(validation, 'task_error'):
+        # FileUpload object:
+        error = validation.task_error
+    else:
+        # Upload detail - JSON output
+        error = validation['error']
+    if error:
+        print '-'*70
+        print error
+        print '-'*70
+        raise AssertionError("Unexpected task error: %s" %
+                             error.rstrip().split("\n")[-1])
+
+
 class HubTest(test_utils.TestCase):
     fixtures = ['browse/nameless-addon', 'base/users']
 
@@ -2810,7 +2830,7 @@ class TestUpload(files.tests.UploadTest):
     def test_fileupload_validation(self):
         self.post()
         fu = FileUpload.objects.get()
-        # If this fails check fu.task_error.
+        assert_no_validation_errors(fu)
         assert fu.validation
         validation = json.loads(fu.validation)
         eq_(validation['success'], False)
@@ -2848,6 +2868,7 @@ class TestUploadDetail(files.tests.UploadTest):
                                     args=[upload.uuid, 'json']))
         eq_(r.status_code, 200)
         data = json.loads(r.content)
+        assert_no_validation_errors(data)
         eq_(data['url'],
             reverse('devhub.upload_detail', args=[upload.uuid, 'json']))
         eq_(data['full_report_url'],
