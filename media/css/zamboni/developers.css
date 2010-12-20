@@ -74,6 +74,10 @@ form.select-review:after {
     border-top: 1px dotted #ADD0DC;
 }
 
+.devhub-form table table td {
+    border-top-width: 0;
+}
+
 .devhub-form table, .devhub-form tbody {
     border-top: medium none;
     border-bottom: medium none;
@@ -91,7 +95,8 @@ form.select-review:after {
 
 
 .devhub-form .tip,
-a.remove {
+.devhub-form a.remove,
+.compat-versions a.remove {
     -moz-border-radius: 20px;
     -webkit-border-radius :20px;
     border-radius: 20px;
@@ -110,7 +115,8 @@ a.remove {
 .devhub-form .tip {
     vertical-align: top;
 }
-a.remove {
+.devhub-form a.remove,
+.compat-versions a.remove {
     cursor: pointer;
     line-height: 16px;
     float: right;
@@ -118,9 +124,9 @@ a.remove {
 }
 
 .devhub-form .author:hover .remove,
-tr:hover a.remove,
 .devhub-form tr:hover .tip,
-.devhub-form tr:hover .remove {
+.devhub-form tr:hover > td > a.remove,
+.compat-versions tr:hover a.remove {
     background-color: #CCC;
 }
 
@@ -130,8 +136,8 @@ tr:hover a.remove,
     cursor: help;
 }
 
-.devhub-form tr:hover .remove:hover,
-tr:hover a.remove:hover {
+.devhub-form tr:hover a.remove:hover,
+.compat-versions tr:hover a.remove:hover {
     background-color: #2A4364;
 }
 
@@ -369,6 +375,9 @@ span.locale {
     background-size: auto 24px;
     line-height: 30px;
     vertical-align: top;
+}
+.devhub-form .compat-versions td.app {
+    background-position: 0 12px;
 }
 .new-apps a.app {
     background-position: 0 50%;
