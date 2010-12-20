@@ -4,6 +4,7 @@ import os
 import sys
 import traceback
 
+from django.conf import settings
 from celeryutils import task
 
 from amo.decorators import write
@@ -32,37 +33,25 @@ def validator(upload_id, **kw):
 
 def _validator(upload):
 
-    # TODO(Kumar) remove this once we sort
-    # out the js environment. See bug 614574
-    from validator.testcases import scripting
-    scripting.SPIDERMONKEY = None
-
-    # TODO(Kumar) remove this when there is
-    # an easier way.  See bug 618364
     import validator
-    with open(os.path.join(os.path.dirname(validator.__file__),
-                           'app_versions.json')) as f:
-        from validator.testcases import targetapplication
-        targetapplication.APPROVED_APPLICATIONS = json.loads(f.read())
+    from validate import validate
 
-    # TODO(basta): this should be two lines.
-    # from addon_validator import validate
-    # return validate(path, format='json')
-    from cStringIO import StringIO
-    import validator.main as addon_validator
-    from validator.errorbundler import ErrorBundle
-    from validator.constants import PACKAGE_ANY
-    output = StringIO()
+    # TODO(Kumar) remove this when validator is fixed, see bug 620503
+    from validator.testcases import scripting
+    scripting.SPIDERMONKEY_INSTALLATION = settings.SPIDERMONKEY
+    import validator.constants
+    validator.constants.SPIDERMONKEY_INSTALLATION = settings.SPIDERMONKEY
 
-    # determined=True
-    #   continue validating each tier even if one has an error
-    # listed=True
-    #   the add-on is hosted on AMO
-    eb = ErrorBundle(pipe=output, no_color=True,
-                     determined=True, listed=True)
-    addon_validator.prepare_package(eb, upload.path, PACKAGE_ANY)
-    eb.print_json()
-    return output.getvalue()
+    # TODO(Kumar) remove this when validator is fixed, see bug 620503
+    # TODO(Kumar) Or better yet, keep apps up to date with DB per bug 620731
+    apps = os.path.join(os.path.dirname(validator.__file__),
+                        'app_versions.json')
+
+    return validate(upload.path, format='json',
+                    # Continue validating each tier even if one has an error
+                    determined=True,
+                    approved_applications=apps,
+                    spidermonkey=settings.SPIDERMONKEY)
 
 
 @task(queue='images')

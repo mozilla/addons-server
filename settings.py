@@ -685,3 +685,7 @@ REDIS_BACKENDS = {'master': 'redis://localhost:6379?socket_timeout=0.5'}
 
 # Directory of JavaScript test files for django_qunit to run
 QUNIT_TEST_DIRECTORY = os.path.join(MEDIA_ROOT, 'js', 'zamboni', 'tests')
+
+# Full path or executable path (relative to $PATH) of the spidermonkey js
+# binary.  It must be a version compatible with amo-validator
+SPIDERMONKEY = None
