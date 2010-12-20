@@ -145,7 +145,7 @@
 
   <div id="modal-delete-version" class="modal modal-delete">
     <form method="post" action="{{ url('devhub.versions.delete', addon.id) }}">
-      <h3>{{ _('Delete Add-on Version') }}</h3>
+      <h3>{{ _('Delete Version') }}</h3>
       <p>
         {% trans %}
           Deleting your add-on version will remove it from the site.
@@ -154,7 +154,7 @@
       {{ csrf() }}
       <input type="hidden" name="version_id" class="version_id">
       <input type="hidden" name="addon_id" class="addon_id" value="{{ addon.id }}">
-      <button type="submit" class="delete-button">{{ _('Delete Add-on Version') }}</button>
+      <button type="submit" class="delete-button">{{ _('Delete Version') }}</button>
       {{ _('or') }} <a href="#" class="close">{{ _('Cancel') }}</a>
     </form>
   </div>
