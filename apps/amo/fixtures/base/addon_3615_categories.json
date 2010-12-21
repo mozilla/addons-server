@@ -1,0 +1,83 @@
+[
+    {
+        "pk": 22,
+        "model": "addons.category",
+        "fields": {
+            "count": 901,
+            "description": null,
+            "weight": 0,
+            "created": "2007-03-05 13:09:27",
+            "modified": "2010-02-23 19:17:32",
+            "application": 1,
+            "type": 1,
+            "slug": "bookmarks",
+            "name": 1
+        }
+    },
+    {
+        "pk": 24,
+        "model": "addons.category",
+        "fields": {
+            "count": 901,
+            "description": null,
+            "weight": 0,
+            "created": "2007-03-05 13:09:27",
+            "modified": "2010-02-23 19:17:32",
+            "application": 1,
+            "type": 1,
+            "slug": "social",
+            "name": 2
+        }
+    },
+    {
+        "pk": 23,
+        "model": "addons.category",
+        "fields": {
+            "count": 901,
+            "description": null,
+            "weight": 0,
+            "created": "2007-03-05 13:09:27",
+            "modified": "2010-02-23 19:17:32",
+            "application": 1,
+            "type": 1,
+            "slug": "feeds",
+            "name": 3
+        }
+    },
+    {
+        "pk": 700381,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": null,
+            "created": "2010-12-20 16:18:56",
+            "locale": "en-us",
+            "modified": "2010-12-20 16:18:56",
+            "id": 1,
+            "localized_string": "Bookmarks"
+        }
+    },
+    {
+        "pk": 700382,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": null,
+            "created": "2010-12-20 16:18:56",
+            "locale": "en-us",
+            "modified": "2010-12-20 16:18:56",
+            "id": 2,
+            "localized_string": "Social"
+        }
+    },
+    {
+        "pk": 700383,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": null,
+            "created": "2010-12-20 16:18:56",
+            "locale": "en-us",
+            "modified": "2010-12-20 16:18:56",
+            "id": 3,
+            "localized_string": "Feeds"
+        }
+    }
+]

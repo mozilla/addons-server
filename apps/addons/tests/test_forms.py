@@ -9,7 +9,7 @@ import amo
 
 
 class FormsTest(test_utils.TestCase):
-    fixtures = ('base/addon_3615',)
+    fixtures = ('base/addon_3615', 'base/addon_3615_categories')
 
     def setUp(self):
         self._redis = mock_redis()
@@ -51,6 +51,13 @@ class FormsTest(test_utils.TestCase):
     def test_locales(self):
         form = AddonFormDetails(request={})
         eq_(form.fields['default_locale'].choices[0][0], 'af')
+
+    def test_category_order(self):
+        form = forms.AddonFormBasic(dict(name=self.existing_name),
+                                    request=None, instance=Addon.objects.get())
+        names = ['Bookmarks', 'Feeds', 'Social']
+        categories = form.fields['categories'].queryset
+        eq_(sorted(names), [str(f.name) for f in categories.all()])
 
 
 class TestUpdate(test_utils.TestCase):

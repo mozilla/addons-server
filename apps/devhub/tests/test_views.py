@@ -886,7 +886,7 @@ class TestDelete(test_utils.TestCase):
 
 class TestEdit(test_utils.TestCase):
     fixtures = ('base/apps', 'base/users', 'base/addon_3615',
-                'base/addon_5579')
+                'base/addon_5579', 'base/addon_3615_categories')
 
     def setUp(self):
         super(TestEdit, self).setUp()
@@ -2220,7 +2220,8 @@ class TestSubmitStep2(test_utils.TestCase):
 
 
 class TestSubmitStep3(test_utils.TestCase):
-    fixtures = ['base/addon_3615', 'base/addon_5579', 'base/users']
+    fixtures = ['base/addon_3615', 'base/addon_3615_categories',
+                'base/addon_5579', 'base/users']
 
     def setUp(self):
         super(TestSubmitStep3, self).setUp()

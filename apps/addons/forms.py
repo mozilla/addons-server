@@ -18,6 +18,7 @@ from translations.fields import TransField, TransTextarea
 from translations.forms import TranslationFormMixin
 from translations.models import Translation
 from translations.widgets import TranslationTextInput
+from translations.query import order_by_translation
 from versions.compare import version_int
 
 
@@ -60,9 +61,9 @@ class AddonFormBasic(AddonFormBase):
 
         # TODO(gkoberger/help from chowse):
         # Make it so the categories aren't hardcoded as Firefox only
-        self.fields['categories'].queryset = Category.objects.filter(
-                                               application=1,
-                                               type=self.instance.type)
+        self.fields['categories'].queryset = (order_by_translation(
+            Category.objects.filter(application=1, type=self.instance.type),
+            'name'))
 
     def save(self, addon, commit=False):
         tags_new = self.cleaned_data['tags']
