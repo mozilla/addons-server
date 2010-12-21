@@ -3,6 +3,7 @@ from django.conf.urls.defaults import patterns, url, include
 
 from piston.resource import Resource
 
+from addons.urls import ADDON_ID
 from api import authentication, handlers, views
 
 API_CACHE_TIMEOUT = getattr(settings, 'API_CACHE_TIMEOUT', 500)
@@ -50,7 +51,7 @@ list_regexps = build_urls(base_list_regexp, appendages)
 
 api_patterns = patterns('',
     # Addon_details
-    url('addon/(?P<addon_id>[^/]+)$', class_view(views.AddonDetailView),
+    url('addon/%s$' % ADDON_ID, class_view(views.AddonDetailView),
         name='api.addon_detail'),)
 
 for regexp in search_regexps:
@@ -69,10 +70,10 @@ version_resource = Resource(handler=handlers.VersionsHandler, **ad)
 piston_patterns = patterns('',
     url(r'^user/$', user_resource, name='api.user'),
     url(r'^addons/$', addons_resource, name='api.addons'),
-    url(r'^addon/(?P<addon_id>[^/]+)$', addons_resource, name='api.addon'),
-    url(r'^addon/(?P<addon_id>[^/]+)/versions$', version_resource,
+    url(r'^addon/%s$' % ADDON_ID, addons_resource, name='api.addon'),
+    url(r'^addon/%s/versions$' % ADDON_ID, version_resource,
         name='api.versions'),
-    url(r'^addon/(?P<addon_id>[^/]+)/version/(?P<version_id>\d+)$',
+    url(r'^addon/%s/version/(?P<version_id>\d+)$' % ADDON_ID,
         version_resource, name='api.version'),
 )
 

@@ -4,6 +4,8 @@ from django.views.decorators.csrf import csrf_exempt
 
 from . import views
 
+ADDON_ID = r"""(?P<addon_id>[^/<>"']+)"""
+
 
 # These will all start with /addon/<addon_id>/
 detail_patterns = patterns('',
@@ -37,7 +39,7 @@ urlpatterns = patterns('',
     url('^$', views.home, name='home'),
 
     # URLs for a single add-on.
-    ('^addon/(?P<addon_id>[^/]+)/', include(detail_patterns)),
+    ('^addon/%s/' % ADDON_ID, include(detail_patterns)),
 
     # Accept extra junk at the end for a cache-busting build id.
     url('^addons/buttons.js(?:/.+)?$', 'addons.buttons.js'),

@@ -1,6 +1,7 @@
 from django.conf.urls.defaults import patterns, url
 from versions.feeds import VersionsRss
 
+from addons.urls import ADDON_ID
 from . import views
 
 urlpatterns = patterns('',
@@ -17,7 +18,7 @@ download_patterns = patterns('',
         views.download_file, name='downloads.file'),
 
     # /latest/1865/type:xpi/platform:5
-    url('^latest/(?P<addon_id>[^/]+)/'
-        '(?:type:(?P<type>\w+)/)?(?:platform:(?P<platform>\d+)/)?.*',
+    url('^latest/%s/(?:type:(?P<type>\w+)/)?'
+        '(?:platform:(?P<platform>\d+)/)?.*' % ADDON_ID,
         views.download_latest, name='downloads.latest'),
 )
