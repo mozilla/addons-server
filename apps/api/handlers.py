@@ -26,31 +26,22 @@ def check_addon_and_version(f):
     @functools.wraps(f)
     def wrapper(*args, **kw):
         request = args[1]
-        version_id = kw.get('version_id')
-        addon_id = kw.get('addon_id')
-        if version_id:
+        addon_id = kw['addon_id']
+        try:
+            addon = Addon.objects.id_or_slug(addon_id).get()
+        except:
+            return rc.NOT_HERE
+        if not acl.check_ownership(request, addon):
+            return rc.FORBIDDEN
+
+        if 'version_id' in kw:
             try:
-                version = Version.objects.get(addon=addon_id, pk=version_id)
-                addon = version.addon
+                version = Version.objects.get(addon=addon, pk=kw['version_id'])
             except Version.DoesNotExist:
                 return rc.NOT_HERE
-
-            if not acl.check_ownership(request, addon):
-                return rc.FORBIDDEN
-
             return f(*args, addon=addon, version=version)
-
-        elif addon_id:
-            try:
-                addon = Addon.objects.get(pk=addon_id)
-            except:
-                return rc.NOT_HERE
-
-            if not acl.check_ownership(request, addon):
-                return rc.FORBIDDEN
-
+        else:
             return f(*args, addon=addon)
-
     return wrapper
 
 
@@ -176,7 +167,7 @@ class AnonymousVersionsHandler(AnonymousBaseHandler, BaseVersionHandler):
             except:
                 return rc.NOT_HERE
         try:
-            addon = Addon.objects.get(pk=addon_id)
+            addon = Addon.objects.id_or_slug(addon_id).get()
         except:
             return rc.NOT_HERE
 

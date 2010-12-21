@@ -14,7 +14,7 @@
   {% if contrib and not errors %}
     <div id="status-bar">
       <p>{{ _('You are currently requesting <b>contributions</b> from users')|safe }}</p>
-      <form method="post" action="{{ url('devhub.addons.payments.disable', addon.id) }}">
+      <form method="post" action="{{ url('devhub.addons.payments.disable', addon.slug) }}">
         {{ csrf() }}
         <button type="submit">{{ _('Disable Contributions') }}</button>
       </form>

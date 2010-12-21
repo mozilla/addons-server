@@ -2,7 +2,7 @@
 
 {% block rss_feed %}
 <link  rel="alternate" type="application/rss+xml"
-       title="RSS" href="{{ url('addons.versions', addon.id) }}format:rss">
+       title="RSS" href="{{ url('addons.versions', addon.slug) }}format:rss">
 {% endblock %}
 
 {# L10n: {0} is an add-on name. #}
@@ -14,7 +14,7 @@
 <div class="primary">
   <header>
     {{ breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
-                    (url('addons.detail', addon.id), addon.name),
+                    (url('addons.detail', addon.slug), addon.name),
                     (None, _('Versions'))]) }}
     {# L10n: {0} is an add-on name. #}
     <hgroup>
@@ -27,7 +27,7 @@
   </header>
   <div class="warning highlight">
     <h2>{{ _('Be careful with old versions!') }}</h2>
-    <p>{% trans url=url('addons.detail', addon.id) %}
+    <p>{% trans url=url('addons.detail', addon.slug) %}
       These versions are displayed for reference and testing purposes.
       You should always use the <a href="{{ url }}">latest version</a> of an add-on.
     {% endtrans %}</p>

@@ -35,8 +35,10 @@ from translations.helpers import truncate
 from versions.models import Version
 from .models import Addon
 from .forms import UpdateForm
+from .decorators import addon_view_factory
 
 log = commonware.log.getLogger('z.addons')
+addon_view = addon_view_factory(qs=Addon.objects.valid())
 
 
 def author_addon_clicked(f):
@@ -55,10 +57,9 @@ def author_addon_clicked(f):
 
 
 @author_addon_clicked
-def addon_detail(request, addon_id):
+@addon_view
+def addon_detail(request, addon):
     """Add-ons details page dispatcher."""
-    addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
-
     if settings.SANDBOX_PANIC and addon.status in amo.UNREVIEWED_STATUSES:
         raise http.Http404
 
@@ -82,7 +83,7 @@ def addon_detail(request, addon_id):
             prefixer = urlresolvers.get_url_prefix()
             prefixer.app = new_app.short
             return http.HttpResponsePermanentRedirect(reverse(
-                'addons.detail', args=[addon.id]))
+                'addons.detail', args=[addon.slug]))
 
 
 def extension_detail(request, addon):
@@ -94,7 +95,7 @@ def extension_detail(request, addon):
         prefixer = urlresolvers.get_url_prefix()
         prefixer.app = comp_apps.keys()[0].short
         return http.HttpResponsePermanentRedirect(reverse(
-            'addons.detail', args=[addon.id]))
+            'addons.detail', args=[addon.slug]))
 
     # source tracking
     src = request.GET.get('src', 'addondetail')
@@ -332,10 +333,8 @@ class CollectionPromoBox(object):
         return self.request.APP == amo.FIREFOX
 
 
-def eula(request, addon_id, file_id=None):
-    addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
-    # redirect back to detail if no eula
-    # Todo(skeen): think of a better solution
+@addon_view
+def eula(request, addon, file_id=None):
     if not addon.eula:
         return http.HttpResponseRedirect(addon.get_url_path())
     if file_id is not None:
@@ -347,16 +346,16 @@ def eula(request, addon_id, file_id=None):
                         {'addon': addon, 'version': version})
 
 
-def privacy(request, addon_id):
-    addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
+@addon_view
+def privacy(request, addon):
     if not addon.privacy_policy:
         return http.HttpResponseRedirect(addon.get_url_path())
 
     return jingo.render(request, 'addons/privacy.html', {'addon': addon})
 
 
-def developers(request, addon_id, page):
-    addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
+@addon_view
+def developers(request, addon, page):
     if 'version' in request.GET:
         qs = addon.versions.filter(files__status__in=amo.VALID_STATUSES)
         version = get_list_or_404(qs, version=request.GET['version'])[0]
@@ -370,9 +369,8 @@ def developers(request, addon_id, page):
                          'page': page, 'version': version})
 
 
-def contribute(request, addon_id):
-    addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
-
+@addon_view
+def contribute(request, addon):
     contrib_type = request.GET.get('type', '')
     is_suggested = contrib_type == 'suggested'
     source = request.GET.get('source', '')
@@ -396,7 +394,7 @@ def contribute(request, addon_id):
                            comment=comment)
     contrib.save()
 
-    return_url = "%s?%s" % (reverse('addons.thanks', args=[addon.id]),
+    return_url = "%s?%s" % (reverse('addons.thanks', args=[addon.slug]),
                             urllib.urlencode({'uuid': contribution_uuid}))
     # L10n: {0} is an add-on name.
     contrib_for = _(u'Contribution for {0}').format(addon.name)
@@ -457,15 +455,15 @@ def contribute_url_params(business, addon_id, item_name, return_url,
     return data
 
 
-def share(request, addon_id):
+@addon_view
+def share(request, addon):
     """Add-on sharing"""
-    addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
     return share_redirect(request, addon, name=addon.name,
                           description=truncate(addon.summary, length=250))
 
 
-def license(request, addon_id, version=None):
-    addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
+@addon_view
+def license(request, addon, version=None):
     if version is not None:
         qs = addon.versions.filter(files__status__in=amo.VALID_STATUSES)
         version = get_list_or_404(qs, version=version)[0]
@@ -482,20 +480,20 @@ def license_redirect(request, version):
     return redirect(version.license_url(), permanent=True)
 
 
-def report_abuse(request, addon_id):
+@addon_view
+def report_abuse(request, addon):
     if not settings.REPORT_ABUSE:
         raise http.Http404()
 
-    addon = get_object_or_404(Addon, pk=addon_id)
     form = AbuseForm(request.POST or None, request=request)
     if request.method == "POST" and form.is_valid():
-        url = reverse('addons.detail', args=[addon.pk])
+        url = reverse('addons.detail', args=[addon.slug])
         send_abuse_report(request, addon, url, form.cleaned_data['text'])
         messages.success(request, _('Abuse reported.'))
     else:
         return jingo.render(request, 'addons/report_abuse_full.html',
                             {'addon': addon, 'abuse_form': form, })
-    return redirect(reverse('addons.detail', args=[addon.pk]))
+    return redirect('addons.detail', args=[addon.slug])
 
 
 @cache_page(3600)

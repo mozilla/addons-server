@@ -9,12 +9,14 @@ from amo import messages
 import amo.utils
 from amo.decorators import post_required, json_view, login_required
 from access import acl
+from addons.decorators import addon_view_factory
 from addons.models import Addon
 
 from .models import Review, ReviewFlag, GroupedRating, Spam
 from . import forms
 
 log = commonware.log.getLogger('z.reviews')
+addon_view = addon_view_factory(qs=Addon.objects.valid())
 
 
 def flag_context():
@@ -22,13 +24,13 @@ def flag_context():
                 flag_form=forms.ReviewFlagForm())
 
 
-def review_list(request, addon_id, review_id=None, user_id=None):
-    addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
+@addon_view
+def review_list(request, addon, review_id=None, user_id=None):
     q = (Review.objects.valid().filter(addon=addon)
          .order_by('-created'))
 
     ctx = {'addon': addon,
-           'grouped_ratings': GroupedRating.get(addon_id)}
+           'grouped_ratings': GroupedRating.get(addon.id)}
     ctx.update(flag_context())
 
     ctx['form'] = forms.ReviewForm(None)
@@ -73,10 +75,11 @@ def get_flags(request, reviews):
     return dict((r.review_id, r) for r in qs)
 
 
+@addon_view
 @post_required
 @login_required(redirect=False)
 @json_view
-def flag(request, addon_id, review_id):
+def flag(request, addon, review_id):
     d = dict(review=review_id, user=request.user.id)
     try:
         instance = ReviewFlag.objects.get(**d)
@@ -93,12 +96,13 @@ def flag(request, addon_id, review_id):
         return json_view.error(unicode(form.errors))
 
 
+@addon_view
 @post_required
 @login_required(redirect=False)
-def delete(request, addon_id, review_id):
+def delete(request, addon, review_id):
     if not acl.action_allowed(request, 'Editors', 'DeleteReview'):
         return http.HttpResponseForbidden()
-    review = get_object_or_404(Review.objects, pk=review_id, addon=addon_id)
+    review = get_object_or_404(Review.objects, pk=review_id, addon=addon)
     review.delete()
     log.info('DELETE: %s deleted %s by %s ("%s": "%s")' %
              (request.amo_user.name, review_id,
@@ -115,15 +119,15 @@ def _review_details(request, addon, form):
     return d
 
 
+@addon_view
 @login_required
-def reply(request, addon_id, review_id):
-    addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
+def reply(request, addon, review_id):
     is_admin = acl.action_allowed(request, 'Admin', 'EditAnyAddon')
     is_author = acl.check_ownership(request, addon, require_owner=True)
     if not (is_admin or is_author):
         return http.HttpResponseForbidden()
 
-    review = get_object_or_404(Review.objects, pk=review_id, addon=addon_id)
+    review = get_object_or_404(Review.objects, pk=review_id, addon=addon)
     form = forms.ReviewReplyForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
@@ -135,15 +139,15 @@ def reply(request, addon_id, review_id):
             reply.save()
             action = 'New' if new else 'Edited'
             log.debug('%s reply to %s: %s' % (action, review_id, reply.id))
-            return redirect('reviews.detail', addon_id, review_id)
+            return redirect('reviews.detail', addon.slug, review_id)
     ctx = dict(review=review, form=form, addon=addon)
     ctx.update(flag_context())
     return jingo.render(request, 'reviews/reply.html', ctx)
 
 
+@addon_view
 @login_required
-def add(request, addon_id):
-    addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
+def add(request, addon):
     form = forms.ReviewForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
@@ -151,15 +155,16 @@ def add(request, addon_id):
             review = Review.objects.create(**details)
             amo.log(amo.LOG.ADD_REVIEW, addon, review)
             log.debug('New review: %s' % review.id)
-            return redirect('reviews.list', addon_id)
+            return redirect('reviews.list', addon.slug)
     return jingo.render(request, 'reviews/add.html',
                         dict(addon=addon, form=form))
 
 
+@addon_view
 @login_required(redirect=False)
 @post_required
-def edit(request, addon_id, review_id):
-    review = get_object_or_404(Review.objects, pk=review_id, addon=addon_id)
+def edit(request, addon, review_id):
+    review = get_object_or_404(Review.objects, pk=review_id, addon=addon)
     is_admin = acl.action_allowed(request, 'Admin', 'EditAnyAddon')
     if not (request.user.id == review.user.id or is_admin):
         return http.HttpResponseForbidden()

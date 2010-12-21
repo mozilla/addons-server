@@ -3,6 +3,7 @@ from django.shortcuts import redirect
 
 from urlconf_decorator import decorate
 
+from addons.urls import ADDON_ID
 from amo.decorators import write
 from . import views
 
@@ -69,8 +70,8 @@ urlpatterns = decorate(write, patterns('',
     url('^$', views.index, name='devhub.index'),
 
     # URLs for a single add-on.
-    ('^addon/(?P<addon_id>\d+)/', include(detail_patterns)),
-    ('^ajax/addon/(?P<addon_id>\d+)/', include(ajax_patterns)),
+    ('^addon/%s/' % ADDON_ID, include(detail_patterns)),
+    ('^ajax/addon/%s/' % ADDON_ID, include(ajax_patterns)),
 
     # Redirect people who have /addons/ instead of /addon/.
     ('^addons/\d+/.*',
@@ -87,7 +88,7 @@ urlpatterns = decorate(write, patterns('',
     url('^addon$', lambda r: redirect('devhub.addons', permanent=True)),
     url('^addons$', views.dashboard, name='devhub.addons'),
     url('^feed$', views.feed, name='devhub.feed_all'),
-    url('^feed/(?P<addon_id>\d+)$', views.feed, name='devhub.feed'),
+    url('^feed/%s$' % ADDON_ID, views.feed, name='devhub.feed'),
     url('^upload$', views.upload, name='devhub.upload'),
     url('^upload/([^/]+)(?:/([^/]+))?$', views.upload_detail,
         name='devhub.upload_detail')),

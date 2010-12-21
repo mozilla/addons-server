@@ -1,7 +1,7 @@
 {% if link_to_list %}
-  {% set base = url('reviews.list', addon.id) %}
+  {% set base = url('reviews.list', addon.slug) %}
 {% else %}
-  {% set base = url('addons.detail', addon.id)|urlparams('reviews') %}
+  {% set base = url('addons.detail', addon.slug)|urlparams('reviews') %}
   {% if collection_uuid %}
     {% set base = base|urlparams(collection_uuid=collection_uuid) %}
   {% endif %}

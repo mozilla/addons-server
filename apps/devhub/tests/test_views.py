@@ -45,9 +45,9 @@ def assert_no_validation_errors(validation):
         # Upload detail - JSON output
         error = validation['error']
     if error:
-        print '-'*70
+        print '-' * 70
         print error
-        print '-'*70
+        print '-' * 70
         raise AssertionError("Unexpected task error: %s" %
                              error.rstrip().split("\n")[-1])
 
@@ -107,7 +107,7 @@ class TestNav(HubTest):
         eq_(doc('#navbar ul li.top a').eq(0).text(), 'My Add-ons')
 
         # Check the anchor for the single add-on.
-        edit_url = reverse('devhub.addons.edit', args=[57132])
+        edit_url = reverse('devhub.addons.edit', args=[addon.slug])
         eq_(doc('#navbar ul li.top li a').eq(0).attr('href'), edit_url)
 
         # Create 6 add-ons.
@@ -224,9 +224,10 @@ class TestUpdateCompatibility(test_utils.TestCase):
         assert not doc('.item[data-addonid=4594] li.compat')
         a = Addon.objects.get(pk=4594)
         r = self.client.get(reverse('devhub.ajax.compat.update',
-                                    args=[a.id, a.current_version.id]))
+                                    args=[a.slug, a.current_version.id]))
         eq_(r.status_code, 404)
-        r = self.client.get(reverse('devhub.ajax.compat.status', args=[a.id]))
+        r = self.client.get(reverse('devhub.ajax.compat.status',
+                                    args=[a.slug]))
         eq_(r.status_code, 404)
 
     def test_compat(self):
@@ -239,10 +240,10 @@ class TestUpdateCompatibility(test_utils.TestCase):
         assert cu
 
         update_url = reverse('devhub.ajax.compat.update',
-                             args=[a.id, a.current_version.id])
+                             args=[a.slug, a.current_version.id])
         eq_(cu.attr('data-updateurl'), update_url)
 
-        status_url = reverse('devhub.ajax.compat.status', args=[a.id])
+        status_url = reverse('devhub.ajax.compat.status', args=[a.slug])
         eq_(doc('.item[data-addonid=3615] li.compat').attr('data-src'),
             status_url)
 
@@ -280,8 +281,9 @@ class TestDevRequired(test_utils.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']
 
     def setUp(self):
-        self.get_url = reverse('devhub.addons.payments', args=[3615])
-        self.post_url = reverse('devhub.addons.payments.disable', args=[3615])
+        self.get_url = reverse('devhub.addons.payments', args=['a3615'])
+        self.post_url = reverse('devhub.addons.payments.disable',
+                                args=['a3615'])
         assert self.client.login(username='del@icio.us', password='password')
         self.addon = Addon.objects.get(id=3615)
         self.au = AddonUser.objects.get(user__email='del@icio.us',
@@ -315,7 +317,7 @@ class TestOwnership(test_utils.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']
 
     def setUp(self):
-        self.url = reverse('devhub.addons.owner', args=[3615])
+        self.url = reverse('devhub.addons.owner', args=['a3615'])
         assert self.client.login(username='del@icio.us', password='password')
         self.addon = Addon.objects.get(id=3615)
         self.version = self.addon.current_version
@@ -615,7 +617,7 @@ class TestEditPayments(test_utils.TestCase):
         self.addon.save()
         self.foundation = Charity.objects.create(
             id=amo.FOUNDATION_ORG, name='moz', url='$$.moz', paypal='moz.pal')
-        self.url = reverse('devhub.addons.payments', args=[self.addon.id])
+        self.url = reverse('devhub.addons.payments', args=[self.addon.slug])
         assert self.client.login(username='del@icio.us', password='password')
         self.paypal_mock = mock.Mock()
         self.paypal_mock.return_value = (True, None)
@@ -778,9 +780,10 @@ class TestDisablePayments(test_utils.TestCase):
         self.addon.the_reason = self.addon.the_future = '...'
         self.addon.save()
         self.addon.update(wants_contributions=True, paypal_id='woohoo')
-        self.pay_url = reverse('devhub.addons.payments', args=[self.addon.id])
+        self.pay_url = reverse('devhub.addons.payments',
+                               args=[self.addon.slug])
         self.disable_url = reverse('devhub.addons.payments.disable',
-                                   args=[self.addon.id])
+                                   args=[self.addon.slug])
         assert self.client.login(username='del@icio.us', password='password')
 
     def test_statusbar_visible(self):
@@ -803,7 +806,7 @@ class TestPaymentsProfile(test_utils.TestCase):
 
     def setUp(self):
         self.addon = a = self.get_addon()
-        self.url = reverse('devhub.addons.payments', args=[self.addon.id])
+        self.url = reverse('devhub.addons.payments', args=[self.addon.slug])
         # Make sure all the payment/profile data is clear.
         assert not (a.wants_contributions or a.paypal_id or a.the_reason
                     or a.the_future or a.takes_contributions)
@@ -888,7 +891,7 @@ class TestDelete(test_utils.TestCase):
     def setUp(self):
         self.addon = self.get_addon()
         assert self.client.login(username='del@icio.us', password='password')
-        self.url = reverse('devhub.addons.delete', args=[self.addon.id])
+        self.url = reverse('devhub.addons.delete', args=[self.addon.slug])
 
     def get_addon(self):
         return Addon.objects.no_cache().get(id=3615)
@@ -912,7 +915,7 @@ class TestEdit(test_utils.TestCase):
         super(TestEdit, self).setUp()
         addon = self.get_addon()
         assert self.client.login(username='del@icio.us', password='password')
-        self.url = reverse('devhub.addons.edit', args=[addon.id])
+        self.url = reverse('devhub.addons.edit', args=[addon.slug])
         self.user = UserProfile.objects.get(pk=55021)
 
         AddonCategory.objects.filter(addon=addon,
@@ -934,7 +937,7 @@ class TestEdit(test_utils.TestCase):
         return Addon.objects.no_cache().get(id=3615)
 
     def get_url(self, section, edit=False):
-        args = [self.addon.id, section]
+        args = [self.addon.slug, section]
         if edit:
             args.append('edit')
 
@@ -943,7 +946,7 @@ class TestEdit(test_utils.TestCase):
     def test_redirect(self):
         # /addon/:id => /addon/:id/edit
         r = self.client.get('/en-US/developers/addon/3615/', follow=True)
-        url = reverse('devhub.addons.edit', args=[3615])
+        url = reverse('devhub.addons.edit', args=['a3615'])
         self.assertRedirects(r, url, 301)
 
     def test_edit_basic(self):
@@ -1001,7 +1004,7 @@ class TestEdit(test_utils.TestCase):
         eq_((ActivityLog.objects.for_addons(self.addon)
              .get(action=amo.LOG.ADD_TAG.id)).to_string(),
             '<a href="/en-US/firefox/tag/tag4">tag4</a> added to '
-            '<a href="/en-US/firefox/addon/3615/">new name</a>.')
+            '<a href="/en-US/firefox/addon/test_slug/">new name</a>.')
         eq_(ActivityLog.objects.filter(action=amo.LOG.ADD_TAG.id).count(),
                                         count + 1)
 
@@ -1465,18 +1468,17 @@ class TestEdit(test_utils.TestCase):
         eq_(addon.view_source, False)
 
     def test_nav_links(self):
-        url = reverse('devhub.addons.edit', args=[3615])
-        activity_url = reverse('devhub.feed', args=[3615])
+        url = reverse('devhub.addons.edit', args=['a3615'])
+        activity_url = reverse('devhub.feed', args=['a3615'])
         r = self.client.get(url)
         doc = pq(r.content)
         eq_(doc('#edit-addon-nav ul:last').find('li a').eq(1).attr('href'),
             activity_url)
 
     def get_l10n_urls(self):
-        id = 3615
         paths = ('devhub.addons.edit', 'devhub.addons.profile',
                  'devhub.addons.payments', 'devhub.addons.owner')
-        return [reverse(p, args=[id]) for p in paths]
+        return [reverse(p, args=['a3615']) for p in paths]
 
     def test_l10n(self):
         Addon.objects.get(id=3615).update(default_locale='en-US')
@@ -1502,7 +1504,7 @@ class TestProfileBase(test_utils.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']
 
     def setUp(self):
-        self.url = reverse('devhub.addons.profile', args=[3615])
+        self.url = reverse('devhub.addons.profile', args=['a3615'])
         assert self.client.login(username='del@icio.us', password='password')
         self.addon = Addon.objects.get(id=3615)
         self.version = self.addon.current_version
@@ -1533,7 +1535,7 @@ class TestProfileStatusBar(TestProfileBase):
     def setUp(self):
         super(TestProfileStatusBar, self).setUp()
         self.remove_url = reverse('devhub.addons.profile.remove',
-                                  args=[self.addon.id])
+                                  args=[self.addon.slug])
 
     def test_no_status_bar(self):
         self.addon.the_reason = self.addon.the_future = None
@@ -1670,11 +1672,11 @@ class TestVersion(test_utils.TestCase):
         self.user = UserProfile.objects.get(email='del@icio.us')
         self.addon = Addon.objects.get(id=3615)
         self.version = Version.objects.get(id=81551)
-        self.url = reverse('devhub.versions', args=[3615])
+        self.url = reverse('devhub.versions', args=['a3615'])
 
-        self.disable_url = reverse('devhub.addons.disable', args=[3615])
-        self.enable_url = reverse('devhub.addons.enable', args=[3615])
-        self.delete_url = reverse('devhub.versions.delete', args=[3615])
+        self.disable_url = reverse('devhub.addons.disable', args=['a3615'])
+        self.enable_url = reverse('devhub.addons.enable', args=['a3615'])
+        self.delete_url = reverse('devhub.versions.delete', args=['a3615'])
         self.delete_data = {'addon_id': self.addon.pk,
                             'version_id': self.version.pk}
 
@@ -1823,7 +1825,7 @@ class TestVersion(test_utils.TestCase):
         assert not doc('#disable-addon')
 
     def test_cancel_wrong_status(self):
-        cancel_url = reverse('devhub.addons.cancel', args=[3615])
+        cancel_url = reverse('devhub.addons.cancel', args=['a3615'])
         for status in amo.STATUS_CHOICES:
             if status in amo.STATUS_UNDER_REVIEW:
                 continue
@@ -1833,7 +1835,7 @@ class TestVersion(test_utils.TestCase):
             eq_(Addon.objects.get(id=3615).status, status)
 
     def test_cancel(self):
-        cancel_url = reverse('devhub.addons.cancel', args=[3615])
+        cancel_url = reverse('devhub.addons.cancel', args=['a3615'])
         self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
         self.client.post(cancel_url)
         eq_(Addon.objects.get(id=3615).status, amo.STATUS_LITE)
@@ -1845,7 +1847,7 @@ class TestVersion(test_utils.TestCase):
 
     def test_not_cancel(self):
         self.client.logout()
-        cancel_url = reverse('devhub.addons.cancel', args=[3615])
+        cancel_url = reverse('devhub.addons.cancel', args=['a3615'])
         eq_(self.addon.status, amo.STATUS_PUBLIC)
         res = self.client.post(cancel_url)
         eq_(res.status_code, 302)
@@ -1889,7 +1891,7 @@ class TestVersionEdit(test_utils.TestCase):
         self.addon = self.get_addon()
         self.version = self.get_version()
         self.url = reverse('devhub.versions.edit',
-                           args=[3615, self.version.id])
+                           args=['a3615', self.version.id])
         self.v1 = AppVersion(application_id=amo.FIREFOX.id, version='1.0')
         self.v4 = AppVersion(application_id=amo.FIREFOX.id, version='4.0')
         for v in self.v1, self.v4:
@@ -1981,7 +1983,7 @@ class TestVersionEditSearchEngine(TestVersionEdit):
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
         self.url = reverse('devhub.versions.edit',
-                           args=[4594, 42352])
+                           args=['a4594', 42352])
 
     def test_search_engine_edit(self):
         dd = self.formset(prefix="files", releasenotes='xx',
@@ -2033,10 +2035,10 @@ class TestVersionEditFiles(TestVersionEdit):
 
         eq_(ActivityLog.objects.count(), 2)
         log = ActivityLog.objects.order_by('created')[1]
-        eq_(log.to_string(), u'File delicious_bookmarks-2.1.072-fx.xpi '
-                              'deleted from <a href="/en-US/firefox/addon/3615'
+        eq_(log.to_string(), u'File delicious_bookmarks-2.1.072-fx.xpi deleted'
+                              ' from <a href="/en-US/firefox/addon/a3615'
                               '/versions/2.1.072">Version 2.1.072</a> of <a '
-                              'href="/en-US/firefox/addon/3615/">Delicious '
+                              'href="/en-US/firefox/addon/a3615/">Delicious '
                               'Bookmarks</a>.')
         eq_(r.status_code, 302)
         eq_(self.version.files.count(), 0)
@@ -2087,7 +2089,7 @@ class TestPlatformSearch(TestVersionEdit):
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
         self.url = reverse('devhub.versions.edit',
-                           args=[4594, 42352])
+                           args=['a4594', 42352])
         self.version = Version.objects.get(id=42352)
         self.file = self.version.files.all()[0]
         for platform in amo.PLATFORMS:
@@ -2245,7 +2247,7 @@ class TestSubmitStep3(test_utils.TestCase):
 
     def setUp(self):
         super(TestSubmitStep3, self).setUp()
-        self.url = reverse('devhub.submit.3', args=[3615])
+        self.url = reverse('devhub.submit.3', args=['a3615'])
         assert self.client.login(username='del@icio.us', password='password')
         SubmitStep.objects.create(addon_id=3615, step=3)
         self._redis = mock_redis()
@@ -2409,8 +2411,8 @@ class TestSubmitStep4(TestSubmitBase):
     def setUp(self):
         super(TestSubmitStep4, self).setUp()
         SubmitStep.objects.create(addon_id=3615, step=5)
-        self.url = reverse('devhub.submit.4', args=[3615])
-        self.next_step = reverse('devhub.submit.5', args=[3615])
+        self.url = reverse('devhub.submit.4', args=['a3615'])
+        self.next_step = reverse('devhub.submit.5', args=['a3615'])
 
     def test_get(self):
         eq_(self.client.get(self.url).status_code, 200)
@@ -2520,8 +2522,8 @@ class TestSubmitStep5(TestSubmitBase):
     def setUp(self):
         super(TestSubmitStep5, self).setUp()
         SubmitStep.objects.create(addon_id=3615, step=5)
-        self.url = reverse('devhub.submit.5', args=[3615])
-        self.next_step = reverse('devhub.submit.6', args=[3615])
+        self.url = reverse('devhub.submit.5', args=['a3615'])
+        self.next_step = reverse('devhub.submit.6', args=['a3615'])
         License.objects.create(builtin=3, on_form=True)
 
     def test_get(self):
@@ -2566,7 +2568,7 @@ class TestSubmitStep6(TestSubmitBase):
     def setUp(self):
         super(TestSubmitStep6, self).setUp()
         SubmitStep.objects.create(addon_id=3615, step=6)
-        self.url = reverse('devhub.submit.6', args=[3615])
+        self.url = reverse('devhub.submit.6', args=['a3615'])
 
     def test_get(self):
         r = self.client.get(self.url)
@@ -2608,7 +2610,7 @@ class TestSubmitStep7(TestSubmitBase):
                         name__localized_string='Delicious Bookmarks')
         eq_(addon.current_version.supported_platforms, [amo.PLATFORM_ALL])
 
-        response = self.client.get(reverse('devhub.submit.7', args=[3615]))
+        response = self.client.get(reverse('devhub.submit.7', args=['a3615']))
         eq_(response.status_code, 200)
         doc = pq(response.content)
 
@@ -2616,21 +2618,21 @@ class TestSubmitStep7(TestSubmitBase):
         eq_(response.context['addon'].name.localized_string,
             u"Delicious Bookmarks")
 
-        abs_url = settings.SITE_URL + "/en-US/firefox/addon/3615/"
+        abs_url = settings.SITE_URL + "/en-US/firefox/addon/a3615/"
         eq_(doc("a#submitted-addon-url").text().strip(), abs_url)
         eq_(doc("a#submitted-addon-url").attr('href'),
-            "/en-US/firefox/addon/3615/")
+            "/en-US/firefox/addon/a3615/")
 
         next_steps = doc(".done-next-steps li a")
 
         # edit listing of freshly submitted add-on...
         eq_(next_steps[0].attrib['href'],
             reverse('devhub.addons.edit',
-                    kwargs=dict(addon_id=addon.id)))
+                    kwargs=dict(addon_id=addon.slug)))
 
         # edit your developer profile...
         eq_(next_steps[1].attrib['href'],
-            reverse('devhub.addons.profile', args=[addon.id]))
+            reverse('devhub.addons.profile', args=[addon.slug]))
 
         # keep up with your add-on's activity feed:
         eq_(next_steps[2].attrib['href'], reverse('devhub.feed_all'))
@@ -2644,7 +2646,7 @@ class TestSubmitStep7(TestSubmitBase):
         addon = Addon.objects.get(name__localized_string='Cooliris')
         AddonUser.objects.create(user=UserProfile.objects.get(pk=55021),
                                  addon=addon)
-        response = self.client.get(reverse('devhub.submit.7', args=[5579]))
+        response = self.client.get(reverse('devhub.submit.7', args=['a5579']))
         eq_(response.status_code, 200)
         doc = pq(response.content)
         next_steps = doc(".done-next-steps li a")
@@ -2652,20 +2654,20 @@ class TestSubmitStep7(TestSubmitBase):
         # upload more platform specific files...
         eq_(next_steps[0].attrib['href'],
             reverse('devhub.versions.edit', kwargs=dict(
-                                addon_id=addon.id,
+                                addon_id=addon.slug,
                                 version_id=addon.current_version.id)))
 
         # edit listing of freshly submitted add-on...
         eq_(next_steps[1].attrib['href'],
             reverse('devhub.addons.edit',
-                    kwargs=dict(addon_id=addon.id)))
+                    kwargs=dict(addon_id=addon.slug)))
 
     def test_finish_addon_for_prelim_review(self):
         addon = Addon.objects.get(pk=3615)
         addon.status = amo.STATUS_UNREVIEWED
         addon.save()
 
-        response = self.client.get(reverse('devhub.submit.7', args=[3615]))
+        response = self.client.get(reverse('devhub.submit.7', args=['a3615']))
         eq_(response.status_code, 200)
         doc = pq(response.content)
         exp = 'Your add-on has been submitted to the Preliminary Review queue'
@@ -2677,7 +2679,7 @@ class TestSubmitStep7(TestSubmitBase):
         addon.status = amo.STATUS_NOMINATED
         addon.save()
 
-        response = self.client.get(reverse('devhub.submit.7', args=[3615]))
+        response = self.client.get(reverse('devhub.submit.7', args=['a3615']))
         eq_(response.status_code, 200)
         doc = pq(response.content)
         exp = 'Your add-on has been submitted to the Full Review queue'
@@ -2688,20 +2690,21 @@ class TestSubmitStep7(TestSubmitBase):
         addon = Addon.objects.get(pk=3615)
         addon.update(status=amo.STATUS_NULL)
         addon.versions.all().delete()
-        r = self.client.get(reverse('devhub.submit.7', args=[3615]),
+        r = self.client.get(reverse('devhub.submit.7', args=['a3615']),
                                    follow=True)
-        self.assertRedirects(r, reverse('devhub.versions', args=[3615]))
+        self.assertRedirects(r, reverse('devhub.versions', args=['a3615']))
 
 
 class TestResumeStep(TestSubmitBase):
 
     def setUp(self):
         super(TestResumeStep, self).setUp()
-        self.url = reverse('devhub.submit.resume', args=[3615])
+        self.url = reverse('devhub.submit.resume', args=['a3615'])
 
     def test_no_step_redirect(self):
         r = self.client.get(self.url, follow=True)
-        self.assertRedirects(r, reverse('devhub.submit.7', args=[3615]), 302)
+        self.assertRedirects(r, reverse('devhub.submit.7', args=['a3615']),
+                             302)
 
     def test_step_redirects(self):
         SubmitStep.objects.create(addon_id=3615, step=1)
@@ -2709,7 +2712,7 @@ class TestResumeStep(TestSubmitBase):
             SubmitStep.objects.filter(addon=self.get_addon()).update(step=i)
             r = self.client.get(self.url, follow=True)
             self.assertRedirects(r, reverse('devhub.submit.%s' % i,
-                                            args=[3615]))
+                                            args=['a3615']))
 
 
 class TestSubmitSteps(test_utils.TestCase):
@@ -2743,21 +2746,21 @@ class TestSubmitSteps(test_utils.TestCase):
         # Hitting the step we're supposed to be on is a 200.
         SubmitStep.objects.create(addon_id=3615, step=6)
         r = self.client.get(reverse('devhub.submit.6',
-                                    args=[3615]))
+                                    args=['a3615']))
         eq_(r.status_code, 200)
 
     def test_skip_step_6(self):
         # We get bounced back to step 3.
         SubmitStep.objects.create(addon_id=3615, step=3)
         r = self.client.get(reverse('devhub.submit.6',
-                                    args=[3615]), follow=True)
-        self.assertRedirects(r, reverse('devhub.submit.3', args=[3615]))
+                                    args=['a3615']), follow=True)
+        self.assertRedirects(r, reverse('devhub.submit.3', args=['a3615']))
 
     def test_all_done(self):
         # There's no SubmitStep, so we must be done.
         r = self.client.get(reverse('devhub.submit.6',
-                                    args=[3615]), follow=True)
-        self.assertRedirects(r, reverse('devhub.submit.7', args=[3615]))
+                                    args=['a3615']), follow=True)
+        self.assertRedirects(r, reverse('devhub.submit.7', args=['a3615']))
 
     def test_menu_step_1(self):
         doc = pq(self.client.get(reverse('devhub.submit.1')).content)
@@ -2772,27 +2775,27 @@ class TestSubmitSteps(test_utils.TestCase):
 
     def test_menu_step_3(self):
         SubmitStep.objects.create(addon_id=3615, step=3)
-        url = reverse('devhub.submit.3', args=[3615])
+        url = reverse('devhub.submit.3', args=['a3615'])
         doc = pq(self.client.get(url).content)
         self.assert_linked(doc, [3])
         self.assert_highlight(doc, 3)
 
     def test_menu_step_3_from_6(self):
         SubmitStep.objects.create(addon_id=3615, step=6)
-        url = reverse('devhub.submit.3', args=[3615])
+        url = reverse('devhub.submit.3', args=['a3615'])
         doc = pq(self.client.get(url).content)
         self.assert_linked(doc, [3, 4, 5, 6])
         self.assert_highlight(doc, 3)
 
     def test_menu_step_6(self):
         SubmitStep.objects.create(addon_id=3615, step=6)
-        url = reverse('devhub.submit.6', args=[3615])
+        url = reverse('devhub.submit.6', args=['a3615'])
         doc = pq(self.client.get(url).content)
         self.assert_linked(doc, [3, 4, 5, 6])
         self.assert_highlight(doc, 6)
 
     def test_menu_step_7(self):
-        url = reverse('devhub.submit.7', args=[3615])
+        url = reverse('devhub.submit.7', args=['a3615'])
         doc = pq(self.client.get(url).content)
         self.assert_linked(doc, [])
         self.assert_highlight(doc, 7)
@@ -2942,7 +2945,7 @@ class TestVersionAddFile(UploadTest):
         super(TestVersionAddFile, self).setUp()
         self.version.update(version='0.1')
         self.url = reverse('devhub.versions.add_file',
-                           args=[self.addon.id, self.version.id])
+                           args=[self.addon.slug, self.version.id])
 
     def test_guid_matches(self):
         self.addon.update(guid='something.different')
@@ -3000,7 +3003,7 @@ class TestAddVersion(UploadTest):
 
     def setUp(self):
         super(TestAddVersion, self).setUp()
-        self.url = reverse('devhub.versions.add', args=[self.addon.id])
+        self.url = reverse('devhub.versions.add', args=[self.addon.slug])
 
     def test_unique_version_num(self):
         self.version.update(version='0.1')
@@ -3011,7 +3014,7 @@ class TestAddVersion(UploadTest):
         r = self.post()
         version = self.addon.versions.get(version='0.1')
         self.assertRedirects(r, reverse('devhub.versions.edit',
-                                        args=[self.addon.id, version.id]))
+                                        args=[self.addon.slug, version.id]))
 
 
 class TestVersionXSS(UploadTest):
@@ -3059,7 +3062,7 @@ class TestCreateAddon(files.tests.UploadTest, test_utils.TestCase):
         r = self.post()
         addon = Addon.objects.get()
         self.assertRedirects(r, reverse('devhub.submit.3',
-                                        args=[addon.id]))
+                                        args=[addon.slug]))
 
 
 class TestDeleteAddon(test_utils.TestCase):
@@ -3067,7 +3070,7 @@ class TestDeleteAddon(test_utils.TestCase):
 
     def setUp(self):
         super(TestDeleteAddon, self).setUp()
-        self.url = reverse('devhub.addons.delete', args=[3615])
+        self.url = reverse('devhub.addons.delete', args=['a3615'])
         assert self.client.login(username='del@icio.us', password='password')
         self.addon = Addon.objects.get(id=3615)
 
@@ -3094,11 +3097,11 @@ class TestRequestReview(test_utils.TestCase):
 
     def setUp(self):
         self.addon = Addon.objects.create(type=1, name='xxx')
-        self.redirect_url = reverse('devhub.versions', args=[self.addon.id])
+        self.redirect_url = reverse('devhub.versions', args=[self.addon.slug])
         self.lite_url = reverse('devhub.request-review',
-                                args=[self.addon.id, amo.STATUS_LITE])
+                                args=[self.addon.slug, amo.STATUS_LITE])
         self.public_url = reverse('devhub.request-review',
-                                  args=[self.addon.id, amo.STATUS_PUBLIC])
+                                  args=[self.addon.slug, amo.STATUS_PUBLIC])
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
 

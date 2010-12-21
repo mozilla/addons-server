@@ -54,7 +54,7 @@
   {% endif %}
   {% if show_versions_link and not addon.is_selfhosted() %}
     <nav class="further-navigation">
-      <a class="more-info" href="{{ url('addons.versions', addon.id)}}">
+      <a class="more-info" href="{{ url('addons.versions', addon.slug)}}">
         {{ _('View all versions') }}
       </a>
     </nav>

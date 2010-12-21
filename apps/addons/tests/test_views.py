@@ -119,7 +119,7 @@ class TestContributeInstalled(test_utils.TestCase):
 
     def test_no_header_block(self):
         # bug 565493, Port post-install contributions page
-        response = self.client.get(reverse('addons.installed', args=[592]),
+        response = self.client.get(reverse('addons.installed', args=['a592']),
                                    follow=True)
         doc = pq(response.content)
         header = doc('#header')
@@ -129,7 +129,7 @@ class TestContributeInstalled(test_utils.TestCase):
         eq_(aux_header, [])
 
     def test_title(self):
-        r = self.client.get(reverse('addons.installed', args=[592]))
+        r = self.client.get(reverse('addons.installed', args=['a592']))
         title = pq(r.content)('title').text()
         eq_(title[:37], 'Thank you for installing Gmail S/MIME')
 
@@ -145,7 +145,7 @@ class TestContribute(test_utils.TestCase):
     def test_redirect_params_no_type(self):
         """Test that we have the required ppal params when no type is given"""
         response = self.client.get(reverse('addons.contribute',
-                                           args=[592]), follow=True)
+                                           args=['a592']), follow=True)
         redirect_url = response.redirect_chain[0][0]
         required_params = ['bn', 'business', 'charset', 'cmd', 'item_name',
                            'no_shipping', 'notify_url',
@@ -158,7 +158,7 @@ class TestContribute(test_utils.TestCase):
         """Test for the common values that do not change based on type,
            Check that they have expected values"""
         response = self.client.get(reverse('addons.contribute',
-                                           args=[592]), follow=True)
+                                           args=['a592']), follow=True)
         redirect_url = response.redirect_chain[0][0]
         assert(re.search('business=([^&]+)', redirect_url))
         common_params = {'bn': r'-AddonID592',
@@ -183,7 +183,7 @@ class TestContribute(test_utils.TestCase):
            suggested is given"""
         request_params = '?type=suggested'
         response = self.client.get(reverse('addons.contribute',
-                                           args=[592]) + request_params,
+                                           args=['a592']) + request_params,
                                            follow=True)
         redirect_url = response.redirect_chain[0][0]
         required_params = ['amount', 'bn', 'business', 'charset',
@@ -198,7 +198,7 @@ class TestContribute(test_utils.TestCase):
            type onetime is given"""
         request_params = '?type=onetime&onetime-amount=42'
         response = self.client.get(reverse('addons.contribute',
-                                           args=[592]) + request_params,
+                                           args=['a592']) + request_params,
                                            follow=True)
         redirect_url = response.redirect_chain[0][0]
         required_params = ['amount', 'bn', 'business', 'charset', 'cmd',
@@ -212,7 +212,7 @@ class TestContribute(test_utils.TestCase):
 
     def test_ppal_return_url_not_relative(self):
         response = self.client.get(reverse('addons.contribute',
-                                           args=[592]), follow=True)
+                                           args=['a592']), follow=True)
         redirect_url = response.redirect_chain[0][0]
 
         assert(re.search('\?|&return=https?%3A%2F%2F', redirect_url)), \
@@ -224,7 +224,7 @@ class TestContribute(test_utils.TestCase):
            type monthly is given"""
         request_params = '?type=monthly&monthly-amount=42'
         response = self.client.get(reverse('addons.contribute',
-                                           args=[592]) + request_params,
+                                           args=['a592']) + request_params,
                                            follow=True)
         redirect_url = response.redirect_chain[0][0]
         required_params = ['no_note', 'a3', 't3', 'p3', 'bn', 'business',
@@ -243,12 +243,12 @@ class TestContribute(test_utils.TestCase):
 
     def test_paypal_bounce(self):
         """Paypal is retarded and posts to this page."""
-        args = dict(args=[3615])
+        args = dict(args=['a3615'])
         r = self.client.post(reverse('addons.thanks', **args))
         self.assertRedirects(r, reverse('addons.detail', **args))
 
     def test_unicode_comment(self):
-        r = self.client.get(reverse('addons.contribute', args=[592]),
+        r = self.client.get(reverse('addons.contribute', args=['a592']),
                             {'comment': u'版本历史记录'})
         eq_(r.status_code, 302)
         assert r['Location'].startswith(settings.PAYPAL_CGI_URL)
@@ -261,22 +261,22 @@ class TestDeveloperPages(test_utils.TestCase):
                 'addons/addon_228107_multiple-devs.json']
 
     def test_meet_the_dev_title(self):
-        r = self.client.get(reverse('addons.meet', args=[592]))
+        r = self.client.get(reverse('addons.meet', args=['a592']))
         title = pq(r.content)('title').text()
         eq_(title[:31], 'Meet the Gmail S/MIME Developer')
 
     def test_roadblock_title(self):
-        r = self.client.get(reverse('addons.meet', args=[592]))
+        r = self.client.get(reverse('addons.meet', args=['a592']))
         title = pq(r.content)('title').text()
         eq_(title[:31], 'Meet the Gmail S/MIME Developer')
 
     def test_meet_the_dev_src(self):
-        r = self.client.get(reverse('addons.meet', args=[11730]))
+        r = self.client.get(reverse('addons.meet', args=['a11730']))
         button = pq(r.content)('.install-button a.button').attr('href')
         assert button.endswith('?src=developers'), button
 
     def test_nl2br_info(self):
-        r = self.client.get(reverse('addons.meet', args=[228106]))
+        r = self.client.get(reverse('addons.meet', args=['a228106']))
         eq_(r.status_code, 200)
         doc = pq(r.content)
         author_parts = [pq(p).html() for p in doc('.addon-info p')]
@@ -290,7 +290,7 @@ class TestDeveloperPages(test_utils.TestCase):
     def test_nl2br_info_for_multiple_devs(self):
         # Get an Add-on that has multiple developers,
         # which will trigger the else block in the template.
-        r = self.client.get(reverse('addons.meet', args=[228107]))
+        r = self.client.get(reverse('addons.meet', args=['a228107']))
         eq_(r.status_code, 200)
         doc = pq(r.content)
         author_parts = [pq(p).html() for p in doc('.addon-author-info p')]
@@ -306,7 +306,7 @@ class TestDeveloperPages(test_utils.TestCase):
             'Future: This is line one.<br/><br/>This is line two')
 
     def test_roadblock_src(self):
-        url = reverse('addons.roadblock', args=[11730]) + '?src=addondetail'
+        url = reverse('addons.roadblock', args=['a11730']) + '?src=addondetail'
         r = self.client.get(url)
         button = pq(r.content)('.install-button a.button').attr('href')
         assert button.endswith('?src=addondetail'), button
@@ -315,13 +315,13 @@ class TestDeveloperPages(test_utils.TestCase):
         a = Addon.objects.get(pk=592)
         u = UserProfile.objects.get(pk=999)
         AddonUser(addon=a, user=u).save()
-        r = self.client.get(reverse('addons.meet', args=[592]))
+        r = self.client.get(reverse('addons.meet', args=['a592']))
         # Make sure it has multiple devs.
         assert pq(r.content)('.section-teaser')
         assert pq(r.content)('#contribute-button')
 
     def test_get_old_version(self):
-        url = reverse('addons.meet', args=[11730])
+        url = reverse('addons.meet', args=['a11730'])
         r = self.client.get(url)
         eq_(r.context['version'].version, '20090521')
 
@@ -332,7 +332,7 @@ class TestDeveloperPages(test_utils.TestCase):
         qs = Version.objects.filter(addon=11730)
         qs.update(version='1.x')
         eq_(qs.count(), 2)
-        url = reverse('addons.meet', args=[11730]) + '?version=1.x'
+        url = reverse('addons.meet', args=['a11730']) + '?version=1.x'
         r = self.client.get(url)
         eq_(r.context['version'].version, '1.x')
 
@@ -350,32 +350,32 @@ class TestLicensePage(test_utils.TestCase):
         self.assertRedirects(r, self.version.license_url(), 301)
 
     def test_explicit_version(self):
-        url = reverse('addons.license', args=[3615, self.version.version])
+        url = reverse('addons.license', args=['a3615', self.version.version])
         r = self.client.get(url)
         eq_(r.status_code, 200)
         eq_(r.context['version'], self.version)
 
     def test_implicit_version(self):
-        url = reverse('addons.license', args=[3615])
+        url = reverse('addons.license', args=['a3615'])
         r = self.client.get(url)
         eq_(r.status_code, 200)
         eq_(r.context['version'], self.addon.current_version)
 
     def test_no_license(self):
         self.version.update(license=None)
-        url = reverse('addons.license', args=[3615])
+        url = reverse('addons.license', args=['a3615'])
         r = self.client.get(url)
         eq_(r.status_code, 404)
 
     def test_no_version(self):
         self.addon.versions.all().delete()
-        url = reverse('addons.license', args=[3615])
+        url = reverse('addons.license', args=['a3615'])
         r = self.client.get(url)
         eq_(r.status_code, 404)
 
     def test_duplicate_version_number(self):
         Version.objects.create(addon=self.addon, version=self.version.version)
-        url = reverse('addons.license', args=[3615, self.version.version])
+        url = reverse('addons.license', args=['a3615', self.version.version])
         r = self.client.get(url)
         eq_(r.status_code, 200)
         eq_(r.context['version'], self.addon.current_version)
@@ -391,13 +391,13 @@ class TestDetailPage(test_utils.TestCase):
                 'addons/persona']
 
     def test_anonymous_extension(self):
-        response = self.client.get(reverse('addons.detail', args=[3615]),
+        response = self.client.get(reverse('addons.detail', args=['a3615']),
                                    follow=True)
         eq_(response.status_code, 200)
         eq_(response.context['addon'].id, 3615)
 
     def test_anonymous_persona(self):
-        response = self.client.get(reverse('addons.detail', args=[15663]),
+        response = self.client.get(reverse('addons.detail', args=['a15663']),
                                    follow=True)
         eq_(response.status_code, 200)
         eq_(response.context['addon'].id, 15663)
@@ -406,7 +406,7 @@ class TestDetailPage(test_utils.TestCase):
         a = Addon.objects.get(id=3615)
         a.name = '<script>alert("fff")</script>'
         a.save()
-        response = self.client.get(reverse('addons.detail', args=[3615]))
+        response = self.client.get(reverse('addons.detail', args=['a3615']))
         html = pq(response.content)('table caption').html()
         assert '&lt;script&gt;alert("fff")&lt;/script&gt;' in html
         assert '<script>' not in html
@@ -415,27 +415,27 @@ class TestDetailPage(test_utils.TestCase):
         a = Addon.objects.get(id=15663)
         a.name = '<script>alert("fff")</script>'
         a.save()
-        response = self.client.get(reverse('addons.detail', args=[15663]))
+        response = self.client.get(reverse('addons.detail', args=['a15663']))
         html = pq(response.content)('table caption').html()
         assert '&lt;script&gt;alert("fff")&lt;/script&gt;' in html
         assert '<script>' not in html
 
     def test_disabled_addon(self):
         """Do not display disabled add-ons."""
-        myaddon = Addon.objects.get(id=3615)
-        myaddon.disabled_by_user = True
-        myaddon.save()
-        response = self.client.get(reverse('addons.detail', args=[myaddon.id]),
+        addon = Addon.objects.get(id=3615)
+        addon.disabled_by_user = True
+        addon.save()
+        response = self.client.get(reverse('addons.detail', args=[addon.slug]),
                                    follow=True)
         eq_(response.status_code, 404)
 
     def test_listed(self):
         """Show certain things for hosted but not listed add-ons."""
-        hosted_resp = self.client.get(reverse('addons.detail', args=[3615]),
+        hosted_resp = self.client.get(reverse('addons.detail', args=['a3615']),
                                       follow=True)
         hosted = pq(hosted_resp.content)
 
-        listed_resp = self.client.get(reverse('addons.detail', args=[3723]),
+        listed_resp = self.client.get(reverse('addons.detail', args=['a3723']),
                                       follow=True)
         listed = pq(listed_resp.content)
 
@@ -450,7 +450,7 @@ class TestDetailPage(test_utils.TestCase):
         addon.previews.all().delete()
         addon.save()
 
-        r = self.client.get(reverse('addons.detail', args=[3615]))
+        r = self.client.get(reverse('addons.detail', args=['a3615']))
         doc = pq(r.content)
 
         eq_(doc('#more-about').length, 0)
@@ -488,7 +488,7 @@ class TestDetailPage(test_utils.TestCase):
         for addon in other_addons:
             AddonUser.objects.create(user=u, addon=addon)
 
-        page = self.client.get(reverse('addons.detail', args=[thisaddon.id]),
+        page = self.client.get(reverse('addons.detail', args=[thisaddon.slug]),
                                follow=True)
         doc = pq(page.content)
         eq_(doc('.other-author-addons li').length, other_addons.count())
@@ -504,7 +504,7 @@ class TestDetailPage(test_utils.TestCase):
         # Sunbird can't do Personas => redirect
         prefixer = amo.urlresolvers.get_url_prefix()
         prefixer.app = amo.SUNBIRD.short
-        response = self.client.get(reverse('addons.detail', args=[15663]),
+        response = self.client.get(reverse('addons.detail', args=['a15663']),
                                    follow=False)
         eq_(response.status_code, 301)
         eq_(response['Location'].find(amo.SUNBIRD.short), -1)
@@ -523,7 +523,7 @@ class TestDetailPage(test_utils.TestCase):
         # no SeaMonkey version => redirect
         prefixer = amo.urlresolvers.get_url_prefix()
         prefixer.app = not_comp_app.short
-        response = self.client.get(reverse('addons.detail', args=[addon.id]),
+        response = self.client.get(reverse('addons.detail', args=[addon.slug]),
                                    follow=False)
         eq_(response.status_code, 301)
         eq_(response['Location'].find(not_comp_app.short), -1)
@@ -532,14 +532,14 @@ class TestDetailPage(test_utils.TestCase):
         # compatible app => 200
         prefixer = amo.urlresolvers.get_url_prefix()
         prefixer.app = comp_app.short
-        response = self.client.get(reverse('addons.detail', args=[addon.id]),
+        response = self.client.get(reverse('addons.detail', args=[addon.slug]),
                                    follow=False)
         eq_(response.status_code, 200)
 
     def test_external_urls(self):
         """Check that external URLs are properly escaped."""
         addon = Addon.objects.get(id=3615)
-        response = self.client.get(reverse('addons.detail', args=[addon.id]),
+        response = self.client.get(reverse('addons.detail', args=[addon.slug]),
                                    follow=True)
         doc = pq(response.content)
         eq_(doc('#addon-summary a[href^="%s"]' %
@@ -550,7 +550,7 @@ class TestDetailPage(test_utils.TestCase):
         addon = Addon.objects.get(id=3615)
         addon.privacy_policy_id = None
         addon.save()
-        response = self.client.get(reverse('addons.detail', args=[addon.id]),
+        response = self.client.get(reverse('addons.detail', args=[addon.slug]),
                                    follow=True)
         doc = pq(response.content)
         eq_(doc('.privacy-policy').length, 0)
@@ -559,11 +559,11 @@ class TestDetailPage(test_utils.TestCase):
         addon = Addon.objects.get(id=3615)
         addon.privacy_policy = 'foo bar'
         addon.save()
-        response = self.client.get(reverse('addons.detail', args=[addon.id]),
+        response = self.client.get(reverse('addons.detail', args=[addon.slug]),
                                    follow=True)
         doc = pq(response.content)
         eq_(doc('.privacy-policy').length, 1)
-        privacy_url = reverse('addons.privacy', args=[addon.id])
+        privacy_url = reverse('addons.privacy', args=[addon.slug])
         assert doc('.privacy-policy').attr('href').endswith(privacy_url)
 
     def test_simple_html_is_rendered_in_privacy(self):
@@ -585,7 +585,7 @@ class TestDetailPage(test_utils.TestCase):
             """
         addon.save()
 
-        r = self.client.get(reverse('addons.privacy', args=[addon.id]))
+        r = self.client.get(reverse('addons.privacy', args=[addon.slug]))
         doc = pq(r.content)
 
         eq_(norm(doc(".policy-statement strong")),
@@ -607,7 +607,7 @@ class TestDetailPage(test_utils.TestCase):
             """
         addon.save()
 
-        r = self.client.get(reverse('addons.privacy', args=[addon.id]))
+        r = self.client.get(reverse('addons.privacy', args=[addon.slug]))
         doc = pq(r.content)
 
         policy = str(doc(".policy-statement"))
@@ -617,7 +617,7 @@ class TestDetailPage(test_utils.TestCase):
 
     def test_button_size(self):
         """Make sure install buttons on the detail page are prominent."""
-        response = self.client.get(reverse('addons.detail', args=[3615]),
+        response = self.client.get(reverse('addons.detail', args=['a3615']),
                                    follow=True)
         assert pq(response.content)('.button').hasClass('prominent')
 
@@ -627,7 +627,8 @@ class TestDetailPage(test_utils.TestCase):
         # wipe all versions
         myaddon.versions.all().delete()
         # try accessing the details page
-        response = self.client.get(reverse('addons.detail', args=[myaddon.id]),
+        response = self.client.get(reverse('addons.detail',
+                                           args=[myaddon.slug]),
                                    follow=True)
         eq_(response.status_code, 404)
 
@@ -635,7 +636,7 @@ class TestDetailPage(test_utils.TestCase):
         """
         Make sure the list of other author addons doesn't include this one.
         """
-        r = self.client.get(reverse('addons.detail', args=[3615]))
+        r = self.client.get(reverse('addons.detail', args=['a3615']))
         doc = pq(r.content)
         eq_(len([a.attrib['value'] for a
                  in doc('#addons-author-addons-select option')
@@ -659,13 +660,13 @@ class TestDetailPage(test_utils.TestCase):
 
     def test_detailed_review_link(self):
         self.client.login(username='regular@mozilla.com', password='password')
-        r = self.client.get(reverse('addons.detail', args=[3615]))
+        r = self.client.get(reverse('addons.detail', args=['a3615']))
         doc = pq(r.content)
         href = doc('#review-box a[href*="reviews/add"]').attr('href')
-        assert href.endswith(reverse('reviews.add', args=[3615])), href
+        assert href.endswith(reverse('reviews.add', args=['a3615'])), href
 
     def test_no_listed_authors(self):
-        r = self.client.get(reverse('addons.detail', args=[59]))
+        r = self.client.get(reverse('addons.detail', args=['a59']))
         # We shouldn't show an avatar since this has no listed_authors.
         doc = pq(r.content)
         eq_(0, len(doc('.avatar')))
@@ -683,20 +684,20 @@ class TestDetailPage(test_utils.TestCase):
     def test_search_engine_works_with(self):
         """We don't display works-with info for search engines."""
         addon = Addon.objects.filter(type=amo.ADDON_SEARCH)[0]
-        r = self.client.get(reverse('addons.detail', args=[addon.id]))
+        r = self.client.get(reverse('addons.detail', args=[addon.slug]))
         headings = pq(r.content)('table[itemscope] th')
         assert not any(th.text.strip().lower() == 'works with'
                        for th in headings)
 
         # Make sure we find Works with for an extension.
-        r = self.client.get(reverse('addons.detail', args=[3615]))
+        r = self.client.get(reverse('addons.detail', args=['a3615']))
         headings = pq(r.content)('table[itemscope] th')
         assert any(th.text.strip().lower() == 'works with'
                    for th in headings)
 
     def test_show_profile(self):
         addon = Addon.objects.get(id=3615)
-        url = reverse('addons.detail', args=[addon.id])
+        url = reverse('addons.detail', args=[addon.slug])
         selector = '.secondary a[href="%s"]' % addon.meet_the_dev_url()
 
         assert not (addon.the_reason or addon.the_future)
@@ -761,7 +762,7 @@ class TestEula(test_utils.TestCase):
 
     def test_current_version(self):
         addon = Addon.objects.get(id=11730)
-        r = self.client.get(reverse('addons.eula', args=[addon.id]))
+        r = self.client.get(reverse('addons.eula', args=[addon.slug]))
         eq_(r.context['version'], addon.current_version)
 
     def test_simple_html_is_rendered(self):
@@ -783,7 +784,7 @@ class TestEula(test_utils.TestCase):
             """
         addon.save()
 
-        r = self.client.get(reverse('addons.eula', args=[addon.id]))
+        r = self.client.get(reverse('addons.eula', args=[addon.slug]))
         doc = pq(r.content)
 
         eq_(norm(doc(".policy-statement strong")),
@@ -805,7 +806,7 @@ class TestEula(test_utils.TestCase):
             """
         addon.save()
 
-        r = self.client.get(reverse('addons.eula', args=[addon.id]))
+        r = self.client.get(reverse('addons.eula', args=[addon.slug]))
         doc = pq(r.content)
 
         policy = str(doc(".policy-statement"))
@@ -818,13 +819,14 @@ class TestEula(test_utils.TestCase):
         old = addon.versions.order_by('created')[0]
         assert old != addon.current_version
         r = self.client.get(reverse('addons.eula',
-                                    args=[addon.id, old.all_files[0].id]))
+                                    args=[addon.slug, old.all_files[0].id]))
         eq_(r.context['version'], old)
 
     def test_redirect_no_eula(self):
         Addon.objects.filter(id=11730).update(eula=None)
-        r = self.client.get(reverse('addons.eula', args=[11730]), follow=True)
-        self.assertRedirects(r, reverse('addons.detail', args=[11730]))
+        r = self.client.get(reverse('addons.eula', args=['a11730']),
+                            follow=True)
+        self.assertRedirects(r, reverse('addons.detail', args=['a11730']))
 
 
 class TestPrivacyPolicy(test_utils.TestCase):
@@ -832,9 +834,9 @@ class TestPrivacyPolicy(test_utils.TestCase):
 
     def test_redirect_no_eula(self):
         Addon.objects.filter(id=11730).update(privacy_policy=None)
-        r = self.client.get(reverse('addons.privacy', args=[11730]),
+        r = self.client.get(reverse('addons.privacy', args=['a11730']),
                             follow=True)
-        self.assertRedirects(r, reverse('addons.detail', args=[11730]))
+        self.assertRedirects(r, reverse('addons.detail', args=['a11730']))
 
 
 def test_paypal_language_code():
@@ -857,7 +859,7 @@ class TestAddonSharing(test_utils.TestCase):
 
     def test_redirect_sharing(self):
         addon = Addon.objects.get(id=3615)
-        r = self.client.get(reverse('addons.share', args=[3615]),
+        r = self.client.get(reverse('addons.share', args=['a3615']),
                             {'service': 'delicious'})
         url = absolutify(unicode(addon.get_url_path()))
         summary = truncate(addon.summary, length=250)
@@ -876,16 +878,16 @@ class TestReportAbuse(AbuseBase, test_utils.TestCase):
     def setUp(self):
         settings.REPORT_ABUSE = True
         settings.RECAPTCHA_PRIVATE_KEY = 'something'
-        self.full_page = reverse('addons.abuse', args=[3615])
+        self.full_page = reverse('addons.abuse', args=['a3615'])
 
     def test_abuse_persona(self):
-        r = self.client.get(reverse('addons.detail', args=[15663]))
+        r = self.client.get(reverse('addons.detail', args=['a15663']))
         doc = pq(r.content)
         assert doc("fieldset.abuse")
 
         # and now just test it works
         self.client.login(username='regular@mozilla.com', password='password')
-        self.client.post(reverse('addons.abuse', args=[15663]),
+        self.client.post(reverse('addons.abuse', args=['a15663']),
                          {'text': 'spammy'})
         eq_(len(mail.outbox), 1)
         assert 'spammy' in mail.outbox[0].body
@@ -899,14 +901,14 @@ class TestReportAbuseDisabled(AbuseDisabledBase, test_utils.TestCase):
 
     def setUp(self):
         settings.REPORT_ABUSE = False
-        self.full_page = reverse('addons.abuse', args=[3615])
-        self.inline_page = reverse('addons.detail', args=[3615])
+        self.full_page = reverse('addons.abuse', args=['a3615'])
+        self.inline_page = reverse('addons.detail', args=['a3615'])
 
     def tearDown(self):
         settings.REPORT_ABUSE = True
 
     def test_abuse_persona(self):
-        r = self.client.get(reverse('addons.detail', args=[15663]))
+        r = self.client.get(reverse('addons.detail', args=['a15663']))
         doc = pq(r.content)
         assert not doc("fieldset.abuse")
 
@@ -924,7 +926,7 @@ class TestUpdate(test_utils.TestCase):
             'version': '2.0.58',
             'reqVersion': 1,
             'appID': '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}',
-            'appVersion': '3.7a1pre'
+            'appVersion': '3.7a1pre',
         }
 
         self.mac = amo.PLATFORM_MAC
@@ -1084,7 +1086,7 @@ class TestUpdate(test_utils.TestCase):
             'version': '1',
             'appID': '{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}',
             'reqVersion': 1,
-            'appVersion': '1.0'
+            'appVersion': '1.0',
         }
         res = self.client.get(reverse('addons.update'), data)
         assert res.context['file'].hash.startswith('sha256:9d9a389')

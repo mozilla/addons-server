@@ -9,7 +9,7 @@
     <header>
       {{ breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
                       (addon.get_url_path(), addon.name),
-                      (url('reviews.list', addon.id), _('Reviews')),
+                      (url('reviews.list', addon.slug), _('Reviews')),
                       (None, _('Reply'))]) }}
       <h2>{{ title }}</h2>
     </header>
@@ -19,7 +19,7 @@
     {% include "reviews/review.html" %}
     <div class="review article reply-form">
       <h3>{{ _('Write a Reply') }}</h3>
-      <form method="post" action="{{ url('reviews.reply', addon.id, review.id) }}">
+      <form method="post" action="{{ url('reviews.reply', addon.slug, review.id) }}">
         {{ csrf() }}
         <p>
           <label for="id_title">{{ form.title.label|safe }} <span class="optional">{{ _('(optional)') }}</span></label>
@@ -28,7 +28,7 @@
         {{ field(form.body, _('Reply:')) }}
         <input type="submit" value="{{ _('Submit Your Reply') }}">
         {# L10n: this string is following a <button>. #}
-        {% trans url=url('reviews.list', addon.id) %}
+        {% trans url=url('reviews.list', addon.slug) %}
           or <a href="{{ url }}">Cancel</a>
         {% endtrans %}
       </form>

@@ -28,7 +28,7 @@
         {% if loop.index < HAS_ADDON or loop.index > step.max or step.max == MAX %}
           {{ text }}
         {% else %}
-          <a href="{{ url('devhub.submit.%s' % loop.index, addon.id) }}">
+          <a href="{{ url('devhub.submit.%s' % loop.index, addon.slug) }}">
             {{ text }}</a>
         {% endif %}
       {% endif %}

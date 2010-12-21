@@ -186,7 +186,7 @@ class AddonDetailView(APIView):
 
     def process_request(self, addon_id):
         try:
-            addon = Addon.objects.get(id=addon_id)
+            addon = Addon.objects.id_or_slug(addon_id).get()
         except Addon.DoesNotExist:
             return self.render_msg('Add-on not found!', ERROR, status=404,
                 mimetype=self.mimetype)

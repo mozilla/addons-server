@@ -37,7 +37,7 @@ class UtilsTest(TestCase):
         "Verify that we're getting dict."
         a = Addon.objects.get(pk=3615)
         d = api.utils.addon_to_dict(a)
-        assert d['learnmore'].endswith('/addon/3615/?src=api')
+        assert d['learnmore'].endswith('/addon/a3615/?src=api')
 
 
 class No500ErrorsTest(TestCase):
@@ -205,7 +205,7 @@ class APITest(TestCase):
         self.assertContains(response, "/icons/no-preview.png</thumbnail>")
         self.assertContains(response, "<rating>3</rating>")
         self.assertContains(response,
-                "/en-US/firefox/addon/3615/?src=api</learnmore>")
+                "/en-US/firefox/addon/a3615/?src=api</learnmore>")
         self.assertContains(response,
                 """hash="sha256:3808b13ef8341378b9c8305ca64820095"""
                 '4ee7dcd8dce09fef55f2673458bc31f"')

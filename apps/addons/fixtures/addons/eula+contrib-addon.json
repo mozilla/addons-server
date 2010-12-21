@@ -46,7 +46,7 @@
         "pk": 11730,
         "model": "addons.addon",
         "fields": {
-            "slug": "11730",
+            "slug": "a11730",
             "dev_agreement": 1,
             "eula": 372438,
             "last_updated": "2009-08-27 14:29:14",

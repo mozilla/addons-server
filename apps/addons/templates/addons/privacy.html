@@ -13,7 +13,7 @@
 <header>
   {# L10n: The Privacy Policy for this addon #}
   {{ breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type] ),
-                  (url('addons.detail',addon.id), addon.name),
+                  (url('addons.detail', addon.slug), addon.name),
                   (None, _('Privacy Policy'))]) }}
   <h2 class="name"{{ addon.name|locale_html }}>
     <span>
@@ -27,7 +27,7 @@
 <h3>{{ _('Privacy Policy') }}</h3>
 <div class="policy-statement">{{ addon.privacy_policy }}</div>
 <p class="policy-link">
-  <a href ="{{ url('addons.detail', addon.id) }}">
+  <a href ="{{ url('addons.detail', addon.slug) }}">
     {{ _('Back to {0}...')|f(addon.name) }}
   </a>
 </p>

@@ -3,7 +3,6 @@ from types import GeneratorType
 from datetime import date, datetime
 
 from django import http
-from django.shortcuts import get_object_or_404
 from django.utils import simplejson
 from django.utils.cache import add_never_cache_headers, patch_cache_control
 from django.core.serializers.json import DjangoJSONEncoder
@@ -12,6 +11,7 @@ from django.core.exceptions import PermissionDenied
 import jingo
 
 from access import acl
+from addons.decorators import addon_view, addon_view_factory
 from addons.models import Addon
 from amo.urlresolvers import reverse
 
@@ -28,16 +28,15 @@ SERIES = ('downloads', 'usage', 'contributions',
           'sources', 'os', 'locales', 'statuses', 'versions', 'apps')
 
 
-def downloads_series(request, addon_id, group, start, end, format):
+@addon_view
+def downloads_series(request, addon, group, start, end, format):
     """Generate download counts grouped by ``group`` in ``format``."""
-    start_date, end_date, addon = check_series_params_or_404(
-                                    addon_id, group, start, end, format)
+    date_range = check_series_params_or_404(group, start, end, format)
     check_stats_permission(request, addon)
 
     # resultkey to fieldname map - stored as a list to maintain order for csv
     fields = [('date', 'start'), ('count', 'count')]
-    qs = DownloadCount.stats.filter(addon=addon_id,
-                                      date__range=(start_date, end_date))
+    qs = DownloadCount.stats.filter(addon=addon, date__range=date_range)
     gen = qs.period_summary(group, **dict(fields))
 
     if format == 'csv':
@@ -47,16 +46,15 @@ def downloads_series(request, addon_id, group, start, end, format):
         return render_json(request, addon, gen)
 
 
-def usage_series(request, addon_id, group, start, end, format):
+@addon_view
+def usage_series(request, addon, group, start, end, format):
     """Generate ADU counts grouped by ``group`` in ``format``."""
-    start_date, end_date, addon = check_series_params_or_404(
-                                    addon_id, group, start, end, format)
+    date_range = check_series_params_or_404(group, start, end, format)
     check_stats_permission(request, addon)
 
     # resultkey to fieldname map - stored as a list to maintain order for csv
     fields = [('date', 'start'), ('count', DayAvg('count'))]
-    qs = UpdateCount.stats.filter(addon=addon_id,
-                                    date__range=(start_date, end_date))
+    qs = UpdateCount.stats.filter(addon=addon, date__range=date_range)
     gen = qs.period_summary(group, **dict(fields))
 
     if format == 'csv':
@@ -66,13 +64,13 @@ def usage_series(request, addon_id, group, start, end, format):
         return render_json(request, addon, gen)
 
 
-def contributions_series(request, addon_id, group, start, end, format):
+@addon_view
+def contributions_series(request, addon, group, start, end, format):
     """Generate summarized contributions grouped by ``group`` in ``format``."""
-    start_date, end_date, addon = check_series_params_or_404(
-                                    addon_id, group, start, end, format)
+    date_range = check_series_params_or_404(group, start, end, format)
     check_stats_permission(request, addon, for_contributions=True)
 
-    qs = addon_contributions_queryset(addon, start_date, end_date)
+    qs = addon_contributions_queryset(addon, *date_range)
 
     # Note that average is per contribution and not per day
     fields = [('date', 'start'), ('total', 'amount'), ('count', 'row_count'),
@@ -86,15 +84,14 @@ def contributions_series(request, addon_id, group, start, end, format):
         return render_json(request, addon, gen)
 
 
-def contributions_detail(request, addon_id, start, end, format):
+@addon_view
+def contributions_detail(request, addon, start, end, format):
     """Generate detailed contributions in ``format``."""
     # This view doesn't do grouping, but we can leverage our series parameter
     # checker by passing in a valid group value.
-    start_date, end_date, addon = check_series_params_or_404(
-                                    addon_id, 'day', start, end, format)
+    date_range = check_series_params_or_404('day', start, end, format)
     check_stats_permission(request, addon, for_contributions=True)
-
-    qs = addon_contributions_queryset(addon, start_date, end_date)
+    qs = addon_contributions_queryset(addon, *date_range)
 
     def property_lookup_gen(qs, fields):
         for obj in qs:
@@ -113,16 +110,15 @@ def contributions_detail(request, addon_id, start, end, format):
         return render_json(request, addon, gen)
 
 
-def sources_series(request, addon_id, group, start, end, format):
+@addon_view
+def sources_series(request, addon, group, start, end, format):
     """Generate download source breakdown."""
-    start_date, end_date, addon = check_series_params_or_404(
-                                    addon_id, group, start, end, format)
+    date_range = check_series_params_or_404(group, start, end, format)
     check_stats_permission(request, addon)
 
     # resultkey to fieldname map - stored as a list to maintain order for csv
     fields = [('date', 'start'), ('count', 'count'), ('sources', 'sources')]
-    qs = DownloadCount.stats.filter(addon=addon_id,
-                                      date__range=(start_date, end_date))
+    qs = DownloadCount.stats.filter(addon=addon, date__range=date_range)
     gen = qs.period_summary(group, **dict(fields))
 
     if format == 'csv':
@@ -132,19 +128,18 @@ def sources_series(request, addon_id, group, start, end, format):
         return render_json(request, addon, gen)
 
 
-def usage_breakdown_series(request, addon_id, group,
+@addon_view
+def usage_breakdown_series(request, addon, group,
                            start, end, format, field):
     """Generate ADU breakdown of ``field``."""
-    start_date, end_date, addon = check_series_params_or_404(
-                                    addon_id, group, start, end, format)
+    date_range = check_series_params_or_404(group, start, end, format)
     check_stats_permission(request, addon)
 
     # resultkey to fieldname map - stored as a list to maintain order for csv
     # Use DayAvg so days with 0 rows affect the calculation.
     fields = [('date', 'start'), ('count', DayAvg('count')),
               (field, DayAvg(field))]
-    qs = UpdateCount.stats.filter(addon=addon_id,
-                                    date__range=(start_date, end_date))
+    qs = UpdateCount.stats.filter(addon=addon, date__range=date_range)
     gen = qs.period_summary(group, **dict(fields))
 
     if format == 'csv':
@@ -155,13 +150,11 @@ def usage_breakdown_series(request, addon_id, group,
         return render_json(request, addon, gen)
 
 
-def check_series_params_or_404(addon_id, group, start, end, format):
+def check_series_params_or_404(group, start, end, format):
     """Check common series parameters."""
     if (group not in SERIES_GROUPS) or (format not in SERIES_FORMATS):
         raise http.Http404
-    (start_date, end_date) = get_daterange_or_404(start, end)
-    addon = get_object_or_404(Addon, id=addon_id)
-    return (start_date, end_date, addon)
+    return get_daterange_or_404(start, end)
 
 
 def check_stats_permission(request, addon, for_contributions=False):
@@ -181,10 +174,10 @@ def check_stats_permission(request, addon, for_contributions=False):
     raise PermissionDenied
 
 
-def stats_report(request, addon_id, report):
-    addon = get_object_or_404(Addon.objects.valid(), id=addon_id)
+@addon_view_factory(Addon.objects.valid())
+def stats_report(request, addon, report):
     check_stats_permission(request, addon)
-    stats_base_url = reverse('stats.overview', args=[addon.id])
+    stats_base_url = reverse('stats.overview', args=[addon.slug])
     view = get_report_view(request)
     return jingo.render(request, 'stats/%s.html' % report,
                         {'addon': addon,

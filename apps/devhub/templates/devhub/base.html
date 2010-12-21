@@ -36,7 +36,7 @@
               <li><a href="{{ url('devhub.addons') }}">
                 {{ _('more add-ons...') }}</a></li>
             {% else %}
-              <li><a href="{{ url('devhub.addons.edit', addon.id) }}">
+              <li><a href="{{ url('devhub.addons.edit', addon.slug) }}">
                 {{ addon.name }}</a></li>
             {% endif %}
           {% endfor %}

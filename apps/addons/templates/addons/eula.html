@@ -10,8 +10,8 @@
 {% block content %}
 <header>
   {# L10n: EULA stand for End User License Agreement #}
-  {{ breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type] ),
-                  (url('addons.detail',addon.id), addon.name),
+  {{ breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
+                  (url('addons.detail', addon.slug), addon.name),
                   (None, _('EULA'))]) }}
   <h2 class="name"{{ addon.name|locale_html }}>
     <span>
@@ -35,12 +35,12 @@
 {{ install_button(addon, version=version, show_contrib=False,
                   show_eula=False, show_warning=False) }}
 <p class="policy-link">
-  <a href ="{{ url('addons.detail', addon.id) }}">
+  <a href ="{{ url('addons.detail', addon.slug) }}">
     {{ _('Cancel Installation')|f(addon.name) }}
   </a>
 </p>
 <p class="policy-link">
-  <a href ="{{ url('addons.detail', addon.id) }}">
+  <a href ="{{ url('addons.detail', addon.slug) }}">
     {{ _('Back to {0}...')|f(addon.name) }}
   </a>
 </p>

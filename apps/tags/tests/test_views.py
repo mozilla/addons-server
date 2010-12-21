@@ -15,7 +15,7 @@ class TestManagement(test_utils.TestCase):
 
     def test_tags_details_view(self):
         """Test that there are some tags being shown on the details page."""
-        url = reverse('addons.detail', args=[3615])
+        url = reverse('addons.detail', args=['a3615'])
         r = self.client.get(url)
         doc = pq(r.content)
         eq_(len(doc('li.tag')), 4)
@@ -37,7 +37,7 @@ class TestXSS(test_utils.TestCase):
 
     def test_tags_xss_detail(self):
         """Test xss tag detail."""
-        url = reverse('addons.detail', args=[3615])
+        url = reverse('addons.detail', args=['a3615'])
         r = self.client.get(url)
         doc = pq(r.content)
         eq_(doc('li.tag')[0].text_content().strip(), self.xss)
@@ -72,7 +72,7 @@ class TestXSSURLFail(test_utils.TestCase):
 
     def test_tags_xss(self):
         """Test xss tag detail."""
-        url = reverse('addons.detail', args=[3615])
+        url = reverse('addons.detail', args=['a3615'])
         r = self.client.get(url)
         doc = pq(r.content)
         eq_(doc('li.tag')[0].text_content().strip(), self.xss)
@@ -93,7 +93,7 @@ class TestNoTags(test_utils.TestCase):
 
     def test_tags_no_details_view(self):
         """Test that there is no tag header tags being shown."""
-        url = reverse('addons.detail', args=[3615])
+        url = reverse('addons.detail', args=['a3615'])
         r = self.client.get(url)
         doc = pq(r.content)
         assert 'Tags' not in [d.text for d in doc('h3')]

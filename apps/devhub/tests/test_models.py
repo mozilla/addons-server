@@ -1,6 +1,3 @@
-from django.utils.importlib import import_module
-from django.conf import settings
-
 import jingo
 import test_utils
 from nose.tools import eq_
@@ -116,7 +113,7 @@ class TestActivityLog(test_utils.TestCase):
         log = ActivityLog.objects.get()
         eq_(log.to_string(),
             u'&lt;script src=&#34;x.js&#34;&gt; role changed to Owner for '
-            '<a href="/en-US/firefox/addon/3615/">Delicious Bookmarks</a>.')
+            '<a href="/en-US/firefox/addon/a3615/">Delicious Bookmarks</a>.')
 
     def test_jinja_escaping(self):
         addon = Addon.objects.get()
@@ -126,7 +123,7 @@ class TestActivityLog(test_utils.TestCase):
         log = ActivityLog.objects.get()
         eq_(jingo.env.from_string('<p>{{ log }}</p>').render(log=log),
             '<p>&lt;script src=&#34;x.js&#34;&gt; role changed to Owner for <a'
-            ' href="/en-US/firefox/addon/3615/">Delicious Bookmarks</a>.</p>')
+            ' href="/en-US/firefox/addon/a3615/">Delicious Bookmarks</a>.</p>')
 
 
 class TestVersion(test_utils.TestCase):

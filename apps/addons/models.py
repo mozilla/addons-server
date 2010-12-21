@@ -43,6 +43,11 @@ class AddonManager(amo.models.ManagerBase):
         qs = qs._clone(klass=query.IndexQuerySet)
         return qs.transform(Addon.transformer)
 
+    def id_or_slug(self, val):
+        if isinstance(val, basestring) and not val.isdigit():
+            return self.filter(slug=val)
+        return self.filter(id=val)
+
     def public(self):
         """Get public add-ons only"""
         return self.filter(self.valid_q([amo.STATUS_PUBLIC]))
@@ -227,6 +232,12 @@ class Addon(amo.models.ModelBase):
     def __unicode__(self):
         return '%s: %s' % (self.id, self.name)
 
+    def __init__(self, *args, **kw):
+        super(Addon, self).__init__(*args, **kw)
+        # Make sure all add-ons have a slug.  save() runs clean_slug.
+        if self.id and not self.slug:
+            self.save()
+
     def save(self, **kw):
         self.clean_slug()
         super(Addon, self).save(**kw)
@@ -284,12 +295,12 @@ class Addon(amo.models.ModelBase):
         return addon
 
     def flush_urls(self):
-        urls = ['*/addon/%d/' % self.id,  # Doesn't take care of api
-                '*/addon/%d/developers/' % self.id,
-                '*/addon/%d/eula/*' % self.id,
-                '*/addon/%d/privacy/' % self.id,
-                '*/addon/%d/versions/*' % self.id,
-                '*/api/*/addon/%d' % self.id,
+        urls = ['*/addon/%s/' % self.slug,  # Doesn't take care of api
+                '*/addon/%s/developers/' % self.slug,
+                '*/addon/%s/eula/*' % self.slug,
+                '*/addon/%s/privacy/' % self.slug,
+                '*/addon/%s/versions/*' % self.slug,
+                '*/api/*/addon/%s' % self.slug,
                 self.icon_url,
                 self.thumbnail_url,
                 ]
@@ -298,21 +309,21 @@ class Addon(amo.models.ModelBase):
         return urls
 
     def get_url_path(self):
-        return reverse('addons.detail', args=(self.id,))
+        return reverse('addons.detail', args=[self.slug])
 
     def meet_the_dev_url(self):
-        return reverse('addons.meet', args=[self.id])
+        return reverse('addons.meet', args=[self.slug])
 
     @property
     def reviews_url(self):
-        return reverse('reviews.list', args=(self.id,))
+        return reverse('reviews.list', args=[self.slug])
 
     def type_url(self):
         """The url for this add-on's AddonType."""
         return AddonType(self.type).get_url_path()
 
     def share_url(self):
-        return reverse('addons.share', args=(self.id,))
+        return reverse('addons.share', args=[self.slug])
 
     @amo.cached_property(writable=True)
     def listed_authors(self):
@@ -488,7 +499,8 @@ class Addon(amo.models.ModelBase):
             self.update(status=amo.STATUS_NULL)
             amo.log(amo.LOG.CHANGE_STATUS, self.get_status_display(), self)
 
-        elif not self.versions.using(using).filter(files__isnull=False).exists():
+        elif not (self.versions.using(using)
+                  .filter(files__isnull=False).exists()):
             self.update(status=amo.STATUS_NULL)
             amo.log(amo.LOG.CHANGE_STATUS, self.get_status_display(), self)
 
@@ -567,7 +579,7 @@ class Addon(amo.models.ModelBase):
     @property
     def contribution_url(self, lang=settings.LANGUAGE_CODE,
                          app=settings.DEFAULT_APP):
-        return reverse('addons.contribute', args=[self.id])
+        return reverse('addons.contribute', args=[self.slug])
 
     @property
     def thumbnail_url(self):

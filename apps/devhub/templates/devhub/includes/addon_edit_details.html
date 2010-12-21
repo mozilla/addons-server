@@ -1,10 +1,10 @@
 {% from "devhub/includes/macros.html" import tip, empty_unless %}
 
-<form method="post" action="{{ url('devhub.addons.section', addon.id, 'details', 'edit') }}">
+<form method="post" action="{{ url('devhub.addons.section', addon.slug, 'details', 'edit') }}">
   <h3>
     {{ _('Add-on Details') }}
     {% if not editable %}
-      <a href="#" data-editurl="{{ url('devhub.addons.section', addon.id, 'details', 'edit') }}" class="button">
+      <a href="#" data-editurl="{{ url('devhub.addons.section', addon.slug, 'details', 'edit') }}" class="button">
       {{ _('Edit') }}</a>
     {% endif %}
   </h3>
@@ -79,7 +79,7 @@
     {% if editable %}
     <div class="listing-footer">
       <button>{{ _('Save Changes') }}</button> {{ _('or') }}
-        <a href="{{ url('devhub.addons.section', addon.id, 'details') }}"
+        <a href="{{ url('devhub.addons.section', addon.slug, 'details') }}"
           class="addon-edit-cancel">
           {{ _('Cancel') }}</a>
     </div>

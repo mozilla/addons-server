@@ -1,21 +1,19 @@
 from django.conf.urls.defaults import patterns, url, include
-from django.shortcuts import redirect
 
+from addons.urls import ADDON_ID
 from . import views
 
 
 # These will all start with /addon/<addon_id>/
 addon_patterns = patterns('',
     url('^$', views.addon_detail, name='discovery.addons.detail'),
-    url('^eula/(?P<file_id>\d+)?$', views.addon_eula, name='discovery.addons.eula'),
+    url('^eula/(?P<file_id>\d+)?$', views.addon_eula,
+        name='discovery.addons.eula'),
 )
 
 
 urlpatterns = patterns('',
-    ('^addon/(?P<addon_id>\d+)$',
-     lambda r, addon_id: redirect('discovery.addons.detail',
-                                  addon_id, permanent=True)),
-    url('^addon/(?P<addon_id>\d+)/', include(addon_patterns)),
+    url('^addon/%s/' % ADDON_ID, include(addon_patterns)),
 
     url('^recs$', views.recommendations, name='discovery.recs'),
     url('^(?P<version>[^/]+)/(?P<platform>[^/]+)$', views.pane,
