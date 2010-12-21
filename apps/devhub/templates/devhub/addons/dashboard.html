@@ -68,7 +68,7 @@
         <ul>
           {% for item in items %}
             <li class="item">
-              {{ item|safe }}
+              {{ item }}
               <span class="activity-timestamp">
               {% trans user=item.user|user_link, ago=item.created|timesince %}
               {{ ago }} by {{ user }}
