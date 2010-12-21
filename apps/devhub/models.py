@@ -1,6 +1,7 @@
 from copy import copy
 from datetime import datetime
 import json
+import string
 
 from django.db import models
 
@@ -114,12 +115,28 @@ class ActivityLogManager(amo.models.ManagerBase):
         return self.filter(pk__in=list(vals))
 
 
+class SafeFormatter(string.Formatter):
+    """A replacement for str.format that escapes interpolated values."""
+
+    def get_field(self, *args, **kw):
+        # obj is the value getting interpolated into the string.
+        obj, used_key = super(SafeFormatter, self).get_field(*args, **kw)
+        return jinja2.escape(obj), used_key
+
+
 class ActivityLog(amo.models.ModelBase):
     TYPES = [(value, key) for key, value in amo.LOG.items()]
     user = models.ForeignKey('users.UserProfile', null=True)
     action = models.SmallIntegerField(choices=TYPES, db_index=True)
     _arguments = models.TextField(blank=True, db_column='arguments')
     objects = ActivityLogManager()
+
+    formatter = SafeFormatter()
+
+    def f(self, *args, **kw):
+        """Calls SafeFormatter.format and returns a Markup string."""
+        # SafeFormatter escapes everything so this is safe.
+        return jinja2.Markup(self.formatter.format(*args, **kw))
 
     @property
     def arguments(self):
@@ -186,35 +203,38 @@ class ActivityLog(amo.models.ModelBase):
 
         for arg in self.arguments:
             if isinstance(arg, Addon) and not addon:
-                addon = u'<a href="%s">%s</a>' % (arg.get_url_path(),
-                                                  jinja2.escape(arg.name))
+                addon = self.f(u'<a href="{0}">{1}</a>',
+                               arg.get_url_path(), arg.name)
                 arguments.remove(arg)
             if isinstance(arg, Review) and not review:
-                review = u'<a href="%s">%s</a>' % (arg.get_url_path(),
-                                                   _('Review'))
+                review = self.f(u'<a href="{0}">{1}</a>',
+                                arg.get_url_path(), _('Review'))
                 arguments.remove(arg)
             if isinstance(arg, Version) and not version:
                 text = _('Version %s') % arg.version
-                version = u'<a href="%s">%s</a>' % (arg.get_url_path(),
-                                                    jinja2.escape(text))
+                version = self.f(u'<a href="{0}">{1}</a>',
+                                 arg.get_url_path(), text)
                 arguments.remove(arg)
             if isinstance(arg, Collection) and not collection:
-                collection = u'<a href="%s">%s</a>' % (arg.get_url_path(),
-                                                       jinja2.escape(arg.name))
+                collection = self.f(u'<a href="{0}">{1}</a>',
+                                    arg.get_url_path(), arg.name)
                 arguments.remove(arg)
             if isinstance(arg, Tag) and not tag:
-                tag = u'<a href="%s">%s</a>' % (arg.get_url_path(),
-                                                jinja2.escape(arg.tag_text))
+                tag = self.f(u'<a href="{0}">{1}</a>',
+                             arg.get_url_path(), arg.tag_text)
         try:
-            data = dict(user=self.user, addon=addon, review=review,
-                        version=version, collection=collection, tag=tag)
-            return log_type.format.format(*arguments, **data)
+            kw = dict(addon=addon, review=review, version=version,
+                      collection=collection, tag=tag)
+            return self.f(log_type.format, *arguments, **kw)
         except (AttributeError, KeyError, IndexError):
             log.warning('%d contains garbage data' % (self.id or 0))
             return 'Something magical happened.'
 
     def __unicode__(self):
         return self.to_string()
+
+    def __html__(self):
+        return self
 
     class Meta:
         db_table = 'log_activity'

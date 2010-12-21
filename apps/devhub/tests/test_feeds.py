@@ -219,4 +219,3 @@ class TestActivity(HubTest):
         eq_(len(doc('.item')), 2)
         assert '<script' not in unicode(doc('.item')), 'XSS FTL'
         assert '&lt;script' in unicode(doc('.item')), 'XSS FTL'
-

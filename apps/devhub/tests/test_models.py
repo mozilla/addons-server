@@ -3,7 +3,7 @@ from mock import Mock
 import test_utils
 
 import amo
-from addons.models import Addon
+from addons.models import Addon, AddonUser
 from bandwagon.models import Collection
 from devhub.models import ActivityLog
 from files.models import File
@@ -13,13 +13,13 @@ from versions.models import Version
 
 
 class TestActivityLog(test_utils.TestCase):
-    fixtures = ('base/addon_3615',)
+    fixtures = ['base/addon_3615']
 
     def setUp(self):
-        u = UserProfile(username='Joe CamelCase')
+        u = UserProfile(username='<script src="x.js">')
         u.save()
         self.request = Mock()
-        self.request.amo_user = u
+        self.request.amo_user = self.user = u
         amo.set_user(u)
 
     def tearDown(self):
@@ -103,6 +103,26 @@ class TestActivityLog(test_utils.TestCase):
         eq_(len(entries), 1)
         entries = ActivityLog.objects.for_user(u)
         eq_(len(entries), 1)
+
+    def test_xss_arguments(self):
+        addon = Addon.objects.get()
+        au = AddonUser(addon=addon, user=self.user)
+        amo.log(amo.LOG.CHANGE_USER_WITH_ROLE, au.user, au.get_role_display(),
+                addon)
+        log = ActivityLog.objects.get()
+        eq_(log.to_string(),
+            u'&lt;script src=&#34;x.js&#34;&gt; role changed to Owner for '
+            '<a href="/en-US/firefox/addon/a3615/">Delicious Bookmarks</a>.')
+
+    def test_jinja_escaping(self):
+        addon = Addon.objects.get()
+        au = AddonUser(addon=addon, user=self.user)
+        amo.log(amo.LOG.CHANGE_USER_WITH_ROLE, au.user, au.get_role_display(),
+                addon)
+        log = ActivityLog.objects.get()
+        eq_(jingo.env.from_string('{{ log }}').render(log=log),
+            u'&lt;script src=&#34;x.js&#34;&gt; role changed to Owner for '
+            '<a href="/en-US/firefox/addon/a3615/">Delicious Bookmarks</a>.')
 
 
 class TestVersion(test_utils.TestCase):
