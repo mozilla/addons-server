@@ -357,6 +357,7 @@ def ownership(request, addon_id, addon):
 
         _license_form(request, addon, save=True)
         _policy_form(request, addon, save=True)
+        messages.success(request, _('Changes successfully saved.'))
         return redirect('devhub.addons.owner', addon.slug)
 
     ctx.update(addon=addon, user_form=user_form, policy_form=policy_form)
