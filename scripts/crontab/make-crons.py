@@ -72,6 +72,8 @@ HOME = /tmp
 
 #twice per day
 25 1,13 * * * $REMORA; /usr/bin/python26 import-personas.py
+# Add slugs after we get all the new personas.
+25 2,14 * * * $Z_CRON addons_add_slugs
 25 3,15 * * * $Z_CRON update_addons_collections_downloads
 25 4,16 * * * $Z_CRON update_collections_total
 
