@@ -251,11 +251,11 @@ var file = {},
     xhr = false;
 
 function fileUpload(img, url) {
-    var f = img[0].files[0];
+    var domFile = img[0].files[0];
 
     file = {};
-    file.name = f.name || f.fileName;
-    file.size = f.size;
+    file.name = domFile.name || domFile.fileName;
+    file.size = domFile.size;
     file.data = '';
     file.aborted = false;
 
@@ -269,8 +269,9 @@ function fileUpload(img, url) {
         return false;
     }
 
+    // Remove any form errors from previous POST
+    $('ul.errorlist').remove();
     // Prepare the progress bar and status
-
     text = format(gettext('Preparing {0}'), [file.name]);
     $('#upload-status-text').text(text);
 
@@ -279,31 +280,8 @@ function fileUpload(img, url) {
     // Wrap in a setTimeout so it doesn't freeze the browser before
     // the status above can be set.
 
-    setTimeout(function(){
-        xhr = new XMLHttpRequest();
-        xhr.upload.addEventListener("progress", function(e) {
-            if (e.lengthComputable) {
-                var pct = Math.round((e.loaded * 100) / e.total) + "%";
-                $('#upload-status-bar div').animate({'width': pct},
-                    {duration: 500, step:updateStatus });
-            }
-        }, false);
-
-        var token = $("#upload-file input[name=csrfmiddlewaretoken]").val();
-
-        xhr.open("POST", url, true);
-
-        xhr.onreadystatechange = onupload;
-        xhr.setRequestHeader("Content-Type", "application/octet-stream");
-
-        xhr.setRequestHeader("Content-Length", file.size);
-        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-
-        xhr.setRequestHeader('Content-Disposition', 'file; name="upload";');
-        xhr.setRequestHeader("X-File-Name", file.name);
-        xhr.setRequestHeader("X-File-Size", file.size);
-
-        xhr.send(f);
+    setTimeout( function(){
+        uploadFile(domFile, file, url);
     }, 10);
 
     return true;
@@ -321,6 +299,33 @@ function textSize(bytes) {
     if(bytes == 0) return bytes + " " + s[1];
     var e = Math.floor( Math.log(bytes) / Math.log(1024) );
     return (bytes / Math.pow(1024, Math.floor(e))).toFixed(2)+" "+s[e];
+}
+
+function uploadFile(domFile, file, url) {
+    xhr = new XMLHttpRequest();
+    xhr.upload.addEventListener("progress", function(e) {
+        if (e.lengthComputable) {
+            var pct = Math.round((e.loaded * 100) / e.total) + "%";
+            $('#upload-status-bar div').animate({'width': pct},
+                {duration: 500, step:updateStatus });
+        }
+    }, false);
+
+    var token = $("#upload-file input[name=csrfmiddlewaretoken]").val();
+
+    xhr.open("POST", url, true);
+
+    xhr.onreadystatechange = onupload;
+    xhr.setRequestHeader("Content-Type", "application/octet-stream");
+
+    xhr.setRequestHeader("Content-Length", file.size);
+    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+
+    xhr.setRequestHeader('Content-Disposition', 'file; name="upload";');
+    xhr.setRequestHeader("X-File-Name", file.name);
+    xhr.setRequestHeader("X-File-Size", file.size);
+
+    xhr.send(domFile);
 }
 
 function updateStatus( percentage ) {

@@ -67,6 +67,12 @@
       <div id="upload-status-results"></div>
     </div>
   </div>
+  <div id="file-upload-template">
+    <span data-upload-url="/server-upload" class="invisible-upload cta">
+      <a href="#" class="button prominent">Select Add-on to Upload...</a>
+      <input type="file" id="upload-file-input">
+    </span>
+  </div>
 
   <script src="{{ url('jsi18n') }}/build:{{ BUILD_ID_JS }}"></script>
   {{ js('common') }}

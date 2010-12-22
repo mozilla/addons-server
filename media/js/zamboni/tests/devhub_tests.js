@@ -585,4 +585,45 @@ test('Too many messages', function() {
 });
 
 
+module('fileUpload', {
+    setup: function() {
+        var fxt = this;
+        this.sandbox = tests.createSandbox('#file-upload-template');
+        initUploadControls();
+        this.uploadFile = window.uploadFile;
+        this.uploadFileCalled = false;
+        // stub out the XHR calls:
+        window.uploadFile = function() {
+            fxt.uploadFileCalled = true;
+            return null;
+        };
+    },
+    teardown: function() {
+        this.sandbox.remove();
+        window.uploadFile = this.uploadFile;
+    }
+});
+
+asyncTest('form errors are cleared', function() {
+    var fxt = this;
+    // Simulate django form errors from the POST
+    this.sandbox.prepend(
+        '<ul class="errorlist"><li>Duplicate UUID found.</li></ul>');
+
+    // Simulate a user selecting a file to upload:
+    $('#upload-file-input', this.sandbox)[0].files[0] = {
+        size: 200,
+        name: 'some-addon.xpi'
+    };
+    $('#upload-file-input', this.sandbox).trigger('change');
+
+    tests.waitFor(function() {
+        return fxt.uploadFileCalled;
+    }).thenDo(function() {
+        equals($('ul.errorlist', this.sandbox).length, 0);
+        start();
+    });
+});
+
+
 });
