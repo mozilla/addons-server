@@ -584,6 +584,8 @@ def version_edit(request, addon_id, addon, version_id):
 def version_delete(request, addon_id, addon):
     version_id = request.POST.get('version_id')
     version = get_object_or_404(Version, pk=version_id, addon=addon)
+    amo.log(amo.LOG.DELETE_VERSION, version.version, addon)
+    messages.success(request, _('Version %s deleted.') % version.version)
     version.delete()
     return redirect('devhub.versions', addon.slug)
 
