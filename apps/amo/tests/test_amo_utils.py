@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+import os
+import tempfile
+
+from django.conf import settings
 from django.core.validators import ValidationError
 
 from nose.tools import eq_, assert_raises
@@ -44,3 +48,16 @@ def test_slugify():
 def test_resize_image():
     # src and dst shouldn't be the same.
     assert_raises(Exception, resize_image, 't', 't', 'z')
+
+
+def test_resize_transparency():
+    src = os.path.join(settings.ROOT, 'apps', 'amo', 'tests',
+                       'images', 'transparent.png')
+    dest = tempfile.mkstemp()[1]
+    expected = src.replace('.png', '-expected.png')
+    try:
+        resize_image(src, dest, (32, 32), remove_src=False)
+        assert open(dest, 'rb').read() == open(expected, 'rb').read()
+    finally:
+        if os.path.exists(dest):
+            os.remove(dest)
