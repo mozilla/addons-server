@@ -156,7 +156,7 @@ class TestParseXpi(test_utils.TestCase):
         # Everything but the apps
         exp = {'guid': 'guid@xpi',
                'name': 'xpi name',
-               'description': 'xpi description',
+               'summary': 'xpi description',
                'version': '0.1',
                'homepage': 'http://homepage.com',
                'type': 1}
@@ -235,7 +235,7 @@ class TestParseAlternateXpi(test_utils.TestCase):
         # Everything but the apps.
         exp = {'guid': '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}',
                'name': 'Delicious Bookmarks',
-               'description': 'Access your bookmarks wherever you go and keep '
+               'summary': 'Access your bookmarks wherever you go and keep '
                               'them organized no matter how many you have.',
                'homepage': 'http://delicious.com',
                'type': amo.ADDON_EXTENSION,

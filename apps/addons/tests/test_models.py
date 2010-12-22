@@ -728,7 +728,8 @@ class TestAddonFromUpload(files.tests.UploadTest):
         eq_(addon.type, amo.ADDON_EXTENSION)
         eq_(addon.status, amo.STATUS_NULL)
         eq_(addon.homepage, 'http://homepage.com')
-        eq_(addon.description, 'xpi description')
+        eq_(addon.summary, 'xpi description')
+        eq_(addon.description, None)
         eq_(addon.slug, 'xpi-name')
 
     def test_xpi_version(self):
