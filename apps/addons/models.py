@@ -248,10 +248,11 @@ class Addon(amo.models.ModelBase):
         qs = Addon.objects.values_list('slug', 'id')
         match = qs.filter(slug=self.slug)
         if match and match[0][1] != self.id:
-            slugs = dict(qs.filter(slug__startswith='%s-' % self.slug))
+            prefix = '%s-%s' % (self.slug, self.id)
+            slugs = dict(qs.filter(slug__startswith='%s-' % prefix))
             slugs.update(match)
             for idx in range(len(slugs)):
-                new = '%s-%s' % (self.slug, idx + 1)
+                new = ('%s-%s' % (prefix, idx + 1))[:30]
                 if new not in slugs:
                     self.slug = new
                     return
