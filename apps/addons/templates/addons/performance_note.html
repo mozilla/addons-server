@@ -1,31 +1,29 @@
-{% if request.APP == amo.FIREFOX %}
-  {% if listing %}
-    <div class="performance-note">
-      {{ _('This add-on can slow down Firefox.') }}
-      &nbsp;<a href="#">{{ _('More&hellip;')|safe }}</a>
-      <div class="popup warning hidden">
-        <p class="msg">
-          {% trans %}
-            <b>Performance warning:</b> Installing this add-on can slow down
-            Firefox's start-up by <b>{{ amount }}%</b>.
-          {% endtrans %}
-        </p>
-        <p>
-          <a href="{{ url('perf.index' )}}">{{ _('Learn more&hellip;')|safe }}</a>
-        </p>
-      </div>
-    </div>
-  {% else %}
-    <div class="notification performance-note">
-      <span></span>
-      <div>
-        <h3>{{ _('This add-on can slow down Firefox.') }}</h3>
+{% if listing and request.APP == amo.FIREFOX %}
+  <div class="performance-note">
+    {{ _('This add-on can slow down Firefox.') }}
+    &nbsp;<a href="#">{{ _('More&hellip;')|safe }}</a>
+    <div class="popup warning hidden">
+      <p class="msg">
         {% trans %}
-          Installing this add-on can slow down
+          <b>Performance warning:</b> Installing this add-on can slow down
           Firefox's start-up by <b>{{ amount }}%</b>.
         {% endtrans %}
+      </p>
+      <p>
         <a href="{{ url('perf.index' )}}">{{ _('Learn more&hellip;')|safe }}</a>
-      </div>
+      </p>
     </div>
-  {% endif %}
+  </div>
+{% else %}
+  <div class="notification performance-note">
+    <span></span>
+    <div>
+      <h3>{{ _('This add-on can slow down Firefox.') }}</h3>
+      {% trans %}
+        Installing this add-on can slow down
+        Firefox's start-up by <b>{{ amount }}%</b>.
+      {% endtrans %}
+      <a href="{{ url('perf.index' )}}">{{ _('Learn more&hellip;')|safe }}</a>
+    </div>
+  </div>
 {% endif %}

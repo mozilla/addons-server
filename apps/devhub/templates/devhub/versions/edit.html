@@ -130,9 +130,58 @@
       </div>
     </div>
   </form>
-  {{ add_file_modal(_("Upload a new file"),
-                    url('devhub.versions.add_file', addon.slug, version.id),
-                    url('devhub.upload'), _('Add File') )}}
+  <div class="add-file-modal upload-file modal hidden">
+    <form method="post" id="upload-file" action="{{ url('devhub.versions.add_file', addon.slug, version.id) }}"
+          enctype="multipart/form-data">
+      <h3>{{ _('Upload a New File') }}</h3>
+      <div class="upload-file-box">
+        <p>
+          {% trans %}
+            Files added to reviewed versions must be reviewed before they
+            will be available for download.
+          {% endtrans %}
+        </p>
+        {{ csrf() }}
+        <div class="platform{% if addon.type == amo.ADDON_SEARCH %} hide{% endif %}">
+        <label>{{ _('Select the target platform for this file.') }}</label>
+        {{ new_file_form.platform|safe }}
+        </div>
+        <div class="hidden">
+        {{ new_file_form.upload|safe }}
+        </div>
+
+        <div class="invisible-upload" id="upload-file-widget" data-upload-url="{{ url('devhub.upload') }}">
+          <a class="button prominent" href="#">{{ _('Select a File') }}</a>
+          <input type="file" id="upload-file-input">
+        </div>
+        <div class="upload-details">
+          {{ _('Your add-on should end with .xpi or .jar.') }}
+        </div>
+      </div>
+
+      <div class="upload-status">
+        <strong id="upload-status-text"></strong>
+        <div id="upload-status-bar">
+          <div></div>
+        </div>
+        <div id="uploadstatus">
+          <span id="uploadstatus_percent"></span>
+          &middot;
+          <progress id="uploadstatus_progress"></progress>
+          <span id="uploadstatus_abort">
+            &middot;
+            <a href="#">{{ _('Cancel') }}</a>
+          </span>
+        </div>
+        <div id="upload-status-results"></div>
+      </div>
+
+      <div class="upload-status-button-add">
+        <button id="upload-file-finish" disabled class="button">{{ _('Add File') }}</button> or
+        <a href="#" class="upload-file-cancel">{{ _('Cancel') }}</a>
+      </div>
+    </form>
+  </div>
 </section>
 {% include "devhub/includes/addons_edit_nav.html" %}
 {% endblock %}

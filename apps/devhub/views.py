@@ -622,10 +622,8 @@ def version_add_file(request, addon_id, addon, version_id):
 def version_list(request, addon_id, addon):
     qs = addon.versions.order_by('-created').transform(Version.transformer)
     versions = amo.utils.paginate(request, qs)
-    new_file_form = forms.NewVersionForm(None, addon=addon)
     data = {'addon': addon,
-            'versions': versions,
-            'new_file_form': new_file_form}
+            'versions': versions}
     return jingo.render(request, 'devhub/versions/list.html', data)
 
 

@@ -91,7 +91,7 @@
         </tr>
         <tr>
           <td colspan="5">
-            <a href="#" class="button version-upload">{{ _('Upload a New Version') }}</a>
+            <a href="#" class="button">{{ _('Upload a New Version') }}</a>
           </td>
         </tr>
         {% for version in versions.object_list %}
@@ -158,10 +158,6 @@
       {{ _('or') }} <a href="#" class="close">{{ _('Cancel') }}</a>
     </form>
   </div>
-
-  {{ add_file_modal(_("Add a new Version"),
-                    url('devhub.versions.add', addon.id),
-                    url('devhub.upload'), _("Add Version") )}}
 
   {% if not addon.disabled_by_user and not addon.is_disabled %}
   <div id="modal-disable" class="modal">
