@@ -1,6 +1,7 @@
 import itertools
 import logging
 import socket
+import tempfile
 import time
 
 from django.core.management.base import BaseCommand
@@ -33,8 +34,22 @@ def vacuum(master, slave):
         while 1:
             yield [ks.next() for _ in xrange(CHUNK)]
 
-    count = itertools.count()
+    tmp = tempfile.TemporaryFile()
     for ks in keys():
+        tmp.write('\n'.join(ks))
+    tmp.seek(0)
+
+    def file_keys():
+        while 1:
+            # Get about 300 keys.
+            x = tmp.readlines(1024 * 30)
+            if x:
+                yield [k.strip() for k in x]
+            else:
+                raise StopIteration
+
+    count = itertools.count()
+    for ks in file_keys():
         pipe = slave.pipeline()
         for k in ks:
             pipe.scard(k)
