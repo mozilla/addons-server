@@ -56,7 +56,7 @@ class XPIForm(happyforms.Form):
                   type=data['type'],
                   status=amo.STATUS_UNREVIEWED,
                   homepage=data['homepage'],
-                  description=data['description'])
+                  summary=data['summary'])
         a.save()
         AddonUser(addon=a, user=self.request.amo_user).save()
 

@@ -377,8 +377,8 @@ class TestAddon(BaseOauth):
                        data=data)
         eq_(r.status_code, 200, r.content)
 
-        # EDIT_PROPERTIES, EDIT_DESCRIPTIONS
-        eq_(activitylog_count(), current_count + 2)
+        # EDIT_PROPERTIES
+        eq_(activitylog_count(), current_count + 1)
 
         a = Addon.objects.get(pk=id)
         for field, expected in data.iteritems():
