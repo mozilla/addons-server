@@ -81,7 +81,7 @@ RTL_LANGUAGES = ('ar', 'fa', 'fa-IR', 'he')
 
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 
-TEXT_DOMAIN = 'z-messages'
+TEXT_DOMAIN = 'messages'
 
 TOWER_KEYWORDS = {
     '_lazy': None,
