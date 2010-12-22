@@ -1,4 +1,5 @@
-{% if listing and request.APP == amo.FIREFOX %}
+{% if request.APP == amo.FIREFOX %}
+{% if listing %}
   <div class="performance-note">
     {{ _('This add-on can slow down Firefox.') }}
     &nbsp;<a href="#">{{ _('More&hellip;')|safe }}</a>
@@ -26,4 +27,5 @@
       <a href="{{ url('perf.index' )}}">{{ _('Learn more&hellip;')|safe }}</a>
     </div>
   </div>
+{% endif %}
 {% endif %}
