@@ -69,10 +69,6 @@ ajax_patterns = patterns('',
 urlpatterns = decorate(write, patterns('',
     url('^$', views.index, name='devhub.index'),
 
-    # URLs for a single add-on.
-    ('^addon/%s/' % ADDON_ID, include(detail_patterns)),
-    ('^ajax/addon/%s/' % ADDON_ID, include(ajax_patterns)),
-
     # Redirect people who have /addons/ instead of /addon/.
     ('^addons/\d+/.*',
      lambda r: redirect(r.path.replace('addons', 'addon', 1))),
@@ -91,5 +87,9 @@ urlpatterns = decorate(write, patterns('',
     url('^feed/%s$' % ADDON_ID, views.feed, name='devhub.feed'),
     url('^upload$', views.upload, name='devhub.upload'),
     url('^upload/([^/]+)(?:/([^/]+))?$', views.upload_detail,
-        name='devhub.upload_detail')),
-)
+        name='devhub.upload_detail'),
+
+    # URLs for a single add-on.
+    url('^addon/%s/' % ADDON_ID, include(detail_patterns)),
+    url('^ajax/addon/%s/' % ADDON_ID, include(ajax_patterns)),
+))
