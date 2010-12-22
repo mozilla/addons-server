@@ -32,15 +32,26 @@ $(document).ready(function(){
 /* Python(ish) string formatting:
  * >>> format('{0}', ['zzz'])
  * "zzz"
+ * >>> format('{0}{1}', 1, 2)
+ * "12"
  * >>> format('{x}', {x: 1})
  * "1"
  */
 function format(s, args) {
+    args = (args && args instanceof Array) ? args : Array.prototype.slice.call(arguments, 1); 
     var re = /\{([^}]+)\}/g;
     return s.replace(re, function(_, match){ return args[match]; });
 }
 function template(s) {
     return function(args) { return format(s, args); };
+}
+
+/* prevent-default function wrapper */
+function _pd(func) {
+    return function(e) {
+        e.preventDefault();
+        func.apply(this, arguments);
+    };
 }
 
 /* Fake the placeholder attribute since Firefox 3.6 doesn't support it. */

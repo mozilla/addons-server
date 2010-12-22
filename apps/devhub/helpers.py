@@ -61,6 +61,12 @@ def dev_breadcrumbs(context, addon=None, items=None, add_default=False):
     return breadcrumbs(context, crumbs, add_default)
 
 
+@register.inclusion_tag('devhub/versions/add_file_modal.html')
+@jinja2.contextfunction
+def add_file_modal(context, title, action, upload_url, action_label):
+    return new_context(**locals())
+
+
 @register.function
 def dev_files_status(files):
     """Group files by their status (and files per status)."""
