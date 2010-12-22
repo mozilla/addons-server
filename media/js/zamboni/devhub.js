@@ -451,7 +451,7 @@ function addonUploaded(json) {
         if (json.full_report_url) {
             // There might not be a link to the full report
             // if we get an early error like unsupported type.
-            body += format('<a href="{0}">{1}</a>',
+            body += format('<a href="{0}" target="_blank">{1}</a>',
                            [json.full_report_url,
                             gettext('See full validation report')]);
         }
