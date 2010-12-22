@@ -1,3 +1,4 @@
+{% from "devhub/includes/macros.html" import some_html_tip %}
 {% extends "devhub/addons/submit/base.html" %}
 
 {% block primary %}
@@ -23,6 +24,7 @@
       {{ license_form.text.errors|safe }}
       {{ license_form.text.label_tag()|safe }}
       {{ license_form.text|safe }}
+      {{ some_html_tip() }}
     </div>
   </div>
   {% set values = policy_form.data if policy_form.is_bound else policy_form.initial %}
@@ -33,6 +35,7 @@
       {{ policy_form.eula.errors|safe }}
       {{ policy_form.eula.label_tag()|safe }}
       {{ policy_form.eula|safe }}
+      {{ some_html_tip() }}
     </div>
   </div>
   <div class="addon-submission-field">

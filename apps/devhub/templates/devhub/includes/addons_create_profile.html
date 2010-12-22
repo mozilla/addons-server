@@ -1,4 +1,5 @@
 {% from 'includes/forms.html' import required %}
+{% from 'devhub/includes/macros.html' import some_html_tip %}
 
 {% macro maybe_required() %}
   {% if not slim %}
@@ -48,6 +49,7 @@
   </span>
   {{ profile_form.the_reason.errors|safe }}
   {{ profile_form.the_reason|safe }}
+  {{ some_html_tip() }}
 </div>
 
 <div class="container">
@@ -63,4 +65,5 @@
   </span>
   {{ profile_form.the_future.errors|safe }}
   {{ profile_form.the_future|safe }}
+  {{ some_html_tip() }}
 </div>

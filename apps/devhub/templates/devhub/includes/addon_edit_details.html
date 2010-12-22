@@ -1,4 +1,4 @@
-{% from "devhub/includes/macros.html" import tip, empty_unless %}
+{% from "devhub/includes/macros.html" import tip, some_html_tip, empty_unless %}
 
 <form method="post" action="{{ url('devhub.addons.section', addon.slug, 'details', 'edit') }}">
   <h3>
@@ -29,6 +29,7 @@
               {% if editable %}
                 {{ form.description|safe }}
                 {{ form.description.errors|safe }}
+                {{ some_html_tip() }}
               {% else %}
                 {% call empty_unless(addon.description) %}
                   <div id="addon_description">{{ addon|all_locales('description') }}</div>

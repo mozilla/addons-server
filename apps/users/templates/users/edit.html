@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% from 'includes/forms.html' import required %}
+{% from 'devhub/includes/macros.html' import some_html_tip %}
 
 {% block title %}{{ page_title(_('Account Settings')) }}{% endblock %}
 
@@ -144,12 +145,7 @@
             {%- endtrans %}
           </p>
           {{ form.bio|safe }}
-          <p class="allowed-html">
-            <strong>{{ _('Some HTML allowed:') }}</strong>
-            &lt;a href title&gt; &lt;abbr title&gt; &lt;acronym title&gt;
-            &lt;b&gt; &lt;blockquote&gt; &lt;code&gt; &lt;em&gt; &lt;i&gt;
-            &lt;li&gt; &lt;ol&gt; &lt;strong&gt; &lt;ul&gt;
-          </p>
+          {{ some_html_tip() }}
           {{ form.bio.errors|safe }}
         </fieldset> {# /.profile-detail #}
 

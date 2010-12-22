@@ -1144,10 +1144,6 @@ fieldset legend { /* based on h3 */
     margin: 0.75em 0 0;
 }
 
-.allowed-html {
-    font-size: .8em;
-}
-
 .user-input h3 {
   margin: 0 0 .5em;
 }
@@ -3196,6 +3192,22 @@ input.ui-autocomplete-loading {
     font-style: italic;
 }
 /* end l10n */
+
+/** "Some HTML Allowed" text/popup **/
+.html-support {
+    font-size: .9em;
+    color: #888;
+    float: right;
+}
+
+.html-rtl .html-support {
+    float: left;
+}
+
+.html-support:hover {
+    color: #000;
+    cursor: help;
+}
 
 /**
  *    Firefox 4 Beta promo styles

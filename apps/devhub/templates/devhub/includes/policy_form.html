@@ -1,3 +1,4 @@
+{% from "devhub/includes/macros.html" import some_html_tip %}
 <tr>
   <th>{{ _('EULA') }}</th>
   <td>
@@ -7,6 +8,7 @@
       {{ policy_form.eula.errors|safe }}
       {{ policy_form.eula.label_tag()|safe }}
       {{ policy_form.eula|safe }}
+      {{ some_html_tip() }}
     </div>
   </td>
 </tr>
@@ -19,6 +21,7 @@
       {{ policy_form.privacy_policy.errors|safe }}
       {{ policy_form.privacy_policy.label_tag()|safe }}
       {{ policy_form.privacy_policy|safe }}
+      {{ some_html_tip() }}
     </div>
   </td>
 </tr>
