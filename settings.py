@@ -623,7 +623,7 @@ CSP_STYLE_SRC = ("'self'", STATIC_URL,)
 CSP_OBJECT_SRC = ("'none'",)
 CSP_MEDIA_SRC = ("'none'",)
 CSP_FRAME_SRC = ("'none'",)
-CSP_FONT_SRC = ("'self'", "fonts.mozilla.com",)
+CSP_FONT_SRC = ("'self'", "fonts.mozilla.com", "www.mozilla.com", )
 CSP_FRAME_ANCESTORS = ("'none'",)  # We also send x-frame-options:DENY
 
 # If you don't want experimental add-ons to show up in any search results or
