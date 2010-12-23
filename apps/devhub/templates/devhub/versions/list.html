@@ -109,12 +109,14 @@
             </span>
           </td>
           <td class="file-status">
-            {% for (count, status) in dev_files_status(version.files.all()): %}
+            {% for (count, status) in dev_files_status(version.all_files): %}
             <div>
               {# L10n: {0} is the number of files, {1} is the status #}
               {{ ngettext('{0} file is {1}', '{0} files are {1}', count)
                           .format(count, status) }}
             </div>
+            {% else %}
+            {{ _('0 files') }}
             {% endfor %}
           </td>
           <td>
