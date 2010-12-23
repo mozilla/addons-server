@@ -704,6 +704,11 @@ class TestEditPayments(test_utils.TestCase):
         r = self.client.post(self.url, {'suggested_amount': too_much})
         self.assertFormError(r, 'contrib_form', 'suggested_amount', msg)
 
+    def test_neg_suggested_amount(self):
+        msg = 'Please enter a suggested amount greater than 0.'
+        r = self.client.post(self.url, {'suggested_amount': -1})
+        self.assertFormError(r, 'contrib_form', 'suggested_amount', msg)
+
     def test_charity_details_reqd(self):
         d = dict(recipient='org', suggested_amount=11.5,
                  annoying=amo.CONTRIB_PASSIVE)

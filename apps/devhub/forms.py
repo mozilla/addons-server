@@ -242,6 +242,9 @@ class ContribForm(TranslationFormMixin, happyforms.ModelForm):
 
     def clean_suggested_amount(self):
         amount = self.cleaned_data['suggested_amount']
+        if amount is not None and amount <= 0:
+            msg = _(u'Please enter a suggested amount greater than 0.')
+            raise forms.ValidationError(msg)
         if amount > settings.MAX_CONTRIBUTION:
             msg = _(u'Please enter a suggested amount less than ${0}.').format(
                     settings.MAX_CONTRIBUTION)
