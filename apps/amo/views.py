@@ -89,6 +89,19 @@ def monitor(request):
         msg = "Failed to create a jpeg image: %s" % e
         libraries_results.append(('PIL+JPEG', False, msg))
 
+    if settings.SPIDERMONKEY:
+        if os.access(settings.SPIDERMONKEY, os.R_OK):
+            libraries_results.append(('Spidermonkey is ready!', True, None))
+            # TODO: see if it works?
+        else:
+            status_summary['libraries'] = False
+            msg = "You said it was at (%s)" % settings.SPIDERMONKEY
+            libraries_results.append(('Spidermonkey not found!', False, msg))
+    else:
+        status_summary['libraries'] = False
+        msg = "Please set SPIDERMONKEY in your settings file."
+        libraries_results.append(("Spidermonkey isn't set up.", False, msg))
+
     # Check file paths / permissions
     filepaths = (
         (settings.TMP_PATH, os.R_OK | os.W_OK, "We want read + write."),
@@ -102,6 +115,7 @@ def monitor(request):
         (settings.USERPICS_PATH, os.R_OK | os.W_OK, "We want read + write."),
         (settings.SPHINX_CATALOG_PATH, os.R_OK | os.W_OK, "We want read + write."),
         (settings.SPHINX_LOG_PATH, os.R_OK | os.W_OK, "We want read + write."),
+        (os.path.join(settings.ROOT, 'locale'), os.R_OK, "We want read."),
     )
     filepath_results = []
     filepath_status = True
