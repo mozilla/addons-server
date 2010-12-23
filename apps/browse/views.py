@@ -157,12 +157,11 @@ def extensions(request, category=None):
 
     count = addons.with_index(addons='type_status_inactive_idx').count()
     addons = amo.utils.paginate(request, addons, count=count)
-    search_cat = '%s,%s' % (TYPE, category.id if category else 0)
     return jingo.render(request, 'browse/extensions.html',
                         {'category': category, 'addons': addons,
                          'sorting': filter.field,
                          'sort_opts': filter.opts,
-                         'search_cat': search_cat})
+                         'search_cat': '%s,0' % TYPE})
 
 
 class CategoryLandingFilter(BaseFilter):
