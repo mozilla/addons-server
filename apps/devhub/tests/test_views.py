@@ -1941,16 +1941,13 @@ class TestVersionEditDetails(TestVersionEdit):
         choices = res.context['new_file_form'].fields['platform'].choices
         eq_(len(choices), len(amo.SUPPORTED_PLATFORMS))
 
-    @mock.patch('versions.models.Version.is_allowed_upload')
-    def test_can_upload(self, allowed):
-        allowed.return_value = True
+    def test_can_upload(self):
+        self.version.files.all().delete()
         r = self.client.get(self.url)
         doc = pq(r.content)
         assert doc('a.add-file')
 
-    @mock.patch('versions.models.Version.is_allowed_upload')
-    def test_not_upload(self, allowed):
-        allowed.return_value = False
+    def test_not_upload(self):
         res = self.client.get(self.url)
         doc = pq(res.content)
         assert not doc('a.add-file')

@@ -57,7 +57,9 @@ def test_resize_transparency():
     expected = src.replace('.png', '-expected.png')
     try:
         resize_image(src, dest, (32, 32), remove_src=False)
-        assert open(dest, 'rb').read() == open(expected, 'rb').read()
+        with open(dest) as dfh:
+            with open(expected) as efh:
+                assert dfh.read() == efh.read()
     finally:
         if os.path.exists(dest):
             os.remove(dest)
