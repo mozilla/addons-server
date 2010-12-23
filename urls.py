@@ -66,7 +66,7 @@ urlpatterns = patterns('',
 
     # Javascript translations.
     url('^jsi18n/.*$', cache_page(60 * 60 * 24 * 365)(javascript_catalog),
-        {'domain': 'z-javascript', 'packages': ['zamboni']}, name='jsi18n'),
+        {'domain': 'javascript', 'packages': ['zamboni']}, name='jsi18n'),
 
     # SAMO/API
     ('^api/', include('api.urls')),
