@@ -368,3 +368,29 @@ function slugify() {
     }
 }
 
+
+// Initializes character counters for textareas.
+function initCharCount() {
+    var countChars = function(el, cc) {
+        var max = parseInt(cc.attr('data-maxlength')),
+            val = $(el).val(),
+            left = max - val.length;
+        if (left < 0) {
+            $(el).val(val.substring(0, max));
+            left = 0;
+        }
+        // L10n: {0} is the number of characters left.
+        cc.html(format(ngettext('<b>{0}</b> character left.',
+                                '<b>{0}</b> characters left.', left), [left]));
+    };
+    $('.char-count').each(function() {
+        var $cc = $(this),
+            $form = $(this).closest('form');
+        if ($cc.attr('data-for-startswith') !== undefined) {
+            var $el = $('textarea[id^=' + $cc.attr('data-for-startswith') + ']:visible', $form);
+        } else {
+            var $el = $('textarea#' + $cc.attr('data-for'), $form);
+        }
+        $el.bind('keyup blur', function() { countChars(this, $cc) }).trigger('blur');
+    });
+}

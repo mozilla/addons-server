@@ -4,8 +4,9 @@
 
 {% block primary %}
 <section class="addon-submission-process" id="submit-describe" role="main">
+  {{ l10n_menu(addon.default_locale) }}
   <div>
-    <h3>{{ _('Step 3. Describe your addon') }}</h3>
+    <h3>{{ _('Step 3. Describe Your Add-on') }}</h3>
     <form method="post" class="item" action="">
       {{ csrf() }}
       <div class="addon-submission-field">

@@ -2,7 +2,8 @@
 .brform:after,
 #status-bar:after,
 #addon-validator-suite .tiers:after,
-form.select-review:after {
+form.select-review:after,
+form .char-count:after {
     content: ".";
     display: block;
     clear: both;
@@ -95,8 +96,7 @@ form.select-review:after {
 
 
 .devhub-form .tip,
-.devhub-form a.remove,
-.compat-versions a.remove {
+a.remove {
     -moz-border-radius: 20px;
     -webkit-border-radius :20px;
     border-radius: 20px;
@@ -115,8 +115,7 @@ form.select-review:after {
 .devhub-form .tip {
     vertical-align: top;
 }
-.devhub-form a.remove,
-.compat-versions a.remove {
+a.remove {
     cursor: pointer;
     line-height: 16px;
     float: right;
@@ -126,18 +125,20 @@ form.select-review:after {
 .devhub-form .author:hover .remove,
 .devhub-form tr:hover .tip,
 .devhub-form tr:hover > td > a.remove,
-.compat-versions tr:hover a.remove {
+.compat-versions tr:hover a.remove,
+#existing_locales li:hover a.remove {
     background-color: #CCC;
 }
 
-.devhub-form tr:hover .tip:hover,
-.devhub-form .author .remove:hover {
-    background-color: #2A4364;
+.devhub-form tr:hover .tip:hover {
     cursor: help;
 }
 
+.devhub-form tr:hover .tip:hover,
 .devhub-form tr:hover a.remove:hover,
-.compat-versions tr:hover a.remove:hover {
+.compat-versions tr:hover a.remove:hover,
+#existing_locales li:hover a.remove:hover,
+a.remove:hover {
     background-color: #2A4364;
 }
 
@@ -187,12 +188,15 @@ ul.refinements:last-child {
     width: 80%;
 }
 
-.char-count {
+form .char-count {
     float: right;
 }
-
-.html-rtl .char-count {
+.html-rtl form .char-count {
     float: left;
+}
+
+form .char-count.error {
+    margin-bottom: 0;
 }
 
 .devhub-form label {

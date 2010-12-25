@@ -194,6 +194,7 @@ $(document).ready(function () {
         });
         $(format(".trans [lang!={0}]", [currentLocale])).hide();
         $(format(".trans [lang={0}]", [lang])).show();
+        initCharCount();
     }
 
     function discoverLocales(locale) {
@@ -209,4 +210,3 @@ $(document).ready(function () {
     };
     updateLocale();
 });
-

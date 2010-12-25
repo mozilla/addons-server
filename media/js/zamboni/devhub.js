@@ -629,25 +629,6 @@ function initPayments() {
     }).change();
 }
 
-function initCharCount() {
-    var countChars = function(el, cc) {
-        var left = cc.attr('data-maxlength') - $(el).val().length;
-        cc.html(format(ngettext('<b>{0}</b> character left.',
-                                '<b>{0}</b> characters left.', left), [left]))
-          .toggleClass('error', left < 0);
-    };
-    $('.char-count').each(function() {
-        var $cc = $(this),
-            $form = $(this).closest('form');
-        if ($cc.attr('data-for-startswith') !== undefined) {
-            var $el = $('textarea[id^=' + $cc.attr('data-for-startswith') + ']', $form);
-        } else {
-            var $el = $('textarea#' + $cc.attr('data-for'), $form);
-        }
-        $el.bind('keyup focus blur', function() { countChars(this, $cc) });
-    });
-}
-
 function initLicenseFields() {
     $("#id_has_eula").change(function (e) {
         if ($(this).attr("checked")) {
