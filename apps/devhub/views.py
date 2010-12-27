@@ -302,7 +302,7 @@ def _license_form(request, addon, save=False):
     if save and version and license_form.is_valid():
         changed = license_form.changed_data
         license = license_form.save()
-        if changed:
+        if changed or license != version.license:
             version.update(license=license)
             amo.log(amo.LOG.CHANGE_LICENSE, license, addon)
 

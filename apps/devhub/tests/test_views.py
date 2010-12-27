@@ -356,13 +356,6 @@ class TestEditPolicy(TestOwnership):
         eq_(r.status_code, 302)
         eq_(self.get_addon().eula, None)
 
-    def test_capitalization(self):
-        r = self.client.get(self.url)
-        doc = pq(r.content)
-        assert ('privacy policy' not in
-                doc('label[for=id_privacy_policy]').text())
-        assert 'Privacy Policy' in doc('label[for=id_privacy_policy]').text()
-
 
 class TestEditLicense(TestOwnership):
 
@@ -475,14 +468,14 @@ class TestEditLicense(TestOwnership):
         self.version.files.all().delete()
         self.version.addon.update(status=amo.STATUS_PUBLIC)
         self.client.post(self.url, data)
-        eq_(ActivityLog.objects.all().count(), 3)
+        eq_(ActivityLog.objects.all().count(), 2)
 
         self.version.license = License.objects.all()[1]
-        self.version.license.save()
+        self.version.save()
 
         data = self.formset(builtin=License.OTHER, text='text')
-        self.client.post(self.url, data)
-        eq_(ActivityLog.objects.all().count(), 4)
+        r = self.client.post(self.url, data)
+        eq_(ActivityLog.objects.all().count(), 3)
 
 
 class TestEditAuthor(TestOwnership):
@@ -1265,12 +1258,14 @@ class TestEdit(test_utils.TestCase):
 
         # Now we have a name.
         self.addon.name = {'fr': 'fr name'}
+        self.addon.save()
         fields.remove('name')
         r = self.client.post(self.get_url('details', True), d)
         self.assertFormError(r, 'form', None, missing(fields))
 
         # Now we have a summary.
         self.addon.summary = {'fr': 'fr summary'}
+        self.addon.save()
         fields.remove('summary')
         r = self.client.post(self.get_url('details', True), d)
         self.assertFormError(r, 'form', None, missing(fields))

@@ -133,8 +133,6 @@ def LicenseForm(*args, **kw):
             return data
 
         def save(self, commit=True):
-            if not self.changed_data:
-                return self.initial
             builtin = self.cleaned_data['builtin']
             if builtin != License.OTHER:
                 return License.objects.get(builtin=builtin)
@@ -143,17 +141,16 @@ def LicenseForm(*args, **kw):
     return _Form(*args, **kw)
 
 
-class PolicyForm(AMOModelForm):
+class PolicyForm(TranslationFormMixin, AMOModelForm):
     """Form for editing the add-ons EULA and privacy policy."""
     has_eula = forms.BooleanField(required=False,
         label=_lazy(u'This add-on has an End User License Agreement'))
-    eula = forms.CharField(widget=TranslationTextarea(), required=False,
+    eula = TransField(widget=TransTextarea(), required=False,
         label=_lazy(u"Please specify your add-on's "
                     "End User License Agreement:"))
     has_priv = forms.BooleanField(
         required=False, label=_lazy(u"This add-on has a Privacy Policy"))
-    privacy_policy = forms.CharField(
-        widget=TranslationTextarea(), required=False,
+    privacy_policy = TransField(widget=TransTextarea(), required=False,
         label=_lazy(u"Please specify your add-on's Privacy Policy:"))
 
     class Meta:
@@ -161,8 +158,6 @@ class PolicyForm(AMOModelForm):
         fields = ('eula', 'privacy_policy')
 
     def save(self, commit=True):
-        if not self.changed_data:
-            return
         super(PolicyForm, self).save(commit)
         for k, field in (('has_eula', 'eula'), ('has_priv', 'privacy_policy')):
             if not self.cleaned_data[k]:
