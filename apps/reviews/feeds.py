@@ -18,7 +18,7 @@ class ReviewsRss(Feed):
     def get_object(self, request, addon_id):
         """Get the Addon for which we are about to output
            the RSS feed of it Review"""
-        self.addon = get_object_or_404(Addon.objects.valid(), pk=addon_id)
+        self.addon = get_object_or_404(Addon.objects.id_or_slug(addon_id))
         return self.addon
 
     def title(self, addon):

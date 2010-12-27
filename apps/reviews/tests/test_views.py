@@ -23,6 +23,11 @@ class TestViews(ReviewTest):
         r = self.client.get(url)
         eq_(r.status_code, 404)
 
+    def test_feed(self):
+        url = reverse('reviews.list.rss', args=['a1865'])
+        r = self.client.get(url)
+        eq_(r.status_code, 200)
+
 
 class TestFlag(ReviewTest):
 
