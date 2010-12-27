@@ -695,6 +695,21 @@ class TestDetailPage(test_utils.TestCase):
         addon.save()
         assert pq(self.client.get(url).content)(selector)
 
+    def test_no_restart(self):
+        no_restart = '<div id="no-restart"'
+        addon = Addon.objects.get(id=3615)
+        url = reverse('addons.detail', args=[addon.slug])
+        f = addon.current_version.all_files[0]
+
+        assert f.no_restart == False
+        r = self.client.get(url)
+        assert no_restart not in r.content
+
+        f.no_restart = True
+        f.save()
+        r = self.client.get(url)
+        self.assertContains(r, no_restart)
+
 
 class TestTagsBox(test_utils.TestCase):
     fixtures = ['base/addontag', 'base/apps']

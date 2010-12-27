@@ -3241,3 +3241,16 @@ input.ui-autocomplete-loading {
  *    End Firefox 4 Beta promo styles
  *    TODO remove these when promo is pulled
 **/
+
+#no-restart {
+    margin: -1em 0 1.5em 0;
+}
+
+#no-restart-msg {
+    border: 1px solid #b6d9e5;
+    border-radius: 3px; /* Only shown in Fx4. */
+    padding: .2em;
+    color: #294473;
+    font-weight: bold;
+    font-size: .9em;
+}
