@@ -461,6 +461,56 @@ asyncTest('Test no msgs', function() {
     });
 });
 
+module('Validator: error summaries', validatorFixtures);
+
+asyncTest('Test errors are brief', function() {
+    var $suite = $('.addon-validator-suite', this.sandbox);
+
+    $.mockjax({
+        url: '/validate',
+        status: 200,
+        response: function(settings) {
+            this.responseText = {
+                "validation": {
+                    "errors": 1,
+                    "success": true,
+                    "warnings": 0,
+                    "ending_tier": 0,
+                    "messages": [{
+                        "context": null,
+                        "description": "",
+                        "column": 0,
+                        "line": 0,
+                        "file": "",
+                        "tier": 1,
+                        "message": "Unable to open XPI.",
+                        "type": "error",
+                        "id": ["main", "test_search"],
+                        "uid": "dd5dab88026611e082c3c42c0301fe38"
+                    }],
+                    "rejected": false,
+                    "detected_type": "search",
+                    "notices": 0,
+                    "message_tree": {},
+                    "metadata": {}
+                }
+            };
+        }
+    });
+
+    $suite.trigger('validate');
+
+    tests.waitFor(function() {
+        return $('[class~="test-tier"][data-tier="1"]', $suite).hasClass(
+                                                            'tests-failed');
+    }).thenDo(function() {
+        equals($('[class~="msg-error"] h5', $suite).text(),
+               'Unable to open XPI.');
+        equals($('[class~="msg-error"] p', $suite).html(), '&nbsp;');
+        start();
+    });
+});
+
 module('Validator: code context', validatorFixtures);
 
 asyncTest('Test code context', function() {

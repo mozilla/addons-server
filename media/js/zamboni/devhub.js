@@ -1023,7 +1023,10 @@ $(document).ready(function() {
                 msgDiv.attr('id', msgId(msg.uid));
                 msgDiv.addClass('msg-' + msg['type']);
                 $('h5', msgDiv).html(msg.message);
-                if (typeof(msg.description) === 'string') {
+                if (typeof(msg.description) === 'undefined'
+                    || msg.description === '') {
+                    msg.description = [];
+                } else if (typeof(msg.description) === 'string') {
                     // TODO(kumar) ask Matt to make the JSON format
                     // more consistent.
                     // Currently it can be either of these:
@@ -1034,6 +1037,9 @@ $(document).ready(function() {
                 $.each(msg.description, function(i, val) {
                     msgDiv.append(format('<p>{0}: {1}</p>', [prefix, val]));
                 });
+                if (msg.description.length == 0) {
+                    msgDiv.append('<p>&nbsp;</p>');
+                }
                 if (msg.context) {
                     ctxDiv = $(format(
                         '<div class="context">' +
