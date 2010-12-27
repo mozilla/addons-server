@@ -188,7 +188,7 @@ def category_landing(request, category):
                                    key='browse', default='featured')
     return jingo.render(request, 'browse/category_landing.html',
                         {'category': category, 'filter': filter,
-                         'search_cat': '%s,%s' % (category.type, category.id)})
+                         'search_cat': '%s,0' % category.type})
 
 
 def creatured(request, category):
