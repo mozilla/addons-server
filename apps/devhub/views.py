@@ -206,7 +206,8 @@ def feed(request, addon_id=None):
         addons_all = request.amo_user.addons.all()
 
         if addon_id:
-            addons = get_object_or_404(Addon.objects.id_or_slug(addon_id))
+            addon = get_object_or_404(Addon.objects.id_or_slug(addon_id))
+            addons = addon # common query set
             try:
                 key = RssKey.objects.get(addon=addons)
             except RssKey.DoesNotExist:
@@ -219,6 +220,7 @@ def feed(request, addon_id=None):
                 return http.HttpResponseForbidden()
         else:
             rssurl = _get_rss_feed(request)
+            addon = None
             addons = addons_all
 
     action = request.GET.get('action')
@@ -230,7 +232,7 @@ def feed(request, addon_id=None):
 
     pager = amo.utils.paginate(request, items, 20)
     data = dict(addons=addon_items, pager=pager, activities=activities,
-                rss=rssurl)
+                rss=rssurl, addon=addon)
     return jingo.render(request, 'devhub/addons/activity.html', data)
 
 

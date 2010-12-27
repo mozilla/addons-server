@@ -1500,6 +1500,33 @@ class TestEdit(test_utils.TestCase):
             eq_(pq(r.content)('#l10n-menu').attr('data-default'), 'fr')
 
 
+class TestActivityFeed(test_utils.TestCase):
+    fixtures = ('base/apps', 'base/users', 'base/addon_3615')
+
+    def setUp(self):
+        super(TestActivityFeed, self).setUp()
+        assert self.client.login(username='del@icio.us', password='password')
+
+    def test_feed_for_all(self):
+        r = self.client.get(reverse('devhub.feed_all'))
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        eq_(doc('header h2').text(),
+            'Recent Activity for My Add-ons')
+        eq_(doc('.breadcrumbs li:eq(2)').text(),
+            'Recent Activity')
+
+    def test_feed_for_addon(self):
+        addon = Addon.objects.no_cache().get(id=3615)
+        r = self.client.get(reverse('devhub.feed', args=[addon.slug]))
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        eq_(doc('header h2').text(),
+            'Recent Activity for %s' % addon.name)
+        eq_(doc('.breadcrumbs li:eq(3)').text(),
+            addon.slug)
+
+
 class TestProfileBase(test_utils.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']
 
