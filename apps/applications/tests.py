@@ -1,9 +1,13 @@
+import json
+
+from django.core.management import call_command
 from nose.tools import eq_
 import test_utils
 
 import amo
 from amo.helpers import url
 from applications.models import AppVersion, Application
+from applications.management.commands import dump_apps
 
 
 class TestAppVersion(test_utils.TestCase):
@@ -54,3 +58,25 @@ class TestViews(test_utils.TestCase):
 
     def test_appversions_feed(self):
         eq_(self.client.get(url('apps.appversions.rss')).status_code, 200)
+
+
+class TestCommands(test_utils.TestCase):
+    fixtures = ['applications/all_apps.json', 'base/appversion']
+
+    def test_dump_apps(self):
+        call_command('dump_apps')
+        with open(dump_apps.Command.JSON_PATH, 'r') as f:
+            apps = json.load(f)
+        db_apps = Application.objects.all()
+        assert len(db_apps)
+        for app in db_apps:
+            data = apps[str(app.id)]
+            versions = sorted([a.version for a in
+                               AppVersion.objects.filter(application=app)])
+            if app.id == amo.FIREFOX.id:
+                versions.append(u'4.0.*') # bug 613234
+            r_app = amo.APPS_ALL[app.id]
+            eq_("%s: %r" % (r_app.short, sorted(data['versions'])),
+                "%s: %r" % (r_app.short, versions))
+            eq_(data['name'], r_app.short)
+            eq_(data['guid'], app.guid)
