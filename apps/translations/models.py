@@ -110,7 +110,7 @@ class Translation(caching.base.CachingMixin, models.Model):
             trans = cls.objects.get(**q)
             trans.localized_string = string
         except cls.DoesNotExist:
-            trans = cls.objects.create(localized_string=string, **q)
+            trans = cls(localized_string=string, **q)
 
         return trans
 

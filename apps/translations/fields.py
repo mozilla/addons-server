@@ -89,7 +89,8 @@ def save_on_signal(obj, trans):
 
     def cb(sender, instance, **kw):
         if instance is obj:
-            trans.save(force_update=True)
+            is_new = trans.autoid is None
+            trans.save(force_insert=is_new, force_update=not is_new)
             signal.disconnect(cb)
     signal.connect(cb, sender=obj.__class__, weak=False)
 
