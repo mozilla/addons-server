@@ -33,6 +33,10 @@ class UploadTest(test_utils.TestCase):
         settings.ADDONS_PATH = tempfile.mkdtemp()
         self._rename = path.path.rename
         path.path.rename = path.path.copy
+        # The validator task (post Addon upload) loads apps.json
+        # so ensure it exists:
+        from django.core.management import call_command
+        call_command('dump_apps')
 
     def tearDown(self):
         shutil.rmtree(settings.ADDONS_PATH)

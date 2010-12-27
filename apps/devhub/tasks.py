@@ -5,11 +5,13 @@ import sys
 import traceback
 
 from django.conf import settings
+from django.core.management import call_command
 from celeryutils import task
 
 from amo.decorators import write
 from amo.utils import resize_image
 from files.models import FileUpload
+from applications.management.commands import dump_apps
 
 log = logging.getLogger('z.devhub.task')
 
@@ -33,7 +35,6 @@ def validator(upload_id, **kw):
 
 def _validator(upload):
 
-    import validator
     from validate import validate
 
     # TODO(Kumar) remove this when validator is fixed, see bug 620503
@@ -42,10 +43,9 @@ def _validator(upload):
     import validator.constants
     validator.constants.SPIDERMONKEY_INSTALLATION = settings.SPIDERMONKEY
 
-    # TODO(Kumar) remove this when validator is fixed, see bug 620503
-    # TODO(Kumar) Or better yet, keep apps up to date with DB per bug 620731
-    apps = os.path.join(os.path.dirname(validator.__file__),
-                        'app_versions.json')
+    apps = dump_apps.Command.JSON_PATH
+    if not os.path.exists(apps):
+        call_command('dump_apps')
 
     return validate(upload.path, format='json',
                     # Continue validating each tier even if one has an error
