@@ -4,7 +4,8 @@ from nose.tools import eq_
 from pyquery import PyQuery
 
 import amo
-from addons.helpers import statusflags, flag, support_addon, contribution
+from addons.helpers import (statusflags, flag, support_addon, contribution,
+                            performance_note)
 from addons.models import Addon
 
 
@@ -69,3 +70,26 @@ class TestHelpers(test_utils.TestCase):
         # make sure input boxes are rendered correctly (bug 555867)
         assert doc('input[name=onetime-amount]').length == 1
         assert doc('input[name=monthly-amount]').length == 1
+
+
+class TestPerformanceNote(test_utils.TestCase):
+    listing = '<div class="performance-note">'
+    not_listing = '<div class="notification performance-note">'
+
+    def setUp(self):
+        request_mock = Mock()
+        request_mock.APP = amo.FIREFOX
+        self.ctx = {'request': request_mock, 'amo': amo}
+
+    def test_show_listing(self):
+        r = performance_note(self.ctx, 30, listing=True)
+        assert self.listing in r, r
+
+    def test_show_not_listing(self):
+        r = performance_note(self.ctx, 30)
+        assert self.not_listing in r, r
+
+    def test_only_fx(self):
+        self.ctx['request'].APP = amo.THUNDERBIRD
+        r = performance_note(self.ctx, 30)
+        eq_(r.strip(), '')
