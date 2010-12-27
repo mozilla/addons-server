@@ -881,14 +881,16 @@ class TestReportAbuse(AbuseBase, test_utils.TestCase):
         self.full_page = reverse('addons.abuse', args=['a3615'])
 
     def test_abuse_persona(self):
-        r = self.client.get(reverse('addons.detail', args=['a15663']))
+        addon_url = reverse('addons.detail', args=['a15663'])
+        r = self.client.get(addon_url)
         doc = pq(r.content)
         assert doc("fieldset.abuse")
 
         # and now just test it works
         self.client.login(username='regular@mozilla.com', password='password')
-        self.client.post(reverse('addons.abuse', args=['a15663']),
-                         {'text': 'spammy'})
+        r = self.client.post(reverse('addons.abuse', args=['a15663']),
+                             {'text': 'spammy'})
+        self.assertRedirects(r, addon_url)
         eq_(len(mail.outbox), 1)
         assert 'spammy' in mail.outbox[0].body
 

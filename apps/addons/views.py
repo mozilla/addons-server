@@ -493,7 +493,7 @@ def report_abuse(request, addon):
     else:
         return jingo.render(request, 'addons/report_abuse_full.html',
                             {'addon': addon, 'abuse_form': form, })
-    return redirect('addons.detail', args=[addon.slug])
+    return redirect('addons.detail', addon.slug)
 
 
 @cache_page(3600)
