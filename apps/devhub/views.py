@@ -8,6 +8,7 @@ import traceback
 
 from django import http
 from django.db.models import Count
+from django.conf import settings
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.http import urlquote
 from django.views.decorators.cache import never_cache
@@ -531,6 +532,12 @@ def json_file_validation(request, addon_id, addon, file_id):
 
 @json_view
 def json_upload_detail(upload):
+    if not settings.VALIDATE_ADDONS:
+        upload.task_error = ''
+        upload.validation = json.dumps({'errors': 0, 'messages':[],
+                                        'notices':0, 'warnings':0})
+        upload.save()
+
     validation = json.loads(upload.validation) if upload.validation else ""
     url = reverse('devhub.upload_detail', args=[upload.uuid, 'json'])
     full_report_url = reverse('devhub.upload_detail', args=[upload.uuid])

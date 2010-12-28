@@ -689,3 +689,4 @@ QUNIT_TEST_DIRECTORY = os.path.join(MEDIA_ROOT, 'js', 'zamboni', 'tests')
 # Full path or executable path (relative to $PATH) of the spidermonkey js
 # binary.  It must be a version compatible with amo-validator
 SPIDERMONKEY = None
+VALIDATE_ADDONS = True
