@@ -419,8 +419,8 @@ function addonUploaded(json) {
         var body = "<strong>";
         if(!v.errors) {
             body += format(ngettext(
-                    "Your add-on passed validation with no errors and {0} warning.",
-                    "Your add-on passed validation with no errors and {0} warnings.",
+                    "Your add-on passed validation with 0 errors and {0} warning.",
+                    "Your add-on passed validation with 0 errors and {0} warnings.",
                     v.warnings), [v.warnings]);
         } else {
             body += format(ngettext(
