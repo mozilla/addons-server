@@ -26,6 +26,7 @@ import amo
 import mongoutils
 from hera.contrib.django_utils import get_hera
 from stats.models import Contribution, ContributionError, SubscriptionEvent
+from applications.management.commands import dump_apps
 
 monitor_log = commonware.log.getLogger('z.monitor')
 paypal_log = commonware.log.getLogger('z.paypal')
@@ -116,12 +117,14 @@ def monitor(request):
         (settings.SPHINX_CATALOG_PATH, os.R_OK | os.W_OK, "We want read + write."),
         (settings.SPHINX_LOG_PATH, os.R_OK | os.W_OK, "We want read + write."),
         (os.path.join(settings.ROOT, 'locale'), os.R_OK, "We want read."),
+        (dump_apps.Command.JSON_PATH,
+            os.R_OK | os.W_OK, "We want read + write."),
     )
     filepath_results = []
     filepath_status = True
 
     for path, perms, notes in filepaths:
-        path_exists = os.path.isdir(path)
+        path_exists = os.path.exists(path)
         path_perms = os.access(path, perms)
         filepath_status = filepath_status and path_exists and path_perms
         filepath_results.append((path, path_exists, path_perms, notes))
