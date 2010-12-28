@@ -28,6 +28,20 @@ form .char-count:after {
     margin-top: 0;
 }
 
+.save-badge {
+    background: #41B300;
+    border-radius: 1em;
+    color: #fff;
+    font-family: helvetica, arial, sans-serif;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: bold;
+    margin-left: 0.5em;
+    padding: 0.375em 1em;
+    -moz-transition-property: opacity;
+    -moz-transition-duration: 1s;
+}
+
 #version-status .version-changed {
     float: right;
     color: #888888;

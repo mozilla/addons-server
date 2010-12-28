@@ -127,10 +127,17 @@ function addonFormSubmit() {
     (function(parent_div){
         $('form', parent_div.not('#edit-addon-media')).submit(function(e){
             e.preventDefault();
-            $.post($(parent_div).find('form').attr('action'),
+            $.post(parent_div.find('form').attr('action'),
                 $(this).serialize(), function(d){
-                    $(parent_div).html(d).each(addonFormSubmit);
+                    parent_div.html(d).each(addonFormSubmit);
                     truncateFields();
+                    var e = $(format('<b class="save-badge">{0}</b>',
+                                     [gettext('Changes Saved')]))
+                              .appendTo(parent_div.find('h3').first());
+                    setTimeout(function(){
+                        e.css('opacity', 0);
+                        setTimeout(function(){ e.remove }, 1500);
+                    }, 2000);
                 });
         });
         z.refreshL10n();
