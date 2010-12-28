@@ -420,15 +420,6 @@ class TestDetailPage(test_utils.TestCase):
         assert '&lt;script&gt;alert("fff")&lt;/script&gt;' in html
         assert '<script>' not in html
 
-    def test_disabled_addon(self):
-        """Do not display disabled add-ons."""
-        addon = Addon.objects.get(id=3615)
-        addon.disabled_by_user = True
-        addon.save()
-        response = self.client.get(reverse('addons.detail', args=[addon.slug]),
-                                   follow=True)
-        eq_(response.status_code, 404)
-
     def test_listed(self):
         """Show certain things for hosted but not listed add-ons."""
         hosted_resp = self.client.get(reverse('addons.detail', args=['a3615']),
@@ -721,6 +712,107 @@ class TestDetailPage(test_utils.TestCase):
         f.save()
         r = self.client.get(url)
         self.assertContains(r, no_restart)
+
+
+class TestStatus(test_utils.TestCase):
+    fixtures = ['base/apps', 'base/addon_3615']
+
+    def setUp(self):
+        self.addon = Addon.objects.get(id=3615)
+        self.version = self.addon.current_version
+        assert self.addon.status == amo.STATUS_PUBLIC
+        self.url = reverse('addons.detail', args=[self.addon.slug])
+
+    def test_incomplete(self):
+        self.addon.update(status=amo.STATUS_NULL)
+        eq_(self.client.get(self.url).status_code, 404)
+
+    def test_unreviewed(self):
+        self.addon.update(status=amo.STATUS_UNREVIEWED)
+        eq_(self.client.get(self.url).status_code, 200)
+
+    def test_pending(self):
+        self.addon.update(status=amo.STATUS_PENDING)
+        eq_(self.client.get(self.url).status_code, 404)
+
+    def test_nominated(self):
+        self.addon.update(status=amo.STATUS_NOMINATED)
+        eq_(self.client.get(self.url).status_code, 200)
+
+    def test_public(self):
+        self.addon.update(status=amo.STATUS_PUBLIC)
+        eq_(self.client.get(self.url).status_code, 200)
+
+    def test_disabled(self):
+        self.addon.update(status=amo.STATUS_DISABLED)
+        eq_(self.client.get(self.url).status_code, 404)
+
+    def test_lite(self):
+        self.addon.update(status=amo.STATUS_LITE)
+        eq_(self.client.get(self.url).status_code, 200)
+
+    def test_lite_and_nominated(self):
+        self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
+        eq_(self.client.get(self.url).status_code, 200)
+
+    def test_purgatory(self):
+        self.addon.update(status=amo.STATUS_PURGATORY)
+        eq_(self.client.get(self.url).status_code, 404)
+
+    def test_disabled(self):
+        self.addon.update(disabled_by_user=True)
+        eq_(self.client.get(self.url).status_code, 404)
+
+    def new_version(self, status):
+        v = Version.objects.create(addon=self.addon)
+        f = File.objects.create(version=v, status=status)
+        return v
+
+    def test_public_new_lite_version(self):
+        v = self.new_version(amo.STATUS_LITE)
+        eq_(self.addon.get_current_version(), self.version)
+
+    def test_public_new_nominated_version(self):
+        v = self.new_version(amo.STATUS_NOMINATED)
+        eq_(self.addon.get_current_version(), self.version)
+
+    def test_public_new_public_version(self):
+        v = self.new_version(amo.STATUS_PUBLIC)
+        eq_(self.addon.get_current_version(), v)
+
+    def test_public_new_unreviewed_version(self):
+        v = self.new_version(amo.STATUS_UNREVIEWED)
+        eq_(self.addon.get_current_version(), self.version)
+
+    def test_lite_new_unreviewed_version(self):
+        self.addon.update(status=amo.STATUS_LITE)
+        v = self.new_version(amo.STATUS_UNREVIEWED)
+        eq_(self.addon.get_current_version(), self.version)
+
+    def test_lite_new_lan_version(self):
+        self.addon.update(status=amo.STATUS_LITE)
+        v = self.new_version(amo.STATUS_LITE_AND_NOMINATED)
+        eq_(self.addon.get_current_version(), v)
+
+    def test_lite_new_lite_version(self):
+        self.addon.update(status=amo.STATUS_LITE)
+        v = self.new_version(amo.STATUS_LITE)
+        eq_(self.addon.get_current_version(), v)
+
+    def test_lite_new_full_version(self):
+        self.addon.update(status=amo.STATUS_LITE)
+        v = self.new_version(amo.STATUS_PUBLIC)
+        eq_(self.addon.get_current_version(), v)
+
+    def test_lan_new_lite_version(self):
+        self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
+        v = self.new_version(amo.STATUS_LITE)
+        eq_(self.addon.get_current_version(), v)
+
+    def test_lan_new_full_version(self):
+        self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
+        v = self.new_version(amo.STATUS_PUBLIC)
+        eq_(self.addon.get_current_version(), v)
 
 
 class TestTagsBox(test_utils.TestCase):

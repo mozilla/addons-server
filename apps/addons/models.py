@@ -58,7 +58,7 @@ class AddonManager(amo.models.ManagerBase):
 
     def valid(self):
         """Get valid, enabled add-ons only"""
-        return self.filter(self.valid_q(amo.VALID_STATUSES))
+        return self.filter(self.valid_q(amo.LISTED_STATUSES))
 
     def featured(self, app):
         """
@@ -349,6 +349,10 @@ class Addon(amo.models.ModelBase):
         try:
             if self.status == amo.STATUS_PUBLIC:
                 status = [self.status]
+            elif self.status in (amo.STATUS_LITE,
+                                 amo.STATUS_LITE_AND_NOMINATED):
+                status = [amo.STATUS_PUBLIC, amo.STATUS_LITE,
+                          amo.STATUS_LITE_AND_NOMINATED]
             elif self.status == amo.STATUS_LISTED:
                 return self.versions.all()[0]
             else:

@@ -55,10 +55,11 @@ class AddonFilter(BaseFilter):
 
 def addon_listing(request, addon_types, Filter=AddonFilter, default='popular'):
     # Set up the queryset and filtering for themes & extension listing pages.
-    status = [amo.STATUS_PUBLIC]
+    status = [amo.STATUS_PUBLIC, amo.STATUS_LITE,
+              amo.STATUS_LITE_AND_NOMINATED]
 
     qs = (Addon.objects.listed(request.APP, *status)
-                       .filter(type__in=addon_types))
+          .filter(type__in=addon_types))
 
     if 'jetpack' in request.GET:
         qs = qs.filter(_current_version__files__jetpack=True)

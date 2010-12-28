@@ -252,6 +252,68 @@ class TestCategoryPages(test_utils.TestCase):
         eq_(len(doc('.item')), 1)
 
 
+class TestListingByStatus(test_utils.TestCase):
+    fixtures = ['base/apps', 'base/addon_3615']
+
+    def setUp(self):
+        self.addon = Addon.objects.get(id=3615)
+
+    def get_addon(self, addon_status, file_status):
+        self.addon.current_version.all_files[0].update(status=file_status)
+        self.addon.update(status=addon_status, _current_version=None)
+        self.addon.update_current_version()
+        return Addon.objects.get(id=3615)
+
+    def check(self, exp):
+        r = self.client.get(reverse('browse.extensions'))
+        addons = list(r.context['addons'].object_list)
+        eq_(addons, exp)
+
+    def test_public_public_listed(self):
+        self.get_addon(amo.STATUS_PUBLIC, amo.STATUS_PUBLIC)
+        self.check([self.addon])
+
+    def test_public_nom_unlisted(self):
+        self.get_addon(amo.STATUS_PUBLIC, amo.STATUS_NOMINATED)
+        self.check([])
+
+    def test_public_lite_unlisted(self):
+        self.get_addon(amo.STATUS_PUBLIC, amo.STATUS_LITE)
+        self.check([])
+
+    def test_lite_unreviewed_unlisted(self):
+        self.get_addon(amo.STATUS_LITE, amo.STATUS_UNREVIEWED)
+        self.check([])
+
+    def test_lite_lite_listed(self):
+        self.get_addon(amo.STATUS_LITE, amo.STATUS_LITE)
+        self.check([self.addon])
+
+    def test_lite_lan_listed(self):
+        self.get_addon(amo.STATUS_LITE, amo.STATUS_LITE_AND_NOMINATED)
+        self.check([self.addon])
+
+    def test_lan_unreviewed_unlisted(self):
+        self.get_addon(amo.STATUS_LITE_AND_NOMINATED, amo.STATUS_UNREVIEWED)
+        self.check([])
+
+    def test_lan_lite_listed(self):
+        self.get_addon(amo.STATUS_LITE_AND_NOMINATED, amo.STATUS_LITE)
+        self.check([self.addon])
+
+    def test_lan_public_listed(self):
+        self.get_addon(amo.STATUS_LITE_AND_NOMINATED, amo.STATUS_PUBLIC)
+        self.check([self.addon])
+
+    def test_unreviewed_public_unlisted(self):
+        self.get_addon(amo.STATUS_UNREVIEWED, amo.STATUS_PUBLIC)
+        self.check([])
+
+    def test_nom_public_unlisted(self):
+        self.get_addon(amo.STATUS_NOMINATED, amo.STATUS_PUBLIC)
+        self.check([])
+
+
 class BaseSearchToolsTest(test_utils.TestCase):
     fixtures = ('base/apps', 'base/featured', 'addons/featured',
                 'base/category', 'addons/listed')
