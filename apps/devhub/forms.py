@@ -379,9 +379,9 @@ class NewFileForm(NewVersionForm):
         # Don't allow platforms we already have.
         existing = (File.objects.filter(version=self.version)
                     .values_list('platform', flat=True))
-        platform = self.fields['platform']
-        ids = [p[0] for p in platform.choices if p[0] not in existing]
-        platform.queryset = Platform.objects.filter(id__in=ids)
+        field = self.fields['platform']
+        field.choices = [p for p in field.choices if p[0] not in existing]
+        field.queryset = Platform.objects.filter(id__in=dict(field.choices))
 
     def clean(self):
         if not self.version.is_allowed_upload():

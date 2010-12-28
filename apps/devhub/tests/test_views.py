@@ -1966,7 +1966,9 @@ class TestVersionEditDetails(TestVersionEdit):
     def test_supported_platforms(self):
         res = self.client.get(self.url)
         choices = res.context['new_file_form'].fields['platform'].choices
-        eq_(len(choices), len(amo.SUPPORTED_PLATFORMS))
+        taken = [f.platform_id for f in self.version.files.all()]
+        platforms = set(amo.SUPPORTED_PLATFORMS) - set(taken)
+        eq_(len(choices), len(platforms))
 
     def test_can_upload(self):
         self.version.files.all().delete()
@@ -3014,6 +3016,15 @@ class TestVersionAddFile(UploadTest):
         assert_json_error(r, 'platform',
                                'Select a valid choice. That choice is not '
                                'one of the available choices.')
+
+    def test_platform_choices(self):
+        url = reverse('devhub.versions.edit',
+                      args=[self.addon.slug, self.version.id])
+        r = self.client.get(url)
+        form = r.context['new_file_form']
+        platform = self.version.files.get().platform_id
+        choices = form.fields['platform'].choices
+        assert platform not in dict(choices), choices
 
     def test_type_matches(self):
         self.addon.update(type=amo.ADDON_THEME)
