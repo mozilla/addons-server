@@ -1722,12 +1722,12 @@ class TestVersion(test_utils.TestCase):
         doc = get_doc()
         assert doc('#version-status .status-admin-disabled')
         eq_(doc('#version-status strong').text(),
-            'This add-on has been disabled by the admins .')
+            'This add-on has been disabled by Mozilla .')
 
         self.addon.update(disabled_by_user=True)
         doc = get_doc()
         eq_(doc('#version-status strong').text(),
-            'This add-on has been disabled .')
+            'You have disabled this add-on.')
 
     def test_delete_version(self):
         self.client.post(self.delete_url, self.delete_data)
