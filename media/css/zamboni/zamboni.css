@@ -3245,7 +3245,7 @@ input.ui-autocomplete-loading {
 #no-restart-msg {
     border: 1px solid #b6d9e5;
     border-radius: 3px; /* Only shown in Fx4. */
-    padding: .2em;
+    padding: .2em .4em;
     color: #294473;
     font-weight: bold;
     font-size: .9em;
