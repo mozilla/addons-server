@@ -645,6 +645,7 @@ def version_delete(request, addon_id, addon):
     return redirect('devhub.versions', addon.slug)
 
 
+@json_view
 @dev_required
 @post_required
 def version_add(request, addon_id, addon):
@@ -652,7 +653,8 @@ def version_add(request, addon_id, addon):
     if form.is_valid():
         v = Version.from_upload(form.cleaned_data['upload'], addon,
                                 form.cleaned_data['platform'])
-        return redirect('devhub.versions.edit', addon.slug, v.id)
+        url = reverse('devhub.versions.edit', addon.slug, v.id)
+        return dict(url=url)
     else:
         return json_view.error(form.errors)
 
@@ -677,8 +679,10 @@ def version_add_file(request, addon_id, addon, version_id):
 def version_list(request, addon_id, addon):
     qs = addon.versions.order_by('-created').transform(Version.transformer)
     versions = amo.utils.paginate(request, qs)
+    new_file_form = forms.NewVersionForm(None, addon=addon)
     data = {'addon': addon,
-            'versions': versions}
+            'versions': versions,
+            'new_file_form': new_file_form}
     return jingo.render(request, 'devhub/versions/list.html', data)
 
 

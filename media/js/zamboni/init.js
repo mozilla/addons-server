@@ -48,6 +48,14 @@ function template(s) {
     return function(args) { return format(s, args); };
 }
 
+/* prevent-default function wrapper */
+function _pd(func) {
+    return function(e) {
+        e.preventDefault();
+        func.apply(this, arguments);
+    };
+}
+
 /* Fake the placeholder attribute since Firefox 3.6 doesn't support it. */
 jQuery.fn.placeholder = function(new_value) {
 

@@ -40,7 +40,7 @@ $(document).ready(function() {
     }
 
     // Upload form submit
-    if('.upload-status') {
+    if($('.upload-status').length) {
         initUploadControls();
     }
 
@@ -48,10 +48,36 @@ $(document).ready(function() {
     if($('#submit-media').length) {
         initUploadIcon();
     }
+
+    if ($(".version-upload").length) {
+        $modal = $(".add-file-modal").modal(".version-upload", {
+            width: '450px',
+            hideme: false
+        });
+        $('.upload-status').bind('upload-success', function(e, json) {
+            $("#upload-file-finish").attr("disabled", false);
+            $("#id_upload").val(json.upload);
+        }).bind('upload-error', function() {
+            $("#upload-file-finish").attr("disabled", true);
+        });
+        $('.upload-file-cancel').click($modal.hideMe);
+        $('#upload-file').submit(_pd(function(e) {
+            $.post($(this).attr('action'), $(this).serialize(), function(response) {
+                if (response.url) {
+                    window.location = response.url;
+                }
+            });
+        }));
+    }
 });
 
 function initUploadControls() {
-    $('.upload-status').removeClass("hidden");
+    $('.upload-status').removeClass("hidden").hide();
+    $('.upload-status').bind('upload-start', function() {
+        $(this).addClass("ajax-loading");
+    }).bind('upload-finish', function() {
+        $(this).removeClass("ajax-loading");
+    });
     $(".invisible-upload").delegate("#upload-file-input", "change", function(e) {
         $('#upload-status-bar').attr('class', '');
         $('#upload-status-text').text("");
@@ -302,6 +328,7 @@ function fileUpload(img, url) {
     // Prepare the progress bar and status
     text = format(gettext('Preparing {0}'), [file.name]);
     $('#upload-status-text').text(text);
+    $('.upload-status').trigger("upload-start");
 
     updateStatus(0);
 
@@ -504,8 +531,8 @@ function addonUploaded(json) {
         } else {
             $(".upload-status").trigger("upload-error", [json]);
         }
+        $('.upload-status').trigger("upload-finish");
     }
-
 }
 
 

@@ -2792,6 +2792,12 @@ label > .optional {
    background-position: left bottom;
 }
 
+.ajax-loading #upload-status-text {
+   background-image: url(../../img/zamboni/loading-white.gif);
+   background-repeat: no-repeat;
+   background-position: right top;
+}
+
 .collections-contributors tr a {
     display: none;
 }
