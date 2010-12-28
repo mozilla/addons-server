@@ -134,11 +134,12 @@ you need to include a library file to test against, edit
 QUnit_ has some good examples for writing tests.  Here are a few
 additional tips:
 
-* Any HTML you need should go in #qunit-fixture since that is automatically
-  emptied after each test.
+* Any HTML required for your test should go in a sandbox using
+  ``tests.createSandbox('#your-template')``.
+  See js/zamboni/tests.js for details.
 * To make a useful test based on an actual production template, you can create
-  a snippet and include that in ``templates/qunit.html`` assigned to it own
-  div.  During test setup, copy that div into #qunit-fixture
+  a snippet and include that in ``templates/qunit.html`` assigned to its own
+  div.  During test setup, reference the div in createSandbox()
 * You can use `$.mockjax`_ to test how your code handles server responses,
   errors, and timeouts.
 
