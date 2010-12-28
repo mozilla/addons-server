@@ -53,7 +53,7 @@ def performance_note(context, amount, listing=False):
 
 @register.inclusion_tag('addons/contribution.html')
 @jinja2.contextfunction
-def contribution(context, addon, text='', src='', show_install=False,
+def contribution(context, addon, text=None, src='', show_install=False,
                  show_help=True):
     """
     Show a contribution box.
