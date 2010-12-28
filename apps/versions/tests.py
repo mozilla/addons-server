@@ -208,7 +208,7 @@ class TestFeeds(test_utils.TestCase):
 
     def test_feed_elements_present(self):
         """specific elements are present and reasonably well formed"""
-        url = reverse('addons.versions.rss', args=[11730])
+        url = reverse('addons.versions.rss', args=['a11730'])
         r = self.client.get(url, follow=True)
         doc = PyQuery(r.content)
         eq_(doc('rss channel title')[0].text,
