@@ -25,17 +25,16 @@
         {# L10n: {0} is a date. #}
         <li>{{ _('<strong>Last updated:</strong> {0}'|
                  f(addon.last_updated|datetime))|safe }}</li>
-        <li>
+        <li id="version-status-item">
           <strong>{{ _('Status:') }}</strong>
-          {% if addon.disabled_by_user %}
-            <span class="inactive-1">{{ _('Disabled') }}</span>
-          {% else %}
-            <span class="inactive-0">{{ _('Active') }}</span>
-          {% endif %}
-          {% trans status_key=addon.status,
-                   status_value=amo.STATUS_CHOICES[addon.status] %}
-            and <span class="status-{{ status_key }}">{{ status_value }}</span>
-          {% endtrans %}
+          <a href="{{ url('devhub.versions', addon.slug) }}">
+            {% if addon.disabled_by_user %}
+              <span class="{{ status_class(addon) }}"><b>{{ _('Disabled') }}</b></span>
+            {% else %}
+              <span class="{{ status_class(addon) }}">
+                <b>{{ amo.STATUS_CHOICES[addon.status] }}</b></span>
+            {% endif %}
+          </a>
         </li>
       </ul>
     {% endif %}

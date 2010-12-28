@@ -3,8 +3,8 @@
 {% set title = _('Status & Versions') %}
 {% block title %}{{ dev_page_title(title, addon) }}{% endblock %}
 
-{% macro status(cls, msg) %}
-<strong class="status-{{ cls }}">{{ msg }}</strong>
+{% macro status(msg) %}
+<strong class="{{ status_class(addon) }}">{{ msg }}</strong>
 {% endmacro %}
 
 {% block content %}
@@ -17,31 +17,31 @@
   <div class="item" id="version-status">
     <div>
       {% if addon.disabled_by_user %}
-        {{ status('disabled', _('You have <b>disabled</b> this add-on.')|safe) }}
+        {{ status(_('You have <b>disabled</b> this add-on.')|safe) }}
         {{ _("Your add-on's listing is disabled and is not showing anywhere in our gallery or update service. You may re-enable it at any time below.") }}
       {% elif addon.status == amo.STATUS_NULL %}
-        {{ status('incomplete', _('This add-on is <b>incomplete</b>.')|safe) }}
+        {{ status(_('This add-on is <b>incomplete</b>.')|safe) }}
         {{ _('Please complete your add-on.') }}
       {% elif addon.status == amo.STATUS_UNREVIEWED %}
-        {{ status('unreviewed',  _('This add-on is <b>awaiting preliminary review</b>.')|safe) }}
+        {{ status( _('This add-on is <b>awaiting preliminary review</b>.')|safe) }}
         {{ _("You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page.") }}
       {% elif addon.status == amo.STATUS_NOMINATED %}
-        {{ status('nominated', _('This add-on is <b>awaiting full review</b>.')|safe) }}
+        {{ status(_('This add-on is <b>awaiting full review</b>.')|safe) }}
         {{ _("You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. ") }}
       {% elif addon.status == amo.STATUS_PUBLIC %}
-        {{ status('fully-approved', _('This add-on has been <b>fully reviewed</b>.')|safe) }}
+        {{ status(_('This add-on has been <b>fully reviewed</b>.')|safe) }}
         {{ _("Your add-on is displayed in our gallery and users are receiving automatic updates.") }}
       {% elif addon.status == amo.STATUS_DISABLED %}
-        {{ status('admin-disabled', _('This add-on has been <b>disabled by Mozilla</b>.')|safe) }}
+        {{ status(_('This add-on has been <b>disabled by Mozilla</b>.')|safe) }}
         {{ _("Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.org.") }}
       {% elif addon.status == amo.STATUS_LITE %}
-        {{ status('lite', _('This add-on has been <b>preliminarily reviewed</b>.')|safe) }}
+        {{ status(_('This add-on has been <b>preliminarily reviewed</b>.')|safe) }}
         {{ _("Your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are unavailable to your add-on.") }}
       {% elif addon.status == amo.STATUS_LITE_AND_NOMINATED %}
-        {{ status('lite-nom', _('This add-on has been <b>preliminarily reviewed</b> and is <b>awaiting full review</b>.')|safe) }}
+        {{ status(_('This add-on has been <b>preliminarily reviewed</b> and is <b>awaiting full review</b>.')|safe) }}
         {{ _("You will receive an email when the full review is complete. Until then, your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are unavailable to your add-on.") }}
       {% elif addon.status == amo.STATUS_PURGATORY %}
-        {{ status('purgatory', _('Please select a review option.')) }}
+        {{ status(_('Please select a review option.')) }}
         {{ _("All add-ons hosted in our gallery must now be reviewed by an editor. If you wish to continue hosting your add-on, please select a review process from the choices below.") }}
       {% endif %}
       <a href="{{ remora_url('developers/docs/policies/reviews#selection') }}">

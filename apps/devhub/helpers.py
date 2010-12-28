@@ -71,3 +71,21 @@ def dev_files_status(files):
 
     return [(count, unicode(amo.STATUS_CHOICES[status])) for
             (status, count) in status_count.items()]
+
+@register.function
+def status_class(addon):
+    classes = {
+        amo.STATUS_NULL: 'incomplete',
+        amo.STATUS_UNREVIEWED: 'unreviewed',
+        amo.STATUS_NOMINATED: 'nominated',
+        amo.STATUS_PUBLIC: 'fully-approved',
+        amo.STATUS_DISABLED: 'admin-disabled',
+        amo.STATUS_LITE: 'lite',
+        amo.STATUS_LITE_AND_NOMINATED: 'lite-nom',
+        amo.STATUS_PURGATORY: 'purgatory',
+    }
+    if addon.disabled_by_user:
+        cls = 'disabled'
+    else:
+        cls = classes.get(addon.status, 'none')
+    return 'status-' + cls

@@ -88,16 +88,16 @@ STATUS_PURGATORY = 10  # A temporary home; bug 614686
 
 STATUS_CHOICES = {
     STATUS_NULL: _(u'Incomplete'),
-    STATUS_UNREVIEWED: _(u'Not reviewed'),
+    STATUS_UNREVIEWED: _(u'Awaiting Preliminary Review'),
     STATUS_PENDING: _(u'Pending approval'),
-    STATUS_NOMINATED: _(u'Nominated to be public'),
-    STATUS_PUBLIC: _(u'Public'),
-    STATUS_DISABLED: _(u'Disabled by Admins'),
+    STATUS_NOMINATED: _(u'Awaiting Full Review'),
+    STATUS_PUBLIC: _(u'Fully Reviewed'),
+    STATUS_DISABLED: _(u'Disabled by Mozilla'),
     STATUS_LISTED: _(u'Listed'),
     STATUS_BETA: _(u'Beta'),
-    STATUS_LITE: _(u'Preliminarily reviewed'),
+    STATUS_LITE: _(u'Preliminarily Reviewed'),
     STATUS_LITE_AND_NOMINATED:
-        _(u'Preliminarily reviewed and awaiting full review'),
+        _(u'Preliminarily Reviewed and Awaiting Full Review'),
     STATUS_PURGATORY:
         _(u'Pending a review choice'),
 }
