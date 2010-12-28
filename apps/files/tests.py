@@ -27,6 +27,7 @@ class UploadTest(test_utils.TestCase):
     """
     Base for tests that mess with file uploads, safely using temp directories.
     """
+    fixtures = ['applications/all_apps.json', 'base/appversion']
 
     def setUp(self):
         self._addons_path = settings.ADDONS_PATH
