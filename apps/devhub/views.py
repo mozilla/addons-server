@@ -436,6 +436,7 @@ def profile(request, addon_id, addon):
     if request.method == 'POST' and profile_form.is_valid():
         profile_form.save()
         amo.log(amo.LOG.EDIT_PROPERTIES, addon)
+        messages.success(request, _('Changes successfully saved.'))
         return redirect('devhub.addons.profile', addon.slug)
 
     return jingo.render(request, 'devhub/addons/profile.html',
@@ -575,6 +576,7 @@ def version_edit(request, addon_id, addon, version_id):
             for compat in data['compat_form'].save(commit=False):
                 compat.version = version
                 compat.save()
+        messages.success(request, _('Changes successfully saved.'))
         return redirect('devhub.versions.edit', addon.slug, version_id)
 
     data.update(addon=addon, version=version, new_file_form=new_file_form)
