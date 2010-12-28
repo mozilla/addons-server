@@ -710,6 +710,18 @@ class TestUpdate(test_utils.TestCase):
         eq_(version.version, '1.2.2')
         eq_(file.pk, file_two.pk)
 
+    def test_file_preliminary(self):
+        """If there's a newer file in prelim. review it won't show up. This is
+        a test for https://bugzilla.mozilla.org/show_bug.cgi?id=620749"""
+        version = Version.objects.get(pk=115509)
+        file = version.files.all()[0]
+        file.status = amo.STATUS_LITE
+        file.save()
+
+        version, file = self.get('1.2', self.version_int,
+                                 self.app, amo.PLATFORM_LINUX)
+        eq_(version.version, '1.2.1')
+
 
 class TestAddonFromUpload(files.tests.UploadTest):
     fixtures = ['base/apps']
