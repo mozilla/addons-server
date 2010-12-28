@@ -248,7 +248,7 @@ class Addon(amo.models.ModelBase):
         qs = Addon.objects.values_list('slug', 'id')
         match = qs.filter(slug=self.slug)
         if match and match[0][1] != self.id:
-            prefix = '%s-%s' % (self.slug, self.id)
+            prefix = '%s-%s' % (self.slug, self.id) if self.id else self.slug
             slugs = dict(qs.filter(slug__startswith='%s-' % prefix))
             slugs.update(match)
             for idx in range(len(slugs)):

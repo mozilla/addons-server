@@ -1,5 +1,9 @@
 {% extends "devhub/addons/submit/base.html" %}
 
+{% block title %}
+{{ dev_page_title(_('Submission Complete'), addon) }}
+{% endblock %}
+
 {% block primary %}
 <h3>{{ _("You're all set!") }}</h3>
 <p>

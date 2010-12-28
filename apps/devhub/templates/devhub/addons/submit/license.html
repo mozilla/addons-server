@@ -1,6 +1,8 @@
 {% from "devhub/includes/macros.html" import some_html_tip %}
 {% extends "devhub/addons/submit/base.html" %}
 
+{% block title %}{{ dev_page_title(_('Step 5'), addon) }}{% endblock %}
+
 {% block primary %}
 <h3>{{ _('Step 5. Select a License') }}</h3>
 <p>{% trans %}
