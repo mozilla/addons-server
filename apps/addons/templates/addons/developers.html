@@ -16,12 +16,11 @@
   {% if page == "installed" %}about{% endif %}
 {%- endblock bodyclass %}
 
-{% if page == "roadblock" %}
+{% if page == "roadblock" and not addon.charity %}
   {% set msg = _('Before downloading this add-on, please consider supporting the '
                  'development of this add-on by making a small contribution.') %}
 {% else %}
-  {% set msg = _('The developer of this add-on asks that you help support its '
-                 'continued development by making a small contribution.') %}
+  {% set msg = None %}
 {% endif %}
 
 {# contribute/installed is a 'headerless' page, so remove those elements. #}

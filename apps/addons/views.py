@@ -12,6 +12,7 @@ from django.views.decorators.cache import cache_page
 
 import caching.base as caching
 import jingo
+import jinja2
 import commonware.log
 
 from tower import ugettext_lazy as _lazy
@@ -397,9 +398,13 @@ def contribute(request, addon):
     return_url = "%s?%s" % (reverse('addons.thanks', args=[addon.slug]),
                             urllib.urlencode({'uuid': contribution_uuid}))
     # L10n: {0} is an add-on name.
-    contrib_for = _(u'Contribution for {0}').format(addon.name)
+    if addon.charity:
+        name, paypal = addon.charity.name, addon.charity.paypal
+    else:
+        name, paypal = addon.name, addon.paypal_id
+    contrib_for = _(u'Contribution for {0}').format(jinja2.escape(name))
     redirect_url_params = contribute_url_params(
-                            addon.paypal_id,
+                            paypal,
                             addon.id,
                             contrib_for,
                             absolutify(return_url),

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime, timedelta
 import re
+import urlparse
 
 from django import test
 from django.conf import settings
@@ -18,7 +19,7 @@ from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 from amo.tests.test_helpers import AbuseBase, AbuseDisabledBase
 from addons import views
-from addons.models import Addon, AddonUser
+from addons.models import Addon, AddonUser, Charity
 from files.models import File
 from users.helpers import users_list
 from users.models import UserProfile
@@ -252,6 +253,17 @@ class TestContribute(test_utils.TestCase):
                             {'comment': u'版本历史记录'})
         eq_(r.status_code, 302)
         assert r['Location'].startswith(settings.PAYPAL_CGI_URL)
+
+    def test_organization(self):
+        c = Charity.objects.create(name='moz', url='moz.com', paypal='mozcom')
+        addon = Addon.objects.get(id=592)
+        addon.update(charity=c)
+
+        r = self.client.get(reverse('addons.contribute', args=['a592']))
+        eq_(r.status_code, 302)
+        qs = dict(urlparse.parse_qsl(r['Location']))
+        eq_(qs['item_name'], 'Contribution for moz')
+        eq_(qs['business'], 'mozcom')
 
 
 class TestDeveloperPages(test_utils.TestCase):

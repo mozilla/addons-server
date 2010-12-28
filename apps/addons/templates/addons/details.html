@@ -56,10 +56,7 @@
           {% endif %}
 
           {% if addon.takes_contributions %}
-            {{ contribution(addon=addon, src='addon-detail',
-                text=_('The developer of this add-on asks that you help '
-                       'support its continued development by making a small '
-                       'contribution.')) }}
+            {{ contribution(addon=addon, src='addon-detail') }}
           {% endif %}
 
           <table itemscope itemtype="http://data-vocabulary.org/Review-aggregate">
