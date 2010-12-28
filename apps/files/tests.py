@@ -387,6 +387,12 @@ class TestFileFromUpload(UploadTest):
         f = File.from_upload(upload, self.version, self.platform)
         eq_(f.size, 1)
 
+    def test_beta_version(self):
+        upload = self.upload('beta-extension')
+        data = parse_addon(upload.path)
+        f = File.from_upload(upload, self.version, self.platform, data)
+        eq_(f.status, amo.STATUS_BETA)
+
 
 class TestZip(test_utils.TestCase):
 
