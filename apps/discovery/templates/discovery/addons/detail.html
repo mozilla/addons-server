@@ -23,7 +23,7 @@
     {% endif %}</li>
   <li><a href="{{ url('addons.detail', addon.slug)|urlparams(src=src) }}"
          class="button">{{ _('Learn More') }}</a></li>
-  {% if not addon.privacy_policy %}
+  {% if addon.privacy_policy %}
     <li><a href="{{ url('addons.privacy', addon.slug)|urlparams(src=src) }}">
       {{ _('View Privacy Policy') }}</a></li>
   {% endif %}
