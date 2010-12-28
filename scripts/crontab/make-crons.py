@@ -90,7 +90,7 @@ HOME = /tmp
 30 10 * * * $REMORA; /usr/bin/python26 build-recommendations.py addons
 30 20 * * * $Z_CRON update_perf
 30 23 * * * $Z_CRON collection_meta
-30 26 * * * $DJANGO dump_apps
+45 23 * * * $DJANGO dump_apps
 
 #Once per day after 2100 PST (after metrics is done)
 35 21 * * * $Z_CRON update_addon_download_totals
