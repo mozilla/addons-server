@@ -372,6 +372,16 @@ class TestFileFromUpload(UploadTest):
         f = File.from_upload(upload, self.version, self.platform)
         eq_(f.filename, u'jéts-0.1-mac.xpi')
 
+    def test_size(self):
+        upload = self.upload('extension')
+        f = File.from_upload(upload, self.version, self.platform)
+        eq_(f.size, 2)
+
+    def test_size_small(self):
+        upload = self.upload('alt-rdf')
+        f = File.from_upload(upload, self.version, self.platform)
+        eq_(f.size, 1)
+
 
 class TestZip(test_utils.TestCase):
 

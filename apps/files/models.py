@@ -87,7 +87,7 @@ class File(amo.models.ModelBase):
         f = cls(version=version, platform=platform)
         upload.path = path.path(nfd_str(upload.path))
         f.filename = f.generate_filename(extension=upload.path.ext)
-        f.size = upload.path.size
+        f.size = int(max(1, round(upload.path.size / 1024, 0)))  # Kilobytes.
         f.jetpack = cls.is_jetpack(upload.path)
         f.hash = upload.hash
         f.no_restart = parse_data.get('no_restart', False)
