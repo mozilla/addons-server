@@ -312,6 +312,16 @@ class TestDevRequired(test_utils.TestCase):
         self.au.save()
         eq_(self.client.post(self.get_url).status_code, 403)
 
+    def test_disabled_post_dev(self):
+        self.addon.update(status=amo.STATUS_DISABLED)
+        eq_(self.client.post(self.get_url).status_code, 403)
+
+    def test_disabled_post_admin(self):
+        self.addon.update(status=amo.STATUS_DISABLED)
+        assert self.client.login(username='admin@mozilla.com',
+                                 password='password')
+        self.assertRedirects(self.client.post(self.post_url), self.get_url)
+
 
 class TestOwnership(test_utils.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']

@@ -49,7 +49,13 @@ def dev_required(f):
         fun = lambda: f(request, addon_id=addon.id, addon=addon, *args, **kw)
         # Require an owner for POST requests.
         if request.method == 'POST':
-            if acl.check_ownership(request, addon, require_owner=True):
+            # Disabled add-ons are only editable by admins.
+            is_admin = acl.action_allowed(request, 'Admin', 'EditAnyAddon')
+            only_admin = addon.status == amo.STATUS_DISABLED
+            if only_admin:
+                if is_admin:
+                    return fun()
+            elif acl.check_ownership(request, addon, require_owner=True):
                 return fun()
         elif acl.check_ownership(request, addon, require_owner=False):
             return fun()
