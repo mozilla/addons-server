@@ -10,7 +10,7 @@
     <h3>{{ addon.name }}</h3>
     <ul class="refinements">
       {% for url, title in urls %}
-        <li {{ request.path|class_selected(url) }}>
+        <li {% if url in request.path %}class="selected"{% endif %}>
           <a href="{{ url }}">{{ title }}</a></li>
       {% endfor %}
     </ul>
