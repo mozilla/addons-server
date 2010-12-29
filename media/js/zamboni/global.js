@@ -24,9 +24,9 @@ jQuery.fn.tooltip = function(tip_el) {
         $title.attr('data-oldtitle', $title.attr('title')).attr('title', '');
 
         var tw  = $tip.outerWidth() / 2,
-            th  = $tip.outerHeight() - 8,
-            toX = pos.left + $tgt.innerWidth() / 2 - tw,
-            toY = pos.top - $tgt.innerHeight() - th - 1;
+            th  = $tip.outerHeight(),
+            toX = pos.left + $tgt.innerWidth() / 2 - tw - 1,
+            toY = pos.top - $tgt.innerHeight() - th - 2;
 
         timeout = setTimeout(function () {
             $tip.css({
