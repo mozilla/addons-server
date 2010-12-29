@@ -3196,7 +3196,7 @@ input.ui-autocomplete-loading {
 /** "Some HTML Allowed" text/popup **/
 .html-support {
     font-size: .9em;
-    color: #888;
+    color: #003595;
     float: right;
 }
 
