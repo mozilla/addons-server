@@ -894,20 +894,20 @@ a.extra {
 
 .status-nominated b,
 .status-unreviewed b {
-    color: #4C8B97;
+    color: #3e7987;
 }
 
 .status-incomplete b,
 .status-disabled b,
 .status-admin-disabled b,
 .status-purgatory b {
-    color: #991B0F;
+    color: #851006;
 }
 
 .status-fully-approved b,
 .status-lite b,
 .status-lite-nom b {
-    color: #38A532;
+    color: #329902;
 }
 
 #version-status-item b {
