@@ -260,10 +260,10 @@ def check_paypal_id(paypal_id):
 
 
 class VersionForm(happyforms.ModelForm):
-    releasenotes = forms.CharField(widget=TranslationTextarea(),
-                                   required=False)
-    approvalnotes = forms.CharField(widget=TranslationTextarea(),
-                                    required=False)
+    releasenotes = forms.CharField(
+        widget=TranslationTextarea(), required=False)
+    approvalnotes = forms.CharField(
+        widget=TranslationTextarea(attrs={'rows': 4}), required=False)
 
     class Meta:
         model = Version
