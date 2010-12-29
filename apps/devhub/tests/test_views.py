@@ -3,6 +3,7 @@ import os
 import re
 import socket
 from decimal import Decimal
+import shutil
 
 from django import forms
 from django.conf import settings
@@ -1748,8 +1749,11 @@ class TestVersion(test_utils.TestCase):
     def test_no_validation_results(self):
         doc = self.get_doc()
         v = doc('td.file-validation').text()
-        eq_(re.sub('[\s]+', ' ', v),
-            'delicious_bookmarks-2.1.072-fx.xpi not validated')
+        eq_(re.sub(r'\s+', ' ', v),
+            'delicious_bookmarks-2.1.072-fx.xpi Not validated. Validate now.')
+        eq_(doc('td.file-validation a').attr('href'),
+            reverse('devhub.file_validation',
+                    args=[self.addon.slug, self.version.all_files[0].id]))
 
     def test_delete_version(self):
         self.client.post(self.delete_url, self.delete_data)
@@ -3049,6 +3053,45 @@ class TestFileValidation(test_utils.TestCase):
         eq_(msg['message'], 'The value of &lt;em:id&gt; is invalid.')
         eq_(sorted(msg['context']),
             [[u'&lt;foo/&gt;'], u'&lt;em:description&gt;...'])
+
+
+class TestValidateFile(files.tests.UploadTest):
+    fixtures = ['base/apps', 'base/users',
+                'devhub/addon-file-100456', 'base/platforms']
+
+    def setUp(self):
+        super(TestValidateFile, self).setUp()
+        assert self.client.login(username='del@icio.us', password='password')
+        self.user = UserProfile.objects.get(email='del@icio.us')
+        self.file = File.objects.get(pk=100456)
+        # Move the file into place as if it were a real file
+        os.makedirs(os.path.dirname(self.file.file_path))
+        shutil.copyfile(self.file_path('invalid-id-20101206.xpi'),
+                        self.file.file_path)
+        self.addon = self.file.version.addon
+
+    def test_lazy_validate(self):
+        r = self.client.post(reverse('devhub.json_file_validation',
+                                     args=[self.addon.slug, self.file.id]),
+                                     follow=True)
+        eq_(r.status_code, 200)
+        data = json.loads(r.content)
+        assert_no_validation_errors(data)
+        msg = data['validation']['messages'][0]
+        eq_(msg['message'], 'The value of &lt;em:id&gt; is invalid.')
+
+    @mock.patch('devhub.tasks._validator')
+    def test_validator_errors(self, v):
+        v.side_effect = ValueError('catastrophic failure in amo-validator')
+        r = self.client.post(reverse('devhub.json_file_validation',
+                                     args=[self.addon.slug, self.file.id]),
+                                     follow=True)
+        eq_(r.status_code, 200)
+        data = json.loads(r.content)
+        eq_(data['validation'], '')
+        assert data['error'].endswith(
+                    "ValueError: catastrophic failure in amo-validator\n"), (
+                        'Unexpected error: ...%s' % data['error'][-50:-1])
 
 
 def assert_json_error(request, field, msg):

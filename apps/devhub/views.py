@@ -3,6 +3,8 @@ import collections
 import functools
 import json
 import os
+import sys
+import traceback
 
 from django import http
 from django.db.models import Count
@@ -506,8 +508,19 @@ def file_validation(request, addon_id, addon, file_id):
 @dev_required
 def json_file_validation(request, addon_id, addon, file_id):
     file = get_object_or_404(File, id=file_id)
-    v = file.validation
-    validation = json.loads(v.validation)
+    if not file.has_been_validated:
+        try:
+            v_result = tasks.file_validator(file.id)
+        except Exception:
+            log.exception('file_validator(%s)' % file.id)
+            return {
+                'validation': '',
+                'error': "\n".join(
+                                traceback.format_exception(*sys.exc_info()))
+            }
+    else:
+        v_result = file.validation
+    validation = json.loads(v_result.validation)
     prepare_validation_results(validation)
 
     r = dict(validation=validation,

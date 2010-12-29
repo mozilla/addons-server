@@ -129,8 +129,10 @@
                   <li><a href="{{ url('devhub.file_validation', addon.slug, file.id) }}">
                     {{ summarize_validation(file.validation) }}</a></li>
                 {% else %}
-                  <li>{{ _('not validated') }}</li>
-                  {# TODO(Kumar) Add a validate-now button + changes to support it #}
+                  <li>{{ _('Not validated.') }}
+                    <a href="{{ url('devhub.file_validation', addon.slug, file.id) }}">
+                        {{ _('Validate now.') }}</a>
+                  </li>
                 {% endif %}
                 </ul>
                 </li>

@@ -10,19 +10,19 @@ from celeryutils import task
 
 from amo.decorators import write
 from amo.utils import resize_image
-from files.models import FileUpload
+from files.models import FileUpload, File, FileValidation
 from applications.management.commands import dump_apps
 
 log = logging.getLogger('z.devhub.task')
 
 
-@task
+@task(queue='devhub')
 @write
 def validator(upload_id, **kw):
     log.info('VALIDATING: %s' % upload_id)
     upload = FileUpload.objects.get(pk=upload_id)
     try:
-        result = _validator(upload)
+        result = _validator(upload.path)
         upload.validation = result
         upload.save()  # We want to hit the custom save().
     except:
@@ -33,7 +33,18 @@ def validator(upload_id, **kw):
         raise
 
 
-def _validator(upload):
+@task(queue='devhub')
+@write
+def file_validator(file_id, **kw):
+    log.info('VALIDATING file: %s' % file_id)
+    file = File.objects.get(pk=file_id)
+    # Unlike upload validation, let the validator
+    # raise an exception if there is one.
+    result = _validator(file.file_path)
+    return FileValidation.from_json(file, result)
+
+
+def _validator(file_path):
 
     from validate import validate
 
@@ -47,7 +58,7 @@ def _validator(upload):
     if not os.path.exists(apps):
         call_command('dump_apps')
 
-    return validate(upload.path, format='json',
+    return validate(file_path, format='json',
                     # Continue validating each tier even if one has an error
                     determined=True,
                     approved_applications=apps,
