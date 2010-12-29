@@ -33,6 +33,12 @@ form .char-count:after {
     color: #888888;
 }
 
+#setup h3,
+.developer-hub .primary > h3 {
+    margin-top: 0;
+    padding-top: 1em;
+}
+
 .devhub-form .item {
     background-color: #FFFFFF;
     background-position: left bottom;
