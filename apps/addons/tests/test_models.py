@@ -404,6 +404,29 @@ class TestAddonModels(test_utils.TestCase):
         a.save()
         eq_(a.slug, '44~')
 
+    def delete(self):
+        addon = Addon.objects.get(id=3615)
+        eq_(len(mail.outbox), 0)
+        addon.delete('so long and thanks for all the fish')
+        eq_(len(mail.outbox), 1)
+
+    def test_delete_to(self):
+        self.delete()
+        eq_(mail.outbox[0].to, [settings.FLIGTAR])
+
+    def test_delete_by(self):
+        try:
+            user = Addon.objects.get(id=3615).authors.all()[0]
+            set_user(user)
+            self.delete()
+            assert 'DELETED BY: 55021' in mail.outbox[0].body
+        finally:
+            set_user(None)
+
+    def test_delete_by_unknown(self):
+        self.delete()
+        assert 'DELETED BY: Unknown' in mail.outbox[0].body
+
 
 class TestCategoryModel(test_utils.TestCase):
 
