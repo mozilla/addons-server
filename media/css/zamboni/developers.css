@@ -1345,6 +1345,9 @@ form.select-review .errorlist {
     margin-bottom: 1em;
 }
 
+#file-list select {
+    margin-right: 1em;
+}
 #file-list { margin-bottom: 1em;}
 #file-list tr {
     border-bottom: 1px dotted #ADD0DC;
