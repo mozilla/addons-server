@@ -357,6 +357,14 @@ class TestAddonModels(test_utils.TestCase):
         # There was an odd error when a translation was set to None.
         Addon.objects.create(homepage=None, type=amo.ADDON_EXTENSION)
 
+    def test_slug_isdigit(self):
+        a = Addon.objects.create(type=1, name='xx', slug='123')
+        eq_(a.slug, '123~')
+
+        a.slug = '44'
+        a.save()
+        eq_(a.slug, '44~')
+
 
 class TestCategoryModel(test_utils.TestCase):
 

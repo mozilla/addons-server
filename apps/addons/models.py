@@ -245,6 +245,8 @@ class Addon(amo.models.ModelBase):
     def clean_slug(self):
         if not self.slug:
             self.slug = slugify(self.name)[:27]
+        if self.slug.isdigit():
+            self.slug += "~"
         qs = Addon.objects.values_list('slug', 'id')
         match = qs.filter(slug=self.slug)
         if match and match[0][1] != self.id:
