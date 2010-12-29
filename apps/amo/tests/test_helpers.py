@@ -48,6 +48,13 @@ def test_finalize():
     eq_('', render('{{ x }}', {'x': None}))
 
 
+def test_slugify_spaces():
+    """We want slugify to preserve spaces, but not at either end."""
+    eq_(utils.slugify(' b ar '), 'b-ar')
+    eq_(utils.slugify(' b ar ', spaces=True), 'b ar')
+    eq_(utils.slugify(' b  ar ', spaces=True), 'b  ar')
+
+
 def test_page_title():
     request = Mock()
     request.APP = amo.THUNDERBIRD
@@ -254,7 +261,7 @@ class TestLicenseLink(test_utils.TestCase):
         }
         for lic, ex in expected.items():
             s = render('{{ license_link(lic) }}', {'lic': lic})
-            s = ''.join([ s.strip() for s in s.split('\n') ])
+            s = ''.join([s.strip() for s in s.split('\n')])
             eq_(s, ex)
 
     def test_license_link_xss(self):
@@ -281,8 +288,9 @@ class TestLicenseLink(test_utils.TestCase):
         }
         for lic, ex in expected.items():
             s = render('{{ license_link(lic) }}', {'lic': lic})
-            s = ''.join([ s.strip() for s in s.split('\n') ])
+            s = ''.join([s.strip() for s in s.split('\n')])
             eq_(s, ex)
+
 
 class AbuseBase:
     @patch('captcha.fields.ReCaptchaField.clean')

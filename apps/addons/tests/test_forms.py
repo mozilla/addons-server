@@ -1,9 +1,10 @@
+# -*- coding: utf-8 -*-
 import test_utils
 from nose.tools import eq_
 
 from redisutils import mock_redis, reset_redis
 from addons import forms, cron
-from addons.models import Addon
+from addons.models import Addon, Category
 from addons.forms import AddonFormDetails
 import amo
 
@@ -58,6 +59,59 @@ class FormsTest(test_utils.TestCase):
         names = ['Bookmarks', 'Feeds', 'Social']
         categories = form.fields['categories'].queryset
         eq_(sorted(names), [str(f.name) for f in categories.all()])
+
+
+class TestTagsForm(test_utils.TestCase):
+    fixtures = ['base/addon_3615', 'base/platforms', 'base/users']
+
+    def setUp(self):
+        self.addon = Addon.objects.get(pk=3615)
+        category = Category.objects.get(pk=22)
+        category.name = 'test'
+        category.save()
+
+        self.data = {
+            'summary': str(self.addon.summary),
+            'name': str(self.addon.name),
+            'slug': self.addon.slug,
+            'categories': ['22'],
+        }
+
+        self.user = self.addon.authors.all()[0]
+        amo.set_user(self.user)
+
+    def add_tags(self, tags):
+        data = self.data.copy()
+        data.update({"tags": tags})
+        form = forms.AddonFormBasic(data=data, request=None,
+                                    instance=self.addon)
+        form.is_valid()
+        form.save(self.addon)
+        return form
+
+    def get_tag_text(self):
+        return [t.tag_text for t in self.addon.tags.no_cache().all()]
+
+    def test_tags(self):
+        self.add_tags('foo, bar')
+        eq_(self.get_tag_text(), ['bar', 'foo'])
+
+    def test_tags_xss(self):
+        self.add_tags('<script>alert("foo")</script>, bar')
+        eq_(self.get_tag_text(), ['bar', 'scriptalertfooscript'])
+
+    def test_tags_case_spaces(self):
+        self.add_tags('foo, bar')
+        self.add_tags('foo,    bar   , Bar, BAR, b a r ')
+        eq_(self.get_tag_text(), ['b a r', 'bar', 'foo'])
+
+    def test_tags_spaces(self):
+        self.add_tags('foo, bar beer')
+        eq_(self.get_tag_text(), ['bar beer', 'foo'])
+
+    def test_tags_unicode(self):
+        self.add_tags(u'Österreich')
+        eq_(self.get_tag_text(), [u'Österreich'.lower()])
 
 
 class TestUpdate(test_utils.TestCase):

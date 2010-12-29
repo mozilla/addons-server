@@ -9,7 +9,7 @@ from tower import ugettext as _, ungettext as ngettext
 
 import amo
 import captcha.fields
-from amo.utils import ImageCheck, slug_validator
+from amo.utils import ImageCheck, slug_validator, slugify
 from addons.models import Addon, ReverseNameLookup, Category, AddonCategory
 from addons.widgets import IconWidgetRenderer
 from devhub import tasks
@@ -66,16 +66,16 @@ class AddonFormBasic(AddonFormBase):
             'name'))
 
     def save(self, addon, commit=False):
-        tags_new = self.cleaned_data['tags']
-        tags_old = [t.tag_text for t in addon.tags.all()]
+        tags_new = [slugify(t, spaces=True) for t in self.cleaned_data['tags']]
+        tags_old = [slugify(t.tag_text, spaces=True) for t in addon.tags.all()]
 
         # Add new tags.
         for t in set(tags_new) - set(tags_old):
-            Tag(tag_text=t).save_tag(addon, self.request.amo_user)
+            Tag(tag_text=t).save_tag(addon, amo.get_user())
 
         # Remove old tags.
         for t in set(tags_old) - set(tags_new):
-            Tag(tag_text=t).remove_tag(addon, self.request.amo_user)
+            Tag(tag_text=t).remove_tag(addon, amo.get_user())
 
         categories_new = self.cleaned_data['categories']
         categories_old = list(addon.categories.all())

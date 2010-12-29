@@ -211,7 +211,7 @@ def randslice(qs, limit, exclude=None):
 SLUG_OK = '-_'
 
 
-def slugify(s, ok=SLUG_OK, lower=True):
+def slugify(s, ok=SLUG_OK, lower=True, spaces=False):
     # L and N signify letter/number.
     # http://www.unicode.org/reports/tr44/tr44-4.html#GC_Values_Table
     rv = []
@@ -221,7 +221,9 @@ def slugify(s, ok=SLUG_OK, lower=True):
             rv.append(c)
         if cat == 'Z':  # space
             rv.append(' ')
-    new = re.sub('[-\s]+', '-', ''.join(rv).strip())
+    new = ''.join(rv).strip()
+    if not spaces:
+        new = re.sub('[-\s]+', '-', new)
     return new.lower() if lower else new
 
 
