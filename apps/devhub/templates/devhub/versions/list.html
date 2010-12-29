@@ -77,7 +77,8 @@
   </div>
 
   <h3>{{ _('Version History') }}</h3>
-  <div class="item" id="version-list">
+  <div class="item" id="version-list"
+       data-stats="{{ url('devhub.versions.stats', addon.slug) }}">
     <div class="item_wrapper">
       <table>
         <tr>
@@ -107,7 +108,7 @@
             </span>
           </td>
           <td class="file-status">
-            {% for (count, status) in dev_files_status(version.all_files): %}
+            {% for (count, status) in dev_files_status(version.all_files) %}
             <div>
               {# L10n: {0} is the number of files, {1} is the status #}
               {{ ngettext('{0} file is {1}', '{0} files are {1}', count)
@@ -145,10 +146,15 @@
 
   <div id="modal-delete-version" class="modal modal-delete">
     <form method="post" action="{{ url('devhub.versions.delete', addon.slug) }}">
-      <h3>{{ _('Delete Version') }}</h3>
+      <h3>{{ _('Delete Version {version}') }}</h3>
       <p>
         {% trans %}
-          Deleting your add-on version will remove it from the site.
+        Deleting this version will permanently delete:
+        <ul>
+          <li id="del-files"></li>
+          <li id="del-reviews"></li>
+        </ul>
+        Are you sure you wish to delete this version?
         {% endtrans %}
       </p>
       {{ csrf() }}

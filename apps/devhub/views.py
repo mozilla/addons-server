@@ -5,6 +5,7 @@ import json
 import os
 
 from django import http
+from django.db.models import Count
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.http import urlquote
 
@@ -648,6 +649,15 @@ def version_bounce(request, addon_id, addon, version):
         return redirect('devhub.versions.edit', addon.slug, vs[0].id)
     else:
         raise http.Http404()
+
+
+@json_view
+@dev_required
+def version_stats(request, addon_id, addon):
+    qs = (Version.objects.filter(addon=addon)
+          .annotate(reviews=Count('reviews'), files=Count('files'))
+          .values('id', 'version', 'reviews', 'files'))
+    return dict((v['id'], v) for v in qs)
 
 
 Step = collections.namedtuple('Step', 'current max')

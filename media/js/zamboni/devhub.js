@@ -223,34 +223,37 @@ function initUploadIcon() {
 
 function initVersions() {
     $('#modals').hide();
+    var versions;
+    $.getJSON($('#version-list').attr('data-stats'),
+              function(json){ versions = json; });
 
     $('#modal-delete-version').modal('.version-delete .remove',
-        { width: 400,
-          callback:function(d){
-                $('.version_id', this).val($(d.click_target).attr('data-version'));
-                return true;
-            }
-          });
+        {width: 400,
+         callback: function(d){
+            /* This sucks because of ngettext. */
+            var version = versions[$(d.click_target).attr('data-version')],
+                header = $('h3', this),
+                files = $('#del-files', this),
+                reviews = $('#del-reviews', this);
+            header.text(format(header.text(), version));
+            files.text(format(ngettext('{files} file', '{files} files',
+                                       version.files),
+                              version));
+            reviews.text(format(ngettext('{reviews} review', '{reviews} reviews',
+                                         version.reviews),
+                                version));
+            $('.version_id', this).val(version.id);
+            return true;
+        }});
 
-    $('#modal-cancel').modal('#cancel-review',
-        { width: 400
-          });
-
-
-    $('#modal-delete').modal('#delete-addon',
-        { width: 400,
-          });
-
-
+    $('#modal-cancel').modal('#cancel-review', {width: 400});
+    $('#modal-delete').modal('#delete-addon', {width: 400});
     $('#modal-disable').modal('#disable-addon',
-        { width: 400,
-          callback:function(d){
-                $('.version_id', this).val($(d.click_target).attr('data-version'));
+        {width: 400,
+         callback: function(d){
+               $('.version_id', this).val($(d.click_target).attr('data-version'));
                 return true;
-            }
-          });
-
-
+         }});
 }
 
 function initSubmit() {
