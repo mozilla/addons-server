@@ -1,4 +1,4 @@
-<form method="post" action="{{ url('devhub.addons.delete', addon.id) }}">
+<form method="post" action="{{ url('devhub.addons.delete', addon.slug) }}">
   {{ csrf() }}
   <h3>{{ _('Delete Add-on') }}</h3>
   <p>
