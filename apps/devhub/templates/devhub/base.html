@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% if addon %}
-  {% set editable = "can-edit" if can_edit_addon(request, addon) %}
+  {% set editable = "no-edit" if not can_edit_addon(request, addon) %}
 {% endif %}
 {% block bodyclass %}developer-hub {{ editable }}{% endblock %}
 

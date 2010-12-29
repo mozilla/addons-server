@@ -102,8 +102,8 @@ $(document).ready(function() {
 });
 
 (function initFormPerms() {
-    z.canEdit = $("body").hasClass("can-edit");
-    if (!z.canEdit) {
+    z.noEdit = $("body").hasClass("no-edit");
+    if (z.noEdit) {
         $primary = $(".primary");
         $els = $primary.find("input, select, textarea, button, a.button");
         $els.attr("disabled", "disabled");
@@ -163,7 +163,7 @@ $("#user-form-template .email-autocomplete")
     .attr("placeholder", gettext("Enter a new author's email address"));
 
 function initEditAddon() {
-    if (!z.canEdit) return;
+    if (z.noEdit) return;
     $('#edit-addon').delegate('h3 a', 'click', function(e){
         e.preventDefault();
 
@@ -512,7 +512,7 @@ function resetFileInput() {
 
 
 function initEditVersions() {
-    if (!z.canEdit) return;
+    if (z.noEdit) return;
     // Modal box
     $modal = $(".add-file-modal").modal(".add-file", {
         width: '450px',
@@ -593,7 +593,7 @@ function initEditVersions() {
 }
 
 function initPayments() {
-    if (!z.canEdit) return;
+    if (z.noEdit) return;
     var previews = [
         "img/zamboni/contributions/passive.png",
         "img/zamboni/contributions/after.png",
@@ -680,7 +680,7 @@ function initLicenseFields() {
 }
 
 function initAuthorFields() {
-    if (!z.canEdit) return;
+    if (z.noEdit) return;
     var request = false,
         timeout = false,
         manager = $("#id_form-TOTAL_FORMS"),
