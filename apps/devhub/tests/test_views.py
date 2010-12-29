@@ -3180,12 +3180,13 @@ class TestDeleteAddon(test_utils.TestCase):
 
 
 class TestRequestReview(test_utils.TestCase):
-    fixtures = ['base/users']
+    fixtures = ['base/users', 'base/platforms']
 
     def setUp(self):
         self.addon = Addon.objects.create(type=1, name='xxx')
         self.version = Version.objects.create(addon=self.addon)
-        self.file = File.objects.create(version=self.version)
+        self.file = File.objects.create(version=self.version,
+                                        platform_id=amo.PLATFORM_ALL.id)
         self.redirect_url = reverse('devhub.versions', args=[self.addon.slug])
         self.lite_url = reverse('devhub.request-review',
                                 args=[self.addon.slug, amo.STATUS_LITE])
