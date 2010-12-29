@@ -397,8 +397,7 @@ class NewFileForm(NewVersionForm):
 
 
 class FileForm(happyforms.ModelForm):
-    _choices = [(k, amo.STATUS_CHOICES[k]) for k in
-                (amo.STATUS_BETA, amo.STATUS_UNREVIEWED)]
+    _choices = [(k, amo.STATUS_CHOICES[k]) for k in (amo.STATUS_BETA,)]
     status = forms.TypedChoiceField(coerce=int, choices=_choices)
     platform = File._meta.get_field('platform').formfield(empty_label=None)
 
