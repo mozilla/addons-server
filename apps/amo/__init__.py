@@ -327,7 +327,7 @@ class PLATFORM_ANY:
 
 class PLATFORM_ALL:
     id = 1
-    name = _(u'All')
+    name = _(u'All Platforms')
     shortname = 'all'
     api_name = u'ALL'
 
