@@ -38,7 +38,9 @@ $(document).ready(function(){
  * "1"
  */
 function format(s, args) {
-    args = (args && args instanceof Array) ? args : Array.prototype.slice.call(arguments, 1); 
+    if (!args) return;
+    if (!(args instanceof Array || args instanceof Object))
+        args = Array.prototype.slice.call(arguments, 1);
     var re = /\{([^}]+)\}/g;
     return s.replace(re, function(_, match){ return args[match]; });
 }
