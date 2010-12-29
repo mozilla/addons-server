@@ -37,7 +37,7 @@
 </p>
 
 <div class="container">
-  <label class="optional" for="the_reason">
+  <label class="optional above-the-field" data-for="the_reason">
     {{ profile_form.the_reason.label|safe }}
     {{ maybe_required() }}
   </label>
@@ -53,7 +53,7 @@
 </div>
 
 <div class="container">
-  <label for="the_future">
+  <label data-for="the_future" class="above-the-field">
     {{ profile_form.the_future.label|safe }}
     {{ maybe_required() }}
   </label>
