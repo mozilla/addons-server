@@ -758,6 +758,9 @@ input.valid {
     margin-bottom: 1em;
     border-bottom: 1px dotted #ADD0DC;
 }
+.payments .intro h3 {
+    margin-top: 0;
+}
 .payments .intro ul,
 .payments .intro p {
     font-size: .9em;
