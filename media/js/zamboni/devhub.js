@@ -136,7 +136,7 @@ function addonFormSubmit() {
                               .appendTo(parent_div.find('h3').first());
                     setTimeout(function(){
                         e.css('opacity', 0);
-                        setTimeout(function(){ e.remove }, 1500);
+                        setTimeout(function(){ e.remove(); }, 1500);
                     }, 2000);
                 });
         });
