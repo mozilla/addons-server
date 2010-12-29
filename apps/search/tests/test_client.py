@@ -9,12 +9,13 @@ from nose.tools import eq_, assert_raises
 from pyquery import PyQuery as pq
 
 import amo
+from addons.models import Addon
 from amo.urlresolvers import reverse
 from bandwagon.models import Collection
 from search.client import (extract_from_query, get_category_id,
                            Client as SearchClient, CollectionsClient,
                            PersonasClient, SearchError, )
-from search.tests import SphinxTestCase
+from search.tests import SphinxTestCase, reindex, start_sphinx, stop_sphinx
 
 
 def test_extract_from_query():
@@ -165,8 +166,7 @@ class SearchTest(SphinxTestCase):
         # we have to specify to sphinx to look at test_ dbs
         c = SearchClient()
         results = c.query('Delicious')
-        assert results[0].id == 3615, \
-            "Didn't get the addon ID I wanted."
+        assert results[0].id == 3615, results
 
     def test_version_restriction(self):
         """This tests that sphinx will properly restrict by version."""
@@ -230,14 +230,13 @@ class SearchTest(SphinxTestCase):
         eq_(len(query("grapple", locale='fr')), 0)
 
     def test_status_filter(self):
-        """
-        Tests that if we filter for public addons that MozEx does not show up.
-        If we look for sandboxed addons as well MozEx will show up.
-        """
+        # Tests that if we filter for public addons that MozEx does not show up.
+        # If we look for sandboxed addons as well MozEx still will not show up
+        # since sandboxed addons are hidden.
 
         eq_(len(query("MozEx", status=[amo.STATUS_PUBLIC])), 0)
-        eq_(query("MozEx",
-                  status=[amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED])[0].id, 40)
+        q = query("MozEx", status=[amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED])
+        eq_(len(q), 0)
 
     def test_bad_chars(self):
         """ Sphinx doesn't like queries that are entirely '$', '^' or '^ $' """
@@ -252,6 +251,35 @@ class SearchTest(SphinxTestCase):
 
     def test_summary(self):
         eq_(query("bookmarking")[0].id, 3615)  # Should get us Delicious
+
+
+class SearchStatusTest(SphinxTestCase):
+    fixtures = ('base/addon_3615', 'base/addon_5369', 'base/addon_592',
+                'base/addon_5579', 'base/addon_40', 'search/560618-alpha-sort',
+                'base/apps', 'base/category')
+
+    def reindex(self):
+        stop_sphinx()
+        reindex()
+        start_sphinx()
+
+    def test_unreviewed_hidden(self):
+        # Only public, lite, and nominated add-ons should be found.
+        Addon.objects.update(status=amo.STATUS_UNREVIEWED)
+        self.reindex()
+        eq_(len(query('')), 0)
+
+    def test_searchable_status(self):
+        Addon.objects.update(status=amo.STATUS_UNREVIEWED)
+        Addon.objects.filter(id=5579).update(status=amo.STATUS_PUBLIC)
+        Addon.objects.filter(id=3615).update(status=amo.STATUS_LITE)
+        Addon.objects.filter(id=5369).update(
+            status=amo.STATUS_LITE_AND_NOMINATED)
+        self.reindex()
+
+        ids = [x.id for x in query('')]
+        eq_(len(ids), 3)
+        eq_(ids, [5579, 3615, 5369])
 
 
 class RankingTest(SphinxTestCase):

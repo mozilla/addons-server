@@ -34,6 +34,9 @@ MAX_VERSION = 10 ** 13 - 1  # Large version
 
 log = commonware.log.getLogger('z.sphinx')
 
+SEARCHABLE_STATUSES = (amo.STATUS_PUBLIC, amo.STATUS_LITE,
+                       amo.STATUS_LITE_AND_NOMINATED)
+
 
 def extract_filters(term, kwargs):
     """
@@ -42,15 +45,17 @@ def extract_filters(term, kwargs):
     filter values.
     """
 
-     # Note: even though inactive is called disabled_by_user in
-     # the model, this index is based on the db column.
+    # Note: even though inactive is called disabled_by_user in
+    # the model, this index is based on the db column.
     filters = {'inactive': 0}
     excludes = {}
     ranges = {}
 
     # Status filtering
+    filters['addon_status'] = SEARCHABLE_STATUSES
     if 'status' in kwargs:
-        filters['addon_status'] = kwargs['status']
+        filters['addon_status'] = [s for s in kwargs['status']
+                                   if s in SEARCHABLE_STATUSES]
 
     # We should always have an 'app' except for the admin.
     if 'app' in kwargs:
