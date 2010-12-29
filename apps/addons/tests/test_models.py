@@ -20,7 +20,7 @@ from addons.models import (Addon, AddonDependency, AddonPledge,
                            Persona, Preview)
 from applications.models import Application, AppVersion
 from devhub.models import ActivityLog
-from files.models import File, FileUpload, Platform
+from files.models import File, Platform
 from reviews.models import Review
 from users.models import UserProfile
 from versions.models import ApplicationsVersions, Version
@@ -352,6 +352,45 @@ class TestAddonModels(test_utils.TestCase):
         f = File.objects.create(status=amo.STATUS_LITE, version=v)
         f.update(datestatuschanged=now - timedelta(days=11))
         eq_(a.can_request_review(), (amo.STATUS_PUBLIC,))
+
+    def test_can_request_review_no_files(self):
+        addon = Addon.objects.get(pk=3615)
+        addon.versions.all()[0].files.all().delete()
+        eq_(addon.can_request_review(), ())
+
+    def check(self, status, exp, kw={}):
+        addon = Addon.objects.get(pk=3615)
+        changes = {'status': status, 'disabled_by_user': False}
+        changes.update(**kw)
+        addon.update(**changes)
+        eq_(addon.can_request_review(), exp)
+
+    def test_can_request_review_null(self):
+        self.check(amo.STATUS_NULL, (amo.STATUS_LITE, amo.STATUS_PUBLIC))
+
+    def test_can_request_review_null_disabled(self):
+        self.check(amo.STATUS_NULL, (), {'disabled_by_user': True})
+
+    def test_can_request_review_unreviewed(self):
+        self.check(amo.STATUS_UNREVIEWED, (amo.STATUS_PUBLIC,))
+
+    def test_can_request_review_nominated(self):
+        self.check(amo.STATUS_NOMINATED, (amo.STATUS_LITE,))
+
+    def test_can_request_review_public(self):
+        self.check(amo.STATUS_PUBLIC, ())
+
+    def test_can_request_review_disabled(self):
+        self.check(amo.STATUS_DISABLED, ())
+
+    def test_can_request_review_lite(self):
+        self.check(amo.STATUS_LITE, (amo.STATUS_PUBLIC,))
+
+    def test_can_request_review_lite_and_nominated(self):
+        self.check(amo.STATUS_LITE_AND_NOMINATED, ())
+
+    def test_can_request_review_purgatory(self):
+        self.check(amo.STATUS_PURGATORY, (amo.STATUS_LITE, amo.STATUS_PUBLIC,))
 
     def test_none_homepage(self):
         # There was an odd error when a translation was set to None.
@@ -784,22 +823,3 @@ class TestAddonFromUpload(files.tests.UploadTest):
         addon = Addon.from_upload(self.get_upload('extension-no-homepage.xpi'),
                                   self.platform)
         eq_(addon.homepage, None)
-
-
-def test_can_request_review():
-    def check(status, exp, kw={}):
-        addon = Addon(status=status, **kw)
-        eq_(addon.can_request_review(), exp)
-    lite, public = (amo.STATUS_LITE,), (amo.STATUS_PUBLIC,)
-    both = lite + public
-    tests = [(amo.STATUS_NULL, both),
-             (amo.STATUS_UNREVIEWED, public),
-             (amo.STATUS_NOMINATED, lite),
-             (amo.STATUS_PUBLIC, ()),
-             (amo.STATUS_DISABLED, ()),
-             (amo.STATUS_LITE, public),
-             (amo.STATUS_LITE_AND_NOMINATED, ()),
-             (amo.STATUS_PURGATORY, both)]
-    yield check, amo.STATUS_NULL, (), {'disabled_by_user': True}
-    for status, exp in tests:
-        yield check, status, exp

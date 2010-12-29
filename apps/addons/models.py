@@ -602,6 +602,8 @@ class Addon(amo.models.ModelBase):
 
     def can_request_review(self):
         """Return the statuses an add-on can request."""
+        if not File.objects.filter(version__addon=self):
+            return ()
         if self.is_disabled or self.status in (amo.STATUS_PUBLIC,
                                                amo.STATUS_LITE_AND_NOMINATED):
             return ()
