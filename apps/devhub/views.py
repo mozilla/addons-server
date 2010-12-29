@@ -40,6 +40,14 @@ log = commonware.log.getLogger('z.devhub')
 DEV_AGREEMENT_COOKIE = 'yes-I-read-the-dev-agreement'
 
 
+def can_edit(request, addon):
+    # Disabled add-ons are only editable by admins.
+    if addon.status == amo.STATUS_DISABLED:
+        return acl.action_allowed(request, 'Admin', 'EditAnyAddon')
+    else:
+        return acl.check_ownership(request, addon, require_owner=True)
+
+
 def dev_required(f):
     """Requires user to be add-on owner or admin"""
     @addon_view
@@ -49,13 +57,7 @@ def dev_required(f):
         fun = lambda: f(request, addon_id=addon.id, addon=addon, *args, **kw)
         # Require an owner for POST requests.
         if request.method == 'POST':
-            # Disabled add-ons are only editable by admins.
-            is_admin = acl.action_allowed(request, 'Admin', 'EditAnyAddon')
-            only_admin = addon.status == amo.STATUS_DISABLED
-            if only_admin:
-                if is_admin:
-                    return fun()
-            elif acl.check_ownership(request, addon, require_owner=True):
+            if can_edit(request, addon):
                 return fun()
         elif acl.check_ownership(request, addon, require_owner=False):
             return fun()
