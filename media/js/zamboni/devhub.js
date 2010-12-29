@@ -1163,10 +1163,4 @@ $(document).ready(function() {
     // Validate when the page loads.
     $('#addon-validator-suite').trigger('validate');
 
-    // Setup revalidate link.
-    $('#addon-validator-suite .suite-summary a').click(function(e) {
-        $('#addon-validator-suite').trigger('validate');
-        e.preventDefault();
-    });
-
 });

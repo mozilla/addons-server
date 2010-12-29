@@ -2963,9 +2963,6 @@ class TestUploadDetail(files.tests.UploadTest):
         suite = doc('#addon-validator-suite')
         eq_(suite.attr('data-validateurl'),
             reverse('devhub.upload_detail', args=[upload.uuid, 'json']))
-        eq_(doc('.suite-summary a').text(), 'Revalidate')
-        eq_(doc('.suite-summary a').attr('href'),
-           reverse('devhub.upload_detail', args=[upload.uuid]))
 
 
 class TestUploadValidation(files.tests.UploadTest):
