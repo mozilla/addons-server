@@ -451,3 +451,7 @@ class ReviewTypeForm(forms.Form):
     review_type = forms.ChoiceField(
         choices=_choices, widget=forms.HiddenInput,
         error_messages={'required': 'A review type must be selected.'})
+
+
+class Step3Form(addons.forms.AddonFormBasic):
+    description = TransField(widget=TransTextarea, required=False)

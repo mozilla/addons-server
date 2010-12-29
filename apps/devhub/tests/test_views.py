@@ -2311,18 +2311,25 @@ class TestSubmitStep3(test_utils.TestCase):
     def tearDown(self):
         reset_redis(self._redis)
 
-    def test_submit(self):
+    def test_submit_success(self):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
 
         # Post and be redirected.
         d = {'name': 'Test name',
              'slug': 'testname',
+             'description': 'desc',
              'categories': ['22'],
              'summary': 'Hello!'}
         r = self.client.post(self.url, d)
         eq_(r.status_code, 302)
         eq_(SubmitStep.objects.get(addon=3615).step, 4)
+
+        addon = self.get_addon()
+        eq_(addon.name, 'Test name')
+        eq_(addon.slug, 'testname')
+        eq_(addon.description, 'desc')
+        eq_(addon.summary, 'Hello!')
 
     def test_submit_name_unique(self):
         # Make sure name is unique.

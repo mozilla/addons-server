@@ -207,7 +207,7 @@ def feed(request, addon_id=None):
 
         if addon_id:
             addon = get_object_or_404(Addon.objects.id_or_slug(addon_id))
-            addons = addon # common query set
+            addons = addon  # common query set
             try:
                 key = RssKey.objects.get(addon=addons)
             except RssKey.DoesNotExist:
@@ -714,8 +714,8 @@ def submit_addon(request, step):
 @dev_required
 @submit_step(3)
 def submit_describe(request, addon_id, addon, step):
-    form = addon_forms.AddonFormBasic(request.POST or None, instance=addon,
-                                      request=request)
+    form = forms.Step3Form(request.POST or None, instance=addon,
+                           request=request)
     if request.method == 'POST' and form.is_valid():
         addon = form.save(addon)
         amo.log(amo.LOG.EDIT_DESCRIPTIONS, addon)
