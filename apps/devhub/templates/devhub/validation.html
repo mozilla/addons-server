@@ -1,7 +1,7 @@
 {% extends "devhub/base.html" %}
 
 {# L10n: first parameter is a filename like lorem-ipsum-1.0.2.xpi #}
-{% set title = _('Validation Results for {0}')|f(upload.name) %}
+{% set title = _('Validation Results for {0}')|f(filename) %}
 {% block title %}{{ dev_page_title(title, addon) }}{% endblock %}
 
 {% block content %}
@@ -10,9 +10,7 @@
   <h2>{{ title }}</h2>
 </header>
 <div class="addon-validator-suite" id="addon-validator-suite"
-     data-validateurl="{{ url('devhub.upload_detail', upload.uuid, 'json') }}">
-  {% with validate_url=url('devhub.upload_detail', upload.uuid) %}
-    {% include "devhub/addons/includes/validation_test_results.html" %}
-  {% endwith %}
+     data-validateurl="{{ validate_url }}">
+  {% include "devhub/addons/includes/validation_test_results.html" %}
 </div>
 {% endblock %}

@@ -2,7 +2,7 @@ from collections import defaultdict
 
 import jinja2
 from jingo import register
-from tower import ugettext as _
+from tower import ugettext as _, ungettext as ngettext
 
 import amo
 from amo.urlresolvers import reverse
@@ -95,3 +95,15 @@ def status_class(addon):
 @register.function
 def can_edit_addon(request, addon):
     return views.can_edit(request, addon)
+
+
+@register.function
+def summarize_validation(validation):
+    """Readable summary of add-on validation results."""
+    # L10n: first parameter is the number of errors
+    errors = ngettext('{0} error', '{0} errors',
+                      validation.errors).format(validation.errors)
+    # L10n: first parameter is the number of warnings
+    warnings = ngettext('{0} warning', '{0} warnings',
+                        validation.warnings).format(validation.warnings)
+    return "%s, %s" % (errors, warnings)

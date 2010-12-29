@@ -53,6 +53,15 @@ class File(amo.models.ModelBase):
         # TODO: Ideally this would be ``platform``.
         return amo.PLATFORMS[self.platform_id]
 
+    @property
+    def has_been_validated(self):
+        try:
+            self.validation
+        except FileValidation.DoesNotExist:
+            return False
+        else:
+            return True
+
     def get_mirror(self, addon, attachment=False):
         if self.datestatuschanged:
             published = datetime.now() - self.datestatuschanged
@@ -261,7 +270,7 @@ class FileUpload(amo.models.ModelBase):
 
 
 class FileValidation(amo.models.ModelBase):
-    file = models.ForeignKey(File)
+    file = models.OneToOneField(File, related_name='validation')
     valid = models.BooleanField(default=False)
     errors = models.IntegerField(default=0)
     warnings = models.IntegerField(default=0)
