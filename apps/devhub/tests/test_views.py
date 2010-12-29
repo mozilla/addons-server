@@ -2087,7 +2087,7 @@ class TestVersionEditFiles(TestVersionEdit):
         f = self.client.get(self.url).context['file_form'].forms[0]
         # Public is one of the choices since the file is currently public.
         eq_([x[0] for x in f.fields['status'].choices],
-            [amo.STATUS_BETA, amo.STATUS_UNREVIEWED, amo.STATUS_PUBLIC])
+            [amo.STATUS_BETA, amo.STATUS_PUBLIC])
         # Switch the status to Beta.
         data = initial(f)
         data['status'] = amo.STATUS_BETA
@@ -2095,10 +2095,10 @@ class TestVersionEditFiles(TestVersionEdit):
         eq_(r.status_code, 302)
         eq_(self.version.files.get().status, amo.STATUS_BETA)
 
-        # Beta and unreviewed are the only choices.
+        # Beta is the only choice.
         f = self.client.get(self.url).context['file_form'].forms[0]
         eq_([x[0] for x in f.fields['status'].choices],
-            [amo.STATUS_BETA, amo.STATUS_UNREVIEWED])
+            [amo.STATUS_BETA])
 
     def test_unique_platforms(self):
         # Move the existing file to Linux.
