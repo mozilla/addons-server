@@ -779,6 +779,13 @@ class TestEditPayments(test_utils.TestCase):
         eq_(addon.enable_thankyou, False)
         eq_(addon.thankyou_note, None)
 
+    def test_require_public_status_to_edit(self):
+        # pyquery drops all the attributes on <body> so we just go
+        # for string search.
+        assert 'can-edit' in self.client.get(self.url).content
+        self.get_addon().update(status=amo.STATUS_LITE)
+        assert 'can-edit' not in self.client.get(self.url).content
+
 
 class TestDisablePayments(test_utils.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']

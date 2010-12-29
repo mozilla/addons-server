@@ -3,6 +3,11 @@
 {% set title = _('Manage Payments') %}
 {% block title %}{{ dev_page_title(title, addon) }}{% endblock %}
 
+{% set can_edit = addon.status == amo.STATUS_PUBLIC %}
+{% block bodyclass %}
+  {% if can_edit %}{{ super() }}{% else %}developer-hub{% endif %}
+{% endblock %}
+
 {% block content %}
 <header>
   {{ dev_breadcrumbs(addon, items=[(None, title)]) }}
@@ -10,6 +15,13 @@
   <h2>{{ title }}</h2>
 </header>
 <section class="primary payments devhub-form" role="main">
+
+  {% if not can_edit %}
+    <div class="notification-box warning">
+      <h2>{{ _('Payments are only available for fully reviewed add-ons.') }}</h2>
+    </div>
+  {% endif %}
+
   {% set contrib = addon.takes_contributions and addon.has_full_profile() or errors %}
   {% if contrib and not errors %}
     <div id="status-bar">
