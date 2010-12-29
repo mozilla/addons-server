@@ -225,10 +225,6 @@ class SearchView(APIView):
         # By default we show public addons only for api_version < 1.5
         statuses = [amo.STATUS_PUBLIC]
 
-        if (self.version >= 1.5
-            and not self.request.REQUEST.get('hide_sandbox')):
-            statuses.append(amo.STATUS_UNREVIEWED)
-
         opts['status'] = statuses
 
         # Fix doubly encoded query strings

@@ -554,24 +554,3 @@ class SearchTest(SphinxTestCase):
                 "/en-US/firefox/api/1.2/search/firefox/all/1")
         self.assertContains(response, """<searchresults total_results="2">""")
         self.assertContains(response, "</addon>", 1)
-
-    def test_sandbox_search(self):
-        """
-        For API < 1.5 and where ?hide_sandbox=1 we should show no addons when
-        searching for MozEx (a sandboxed addon).  However, for API version 1.5
-        we should find it.
-        """
-        # API < 1.5
-        response = make_call('search/mozex', version=1.4)
-        self.assertContains(response, self.no_results,
-                            msg_prefix=response.request['PATH_INFO'])
-
-        # API = 1.5, hide_sandbox
-        response = self.client.get(
-                api_url('search/mozex', version=1.5) + '?hide_sandbox=1')
-        self.assertContains(response, self.no_results,
-                            msg_prefix=response.request['PATH_INFO'])
-
-        # API = 1.5
-        response = make_call('search/mozex', version=1.5)
-        self.assertContains(response, """<status id="1">""")
