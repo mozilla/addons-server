@@ -866,7 +866,7 @@ function multipartUpload(e) {
         image = [
             "--" + boundary,
             "Content-Disposition: form-data; name=\"icon_upload\";" +
-            "filename=\"" + file.name + "\"",
+            "filename=\"new-icon\"",
             "Content-Type: " + file.type,
             "",
             data,
