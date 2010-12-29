@@ -323,6 +323,7 @@
 }
 
 .amo-header {
+    margin-top: 4px;
     height: 128px;
     font-family: Georgia;
 }
@@ -384,8 +385,12 @@ div.header-search input.submit {
     width: 37px;
 }
 
+#masthead {
+    position: absolute;
+}
+
 .site-title {
-    padding-top: 20px;
+    padding-top: 16px;
 }
 
 .site-title a,

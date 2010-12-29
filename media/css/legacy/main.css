@@ -1061,6 +1061,7 @@ form.favorite {
 #aux-nav p.context,
 #aux-nav ul {
     float: right;
+    margin-bottom: 1em;
     padding: 0.5em 1em 0 0;
 }
 

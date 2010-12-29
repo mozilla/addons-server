@@ -79,8 +79,10 @@
             {% include 'search.html' %}
             {% endblock %}
           </div>
-          {% include "header_title.html" %}
-          {% block site_stats %}{% endblock %}
+          <div id="masthead">
+            {% include "header_title.html" %}
+            {% block site_stats %}{% endblock %}
+          </div>
         </div>
       {% endblock site_header %}
 
