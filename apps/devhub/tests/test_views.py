@@ -3135,6 +3135,14 @@ def assert_json_error(request, field, msg):
     eq_(content[field], [msg])
 
 
+def assert_json_field(request, field, msg):
+    eq_(request.status_code, 200)
+    eq_(request['Content-Type'], 'application/json')
+    content = json.loads(request.content)
+    assert field in content, '%r not in %r' % (field, content)
+    eq_(content[field], msg)
+
+
 class UploadTest(files.tests.UploadTest, test_utils.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']
 
@@ -3242,7 +3250,7 @@ class TestAddVersion(UploadTest):
     def test_success(self):
         r = self.post()
         version = self.addon.versions.get(version='0.1')
-        self.assertRedirects(r, reverse('devhub.versions.edit',
+        assert_json_field(r, 'url', reverse('devhub.versions.edit',
                                         args=[self.addon.slug, version.id]))
 
 
