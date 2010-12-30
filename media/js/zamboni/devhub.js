@@ -1068,6 +1068,15 @@ $(document).ready(function() {
             } else if (tierData.warnings > 0) {
                 tier.addClass('tests-passed');
                 results.addClass('tests-passed-warnings');
+            } else if (validation.ending_tier
+                       && validation.ending_tier < tierNum) {
+                tier.addClass('tests-notrun');
+                results.addClass('tests-notrun');
+                $('.tier-summary', tier).text(gettext('Tests not run'));
+                results.append('<span>' +
+                               gettext('These tests were not run.') +
+                               '</span>');
+                $('.result-summary', resContainer).html('&nbsp;');
             } else {
                 tier.addClass('tests-passed');
                 results.addClass('tests-passed');

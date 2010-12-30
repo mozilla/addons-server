@@ -244,6 +244,94 @@ asyncTest('Test failing', function() {
 });
 
 
+module('Validator: Incomplete', validatorFixtures);
+
+asyncTest('Test incomplete validation', function() {
+    var $suite = $('.addon-validator-suite', this.sandbox),
+        tiers=[], results=[];
+
+    $.mockjax({
+        url: '/validate',
+        response: function(settings) {
+            this.responseText = {
+                "url": "/upload/d5d993a5a2fa4b759ae2fa3b2eda2a38/json",
+                "full_report_url": "/upload/d5d993a5a2fa4b759ae2fa3b2eda2a38",
+                "validation": {
+                    "errors": 1,
+                    "success": false,
+                    "warnings": 0,
+                    "ending_tier": 1,
+                    "messages": [{
+                        "context": null,
+                        "description": "",
+                        "column": 0,
+                        "line": 0,
+                        "file": "",
+                        "tier": 1,
+                        "message": "The XPI could not be opened.",
+                        "type": "error",
+                        "id": ["main", "test_package", "unopenable"],
+                        "uid": "436fd18fb1b24ab6ae950ef18519c90d"
+                    }],
+                    "rejected": false,
+                    "detected_type": "unknown",
+                    "notices": 0,
+                    "message_tree": {},
+                    "metadata": {}
+                },
+                "upload": "d5d993a5a2fa4b759ae2fa3b2eda2a38",
+                "error": null
+            };
+        }
+    });
+
+    $suite.trigger('validate');
+
+    tests.waitFor(function() {
+        return $('[class~="test-tier"][data-tier="1"]', $suite).hasClass(
+                                                            'tests-failed');
+    }).thenDo(function() {
+        var missingInstall, invalidVer;
+        pushTiersAndResults($suite, tiers, results);
+        $.each(tiers, function(i, tier) {
+            var tierN = i+1;
+            equals(tier.hasClass('ajax-loading'), false,
+                'Checking class: ' + tier.attr('class'));
+            switch (tierN) {
+                case 1:
+                    ok(tier.hasClass('tests-failed'),
+                       'Checking class: ' + tier.attr('class'));
+                    break;
+                default:
+                    ok(tier.hasClass('tests-notrun'),
+                       'Checking class: ' + tier.attr('class'));
+                    break;
+            }
+        });
+        $.each(results, function(i, result) {
+            var tierN = i+1;
+            equals(result.hasClass('ajax-loading'), false,
+                   'Checking class: ' + result.attr('class'));
+            switch (tierN) {
+                case 1:
+                    ok(result.hasClass('tests-failed'),
+                       'Checking class: ' + result.attr('class'));
+                    break;
+                default:
+                    ok(result.hasClass('tests-notrun'),
+                       'Checking class: ' + result.attr('class'));
+                    break;
+            }
+        });
+        equals($('#suite-results-tier-1 .result-summary', $suite).text(),
+               '1 error, 0 warnings');
+        equals($('#suite-results-tier-2 .result-summary', $suite).html(),
+               '&nbsp;');
+        start();
+    });
+});
+
+
 module('Validator: 500 Error response', validatorFixtures);
 
 asyncTest('Test 500 error', function() {

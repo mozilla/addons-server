@@ -1411,6 +1411,9 @@ form.select-review .errorlist {
 #addon-validator-suite .suite .tests-passed {
     background: url("../../img/developers/suite-pass.png") no-repeat top;
 }
+#addon-validator-suite .suite .tests-notrun {
+    background: url("../../img/developers/suite-notrun.png") no-repeat top;
+}
 #addon-validator-suite .suite .ajax-loading {
     background: url("../../img/developers/suite-running.gif") no-repeat top;
 }
@@ -1449,16 +1452,21 @@ form.select-review .errorlist {
 #addon-validator-suite .results .ajax-loading,
 #addon-validator-suite .results .tests-passed,
 #addon-validator-suite .results .tests-passed-warnings,
-#addon-validator-suite .results .tests-failed {
+#addon-validator-suite .results .tests-failed,
+#addon-validator-suite .results .tests-notrun {
     height: auto;
 }
 #addon-validator-suite .results .tests-passed,
+#addon-validator-suite .results .tests-notrun,
 #addon-validator-suite .results .ajax-loading {
     padding: 100px 0 45px 0;
     text-align: center;
 }
 #addon-validator-suite .results .tests-passed {
     background: #fff url("../../img/developers/suite-pass.png") no-repeat center 50px;
+}
+#addon-validator-suite .results .tests-notrun {
+    background: #fff url("../../img/developers/suite-notrun.png") no-repeat center 50px;
 }
 #addon-validator-suite .results .ajax-loading {
     background: #fff url("../../img/developers/suite-running.gif") no-repeat center 50px;
