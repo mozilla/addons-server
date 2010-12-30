@@ -1514,7 +1514,8 @@ form.select-review .errorlist {
     color: #ff0000;
 }
 #addon-validator-suite .msg-warning,
-#addon-validator-suite .msg-info {
+#addon-validator-suite .msg-info,
+#addon-validator-suite .msg-notice {
     background: transparent url("../../img/developers/test-warning.png") no-repeat 0 1.1em;
     color: #6b6b6b;
 }

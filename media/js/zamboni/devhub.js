@@ -1031,7 +1031,7 @@ $(document).ready(function() {
                 var msgDiv = $('<div class="msg"><h5></h5></div>'),
                     prefix = msg['type']=='warning' ? gettext('Warning')
                                                     : gettext('Error'),
-                    ctxDiv, lines, code, innerCode;
+                    ctxDiv, lines, code, innerCode, ctxFile;
                 msgDiv.attr('id', msgId(msg.uid));
                 msgDiv.addClass('msg-' + msg['type']);
                 $('h5', msgDiv).html(msg.message);
@@ -1052,22 +1052,38 @@ $(document).ready(function() {
                 if (msg.description.length == 0) {
                     msgDiv.append('<p>&nbsp;</p>');
                 }
-                if (msg.context) {
+                ctxFile = msg.file;
+                if (ctxFile) {
+                    if (typeof(ctxFile) === 'string') {
+                        ctxFile = [ctxFile];
+                    }
+                    var x = [];
+                    // Sometimes there are empty file paths.
+                    $.each(ctxFile, function(i, v) {
+                        if (v) x.push(v);
+                    });
+                    ctxFile = x;
+                    // e.g. ["silvermelxt_1.3.5.xpi",
+                    //       "chrome/silvermelxt.jar"]
+                    ctxFile = ctxFile.join('/');
                     ctxDiv = $(format(
                         '<div class="context">' +
-                            '<div class="file">{0}:</div></div>',
-                                                        [msg.file]));
-                    code = $('<div class="code"></div>');
-                    lines = $('<div class="lines"></div>');
-                    code.append(lines);
-                    innerCode = $('<div class="inner-code"></div>');
-                    code.append(innerCode);
-                    $.each(msg.context, function(n, c) {
-                        lines.append(
-                            $(format('<div>{0}</div>', [msg.line + n])));
-                        innerCode.append($(format('<div>{0}</div>', [c])));
-                    });
-                    ctxDiv.append(code);
+                            '<div class="file">{0}</div></div>',
+                                                        [ctxFile]));
+                    if (msg.context) {
+                        code = $('<div class="code"></div>');
+                        lines = $('<div class="lines"></div>');
+                        code.append(lines);
+                        innerCode = $('<div class="inner-code"></div>');
+                        code.append(innerCode);
+                        $.each(msg.context, function(n, c) {
+                            lines.append(
+                                $(format('<div>{0}</div>', [msg.line + n])));
+                            innerCode.append(
+                                $(format('<div>{0}</div>', [c])));
+                        });
+                        ctxDiv.append(code);
+                    }
                     msgDiv.append(ctxDiv);
                 }
                 results.append(msgDiv);

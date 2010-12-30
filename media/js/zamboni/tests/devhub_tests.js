@@ -557,7 +557,7 @@ asyncTest('Test code context', function() {
                                                             'tests-passed');
     }).thenDo(function() {
         equals($('.context .file', $suite).text(),
-               'chrome/content/down.html:');
+               'chrome/content/down.html');
         equals($('.context .lines div:eq(0)', $suite).text(), '1');
         equals($('.context .lines div:eq(1)', $suite).text(), '2');
         equals($('.context .inner-code div:eq(0)', $suite).html(),
@@ -567,6 +567,61 @@ asyncTest('Test code context', function() {
         start();
     });
 });
+
+
+module('Validator: minimal code context', validatorFixtures);
+
+asyncTest('Test code context', function() {
+    var $suite = $('.addon-validator-suite', this.sandbox);
+
+    $.mockjax({
+        url: '/validate',
+        status: 200,
+        response: function(settings) {
+            this.responseText = {
+                "url": "/upload/",
+                "full_report_url": "/upload/14bd1cb1ae0d4b11b86395b1a0da7058",
+                "validation": {
+                    "errors": 0,
+                    "success": false,
+                    "warnings": 1,
+                    "ending_tier": 3,
+                    "messages": [{
+                        "context": null,
+                        "description": ["Error in install.rdf"],
+                        "column": 0,
+                        "line": 1,
+                        "file": ["silvermelxt_1.3.5.xpi",
+                                 "chrome/silvermelxt.jar", "install.rdf",
+                                 null],
+                        "tier": 2,
+                        "message": "Some error",
+                        "type": "warning",
+                        "id": [],
+                        "uid": "bb9948b604b111e09dfdc42c0301fe38"
+                    }],
+                    "rejected": false,
+                    "detected_type": "extension",
+                    "notices": 0
+                },
+                "upload": "14bd1cb1ae0d4b11b86395b1a0da7058",
+                "error": null
+            };
+        }
+    });
+
+    $suite.trigger('validate');
+
+    tests.waitFor(function() {
+        return $('[class~="test-tier"][data-tier="1"]', $suite).hasClass(
+                                                            'tests-passed');
+    }).thenDo(function() {
+        equals($('.context .file', $suite).text(),
+               'silvermelxt_1.3.5.xpi/chrome/silvermelxt.jar/install.rdf');
+        start();
+    });
+});
+
 
 module('addonUploaded', {
     setup: function() {
