@@ -1,6 +1,7 @@
 {% from "devhub/includes/macros.html" import tip, empty_unless, trans_readonly %}
 
-<form method="post" action="{{ url('devhub.addons.section', addon.slug, 'basic', 'edit') }}">
+<form method="post" action="{{ url('devhub.addons.section', addon.slug, 'basic', 'edit') }}"
+      id="addon-edit-basic" data-baseurl="{{ url('devhub.addons.edit', addon.slug) }}">
   <h3>
     {{ _('Basic Information') }}
     {% if not editable %}

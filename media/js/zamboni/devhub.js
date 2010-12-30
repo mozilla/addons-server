@@ -168,11 +168,19 @@ function addonFormSubmit() {
     parent_div = $(this);
 
     (function(parent_div){
+        // If the baseurl changes (the slug changed) we need to go to the new url.
+        var baseurl = function(){
+            return parent_div.find('#addon-edit-basic').attr('data-baseurl');
+        }
         $('form', parent_div.not('#edit-addon-media')).submit(function(e){
             e.preventDefault();
+            var old_baseurl = baseurl();
             $.post(parent_div.find('form').attr('action'),
                 $(this).serialize(), function(d){
                     parent_div.html(d).each(addonFormSubmit);
+                    if (old_baseurl && old_baseurl !== baseurl()) {
+                        document.location = baseurl();
+                    }
                     truncateFields();
                     if (!parent_div.find(".errorlist").length) {
                         var e = $(format('<b class="save-badge">{0}</b>',
