@@ -184,7 +184,7 @@ class License(amo.models.ModelBase):
     OTHER = 0
 
     name = TranslatedField(db_column='name')
-    url = models.URLField(null=True)
+    url = models.URLField(null=True, verify_exists=False)
     builtin = models.PositiveIntegerField(default=OTHER)
     text = LinkifiedField()
     on_form = models.BooleanField(default=False,

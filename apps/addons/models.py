@@ -1173,7 +1173,7 @@ class AppSupport(amo.models.ModelBase):
 
 class Charity(amo.models.ModelBase):
     name = models.CharField(max_length=255)
-    url = models.URLField()
+    url = models.URLField(verify_exists=False)
     paypal = models.CharField(max_length=255)
 
     class Meta:

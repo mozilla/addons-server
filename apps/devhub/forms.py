@@ -187,6 +187,7 @@ def ProfileForm(*args, **kw):
 
 
 class CharityForm(happyforms.ModelForm):
+    url = Charity._meta.get_field('url').formfield(verify_exists=False)
 
     class Meta:
         model = Charity

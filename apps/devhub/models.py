@@ -57,7 +57,7 @@ class HubPromo(amo.models.ModelBase):
 
 class HubEvent(amo.models.ModelBase):
     name = models.CharField(max_length=255, default='')
-    url = models.URLField(max_length=255, default='')
+    url = models.URLField(max_length=255, default='', verify_exists=False)
     location = models.CharField(max_length=255, default='')
     date = models.DateField(default=datetime.now)
 
