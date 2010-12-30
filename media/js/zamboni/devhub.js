@@ -581,7 +581,7 @@ function initEditVersions() {
         if ($tgt.attr("disabled")) return;
         $.post($("#upload-file").attr("action"), $("#upload-file").serialize(), function (resp) {
             $("#file-list tbody").append(resp);
-            var new_total = $("#file-list tr").length;
+            var new_total = $("#file-list tr").length / 2;
             $("#id_files-TOTAL_FORMS").val(new_total);
             $("#id_files-INITIAL_FORMS").val(new_total);
             $modal.hideMe();
