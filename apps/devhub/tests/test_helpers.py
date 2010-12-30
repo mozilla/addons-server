@@ -100,3 +100,20 @@ class TestDevBreadcrumbs(unittest.TestCase):
         eq_(crumbs.eq(3).children('a').attr('href'), '/foo')
         eq_(crumbs.eq(4).text(), 'bar')
         eq_(crumbs.eq(4).children('a').attr('href'), '/bar')
+
+
+def test_summarize_validation():
+    v = Mock()
+    v.errors = 1
+    v.warnings = 1
+    eq_(render('{{ summarize_validation(validation) }}',
+               {'validation': v}),
+        u'1 error, 1 warning')
+    v.errors = 2
+    eq_(render('{{ summarize_validation(validation) }}',
+               {'validation': v}),
+        u'2 errors, 1 warning')
+    v.warnings = 2
+    eq_(render('{{ summarize_validation(validation) }}',
+               {'validation': v}),
+        u'2 errors, 2 warnings')

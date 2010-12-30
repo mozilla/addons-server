@@ -51,6 +51,12 @@ detail_patterns = patterns('',
         name='devhub.versions.add_file'),
     url('^versions/(?P<version>[^/]+)$', views.version_bounce),
 
+    url('^file/(?P<file_id>[^/]+)/validation$', views.file_validation,
+        name='devhub.file_validation'),
+    url('^file/(?P<file_id>[^/]+)/validation.json$',
+        views.json_file_validation,
+        name='devhub.json_file_validation'),
+
     url('^submit/', include(submit_patterns)),
     url('^submit/resume$', views.submit_resume, name='devhub.submit.resume'),
     url('^request-review/(?P<status>[%s])$'

@@ -1134,7 +1134,7 @@ $(document).ready(function() {
                 data: {},
                 success: function(data) {
                     if (data.validation == '') {
-                        // Note: traceback is in data.task_error
+                        // Note: traceback is in data.error
                         data.validation = {};
                         data.validation.messages = messagesForAllTiers(
                             gettext('Error'),
@@ -1162,11 +1162,5 @@ $(document).ready(function() {
 
     // Validate when the page loads.
     $('#addon-validator-suite').trigger('validate');
-
-    // Setup revalidate link.
-    $('#addon-validator-suite .suite-summary a').click(function(e) {
-        $('#addon-validator-suite').trigger('validate');
-        e.preventDefault();
-    });
 
 });

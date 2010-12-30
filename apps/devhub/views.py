@@ -3,6 +3,8 @@ import collections
 import functools
 import json
 import os
+import sys
+import traceback
 
 from django import http
 from django.db.models import Count
@@ -482,6 +484,50 @@ def escape_all(v):
     return v
 
 
+def prepare_validation_results(validation):
+    for msg in validation['messages']:
+        if msg['tier'] == 0:
+            # We can't display a message if it's on tier 0.
+            # Should get fixed soon in bug 617481
+            msg['tier'] = 1
+        for k, v in msg.items():
+            msg[k] = escape_all(v)
+
+
+@dev_required
+def file_validation(request, addon_id, addon, file_id):
+    file = get_object_or_404(File, id=file_id)
+
+    v = reverse('devhub.json_file_validation', args=[addon.slug, file.id])
+    return jingo.render(request, 'devhub/validation.html',
+                        dict(validate_url=v, filename=file.filename,
+                             addon=addon))
+
+
+@json_view
+@dev_required
+def json_file_validation(request, addon_id, addon, file_id):
+    file = get_object_or_404(File, id=file_id)
+    if not file.has_been_validated:
+        try:
+            v_result = tasks.file_validator(file.id)
+        except Exception:
+            log.exception('file_validator(%s)' % file.id)
+            return {
+                'validation': '',
+                'error': "\n".join(
+                                traceback.format_exception(*sys.exc_info()))
+            }
+    else:
+        v_result = file.validation
+    validation = json.loads(v_result.validation)
+    prepare_validation_results(validation)
+
+    r = dict(validation=validation,
+             error=None)
+    return r
+
+
 @json_view
 def json_upload_detail(upload):
     validation = json.loads(upload.validation) if upload.validation else ""
@@ -489,13 +535,7 @@ def json_upload_detail(upload):
     full_report_url = reverse('devhub.upload_detail', args=[upload.uuid])
 
     if validation:
-        for msg in validation['messages']:
-            if msg['tier'] == 0:
-                # We can't display a message if it's on tier 0.
-                # Should get fixed soon in bug 617481
-                msg['tier'] = 1
-            for k, v in msg.items():
-                msg[k] = escape_all(v)
+        prepare_validation_results(validation)
 
     r = dict(upload=upload.uuid, validation=validation,
              error=upload.task_error, url=url,
@@ -509,8 +549,10 @@ def upload_detail(request, uuid, format='html'):
     if format == 'json' or request.is_ajax():
         return json_upload_detail(upload)
 
+    v = reverse('devhub.upload_detail', args=[upload.uuid, 'json'])
     return jingo.render(request, 'devhub/validation.html',
-                        dict(upload=upload))
+                        dict(validate_url=v, filename=upload.name,
+                             addon=None))
 
 
 @dev_required
