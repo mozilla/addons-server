@@ -116,21 +116,24 @@ $(document).ready(function() {
 })();
 
 function truncateFields() {
-    var els = [
-            "#addon_description",
-            "#developer_comments"
-        ];
-    $(els.join(', ')).each(function(i,el) {
-        var $el = $(el),
-            originalHTML = $el.html();
-        $el.delegate("a.truncate_expand", "click", function(e) {
-            e.preventDefault();
-            $el.html(originalHTML).css('max-height','none');
-        })
-        .vtruncate({
-            truncText: format("&hellip; <a href='#' class='truncate_expand'>{0}</a>",[gettext("More")])
-        });
-    });
+    // TODO (potch) find a good fix for this later
+    // as per Bug 622030...
+    return;
+    // var els = [
+    //         "#addon_description",
+    //         "#developer_comments"
+    //     ];
+    // $(els.join(', ')).each(function(i,el) {
+    //     var $el = $(el),
+    //         originalHTML = $el.html();
+    //     $el.delegate("a.truncate_expand", "click", function(e) {
+    //         e.preventDefault();
+    //         $el.html(originalHTML).css('max-height','none');
+    //     })
+    //     .vtruncate({
+    //         truncText: format("&hellip; <a href='#' class='truncate_expand'>{0}</a>",[gettext("More")])
+    //     });
+    // });
 }
 
 

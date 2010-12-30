@@ -246,12 +246,15 @@ label.above-the-field .locale {
     width: 250px;
 }
 
+/*
+Bug 622030- TODO (potch) fix this later
+
 #addon_description,
 #developer_comments {
     max-height: 6.4em;
     overflow: hidden;
 }
-
+*/
 .edit-addon-details {
     padding-top: 3px;
     font-size: 0.8em;
