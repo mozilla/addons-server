@@ -1,4 +1,6 @@
+# -*- coding: utf8 -*-
 import unittest
+import urllib
 
 from django.utils import translation
 
@@ -117,3 +119,25 @@ def test_summarize_validation():
     eq_(render('{{ summarize_validation(validation) }}',
                {'validation': v}),
         u'2 errors, 2 warnings')
+
+
+class TestDisplayUrl(unittest.TestCase):
+
+    def setUp(self):
+        self.raw_url = u'http://host/%s' % 'フォクすけといっしょ'.decode('utf8')
+
+    def test_utf8(self):
+        url = urllib.quote(self.raw_url.encode('utf8'))
+        eq_(render('{{ url|display_url }}', {'url':url}),
+            self.raw_url)
+
+    def test_unicode(self):
+        url = urllib.quote(self.raw_url.encode('utf8'))
+        url = unicode(url, 'utf8')
+        eq_(render('{{ url|display_url }}', {'url':url}),
+            self.raw_url)
+
+    def test_euc_jp(self):
+        url = urllib.quote(self.raw_url.encode('euc_jp'))
+        eq_(render('{{ url|display_url }}', {'url':url}),
+            self.raw_url)

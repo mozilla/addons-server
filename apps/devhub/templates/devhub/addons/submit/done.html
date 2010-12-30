@@ -26,7 +26,7 @@
 </p>
 <p>
   <a id="submitted-addon-url" href="{{ addon.get_url_path() }}">
-    {{ addon.get_url_path()|absolutify }}</a>
+    {{ addon.get_url_path()|absolutify|display_url }}</a>
 </p>
 <div class="done-next-steps">
   <p><strong>{{ _('Next steps:') }}</strong></p>

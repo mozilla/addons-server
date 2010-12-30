@@ -1,3 +1,4 @@
+# -*- coding: utf8 -*-
 import json
 import os
 import re
@@ -2839,6 +2840,17 @@ class TestSubmitStep7(TestSubmitBase):
         r = self.client.get(reverse('devhub.submit.7', args=['a3615']),
                                    follow=True)
         self.assertRedirects(r, reverse('devhub.versions', args=['a3615']))
+
+    def test_display_non_ascii_url(self):
+        addon = Addon.objects.get(pk=3615)
+        addon.update(slug='フォクすけといっしょ')
+        r = self.client.get(reverse('devhub.submit.7', args=['フォクすけといっしょ']))
+        eq_(r.status_code, 200)
+        # The meta charset will always be utf-8.
+        doc = pq(r.content.decode('utf-8'))
+        eq_(doc('#submitted-addon-url').text(),
+            u'%s/en-US/firefox/addon/%s/' % (settings.SITE_URL,
+                                             'フォクすけといっしょ'.decode('utf8')))
 
 
 class TestResumeStep(TestSubmitBase):

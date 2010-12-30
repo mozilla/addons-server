@@ -1,5 +1,7 @@
 from collections import defaultdict
+import urllib
 
+import chardet
 import jinja2
 from jingo import register
 from tower import ugettext as _, ungettext as ngettext
@@ -113,3 +115,18 @@ def summarize_validation(validation):
     warnings = ngettext('{0} warning', '{0} warnings',
                         validation.warnings).format(validation.warnings)
     return "%s, %s" % (errors, warnings)
+
+
+@register.filter
+def display_url(url):
+    """Display a URL like the browser URL bar would.
+
+    Note: returns a Unicode object, not a valid URL.
+    """
+    if isinstance(url, unicode):
+        # Byte sequences will be url encoded so convert
+        # to bytes here just to stop auto decoding.
+        url = url.encode('utf8')
+    bytes = urllib.unquote(url)
+    c = chardet.detect(bytes)
+    return bytes.decode(c['encoding'], 'replace')
