@@ -46,7 +46,7 @@ def file_validator(file_id, **kw):
 
 def _validator(file_path):
 
-    from validate import validate
+    from validator.validate import validate
 
     # TODO(Kumar) remove this when validator is fixed, see bug 620503
     from validator.testcases import scripting
