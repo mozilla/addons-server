@@ -147,13 +147,15 @@ function addonFormSubmit() {
                 $(this).serialize(), function(d){
                     parent_div.html(d).each(addonFormSubmit);
                     truncateFields();
-                    var e = $(format('<b class="save-badge">{0}</b>',
-                                     [gettext('Changes Saved')]))
-                              .appendTo(parent_div.find('h3').first());
-                    setTimeout(function(){
-                        e.css('opacity', 0);
-                        setTimeout(function(){ e.remove(); }, 1500);
-                    }, 2000);
+                    if (!parent_div.find(".errorlist").length) {
+                        var e = $(format('<b class="save-badge">{0}</b>',
+                                         [gettext('Changes Saved')]))
+                                  .appendTo(parent_div.find('h3').first());
+                        setTimeout(function(){
+                            e.css('opacity', 0);
+                            setTimeout(function(){ e.remove(); }, 1500);
+                        }, 2000);
+                    }
                 });
         });
         z.refreshL10n();
