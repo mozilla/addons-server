@@ -44,8 +44,10 @@
         {{ status(_('Please select a review option.')) }}
         {{ _("All add-ons hosted in our gallery must now be reviewed by an editor. If you wish to continue hosting your add-on, please select a review process from the choices below.") }}
       {% endif %}
-      <a href="{{ remora_url('developers/docs/policies/reviews#selection') }}">
-        {{ _('Learn more') }}</a>
+      {% if not (addon.is_disabled or addon.is_incomplete) %}
+        <a href="{{ remora_url('developers/docs/policies/reviews#selection') }}">
+          {{ _('Learn more') }}</a>
+      {% endif %}
 
       <div class="version-status-actions item-actions">
         {% set req = {amo.STATUS_PUBLIC: _('Request Full Review'),
