@@ -62,6 +62,8 @@ detail_patterns = patterns('',
     url('^request-review/(?P<status>[%s])$'
         % ''.join(map(str, views.REQUEST_REVIEW)),
         views.request_review, name='devhub.request-review'),
+
+    url('^icon/status', views.icon_status, name='devhub.icon.status')
 )
 
 # These will all start with /ajax/addon/<addon_id>/

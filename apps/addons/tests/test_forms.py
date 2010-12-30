@@ -1,12 +1,19 @@
 # -*- coding: utf-8 -*-
+import os
+import shutil
+import tempfile
+
 import test_utils
 from nose.tools import eq_
+from mock import patch
 
 from redisutils import mock_redis, reset_redis
 from addons import forms, cron
 from addons.models import Addon, Category
-from addons.forms import AddonFormDetails
+from addons.forms import AddonFormDetails, AddonFormMedia
+
 import amo
+from amo.tests.test_helpers import get_image_path
 
 
 class FormsTest(test_utils.TestCase):
@@ -112,6 +119,44 @@ class TestTagsForm(test_utils.TestCase):
     def test_tags_unicode(self):
         self.add_tags(u'Österreich')
         eq_(self.get_tag_text(), [u'Österreich'.lower()])
+
+
+class TestIconRemoval(test_utils.TestCase):
+    fixtures = ['base/addon_3615']
+
+    # TODO: AddonFormMedia save() method could do with cleaning up
+    # so this isn't necessary
+    def setUp(self):
+        self.temp_dir = tempfile.mkdtemp()
+        self.addon = Addon.objects.get(pk=3615)
+
+        class DummyRequest:
+            FILES = None
+        self.request = DummyRequest()
+
+    def tearDown(self):
+        shutil.rmtree(self.temp_dir)
+
+    def get_icon_paths(self):
+        path = os.path.join(self.addon.get_icon_dir(), str(self.addon.id))
+        return ['%s-%s.png' % (path, size) for size in amo.ADDON_ICON_SIZES]
+
+    @patch('apps.addons.models.Addon.get_icon_dir')
+    def testIconUpload(self, get_icon_dir):
+        get_icon_dir.return_value = self.temp_dir
+
+        for path in self.get_icon_paths():
+            assert not os.path.exists(path)
+
+        img = get_image_path('non-animated.png')
+        data = {'icon_upload': img, 'icon_type': 'text/png'}
+        self.request.FILES = {'icon_upload': open(img)}
+        form = AddonFormMedia(data=data, request=self.request,
+                              instance=self.addon)
+        assert form.is_valid()
+        form.save(self.addon)
+        for path in self.get_icon_paths():
+            assert os.path.exists(path)
 
 
 class TestUpdate(test_utils.TestCase):

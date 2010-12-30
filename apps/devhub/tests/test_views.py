@@ -1,7 +1,9 @@
 import json
 import os
 import re
+import shutil
 import socket
+import tempfile
 from decimal import Decimal
 import shutil
 
@@ -485,7 +487,7 @@ class TestEditLicense(TestOwnership):
         self.version.save()
 
         data = self.formset(builtin=License.OTHER, text='text')
-        r = self.client.post(self.url, data)
+        self.client.post(self.url, data)
         eq_(ActivityLog.objects.all().count(), 3)
 
 
@@ -1439,6 +1441,12 @@ class TestEdit(test_utils.TestCase):
 
         eq_(Image.open(dest).size, (32, 12))
 
+    def test_edit_media_icon_log(self):
+        self.test_edit_media_uploadedicon()
+        log = ActivityLog.objects.all()
+        eq_(log.count(), 1)
+        eq_(log[0].action, amo.LOG.CHANGE_ICON.id)
+
     def test_edit_media_uploadedicon_noresize(self):
         img = "%s/img/amo2009/notifications/error.png" % settings.MEDIA_ROOT
         src_image = open(img, 'rb')
@@ -1473,6 +1481,26 @@ class TestEdit(test_utils.TestCase):
         r = self.client.post(self.get_url('media', True), data)
         error = 'Icons must be either PNG or JPG.'
         self.assertFormError(r, 'form', 'icon_upload', error)
+
+    def setup_icon_status(self):
+        self.tempdir = tempfile.mkdtemp()
+        addon = self.get_addon()
+        self.icon_dest = os.path.join(self.tempdir, '%s-32.png' % addon.id)
+        shutil.copyfile(get_image_path('non-animated.png'), self.icon_dest)
+        self.url = reverse('devhub.icon.status', args=[addon.slug])
+
+    @mock.patch('apps.addons.models.Addon.get_icon_dir')
+    def test_icon_status_works(self, get_icon_dir):
+        self.setup_icon_status()
+        get_icon_dir.return_value = self.tempdir
+        eq_(self.client.get(self.url).content, 'true')
+
+    @mock.patch('apps.addons.models.Addon.get_icon_dir')
+    def test_icon_status_fails(self, get_icon_dir):
+        self.setup_icon_status()
+        get_icon_dir.return_value = self.tempdir
+        os.remove(self.icon_dest)
+        eq_(self.client.get(self.url).content, 'false')
 
     def test_icon_animated(self):
         filehandle = open(get_image_path('animated.png'), 'rb')
@@ -2521,10 +2549,16 @@ class TestSubmitStep3(test_utils.TestCase):
 class TestSubmitStep4(TestSubmitBase):
 
     def setUp(self):
+        self.old_addon_icon_url = settings.ADDON_ICON_URL
+        settings.ADDON_ICON_URL = "%s/%s/%s/images/addon_icon/%%d/%%s" % (
+            settings.STATIC_URL, settings.LANGUAGE_CODE, settings.DEFAULT_APP)
         super(TestSubmitStep4, self).setUp()
         SubmitStep.objects.create(addon_id=3615, step=5)
         self.url = reverse('devhub.submit.4', args=['a3615'])
         self.next_step = reverse('devhub.submit.5', args=['a3615'])
+
+    def tearDown(self):
+        settings.ADDON_ICON_URL = self.old_addon_icon_url
 
     def test_get(self):
         eq_(self.client.get(self.url).status_code, 200)

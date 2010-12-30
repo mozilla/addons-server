@@ -21,6 +21,7 @@ from easy_thumbnails import processors
 import pytz
 from PIL import Image, ImageFile, PngImagePlugin
 
+from amo import ADDON_ICON_SIZES
 from . import logger_log as log
 from translations.models import Translation
 from versions.models import ApplicationsVersions
@@ -297,6 +298,13 @@ def resize_image(src, dst, size, remove_src=True):
 
     if remove_src:
         os.remove(src)
+
+
+def remove_icons(destination):
+    for size in ADDON_ICON_SIZES:
+        filename = '%s-%s.png' % (destination, size)
+        if os.path.exists(filename):
+            os.remove(filename)
 
 
 class ImageCheck(object):

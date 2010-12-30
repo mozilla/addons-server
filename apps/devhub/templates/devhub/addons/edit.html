@@ -29,7 +29,8 @@
     {% include 'devhub/includes/addon_edit_basic.html' %}
   </div>
 
-  <div class="edit-addon-section" id="edit-addon-media">
+  <div class="edit-addon-section" id="edit-addon-media"
+       check-url="{{ url('devhub.icon.status', addon.slug) }}">
     {% include 'devhub/includes/addon_edit_media.html' %}
   </div>
 

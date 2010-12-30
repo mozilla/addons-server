@@ -235,11 +235,13 @@ class CHANGE_LICENSE:
     id = 37
     format = _(u'{addon} is now licensed under {0.name}.')
 
-
 class CHANGE_POLICY:
     id = 38
     format = _(u'{addon} policy changed.')
 
+class CHANGE_ICON:
+    id = 39
+    format = _(u'{addon} icon changed.')
 
 class CUSTOM_TEXT:
     id = 98
@@ -261,7 +263,7 @@ LOGS = (CREATE_ADDON, EDIT_PROPERTIES, EDIT_DESCRIPTIONS, EDIT_CATEGORIES,
         ADD_TO_COLLECTION, REMOVE_FROM_COLLECTION, ADD_REVIEW,
         ADD_RECOMMENDED_CATEGORY, REMOVE_RECOMMENDED_CATEGORY, ADD_RECOMMENDED,
         REMOVE_RECOMMENDED, ADD_APPVERSION, CUSTOM_TEXT, CUSTOM_HTML,
-        CHANGE_USER_WITH_ROLE, CHANGE_LICENSE, CHANGE_POLICY
+        CHANGE_USER_WITH_ROLE, CHANGE_LICENSE, CHANGE_POLICY, CHANGE_ICON
         )
 LOG_BY_ID = dict((l.id, l) for l in LOGS)
 LOG = AttributeDict((l.__name__, l) for l in LOGS)

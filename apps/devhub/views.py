@@ -10,6 +10,7 @@ from django import http
 from django.db.models import Count
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.http import urlquote
+from django.views.decorators.cache import never_cache
 
 import commonware.log
 import jingo
@@ -573,7 +574,10 @@ def addons_section(request, addon_id, addon, section, editable=False):
             if form.is_valid():
                 addon = form.save(addon)
                 editable = False
-                amo.log(amo.LOG.EDIT_PROPERTIES, addon)
+                if section == 'media':
+                    amo.log(amo.LOG.CHANGE_ICON, addon)
+                else:
+                    amo.log(amo.LOG.EDIT_PROPERTIES, addon)
         else:
             form = models[section](instance=addon, request=request)
     else:
@@ -594,6 +598,14 @@ def addons_section(request, addon_id, addon, section, editable=False):
 
     return jingo.render(request,
                         'devhub/includes/addon_edit_%s.html' % section, data)
+
+
+@never_cache
+@dev_required
+@json_view
+def icon_status(request, addon_id, addon):
+    destination = os.path.join(addon.get_icon_dir(), '%s-32.png' % addon.id)
+    return os.path.exists(destination)
 
 
 @dev_required

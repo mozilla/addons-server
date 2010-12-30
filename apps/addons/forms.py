@@ -9,7 +9,7 @@ from tower import ugettext as _, ungettext as ngettext
 
 import amo
 import captcha.fields
-from amo.utils import ImageCheck, slug_validator, slugify
+from amo.utils import ImageCheck, slug_validator, slugify, remove_icons
 from addons.models import Addon, ReverseNameLookup, Category, AddonCategory
 from addons.widgets import IconWidgetRenderer, CategoriesSelectMultiple
 from devhub import tasks
@@ -194,6 +194,7 @@ class AddonFormMedia(AddonFormBase):
                     icon_file.write(chunk)
 
             destination = os.path.join(dirname, '%s' % addon.id)
+            remove_icons(destination)
             tasks.resize_icon.delay(tmp_destination, destination,
                                     amo.ADDON_ICON_SIZES)
 
