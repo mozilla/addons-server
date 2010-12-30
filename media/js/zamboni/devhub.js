@@ -1077,6 +1077,9 @@ $(document).ready(function() {
                         innerCode = $('<div class="inner-code"></div>');
                         code.append(innerCode);
                         $.each(msg.context, function(n, c) {
+                            if (c === null) {
+                                c = ''; // blank line
+                            }
                             lines.append(
                                 $(format('<div>{0}</div>', [msg.line + n])));
                             innerCode.append(

@@ -1539,6 +1539,11 @@ form.select-review .errorlist {
     float: left;
     padding-left: 0.2em;
 }
+#addon-validator-suite .context .inner-code div {
+    max-width: 47em;
+    height: 1.65em;
+    overflow: hidden;
+}
 #addon-validator-suite .context .code:last-child:after {
     content: ".";
     display: block;

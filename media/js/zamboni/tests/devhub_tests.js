@@ -529,15 +529,19 @@ asyncTest('Test code context', function() {
                     "warnings": 1,
                     "ending_tier": 3,
                     "messages": [{
-                        "context": ["&lt;baddddddd html garbage=#&#34;&#34;", "&lt;foozer&gt;"],
-                        "description": ["There was an error parsing the markup document.", "malformed start tag, at line 1, column 26"],
+                        "context": ["&lt;baddddddd html garbage=#&#34;&#34;",
+                                    "&lt;foozer&gt;", null],
+                        "description": [
+                            "There was an error parsing the markup document.",
+                            "malformed start tag, at line 1, column 26"],
                         "column": 0,
                         "line": 1,
                         "file": "chrome/content/down.html",
                         "tier": 2,
                         "message": "Markup parsing error",
                         "type": "warning",
-                        "id": ["testcases_markup_markuptester", "_feed", "parse_error"],
+                        "id": ["testcases_markup_markuptester",
+                               "_feed", "parse_error"],
                         "uid": "bb9948b604b111e09dfdc42c0301fe38"
                     }],
                     "rejected": false,
@@ -564,6 +568,8 @@ asyncTest('Test code context', function() {
                '&lt;baddddddd html garbage=#""');
         equals($('.context .inner-code div:eq(1)', $suite).html(),
                '&lt;foozer&gt;');
+        equals($('.context .inner-code div:eq(2)', $suite).html(),
+               '');
         start();
     });
 });
