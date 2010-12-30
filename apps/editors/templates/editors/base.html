@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}{{ editor_page_title() }}{% endblock %}
+
+{% block extrahead %}
+  {{ css('zamboni/devhub') }}
+{% endblock %}
+
+{% block navbar %}
+<div id="navbar">
+  <ul class="top">
+      <li class="top">
+        <a href="{{ remora_url('/editors/queue') }}" class="controller">
+          {{ _('Queues') }}</a>
+        <ul>
+          <li><a href="{{ remora_url('/editors/queue/nominated') }}">
+                {{ _('Full Reviews') }}</a></li>
+          <li><a href="{{ remora_url('/editors/queue/pending') }}">
+                {{ _('Pending Reviews') }}</a></li>
+          <li><a href="{{ remora_url('/editors/queue/preliminary') }}">
+                {{ _('Preliminary Reviews') }}</a></li>
+          <li><a href="{{ remora_url('/editors/queue/reviews') }}">
+                {{ _('Moderated Reviews') }}</a></li>
+        </ul>
+      </li>
+    <li class="top">
+      <a href="{{ remora_url('/editors/performance') }}" class="controller">{{ _('Performance') }}</a>
+      <ul>
+        <li><a href="{{ remora_url('/editors/performance') }}">
+          {{ _('Details') }}</a></li>
+        <li><a href="{{ remora_url('/editors/performance/charts') }}">
+          {{ _('Charts') }}</a></li>
+      </ul>
+    </li>
+    <li class="top">
+      <a href="{{ remora_url('/editors/reviewlog') }}" class="controller">{{ _('Logs') }}</a>
+      <ul>
+        <li><a href="{{ remora_url('/editors/reviewlog') }}">
+          {{ _('Review Log') }}</a></li>
+        <li><a href="{{ remora_url('/editors/logs') }}">
+          {{ _('Event Log') }}</a></li>
+      </ul>
+    </li>
+    <li class="top">
+    <a href="{{ remora_url('/editors/motd') }}" class="controller">{{ _('Announcement') }}</a>
+    </li>
+  </ul>
+</div>
+{% endblock %}
+
+{% block js %}
+  {{ js('zamboni/devhub') }}
+{% endblock %}
+
+{% block outer_content %}{% include "messages.html" %}{% endblock %}

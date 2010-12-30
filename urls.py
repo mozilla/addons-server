@@ -40,6 +40,9 @@ urlpatterns = patterns('',
     # Developer Hub.
     ('developers/', include('devhub.urls')),
 
+    # Developer Hub.
+    ('editors/', include('editors.urls')),
+
     # AMO admin (not django admin).
     ('^admin/', include('zadmin.urls')),
 
@@ -149,7 +152,7 @@ if 'django_qunit' in settings.INSTALLED_APPS:
 
     urlpatterns += patterns('',
         url(r'^qunit/(?P<path>.*)', zamboni_qunit),
-        url(r'^_qunit/', include('django_qunit.urls'))
+        url(r'^_qunit/', include('django_qunit.urls')),
     )
 
 if settings.DEBUG:
