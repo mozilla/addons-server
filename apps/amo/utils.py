@@ -209,7 +209,7 @@ def randslice(qs, limit, exclude=None):
 
 
 # Extra characters outside of alphanumerics that we'll allow.
-SLUG_OK = '-_'
+SLUG_OK = '-_~'
 
 
 def slugify(s, ok=SLUG_OK, lower=True, spaces=False):
