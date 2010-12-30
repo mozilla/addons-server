@@ -1076,10 +1076,8 @@ $(document).ready(function() {
                         code.append(lines);
                         innerCode = $('<div class="inner-code"></div>');
                         code.append(innerCode);
+                        msg.context = formatCodeIndentation(msg.context);
                         $.each(msg.context, function(n, c) {
-                            if (c === null) {
-                                c = ''; // blank line
-                            }
                             lines.append(
                                 $(format('<div>{0}</div>', [msg.line + n])));
                             innerCode.append(
@@ -1145,6 +1143,41 @@ $(document).ready(function() {
             {'type':'error', message: header,
              description: [description], tier: 4, uuid: '4'}
         ]
+    }
+
+    function formatCodeIndentation(lines) {
+        var indent = null;
+        $.each(lines, function(i, code) {
+            if (code === null) {
+                code = ''; // blank line
+            }
+            lines[i] = code;
+            var m = code.length - code.replace(/^\s+/, '').length;
+            if (indent === null) {
+                indent = m;
+            }
+            // Look for the smallest common indent of white space.
+            if (m < indent) {
+                indent = m;
+            }
+        });
+        $.each(lines, function(i, code) {
+            if (indent > 0) {
+                // Dedent all code to common level.
+                code = code.substring(indent);
+                lines[i] = code;
+            }
+            var n = code.search(/[^\s]/); // first non-space char
+            if (n > 0) {
+                lines[i] = '';
+                // Add back the original indentation.
+                for (var x=0; x<n; x++) {
+                    lines[i] += '&nbsp;';
+                }
+                lines[i] += $.trim(code);
+            }
+        });
+        return lines;
     }
 
     $('.addon-validator-suite').live('validate', function(e) {
