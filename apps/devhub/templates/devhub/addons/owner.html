@@ -23,7 +23,7 @@
           {{ user_form.non_form_errors()|safe }}
           <ul id="author_list">
           {% for form in user_form.forms %}
-            <li class="author initial">
+            <li class="author {{ 'initial' if not form.user.errors }}">
               <span class="handle">&nbsp;</span>
               {{ form.user.errors|safe }}
               {{ form.user|safe }}
