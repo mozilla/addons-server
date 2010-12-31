@@ -677,12 +677,9 @@ h2.author {
 #install li {
     display: inline-block;
 }
-.install-shell .install,
-#install li {
-    margin-right: 10px;
-}
 #install li {
     font-weight: bold;
+    margin-right: 10px;
 }
 .html-rtl #install li {
     margin: 0 0 0 10px;
@@ -887,6 +884,28 @@ a.button.add:active {
     border-right: 2px groove rgba(150,150,150,0.35);
     padding: 4px 8px 3px 6px;
     margin: 0 -2px 0 2px;
+}
+
+/* For other platforms */
+.install-button .button span.os {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    font-weight: normal;
+    display: inline;
+    white-space: nowrap;
+}
+
+.install-button .button.platform {
+    display: none;
+}
+
+.mac .button.mac,
+.linux .button.linux,
+.other .button.bsd,
+.other .button.solaris,
+.windows .button.windows {
+      display: inline;
 }
 
 /* @Images *********/
