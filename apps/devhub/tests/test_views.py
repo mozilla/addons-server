@@ -1277,21 +1277,6 @@ class TestEdit(test_utils.TestCase):
         error = 'You can only have 2 categories.'
         self.assertFormError(r, 'form', 'categories', error)
 
-    def test_edit_basic_categories_other_success(self):
-        category_other = Category.objects.get(id=22)
-        category_other.name = 'Other'
-        category_other.save()
-
-        data = dict(name='new name',
-                    slug='test_slug',
-                    summary='new summary',
-                    categories=[22],  # 22 is now 'other'
-                    tags=', '.join(self.tags))
-
-        r = self.client.post(self.get_url('basic', True), data)
-
-        eq_(r.context['form'].errors, {})
-
     def test_edit_basic_categories_other_failure(self):
         category_other = Category.objects.get(id=22)
         category_other.name = 'Other'
@@ -2369,6 +2354,41 @@ class TestVersionEditFiles(TestVersionEdit):
         forms[1]['DELETE'] = 1
         self.client.post(self.url, self.formset(*forms, prefix='files'))
         eq_(self.version.files.count(), 1)
+
+    def add_in_bsd(self):
+        f = self.version.files.get()
+        # The default file is All, which prevents the addition of more files.
+        f.update(platform=Platform.objects.get(id=amo.PLATFORM_MAC.id))
+        return File.objects.create(version=self.version,
+                                   platform_id=amo.PLATFORM_BSD.id)
+
+    def test_all_unsupported_platforms(self):
+        self.add_in_bsd()
+        forms = self.client.get(self.url).context['file_form'].forms
+        # Forms[0] is the form for the MAC and forms[1] is the form for the
+        # BSD file, which should have one extra platform in it.
+        eq_(len(forms[0].fields['platform'].choices), 4)
+        eq_(len(forms[1].fields['platform'].choices), 5)
+
+    def test_all_unsupported_platforms_unchange(self):
+        bsd = self.add_in_bsd()
+        forms = self.client.get(self.url).context['file_form'].forms
+        forms = map(initial, forms)
+        self.client.post(self.url, self.formset(*forms, prefix='files'))
+        eq_(File.objects.no_cache().get(pk=bsd.pk).platform_id,
+            amo.PLATFORM_BSD.id)
+
+    def test_all_unsupported_platforms_change(self):
+        bsd = self.add_in_bsd()
+        forms = self.client.get(self.url).context['file_form'].forms
+        forms = map(initial, forms)
+        forms[1]['platform'] = 2
+        self.client.post(self.url, self.formset(*forms, prefix='files'))
+        eq_(File.objects.no_cache().get(pk=bsd.pk).platform_id,
+            amo.PLATFORM_LINUX.id)
+        # Check you can't choose BSD anymore.
+        forms = self.client.get(self.url).context['file_form'].forms
+        eq_(len(forms[1].fields['platform'].choices), 4)
 
 
 class TestPlatformSearch(TestVersionEdit):

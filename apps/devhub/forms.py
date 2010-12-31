@@ -419,6 +419,12 @@ class FileForm(happyforms.ModelForm):
 
         if kw['instance'].version.addon.type == amo.ADDON_SEARCH:
             del self.fields['platform']
+        else:
+            pid = int(kw['instance'].platform_id)
+            plats = [(p.id, p.name) for p in amo.SUPPORTED_PLATFORMS.values()]
+            if pid not in amo.SUPPORTED_PLATFORMS:
+                plats.append([pid, amo.PLATFORMS[pid].name])
+            self.fields['platform'].choices = plats
 
 
 class BaseFileFormSet(BaseModelFormSet):
