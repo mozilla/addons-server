@@ -15,6 +15,7 @@
   <h2>{{ _('Manage {0}')|f(addon.name) }}</h2>
 </header>
 <section class="primary devhub-form edit-version" role="main">
+  {{ l10n_menu(addon.default_locale) }}
   <h3>{{ title }}</h3>
   <form method="post" action="">
     <div class="item">
@@ -67,11 +68,12 @@
           <tr>
           {% with field = version_form.releasenotes %}
             <th>
-              <label for="{{ field.auto_id }}">{{ _("Release Notes") }}</label>
+              <label data-for="releasenotes">{{ _("Release Notes") }}
               {{ tip(None, "Information about changes in this release, new features,
                             known bugs, and other useful information specific to this
                             release/version. This information is also shown in the
                             Add-ons Manager when updating.") }}
+              </label>
             </th>
             <td>
               {{ field.errors|safe }}
