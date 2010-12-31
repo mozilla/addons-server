@@ -1,5 +1,5 @@
 {% set apps = addon.incompatible_latest_apps() %}
-{% set update_url = url('devhub.ajax.compat.update', addon.slug, addon.current_version.slug) %}
+{% set update_url = url('devhub.ajax.compat.update', addon.slug, addon.current_version.id) %}
 {% if apps %}
   {% set app = apps[0] %}
   <div class="{{ app.short }} app">
