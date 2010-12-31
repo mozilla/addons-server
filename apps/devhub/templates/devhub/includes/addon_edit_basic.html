@@ -79,7 +79,7 @@
                 {{ form.categories.errors|safe }}
               {% else %}
                 {% for category in categories %}
-                  {{ ' &middot; '|safe if loop.index > 0 }}{{ category }}
+                  {{ ' &middot; '|safe if loop.index > 1 }}{{ category }}
                 {% endfor %}
               {% endif %}
             </td>
