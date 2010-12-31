@@ -99,29 +99,34 @@ class AddonFormBasic(AddonFormBase):
         target = [t.strip() for t in self.cleaned_data['tags'].split(',')
                   if t.strip()]
 
-        max_tags = amo.MAX_TAGS
         min_len = amo.MIN_TAG_LENGTH
+        max_tags = amo.MAX_TAGS
         total = len(target)
-        tags_short = [t for t in target if len(t.strip()) < min_len]
 
-        for t in target:
-            tag = Tag.objects.filter(tag_text=t)
-            if len(tag) > 0 and tag[0].blacklisted:
-                raise forms.ValidationError(_("The tag '{0}' isn't allowed")
-                                            .format(t))
+        blacklisted = []
+        for tag in Tag.objects.filter(tag_text__in=target):
+            if len(tag.tag_text) > 0 and tag.blacklisted:
+                blacklisted.append(tag.tag_text)
+
+        if blacklisted:
+            # L10n: "{0} and {1}" displays tags as "a, b and c".
+            msg = ngettext("The tag '{1}' isn't allowed.",
+                           "The tags '{0}' and '{1}' aren't allowed.",
+                           len(blacklisted)).format("', '".join(blacklisted[:-1]),
+                                                    blacklisted[-1])
+            raise forms.ValidationError(msg)
 
         if total > max_tags:
-            raise forms.ValidationError(ngettext(
-                                        'You have {0} too many tags.',
-                                        'You have {0} too many tags.',
-                                        total - max_tags)
-                                        .format(total - max_tags))
+            num = total - max_tags
+            msg = ngettext('You have {0} too many tags.',
+                           'You have {0} too many tags.', num).format(num)
+            raise forms.ValidationError(msg)
 
-        if tags_short:
-            raise forms.ValidationError(ngettext(
-                        'All tags must be at least {0} character.',
-                        'All tags must be at least {0} characters.',
-                        min_len).format(min_len))
+        if any(t for t in target if len(t) < amo.MIN_TAG_LENGTH):
+            msg = ngettext("All tags must be at least {0} character.",
+                           "All tags must be at least {0} characters.",
+                           min_len).format(min_len)
+            raise forms.ValidationError(msg)
 
         return target
 

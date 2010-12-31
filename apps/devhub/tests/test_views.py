@@ -1001,8 +1001,7 @@ class TestEdit(test_utils.TestCase):
         eq_(unicode(addon.slug), data['slug'])
         eq_(unicode(addon.summary), data['summary'])
 
-        self.tags.sort()
-        eq_([unicode(t) for t in addon.tags.all()], self.tags)
+        eq_([unicode(t) for t in addon.tags.all()], sorted(self.tags))
 
     def test_edit_basic_slugs_unique(self):
         Addon.objects.get(id=5579).update(slug='test_slug')
@@ -1032,8 +1031,7 @@ class TestEdit(test_utils.TestCase):
 
         result = pq(r.content)('#addon_tags_edit').eq(0).text()
 
-        self.tags.sort()
-        eq_(result, ', '.join(self.tags))
+        eq_(result, ', '.join(sorted(self.tags)))
         eq_((ActivityLog.objects.for_addons(self.addon)
              .get(action=amo.LOG.ADD_TAG.id)).to_string(),
             '<a href="/en-US/firefox/tag/tag4">tag4</a> added to '
@@ -1053,7 +1051,40 @@ class TestEdit(test_utils.TestCase):
         r = self.client.post(self.get_url('basic', True), data)
         eq_(r.status_code, 200)
 
-        error = "The tag '..' isn't allowed"
+        error = "The tag '..' isn't allowed."
+        self.assertFormError(r, 'form', 'tags', error)
+
+    def test_edit_basic_blacklisted_tags_2(self):
+        Tag.objects.get_or_create(tag_text='..', blacklisted=True)
+        Tag.objects.get_or_create(tag_text='darn', blacklisted=True)
+
+        data = dict(name='new name',
+                    slug='test_slug',
+                    summary='new summary',
+                    categories=['22'],
+                    tags='.., darn, swearword')
+
+        r = self.client.post(self.get_url('basic', True), data)
+        eq_(r.status_code, 200)
+
+        error = "The tags '..' and 'darn' aren't allowed."
+        self.assertFormError(r, 'form', 'tags', error)
+
+    def test_edit_basic_blacklisted_tags_3(self):
+        Tag.objects.get_or_create(tag_text='..', blacklisted=True)
+        Tag.objects.get_or_create(tag_text='darn', blacklisted=True)
+        Tag.objects.get_or_create(tag_text='swearword', blacklisted=True)
+
+        data = dict(name='new name',
+                    slug='test_slug',
+                    summary='new summary',
+                    categories=['22'],
+                    tags='.., darn, swearword')
+
+        r = self.client.post(self.get_url('basic', True), data)
+        eq_(r.status_code, 200)
+
+        error = "The tags '..', 'darn' and 'swearword' aren't allowed."
         self.assertFormError(r, 'form', 'tags', error)
 
     def test_edit_basic_remove_tag(self):
@@ -1072,8 +1103,7 @@ class TestEdit(test_utils.TestCase):
 
         result = pq(r.content)('#addon_tags_edit').eq(0).text()
 
-        self.tags.sort()
-        eq_(result, ', '.join(self.tags))
+        eq_(result, ', '.join(sorted(self.tags)))
 
         eq_(ActivityLog.objects.filter(action=amo.LOG.REMOVE_TAG.id).count(),
             count + 1)

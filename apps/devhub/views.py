@@ -259,7 +259,7 @@ def edit(request, addon_id, addon):
        'addon': addon,
        'tags': addon.tags.not_blacklisted().values_list('tag_text', flat=True),
        'previews': addon.previews.all(),
-       'categories': enumerate(addon.categories.all())}
+       'categories': addon.categories.all()}
 
     return jingo.render(request, 'devhub/addons/edit.html', data)
 
@@ -607,7 +607,7 @@ def addons_section(request, addon_id, addon, section, editable=False):
 
     if section == 'basic':
         tags = addon.tags.not_blacklisted().values_list('tag_text', flat=True)
-        categories = enumerate(addon.categories.all())
+        categories = addon.categories.all()
 
     data = {'addon': addon,
             'form': form,

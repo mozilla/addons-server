@@ -78,8 +78,8 @@
                 {{ form.categories|safe }}
                 {{ form.categories.errors|safe }}
               {% else %}
-                {% for i, addon in categories %}
-                  {{ ' &middot; '|safe if i > 0 }}{{ addon|e|xssafe }}
+                {% for category in categories %}
+                  {{ ' &middot; '|safe if loop.index > 0 }}{{ category }}
                 {% endfor %}
               {% endif %}
             </td>
