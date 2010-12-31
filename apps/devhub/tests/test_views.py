@@ -1650,6 +1650,23 @@ class TestEdit(test_utils.TestCase):
         eq_(addon.site_specific, False)
         eq_(addon.view_source, False)
 
+    def test_technical_devcomment_notrequired(self):
+        data = dict(developer_comments='',
+                    binary='on',
+                    external_software='on',
+                    site_specific='on',
+                    view_source='on')
+
+        r = self.client.post(self.get_url('technical', True), data)
+        eq_(r.context['form'].errors, {})
+
+        addon = self.get_addon()
+        for k in data:
+            if k == 'developer_comments':
+                eq_(unicode(getattr(addon, k)), unicode(data[k]))
+            else:
+                eq_(getattr(addon, k), True if data[k] == 'on' else False)
+
     def test_nav_links(self):
         url = reverse('devhub.addons.edit', args=['a3615'])
         activity_url = reverse('devhub.feed', args=['a3615'])

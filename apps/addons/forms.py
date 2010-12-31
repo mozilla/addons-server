@@ -286,7 +286,7 @@ class AddonFormSupport(AddonFormBase):
 
 
 class AddonFormTechnical(AddonFormBase):
-    developer_comments = TransField(widget=TransTextarea)
+    developer_comments = TransField(widget=TransTextarea, required=False)
 
     class Meta:
         model = Addon
