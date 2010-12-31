@@ -175,10 +175,12 @@
         {% endtrans %}
       </p>
       {{ csrf() }}
-      <input type="hidden" name="version_id" class="version_id">
-      <input type="hidden" name="addon_id" class="addon_id" value="{{ addon.id }}">
-      <button type="submit" class="delete-button">{{ _('Delete Version') }}</button>
-      {{ _('or') }} <a href="#" class="close">{{ _('Cancel') }}</a>
+      <div class="modal-actions">
+        <input type="hidden" name="version_id" class="version_id">
+        <input type="hidden" name="addon_id" class="addon_id" value="{{ addon.id }}">
+        <button type="submit" class="delete-button">{{ _('Delete Version') }}</button>
+        {{ _('or') }} <a href="#" class="close">{{ _('Cancel') }}</a>
+      </div>
     </form>
   </div>
 

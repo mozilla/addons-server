@@ -1006,7 +1006,7 @@ a.extra {
     margin-top: 0;
 }
 
-#upload-file > div {
+#upload-file > div, .modal-actions {
     margin-top: 1em;
 }
 

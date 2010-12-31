@@ -61,7 +61,7 @@ $(document).ready(function() {
         }).bind('upload-error', function() {
             $("#upload-file-finish").attr("disabled", true);
         });
-        $('.upload-file-cancel').click($modal.hideMe);
+        $('.upload-file-cancel').click(_pd($modal.hideMe));
         $('#upload-file').submit(_pd(function(e) {
             $.post($(this).attr('action'), $(this).serialize(), function(response) {
                 if (response.url) {
