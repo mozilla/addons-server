@@ -1003,6 +1003,28 @@ class TestEdit(test_utils.TestCase):
 
         eq_([unicode(t) for t in addon.tags.all()], sorted(self.tags))
 
+    def test_edit_basic_name_required(self):
+        data = dict(name='',
+                    slug='test_addon',
+                    summary='new summary',
+                    categories=['22'],
+                    tags=', '.join(self.tags))
+
+        r = self.client.post(self.get_url('basic', True), data)
+        eq_(r.status_code, 200)
+        self.assertFormError(r, 'form', 'name', 'This field is required.')
+
+    def test_edit_basic_name_spaces(self):
+        data = dict(name='    ',
+                    slug='test_addon',
+                    summary='new summary',
+                    categories=['22'],
+                    tags=', '.join(self.tags))
+
+        r = self.client.post(self.get_url('basic', True), data)
+        eq_(r.status_code, 200)
+        self.assertFormError(r, 'form', 'name', 'This field is required.')
+
     def test_edit_basic_slugs_unique(self):
         Addon.objects.get(id=5579).update(slug='test_slug')
 
