@@ -3,12 +3,14 @@ import collections
 import functools
 import json
 import os
+import path
 import sys
 import traceback
+import uuid
 
 from django import http
-from django.db.models import Count
 from django.conf import settings
+from django.db.models import Count
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.http import urlquote
 from django.views.decorators.cache import never_cache
@@ -574,12 +576,22 @@ def addons_section(request, addon_id, addon, section, editable=False):
     if section not in models:
         return http.HttpResponseNotFound()
 
+    previews = []
+    if section == 'media':
+        previews = forms.PreviewFormSet(request.POST or None,
+                prefix='files', queryset=addon.previews.all())
+
     if editable:
         if request.method == 'POST':
             form = models[section](request.POST, request.FILES,
                                   instance=addon, request=request)
-            if form.is_valid():
+            if form.is_valid() and (not previews or previews.is_valid()):
                 addon = form.save(addon)
+
+                if previews:
+                    for preview in previews.forms:
+                        preview.save(addon)
+
                 editable = False
                 if section == 'media':
                     amo.log(amo.LOG.CHANGE_ICON, addon)
@@ -601,7 +613,8 @@ def addons_section(request, addon_id, addon, section, editable=False):
             'form': form,
             'editable': editable,
             'categories': categories,
-            'tags': tags}
+            'tags': tags,
+            'preview_form': previews}
 
     return jingo.render(request,
                         'devhub/includes/addon_edit_%s.html' % section, data)
@@ -613,6 +626,27 @@ def addons_section(request, addon_id, addon, section, editable=False):
 def icon_status(request, addon_id, addon):
     destination = os.path.join(addon.get_icon_dir(), '%s-32.png' % addon.id)
     return os.path.exists(destination)
+
+
+@json_view
+@dev_required
+def upload_preview(request, addon_id, addon):
+    if 'upload_preview' in request.FILES:
+        upload_preview = request.FILES['upload_preview']
+        upload_preview.seek(0)
+
+        upload_hash = uuid.uuid4().hex
+        loc = path.path(settings.PREVIEWS_PATH) / 'temp' / upload_hash
+        if not loc.dirname().exists():
+            loc.dirname().makedirs()
+
+        with open(loc, 'wb') as fd:
+            for chunk in upload_preview:
+                fd.write(chunk)
+
+        return {'upload_hash': upload_hash, 'errors': False}
+
+    return {'errors': [_('There was an error uploading your preview.')]}
 
 
 @dev_required
@@ -812,16 +846,24 @@ def submit_describe(request, addon_id, addon, step):
 @dev_required
 @submit_step(4)
 def submit_media(request, addon_id, addon, step):
-    form = addon_forms.AddonFormMedia(request.POST or None, request.FILES,
-                                      instance=addon, request=request)
+    form_icon = addon_forms.AddonFormMedia(request.POST or None,
+            request.FILES, instance=addon, request=request)
+    form_previews = forms.PreviewFormSet(request.POST or None,
+            prefix='files', queryset=addon.previews.all())
 
-    if request.method == 'POST' and form.is_valid():
-        addon = form.save(addon)
+    if (request.method == 'POST' and
+        form_icon.is_valid() and form_previews.is_valid()):
+        addon = form_icon.save(addon)
+
+        for preview in form_previews.forms:
+            preview.save(addon)
+
         SubmitStep.objects.filter(addon=addon).update(step=5)
         return redirect('devhub.submit.5', addon.slug)
 
     return jingo.render(request, 'devhub/addons/submit/media.html',
-                        {'form': form, 'addon': addon, 'step': step})
+                        {'form': form_icon, 'addon': addon, 'step': step,
+                         'preview_form': form_previews})
 
 
 @dev_required

@@ -6,7 +6,6 @@ import shutil
 import socket
 import tempfile
 from decimal import Decimal
-import shutil
 
 from django import forms
 from django.conf import settings
@@ -71,7 +70,7 @@ class HubTest(test_utils.TestCase):
 
     def clone_addon(self, num, addon_id=57132):
         ids = []
-        for i in xrange(num):
+        for i in range(num):
             addon = Addon.objects.get(id=addon_id)
             addon.id = addon.guid = None
             addon.save()
@@ -271,8 +270,9 @@ def formset(*args, **kw):
     prefix and initial_count can be set in **kw.
     """
     prefix = kw.pop('prefix', 'form')
+    total_count = kw.pop('total_count', len(args))
     initial_count = kw.pop('initial_count', len(args))
-    data = {prefix + '-TOTAL_FORMS': len(args),
+    data = {prefix + '-TOTAL_FORMS': total_count,
             prefix + '-INITIAL_FORMS': initial_count}
     for idx, d in enumerate(args):
         data.update(('%s-%s-%s' % (prefix, idx, k), v)
@@ -949,6 +949,20 @@ class TestEdit(test_utils.TestCase):
 
         self.addon = self.get_addon()
 
+    def formset_new_form(self, *args, **kw):
+        ctx = self.client.get(self.get_url('media', True)).context
+
+        blank = initial(ctx['preview_form'].forms[-1])
+        blank.update(**kw)
+        return blank
+
+    def formset_media(self, *args, **kw):
+        kw.setdefault('initial_count', 0)
+        kw.setdefault('prefix', 'files')
+
+        fs = formset(*[a for a in args] + [self.formset_new_form()], **kw)
+        return dict([(k, '' if v is None else v) for k, v in fs.items()])
+
     def tearDown(self):
         reset_redis(self._redis)
 
@@ -1396,8 +1410,9 @@ class TestEdit(test_utils.TestCase):
 
     def test_edit_media_defaulticon(self):
         data = dict(icon_type='')
+        data_formset = self.formset_media(**data)
 
-        r = self.client.post(self.get_url('media', True), data)
+        r = self.client.post(self.get_url('media', True), data_formset)
         eq_(r.context['form'].errors, {})
         addon = self.get_addon()
 
@@ -1408,8 +1423,9 @@ class TestEdit(test_utils.TestCase):
 
     def test_edit_media_preuploadedicon(self):
         data = dict(icon_type='icon/appearance')
+        data_formset = self.formset_media(**data)
 
-        r = self.client.post(self.get_url('media', True), data)
+        r = self.client.post(self.get_url('media', True), data_formset)
         eq_(r.context['form'].errors, {})
         addon = self.get_addon()
 
@@ -1424,8 +1440,9 @@ class TestEdit(test_utils.TestCase):
 
         data = dict(icon_type='image/png',
                     icon_upload=src_image)
+        data_formset = self.formset_media(**data)
 
-        r = self.client.post(self.get_url('media', True), data)
+        r = self.client.post(self.get_url('media', True), data_formset)
         eq_(r.context['form'].errors, {})
         addon = self.get_addon()
 
@@ -1454,8 +1471,9 @@ class TestEdit(test_utils.TestCase):
 
         data = dict(icon_type='image/png',
                     icon_upload=src_image)
+        data_formset = self.formset_media(**data)
 
-        r = self.client.post(self.get_url('media', True), data)
+        r = self.client.post(self.get_url('media', True), data_formset)
         eq_(r.context['form'].errors, {})
         addon = self.get_addon()
 
@@ -1478,8 +1496,9 @@ class TestEdit(test_utils.TestCase):
 
         data = dict(icon_type='image/png',
                     icon_upload=src_image)
+        data_formset = self.formset_media(**data)
 
-        r = self.client.post(self.get_url('media', True), data)
+        r = self.client.post(self.get_url('media', True), data_formset)
         error = 'Icons must be either PNG or JPG.'
         self.assertFormError(r, 'form', 'icon_upload', error)
 
@@ -1506,9 +1525,64 @@ class TestEdit(test_utils.TestCase):
     def test_icon_animated(self):
         filehandle = open(get_image_path('animated.png'), 'rb')
         data = {'icon_type': 'image/png', 'icon_upload': filehandle}
-        res = self.client.post(self.get_url('media', True), data)
+        data_formset = self.formset_media(**data)
+        res = self.client.post(self.get_url('media', True), data_formset)
         eq_(res.context['form'].errors['icon_upload'][0],
             u'Icons cannot be animated.')
+
+    def preview_add(self, amount=1):
+        img = "%s/img/amo2009/tab-mozilla.png" % settings.MEDIA_ROOT
+        src_image = open(img, 'rb')
+
+        data = dict(upload_preview=src_image)
+        data_formset = self.formset_media(**data)
+        url = reverse('devhub.addons.upload_preview', args=['a3615'])
+        r = self.client.post(url, data_formset)
+
+        details = json.loads(r.content)
+        upload_hash = details['upload_hash']
+
+        # Create and post with the formset.
+        fields = []
+        for i in range(amount):
+            fields.append(self.formset_new_form(caption='hi',
+                                                upload_hash=upload_hash))
+        data_formset = self.formset_media(*fields)
+
+        self.get_url('media', True)
+
+        r = self.client.post(self.get_url('media', True), data_formset)
+
+    def test_edit_media_preview_add(self):
+        self.preview_add()
+
+        eq_(str(self.get_addon().previews.all()[0].caption), 'hi')
+
+    def test_edit_media_preview_edit(self):
+        self.preview_add()
+        preview = self.get_addon().previews.all()[0]
+        edited = {'caption': 'bye',
+                  'upload_hash': '',
+                  'id': preview.id,
+                  'file_upload': None}
+
+        data_formset = self.formset_media(edited, initial_count=1)
+
+        self.client.post(self.get_url('media', True), data_formset)
+
+        eq_(str(self.get_addon().previews.all()[0].caption), 'bye')
+        eq_(len(self.get_addon().previews.all()), 1)
+
+    def test_edit_media_preview_add_another(self):
+        self.preview_add()
+        self.preview_add()
+
+        eq_(len(self.get_addon().previews.all()), 2)
+
+    def test_edit_media_preview_add_two(self):
+        self.preview_add(2)
+
+        eq_(len(self.get_addon().previews.all()), 2)
 
     def test_log(self):
         data = {'developer_comments': 'This is a test'}
@@ -2566,13 +2640,30 @@ class TestSubmitStep4(TestSubmitBase):
 
     def test_post(self):
         data = dict(icon_type='')
-        r = self.client.post(self.url, data)
+        data_formset = self.formset_media(**data)
+        r = self.client.post(self.url, data_formset)
         eq_(r.status_code, 302)
         eq_(self.get_step().step, 5)
 
+    def formset_new_form(self, *args, **kw):
+        ctx = self.client.get(self.url).context
+
+        blank = initial(ctx['preview_form'].forms[-1])
+        blank.update(**kw)
+        return blank
+
+    def formset_media(self, *args, **kw):
+        kw.setdefault('initial_count', 0)
+        kw.setdefault('prefix', 'files')
+
+        fs = formset(*[a for a in args] + [self.formset_new_form()], **kw)
+        return dict([(k, '' if v is None else v) for k, v in fs.items()])
+
     def test_edit_media_defaulticon(self):
         data = dict(icon_type='')
-        self.client.post(self.url, data)
+        data_formset = self.formset_media(**data)
+
+        self.client.post(self.url, data_formset)
 
         addon = self.get_addon()
 
@@ -2584,7 +2675,8 @@ class TestSubmitStep4(TestSubmitBase):
 
     def test_edit_media_preuploadedicon(self):
         data = dict(icon_type='icon/appearance')
-        self.client.post(self.url, data)
+        data_formset = self.formset_media(**data)
+        self.client.post(self.url, data_formset)
 
         addon = self.get_addon()
 
@@ -2600,10 +2692,10 @@ class TestSubmitStep4(TestSubmitBase):
 
         data = dict(icon_type='image/png',
                     icon_upload=src_image)
+        data_formset = self.formset_media(**data)
+        self.client.post(self.url, data_formset)
 
-        self.client.post(self.url, data)
         addon = self.get_addon()
-
         eq_('/'.join(addon.get_icon_url(64).split('/')[-3:-1]),
             'addon_icon/%s' % addon.id)
 
@@ -2624,8 +2716,9 @@ class TestSubmitStep4(TestSubmitBase):
 
         data = dict(icon_type='image/png',
                     icon_upload=src_image)
+        data_formset = self.formset_media(**data)
 
-        self.client.post(self.url, data)
+        self.client.post(self.url, data_formset)
         addon = self.get_addon()
 
         eq_('/'.join(addon.get_icon_url(64).split('/')[-3:-1]),
@@ -2645,21 +2738,25 @@ class TestSubmitStep4(TestSubmitBase):
     def test_client_lied(self):
         filehandle = open(get_image_path('non-animated.gif'), 'rb')
         data = {'icon_type': 'image/png', 'icon_upload': filehandle}
-        res = self.client.post(self.url, data)
+        data_formset = self.formset_media(**data)
+
+        res = self.client.post(self.url, data_formset)
         eq_(res.context['form'].errors['icon_upload'][0],
             u'Icons must be either PNG or JPG.')
 
     def test_icon_animated(self):
         filehandle = open(get_image_path('animated.png'), 'rb')
         data = {'icon_type': 'image/png', 'icon_upload': filehandle}
-        res = self.client.post(self.url, data)
+        data_formset = self.formset_media(**data)
+        res = self.client.post(self.url, data_formset)
         eq_(res.context['form'].errors['icon_upload'][0],
             u'Icons cannot be animated.')
 
     def test_icon_non_animated(self):
         filehandle = open(get_image_path('non-animated.png'), 'rb')
         data = {'icon_type': 'image/png', 'icon_upload': filehandle}
-        res = self.client.post(self.url, data)
+        data_formset = self.formset_media(**data)
+        res = self.client.post(self.url, data_formset)
         eq_(res.status_code, 302)
         eq_(self.get_step().step, 5)
 

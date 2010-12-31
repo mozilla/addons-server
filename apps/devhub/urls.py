@@ -39,6 +39,9 @@ detail_patterns = patterns('',
     url('^edit_(?P<section>[^/]+)(?:/(?P<editable>[^/]+))?$',
         views.addons_section, name='devhub.addons.section'),
 
+    url('^upload_preview$', views.upload_preview,
+        name='devhub.addons.upload_preview'),
+
     url('^versions/$', views.version_list, name='devhub.versions'),
     url('^versions/delete$', views.version_delete,
         name='devhub.versions.delete'),

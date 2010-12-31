@@ -70,6 +70,48 @@
               {% endif %}
             </td>
           </tr>
+          <tr>
+            <th>
+              <label>{{ _("Screenshots and videos") }}</label>
+            </th>
+            <td class="edit-previews-readonly">
+              {% if editable %}
+                {% if preview_form: %}
+                  {{ preview_form.management_form|safe }}
+                  {{ preview_form.non_form_errors()|safe }}
+                  <div id="file-list">
+                    {% for form in preview_form.forms %}
+                      <div class="preview">
+                        <div class="preview-thumb">
+                          {% if form.instance.id %}
+                            <img src="{{ form.instance.thumbnail_url }}">
+                          {% endif %}
+                        </div>
+                        {{ form.id|safe }}
+                        <label>{{ _('Please provide a caption for this screen shot:') }}</label>
+                        {{ form.caption|safe }}
+                        <div class="preview_extra">
+                          {{ form.upload_hash|safe }}
+                        </div>
+                        {{ form.errors|safe }}
+                      </div>
+                    {% endfor %}
+                  </div>
+                  <div class="invisible-upload">
+                    <a class="button" href="#">{{ _('Add a screenshot...') }}</a>
+                    <input type="file" id="screenshot_upload" name="uploads" multiple
+                           data-upload-url="{{ url('devhub.addons.upload_preview', addon.slug) }}">
+                  </div>
+                {% endif %}
+              {% else %}
+                {% for preview in addon.previews.all() %}
+                  <div class="preview-thumb">
+                    <img src="{{ preview.thumbnail_url }}">
+                  </div>
+                {% endfor %}
+              {% endif %}
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>

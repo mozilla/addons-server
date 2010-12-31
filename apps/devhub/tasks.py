@@ -1,4 +1,3 @@
-import json
 import logging
 import os
 import sys
@@ -8,6 +7,7 @@ from django.conf import settings
 from django.core.management import call_command
 from celeryutils import task
 
+import amo
 from amo.decorators import write
 from amo.utils import resize_image
 from files.models import FileUpload, File, FileValidation
@@ -81,3 +81,21 @@ def resize_icon(src, dst, size, **kw):
 
     except Exception, e:
         log.error("Error saving addon icon: %s" % e)
+
+
+@task(queue='images')
+def resize_preview(src, thumb_dst, full_dst, **kw):
+    """Resizes preview images."""
+    log.info('[1@None] Resizing preview: %s' % thumb_dst)
+
+    try:
+        # Generate the thumb.
+        size = amo.ADDON_PREVIEW_SIZES[0]
+        resize_image(src, thumb_dst, size, remove_src=False)
+
+        # Resize the original.
+        size = amo.ADDON_PREVIEW_SIZES[1]
+        resize_image(src, full_dst, size, remove_src=True)
+
+    except Exception, e:
+        log.error("Error saving preview: %s" % e)

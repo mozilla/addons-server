@@ -5,6 +5,7 @@
 {% block title %}{{ dev_page_title(_('Step 4'), addon) }}{% endblock %}
 
 {% block primary %}
+  <section class="addon-submission-process" id="submit-media" role="main">
     <h3>{{ _('Step 4. Add Images') }}</h3>
     <p>
     {% trans %}
@@ -54,6 +55,35 @@
           <li id="edit-icon-error"></li>
         </ul>
       </div>
+
+      {% if preview_form %}
+        {{ preview_form.management_form|safe }}
+        {{ preview_form.non_form_errors()|safe }}
+        <div id="file-list">
+          {% for form in preview_form.forms %}
+          <div class="preview">
+            <div class="preview-thumb">
+              {% if form.instance.id %}
+                <img src="{{ form.instance.thumbnail_url }}">
+              {% endif %}
+            </div>
+            {{ form.id|safe }}
+            <label>{{ _('Please provide a caption for this screen shot:') }}</label>
+            {{ form.caption|safe }}
+            <div class="preview_extra">
+              {{ form.upload_hash|safe }}
+            </div>
+            {{ form.errors|safe }}
+          </div>
+          {% endfor %}
+        </div>
+        <div class="invisible-upload">
+          <a class="button" href="#">{{ _('Add a screenshot...') }}</a>
+          <input type="file" id="screenshot_upload" name="uploads" multiple
+                 data-upload-url="{{ url('devhub.addons.upload_preview', addon.slug) }}">
+        </div>
+      {% endif %}
+
       <div class="submission-buttons addon-submission-field">
         <button type="submit">
           {{ _('Continue') }}

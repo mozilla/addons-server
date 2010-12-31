@@ -1,3 +1,4 @@
+import path
 import socket
 
 from django import forms
@@ -12,7 +13,7 @@ from tower import ugettext as _, ugettext_lazy as _lazy
 import amo
 import addons.forms
 import paypal
-from addons.models import Addon, AddonUser, Charity
+from addons.models import Addon, AddonUser, Charity, Preview
 from amo.forms import AMOModelForm
 from applications.models import Application, AppVersion
 from files.models import File, FileUpload, Platform
@@ -22,6 +23,7 @@ from translations.fields import TransTextarea, TransField
 from translations.models import delete_translation
 from translations.forms import TranslationFormMixin
 from versions.models import License, Version, ApplicationsVersions
+from . import tasks
 
 
 class AuthorForm(happyforms.ModelForm):
@@ -454,3 +456,39 @@ class ReviewTypeForm(forms.Form):
 
 class Step3Form(addons.forms.AddonFormBasic):
     description = TransField(widget=TransTextarea, required=False)
+
+
+class PreviewForm(happyforms.ModelForm):
+    caption = TransField(widget=TransTextarea, required=False)
+    file_upload = forms.FileField(required=False)
+    upload_hash = forms.CharField(required=False)
+
+    def save(self, addon, commit=True):
+        if self.cleaned_data:
+            self.instance.addon = addon
+            super(PreviewForm, self).save(commit=commit)
+
+            if self.cleaned_data['upload_hash']:
+                upload_hash = self.cleaned_data['upload_hash']
+                settings_path = settings.PREVIEWS_PATH
+                upload_path = path.path(settings_path) / 'temp' / upload_hash
+
+                tasks.resize_preview.delay(str(upload_path),
+                                           self.instance.thumbnail_path,
+                                           self.instance.image_path)
+
+    class Meta:
+        model = Preview
+        fields = ('caption', 'file_upload', 'upload_hash', 'id')
+
+
+class BasePreviewFormSet(BaseModelFormSet):
+
+    def clean(self):
+        if any(self.errors):
+            return
+
+
+PreviewFormSet = modelformset_factory(Preview, formset=BasePreviewFormSet,
+                                      form=PreviewForm, can_delete=True,
+                                      extra=1)

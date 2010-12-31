@@ -1,4 +1,5 @@
 import os
+import path
 import shutil
 import tempfile
 
@@ -64,7 +65,7 @@ def _uploader(resize_size, final_size):
 
     if isinstance(final_size, list):
         for rsize, fsize in zip(resize_size, final_size):
-            dest_name = '1234'
+            dest_name = str(path.path(settings.ADDON_ICONS_PATH) / '1234')
 
             resize_icon(src.name, dest_name, resize_size)
             dest_image = Image.open("%s-%s.png" % (dest_name, rsize))

@@ -180,7 +180,7 @@ class AddonFormMedia(AddonFormBase):
         fields = ('icon_upload', 'icon_type')
 
     def save(self, addon, commit=True):
-        if self.request.FILES:
+        if 'icon_upload' in self.request.FILES:
             icon = self.request.FILES['icon_upload']
             icon.seek(0)
             dirname = addon.get_icon_dir()

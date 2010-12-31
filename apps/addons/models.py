@@ -1129,14 +1129,15 @@ class Preview(amo.models.ModelBase):
                 self.image_url, ]
         return urls
 
-    def _image_url(self, thumb=True):
+    def _image_url(self, url_template):
         if self.modified is not None:
             modified = int(time.mktime(self.modified.timetuple()))
         else:
             modified = 0
-        url_template = (thumb and settings.PREVIEW_THUMBNAIL_URL or
-                        settings.PREVIEW_FULL_URL)
         return url_template % (self.id / 1000, self.id, modified)
+
+    def _image_path(self, url_template):
+        return url_template % (self.id / 1000, self.id)
 
     def as_dict(self, src=None):
         d = {'full': urlparams(self.image_url, src=src),
@@ -1146,11 +1147,19 @@ class Preview(amo.models.ModelBase):
 
     @property
     def thumbnail_url(self):
-        return self._image_url(thumb=True)
+        return self._image_url(settings.PREVIEW_THUMBNAIL_URL)
 
     @property
     def image_url(self):
-        return self._image_url(thumb=False)
+        return self._image_url(settings.PREVIEW_FULL_URL)
+
+    @property
+    def thumbnail_path(self):
+        return self._image_path(settings.PREVIEW_THUMBNAIL_PATH)
+
+    @property
+    def image_path(self):
+        return self._image_path(settings.PREVIEW_FULL_PATH)
 
 
 class AppSupport(amo.models.ModelBase):

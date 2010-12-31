@@ -274,6 +274,53 @@ Bug 622030- TODO (potch) fix this later
     width: 16px;
 }
 
+#file-list .preview {
+    overflow: auto;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px dotted #ADD0DC;
+}
+
+#file-list div:last-child {
+    display: none;
+}
+
+#file-list .preview .preview_extra {
+    display: none;
+}
+
+#file-list .preview label {
+    color: #666666;
+    display: block;
+    font-size: 0.9em;
+    font-weight: bold;
+    padding-bottom: 0;
+}
+
+#file-list .preview textarea {
+    font-size: 0.9em;
+    height: 34px;
+    line-height: 1.1em;
+    width: 375px;
+}
+
+.preview-thumb {
+    border: 3px solid #D2EDF5;
+    float: left;
+    height: 94px;
+    margin-right: 15px;
+    width: 125px;
+}
+
+.preview-thumb img {
+    max-width: 125px;
+}
+
+.edit-previews-readonly .preview-thumb {
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
 #icons_default {
     border: 1px solid #6A89AC;
     max-height: 86px;

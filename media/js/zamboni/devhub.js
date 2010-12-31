@@ -47,6 +47,7 @@ $(document).ready(function() {
     // Submission > Media
     if($('#submit-media').length) {
         initUploadIcon();
+        initUploadPreview();
     }
 
     if ($(".version-upload").length) {
@@ -210,16 +211,120 @@ function initEditAddon() {
 
     hideSameSizedIcons();
     initUploadIcon();
+    initUploadPreview();
+}
+
+function create_new_preview_field() {
+    var forms_count = $('#id_files-TOTAL_FORMS').val(),
+        last = $('#file-list .preview').last(),
+        last_clone = last.clone();
+
+    $('input, textarea, div', last_clone).each(function(){
+        var re = new RegExp(format("-{0}-", [forms_count-1])),
+            new_count = "-"+forms_count+"-",
+            el = $(this);
+
+        $.each(['id','name','data-name'], function(k,v){
+            if(el.attr(v)) {
+                el.attr(v, el.attr(v).replace(re, new_count));
+            }
+        });
+    });
+    $(last).after(last_clone);
+    $('#id_files-TOTAL_FORMS').val(parseInt(forms_count) + 1);
+
+    return last;
+}
+
+function initUploadPreview() {
+    $('#edit-addon-media, #submit-media').delegate('#screenshot_upload', 'change', function(e){
+        url = $(this).attr('data-upload-url');
+
+        // TODO(gkoberger): Make sure this works on non-Fx browsers that don't
+        //support multiple files
+        $.each($('#screenshot_upload')[0].files, function(k, f){
+
+            var data = f.getAsBinary(),
+                form = create_new_preview_field(),
+                file = {},
+                xhr = new XMLHttpRequest(),
+                output = "",
+                boundary = "BoUnDaRyStRiNg";
+
+            file.name = f.name || f.fileName;
+            file.size = f.size;
+            file.data = '';
+            file.aborted = false;
+
+            xhr.open("POST", url, true);
+
+            xhr.setRequestHeader("Content-Length", file.size);
+            xhr.setRequestHeader('Content-Disposition', 'file; name="upload";');
+            xhr.setRequestHeader("X-File-Name", file.name);
+            xhr.setRequestHeader("X-File-Size", file.size);
+
+            xhr.overrideMimeType('text/plain; charset=x-user-defined-binary');
+            xhr.setRequestHeader('Content-length', false);
+            xhr.setRequestHeader("Content-Type", "multipart/form-data;" +
+                                                 "boundary=" + boundary);
+
+            output += "--" + boundary + "\r\n";
+            output += "Content-Disposition: form-data; name=\"csrfmiddlewaretoken\";";
+
+            parent_form = $('#screenshot_upload').closest('form')
+            output += "\r\n\r\n";
+            output += parent_form.find('input[name=csrfmiddlewaretoken]').val();
+            output += "\r\n";
+
+            output += "--" + boundary + "\r\n";
+            output += "Content-Disposition: form-data; name=\"upload_preview\";";
+
+            output += " filename=\"new-upload\";\r\n";
+            output += "Content-Type: " + f.type;
+
+            output += "\r\n\r\n";
+            output += data;
+            output += "\r\n";
+            output += "--" + boundary + "--";
+
+            xhr.onreadystatechange = function(){
+                if (xhr.readyState == 4 && xhr.responseText &&
+                    (xhr.status == 200 || xhr.status == 304)) {
+                    try {
+                        json = JSON.parse(xhr.responseText);
+                    } catch(err) {
+                        return false;
+                    }
+
+                    form.find('[name$=upload_hash]').val(json.upload_hash);
+                }
+            }
+            xhr.sendAsBinary(output);
+        });
+
+        $('#screenshot_upload').val("");
+
+    });
+
 }
 
 function initUploadIcon() {
     $('#edit-addon-media').delegate('form', 'submit',  function(e) {
         e.preventDefault();
+        multipartUpload($(this), function(e, xhr){
+            if (xhr.readyState == 4 && xhr.responseText &&
+                (xhr.status == 200 || xhr.status == 304)) {
+                $('#edit-addon-media').html(xhr.responseText);
+
+                hideSameSizedIcons();
+            }
+        });
+
         if($('input[name=icon_type]:checked').val().match(/^image\//)) {
             setTimeout(checkIconStatus, 1000);
         }
     });
-    $('#edit-addon-media').delegate('form', 'submit', multipartUpload);
+
     $('#edit-addon-media, #submit-media').delegate('#icons_default a', 'click', function(e){
         e.preventDefault();
 
@@ -907,60 +1012,59 @@ function checkIconStatus() {
     );
 }
 
-function multipartUpload(e) {
-    e.preventDefault();
-
+function multipartUpload(form, onreadystatechange) {
     var xhr = new XMLHttpRequest(),
-        boundary = "BoUnDaRyStRiNg";
+        boundary = "BoUnDaRyStRiNg",
+        form = $(form),
+        serialized = form.serializeArray(),
+        submit_items = [],
+        output = "";
 
-    xhr.open("POST", $(this).attr('action'), true)
+    xhr.open("POST", form.attr('action'), true)
     xhr.overrideMimeType('text/plain; charset=x-user-defined-binary');
     xhr.setRequestHeader('Content-length', false);
     xhr.setRequestHeader("Content-Type", "multipart/form-data;" +
                                          "boundary=" + boundary);
 
-    // Sorry this is so ugly.
-    content = [
-        "Content-Type: multipart/form-data; boundary=" + boundary,
-        "",
-        "--" + boundary,
-        "Content-Disposition: form-data; name=\"icon_type\"",
-        "",
-        $('input[name="icon_type"]:checked', $('#icons_default')).val(),
+    $('input[type=file]', form).each(function(){
+        var files = $(this)[0].files,
+            file_field = $(this);
 
-        "--" + boundary,
-        "Content-Disposition: form-data; name=\"csrfmiddlewaretoken\"",
-        "",
-        $('input[name="csrfmiddlewaretoken"]', $('#edit-addon-media')).val()];
+        $.each(files, function(k, file) {
+            var data = file.getAsBinary();
 
-    if($('input[name=icon_type]:checked').val().match(/^image\//)) {
-        // There's a file to be uploaded.
+            serialized.push({
+                'name': $(file_field).attr('name'),
+                'value': data,
+                'file_type': file.type,
+                'file_name': file.name || file.fileName
+            });
+        });
 
-        var file = $('#id_icon_upload')[0].files[0],
-            data = file.getAsBinary();
+    });
 
-        image = [
-            "--" + boundary,
-            "Content-Disposition: form-data; name=\"icon_upload\";" +
-            "filename=\"new-icon\"",
-            "Content-Type: " + file.type,
-            "",
-            data,
-            "--" + boundary + "--"];
+    $.each(serialized, function(k, v){
+        output += "--" + boundary + "\r\n";
+        output += "Content-Disposition: form-data; name=\"" + v.name + "\";";
 
-        content = $.merge(content, image);
+        if(v.file_name != undefined) {
+            output += " filename=\"new-upload\";\r\n";
+            output += "Content-Type: " + v.file_type;
+        }
+
+        output += "\r\n\r\n";
+        output += v.value;
+        output += "\r\n";
+
+    });
+
+    output += "--" + boundary + "--";
+
+    if(onreadystatechange) {
+        xhr.onreadystatechange = function(e){ onreadystatechange(e, xhr); }
     }
 
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4 && xhr.responseText &&
-            (xhr.status == 200 || xhr.status == 304)) {
-            $('#edit-addon-media').html(xhr.responseText);
-
-            hideSameSizedIcons();
-        }
-    };
-
-    xhr.sendAsBinary(content.join('\r\n'));
+    xhr.sendAsBinary(output);
 }
 
 function hideSameSizedIcons() {

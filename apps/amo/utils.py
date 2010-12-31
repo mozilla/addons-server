@@ -291,6 +291,11 @@ def resize_image(src, dst, size, remove_src=True):
     """Resizes and image from src, to dst."""
     if src == dst:
         raise Exception("src and dst can't be the same: %s" % src)
+
+    dirname = os.path.dirname(dst)
+    if not os.path.exists(dirname):
+        os.makedirs(dirname)
+
     im = Image.open(src)
     im = im.convert('RGBA')
     im = processors.scale_and_crop(im, size)
