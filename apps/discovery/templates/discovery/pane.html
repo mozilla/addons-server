@@ -28,7 +28,7 @@
     {{ css('zamboni/discovery-pane') }}
     <base target="_blank" href="{{ settings.SITE_URL }}">
   </head>
-  <body class="html-{{ DIR }}">
+  <body class="html-{{ DIR }} discovery-pane-promo">
     <header>
       <section id="intro">
       <h1><img src="{{ MEDIA_URL }}img/zamboni/discovery_pane/logo-addons.png"
@@ -43,7 +43,6 @@
       </p>
       </section>
 
-
     {% if user.is_authenticated() %}
       <section id="my-account">
         <p>{{ _('Welcome, {0}')|f(request.amo_user.welcome_name) }}</p>
@@ -51,7 +50,7 @@
           <a href="{{ url('users.edit') }}">{{ _('My Profile') }}</a>
           &bull;
           <a href="{{ url('collections.user', request.amo_user.username) }}">
-            {{ _('My Collections')}}</a>
+            {{ _('My Collections') }}</a>
         </div>
       </section>
     {% else %}
@@ -62,7 +61,7 @@
           {%- endtrans %}</p>
         {% if addon_downloads %}
           <p id="download-count">
-            {{ _('Add-ons downloaded') }}:
+            {{ _('Add-ons downloaded:') }}
             <strong>{{ addon_downloads|numberfmt }}</strong>
           </p>
         {% endif %}
@@ -93,15 +92,12 @@
       </section>
     </section>
 
-
     <section id="sub">
       <section id="top-addons">
-        <h2>
-          {{ _('Top Add-ons') }}
-        </h2>
+        <h2>{{ _('Top Add-ons') }}</h2>
         {{ addon_list(top_addons, 5, sidebar=True) }}
         <p class="all">
-          <a href="{{ url('browse.extensions') }}">{{ _('See all ') }}</a>
+          <a href="{{ url('browse.extensions') }}">{{ _('See all') }}</a>
         </p>
       </section>
       <section id="more-ways">

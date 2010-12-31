@@ -402,9 +402,11 @@ MINIFY_BUNDLES = {
         'zamboni/discovery-promo': (
             'js/zamboni/jquery-1.4.2.min.js',
             'js/jquery-ui/ui.lightbox.js',
+            'js/zamboni/truncation.js',
             'js/zamboni/discovery_pane.js',
         ),
         'zamboni/discovery-pane': (
+            'js/zamboni/truncation.js',
             'js/zamboni/discovery_pane.js',
         ),
         'zamboni/devhub': (

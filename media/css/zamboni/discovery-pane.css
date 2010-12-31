@@ -193,6 +193,7 @@ header:after,
 
 /* @Main @Feature *********/
 #main #main-feature {
+    display: none;
     position: relative;
     padding: 0;
     background: transparent;
@@ -208,6 +209,13 @@ header:after,
     min-height: 240px;
     padding: 10px 9%;
     border-radius: 8px;
+}
+
+#main #featured-addons {
+    margin-top: 283px;
+}
+#main #main-feature.js + #featured-addons {
+    margin-top: 0;
 }
 
 #main #main-feature.js {
@@ -479,6 +487,10 @@ ul.addons {
     margin: 0 -10px;
     clear: both;
     font-size: 13px;
+}
+
+#top-addons li:last-child {
+    border-bottom-width: 0;
 }
 
 #top-addons ul a {
@@ -894,7 +906,6 @@ a#lightbox-secNav-btnClose:after {
 }
 a#lightbox-secNav-btnClose {
     -moz-border-radius: 20px;
-    -webkit-border-radius :20px;
     border-radius: 20px;
     background-color: #ddd;
     color: #fff;

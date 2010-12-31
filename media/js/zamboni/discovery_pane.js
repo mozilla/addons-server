@@ -172,39 +172,11 @@ function height(el) {
 })(jQuery);
 
 
-$.fn.vtruncate = function() {
-    this.each(function() {
-        var $el = $(this),
-            oldtext = $el.attr("oldtext") || $el.text(),
-            txt = oldtext.split(" "),
-            cutoff = txt.length;
-        if ($el.attr("oldtext")) {
-            $el.text(oldtext);
-        }
-        $el.attr("oldtext", oldtext);
-        while ((this.scrollHeight - this.offsetHeight) > 1 && cutoff > 0) {
-            cutoff--;
-            $el.html(txt.slice(0,cutoff).join(" ")+"&hellip;");
-        }
-        //If truncating by word wasn't enough, we truncate by letter.
-        if (cutoff < 1) {
-            txt = oldtext.split("");
-            cutoff = txt.length;
-            while ((this.scrollHeight - this.offsetHeight) > 1 && cutoff > 0) {
-                cutoff--;
-                $el.html(txt.slice(0,cutoff).join(" ")+"&hellip;");
-            }
-        }
-        $el.attr("title", oldtext);
-    });
-};
-
-
 $(document).ready(function(){
     $(".install-action a").attr("target", "_self");
 
     // Set up the carousel.
-    $("#main-feature").addClass("js").jCarouselLite({
+    $("#main-feature").fadeIn("slow").addClass("js").jCarouselLite({
         btnNext: ".nav-next a",
         btnPrev: ".nav-prev a",
         visible: 1
@@ -233,11 +205,13 @@ $(document).ready(function(){
     // We show three images at a time, so the width of each is roughly 1/3.
     $("#images .panel").css({width: panelWidth/3 - 10});
 
-    // Trim the description text to fit.
-    $("p.desc").vtruncate();
-    $(window).resize(debounce(function() {
+    if ($(".discovery-pane-promo").length) {
+        // Trim the description text to fit.
         $("p.desc").vtruncate();
-    }, 200));
+        $(window).resize(debounce(function() {
+            $("p.desc").vtruncate();
+        }, 200));
+    }
 });
 
 
