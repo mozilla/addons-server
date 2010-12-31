@@ -7,7 +7,7 @@
     that the add-on is incompatible.
   {% endtrans %}
 </p>
-<form action="{{ url('devhub.ajax.compat.update', addon.id, version.id) }}"
+<form action="{{ url('devhub.ajax.compat.update', addon.slug, version.id) }}"
       class="compat-versions" data-addonid="{{ addon.id }}">
   {{ csrf() }}
   {{ compat_form.non_form_errors()|safe }}
