@@ -383,7 +383,7 @@ function initVersions() {
                 header = $('h3', this),
                 files = $('#del-files', this),
                 reviews = $('#del-reviews', this);
-            header.text(format(header.text(), version));
+            header.text(format(header.attr('data-tmpl'), version));
             files.text(format(ngettext('{files} file', '{files} files',
                                        version.files),
                               version));

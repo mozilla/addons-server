@@ -163,7 +163,7 @@
 
   <div id="modal-delete-version" class="modal modal-delete">
     <form method="post" action="{{ url('devhub.versions.delete', addon.slug) }}">
-      <h3>{{ _('Delete Version {version}') }}</h3>
+      <h3 data-tmpl="{{ _('Delete Version {version}') }}"></h3>
       <p>
         {% trans %}
         Deleting this version will permanently delete:
