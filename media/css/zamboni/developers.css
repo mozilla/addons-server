@@ -208,17 +208,28 @@ ul.refinements:last-child {
     width: 80%;
 }
 
-form .char-count {
+form .char-count,
+.html-rtl form .edit-addon-details .char-count {
+    float: left;
+}
+.html-rtl form .char-count,
+form .edit-addon-details .char-count {
     float: right;
 }
-.html-rtl form .char-count {
-    float: left;
+
+form .char-count {
+    font-size: 0.8em;
+}
+form .edit-addon-details .char-count {
+    font-size: 1em;
 }
 
 form .char-count.error {
     margin-bottom: 0;
 }
 
+form .char-count b,
+span.locale,
 .devhub-form label {
     font-weight: normal;
 }
@@ -227,11 +238,14 @@ form .char-count.error {
     display: inline;
 }
 
+form .char-count,
 span.locale {
     color: #888;
+}
+
+span.locale {
     display: block;
     font-size: .9em;
-    font-weight: normal;
     line-height: 1;
     margin-top: 2px;
 }
@@ -258,6 +272,10 @@ Bug 622030- TODO (potch) fix this later
 .edit-addon-details {
     padding-top: 3px;
     font-size: 0.8em;
+}
+
+.edit-addon-details,
+form .char-count b {
     color: #555;
 }
 

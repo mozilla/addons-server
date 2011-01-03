@@ -186,7 +186,6 @@ function addonFormSubmit() {
                 });
         });
         z.refreshL10n();
-        initCharCount();
     })(parent_div);
 }
 

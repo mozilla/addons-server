@@ -372,11 +372,12 @@ function slugify() {
 // Initializes character counters for textareas.
 function initCharCount() {
     var countChars = function(el, cc) {
-        var max = parseInt(cc.attr('data-maxlength')),
-            val = $(el).val(),
+        var el = $(el),
+            val = el.val(),
+            max = parseInt(cc.attr('data-maxlength')),
             left = max - val.length;
         if (left < 0) {
-            $(el).val(val.substring(0, max));
+            el.val(val.substring(0, max));
             left = 0;
         }
         // L10n: {0} is the number of characters left.
