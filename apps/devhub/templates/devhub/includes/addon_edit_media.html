@@ -88,7 +88,9 @@
                           {% endif %}
                         </div>
                         {{ form.id|safe }}
-                        <label>{{ _('Please provide a caption for this screen shot:') }}</label>
+                        <label data-for="{{ form.prefix }}-{{ form.caption.name }}" class="above-the-field">
+                          {{ _('Please provide a caption for this screen shot:') }}
+                        </label>
                         {{ form.caption|safe }}
                         <div class="preview_extra">
                           {{ form.upload_hash|safe }}
