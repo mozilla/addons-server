@@ -30,6 +30,7 @@ from applications.models import Application, AppVersion
 from devhub.forms import ContribForm, LicenseForm
 from devhub.models import ActivityLog, SubmitStep
 from files.models import File, FileUpload, Platform, FileValidation
+from reviews.models import Review
 from tags.models import Tag
 from users.models import UserProfile
 from versions.models import ApplicationsVersions, License, Version
@@ -613,6 +614,29 @@ class TestEditAuthor(TestOwnership):
         r = self.client.post(self.url, data)
         eq_(r.context['user_form'].non_form_errors(),
             ['Must have at least one owner.'])
+
+
+class TestVersionStats(test_utils.TestCase):
+    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
+
+    def setUp(self):
+        assert self.client.login(username='admin@mozilla.com',
+                                 password='password')
+
+    def test_counts(self):
+        addon = Addon.objects.get(id=3615)
+        version = addon.current_version
+        user = UserProfile.objects.get(email='admin@mozilla.com')
+        for _ in range(10):
+            Review.objects.create(addon=addon, user=user,
+                                  version=addon.current_version)
+
+        url = reverse('devhub.versions.stats', args=[addon.slug])
+        r = json.loads(self.client.get(url).content)
+        exp = {str(version.id):
+               {'reviews': 10, 'files': 1, 'version': version.version,
+                'id': version.id}}
+        self.assertDictEqual(r, exp)
 
 
 class TestEditPayments(test_utils.TestCase):
@@ -1212,17 +1236,6 @@ class TestEdit(test_utils.TestCase):
         assert '<script>alert' not in r.content
         assert '&lt;script&gt;alert' in r.content
 
-    def test_edit_basic_categories_other_success(self):
-        data = dict(name='new name',
-                    slug='test_slug',
-                    summary='new summary',
-                    categories=[22],  # 22 is now 'other'
-                    tags=', '.join(self.tags))
-
-        r = self.client.post(self.get_url('basic', True), data)
-
-        eq_(r.context['form'].errors, {})
-
     def test_edit_basic_categories_remove(self):
         category = Category.objects.get(id=23)
         AddonCategory(addon=self.addon, category=category).save()
@@ -1272,7 +1285,7 @@ class TestEdit(test_utils.TestCase):
         data = dict(name='new name',
                     slug='test_slug',
                     summary='new summary',
-                    categories=[22], # 22 is now 'other'
+                    categories=[22],  # 22 is now 'other'
                     tags=', '.join(self.tags))
 
         r = self.client.post(self.get_url('basic', True), data)
@@ -1287,7 +1300,7 @@ class TestEdit(test_utils.TestCase):
         data = dict(name='new name',
                     slug='test_slug',
                     summary='new summary',
-                    categories=[22, 23], # 22 is now 'other'
+                    categories=[22, 23],  # 22 is now 'other'
                     tags=', '.join(self.tags))
 
         r = self.client.post(self.get_url('basic', True), data)
@@ -3009,14 +3022,15 @@ class TestSubmitStep7(TestSubmitBase):
 
     def test_display_non_ascii_url(self):
         addon = Addon.objects.get(pk=3615)
-        addon.update(slug='フォクすけといっしょ')
-        r = self.client.get(reverse('devhub.submit.7', args=['フォクすけといっしょ']))
+        u = 'フォクすけといっしょ'
+        addon.update(slug=u)
+        r = self.client.get(reverse('devhub.submit.7', args=[u]))
         eq_(r.status_code, 200)
         # The meta charset will always be utf-8.
         doc = pq(r.content.decode('utf-8'))
         eq_(doc('#submitted-addon-url').text(),
-            u'%s/en-US/firefox/addon/%s/' % (settings.SITE_URL,
-                                             'フォクすけといっしょ'.decode('utf8')))
+            u'%s/en-US/firefox/addon/%s/' % (
+                settings.SITE_URL, u.decode('utf8')))
 
 
 class TestResumeStep(TestSubmitBase):

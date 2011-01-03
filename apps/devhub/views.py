@@ -753,10 +753,14 @@ def version_bounce(request, addon_id, addon, version):
 @json_view
 @dev_required
 def version_stats(request, addon_id, addon):
-    qs = (Version.objects.filter(addon=addon)
-          .annotate(reviews=Count('reviews'), files=Count('files'))
-          .values('id', 'version', 'reviews', 'files'))
-    return dict((v['id'], v) for v in qs)
+    qs = Version.objects.filter(addon=addon)
+    reviews = (qs.annotate(reviews=Count('reviews'))
+               .values('id', 'version', 'reviews'))
+    d = dict((v['id'], v) for v in reviews)
+    files = qs.annotate(files=Count('files')).values_list('id', 'files')
+    for id, files in files:
+        d[id]['files'] = files
+    return d
 
 
 Step = collections.namedtuple('Step', 'current max')
