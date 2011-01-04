@@ -73,6 +73,24 @@
       <input type="file" id="upload-file-input">
     </span>
   </div>
+  <div id="addon-platform-chooser">
+    <form method="post" id="create-addon" class="item" action="">
+      <ul>
+        <li><label for="id_platforms_0">
+          <input checked="checked" name="platforms" value="1" id="id_platforms_0" type="checkbox" class="platform" />
+          All Platforms</label></li>
+        <li><label for="id_platforms_1">
+          <input id="id_platforms_1" type="checkbox" class="platform" value="2" name="platforms" />
+          Linux</label></li>
+        <li><label for="id_platforms_2">
+          <input value="3" type="checkbox" id="id_platforms_2" name="platforms" class="platform" />
+          Mac OS X</label></li>
+        <li><label for="id_platforms_3">
+          <input class="platform" type="checkbox" id="id_platforms_3" value="5" name="platforms" />
+          Windows</label></li>
+      </ul>
+    </form>
+  </div>
 
   <script src="{{ url('jsi18n') }}/build:{{ BUILD_ID_JS }}"></script>
   {{ js('common') }}

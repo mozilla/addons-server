@@ -346,10 +346,12 @@ class NewAddonForm(happyforms.Form):
         queryset=FileUpload.objects.filter(valid=True),
         error_messages={'invalid_choice': _lazy('There was an error with your '
                                                 'upload. Please try again.')})
-    platform = File._meta.get_field('platform').formfield(empty_label=None,
-                    widget=forms.RadioSelect(attrs={'class': 'platform'}))
-    platform.choices = sorted((p.id, p.name)
-                              for p in amo.SUPPORTED_PLATFORMS.values())
+    platforms = forms.ModelMultipleChoiceField(
+            queryset=Platform.objects,
+            widget=forms.CheckboxSelectMultiple(attrs={'class': 'platform'}),
+            initial=[amo.PLATFORM_ALL.id])
+    platforms.choices = sorted((p.id, p.name)
+                               for p in amo.SUPPORTED_PLATFORMS.values())
 
     def clean(self):
         if not self.errors:
@@ -358,7 +360,15 @@ class NewAddonForm(happyforms.Form):
         return self.cleaned_data
 
 
-class NewVersionForm(NewAddonForm):
+class NewVersionForm(happyforms.Form):
+    upload = forms.ModelChoiceField(widget=forms.HiddenInput,
+        queryset=FileUpload.objects.filter(valid=True),
+        error_messages={'invalid_choice': _lazy('There was an error with your '
+                                                'upload. Please try again.')})
+    platform = File._meta.get_field('platform').formfield(empty_label=None,
+                    widget=forms.RadioSelect(attrs={'class': 'platform'}))
+    platform.choices = sorted((p.id, p.name)
+                              for p in amo.SUPPORTED_PLATFORMS.values())
 
     def __init__(self, *args, **kw):
         self.addon = kw.pop('addon')

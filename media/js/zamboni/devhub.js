@@ -70,6 +70,11 @@ $(document).ready(function() {
             });
         }));
     }
+
+    // Choosing platform when submitting an Addon and/or files.
+    if ($('input.platform').length) {
+        initPlatformChooser();
+    }
 });
 
 function initUploadControls() {
@@ -87,6 +92,25 @@ function initUploadControls() {
         $('#upload-status-bar').removeClass('progress-idle');
         fileUpload($(this), $(this).closest(".invisible-upload").attr('data-upload-url'));
         $('.upload-status').show();
+    });
+}
+
+function initPlatformChooser() {
+    $('input.platform').live('change', function(e) {
+        var form = $(this).parents('form');
+        if ($(this).val() == '1') {
+            // Platform=ALL
+            if ($(this).attr('checked')) {
+                // Uncheck all other platforms:
+                $('input.platform:not([value="1"])', form).attr('checked',
+                                                                 false);
+            }
+        } else {
+            if ($(this).attr('checked')) {
+                // Any other platform was checked so uncheck Platform=ALL
+                $('input.platform[value="1"]', form).attr('checked', false);
+            }
+        }
     });
 }
 

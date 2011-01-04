@@ -1,3 +1,6 @@
+import hashlib
+import os
+
 from datetime import datetime, timedelta
 from django.conf import settings
 
@@ -444,35 +447,72 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
     filename = 'extension.xpi'
 
     def test_carry_over_old_license(self):
-        version = Version.from_upload(self.upload, self.addon, self.platform)
+        version = Version.from_upload(self.upload, self.addon,
+                                      [self.platform])
         eq_(version.license_id, self.addon.current_version.license_id)
 
     def test_carry_over_license_no_version(self):
         self.addon.versions.all().delete()
-        version = Version.from_upload(self.upload, self.addon, self.platform)
+        version = Version.from_upload(self.upload, self.addon,
+                                      [self.platform])
         eq_(version.license_id, None)
 
     def test_app_versions(self):
-        version = Version.from_upload(self.upload, self.addon, self.platform)
+        version = Version.from_upload(self.upload, self.addon,
+                                      [self.platform])
         assert amo.FIREFOX in version.compatible_apps
         app = version.compatible_apps[amo.FIREFOX]
         eq_(app.min.version, '3.0')
         eq_(app.max.version, '3.6.*')
 
     def test_version_number(self):
-        version = Version.from_upload(self.upload, self.addon, self.platform)
+        version = Version.from_upload(self.upload, self.addon,
+                                      [self.platform])
         eq_(version.version, '0.1')
 
     def test_file_platform(self):
-        version = Version.from_upload(self.upload, self.addon, self.platform)
+        version = Version.from_upload(self.upload, self.addon,
+                                      [self.platform])
         files = version.all_files
         eq_(len(files), 1)
         eq_(files[0].platform, self.platform)
 
     def test_file_name(self):
-        version = Version.from_upload(self.upload, self.addon, self.platform)
+        version = Version.from_upload(self.upload, self.addon,
+                                      [self.platform])
         files = version.all_files
         eq_(files[0].filename, u'delicious_bookmarks-0.1-fx-mac.xpi')
+
+    def test_file_name_platform_all(self):
+        version = Version.from_upload(self.upload, self.addon,
+                            [Platform.objects.get(pk=amo.PLATFORM_ALL.id)])
+        files = version.all_files
+        eq_(files[0].filename, u'delicious_bookmarks-0.1-fx.xpi')
+
+    def test_multiple_platforms(self):
+        platforms = [Platform.objects.get(pk=amo.PLATFORM_LINUX.id),
+                     Platform.objects.get(pk=amo.PLATFORM_MAC.id)]
+        assert os.path.exists(self.upload.path)
+        with open(self.upload.path) as f:
+            uploaded_hash = hashlib.md5(f.read()).hexdigest()
+        version = Version.from_upload(self.upload, self.addon, platforms)
+        assert not os.path.exists(self.upload.path), (
+                "Expected original upload to move but it still exists.")
+        files = version.all_files
+        eq_(len(files), 2)
+        eq_(sorted([f.platform.id for f in files]),
+            sorted([p.id for p in platforms]))
+        eq_(sorted([f.filename for f in files]),
+            [u'delicious_bookmarks-0.1-fx-%s.xpi' % (
+                        amo.PLATFORM_LINUX.shortname),
+             u'delicious_bookmarks-0.1-fx-%s.xpi' % (
+                        amo.PLATFORM_MAC.shortname)])
+        for file in files:
+            with open(file.file_path) as f:
+                eq_(uploaded_hash,
+                    hashlib.md5(f.read()).hexdigest(),
+                    "md5 hash of %r does not match uploaded file" %
+                                                        file.file_path)
 
 
 class TestSearchVersionFromUpload(TestVersionFromUpload):
@@ -485,16 +525,27 @@ class TestSearchVersionFromUpload(TestVersionFromUpload):
         self.now = datetime.now().strftime('%Y%m%d')
 
     def test_version_number(self):
-        version = Version.from_upload(self.upload, self.addon, self.platform)
+        version = Version.from_upload(self.upload, self.addon,
+                                      [self.platform])
         eq_(version.version, self.now)
 
     def test_file_name(self):
-        version = Version.from_upload(self.upload, self.addon, self.platform)
+        version = Version.from_upload(self.upload, self.addon,
+                                      [self.platform])
+        files = version.all_files
+        eq_(files[0].filename,
+            u'delicious_bookmarks-%s-%s.xml' % (
+                        self.now, amo.PLATFORMS[self.platform.id].shortname))
+
+    def test_file_name_platform_all(self):
+        version = Version.from_upload(self.upload, self.addon,
+                            [Platform.objects.get(pk=amo.PLATFORM_ALL.id)])
         files = version.all_files
         eq_(files[0].filename, u'delicious_bookmarks-%s.xml' % self.now)
 
     def test_file_platform(self):
-        version = Version.from_upload(self.upload, self.addon, self.platform)
+        version = Version.from_upload(self.upload, self.addon,
+                                      [self.platform])
         files = version.all_files
         eq_(len(files), 1)
-        eq_(files[0].platform, Platform.objects.get(id=amo.PLATFORM_ALL.id))
+        eq_(files[0].platform, self.platform)

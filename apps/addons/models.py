@@ -291,14 +291,14 @@ class Addon(amo.models.ModelBase):
         return rv
 
     @classmethod
-    def from_upload(cls, upload, platform):
+    def from_upload(cls, upload, platforms):
         from files.utils import parse_addon
         data = parse_addon(upload.path)
         fields = cls._meta.get_all_field_names()
         addon = Addon(**dict((k, v) for k, v in data.items() if k in fields))
         addon.status = amo.STATUS_NULL
         addon.save()
-        Version.from_upload(upload, addon, platform)
+        Version.from_upload(upload, addon, platforms)
         log.debug('New addon %r from %r' % (addon, upload))
         return addon
 

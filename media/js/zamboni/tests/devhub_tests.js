@@ -885,4 +885,39 @@ asyncTest('form errors are cleared', function() {
 });
 
 
+module('addon platform chooser', {
+    setup: function() {
+        this.sandbox = tests.createSandbox('#addon-platform-chooser');
+    },
+    teardown: function() {
+        this.sandbox.remove();
+    },
+    check: function(sel) {
+        $(sel, this.sandbox).attr('checked',true);
+        $(sel, this.sandbox).trigger('change');
+    }
+});
+
+test('platforms > ALL', function() {
+    // Check some platforms:
+    this.check('input[value="2"]');
+    this.check('input[value="3"]');
+    // Check ALL platforms:
+    this.check('input[value="1"]');
+    equals($('input[value="2"]', this.sandbox).attr('checked'),
+           false);
+    equals($('input[value="3"]', this.sandbox).attr('checked'),
+           false);
+});
+
+test('ALL > platforms', function() {
+    // Check ALL platforms:
+    this.check('input[value="1"]');
+    // Check any other platform:
+    this.check('input[value="2"]');
+    equals($('input[value="1"]', this.sandbox).attr('checked'),
+           false);
+});
+
+
 });
