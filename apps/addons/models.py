@@ -922,45 +922,6 @@ class AddonCategory(caching.CachingMixin, models.Model):
         return rv
 
 
-class PledgeManager(amo.models.ManagerBase):
-
-    def ongoing(self):
-        """Get non-expired pledges only"""
-        return self.filter(deadline__gte=date.today())
-
-
-class AddonPledge(amo.models.ModelBase):
-    addon = models.ForeignKey(Addon, related_name='pledges')
-    target = models.PositiveIntegerField()  # Only $ for now
-    what_ima_gonna_do = TranslatedField()
-    active = models.BooleanField(default=False)
-    deadline = models.DateField(null=True)
-
-    objects = PledgeManager()
-
-    class Meta:
-        db_table = 'addons_pledges'
-        ordering = ('-deadline',)
-
-    @property
-    def contributions(self):
-        return ContributionStats.objects.filter(
-            addon=self.addon, created__gte=self.created,
-            created__lte=self.deadline, transaction_id__isnull=False)
-
-    @amo.cached_property
-    def num_users(self):
-        return self.contributions.count()
-
-    @amo.cached_property
-    def raised(self):
-        qs = self.contributions.aggregate(raised=Sum('amount'))
-        return qs['raised'] or 0
-
-    def __unicode__(self):
-        return '%s ($%s, %s)' % (self.addon.name, self.target, self.deadline)
-
-
 class AddonRecommendation(models.Model):
     """
     Add-on recommendations. For each `addon`, a group of `other_addon`s

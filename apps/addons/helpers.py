@@ -65,14 +65,6 @@ def contribution(context, addon, text=None, src='', show_install=False,
         show_install: Whether or not to show the install button.
         show_help: Show "What's this?" link?
     """
-
-    # prepare pledge
-    try:
-        pledge = addon.pledges.ongoing()[0]
-        src = '%s-pledge-%s' % (src, pledge.id)
-    except IndexError:
-        pledge = None
-
     has_suggested = bool(addon.suggested_amount)
     return new_context(**locals())
 
@@ -82,9 +74,7 @@ def contribution(context, addon, text=None, src='', show_install=False,
 def review_list_box(context, addon, reviews):
     """Details page: Show a box with three add-on reviews."""
     c = dict(context.items())
-    c.update({'addon': addon,
-              'reviews': reviews,
-             })
+    c.update(addon=addon, reviews=reviews)
     return c
 
 

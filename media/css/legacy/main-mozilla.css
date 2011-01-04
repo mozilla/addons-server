@@ -2337,53 +2337,6 @@ div.visit-listed-popup {
 }
 /* END Listed add-ons */
 
-/* Pledge Box */
-
-.o-meter {
-    display: table;
-    margin: 1em 0;
-    width: 100%;
-}
-
-.raised, .goal {
-    width: 14%;
-    display: table-cell;
-}
-
-.o-meter dt {
-    margin-top: 0;
-}
-
-.pledge-o-meter {
-    width: 100%;
-    display: table-cell;
-    vertical-align: text-top;
-}
-
-.pledgebox h3 {
-    font-style: italic;
-}
-
-.pledgebox p {
-    margin-bottom: 0;
-}
-
-.pledgebox .money {
-    display: block;
-    font-weight: bold;
-    font-size: 140%;
-}
-
-.raised {
-    color: #223355;
-}
-
-.goal {
-    text-align: right;
-    color: #666;
-}
-/* END Pledge Box */
-
 /* Beta Channel */
 
 .install-beta {

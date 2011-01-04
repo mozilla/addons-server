@@ -3,64 +3,24 @@
   {% set charity_name = addon.charity.name %}
 {% endif %}
 <div class="notification">
-  {% if pledge %}
-    {% cache pledge %}
-      <div class="pledgebox">
-        {% with target=pledge.target|float|currencyfmt('USD') %}
-        {# L10n: {0} is a number #}
-        <h3>{{ _('Help the developer of this add-on raise {0} to support '
-                 'its continued development.')|f(target) }}</h3>
-        <p>{{ pledge.what_ima_gonna_do }}</p>
-        <div class="o-meter">
-          <dl class="raised">
-            <dt>
-              {# L10n: title for the amount of money a developer has raised #}
-              {{ _('Raised') }}
-            </dt>
-            <dd>
-              {# L10n: {0} is a number, {1} is a user count #}
-              {{ _('<span class="money">{0}</span> from {1} users')|f(
-                pledge.raised|float|currencyfmt('USD'), pledge.num_users)|safe }}
-            </dd>
-          </dl>
-          <canvas class="pledge-o-meter"
-                  data-ratio="{{ pledge.raised / pledge.target|float }}"
-                  data-radius="14" height="70px"></canvas>
-          <dl class="goal">
-            <dt>
-              {# L10n: title for the amount of money a developer would like to raise #}
-              {{ _('Goal') }}
-            </dt>
-            <dd>
-              {# L10n: {0} is a number, {1} is a username #}
-              {{ _('<span class="money">{0}</span> by {1}')|f(
-                target, pledge.deadline|datetime(_('%b %d')))|safe }}
-            </dd>
-          </dl>
-        </div>
-        {% endwith %}
-      </div>{# /pledgebox #}
-    {% endcache %}
-  {% else %}
-    <h3>
-      {% if text %}
-        {{ text }}
-      {% elif not addon.charity %}
-        {{ _('The developer of this add-on asks that you help support its '
-             'continued development by making a small contribution.') }}
-      {% elif addon.charity_id == amo.FOUNDATION_ORG %}
-        {% trans %}
-          The developer of this add-on asks that you show your support
-          by making a donation to the <a href="{{ charity_url }}">{{ charity_name }}</a>.
-        {% endtrans %}
-      {% else %}
-        {% trans %}
-          The developer of this add-on asks that you show your support
-          by making a small contribution to the <a href="{{ charity_url }}">{{ charity_name }}</a>.
-        {% endtrans %}
-      {% endif %}
-    </h3>
-  {% endif %}
+  <h3>
+    {% if text %}
+      {{ text }}
+    {% elif not addon.charity %}
+      {{ _('The developer of this add-on asks that you help support its '
+           'continued development by making a small contribution.') }}
+    {% elif addon.charity_id == amo.FOUNDATION_ORG %}
+      {% trans %}
+        The developer of this add-on asks that you show your support
+        by making a donation to the <a href="{{ charity_url }}">{{ charity_name }}</a>.
+      {% endtrans %}
+    {% else %}
+      {% trans %}
+        The developer of this add-on asks that you show your support
+        by making a small contribution to the <a href="{{ charity_url }}">{{ charity_name }}</a>.
+      {% endtrans %}
+    {% endif %}
+  </h3>
 
   <div class="aux">
     <div class="button-wrapper">

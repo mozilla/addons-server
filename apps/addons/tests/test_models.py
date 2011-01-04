@@ -439,43 +439,6 @@ class TestCategoryModel(test_utils.TestCase):
             assert cat.get_url_path()
 
 
-class TestAddonPledgeModel(test_utils.TestCase):
-    fixtures = ['stats/test_models']
-
-    def test_ongoing(self):
-        """Make sure ongoing pledges are returned correctly."""
-        myaddon = Addon.objects.get(id=4)
-        mypledge = AddonPledge(addon=myaddon, target=10,
-                               created=date(2009, 6, 1),
-                               deadline=date(2009, 7, 1))
-        mypledge.save()
-
-        mypledge2 = AddonPledge(addon=myaddon, target=10,
-                                created=date(2009, 6, 1),
-                                deadline=date.today())
-        mypledge2.save()
-
-        ongoing = AddonPledge.objects.ongoing()
-        eq_(ongoing.count(), 1)
-        eq_(ongoing[0], mypledge2)
-
-    def test_contributions(self):
-        myaddon = Addon.objects.get(id=4)
-        mypledge = AddonPledge(addon=myaddon, target=10,
-                               created=date(2009, 6, 1),
-                               deadline=date(2009, 7, 1))
-
-        # Only the two valid contributions must be counted.
-        eq_(mypledge.num_users, 2)
-        self.assertAlmostEqual(mypledge.raised, 4.98)
-
-    def test_raised(self):
-        """AddonPledge.raised should never return None."""
-        pledge = AddonPledge.objects.create(addon_id=4, target=230,
-                                            deadline=date.today())
-        eq_(pledge.raised, 0)
-
-
 class TestPersonaModel(test_utils.TestCase):
 
     def test_image_urls(self):
