@@ -82,13 +82,6 @@ def extract_filters(term, kwargs):
         ('type' not in kwargs or kwargs['type'] != amo.ADDON_PERSONA)):
         excludes['num_files'] = 0
 
-    # STATUS_DISABLED and 0 (which likely means null) are filtered
-    excludes['addon_status'] = (amo.STATUS_NULL, amo.STATUS_DISABLED,)
-
-    if settings.SANDBOX_PANIC:
-        excludes['addon_status'] = (excludes['addon_status'] +
-                                    amo.UNREVIEWED_STATUSES)
-
     (term, platform) = extract_from_query(term, 'platform', '\w+', kwargs)
 
     # platform filtering

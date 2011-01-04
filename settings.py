@@ -631,10 +631,6 @@ CSP_FRAME_SRC = ("'none'",)
 CSP_FONT_SRC = ("'self'", "fonts.mozilla.com", "www.mozilla.com", )
 CSP_FRAME_ANCESTORS = ("'none'",)  # We also send x-frame-options:DENY
 
-# If you don't want experimental add-ons to show up in any search results or
-# have detail pages, flip this switch
-SANDBOX_PANIC = False
-
 # Should robots.txt deny everything or disallow a calculated list of URLs we
 # don't want to be crawled?  Default is false, disallow everything.
 ENGAGE_ROBOTS = False
@@ -644,6 +640,7 @@ READ_ONLY = False
 
 # Do you want the Fx4 beta promo to show up?  bug 592690
 BETA_PROMO = True
+
 
 # Turn on read-only mode in settings_local.py by putting this line
 # at the VERY BOTTOM: read_only_mode(globals())
