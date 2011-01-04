@@ -9,7 +9,7 @@
     </a>
   </h3>
   <ul id="categoriesdropdown">
-    {% set categories, types = sidebar(request.APP) %}
+    {% set categories, types = sidebar(request.APP or amo.FIREFOX) %}
     <li>
       <ul>
         {% for category in categories %}
