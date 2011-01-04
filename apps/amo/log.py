@@ -33,14 +33,14 @@ class EDIT_CATEGORIES:
 
 class ADD_USER_WITH_ROLE:
     id = 5
-    format = _(u'{0.name}({1}) added to {addon}.')
+    format = _(u'{0.name} ({1}) added to {addon}.')
     keep = True
 
 
 class REMOVE_USER_WITH_ROLE:
     id = 6
     # L10n: {0} is the user being removed, {1} is their role.
-    format = _(u'{0.name}({1}) removed from {addon}.')
+    format = _(u'{0.name} ({1}) removed from {addon}.')
     keep = True
 
 
