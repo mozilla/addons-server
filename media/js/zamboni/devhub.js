@@ -364,7 +364,7 @@ function initUploadIcon() {
         });
 
         if($('input[name=icon_type]:checked').val().match(/^image\//)) {
-            setTimeout(checkIconStatus, 1000);
+            setTimeout(checkImageStatus, 1000);
         }
     });
 
@@ -1056,21 +1056,22 @@ function initCompatibility() {
     });
 }
 
-function checkIconStatus() {
-    $.getJSON($('#edit-addon-media').attr('check-url'),
+function checkImageStatus() {
+    $.getJSON($('#edit-addon-media').attr('data-checkurl'),
         function(json) {
             var node = $('#edit-addon-media');
-            if (json) {
+            if (json['overall']) {
                 node.find('b.save-badge').remove();
-                var img = $("#icon_preview_readonly img");
-                img.attr('src', img.attr('src'));
+                node.find('img').each(function() {
+                    $(this).attr('src', $(this).attr('src'));
+                })
             } else {
                 if (!node.find('b.save-badge').length) {
                     $(format('<b class="save-badge">{0}</b>',
-                      [gettext('Icon change being processed.')]))
+                      [gettext('Image changes being processed.')]))
                     .appendTo(node.find('h3').first());
                 }
-                setTimeout(checkIconStatus, 1000);
+                setTimeout(checkImageStatus, 1000);
             }
         }
     );

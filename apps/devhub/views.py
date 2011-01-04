@@ -520,8 +520,8 @@ def json_file_validation(request, addon_id, addon, file_id):
 def json_upload_detail(upload):
     if not settings.VALIDATE_ADDONS:
         upload.task_error = ''
-        upload.validation = json.dumps({'errors': 0, 'messages':[],
-                                        'notices':0, 'warnings':0})
+        upload.validation = json.dumps({'errors': 0, 'messages': [],
+                                        'notices': 0, 'warnings': 0})
         upload.save()
 
     validation = json.loads(upload.validation) if upload.validation else ""
@@ -607,9 +607,14 @@ def addons_section(request, addon_id, addon, section, editable=False):
 @never_cache
 @dev_required
 @json_view
-def icon_status(request, addon_id, addon):
-    destination = os.path.join(addon.get_icon_dir(), '%s-32.png' % addon.id)
-    return os.path.exists(destination)
+def image_status(request, addon_id, addon):
+    icons = os.path.exists(os.path.join(addon.get_icon_dir(),
+                                        '%s-32.png' % addon.id))
+    previews = all(os.path.exists(p.thumbnail_path)
+                   for p in addon.previews.all())
+    return {'overall': icons and previews,
+            'icons': icons,
+            'previews': previews}
 
 
 @json_view

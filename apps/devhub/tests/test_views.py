@@ -973,6 +973,18 @@ class TestEdit(test_utils.TestCase):
 
         self.addon = self.get_addon()
 
+        self.old_settings = {
+            'preview': settings.PREVIEW_THUMBNAIL_PATH,
+            'icons': settings.ADDON_ICONS_PATH
+        }
+        settings.PREVIEW_THUMBNAIL_PATH = tempfile.mkstemp()[1] + '%s/%d.png'
+        settings.ADDON_ICONS_PATH = tempfile.mkdtemp()
+
+    def tearDown(self):
+        reset_redis(self._redis)
+        settings.PREVIEW_THUMBNAIL_PATH = self.old_settings['preview']
+        settings.ADDON_ICONS_PATH = self.old_settings['icons']
+
     def formset_new_form(self, *args, **kw):
         ctx = self.client.get(self.get_url('media', True)).context
 
@@ -986,9 +998,6 @@ class TestEdit(test_utils.TestCase):
 
         fs = formset(*[a for a in args] + [self.formset_new_form()], **kw)
         return dict([(k, '' if v is None else v) for k, v in fs.items()])
-
-    def tearDown(self):
-        reset_redis(self._redis)
 
     def get_addon(self):
         return Addon.objects.no_cache().get(id=3615)
@@ -1552,25 +1561,46 @@ class TestEdit(test_utils.TestCase):
         error = 'Icons must be either PNG or JPG.'
         self.assertFormError(r, 'form', 'icon_upload', error)
 
-    def setup_icon_status(self):
-        self.tempdir = tempfile.mkdtemp()
+    def setup_image_status(self):
         addon = self.get_addon()
-        self.icon_dest = os.path.join(self.tempdir, '%s-32.png' % addon.id)
-        shutil.copyfile(get_image_path('non-animated.png'), self.icon_dest)
-        self.url = reverse('devhub.icon.status', args=[addon.slug])
+        self.icon_dest = os.path.join(addon.get_icon_dir(),
+                                      '%s-32.png' % addon.id)
+        os.makedirs(os.path.dirname(self.icon_dest))
+        open(self.icon_dest, 'w')
 
-    @mock.patch('apps.addons.models.Addon.get_icon_dir')
-    def test_icon_status_works(self, get_icon_dir):
-        self.setup_icon_status()
-        get_icon_dir.return_value = self.tempdir
-        eq_(self.client.get(self.url).content, 'true')
+        self.preview = addon.previews.create()
+        self.preview.save()
+        os.makedirs(os.path.dirname(self.preview.thumbnail_path))
+        open(self.preview.thumbnail_path, 'w')
 
-    @mock.patch('apps.addons.models.Addon.get_icon_dir')
-    def test_icon_status_fails(self, get_icon_dir):
-        self.setup_icon_status()
-        get_icon_dir.return_value = self.tempdir
+        self.url = reverse('devhub.ajax.image.status', args=[addon.slug])
+
+    def test_image_status_works(self):
+        self.setup_image_status()
+        result = json.loads(self.client.get(self.url).content)
+        assert result['icons']
+
+    def test_image_status_fails(self):
+        self.setup_image_status()
         os.remove(self.icon_dest)
-        eq_(self.client.get(self.url).content, 'false')
+        result = json.loads(self.client.get(self.url).content)
+        assert not result['icons']
+
+    def test_preview_status_works(self):
+        self.setup_image_status()
+        result = json.loads(self.client.get(self.url).content)
+        assert result['previews']
+
+        # No previews means that all the images are done.
+        self.addon.previews.all().delete()
+        result = json.loads(self.client.get(self.url).content)
+        assert result['previews']
+
+    def test_preview_status_fails(self):
+        self.setup_image_status()
+        os.remove(self.preview.thumbnail_path)
+        result = json.loads(self.client.get(self.url).content)
+        assert not result['previews']
 
     def test_icon_animated(self):
         filehandle = open(get_image_path('animated.png'), 'rb')

@@ -65,8 +65,6 @@ detail_patterns = patterns('',
     url('^request-review/(?P<status>[%s])$'
         % ''.join(map(str, views.REQUEST_REVIEW)),
         views.request_review, name='devhub.request-review'),
-
-    url('^icon/status', views.icon_status, name='devhub.icon.status')
 )
 
 # These will all start with /ajax/addon/<addon_id>/
@@ -77,6 +75,7 @@ ajax_patterns = patterns('',
         views.ajax_compat_error, name='devhub.ajax.compat.error'),
     url('^versions/(?P<version_id>\d+)/compatibility$',
         views.ajax_compat_update, name='devhub.ajax.compat.update'),
+    url('^image/status$', views.image_status, name='devhub.ajax.image.status')
 )
 
 urlpatterns = decorate(write, patterns('',
