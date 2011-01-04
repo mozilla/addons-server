@@ -19,6 +19,8 @@ log = logging.getLogger('z.devhub.task')
 @task(queue='devhub')
 @write
 def validator(upload_id, **kw):
+    if not settings.VALIDATE_ADDONS:
+        return None
     log.info('VALIDATING: %s' % upload_id)
     upload = FileUpload.objects.get(pk=upload_id)
     try:
@@ -36,6 +38,8 @@ def validator(upload_id, **kw):
 @task(queue='devhub')
 @write
 def file_validator(file_id, **kw):
+    if not settings.VALIDATE_ADDONS:
+        return None
     log.info('VALIDATING file: %s' % file_id)
     file = File.objects.get(pk=file_id)
     # Unlike upload validation, let the validator
