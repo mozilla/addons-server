@@ -58,14 +58,26 @@ $(document).ready(function() {
         $('.upload-status').bind('upload-success', function(e, json) {
             $("#upload-file-finish").attr("disabled", false);
             $("#id_upload").val(json.upload);
+            $modal.setPos();
         }).bind('upload-error', function() {
             $("#upload-file-finish").attr("disabled", true);
+            $modal.setPos();
         });
         $('.upload-file-cancel').click(_pd($modal.hideMe));
         $('#upload-file').submit(_pd(function(e) {
-            $.post($(this).attr('action'), $(this).serialize(), function(response) {
-                if (response.url) {
-                    window.location = response.url;
+            $.ajax({
+                url: $(this).attr('action'),
+                type: 'post',
+                data: $(this).serialize(),
+                success: function(response) {
+                    if (response.url) {
+                        window.location = response.url;
+                    }
+                },
+                error: function(xhr) {
+                    var errors = $.parseJSON(xhr.responseText);
+                    $("#upload-file").find(".upload-status").before(generateErrorList(errors));
+                    $modal.setPos();
                 }
             });
         }));
@@ -683,6 +695,13 @@ function resetFileInput() {
     $('#upload-file-input').replaceWith(upload); // Clear file input
 }
 
+function generateErrorList(o) {
+    var list = $("<ul class='errorlist'></ul>");
+    $.each(o, function(i, v) {
+        list.append($(format("<li>{0}</li>", v)));
+    });
+    return list;
+}
 
 function initEditVersions() {
     if (z.noEdit) return;
@@ -705,6 +724,7 @@ function initEditVersions() {
     // Handle uploader events
     $('.upload-status').bind('upload-success', function(e,json) {
         $("#upload-file-finish").attr("disabled", false);
+        $modal.setPos();
         $("#id_upload").val(json.upload);
     }).bind('upload-error', function() {
         $modal.setPos(); // Reposition since the error report has been added.
@@ -715,12 +735,22 @@ function initEditVersions() {
         e.preventDefault();
         $tgt = $(this);
         if ($tgt.attr("disabled")) return;
-        $.post($("#upload-file").attr("action"), $("#upload-file").serialize(), function (resp) {
-            $("#file-list tbody").append(resp);
-            var new_total = $("#file-list tr").length / 2;
-            $("#id_files-TOTAL_FORMS").val(new_total);
-            $("#id_files-INITIAL_FORMS").val(new_total);
-            $modal.hideMe();
+        $.ajax({
+            url: $("#upload-file").attr("action"),
+            type: 'post',
+            data: $("#upload-file").serialize(),
+            success: function (resp) {
+                $("#file-list tbody").append(resp);
+                var new_total = $("#file-list tr").length / 2;
+                $("#id_files-TOTAL_FORMS").val(new_total);
+                $("#id_files-INITIAL_FORMS").val(new_total);
+                $modal.hideMe();
+            },
+            error: function(xhr) {
+                var errors = $.parseJSON(xhr.responseText);
+                $("#upload-file").find(".upload-status").before(generateErrorList(errors));
+                $modal.setPos();
+            }
         });
     });
 
