@@ -18,7 +18,10 @@
   <div class="item_wrapper">
     <table>
       <tr>
-        <th>{{ _('Authors') }}</th>
+        <th>
+          {{ _('Authors') }}
+          <a id="what-are-roles" href="#">{{ _('About author roles') }}</a>
+        </th>
         <td>
           {{ user_form.non_form_errors()|safe }}
           <ul id="author_list">
@@ -60,7 +63,7 @@
 </section>
 {% include "devhub/includes/addons_edit_nav.html" %}
 
-<div id="author-roles-help" class="prose modal hidden">
+<div id="author-roles-help" class="popup">
 {% trans %}
 Add-ons can have any number of authors with 3 possible roles:
 <ul>

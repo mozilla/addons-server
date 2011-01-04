@@ -834,6 +834,15 @@ input.valid {
 .priv label {
     font-weight: bold;
 }
+#author-roles-help {
+    display: none;
+}
+#what-are-roles {
+    clear: left;
+    float: left;
+    font-size: .9em;
+    font-weight: normal;
+}
 /* @end */
 
 /* @group Payments */
