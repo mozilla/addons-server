@@ -6,7 +6,7 @@
     <span title="{{ version.created|isotime }}">{{
       version.created|datetime }}</span>
     {% if version.has_files %}
-      <span>{{ _('{0} KB')|f(version.all_files[0].size|int|numberfmt) }}</span>
+      <span>{{ (version.all_files[0].size * 1024)|filesizeformat }}</span>
     {% endif %}
   </h3>
 
