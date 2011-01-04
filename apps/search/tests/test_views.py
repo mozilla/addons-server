@@ -50,16 +50,17 @@ class PersonaSearchTest(SphinxTestCase):
 
 class FrontendSearchTest(SphinxTestCase):
     fixtures = ('base/addon_3615', 'base/appversions',
-                'base/addon_6704_grapple')
-
-    def setUp(self):
-        # Warms up the prefixer.
-        self.client.get('/')
-        super(FrontendSearchTest, self).setUp()
+                'base/addon_6704_grapple', 'addons/persona')
 
     def get_response(self, **kwargs):
         return self.client.get(reverse('search.search') +
                                '?' + urllib.urlencode(kwargs))
+
+    def test_default_no_personas(self):
+        """Reverting the personas experiment... for now.  bug 618622"""
+        r = self.get_response(q='My Persona')
+        doc = pq(r.content)
+        eq_(len(doc('.item')), 0)
 
     def test_xss(self):
         """Inputs should be escaped so people don't XSS."""

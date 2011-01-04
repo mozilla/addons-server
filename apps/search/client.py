@@ -104,6 +104,9 @@ def extract_filters(term, kwargs):
             addon_type = types.get(addon_type.lower())
 
         filters['type'] = addon_type
+    elif settings.SEARCH_EXCLUDE_PERSONAS and not kwargs.get('show_personas'):
+        # by default, we exclude Personas
+        excludes['type'] = amo.ADDON_PERSONA
 
     # Guid filtering..
     (term, guids) = extract_from_query(term, 'guid', '[\s{}@_\.,\-0-9a-zA-Z]+',
