@@ -49,7 +49,6 @@ def extract_filters(term, kwargs):
     # the model, this index is based on the db column.
     filters = {'inactive': 0}
     excludes = {}
-    ranges = {}
 
     # Status filtering
     filters['addon_status'] = SEARCHABLE_STATUSES
@@ -145,7 +144,7 @@ def extract_filters(term, kwargs):
         else:
             filters['tag'] = -1
 
-    return (term, filters, excludes, ranges)
+    return (term, filters, excludes)
 
 
 def get_locale_ord():
@@ -382,16 +381,13 @@ class Client(object):
         sc.SetFieldWeights({'name': 100})
 
         # Extract and apply various filters.
-        (term, includes, excludes, ranges) = extract_filters(term, kwargs)
+        (term, includes, excludes) = extract_filters(term, kwargs)
 
         for filter, value in includes.iteritems():
             self.add_filter(filter, value)
 
         for filter, value in excludes.iteritems():
             self.add_filter(filter, value, exclude=True)
-
-        for filter, value in ranges.iteritems():
-            self.sphinx.SetFilterRange(filter, value[0], value[1])
 
         # Sanitize the term before we start adding queries.
         term = sanitize_query(term)
