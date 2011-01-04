@@ -1,6 +1,9 @@
+{% from "devhub/includes/macros.html" import tip %}
+
 {% if version %}
   <tr>
-    <th>{{ _('License') }}</th>
+    <th>{{ tip(_('License'),
+               _('Please choose a license appropriate for the rights you grant on your source code.')) }}</th>
     <td>
       {{ license_form.builtin.errors|safe }}
       {{ license_form.builtin|safe }}

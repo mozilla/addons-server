@@ -844,6 +844,12 @@ function initAuthorFields() {
     });
     addAuthorRow();
 
+    // Add the help line after the blank author row.
+    $(format('<a id="what-are-roles" href="#">{0}</a>', gettext('What are roles?')))
+        .insertAfter('#author_list .blank .email-autocomplete')
+        .css({display: 'inline', 'margin-left': '5px'});
+    $('#author-roles-help').popup('#what-are-roles');
+
     $(".author .errorlist").each(function() {
         $(this).parent()
             .find(".email-autocomplete")

@@ -59,4 +59,16 @@
 {% endwith %}
 </section>
 {% include "devhub/includes/addons_edit_nav.html" %}
+
+<div id="author-roles-help" class="prose modal hidden">
+{% trans %}
+Add-ons can have any number of authors with 3 possible roles:
+<ul>
+  <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li>
+  <li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors and managing marketplace/contributions</li>
+  <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot make any changes</li>
+</ul>
+{% endtrans %}
+<a href="#" class="close">{{ _('Close') }}</a>
+</div>
 {% endblock %}
