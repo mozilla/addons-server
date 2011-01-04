@@ -57,8 +57,8 @@ def download_file(request, file_id, type=None):
     file = get_object_or_404(File.objects, pk=file_id)
     addon = get_object_or_404(Addon.objects, pk=file.version.addon_id)
 
-    if (addon.is_disabled
-        and not acl.check_ownership(request, addon)):
+    if (addon.is_disabled and not
+        acl.has_perm(request, addon, viewer=True, ignore_disabled=True)):
         raise http.Http404()
 
     attachment = (type == 'attachment' or not request.APP.browser)

@@ -9,8 +9,12 @@ from tower import ugettext as _, ungettext as ngettext
 import amo
 from amo.urlresolvers import reverse
 from amo.helpers import breadcrumbs, page_title
+from access import acl
 from addons.helpers import new_context
 from . import views
+
+
+register.function(acl.has_perm)
 
 
 @register.inclusion_tag('devhub/addons/listing/items.html')
@@ -98,11 +102,6 @@ def status_class(addon):
     else:
         cls = classes.get(addon.status, 'none')
     return 'status-' + cls
-
-
-@register.function
-def can_edit_addon(request, addon):
-    return views.can_edit(request, addon)
 
 
 @register.function

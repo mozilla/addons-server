@@ -32,7 +32,7 @@ def action_allowed(request, app, action):
 def check_ownership(request, obj, require_owner=False):
     """Check if request.user has permissions for the object."""
     if isinstance(obj, Addon):
-        return check_addon_ownership(request, obj, require_owner)
+        return has_perm(request, obj, viewer=not require_owner)
     elif isinstance(obj, Collection):
         return check_collection_ownership(request, obj, require_owner)
     else:
@@ -66,3 +66,23 @@ def check_addon_ownership(request, addon, require_owner=False):
 
     return bool(addon.authors.filter(addonuser__role__in=roles,
                                      user=request.amo_user))
+
+
+def has_perm(request, addon, viewer=False, dev=False, ignore_disabled=False):
+    if not request.user.is_authenticated():
+        return False
+    # Admins can do anything.
+    if action_allowed(request, 'Admin', 'EditAnyAddon'):
+        return True
+    # Only admins can edit admin-disabled addons.
+    if addon.status == amo.STATUS_DISABLED and not ignore_disabled:
+        return False
+    # Addon owners can do everything else.
+    roles = (amo.AUTHOR_ROLE_OWNER,)
+    if dev:
+        roles += (amo.AUTHOR_ROLE_DEV,)
+    # Viewer privs are implied for devs.
+    elif viewer:
+        roles += (amo.AUTHOR_ROLE_DEV, amo.AUTHOR_ROLE_VIEWER)
+    return addon.authors.filter(user=request.amo_user,
+                                addonuser__role__in=roles).exists()

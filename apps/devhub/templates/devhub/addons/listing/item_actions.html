@@ -1,12 +1,14 @@
 <h5>{{ _('Actions') }}</h5>
 <ul>
 {% if addon.is_incomplete() %}
-  {% if can_edit_addon(request, addon) %}
+  {% if has_perm(request, addon, dev=True) %}
     <li>
       <a href="{{ url('devhub.submit.resume', addon.slug) }}" class="tooltip"
          title="{{ _("Resume the submission process for this add-on.")}}">
       {{ _('Resume') }}</a>
     </li>
+  {% endif %}
+  {% if has_perm(request, addon) %}
     <li>
       <a href="#" class="delete-addon tooltip"
          title="{{ _('Delete this add-on.') }}">{{ _('Delete') }}</a>
@@ -16,7 +18,7 @@
     </li>
   {% endif %}
 {% else %}
-  {% if can_edit_addon(request, addon) %}
+  {% if has_perm(request, addon, dev=True) %}
     <li>
       <a href="{{ url('devhub.addons.edit', addon.slug) }}" class="tooltip"
          title="{{ _("Edit details about this add-on's listing.") }}">

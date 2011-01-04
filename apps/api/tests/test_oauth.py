@@ -569,7 +569,7 @@ class TestAddon(BaseOauth):
                        self.token, data={}, content_type=MULTIPART_CONTENT)
         eq_(r.status_code, 410, r.content)
 
-    @patch('access.acl.check_ownership')
+    @patch('access.acl.has_perm')
     def test_not_my_addon(self, acl):
         data = self.create_addon()
         id = data['id']

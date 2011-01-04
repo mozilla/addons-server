@@ -2,13 +2,15 @@ from django.http import HttpRequest
 
 import mock
 from nose.tools import assert_false, eq_
+from test_utils import TestCase
 
 import amo
 from amo.urlresolvers import reverse
+from addons.models import Addon, AddonUser
 from cake.models import Session
-from test_utils import TestCase
+from users.models import UserProfile
 
-from .acl import match_rules, action_allowed, check_addon_ownership
+from .acl import match_rules, action_allowed, has_perm
 
 
 def test_match_rules():
@@ -87,30 +89,73 @@ class ACLTestCase(TestCase):
         self.assertRedirects(r, '%s?to=%s' % (reverse('users.login'), url))
 
 
-class TestCheckOwnership(TestCase):
+class TestHasPerm(TestCase):
+    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
 
     def setUp(self):
+        assert self.client.login(username='del@icio.us', password='password')
+        self.user = UserProfile.objects.get(email='del@icio.us')
+        self.addon = Addon.objects.get(id=3615)
+        self.au = AddonUser.objects.get(addon=self.addon, user=self.user)
+        assert self.au.role == amo.AUTHOR_ROLE_OWNER
         self.request = mock.Mock()
         self.request.groups = ()
-        self.addon = mock.Mock()
+        self.request.amo_user = self.user
+        self.request.user.is_authenticated.return_value = True
 
-    def test_unauthenticated(self):
-        self.request.user.is_authenticated = lambda: False
-        eq_(False, check_addon_ownership(self.request, self.addon))
+    def login_admin(self):
+        assert self.client.login(username='admin@mozilla.com',
+                                 password='password')
+        return UserProfile.objects.get(email='admin@mozilla.com')
 
-    @mock.patch('access.acl.action_allowed')
-    def test_admin(self, allowed):
-        eq_(True, check_addon_ownership(self.request, self.addon))
-        eq_(True, check_addon_ownership(self.request, self.addon,
-                                  require_owner=True))
+    def test_anonymous(self):
+        self.request.user.is_authenticated.return_value = False
+        self.client.logout()
+        assert not has_perm(self.request, self.addon)
 
-    def test_author_roles(self):
-        f = self.addon.authors.filter
-        roles = (amo.AUTHOR_ROLE_OWNER, amo.AUTHOR_ROLE_DEV)
+    def test_admin(self):
+        self.request.amo_user = self.login_admin()
+        self.request.groups = self.request.amo_user.groups.all()
+        assert has_perm(self.request, self.addon)
 
-        check_addon_ownership(self.request, self.addon, True)
-        eq_(f.call_args[1]['addonuser__role__in'], roles)
+    def test_disabled(self):
+        self.addon.update(status=amo.STATUS_DISABLED)
+        assert not has_perm(self.request, self.addon)
+        self.test_admin()
 
-        check_addon_ownership(self.request, self.addon)
-        eq_(f.call_args[1]['addonuser__role__in'],
-            roles + (amo.AUTHOR_ROLE_VIEWER,))
+    def test_ignore_disabled(self):
+        self.addon.update(status=amo.STATUS_DISABLED)
+        assert has_perm(self.request, self.addon, ignore_disabled=True)
+
+    def test_owner(self):
+        assert has_perm(self.request, self.addon)
+
+        self.au.role = amo.AUTHOR_ROLE_DEV
+        self.au.save()
+        assert not has_perm(self.request, self.addon)
+
+        self.au.role = amo.AUTHOR_ROLE_VIEWER
+        self.au.save()
+        assert not has_perm(self.request, self.addon)
+
+    def test_dev(self):
+        assert has_perm(self.request, self.addon, dev=True)
+
+        self.au.role = amo.AUTHOR_ROLE_DEV
+        self.au.save()
+        assert has_perm(self.request, self.addon, dev=True)
+
+        self.au.role = amo.AUTHOR_ROLE_VIEWER
+        self.au.save()
+        assert not has_perm(self.request, self.addon, dev=True)
+
+    def test_viewer(self):
+        assert has_perm(self.request, self.addon, viewer=True)
+
+        self.au.role = amo.AUTHOR_ROLE_DEV
+        self.au.save()
+        assert has_perm(self.request, self.addon, viewer=True)
+
+        self.au.role = amo.AUTHOR_ROLE_VIEWER
+        self.au.save()
+        assert has_perm(self.request, self.addon, viewer=True)

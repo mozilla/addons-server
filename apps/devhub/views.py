@@ -47,42 +47,29 @@ log = commonware.log.getLogger('z.devhub')
 DEV_AGREEMENT_COOKIE = 'yes-I-read-the-dev-agreement'
 
 
-def can_edit(request, addon):
-    # Disabled add-ons are only editable by admins.
-    if addon.status == amo.STATUS_DISABLED:
-        return acl.action_allowed(request, 'Admin', 'EditAnyAddon')
-    else:
-        return acl.check_ownership(request, addon, require_owner=True)
-
-
-def dev_required(f):
+def dev_required(owner_for_post=False):
     """Requires user to be add-on owner or admin"""
-    @addon_view
-    @login_required
-    @functools.wraps(f)
-    def wrapper(request, addon, *args, **kw):
-        fun = lambda: f(request, addon_id=addon.id, addon=addon, *args, **kw)
-        # Require an owner for POST requests.
-        if request.method == 'POST':
-            if can_edit(request, addon):
+    def decorator(f):
+        @addon_view
+        @login_required
+        @functools.wraps(f)
+        def wrapper(request, addon, *args, **kw):
+            fun = lambda: f(request, addon_id=addon.id, addon=addon, *args, **kw)
+            # Require an owner or dev for POST requests.
+            if request.method == 'POST':
+                if acl.has_perm(request, addon, dev=not owner_for_post):
+                    return fun()
+            # Ignore disabled so they can view their add-on.
+            elif acl.has_perm(request, addon, viewer=True,
+                              ignore_disabled=True):
                 return fun()
-        elif acl.check_ownership(request, addon, require_owner=False):
-            return fun()
-        return http.HttpResponseForbidden()
-    return wrapper
-
-
-def owner_for_post_required(f):
-    @functools.wraps(f)
-    def wrapper(request, addon_id, addon, *args, **kw):
-        is_admin = acl.action_allowed(request, 'Admin', 'EditAnyAddon')
-        qs = addon.authors.filter(addonuser__role=amo.AUTHOR_ROLE_OWNER,
-                                  user=request.amo_user)
-        if request.method == 'POST' and not (is_admin or qs):
             return http.HttpResponseForbidden()
-        else:
-            return f(request, addon_id, addon, *args, **kw)
-    return wrapper
+        return wrapper
+    # The arg will be a function if they didn't pass owner_for_post.
+    if hasattr(owner_for_post, '__call__'):
+        return decorator(owner_for_post)
+    else:
+        return decorator
 
 
 class AddonFilter(BaseFilter):
@@ -231,7 +218,7 @@ def feed(request, addon_id=None):
             rssurl = urlparams(reverse('devhub.feed', args=[addon_id]),
                                privaterss=key.key)
 
-            if not acl.check_ownership(request, addons):
+            if not acl.has_perm(request, addons, viewer=True):
                 return http.HttpResponseForbidden()
         else:
             rssurl = _get_rss_feed(request)
@@ -264,8 +251,7 @@ def edit(request, addon_id, addon):
     return jingo.render(request, 'devhub/addons/edit.html', data)
 
 
-@dev_required
-@owner_for_post_required
+@dev_required(owner_for_post=True)
 def delete(request, addon_id, addon):
     form = forms.DeleteForm(request)
     if form.is_valid():
@@ -285,8 +271,7 @@ def enable(request, addon_id, addon):
     return redirect('devhub.versions', addon.slug)
 
 
-@dev_required
-@owner_for_post_required
+@dev_required(owner_for_post=True)
 def cancel(request, addon_id, addon):
     if addon.status in amo.STATUS_UNDER_REVIEW:
         if addon.status == amo.STATUS_LITE_AND_NOMINATED:
@@ -342,8 +327,7 @@ def _policy_form(request, addon, save=False):
     return policy_form
 
 
-@dev_required
-@owner_for_post_required
+@dev_required(owner_for_post=True)
 def ownership(request, addon_id, addon):
     fs, ctx = [], {}
     # Authors.
@@ -381,7 +365,7 @@ def ownership(request, addon_id, addon):
     return jingo.render(request, 'devhub/addons/owner.html', ctx)
 
 
-@dev_required
+@dev_required(owner_for_post=True)
 def payments(request, addon_id, addon):
     charity = None if addon.charity_id == amo.FOUNDATION_ORG else addon.charity
     charity_form = forms.CharityForm(request.POST or None, instance=charity,

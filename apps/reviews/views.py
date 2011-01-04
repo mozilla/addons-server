@@ -58,8 +58,7 @@ def review_list(request, addon, review_id=None, user_id=None):
         ctx['review_perms'] = {
             'is_admin': acl.action_allowed(request, 'Admin', 'EditAnyAddon'),
             'is_editor': acl.action_allowed(request, 'Editor', '%'),
-            'is_author': acl.check_ownership(request, addon,
-                                             require_owner=True),
+            'is_author': acl.has_perm(request, addon, dev=True),
             'can_delete': acl.action_allowed(request, 'Editors',
                                              'DeleteReview'),
         }
@@ -123,7 +122,7 @@ def _review_details(request, addon, form):
 @login_required
 def reply(request, addon, review_id):
     is_admin = acl.action_allowed(request, 'Admin', 'EditAnyAddon')
-    is_author = acl.check_ownership(request, addon, require_owner=True)
+    is_author = acl.has_perm(request, addon, dev=True)
     if not (is_admin or is_author):
         return http.HttpResponseForbidden()
 

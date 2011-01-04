@@ -5,6 +5,11 @@
 {{ dev_page_title(title, addon) }}
 {% endblock %}
 
+{% block bodyclass %}
+{{ super() }}
+{% if not has_perm(request, addon) %} no-edit{% endif %}
+{% endblock %}
+
 {% block content %}
 <header>
   {{ dev_breadcrumbs(addon, items=[(None, title)]) }}
