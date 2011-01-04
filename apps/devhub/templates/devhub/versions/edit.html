@@ -58,10 +58,12 @@
                     {% endfor %}
                   </tbody>
                 </table>
-                <p class="add-app{% if not compat_form.extra_forms %} hide{% endif %}">
-                  <a href="#">{{ _('Add Another Application&hellip;')|safe }}</a>
-                </p>
-                <div class="new-apps"></div>
+                {% if can_edit_addon(request, addon) %}
+                  <p class="add-app{% if not compat_form.extra_forms %} hide{% endif %}">
+                    <a href="#">{{ _('Add Another Application&hellip;')|safe }}</a>
+                  </p>
+                  <div class="new-apps"></div>
+                {% endif %}
             </td>
           </tr>
           {% endif %}
@@ -132,7 +134,7 @@
       </div>
     </div>
   </form>
-  
+
   {{ add_file_modal(_("Upload a new file"),
                     url('devhub.versions.add_file', addon.slug, version.id),
                     url('devhub.upload'), _('Add File') )}}

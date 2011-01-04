@@ -5,7 +5,7 @@
 
 {% set can_edit = addon.status == amo.STATUS_PUBLIC %}
 {% block bodyclass %}
-  {{ super() }}{% if not can_edit %}no-edit{% endif %}
+  {{ super() }}{% if not can_edit %} no-edit{% endif %}
 {% endblock %}
 
 {% block content %}

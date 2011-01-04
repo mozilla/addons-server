@@ -50,24 +50,26 @@
       {% endif %}
 
       <div class="version-status-actions item-actions">
-        {% set req = {amo.STATUS_PUBLIC: _('Request Full Review'),
-                      amo.STATUS_LITE: _('Request Preliminary Review')} %}
-        {% for status in addon.can_request_review() %}
-          <form method="post"
-                action="{{ url('devhub.request-review', addon.slug, status) }}">
-            {{ csrf() }}
-            <button class="link" type="submit">{{ req[status] }}</button> &middot;
-          </form>
-        {% endfor %}
-        {% if not addon.is_disabled and addon.is_under_review %}
-          <a href="#" id="cancel-review">{{ _('Cancel Review Request') }}</a> &middot;
+        {% if can_edit_addon(request, addon) %}
+          {% set req = {amo.STATUS_PUBLIC: _('Request Full Review'),
+                        amo.STATUS_LITE: _('Request Preliminary Review')} %}
+          {% for status in addon.can_request_review() %}
+            <form method="post"
+                  action="{{ url('devhub.request-review', addon.slug, status) }}">
+              {{ csrf() }}
+              <button class="link" type="submit">{{ req[status] }}</button> &middot;
+            </form>
+          {% endfor %}
+          {% if not addon.is_disabled and addon.is_under_review %}
+            <a href="#" id="cancel-review">{{ _('Cancel Review Request') }}</a> &middot;
+          {% endif %}
+          {% if addon.disabled_by_user %}
+            <a href="{{ url('devhub.addons.enable', addon.slug) }}" id="enable-addon">{{ _('Enable Add-on') }}</a> &middot;
+          {% elif not addon.is_disabled %}
+            <a href="#" id="disable-addon">{{ _('Disable Add-on') }}</a> &middot;
+          {% endif %}
+          <a href="#" id="delete-addon">{{ _('Delete Add-on') }}</a>
         {% endif %}
-        {% if addon.disabled_by_user %}
-          <a href="{{ url('devhub.addons.enable', addon.slug) }}" id="enable-addon">{{ _('Enable Add-on') }}</a> &middot;
-        {% elif not addon.is_disabled %}
-          <a href="#" id="disable-addon">{{ _('Disable Add-on') }}</a> &middot;
-        {% endif %}
-        <a href="#" id="delete-addon">{{ _('Delete Add-on') }}</a>
         {% set current = addon.get_current_version() %}
         {% if current %}
           <span class="version-changed">
