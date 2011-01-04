@@ -108,7 +108,7 @@ class File(amo.models.ModelBase):
         dest = path.path(version.path_prefix)
         if not dest.exists():
             dest.makedirs()
-        upload.path.rename(dest / nfd_str(f.filename))
+        upload.path.copyfile(dest / nfd_str(f.filename))
         FileValidation.from_json(f, upload.validation)
         return f
 

@@ -146,6 +146,15 @@
         }
     },
     {
+        "pk": 2,
+        "model": "files.platform",
+        "fields": {
+            "icontype": "",
+            "modified": "2008-04-07 08:16:55",
+            "created": "2007-03-05 13:09:27"
+        }
+    },
+    {
         "pk": 3615,
         "model": "addons.addon",
         "fields": {

@@ -705,7 +705,7 @@ def version_add(request, addon_id, addon):
     form = forms.NewVersionForm(request.POST, addon=addon)
     if form.is_valid():
         v = Version.from_upload(form.cleaned_data['upload'], addon,
-                                form.cleaned_data['platform'])
+                                [form.cleaned_data['platform']])
         url = reverse('devhub.versions.edit', args=[addon.slug, str(v.id)])
         return dict(url=url)
     else:
@@ -722,6 +722,7 @@ def version_add_file(request, addon_id, addon, version_id):
         return json_view.error(form.errors)
     upload = form.cleaned_data['upload']
     new_file = File.from_upload(upload, version, form.cleaned_data['platform'])
+    upload.path.unlink()
     file_form = forms.FileFormSet(prefix='files', queryset=version.files.all())
     form = [f for f in file_form.forms if f.instance == new_file]
     return jingo.render(request, 'devhub/includes/version_file.html',
@@ -824,12 +825,12 @@ def submit_addon(request, step):
     if request.method == 'POST':
         if form.is_valid():
             data = form.cleaned_data
-            addon = Addon.from_upload(data['upload'], data['platform'])
+            addon = Addon.from_upload(data['upload'], data['platforms'])
             AddonUser(addon=addon, user=request.amo_user).save()
             SubmitStep.objects.create(addon=addon, step=3)
             return redirect('devhub.submit.3', addon.slug)
     return jingo.render(request, 'devhub/addons/submit/upload.html',
-                        {'step': step, 'new_file_form': form})
+                        {'step': step, 'new_addon_form': form})
 
 
 @dev_required

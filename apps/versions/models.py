@@ -43,7 +43,7 @@ class Version(amo.models.ModelBase):
         return jinja2.escape(self.version)
 
     @classmethod
-    def from_upload(cls, upload, addon, platform):
+    def from_upload(cls, upload, addon, platforms):
         data = utils.parse_addon(upload.path, addon)
         try:
             license = addon.versions.latest().license_id
@@ -59,7 +59,11 @@ class Version(amo.models.ModelBase):
                application_id=app.id).save()
         if addon.type == amo.ADDON_SEARCH:
             platform = Platform.objects.get(id=amo.PLATFORM_ALL.id)
-        File.from_upload(upload, v, platform, parse_data=data)
+        for platform in platforms:
+            File.from_upload(upload, v, platform, parse_data=data)
+        # After the upload has been copied to all
+        # platforms, remove the upload.
+        upload.path.unlink()
         return v
 
     @property

@@ -3512,7 +3512,7 @@ class TestVersionXSS(UploadTest):
 
 
 class TestCreateAddon(files.tests.UploadTest, test_utils.TestCase):
-    fixtures = ['base/apps', 'base/users']
+    fixtures = ['base/apps', 'base/users', 'base/platforms']
 
     def setUp(self):
         super(TestCreateAddon, self).setUp()
@@ -3526,17 +3526,25 @@ class TestCreateAddon(files.tests.UploadTest, test_utils.TestCase):
     def tearDown(self):
         reset_redis(self._redis)
 
-    def post(self, platform=amo.PLATFORM_ALL):
-        return self.client.post(self.url, dict(upload=self.upload.pk,
-                                               platform=platform.id))
+    def post(self, platforms=[amo.PLATFORM_ALL], expect_errors=False):
+        r = self.client.post(self.url,
+                        dict(upload=self.upload.pk,
+                             platforms=[p.id for p in platforms]),
+                        follow=True)
+        eq_(r.status_code, 200)
+        if not expect_errors:
+            # Show any unexpected form errors.
+            if r.context and 'new_addon_form' in r.context:
+                eq_(r.context['new_addon_form'].errors.as_text(), '')
+        return r
 
     def assert_json_error(self, *args):
         UploadTest().assert_json_error(self, *args)
 
     def test_unique_name(self):
         ReverseNameLookup.add('xpi name', 34)
-        r = self.post()
-        eq_(r.context['new_file_form'].non_field_errors(),
+        r = self.post(expect_errors=True)
+        eq_(r.context['new_addon_form'].non_field_errors(),
             ['This add-on name is already in use. '
              'Please choose another.'])
 
@@ -3546,6 +3554,16 @@ class TestCreateAddon(files.tests.UploadTest, test_utils.TestCase):
         addon = Addon.objects.get()
         self.assertRedirects(r, reverse('devhub.submit.3',
                                         args=[addon.slug]))
+
+    def test_one_xpi_for_multiple_platforms(self):
+        eq_(Addon.objects.count(), 0)
+        r = self.post(platforms=[amo.PLATFORM_MAC,
+                                 amo.PLATFORM_LINUX])
+        addon = Addon.objects.get()
+        self.assertRedirects(r, reverse('devhub.submit.3',
+                                        args=[addon.slug]))
+        eq_(sorted([f.filename for f in addon.current_version.all_files]),
+            [u'xpi_name-0.1-linux.xpi', u'xpi_name-0.1-mac.xpi'])
 
 
 class TestDeleteAddon(test_utils.TestCase):

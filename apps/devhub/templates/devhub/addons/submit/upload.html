@@ -14,7 +14,7 @@
       <a class="button prominent" href="#">{{ _('Select Add-on to Upload...') }}</a>
       <input type="file" id="upload-file-input" />
     </span>
-    {{ new_file_form.non_field_errors()|safe }}
+    {{ new_addon_form.non_field_errors()|safe }}
     <div class="extra">{{ _('We accept .xpi, .jar, and .xml files.') }}</div>
     <section id="upload-file">
       <div class="upload-status hidden">
@@ -28,9 +28,9 @@
       <form method="post" id="create-addon" class="item" action="">
         {{ csrf() }}
         <div class="platform">
-        <label>{{ _('Select the target platform for this file.') }}</label>
-        {{ new_file_form.platform|safe }}
-        {{ new_file_form.upload|safe }}
+        <label>{{ _('Select the target platform(s) for this file.') }}</label>
+        {{ new_addon_form.platforms|safe }}
+        {{ new_addon_form.upload|safe }}
         </div>
         <div class="submission-buttons addon-submission-field">
           <button id="submit-upload-file-finish" disabled=disabled type="submit">
