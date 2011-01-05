@@ -196,7 +196,7 @@ class _TransField(object):
     def clean(self, value):
         errors = LocaleList()
 
-        value = dict((v, k.strip()) for (v, k) in value.items())
+        value = dict((k, v.strip() if v else v) for (k, v) in value.items())
 
         # Raise an exception if the default locale is required and not present
         if self.default_locale.lower() not in value:
