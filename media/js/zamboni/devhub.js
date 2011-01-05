@@ -883,7 +883,11 @@ function initLicenseFields() {
 }
 
 function initAuthorFields() {
+    // Add the help line after the blank author row.
+    $('#author-roles-help').popup('#what-are-roles', {pointTo: $('#what-are-roles') });
+
     if (z.noEdit) return;
+
     var request = false,
         timeout = false,
         manager = $("#id_form-TOTAL_FORMS"),
@@ -897,9 +901,6 @@ function initAuthorFields() {
         update: renumberAuthors
     });
     addAuthorRow();
-
-    // Add the help line after the blank author row.
-    $('#author-roles-help').popup('#what-are-roles', {pointTo: $('#what-are-roles') });
 
     $(".author .errorlist").each(function() {
         $(this).parent()
