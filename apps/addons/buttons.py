@@ -53,6 +53,7 @@ def install_button_factory(*args, **kwargs):
     # Order matters.  We want to highlight unreviewed before featured.  They
     # should be mutually exclusive, but you never know.
     classes = (('is_persona', PersonaInstallButton),
+               ('lite', LiteInstallButton),
                ('unreviewed', UnreviewedInstallButton),
                ('self_hosted', SelfHostedInstallButton),
                ('featured', FeaturedInstallButton))
@@ -82,10 +83,13 @@ class InstallButton(object):
 
         self.is_beta = self.version and self.version.is_beta
         version_unreviewed = (self.version and self.version.is_unreviewed)
+        self.lite = (addon.status in amo.LITE_STATUSES
+                     or version and version.is_lite)
         self.unreviewed = (addon.is_unreviewed() or version_unreviewed or
                            self.is_beta)
         self.self_hosted = addon.status == amo.STATUS_LISTED
         self.featured = (not self.unreviewed
+                         and not self.lite
                          and not self.self_hosted
                          and not self.is_beta
                          and addon.is_featured(app, lang)
@@ -198,6 +202,12 @@ class SelfHostedInstallButton(InstallButton):
         # L10n: please keep &nbsp; in the string so the &rarr; does not wrap
         return [Link(jinja2.Markup(_('Continue to Website&nbsp;&rarr;')),
                      self.addon.homepage)]
+
+
+class LiteInstallButton(InstallButton):
+    install_class = ['lite']
+    button_class = ['caution']
+    install_text = _lazy(u'Experimental', 'install_button')
 
 
 class PersonaInstallButton(InstallButton):

@@ -27,10 +27,12 @@ class ButtonTest(test_utils.TestCase):
         self.addon.status = amo.STATUS_PUBLIC
         self.addon.id = 2
         self.addon.type = amo.ADDON_EXTENSION
+        self.addon.privacy_policy = None
 
         self.version = v = Mock()
         v.is_unreviewed = False
         v.is_beta = False
+        v.is_lite = False
         v.version = 'v1'
         self.addon.current_version = v
 
@@ -250,6 +252,28 @@ class TestButton(ButtonTest):
         eq_(b.install_class, ['unreviewed', 'beta'])
         eq_(b.install_text, 'Not Reviewed')
 
+    def test_lite(self):
+        # Throw featured in there to make sure it's ignored.
+        self.addon.is_featured.return_value = True
+        self.addon.status = amo.STATUS_LITE
+        b = self.get_button()
+        assert not b.featured
+        assert b.lite
+        eq_(b.button_class, ['caution'])
+        eq_(b.install_class, ['lite'])
+        eq_(b.install_text, 'Experimental')
+
+    def test_lite_and_nominated(self):
+        # Throw featured in there to make sure it's ignored.
+        self.addon.is_featured.return_value = True
+        self.addon.status = amo.STATUS_LITE_AND_NOMINATED
+        b = self.get_button()
+        assert not b.featured
+        assert b.lite
+        eq_(b.button_class, ['caution'])
+        eq_(b.install_class, ['lite'])
+        eq_(b.install_text, 'Experimental')
+
     def test_self_hosted(self):
         # Throw featured in there to make sure it's ignored.
         self.addon.is_featured.return_value = True
@@ -401,6 +425,18 @@ class TestButtonHtml(ButtonTest):
         button = self.render()('.button.caution')
         eq_('addon.url', button.attr('href'))
         eq_('xpi.url', button.attr('data-realurl'))
+
+    def test_lite_detailed_warning(self):
+        self.addon.status = amo.STATUS_LITE
+        warning = self.render(detailed=True)('.install-shell .warning')
+        eq_(warning.text(),
+            'This add-on has been preliminarily reviewed by Mozilla. Learn more')
+
+    def test_lite_and_nom_detailed_warning(self):
+        self.addon.status = amo.STATUS_LITE_AND_NOMINATED
+        warning = self.render(detailed=True)('.install-shell .warning')
+        eq_(warning.text(),
+            'This add-on has been preliminarily reviewed by Mozilla. Learn more')
 
     def test_multi_platform(self):
         self.version.all_files = self.platform_files

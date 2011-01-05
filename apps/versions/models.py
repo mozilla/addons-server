@@ -114,19 +114,22 @@ class Version(amo.models.ModelBase):
             available.remove(amo.PLATFORM_ALL)
             return bool(set(available) - set(self.supported_platforms))
 
-    @amo.cached_property
+    @property
     def has_files(self):
         return bool(self.all_files)
 
-    @amo.cached_property
+    @property
     def is_unreviewed(self):
         return filter(lambda f: f.status in amo.UNREVIEWED_STATUSES,
                       self.all_files)
 
-    @amo.cached_property
+    @property
     def is_beta(self):
-        return filter(lambda f: f.status == amo.STATUS_BETA,
-                      self.all_files)
+        return filter(lambda f: f.status == amo.STATUS_BETA, self.all_files)
+
+    @property
+    def is_lite(self):
+        return filter(lambda f: f.status in amo.LITE_STATUSES, self.all_files)
 
     @classmethod
     def _compat_map(cls, avs):
