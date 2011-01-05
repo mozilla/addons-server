@@ -2301,23 +2301,6 @@ class TestVersionEditFiles(TestVersionEdit):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
 
-    def test_edit_status(self):
-        f = self.client.get(self.url).context['file_form'].forms[0]
-        # Public is one of the choices since the file is currently public.
-        eq_([x[0] for x in f.fields['status'].choices],
-            [amo.STATUS_BETA, amo.STATUS_PUBLIC])
-        # Switch the status to Beta.
-        data = initial(f)
-        data['status'] = amo.STATUS_BETA
-        r = self.client.post(self.url, self.formset(data, prefix='files'))
-        eq_(r.status_code, 302)
-        eq_(self.version.files.get().status, amo.STATUS_BETA)
-
-        # Beta is the only choice.
-        f = self.client.get(self.url).context['file_form'].forms[0]
-        eq_([x[0] for x in f.fields['status'].choices],
-            [amo.STATUS_BETA])
-
     def test_unique_platforms(self):
         # Move the existing file to Linux.
         f = self.version.files.get()
@@ -2412,7 +2395,6 @@ class TestPlatformSearch(TestVersionEdit):
 
     def test_changing_platform_search_engine(self):
         dd = self.formset({'id': int(self.file.pk),
-                           'status': self.file.status,
                            'platform': amo.PLATFORM_LINUX.id},
                            prefix='files', releasenotes='xx',
                            approvalnotes='yy')

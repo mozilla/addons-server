@@ -410,24 +410,14 @@ class NewFileForm(NewVersionForm):
 
 
 class FileForm(happyforms.ModelForm):
-    _choices = [(k, amo.STATUS_CHOICES[k]) for k in (amo.STATUS_BETA,)]
-    status = forms.TypedChoiceField(coerce=int, choices=_choices)
     platform = File._meta.get_field('platform').formfield(empty_label=None)
 
     class Meta:
         model = File
-        fields = ('status', 'platform')
+        fields = ('platform',)
 
     def __init__(self, *args, **kw):
         super(FileForm, self).__init__(*args, **kw)
-        # Make sure the current status is in the status <select>.
-        status = kw['instance'].status
-        field = self.fields['status']
-        if status not in dict(field.choices).keys():
-            # Rebind and add so the original choices aren't changed.
-            field.choices = (field.choices +
-                             [(status, amo.STATUS_CHOICES[status])])
-
         if kw['instance'].version.addon.type == amo.ADDON_SEARCH:
             del self.fields['platform']
         else:
