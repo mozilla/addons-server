@@ -58,7 +58,8 @@ class Version(amo.models.ModelBase):
             AV(version=v, min=app.min, max=app.max,
                application_id=app.id).save()
         if addon.type == amo.ADDON_SEARCH:
-            platform = Platform.objects.get(id=amo.PLATFORM_ALL.id)
+            # Search extensions are always for all platforms.
+            platforms = [Platform.objects.get(id=amo.PLATFORM_ALL.id)]
         for platform in platforms:
             File.from_upload(upload, v, platform, parse_data=data)
         # After the upload has been copied to all

@@ -767,7 +767,7 @@ class TestAddonFromUpload(files.tests.UploadTest):
 
     def test_xpi_attributes(self):
         addon = Addon.from_upload(self.get_upload('extension.xpi'),
-                                  self.platform)
+                                  [self.platform])
         eq_(addon.name, 'xpi name')
         eq_(addon.guid, 'guid@xpi')
         eq_(addon.type, amo.ADDON_EXTENSION)
@@ -779,15 +779,24 @@ class TestAddonFromUpload(files.tests.UploadTest):
 
     def test_xpi_version(self):
         addon = Addon.from_upload(self.get_upload('extension.xpi'),
-                                  self.platform)
+                                  [self.platform])
         v = addon.versions.get()
         eq_(v.version, '0.1')
         eq_(v.files.get().platform_id, self.platform.id)
         eq_(v.files.get().status, amo.STATUS_UNREVIEWED)
 
+    def test_xpi_for_multiple_platforms(self):
+        platforms = [Platform.objects.get(pk=amo.PLATFORM_LINUX.id),
+                     Platform.objects.get(pk=amo.PLATFORM_MAC.id)]
+        addon = Addon.from_upload(self.get_upload('extension.xpi'),
+                                  platforms)
+        v = addon.versions.get()
+        eq_(sorted([f.platform.id for f in v.all_files]),
+            sorted([p.id for p in platforms]))
+
     def test_search_attributes(self):
         addon = Addon.from_upload(self.get_upload('search.xml'),
-                                  self.platform)
+                                  [self.platform])
         eq_(addon.name, 'search tool')
         eq_(addon.guid, None)
         eq_(addon.type, amo.ADDON_SEARCH)
@@ -799,7 +808,7 @@ class TestAddonFromUpload(files.tests.UploadTest):
 
     def test_search_version(self):
         addon = Addon.from_upload(self.get_upload('search.xml'),
-                                  self.platform)
+                                  [self.platform])
         v = addon.versions.get()
         eq_(v.version, datetime.now().strftime('%Y%m%d'))
         eq_(v.files.get().platform_id, amo.PLATFORM_ALL.id)
@@ -807,5 +816,5 @@ class TestAddonFromUpload(files.tests.UploadTest):
 
     def test_no_homepage(self):
         addon = Addon.from_upload(self.get_upload('extension-no-homepage.xpi'),
-                                  self.platform)
+                                  [self.platform])
         eq_(addon.homepage, None)

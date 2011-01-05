@@ -534,18 +534,11 @@ class TestSearchVersionFromUpload(TestVersionFromUpload):
                                       [self.platform])
         files = version.all_files
         eq_(files[0].filename,
-            u'delicious_bookmarks-%s-%s.xml' % (
-                        self.now, amo.PLATFORMS[self.platform.id].shortname))
+            u'delicious_bookmarks-%s.xml' % self.now)
 
-    def test_file_name_platform_all(self):
-        version = Version.from_upload(self.upload, self.addon,
-                            [Platform.objects.get(pk=amo.PLATFORM_ALL.id)])
-        files = version.all_files
-        eq_(files[0].filename, u'delicious_bookmarks-%s.xml' % self.now)
-
-    def test_file_platform(self):
+    def test_file_platform_is_always_all(self):
         version = Version.from_upload(self.upload, self.addon,
                                       [self.platform])
         files = version.all_files
         eq_(len(files), 1)
-        eq_(files[0].platform, self.platform)
+        eq_(files[0].platform.id, amo.PLATFORM_ALL.id)
