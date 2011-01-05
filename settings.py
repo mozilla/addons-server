@@ -70,7 +70,7 @@ LANGUAGE_CODE = 'en-US'
 AMO_LANGUAGES = (
     'af', 'ar', 'bg', 'ca', 'cs', 'da', 'de', 'el', 'en-US', 'es-ES',
     'eu', 'fa', 'fi', 'fr', 'ga-IE', 'he', 'hu', 'id', 'it', 'ja', 'ko', 'mn',
-    'nl', 'pl', 'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sq', 'sr', 'sv-SE',
+    'nl', 'pl', 'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sl', 'sq', 'sr', 'sv-SE',
     'uk', 'vi', 'zh-CN', 'zh-TW',
 )
 
@@ -527,8 +527,8 @@ PAYPAL_COUNTRYMAP = {
     'de': 'DE', 'de-AT': 'AT', 'de-CH': 'CH', 'el': 'GR', 'en-GB': 'GB',
     'eu': 'BS', 'fa': 'IR', 'fi': 'FI', 'fr': 'FR', 'he': 'IL', 'hu': 'HU',
     'id': 'ID', 'it': 'IT', 'ja': 'JP', 'ko': 'KR', 'mn': 'MN', 'nl': 'NL',
-    'pl': 'PL', 'ro': 'RO', 'ru': 'RU', 'sk': 'SK', 'sq': 'AL', 'sr': 'CS',
-    'tr': 'TR', 'uk': 'UA', 'vi': 'VI',
+    'pl': 'PL', 'ro': 'RO', 'ru': 'RU', 'sk': 'SK', 'sl': 'SI', 'sq': 'AL',
+    'sr': 'CS', 'tr': 'TR', 'uk': 'UA', 'vi': 'VI',
 }
 
 # Contribution limit, one time and monthly
