@@ -898,6 +898,22 @@ asyncTest('form errors are cleared', function() {
     });
 });
 
+module('preview_edit', {
+    setup: function() {
+        this.sandbox = tests.createSandbox('#preview-list');
+        initUploadPreview();
+    },
+    teardown: function() {
+        this.sandbox.remove();
+    }
+});
+
+test('Clicking delete screenshot marks checkbox.', function() {
+    $(".preview-delete a", this.sandbox).trigger('click');
+    equals($(".delete input", this.sandbox).attr("checked"), true);
+    equals($(".preview:visible", this.sandbox).length, 0);
+});
+
 
 module('addon platform chooser', {
     setup: function() {

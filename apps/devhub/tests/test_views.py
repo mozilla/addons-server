@@ -1653,6 +1653,20 @@ class TestEdit(test_utils.TestCase):
         eq_(str(self.get_addon().previews.all()[0].caption), 'bye')
         eq_(len(self.get_addon().previews.all()), 1)
 
+    def test_edit_media_preview_delete(self):
+        self.preview_add()
+        preview = self.get_addon().previews.get()
+        edited = {'DELETE': 'checked',
+                  'upload_hash': '',
+                  'id': preview.id,
+                  'file_upload': None}
+
+        data_formset = self.formset_media(edited, initial_count=1)
+
+        self.client.post(self.get_url('media', True), data_formset)
+
+        eq_(len(self.get_addon().previews.all()), 0)
+
     def test_edit_media_preview_add_another(self):
         self.preview_add()
         self.preview_add()

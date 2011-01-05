@@ -8,7 +8,8 @@ from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.db import models, transaction
-from django.db.models import Q, Max, signals as dbsignals
+from django.db.models import Q, Sum, Max, signals as dbsignals
+from django.dispatch import receiver
 from django.utils.translation import trans_real as translation
 
 import caching.base as caching
@@ -1121,6 +1122,13 @@ class Preview(amo.models.ModelBase):
     @property
     def image_path(self):
         return self._image_path(settings.PREVIEW_FULL_PATH)
+
+
+# Use pre_delete since we need to know what we want to delete in the fs.
+@receiver(dbsignals.pre_delete, sender=Preview)
+def delete_preview_handler(sender, instance, **kwargs):
+    from . import tasks
+    tasks.delete_preview_files.delay(instance.id)
 
 
 class AppSupport(amo.models.ModelBase):

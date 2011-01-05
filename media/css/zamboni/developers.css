@@ -304,6 +304,20 @@ form .char-count b {
     display: none;
 }
 
+#file-list .preview .preview-delete {
+    margin-right: 1.6em;
+    text-align: right;
+}
+
+#file-list .preview .preview-delete a {
+    color: red;
+    text-decoration: none;
+}
+
+.html-rtl #file-list .preview .preview-delete {
+    margin-right: 0;
+}
+
 #file-list .preview .preview_extra {
     display: none;
 }
