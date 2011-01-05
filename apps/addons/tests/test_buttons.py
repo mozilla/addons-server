@@ -26,6 +26,7 @@ class ButtonTest(test_utils.TestCase):
         self.addon.has_eula = False
         self.addon.status = amo.STATUS_PUBLIC
         self.addon.id = 2
+        self.addon.slug = 'slug'
         self.addon.type = amo.ADDON_EXTENSION
         self.addon.privacy_policy = None
 
@@ -425,6 +426,22 @@ class TestButtonHtml(ButtonTest):
         button = self.render()('.button.caution')
         eq_('addon.url', button.attr('href'))
         eq_('xpi.url', button.attr('data-realurl'))
+
+    def test_detailed_privacy_policy(self):
+        policy = self.render(detailed=True)('.install-shell .privacy-policy')
+        eq_(policy.length, 0)
+
+        self.addon.privacy_policy = 'privacy!'
+        policy = self.render(detailed=True)('.install-shell .privacy-policy')
+        eq_(policy.text(), 'View privacy policy')
+
+    def test_unreviewed_detailed_warning(self):
+        self.addon.status = amo.STATUS_UNREVIEWED
+        self.addon.is_unreviewed.return_value = True
+        self.addon.get_url_path.return_value = 'addon.url'
+        warning = self.render(detailed=True)('.install-shell .warning')
+        eq_(warning.text(),
+            'This add-on has not been reviewed by Mozilla. Learn more')
 
     def test_lite_detailed_warning(self):
         self.addon.status = amo.STATUS_LITE
