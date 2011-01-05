@@ -38,7 +38,7 @@
         {{ status(_('This add-on has been <b>preliminarily reviewed</b>.')|safe) }}
         {{ _("Your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are unavailable to your add-on.") }}
       {% elif addon.status == amo.STATUS_LITE_AND_NOMINATED %}
-        {{ status(_('This add-on has been <b>preliminarily reviewed</b> and is <b>awaiting full review</b>.')|safe) }}
+        {{ status(_('This add-on has been <b>preliminarily reviewed</b> and is <i>awaiting full review</i>.')|safe) }}
         {{ _("You will receive an email when the full review is complete. Until then, your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are unavailable to your add-on.") }}
       {% elif addon.status == amo.STATUS_PURGATORY %}
         {{ status(_('Please select a review option.')) }}

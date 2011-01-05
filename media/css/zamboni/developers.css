@@ -971,8 +971,10 @@ a.extra {
     margin: 0;
 }
 
+.status-lite-nom i,
 .status-nominated b,
 .status-unreviewed b {
+    font-style: normal;
     color: #3e7987;
 }
 
