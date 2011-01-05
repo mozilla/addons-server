@@ -69,6 +69,15 @@ def check_addon_ownership(request, addon, require_owner=False):
 
 
 def has_perm(request, addon, viewer=False, dev=False, ignore_disabled=False):
+    """
+    Check request.amo_user's permissions for the addon.
+
+    If user is an admin they can do anything.
+    If the add-on is disabled only admins have permission.
+    If they're an add-on owner they can do anything.
+    dev=True checks that the user has an owner or developer role.
+    viewer=True checks that the user has an owner, developer, or viewer role.
+    """
     if not request.user.is_authenticated():
         return False
     # Admins can do anything.
