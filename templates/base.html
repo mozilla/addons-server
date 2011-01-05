@@ -29,7 +29,8 @@
         data-appid="{{ request.APP.id }}"
         data-anonymous="{{ (not request.user.is_authenticated())|json }}"
         data-readonly="{{ settings.READ_ONLY|json }}"
-        data-media-url="{{ MEDIA_URL }}">
+        data-media-url="{{ MEDIA_URL }}"
+        {% block bodyattrs %}{% endblock %}>
 
     {% if request.ADMIN_MESSAGE or settings.READ_ONLY%}
       <div id="site-notice">

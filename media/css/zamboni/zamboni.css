@@ -3193,6 +3193,16 @@ input.ui-autocomplete-loading {
     background-color: #2A4364;
 }
 
+.trans [lang] {
+    display: none;
+}
+.trans [lang]:first-child {
+    display: block;
+}
+.trans .init-trans {
+    display: none;
+}
+
 .trans .cloned {
     color: #ccc;
     font-style: italic;

@@ -1,13 +1,17 @@
 // Yes, this is out here for a reason.
 // We want to hide the non-default locales as fast as possible.
-if ($('.default-locale').length) {
-    $(format(".trans :not([lang={0}])", [$('.default-locale').attr('href').substring(1)])).hide();
-}
+(function() {
+    var dl = $('body').attr("data-default-locale");
+    if (dl) {
+        $(format(".trans :not([lang={0}])", dl)).hide();
+        $(format(".trans [lang={0}]", dl)).show();
+    }
+})();
 
 $(document).ready(function () {
     if (!$("#l10n-menu").length) return;
     var locales = [],
-        dl = $('.default-locale').attr('href').substring(1),
+        dl = $('body').attr("data-default-locale"),
         currentLocale = dl,
         unsavedModalMsg = $('#modal-l10n-unsaved .msg').html(),
         unsavedModal = $('#modal-l10n-unsaved').modal(),
@@ -175,11 +179,16 @@ $(document).ready(function () {
                 field = $el.attr('data-name'),
                 label = $(format("label[data-for={0}]",[field]));
             if (!$el.find(format("[lang={0}]",[lang])).length) {
-                var $ni = $el.children(format("[lang={0}]",[dl])).clone();
-                $ni.addClass("cloned").attr("lang", lang);
+                var $ni = $el.children(".init-trans").clone();
+                $ni.attr({
+                    class: "cloned",
+                    lang: lang,
+                });
                 if ($ni.is(':not(span)')) {
-                    $ni.attr('id',format('id_{0}_{1}',[field,lang]))
-                       .attr('name',[field,lang].join('_'));
+                    $ni.attr({
+                        id: format('id_{0}_{1}', field, lang),
+                        name: [field,lang].join('_')
+                    });
                 }
                 $el.append($ni);
             }
@@ -192,8 +201,8 @@ $(document).ready(function () {
             }
 
         });
-        $(format(".trans [lang!={0}]", [currentLocale])).hide();
-        $(format(".trans [lang={0}]", [lang])).show();
+        $(format(".trans :not([lang={0}])", currentLocale)).hide();
+        $(format(".trans [lang={0}]", currentLocale)).show();
         initCharCount();
     }
 

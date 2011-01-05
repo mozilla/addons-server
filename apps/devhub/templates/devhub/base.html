@@ -5,6 +5,10 @@
 {% endif %}
 {% block bodyclass %}developer-hub {{ editable }}{% endblock %}
 
+{% block bodyattrs %}
+{% if addon %}data-default-locale="{{ addon.default_locale|lower }}"{% endif %}
+{% endblock %}
+
 {% block title %}{{ dev_page_title() }}{% endblock %}
 
 {% block extrahead %}
