@@ -181,7 +181,7 @@ ul.refinements:last-child {
 #submit-describe #trans-name {
     display: inline-block;
     margin-right: 15px;
-    width: 375px;
+    vertical-align: bottom;
 }
 
 #submit-describe #trans-name input {
