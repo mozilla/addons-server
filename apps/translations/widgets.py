@@ -89,7 +89,11 @@ class TransMulti(forms.widgets.MultiWidget):
 
     def format_output(self, widgets):
         s = super(TransMulti, self).format_output(widgets)
-        return '<div id="trans-%s" class="trans" data-name="%s">%s</div>' % (self.name, self.name, s)
+        init = self.widget().render(self.name + '_',
+                                    Translation(locale='init'),
+                                    {'class': 'trans-init'})
+        return '<div id="trans-%s" class="trans" data-name="%s">%s%s</div>' % (
+            self.name, self.name, s, init)
 
 
 class _TransWidget(object):
