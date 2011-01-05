@@ -15,9 +15,8 @@ import amo
 import files.tests
 from amo import set_user
 from amo.signals import _connect, _disconnect
-from addons.models import (Addon, AddonDependency, AddonPledge,
-                           AddonRecommendation, AddonType, Category, Feature,
-                           Persona, Preview)
+from addons.models import (Addon, AddonDependency, AddonRecommendation,
+                           AddonType, Category, Feature, Persona, Preview)
 from applications.models import Application, AppVersion
 from devhub.models import ActivityLog
 from files.models import File, Platform
