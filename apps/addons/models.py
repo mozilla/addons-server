@@ -8,8 +8,8 @@ from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.db import models, transaction
-from django.db.models import Q, Sum, Max, signals as dbsignals
 from django.dispatch import receiver
+from django.db.models import Q, Max, signals as dbsignals
 from django.utils.translation import trans_real as translation
 
 import caching.base as caching
@@ -508,19 +508,22 @@ class Addon(amo.models.ModelBase):
         if self.status == amo.STATUS_NULL:
             return
 
-        if not self.versions.using(using).exists():
+        versions = self.versions.using(using)
+        if not versions.exists():
             self.update(status=amo.STATUS_NULL)
             amo.log(amo.LOG.CHANGE_STATUS, self.get_status_display(), self)
 
-        elif not (self.versions.using(using)
-                  .filter(files__isnull=False).exists()):
+        elif not (versions.filter(files__isnull=False).exists()):
             self.update(status=amo.STATUS_NULL)
             amo.log(amo.LOG.CHANGE_STATUS, self.get_status_display(), self)
 
-        elif (self.status != amo.STATUS_UNREVIEWED and
-              not self.versions.using(using)
-                      .filter(files__status=amo.STATUS_PUBLIC).exists()):
-            self.update(status=amo.STATUS_UNREVIEWED)
+        elif (self.status == amo.STATUS_PUBLIC and
+             not versions.filter(files__status=amo.STATUS_PUBLIC).exists()):
+
+            if versions.filter(files__status=amo.STATUS_LITE).exists():
+                self.update(status=amo.STATUS_LITE)
+            else:
+                self.update(status=amo.STATUS_UNREVIEWED)
             amo.log(amo.LOG.CHANGE_STATUS, self.get_status_display(), self)
 
     @staticmethod

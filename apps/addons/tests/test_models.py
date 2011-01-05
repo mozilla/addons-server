@@ -341,17 +341,45 @@ class TestAddonModels(test_utils.TestCase):
         a = Addon.objects.create(type=1)
         v = Version.objects.create(addon=a)
         # The first LITE version is only 5 days old, no dice.
-        f = File.objects.create(status=amo.STATUS_LITE, version=v)
-        f.update(datestatuschanged=now - timedelta(days=5))
+        first_f = File.objects.create(status=amo.STATUS_LITE, version=v)
+        first_f.update(datestatuschanged=now - timedelta(days=5))
         # TODO(andym): can this go in Addon.objects.create? bug 618444
         a.update(status=amo.STATUS_LITE)
         eq_(a.can_request_review(), ())
 
         # Now the first LITE is > 10 days old, change can happen.
+        first_f.update(datestatuschanged=now - timedelta(days=11))
+        # Add a second file, to be sure that we test the date
+        # of the first created file.
+        second_f = File.objects.create(status=amo.STATUS_LITE, version=v)
+        second_f.update(datestatuschanged=now - timedelta(days=5))
         v = Version.objects.create(addon=a)
-        f = File.objects.create(status=amo.STATUS_LITE, version=v)
-        f.update(datestatuschanged=now - timedelta(days=11))
+        eq_(a.status, amo.STATUS_LITE)
         eq_(a.can_request_review(), (amo.STATUS_PUBLIC,))
+
+    def setup_files(self, status):
+        addon = Addon.objects.create(type=1)
+        version = Version.objects.create(addon=addon)
+        File.objects.create(status=status, version=version)
+        return addon, version
+
+    def test_can_alter_in_prelim(self):
+        addon, version = self.setup_files(amo.STATUS_LITE)
+        addon.update(status=amo.STATUS_LITE)
+        version.save()
+        eq_(addon.status, amo.STATUS_LITE)
+
+    def test_removing_public(self):
+        addon, version = self.setup_files(amo.STATUS_UNREVIEWED)
+        addon.update(status=amo.STATUS_PUBLIC)
+        version.save()
+        eq_(addon.status, amo.STATUS_UNREVIEWED)
+
+    def test_removing_public_with_prelim(self):
+        addon, version = self.setup_files(amo.STATUS_LITE)
+        addon.update(status=amo.STATUS_PUBLIC)
+        version.save()
+        eq_(addon.status, amo.STATUS_LITE)
 
     def test_can_request_review_no_files(self):
         addon = Addon.objects.get(pk=3615)
