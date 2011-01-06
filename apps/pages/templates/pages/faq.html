@@ -109,7 +109,7 @@
         up-to-date.{% endtrans %}</dd>
 
     <dt>{{ _('Are add-ons safe to install?') }}</dt>
-    <dd>{% trans learnmore_url="http://blog.mozilla.com/addons/2010/02/15/the-add-on-review-process-and-you/" %}
+    <dd>{% trans learnmore_url="https://addons.mozilla.org/developers/docs/policies/reviews" %}
         Unless clearly marked otherwise, add-ons available from this gallery
         have been checked and approved by Mozilla's team of editors and are
         safe to install. We recommend that you only install approved add-ons.
@@ -173,6 +173,25 @@
          But if you're looking for a particular add-on and can't find it, you
          might try searching on other sites or posting about it in our
          <a href="{{ forum_url }}">Add-on Ideas</a> forum.{% endtrans %}</dd>
+
+    <dt id="preliminary">{{ _('What does it mean if an add-on is "experimental" or "preliminarily reviewed"?') }}</dt>
+    <dd>{% trans url="https://addons.mozilla.org/developers/docs/policies/reviews" %}
+         Experimental add-ons have been checked by our editors to make sure they
+         don't have security problems, but they may still have bugs or not work
+         properly. Use caution when installing experimental add-ons and
+         uninstall the add-on immediately if you notice problems.
+         <a href="{{ url }}">Learn more about our review process</a></dd>
+         {% endtrans %}
+
+    <dt id="unreviewed">{{ _('What does it mean if an add-on is "not reviewed"?') }}</dt>
+    <dd>{% trans url="https://addons.mozilla.org/developers/docs/policies/reviews" %}
+         While all add-ons publicly available in our gallery are reviewed by an
+         editor, you may receive a direct link to an add-on that hasn't yet been
+         reviewed. Use caution when installing these add-ons, as they could harm
+         your computer or violate your privacy. We recommend that you only
+         install reviewed add-ons.
+         <a href="{{ url }}">Learn more about our review process</a></dd>
+         {% endtrans %}
 
     <dt>{{ _('How much do add-ons cost to purchase?') }}</dt>
     <dd>{{ _('Add-ons hosted in our gallery are free unless clearly marked
@@ -257,6 +276,7 @@
         You can find add-ons that work with Firefox for Mobile in our
         <a href="{{ gallery_url }}">gallery</a>.{% endtrans %}</dd>
 
+    {# See 623412#4
     <dt>{{ _('Can I install add-ons on my mobile device from my desktop?') }}</dt>
     <dd>{% trans collector_url=url('addons.detail', 11950),
            gallery_url=locale_url('mobile') %}
@@ -265,6 +285,7 @@
         <a href="{{ collector_url }}">Add-on Collector</a> on your mobile device and
         it will sync the add-ons you've selected to your mobile device.
         {% endtrans %}</dd>
+    #}
 
 </dl>
 
