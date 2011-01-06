@@ -1292,15 +1292,9 @@ $(document).ready(function() {
                     if (typeof(ctxFile) === 'string') {
                         ctxFile = [ctxFile];
                     }
-                    var x = [];
-                    // Sometimes there are empty file paths.
-                    $.each(ctxFile, function(i, v) {
-                        if (v) x.push(v);
-                    });
-                    ctxFile = x;
                     // e.g. ["silvermelxt_1.3.5.xpi",
                     //       "chrome/silvermelxt.jar"]
-                    ctxFile = ctxFile.join('/');
+                    ctxFile = joinPaths(ctxFile);
                     ctxDiv = $(format(
                         '<div class="context">' +
                             '<div class="file">{0}</div></div>',
@@ -1346,6 +1340,25 @@ $(document).ready(function() {
             }
         });
         return msgMap;
+    }
+
+    function joinPaths(parts) {
+        var p = '';
+        $.each(parts, function(i, part) {
+            if (!part || typeof(part) !== 'string') {
+                // Might be null or empty string.
+                return;
+            }
+            if (p.length) {
+                p += '/';
+                if (part.substring(0,1) === '/') {
+                    // Prevent double slashes.
+                    part = part.substring(1);
+                }
+            }
+            p += part;
+        });
+        return p;
     }
 
     function msgId(hash) {

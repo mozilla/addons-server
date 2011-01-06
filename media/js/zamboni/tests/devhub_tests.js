@@ -749,6 +749,18 @@ asyncTest('Test code indentation', function() {
                         "type": "warning",
                         "id": [],
                         "uid": "bb9948b604b111e09dfdc42c0301fe38"
+                    }, {
+                        "context": ["foobar"],
+                        "description": ["Something in somefile.js"],
+                        "column": 0,
+                        "line": 1,
+                        "file": ["silvermelxt_1.3.5.xpi",
+                                 "/path/to/somefile.js"],
+                        "tier": 2,
+                        "message": "Some error",
+                        "type": "warning",
+                        "id": [],
+                        "uid": "dd5448b604b111e09dfdc42c0301fe38"
                     }],
                     "rejected": false,
                     "detected_type": "extension",
@@ -766,12 +778,14 @@ asyncTest('Test code indentation', function() {
         return $('[class~="test-tier"][data-tier="1"]', $suite).hasClass(
                                                             'tests-passed');
     }).thenDo(function() {
-        equals($('.context .file', $suite).text(),
+        equals($('.context .file:eq(0)', $suite).text(),
                'silvermelxt_1.3.5.xpi/chrome/silvermelxt.jar/somefile.js');
         equals($('.context .inner-code div:eq(0)', $suite).html(),
                'if(blah) {');
         equals($('.context .inner-code div:eq(1)', $suite).html(),
                '&nbsp;&nbsp;&nbsp;&nbsp;setTimeout(blah);');
+        equals($('.context .file:eq(1)', $suite).text(),
+               'silvermelxt_1.3.5.xpi/path/to/somefile.js');
         start();
     });
 });
