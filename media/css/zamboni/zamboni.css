@@ -581,6 +581,7 @@ a.button.concealed:active {
 }
 
 .install.featuredaddon,
+.install.lite,
 .install.unreviewed,
 .install.selfhosted {
     padding: 2px;
@@ -591,6 +592,7 @@ a.button.concealed:active {
 }
 
 .html-rtl .install.featuredaddon,
+.html-rtl .install.lite,
 .html-rtl .install.unreviewed,
 .html-rtl .install.selfhosted {
     -moz-border-radius: .95em .95em 0 .95em;
@@ -607,9 +609,11 @@ a.button.concealed:active {
     color: #360;
 }
 
+.install.lite,
 .install.unreviewed {
     background: #ffe57f;
 }
+.install.lite strong,
 .install.unreviewed strong {
     color: #333;
 }
@@ -2234,20 +2238,24 @@ form .error .note.error {
     padding: 0;
 }
 
+.install-wrapper.lite .extra,
 .install-wrapper.unreviewed .extra {
     border-top: 1px dotted #AA7700;
 }
 
+.install-wrapper.lite .install strong,
 .install-wrapper.unreviewed .install strong,
 .install-wrapper.selfhosted .install strong {
     display: none;
 }
 
+.install-wrapper.lite .install-note strong,
 .install-wrapper.unreviewed .install-note strong,
 .install-wrapper.selfhosted .install-note strong {
     display: inherit;
 }
 
+.install-wrapper.lite,
 .install-wrapper.unreviewed,
 .install-wrapper.selfhosted {
     padding: 0.4em;
@@ -2257,6 +2265,7 @@ form .error .note.error {
     background: #D3ECF6;
 }
 
+.install-wrapper.lite,
 .install-wrapper.unreviewed {
     background: #FFE57F;
 }
