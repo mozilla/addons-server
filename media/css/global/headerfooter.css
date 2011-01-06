@@ -391,6 +391,9 @@ div.header-search input.submit {
 
 .site-title {
     padding-top: 16px;
+    max-width: 512px;
+    margin-bottom: 0;
+    display: inline-block;
 }
 
 .site-title a,
@@ -406,6 +409,16 @@ div.header-search input.submit {
     text-transform: uppercase;
     vertical-align: top;
 }
+
+.developer-hub .site-title {
+    padding-top:36px;
+}
+
+.developer-hub .site-title a {
+    font-size: 32px;
+    line-height: 40px;
+}
+
 html[lang=it] .site-title a {
     font-size: 32px;
 }
