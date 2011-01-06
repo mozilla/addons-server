@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
-from datetime import date, datetime, timedelta
+from datetime import datetime, timedelta
 import itertools
 from urlparse import urlparse
 
 from django.conf import settings
 from django.core import mail
 from django.core.cache import cache
+from django.utils import translation
 
 from mock import patch
 from nose.tools import eq_, assert_not_equal
@@ -817,3 +818,15 @@ class TestAddonFromUpload(files.tests.UploadTest):
         addon = Addon.from_upload(self.get_upload('extension-no-homepage.xpi'),
                                   [self.platform])
         eq_(addon.homepage, None)
+
+    def test_default_locale(self):
+        # Make sure default_locale follows the active translation.
+        addon = Addon.from_upload(self.get_upload('search.xml'),
+                                  [self.platform])
+        eq_(addon.default_locale, 'en-US')
+
+        translation.activate('es-ES')
+        addon = Addon.from_upload(self.get_upload('search.xml'),
+                                  [self.platform])
+        eq_(addon.default_locale, 'es-ES')
+        translation.deactivate()

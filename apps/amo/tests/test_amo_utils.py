@@ -7,7 +7,7 @@ from django.core.validators import ValidationError
 
 from nose.tools import eq_, assert_raises
 
-from amo.utils import slug_validator, slugify, resize_image
+from amo.utils import slug_validator, slugify, resize_image, to_language
 
 
 u = u'Ελληνικά'
@@ -63,3 +63,16 @@ def test_resize_transparency():
     finally:
         if os.path.exists(dest):
             os.remove(dest)
+
+
+def test_to_language():
+    tests = (('en-us', 'en-US'),
+             ('en_US', 'en-US'),
+             ('en_us', 'en-US'),
+             ('FR', 'fr'),
+             ('el', 'el'))
+
+    def check(a, b):
+        eq_(to_language(a), b)
+    for a, b in tests:
+        yield check, a, b

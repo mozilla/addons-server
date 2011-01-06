@@ -14,6 +14,7 @@ from django.core import paginator
 from django.core.serializers import json
 from django.core.validators import ValidationError, validate_slug
 from django.core.mail import send_mail as django_send_mail
+from django.utils.translation import trans_real
 from django.utils.functional import Promise
 from django.utils.encoding import smart_str, smart_unicode
 
@@ -372,3 +373,16 @@ def send_abuse_report(request, obj, url, message):
 
     log.debug('Abuse reported by %s for %s.' % (user_name, obj))
     send_mail(subject, msg, recipient_list=(settings.FLIGTAR,))
+
+
+def to_language(locale):
+    """Like django's to_language, but en_US comes out as en-US."""
+    # A locale looks like en_US or fr.
+    if '_' in locale:
+        return to_language(trans_real.to_language(locale))
+    # Django returns en-us but we want to see en-US.
+    elif '-' in locale:
+        lang, region = locale.split('-')
+        return '%s-%s' % (lang, region.upper())
+    else:
+        return trans_real.to_language(locale)

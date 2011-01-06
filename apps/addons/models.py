@@ -4,11 +4,11 @@ import json
 import os
 import operator
 import time
-from datetime import date, datetime, timedelta
+from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.db import models, transaction
-from django.db.models import Q, Sum, Max, signals as dbsignals
+from django.db.models import Q, Max, signals as dbsignals
 from django.utils.translation import trans_real as translation
 
 import caching.base as caching
@@ -19,13 +19,12 @@ import amo.models
 import sharing.utils as sharing
 from amo.fields import DecimalCharField
 from amo.utils import (send_mail, urlparams, sorted_groupby, JSONEncoder,
-                       slugify)
+                       slugify, to_language)
 from amo.urlresolvers import reverse
 from addons.utils import ReverseNameLookup
 from files.models import File
 from reviews.models import Review
-from stats.models import (Contribution as ContributionStats,
-                          AddonShareCountTotal)
+from stats.models import AddonShareCountTotal
 from translations.fields import TranslatedField, PurifiedField, LinkifiedField
 from users.models import UserProfile, PersonaAuthor, UserForeignKey
 from versions.compare import version_int
@@ -297,6 +296,7 @@ class Addon(amo.models.ModelBase):
         fields = cls._meta.get_all_field_names()
         addon = Addon(**dict((k, v) for k, v in data.items() if k in fields))
         addon.status = amo.STATUS_NULL
+        addon.default_locale = to_language(translation.get_language())
         addon.save()
         Version.from_upload(upload, addon, platforms)
         log.debug('New addon %r from %r' % (addon, upload))
