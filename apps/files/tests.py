@@ -216,7 +216,10 @@ class TestParseXpi(test_utils.TestCase):
             self.parse(filename='search.xml')
         eq_(e.exception.messages, ['Could not parse install.rdf.'])
 
-    # parse_dictionary
+    def test_parse_dictionary(self):
+        result = self.parse(filename='dictionary-test.xpi')
+        eq_(result['type'], amo.ADDON_DICT)
+
     # parse_theme
     # parse_langpack
     # parse_search_engine?

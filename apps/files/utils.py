@@ -1,4 +1,5 @@
 import collections
+import glob
 import logging
 import os
 import shutil
@@ -31,12 +32,14 @@ class Extractor(object):
     App = collections.namedtuple('App', 'appdata id min max')
     manifest = u'urn:mozilla:install-manifest'
 
-    def __init__(self, install_rdf):
-        self.rdf = rdflib.Graph().parse(open(install_rdf))
+    def __init__(self, path):
+        self.path = path
+        self.rdf = rdflib.Graph().parse(open(os.path.join(path,
+                                                          'install.rdf')))
         self.find_root()
         self.data = {
             'guid': self.find('id'),
-            'type': self.TYPES.get(self.find('type'), amo.ADDON_EXTENSION),
+            'type': self.find_type(),
             'name': self.find('name'),
             'version': self.find('version'),
             'homepage': self.find('homepageURL'),
@@ -48,6 +51,12 @@ class Extractor(object):
     @classmethod
     def parse(cls, install_rdf):
         return cls(install_rdf).data
+
+    def find_type(self):
+        dic = os.path.join(self.path, 'dictionaries')
+        if os.path.exists(dic) and glob.glob('%s/*.dic' % dic):
+            return amo.ADDON_DICT
+        return self.TYPES.get(self.find('type'), amo.ADDON_EXTENSION)
 
     def uri(self, name):
         namespace = 'http://www.mozilla.org/2004/em-rdf'
@@ -127,7 +136,7 @@ def parse_xpi(xpi, addon=None):
             if '..' in f or f.startswith('/'):
                 raise forms.ValidationError(_('Invalid archive.'))
         zip.extractall(path)
-        rdf = Extractor.parse(os.path.join(path, 'install.rdf'))
+        rdf = Extractor.parse(path)
     except forms.ValidationError:
         raise
     except Exception:
