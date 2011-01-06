@@ -5,7 +5,7 @@ import jingo
 
 from access.admin import GroupUserInline
 from .models import UserProfile, BlacklistedUsername, BlacklistedEmailDomain
-from .users import forms
+from . import forms
 
 
 class UserAdmin(admin.ModelAdmin):

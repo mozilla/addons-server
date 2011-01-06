@@ -21,7 +21,7 @@ from bandwagon.models import Collection
 
 from .models import UserProfile
 from .signals import logged_out
-from .users import forms
+from . import forms
 from .utils import EmailResetCode
 import tasks
 
