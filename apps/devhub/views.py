@@ -247,8 +247,7 @@ def edit(request, addon_id, addon):
        'page': 'edit',
        'addon': addon,
        'tags': addon.tags.not_blacklisted().values_list('tag_text', flat=True),
-       'previews': addon.previews.all(),
-       'categories': addon.categories.all()}
+       'previews': addon.previews.all()}
 
     return jingo.render(request, 'devhub/addons/edit.html', data)
 
@@ -563,8 +562,14 @@ def addons_section(request, addon_id, addon, section, editable=False):
     if section not in models:
         return http.HttpResponseNotFound()
 
-    previews = []
-    if section == 'media':
+    tags = previews = []
+    cat_form = None
+
+    if section == 'basic':
+        tags = addon.tags.not_blacklisted().values_list('tag_text', flat=True)
+        cat_form = addon_forms.CategoryFormSet(request.POST or None,
+                                               addon=addon)
+    elif section == 'media':
         previews = forms.PreviewFormSet(request.POST or None,
                 prefix='files', queryset=addon.previews.all())
 
@@ -572,7 +577,9 @@ def addons_section(request, addon_id, addon, section, editable=False):
         if request.method == 'POST':
             form = models[section](request.POST, request.FILES,
                                   instance=addon, request=request)
-            if form.is_valid() and (not previews or previews.is_valid()):
+
+            if (form.is_valid() and (not previews or previews.is_valid()) and
+                (cat_form and cat_form.is_valid())):
                 addon = form.save(addon)
 
                 if previews:
@@ -584,23 +591,19 @@ def addons_section(request, addon_id, addon, section, editable=False):
                     amo.log(amo.LOG.CHANGE_ICON, addon)
                 else:
                     amo.log(amo.LOG.EDIT_PROPERTIES, addon)
+
+                if cat_form:
+                    cat_form.save()
         else:
             form = models[section](instance=addon, request=request)
     else:
         form = False
 
-    tags = []
-    categories = []
-
-    if section == 'basic':
-        tags = addon.tags.not_blacklisted().values_list('tag_text', flat=True)
-        categories = addon.categories.all()
-
     data = {'addon': addon,
             'form': form,
             'editable': editable,
-            'categories': categories,
             'tags': tags,
+            'cat_form': cat_form,
             'preview_form': previews}
 
     return jingo.render(request,
@@ -827,13 +830,15 @@ def submit_addon(request, step):
 def submit_describe(request, addon_id, addon, step):
     form = forms.Step3Form(request.POST or None, instance=addon,
                            request=request)
-    if request.method == 'POST' and form.is_valid():
+    cat_form = addon_forms.CategoryFormSet(request.POST or None, addon=addon)
+    if request.method == 'POST' and form.is_valid() and cat_form.is_valid():
         addon = form.save(addon)
+        cat_form.save()
         SubmitStep.objects.filter(addon=addon).update(step=4)
         return redirect('devhub.submit.4', addon.slug)
-
     return jingo.render(request, 'devhub/addons/submit/describe.html',
-                        {'form': form, 'addon': addon, 'step': step})
+                        {'form': form, 'cat_form': cat_form, 'addon': addon,
+                         'step': step})
 
 
 @dev_required

@@ -1,4 +1,4 @@
-{% from "devhub/includes/macros.html" import tip, empty_unless, trans_readonly %}
+{% from "devhub/includes/macros.html" import tip, empty_unless, select_cats, trans_readonly %}
 
 <form method="post" action="{{ url('devhub.addons.section', addon.slug, 'basic', 'edit') }}"
       id="addon-edit-basic" data-baseurl="{{ url('devhub.addons.edit', addon.slug) }}">
@@ -73,19 +73,25 @@
                         Choose any that fit your add-on's functionality for the most
                         exposure.")) }}
             </th>
-            <td id="addon_categories_edit" data-max-categories="{{ amo.MAX_CATEGORIES }}">
+            <td id="addon_categories_edit"
+                data-max-categories="{{ amo.MAX_CATEGORIES }}">
               {% if editable %}
-                <p>{{ ngettext('Select <b>up to {0}</b> category for this add-on.',
-                               'Select <b>up to {0}</b> categories for this add-on.',
-                               amo.MAX_CATEGORIES)|f(amo.MAX_CATEGORIES)|safe }}</p>
-                {{ form.categories|safe }}
-                {{ form.categories.errors|safe }}
-              {% else %}
-              {% set pipe = joiner("&middot;") %}
-                {% for category in categories %}
-                  {{ pipe()|safe }}
-                  {{ category }}
+                {{ cat_form.non_form_errors()|safe }}
+                {{ cat_form.management_form|safe }}
+                {% for form in cat_form.initial_forms %}
+                  {{ select_cats(amo.MAX_CATEGORIES, form) }}
                 {% endfor %}
+              {% else %}
+                {% set categories = addon.app_categories %}
+                {% if categories %}
+                  <ul class="addon-app-categories">
+                    {% for app, cats in categories %}
+                      <li>
+                        <b>{{ app.pretty }}:</b> {{ cats|join(' &middot; ')|safe }}
+                      </li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
               {% endif %}
             </td>
           </tr>

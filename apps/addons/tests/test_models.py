@@ -17,9 +17,9 @@ import amo
 import files.tests
 from amo import set_user
 from amo.signals import _connect, _disconnect
-from addons.models import (Addon, AddonDependency, AddonRecommendation,
-                           AddonType, BlacklistedGuid, Category, Charity,
-                           Feature, Persona, Preview)
+from addons.models import (Addon, AddonCategory, AddonDependency,
+                           AddonRecommendation, AddonType, BlacklistedGuid,
+                           Category, Charity, Feature, Persona, Preview)
 from applications.models import Application, AppVersion
 from devhub.models import ActivityLog
 from files.models import File, Platform
@@ -88,6 +88,7 @@ class TestAddonModels(test_utils.TestCase):
                 'base/addon_6704_grapple.json',
                 'base/addon_4594_a9',
                 'base/addon_4664_twitterbar',
+                'base/thunderbird',
                 'addons/featured',
                 'addons/invalid_latest_version']
 
@@ -282,6 +283,36 @@ class TestAddonModels(test_utils.TestCase):
         a.eula = 'eula'
         a.save()
         assert addon().has_eula
+
+    def test_app_categories(self):
+        addon = lambda: Addon.objects.get(pk=3615)
+
+        c22 = Category.objects.get(id=22)
+        c22.name = 'CCC'
+        c22.save()
+        c23 = Category.objects.get(id=23)
+        c23.name = 'BBB'
+        c23.save()
+        c24 = Category.objects.get(id=24)
+        c24.name = 'AAA'
+        c24.save()
+
+        cats = addon().all_categories
+        eq_(cats, [c22, c23, c24])
+        for cat in cats:
+            eq_(cat.application.id, amo.FIREFOX.id)
+
+        cats = [c24, c23, c22]
+        app_cats = [(amo.FIREFOX, cats)]
+        eq_(addon().app_categories, app_cats)
+
+        tb = Application.objects.get(id=amo.THUNDERBIRD.id)
+        c = Category(application=tb, name='XXX', type=addon().type, count=1,
+                     weight=1)
+        c.save()
+        ac = AddonCategory(addon=addon(), category=c).save()
+        app_cats += [(amo.THUNDERBIRD, [c])]
+        eq_(addon().app_categories, app_cats)
 
     def test_review_replies(self):
         """

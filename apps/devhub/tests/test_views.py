@@ -983,6 +983,10 @@ class TestEdit(test_utils.TestCase):
         settings.PREVIEW_THUMBNAIL_PATH = tempfile.mkstemp()[1] + '%s/%d.png'
         settings.ADDON_ICONS_PATH = tempfile.mkdtemp()
 
+        self.basic_url = self.get_url('basic', True)
+        ctx = self.client.get(self.basic_url).context['cat_form']
+        self.cat_initial = initial(ctx.initial_forms[0])
+
     def tearDown(self):
         reset_redis(self._redis)
         settings.PREVIEW_THUMBNAIL_PATH = self.old_settings['preview']
@@ -1009,7 +1013,6 @@ class TestEdit(test_utils.TestCase):
         args = [self.addon.slug, section]
         if edit:
             args.append('edit')
-
         return reverse('devhub.addons.section', args=args)
 
     def test_redirect(self):
@@ -1019,10 +1022,12 @@ class TestEdit(test_utils.TestCase):
         self.assertRedirects(r, url, 301)
 
     def get_dict(self, **kw):
+        fs = formset(self.cat_initial, initial_count=1)
         result = {'name': 'new name', 'slug': 'test_slug',
-                  'summary': 'new summary', 'categories': ['22'],
+                  'summary': 'new summary',
                   'tags': ', '.join(self.tags)}
         result.update(**kw)
+        result.update(fs)
         return result
 
     def test_edit_basic(self):
@@ -1197,80 +1202,78 @@ class TestEdit(test_utils.TestCase):
         eq_(tag.tag_text, 'scriptalertfooscript')
 
     def test_edit_basic_categories_add(self):
-        eq_([c.id for c in self.get_addon().categories.all()], [22])
-        data = self.get_dict(name='new name!', categories=[22, 23])
-        self.client.post(self.get_url('basic', True), data)
-
-        categories = self.get_addon().categories.all()
-
-        eq_(categories[0].id, 22)
-        eq_(categories[1].id, 23)
+        eq_([c.id for c in self.get_addon().all_categories], [22])
+        self.cat_initial['categories'] = [22, 23]
+        r = self.client.post(self.basic_url, formset(self.cat_initial,
+                                                     initial_count=1))
+        eq_([c.id for c in self.get_addon().all_categories], [22, 23])
 
     def test_edit_basic_categories_addandremove(self):
         AddonCategory(addon=self.addon, category_id=23).save()
+        eq_([c.id for c in self.get_addon().all_categories], [22, 23])
 
-        eq_([c.id for c in self.get_addon().categories.all()], [22, 23])
-        data = self.get_dict(name='new name!', categories=[22, 24])
-        self.client.post(self.get_url('basic', True), data)
+        self.cat_initial['categories'] = [22, 24]
+        r = self.client.post(self.basic_url, formset(self.cat_initial,
+                                                     initial_count=1))
 
-        category_ids_new = [c.id for c in self.get_addon().categories.all()]
-
+        category_ids_new = [c.id for c in self.get_addon().all_categories]
         eq_(category_ids_new, [22, 24])
 
     def test_edit_basic_categories_xss(self):
-        category_other = Category.objects.get(id=22)
-        category_other.name = '<script>alert("test");</script>'
-        category_other.save()
-        data = self.get_dict(name='new name!', categories=[22, 24])
-        r = self.client.post(self.get_url('basic', True), data)
+        c = Category.objects.get(id=22)
+        c.name = '<script>alert("test");</script>'
+        c.save()
+
+        self.cat_initial['categories'] = [22, 24]
+        r = self.client.post(self.basic_url, formset(self.cat_initial,
+                                                     initial_count=1))
 
         assert '<script>alert' not in r.content
         assert '&lt;script&gt;alert' in r.content
 
     def test_edit_basic_categories_remove(self):
-        category = Category.objects.get(id=23)
-        AddonCategory(addon=self.addon, category=category).save()
+        c = Category.objects.get(id=23)
+        AddonCategory(addon=self.addon, category=c).save()
+        eq_([c.id for c in self.get_addon().all_categories], [22, 23])
 
-        eq_([c.id for c in self.get_addon().categories.all()], [22, 23])
-        data = self.get_dict(name='new name!')
-        self.client.post(self.get_url('basic', True), data)
+        self.cat_initial['categories'] = [22]
+        r = self.client.post(self.basic_url, formset(self.cat_initial,
+                                                     initial_count=1))
 
-        category_ids_new = [c.id for c in self.get_addon().categories.all()]
-
+        category_ids_new = [c.id for c in self.get_addon().all_categories]
         eq_(category_ids_new, [22])
 
     def test_edit_basic_categories_required(self):
-        data = self.get_dict(categories=[])
-        r = self.client.post(self.get_url('basic', True), data)
-        self.assertFormError(r, 'form', 'categories',
-                             'This field is required.')
+        del self.cat_initial['categories']
+        r = self.client.post(self.basic_url, formset(self.cat_initial,
+                                                     initial_count=1))
+        eq_(r.context['cat_form'].errors[0]['categories'],
+            ['This field is required.'])
 
     def test_edit_basic_categories_max(self):
-        data = self.get_dict(categories=[22, 23, 24])
-        r = self.client.post(self.get_url('basic', True), data)
-
-        error = 'You can only have 2 categories.'
-        self.assertFormError(r, 'form', 'categories', error)
+        eq_(amo.MAX_CATEGORIES, 2)
+        self.cat_initial['categories'] = [22, 23, 24]
+        r = self.client.post(self.basic_url, formset(self.cat_initial,
+                                                     initial_count=1))
+        eq_(r.context['cat_form'].errors[0]['categories'],
+            ['You can have only 2 categories.'])
 
     def test_edit_basic_categories_other_failure(self):
-        category_other = Category.objects.get(id=22)
-        category_other.name = 'Other'
-        category_other.save()
-
-        data = self.get_dict(categories=[22, 23])
-        r = self.client.post(self.get_url('basic', True), data)
-
-        error = ("The category 'Other' can not be combined with "
-                 "additional categories.")
-        self.assertFormError(r, 'form', 'categories', error)
+        Category.objects.get(id=22).update(misc=True)
+        self.cat_initial['categories'] = [22, 23]
+        r = self.client.post(self.basic_url, formset(self.cat_initial,
+                                                     initial_count=1))
+        eq_(r.context['cat_form'].errors[0]['categories'],
+            ['The miscellaneous category cannot be combined with additional '
+             'categories.'])
 
     def test_edit_basic_categories_nonexistent(self):
-        data = self.get_dict(categories=[100])
-        r = self.client.post(self.get_url('basic', True), data)
-        # Users will only get this if they're messing with the form, so a
-        # human readable error isn't necessary.
-        err = 'Select a valid choice. 100 is not one of the available choices.'
-        self.assertFormError(r, 'form', 'categories', err)
+        self.cat_initial['categories'] = [100]
+        r = self.client.post(self.basic_url, formset(self.cat_initial,
+                                                     initial_count=1))
+        eq_(r.context['cat_form'].errors[0]['categories'],
+            ['Select a valid choice. 100 is not one of the available '
+             'choices.'])
 
     def test_edit_basic_name_not_empty(self):
         data = self.get_dict(name='', slug=self.addon.slug,
@@ -2598,6 +2601,7 @@ class TestSubmitStep3(test_utils.TestCase):
 
     def setUp(self):
         super(TestSubmitStep3, self).setUp()
+        self.addon = self.get_addon()
         self.url = reverse('devhub.submit.3', args=['a3615'])
         assert self.client.login(username='del@icio.us', password='password')
         SubmitStep.objects.create(addon_id=3615, step=3)
@@ -2609,22 +2613,30 @@ class TestSubmitStep3(test_utils.TestCase):
         AddonCategory.objects.filter(addon=self.get_addon(),
                 category=Category.objects.get(id=24)).delete()
 
+        ctx = self.client.get(self.url).context['cat_form']
+        self.cat_initial = initial(ctx.initial_forms[0])
+
     def get_addon(self):
         return Addon.objects.no_cache().get(id=3615)
 
     def tearDown(self):
         reset_redis(self._redis)
 
+    def get_dict(self, **kw):
+        cat_initial = kw.pop('cat_initial', self.cat_initial)
+        fs = formset(cat_initial, initial_count=1)
+        result = {'name': 'Test name', 'slug': 'testname',
+                  'description': 'desc', 'summary': 'Hello!'}
+        result.update(**kw)
+        result.update(fs)
+        return result
+
     def test_submit_success(self):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
 
         # Post and be redirected.
-        d = {'name': 'Test name',
-             'slug': 'testname',
-             'description': 'desc',
-             'categories': ['22'],
-             'summary': 'Hello!'}
+        d = self.get_dict()
         r = self.client.post(self.url, d)
         eq_(r.status_code, 302)
         eq_(SubmitStep.objects.get(addon=3615).step, 4)
@@ -2641,38 +2653,39 @@ class TestSubmitStep3(test_utils.TestCase):
 
     def test_submit_name_unique(self):
         # Make sure name is unique.
-        r = self.client.post(self.url, {'name': 'Cooliris'})
+        r = self.client.post(self.url, self.get_dict(name='Cooliris'))
         error = 'This add-on name is already in use. Please choose another.'
         self.assertFormError(r, 'form', 'name', error)
 
     def test_submit_name_unique_strip(self):
         # Make sure we can't sneak in a name by adding a space or two.
-        r = self.client.post(self.url, {'name': '  Cooliris  '})
+        r = self.client.post(self.url, self.get_dict(name='  Cooliris  '))
         error = 'This add-on name is already in use. Please choose another.'
         self.assertFormError(r, 'form', 'name', error)
 
     def test_submit_name_unique_case(self):
         # Make sure unique names aren't case sensitive.
-        r = self.client.post(self.url, {'name': 'cooliris'})
+        r = self.client.post(self.url, self.get_dict(name='cooliris'))
         error = 'This add-on name is already in use. Please choose another.'
         self.assertFormError(r, 'form', 'name', error)
 
     def test_submit_name_required(self):
         # Make sure name is required.
-        r = self.client.post(self.url, {'dummy': 'text'})
+        r = self.client.post(self.url, self.get_dict(name=''))
         eq_(r.status_code, 200)
         self.assertFormError(r, 'form', 'name', 'This field is required.')
 
     def test_submit_name_length(self):
         # Make sure the name isn't too long.
-        r = self.client.post(self.url, {'name': 'a' * 51})
+        d = self.get_dict(name='a' * 51)
+        r = self.client.post(self.url, d)
         eq_(r.status_code, 200)
         error = 'Ensure this value has at most 50 characters (it has 51).'
         self.assertFormError(r, 'form', 'name', error)
 
     def test_submit_slug_invalid(self):
         # Submit an invalid slug.
-        d = dict(slug='slug!!! aksl23%%')
+        d = self.get_dict(slug='slug!!! aksl23%%')
         r = self.client.post(self.url, d)
         eq_(r.status_code, 200)
         self.assertFormError(r, 'form', 'slug', "Enter a valid 'slug' " +
@@ -2680,82 +2693,61 @@ class TestSubmitStep3(test_utils.TestCase):
 
     def test_submit_slug_required(self):
         # Make sure the slug is required.
-        r = self.client.post(self.url, {'dummy': 'text'})
+        r = self.client.post(self.url, self.get_dict(slug=''))
         eq_(r.status_code, 200)
         self.assertFormError(r, 'form', 'slug', 'This field is required.')
 
     def test_submit_summary_required(self):
         # Make sure summary is required.
-        r = self.client.post(self.url, {'dummy': 'text'})
+        r = self.client.post(self.url, self.get_dict(summary=''))
         eq_(r.status_code, 200)
         self.assertFormError(r, 'form', 'summary', 'This field is required.')
 
     def test_submit_summary_length(self):
         # Summary is too long.
-        r = self.client.post(self.url, {'summary': 'a' * 251})
+        r = self.client.post(self.url, self.get_dict(summary='a' * 251))
         eq_(r.status_code, 200)
         error = 'Ensure this value has at most 250 characters (it has 251).'
         self.assertFormError(r, 'form', 'summary', error)
 
     def test_submit_categories_required(self):
-        r = self.client.post(self.url, {'summary': 'Hello.', 'categories': []})
-        self.assertFormError(r, 'form', 'categories',
-                             'This field is required.')
+        del self.cat_initial['categories']
+        r = self.client.post(self.url,
+                             self.get_dict(cat_initial=self.cat_initial))
+        eq_(r.context['cat_form'].errors[0]['categories'],
+            ['This field is required.'])
 
     def test_submit_categories_max(self):
-        r = self.client.post(self.url, {'categories': ['22', '23', '24']})
-        error = 'You can only have 2 categories.'
-        self.assertFormError(r, 'form', 'categories', error)
+        eq_(amo.MAX_CATEGORIES, 2)
+        self.cat_initial['categories'] = [22, 23, 24]
+        r = self.client.post(self.url,
+                             self.get_dict(cat_initial=self.cat_initial))
+        eq_(r.context['cat_form'].errors[0]['categories'],
+            ['You can have only 2 categories.'])
 
     def test_submit_categories_add(self):
-        eq_([c.id for c in self.get_addon().categories.all()], [22])
-
-        data = dict(name='new name!',
-                    slug='test_slug',
-                    summary='new summary',
-                    categories=[22, 23],
-                    tags='ab, cd, ef')
-
-        self.client.post(self.url, data)
-
-        categories = self.get_addon().categories.all()
-
-        eq_(categories[0].id, 22)
-        eq_(categories[1].id, 23)
+        eq_([c.id for c in self.get_addon().all_categories], [22])
+        self.cat_initial['categories'] = [22, 23]
+        self.client.post(self.url, self.get_dict(cat_initial=self.cat_initial))
+        eq_([c.id for c in self.get_addon().all_categories], [22, 23])
 
     def test_submit_categories_addandremove(self):
-        AddonCategory(addon=self.get_addon(), category_id=23).save()
+        AddonCategory(addon=self.addon, category_id=23).save()
+        eq_([c.id for c in self.get_addon().all_categories], [22, 23])
 
-        eq_([c.id for c in self.get_addon().categories.all()], [22, 23])
-
-        data = dict(name='new name!',
-                    slug='test_slug',
-                    summary='new summary',
-                    categories=[22, 24],
-                    tags='ab, cd, ef')
-
-        self.client.post(self.url, data)
-
-        category_ids_new = [c.id for c in self.get_addon().categories.all()]
-
+        self.cat_initial['categories'] = [22, 24]
+        self.client.post(self.url, self.get_dict(cat_initial=self.cat_initial))
+        category_ids_new = [c.id for c in self.get_addon().all_categories]
         eq_(category_ids_new, [22, 24])
 
     def test_submit_categories_remove(self):
-        category = Category.objects.get(id=23)
-        AddonCategory(addon=self.get_addon(), category=category).save()
+        c = Category.objects.get(id=23)
+        AddonCategory(addon=self.addon, category=c).save()
+        eq_([c.id for c in self.get_addon().all_categories], [22, 23])
 
-        eq_([c.id for c in self.get_addon().categories.all()], [22, 23])
-
-        data = dict(name='new name!',
-                    slug='test_slug',
-                    summary='new summary',
-                    categories=[22],
-                    tags='ab, cd, ef')
-
-        self.client.post(self.url, data)
-
-        category_ids_new = [c.id for c in self.get_addon().categories.all()]
-
+        self.cat_initial['categories'] = [22]
+        self.client.post(self.url, self.get_dict(cat_initial=self.cat_initial))
+        category_ids_new = [c.id for c in self.get_addon().all_categories]
         eq_(category_ids_new, [22])
 
     def test_check_version(self):
@@ -2949,7 +2941,7 @@ class TestSubmitStep5(TestSubmitBase):
     def test_set_eula_nomsg(self):
         """
         You should not get punished with a 500 for not writing your EULA...
-        but perhaps you shoudl feel shame for lying to us.  This test does not
+        but perhaps you should feel shame for lying to us.  This test does not
         test for shame.
         """
         self.get_addon().update(eula=None, privacy_policy=None)

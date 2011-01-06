@@ -27,6 +27,7 @@ from files.models import File
 from reviews.models import Review
 from stats.models import AddonShareCountTotal
 from translations.fields import TranslatedField, PurifiedField, LinkifiedField
+from translations.query import order_by_translation
 from users.models import UserProfile, PersonaAuthor, UserForeignKey
 from versions.compare import version_int
 from versions.models import Version
@@ -782,6 +783,16 @@ class Addon(amo.models.ModelBase):
     def all_categories(self):
         return list(self.categories.all())
 
+    @property
+    def app_categories(self):
+        categories = sorted_groupby(order_by_translation(self.categories.all(),
+                                                         'name'),
+                                    key=lambda x: x.application_id)
+        app_cats = []
+        for app, cats in categories:
+            app_cats.append((amo.APP_IDS[app], list(cats)))
+        return app_cats
+
 
 def update_name_table(sender, **kw):
     from . import cron
@@ -1031,6 +1042,7 @@ class Category(amo.models.ModelBase):
     count = models.IntegerField('Addon count')
     weight = models.IntegerField(
         help_text='Category weight used in sort ordering')
+    misc = models.BooleanField(default=False)
 
     addons = models.ManyToManyField(Addon, through='AddonCategory')
 

@@ -3,15 +3,18 @@ import re
 
 from django import forms
 from django.conf import settings
+from django.forms.formsets import BaseFormSet, formset_factory
 
 import happyforms
 from tower import ugettext as _, ungettext as ngettext
 
 import amo
 import captcha.fields
-from amo.utils import ImageCheck, slug_validator, slugify, remove_icons
+from amo.utils import (ImageCheck, slug_validator, slugify, sorted_groupby,
+                       remove_icons)
 from addons.models import Addon, ReverseNameLookup, Category, AddonCategory
 from addons.widgets import IconWidgetRenderer, CategoriesSelectMultiple
+from applications.models import Application
 from devhub import tasks
 from tags.models import Tag
 from translations.fields import TransField, TransTextarea
@@ -45,8 +48,6 @@ class AddonFormBasic(AddonFormBase):
     summary = TransField(widget=TransTextarea(attrs={'rows': 4}),
                          max_length=250)
     tags = forms.CharField(required=False)
-    categories = forms.ModelMultipleChoiceField(queryset=False,
-            widget=CategoriesSelectMultiple)
 
     def __init__(self, *args, **kw):
         super(AddonFormBasic, self).__init__(*args, **kw)
@@ -59,12 +60,6 @@ class AddonFormBasic(AddonFormBase):
         name_validators.append(validate_name)
         self.fields['name'].validators = name_validators
 
-        # TODO(gkoberger/help from chowse):
-        # Make it so the categories aren't hardcoded as Firefox only
-        self.fields['categories'].queryset = (order_by_translation(
-            Category.objects.filter(application=1, type=self.instance.type),
-            'name'))
-
     def save(self, addon, commit=False):
         tags_new = self.cleaned_data['tags']
         tags_old = [slugify(t.tag_text, spaces=True) for t in addon.tags.all()]
@@ -76,17 +71,6 @@ class AddonFormBasic(AddonFormBase):
         # Remove old tags.
         for t in set(tags_old) - set(tags_new):
             Tag(tag_text=t).remove_tag(addon, amo.get_user())
-
-        categories_new = self.cleaned_data['categories']
-        categories_old = list(addon.categories.all())
-
-        # Add new categories.
-        for c in set(categories_new) - set(categories_old):
-            AddonCategory(addon=addon, category=c).save()
-
-        # Remove old categories.
-        for c in set(categories_old) - set(categories_new):
-            AddonCategory.objects.filter(addon=addon, category=c).delete()
 
         # We ignore `commit`, since we need it to be `False` so we can save
         # the ManyToMany fields on our own.
@@ -140,26 +124,82 @@ class AddonFormBasic(AddonFormBase):
                 raise forms.ValidationError(_('This slug is already in use.'))
         return target
 
+
+class ApplicationChoiceField(forms.ModelChoiceField):
+
+    def label_from_instance(self, obj):
+        return obj.id
+
+
+class CategoryForm(forms.Form):
+    application = ApplicationChoiceField(Application.objects.all(),
+                                         widget=forms.HiddenInput)
+    categories = forms.ModelMultipleChoiceField(
+        queryset=Category.objects.all(), widget=CategoriesSelectMultiple)
+
+    def save(self, addon):
+        categories_new = self.cleaned_data['categories']
+        categories_old = [cats for app, cats in addon.app_categories
+                          if app.id == self.cleaned_data['application'].id]
+        if categories_old:
+            categories_old = categories_old[0]
+
+        # Add new categories.
+        for c in set(categories_new) - set(categories_old):
+            AddonCategory(addon=addon, category=c).save()
+
+        # Remove old categories.
+        for c in set(categories_old) - set(categories_new):
+            AddonCategory.objects.filter(addon=addon, category=c).delete()
+
     def clean_categories(self):
-        # TODO(gkoberger): When we support multiple categories, this needs
-        # to be changed so they can have 2 categories per application.
         categories = self.cleaned_data['categories']
+        total = categories.count()
         max_cat = amo.MAX_CATEGORIES
-        total = len(self.cleaned_data['categories'].all())
         if total > max_cat:
             raise forms.ValidationError(ngettext(
-                                          'You can only have {0} category.',
-                                          'You can only have {0} categories.',
-                                          max_cat).format(max_cat))
+                'You can have only {0} category.',
+                'You can have only {0} categories.',
+                max_cat).format(max_cat))
 
-        has_other = len([i.name for i in categories if i.name=="Other"]) > 0
+        has_misc = filter(lambda x: x.misc, categories)
+        if has_misc and total > 1:
+            raise forms.ValidationError(
+                _("The miscellaneous category cannot be combined with "
+                  "additional categories."))
 
-        if has_other and total > 1:
-            raise forms.ValidationError(_("The category 'Other' can not be "
-                                          "combined with additional "
-                                          "categories."))
+        return categories
 
-        return self.cleaned_data['categories']
+
+class BaseCategoryFormSet(BaseFormSet):
+
+    def __init__(self, *args, **kw):
+        self.addon = kw.pop('addon')
+        super(BaseCategoryFormSet, self).__init__(*args, **kw)
+        self.initial = []
+        apps = sorted(self.addon.compatible_apps.keys(), key=lambda x: x.id)
+        for app in apps:
+            cats = [c for a, c in self.addon.app_categories if a == app]
+            if cats:
+                cats = cats[0]
+            self.initial.append({'categories': [c.id for c in cats]})
+        self._construct_forms()
+
+        for app, form in zip(apps, self.forms):
+            form.initial['application'] = app.id
+            form.app = app
+
+            cats = order_by_translation(Category.objects.filter(
+                type=self.addon.type, application=app.id), 'name')
+            form.fields['categories'].choices = [(c.id, c.name) for c in cats]
+
+    def save(self):
+        for f in self.forms:
+            f.save(self.addon)
+
+
+CategoryFormSet = formset_factory(form=CategoryForm,
+                                  formset=BaseCategoryFormSet, extra=0)
 
 
 def icons():

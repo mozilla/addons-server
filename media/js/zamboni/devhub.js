@@ -44,6 +44,11 @@ $(document).ready(function() {
         initUploadControls();
     }
 
+    // Submission > Describe
+    if ($("#submit-describe").length) {
+        initCatFields();
+    }
+
     // Submission > Media
     if($('#submit-media').length) {
         initUploadIcon();
@@ -241,29 +246,6 @@ $("#user-form-template .email-autocomplete")
 function initEditAddon() {
     if (z.noEdit) return;
 
-    // Manage checked/unchecked categories.
-    var max_categories = parseInt($('#addon_categories_edit').attr('data-max-categories'));
-
-    var manage_checked_all = function() {
-        var p = $('#addon_categories_edit'),
-            checked_length = $('ul:not(.other) input:checked', p).length,
-            disabled = checked_length >= max_categories;
-
-        $('ul.other input', p).attr('checked',  checked_length <= 0);
-        $('ul:not(.other) input:not(:checked)', p).attr('disabled', disabled)
-    };
-
-    var manage_checked_other = function() {
-        $('#addon_categories_edit ul:not(.other) input').attr('checked', false);
-        $('#addon_categories_edit ul:not(.other) input').attr('disabled', false);
-    };
-
-    $('#edit-addon').delegate('#addon_categories_edit ul:not(.other) input',
-                              'change', manage_checked_all);
-
-    $('#edit-addon').delegate('#addon_categories_edit ul.other input',
-                              'change', manage_checked_other);
-
     // Load the edit form.
     $('#edit-addon').delegate('h3 a', 'click', function(e){
         e.preventDefault();
@@ -274,7 +256,7 @@ function initEditAddon() {
         (function(parent_div, a){
             parent_div.load($(a).attr('data-editurl'), function(){
                 if($('#addon_categories_edit').length) {
-                    manage_checked_all();
+                    initCatFields();
                 }
                 $(this).each(addonFormSubmit);
             });
@@ -416,7 +398,7 @@ function initUploadIcon() {
         $('#icons_default a.active').removeClass('active');
         $(this).addClass('active');
 
-        $("#id_icon_upload").val("")
+        $("#id_icon_upload").val("");
 
         $('#icon_preview_32 img').attr('src', $('img', $parent).attr('src'));
         $('#icon_preview_64 img').attr('src', $('img',
@@ -431,7 +413,7 @@ function initUploadIcon() {
             $('#icons_default input:checked').attr('checked', false);
 
             $('input[name=icon_type][value='+file.type+']', $('#icons_default'))
-                                                          .attr('checked', true)
+                                                          .attr('checked', true);
 
             $('#icons_default a.active').removeClass('active');
             $('#icon_preview img').attr('src', file.getAsDataURL());
@@ -899,6 +881,26 @@ function initPayments() {
     }).change();
 }
 
+function initCatFields() {
+    $(".select-addon-cats").each(function() {
+        var $parent = $(this).closest("[data-max-categories]"),
+            $main = $(this).find(".addon-categories"),
+            $misc = $(this).find(".addon-misc-category"),
+            maxCats = parseInt($parent.attr("data-max-categories"));
+        var checkMain = function() {
+            var checkedLength = $("input:checked", $main).length,
+                disabled = checkedLength >= maxCats;
+            $("input", $misc).attr("checked", checkedLength <= 0);
+            $("input:not(:checked)", $main).attr("disabled", disabled);
+        };
+        var checkOther = function() {
+            $("input", $main).attr("checked", false).attr("disabled", false);
+        };
+        $("input", $main).live("change", checkMain).trigger("change");
+        $("input", $misc).live("change", checkOther);
+    });
+}
+
 function initLicenseFields() {
     $("#id_has_eula").change(function (e) {
         if ($(this).attr("checked")) {
@@ -1182,7 +1184,7 @@ function hideSameSizedIcons() {
         if($.inArray(size, icon_sizes) >= 0) {
             $(this).hide();
         }
-        icon_sizes.push(size)
+        icon_sizes.push(size);
     });
 }
 

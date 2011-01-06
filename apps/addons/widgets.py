@@ -5,6 +5,8 @@ from django.utils.html import conditional_escape
 from django.utils.safestring import mark_safe
 from tower import ugettext as _
 
+from addons.models import Category
+
 
 class IconWidgetRenderer(forms.RadioSelect.renderer):
     """ Return radiobox as a list of images. """
@@ -26,52 +28,42 @@ class IconWidgetRenderer(forms.RadioSelect.renderer):
 
 
 class CategoriesSelectMultiple(forms.CheckboxSelectMultiple):
-    """
-    Widget that formats the Categories checkboxes.
-    """
+    """Widget that formats the Categories checkboxes."""
+
     def __init__(self, **kwargs):
         super(self.__class__, self).__init__(**kwargs)
 
     def render(self, name, value, attrs=None):
-        if value is None: value = []
+        value = value or []
         has_id = attrs and 'id' in attrs
         final_attrs = self.build_attrs(attrs, name=name)
 
         choices = []
         other = None
 
+        miscs = Category.objects.filter(misc=True).values_list('id', flat=True)
         for c in self.choices:
-            if c[1] == 'Other':
+            if c[0] in miscs:
                 other = (c[0],
                          _("My add-on doesn't fit into any of the categories"))
             else:
                 choices.append(c)
 
-        choices= list(enumerate(choices))
+        choices = list(enumerate(choices))
         choices_size = len(choices)
 
-        columns = []
-
-        # Left column
-        columns.append(choices[:len(choices) / 2])
-
-        # Right column
-        columns.append(choices[len(choices) / 2:])
-
-        # "Other" column
+        groups = [choices]
         if other:
-            columns.append([(choices_size,other)])
+            groups.append([(choices_size, other)])
+
+        str_values = set([force_unicode(v) for v in value])
 
         output = []
-        for (k, column) in enumerate(columns):
-            if k == 2:
-                # We know it's the "other" column
-                output.append(u'<ul class="other">')
-            else:
-                output.append(u'<ul>')
+        for (k, group) in enumerate(groups):
+            cls = 'addon-misc-category' if k == 1 else 'addon-categories'
+            output.append(u'<ul class="%s">' % cls)
 
-            str_values = set([force_unicode(v) for v in value])
-            for i, (option_value, option_label) in column:
+            for i, (option_value, option_label) in group:
                 if has_id:
                     final_attrs = dict(final_attrs, id='%s_%s' % (
                             attrs['id'], i))
@@ -86,7 +78,7 @@ class CategoriesSelectMultiple(forms.CheckboxSelectMultiple):
                 option_label = conditional_escape(force_unicode(option_label))
                 output.append(u'<li><label%s>%s %s</label></li>' % (
                         label_for, rendered_cb, option_label))
+
             output.append(u'</ul>')
 
         return mark_safe(u'\n'.join(output))
-

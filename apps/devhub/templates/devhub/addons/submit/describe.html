@@ -1,4 +1,4 @@
-{% from "devhub/includes/macros.html" import some_html_tip %}
+{% from "devhub/includes/macros.html" import some_html_tip, select_cats %}
 {% extends "devhub/addons/submit/base.html" %}
 
 {% block title %}{{ dev_page_title(_('Step 3'), addon) }}{% endblock %}
@@ -11,56 +11,60 @@
       <label for="id_name">{{ _("Your add-on's name and version:") }}</label>
       {{ form.name|safe }}
 
-    {% set version = addon.current_version %}
-    <input type="text" disabled id="current_version"
-           value="{{ version.version }}" size="6" />
+      {% set version = addon.current_version %}
+      <input type="text" disabled id="current_version"
+             value="{{ version.version }}" size="6">
 
-    {{ form.name.errors|safe }}
-  </div>
-  <div class="addon-submission-field">
-    <label>{{ _("Your add-on's detail page will be:") }}</label>
-    <span id="slug_edit" class="edit_with_prefix edit_initially_hidden">
-      <span>{{ settings.SITE_URL }}</span>{{ form.slug|safe }}
-    </span>
-    <span id="slug_readonly">
-      {{ settings.SITE_URL }}/&hellip;/<span id="slug_value"></span>
-      <a id="edit_slug" href="#">{{ _('Edit') }}</a>
-    </span>
-    {{ form.slug.errors|safe }}
-  </div>
-  <div class="addon-submission-field">
-    <label>{{ _('Provide a brief summary of your add-on:') }}</label>
-    {{ form.summary|safe }}
-    {{ form.summary.errors|safe }}
-    <div class="edit-addon-details">
-      {% trans %}
-        This summary will be shown with your add-on in listings and searches.
-      {% endtrans %}
-      <div class="char-count"
-           data-for-startswith="{{ form.summary.auto_id }}_"
-           data-maxlength="{{ form.summary.field.max_length }}"></div>
+      {{ form.name.errors|safe }}
     </div>
-  </div>
-  <div class="addon-submission-field">
-    <label>
-      {{ _('Select 1 or 2 categories that best describe your add-on:') }}
-    </label>
-    {{ form.categories|safe }}
-    {{ form.categories.errors|safe }}
-  </div>
-  <div class="addon-submission-field">
-    <label>{{ _('Provide a more detailed description of your add-on:') }}</label>
-    {{ form.description|safe }}
-    {{ form.description.errors|safe }}
-    <div class="edit-addon-details">
-      {{ _("The description will appear on your add-on's detail page.") }}
-      {{ some_html_tip() }}
+    <div class="addon-submission-field">
+      <label>{{ _("Your add-on's detail page will be:") }}</label>
+      <div id="slug_edit" class="edit_with_prefix edit_initially_hidden">
+        <span>{{ settings.SITE_URL }}</span>{{ form.slug|safe }}
+        <div class="edit-addon-details">
+          {{ _('Please use only letters, numbers, and dashes in your URL.') }}
+        </div>
+      </div>
+      <span id="slug_readonly">
+        {{ settings.SITE_URL }}/&hellip;/<span id="slug_value"></span>
+        <a id="edit_slug" href="#">{{ _('Edit') }}</a>
+      </span>
+      {{ form.slug.errors|safe }}
+    </div>
+    <div class="addon-submission-field">
+      <label>{{ _('Provide a brief summary of your add-on:') }}</label>
+      {{ form.summary|safe }}
+      {{ form.summary.errors|safe }}
+      <div class="edit-addon-details">
+        {% trans %}
+          This summary will be shown with your add-on in listings and searches.
+        {% endtrans %}
+        <div class="char-count"
+             data-for-startswith="{{ form.summary.auto_id }}_"
+             data-maxlength="{{ form.summary.field.max_length }}"></div>
+      </div>
+    </div>
+    <div class="addon-submission-field"
+         data-max-categories="{{ amo.MAX_CATEGORIES }}">
+      {{ cat_form.non_form_errors()|safe }}
+      {{ cat_form.management_form|safe }}
+      {% for form in cat_form.initial_forms %}
+        {{ select_cats(amo.MAX_CATEGORIES, form) }}
+      {% endfor %}
+    </div>
+    <div class="addon-submission-field">
+      <label>{{ _('Provide a more detailed description of your add-on:') }}</label>
+      {{ form.description|safe }}
+      {{ form.description.errors|safe }}
+      <div class="edit-addon-details">
+        {{ _("The description will appear on your add-on's detail page.") }}
+        {{ some_html_tip() }}
+      </div>
     </div>
     <div class="submission-buttons addon-submission-field">
       <button type="submit">
         {{ _('Continue') }}
       </button>
     </div>
-  </div>
   </form>
 {% endblock primary %}

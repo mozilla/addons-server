@@ -258,11 +258,6 @@ label.above-the-field .locale {
     margin-left: 0.5em;
 }
 
-#addon_categories_edit ul {
-    float: left;
-    margin-right: 20px;
-}
-
 /*
 Bug 622030- TODO (potch) fix this later
 
@@ -293,6 +288,55 @@ form .char-count b {
     height: 16px;
     width: 16px;
 }
+
+/* @group Add-on category selection */
+
+.select-addon-cats {
+    margin-bottom: 1.5em;
+}
+
+#edit-addon-basic .select-addon-cats {
+    border-top: 1px dotted #add0dc;
+    margin: 8px 0 0;
+    padding-top: 8px;
+}
+#edit-addon-basic input + .select-addon-cats {
+    border-top-width: 0;
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.addon-categories {
+    -moz-column-count: 3;
+    -webkit-column-count: 3;
+    column-count: 3;
+    -moz-column-gap: 1.5em;
+    -webkit-column-gap: 1.5em;
+    column-gap: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+#addon_categories_edit .addon-categories {
+    -moz-column-count: 2;
+    -webkit-column-count: 2;
+    column-count: 2;
+}
+
+.addon-misc-category,
+.addon-app-categories {
+    margin-bottom: 0;
+}
+
+.addon-categories label,
+.addon-misc-category label {
+    font-weight: normal;
+}
+
+.addon-app-categories li b {
+    margin-right: 0.25em;
+}
+
+/* @end */
 
 #file-list .preview {
     overflow: auto;
@@ -770,7 +814,8 @@ h3 a.subscribe-feed:hover {
     margin-bottom: 1em;
 }
 
-.addon-submission-process form label {
+.addon-submission-process form label,
+#edit-addon-basic .select-addon-cats label {
     display: block;
     padding-bottom: 3px;
 }
