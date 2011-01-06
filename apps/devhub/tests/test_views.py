@@ -1015,14 +1015,16 @@ class TestEdit(test_utils.TestCase):
         url = reverse('devhub.addons.edit', args=['a3615'])
         self.assertRedirects(r, url, 301)
 
+    def get_dict(self, **kw):
+        result = {'name': 'new name', 'slug': 'test_slug',
+                  'summary': 'new summary', 'categories': ['22'],
+                  'tags': ', '.join(self.tags)}
+        result.update(**kw)
+        return result
+
     def test_edit_basic(self):
         old_name = self.addon.name
-
-        data = dict(name='new name',
-                    slug='test_addon',
-                    summary='new summary',
-                    categories=['22'],
-                    tags=', '.join(self.tags))
+        data = self.get_dict()
 
         r = self.client.post(self.get_url('basic', True), data)
         eq_(r.status_code, 200)
@@ -1037,50 +1039,28 @@ class TestEdit(test_utils.TestCase):
         eq_([unicode(t) for t in addon.tags.all()], sorted(self.tags))
 
     def test_edit_basic_name_required(self):
-        data = dict(name='',
-                    slug='test_addon',
-                    summary='new summary',
-                    categories=['22'],
-                    tags=', '.join(self.tags))
-
+        data = self.get_dict(name='', slug='test_addon')
         r = self.client.post(self.get_url('basic', True), data)
         eq_(r.status_code, 200)
         self.assertFormError(r, 'form', 'name', 'This field is required.')
 
     def test_edit_basic_name_spaces(self):
-        data = dict(name='    ',
-                    slug='test_addon',
-                    summary='new summary',
-                    categories=['22'],
-                    tags=', '.join(self.tags))
-
+        data = self.get_dict(name='    ', slug='test_addon')
         r = self.client.post(self.get_url('basic', True), data)
         eq_(r.status_code, 200)
         self.assertFormError(r, 'form', 'name', 'This field is required.')
 
     def test_edit_basic_slugs_unique(self):
         Addon.objects.get(id=5579).update(slug='test_slug')
-
-        data = dict(name='new name',
-                    slug='test_slug',
-                    summary='new summary',
-                    categories=['22'],
-                    tags=','.join(self.tags))
-
+        data = self.get_dict()
         r = self.client.post(self.get_url('basic', True), data)
         eq_(r.status_code, 200)
-
         self.assertFormError(r, 'form', 'slug', 'This slug is already in use.')
 
     def test_edit_basic_add_tag(self):
         count = ActivityLog.objects.all().count()
         self.tags.insert(0, 'tag4')
-        data = dict(name='new name',
-                    slug='test_slug',
-                    summary='new summary',
-                    categories=['22'],
-                    tags=', '.join(self.tags))
-
+        data = self.get_dict()
         r = self.client.post(self.get_url('basic', True), data)
         eq_(r.status_code, 200)
 
@@ -1095,64 +1075,40 @@ class TestEdit(test_utils.TestCase):
                                         count + 1)
 
     def test_edit_basic_blacklisted_tag(self):
-        Tag.objects.get_or_create(tag_text='..', blacklisted=True)
-
-        data = dict(name='new name',
-                    slug='test_slug',
-                    summary='new summary',
-                    categories=['22'],
-                    tags='..')
-
+        Tag.objects.get_or_create(tag_text='blue', blacklisted=True)
+        data = self.get_dict(tags='blue')
         r = self.client.post(self.get_url('basic', True), data)
         eq_(r.status_code, 200)
 
-        error = "The tag '..' isn't allowed."
+        error = "The tag 'blue' isn't allowed."
         self.assertFormError(r, 'form', 'tags', error)
 
     def test_edit_basic_blacklisted_tags_2(self):
-        Tag.objects.get_or_create(tag_text='..', blacklisted=True)
+        Tag.objects.get_or_create(tag_text='blue', blacklisted=True)
         Tag.objects.get_or_create(tag_text='darn', blacklisted=True)
-
-        data = dict(name='new name',
-                    slug='test_slug',
-                    summary='new summary',
-                    categories=['22'],
-                    tags='.., darn, swearword')
-
+        data = self.get_dict(tags='blue, darn, swearword')
         r = self.client.post(self.get_url('basic', True), data)
         eq_(r.status_code, 200)
 
-        error = "The tags '..' and 'darn' aren't allowed."
+        error = "The tags 'blue' and 'darn' aren't allowed."
         self.assertFormError(r, 'form', 'tags', error)
 
     def test_edit_basic_blacklisted_tags_3(self):
-        Tag.objects.get_or_create(tag_text='..', blacklisted=True)
+        Tag.objects.get_or_create(tag_text='blue', blacklisted=True)
         Tag.objects.get_or_create(tag_text='darn', blacklisted=True)
         Tag.objects.get_or_create(tag_text='swearword', blacklisted=True)
-
-        data = dict(name='new name',
-                    slug='test_slug',
-                    summary='new summary',
-                    categories=['22'],
-                    tags='.., darn, swearword')
-
+        data = self.get_dict(tags='blue, darn, swearword')
         r = self.client.post(self.get_url('basic', True), data)
         eq_(r.status_code, 200)
 
-        error = "The tags '..', 'darn' and 'swearword' aren't allowed."
+        error = "The tags 'blue', 'darn' and 'swearword' aren't allowed."
         self.assertFormError(r, 'form', 'tags', error)
 
     def test_edit_basic_remove_tag(self):
         self.tags.remove('tag2')
 
         count = ActivityLog.objects.all().count()
-
-        data = dict(name='new name',
-                    slug='test_slug',
-                    summary='new summary',
-                    categories=['22'],
-                    tags=', '.join(self.tags))
-
+        data = self.get_dict()
         r = self.client.post(self.get_url('basic', True), data)
         eq_(r.status_code, 200)
 
@@ -1166,13 +1122,7 @@ class TestEdit(test_utils.TestCase):
     def test_edit_basic_minlength_tags(self):
         tags = self.tags
         tags.append('a' * (amo.MIN_TAG_LENGTH - 1))
-
-        data = dict(name='new name',
-                    slug='test_slug',
-                    summary='new summary',
-                    categories=[22],
-                    tags=', '.join(tags))
-
+        data = self.get_dict()
         r = self.client.post(self.get_url('basic', True), data)
         eq_(r.status_code, 200)
 
@@ -1186,25 +1136,28 @@ class TestEdit(test_utils.TestCase):
         for i in range(amo.MAX_TAGS + 1):
             tags.append('test%d' % i)
 
-        data = dict(name='new name',
-                    slug='test_slug',
-                    summary='new summary',
-                    categories=[22],
-                    tags=', '.join(tags))
-
+        data = self.get_dict()
         r = self.client.post(self.get_url('basic', True), data)
         self.assertFormError(r, 'form', 'tags', 'You have %d too many tags.' %
                                                  (len(tags) - amo.MAX_TAGS))
 
+    def test_edit_tag_empty_after_slug(self):
+        start = Tag.objects.all().count()
+        data = self.get_dict(tags='>>')
+        self.client.post(self.get_url('basic', True), data)
+
+        # Check that the tag did not get created.
+        eq_(start, Tag.objects.all().count())
+
+    def test_edit_tag_slugified(self):
+        data = self.get_dict(tags='<script>alert("foo")</script>')
+        self.client.post(self.get_url('basic', True), data)
+        tag = Tag.objects.all().order_by('-pk')[0]
+        eq_(tag.tag_text, 'scriptalertfooscript')
+
     def test_edit_basic_categories_add(self):
         eq_([c.id for c in self.get_addon().categories.all()], [22])
-
-        data = dict(name='new name!',
-                    slug='test_slug',
-                    summary='new summary',
-                    categories=[22, 23],
-                    tags=', '.join(self.tags))
-
+        data = self.get_dict(name='new name!', categories=[22,23])
         self.client.post(self.get_url('basic', True), data)
 
         categories = self.get_addon().categories.all()
@@ -1216,13 +1169,7 @@ class TestEdit(test_utils.TestCase):
         AddonCategory(addon=self.addon, category_id=23).save()
 
         eq_([c.id for c in self.get_addon().categories.all()], [22, 23])
-
-        data = dict(name='new name!',
-                    slug='test_slug',
-                    summary='new summary',
-                    categories=[22, 24],
-                    tags=', '.join(self.tags))
-
+        data = self.get_dict(name='new name!', categories=[22,24])
         self.client.post(self.get_url('basic', True), data)
 
         category_ids_new = [c.id for c in self.get_addon().categories.all()]
@@ -1233,13 +1180,7 @@ class TestEdit(test_utils.TestCase):
         category_other = Category.objects.get(id=22)
         category_other.name = '<script>alert("test");</script>'
         category_other.save()
-
-        data = dict(name='new name!',
-                    slug='test_slug',
-                    summary='new summary',
-                    categories=[22, 24],
-                    tags=', '.join(self.tags))
-
+        data = self.get_dict(name='new name!', categories=[22,24])
         r = self.client.post(self.get_url('basic', True), data)
 
         assert '<script>alert' not in r.content
@@ -1250,13 +1191,7 @@ class TestEdit(test_utils.TestCase):
         AddonCategory(addon=self.addon, category=category).save()
 
         eq_([c.id for c in self.get_addon().categories.all()], [22, 23])
-
-        data = dict(name='new name!',
-                    slug='test_slug',
-                    summary='new summary',
-                    categories=[22],
-                    tags=', '.join(self.tags))
-
+        data = self.get_dict(name='new name!')
         self.client.post(self.get_url('basic', True), data)
 
         category_ids_new = [c.id for c in self.get_addon().categories.all()]
@@ -1264,23 +1199,13 @@ class TestEdit(test_utils.TestCase):
         eq_(category_ids_new, [22])
 
     def test_edit_basic_categories_required(self):
-        data = dict(name='new name',
-                    slug='test_slug',
-                    summary='new summary',
-                    categories=[],
-                    tags=', '.join(self.tags))
-
+        data = self.get_dict(categories=[])
         r = self.client.post(self.get_url('basic', True), data)
         self.assertFormError(r, 'form', 'categories',
                              'This field is required.')
 
     def test_edit_basic_categories_max(self):
-        data = dict(name='new name',
-                    slug='test_slug',
-                    summary='new summary',
-                    categories=[22, 23, 24],
-                    tags=', '.join(self.tags))
-
+        data = self.get_dict(categories=[22, 23, 24])
         r = self.client.post(self.get_url('basic', True), data)
 
         error = 'You can only have 2 categories.'
@@ -1291,12 +1216,7 @@ class TestEdit(test_utils.TestCase):
         category_other.name = 'Other'
         category_other.save()
 
-        data = dict(name='new name',
-                    slug='test_slug',
-                    summary='new summary',
-                    categories=[22, 23],  # 22 is now 'other'
-                    tags=', '.join(self.tags))
-
+        data = self.get_dict(categories=[22, 23])
         r = self.client.post(self.get_url('basic', True), data)
 
         error = ("The category 'Other' can not be combined with "
@@ -1304,12 +1224,7 @@ class TestEdit(test_utils.TestCase):
         self.assertFormError(r, 'form', 'categories', error)
 
     def test_edit_basic_categories_nonexistent(self):
-        data = dict(name='new name',
-                    slug='test_slug',
-                    summary='new summary',
-                    categories=[100],
-                    tags=', '.join(self.tags))
-
+        data = self.get_dict(categories=[100])
         r = self.client.post(self.get_url('basic', True), data)
         # Users will only get this if they're messing with the form, so a
         # human readable error isn't necessary.
@@ -1317,27 +1232,22 @@ class TestEdit(test_utils.TestCase):
         self.assertFormError(r, 'form', 'categories', err)
 
     def test_edit_basic_name_not_empty(self):
-        data = dict(name='',
-                    slug=self.addon.slug,
-                    categories=['22'],
-                    summary=self.addon.summary)
-
+        data = self.get_dict(name='', slug=self.addon.slug,
+                             summary=self.addon.summary)
         r = self.client.post(self.get_url('basic', True), data)
         self.assertFormError(r, 'form', 'name', 'This field is required.')
 
     def test_edit_basic_name_max_length(self):
-        data = dict(name='xx' * 70, slug=self.addon.slug,
-                    categories=['22'],
-                    summary=self.addon.summary)
+        data = self.get_dict(name='xx' * 70, slug=self.addon.slug,
+                             summary=self.addon.summary)
         r = self.client.post(self.get_url('basic', True), data)
         self.assertFormError(r, 'form', 'name',
                              'Ensure this value has at most 50 '
                              'characters (it has 140).')
 
     def test_edit_basic_summary_max_length(self):
-        data = dict(name=self.addon.name, slug=self.addon.slug,
-                    categories=['22'],
-                    summary='x' * 251)
+        data = self.get_dict(name=self.addon.name, slug=self.addon.slug,
+                             summary='x' * 251)
         r = self.client.post(self.get_url('basic', True), data)
         self.assertFormError(r, 'form', 'summary',
                              'Ensure this value has at most 250 '

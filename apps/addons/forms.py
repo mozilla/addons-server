@@ -66,7 +66,7 @@ class AddonFormBasic(AddonFormBase):
             'name'))
 
     def save(self, addon, commit=False):
-        tags_new = [slugify(t, spaces=True) for t in self.cleaned_data['tags']]
+        tags_new = self.cleaned_data['tags']
         tags_old = [slugify(t.tag_text, spaces=True) for t in addon.tags.all()]
 
         # Add new tags.
@@ -96,8 +96,9 @@ class AddonFormBasic(AddonFormBase):
         return addonform
 
     def clean_tags(self):
-        target = [t.strip() for t in self.cleaned_data['tags'].split(',')
-                  if t.strip()]
+        target = [slugify(t, spaces=True)
+                  for t in self.cleaned_data['tags'].split(',')]
+        target = filter(None, target)
 
         min_len = amo.MIN_TAG_LENGTH
         max_tags = amo.MAX_TAGS
