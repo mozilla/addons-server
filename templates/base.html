@@ -132,6 +132,9 @@
     {% block footer %}
       <div id="footer" role="contentinfo">
         <div class="section">
+          {% block footer_extras %}
+            <img class="footerlogo" src="{{ MEDIA_URL }}img/zamboni/footer-logo-med.png" alt="">
+          {% endblock %}
           {% include "footer.html" %}
         </div> {# section #}
       </div> {# footer #}

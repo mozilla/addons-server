@@ -649,6 +649,27 @@ url(../../img/zamboni/global/header-logos.png) 15px 0 no-repeat;
 
 /* AMO-stuff */
 
+.footerlogo {
+    position: absolute;
+    right: 25px;
+    top: -64px;
+}
+
+.html-rtl .footerlogo {
+    right: auto;
+    left: 25px;
+}
+
+.developer-hub .footerlogo {
+    right: -10px;
+    top: -70px;
+}
+
+.html-rtl.developer-hub .footerlogo {
+    right: auto;
+    left: -10px;
+}
+
 #footer .section {
     min-height: 0;
     padding-bottom: 20px;
@@ -678,17 +699,6 @@ url(../../img/zamboni/global/header-logos.png) 15px 0 no-repeat;
 
 .footer-devhub-link {
     width: 25%;
-}
-
-#footer-right img {
-    position: absolute;
-    right: 25px;
-    top: -64px;
-}
-
-.html-rtl #footer-right img {
-    right: auto;
-    left: 25px;
 }
 
 #social-footer {
