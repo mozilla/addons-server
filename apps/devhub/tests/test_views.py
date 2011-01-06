@@ -3673,3 +3673,35 @@ class TestRequestReview(test_utils.TestCase):
         self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
         self.check_400(self.lite_url)
         self.check_400(self.public_url)
+
+
+class TestRedirects(test_utils.TestCase):
+    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
+
+    def setUp(self):
+        self.base = reverse('devhub.index')
+        assert self.client.login(username='admin@mozilla.com',
+                                 password='password')
+
+    def test_edit(self):
+        url = self.base + 'addon/edit/3615'
+        r = self.client.get(url, follow=True)
+        self.assertRedirects(r, reverse('devhub.addons.edit', args=['a3615']),
+                             301)
+
+        url = self.base + 'addon/edit/3615/'
+        r = self.client.get(url, follow=True)
+        self.assertRedirects(r, reverse('devhub.addons.edit', args=['a3615']),
+                             301)
+
+    def test_status(self):
+        url = self.base + 'addon/status/3615'
+        r = self.client.get(url, follow=True)
+        self.assertRedirects(r, reverse('devhub.versions', args=['a3615']),
+                             301)
+
+    def test_versions(self):
+        url = self.base + 'versions/3615'
+        r = self.client.get(url, follow=True)
+        self.assertRedirects(r, reverse('devhub.versions', args=['a3615']),
+                             301)

@@ -78,8 +78,18 @@ ajax_patterns = patterns('',
     url('^image/status$', views.image_status, name='devhub.ajax.image.status')
 )
 
+redirect_patterns = patterns('',
+    ('^addon/edit/(\d+)',
+     lambda r, id: redirect('devhub.addons.edit', id, permanent=True)),
+    ('^addon/status/(\d+)',
+     lambda r, id: redirect('devhub.versions', id, permanent=True)),
+    ('^versions/(\d+)',
+     lambda r, id: redirect('devhub.versions', id, permanent=True)),
+)
+
 urlpatterns = decorate(write, patterns('',
     url('^$', views.index, name='devhub.index'),
+    url('', include(redirect_patterns)),
 
     # Redirect people who have /addons/ instead of /addon/.
     ('^addons/\d+/.*',
