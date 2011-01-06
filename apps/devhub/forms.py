@@ -473,6 +473,13 @@ class PreviewForm(happyforms.ModelForm):
     def save(self, addon, commit=True):
         if self.cleaned_data:
             self.instance.addon = addon
+            if self.cleaned_data.get('DELETE'):
+                # Existing preview.
+                if self.instance.id:
+                    self.instance.delete()
+                # User has no desire to save this preview.
+                return
+
             super(PreviewForm, self).save(commit=commit)
 
             if self.cleaned_data['upload_hash']:

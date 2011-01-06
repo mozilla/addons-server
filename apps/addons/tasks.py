@@ -7,7 +7,7 @@ from celeryutils import task
 import amo
 from amo.decorators import write
 from . import cron  # Pull in tasks from cron.
-from .models import Addon
+from .models import Addon, Preview
 
 log = logging.getLogger('z.task')
 
@@ -57,3 +57,15 @@ def update_appsupport(ids):
 
     # All our updates were sql, so invalidate manually.
     Addon.objects.invalidate(*addons)
+
+
+@task
+def delete_preview_files(id):
+    log.info('[1@None] Removing preview with id of %s.' % id)
+
+    p = Preview(id=id)
+    for f in (p.thumbnail_path, p.image_path):
+        try:
+            os.remove(f)
+        except Exception, e:
+            log.error('Error deleting preview file: %s' % f)
