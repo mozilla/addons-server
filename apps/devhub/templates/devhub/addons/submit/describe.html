@@ -56,39 +56,11 @@
       {{ _("The description will appear on your add-on's detail page.") }}
       {{ some_html_tip() }}
     </div>
-    <div class="addon-submission-field">
-      <label>{{ _('Provide a brief summary of your add-on:') }}</label>
-      {{ form.summary|safe }}
-      {{ form.summary.errors|safe }}
-      <div class="edit-addon-details">
-        {% trans %}
-          This summary will be shown with your add-on in listings and searches.
-        {% endtrans %}
-        <div class="char-count"
-             data-for-startswith="{{ form.summary.auto_id }}_"
-             data-maxlength="{{ form.summary.field.max_length }}"></div>
-      </div>
-    </div>
-    <div class="addon-submission-field">
-      <label>
-        {{ _('Select 1 or 2 categories that best describe your add-on:') }}
-      </label>
-      {{ form.categories|safe }}
-      {{ form.categories.errors|safe }}
-    </div>
-    <div class="addon-submission-field">
-      <label>{{ _('Provide a more detailed description of your add-on:') }}</label>
-      {{ form.description|safe }}
-      {{ form.description.errors|safe }}
-      <div class="edit-addon-details">
-        {{ _("The description will appear on your add-on's detail page.") }}
-        {{ some_html_tip() }}
-      </div>
-    </div>
     <div class="submission-buttons addon-submission-field">
       <button type="submit">
         {{ _('Continue') }}
       </button>
     </div>
+  </div>
   </form>
 {% endblock primary %}
