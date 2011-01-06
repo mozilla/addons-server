@@ -694,7 +694,7 @@ def version_add(request, addon_id, addon):
     form = forms.NewVersionForm(request.POST, addon=addon)
     if form.is_valid():
         v = Version.from_upload(form.cleaned_data['upload'], addon,
-                                [form.cleaned_data['platform']])
+                                form.cleaned_data['platforms'])
         url = reverse('devhub.versions.edit', args=[addon.slug, str(v.id)])
         return dict(url=url)
     else:

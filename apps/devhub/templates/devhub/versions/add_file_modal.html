@@ -11,8 +11,13 @@
       </p>
       {{ csrf() }}
       <div class="platform{% if addon.type == amo.ADDON_SEARCH %} hide{% endif %}">
-      <label>{{ _('Select the target platform for this file.') }}</label>
-      {{ new_file_form.platform|safe }}
+      {% if modal_type == 'file' %}
+        <label>{{ _('Select the target platform for this file.') }}</label>
+        {{ new_file_form.platform|safe }}
+      {% elif modal_type == 'version' %}
+        <label>{{ _('Select the target platform(s) for this file.') }}</label>
+        {{ new_file_form.platforms|safe }}
+      {% endif %}
       </div>
       <div class="hidden">
       {{ new_file_form.upload|safe }}

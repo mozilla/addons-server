@@ -71,7 +71,17 @@ def dev_breadcrumbs(context, addon=None, items=None, add_default=False):
 @register.inclusion_tag('devhub/versions/add_file_modal.html')
 @jinja2.contextfunction
 def add_file_modal(context, title, action, upload_url, action_label):
-    return new_context(**locals())
+    return new_context(modal_type='file', context=context, title=title,
+                       action=action, upload_url=upload_url,
+                       action_label=action_label)
+
+
+@register.inclusion_tag('devhub/versions/add_file_modal.html')
+@jinja2.contextfunction
+def add_version_modal(context, title, action, upload_url, action_label):
+    return new_context(modal_type='version', context=context, title=title,
+                       action=action, upload_url=upload_url,
+                       action_label=action_label)
 
 
 @register.function

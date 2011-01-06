@@ -2180,6 +2180,15 @@ class TestVersion(test_utils.TestCase):
         buttons = doc('.version-status-actions form button').text()
         eq_(buttons, 'Request Preliminary Review Request Full Review')
 
+    def test_add_version_modal(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        # Make sure checkboxes are visible:
+        eq_(doc('input.platform').length, 4)
+        eq_(set([i.attrib['type'] for i in doc('input.platform')]),
+            set(['checkbox']))
+
 
 class TestVersionEdit(test_utils.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615',
@@ -2416,6 +2425,15 @@ class TestVersionEditFiles(TestVersionEdit):
         # Check you can't choose BSD anymore.
         forms = self.client.get(self.url).context['file_form'].forms
         eq_(len(forms[1].fields['platform'].choices), 4)
+
+    def test_add_file_modal(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        # Make sure radio buttons are visible:
+        eq_(doc('input.platform').length, 3)
+        eq_(set([i.attrib['type'] for i in doc('input.platform')]),
+            set(['radio']))
 
 
 class TestPlatformSearch(TestVersionEdit):
@@ -3428,10 +3446,6 @@ class UploadTest(files.tests.UploadTest, test_utils.TestCase):
             Platform.objects.create(id=amo.PLATFORM_MAC.id)
         assert self.client.login(username='del@icio.us', password='password')
 
-    def post(self, platform=amo.PLATFORM_MAC):
-        return self.client.post(self.url, dict(upload=self.upload.pk,
-                                               platform=platform.id))
-
 
 class TestVersionAddFile(UploadTest):
     fixtures = ['base/apps', 'base/users',
@@ -3446,6 +3460,10 @@ class TestVersionAddFile(UploadTest):
         files = self.version.files.all()[0]
         files.platform_id = amo.PLATFORM_LINUX.id
         files.save()
+
+    def post(self, platform=amo.PLATFORM_MAC):
+        return self.client.post(self.url, dict(upload=self.upload.pk,
+                                               platform=platform.id))
 
     def test_guid_matches(self):
         self.addon.update(guid='something.different')
@@ -3510,6 +3528,11 @@ class TestVersionAddFile(UploadTest):
 
 class TestAddVersion(UploadTest):
 
+    def post(self, platforms=[amo.PLATFORM_MAC]):
+        return self.client.post(self.url, dict(upload=self.upload.pk,
+                                               platforms=[p.id for p in
+                                                          platforms]))
+
     def setUp(self):
         super(TestAddVersion, self).setUp()
         self.url = reverse('devhub.versions.add', args=[self.addon.slug])
@@ -3524,6 +3547,13 @@ class TestAddVersion(UploadTest):
         version = self.addon.versions.get(version='0.1')
         assert_json_field(r, 'url', reverse('devhub.versions.edit',
                                         args=[self.addon.slug, version.id]))
+
+    def test_multiple_platforms(self):
+        r = self.post(platforms=[amo.PLATFORM_MAC,
+                                 amo.PLATFORM_LINUX])
+        eq_(r.status_code, 200)
+        version = self.addon.versions.get(version='0.1')
+        eq_(len(version.all_files), 2)
 
 
 class TestVersionXSS(UploadTest):

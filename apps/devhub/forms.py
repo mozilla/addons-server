@@ -361,15 +361,7 @@ class NewAddonForm(happyforms.Form):
         return self.cleaned_data
 
 
-class NewVersionForm(happyforms.Form):
-    upload = forms.ModelChoiceField(widget=forms.HiddenInput,
-        queryset=FileUpload.objects.filter(valid=True),
-        error_messages={'invalid_choice': _lazy('There was an error with your '
-                                                'upload. Please try again.')})
-    platform = File._meta.get_field('platform').formfield(empty_label=None,
-                    widget=forms.RadioSelect(attrs={'class': 'platform'}))
-    platform.choices = sorted((p.id, p.name)
-                              for p in amo.SUPPORTED_PLATFORMS.values())
+class NewVersionForm(NewAddonForm):
 
     def __init__(self, *args, **kw):
         self.addon = kw.pop('addon')
@@ -384,9 +376,18 @@ class NewVersionForm(happyforms.Form):
         return self.cleaned_data
 
 
-class NewFileForm(NewVersionForm):
+class NewFileForm(happyforms.Form):
+    upload = forms.ModelChoiceField(widget=forms.HiddenInput,
+        queryset=FileUpload.objects.filter(valid=True),
+        error_messages={'invalid_choice': _lazy('There was an error with your '
+                                                'upload. Please try again.')})
+    platform = File._meta.get_field('platform').formfield(empty_label=None,
+                    widget=forms.RadioSelect(attrs={'class': 'platform'}))
+    platform.choices = sorted((p.id, p.name)
+                              for p in amo.SUPPORTED_PLATFORMS.values())
 
     def __init__(self, *args, **kw):
+        self.addon = kw.pop('addon')
         self.version = kw.pop('version')
         super(NewFileForm, self).__init__(*args, **kw)
         # Don't allow platforms we already have.
