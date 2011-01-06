@@ -441,14 +441,18 @@ function initVersions() {
 }
 
 function initSubmit() {
-    $('#submit-describe form').delegate('#id_name', 'keyup', slugify)
-        .delegate('#id_name', 'blur', slugify)
+    var dl = $('body').attr('data-default-locale');
+    var el = format('#trans-name [lang={0}]', dl);
+    $(el).attr('id', "id_name");
+    $('#submit-describe').delegate(el, 'keyup', slugify)
+        .delegate(el, 'blur', slugify)
         .delegate('#edit_slug', 'click', show_slug_edit)
         .delegate('#id_slug', 'change', function() {
             $('#id_slug').attr('data-customized', 1);
-            if (!$('#id_slug').val()) {
+            var v = $('#id_slug').val();
+            if (!v) {
                 $('#id_slug').attr('data-customized', 0);
-                slugify;
+                slugify();
             }
         });
     $('#id_slug').each(slugify);

@@ -92,6 +92,16 @@
       </ul>
     </form>
   </div>
+  <div id="slugified-field">
+    <input id="id_name" />
+    <span id="slug_edit" class="edit_with_prefix edit_initially_hidden">
+      <input type="text" maxlength="30" name="slug" id="id_slug">
+    </span>
+    <span id="slug_readonly">
+      <span id="slug_value"></span>
+      <a id="edit_slug" href="#">{{ _('Edit') }}</a>
+    </span>
+  </div>
 
   <script src="{{ url('jsi18n') }}/build:{{ BUILD_ID_JS }}"></script>
   {{ js('common') }}
