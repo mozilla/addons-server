@@ -4,6 +4,7 @@
 cd $WORKSPACE
 VENV=$WORKSPACE/venv
 VENDOR=$WORKSPACE/vendor
+LOCALE=$WORKSPACE/locale
 
 echo "Starting build on executor $EXECUTOR_NUMBER..." `date`
 
@@ -30,6 +31,11 @@ pip install -q -r requirements/compiled.txt
 # Create paths we want for addons
 if [ ! -d "/tmp/warez" ]; then
     mkdir /tmp/warez
+fi
+
+if [ ! -d "$LOCALE" ]; then
+    echo "No locale dir?  Cloning..."
+    svn co http://svn.mozilla.org/addons/trunk/site/app/locale/ $LOCALE
 fi
 
 if [ ! -d "$VENDOR" ]; then
