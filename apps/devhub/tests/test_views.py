@@ -1265,6 +1265,21 @@ class TestEdit(test_utils.TestCase):
         for k in data:
             eq_(unicode(getattr(addon, k)), data[k])
 
+    def test_edit_details_xss(self):
+        """
+        Let's try to put xss in our description, and safe html, and verify
+        that we are playing safe.
+        """
+        self.addon.description = ("This\n<b>IS</b>"
+                                  "<script>alert('awesome')</script>")
+        self.addon.save()
+        r = self.client.get(reverse('devhub.addons.edit',
+                                    args=[self.addon.slug]))
+        doc = pq(r.content)
+        eq_(doc('#edit-addon-details span[lang]').html(),
+                "This<br/><b>IS</b>&lt;script&gt;alert('awesome')"
+                '&lt;/script&gt;')
+
     def test_edit_basic_homepage_optional(self):
         data = dict(description='New description with <em>html</em>!',
                     default_locale='en-US', homepage='')

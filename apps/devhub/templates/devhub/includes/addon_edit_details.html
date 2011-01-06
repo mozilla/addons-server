@@ -32,7 +32,9 @@
                 {{ some_html_tip() }}
               {% else %}
                 {% call empty_unless(addon.description) %}
-                  <div id="addon_description">{{ addon|all_locales('description') }}</div>
+                  <div id="addon_description">
+                    {{ addon|all_locales('description', nl2br=True) }}
+                  </div>
                 {% endcall %}
               {% endif %}
             </td>

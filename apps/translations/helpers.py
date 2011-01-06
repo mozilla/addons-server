@@ -7,8 +7,6 @@ import jinja2
 
 import jingo
 
-from .models import Translation
-
 jingo.register.filter(to_language)
 
 
@@ -54,11 +52,12 @@ def l10n_menu(context, default_locale='en-us'):
 
 
 @jingo.register.filter
-def all_locales(addon, field_name):
+def all_locales(addon, field_name, nl2br=False):
     field = getattr(addon, field_name)
     if not (addon and field):
         return
     ctx = dict(addon=addon, field=field, field_name=field_name,
-               translations=Translation.objects.filter(id=field.id))
+               translations=field.__class__.objects.filter(id=field.id),
+               nl2br=nl2br)
     t = jingo.env.get_template('translations/all-locales.html')
     return jinja2.Markup(t.render(ctx))

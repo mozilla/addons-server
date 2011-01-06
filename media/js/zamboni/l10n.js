@@ -3,7 +3,7 @@
 (function() {
     var dl = $('body').attr("data-default-locale");
     if (dl) {
-        $(format(".trans :not([lang={0}])", dl)).hide();
+        $(format(".trans>:not([lang={0}])", dl)).hide();
         $(format(".trans [lang={0}]", dl)).show();
     }
 })();
@@ -201,7 +201,7 @@ $(document).ready(function () {
             }
 
         });
-        $(format(".trans :not([lang={0}])", currentLocale)).hide();
+        $(format(".trans>:not([lang={0}])", currentLocale)).hide();
         $(format(".trans [lang={0}]", currentLocale)).show();
         initCharCount();
     }
