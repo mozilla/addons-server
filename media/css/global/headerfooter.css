@@ -9,10 +9,10 @@
 }
 
 
-@font-face { 
+@font-face {
     font-family: 'MetaBlack';
     src: url('https://www.mozilla.com/img/fonts/MetaWebPro-Black.woff') format('woff');
-    font-weight: bold; 
+    font-weight: bold;
     font-style: normal;
 }
 
@@ -415,6 +415,10 @@ html[lang=it] #nav-main a {
 
 .site-title img {
     vertical-align: bottom;
+}
+
+.site-title strong {
+    color: #d64203;
 }
 
 #minimal-header a.mozilla {

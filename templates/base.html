@@ -81,7 +81,9 @@
             {% endblock %}
           </div>
           <div id="masthead">
+            {% block site_header_title %}
             {% include "header_title.html" %}
+            {% endblock %}
             {% block site_stats %}{% endblock %}
           </div>
         </div>
