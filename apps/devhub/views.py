@@ -795,10 +795,7 @@ def submit(request, step):
     agrmt = os.path.join(base,
                 'en_US', 'pages', 'docs', 'policies', 'agreement.thtml')
     f = codecs.open(agrmt, encoding='utf8')
-    # The %1$s is a placeholder in the template shared by Remora.
-    # There is currently only one of them.
-    agreement_text = f.read().replace(u'%1$s',
-                                      remora_url('/pages/developer_faq'), 1)
+    agreement_text = f.read()
     f.close()
 
     return jingo.render(request, 'devhub/addons/submit/start.html',
