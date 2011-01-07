@@ -1,11 +1,19 @@
 {% if addon.takes_contributions %}
   {% set base = url('addons.contribute', addon.slug)|urlparams(src='direct') %}
+  {% set url = base|urlparams(type='suggested')|escape %}
+  {% set amt = addon.suggested_amount|currencyfmt('USD') %}
   <div class="contribute">
     {% if addon.suggested_amount is not none %}
-    {% trans url=base|urlparams(type='suggested')|escape,
-             amt=addon.suggested_amount|currencyfmt('USD') %}
-      Support this add-on: <a href="{{ url }}">Contribute {{ amt }}</a>
-    {% endtrans %}
+        {% if addon.charity %}
+            {% set charity_name = addon.charity.name %}
+            {% trans %}
+            Support this add-on: <a href="{{ url }}">Contribute {{ amt }}</a> to the {{ charity_name }}
+            {% endtrans %}
+        {% else %}
+            {% trans %}
+            Support this add-on: <a href="{{ url }}">Contribute {{ amt }}</a>
+            {% endtrans %}
+        {% endif %}
     {% else %}
       <a href="{{ base }}">{{ _('Support this add-on') }}</a>
     {% endif %}
