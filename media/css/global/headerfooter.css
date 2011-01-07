@@ -416,6 +416,7 @@ div.header-search input.submit {
 
 .developer-hub .site-title small {
     display: block;
+    padding-left: 3px;
 }
 
 .developer-hub .site-title small:first-child {
