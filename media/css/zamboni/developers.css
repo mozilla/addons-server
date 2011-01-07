@@ -1201,10 +1201,6 @@ a.extra {
 }
 #navbar {
     display: block;
-    background-image: url(../../img/amo2009/bg/heading-dark-blue.jpg);
-    background-repeat: repeat-x;
-    background-position: bottom left;
-    background-color: #305083;
     border:  1px solid #021437;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;

@@ -414,6 +414,29 @@ div.header-search input.submit {
     padding-top:36px;
 }
 
+.developer-hub .site-title small {
+    display: block;
+}
+
+.developer-hub .site-title small:first-child {
+    margin-top: -20px;
+}
+
+.developer-hub .site-title strong {
+    display: block;
+    line-height: 40px;
+    font-size: 48px;
+}
+
+.developer-hub .site-title a {
+    font-size: 32px;
+    line-height: 40px;
+}
+
+.developer-hub .header-search {
+    margin-top: 12px;
+}
+
 .developer-hub .site-title a {
     font-size: 32px;
     line-height: 40px;
