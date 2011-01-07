@@ -1038,6 +1038,28 @@ class TestEdit(test_utils.TestCase):
 
         eq_([unicode(t) for t in addon.tags.all()], sorted(self.tags))
 
+    def test_edit_basic_as_developer(self):
+        self.client.login(username='regular@mozilla.com', password='password')
+        data = self.get_dict()
+        r = self.client.post(self.get_url('basic', True), data)
+        # Make sure we get errors when they are just regular users.
+        eq_(r.status_code, 403)
+
+        devuser = UserProfile.objects.get(pk=999)
+        AddonUser.objects.create(addon=self.get_addon(), user=devuser,
+                                 role=amo.AUTHOR_ROLE_DEV)
+        r = self.client.post(self.get_url('basic', True), data)
+
+        eq_(r.status_code, 200)
+        addon = self.get_addon()
+
+        eq_(unicode(addon.name), data['name'])
+
+        eq_(unicode(addon.slug), data['slug'])
+        eq_(unicode(addon.summary), data['summary'])
+
+        eq_([unicode(t) for t in addon.tags.all()], sorted(self.tags))
+
     def test_edit_basic_name_required(self):
         data = self.get_dict(name='', slug='test_addon')
         r = self.client.post(self.get_url('basic', True), data)
