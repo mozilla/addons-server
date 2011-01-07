@@ -117,6 +117,9 @@ $(document).ready(function () {
                             var $form = $(this);
                             $.post($form.attr('action'), $form.serialize(), function(d) {
                                 var $resp = $(d);
+                                if ($form.attr('id') && $resp.find('#' + $form.attr('id'))) {
+                                    $resp = $resp.find('#' + $form.attr('id'));
+                                }
                                 // Add locale names to error messages
                                 $resp.find(".errorlist li[data-lang]:not(.l10n)").each(function() {
                                     var err = $(this),

@@ -34,7 +34,7 @@
       </form>
     </div>
   {% endif %}
-  <form method="post" action="{{ url('devhub.addons.profile', addon.slug) }}">
+  <form id="profile-form" method="post" action="{{ url('devhub.addons.profile', addon.slug) }}">
     {{ csrf() }}
     {% include "devhub/includes/addons_create_profile.html" %}
 

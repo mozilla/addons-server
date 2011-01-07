@@ -50,7 +50,7 @@
   <div id="setup" class="{{ 'hidden' if not contrib }}">
     <h3>{{  _('Contributions') if contrib else _('Set up Contributions') }}</h3>
     <p class="{{ 'hidden' if contrib }}">{{ _('Fill in the fields below to begin asking for voluntary contributions from users.') }}</p>
-    <form method="post" action="">
+    <form id="payments-setup-form" method="post" action="{{ url('devhub.addons.payments.disable', addon.slug) }}">
       {{ csrf() }}
       {% set values = contrib_form.data if contrib_form.is_bound else contrib_form.initial %}
       <div>
