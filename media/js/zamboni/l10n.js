@@ -179,15 +179,20 @@ $(document).ready(function () {
                 field = $el.attr('data-name'),
                 label = $(format("label[data-for={0}]",[field]));
             if (!$el.find(format("[lang={0}]",[lang])).length) {
-                var $ni = $el.children(".init-trans").clone();
-                $ni.attr({
-                    class: "cloned",
-                    lang: lang,
-                });
-                if ($ni.is(':not(span)')) {
+                if ($el.children(".trans-init").length) {
+                    var $ni = $el.children(".trans-init").clone();
                     $ni.attr({
+                        'class': "cloned",
+                        lang: lang,
                         id: format('id_{0}_{1}', field, lang),
-                        name: [field,lang].join('_')
+                        name: [field,lang].join('_'),
+                        value: $el.find(format("[lang={0}]",[dl])).val()
+                    });
+                } else {
+                    var $ni = $el.find(format("[lang={0}]",dl)).clone();
+                    $ni.attr({
+                        'class': "cloned",
+                        lang: lang
                     });
                 }
                 $el.append($ni);

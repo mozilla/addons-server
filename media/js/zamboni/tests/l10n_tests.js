@@ -18,11 +18,20 @@ test('English', function() {
            'development tools...');
 });
 
-test('Japanese', function() {
+test('Japanese (existing translation)', function() {
     z.refreshL10n('ja');
     equals($('textarea:visible', this.sandbox).text().trim(),
            'Firebug は、Web ページを閲覧中にクリック一つで使える豊富な開発ツールを Firefox' +
            ' に統合します。あなたはあらゆる');
+});
+
+test('Afrikaans (new translation)', function() {
+    z.refreshL10n('af');
+    equals($('[lang=af]', this.sandbox).length, 1);
+    equals($('textarea:visible', this.sandbox).text().trim(),
+           'Firebug integrates with Firefox to put a wealth of ' +
+           'development tools...');
+    equals($('textarea:visible', this.sandbox).hasClass('cloned'), true);
 });
 
 });
