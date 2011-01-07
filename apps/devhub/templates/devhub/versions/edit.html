@@ -100,13 +100,7 @@
               <ul>
                 {% for file in version.all_files %}
                 <li>
-                  {% trans file=file.id, platform=file.amo_platform.name,
-                           created=file.created|datetime,
-                           status=amo.STATUS_CHOICES[file.status],
-                           status_date=file.datestatuschanged|datetime %}
-                     File {{ file }} ({{ platform }}) created on {{ created }}
-                     and changed to {{ status }} on {{ status_date }}
-                  {% endtrans %}
+                    {{ file_status_message(file) }}
                 </li>
                 {% endfor %}
               </ul>

@@ -4,6 +4,7 @@ import urllib
 import chardet
 import jinja2
 from jingo import register
+from jingo.helpers import datetime
 from tower import ugettext as _, ungettext as ngettext
 
 import amo
@@ -11,7 +12,6 @@ from amo.urlresolvers import reverse
 from amo.helpers import breadcrumbs, page_title
 from access import acl
 from addons.helpers import new_context
-from . import views
 
 
 register.function(acl.has_perm)
@@ -84,6 +84,14 @@ def add_version_modal(context, title, action, upload_url, action_label):
                        action_label=action_label)
 
 
+@register.inclusion_tag('devhub/versions/file_status_message.html')
+def file_status_message(file):
+    return {'fileid': file.id, 'platform': file.amo_platform.name,
+            'created': datetime(file.created),
+            'status': amo.STATUS_CHOICES[file.status],
+            'status_date': datetime(file.datestatuschanged)}
+
+
 @register.function
 def dev_files_status(files):
     """Group files by their status (and files per status)."""
@@ -94,6 +102,7 @@ def dev_files_status(files):
 
     return [(count, unicode(amo.STATUS_CHOICES[status])) for
             (status, count) in status_count.items()]
+
 
 @register.function
 def status_class(addon):

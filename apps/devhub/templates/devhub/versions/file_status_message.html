@@ -1,0 +1,11 @@
+{% if status_date %}
+    {% trans %}
+    File {{ file_id }} ({{ platform }}) created on {{ created }}
+    and changed to {{ status }} on {{ status_date }}
+    {% endtrans %}
+{% else %}
+    {% trans %}
+    File {{ file_id }} ({{ platform }}) created on {{ created }}
+    and changed to {{ status }}
+    {% endtrans %}
+{% endif %}
