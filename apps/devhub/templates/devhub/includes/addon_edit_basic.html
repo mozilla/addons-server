@@ -73,14 +73,18 @@
                         Choose any that fit your add-on's functionality for the most
                         exposure.")) }}
             </th>
-            <td id="addon_categories_edit">
+            <td id="addon_categories_edit" data-max-categories="{{ amo.MAX_CATEGORIES }}">
               {% if editable %}
-                <p>{{ _('Select <b>up to 2</b> categories for this add-on.')|safe }}</p>
+                <p>{{ ngettext('Select <b>up to {0}</b> category for this add-on.',
+                               'Select <b>up to {0}</b> categories for this add-on.',
+                               amo.MAX_CATEGORIES)|f(amo.MAX_CATEGORIES)|safe }}</p>
                 {{ form.categories|safe }}
                 {{ form.categories.errors|safe }}
               {% else %}
+              {% set pipe = joiner("&middot;") %}
                 {% for category in categories %}
-                  {{ ' &middot; '|safe if loop.index > 1 }}{{ category }}
+                  {{ pipe()|safe }}
+                  {{ category }}
                 {% endfor %}
               {% endif %}
             </td>

@@ -239,6 +239,31 @@ $("#user-form-template .email-autocomplete")
 
 function initEditAddon() {
     if (z.noEdit) return;
+
+    // Manage checked/unchecked categories.
+    var max_categories = parseInt($('#addon_categories_edit').attr('data-max-categories'));
+
+    var manage_checked_all = function() {
+        var p = $('#addon_categories_edit'),
+            checked_length = $('ul:not(.other) input:checked', p).length,
+            disabled = checked_length >= max_categories;
+
+        $('ul.other input', p).attr('checked',  checked_length <= 0);
+        $('ul:not(.other) input:not(:checked)', p).attr('disabled', disabled)
+    };
+
+    var manage_checked_other = function() {
+        $('#addon_categories_edit ul:not(.other) input').attr('checked', false);
+        $('#addon_categories_edit ul:not(.other) input').attr('disabled', false);
+    };
+
+    $('#edit-addon').delegate('#addon_categories_edit ul:not(.other) input',
+                              'change', manage_checked_all);
+
+    $('#edit-addon').delegate('#addon_categories_edit ul.other input',
+                              'change', manage_checked_other);
+
+    // Load the edit form.
     $('#edit-addon').delegate('h3 a', 'click', function(e){
         e.preventDefault();
 
@@ -246,12 +271,18 @@ function initEditAddon() {
         parent_div = $(a).closest('.edit-addon-section');
 
         (function(parent_div, a){
-            parent_div.load($(a).attr('data-editurl'), addonFormSubmit);
+            parent_div.load($(a).attr('data-editurl'), function(){
+                if($('#addon_categories_edit').length) {
+                    manage_checked_all();
+                }
+                $(this).each(addonFormSubmit);
+            });
         })(parent_div, a);
 
         return false;
     });
 
+    // Init icon javascript.
     hideSameSizedIcons();
     initUploadIcon();
     initUploadPreview();
