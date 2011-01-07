@@ -2,11 +2,13 @@ import jingo
 import test_utils
 from nose.tools import eq_
 from mock import Mock
+from pyquery import PyQuery as pq
 
 import amo
 from addons.models import Addon, AddonUser
 from bandwagon.models import Collection
 from devhub.models import ActivityLog
+from tags.models import Tag
 from files.models import File
 from reviews.models import Review
 from users.models import UserProfile
@@ -124,6 +126,15 @@ class TestActivityLog(test_utils.TestCase):
         eq_(jingo.env.from_string('<p>{{ log }}</p>').render(log=log),
             '<p>&lt;script src=&#34;x.js&#34;&gt; role changed to Owner for <a'
             ' href="/en-US/firefox/addon/a3615/">Delicious Bookmarks</a>.</p>')
+
+    def test_tag_no_match(self):
+        addon = Addon.objects.get()
+        tag = Tag.objects.create(tag_text='http://foo.com')
+        amo.log(amo.LOG.ADD_TAG, addon, tag)
+        log = ActivityLog.objects.get()
+        text = jingo.env.from_string('<p>{{ log }}</p>').render(log=log)
+        # There should only be one a, the link to the addon, but no tag link.
+        eq_(len(pq(text)('a')), 1)
 
 
 class TestVersion(test_utils.TestCase):

@@ -87,6 +87,9 @@ class TestXSSURLFail(test_utils.TestCase):
         self.assertRaises(NoReverseMatch, reverse,
                           'tags.top_cloud', args=[self.xss])
 
+    def test_no_reverse(self):
+        assert not self.tag.can_reverse()
+
 
 class TestNoTags(test_utils.TestCase):
     fixtures = ['base/addon_3615']

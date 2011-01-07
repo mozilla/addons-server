@@ -220,8 +220,11 @@ class ActivityLog(amo.models.ModelBase):
                                     arg.get_url_path(), arg.name)
                 arguments.remove(arg)
             if isinstance(arg, Tag) and not tag:
-                tag = self.f(u'<a href="{0}">{1}</a>',
-                             arg.get_url_path(), arg.tag_text)
+                if arg.can_reverse():
+                    tag = self.f(u'<a href="{0}">{1}</a>',
+                                 arg.get_url_path(), arg.tag_text)
+                else:
+                    tag = self.f('{0}', arg.tag_text)
         try:
             kw = dict(addon=addon, review=review, version=version,
                       collection=collection, tag=tag)

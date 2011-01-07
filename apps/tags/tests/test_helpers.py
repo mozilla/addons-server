@@ -11,7 +11,6 @@ from addons.models import Addon
 from tags.models import AddonTag, Tag, TagStat
 from tags.helpers import tag_link
 
-from django.core.urlresolvers import NoReverseMatch
 
 xss = "<script>alert('xss')</script>"
 
@@ -34,8 +33,7 @@ class TestHelpers(test.TestCase):
             'LANG': 'en-us',
             'request': request,
             'addon': addon,
-            'tags': tags
-        }
+            'tags': tags}
 
         # initialize jingo
         jingo.load_helpers()
@@ -59,7 +57,8 @@ class TestHelpers(test.TestCase):
         tag.save()
         TagStat.objects.create(tag=tag, num_addons=1)
 
-        self.assertRaises(NoReverseMatch, tag_link, tag, 1, 1)
+        doc = pq(tag_link(tag, 1, 1))
+        assert not doc('a')
 
 
 def create_tags(addon, author, number):

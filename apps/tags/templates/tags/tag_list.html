@@ -1,8 +1,12 @@
 {% macro tag_li(tag, addon=None, css_class='') -%}
 <li id="taglink-{{ tag.id }}" class="{{ css_class }}">
-  <a href="{{ remora_url('/tag/'+tag.tag_text) }}" class="tagitem">
-    {{ tag.tag_text }}
-  </a>
+  {% if tag.can_reverse() %}
+    <a href="{{ url('tags.detail', tag.tag_text) }}" class="tagitem">
+      {{ tag.tag_text }}
+    </a>
+  {% else %}
+    <span class="tagitem">{{ tag.tag_text }}</span>
+  {% endif %}
 </li>
 {%- endmacro %}
 

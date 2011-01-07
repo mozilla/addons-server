@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.urlresolvers import NoReverseMatch
 
 import amo.models
 from amo.urlresolvers import reverse
@@ -29,6 +30,13 @@ class Tag(amo.models.ModelBase):
     @property
     def popularity(self):
         return self.tagstat.num_addons
+
+    def can_reverse(self):
+        try:
+            self.get_url_path()
+            return True
+        except NoReverseMatch:
+            return False
 
     def get_url_path(self):
         return reverse('tags.detail', args=[self.tag_text])
