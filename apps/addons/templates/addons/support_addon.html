@@ -6,9 +6,15 @@
     {% if addon.suggested_amount is not none %}
         {% if addon.charity %}
             {% set charity_name = addon.charity.name %}
-            {% trans %}
-            Support this add-on: <a href="{{ url }}">Contribute {{ amt }}</a> to the {{ charity_name }}
-            {% endtrans %}
+            {% if addon.charity_id == amo.FOUNDATION_ORG %}
+                {% trans %}
+                Support this add-on: <a href="{{ url }}">Contribute {{ amt }}</a> to the {{ charity_name }}
+                {% endtrans %}
+            {% else %}
+                {% trans %}
+                Support this add-on: <a href="{{ url }}">Contribute {{ amt }}</a> to {{ charity_name }}
+                {% endtrans %}
+            {% endif %}
         {% else %}
             {% trans %}
             Support this add-on: <a href="{{ url }}">Contribute {{ amt }}</a>

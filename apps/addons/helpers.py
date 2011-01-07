@@ -4,6 +4,7 @@ from jingo import register, env
 from tower import ugettext as _
 
 from . import buttons
+import amo
 
 
 register.function(buttons.install_button)
@@ -42,7 +43,7 @@ def flag(context, addon):
 @register.function
 def support_addon(addon):
     t = env.get_template('addons/support_addon.html')
-    return jinja2.Markup(t.render(addon=addon))
+    return jinja2.Markup(t.render(addon=addon, amo=amo))
 
 
 @register.inclusion_tag('addons/performance_note.html')
