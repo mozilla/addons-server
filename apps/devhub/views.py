@@ -66,8 +66,10 @@ def dev_required(owner_for_post=False):
             return http.HttpResponseForbidden()
         return wrapper
     # The arg will be a function if they didn't pass owner_for_post.
-    if hasattr(owner_for_post, '__call__'):
-        return decorator(owner_for_post)
+    if callable(owner_for_post):
+        f = owner_for_post
+        owner_for_post = False
+        return decorator(f)
     else:
         return decorator
 
