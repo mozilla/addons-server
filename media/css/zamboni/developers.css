@@ -1641,7 +1641,7 @@ form.select-review .errorlist {
     padding-left: 0.2em;
 }
 #addon-validator-suite .context .inner-code div {
-    max-width: 47em;
+    max-width: 45em;
     height: 1.65em;
     overflow: hidden;
 }
