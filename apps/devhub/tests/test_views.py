@@ -13,6 +13,7 @@ from django.utils import translation
 
 import mock
 from nose.tools import eq_, assert_not_equal, assert_raises
+from nose.plugins.attrib import attr
 from PIL import Image
 from pyquery import PyQuery as pq
 from redisutils import mock_redis, reset_redis
@@ -3157,6 +3158,7 @@ class TestUpload(files.tests.UploadTest):
         user = UserProfile.objects.get(email='regular@mozilla.com')
         eq_(FileUpload.objects.get().user, user)
 
+    @attr('validator')
     def test_fileupload_validation(self):
         self.post()
         fu = FileUpload.objects.get()
@@ -3191,6 +3193,7 @@ class TestUploadDetail(files.tests.UploadTest):
                                 HTTP_X_FILE_NAME='filename.xpi',
                                 HTTP_X_FILE_SIZE=len(data))
 
+    @attr('validator')
     def test_detail_json(self):
         self.post()
         upload = FileUpload.objects.get()
@@ -3317,6 +3320,7 @@ class TestValidateFile(files.tests.UploadTest):
                         self.file.file_path)
         self.addon = self.file.version.addon
 
+    @attr('validator')
     def test_lazy_validate(self):
         r = self.client.post(reverse('devhub.json_file_validation',
                                      args=[self.addon.slug, self.file.id]),
