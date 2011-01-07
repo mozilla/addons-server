@@ -176,7 +176,7 @@ def monitor(request):
 def robots(request):
     """Generate a robots.txt"""
     if not settings.ENGAGE_ROBOTS:
-        template = "Disallow: /"
+        template = "User-agent: *\nDisallow: /"
     else:
         template = jingo.render(request, 'amo/robots.html',
                                 {'apps': amo.APP_USAGE})
