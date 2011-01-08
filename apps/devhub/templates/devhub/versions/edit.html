@@ -1,6 +1,6 @@
 {% extends "devhub/base.html" %}
 
-{% from "devhub/includes/macros.html" import tip, empty_unless, compat %}
+{% from "devhub/includes/macros.html" import tip, some_html_tip, empty_unless, compat %}
 
 {% set title = _('Manage Version {0}')|f(version.version) %}
 
@@ -80,6 +80,7 @@
             <td>
               {{ field.errors|safe }}
               {{ field|safe }}
+              {{ some_html_tip() }}
             </td>
           {% endwith %}
           </tr>
