@@ -488,14 +488,16 @@ html[lang=it] #nav-main a {
 
 .sunbird #footer #copyright,
 .seamonkey #footer #copyright,
-.thunderbird #footer #copyright {
+.thunderbird #footer #copyright,
+.developer-hub #footer #copyright {
     clear: none;
     padding-top: 20px;
 }
 
 .sunbird #footer #footer-logo,
 .seamonkey #footer #footer-logo,
-.thunderbird #footer #footer-logo {
+.thunderbird #footer #footer-logo,
+.developer-hub #footer #footer-logo {
     display: none;
 }
 
