@@ -1,43 +1,41 @@
 {% extends "devhub/addons/submit/base.html" %}
 
 {% block primary %}
-  <div>
-    <h3>{{ _('Step 2. Upload Your Add-on') }}</h3>
-    <p>
-    {% trans %}
-      Use the fields below to upload your add-on package and select any platform
-      restrictions. After upload, a series of automated validation tests will be run
-      on your file.
-    {% endtrans %}
-    </p>
-    <span class="invisible-upload cta" data-upload-url="{{ url('devhub.upload') }}">
-      <a class="button prominent" href="#">{{ _('Select Add-on to Upload...') }}</a>
-      <input type="file" id="upload-file-input" />
-    </span>
-    {{ new_addon_form.non_field_errors()|safe }}
-    <div class="extra">{{ _('We accept .xpi, .jar, and .xml files.') }}</div>
-    <section id="upload-file">
-      <div class="upload-status hidden">
-        <strong id="upload-status-text"></strong>
-        <div id="upload-status-bar">
-          <div></div>
-        </div>
-        {# TODO(gkoberger): Add %, kb's uploaded, cancel link #}
-        <div id="upload-status-results"></div>
+  <h3>{{ _('Step 2. Upload Your Add-on') }}</h3>
+  <p>
+  {% trans %}
+    Use the fields below to upload your add-on package and select any platform
+    restrictions. After upload, a series of automated validation tests will be run
+    on your file.
+  {% endtrans %}
+  </p>
+  <span class="invisible-upload cta" data-upload-url="{{ url('devhub.upload') }}">
+    <a class="button prominent" href="#">{{ _('Select Add-on to Upload...') }}</a>
+    <input type="file" id="upload-file-input" />
+  </span>
+  {{ new_addon_form.non_field_errors()|safe }}
+  <div class="extra">{{ _('We accept .xpi, .jar, and .xml files.') }}</div>
+  <section id="upload-file">
+    <div class="upload-status hidden">
+      <strong id="upload-status-text"></strong>
+      <div id="upload-status-bar">
+        <div></div>
       </div>
-      <form method="post" id="create-addon" class="item" action="">
-        {{ csrf() }}
-        <div class="platform">
-        <label>{{ _('Select the target platform(s) for this file.') }}</label>
-        {{ new_addon_form.platforms|safe }}
-        {{ new_addon_form.upload|safe }}
-        </div>
-        <div class="submission-buttons addon-submission-field">
-          <button id="submit-upload-file-finish" disabled=disabled type="submit">
-            {{ _('Continue') }}
-          </button>
-        </div>
-      </form>
-    </section>
-  </div>
+      {# TODO(gkoberger): Add %, kb's uploaded, cancel link #}
+      <div id="upload-status-results"></div>
+    </div>
+    <form method="post" id="create-addon" class="item" action="">
+      {{ csrf() }}
+      <div class="platform">
+      <label>{{ _('Select the target platform(s) for this file.') }}</label>
+      {{ new_addon_form.platforms|safe }}
+      {{ new_addon_form.upload|safe }}
+      </div>
+      <div class="submission-buttons addon-submission-field">
+        <button id="submit-upload-file-finish" disabled=disabled type="submit">
+          {{ _('Continue') }}
+        </button>
+      </div>
+    </form>
+  </section>
 {% endblock primary %}
