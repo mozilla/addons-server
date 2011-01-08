@@ -1257,9 +1257,6 @@ a.extra {
     background-color: #305083;
     border-bottom: 1px solid #5a7297;
 }
-#navbar li ul li:hover {
-    background-image: url(../../img/amo2009/bg/heading-dark-blue.jpg);
-}
 #navbar li ul li a {
     display: block;
     padding: .5em 1.3em;

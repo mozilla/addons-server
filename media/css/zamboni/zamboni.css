@@ -175,6 +175,7 @@ ul.errorlist {
 .categories h2,
 .categories h3,
 div.header-search form,
+#navbar li ul li:hover,
 .developer-hub #navbar,
 span.new  {
     background: #33589f;
