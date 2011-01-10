@@ -196,6 +196,13 @@ class CharityForm(happyforms.ModelForm):
         check_paypal_id(self.cleaned_data['paypal'])
         return self.cleaned_data['paypal']
 
+    def save(self, commit=True):
+        # We link to the charity row in contrib stats, so we force all charity
+        # changes to create a new row so we don't forget old charities.
+        if self.changed_data and self.instance:
+            self.instance = self._meta.model()
+        return super(CharityForm, self).save(commit)
+
 
 class ContribForm(TranslationFormMixin, happyforms.ModelForm):
     RECIPIENTS = (('dev', _lazy(u'The developers of this add-on')),
