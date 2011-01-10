@@ -63,8 +63,9 @@ def _validator(file_path):
         call_command('dump_apps')
 
     return validate(file_path, format='json',
-                    # Continue validating each tier even if one has an error
-                    determined=True,
+                    # This flag says to stop testing after one tier fails.
+                    # bug 615426
+                    determined=False,
                     approved_applications=apps,
                     spidermonkey=settings.SPIDERMONKEY)
 
