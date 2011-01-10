@@ -257,6 +257,7 @@ class TestButton(ButtonTest):
         # Throw featured in there to make sure it's ignored.
         self.addon.is_featured.return_value = True
         self.addon.status = amo.STATUS_LITE
+        self.version.is_lite = True
         b = self.get_button()
         assert not b.featured
         assert b.lite
@@ -268,6 +269,33 @@ class TestButton(ButtonTest):
         # Throw featured in there to make sure it's ignored.
         self.addon.is_featured.return_value = True
         self.addon.status = amo.STATUS_LITE_AND_NOMINATED
+        self.version.is_lite = True
+        b = self.get_button()
+        assert not b.featured
+        assert b.lite
+        eq_(b.button_class, ['caution'])
+        eq_(b.install_class, ['lite'])
+        eq_(b.install_text, 'Experimental')
+
+    def test_lite_unreviewed_version(self):
+        # Throw featured in there to make sure it's ignored.
+        self.addon.is_featured.return_value = True
+        self.addon.status = amo.STATUS_LITE
+        self.version.is_unreviewed = True
+        self.version.is_lite = False
+        b = self.get_button()
+        assert not b.featured
+        assert not b.lite
+        assert b.unreviewed
+        eq_(b.button_class, ['download', 'caution'])
+        eq_(b.install_class, ['unreviewed'])
+        eq_(b.install_text, 'Not Reviewed')
+
+    def test_public_with_lite_version(self):
+        # Throw featured in there to make sure it's ignored.
+        self.addon.is_featured.return_value = True
+        self.addon.status = amo.STATUS_PUBLIC
+        self.version.is_lite = True
         b = self.get_button()
         assert not b.featured
         assert b.lite
@@ -445,12 +473,14 @@ class TestButtonHtml(ButtonTest):
 
     def test_lite_detailed_warning(self):
         self.addon.status = amo.STATUS_LITE
+        self.version.is_lite = True
         warning = self.render(detailed=True)('.install-shell .warning')
         eq_(warning.text(),
             'This add-on has been preliminarily reviewed by Mozilla. Learn more')
 
     def test_lite_and_nom_detailed_warning(self):
         self.addon.status = amo.STATUS_LITE_AND_NOMINATED
+        self.version.is_lite = True
         warning = self.render(detailed=True)('.install-shell .warning')
         eq_(warning.text(),
             'This add-on has been preliminarily reviewed by Mozilla. Learn more')

@@ -82,9 +82,8 @@ class InstallButton(object):
         self.detailed = detailed
 
         self.is_beta = self.version and self.version.is_beta
-        version_unreviewed = (self.version and self.version.is_unreviewed)
-        self.lite = (addon.status in amo.LITE_STATUSES
-                     or version and version.is_lite)
+        version_unreviewed = self.version and self.version.is_unreviewed
+        self.lite = self.version and self.version.is_lite
         self.unreviewed = (addon.is_unreviewed() or version_unreviewed or
                            self.is_beta)
         self.self_hosted = addon.status == amo.STATUS_LISTED
