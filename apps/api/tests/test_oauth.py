@@ -444,7 +444,7 @@ class TestAddon(BaseOauth):
                         self.token, data=self.version_data)
         eq_(r.status_code, 400)
         eq_(r.content, 'Bad Request: Add-on did not validate: '
-            "UUID doesn't match add-on")
+            "UUID doesn't match add-on.")
 
     def test_duplicate_guid(self):
         self.create_addon()
