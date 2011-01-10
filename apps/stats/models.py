@@ -136,6 +136,7 @@ class ContributionError(Exception):
 
 class Contribution(caching.base.CachingMixin, models.Model):
     addon = models.ForeignKey('addons.Addon')
+    charity = models.ForeignKey('addons.Charity', null=True)
     amount = DecimalCharField(max_digits=9, decimal_places=2,
                               nullify_invalid=True, null=True)
     source = models.CharField(max_length=255, null=True)
