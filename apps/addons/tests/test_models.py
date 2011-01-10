@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 import itertools
 from urlparse import urlparse
 
+from django import forms
 from django.conf import settings
 from django.core import mail
 from django.core.cache import cache
@@ -17,7 +18,8 @@ import files.tests
 from amo import set_user
 from amo.signals import _connect, _disconnect
 from addons.models import (Addon, AddonDependency, AddonRecommendation,
-                           AddonType, Category, Feature, Persona, Preview)
+                           AddonType, BlacklistedGuid, Category, Feature,
+                           Persona, Preview)
 from applications.models import Application, AppVersion
 from devhub.models import ActivityLog
 from files.models import File, Platform
@@ -792,6 +794,13 @@ class TestAddonFromUpload(files.tests.UploadTest):
         self.platform = Platform.objects.create(id=amo.PLATFORM_MAC.id)
         for version in ('3.0', '3.6.*'):
             AppVersion.objects.create(application_id=1, version=version)
+
+    def test_blacklisted_guid(self):
+        BlacklistedGuid.objects.create(guid='guid@xpi')
+        with self.assertRaises(forms.ValidationError) as e:
+            addon = Addon.from_upload(self.get_upload('extension.xpi'),
+                                      [self.platform])
+        eq_(e.exception.messages, ['Duplicate UUID found.'])
 
     def test_xpi_attributes(self):
         addon = Addon.from_upload(self.get_upload('extension.xpi'),

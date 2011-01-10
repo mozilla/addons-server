@@ -126,7 +126,7 @@ def parse_search(filename, addon=None):
 
 def parse_xpi(xpi, addon=None):
     """Extract and parse an XPI."""
-    from addons.models import Addon
+    from addons.models import Addon, BlacklistedGuid
     # Extract to /tmp
     path = os.path.join(settings.TMP_PATH, str(time.time()))
     os.makedirs(path)
@@ -146,8 +146,10 @@ def parse_xpi(xpi, addon=None):
         shutil.rmtree(path)
 
     if addon and addon.guid != rdf['guid']:
-        raise forms.ValidationError(_("UUID doesn't match add-on"))
-    if not addon and Addon.objects.filter(guid=rdf['guid']):
+        raise forms.ValidationError(_("UUID doesn't match add-on."))
+    if (not addon
+        and Addon.objects.filter(guid=rdf['guid'])
+        or BlacklistedGuid.objects.filter(guid=rdf['guid']).exists()):
         raise forms.ValidationError(_('Duplicate UUID found.'))
 
     if addon and addon.type != rdf['type']:
