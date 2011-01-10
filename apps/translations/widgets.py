@@ -59,7 +59,7 @@ class TransMulti(forms.widgets.MultiWidget):
     def decompress(self, value):
         if not value:
             return []
-        elif isinstance(value, long):
+        elif isinstance(value, (long, int)):
             # We got a foreign key to the translation table.
             qs = Translation.objects.filter(id=value)
             return list(qs.filter(localized_string__isnull=False))
@@ -103,11 +103,16 @@ class _TransWidget(object):
     """
 
     def render(self, name, value, attrs=None):
+        from .fields import switch
         attrs = self.build_attrs(attrs)
         lang = to_language(value.locale)
         attrs.update(lang=lang)
         # Use rsplit to drop django's name_idx numbering.  (name_0 => name)
         name = '%s_%s' % (name.rsplit('_', 1)[0], lang)
+        # Make sure we don't get a Linkified/Purified Translation. We don't
+        # want people editing a bleached value.
+        if value.__class__ != Translation:
+            value = switch(value, Translation)
         return super(_TransWidget, self).render(name, value, attrs)
 
 
