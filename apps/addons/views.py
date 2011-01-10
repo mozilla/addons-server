@@ -385,6 +385,7 @@ def contribute(request, addon):
     contribution_uuid = hashlib.md5(str(uuid.uuid4())).hexdigest()
 
     contrib = Contribution(addon_id=addon.id,
+                           charity_id=addon.charity_id,
                            amount=amount,
                            source=source,
                            source_locale=request.LANG,

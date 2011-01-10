@@ -21,10 +21,11 @@ from amo.tests.test_helpers import AbuseBase, AbuseDisabledBase
 from addons import views
 from addons.models import Addon, AddonUser, Charity
 from files.models import File
-from users.helpers import users_list
-from users.models import UserProfile
+from stats.models import Contribution
 from translations.helpers import truncate
 from translations.query import order_by_translation
+from users.helpers import users_list
+from users.models import UserProfile
 from versions.models import Version
 
 
@@ -264,6 +265,16 @@ class TestContribute(test_utils.TestCase):
         qs = dict(urlparse.parse_qsl(r['Location']))
         eq_(qs['item_name'], 'Contribution for moz')
         eq_(qs['business'], 'mozcom')
+
+        contrib = Contribution.objects.get(addon=addon)
+        eq_(addon.charity_id, contrib.charity_id)
+
+    def test_no_org(self):
+        addon = Addon.objects.get(id=592)
+        r = self.client.get(reverse('addons.contribute', args=['a592']))
+        eq_(r.status_code, 302)
+        contrib = Contribution.objects.get(addon=addon)
+        eq_(contrib.charity_id, None)
 
 
 class TestDeveloperPages(test_utils.TestCase):
