@@ -8,7 +8,6 @@ from django.utils import translation
 import caching.base
 import multidb.pinning
 import queryset_transform
-from translations import transformer
 
 from . import signals
 
@@ -77,6 +76,7 @@ class TransformQuerySet(queryset_transform.TransformQuerySet):
 
     def only_translations(self):
         """Remove all transforms except translations."""
+        from translations import transformer
         # Add an extra select so these are cached separately.
         qs = self.no_transforms().extra(select={'_only_trans': 1})
         if hasattr(self.model._meta, 'translated_fields'):
@@ -121,6 +121,7 @@ class UncachedManagerBase(models.Manager):
         return qs
 
     def _with_translations(self, qs):
+        from translations import transformer
         # Since we're attaching translations to the object, we need to stick
         # the locale in the query so objects aren't shared across locales.
         if hasattr(self.model._meta, 'translated_fields'):

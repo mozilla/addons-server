@@ -26,6 +26,7 @@ import paypal
 from amo.urlresolvers import reverse
 from amo.tests.test_helpers import get_image_path
 from addons import cron
+from addons.forms import AddonFormBasic
 from addons.models import Addon, AddonUser, Charity, Category, AddonCategory
 from addons.utils import ReverseNameLookup
 from applications.models import Application, AppVersion
@@ -1039,6 +1040,22 @@ class TestEdit(test_utils.TestCase):
         eq_(unicode(addon.summary), data['summary'])
 
         eq_([unicode(t) for t in addon.tags.all()], sorted(self.tags))
+
+    def test_edit_summary_escaping(self):
+        data = self.get_dict()
+        data['summary'] = '<b>oh my</b>'
+        r = self.client.post(self.get_url('basic', True), data)
+        eq_(r.status_code, 200)
+
+        # Fetch the page so the LinkifiedTranslation gets in cache.
+        r = self.client.get(reverse('devhub.addons.edit', args=[data['slug']]))
+        eq_(pq(r.content)('[data-name=summary]').html().strip(),
+            '<span lang="en-us">&lt;b&gt;oh my&lt;/b&gt;</span>')
+
+        # Now make sure we don't have escaped content in the rendered form.
+        form = AddonFormBasic(instance=self.get_addon(), request=object())
+        eq_(pq('<body>%s</body>' % form['summary'])('[lang="en-us"]').html(),
+            '<b>oh my</b>')
 
     def test_edit_basic_as_developer(self):
         self.client.login(username='regular@mozilla.com', password='password')

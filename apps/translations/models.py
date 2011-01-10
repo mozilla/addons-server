@@ -2,8 +2,8 @@ from django.db import models, connection
 from django.utils import encoding
 
 from bleach import Bleach
-import caching.base
 
+import amo.models
 from amo import urlresolvers
 from . import utils
 
@@ -16,7 +16,7 @@ class MyBleach(Bleach):
 bleach = MyBleach()
 
 
-class Translation(caching.base.CachingMixin, models.Model):
+class Translation(amo.models.ModelBase):
     """
     Translation model.
 
@@ -29,13 +29,6 @@ class Translation(caching.base.CachingMixin, models.Model):
     locale = models.CharField(max_length=10)
     localized_string = models.TextField(null=True)
     localized_string_clean = models.TextField(null=True)
-
-    # These are normally from amo.models.ModelBase, but we don't want to have
-    # weird circular dependencies between ModelBase and Translations.
-    created = models.DateTimeField(auto_now_add=True)
-    modified = models.DateTimeField(auto_now=True)
-
-    objects = caching.base.CachingManager()
 
     class Meta:
         db_table = 'translations'
