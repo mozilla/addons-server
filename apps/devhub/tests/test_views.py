@@ -5,6 +5,7 @@ import re
 import shutil
 import socket
 import tempfile
+from datetime import datetime
 from decimal import Decimal
 
 from django import forms
@@ -3651,14 +3652,21 @@ class TestRequestReview(test_utils.TestCase):
         self.check_400(self.lite_url)
 
     def test_lite_to_public(self):
+        eq_(self.addon.nomination_date, None)
         self.check(amo.STATUS_LITE, self.public_url,
                    amo.STATUS_LITE_AND_NOMINATED)
+        self.addon = Addon.objects.get(pk=self.addon.id)
+        eq_(self.addon.nomination_date.date(), datetime.now().date())
 
     def test_purgatory_to_lite(self):
         self.check(amo.STATUS_PURGATORY, self.lite_url, amo.STATUS_UNREVIEWED)
 
     def test_purgatory_to_public(self):
-        self.check(amo.STATUS_PURGATORY, self.public_url, amo.STATUS_NOMINATED)
+        eq_(self.addon.nomination_date, None)
+        self.check(amo.STATUS_PURGATORY, self.public_url,
+                   amo.STATUS_NOMINATED)
+        self.addon = Addon.objects.get(pk=self.addon.id)
+        eq_(self.addon.nomination_date.date(), datetime.now().date())
 
     def test_lite_and_nominated_to_public(self):
         self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
