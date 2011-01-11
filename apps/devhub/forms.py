@@ -199,8 +199,8 @@ class CharityForm(happyforms.ModelForm):
     def save(self, commit=True):
         # We link to the charity row in contrib stats, so we force all charity
         # changes to create a new row so we don't forget old charities.
-        if self.changed_data and self.instance:
-            self.instance = self._meta.model()
+        if self.changed_data and self.instance.id:
+            self.instance.id = None
         return super(CharityForm, self).save(commit)
 
 
