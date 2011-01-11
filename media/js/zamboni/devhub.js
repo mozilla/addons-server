@@ -381,7 +381,7 @@ function initUploadPreview() {
 
     });
 
-    $("#edit-addon-media, #submit-media").delegate(".preview-delete a", "click", function(e){
+    $("#edit-addon-media, #submit-media").delegate("#file-list .remove", "click", function(e){
         e.preventDefault();
         var row = $(this).closest(".preview");
         row.find(".delete input").attr("checked", "checked");

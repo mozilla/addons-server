@@ -89,15 +89,13 @@
                         </div>
                         {{ form.id|safe }}
                         <span class="js-hidden delete">{{ form.DELETE|safe }}{{ form.DELETE.label_tag()|safe }}</span>
-                        <label data-for="{{ form.prefix }}-{{ form.caption.name }}" class="above-the-field">
-                          {{ _('Please provide a caption for this screen shot:') }}
-                        </label>
-                        {{ form.caption|safe }}
-                        <p class="preview-delete">
-                          <a href="#">
-                            {{ _('Delete this Screen Shot') }}
-                          </a>
-                        </p>
+                        <div class="edit-previews-text">
+                          <label data-for="{{ form.prefix }}-{{ form.caption.name }}" class="above-the-field">
+                            {{ _('Please provide a caption for this screen shot:') }}
+                          </label>
+                          {{ form.caption|safe }}
+                          <a href="#" class="remove">x</a>
+                        </div>
                         <div class="preview_extra">
                           {{ form.upload_hash|safe }}
                         </div>

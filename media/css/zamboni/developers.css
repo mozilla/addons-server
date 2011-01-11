@@ -310,11 +310,6 @@ form .char-count b {
     text-align: right;
 }
 
-#file-list .preview .preview-delete a {
-    color: red;
-    text-decoration: none;
-}
-
 .html-rtl #file-list .preview .preview-delete {
     margin-right: 0;
 }
@@ -333,9 +328,13 @@ form .char-count b {
 
 #file-list .preview textarea {
     font-size: 0.9em;
-    height: 34px;
+    height: 59px;
     line-height: 1.1em;
-    width: 375px;
+    width: 356px;
+}
+
+#file-list .preview .edit-previews-text {
+    float: left;
 }
 
 .preview-thumb {
@@ -359,7 +358,7 @@ form .char-count b {
 
 #icons_default {
     border: 1px solid #6A89AC;
-    max-height: 86px;
+    max-height: 100px;
     overflow-x: hidden;
     overflow-y: scroll;
     padding: 5px;
