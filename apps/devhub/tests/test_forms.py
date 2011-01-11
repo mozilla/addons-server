@@ -4,6 +4,7 @@ import mock
 
 import paypal
 import test_utils
+from addons.models import Charity
 from devhub import forms
 from files.models import FileUpload
 
@@ -55,8 +56,10 @@ class TestCharityForm(test_utils.TestCase):
             eq_(getattr(charity, k), v)
         assert charity.id
 
+        # Get a fresh instance since the form will mutate it.
+        instance = Charity.objects.get(id=charity.id)
         params['name'] = 'new'
-        new_charity = forms.CharityForm(params, instance=charity).save()
+        new_charity = forms.CharityForm(params, instance=instance).save()
         for k, v in params.items():
             eq_(getattr(new_charity, k), v)
 
