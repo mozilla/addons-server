@@ -1,6 +1,5 @@
 import codecs
 import collections
-from datetime import datetime
 import functools
 import json
 import os
@@ -954,11 +953,7 @@ def request_review(request, addon_id, addon, status):
         else:
             new_status = amo.STATUS_UNREVIEWED
 
-    extra = {}
-    if new_status in (amo.STATUS_NOMINATED,
-                      amo.STATUS_LITE_AND_NOMINATED):
-        extra['nomination_date'] = datetime.now().date()
-    addon.update(status=new_status, **extra)
+    addon.update(status=new_status)
     msg = {amo.STATUS_LITE: _('Preliminary Review Requested.'),
            amo.STATUS_PUBLIC: _('Full Review Requested.')}
     messages.success(request, msg[status_req])

@@ -2960,10 +2960,14 @@ class TestSubmitStep6(TestSubmitBase):
         assert_raises(SubmitStep.DoesNotExist, self.get_step)
 
     def test_full_review(self):
+        self.get_addon().update(nomination_date=None)
         d = dict(review_type=amo.STATUS_NOMINATED)
         r = self.client.post(self.url, d)
         eq_(r.status_code, 302)
-        eq_(self.get_addon().status, amo.STATUS_NOMINATED)
+        addon = self.get_addon()
+        eq_(addon.status, amo.STATUS_NOMINATED)
+        # nomination_date is only a Date, so we zero out the hour/minute part.
+        eq_(addon.nomination_date, datetime(*datetime.now().timetuple()[:3]))
         assert_raises(SubmitStep.DoesNotExist, self.get_step)
 
 

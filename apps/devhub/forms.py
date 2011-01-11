@@ -464,8 +464,9 @@ FileFormSet = modelformset_factory(File, formset=BaseFileFormSet,
 class ReviewTypeForm(forms.Form):
     _choices = [(k, amo.STATUS_CHOICES[k]) for k in
                 (amo.STATUS_UNREVIEWED, amo.STATUS_NOMINATED)]
-    review_type = forms.ChoiceField(
+    review_type = forms.TypedChoiceField(
         choices=_choices, widget=forms.HiddenInput,
+        coerce=int, empty_value=None,
         error_messages={'required': 'A review type must be selected.'})
 
 
