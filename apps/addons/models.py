@@ -158,7 +158,7 @@ class Addon(amo.models.ModelBase):
     disabled_by_user = models.BooleanField(default=False, db_index=True,
                                            db_column='inactive')
     trusted = models.BooleanField(default=False)
-    view_source = models.BooleanField(default=False, db_column='viewsource')
+    view_source = models.BooleanField(default=True, db_column='viewsource')
     public_stats = models.BooleanField(default=False, db_column='publicstats')
     prerelease = models.BooleanField(default=False)
     admin_review = models.BooleanField(default=False, db_column='adminreview')

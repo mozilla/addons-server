@@ -457,6 +457,11 @@ class TestAddonModels(test_utils.TestCase):
         self.delete()
         assert 'DELETED BY: Unknown' in mail.outbox[0].body
 
+    def test_view_source(self):
+        # view_source should default to True.
+        a = Addon.objects.create(type=1)
+        assert a.view_source
+
 
 class TestCategoryModel(test_utils.TestCase):
 
