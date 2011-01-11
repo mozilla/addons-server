@@ -261,33 +261,38 @@ class Addon(amo.models.ModelBase):
 
     @transaction.commit_on_success
     def delete(self, msg):
-        log.debug('Adding guid to blacklist: %s' % self.guid)
-        BlacklistedGuid(guid=self.guid, comments=msg).save()
-        log.debug('Deleting add-on: %s' % self.id)
+        if self.highest_status:
+            log.debug('Adding guid to blacklist: %s' % self.guid)
+            BlacklistedGuid(guid=self.guid, comments=msg).save()
+            log.debug('Deleting add-on: %s' % self.id)
 
-        authors = [u.email for u in self.authors.all()]
-        to = [settings.FLIGTAR]
-        user = amo.get_user()
-        user_str = "%s, %s (%s)" % (user.display_name or user.username,
-                                    user.email, user.id) if user else "Unknown"
+            authors = [u.email for u in self.authors.all()]
+            to = [settings.FLIGTAR]
+            user = amo.get_user()
+            user_str = "%s, %s (%s)" % (user.display_name or user.username,
+                    user.email, user.id) if user else "Unknown"
 
-        email_msg = u"""
-        The following add-on was deleted.
-        ADD-ON: %s
-        DELETED BY: %s
-        ID: %s
-        GUID: %s
-        AUTHORS: %s
-        TOTAL DOWNLOADS: %s
-        AVERAGE DAILY USERS: %s
-        NOTES: %s
-        """ % (self.name, user_str, self.id, self.guid, authors,
-               self.total_downloads, self.average_daily_users, msg)
-        log.debug('Sending delete email for add-on %s' % self.id)
-        subject = 'Deleting add-on %s' % self.id
+            email_msg = u"""
+            The following add-on was deleted.
+            ADD-ON: %s
+            DELETED BY: %s
+            ID: %s
+            GUID: %s
+            AUTHORS: %s
+            TOTAL DOWNLOADS: %s
+            AVERAGE DAILY USERS: %s
+            NOTES: %s
+            """ % (self.name, user_str, self.id, self.guid, authors,
+                   self.total_downloads, self.average_daily_users, msg)
+            log.debug('Sending delete email for add-on %s' % self.id)
+            subject = 'Deleting add-on %s' % self.id
 
         rv = super(Addon, self).delete()
-        send_mail(subject, email_msg, recipient_list=to)
+
+        # We want to ensure deletion before notification.
+        if self.highest_status:
+            send_mail(subject, email_msg, recipient_list=to)
+
         return rv
 
     @classmethod

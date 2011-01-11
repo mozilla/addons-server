@@ -136,6 +136,17 @@ class TestAddonModels(test_utils.TestCase):
         a.name = u'é'
         a.delete('bye')
         eq_(len(mail.outbox), 1)
+        assert BlacklistedGuid.objects.filter(guid=a.guid)
+
+    def test_delete_incomplete(self):
+        """Test deleting incomplete add-ons."""
+        a = Addon.objects.get(pk=3615)
+        a.status = 0
+        a.highest_status = 0
+        a.save()
+        a.delete(None)
+        eq_(len(mail.outbox), 0)
+        assert not BlacklistedGuid.objects.filter(guid=a.guid)
 
     def test_incompatible_latest_apps(self):
         a = Addon.objects.get(pk=3615)
@@ -805,8 +816,8 @@ class TestAddonFromUpload(files.tests.UploadTest):
     def test_blacklisted_guid(self):
         BlacklistedGuid.objects.create(guid='guid@xpi')
         with self.assertRaises(forms.ValidationError) as e:
-            addon = Addon.from_upload(self.get_upload('extension.xpi'),
-                                      [self.platform])
+            Addon.from_upload(self.get_upload('extension.xpi'),
+                              [self.platform])
         eq_(e.exception.messages, ['Duplicate UUID found.'])
 
     def test_xpi_attributes(self):
