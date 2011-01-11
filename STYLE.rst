@@ -1,0 +1,19 @@
+Zamboni Style Guide
+===================
+
+Writing code for zamboni? Awesome! Please help keep our code readable by, 
+whenever possible, adhering to these style conventions.
+
+
+Python
+------
+- see https://wiki.mozilla.org/Webdev:Python
+
+
+JavaScript
+----------
+- Soft tabs (4 space) indentation
+- Double quotes around strings (unless the string contains double quotes)
+- variable names for jQuery objects start with $. for example::
+
+    var $el = $(el);
