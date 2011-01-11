@@ -18,8 +18,8 @@ import files.tests
 from amo import set_user
 from amo.signals import _connect, _disconnect
 from addons.models import (Addon, AddonDependency, AddonRecommendation,
-                           AddonType, BlacklistedGuid, Category, Feature,
-                           Persona, Preview)
+                           AddonType, BlacklistedGuid, Category, Charity,
+                           Feature, Persona, Preview)
 from applications.models import Application, AppVersion
 from devhub.models import ActivityLog
 from files.models import File, Platform
@@ -872,3 +872,16 @@ class TestAddonFromUpload(files.tests.UploadTest):
                                   [self.platform])
         eq_(addon.default_locale, 'es-ES')
         translation.deactivate()
+
+
+class TestCharity(test_utils.TestCase):
+    fixtures = ['base/charity.json']
+
+    def test_url(self):
+        charity = Charity(name="a", paypal="b", url="http://foo.com")
+        charity.save()
+        assert charity.outgoing_url.startswith('http://outgoing')
+
+    def test_url_foundation(self):
+        foundation = Charity.objects.get(pk=amo.FOUNDATION_ORG)
+        assert not foundation.outgoing_url.startswith('http://outgoing')

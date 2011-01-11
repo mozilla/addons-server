@@ -21,7 +21,7 @@ import sharing.utils as sharing
 from amo.fields import DecimalCharField
 from amo.utils import (send_mail, urlparams, sorted_groupby, JSONEncoder,
                        slugify, to_language)
-from amo.urlresolvers import reverse
+from amo.urlresolvers import get_outgoing_url, reverse
 from addons.utils import ReverseNameLookup
 from files.models import File
 from reviews.models import Review
@@ -1150,3 +1150,9 @@ class Charity(amo.models.ModelBase):
 
     class Meta:
         db_table = 'charities'
+
+    @property
+    def outgoing_url(self):
+        if self.pk == amo.FOUNDATION_ORG:
+            return self.url
+        return get_outgoing_url(unicode(self.url))
