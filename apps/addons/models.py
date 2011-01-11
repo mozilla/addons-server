@@ -300,6 +300,7 @@ class Addon(amo.models.ModelBase):
         addon.default_locale = to_language(translation.get_language())
         addon.save()
         Version.from_upload(upload, addon, platforms)
+        amo.log(amo.LOG.CREATE_ADDON, addon)
         log.debug('New addon %r from %r' % (addon, upload))
         return addon
 

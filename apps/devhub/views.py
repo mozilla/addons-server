@@ -33,7 +33,6 @@ from addons import forms as addon_forms
 from addons.decorators import addon_view
 from addons.models import Addon, AddonUser
 from addons.views import BaseFilter
-from cake.urlresolvers import remora_url
 from devhub.models import ActivityLog, RssKey, SubmitStep
 from files.models import File, FileUpload
 from translations.models import delete_translation
@@ -55,7 +54,8 @@ def dev_required(owner_for_post=False):
         @login_required
         @functools.wraps(f)
         def wrapper(request, addon, *args, **kw):
-            fun = lambda: f(request, addon_id=addon.id, addon=addon, *args, **kw)
+            fun = lambda: f(request, addon_id=addon.id, addon=addon, *args,
+                            **kw)
             # Require an owner or dev for POST requests.
             if request.method == 'POST':
                 if acl.has_perm(request, addon, dev=not owner_for_post):
@@ -293,7 +293,7 @@ def disable(request, addon_id, addon):
     return redirect('devhub.versions', addon.slug)
 
 
-def _license_form(request, addon, save=False):
+def _license_form(request, addon, save=False, log=True):
     qs = addon.versions.order_by('-version')[:1]
     version = qs[0] if qs else None
     if version:
@@ -309,7 +309,8 @@ def _license_form(request, addon, save=False):
         license = license_form.save()
         if changed or license != version.license:
             version.update(license=license)
-            amo.log(amo.LOG.CHANGE_LICENSE, license, addon)
+            if log:
+                amo.log(amo.LOG.CHANGE_LICENSE, license, addon)
 
     license_urls = dict(License.objects.builtins()
                         .values_list('builtin', 'url'))
@@ -829,7 +830,6 @@ def submit_describe(request, addon_id, addon, step):
                            request=request)
     if request.method == 'POST' and form.is_valid():
         addon = form.save(addon)
-        amo.log(amo.LOG.EDIT_DESCRIPTIONS, addon)
         SubmitStep.objects.filter(addon=addon).update(step=4)
         return redirect('devhub.submit.4', addon.slug)
 
@@ -871,7 +871,7 @@ def submit_license(request, addon_id, addon, step):
     policy_form = _policy_form(request, addon)
     fs.append(policy_form)
     if request.method == 'POST' and all([form.is_valid() for form in fs]):
-        _license_form(request, addon, save=True)
+        _license_form(request, addon, save=True, log=False)
         _policy_form(request, addon, save=True)
         SubmitStep.objects.filter(addon=addon).update(step=6)
         return redirect('devhub.submit.6', addon.slug)
