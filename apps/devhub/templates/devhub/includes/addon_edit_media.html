@@ -51,14 +51,17 @@
                 </ul>
                 <div class="invisible-upload">
                   <a class="button" href="#">{{ _('Upload a Custom Icon...') }}</a>
-                  {{ form.icon_upload|safe }}
+                  <input type="file" id="id_icon_upload" name="icon_upload"
+                         data-upload-url="{{ url('devhub.addons.upload_icon', addon.slug) }}">
+                </div>
+                <div class="js-hidden">
+                  {{ form.icon_upload_hash|safe }}
                 </div>
                 <div class="edit-media-details">
                   {% trans %}
                   PNG and JPG supported. Icons resized to 64x64 pixels if larger.
                   {% endtrans %}
                 </div>
-                {{ form.icon_upload.errors|safe }}
                 <ul class="errorlist">
                   <li id="edit-icon-error"></li>
                 </ul>

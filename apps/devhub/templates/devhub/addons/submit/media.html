@@ -21,6 +21,10 @@
           <div class="icon_preview" id="icon_preview_32">
             <img src="{{ addon.icon_url }}">
           </div>
+          <div class="js-hidden">
+            {{ form.icon_upload_hash|safe }}
+          </div>
+
           <div class="edit-media-details">
             {# L10n: The size of the icon #}
             {{ _('32x32px') }}
@@ -43,14 +47,12 @@
         </ul>
         <div class="invisible-upload">
           <a class="button" href="#">{{ _('Upload a Custom Icon...') }}</a>
-          {{ form.icon_upload|safe }}
         </div>
         <div class="edit-media-details">
           {% trans %}
           PNG and JPG supported. Icons resized to 64x64 pixels if larger.
           {% endtrans %}
         </div>
-        {{ form.icon_upload.errors|safe }}
         <ul class="errorlist">
           <li id="edit-icon-error"></li>
         </ul>

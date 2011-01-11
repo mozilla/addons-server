@@ -622,16 +622,18 @@ def image_status(request, addon_id, addon):
             'icons': icons,
             'previews': previews}
 
-
 @json_view
 @dev_required
-def upload_preview(request, addon_id, addon):
-    if 'upload_preview' in request.FILES:
-        upload_preview = request.FILES['upload_preview']
+def upload_image(request, addon_id, addon, upload_type):
+    errors = []
+    upload_hash = ''
+
+    if 'upload_image' in request.FILES:
+        upload_preview = request.FILES['upload_image']
         upload_preview.seek(0)
 
         upload_hash = uuid.uuid4().hex
-        loc = path.path(settings.PREVIEWS_PATH) / 'temp' / upload_hash
+        loc = path.path(settings.TMP_PATH) / upload_type / upload_hash
         if not loc.dirname().exists():
             loc.dirname().makedirs()
 
@@ -639,9 +641,27 @@ def upload_preview(request, addon_id, addon):
             for chunk in upload_preview:
                 fd.write(chunk)
 
-        return {'upload_hash': upload_hash, 'errors': False}
+        check = amo.utils.ImageCheck(upload_preview)
+        if (not check.is_image() or
+            upload_preview.content_type not in
+            ('image/png', 'image/jpeg', 'image/jpg')):
+            errors.append(_('Icons must be either PNG or JPG.'))
 
-    return {'errors': [_('There was an error uploading your preview.')]}
+        if check.is_animated():
+            errors.append(_('Icons cannot be animated.'))
+
+        if (upload_type == 'icon' and
+            upload_preview.size > settings.MAX_ICON_UPLOAD_SIZE):
+            errors.append(_('Please use images smaller than %dMB.') %
+                        (settings.MAX_ICON_UPLOAD_SIZE / 1024 / 1024 - 1))
+    else:
+        errors.append(_('There was an error uploading your preview.'))
+
+    if errors:
+        upload_hash = ''
+
+    return {'upload_hash': upload_hash, 'errors': errors}
+
 
 
 @dev_required

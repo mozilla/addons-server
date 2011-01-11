@@ -214,11 +214,18 @@ function addonFormSubmit() {
         var baseurl = function(){
             return parent_div.find('#addon-edit-basic').attr('data-baseurl');
         }
-        $('form', parent_div.not('#edit-addon-media')).submit(function(e){
+        $('form', parent_div).submit(function(e){
             e.preventDefault();
             var old_baseurl = baseurl();
             parent_div.find(".item").removeClass("loaded").addClass("loading");
             var scrollBottom = $(document).height() - $(document).scrollTop();
+
+            if(parent_div.is('#edit-addon-media')) {
+                if($('input[name=icon_type]:checked').val().match(/^image\//)) {
+                    setTimeout(checkImageStatus, 1000);
+                }
+            }
+
             $.post(parent_div.find('form').attr('action'),
                 $(this).serialize(), function(d) {
                     parent_div.html(d).each(addonFormSubmit);
@@ -236,6 +243,10 @@ function addonFormSubmit() {
                             e.css('opacity', 0);
                             setTimeout(function(){ e.remove(); }, 1500);
                         }, 2000);
+                    }
+
+                    if(parent_div.is('#edit-addon-media')) {
+                        hideSameSizedIcons();
                     }
                 });
         });
@@ -298,70 +309,79 @@ function create_new_preview_field() {
     return last;
 }
 
+function imageUploadFile(f, url, parent_form, upload_success, upload_errors) {
+    var data = f.getAsBinary(),
+        file = {},
+        xhr = new XMLHttpRequest(),
+        output = "",
+        boundary = "BoUnDaRyStRiNg";
+
+    file.name = f.name || f.fileName;
+    file.size = f.size;
+    file.data = '';
+    file.aborted = false;
+
+    xhr.open("POST", url, true);
+
+    xhr.setRequestHeader("Content-Length", file.size);
+    xhr.setRequestHeader('Content-Disposition', 'file; name="upload";');
+    xhr.setRequestHeader("X-File-Name", file.name);
+    xhr.setRequestHeader("X-File-Size", file.size);
+
+    xhr.overrideMimeType('text/plain; charset=x-user-defined-binary');
+    xhr.setRequestHeader('Content-length', false);
+    xhr.setRequestHeader("Content-Type", "multipart/form-data;" +
+                                         "boundary=" + boundary);
+
+    output += "--" + boundary + "\r\n";
+    output += "Content-Disposition: form-data; name=\"csrfmiddlewaretoken\";";
+
+    output += "\r\n\r\n";
+    output += parent_form.find('input[name=csrfmiddlewaretoken]').val();
+    output += "\r\n";
+
+    output += "--" + boundary + "\r\n";
+    output += "Content-Disposition: form-data; name=\"upload_image\";";
+
+    output += " filename=\"new-upload\";\r\n";
+    output += "Content-Type: " + f.type;
+
+    output += "\r\n\r\n";
+    output += data;
+    output += "\r\n";
+    output += "--" + boundary + "--";
+
+    xhr.onreadystatechange = function(){
+        if (xhr.readyState == 4 && xhr.responseText &&
+            (xhr.status == 200 || xhr.status == 304)) {
+            try {
+                json = JSON.parse(xhr.responseText);
+            } catch(err) {
+                return false;
+            }
+
+            if(json.errors.length) {
+                upload_errors(json.errors);
+            } else {
+                upload_success(json.upload_hash);
+            }
+        }
+    }
+    xhr.sendAsBinary(output);
+}
+
 function initUploadPreview() {
     $('#edit-addon-media, #submit-media').delegate('#screenshot_upload', 'change', function(e){
         url = $(this).attr('data-upload-url');
 
-        // TODO(gkoberger): Make sure this works on non-Fx browsers that don't
-        //support multiple files
         $.each($('#screenshot_upload')[0].files, function(k, f){
+            var form = create_new_preview_field(),
+                upload_success = function(upload_hash){
+                     form.find('[name$=upload_hash]').val(upload_hash);
+                },
+                upload_errors = function(){};
 
-            var data = f.getAsBinary(),
-                form = create_new_preview_field(),
-                file = {},
-                xhr = new XMLHttpRequest(),
-                output = "",
-                boundary = "BoUnDaRyStRiNg";
-
-            file.name = f.name || f.fileName;
-            file.size = f.size;
-            file.data = '';
-            file.aborted = false;
-
-            xhr.open("POST", url, true);
-
-            xhr.setRequestHeader("Content-Length", file.size);
-            xhr.setRequestHeader('Content-Disposition', 'file; name="upload";');
-            xhr.setRequestHeader("X-File-Name", file.name);
-            xhr.setRequestHeader("X-File-Size", file.size);
-
-            xhr.overrideMimeType('text/plain; charset=x-user-defined-binary');
-            xhr.setRequestHeader('Content-length', false);
-            xhr.setRequestHeader("Content-Type", "multipart/form-data;" +
-                                                 "boundary=" + boundary);
-
-            output += "--" + boundary + "\r\n";
-            output += "Content-Disposition: form-data; name=\"csrfmiddlewaretoken\";";
-
-            parent_form = $('#screenshot_upload').closest('form')
-            output += "\r\n\r\n";
-            output += parent_form.find('input[name=csrfmiddlewaretoken]').val();
-            output += "\r\n";
-
-            output += "--" + boundary + "\r\n";
-            output += "Content-Disposition: form-data; name=\"upload_preview\";";
-
-            output += " filename=\"new-upload\";\r\n";
-            output += "Content-Type: " + f.type;
-
-            output += "\r\n\r\n";
-            output += data;
-            output += "\r\n";
-            output += "--" + boundary + "--";
-
-            xhr.onreadystatechange = function(){
-                if (xhr.readyState == 4 && xhr.responseText &&
-                    (xhr.status == 200 || xhr.status == 304)) {
-                    try {
-                        json = JSON.parse(xhr.responseText);
-                    } catch(err) {
-                        return false;
-                    }
-
-                    form.find('[name$=upload_hash]').val(json.upload_hash);
-                }
-            }
-            xhr.sendAsBinary(output);
+            imageUploadFile(f, url, $(form).closest('form'), upload_success, upload_errors);
         });
 
         $('#screenshot_upload').val("");
@@ -377,26 +397,10 @@ function initUploadPreview() {
 }
 
 function initUploadIcon() {
-    $('#edit-addon-media').delegate('form', 'submit',  function(e) {
-        e.preventDefault();
-        multipartUpload($(this), function(e, xhr){
-            if (xhr.readyState == 4 && xhr.responseText &&
-                (xhr.status == 200 || xhr.status == 304)) {
-                $('#edit-addon-media').html(xhr.responseText);
-
-                hideSameSizedIcons();
-            }
-        });
-
-        if($('input[name=icon_type]:checked').val().match(/^image\//)) {
-            setTimeout(checkImageStatus, 1000);
-        }
-    });
-
     $('#edit-addon-media, #submit-media').delegate('#icons_default a', 'click', function(e){
         e.preventDefault();
 
-        $('#edit-icon-error').hide();
+        $('#edit-icon-error').parent().find('li').hide();
 
         $parent = $(this).closest('li');
         $('input', $parent).attr('checked', true);
@@ -411,7 +415,7 @@ function initUploadIcon() {
     });
 
     $('#edit-addon, #submit-media').delegate('#id_icon_upload', 'change', function(){
-        $('#edit-icon-error').hide();
+        $('#edit-icon-error').parent().find('li').hide();
         file = $('#id_icon_upload')[0].files[0];
 
         if(file.type == 'image/jpeg' || file.type == 'image/png') {
@@ -420,8 +424,20 @@ function initUploadIcon() {
             $('input[name=icon_type][value='+file.type+']', $('#icons_default'))
                                                           .attr('checked', true);
 
-            $('#icons_default a.active').removeClass('active');
-            $('#icon_preview img').attr('src', file.getAsDataURL());
+            var upload_errors = function(errors){
+                $.each(errors, function(i, v){
+                    $('#icon_preview').parent().find('.errorlist').append("<li>" + v + "</li>");
+                });
+            }
+
+            var upload_success = function(upload_hash){
+                $('#id_icon_upload_hash').val(upload_hash)
+                $('#icons_default a.active').removeClass('active');
+                $('#icon_preview img').attr('src', file.getAsDataURL());
+            }
+
+            imageUploadFile(file, $(this).attr('data-upload-url'), $(this).closest('form'),
+                            upload_success, upload_errors);
         } else {
             error = gettext('This filetype is not supported.');
             $('#edit-icon-error').text(error).show();

@@ -6,6 +6,7 @@ from django.conf import settings
 from django.forms.formsets import BaseFormSet, formset_factory
 
 import happyforms
+import path
 from tower import ugettext as _, ungettext as ngettext
 
 import amo
@@ -217,56 +218,27 @@ def icons():
 
 
 class AddonFormMedia(AddonFormBase):
-    icon_upload = forms.FileField(required=False)
     icon_type = forms.CharField(widget=forms.RadioSelect(
             renderer=IconWidgetRenderer, choices=icons()), required=False)
+    icon_upload_hash = forms.CharField(required=False)
 
     class Meta:
         model = Addon
-        fields = ('icon_upload', 'icon_type')
+        fields = ('icon_upload_hash', 'icon_type')
 
     def save(self, addon, commit=True):
-        if 'icon_upload' in self.request.FILES:
-            icon = self.request.FILES['icon_upload']
-            icon.seek(0)
+        if self.cleaned_data['icon_upload_hash']:
+            upload_hash = self.cleaned_data['icon_upload_hash']
+            upload_path = path.path(settings.TMP_PATH) / 'icon' / upload_hash
+
             dirname = addon.get_icon_dir()
-            tmp_destination = os.path.join(dirname, '%s-temp' % addon.id)
-
-            if not os.path.exists(dirname):
-                os.makedirs(dirname)
-
-            with open(tmp_destination, 'wb+') as icon_file:
-                for chunk in icon.read():
-                    icon_file.write(chunk)
-
             destination = os.path.join(dirname, '%s' % addon.id)
+
             remove_icons(destination)
-            tasks.resize_icon.delay(tmp_destination, destination,
+            tasks.resize_icon.delay(upload_path, destination,
                                     amo.ADDON_ICON_SIZES)
 
         return super(AddonFormMedia, self).save(commit)
-
-    def clean_icon_upload(self):
-        icon = self.cleaned_data['icon_upload']
-
-        if not icon:
-            return
-
-        check = ImageCheck(icon)
-        if (not check.is_image() or
-            icon.content_type not in ('image/png', 'image/jpeg', 'image/jpg')):
-            raise forms.ValidationError(_('Icons must be either PNG or JPG.'))
-
-        if check.is_animated():
-            raise forms.ValidationError(_('Icons cannot be animated.'))
-
-        if icon.size > settings.MAX_ICON_UPLOAD_SIZE:
-            raise forms.ValidationError(
-                    _('Please use images smaller than %dMB.' %
-                        (settings.MAX_ICON_UPLOAD_SIZE / 1024 / 1024 - 1)))
-
-        return icon
-
 
 class AddonFormDetails(AddonFormBase):
     default_locale = forms.TypedChoiceField(choices=Addon.LOCALES)

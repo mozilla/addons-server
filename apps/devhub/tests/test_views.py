@@ -986,6 +986,10 @@ class TestEdit(test_utils.TestCase):
         self.basic_url = self.get_url('basic', True)
         ctx = self.client.get(self.basic_url).context['cat_form']
         self.cat_initial = initial(ctx.initial_forms[0])
+        self.preview_upload = reverse('devhub.addons.upload_preview',
+                                      args=[self.addon.slug])
+        self.icon_upload = reverse('devhub.addons.upload_icon',
+                                   args=[self.addon.slug])
 
     def tearDown(self):
         reset_redis(self._redis)
@@ -1448,7 +1452,6 @@ class TestEdit(test_utils.TestCase):
 
         for k in data:
             eq_(unicode(getattr(addon, k)), data[k])
-
     def test_edit_media_preuploadedicon(self):
         data = dict(icon_type='icon/appearance')
         data_formset = self.formset_media(**data)
@@ -1466,21 +1469,29 @@ class TestEdit(test_utils.TestCase):
         img = "%s/img/amo2009/tab-mozilla.png" % settings.MEDIA_ROOT
         src_image = open(img, 'rb')
 
+        data = dict(upload_image=src_image)
+
+        response = self.client.post(self.icon_upload, data)
+        response_json = json.loads(response.content)
+        addon = self.get_addon()
+
+        # Now, save the form so it gets moved properly.
         data = dict(icon_type='image/png',
-                    icon_upload=src_image)
+                    icon_upload_hash=response_json['upload_hash'])
         data_formset = self.formset_media(**data)
 
         r = self.client.post(self.get_url('media', True), data_formset)
         eq_(r.context['form'].errors, {})
         addon = self.get_addon()
 
-        addon.get_icon_url(64).endswith('%s/%s-64.png' %
-                (settings.ADDON_ICONS_DEFAULT_URL, addon.id))
+        eq_('/'.join(addon.get_icon_url(64).split('/')[-3:-1]),
+            'addon_icon/%s' % addon.id)
 
         eq_(data['icon_type'], 'image/png')
 
         # Check that it was actually uploaded
-        dirname = addon.get_icon_dir()
+        dirname = os.path.join(settings.ADDON_ICONS_PATH,
+                               '%s' % (addon.id / 1000))
         dest = os.path.join(dirname, '%s-32.png' % addon.id)
 
         assert os.path.exists(dest)
@@ -1497,16 +1508,23 @@ class TestEdit(test_utils.TestCase):
         img = "%s/img/amo2009/notifications/error.png" % settings.MEDIA_ROOT
         src_image = open(img, 'rb')
 
+        data = dict(upload_image=src_image)
+
+        response = self.client.post(self.icon_upload, data)
+        response_json = json.loads(response.content)
+        addon = self.get_addon()
+
+        # Now, save the form so it gets moved properly.
         data = dict(icon_type='image/png',
-                    icon_upload=src_image)
+                    icon_upload_hash=response_json['upload_hash'])
         data_formset = self.formset_media(**data)
 
         r = self.client.post(self.get_url('media', True), data_formset)
         eq_(r.context['form'].errors, {})
         addon = self.get_addon()
 
-        addon.get_icon_url(64).endswith('%s/%s-64.png' %
-                (settings.ADDON_ICONS_DEFAULT_URL, addon.id))
+        eq_('/'.join(addon.get_icon_url(64).split('/')[-3:-1]),
+            'addon_icon/%s' % addon.id)
 
         eq_(data['icon_type'], 'image/png')
 
@@ -1514,6 +1532,7 @@ class TestEdit(test_utils.TestCase):
         dirname = os.path.join(settings.ADDON_ICONS_PATH,
                                '%s' % (addon.id / 1000))
         dest = os.path.join(dirname, '%s-64.png' % addon.id)
+
         assert os.path.exists(dest)
 
         eq_(Image.open(dest).size, (48, 48))
@@ -1522,13 +1541,12 @@ class TestEdit(test_utils.TestCase):
         img = "%s/js/zamboni/devhub.js" % settings.MEDIA_ROOT
         src_image = open(img, 'rb')
 
-        data = dict(icon_type='image/png',
-                    icon_upload=src_image)
-        data_formset = self.formset_media(**data)
+        data = {'upload_image': src_image}
 
-        r = self.client.post(self.get_url('media', True), data_formset)
-        error = 'Icons must be either PNG or JPG.'
-        self.assertFormError(r, 'form', 'icon_upload', error)
+        res = self.client.post(self.preview_upload, data)
+        response_json = json.loads(res.content)
+
+        eq_(response_json['errors'][0], u'Icons must be either PNG or JPG.')
 
     def setup_image_status(self):
         addon = self.get_addon()
@@ -1573,19 +1591,21 @@ class TestEdit(test_utils.TestCase):
 
     def test_icon_animated(self):
         filehandle = open(get_image_path('animated.png'), 'rb')
-        data = {'icon_type': 'image/png', 'icon_upload': filehandle}
-        data_formset = self.formset_media(**data)
-        res = self.client.post(self.get_url('media', True), data_formset)
-        eq_(res.context['form'].errors['icon_upload'][0],
-            u'Icons cannot be animated.')
+        data = {'upload_image': filehandle}
+
+        res = self.client.post(self.preview_upload, data)
+        response_json = json.loads(res.content)
+
+        eq_(response_json['errors'][0], u'Icons cannot be animated.')
 
     def preview_add(self, amount=1):
         img = "%s/img/amo2009/tab-mozilla.png" % settings.MEDIA_ROOT
         src_image = open(img, 'rb')
 
-        data = dict(upload_preview=src_image)
+        data = dict(upload_image=src_image)
         data_formset = self.formset_media(**data)
-        url = reverse('devhub.addons.upload_preview', args=['a3615'])
+        url = self.preview_upload
+
         r = self.client.post(url, data_formset)
 
         details = json.loads(r.content)
@@ -2575,7 +2595,6 @@ class TestSubmitStep1(TestSubmitBase):
                 "Looks like link %r to %r is still a placeholder" %
                 (href, ln.text))
 
-
 class TestSubmitStep2(test_utils.TestCase):
     # More tests in TestCreateAddon.
     fixtures = ['base/users']
@@ -2770,6 +2789,10 @@ class TestSubmitStep4(TestSubmitBase):
         SubmitStep.objects.create(addon_id=3615, step=5)
         self.url = reverse('devhub.submit.4', args=['a3615'])
         self.next_step = reverse('devhub.submit.5', args=['a3615'])
+        self.icon_upload = reverse('devhub.addons.upload_icon',
+                                      args=['a3615'])
+        self.preview_upload = reverse('devhub.addons.upload_preview',
+                                      args=['a3615'])
 
     def tearDown(self):
         settings.ADDON_ICON_URL = self.old_addon_icon_url
@@ -2829,12 +2852,21 @@ class TestSubmitStep4(TestSubmitBase):
         img = "%s/img/amo2009/tab-mozilla.png" % settings.MEDIA_ROOT
         src_image = open(img, 'rb')
 
+        data = dict(upload_image=src_image)
+
+        response = self.client.post(self.icon_upload, data)
+        response_json = json.loads(response.content)
+        addon = self.get_addon()
+
+        # Now, save the form so it gets moved properly.
         data = dict(icon_type='image/png',
-                    icon_upload=src_image)
+                    icon_upload_hash=response_json['upload_hash'])
         data_formset = self.formset_media(**data)
-        self.client.post(self.url, data_formset)
+
+        r = self.client.post(self.url, data_formset)
 
         addon = self.get_addon()
+
         eq_('/'.join(addon.get_icon_url(64).split('/')[-3:-1]),
             'addon_icon/%s' % addon.id)
 
@@ -2853,11 +2885,18 @@ class TestSubmitStep4(TestSubmitBase):
         img = "%s/img/amo2009/notifications/error.png" % settings.MEDIA_ROOT
         src_image = open(img, 'rb')
 
+        data = dict(upload_image=src_image)
+
+        response = self.client.post(self.icon_upload, data)
+        response_json = json.loads(response.content)
+        addon = self.get_addon()
+
+        # Now, save the form so it gets moved properly.
         data = dict(icon_type='image/png',
-                    icon_upload=src_image)
+                    icon_upload_hash=response_json['upload_hash'])
         data_formset = self.formset_media(**data)
 
-        self.client.post(self.url, data_formset)
+        r = self.client.post(self.url, data_formset)
         addon = self.get_addon()
 
         eq_('/'.join(addon.get_icon_url(64).split('/')[-3:-1]),
@@ -2876,20 +2915,23 @@ class TestSubmitStep4(TestSubmitBase):
 
     def test_client_lied(self):
         filehandle = open(get_image_path('non-animated.gif'), 'rb')
-        data = {'icon_type': 'image/png', 'icon_upload': filehandle}
-        data_formset = self.formset_media(**data)
 
-        res = self.client.post(self.url, data_formset)
-        eq_(res.context['form'].errors['icon_upload'][0],
-            u'Icons must be either PNG or JPG.')
+
+        data = {'upload_image': filehandle}
+
+        res = self.client.post(self.preview_upload, data)
+        response_json = json.loads(res.content)
+
+        eq_(response_json['errors'][0], u'Icons must be either PNG or JPG.')
 
     def test_icon_animated(self):
         filehandle = open(get_image_path('animated.png'), 'rb')
-        data = {'icon_type': 'image/png', 'icon_upload': filehandle}
-        data_formset = self.formset_media(**data)
-        res = self.client.post(self.url, data_formset)
-        eq_(res.context['form'].errors['icon_upload'][0],
-            u'Icons cannot be animated.')
+        data = {'upload_image': filehandle}
+
+        res = self.client.post(self.preview_upload, data)
+        response_json = json.loads(res.content)
+
+        eq_(response_json['errors'][0], u'Icons cannot be animated.')
 
     def test_icon_non_animated(self):
         filehandle = open(get_image_path('non-animated.png'), 'rb')
@@ -2898,7 +2940,6 @@ class TestSubmitStep4(TestSubmitBase):
         res = self.client.post(self.url, data_formset)
         eq_(res.status_code, 302)
         eq_(self.get_step().step, 5)
-
 
 class TestSubmitStep5(TestSubmitBase):
     """License submission."""
@@ -3116,7 +3157,6 @@ class TestResumeStep(TestSubmitBase):
             r = self.client.get(self.url, follow=True)
             self.assertRedirects(r, reverse('devhub.submit.%s' % i,
                                             args=['a3615']))
-
 
 class TestSubmitSteps(test_utils.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']
