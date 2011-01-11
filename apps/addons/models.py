@@ -1164,11 +1164,12 @@ class Preview(amo.models.ModelBase):
     filetype = models.CharField(max_length=25)
     thumbtype = models.CharField(max_length=25)
     caption = TranslatedField()
-    highlight = models.BooleanField(default=False)
+
+    position = models.IntegerField(default=0)
 
     class Meta:
         db_table = 'previews'
-        ordering = ('-highlight', 'created')
+        ordering = ('position', 'created')
 
     def flush_urls(self):
         urls = ['*/addon/%d/' % self.addon_id,

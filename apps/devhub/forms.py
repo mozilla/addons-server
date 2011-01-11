@@ -505,7 +505,7 @@ class PreviewForm(happyforms.ModelForm):
 
     class Meta:
         model = Preview
-        fields = ('caption', 'file_upload', 'upload_hash', 'id')
+        fields = ('caption', 'file_upload', 'upload_hash', 'id', 'position')
 
 
 class BasePreviewFormSet(BaseModelFormSet):

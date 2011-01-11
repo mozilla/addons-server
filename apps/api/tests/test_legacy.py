@@ -270,7 +270,7 @@ class APITest(TestCase):
                 "%s/en-US/firefox/user/2519/?src=api</link>"
                     % settings.SITE_URL,
                 "<previews>",
-                """<preview primary="1">""",
+                """<preview position="0">""",
                 "<caption>"
                     "TwitterBar places an icon in the address bar.</caption>",
                 """<full type="image/png">""",

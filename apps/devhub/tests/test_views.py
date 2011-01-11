@@ -1651,7 +1651,8 @@ class TestEdit(test_utils.TestCase):
         fields = []
         for i in range(amount):
             fields.append(self.formset_new_form(caption='hi',
-                                                upload_hash=upload_hash))
+                                                upload_hash=upload_hash,
+                                                position=i))
         data_formset = self.formset_media(*fields)
 
         self.get_url('media', True)
@@ -1669,6 +1670,7 @@ class TestEdit(test_utils.TestCase):
         edited = {'caption': 'bye',
                   'upload_hash': '',
                   'id': preview.id,
+                  'position': preview.position,
                   'file_upload': None}
 
         data_formset = self.formset_media(edited, initial_count=1)
@@ -1678,12 +1680,41 @@ class TestEdit(test_utils.TestCase):
         eq_(str(self.get_addon().previews.all()[0].caption), 'bye')
         eq_(len(self.get_addon().previews.all()), 1)
 
+    def test_edit_media_preview_reorder(self):
+        self.preview_add(3)
+
+        previews = self.get_addon().previews.all()
+
+        base = dict(upload_hash='', file_upload=None)
+
+        # Three preview forms were generated; mix them up here.
+        a = dict(caption="first", position=1, id=previews[2].id)
+        b = dict(caption="second", position=2, id=previews[0].id)
+        c = dict(caption="third", position=3, id=previews[1].id)
+        a.update(base)
+        b.update(base)
+        c.update(base)
+
+        # Add them in backwards ("third", "second", "first")
+        data_formset = self.formset_media(c, b, a, initial_count=3)
+        eq_(data_formset['files-0-caption'], 'third')
+        eq_(data_formset['files-1-caption'], 'second')
+        eq_(data_formset['files-2-caption'], 'first')
+
+        self.client.post(self.get_url('media', True), data_formset)
+
+        # They should come out "first", "second", "third"
+        eq_(self.get_addon().previews.all()[0].caption, 'first')
+        eq_(self.get_addon().previews.all()[1].caption, 'second')
+        eq_(self.get_addon().previews.all()[2].caption, 'third')
+
     def test_edit_media_preview_delete(self):
         self.preview_add()
         preview = self.get_addon().previews.get()
         edited = {'DELETE': 'checked',
                   'upload_hash': '',
                   'id': preview.id,
+                  'position': 0,
                   'file_upload': None}
 
         data_formset = self.formset_media(edited, initial_count=1)

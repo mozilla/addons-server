@@ -254,6 +254,7 @@ function addonFormSubmit() {
                     }
                 });
         });
+        reorderPreviews();
         z.refreshL10n();
     })(parent_div);
 }
@@ -316,6 +317,31 @@ function create_new_preview_field() {
     return last;
 }
 
+
+function renumberPreviews() {
+    previews = $("#file-list").children(".preview:visible");
+    previews.each(function(i, el) {
+        $(this).find(".position input").val(i);
+    });
+    $(previews).find(".handle").toggle(previews.length > 1);
+}
+
+function reorderPreviews() {
+    var preview_list = $("#file-list");
+
+    if (preview_list.length) {
+        preview_list.sortable({
+            items: ".preview:visible",
+            handle: ".handle",
+            containment: preview_list,
+            tolerance: "pointer",
+            update: renumberPreviews
+        });
+
+        renumberPreviews();
+    }
+}
+
 function imageUploadFile(f, url, parent_form, callbacks) {
     var data = f.getAsBinary(),
         file = {},
@@ -338,6 +364,7 @@ function imageUploadFile(f, url, parent_form, callbacks) {
 
     if(file.type != 'image/jpeg' && file.type != 'image/png') {
         callbacks.upload_errors([gettext("Icons must be either PNG or JPG.")]);
+        callbacks.upload_finished();
         return;
     }
 
@@ -413,6 +440,7 @@ var initUploadPreview = (function(){
                             $('#edit-addon-media .listing-footer button').attr('disabled', false);
                         }
                         $(form).find('.preview-thumb').removeClass('loading');
+                        renumberPreviews();
                     };
 
                     callbacks.upload_success = function(upload_hash){
@@ -421,9 +449,11 @@ var initUploadPreview = (function(){
 
                     callbacks.upload_start = function(){
                         $(form).find('.preview-thumb').addClass('loading');
-                        $('<img>').appendTo($('.preview-thumb', form)).attr('src', f.getAsDataURL());
+                        $('.preview-thumb', form).css('background-image', 'url('
+                                    + f.getAsDataURL() + ')');
                         $('#edit-addon-media .listing-footer button').attr('disabled', true);
                         outstanding_uploads++;
+                        renumberPreviews();
                     };
 
                     callbacks.upload_errors = function(errors){
@@ -435,7 +465,11 @@ var initUploadPreview = (function(){
                             $(error_list).append('<li>' + v + '</li>');
                         });
 
-                        $el.find('.edit-previews-text').addClass('error').html(error).append(error_list);
+                        $el.find('.preview-thumb').addClass('error-loading');
+
+                        $el.find('.edit-previews-text').addClass('error')
+                                                       .html(error)
+                                                       .append(error_list);
                         $el.find('[name^=files-]').remove();
                     };
 
@@ -450,7 +484,7 @@ var initUploadPreview = (function(){
             e.preventDefault();
             var row = $(this).closest(".preview");
             row.find(".delete input").attr("checked", "checked");
-            row.hide();
+            row.slideUp(500, renumberPreviews);
         });
     }
 })();
@@ -1614,3 +1648,4 @@ $(document).ready(function() {
     $('#addon-validator-suite').trigger('validate');
 
 });
+

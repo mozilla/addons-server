@@ -349,6 +349,7 @@ form .char-count b {
     margin-bottom: 15px;
     padding-bottom: 15px;
     border-bottom: 1px dotted #ADD0DC;
+    background-color: #fff;
 }
 
 #file-list > div:last-child {
@@ -388,7 +389,11 @@ form .char-count b {
 }
 
 .preview-thumb {
-    text-align: center;
+    -moz-background-size: contain;
+    -webkit-background-size: contain;
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
     border: 3px solid #D2EDF5;
     float: left;
     height: 94px;
@@ -396,9 +401,9 @@ form .char-count b {
     width: 125px;
 }
 
-.preview-thumb img {
-    max-width: 125px;
-    max-height: 94px;
+.preview-thumb.error-loading {
+    border-color: #C63717;
+    opacity: 0.5;
 }
 
 .edit-previews-readonly .preview-thumb {
@@ -863,12 +868,17 @@ h3 a.subscribe-feed:hover {
 #author_list li > select {
     margin-right: .5em;
 }
-#author_list .handle {
+#author_list .handle,
+#file-list .handle {
     width: 20px;
     height: 16px;
     display: inline-block;
     cursor: move;
     background: url(../../img/zamboni/icons/icon-draggable.png) no-repeat 0 center;
+}
+#file-list .handle {
+    display: block;
+    float: left;
 }
 #author_list .blank * {
     display: none;

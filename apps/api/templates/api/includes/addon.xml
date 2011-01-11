@@ -51,7 +51,7 @@
   {%- if new_api -%}
   <previews>
     {%- for preview in addon.previews.all() -%}
-    <preview primary="{{ preview.highlight|int }}">
+    <preview position="{{ preview.position|int }}">
       <full type="{{ preview.filetype }}">
         {{ preview.image_url|urlparams(src='api') }}
       </full>

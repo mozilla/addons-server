@@ -85,6 +85,7 @@
                   <div id="file-list">
                     {% for form in preview_form.forms %}
                       <div class="preview">
+                        <span class="handle">&nbsp;</span>
                         <div class="preview-thumb">
                           {% if form.instance.id %}
                             <img src="{{ form.instance.thumbnail_url }}">
@@ -98,6 +99,9 @@
                           </label>
                           {{ form.caption|safe }}
                           <a href="#" class="remove">x</a>
+                        </div>
+                        <div class="js-hidden position">
+                          {{ form.position|safe }}
                         </div>
                         <div class="preview_extra">
                           {{ form.upload_hash|safe }}
