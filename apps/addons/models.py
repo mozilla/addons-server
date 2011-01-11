@@ -825,6 +825,17 @@ def watch_status(sender, instance, **kw):
 dbsignals.pre_save.connect(watch_status, sender=Addon)
 
 
+class MiniAddon(Addon):
+    """A smaller lightweight version of Addon suitable for the
+    update script or other areas that don't need all the transforms.
+    This class exists to give the addon a different key for cache machine."""
+
+    objects = caching.CachingManager()
+
+    class Meta:
+        proxy = True
+
+
 class Persona(caching.CachingMixin, models.Model):
     """Personas-specific additions to the add-on model."""
     addon = models.OneToOneField(Addon)

@@ -12,7 +12,7 @@ import amo
 import captcha.fields
 from amo.utils import (ImageCheck, slug_validator, slugify, sorted_groupby,
                        remove_icons)
-from addons.models import Addon, ReverseNameLookup, Category, AddonCategory
+from addons.models import MiniAddon, Addon, ReverseNameLookup, Category, AddonCategory
 from addons.widgets import IconWidgetRenderer, CategoriesSelectMultiple
 from applications.models import Application
 from devhub import tasks
@@ -403,9 +403,9 @@ class UpdateForm(happyforms.Form):
 
     def clean_id(self):
         try:
-            addon = Addon.objects.get(guid=self.cleaned_data['id'])
-        except Addon.DoesNotExist:
-            raise forms.ValidationError(_('Id is required.'))
+            addon = MiniAddon.objects.get(guid=self.cleaned_data['id'])
+        except MiniAddon.DoesNotExist:
+            raise forms.ValidationError(_('ID is required.'))
         return addon
 
     def clean_appOS(self):
