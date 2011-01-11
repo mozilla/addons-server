@@ -9,6 +9,7 @@ import amo
 from amo.urlresolvers import reverse
 from access import acl
 from cake.urlresolvers import remora_url
+from zadmin.models import get_config
 
 
 def app(request):
@@ -77,5 +78,6 @@ def global_settings(request):
 
     context.update({'account_links': account_links,
                     'settings': settings, 'amo': amo,
-                    'tools_links': tools_links})
+                    'tools_links': tools_links,
+                    'ADMIN_MESSAGE': get_config('site_notice')})
     return context

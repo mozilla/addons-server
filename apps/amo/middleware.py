@@ -24,18 +24,6 @@ import jingo
 import amo
 from . import urlresolvers
 from .helpers import urlparams
-from zadmin.models import get_config
-
-
-class AdminMessageMiddleware(object):
-    """
-    1. Check db for an admin message.
-    2. Store it in request.
-    """
-
-    def process_request(self, request):
-        # Get the value from Config if it exists
-        request.ADMIN_MESSAGE = get_config('site_notice')
 
 
 class LocaleAndAppURLMiddleware(object):

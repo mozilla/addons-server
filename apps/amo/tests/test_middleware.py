@@ -33,7 +33,7 @@ def test_trailing_slash_middleware():
     assert response['Location'].endswith('/en-US/firefox/about?xxx=%C3%83')
 
 
-class AdminMessageMiddlewareTest(TestCase):
+class AdminMessageTest(TestCase):
     def test_message(self):
         c = Config()
         c.key = 'site_notice'

@@ -225,8 +225,6 @@ MIDDLEWARE_CLASSES = (
     'cake.middleware.CakeCookieMiddleware',
     'cake.middleware.CookieCleaningMiddleware',
 
-    'amo.middleware.AdminMessageMiddleware',
-
     # This should come after authentication middleware
     'access.middleware.ACLMiddleware',
 
