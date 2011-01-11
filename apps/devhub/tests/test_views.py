@@ -1826,6 +1826,15 @@ class TestProfileStatusBar(TestProfileBase):
         eq_(addon.takes_contributions, False)
         eq_(addon.wants_contributions, False)
 
+    def test_remove_profile_without_content(self):
+        # See bug 624852
+        self.addon.the_reason = self.addon.the_future = None
+        self.addon.save()
+        self.client.post(self.remove_url)
+        addon = self.get_addon()
+        eq_(addon.the_reason, None)
+        eq_(addon.the_future, None)
+
     def test_remove_both(self):
         self.addon.the_reason = self.addon.the_future = '...'
         self.addon.wants_contributions = True

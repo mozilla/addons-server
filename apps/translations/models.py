@@ -157,4 +157,5 @@ def delete_translation(obj, fieldname):
     field = obj._meta.get_field(fieldname)
     trans = getattr(obj, field.name)
     obj.update(**{field.name: None})
-    Translation.objects.filter(id=trans.id).delete()
+    if trans:
+        Translation.objects.filter(id=trans.id).delete()
