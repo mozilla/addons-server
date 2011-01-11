@@ -4,19 +4,27 @@
 
 {% block bodyclass %}home{% endblock %}
 
+{% macro stats_text() %}
+  {% trans plural=downloads.count, count=downloads.count|numberfmt %}
+    <strong>{{ count }}</strong><span>add-on downloaded</span>
+  {% pluralize %}
+    <strong>{{ count }}</strong><span>add-ons downloaded</span>
+  {% endtrans %}
+{% endmacro %}
+
 {% block site_stats %}
 {% if downloads %}
-<div class="stats">
   {% if downloads.count > 0 %}
-    <a href="{{ url('statistics.dashboard') }}">
-      {% trans plural=downloads.count, count=downloads.count|numberfmt %}
-        <strong>{{ count }}</strong><span>add-on downloaded</span>
-      {% pluralize %}
-        <strong>{{ count }}</strong><span>add-ons downloaded</span>
-      {% endtrans %}
-    </a>
+    <div class="stats">
+      {% if settings.UNLINK_SITE_STATS %}
+          {{ stats_text() }}
+      {% else %}
+        <a href="{{ url('statistics.dashboard') }}">
+          {{ stats_text() }}
+        </a>
+      {% endif %}
+    </div>
   {% endif %}
-</div>
 {% endif %}
 {% endblock %}
 

@@ -13,7 +13,6 @@ from nose.tools import eq_
 from pyquery import PyQuery as pq
 import test_utils
 
-from access.models import Group, GroupUser
 from amo.urlresolvers import reverse
 from amo.pyquery_wrapper import PyQuery
 from stats.models import SubscriptionEvent
@@ -34,6 +33,7 @@ def test_login_link():
     link = doc('.context a')[1].attrib['href']
     assert link.endswith('?to=%2Fen-US%2Ffirefox%2Fsearch%2F%3Fq%3D%25EF'
             '%25BF%25BD%2B%25EB%25B2%2588%25EF%25BF%25BDA'), "Got %s" % link
+
 
 class Client(test.Client):
     """Test client that uses form-urlencoded (like browsers)."""
@@ -65,6 +65,12 @@ def test_404_app_links():
 
 class TestStuff(test_utils.TestCase):
     fixtures = ('base/users', 'base/global-stats', 'base/configs',)
+
+    def test_hide_stats_link(self):
+        r = self.client.get('/', follow=True)
+        doc = pq(r.content)
+        assert doc('.stats')
+        assert not doc('.stats a')
 
     def test_data_anonymous(self):
         def check(expected):
