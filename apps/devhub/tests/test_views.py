@@ -1976,6 +1976,28 @@ class TestVersion(test_utils.TestCase):
             reverse('devhub.file_validation',
                     args=[self.addon.slug, self.version.all_files[0].id]))
 
+    def test_delete_message(self):
+        """Make sure we warn our users of the pain they will feel."""
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        eq_(doc('#modal-delete p').eq(0).text(),
+            'Deleting your add-on will permanently remove it from the site '
+            'and prevent its GUID from being submitted ever again, even by '
+            'you. The existing users of your add-on will remain on this '
+            'update channel and never receive updates again.')
+
+    def test_delete_message_incomplete(self):
+        """
+        If an addon has highest_status = 0, they shouldn't be bothered with a
+        blacklisting threat if they hit delete.
+        """
+        self.addon.highest_status = amo.STATUS_NULL
+        self.addon.save()
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        # Normally 2 paragraphs, one is the warning which we should take out.
+        eq_(len(doc('#modal-delete p')), 1, 'We might be lying to our users.')
+
     def test_delete_version(self):
         self.client.post(self.delete_url, self.delete_data)
         assert not Version.objects.filter(pk=81551).exists()
