@@ -1,4 +1,5 @@
 from django.conf.urls.defaults import patterns, url, include
+from django.shortcuts import redirect
 
 from addons.urls import ADDON_ID
 from . import views
@@ -13,6 +14,11 @@ addon_patterns = patterns('',
 
 
 urlpatterns = patterns('',
+    # Force the match so this doesn't get picked up by the wide open
+    # /:version/:platform regex.
+    ('^addon/%s$' % ADDON_ID,
+     lambda r, addon_id: redirect('discovery.addons.detail',
+                                  addon_id, permanent=True)),
     url('^addon/%s/' % ADDON_ID, include(addon_patterns)),
 
     url('^recs$', views.recommendations, name='discovery.recs'),
