@@ -792,10 +792,12 @@ class TestUpdate(test_utils.TestCase):
 
 
 class TestAddonFromUpload(files.tests.UploadTest):
-    fixtures = ['base/apps']
+    fixtures = ('base/apps', 'base/users')
 
     def setUp(self):
         super(TestAddonFromUpload, self).setUp()
+        u = UserProfile.objects.get(pk=999)
+        set_user(u)
         self.platform = Platform.objects.create(id=amo.PLATFORM_MAC.id)
         for version in ('3.0', '3.6.*'):
             AppVersion.objects.create(application_id=1, version=version)

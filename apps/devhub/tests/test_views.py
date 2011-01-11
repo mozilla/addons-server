@@ -1198,7 +1198,7 @@ class TestEdit(test_utils.TestCase):
 
     def test_edit_basic_categories_add(self):
         eq_([c.id for c in self.get_addon().categories.all()], [22])
-        data = self.get_dict(name='new name!', categories=[22,23])
+        data = self.get_dict(name='new name!', categories=[22, 23])
         self.client.post(self.get_url('basic', True), data)
 
         categories = self.get_addon().categories.all()
@@ -1210,7 +1210,7 @@ class TestEdit(test_utils.TestCase):
         AddonCategory(addon=self.addon, category_id=23).save()
 
         eq_([c.id for c in self.get_addon().categories.all()], [22, 23])
-        data = self.get_dict(name='new name!', categories=[22,24])
+        data = self.get_dict(name='new name!', categories=[22, 24])
         self.client.post(self.get_url('basic', True), data)
 
         category_ids_new = [c.id for c in self.get_addon().categories.all()]
@@ -1221,7 +1221,7 @@ class TestEdit(test_utils.TestCase):
         category_other = Category.objects.get(id=22)
         category_other.name = '<script>alert("test");</script>'
         category_other.save()
-        data = self.get_dict(name='new name!', categories=[22,24])
+        data = self.get_dict(name='new name!', categories=[22, 24])
         r = self.client.post(self.get_url('basic', True), data)
 
         assert '<script>alert' not in r.content
@@ -2538,8 +2538,8 @@ class TestSubmitStep1(TestSubmitBase):
         for ln in links:
             href = ln.attrib['href']
             assert not href.startswith('%'), (
-                "Looks like link %r to %r is still a placeholder" % (href,
-                                                                     ln.text))
+                "Looks like link %r to %r is still a placeholder" %
+                (href, ln.text))
 
 
 class TestSubmitStep2(test_utils.TestCase):
@@ -2603,6 +2603,10 @@ class TestSubmitStep3(test_utils.TestCase):
         eq_(addon.slug, 'testname')
         eq_(addon.description, 'desc')
         eq_(addon.summary, 'Hello!')
+        # Test add-on log activity.
+        log_items = ActivityLog.objects.for_addons(addon)
+        assert not log_items.filter(action=amo.LOG.EDIT_DESCRIPTIONS.id), \
+                "Creating a description needn't be logged."
 
     def test_submit_name_unique(self):
         # Make sure name is unique.
@@ -2874,6 +2878,7 @@ class TestSubmitStep4(TestSubmitBase):
 
 
 class TestSubmitStep5(TestSubmitBase):
+    """License submission."""
 
     def setUp(self):
         super(TestSubmitStep5, self).setUp()
@@ -2890,6 +2895,9 @@ class TestSubmitStep5(TestSubmitBase):
         self.assertRedirects(r, self.next_step)
         eq_(self.get_addon().current_version.license.builtin, 3)
         eq_(self.get_step().step, 6)
+        log_items = ActivityLog.objects.for_addons(self.get_addon())
+        assert not log_items.filter(action=amo.LOG.CHANGE_LICENSE.id), \
+                "Initial license choice:6 needn't be logged."
 
     def test_license_error(self):
         r = self.client.post(self.url, {'builtin': 4})
@@ -3579,6 +3587,9 @@ class TestCreateAddon(files.tests.UploadTest, test_utils.TestCase):
         addon = Addon.objects.get()
         self.assertRedirects(r, reverse('devhub.submit.3',
                                         args=[addon.slug]))
+        log_items = ActivityLog.objects.for_addons(addon)
+        assert log_items.filter(action=amo.LOG.CREATE_ADDON.id), \
+                'New add-on creation never logged.'
 
     def test_one_xpi_for_multiple_platforms(self):
         eq_(Addon.objects.count(), 0)
