@@ -218,6 +218,7 @@ function addonFormSubmit() {
                         document.location = baseurl();
                     }
                     truncateFields();
+                    annotateLocalizedErrors(parent_div);
                     if (!parent_div.find(".errorlist").length) {
                         var e = $(format('<b class="save-badge">{0}</b>',
                                          [gettext('Changes Saved')]))

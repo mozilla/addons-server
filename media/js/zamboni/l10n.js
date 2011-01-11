@@ -15,6 +15,7 @@ $(document).ready(function () {
         currentLocale = dl,
         unsavedModalMsg = $('#modal-l10n-unsaved .msg').html(),
         unsavedModal = $('#modal-l10n-unsaved').modal(),
+        modalActions = $(".modal-actions", unsavedModal),
         translations = {}; //hold the initial values of the fields to check for changes
 
     $(".primary").delegate(".trans input, .trans textarea", "change keyup paste blur", checkTranslation);
@@ -81,89 +82,101 @@ $(document).ready(function () {
         }
     }
 
+    $("#locale-popup").delegate('a.remove', 'click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var toRemove = $(this).closest("li").find("a:not(.remove)").attr("href").substring(1);
+        $(format(".trans [lang={0}]", [toRemove])).each(function () {
+            var n = $(this).attr('name');
+            $(this).attr('name', n + '_delete').attr('lang', toRemove + '_delete');
+        });
+        if (currentLocale == toRemove) {
+            updateLocale(dl);
+        }
+        showExistingLocales();
+    });
+
+    $(".primary").delegate(".errorlist .l10n", "click", switchLocale);
+
+    function switchLocale(e) {
+        e.preventDefault();
+        $tgt = $(this);
+        var new_locale = $tgt.attr("data-lang") ||$tgt.attr("href").substring(1);
+        var unsaved = $("form .trans .unsaved");
+        if (unsaved.length) {
+            unsavedModal.children(".msg")
+                .html(format(unsavedModalMsg,[$("#change-locale").text()]));
+            unsavedModal.render();
+            $("#l10n-save-changes").unbind().click(function () {
+                var unsavedForms = $('form:has(.trans .unsaved)');
+                var numFormsLeft = unsavedForms.length;
+                var erroredForms = 0;
+                modalActions.addClass("ajax-loading");
+                modalActions.find("button").addClass("disabled");
+                unsavedForms.each(function() {
+                    var $form = $(this);
+                    $.ajax({
+                        url: $form.attr('action'),
+                        type: "post",
+                        data: $form.serialize(),
+                        error: function() {
+                            modalActions.removeClass("ajax-loading");
+                        },
+                        success: function(d) {
+                            var $resp = $(d);
+                            if ($form.attr('id') && $resp.find('#' + $form.attr('id')).length) {
+                                $resp = $resp.find('#' + $form.attr('id'));
+                            }
+                            // Add locale names to error messages
+                            annotateLocalizedErrors($resp);
+                            numFormsLeft--;
+                            if ($resp.find(".errorlist").length) { //display errors if they occur
+                                $form.html($resp.html());
+                                updateLocale();
+                                if ($resp.find(format(".errorlist li[data-lang={0}]", currentLocale)).length) {
+                                    erroredForms++;
+                                }
+                            } else { //clean up the errors we inserted
+                                popuplateTranslations($form);
+                                $form.find(".unsaved").removeClass("unsaved");
+                                $form.find(".errorlist").remove();
+                            }
+                            if (numFormsLeft < 1) {
+                                if (erroredForms) {
+                                    window.scrollTo(0,$(".errorlist .l10n").closest("form").offset().top);
+                                    $(".errorlist").first().siblings(".trans")
+                                        .find("input:visible, textarea:visible").focus();
+                                } else {
+                                    updateLocale(new_locale);
+                                }
+                            }
+                            modalActions.removeClass("ajax-loading");
+                            modalActions.find("button").removeClass("disabled");
+                            unsavedModal.hideMe();
+                        }
+                    });
+                });
+            });
+            $("#l10n-discard-changes").click(function () {
+                $('.trans .unsaved').remove();
+                updateLocale(new_locale);
+                unsavedModal.hideMe();
+            });
+            $("#l10n-cancel-changes").click(function () {
+                unsavedModal.hideMe();
+            });
+        } else {
+            updateLocale(new_locale);
+        }
+        localePopup.hideMe();
+    }
+
     var localePopup = $("#locale-popup").popup("#change-locale", {
         pointTo: "#change-locale",
         width: 200,
         callback: function() {
             showExistingLocales();
-
-            $("#locale-popup").delegate('a.remove', 'click', function (e) {
-                e.preventDefault();
-                e.stopPropagation();
-                var toRemove = $(this).closest("li").find("a:not(.remove)").attr("href").substring(1);
-                $(format(".trans [lang={0}]", [toRemove])).each(function () {
-                    var n = $(this).attr('name');
-                    $(this).attr('name', n + '_delete').attr('lang', toRemove + '_delete');
-                });
-                if (currentLocale == toRemove) {
-                    updateLocale(dl);
-                }
-                showExistingLocales();
-            });
-            $("#locale-popup").delegate('a:not(.remove)', 'click', function (e) {
-                e.preventDefault();
-                $tgt = $(this);
-                var new_locale = $tgt.attr("href").substring(1);
-                var unsaved = $("form .trans .unsaved");
-                if (unsaved.length) {
-                    unsavedModal.children(".msg")
-                        .html(format(unsavedModalMsg,[$("#change-locale").text()]));
-                    unsavedModal.render();
-                    $("#l10n-save-changes").unbind().click(function () {
-                        var unsavedForms = $('form:has(.trans .unsaved)');
-                        var numFormsLeft = unsavedForms.length;
-                        var erroredForms = 0;
-                        unsavedForms.each(function() {
-                            var $form = $(this);
-                            $.post($form.attr('action'), $form.serialize(), function(d) {
-                                var $resp = $(d);
-                                if ($form.attr('id') && $resp.find('#' + $form.attr('id'))) {
-                                    $resp = $resp.find('#' + $form.attr('id'));
-                                }
-                                // Add locale names to error messages
-                                $resp.find(".errorlist li[data-lang]:not(.l10n)").each(function() {
-                                    var err = $(this),
-                                        t = err.text(),
-                                        l = $(format("#locale-popup [href$={0}]", [err.attr('data-lang')])).first().text();
-                                    err.text(format("{0}: ",[l])+t).addClass("l10n");
-                                });
-                                numFormsLeft--;
-                                if ($resp.find(".errorlist").length) { //display errors if they occur
-                                    $form.html($resp.html());
-                                    updateLocale();
-                                    erroredForms++;
-                                } else { //clean up the errors we inserted
-                                    popuplateTranslations($form);
-                                    $form.find(".unsaved").removeClass("unsaved");
-                                    $form.find(".errorlist").remove();
-                                }
-                                if (numFormsLeft < 1) {
-                                    if (erroredForms) {
-                                        window.scrollTo(0,$(".errorlist .l10n").closest("form").offset().top);
-                                        $(".errorlist").first().siblings(".trans")
-                                            .find("input:visible, textarea:visible").focus();
-                                    } else {
-                                        updateLocale(new_locale);
-                                    }
-                                }
-                            });
-                        });
-                        unsavedModal.hideMe();
-                    });
-                    $("#l10n-discard-changes").click(function () {
-                        $('.trans .unsaved').remove();
-                        updateLocale(new_locale);
-                        unsavedModal.hideMe();
-                    });
-                    $("#l10n-cancel-changes").click(function () {
-                        unsavedModal.hideMe();
-                    });
-                } else {
-                    updateLocale(new_locale);
-                }
-                localePopup.hideMe();
-            });
-
+            $("#locale-popup").delegate('a:not(.remove)', 'click', switchLocale);
             return true;
         }
     });
@@ -227,3 +240,12 @@ $(document).ready(function () {
     };
     updateLocale();
 });
+
+function annotateLocalizedErrors($el) {
+    $el.find(".errorlist li[data-lang]:not(.l10n)").each(function() {
+        var err = $(this),
+            t = err.text(),
+            l = $(format("#locale-popup [href$={0}]", [err.attr('data-lang')])).first().text();
+        err.text(format("{0}: ",[l])+t).addClass("l10n");
+    });
+}

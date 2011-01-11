@@ -3122,6 +3122,12 @@ input.ui-autocomplete-loading {
     background-position: center center;
 }
 
+.modal-actions.ajax-loading {
+    background-image: url(../../img/zamboni/loading-white.gif);
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+
 #popup-staging .popup {
     display: none;
 }
@@ -3236,6 +3242,12 @@ input.ui-autocomplete-loading {
     cursor: help;
 }
 
+.errorlist .l10n {
+    cursor: pointer;
+}
+.errorlist .l10n:hover {
+    text-decoration: underline;
+}
 /**
  *    Firefox 4 Beta promo styles
  *    TODO remove these when promo is pulled
