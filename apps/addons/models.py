@@ -797,6 +797,17 @@ def version_changed(sender, **kw):
 signals.version_changed.connect(version_changed)
 
 
+def watch_status(sender, instance, **kw):
+    """Set nominationdate if self.status asks for full review."""
+    if kw.get('raw'):
+        return
+    addon = instance
+    stati = (amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED)
+    if addon.status in stati and addon.nomination_date is None:
+        addon.nomination_date = datetime.now().date()
+dbsignals.pre_save.connect(watch_status, sender=Addon)
+
+
 class Persona(caching.CachingMixin, models.Model):
     """Personas-specific additions to the add-on model."""
     addon = models.OneToOneField(Addon)
