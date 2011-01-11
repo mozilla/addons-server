@@ -1309,6 +1309,14 @@ a.extra {
     background-color: #fff;
     border: 1px solid #6a89b0;
 }
+#agreement-container ol li ul {
+    list-style: disc outside none;
+    margin: 1em 2em;
+}
+#agreement-container ol li ul ul {
+    list-style: circle outside none;
+    margin: 1em 2em;
+}
 ol.submit-addon-progress {
     color: #94969a;
 }
