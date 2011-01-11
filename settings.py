@@ -219,7 +219,7 @@ MIDDLEWARE_CLASSES = (
     'amo.middleware.CommonMiddleware',
     'amo.middleware.NoVarySessionMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'amo.middleware.AMOAuthenticationMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
 
     'cake.middleware.CakeCookieMiddleware',
@@ -231,6 +231,11 @@ MIDDLEWARE_CLASSES = (
     'access.middleware.ACLMiddleware',
 
     'commonware.middleware.HidePasswordOnException',
+)
+
+# URLs that start with this values have an anymous user.
+NO_AUTHENTICATION_PREFIX = (
+    'update',
 )
 
 # Auth
