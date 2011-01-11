@@ -376,13 +376,10 @@ function initCharCount() {
             val = el.val(),
             max = parseInt(cc.attr('data-maxlength')),
             left = max - val.length;
-        if (left < 0) {
-            el.val(val.substring(0, max));
-            left = 0;
-        }
         // L10n: {0} is the number of characters left.
         cc.html(format(ngettext('<b>{0}</b> character left.',
-                                '<b>{0}</b> characters left.', left), [left]));
+                                '<b>{0}</b> characters left.', left), [left]))
+          .toggleClass('error', left < 0);
     };
     $('.char-count').each(function() {
         var $cc = $(this),

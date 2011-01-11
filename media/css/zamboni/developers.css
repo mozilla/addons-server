@@ -115,7 +115,6 @@ form .char-count:after {
     height: 75px;
 }
 
-
 .devhub-form .tip,
 a.remove {
     -moz-border-radius: 20px;
@@ -219,13 +218,16 @@ form .edit-addon-details .char-count {
 }
 
 form .char-count {
-    font-size: 0.8em;
+    font-size: 0.9em;
 }
-form .edit-addon-details .char-count {
+form .edit-addon-details .char-count,
+form .edit-addon-details .html-support {
     font-size: 1em;
 }
 
-form .char-count.error {
+form .char-count.error,
+form .char-count.error b {
+    color: #c00;
     margin-bottom: 0;
 }
 
@@ -270,9 +272,10 @@ Bug 622030- TODO (potch) fix this later
     overflow: hidden;
 }
 */
-.edit-addon-details {
+.edit-addon-details,
+.edit-media-details {
     padding-top: 3px;
-    font-size: 0.8em;
+    font-size: 0.9em;
 }
 
 .edit-addon-details,
@@ -282,8 +285,6 @@ form .char-count b {
 
 .edit-media-details {
     padding-bottom: 5px;
-    padding-top: 3px;
-    font-size: 0.9em;
     color: #444;
 }
 
