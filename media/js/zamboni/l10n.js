@@ -82,20 +82,6 @@ $(document).ready(function () {
         }
     }
 
-    $("#locale-popup").delegate('a.remove', 'click', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        var toRemove = $(this).closest("li").find("a:not(.remove)").attr("href").substring(1);
-        $(format(".trans [lang={0}]", [toRemove])).each(function () {
-            var n = $(this).attr('name');
-            $(this).attr('name', n + '_delete').attr('lang', toRemove + '_delete');
-        });
-        if (currentLocale == toRemove) {
-            updateLocale(dl);
-        }
-        showExistingLocales();
-    });
-
     $(".primary").delegate(".errorlist .l10n", "click", switchLocale);
 
     function switchLocale(e) {
@@ -177,6 +163,19 @@ $(document).ready(function () {
         callback: function() {
             showExistingLocales();
             $("#locale-popup").delegate('a:not(.remove)', 'click', switchLocale);
+            $("#locale-popup").delegate('a.remove', 'click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                var toRemove = $(this).closest("li").find("a:not(.remove)").attr("href").substring(1);
+                $(format(".trans [lang={0}]", [toRemove])).each(function () {
+                    var n = $(this).attr('name');
+                    $(this).attr('name', n + '_delete').attr('lang', toRemove + '_delete');
+                });
+                if (currentLocale == toRemove) {
+                    updateLocale(dl);
+                }
+                showExistingLocales();
+            });
             return true;
         }
     });
