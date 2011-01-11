@@ -256,7 +256,8 @@ class HomepageFilter(BaseFilter):
 
     def filter_featured(self):
         # It's ok to cache this for a while...it'll expire eventually.
-        return Addon.objects.featured(self.request.APP).order_by('?')
+        return Addon.objects.featured(self.request.APP,
+                                      by_locale=amo.LOCALE_ALL)
 
 
 def home(request):
@@ -264,6 +265,8 @@ def home(request):
     base = Addon.objects.listed(request.APP).exclude(type=amo.ADDON_PERSONA)
     filter = HomepageFilter(request, base, key='browse', default='featured')
     addon_sets = dict((key, qs[:4]) for key, qs in filter.all().items())
+    boundary = (Addon.objects.featured(request.APP,
+                                       by_locale=amo.LOCALE_CURRENT).count())
 
     # Collections.
     q = Collection.objects.filter(listed=True, application=request.APP.id)
@@ -284,7 +287,8 @@ def home(request):
     return jingo.render(request, 'addons/home.html',
                         {'downloads': downloads, 'top_tags': top_tags,
                          'filter': filter, 'addon_sets': addon_sets,
-                         'collections': collections, 'promobox': promobox})
+                         'collections': collections, 'promobox': promobox,
+                         'boundary': boundary})
 
 
 @dec.mobilized(home)

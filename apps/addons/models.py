@@ -63,15 +63,50 @@ class AddonManager(amo.models.ManagerBase):
         """Get valid, enabled add-ons only"""
         return self.filter(self.valid_q(amo.LISTED_STATUSES))
 
-    def featured(self, app):
+    def featured(self, app, by_locale=False):
         """
-        Filter for all featured add-ons for an application in all locales.
+        Filter for all featured add-ons for an application. Specify
+        by_locale to have it filtered by the current locale.
         """
-        return self.valid().filter(feature__application=app.id)
+        qs = Q(feature__application=app.id)
+        if by_locale:
+            locales = []
+            for locale in by_locale():
+                locale = to_language(locale) if locale else locale
+                locales.append(Q(feature__locale=locale))
 
-    def category_featured(self):
-        """Get all category-featured add-ons for ``app`` in all locales."""
-        return self.filter(addoncategory__feature=True)
+            qs = qs & Q(feature__isnull=False) & reduce(operator.or_, locales)
+            return (self.valid().filter(qs).order_by('-feature__locale'))
+
+        return self.valid().filter(qs)
+
+    def category_featured(self, category=None, by_locale=False):
+        """
+        Filter for all featured addons for a category. Specify
+        by_locale to have it filtered by the current locale.
+        """
+        qs = Q(addoncategory__feature=True)
+
+        if by_locale:
+            locales = []
+            for locale in by_locale():
+                prefix = 'addoncategory__feature_locales'
+                if locale:
+                    locale = to_language(locale)
+                    prefix += '__contains'
+                else:
+                    # Sadly looks like theres '' and NULL in the column,
+                    # hopefully the new admin tools will clean this out.
+                    locales.append(Q(**{prefix: ''}))
+                locales.append(Q(**{prefix: locale}))
+
+            qs = (qs & Q(addoncategory__category=category) &
+                       reduce(operator.or_, locales))
+            return self.filter(qs).order_by('-addoncategory__feature_locales')
+
+        if category:
+            qs = qs & Q(addoncategory__category=category)
+        return self.filter(qs)
 
     def listed(self, app, *status):
         """

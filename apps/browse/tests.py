@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import datetime
 from datetime import timedelta
+import re
 from urlparse import urlparse
 
 from django import http
@@ -250,6 +251,173 @@ class TestCategoryPages(test_utils.TestCase):
         url = reverse('browse.extensions') + '?sort=created&jetpack=on'
         doc = pq(self.client.get(url).content)
         eq_(len(doc('.item')), 1)
+
+
+class TestFeaturedLocale(test_utils.TestCase):
+    fixtures = ('base/apps', 'base/category', 'base/addon_3615',
+                'base/featured', 'addons/featured', 'browse/nameless-addon')
+
+    def setUp(self):
+        self.addon = Addon.objects.get(pk=3615)
+        self.persona = Addon.objects.get(pk=15679)
+        self.extension = Addon.objects.get(pk=2464)
+        self.category = Category.objects.get(slug='bookmarks')
+
+        self.url = reverse('browse.creatured', args=['bookmarks'])
+
+    def change_addoncategory(self, addon, locale='es-ES'):
+        ac = addon.addoncategory_set.all()[0]
+        ac.feature_locales = locale
+        ac.save()
+
+    def change_addon(self, addon, locale='es-ES'):
+        feature = addon.feature_set.all()[0]
+        feature.locale = locale
+        feature.save()
+
+    def list_featured(self, content):
+        # Not sure we want to get into testing randomness
+        # between multiple executions of a page, but if this is a quick
+        # way to print out the results and check yourself that they
+        # are changing.
+        doc = pq(content)
+        ass = doc('.featured-inner .item a')
+        rx = re.compile('/(en-US|es-ES)/firefox/addon/(\d+)/$')
+        for a in ass:
+            mtch = rx.match(a.attrib['href'])
+            if mtch:
+                print mtch.group(2)
+
+    def test_featured(self):
+        addons = (Addon.objects.featured(app=amo.FIREFOX,
+                                         by_locale=amo.LOCALE_ALL))
+        eq_(addons.count(), 6)
+
+    def test_category_featured(self):
+        cat = Category.objects.get(id=22)
+        addons = (Addon.objects.category_featured(category=cat,
+                                                  by_locale=amo.LOCALE_ALL))
+        eq_(addons.count(), 2)
+
+    def test_creatured_locale_en_US(self):
+        res = self.client.get(self.url)
+        assert self.addon in res.context['addons']
+
+    def test_creatured_locale_nones(self):
+        self.change_addoncategory(self.addon, '')
+        res = self.client.get(self.url)
+        assert self.addon in res.context['addons']
+
+        self.change_addoncategory(self.addon, None)
+        res = self.client.get(self.url)
+        assert self.addon in res.context['addons']
+
+    def test_creatured_locale_many(self):
+        self.change_addoncategory(self.addon, 'en-US,es-ES')
+        res = self.client.get(self.url)
+        assert self.addon in res.context['addons']
+
+        res = self.client.get(self.url.replace('en-US', 'es-ES'))
+        assert self.addon in res.context['addons']
+
+    def test_creatured_locale_not_en_US(self):
+        self.change_addoncategory(self.addon, 'es-ES')
+        res = self.client.get(self.url)
+        assert self.addon not in res.context['addons']
+
+    def test_creatured_locale_es_ES(self):
+        res = self.client.get(self.url.replace('en-US', 'es-ES'))
+        assert self.addon in res.context['addons']
+
+    def test_featured_locale_en_US(self):
+        res = self.client.get(reverse('browse.featured'))
+        assert self.extension in res.context['addons']
+
+    def test_featured_locale_es_ES(self):
+        addon = self.extension
+        self.change_addon(addon, 'es-ES')
+        url = reverse('browse.featured')
+        res = self.client.get(url)
+        assert addon not in res.context['addons']
+
+        res = self.client.get(url.replace('en-US', 'es-ES'))
+        assert addon in res.context['addons']
+
+    def test_featured_extensions_no_category_en_US(self):
+        addon = self.extension
+        res = self.client.get(reverse('browse.extensions'))
+        assert addon in res.context['addons'].object_list
+
+    def test_featured_extensions_with_category_es_ES(self):
+        addon = self.addon
+        res = self.client.get(reverse('browse.extensions', args=['bookmarks']))
+        assert addon in res.context['filter'].all()['featured']
+
+        self.change_addoncategory(addon, 'es-ES')
+        res = self.client.get(reverse('browse.extensions', args=['bookmarks']))
+        assert addon not in res.context['filter'].all()['featured']
+
+    def test_featured_persona_no_category_en_US(self):
+        addon = self.persona
+        url = reverse('browse.personas')
+        res = self.client.get(url)
+        assert addon in res.context['featured']
+
+        self.change_addon(addon, 'es-ES')
+        res = self.client.get(url)
+        assert addon not in res.context['featured']
+
+        res = self.client.get(url.replace('en-US', 'es-ES'))
+        assert addon in res.context['featured']
+
+    def test_featured_persona_category_en_US(self):
+        addon = self.persona
+        category = Category.objects.get(id=22)
+        category.update(type=amo.ADDON_PERSONA)
+
+        addon.addoncategory_set.create(category=category, feature=True)
+        url = reverse('browse.personas', args=[category.slug])
+        res = self.client.get(url)
+        assert addon in res.context['featured']
+
+        self.change_addoncategory(addon, 'es-ES')
+        res = self.client.get(url)
+        assert addon not in res.context['featured']
+
+        res = self.client.get(url.replace('en-US', 'es-ES'))
+        assert addon in res.context['featured']
+
+    def test_homepage(self):
+        addon = self.persona
+        url = reverse('home')
+        res = self.client.get(url)
+        assert addon in res.context['filter'].filter_featured()
+
+        self.change_addon(addon, 'es-ES')
+        res = self.client.get(url)
+        assert addon not in res.context['filter'].filter_featured()
+
+        res = self.client.get(url.replace('en-US', 'es-ES'))
+        assert addon in res.context['filter'].filter_featured()
+
+    def test_homepage_order(self):
+        another = Addon.objects.get(id=1003)
+        self.change_addon(another, 'en-US')
+        url = reverse('home')
+        res = self.client.get(url)
+        items = res.context['filter'].filter_featured()
+        # The order should be random within those boundaries.
+        eq_([1003, 3481], sorted([i.pk for i in items[0:2]]))
+        eq_([1001, 2464, 7661, 15679], sorted([i.pk for i in items[2:]]))
+
+        res = self.client.get(url.replace('en-US', 'es-ES'))
+        items = res.context['filter'].filter_featured()
+        eq_([1001, 2464, 7661, 15679], sorted([i.pk for i in items]))
+
+        self.change_addon(another, 'es-ES')
+        items = res.context['filter'].filter_featured()
+        assert items[0].pk == another.pk
+        eq_([1001, 2464, 7661, 15679], sorted([i.pk for i in items[1:]]))
 
 
 class TestListingByStatus(test_utils.TestCase):
@@ -609,7 +777,6 @@ class TestFeaturedPage(test_utils.TestCase):
 
     def test_featured_addons(self):
         """Make sure that only featured add-ons are shown"""
-
         response = self.client.get(reverse('browse.featured'))
         eq_([1001, 1003], sorted(a.id for a in response.context['addons']))
 

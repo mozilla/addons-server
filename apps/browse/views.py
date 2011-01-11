@@ -178,8 +178,8 @@ class CategoryLandingFilter(BaseFilter):
                                                     default)
 
     def filter_featured(self):
-        return Addon.objects.filter(addoncategory__feature=True,
-                                    addoncategory__category=self.category)
+        return Addon.objects.category_featured(category=self.category,
+                                              by_locale=amo.LOCALE_ALL)
 
 
 def category_landing(request, category):
@@ -187,8 +187,11 @@ def category_landing(request, category):
             .filter(categories__id=category.id))
     filter = CategoryLandingFilter(request, base, category,
                                    key='browse', default='featured')
+    boundary = (Addon.objects.category_featured(category=category,
+                              by_locale=amo.LOCALE_CURRENT).count())
     return jingo.render(request, 'browse/category_landing.html',
                         {'category': category, 'filter': filter,
+                         'boundary': boundary,
                          'search_cat': '%s,0' % category.type})
 
 
@@ -196,10 +199,14 @@ def creatured(request, category):
     TYPE = amo.ADDON_EXTENSION
     q = Category.objects.filter(application=request.APP.id, type=TYPE)
     category = get_object_or_404(q, slug=category)
-    addons = Addon.objects.public().filter(addoncategory__feature=True,
-                                           addoncategory__category=category)
+    addons = (Addon.objects.public() &
+              Addon.objects.category_featured(category=category,
+                                              by_locale=amo.LOCALE_ALL))
+    boundary = (Addon.objects.category_featured(category=category,
+                              by_locale=amo.LOCALE_CURRENT).count())
     return jingo.render(request, 'browse/creatured.html',
-                        {'addons': addons, 'category': category})
+                        {'addons': addons, 'category': category,
+                         'boundary': boundary})
 
 
 class PersonasFilter(BaseFilter):
@@ -259,13 +266,24 @@ def personas(request, category=None):
         template = 'category_landing.html'
 
     addons = amo.utils.paginate(request, filter.qs, 30, count=count)
+    boundary = 0
+    if category:
+        featured = base & Addon.objects.category_featured(category=category,
+                                by_locale=amo.LOCALE_ALL)
+        boundary = (Addon.objects.category_featured(category=category,
+                          by_locale=amo.LOCALE_CURRENT).count())
+    else:
+        featured = base & Addon.objects.featured(request.APP,
+                                by_locale=amo.LOCALE_ALL)
+        boundary = (Addon.objects.featured(request.APP,
+                          by_locale=amo.LOCALE_CURRENT).count())
 
-    featured = base & Addon.objects.featured(request.APP)
     is_homepage = category is None and 'sort' not in request.GET
     return jingo.render(request, 'browse/personas/' + template,
                         {'categories': categories, 'category': category,
                          'filter': filter, 'addons': addons,
-                         'featured': featured, 'is_homepage': is_homepage,
+                         'featured': featured,
+                         'boundary': boundary, 'is_homepage': is_homepage,
                          'search_cat': 'personas'})
 
 
@@ -381,5 +399,8 @@ def search_tools(request, category=None):
 
 
 def featured(request, category=None):
-    addons = Addon.objects.featured(request.APP)
-    return jingo.render(request, 'browse/featured.html', {'addons': addons})
+    count = (Addon.objects.featured(request.APP, by_locale=amo.LOCALE_CURRENT)
+                                    .count())
+    addons = Addon.objects.featured(request.APP, by_locale=amo.LOCALE_ALL)
+    return jingo.render(request, 'browse/featured.html',
+                        {'addons': addons, 'boundary': count})

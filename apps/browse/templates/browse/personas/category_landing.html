@@ -27,11 +27,9 @@
       <div class="featured-inner">
         {% set addons = addon_sets[special][:16] %}
         <ul class="personas-slider">
-          {% cache addons %}
           {% for addon in addons %}
             <li>{{ persona_preview(addon.persona, size='small') }}</li>
           {% endfor %}
-          {% endcache %}
         </ul>
         {{ breadcrumbs([(None, _('Personas'))]) }}
         <h2>{{ _('Personas') }}</h2>
@@ -44,13 +42,13 @@
       </div>
     </div>
 
-    {% set addons = featured[:6] %}
+    {% set addons = featured|list|shuffle_boundary(boundary) %}
     {% if addons %}
       <div class="personas-featured">
         <h3>{{ _('Featured Personas') }}</h3>
         <ul class="persona-list-3col">
           {% cache addons %}
-            {% for addon in addons %}
+            {% for addon in addons[:6] %}
               <li>{{ persona_preview(addon.persona, size='small') }}</li>
             {% endfor %}
           {% endcache %}

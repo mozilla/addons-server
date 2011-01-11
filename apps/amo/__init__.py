@@ -10,6 +10,7 @@ from tower import ugettext_lazy as _
 
 from licenses import license_text
 from .log import LOG, LOG_BY_ID, LOG_KEEP, log
+from django.utils.translation import trans_real as translation
 
 logger_log = commonware.log.getLogger('z.amo')
 
@@ -210,6 +211,9 @@ ADDON_ICON_SIZES = [32, 48, 64]
 
 # Preview upload sizes [thumb, full]
 ADDON_PREVIEW_SIZES = [(200, 150), (700, 525)]
+
+LOCALE_CURRENT = lambda: (translation.get_language(),)
+LOCALE_ALL = lambda: (None, translation.get_language())
 
 # These types don't maintain app compatibility in the db.  Instead, we look at
 # APP.types and APP_TYPE_SUPPORT to figure out where they are compatible.
