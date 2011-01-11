@@ -3469,7 +3469,20 @@ class TestVersionAddFile(UploadTest):
         form = r.context['new_file_form']
         platform = self.version.files.get().platform_id
         choices = form.fields['platform'].choices
+        # User cannot upload existing platforms:
         assert platform not in dict(choices), choices
+        # User cannot upload platform=ALL when platform files exist.
+        assert amo.PLATFORM_ALL.id not in dict(choices), choices
+
+    def test_platform_choices_when_no_files(self):
+        all_choices = amo.SUPPORTED_PLATFORMS.values()
+        self.version.files.all().delete()
+        url = reverse('devhub.versions.edit',
+                      args=[self.addon.slug, self.version.id])
+        r = self.client.get(url)
+        form = r.context['new_file_form']
+        eq_(sorted(dict(form.fields['platform'].choices).keys()),
+            sorted([p.id for p in all_choices]))
 
     def test_type_matches(self):
         self.addon.update(type=amo.ADDON_THEME)

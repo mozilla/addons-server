@@ -398,10 +398,13 @@ class NewFileForm(happyforms.Form):
         self.version = kw.pop('version')
         super(NewFileForm, self).__init__(*args, **kw)
         # Don't allow platforms we already have.
-        existing = (File.objects.filter(version=self.version)
-                    .values_list('platform', flat=True))
+        to_exclude = set(File.objects.filter(version=self.version)
+                                     .values_list('platform', flat=True))
+        # Don't allow platform=ALL if we already have platform files.
+        if len(to_exclude):
+            to_exclude.add(amo.PLATFORM_ALL.id)
         field = self.fields['platform']
-        field.choices = [p for p in field.choices if p[0] not in existing]
+        field.choices = [p for p in field.choices if p[0] not in to_exclude]
         field.queryset = Platform.objects.filter(id__in=dict(field.choices))
 
     def clean(self):
