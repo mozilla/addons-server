@@ -1,11 +1,12 @@
 {% set search_form = SimpleSearchForm(request, search_cat) %}
 <form action="{{ url('search.search') }}">
   <span class="wrap">
-    <input type="text" name="q" required
+    <input id="search-q" type="text" name="q" required
            class="text {% if not search_form.q.data %}placeholder{% endif %}"
            placeholder="{{ search_form.placeholder() }}"
            value="{{ search_form.q.data or '' }}">
     {{ search_form.cat|safe }}
   </span>
-  <input type="image" class="submit" src="{{ settings.MEDIA_URL }}img/zamboni/global/btn-search.png" title="{{ _('Search') }}">
+  <input id="search-button" type="image" class="submit" title="{{ _('Search') }}"
+         src="{{ settings.MEDIA_URL }}img/zamboni/global/btn-search.png">
 </form>
