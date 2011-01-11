@@ -3591,6 +3591,15 @@ class TestCreateAddon(files.tests.UploadTest, test_utils.TestCase):
         assert log_items.filter(action=amo.LOG.CREATE_ADDON.id), \
                 'New add-on creation never logged.'
 
+    def test_missing_platforms(self):
+        r = self.client.post(self.url, dict(upload=self.upload.pk))
+        eq_(r.status_code, 200)
+        eq_(r.context['new_addon_form'].errors.as_text(),
+            u'* platforms\n  * This field is required.')
+        doc = pq(r.content)
+        eq_(doc('.platform ul.errorlist').text(),
+            'This field is required.')
+
     def test_one_xpi_for_multiple_platforms(self):
         eq_(Addon.objects.count(), 0)
         r = self.post(platforms=[amo.PLATFORM_MAC,
