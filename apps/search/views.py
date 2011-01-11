@@ -283,6 +283,8 @@ def search(request, tag_name=None):
 
     addon_type = form.cleaned_data.get('atype', 0)
     tag = tag_name if tag_name is not None else form.cleaned_data.get('tag')
+    if tag_name:
+        search_opts['show_personas'] = True
     page = form.cleaned_data['page']
     sort = form.cleaned_data.get('sort')
 
