@@ -159,9 +159,6 @@ def parse_xpi(xpi, addon=None):
         or BlacklistedGuid.objects.filter(guid=rdf['guid']).exists()):
         raise forms.ValidationError(_('Duplicate UUID found.'))
 
-    if addon and addon.type != rdf['type']:
-        raise forms.ValidationError(
-            _("<em:type> doesn't match add-on"))
     return rdf
 
 
@@ -169,9 +166,14 @@ def parse_addon(pkg, addon=None):
     """pkg is a filepath or a django.core.files.UploadedFile."""
     name = getattr(pkg, 'name', pkg)
     if name.endswith('.xml'):
-        return parse_search(pkg, addon)
+        parsed = parse_search(pkg, addon)
     else:
-        return parse_xpi(pkg, addon)
+        parsed = parse_xpi(pkg, addon)
+
+    if addon and addon.type != parsed['type']:
+        raise forms.ValidationError(
+            _("<em:type> doesn't match add-on"))
+    return parsed
 
 
 def nfd_str(u):

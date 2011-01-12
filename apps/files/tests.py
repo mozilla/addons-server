@@ -19,7 +19,7 @@ import amo.utils
 from addons.models import Addon
 from applications.models import Application, AppVersion
 from files.models import File, FileUpload, FileValidation, Platform
-from files.utils import parse_xpi, parse_search, parse_addon
+from files.utils import parse_addon
 from versions.models import Version
 
 
@@ -155,7 +155,7 @@ class TestParseXpi(test_utils.TestCase):
     def parse(self, addon=None, filename='extension.xpi'):
         path = 'apps/files/fixtures/files/' + filename
         xpi = os.path.join(settings.ROOT, path)
-        return parse_xpi(xpi, addon)
+        return parse_addon(xpi, addon)
 
     def test_parse_basics(self):
         # Everything but the apps
@@ -207,13 +207,19 @@ class TestParseXpi(test_utils.TestCase):
         eq_(e.exception.messages,
             ["<em:type> doesn't match add-on"])
 
+    def test_xml_for_extension(self):
+        addon = Addon.objects.create(guid='guid@xpi', type=1)
+        with self.assertRaises(forms.ValidationError) as e:
+            self.parse(addon, filename='search.xml')
+        eq_(e.exception.messages, ["<em:type> doesn't match add-on"])
+
     def test_unknown_app(self):
         data = self.parse(filename='theme-invalid-app.jar')
         eq_(data['apps'], [])
 
     def test_bad_zipfile(self):
         with self.assertRaises(forms.ValidationError) as e:
-            self.parse(filename='search.xml')
+            self.parse(filename='baxmldzip.xpi')
         eq_(e.exception.messages, ['Could not parse install.rdf.'])
 
     def test_parse_dictionary(self):
@@ -255,7 +261,7 @@ class TestParseAlternateXpi(test_utils.TestCase):
     def parse(self, filename='alt-rdf.xpi'):
         path = 'apps/files/fixtures/files/' + filename
         xpi = os.path.join(settings.ROOT, path)
-        return parse_xpi(xpi)
+        return parse_addon(xpi)
 
     def test_parse_basics(self):
         # Everything but the apps.
@@ -439,7 +445,7 @@ class TestParseSearch(test_utils.TestCase):
 
     def parse(self, filename='search.xml'):
         path = 'apps/files/fixtures/files/' + filename
-        return parse_search(os.path.join(settings.ROOT, path))
+        return parse_addon(os.path.join(settings.ROOT, path))
 
     def extract(self):
         # This is the expected return value from extract_search.
@@ -469,12 +475,11 @@ class TestParseSearch(test_utils.TestCase):
 @mock.patch('files.utils.parse_xpi')
 @mock.patch('files.utils.parse_search')
 def test_parse_addon(search_mock, xpi_mock):
-    addon = mock.sentinel.addon
-    parse_addon('file.xpi', addon)
-    xpi_mock.assert_called_with('file.xpi', addon)
+    parse_addon('file.xpi', None)
+    xpi_mock.assert_called_with('file.xpi', None)
 
-    parse_addon('file.xml', addon)
-    search_mock.assert_called_with('file.xml', addon)
+    parse_addon('file.xml', None)
+    search_mock.assert_called_with('file.xml', None)
 
-    parse_addon('file.jar', addon)
-    xpi_mock.assert_called_with('file.jar', addon)
+    parse_addon('file.jar', None)
+    xpi_mock.assert_called_with('file.jar', None)
