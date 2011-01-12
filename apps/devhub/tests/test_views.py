@@ -1215,20 +1215,21 @@ class TestEdit(test_utils.TestCase):
     def test_edit_basic_categories_add(self):
         eq_([c.id for c in self.get_addon().all_categories], [22])
         self.cat_initial['categories'] = [22, 23]
-        r = self.client.post(self.basic_url, formset(self.cat_initial,
-                                                     initial_count=1))
-        eq_([c.id for c in self.get_addon().all_categories], [22, 23])
+
+        r = self.client.post(self.basic_url, self.get_dict())
+
+        addon_cats = self.get_addon().categories.values_list('id', flat=True)
+        eq_(sorted(addon_cats), [22, 23])
 
     def test_edit_basic_categories_addandremove(self):
         AddonCategory(addon=self.addon, category_id=23).save()
         eq_([c.id for c in self.get_addon().all_categories], [22, 23])
 
         self.cat_initial['categories'] = [22, 24]
-        r = self.client.post(self.basic_url, formset(self.cat_initial,
-                                                     initial_count=1))
+        r = self.client.post(self.basic_url, self.get_dict())
 
-        category_ids_new = [c.id for c in self.get_addon().all_categories]
-        eq_(category_ids_new, [22, 24])
+        addon_cats = self.get_addon().categories.values_list('id', flat=True)
+        eq_(sorted(addon_cats), [22, 24])
 
     def test_edit_basic_categories_xss(self):
         c = Category.objects.get(id=22)
@@ -1248,11 +1249,10 @@ class TestEdit(test_utils.TestCase):
         eq_([c.id for c in self.get_addon().all_categories], [22, 23])
 
         self.cat_initial['categories'] = [22]
-        r = self.client.post(self.basic_url, formset(self.cat_initial,
-                                                     initial_count=1))
+        r = self.client.post(self.basic_url, self.get_dict())
 
-        category_ids_new = [c.id for c in self.get_addon().all_categories]
-        eq_(category_ids_new, [22])
+        addon_cats = self.get_addon().categories.values_list('id', flat=True)
+        eq_(sorted(addon_cats), [22])
 
     def test_edit_basic_categories_required(self):
         del self.cat_initial['categories']
@@ -2755,8 +2755,11 @@ class TestSubmitStep3(test_utils.TestCase):
     def test_submit_categories_add(self):
         eq_([c.id for c in self.get_addon().all_categories], [22])
         self.cat_initial['categories'] = [22, 23]
-        self.client.post(self.url, self.get_dict(cat_initial=self.cat_initial))
-        eq_([c.id for c in self.get_addon().all_categories], [22, 23])
+
+        self.client.post(self.url, self.get_dict())
+
+        addon_cats = self.get_addon().categories.values_list('id', flat=True)
+        eq_(sorted(addon_cats), [22, 23])
 
     def test_submit_categories_addandremove(self):
         AddonCategory(addon=self.addon, category_id=23).save()

@@ -181,7 +181,7 @@ class TestAddonModels(test_utils.TestCase):
         a = Addon.objects.get(pk=3615)
         a.icon_type = None
 
-        assert a.icon_url.endswith('/icons/default-32.png')
+        assert a.icon_url.endswith('icons/default-32.png')
 
     def test_thumbnail_url(self):
         """
