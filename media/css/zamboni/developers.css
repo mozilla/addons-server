@@ -345,7 +345,7 @@ form .char-count b {
     border-bottom: 1px dotted #ADD0DC;
 }
 
-#file-list div:last-child {
+#file-list > div:last-child {
     display: none;
 }
 
