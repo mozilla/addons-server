@@ -117,6 +117,32 @@
       <a id="edit_slug" href="#">{{ _('Edit') }}</a>
     </span>
   </div>
+  <div id="addon-cats" data-max-categories="2">
+    <div data-max-categories="2">
+      <div id="addon-cats-fx" class="select-addon-cats">
+        <label>Select <b>up to 2</b> Firefox categories for this add-on:</label>
+        <ul class="addon-categories">
+          <li><label for="id_form-0-categories_0"><input type="checkbox" name="form-0-categories" value="72" id="id_form-0-categories_0" /> Alerts &amp; Updates</label></li>
+          <li><label for="id_form-0-categories_1"><input checked="checked" type="checkbox" name="form-0-categories" value="14" id="id_form-0-categories_1" /> Appearance</label></li>
+          <li><label for="id_form-0-categories_2"><input checked="checked" type="checkbox" name="form-0-categories" value="22" id="id_form-0-categories_2" /> Bookmarks</label></li>
+        </ul>
+        <ul class="addon-misc-category">
+          <li><label for="id_form-0-categories_13"><input type="checkbox" name="form-0-categories" value="73" id="id_form-0-categories_13" /> My add-on doesn&#39;t fit into any of the categories</label></li>
+        </ul>
+      </div>
+      <div id="addon-cats-tb" class="select-addon-cats">
+        <label>Select <b>up to 2</b> Thunderbird categories for this add-on:</label>
+        <ul class="addon-categories">
+          <li><label for="id_form-1-categories_0"><input type="checkbox" name="form-1-categories" value="23" id="id_form-1-categories_0" /> Contacts</label></li>
+          <li><label for="id_form-1-categories_1"><input type="checkbox" name="form-1-categories" value="69" id="id_form-1-categories_1" /> Language Support</label></li>
+        </ul>
+        <ul class="addon-misc-category">
+          <li><label for="id_form-1-categories_4"><input type="checkbox" name="form-1-categories" value="50" id="id_form-1-categories_4" /> My add-on doesn&#39;t fit into any of the categories</label></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
 
   <script src="{{ url('jsi18n') }}/build:{{ BUILD_ID_JS }}"></script>
   {{ js('common') }}

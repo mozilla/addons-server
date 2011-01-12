@@ -1,5 +1,37 @@
 $(document).ready(function(){
 
+var catFixture = {
+    setup: function() {
+        this.sandbox = tests.createSandbox('#addon-cats');
+        initCatFields();
+    },
+    teardown: function() {
+        this.sandbox.remove();
+    }
+};
+
+module('initCatFields', catFixture);
+
+test('Default with initial categories', function() {
+    var scope = $("#addon-cats-fx", self.sandbox);
+    var checkedChoices = $("input:checked", scope);
+    equals(checkedChoices.length, 2);
+    equals(checkedChoices[0].id, "id_form-0-categories_1");
+    equals(checkedChoices[1].id, "id_form-0-categories_2");
+
+    // 2 categories are selected, the other category should be disabled.
+    var max = scope.parent("div").attr("data-max-categories");
+    equals(parseInt(max), 2);
+    var disabledChoices = $("input:disabled", scope);
+    equals(disabledChoices.length, 1);
+    equals(disabledChoices[0].id, "id_form-0-categories_0");
+});
+
+test('Default without initial categories', function() {
+    equals($("#addon-cats-tb input:checked", self.sandbox).length, 0);
+});
+
+
 function pushTiersAndResults($suite, tiers, results) {
     $.each(['1','2','3','4'], function(i, val) {
         tiers.push($('[class~="test-tier"][data-tier="' + val + '"]',

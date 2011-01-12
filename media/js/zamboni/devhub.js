@@ -909,16 +909,21 @@ function initCatFields() {
             $main = $(this).find(".addon-categories"),
             $misc = $(this).find(".addon-misc-category"),
             maxCats = parseInt($parent.attr("data-max-categories"));
-        var checkMain = function() {
+        var checkMainDefault = function() {
             var checkedLength = $("input:checked", $main).length,
                 disabled = checkedLength >= maxCats;
-            $("input", $misc).attr("checked", checkedLength <= 0);
             $("input:not(:checked)", $main).attr("disabled", disabled);
+            return checkedLength;
+        };
+        var checkMain = function() {
+            var checkedLength = checkMainDefault();
+            $("input", $misc).attr("checked", checkedLength <= 0);
         };
         var checkOther = function() {
             $("input", $main).attr("checked", false).attr("disabled", false);
         };
-        $("input", $main).live("change", checkMain).trigger("change");
+        checkMainDefault();
+        $("input", $main).live("change", checkMain);
         $("input", $misc).live("change", checkOther);
     });
 }
