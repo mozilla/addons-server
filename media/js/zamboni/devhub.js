@@ -217,12 +217,15 @@ function addonFormSubmit() {
         $('form', parent_div.not('#edit-addon-media')).submit(function(e){
             e.preventDefault();
             var old_baseurl = baseurl();
+            parent_div.find(".item").removeClass("loaded").addClass("loading");
+            var scrollBottom = $(document).height() - $(document).scrollTop();
             $.post(parent_div.find('form').attr('action'),
-                $(this).serialize(), function(d){
+                $(this).serialize(), function(d) {
                     parent_div.html(d).each(addonFormSubmit);
                     if (old_baseurl && old_baseurl !== baseurl()) {
                         document.location = baseurl();
                     }
+                    $(document).scrollTop($(document).height() - scrollBottom);
                     truncateFields();
                     annotateLocalizedErrors(parent_div);
                     if (!parent_div.find(".errorlist").length) {
@@ -255,6 +258,7 @@ function initEditAddon() {
         parent_div = $(a).closest('.edit-addon-section');
 
         (function(parent_div, a){
+            parent_div.find(".item").addClass("loading");
             parent_div.load($(a).attr('data-editurl'), function(){
                 if($('#addon_categories_edit').length) {
                     initCatFields();
