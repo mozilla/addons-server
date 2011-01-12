@@ -579,7 +579,7 @@ def addons_section(request, addon_id, addon, section, editable=False):
                                   instance=addon, request=request)
 
             if (form.is_valid() and (not previews or previews.is_valid()) and
-                (cat_form and cat_form.is_valid())):
+                (section == 'basic' and cat_form and cat_form.is_valid())):
                 addon = form.save(addon)
 
                 if previews:
