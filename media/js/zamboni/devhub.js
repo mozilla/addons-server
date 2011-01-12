@@ -81,6 +81,7 @@ $(document).ready(function() {
                 },
                 error: function(xhr) {
                     var errors = $.parseJSON(xhr.responseText);
+                    $("#upload-file").find(".errorlist").remove();
                     $("#upload-file").find(".upload-status").before(generateErrorList(errors));
                     $modal.setPos();
                 }
@@ -772,6 +773,7 @@ function initEditVersions() {
             },
             error: function(xhr) {
                 var errors = $.parseJSON(xhr.responseText);
+                $("#upload-file").find(".errorlist").remove();
                 $("#upload-file").find(".upload-status").before(generateErrorList(errors));
                 $modal.setPos();
             }
