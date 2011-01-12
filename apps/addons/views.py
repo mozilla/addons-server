@@ -5,7 +5,6 @@ from django import http
 from django.conf import settings
 from django.db.models import Q
 from django.shortcuts import get_list_or_404, get_object_or_404, redirect
-from django.utils.datastructures import SortedDict
 from django.utils.translation import trans_real as translation
 from django.utils import http as urllib
 from django.views.decorators.cache import cache_page
@@ -501,7 +500,6 @@ def report_abuse(request, addon):
 
 @cache_page(3600)
 def update(request):
-    query, row = SortedDict(), {}
     form = UpdateForm(request.GET)
 
     if form.is_valid():
