@@ -334,6 +334,8 @@ class TestAddon(BaseOauth):
         data = self.create_addon()
         id = data['id']
         guid = data['guid']
+        # Force it to be public so its guid gets blacklisted.
+        Addon.objects.filter(id=id).update(highest_status=amo.STATUS_PUBLIC)
 
         r = client.delete(('api.addon', id), self.accepted_consumer,
                           self.token)
