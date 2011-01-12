@@ -1448,10 +1448,11 @@ class TestEdit(test_utils.TestCase):
         eq_(r.context['form'].errors, {})
         addon = self.get_addon()
 
-        assert addon.get_icon_url(64).endswith('icons/default-addon.png')
+        assert addon.get_icon_url(64).endswith('icons/default-64.png')
 
         for k in data:
             eq_(unicode(getattr(addon, k)), data[k])
+
     def test_edit_media_preuploadedicon(self):
         data = dict(icon_type='icon/appearance')
         data_formset = self.formset_media(**data)
@@ -2829,8 +2830,7 @@ class TestSubmitStep4(TestSubmitBase):
 
         addon = self.get_addon()
 
-        eq_('/'.join(addon.get_icon_url(64).split('/')[-2:]),
-            'icons/default-addon.png')
+        assert addon.get_icon_url(64).endswith('icons/default-64.png')
 
         for k in data:
             eq_(unicode(getattr(addon, k)), data[k])
