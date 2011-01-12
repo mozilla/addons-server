@@ -59,6 +59,13 @@ def assert_no_validation_errors(validation):
                              error.rstrip().split("\n")[-1])
 
 
+def assert_close_to_now(dt):
+    """
+    Compare a datetime with datetime.now, with resolution up to the minute.
+    """
+    eq_(dt.timetuple()[:5], datetime.now().timetuple()[:5])
+
+
 class HubTest(test_utils.TestCase):
     fixtures = ['browse/nameless-addon', 'base/users']
 
@@ -3030,8 +3037,7 @@ class TestSubmitStep6(TestSubmitBase):
         eq_(r.status_code, 302)
         addon = self.get_addon()
         eq_(addon.status, amo.STATUS_NOMINATED)
-        # nomination_date is only a Date, so we zero out the hour/minute part.
-        eq_(addon.nomination_date, datetime(*datetime.now().timetuple()[:3]))
+        assert_close_to_now(addon.nomination_date)
         assert_raises(SubmitStep.DoesNotExist, self.get_step)
 
 
@@ -3773,7 +3779,7 @@ class TestRequestReview(test_utils.TestCase):
         self.check(amo.STATUS_LITE, self.public_url,
                    amo.STATUS_LITE_AND_NOMINATED)
         self.addon = Addon.objects.get(pk=self.addon.id)
-        eq_(self.addon.nomination_date.date(), datetime.now().date())
+        assert_close_to_now(self.addon.nomination_date)
 
     def test_purgatory_to_lite(self):
         self.check(amo.STATUS_PURGATORY, self.lite_url, amo.STATUS_UNREVIEWED)
@@ -3783,7 +3789,7 @@ class TestRequestReview(test_utils.TestCase):
         self.check(amo.STATUS_PURGATORY, self.public_url,
                    amo.STATUS_NOMINATED)
         self.addon = Addon.objects.get(pk=self.addon.id)
-        eq_(self.addon.nomination_date.date(), datetime.now().date())
+        assert_close_to_now(self.addon.nomination_date)
 
     def test_lite_and_nominated_to_public(self):
         self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
