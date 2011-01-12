@@ -346,6 +346,39 @@
         }
     },
     {
+        "pk": 2222,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "Bookmarks",
+            "created": "2009-05-11 22:06:47",
+            "locale": "en-US",
+            "id": 2222,
+            "localized_string_clean": null
+        }
+    },
+    {
+        "pk": 2323,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "Feeds",
+            "created": "2009-05-11 22:06:47",
+            "locale": "en-US",
+            "id": 2323,
+            "localized_string_clean": null
+        }
+    },
+    {
+        "pk": 2424,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "Social",
+            "created": "2009-05-11 22:06:47",
+            "locale": "en-US",
+            "id": 2424,
+            "localized_string_clean": null
+        }
+    },
+    {
         "pk": 22,
         "model": "addons.category",
         "fields": {
@@ -357,7 +390,7 @@
             "application": 1,
             "type": 1,
             "slug": "bookmarks",
-            "name": null
+            "name": 2222
         }
     },
     {
@@ -372,7 +405,7 @@
             "application": 1,
             "type": 1,
             "slug": "social",
-            "name": null
+            "name": 2424
         }
     },
     {
@@ -387,7 +420,7 @@
             "application": 1,
             "type": 1,
             "slug": "feeds",
-            "name": null
+            "name": 2323
         }
     },
     {

@@ -24,6 +24,7 @@ from applications.models import Application, AppVersion
 from devhub.models import ActivityLog
 from files.models import File, Platform
 from reviews.models import Review
+from translations.models import TranslationSequence
 from users.models import UserProfile
 from versions.models import ApplicationsVersions, Version
 
@@ -91,6 +92,9 @@ class TestAddonModels(test_utils.TestCase):
                 'base/thunderbird',
                 'addons/featured',
                 'addons/invalid_latest_version']
+
+    def setUp(self):
+        TranslationSequence.objects.create(id=99243)
 
     def test_current_version(self):
         """
@@ -311,7 +315,8 @@ class TestAddonModels(test_utils.TestCase):
         c = Category(application=tb, name='XXX', type=addon().type, count=1,
                      weight=1)
         c.save()
-        ac = AddonCategory(addon=addon(), category=c).save()
+        AddonCategory.objects.create(addon=addon(), category=c)
+        c24.save()  # Clear the app_categories cache.
         app_cats += [(amo.THUNDERBIRD, [c])]
         eq_(addon().app_categories, app_cats)
 
