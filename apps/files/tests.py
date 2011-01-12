@@ -220,9 +220,27 @@ class TestParseXpi(test_utils.TestCase):
         result = self.parse(filename='dictionary-test.xpi')
         eq_(result['type'], amo.ADDON_DICT)
 
-    # parse_theme
+    def test_parse_jar(self):
+        result = self.parse(filename='theme.jar')
+        eq_(result['type'], amo.ADDON_THEME)
+
+    def test_parse_theme_by_type(self):
+        result = self.parse(filename='theme-type.xpi')
+        eq_(result['type'], amo.ADDON_THEME)
+
+    def test_parse_theme_with_internal_name(self):
+        result = self.parse(filename='theme-internal-name.xpi')
+        eq_(result['type'], amo.ADDON_THEME)
+
+    def test_parse_no_type(self):
+        result = self.parse(filename='no-type.xpi')
+        eq_(result['type'], amo.ADDON_EXTENSION)
+
+    def test_parse_invalid_type(self):
+        result = self.parse(filename='invalid-type.xpi')
+        eq_(result['type'], amo.ADDON_EXTENSION)
+
     # parse_langpack
-    # parse_search_engine?
 
 
 class TestParseAlternateXpi(test_utils.TestCase):

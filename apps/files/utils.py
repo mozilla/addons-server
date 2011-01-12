@@ -53,9 +53,16 @@ class Extractor(object):
         return cls(install_rdf).data
 
     def find_type(self):
+        # Look for themes.
+        if self.path.endswith('.jar') or self.find('internalName'):
+            return amo.ADDON_THEME
+
+        # Look for dictionaries.
         dic = os.path.join(self.path, 'dictionaries')
         if os.path.exists(dic) and glob.glob('%s/*.dic' % dic):
             return amo.ADDON_DICT
+
+        # Consult <em:type>.
         return self.TYPES.get(self.find('type'), amo.ADDON_EXTENSION)
 
     def uri(self, name):
