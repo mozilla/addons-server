@@ -60,13 +60,6 @@ class FormsTest(test_utils.TestCase):
         form = AddonFormDetails(request={})
         eq_(form.fields['default_locale'].choices[0][0], 'af')
 
-    def test_category_order(self):
-        form = forms.AddonFormBasic(dict(name=self.existing_name),
-                                    request=None, instance=Addon.objects.get())
-        names = ['Bookmarks', 'Feeds', 'Social']
-        categories = form.fields['categories'].queryset
-        eq_(sorted(names), [str(f.name) for f in categories.all()])
-
 
 class TestTagsForm(test_utils.TestCase):
     fixtures = ['base/addon_3615', 'base/platforms', 'base/users']
@@ -81,7 +74,6 @@ class TestTagsForm(test_utils.TestCase):
             'summary': str(self.addon.summary),
             'name': str(self.addon.name),
             'slug': self.addon.slug,
-            'categories': ['22'],
         }
 
         self.user = self.addon.authors.all()[0]
