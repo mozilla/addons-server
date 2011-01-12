@@ -1,6 +1,7 @@
 -- If these FKs don't exist, run them manually and use:
 -- schematic migrations/ -u 112
 
+SET FOREIGN_KEY_CHECKS=0;
 ALTER TABLE `log_activity_addon`
     DROP FOREIGN KEY `activity_log_id_refs_id_9c20a926`;
 
@@ -16,3 +17,4 @@ ALTER TABLE `log_activity_user` ADD CONSTRAINT `activity_log_id_refs_id_4f8d99d4
     ON DELETE CASCADE;
 
 
+SET FOREIGN_KEY_CHECKS=1;
