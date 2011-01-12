@@ -432,9 +432,8 @@ class Addon(amo.models.ModelBase):
 
         version, file = None, None
         try:
-            order = ("-created",)
             version = (self.versions.filter(reduce(operator.and_, filters))
-                       .transform(Version.transformer).order_by(*order))[0]
+                       .transform(Version.transformer).order_by('-id'))[0]
         except IndexError:
             pass
 

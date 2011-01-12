@@ -11,6 +11,7 @@ import caching.base
 
 import amo
 import amo.models
+import amo.utils
 from amo.urlresolvers import reverse
 from applications.models import Application, AppVersion
 from files import utils
@@ -143,16 +144,16 @@ class Version(amo.models.ModelBase):
     @classmethod
     def transformer(cls, versions):
         """Attach all the compatible apps and files to the versions."""
+        ids = set(v.id for v in versions)
         if not versions:
             return
 
-        avs = (ApplicationsVersions.objects.filter(version__in=versions)
-               .select_related(depth=1).order_by('version__id').no_cache())
-        files = (File.objects.filter(version__in=versions)
-                 .order_by('version__id').select_related('version').no_cache())
+        avs = (ApplicationsVersions.objects.filter(version__in=ids)
+               .select_related('max', 'min').no_cache())
+        files = File.objects.filter(version__in=ids).no_cache()
 
         def rollup(xs):
-            groups = itertools.groupby(xs, key=lambda x: x.version_id)
+            groups = amo.utils.sorted_groupby(xs, 'version_id')
             return dict((k, list(vs)) for k, vs in groups)
 
         av_dict, file_dict = rollup(avs), rollup(files)
