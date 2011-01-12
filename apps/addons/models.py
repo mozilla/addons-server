@@ -474,7 +474,6 @@ class Addon(amo.models.ModelBase):
         """
         Returns either the addon's icon url, or a default.
         """
-
         icon_type_split = []
         if self.icon_type:
             icon_type_split = self.icon_type.split('/')
@@ -492,9 +491,10 @@ class Addon(amo.models.ModelBase):
         if not self.icon_type:
             if self.type == amo.ADDON_THEME:
                 icon = amo.ADDON_ICONS[amo.ADDON_THEME]
+                return settings.ADDON_ICON_BASE_URL + icon
             else:
-                icon = amo.ADDON_ICONS[amo.ADDON_ANY]
-            return settings.ADDON_ICON_BASE_URL + icon
+                return '%s/%s-%s.png' % (settings.ADDON_ICONS_DEFAULT_URL,
+                                         'default', size)
         elif icon_type_split[0] == 'icon':
             return '%s/%s-%s.png' % (settings.ADDON_ICONS_DEFAULT_URL,
                                      icon_type_split[1], size)
