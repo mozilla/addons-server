@@ -230,7 +230,7 @@ function addonFormSubmit() {
                     truncateFields();
                     annotateLocalizedErrors(parent_div);
                     if(parent_div.is('#edit-addon-media')) {
-                        imageStatus.poller = setTimeout(imageStatus.check, 2500);
+                        imageStatus.start();
                         hideSameSizedIcons();
                     }
 
@@ -1129,22 +1129,27 @@ function initCompatibility() {
 var imageStatus = {
     poller: null,
     node: $('#edit-addon-media'),
+    start: function() {
+        if (!this.poller) {
+            this.poller = window.setTimeout(this.check, 2500);
+        }
+    },
     stop: function () {
         window.clearTimeout(this.poller);
+        this.poller = null;
         imageStatus.node.find('b.save-badge').remove();
         imageStatus.node.find('img').each(function() {
-            var buster = $(this).attr('src');
-            if (buster.indexOf('?') > -1) {
-                buster = buster + '&' + new Date().getTime();
-            }
-            $(this).attr('src', buster);
+            var org = $(this).attr('src');
+            var bst = new Date().getTime();
+            (org.indexOf('?') > -1) ? org = org+'&'+bst : org= org+'?'+bst;
+            $(this).attr('src', org);
         })
     },
     check: function() {
         var self = imageStatus;
         $.getJSON(self.node.attr('data-checkurl'),
             function(json) {
-                if (json['overall']) {
+                if (json != null && json['overall']) {
                     self.stop();
                 } else {
                     if (!self.node.find('b.image-message').length) {

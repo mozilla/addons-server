@@ -1597,6 +1597,20 @@ class TestEdit(test_utils.TestCase):
         result = json.loads(self.client.get(self.url).content)
         assert not result['previews']
 
+    def test_image_status_persona(self):
+        self.setup_image_status()
+        os.remove(self.icon_dest)
+        self.get_addon().update(type=amo.ADDON_PERSONA)
+        result = json.loads(self.client.get(self.url).content)
+        assert result['icons']
+
+    def test_image_status_default(self):
+        self.setup_image_status()
+        os.remove(self.icon_dest)
+        self.get_addon().update(icon_type='icon/photos')
+        result = json.loads(self.client.get(self.url).content)
+        assert result['icons']
+
     def test_icon_animated(self):
         filehandle = open(get_image_path('animated.png'), 'rb')
         data = {'upload_image': filehandle}
