@@ -3289,3 +3289,7 @@ input.ui-autocomplete-loading {
     font-weight: bold;
     font-size: .9em;
 }
+
+#navbar {
+    display: none;
+}
