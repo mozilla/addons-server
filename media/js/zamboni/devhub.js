@@ -220,12 +220,6 @@ function addonFormSubmit() {
             parent_div.find(".item").removeClass("loaded").addClass("loading");
             var scrollBottom = $(document).height() - $(document).scrollTop();
 
-            if(parent_div.is('#edit-addon-media')) {
-                if($('input[name=icon_type]:checked').val().match(/^image\//)) {
-                    setTimeout(checkImageStatus, 1000);
-                }
-            }
-
             $.post(parent_div.find('form').attr('action'),
                 $(this).serialize(), function(d) {
                     parent_div.html(d).each(addonFormSubmit);
@@ -235,18 +229,19 @@ function addonFormSubmit() {
                     $(document).scrollTop($(document).height() - scrollBottom);
                     truncateFields();
                     annotateLocalizedErrors(parent_div);
+                    if(parent_div.is('#edit-addon-media')) {
+                        imageStatus.poller = setTimeout(imageStatus.check, 2500);
+                        hideSameSizedIcons();
+                    }
+
                     if (!parent_div.find(".errorlist").length) {
                         var e = $(format('<b class="save-badge">{0}</b>',
                                          [gettext('Changes Saved')]))
                                   .appendTo(parent_div.find('h3').first());
                         setTimeout(function(){
                             e.css('opacity', 0);
-                            setTimeout(function(){ e.remove(); }, 1500);
+                            setTimeout(function(){ e.remove(); }, 200);
                         }, 2000);
-                    }
-
-                    if(parent_div.is('#edit-addon-media')) {
-                        hideSameSizedIcons();
                     }
                 });
         });
@@ -276,6 +271,9 @@ function initEditAddon() {
                 }
                 $(this).each(addonFormSubmit);
             });
+            if(parent_div.is('#edit-addon-media')) {
+                imageStatus.stop();
+            }
         })(parent_div, a);
 
         return false;
@@ -1128,25 +1126,37 @@ function initCompatibility() {
     });
 }
 
-function checkImageStatus() {
-    $.getJSON($('#edit-addon-media').attr('data-checkurl'),
-        function(json) {
-            var node = $('#edit-addon-media');
-            if (json['overall']) {
-                node.find('b.save-badge').remove();
-                node.find('img').each(function() {
-                    $(this).attr('src', $(this).attr('src'));
-                })
-            } else {
-                if (!node.find('b.save-badge').length) {
-                    $(format('<b class="save-badge">{0}</b>',
-                      [gettext('Image changes being processed.')]))
-                    .appendTo(node.find('h3').first());
-                }
-                setTimeout(checkImageStatus, 1000);
+var imageStatus = {
+    poller: null,
+    node: $('#edit-addon-media'),
+    stop: function () {
+        window.clearTimeout(this.poller);
+        imageStatus.node.find('b.save-badge').remove();
+        imageStatus.node.find('img').each(function() {
+            var buster = $(this).attr('src');
+            if (buster.indexOf('?') > -1) {
+                buster = buster + '&' + new Date().getTime();
             }
-        }
-    );
+            $(this).attr('src', buster);
+        })
+    },
+    check: function() {
+        var self = imageStatus;
+        $.getJSON(self.node.attr('data-checkurl'),
+            function(json) {
+                if (json['overall']) {
+                    self.stop();
+                } else {
+                    if (!self.node.find('b.image-message').length) {
+                        $(format('<b class="save-badge image-message">{0}</b>',
+                                [gettext('Image changes being processed')]))
+                                .appendTo(self.node.find('h3').first());
+                    }
+                    self.poller = window.setTimeout(self.check, 2500);
+                }
+            }
+        );
+    }
 }
 
 function multipartUpload(form, onreadystatechange) {
