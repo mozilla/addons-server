@@ -13,6 +13,11 @@ class TestHelpers(test_utils.TestCase):
     fixtures = ['base/apps', 'base/addon_3615', 'base/addon_4664_twitterbar',
                 'addons/featured.json']
 
+    def setUp(self):
+        # Addon._feature keeps an in-process cache we need to clear.
+        if hasattr(Addon, '_feature'):
+            del Addon._feature
+
     def test_statusflags(self):
         ctx = {'APP': amo.FIREFOX, 'LANG': 'en-US'}
 

@@ -547,7 +547,9 @@ class Addon(amo.models.ModelBase):
         versions = list(Version.objects.filter(id__in=version_ids).order_by()
                         .transform(Version.transformer))
         for version in versions:
-            addon_dict[version.addon_id]._current_version = version
+            addon = addon_dict[version.addon_id]
+            addon._current_version = version
+            version.addon = addon
 
         # Attach listed authors.
         q = (UserProfile.objects.no_cache()
@@ -596,9 +598,9 @@ class Addon(amo.models.ModelBase):
         """
         Return other addons by the author(s) of this addon
         """
-        return (Addon.objects.valid().exclude(id=self.id)
-                  .filter(addonuser__listed=True,
-                          authors__in=self.listed_authors).distinct())
+        return (MiniAddon.objects.valid().exclude(id=self.id)
+                .filter(addonuser__listed=True,
+                        authors__in=self.listed_authors).distinct())
 
     @property
     def contribution_url(self, lang=settings.LANGUAGE_CODE,
@@ -665,7 +667,11 @@ class Addon(amo.models.ModelBase):
 
     def is_featured(self, app, lang):
         """is add-on globally featured for this app and language?"""
-        features = Feature().by_app(app)
+        # Attach an instance of Feature to Addon so we get persistent
+        # @cached_method caching through the request.
+        if not hasattr(Addon, '_feature'):
+            Addon._feature = Feature()
+        features = Addon._feature.by_app(app)
         if self.id in features:
             for locale in (None, '', lang):
                 if locale in features[self.id]:
@@ -818,12 +824,19 @@ def watch_status(sender, instance, **kw):
 dbsignals.pre_save.connect(watch_status, sender=Addon)
 
 
+class MiniAddonManager(AddonManager):
+
+    def get_query_set(self):
+        qs = super(MiniAddonManager, self).get_query_set()
+        return qs.only_translations()
+
+
 class MiniAddon(Addon):
     """A smaller lightweight version of Addon suitable for the
     update script or other areas that don't need all the transforms.
     This class exists to give the addon a different key for cache machine."""
 
-    objects = caching.CachingManager()
+    objects = MiniAddonManager()
 
     class Meta:
         proxy = True

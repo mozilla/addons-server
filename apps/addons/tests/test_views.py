@@ -45,6 +45,9 @@ class TestHomepage(test_utils.TestCase):
     def setUp(self):
         super(TestHomepage, self).setUp()
         self.base_url = reverse('home')
+        # Addon._feature keeps an in-process cache we need to clear.
+        if hasattr(Addon, '_feature'):
+            del Addon._feature
 
     def test_promo_box_public_addons(self):
         """Only public add-ons in the promobox."""

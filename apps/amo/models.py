@@ -78,10 +78,8 @@ class TransformQuerySet(queryset_transform.TransformQuerySet):
         """Remove all transforms except translations."""
         from translations import transformer
         # Add an extra select so these are cached separately.
-        qs = self.no_transforms().extra(select={'_only_trans': 1})
-        if hasattr(self.model._meta, 'translated_fields'):
-            qs = qs.transform(transformer.get_trans)
-        return qs
+        return (self.no_transforms().extra(select={'_only_trans': 1})
+                .transform(transformer.get_trans))
 
     def transform(self, fn):
         from . import decorators

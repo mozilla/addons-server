@@ -19,7 +19,7 @@ class ReviewManager(amo.models.ManagerBase):
 
     def get_query_set(self):
         qs = super(ReviewManager, self).get_query_set()
-        return qs.transform(Review.transformer)
+        return qs.select_related('user', 'version')
 
     def valid(self):
         """Get all reviews with rating > 0 that aren't replies."""
@@ -92,23 +92,6 @@ class Review(amo.models.ModelBase):
         # slave lag.
         tasks.update_denorm(pair, using='default')
         tasks.addon_review_aggregates.delay(instance.addon_id, using='default')
-
-    @staticmethod
-    def transformer(reviews):
-        if not reviews:
-            return
-
-        # Attach users.
-        user_ids = [r.user_id for r in reviews]
-        users = UserProfile.objects.filter(id__in=user_ids)
-        user_dict = dict((u.id, u) for u in users)
-        for review in reviews:
-            review.user = user_dict[review.user_id]
-
-        # Attach versions.
-        versions = dict((r.version_id, r) for r in reviews)
-        for version in Version.objects.filter(id__in=versions.keys()):
-            versions[version.id].version = version
 
 
 models.signals.post_save.connect(Review.post_save, sender=Review)

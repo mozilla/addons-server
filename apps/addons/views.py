@@ -33,7 +33,7 @@ from tags.models import Tag
 from translations.query import order_by_translation
 from translations.helpers import truncate
 from versions.models import Version
-from .models import Addon
+from .models import Addon, MiniAddon
 from .forms import UpdateForm
 from .decorators import addon_view_factory
 
@@ -109,7 +109,7 @@ def extension_detail(request, addon):
     tags = addon.tags.not_blacklisted()
 
     # addon recommendations
-    recommended = Addon.objects.valid().filter(
+    recommended = MiniAddon.objects.valid().filter(
         recommended_for__addon=addon)[:5]
 
     # popular collections this addon is part of

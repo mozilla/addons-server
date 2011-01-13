@@ -95,6 +95,9 @@ class TestAddonModels(test_utils.TestCase):
 
     def setUp(self):
         TranslationSequence.objects.create(id=99243)
+        # Addon._feature keeps an in-process cache we need to clear.
+        if hasattr(Addon, '_feature'):
+            del Addon._feature
 
     def test_current_version(self):
         """
