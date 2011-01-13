@@ -388,11 +388,11 @@ form .char-count b {
 }
 
 .preview-thumb {
+    text-align: center;
     border: 3px solid #D2EDF5;
     float: left;
     height: 94px;
     margin-right: 15px;
-    text-align: right;
     width: 125px;
 }
 

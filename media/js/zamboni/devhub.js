@@ -214,6 +214,7 @@ function addonFormSubmit() {
         var baseurl = function(){
             return parent_div.find('#addon-edit-basic').attr('data-baseurl');
         }
+        $('#edit-addon-media .listing-footer button').attr('disabled', false);
         $('form', parent_div).submit(function(e){
             e.preventDefault();
             var old_baseurl = baseurl();
@@ -307,17 +308,32 @@ function create_new_preview_field() {
     return last;
 }
 
-function imageUploadFile(f, url, parent_form, upload_success, upload_errors) {
+function imageUploadFile(f, url, parent_form, callbacks) {
     var data = f.getAsBinary(),
         file = {},
         xhr = new XMLHttpRequest(),
         output = "",
         boundary = "BoUnDaRyStRiNg";
 
-    file.name = f.name || f.fileName;
-    file.size = f.size;
-    file.data = '';
-    file.aborted = false;
+    var file = {
+        'name': f.name || f.fileName,
+        'size': f.size,
+        'type': f.type,
+        'data': f.data,
+        'aborted': false }
+
+    callbacks = $.extend({'upload_errors': function(){},
+                          'upload_finished': function(){},
+                          'upload_start': function(){},
+                          'upload_success': function(){}},
+                         callbacks);
+
+    if(file.type != 'image/jpeg' && file.type != 'image/png') {
+        callbacks.upload_errors([gettext("Icons must be either PNG or JPG.")]);
+        return;
+    }
+
+    callbacks.upload_start();
 
     xhr.open("POST", url, true);
 
@@ -359,10 +375,12 @@ function imageUploadFile(f, url, parent_form, upload_success, upload_errors) {
             }
 
             if(json.errors.length) {
-                upload_errors(json.errors);
+                callbacks.upload_errors(json.errors);
             } else {
-                upload_success(json.upload_hash);
+                callbacks.upload_success(json.upload_hash);
             }
+
+            callbacks.upload_finished();
         }
     }
     xhr.sendAsBinary(output);
@@ -372,26 +390,52 @@ var initUploadPreview = (function(){
     var outstanding_uploads = 0;
     return function() {
         $('#edit-addon-media, #submit-media').delegate('#screenshot_upload', 'change', function(e){
-            url = $(this).attr('data-upload-url');
+            if($('#screenshot_upload')[0].files.length) {
+                url = $(this).attr('data-upload-url');
+                $('.edit-addon-media-screenshot-error').remove();
+                $.each($('#screenshot_upload')[0].files, function(k, f){
+                    var form = create_new_preview_field(),
+                        callbacks = {};
 
-            $.each($('#screenshot_upload')[0].files, function(k, f){
-                $('#edit-addon-media .listing-footer button').attr('disabled', true);
-                outstanding_uploads++;
-                var form = create_new_preview_field(),
-                upload_success = function(upload_hash){
-                    form.find('[name$=upload_hash]').val(upload_hash);
-                    outstanding_uploads--;
-                    $('#edit-addon-media .listing-footer button').attr('disabled', outstanding_uploads);
-                },
-                upload_errors = function(){
-                    // This is really horrible; I'm going to properly fix it after we fix bug 625207
-                    alert('There was an error!  Refresh the page.');
-                };
+                    callbacks.upload_finished = function() {
+                        outstanding_uploads--;
+                        if(outstanding_uploads) {
+                            $('#edit-addon-media .listing-footer button').attr('disabled', true);
+                        } else {
+                            $('#edit-addon-media .listing-footer button').attr('disabled', false);
+                        }
+                        $(form).find('.preview-thumb').removeClass('loading');
+                    };
 
-                imageUploadFile(f, url, $(form).closest('form'), upload_success, upload_errors);
-            });
+                    callbacks.upload_success = function(upload_hash){
+                        form.find('[name$=upload_hash]').val(upload_hash);
+                    };
 
-            $('#screenshot_upload').val("");
+                    callbacks.upload_start = function(){
+                        $(form).find('.preview-thumb').addClass('loading');
+                        $('<img>').appendTo($('.preview-thumb', form)).attr('src', f.getAsDataURL());
+                        $('#edit-addon-media .listing-footer button').attr('disabled', true);
+                        outstanding_uploads++;
+                    };
+
+                    callbacks.upload_errors = function(errors){
+                        $el = $(form).addClass('edit-addon-media-screenshot-error');
+                        error = gettext("<strong>There was an error uploading your file</strong>");
+
+                        error_list = $('<ul>');
+                        $.each(errors, function(i, v){
+                            $(error_list).append('<li>' + v + '</li>');
+                        });
+
+                        $el.find('.edit-previews-text').addClass('error').html(error).append(error_list);
+                        $el.find('[name^=files-]').remove();
+                    };
+
+                    imageUploadFile(f, url, $(form).closest('form'), callbacks);
+                });
+
+                $('#screenshot_upload').val("");
+            }
         });
 
         $("#edit-addon-media, #submit-media").delegate("#file-list .remove", "click", function(e){
@@ -431,20 +475,22 @@ function initUploadIcon() {
             $('input[name=icon_type][value='+file.type+']', $('#icons_default'))
                                                           .attr('checked', true);
 
-            var upload_errors = function(errors){
+            var callbacks = {};
+
+            callbacks.upload_errors = function(errors){
                 $.each(errors, function(i, v){
                     $('#icon_preview').parent().find('.errorlist').append("<li>" + v + "</li>");
                 });
             }
 
-            var upload_success = function(upload_hash){
+            callbacks.upload_success = function(upload_hash){
                 $('#id_icon_upload_hash').val(upload_hash)
                 $('#icons_default a.active').removeClass('active');
                 $('#icon_preview img').attr('src', file.getAsDataURL());
             }
 
             imageUploadFile(file, $(this).attr('data-upload-url'), $(this).closest('form'),
-                            upload_success, upload_errors);
+                            callbacks);
         } else {
             error = gettext('This filetype is not supported.');
             $('#edit-icon-error').text(error).show();
