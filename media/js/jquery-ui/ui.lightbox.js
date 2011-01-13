@@ -235,7 +235,7 @@
             $('#lightbox-container-image-data-box').slideDown('fast');
             $('#lightbox-image-details-caption').hide();
             if ( settings.imageArray[settings.activeImage][1] ) {
-                $('#lightbox-image-details-caption').html(settings.imageArray[settings.activeImage][1]).show();
+                $('#lightbox-image-details-caption').text(settings.imageArray[settings.activeImage][1]).show();
             }
             // If we have a image set, display 'Image X of X'
             if ( settings.imageArray.length > 1 ) {
