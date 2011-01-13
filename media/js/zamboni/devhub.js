@@ -368,31 +368,40 @@ function imageUploadFile(f, url, parent_form, upload_success, upload_errors) {
     xhr.sendAsBinary(output);
 }
 
-function initUploadPreview() {
-    $('#edit-addon-media, #submit-media').delegate('#screenshot_upload', 'change', function(e){
-        url = $(this).attr('data-upload-url');
+var initUploadPreview = (function(){
+    var outstanding_uploads = 0;
+    return function() {
+        $('#edit-addon-media, #submit-media').delegate('#screenshot_upload', 'change', function(e){
+            url = $(this).attr('data-upload-url');
 
-        $.each($('#screenshot_upload')[0].files, function(k, f){
-            var form = create_new_preview_field(),
+            $.each($('#screenshot_upload')[0].files, function(k, f){
+                $('#edit-addon-media .listing-footer button').attr('disabled', true);
+                outstanding_uploads++;
+                var form = create_new_preview_field(),
                 upload_success = function(upload_hash){
-                     form.find('[name$=upload_hash]').val(upload_hash);
+                    form.find('[name$=upload_hash]').val(upload_hash);
+                    outstanding_uploads--;
+                    $('#edit-addon-media .listing-footer button').attr('disabled', outstanding_uploads);
                 },
-                upload_errors = function(){};
+                upload_errors = function(){
+                    // This is really horrible; I'm going to properly fix it after we fix bug 625207
+                    alert('There was an error!  Refresh the page.');
+                };
 
-            imageUploadFile(f, url, $(form).closest('form'), upload_success, upload_errors);
+                imageUploadFile(f, url, $(form).closest('form'), upload_success, upload_errors);
+            });
+
+            $('#screenshot_upload').val("");
         });
 
-        $('#screenshot_upload').val("");
-
-    });
-
-    $("#edit-addon-media, #submit-media").delegate("#file-list .remove", "click", function(e){
-        e.preventDefault();
-        var row = $(this).closest(".preview");
-        row.find(".delete input").attr("checked", "checked");
-        row.hide();
-    });
-}
+        $("#edit-addon-media, #submit-media").delegate("#file-list .remove", "click", function(e){
+            e.preventDefault();
+            var row = $(this).closest(".preview");
+            row.find(".delete input").attr("checked", "checked");
+            row.hide();
+        });
+    }
+})();
 
 function initUploadIcon() {
     $('#edit-addon-media, #submit-media').delegate('#icons_default a', 'click', function(e){
