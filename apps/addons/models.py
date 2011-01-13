@@ -418,6 +418,8 @@ class Addon(amo.models.ModelBase):
             else:
                 status = amo.STATUS_PUBLIC
             filters.append(Q(files__status=status))
+        elif self.status in amo.LITE_STATUSES:
+            filters.append(Q(files__status=amo.STATUS_LITE))
         else:
             filters.extend([
                 Q(files__status__gt=status),

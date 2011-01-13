@@ -838,6 +838,21 @@ class TestUpdate(test_utils.TestCase):
                                  self.app, amo.PLATFORM_LINUX)
         eq_(version.version, '1.2.1')
 
+    def test_file_preliminary_addon(self):
+        """If the addon is in prelim. review, show the highest file with
+        prelim. review., which in this case is 1.2.1"""
+        for status in amo.LITE_STATUSES:
+            self.addon.update(status=status)
+
+            version = Version.objects.get(pk=112396)
+            file = version.files.all()[0]
+            file.status = amo.STATUS_LITE
+            file.save()
+
+            version, file = self.get('1.2', self.version_int,
+                                     self.app, amo.PLATFORM_LINUX)
+            eq_(version.version, '1.2.1')
+
 
 class TestAddonFromUpload(files.tests.UploadTest):
     fixtures = ('base/apps', 'base/users')
