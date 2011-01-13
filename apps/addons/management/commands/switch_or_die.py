@@ -144,7 +144,7 @@ You are receiving this email because you have at least one add-on currently in
 the sandbox that has not been reviewed by an editor. As we will now require
 all add-ons to be reviewed, you must select which review process you wish
 your {addon} to undergo. Add-ons that have not selected a review process
-before February 1, 2011 will be disabled.
+before February 18, 2011 will be disabled.
 
 You can select a review process from the status page for your {addon}:
 
