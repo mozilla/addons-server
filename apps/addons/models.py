@@ -665,15 +665,7 @@ class Addon(amo.models.ModelBase):
 
     def is_featured(self, app, lang):
         """is add-on globally featured for this app and language?"""
-        qs = Addon.objects.featured(app)
-
-        def _features():
-            vals = qs.extra(select={'locale': 'features.locale'})
-            d = collections.defaultdict(list)
-            for id, locale in vals.values_list('id', 'locale'):
-                d[id].append(locale)
-            return dict(d)
-        features = caching.cached_with(qs, _features, 'featured:%s' % app.id)
+        features = Feature().by_app(app)
         if self.id in features:
             for locale in (None, '', lang):
                 if locale in features[self.id]:
@@ -1116,6 +1108,20 @@ class Feature(amo.models.ModelBase):
     def __unicode__(self):
         app = amo.APP_IDS[self.application.id].pretty
         return '%s (%s: %s)' % (self.addon.name, app, self.locale)
+
+    @caching.cached_method
+    def by_app(self, app):
+        """
+        Get a dict of featured add-ons for app.
+
+        Returns: {addon_id: [featured locales]}
+        """
+        qs = Addon.objects.featured(app)
+        vals = qs.extra(select={'locale': 'features.locale'})
+        d = collections.defaultdict(list)
+        for id, locale in vals.values_list('id', 'locale'):
+            d[id].append(locale)
+        return dict(d)
 
 
 class Preview(amo.models.ModelBase):
