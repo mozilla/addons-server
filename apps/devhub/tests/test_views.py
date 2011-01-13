@@ -1137,7 +1137,7 @@ class TestEdit(test_utils.TestCase):
         r = self.client.post(self.get_url('basic', True), data)
         eq_(r.status_code, 200)
 
-        error = "The tag 'blue' isn't allowed."
+        error = 'Invalid tag: blue'
         self.assertFormError(r, 'form', 'tags', error)
 
     def test_edit_basic_blacklisted_tags_2(self):
@@ -1147,7 +1147,7 @@ class TestEdit(test_utils.TestCase):
         r = self.client.post(self.get_url('basic', True), data)
         eq_(r.status_code, 200)
 
-        error = "The tags 'blue' and 'darn' aren't allowed."
+        error = 'Invalid tags: blue, darn'
         self.assertFormError(r, 'form', 'tags', error)
 
     def test_edit_basic_blacklisted_tags_3(self):
@@ -1158,7 +1158,7 @@ class TestEdit(test_utils.TestCase):
         r = self.client.post(self.get_url('basic', True), data)
         eq_(r.status_code, 200)
 
-        error = "The tags 'blue', 'darn' and 'swearword' aren't allowed."
+        error = 'Invalid tags: blue, darn, swearword'
         self.assertFormError(r, 'form', 'tags', error)
 
     def test_edit_basic_remove_tag(self):

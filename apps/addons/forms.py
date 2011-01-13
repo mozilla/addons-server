@@ -11,9 +11,9 @@ from tower import ugettext as _, ungettext as ngettext
 
 import amo
 import captcha.fields
-from amo.utils import (ImageCheck, slug_validator, slugify, sorted_groupby,
-                       remove_icons)
-from addons.models import MiniAddon, Addon, ReverseNameLookup, Category, AddonCategory
+from amo.utils import slug_validator, slugify, sorted_groupby, remove_icons
+from addons.models import (Addon, AddonCategory, Category, MiniAddon,
+                           ReverseNameLookup)
 from addons.widgets import IconWidgetRenderer, CategoriesSelectMultiple
 from applications.models import Application
 from devhub import tasks
@@ -95,11 +95,9 @@ class AddonFormBasic(AddonFormBase):
                 blacklisted.append(tag.tag_text)
 
         if blacklisted:
-            # L10n: "{0} and {1}" displays tags as "a, b and c".
-            msg = ngettext("The tag '{1}' isn't allowed.",
-                           "The tags '{0}' and '{1}' aren't allowed.",
-                           len(blacklisted)).format("', '".join(blacklisted[:-1]),
-                                                    blacklisted[-1])
+            # L10n: {0} is a single tag or a comma-separated list of tags.
+            msg = ngettext('Invalid tag: {0}', 'Invalid tags: {0}',
+                           len(blacklisted)).format(', '.join(blacklisted))
             raise forms.ValidationError(msg)
 
         if total > max_tags:
@@ -247,6 +245,7 @@ class AddonFormMedia(AddonFormBase):
                                     amo.ADDON_ICON_SIZES)
 
         return super(AddonFormMedia, self).save(commit)
+
 
 class AddonFormDetails(AddonFormBase):
     default_locale = forms.TypedChoiceField(choices=Addon.LOCALES)

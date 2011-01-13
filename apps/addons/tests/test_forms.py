@@ -9,7 +9,6 @@ from mock import patch
 
 from redisutils import mock_redis, reset_redis
 from addons import forms, cron
-from addons import forms
 from addons.models import Addon, Category
 
 import amo
@@ -155,6 +154,7 @@ class TestIconRemoval(test_utils.TestCase):
         for path in self.get_icon_paths():
             assert os.path.exists(path)
 
+
 class TestUpdate(test_utils.TestCase):
     fixtures = ['base/addon_3615',
                 'base/platforms',
@@ -166,7 +166,7 @@ class TestUpdate(test_utils.TestCase):
             'version': '2.0.58',
             'reqVersion': 1,
             'appID': '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}',
-            'appVersion': '3.7a1pre'
+            'appVersion': '3.7a1pre',
         }
 
     def test_beta(self):
