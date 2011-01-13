@@ -179,19 +179,27 @@ class BaseCategoryFormSet(BaseFormSet):
         super(BaseCategoryFormSet, self).__init__(*args, **kw)
         self.initial = []
         apps = sorted(self.addon.compatible_apps.keys(), key=lambda x: x.id)
+
+        # Drop any apps that don't have appropriate categories.
+        qs = Category.objects.filter(type=self.addon.type,
+                                     application__in=[a.id for a in apps])
+        app_cats = dict((k, list(v))
+                        for k, v in sorted_groupby(qs, 'application_id'))
+        for app in list(apps):
+            if not app_cats.get(app.id):
+                apps.remove(app)
+
         for app in apps:
-            cats = [c for a, c in self.addon.app_categories if a == app]
-            if cats:
-                cats = cats[0]
+            cats = dict(self.addon.app_categories).get(app, [])
             self.initial.append({'categories': [c.id for c in cats]})
+
+        # Reconstruct the forms according to the initial data.
         self._construct_forms()
 
         for app, form in zip(apps, self.forms):
             form.initial['application'] = app.id
             form.app = app
-
-            cats = order_by_translation(Category.objects.filter(
-                type=self.addon.type, application=app.id), 'name')
+            cats = sorted(app_cats[app.id], key=lambda x: x.name)
             form.fields['categories'].choices = [(c.id, c.name) for c in cats]
 
     def save(self):

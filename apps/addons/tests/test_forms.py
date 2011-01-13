@@ -9,8 +9,8 @@ from mock import patch
 
 from redisutils import mock_redis, reset_redis
 from addons import forms, cron
+from addons import forms
 from addons.models import Addon, Category
-from addons.forms import AddonFormDetails, AddonFormMedia
 
 import amo
 from amo.tests.test_helpers import get_image_path
@@ -57,7 +57,7 @@ class FormsTest(test_utils.TestCase):
         eq_(f.errors.get('name'), None)
 
     def test_locales(self):
-        form = AddonFormDetails(request={})
+        form = forms.AddonFormDetails(request={})
         eq_(form.fields['default_locale'].choices[0][0], 'af')
 
 
@@ -148,8 +148,8 @@ class TestIconRemoval(test_utils.TestCase):
         img = get_image_path('non-animated.png')
         data = {'icon_upload': img, 'icon_type': 'text/png'}
         self.request.FILES = {'icon_upload': open(img)}
-        form = AddonFormMedia(data=data, request=self.request,
-                              instance=self.addon)
+        form = forms.AddonFormMedia(data=data, request=self.request,
+                                    instance=self.addon)
         assert form.is_valid()
         form.save(self.addon)
         for path in self.get_icon_paths():
@@ -210,3 +210,15 @@ class TestUpdate(test_utils.TestCase):
         form = forms.UpdateForm(data)
         assert form.is_valid()
         eq_(form.version_int, 3070000001000)
+
+
+class TestCategoryForm(test_utils.TestCase):
+    fixtures = ['base/apps']
+
+    def test_no_possible_categories(self):
+        Category.objects.create(type=amo.ADDON_SEARCH,
+                                application_id=amo.FIREFOX.id)
+        addon = Addon.objects.create(type=amo.ADDON_SEARCH)
+        form = forms.CategoryFormSet(addon=addon)
+        apps = [f.app for f in form.forms]
+        eq_(apps, [amo.FIREFOX])

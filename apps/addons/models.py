@@ -1051,8 +1051,8 @@ class Category(amo.models.ModelBase):
     description = TranslatedField()
     type = models.PositiveIntegerField(db_column='addontype_id')
     application = models.ForeignKey('applications.Application')
-    count = models.IntegerField('Addon count')
-    weight = models.IntegerField(
+    count = models.IntegerField('Addon count', default=0)
+    weight = models.IntegerField(default=0,
         help_text='Category weight used in sort ordering')
     misc = models.BooleanField(default=False)
 
