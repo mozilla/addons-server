@@ -444,6 +444,7 @@ def profile(request, addon_id, addon):
                         dict(addon=addon, profile_form=profile_form))
 
 
+@post_required
 def upload(request):
     if request.method == 'POST':
         #TODO(gkoberger): Bug 610800 - Don't load uploads into memory.
