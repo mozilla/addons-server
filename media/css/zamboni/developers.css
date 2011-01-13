@@ -1457,7 +1457,7 @@ form.select-review .errorlist {
     right: 0;
     bottom: 0;
     width: auto;
-    height: 100%;
+    height: 110%;
     opacity: 0;
     cursor: pointer;
     z-index: 1;
