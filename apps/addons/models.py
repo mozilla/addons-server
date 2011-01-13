@@ -544,8 +544,8 @@ class Addon(amo.models.ModelBase):
         addons = [a for a in addons if a.type != amo.ADDON_PERSONA]
 
         version_ids = filter(None, (a._current_version_id for a in addons))
-        versions = list(Version.objects.filter(id__in=version_ids))
-        Version.transformer(versions)
+        versions = list(Version.objects.filter(id__in=version_ids).order_by()
+                        .transform(Version.transformer))
         for version in versions:
             addon_dict[version.addon_id]._current_version = version
 
