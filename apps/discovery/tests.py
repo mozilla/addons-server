@@ -156,7 +156,7 @@ class RecsTest(test_utils.TestCase):
 
 
 class TestModuleAdmin(test_utils.TestCase):
-    fixtures = ('base/apps', )
+    fixtures = ['base/apps']
 
     def test_sync_db_and_registry(self):
         def check():
@@ -187,3 +187,18 @@ class TestModuleAdmin(test_utils.TestCase):
         form = DiscoveryModuleForm(d)
         assert form.is_valid()
         eq_(form.cleaned_data['locales'], 'fa en-US he')
+
+
+class TestUrls(test_utils.TestCase):
+    fixtures = ['base/apps', 'base/addon_3615']
+
+    def test_resolve_addon_view(self):
+        r = self.client.get('/en-US/firefox/discovery/addon/3615', follow=True)
+        url = reverse('discovery.addons.detail', args=['a3615'])
+        self.assertRedirects(r, url, 301)
+
+    def test_resolve_disco_pane(self):
+        r = self.client.get('/en-US/firefox/discovery/4.0b8/Darwin',
+                            follow=True)
+        url = reverse('discovery.pane', args=['4.0b8', 'Darwin'])
+        self.assertRedirects(r, url, 301)

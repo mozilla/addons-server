@@ -12,6 +12,7 @@ addon_patterns = patterns('',
         name='discovery.addons.eula'),
 )
 
+browser_re = '(?P<version>[^/]+)/(?P<platform>[^/]+)'
 
 urlpatterns = patterns('',
     # Force the match so this doesn't get picked up by the wide open
@@ -22,7 +23,8 @@ urlpatterns = patterns('',
     url('^addon/%s/' % ADDON_ID, include(addon_patterns)),
 
     url('^recs$', views.recommendations, name='discovery.recs'),
-    url('^(?P<version>[^/]+)/(?P<platform>[^/]+)$', views.pane,
-        name='discovery.pane'),
+    url('^%s$' % browser_re,
+        lambda r, **kw: redirect('discovery.pane', permanent=True, **kw)),
+    url('^pane/%s$' % browser_re, views.pane, name='discovery.pane'),
     url('^modules$', views.module_admin, name='discovery.module_admin'),
 )
