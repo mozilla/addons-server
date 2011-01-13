@@ -123,12 +123,12 @@ $.fn.popup = function(click_target, o) {
     $popup.setWidth = function(w) {
         $popup.css({width: w});
         return $popup;
-    }
+    };
 
     $popup.setPos = function(el, offset) {
         offset = offset || $popup.o.offset;
         el = el || $popup.o.pointTo;
-        if (!el) return;
+        if (!el) return false;
         $popup.detach().appendTo("body");
         var pt  = $(el),
             pos = pt.offset(),
@@ -145,7 +145,7 @@ $.fn.popup = function(click_target, o) {
             'left': toX,
             'top': toY,
             'right': 'inherit',
-            'bottom': 'inherit',
+            'bottom': 'inherit'
         });
         $popup.o.pointTo = el;
         return $popup;
@@ -244,7 +244,7 @@ $.fn.modal = function(click_target, o) {
     $modal.setWidth = function(w) {
         $modal.css({width: w});
         return $modal;
-    }
+    };
 
     $modal.setPos = function(offset) {
         offset = offset || $modal.o.offset;
@@ -336,11 +336,11 @@ function load_unicode() {
 }
 
 function makeslug(s) {
-    if(! s) return;
+    if(! s) return false;
     var re = new RegExp("[^\\w" + z.unicode_letters + "\\s-]+","g");
     s = $.trim(s.replace(re, ' '));
     s = s.replace(/[-\s]+/g, '-').toLowerCase();
-    return s
+    return s;
 }
 
 function show_slug_edit(e) {
@@ -356,7 +356,7 @@ function slugify() {
         url_customized = slug.attr('data-customized') == 0 ||
                                    !slug.attr('data-customized');
         if (url_customized || !slug.val()) {
-            var s = makeslug($('#id_name').val())
+            var s = makeslug($('#id_name').val());
             slug.val(s);
             name_val = s;
             $('#slug_value').text(s);
@@ -372,9 +372,9 @@ function slugify() {
 // Initializes character counters for textareas.
 function initCharCount() {
     var countChars = function(el, cc) {
-        var el = $(el),
-            val = el.val(),
-            max = parseInt(cc.attr('data-maxlength')),
+        var $el = $(el),
+            val = $el.val(),
+            max = parseInt(cc.attr('data-maxlength'), 10),
             left = max - val.length;
         // L10n: {0} is the number of characters left.
         cc.html(format(ngettext('<b>{0}</b> character left.',
@@ -383,11 +383,12 @@ function initCharCount() {
     };
     $('.char-count').each(function() {
         var $cc = $(this),
-            $form = $(this).closest('form');
+            $form = $(this).closest('form'),
+            $el;
         if ($cc.attr('data-for-startswith') !== undefined) {
-            var $el = $('textarea[id^=' + $cc.attr('data-for-startswith') + ']:visible', $form);
+            $el = $('textarea[id^=' + $cc.attr('data-for-startswith') + ']:visible', $form);
         } else {
-            var $el = $('textarea#' + $cc.attr('data-for'), $form);
+            $el = $('textarea#' + $cc.attr('data-for'), $form);
         }
         $el.bind('keyup blur', function() { countChars(this, $cc) }).trigger('blur');
     });
