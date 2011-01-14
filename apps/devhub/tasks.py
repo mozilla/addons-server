@@ -70,7 +70,7 @@ def _validator(file_path):
                     spidermonkey=settings.SPIDERMONKEY)
 
 
-@task(queue='images')
+@task
 def resize_icon(src, dst, size, **kw):
     """Resizes addon icons."""
     log.info('[1@None] Resizing icon: %s' % dst)
@@ -88,7 +88,7 @@ def resize_icon(src, dst, size, **kw):
         log.error("Error saving addon icon: %s" % e)
 
 
-@task(queue='images')
+@task
 def resize_preview(src, thumb_dst, full_dst, **kw):
     """Resizes preview images."""
     log.info('[1@None] Resizing preview: %s' % thumb_dst)

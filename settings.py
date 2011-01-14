@@ -564,6 +564,8 @@ CELERY_ROUTES = {
     'bandwagon.tasks.resize_icon': {'queue': 'images'},
     'users.tasks.resize_photo': {'queue': 'images'},
     'users.tasks.delete_photo': {'queue': 'images'},
+    'devhub.tasks.resize_icon': {'queue': 'images'},
+    'devhub.tasks.resize_preview': {'queue': 'images'},
 }
 
 
