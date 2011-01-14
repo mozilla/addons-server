@@ -264,7 +264,7 @@ class Collection(amo.models.ModelBase):
         cursor = connection.cursor()
         now = datetime.now()
 
-        log_this = (self.type == amo.COLLECTION_NORMAL)
+        log_this = (self.type == amo.COLLECTION_NORMAL and self.listed)
         if remove:
             cursor.execute("DELETE FROM addons_collections "
                            "WHERE collection_id=%s AND addon_id IN (%s)" %
@@ -305,12 +305,14 @@ class Collection(amo.models.ModelBase):
     def add_addon(self, addon):
         "Adds an addon to the collection."
         CollectionAddon.objects.get_or_create(addon=addon, collection=self)
-        amo.log(amo.LOG.ADD_TO_COLLECTION, addon, self)
+        if self.type == amo.COLLECTION_NORMAL and self.listed:
+            amo.log(amo.LOG.ADD_TO_COLLECTION, addon, self)
         self.save()  # To invalidate Collection.
 
     def remove_addon(self, addon):
         CollectionAddon.objects.filter(addon=addon, collection=self).delete()
-        amo.log(amo.LOG.REMOVE_FROM_COLLECTION, addon, self)
+        if self.type == amo.COLLECTION_NORMAL and self.listed:
+            amo.log(amo.LOG.REMOVE_FROM_COLLECTION, addon, self)
         self.save()  # To invalidate Collection.
 
     def owned_by(self, user):

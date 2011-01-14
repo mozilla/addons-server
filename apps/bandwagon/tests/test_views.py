@@ -18,6 +18,7 @@ from amo.utils import urlparams
 from bandwagon import forms
 from bandwagon.models import (Collection, CollectionVote, CollectionUser,
                               CollectionWatcher)
+from devhub.models import ActivityLog
 from users.models import UserProfile
 
 
@@ -617,6 +618,15 @@ class TestChangeAddon(test_utils.TestCase):
         self.assert_(self.addon in c.addons.all())
         eq_(c.addons.count(), 1)
 
+    def test_add_secretly(self):
+        """
+        When we add to a private collection, make sure we don't log anything.
+        """
+        self.client.post(self.add, {'addon_id': self.addon.id},
+                         HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        # There should be no log objects for this add-on
+        eq_(len(ActivityLog.objects.for_addons(self.addon)), 0)
+
     def test_add_existing(self):
         r = self.client.post(self.add, {'addon_id': self.addon.id},
                              HTTP_X_REQUESTED_WITH='XMLHttpRequest')
@@ -627,6 +637,18 @@ class TestChangeAddon(test_utils.TestCase):
         c = Collection.objects.get(author__username='jbalogh', slug='mobile')
         self.assert_(self.addon in c.addons.all())
         eq_(c.addons.count(), 1)
+
+    def test_remove_secretly(self):
+        """
+        When we remove from a private collection, make sure we don't log
+        anything.
+        """
+        self.client.post(self.add, {'addon_id': self.addon.id},
+                         HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.client.post(self.remove, {'addon_id': self.addon.id},
+                         HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        # There should be no log objects for this add-on
+        eq_(len(ActivityLog.objects.for_addons(self.addon)), 0)
 
     def test_remove_success(self):
         r = self.client.post(self.add, {'addon_id': self.addon.id},
