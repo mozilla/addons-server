@@ -73,6 +73,26 @@ class TestLastUpdated(test_utils.TestCase):
         for addon in Addon.objects.filter(status=amo.STATUS_PUBLIC):
             eq_(addon.last_updated, addon.created)
 
+    def test_last_updated_lite(self):
+        # Make sure lite addons' last_updated matches their file's
+        # datestatuschanged.
+        Addon.objects.update(status=amo.STATUS_LITE, last_updated=None)
+        File.objects.update(status=amo.STATUS_LITE)
+        cron.addon_last_updated()
+        addon = Addon.objects.get(id=3615)
+        files = File.objects.filter(version__addon=addon)
+        eq_(len(files), 1)
+        eq_(addon.last_updated, files[0].datestatuschanged)
+        assert addon.last_updated
+
+    def test_last_update_lite_no_files(self):
+        Addon.objects.update(status=amo.STATUS_LITE, last_updated=None)
+        File.objects.update(status=amo.STATUS_UNREVIEWED)
+        cron.addon_last_updated()
+        addon = Addon.objects.get(id=3615)
+        eq_(addon.last_updated, addon.created)
+        assert addon.last_updated
+
     def test_appsupport(self):
         ids = Addon.objects.values_list('id', flat=True)
         cron._update_appsupport(ids)
