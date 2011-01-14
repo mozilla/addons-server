@@ -1,0 +1,36 @@
+{% extends "editors/base.html" %}
+
+{% block content %}
+
+{{ page|paginator }}
+<table class="data-grid">
+  <thead>
+    <tr>
+        {% for column in table.columns %}
+          {% if column.is_ordered_reverse %}
+            {% set cls, sprite = 'ordered', 'desc' %}
+          {% elif column.is_ordered_straight %}
+            {% set cls, sprite = 'ordered', 'asc' %}
+          {% else %}
+            {% set cls, sprite = '', 'both' %}
+          {% endif %}
+          <th class="{{ cls }}"><a href="?sort={{ column.name_toggled }}">
+              {{ column }}
+              <div class="sort-icon ed-sprite-sort-{{ sprite }}"></div></a>
+          </th>
+        {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in page.object_list %}
+      <tr>
+      {% for value in row %}
+        <td>{{ value|xssafe }}</td>
+      {% endfor %}
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{{ page|paginator }}
+
+{% endblock %}

@@ -369,6 +369,9 @@ MINIFY_BUNDLES = {
         'zamboni/devhub': (
             'css/zamboni/developers.css',
         ),
+        'zamboni/editors': (
+            'css/zamboni/editors.css',
+        ),
     },
     'js': {
         # JS files common to the entire site.

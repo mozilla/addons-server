@@ -134,12 +134,61 @@
         "pk": 4043307
     },
     {
+        "pk": 5497308,
+        "model": "auth.user",
+        "fields": {
+            "username": "editor@mozilla.com",
+            "is_active": true,
+            "is_superuser": true,
+            "is_staff": true,
+            "last_login": "2010-12-29 08:47:36",
+            "groups": [],
+            "user_permissions": [],
+            "password": "sha512$7b5436061f8c0902088c292c057be69fdb17312e2f71607c9c51641f5d876522$08d1d370d89e2ae92755fd03464a7276ca607c431d04a52d659f7a184f3f9918073637d82fc88981c7099c7c46a1137b9fdeb675304eb98801038905a9ee0600",
+            "email": "editor@mozilla.com",
+            "date_joined": "2010-10-19 13:02:25"
+        }
+    },
+    {
+        "pk": 5497308,
+        "model": "users.userprofile",
+        "fields": {
+            "sandboxshown": false,
+            "display_collections_fav": false,
+            "display_collections": false,
+            "email": "editor@mozilla.com",
+            "notifycompat": false,
+            "username": "editor",
+            "failed_login_attempts": 0,
+            "deleted": false,
+            "emailhidden": false,
+            "last_login_attempt_ip": "127.0.0.1",
+            "last_login_attempt": "2010-11-16 10:51:34",
+            "password": "sha512$7b5436061f8c0902088c292c057be69fdb17312e2f71607c9c51641f5d876522$08d1d370d89e2ae92755fd03464a7276ca607c431d04a52d659f7a184f3f9918073637d82fc88981c7099c7c46a1137b9fdeb675304eb98801038905a9ee0600",
+            "nickname": "editor",
+            "resetcode_expires": "2010-10-19 13:02:25",
+            "created": "2010-10-19 13:02:25",
+            "modified": "2010-11-16 10:51:34",
+            "last_login_ip": "127.0.0.1",
+            "notifyevents": false,
+            "user": 5497308
+        }
+    },
+    {
         "pk": 1,
         "model": "access.group",
         "fields": {
             "rules": "*:*",
-            "modified": null,
             "name": "Admins",
+            "created": "2007-03-05 16:06:55"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "access.group",
+        "fields": {
+            "rules": "Editors:*",
+            "name": "Editors",
             "created": "2007-03-05 16:06:55"
         }
     },
@@ -149,6 +198,14 @@
         "fields": {
             "group": 1,
             "user": 4043307
+        }
+    },
+    {
+        "pk": 258,
+        "model": "access.groupuser",
+        "fields": {
+            "group": 2,
+            "user": 5497308
         }
     }
 ]

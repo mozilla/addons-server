@@ -1,0 +1,56 @@
+.app-icon {
+    float: left;
+    margin-right: 4px;
+    background: url(../../img/developers/editors-sprite.png) no-repeat top left;
+    width: 16px; height: 16px;
+}
+.ed-sprite-admin-review { background-position: 0 0; }
+.ed-sprite-firefox { background-position: 0 -66px; }
+.ed-sprite-mobile { background-position: 0 -132px; }
+.ed-sprite-mz { background-position: 0 -198px; }
+.ed-sprite-mozilla { background-position: 0 -198px; }
+.ed-sprite-seamonkey { background-position: 0 -264px; }
+.ed-sprite-sunbird { background-position: 0 -497px; }
+.ed-sprite-thunderbird { background-position: 0 -563px; }
+.sort-icon {
+    margin-top: 0.5em;
+    background: url(../../img/developers/editors-sprite.png) no-repeat top left;
+    float: right;
+}
+.ed-sprite-sort-asc {
+    background-position: 0 -330px;
+    width: 21px; height: 4px; }
+.ed-sprite-sort-both {
+    background-position: 0 -384px;
+    width: 21px; height: 9px; }
+.ed-sprite-sort-desc {
+    background-position: 0 -443px;
+    width: 21px; height: 4px; }
+table.data-grid {
+    border: 1px solid #666666;
+}
+table.data-grid tr th a:active,
+table.data-grid tr th a:hover,
+table.data-grid tr th a:visited {
+    color: #3D6DB5;
+}
+table.data-grid tr th.ordered {
+    background-color: #D0E8F4;
+}
+table.data-grid tr th.ordered a:active,
+table.data-grid tr th.ordered a:hover,
+table.data-grid tr th.ordered a:visited {
+    color: #003595;
+}
+table.data-grid tr th, table.data-grid tr td {
+    padding: 0.5em;
+}
+table.data-grid tr td {
+    border-top: 1px solid #DDDDDD;
+}
+table.data-grid tbody tr:nth-child(odd) {
+    background-color: #F3F3F3;
+}
+table.data-grid tbody tr:nth-child(even) {
+    background-color: #FFFFFF;
+}

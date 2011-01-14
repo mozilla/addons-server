@@ -1,0 +1,574 @@
+[
+    {
+        "pk": 758965,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": "Some new features, several bug fixes.",
+            "created": "2009-12-04 19:02:24",
+            "locale": "en-US",
+            "id": 707988,
+            "localized_string": "Some new features, several bug fixes."
+        }
+    },
+    {
+        "pk": 1382212,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": "[removed]",
+            "created": "2010-09-07 21:14:44",
+            "locale": "en-US",
+            "id": 1308444,
+            "localized_string": "[removed]"
+        }
+    },
+    {
+        "pk": 415971,
+        "model": "translations.translation",
+        "fields": {
+            "created": "2009-05-07 12:18:33",
+            "locale": "en-US",
+            "id": 377576,
+            "localized_string": "http://creativecommons.org/licenses/by-nd/3.0/"
+        }
+    },
+    {
+        "pk": 86573,
+        "model": "versions.version",
+        "fields": {
+            "license": 77,
+            "created": "2009-12-04 19:01:24",
+            "releasenotes": 707988,
+            "modified": "2009-12-04 19:02:31",
+            "version": "0.9.3",
+            "addon": 2286
+        }
+    },
+    {
+        "pk": 698131,
+        "model": "translations.translation",
+        "fields": {
+            "created": "2009-10-21 18:08:57",
+            "locale": "en-US",
+            "modified": "2009-11-27 18:58:18",
+            "id": 650750,
+            "localized_string": "[removed]"
+        }
+    },
+    {
+        "pk": 698130,
+        "model": "translations.translation",
+        "fields": {
+            "created": "2009-10-21 18:08:56",
+            "locale": "en-US",
+            "modified": "2009-12-15 07:00:03",
+            "id": 650749,
+            "localized_string": "[removed]"
+        }
+    },
+    {
+        "pk": 108574,
+        "model": "translations.translation",
+        "fields": {
+            "created": "2007-10-15 13:17:11",
+            "locale": "en-US",
+            "modified": "2009-04-06 08:21:04",
+            "id": 75558,
+            "localized_string": "[removed]"
+        }
+    },
+    {
+        "pk": 19335,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": "[removed]",
+            "created": "2007-03-05 13:10:33",
+            "locale": "en-US",
+            "modified": "2010-09-28 15:30:51",
+            "id": 9748,
+            "localized_string": "[removed]"
+        }
+    },
+    {
+        "pk": 19338,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": "[removed]",
+            "created": "2007-03-05 13:10:33",
+            "locale": "en-US",
+            "modified": "2009-05-14 01:46:07",
+            "id": 9749,
+            "localized_string": "[removed]"
+        }
+    },
+    {
+        "pk": 19327,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": "[removed]",
+            "created": "2007-03-05 13:10:33",
+            "locale": "en-US",
+            "modified": "2010-09-28 15:30:51",
+            "id": 9747,
+            "localized_string": "[removed]"
+        }
+    },
+    {
+        "pk": 241547,
+        "model": "translations.translation",
+        "fields": {
+            "created": "2008-08-02 18:00:50",
+            "locale": "en-US",
+            "modified": "2010-09-28 13:44:03",
+            "id": 204517,
+            "localized_string": "http://www.the-converter.co/feedback.php?src=a"
+        }
+    },
+    {
+        "pk": 241546,
+        "model": "translations.translation",
+        "fields": {
+            "created": "2008-08-02 18:00:50",
+            "locale": "en-US",
+            "modified": "2009-04-06 08:19:43",
+            "id": 204516,
+            "localized_string": "none@nowhere"
+        }
+    },
+    {
+        "pk": 19317,
+        "model": "translations.translation",
+        "fields": {
+            "created": "2007-03-05 13:10:33",
+            "locale": "en-US",
+            "modified": "2010-09-28 13:44:03",
+            "id": 9746,
+            "localized_string": "http://www.the-converter.co/"
+        }
+    },
+    {
+        "pk": 19307,
+        "model": "translations.translation",
+        "fields": {
+            "created": "2007-03-05 13:10:33",
+            "locale": "en-US",
+            "modified": "2009-04-06 08:21:04",
+            "id": 9745,
+            "localized_string": "Converter"
+        }
+    },
+    {
+        "pk": 117129,
+        "model": "versions.version",
+        "fields": {
+            "license": 5,
+            "created": "2010-09-07 21:13:56",
+            "releasenotes": 1308444,
+            "approvalnotes": "[removed]",
+            "modified": "2010-09-07 21:14:45",
+            "version": "3.800",
+            "addon": 52369
+        }
+    },
+    {
+        "pk": 881229,
+        "model": "translations.translation",
+        "fields": {
+            "created": "2010-02-09 10:45:02",
+            "locale": "en-US",
+            "modified": null,
+            "id": 823673,
+            "localized_string": "[removed]"
+        }
+    },
+    {
+        "pk": 881228,
+        "model": "translations.translation",
+        "fields": {
+            "created": "2010-02-09 10:45:00",
+            "locale": "en-US",
+            "id": 823672,
+            "localized_string": "[removed]"
+        }
+    },
+    {
+        "pk": 1242341,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": "[removed]",
+            "created": "2010-07-02 05:42:18",
+            "locale": "en-US",
+            "id": 1172842,
+            "localized_string": "[removed]"
+        }
+    },
+    {
+        "pk": 753533,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": "[removed]",
+            "created": "2009-11-30 10:08:41",
+            "locale": "en-US",
+            "modified": "2010-07-02 05:42:17",
+            "id": 702814,
+            "localized_string": "[removed]"
+        }
+    },
+    {
+        "pk": 753537,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": "[removed]",
+            "created": "2009-11-30 10:15:03",
+            "locale": "en-US",
+            "modified": "2010-07-02 05:42:18",
+            "id": 702818,
+            "localized_string": "[removed]"
+        }
+    },
+    {
+        "pk": 1242343,
+        "model": "translations.translation",
+        "fields": {
+            "created": "2010-07-02 05:44:04",
+            "locale": "en-US",
+            "modified": null,
+            "id": 1172844,
+            "localized_string": "http://Facebook.com/betterfb"
+        }
+    },
+    {
+        "pk": 1242342,
+        "model": "translations.translation",
+        "fields": {
+            "created": "2010-07-02 05:44:04",
+            "locale": "en-US",
+            "id": 1172843,
+            "localized_string": "none@nowhere"
+        }
+    },
+    {
+        "pk": 753531,
+        "model": "translations.translation",
+        "fields": {
+            "created": "2009-11-30 10:08:41",
+            "locale": "en-US",
+            "modified": "2010-07-02 05:44:03",
+            "id": 702812,
+            "localized_string": "http://BetterFacebook.net"
+        }
+    },
+    {
+        "pk": 753532,
+        "model": "translations.translation",
+        "fields": {
+            "created": "2009-11-30 10:08:41",
+            "locale": "en-US",
+            "id": 702813,
+            "localized_string": "Better Facebook!"
+        }
+    },
+    {
+        "pk": 1442595,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": "[removed]",
+            "created": "2010-09-26 08:07:00",
+            "locale": "en-US",
+            "id": 1366941,
+            "localized_string": "[removed]"
+        }
+    },
+    {
+        "pk": 77,
+        "model": "versions.license",
+        "fields": {
+            "created": "2009-05-07 12:18:33",
+            "text": 377576,
+            "modified": "2009-05-07 12:18:33",
+            "some_rights": false,
+            "builtin": 0,
+            "on_form": false
+        }
+    },
+    {
+        "pk": 5,
+        "model": "versions.license",
+        "fields": {
+            "created": "2009-04-30 22:29:53",
+            "modified": "2009-04-30 22:29:53",
+            "some_rights": false,
+            "builtin": 1,
+            "on_form": false
+        }
+    },
+    {
+        "pk": 347,
+        "model": "applications.appversion",
+        "fields": {
+            "version_int": 4000000106100,
+            "application": 1,
+            "version": "4.0b6"
+        }
+    },
+    {
+        "pk": 97,
+        "model": "applications.appversion",
+        "fields": {
+            "version_int": 2000000200100,
+            "application": 1,
+            "version": "2.0",
+            "created": "2007-03-05 13:09:26"
+        }
+    },
+    {
+        "pk": 2286,
+        "model": "addons.addon",
+        "fields": {
+            "dev_agreement": true,
+            "eula": 75558,
+            "last_updated": "2009-12-08 22:07:46",
+            "view_source": false,
+            "enable_thankyou": false,
+            "total_downloads": 297990,
+            "developer_comments": 9748,
+            "_current_version": 86573,
+            "average_daily_downloads": 249,
+            "admin_review_type": 1,
+            "the_future": 650750,
+            "trusted": false,
+            "total_contributions": "0.00",
+            "binary": false,
+            "guid": "{8B72860F-C5F8-4286-865E-D2C2DB98A9E6}",
+            "weekly_downloads": 2690,
+            "support_url": 204517,
+            "disabled_by_user": false,
+            "paypal_id": "none@nowhere.com",
+            "average_rating": 4.7045000000000003,
+            "wants_contributions": false,
+            "average_daily_users": 19788,
+            "bayesian_rating": 4.6212799999999996,
+            "share_count": 3,
+            "homepage": 9746,
+            "support_email": 204516,
+            "public_stats": false,
+            "status": 4,
+            "description": 9747,
+            "default_locale": "en-US",
+            "get_satisfaction_product": "",
+            "prerelease": false,
+            "admin_review": true,
+            "slug": "",
+            "external_software": false,
+            "highest_status": 4,
+            "get_satisfaction_company": "",
+            "name": 9745,
+            "created": "2006-03-26 05:55:23",
+            "type": 1,
+            "icon_type": "image/png",
+            "annoying": 1,
+            "modified": "2011-01-18 15:05:59",
+            "summary": 9749,
+            "site_specific": false,
+            "total_reviews": 44,
+            "the_reason": 650749,
+            "nomination_date": "2009-04-06 08:21:09"
+        }
+    },
+    {
+        "pk": 350,
+        "model": "applications.appversion",
+        "fields": {
+            "version_int": 4000000108000,
+            "application": 1,
+            "version": "4.0b8pre"
+        }
+    },
+    {
+        "pk": 233,
+        "model": "applications.appversion",
+        "fields": {
+            "version_int": 3000000200100,
+            "application": 1,
+            "version": "3.0"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "applications.application",
+        "fields": {
+            "guid": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}",
+            "modified": "2008-11-03 15:34:59",
+            "created": "2007-03-05 13:09:26"
+        }
+    },
+    {
+        "pk": 52369,
+        "model": "addons.addon",
+        "fields": {
+            "dev_agreement": true,
+            "last_updated": "2010-09-08 09:38:22",
+            "view_source": true,
+            "enable_thankyou": false,
+            "total_downloads": 47160,
+            "developer_comments": 1172842,
+            "_current_version": 117129,
+            "average_daily_downloads": 152,
+            "admin_review_type": 1,
+            "the_future": 823673,
+            "trusted": false,
+            "total_contributions": "64.00",
+            "binary": false,
+            "guid": "none@nowhere.com",
+            "weekly_downloads": 1099,
+            "support_url": 1172844,
+            "disabled_by_user": false,
+            "paypal_id": "none@nowhere.com",
+            "average_rating": 3.1818,
+            "wants_contributions": true,
+            "average_daily_users": 4436,
+            "bayesian_rating": 3.10846,
+            "share_count": 0,
+            "homepage": 702812,
+            "support_email": 1172843,
+            "public_stats": true,
+            "status": 4,
+            "description": 702818,
+            "default_locale": "en-US",
+            "get_satisfaction_product": "",
+            "prerelease": false,
+            "admin_review": false,
+            "slug": "better-facebook",
+            "external_software": false,
+            "highest_status": 4,
+            "get_satisfaction_company": "",
+            "name": 702813,
+            "created": "2009-11-30 10:08:41",
+            "type": 1,
+            "icon_type": "image/png",
+            "annoying": 2,
+            "modified": "2011-01-18 15:05:10",
+            "summary": 702814,
+            "suggested_amount": "5.00",
+            "site_specific": true,
+            "total_reviews": 33,
+            "the_reason": 823672,
+            "nomination_date": "2010-01-19 07:18:11"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "files.platform",
+        "fields": {
+            "icontype": "",
+            "modified": "2008-04-07 08:16:55",
+            "created": "2007-03-05 13:09:27"
+        }
+    },
+    {
+        "pk": 118409,
+        "model": "versions.version",
+        "fields": {
+            "license": 77,
+            "created": "2010-09-26 08:05:40",
+            "releasenotes": 1366941,
+            "approvalnotes": "[removed]",
+            "modified": "2010-10-05 06:59:49",
+            "version": "1.0.0",
+            "addon": 2286
+        }
+    },
+    {
+        "pk": 118467,
+        "model": "versions.version",
+        "fields": {
+            "license": 5,
+            "created": "2010-09-27 08:44:01",
+            "approvalnotes": "",
+            "modified": "2010-09-27 08:44:53",
+            "version": "4.105",
+            "addon": 52369
+        }
+    },
+    {
+        "pk": 91808,
+        "model": "versions.applicationsversions",
+        "fields": {
+            "application": 1,
+            "max": 347,
+            "version": 118409,
+            "min": 97
+        }
+    },
+    {
+        "pk": 77311474,
+        "model": "versions.versionsummary",
+        "fields": {
+            "min": 97,
+            "max": 291,
+            "created": "2010-09-26 08:05:40",
+            "modified": "2010-10-01 20:13:21",
+            "application": 1,
+            "version": 118409,
+            "addon": 2286
+        }
+    },
+    {
+        "pk": 100455,
+        "model": "files.file",
+        "fields": {
+            "status": 1,
+            "codereview": false,
+            "no_restart": false,
+            "hash": "sha256:88425938728b0f6e68205c86121d5e9c83c98d4982690d9fdd3f2025e93a0451",
+            "created": "2010-10-05 06:59:17",
+            "jetpack": false,
+            "modified": "2010-10-05 06:59:49",
+            "filename": "converter-1.0.0-fx.xpi",
+            "platform": 1,
+            "version": 118409,
+            "datestatuschanged": "2010-10-05 06:59:07",
+            "size": 79
+        }
+    },
+    {
+        "pk": 91884,
+        "model": "versions.applicationsversions",
+        "fields": {
+            "application": 1,
+            "max": 350,
+            "version": 118467,
+            "min": 233
+        }
+    },
+    {
+        "pk": 77322711,
+        "model": "versions.versionsummary",
+        "fields": {
+            "min": 233,
+            "max": 350,
+            "created": "2010-09-27 08:44:01",
+            "modified": "2010-09-27 08:44:53",
+            "application": 1,
+            "version": 118467,
+            "addon": 52369
+        }
+    },
+    {
+        "pk": 99984,
+        "model": "files.file",
+        "fields": {
+            "status": 1,
+            "codereview": false,
+            "no_restart": false,
+            "hash": "sha256:6f26b5f65fc0f89b997cf9c84a6d8627d1b8e89f0041c4010223db8b1c0e93e3",
+            "created": "2010-09-27 08:44:01",
+            "jetpack": false,
+            "modified": "2010-09-27 08:44:52",
+            "filename": "better_facebook!-4.105-fx.xpi",
+            "platform": 1,
+            "version": 118467,
+            "datestatuschanged": "2010-09-27 08:43:55",
+            "size": 72
+        }
+    }
+]
