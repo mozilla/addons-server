@@ -26,7 +26,8 @@ from addons.utils import ReverseNameLookup
 from files.models import File
 from reviews.models import Review
 from stats.models import AddonShareCountTotal
-from translations.fields import TranslatedField, PurifiedField, LinkifiedField
+from translations.fields import (TranslatedField, PurifiedField, LinkifiedField,
+                                 Translation)
 from translations.query import order_by_translation
 from users.models import UserProfile, PersonaAuthor, UserForeignKey
 from versions.compare import version_int
@@ -244,6 +245,11 @@ class Addon(amo.models.ModelBase):
         super(Addon, self).save(**kw)
 
     def clean_slug(self):
+        if not self.name:
+            try:
+                self.name = Translation.objects.get(id=self.name_id)
+            except Translation.DoesNotExist:
+                self.name = 'addon'
         if not self.slug:
             self.slug = slugify(self.name)[:27]
         if self.slug.isdigit():
