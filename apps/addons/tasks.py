@@ -68,4 +68,4 @@ def delete_preview_files(id):
         try:
             os.remove(f)
         except Exception, e:
-            log.error('Error deleting preview file: %s' % f)
+            log.error('Error deleting preview file (%s): %s' % (f, e))
