@@ -38,7 +38,7 @@ from .forms import UpdateForm
 from .decorators import addon_view_factory
 
 log = commonware.log.getLogger('z.addons')
-addon_view = addon_view_factory(qs=Addon.objects.valid())
+addon_view = addon_view_factory(qs=Addon.objects.valid)
 
 
 def author_addon_clicked(f):

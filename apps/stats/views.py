@@ -174,7 +174,7 @@ def check_stats_permission(request, addon, for_contributions=False):
     raise PermissionDenied
 
 
-@addon_view_factory(Addon.objects.valid())
+@addon_view_factory(Addon.objects.valid)
 def stats_report(request, addon, report):
     check_stats_permission(request, addon)
     stats_base_url = reverse('stats.overview', args=[addon.slug])

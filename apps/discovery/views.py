@@ -22,7 +22,7 @@ from .models import DiscoveryModule
 from .forms import DiscoveryModuleForm
 from .modules import registry as module_registry
 
-addon_view = addon_view_factory(Addon.objects.valid())
+addon_view = addon_view_factory(Addon.objects.valid)
 
 
 def pane(request, version, platform):

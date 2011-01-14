@@ -19,7 +19,7 @@ from versions.models import Version
 # The version detail page redirects to the version within pagination, so we
 # need to enforce the number of versions per page.
 PER_PAGE = 30
-addon_view = addon_view_factory(Addon.objects.valid())
+addon_view = addon_view_factory(Addon.objects.valid)
 
 
 @addon_view
@@ -69,7 +69,8 @@ def download_file(request, file_id, type=None):
     return response
 
 
-@addon_view_factory(Addon.objects.filter(_current_version__isnull=False))
+guard = lambda: Addon.objects.filter(_current_version__isnull=False)
+@addon_view_factory(guard)
 def download_latest(request, addon, type='xpi', platform=None):
     platforms = [amo.PLATFORM_ALL.id]
     if platform is not None and int(platform) in amo.PLATFORMS:

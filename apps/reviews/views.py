@@ -16,7 +16,7 @@ from .models import Review, ReviewFlag, GroupedRating, Spam
 from . import forms
 
 log = commonware.log.getLogger('z.reviews')
-addon_view = addon_view_factory(qs=Addon.objects.valid())
+addon_view = addon_view_factory(qs=Addon.objects.valid)
 
 
 def flag_context():
