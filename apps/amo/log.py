@@ -235,13 +235,16 @@ class CHANGE_LICENSE:
     id = 37
     format = _(u'{addon} is now licensed under {0.name}.')
 
+
 class CHANGE_POLICY:
     id = 38
     format = _(u'{addon} policy changed.')
 
+
 class CHANGE_ICON:
     id = 39
     format = _(u'{addon} icon changed.')
+
 
 class CUSTOM_TEXT:
     id = 98
@@ -295,6 +298,11 @@ def log(action, *args, **kw):
         al.save()
 
     for arg in args:
+        if isinstance(arg, tuple):
+            if arg[0] == Addon:
+                AddonLog(addon_id=arg[1], activity_log=al).save()
+            elif arg[0] == UserProfile:
+                AddonLog(user_id=arg[1], activity_log=al).save()
         if isinstance(arg, Addon):
             AddonLog(addon=arg, activity_log=al).save()
         elif isinstance(arg, UserProfile):
