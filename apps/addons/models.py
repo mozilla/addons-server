@@ -18,6 +18,7 @@ from tower import ugettext_lazy as _
 
 import amo.models
 import sharing.utils as sharing
+from amo.decorators import use_master
 from amo.fields import DecimalCharField
 from amo.utils import (send_mail, urlparams, sorted_groupby, JSONEncoder,
                        slugify, to_language)
@@ -26,8 +27,8 @@ from addons.utils import ReverseNameLookup
 from files.models import File
 from reviews.models import Review
 from stats.models import AddonShareCountTotal
-from translations.fields import (TranslatedField, PurifiedField, LinkifiedField,
-                                 Translation)
+from translations.fields import (TranslatedField, PurifiedField,
+                                 LinkifiedField, Translation)
 from translations.query import order_by_translation
 from users.models import UserProfile, PersonaAuthor, UserForeignKey
 from versions.compare import version_int
@@ -242,24 +243,29 @@ class Addon(amo.models.ModelBase):
 
     def save(self, **kw):
         self.clean_slug()
+        log.info('Setting new slug: %s => %s' % (self.id, self.slug))
         super(Addon, self).save(**kw)
 
+    @use_master
     def clean_slug(self):
         if not self.slug:
             if not self.name:
                 try:
-                    name = Translation.objects.get(id=self.name_id)
+                    name = Translation.objects.filter(id=self.name_id)[0]
                 except Translation.DoesNotExist:
                     name = str(self.id)
             else:
                 name = self.name
-            self.slug = slugify(name)
+            self.slug = slugify(name)[:27]
         if self.slug.isdigit():
             self.slug += "~"
         qs = Addon.objects.values_list('slug', 'id')
         match = qs.filter(slug=self.slug)
         if match and match[0][1] != self.id:
-            prefix = '%s-%s' % (self.slug, self.id) if self.id else self.slug
+            if self.id:
+                prefix = '%s-%s' % (self.slug[:-len(str(self.id))], self.id)
+            else:
+                prefix = self.slug
             slugs = dict(qs.filter(slug__startswith='%s-' % prefix))
             slugs.update(match)
             for idx in range(len(slugs)):

@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 
-from django.db import connections, transaction, IntegrityError
+from django.db import connections, transaction
 from django.db.models import Q, F
 
 import commonware.log
@@ -10,7 +10,7 @@ import multidb
 
 import amo
 import cronjobs
-from amo.utils import chunked, slugify
+from amo.utils import chunked
 from addons.models import Addon
 from addons.utils import ReverseNameLookup
 from translations.models import Translation
@@ -217,19 +217,13 @@ def addons_add_slugs():
     Addon._meta.get_field('modified').auto_now = False
     q = Addon.objects.filter(slug=None).order_by('id')
     ids = q.values_list('id', flat=True)
+
     cnt = 0
     total = len(ids)
     task_log.info('%s addons without slugs' % total)
-    max_length = Addon._meta.get_field('slug').max_length
     # Chunk it so we don't do huge queries.
     for chunk in chunked(ids, 300):
-        for c in q.no_cache().filter(id__in=chunk):
-            slug = slugify(c.name)[:max_length]
-            try:
-                c.update(slug=slug)
-            except IntegrityError:
-                tail = '-%s' % c.id
-                slug = "%s%s" % (slug[:max_length - len(tail)], tail)
-                c.update(slug=slug)
+        # Slugs are set in Addon.__init__.
+        list(q.no_cache().filter(id__in=chunk))
         cnt += 300
         task_log.info('Slugs added to %s/%s add-ons.' % (cnt, total))
