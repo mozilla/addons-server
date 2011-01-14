@@ -783,7 +783,7 @@ class TestStatus(test_utils.TestCase):
 
     def test_purgatory(self):
         self.addon.update(status=amo.STATUS_PURGATORY)
-        eq_(self.client.get(self.url).status_code, 404)
+        eq_(self.client.get(self.url).status_code, 200)
 
     def test_disabled(self):
         self.addon.update(disabled_by_user=True)
