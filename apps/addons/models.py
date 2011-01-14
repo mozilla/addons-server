@@ -252,7 +252,7 @@ class Addon(amo.models.ModelBase):
             if not self.name:
                 try:
                     name = Translation.objects.filter(id=self.name_id)[0]
-                except Translation.DoesNotExist:
+                except IndexError:
                     name = str(self.id)
             else:
                 name = self.name
