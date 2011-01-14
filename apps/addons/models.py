@@ -245,13 +245,15 @@ class Addon(amo.models.ModelBase):
         super(Addon, self).save(**kw)
 
     def clean_slug(self):
-        if not self.name:
-            try:
-                self.name = Translation.objects.get(id=self.name_id)
-            except Translation.DoesNotExist:
-                self.name = 'addon'
         if not self.slug:
-            self.slug = slugify(self.name)[:27]
+            if not self.name:
+                try:
+                    name = Translation.objects.get(id=self.name_id)
+                except Translation.DoesNotExist:
+                    name = str(self.id)
+            else:
+                name = self.name
+            self.slug = slugify(name)
         if self.slug.isdigit():
             self.slug += "~"
         qs = Addon.objects.values_list('slug', 'id')
