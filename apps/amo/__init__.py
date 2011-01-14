@@ -109,7 +109,7 @@ VALID_STATUSES = (STATUS_UNREVIEWED, STATUS_PENDING, STATUS_NOMINATED,
                   STATUS_LITE_AND_NOMINATED, STATUS_PURGATORY)
 # We don't show addons/versions with UNREVIEWED_STATUS in public.
 LISTED_STATUSES = tuple(st for st in VALID_STATUSES
-                        if st not in (STATUS_PENDING, STATUS_PURGATORY))
+                        if st not in (STATUS_PENDING,))
 
 # An add-on in one of these statuses is awaiting a review.
 STATUS_UNDER_REVIEW = (STATUS_UNREVIEWED, STATUS_NOMINATED,
