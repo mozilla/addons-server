@@ -149,6 +149,10 @@ def test_url(mock_reverse):
     mock_reverse.assert_called_with('viewname', args=(1,), kwargs={'z': 2},
                                     add_prefix=True)
 
+    s = render('{{ url("viewname", 1, z=2, host="myhost") }}')
+    mock_reverse.assert_called_with('viewname', args=(1,), kwargs={'z': 2},
+                                    add_prefix=True)
+
 
 def test_urlparams():
     url = '/en-US/firefox/themes/category'

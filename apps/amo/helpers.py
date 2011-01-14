@@ -68,10 +68,17 @@ def refinements(context, items, title, thing):
 def url(viewname, *args, **kwargs):
     """Helper for Django's ``reverse`` in templates."""
     add_prefix = kwargs.pop('add_prefix', True)
-    return urlresolvers.reverse(viewname,
-                                args=args,
-                                kwargs=kwargs,
-                                add_prefix=add_prefix)
+    host = kwargs.pop('host', '')
+    return '%s%s' % (host, urlresolvers.reverse(viewname,
+                                                args=args,
+                                                kwargs=kwargs,
+                                                add_prefix=add_prefix))
+
+@register.function
+def services_url(viewname, *args, **kwargs):
+    """Helper for ``url`` with host=SERVICES_URL."""
+    kwargs.update({'host': settings.SERVICES_URL})
+    return url(viewname, *args, **kwargs)
 
 
 @register.filter
