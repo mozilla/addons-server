@@ -27,6 +27,12 @@ $(document).ready(function() {
 
     if ($('#addon.primary').length == 0) return;
 
+    if ($("#addon[data-id]").length) {
+        $(".addon .icon").click(function() {
+            document.location.hash = "id=" + $("#addon").attr("data-id");
+        })
+    }
+
     var lb_baseurl = z.media_url+'img/jquery-lightbox/';
     $("a[rel=jquery-lightbox]").lightBox({
         overlayOpacity: 0.6,
