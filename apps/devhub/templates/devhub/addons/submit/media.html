@@ -5,7 +5,7 @@
 {% block title %}{{ dev_page_title(_('Step 4'), addon) }}{% endblock %}
 
 {% block primary %}
-  <section class="addon-submission-process" id="submit-media" role="main">
+  <section class="addon-submission-process" role="main">
     <h3>{{ _('Step 4. Add Images') }}</h3>
     <p>
     {% trans %}
@@ -77,6 +77,9 @@
               <label>{{ _('Please provide a caption for this screenshot:') }}</label>
               {{ form.caption|safe }}
               <a href="#" class="remove">x</a>
+              <div class="js-hidden position">
+                {{ form.position|safe }}
+              </div>
               <div class="preview_extra">
                 {{ form.upload_hash|safe }}
               </div>
