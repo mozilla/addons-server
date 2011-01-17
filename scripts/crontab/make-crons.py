@@ -90,6 +90,7 @@ HOME = /tmp
 30 10 * * * $REMORA; /usr/bin/python26 build-recommendations.py addons
 30 20 * * * $Z_CRON update_perf
 30 23 * * * $Z_CRON collection_meta
+40 23 * * * $Z_CRON update_compat_info_for_fx4
 45 23 * * * $DJANGO dump_apps
 
 #Once per day after 2100 PST (after metrics is done)
