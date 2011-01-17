@@ -2061,6 +2061,12 @@ class TestVersion(test_utils.TestCase):
         self.client.post(self.delete_url, self.delete_data)
         assert not Version.objects.filter(pk=81551).exists()
 
+    def test_delete_version_then_detail(self):
+        version, file = self._extra_version_and_file(amo.STATUS_LITE)
+        self.client.post(self.delete_url, self.delete_data)
+        res = self.client.get(reverse('addons.detail', args=[self.addon.slug]))
+        eq_(res.status_code, 200)
+
     def test_cant_delete_version(self):
         self.client.logout()
         res = self.client.post(self.delete_url, self.delete_data)
