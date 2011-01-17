@@ -87,6 +87,9 @@ $(document).ready(function() {
                 }
             });
         }));
+        if (window.location.hash === '#version-upload') {
+            $modal.render();
+        }
     }
 
     // Choosing platform when submitting an Addon and/or files.
