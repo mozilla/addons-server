@@ -71,10 +71,10 @@
           {% with field = version_form.releasenotes %}
             <th>
               <label data-for="releasenotes">{{ _("Release Notes") }}
-              {{ tip(None, "Information about changes in this release, new features,
-                            known bugs, and other useful information specific to this
-                            release/version. This information is also shown in the
-                            Add-ons Manager when updating.") }}
+              {{ tip(None, _("Information about changes in this release, new features,
+                              known bugs, and other useful information specific to this
+                              release/version. This information is also shown in the
+                              Add-ons Manager when updating.")) }}
               </label>
             </th>
             <td>
@@ -111,9 +111,9 @@
           {% with field = version_form.approvalnotes %}
             <th>
               <label for="{{ field.auto_id }}">{{ _("Notes for Reviewers") }}</label>
-              {{ tip(None, "Optionally, enter any information that may be useful
-                            to the Editor reviewing this add-on, such as test
-                            account information.") }}
+              {{ tip(None, _("Optionally, enter any information that may be useful
+                              to the Editor reviewing this add-on, such as test
+                              account information.")) }}
             </th>
             <td>
               {{ field.errors|safe }}
