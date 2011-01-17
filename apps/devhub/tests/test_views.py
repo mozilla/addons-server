@@ -2016,7 +2016,7 @@ class TestVersion(test_utils.TestCase):
         doc = self.get_doc()
         v = doc('td.file-validation').text()
         eq_(re.sub(r'\s+', ' ', v),
-            'delicious_bookmarks-2.1.072-fx.xpi Not validated. Validate now.')
+            'All Platforms Not validated. Validate now.')
         eq_(doc('td.file-validation a').attr('href'),
             reverse('devhub.file_validation',
                     args=[self.addon.slug, self.version.all_files[0].id]))
