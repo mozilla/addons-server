@@ -246,6 +246,7 @@ def edit(request, addon_id, addon):
     data = {
        'page': 'edit',
        'addon': addon,
+       'valid_slug': addon.slug,
        'tags': addon.tags.not_blacklisted().values_list('tag_text', flat=True),
        'previews': addon.previews.all()}
 
@@ -574,6 +575,8 @@ def addons_section(request, addon_id, addon, section, editable=False):
         previews = forms.PreviewFormSet(request.POST or None,
                 prefix='files', queryset=addon.previews.all())
 
+    # Get the slug before the form alters it to the form data.
+    valid_slug = addon.slug
     if editable:
         if request.method == 'POST':
             form = models[section](request.POST, request.FILES,
@@ -594,6 +597,8 @@ def addons_section(request, addon_id, addon, section, editable=False):
 
                 if cat_form:
                     cat_form.save()
+
+                valid_slug = addon.slug
         else:
             form = models[section](instance=addon, request=request)
     else:
@@ -604,7 +609,8 @@ def addons_section(request, addon_id, addon, section, editable=False):
             'editable': editable,
             'tags': tags,
             'cat_form': cat_form,
-            'preview_form': previews}
+            'preview_form': previews,
+            'valid_slug': valid_slug,}
 
     return jingo.render(request,
                         'devhub/includes/addon_edit_%s.html' % section, data)

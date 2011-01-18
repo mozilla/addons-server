@@ -1,11 +1,11 @@
 {% from "devhub/includes/macros.html" import tip, empty_unless, select_cats, trans_readonly %}
 
-<form method="post" action="{{ url('devhub.addons.section', addon.slug, 'basic', 'edit') }}"
-      id="addon-edit-basic" data-baseurl="{{ url('devhub.addons.edit', addon.slug) }}">
+<form method="post" action="{{ url('devhub.addons.section', valid_slug, 'basic', 'edit') }}"
+      id="addon-edit-basic" data-baseurl="{{ url('devhub.addons.edit', valid_slug) }}">
   <h3>
     {{ _('Basic Information') }}
     {% if not editable %}
-      <a href="#" data-editurl="{{ url('devhub.addons.section', addon.slug, 'basic', 'edit') }}" class="button">
+      <a href="#" data-editurl="{{ url('devhub.addons.section', valid_slug, 'basic', 'edit') }}" class="button">
         {{ _('Edit') }}</a>
     {% endif %}
   </h3>

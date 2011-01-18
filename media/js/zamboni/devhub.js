@@ -232,7 +232,7 @@ function addonFormSubmit() {
             $.post(parent_div.find('form').attr('action'),
                 $(this).serialize(), function(d) {
                     parent_div.html(d).each(addonFormSubmit);
-                    if (old_baseurl && old_baseurl !== baseurl()) {
+                    if (!parent_div.find(".errorlist").length && old_baseurl && old_baseurl !== baseurl()) {
                         document.location = baseurl();
                     }
                     $(document).scrollTop($(document).height() - scrollBottom);

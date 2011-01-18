@@ -50,6 +50,10 @@ class AddonFormBasic(AddonFormBase):
                          max_length=250)
     tags = forms.CharField(required=False)
 
+    class Meta:
+        model = Addon
+        fields = ('name', 'slug', 'summary', 'tags')
+
     def __init__(self, *args, **kw):
         super(AddonFormBasic, self).__init__(*args, **kw)
         self.fields['tags'].initial = ', '.join(tag.tag_text for tag in

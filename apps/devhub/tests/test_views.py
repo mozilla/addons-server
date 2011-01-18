@@ -1057,6 +1057,20 @@ class TestEdit(test_utils.TestCase):
 
         eq_([unicode(t) for t in addon.tags.all()], sorted(self.tags))
 
+    def test_edit_slug_invalid(self):
+        old_edit = self.get_url('basic', True)
+        data = self.get_dict(name='', slug='invalid')
+        r = self.client.post(self.get_url('basic', True), data)
+        doc = pq(r.content)
+        eq_(doc('form').attr('action'), old_edit)
+
+    def test_edit_slug_valid(self):
+        old_edit = self.get_url('basic', True)
+        data = self.get_dict(slug='valid')
+        r = self.client.post(self.get_url('basic', True), data)
+        doc = pq(r.content)
+        assert doc('form').attr('action') != old_edit
+
     def test_edit_summary_escaping(self):
         data = self.get_dict()
         data['summary'] = '<b>oh my</b>'
