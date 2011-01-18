@@ -3164,6 +3164,14 @@ class TestSubmitStep7(TestSubmitBase):
                                    follow=True)
         self.assertRedirects(r, reverse('devhub.versions', args=['a3615']))
 
+    def test_link_to_activityfeed(self):
+        addon = Addon.objects.get(pk=3615)
+        r = self.client.get(reverse('devhub.submit.7', args=['a3615']),
+                                   follow=True)
+        doc = pq(r.content)
+        eq_(doc('.done-next-steps a').eq(2).attr('href'),
+            reverse('devhub.feed', args=[addon.slug]))
+
     def test_display_non_ascii_url(self):
         addon = Addon.objects.get(pk=3615)
         u = 'フォクすけといっしょ'
