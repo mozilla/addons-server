@@ -8,6 +8,7 @@ import caching.base
 import tower
 from tower import ugettext as _
 
+import amo
 from amo.models import ModelBase
 from amo.fields import DecimalCharField
 from amo.utils import send_mail
@@ -141,7 +142,8 @@ class Contribution(caching.base.CachingMixin, models.Model):
                               nullify_invalid=True, null=True)
     source = models.CharField(max_length=255, null=True)
     source_locale = models.CharField(max_length=10, null=True)
-    annoying = models.BooleanField()
+    annoying = models.PositiveIntegerField(
+        choices=amo.CONTRIB_CHOICES, default=0)
     created = models.DateTimeField(auto_now_add=True)
     uuid = models.CharField(max_length=255, null=True)
     is_suggested = models.BooleanField()
