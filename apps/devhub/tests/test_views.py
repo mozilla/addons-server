@@ -3104,9 +3104,6 @@ class TestSubmitStep7(TestSubmitBase):
         eq_(next_steps[1].attrib['href'],
             reverse('devhub.addons.profile', args=[addon.slug]))
 
-        # keep up with your add-on's activity feed:
-        eq_(next_steps[2].attrib['href'], reverse('devhub.feed_all'))
-
         # view wait times:
         eq_(next_steps[3].attrib['href'],
             "https://forums.addons.mozilla.org/viewforum.php?f=21")
