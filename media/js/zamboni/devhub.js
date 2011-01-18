@@ -92,6 +92,11 @@ $(document).ready(function() {
         }
     }
 
+    $(".invisible-upload").click(function() {
+        $(this).children("input").click();
+    });
+    $(".invisible-upload a").click(_pd(function() {}));
+
     // Choosing platform when submitting an Addon and/or files.
     if ($('input.platform').length) {
         initPlatformChooser();
