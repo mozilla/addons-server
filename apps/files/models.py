@@ -102,6 +102,9 @@ class File(amo.models.ModelBase):
         f.no_restart = parse_data.get('no_restart', False)
         if amo.VERSION_BETA.search(parse_data.get('version', '')):
             f.status = amo.STATUS_BETA
+        elif (version.addon.trusted and
+              version.addon.status == amo.STATUS_PUBLIC):
+            f.status = amo.STATUS_PUBLIC
         f.save()
         log.debug('New file: %r from %r' % (f, upload))
         # Move the uploaded file from the temp location.

@@ -3655,6 +3655,17 @@ class TestAddVersion(UploadTest):
         assert_json_field(r, 'url', reverse('devhub.versions.edit',
                                         args=[self.addon.slug, version.id]))
 
+    def test_public(self):
+        self.post()
+        fle = File.objects.all().order_by("-created")[0]
+        eq_(fle.status, amo.STATUS_PUBLIC)
+
+    def test_not_public(self):
+        self.addon.update(trusted=False)
+        self.post()
+        fle = File.objects.all().order_by("-created")[0]
+        assert_not_equal(fle.status, amo.STATUS_PUBLIC)
+
     def test_multiple_platforms(self):
         r = self.post(platforms=[amo.PLATFORM_MAC,
                                  amo.PLATFORM_LINUX])
