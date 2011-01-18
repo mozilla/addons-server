@@ -5,8 +5,13 @@ from nose.tools import eq_
 from pyquery import PyQuery as pq
 from test_utils import TestCase, RequestFactory
 
+from amo import middleware
 from amo.urlresolvers import reverse
 from zadmin.models import Config, _config_cache
+
+FENNEC = ('Mozilla/5.0 (Android; Linux armv7l; rv:2.0b8) '
+          'Gecko/20101221 Firefox/4.0b8 Fennec/4.0b3')
+FIREFOX = 'Mozilla/5.0 (Windows NT 5.1; rv:2.0b9) Gecko/20100101 Firefox/4.0b9'
 
 
 def test_no_vary_cookie():
@@ -63,3 +68,41 @@ def test_hide_password_middleware():
     eq_(request.POST['x'], '1')
     eq_(request.POST['password'], '******')
     eq_(request.POST['password2'], '******')
+
+
+class TestMobile(TestCase):
+
+    def check(self, mobile, ua=None, cookie=None):
+        d = {}
+        if cookie:
+            d['HTTP_COOKIE'] = 'mamo=%s' % cookie
+        if ua:
+            d['HTTP_USER_AGENT'] = ua
+        request = test.RequestFactory().get('/', **d)
+        response = middleware.DetectMobileMiddleware().process_request(request)
+        assert response is None
+        if mobile:
+            eq_(request.META['HTTP_X_MOBILE'], '1')
+        else:
+            assert 'HTTP_X_MOBILE' not in request.META
+
+    def test_mobile_ua(self):
+        self.check(mobile=True, ua=FENNEC)
+
+    def test_mobile_ua_and_cookie_on(self):
+        self.check(mobile=True, ua=FENNEC, cookie='on')
+
+    def test_mobile_ua_and_cookie_off(self):
+        self.check(mobile=False, ua=FENNEC, cookie='off')
+
+    def test_nonmobile_ua(self):
+        self.check(mobile=False, ua=FIREFOX)
+
+    def test_nonmobile_ua_and_cookie_on(self):
+        self.check(mobile=True, ua=FIREFOX, cookie='on')
+
+    def test_nonmobile_ua_and_cookie_off(self):
+        self.check(mobile=False, ua=FIREFOX, cookie='off')
+
+    def test_no_ua(self):
+        self.check(mobile=False)

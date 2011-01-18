@@ -4,6 +4,7 @@ Borrowed from: http://code.google.com/p/django-localeurl
 Note: didn't make sense to use localeurl since we need to capture app as well
 """
 import contextlib
+import re
 import time
 import urllib
 
@@ -188,3 +189,18 @@ class TimingMiddleware(object):
         msg = '{method} "{url}" ({code}) {time:.2f} [{auth}]'.format(**d)
         timing_log.info(msg)
         return response
+
+
+# We do this in zeus for performance, so this exists as a POC and to work out
+# the logic.
+class DetectMobileMiddleware(object):
+    # Mobile user agents.
+    UA = re.compile('android|fennec|iemobile|iphone|opera (?:mini|mobi)')
+    # We set a cookie if you explicitly select mobile/no mobile.
+    MC = 'mamo'
+
+    def process_request(self, request):
+        ua = request.META.get('HTTP_USER_AGENT', '').lower()
+        mc = request.COOKIES.get(self.MC)
+        if (self.UA.search(ua) and mc != 'off') or mc == 'on':
+            request.META['HTTP_X_MOBILE'] = '1'
