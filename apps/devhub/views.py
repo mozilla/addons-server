@@ -508,8 +508,8 @@ def json_file_validation(request, addon_id, addon, file_id):
             return {
                 'validation': '',
                 'error': "\n".join(
-                                traceback.format_exception(*sys.exc_info()))
-            }
+                                traceback.format_exception(*sys.exc_info())),
+                }
     else:
         v_result = file.validation
     validation = json.loads(v_result.validation)
@@ -610,7 +610,8 @@ def addons_section(request, addon_id, addon, section, editable=False):
             'tags': tags,
             'cat_form': cat_form,
             'preview_form': previews,
-            'valid_slug': valid_slug,}
+            'valid_slug': valid_slug,
+            }
 
     return jingo.render(request,
                         'devhub/includes/addon_edit_%s.html' % section, data)
@@ -634,6 +635,7 @@ def image_status(request, addon_id, addon):
     return {'overall': icons and previews,
             'icons': icons,
             'previews': previews}
+
 
 @json_view
 @dev_required
@@ -674,7 +676,6 @@ def upload_image(request, addon_id, addon, upload_type):
         upload_hash = ''
 
     return {'upload_hash': upload_hash, 'errors': errors}
-
 
 
 @dev_required

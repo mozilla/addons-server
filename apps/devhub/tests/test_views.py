@@ -985,7 +985,7 @@ class TestEdit(test_utils.TestCase):
 
         self.old_settings = {
             'preview': settings.PREVIEW_THUMBNAIL_PATH,
-            'icons': settings.ADDON_ICONS_PATH
+            'icons': settings.ADDON_ICONS_PATH,
         }
         settings.PREVIEW_THUMBNAIL_PATH = tempfile.mkstemp()[1] + '%s/%d.png'
         settings.ADDON_ICONS_PATH = tempfile.mkdtemp()
@@ -1230,7 +1230,7 @@ class TestEdit(test_utils.TestCase):
         eq_([c.id for c in self.get_addon().all_categories], [22])
         self.cat_initial['categories'] = [22, 23]
 
-        r = self.client.post(self.basic_url, self.get_dict())
+        self.client.post(self.basic_url, self.get_dict())
 
         addon_cats = self.get_addon().categories.values_list('id', flat=True)
         eq_(sorted(addon_cats), [22, 23])
@@ -1240,7 +1240,7 @@ class TestEdit(test_utils.TestCase):
         eq_([c.id for c in self.get_addon().all_categories], [22, 23])
 
         self.cat_initial['categories'] = [22, 24]
-        r = self.client.post(self.basic_url, self.get_dict())
+        self.client.post(self.basic_url, self.get_dict())
 
         addon_cats = self.get_addon().categories.values_list('id', flat=True)
         eq_(sorted(addon_cats), [22, 24])
@@ -1263,7 +1263,7 @@ class TestEdit(test_utils.TestCase):
         eq_([c.id for c in self.get_addon().all_categories], [22, 23])
 
         self.cat_initial['categories'] = [22]
-        r = self.client.post(self.basic_url, self.get_dict())
+        self.client.post(self.basic_url, self.get_dict())
 
         addon_cats = self.get_addon().categories.values_list('id', flat=True)
         eq_(sorted(addon_cats), [22])
@@ -2631,6 +2631,7 @@ class TestSubmitStep1(TestSubmitBase):
                 "Looks like link %r to %r is still a placeholder" %
                 (href, ln.text))
 
+
 class TestSubmitStep2(test_utils.TestCase):
     # More tests in TestCreateAddon.
     fixtures = ['base/users']
@@ -2901,7 +2902,7 @@ class TestSubmitStep4(TestSubmitBase):
                     icon_upload_hash=response_json['upload_hash'])
         data_formset = self.formset_media(**data)
 
-        r = self.client.post(self.url, data_formset)
+        self.client.post(self.url, data_formset)
 
         addon = self.get_addon()
 
@@ -2934,7 +2935,7 @@ class TestSubmitStep4(TestSubmitBase):
                     icon_upload_hash=response_json['upload_hash'])
         data_formset = self.formset_media(**data)
 
-        r = self.client.post(self.url, data_formset)
+        self.client.post(self.url, data_formset)
         addon = self.get_addon()
 
         eq_('/'.join(addon.get_icon_url(64).split('/')[-3:-1]),
@@ -2953,7 +2954,6 @@ class TestSubmitStep4(TestSubmitBase):
 
     def test_client_lied(self):
         filehandle = open(get_image_path('non-animated.gif'), 'rb')
-
 
         data = {'upload_image': filehandle}
 
@@ -2978,6 +2978,7 @@ class TestSubmitStep4(TestSubmitBase):
         res = self.client.post(self.url, data_formset)
         eq_(res.status_code, 302)
         eq_(self.get_step().step, 5)
+
 
 class TestSubmitStep5(TestSubmitBase):
     """License submission."""
@@ -3194,6 +3195,7 @@ class TestResumeStep(TestSubmitBase):
             r = self.client.get(self.url, follow=True)
             self.assertRedirects(r, reverse('devhub.submit.%s' % i,
                                             args=['a3615']))
+
 
 class TestSubmitSteps(test_utils.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']

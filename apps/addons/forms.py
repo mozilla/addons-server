@@ -22,7 +22,6 @@ from translations.fields import TransField, TransTextarea
 from translations.forms import TranslationFormMixin
 from translations.models import Translation
 from translations.widgets import TranslationTextInput
-from translations.query import order_by_translation
 from versions.compare import version_int
 
 
