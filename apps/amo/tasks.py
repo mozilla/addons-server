@@ -5,6 +5,8 @@ import celery.task
 from celeryutils import task
 from hera.contrib.django_utils import flush_urls
 
+from . import cron
+
 log = commonware.log.getLogger('z.task')
 
 

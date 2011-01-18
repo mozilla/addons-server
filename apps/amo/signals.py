@@ -4,10 +4,11 @@ from django import http
 from django.conf import settings
 from django.db import models
 
-from . import tasks, urlresolvers
+from . import urlresolvers
 
 
 def flush_front_end_cache(sender, instance, **kwargs):
+    from . import tasks
     furls = getattr(instance, 'flush_urls', None)
 
     urls = furls() if hasattr(furls, '__call__') else furls
