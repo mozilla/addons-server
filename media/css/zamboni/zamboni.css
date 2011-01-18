@@ -2229,6 +2229,16 @@ form .error .note.error {
     display: inline-block;
 }
 
+.privacy-policy ul {
+    list-style: disc outside none;
+    margin-left: 20px;
+}
+
+.privacy-policy ol {
+    list-style: decimal outside none;
+    margin-left: 20px;
+}
+
 .install-wrapper .extra {
     border-top: 1px dotted #A5C9D5;
     padding-top: 6px;
