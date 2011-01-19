@@ -108,6 +108,12 @@ SITE_URL = 'http://%s' % DOMAIN
 #   Example: https://services.addons.mozilla.org
 SERVICES_URL = 'http://services.%s' % DOMAIN
 
+# The domain of the mobile site.
+MOBILE_DOMAIN = 'm.%s' % DOMAIN
+
+# The full url of the mobile site.
+MOBILE_SITE_URL = 'http://%s' % MOBILE_DOMAIN
+
 OAUTH_CALLBACK_VIEW = 'api.views.request_token_ready'
 
 # Absolute path to the directory that holds media.
@@ -205,6 +211,9 @@ MIDDLEWARE_CLASSES = (
     # AMO URL middleware comes first so everyone else sees nice URLs.
     'amo.middleware.TimingMiddleware',
     'amo.middleware.LocaleAndAppURLMiddleware',
+    # Mobile detection should happen in Zeus.
+    'amo.middleware.DetectMobileMiddleware',
+    'amo.middleware.XMobileMiddleware',
     'amo.middleware.RemoveSlashMiddleware',
 
     # Munging REMOTE_ADDR must come before ThreadRequest.

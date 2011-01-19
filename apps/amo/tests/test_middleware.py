@@ -1,4 +1,7 @@
-from django import test
+# -*- coding: utf-8 -*-
+from django import http, test
+from django.conf import settings
+from django.utils import http as urllib
 
 from commonware.middleware import HidePasswordOnException
 from nose.tools import eq_
@@ -17,11 +20,11 @@ FIREFOX = 'Mozilla/5.0 (Windows NT 5.1; rv:2.0b9) Gecko/20100101 Firefox/4.0b9'
 def test_no_vary_cookie():
     # We don't break good usage of Vary.
     response = test.Client().get('/')
-    eq_(response['Vary'], 'Accept-Language, User-Agent')
+    eq_(response['Vary'], 'Accept-Language, User-Agent, X-Mobile')
 
     # But we do prevent Vary: Cookie.
     response = test.Client().get('/', follow=True)
-    assert 'Vary' not in response
+    eq_(response['Vary'], 'X-Mobile')
 
 
 def test_redirect_with_unicode_get():
@@ -106,3 +109,79 @@ class TestMobile(TestCase):
 
     def test_no_ua(self):
         self.check(mobile=False)
+
+
+class TestXMobile(TestCase):
+
+    def setUp(self):
+        self.middleware = middleware.XMobileMiddleware()
+
+    def check(self, domain, xmobile, redirect, path='/', query=None):
+        url = path
+        if query:
+            url += '?' + query
+        request = test.RequestFactory().get(url)
+        request.META['SERVER_NAME'] = domain
+        if xmobile:
+            request.META['HTTP_X_MOBILE'] = xmobile
+        response = self.middleware.process_request(request)
+        if redirect:
+            eq_(response.status_code, 301)
+            url = redirect + urllib.urlquote(path)
+            if query:
+                url += '?' + query
+            eq_(response['Location'], url)
+            eq_(response['Vary'], 'X-Mobile')
+        else:
+            eq_(request.MOBILE, xmobile == '1')
+
+    def test_bad_xmobile_on_mamo(self):
+        self.check(settings.MOBILE_DOMAIN, xmobile='adfadf',
+                   redirect=settings.SITE_URL)
+
+    def test_no_xmobile_on_mamo(self):
+        self.check(settings.MOBILE_DOMAIN, xmobile=None,
+                   redirect=settings.SITE_URL)
+
+    def test_no_xmobile_on_amo(self):
+        self.check(settings.DOMAIN, xmobile=None, redirect=False)
+
+    def test_xmobile_0_on_mamo(self):
+        self.check(settings.MOBILE_DOMAIN, xmobile='0',
+                   redirect=settings.SITE_URL)
+
+    def test_xmobile_1_on_mamo(self):
+        self.check(settings.MOBILE_DOMAIN, xmobile='1', redirect=False)
+
+    def test_xmobile_0_on_amo(self):
+        self.check(settings.DOMAIN, xmobile='0', redirect=False)
+
+    def test_xmobile_1_on_amo(self):
+        self.check(settings.DOMAIN, xmobile='1',
+                   redirect=settings.MOBILE_SITE_URL)
+
+    def test_redirect_unicode_path(self):
+        path = u'/el/addon/Ελληνικά/'
+        self.check(settings.DOMAIN, xmobile='1',
+                   redirect=settings.MOBILE_SITE_URL, path=path)
+
+    def test_redirect_unicode_query(self):
+        query = 'uu=e+%E3%83%90%E3%82%BA&ff=2'
+        self.check(settings.DOMAIN, xmobile='1',
+                   redirect=settings.MOBILE_SITE_URL, query=query)
+
+    def test_redirect_preserve_get(self):
+        query = 'q=1'
+        self.check(settings.DOMAIN, xmobile='1',
+                   redirect=settings.MOBILE_SITE_URL, query=query)
+
+    def test_vary(self):
+        request = test.RequestFactory().get('/')
+        response = http.HttpResponse()
+        r = self.middleware.process_response(request, response)
+        assert r is response
+        eq_(response['Vary'], 'X-Mobile')
+
+        response['Vary'] = 'User-Agent'
+        self.middleware.process_response(request, response)
+        eq_(response['Vary'], 'User-Agent, X-Mobile')
