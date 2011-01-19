@@ -202,3 +202,40 @@ def _dissolve_outgoing_urls(items, **kw):
             url = None
 
         UserProfile.objects.filter(pk=user[0]).update(homepage=url)
+
+
+# TODO(davedash): Remove after 5.12.7 is pushed.
+@cronjobs.register
+def activity_log_scrubber():
+    """
+    Scans activity log for REMOVE_FROM_COLLECTION and ADD_TO_COLLECTION, looks
+    for collections in arguments and checks whether collection is listed.
+    """
+
+    items = ActivityLog.objects.filter(
+            action__in=[amo.LOG.ADD_TO_COLLECTION.id,
+                        amo.LOG.REMOVE_FROM_COLLECTION.id])
+
+    ids = []
+    count = 0
+    # ~127K
+    for item in items:
+        count += 1
+        for arg in item.arguments:
+            if isinstance(arg, Collection) and not arg.listed:
+                log.debug('Flagging %s.' % item)
+                log.debug('%d items seen.' % count)
+                ids.append(item.id)
+
+    log.info('Deleting %d items.' % len(ids))
+
+    for chunk in chunked(ids, 100):
+        _activity_log_scrubber.delay(chunk)
+
+
+@task(rate_limit='60/h')
+def _activity_log_scrubber(items, **kw):
+    log.info('[%s@%s] Deleting activity log items' %
+             (len(items), _activity_log_scrubber.rate_limit))
+
+    ActivityLog.objects.filter(id__in=items).delete()
