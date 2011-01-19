@@ -62,14 +62,30 @@
 
   <div id="preview-list">
     <div id="edit-addon-media">
-      <div class="preview">
-        <span class="js-hidden delete">
-        <input type="checkbox" id="id_files-0-DELETE" name="files-0-DELETE"><label for="id_files-0-DELETE">Delete</label></span>
-        <p class="preview-delete">
-          <a href="#">
-            Delete this Screen Shot
-          </a>
-        </p>
+      <div id="file-list">
+        <div class="preview">
+          <span class="handle" style="display: none;">&nbsp;</span>
+          <div class="preview-thumb" style="background-image: url();">
+          </div>
+          <input type="hidden" id="id_files-0-id" name="files-0-id">
+          <span class="js-hidden delete"><input type="checkbox" id="id_files-0-DELETE" name="files-0-DELETE"><label for="id_files-0-DELETE">Delete</label></span>
+          <div class="edit-previews-text">
+            <label class="above-the-field" data-for="files-0-caption" for="id_files-0-caption_0">
+              Please provide a caption for this screenshot:
+              <span class="locale">
+                English (US)
+            </span></label>
+            <div data-name="files-0-caption" class="trans" id="trans-files-0-caption"><textarea lang="en-us" id="id_files-0-caption_0" cols="40" name="files-0-caption_en-us" rows="10" class="unsaved"></textarea><textarea lang="init" class="trans-init" cols="40" name="files-0-caption_init" rows="10" style="display: none;"></textarea></div>
+            <a class="remove" href="#">x</a>
+          </div>
+          <div class="js-hidden position">
+            <input type="text" id="id_files-0-position" value="0" name="files-0-position">
+          </div>
+          <div class="preview_extra">
+            <input type="text" id="id_files-0-upload_hash" name="files-0-upload_hash">
+          </div>
+          </p>
+        </div>
       </div>
     </div>
   </div>
