@@ -1116,16 +1116,16 @@ form.favorite {
 
 #aux-nav > ul li ul li.mobile a,
 #aux-nav > ul li ul li.firefox a {
-    background: url(../../img/amo2009/icons/logos-applications.gif) no-repeat 1em 0;
+    background: url(../../img/zamboni/app_icons/small.png) no-repeat 1em 0;
 }
 #aux-nav > ul li ul li.thunderbird a {
-    background: url(../../img/amo2009/icons/logos-applications.gif) no-repeat 1em -50px;
+    background: url(../../img/zamboni/app_icons/small.png) no-repeat 1em -50px;
 }
 #aux-nav > ul li ul li.sunbird a {
-    background: url(../../img/amo2009/icons/logos-applications.gif) no-repeat 1em -100px;
+    background: url(../../img/zamboni/app_icons/small.png) no-repeat 1em -100px;
 }
 #aux-nav > ul li ul li.seamonkey a {
-    background: url(../../img/amo2009/icons/logos-applications.gif) no-repeat 1em -150px;
+    background: url(../../img/zamboni/app_icons/small.png) no-repeat 1em -150px;
 }
 
 #aux-nav > ul a.controller:link,
