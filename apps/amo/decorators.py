@@ -80,3 +80,30 @@ def use_master(f):
 
 def write(f):
     return use_master(skip_cache(f))
+
+
+def mobilized(normal_fn):
+    """
+    Replace a view function with a normal and mobile view.
+
+    def view(request):
+        ...
+
+    @mobilized
+    def view(request):
+        ...
+
+    The second function is the mobile version of view. The original
+    function is overwritten, and the decorator will choose the correct
+    function based on request.MOBILE (set in middleware).
+    """
+    def decorator(mobile_fn):
+        @functools.wraps(mobile_fn)
+        def wrapper(request, *args, **kw):
+            if request.MOBILE:
+                return mobile_fn(request, *args, **kw)
+            else:
+                return normal_fn(request, *args, **kw)
+        wrapper.mobile = True
+        return wrapper
+    return decorator
