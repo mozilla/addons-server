@@ -15,6 +15,8 @@ handler500 = 'amo.views.handler500'
 urlpatterns = patterns('',
     # Discovery pane is first for undetectable efficiency wins.
     ('^discovery/', include('discovery.urls')),
+    # Claiming second, because there's a real win here.
+    url('^services/update$', 'addons.views.update', name='addons.update'),
 
     # Add-ons.
     ('', include('addons.urls')),
