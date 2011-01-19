@@ -679,18 +679,19 @@ class Addon(amo.models.ModelBase):
     def is_incomplete(self):
         return self.status == amo.STATUS_NULL
 
-    def is_featured(self, app, lang):
-        """is add-on globally featured for this app and language?"""
+    @classmethod
+    def featured(cls, app, lang):
         # Attach an instance of Feature to Addon so we get persistent
         # @cached_method caching through the request.
-        if not hasattr(Addon, '_feature'):
-            Addon._feature = Feature()
-        features = Addon._feature.by_app(app)
-        if self.id in features:
-            for locale in (None, '', lang):
-                if locale in features[self.id]:
-                    return True
-        return False
+        if not hasattr(cls, '_feature'):
+            cls._feature = Feature()
+        features = cls._feature.by_app(app)
+        return dict((id, locales) for id, locales in features.items()
+                     if None in locales or lang in locales)
+
+    def is_featured(self, app, lang):
+        """is add-on globally featured for this app and language?"""
+        return self.id in Addon.featured(app, lang)
 
     def is_category_featured(self, app, lang):
         """Is add-on featured in any category for this app?"""

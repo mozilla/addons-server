@@ -1,5 +1,7 @@
 import hashlib
+import random
 import uuid
+from operator import attrgetter
 
 from django import http
 from django.conf import settings
@@ -18,7 +20,7 @@ from tower import ugettext_lazy as _lazy
 from tower import ugettext as _
 
 import amo
-from amo import messages
+from amo import messages, decorators as dec
 from amo.forms import AbuseForm
 from amo.utils import sorted_groupby, randslice, send_abuse_report
 from amo.helpers import absolutify
@@ -283,6 +285,26 @@ def home(request):
                         {'downloads': downloads, 'top_tags': top_tags,
                          'filter': filter, 'addon_sets': addon_sets,
                          'collections': collections, 'promobox': promobox})
+
+
+@dec.mobilized(home)
+@cache_page(60 * 10)
+def home(request):
+    # Shuffle the list and get 3 items.
+    rand = lambda xs: random.shuffle(xs) or xs[:3]
+    # Get some featured add-ons with randomness.
+    featured = rand(Addon.featured(request.APP, request.LANG).keys())
+    # Get 10 popular add-ons, then pick 3 at random.
+    qs = list(Addon.objects.listed(request.APP).order_by('-weekly_downloads')
+              .values_list('id', flat=True)[:10])
+    popular = rand(qs)
+    # Do one query and split up the add-ons.
+    addons = Addon.objects.filter(id__in=featured + popular)
+    featured = [a for a in addons if a.id in featured]
+    popular = sorted([a for a in addons if a.id in popular],
+                     key=attrgetter('weekly_downloads'), reverse=True)
+    return jingo.render(request, 'addons/mobile/home.html',
+                        {'featured': featured, 'popular': popular})
 
 
 class CollectionPromoBox(object):
