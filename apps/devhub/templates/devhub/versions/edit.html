@@ -12,10 +12,10 @@
                                     _('Status & Versions')),
                                    (None, title)]) }}
   {# L10n: {0} is an add-on name. #}
+  {{ l10n_menu(addon.default_locale) }}
   <h2>{{ _('Manage {0}')|f(addon.name) }}</h2>
 </header>
 <section class="primary devhub-form edit-version" role="main">
-  {{ l10n_menu(addon.default_locale) }}
   <h3>{{ title }}</h3>
   <form method="post" action="">
     <div class="item">
