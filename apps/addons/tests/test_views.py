@@ -1228,3 +1228,23 @@ class TestUpdate(test_utils.TestCase):
         eq_(res.context['application_version'].min.version, '1.0')
         eq_(res.context['application_version'].version.version, '0.5.2')
         assert res.content.find(data['appID']) > -1
+
+
+class TestMobileHome(test_utils.TestCase):
+    fixtures = ['base/apps', 'base/addon_3615', 'base/featured']
+
+    def setUp(self):
+        self.client.cookies['mamo'] = 'on'
+        self.client.defaults['SERVER_NAME'] = settings.MOBILE_DOMAIN
+
+    def test_addons(self):
+        r = self.client.get('/', follow=True)
+        eq_(r.status_code, 200)
+        app, lang = r.context['APP'], r.context['LANG']
+        featured, popular = r.context['featured'], r.context['popular']
+        eq_(len(featured), 3)
+        assert all(a.is_featured(app, lang) for a in featured)
+        eq_(len(popular), 3)
+        eq_([a.id for a in popular],
+            [a.id for a in sorted(popular, key=lambda x: x.weekly_downloads,
+                                  reverse=True)])

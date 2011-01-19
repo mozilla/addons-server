@@ -80,3 +80,23 @@ class TestLoginRequired(object):
         self.request.user.is_authenticated.return_value = True
         response = func(self.request)
         assert self.f.called
+
+
+class TestMobilized(object):
+
+    def setUp(self):
+        normal = lambda r: 'normal'
+        mobile = lambda r: 'mobile'
+        self.view = decorators.mobilized(normal)(mobile)
+        self.request = mock.Mock()
+
+    def test_mobile_attr(self):
+        eq_(self.view.mobile, True)
+
+    def test_call_normal(self):
+        self.request.MOBILE = False
+        eq_(self.view(self.request), 'normal')
+
+    def test_call_mobile(self):
+        self.request.MOBILE = True
+        eq_(self.view(self.request), 'mobile')

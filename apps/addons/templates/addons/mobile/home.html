@@ -1,0 +1,19 @@
+<body>
+{% if featured %}
+<h1>Featured</h1>
+<ul>
+  {% for addon in featured %}
+    <li>{{ addon.name }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+{% if popular %}
+<h1>Popular</h1>
+<ul>
+  {% for addon in popular %}
+    <li>{{ addon.name }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+</body>
