@@ -94,11 +94,10 @@
 
     <section id="sub">
       <section id="top-addons">
-        <h2>{{ _('Top Add-ons') }}</h2>
+        <h2><a class="all" href="{{ url('browse.extensions') }}">{{ _('See all') }}</a>
+        {{ _('Top Add-ons') }}
+        </h2>
         {{ addon_list(top_addons, 5, sidebar=True) }}
-        <p class="all">
-          <a href="{{ url('browse.extensions') }}">{{ _('See all') }}</a>
-        </p>
       </section>
       <section id="more-ways">
         <h2>{{ _('More ways to customize') }}</h2>

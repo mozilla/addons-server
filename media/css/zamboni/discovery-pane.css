@@ -470,11 +470,12 @@ ul.addons {
 #top-addons h2,
 #more-ways h2 {
     margin: -10px -10px 0;
-    padding: .45em 50px .45em 10px;
+    padding: .45em 10px .45em 10px;
     background: -moz-linear-gradient(top, #fff 0, #ecf1f7 100%);
     box-shadow: inset 0 -3px 0 rgba(58,78,103,0.05), 0 3px 0 rgba(175,195,220,.3);
     border-radius: 8px 8px 0 0;
     border-bottom: 1px solid #a8b8d1;
+    overflow: hidden;
 }
 
 #top-addons ul {
@@ -523,15 +524,17 @@ ul.addons {
 }
 
 #top-addons .all {
-    position: absolute;
-    top: 1.3em;
-    right: 10px;
+    float: right;
+    display: block;
+    line-height: 24px;
+    font-size: 13px;
 }
 
 /* @More ways to customize *********/
 #more-ways ul {
     margin: 0;
     font-size: 13px;
+    clear: right;
 }
 
 #more-ways ul a {
@@ -572,7 +575,7 @@ ul.addons {
 }
 
 /* @Narrow *********/
-@media (max-width: 815px) {
+@media (max-width: 980px) {
     body {
         margin: 0 10px;
         min-width: 620px;
