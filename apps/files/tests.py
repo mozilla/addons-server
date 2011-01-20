@@ -138,10 +138,8 @@ class TestFile(test_utils.TestCase):
         f = File()
         f.version = Version(version='0.1.7')
         f.version.compatible_apps = (amo.FIREFOX,)
-        f.version.addon = Addon(name=u' フォクすけといっしょ')
-        eq_(f.generate_filename(),
-            u'\u30d5\u30a9\u30af\u3059\u3051\u3068\u3044\u3063\u3057\u3087'
-            '-0.1.7-fx.xpi')
+        f.version.addon = Addon(name=u' フォクすけ  といっしょ')
+        eq_(f.generate_filename(), 'addon-0.1.7-fx.xpi')
 
 
 class TestParseXpi(test_utils.TestCase):
@@ -402,7 +400,7 @@ class TestFileFromUpload(UploadTest):
         upload = self.upload(u'jétpack')
         self.version.addon.name = u'jéts!'
         f = File.from_upload(upload, self.version, self.platform)
-        eq_(f.filename, u'jéts-0.1-mac.xpi')
+        eq_(f.filename, u'jets-0.1-mac.xpi')
 
     def test_size(self):
         upload = self.upload('extension')

@@ -8,6 +8,7 @@ import zipfile
 
 from django.conf import settings
 from django.db import models
+from django.template.defaultfilters import slugify
 from django.utils.encoding import smart_str
 
 import commonware
@@ -129,8 +130,10 @@ class File(amo.models.ModelBase):
         {addon_name}-{version}-{apps}-{platform}
         """
         parts = []
-        parts.append(
-                amo.utils.slugify(self.version.addon.name).replace('-', '_'))
+        # slugify drops unicode so we may end up with an empty string.
+        # Apache did not like serving unicode filenames (bug 626587).
+        name = slugify(self.version.addon.name).replace('-', '_') or 'addon'
+        parts.append(name)
         parts.append(self.version.version)
 
         if self.version.compatible_apps:
