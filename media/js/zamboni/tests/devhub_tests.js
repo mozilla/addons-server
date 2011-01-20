@@ -941,9 +941,12 @@ module('preview_edit', {
 });
 
 test('Clicking delete screenshot marks checkbox.', function() {
+    // $.fx.off sets all animation durations to 0
+    $.fx.off = true;
     $(".edit-previews-text a.remove", this.sandbox).trigger('click');
     equals($(".delete input", this.sandbox).attr("checked"), true);
     equals($(".preview:visible", this.sandbox).length, 0);
+    $.fx.off = false;
 });
 
 
