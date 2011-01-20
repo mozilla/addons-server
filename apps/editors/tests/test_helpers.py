@@ -65,7 +65,7 @@ class TestViewEditorQueueTable(test_utils.TestCase):
 
     def test_waiting_time_in_hours(self):
         row = Mock()
-        row.days_since_created = 1
+        row.days_since_created = 0
         row.hours_since_created = 22
         eq_(self.table.render_days_since_created(row), u'22 hours')
 

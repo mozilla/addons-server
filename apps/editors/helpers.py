@@ -69,7 +69,7 @@ class ViewEditorQueueTable(tables.ModelTable):
         return u' '.join(icon % amo.APPS_ALL[i].short for i in app_ids)
 
     def render_days_since_created(self, row):
-        if row.days_since_created == 1:
+        if row.days_since_created == 0:
             # L10n: first argument is number of hours
             r = ngettext(u'{0} hour', u'{0} hours',
                             row.hours_since_created).format(
