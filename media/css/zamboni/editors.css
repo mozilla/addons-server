@@ -90,6 +90,7 @@ table.data-grid tbody tr:nth-child(odd) {
 table.data-grid tbody tr:nth-child(even) {
     background-color: #FFFFFF;
 }
+
 /* editors/queue tabs */
 ul.tabnav {
     list-style-type: none;
@@ -128,4 +129,83 @@ ul.tabnav a:hover {
     background-color: #ffffff;
     border-color: #2E5186;
     padding-bottom: 9px;
+=======
+
+#editor-stats .listing .results-inner {
+    padding: 0 0.5em;
+}
+
+#editor-stats .listing time {
+    color: #aaa;
+    font-style: italic;
+}
+
+#editor-stats .listing .row {
+    padding: 0.5em;
+    border-top: 1px dotted #ADD0DC;
+}
+
+#editor-stats .listing .row:first-child {
+    border-top-width: 0px;
+}
+
+.editor-stats-title,
+.editor-stats-table {
+    width: 33%;
+    float: left;
+}
+
+.editor-stats-title span {
+    font-weight: bold;
+    padding-left: 7px;
+}
+
+.editor-stats-table > div {
+    padding: 0 10px;
+    margin: 5px 0;
+    border-left: 1px dotted #ADD0DC;
+}
+
+.editor-stats-table:first-child > div {
+    border-left-width: 0px;
+}
+
+.editor-stats-table table {
+    width: 100%;
+    margin: 0;
+}
+
+.editor-stats-table td, .editor-stats-table th {
+    padding: 0;
+    border-top: 1px solid #F0F7FE;
+}
+
+.editor-stats-table table tr:first-child td {
+    border-top-width: 0px;
+}
+
+.editor-stats-table .int {
+    text-align: right;
+    color: #37A632;
+    font-weight: bold;
+}
+
+.editor-stats-table .date {
+    text-align: right;
+    color: #999;
+    font-style: italic;
+}
+
+#editors_stats .listing-header {
+    line-height: 1.8em;
+}
+
+.daily-message div {
+    padding: 15px;
+}
+
+.daily-message h2 {
+    font-size: 1em;
+    font-weight: bold;
+    margin-top: 0;
 }

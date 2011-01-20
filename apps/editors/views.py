@@ -11,6 +11,7 @@ from editors.models import ViewEditorQueue
 from editors.helpers import ViewEditorQueueTable
 from amo.utils import paginate
 from amo.urlresolvers import reverse
+from files.models import Approval
 
 
 def editor_required(func):
@@ -27,7 +28,10 @@ def editor_required(func):
 
 @editor_required
 def home(request):
-    return jingo.render(request, 'editors/home.html', {})
+    data = {'reviews_total': Approval.total_reviews(),
+            'reviews_monthly': Approval.monthly_reviews()}
+
+    return jingo.render(request, 'editors/home.html', data)
 
 
 @editor_required

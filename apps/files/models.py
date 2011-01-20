@@ -211,6 +211,20 @@ class Approval(amo.models.ModelBase):
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'approvals'
 
+    @staticmethod
+    def total_reviews():
+        return (Approval.objects.values('user', 'user__display_name')
+                                .annotate(models.Count('approval'))
+                                .order_by('-approval__count')[:5])
+
+    @staticmethod
+    def monthly_reviews():
+        now = datetime.now()
+        created_date = datetime(now.year, now.month, 1)
+        return (Approval.objects.values('user', 'user__display_name')
+                                .filter(created__gte=created_date)
+                                .annotate(models.Count('approval'))
+                                .order_by('-approval__count')[:5])
 
 class Platform(amo.models.ModelBase):
     # `name` and `shortname` are provided in amo.__init__

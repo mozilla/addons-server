@@ -1,6 +1,95 @@
 {% extends "editors/base.html" %}
 
 {% block content %}
-The front page.  Don't put sensitive data on this page until it's restricted by
-@editor_required!
+<div id="editor-stats">
+
+  {# TODO(gkoberger): Fill in the MOTD below #}
+  <div class="featured daily-message">
+    <div class="featured-inner">
+      <h2>{{ _('Announcement') }}</h2>
+      <p>This is where the Message of the Day will eventually go!</p>
+    </div>
+  </div>
+
+
+  <div class="featured" id="editors_stats">
+    <div class="featured-inner">
+      <div class="listing-header">
+        <div class="editor-stats-title"><span>{{ _('Total Reviews') }}</span></div>
+        <div class="editor-stats-title"><span>{{ _('Month Reviews') }}</span></div>
+        <div class="editor-stats-title"><span>{{ _('New Editors') }}</span></div>
+      </div>
+      <div class="editor-stats">
+        <div class="editor-stats-table">
+          <div>
+            <table>
+              {% for row in reviews_total: %}
+              <tr>
+                <td>{{ row['user__display_name'] }}</td>
+                <td class="int">{{ row['approval__count']|numberfmt }}</td>
+              </tr>
+              {% endfor %}
+            </table>
+          </div>
+        </div>
+        <div class="editor-stats-table">
+          <div>
+            <table>
+              {% for row in reviews_monthly: %}
+              <tr>
+                <td>{{ row['user__display_name'] }}</td>
+                <td class="int">{{ row['approval__count']|numberfmt }}</td>
+              </tr>
+              {% endfor %}
+            </table>
+          </div>
+        </div>
+        <div class="editor-stats-table">
+          <div>
+            <table>
+              {# TODO(dd): ActivityLog stuff #}
+              {% for i in range(5) %}
+              <tr>
+                <td>John Smith</td>
+                <td class="date">Today</td>
+              </tr>
+              {% endfor %}
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {# TODO(dd): ActivityLog stuff (this is a placeholder) #}
+  <div class="listing results">
+    <div class="results-inner">
+      <div class="row">
+        <a href="/en-US/firefox/addon/test_addon2/">Kris Maglione</a> deleted review <a href="#">263753</a>.
+        <time title="Jan 6, 2011 3:35:43 PM" datetime="2011-01-06T23:35:43Z">1 week, 6 days ago</time>
+      </div>
+      <div class="row">
+        <a href="/en-US/firefox/addon/test_addon2/">Kris Maglione</a> deleted review <a href="#">263753</a>.
+        <time title="Jan 6, 2011 3:35:43 PM" datetime="2011-01-06T23:35:43Z">1 week, 6 days ago</time>
+      </div>
+      <div class="row">
+        <a href="/en-US/firefox/addon/test_addon2/">Kris Maglione</a> deleted review <a href="#">263753</a>.
+        <time title="Jan 6, 2011 3:35:43 PM" datetime="2011-01-06T23:35:43Z">1 week, 6 days ago</time>
+      </div>
+      <div class="row">
+        <a href="/en-US/firefox/addon/test_addon2/">Kris Maglione</a> deleted review <a href="#">263753</a>.
+        <time title="Jan 6, 2011 3:35:43 PM" datetime="2011-01-06T23:35:43Z">1 week, 6 days ago</time>
+      </div>
+      <div class="row">
+        <a href="/en-US/firefox/addon/test_addon2/">Kris Maglione</a> deleted review <a href="#">263753</a>.
+        <time title="Jan 6, 2011 3:35:43 PM" datetime="2011-01-06T23:35:43Z">1 week, 6 days ago</time>
+      </div>
+      <div class="row">
+        <a href="/en-US/firefox/addon/test_addon2/">Kris Maglione</a> deleted review <a href="#">263753</a>.
+        <time title="Jan 6, 2011 3:35:43 PM" datetime="2011-01-06T23:35:43Z">1 week, 6 days ago</time>
+      </div>
+    </div>
+  </div>
+</div>
+
 {% endblock %}
