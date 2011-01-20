@@ -197,12 +197,12 @@ $(document).ready(function () {
                 if ($el.children(".trans-init").length) {
                     var $ni = $el.children(".trans-init").clone();
                     $ni.attr({
-                        'class': "cloned",
                         lang: lang,
                         id: format('id_{0}_{1}', field, lang),
                         name: [field,lang].join('_'),
                         value: $el.find(format("[lang={0}]",[dl])).val()
                     });
+                    if (lang != dl) $ni.addClass("cloned");
                 } else {
                     var $ni = $el.find(format("[lang={0}]",dl)).clone();
                     $ni.attr({
