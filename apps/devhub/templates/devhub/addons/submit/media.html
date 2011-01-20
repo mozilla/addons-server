@@ -66,11 +66,12 @@
         <div id="file-list">
           {% for form in preview_form.forms %}
           <div class="preview">
-            <div class="preview-thumb">
-              {% if form.instance.id %}
-                <img src="{{ form.instance.thumbnail_url }}">
-              {% endif %}
-            </div>
+            {% if form.instance.id %}
+              <div class="preview-thumb" style="background-image:url({{ form.instance.thumbnail_url }})">
+              </div>
+            {% else %}
+              <div class="preview-thumb"></div>
+            {% endif %}
             {{ form.id|safe }}
             <span class="js-hidden delete">{{ form.DELETE|safe }}{{ form.DELETE.label_tag()|safe }}</span>
             <div class="edit-previews-text">
