@@ -10,8 +10,8 @@
   {% endtrans %}
   </p>
   <span class="invisible-upload cta" data-upload-url="{{ url('devhub.upload') }}">
-    <a class="button prominent" href="#">{{ _('Select Add-on to Upload...') }}</a>
-    <input type="file" id="upload-file-input" />
+    <a class="button prominent disabled" href="#">{{ _('Select Add-on to Upload...') }}</a>
+    <input disabled type="file" id="upload-file-input" />
   </span>
   <div class="extra">{{ _('We accept .xpi, .jar, and .xml files.') }}</div>
   {{ new_addon_form.non_field_errors()|safe }}

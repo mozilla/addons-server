@@ -747,36 +747,6 @@ a.more-actions:after:hover {
 #submit-addon {
     margin-bottom: 3em;
 }
-.cta a.button:link,
-.cta a.button:visited {
-    background: #5af;
-    background: -moz-linear-gradient(top, #acf, #5af);
-    background: -webkit-gradient(linear, left top, left bottom, from(#acf), to(#5af));
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
-    border-radius: 8px;
-    display: block;
-    line-height: 1.0;
-    white-space: normal;
-    padding: 0.75em 0.95em;
-    text-align: center;
-}
-.cta a.button:hover,
-.cta a.button:focus {
-    border-color: #25f;
-    -moz-box-shadow: inset 0 0 2px #fff;
-    -webkit-box-shadow: inset 0 0 2px #fff;
-    box-shadow: inset 0 0 2px #fff;
-}
-.cta a.button:active {
-    border-color: #03c;
-    background: #7bf;
-    background: -moz-linear-gradient(top, #5af, #7bf);
-    background: -webkit-gradient(linear, left top, left bottom, from(#5af), to(#7bf));
-    -moz-box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
-    -webkit-box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
-    box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
-}
 
 .secondary .recent-activity>ul>li {
     color: #555;

@@ -31,6 +31,8 @@ $(document).ready(function() {
         initSubmit();
         initLicenseFields();
         initCharCount();
+        $('.invisible-upload [disabled]').attr("disabled", false);
+        $('.invisible-upload .disabled').removeClass("disabled");
         $('.upload-status').bind('upload-success', function(e, json) {
             $("#submit-upload-file-finish").attr("disabled", false);
             $("#id_upload").val(json.upload);
