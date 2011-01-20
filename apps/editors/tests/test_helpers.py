@@ -63,6 +63,12 @@ class TestViewEditorQueueTable(test_utils.TestCase):
         row.hours_since_created = 10 * 24
         eq_(self.table.render_days_since_created(row), u'10 days')
 
+    def test_waiting_time_one_day(self):
+        row = Mock()
+        row.days_since_created = 1
+        row.hours_since_created = 24
+        eq_(self.table.render_days_since_created(row), u'1 day')
+
     def test_waiting_time_in_hours(self):
         row = Mock()
         row.days_since_created = 0

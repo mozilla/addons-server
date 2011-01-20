@@ -76,7 +76,9 @@ class ViewEditorQueueTable(tables.ModelTable):
                                                 row.hours_since_created)
         else:
             # L10n: first argument is number of days
-            r = _(u'%d days') % row.days_since_created
+            r = ngettext(u'{0} day', u'{0} days',
+                         row.days_since_created).format(
+                                                row.days_since_created)
         return jinja2.escape(r)
 
     def render_flags(self, row):
