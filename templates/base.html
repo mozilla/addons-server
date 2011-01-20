@@ -124,9 +124,9 @@
     </div>
     {# js #}
     {% block site_js %}
-      <script src="{{ url('jsi18n') }}/build:{{ BUILD_ID_JS }}"></script>
+      <script src="{{ url('jsi18n') }}?build={{ BUILD_ID_JS }}"></script>
       {{ js('common') }}
-      <script async defer src="{{ url('addons.buttons.js') }}/build:{{ BUILD_ID_JS }}"></script>
+      <script async defer src="{{ url('addons.buttons.js') }}?build={{ BUILD_ID_JS }}"></script>
     {% endblock %}
     {% block js %}{% endblock %}
     {% block footer %}
