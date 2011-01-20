@@ -93,14 +93,20 @@ def file_status_message(file):
 
 
 @register.function
-def dev_files_status(files):
+def dev_files_status(files, addon):
     """Group files by their status (and files per status)."""
     status_count = defaultdict(int)
+
+    # Show "awaiting full review" for unreviewed files on that track.
+    choices = dict(amo.STATUS_CHOICES)
+    if addon.status in (amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED,
+                        amo.STATUS_PUBLIC):
+        choices[amo.STATUS_UNREVIEWED] = choices[amo.STATUS_NOMINATED]
 
     for file in files:
         status_count[file.status] += 1
 
-    return [(count, unicode(amo.STATUS_CHOICES[status])) for
+    return [(count, unicode(choices[status])) for
             (status, count) in status_count.items()]
 
 

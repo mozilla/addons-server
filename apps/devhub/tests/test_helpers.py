@@ -4,12 +4,18 @@ import urllib
 
 from django.utils import translation
 
+import test_utils
 from mock import Mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
+import amo
 from amo.urlresolvers import reverse
 from amo.tests.test_helpers import render
+from addons.models import Addon
+from devhub import helpers
+from files.models import File, Platform
+from versions.models import Version
 
 
 def test_dev_page_title():
@@ -141,3 +147,54 @@ class TestDisplayUrl(unittest.TestCase):
         url = urllib.quote(self.raw_url.encode('euc_jp'))
         eq_(render('{{ url|display_url }}', {'url':url}),
             self.raw_url)
+
+
+class TestDevFilesStatus(test_utils.TestCase):
+
+    def setUp(self):
+        platform = Platform.objects.create(id=amo.PLATFORM_ALL.id)
+        self.addon = Addon.objects.create(type=1, status=amo.STATUS_UNREVIEWED)
+        self.version = Version.objects.create(addon=self.addon)
+        self.file = File.objects.create(version=self.version,
+                                        platform=platform,
+                                        status=amo.STATUS_UNREVIEWED)
+
+    def expect(self, expected):
+        cnt, msg = helpers.dev_files_status([self.file], self.addon)[0]
+        eq_(cnt, 1)
+        eq_(msg, expected)
+
+    def test_unreviewed_lite(self):
+        self.addon.status = amo.STATUS_LITE
+        self.file.status = amo.STATUS_UNREVIEWED
+        self.expect(amo.STATUS_CHOICES[amo.STATUS_UNREVIEWED])
+
+    def test_unreviewed_public(self):
+        self.addon.status = amo.STATUS_PUBLIC
+        self.file.status = amo.STATUS_UNREVIEWED
+        self.expect(amo.STATUS_CHOICES[amo.STATUS_NOMINATED])
+
+    def test_unreviewed_nominated(self):
+        self.addon.status = amo.STATUS_NOMINATED
+        self.file.status = amo.STATUS_UNREVIEWED
+        self.expect(amo.STATUS_CHOICES[amo.STATUS_NOMINATED])
+
+    def test_unreviewed_lite_and_nominated(self):
+        self.addon.status = amo.STATUS_LITE_AND_NOMINATED
+        self.file.status = amo.STATUS_UNREVIEWED
+        self.expect(amo.STATUS_CHOICES[amo.STATUS_NOMINATED])
+
+    def test_reviewed_lite(self):
+        self.addon.status = amo.STATUS_LITE
+        self.file.status = amo.STATUS_LITE
+        self.expect(amo.STATUS_CHOICES[amo.STATUS_LITE])
+
+    def test_reviewed_public(self):
+        self.addon.status = amo.STATUS_PUBLIC
+        self.file.status = amo.STATUS_PUBLIC
+        self.expect(amo.STATUS_CHOICES[amo.STATUS_PUBLIC])
+
+    def test_disabled(self):
+        self.addon.status = amo.STATUS_PUBLIC
+        self.file.status = amo.STATUS_DISABLED
+        self.expect(amo.STATUS_CHOICES[amo.STATUS_DISABLED])
