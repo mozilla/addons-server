@@ -414,9 +414,18 @@ class TestFileFromUpload(UploadTest):
         f = File.from_upload(upload, self.version, self.platform)
         eq_(f.size, 1)
 
+    def test_beta_version_non_public(self):
+        # Only public add-ons can get beta versions.
+        upload = self.upload('beta-extension')
+        data = parse_addon(upload.path)
+        self.addon.status = amo.STATUS_LITE
+        f = File.from_upload(upload, self.version, self.platform, data)
+        eq_(f.status, amo.STATUS_UNREVIEWED)
+
     def test_beta_version(self):
         upload = self.upload('beta-extension')
         data = parse_addon(upload.path)
+        self.addon.status = amo.STATUS_PUBLIC
         f = File.from_upload(upload, self.version, self.platform, data)
         eq_(f.status, amo.STATUS_BETA)
 
