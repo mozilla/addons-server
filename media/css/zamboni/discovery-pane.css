@@ -462,12 +462,12 @@ ul.addons {
     max-width: 50px;
 }
 
-/* @Top add-ons *********/
-#top-addons {
+/* @group Top Add-ons and Featured Personas */
+#sub .featured {
     position: relative;
 }
 
-#top-addons h2,
+#sub .featured h2,
 #more-ways h2 {
     margin: -10px -10px 0;
     padding: .45em 10px .45em 10px;
@@ -478,34 +478,66 @@ ul.addons {
     overflow: hidden;
 }
 
-#top-addons ul {
+#sub .featured ul {
     margin: 0 0 -10px;
 }
 
-#top-addons li,
+#sub .featured li,
 #more-ways li {
     border-bottom: 1px solid #cdd4de;
     margin: 0 -10px;
     clear: both;
-    font-size: 13px;
 }
-
-#top-addons li:last-child {
+#sub #featured-personas li {
+    border-bottom-color: #666;
+}
+#sub .featured li:last-child {
     border-bottom-width: 0;
 }
 
-#top-addons ul a {
-    display: block;
-    overflow: hidden;
-    padding: .5em 30px .5em 10px;
-    background: rgba(255,255,255,0.35) url("../../img/zamboni/discovery_pane/arrow-right.png") 95% 50% no-repeat;
-    color: #333;
+#sub .featured li,
+#sub #featured-personas li h6,
+#more-ways li {
+    font-size: 13px;
+}
+
+#sub .featured li a {
     text-decoration: none;
 }
 
-#top-addons ul a:hover,
-#top-addons ul a:focus,
-#top-addons ul a:active {
+#sub #top-addons ul a.addon-title,
+#sub #featured-personas ul span.addon-title {
+    display: block;
+    overflow: hidden;
+    background: rgba(255,255,255,0.35) url("../../img/zamboni/discovery_pane/arrow-right.png") 95% 50% no-repeat;
+    color: #333;
+}
+
+#sub #top-addons ul a.addon-title,
+#sub #featured-personas ul span.addon-title b {
+    display: block;
+    padding: 0.5em 30px 0.5em 10px;
+}
+
+#sub #featured-personas ul span.addon-title b {
+    font-weight: normal;
+}
+
+#sub #featured-personas ul span.addon-title {
+    background-color: rgba(255,255,255,0.65);
+    border-top: 1px solid rgba(255,255,255,0.35);
+    text-decoration: none;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+#sub #top-addons ul a.addon-title:hover,
+#sub #top-addons ul a.addon-title:focus,
+#sub #top-addons ul a.addon-title:active,
+#sub #featured-personas ul a:hover span.addon-title,
+#sub #featured-personas ul a:focus span.addon-title,
+#sub #featured-personas ul a:active span.addon-title {
     background-color: rgba(255,255,255,0.65);
     background-position: 96% 50%;
     -moz-transition-property: background-color, background-position;
@@ -514,7 +546,13 @@ ul.addons {
     color: #083681;
 }
 
-#top-addons ul li:last-child a {
+#sub #featured-personas ul a:hover span.addon-title,
+#sub #featured-personas ul a:focus span.addon-title,
+#sub #featured-personas ul a:active span.addon-title {
+    background-color: rgba(255,255,255,0.8);
+}
+
+#sub .featured ul li:last-child a {
     border-radius: 0 0 8px 8px;
 }
 
@@ -523,12 +561,29 @@ ul.addons {
     margin: 0 8px 0 0;
 }
 
-#top-addons .all {
+#sub .featured .all {
     float: right;
     display: block;
     line-height: 24px;
     font-size: 13px;
 }
+/* @end */
+
+/* @group Personas */
+.persona-preview {
+    display: block;
+    position: relative;
+    line-height: 1;
+}
+.persona-preview [data-browsertheme] {
+    background-position: 100% 50%;
+    display: block;
+    position: relative;
+}
+.persona-preview [data-browsertheme] {
+    height: 60px;
+}
+/* @end */
 
 /* @More ways to customize *********/
 #more-ways ul {

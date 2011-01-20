@@ -1,0 +1,28 @@
+{% macro addon_list(list, limit=5, sidebar=False) %}
+<ul>
+{# These are JSON add-ons from the API, not Addon objects. #}
+{% for addon in list[:limit] %}
+  <li data-guid="{{ addon.guid }}" data-summary="{{ addon.summary }}">
+    {{ addon.type }}
+    <a href="{{ services_url('discovery.addons.detail', addon.id) }}"
+       target="_self" class="addon-title">
+      <img src="{{ addon.icon }}" width="32" height="32">
+      {% if sidebar %}
+        {{ addon.name }}
+      {% else %}
+        <h3>{{ addon.name }}</h3>
+        <p class="desc">{{ addon.summary }}</p>
+      {% endif %}
+    </a>
+  </li>
+{% endfor %}
+</ul>
+{% endmacro %}
+
+{% macro persona_list(list, limit=5) %}
+<ul class="persona-list">
+{% for addon in list[:limit] %}
+  <li>{{ persona_preview(addon.persona, title=True) }}</li>
+{% endfor %}
+</ul>
+{% endmacro %}

@@ -14,6 +14,7 @@ import api.utils
 import api.views
 from addons.decorators import addon_view_factory
 from addons.models import Addon
+from browse.views import personas_listing
 from bandwagon.models import Collection, SyncedCollection, CollectionToken
 from reviews.models import Review
 from stats.models import GlobalStat
@@ -40,7 +41,8 @@ def pane(request, version, platform):
                         {'modules': get_modules(request, platform, version),
                          'addon_downloads': addon_downloads,
                          'top_addons': from_api('by_adu'),
-                         'featured': from_api('featured')})
+                         'featured_addons': from_api('featured'),
+                         'featured_personas': get_featured_personas(request)})
 
 
 def get_modules(request, platform, version):
@@ -55,6 +57,12 @@ def get_modules(request, platform, version):
     modules = sorted(modules, key=lambda x: x.ordering)
     return [module_registry[m.module](request, platform, version)
             for m in modules]
+
+
+def get_featured_personas(request):
+    categories, filter, base, category = personas_listing(request)
+    featured = base & Addon.objects.featured(request.APP)
+    return featured[:6]
 
 
 def api_view(request, platform, version, list_type,

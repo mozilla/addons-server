@@ -254,7 +254,7 @@ class ListView(APIView):
         """
         limit = min(MAX_LIMIT, int(limit))
         APP, platform = self.request.APP, platform.lower()
-        qs = Addon.objects.listed(APP)
+        qs = Addon.objects.listed(APP).exclude(type=amo.ADDON_PERSONA)
         shuffle = True
 
         if list_type == 'newest':

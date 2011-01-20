@@ -20,6 +20,9 @@
             {{ addon.average_rating|float|stars }} {{ addon.total_reviews|numberfmt }}
           </span>
         {% endif %}
+        {% if title %}
+          <span class="addon-title"><b>{{ addon.name }}</b></span>
+        {% endif %}
       </{{ tag }}>
 
       {% if details %}

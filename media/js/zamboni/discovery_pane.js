@@ -205,7 +205,7 @@ $(document).ready(function(){
     // We show three images at a time, so the width of each is roughly 1/3.
     $("#images .panel").css({width: panelWidth/3 - 10});
 
-    if ($(".discovery-pane-promo").length) {
+    if ($(".discovery-pane").length) {
         // Trim the description text to fit.
         $("p.desc").vtruncate();
         $(window).resize(debounce(function() {

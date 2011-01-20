@@ -414,13 +414,18 @@ MINIFY_BUNDLES = {
             # Fix-up outgoing links
             'js/zamboni/outgoing_links.js',
         ),
-        'zamboni/discovery-promo': (
+        'zamboni/discovery-pane': (
             'js/zamboni/jquery-1.4.2.min.js',
             'js/jquery-ui/ui.lightbox.js',
             'js/zamboni/truncation.js',
+
+            # Personas
+            'js/zamboni/jquery.hoverIntent.min.js',
+            'js/zamboni/personas.js',
+
             'js/zamboni/discovery_pane.js',
         ),
-        'zamboni/discovery-pane': (
+        'zamboni/discovery-addons': (
             'js/zamboni/truncation.js',
             'js/zamboni/discovery_pane.js',
         ),

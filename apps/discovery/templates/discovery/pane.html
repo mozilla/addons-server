@@ -1,21 +1,4 @@
-{% macro addon_list(list, limit=5, sidebar=False) %}
-<ul>
-{# These are JSON add-ons from the API, not Addon objects. #}
-{% for addon in list[:5] %}
-  <li data-guid="{{ addon.guid }}" data-summary="{{ addon.summary }}">
-    <a href="{{ services_url('discovery.addons.detail', addon.id) }}" target="_self">
-      <img src="{{ addon.icon }}" width="32" height="32">
-      {% if sidebar %}
-        {{ addon.name }}
-      {% else %}
-        <h3>{{ addon.name }}</h3>
-        <p class="desc">{{ addon.summary }}</p>
-      {% endif %}
-    </a>
-  </li>
-{% endfor %}
-</ul>
-{% endmacro %}
+{% from "discovery/macros.html" import addon_list, persona_list %}
 
 {% set app = request.APP.pretty %}
 
@@ -28,7 +11,13 @@
     {{ css('zamboni/discovery-pane') }}
     <base target="_blank" href="{{ settings.SITE_URL }}">
   </head>
-  <body class="html-{{ DIR }} discovery-pane-promo">
+  <body class="html-{{ DIR }} discovery-pane {{ request.APP.short }}"
+        data-app="{{ request.APP.short }}"
+        data-appname="{{ app }}"
+        data-appid="{{ request.APP.id }}"
+        data-anonymous="{{ (not request.user.is_authenticated())|json }}"
+        data-readonly="{{ settings.READ_ONLY|json }}"
+        data-media-url="{{ MEDIA_URL }}">
     <header>
       <section id="intro">
       <h1><img src="{{ MEDIA_URL }}img/zamboni/discovery_pane/logo-addons.png"
@@ -87,17 +76,22 @@
       <section id="featured-addons">
         <h2>{{ _('Featured Add-ons') }}</h2>
         <div class="addons">
-          {{ addon_list(featured) }}
+          {{ addon_list(featured_addons) }}
         </div>
       </section>
     </section>
 
     <section id="sub">
-      <section id="top-addons">
+      <section class="featured" id="top-addons">
         <h2><a class="all" href="{{ url('browse.extensions') }}">{{ _('See all') }}</a>
         {{ _('Top Add-ons') }}
         </h2>
         {{ addon_list(top_addons, 5, sidebar=True) }}
+      </section>
+      <section class="featured personas" id="featured-personas">
+        <h2><a class="all" href="{{ url('browse.personas') }}">{{ _('See all') }}</a>
+          {{ _('Featured Personas') }}</h2>
+        {{ persona_list(featured_personas) }}
       </section>
       <section id="more-ways">
         <h2>{{ _('More ways to customize') }}</h2>
@@ -124,7 +118,7 @@
 
     </section>
 
-    {{ js('zamboni/discovery-promo') }}
+    {{ js('zamboni/discovery-pane') }}
 
   </body>
 </html>
