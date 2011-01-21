@@ -29,6 +29,12 @@ class TestPendingQueue(EditorTest):
         r = self.client.get(reverse('editors.queue_pending'))
         eq_(r.status_code, 403)
 
+    def test_invalid_page(self):
+        r = self.client.get(reverse('editors.queue_pending'),
+                            data={'page':999})
+        eq_(r.status_code, 200)
+        eq_(r.context['page'].number, 1)
+
     def test_grid(self):
         r = self.client.get(reverse('editors.queue_pending'))
         eq_(r.status_code, 200)
@@ -41,6 +47,25 @@ class TestPendingQueue(EditorTest):
         eq_(doc('div.section table tr th:eq(5)').text(),
             u'Additional Information')
         # Smoke test the grid. More tests in test_helpers.py
-        eq_(doc('div.section table tr td:eq(0)').text(), u'Converter 1.0.0')
-        eq_(doc('div.section table tr td a:eq(0)').attr('href'),
-            reverse('editors.review', args=['118409']))
+        row = doc('div.section table tr:eq(1)')
+        eq_(doc('td:eq(0)', row).text(), u'Converter 1.0.0')
+        eq_(doc('td a:eq(0)', row).attr('href'),
+            reverse('editors.review', args=['118409']) + '?num=1')
+        row = doc('div.section table tr:eq(2)')
+        eq_(doc('td:eq(0)', row).text(), u'Better Facebook! 4.105')
+        eq_(doc('a:eq(0)', row).attr('href'),
+            reverse('editors.review', args=['118467']) + '?num=2')
+
+    def test_redirect_to_review(self):
+        r = self.client.get(reverse('editors.queue_pending'), data={'num': 2})
+        self.assertRedirects(r, reverse('editors.review',
+                                        args=['118467']) + '?num=2')
+
+    def test_invalid_review_ignored(self):
+        r = self.client.get(reverse('editors.queue_pending'), data={'num': 9})
+        eq_(r.status_code, 200)
+
+    def test_garbage_review_num_ignored(self):
+        r = self.client.get(reverse('editors.queue_pending'),
+                            data={'num': 'not-a-number'})
+        eq_(r.status_code, 200)

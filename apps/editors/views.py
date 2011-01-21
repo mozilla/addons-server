@@ -38,13 +38,28 @@ def queue(request):
 @editor_required
 def queue_pending(request):
     qs = ViewEditorQueue.objects.all()
+    review_num = request.GET.get('num', None)
+    if review_num:
+        try:
+            review_num = int(review_num)
+        except ValueError:
+            pass
+        else:
+            try:
+                row = qs[review_num - 1]
+                return redirect('%s?num=%s' % (reverse('editors.review',
+                                                       args=[row.version_id]),
+                                               review_num))
+            except IndexError:
+                pass
     order_by = request.GET.get('sort', '-days_since_created')
     table = ViewEditorQueueTable(qs, order_by=order_by)
     page = paginate(request, table.rows, per_page=100)
+    table.set_page(page)
     return jingo.render(request, 'editors/queue/pending.html',
                         {'table': table, 'page': page})
 
 
 @editor_required
 def review(request, version_id):
-    raise NotImplementedError
+    return http.HttpResponse('Not implemented yet')

@@ -20,11 +20,15 @@ class TestViewEditorQueueTable(test_utils.TestCase):
 
     def test_addon_name(self):
         row = Mock()
+        page = Mock()
+        page.start_index = Mock()
+        page.start_index.return_value = 1
         row.addon_name = 'フォクすけといっしょ 0.12'.decode('utf8')
         row.version_id = 1234
+        self.table.set_page(page)
         a = pq(self.table.render_addon_name(row))
         eq_(a.attr('href'),
-            reverse('editors.review', args=[row.version_id]))
+            reverse('editors.review', args=[row.version_id]) + '?num=1')
         eq_(a.text(), row.addon_name)
 
     def test_addon_type_id(self):

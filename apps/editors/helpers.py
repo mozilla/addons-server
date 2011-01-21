@@ -42,8 +42,10 @@ class ViewEditorQueueTable(tables.ModelTable):
                    'version_max', 'version_min', 'version_apps']
 
     def render_addon_name(self, row):
-        return u'<a href="%s">%s</a>' % (reverse('editors.review',
-                                                 args=[row.version_id]),
+        url = '%s?num=%s' % (reverse('editors.review', args=[row.version_id]),
+                             self.item_number)
+        self.item_number += 1
+        return u'<a href="%s">%s</a>' % (url,
                                          jinja2.escape(row.addon_name))
 
     def render_addon_type_id(self, row):
@@ -87,6 +89,9 @@ class ViewEditorQueueTable(tables.ModelTable):
             return u'<div class="app-icon ed-sprite-admin-review"></div>'
         else:
             return ''
+
+    def set_page(self, page):
+        self.item_number = page.start_index()
 
     def _explode_concat(self, value):
         """Returns list of IDs in a MySQL GROUP_CONCAT(field) result."""
