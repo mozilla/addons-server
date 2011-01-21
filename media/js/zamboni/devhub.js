@@ -401,8 +401,6 @@ function reorderPreviews() {
         // Loop through the files.
         $.each(files, function(v, f){
             var data = "",
-                xhr = new XMLHttpRequest(),
-                output = "",
                 file = {
                     'instance': instance_id,
                     'name': f.name || f.fileName,
@@ -416,7 +414,8 @@ function reorderPreviews() {
                         $upload_field.trigger("upload_finished_all");
                     }
                     $upload_field.trigger("upload_finished", [file]);
-                };
+                },
+                formData = new z.FormData();
 
             instance_id++;
             outstanding_uploads++;
@@ -431,51 +430,23 @@ function reorderPreviews() {
             }
 
             // Convert it to binary.
-            data = f.getAsBinary();
             file.dataURL = f.getAsDataURL();
 
             // And we're off!
             $upload_field.trigger("upload_start", [file]);
 
-            // Do the uploading.
-            xhr.open("POST", url, true);
-
-            xhr.setRequestHeader("Content-Length", file.size);
-
-            xhr.setRequestHeader('Content-Disposition', 'file; name="upload";');
-            xhr.setRequestHeader("X-File-Name", file.name);
-            xhr.setRequestHeader("X-File-Size", file.size);
-
-            xhr.overrideMimeType('text/plain; charset=x-user-defined-binary');
-            xhr.setRequestHeader('Content-length', false);
-            xhr.setRequestHeader("Content-Type", "multipart/form-data;" +
-                                                 "boundary=" + boundary);
-
-            output += "--" + boundary + "\r\n";
-            output += "Content-Disposition: form-data; name=\"csrfmiddlewaretoken\";";
-
-            output += "\r\n\r\n";
-            output += csrf;
-            output += "\r\n";
-
-            output += "--" + boundary + "\r\n";
-            output += "Content-Disposition: form-data; name=\"upload_image\";";
-
-            output += " filename=\"new-upload\";\r\n";
-            output += "Content-Type: " + f.type;
-
-            output += "\r\n\r\n";
-            output += data;
-            output += "\r\n";
-            output += "--" + boundary + "--";
+            // Set things up
+            formData.open("POST", url, true);
+            formData.append("csrfmiddlewaretoken", csrf);
+            formData.append("upload_image", f);
 
             // Monitor progress and report back.
-            xhr.onreadystatechange = function(){
-                if (xhr.readyState == 4 && xhr.responseText &&
-                    (xhr.status == 200 || xhr.status == 304)) {
+            formData.xhr.onreadystatechange = function(){
+                if (formData.xhr.readyState == 4 && formData.xhr.responseText &&
+                    (formData.xhr.status == 200 || formData.xhr.status == 304)) {
                     var json = {};
                     try {
-                        json = JSON.parse(xhr.responseText);
+                        json = JSON.parse(formData.xhr.responseText);
                     } catch(err) {
                         var error = gettext("There was a problem contacting the server.");
                         $upload_field.trigger("upload_errors", [file, error]);
@@ -493,12 +464,11 @@ function reorderPreviews() {
             }
 
             // Actually do the sending.
-            xhr.sendAsBinary(output);
+            formData.send();
         });
 
         // Clear out images, since we uploaded them.
         $upload_field.val("");
-
     };
 })( jQuery );
 
