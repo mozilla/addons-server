@@ -101,7 +101,7 @@
               <ul>
                 {% for file in version.all_files %}
                 <li>
-                    {{ file_status_message(file) }}
+                    {{ file_status_message(file, addon) }}
                 </li>
                 {% endfor %}
               </ul>

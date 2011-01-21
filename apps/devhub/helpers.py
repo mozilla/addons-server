@@ -84,11 +84,22 @@ def add_version_modal(context, title, action, upload_url, action_label):
                        action_label=action_label)
 
 
+def status_choices(addon):
+    """Return a dict like STATUS_CHOICES customized for the addon status."""
+    # Show "awaiting full review" for unreviewed files on that track.
+    choices = dict(amo.STATUS_CHOICES)
+    if addon.status in (amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED,
+                        amo.STATUS_PUBLIC):
+        choices[amo.STATUS_UNREVIEWED] = choices[amo.STATUS_NOMINATED]
+    return choices
+
+
 @register.inclusion_tag('devhub/versions/file_status_message.html')
-def file_status_message(file):
+def file_status_message(file, addon):
+    choices = status_choices(addon)
     return {'fileid': file.id, 'platform': file.amo_platform.name,
             'created': datetime(file.created),
-            'status': amo.STATUS_CHOICES[file.status],
+            'status': choices[file.status],
             'status_date': datetime(file.datestatuschanged)}
 
 
@@ -96,12 +107,7 @@ def file_status_message(file):
 def dev_files_status(files, addon):
     """Group files by their status (and files per status)."""
     status_count = defaultdict(int)
-
-    # Show "awaiting full review" for unreviewed files on that track.
-    choices = dict(amo.STATUS_CHOICES)
-    if addon.status in (amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED,
-                        amo.STATUS_PUBLIC):
-        choices[amo.STATUS_UNREVIEWED] = choices[amo.STATUS_NOMINATED]
+    choices = status_choices(addon)
 
     for file in files:
         status_count[file.status] += 1
