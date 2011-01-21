@@ -763,7 +763,7 @@ function uploadFile(domFile, file, url) {
 
     var token = $("#upload-file input[name=csrfmiddlewaretoken]").val();
 
-    xhr.open("POST", url, true);
+    xhr.open("POST", format('{0}?_={1}', [url, (new Date).getTime()]), true);
 
     xhr.onreadystatechange = onupload;
     xhr.setRequestHeader("Content-Type", "application/octet-stream");
