@@ -1,3 +1,4 @@
+/* sprites for data grid icons */
 .app-icon {
     float: left;
     margin-right: 4px;
@@ -19,15 +20,50 @@
 }
 .ed-sprite-sort-asc {
     background-position: 0 -330px;
-    width: 21px; height: 4px; }
+    width: 21px; height: 4px;
+}
 .ed-sprite-sort-both {
     background-position: 0 -384px;
-    width: 21px; height: 9px; }
+    width: 21px; height: 9px;
+}
 .ed-sprite-sort-desc {
     background-position: 0 -443px;
-    width: 21px; height: 4px; }
+    width: 21px; height: 4px;
+}
+/* data grids on queue pages */
+.data-grid-content {
+    padding: 0.5em;
+}
+.data-grid-content:after {
+    content: ".";
+    display: block;
+    clear: both;
+    height: 0;
+    visibility: hidden;
+}
+.data-grid-content ol.pagination {
+    margin: 0;
+}
+.queue-outer {
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border: 4px solid #D0E8F4;
+    margin-bottom: 2em;
+}
+.queue-inner {
+    padding-top: 1em;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    background-color: #FFFFFF;
+    border: 1px solid #2E5186;
+}
 table.data-grid {
-    border: 1px solid #666666;
+    width: 100%;
+    border-color: #666666;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
 }
 table.data-grid tr th a:active,
 table.data-grid tr th a:hover,
@@ -53,4 +89,43 @@ table.data-grid tbody tr:nth-child(odd) {
 }
 table.data-grid tbody tr:nth-child(even) {
     background-color: #FFFFFF;
+}
+/* editors/queue tabs */
+ul.tabnav {
+    list-style-type: none;
+    text-align: left;
+    margin-bottom: 0;
+    padding: 5px 14px;
+}
+.html-rtl ul.tabnav {
+    text-align: right;
+}
+ul.tabnav li {
+    display: inline;
+    position: relative;
+    top: 2px;
+    margin: 0px 4px;
+}
+ul.tabnav li a {
+    font-weight: bold;
+    text-decoration: none;
+    color: #223355;
+    background-color: #D0E8F4;
+    padding: 5px 6px;
+    border: 1px solid transparent;
+    border-bottom: none;
+    -moz-border-radius-topleft:5px;
+    -moz-border-radius-topright:5px;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+}
+ul.tabnav li.selected a {
+    background-color: #ffffff;
+    border-color: #2E5186;
+    padding-bottom: 10px;
+}
+ul.tabnav a:hover {
+    background-color: #ffffff;
+    border-color: #2E5186;
+    padding-bottom: 9px;
 }

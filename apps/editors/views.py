@@ -54,10 +54,12 @@ def queue_pending(request):
                 pass
     order_by = request.GET.get('sort', '-days_since_created')
     table = ViewEditorQueueTable(qs, order_by=order_by)
-    page = paginate(request, table.rows, per_page=100)
+    queue_count = qs.count()
+    page = paginate(request, table.rows, per_page=100, count=queue_count)
     table.set_page(page)
     return jingo.render(request, 'editors/queue/pending.html',
-                        {'table': table, 'page': page})
+                        {'table': table, 'page': page,
+                         'queue_count': queue_count})
 
 
 @editor_required

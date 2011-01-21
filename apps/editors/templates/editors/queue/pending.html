@@ -2,36 +2,57 @@
 
 {% block content %}
 
-{{ page|paginator }}
-<table class="data-grid">
-  <thead>
-    <tr>
-        {% for column in table.columns %}
-          {% if column.is_ordered_reverse %}
-            {% set cls, sprite = 'ordered', 'desc' %}
-          {% elif column.is_ordered_straight %}
-            {% set cls, sprite = 'ordered', 'asc' %}
-          {% else %}
-            {% set cls, sprite = '', 'both' %}
-          {% endif %}
-          <th class="{{ cls }}"><a href="?sort={{ column.name_toggled }}">
-              {{ column }}
-              <div class="sort-icon ed-sprite-sort-{{ sprite }}"></div></a>
-          </th>
+<ul class="tabnav">
+  <li><a href="{{ url('editors.queue_pending') }}">
+      {{ _('Full Reviews') }}</a></li>
+  <li class="selected"><a href="{{ url('editors.queue_pending') }}">
+      {{ ngettext('Pending Update ({0})',
+                  'Pending Updates ({0})',
+                  queue_count)|f(queue_count) }}</a></li>
+  <li><a href="{{ url('editors.queue_pending') }}">
+      {{ _('Preliminary Reviews') }}</a></li>
+  <li><a href="{{ url('editors.queue_pending') }}">
+      {{ _('Moderated Reviews') }}</a></li>
+</ul>
+
+<div class="queue-outer">
+  <div class="queue-inner">
+    <div class="data-grid-content">
+    {{ page|paginator }}
+    </div>
+    <table class="data-grid">
+      <thead>
+        <tr>
+            {% for column in table.columns %}
+              {% if column.is_ordered_reverse %}
+                {% set cls, sprite = 'ordered', 'desc' %}
+              {% elif column.is_ordered_straight %}
+                {% set cls, sprite = 'ordered', 'asc' %}
+              {% else %}
+                {% set cls, sprite = '', 'both' %}
+              {% endif %}
+              <th class="{{ cls }}"><a href="?sort={{ column.name_toggled }}">
+                  {{ column }}
+                  <div class="sort-icon ed-sprite-sort-{{ sprite }}"></div></a>
+              </th>
+            {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in page.object_list %}
+          <tr>
+          {% for value in row %}
+            <td>{{ value|xssafe }}</td>
+          {% endfor %}
+          </tr>
         {% endfor %}
-    </tr>
-  </thead>
-  <tbody>
-    {% for row in page.object_list %}
-      <tr>
-      {% for value in row %}
-        <td>{{ value|xssafe }}</td>
-      {% endfor %}
-      </tr>
-    {% endfor %}
-  </tbody>
-</table>
-{{ page|paginator }}
+      </tbody>
+    </table>
+    <div class="data-grid-content">
+    {{ page|paginator }}
+    </div>
+  </div>
+</div>
 
 <div id="helpfulLinks">
 {{ _('Helpful Links:') }}

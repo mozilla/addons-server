@@ -69,3 +69,11 @@ class TestPendingQueue(EditorTest):
         r = self.client.get(reverse('editors.queue_pending'),
                             data={'num': 'not-a-number'})
         eq_(r.status_code, 200)
+
+    def test_queue_count(self):
+        r = self.client.get(reverse('editors.queue_pending'))
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        eq_(doc('.tabnav li a:eq(1)').text(), u'Pending Updates (2)')
+        eq_(doc('.tabnav li a:eq(1)').attr('href'),
+            reverse('editors.queue_pending'))
