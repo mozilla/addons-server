@@ -500,7 +500,6 @@ PREVIEW_FULL_URL = (STATIC_URL +
         '/img/uploads/previews/full/%s/%d.png?modified=%d')
 USERPICS_URL = STATIC_URL + '/img/uploads/userpics/%s/%s/%s.png?modified=%d'
 # paths for uploaded extensions
-FILES_URL = SITE_URL + "/%s/%s/downloads/file/%d/%s?src=%s"
 COLLECTION_ICON_URL = ('%s/%s/%s/images/collection_icon/%%s.png?modified=%%s' %
                        (STATIC_URL, LANGUAGE_CODE, DEFAULT_APP))
 PERSONAS_IMAGE_URL = ('http://www.getpersonas.com/static/'
