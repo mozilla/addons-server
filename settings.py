@@ -434,6 +434,9 @@ MINIFY_BUNDLES = {
             'js/zamboni/truncation.js',
             'js/zamboni/devhub.js',
         ),
+        'zamboni/editors': (
+            'js/zamboni/editors.js',
+        ),
     }
 }
 

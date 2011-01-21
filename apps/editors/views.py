@@ -12,7 +12,7 @@ from editors.helpers import ViewEditorQueueTable
 from amo.utils import paginate
 from amo.urlresolvers import reverse
 from files.models import Approval
-
+from zadmin.models import get_config
 
 def editor_required(func):
     """Requires the user to be logged in as an editor or admin."""
@@ -29,7 +29,8 @@ def editor_required(func):
 @editor_required
 def home(request):
     data = {'reviews_total': Approval.total_reviews(),
-            'reviews_monthly': Approval.monthly_reviews()}
+            'reviews_monthly': Approval.monthly_reviews(),
+            'motd': get_config('editors_review_motd')}
 
     return jingo.render(request, 'editors/home.html', data)
 

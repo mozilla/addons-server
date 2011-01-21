@@ -129,23 +129,23 @@ ul.tabnav a:hover {
     background-color: #ffffff;
     border-color: #2E5186;
     padding-bottom: 9px;
-=======
+}
 
-#editor-stats .listing .results-inner {
+#editors_main .listing .results-inner {
     padding: 0 0.5em;
 }
 
-#editor-stats .listing time {
+#editors_main .listing time {
     color: #aaa;
     font-style: italic;
 }
 
-#editor-stats .listing .row {
+#editors_main .listing .row {
     padding: 0.5em;
     border-top: 1px dotted #ADD0DC;
 }
 
-#editor-stats .listing .row:first-child {
+#editors_main .listing .row:first-child {
     border-top-width: 0px;
 }
 
@@ -196,12 +196,43 @@ ul.tabnav a:hover {
     font-style: italic;
 }
 
-#editors_stats .listing-header {
+#editors-stats .listing-header {
     line-height: 1.8em;
+}
+
+.daily-message {
+    position: relative;
 }
 
 .daily-message div {
     padding: 15px;
+}
+
+.daily-message .close {
+    background-color: #DDDDDD;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    border-radius: 15px;
+    color: #FFFFFF;
+    font-weight: bold;
+    height: 15px;
+    line-height: 12px;
+    position: absolute;
+    right: 5px;
+    text-align: center;
+    top: 5px;
+    width: 15px;
+    text-decoration: none;
+    display: none;
+}
+
+.daily-message .close:hover {
+    background-color: #CCC;
+    text-decoration: none;
+}
+
+.daily-message p {
+    margin: 0;
 }
 
 .daily-message h2 {

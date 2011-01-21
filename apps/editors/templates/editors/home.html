@@ -1,18 +1,19 @@
 {% extends "editors/base.html" %}
 
 {% block content %}
-<div id="editor-stats">
+<div id="editors_main">
 
   {# TODO(gkoberger): Fill in the MOTD below #}
   <div class="featured daily-message">
     <div class="featured-inner">
       <h2>{{ _('Announcement') }}</h2>
-      <p>This is where the Message of the Day will eventually go!</p>
+      <p>{{ motd }}</p>
+      <a class="close" href="#" title="{{ _('Dismiss this announcement') }}">x</a>
     </div>
   </div>
 
 
-  <div class="featured" id="editors_stats">
+  <div class="featured" id="editors-stats">
     <div class="featured-inner">
       <div class="listing-header">
         <div class="editor-stats-title"><span>{{ _('Total Reviews') }}</span></div>
