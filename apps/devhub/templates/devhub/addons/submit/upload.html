@@ -1,6 +1,8 @@
 {% extends "devhub/addons/submit/base.html" %}
 
 {% block primary %}
+<form method="post" id="create-addon" class="item" action="">
+  {{ csrf() }}
   <h3>{{ _('Step 2. Upload Your Add-on') }}</h3>
   <p>
   {% trans %}
@@ -24,8 +26,6 @@
       {# TODO(gkoberger): Add %, kb's uploaded, cancel link #}
       <div id="upload-status-results"></div>
     </div>
-    <form method="post" id="create-addon" class="item" action="">
-      {{ csrf() }}
       <div class="platform">
       <label>{{ _('Select the target platform(s) for this file.') }}</label>
       {{ new_addon_form.errors['platforms']|safe }}
@@ -37,6 +37,6 @@
           {{ _('Continue') }}
         </button>
       </div>
-    </form>
   </section>
+</form>
 {% endblock primary %}

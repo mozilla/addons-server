@@ -417,7 +417,7 @@ function initCharCount() {
     z.FormData = function(){
         this.fields = {};
         this.xhr = new XMLHttpRequest();
-        this.boundary = (new Date().getTime()) + "" + Math.floor(Math.random() * 10000000);
+        this.boundary = "z" + (new Date().getTime()) + "" + Math.floor(Math.random() * 10000000);
 
         if(hasFormData) {
             this.formData = new FormData();

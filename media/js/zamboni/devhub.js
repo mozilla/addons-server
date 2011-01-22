@@ -94,9 +94,6 @@ $(document).ready(function() {
         }
     }
 
-    $(".invisible-upload").click(function() {
-        $(this).children("input").click();
-    });
     $(".invisible-upload a").click(_pd(function() {}));
 
     // Choosing platform when submitting an Addon and/or files.
@@ -731,21 +728,16 @@ function uploadFile(domFile, file, url) {
         }
     }, false);
 
-    var token = $("#upload-file input[name=csrfmiddlewaretoken]").val();
+    var token = $("#create-addon input[name=csrfmiddlewaretoken]").val(),
+        formData = new z.FormData();
 
-    xhr.open("POST", format('{0}?_={1}', [url, (new Date).getTime()]), true);
+    formData.open("POST", format('{0}?_={1}', [url, (new Date).getTime()]), true);
 
-    xhr.onreadystatechange = onupload;
-    xhr.setRequestHeader("Content-Type", "application/octet-stream");
+    formData.xhr.onreadystatechange = function(){ onupload(formData.xhr); };
+    formData.append("csrfmiddlewaretoken", token);
+    formData.append("upload", domFile);
 
-    xhr.setRequestHeader("Content-Length", file.size);
-    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-
-    xhr.setRequestHeader('Content-Disposition', 'file; name="upload";');
-    xhr.setRequestHeader("X-File-Name", file.name);
-    xhr.setRequestHeader("X-File-Size", file.size);
-
-    xhr.send(domFile);
+    formData.send();
 }
 
 function updateStatus( percentage ) {
@@ -761,7 +753,7 @@ function updateStatus( percentage ) {
 }
 
 
-function onupload() {
+function onupload(xhr) {
     if(xhr.readyState == 4) $('#uploadstatus_abort').hide();
 
     if (xhr.readyState == 4 && xhr.responseText &&

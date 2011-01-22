@@ -3333,20 +3333,17 @@ class TestUpload(files.tests.UploadTest):
         self.url = reverse('devhub.upload')
 
     def post(self):
-        data = 'some data'
-        return self.client.post(self.url, data, content_type='text',
-                                HTTP_X_FILE_NAME='filename.xpi',
-                                HTTP_X_FILE_SIZE=len(data))
-
-    def test_no_x_filesize(self):
-        r = self.client.post(self.url, 'some data', content_type='text')
-        eq_(r.status_code, 400)
+        # Has to be a binary, non xpi file.
+        data = open(get_image_path('animated.png'), 'rb')
+        return self.client.post(self.url, {'upload': data})
 
     def test_create_fileupload(self):
         self.post()
-        upload = FileUpload.objects.get()
-        eq_(upload.name, 'filename.xpi')
-        eq_(open(upload.path).read(), 'some data')
+
+        upload = FileUpload.objects.get(name='animated.png')
+        eq_(upload.name, 'animated.png')
+        data = open(get_image_path('animated.png'), 'rb').read()
+        eq_(open(upload.path).read(), data)
 
     def test_fileupload_user(self):
         self.client.login(username='regular@mozilla.com', password='password')
@@ -3357,19 +3354,20 @@ class TestUpload(files.tests.UploadTest):
     @attr('validator')
     def test_fileupload_validation(self):
         self.post()
-        fu = FileUpload.objects.get()
+        fu = FileUpload.objects.get(name='animated.png')
         assert_no_validation_errors(fu)
         assert fu.validation
         validation = json.loads(fu.validation)
+
         eq_(validation['success'], False)
         # The current interface depends on this JSON structure:
-        eq_(validation['errors'], 1)
+        eq_(validation['errors'], 2)
         eq_(validation['warnings'], 0)
         assert len(validation['messages'])
         msg = validation['messages'][0]
         assert 'uid' in msg, "Unexpected: %r" % msg
         eq_(msg['type'], u'error')
-        eq_(msg['message'], u'The XPI could not be opened.')
+        eq_(msg['message'], u'The package is not of a recognized type.')
         eq_(msg['description'], u'')
 
     def test_redirect(self):
@@ -3383,15 +3381,14 @@ class TestUploadDetail(files.tests.UploadTest):
     fixtures = ['base/apps', 'base/users']
 
     def post(self):
-        data = 'some data'
-        return self.client.post(reverse('devhub.upload'),
-                                data, content_type='text',
-                                HTTP_X_FILE_NAME='filename.xpi',
-                                HTTP_X_FILE_SIZE=len(data))
+        # Has to be a binary, non xpi file.
+        data = open(get_image_path('animated.png'), 'rb')
+        return self.client.post(reverse('devhub.upload'), {'upload': data})
 
     @attr('validator')
     def test_detail_json(self):
         self.post()
+
         upload = FileUpload.objects.get()
         r = self.client.get(reverse('devhub.upload_detail',
                                     args=[upload.uuid, 'json']))
@@ -3409,12 +3406,12 @@ class TestUploadDetail(files.tests.UploadTest):
 
     def test_detail_view(self):
         self.post()
-        upload = FileUpload.objects.get()
+        upload = FileUpload.objects.get(name='animated.png')
         r = self.client.get(reverse('devhub.upload_detail',
                                     args=[upload.uuid]))
         eq_(r.status_code, 200)
         doc = pq(r.content)
-        eq_(doc('header h2').text(), 'Validation Results for filename.xpi')
+        eq_(doc('header h2').text(), 'Validation Results for animated.png')
         suite = doc('#addon-validator-suite')
         eq_(suite.attr('data-validateurl'),
             reverse('devhub.upload_detail', args=[upload.uuid, 'json']))

@@ -448,14 +448,9 @@ def profile(request, addon_id, addon):
 @post_required
 def upload(request):
     if request.method == 'POST':
-        #TODO(gkoberger): Bug 610800 - Don't load uploads into memory.
-        filedata = request.raw_post_data
-        try:
-            filename = request.META['HTTP_X_FILE_NAME']
-            size = request.META['HTTP_X_FILE_SIZE']
-        except KeyError:
-            return http.HttpResponseBadRequest()
-        fu = FileUpload.from_post([filedata], filename, size)
+        filedata = request.FILES['upload']
+
+        fu = FileUpload.from_post(filedata, filedata.name, filedata.size)
         if request.user.is_authenticated():
             fu.user = request.amo_user
             fu.save()
