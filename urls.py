@@ -34,9 +34,6 @@ urlpatterns = patterns('',
     # Users
     ('', include('users.urls')),
 
-    # Tags
-    ('', include('tags.urls')),
-
     # Developer Hub.
     ('developers/', include('devhub.urls')),
 
