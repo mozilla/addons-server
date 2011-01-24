@@ -36,3 +36,8 @@ def flush_front_end_cache_urls(urls, **kw):
                 urls[index] = u"%s%s" % (settings.SITE_URL, url)
 
     flush_urls(urls)
+
+
+@task(ignore_result=False)
+def ping(**kw):
+    return 'pong'

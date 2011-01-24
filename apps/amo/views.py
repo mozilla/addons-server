@@ -17,6 +17,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 
 import caching.invalidation
+import celery.exceptions
 import celery.task
 import commonware.log
 import jingo
@@ -27,6 +28,7 @@ import mongoutils
 from hera.contrib.django_utils import get_hera
 from stats.models import Contribution, ContributionError, SubscriptionEvent
 from applications.management.commands import dump_apps
+from . import tasks
 
 monitor_log = commonware.log.getLogger('z.monitor')
 paypal_log = commonware.log.getLogger('z.paypal')
@@ -40,6 +42,27 @@ def check_redis():
     except Exception, e:
         monitor_log.critical('Failed to chat with redis: (%s)' % e)
         return None, e
+
+
+def check_rabbit():
+    # Figure out all the queues we're using. celery is the default.
+    # We're skipping the celery queue for now since it could be backed up and
+    # we don't depend on it as much as the devhub and images queues.
+    queues = []  # ['celery']
+    queues.extend(set(r['queue'] for r in settings.CELERY_ROUTES.values()))
+
+    rv = {}
+    for queue in queues:
+        start = time.time()
+        result = tasks.ping.apply_async(routing_key=queue)
+        try:
+            result.get(timeout=2)
+            rv[queue] = time.time() - start
+        except (AttributeError, celery.exceptions.TimeoutError):
+            monitor_log.critical(
+                'Celery[%s] did not respond within 1 second.' % queue)
+            rv[queue] = None
+    return rv
 
 
 @never_cache
@@ -137,6 +160,9 @@ def monitor(request):
         redis_results = check_redis()
     status_summary['redis'] = bool(redis_results[0])
 
+    rabbit_results = check_rabbit()
+    status_summary['rabbit'] = all(rabbit_results.values())
+
     # Check Hera
     hera_results = []
     status_summary['hera'] = True
@@ -146,12 +172,6 @@ def monitor(request):
         hera_results.append(r)
         if not hera_results[-1]['result']:
             status_summary['hera'] = False
-
-    # Check Rabbit
-    # start = time.time()
-    # pong = celery.task.ping()
-    # rabbit_results = r = {'duration': time.time() - start}
-    # status_summary['rabbit'] = pong == 'pong' and r['duration'] < 1
 
     # Check Mongo
     mongo_results = []
@@ -168,7 +188,7 @@ def monitor(request):
                          'redis_results': redis_results,
                          'hera_results': hera_results,
                          'mongo_results': mongo_results,
-                         # 'rabbit_results': rabbit_results,
+                         'rabbit_results': rabbit_results,
                          'status_summary': status_summary},
                         status=status)
 
