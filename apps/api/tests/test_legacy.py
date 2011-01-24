@@ -439,6 +439,11 @@ class ListTest(TestCase):
         sorted_vals = sorted(vals, reverse=True)
         eq_(vals, sorted_vals)
 
+    def test_featured_no_persona(self):
+        """Verify that featured does not return Persona add-ons."""
+        response = make_call('list/featured')
+        self.assertNotContains(response, """<type id="9">Persona</type>""")
+
     def test_json(self):
         """Verify that we get some json."""
         r = make_call('list/by_adu?format=json', version=1.5)

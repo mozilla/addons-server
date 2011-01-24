@@ -145,14 +145,14 @@ def new_context(context, **kw):
 @register.inclusion_tag('addons/persona_preview.html')
 @jinja2.contextfunction
 def persona_preview(context, persona, size='large', linked=True, extra=None,
-                    details=False, title=False):
+                    details=False, title=False, disco_link=False):
     preview_map = {'large': persona.preview_url,
                    'small': persona.thumb_url}
 
     c = dict(context.items())
     c.update({'persona': persona, 'addon': persona.addon, 'linked': linked,
               'size': size, 'preview': preview_map[size], 'extra': extra,
-              'details': details, 'title': title})
+              'details': details, 'title': title, 'disco_link': disco_link})
     return c
 
 

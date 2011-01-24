@@ -265,6 +265,8 @@ class ListView(APIView):
             addons = qs.order_by('-average_daily_users')[:limit + BUFFER]
             shuffle = False  # By_adu is an ordered list.
         else:
+            if list_type == 'featured':
+                qs = qs.exclude(type=amo.ADDON_PERSONA)
             addons = Addon.objects.featured(APP) & qs
 
         args = (addon_type, limit, APP, platform, version, shuffle)

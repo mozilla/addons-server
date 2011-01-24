@@ -552,7 +552,8 @@ ul.addons {
     background-color: rgba(255,255,255,0.8);
 }
 
-#sub .featured ul li:last-child a {
+#sub .featured ul li:last-child a,
+#sub #featured-personas ul li:last-child a span.addon-title {
     border-radius: 0 0 8px 8px;
 }
 
@@ -661,14 +662,17 @@ ul.addons {
         float: none;
     }
 
-    #top-addons {
-        width: 46%;
+    #sub #top-addons,
+    #sub #featured-personas,
+    #sub #more-ways {
         float: left;
+        margin-right: 1%;
+        width: 30%;
+        width: -moz-calc(100% / 3 - 22px - 0.5%);
     }
-
-    #more-ways {
-        width: 46%;
-        float: right;
+    #sub #more-ways {
+        margin-right: 0;
+        width: -moz-calc(100% / 3 - 22px - 1%);
     }
 
 }
