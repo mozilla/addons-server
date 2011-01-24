@@ -20,7 +20,7 @@ log = commonware.log.getLogger('z.task')
 
 
 @task
-def addon_total_contributions(*addons):
+def addon_total_contributions(*addons, **kw):
     "Updates the total contributions for a given addon."
 
     log.info('[%s@%s] Updating total contributions.' %
@@ -34,7 +34,7 @@ def addon_total_contributions(*addons):
 
 
 @task(rate_limit='10/m')
-def cron_total_contributions(*addons):
+def cron_total_contributions(*addons, **kw):
     "Rate limited version of `addon_total_contributions` suitable for cron."
     addon_total_contributions(*addons)
 
@@ -59,7 +59,7 @@ def update_collections_total(data, **kw):
 
 
 @task(rate_limit='20/h')
-def update_global_totals(job, date):
+def update_global_totals(job, date, **kw):
     log.info("[%s] Updating global statistics totals (%s) for (%s)" %
                    (update_global_totals.rate_limit, job, date))
 
@@ -186,7 +186,7 @@ def _get_metrics_jobs(date=None):
 
 
 @task(rate_limit='100/m')
-def update_to_json(max_objs=None, classes=(), ids=()):
+def update_to_json(max_objs=None, classes=(), ids=(), **kw):
     """Updates database objects to use JSON instead of phpserialized
     data"""
 

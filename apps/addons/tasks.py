@@ -61,7 +61,7 @@ def update_appsupport(ids):
 
 
 @task
-def delete_preview_files(id):
+def delete_preview_files(id, **kw):
     log.info('[1@None] Removing preview with id of %s.' % id)
 
     p = Preview(id=id)

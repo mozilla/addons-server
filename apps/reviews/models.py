@@ -168,7 +168,7 @@ class Spam(object):
 
 
 @task
-def check_spam(review_id):
+def check_spam(review_id, **kw):
     spam = Spam()
     review = Review.objects.using('default').get(id=review_id)
     thirty_days = datetime.now() - timedelta(days=30)

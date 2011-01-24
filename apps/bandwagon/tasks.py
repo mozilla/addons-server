@@ -37,7 +37,7 @@ def collection_votes(*ids, **kw):
 
 
 @task
-def resize_icon(src, dst):
+def resize_icon(src, dst, **kw):
     """Resizes collection icons to 32x32"""
     log.info('[1@None] Resizing icon: %s' % dst)
 
@@ -48,7 +48,7 @@ def resize_icon(src, dst):
 
 
 @task
-def delete_icon(dst):
+def delete_icon(dst, **kw):
     log.info('[1@None] Deleting icon: %s.' % dst)
 
     if not dst.startswith(settings.COLLECTIONS_ICON_PATH):
@@ -94,5 +94,5 @@ def collection_watchers(*ids, **kw):
 
 
 @task(rate_limit='10/m')
-def cron_collection_meta(*addons):
+def cron_collection_meta(*addons, **kw):
     collection_meta(*addons)
