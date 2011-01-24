@@ -79,7 +79,7 @@ for key, value in settings.LOGGING.items():
 USE_SYSLOG = settings.HAS_SYSLOG and not settings.DEBUG
 
 if USE_SYSLOG:
-    cfg['loggers']['z.timer']['handlers'] = ['syslog2']
+    cfg['loggers']['z.timer'] = {'handlers': ['syslog2']}
 
 # Set the level and handlers for all loggers.
 for logger in cfg['loggers'].values() + [cfg['root']]:
