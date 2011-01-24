@@ -13,7 +13,7 @@ task_log = commonware.log.getLogger('z.task')
 
 
 @task
-def delete_photo(dst):
+def delete_photo(dst, **kw):
     task_log.info('[1@None] Deleting photo: %s.' % dst)
 
     if not dst.startswith(settings.USERPICS_PATH):
@@ -28,7 +28,7 @@ def delete_photo(dst):
 
 
 @task
-def resize_photo(src, dst):
+def resize_photo(src, dst, **kw):
     """Resizes userpics to 200x200"""
     task_log.info('[1@None] Resizing photo: %s' % dst)
 
