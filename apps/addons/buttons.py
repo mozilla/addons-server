@@ -291,11 +291,6 @@ def smorgasbord(request):
     # Incompatible Platform.
     all_versions(lambda: Addon.objects.get(id=5308), 'windows/linux-only')
 
-    # Self-Hosted.
-    addons.append(Addon.objects.filter(status=amo.STATUS_LISTED,
-                                       disabled_by_user=False)[0])
-    addons[-1].tag = 'self-hosted'
-
     # EULA.
     eula = (Q(eula__isnull=False, eula__localized_string__isnull=False)
             & ~Q(eula__localized_string=''))
