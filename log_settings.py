@@ -31,6 +31,12 @@ cfg = {
             'format': '%s: [%%(REMOTE_ADDR)s] %s' % (settings.SYSLOG_TAG,
                                                      base_fmt),
         },
+        'prod2': {
+            '()': commonware.log.Formatter,
+            'datefmt': '%H:%M:%s',
+            'format': '%s: [%%(REMOTE_ADDR)s] %s' % (settings.SYSLOG_TAG2,
+                                                     base_fmt),
+        },
     },
     'handlers': {
         'console': {
@@ -41,6 +47,11 @@ cfg = {
             '()': logging.handlers.SysLogHandler,
             'facility': logging.handlers.SysLogHandler.LOG_LOCAL7,
             'formatter': 'prod',
+        },
+        'syslog2': {
+            '()': logging.handlers.SysLogHandler,
+            'facility': logging.handlers.SysLogHandler.LOG_LOCAL7,
+            'formatter': 'prod2',
         },
         'null': {
             '()': NullHandler,
@@ -64,11 +75,16 @@ cfg = {
 for key, value in settings.LOGGING.items():
     cfg[key].update(value)
 
+
+USE_SYSLOG = settings.HAS_SYSLOG and not settings.DEBUG
+
+if USE_SYSLOG:
+    cfg['loggers']['z.timer']['handlers'] = ['syslog2']
+
 # Set the level and handlers for all loggers.
 for logger in cfg['loggers'].values() + [cfg['root']]:
-    syslog = settings.HAS_SYSLOG and not settings.DEBUG
     if 'handlers' not in logger:
-        logger['handlers'] = ['syslog' if syslog else 'console']
+        logger['handlers'] = ['syslog' if USE_SYSLOG else 'console']
     if 'level' not in logger:
         logger['level'] = settings.LOG_LEVEL
     if logger is not cfg['root'] and 'propagate' not in logger:
