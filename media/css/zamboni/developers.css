@@ -1080,19 +1080,19 @@ a.extra {
     padding: 20px;
 }
 
-#upload-file {
+#create-addon {
     margin: 0;
 }
 
-#upload-file h3 {
+#create-addon h3 {
     margin-top: 0;
 }
 
-#upload-file > div, .modal-actions {
+#create-addon > div, .modal-actions {
     margin-top: 1em;
 }
 
-#upload-file .upload-status {
+#create-addon .upload-status {
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
     border-radius: 10px;
@@ -1101,25 +1101,25 @@ a.extra {
     padding: 10px;
 }
 
-#upload-file .upload-status div {
+#create-addon .upload-status div {
     margin-top: 1em;
     line-height: 1em;
 }
 
-#upload-file .upload-details {
+#create-addon .upload-details {
     font-size: 11px;
     color: #999;
 }
 
-#upload-file .upload-status div:first-child {
+#create-addon .upload-status div:first-child {
     margin-top: 0;
 }
 
-#upload-file .upload-status strong {
+#create-addon .upload-status strong {
     display: block;
 }
 
-#upload-file p {
+#create-addon p {
     margin-bottom: 1em;
 }
 
@@ -1199,7 +1199,7 @@ a.extra {
     background-position: 0 -80px;
 }
 
-#upload-file .upload-status #uploadstatus {
+#create-addon .upload-status #uploadstatus {
     color: #777777;
     font-size: 11px;
     margin-top: 4px;
@@ -1473,11 +1473,11 @@ form.select-review .errorlist {
 }
 /* @end */
 
-#upload-file li {
+#create-addon li {
     float: left;
     margin-right: 8px;
 }
-#upload-file ul {
+#create-addon ul {
     overflow: hidden;
     margin-bottom: 1em;
 }
