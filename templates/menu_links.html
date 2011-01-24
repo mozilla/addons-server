@@ -1,3 +1,18 @@
 {% extends "global/menu_links.html" %}
 
-{% block amo_class %}current{% endblock %}
+{% block amo_links %}
+  <li class=""><a href="https://addons.mozilla.org/">{{ _('Add-ons') }}</a>
+    <ul>
+      <li class="first"><a href="https://addons.mozilla.org/firefox/">{{ _('Firefox Add-ons') }}</a></li>
+      <li><a href="https://addons.mozilla.org/firefox/featured/">{{ _('Featured Add-ons') }}</a></li>
+      <li><a href="https://addons.mozilla.org/firefox/extensions/">{{ _('Extensions') }}</a></li>
+      <li><a href="https://addons.mozilla.org/firefox/themes/">{{ _('Themes') }}</a></li>
+      <li><a href="http://www.getpersonas.com/">{{ _('Personas') }}</a></li>
+      <li><a href="https://addons.mozilla.org/firefox/search-tools/">{{ _('Search Tools') }}</a></li>
+      <li><a href="https://addons.mozilla.org/firefox/language-tools/">{{ _('Language Support') }}</a></li>
+      <li><a href="https://addons.mozilla.org/firefox/collections/">{{ _('Collections') }}</a></li>
+      <li><a href="https://addons.mozilla.org/mobile/">{{ _('Mobile Add-ons') }}</a></li>
+      <li class="last"><a href="https://addons.mozilla.org/firefox/developers/">{{ _('Developer Hub') }}</a></li>
+    </ul>
+  </li>
+{% endblock %}

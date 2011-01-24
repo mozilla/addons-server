@@ -358,9 +358,10 @@ MINIFY_BUNDLES = {
             'css/legacy/jquery-lightbox.css',
             'css/legacy/autocomplete.css',
             'css/zamboni/zamboni.css',
+            'css/global/headerfooter.css',
+            'css/zamboni/headerfooter.css',
             'css/zamboni/tags.css',
             'css/zamboni/tabs.css',
-            'css/global/headerfooter.css',
         ),
         'zamboni/discovery-pane': (
             'css/zamboni/discovery-pane.css',

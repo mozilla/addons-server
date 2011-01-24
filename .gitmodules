@@ -4,3 +4,12 @@
 [submodule "lib/product_details/json"]
 	path = lib/product_details/json
 	url = git://github.com/jbalogh/mozilla-product-details.git
+[submodule "templates/global"]
+	path = templates/global
+	url = git://github.com/mozilla/django-moz-header.git
+[submodule "media/css/global"]
+	path = media/css/global
+	url = git://github.com/mozilla/django-moz-header.git
+[submodule "media/js/global"]
+	path = media/js/global
+	url = git://github.com/mozilla/django-moz-header.git

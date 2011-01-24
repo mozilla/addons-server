@@ -87,7 +87,7 @@ $(document).ready(function () {
     function switchLocale(e) {
         e.preventDefault();
         $tgt = $(this);
-        var new_locale = $tgt.attr("data-lang") ||$tgt.attr("href").substring(1);
+        var new_locale = $tgt.attr("data-lang") || $tgt.attr("href").substring(1);
         var unsaved = $("form .trans .unsaved");
         if (unsaved.length) {
             unsavedModal.children(".msg")
@@ -197,6 +197,7 @@ $(document).ready(function () {
                 if ($el.children(".trans-init").length) {
                     var $ni = $el.children(".trans-init").clone();
                     $ni.attr({
+                        "class": "",
                         lang: lang,
                         id: format('id_{0}_{1}', field, lang),
                         name: [field,lang].join('_'),
@@ -206,7 +207,7 @@ $(document).ready(function () {
                 } else {
                     var $ni = $el.find(format("[lang={0}]",dl)).clone();
                     $ni.attr({
-                        'class': "cloned",
+                        "class": "cloned",
                         lang: lang
                     });
                 }

@@ -1,0 +1,366 @@
+.amo-header:after,
+.header-search form:after {
+    content: ".";
+    display: block;
+    clear: both;
+    height: 0;
+    visibility: hidden;
+}
+
+
+@font-face {
+    font-family: 'MetaBlack';
+    src: url('https://www.mozilla.com/img/fonts/MetaWebPro-Black.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+body {
+    background: 0;
+    padding-top: 0;
+}
+/*----------------------------------
+    Header
+----------------------------------*/
+
+#header {
+    height: 40px;
+    margin: 10px auto 0;
+    -moz-box-shadow: 0 3px rgba(0,0,0,0.1), inset 0 -2px rgba(0,0,0,0.1);
+    -webkit-box-shadow: 0 3px rgba(0,0,0,0.1), inset 0 -2px rgba(0,0,0,0.1);
+    box-shadow: 0 3px rgba(0,0,0,0.1), inset 0 -2px rgba(0,0,0,0.1);
+}
+
+#header h1 a,
+#header h1 a:link,
+#header h1 a:visited {
+    height: 40px;
+    width: 95px;
+    background: url(../../img/zamboni/global/wordmark.png) 15px 4px no-repeat;
+}
+
+#header h1 a:hover,
+#header h1 a:active {
+    background: -moz-radial-gradient(center 45deg, ellipse closest-side, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 100%),
+        url(../../img/zamboni/global/wordmark.png) 15px 4px no-repeat;
+    -moz-transition: background 0.2s ease-in-out;
+}
+
+#nav-main ul li a,
+#nav-main ul li span {
+    padding: 10px 15px 0 15px;
+    height: 30px;
+    font-size: 12px;
+}
+
+.html-rtl #nav-main li ul {
+    position: absolute;
+    left: auto;
+    right: -999em;
+    opacity: 0;
+}
+
+#nav-main li:hover ul,
+#nav-main li.sfhover ul {
+    margin-top: 40px;
+}
+
+.html-rtl #nav-main li:hover ul,
+.html-rtl #nav-main li.sfhover ul {
+    left: auto;
+    right: 0;
+}
+
+#header a.mozilla {
+    display: block;
+    float: right;
+    font-size: 16px;
+    height: 40px;
+    line-height: 35px;
+    margin-right: 15px;
+    text-align: right;
+    width: auto;
+    padding-top: 0;
+}
+
+#header a.mozilla span {
+    color: #fff;
+}
+
+#nav-access {
+    display: none;
+}
+
+.amo-header {
+    margin-top: 4px;
+    height: 128px;
+    font-family: Georgia;
+}
+
+.amo-header a {
+    color: #3d6db5;
+}
+
+/** Search */
+
+div.header-search {
+    margin: 0;
+    width: 380px;
+    clear: right;
+    float: right;
+}
+
+.html-rtl div.header-search {
+    clear: left;
+    float: left;
+}
+
+div.header-search span.wrap {
+    width: 288px;
+}
+
+div.header-search form {
+    margin: 0;
+    border-radius: 6px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    padding: 6px;
+}
+
+div.header-search span.wrap {
+    background: #fff url(../../img/zamboni/global/icon-search.png) no-repeat 7px center;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    float: left;
+    padding: 2px 0 0 36px;
+}
+
+div.header-search input.text {
+    border: none;
+    outline: none;
+    box-shadow: none;
+    font-size: 16px;
+    width: 270px;
+    height: 26px;
+    line-height: 25px;
+}
+
+div.header-search input.submit {
+    box-shadow: none;
+    float: left;
+    height: 33px;
+    margin: 0 0 0 6px;
+    width: 37px;
+}
+
+#masthead {
+    position: absolute;
+}
+
+.site-title {
+    padding-top: 16px;
+    max-width: 512px;
+    margin-bottom: 0;
+    display: inline-block;
+}
+
+.site-title a,
+.site-title a:visited,
+.site-title a:hover,
+.site-title a:focus {
+    font-family: MetaBlack, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    color: #444;
+    font-size: 48px;
+    line-height: 60px;
+    text-decoration: none;
+    text-transform: uppercase;
+    vertical-align: top;
+}
+
+.developer-hub .site-title {
+    padding-top:36px;
+}
+
+.developer-hub .site-title small {
+    display: block;
+    padding-left: 3px;
+}
+
+.developer-hub .site-title small:first-child {
+    margin-top: -20px;
+}
+
+.developer-hub .site-title strong {
+    display: block;
+    line-height: 40px;
+    font-size: 48px;
+}
+
+.developer-hub .site-title a {
+    font-size: 32px;
+    line-height: 40px;
+}
+
+.developer-hub .header-search {
+    margin-top: 12px;
+}
+
+.developer-hub .site-title a {
+    font-size: 32px;
+    line-height: 40px;
+}
+
+html[lang=it] .site-title a {
+    font-size: 32px;
+}
+html[lang=it] #nav-main a {
+    font-size: 11px;
+}
+
+.site-title img {
+    vertical-align: bottom;
+}
+
+.site-title strong {
+    color: #d64203;
+}
+
+.sunbird #footer #copyright,
+.seamonkey #footer #copyright,
+.thunderbird #footer #copyright,
+.developer-hub #footer #copyright {
+    clear: none;
+    padding-top: 20px;
+}
+
+.sunbird #footer #footer-logo,
+.seamonkey #footer #footer-logo,
+.thunderbird #footer #footer-logo,
+.developer-hub #footer #footer-logo {
+    display: none;
+}
+
+/*----------------------------------
+    Footer
+----------------------------------*/
+
+#footer {
+    background: #33559b url(../../img/zamboni/global/bg-footer.png) 0 0 repeat-x;
+    padding: 123px 0 5px 0;
+}
+
+#footer-logo a,
+#footer-logo a:link,
+#footer-logo a:visited {
+    background: url(../../img/zamboni/global/header-logos.png) 15px 0 no-repeat;
+}
+
+#footer-logo a:hover,
+#footer-logo a:active {
+    background: -moz-radial-gradient(center 45deg, ellipse closest-side, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 100%),
+url(../../img/zamboni/global/header-logos.png) 15px 0 no-repeat;
+}
+
+#footer-contents[dir="rtl"] {
+    text-align: right;
+}
+
+/* AMO-stuff */
+
+.footerlogo {
+    position: absolute;
+    right: 25px;
+    top: -64px;
+}
+
+.html-rtl .footerlogo {
+    right: auto;
+    left: 25px;
+}
+
+.developer-hub .footerlogo {
+    right: -10px;
+    top: -70px;
+}
+
+.html-rtl.developer-hub .footerlogo {
+    right: auto;
+    left: -10px;
+}
+
+#footer .section {
+    min-height: 0;
+    padding-bottom: 20px;
+}
+
+#footer-content {
+    margin-top: 10px;
+}
+
+#footer-logo {
+    margin-left: 3px;
+    width: 10%;
+}
+#footer-menu {
+    display: table;
+    width: 70%;
+}
+#footer-menu ul {
+    display: table-row;
+}
+#footer-menu li {
+    display: table-cell;
+    width: 10%;
+    padding: 11px 16px 0 0;
+    float: none;
+}
+
+.footer-devhub-link {
+    width: 25%;
+}
+
+#social-footer {
+    height: 68px;
+    margin-bottom: 4px;
+    display: table;
+    font-size: 18px;
+    font-style: italic;
+    width: 80%;
+    color: white;
+}
+
+#social-footer a:after {
+    content: ' \00bb';
+}
+
+#social-footer a:link,
+#social-footer a:visited {
+    color: white;
+}
+
+#social-footer ul {
+    display: table-row;
+}
+
+#social-footer ul li {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+#social-footer ul li:first-child {
+    line-height: 1.2em;
+    font-size: 17px;
+    width: 128px;
+}
+
+#social-footer ul li:first-child b {
+    display: block;
+    font-family: MetaBlack;
+    font-style: normal;
+    font-size: 22px;
+    text-transform: uppercase;
+}
+
