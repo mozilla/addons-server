@@ -221,7 +221,7 @@ function addonFormSubmit() {
         var baseurl = function(){
             return parent_div.find('#addon-edit-basic').attr('data-baseurl');
         }
-        $('#edit-addon-media .listing-footer button').attr('disabled', false);
+        $('.edit-media-button button').attr('disabled', false);
         $('form', parent_div).submit(function(e){
             e.preventDefault();
             var old_baseurl = baseurl();
@@ -479,12 +479,12 @@ function initUploadPreview() {
         $('.edit-addon-media-screenshot-error').remove();
 
         // Don't let users submit a form.
-        $('#edit-addon-media .listing-footer button').attr('disabled', true);
+        $('.edit-media-button button').attr('disabled', true);
     }
 
     function upload_finished_all(e) {
         // They can submit again
-        $('#edit-addon-media .listing-footer button').attr('disabled', false);
+        $('.edit-media-button button').attr('disabled', false);
     }
 
     function upload_start(e, file) {
@@ -592,13 +592,12 @@ function initUploadIcon() {
 
             $('.icon_preview img', $f).addClass('loading');
 
-            $('#edit-addon-media .listing-footer button').attr('disabled', true);
+            $('.edit-media-button button').attr('disabled', true);
         },
 
         upload_finished = function(e) {
             $('.icon_preview img', $f).removeClass('loading');
-            $('#edit-addon-media .listing-footer button').attr('disabled', false);
-
+            $('.edit-media-button button').attr('disabled', false);
         };
 
     $f.delegate('#id_icon_upload', "upload_success", upload_success)

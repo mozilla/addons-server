@@ -143,14 +143,14 @@
     </table>
   </div>
   {% if editable and context == 'edit': %}
-  <div class="listing-footer">
+  <div class="edit-media-button listing-footer">
     <button>{{ _('Save Changes') }}</button> {{ _('or') }}
       <a href="{{ url('devhub.addons.section', addon.slug, 'media') }}"
         class="addon-edit-cancel">
         {{ _('Cancel') }}</a>
     </div>
   {% elif context == 'submit': %}
-  <div class=" addon-submission-field">
+  <div class="edit-media-button addon-submission-field">
     <button type="submit">
       {{ _('Continue') }}
     </button>
