@@ -3,12 +3,13 @@ from django import http, test
 from django.conf import settings
 from django.utils import http as urllib
 
+import mock
 from commonware.middleware import HidePasswordOnException
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 from test_utils import TestCase, RequestFactory
 
-from amo import middleware
+from amo import middleware, decorators
 from amo.urlresolvers import reverse
 from zadmin.models import Config, _config_cache
 
@@ -73,7 +74,7 @@ def test_hide_password_middleware():
     eq_(request.POST['password2'], '******')
 
 
-class TestMobile(TestCase):
+class TestDetectMobile(TestCase):
 
     def check(self, mobile, ua=None, cookie=None):
         d = {}
@@ -115,6 +116,7 @@ class TestXMobile(TestCase):
 
     def setUp(self):
         self.middleware = middleware.XMobileMiddleware()
+        self.view = decorators.mobilized(lambda: 1)(lambda: 1)
 
     def check(self, domain, xmobile, redirect, path='/', query=None):
         url = path
@@ -124,7 +126,7 @@ class TestXMobile(TestCase):
         request.META['SERVER_NAME'] = domain
         if xmobile:
             request.META['HTTP_X_MOBILE'] = xmobile
-        response = self.middleware.process_request(request)
+        response = self.middleware.process_view(request, self.view, (), {})
         if redirect:
             eq_(response.status_code, 301)
             url = redirect + urllib.urlquote(path)
@@ -153,12 +155,27 @@ class TestXMobile(TestCase):
     def test_xmobile_1_on_mamo(self):
         self.check(settings.MOBILE_DOMAIN, xmobile='1', redirect=False)
 
+    def test_xmobile_1_on_mamo_nonbmobile_function(self):
+        self.view.mobile = False
+        self.check(settings.MOBILE_DOMAIN, xmobile='1',
+                   redirect=settings.SITE_URL)
+        self.view = lambda: 1
+        self.check(settings.MOBILE_DOMAIN, xmobile='1',
+                   redirect=settings.SITE_URL)
+
     def test_xmobile_0_on_amo(self):
         self.check(settings.DOMAIN, xmobile='0', redirect=False)
 
     def test_xmobile_1_on_amo(self):
         self.check(settings.DOMAIN, xmobile='1',
                    redirect=settings.MOBILE_SITE_URL)
+
+    def test_xmobile_1_on_amo_nonmobile_function(self):
+        # The function could have mobile=False or undefined.
+        self.view.mobile = False
+        self.check(settings.DOMAIN, xmobile='1', redirect=False)
+        self.view = lambda: 1
+        self.check(settings.DOMAIN, xmobile='1', redirect=False)
 
     def test_redirect_unicode_path(self):
         path = u'/el/addon/Ελληνικά/'

@@ -216,7 +216,7 @@ class XMobileMiddleware(object):
         response['Vary'] = 'X-Mobile'
         return response
 
-    def process_request(self, request):
+    def process_view(self, request, view_func, args, kwargs):
         try:
             want_mobile = int(request.META.get('HTTP_X_MOBILE', 0))
         except Exception:
@@ -225,10 +225,10 @@ class XMobileMiddleware(object):
         # production.
         header = 'HTTP_HOST' if settings.DEBUG else 'SERVER_NAME'
         on_mobile = request.META[header] == settings.MOBILE_DOMAIN
-        # TODO: check that we have a mobile page available.
-        if want_mobile and not on_mobile:
+        has_mobile = getattr(view_func, 'mobile', False)
+        if want_mobile and has_mobile and not on_mobile:
             return self.redirect(request, settings.MOBILE_SITE_URL)
-        if not want_mobile and on_mobile:
+        if not (want_mobile and has_mobile) and on_mobile:
             return self.redirect(request, settings.SITE_URL)
         request.MOBILE = want_mobile
 
