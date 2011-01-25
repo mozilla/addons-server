@@ -1,8 +1,9 @@
 import calendar
-from datetime import datetime, timedelta
+import json
 import re
-from subprocess import Popen, PIPE
 import urllib2
+from datetime import datetime, timedelta
+from subprocess import Popen, PIPE
 
 from django.conf import settings
 
@@ -212,25 +213,30 @@ def activity_log_scrubber():
     for collections in arguments and checks whether collection is listed.
     """
 
-    items = ActivityLog.objects.filter(
-            action__in=[amo.LOG.ADD_TO_COLLECTION.id,
-                        amo.LOG.REMOVE_FROM_COLLECTION.id])
+    items = (ActivityLog.objects.filter(
+             action__in=[amo.LOG.ADD_TO_COLLECTION.id,
+                         amo.LOG.REMOVE_FROM_COLLECTION.id])
+             .values('id', '_arguments'))[:1000]
 
     ids = []
     count = 0
     # ~127K
     for item in items:
         count += 1
-        for arg in item.arguments:
-            if isinstance(arg, Collection) and not arg.listed:
-                log.debug('Flagging %s.' % item)
+        for k in json.loads(item['_arguments']):
+            if 'bandwagon.collection' not in k:
+                continue
+
+            if not all(Collection.objects.filter(pk=k.values()[0])
+                       .values_list('listed')):
                 log.debug('%d items seen.' % count)
-                ids.append(item.id)
+                ids.append(item['id'])
+        if len(ids) > 100:
+            _activity_log_scrubber.delay(ids)
+            ids = []
 
-    log.info('Deleting %d items.' % len(ids))
-
-    for chunk in chunked(ids, 100):
-        _activity_log_scrubber.delay(chunk)
+    # get everyone else
+    _activity_log_scrubber.delay(ids)
 
 
 @task(rate_limit='60/h')
