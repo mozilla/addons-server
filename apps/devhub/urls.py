@@ -40,7 +40,7 @@ detail_patterns = patterns('',
         views.addons_section, name='devhub.addons.section'),
 
     url('^upload_preview$', views.upload_image, {'upload_type': 'preview'},
-        name='devhub.addons.upload_preview' ),
+        name='devhub.addons.upload_preview'),
     url('^upload_icon$', views.upload_image, {'upload_type': 'icon'},
         name='devhub.addons.upload_icon'),
 
@@ -87,6 +87,7 @@ redirect_patterns = patterns('',
      lambda r, id: redirect('devhub.versions', id, permanent=True)),
     ('^versions/(\d+)',
      lambda r, id: redirect('devhub.versions', id, permanent=True)),
+    ('^versions/validate/(\d+)', views.validator_redirect),
 )
 
 urlpatterns = decorate(write, patterns('',

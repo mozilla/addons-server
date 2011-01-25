@@ -993,3 +993,9 @@ def request_review(request, addon_id, addon, status):
     messages.success(request, msg[status_req])
     amo.log(amo.LOG.CHANGE_STATUS, addon.get_status_display(), addon)
     return redirect('devhub.versions', addon.slug)
+
+
+# TODO(kumar): Remove when the editor tools are in zamboni.
+def validator_redirect(request, version_id):
+    v = get_object_or_404(Version, id=version_id)
+    return redirect('devhub.versions', v.addon_id, permanent=True)
