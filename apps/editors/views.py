@@ -1,12 +1,14 @@
 import functools
 
 from django import http
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 import jingo
 
+import amo
 from access import acl
 from amo.decorators import login_required
 from devhub.models import ActivityLog
+from editors import forms
 from editors.models import ViewEditorQueue
 from editors.helpers import ViewEditorQueueTable
 from amo.utils import paginate
@@ -25,6 +27,32 @@ def editor_required(func):
         else:
             return http.HttpResponseForbidden()
     return wrapper
+
+
+@editor_required
+def eventlog(request):
+    form = forms.EventLogForm(request.GET)
+    eventlog = ActivityLog.objects.editor_events()
+
+    if form.is_valid():
+        if form.cleaned_data['start']:
+            eventlog = eventlog.filter(created__gte=form.cleaned_data['start'])
+        if form.cleaned_data['end']:
+            eventlog = eventlog.filter(created__lt=form.cleaned_data['end'])
+        if form.cleaned_data['filter']:
+            eventlog = eventlog.filter(action=form.cleaned_data['filter'].id)
+
+    pager = amo.utils.paginate(request, eventlog, 50)
+
+    data = dict(form=form, pager=pager)
+    return jingo.render(request, 'editors/eventlog.html', data)
+
+
+@editor_required
+def eventlog_detail(request, id):
+    log = get_object_or_404(ActivityLog.objects.editor_events(), pk=id)
+    data = dict(log=log)
+    return jingo.render(request, 'editors/eventlog_detail.html', data)
 
 
 @editor_required

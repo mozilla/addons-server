@@ -310,8 +310,11 @@ def log(action, *args, **kw):
 
     al = ActivityLog(user=user, action=action.id)
     al.arguments = args
+    if 'details' in kw:
+        al.details = kw['details']
     al.save()
 
+    # TODO(davedash): post-remora this may not be necessary.
     if 'created' in kw:
         al.created = kw['created']
         # Double save necessary since django resets the created date on save.
@@ -331,3 +334,4 @@ def log(action, *args, **kw):
 
     # Index by every user
     UserLog(activity_log=al, user=user).save()
+    return al

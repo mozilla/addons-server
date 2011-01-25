@@ -1,0 +1,19 @@
+{% extends "editors/base.html" %}
+
+{% block content %}
+  <div class="featured">
+    <div class="featured-inner">
+      <h2>{{ _('Log details') }}</h2>
+      <p>{{ log.to_string('editor') }}</p>
+      {% if log.details %}
+      <dl>
+      {% for k, v in log.details.iteritems() %}
+        <dt>{{ k }}</dt>
+        <dd>{{ v }}</dd>
+      {% endfor %}
+      </dl>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}
+

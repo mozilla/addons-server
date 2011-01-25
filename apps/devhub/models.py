@@ -133,6 +133,7 @@ class ActivityLog(amo.models.ModelBase):
     user = models.ForeignKey('users.UserProfile', null=True)
     action = models.SmallIntegerField(choices=TYPES, db_index=True)
     _arguments = models.TextField(blank=True, db_column='arguments')
+    _details = models.TextField(blank=True, db_column='details')
     objects = ActivityLogManager()
 
     formatter = SafeFormatter()
@@ -193,6 +194,15 @@ class ActivityLog(amo.models.ModelBase):
                 serialize_me.append(dict(((unicode(arg._meta), arg.pk),)))
 
         self._arguments = json.dumps(serialize_me)
+
+    @property
+    def details(self):
+        if self._details:
+            return json.loads(self._details)
+
+    @details.setter
+    def details(self, data):
+        self._details = json.dumps(data)
 
     # TODO(davedash): Support other types.
     def to_string(self, type=None):
