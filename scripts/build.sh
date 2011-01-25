@@ -69,6 +69,11 @@ TEST_SPHINXQL_PORT = 340${EXECUTOR_NUMBER}
 TEST_SPHINX_PORT = 341${EXECUTOR_NUMBER}
 
 ASYNC_SIGNALS = False
+
+mwc = MIDDLEWARE_CLASSES
+xmobile = mwc.index('amo.middleware.XMobileMiddleware')
+detect = ('amo.middleware.DetectMobileMiddleware',)
+MIDDLEWARE_CLASSES = mwc[:xmobile] + detect + mwc[xmobile:]
 SETTINGS
 
 

@@ -50,3 +50,9 @@ SESSION_COOKIE_DOMAIN = None
 
 # Run tasks immediately, don't try using the queue.
 CELERY_ALWAYS_EAGER = True
+
+# Add DetectMobileMiddleware for mobile development.
+mwc = MIDDLEWARE_CLASSES
+xmobile = mwc.index('amo.middleware.XMobileMiddleware')
+detect = ('amo.middleware.DetectMobileMiddleware',)
+MIDDLEWARE_CLASSES = mwc[:xmobile] + detect + mwc[xmobile:]

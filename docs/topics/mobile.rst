@@ -22,3 +22,11 @@ I let zamboni know about all this in `settings_local.py`::
     SITE_URL = 'http://%s' % DOMAIN
     MOBILE_DOMAIN = 'mz'
     MOBILE_SITE_URL = 'http://%s' % MOBILE_DOMAIN
+
+Add `DetectMobileMiddleware` to your `settings_local.py`::
+
+
+    mwc = MIDDLEWARE_CLASSES
+    xmobile = mwc.index('amo.middleware.XMobileMiddleware')
+    detect = ('amo.middleware.DetectMobileMiddleware',)
+    MIDDLEWARE_CLASSES = mwc[:xmobile] + detect + mwc[xmobile:]

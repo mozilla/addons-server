@@ -212,7 +212,7 @@ MIDDLEWARE_CLASSES = (
     'amo.middleware.TimingMiddleware',
     'amo.middleware.LocaleAndAppURLMiddleware',
     # Mobile detection should happen in Zeus.
-    'amo.middleware.DetectMobileMiddleware',
+    # 'amo.middleware.DetectMobileMiddleware',
     'amo.middleware.XMobileMiddleware',
     'amo.middleware.RemoveSlashMiddleware',
 
