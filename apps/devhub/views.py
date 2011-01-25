@@ -609,7 +609,7 @@ def addons_section(request, addon_id, addon, section, editable=False):
             }
 
     return jingo.render(request,
-                        'devhub/includes/addon_edit_%s.html' % section, data)
+                        'devhub/addons/edit/%s.html' % section, data)
 
 
 @never_cache

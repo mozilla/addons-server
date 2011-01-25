@@ -1,12 +1,10 @@
-{% from "devhub/includes/macros.html" import tip %}
-
 {% extends "devhub/addons/submit/base.html" %}
 
 {% block title %}{{ dev_page_title(_('Step 4'), addon) }}{% endblock %}
 
 {% block primary %}
-  <section class="addon-submission-process" role="main">
-    <h3>{{ _('Step 4. Add Images') }}</h3>
+  <h3>{{ _('Step 4. Add Images') }}</h3>
+  <form method="post" class="item" action="" enctype="multipart/form-data" id="submit-media">
     <p>
     {% trans %}
     Custom icons and screenshots draw attention to your add-on and help users
@@ -14,92 +12,7 @@
     some areas of the website, only your add-on's icon and name will appear.
     {% endtrans %}
     </p>
-    <form method="post" class="item" action="" enctype="multipart/form-data" id="submit-media">
-      {{ csrf() }}
-      <div class="addon-submission-field">
-        <div id="icon_preview" class="devhub-form">
-          <div class="icon_preview" id="icon_preview_32">
-            <img src="{{ addon.icon_url }}">
-          </div>
-          <div class="js-hidden">
-            {{ form.icon_upload_hash|safe }}
-          </div>
-
-          <div class="edit-media-details">
-            {# L10n: The size of the icon #}
-            {{ _('32x32px') }}
-            {{ tip(None,
-            _("Used in listings of add-ons, like search results and featured add-ons.")) }}
-          </div>
-
-          <div class="icon_preview" id="icon_preview_64">
-            <img src="{{ addon.get_icon_url(64) }}">
-          </div>
-          <div class="edit-media-details">
-            {# L10n: The size of the icon #}
-            {{ _('64x64px') }}
-            {{ tip(None,
-            _("Used in add-on detail pages.")) }}
-          </div>
-        </div>
-        <ul id="icons_default">
-          {{ form.icon_type|safe }}
-        </ul>
-        <div class="invisible-upload">
-          <a class="button" href="#">{{ _('Upload a Custom Icon...') }}</a>
-          <input type="file" id="id_icon_upload" name="icon_upload"
-                 data-upload-url="{{ url('devhub.addons.upload_icon', addon.slug) }}">
-        </div>
-        <div class="edit-media-details">
-          {% trans %}
-          PNG and JPG supported. Icons resized to 64x64 pixels if larger.
-          {% endtrans %}
-        </div>
-        <ul class="errorlist">
-          <li id="edit-icon-error"></li>
-        </ul>
-      </div>
-
-      {% if preview_form %}
-        {{ preview_form.management_form|safe }}
-        {{ preview_form.non_form_errors()|safe }}
-        <div id="file-list">
-          {% for form in preview_form.forms %}
-          <div class="preview">
-            {% if form.instance.id %}
-              <div class="preview-thumb" style="background-image:url({{ form.instance.thumbnail_url }})">
-              </div>
-            {% else %}
-              <div class="preview-thumb"></div>
-            {% endif %}
-            {{ form.id|safe }}
-            <span class="js-hidden delete">{{ form.DELETE|safe }}{{ form.DELETE.label_tag()|safe }}</span>
-            <div class="edit-previews-text">
-              <label>{{ _('Please provide a caption for this screenshot:') }}</label>
-              {{ form.caption|safe }}
-              <a href="#" class="remove">x</a>
-              <div class="js-hidden position">
-                {{ form.position|safe }}
-              </div>
-              <div class="preview_extra">
-                {{ form.upload_hash|safe }}
-              </div>
-              {{ form.errors|safe }}
-            </div>
-          </div>
-          {% endfor %}
-        </div>
-        <div class="invisible-upload">
-          <a class="button" href="#">{{ _('Add a Screenshot...') }}</a>
-          <input type="file" id="screenshot_upload" name="uploads" multiple
-                 data-upload-url="{{ url('devhub.addons.upload_preview', addon.slug) }}">
-        </div>
-      {% endif %}
-
-      <div class="submission-buttons addon-submission-field">
-        <button type="submit">
-          {{ _('Continue') }}
-        </button>
-      </div>
-    </form>
+    {% set context = 'submit' %}
+    {% include "devhub/addons/forms_shared/media.html" %}
+  </form>
 {% endblock primary %}

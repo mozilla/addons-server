@@ -1,0 +1,16 @@
+{% from "devhub/includes/macros.html" import tip, empty_unless %}
+<h3>
+  {{ _('Images') }}
+  {% if not editable %}
+    <a href="#" data-editurl="{{ url('devhub.addons.section', addon.slug, 'media', 'edit') }}" class="button">
+    {{ _('Edit') }}</a>
+  {% endif %}
+</h3>
+
+<form method="post" action="{{ url('devhub.addons.section', addon.slug, 'media', 'edit') }}"
+      enctype="multipart/form-data">
+  {% set context = 'edit' %}
+  {% include "devhub/addons/forms_shared/media.html" %}
+</form>
+
+

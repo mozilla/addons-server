@@ -661,6 +661,7 @@ function initSubmit() {
             }
         });
     $('#id_slug').each(slugify);
+    reorderPreviews();
 }
 
 var file = {},

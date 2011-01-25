@@ -344,6 +344,10 @@ form .char-count b {
 
 /* @end */
 
+.edit-previews-submit #file-list {
+    margin-bottom: 5px;
+}
+
 #file-list .preview {
     overflow: auto;
     margin-bottom: 15px;
@@ -388,6 +392,15 @@ form .char-count b {
     float: left;
 }
 
+.edit-previews-submit {
+    border: 1px solid #CCCCCC;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+    padding: 15px;
+}
+
 .preview-thumb {
     -moz-background-size: contain;
     -webkit-background-size: contain;
@@ -407,8 +420,22 @@ form .char-count b {
 }
 
 .edit-previews-readonly .preview-thumb {
-    margin-bottom: 10px;
     margin-right: 10px;
+}
+
+.addon-submission-process table td {
+    border-bottom: 1px dotted #A4CFDE;
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+
+.addon-submission-process #submit-media,
+.addon-submission-process #submit-media .item {
+    margin-top: 0;
+}
+
+#submit-media > p {
+    margin: 0;
 }
 
 #icons_default {
