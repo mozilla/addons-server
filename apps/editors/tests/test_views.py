@@ -1,23 +1,52 @@
 # -*- coding: utf8 -*-
-import re
-
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 import test_utils
 
 import amo
 from amo.urlresolvers import reverse
+from addons.models import Addon
+from reviews.models import Review
+from users.models import UserProfile
 
 
 class EditorTest(test_utils.TestCase):
+    fixtures = ('base/users', 'editors/pending-queue')
 
     def login_as_editor(self):
         assert self.client.login(username='editor@mozilla.com',
                                  password='password')
 
-class TestPendingQueue(EditorTest):
-    fixtures = ['base/users', 'editors/pending-queue']
 
+class TestHome(EditorTest):
+    """Test the page at /editors."""
+    def setUp(self):
+        self.login_as_editor()
+        amo.set_user(UserProfile.objects.get(username='editor'))
+
+    def make_review(self):
+        u = UserProfile.objects.create(username='a')
+        a = Addon.objects.create(name='yermom', type=amo.ADDON_EXTENSION)
+        return Review.objects.create(user=u, addon=a)
+
+    def test_approved_review(self):
+        review = self.make_review()
+        amo.log(amo.LOG.APPROVE_REVIEW, review, review.addon)
+        r = self.client.get(reverse('editors.home'))
+        doc = pq(r.content)
+        eq_(doc('.row').eq(0).text().strip().split('.')[0],
+            'editor approved Review for yermom ')
+
+    def test_deleted_review(self):
+        review = self.make_review()
+        amo.log(amo.LOG.DELETE_REVIEW, review.id, review.addon)
+        r = self.client.get(reverse('editors.home'))
+        doc = pq(r.content)
+        eq_(doc('.row').eq(0).text().strip().split('.')[0],
+            'editor deleted review %d' % review.id)
+
+
+class TestPendingQueue(EditorTest):
     def setUp(self):
         super(TestPendingQueue, self).setUp()
         self.login_as_editor()
@@ -31,7 +60,7 @@ class TestPendingQueue(EditorTest):
 
     def test_invalid_page(self):
         r = self.client.get(reverse('editors.queue_pending'),
-                            data={'page':999})
+                            data={'page': 999})
         eq_(r.status_code, 200)
         eq_(r.context['page'].number, 1)
 

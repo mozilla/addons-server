@@ -48,7 +48,7 @@
         <div class="editor-stats-table">
           <div>
             <table>
-              {# TODO(dd): ActivityLog stuff #}
+              {# TODO(gkoberger): MOAR Stats #}
               {% for i in range(5) %}
               <tr>
                 <td>John Smith</td>
@@ -62,33 +62,17 @@
     </div>
   </div>
 
-  {# TODO(dd): ActivityLog stuff (this is a placeholder) #}
   <div class="listing results">
     <div class="results-inner">
+      {% for item in eventlog %}
       <div class="row">
-        <a href="/en-US/firefox/addon/test_addon2/">Kris Maglione</a> deleted review <a href="#">263753</a>.
-        <time title="Jan 6, 2011 3:35:43 PM" datetime="2011-01-06T23:35:43Z">1 week, 6 days ago</time>
+        {{ item.to_string('editor') }}
+        {% trans ago=item.created|timesince, iso=item.created|isotime,
+                 pretty=item.created|babel_datetime %}
+          <time datetime="{{ iso }}" title="{{ pretty }}">{{ ago }}</time>
+        {% endtrans %}
       </div>
-      <div class="row">
-        <a href="/en-US/firefox/addon/test_addon2/">Kris Maglione</a> deleted review <a href="#">263753</a>.
-        <time title="Jan 6, 2011 3:35:43 PM" datetime="2011-01-06T23:35:43Z">1 week, 6 days ago</time>
-      </div>
-      <div class="row">
-        <a href="/en-US/firefox/addon/test_addon2/">Kris Maglione</a> deleted review <a href="#">263753</a>.
-        <time title="Jan 6, 2011 3:35:43 PM" datetime="2011-01-06T23:35:43Z">1 week, 6 days ago</time>
-      </div>
-      <div class="row">
-        <a href="/en-US/firefox/addon/test_addon2/">Kris Maglione</a> deleted review <a href="#">263753</a>.
-        <time title="Jan 6, 2011 3:35:43 PM" datetime="2011-01-06T23:35:43Z">1 week, 6 days ago</time>
-      </div>
-      <div class="row">
-        <a href="/en-US/firefox/addon/test_addon2/">Kris Maglione</a> deleted review <a href="#">263753</a>.
-        <time title="Jan 6, 2011 3:35:43 PM" datetime="2011-01-06T23:35:43Z">1 week, 6 days ago</time>
-      </div>
-      <div class="row">
-        <a href="/en-US/firefox/addon/test_addon2/">Kris Maglione</a> deleted review <a href="#">263753</a>.
-        <time title="Jan 6, 2011 3:35:43 PM" datetime="2011-01-06T23:35:43Z">1 week, 6 days ago</time>
-      </div>
+      {% endfor %}
     </div>
   </div>
 </div>

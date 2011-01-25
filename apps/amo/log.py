@@ -246,6 +246,24 @@ class CHANGE_ICON:
     format = _(u'{addon} icon changed.')
 
 
+class APPROVE_REVIEW:
+    id = 40
+    format = _(u'{review} for {addon} approved.')
+    editor_format = _(u'{user} approved {review} for {addon}.')
+    keep = True
+    editor_event = True
+
+
+class DELETE_REVIEW:
+    """Requires review.id and add-on objects."""
+    id = 41
+    format = _(u'{review} for {addon} deleted.')
+    # TODO(davedash): a {more} link will need to go somewhere
+    editor_format = _(u'{user} deleted review {0}.')
+    keep = True
+    editor_event = True
+
+
 class CUSTOM_TEXT:
     id = 98
     format = '{0}'
@@ -266,11 +284,12 @@ LOGS = (CREATE_ADDON, EDIT_PROPERTIES, EDIT_DESCRIPTIONS, EDIT_CATEGORIES,
         ADD_TO_COLLECTION, REMOVE_FROM_COLLECTION, ADD_REVIEW,
         ADD_RECOMMENDED_CATEGORY, REMOVE_RECOMMENDED_CATEGORY, ADD_RECOMMENDED,
         REMOVE_RECOMMENDED, ADD_APPVERSION, CUSTOM_TEXT, CUSTOM_HTML,
-        CHANGE_USER_WITH_ROLE, CHANGE_LICENSE, CHANGE_POLICY, CHANGE_ICON
-        )
+        CHANGE_USER_WITH_ROLE, CHANGE_LICENSE, CHANGE_POLICY, CHANGE_ICON,
+        APPROVE_REVIEW, DELETE_REVIEW,)
 LOG_BY_ID = dict((l.id, l) for l in LOGS)
 LOG = AttributeDict((l.__name__, l) for l in LOGS)
 LOG_KEEP = [l.id for l in LOGS if hasattr(l, 'keep')]
+LOG_EDITORS = [l.id for l in LOGS if hasattr(l, 'editor_event')]
 
 
 def log(action, *args, **kw):
@@ -292,6 +311,7 @@ def log(action, *args, **kw):
     al = ActivityLog(user=user, action=action.id)
     al.arguments = args
     al.save()
+
     if 'created' in kw:
         al.created = kw['created']
         # Double save necessary since django resets the created date on save.

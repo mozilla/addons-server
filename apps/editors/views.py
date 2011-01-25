@@ -2,17 +2,18 @@ import functools
 
 from django import http
 from django.shortcuts import redirect
-from django.core.paginator import Paginator
 import jingo
 
 from access import acl
 from amo.decorators import login_required
+from devhub.models import ActivityLog
 from editors.models import ViewEditorQueue
 from editors.helpers import ViewEditorQueueTable
 from amo.utils import paginate
 from amo.urlresolvers import reverse
 from files.models import Approval
 from zadmin.models import get_config
+
 
 def editor_required(func):
     """Requires the user to be logged in as an editor or admin."""
@@ -28,9 +29,11 @@ def editor_required(func):
 
 @editor_required
 def home(request):
-    data = {'reviews_total': Approval.total_reviews(),
-            'reviews_monthly': Approval.monthly_reviews(),
-            'motd': get_config('editors_review_motd')}
+    data = dict(reviews_total=Approval.total_reviews(),
+                reviews_monthly=Approval.monthly_reviews(),
+                motd=get_config('editors_review_motd'),
+                eventlog=ActivityLog.objects.editor_events()[:6],
+                )
 
     return jingo.render(request, 'editors/home.html', data)
 
