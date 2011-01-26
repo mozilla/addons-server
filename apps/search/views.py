@@ -160,8 +160,7 @@ def _get_sorts(request, sort):
     items.append(item)
 
     for key, val in sorts:
-        # TODO(davedash): Remove 'name' altogether if nobody complains.
-        if key == '' or key == 'name':
+        if key == '':
             continue
 
         item = MenuItem()
@@ -258,17 +257,6 @@ def search(request, tag_name=None):
 
     form = SearchForm(request)
     form.is_valid()  # Let the form try to clean data.
-
-    # TODO(davedash): remove this feature when we remove Application for
-    # the search advanced form
-    # Redirect if appid != request.APP.id
-
-    appid = form.cleaned_data['appid']
-
-    if request.APP.id != appid:
-        new_app = amo.APP_IDS.get(appid)
-        return HttpResponseRedirect(
-                urlresolvers.get_app_redirect(new_app))
 
     category = form.cleaned_data.get('cat')
 

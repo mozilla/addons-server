@@ -104,10 +104,6 @@ class FrontendSearchTest(SphinxTestCase):
         el = doc('title')[0].text_content().strip()
         eq_(el, 'Add-on Search Results for delicious :: Add-ons for Firefox')
 
-    def test_redirection(self):
-        resp = self.get_response(appid=18)
-        self.assertRedirects(resp, '/en-US/thunderbird/search/?appid=18')
-
     def test_category(self):
         """
         Verify that we have nothing in category 72.

@@ -12,22 +12,10 @@ from applications.models import AppVersion
 types = (amo.ADDON_ANY, amo.ADDON_EXTENSION, amo.ADDON_THEME, amo.ADDON_DICT,
          amo.ADDON_SEARCH, amo.ADDON_LPAPP, amo.ADDON_PERSONA,)
 
-updated = (
-    ('', _lazy(u'Any time')),
-    ('1 day ago', _lazy(u'Past Day')),
-    ('1 week ago', _lazy(u'Past Week')),
-    ('1 month ago', _lazy(u'Past Month')),
-    ('3 months ago', _lazy(u'Past 3 Months')),
-    ('6 months ago', _lazy(u'Past 6 Months')),
-    ('1 year ago', _lazy(u'Past Year')),
-)
-
-# TODO(davedash): Remove 'name' altogether if nobody complains.
 sort_by = (
     ('', _lazy(u'Keyword Match')),
     ('newest', _lazy(u'Newest', 'advanced_search_form_newest')),
     ('updated', _lazy(u'Updated', 'advanced_search_form_updated')),
-    ('name', _lazy(u'Name', 'advanced_search_form_name')),
     ('averagerating', _lazy(u'Rating', 'advanced_search_form_rating')),
     ('weeklydownloads', _lazy(u'Popularity',
                               'advanced_search_form_popularity')),
@@ -122,11 +110,6 @@ def SearchForm(request):
 
         cat = forms.ChoiceField(choices=search_groups, required=False)
 
-        # TODO(davedash): Remove when we're done with remora.
-        appid = forms.TypedChoiceField(label=_('Application'),
-            choices=[(app.id, app.pretty) for app in amo.APP_USAGE],
-            required=False, coerce=int)
-
         # This gets replaced by a <select> with js.
         lver = forms.ChoiceField(
                 label=_(u'{0} Version').format(unicode(current_app.pretty)),
@@ -140,9 +123,6 @@ def SearchForm(request):
                 choices=[(p[0], p[1].name) for p in amo.PLATFORMS.iteritems()
                          if p[1] != amo.PLATFORM_ANY], required=False,
                 coerce=int, empty_value=amo.PLATFORM_ANY.id)
-
-        lup = forms.ChoiceField(label=_('Last Updated'), choices=updated,
-                                required=False)
 
         sort = forms.ChoiceField(label=_('Sort By'), choices=sort_by,
                                  required=False)
