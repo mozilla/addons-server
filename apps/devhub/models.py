@@ -17,6 +17,7 @@ from bandwagon.models import Collection
 from reviews.models import Review
 from tags.models import Tag
 from translations.fields import TranslatedField
+from users.helpers import user_link
 from users.models import UserProfile
 from versions.models import Version
 
@@ -114,6 +115,9 @@ class ActivityLogManager(amo.models.ManagerBase):
                     .values_list('activity_log', flat=True))
         return self.filter(pk__in=list(vals))
 
+    def editor_events(self):
+        return self.filter(action__in=amo.LOG_EDITORS)
+
 
 class SafeFormatter(string.Formatter):
     """A replacement for str.format that escapes interpolated values."""
@@ -153,7 +157,7 @@ class ActivityLog(amo.models.ModelBase):
         for item in d:
             # item has only one element.
             model_name, pk = item.items()[0]
-            if model_name == 'str':
+            if model_name in ('str', 'int'):
                 objs.append(pk)
             else:
                 (app_label, model_name) = model_name.split('.')
@@ -179,6 +183,8 @@ class ActivityLog(amo.models.ModelBase):
         for arg in args:
             if isinstance(arg, basestring):
                 serialize_me.append({'str': arg})
+            elif isinstance(arg, (int, long)):
+                serialize_me.append({'int': arg})
             elif isinstance(arg, tuple):
                 # Instead of passing an addon instance you can pass a tuple:
                 # (Addon, 3) for Addon with pk=3
@@ -189,8 +195,12 @@ class ActivityLog(amo.models.ModelBase):
         self._arguments = json.dumps(serialize_me)
 
     # TODO(davedash): Support other types.
-    def to_string(self, type='default'):
+    def to_string(self, type=None):
         log_type = amo.LOG_BY_ID[self.action]
+        if type and hasattr(log_type, '%s_format' % type):
+            format = getattr(log_type, '%s_format' % type)
+        else:
+            format = log_type.format
 
         # We need to copy arguments so we can remove elements from it
         # while we loop over self.arguments.
@@ -225,10 +235,13 @@ class ActivityLog(amo.models.ModelBase):
                                  arg.get_url_path(), arg.tag_text)
                 else:
                     tag = self.f('{0}', arg.tag_text)
+
+        user = user_link(self.user)
+
         try:
             kw = dict(addon=addon, review=review, version=version,
-                      collection=collection, tag=tag)
-            return self.f(log_type.format, *arguments, **kw)
+                      collection=collection, tag=tag, user=user)
+            return self.f(format, *arguments, **kw)
         except (AttributeError, KeyError, IndexError):
             log.warning('%d contains garbage data' % (self.id or 0))
             return 'Something magical happened.'
