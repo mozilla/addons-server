@@ -2,9 +2,10 @@
   <div class="persona-inner">
     <div class="persona-preview">
       {% set tag = 'a' if linked else 'div' %}
-      {% set url = services_url('discovery.addons.detail', addon.slug)
+      {% with url = services_url('discovery.addons.detail', addon.slug)
                    if disco_link else addon.get_url_path() %}
-      <{{ tag }} {{ ('href="%s" ' % url)|safe if linked else '' }}
+        <{{ tag }} {{ ('href="%s" ' % url)|safe if linked else '' }}
+      {% endwith %}
       {% if disco_link %}target="_self"{% endif %}
       title="{{ addon.name }}" style="background-image:url('{{ preview }}')"
       data-browsertheme="{{ persona.json_data }}">
