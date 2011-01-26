@@ -401,7 +401,7 @@ form .char-count b {
     padding: 15px;
 }
 
-.preview-thumb {
+.preview-thumb, .preview-error {
     -moz-background-size: contain;
     -webkit-background-size: contain;
     background-size: contain;
@@ -412,6 +412,11 @@ form .char-count b {
     height: 94px;
     margin-right: 15px;
     width: 125px;
+}
+
+.preview-error {
+    background: #040204 url("../../img/zamboni/loading.gif") no-repeat center center;
+    opacity: 0.5;
 }
 
 .preview-thumb.error-loading {
@@ -1753,4 +1758,3 @@ form.select-review .errorlist {
     opacity: 0;
     pointer-events: none;
 }
-
