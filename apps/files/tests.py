@@ -336,6 +336,19 @@ class TestFileUpload(UploadTest):
         f.save()
         assert not f.valid
 
+    def test_ascii_names(self):
+        fu = FileUpload.from_post('', u'jétpack.xpi', 0)
+        assert 'xpi' in fu.name
+
+        fu = FileUpload.from_post('', u'мозила_србија-0.11-fx.xpi', 0)
+        assert 'xpi' in fu.name
+
+        fu = FileUpload.from_post('', u'フォクすけといっしょ.xpi', 0)
+        assert 'xpi' in fu.name
+
+        fu = FileUpload.from_post('', u'\u05d0\u05d5\u05e1\u05e3.xpi', 0)
+        assert 'xpi' in fu.name
+
 
 class TestFileFromUpload(UploadTest):
     fixtures = ['base/apps']

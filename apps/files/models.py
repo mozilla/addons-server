@@ -273,6 +273,7 @@ class FileUpload(amo.models.ModelBase):
 
     @classmethod
     def from_post(cls, chunks, filename, size):
+        filename = smart_str(filename)
         loc = path.path(settings.ADDONS_PATH) / 'temp' / uuid.uuid4().hex
         if not loc.dirname().exists():
             loc.dirname().makedirs()
