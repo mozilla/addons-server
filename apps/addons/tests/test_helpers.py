@@ -74,7 +74,6 @@ class TestHelpers(test_utils.TestCase):
         doc = PyQuery(s)
         # make sure input boxes are rendered correctly (bug 555867)
         assert doc('input[name=onetime-amount]').length == 1
-        assert doc('input[name=monthly-amount]').length == 1
 
 
 class TestPerformanceNote(test_utils.TestCase):

@@ -1,4 +1,5 @@
 import hashlib
+import json
 import random
 import uuid
 from operator import attrgetter
@@ -10,7 +11,6 @@ from django.shortcuts import get_list_or_404, get_object_or_404, redirect
 from django.utils.translation import trans_real as translation
 from django.utils import http as urllib
 from django.views.decorators.cache import cache_page
-
 import caching.base as caching
 import jingo
 import jinja2
@@ -27,6 +27,7 @@ from amo.models import manual_order
 from amo import urlresolvers
 from amo.urlresolvers import reverse
 from bandwagon.models import Collection, CollectionFeature, CollectionPromo
+import paypal
 from reviews.forms import ReviewForm
 from reviews.models import Review
 from sharing.views import share as share_redirect
@@ -39,6 +40,7 @@ from .models import Addon, MiniAddon
 from .decorators import addon_view_factory
 
 log = commonware.log.getLogger('z.addons')
+paypal_log = commonware.log.getLogger('z.paypal')
 addon_view = addon_view_factory(qs=Addon.objects.valid)
 
 
@@ -412,19 +414,47 @@ def developers(request, addon, page):
 
 @addon_view
 def contribute(request, addon):
-    contrib_type = request.GET.get('type', '')
+    contrib_type = request.GET.get('type', 'suggested')
     is_suggested = contrib_type == 'suggested'
     source = request.GET.get('source', '')
     comment = request.GET.get('comment', '')
 
     amount = {
         'suggested': addon.suggested_amount,
-        'onetime': request.GET.get('onetime-amount', ''),
-        'monthly': request.GET.get('monthly-amount', '')}.get(contrib_type, '')
+        'onetime': request.GET.get('onetime-amount', '')}.get(contrib_type, '')
+    if not amount:
+        amount = settings.DEFAULT_SUGGESTED_CONTRIBUTION
 
     contribution_uuid = hashlib.md5(str(uuid.uuid4())).hexdigest()
+    uuid_qs = urllib.urlencode({'uuid': contribution_uuid})
 
-    contrib = Contribution(addon_id=addon.id,
+    if addon.charity:
+        name, paypal_id = addon.charity.name, addon.charity.paypal
+    else:
+        name, paypal_id = addon.name, addon.paypal_id
+    contrib_for = _(u'Contribution for {0}').format(jinja2.escape(name))
+
+    paykey = None
+    try:
+        paykey = paypal.get_paykey({
+            'return_url': absolutify('%s?%s' % (reverse('addons.paypal',
+                                                args=[addon.slug, 'complete']),
+                                                uuid_qs)),
+            'cancel_url': absolutify('%s?%s' % (reverse('addons.paypal',
+                                                args=[addon.slug, 'cancel']),
+                                                uuid_qs)),
+            'uuid': contribution_uuid,
+            'amount': str(amount),
+            'email': paypal_id,
+            'ip': request.META.get('REMOTE_ADDR'),
+            'memo': contrib_for})
+    except paypal.AuthError, error:
+        paypal_log.error('Authentication error: %s' % error)
+    except Exception, error:
+        paypal_log.error('Error: %s' % error)
+
+    if paykey:
+        contrib = Contribution(addon_id=addon.id,
                            charity_id=addon.charity_id,
                            amount=amount,
                            source=source,
@@ -433,72 +463,35 @@ def contribute(request, addon):
                            uuid=str(contribution_uuid),
                            is_suggested=is_suggested,
                            suggested_amount=addon.suggested_amount,
-                           comment=comment)
-    contrib.save()
+                           comment=comment,
+                           paykey=paykey)
+        contrib.save()
 
-    return_url = "%s?%s" % (reverse('addons.thanks', args=[addon.slug]),
-                            urllib.urlencode({'uuid': contribution_uuid}))
-    # L10n: {0} is an add-on name.
-    if addon.charity:
-        name, paypal = addon.charity.name, addon.charity.paypal
+    url = '%s?paykey=%s' % (settings.PAYPAL_FLOW_URL, paykey)
+    if request.GET.get('result_type') == 'json' or request.is_ajax():
+        # If there was an error getting the paykey, then JSON will
+        # not have a paykey and the JS can cope appropriately.
+        return http.HttpResponse(json.dumps({'url': url, 'paykey': paykey}),
+                                 content_type='application/json')
+    elif paykey is None:
+        # If there was an error getting the paykey, raise this.
+        raise
+    return http.HttpResponseRedirect(url)
+
+
+@addon_view
+def paypal_result(request, addon, status):
+    uuid = request.GET.get('uuid')
+    if not uuid:
+        raise http.Http404()
+    if status == 'cancel':
+        log.info('User cancelled contribution: %s' % uuid)
     else:
-        name, paypal = addon.name, addon.paypal_id
-    contrib_for = _(u'Contribution for {0}').format(jinja2.escape(name))
-    redirect_url_params = contribute_url_params(
-                            paypal,
-                            addon.id,
-                            contrib_for,
-                            absolutify(return_url),
-                            amount,
-                            contribution_uuid,
-                            contrib_type == 'monthly',
-                            comment)
-
-    return http.HttpResponseRedirect(settings.PAYPAL_CGI_URL
-                                     + '?'
-                                     + urllib.urlencode(redirect_url_params))
-
-
-def contribute_url_params(business, addon_id, item_name, return_url,
-                          amount='', item_number='',
-                          monthly=False, comment=''):
-
-    lang = translation.get_language()
-    try:
-        paypal_lang = settings.PAYPAL_COUNTRYMAP[lang]
-    except KeyError:
-        lang = lang.split('-')[0]
-        paypal_lang = settings.PAYPAL_COUNTRYMAP.get(lang, 'US')
-
-    # Get all the data elements that will be URL params
-    # on the Paypal redirect URL.
-    data = {'business': business,
-            'item_name': item_name,
-            'item_number': item_number,
-            'bn': settings.PAYPAL_BN + '-AddonID' + str(addon_id),
-            'no_shipping': '1',
-            'return': return_url,
-            'charset': 'utf-8',
-            'lc': paypal_lang,
-            'notify_url': "%s%s" % (settings.SERVICES_URL,
-                                    reverse('amo.paypal'))}
-
-    if not monthly:
-        data['cmd'] = '_donations'
-        if amount:
-            data['amount'] = amount
-    else:
-        data.update({
-            'cmd': '_xclick-subscriptions',
-            'p3': '12',  # duration: for 12 months
-            't3': 'M',  # time unit, 'M' for month
-            'a3': amount,  # recurring contribution amount
-            'no_note': '1'})  # required: no "note" text field for user
-
-    if comment:
-        data['custom'] = comment
-
-    return data
+        log.info('User completed contribution: %s' % uuid)
+    response = jingo.render(request, 'addons/paypal_result.html',
+                            {'addon': addon, 'status': status})
+    response['x-frame-options'] = 'allow'
+    return response
 
 
 @addon_view

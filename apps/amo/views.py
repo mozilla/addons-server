@@ -17,7 +17,6 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 
 import caching.invalidation
-import celery.exceptions
 import commonware.log
 import jingo
 import phpserialize as php
@@ -232,7 +231,6 @@ def paypal(request):
 
 
 def _paypal(request):
-
     def _log_error_with_data(msg, request):
         """Log a message along with some of the POST info from PayPal."""
 
@@ -280,8 +278,16 @@ def _paypal(request):
         SubscriptionEvent.objects.create(post_data=php.serialize(post))
         return http.HttpResponse('Success!')
 
+    # List of (old, new) codes so we can transpose the data for
+    # embedded payments.
+    for old, new in [('payment_status', 'status'),
+                     ('item_number', 'tracking_id'),
+                     ('txn_id', 'tracking_id')]:
+        if old not in post and new in post:
+            post[old] = post[new]
+
     # We only care about completed transactions.
-    if post.get('payment_status') != 'Completed':
+    if post.get('payment_status', '').lower() != 'completed':
         return http.HttpResponse('Payment not completed')
 
     # Make sure transaction has not yet been processed.
@@ -309,7 +315,9 @@ def _paypal(request):
         return http.HttpResponseServerError('Contribution not found')
 
     c.transaction_id = post['txn_id']
-    c.amount = post['mc_gross']
+    # Embedded payments does not send an mc_gross.
+    if 'mc_gross' in post:
+        c.amount = post['mc_gross']
     c.uuid = None
     c.post_data = php.serialize(post)
     c.save()

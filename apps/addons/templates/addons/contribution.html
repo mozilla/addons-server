@@ -25,10 +25,7 @@
 
   <div class="aux{% if show_install %}-bottom{% endif %}">
     <div class="button-wrapper">
-      <a class="button contribute prominent"
-        {# The id triggers a dropdown, so don't expose it if there isn't a
-           suggested amount (i.e., only one choice). #}
-        {% if has_suggested %}id="contribute-button"{% endif %}
+      <a class="button contribute prominent" id="contribute-button"
         href="{{ url('addons.contribute', addon.id)|urlparams(src=src) }}">
         <b></b>{{ _('Contribute') }}
       </a>
@@ -54,7 +51,7 @@
     </div>{# /suggestion #}
   </div>{# /aux #}
 
-  {% if has_suggested %}
+
     <div id="contribute-box" class="jqmWindow">
       <form action="{{ url('addons.contribute', addon.id) }}" method="get">
         <input type="hidden" name="source" value="{{ src }}"/>
@@ -89,7 +86,18 @@
             {{ _('The maximum contribution amount is {0}.')|f(
                settings.MAX_CONTRIBUTION|currencyfmt('USD')) }}
         </div>
+        <div class="error" id="contrib-too-little">
+            {{ _('The minimum contribution amount is {0}.')|f(
+               0.01|currencyfmt('USD')) }}
+        </div>
+        <div class="error" id="contrib-not-entered">
+            {{ _('Contribution amount must be a number.') }}
+        </div>
+        <div class="error" id="paypal-error">
+            {{ _('There was an error communicating with paypal. Please try again later.') }}
+        </div>
         <ul>
+          {% if has_suggested %}
           <li>
             <input type="radio" name="type" value="suggested"
                    id="contrib-suggested" checked="checked"/>
@@ -99,24 +107,17 @@
                 addon.suggested_amount|currencyfmt('USD')) }}
             </label>
           </li>
+          {% endif %}
           <li>
             <input type="radio" name="type" value="onetime"
-                   id="contrib-onetime"/>
+                   id="contrib-onetime"
+                   {% if not has_suggested %}checked="checked"{% endif %}/>
             <label>
               {# L10n: {0} is a currency symbol (e.g., $),
                        {1} is an amount input field #}
               {{ _('A one-time contribution of {0} {1}')|f(
                 '$', '<input type="text" name="onetime-amount" value=""/>')|safe }}
             </label>
-          </li>
-          <li>
-            <input type="radio" name="type" value="monthly"
-                   id="contrib-monthly"/>
-            <label for="contrib-monthly">
-              {# L10n: {0} is a currency symbol (e.g., $),
-                       {1} is an amount input field #}
-              {{ _('A regular monthly contribution of {0} {1}')|f(
-                '$', '</label><input type="text" name="monthly-amount" value=""/>')|safe }}
           </li>
         </ul>
 
@@ -134,7 +135,7 @@
         <span class="cancel"><a href="#">{{ _('No Thanks') }}</a></span>
       </form>
     </div>{# /contribute-box #}
-  {% endif %}
+
 
 
 </div>{# /notification #}

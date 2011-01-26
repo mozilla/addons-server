@@ -160,16 +160,40 @@ var contributions = {
             counter.text(limit - Math.min(txt.length, limit));
         }).keyup().end()
         .find('#contrib-too-much').hide().end()
+        .find('#contrib-too-little').hide().end()
+        .find('#contrib-not-entered').hide().end()
         .find('form').submit(function() {
             var contrib_type = $(this).find('input:checked').val();
-            if (contrib_type == 'onetime' || contrib_type == 'monthly') {
+            if (contrib_type == 'onetime') {
                 var amt = $(this).find('input[name="'+contrib_type+'-amount"]').val();
+                $(this).find('.error').hide();
+                if (isNaN(parseFloat(amt))) {
+                    $(this).find('#contrib-not-entered').show();
+                    return false;
+                }
                 if (amt > contrib_limit) {
                     $(this).find('#contrib-too-much').show();
                     return false;
                 }
+                if (parseFloat(amt) >= 0.01) {
+                    $(this).find('#contrib-too-little').show();
+                    return false;
+                }
             }
-            return true;
+            var $self = $(this);
+            $.ajax({type: 'GET',
+                url: $(this).attr('action') + '?result_type=json',
+                data: $(this).serialize(),
+                success: function(json) {
+                    if (json.paykey) {
+                        dgFlow.startFlow(json.url);
+                        $self.find('span.cancel a').click()
+                    } else {
+                        $self.find('#paypal-error').show();
+                    }
+                }
+            });
+            return false;
         });
 
         // enable overlay; make sure we have the jqm package available.
@@ -183,15 +207,17 @@ var contributions = {
                     // avoid bleeding-through form elements
                     if ($.browser.opera) this.inputs = $(':input:visible').css('visibility', 'hidden');
                     // clean up, then show box
+                    hash.w.find('.error').hide()
                     hash.w
                         .find('input:text').val('').end()
                         .find('textarea').val('').keyup().end()
                         .find('input:radio:first').attr('checked', 'checked').end()
                         .fadeIn();
+
                 },
                 onHide: function(hash) {
                     if ($.browser.opera) this.inputs.css('visibility', 'visible');
-                    hash.w.find('#contrib-too-much').hide();
+                    hash.w.find('.error').hide();
                     hash.w.fadeOut();
                     hash.o.remove();
                 },
@@ -199,7 +225,12 @@ var contributions = {
                 toTop: true
             })
             .jqmAddClose(cb.find('.cancel a'));
+
+        if (window.location.hash === '#contribute-confirm') {
+            $('#contribute-button').click();
+        }
     }
+
 }
 
 /* TODO(jbalogh): save from amo2009. */

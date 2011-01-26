@@ -1,6 +1,6 @@
 {% if addon.takes_contributions %}
   {% set base = url('addons.contribute', addon.slug)|urlparams(src='direct') %}
-  {% set url = base|urlparams(type='suggested')|escape %}
+  {% set _url = base|urlparams(type='suggested')|escape %}
   {% set amt = addon.suggested_amount|currencyfmt('USD') %}
   <div class="contribute">
     {% if addon.suggested_amount is not none %}
@@ -8,20 +8,20 @@
             {% set charity_name = addon.charity.name %}
             {% if addon.charity_id == amo.FOUNDATION_ORG %}
                 {% trans %}
-                Support this add-on: <a href="{{ url }}">Contribute {{ amt }}</a> to the {{ charity_name }}
+                Support this add-on: <a href="{{ _url }}" class="suggested-amount">Contribute {{ amt }}</a> to the {{ charity_name }}
                 {% endtrans %}
             {% else %}
                 {% trans %}
-                Support this add-on: <a href="{{ url }}">Contribute {{ amt }}</a> to {{ charity_name }}
+                Support this add-on: <a href="{{ _url }}" class="suggested-amount">Contribute {{ amt }}</a> to {{ charity_name }}
                 {% endtrans %}
             {% endif %}
         {% else %}
             {% trans %}
-            Support this add-on: <a href="{{ url }}">Contribute {{ amt }}</a>
+            Support this add-on: <a href="{{ _url }}" class="suggested-amount">Contribute {{ amt }}</a>
             {% endtrans %}
         {% endif %}
     {% else %}
-      <a href="{{ base }}">{{ _('Support this add-on') }}</a>
+      <a href="{{ url('addons.detail', addon.slug) }}#contribute-confirm" class="no-suggested-amount">{{ _('Support this add-on') }}</a>
     {% endif %}
   </div>
 {% endif %}

@@ -151,6 +151,7 @@ class Contribution(caching.base.CachingMixin, models.Model):
                                         nullify_invalid=True, null=True)
     comment = models.CharField(max_length=255)
     transaction_id = models.CharField(max_length=255, null=True)
+    paykey = models.CharField(max_length=255, null=True)
     post_data = StatsDictField(null=True)
 
     objects = models.Manager()

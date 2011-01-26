@@ -13,9 +13,10 @@ from nose.tools import eq_
 from pyquery import PyQuery as pq
 import test_utils
 
+from addons.models import Addon
 from amo.urlresolvers import reverse
 from amo.pyquery_wrapper import PyQuery
-from stats.models import SubscriptionEvent
+from stats.models import SubscriptionEvent, Contribution
 
 URL_ENCODED = 'application/x-www-form-urlencoded'
 
@@ -204,6 +205,39 @@ class TestPaypal(test_utils.TestCase):
         response = self.client.post(self.url)
         eq_(response.status_code, 500)
         eq_(response.content, 'Unknown error.')
+
+
+class TestEmbeddedPaymentsPaypal(test_utils.TestCase):
+    fixtures = ['base/addon_3615']
+
+    def setUp(self):
+        self.url = reverse('amo.paypal')
+        self.addon = Addon.objects.get(pk=3615)
+
+    def urlopener(self, status):
+        m = Mock()
+        m.readline.return_value = status
+        return m
+
+    @patch('amo.views.urllib2.urlopen')
+    def test_success(self, urlopen):
+        uuid = 'e76059abcf747f5b4e838bf47822e6b2'
+        Contribution.objects.create(uuid=uuid, addon=self.addon)
+        data = {'tracking_id': uuid, 'payment_status': 'Completed'}
+        urlopen.return_value = self.urlopener('VERIFIED')
+
+        response = self.client.post(self.url, data)
+        eq_(response.content, 'Success!')
+
+    @patch('amo.views.urllib2.urlopen')
+    def test_wrong_uuid(self, urlopen):
+        uuid = 'e76059abcf747f5b4e838bf47822e6b2'
+        Contribution.objects.create(uuid=uuid, addon=self.addon)
+        data = {'tracking_id': 'sdf', 'payment_status': 'Completed'}
+        urlopen.return_value = self.urlopener('VERIFIED')
+
+        response = self.client.post(self.url, data)
+        eq_(response.content, 'Contribution not found')
 
 
 def test_jsi18n_caching():

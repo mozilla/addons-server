@@ -426,6 +426,9 @@ MINIFY_BUNDLES = {
 
             # Hover delay for global header
             'js/global/menu.js',
+
+            # Paypal
+            'js/paypal.js'
         ),
         'zamboni/discovery-pane': (
             'js/zamboni/jquery-1.4.2.min.js',
@@ -573,11 +576,15 @@ CAKE_SESSION_TIMEOUT = 8640
 # PayPal Settings
 PAYPAL_API_URL = 'https://api-3t.paypal.com/nvp'
 PAYPAL_API_VERSION = '50'
+PAYPAL_APP_ID = ''
 PAYPAL_BN = ''
 PAYPAL_CGI_URL = 'https://www.paypal.com/cgi-bin/webscr'
+PAYPAL_PAY_URL = 'https://paypal.com/adaptivepayments/pay'
+PAYPAL_FLOW_URL = 'https://paypal.com/webapps/adaptivepayment/flow/pay'
+PAYPAL_USER = ''
 PAYPAL_PASSWORD = ''
 PAYPAL_SIGNATURE = ''
-PAYPAL_USER = ''
+PAYPAL_EMAIL = ''
 
 # Paypal is an awful place that doesn't understand locales.  Instead they have
 # country codes.  This maps our locales to their codes.
@@ -691,7 +698,10 @@ CSP_OBJECT_SRC = ("'none'",)
 CSP_MEDIA_SRC = ("'none'",)
 CSP_FRAME_SRC = ("'none'",)
 CSP_FONT_SRC = ("'self'", "fonts.mozilla.com", "www.mozilla.com", )
-CSP_FRAME_ANCESTORS = ("'none'",)  # We also send x-frame-options:DENY
+# self is needed for paypal which sends x-frame-options:allow when needed.
+# x-frame-options:DENY is sent the rest of the time.
+CSP_FRAME_ANCESTORS = ("'self'",)
+
 
 # Should robots.txt deny everything or disallow a calculated list of URLs we
 # don't want to be crawled?  Default is false, disallow everything.
@@ -768,3 +778,5 @@ MOBILE_COOKIE = 'mamo'
 # If the users's Firefox has a version number greater than this we consider it
 # a beta.
 MIN_BETA_VERSION = '3.7'
+
+DEFAULT_SUGGESTED_CONTRIBUTION = 5

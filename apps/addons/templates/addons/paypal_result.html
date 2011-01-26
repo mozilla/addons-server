@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page_title(addon.name) }}{% endblock %}
+{% block bodyclass %}inverse{% endblock %}
+
+{% block site_header %}
+{% endblock %}
+
+{% block content %}
+<hgroup>
+  <h2 class="addon"{{ addon.name|locale_html }}>
+    <img src="{{ addon.icon_url }}" class="icon"/>
+    <span>
+      {{ addon.name }}
+    </span>
+    {% if version and not addon.is_selfhosted() %}
+      <span class="version">{{ version.version }}</span>
+    {% endif %}
+  </h2>
+</hgroup>
+{% if status == 'cancel' %}
+    <h4>{{ _('Payment cancelled') }}</h4>
+{% else %}
+    <h4>{{ _('Payment completed') }}</h4>
+{% endif %}
+<p><a href="{{ url('addons.detail', addon.slug) }}">{{ _('Return to the addon.') }}</a></p>
+{% endblock %}
