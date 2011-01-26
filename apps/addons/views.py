@@ -58,6 +58,7 @@ def author_addon_clicked(f):
     return decorated
 
 
+@dec.mobile_ready
 @author_addon_clicked
 @addon_view
 def addon_detail(request, addon):
@@ -83,9 +84,6 @@ def addon_detail(request, addon):
             prefixer.app = new_app.short
             return http.HttpResponsePermanentRedirect(reverse(
                 'addons.detail', args=[addon.slug]))
-
-# This passes through to @mobilized views, so mark it as mobile-ready.
-addon_detail.mobile = True
 
 
 def extension_detail(request, addon):
