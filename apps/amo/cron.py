@@ -242,4 +242,4 @@ def _activity_log_scrubber(items, **kw):
     log.info('[%s@%s] Deleting activity log items' %
              (len(items), _activity_log_scrubber.rate_limit))
 
-    #ActivityLog.objects.filter(id__in=items).delete()
+    ActivityLog.objects.filter(id__in=items).delete()
