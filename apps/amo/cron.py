@@ -217,7 +217,6 @@ def activity_log_scrubber():
              action__in=[amo.LOG.ADD_TO_COLLECTION.id,
                          amo.LOG.REMOVE_FROM_COLLECTION.id])
              .values('id', '_arguments'))
-
     ids = []
     count = 0
     # ~127K
@@ -226,9 +225,8 @@ def activity_log_scrubber():
         for k in json.loads(item['_arguments']):
             if 'bandwagon.collection' not in k:
                 continue
-
             if not all(Collection.objects.filter(pk=k.values()[0])
-                       .values_list('listed')):
+                       .values_list('listed', flat=True)):
                 log.debug('%d items seen.' % count)
                 ids.append(item['id'])
         if len(ids) > 100:
@@ -244,4 +242,4 @@ def _activity_log_scrubber(items, **kw):
     log.info('[%s@%s] Deleting activity log items' %
              (len(items), _activity_log_scrubber.rate_limit))
 
-    ActivityLog.objects.filter(id__in=items).delete()
+    #ActivityLog.objects.filter(id__in=items).delete()
