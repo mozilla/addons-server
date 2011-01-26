@@ -476,7 +476,7 @@ function initUploadPreview() {
 
     function upload_start_all(e) {
         // Remove old errors.
-        $('.edit-addon-media-screenshot-error').remove();
+        $('.edit-addon-media-screenshot-error').hide();
 
         // Don't let users submit a form.
         $('.edit-media-button button').attr('disabled', true);
@@ -525,7 +525,8 @@ function initUploadPreview() {
         $el.find('.edit-previews-text').addClass('error').html("")
                                        .append($error_title)
                                        .append($error_list);
-        $el.find('[name^=files-]').remove();
+        $el.find(".delete input").attr("checked", "checked");
+        renumberPreviews();
     }
 
     $f.delegate('#screenshot_upload', "upload_finished", upload_finished)
