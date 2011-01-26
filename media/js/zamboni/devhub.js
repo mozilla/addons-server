@@ -1014,7 +1014,7 @@ function initPayments() {
         moz = $("input[value=moz]");
     img.hide().appendTo($("body"));
     moz.parent().after(
-        $("<a class='extra' target='_blank' href='http://www.mozilla.org/foundation/donate.html'>"+gettext('Learn more')+"</a>"));
+        $("<a class='extra' target='_blank' href='http://www.mozilla.org/foundation/'>"+gettext('Learn more')+"</a>"));
     $(".nag li label").each(function (i,v) {
         var pl = new Image();
         pl.src = media_url + previews[i];
