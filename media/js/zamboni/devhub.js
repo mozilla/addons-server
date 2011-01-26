@@ -729,7 +729,7 @@ function uploadFile(domFile, file, url) {
         }
     }, false);
 
-    var token = $("#upload-file input[name=csrfmiddlewaretoken]").val(),
+    var token = $("input[name=csrfmiddlewaretoken]", $('form#upload-file, form#create-addon')).val(),
         formData = new z.FormData();
 
     formData.open("POST", format('{0}?_={1}', [url, (new Date).getTime()]), true);
