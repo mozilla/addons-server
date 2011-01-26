@@ -84,6 +84,9 @@ def addon_detail(request, addon):
             return http.HttpResponsePermanentRedirect(reverse(
                 'addons.detail', args=[addon.slug]))
 
+# This passes through to @mobilized views, so mark it as mobile-ready.
+addon_detail.mobile = True
+
 
 def extension_detail(request, addon):
     """Extensions details page."""
@@ -136,6 +139,12 @@ def extension_detail(request, addon):
         data['abuse_form'] = AbuseForm(request=request)
 
     return jingo.render(request, 'addons/details.html', data)
+
+
+@dec.mobilized(extension_detail)
+def extension_detail(request, addon):
+    return jingo.render(request, 'addons/mobile/details.html',
+                        {'addon': addon})
 
 
 def _category_personas(qs, limit):
