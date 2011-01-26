@@ -216,7 +216,7 @@ def activity_log_scrubber():
     items = (ActivityLog.objects.filter(
              action__in=[amo.LOG.ADD_TO_COLLECTION.id,
                          amo.LOG.REMOVE_FROM_COLLECTION.id])
-             .values('id', '_arguments'))[:1000]
+             .values('id', '_arguments'))
 
     ids = []
     count = 0
