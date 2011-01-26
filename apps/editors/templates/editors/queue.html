@@ -3,16 +3,24 @@
 {% block content %}
 
 <ul class="tabnav">
-  <li><a href="{{ url('editors.queue_pending') }}">
-      {{ _('Full Reviews') }}</a></li>
-  <li class="selected"><a href="{{ url('editors.queue_pending') }}">
-      {{ ngettext('Pending Update ({0})',
-                  'Pending Updates ({0})',
-                  queue_count)|f(queue_count) }}</a></li>
-  <li><a href="{{ url('editors.queue_pending') }}">
-      {{ _('Preliminary Reviews') }}</a></li>
-  <li><a href="{{ url('editors.queue_pending') }}">
-      {{ _('Moderated Reviews') }}</a></li>
+  {% for this, loc, text in (('nominated', 'queue_nominated',
+                              ngettext('Full Review ({0})',
+                                       'Full Reviews ({0})',
+                                       queue_counts['nominated'])|f(queue_counts['nominated'])),
+                             ('pending', 'queue_pending',
+                              ngettext('Pending Update ({0})',
+                                       'Pending Updates ({0})',
+                                       queue_counts['pending'])|f(queue_counts['pending'])),
+                             ('prelim', 'queue_prelim',
+                              ngettext('Preliminary Review ({0})',
+                                       'Preliminary Reviews ({0})',
+                                       queue_counts['prelim'])|f(queue_counts['prelim'])),
+                             ('moderated', 'queue_moderated',
+                              ngettext('Moderated Review ({0})',
+                                       'Moderated Reviews ({0})',
+                                       queue_counts['moderated'])|f(queue_counts['moderated']))) %}
+  <li class="{% if tab==this %}selected{% endif %}"><a href="{{ url('editors.%s' % loc) }}">{{ text }}</a></li>
+  {% endfor %}
 </ul>
 
 <div class="queue-outer">

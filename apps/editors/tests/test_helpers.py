@@ -9,27 +9,29 @@ import test_utils
 
 import amo
 from amo.urlresolvers import reverse
-from editors.helpers import ViewEditorQueueTable
+from editors.helpers import ViewPendingQueueTable, ViewFullReviewQueueTable
 
-class TestViewEditorQueueTable(test_utils.TestCase):
+class TestViewPendingQueueTable(test_utils.TestCase):
 
     def setUp(self):
-        super(TestViewEditorQueueTable, self).setUp()
+        super(TestViewPendingQueueTable, self).setUp()
         qs = Mock()
-        self.table = ViewEditorQueueTable(qs)
+        self.table = ViewPendingQueueTable(qs)
 
     def test_addon_name(self):
         row = Mock()
         page = Mock()
         page.start_index = Mock()
         page.start_index.return_value = 1
-        row.addon_name = 'フォクすけといっしょ 0.12'.decode('utf8')
-        row.version_id = 1234
+        row.addon_name = 'フォクすけといっしょ'.decode('utf8')
+        row.latest_version = u'0.12'
+        row.latest_version_id = 1234
         self.table.set_page(page)
         a = pq(self.table.render_addon_name(row))
         eq_(a.attr('href'),
-            reverse('editors.review', args=[row.version_id]) + '?num=1')
-        eq_(a.text(), row.addon_name)
+            reverse('editors.review',
+                    args=[row.latest_version_id]) + '?num=1')
+        eq_(a.text(), "フォクすけといっしょ 0.12".decode('utf8'))
 
     def test_addon_type_id(self):
         row = Mock()
@@ -44,40 +46,45 @@ class TestViewEditorQueueTable(test_utils.TestCase):
     def test_additional_info_for_platform(self):
         row = Mock()
         row.is_site_specific = False
-        row.platform_id = amo.PLATFORM_LINUX.id
+        row.file_platform_ids = [amo.PLATFORM_LINUX.id]
         eq_(self.table.render_additional_info(row), u'Linux only')
 
     def test_additional_info_for_all_platforms(self):
         row = Mock()
         row.is_site_specific = False
-        row.platform_id = amo.PLATFORM_ALL.id
+        row.file_platform_ids = [amo.PLATFORM_ALL.id]
+        eq_(self.table.render_additional_info(row), u'')
+
+    def test_additional_info_for_mixed_platforms(self):
+        row = Mock()
+        row.is_site_specific = False
+        row.file_platform_ids = [amo.PLATFORM_ALL.id, amo.PLATFORM_LINUX.id]
         eq_(self.table.render_additional_info(row), u'')
 
     def test_applications(self):
         row = Mock()
-        row.applications = ','.join([str(amo.FIREFOX.id),
-                                     str(amo.THUNDERBIRD.id)])
+        row.application_ids = [amo.FIREFOX.id, amo.THUNDERBIRD.id]
         doc = pq(self.table.render_applications(row))
         eq_(sorted(a.attrib['class'] for a in doc('div div')),
             ['app-icon ed-sprite-firefox', 'app-icon ed-sprite-thunderbird'])
 
     def test_waiting_time_in_days(self):
         row = Mock()
-        row.days_since_created = 10
-        row.hours_since_created = 10 * 24
-        eq_(self.table.render_days_since_created(row), u'10 days')
+        row.waiting_time_days = 10
+        row.waiting_time_hours = 10 * 24
+        eq_(self.table.render_waiting_time_days(row), u'10 days')
 
     def test_waiting_time_one_day(self):
         row = Mock()
-        row.days_since_created = 1
-        row.hours_since_created = 24
-        eq_(self.table.render_days_since_created(row), u'1 day')
+        row.waiting_time_days = 1
+        row.waiting_time_hours = 24
+        eq_(self.table.render_waiting_time_days(row), u'1 day')
 
     def test_waiting_time_in_hours(self):
         row = Mock()
-        row.days_since_created = 0
-        row.hours_since_created = 22
-        eq_(self.table.render_days_since_created(row), u'22 hours')
+        row.waiting_time_days = 0
+        row.waiting_time_hours = 22
+        eq_(self.table.render_waiting_time_days(row), u'22 hours')
 
     def test_flags_admin_review(self):
         row = Mock()

@@ -7,7 +7,7 @@ from jingo import register
 from tower import ugettext_lazy as _, ungettext as ngettext
 
 import amo
-from editors.models import ViewEditorQueue
+from editors.models import ViewPendingQueue, ViewFullReviewQueue
 from amo.helpers import page_title
 from amo.urlresolvers import reverse
 
@@ -24,29 +24,16 @@ def editor_page_title(context, title=None, addon=None):
     return page_title(context, title)
 
 
-class ViewEditorQueueTable(tables.ModelTable):
-    addon_name = tables.Column(verbose_name=_(u'Addon'))
-    addon_type_id = tables.Column(verbose_name=_(u'Type'))
-    days_since_created = tables.Column(verbose_name=_(u'Waiting Time'))
-    flags = tables.Column()
-    applications = tables.Column()
-    additional_info = tables.Column(verbose_name=_(u'Additional Information'))
-
-    class Meta:
-        model = ViewEditorQueue
-        sortable = True
-        exclude = ['id', 'version_id', 'admin_review',
-                   'hours_since_created',
-                   'days_since_nominated', 'hours_since_nominated',
-                   'platform_id', 'is_site_specific',
-                   'version_max', 'version_min', 'version_apps']
+class EditorQueueTable:
 
     def render_addon_name(self, row):
-        url = '%s?num=%s' % (reverse('editors.review', args=[row.version_id]),
+        url = '%s?num=%s' % (reverse('editors.review',
+                                     args=[row.latest_version_id]),
                              self.item_number)
         self.item_number += 1
-        return u'<a href="%s">%s</a>' % (url,
-                                         jinja2.escape(row.addon_name))
+        return u'<a href="%s">%s %s</a>' % (
+                    url, jinja2.escape(row.addon_name),
+                    jinja2.escape(row.latest_version))
 
     def render_addon_type_id(self, row):
         return amo.ADDON_TYPE[row.addon_type_id]
@@ -54,34 +41,20 @@ class ViewEditorQueueTable(tables.ModelTable):
     def render_additional_info(self, row):
         if row.is_site_specific:
             r = _(u'Site Specific')
-        elif row.platform_id != amo.PLATFORM_ALL.id:
+        elif (len(row.file_platform_ids) == 1
+              and row.file_platform_ids != [amo.PLATFORM_ALL.id]):
+            k = row.file_platform_ids[0]
             # L10n: first argument is the platform such as Linux, Mac OS X
-            r = _(u'{0} only').format(amo.PLATFORMS[row.platform_id].name)
+            r = _(u'{0} only').format(amo.PLATFORMS[k].name)
         else:
             r = ''
         return jinja2.escape(r)
 
     def render_applications(self, row):
-        app_ids = self._explode_concat(row.applications)
-        # _apps = self._explode_concat(row.version_apps)
-        # version_min = dict(zip(_apps, self._explode_concat(row.version_min)))
-        # version_max = dict(zip(_apps, self._explode_concat(row.version_max)))
-
+        # TODO(Kumar) show supported version ranges on hover (if still needed)
         icon = u'<div class="app-icon ed-sprite-%s"></div>'
-        return u' '.join(icon % amo.APPS_ALL[i].short for i in app_ids)
-
-    def render_days_since_created(self, row):
-        if row.days_since_created == 0:
-            # L10n: first argument is number of hours
-            r = ngettext(u'{0} hour', u'{0} hours',
-                            row.hours_since_created).format(
-                                                row.hours_since_created)
-        else:
-            # L10n: first argument is number of days
-            r = ngettext(u'{0} day', u'{0} days',
-                         row.days_since_created).format(
-                                                row.days_since_created)
-        return jinja2.escape(r)
+        return u' '.join(icon % amo.APPS_ALL[i].short
+                         for i in row.application_ids)
 
     def render_flags(self, row):
         if row.admin_review:
@@ -90,9 +63,41 @@ class ViewEditorQueueTable(tables.ModelTable):
         else:
             return ''
 
+    def render_waiting_time_days(self, row):
+        if row.waiting_time_days == 0:
+            # L10n: first argument is number of hours
+            r = ngettext(u'{0} hour', u'{0} hours',
+                            row.waiting_time_hours).format(
+                                                row.waiting_time_hours)
+        else:
+            # L10n: first argument is number of days
+            r = ngettext(u'{0} day', u'{0} days',
+                         row.waiting_time_days).format(
+                                                row.waiting_time_days)
+        return jinja2.escape(r)
+
     def set_page(self, page):
         self.item_number = page.start_index()
 
-    def _explode_concat(self, value):
-        """Returns list of IDs in a MySQL GROUP_CONCAT(field) result."""
-        return [int(i) for i in value.split(',')]
+    class Meta:
+        sortable = True
+        columns = ['addon_name', 'addon_type_id', 'waiting_time_days',
+                   'flags', 'applications', 'additional_info']
+
+
+class ViewPendingQueueTable(tables.ModelTable, EditorQueueTable):
+    flags = tables.Column(verbose_name=_(u'Flags'))
+    applications = tables.Column(verbose_name=_(u'Applications'))
+    additional_info = tables.Column(verbose_name=_(u'Additional Information'))
+
+    class Meta(EditorQueueTable.Meta):
+        model = ViewPendingQueue
+
+
+class ViewFullReviewQueueTable(tables.ModelTable, EditorQueueTable):
+    flags = tables.Column(verbose_name=_(u'Flags'))
+    applications = tables.Column(verbose_name=_(u'Applications'))
+    additional_info = tables.Column(verbose_name=_(u'Additional Information'))
+
+    class Meta(EditorQueueTable.Meta):
+        model = ViewFullReviewQueue

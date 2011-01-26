@@ -5,11 +5,16 @@ from . import views
 # All URLs under /editors/
 urlpatterns = patterns('',
     url(r'^queue$', views.queue, name='editors.queue'),
+    url(r'^queue/nominated$', views.queue_nominated,
+        name='editors.queue_nominated'),
     url(r'^queue/pending$', views.queue_pending,
         name='editors.queue_pending'),
+    url(r'^queue/preliminary$', views.queue_prelim,
+        name='editors.queue_prelim'),
+    url(r'^queue/reviews$', views.queue_moderated,
+        name='editors.queue_moderated'),
     url(r'^logs$', views.eventlog, name='editors.eventlog'),
     url(r'^log/(\d+)$', views.eventlog_detail, name='editors.eventlog.detail'),
-
     url(r'^review/(?P<version_id>\d+)$', views.review, name='editors.review'),
     url(r'^$', views.home, name='editors.home'),
 )

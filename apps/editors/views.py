@@ -6,11 +6,12 @@ import jingo
 
 import amo
 from access import acl
+import amo
 from amo.decorators import login_required
 from devhub.models import ActivityLog
 from editors import forms
-from editors.models import ViewEditorQueue
-from editors.helpers import ViewEditorQueueTable
+from editors.models import ViewPendingQueue, ViewFullReviewQueue
+from editors.helpers import ViewPendingQueueTable, ViewFullReviewQueueTable
 from amo.utils import paginate
 from amo.urlresolvers import reverse
 from files.models import Approval
@@ -66,14 +67,8 @@ def home(request):
     return jingo.render(request, 'editors/home.html', data)
 
 
-@editor_required
-def queue(request):
-    return redirect(reverse('editors.queue_pending'))
-
-
-@editor_required
-def queue_pending(request):
-    qs = ViewEditorQueue.objects.all()
+def _queue(request, TableObj, tab):
+    qs = TableObj.Meta.model.objects.all()
     review_num = request.GET.get('num', None)
     if review_num:
         try:
@@ -83,19 +78,52 @@ def queue_pending(request):
         else:
             try:
                 row = qs[review_num - 1]
-                return redirect('%s?num=%s' % (reverse('editors.review',
-                                                       args=[row.version_id]),
-                                               review_num))
+                return redirect('%s?num=%s' % (
+                                reverse('editors.review',
+                                        args=[row.latest_version_id]),
+                                review_num))
             except IndexError:
                 pass
-    order_by = request.GET.get('sort', '-days_since_created')
-    table = ViewEditorQueueTable(qs, order_by=order_by)
-    queue_count = qs.count()
-    page = paginate(request, table.rows, per_page=100, count=queue_count)
+    order_by = request.GET.get('sort', '-waiting_time_days')
+    table = TableObj(qs, order_by=order_by)
+    queue_counts = {
+        'pending': ViewPendingQueue.objects.all().count(),
+        'nominated': ViewFullReviewQueue.objects.all().count(),
+        # TODO(Kumar) these are just placeholders
+        'prelim': ViewPendingQueue.objects.all().count(),
+        'moderated': ViewPendingQueue.objects.all().count()
+    }
+    page = paginate(request, table.rows, per_page=100,
+                    count=queue_counts[tab])
     table.set_page(page)
-    return jingo.render(request, 'editors/queue/pending.html',
-                        {'table': table, 'page': page,
-                         'queue_count': queue_count})
+    return jingo.render(request, 'editors/queue.html',
+                        {'table': table, 'page': page, 'tab': tab,
+                         'queue_counts': queue_counts})
+
+
+@editor_required
+def queue(request):
+    return redirect(reverse('editors.queue_pending'))
+
+
+@editor_required
+def queue_nominated(request):
+    return _queue(request, ViewFullReviewQueueTable, 'nominated')
+
+
+@editor_required
+def queue_pending(request):
+    return _queue(request, ViewPendingQueueTable, 'pending')
+
+
+@editor_required
+def queue_prelim(request):
+    raise NotImplementedError
+
+
+@editor_required
+def queue_moderated(request):
+    raise NotImplementedError
 
 
 @editor_required

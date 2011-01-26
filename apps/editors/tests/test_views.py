@@ -1,5 +1,6 @@
 # -*- coding: utf8 -*-
-from datetime import datetime
+from datetime import datetime, timedelta
+import re
 
 from nose.tools import eq_
 from pyquery import PyQuery as pq
@@ -11,6 +12,10 @@ from addons.models import Addon
 from devhub.models import ActivityLog
 from reviews.models import Review
 from users.models import UserProfile
+from versions.models import Version, ApplicationsVersions
+from files.models import Platform, File
+from applications.models import Application, AppVersion
+from . test_models import create_addon_file
 
 
 class EditorTest(test_utils.TestCase):
@@ -100,10 +105,28 @@ class TestHome(EditorTest):
             'editor deleted review %d' % review.id)
 
 
-class TestPendingQueue(EditorTest):
+class QueueTest(EditorTest):
+    fixtures = ['base/users']
+
     def setUp(self):
-        super(TestPendingQueue, self).setUp()
+        super(QueueTest, self).setUp()
         self.login_as_editor()
+        self.versions = {}
+        self.addon_file(u'Pending One', u'0.1',
+                        amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED)
+        self.addon_file(u'Pending Two', u'0.1',
+                        amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED)
+        self.addon_file(u'Nominated One', u'0.1',
+                        amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED)
+        self.addon_file(u'Nominated Two', u'0.1',
+                        amo.STATUS_LITE_AND_NOMINATED, amo.STATUS_UNREVIEWED)
+    
+    def addon_file(self, *args, **kw):
+        a = create_addon_file(*args, **kw)
+        self.versions[unicode(a['addon'].name)] = a['version']
+
+
+class TestQueueBasics(QueueTest):
 
     def test_only_viewable_by_editor(self):
         self.client.logout()
@@ -118,31 +141,10 @@ class TestPendingQueue(EditorTest):
         eq_(r.status_code, 200)
         eq_(r.context['page'].number, 1)
 
-    def test_grid(self):
-        r = self.client.get(reverse('editors.queue_pending'))
-        eq_(r.status_code, 200)
-        doc = pq(r.content)
-        eq_(doc('div.section table tr th:eq(0)').text(), u'Addon')
-        eq_(doc('div.section table tr th:eq(1)').text(), u'Type')
-        eq_(doc('div.section table tr th:eq(2)').text(), u'Waiting Time')
-        eq_(doc('div.section table tr th:eq(3)').text(), u'Applications')
-        eq_(doc('div.section table tr th:eq(4)').text(), u'Flags')
-        eq_(doc('div.section table tr th:eq(5)').text(),
-            u'Additional Information')
-        # Smoke test the grid. More tests in test_helpers.py
-        row = doc('div.section table tr:eq(1)')
-        eq_(doc('td:eq(0)', row).text(), u'Converter 1.0.0')
-        eq_(doc('td a:eq(0)', row).attr('href'),
-            reverse('editors.review', args=['118409']) + '?num=1')
-        row = doc('div.section table tr:eq(2)')
-        eq_(doc('td:eq(0)', row).text(), u'Better Facebook! 4.105')
-        eq_(doc('a:eq(0)', row).attr('href'),
-            reverse('editors.review', args=['118467']) + '?num=2')
-
     def test_redirect_to_review(self):
         r = self.client.get(reverse('editors.queue_pending'), data={'num': 2})
         self.assertRedirects(r, reverse('editors.review',
-                                        args=['118467']) + '?num=2')
+                        args=[self.versions['Pending Two'].id]) + '?num=2')
 
     def test_invalid_review_ignored(self):
         r = self.client.get(reverse('editors.queue_pending'), data={'num': 9})
@@ -153,6 +155,36 @@ class TestPendingQueue(EditorTest):
                             data={'num': 'not-a-number'})
         eq_(r.status_code, 200)
 
+    def test_grid_headers(self):
+        r = self.client.get(reverse('editors.queue_pending'))
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        eq_(doc('div.section table tr th:eq(0)').text(), u'Addon')
+        eq_(doc('div.section table tr th:eq(1)').text(), u'Type')
+        eq_(doc('div.section table tr th:eq(2)').text(), u'Waiting Time')
+        eq_(doc('div.section table tr th:eq(3)').text(), u'Flags')
+        eq_(doc('div.section table tr th:eq(4)').text(), u'Applications')
+        eq_(doc('div.section table tr th:eq(5)').text(),
+            u'Additional Information')
+
+
+class TestPendingQueue(QueueTest):
+
+    def test_results(self):
+        r = self.client.get(reverse('editors.queue_pending'))
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        row = doc('div.section table tr:eq(1)')
+        eq_(doc('td:eq(0)', row).text(), u'Pending One 0.1')
+        eq_(doc('td a:eq(0)', row).attr('href'),
+            reverse('editors.review',
+                    args=[self.versions[u'Pending One'].id]) + '?num=1')
+        row = doc('div.section table tr:eq(2)')
+        eq_(doc('td:eq(0)', row).text(), u'Pending Two 0.1')
+        eq_(doc('a:eq(0)', row).attr('href'),
+            reverse('editors.review',
+                    args=[self.versions[u'Pending Two'].id]) + '?num=2')
+
     def test_queue_count(self):
         r = self.client.get(reverse('editors.queue_pending'))
         eq_(r.status_code, 200)
@@ -160,3 +192,29 @@ class TestPendingQueue(EditorTest):
         eq_(doc('.tabnav li a:eq(1)').text(), u'Pending Updates (2)')
         eq_(doc('.tabnav li a:eq(1)').attr('href'),
             reverse('editors.queue_pending'))
+
+
+class TestNominatedQueue(QueueTest):
+
+    def test_results(self):
+        r = self.client.get(reverse('editors.queue_nominated'))
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        row = doc('div.section table tr:eq(1)')
+        eq_(doc('td:eq(0)', row).text(), u'Nominated One 0.1')
+        eq_(doc('td a:eq(0)', row).attr('href'),
+            reverse('editors.review',
+                    args=[self.versions[u'Nominated One'].id]) + '?num=1')
+        row = doc('div.section table tr:eq(2)')
+        eq_(doc('td:eq(0)', row).text(), u'Nominated Two 0.1')
+        eq_(doc('a:eq(0)', row).attr('href'),
+            reverse('editors.review',
+                    args=[self.versions[u'Nominated Two'].id]) + '?num=2')
+
+    def test_queue_count(self):
+        r = self.client.get(reverse('editors.queue_nominated'))
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        eq_(doc('.tabnav li a:eq(0)').text(), u'Full Reviews (2)')
+        eq_(doc('.tabnav li a:eq(0)').attr('href'),
+            reverse('editors.queue_nominated'))
