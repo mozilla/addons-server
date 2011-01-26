@@ -1,0 +1,18 @@
+{% extends "mobile/base.html" %}
+
+
+{% block title %}{{ page_title(addon.name) }}{% endblock %}
+
+{% block page %}
+{% set persona = addon.persona %}
+
+<div class="listview">
+  {{ persona_preview(addon.persona, size='small') }}
+  {# TODO: button #}
+</div>
+
+<table>
+  {% include "addons/persona_detail_table.html" %}
+</table>
+
+{% endblock %}

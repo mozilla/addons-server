@@ -192,7 +192,13 @@ def persona_detail(request, addon):
     if settings.REPORT_ABUSE:
         data['abuse_form'] = AbuseForm(request=request)
 
-    return jingo.render(request, 'addons/personas_detail.html', data)
+    return jingo.render(request, 'addons/persona_detail.html', data)
+
+
+@dec.mobilized(persona_detail)
+def persona_detail(request, addon):
+    return jingo.render(request, 'addons/mobile/persona_detail.html',
+                        {'addon': addon})
 
 
 class BaseFilter(object):

@@ -1230,12 +1230,15 @@ class TestUpdate(test_utils.TestCase):
         assert res.content.find(data['appID']) > -1
 
 
-class TestMobileHome(test_utils.TestCase):
+class TestMobile(test_utils.TestCase):
     fixtures = ['base/apps', 'base/addon_3615', 'base/featured']
 
     def setUp(self):
         self.client.cookies['mamo'] = 'on'
         self.client.defaults['SERVER_NAME'] = settings.MOBILE_DOMAIN
+
+
+class TestMobileHome(TestMobile):
 
     def test_addons(self):
         r = self.client.get('/', follow=True)
@@ -1248,3 +1251,18 @@ class TestMobileHome(test_utils.TestCase):
         eq_([a.id for a in popular],
             [a.id for a in sorted(popular, key=lambda x: x.weekly_downloads,
                                   reverse=True)])
+
+
+class TestMobileDetails(TestMobile):
+    fixtures = TestMobile.fixtures + ['base/featured']
+
+    def test_extension(self):
+        r = self.client.get(reverse('addons.detail', args=['a3615']))
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'addons/mobile/details.html')
+
+    def test_persona(self):
+        addon = Addon.objects.filter(type=amo.ADDON_PERSONA)[0]
+        r = self.client.get(addon.get_url_path())
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'addons/mobile/persona_detail.html')
