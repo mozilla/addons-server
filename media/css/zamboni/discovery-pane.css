@@ -800,7 +800,7 @@ h2.author {
 /* @Reviews *********/
 #addon-reviews h3,
 body.eula h3 {
-    background: #e0e8f3;
+    background-color: rgba(105, 125, 149, 0.39);
     padding-right: 8px;
     position: relative;
     z-index: 99;
