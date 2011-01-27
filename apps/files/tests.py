@@ -31,7 +31,9 @@ class UploadTest(test_utils.TestCase):
 
     def setUp(self):
         self._addons_path = settings.ADDONS_PATH
+        self._mirror_path = settings.MIRROR_STAGE_PATH
         settings.ADDONS_PATH = tempfile.mkdtemp()
+        settings.MIRROR_STAGE_PATH = tempfile.mkdtemp()
         self._rename = path.path.rename
         path.path.rename = path.path.copy
         # The validator task (post Addon upload) loads apps.json
@@ -41,7 +43,9 @@ class UploadTest(test_utils.TestCase):
 
     def tearDown(self):
         shutil.rmtree(settings.ADDONS_PATH)
+        shutil.rmtree(settings.MIRROR_STAGE_PATH)
         settings.ADDONS_PATH = self._addons_path
+        settings.MIRROR_STAGE_PATH = self._mirror_path
         path.path.rename = self._rename
 
     def file_path(self, name):
