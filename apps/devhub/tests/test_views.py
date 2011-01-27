@@ -3352,8 +3352,9 @@ class TestUpload(files.tests.UploadTest):
         eq_(FileUpload.objects.get().user, user)
 
     def test_fileupload_ascii_post(self):
-        data = open(os.path.join(settings.ROOT, 'apps', 'files', 'fixtures',
-                                 'files', u'jétpack.xpi'))
+        path = 'apps/files/fixtures/files/jétpack.xpi'
+        data = open(os.path.join(settings.ROOT, path))
+
         r = self.client.post(self.url, {'upload': data})
         # If this is broke, we'll get a traceback.
         eq_(r.status_code, 302)
