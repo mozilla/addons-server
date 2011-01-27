@@ -127,22 +127,22 @@ def monitor(request):
         libraries_results.append(("Spidermonkey isn't set up.", False, msg))
 
     # Check file paths / permissions
-    filepaths = (
-        (settings.TMP_PATH, os.R_OK | os.W_OK, "We want read + write."),
-        (settings.NETAPP_STORAGE, os.R_OK | os.W_OK, "We want read + write."),
-        (settings.UPLOADS_PATH, os.R_OK | os.W_OK, "We want read + write."),
-        (settings.ADDON_ICONS_PATH,
-            os.R_OK | os.W_OK, "We want read + write."),
-        (settings.COLLECTIONS_ICON_PATH,
-            os.R_OK | os.W_OK, "We want read + write."),
-        (settings.PREVIEWS_PATH, os.R_OK | os.W_OK, "We want read + write."),
-        (settings.USERPICS_PATH, os.R_OK | os.W_OK, "We want read + write."),
-        (settings.SPHINX_CATALOG_PATH, os.R_OK | os.W_OK, "We want read + write."),
-        (settings.SPHINX_LOG_PATH, os.R_OK | os.W_OK, "We want read + write."),
-        (os.path.join(settings.ROOT, 'locale'), os.R_OK, "We want read."),
-        (dump_apps.Command.JSON_PATH,
-            os.R_OK | os.W_OK, "We want read + write."),
-    )
+    rw = (settings.TMP_PATH,
+          settings.NETAPP_STORAGE,
+          settings.UPLOADS_PATH,
+          settings.ADDONS_PATH,
+          settings.GUARDED_ADDONS_PATH,
+          settings.ADDON_ICONS_PATH,
+          settings.COLLECTIONS_ICON_PATH,
+          settings.PREVIEWS_PATH,
+          settings.USERPICS_PATH,
+          settings.SPHINX_CATALOG_PATH,
+          settings.SPHINX_LOG_PATH,
+          dump_apps.Command.JSON_PATH)
+    r = [os.path.join(settings.ROOT, 'locale')]
+    filepaths = [(path, os.R_OK | os.W_OK, "We want read + write")
+                 for path in rw]
+    filepaths += [(path, os.R_OK, "We want read") for path in r]
     filepath_results = []
     filepath_status = True
 

@@ -136,6 +136,10 @@ NETAPP_STORAGE = TMP_PATH
 #  add-on). Example: /mnt/netapp_amo/addons.mozilla.org-remora/files
 ADDONS_PATH = NETAPP_STORAGE + '/addons'
 
+# Like ADDONS_PATH but protected by the app. Used for storing files that should
+# not be publicly accessible (like disabled add-ons).
+GUARDED_ADDONS_PATH = NETAPP_STORAGE + '/guarded-addons'
+
 # Absolute path to a writable directory shared by all servers. No trailing
 # slash.
 # Example: /data/uploads
