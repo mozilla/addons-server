@@ -71,6 +71,10 @@ class Version(amo.models.ModelBase):
     def path_prefix(self):
         return os.path.join(settings.ADDONS_PATH, str(self.addon_id))
 
+    @property
+    def mirror_path_prefix(self):
+        return os.path.join(settings.MIRROR_STAGE_PATH, str(self.addon_id))
+
     def license_url(self):
         return reverse('addons.license', args=[self.addon.slug, self.version])
 

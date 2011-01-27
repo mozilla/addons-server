@@ -109,10 +109,13 @@ class File(amo.models.ModelBase):
         f.save()
         log.debug('New file: %r from %r' % (f, upload))
         # Move the uploaded file from the temp location.
-        dest = path.path(version.path_prefix)
-        if not dest.exists():
-            dest.makedirs()
-        upload.path.copyfile(dest / nfd_str(f.filename))
+        destinations = [path.path(version.path_prefix)]
+        if f.status in amo.MIRROR_STATUSES:
+            destinations.append(path.path(version.mirror_path_prefix))
+        for dest in destinations:
+            if not dest.exists():
+                dest.makedirs()
+            upload.path.copyfile(dest / nfd_str(f.filename))
         FileValidation.from_json(f, upload.validation)
         return f
 
@@ -225,6 +228,7 @@ class Approval(amo.models.ModelBase):
                                 .filter(created__gte=created_date)
                                 .annotate(models.Count('approval'))
                                 .order_by('-approval__count')[:5])
+
 
 class Platform(amo.models.ModelBase):
     # `name` and `shortname` are provided in amo.__init__
