@@ -750,7 +750,7 @@ def version_add_file(request, addon_id, addon, version_id):
     file_form = forms.FileFormSet(prefix='files', queryset=version.files.all())
     form = [f for f in file_form.forms if f.instance == new_file]
     return jingo.render(request, 'devhub/includes/version_file.html',
-                        {'form': form[0]})
+                        {'form': form[0], 'addon': addon})
 
 
 @dev_required
