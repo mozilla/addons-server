@@ -84,6 +84,7 @@ def add_version_modal(context, title, action, upload_url, action_label):
                        action_label=action_label)
 
 
+@register.function
 def status_choices(addon):
     """Return a dict like STATUS_CHOICES customized for the addon status."""
     # Show "awaiting full review" for unreviewed files on that track.
