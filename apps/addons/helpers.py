@@ -130,6 +130,13 @@ def addon_listing_items_compact(context, addons, boundary=0,
     return new_context(**locals())
 
 
+@register.inclusion_tag('addons/listing/items_mobile.html')
+@jinja2.contextfunction
+def addon_listing_items_mobile(context, addons, show_date=False,
+                                src=None):
+    return new_context(**locals())
+
+
 @register.inclusion_tag('addons/listing_header.html')
 @jinja2.contextfunction
 def addon_listing_header(context, url_base, sort_opts, selected):

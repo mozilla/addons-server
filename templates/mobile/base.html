@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="{{ LANG }}" dir="{{ DIR }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{{ _('Mozilla Add-ons') }}{% endblock %}</title>
+
+    <link rel="shortcut icon" type="image/x-icon"
+          href="{{ MEDIA_URL}}img/favicon.ico">
+
+    {% block rss_feed %}{% endblock %}
+
+    {# L10n: {0} is an application, like Firefox. #}
+    <link title="{{ _('{0} Add-ons')|f(APP.pretty) }}"
+          rel="search" type="application/opensearchdescription+xml"
+          href="{{ url('amo.opensearch') }}" />
+
+    {% block site_css %}
+      {{ css('zamboni/mobile') }}
+    {% endblock %}
+
+    {% block extrahead %}{% endblock %}
+  </head>
+  <body class="html-{{ DIR }} {{ request.APP.short }} lang-{{ LANG }} {% block bodyclass %}{% endblock %}"
+        data-app="{{ request.APP.short }}"
+        data-appname="{{ request.APP.pretty }}"
+        data-appid="{{ request.APP.id }}"
+        data-anonymous="{{ (not request.user.is_authenticated())|json }}"
+        data-readonly="{{ settings.READ_ONLY|json }}"
+        data-media-url="{{ MEDIA_URL }}"
+        {% block bodyattrs %}{% endblock %}>
+
+    {% block page %}
+
+      {% block footer %}
+      {% endblock footer %}
+    {% endblock page %}
+
+    {# js #}
+    {% block site_js %}
+      {{ js('zamboni/mobile') }}
+    {% endblock %}
+    {% block js %}{% endblock %}
+    {# Webtrends Stats Tracking #}
+    <script defer src="{{ MEDIA_URL }}js/webtrends/webtrends-v0.1.js"></script>
+    <noscript>
+      <img id="DCSIMG" width="1" height="1"
+        src="https://statse.webtrendslive.com/dcso6de4r0000082npfcmh4rf_4b1e/njs.gif?dcsuri=/nojavascript&amp;WT.js=No&amp;WT.tv=8.6.2" />
+    </noscript>
+    {# End Webtrends #}
+  </body>
+</html>

@@ -373,6 +373,9 @@ MINIFY_BUNDLES = {
         'zamboni/editors': (
             'css/zamboni/editors.css',
         ),
+        'zamboni/mobile': (
+            'css/zamboni/mobile.css',
+        ),
     },
     'js': {
         # JS files common to the entire site.
@@ -436,6 +439,12 @@ MINIFY_BUNDLES = {
         ),
         'zamboni/editors': (
             'js/zamboni/editors.js',
+        ),
+        'zamboni/mobile': (
+            'js/zamboni/jquery-1.4.2.min.js',
+            'js/zamboni/jqmobile.js',
+            'js/zamboni/truncation.js',
+            'js/zamboni/mobile.js',
         ),
     }
 }

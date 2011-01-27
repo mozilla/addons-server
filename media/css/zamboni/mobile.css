@@ -1,0 +1,351 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+/* end meyer reset */
+
+/** Clearfix */
+.listview li a:after,
+header:after,
+section:after {
+    content: ".";
+    display: block;
+    clear: both;
+    height: 0;
+    visibility: hidden;
+}
+
+/************************************/
+/*             TYPOGRAPHY           */
+/************************************/
+
+h1, h2, h3, .copy {
+    font-family: Georgia, serif;
+}
+#content h2 {
+    font-style: italic;
+    margin-left: 14px;
+    font-size: 1.2em;
+}
+
+/************************************/
+/*             GRADIENTS            */
+/************************************/
+
+/* 'Mozilla' */
+#home-header .menu {
+    background: #33589f;
+    background: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        from(rgb(42,65,135)),
+        to(rgb(59,105,177))
+    );
+    background: -moz-linear-gradient(
+        center bottom,
+        rgb(42,65,135) 0%,
+        rgb(59,105,177) 100%
+    );
+    background: linear-gradient(
+        center bottom,
+        rgb(42,65,135) 0%,
+        rgb(59,105,177) 100%
+    );
+}
+
+footer:before,
+.tabs {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAABCAYAAAASC7TOAAAAEElEQVQIHWP8//8/Aw7wHwBR6AP+G53o6QAAAABJRU5ErkJggg=='),
+                      -moz-linear-gradient(#fff, #dcedfd);
+}
+
+html {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAABCAYAAAASC7TOAAAAEElEQVQIHWP8//8/Aw7wHwBR6AP+G53o6QAAAABJRU5ErkJggg=='),
+                      -moz-linear-gradient(#dcedfd 0, #fff 120px);
+}
+
+/************************************/
+/*              GENERAL             */
+/************************************/
+
+
+#content {
+    margin-top: 1em;
+}
+
+/************************************/
+/*              HEADER              */
+/************************************/
+#home-header {
+    margin: 0 14px;
+}
+#home-header .menu {
+    height: 27px;
+    padding: 8px 10px;
+    -moz-border-radius: 0 0 6px 6px;
+    -moz-box-shadow: 0 -3px rgba(0,0,0,.2) inset;
+}
+#home-header hgroup {
+    margin-top: 8px;
+    position: relative;
+    padding-left: 80px;
+}
+#home-header h1 {
+    padding-top: 4px;
+}
+.site-title img {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.site-title a {
+    text-decoration: none;
+    color: black;
+    font-family: Georgia,
+    text-transform: uppercase;
+    font-size: 36px;
+    line-height: 32px;
+}
+.site-title span {
+    display: block;
+}
+
+/************************************/
+/*             LISTVIEWS            */
+/************************************/
+
+.listview {
+    margin: 14px 14px 0;
+    -moz-border-radius: 6px;
+    border: 1px solid #ddd;
+    background-color: #f4f4f4;
+    background-image: -moz-linear-gradient(#fff, rgba(255,255,255,0) 12px);
+    -moz-box-shadow: 0 -3px rgba(0,0,0,.1) inset;
+    margin-bottom: 1em;
+}
+.listview li {
+    border-top: 1px solid #ccc;
+    font-size: 1em;
+}
+.listview li:first-child {
+    border: 0;
+}
+.listview li > a {
+    padding: 14px 10px;
+    color: #444;
+    font-family: Georgia, serif;
+    font-size: 1.1em;
+    display: block;
+    overflow: hidden;
+    text-decoration: none;
+    position: relative;
+}
+.listview .item > a{
+    padding: 10px;
+    font-size: 1em;
+}
+.listview li > a:before {
+    content: " ";
+    display: block;
+    width: 10px;
+    height: 16px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    margin-top: -8px;
+    background: url(../../img/zamboni/mobile/arrow.svg) no-repeat center center;
+    background-size: cover;
+}
+.listview li .icon {
+    float: left;
+    margin-right: 8px;
+}
+
+.listview .item {
+    line-height: 1.3em;
+}
+.listview .item h3 {
+    font-size: 1.1em;
+}
+.listview .item .desc {
+    white-space: nowrap;
+}
+.listview .item details {
+    overflow: hidden;
+}
+
+/************************************/
+/*              SEARCH              */
+/************************************/
+
+#search {
+    margin-top: 8px;
+    display: -moz-box;
+    width: 100%;
+}
+
+#search input[type=search] {
+    -moz-box-flex: 1;
+    height: 41px;
+    border: 1px solid #ddd;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    margin: -1px 8px 0 0;
+}
+
+#search input[type=submit] {
+    margin: 0;
+    height: 45px;
+    width: 56px;
+    background-image: -moz-linear-gradient(#83c53c, #4f9c19);
+    border: 0;
+    -moz-box-shadow: 0 -3px rgba(0,0,0,.1) inset;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+}
+
+/************************************/
+/*               TABS               */
+/************************************/
+
+.tabs {
+    border-bottom: 1px solid #a2bbdc;
+    height: 36px;
+    font: 16px Georgia, serif;
+    padding: 14px 14px 0;
+    box-shadow: 0 -1px 1px rgba(0,0,0,.1) inset;
+}
+.tabs ul {
+    display: -moz-box;
+    margin: 0px;
+    width: 100%;
+    z-index: 1;
+}
+
+.tabs ul li {
+    white-space: nowrap;
+    text-align: center;
+    -moz-box-flex: 1;
+    color: #447bc4;
+    border: 0;
+    padding: 11px 8px 6px 11px;
+}
+.tabs ul li.selected {
+    background: white;
+    -moz-box-flex: 1;
+    color: #444;
+    box-shadow: 0 -1px 1px rgba(0,0,0,.1);
+    border: 1px solid #a2bbdc;
+    border-width: 1px 1px 0 1px;
+    -moz-border-radius: 6px 6px 0 0;
+    padding: 11px 8px 6px 11px;
+}
+
+/************************************/
+/*              REVIEWS             */
+/************************************/
+
+.stars {
+    text-indent:-5000px;
+    background-image: url(../../img/amo2009/icons/stars.png);
+    background-position: 0 50%;
+    background-repeat: no-repeat;
+    margin-right: 0.5em;
+    width: 63px;
+    display: block;
+}
+.stars-4 {
+    background-position: -13px 50%;
+}
+.stars-3 {
+    background-position: -26px 50%;
+}
+.stars-2 {
+    background-position: -39px 50%;
+}
+.stars-1 {
+    background-position: -52px 50%;
+}
+.stars-0 {
+    background-position: -65px 50%;
+}
+
+/************************************/
+/*              FOOTER              */
+/************************************/
+
+footer:before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: -30px;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    box-shadow: 0 -2px rgba(0,0,0,.1) inset;
+}
+footer {
+    font-family: "Droid Sans", sans-serif;
+    font-size: 1em;
+    color: white;
+    margin-top: 30px;
+    padding: 14px;
+    position: relative;
+    min-height: 200px;
+    box-shadow: 0 2px rgba(0,0,0,.1) inset;
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAABCAYAAAASC7TOAAAAFElEQVQIHWO0DZ3xnwELYOXgYwAAOHwCRjqu6SgAAAAASUVORK5CYII=');
+}
+footer select {
+    margin-top: 4px;
+    display: block;
+    border-radius: 6px;
+    width: 100%;
+    height: 30px;
+}

@@ -1,0 +1,18 @@
+{% cache addons %}
+{% for addon in addons %}
+  <li class="item">
+    <a href="{{ addon.get_url_path() }}">
+      <img class="icon" width="32" height="32" src="{{ addon.icon_url }}">
+      <h3>{{ addon.name }}</h3>
+      <details>
+        <span class="desc">{{ addon.summary|strip_html()|truncate(250) }}</span>
+        {% with num=addon.total_reviews %}
+          {% if num %}
+          {{ addon.average_rating|float|stars }}
+          {% endif %}
+        {% endwith %}
+      </details>
+    </a>
+  </li>
+{% endfor %}
+{% endcache %}

@@ -1,19 +1,61 @@
-<body>
-{% if featured %}
-<h1>Featured</h1>
-<ul>
-  {% for addon in featured %}
-    <li>{{ addon.name }}</li>
-  {% endfor %}
-</ul>
-{% endif %}
+{% extends "mobile/base.html" %}
 
-{% if popular %}
-<h1>Popular</h1>
-<ul>
-  {% for addon in popular %}
-    <li>{{ addon.name }}</li>
-  {% endfor %}
-</ul>
-{% endif %}
-</body>
+{% block title %}{{ _('Add-ons for {0}')|f(request.APP.pretty) }}{% endblock %}
+
+{% block page %}
+  <header id="home-header">
+    <div class="menu">
+      {# TODO build out the menu #}
+    </div>
+    <hgroup>
+      <h1 class="site-title">
+        {% set appicon = 'firefox' if request.APP == amo.MOBILE else request.APP.short %}
+        <a href="{{ url('home') }}"
+          title="{{ _('Return to the {0} Add-ons homepage')|f(request.APP.pretty) }}">
+          <img alt="{{ request.APP.pretty }}" src="{{ MEDIA_URL + 'img/zamboni/app_icons/' + appicon + '.png' }}">
+          {{ _('Mobile Add-ons') }}
+        </a>
+      </h1>
+      <h2>{{ _('Easy ways to personalize.') }}</h2>
+    </hgroup>
+    {# TODO move this to its own template #}
+    <form id="search">
+      <input name="q" placeholder="{{ _('Search') }}" type="search">
+      <input type="submit" value="">
+    </form>
+  </header>
+  <section id="content">
+    <nav class="tabs">
+      <ul>
+        <li class="selected">{{ _('Featured') }}</li>
+        <li>{{ _('Popular') }}</li>
+        <li>{{ _('Categories') }}</li>
+      </ul>
+    </nav>
+    <div class="addon-listing addon-listing-popular">
+      <ul id="list-popular" class="listview">
+        {{ addon_listing_items_mobile(popular, show_date=key,
+                                       src='homepagebrowse') }}
+        <li><a>
+          {{ _('View all Featured add-ons') }}
+        </a></li>
+      </ul> {# listing-{{ key }} #}
+    </div> {# addon-listing #}
+    <h2>{{ _('More Add-ons') }}</h2>
+    <ul id="list-popular" class="listview">
+      {# TODO link up these pages when they're present #}
+      <li><a>
+        {{ _('Highest Rated') }}
+      </a></li>
+      <li><a>
+        {{ _('Newest') }}
+      </a></li>
+      <li><a>
+        {{ _('Collections') }}
+      </a></li>
+    </ul> {# listing-{{ key }} #}
+  </section>
+  <footer>
+    {% include "includes/lang_switcher.html" %}
+  </footer>
+{% endblock page %}
