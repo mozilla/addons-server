@@ -1,4 +1,6 @@
 # -*- coding: utf8 -*-
+from datetime import datetime
+
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 import test_utils
@@ -6,6 +8,7 @@ import test_utils
 import amo
 from amo.urlresolvers import reverse
 from addons.models import Addon
+from devhub.models import ActivityLog
 from reviews.models import Review
 from users.models import UserProfile
 
@@ -17,17 +20,68 @@ class EditorTest(test_utils.TestCase):
         assert self.client.login(username='editor@mozilla.com',
                                  password='password')
 
+    def make_review(self, username='a'):
+        u = UserProfile.objects.create(username=username)
+        a = Addon.objects.create(name='yermom', type=amo.ADDON_EXTENSION)
+        return Review.objects.create(user=u, addon=a)
+
+
+class TestEventLog(EditorTest):
+    def setUp(self):
+        self.login_as_editor()
+        amo.set_user(UserProfile.objects.get(username='editor'))
+        review = self.make_review()
+        for i in xrange(30):
+            amo.log(amo.LOG.APPROVE_REVIEW, review, review.addon)
+            amo.log(amo.LOG.DELETE_REVIEW, review.id, review.addon)
+
+    def test_log(self):
+        r = self.client.get(reverse('editors.eventlog'))
+        eq_(r.status_code, 200)
+
+    def test_start_filter(self):
+        r = self.client.get(reverse('editors.eventlog') + '?start=3011-01-01')
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        assert doc('tbody')
+        eq_(len(doc('tbody tr')), 0)
+
+    def test_enddate_filter(self):
+        """
+        Make sure that if our end date is 1/1/2011, that we include items from
+        1/1/2011.  To not do as such would be dishonorable.
+        """
+        review = self.make_review(username='b')
+        amo.log(amo.LOG.APPROVE_REVIEW, review, review.addon,
+                created=datetime(2011, 1, 1))
+
+        r = self.client.get(reverse('editors.eventlog') + '?end=2011-01-01')
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        eq_(doc('tbody td').eq(0).text(), 'Jan 1, 2011 12:00:00 AM')
+
+    def test_action_filter(self):
+        """
+        Based on setup we should only see 30 items if we filter for deleted
+        reviews.
+        """
+        r = self.client.get(reverse('editors.eventlog') + '?filter=deleted')
+        doc = pq(r.content)
+        eq_(len(doc('tbody tr')), 30)
+
+
+class TestEventLogDetail(TestEventLog):
+    def test_me(self):
+        id = ActivityLog.objects.editor_events()[0].id
+        r = self.client.get(reverse('editors.eventlog.detail', args=[id]))
+        eq_(r.status_code, 200)
+
 
 class TestHome(EditorTest):
     """Test the page at /editors."""
     def setUp(self):
         self.login_as_editor()
         amo.set_user(UserProfile.objects.get(username='editor'))
-
-    def make_review(self):
-        u = UserProfile.objects.create(username='a')
-        a = Addon.objects.create(name='yermom', type=amo.ADDON_EXTENSION)
-        return Review.objects.create(user=u, addon=a)
 
     def test_approved_review(self):
         review = self.make_review()

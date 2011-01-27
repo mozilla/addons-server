@@ -240,3 +240,7 @@ ul.tabnav a:hover {
     font-weight: bold;
     margin-top: 0;
 }
+
+.controls {
+    padding: 15px;
+}
