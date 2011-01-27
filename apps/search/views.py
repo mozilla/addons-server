@@ -10,7 +10,7 @@ import amo
 import bandwagon.views
 import browse.views
 from amo import urlresolvers
-from amo.decorators import json_view
+from amo.decorators import json_view, mobile_ready
 from amo.helpers import urlparams
 from amo.utils import MenuItem
 from versions.compare import dict_from_int, version_int
@@ -246,6 +246,7 @@ def ajax_search(request):
         return []
 
 
+@mobile_ready
 def search(request, tag_name=None):
     # If the form is invalid we still want to have a query.
     query = request.REQUEST.get('q', '')
@@ -321,4 +322,8 @@ def search(request, tag_name=None):
     context = dict(pager=pager, query=query, tag=tag, platforms=platforms,
                    versions=versions, categories=categories, tags=tags,
                    sort_tabs=sort_tabs, sort=sort)
-    return jingo.render(request, 'search/results.html', context)
+    if request.MOBILE:
+        template = 'search/mobile/results.html'
+    else:
+        template = 'search/results.html'
+    return jingo.render(request, template, context)

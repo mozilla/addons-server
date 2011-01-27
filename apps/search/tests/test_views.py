@@ -11,6 +11,7 @@ import test_utils
 
 import amo
 from amo.urlresolvers import reverse
+from addons.tests.test_views import TestMobile
 from search.tests import SphinxTestCase
 from search import views
 from search.client import SearchError
@@ -193,6 +194,14 @@ class FrontendSearchTest(SphinxTestCase):
     def test_bad_cat(self):
         r = self.get_response(cat='1)f,ff')
         eq_(r.status_code, 200)
+
+
+class MobileSearchTest(SphinxTestCase, TestMobile):
+
+    def test_search(self):
+        r = self.client.get(reverse('search.search'))
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'search/mobile/results.html')
 
 
 class ViewTest(test_utils.TestCase):

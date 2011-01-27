@@ -1,0 +1,40 @@
+{% extends "mobile/base.html" %}
+
+{% block title %}
+{% if query %}
+  {{ page_title(_('Add-on Search Results for {0}')|f(query)) }}
+{% else %}
+  {{ page_title(_('Add-on Search Results')) }}
+{% endif %}
+{% endblock %}
+
+{% block extrahead %}
+<meta name="WT.oss" content="{{ query }}">
+<meta name="WT.oss_r" content="{{ pager.paginator.count }}">
+{% endblock %}
+
+{% block page %}
+<section id="content">
+  <h2>{{ _('Search Results <i>({num})</i>')|f(num=pager.paginator.count)|safe }}</h2>
+  {# TODO: search box #}
+
+  <div>
+    <span>{{ _('Sort by:') }}</span>
+    <ul>
+      {% for sort in sort_tabs %}
+        <li {% if sort.selected %}class="selected"{% endif %}>
+          <a href="{{ sort.url }}">{{ sort.text }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+
+
+  <div class="addon-listing">
+    <ul class="listview">
+      {{ addon_listing_items_mobile(pager.object_list, src='search') }}
+    </ul>
+  </div>
+
+  {{ pager|mobile_paginator }}
+</section>
+{% endblock %}
