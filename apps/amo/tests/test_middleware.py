@@ -25,7 +25,7 @@ def test_no_vary_cookie():
 
     # But we do prevent Vary: Cookie.
     response = test.Client().get('/', follow=True)
-    eq_(response['Vary'], 'X-Mobile')
+    eq_(response['Vary'], 'X-Mobile, User-Agent')
 
 
 def test_redirect_with_unicode_get():
