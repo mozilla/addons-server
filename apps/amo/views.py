@@ -131,6 +131,7 @@ def monitor(request):
           settings.NETAPP_STORAGE,
           settings.UPLOADS_PATH,
           settings.ADDONS_PATH,
+          settings.MIRROR_STAGE_PATH,
           settings.GUARDED_ADDONS_PATH,
           settings.ADDON_ICONS_PATH,
           settings.COLLECTIONS_ICON_PATH,

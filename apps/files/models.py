@@ -167,6 +167,16 @@ class File(amo.models.ModelBase):
                             self.filename)
 
     @property
+    def mirror_file_path(self):
+        return os.path.join(settings.MIRROR_STAGE_PATH,
+                            str(self.version.addon_id), self.filename)
+
+    @property
+    def guarded_file_path(self):
+        return os.path.join(settings.GUARDED_ADDONS_PATH,
+                            str(self.version.addon_id), self.filename)
+
+    @property
     def extension(self):
         return os.path.splitext(self.filename)[-1]
 

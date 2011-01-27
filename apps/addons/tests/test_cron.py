@@ -1,4 +1,5 @@
 from nose.tools import eq_
+import mock
 import test_utils
 
 from redisutils import mock_redis, reset_redis
@@ -7,7 +8,8 @@ import amo
 from addons import cron
 from addons.models import Addon, AppSupport
 from addons.utils import ReverseNameLookup
-from files.models import File
+from files.models import File, Platform
+from versions.models import Version
 
 
 class TestBuildReverseNameLookup(test_utils.TestCase):
@@ -108,3 +110,64 @@ class TestLastUpdated(test_utils.TestCase):
         eq_(AppSupport.objects.filter(addon=3723).count(), 0)
         cron.update_addon_appsupport()
         eq_(AppSupport.objects.filter(addon=3723, app=1).count(), 1)
+
+
+class TestHideDisabledFiles(test_utils.TestCase):
+
+    def setUp(self):
+        p = Platform.objects.create(id=amo.PLATFORM_ALL.id)
+        self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
+        self.version = Version.objects.create(addon=self.addon)
+        self.f1 = File.objects.create(version=self.version, platform=p,
+                                      filename='f1')
+        self.f2 = File.objects.create(version=self.version, filename='f2',
+                                      platform=p)
+
+    @mock.patch('addons.cron.os')
+    def test_leave_nondisabled_files(self, os_mock):
+        # All these addon/file status pairs should stay.
+        stati = [(amo.STATUS_PUBLIC, amo.STATUS_PUBLIC),
+                 (amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED),
+                 (amo.STATUS_PUBLIC, amo.STATUS_BETA),
+                 (amo.STATUS_LITE, amo.STATUS_UNREVIEWED),
+                 (amo.STATUS_LITE, amo.STATUS_LITE),
+                 (amo.STATUS_LITE_AND_NOMINATED, amo.STATUS_UNREVIEWED),
+                 (amo.STATUS_LITE_AND_NOMINATED, amo.STATUS_LITE)]
+        for addon_status, file_status in stati:
+            self.addon.update(status=addon_status)
+            File.objects.update(status=file_status)
+            cron.hide_disabled_files()
+            assert not os_mock.path.exists.called, (addon_status, file_status)
+
+    @mock.patch('addons.cron.os')
+    def test_move_disabled_addon(self, os_mock):
+        self.addon.update(status=amo.STATUS_DISABLED)
+        File.objects.update(status=amo.STATUS_PUBLIC)
+        cron.hide_disabled_files()
+        # Check that f2 was moved.
+        f2 = self.f2
+        os_mock.rename.assert_called_with(f2.file_path, f2.guarded_file_path)
+        os_mock.remove.assert_called_with(f2.mirror_file_path)
+        # Check that f1 was moved as well.
+        f1 = self.f1
+        os_mock.rename.call_args = os_mock.rename.call_args_list[0]
+        os_mock.remove.call_args = os_mock.remove.call_args_list[0]
+        os_mock.rename.assert_called_with(f1.file_path, f1.guarded_file_path)
+        os_mock.remove.assert_called_with(f1.mirror_file_path)
+        # There's only 2 files, both should have been moved.
+        eq_(os_mock.rename.call_count, 2)
+        eq_(os_mock.remove.call_count, 2)
+
+    @mock.patch('addons.cron.os')
+    def test_move_disabled_file(self, os_mock):
+        self.addon.update(status=amo.STATUS_LITE)
+        self.f1.update(status=amo.STATUS_DISABLED)
+        self.f2.update(status=amo.STATUS_UNREVIEWED)
+        cron.hide_disabled_files()
+        # Only f1 should have been moved.
+        f1 = self.f1
+        os_mock.rename.assert_called_with(f1.file_path, f1.guarded_file_path)
+        eq_(os_mock.rename.call_count, 1)
+        # It should have been removed from mirror stagins.
+        os_mock.remove.assert_called_with(f1.mirror_file_path)
+        eq_(os_mock.remove.call_count, 1)

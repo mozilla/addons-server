@@ -1,3 +1,4 @@
+import os
 from datetime import datetime, timedelta
 
 from django.db import connections, transaction
@@ -13,6 +14,7 @@ import cronjobs
 from amo.utils import chunked
 from addons.models import Addon
 from addons.utils import ReverseNameLookup
+from files.models import File
 from translations.models import Translation
 
 log = commonware.log.getLogger('z.cron')
@@ -227,3 +229,25 @@ def addons_add_slugs():
         list(q.no_cache().filter(id__in=chunk))
         cnt += 300
         task_log.info('Slugs added to %s/%s add-ons.' % (cnt, total))
+
+
+@cronjobs.register
+def hide_disabled_files():
+    # If an add-on or a file is disabled, it should be moved to
+    # GUARDED_ADDONS_PATH so it's not publicly visible.
+    q = Q(version__addon__status=amo.STATUS_DISABLED)
+    ids = (File.objects.filter(q | Q(status=amo.STATUS_DISABLED))
+           .values_list('id', flat=True))
+    for chunk in chunked(ids, 300):
+        for file_ in File.uncached.filter(id__in=chunk):
+            if os.path.exists(file_.file_path):
+                dst = file_.guarded_file_path
+                log.info('Moving disabled file: %s => %s'
+                         % (file_.file_path, dst))
+                os.makedirs(os.path.dirname(dst))
+                os.rename(file_.file_path, dst)
+            # Remove the file from the mirrors if necessary.
+            if os.path.exists(file_.mirror_file_path):
+                log.info('Unmirroring disabled file: %s'
+                         % file_.mirror_file_path)
+                os.remove(file_.mirror_file_path)
