@@ -205,6 +205,10 @@ class DetectMobileMiddleware(object):
         if (self.UA.search(ua) and mc != 'off') or mc == 'on':
             request.META['HTTP_X_MOBILE'] = '1'
 
+    def process_response(self, request, response):
+        patch_vary_headers(response, ['User-Agent'])
+        return response
+
 
 class XMobileMiddleware(object):
 
