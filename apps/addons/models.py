@@ -311,7 +311,8 @@ class Addon(amo.models.ModelBase):
 
     @transaction.commit_on_success
     def delete(self, msg):
-        if self.highest_status:
+        delete_harder = self.highest_status or self.status
+        if delete_harder:
             log.debug('Adding guid to blacklist: %s' % self.guid)
             BlacklistedGuid(guid=self.guid, comments=msg).save()
             log.debug('Deleting add-on: %s' % self.id)
@@ -340,7 +341,7 @@ class Addon(amo.models.ModelBase):
         rv = super(Addon, self).delete()
 
         # We want to ensure deletion before notification.
-        if self.highest_status:
+        if delete_harder:
             send_mail(subject, email_msg, recipient_list=to)
 
         return rv
