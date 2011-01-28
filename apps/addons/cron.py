@@ -240,6 +240,8 @@ def hide_disabled_files():
            .values_list('id', flat=True))
     for chunk in chunked(ids, 300):
         for file_ in File.uncached.filter(id__in=chunk):
+            if not file_.filename:
+                continue
             if os.path.exists(file_.file_path):
                 dst = file_.guarded_file_path
                 log.info('Moving disabled file: %s => %s'
