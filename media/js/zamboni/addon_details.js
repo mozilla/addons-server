@@ -3,6 +3,13 @@
 /* general initialization */
 $(document).ready(function() {
     //performance warnings
+
+    if ($("#addon[data-id]").length) {
+        $(".addon .icon").click(function() {
+            window.location.hash = "id=" + $("#addon").attr("data-id");
+        })
+    }
+
     $(".performance-note .popup").each(function(i,p) {
         var $p = $(p),
             $a = $p.siblings("a").first();
@@ -26,12 +33,6 @@ $(document).ready(function() {
     }
 
     if ($('#addon.primary').length == 0) return;
-
-    if ($("#addon[data-id]").length) {
-        $(".addon .icon").click(function() {
-            document.location.hash = "id=" + $("#addon").attr("data-id");
-        })
-    }
 
     var lb_baseurl = z.media_url+'img/jquery-lightbox/';
     $("a[rel=jquery-lightbox]").lightBox({
