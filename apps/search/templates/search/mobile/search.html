@@ -1,0 +1,4 @@
+<form id="search" action="{{ url('search.search') }}">
+  <input name="q" placeholder="{{ _('Search') }}" type="search" {% if query %}value="{{ query }}"{% endif %}>
+  <input type="submit" value="">
+</form>
