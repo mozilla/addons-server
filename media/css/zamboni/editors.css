@@ -65,6 +65,21 @@ table.data-grid {
     border-top: 1px solid;
     border-bottom: 1px solid;
 }
+table.data-grid thead tr th:nth-child(2) {
+    min-width: 7em;
+}
+table.data-grid thead tr th:nth-child(3) {
+    min-width: 8em;
+}
+table.data-grid thead tr th:nth-child(4) {
+    min-width: 5em;
+}
+table.data-grid thead tr th:nth-child(5) {
+    min-width: 8em;
+}
+table.data-grid thead tr th:nth-child(6) {
+    min-width: 13em;
+}
 table.data-grid tr th a:active,
 table.data-grid tr th a:hover,
 table.data-grid tr th a:visited {
