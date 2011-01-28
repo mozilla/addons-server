@@ -1,7 +1,7 @@
 <form method="post" action="{{ url('devhub.addons.delete', addon.slug) }}">
   {{ csrf() }}
   <h3>{{ _('Delete Add-on') }}</h3>
-  {% if addon.highest_status %}
+  {% if addon.highest_status or addon.status %}
     <p>
       {% trans %}
         Deleting your add-on will permanently remove it from the site and
