@@ -244,7 +244,8 @@ def hide_disabled_files():
                 dst = file_.guarded_file_path
                 log.info('Moving disabled file: %s => %s'
                          % (file_.file_path, dst))
-                os.makedirs(os.path.dirname(dst))
+                if not os.path.exists(os.path.dirname(dst)):
+                    os.makedirs(os.path.dirname(dst))
                 os.rename(file_.file_path, dst)
             # Remove the file from the mirrors if necessary.
             if os.path.exists(file_.mirror_file_path):
