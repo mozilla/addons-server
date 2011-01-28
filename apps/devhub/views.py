@@ -10,6 +10,7 @@ import uuid
 
 from django import http
 from django.conf import settings
+from django import forms as django_forms
 from django.db.models import Count
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.http import urlquote
@@ -34,6 +35,7 @@ from addons.models import Addon, AddonUser
 from addons.views import BaseFilter
 from devhub.models import ActivityLog, RssKey, SubmitStep
 from files.models import File, FileUpload
+from files.utils import parse_addon
 from translations.models import delete_translation
 from versions.models import License, Version
 
@@ -532,13 +534,38 @@ def json_upload_detail(upload):
     validation = json.loads(upload.validation) if upload.validation else ""
     url = reverse('devhub.upload_detail', args=[upload.uuid, 'json'])
     full_report_url = reverse('devhub.upload_detail', args=[upload.uuid])
+    new_platform_choices = None
 
     if validation:
         prepare_validation_results(validation)
+        if validation['errors'] == 0:
+            try:
+                app_ids = [a.id for a in parse_addon(upload.path)['apps']]
+                if amo.MOBILE.id in app_ids:
+                    # For multiple apps, choosing a platform no longer makes
+                    # sense, so only allow ALL
+                    new_platform_choices = [
+                        dict(value=amo.PLATFORM_ALL.id,
+                             text=unicode(amo.PLATFORM_ALL.name),
+                             checked=True)]
+                    if len(app_ids) == 1:
+                        # For mobile only add-ons, show mobile platforms:
+                        new_platform_choices.extend([
+                            dict(value=amo.PLATFORM_MAEMO.id,
+                                 text=unicode(amo.PLATFORM_MAEMO.name)),
+                            dict(value=amo.PLATFORM_ANDROID.id,
+                                 text=unicode(amo.PLATFORM_ANDROID.name))])
+            except django_forms.ValidationError:
+                # XPI parsing errors will be reported in the form submission
+                # (next request).
+                # TODO(Kumar) It would be nicer to present errors to the user
+                # right here to avoid confusion about platform selection.
+                log.exception("XPI parsing error, ignored")
 
     r = dict(upload=upload.uuid, validation=validation,
              error=upload.task_error, url=url,
-             full_report_url=full_report_url)
+             full_report_url=full_report_url,
+             new_platform_choices=new_platform_choices)
     return r
 
 

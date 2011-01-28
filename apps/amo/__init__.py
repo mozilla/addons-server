@@ -375,11 +375,27 @@ class PLATFORM_SUN:
     shortname = 'solaris'
     api_name = 'SunOS'
 
+
+class PLATFORM_ANDROID:
+    id = 7
+    name = _(u'Android')
+    shortname = u'android'
+    api_name = u'Android'
+
+
+class PLATFORM_MAEMO:
+    id = 8
+    name = _(u'Maemo')
+    shortname = u'maemo'
+    api_name = u'Maemo'
+
 # Order matters
 PLATFORMS = {PLATFORM_ANY.id: PLATFORM_ANY, PLATFORM_ALL.id: PLATFORM_ALL,
              PLATFORM_LINUX.id: PLATFORM_LINUX, PLATFORM_MAC.id: PLATFORM_MAC,
              PLATFORM_BSD.id: PLATFORM_BSD, PLATFORM_WIN.id: PLATFORM_WIN,
-             PLATFORM_SUN.id: PLATFORM_SUN}
+             PLATFORM_SUN.id: PLATFORM_SUN,
+             PLATFORM_ANDROID.id: PLATFORM_ANDROID,
+             PLATFORM_MAEMO.id: PLATFORM_MAEMO}
 
 SUPPORTED_PLATFORMS = {PLATFORM_ALL.id: PLATFORM_ALL,
                        PLATFORM_LINUX.id: PLATFORM_LINUX,

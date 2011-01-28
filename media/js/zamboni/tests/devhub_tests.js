@@ -1026,4 +1026,68 @@ asyncTest('customized', function() {
 });
 
 
+module('switch addon platforms', {
+    setup: function() {
+        this.sandbox = tests.createSandbox('#addon-platform-switching');
+    },
+    teardown: function() {
+        this.sandbox.remove();
+    }
+});
+
+test('mobile', function() {
+    addonUploaded({
+        validation: {
+            "errors": 0,
+            "detected_type": "mobile",
+            "success": true,
+            "warnings": 0,
+            "notices": 0,
+            "message_tree": {},
+            "messages": [],
+            "rejected": false
+        },
+        new_platform_choices: [
+            {value: 1, checked: true, text: 'All Platforms'},
+            {value: 2, checked: false, text: 'Maemo'},
+            {value: 3, checked: false, text: 'Android'}
+        ]
+    });
+    equals($('.platform input:eq(0)', this.sandbox).attr('value'), '1');
+    equals($('.platform input:eq(0)', this.sandbox).attr('id'),
+           'id_platforms_0');
+    equals($('.platform input:eq(0)', this.sandbox).attr('checked'), true);
+    equals($('.platform li:eq(0)', this.sandbox).text(),
+           'All Platforms');
+    equals($('.platform input:eq(1)', this.sandbox).attr('value'), '2');
+    equals($('.platform input:eq(1)', this.sandbox).attr('id'),
+           'id_platforms_1');
+    equals($('.platform li:eq(1)', this.sandbox).text(), 'Maemo');
+    equals($('.platform input:eq(2)', this.sandbox).attr('value'), '3');
+    equals($('.platform input:eq(2)', this.sandbox).attr('id'),
+           'id_platforms_2');
+    equals($('.platform li:eq(2)', this.sandbox).text(), 'Android');
+});
+
+test('non-ascii', function() {
+    addonUploaded({
+        validation: {
+            "errors": 0,
+            "detected_type": "mobile",
+            "success": true,
+            "warnings": 0,
+            "notices": 0,
+            "message_tree": {},
+            "messages": [],
+            "rejected": false
+        },
+        new_platform_choices: [
+            {value: 1, checked: true, text: 'フォクすけといっしょ'}
+        ]
+    });
+    equals($('.platform li:eq(0)', this.sandbox).text(),
+           'フォクすけといっしょ');
+});
+
+
 });

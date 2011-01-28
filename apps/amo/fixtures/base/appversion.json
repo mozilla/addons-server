@@ -381,5 +381,27 @@
         },
         "model": "applications.appversion",
         "pk": 282
+    },
+    {
+        "pk": 324,
+        "model": "applications.appversion",
+        "fields": {
+            "version_int": 2000000001000,
+            "application": 60,
+            "version": "2.0a1pre",
+            "modified": null,
+            "created": null
+        }
+    },
+    {
+        "pk": 352,
+        "model": "applications.appversion",
+        "fields": {
+            "version_int": 4000000102000,
+            "application": 60,
+            "version": "4.0b2pre",
+            "modified": null,
+            "created": null
+        }
     }
 ]

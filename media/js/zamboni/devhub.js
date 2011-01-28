@@ -883,9 +883,30 @@ function addonUploaded(json) {
         }
 
         if (json.validation.detected_type == 'search') {
+            // TODO(Kumar) this probably broke the versions page
+            // which does not use #create-addon. Remove the id.
             $("#create-addon .platform").hide();
         } else {
             $("#create-addon .platform:hidden").show();
+            if (json.new_platform_choices) {
+                // e.g. after uploading a Mobile add-on
+                $('.platform ul').empty();
+                $.each(json.new_platform_choices, function(i, pl) {
+                    var li = $(format('<li><label><input name="platforms" ' +
+                                      'type="checkbox" class="platform" />' +
+                                      '{0}</label></li>', [pl.text])),
+                        id = format('id_platforms_{0}', [i]),
+                        label = $('label', li),
+                        input = $('input', li);
+                    label.attr('for', id);
+                    input.attr('id', id);
+                    input.attr('value', pl.value);
+                    if (pl.checked) {
+                        input.attr('checked', 'checked');
+                    }
+                    $('.platform ul').append(li);
+                });
+            }
         }
 
         statusclass = v.errors ? 'status-fail' : 'status-pass';

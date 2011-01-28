@@ -3419,12 +3419,23 @@ class TestUpload(files.tests.UploadTest):
 
 
 class TestUploadDetail(files.tests.UploadTest):
-    fixtures = ['base/apps', 'base/users']
+    fixtures = ['base/apps', 'base/appversion', 'base/users']
 
     def post(self):
         # Has to be a binary, non xpi file.
         data = open(get_image_path('animated.png'), 'rb')
         return self.client.post(reverse('devhub.upload'), {'upload': data})
+
+    def validation_ok(self):
+        return {
+            'errors': 0,
+            'success': True,
+            'warnings': 0,
+            'notices': 0,
+            'message_tree': {},
+            'messages': [],
+            'rejected': False
+        }
 
     @attr('validator')
     def test_detail_json(self):
@@ -3456,6 +3467,61 @@ class TestUploadDetail(files.tests.UploadTest):
         suite = doc('#addon-validator-suite')
         eq_(suite.attr('data-validateurl'),
             reverse('devhub.upload_detail', args=[upload.uuid, 'json']))
+
+    @mock.patch('devhub.tasks._validator')
+    def test_multi_app_addon_cannot_have_platforms(self, v):
+        v.return_value = json.dumps(self.validation_ok())
+        addon = os.path.join(settings.ROOT, 'apps', 'devhub', 'tests',
+                             'addons', 'mobile-2.9.10-fx+fn.xpi')
+        with open(addon, 'rb') as f:
+            r = self.client.post(reverse('devhub.upload'),
+                                 {'upload': f})
+        eq_(r.status_code, 302)
+        upload = FileUpload.objects.get()
+        r = self.client.get(reverse('devhub.upload_detail',
+                                    args=[upload.uuid, 'json']))
+        eq_(r.status_code, 200)
+        data = json.loads(r.content)
+        eq_(data['new_platform_choices'], [
+                {'text': unicode(amo.PLATFORM_ALL.name), 'checked': True,
+                 'value': amo.PLATFORM_ALL.id}])
+
+    @mock.patch('devhub.tasks._validator')
+    def test_new_platform_choices_for_mobile(self, v):
+        v.return_value = json.dumps(self.validation_ok())
+        addon = os.path.join(settings.ROOT, 'apps', 'devhub', 'tests',
+                             'addons', 'mobile-0.1-fn.xpi')
+        with open(addon, 'rb') as f:
+            r = self.client.post(reverse('devhub.upload'),
+                                 {'upload': f})
+        eq_(r.status_code, 302)
+        upload = FileUpload.objects.get()
+        r = self.client.get(reverse('devhub.upload_detail',
+                                    args=[upload.uuid, 'json']))
+        eq_(r.status_code, 200)
+        data = json.loads(r.content)
+        eq_(data['new_platform_choices'], [
+                {'text': unicode(amo.PLATFORM_ALL.name), 'checked': True,
+                 'value': amo.PLATFORM_ALL.id},
+                {'text': unicode(amo.PLATFORM_MAEMO.name),
+                 'value': amo.PLATFORM_MAEMO.id},
+                {'text': unicode(amo.PLATFORM_ANDROID.name),
+                 'value': amo.PLATFORM_ANDROID.id}])
+
+    @mock.patch('devhub.tasks._validator')
+    def test_unparsable_xpi(self, v):
+        v.return_value = json.dumps(self.validation_ok())
+        addon = os.path.join(settings.ROOT, 'apps', 'devhub', 'tests',
+                             'addons', 'unopenable.xpi')
+        with open(addon, 'rb') as f:
+            r = self.client.post(reverse('devhub.upload'),
+                                 {'upload': f})
+        upload = FileUpload.objects.get()
+        r = self.client.get(reverse('devhub.upload_detail',
+                                    args=[upload.uuid, 'json']))
+        eq_(r.status_code, 200)
+        data = json.loads(r.content)
+        eq_(data['new_platform_choices'], None)
 
 
 class TestUploadValidation(files.tests.UploadTest):
