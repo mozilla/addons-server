@@ -134,7 +134,7 @@ def addon_filter(addons, addon_type, limit, app, platform, version,
 
     if len(good) < limit:
         good.extend(others[:limit - len(good)])
-    return good
+    return good[:limit]
 
 
 class APIView(object):
