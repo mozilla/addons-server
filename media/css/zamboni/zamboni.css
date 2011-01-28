@@ -2277,6 +2277,20 @@ form .error .note.error {
     padding-top: 6px;
 }
 
+/* Contributions */
+#contribution.notification .aux {
+    margin: 0 0 0 2em;
+}
+
+#contribution .aux .button-wrapper {
+    float: right;
+    padding-bottom: 10px;
+}
+
+#contribution h2 span {
+    top: 0;
+}
+
 /* Disable styling for stacked .extras. */
 .install-wrapper .extra + .extra {
     border: none;

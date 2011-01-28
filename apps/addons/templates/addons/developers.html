@@ -30,7 +30,9 @@
 {% block navbar %}
 {% if page != "installed" %}{{ super() }}{% endif %}
 {% endblock %}
-
+{% block footer %}
+{% if page != "installed" %}{{ super() }}{% endif %}
+{% endblock %}
 
 {% block content %}
 {% if page == "installed" %}
@@ -48,6 +50,7 @@
 {% endif %}
 
 {% set src = page if page == "developers" else None %}
+{% set src = 'meet-the-developer-post-install' if page == "installed" else src %}
 {% set contrib = contribution(addon=addon, src=src, text=msg,
                               show_install=(page != "installed")) %}
 
