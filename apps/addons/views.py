@@ -24,6 +24,7 @@ from amo import messages, decorators as dec
 from amo.forms import AbuseForm
 from amo.utils import sorted_groupby, randslice, send_abuse_report
 from amo.helpers import absolutify
+from amo.models import manual_order
 from amo import urlresolvers
 from amo.urlresolvers import reverse
 from bandwagon.models import Collection, CollectionFeature, CollectionPromo
@@ -234,7 +235,11 @@ class BaseFilter(object):
 
     def filter(self, field):
         """Get the queryset for the given field."""
-        return self._filter(field) & self.base_queryset
+        filter = self._filter(field) & self.base_queryset
+        order = getattr(self, 'order_%s' % field, None)
+        if order:
+            return order(filter)
+        return filter
 
     def _filter(self, field):
         return getattr(self, 'filter_%s' % field)()
@@ -267,10 +272,15 @@ class HomepageFilter(BaseFilter):
 
     filter_new = BaseFilter.filter_created
 
+    def __init__(self, *args, **kw):
+        self.featured_ids = Addon.objects.featured_ids(args[0].APP)
+        super(HomepageFilter, self).__init__(*args, **kw)
+
     def filter_featured(self):
-        # It's ok to cache this for a while...it'll expire eventually.
-        return Addon.objects.featured(self.request.APP,
-                                      by_locale=amo.LOCALE_ALL)
+        return Addon.objects.filter(pk__in=self.featured_ids)
+
+    def order_featured(self, filter):
+        return manual_order(filter, self.featured_ids, 'addon_id')
 
 
 def home(request):
@@ -278,8 +288,6 @@ def home(request):
     base = Addon.objects.listed(request.APP).exclude(type=amo.ADDON_PERSONA)
     filter = HomepageFilter(request, base, key='browse', default='featured')
     addon_sets = dict((key, qs[:4]) for key, qs in filter.all().items())
-    boundary = (Addon.objects.featured(request.APP,
-                                       by_locale=amo.LOCALE_CURRENT).count())
 
     # Collections.
     q = Collection.objects.filter(listed=True, application=request.APP.id)
@@ -300,8 +308,7 @@ def home(request):
     return jingo.render(request, 'addons/home.html',
                         {'downloads': downloads, 'top_tags': top_tags,
                          'filter': filter, 'addon_sets': addon_sets,
-                         'collections': collections, 'promobox': promobox,
-                         'boundary': boundary})
+                         'collections': collections, 'promobox': promobox})
 
 
 @dec.mobilized(home)

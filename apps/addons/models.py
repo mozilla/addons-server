@@ -3,6 +3,7 @@ import itertools
 import json
 import os
 import operator
+import random
 import time
 from datetime import datetime, timedelta
 
@@ -63,50 +64,54 @@ class AddonManager(amo.models.ManagerBase):
         """Get valid, enabled add-ons only"""
         return self.filter(self.valid_q(amo.LISTED_STATUSES))
 
-    def featured(self, app, by_locale=False):
+    def featured_ids(self, app):
         """
-        Filter for all featured add-ons for an application. Specify
-        by_locale to have it filtered by the current locale.
+        Get a list of addon ids in order of for the locale and then no locale.
+        The ids are shuffled within each locale. Id is unique per result set.
+        TODO: turn this into a cache
         """
-        qs = Q(feature__application=app.id)
-        if by_locale:
-            locales = []
-            for locale in by_locale():
-                locale = to_language(locale) if locale else locale
-                locales.append(Q(feature__locale=locale))
+        results = []
+        for locale in [to_language(translation.get_language()), None]:
+            qs = (Q(feature__application=app.id,
+                    feature__isnull=False,
+                    feature__locale=locale))
+            if results:
+                qs = qs & ~Q(pk__in=results)
+            ids = list(self.valid().values_list('pk', flat=True).filter(qs))
+            random.shuffle(ids)
+            results.extend(ids)
+        return results
 
-            qs = qs & Q(feature__isnull=False) & reduce(operator.or_, locales)
-            return (self.valid().filter(qs).order_by('-feature__locale'))
-
-        return self.valid().filter(qs)
-
-    def category_featured(self, category=None, by_locale=False):
+    def featured(self, app):
         """
-        Filter for all featured addons for a category. Specify
-        by_locale to have it filtered by the current locale.
+        Filter for all featured add-ons for an application in all locales.
         """
-        qs = Q(addoncategory__feature=True)
+        return self.valid().filter(feature__application=app.id)
 
-        if by_locale:
-            locales = []
-            for locale in by_locale():
-                prefix = 'addoncategory__feature_locales'
-                if locale:
-                    locale = to_language(locale)
-                    prefix += '__contains'
-                else:
-                    # Sadly looks like theres '' and NULL in the column,
-                    # hopefully the new admin tools will clean this out.
-                    locales.append(Q(**{prefix: ''}))
-                locales.append(Q(**{prefix: locale}))
+    def category_featured(self):
+        """Get all category-featured add-ons for ``app`` in all locales."""
+        return self.filter(addoncategory__feature=True)
 
-            qs = (qs & Q(addoncategory__category=category) &
-                       reduce(operator.or_, locales))
-            return self.filter(qs).order_by('-addoncategory__feature_locales')
-
-        if category:
-            qs = qs & Q(addoncategory__category=category)
-        return self.filter(qs)
+    def category_featured_ids(self, category=None):
+        """
+        Get a list of addon ids in order of for the locale and then no locale,
+        using category-featured. The ids are shuffled within each locale.
+        Id is unique per result set.
+        TODO: turn this into a cache
+        """
+        results = []
+        lang = to_language(translation.get_language())
+        for locale in [Q(addoncategory__feature_locales__contains=lang),
+                       (Q(addoncategory__feature_locales=None) |
+                        Q(addoncategory__feature_locales=''))]:
+            qs = (Q(addoncategory__category=category,
+                    addoncategory__feature=True) & locale)
+            if results:
+                qs = qs & ~Q(pk__in=results)
+            ids = list(self.values_list('pk', flat=True).filter(qs))
+            random.shuffle(ids)
+            results.extend(ids)
+        return results
 
     def listed(self, app, *status):
         """
@@ -115,7 +120,6 @@ class AddonManager(amo.models.ManagerBase):
         """
         if len(status) == 0:
             status = [amo.STATUS_PUBLIC]
-
         return self.filter(self.valid_q(status), appsupport__app=app.id)
 
     def valid_q(self, status=[], prefix=''):

@@ -1,5 +1,3 @@
-import random
-
 import jinja2
 
 from jingo import register, env
@@ -103,17 +101,6 @@ def tags_box(context, addon, tags=None):
     return c
 
 
-@register.filter
-@jinja2.contextfilter
-def shuffle_boundary(context, addons, boundary=None):
-    if not boundary:
-        return addons
-    split = addons[:boundary], addons[boundary:]
-    for s in split:
-        random.shuffle(s)
-    return split[0] + split[1]
-
-
 @register.inclusion_tag('addons/listing/items.html')
 @jinja2.contextfunction
 def addon_listing_items(context, addons, show_date=False, src=None,
@@ -123,17 +110,13 @@ def addon_listing_items(context, addons, show_date=False, src=None,
 
 @register.inclusion_tag('addons/listing/items_compact.html')
 @jinja2.contextfunction
-def addon_listing_items_compact(context, addons, boundary=0,
-                                show_date=False, src=None):
-    if show_date == 'featured' and boundary:
-        addons = shuffle_boundary(context, list(addons), boundary)
+def addon_listing_items_compact(context, addons, show_date=False, src=None):
     return new_context(**locals())
 
 
 @register.inclusion_tag('addons/listing/items_mobile.html')
 @jinja2.contextfunction
-def addon_listing_items_mobile(context, addons, show_date=False,
-                                src=None):
+def addon_listing_items_mobile(context, addons, show_date=False, src=None):
     return new_context(**locals())
 
 

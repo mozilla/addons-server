@@ -215,9 +215,6 @@ ADDON_ICON_SIZES = [32, 48, 64]
 # Preview upload sizes [thumb, full]
 ADDON_PREVIEW_SIZES = [(200, 150), (700, 525)]
 
-LOCALE_CURRENT = lambda: (translation.get_language(),)
-LOCALE_ALL = lambda: (None, translation.get_language())
-
 # These types don't maintain app compatibility in the db.  Instead, we look at
 # APP.types and APP_TYPE_SUPPORT to figure out where they are compatible.
 NO_COMPAT = (ADDON_SEARCH, ADDON_PERSONA)

@@ -14,7 +14,7 @@
 <div class="featured listing">
   <div class="featured-inner">
     {% if addons %}
-      {{ addon_listing_items(addons|list|shuffle_boundary(boundary), src='creatured') }}
+      {{ addon_listing_items(addons, src='creatured') }}
     {% else %}
       <p class="no-results">{{ _('No featured add-ons in {0}.')|f(category.name) }}</p>
     {% endif %}

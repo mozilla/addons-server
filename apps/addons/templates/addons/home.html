@@ -80,8 +80,7 @@
       <div class="addon-listing addon-listing-{{ filter.field }}">
         {% for key, addons in addon_sets.items() %}
           <div id="list-{{ key }}">
-            {{ addon_listing_items_compact(addons, boundary=boundary,
-                                           show_date=key, src='homepagebrowse') }}
+            {{ addon_listing_items_compact(addons, show_date=key, src='homepagebrowse') }}
             <div class="listing-footer">
               <a class="subscribe" href="{{ view_all[key]['feed'] }}">
                 {{ _('Subscribe', 'addons_home_browse_subscribe') }}</a>

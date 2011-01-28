@@ -289,15 +289,13 @@ class TestFeaturedLocale(test_utils.TestCase):
                 print mtch.group(2)
 
     def test_featured(self):
-        addons = (Addon.objects.featured(app=amo.FIREFOX,
-                                         by_locale=amo.LOCALE_ALL))
-        eq_(addons.count(), 6)
+        addons = Addon.objects.featured_ids(amo.FIREFOX)
+        eq_(len(addons), 6)
 
     def test_category_featured(self):
         cat = Category.objects.get(id=22)
-        addons = (Addon.objects.category_featured(category=cat,
-                                                  by_locale=amo.LOCALE_ALL))
-        eq_(addons.count(), 2)
+        addons = Addon.objects.category_featured_ids(category=cat)
+        eq_(len(addons), 2)
 
     def test_creatured_locale_en_US(self):
         res = self.client.get(self.url)
@@ -388,36 +386,90 @@ class TestFeaturedLocale(test_utils.TestCase):
         assert addon in res.context['featured']
 
     def test_homepage(self):
-        addon = self.persona
+        addon = Addon.objects.get(id=2464)
         url = reverse('home')
         res = self.client.get(url)
-        assert addon in res.context['filter'].filter_featured()
+        assert addon in res.context['filter'].filter('featured')
 
         self.change_addon(addon, 'es-ES')
         res = self.client.get(url)
-        assert addon not in res.context['filter'].filter_featured()
+        assert addon not in res.context['filter'].filter('featured')
 
         res = self.client.get(url.replace('en-US', 'es-ES'))
-        assert addon in res.context['filter'].filter_featured()
+        assert addon in res.context['filter'].filter('featured')
+
+    def test_homepage_persona(self):
+        res = self.client.get(reverse('home'))
+        assert self.persona not in res.context['filter'].filter('featured')
+
+    def test_homepage_filter(self):
+        # Ensure that the base homepage filter is applied.
+        res = self.client.get(reverse('home'))
+        listed = [p.pk for p in Addon.objects
+                                      .listed(amo.FIREFOX)
+                                      .exclude(type=amo.ADDON_PERSONA)]
+
+        featured = Addon.objects.featured_ids(amo.FIREFOX)
+        actual = [p.pk for p in res.context['filter'].filter('featured')]
+
+        eq_(sorted(actual), sorted(set(listed) & set(featured)))
+
+    def test_homepage_listed_single(self):
+        listed = [p.pk for p in Addon.objects.listed(amo.FIREFOX)]
+        eq_(listed.count(7661), 1)
+        addon = Addon.objects.get(pk=7661)
+        addon.update(status=amo.STATUS_PUBLIC)
+        listed = [p.pk for p in Addon.objects.listed(amo.FIREFOX)]
+        eq_(listed.count(7661), 1)
 
     def test_homepage_order(self):
+        # Make these apps listed.
+        for pk in [1003, 3481]:
+            addon = Addon.objects.get(pk=pk)
+            addon.update(status=amo.STATUS_PUBLIC)
+            addon.appsupport_set.create(app_id=1)
+
+        # Note 1003 and 3481 are now en-US.
+        # And 7661 and 2464 are now None.
+        # The order should be random within those boundaries.
         another = Addon.objects.get(id=1003)
         self.change_addon(another, 'en-US')
+
         url = reverse('home')
         res = self.client.get(url)
-        items = res.context['filter'].filter_featured()
-        # The order should be random within those boundaries.
+        items = res.context['addon_sets']['featured']
+
         eq_([1003, 3481], sorted([i.pk for i in items[0:2]]))
-        eq_([1001, 2464, 7661, 15679], sorted([i.pk for i in items[2:]]))
+        eq_([2464, 7661], sorted([i.pk for i in items[2:]]))
 
         res = self.client.get(url.replace('en-US', 'es-ES'))
-        items = res.context['filter'].filter_featured()
-        eq_([1001, 2464, 7661, 15679], sorted([i.pk for i in items]))
+        items = res.context['filter'].filter('featured')
+        eq_([2464, 7661], sorted([i.pk for i in items]))
 
         self.change_addon(another, 'es-ES')
-        items = res.context['filter'].filter_featured()
-        assert items[0].pk == another.pk
-        eq_([1001, 2464, 7661, 15679], sorted([i.pk for i in items[1:]]))
+
+        res = self.client.get(url.replace('en-US', 'es-ES'))
+        items = res.context['filter'].filter('featured')
+        eq_(items[0].pk, 1003)
+        eq_([1003, 2464, 7661], sorted([i.pk for i in items]))
+
+    def test_featured_ids(self):
+        another = Addon.objects.get(id=1003)
+        self.change_addon(another, 'en-US')
+        items = Addon.objects.featured_ids(amo.FIREFOX)
+
+        # The order should be random within those boundaries.
+        eq_([1003, 3481], sorted(items[0:2]))
+        eq_([1001, 2464, 7661, 15679], sorted(items[2:]))
+
+    def test_featured_duplicated(self):
+        another = Addon.objects.get(id=1003)
+        self.change_addon(another, 'en-US')
+        another.feature_set.create(application_id=amo.FIREFOX.id,
+                                   locale=None,
+                                   start=datetime.datetime.today(),
+                                   end=datetime.datetime.today())
+        eq_(Addon.objects.featured_ids(amo.FIREFOX).count(1003), 1)
 
 
 class TestListingByStatus(test_utils.TestCase):

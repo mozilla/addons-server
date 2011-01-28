@@ -28,7 +28,7 @@
         {% cache addons %}
         {# The featured add-ons for a category should be small, so we get them all
            with the if.  Shuffling here to take advantage of the cached fragment. #}
-          {% for addon in (addons|list|shuffle_boundary(boundary))[:3] %}
+          {% for addon in addons[:3] %}
           <li class="addon item">
             <h4>
               <a href="{{ addon.get_url_path() }}">

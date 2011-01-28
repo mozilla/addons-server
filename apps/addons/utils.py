@@ -95,3 +95,20 @@ class ActivityLogMigrationTracker(object):
 
     def set(self, value):
         return self.redis.set(self.key, value)
+
+
+def order_by_ids(qs, ids):
+    """ Please optimise me.
+    Going for the case that ids and qs is going to be small.
+    Also ignores any dupes and any ids not present in the qs.
+    Limits to 100 in case someone accidentally passes in a huge query."""
+    res, found = [], []
+    for addon in qs[:100]:
+        pk = addon.pk
+        if pk not in found:
+            count = ids.index(pk)
+            res.insert(count, addon)
+            found.append(pk)
+        if len(res) == len(ids):
+            break
+    return res
