@@ -252,6 +252,12 @@ class TestDownloadsBase(test_utils.TestCase):
             '%s/%s/%s' % (host, self.addon.id, file_.filename))
         eq_(response['X-Target-Digest'], file_.hash)
 
+    def assert_served_internally(self, response):
+        eq_(response.status_code, 200)
+        eq_(response['Location'],
+            os.path.join(settings.PRIVATE_MIRROR_URL, str(self.addon.id),
+                          self.file.filename))
+
     def assert_served_locally(self, response, file_=None, attachment=False):
         host = settings.LOCAL_MIRROR_URL
         if attachment:
@@ -291,27 +297,41 @@ class TestDownloads(TestDownloadsBase):
         self.addon.update(disabled_by_user=True)
         eq_(self.client.get(self.file_url).status_code, 404)
 
+    def test_file_disabled_404(self):
+        self.file.update(status=amo.STATUS_DISABLED)
+        eq_(self.client.get(self.file_url).status_code, 404)
+
+    def test_file_disabled_ok_for_author(self):
+        self.file.update(status=amo.STATUS_DISABLED)
+        assert self.client.login(username='g@gmail.com', password='password')
+        self.assert_served_internally(self.client.get(self.file_url))
+
+    def test_file_disabled_ok_for_admin(self):
+        self.file.update(status=amo.STATUS_DISABLED)
+        self.client.login(username='jbalogh@mozilla.com', password='password')
+        self.assert_served_internally(self.client.get(self.file_url))
+
     def test_admin_disabled_ok_for_author(self):
         # downloads_controller.php claims that add-on authors should be able to
         # download their disabled files.
         self.addon.update(status=amo.STATUS_DISABLED)
         assert self.client.login(username='g@gmail.com', password='password')
-        self.assert_served_locally(self.client.get(self.file_url))
+        self.assert_served_internally(self.client.get(self.file_url))
 
     def test_admin_disabled_ok_for_admin(self):
         self.addon.update(status=amo.STATUS_DISABLED)
         self.client.login(username='jbalogh@mozilla.com', password='password')
-        self.assert_served_locally(self.client.get(self.file_url))
+        self.assert_served_internally(self.client.get(self.file_url))
 
     def test_user_disabled_ok_for_author(self):
         self.addon.update(disabled_by_user=True)
         assert self.client.login(username='g@gmail.com', password='password')
-        self.assert_served_locally(self.client.get(self.file_url))
+        self.assert_served_internally(self.client.get(self.file_url))
 
     def test_user_disabled_ok_for_admin(self):
         self.addon.update(disabled_by_user=True)
         self.client.login(username='jbalogh@mozilla.com', password='password')
-        self.assert_served_locally(self.client.get(self.file_url))
+        self.assert_served_internally(self.client.get(self.file_url))
 
     def test_type_attachment(self):
         self.assert_served_by_mirror(self.client.get(self.file_url))

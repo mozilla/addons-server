@@ -75,7 +75,8 @@ HOME = /tmp
 # Add slugs after we get all the new personas.
 25 2,14 * * * $Z_CRON addons_add_slugs
 25 3,15 * * * $Z_CRON update_addons_collections_downloads
-25 4,16 * * * $Z_CRON update_collections_total
+25 8,20 * * * $Z_CRON update_collections_total
+25 9,21 * * * $Z_CRON hide_disabled_files
 
 #once per day
 30 1 * * * $Z_CRON update_user_ratings

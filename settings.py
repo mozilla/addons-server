@@ -136,6 +136,10 @@ NETAPP_STORAGE = TMP_PATH
 #  add-on). Example: /mnt/netapp_amo/addons.mozilla.org-remora/files
 ADDONS_PATH = NETAPP_STORAGE + '/addons'
 
+# Like ADDONS_PATH but protected by the app. Used for storing files that should
+# not be publicly accessible (like disabled add-ons).
+GUARDED_ADDONS_PATH = NETAPP_STORAGE + '/guarded-addons'
+
 # Absolute path to a writable directory shared by all servers. No trailing
 # slash.
 # Example: /data/uploads
@@ -493,6 +497,7 @@ MONGO_PASSWORD = None
 MIRROR_DELAY = 30  # Minutes before we serve downloads from mirrors.
 MIRROR_URL = 'http://releases.mozilla.org/pub/mozilla.org/addons'
 LOCAL_MIRROR_URL = 'https://static.addons.mozilla.net/_files'
+PRIVATE_MIRROR_URL = '/_privatefiles'
 
 # File paths
 ADDON_ICONS_PATH = UPLOADS_PATH + '/addon_icons'

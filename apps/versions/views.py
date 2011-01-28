@@ -52,14 +52,26 @@ def _find_version_page(qs, addon, version_num):
         raise http.Http404()
 
 
+def sendfile(request, path):
+    # If mod_wsgi sees a 200 with a Location header Apache does an internal
+    # redirect to that URL. HTTP_X_FORWARDED_HOST is the empty string so that
+    # Django's fix_location_header doesn't try to add a hostname.
+    request.META['HTTP_X_FORWARDED_HOST'] = ''
+    response = http.HttpResponse()
+    response['Location'] = path
+    return response
+
+
 # Should accept junk at the end for filename goodness.
 def download_file(request, file_id, type=None):
     file = get_object_or_404(File.objects, pk=file_id)
     addon = get_object_or_404(Addon.objects, pk=file.version.addon_id)
 
-    if (addon.is_disabled and not
-        acl.has_perm(request, addon, viewer=True, ignore_disabled=True)):
-        raise http.Http404()
+    if addon.is_disabled or file.status == amo.STATUS_DISABLED:
+        if acl.has_perm(request, addon, viewer=True, ignore_disabled=True):
+            return sendfile(request, file.get_mirror(addon))
+        else:
+            raise http.Http404()
 
     attachment = (type == 'attachment' or not request.APP.browser)
 
