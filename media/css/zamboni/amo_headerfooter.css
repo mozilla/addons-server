@@ -54,10 +54,8 @@ body {
 }
 
 .html-rtl #nav-main li ul {
-    position: absolute;
     left: auto;
     right: -999em;
-    opacity: 0;
 }
 
 #nav-main li:hover ul,
@@ -65,10 +63,11 @@ body {
     margin-top: 40px;
 }
 
-.html-rtl #nav-main li:hover ul,
+.html-rtl.no-js #nav-main li:hover ul,
 .html-rtl #nav-main li.sfhover ul {
     left: auto;
     right: 0;
+    opacity: 1;
 }
 
 #header a.mozilla {

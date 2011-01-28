@@ -367,7 +367,7 @@ MINIFY_BUNDLES = {
             'css/legacy/autocomplete.css',
             'css/zamboni/zamboni.css',
             'css/global/headerfooter.css',
-            'css/zamboni/headerfooter.css',
+            'css/zamboni/amo_headerfooter.css',
             'css/zamboni/tags.css',
             'css/zamboni/tabs.css',
         ),
@@ -425,6 +425,9 @@ MINIFY_BUNDLES = {
 
             # Fix-up outgoing links
             'js/zamboni/outgoing_links.js',
+
+            # Hover delay for global header
+            'js/global/menu.js',
         ),
         'zamboni/discovery-pane': (
             'js/zamboni/jquery-1.4.2.min.js',
