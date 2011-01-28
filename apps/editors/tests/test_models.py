@@ -130,3 +130,11 @@ class TestFullReviewQueue(TestQueue):
                           amo.STATUS_UNREVIEWED)
         eq_(sorted(q.addon_name for q in self.Queue.objects.all()),
             ['Full', 'Lite'])
+
+    def test_any_nominated_file_shows_up(self):
+        create_addon_file('Disabled', '0.1',
+                          amo.STATUS_NOMINATED, amo.STATUS_DISABLED)
+        create_addon_file('Null', '0.1',
+                          amo.STATUS_NOMINATED, amo.STATUS_NULL)
+        eq_(sorted(q.addon_name for q in self.Queue.objects.all()),
+            ['Disabled', 'Null'])

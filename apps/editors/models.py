@@ -99,7 +99,7 @@ class ViewFullReviewQueue(ViewQueue):
 
 
 def create_view_ed_full_review_q(sender, **kw):
-    _create_view('135-view_ed_full_review_q.sql')
+    _create_view('136-view_ed_full_review_q.sql')
 
 
 post_syncdb.connect(create_view_ed_full_review_q)
