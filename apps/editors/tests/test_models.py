@@ -34,6 +34,20 @@ def create_addon_file(name, version_str, addon_status, file_status,
     }
 
 
+def create_search_ext(name, version_str, addon_status, file_status):
+    try:
+        ad = Addon.objects.get(name__localized_string=name)
+    except Addon.DoesNotExist:
+        ad = Addon.objects.create(type=amo.ADDON_SEARCH, name=name)
+    vr, created = Version.objects.get_or_create(addon=ad, version=version_str)
+    pl, created = Platform.objects.get_or_create(id=amo.PLATFORM_ALL.id)
+    fi = File.objects.create(version=vr, filename=u"%s.xpi" % name,
+                             platform=pl, status=file_status)
+    # Update status *after* there are files:
+    Addon.objects.get(pk=ad.id).update(status=addon_status)
+    return ad
+
+
 class TestQueue(test_utils.TestCase):
     """Tests common attributes and coercions that each view must support."""
     __test__ = False # this is an abstract test case
@@ -71,6 +85,13 @@ class TestQueue(test_utils.TestCase):
         eq_(sorted(q.addon_name for q in self.Queue.objects.all()),
             ['Unreviewed'])
 
+    def test_search_extensions(self):
+        self.new_search_ext('Search Tool', '0.1')
+        row = self.Queue.objects.get()
+        eq_(row.addon_name, u'Search Tool')
+        eq_(row.application_ids, [])
+        eq_(row.file_platform_ids, [amo.PLATFORM_ALL.id])
+
 
 class TestPendingQueue(TestQueue):
     __test__ = True
@@ -81,6 +102,11 @@ class TestPendingQueue(TestQueue):
                                  amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED,
                                  **kw)
 
+    def new_search_ext(self, name, version, **kw):
+        return create_search_ext(name, version,
+                                 amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED,
+                                 **kw)
+
 
 class TestFullReviewQueue(TestQueue):
     __test__ = True
@@ -88,6 +114,11 @@ class TestFullReviewQueue(TestQueue):
 
     def new_file(self, name=u'Nominated', version=u'1.0', **kw):
         return create_addon_file(name, version,
+                                 amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED,
+                                 **kw)
+
+    def new_search_ext(self, name, version, **kw):
+        return create_search_ext(name, version,
                                  amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED,
                                  **kw)
 

@@ -69,6 +69,9 @@ class ViewQueue(models.Model):
 
     def _explode_concat(self, value, sep=',', cast=int):
         """Returns list of IDs in a MySQL GROUP_CONCAT(field) result."""
+        if value is None:
+            # for NULL fields, ala left joins
+            return []
         return [cast(i) for i in value.split(sep)]
 
     class Meta:
@@ -83,7 +86,7 @@ class ViewPendingQueue(ViewQueue):
 
 
 def create_view_ed_pending_q(sender, **kw):
-    _create_view('132-view_ed_pending_q.sql')
+    _create_view('134-view_ed_pending_q.sql')
 
 
 post_syncdb.connect(create_view_ed_pending_q)
@@ -96,7 +99,7 @@ class ViewFullReviewQueue(ViewQueue):
 
 
 def create_view_ed_full_review_q(sender, **kw):
-    _create_view('133-view_ed_full_review_q.sql')
+    _create_view('135-view_ed_full_review_q.sql')
 
 
 post_syncdb.connect(create_view_ed_full_review_q)
