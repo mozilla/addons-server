@@ -63,12 +63,13 @@ section:after {
 /*             TYPOGRAPHY           */
 /************************************/
 
-h1, h2, h3, .copy {
+h1, h2, h3,
+.copy, .paginator {
     font-family: Georgia, serif;
 }
 #content h2 {
     font-style: italic;
-    margin-left: 14px;
+    margin: 0 14px 14px;
     font-size: 1.2em;
 }
 
@@ -113,11 +114,51 @@ html {
 /*              GENERAL             */
 /************************************/
 
-
+table {
+    width: 100%;
+    font-family: Helvetica, "Droid Sans", sans-serif;
+}
+table th {
+    text-align: right;
+    padding: 0 8px 8px 0;
+    font-weight: bold;
+    color: #666;
+}
 #content {
     margin-top: 1em;
 }
 
+#content > details,
+#content > p {
+    margin: 14px;
+}
+
+.menu {
+    margin: 0 14px;
+}
+
+.paginator {
+    display: -moz-box;
+    text-align: center;
+    color: #ccc;
+    font-size: 1.1em;
+    width: 100%;
+    height: 40px;
+}
+.paginator .page {
+    color: #666;
+    margin: 0 2%;
+    -moz-box-flex: 1;
+}
+.paginator a {
+    padding: 14px;
+}
+.paginator .next a:after {
+    content: ' \00bb';
+}
+.paginator .prev a:before {
+    content: ' \00ab';
+}
 /************************************/
 /*              HEADER              */
 /************************************/
@@ -176,7 +217,8 @@ html {
 .listview li:first-child {
     border: 0;
 }
-.listview li > a {
+.listview li > a,
+a.listview {
     padding: 14px 10px;
     color: #444;
     font-family: Georgia, serif;
@@ -186,11 +228,13 @@ html {
     text-decoration: none;
     position: relative;
 }
-.listview .item > a{
+.listview .item > a,
+.listview div.item {
     padding: 10px;
     font-size: 1em;
 }
-.listview li > a:before {
+.listview li > a:before,
+a.listview:before {
     content: " ";
     display: block;
     width: 10px;
@@ -202,7 +246,7 @@ html {
     background: url(../../img/zamboni/mobile/arrow.svg) no-repeat center center;
     background-size: cover;
 }
-.listview li .icon {
+.listview .icon {
     float: left;
     margin-right: 8px;
 }
@@ -225,7 +269,7 @@ html {
 /************************************/
 
 #search {
-    margin-top: 8px;
+    margin-bottom: 14px;
     display: -moz-box;
     width: 100%;
 }
@@ -250,6 +294,24 @@ html {
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     border-radius: 6px;
+}
+
+#sort-menu {
+    display: -moz-box;
+    width: 100%;
+    -moz-box-sizing: border-box;
+    box-align: center;
+}
+
+#sort-menu span {
+    display: block;
+    margin-right: 4px;
+}
+
+#sort-menu select {
+    height: 30px;
+    display: block;
+    -moz-box-flex: 1;
 }
 
 /************************************/

@@ -32,9 +32,12 @@
 
     {% block page %}
 
+    {% endblock page %}
+    <footer>
+      {% include "includes/lang_switcher.html" %}
       {% block footer %}
       {% endblock footer %}
-    {% endblock page %}
+    </footer>
 
     {# js #}
     {% block site_js %}

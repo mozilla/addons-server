@@ -18,11 +18,7 @@
       </h1>
       <h2>{{ _('Easy ways to personalize.') }}</h2>
     </hgroup>
-    {# TODO move this to its own template #}
-    <form id="search">
-      <input name="q" placeholder="{{ _('Search') }}" type="search">
-      <input type="submit" value="">
-    </form>
+    {% include "search/mobile/search.html" %}
   </header>
   <section id="content">
     <nav class="tabs">
@@ -55,7 +51,4 @@
       </a></li>
     </ul> {# listing-{{ key }} #}
   </section>
-  <footer>
-    {% include "includes/lang_switcher.html" %}
-  </footer>
 {% endblock page %}

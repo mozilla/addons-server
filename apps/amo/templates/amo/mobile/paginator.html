@@ -3,7 +3,7 @@
     {% if pager.has_previous() %}
       <a href="{{ pager.url|urlparams(page=pager.previous_page_number()) }}">{{ _('Prev') }}</a>
     {% else %}
-      {{ _('Prev') }}
+      <a>{{ _('Prev') }}</a>
     {% endif %}
   </li>
   <li class="page">
@@ -13,7 +13,7 @@
     {% if pager.has_next() %}
       <a href="{{ pager.url|urlparams(page=pager.next_page_number()) }}">{{ _('Next') }}</a>
     {% else %}
-      {{ _('Next') }}
+      <a>{{ _('Next') }}</a>
     {% endif %}
   </li>
 </ul>

@@ -16,18 +16,19 @@
 {% block page %}
 <section id="content">
   <h2>{{ _('Search Results <i>({num})</i>')|f(num=pager.paginator.count)|safe }}</h2>
-  {# TODO: search box #}
 
-  <div>
-    <span>{{ _('Sort by:') }}</span>
-    <ul>
-      {% for sort in sort_tabs %}
-        <li {% if sort.selected %}class="selected"{% endif %}>
-          <a href="{{ sort.url }}">{{ sort.text }}</a></li>
-      {% endfor %}
-    </ul>
+  <div class="menu">
+    {% include "search/mobile/search.html" %}
+
+    <div id="sort-menu">
+      <span>{{ _('Sort by:') }}</span>
+      <select>
+        {% for sort in sort_tabs %}
+          <option data-url="{{ sort.url }}" {% if sort.selected %}selected{% endif %}>{{ sort.text }}</option>
+        {% endfor %}
+      </select>
+    </div>
   </div>
-
 
   <div class="addon-listing">
     <ul class="listview">
