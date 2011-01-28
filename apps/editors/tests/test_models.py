@@ -7,7 +7,8 @@ from addons.models import Addon
 from versions.models import Version, ApplicationsVersions
 from files.models import Platform, File
 from applications.models import Application, AppVersion
-from editors.models import ViewPendingQueue, ViewFullReviewQueue
+from editors.models import (ViewPendingQueue, ViewFullReviewQueue,
+                            ViewPreliminaryQueue)
 
 
 def create_addon_file(name, version_str, addon_status, file_status,
@@ -78,9 +79,9 @@ class TestQueue(test_utils.TestCase):
         eq_(sorted(row.application_ids),
             [amo.FIREFOX.id, amo.THUNDERBIRD.id])
 
-    def test_hide_unreviewed_files(self):
+    def test_reviewed_files_are_hidden(self):
         self.new_file(name='Unreviewed', version=u'0.1')
-        create_addon_file('Listed', '0.1',
+        create_addon_file('Already Reviewed', '0.1',
                           amo.STATUS_PUBLIC, amo.STATUS_LISTED)
         eq_(sorted(q.addon_name for q in self.Queue.objects.all()),
             ['Unreviewed'])
@@ -138,3 +139,26 @@ class TestFullReviewQueue(TestQueue):
                           amo.STATUS_NOMINATED, amo.STATUS_NULL)
         eq_(sorted(q.addon_name for q in self.Queue.objects.all()),
             ['Disabled', 'Null'])
+
+
+class TestPreliminaryQueue(TestQueue):
+    __test__ = True
+    Queue = ViewPreliminaryQueue
+
+    def new_file(self, name=u'Preliminary', version=u'1.0', **kw):
+        return create_addon_file(name, version,
+                                 amo.STATUS_LITE, amo.STATUS_UNREVIEWED,
+                                 **kw)
+
+    def new_search_ext(self, name, version, **kw):
+        return create_search_ext(name, version,
+                                 amo.STATUS_LITE, amo.STATUS_UNREVIEWED,
+                                 **kw)
+
+    def test_unreviewed_addons_are_in_q(self):
+        create_addon_file('Lite', '0.1',
+                          amo.STATUS_LITE, amo.STATUS_UNREVIEWED)
+        create_addon_file('Unreviewed', '0.1',
+                          amo.STATUS_UNREVIEWED, amo.STATUS_UNREVIEWED)
+        eq_(sorted(q.addon_name for q in self.Queue.objects.all()),
+            ['Lite', 'Unreviewed'])

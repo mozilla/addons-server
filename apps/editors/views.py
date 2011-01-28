@@ -10,8 +10,10 @@ import amo
 from amo.decorators import login_required
 from devhub.models import ActivityLog
 from editors import forms
-from editors.models import ViewPendingQueue, ViewFullReviewQueue
-from editors.helpers import ViewPendingQueueTable, ViewFullReviewQueueTable
+from editors.models import (ViewPendingQueue, ViewFullReviewQueue,
+                            ViewPreliminaryQueue)
+from editors.helpers import (ViewPendingQueueTable, ViewFullReviewQueueTable,
+                             ViewPreliminaryQueueTable)
 from amo.utils import paginate
 from amo.urlresolvers import reverse
 from files.models import Approval
@@ -89,8 +91,8 @@ def _queue(request, TableObj, tab):
     queue_counts = {
         'pending': ViewPendingQueue.objects.all().count(),
         'nominated': ViewFullReviewQueue.objects.all().count(),
-        # TODO(Kumar) these are just placeholders
-        'prelim': ViewPendingQueue.objects.all().count(),
+        'prelim': ViewPreliminaryQueue.objects.all().count(),
+        # TODO(Kumar) this is just a placeholder
         'moderated': ViewPendingQueue.objects.all().count()
     }
     page = paginate(request, table.rows, per_page=100,
@@ -118,7 +120,7 @@ def queue_pending(request):
 
 @editor_required
 def queue_prelim(request):
-    raise NotImplementedError
+    return _queue(request, ViewPreliminaryQueueTable, 'prelim')
 
 
 @editor_required

@@ -103,3 +103,16 @@ def create_view_ed_full_review_q(sender, **kw):
 
 
 post_syncdb.connect(create_view_ed_full_review_q)
+
+
+class ViewPreliminaryQueue(ViewQueue):
+
+    class Meta(ViewQueue.Meta):
+        db_table = 'view_ed_prelim_q'
+
+
+def create_view_ed_prelim_q(sender, **kw):
+    _create_view('137-view_ed_prelim_q.sql')
+
+
+post_syncdb.connect(create_view_ed_prelim_q)

@@ -7,7 +7,8 @@ from jingo import register
 from tower import ugettext_lazy as _, ungettext as ngettext
 
 import amo
-from editors.models import ViewPendingQueue, ViewFullReviewQueue
+from editors.models import (ViewPendingQueue, ViewFullReviewQueue,
+                            ViewPreliminaryQueue)
 from amo.helpers import page_title
 from amo.urlresolvers import reverse
 
@@ -101,3 +102,12 @@ class ViewFullReviewQueueTable(tables.ModelTable, EditorQueueTable):
 
     class Meta(EditorQueueTable.Meta):
         model = ViewFullReviewQueue
+
+
+class ViewPreliminaryQueueTable(tables.ModelTable, EditorQueueTable):
+    flags = tables.Column(verbose_name=_(u'Flags'))
+    applications = tables.Column(verbose_name=_(u'Applications'))
+    additional_info = tables.Column(verbose_name=_(u'Additional Information'))
+
+    class Meta(EditorQueueTable.Meta):
+        model = ViewPreliminaryQueue

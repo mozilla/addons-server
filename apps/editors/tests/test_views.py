@@ -120,7 +120,13 @@ class QueueTest(EditorTest):
                         amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED)
         self.addon_file(u'Nominated Two', u'0.1',
                         amo.STATUS_LITE_AND_NOMINATED, amo.STATUS_UNREVIEWED)
-    
+        self.addon_file(u'Prelim One', u'0.1',
+                        amo.STATUS_LITE, amo.STATUS_UNREVIEWED)
+        self.addon_file(u'Prelim Two', u'0.1',
+                        amo.STATUS_UNREVIEWED, amo.STATUS_UNREVIEWED)
+        self.addon_file(u'Public', u'0.1',
+                        amo.STATUS_PUBLIC, amo.STATUS_LISTED)
+
     def addon_file(self, *args, **kw):
         a = create_addon_file(*args, **kw)
         self.versions[unicode(a['addon'].name)] = a['version']
@@ -218,3 +224,29 @@ class TestNominatedQueue(QueueTest):
         eq_(doc('.tabnav li a:eq(0)').text(), u'Full Reviews (2)')
         eq_(doc('.tabnav li a:eq(0)').attr('href'),
             reverse('editors.queue_nominated'))
+
+
+class TestPreliminaryQueue(QueueTest):
+
+    def test_results(self):
+        r = self.client.get(reverse('editors.queue_prelim'))
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        row = doc('div.section table tr:eq(1)')
+        eq_(doc('td:eq(0)', row).text(), u'Prelim One 0.1')
+        eq_(doc('td a:eq(0)', row).attr('href'),
+            reverse('editors.review',
+                    args=[self.versions[u'Prelim One'].id]) + '?num=1')
+        row = doc('div.section table tr:eq(2)')
+        eq_(doc('td:eq(0)', row).text(), u'Prelim Two 0.1')
+        eq_(doc('a:eq(0)', row).attr('href'),
+            reverse('editors.review',
+                    args=[self.versions[u'Prelim Two'].id]) + '?num=2')
+
+    def test_queue_count(self):
+        r = self.client.get(reverse('editors.queue_prelim'))
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        eq_(doc('.tabnav li a:eq(2)').text(), u'Preliminary Reviews (2)')
+        eq_(doc('.tabnav li a:eq(2)').attr('href'),
+            reverse('editors.queue_prelim'))
