@@ -30,8 +30,26 @@
         data-media-url="{{ MEDIA_URL }}"
         {% block bodyattrs %}{% endblock %}>
 
-    {% block page %}
+    {% block header %}
+      <header class="mini-header">
+        <div class="moz-menu">
+          <a></a>
+          {# TODO build out the menu #}
+        </div>
+        <hgroup>
+          <h1 class="site-title">
+            {% set appicon = 'firefox' if request.APP == amo.MOBILE else request.APP.short %}
+            <a href="{{ url('home') }}"
+              title="{{ _('Return to the {0} Add-ons homepage')|f(request.APP.pretty) }}">
+              <img alt="{{ request.APP.pretty }}" src="{{ MEDIA_URL + 'img/zamboni/app_icons/' + appicon + '.png' }}">
+              {{ _('Mobile Add-ons') }}
+            </a>
+          </h1>
+        </hgroup>
+      </header>
+    {% endblock %}
 
+    {% block page %}
     {% endblock page %}
     <footer>
       {% include "includes/lang_switcher.html" %}

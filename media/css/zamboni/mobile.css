@@ -72,13 +72,18 @@ h1, h2, h3,
     margin: 0 14px 14px;
     font-size: 1.2em;
 }
+a:link {
+    font-family: Georgia, serif;
+    color: #447bc4;
+    text-decoration: none;
+}
 
 /************************************/
 /*             GRADIENTS            */
 /************************************/
 
 /* 'Mozilla' */
-#home-header .menu {
+.moz-menu {
     background: #33589f;
     background: -webkit-gradient(
         linear,
@@ -162,24 +167,62 @@ table th {
 /************************************/
 /*              HEADER              */
 /************************************/
-#home-header {
+#home-header,
+.mini-header {
     margin: 0 14px;
 }
-#home-header .menu {
-    height: 27px;
-    padding: 8px 10px;
+.moz-menu {
     -moz-border-radius: 0 0 6px 6px;
     -moz-box-shadow: 0 -3px rgba(0,0,0,.2) inset;
 }
-#home-header hgroup {
+.moz-menu a {
+    display: block;
+    background: url(../../img/zamboni/global/wordmark.png) no-repeat 8px 6px;
+    height: 30px;
+    padding: 8px 10px;
+}
+.mini-header .moz-menu {
+    width: 104px;
+    float: right;
+    position: relative;
+}
+.mini-header .moz-menu:after {
+    content: "\00a0";
+    display: block; /* reduce the damage in FF3.0 */
+    position: absolute;
+    right: 8px;
+    width: 0;
+    height: 0;
+    top: 18px; /* value = - border-top-width - border-bottom-width */
+    border: 6px solid transparent;
+    border-top-color: white;
+    pointer-events: none;
+}
+header hgroup {
     margin-top: 8px;
     position: relative;
     padding-left: 80px;
 }
+.mini-header .site-title a {
+    font-size: 22px;
+    line-height: 22px;
+}
+#home-header hgroup {
+    min-height: 75px;
+    margin-bottom: 8px;
+}
+.mini-header hgroup {
+    margin-top: 0;
+    padding: 2px 0 0;
+}
 #home-header h1 {
     padding-top: 4px;
 }
-.site-title img {
+#home-header h2 {
+    margin: 4px 0;
+    color: #666;
+}
+#home-header .site-title img {
     position: absolute;
     left: 0;
     top: 0;
@@ -195,7 +238,17 @@ table th {
 .site-title span {
     display: block;
 }
-
+.mini-header .site-title img {
+    float: left;
+    height: 50px;
+    margin-right: 6px;
+}
+#home-header #search {
+    margin: 0;
+}
+#content.homepage {
+    margin-top: 0;
+}
 /************************************/
 /*             LISTVIEWS            */
 /************************************/

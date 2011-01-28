@@ -2,9 +2,10 @@
 
 {% block title %}{{ _('Add-ons for {0}')|f(request.APP.pretty) }}{% endblock %}
 
-{% block page %}
+{% block header %}
   <header id="home-header">
-    <div class="menu">
+    <div class="moz-menu">
+      <a></a>
       {# TODO build out the menu #}
     </div>
     <hgroup>
@@ -17,10 +18,14 @@
         </a>
       </h1>
       <h2>{{ _('Easy ways to personalize.') }}</h2>
+      <a href="#">{{ _('Learn More') }}&raquo;</a>
     </hgroup>
     {% include "search/mobile/search.html" %}
   </header>
-  <section id="content">
+{% endblock %}
+
+{% block page %}
+  <section id="content" class="homepage">
     <nav class="tabs">
       <ul>
         <li class="selected">{{ _('Featured') }}</li>
