@@ -3509,6 +3509,24 @@ class TestFileValidation(test_utils.TestCase):
                                     follow=True)
         eq_(r.status_code, 403)
 
+    def test_editor_can_see_results(self):
+        self.client.logout()
+        assert self.client.login(username='editor@mozilla.com',
+                                 password='password')
+        r = self.client.get(reverse('devhub.file_validation',
+                                    args=[self.addon.slug, self.file.id]),
+                                    follow=True)
+        eq_(r.status_code, 200)
+
+    def test_editor_can_see_json_results(self):
+        self.client.logout()
+        assert self.client.login(username='editor@mozilla.com',
+                                 password='password')
+        r = self.client.post(reverse('devhub.json_file_validation',
+                                    args=[self.addon.slug, self.file.id]),
+                                    follow=True)
+        eq_(r.status_code, 200)
+
     def test_no_html_in_messages(self):
         r = self.client.post(reverse('devhub.json_file_validation',
                                      args=[self.addon.slug, self.file.id]),

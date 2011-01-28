@@ -46,8 +46,11 @@ log = commonware.log.getLogger('z.devhub')
 DEV_AGREEMENT_COOKIE = 'yes-I-read-the-dev-agreement'
 
 
-def dev_required(owner_for_post=False):
-    """Requires user to be add-on owner or admin"""
+def dev_required(owner_for_post=False, allow_editors=False):
+    """Requires user to be add-on owner or admin.
+
+    When allow_editors is True, an editor can view the page.
+    """
     def decorator(f):
         @addon_view
         @login_required
@@ -55,6 +58,9 @@ def dev_required(owner_for_post=False):
         def wrapper(request, addon, *args, **kw):
             fun = lambda: f(request, addon_id=addon.id, addon=addon, *args,
                             **kw)
+            if allow_editors:
+                if acl.action_allowed(request, 'Editors', '%'):
+                    return fun()
             # Require an owner or dev for POST requests.
             if request.method == 'POST':
                 if acl.has_perm(request, addon, dev=not owner_for_post):
@@ -481,7 +487,7 @@ def prepare_validation_results(validation):
             msg[k] = escape_all(v)
 
 
-@dev_required
+@dev_required(allow_editors=True)
 def file_validation(request, addon_id, addon, file_id):
     file = get_object_or_404(File, id=file_id)
 
@@ -492,7 +498,7 @@ def file_validation(request, addon_id, addon, file_id):
 
 
 @json_view
-@dev_required
+@dev_required(allow_editors=True)
 def json_file_validation(request, addon_id, addon, file_id):
     file = get_object_or_404(File, id=file_id)
     if not file.has_been_validated:
