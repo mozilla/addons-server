@@ -32,37 +32,7 @@
               {# L10n: This is a caption for a table. {0} is an add-on name. #}
               <caption>{{ _('Add-on Information for {0}')|f(addon_name)|xssafe }}</caption>
             {% endwith %}
-            <tbody>
-              <tr>
-                <th>{{ _('Updated') }}</th>
-                <td>
-                  <time datetime="{{ addon.modified|isotime }}">{{
-                    addon.modified|datetime }}</time>
-                </td>
-              </tr>
-              <tr class="artist">
-                <th>{{ _('Artist') }}</th>
-                <td>{{ users_list(addon.listed_authors) or
-                  persona.display_username }}</td>
-              </tr>
-              <tr>
-                <th>{{ _('Rating', 'advanced_search_form_rating') }}</th>
-                <td>{{ reviews_link(addon) }}</td>
-              </tr>
-              <tr class="meta-stats">
-                <th>{{ _('Daily Users') }}</th>
-                <td>
-                  <strong class="downloads">{{
-                    persona.popularity|numberfmt }}</strong>
-                </td>
-              </tr>
-              {% if persona.license %}
-                <tr>
-                  <th>{{ _('License') }}</th>
-                  <td>{{ license_link(persona.license) }}</td>
-                </tr>
-              {% endif %}
-            </tbody>
+            {% include "addons/persona_detail_table.html" %}
           </table>
 
           <p{{ addon.summary|locale_html }}>{{ addon.summary|nl2br }}</p>

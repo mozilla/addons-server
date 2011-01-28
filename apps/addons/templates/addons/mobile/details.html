@@ -1,0 +1,102 @@
+{% extends "mobile/base.html" %}
+
+{% block title %}{{ page_title(addon.name) }}{% endblock %}
+
+{% block page %}
+<div class="listview">
+  <div class="item">
+    <img class="icon" width="32" height="32" src="{{ addon.icon_url }}">
+    <h3>{{ addon.name }}</h3>
+    {# TODO: make this a secret link #}
+    <h4 class="author">{{ _('by') }} {{ users_list(addon.listed_authors) }}</h4>
+    {# TODO: button #}
+    {# TODO: privacy policy (in button.html right now) #}
+  </div>
+</div>
+
+<span class="desc">{{ addon.summary }}</span>
+<blockquote>{{ addon.description }}</blockquote>
+
+{% set previews = addon.previews.all() %}
+{% if previews %}
+<ul id="screenshots">
+  {% for preview in previews %}
+    {# TODO: lazy-load all, or at least the third and up #}
+    <li>
+      <a href="{{ preview.image_url }}" title="{{ preview.caption }}">
+        <img src="{{ preview.thumbnail_url }}"></a>
+    </li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+<a class="listview" href="{{ url('reviews.list', addon.slug) }}">
+  {{ addon.average_rating|stars }}
+  {% trans num=addon.total_reviews, cnt=addon.total_reviews|numberfmt %}
+    See All Reviews
+  {% pluralize %}
+    See All {{ cnt }} Reviews
+  {% endtrans %}
+</a>
+</div>
+
+<table>
+  <tr>
+    <th>{{ _('Updated') }}</th>
+    <td>
+      <time datetime="{{ addon.last_updated|isotime }}">{{
+        addon.last_updated|datetime }}</time>
+    </td>
+  </tr>
+  {% if addon.homepage %}
+    <tr>
+      <th>{{ _('Website') }}</th>
+      <td>
+        <strong><a href="{{ addon.homepage|external_url }}">{{
+          addon.homepage }}</a></strong>
+      </td>
+    </tr>
+  {% endif %}
+  {% if addon.compatible_apps[APP] %}
+    <tr>
+      <th>{{ _('Works with') }}</th>
+      <td>{{ addon.compatible_apps[APP] }}</td>
+    </tr>
+  {% endif %}
+  <tr>
+    <th>{{ _('Downloads', 'list_sortby_downloads') }}</th>
+    <td>{{ addon.total_downloads|numberfmt }}</td>
+  </tr>
+  <tr>
+    <th>{{ _('Version') }}</th>
+    <td>
+      <ul>
+        {% set version = addon.current_version %}
+        <li>
+          <a href="{{ url('addons.versions', addon.slug, version.id) }}">
+            {# L10n: {0} is a version number. #}
+            {{ _('{0} (Release Notes)')|f(version.version) }}</a>
+        </li>
+        <li>
+          <a href="{{ url('addons.versions', addon.slug) }}">
+            {{ _('View All Versions') }}</a>
+        </li>
+        {% if addon.current_beta_version %}
+          <li><a href="#">{{ _('View Beta Version') }}</a></li>
+        {% endif %}
+      </ul>
+    </td>
+  </tr>
+</table>
+
+{% if addon.support_url %}
+  <a class="listview" href="{{ addon.support_url|external_url }}">
+    {{ _('Visit the Support Site') }}</a>
+{% endif %}
+{% if addon.supuport_email %}
+  {# TODO: make this a listview, get the emaillink js #}
+  {{ emaillink(addon.support_email.localized_string,
+               _('Ask the Author a Question')) }}
+{% endif %}
+
+{% endblock %}

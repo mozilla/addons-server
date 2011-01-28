@@ -58,6 +58,7 @@ def author_addon_clicked(f):
     return decorated
 
 
+@dec.mobile_ready
 @author_addon_clicked
 @addon_view
 def addon_detail(request, addon):
@@ -138,6 +139,12 @@ def extension_detail(request, addon):
     return jingo.render(request, 'addons/details.html', data)
 
 
+@dec.mobilized(extension_detail)
+def extension_detail(request, addon):
+    return jingo.render(request, 'addons/mobile/details.html',
+                        {'addon': addon})
+
+
 def _category_personas(qs, limit):
     f = lambda: randslice(qs, limit=limit)
     key = 'cat-personas:' + qs.query_key()
@@ -183,7 +190,13 @@ def persona_detail(request, addon):
     if settings.REPORT_ABUSE:
         data['abuse_form'] = AbuseForm(request=request)
 
-    return jingo.render(request, 'addons/personas_detail.html', data)
+    return jingo.render(request, 'addons/persona_detail.html', data)
+
+
+@dec.mobilized(persona_detail)
+def persona_detail(request, addon):
+    return jingo.render(request, 'addons/mobile/persona_detail.html',
+                        {'addon': addon})
 
 
 class BaseFilter(object):

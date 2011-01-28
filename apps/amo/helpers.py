@@ -86,6 +86,12 @@ def paginator(pager):
     return Paginator(pager).render()
 
 
+@register.filter
+def mobile_paginator(pager):
+    t = env.get_template('amo/mobile/paginator.html')
+    return jinja2.Markup(t.render(pager=pager))
+
+
 @register.function
 def is_mobile(app):
     return app == amo.MOBILE

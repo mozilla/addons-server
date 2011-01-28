@@ -82,6 +82,12 @@ def write(f):
     return use_master(skip_cache(f))
 
 
+def mobile_ready(fn):
+    """Mark a function that can accept mobile requests."""
+    fn.mobile = True
+    return fn
+
+
 def mobilized(normal_fn):
     """
     Replace a view function with a normal and mobile view.

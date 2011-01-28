@@ -10,7 +10,7 @@ import amo
 import bandwagon.views
 import browse.views
 from amo import urlresolvers
-from amo.decorators import json_view
+from amo.decorators import json_view, mobile_ready
 from amo.helpers import urlparams
 from amo.utils import MenuItem
 from versions.compare import dict_from_int, version_int
@@ -160,8 +160,7 @@ def _get_sorts(request, sort):
     items.append(item)
 
     for key, val in sorts:
-        # TODO(davedash): Remove 'name' altogether if nobody complains.
-        if key == '' or key == 'name':
+        if key == '':
             continue
 
         item = MenuItem()
@@ -247,6 +246,7 @@ def ajax_search(request):
         return []
 
 
+@mobile_ready
 def search(request, tag_name=None):
     # If the form is invalid we still want to have a query.
     query = request.REQUEST.get('q', '')
@@ -258,17 +258,6 @@ def search(request, tag_name=None):
 
     form = SearchForm(request)
     form.is_valid()  # Let the form try to clean data.
-
-    # TODO(davedash): remove this feature when we remove Application for
-    # the search advanced form
-    # Redirect if appid != request.APP.id
-
-    appid = form.cleaned_data['appid']
-
-    if request.APP.id != appid:
-        new_app = amo.APP_IDS.get(appid)
-        return HttpResponseRedirect(
-                urlresolvers.get_app_redirect(new_app))
 
     category = form.cleaned_data.get('cat')
 
@@ -333,4 +322,8 @@ def search(request, tag_name=None):
     context = dict(pager=pager, query=query, tag=tag, platforms=platforms,
                    versions=versions, categories=categories, tags=tags,
                    sort_tabs=sort_tabs, sort=sort)
-    return jingo.render(request, 'search/results.html', context)
+    if request.MOBILE:
+        template = 'search/mobile/results.html'
+    else:
+        template = 'search/results.html'
+    return jingo.render(request, template, context)
