@@ -405,6 +405,14 @@ a.listview:before {
 }
 
 /************************************/
+/*           DETAILS PAGE           */
+/************************************/
+
+td .versions li {
+    margin-bottom: 8px;
+}
+
+/************************************/
 /*              REVIEWS             */
 /************************************/
 
@@ -431,6 +439,19 @@ a.listview:before {
 }
 .stars-0 {
     background-position: -65px 50%;
+}
+
+/************************************/
+/*              CAROUSEL            */
+/************************************/
+
+.carousel {
+    height: 100px;
+    overflow: hidden;
+}
+
+.carousel li {
+    display: inline-block;
 }
 
 /************************************/
