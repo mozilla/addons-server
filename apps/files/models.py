@@ -73,6 +73,8 @@ class File(amo.models.ModelBase):
         # at: http://bit.ly/h5qm4o
         if attachment:
             host = posixpath.join(settings.LOCAL_MIRROR_URL, '_attachments')
+        elif addon.is_disabled or self.status == amo.STATUS_DISABLED:
+            host = settings.PRIVATE_MIRROR_URL
         elif (addon.status == amo.STATUS_PUBLIC
               and not addon.disabled_by_user
               and self.status in (amo.STATUS_PUBLIC, amo.STATUS_BETA)
