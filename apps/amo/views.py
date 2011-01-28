@@ -28,7 +28,7 @@ import mongoutils
 from hera.contrib.django_utils import get_hera
 from stats.models import Contribution, ContributionError, SubscriptionEvent
 from applications.management.commands import dump_apps
-from . import tasks
+from . import cron
 
 monitor_log = commonware.log.getLogger('z.monitor')
 paypal_log = commonware.log.getLogger('z.paypal')
@@ -48,20 +48,17 @@ def check_rabbit():
     # Figure out all the queues we're using. celery is the default.
     # We're skipping the celery queue for now since it could be backed up and
     # we don't depend on it as much as the devhub and images queues.
-    queues = []  # ['celery']
-    queues.extend(set(r['queue'] for r in settings.CELERY_ROUTES.values()))
-
+    checker = cron.QueueCheck()
     rv = {}
-    for queue in queues:
-        start = time.time()
-        result = tasks.ping.apply_async(routing_key=queue)
-        try:
-            result.get(timeout=2)
-            rv[queue] = time.time() - start
-        except (AttributeError, celery.exceptions.TimeoutError):
-            monitor_log.critical(
-                'Celery[%s] did not respond within 1 second.' % queue)
-            rv[queue] = None
+    for queue, threshold in checker.queues().items():
+        ping, pong = checker.get('ping', queue), checker.get('pong', queue)
+        if (not (ping and pong) or ping > pong
+            or time.time() - float(ping) > 15 * 60):
+            monitor_log.error('Celery[%s]: Could not find ping/pong (%s, %s)'
+                              % (queue, ping, pong))
+            rv[queue] = (threshold, None)
+        else:
+            rv[queue] = (threshold, float(pong) - float(ping))
     return rv
 
 
@@ -162,7 +159,13 @@ def monitor(request):
     status_summary['redis'] = bool(redis_results[0])
 
     rabbit_results = check_rabbit()
-    status_summary['rabbit'] = all(rabbit_results.values())
+    status_summary['rabbit'] = True
+    for queue, (threshold, actual) in rabbit_results.items():
+        if actual > threshold or actual < 0 or actual is None:
+            status_summary['rabbit'] = False
+            monitor_log.critical(
+                'Celery[%s] did not respond within %s seconds. (actual: %s)'
+                % (queue, threshold, actual))
 
     # Check Hera
     hera_results = []
@@ -179,7 +182,7 @@ def monitor(request):
     status_summary['mongo'] = mongoutils.connect_mongo()
 
     # If anything broke, send HTTP 500
-    if not all(status_summary):
+    if not all(status_summary.values()):
         status = 500
 
     return jingo.render(request, 'services/monitor.html',

@@ -10,6 +10,9 @@ HOME = /tmp
 * * * * * cd /data/amo_python/src/preview/zamboni; /usr/bin/python26 manage.py cron fast_current_version
 * * * * * cd /data/amo_python/src/preview/zamboni; /usr/bin/python26 manage.py cron migrate_collection_users
 
+# Every 20 minutes.
+*/20 * * * * cd /data/amo_python/src/preview/zamboni; /usr/bin/python26 manage.py cron check_queues
+
 # Every 30 minutes.
 */30 * * * * cd /data/amo_python/src/preview/zamboni; /usr/bin/python26 manage.py cron tag_jetpacks
 */30 * * * * cd /data/amo_python/src/preview/zamboni; /usr/bin/python26 manage.py cron update_addons_current_version

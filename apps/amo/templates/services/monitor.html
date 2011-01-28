@@ -100,14 +100,15 @@
 
 <div class="notification-box {{ status(status_summary.rabbit) }}">
   <h2>[RabbitMQ] celeryd queues</h2>
+  <p>Tasks are sent to rabbit in a cronjob and results are stored in redis.</p>
   <ul>
-    {% for queue, time in rabbit_results.items() %}
+    {% for queue, (threshold, actual) in rabbit_results.items() %}
     <li>
       {{ queue }}:
-      {% if time %}
-        {{ time|round(2) }}
+      {% if actual > threshold or actual is none %}
+        <strong>Response time: {{ actual|float|round(2) }} (Limit {{ threshold }} seconds)</strong>
       {% else %}
-        <strong>Failed</strong>
+        Response time: {{ actual|float|round(2) }} (Limit {{ threshold }} seconds)
       {% endif %}
     </li>
     {% endfor %}
