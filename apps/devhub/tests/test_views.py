@@ -2076,12 +2076,27 @@ class TestVersion(test_utils.TestCase):
             'you. The existing users of your add-on will remain on this '
             'update channel and never receive updates again.')
 
+    def test_delete_message_if_bits_are_messy(self):
+        """Make sure we warn krupas of the pain they will feel."""
+        self.addon.highest_status = amo.STATUS_NULL
+        self.addon.status = amo.STATUS_UNREVIEWED
+        self.addon.save()
+
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        eq_(doc('#modal-delete p').eq(0).text(),
+            'Deleting your add-on will permanently remove it from the site '
+            'and prevent its GUID from being submitted ever again, even by '
+            'you. The existing users of your add-on will remain on this '
+            'update channel and never receive updates again.')
+
     def test_delete_message_incomplete(self):
         """
         If an addon has highest_status = 0, they shouldn't be bothered with a
         blacklisting threat if they hit delete.
         """
         self.addon.highest_status = amo.STATUS_NULL
+        self.addon.status = amo.STATUS_NULL
         self.addon.save()
         r = self.client.get(self.url)
         doc = pq(r.content)
