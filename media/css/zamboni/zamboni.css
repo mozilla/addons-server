@@ -2262,12 +2262,14 @@ form .error .note.error {
     display: inline-block;
 }
 
-.privacy-policy ul {
+.privacy-policy ul,
+.policy-statement ul {
     list-style: disc outside none;
     margin-left: 20px;
 }
 
-.privacy-policy ol {
+.privacy-policy ol,
+.policy-statement ol {
     list-style: decimal outside none;
     margin-left: 20px;
 }
