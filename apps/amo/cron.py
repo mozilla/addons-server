@@ -269,7 +269,6 @@ class QueueCheck(object):
         return self.redis.get(self.key % (action, queue))
 
 
-
 @cronjobs.register
 def check_queues():
     checker = QueueCheck()
@@ -282,5 +281,4 @@ def check_queues():
 def ping(**kw):
     queue = kw['delivery_info']['routing_key']
     log.info('[1@None] Checking the %s queue' % queue)
-    checker = QueueCheck()
     QueueCheck().set('pong', queue)

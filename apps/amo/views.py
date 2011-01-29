@@ -18,7 +18,6 @@ from django.views.decorators.http import require_POST
 
 import caching.invalidation
 import celery.exceptions
-import celery.task
 import commonware.log
 import jingo
 import phpserialize as php
