@@ -181,7 +181,6 @@ class TestModuleAdmin(test_utils.TestCase):
         form = DiscoveryModuleForm(d)
         assert form.errors['locales']
 
-
     def test_discovery_module_form_dedupe(self):
         d = dict(app=amo.FIREFOX.id, module='xx', locales='en-US he he fa fa')
         form = DiscoveryModuleForm(d)

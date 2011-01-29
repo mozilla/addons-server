@@ -12,6 +12,7 @@ import jingo
 import amo.utils
 import api.utils
 import api.views
+from amo.decorators import post_required
 from addons.decorators import addon_view_factory
 from addons.models import Addon
 from browse.views import personas_listing
@@ -111,6 +112,7 @@ def _sync_db_and_registry(qs, app):
 
 
 @csrf_exempt
+@post_required
 def recommendations(request, limit=5):
     """
     Figure out recommended add-ons for an anonymous user based on POSTed guids.
@@ -118,9 +120,6 @@ def recommendations(request, limit=5):
     POST body looks like {"guids": [...]} with an optional "token" key if
     they've been here before.
     """
-    if request.method != 'POST':
-        return http.HttpResponseNotAllowed(['POST'])
-
     try:
         POST = json.loads(request.raw_post_data)
         guids = POST['guids']

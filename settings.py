@@ -439,6 +439,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/personas.js',
 
             'js/zamboni/discovery_pane.js',
+            'js/zamboni/discovery.js',
         ),
         'zamboni/discovery-addons': (
             'js/zamboni/truncation.js',

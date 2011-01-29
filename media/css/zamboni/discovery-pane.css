@@ -17,7 +17,7 @@ html {
 
 body {
     font: 12px/1.33 "Lucida Grande", "Lucida Sans", Helvetica, Arial, sans-serif;
-    padding: 0 10px 3em;
+    padding: 10px 10px 3em;
     margin: 0 auto;
     color: #373d48;
     text-shadow: 0 1px 0 rgba(255,255,255,0.3);
@@ -66,7 +66,8 @@ section > section {
     float: right;
 }
 
-#main > section {
+#main > section,
+#sub > section {
     padding: 10px;
     margin: 0 0 10px;
     border-radius: 8px;
@@ -81,20 +82,24 @@ section > section {
     float: left;
 }
 
-#sub > section {
-    padding: 10px;
-    margin: 0 0 10px;
-    border-radius: 8px;
-}
-
 header {
-    display: block;
-    margin: 0 0 10px;
-    border: solid #a8b8d1;
-    border-width: 0 1px;
-    border-radius: 0 0 8px 8px;
+    border: 1px solid #a8b8d1;
+    border-bottom-width: 0;
+    border-radius: 8px;
     background: -moz-linear-gradient(top, #fff 0, #ecf1f7 100%);
     box-shadow: inset 0 -3px 0 rgba(58,78,103,0.05), 0 3px 0 rgba(175,195,220,.3);
+    margin-bottom: 20px;
+}
+
+.recs header {
+    float: right;
+    margin-top: -1px;
+    width: 24%;
+    width: -moz-calc(24% - 2px);
+}
+
+.html-rtl .recs header {
+    float: left;
 }
 
 /* @Clear floats *********/
@@ -122,6 +127,10 @@ header:after,
     float: right;
     border-right: 0;
     border-left: 1px inset rgba(0,0,0,0.25);
+}
+
+.recs #intro {
+    display: none;
 }
 
 #intro h1 {
@@ -159,12 +168,79 @@ header:after,
     left: 0;
 }
 
+/* @group Recommendations */
+#main #recs {
+    display: none;
+    min-height: 200px;
+    padding: 0;
+    position: relative;
+}
+.recs #main #recs {
+    display: block;
+    margin-top: -1px;
+}
+
+.recs #recs .gallery-wrap {
+    background-color: #d4edea;
+    border-radius: 8px;
+    position: relative;
+}
+
+.recs #recs .msg {
+    display: table;
+    height: 160px;
+    width: 100%;
+}
+.recs #recs .msg p {
+    display: table-cell;
+    font-size: 15px;
+    line-height: 1.3;
+    text-align: center;
+    vertical-align: middle;
+}
+.recs #recs .loading p {
+    margin-bottom: 0;
+    padding-top: 78px;
+}
+.recs #recs .loading p > span {
+    background: url(../../img/zamboni/discovery_pane/loading.gif) 0 0 no-repeat;
+    display: inline-block;
+    opacity: 0.25;
+    height: 48px;
+    width: 48px;
+    position: absolute;
+    top: 63px;
+    left: 50%;
+    left: -moz-calc(50% - 48px);
+}
+/* @end */
+
 /* @Mission, @My-account *********/
 #mission, #my-account {
-    padding: 30px 2% 10px;
-    margin: 0;
+    background: -moz-linear-gradient(top, #fff 0, #ecf1f7 100%);
+    margin: 0 0 0 -10px;
+    padding: 10px;
     float: right;
-    width: 20%;
+    width: 22%;
+    width: -moz-calc(24% - 22px);
+}
+
+#my-account {
+    background:
+        url(../../img/zamboni/discovery_pane/bg-home.png) no-repeat 100% 100%,
+        -moz-linear-gradient(top, #fff 0, #ecf1f7 100%);
+    border-radius: 0 8px 8px 0;
+}
+.no-recs #my-account {
+    padding-bottom: 0;
+}
+.recs #mission,
+.recs #my-account {
+    border-left-width: 0;
+    float: left;
+    margin-left: 0;
+    padding-left: 10px;
+    width: auto;
 }
 
 .html-rtl #mission,
@@ -172,22 +248,41 @@ header:after,
     float: left;
 }
 
+.html-rtl .recs #mission,
+.html-rtl .recs #my-account {
+    float: right;
+}
+
 #mission p,
 #my-account p {
     font-size: 15px;
     line-height: 1.1;
-    margin: 0 0 .5em;
+}
+
+#mission p,
+#my-account p,
+#my-account ul {
+    margin-bottom: 0.5em;
+}
+
+#my-account ul {
+    color: #76787b;
+    line-height: 1.5;
+    list-style: disc inside;
+}
+
+#my-account p#logout {
+    font-size: 11px;
+    margin: 0 0 0 13px;
 }
 
 #mission a,
 #mission strong,
-#my-account a,
 #my-account strong {
     font-weight: bold;
 }
 
-#mission #download-count,
-#my-account #download-count {
+#mission #download-count {
     font-size: 1em;
 }
 
@@ -230,28 +325,26 @@ header:after,
     box-shadow: none;
 }
 
-.slider {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
 .panel {
     width: 100%;
     top: 0;
 }
 
-#nav-features {
+#nav-features,
+#nav-recs {
     height: 0;
     margin: 0;
     display: none;
+    position: relative;
 }
 
-#main-feature.js #nav-features {
+#main-feature.js #nav-features,
+.recs #recs #nav-recs.js {
     display: block;
 }
 
-#nav-features a {
+#nav-features a,
+#nav-recs a {
     position: absolute;
     top: 0;
     margin: 1px;
@@ -268,8 +361,14 @@ header:after,
     -moz-transition-timing-function: ease-out;
 }
 
+#nav-recs a {
+    height: 161px;
+}
+
 #nav-features a:hover,
-#nav-features a:active {
+#nav-features a:active,
+#nav-recs a:hover,
+#nav-recs a:active {
     opacity: 1;
     width: 7%;
     -moz-transition-property: opacity, width, background-color;
@@ -277,7 +376,8 @@ header:after,
     -moz-transition-timing-function: ease-out;
 }
 
-#nav-features a:focus {
+#nav-features a:focus,
+#nav-recs a:focus {
     outline: 0;
 }
 
@@ -356,9 +456,16 @@ header:after,
 
 /* @Collection *********/
 .collection h2,
-#featured-addons h2 {
+#featured-addons h2,
+#recs .header h2,
+#recs .gallery {
     max-width: 650px;
     margin: 10px auto;
+}
+
+#recs .header h2,
+#recs .gallery {
+    margin: 0 auto;
 }
 
 .collection .more {
@@ -400,7 +507,8 @@ ul.addons {
     margin-right: 0;
 }
 
-.addons li > a {
+.addons li > a,
+.rec-addons li > a {
     display: block;
     display: -moz-box;
     -moz-box-orient: vertical;
@@ -431,7 +539,8 @@ ul.addons {
     text-decoration: none;
 }
 
-.addons h3 {
+.addons h3,
+.rec-addons h3 {
     font-size: 14px;
     line-height: 1.1;
     font-weight: bold;
@@ -441,12 +550,16 @@ ul.addons {
 
 .addons li > a:hover h3,
 .addons li > a:focus h3,
-.addons li > a:active h3 {
+.addons li > a:active h3,
+.rec-addons li > a:hover h3,
+.rec-addons li > a:focus h3,
+.rec-addons li > a:active h3 {
     text-decoration: underline;
 }
 
-.addons p.desc {
-    -moz-box-flex:1;
+.addons p.desc,
+.rec-addons p.desc {
+    -moz-box-flex: 1;
     overflow: hidden;
     font-size: 11px;
     text-align: left;
@@ -454,11 +567,13 @@ ul.addons {
     margin: 0;
 }
 
-.html-rtl .addons p.desc {
+.html-rtl .addons p.desc,
+.html-rtl .rec-addons p.desc {
     text-align: right;
 }
 
-.addons img {
+.addons img,
+.rec-addons img {
     max-width: 50px;
 }
 
@@ -467,10 +582,11 @@ ul.addons {
     position: relative;
 }
 
+#recs .header,
 #sub .featured h2,
 #more-ways h2 {
     margin: -10px -10px 0;
-    padding: .45em 10px .45em 10px;
+    padding: 0.45em 10px;
     background: -moz-linear-gradient(top, #fff 0, #ecf1f7 100%);
     box-shadow: inset 0 -3px 0 rgba(58,78,103,0.05), 0 3px 0 rgba(175,195,220,.3);
     border-radius: 8px 8px 0 0;
@@ -478,7 +594,14 @@ ul.addons {
     overflow: hidden;
 }
 
-#sub .featured ul {
+#recs .header {
+    margin: 0;
+    padding: 0.45em 0;
+    width: 100%;
+}
+
+#sub .featured ul,
+#more-ways ul {
     margin: 0 0 -10px;
 }
 
@@ -491,7 +614,8 @@ ul.addons {
 #sub #featured-personas li {
     border-bottom-color: #666;
 }
-#sub .featured li:last-child {
+#sub .featured li:last-child,
+#more-ways ul li:last-child {
     border-bottom-width: 0;
 }
 
@@ -562,12 +686,28 @@ ul.addons {
     margin: 0 8px 0 0;
 }
 
-#sub .featured .all {
-    float: right;
-    display: block;
+#sub .featured .all,
+#recs .header h2 a {
     line-height: 24px;
     font-size: 13px;
 }
+
+#sub .featured .all {
+    display: block;
+    float: right;
+}
+
+#recs .header h2 a {
+    display: inline-block;
+    margin-left: 10px;
+}
+.html-rtl #recs .header h2 a {
+    float: left;
+    height: 18px;
+    line-height: 25px;
+    margin: 0 10px 0 0;
+}
+
 /* @end */
 
 /* @group Personas */
@@ -588,7 +728,6 @@ ul.addons {
 
 /* @More ways to customize *********/
 #more-ways ul {
-    margin: 0;
     font-size: 13px;
     clear: right;
 }
@@ -622,14 +761,6 @@ ul.addons {
     background: transparent url("../../img/zamboni/discovery_pane/bg-morepersonas.jpg") 70% 50% no-repeat;
 }
 
-#more-ways .help {
-    margin: 0 -10px -10px;
-    padding: .75em 12px;
-    background: -moz-linear-gradient(top, #fff 0, #ecf1f7 100%);
-    box-shadow: inset 0 -3px 0 rgba(58,78,103,0.05);
-    border-radius: 0 0 8px 8px;
-}
-
 /* @Narrow *********/
 @media (max-width: 980px) {
     body {
@@ -637,10 +768,37 @@ ul.addons {
         min-width: 620px;
     }
 
-    #main,
-    #sub {
-        width: 100%;
+    .no-recs header #mission,
+    .no-recs header #my-account {
+    }
+    .no-recs header #my-account {
+        border-radius: 0 0 8px 8px;
+        border-top: 1px inset rgba(0,0,0,0.15);
+        margin-left: 0;
+        margin-top: 10px;
+        padding-bottom: 10px;
+        width: -moz-calc(100% - 20px);
+    }
+    .recs header #my-account {
+        border-radius: 8px;
+        border-top-width: 0;
+        margin-top: 0;
+        padding-bottom: 10px;
+        width: -moz-calc(100% - 20px);
+    }
+
+    .recs header {
         float: none;
+        width: auto;
+        width: -moz-calc(100% - 2px);
+    }
+
+    #main,
+    #sub,
+    #mission,
+    #my-account {
+        float: none;
+        width: 100%;
     }
 
     #main #main-feature {
@@ -649,11 +807,6 @@ ul.addons {
 
     .feature {
         height: 270px;
-    }
-
-    #mission,
-    #my-account {
-        display: none;
     }
 
     #intro {
@@ -674,7 +827,6 @@ ul.addons {
         margin-right: 0;
         width: -moz-calc(100% / 3 - 22px - 1%);
     }
-
 }
 
 /* @Detail page *********/
@@ -1020,6 +1172,11 @@ a#lightbox-secNav-btnClose {
     border-radius: 8px;
 }
 
+.recs #recs .gallery {
+    overflow: hidden;
+    height: 163px;
+}
+
 #images + .addon-info {
     margin-top: 158px;
 }
@@ -1033,11 +1190,11 @@ a#lightbox-secNav-btnClose {
     overflow: hidden;
 }
 
-#images .panel {
+#images .panel,
+.recs #recs .panel {
     width: 33%;
     float: left;
     margin: 0 0 10px;
-    top: 0;
 }
 
 #images.js .panel {
@@ -1049,6 +1206,14 @@ a#lightbox-secNav-btnClose {
     position: relative;
     overflow: hidden;
     box-shadow: none;
+}
+
+.recs #recs .gallery .panel {
+    width: 30%;
+    margin: 10px 5% 10px 0;
+}
+.recs #recs .gallery .panel:last-child {
+    margin-right: 0;
 }
 
 #images a img {

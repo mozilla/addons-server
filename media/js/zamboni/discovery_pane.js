@@ -49,18 +49,22 @@ $.fn.jCarouselLite = function(o) {
         var li = $(".panel", ul), itemLength = li.size(), curr = o.start;
         div.css("visibility", "visible");
 
-        li.css({overflow: "hidden", "float": o.vertical ? "none" : "left"});
+        li.css({"float": o.vertical ? "none" : "left"});
         ul.css({margin: "0", padding: "0", position: "relative", "list-style-type": "none", "z-index": "1"});
         div.css({overflow: "hidden", position: "relative", "z-index": "2", left: "0"});
 
-        var liSize = o.vertical ? height(li) : width(li);   // Full li size(incl margin)-Used for animation
-        var ulSize = liSize * itemLength;                   // size of full ul(total length, not just for the visible items)
-        var divSize = liSize * v;                           // size of entire div(total length for just the visible items)
+        // Full li size (including margin, used for animation).
+        var liSize = o.vertical ? outHeight(li) : outWidth(li);
+        // Size of full ul (total length, not just for the visible items).
+        var ulSize = liSize * itemLength;
+        // Size of entire div (total length, for only the visible items).
+        var divSize = liSize * v;
 
         li.css({width: li.width(), height: li.height()});
         ul.css(sizeCss, ulSize+"px").css(animCss, -(curr*liSize));
 
-        div.css(sizeCss, divSize+"px");                     // Width of the DIV. length of visible images
+        // Width of the DIV. length of visible images.
+        div.css(sizeCss, divSize+"px");
 
         if(o.btnPrev) {
             $(o.btnPrev).click(function() {
@@ -151,8 +155,16 @@ $.fn.jCarouselLite = function(o) {
         $(window).resize(function(){
             panelWidth = $("#main").width();
             $("#main-feature, #main-feature .panel, #images").css({width: panelWidth});
-            $("#images .panel").css({width: panelWidth/3 - 10});
-            liSize = o.vertical ? height(li) : width(li);
+            $("#recs .gallery").css({width: panelWidth - 2});
+            $("#recs .gallery .panel, #images .panel").css({width: panelWidth / 3 - 10});
+            if ($(".pane").length) {
+                var galleryWidth = $("#recs .gallery").width();
+                $("#recs .gallery .panel").css({
+                    'width': 0.3 * galleryWidth,
+                    'margin-right': 0.05 * galleryWidth
+                });
+            }
+            liSize = o.vertical ? outHeight(li) : outWidth(li);
             ul.css(sizeCss, ulSize+"px").css(animCss, -(curr*liSize));
         });
 
@@ -162,10 +174,14 @@ $.fn.jCarouselLite = function(o) {
 function css(el, prop) {
     return parseInt($.css(el[0], prop)) || 0;
 };
-function width(el) {
+
+// jQuery's .outerWidth() and .outerWidth() methods include padding,
+// which we don't want.
+function outWidth(el) {
     return el[0].offsetWidth + css(el, 'marginLeft') + css(el, 'marginRight');
 };
-function height(el) {
+
+function outHeight(el) {
     return el[0].offsetHeight + css(el, 'marginTop') + css(el, 'marginBottom');
 };
 
@@ -177,13 +193,13 @@ $(document).ready(function(){
 
     // Set up the carousel.
     $("#main-feature").fadeIn("slow").addClass("js").jCarouselLite({
-        btnNext: ".nav-next a",
-        btnPrev: ".nav-prev a",
+        btnNext: "#main-feature .nav-next a",
+        btnPrev: "#main-feature .nav-prev a",
         visible: 1
     });
     $("#images").fadeIn("slow").addClass("js").jCarouselLite({
-        btnNext: ".nav-next a",
-        btnPrev: ".nav-prev a",
+        btnNext: "#images .nav-next a",
+        btnPrev: "#images .nav-prev a",
         visible: 3,
         circular: false
     });
@@ -191,10 +207,13 @@ $(document).ready(function(){
 
     // Set up the lightbox.
     var lb_baseurl = document.body.getAttribute("data-media-url") + "img/jquery-lightbox/";
-    $("li.panel a[rel=jquery-lightbox]").lightBox({
+    $("#images li.panel a[rel=jquery-lightbox]").lightBox({
         overlayOpacity: 0.6,
         imageBlank: lb_baseurl + "lightbox-blank.gif",
         imageLoading: lb_baseurl + "lightbox-ico-loading.gif",
+        imageBtnClose: "",
+        imageBtnPrev: "",
+        imageBtnNext: "",
         containerResizeSpeed: 350
     });
 
@@ -202,16 +221,9 @@ $(document).ready(function(){
     // is liquid, so we'll set the width in px on pageload and on resize).
     var panelWidth = $("#main").width();
     $("#main-feature, #main-feature .panel, #images").css({width: panelWidth});
-    // We show three images at a time, so the width of each is roughly 1/3.
-    $("#images .panel").css({width: panelWidth/3 - 10});
-
-    if ($(".discovery-pane").length) {
-        // Trim the description text to fit.
-        $("p.desc").vtruncate();
-        $(window).resize(debounce(function() {
-            $("p.desc").vtruncate();
-        }, 200));
-    }
+    // We show three images at a time, so the width of each is 1/3 minus a
+    // right margin of 10px.
+    $("#images .panel").css({width: panelWidth / 3 - 10});
 });
 
 
@@ -223,6 +235,6 @@ function debounce(fn, ms, ctxt) {
         clearTimeout(to);
         to = setTimeout(function() {
             fun.apply(ctx, args);
-        },del);
+        }, del);
     };
 }
