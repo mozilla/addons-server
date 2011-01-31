@@ -239,7 +239,7 @@ def hide_disabled_files():
     ids = (File.objects.filter(q | Q(status=amo.STATUS_DISABLED))
            .values_list('id', flat=True))
     for chunk in chunked(ids, 300):
-        for file_ in File.uncached.filter(id__in=chunk):
+        for file_ in File.uncached.filter(id__in=chunk).select_related('version'):
             if not file_.filename:
                 continue
             if os.path.exists(file_.file_path):
