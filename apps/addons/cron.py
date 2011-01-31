@@ -239,18 +239,25 @@ def hide_disabled_files():
     ids = (File.objects.filter(q | Q(status=amo.STATUS_DISABLED))
            .values_list('id', flat=True))
     for chunk in chunked(ids, 300):
-        for file_ in File.uncached.filter(id__in=chunk).select_related('version'):
-            if not file_.filename:
+        qs = File.uncached.filter(id__in=chunk).select_related('version')
+        for f in qs:
+            if not f.filename:
                 continue
-            if os.path.exists(file_.file_path):
-                dst = file_.guarded_file_path
-                log.info('Moving disabled file: %s => %s'
-                         % (file_.file_path, dst))
-                if not os.path.exists(os.path.dirname(dst)):
-                    os.makedirs(os.path.dirname(dst))
-                os.rename(file_.file_path, dst)
-            # Remove the file from the mirrors if necessary.
-            if os.path.exists(file_.mirror_file_path):
-                log.info('Unmirroring disabled file: %s'
-                         % file_.mirror_file_path)
-                os.remove(file_.mirror_file_path)
+            try:
+                if os.path.exists(f.file_path):
+                    dst = f.guarded_file_path
+                    log.info('Moving disabled file: %s => %s'
+                             % (f.file_path, dst))
+                    if not os.path.exists(os.path.dirname(dst)):
+                        os.makedirs(os.path.dirname(dst))
+                    os.rename(f.file_path, dst)
+                # Remove the file from the mirrors if necessary.
+                if os.path.exists(f.mirror_file_path):
+                    log.info('Unmirroring disabled file: %s'
+                             % f.mirror_file_path)
+                    os.remove(f.mirror_file_path)
+            except UnicodeEncodeError:
+                msg = ('Hide Failure: %s %s %s' %
+                       (f.id, f.filename, f.file_path))
+                log.info(msg)
+                print msg
