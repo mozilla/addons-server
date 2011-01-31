@@ -433,7 +433,8 @@ function initCharCount() {
                     this.output += "--" + this.boundary + "\r\n";
                     this.output += "Content-Disposition: form-data; name=\"" + name.replace(/[^\w]/g, "") + "\";";
 
-                    this.output += " filename=\""+val.fileName.replace(/[^\w\s.-_]/g, "")+"\";\r\n";
+                    // Encoding trick via ecmanaut (http://bit.ly/6p30c5)
+                    this.output += " filename=\""+unescape(encodeURIComponent(val.fileName)) +"\";\r\n";
                     this.output += "Content-Type: " + val.type;
 
                     this.output += "\r\n\r\n";
