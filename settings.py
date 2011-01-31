@@ -744,3 +744,6 @@ VALIDATE_ADDONS = True
 # Feature flags
 SEARCH_EXCLUDE_PERSONAS = True
 UNLINK_SITE_STATS = True
+
+# Set to True if we're allowed to use X-SENDFILE.
+XSENDFILE = True

@@ -1,6 +1,7 @@
 import posixpath
 
 from django import http
+from django.conf import settings
 from django.shortcuts import get_object_or_404, redirect
 
 import caching.base as caching
@@ -9,7 +10,7 @@ import jingo
 
 import amo
 from amo.urlresolvers import reverse
-from amo.utils import urlparams
+from amo.utils import urlparams, HttpResponseSendFile
 from access import acl
 from addons.decorators import addon_view_factory
 from addons.models import Addon
@@ -55,17 +56,6 @@ def _find_version_page(qs, addon, version_num):
         raise http.Http404()
 
 
-def sendfile(request, path):
-    # If mod_wsgi sees a 200 with a Location header Apache does an internal
-    # redirect to that URL. HTTP_X_FORWARDED_HOST is the empty string so that
-    # Django's fix_location_header doesn't try to add a hostname.
-    request.META['HTTP_X_FORWARDED_HOST'] = ''
-    response = http.HttpResponse()
-    response['Location'] = path
-    log.info('200 Location: %s' % path)
-    return response
-
-
 # Should accept junk at the end for filename goodness.
 def download_file(request, file_id, type=None):
     file = get_object_or_404(File.objects, pk=file_id)
@@ -73,7 +63,8 @@ def download_file(request, file_id, type=None):
 
     if addon.is_disabled or file.status == amo.STATUS_DISABLED:
         if acl.has_perm(request, addon, viewer=True, ignore_disabled=True):
-            return sendfile(request, file.get_mirror(addon))
+            return HttpResponseSendFile(request, file.guarded_file_path,
+                                        content_type='application/xp-install')
         else:
             raise http.Http404()
 

@@ -8,6 +8,7 @@ import unicodedata
 import urllib
 import urlparse
 
+from django import http
 from django.conf import settings
 from django.contrib import messages
 from django.core import paginator
@@ -386,3 +387,33 @@ def to_language(locale):
         return '%s-%s' % (lang, region.upper())
     else:
         return trans_real.to_language(locale)
+
+
+class HttpResponseSendFile(http.HttpResponse):
+
+    def __init__(self, request, path, content=None, status=None,
+                 content_type='application/octet-stream'):
+        self.request = request
+        self.path = path
+        super(HttpResponseSendFile, self).__init__('', status=status,
+                                                   content_type=content_type)
+        if settings.XSENDFILE:
+            self['X-SENDFILE'] = path
+
+    def __iter__(self):
+        if settings.XSENDFILE:
+            return iter([])
+
+        chunk = 4096
+        fp = open(self.path, 'rb')
+        if 'wsgi.file_wrapper' in self.request.META:
+            return self.request.META['wsgi.file_wrapper'](fp, chunk)
+        else:
+            self['Content-Length'] = os.path.getsize(self.path)
+            def wrapper():
+                while 1:
+                    data = fp.read(chunk)
+                    if not data:
+                        break
+                    yield data
+            return wrapper()
