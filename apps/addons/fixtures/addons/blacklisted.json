@@ -1,0 +1,20 @@
+[
+ {
+    "pk": 1,
+    "model": "addons.blacklistedslug",
+    "fields": {
+        "modified": "2011-01-31 11:29:37",
+        "name": "submit",
+        "created": "2011-01-31 11:29:37"
+    }
+ },
+ {
+    "pk": 2,
+    "model": "addons.blacklistedslug",
+    "fields": {
+        "modified": "2011-01-31 11:29:37",
+        "name": "validate",
+        "created": "2011-01-31 11:29:37"
+    }
+ }
+]

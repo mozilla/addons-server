@@ -16,7 +16,8 @@ from amo.tests.test_helpers import get_image_path
 
 
 class FormsTest(test_utils.TestCase):
-    fixtures = ('base/addon_3615', 'base/addon_3615_categories')
+    fixtures = ('base/addon_3615', 'base/addon_3615_categories',
+                'addons/blacklisted')
 
     def setUp(self):
         self._redis = mock_redis()
@@ -58,6 +59,20 @@ class FormsTest(test_utils.TestCase):
     def test_locales(self):
         form = forms.AddonFormDetails(request={})
         eq_(form.fields['default_locale'].choices[0][0], 'af')
+
+    def test_slug_blacklist(self):
+        delicious = Addon.objects.get()
+        form = forms.AddonFormBasic({'slug': 'submit'}, request=None,
+                                    instance=delicious)
+        assert not form.is_valid()
+        eq_(form.errors['slug'], [u'The slug cannot be: submit.'])
+
+    def test_slug_isdigit(self):
+        delicious = Addon.objects.get()
+        form = forms.AddonFormBasic({'slug': '123'}, request=None,
+                                    instance=delicious)
+        assert not form.is_valid()
+        eq_(form.errors['slug'], [u'The slug cannot be: 123.'])
 
 
 class TestTagsForm(test_utils.TestCase):

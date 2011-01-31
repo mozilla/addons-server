@@ -91,7 +91,8 @@ class TestAddonModels(test_utils.TestCase):
                 'base/addon_4664_twitterbar',
                 'base/thunderbird',
                 'addons/featured',
-                'addons/invalid_latest_version']
+                'addons/invalid_latest_version',
+                'addons/blacklisted']
 
     def setUp(self):
         TranslationSequence.objects.create(id=99243)
@@ -505,6 +506,16 @@ class TestAddonModels(test_utils.TestCase):
         a.slug = '44'
         a.save()
         eq_(a.slug, '44~')
+
+    def test_slug_isblacklisted(self):
+        # When an addon is uploaded, it doesn't use the form validation,
+        # so we'll just mangle the slug if its blacklisted.
+        a = Addon.objects.create(type=1, name='xx', slug='validate')
+        eq_(a.slug, 'validate~')
+
+        a.slug = 'validate'
+        a.save()
+        eq_(a.slug, 'validate~')
 
     def delete(self):
         addon = Addon.objects.get(id=3615)

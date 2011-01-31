@@ -12,8 +12,8 @@ from tower import ugettext as _, ungettext as ngettext
 import amo
 import captcha.fields
 from amo.utils import slug_validator, slugify, sorted_groupby, remove_icons
-from addons.models import (Addon, AddonCategory, Category, MiniAddon,
-                           ReverseNameLookup)
+from addons.models import (Addon, AddonCategory, BlacklistedSlug,
+                           Category, MiniAddon, ReverseNameLookup)
 from addons.widgets import IconWidgetRenderer, CategoriesSelectMultiple
 from applications.models import Application
 from devhub import tasks
@@ -121,9 +121,13 @@ class AddonFormBasic(AddonFormBase):
         target = self.cleaned_data['slug']
         slug_validator(target, lower=False)
 
-        if self.cleaned_data['slug'] != self.instance.slug:
+        if target != self.instance.slug:
             if Addon.objects.filter(slug=target).exists():
                 raise forms.ValidationError(_('This slug is already in use.'))
+
+            if BlacklistedSlug.blocked(target):
+                raise forms.ValidationError(_('The slug cannot be: %s.'
+                                              % target))
         return target
 
 

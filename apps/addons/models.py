@@ -296,7 +296,7 @@ class Addon(amo.models.ModelBase):
             else:
                 name = self.name
             self.slug = slugify(name)[:27]
-        if self.slug.isdigit():
+        if BlacklistedSlug.blocked(self.slug):
             self.slug += "~"
         qs = Addon.objects.values_list('slug', 'id')
         match = qs.filter(slug=self.slug)
@@ -1280,3 +1280,17 @@ class Charity(amo.models.ModelBase):
         if self.pk == amo.FOUNDATION_ORG:
             return self.url
         return get_outgoing_url(unicode(self.url))
+
+
+class BlacklistedSlug(amo.models.ModelBase):
+    name = models.CharField(max_length=255, unique=True, default='')
+
+    class Meta:
+        db_table = 'addons_blacklistedslug'
+
+    def __unicode__(self):
+        return self.name
+
+    @classmethod
+    def blocked(cls, slug):
+        return slug.isdigit() or cls.objects.filter(name=slug).exists()
