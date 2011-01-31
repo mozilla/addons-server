@@ -4,6 +4,7 @@ from django import http
 from django.shortcuts import get_object_or_404, redirect
 
 import caching.base as caching
+import commonware.log
 import jingo
 
 import amo
@@ -20,6 +21,8 @@ from versions.models import Version
 # need to enforce the number of versions per page.
 PER_PAGE = 30
 addon_view = addon_view_factory(Addon.objects.valid)
+
+log = commonware.log.getLogger('z.versions')
 
 
 @addon_view
@@ -59,6 +62,7 @@ def sendfile(request, path):
     request.META['HTTP_X_FORWARDED_HOST'] = ''
     response = http.HttpResponse()
     response['Location'] = path
+    log.info('200 Location: %s' % path)
     return response
 
 
