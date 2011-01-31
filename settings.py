@@ -680,6 +680,7 @@ CSP_FRAME_ANCESTORS = ("'none'",)  # We also send x-frame-options:DENY
 
 # Should robots.txt deny everything or disallow a calculated list of URLs we
 # don't want to be crawled?  Default is false, disallow everything.
+# Also see http://www.google.com/support/webmasters/bin/answer.py?answer=93710
 ENGAGE_ROBOTS = False
 
 # Read-only mode setup.

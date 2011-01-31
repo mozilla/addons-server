@@ -2,6 +2,9 @@
 <html lang="{{ LANG }}" dir="{{ DIR }}">
   <head>
     <meta charset="utf-8">
+      {% if not settings.ENGAGE_ROBOTS %}
+        <meta name="robots" content="noindex">
+      {% endif %}
     <title>{% block title %}{{ _('Mozilla Add-ons') }}{% endblock %}</title>
 
     <link rel="shortcut icon" type="image/x-icon"
