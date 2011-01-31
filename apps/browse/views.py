@@ -11,6 +11,7 @@ import jingo
 import product_details
 
 import amo.utils
+from amo.decorators import mobile_template
 from addons.models import Addon, Category
 from addons.utils import order_by_ids
 from amo.urlresolvers import reverse
@@ -390,7 +391,8 @@ def search_tools(request, category=None):
                          'search_extensions_filter': sidebar_ext})
 
 
-def featured(request, category=None):
+@mobile_template('browse/{mobile/}featured.html')
+def featured(request, category=None, template=None):
     ids = Addon.objects.featured_ids(request.APP)
     addons = order_by_ids(Addon.objects.filter(pk__in=ids), ids)
-    return jingo.render(request, 'browse/featured.html', {'addons': addons})
+    return jingo.render(request, template, {'addons': addons})

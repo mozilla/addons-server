@@ -17,6 +17,7 @@ import test_utils
 import amo
 from amo.urlresolvers import reverse
 from amo.helpers import urlparams
+from addons.tests.test_views import TestMobile
 from addons.models import Addon, AddonCategory, Category, AppSupport, Feature
 from browse import views, feeds
 from browse.views import locale_display_name
@@ -885,3 +886,11 @@ class TestPersonas(test_utils.TestCase):
 
     def test_personas(self):
         eq_(self.client.get(reverse('browse.personas')).status_code, 200)
+
+
+class TestMobileFeatured(TestMobile):
+
+    def test_featured(self):
+        r = self.client.get(reverse('browse.featured'))
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'browse/mobile/featured.html')
