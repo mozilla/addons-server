@@ -978,7 +978,7 @@ class TestEdit(test_utils.TestCase):
 
         self.tags = ['tag3', 'tag2', 'tag1']
         for t in self.tags:
-            Tag(tag_text=t).save_tag(addon, self.user)
+            Tag(tag_text=t).save_tag(addon)
         self._redis = mock_redis()
 
         self.addon = self.get_addon()

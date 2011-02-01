@@ -53,7 +53,6 @@
         "pk": 10096,
         "model": "tags.addontag",
         "fields": {
-            "user": 4043307,
             "addon": 3615,
             "tag": 2429,
             "modified": null,
@@ -64,7 +63,6 @@
         "pk": 10105,
         "model": "tags.addontag",
         "fields": {
-            "user": 4043307,
             "addon": 3615,
             "tag": 2652,
             "modified": null,
@@ -75,7 +73,6 @@
         "pk": 10106,
         "model": "tags.addontag",
         "fields": {
-            "user": 2519,
             "addon": 3615,
             "tag": 2654,
             "modified": null,
@@ -86,7 +83,6 @@
         "pk": 10133,
         "model": "tags.addontag",
         "fields": {
-            "user": 55021,
             "addon": 3615,
             "tag": 7511,
             "modified": null,
@@ -97,7 +93,6 @@
         "pk": 11754,
         "model": "tags.addontag",
         "fields": {
-            "user": 55021,
             "addon": 3615,
             "tag": 111,
             "modified": null,

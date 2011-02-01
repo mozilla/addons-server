@@ -287,17 +287,16 @@ class TagTest(SphinxTestCase):
     fixtures = ('base/apps', 'addons/persona', 'base/addon_3615')
 
     def setUp(self):
-        u = UserProfile.objects.create(username='foo')
         a = Addon.objects.get(pk=15663)
 
         tags = ('donkeybuttrhino', 'bar', 'foo')
         for tag in tags:
             t = Tag.objects.create(tag_text=tag)
-            AddonTag.objects.create(tag=t, user=u, addon=a)
+            AddonTag.objects.create(tag=t, addon=a)
 
         t = Tag.objects.create(tag_text='bar2')
         a = Addon.objects.get(pk=3615)
-        AddonTag.objects.create(tag=t, user=u, addon=a)
+        AddonTag.objects.create(tag=t, addon=a)
 
         super(TagTest, self).setUp()
 

@@ -46,13 +46,13 @@ class Tag(amo.models.ModelBase):
 
         return urls
 
-    def save_tag(self, addon, user):
+    def save_tag(self, addon):
         tag, created = Tag.objects.get_or_create(tag_text=self.tag_text)
-        AddonTag.objects.get_or_create(addon=addon, tag=tag, user=user)
+        AddonTag.objects.get_or_create(addon=addon, tag=tag)
         amo.log(amo.LOG.ADD_TAG, tag, addon)
         return tag
 
-    def remove_tag(self, addon, user):
+    def remove_tag(self, addon):
         tag, created = Tag.objects.get_or_create(tag_text=self.tag_text)
         AddonTag.objects.filter(addon=addon, tag=tag).delete()
         amo.log(amo.LOG.REMOVE_TAG, tag, addon)
@@ -69,7 +69,6 @@ class TagStat(amo.models.ModelBase):
 class AddonTag(amo.models.ModelBase):
     addon = models.ForeignKey('addons.Addon', related_name='addon_tags')
     tag = models.ForeignKey(Tag, related_name='addon_tags')
-    user = models.ForeignKey('users.UserProfile')
 
     class Meta:
         db_table = 'users_tags_addons'

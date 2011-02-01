@@ -198,7 +198,6 @@
         "pk": 47868,
         "model": "tags.addontag",
         "fields": {
-            "user": 999,
             "addon": 9825,
             "tag": 3063
         }

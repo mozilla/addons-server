@@ -36,4 +36,4 @@ def _tag_jetpacks(data, **kw):
     tag = Tag.objects.get(pk=7758)
 
     for addon in data:
-        AddonTag(addon=addon, tag=tag, user=user).save()
+        AddonTag(addon=addon, tag=tag).save()

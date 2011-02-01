@@ -70,11 +70,11 @@ class AddonFormBasic(AddonFormBase):
 
         # Add new tags.
         for t in set(tags_new) - set(tags_old):
-            Tag(tag_text=t).save_tag(addon, amo.get_user())
+            Tag(tag_text=t).save_tag(addon)
 
         # Remove old tags.
         for t in set(tags_old) - set(tags_new):
-            Tag(tag_text=t).remove_tag(addon, amo.get_user())
+            Tag(tag_text=t).remove_tag(addon)
 
         # We ignore `commit`, since we need it to be `False` so we can save
         # the ManyToMany fields on our own.
@@ -84,7 +84,7 @@ class AddonFormBasic(AddonFormBase):
         return addonform
 
     def clean_tags(self):
-        target = [slugify(t, spaces=True)
+        target = [slugify(t, spaces=True, lower=True)
                   for t in self.cleaned_data['tags'].split(',')]
         target = filter(None, target)
 
