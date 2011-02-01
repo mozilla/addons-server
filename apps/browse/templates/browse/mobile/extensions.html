@@ -9,9 +9,9 @@
 {% endblock %}
 
 {% if category %}
-  {% set url_base = url('browse.extensions', category.slug) %}
+  {% set base_url = url('browse.extensions', category.slug) %}
 {% else %}
-  {% set url_base = url('browse.extensions') %}
+  {% set base_url = url('browse.extensions') %}
 {% endif %}
 
 {% block page %}
@@ -21,16 +21,7 @@
     <h2>{{ _('Extensions') }}</h2>
   {% endif %}
   <div class="menu">
-    <div id="sort-menu">
-      <span>{{ _('Sort by:') }}</span>
-      <select>
-        {% for value, title in sort_opts %}
-          <option data-url="{{ url_base|urlparams(sort=value) }}"
-                  {% if value == sorting %}selected{% endif %}>
-            {{ title }}</option>
-        {% endfor %}
-      </select>
-    </div>
+    {{ mobile_sort_by(base_url, sort_opts, sorting) }}
   </div>
 
   <div class="addon-listing">

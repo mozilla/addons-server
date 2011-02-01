@@ -1,0 +1,18 @@
+{% cache collections %}
+{% for collection in collections %}
+  <li class="item">
+    <a href="{{ collection.get_url_path() }}">
+      <img class="icon" width="32" height="32" src="{{ collection.icon_url }}">
+      <h3>{{ collection.name }}</h3>
+      <details>
+        <span class="desc">{{ collection.description|strip_html()|truncate(250) }}</span>
+        {% trans cnt=collection.subscribers, num=collection.subscribers|numberfmt %}
+          <span>{{ num }}</span> follower
+        {% pluralize %}
+          <span>{{ num }}</span> followers
+        {% endtrans %}
+      </details>
+    </a>
+  </li>
+{% endfor %}
+{% endcache %}

@@ -13,7 +13,8 @@ from tower import ugettext_lazy as _lazy, ugettext as _
 from amo import messages
 import amo.utils
 import sharing.views
-from amo.decorators import login_required, post_required, json_view, write
+from amo.decorators import (login_required, post_required, json_view, write,
+                            mobile_template)
 from amo.urlresolvers import reverse
 from access import acl
 from addons.models import Addon
@@ -102,11 +103,12 @@ def render(request, template, data={}, extra={}):
     return jingo.render(request, template, data, **extra)
 
 
-def collection_listing(request, base=None, extra={}):
+@mobile_template('bandwagon/{mobile/}collection_listing.html')
+def collection_listing(request, base=None, extra={}, template=None):
     filter = get_filter(request, base)
     collections = amo.utils.paginate(request, filter.qs)
     votes = get_votes(request, collections.object_list)
-    return render(request, 'bandwagon/collection_listing.html',
+    return render(request, template,
                   dict(collections=collections, filter=filter,
                        collection_votes=votes, **extra))
 

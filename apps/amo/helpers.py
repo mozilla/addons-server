@@ -74,6 +74,7 @@ def url(viewname, *args, **kwargs):
                                                 kwargs=kwargs,
                                                 add_prefix=add_prefix))
 
+
 @register.function
 def services_url(viewname, *args, **kwargs):
     """Helper for ``url`` with host=SERVICES_URL."""
@@ -292,7 +293,7 @@ def license_link(license):
     if not license.builtin:
         return _('Custom License')
 
-    t = env.get_template('amo/license_link.html').render({'license':license})
+    t = env.get_template('amo/license_link.html').render({'license': license})
     return jinja2.Markup(t)
 
 
@@ -327,3 +328,8 @@ def recaptcha(context, form):
     d = dict(context.items())
     d.update(form=form)
     return d
+
+
+@register.inclusion_tag('amo/mobile/sort_by.html')
+def mobile_sort_by(base_url, options, selected):
+    return locals()

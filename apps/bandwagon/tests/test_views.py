@@ -13,6 +13,7 @@ import test_utils
 
 import amo
 from addons.models import Addon
+from addons.tests.test_views import TestMobile
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
 from bandwagon import forms
@@ -826,3 +827,11 @@ class TestFeeds(test_utils.TestCase):
         eq_(r.status_code, 301)
         loc = r['Location']
         assert loc.endswith(self.feed_url), loc
+
+
+class TestMobileCollections(TestMobile):
+
+    def test_collections(self):
+        r = self.client.get(reverse('collections.list'))
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'bandwagon/mobile/collection_listing.html')

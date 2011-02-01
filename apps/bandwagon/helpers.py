@@ -152,3 +152,8 @@ def collection_widgets(context, collection, condensed=False):
                  })
         t = env.get_template('bandwagon/collection_widgets.html').render(**c)
         return jinja2.Markup(t)
+
+
+@register.inclusion_tag('bandwagon/mobile/listing_items.html')
+def collection_listing_items_mobile(collections):
+    return locals()
