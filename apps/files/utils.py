@@ -28,7 +28,7 @@ class ParseError(forms.ValidationError):
 class Extractor(object):
     """Extract add-on info from an install.rdf."""
     TYPES = {'2': amo.ADDON_EXTENSION, '4': amo.ADDON_THEME,
-             '8': amo.ADDON_LPADDON}
+             '8': amo.ADDON_LPAPP}
     App = collections.namedtuple('App', 'appdata id min max')
     manifest = u'urn:mozilla:install-manifest'
 
