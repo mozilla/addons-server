@@ -60,16 +60,15 @@ class EditorQueueTable(SQLTable):
 
     def render_applications(self, row):
         # TODO(Kumar) show supported version ranges on hover (if still needed)
-        icon = u'<div class="app-icon ed-sprite-%s"></div>'
-        return u' '.join(icon % amo.APPS_ALL[i].short
-                         for i in row.application_ids)
+        icon = u'<div class="app-icon ed-sprite-%s" title="%s"></div>'
+        return u''.join([icon % (amo.APPS_ALL[i].short, amo.APPS_ALL[i].pretty)
+                         for i in row.application_ids])
 
     def render_flags(self, row):
-        if row.admin_review:
-            # TODO(Kumar) display Admin Review on hover
-            return u'<div class="app-icon ed-sprite-admin-review"></div>'
-        else:
+        if not row.admin_review:
             return ''
+        return (u'<div class="app-icon ed-sprite-admin-review" title="%s">'
+                u'</div>' % _('Admin Review'))
 
     def render_waiting_time_days(self, row):
         if row.waiting_time_days == 0:

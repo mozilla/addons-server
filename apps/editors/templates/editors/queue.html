@@ -25,12 +25,14 @@
 
 <div class="queue-outer">
   <div class="queue-inner">
-    <div class="data-grid-content">
+    {% if page|paginator %}
+    <div class="data-grid-content data-grid-top">
     {{ page|paginator }}
     </div>
+    {% endif %}
     <table class="data-grid">
       <thead>
-        <tr>
+        <tr class="listing-header">
             {% for column in table.columns %}
               {% if column.is_ordered_reverse %}
                 {% set cls, sprite = 'ordered', 'desc' %}
@@ -39,9 +41,10 @@
               {% else %}
                 {% set cls, sprite = '', 'both' %}
               {% endif %}
-              <th class="{{ cls }}"><a href="?sort={{ column.name_toggled }}">
+              <th class="{{ cls }}">
+                <a href="?sort={{ column.name_toggled }}" class="sort-icon ed-sprite-sort-{{ sprite }}">
                   {{ column }}
-                  <div class="sort-icon ed-sprite-sort-{{ sprite }}"></div></a>
+                </a>
               </th>
             {% endfor %}
         </tr>
@@ -56,9 +59,11 @@
         {% endfor %}
       </tbody>
     </table>
-    <div class="data-grid-content">
+    {% if page|paginator %}
+    <div class="data-grid-content data-grid-bottom">
     {{ page|paginator }}
     </div>
+    {% endif %}
   </div>
 </div>
 
