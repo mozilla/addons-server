@@ -1057,6 +1057,17 @@ class TestEdit(test_utils.TestCase):
 
         eq_([unicode(t) for t in addon.tags.all()], sorted(self.tags))
 
+    def test_edit_basic_check_description(self):
+        # Make sure bug 629779 doesn't return.
+        old_desc = self.addon.description
+        data = self.get_dict()
+
+        r = self.client.post(self.get_url('basic', True), data)
+        eq_(r.status_code, 200)
+        addon = self.get_addon()
+
+        eq_(addon.description, old_desc)
+
     def test_edit_slug_invalid(self):
         old_edit = self.get_url('basic', True)
         data = self.get_dict(name='', slug='invalid')
