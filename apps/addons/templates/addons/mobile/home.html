@@ -33,27 +33,24 @@
         <li>{{ _('Categories') }}</li>
       </ul>
     </nav>
+
     <div class="addon-listing addon-listing-popular">
       <ul id="list-popular" class="listview">
         {{ addon_listing_items_mobile(popular, show_date=key,
                                        src='homepagebrowse') }}
-        <li><a>
-          {{ _('View all Featured add-ons') }}
-        </a></li>
-      </ul> {# listing-{{ key }} #}
-    </div> {# addon-listing #}
+        <li><a href="{{ url('browse.featured') }}">
+          {{ _('View all Featured add-ons') }}</a></li>
+      </ul>
+    </div>
+
     <h2>{{ _('More Add-ons') }}</h2>
-    <ul id="list-popular" class="listview">
-      {# TODO link up these pages when they're present #}
-      <li><a>
-        {{ _('Highest Rated') }}
-      </a></li>
-      <li><a>
-        {{ _('Newest') }}
-      </a></li>
-      <li><a>
-        {{ _('Collections') }}
-      </a></li>
-    </ul> {# listing-{{ key }} #}
+    <ul class="listview">
+      <li><a href="{{ url('browse.extensions')|urlparams(sort='rating') }}">
+        {{ _('Highest Rated') }}</a></li>
+      <li><a href="{{ url('browse.extensions')|urlparams(sort='created') }}">
+        {{ _('Newest') }}</a></li>
+      <li><a href="{{ url('collections.list') }}">
+        {{ _('Collections') }}</a></li>
+    </ul>
   </section>
 {% endblock page %}
