@@ -894,3 +894,19 @@ class TestMobileFeatured(TestMobile):
         r = self.client.get(reverse('browse.featured'))
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'browse/mobile/featured.html')
+
+
+class TestMobileExtensions(TestMobile):
+
+    def test_extensions(self):
+        r = self.client.get(reverse('browse.extensions'))
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'browse/mobile/extensions.html')
+        eq_(r.context['category'], None)
+
+    def test_category(self):
+        cat = Category.objects.all()[0]
+        r = self.client.get(reverse('browse.extensions', args=[cat.slug]))
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'browse/mobile/extensions.html')
+        eq_(r.context['category'], cat)
