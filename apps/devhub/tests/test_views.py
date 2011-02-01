@@ -1595,6 +1595,13 @@ class TestEdit(test_utils.TestCase):
 
         self.url = reverse('devhub.ajax.image.status', args=[addon.slug])
 
+    def test_image_status_no_choice(self):
+        addon = self.get_addon()
+        addon.update(icon_type='')
+        url = reverse('devhub.ajax.image.status', args=[addon.slug])
+        result = json.loads(self.client.get(url).content)
+        assert result['icons']
+
     def test_image_status_works(self):
         self.setup_image_status()
         result = json.loads(self.client.get(self.url).content)
