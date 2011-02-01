@@ -476,6 +476,10 @@ class ReviewTypeForm(forms.Form):
 class Step3Form(addons.forms.AddonFormBasic):
     description = TransField(widget=TransTextarea, required=False)
 
+    class Meta:
+        model = Addon
+        fields = ('name', 'slug', 'summary', 'tags', 'description')
+
 
 class PreviewForm(happyforms.ModelForm):
     caption = TransField(widget=TransTextarea, required=False)

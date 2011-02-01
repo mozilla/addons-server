@@ -51,7 +51,7 @@ class AddonFormBasic(AddonFormBase):
 
     class Meta:
         model = Addon
-        fields = ('name', 'slug', 'summary', 'tags', 'description')
+        fields = ('name', 'slug', 'summary', 'tags')
 
     def __init__(self, *args, **kw):
         super(AddonFormBasic, self).__init__(*args, **kw)
