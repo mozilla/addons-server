@@ -248,7 +248,9 @@ class TestParseXpi(test_utils.TestCase):
         result = self.parse(filename='invalid-type.xpi')
         eq_(result['type'], amo.ADDON_EXTENSION)
 
-    # parse_langpack
+    def test_parse_langpack(self):
+        result = self.parse(filename='langpack.xpi')
+        eq_(result['type'], amo.ADDON_LPAPP)
 
 
 class TestParseAlternateXpi(test_utils.TestCase):
