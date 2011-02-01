@@ -49,6 +49,10 @@ except ImportError:
 # needs to access settings, so we'll setup the environ early.
 setup_environ(settings)
 
+# Hardcore monkeypatching action.
+import safe_django_forms
+safe_django_forms.monkeypatch()
+
 # Import for side-effect: configures our logging handlers.
 # pylint: disable-msg=W0611
 import log_settings
