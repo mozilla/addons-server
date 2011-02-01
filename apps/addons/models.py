@@ -317,8 +317,9 @@ class Addon(amo.models.ModelBase):
     def delete(self, msg):
         delete_harder = self.highest_status or self.status
         if delete_harder:
-            log.debug('Adding guid to blacklist: %s' % self.guid)
-            BlacklistedGuid(guid=self.guid, comments=msg).save()
+            if self.guid:
+                log.debug('Adding guid to blacklist: %s' % self.guid)
+                BlacklistedGuid(guid=self.guid, comments=msg).save()
             log.debug('Deleting add-on: %s' % self.id)
 
             authors = [u.email for u in self.authors.all()]

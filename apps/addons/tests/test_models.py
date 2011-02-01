@@ -146,6 +146,15 @@ class TestAddonModels(test_utils.TestCase):
         eq_(len(mail.outbox), 1)
         assert BlacklistedGuid.objects.filter(guid=a.guid)
 
+    def test_delete_searchengine(self):
+        """
+        Test deleting searchengines (which have no guids) should not barf up
+        the deletion machine.
+        """
+        a = Addon.objects.get(pk=4594)
+        a.delete('bye')
+        eq_(len(mail.outbox), 1)
+
     def test_delete_status_gone_wild(self):
         """
         Test deleting add-ons where the higheststatus is zero, but there's a
