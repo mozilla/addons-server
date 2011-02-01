@@ -11,6 +11,7 @@ import jingo
 import product_details
 
 import amo.utils
+from amo.decorators import mobile_template
 from addons.models import Addon, Category
 from addons.utils import order_by_ids
 from amo.urlresolvers import reverse
@@ -142,14 +143,16 @@ def themes(request, category=None):
                          'search_cat': '%s,0' % amo.ADDON_THEME})
 
 
-def extensions(request, category=None):
+@mobile_template('browse/{mobile/}extensions.html')
+def extensions(request, category=None, template=None):
     TYPE = amo.ADDON_EXTENSION
 
     if category is not None:
         q = Category.objects.filter(application=request.APP.id, type=TYPE)
         category = get_object_or_404(q, slug=category)
 
-    if 'sort' not in request.GET and category and category.count > 4:
+    if ('sort' not in request.GET and not request.MOBILE
+        and category and category.count > 4):
         return category_landing(request, category)
 
     addons, filter = addon_listing(request, [TYPE])
@@ -159,7 +162,7 @@ def extensions(request, category=None):
 
     count = addons.with_index(addons='type_status_inactive_idx').count()
     addons = amo.utils.paginate(request, addons, count=count)
-    return jingo.render(request, 'browse/extensions.html',
+    return jingo.render(request, template,
                         {'category': category, 'addons': addons,
                          'sorting': filter.field,
                          'sort_opts': filter.opts,
@@ -390,7 +393,8 @@ def search_tools(request, category=None):
                          'search_extensions_filter': sidebar_ext})
 
 
-def featured(request, category=None):
+@mobile_template('browse/{mobile/}featured.html')
+def featured(request, category=None, template=None):
     ids = Addon.objects.featured_ids(request.APP)
     addons = order_by_ids(Addon.objects.filter(pk__in=ids), ids)
-    return jingo.render(request, 'browse/featured.html', {'addons': addons})
+    return jingo.render(request, template, {'addons': addons})

@@ -1,0 +1,16 @@
+{% extends "mobile/base.html" %}
+
+{% set title = _('Featured Add-ons') %}
+
+{% block title %}{{ page_title(title) }}{% endblock %}
+
+{% block page %}
+<section id="content">
+  <h2>{{ title }}</h2>
+  <div class="addon-listing">
+    <ul class="listview">
+      {{ addon_listing_items_mobile(addons, src='featured') }}
+    </ul>
+  </div>
+</section>
+{% endblock %}

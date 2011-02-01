@@ -88,6 +88,28 @@ def mobile_ready(fn):
     return fn
 
 
+def mobile_template(template):
+    """
+    Mark a function as mobile-ready and pass a mobile template if MOBILE.
+
+    @mobile_template('a/{mobile/}/b.html')
+    def view(request, template=None):
+        ...
+
+    if request.MOBILE=True the template will be 'a/mobile/b.html'.
+    if request.MOBILE=False the template will be 'a/b.html'.
+    """
+    def decorator(f):
+        @mobile_ready
+        @functools.wraps(f)
+        def wrapper(request, *args, **kw):
+            fmt = {'mobile/': 'mobile/' if request.MOBILE else ''}
+            kw['template'] = template.format(**fmt)
+            return f(request, *args, **kw)
+        return wrapper
+    return decorator
+
+
 def mobilized(normal_fn):
     """
     Replace a view function with a normal and mobile view.

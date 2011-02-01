@@ -230,7 +230,7 @@ header hgroup {
 .site-title a {
     text-decoration: none;
     color: black;
-    font-family: Georgia,
+    font-family: Georgia, serif;
     text-transform: uppercase;
     font-size: 36px;
     line-height: 32px;
@@ -353,7 +353,7 @@ a.listview:before {
     display: -moz-box;
     width: 100%;
     -moz-box-sizing: border-box;
-    box-align: center;
+    -moz-box-align: center;
 }
 
 #sort-menu span {
