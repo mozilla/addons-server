@@ -1303,32 +1303,37 @@ var imageStatus = {
             this.poller = window.setTimeout(this.check, 100);
         }
     },
+    newurl: function(org) {
+        var bst = new Date().getTime();
+        (org.indexOf('?') > -1) ? org = org+'&'+bst : org= org+'?'+bst;
+        return org;
+    },
     stop: function () {
         window.clearTimeout(this.poller);
         this.poller = null;
         $('#edit-addon-media').find('b.save-badge').remove();
         $('#edit-addon-media').find('img').each(function() {
-            var org = $(this).attr('src');
-            var bst = new Date().getTime();
-            (org.indexOf('?') > -1) ? org = org+'&'+bst : org= org+'?'+bst;
-            $(this).attr('src', org);
+            $(this).attr('src', imageStatus.newurl($(this).attr('src')));
         })
         this.previews(skip_errors=false);
     },
     previews: function(skip_errors) {
-        $("div.preview-unknown").each(function(e) {
+        $("div.preview-thumb").each(function(e) {
                 var $this = $(this);
                 // No need to keep rechecking bad images until the polling
                 // returns good.
-                if (skip_errors && $this.hasClass('preview-error')) {
+                if ((skip_errors && $this.hasClass('preview-error')) ||
+                    $this.hasClass('preview-successful')) {
                     return;
                 }
+
                 var img = Image();
                 img.onload = function() {
-                    $this.removeClass('preview-error preview-unknown').addClass('preview-thumb');
-                    $this.attr('style', 'background-image:url(' + $this.attr('data-url') + ')');
+                    $this.removeClass('preview-error preview-unknown').addClass('preview-successful');
+                    $this.attr('style', 'background-image:url(' + imageStatus.newurl($this.attr('data-url')) + ')');
                 }
                 img.onerror = function() {
+                    $this.attr('style', '');
                     $this.addClass('preview-error');
                 }
                 img.src = $this.attr('data-url');
