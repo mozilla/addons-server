@@ -97,6 +97,15 @@ class ActivityLogMigrationTracker(object):
         return self.redis.set(self.key, value)
 
 
+#TODO(davedash): remove after admin is migrated
+class AdminActivityLogMigrationTracker(ActivityLogMigrationTracker):
+    """
+    Per bug 628802:
+    We will migrate activities from Remora admin.
+    """
+    key = 'amo:activitylog:admin_migration'
+
+
 def order_by_ids(qs, ids):
     """ Please optimise me.
     Going for the case that ids and qs is going to be small.

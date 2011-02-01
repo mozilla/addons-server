@@ -217,9 +217,8 @@ class REMOVE_RECOMMENDED:
 
 class ADD_APPVERSION:
     id = 35
-    # L10n: {0} is the application, {1.min/max} is the min/max version of the
-    # app
-    format = _(u'{addon} {version} now supports {0} {1.min}-{1.max}.')
+    # L10n: {0} is the application, {1} is the version of the app
+    format = _(u'{0} {1} added.')
 
 
 class CHANGE_USER_WITH_ROLE:

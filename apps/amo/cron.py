@@ -15,7 +15,8 @@ import redisutils
 
 import amo
 from amo.utils import chunked
-from addons.utils import ActivityLogMigrationTracker
+from addons.utils import AdminActivityLogMigrationTracker
+from applications.models import Application, AppVersion
 from bandwagon.models import Collection
 from cake.models import Session
 from devhub.models import ActivityLog, LegacyAddonLog
@@ -102,56 +103,29 @@ def gc(test_result=True):
                               type=amo.COLLECTION_ANONYMOUS).delete()
 
 
+
 @cronjobs.register
-def migrate_logs():
+def migrate_admin_logs():
     # Get the highest id we've looked at.
-    a = ActivityLogMigrationTracker()
+    a = AdminActivityLogMigrationTracker()
     id = a.get() or 0
 
-    items = LegacyAddonLog.objects.filter(pk__gt=id).values_list(
+    # filter here for addappversion
+    items = LegacyAddonLog.objects.filter(
+            type=amo.LOG.ADD_APPVERSION.id, pk__gt=id).values_list(
             'id', flat=True)
     for chunk in chunked(items, 100):
-        _migrate_logs.delay(chunk)
+        _migrate_admin_logs.delay(chunk)
         a.set(chunk[-1])
 
 
 @task
-def _migrate_logs(items, **kw):
+def _migrate_admin_logs(items, **kw):
     print 'Processing: %d..%d' % (items[0], items[-1])
     for item in LegacyAddonLog.objects.filter(pk__in=items):
         kw = dict(user=item.user, created=item.created)
-        if item.type not in amo.LOG_KEEP:
-            continue
-        elif item.type in [amo.LOG.CREATE_ADDON.id, amo.LOG.SET_INACTIVE.id,
-                           amo.LOG.UNSET_INACTIVE.id,
-                           amo.LOG.SET_PUBLIC_STATS.id,
-                           amo.LOG.UNSET_PUBLIC_STATS.id,
-                           amo.LOG.ADD_RECOMMENDED.id,
-                           amo.LOG.REMOVE_RECOMMENDED.id]:
-            amo.log(amo.LOG_BY_ID[item.type], item.addon, **kw)
-
-        elif item.type in [amo.LOG.ADD_USER_WITH_ROLE.id,
-                           amo.LOG.REMOVE_USER_WITH_ROLE.id]:
-            amo.log(amo.LOG_BY_ID[item.type], item.addon,
-                    (UserProfile, item.object1_id),
-                    unicode(dict(amo.AUTHOR_CHOICES)[item.object2_id]), **kw)
-        elif item.type == amo.LOG.CHANGE_STATUS.id:
-            amo.log(amo.LOG_BY_ID[item.type], item.addon,
-                    unicode(amo.STATUS_CHOICES[item.object1_id]), **kw)
-        # Items that require only a version
-        elif item.type in [amo.LOG.ADD_VERSION.id,
-                           amo.LOG.APPROVE_VERSION.id,
-                           amo.LOG.RETAIN_VERSION.id,
-                           amo.LOG.ESCALATE_VERSION.id,
-                           amo.LOG.REQUEST_VERSION.id]:
-            try:
-                v = Version.objects.get(pk=item.object1_id)
-                amo.log(amo.LOG_BY_ID[item.type], item.addon, v, **kw)
-            except Version.DoesNotExist:
-                print ('Version %d does not exist.  No worries, it happens.'
-                       % item.object1_id)
-        elif item.type == amo.LOG.DELETE_VERSION.id:
-            amo.log(amo.LOG_BY_ID[item.type], item.addon, item.name1, **kw)
+        amo.log(amo.LOG.ADD_APPVERSION, (Application, item.object1_id),
+                (AppVersion, item.object2_id), **kw)
 
 
 @cronjobs.register

@@ -96,6 +96,7 @@ HOME = /tmp
 30 23 * * * $Z_CRON collection_meta
 40 23 * * * $Z_CRON update_compat_info_for_fx4
 45 23 * * * $DJANGO dump_apps
+50 23 * * * $Z_CRON migrate_admin_logs
 
 #Once per day after 2100 PST (after metrics is done)
 35 21 * * * $Z_CRON update_addon_download_totals
