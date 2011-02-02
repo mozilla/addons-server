@@ -5,18 +5,22 @@ from django.http import HttpResponsePermanentRedirect
 from django.utils.cache import patch_vary_headers
 
 
-# We do this in zeus for performance, so this exists as a POC and to work out
-# the logic.
+# Mobile user agents.
+USER_AGENTS = 'android|fennec|iemobile|iphone|opera (?:mini|mobi)'
+USER_AGENTS = re.compile(getattr(settings, 'MOBILE_USER_AGENTS', USER_AGENTS))
+
+# We set a cookie if you explicitly select mobile/no mobile.
+COOKIE = getattr(settings, 'MOBILE_COOKIE', 'mobile')
+
+
+# We do this in zeus for performance, so this exists for the devserver and
+# to work out the logic.
 class DetectMobileMiddleware(object):
-    # Mobile user agents.
-    UA = re.compile('android|fennec|iemobile|iphone|opera (?:mini|mobi)')
-    # We set a cookie if you explicitly select mobile/no mobile.
-    MC = 'mamo'
 
     def process_request(self, request):
         ua = request.META.get('HTTP_USER_AGENT', '').lower()
-        mc = request.COOKIES.get(self.MC)
-        if (self.UA.search(ua) and mc != 'off') or mc == 'on':
+        mc = request.COOKIES.get(COOKIE)
+        if (USER_AGENTS.search(ua) and mc != 'off') or mc == 'on':
             request.META['HTTP_X_MOBILE'] = '1'
 
     def process_response(self, request, response):

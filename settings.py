@@ -748,3 +748,5 @@ UNLINK_SITE_STATS = True
 
 # Set to True if we're allowed to use X-SENDFILE.
 XSENDFILE = True
+
+MOBILE_COOKIE = 'mamo'

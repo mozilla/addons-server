@@ -17,6 +17,9 @@ def mobile_template(template):
 
     if request.MOBILE=True the template will be 'a/mobile/b.html'.
     if request.MOBILE=False the template will be 'a/b.html'.
+
+    This function is useful if the mobile view uses the same context but a
+    different template.
     """
     def decorator(f):
         @mobile_ready
@@ -36,7 +39,7 @@ def mobilized(normal_fn):
     def view(request):
         ...
 
-    @mobilized
+    @mobilized(view)
     def view(request):
         ...
 
