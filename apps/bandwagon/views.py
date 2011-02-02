@@ -8,13 +8,13 @@ from django.shortcuts import get_object_or_404, redirect
 import commonware.log
 import jingo
 import caching.base as caching
+from mobile.decorators import mobile_template
 from tower import ugettext_lazy as _lazy, ugettext as _
 
 from amo import messages
 import amo.utils
 import sharing.views
-from amo.decorators import (login_required, post_required, json_view, write,
-                            mobile_template)
+from amo.decorators import login_required, post_required, json_view, write
 from amo.urlresolvers import reverse
 from access import acl
 from addons.models import Addon

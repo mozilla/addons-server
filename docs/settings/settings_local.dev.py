@@ -53,6 +53,6 @@ CELERY_ALWAYS_EAGER = True
 
 # Add DetectMobileMiddleware for mobile development.
 mwc = MIDDLEWARE_CLASSES
-xmobile = mwc.index('amo.middleware.XMobileMiddleware')
-detect = ('amo.middleware.DetectMobileMiddleware',)
+xmobile = mwc.index('mobile.middleware.XMobileMiddleware')
+detect = ('mobile.middleware.DetectMobileMiddleware',)
 MIDDLEWARE_CLASSES = mwc[:xmobile] + detect + mwc[xmobile:]

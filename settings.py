@@ -220,8 +220,8 @@ MIDDLEWARE_CLASSES = (
     'amo.middleware.TimingMiddleware',
     'amo.middleware.LocaleAndAppURLMiddleware',
     # Mobile detection should happen in Zeus.
-    # 'amo.middleware.DetectMobileMiddleware',
-    'amo.middleware.XMobileMiddleware',
+    # 'mobile.middleware.DetectMobileMiddleware',
+    'mobile.middleware.XMobileMiddleware',
     'amo.middleware.RemoveSlashMiddleware',
 
     # Munging REMOTE_ADDR must come before ThreadRequest.
@@ -748,3 +748,5 @@ UNLINK_SITE_STATS = True
 
 # Set to True if we're allowed to use X-SENDFILE.
 XSENDFILE = True
+
+MOBILE_COOKIE = 'mamo'

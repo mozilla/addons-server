@@ -21,7 +21,7 @@ URL_ENCODED = 'application/x-www-form-urlencoded'
 
 
 def test_login_link():
-    "Test that the login link, encodes parameters correctly."
+    "Test that the login link encodes parameters correctly."
     r = test.Client().get('/?your=mom', follow=True)
     doc = pq(r.content)
     assert doc('.context a')[1].attrib['href'].endswith(
