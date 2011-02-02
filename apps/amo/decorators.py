@@ -1,9 +1,7 @@
-import contextlib
 import functools
 import json
 
 from django import http
-from django.contrib.auth import decorators as auth_decorators
 from django.utils.http import urlquote
 
 from . import models as context
@@ -80,58 +78,3 @@ def use_master(f):
 
 def write(f):
     return use_master(skip_cache(f))
-
-
-def mobile_ready(fn):
-    """Mark a function that can accept mobile requests."""
-    fn.mobile = True
-    return fn
-
-
-def mobile_template(template):
-    """
-    Mark a function as mobile-ready and pass a mobile template if MOBILE.
-
-    @mobile_template('a/{mobile/}/b.html')
-    def view(request, template=None):
-        ...
-
-    if request.MOBILE=True the template will be 'a/mobile/b.html'.
-    if request.MOBILE=False the template will be 'a/b.html'.
-    """
-    def decorator(f):
-        @mobile_ready
-        @functools.wraps(f)
-        def wrapper(request, *args, **kw):
-            fmt = {'mobile/': 'mobile/' if request.MOBILE else ''}
-            kw['template'] = template.format(**fmt)
-            return f(request, *args, **kw)
-        return wrapper
-    return decorator
-
-
-def mobilized(normal_fn):
-    """
-    Replace a view function with a normal and mobile view.
-
-    def view(request):
-        ...
-
-    @mobilized
-    def view(request):
-        ...
-
-    The second function is the mobile version of view. The original
-    function is overwritten, and the decorator will choose the correct
-    function based on request.MOBILE (set in middleware).
-    """
-    def decorator(mobile_fn):
-        @functools.wraps(mobile_fn)
-        def wrapper(request, *args, **kw):
-            if request.MOBILE:
-                return mobile_fn(request, *args, **kw)
-            else:
-                return normal_fn(request, *args, **kw)
-        wrapper.mobile = True
-        return wrapper
-    return decorator

@@ -6,12 +6,12 @@ from django.http import HttpResponsePermanentRedirect
 from django.shortcuts import get_object_or_404
 from django.views.decorators.cache import cache_page
 
-from tower import ugettext_lazy as _lazy
 import jingo
 import product_details
+from mobile.decorators import mobile_template
+from tower import ugettext_lazy as _lazy
 
 import amo.utils
-from amo.decorators import mobile_template
 from addons.models import Addon, Category
 from addons.utils import order_by_ids
 from amo.urlresolvers import reverse

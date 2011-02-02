@@ -15,12 +15,11 @@ import caching.base as caching
 import jingo
 import jinja2
 import commonware.log
-
-from tower import ugettext_lazy as _lazy
-from tower import ugettext as _
+from tower import ugettext as _, ugettext_lazy as _lazy
+from mobile.decorators import mobile_ready, mobilized
 
 import amo
-from amo import messages, decorators as dec
+from amo import messages
 from amo.forms import AbuseForm
 from amo.utils import sorted_groupby, randslice, send_abuse_report
 from amo.helpers import absolutify
@@ -59,7 +58,7 @@ def author_addon_clicked(f):
     return decorated
 
 
-@dec.mobile_ready
+@mobile_ready
 @author_addon_clicked
 @addon_view
 def addon_detail(request, addon):
@@ -140,7 +139,7 @@ def extension_detail(request, addon):
     return jingo.render(request, 'addons/details.html', data)
 
 
-@dec.mobilized(extension_detail)
+@mobilized(extension_detail)
 def extension_detail(request, addon):
     return jingo.render(request, 'addons/mobile/details.html',
                         {'addon': addon})
@@ -194,7 +193,7 @@ def persona_detail(request, addon):
     return jingo.render(request, 'addons/persona_detail.html', data)
 
 
-@dec.mobilized(persona_detail)
+@mobilized(persona_detail)
 def persona_detail(request, addon):
     return jingo.render(request, 'addons/mobile/persona_detail.html',
                         {'addon': addon})
@@ -311,7 +310,7 @@ def home(request):
                          'collections': collections, 'promobox': promobox})
 
 
-@dec.mobilized(home)
+@mobilized(home)
 @cache_page(60 * 10)
 def home(request):
     # Shuffle the list and get 3 items.

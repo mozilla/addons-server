@@ -1,16 +1,14 @@
 from collections import defaultdict
 
-from django.http import HttpResponseRedirect
-
 import commonware.log
 import jingo
 from tower import ugettext as _
+from mobile.decorators import mobile_template
 
 import amo
 import bandwagon.views
 import browse.views
-from amo import urlresolvers
-from amo.decorators import json_view, mobile_template
+from amo.decorators import json_view
 from amo.helpers import urlparams
 from amo.utils import MenuItem
 from versions.compare import dict_from_int, version_int
