@@ -1,9 +1,0 @@
-class="html-{{ DIR }} {{ request.APP.short }} {{ bodyclass }} lang-{{ LANG }} {% block bodyclass %}{% endblock %}"
-data-app="{{ request.APP.short }}"
-data-appname="{{ request.APP.pretty }}"
-data-appid="{{ request.APP.id }}"
-data-anonymous="{{ (not request.user.is_authenticated())|json }}"
-data-readonly="{{ settings.READ_ONLY|json }}"
-data-media-url="{{ MEDIA_URL }}"
-data-min-beta-version="{{ settings.MIN_BETA_VERSION }}"
-{% block bodyattrs %}{% endblock %}

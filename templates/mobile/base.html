@@ -21,7 +21,15 @@
 
     {% block extrahead %}{% endblock %}
   </head>
-  <body {% include "bodyattrs.html" %}>
+  <body class="html-{{ DIR }} {{ request.APP.short }} lang-{{ LANG }} {% block bodyclass %}{% endblock %}"
+        data-app="{{ request.APP.short }}"
+        data-appname="{{ request.APP.pretty }}"
+        data-appid="{{ request.APP.id }}"
+        data-min-beta-version="{{ settings.MIN_BETA_VERSION }}"
+        data-anonymous="{{ (not request.user.is_authenticated())|json }}"
+        data-readonly="{{ settings.READ_ONLY|json }}"
+        data-media-url="{{ MEDIA_URL }}"
+        {% block bodyattrs %}{% endblock %}>
 
     {% block header %}
       <header class="mini-header">

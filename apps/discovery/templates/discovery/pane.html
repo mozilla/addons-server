@@ -11,11 +11,16 @@
     {{ css('zamboni/discovery-pane') }}
     <base target="_blank" href="{{ settings.SITE_URL }}">
   </head>
-  {% with bodyclass = "pane" %}
-  <body {% include "bodyattrs.html" %}
+  <body class="html-{{ DIR }} pane {{ request.APP.short }}"
+        data-app="{{ request.APP.short }}"
+        data-appname="{{ app }}"
+        data-appid="{{ request.APP.id }}"
+        data-min-beta-version="{{ settings.MIN_BETA_VERSION }}"
+        data-anonymous="{{ (not request.user.is_authenticated())|json }}"
+        data-readonly="{{ settings.READ_ONLY|json }}"
+        data-media-url="{{ MEDIA_URL }}"
         data-services-url="{{ settings.SERVICES_URL }}"
         data-recs-url="{{ url('discovery.recs') }}">
-  {% endwith %}
     <header>
       <section id="intro">
         <h1><img src="{{ MEDIA_URL }}img/zamboni/discovery_pane/logo-addons.png"

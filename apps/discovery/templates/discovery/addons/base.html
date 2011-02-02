@@ -8,10 +8,14 @@
     <base target="_blank" href="{{ settings.SITE_URL }}">
     {% block extrahead %}{% endblock %}
   </head>
-  {% with bodyclass = "detail" %}
-  <body {% include "bodyattrs.html" %}>
-  {% endwith %}
-
+  <body class="html-{{ DIR }} {{ request.APP.short }} detail {% block bodyclass %}{% endblock %}"
+              data-app="{{ request.APP.short }}"
+              data-appname="{{ request.APP.pretty }}"
+              data-appid="{{ request.APP.id }}"
+              data-min-beta-version="{{ settings.MIN_BETA_VERSION }}"
+              data-anonymous="{{ (not request.user.is_authenticated())|json }}"
+              data-readonly="{{ settings.READ_ONLY|json }}"
+              data-media-url="{{ MEDIA_URL }}">
     <section id="main">
       <hgroup>
         <h1 class="addon">
