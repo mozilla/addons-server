@@ -26,14 +26,10 @@
     {% block extrahead %}{% endblock %}
     <noscript><link rel="stylesheet" href="{{ MEDIA_URL }}css/legacy/nojs.css"></noscript>
   </head>
-  <body class="html-{{ DIR }} {{ request.APP.short }} moz-header-slim {% block bodyclass %}{% endblock %}"
-        data-app="{{ request.APP.short }}"
-        data-appname="{{ request.APP.pretty }}"
-        data-appid="{{ request.APP.id }}"
-        data-anonymous="{{ (not request.user.is_authenticated())|json }}"
-        data-readonly="{{ settings.READ_ONLY|json }}"
-        data-media-url="{{ MEDIA_URL }}"
-        {% block bodyattrs %}{% endblock %}>
+
+  {% with bodyclass = "moz-header-slim" %}
+  <body {% include "bodyattrs.html" %}>
+  {% endwith %}
 
     {% if ADMIN_MESSAGE or settings.READ_ONLY%}
       <div id="site-notice">
