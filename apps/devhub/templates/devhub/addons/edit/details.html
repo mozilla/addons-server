@@ -10,7 +10,7 @@
   </h3>
   <div class="item">
     <div class="item_wrapper">
-      {% if editable %}{{ form.non_field_errors()|safe }}{% endif %}
+      {% if editable %}{{ form.non_field_errors() }}{% endif %}
       <table>
         <caption>{{ _('Add-on Details for {0}')|f(addon.name) }}</caption>
         <tbody>
@@ -27,8 +27,8 @@
             </th>
             <td>
               {% if editable %}
-                {{ form.description|safe }}
-                {{ form.description.errors|safe }}
+                {{ form.description }}
+                {{ form.description.errors }}
                 {{ some_html_tip() }}
               {% else %}
                 {% call empty_unless(addon.description) %}
@@ -47,8 +47,8 @@
             </th>
             <td class="addon_edit_locale">
               {% if editable %}
-                {{ form.default_locale|safe }}
-                {{ form.default_locale.errors|safe }}
+                {{ form.default_locale }}
+                {{ form.default_locale.errors }}
               {% else %}
                 {{ addon.language_ascii() }}
               {% endif %}
@@ -67,8 +67,8 @@
             </th>
             <td>
               {% if editable %}
-                {{ form.homepage|safe }}
-                {{ form.homepage.errors|safe }}
+                {{ form.homepage }}
+                {{ form.homepage.errors }}
               {% else %}
                 {% call empty_unless(addon.homepage) %}
                   {{ addon|all_locales('homepage') }}

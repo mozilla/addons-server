@@ -7,13 +7,14 @@
   <div class="results-inner controls">
     <form action="{{ url('editors.eventlog') }}">
       <p class="date_range">
-        {{ form.start.label_tag()|safe }}
-        {{ form.start|safe }}
-        {{ form.end.label_tag()|safe }}
-        {{ form.end|safe }}
-      </p><p>
-        {{ form.filter.label_tag()|safe }}
-        {{ form.filter|safe }}
+        {{ form.start.label_tag() }}
+        {{ form.start }}
+        {{ form.end.label_tag() }}
+        {{ form.end }}
+      </p>
+      <p>
+        {{ form.filter.label_tag() }}
+        {{ form.filter }}
         {# L10n: "Filter" is a button label (verb) #}
         <button type="submit">{{ _('Filter') }}</button>
       </p>

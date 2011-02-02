@@ -42,16 +42,16 @@
             <legend>{{ _('Confirm account deletion') }}</legend>
             <ul>
                 <label for="id_password">{{ _('Password') }} {{ required() }}</label>
-                {{ form.password|safe }}
-                {{ form.password.errors|safe }}
+                {{ form.password }}
+                {{ form.password.errors }}
               </li>
               <li>
                 <label for="id_confirm" class="check">
-                  {{ form.confirm|safe }}
+                  {{ form.confirm }}
                   {{ _('I understand this step cannot be undone.') }}
                   {{ required() }}
                 </label>
-                {{ form.confirm.errors|safe }}
+                {{ form.confirm.errors }}
               </li>
             </ul>
           </fieldset>

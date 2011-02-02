@@ -28,9 +28,9 @@
         {{ csrf() }}
         <p>Enter one username per line.</p>
         <div class="form-row">
-          {{ form.usernames.errors|safe }}
+          {{ form.usernames.errors }}
           <label for="id_usernames">Blacklisted Usernames {{ required() }}</label>
-          {{ form.usernames|safe }}
+          {{ form.usernames }}
         </div>
         <div class="submit-row">
           <input type="submit" name="_save" class="default" value="Save">

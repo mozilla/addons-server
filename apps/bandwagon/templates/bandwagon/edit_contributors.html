@@ -65,7 +65,7 @@
 {% if is_admin %}
   <fieldset>
     <h3>{{ _('Admin Settings') }}</h3>
-    {{ admin_form.as_p()|safe }}
+    {{ admin_form.as_p() }}
   </fieldset>
 {% endif %}
 

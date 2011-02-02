@@ -27,8 +27,8 @@
             </th>
             <td>
               {% if editable %}
-                {{ form.support_email|safe }}
-                {{ form.support_email.errors|safe }}
+                {{ form.support_email }}
+                {{ form.support_email.errors }}
               {% else %}
                 {% call empty_unless(addon.support_email) %}
                   {{ addon|all_locales('support_email') }}
@@ -50,8 +50,8 @@
             </th>
             <td>
               {% if editable %}
-                {{ form.support_url|safe }}
-                {{ form.support_url.errors|safe }}
+                {{ form.support_url }}
+                {{ form.support_url.errors }}
               {% else %}
                 {% call empty_unless(addon.support_url) %}
                   {{ addon|all_locales('support_url') }}

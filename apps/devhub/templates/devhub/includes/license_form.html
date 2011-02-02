@@ -5,17 +5,17 @@
     <th>{{ tip(_('License'),
                _('Please choose a license appropriate for the rights you grant on your source code.')) }}</th>
     <td>
-      {{ license_form.builtin.errors|safe }}
-      {{ license_form.builtin|safe }}
+      {{ license_form.builtin.errors }}
+      {{ license_form.builtin }}
       <div class="license-other {{ 'js-hidden' if not (license_form.initial.builtin == license_other_val or license_form.errors) }}"
         data-val="{{ license_other_val }}">
-        {{ license_form.non_field_errors()|safe }}
-        {{ license_form.name.errors|safe }}
-        {{ license_form.name.label_tag()|safe }}
-        {{ license_form.name|safe }}
-        {{ license_form.text.errors|safe }}
-        {{ license_form.text.label_tag()|safe }}
-        {{ license_form.text|safe }}
+        {{ license_form.non_field_errors() }}
+        {{ license_form.name.errors }}
+        {{ license_form.name.label_tag() }}
+        {{ license_form.name }}
+        {{ license_form.text.errors }}
+        {{ license_form.text.label_tag() }}
+        {{ license_form.text }}
       </div>
     </td>
   </tr>

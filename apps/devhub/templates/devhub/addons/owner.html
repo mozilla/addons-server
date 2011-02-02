@@ -19,7 +19,7 @@
 <section id="edit-addon" class="primary devhub-form" role="main">
 <form method="post" class="item" action="">
   {{ csrf() }}
-  {{ user_form.management_form|safe }}
+  {{ user_form.management_form }}
   <div class="item_wrapper">
     <table>
       <tr>
@@ -28,18 +28,18 @@
           <a id="what-are-roles" href="#">{{ _('About author roles') }}</a>
         </th>
         <td>
-          {{ user_form.non_form_errors()|safe }}
+          {{ user_form.non_form_errors() }}
           <ul id="author_list">
           {% for form in user_form.forms %}
             <li class="author {{ 'initial' if not form.user.errors }}">
               <span class="handle">&nbsp;</span>
-              {{ form.user.errors|safe }}
-              {{ form.user|safe }}
-              {{ form.role|safe }}
-              {{ form.listed|safe }}{{ form.listed.label_tag()|safe }}
-              {{ form.id|safe }}
-              <span class="js-hidden delete">{{ form.DELETE|safe }}{{ form.DELETE.label_tag()|safe }}</span>
-              <span class="js-hidden position">{{ form.position|safe }}</span>
+              {{ form.user.errors }}
+              {{ form.user }}
+              {{ form.role }}
+              {{ form.listed }}{{ form.listed.label_tag() }}
+              {{ form.id }}
+              <span class="js-hidden delete">{{ form.DELETE }}{{ form.DELETE.label_tag() }}</span>
+              <span class="js-hidden position">{{ form.position }}</span>
               <a href="#" class="remove">x</a>
             </li>
           {% endfor %}
@@ -56,11 +56,11 @@
 <ul id="user-form-template" class="hidden">
   <li class="blank">
     <span class="handle">&nbsp;</span>
-    {{ form.user|safe }}
-    {{ form.role|safe }}
-    {{ form.listed|safe }}{{ form.listed.label_tag()|safe }}
-    <span class="js-hidden">{{ form.DELETE|safe }}{{ form.DELETE.label_tag()|safe }}</span>
-    <span class="js-hidden position">{{ form.position|safe }}</span>
+    {{ form.user }}
+    {{ form.role }}
+    {{ form.listed }}{{ form.listed.label_tag() }}
+    <span class="js-hidden">{{ form.DELETE }}{{ form.DELETE.label_tag() }}</span>
+    <span class="js-hidden position">{{ form.position }}</span>
     <a href="#" class="remove">x</a>
   </li>
 </ul>

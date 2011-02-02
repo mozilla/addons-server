@@ -6,10 +6,10 @@
       {{ field(form.name, _('Name:')) }}
       {% set slug_base = url('collections.user', user.get_profile().username, add_prefix=False) %}
       <p id="collection-form-slug">
-        {{ form.errors['slug']|safe }}
-        <label>{{ form.slug.label|safe }}</label>
+        {{ form.errors['slug'] }}
+        <label>{{ form.slug.label }}</label>
         <span id="slug_edit" class="edit_with_prefix edit_initially_hidden">
-          <span>{{ slug_base }}</span>{{ form.slug|safe }}
+          <span>{{ slug_base }}</span>{{ form.slug }}
         </span>
         <span id="slug_readonly">
           {{ slug_base }}<span id="slug_value"></span>
@@ -17,11 +17,11 @@
         </span>
       </p>
       <p>
-        <label for="id_description">{{ form.description.label|safe }}</label> {{ _('(optional)') }}
-        {{ form.description|safe }}
+        <label for="id_description">{{ form.description.label }}</label> {{ _('(optional)') }}
+        {{ form.description }}
       </p>
        <label>{{ form.listed.label }}</label>
-       {{ form.listed|safe }}
+       {{ form.listed }}
     </fieldset>
 
     <p class="note">

@@ -14,39 +14,39 @@
   {{ csrf() }}
   <b>{{ _('Select a license for your add-on:') }}</b>
   <div class="addon-submission-field">
-    {{ license_form.builtin.errors|safe }}
-    {{ license_form.builtin|safe }}
+    {{ license_form.builtin.errors }}
+    {{ license_form.builtin }}
     {% set show_other = (license_form.initial.builtin == license_other_val or license_form.errors) %}
     <div class="license-other {{ 'js-hidden' if not show_other }}"
          data-val="{{ license_other_val }}">
-      {{ license_form.non_field_errors()|safe }}
-      {{ license_form.name.errors|safe }}
-      {{ license_form.name.label_tag()|safe }}
-      {{ license_form.name|safe }}
-      {{ license_form.text.errors|safe }}
-      {{ license_form.text.label_tag()|safe }}
-      {{ license_form.text|safe }}
+      {{ license_form.non_field_errors() }}
+      {{ license_form.name.errors }}
+      {{ license_form.name.label_tag() }}
+      {{ license_form.name }}
+      {{ license_form.text.errors }}
+      {{ license_form.text.label_tag() }}
+      {{ license_form.text }}
       {{ some_html_tip() }}
     </div>
   </div>
   {% set values = policy_form.data if policy_form.is_bound else policy_form.initial %}
   <div>
-    {{ policy_form.has_eula|safe }}
-    {{ policy_form.has_eula.label_tag()|safe }}
+    {{ policy_form.has_eula }}
+    {{ policy_form.has_eula.label_tag() }}
     <div class="eula {{ 'hidden' if not values.has_eula }}">
-      {{ policy_form.eula.errors|safe }}
-      {{ policy_form.eula.label_tag()|safe }}
-      {{ policy_form.eula|safe }}
+      {{ policy_form.eula.errors }}
+      {{ policy_form.eula.label_tag() }}
+      {{ policy_form.eula }}
       {{ some_html_tip() }}
     </div>
   </div>
   <div class="addon-submission-field">
-    {{ policy_form.has_priv|safe }}
-    {{ policy_form.has_priv.label_tag()|safe }}
+    {{ policy_form.has_priv }}
+    {{ policy_form.has_priv.label_tag() }}
     <div class="priv {{ 'hidden' if not values.has_priv }}">
-      {{ policy_form.privacy_policy.errors|safe }}
-      {{ policy_form.privacy_policy.label_tag()|safe }}
-      {{ policy_form.privacy_policy|safe }}
+      {{ policy_form.privacy_policy.errors }}
+      {{ policy_form.privacy_policy.label_tag() }}
+      {{ policy_form.privacy_policy }}
     </div>
   </div>
   <div class="submission-buttons addon-submission-field">

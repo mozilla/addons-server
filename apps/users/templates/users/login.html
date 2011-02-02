@@ -25,19 +25,19 @@
             <label for="id_username">{{ _('Email address') }}</label>
             <input id="id_username" type="text" name="username"
                                                           autofocus />
-            {{ form.username.errors|safe }}
+            {{ form.username.errors }}
           </li>
           <li>
             <label for="id_password">{{ _('Password') }}</label>
-            {{ form.password|safe }}
-            {{ form.password.errors|safe }}
+            {{ form.password }}
+            {{ form.password.errors }}
           </li>
           <li>
             <label for="id_rememberme" class="check">
-              {{ form.rememberme|safe }}
+              {{ form.rememberme }}
               {{ _('Remember me on this computer') }}
             </label>
-            {{ form.rememberme.errors|safe }}
+            {{ form.rememberme.errors }}
           </li>
         </ul>
       </fieldset>
