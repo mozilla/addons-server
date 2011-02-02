@@ -9,6 +9,8 @@
     amo.SEAMONKEY: 'http://www.seamonkey-project.org/',
 }[APP] %}
 
+{% set beta_url = 'http://www.mozilla.com/firefox/beta/' %}
+
 {% macro learn_more() %}
 {# js vars: url #}
 <div class="install-note">
@@ -65,13 +67,21 @@
 
 {% macro newer_version() %}
 {# js vars: new_version, old_version, addon #}
-<div class="install-note">
-  <p class="msg m-newer-version">{% trans app=APP.pretty %}
-    This add-on requires {{ app }} {new_version}. You are currently using
-    {{ app }} {old_version}.
-  {% endtrans %}</p>
-  {# L10n: {0} is an app name, like Firefox. #}
-  <p><a href="{{ app_url }}" class="button">{{ _('Upgrade {0}')|f(APP.pretty) }}</a></p>
+<div class="install-note extension">
+  <div class="beta msg">
+    <p class="m-newer-version">{% trans app=APP.pretty %}
+      This add-on requires a version of Firefox that has not been released yet.
+    {% endtrans %}</p>
+    <p><a href="{{ beta_url }}" class="button">{{ _('Help test new Firefox Versions') }}</a></p>
+  </div>
+  <div class="nobeta msg">
+    <p class="m-newer-version">{% trans app=APP.pretty %}
+      This add-on requires {{ app }} {new_version}. You are currently using
+      {{ app }} {old_version}.
+    {% endtrans %}</p>
+    {# L10n: {0} is an app name, like Firefox. #}
+    <p><a href="{{ app_url }}" class="button">{{ _('Upgrade {0}')|f(APP.pretty) }}</a></p>
+  </div>
   {# Building a url with a fake addon that's replaced with a js placeholder?  Sketchy. #}
   <p class="older-versions">{% trans href=remora_url('/addons/versions/xxx')|replace('xxx', '{addon}') %}
   {# <p class="older-versions">{% trans href=url('reviews.list', 000)|replace(000, '{addon}') %} #}

@@ -164,3 +164,14 @@ z.anonymous = JSON.parse(document.body.getAttribute('data-anonymous'))
 z.media_url = document.body.getAttribute('data-media-url');
 
 z.readonly = JSON.parse(document.body.getAttribute('data-readonly'));
+
+if (z.browser.firefox) {
+    var vc = new VersionCompare(),
+        betaVer = document.body.getAttribute('data-min-beta-version');
+    z.fxBeta = vc.compareVersions(z.browserVersion, betaVer);
+    if (z.fxBeta) {
+        $(document.body).addClass('fxbeta');
+    }
+} else {
+    z.fxBeta = false;
+}

@@ -5,4 +5,5 @@ data-appid="{{ request.APP.id }}"
 data-anonymous="{{ (not request.user.is_authenticated())|json }}"
 data-readonly="{{ settings.READ_ONLY|json }}"
 data-media-url="{{ MEDIA_URL }}"
+data-min-beta-version="{{ settings.MIN_BETA_VERSION }}"
 {% block bodyattrs %}{% endblock %}

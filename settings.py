@@ -750,3 +750,7 @@ UNLINK_SITE_STATS = True
 XSENDFILE = True
 
 MOBILE_COOKIE = 'mamo'
+
+# If the users's Firefox has a version number greater than this we consider it
+# a beta.
+MIN_BETA_VERSION = '3.7'
