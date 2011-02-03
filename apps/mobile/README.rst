@@ -5,25 +5,17 @@ This library is a collection of middleware and decorators that help in creating
 mobile views and directing users to the mobile version of your site.  It makes
 these assumptions:
 
- * Your mobile site is on a different domain than the normal site, like
-   ``m.example.com`` vs. ``example.com``.
+ * You can use Vary: User-Agent to serve mobile and non-mobile content through
+   the same URLs.
  * You want to use separate views and/or templates for the mobile site. If
    you're building a mobile experience through media queries this library won't
    be helpful.
- * The URLs on the mobile site are exactly the same as the normal site.
  * Not all views from the normal site need to be replaced with mobile views.
 
 Setup
 -----
 
 These are the default settings::
-
-    # The domain for serving the mobile site.
-    MOBILE_DOMAIN = 'm.example.com'
-    # The full URL to the mobile site.
-    MOBILE_SITE_URL = 'http://%s' % MOBILE_DOMAIN
-    # The full URL to the normal site.
-    SITE_URL = 'http://example.com'
 
     # A regex for detecting mobile user agents.
     MOBILE_USER_AGENTS = 'android|fennec|iemobile|iphone|opera (?:mini|mobi)'
@@ -54,12 +46,6 @@ If ``MOBILE_COOKIE`` is set to ``on``, through ``Set-Cookie`` or through
 javascript, the mobile site will be chosen regardless of the user agent. If
 ``MOBILE_COOKIE`` is set to ``off`` the normal site will always be chosen.
 
-In addition to the ``User-Agent`` and ``Cookie`` check, your view must
-advertise its ability to accept mobile requests by having an attribute
-``mobile`` set to ``True``. Before the view function is run view middleware
-checks that ``view.mobile == True`` and redirects to the normal site if that's
-not the case.
-
 
 Changes to the ``request`` Object
 ---------------------------------
@@ -73,15 +59,6 @@ Decorators
 
 Some decorators are provided to assist with common idioms::
 
-    @mobile_ready
-    def view(request):
-        ...
-
-``@mobile_ready`` sets ``mobile = True`` on the given function. It's just
-syntactic sugar for setting the attribute after the function is defined.
-
-::
-
     @mobile_template('app/{mobile/}detail.html')
     def view(request, template=None):
         ...
@@ -92,8 +69,7 @@ this logic::
 
     template = 'app/mobile/detail.html' if request.MOBILE else 'app/detail.html'
 
-The last decorator is for using a completely different function for the mobile
-view::
+To use a completely different function for the mobile view::
 
     def view(request):
         ...
