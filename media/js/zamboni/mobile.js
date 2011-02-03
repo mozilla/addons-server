@@ -18,5 +18,39 @@ $(function() {
         if ($el.attr("data-url")) {
             window.location = $el.attr("data-url");
         }
-    })
+    });
+
+    $(".tabs").each(function() {
+        var $strip=$(this);
+            $managed = $("#"+$strip.attr("data-manages")),
+            isManaged = $managed.length,
+            isSlider = isManaged && $managed.hasClass("slider"),
+            current = $strip.find(".selected a").attr("href");
+        if (isManaged) {
+            if (isSlider)
+                $managed.css("height", $managed.find(current).outerHeight() + "px");
+        } else {
+            $managed = $(document.body);
+        }
+        $strip.delegate("a", "click", function(e) {
+            e.preventDefault();
+            var $tgt = $(this),
+                href = $tgt.attr("href"),
+                $pane = $managed.find(href);
+            if (current != href && $pane.length && $pane.is(".tab-pane")) {
+                current = href;
+                $managed.find(".tab-pane").removeClass("selected");
+                $pane.addClass("selected");
+                $strip.find("li").removeClass("selected");
+                $tgt.parent().addClass("selected");
+                $tgt.blur();
+                if (isManaged && isSlider && $pane.index() >= 0) {
+                    $managed.css({
+                        "left": ($pane.index() * -100) + "%",
+                        height: $pane.outerHeight() + "px"
+                    });
+                }
+            }
+        });
+    });
 });

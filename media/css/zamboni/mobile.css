@@ -131,6 +131,9 @@ table th {
 }
 #content {
     margin-top: 1em;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
 }
 
 #content > details,
@@ -373,12 +376,13 @@ a.listview:before {
 
 .tabs {
     border-bottom: 1px solid #a2bbdc;
-    height: 36px;
+    height: 41px;
     font: 16px Georgia, serif;
     padding: 14px 14px 0;
     box-shadow: 0 -1px 1px rgba(0,0,0,.1) inset;
 }
 .tabs ul {
+    display: -webkit-box;
     display: -moz-box;
     margin: 0px;
     width: 100%;
@@ -386,22 +390,56 @@ a.listview:before {
 }
 
 .tabs ul li {
+    -moz-box-flex: 1;
+    -webkit-box-flex: 1;
+    border: 0;
+    -moz-transition: .3s background ease;
+}
+.tabs a:-moz-focusring {
+    outline: 0;
+    border: 0;
+}
+.tabs ul li a {
+    display: block;
     white-space: nowrap;
     text-align: center;
-    -moz-box-flex: 1;
     color: #447bc4;
-    border: 0;
-    padding: 11px 8px 6px 11px;
+    padding: 11px 8px 11px 6px;
 }
 .tabs ul li.selected {
     background: white;
-    -moz-box-flex: 1;
-    color: #444;
     box-shadow: 0 -1px 1px rgba(0,0,0,.1);
     border: 1px solid #a2bbdc;
     border-width: 1px 1px 0 1px;
     -moz-border-radius: 6px 6px 0 0;
-    padding: 11px 8px 6px 11px;
+    -webkit-border-radius: 6px 6px 0 0;
+}
+.tabs ul li.selected a {
+    color: #444;
+    padding: 11px 8px 11px 6px ;
+}
+
+.tab-pane {
+    display: none;
+}
+.tab-pane.selected {
+    display: block;
+}
+.slider {
+    white-space:nowrap;
+    position: relative;
+    left: 0;
+    -moz-transition: .5s left ease;
+    -webkit-transition: .5s left ease;
+}
+.slider-mask {
+    width: 100%;
+    overflow: hidden;
+}
+.slider .tab-pane {
+    vertical-align: top;
+    width: 100%;
+    display: inline-block;
 }
 
 /************************************/

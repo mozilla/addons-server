@@ -51,8 +51,10 @@
       </header>
     {% endblock %}
 
-    {% block page %}
-    {% endblock page %}
+    <section id="content">
+      {% block page %}
+      {% endblock page %}
+    </section>
     <footer>
       {% include "includes/lang_switcher.html" %}
       {% block footer %}
