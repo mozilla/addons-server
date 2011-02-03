@@ -3,14 +3,13 @@ import glob
 import logging
 import os
 import shutil
-import time
+import tempfile
 import unicodedata
 import zipfile
 from datetime import datetime
 from xml.dom import minidom
 
 from django import forms
-from django.conf import settings
 
 import rdflib
 from tower import ugettext as _
@@ -135,8 +134,7 @@ def parse_xpi(xpi, addon=None):
     """Extract and parse an XPI."""
     from addons.models import Addon, BlacklistedGuid
     # Extract to /tmp
-    path = os.path.join(settings.TMP_PATH, str(time.time()))
-    os.makedirs(path)
+    path = tempfile.mkdtemp()
     try:
         zip = zipfile.ZipFile(xpi)
         for f in zip.namelist():
@@ -146,6 +144,9 @@ def parse_xpi(xpi, addon=None):
         rdf = Extractor.parse(path)
     except forms.ValidationError:
         raise
+    except IOError as (errno, strerror):
+        log.error('I/O error({0}): {1}'.format(errno, strerror))
+        raise forms.ValidationError(_('Could not parse install.rdf.'))
     except Exception:
         log.error('XPI parse error', exc_info=True)
         raise forms.ValidationError(_('Could not parse install.rdf.'))
