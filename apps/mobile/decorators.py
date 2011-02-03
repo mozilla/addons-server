@@ -1,12 +1,6 @@
 import functools
 
 
-def mobile_ready(fn):
-    """Mark a function that can accept mobile requests."""
-    fn.mobile = True
-    return fn
-
-
 def mobile_template(template):
     """
     Mark a function as mobile-ready and pass a mobile template if MOBILE.
@@ -22,7 +16,6 @@ def mobile_template(template):
     different template.
     """
     def decorator(f):
-        @mobile_ready
         @functools.wraps(f)
         def wrapper(request, *args, **kw):
             fmt = {'mobile/': 'mobile/' if request.MOBILE else ''}
@@ -54,6 +47,5 @@ def mobilized(normal_fn):
                 return mobile_fn(request, *args, **kw)
             else:
                 return normal_fn(request, *args, **kw)
-        wrapper.mobile = True
         return wrapper
     return decorator

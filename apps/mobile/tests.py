@@ -3,10 +3,6 @@ from django import http, test
 from django.conf import settings
 from django.utils import http as urllib
 
-import mock
-import test_utils
-from nose.tools import eq_
-
 from mobile import decorators, middleware
 
 
@@ -15,7 +11,7 @@ FENNEC = ('Mozilla/5.0 (Android; Linux armv7l; rv:2.0b8) '
 FIREFOX = 'Mozilla/5.0 (Windows NT 5.1; rv:2.0b9) Gecko/20100101 Firefox/4.0b9'
 
 
-class TestDetectMobile(test_utils.TestCase):
+class TestDetectMobile(test.TestCase):
 
     def check(self, mobile, ua=None, cookie=None):
         d = {}
@@ -27,7 +23,7 @@ class TestDetectMobile(test_utils.TestCase):
         response = middleware.DetectMobileMiddleware().process_request(request)
         assert response is None
         if mobile:
-            eq_(request.META['HTTP_X_MOBILE'], '1')
+            self.assertEqual(request.META['HTTP_X_MOBILE'], '1')
         else:
             assert 'HTTP_X_MOBILE' not in request.META
 
@@ -53,113 +49,68 @@ class TestDetectMobile(test_utils.TestCase):
         self.check(mobile=False)
 
 
-class TestXMobile(test_utils.TestCase):
+class TestXMobile(test.TestCase):
 
-    def setUp(self):
-        self.middleware = middleware.XMobileMiddleware()
-        self.view = decorators.mobilized(lambda: 1)(lambda: 1)
-
-    def check(self, domain, xmobile, redirect, path='/', query=None):
-        url = path
-        if query:
-            url += '?' + query
-        request = test.RequestFactory().get(url)
-        request.META['SERVER_NAME'] = domain
+    def check(self, xmobile, mobile):
+        request = test.RequestFactory().get('/')
         if xmobile:
             request.META['HTTP_X_MOBILE'] = xmobile
-        response = self.middleware.process_view(request, self.view, (), {})
-        if redirect:
-            eq_(response.status_code, 301)
-            url = redirect + urllib.urlquote(path)
-            if query:
-                url += '?' + query
-            eq_(response['Location'], url)
-            eq_(response['Vary'], 'X-Mobile')
-        else:
-            eq_(request.MOBILE, xmobile == '1')
+        middleware.XMobileMiddleware().process_request(request)
+        self.assertEqual(request.MOBILE, mobile)
 
-    def test_bad_xmobile_on_mamo(self):
-        self.check(settings.MOBILE_DOMAIN, xmobile='adfadf',
-                   redirect=settings.SITE_URL)
+    def test_bad_xmobile(self):
+        self.check(xmobile='xxx', mobile=False)
 
-    def test_no_xmobile_on_mamo(self):
-        self.check(settings.MOBILE_DOMAIN, xmobile=None,
-                   redirect=settings.SITE_URL)
+    def test_no_xmobile(self):
+        self.check(xmobile=None, mobile=False)
 
-    def test_no_xmobile_on_amo(self):
-        self.check(settings.DOMAIN, xmobile=None, redirect=False)
+    def test_xmobile_1(self):
+        self.check(xmobile='1', mobile=True)
 
-    def test_xmobile_0_on_mamo(self):
-        self.check(settings.MOBILE_DOMAIN, xmobile='0',
-                   redirect=settings.SITE_URL)
-
-    def test_xmobile_1_on_mamo(self):
-        self.check(settings.MOBILE_DOMAIN, xmobile='1', redirect=False)
-
-    def test_xmobile_1_on_mamo_nonbmobile_function(self):
-        self.view.mobile = False
-        self.check(settings.MOBILE_DOMAIN, xmobile='1',
-                   redirect=settings.SITE_URL)
-        self.view = lambda: 1
-        self.check(settings.MOBILE_DOMAIN, xmobile='1',
-                   redirect=settings.SITE_URL)
-
-    def test_xmobile_0_on_amo(self):
-        self.check(settings.DOMAIN, xmobile='0', redirect=False)
-
-    def test_xmobile_1_on_amo(self):
-        self.check(settings.DOMAIN, xmobile='1',
-                   redirect=settings.MOBILE_SITE_URL)
-
-    def test_xmobile_1_on_amo_nonmobile_function(self):
-        # The function could have mobile=False or undefined.
-        self.view.mobile = False
-        self.check(settings.DOMAIN, xmobile='1', redirect=False)
-        self.view = lambda: 1
-        self.check(settings.DOMAIN, xmobile='1', redirect=False)
-
-    def test_redirect_unicode_path(self):
-        path = u'/el/addon/Ελληνικά/'
-        self.check(settings.DOMAIN, xmobile='1',
-                   redirect=settings.MOBILE_SITE_URL, path=path)
-
-    def test_redirect_unicode_query(self):
-        query = 'uu=e+%E3%83%90%E3%82%BA&ff=2'
-        self.check(settings.DOMAIN, xmobile='1',
-                   redirect=settings.MOBILE_SITE_URL, query=query)
-
-    def test_redirect_preserve_get(self):
-        query = 'q=1'
-        self.check(settings.DOMAIN, xmobile='1',
-                   redirect=settings.MOBILE_SITE_URL, query=query)
+    def test_xmobile_0(self):
+        self.check(xmobile='0', mobile=False)
 
     def test_vary(self):
         request = test.RequestFactory().get('/')
         response = http.HttpResponse()
-        r = self.middleware.process_response(request, response)
+        r = middleware.XMobileMiddleware().process_response(request, response)
         assert r is response
-        eq_(response['Vary'], 'X-Mobile')
+        self.assertEqual(response['Vary'], 'X-Mobile')
 
         response['Vary'] = 'User-Agent'
-        self.middleware.process_response(request, response)
-        eq_(response['Vary'], 'User-Agent, X-Mobile')
+        middleware.XMobileMiddleware().process_response(request, response)
+        self.assertEqual(response['Vary'], 'User-Agent, X-Mobile')
 
 
-class TestMobilized(object):
+class TestMobilized(test.TestCase):
 
     def setUp(self):
         normal = lambda r: 'normal'
         mobile = lambda r: 'mobile'
         self.view = decorators.mobilized(normal)(mobile)
-        self.request = mock.Mock()
-
-    def test_mobile_attr(self):
-        eq_(self.view.mobile, True)
+        self.request = test.RequestFactory().get('/')
 
     def test_call_normal(self):
         self.request.MOBILE = False
-        eq_(self.view(self.request), 'normal')
+        self.assertEqual(self.view(self.request), 'normal')
 
     def test_call_mobile(self):
         self.request.MOBILE = True
-        eq_(self.view(self.request), 'mobile')
+        self.assertEqual(self.view(self.request), 'mobile')
+
+
+class TestMobileTemplate(test.TestCase):
+
+    def setUp(self):
+        template = 'a/{mobile/}b.html'
+        func = lambda request, template: template
+        self.view = decorators.mobile_template(template)(func)
+        self.request = test.RequestFactory().get('/')
+
+    def test_normal_template(self):
+        self.request.MOBILE = False
+        self.assertEqual(self.view(self.request), 'a/b.html')
+
+    def test_mobile_template(self):
+        self.request.MOBILE = True
+        self.assertEqual(self.view(self.request), 'a/mobile/b.html')
