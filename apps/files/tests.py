@@ -19,7 +19,7 @@ import amo.utils
 from addons.models import Addon
 from applications.models import Application, AppVersion
 from files.models import File, FileUpload, FileValidation, Platform
-from files.utils import parse_addon
+from files.utils import parse_addon, parse_xpi
 from versions.models import Version
 
 
@@ -509,3 +509,11 @@ def test_parse_addon(search_mock, xpi_mock):
 
     parse_addon('file.jar', None)
     xpi_mock.assert_called_with('file.jar', None)
+
+
+def test_parse_xpi():
+    """Fire.fm can sometimes give us errors.  Let's prevent that."""
+    firefm = os.path.join(settings.ROOT,
+                          'apps/files/fixtures/files/firefm.xpi')
+    rdf = parse_xpi(firefm)
+    eq_(rdf['name'], 'Fire.fm')
