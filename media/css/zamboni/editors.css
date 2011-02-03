@@ -259,3 +259,8 @@ ul.tabnav a:hover {
 .controls {
     padding: 15px;
 }
+
+tr.comments {
+    background: #def;
+}
+

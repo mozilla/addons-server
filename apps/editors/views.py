@@ -1,21 +1,23 @@
+from datetime import date
 import functools
 
 from django import http
 from django.shortcuts import redirect, get_object_or_404
+
 import jingo
+from tower import ugettext as _
 
 import amo
 from access import acl
-import amo
 from amo.decorators import login_required
+from amo.utils import paginate
+from amo.urlresolvers import reverse
 from devhub.models import ActivityLog
 from editors import forms
 from editors.models import (ViewPendingQueue, ViewFullReviewQueue,
                             ViewPreliminaryQueue)
 from editors.helpers import (ViewPendingQueueTable, ViewFullReviewQueueTable,
                              ViewPreliminaryQueueTable)
-from amo.utils import paginate
-from amo.urlresolvers import reverse
 from files.models import Approval
 from zadmin.models import get_config
 
@@ -131,3 +133,42 @@ def queue_moderated(request):
 @editor_required
 def review(request, version_id):
     return http.HttpResponse('Not implemented yet')
+
+
+@editor_required
+def reviewlog(request):
+    data = request.GET.copy()
+
+    if not data.get('start') and not data.get('end'):
+        today = date.today()
+        data['start'] = date(today.year, today.month, 1)
+
+    form = forms.ReviewLogForm(data)
+
+    approvals = Approval.objects.select_related('file', 'user')
+
+    if form.is_valid():
+        data = form.cleaned_data
+        if data['start']:
+            approvals = approvals.filter(created__gte=data['start'])
+        if data['end']:
+            approvals = approvals.filter(created__lt=data['end'])
+
+    pager = amo.utils.paginate(request, approvals, 50)
+    nd = {
+            amo.STATUS_PUBLIC: _('Nomination Approved/Public'),
+            amo.STATUS_LITE: _('Nomination Denied/Preliminary'),
+            amo.STATUS_NULL: _('Nomination Denied/Incomplete'),
+            amo.STATUS_NOMINATED: _('Admin Review',
+                    'editors_review_history_nominated_adminreview'),
+         }
+    pd = {
+            amo.STATUS_PUBLIC: _('Approved/Public'),
+            amo.STATUS_DISABLED: _('Denied/Disabled'),
+            amo.STATUS_LITE: _('Approved/Preliminary'),
+            amo.STATUS_NULL: _('Preliminary Denied/Incomplete'),
+            amo.STATUS_PENDING: _('Admin Review',
+                    'editors_review_history_nominated_adminreview'),
+         }
+    data = dict(form=form, pager=pager, NOM_DICT=nd, PEN_DICT=pd)
+    return jingo.render(request, 'editors/reviewlog.html', data)
