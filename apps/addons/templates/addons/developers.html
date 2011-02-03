@@ -54,6 +54,7 @@
 {% set contrib = contribution(addon=addon, src=src, text=msg,
                               show_install=(page != "installed")) %}
 
+<div id="developers">
 {% if num_authors == 1 %}
   {% set user = authors[0] %}
   {% if page == "installed" and addon.takes_contributions %}
@@ -159,5 +160,6 @@
     {% endif %}
   </div>
 {% endif %}
+</div>
 
 {% endblock content %}
