@@ -76,7 +76,7 @@
           <ul class="versions">
             {% set version = addon.current_version %}
             <li>
-              <a href="{{ url('addons.versions', addon.slug, version.id) }}">
+              <a href="{{ url('addons.versions', addon.slug, version.version) }}">
                 {# L10n: {0} is a version number. #}
                 {{ _('{0} (Release Notes)')|f(version.version) }}</a>
             </li>

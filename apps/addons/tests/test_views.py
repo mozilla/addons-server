@@ -1266,3 +1266,12 @@ class TestMobileDetails(TestMobile):
         r = self.client.get(addon.get_url_path())
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'addons/mobile/persona_detail.html')
+
+    def test_release_notes(self):
+        a = Addon.objects.get(id=3615)
+        r = self.client.get(reverse('addons.detail', args=['a3615']))
+        relnotes = pq(r.content)('.versions li:first-child > a')
+        eq_(relnotes.text(), '%s (Release Notes)' % a.current_version.version)
+
+        self.client.get(relnotes.attr('href'), follow=True)
+        eq_(r.status_code, 200)
