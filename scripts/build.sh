@@ -68,12 +68,6 @@ TEST_SPHINX_LOG_PATH = TMP_PATH + '/$1/log/serachd'
 TEST_SPHINXQL_PORT = 340${EXECUTOR_NUMBER}
 TEST_SPHINX_PORT = 341${EXECUTOR_NUMBER}
 
-ASYNC_SIGNALS = False
-
-mwc = MIDDLEWARE_CLASSES
-xmobile = mwc.index('mobile.middleware.XMobileMiddleware')
-detect = ('mobile.middleware.DetectMobileMiddleware',)
-MIDDLEWARE_CLASSES = mwc[:xmobile] + detect + mwc[xmobile:]
 SETTINGS
 
 

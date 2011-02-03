@@ -220,8 +220,8 @@ MIDDLEWARE_CLASSES = (
     'amo.middleware.TimingMiddleware',
     'amo.middleware.LocaleAndAppURLMiddleware',
     # Mobile detection should happen in Zeus.
-    # 'mobile.middleware.DetectMobileMiddleware',
-    'mobile.middleware.XMobileMiddleware',
+    'mobility.middleware.DetectMobileMiddleware',
+    'mobility.middleware.XMobileMiddleware',
     'amo.middleware.RemoveSlashMiddleware',
 
     # Munging REMOTE_ADDR must come before ThreadRequest.

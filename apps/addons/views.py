@@ -16,7 +16,7 @@ import jingo
 import jinja2
 import commonware.log
 from tower import ugettext as _, ugettext_lazy as _lazy
-from mobile.decorators import mobile_ready, mobilized
+from mobile.decorators import mobilized
 
 import amo
 from amo import messages
@@ -58,7 +58,6 @@ def author_addon_clicked(f):
     return decorated
 
 
-@mobile_ready
 @author_addon_clicked
 @addon_view
 def addon_detail(request, addon):
