@@ -4,39 +4,7 @@
 {% endif %}
 
 <div class="notification" id="contribution">
-
-  <div class="aux">
-    <div class="button-wrapper">
-      <a class="button contribute prominent"
-        {# The id triggers a dropdown, so don't expose it if there isn't a
-           suggested amount (i.e., only one choice). #}
-        {% if has_suggested %}id="contribute-button"{% endif %}
-        href="{{ url('addons.contribute', addon.id)|urlparams(src=src) }}">
-        <b></b>{{ _('Contribute') }}
-      </a>
-
-      {% if show_install %}
-        {# L10n: Click Contribute button OR Install button #}
-        <span class="continue">{{ _('or') }}</span>
-        {% set ver = version or None %}
-        {{ install_button(addon, version=ver, show_contrib=False) }}
-      {% endif %}
-    </div>{# /button-wrapper #}
-
-    <div class="suggestion">
-      {% if has_suggested %}
-        <p>{{ _('Suggested Contribution: {0}')|f(
-          addon.suggested_amount|currencyfmt('USD')) }}</p>
-      {% endif %}
-      {% if show_help %}
-          <a id="contribute-more-info" href="#contribute-why">
-            {{ _("What's this?") }}{# msgctxt addons_display_a_license_what #}
-          </a>
-      {% endif %}
-    </div>{# /suggestion #}
-  </div>{# /aux #}
-
-  <h3>
+  <h3 class="{% if show_install %}show-install{% endif %}">
     {% if text %}
       {{ text }}
     {% elif not addon.charity %}
@@ -54,6 +22,37 @@
       {% endtrans %}
     {% endif %}
   </h3>
+
+  <div class="aux{% if show_install %}-bottom{% endif %}">
+    <div class="button-wrapper">
+      <a class="button contribute prominent"
+        {# The id triggers a dropdown, so don't expose it if there isn't a
+           suggested amount (i.e., only one choice). #}
+        {% if has_suggested %}id="contribute-button"{% endif %}
+        href="{{ url('addons.contribute', addon.id)|urlparams(src=src) }}">
+        <b></b>{{ _('Contribute') }}
+      </a>
+      {% if show_install %}
+        {# L10n: Click Contribute button OR Install button #}
+        <span class="continue">{{ _('or') }}</span>
+        {% set ver = version or None %}
+        {{ install_button(addon, version=ver, show_contrib=False) }}
+    {% endif %}
+
+    </div>{# /button-wrapper #}
+
+    <div class="suggestion">
+      {% if has_suggested %}
+        <p>{{ _('Suggested Contribution: {0}')|f(
+          addon.suggested_amount|currencyfmt('USD')) }}</p>
+      {% endif %}
+      {% if show_help %}
+          <a id="contribute-more-info" href="#contribute-why">
+            {{ _("What's this?") }}{# msgctxt addons_display_a_license_what #}
+          </a>
+      {% endif %}
+    </div>{# /suggestion #}
+  </div>{# /aux #}
 
   {% if has_suggested %}
     <div id="contribute-box" class="jqmWindow">

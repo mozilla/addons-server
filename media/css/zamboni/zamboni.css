@@ -2281,16 +2281,59 @@ form .error .note.error {
 
 /* Contributions */
 #contribution.notification .aux {
-    margin: 0 0 0 2em;
 }
 
 #contribution .aux .button-wrapper {
-    float: right;
     padding-bottom: 10px;
 }
 
 #contribution h2 span {
     top: 0;
+}
+
+#developers #contribution .aux {
+    width: 25%;
+    text-align: right;
+    float: right;
+}
+
+#developers #contribution .button-wrapper {
+    float: none;
+    padding: 10px 0 5px;
+}
+
+#developers #contribution h3 {
+    width: 75%;
+    float: left;
+}
+
+#developers #contribution h3.show-install {
+    float: none;
+    margin: 0;
+    width: 100%;
+}
+
+#developers #contribution .aux-bottom {
+    padding-top: 10px;
+    margin-top: 10px;
+    border-top: 1px dashed #E0EFFD;
+}
+
+#developers #contribution .aux-bottom .button-wrapper {
+    float: left;
+    padding: 0;
+    width: 60%;
+}
+
+#developers .notification .continue,
+#developers .install,
+#developers .install_shell,
+#developers .aux-bottom #contribute-button {
+    float: left;
+}
+
+#developers .show-install h3 {
+    margin: 0;
 }
 
 /* Disable styling for stacked .extras. */
