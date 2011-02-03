@@ -225,6 +225,7 @@ class Approval(amo.models.ModelBase):
 
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'approvals'
+        ordering = ('-created',)
 
     @staticmethod
     def total_reviews():

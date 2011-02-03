@@ -3,6 +3,27 @@ $(function() {
     if($('#editors_main').length) {
         initEditorsMain();
     }
+
+
+    var show_comments = function(e) {
+        e.preventDefault()
+        var me = e.target;
+        $(me).hide()
+        $(me).next().show()
+        $(me).parents('tr').next().show()
+    }
+
+    var hide_comments = function(e) {
+        e.preventDefault();
+        var me = e.target;
+        $(me).hide();
+        $(me).prev().show()
+        $(me).parents('tr').next().hide()
+    }
+
+
+    $('a.show').click(show_comments);
+    $('a.hide').click(hide_comments);
 });
 
 function initEditorsMain() {

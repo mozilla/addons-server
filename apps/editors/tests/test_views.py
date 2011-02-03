@@ -1,6 +1,6 @@
 # -*- coding: utf8 -*-
-from datetime import datetime, timedelta
-import re
+import time
+from datetime import datetime
 
 from nose.tools import eq_
 from pyquery import PyQuery as pq
@@ -12,9 +12,8 @@ from addons.models import Addon
 from devhub.models import ActivityLog
 from reviews.models import Review
 from users.models import UserProfile
-from versions.models import Version, ApplicationsVersions
-from files.models import Platform, File
-from applications.models import Application, AppVersion
+from versions.models import Version
+from files.models import Approval, Platform, File
 from . test_models import create_addon_file
 
 
@@ -80,6 +79,44 @@ class TestEventLogDetail(TestEventLog):
         id = ActivityLog.objects.editor_events()[0].id
         r = self.client.get(reverse('editors.eventlog.detail', args=[id]))
         eq_(r.status_code, 200)
+
+
+class TestReviewLog(EditorTest):
+    def setUp(self):
+        self.login_as_editor()
+        super(TestReviewLog, self).setUp()
+        self.make_approvals()
+
+    def make_approvals(self):
+        Platform.objects.create(id=amo.PLATFORM_ALL.id)
+        u = UserProfile.objects.filter()[0]
+        for i in xrange(51):
+            a = Addon.objects.create(type=amo.ADDON_EXTENSION)
+            v = Version.objects.create(addon=a)
+            f = File.objects.create(version=v, platform_id=amo.PLATFORM_ALL.id)
+            Approval.objects.create(addon=a, file=f, user=u, comments='youwin')
+
+    def test_basic(self):
+        r = self.client.get(reverse('editors.reviewlog'))
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        assert doc('.featured button'), 'No filters.'
+        # shoul have 50 showing
+        eq_(len(doc('tbody tr').not_('.hide')), 50)
+        eq_(doc('tbody tr.hide').eq(0).text(), 'youwin')
+
+    def test_end_filter(self):
+        """
+        Let's use today as an end-day filter and make sure we see stuff if we
+        filter.
+        """
+        # make sure we show th stuff we just made
+        date = time.strftime('%Y-%m-%d')
+        r = self.client.get(reverse('editors.reviewlog') + '?end=' + date)
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        eq_(len(doc('tbody tr').not_('.hide')), 50)
+        eq_(doc('tbody tr.hide').eq(0).text(), 'youwin')
 
 
 class TestHome(EditorTest):

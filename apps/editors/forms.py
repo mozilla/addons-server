@@ -31,3 +31,18 @@ class EventLogForm(happyforms.Form):
         if data['filter']:
             data['filter'] = ACTION_DICT[data['filter']]
         return data
+
+
+class ReviewLogForm(happyforms.Form):
+    start = forms.DateField(required=False,
+                            label=_lazy(u'View entries between'))
+    end = forms.DateField(required=False,
+                          label=_lazy(u'and'))
+
+    def clean(self):
+        data = self.cleaned_data
+        # We want this to be inclusive of the end date.
+        if data['end']:
+            data['end'] += timedelta(days=1)
+
+        return data

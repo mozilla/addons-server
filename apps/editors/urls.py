@@ -15,6 +15,7 @@ urlpatterns = patterns('',
         name='editors.queue_moderated'),
     url(r'^logs$', views.eventlog, name='editors.eventlog'),
     url(r'^log/(\d+)$', views.eventlog_detail, name='editors.eventlog.detail'),
+    url(r'^reviewlog$', views.reviewlog, name='editors.reviewlog'),
     url(r'^review/(?P<version_id>\d+)$', views.review, name='editors.review'),
     url(r'^$', views.home, name='editors.home'),
 )
