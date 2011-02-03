@@ -1,6 +1,12 @@
 from django import forms
+from django.forms.models import modelformset_factory, BaseModelFormSet
 
-from .models import ReviewFlag
+import happyforms
+from tower import ugettext as _
+
+import amo
+import reviews
+from .models import ReviewFlag, Review
 
 
 class ReviewReplyForm(forms.Form):
@@ -22,3 +28,47 @@ class ReviewFlagForm(forms.ModelForm):
         if 'note' in data and data['note'].strip():
             data['flag'] = ReviewFlag.OTHER
         return data
+
+
+class BaseReviewFlagFormSet(BaseModelFormSet):
+
+    def __init__(self, *args, **kwargs):
+        self.form = ModerateReviewFlagForm
+        super(BaseReviewFlagFormSet, self).__init__(*args, **kwargs)
+
+    def save(self):
+        for form in self.forms:
+            if form.cleaned_data:
+                action = int(form.cleaned_data['action'])
+
+                if action != reviews.REVIEW_MODERATE_SKIP:  # Delete flags.
+                    for flag in form.instance.reviewflag_set.all():
+                        flag.delete()
+
+                review = form.instance
+                if action == reviews.REVIEW_MODERATE_DELETE:
+                    review_addon = review.addon
+                    review_id = review.id
+                    review.delete()
+                    amo.log(amo.LOG.DELETE_REVIEW, review_addon, review_id)
+                elif action == reviews.REVIEW_MODERATE_KEEP:
+                    amo.log(amo.LOG.APPROVE_REVIEW, review.addon, review)
+
+
+class ModerateReviewFlagForm(happyforms.ModelForm):
+
+    action_choices = [(reviews.REVIEW_MODERATE_KEEP,
+                       _('Keep review; remove flags')),
+                      (reviews.REVIEW_MODERATE_SKIP, _('Skip for now')),
+                      (reviews.REVIEW_MODERATE_DELETE, _('Delete review'))]
+    action = forms.ChoiceField(choices=action_choices, required=False,
+                               initial=0, widget=forms.RadioSelect())
+
+    class Meta:
+        model = Review
+        fields = ('action',)
+
+
+ReviewFlagFormSet = modelformset_factory(Review, extra=0,
+                                         form=ModerateReviewFlagForm,
+                                         formset=BaseReviewFlagFormSet)

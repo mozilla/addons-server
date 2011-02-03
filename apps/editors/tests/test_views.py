@@ -1,6 +1,9 @@
 # -*- coding: utf8 -*-
+import re
 import time
 from datetime import datetime
+
+from django import forms
 
 from nose.tools import eq_
 from pyquery import PyQuery as pq
@@ -8,9 +11,11 @@ import test_utils
 
 import amo
 from amo.urlresolvers import reverse
+from amo.tests import formset, initial
 from addons.models import Addon
 from devhub.models import ActivityLog
-from reviews.models import Review
+import reviews
+from reviews.models import Review, ReviewFlag
 from users.models import UserProfile
 from versions.models import Version
 from files.models import Approval, Platform, File
@@ -84,7 +89,6 @@ class TestEventLogDetail(TestEventLog):
 class TestReviewLog(EditorTest):
     def setUp(self):
         self.login_as_editor()
-        super(TestReviewLog, self).setUp()
         self.make_approvals()
 
     def make_approvals(self):
@@ -287,3 +291,100 @@ class TestPreliminaryQueue(QueueTest):
         eq_(doc('.tabnav li a:eq(2)').text(), u'Preliminary Reviews (2)')
         eq_(doc('.tabnav li a:eq(2)').attr('href'),
             reverse('editors.queue_prelim'))
+
+
+class TestModeratedQueue(QueueTest):
+    fixtures = ['base/users', 'base/apps', 'reviews/dev-reply.json']
+
+    def setUp(self):
+        self.url = reverse('editors.queue_moderated')
+        url_flag = reverse('reviews.flag', args=['a1865', 218468])
+
+        self.login_as_editor()
+        response = self.client.post(url_flag, {'flag': ReviewFlag.SPAM})
+        eq_(response.status_code, 200)
+
+        eq_(ReviewFlag.objects.filter(flag=ReviewFlag.SPAM).count(), 1)
+        eq_(Review.objects.filter(editorreview=True).count(), 1)
+
+    def test_results(self):
+        r = self.client.get(reverse('editors.queue_moderated'))
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+
+        rows = doc('#reviews-flagged .review-flagged:not(.review-saved)')
+        eq_(len(rows), 1)
+
+        row = rows[0]
+
+        assert re.findall("Don't use Firefox", doc('h3', row).text())
+
+        # Default is "Skip"
+        assert doc('#id_form-0-action_1:checked')
+
+    def setup_actions(self, action):
+        ctx = self.client.get(self.url).context
+        fs = initial(ctx['reviews_formset'].forms[0])
+
+        eq_(len(Review.objects.filter(addon=1865)), 2)
+
+        data_formset = formset(fs)
+        data_formset['form-0-action'] = action
+
+        r = self.client.post(reverse('editors.queue_moderated'), data_formset)
+        eq_(r.status_code, 302)
+
+    def test_skip(self):
+        self.setup_actions(reviews.REVIEW_MODERATE_SKIP)
+
+        # Make sure it's still there.
+        r = self.client.get(reverse('editors.queue_moderated'))
+        doc = pq(r.content)
+        rows = doc('#reviews-flagged .review-flagged:not(.review-saved)')
+        eq_(len(rows), 1)
+
+    def test_remove(self):
+        """ Make sure the editor tools can delete a review. """
+        al = ActivityLog.objects.filter(action=amo.LOG.DELETE_REVIEW.id)
+        al_start = al.count()
+        self.setup_actions(reviews.REVIEW_MODERATE_DELETE)
+
+        # Make sure it's removed from the queue.
+        r = self.client.get(reverse('editors.queue_moderated'))
+        doc = pq(r.content)
+        rows = doc('#reviews-flagged .review-flagged:not(.review-saved)')
+        eq_(len(rows), 0)
+
+        # Make sure it was actually deleted.
+        eq_(len(Review.objects.filter(addon=1865)), 1)
+
+        # One activity logged.
+        al_end = ActivityLog.objects.filter(action=amo.LOG.DELETE_REVIEW.id)
+        eq_(al_start + 1, al_end.count())
+
+    def test_keep(self):
+        """ Make sure the editor tools can remove flags and keep a review. """
+        al = ActivityLog.objects.filter(action=amo.LOG.APPROVE_REVIEW.id)
+        al_start = al.count()
+        self.setup_actions(reviews.REVIEW_MODERATE_KEEP)
+
+        # Make sure it's removed from the queue.
+        r = self.client.get(reverse('editors.queue_moderated'))
+        doc = pq(r.content)
+        rows = doc('#reviews-flagged .review-flagged:not(.review-saved)')
+        eq_(len(rows), 0)
+
+        # Make sure it's NOT deleted.
+        eq_(len(Review.objects.filter(addon=1865)), 2)
+
+        # One activity logged.
+        al_end = ActivityLog.objects.filter(action=amo.LOG.APPROVE_REVIEW.id)
+        eq_(al_start + 1, al_end.count())
+
+    def test_queue_count(self):
+        r = self.client.get(reverse('editors.queue_moderated'))
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        eq_(doc('.tabnav li a:eq(3)').text(), u'Moderated Review (1)')
+        eq_(doc('.tabnav li a:eq(3)').attr('href'),
+            reverse('editors.queue_moderated'))

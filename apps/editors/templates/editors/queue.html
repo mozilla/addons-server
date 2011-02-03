@@ -30,39 +30,88 @@
     {{ page|paginator }}
     </div>
     {% endif %}
-    <table class="data-grid">
-      <thead>
-        <tr class="listing-header">
-            {% for column in table.columns %}
-              {% if column.is_ordered_reverse %}
-                {% set cls, sprite = 'ordered', 'desc' %}
-              {% elif column.is_ordered_straight %}
-                {% set cls, sprite = 'ordered', 'asc' %}
-              {% else %}
-                {% set cls, sprite = '', 'both' %}
+
+    {% if tab == 'moderated' %}
+      <div id="reviews-flagged">
+        <form method="post" class="item" action="">
+          <div class="review-saved">
+            <button type="submit">{{ _('Process Reviews') }}</button>
+          </div>
+          {{ csrf() }}
+          {{ reviews_formset.management_form }}
+          {% for review in reviews_formset.forms %}
+          <div class="review-flagged">
+            <div class="review-flagged-actions">
+              {{ review.errors }}
+              <strong>{{ _('Moderation actions:') }}</strong>
+              {{ review.id }}
+              {{ review.action }}
+            </div>
+            <h3>
+              <a href="{{ review.instance.addon.get_url_path() }}">
+                {{ review.instance.addon.name }}</a>
+              {%- if review.instance.title %}
+                : {{ review.instance.title }}
               {% endif %}
-              <th class="{{ cls }}">
-                <a href="?sort={{ column.name_toggled }}" class="sort-icon ed-sprite-sort-{{ sprite }}">
-                  {{ column }}
-                </a>
-              </th>
-            {% endfor %}
-        </tr>
-      </thead>
-      <tbody>
-        {% for row in page.object_list %}
-          <tr>
-          {% for value in row %}
-            <td>{{ value|xssafe }}</td>
+            </h3>
+            <p>
+            {% trans user=review.instance.user|user_link, date=review.instance.created|datetime,
+                     stars=review.instance.rating|stars, locale=review.instance.title.locale %}
+              by {{ user }} on {{ date }}
+              {{ stars }} ({{ locale }})
+            {% endtrans %}
+            </p>
+            <p class="description">{{ review.instance.body|nl2br }}</p>
+            <ul class="reviews-flagged-reasons">
+              {% for reason in review.instance.reviewflag_set.all() %}
+              <li>
+              <strong>{{ flags[reason.flag] }}</strong>
+              {{ reason.note }}
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
           {% endfor %}
+          <div class="review-saved review-flagged">
+            <button type="submit">{{ _('Process Reviews') }}</button>
+          </div>
+        </form>
+      </div>
+    {% else %}
+      <table class="data-grid">
+        <thead>
+          <tr class="listing-header">
+              {% for column in table.columns %}
+                {% if column.is_ordered_reverse %}
+                  {% set cls, sprite = 'ordered', 'desc' %}
+                {% elif column.is_ordered_straight %}
+                  {% set cls, sprite = 'ordered', 'asc' %}
+                {% else %}
+                  {% set cls, sprite = '', 'both' %}
+                {% endif %}
+                <th class="{{ cls }}">
+                  <a href="?sort={{ column.name_toggled }}" class="sort-icon ed-sprite-sort-{{ sprite }}">
+                    {{ column }}
+                  </a>
+                </th>
+              {% endfor %}
           </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-    {% if page|paginator %}
-    <div class="data-grid-content data-grid-bottom">
-    {{ page|paginator }}
-    </div>
+        </thead>
+        <tbody>
+          {% for row in page.object_list %}
+            <tr>
+            {% for value in row %}
+              <td>{{ value|xssafe }}</td>
+            {% endfor %}
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% endif %}
+      {% if page|paginator %}
+      <div class="data-grid-content data-grid-bottom">
+      {{ page|paginator }}
+      </div>
     {% endif %}
   </div>
 </div>

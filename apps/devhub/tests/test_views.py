@@ -24,6 +24,7 @@ import amo
 import files.tests
 import paypal
 from amo.urlresolvers import reverse
+from amo.tests import formset, initial
 from amo.tests.test_helpers import get_image_path
 from addons import cron
 from addons.forms import AddonFormBasic
@@ -2031,22 +2032,6 @@ class TestProfile(TestProfileBase):
 
         self.post(the_reason='to be hot', the_future='cold stuff')
         self.check(the_reason='to be hot', the_future='cold stuff')
-
-
-def initial(form):
-    """Gather initial data from the form into a dict."""
-    data = {}
-    for name, field in form.fields.items():
-        if form.is_bound:
-            data[name] = form[name].data
-        else:
-            data[name] = form.initial.get(name, field.initial)
-        # The browser sends nothing for an unchecked checkbox.
-        if isinstance(field, forms.BooleanField):
-            val = field.to_python(data[name])
-            if not val:
-                del data[name]
-    return data
 
 
 class TestVersion(test_utils.TestCase):

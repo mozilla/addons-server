@@ -76,3 +76,4 @@ def test_to_language():
         eq_(to_language(a), b)
     for a, b in tests:
         yield check, a, b
+

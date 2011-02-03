@@ -274,8 +274,7 @@ class APPROVE_REVIEW(_LOG):
 class DELETE_REVIEW(_LOG):
     """Requires review.id and add-on objects."""
     id = 41
-    format = _(u'Review {0} deleted.')
-    # TODO(davedash): a {more} link will need to go somewhere
+    format = _(u'Review {0} for {addon} deleted.')
     editor_format = _(u'{user} deleted review {0}.')
     keep = True
     editor_event = True

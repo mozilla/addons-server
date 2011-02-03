@@ -19,6 +19,8 @@ from editors.models import (ViewPendingQueue, ViewFullReviewQueue,
 from editors.helpers import (ViewPendingQueueTable, ViewFullReviewQueueTable,
                              ViewPreliminaryQueueTable)
 from files.models import Approval
+from reviews.forms import ReviewFlagFormSet
+from reviews.models import Review, ReviewFlag
 from zadmin.models import get_config
 
 
@@ -90,19 +92,22 @@ def _queue(request, TableObj, tab):
                 pass
     order_by = request.GET.get('sort', '-waiting_time_days')
     table = TableObj(qs, order_by=order_by)
-    queue_counts = {
-        'pending': ViewPendingQueue.objects.all().count(),
-        'nominated': ViewFullReviewQueue.objects.all().count(),
-        'prelim': ViewPreliminaryQueue.objects.all().count(),
-        # TODO(Kumar) this is just a placeholder
-        'moderated': ViewPendingQueue.objects.all().count()
-    }
+    queue_counts = _queue_counts()
     page = paginate(request, table.rows, per_page=100,
                     count=queue_counts[tab])
     table.set_page(page)
     return jingo.render(request, 'editors/queue.html',
                         {'table': table, 'page': page, 'tab': tab,
                          'queue_counts': queue_counts})
+
+
+def _queue_counts():
+    moderated = Review.objects.filter(reviewflag__isnull=False)
+
+    return {'pending': ViewPendingQueue.objects.count(),
+            'nominated': ViewFullReviewQueue.objects.count(),
+            'prelim': ViewPreliminaryQueue.objects.count(),
+            'moderated': moderated.count()}
 
 
 @editor_required
@@ -127,7 +132,23 @@ def queue_prelim(request):
 
 @editor_required
 def queue_moderated(request):
-    raise NotImplementedError
+    rf = Review.objects.filter(reviewflag__isnull=False, addon__isnull=False)
+    page = paginate(request, rf, per_page=50)
+
+    flags = dict(ReviewFlag.FLAGS)
+
+    reviews_formset = ReviewFlagFormSet(request.POST or None,
+                                        queryset=page.object_list)
+
+    if reviews_formset.is_valid():
+        reviews_formset.save()
+        # We have to redirect because forms have been deleted and the
+        # pagination will be all screwy.
+        return redirect(reverse('editors.queue_moderated'))
+
+    return jingo.render(request, 'editors/queue.html',
+            {'reviews_formset': reviews_formset, 'tab': 'moderated',
+             'page': page, 'flags': flags, 'queue_counts': _queue_counts()})
 
 
 @editor_required

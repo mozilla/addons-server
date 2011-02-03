@@ -275,3 +275,74 @@ tr.comments {
     background: #def;
 }
 
+/* Moderated reviews css */
+
+#reviews-flagged .review-flagged {
+    border-top: 1px dotted #CCCCCC;
+    padding: 1em;
+    margin: 0 0 1em 1em;
+}
+
+#reviews-flagged .review-flagged ul {
+    margin-bottom: 0;
+}
+
+#reviews-flagged .review-flagged:first-child {
+    border-top: 0;
+}
+
+#reviews-flagged .reviews-flagged-reasons {
+    background-color: #FFE4E4;
+    border-radius: 10px;
+    margin: 0;
+    padding: 0 10px;
+    clear: both;
+}
+
+#reviews-flagged .reviews-flagged-reasons li {
+    padding: 10px 0;
+    border-top: 1px dotted #FFB1B1;
+}
+
+#reviews-flagged .reviews-flagged-reasons li:first-child {
+    border-top: 0;
+}
+
+#reviews-flagged h3 {
+    margin: 0;
+}
+
+#reviews-flagged .review-flagged-actions {
+    float: right;
+    padding-left: 10px;
+    margin-left: 10px;
+    border-left: 1px dashed #ccc;
+    width: 200px;
+}
+
+#reviews-flagged .review-flagged-actions label {
+    font-weight: normal;
+}
+
+#reviews-flagged form {
+    margin: 0;
+}
+
+#reviews-flagged div.review-saved {
+    padding: 10px;
+    text-align: right;
+    margin-bottom: 0;
+}
+
+#reviews-flagged label[for$=action_0] {
+    color: #429341;
+}
+
+#reviews-flagged label[for$=action_1] {
+    color: #4D80C6;
+}
+
+#reviews-flagged label[for$=action_2] {
+    color: #9A2E2E;
+}
+
