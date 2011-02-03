@@ -40,17 +40,15 @@
         <li><a href="{{ url('browse.featured') }}">
           {{ _('View all Featured add-ons') }}</a></li>
       </ul>
-    </div>
-    <div id="listing-popular" class="tab-pane">
+    </div><div id="listing-popular" class="tab-pane">
       <ul id="list-popular" class="listview">
         {{ addon_listing_items_mobile(popular, show_date=key,
                                        src='homepagebrowse') }}
-        <li><a href="{{ url('browse.featured') }}">
-          {{ _('View all Featured add-ons') }}</a></li>
+        <li><a href="{{ url('browse.extensions')|urlparams(sort='popular') }}">
+          {{ _('View all Popular add-ons') }}</a></li>
       </ul>
-    </div>
-    {% set categories, types = sidebar(request.APP or amo.FIREFOX) %}
-    <div id="listing-categories" class="tab-pane">
+    </div><div id="listing-categories" class="tab-pane">
+      {% set categories, types = sidebar(request.APP or amo.FIREFOX) %}
       <ul id="list-popular" class="listview">
         {% for c in categories %}
         <li><a href="{{ c.get_url_path() }}">
