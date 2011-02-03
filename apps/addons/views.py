@@ -16,7 +16,7 @@ import jingo
 import jinja2
 import commonware.log
 from tower import ugettext as _, ugettext_lazy as _lazy
-from mobile.decorators import mobilized
+from mobility.decorators import mobilized
 
 import amo
 from amo import messages

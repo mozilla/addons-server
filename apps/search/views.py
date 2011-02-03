@@ -3,7 +3,7 @@ from collections import defaultdict
 import commonware.log
 import jingo
 from tower import ugettext as _
-from mobile.decorators import mobile_template
+from mobility.decorators import mobile_template
 
 import amo
 import bandwagon.views

@@ -8,7 +8,7 @@ from django.shortcuts import get_object_or_404, redirect
 import commonware.log
 import jingo
 import caching.base as caching
-from mobile.decorators import mobile_template
+from mobility.decorators import mobile_template
 from tower import ugettext_lazy as _lazy, ugettext as _
 
 from amo import messages

@@ -8,7 +8,7 @@ from django.views.decorators.cache import cache_page
 
 import jingo
 import product_details
-from mobile.decorators import mobile_template
+from mobility.decorators import mobile_template
 from tower import ugettext_lazy as _lazy
 
 import amo.utils
