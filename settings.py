@@ -393,6 +393,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/underscore-min.js',
             'js/amo2009/addons.js',
             'js/zamboni/init.js',
+            'js/zamboni/format.js',
             'js/zamboni/buttons.js',
             'js/zamboni/tabs.js',
 
@@ -432,6 +433,7 @@ MINIFY_BUNDLES = {
         'zamboni/discovery-pane': (
             'js/zamboni/jquery-1.4.2.min.js',
             'js/jquery-ui/ui.lightbox.js',
+            'js/zamboni/format.js',
             'js/zamboni/truncation.js',
 
             # Personas

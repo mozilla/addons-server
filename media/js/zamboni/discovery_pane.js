@@ -13,7 +13,7 @@
  * Note: Requires jquery 1.2 or above from version 1.0.1
  */
 
-(function($) {                                          // Compliant with jquery.noConflict()
+(function($) {
 $.fn.jCarouselLite = function(o) {
     o = $.extend({
         btnPrev: null,
@@ -35,10 +35,17 @@ $.fn.jCarouselLite = function(o) {
         afterEnd: null
     }, o || {});
 
-    return this.each(function() {                           // Returns the element collection. Chainable.
+    return this.each(function() {
+        // Returns the element collection. Chainable.
 
-        var running = false, animCss=o.vertical?"top":"left", sizeCss=o.vertical?"height":"width";
-        var div = $(this), ul = $(".slider", div), tLi = $(".panel", ul), tl = tLi.size(), v = o.visible;
+        var running = false,
+            animCss = o.vertical ? "top" : "left",
+            sizeCss = o.vertical ? "height" : "width",
+            div = $(this),
+            ul = $(".slider", div),
+            tLi = $(".panel", ul),
+            tl = tLi.size(),
+            v = o.visible;
 
         if(o.circular) {
             ul.prepend(tLi.slice(tl-v-1+1).clone())
@@ -54,7 +61,7 @@ $.fn.jCarouselLite = function(o) {
         div.css({overflow: "hidden", position: "relative", "z-index": "2", left: "0"});
 
         // Full li size (including margin, used for animation).
-        var liSize = o.vertical ? outHeight(li) : outWidth(li);
+        var liSize = o.vertical ? li.outerHeight(true) : li.outerWidth(true);
         // Size of full ul (total length, not just for the visible items).
         var ulSize = liSize * itemLength;
         // Size of entire div (total length, for only the visible items).
@@ -136,7 +143,8 @@ $.fn.jCarouselLite = function(o) {
                         running = false;
                     }
                 );
-                // Disable buttons when the carousel reaches the last/first, and enable when not
+                // Disable buttons when the carousel reaches the last/first,
+                // and enable when not.
                 if(!o.circular) {
                     $(o.btnPrev + "," + o.btnNext).removeClass("disabled");
                     $( (curr-o.scroll<0 && o.btnPrev)
@@ -153,18 +161,8 @@ $.fn.jCarouselLite = function(o) {
 
         // Change panel widths on resize to keep the page liquid
         $(window).resize(function(){
-            panelWidth = $("#main").width();
-            $("#main-feature, #main-feature .panel, #images").css({width: panelWidth});
-            $("#recs .gallery").css({width: panelWidth - 2});
-            $("#recs .gallery .panel, #images .panel").css({width: panelWidth / 3 - 10});
-            if ($(".pane").length) {
-                var galleryWidth = $("#recs .gallery").width();
-                $("#recs .gallery .panel").css({
-                    'width': 0.3 * galleryWidth,
-                    'margin-right': 0.05 * galleryWidth
-                });
-            }
-            liSize = o.vertical ? outHeight(li) : outWidth(li);
+            setPanelWidth("both");
+            liSize = o.vertical ? li.outerHeight(true) : li.outerHeight(true);
             ul.css(sizeCss, ulSize+"px").css(animCss, -(curr*liSize));
         });
 
@@ -173,16 +171,6 @@ $.fn.jCarouselLite = function(o) {
 
 function css(el, prop) {
     return parseInt($.css(el[0], prop)) || 0;
-};
-
-// jQuery's .outerWidth() and .outerWidth() methods include padding,
-// which we don't want.
-function outWidth(el) {
-    return el[0].offsetWidth + css(el, 'marginLeft') + css(el, 'marginRight');
-};
-
-function outHeight(el) {
-    return el[0].offsetHeight + css(el, 'marginTop') + css(el, 'marginBottom');
 };
 
 })(jQuery);
@@ -200,7 +188,6 @@ $(document).ready(function(){
     $("#images").fadeIn("slow").addClass("js").jCarouselLite({
         btnNext: "#images .nav-next a",
         btnPrev: "#images .nav-prev a",
-        visible: 3,
         circular: false
     });
     $(".addon-info").addClass("js");
@@ -217,13 +204,7 @@ $(document).ready(function(){
         containerResizeSpeed: 350
     });
 
-    // Set the width of panels (jCarousel requires a pixel width but our page
-    // is liquid, so we'll set the width in px on pageload and on resize).
-    var panelWidth = $("#main").width();
-    $("#main-feature, #main-feature .panel, #images").css({width: panelWidth});
-    // We show three images at a time, so the width of each is 1/3 minus a
-    // right margin of 10px.
-    $("#images .panel").css({width: panelWidth / 3 - 10});
+    setPanelWidth("detail");
 });
 
 
@@ -237,4 +218,24 @@ function debounce(fn, ms, ctxt) {
             fun.apply(ctx, args);
         }, del);
     };
+}
+
+
+function setPanelWidth(section) {
+    // Set the width of panels (jCarousel requires a pixel width but our page
+    // is liquid, so we'll set the width in px on pageload and on resize).
+    if (section == "both" || section == "detail") {
+        var panelWidth = $("#main").width();
+        $("#main-feature, #main-feature .panel, #images").css({width: panelWidth});
+        // We show three images at a time, so the width of each is 1/3 minus a
+        // right margin of 10px.
+        $("#images .panel").css({width: panelWidth / 3 - 10});
+    }
+    if (section == "both" || section == "pane") {
+        var galleryWidth = $("#recs .gallery").width();
+        $("#recs .gallery .panel").css({
+            "width": 0.3 * galleryWidth,
+            "margin-right": 0.05 * galleryWidth
+        });
+    }
 }

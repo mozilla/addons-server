@@ -15,6 +15,14 @@ function initDescs() {
 
 
 function initRecs() {
+    try {
+        if (!window.localStorage || !window.JSON || !Object.keys) {
+            return;
+        }
+    } catch(ex) {
+        return;
+    }
+
     var services_url = document.body.getAttribute("data-services-url");
 
     // Where all the current recommendations data is kept.
@@ -27,7 +35,8 @@ function initRecs() {
     var guids = [],
         token;
     if (location.hash) {
-        guids = JSON.parse(location.hash.slice(1));
+        guids = Object.keys(JSON.parse(location.hash.slice(1)));
+        alert(guids);
     } else {
         // If the user has opted out of recommendations, clear out any
         // existing recommendations.
@@ -37,30 +46,28 @@ function initRecs() {
 
     function populateRecs() {
         if (datastore.addons.length) {
+            var addon_item = template('<li class="panel">' +
+                '<a href="{url}" target="_self">' +
+                '<img src="{icon}" width="32" height="32">' +
+                '<h3>{name}</h3>' +
+                '<p class="desc">{summary}</p>' +
+                '</a></li>');
             $.each(datastore.addons, function(i, addon) {
-                var li = ['<li class="panel">'];
-                var url = addon.learnmore;
-                url = services_url + url.slice(url.indexOf("/", 7));
-                li.push(
-                    '<a href="' + url + '" target="_self">',
-                    '<img src="' + addon.icon + '" width="32" height="32">',
-                    "<h3>" + addon.name + "</h3>",
-                    '<p class="desc">' + addon.summary + "</p>",
-                    "</a></li>");
-                $("#recs .slider").append(li.join(""));
+                var str = addon_item({
+                    url: addon.learnmore,
+                    icon: addon.icon,
+                    name: addon.name,
+                    summary: addon.summary
+                });
+                $("#recs .slider").append(str);
             });
             $("#recs .gallery").fadeIn("slow").addClass("js").jCarouselLite({
                 btnNext: "#recs .nav-next a",
                 btnPrev: "#recs .nav-prev a",
-                visible: 3,
-                circular: false,
+                circular: false
             });
             $("#recs #nav-recs").fadeIn("slow").addClass("js");
-            var galleryWidth = $("#recs .gallery").width();
-            $("#recs .gallery .panel").css({
-                'width': 0.3 * galleryWidth,
-                'margin-right': 0.05 * galleryWidth
-            });
+            setPanelWidth("pane");
             initDescs();
         } else {
             var addons_url = $("#more-addons a").attr("href");
@@ -129,20 +136,16 @@ function initRecs() {
 }
 
 
-/* Python(ish) string formatting:
- * >>> format('{0}', ['zzz'])
- * "zzz"
- * >>> format('{0}{1}', 1, 2)
- * "12"
- * >>> format('{x}', {x: 1})
- * "1"
- */
-var format = (function() {
-    var re = /\{([^}]+)\}/g;
-    return function(s, args) {
-        if (!args) return;
-        if (!(args instanceof Array || args instanceof Object))
-            args = Array.prototype.slice.call(arguments, 1);
-        return s.replace(re, function(_, match){ return args[match]; });
-    };
-})();
+// Backwards compatibility for the Object.keys method, which was introduced
+// in JavaScript 1.8.5 and is supported by FF4.
+if (!Object.keys) {
+    Object.keys = function(o) {
+        var ret = [], p;
+        for (p in o) {
+            if (Object.prototype.hasOwnProperty.call(o, p)) {
+                ret.push(p);
+            }
+        }
+        return ret;
+    }
+}

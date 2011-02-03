@@ -15,6 +15,7 @@ import api
 import api.utils
 from addons.models import Addon
 from amo import helpers
+from amo.urlresolvers import reverse
 from search.tests import SphinxTestCase
 from search.utils import stop_sphinx
 
@@ -38,6 +39,10 @@ class UtilsTest(TestCase):
         a = Addon.objects.get(pk=3615)
         d = api.utils.addon_to_dict(a)
         assert d['learnmore'].endswith('/addon/a3615/?src=api')
+        d = api.utils.addon_to_dict(a, disco=True)
+        u = settings.SERVICES_URL + reverse('discovery.addons.detail',
+                                            args=['a3615'])
+        eq_(d['learnmore'], u)
 
 
 class No500ErrorsTest(TestCase):

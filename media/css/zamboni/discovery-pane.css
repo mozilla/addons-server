@@ -88,7 +88,7 @@ header {
     border-radius: 8px;
     background: -moz-linear-gradient(top, #fff 0, #ecf1f7 100%);
     box-shadow: inset 0 -3px 0 rgba(58,78,103,0.05), 0 3px 0 rgba(175,195,220,.3);
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .recs header {
@@ -217,12 +217,16 @@ header:after,
 
 /* @Mission, @My-account *********/
 #mission, #my-account {
-    background: -moz-linear-gradient(top, #fff 0, #ecf1f7 100%);
     margin: 0 0 0 -10px;
     padding: 10px;
     float: right;
     width: 22%;
     width: -moz-calc(24% - 22px);
+}
+
+.recs #mission,
+.no-recs #my-account {
+    background: -moz-linear-gradient(top, #fff 0, #ecf1f7 100%);
 }
 
 #my-account {
@@ -362,7 +366,8 @@ header:after,
 }
 
 #nav-recs a {
-    height: 161px;
+    margin: 0;
+    height: 163px;
 }
 
 #nav-features a:hover,
@@ -392,6 +397,7 @@ header:after,
 .html-rtl .nav-prev a,
 .html-rtl #lightbox-nav a#lightbox-nav-btnPrev {
     border-radius: 0 8px 8px 0;
+    right: 0;
 }
 
 .nav-prev a:hover,
@@ -415,6 +421,12 @@ header:after,
 .nav-next a:hover,
 .nav-next a:active {
     box-shadow: inset rgba(255,255,255,0.4) 0px 0px 6px, rgba(125,125,125,0.1) -2px 0px 3px;
+}
+
+#nav-recs .nav-prev a,
+#nav-recs .nav-next a {
+	border-radius-top-right: 0;
+	border-radius-top-left: 0;
 }
 
 .nav-prev .disabled,

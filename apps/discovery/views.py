@@ -72,8 +72,7 @@ def api_view(request, platform, version, list_type,
     view = api.views.ListView()
     view.request, view.version = request, api_version
     view.format, view.mimetype = format, mimetype
-    return view.process_request(list_type, platform=platform,
-                                version=version)
+    return view.process_request(list_type, platform=platform, version=version)
 
 
 @admin.site.admin_view
@@ -150,35 +149,11 @@ def recommendations(request, limit=5):
 
 def _recommendations(request, limit, token, recs):
     """Return a JSON response for the recs view."""
-    ids = list(recs.addons.order_by('collectionaddon__ordering')
-               .values_list('id', flat=True))[:limit]
+    addons = list(recs.addons.order_by('collectionaddon__ordering'))[:limit]
     data = {'token': token, 'recommendations': recs.get_url_path(),
-            'addons': [api.utils.addon_to_dict(Addon.objects.get(pk=pk))
-                       for pk in ids]}
+            'addons': [api.utils.addon_to_dict(a, disco=True) for a in addons]}
     content = json.dumps(data, cls=amo.utils.JSONEncoder)
     return http.HttpResponse(content, content_type='application/json')
-
-
-@addon_view
-def addon_detail(request, addon):
-    reviews = Review.objects.latest().filter(addon=addon)
-    return jingo.render(request, 'discovery/addons/detail.html',
-                        {'addon': addon, 'reviews': reviews,
-                         'get_replies': Review.get_replies,
-                         'src': 'discovery-pane-details'})
-
-
-@addon_view
-def addon_eula(request, addon, file_id):
-    if not addon.eula:
-        return http.HttpResponseRedirect(addon.get_url_path())
-    if file_id is not None:
-        version = get_object_or_404(addon.versions, files__id=file_id)
-    else:
-        version = addon.current_version
-    return jingo.render(request, 'discovery/addons/eula.html',
-                        {'addon': addon, 'version': version,
-                         'src': 'discovery-pane-eula'})
 
 
 def get_addon_ids(guids):
@@ -209,3 +184,25 @@ def get_random_token():
         token = unicode(uuid.uuid4())
         if CollectionToken.objects.filter(token=token).count() == 0:
             return token
+
+
+@addon_view
+def addon_detail(request, addon):
+    reviews = Review.objects.latest().filter(addon=addon)
+    return jingo.render(request, 'discovery/addons/detail.html',
+                        {'addon': addon, 'reviews': reviews,
+                         'get_replies': Review.get_replies,
+                         'src': 'discovery-pane-details'})
+
+
+@addon_view
+def addon_eula(request, addon, file_id):
+    if not addon.eula:
+        return http.HttpResponseRedirect(addon.get_url_path())
+    if file_id is not None:
+        version = get_object_or_404(addon.versions, files__id=file_id)
+    else:
+        version = addon.current_version
+    return jingo.render(request, 'discovery/addons/eula.html',
+                        {'addon': addon, 'version': version,
+                         'src': 'discovery-pane-eula'})

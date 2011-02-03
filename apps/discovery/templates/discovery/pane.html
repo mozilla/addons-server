@@ -37,8 +37,8 @@
 
     {% if user.is_authenticated() %}
       <section id="my-account">
-        <p>{{ _('Hi, {0} ({1})')|f(request.amo_user.welcome_name,
-                                   request.amo_user.username) }}</p>
+        {# L10n: {0} is the user's login name. #}
+        <p>{{ _('Hi, {0}')|f(request.amo_user.welcome_name) }}</p>
         <ul>
           <li><a href="{{ url('users.edit') }}">{{ _('Your Profile') }}</a></li>
           <li><a href="{{ url('collections.detail', request.amo_user.username,
@@ -90,7 +90,6 @@
           <li class="nav-prev"><a href="#" class="prev">{{ _('Previous') }}</a></li>
           <li class="nav-next"><a href="#" class="next">{{ _('Next') }}</a></li>
         </ul>
-
         <ul class="slider">
         {% for module in modules %}
           {{ module.render() }}
@@ -104,13 +103,13 @@
           {{ addon_list(featured_addons) }}
         </div>
       </section>
+
     </section>
 
     <section id="sub">
       <section class="featured" id="top-addons">
         <h2><a class="all" href="{{ url('browse.extensions') }}">{{ _('See all') }}</a>
-        {{ _('Top Add-ons') }}
-        </h2>
+          {{ _('Top Add-ons') }}</h2>
         {{ addon_list(top_addons, 5, sidebar=True) }}
       </section>
       <section class="featured personas" id="featured-personas">
@@ -126,11 +125,10 @@
           </li>
           <li id="more-personas">
             <a href="{{ url('browse.themes') }}">
-                {{ _('See all themes and Personas') }}</a>
+              {{ _('See all themes and Personas') }}</a>
           </li>
         </ul>
       </section>
-
     </section>
 
     <script src="{{ url('jsi18n') }}/build:{{ BUILD_ID_JS }}"></script>

@@ -1,8 +1,9 @@
 from django.conf import settings
 
+from amo.urlresolvers import reverse
 from amo.utils import urlparams, epoch
 
-def addon_to_dict(addon):
+def addon_to_dict(addon, disco=False):
     """
     Renders an addon in JSON for the API.
     """
@@ -10,6 +11,12 @@ def addon_to_dict(addon):
     previews = addon.previews.all()
     url = lambda u, **kwargs: settings.SITE_URL + urlparams(u, **kwargs)
     src = 'api'
+
+    if disco:
+        learnmore = settings.SERVICES_URL + reverse('discovery.addons.detail',
+                                                    args=[addon.slug])
+    else:
+        learnmore = url(addon.get_url_path(), src=src)
 
     d = {
          'id': addon.id,
@@ -22,7 +29,7 @@ def addon_to_dict(addon):
          'description': addon.description,
          'icon': addon.icon_url,
          'previews': [p.as_dict(src=src) for p in previews],
-         'learnmore': url(addon.get_url_path(), src=src),
+         'learnmore': learnmore,
          'reviews': url(addon.reviews_url),
          'total_dls': addon.total_downloads,
          'weekly_dls': addon.weekly_downloads,
@@ -53,4 +60,3 @@ def addon_to_dict(addon):
         d['contribution'] = contribution
 
     return d
-
