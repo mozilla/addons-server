@@ -36,7 +36,6 @@ function initRecs() {
         token;
     if (location.hash) {
         guids = Object.keys(JSON.parse(location.hash.slice(1)));
-        alert(guids);
     } else {
         // If the user has opted out of recommendations, clear out any
         // existing recommendations.
