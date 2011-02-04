@@ -82,13 +82,17 @@ section > section {
     float: left;
 }
 
-header {
+.pane header {
     border: 1px solid #a8b8d1;
     border-bottom-width: 0;
     border-radius: 8px;
     background: -moz-linear-gradient(top, #fff 0, #ecf1f7 100%);
     box-shadow: inset 0 -3px 0 rgba(58,78,103,0.05), 0 3px 0 rgba(175,195,220,.3);
     margin-bottom: 10px;
+}
+
+.detail header {
+    margin-bottom: 20px;
 }
 
 .recs header {
@@ -224,8 +228,7 @@ header:after,
     width: -moz-calc(24% - 22px);
 }
 
-.recs #mission,
-.no-recs #my-account {
+.recs #mission {
     background: -moz-linear-gradient(top, #fff 0, #ecf1f7 100%);
 }
 
@@ -864,8 +867,10 @@ body.detail {
     position: relative;
 }
 
-#main hgroup {
++/* @group Add-on details header */
++.detail #main header {
     margin: 0 0 1.6em;
+    position: relative;
     text-shadow: 0 1px 0 rgba(255,255,255,0.8);
 }
 
@@ -880,21 +885,57 @@ h1.addon .version {
     color: #76787b;
 }
 
+.html-rtl h1.addon,
+.html-rtl h2.author {
+    text-align: right;
+}
+
 h1.addon .icon {
     max-width: 32px;
     position: absolute;
-    left: 0;
+    left: -52px;
 }
 
 .html-rtl h1.addon .icon {
     left: auto;
-    right: 0;
+    right: -52px;
 }
 
-h2.author {
+h2.author,
+p.back {
     font-size: 1em;
     font-weight: bold;
 }
+
+/* @group Add-on details header */
+.detail #main header p.back {
+    margin: 0 0 1em 1em;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.html-rtl .detail #main header p.back {
+    left: 0;
+    margin: 0 1em 1em 0;
+}
+
+p.back:before {
+    content: "\25B4";
+    margin-right: 0.5em;
+    position: relative;
+    bottom: 1px;
+}
+
+p.back:before,
+p.back a:link,
+p.back a:visited {
+    color: #144fae;
+}
+
+p.back:hover:before {
+    color: #083681;
+}
+/* @end */
 
 .install-shell .install,
 .install-shell .extra,

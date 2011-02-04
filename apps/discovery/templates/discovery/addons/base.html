@@ -17,7 +17,7 @@
               data-readonly="{{ settings.READ_ONLY|json }}"
               data-media-url="{{ MEDIA_URL }}">
     <section id="main">
-      <hgroup>
+      <header>
         <h1 class="addon">
           <img class="icon" src="{{ addon.icon_url }}">
           {{ addon.name }}
@@ -28,8 +28,9 @@
         </h1>
         <h2 class="author">
           {{ _('by') }} {{ users_list(addon.listed_authors) }}
-        </h4>
-      </hgroup>
+          {{ disco_pane_link(src) }}
+        </h2>
+      </header>
       {% block main %}{% endblock %}
     </section>
     {% block secondary %}{% endblock %}

@@ -178,6 +178,10 @@ function css(el, prop) {
 
 $(document).ready(function(){
     $(".install-action a").attr("target", "_self");
+    $(".detail header p.back a").click(function(e) {
+        e.preventDefault();
+        history.go(parseInt($(this).attr('data-history')));
+    });
 
     // Set up the carousel.
     $("#main-feature").fadeIn("slow").addClass("js").jCarouselLite({

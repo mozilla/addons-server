@@ -133,18 +133,3 @@ function initRecs() {
         }
     }
 }
-
-
-// Backwards compatibility for the Object.keys method, which was introduced
-// in JavaScript 1.8.5 and is supported by FF4.
-if (!Object.keys) {
-    Object.keys = function(o) {
-        var ret = [], p;
-        for (p in o) {
-            if (Object.prototype.hasOwnProperty.call(o, p)) {
-                ret.push(p);
-            }
-        }
-        return ret;
-    }
-}
