@@ -9,6 +9,7 @@ from tower import ugettext_lazy as _, ungettext as ngettext
 import amo
 from editors.models import (ViewPendingQueue, ViewFullReviewQueue,
                             ViewPreliminaryQueue)
+from editors.sql_table import SQLTable
 from amo.helpers import page_title
 from amo.urlresolvers import reverse
 
@@ -25,7 +26,13 @@ def editor_page_title(context, title=None, addon=None):
     return page_title(context, title)
 
 
-class EditorQueueTable:
+class EditorQueueTable(SQLTable):
+    addon_name = tables.Column(verbose_name=_(u'Addon'))
+    addon_type_id = tables.Column(verbose_name=_(u'Type'))
+    waiting_time_days = tables.Column(verbose_name=_(u'Waiting Time'))
+    flags = tables.Column(verbose_name=_(u'Flags'))
+    applications = tables.Column(verbose_name=_(u'Applications'))
+    additional_info = tables.Column(verbose_name=_(u'Additional Information'))
 
     def render_addon_name(self, row):
         url = '%s?num=%s' % (reverse('editors.review',
@@ -86,28 +93,19 @@ class EditorQueueTable:
                    'flags', 'applications', 'additional_info']
 
 
-class ViewPendingQueueTable(tables.ModelTable, EditorQueueTable):
-    flags = tables.Column(verbose_name=_(u'Flags'))
-    applications = tables.Column(verbose_name=_(u'Applications'))
-    additional_info = tables.Column(verbose_name=_(u'Additional Information'))
+class ViewPendingQueueTable(EditorQueueTable):
 
     class Meta(EditorQueueTable.Meta):
         model = ViewPendingQueue
 
 
-class ViewFullReviewQueueTable(tables.ModelTable, EditorQueueTable):
-    flags = tables.Column(verbose_name=_(u'Flags'))
-    applications = tables.Column(verbose_name=_(u'Applications'))
-    additional_info = tables.Column(verbose_name=_(u'Additional Information'))
+class ViewFullReviewQueueTable(EditorQueueTable):
 
     class Meta(EditorQueueTable.Meta):
         model = ViewFullReviewQueue
 
 
-class ViewPreliminaryQueueTable(tables.ModelTable, EditorQueueTable):
-    flags = tables.Column(verbose_name=_(u'Flags'))
-    applications = tables.Column(verbose_name=_(u'Applications'))
-    additional_info = tables.Column(verbose_name=_(u'Additional Information'))
+class ViewPreliminaryQueueTable(EditorQueueTable):
 
     class Meta(EditorQueueTable.Meta):
         model = ViewPreliminaryQueue

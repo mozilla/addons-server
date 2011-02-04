@@ -1,4 +1,6 @@
 # -*- coding: utf8 -*-
+from datetime import datetime, timedelta
+
 from nose.tools import eq_
 import test_utils
 
@@ -93,6 +95,13 @@ class TestQueue(test_utils.TestCase):
         eq_(row.application_ids, [])
         eq_(row.file_platform_ids, [amo.PLATFORM_ALL.id])
 
+    def test_count_all(self):
+        self.new_file(name='Addon 1', version=u'0.1')
+        self.new_file(name='Addon 1', version=u'0.2')
+        self.new_file(name='Addon 2', version=u'0.1')
+        self.new_file(name='Addon 2', version=u'0.2')
+        eq_(self.Queue.objects.all().count(), 2)
+
 
 class TestPendingQueue(TestQueue):
     __test__ = True
@@ -107,6 +116,14 @@ class TestPendingQueue(TestQueue):
         return create_search_ext(name, version,
                                  amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED,
                                  **kw)
+
+    def test_waiting_time(self):
+        self.new_file(name='Addon 1', version=u'0.1')
+        Version.objects.update(created=datetime.utcnow())
+        row = self.Queue.objects.all()[0]
+        eq_(row.waiting_time_days, 0)
+        # Time zone will be off, hard to test this.
+        assert row.waiting_time_hours is not None
 
 
 class TestFullReviewQueue(TestQueue):
@@ -140,6 +157,14 @@ class TestFullReviewQueue(TestQueue):
         eq_(sorted(q.addon_name for q in self.Queue.objects.all()),
             ['Disabled', 'Null'])
 
+    def test_waiting_time(self):
+        self.new_file(name='Addon 1', version=u'0.1')
+        Addon.objects.update(nomination_date=datetime.utcnow())
+        row = self.Queue.objects.all()[0]
+        eq_(row.waiting_time_days, 0)
+        # Time zone will be off, hard to test this.
+        assert row.waiting_time_hours is not None
+
 
 class TestPreliminaryQueue(TestQueue):
     __test__ = True
@@ -162,3 +187,11 @@ class TestPreliminaryQueue(TestQueue):
                           amo.STATUS_UNREVIEWED, amo.STATUS_UNREVIEWED)
         eq_(sorted(q.addon_name for q in self.Queue.objects.all()),
             ['Lite', 'Unreviewed'])
+
+    def test_waiting_time(self):
+        self.new_file(name='Addon 1', version=u'0.1')
+        Version.objects.update(created=datetime.utcnow())
+        row = self.Queue.objects.all()[0]
+        eq_(row.waiting_time_days, 0)
+        # Time zone will be off, hard to test this.
+        assert row.waiting_time_hours is not None
