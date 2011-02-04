@@ -162,7 +162,7 @@ $.fn.jCarouselLite = function(o) {
         // Change panel widths on resize to keep the page liquid
         $(window).resize(function(){
             setPanelWidth("both");
-            liSize = o.vertical ? li.outerHeight(true) : li.outerHeight(true);
+            liSize = o.vertical ? li.outerHeight(true) : li.outerWidth(true);
             ul.css(sizeCss, ulSize+"px").css(animCss, -(curr*liSize));
         });
 
