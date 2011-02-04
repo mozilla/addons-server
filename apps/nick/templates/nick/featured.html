@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
 {% block extrahead %}
-<link rel="stylesheet" href="{{ MEDIA_URL }}css/zamboni/nick.css">
+<link rel="stylesheet" href="{{ media('css/zamboni/nick.css') }}">
 <link rel="stylesheet"
-      href="{{ MEDIA_URL }}css/zamboni/jquery-ui/custom-1.7.2.css">
+      href="{{ media('css/zamboni/jquery-ui/custom-1.7.2.css') }}">
 {% endblock %}
 
 {% block title %}
@@ -80,10 +80,10 @@ Nick's Special Featured Add-ons Page for {{ request.APP.pretty }}
 {% endblock %}
 
 {% block js %}
-<script src="{{ MEDIA_URL }}js/zamboni/jquery-ui/custom-1.7.2.min.js"></script>
-<script src="{{ MEDIA_URL }}js/zamboni/jquery.sparkline.min.js"></script>
-<script src="{{ MEDIA_URL }}js/zamboni/jquery.tablesorter.min.js"></script>
-<script src="{{ MEDIA_URL }}js/zamboni/nick.js"></script>
+<script src="{{ media('js/zamboni/jquery-ui/custom-1.7.2.min.js') }}"></script>
+<script src="{{ media('js/zamboni/jquery.sparkline.min.js') }}"></script>
+<script src="{{ media('js/zamboni/jquery.tablesorter.min.js') }}"></script>
+<script src="{{ media('js/zamboni/nick.js') }}"></script>
 <script>
 </script>
 {% endblock %}
