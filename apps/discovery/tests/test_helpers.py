@@ -15,8 +15,8 @@ def test_disco_pane_link():
     doc = pq(s)
     back = doc('p.back a')
     eq_(back.text(), 'Back to Add-ons')
-    eq_(back.attr('href'), 'javascript:history.go(-1)')
+    eq_(back.attr('data-history'), '-1')
 
     s = render('{{ disco_pane_link("discovery-pane-eula") }}')
     doc = pq(s)
-    eq_(doc('p.back a').attr('href'), 'javascript:history.go(-2)')
+    eq_(doc('p.back a').attr('data-history'), '-2')
