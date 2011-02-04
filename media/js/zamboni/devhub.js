@@ -102,7 +102,7 @@ $(document).ready(function() {
     }
 
     // when to start and stop image polling
-    if ($('#edit-addon-media')) {
+    if ($('#edit-addon-media').length) {
         imageStatus.start();
     }
     $('#edit-addon-media').bind('click', function() {
