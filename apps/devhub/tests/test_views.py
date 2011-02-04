@@ -1517,8 +1517,8 @@ class TestEdit(test_utils.TestCase):
         eq_(r.context['form'].errors, {})
         addon = self.get_addon()
 
-        eq_('/'.join(addon.get_icon_url(64).split('/')[-3:-1]),
-            'addon_icon/%s' % addon.id)
+        eq_(os.path.basename(addon.get_icon_url(64).split('?')[0]),
+            '%s.png' % addon.id)
 
         eq_(data['icon_type'], 'image/png')
 
@@ -1556,8 +1556,8 @@ class TestEdit(test_utils.TestCase):
         eq_(r.context['form'].errors, {})
         addon = self.get_addon()
 
-        eq_('/'.join(addon.get_icon_url(64).split('/')[-3:-1]),
-            'addon_icon/%s' % addon.id)
+        eq_(os.path.basename(addon.get_icon_url(64).split('?')[0]),
+            '%s.png' % addon.id)
 
         eq_(data['icon_type'], 'image/png')
 
@@ -2951,8 +2951,8 @@ class TestSubmitStep4(TestSubmitBase):
 
         addon = self.get_addon()
 
-        eq_('/'.join(addon.get_icon_url(64).split('/')[-2:]),
-            'addon-icons/appearance-64.png')
+        eq_(os.path.basename(addon.get_icon_url(64).split('?')[0]),
+            'appearance-64.png')
 
         for k in data:
             eq_(unicode(getattr(addon, k)), data[k])
