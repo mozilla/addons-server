@@ -256,7 +256,7 @@ class SearchTest(SphinxTestCase):
 class SearchStatusTest(SphinxTestCase):
     fixtures = ('base/addon_3615', 'base/addon_5369', 'base/addon_592',
                 'base/addon_5579', 'base/addon_40', 'search/560618-alpha-sort',
-                'base/apps', 'base/category')
+                'base/apps', 'base/category', 'addons/persona')
 
     def reindex(self):
         stop_sphinx()
@@ -268,6 +268,13 @@ class SearchStatusTest(SphinxTestCase):
         Addon.objects.update(status=amo.STATUS_UNREVIEWED)
         self.reindex()
         eq_(len(query('')), 0)
+
+    def test_persona_status(self):
+        Addon.objects.update(status=amo.STATUS_PUBLIC)
+        eq_(len(pquery('')), 1)
+        Addon.objects.update(status=amo.STATUS_DISABLED)
+        self.reindex()
+        eq_(len(pquery('')), 0)
 
     def test_searchable_status(self):
         Addon.objects.update(status=amo.STATUS_UNREVIEWED)
