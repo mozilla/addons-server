@@ -95,14 +95,15 @@ https://addons.mozilla.org""",
 UNREVIEWED = {
     'status': amo.STATUS_PURGATORY,
     'addons': '* {addon.name} - https://addons.mozilla.org/developers/addon/{addon.id}/versions',
-    'subject': 'Important information about your {addon}',
+    'subject': 'Final notice: your {addon} will be disabled soon',
     'message': """\
-* Action is required if you wish for Mozilla to continue hosting your {addon}. *
+* Action is required if you wish for Mozilla to continue hosting your {addon}.
+  The first notice of this was sent on January 19. *
 
 As part of Mozilla's commitment to ensuring that all add-ons hosted in our
-gallery are safe for users to install, earlier this year we determined that we
+gallery are safe for users to install, early last year we determined that we
 could no longer allow add-ons to remain unreviewed indefinitely, as the sandbox
-review process currently allows.
+review process previously allowed.
 
 We proposed several different methods of increasing the security of the gallery
 while still allowing add-on developers to host experimental add-ons, and after
