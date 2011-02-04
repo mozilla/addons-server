@@ -12,8 +12,8 @@ from mobility.decorators import mobile_template
 from tower import ugettext_lazy as _lazy
 
 import amo.utils
-from addons.models import Addon, Category
-from addons.utils import order_by_ids
+from amo.models import manual_order
+from addons.models import Addon, Category, AddonCategory
 from amo.urlresolvers import reverse
 from addons.views import BaseFilter
 from translations.query import order_by_translation
@@ -178,15 +178,16 @@ class CategoryLandingFilter(BaseFilter):
 
     def __init__(self, request, base, category, key, default):
         self.category = category
-        self.ids = Addon.objects.category_featured_ids(category=category)
+        self.ids = AddonCategory.creatured_random(category, request.LANG)
         super(CategoryLandingFilter, self).__init__(request, base, key,
                                                     default)
 
     def filter_featured(self):
-        return Addon.objects.filter(pk__in=self.ids)
+        # Never fear this will get & with manual order and the base.
+        return Addon.objects.all()
 
     def order_featured(self, filter):
-        return order_by_ids(filter, self.ids)
+        return manual_order(filter, self.ids, pk_name='addons.id')
 
 
 def category_landing(request, category):
@@ -203,9 +204,8 @@ def creatured(request, category):
     TYPE = amo.ADDON_EXTENSION
     q = Category.objects.filter(application=request.APP.id, type=TYPE)
     category = get_object_or_404(q, slug=category)
-    ids = Addon.objects.category_featured_ids(category=category)
-    addons = (Addon.objects.public() &
-              Addon.objects.filter(pk__in=ids))
+    ids = AddonCategory.creatured_random(category, request.LANG)
+    addons = manual_order(Addon.objects.public(), ids)
     return jingo.render(request, 'browse/creatured.html',
                         {'addons': addons, 'category': category})
 
@@ -268,11 +268,11 @@ def personas(request, category=None):
 
     addons = amo.utils.paginate(request, filter.qs, 30, count=count)
     if category:
-        ids = Addon.objects.category_featured_ids(category=category)
-        featured = order_by_ids(base & Addon.objects.filter(pk__in=ids), ids)
+        ids = AddonCategory.creatured_random(category, request.LANG)
+        featured = manual_order(base, ids, pk_name="addons.id")
     else:
-        ids = Addon.objects.featured_ids(request.APP)
-        featured = order_by_ids(base & Addon.objects.filter(pk__in=ids), ids)
+        ids = Addon.featured_random(request.APP, request.LANG)
+        featured = manual_order(base, ids, pk_name="addons.id")
 
     is_homepage = category is None and 'sort' not in request.GET
     return jingo.render(request, 'browse/personas/' + template,
@@ -395,6 +395,6 @@ def search_tools(request, category=None):
 
 @mobile_template('browse/{mobile/}featured.html')
 def featured(request, category=None, template=None):
-    ids = Addon.objects.featured_ids(request.APP, personas=False)
-    addons = order_by_ids(Addon.objects.filter(pk__in=ids), ids)
+    ids = Addon.featured_random(request.APP, request.LANG)
+    addons = manual_order(Addon.objects.exclude(type=amo.ADDON_PERSONA), ids)
     return jingo.render(request, template, {'addons': addons})

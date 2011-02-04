@@ -26,6 +26,8 @@ from translations.models import Translation
 from translations.query import order_by_translation
 from versions.models import Version
 
+from django.core.cache import cache
+
 
 def test_locale_display_name():
 
@@ -265,16 +267,25 @@ class TestFeaturedLocale(test_utils.TestCase):
         self.category = Category.objects.get(slug='bookmarks')
 
         self.url = reverse('browse.creatured', args=['bookmarks'])
+        if hasattr(Addon, "_feature"):
+            del Addon._feature
+        cache.clear()
 
     def change_addoncategory(self, addon, locale='es-ES'):
         ac = addon.addoncategory_set.all()[0]
         ac.feature_locales = locale
         ac.save()
+        if hasattr(Addon, "_feature"):
+            del Addon._feature
+        cache.clear()
 
     def change_addon(self, addon, locale='es-ES'):
         feature = addon.feature_set.all()[0]
         feature.locale = locale
         feature.save()
+        if hasattr(Addon, "_feature"):
+            del Addon._feature
+        cache.clear()
 
     def list_featured(self, content):
         # Not sure we want to get into testing randomness
@@ -289,14 +300,19 @@ class TestFeaturedLocale(test_utils.TestCase):
             if mtch:
                 print mtch.group(2)
 
-    def test_featured(self):
-        addons = Addon.objects.featured_ids(amo.FIREFOX)
-        eq_(len(addons), 6)
+    def test_creatured_random_caching(self):
+        rnd = AddonCategory.creatured_random
+        cat = Category.objects.get(pk=22)
+        self.assertNumQueries(1, rnd, cat, 'en-US')
+        self.assertNumQueries(0, rnd, cat, 'en-US')
+        self.assertNumQueries(0, rnd, cat, 'es-ES')
 
-    def test_category_featured(self):
-        cat = Category.objects.get(id=22)
-        addons = Addon.objects.category_featured_ids(category=cat)
-        eq_(len(addons), 2)
+    def test_featured_random_caching(self):
+        rnd = Addon.featured_random
+        self.assertNumQueries(1, rnd, amo.FIREFOX, 'en-US')
+        self.assertNumQueries(0, rnd, amo.FIREFOX, 'es-ES')
+        self.assertNumQueries(1, rnd, amo.THUNDERBIRD, 'es-ES')
+        self.assertNumQueries(0, rnd, amo.THUNDERBIRD, 'en-US')
 
     def test_creatured_locale_en_US(self):
         res = self.client.get(self.url)
@@ -332,15 +348,19 @@ class TestFeaturedLocale(test_utils.TestCase):
         res = self.client.get(reverse('browse.featured'))
         assert self.extension in res.context['addons']
 
+    def test_featured_locale_not_persona_en_US(self):
+        res = self.client.get(reverse('browse.featured'))
+        assert not self.persona in res.context['addons']
+
     def test_featured_locale_es_ES(self):
-        addon = self.extension
-        self.change_addon(addon, 'es-ES')
+        self.change_addon(self.extension, 'es-ES')
         url = reverse('browse.featured')
         res = self.client.get(url)
-        assert addon not in res.context['addons']
+        assert self.extension not in res.context['addons']
 
         res = self.client.get(url.replace('en-US', 'es-ES'))
-        assert addon in res.context['addons']
+        self.change_addon(self.extension, 'es-ES')
+        assert self.extension in res.context['addons']
 
     def test_featured_extensions_no_category_en_US(self):
         addon = self.extension
@@ -387,17 +407,16 @@ class TestFeaturedLocale(test_utils.TestCase):
         assert addon in res.context['featured']
 
     def test_homepage(self):
-        addon = Addon.objects.get(id=2464)
         url = reverse('home')
         res = self.client.get(url)
-        assert addon in res.context['filter'].filter('featured')
+        assert self.extension in res.context['filter'].filter('featured')
 
-        self.change_addon(addon, 'es-ES')
+        self.change_addon(self.extension, 'es-ES')
         res = self.client.get(url)
-        assert addon not in res.context['filter'].filter('featured')
+        assert self.extension not in res.context['filter'].filter('featured')
 
         res = self.client.get(url.replace('en-US', 'es-ES'))
-        assert addon in res.context['filter'].filter('featured')
+        assert self.extension in res.context['filter'].filter('featured')
 
     def test_homepage_persona(self):
         res = self.client.get(reverse('home'))
@@ -410,7 +429,7 @@ class TestFeaturedLocale(test_utils.TestCase):
                                       .listed(amo.FIREFOX)
                                       .exclude(type=amo.ADDON_PERSONA)]
 
-        featured = Addon.objects.featured_ids(amo.FIREFOX)
+        featured = Addon.featured_random(amo.FIREFOX, 'en-US')
         actual = [p.pk for p in res.context['filter'].filter('featured')]
 
         eq_(sorted(actual), sorted(set(listed) & set(featured)))
@@ -457,7 +476,7 @@ class TestFeaturedLocale(test_utils.TestCase):
     def test_featured_ids(self):
         another = Addon.objects.get(id=1003)
         self.change_addon(another, 'en-US')
-        items = Addon.objects.featured_ids(amo.FIREFOX)
+        items = Addon.featured_random(amo.FIREFOX, 'en-US')
 
         # The order should be random within those boundaries.
         eq_([1003, 3481], sorted(items[0:2]))
@@ -470,7 +489,7 @@ class TestFeaturedLocale(test_utils.TestCase):
                                    locale=None,
                                    start=datetime.datetime.today(),
                                    end=datetime.datetime.today())
-        eq_(Addon.objects.featured_ids(amo.FIREFOX).count(1003), 1)
+        eq_(Addon.featured_random(amo.FIREFOX, 'en-US').count(1003), 1)
 
 
 class TestListingByStatus(test_utils.TestCase):
@@ -830,10 +849,12 @@ class TestFeaturedPage(test_utils.TestCase):
 
     def test_featured_addons(self):
         """Make sure that only featured add-ons are shown"""
+        # Persona returned by featured.
+        assert 15679 in Addon.featured(amo.FIREFOX, 'en-US')
         response = self.client.get(reverse('browse.featured'))
+        # But not in the content.
         eq_([1001, 1003, 2464, 3481, 7661],
             sorted(a.id for a in response.context['addons']))
-
 
 class TestCategoriesFeed(test_utils.TestCase):
 

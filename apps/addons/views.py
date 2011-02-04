@@ -271,7 +271,8 @@ class HomepageFilter(BaseFilter):
     filter_new = BaseFilter.filter_created
 
     def __init__(self, *args, **kw):
-        self.featured_ids = Addon.objects.featured_ids(args[0].APP)
+        self.featured_ids = Addon.featured_random(args[0].APP,
+                                                  args[0].LANG)
         super(HomepageFilter, self).__init__(*args, **kw)
 
     def filter_featured(self):

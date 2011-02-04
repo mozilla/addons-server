@@ -247,13 +247,6 @@ class TestAddonModels(test_utils.TestCase):
         a.status = amo.STATUS_LISTED
         assert a.is_selfhosted(), 'listed add-on => is_selfhosted()'
 
-    def test_persona_featured_ids(self):
-        """Test if `featured_ids` returns personas appropriately"""
-        addons = Addon.objects.featured_ids(amo.FIREFOX)
-        eq_(set(addons), set([3481, 15679, 7661, 2464, 1003, 1001]))
-        addons = Addon.objects.featured_ids(amo.FIREFOX, personas=False)
-        eq_(set(addons), set([3481, 1001, 2464, 7661, 1003]))
-
     def test_is_featured(self):
         """Test if an add-on is globally featured"""
         a = Addon.objects.get(pk=1003)

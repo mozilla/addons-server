@@ -64,26 +64,6 @@ class AddonManager(amo.models.ManagerBase):
         """Get valid, enabled add-ons only"""
         return self.filter(self.valid_q(amo.LISTED_STATUSES))
 
-    def featured_ids(self, app, personas=True):
-        """
-        Get a list of addon ids in order of for the locale and then no locale.
-        The ids are shuffled within each locale. Id is unique per result set.
-        TODO: turn this into a cache
-        """
-        results = []
-        for locale in [to_language(translation.get_language()), None]:
-            qs = (Q(feature__application=app.id,
-                    feature__isnull=False,
-                    feature__locale=locale))
-            if results:
-                if not personas:
-                    qs = qs & ~Q(type=amo.ADDON_PERSONA)
-                qs = qs & ~Q(pk__in=results)
-            ids = list(self.valid().values_list('pk', flat=True).filter(qs))
-            random.shuffle(ids)
-            results.extend(ids)
-        return results
-
     def featured(self, app):
         """
         Filter for all featured add-ons for an application in all locales.
@@ -93,27 +73,6 @@ class AddonManager(amo.models.ManagerBase):
     def category_featured(self):
         """Get all category-featured add-ons for ``app`` in all locales."""
         return self.filter(addoncategory__feature=True)
-
-    def category_featured_ids(self, category=None):
-        """
-        Get a list of addon ids in order of for the locale and then no locale,
-        using category-featured. The ids are shuffled within each locale.
-        Id is unique per result set.
-        TODO: turn this into a cache
-        """
-        results = []
-        lang = to_language(translation.get_language())
-        for locale in [Q(addoncategory__feature_locales__contains=lang),
-                       (Q(addoncategory__feature_locales=None) |
-                        Q(addoncategory__feature_locales=''))]:
-            qs = (Q(addoncategory__category=category,
-                    addoncategory__feature=True) & locale)
-            if results:
-                qs = qs & ~Q(pk__in=results)
-            ids = list(self.values_list('pk', flat=True).filter(qs))
-            random.shuffle(ids)
-            results.extend(ids)
-        return results
 
     def listed(self, app, *status):
         """
@@ -732,6 +691,25 @@ class Addon(amo.models.ModelBase):
         return dict((id, locales) for id, locales in features.items()
                      if None in locales or lang in locales)
 
+    @classmethod
+    def featured_random(cls, app, lang):
+        """
+        Sort featured ids for app into those that support lang and
+        those with no locale, then shuffle both groups.
+        """
+        if not hasattr(cls, '_feature'):
+            cls._feature = Feature()
+        features = cls._feature.by_app(app)
+        no_locale, specific_locale = [], []
+        for id, locales in features.items():
+            if lang in locales:
+                specific_locale.append(id)
+            elif None in locales:
+                no_locale.append(id)
+        random.shuffle(no_locale)
+        random.shuffle(specific_locale)
+        return specific_locale + no_locale
+
     def is_featured(self, app, lang):
         """is add-on globally featured for this app and language?"""
         return self.id in Addon.featured(app, lang)
@@ -1025,15 +1003,39 @@ class AddonCategory(caching.CachingMixin, models.Model):
         return urls
 
     @classmethod
+    def creatured_ids(cls):
+        """ Returns a list of creatured ids """
+        qs = cls.objects.filter(feature=True)
+        f = lambda: list(qs.values_list('addon', 'category',
+                                        'category__application',
+                                        'feature_locales'))
+        return caching.cached_with(qs, f, 'creatured')
+
+    @classmethod
     def creatured(cls):
         """Get a dict of {addon: [app,..]} for all creatured add-ons."""
-        qs = cls.objects.filter(feature=True)
-        f = lambda: list(qs.values_list('addon', 'category__application'))
-        vals = caching.cached_with(qs, f, 'creatured')
         rv = {}
-        for addon, app in vals:
-            rv.setdefault(addon, []).append(app)
+        for addon, cat, catapp, locale in cls.creatured_ids():
+            rv.setdefault(addon, []).append(catapp)
         return rv
+
+    @classmethod
+    def creatured_random(cls, category, lang):
+        """
+        Sort creatured ids for category into those that support lang and
+        those with no locale, then shuffle both groups.
+        """
+        no_locale, specific_locale = [], []
+        for addon, cat, catapp, locale in cls.creatured_ids():
+            if cat != category.pk:
+                continue
+            if locale and lang in locale:
+                specific_locale.append(addon)
+            elif not locale:
+                no_locale.append(addon)
+        random.shuffle(no_locale)
+        random.shuffle(specific_locale)
+        return specific_locale + no_locale
 
 
 class AddonRecommendation(models.Model):
