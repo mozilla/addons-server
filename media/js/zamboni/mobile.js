@@ -53,4 +53,16 @@ $(function() {
             }
         });
     });
+    
 });
+
+$(".moz-menu .tab a").click(_pd(function() {
+    $(".moz-menu").toggleClass("expand");
+}));
+
+function _pd(func) {
+    return function(e) {
+        e.preventDefault();
+        func.apply(this, arguments);
+    };
+}

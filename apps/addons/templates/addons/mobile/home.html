@@ -4,10 +4,7 @@
 
 {% block header %}
   <header id="home-header">
-    <div class="moz-menu">
-      <a></a>
-      {# TODO build out the menu #}
-    </div>
+    {% include "mobile/header.html" %}
     <hgroup>
       <h1 class="site-title">
         {% set appicon = 'firefox' if request.APP == amo.MOBILE else request.APP.short %}

@@ -64,7 +64,8 @@ section:after {
 /************************************/
 
 h1, h2, h3,
-.copy, .paginator {
+.copy, .paginator,
+.moz-menu {
     font-family: Georgia, serif;
 }
 #content h2 {
@@ -83,7 +84,7 @@ a:link {
 /************************************/
 
 /* 'Mozilla' */
-.moz-menu {
+.moz-menu .tab {
     background: #33589f;
     background: -webkit-gradient(
         linear,
@@ -108,11 +109,16 @@ footer:before,
 .tabs {
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAABCAYAAAASC7TOAAAAEElEQVQIHWP8//8/Aw7wHwBR6AP+G53o6QAAAABJRU5ErkJggg=='),
                       -moz-linear-gradient(#fff, #dcedfd);
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAABCAYAAAASC7TOAAAAEElEQVQIHWP8//8/Aw7wHwBR6AP+G53o6QAAAABJRU5ErkJggg=='),
+                      -webkit-linear-gradient(from(#fff), to(#dcedfd));
 }
 
 html {
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAABCAYAAAASC7TOAAAAEElEQVQIHWP8//8/Aw7wHwBR6AP+G53o6QAAAABJRU5ErkJggg=='),
                       -moz-linear-gradient(#dcedfd 0, #fff 120px);
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAABCAYAAAASC7TOAAAAEElEQVQIHWP8//8/Aw7wHwBR6AP+G53o6QAAAABJRU5ErkJggg=='),
+                      -webkit-linear-gradient(#dcedfd 0, #fff 120px);
+
 }
 
 /************************************/
@@ -147,6 +153,7 @@ table th {
 
 .paginator {
     display: -moz-box;
+    display: -webkit-box;
     text-align: center;
     color: #ccc;
     font-size: 1.1em;
@@ -157,6 +164,7 @@ table th {
     color: #666;
     margin: 0 2%;
     -moz-box-flex: 1;
+    -webkit-box-flex: 1;
 }
 .paginator a {
     padding: 14px;
@@ -175,32 +183,92 @@ table th {
     margin: 0 14px;
 }
 .moz-menu {
+    -moz-transition: .5s top ease;
+    -webkit-transition: .5s top ease;
+    position: relative;
+    top: 0;
+    z-index: 100;
+}
+.moz-menu .tab {
     -moz-border-radius: 0 0 6px 6px;
+    -webkit-border-radius: 0 0 6px 6px;
     -moz-box-shadow: 0 -3px rgba(0,0,0,.2) inset;
+    -webkit-box-shadow: 0 -3px rgba(0,0,0,.2) inset;
 }
-.moz-menu a {
-    display: block;
+.moz-menu .tab a {
     background: url(../../img/zamboni/global/wordmark.png) no-repeat 8px 6px;
+    display: block;
     height: 30px;
-    padding: 8px 10px;
+    line-height: 22px;
+    text-align: right;
+    color: white;
+    font-style: italic;
+    padding: 8px 25px;
 }
-.mini-header .moz-menu {
+.mini-header .moz-menu .tab {
     width: 104px;
     float: right;
     position: relative;
 }
-.mini-header .moz-menu:after {
+.mini-header .moz-menu .tab a {
+    text-indent: -9999px;
+    text-align: left;
+}
+.moz-menu .menu-items li {
+    border-bottom: 1px solid #294976;
+    border-top: 1px solid #537ab4;
+    background-image: -moz-linear-gradient(#3a67af, #385eaa);
+    background-image: -webkit-linear-gradient(#3a67af, #385eaa);
+    height: 50px;
+    width: 100%;
+    padding: 0 14px;
+}
+.moz-menu .menu-items a {
+    font-family: "Trebuchet MS", "Droid Sans", sans-serif;
+    color: white;
+    font-size: 17px;
+    text-transform: uppercase;
+    font-weight: bold;
+    display: block;
+    height: 26px;
+    line-height: 26px;
+    padding: 12px 0;
+}
+.moz-menu .menu-items {
+    position: absolute;
+    width: 100%;
+    left: -14px;
+    bottom: 46px;
+}
+.mini-header .moz-menu .menu-items {
+    bottom: 0;
+}
+
+.moz-menu .tab a:after {
     content: "\00a0";
-    display: block; /* reduce the damage in FF3.0 */
+    display: block;
     position: absolute;
     right: 8px;
     width: 0;
     height: 0;
-    top: 18px; /* value = - border-top-width - border-bottom-width */
+    -moz-transition: .3s -moz-transform ease;
+    -webkit-transition: .3s -webkit-transform ease;
+    -moz-transform-origin: 50% 25%;
+    -webkit-transform-origin: 50% 25%;
+    top: 18px;
     border: 6px solid transparent;
     border-top-color: white;
     pointer-events: none;
 }
+
+.moz-menu.expand .tab a:after {
+    -moz-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+}
+.moz-menu.expand {
+    top: 312px;
+}
+
 header hgroup {
     margin-top: 8px;
     position: relative;
@@ -256,10 +324,12 @@ header hgroup {
 .listview {
     margin: 14px 14px 0;
     -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
     border: 1px solid #ddd;
     background-color: #f4f4f4;
     background-image: -moz-linear-gradient(#fff, rgba(255,255,255,0) 12px);
     -moz-box-shadow: 0 -3px rgba(0,0,0,.1) inset;
+    -webkit-box-shadow: 0 -3px rgba(0,0,0,.1) inset;
     margin-bottom: 1em;
     display: block;
 }
@@ -324,10 +394,12 @@ a.listview:before {
 #search {
     margin-bottom: 14px;
     display: -moz-box;
+    display: -webkit-box;
     width: 100%;
 }
 
 #search input[type=search] {
+    -webkit-box-flex: 1;
     -moz-box-flex: 1;
     height: 41px;
     border: 1px solid #ddd;
@@ -342,7 +414,9 @@ a.listview:before {
     height: 45px;
     width: 56px;
     background-image: -moz-linear-gradient(#83c53c, #4f9c19);
+    background-image: -webkit-linear-gradient(#83c53c, #4f9c19);
     border: 0;
+    -webkit-box-shadow: 0 -3px rgba(0,0,0,.1) inset;
     -moz-box-shadow: 0 -3px rgba(0,0,0,.1) inset;
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
@@ -351,6 +425,7 @@ a.listview:before {
 
 #sort-menu {
     display: -moz-box;
+    display: -webkit-box;
     width: 100%;
     -moz-box-sizing: border-box;
     -moz-box-align: center;
@@ -364,6 +439,7 @@ a.listview:before {
 #sort-menu select {
     height: 30px;
     display: block;
+    -webkit-box-flex: 1;
     -moz-box-flex: 1;
 }
 
@@ -390,6 +466,7 @@ a.listview:before {
     -moz-box-flex: 1;
     -webkit-box-flex: 1;
     border: 0;
+    -webkit-transition: .3s background ease;
     -moz-transition: .3s background ease;
 }
 .tabs a:-moz-focusring {
@@ -426,8 +503,8 @@ a.listview:before {
     white-space:nowrap;
     position: relative;
     left: 0;
-    -moz-transition: .5s left ease;
-    -webkit-transition: .5s left ease;
+    -moz-transition: .3s left ease;
+    -webkit-transition: .3s left ease;
 }
 .slider-mask {
     width: 100%;
