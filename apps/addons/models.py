@@ -884,7 +884,7 @@ def watch_status(sender, instance, **kw):
         return
     addon = instance
     stati = (amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED)
-    if addon.status in stati and addon.nomination_date is None:
+    if addon.status in stati:
         addon.nomination_date = datetime.now()
 dbsignals.pre_save.connect(watch_status, sender=Addon)
 

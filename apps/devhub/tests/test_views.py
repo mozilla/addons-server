@@ -5,7 +5,7 @@ import re
 import shutil
 import socket
 import tempfile
-from datetime import datetime
+from datetime import datetime, timedelta
 from decimal import Decimal
 
 from django import forms
@@ -4007,6 +4007,15 @@ class TestRequestReview(test_utils.TestCase):
         self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
         self.check_400(self.lite_url)
         self.check_400(self.public_url)
+
+    def test_renominate_for_full_review(self):
+        # When a version is rejected, the addon is disabled.
+        # The author must upload a new version and re-nominate.
+        self.addon.update(
+                # Pretend it was nominated in the past:
+                nomination_date=datetime.now() - timedelta(days=30))
+        self.check(amo.STATUS_NULL, self.public_url, amo.STATUS_NOMINATED)
+        assert_close_to_now(self.get_addon().nomination_date)
 
 
 class TestRedirects(test_utils.TestCase):
