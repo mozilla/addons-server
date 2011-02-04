@@ -7,6 +7,7 @@ from django.shortcuts import get_object_or_404, redirect
 import caching.base as caching
 import commonware.log
 import jingo
+from mobility.decorators import mobile_template
 
 import amo
 from amo.urlresolvers import reverse
@@ -27,13 +28,14 @@ log = commonware.log.getLogger('z.versions')
 
 
 @addon_view
-def version_list(request, addon):
+@mobile_template('versions/{mobile/}version_list.html')
+def version_list(request, addon, template):
     qs = (addon.versions.filter(files__status__in=amo.VALID_STATUSES)
           .distinct().order_by('-created'))
     versions = amo.utils.paginate(request, qs, PER_PAGE)
     versions.object_list = list(versions.object_list)
     Version.transformer(versions.object_list)
-    return jingo.render(request, 'versions/version_list.html',
+    return jingo.render(request, template,
                         {'addon': addon, 'versions': versions})
 
 

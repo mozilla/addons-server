@@ -9,3 +9,8 @@ from addons.helpers import new_context
 def version_detail(context, addon, version, src,
                    show_versions_link=True, itemclass='article'):
     return new_context(**locals())
+
+
+@jingo.register.inclusion_tag('versions/mobile/version.html')
+def mobile_version_detail(addon, version, src):
+    return locals()

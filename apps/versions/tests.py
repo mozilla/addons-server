@@ -13,6 +13,7 @@ import amo
 import files.tests
 from amo.urlresolvers import reverse
 from addons.models import Addon
+from addons.tests.test_views import TestMobile
 from applications.models import AppVersion
 from devhub.models import ActivityLog
 from files.models import File, Platform
@@ -560,3 +561,11 @@ class TestSearchVersionFromUpload(TestVersionFromUpload):
         files = version.all_files
         eq_(len(files), 1)
         eq_(files[0].platform.id, amo.PLATFORM_ALL.id)
+
+
+class TestMobileVersions(TestMobile):
+
+    def test_versions(self):
+        r = self.client.get(reverse('addons.versions', args=['a3615']))
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'versions/mobile/version_list.html')

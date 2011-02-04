@@ -1,0 +1,26 @@
+{% extends "mobile/base.html" %}
+
+{# L10n: {0} is an add-on name. #}
+{% block title %}{{ page_title('{0} :: Versions')|f(addon.name) }}{% endblock %}
+
+{% block page %}
+
+<h2>{{ _('Version History') }}</h2>
+<div class="warning highlight">
+  <h3>{{ _('Be careful with old versions!') }}</h3>
+  <p>{% trans url=url('addons.detail', addon.slug) %}
+    These versions are displayed for reference and testing purposes.
+    You should always use the <a href="{{ url }}">latest version</a> of an add-on.
+  {% endtrans %}</p>
+</div>
+
+<div class="collection-listing">
+  <ul class="listview">
+    {% for version in versions.object_list %}
+      {{ mobile_version_detail(addon, version, src='version-history') }}
+    {% endfor %}
+  </ul>
+</div>
+
+{{ versions|mobile_paginator }}
+{% endblock %}

@@ -1,0 +1,39 @@
+<li id="version-{{ version.version }}">
+  <header>
+    {% if version.is_beta %}
+      <h3>{{ _('Version {0}', 'addon_display_header_version')|f(version.version) }}</h3>
+    {% else %}
+      <h3>{{ _('Beta Version {0}')|f(version.version) }}</h3>
+    {% endif %}
+    <time datetime="{{ version.created|isotime }}">
+      {{ version.created|datetime }}</time>
+  </header>
+
+  <blockquote {{ version.releasenotes|locale_html }}>
+    {{ version.releasenotes|nl2br }}
+  </blockquote>
+
+  <div class="potch">
+    {% if version.license %}
+      <h4>{{ _('Source Code License') }}</h4>
+      {% if version.license.builtin %}
+        {{ license_link(version.license) }}
+      {% else %}
+        <a href="{{ version.license_url() }}">
+          {{ version.license.name }}</a>
+      {% endif %}
+    {% endif %}
+
+
+    {% if version.compatible_apps %}
+      <h4>{{ _('Works with:') }}</h4>
+      <ul>
+        {% for compat in version.compatible_apps.values() %}
+          <li>{{ compat }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+
+  {# TODO: button #}
+</li>
