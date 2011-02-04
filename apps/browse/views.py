@@ -395,6 +395,6 @@ def search_tools(request, category=None):
 
 @mobile_template('browse/{mobile/}featured.html')
 def featured(request, category=None, template=None):
-    ids = Addon.objects.featured_ids(request.APP)
+    ids = Addon.objects.featured_ids(request.APP, personas=False)
     addons = order_by_ids(Addon.objects.filter(pk__in=ids), ids)
     return jingo.render(request, template, {'addons': addons})

@@ -64,7 +64,7 @@ class AddonManager(amo.models.ManagerBase):
         """Get valid, enabled add-ons only"""
         return self.filter(self.valid_q(amo.LISTED_STATUSES))
 
-    def featured_ids(self, app):
+    def featured_ids(self, app, personas=True):
         """
         Get a list of addon ids in order of for the locale and then no locale.
         The ids are shuffled within each locale. Id is unique per result set.
@@ -76,6 +76,8 @@ class AddonManager(amo.models.ManagerBase):
                     feature__isnull=False,
                     feature__locale=locale))
             if results:
+                if not personas:
+                    qs = qs & ~Q(type=amo.ADDON_PERSONA)
                 qs = qs & ~Q(pk__in=results)
             ids = list(self.valid().values_list('pk', flat=True).filter(qs))
             random.shuffle(ids)

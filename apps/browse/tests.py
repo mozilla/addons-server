@@ -826,12 +826,13 @@ class TestLegacyRedirects(test_utils.TestCase):
 
 
 class TestFeaturedPage(test_utils.TestCase):
-    fixtures = ('base/apps', 'addons/featured')
+    fixtures = ('base/apps', 'base/featured', 'addons/featured')
 
     def test_featured_addons(self):
         """Make sure that only featured add-ons are shown"""
         response = self.client.get(reverse('browse.featured'))
-        eq_([1001, 1003], sorted(a.id for a in response.context['addons']))
+        eq_([1001, 1003, 2464, 3481, 7661],
+            sorted(a.id for a in response.context['addons']))
 
 
 class TestCategoriesFeed(test_utils.TestCase):
