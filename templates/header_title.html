@@ -2,7 +2,7 @@
 {% macro heading(text, icon) -%}
 <a href="{{ url('home') }}"
   title="{{ _('Return to the {0} Add-ons homepage')|f(request.APP.pretty) }}">
-  {{ text|f(MEDIA_URL + 'img/zamboni/app_icons/' + icon + '.png')|safe }}</a>
+  {{ text|f(media('img/zamboni/app_icons/' + icon + '.png'))|safe }}</a>
 {%- endmacro %}
 {% if request.APP == amo.FIREFOX %}
   {{ heading(_('<img alt="Firefox" src="{0}"> Add-ons'), 'firefox') }}

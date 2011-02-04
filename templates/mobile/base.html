@@ -6,7 +6,7 @@
     <title>{% block title %}{{ _('Mozilla Add-ons') }}{% endblock %}</title>
 
     <link rel="shortcut icon" type="image/x-icon"
-          href="{{ MEDIA_URL}}img/favicon.ico">
+          href="{{ media('img/favicon.ico') }}">
 
     {% block rss_feed %}{% endblock %}
 
@@ -39,7 +39,7 @@
             {% set appicon = 'firefox' if request.APP == amo.MOBILE else request.APP.short %}
             <a href="{{ url('home') }}"
               title="{{ _('Return to the {0} Add-ons homepage')|f(request.APP.pretty) }}">
-              <img alt="{{ request.APP.pretty }}" src="{{ MEDIA_URL + 'img/zamboni/app_icons/' + appicon + '.png' }}">
+              <img alt="{{ request.APP.pretty }}" src="{{ media('img/zamboni/app_icons/' + appicon + '.png') }}">
               {{ _('Mobile Add-ons') }}
             </a>
           </h1>
@@ -64,7 +64,7 @@
     {% endblock %}
     {% block js %}{% endblock %}
     {# Webtrends Stats Tracking #}
-    <script defer src="{{ MEDIA_URL }}js/webtrends/webtrends-v0.1.js"></script>
+    <script defer src="{{ media('js/webtrends/webtrends-v0.1.js') }}"></script>
     <noscript>
       <img id="DCSIMG" width="1" height="1"
         src="https://statse.webtrendslive.com/dcso6de4r0000082npfcmh4rf_4b1e/njs.gif?dcsuri=/nojavascript&amp;WT.js=No&amp;WT.tv=8.6.2" />

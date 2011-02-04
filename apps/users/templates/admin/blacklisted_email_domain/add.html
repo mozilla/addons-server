@@ -2,7 +2,7 @@
 {% from 'includes/forms.html' import required %}
 {% block extrahead %}
   {{ super() }}
-  <link rel="stylesheet" href="{{ MEDIA_URL }}css/zamboni/admin-django.css">
+  <link rel="stylesheet" href="{{ media('css/zamboni/admin-django.css') }}">
 {% endblock %}
 
 {% block title %}{{ page_title('Add Blacklisted E-mail Domains') }}{% endblock %}
