@@ -56,8 +56,8 @@
 
   <div>
     <h3>{{ _('Add-on Collector') }}</h3>
-    <p>{% trans app=request.APP.pretty %}
-      <img id="addon-collector-logo" src="{{ media('img/amo2009/illustrations/logo-collections-download-146x159.png') }}"
+    <p>{% trans app=request.APP.pretty, src=media('img/amo2009/illustrations/logo-collections-download-146x159.png') %}
+      <img id="addon-collector-logo" src="{{ media }}"
            width="146" height="159">
       Get updates on followed collections or manage your own collections directly
       from {{ app }} with this add-on.
