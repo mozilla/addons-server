@@ -540,7 +540,8 @@ def json_upload_detail(upload):
         prepare_validation_results(validation)
         if validation['errors'] == 0:
             try:
-                app_ids = [a.id for a in parse_addon(upload.path)['apps']]
+                apps = parse_addon(upload.path).get('apps', [])
+                app_ids = [a.id for a in apps]
                 if amo.MOBILE.id in app_ids:
                     # For multiple apps, choosing a platform no longer makes
                     # sense, so only allow ALL

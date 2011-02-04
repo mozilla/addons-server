@@ -3511,6 +3511,22 @@ class TestUploadDetail(files.tests.UploadTest):
                  'value': amo.PLATFORM_ANDROID.id}])
 
     @mock.patch('devhub.tasks._validator')
+    def test_search_tool_bypasses_platform_check(self, v):
+        v.return_value = json.dumps(self.validation_ok())
+        addon = os.path.join(settings.ROOT, 'apps', 'devhub', 'tests',
+                             'addons', 'searchgeek-20090701.xml')
+        with open(addon, 'rb') as f:
+            r = self.client.post(reverse('devhub.upload'),
+                                 {'upload': f})
+        eq_(r.status_code, 302)
+        upload = FileUpload.objects.get()
+        r = self.client.get(reverse('devhub.upload_detail',
+                                    args=[upload.uuid, 'json']))
+        eq_(r.status_code, 200)
+        data = json.loads(r.content)
+        eq_(data['new_platform_choices'], None)
+
+    @mock.patch('devhub.tasks._validator')
     def test_unparsable_xpi(self, v):
         v.return_value = json.dumps(self.validation_ok())
         addon = os.path.join(settings.ROOT, 'apps', 'devhub', 'tests',
