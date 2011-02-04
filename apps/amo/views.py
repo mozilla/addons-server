@@ -52,7 +52,7 @@ def check_rabbit():
     for queue, threshold in checker.queues().items():
         ping, pong = checker.get('ping', queue), checker.get('pong', queue)
         if (not (ping and pong) or float(ping) > float(pong)
-            or time.time() - float(ping) > 30 * 60):
+            or time.time() - float(ping) > 60 * 60):
             monitor_log.error('Celery[%s]: Could not find ping/pong (%s, %s)'
                               % (queue, ping, pong))
             rv[queue] = (threshold, None)
