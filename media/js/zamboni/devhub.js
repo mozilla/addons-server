@@ -1317,75 +1317,92 @@ function initCompatibility() {
     });
 }
 
-var imageStatus = {
-    poller: null,
-    start: function() {
-        if (!this.poller) {
-            this.poller = window.setTimeout(this.check, 100);
+var imagePoller = {
+    start: function(override, delay) {
+        if (override || !this.poll) {
+            this.poll = window.setTimeout(this.check, delay || 100);
         }
     },
-    newurl: function(org) {
-        var bst = new Date().getTime();
-        (org.indexOf('?') > -1) ? org = org+'&'+bst : org= org+'?'+bst;
-        return org;
+    stop: function() {
+        window.clearTimeout(this.poll);
+        this.poll = null;
     },
-    stop: function () {
-        window.clearTimeout(this.poller);
-        this.poller = null;
-        $('#edit-addon-media').find('b.save-badge').remove();
-        $('#edit-addon-media').find('img').each(function() {
-            $(this).attr('src', imageStatus.newurl($(this).attr('src')));
-        })
-        this.previews(skip_errors=false);
-    },
-    previews: function(skip_errors) {
-        $("div.preview-thumb").each(function(e) {
+};
+
+var imageStatus = {
+    start: function() {
+        this.icon = Object.create(imagePoller);
+        this.preview = Object.create(imagePoller);
+        this.icon.check = function() {
+            var self = imageStatus,
+                node = $('#edit-addon-media');
+            $.getJSON(node.attr('data-checkurl'),
+                function(json) {
+                    if (json !== null && json.icons) {
+                        $('#edit-addon-media').find('img').each(function() {
+                            $(this).attr('src', self.newurl($(this).attr('src')));
+                        });
+                        self.icon.stop();
+                        self.stopping();
+                    } else {
+                        self.icon.start(true, 2500);
+                        self.polling();
+                    }
+            });
+        };
+        this.preview.check = function() {
+            var self = imageStatus;
+            $('div.preview-thumb').each(function(e) {
                 var $this = $(this);
-                // No need to keep rechecking bad images until the polling
-                // returns good.
-                if ((skip_errors && $this.hasClass('preview-error')) ||
-                    $this.hasClass('preview-successful')) {
+                if ($this.hasClass('preview-successful')) {
                     return;
                 }
-
                 var img = Image();
                 img.onload = function() {
                     $this.removeClass('preview-error preview-unknown').addClass('preview-successful');
-                    $this.attr('style', 'background-image:url(' + imageStatus.newurl($this.attr('data-url')) + ')');
-                }
+                    $this.attr('style', 'background-image:url(' + self.newurl($this.attr('data-url')) + ')');
+                    if (!$('div.preview-error').length) {
+                        self.preview.stop();
+                        self.stopping();
+                    }
+                };
                 img.onerror = function() {
-                    $this.attr('style', '');
-                    $this.addClass('preview-error');
-                }
+                    self.preview.start(true, 2500);
+                    self.polling();
+                    $this.attr('style', '').addClass('preview-error');
+                };
                 img.src = $this.attr('data-url');
+            });
+        };
+        this.icon.start();
+        this.preview.start();
+    },
+    polling: function() {
+        if (this.icon.poll || this.preview.poll) {
+            var node = $('#edit-addon-media');
+            if (!node.find('b.image-message').length) {
+                $(format('<b class="save-badge image-message">{0}</b>',
+                  [gettext('Image changes being processed')]))
+                  .appendTo(node.find('h3').first());
             }
-        );
+        }
+    },
+    newurl: function(orig) {
+        var bst = new Date().getTime();
+        orig += (orig.indexOf('?') > 1 ? '&' : '?') + bst;
+        return orig;
     },
     cancel: function() {
-        window.clearTimeout(this.poller);
-        this.poller = null;
-        $('#edit-addon-media').find('b.save-badge').remove();
+        this.icon.stop();
+        this.preview.stop();
+        this.stopping();
     },
-    check: function() {
-        var self = imageStatus;
-        var node = $('#edit-addon-media');
-        $.getJSON(node.attr('data-checkurl'),
-            function(json) {
-                if (json != null && json['overall']) {
-                    self.stop();
-                } else {
-                    if (!node.find('b.image-message').length) {
-                        $(format('<b class="save-badge image-message">{0}</b>',
-                                [gettext('Image changes being processed')]))
-                                .appendTo(node.find('h3').first());
-                    }
-                    self.poller = window.setTimeout(self.check, 2500);
-                    self.previews(skip_errors=true);
-                }
-            }
-        );
+    stopping: function() {
+        if (!this.icon.poll && !this.preview.poll) {
+            $('#edit-addon-media').find('b.image-message').remove();
+        }
     }
-}
+};
 
 function multipartUpload(form, onreadystatechange) {
     var xhr = new XMLHttpRequest(),
