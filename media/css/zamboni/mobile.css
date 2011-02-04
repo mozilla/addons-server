@@ -190,8 +190,10 @@ table th {
     z-index: 100;
 }
 .moz-menu .tab {
+    border-radius: 0 0 6px 6px;
     -moz-border-radius: 0 0 6px 6px;
     -webkit-border-radius: 0 0 6px 6px;
+    box-shadow: 0 -3px rgba(0,0,0,.2) inset;
     -moz-box-shadow: 0 -3px rgba(0,0,0,.2) inset;
     -webkit-box-shadow: 0 -3px rgba(0,0,0,.2) inset;
 }
@@ -323,6 +325,7 @@ header hgroup {
 
 .listview {
     margin: 14px 14px 0;
+    border-radius: 6px;
     -moz-border-radius: 6px;
     -webkit-border-radius: 6px;
     border: 1px solid #ddd;
@@ -423,25 +426,94 @@ a.listview:before {
     border-radius: 6px;
 }
 
+/************************************/
+/*            SORT MENU             */
+/************************************/
+
 #sort-menu {
-    display: -moz-box;
-    display: -webkit-box;
-    width: 100%;
-    -moz-box-sizing: border-box;
     -moz-box-align: center;
 }
 
-#sort-menu span {
-    display: block;
-    margin-right: 4px;
+#sort-menu ul {
+    height: 0;
+    position: relative;
+    top: -1px;
+    overflow: hidden;
+    -moz-transition: .5s height ease;
+    -webkit-transition: .5s height ease;
+    border: 0px solid transparent;
+    border-width: 1px 0;
 }
 
-#sort-menu select {
-    height: 30px;
-    display: block;
-    -webkit-box-flex: 1;
-    -moz-box-flex: 1;
+#sort-menu.expand ul {
+    border-color: #a9badb;
+    height: 254px;
 }
+
+#sort-menu li {
+    border-top: 1px solid #dde4ef;
+}
+#sort-menu li a {
+    display: block;
+    height: 26px;
+    line-height: 26px;
+    padding: 12px 14px;
+}
+#sort-menu li:first-child {
+    border-top: 0;
+}
+
+#sort-menu .label {
+    color: #888;
+    padding-left: 14px;
+}
+#sort-menu .label span {
+    position: relative;
+    display: inline-block;
+    z-index: 10;
+    background: transparent;
+    color: #447bc4;
+    text-align: center;
+    white-space: nowrap;
+    border: 1px solid transparent;
+    border-width: 1px 1px 0 1px;
+    border-radius: 6px 6px 0 0;
+    -moz-border-radius: 6px 6px 0 0;
+    -webkit-border-radius: 6px 6px 0 0;
+    margin-left: 4px;
+    padding: 11px 22px 11px 6px;
+    -moz-transition: .3s background ease;
+}
+#sort-menu.expand .label span {
+    background: white;
+    border-color: #a9badb;
+    border-bottom: 1px solid white;
+    box-shadow: 0 -1px 1px #dde4ef;
+}
+
+/* menu arrow */
+#sort-menu .label span:after {
+    content: "\00a0";
+    display: block;
+    position: absolute;
+    right: 8px;
+    width: 0;
+    height: 0;
+    -moz-transition: .3s -moz-transform ease;
+    -webkit-transition: .3s -webkit-transform ease;
+    -moz-transform-origin: 50% 25%;
+    -webkit-transform-origin: 50% 25%;
+    top: 16px;
+    border: 5px solid transparent;
+    border-top-color: #447BC4;
+    pointer-events: none;
+}
+
+#sort-menu.expand .label span:after {
+    -moz-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+}
+
 
 /************************************/
 /*               TABS               */
@@ -485,6 +557,7 @@ a.listview:before {
     box-shadow: 0 -1px 1px rgba(0,0,0,.1);
     border: 1px solid #a2bbdc;
     border-width: 1px 1px 0 1px;
+    border-radius: 6px 6px 0 0;
     -moz-border-radius: 6px 6px 0 0;
     -webkit-border-radius: 6px 6px 0 0;
 }

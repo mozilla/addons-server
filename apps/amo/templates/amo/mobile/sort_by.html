@@ -1,10 +1,11 @@
 <div id="sort-menu">
-  <span>{{ _('Sort by:') }}</span>
-  <select>
+  <a href="#" class="label">{{ _('Sort by:') }}<span>
+    {{ current }}
+  </span></a>
+  <ul>
     {% for value, title in options %}
-      <option data-url="{{ base_url|urlparams(sort=value) }}"
-              {% if value == selected %}selected{% endif %}>
-        {{ title }}</option>
+      <li {% if value == selected %}class="selected"{% endif %}>
+        <a href="{{ base_url|urlparams(sort=value) }}">{{ title }}</a></li>
     {% endfor %}
-  </select>
+  </ul>
 </div>

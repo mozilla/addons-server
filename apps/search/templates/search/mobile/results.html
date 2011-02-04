@@ -19,16 +19,8 @@
 
   <div class="menu">
     {% include "search/mobile/search.html" %}
-
-    <div id="sort-menu">
-      <span>{{ _('Sort by:') }}</span>
-      <select>
-        {% for sort in sort_tabs %}
-          <option data-url="{{ sort.url }}" {% if sort.selected %}selected{% endif %}>{{ sort.text }}</option>
-        {% endfor %}
-      </select>
-    </div>
   </div>
+  {{ mobile_sort_by(request.get_full_path(), sort_opts, sort or None) }}
 
   <div class="addon-listing">
     <ul class="listview">

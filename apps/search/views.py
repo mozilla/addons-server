@@ -143,6 +143,23 @@ def _get_tags(request, tags, selected):
     return items
 
 
+def _get_sort_menu(request, sort):
+    items = []
+    url = request.get_full_path()
+    sorts = forms.sort_by
+
+    item = (None, _('Keyword Match'))
+    items.append(item)
+
+    for key, val in sorts:
+        if key == '':
+            continue
+        item = (key, val)
+        items.append(item)
+
+    return items
+
+
 def _get_sorts(request, sort):
     items = []
     url = request.get_full_path()
@@ -314,10 +331,11 @@ def search(request, tag_name=None, template=None):
     platforms = _get_platforms(request, client.meta['platforms'],
                                search_opts['platform'])
     sort_tabs = _get_sorts(request, sort)
+    sort_opts = _get_sort_menu(request, sort)
 
     pager = amo.utils.paginate(request, results, search_opts['limit'])
 
     context = dict(pager=pager, query=query, tag=tag, platforms=platforms,
                    versions=versions, categories=categories, tags=tags,
-                   sort_tabs=sort_tabs, sort=sort)
+                   sort_tabs=sort_tabs, sort_opts=sort_opts, sort=sort)
     return jingo.render(request, template, context)

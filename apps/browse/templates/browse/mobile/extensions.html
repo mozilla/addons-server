@@ -20,9 +20,7 @@
   {% else %}
     <h2>{{ _('Extensions') }}</h2>
   {% endif %}
-  <div class="menu">
-    {{ mobile_sort_by(base_url, sort_opts, sorting) }}
-  </div>
+  {{ mobile_sort_by(base_url, sort_opts, sorting) }}
 
   <div class="addon-listing">
     <ul class="listview">

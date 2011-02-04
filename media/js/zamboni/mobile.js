@@ -58,6 +58,12 @@ $(function() {
 
 $(".moz-menu .tab a").click(_pd(function() {
     $(".moz-menu").toggleClass("expand");
+    this.blur();
+}));
+
+$("#sort-menu .label").click(_pd(function() {
+    $("#sort-menu").toggleClass("expand");
+    this.blur();
 }));
 
 function _pd(func) {

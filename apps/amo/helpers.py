@@ -332,6 +332,7 @@ def recaptcha(context, form):
 
 @register.inclusion_tag('amo/mobile/sort_by.html')
 def mobile_sort_by(base_url, options, selected):
+    current = [title for key, title in options if key == selected][0]
     return locals()
 
 
