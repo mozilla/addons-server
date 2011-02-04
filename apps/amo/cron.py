@@ -230,7 +230,7 @@ class QueueCheck(object):
     def queues(self):
         # Figure out all the queues we're using. celery is the default, with a
         # warning threshold of 10 minutes.
-        queues = {'celery': 10 * 60}
+        queues = {'celery': 60 * 60}
         others = set(r['queue'] for r in settings.CELERY_ROUTES.values())
         # 30 second threshold for the fast queues.
         queues.update((q, 30) for q in others)
