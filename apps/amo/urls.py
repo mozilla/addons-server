@@ -6,7 +6,8 @@ from django.views.decorators.cache import never_cache
 from . import views
 
 services_patterns = patterns('',
-    url('^monitor$', never_cache(views.monitor), name='amo.monitor'),
+    url('^monitor(.json)?$', never_cache(views.monitor),
+        name='amo.monitor'),
     url('^paypal$', never_cache(views.paypal), name='amo.paypal'),
     url('^loaded$', never_cache(views.loaded), name='amo.loaded'),
     url('^csp/policy$', csp.views.policy, name='amo.csp.policy'),
