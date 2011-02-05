@@ -867,8 +867,8 @@ body.detail {
     position: relative;
 }
 
-+/* @group Add-on details header */
-+.detail #main header {
+/* @group Add-on details header */
+.detail #main header {
     margin: 0 0 1.6em;
     position: relative;
     text-shadow: 0 1px 0 rgba(255,255,255,0.8);
@@ -1002,31 +1002,39 @@ p.back:hover:before {
     margin: -1px 0 0 8px;
 }
 
-/* @Reviews *********/
+/* @group Headings */
 #addon-reviews h3,
 body.eula h3 {
-    background-color: rgba(105, 125, 149, 0.39);
-    padding-right: 8px;
+    margin-bottom: 0.75em;
     position: relative;
-    z-index: 99;
-    float: left;
+}
+
+#addon-reviews h3:after,
+body.eula h3:after {
+    border-top: 2px groove rgba(255,255,255,.25);
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 4px;
+    right: 0;
+    width: -moz-calc(100% - 70px);
+}
+body.eula h3:after {
+    width: -moz-calc(100% - 235px);
 }
 
 .html-rtl #addon-reviews h3,
 .html-rtl body.eula h3 {
-    float: right;
-    padding: 0 0 0 8px;
+    text-align: right;
 }
 
-#addon-reviews .article,
-body.eula h3 + p {
-    border-top: 2px groove rgba(255,255,255,.25);
-    padding-top: 1.75em;
-    clear: both;
-    position: relative;
-    top: -.75em;
+.html-rtl #addon-reviews h3:after,
+.html-rtl body.eula h3:after {
+    left: 0;
 }
+/* @end */
 
+/* @Reviews *********/
 #addon-reviews .review-detail {
     margin: 0 0 1.5em;
     padding: 0 0 .25em;
