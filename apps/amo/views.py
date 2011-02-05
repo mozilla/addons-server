@@ -62,7 +62,7 @@ def check_rabbit():
 
 
 @never_cache
-def monitor(request):
+def monitor(request, format=None):
 
     # For each check, a boolean pass/fail status to show in the template
     status_summary = {}
@@ -183,6 +183,10 @@ def monitor(request):
     # If anything broke, send HTTP 500
     if not all(status_summary.values()):
         status = 500
+
+    if format == '.json':
+        return http.HttpResponse(json.dumps(status_summary),
+                                 status=status)
 
     return jingo.render(request, 'services/monitor.html',
                         {'memcache_results': memcache_results,
