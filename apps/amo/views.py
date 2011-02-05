@@ -178,7 +178,7 @@ def monitor(request, format=None):
 
     # Check Mongo
     mongo_results = []
-    status_summary['mongo'] = mongoutils.connect_mongo()
+    status_summary['mongo'] = bool(mongoutils.connect_mongo())
 
     # If anything broke, send HTTP 500
     if not all(status_summary.values()):
