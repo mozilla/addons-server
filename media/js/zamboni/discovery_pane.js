@@ -178,10 +178,15 @@ function css(el, prop) {
 
 $(document).ready(function(){
     $(".install-action a").attr("target", "_self");
-    $(".detail header p.back a").click(function(e) {
-        e.preventDefault();
-        history.go(parseInt($(this).attr('data-history')));
-    });
+
+    // Construct URL for the link back to the discovery promo pane.
+    if ($(".detail").length) {
+        var version = localStorage.getItem("discopane-browser-version", version),
+            platform = localStorage.getItem("discopane-browser-platform", platform),
+            url = document.body.getAttribute("data-pane-url");
+        url = url.replace(":version:", version).replace(":platform:", platform);
+        $(".detail header p.back a").attr("href", url);
+    }
 
     // Set up the carousel.
     $("#main-feature").fadeIn("slow").addClass("js").jCarouselLite({

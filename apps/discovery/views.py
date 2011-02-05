@@ -43,7 +43,8 @@ def pane(request, version, platform):
                          'addon_downloads': addon_downloads,
                          'top_addons': from_api('by_adu'),
                          'featured_addons': from_api('featured'),
-                         'featured_personas': get_featured_personas(request)})
+                         'featured_personas': get_featured_personas(request),
+                         'version': version, 'platform': platform})
 
 
 def get_modules(request, platform, version):

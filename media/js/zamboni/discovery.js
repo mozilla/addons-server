@@ -1,8 +1,19 @@
 $(document).ready(function(){
     $("body").addClass("no-recs");
+    storeBrowserInfo();
     initRecs();
     initDescs();
 });
+
+
+function storeBrowserInfo() {
+    // Store the browser version and platform so we can construct the
+    // pane URL when we link from the add-on detail pages.
+    var version = document.body.getAttribute("data-browser-version"),
+        platform = document.body.getAttribute("data-browser-platform");
+    localStorage.setItem("discopane-browser-version", version);
+    localStorage.setItem("discopane-browser-platform", platform);
+}
 
 
 function initDescs() {
@@ -15,14 +26,6 @@ function initDescs() {
 
 
 function initRecs() {
-    try {
-        if (!window.localStorage || !window.JSON || !Object.keys) {
-            return;
-        }
-    } catch(ex) {
-        return;
-    }
-
     var services_url = document.body.getAttribute("data-services-url");
 
     // Where all the current recommendations data is kept.

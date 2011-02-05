@@ -20,7 +20,9 @@
         data-readonly="{{ settings.READ_ONLY|json }}"
         data-media-url="{{ MEDIA_URL }}"
         data-services-url="{{ settings.SERVICES_URL }}"
-        data-recs-url="{{ url('discovery.recs') }}">
+        data-recs-url="{{ url('discovery.recs') }}"
+        data-browser-version="{{ version }}"
+        data-browser-platform="{{ platform }}">
     <header>
       <section id="intro">
         <h1><img src="{{ media('img/zamboni/discovery_pane/logo-addons.png') }}"
