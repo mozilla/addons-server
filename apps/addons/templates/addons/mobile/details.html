@@ -3,7 +3,6 @@
 {% block title %}{{ page_title(addon.name) }}{% endblock %}
 
 {% block page %}
-<section id="content">
   <div class="listview">
     <div class="item">
       <img class="icon" width="32" height="32" src="{{ addon.icon_url }}">
@@ -114,5 +113,4 @@
     {{ emaillink(addon.support_email.localized_string,
                  _('Ask the Author a Question')) }}
   {% endif %}
-</section>
 {% endblock %}
