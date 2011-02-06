@@ -5,7 +5,7 @@
   {{ page_title(_('End-User License Agreement for {0}')|f(addon.name)) }}
 {% endblock %}
 
-{% block bodyclass %}eula{% endblock %}
+{% block bodyclass %}{{ super() }} eula{% endblock %}
 
 {% block main %}
 <h3>{{ _('End-User License Agreement') }}</h3>

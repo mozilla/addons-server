@@ -428,18 +428,32 @@ MINIFY_BUNDLES = {
         ),
         'zamboni/discovery-pane': (
             'js/zamboni/jquery-1.4.2.min.js',
-            'js/jquery-ui/ui.lightbox.js',
             'js/zamboni/format.js',
-            'js/zamboni/truncation.js',
 
             # Personas
             'js/zamboni/jquery.hoverIntent.min.js',
             'js/zamboni/personas.js',
 
+            'js/zamboni/truncation.js',
             'js/zamboni/discovery_pane.js',
             'js/zamboni/discovery.js',
         ),
         'zamboni/discovery-addons': (
+            'js/zamboni/jquery-1.4.2.min.js',
+            'js/zamboni/jquery-ui/custom-1.8.5.min.js',
+            'js/zamboni/underscore-min.js',
+            'js/amo2009/addons.js',
+            'js/zamboni/init.js',
+            'js/zamboni/format.js',
+            'js/zamboni/buttons.js',
+
+            # Add-ons details page
+            'js/jquery-ui/ui.lightbox.js',
+
+            # Personas
+            'js/zamboni/jquery.hoverIntent.min.js',
+            'js/zamboni/personas.js',
+
             'js/zamboni/truncation.js',
             'js/zamboni/discovery_pane.js',
         ),

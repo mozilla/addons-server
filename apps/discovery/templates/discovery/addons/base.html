@@ -1,43 +1,35 @@
-<!DOCTYPE html>
-<html lang="{{ LANG }}" dir="{{ DIR }}">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=770">
-    <title>{% block title %}{{ page_title(addon.name) }}{% endblock %}</title>
-    {{ css('zamboni/discovery-pane') }}
-    <base target="_blank" href="{{ settings.SITE_URL }}">
-    {% block extrahead %}{% endblock %}
-  </head>
-  <body class="html-{{ DIR }} {{ request.APP.short }} detail {% block bodyclass %}{% endblock %}"
-        data-app="{{ request.APP.short }}"
-        data-appname="{{ request.APP.pretty }}"
-        data-appid="{{ request.APP.id }}"
-        data-min-beta-version="{{ settings.MIN_BETA_VERSION }}"
-        data-anonymous="{{ (not request.user.is_authenticated())|json }}"
-        data-readonly="{{ settings.READ_ONLY|json }}"
-        data-media-url="{{ MEDIA_URL }}"
-        data-pane-url="{{ url('discovery.pane', ':version:', ':platform:') }}">
-    <section id="main">
-      <header>
-        <h1 class="addon">
-          <img class="icon" src="{{ addon.icon_url }}">
-          {{ addon.name }}
-          {% set version = addon.current_version %}
-          {% if version and not addon.is_selfhosted() %}
-            <span class="version">{{ version.version }}</span>
-          {% endif %}
-        </h1>
-        <h2 class="author">
-          {{ _('by') }} {{ users_list(addon.listed_authors) }}
-        </h2>
-        <p class="back"><a href="#" target="_self">{{ _('Back to Add-ons') }}</a></p>
-      </header>
-      {% block main %}{% endblock %}
-    </section>
-    {% block secondary %}{% endblock %}
-    <script src="{{ url('jsi18n') }}/build:{{ BUILD_ID_JS }}"></script>
-    {{ js('common') }}
-    <script async defer src="{{ url('addons.buttons.js') }}/build:{{ BUILD_ID_JS }}"></script>
-    {{ js('zamboni/discovery-addons') }}
-  </body>
-</html>
+{% extends "discovery/base.html" %}
+
+{% block bodyclass %}detail{% endblock %}
+
+{% block bodyattrs %}
+data-pane-url="{{ url('discovery.pane', ':version:', ':platform:') }}"
+{% endblock %}
+
+{% block title %}{{ page_title(addon.name) }}{% endblock %}
+
+{% block content %}
+  <section id="main">
+    <header>
+      <h1 class="addon">
+        <img class="icon" src="{{ addon.icon_url }}">
+        {{ addon.name }}
+        {% set version = addon.current_version %}
+        {% if version and not addon.is_selfhosted() %}
+          <span class="version">{{ version.version }}</span>
+        {% endif %}
+      </h1>
+      <h2 class="author">
+        {{ _('by') }} {{ users_list(addon.listed_authors) }}
+      </h2>
+      <p id="back"><a href="#" target="_self">{{ _('Back to Add-ons') }}</a></p>
+    </header>
+    {% block main %}{% endblock %}
+  </section>
+  {% block secondary %}{% endblock %}
+{% endblock %}
+
+{% block js %}
+  {{ js('zamboni/discovery-addons') }}
+  <script async defer src="{{ url('addons.buttons.js') }}/build:{{ BUILD_ID_JS }}"></script>
+{% endblock %}

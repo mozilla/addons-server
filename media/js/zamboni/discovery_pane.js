@@ -177,15 +177,33 @@ function css(el, prop) {
 
 
 $(document).ready(function(){
-    $(".install-action a").attr("target", "_self");
-
     // Construct URL for the link back to the discovery promo pane.
     if ($(".detail").length) {
+        $(".install-action a").attr("target", "_self");
         var version = localStorage.getItem("discopane-browser-version", version),
             platform = localStorage.getItem("discopane-browser-platform", platform),
             url = document.body.getAttribute("data-pane-url");
         url = url.replace(":version:", version).replace(":platform:", platform);
-        $(".detail header p.back a").attr("href", url);
+        $("p#back a").attr("href", url);
+
+        $("#images").fadeIn("slow").addClass("js").jCarouselLite({
+            btnNext: "#images .nav-next a",
+            btnPrev: "#images .nav-prev a",
+            circular: false
+        });
+        $(".addon-info").addClass("js");
+
+        // Set up the lightbox.
+        var lb_baseurl = z.media_url + "img/jquery-lightbox/";
+        $("#images li.panel a[rel=jquery-lightbox]").lightBox({
+            overlayOpacity: 0.6,
+            imageBlank: lb_baseurl + "lightbox-blank.gif",
+            imageLoading: lb_baseurl + "lightbox-ico-loading.gif",
+            imageBtnClose: "",
+            imageBtnPrev: "",
+            imageBtnNext: "",
+            containerResizeSpeed: 350
+        });
     }
 
     // Set up the carousel.
@@ -193,24 +211,6 @@ $(document).ready(function(){
         btnNext: "#main-feature .nav-next a",
         btnPrev: "#main-feature .nav-prev a",
         visible: 1
-    });
-    $("#images").fadeIn("slow").addClass("js").jCarouselLite({
-        btnNext: "#images .nav-next a",
-        btnPrev: "#images .nav-prev a",
-        circular: false
-    });
-    $(".addon-info").addClass("js");
-
-    // Set up the lightbox.
-    var lb_baseurl = document.body.getAttribute("data-media-url") + "img/jquery-lightbox/";
-    $("#images li.panel a[rel=jquery-lightbox]").lightBox({
-        overlayOpacity: 0.6,
-        imageBlank: lb_baseurl + "lightbox-blank.gif",
-        imageLoading: lb_baseurl + "lightbox-ico-loading.gif",
-        imageBtnClose: "",
-        imageBtnPrev: "",
-        imageBtnNext: "",
-        containerResizeSpeed: 350
     });
 
     setPanelWidth("detail");

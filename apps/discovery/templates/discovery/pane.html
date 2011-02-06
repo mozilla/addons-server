@@ -1,140 +1,129 @@
+{% extends "discovery/base.html" %}
 {% from "discovery/macros.html" import addon_list, persona_list %}
 
 {% set app = request.APP.pretty %}
 
-<!DOCTYPE html>
-<html lang="{{ LANG }}" dir="{{ DIR }}">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=700">
-    <title>{{ _('Discover Add-ons') }}</title>
-    {{ css('zamboni/discovery-pane') }}
-    <base target="_blank" href="{{ settings.SITE_URL }}">
-  </head>
-  <body class="html-{{ DIR }} pane {{ request.APP.short }}"
-        data-app="{{ request.APP.short }}"
-        data-appname="{{ app }}"
-        data-appid="{{ request.APP.id }}"
-        data-min-beta-version="{{ settings.MIN_BETA_VERSION }}"
-        data-anonymous="{{ (not request.user.is_authenticated())|json }}"
-        data-readonly="{{ settings.READ_ONLY|json }}"
-        data-media-url="{{ MEDIA_URL }}"
-        data-services-url="{{ settings.SERVICES_URL }}"
-        data-recs-url="{{ url('discovery.recs') }}"
-        data-browser-version="{{ version }}"
-        data-browser-platform="{{ platform }}">
-    <header>
-      <section id="intro">
-        <h1><img src="{{ media('img/zamboni/discovery_pane/logo-addons.png') }}"
-                 width="87" height="82">{{ _('What are Add-ons?') }}</h1>
-        <p>
-          {% trans %}
-          Add-ons are applications that let you personalize {{ app }} with
-          extra functionality or style. Try a time-saving sidebar, a weather
-          notifier, or a themed look to make {{ app }} your own.
-          {% endtrans %}
-          <a href="{{ url('home') }}" class="button">{{ _('Learn More') }}</a>
+{% block bodyclass %}pane{% endblock %}
+
+{% block bodyattrs %}
+data-services-url="{{ settings.SERVICES_URL }}"
+data-recs-url="{{ url('discovery.recs') }}"
+data-browser-version="{{ version }}"
+data-browser-platform="{{ platform }}"
+{% endblock %}
+
+{% block content %}
+  <header>
+    <section id="intro">
+      <h1><img src="{{ media('img/zamboni/discovery_pane/logo-addons.png') }}"
+               width="87" height="82">{{ _('What are Add-ons?') }}</h1>
+      <p>
+        {% trans %}
+        Add-ons are applications that let you personalize {{ app }} with
+        extra functionality or style. Try a time-saving sidebar, a weather
+        notifier, or a themed look to make {{ app }} your own.
+        {% endtrans %}
+        <a href="{{ url('home') }}" class="button">{{ _('Learn More') }}</a>
+      </p>
+    </section>
+
+  {% if user.is_authenticated() %}
+    <section id="my-account">
+      {# L10n: {0} is the user's login name. #}
+      <p>{{ _('Hi, {0}')|f(request.amo_user.welcome_name) }}</p>
+      <ul>
+        <li><a href="{{ url('users.edit') }}">{{ _('Your Profile') }}</a></li>
+        <li><a href="{{ url('collections.detail', request.amo_user.username,
+                            'favorites') }}">{{ _('Your Favorites') }}</a></li>
+        <li><a href="{{ url('collections.user', request.amo_user.username) }}">{{ _('My Collections') }}</a></li>
+      </ul>
+      <p id="logout"><a href="{{ remora_url('/users/logout') }}">{{ _('Log out') }}</a></p>
+    </section>
+  {% else %}
+    <section id="mission">
+       <p>{% trans url="http://www.mozilla.org/" -%}
+        Thanks for using {{ app }} and supporting
+        <a href="{{ url }}">Mozilla's mission</a>!
+        {%- endtrans %}</p>
+      {% if addon_downloads %}
+        <p id="download-count">
+          {{ _('Add-ons downloaded:') }}
+          <strong>{{ addon_downloads|numberfmt }}</strong>
         </p>
-      </section>
+      {% endif %}
+    </section>
+  {% endif %}
+  </header>
 
-    {% if user.is_authenticated() %}
-      <section id="my-account">
-        {# L10n: {0} is the user's login name. #}
-        <p>{{ _('Hi, {0}')|f(request.amo_user.welcome_name) }}</p>
-        <ul>
-          <li><a href="{{ url('users.edit') }}">{{ _('Your Profile') }}</a></li>
-          <li><a href="{{ url('collections.detail', request.amo_user.username,
-                              'favorites') }}">{{ _('Your Favorites') }}</a></li>
-          <li><a href="{{ url('collections.user', request.amo_user.username) }}">{{ _('My Collections') }}</a></li>
-        </ul>
-        <p id="logout"><a href="{{ remora_url('/users/logout') }}">{{ _('Log out') }}</a></p>
-      </section>
-    {% else %}
-      <section id="mission">
-         <p>{% trans url="http://www.mozilla.org/" -%}
-          Thanks for using {{ app }} and supporting
-          <a href="{{ url }}">Mozilla's mission</a>!
-          {%- endtrans %}</p>
-        {% if addon_downloads %}
-          <p id="download-count">
-            {{ _('Add-ons downloaded:') }}
-            <strong>{{ addon_downloads|numberfmt }}</strong>
-          </p>
-        {% endif %}
-      </section>
-    {% endif %}
-    </header>
+  <section id="main">
 
-    <section id="main">
-
-      <section id="recs">
-        <div class="header">
-          <h2>
-            {{ _('Recommended for You') }}
-            <a href="{{ url('pages.faq')|
-                        urlparams('personal-recommendations') }}">
-              {{ _('What is this?') }}</a>
-          </h2>
-        </div>
-        <div class="gallery-wrap">
-          <ul id="nav-recs">
-            <li class="nav-prev"><a href="#" class="prev">{{ _('Previous') }}</a></li>
-            <li class="nav-next"><a href="#" class="next">{{ _('Next') }}</a></li>
-          </ul>
-          <div class="gallery">
-            <ul class="slider rec-addons"></ul>
-          </div>
-        </div>
-      </section>
-
-      <section id="main-feature">
-        <ul id="nav-features">
+    <section id="recs">
+      <div class="header">
+        <h2>
+          {{ _('Recommended for You') }}
+          <a href="{{ url('pages.faq')|
+                      urlparams('personal-recommendations') }}">
+            {{ _('What is this?') }}</a>
+        </h2>
+      </div>
+      <div class="gallery-wrap">
+        <ul id="nav-recs">
           <li class="nav-prev"><a href="#" class="prev">{{ _('Previous') }}</a></li>
           <li class="nav-next"><a href="#" class="next">{{ _('Next') }}</a></li>
         </ul>
-        <ul class="slider">
-        {% for module in modules %}
-          {{ module.render() }}
-        {% endfor %}
-        </ul>
-      </section>
-
-      <section id="featured-addons">
-        <h2>{{ _('Featured Add-ons') }}</h2>
-        <div class="addons">
-          {{ addon_list(featured_addons) }}
+        <div class="gallery">
+          <ul class="slider rec-addons"></ul>
         </div>
-      </section>
-
+      </div>
     </section>
 
-    <section id="sub">
-      <section class="featured" id="top-addons">
-        <h2><a class="all" href="{{ url('browse.extensions') }}">{{ _('See all') }}</a>
-          {{ _('Top Add-ons') }}</h2>
-        {{ addon_list(top_addons, 5, sidebar=True) }}
-      </section>
-      <section class="featured personas" id="featured-personas">
-        <h2><a class="all" href="{{ url('browse.personas') }}">{{ _('See all') }}</a>
-          {{ _('Featured Personas') }}</h2>
-        {{ persona_list(featured_personas) }}
-      </section>
-      <section id="more-ways">
-        <h2>{{ _('More ways to customize') }}</h2>
-        <ul>
-          <li id="more-addons">
-            <a href="{{ url('browse.extensions') }}">{{ _('Browse all add-ons') }}</a>
-          </li>
-          <li id="more-personas">
-            <a href="{{ url('browse.themes') }}">
-              {{ _('See all themes and Personas') }}</a>
-          </li>
-        </ul>
-      </section>
+    <section id="main-feature">
+      <ul id="nav-features">
+        <li class="nav-prev"><a href="#" class="prev">{{ _('Previous') }}</a></li>
+        <li class="nav-next"><a href="#" class="next">{{ _('Next') }}</a></li>
+      </ul>
+      <ul class="slider">
+      {% for module in modules %}
+        {{ module.render() }}
+      {% endfor %}
+      </ul>
     </section>
 
-    <script src="{{ url('jsi18n') }}/build:{{ BUILD_ID_JS }}"></script>
-    {{ js('zamboni/discovery-pane') }}
+    <section id="featured-addons">
+      <h2>{{ _('Featured Add-ons') }}</h2>
+      <div class="addons">
+        {{ addon_list(featured_addons) }}
+      </div>
+    </section>
 
-  </body>
-</html>
+  </section>
+
+  <section id="sub">
+    <section class="featured" id="top-addons">
+      <h2><a class="all" href="{{ url('browse.extensions') }}">{{ _('See all') }}</a>
+        {{ _('Top Add-ons') }}</h2>
+      {{ addon_list(top_addons, 5, sidebar=True) }}
+    </section>
+    <section class="featured personas" id="featured-personas">
+      <h2><a class="all" href="{{ url('browse.personas') }}">{{ _('See all') }}</a>
+        {{ _('Featured Personas') }}</h2>
+      {{ persona_list(featured_personas) }}
+    </section>
+    <section id="more-ways">
+      <h2>{{ _('More ways to customize') }}</h2>
+      <ul>
+        <li id="more-addons">
+          <a href="{{ url('browse.extensions') }}">{{ _('Browse all add-ons') }}</a>
+        </li>
+        <li id="more-personas">
+          <a href="{{ url('browse.themes') }}">
+            {{ _('See all themes and Personas') }}</a>
+        </li>
+      </ul>
+    </section>
+  </section>
+{% endblock %}
+
+{% block js %}
+  {{ js('zamboni/discovery-pane') }}
+{% endblock %}

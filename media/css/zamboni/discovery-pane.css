@@ -902,33 +902,33 @@ h1.addon .icon {
 }
 
 h2.author,
-p.back {
+p#back {
     font-size: 1em;
     font-weight: bold;
 }
 
 /* @group Add-on details header */
-.detail #main header p.back {
+.detail p#back {
     margin: 0 0 1em 1em;
     position: absolute;
     top: 0;
     right: 0;
 }
-.html-rtl .detail #main header p.back {
+.html-rtl p#back {
     left: 0;
     margin: 0 1em 1em 0;
 }
 
-p.back:before {
+p#back:before {
     content: "\25B4";
     margin-right: 0.5em;
     position: relative;
     bottom: 1px;
 }
 
-p.back:before,
-p.back a:link,
-p.back a:visited {
+p#back:before,
+p#back a:link,
+p#back a:visited {
     color: #144fae;
 }
 
