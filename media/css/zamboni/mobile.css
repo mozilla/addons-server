@@ -425,7 +425,7 @@ a.listview:before {
     margin: -1px 8px 0 0;
 }
 
-#search input[type=submit] {
+#search button[type=submit] {
     margin: 0;
     height: 45px;
     width: 56px;
