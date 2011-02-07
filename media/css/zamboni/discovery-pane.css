@@ -186,7 +186,7 @@ header:after,
 
 .recs #recs .gallery-wrap {
     background-color: #d4edea;
-    border-radius: 8px;
+    border-radius: 0 0 8px 8px;
     position: relative;
 }
 
@@ -207,15 +207,15 @@ header:after,
     padding-top: 78px;
 }
 .recs #recs .loading p > span {
-    background: url(../../img/zamboni/discovery_pane/loading.gif) 0 0 no-repeat;
+    background: url(../../img/zamboni/discovery_pane/loading.gif) no-repeat;
     display: inline-block;
     opacity: 0.25;
     height: 48px;
-    width: 48px;
     position: absolute;
-    top: 63px;
+    top: 73px;
     left: 50%;
-    left: -moz-calc(50% - 48px);
+    left: -moz-calc(50% - 24px);
+    width: 48px;
 }
 /* @end */
 
@@ -226,6 +226,7 @@ header:after,
     float: right;
     width: 22%;
     width: -moz-calc(24% - 22px);
+    border-radius: 8px;
 }
 
 .recs #mission {
@@ -397,12 +398,6 @@ header:after,
     box-shadow: inset rgba(255,255,255,0.1) 0px 0px 6px, rgba(125,125,125, 0.1) 1px 0px 3px;
 }
 
-.html-rtl .nav-prev a,
-.html-rtl #lightbox-nav a#lightbox-nav-btnPrev {
-    border-radius: 0 8px 8px 0;
-    right: 0;
-}
-
 .nav-prev a:hover,
 .nav-prev a:active {
     box-shadow: inset rgba(255,255,255,0.4) 0px 0px 6px, rgba(125,125,125,0.1) 2px 0px 3px;
@@ -416,20 +411,16 @@ header:after,
     box-shadow: inset rgba(255,255,255,0.1) 0px 0px 6px, rgba(125,125,125, 0.1) -1px 0px 3px;
 }
 
-.html-rtl .nav-next a,
-.html-rtl #lightbox-nav a#lightbox-nav-btnNext {
-    border-radius: 8px 0 0 8px;
-}
-
 .nav-next a:hover,
 .nav-next a:active {
     box-shadow: inset rgba(255,255,255,0.4) 0px 0px 6px, rgba(125,125,125,0.1) -2px 0px 3px;
 }
 
-#nav-recs .nav-prev a,
+#nav-recs .nav-prev a {
+    border-top-left-radius: 0;
+}
 #nav-recs .nav-next a {
-	border-radius-top-right: 0;
-	border-radius-top-left: 0;
+    border-top-right-radius: 0;
 }
 
 .nav-prev .disabled,
@@ -784,8 +775,6 @@ ul.addons {
     }
 
     .no-recs header #mission,
-    .no-recs header #my-account {
-    }
     .no-recs header #my-account {
         border-radius: 0 0 8px 8px;
         border-top: 1px inset rgba(0,0,0,0.15);

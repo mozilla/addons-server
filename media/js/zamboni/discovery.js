@@ -66,6 +66,7 @@ function initRecs() {
             $("#recs .gallery").fadeIn("slow").addClass("js").jCarouselLite({
                 btnNext: "#recs .nav-next a",
                 btnPrev: "#recs .nav-prev a",
+                scroll: 3,
                 circular: false
             });
             $("#recs #nav-recs").fadeIn("slow").addClass("js");

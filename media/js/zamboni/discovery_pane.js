@@ -53,6 +53,13 @@ $.fn.jCarouselLite = function(o) {
             o.start += v;
         }
 
+        if (!o.circular && o.scroll > 1) {
+            while (tl % o.scroll != 0) {
+                ul.append('<li class="panel"></li>');
+                tl++;
+            }
+        }
+
         var li = $(".panel", ul), itemLength = li.size(), curr = o.start;
         div.css("visibility", "visible");
 
@@ -73,22 +80,34 @@ $.fn.jCarouselLite = function(o) {
         // Width of the DIV. length of visible images.
         div.css(sizeCss, divSize+"px");
 
-        if(o.btnPrev) {
-            $(o.btnPrev).click(function() {
-                return go(curr-o.scroll);
-            });
-            if (!o.circular) {
+        if (!o.circular) {
+            $(o.btnPrev + "," + o.btnNext).removeClass("disabled");
+            if (o.btnPrev && curr == 0) {
                 $(o.btnPrev).addClass("disabled");
             }
+            if (o.btnNext && curr >= itemLength - v) {
+                $(o.btnNext).addClass("disabled");
+            }
+        }
+
+        if(o.btnPrev) {
+            $(o.btnPrev).click(function() {
+                var to = curr - o.scroll;
+                if (!o.circular && to < 0) {
+                    to = 0;
+                }
+                return go(to);
+            });
         }
 
         if(o.btnNext) {
             $(o.btnNext).click(function() {
-                return go(curr+o.scroll);
+                var to = curr + o.scroll;
+                if (!o.circular && to > itemLength - v - 1){
+                    to = itemLength - v;
+                }
+                return go(to);
             });
-            if (!o.circular && itemLength < o.visible) {
-                $(o.btnNext).addClass("disabled");
-            }
         }
 
         if(o.btnGo)
@@ -114,22 +133,21 @@ $.fn.jCarouselLite = function(o) {
 
         function go(to) {
             if(!running) {
-
                 if(o.beforeStart)
                     o.beforeStart.call(this, vis());
 
                 if(o.circular) {            // If circular we are in first or last, then goto the other end
                     if(to<=o.start-v-1) {           // If first, then goto last
-                        ul.css(animCss, -((itemLength-(v*2))*liSize)+"px");
+                        ul.css(animCss, -((itemLength-(v*2-curr))*liSize)+"px");
                         // If "scroll" > 1, then the "to" might not be equal to the condition; it can be lesser depending on the number of elements.
-                        curr = to==o.start-v-1 ? itemLength-(v*2)-1 : itemLength-(v*2)-o.scroll;
+                        curr = to == o.start-v-1 ? itemLength-(v*2)-1 : itemLength-(v*2)-o.scroll+curr;
                     } else if(to>=itemLength-v+1) { // If last, then goto first
-                        ul.css(animCss, -( (v) * liSize ) + "px" );
+                        ul.css(animCss, -((curr - (itemLength - (v*2))) * liSize) + "px");
                         // If "scroll" > 1, then the "to" might not be equal to the condition; it can be greater depending on the number of elements.
-                        curr = to==itemLength-v+1 ? v+1 : v+o.scroll;
+                        curr = to == itemLength-v+1 ? v+1 : curr - (itemLength - (v*2)) + o.scroll;
                     } else curr = to;
                 } else {                    // If non-circular and to points to first or last, we just return.
-                    if(to<0 || to>itemLength-v) return;
+                    if(to<0 || to>itemLength-v) return false;
                     else curr = to;
                 }                           // If neither overrides it, the curr will still be "to" and we can proceed.
 
@@ -145,14 +163,14 @@ $.fn.jCarouselLite = function(o) {
                 );
                 // Disable buttons when the carousel reaches the last/first,
                 // and enable when not.
-                if(!o.circular) {
+                if (!o.circular) {
                     $(o.btnPrev + "," + o.btnNext).removeClass("disabled");
-                    $( (curr-o.scroll<0 && o.btnPrev)
-                        ||
-                       (curr+o.scroll > itemLength-v && o.btnNext)
-                        ||
-                       []
-                     ).addClass("disabled");
+                    if (o.btnPrev && curr == 0) {
+                        $(o.btnPrev).addClass("disabled");
+                    }
+                    if (o.btnNext && curr >= itemLength - v) {
+                        $(o.btnNext).addClass("disabled");
+                    }
                 }
 
             }
@@ -245,6 +263,9 @@ function setPanelWidth(section) {
         $("#recs .gallery .panel").css({
             "width": 0.3 * galleryWidth,
             "margin-right": 0.05 * galleryWidth
+        });
+        $("#recs .gallery .panel:nth-child(3n)").each(function(i){
+            $(this).css("margin-right", 0.05 * galleryWidth + (1 + i));
         });
     }
 }
