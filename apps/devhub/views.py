@@ -721,7 +721,7 @@ def version_edit(request, addon_id, addon, version_id):
 
     if addon.accepts_compatible_apps():
         compat_form = forms.CompatFormSet(request.POST or None,
-                                      queryset=version.apps.all())
+                                          queryset=version.apps.all())
         data['compat_form'] = compat_form
 
     if (request.method == 'POST' and

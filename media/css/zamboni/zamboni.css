@@ -756,6 +756,7 @@ div.popup-shim {
 .thunderbird .install-note .msg, .thunderbird.app { background-image: url(../../img/amo2009/app-icons/small/thunderbird.png); }
 .sunbird .install-note .msg, .sunbird.app { background-image: url(../../img/amo2009/app-icons/small/sunbird.png); }
 .seamonkey .install-note .msg, .seamonkey.app { background-image: url(../../img/amo2009/app-icons/small/seamonkey.png); }
+.mz.app { background-image: url(../../img/amo2009/app-icons/small/mozilla.png); }
 
 .install-note .msg.m-unreviewed,
 .install-note .msg.m-selfhosted,
