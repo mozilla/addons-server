@@ -308,7 +308,7 @@ class CompatForm(happyforms.ModelForm):
             app = self.initial['application']
         else:
             app = self.data[self.add_prefix('application')]
-        self.app = amo.APP_IDS[int(app)]
+        self.app = amo.APPS_ALL[int(app)]
         qs = AppVersion.objects.filter(application=app).order_by('version_int')
         self.fields['min'].queryset = qs.filter(~Q(version__contains='*'))
         self.fields['max'].queryset = qs.all()
@@ -500,9 +500,7 @@ class PreviewForm(happyforms.ModelForm):
 
             if self.cleaned_data['upload_hash']:
                 upload_hash = self.cleaned_data['upload_hash']
-                settings_path = settings.PREVIEWS_PATH
                 upload_path = path.path(settings.TMP_PATH) / 'preview' / upload_hash
-
                 tasks.resize_preview.delay(str(upload_path),
                                            self.instance.thumbnail_path,
                                            self.instance.image_path)

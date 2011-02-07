@@ -2,11 +2,14 @@ from django.conf import settings
 
 import mock
 
+import amo
 import paypal
 import test_utils
-from addons.models import Charity
+from applications.models import Application, AppVersion
+from addons.models import Addon, Charity
 from devhub import forms
 from files.models import FileUpload
+from versions.models import ApplicationsVersions
 
 from nose.tools import eq_
 
@@ -64,3 +67,17 @@ class TestCharityForm(test_utils.TestCase):
             eq_(getattr(new_charity, k), v)
 
         assert new_charity.id != charity.id
+
+
+class TestCompatForm(test_utils.TestCase):
+    fixtures = ['base/apps', 'base/addon_3615']
+
+    def test_mozilla_app(self):
+        moz = amo.MOZILLA
+        appver = AppVersion.objects.create(application_id=moz.id)
+        v = Addon.objects.get(id=3615).current_version
+        ApplicationsVersions(application_id=moz.id, version=v,
+                             min=appver, max=appver).save()
+        fs = forms.CompatFormSet(None, queryset=v.apps.all())
+        apps = [f.app for f in fs.forms]
+        assert moz in apps

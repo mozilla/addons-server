@@ -35,6 +35,14 @@
         }
     },
     {
+        "pk": 2,
+        "model": "applications.application",
+        "fields": {
+            "guid": "{a23983c0-fd0e-11dc-95ff-0800200c9a66}",
+            "created": "2006-08-21 23:53:19"
+        }
+    },
+    {
         "pk": 1,
         "model": "files.platform",
         "fields": {
