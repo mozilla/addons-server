@@ -7,12 +7,15 @@ import test_utils
 from nose.tools import eq_
 from mock import patch
 
+from django.db import connection
+
 from redisutils import mock_redis, reset_redis
 from addons import forms, cron
 from addons.models import Addon, Category
 
 import amo
 from amo.tests.test_helpers import get_image_path
+from services import update
 
 
 class FormsTest(test_utils.TestCase):
@@ -184,37 +187,42 @@ class TestUpdate(test_utils.TestCase):
             'appVersion': '3.7a1pre',
         }
 
+    def get(self, data):
+        up = update.Update(data)
+        up.cursor = connection.cursor()
+        return up
+
     def test_beta(self):
         data = self.good_data.copy()
         for good in ['1.0a', '1.0beta2', '1.0 beta2']:
             data['version'] = good
-            form = forms.UpdateForm(data)
+            form = self.get(data)
             assert form.is_valid()
             assert form.is_beta_version
 
         for bad in ['1.0', 'beta 1.0', '1.0 beta 2']:
             data['version'] = bad
-            form = forms.UpdateForm(data)
+            form = self.get(data)
             assert form.is_valid()
             assert not form.is_beta_version
 
     def test_app_os(self):
         data = self.good_data.copy()
-        data['appOS'] = 'something %s penguin' % amo.PLATFORM_LINUX.shortname
-        form = forms.UpdateForm(data)
+        data['appOS'] = 'something %s penguin' % amo.PLATFORM_LINUX.api_name
+        form = self.get(data)
         assert form.is_valid()
-        eq_(form.cleaned_data['appOS'], amo.PLATFORM_LINUX)
+        eq_(form.cleaned_data['appOS'], amo.PLATFORM_LINUX.id)
 
     def test_app_version_fails(self):
         data = self.good_data.copy()
         del data['appID']
-        form = forms.UpdateForm(data)
+        form = self.get(data)
         assert not form.is_valid()
 
     def test_app_version_wrong(self):
         data = self.good_data.copy()
         data['appVersion'] = '67.7'
-        form = forms.UpdateForm(data)
+        form = self.get(data)
         # If you pass through the wrong version that's fine
         # you will just end up with no updates because your
         # version_int will be out.
@@ -222,9 +230,9 @@ class TestUpdate(test_utils.TestCase):
 
     def test_app_version(self):
         data = self.good_data.copy()
-        form = forms.UpdateForm(data)
+        form = self.get(data)
         assert form.is_valid()
-        eq_(form.version_int, 3070000001000)
+        eq_(form.data['version_int'], 3070000001000)
 
 
 class TestCategoryForm(test_utils.TestCase):
