@@ -11,16 +11,19 @@ from django.conf import settings
 from celeryutils import task
 import cronjobs
 import commonware.log
+import phpserialize
 import redisutils
 
 import amo
 from amo.utils import chunked
-from addons.utils import AdminActivityLogMigrationTracker
+from addons.utils import AdminActivityLogMigrationTracker, MigrationTracker
 from applications.models import Application, AppVersion
 from bandwagon.models import Collection
 from cake.models import Session
 from devhub.models import ActivityLog, LegacyAddonLog
+from editors.models import EventLog
 from files.models import TestResultCache
+from reviews.models import Review
 from sharing import SERVICES_LIST
 from stats.models import AddonShareCount, Contribution
 from users.models import UserProfile
@@ -103,7 +106,6 @@ def gc(test_result=True):
                               type=amo.COLLECTION_ANONYMOUS).delete()
 
 
-
 @cronjobs.register
 def migrate_admin_logs():
     # Get the highest id we've looked at.
@@ -126,6 +128,42 @@ def _migrate_admin_logs(items, **kw):
         kw = dict(user=item.user, created=item.created)
         amo.log(amo.LOG.ADD_APPVERSION, (Application, item.object1_id),
                 (AppVersion, item.object2_id), **kw)
+
+
+# TODO(davedash): remove after /editors is on zamboni
+@cronjobs.register
+def migrate_editor_eventlog():
+    a = MigrationTracker('eventlog')
+    id = a.get() or 0
+
+    items = EventLog.objects.filter(type='editor', pk__gt=id).values_list(
+            'id', flat=True)
+
+    for chunk in chunked(items, 100):
+        _migrate_editor_eventlog(chunk)
+        a.set(chunk[-1])
+
+
+@task
+def _migrate_editor_eventlog(items, **kw):
+    log.info('[%s@%s] Migrating eventlog items' %
+             (len(items), _migrate_editor_eventlog.rate_limit))
+    for item in EventLog.objects.filter(pk__in=items):
+        kw = dict(user=item.user, created=item.created)
+        if item.action == 'review_delete':
+            details = None
+            try:
+                details = phpserialize.loads(item.notes)
+            except ValueError:
+                pass
+            amo.log(amo.LOG.DELETE_REVIEW, item.changed_id, details=details,
+                    **kw)
+        elif item.action == 'review_approve':
+            try:
+                r = Review.objects.get(pk=item.changed_id)
+                amo.log(amo.LOG.ADD_REVIEW, r, r.addon, **kw)
+            except Review.DoesNotExist:
+                log.warning("Couldn't find review for %d" % item.changed_id)
 
 
 @cronjobs.register

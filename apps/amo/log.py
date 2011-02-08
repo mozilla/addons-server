@@ -256,7 +256,7 @@ class APPROVE_REVIEW:
 class DELETE_REVIEW:
     """Requires review.id and add-on objects."""
     id = 41
-    format = _(u'{review} for {addon} deleted.')
+    format = _(u'Review {0} deleted.')
     # TODO(davedash): a {more} link will need to go somewhere
     editor_format = _(u'{user} deleted review {0}.')
     keep = True
