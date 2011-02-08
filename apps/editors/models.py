@@ -8,6 +8,7 @@ from tower import ugettext_lazy as _
 import amo
 import amo.models
 from translations.fields import TranslatedField
+from users.models import UserProfile
 
 
 class CannedResponse(amo.models.ModelBase):
@@ -20,6 +21,21 @@ class CannedResponse(amo.models.ModelBase):
 
     def __unicode__(self):
         return unicode(self.name)
+
+
+class EventLog(models.Model):
+    type = models.CharField(max_length=60)
+    action = models.CharField(max_length=120)
+    field = models.CharField(max_length=60, blank=True)
+    user = models.ForeignKey(UserProfile)
+    changed_id = models.IntegerField()
+    added = models.CharField(max_length=765, blank=True)
+    removed = models.CharField(max_length=765, blank=True)
+    notes = models.TextField(blank=True)
+    created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = u'eventlog'
 
 
 def _create_view(migration_file):

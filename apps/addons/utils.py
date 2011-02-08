@@ -105,3 +105,16 @@ class AdminActivityLogMigrationTracker(ActivityLogMigrationTracker):
     We will migrate activities from Remora admin.
     """
     key = 'amo:activitylog:admin_migration'
+
+
+class MigrationTracker(object):
+    @add_redis
+    def __init__(self, redis, pipe, key):
+        self.redis = redis
+        self.key = 'amo:activitylog:%s' % key
+
+    def get(self):
+        return self.redis.get(self.key)
+
+    def set(self, value):
+        return self.redis.set(self.key, value)
