@@ -1371,7 +1371,7 @@ var imageStatus = {
                     self.polling();
                     $this.attr('style', '').addClass('preview-error');
                 };
-                img.src = $this.attr('data-url');
+                img.src = self.newurl($this.attr('data-url'));
             });
         };
         this.icon.start();
