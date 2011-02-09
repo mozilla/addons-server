@@ -71,6 +71,8 @@ class Update(object):
         self.version_int = 0
 
     def is_valid(self):
+        # If you accessing this from unit tests, then before calling
+        # is valid, you can assign your own cursor.
         if not self.cursor:
             self.conn = mypool.connect()
             self.cursor = self.conn.cursor()
@@ -139,8 +141,7 @@ class Update(object):
         elif data['addon_status'] in (STATUS_LITE, STATUS_LITE_AND_NOMINATED):
             data['status'] = STATUS_LITE
         else:
-            # If the addon status is null, then we'll keep the update
-            # within the current version.
+            # Otherwise then we'll keep the update within the current version.
             data['status'] = STATUS_NULL
             self.flags['use_version'] = True
 
@@ -239,48 +240,21 @@ class Update(object):
 
         return good_rdf % data
 
+    def format_date(self, secs):
+        return '%s GMT' % formatdate(time() + secs)[:25]
 
-def format_date(secs):
-    return '%s GMT' % formatdate(time() + secs)[:25]
+    def get_headers(self, length):
+        return [('Content-Type', 'text/xml'),
+                ('Cache-Control', 'public, max-age=3600'),
+                ('Last-Modified', self.format_date(0)),
+                ('Expires', self.format_date(3600)),
+                ('Content-Length', str(length))]
 
 
 def application(environ, start_response):
     status = '200 OK'
-    response_headers = [
-        ('Content-type', 'text/xml'),
-        ('Cache-Control', 'public, max-age=3600'),
-        ('Last-modified', format_date(0)),
-        ('Expires', format_date(3600)),
-    ]
-    start_response(status, response_headers)
-
     data = dict(parse_qsl(environ['QUERY_STRING']))
     update = Update(data)
-    return update.get_rdf()
-
-
-def load(count):
-    good, bad = 0, 0
-    for x in range(0, count):
-        data = {
-                'id': '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}',
-                'version': '2.0.58',
-                'reqVersion': 1,
-                'appID': '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}',
-                'appVersion': '3.7a1pre',
-            }
-        update = Update(data)
-        res = update.get_rdf()
-        if res == bad_rdf:
-            bad += 1
-        else:
-            good += 1
-    print 'Good: %s. Bad: %s' % (good, bad)
-
-
-if __name__ == '__main__':
-    import cProfile
-    import pstats
-    cProfile.run('load(100)', 'load')
-    p = pstats.Stats('load')
-    p.sort_stats('time').print_stats(5)
+    output = update.get_rdf()
+    start_response(status, update.get_headers(len(output)))
+    return output

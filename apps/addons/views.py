@@ -36,7 +36,6 @@ from translations.query import order_by_translation
 from translations.helpers import truncate
 from versions.models import Version
 from .models import Addon, MiniAddon
-from .forms import UpdateForm
 from .decorators import addon_view_factory
 
 log = commonware.log.getLogger('z.addons')
@@ -541,32 +540,3 @@ def report_abuse(request, addon):
         return jingo.render(request, 'addons/report_abuse_full.html',
                             {'addon': addon, 'abuse_form': form, })
     return redirect('addons.detail', addon.slug)
-
-
-@cache_page(3600)
-def update(request):
-    form = UpdateForm(request.GET)
-
-    if form.is_valid():
-        data = form.cleaned_data
-        version, file = data['id'].get_current_version_for_client(
-                            data['version'], form.version_int,
-                            data['appID'], data['appOS'])
-        if version and file:
-            app = amo.APP_IDS[data['appID'].id]
-            application_version = version.compatible_apps[app]
-            addon_type = amo.ADDON_SLUGS_UPDATE[data['id'].type]
-            url = file.get_mirror(data['id'])
-            return jingo.render(request, 'addons/update.rdf', {
-                                    'addon': data['id'],
-                                    'application': data['appID'],
-                                    'application_version': application_version,
-                                    'appversion': data['appVersion'],
-                                    'file': file,
-                                    'type': addon_type,
-                                    'url': url,
-                                    'version': version,
-                                }, content_type="text/xml")
-
-    return jingo.render(request, 'addons/update.rdf',
-                        {}, content_type="text/xml")

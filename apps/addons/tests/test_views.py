@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime, timedelta
+from email import utils
 import re
 import urlparse
 
@@ -13,7 +14,6 @@ from django.utils.encoding import iri_to_uri
 
 from mock import patch
 from nose.tools import eq_
-from nose import SkipTest
 import test_utils
 from pyquery import PyQuery as pq
 
@@ -789,7 +789,7 @@ class TestStatus(test_utils.TestCase):
         self.addon.update(status=amo.STATUS_PURGATORY)
         eq_(self.client.get(self.url).status_code, 200)
 
-    def test_disabled(self):
+    def test_disabled_by_user(self):
         self.addon.update(disabled_by_user=True)
         eq_(self.client.get(self.url).status_code, 404)
 
@@ -1059,7 +1059,6 @@ class TestUpdate(test_utils.TestCase):
 
     def setUp(self):
         self.addon_one = Addon.objects.get(pk=3615)
-        self.url = reverse('addons.update')
         self.good_data = {
             'id': '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}',
             'version': '2.0.58',
@@ -1179,10 +1178,26 @@ class TestUpdate(test_utils.TestCase):
         eq_(up.data['row']['max'], '3.7a1pre')
 
     def test_content_type(self):
-        raise SkipTest
-    
-        res = self.get(self.good_data)
-        eq_(res['content-type'], 'text/xml')
+        up = self.get(self.good_data)
+        ('Content-Type', 'text/xml') in up.get_headers(1)
+
+    def test_cache_control(self):
+        up = self.get(self.good_data)
+        ('Cache-Control', 'public, max-age=3600') in up.get_headers(1)
+
+    def test_length(self):
+        up = self.get(self.good_data)
+        ('Cache-Length', '1') in up.get_headers(1)
+
+    def test_expires(self):
+        """Check there are these headers and that expires is 3600 later."""
+        # We aren't bother going to test the actual time in expires, that
+        # way lies pain with broken tests later.
+        up = self.get(self.good_data)
+        hdrs = dict(up.get_headers(1))
+        lm = datetime(*utils.parsedate_tz(hdrs['Last-Modified'])[:7])
+        exp = datetime(*utils.parsedate_tz(hdrs['Expires'])[:7])
+        eq_((exp - lm).seconds, 3600)
 
     def test_appguid(self):
         up = self.get(self.good_data)
@@ -1190,8 +1205,9 @@ class TestUpdate(test_utils.TestCase):
         assert rdf.find(self.good_data['appID']) > -1
 
     def test_url(self):
-        res = self.client.get(self.url, self.good_data)
-        assert settings.MIRROR_URL in res.context['url']
+        up = self.get(self.good_data)
+        up.get_rdf()
+        assert settings_services.MIRROR_URL in up.data['row']['url']
 
     def test_url_local_recent(self):
         a_bit_ago = datetime.now() - timedelta(seconds=60)

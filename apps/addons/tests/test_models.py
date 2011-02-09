@@ -12,7 +12,6 @@ from django.utils import translation
 
 from mock import patch, patch_object
 from nose.tools import eq_, assert_not_equal
-from nose import SkipTest
 import test_utils
 
 import amo
@@ -678,8 +677,6 @@ class TestUpdate(test_utils.TestCase):
         self.version_1_2_1 = 112396
         self.version_1_2_2 = 115509
 
-        self.cursor = connection.cursor()
-
     def get(self, *args):
         up = update.Update({
             'id': self.addon.guid,
@@ -689,33 +686,46 @@ class TestUpdate(test_utils.TestCase):
             'appOS': args[3].api_name if args[3] else '',
             'reqVersion': '',
             })
-        up.cursor = self.cursor
+        up.cursor = connection.cursor()
         assert up.is_valid()
         up.data['version_int'] = args[1]
         up.get_update()
-
-        self.up = up
         return (up.data['row'].get('version_id'),
                 up.data['row'].get('file_id'))
 
+    def change_status(self, version, status):
+        version = Version.objects.get(pk=version)
+        file = version.files.all()[0]
+        file.status = status
+        file.save()
+        return version
+
+    def change_version(self, version, name):
+        Version.objects.get(pk=version).update(version=name)
+
     def test_low_client(self):
-        """Test a low client number. 86 is version 3.0a1 of Firefox,
+        """
+        Test a low client number. 86 is version 3.0a1 of Firefox,
         which means we have version int of 3000000001100
-        and hence version 1.0.2 of the addon."""
+        and hence version 1.0.2 of the addon.
+        """
         version, file = self.get('', '3000000001100',
                                  self.app, self.platform)
         eq_(version, self.version_1_0_2)
 
     def test_new_client(self):
-        """Test a high client number. 291 is version 3.0.12 of Firefox,
+        """
+        Test a high client number. 291 is version 3.0.12 of Firefox,
         which means we have a version int of 3069900200100
-        and hence version 1.2.2 of the addon."""
+        and hence version 1.2.2 of the addon.
+        """
         version, file = self.get('', self.version_int,
                                  self.app, self.platform)
         eq_(version, self.version_1_2_2)
 
     def test_new_client_ordering(self):
-        """Given the following:
+        """
+        Given the following:
         * Version 15 (1 day old), max application_version 3.6*
         * Version 12 (1 month old), max application_version 3.7a
         We want version 15, even though version 12 is for a higher version.
@@ -735,12 +745,11 @@ class TestUpdate(test_utils.TestCase):
         eq_(version, self.version_1_2_2)
 
     def test_public_not_beta(self):
-        """If the addon status is public and you are not asking
-        for a beta version, then you get a public version."""
-        version = Version.objects.get(pk=115509)
-        for file in version.files.all():
-            file.status = amo.STATUS_PENDING
-            file.save()
+        """
+        If the addon status is public and you are not asking
+        for a beta version, then you get a public version.
+        """
+        self.change_status(self.version_1_2_2, amo.STATUS_PENDING)
         # We've made 1.2.2 pending so that it will not be selected
         # and the highest version is 1.2.1
 
@@ -750,15 +759,20 @@ class TestUpdate(test_utils.TestCase):
         eq_(version, self.version_1_2_1)
 
     def test_public_beta(self):
-        """If the addon status is public and you are asking
+        """
+        If the addon status is public and you are asking
         for a beta version and there are no beta upgrades, then
-        you won't get an update."""
+        you won't get an update.
+        """
         version, file = self.get('1.2beta', self.version_int,
                                  self.app, self.platform)
         assert not version
 
     def test_can_downgrade(self):
-        """Check that we can downgrade."""
+        """
+        Check that we can downgrade, if 1.2.0 gets admin disabled
+        and the oldest public version is now 1.1.3.
+        """
         self.change_status(self.version_1_2_0, amo.STATUS_PENDING)
 
         Version.objects.filter(pk__gte=self.version_1_2_1).delete()
@@ -767,72 +781,60 @@ class TestUpdate(test_utils.TestCase):
 
         eq_(version, self.version_1_1_3)
 
-    def test_public_pending_not_exists(self):
-        """If the addon status is public and you are asking
+    def test_public_pending_exists(self):
+        """
+        If the addon status is public and you are asking
         for a beta version we look up a version based on the
         file version at that point. In this case, because the
-        file is pending, we are looking something public."""
-        version = Version.objects.get(pk=self.version_1_2_0)
-        version.version = '1.2beta'
-        version.save()
-
-        # set the current version to pending
-        file = version.files.all()[0]
-        file.status = amo.STATUS_PENDING
-        file.save()
-
+        file is pending, we are looking for something public.
+        """
         self.change_status(self.version_1_2_2, amo.STATUS_PENDING)
+        self.change_status(self.version_1_2_0, amo.STATUS_PENDING)
+        self.change_version(self.version_1_2_0, '1.2beta')
+
         version, file = self.get('1.2', self.version_int,
                                  self.app, self.platform)
 
         eq_(version, self.version_1_2_1)
 
-    def test_public_pending_no_file_no_beta(self):
-        """If the addon status is public and you are asking
+    def test_public_pending_no_file_beta(self):
+        """
+        If the addon status is public and you are asking
         for a beta version we look up a version based on the
         file version at that point. If there are no files,
-        we look for a beta. That does not exist."""
-        version = Version.objects.get(pk=self.version_1_2_0)
-        version.version = '1.2beta'
-        version.save()
-
-        version.files.all().delete()
+        we look for a beta. That does not exist.
+        """
+        self.change_version(self.version_1_2_0, '1.2beta')
+        Version.objects.get(pk=self.version_1_2_0).files.all().delete()
 
         version, file = self.get('1.2beta', self.version_int,
                                  self.app, self.platform)
         assert not version
 
-    def change_status(self, version, status):
-        version = Version.objects.get(pk=version)
-        file = version.files.all()[0]
-        file.status = status
-        file.save()
-        return version
-
-    def test_public_pending_no_file_has_beta(self):
-        """If the addon status is public and you are asking
+    def test_public_pending_sort_of_exists(self):
+        """
+        If the addon status is public and you are asking
         for a beta version we look up a version based on the
         file version at that point. If there are no files,
-        we look for a beta. That does exist."""
-        version = Version.objects.get(pk=self.version_1_2_0)
-        version.version = '1.2beta'
-        version.save()
-
-        version.files.all().delete()
+        we look for a beta. That does exist.
+        """
+        self.change_version(self.version_1_2_0, '1.2beta')
+        Version.objects.get(pk=self.version_1_2_0).files.all().delete()
         self.change_status(self.version_1_2_1, amo.STATUS_BETA)
 
         version, file = self.get('1.2beta', self.version_int,
                                  self.app, self.platform)
         eq_(version, self.version_1_2_1)
 
-    def test_public_pending_exists(self):
-        """If the addon status is public and you are asking
+    def test_public_pending_not_exists(self):
+        """
+        If the addon status is public and you are asking
         for a beta version we look up a version based on the
         file version at that point. In this case, because the
-        file is pending, we are looking for a public version."""
-        # set the current version to pending
-        version = self.change_status(self.version_1_2_0, amo.STATUS_PENDING)
-        version.update(version='1.2beta')
+        file is pending, we are looking for a public version.
+        """
+        self.change_status(self.version_1_2_0, amo.STATUS_PENDING)
+        self.change_version(self.version_1_2_0, '1.2beta')
         self.change_status(self.version_1_2_2, amo.STATUS_BETA)
 
         version, file = self.get('1.2beta', self.version_int,
@@ -840,9 +842,12 @@ class TestUpdate(test_utils.TestCase):
         eq_(version, self.version_1_2_1)
 
     def test_not_public(self):
-        """If the addon status is not public, then the update only
-        looks for files within that one version."""
-        self.addon.update(status=amo.STATUS_PENDING)
+        """
+        If the addon status is not public, then the update only
+        looks for files within that one version.
+        """
+        self.change_status(self.version_1_2_2, amo.STATUS_NULL)
+        self.addon.update(status=amo.STATUS_NULL)
         version, file = self.get('1.2.1', self.version_int,
                                  self.app, self.platform)
         eq_(version, self.version_1_2_1)
@@ -891,8 +896,10 @@ class TestUpdate(test_utils.TestCase):
         eq_(file, file_two.pk)
 
     def test_file_preliminary(self):
-        """If there's a newer file in prelim. review it won't show up. This is
-        a test for https://bugzilla.mozilla.org/show_bug.cgi?id=620749"""
+        """
+        If there's a newer file in prelim. review it won't show up. This is
+        a test for https://bugzilla.mozilla.org/show_bug.cgi?id=620749
+        """
         version = Version.objects.get(pk=self.version_1_2_2)
         file = version.files.all()[0]
         file.status = amo.STATUS_LITE
@@ -903,8 +910,10 @@ class TestUpdate(test_utils.TestCase):
         eq_(version, self.version_1_2_1)
 
     def test_file_preliminary_addon(self):
-        """If the addon is in prelim. review, show the highest file with
-        public., which in this case is 1.2.1"""
+        """
+        If the addon is in prelim. review, show the highest file with
+        public., which in this case is 1.2.1
+        """
         for status in amo.LITE_STATUSES:
             self.addon.update(status=status)
 
@@ -912,6 +921,7 @@ class TestUpdate(test_utils.TestCase):
             version, file = self.get('1.2', self.version_int,
                                      self.app, amo.PLATFORM_LINUX)
             eq_(version, self.version_1_2_1)
+
 
 class TestAddonFromUpload(files.tests.UploadTest):
     fixtures = ('base/apps', 'base/users')
