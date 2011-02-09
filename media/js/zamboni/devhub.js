@@ -1317,22 +1317,22 @@ function initCompatibility() {
     });
 }
 
-var imagePoller = {
-    start: function(override, delay) {
+function imagePoller() {
+    this.start = function(override, delay) {
         if (override || !this.poll) {
             this.poll = window.setTimeout(this.check, delay || 100);
         }
-    },
-    stop: function() {
+    };
+    this.stop = function() {
         window.clearTimeout(this.poll);
         this.poll = null;
-    },
+    };
 };
 
 var imageStatus = {
     start: function() {
-        this.icon = Object.create(imagePoller);
-        this.preview = Object.create(imagePoller);
+        this.icon = new imagePoller();
+        this.preview = new imagePoller();
         this.icon.check = function() {
             var self = imageStatus,
                 node = $('#edit-addon-media');
@@ -1791,4 +1791,3 @@ $(document).ready(function() {
     $('#addon-validator-suite').trigger('validate');
 
 });
-
