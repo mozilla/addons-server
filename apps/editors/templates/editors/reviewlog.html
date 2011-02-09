@@ -1,8 +1,8 @@
 {% extends "editors/base.html" %}
 {% block content %}
-  <h2>{{ _('Review Log', 'editorcp_reviewlog_page_heading') }}</h2>
+  <h2>{{ _('Add-on Editor Review Log', 'editorcp_reviewlog_page_heading') }}</h2>
 
-  <div class="featured"><div class="featured-inner">
+  <div class="listing results"><div class="results-inner controls">
    	<div id="log-filter">
      	<form action="{{ url('editors.reviewlog') }}" method="get">
         <p class="date_range">
@@ -26,6 +26,7 @@
             <th>{{ _('Add-on', 'editorcp_reviewlog_column_addon') }}</th>
             <th>{{ _('Editor') }}</th>
             <th>{{ _('Action', 'editorcp_reviewlog_column_action') }}</th>
+            <td></td>
           </tr>
         </thead>
         <tbody>
@@ -63,5 +64,5 @@
     <div class="listing-footer">
       {{ pager|paginator }}
     </div>
-  </div>
+</div></div>
 {% endblock %}

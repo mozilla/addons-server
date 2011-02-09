@@ -100,7 +100,7 @@ class TestReviewLog(EditorTest):
         r = self.client.get(reverse('editors.reviewlog'))
         eq_(r.status_code, 200)
         doc = pq(r.content)
-        assert doc('.featured button'), 'No filters.'
+        assert doc('.listing button'), 'No filters.'
         # shoul have 50 showing
         eq_(len(doc('tbody tr').not_('.hide')), 50)
         eq_(doc('tbody tr.hide').eq(0).text(), 'youwin')
