@@ -3283,6 +3283,12 @@ class TestResumeStep(TestSubmitBase):
             self.assertRedirects(r, reverse('devhub.submit.%s' % i,
                                             args=['a3615']))
 
+    def test_redirect_from_other_pages(self):
+        SubmitStep.objects.create(addon_id=3615, step=4)
+        r = self.client.get(reverse('devhub.addons.edit', args=['a3615']),
+                            follow=True)
+        self.assertRedirects(r, reverse('devhub.submit.4', args=['a3615']))
+
 
 class TestSubmitSteps(test_utils.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']

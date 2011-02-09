@@ -70,6 +70,10 @@ def dev_required(owner_for_post=False, allow_editors=False):
             # Ignore disabled so they can view their add-on.
             elif acl.has_perm(request, addon, viewer=True,
                               ignore_disabled=True):
+                step = SubmitStep.objects.filter(addon=addon)
+                # Redirect to the submit flow if they're not done.
+                if not getattr(f, 'submitting', False) and step:
+                    return _resume(addon, step)
                 return fun()
             return http.HttpResponseForbidden()
         return wrapper
@@ -849,6 +853,9 @@ def submit_step(step):
                     return redirect('devhub.submit.7', addon.slug)
             kw['step'] = Step(step, max_step)
             return f(request, *args, **kw)
+        # Tell @dev_required that this is a function in the submit flow so it
+        # doesn't try to redirect into the submit flow.
+        wrapper.submitting = True
         return wrapper
     return decorator
 
@@ -980,6 +987,10 @@ def submit_done(request, addon_id, addon, step):
 @dev_required
 def submit_resume(request, addon_id, addon):
     step = SubmitStep.objects.filter(addon=addon)
+    return _resume(addon, step)
+
+
+def _resume(addon, step):
     step = step[0].step if step else 7
     return redirect('devhub.submit.%s' % step, addon.slug)
 
