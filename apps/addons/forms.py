@@ -90,6 +90,7 @@ class AddonFormBasic(AddonFormBase):
         target = set(filter(None, target))
 
         min_len = amo.MIN_TAG_LENGTH
+        max_len = Tag._meta.get_field('tag_text').max_length
         max_tags = amo.MAX_TAGS
         total = len(target)
 
@@ -110,7 +111,11 @@ class AddonFormBasic(AddonFormBase):
                            'You have {0} too many tags.', num).format(num)
             raise forms.ValidationError(msg)
 
-        if any(t for t in target if len(t) < amo.MIN_TAG_LENGTH):
+        if any(t for t in target if len(t) > max_len):
+            raise forms.ValidationError(_('All tags must be %s characters '
+                    'or less after invalid characters are removed.' % max_len))
+
+        if any(t for t in target if len(t) < min_len):
             msg = ngettext("All tags must be at least {0} character.",
                            "All tags must be at least {0} characters.",
                            min_len).format(min_len)

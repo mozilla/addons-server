@@ -153,6 +153,19 @@ class TestTagsForm(test_utils.TestCase):
         self.add_tags(', '.join('tag-test' for i in range(0, 21)))
         eq_(self.get_tag_text(), ['tag-test'])
 
+    def test_tags_limit(self):
+        self.add_tags(' %s' % ('t' * 128))
+
+    def test_tags_long(self):
+        tag = ' -%s' % ('t' * 128)
+        data = self.data.copy()
+        data.update({"tags": tag})
+        form = forms.AddonFormBasic(data=data, request=None,
+                                    instance=self.addon)
+        assert not form.is_valid()
+        eq_(form.errors['tags'],['All tags must be 128 characters or '
+                                 'less after invalid characters are removed.'])
+
 
 class TestIconRemoval(test_utils.TestCase):
     fixtures = ['base/addon_3615']
