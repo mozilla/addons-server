@@ -29,23 +29,32 @@
   {% endif %}
 </ul>
 
-{% if previews|length > 1 %}
-  <div id="images">
-    <ul class="nav-images">
-      <li class="nav-prev"><a href="#" class="prev">{{ _('Previous') }}</a></li>
-      <li class="nav-next"><a href="#" class="next">{{ _('Next') }}</a></li>
-    </ul>
-    <ul class="slider">
-      {% for preview in previews %}
-        <li class="panel">
-          <a class="screenshot thumbnail" rel="jquery-lightbox"
-             href="{{ preview.image_url }}" title="{{ preview.caption }}">
-            <img src="{{ preview.thumbnail_url }}">
-          </a>
-        </li>
-      {% endfor %}
-    </ul>
-  </div>
+{% if addon.type == amo.ADDON_PERSONA %}
+    {{ persona_preview(addon.persona, linked=False) }}
+{% else %}
+  {% if previews|length > 1 %}
+    <div id="images">
+      <ul class="nav-images">
+        <li class="nav-prev"><a href="#" class="prev">{{ _('Previous') }}</a></li>
+        <li class="nav-next"><a href="#" class="next">{{ _('Next') }}</a></li>
+      </ul>
+      <ul class="slider">
+        {% for preview in previews %}
+          <li class="panel">
+            <a class="screenshot thumbnail" rel="jquery-lightbox"
+               href="{{ preview.image_url }}" title="{{ preview.caption }}">
+              <img src="{{ preview.thumbnail_url }}">
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% else %}
+    <p id="screenshot">
+      <img class="screenshot thumbnail" src="{{ addon.thumbnail_url }}"
+           width="200" height="150">
+    </p>
+  {% endif %}
 {% endif %}
 
 <ul class="addon-info">

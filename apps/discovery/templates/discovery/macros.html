@@ -22,7 +22,8 @@
 {% macro persona_list(list, limit=5) %}
 <ul class="persona-list">
 {% for addon in list[:limit] %}
-  <li>{{ persona_preview(addon.persona, title=True, disco_link=True) }}</li>
+  <li>{{ persona_preview(addon.persona, size='small', title=True,
+                         disco_link=True) }}</li>
 {% endfor %}
 </ul>
 {% endmacro %}
