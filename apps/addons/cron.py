@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 
 from django.db import connections, transaction
 from django.db.models import Q, F
+from django.utils.encoding import smart_str
 
 import commonware.log
 from celery.messaging import establish_connection
@@ -259,6 +260,6 @@ def hide_disabled_files():
                     os.remove(f.mirror_file_path)
             except UnicodeEncodeError:
                 msg = ('Hide Failure: %s %s %s' %
-                       (f.id, f.filename, f.file_path))
+                       (f.id, smart_str(f.filename), smart_str(f.file_path)))
                 log.info(msg)
                 print msg
