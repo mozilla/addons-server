@@ -11,6 +11,7 @@ from django.db import connection
 from django.utils import translation
 from django.utils.encoding import iri_to_uri
 
+from mock import patch
 from nose.tools import eq_
 from nose import SkipTest
 import test_utils
@@ -29,7 +30,7 @@ from translations.query import order_by_translation
 from users.helpers import users_list
 from users.models import UserProfile
 from versions.models import Version
-from services import update
+from services import update, settings_services
 
 
 def norm(s):
@@ -1070,20 +1071,20 @@ class TestUpdate(test_utils.TestCase):
         self.mac = amo.PLATFORM_MAC
         self.win = amo.PLATFORM_WIN
 
-        self.old_mirror_url = settings.MIRROR_URL
-        settings.MIRROR_URL = 'http://releases.m.o/'
-        self.old_local_url = settings.LOCAL_MIRROR_URL
-        settings.LOCAL_MIRROR_URL = 'http://addons.m.o/'
+        self.old_mirror_url = settings_services.MIRROR_URL
+        self.old_local_url = settings_services.LOCAL_MIRROR_URL
+
+        settings_services.MIRROR_URL = 'http://releases.m.o/'
+        settings_services.LOCAL_MIRROR_URL = 'http://addons.m.o/'
 
     def get(self, data):
         up = update.Update(data)
         up.cursor = connection.cursor()
-        up.is_valid()
         return up
 
     def tearDown(self):
-        settings.MIRROR_URL = self.old_mirror_url
-        settings.LOCAL_MIRROR_URL = self.old_local_url
+        settings_services.MIRROR_URL = self.old_mirror_url
+        settings_services.LOCAL_MIRROR_URL = self.old_local_url
 
     def test_bad_guid(self):
         data = self.good_data.copy()
@@ -1099,7 +1100,7 @@ class TestUpdate(test_utils.TestCase):
         data = self.good_data.copy()
         data["appOS"] = self.win.api_name
         up = self.get(data)
-        assert up.get_update()
+        assert up.get_rdf()
         eq_(up.data['row']['file_id'], file.pk)
 
         data["appOS"] = self.mac.api_name
@@ -1120,24 +1121,25 @@ class TestUpdate(test_utils.TestCase):
         data = self.good_data.copy()
         data['appOS'] = self.win.api_name
         up = self.get(data)
+        up.is_valid()
         up.get_update()
         eq_(up.data['row']['file_id'], file_pk)
 
         data['appOS'] = self.mac.api_name
         up = self.get(data)
+        up.is_valid()
         up.get_update()
         eq_(up.data['row']['file_id'], mac_file_pk)
 
     def test_good_version(self):
         up = self.get(self.good_data)
+        up.is_valid()
         up.get_update()
         assert up.data['row']['hash'].startswith('sha256:3808b13e')
         eq_(up.data['row']['min'], '2.0')
         eq_(up.data['row']['max'], '3.7a1pre')
 
     def test_beta_version(self):
-        raise SkipTest
-
         file = File.objects.get(pk=67442)
         file.status = amo.STATUS_BETA
         file.save()
@@ -1150,10 +1152,12 @@ class TestUpdate(test_utils.TestCase):
 
         data = self.good_data.copy()
         up = self.get(data)
+        up.is_valid()
         assert not up.get_update()
 
         data["version"] = beta_version
         up = self.get(data)
+        up.is_valid()
         up.get_update()
         eq_(up.data['row']['file_id'], file.pk)
 
@@ -1161,12 +1165,14 @@ class TestUpdate(test_utils.TestCase):
         data = self.good_data.copy()
         data['appVersion'] = '1.4'
         up = self.get(data)
+        up.is_valid()
         assert not up.get_update()
 
     def test_low_app_version(self):
         data = self.good_data.copy()
         data['appVersion'] = '2.0'
         up = self.get(data)
+        up.is_valid()
         up.get_update()
         assert up.data['row']['hash'].startswith('sha256:3808b13e')
         eq_(up.data['row']['min'], '2.0')
@@ -1174,6 +1180,7 @@ class TestUpdate(test_utils.TestCase):
 
     def test_content_type(self):
         raise SkipTest
+    
         res = self.get(self.good_data)
         eq_(res['content-type'], 'text/xml')
 
@@ -1187,17 +1194,13 @@ class TestUpdate(test_utils.TestCase):
         assert settings.MIRROR_URL in res.context['url']
 
     def test_url_local_recent(self):
-        raise SkipTest
-
         a_bit_ago = datetime.now() - timedelta(seconds=60)
         File.objects.get(pk=67442).update(datestatuschanged=a_bit_ago)
         up = self.get(self.good_data)
-        up.get_update()
-        assert settings.LOCAL_MIRROR_URL in up.data['row']['url']
+        up.get_rdf()
+        assert settings_services.LOCAL_MIRROR_URL in up.data['row']['url']
 
     def test_url_remote_beta(self):
-        raise SkipTest
-    
         file = File.objects.get(pk=67442)
         file.status = amo.STATUS_BETA
         file.save()
@@ -1205,15 +1208,14 @@ class TestUpdate(test_utils.TestCase):
         beta_version = '2.0.58 beta'
         file.version.update(version=beta_version)
 
-        self.addon_one.update(status=amo.STATUS_PUBLIC)
-
         data = self.good_data.copy()
         data["version"] = beta_version
         up = self.get(data)
-        up.get_update()
+        self.addon_one.status = amo.STATUS_PUBLIC
+        self.addon_one.save()
+        up.get_rdf()
         eq_(up.data['row']['file_id'], file.pk)
-
-        assert settings.MIRROR_URL in res.context['url']
+        assert settings_services.MIRROR_URL in up.data['row']['url']
 
     def test_hash(self):
         rdf = self.get(self.good_data).get_rdf()
@@ -1245,12 +1247,10 @@ class TestUpdate(test_utils.TestCase):
             'appVersion': '1.0',
         }
         up = self.get(data)
-        up.get_update()
+        rdf = up.get_rdf()
         assert up.data['row']['hash'].startswith('sha256:9d9a389')
         eq_(up.data['row']['min'], '1.0')
         eq_(up.data['row']['version'], '0.5.2')
-
-        rdf = up.get_rdf()
         assert rdf.find(data['appID']) > -1
 
 

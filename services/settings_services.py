@@ -1,3 +1,9 @@
+DATABASE_SETTINGS = {
+      'db': '',
+      'user': '',
+      'passwd': '',
+      'host': ''}
+
 MIRROR_DELAY = 30  # Minutes before we serve downloads from mirrors.
 MIRROR_URL = 'http://releases.mozilla.org/pub/mozilla.org/addons'
 LOCAL_MIRROR_URL = 'https://static.addons.mozilla.net/_files'

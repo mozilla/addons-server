@@ -211,7 +211,7 @@ class TestUpdate(test_utils.TestCase):
         data['appOS'] = 'something %s penguin' % amo.PLATFORM_LINUX.api_name
         form = self.get(data)
         assert form.is_valid()
-        eq_(form.cleaned_data['appOS'], amo.PLATFORM_LINUX.id)
+        eq_(form.data['appOS'], amo.PLATFORM_LINUX.id)
 
     def test_app_version_fails(self):
         data = self.good_data.copy()
@@ -233,6 +233,20 @@ class TestUpdate(test_utils.TestCase):
         form = self.get(data)
         assert form.is_valid()
         eq_(form.data['version_int'], 3070000001000)
+
+    def test_sql_injection(self):
+        data = self.good_data.copy()
+        data['id'] = "'"
+        up = self.get(data)
+        assert not up.is_valid()
+
+    def test_inactive(self):
+        addon = Addon.objects.get(pk=3615)
+        addon.update(disabled_by_user=True)
+
+        up = self.get(self.good_data)
+        assert not up.is_valid()
+
 
 
 class TestCategoryForm(test_utils.TestCase):
