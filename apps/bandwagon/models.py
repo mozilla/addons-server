@@ -486,8 +486,8 @@ class RecommendedCollection(Collection):
         for others in scores.values():
             for addon, score in others.items():
                 d[addon] += score
-        addons = [(score, addon) for addon, score in d.items()]
-        return [addon for _, addon in sorted(addons)]
+        addons = sorted(d.items(), key=lambda x: x[1], reverse=True)
+        return [addon for addon, score in addons if addon not in addon_ids]
 
 
 class CollectionToken(amo.models.ModelBase):

@@ -1,8 +1,9 @@
 import itertools
 import random
 
-from nose.tools import eq_
+import mock
 import test_utils
+from nose.tools import eq_
 
 import amo
 from addons.models import Addon, AddonRecommendation
@@ -171,8 +172,8 @@ class TestRecommendations(test_utils.TestCase):
         groups = itertools.groupby(sorted(scores), key=lambda x: x[0])
         for addon, pairs in groups:
             ranked[addon] = sum(x[1] for x in pairs)
-        addons = sorted(ranked.items(), key=lambda x: x[1])
-        return [x[0] for x in addons]
+        addons = sorted(ranked.items(), key=lambda x: x[1], reverse=True)
+        return [x[0] for x in addons if x[0] not in self.ids]
 
     def test_build_recs(self):
         recs = RecommendedCollection.build_recs(self.ids)
@@ -190,3 +191,11 @@ class TestRecommendations(test_utils.TestCase):
         # Test that we're getting the same recommendations.
         recs2 = c.get_recommendations()
         eq_(recs, recs2)
+
+    @mock.patch('bandwagon.models.AddonRecommendation.scores')
+    def test_no_dups(self, scores):
+        # The inner dict is the recommended addons for addon 7.
+        scores.return_value = {7: {1: 5, 2: 3, 3: 4}}
+        recs = RecommendedCollection.build_recs([7, 3, 8])
+        # 3 should not be in the list since we already have it.
+        eq_(recs, [1, 2])
