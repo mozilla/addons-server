@@ -87,7 +87,7 @@ class AddonFormBasic(AddonFormBase):
     def clean_tags(self):
         target = [slugify(t, spaces=True, lower=True)
                   for t in self.cleaned_data['tags'].split(',')]
-        target = filter(None, target)
+        target = set(filter(None, target))
 
         min_len = amo.MIN_TAG_LENGTH
         max_tags = amo.MAX_TAGS

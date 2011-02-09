@@ -102,7 +102,7 @@ class TestTagsForm(test_utils.TestCase):
         data.update({"tags": tags})
         form = forms.AddonFormBasic(data=data, request=None,
                                     instance=self.addon)
-        form.is_valid()
+        assert form.is_valid()
         form.save(self.addon)
         return form
 
@@ -130,10 +130,12 @@ class TestTagsForm(test_utils.TestCase):
         self.add_tags(u'Österreich')
         eq_(self.get_tag_text(), [u'Österreich'.lower()])
 
-    def test_tags_restricted(self):
+    def add_restricted(self):
         tag = Tag.objects.create(tag_text='restartless', restricted=True)
         AddonTag.objects.create(tag=tag, addon=self.addon)
 
+    def test_tags_restricted(self):
+        self.add_restricted()
         self.add_tags('foo, bar')
         form = forms.AddonFormBasic(data=self.data, request=None,
                                     instance=self.addon)
@@ -142,6 +144,14 @@ class TestTagsForm(test_utils.TestCase):
         eq_(self.get_tag_text(), ['bar', 'foo', 'restartless'])
         self.add_tags('')
         eq_(self.get_tag_text(), ['restartless'])
+
+    def test_tags_restricted_count(self):
+        self.add_restricted()
+        self.add_tags(', '.join('tag-test-%s' % i for i in range(0, 20)))
+
+    def test_tags_slugified_count(self):
+        self.add_tags(', '.join('tag-test' for i in range(0, 21)))
+        eq_(self.get_tag_text(), ['tag-test'])
 
 
 class TestIconRemoval(test_utils.TestCase):
@@ -260,7 +270,6 @@ class TestUpdate(test_utils.TestCase):
 
         up = self.get(self.good_data)
         assert not up.is_valid()
-
 
 
 class TestCategoryForm(test_utils.TestCase):
