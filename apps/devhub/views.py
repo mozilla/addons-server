@@ -593,13 +593,15 @@ def addons_section(request, addon_id, addon, section, editable=False):
     if section not in models:
         return http.HttpResponseNotFound()
 
-    tags = previews = []
+    tags = previews = restricted_tags = []
     cat_form = None
 
     if section == 'basic':
         tags = addon.tags.not_blacklisted().values_list('tag_text', flat=True)
         cat_form = addon_forms.CategoryFormSet(request.POST or None,
                                                addon=addon)
+        restricted_tags = addon.tags.filter(restricted=True)
+
     elif section == 'media':
         previews = forms.PreviewFormSet(request.POST or None,
                 prefix='files', queryset=addon.previews.all())
@@ -637,6 +639,7 @@ def addons_section(request, addon_id, addon, section, editable=False):
             'form': form,
             'editable': editable,
             'tags': tags,
+            'restricted_tags': restricted_tags,
             'cat_form': cat_form,
             'preview_form': previews,
             'valid_slug': valid_slug,

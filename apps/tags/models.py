@@ -15,6 +15,7 @@ class TagManager(amo.models.ManagerBase):
 class Tag(amo.models.ModelBase):
     tag_text = models.CharField(max_length=128)
     blacklisted = models.BooleanField(default=False)
+    restricted = models.BooleanField(default=False)
     addons = models.ManyToManyField('addons.Addon', through='AddonTag',
                                     related_name='tags')
 

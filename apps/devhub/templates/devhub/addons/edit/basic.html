@@ -112,6 +112,12 @@
                               amo.MIN_TAG_LENGTH)|f(amo.MIN_TAG_LENGTH) }}
                   {{ _('Example: pop, hen, yum.  Limit 20.') }}
                 </div>
+                {% if restricted_tags %}
+                <div class="edit-addon-details">
+                    {{ ngettext('Reserved tag:', 'Reserved tags:', restricted_tags|length) }}
+                    {{ restricted_tags|join(', ') }}
+                </div>
+                {% endif %}
               {% else %}
                 {% call empty_unless(tags) %}
                   {{ tags|join(', ') }}
@@ -132,4 +138,3 @@
     {% endif %}
   </div>
 </form>
-

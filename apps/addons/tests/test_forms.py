@@ -12,6 +12,7 @@ from django.db import connection
 from redisutils import mock_redis, reset_redis
 from addons import forms, cron
 from addons.models import Addon, Category
+from tags.models import Tag, AddonTag
 
 import amo
 from amo.tests.test_helpers import get_image_path
@@ -128,6 +129,19 @@ class TestTagsForm(test_utils.TestCase):
     def test_tags_unicode(self):
         self.add_tags(u'Österreich')
         eq_(self.get_tag_text(), [u'Österreich'.lower()])
+
+    def test_tags_restricted(self):
+        tag = Tag.objects.create(tag_text='restartless', restricted=True)
+        AddonTag.objects.create(tag=tag, addon=self.addon)
+
+        self.add_tags('foo, bar')
+        form = forms.AddonFormBasic(data=self.data, request=None,
+                                    instance=self.addon)
+
+        eq_(form.fields['tags'].initial, 'bar, foo')
+        eq_(self.get_tag_text(), ['bar', 'foo', 'restartless'])
+        self.add_tags('')
+        eq_(self.get_tag_text(), ['restartless'])
 
 
 class TestIconRemoval(test_utils.TestCase):

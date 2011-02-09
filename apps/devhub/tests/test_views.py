@@ -34,7 +34,7 @@ from devhub.forms import ContribForm, LicenseForm
 from devhub.models import ActivityLog, SubmitStep
 from files.models import File, FileUpload, Platform, FileValidation
 from reviews.models import Review
-from tags.models import Tag
+from tags.models import Tag, AddonTag
 from users.models import UserProfile
 from versions.models import ApplicationsVersions, License, Version
 
@@ -1418,6 +1418,16 @@ class TestEdit(test_utils.TestCase):
         r = self.client.get(self.get_url('details', False))
 
         eq_(pq(r.content)('.addon_edit_locale').eq(0).text(), "English (US)")
+
+    def test_edit_details_restricted_tags(self):
+        addon = self.get_addon()
+        tag = Tag.objects.create(tag_text='restartless', restricted=True)
+        AddonTag.objects.create(tag=tag, addon=addon)
+
+        res = self.client.get(self.get_url('basic', True))
+        divs = pq(res.content)('#addon_tags_edit .edit-addon-details')
+        eq_(len(divs), 2)
+        assert 'restartless' in divs.eq(1).text()
 
     def test_edit_support(self):
         data = dict(support_email='sjobs@apple.com',
@@ -3436,8 +3446,7 @@ class TestUploadDetail(files.tests.UploadTest):
             'notices': 0,
             'message_tree': {},
             'messages': [],
-            'rejected': False
-        }
+            'rejected': False}
 
     @attr('validator')
     def test_detail_json(self):

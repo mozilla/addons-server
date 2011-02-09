@@ -55,8 +55,8 @@ class AddonFormBasic(AddonFormBase):
 
     def __init__(self, *args, **kw):
         super(AddonFormBasic, self).__init__(*args, **kw)
-        self.fields['tags'].initial = ', '.join(tag.tag_text for tag in
-                                                self.instance.tags.all())
+        self.fields['tags'].initial = ', '.join(t.tag_text for
+                            t in self.instance.tags.filter(restricted=False))
         # Do not simply append validators, as validators will persist between
         # instances.
         validate_name = lambda x: clean_name(x, self.instance)
@@ -66,7 +66,8 @@ class AddonFormBasic(AddonFormBase):
 
     def save(self, addon, commit=False):
         tags_new = self.cleaned_data['tags']
-        tags_old = [slugify(t.tag_text, spaces=True) for t in addon.tags.all()]
+        tags_old = [slugify(t.tag_text, spaces=True) for
+                    t in addon.tags.filter(restricted=False)]
 
         # Add new tags.
         for t in set(tags_new) - set(tags_old):
@@ -92,15 +93,15 @@ class AddonFormBasic(AddonFormBase):
         max_tags = amo.MAX_TAGS
         total = len(target)
 
-        blacklisted = []
+        blocked = []
         for tag in Tag.objects.filter(tag_text__in=target):
-            if len(tag.tag_text) > 0 and tag.blacklisted:
-                blacklisted.append(tag.tag_text)
+            if (len(tag.tag_text) > 0 and (tag.blacklisted or tag.restricted)):
+                blocked.append(tag.tag_text)
 
-        if blacklisted:
+        if blocked:
             # L10n: {0} is a single tag or a comma-separated list of tags.
             msg = ngettext('Invalid tag: {0}', 'Invalid tags: {0}',
-                           len(blacklisted)).format(', '.join(blacklisted))
+                           len(blocked)).format(', '.join(blocked))
             raise forms.ValidationError(msg)
 
         if total > max_tags:
