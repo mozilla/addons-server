@@ -466,7 +466,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/editors.js',
         ),
         'zamboni/mobile': (
-            'js/zamboni/jquery-1.4.2.min.js',
+            'js/zamboni/jquery-1.5.min.js',
             'js/zamboni/jqmobile.js',
             'js/zamboni/truncation.js',
             'js/zamboni/mobile.js',
