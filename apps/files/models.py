@@ -199,12 +199,14 @@ def cleanup_file(sender, instance, **kw):
     the file system """
     if kw.get('raw') or not instance.filename:
         return
-    try:
-        filename = instance.file_path
-    except models.ObjectDoesNotExist:
-        return
-    if os.path.exists(filename):
-        os.remove(filename)
+    # Use getattr so the paths are accessed inside the try block.
+    for path in ('file_path', 'mirror_file_path'):
+        try:
+            filename = getattr(instance, attr)
+        except models.ObjectDoesNotExist:
+            return
+        if os.path.exists(filename):
+            os.remove(filename)
 
 models.signals.post_delete.connect(cleanup_file, sender=File,
                                    dispatch_uid='cleanup_file')

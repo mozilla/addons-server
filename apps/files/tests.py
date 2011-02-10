@@ -78,23 +78,30 @@ class TestFile(test_utils.TestCase):
                     'delicious_bookmarks-2.1.072-fx.xpi?src=src')
         assert url.endswith(expected), url
 
-    def test_delete(self):
+    def check_delete(self, file_, filename):
         """Test that when the File object is deleted, it is removed from the
         filesystem."""
-        file = File.objects.get(pk=67442)
-        filename = file.file_path
         if not os.path.exists(os.path.dirname(filename)):
             os.makedirs(os.path.dirname(filename))
         assert not os.path.exists(filename), 'File exists at: %s' % filename
         try:
             open(filename, 'w')
             assert os.path.exists(filename)
-            file.delete()
+            file_.delete()
             assert not os.path.exists(filename)
         finally:
             if os.path.exists(filename):
                 os.remove(filename)
 
+    def test_delete_file_path(self):
+        f = File.objects.get(pk=67442)
+        self.check_delete(f, f.file_path)
+
+    def test_delete_mirror_file_path(self):
+        f = File.objects.get(pk=67442)
+        self.check_delete(f, f.mirror_file_path)
+
+    def test_delete_no_file(self):
         # test that the file object can be deleted without the file
         # being present
         file = File.objects.get(pk=74797)
