@@ -432,17 +432,17 @@ a.listview:before {
 }
 
 #search input[type=search] {
-    background: url(../../img/zamboni/mobile/search.svg) no-repeat left center;
-    -moz-background-sizing: 20px 20px;
+    background: url(../../img/zamboni/mobile/search.svg) no-repeat 10px center;
     -webkit-box-flex: 1;
     -moz-box-flex: 1;
     height: 41px;
-    padding-left: 30px;
+    padding-left: 40px;
     border: 1px solid #ddd;
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     border-radius: 6px;
     margin: -1px 8px 0 0;
+    font-size: 18px;
 }
 
 #search button[type=submit] {

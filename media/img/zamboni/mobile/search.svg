@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20">
-<ellipse cx="8" cy="8" rx="8" ry="8" fill="#CCCCCC" mask="url(#hole)"/>
-<mask id="hole">
-    <ellipse cx="8" cy="8" rx="8" ry="8" fill="white"/>
-    <ellipse cx="8" cy="8" rx="5" ry="5" fill="black"/>
-</mask>
-<polygon fill="#CCCCCC" points="20,17.5 19,19 17.5,20 11.5,14 14,11.5"/>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20" width="22" height="22">
+<ellipse cx="9" cy="9" rx="7" ry="7" fill="transparent" stroke-width="3" stroke="#CCCCCC" />
+<polygon fill="#CCCCCC" points="22,19.5 21,21 19.5,22 12.5,15 15,12.5"/>
 </svg>
