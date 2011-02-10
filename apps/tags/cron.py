@@ -18,5 +18,5 @@ def tag_jetpacks():
 
     for tag, q in tags:
         tag_id = Tag.objects.get(tag_text=tag).id
-        for addon in qs.filter(q).exclude(tags__id=tag_id):
+        for addon in set(qs.filter(q).exclude(tags__id=tag_id)):
             AddonTag.objects.create(addon_id=addon, tag_id=tag_id)
