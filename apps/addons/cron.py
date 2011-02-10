@@ -243,23 +243,4 @@ def hide_disabled_files():
     for chunk in chunked(ids, 300):
         qs = File.uncached.filter(id__in=chunk).select_related('version')
         for f in qs:
-            if not f.filename:
-                continue
-            try:
-                if os.path.exists(f.file_path):
-                    dst = f.guarded_file_path
-                    log.info('Moving disabled file: %s => %s'
-                             % (f.file_path, dst))
-                    if not os.path.exists(os.path.dirname(dst)):
-                        os.makedirs(os.path.dirname(dst))
-                    os.rename(f.file_path, dst)
-                # Remove the file from the mirrors if necessary.
-                if os.path.exists(f.mirror_file_path):
-                    log.info('Unmirroring disabled file: %s'
-                             % f.mirror_file_path)
-                    os.remove(f.mirror_file_path)
-            except UnicodeEncodeError:
-                msg = ('Hide Failure: %s %s %s' %
-                       (f.id, smart_str(f.filename), smart_str(f.file_path)))
-                log.info(msg)
-                print msg
+            f.hide_disabled_file()

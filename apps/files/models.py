@@ -182,6 +182,28 @@ class File(amo.models.ModelBase):
     def extension(self):
         return os.path.splitext(self.filename)[-1]
 
+    def hide_disabled_file(self):
+        """Move a disabled file to the guarded file path."""
+        if not self.filename:
+            return
+        try:
+            if os.path.exists(self.file_path):
+                dst = self.guarded_file_path
+                log.info('Moving disabled file: %s => %s'
+                         % (self.file_path, dst))
+                if not os.path.exists(os.path.dirname(dst)):
+                    os.makedirs(os.path.dirname(dst))
+                os.rename(self.file_path, dst)
+            # Remove the file from the mirrors if necessary.
+            if os.path.exists(self.mirror_file_path):
+                log.info('Unmirroring disabled file: %s'
+                         % self.mirror_file_path)
+                os.remove(self.mirror_file_path)
+        except UnicodeEncodeError:
+            log.info('Hide Failure: %s %s %s' %
+                     (self.id, smart_str(self.filename),
+                      smart_str(self.file_path)))
+
 
 def update_status(sender, instance, **kw):
     if not kw.get('raw'):
@@ -202,7 +224,7 @@ def cleanup_file(sender, instance, **kw):
     # Use getattr so the paths are accessed inside the try block.
     for path in ('file_path', 'mirror_file_path'):
         try:
-            filename = getattr(instance, attr)
+            filename = getattr(instance, path)
         except models.ObjectDoesNotExist:
             return
         if os.path.exists(filename):
@@ -210,6 +232,17 @@ def cleanup_file(sender, instance, **kw):
 
 models.signals.post_delete.connect(cleanup_file, sender=File,
                                    dispatch_uid='cleanup_file')
+
+
+def check_file_status(sender, instance, **kw):
+    if kw.get('raw'):
+        return
+    if instance.status == amo.STATUS_DISABLED:
+        instance.hide_disabled_file()
+
+
+models.signals.post_save.connect(check_file_status, sender=File,
+                                 dispatch_uid='check_file_status')
 
 
 class Approval(amo.models.ModelBase):

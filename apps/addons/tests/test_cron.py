@@ -123,7 +123,7 @@ class TestHideDisabledFiles(test_utils.TestCase):
         self.f2 = File.objects.create(version=self.version, filename='f2',
                                       platform=p)
 
-    @mock.patch('addons.cron.os')
+    @mock.patch('files.models.os')
     def test_leave_nondisabled_files(self, os_mock):
         # All these addon/file status pairs should stay.
         stati = [(amo.STATUS_PUBLIC, amo.STATUS_PUBLIC),
@@ -139,9 +139,11 @@ class TestHideDisabledFiles(test_utils.TestCase):
             cron.hide_disabled_files()
             assert not os_mock.path.exists.called, (addon_status, file_status)
 
-    @mock.patch('addons.cron.os')
+    @mock.patch('files.models.os')
     def test_move_user_disabled_addon(self, os_mock):
-        self.addon.update(status=amo.STATUS_PUBLIC, disabled_by_user=True)
+        # Use Addon.objects.update so the signal handler isn't called.
+        Addon.objects.filter(id=self.addon.id).update(
+            status=amo.STATUS_PUBLIC, disabled_by_user=True)
         File.objects.update(status=amo.STATUS_PUBLIC)
         cron.hide_disabled_files()
         # Check that f2 was moved.
@@ -158,9 +160,10 @@ class TestHideDisabledFiles(test_utils.TestCase):
         eq_(os_mock.rename.call_count, 2)
         eq_(os_mock.remove.call_count, 2)
 
-    @mock.patch('addons.cron.os')
+    @mock.patch('files.models.os')
     def test_move_admin_disabled_addon(self, os_mock):
-        self.addon.update(status=amo.STATUS_DISABLED)
+        Addon.objects.filter(id=self.addon.id).update(
+            status=amo.STATUS_DISABLED)
         File.objects.update(status=amo.STATUS_PUBLIC)
         cron.hide_disabled_files()
         # Check that f2 was moved.
@@ -177,11 +180,11 @@ class TestHideDisabledFiles(test_utils.TestCase):
         eq_(os_mock.rename.call_count, 2)
         eq_(os_mock.remove.call_count, 2)
 
-    @mock.patch('addons.cron.os')
+    @mock.patch('files.models.os')
     def test_move_disabled_file(self, os_mock):
-        self.addon.update(status=amo.STATUS_LITE)
-        self.f1.update(status=amo.STATUS_DISABLED)
-        self.f2.update(status=amo.STATUS_UNREVIEWED)
+        Addon.objects.filter(id=self.addon.id).update(status=amo.STATUS_LITE)
+        File.objects.filter(id=self.f1.id).update(status=amo.STATUS_DISABLED)
+        File.objects.filter(id=self.f2.id).update(status=amo.STATUS_UNREVIEWED)
         cron.hide_disabled_files()
         # Only f1 should have been moved.
         f1 = self.f1

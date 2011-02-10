@@ -115,6 +115,17 @@ class TestFile(test_utils.TestCase):
         file.update(filename='')
         file.delete()
 
+    @mock.patch('files.models.File.hide_disabled_file')
+    def test_disable_signal(self, hide_mock):
+        f = File.objects.get(pk=67442)
+        f.status = amo.STATUS_PUBLIC
+        f.save()
+        assert not hide_mock.called
+
+        f.status = amo.STATUS_DISABLED
+        f.save()
+        assert hide_mock.called
+
     def test_latest_url(self):
         # With platform.
         f = File.objects.get(id=74797)

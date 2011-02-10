@@ -548,6 +548,28 @@ class TestAddonModels(test_utils.TestCase):
         a = Addon.objects.create(type=1)
         assert a.view_source
 
+    @patch('files.models.File.hide_disabled_file')
+    def test_admin_disabled_file_hidden(self, hide_mock):
+        a = Addon.objects.get(id=3615)
+        a.status = amo.STATUS_PUBLIC
+        a.save()
+        assert not hide_mock.called
+
+        a.status = amo.STATUS_DISABLED
+        a.save()
+        assert hide_mock.called
+
+    @patch('files.models.File.hide_disabled_file')
+    def test_user_disabled_file_hidden(self, hide_mock):
+        a = Addon.objects.get(id=3615)
+        a.disabled_by_user = False
+        a.save()
+        assert not hide_mock.called
+
+        a.disabled_by_user = True
+        a.save()
+        assert hide_mock.called
+
 
 class TestCategoryModel(test_utils.TestCase):
 

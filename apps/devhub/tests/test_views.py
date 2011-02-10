@@ -2183,7 +2183,8 @@ class TestVersion(test_utils.TestCase):
         eq_(self.addon.versions.count(), 1)
         eq_(Addon.objects.get(id=3615).status, amo.STATUS_UNREVIEWED)
 
-    def test_user_can_disable_addon(self):
+    @mock.patch('files.models.File.hide_disabled_file')
+    def test_user_can_disable_addon(self, hide_mock):
         self.addon.update(status=amo.STATUS_PUBLIC,
                           disabled_by_user=False)
         res = self.client.post(self.disable_url)
@@ -2191,6 +2192,7 @@ class TestVersion(test_utils.TestCase):
         addon = Addon.objects.get(id=3615)
         eq_(addon.disabled_by_user, True)
         eq_(addon.status, amo.STATUS_PUBLIC)
+        assert hide_mock.called
 
         entry = ActivityLog.objects.get()
         eq_(entry.action, amo.LOG.USER_DISABLE.id)

@@ -780,6 +780,16 @@ def update_name_table(sender, **kw):
 dbsignals.post_save.connect(update_name_table, sender=Addon)
 
 
+def check_addon_status(sender, instance, **kw):
+    if kw.get('raw'):
+        return
+    if instance.is_disabled:
+        for f in File.objects.filter(version__addon=instance.id):
+            f.hide_disabled_file()
+dbsignals.post_save.connect(check_addon_status, sender=Addon,
+                            dispatch_uid='check_addon_status')
+
+
 def clear_name_table(sender, **kw):
     addon = kw['instance']
     ReverseNameLookup.delete(addon.id)
