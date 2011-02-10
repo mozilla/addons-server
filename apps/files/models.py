@@ -273,6 +273,8 @@ class FileUpload(amo.models.ModelBase):
     validation = models.TextField(null=True)
     task_error = models.TextField(null=True)
 
+    objects = amo.models.UncachedManagerBase()
+
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'file_uploads'
 
