@@ -1017,6 +1017,15 @@ class TestReportAbuse(AbuseBase, test_utils.TestCase):
         settings.RECAPTCHA_PRIVATE_KEY = 'something'
         self.full_page = reverse('addons.abuse', args=['a3615'])
 
+    def test_abuse_name(self):
+        addon = Addon.objects.get(pk=3615)
+        addon.name = 'Bmrk.ru Социальные закладки'
+        addon.save()
+
+        self.client.login(username='regular@mozilla.com', password='password')
+        self.client.post(self.full_page, {'text': 'spammy'})
+        assert 'spammy' in mail.outbox[0].body
+
     def test_abuse_persona(self):
         addon_url = reverse('addons.detail', args=['a15663'])
         r = self.client.get(addon_url)

@@ -372,7 +372,8 @@ def send_abuse_report(request, obj, url, message):
     msg = msg % (user_name, obj.name, settings.SITE_URL, url, message)
     msg += '\n\nhttp://translate.google.com/#auto|en|%s' % message
 
-    log.debug('Abuse reported by %s for %s.' % (user_name, obj))
+    log.debug('Abuse reported by %s for %s: %s.' %
+              (smart_str(user_name), obj.id, smart_str(obj.name)))
     send_mail(subject, msg, recipient_list=(settings.FLIGTAR,))
 
 
