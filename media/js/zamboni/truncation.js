@@ -73,7 +73,7 @@ $.fn.htruncate = function(opts) {
                 chunk = Math.ceil(chunk/2);
             }
         }
-        if (showTitle) {
+        if (showTitle && oldtext != $tel.text()) {
             $tel.attr("title", oldtext);
         }
     });
