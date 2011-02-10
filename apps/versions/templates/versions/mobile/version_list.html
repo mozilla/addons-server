@@ -6,7 +6,7 @@
 {% block page %}
 
 <h2>{{ _('Version History') }}</h2>
-<div class="warning highlight">
+<div class="warning message">
   <h3>{{ _('Be careful with old versions!') }}</h3>
   <p>{% trans url=url('addons.detail', addon.slug) %}
     These versions are displayed for reference and testing purposes.
@@ -15,7 +15,7 @@
 </div>
 
 <div class="collection-listing">
-  <ul class="listview">
+  <ul>
     {% for version in versions.object_list %}
       {{ mobile_version_detail(addon, version, src='version-history') }}
     {% endfor %}

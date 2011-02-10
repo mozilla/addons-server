@@ -1,9 +1,9 @@
-<li id="version-{{ version.version }}">
+<li id="version-{{ version.version }}" class="version infobox">
   <header>
     {% if version.is_beta %}
-      <h3>{{ _('Version {0}', 'addon_display_header_version')|f(version.version) }}</h3>
-    {% else %}
       <h3>{{ _('Beta Version {0}')|f(version.version) }}</h3>
+    {% else %}
+      <h3>{{ _('Version {0}', 'addon_display_header_version')|f(version.version) }}</h3>
     {% endif %}
     <time datetime="{{ version.created|isotime }}">
       {{ version.created|datetime }}</time>
@@ -13,7 +13,7 @@
     {{ version.releasenotes|nl2br }}
   </blockquote>
 
-  <div class="potch">
+  <div class="meta">
     {% if version.license %}
       <h4>{{ _('Source Code License') }}</h4>
       {% if version.license.builtin %}
@@ -35,5 +35,8 @@
     {% endif %}
   </div>
 
-  {# TODO: button #}
+  <div class="installer">
+    <a class="button install">Add to Firefox</a>
+    {# TODO: privacy policy (in button.html right now) #}
+  </div>
 </li>

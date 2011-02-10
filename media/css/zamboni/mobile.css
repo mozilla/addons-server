@@ -136,7 +136,7 @@ html {
 
 #sort-menu .label span:after,
 .moz-menu .tab a:after,
-a.expando:after {
+.menu a.expando:after {
     content: "\00a0";
     display: block;
     position: absolute;
@@ -156,6 +156,11 @@ a.expando:after {
 /************************************/
 /*              GENERAL             */
 /************************************/
+
+.htruncate {
+    white-space: nowrap;
+    overflow: hidden;
+}
 
 table {
     width: 100%;
@@ -352,7 +357,8 @@ header #home {
 /*             LISTVIEWS            */
 /************************************/
 
-.listview {
+.listview,
+.infobox {
     margin: 14px 14px 0;
     border-radius: 6px;
     -moz-border-radius: 6px;
@@ -364,6 +370,9 @@ header #home {
     -webkit-box-shadow: 0 -3px rgba(0,0,0,.1) inset;
     margin-bottom: 1em;
     display: block;
+}
+.infobox {
+    padding: 14px;
 }
 .listview li {
     border-top: 1px solid #ccc;
@@ -399,23 +408,22 @@ a.listview:before {
     top: 50%;
     margin-top: -8px;
     background: url(../../img/zamboni/mobile/arrow.svg) no-repeat center center;
-    background-size: cover;
 }
-.listview .icon {
+.icon {
     float: left;
     margin-right: 8px;
 }
 
-.listview .item {
+.item {
     line-height: 1.3em;
 }
-.listview .item h3 {
+.item h3 {
     font-size: 1.1em;
 }
-.listview .item .desc {
+.item .desc {
     white-space: nowrap;
 }
-.listview .item details {
+.item details {
     overflow: hidden;
     margin-right: 12px;
 }
@@ -614,8 +622,9 @@ a.listview:before {
 /*           DETAILS PAGE           */
 /************************************/
 
-td .versions li {
-    margin-bottom: 8px;
+td .versions li a {
+    display: block;
+    padding: 4px 0;
 }
 
 .author,
@@ -627,12 +636,67 @@ td .versions li {
 }
 
 /************************************/
+/*             VERSIONS             */
+/************************************/
+
+.version h3 {
+    font-size: 20px;
+    color: black;
+}
+
+.version time {
+    display: block;
+    font-family: "Droid Sans", sans-serif;
+    margin: 10px 0;
+}
+
+.version blockquote {
+    color: #666;
+    font-family: Georgia, serif;
+    overflow: hidden;
+}
+
+.version .meta {
+    font-style: italic;
+    color: #666;
+}
+
+.version .meta h4 {
+    margin-top: 12px;
+    font-family: "Droid Sans", sans-serif;
+    font-weight: bold;
+    color: #666;
+}
+
+/************************************/
+/*           NOTIFICATIONS          */
+/************************************/
+
+.message {
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    margin: 14px;
+    padding: 14px;
+}
+.message h3 {
+    font-family: "Droid Sans", Helvetica, sans-serif;
+    font-weight: bold;
+    margin-bottom: 14px;
+}
+.message.warning {
+    background: #fff0a6;
+}
+/************************************/
 /*              BUTTONS             */
 /************************************/
 
 .installer {
     margin: 10px 0 4px;
     padding-top: 8px;
+}
+
+.infobox .installer {
     border-top: 2px solid #fff;
     box-shadow: 0 -1px #ccc;
 }
@@ -691,9 +755,7 @@ td .versions li {
 }
 
 .button.install {
-	background-image: -moz-linear-gradient(#84C63C, #489615);
-    background-position: 25% 0, top left;
-    background-repeat: no-repeat, repeat-x;
+	background: -moz-linear-gradient(#84C63C, #489615) no-repeat;
 	color: #fff;
 	padding-left: 40px;
 }
@@ -703,10 +765,9 @@ td .versions li {
     width: 24px;
     height: 24px;
     position: absolute;
-    left: 12px;
-    top: 9px;
+    left: 14px;
+    top: 10px;
     background: url(../../img/zamboni/mobile/install.svg) no-repeat center center;
-    background-size: cover;
 }
 
 .button.install.disabled {
@@ -820,17 +881,20 @@ a.expando:-moz-focusring {
     outline: none;
 }
 a.expando {
-    display: block;
+    color: #447BC4;
+}
+.menu a.expando {
     position: relative;
+    display: block;
     padding: 10px 20px;
     float: right;
     color: #447BC4;
 }
-a.expando:after {
+.menu a.expando:after {
     border-top-color: #447BC4;
     top: 15px;
 }
-a.expando.expand:after {
+.menu a.expando.expand:after {
     -moz-transform: rotate(180deg);
     -webkit-transform: rotate(180deg);
 }

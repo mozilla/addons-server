@@ -3,16 +3,14 @@
 {% block title %}{{ page_title(addon.name) }}{% endblock %}
 
 {% block page %}
-  <div class="listview">
-    <div class="item">
-      <img class="icon" width="32" height="32" src="{{ addon.icon_url }}">
-      <h3>{{ addon.name }}</h3>
-      {# TODO: make this a secret link #}
-      <h4 class="author">{{ _('by') }} {{ users_list(addon.listed_authors) }}</h4>
-      <div class="installer">
-        <a class="button install">Add to Firefox</a>
-        {# TODO: privacy policy (in button.html right now) #}
-      </div>
+  <div class="infobox item">
+    <img class="icon" width="32" height="32" src="{{ addon.icon_url }}">
+    <h3>{{ addon.name }}</h3>
+    {# TODO: make this a secret link #}
+    <h4 class="author">{{ _('by') }} {{ users_list(addon.listed_authors) }}</h4>
+    <div class="installer">
+      <a class="button install">Add to Firefox</a>
+      {# TODO: privacy policy (in button.html right now) #}
     </div>
   </div>
   <div class="copy">
@@ -99,25 +97,27 @@
                 {{ _('View All Versions') }}</a>
             </li>
             {% if addon.current_beta_version %}
-              <li><a href="#">{{ _('View Beta Version') }}</a></li>
-              <div id="beta">
-                <div class="warning highlight">
-                  <h3>{{ _('Caution') }}</h3>
-                  <p>{% trans %}
-                  The Beta Channel lets you test an experimental new version of
-                  this add-on before it's released to the general public. Once
-                  you install the beta version, you will continue to get updates
-                  from this channel.
-                  {% endtrans %}</p>
-                </div>
-                <ul>{{ mobile_version_detail(addon, addon.current_beta_version, src='beta') }}</ul>
-              </div>
+              <li><a href="#beta" class="expando">{{ _('View Beta Version') }}</a></li>
             {% endif %}
           </ul>
         </td>
       </tr>
     </table>
   </details>
+  {% if addon.current_beta_version %}
+    <div id="beta" class="managed">
+      <div class="warning message">
+        <h3>{{ _('Caution') }}</h3>
+        <p>{% trans %}
+        The Beta Channel lets you test an experimental new version of
+        this add-on before it's released to the general public. Once
+        you install the beta version, you will continue to get updates
+        from this channel.
+        {% endtrans %}</p>
+      </div>
+      <ul>{{ mobile_version_detail(addon, addon.current_beta_version, src='beta') }}</ul>
+    </div>
+  {% endif %}
 
   {% if addon.support_url %}
     <a class="listview" href="{{ addon.support_url|external_url }}">
