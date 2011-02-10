@@ -9,13 +9,41 @@
       <h3>{{ addon.name }}</h3>
       {# TODO: make this a secret link #}
       <h4 class="author">{{ _('by') }} {{ users_list(addon.listed_authors) }}</h4>
-      {# TODO: button #}
-      {# TODO: privacy policy (in button.html right now) #}
+      <div class="installer">
+        <a class="button install">Add to Firefox</a>
+        {# TODO: privacy policy (in button.html right now) #}
+      </div>
     </div>
   </div>
+  <div class="copy">
+    <p id="summary">
+      {{ addon.summary|nl2br }}
+    </p>
+    <div class="menu">
+      <a class="expando readmore" href="#full-description">Read More</a>
+    </div>
+    <p id="full-description" class="expando-managed">
+      {{ addon.description|nl2br }}
+    </p>
+  </div>
 
-  <span class="desc">{{ addon.summary }}</span>
-  <blockquote>{{ addon.description }}</blockquote>
+  {% set previews = addon.previews.all() %}
+  {% if previews %}
+  <div id="screenshots" class="carousel">
+    <ul>
+      {# TODO: lazy-load all, or at least the third and up. #}
+      {# Avoid extra white-space in here- we need it collapsed. #}
+      {% for preview in previews -%}
+        <li>
+          <a href="{{ preview.image_url }}" title="{{ preview.caption }}">
+            <img src="{{ preview.thumbnail_url }}"></a>
+        </li>
+      {%- endfor %}
+    </ul>
+    <a href="#" class="control next">&raquo;</a>
+    <a href="#" class="control prev">&laquo;</a>
+  </div>
+  {% endif %}
 
   <a class="listview" href="{{ url('reviews.list', addon.slug) }}">
     <div class="icon">
@@ -27,19 +55,6 @@
       See All {{ cnt }} Reviews
     {% endtrans %}
   </a>
-
-  {% set previews = addon.previews.all() %}
-  {% if previews %}
-  <ul id="screenshots" class="carousel">
-    {% for preview in previews %}
-      {# TODO: lazy-load all, or at least the third and up #}
-      <li>
-        <a href="{{ preview.image_url }}" title="{{ preview.caption }}">
-          <img src="{{ preview.thumbnail_url }}"></a>
-      </li>
-    {% endfor %}
-  </ul>
-  {% endif %}
 
   <details>
     <table>

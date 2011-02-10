@@ -20,8 +20,52 @@ $(function() {
         }
     });
 
+    $(".carousel").each(function() {
+        var $self = $(this),
+            $strip = $("ul", $self),
+            $prev = $(".prev", $self),
+            $next = $(".next", $self),
+            currentPos = 0,
+            maxPos = $("li", $strip).length/2-1;
+        function render(pos) {
+            currentPos = Math.min(Math.max(0, pos), maxPos);
+            $strip.css("left", currentPos * -100 + "%");
+            $prev.toggleClass("disabled", currentPos == 0);
+            $next.toggleClass("disabled", currentPos == maxPos);
+        }
+        $self.bind("swipeleft", function() {
+            render(currentPos+1);
+        }).bind("swiperight", function() {
+            render(currentPos-1);
+        });
+        $next.click(_pd(function() {
+            render(currentPos+1);
+            $next.blur();
+        }));
+        $prev.click(_pd(function() {
+            render(currentPos-1);
+            $prev.blur();
+        }));
+        render(0);
+    });
+
+    $(".expando").each(function() {
+        var $trigger = $(this),
+            $managed = $($trigger.attr("href"));
+        $managed.addClass("expando-managed");
+        $trigger.click(_pd(function () {
+            $managed.toggleClass("expand");
+            if ($managed.hasClass("expand")) {
+                $managed.css("height", $managed[0].scrollHeight);
+            } else {
+                $managed.css("height", 0);
+            }
+            $trigger.toggleClass("expand").blur();
+        }));
+    });
+
     $(".tabs").each(function() {
-        var $strip=$(this);
+        var $strip=$(this),
             $managed = $("#"+$strip.attr("data-manages")),
             isManaged = $managed.length,
             isSlider = isManaged && $managed.hasClass("slider"),

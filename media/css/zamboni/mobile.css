@@ -58,7 +58,8 @@ table {
 /** Clearfix */
 .listview li a:after,
 header:after,
-section:after {
+section:after,
+.menu:after {
     content: ".";
     display: block;
     clear: both;
@@ -117,15 +118,39 @@ footer:before,
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAABCAYAAAASC7TOAAAAEElEQVQIHWP8//8/Aw7wHwBR6AP+G53o6QAAAABJRU5ErkJggg=='),
                       -moz-linear-gradient(#fff, #dcedfd);
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAABCAYAAAASC7TOAAAAEElEQVQIHWP8//8/Aw7wHwBR6AP+G53o6QAAAABJRU5ErkJggg=='),
-                      -webkit-linear-gradient(from(#fff), to(#dcedfd));
+                      -webkit-gradient(linear, left top, left bottom, from(#fff), to(#dcedfd));
 }
 
 html {
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAABCAYAAAASC7TOAAAAEElEQVQIHWP8//8/Aw7wHwBR6AP+G53o6QAAAABJRU5ErkJggg=='),
                       -moz-linear-gradient(#dcedfd 0, #fff 120px);
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAABCAYAAAASC7TOAAAAEElEQVQIHWP8//8/Aw7wHwBR6AP+G53o6QAAAABJRU5ErkJggg=='),
-                      -webkit-linear-gradient(#dcedfd 0, #fff 120px);
+                      -webkit-gradient(linear, left top, left 120px, from(#dcedfd), to(#fff));
 
+}
+
+
+/************************************/
+/*            FANCY ARROW           */
+/************************************/
+
+#sort-menu .label span:after,
+.moz-menu .tab a:after,
+a.expando:after {
+    content: "\00a0";
+    display: block;
+    position: absolute;
+    right: 8px;
+    width: 0;
+    height: 0;
+    -moz-transition: .3s -moz-transform ease;
+    -webkit-transition: .3s -webkit-transform ease;
+    -moz-transform-origin: 50% 25%;
+    -webkit-transform-origin: 50% 25%;
+    top: 16px;
+    border: 5px solid transparent;
+    border-top-color: black;
+    pointer-events: none;
 }
 
 /************************************/
@@ -149,12 +174,14 @@ table th {
 }
 
 #content > details,
-#content > p {
-    margin: 14px;
+#content > p,
+#content > .copy,
+#content > .menu {
+    margin: 0 14px;
 }
 
-.menu {
-    margin: 0 14px;
+.copy {
+    line-height: 1.2em;
 }
 
 .paginator {
@@ -226,7 +253,7 @@ table th {
     border-bottom: 1px solid #294976;
     border-top: 1px solid #537ab4;
     background-image: -moz-linear-gradient(#3a67af, #385eaa);
-    background-image: -webkit-linear-gradient(#3a67af, #385eaa);
+    background-image: -webkit-gradient(linear, from(#3a67af), to(#385eaa));
     height: 50px;
     width: 100%;
     padding: 0 14px;
@@ -253,20 +280,9 @@ table th {
 }
 
 .moz-menu .tab a:after {
-    content: "\00a0";
-    display: block;
-    position: absolute;
-    right: 8px;
-    width: 0;
-    height: 0;
-    -moz-transition: .3s -moz-transform ease;
-    -webkit-transition: .3s -webkit-transform ease;
-    -moz-transform-origin: 50% 25%;
-    -webkit-transform-origin: 50% 25%;
     top: 18px;
     border: 6px solid transparent;
     border-top-color: white;
-    pointer-events: none;
 }
 
 .moz-menu.expand .tab a:after {
@@ -401,6 +417,7 @@ a.listview:before {
 }
 .listview .item details {
     overflow: hidden;
+    margin-right: 12px;
 }
 
 /************************************/
@@ -415,9 +432,12 @@ a.listview:before {
 }
 
 #search input[type=search] {
+    background: url(../../img/zamboni/mobile/search.svg) no-repeat left center;
+    -moz-background-sizing: 20px 20px;
     -webkit-box-flex: 1;
     -moz-box-flex: 1;
     height: 41px;
+    padding-left: 30px;
     border: 1px solid #ddd;
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
@@ -503,23 +523,11 @@ a.listview:before {
     border-bottom: 1px solid white;
     box-shadow: 0 -1px 1px #dde4ef;
 }
-
 /* menu arrow */
 #sort-menu .label span:after {
-    content: "\00a0";
-    display: block;
-    position: absolute;
-    right: 8px;
-    width: 0;
-    height: 0;
-    -moz-transition: .3s -moz-transform ease;
-    -webkit-transition: .3s -webkit-transform ease;
-    -moz-transform-origin: 50% 25%;
-    -webkit-transform-origin: 50% 25%;
     top: 16px;
     border: 5px solid transparent;
     border-top-color: #447BC4;
-    pointer-events: none;
 }
 
 #sort-menu.expand .label span:after {
@@ -610,6 +618,105 @@ td .versions li {
     margin-bottom: 8px;
 }
 
+.author,
+.author a {
+    font-family: "Droid Sans", sans-serif;
+    color: #888;
+    font-size: 12px;
+    line-height: 12px;
+}
+
+/************************************/
+/*              BUTTONS             */
+/************************************/
+
+.installer {
+    margin: 10px 0 4px;
+    padding-top: 8px;
+    border-top: 2px solid #fff;
+    box-shadow: 0 -1px #ccc;
+}
+
+.button {
+    -moz-transition: -moz-box-shadow 0.3s ease 0s;
+    background: -moz-linear-gradient(#669BE1, #5784BF) repeat scroll 0 0 transparent;
+    border-radius: 6px 6px 6px 6px;
+    box-shadow: 0 3px rgba(0, 0, 0, 0.1), 0 -4px rgba(0, 0, 0, 0.1) inset;
+    color: #FFFFFF;
+    display: inline-block;
+    font-family: "Droid Sans", "Trebuchet MS", sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1;
+    padding: 12px 16px 14px;
+    position: relative;
+    text-align: center;
+    display: block;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.button:active,
+.button.selected {
+	top: 2px;
+	-moz-box-shadow: 0 1px rgba(0, 0, 0, 0.1),
+	                 0 -4px rgba(0, 0, 0, 0.1) inset,
+	                 0 0 100px rgba(255, 255, 255, 0.2) inset;
+}
+
+.button.small {
+	font-size: 13px;
+	font-weight: normal;
+	padding: 6px 12px;
+	padding-bottom: 9px;
+	-moz-box-shadow: 0 2px rgba(0, 0, 0, 0.1),
+	                 0 -3px rgba(0, 0, 0, 0.1) inset;
+}
+
+.button.small:hover,
+.button.small:focus,
+.button.small:active,
+.button.small.selected {
+	-moz-box-shadow: 0 2px rgba(0, 0, 0, 0.1),
+	                 0 -3px rgba(0, 0, 0, 0.1) inset,
+	                 0 0 100px rgba(255, 255, 255, 0.2) inset;
+}
+
+.button.small:active,
+.button.small.selected {
+	top: 2px;
+	-moz-box-shadow: 0 0px rgba(0, 0, 0, 0.1),
+	                 0 -3px rgba(0, 0, 0, 0.1) inset,
+	                 0 0 100px rgba(255, 255, 255, 0.2) inset;
+}
+
+.button.install {
+	background-image: -moz-linear-gradient(#84C63C, #489615);
+    background-position: 25% 0, top left;
+    background-repeat: no-repeat, repeat-x;
+	color: #fff;
+	padding-left: 40px;
+}
+.button.install:before {
+    content: " ";
+    display: block;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    left: 12px;
+    top: 9px;
+    background: url(../../img/zamboni/mobile/install.svg) no-repeat center center;
+    background-size: cover;
+}
+
+.button.install.disabled {
+	background: -moz-linear-gradient(#d1d4d7, #c1c5ca);
+	color: #fff;
+	-moz-box-shadow: 0 3px rgba(0, 0, 0, 0.05),
+	                 0 -4px rgba(0, 0, 0, 0.05) inset;
+	top: 0;
+}
+
 /************************************/
 /*              REVIEWS             */
 /************************************/
@@ -643,13 +750,94 @@ td .versions li {
 /*              CAROUSEL            */
 /************************************/
 
+.carousel .control {
+    display: block;
+    position: absolute;
+    top: 0;
+    opacity: .9;
+    width: 45px;
+    height: 95%;
+    line-height: 100px;
+    font-size: 48px;
+    text-align: center;
+    color: #447BC4;
+    text-shadow: 0 0 5px #fff;
+    -moz-transition: .2s color ease;
+    -webkit-transition: .2s color ease;
+}
+.carousel .control.disabled {
+    color: #ccc;
+}
+.carousel .control.prev {
+    background: -moz-linear-gradient(left, #fff 20%, rgba(255,255,255,0));
+    left: 0;
+}
+.carousel .control.next {
+    background-image: -moz-linear-gradient(left, rgba(255,255,255,0), #fff 80%);
+    right: 0;
+}
+
 .carousel {
-    height: 100px;
+    position: relative;
+    padding: 14px 40px;
     overflow: hidden;
+    background-image: -moz-linear-gradient(#fff 95%, #dcedfd);
+    background-color: #fff;
+    border-bottom: 2px solid #dcedfd;
+    margin-bottom: 20px;
+}
+
+.carousel ul {
+    height: 78px;
+    white-space: nowrap;
+    position: relative;
+    left: 0;
+    -moz-transition: .5s left ease;
+    -webkit-transition: .5s left ease;
 }
 
 .carousel li {
     display: inline-block;
+    width: 50%;
+    text-align: center;
+}
+
+.carousel li img {
+    border: 1px solid #afbed0;
+    max-height: 75px;
+    max-width: 100px;
+    border-radius: 6px;
+    -moz-box-shadow: 0 0 4px rgba(0,0,0,.2);
+    -webkit-box-shadow: 0 0 4px rgba(0,0,0,.2);
+}
+
+/************************************/
+/*              EXPANDO             */
+/************************************/
+
+a.expando:-moz-focusring {
+    border: 0;
+    outline: none;
+}
+a.expando {
+    display: block;
+    position: relative;
+    padding: 10px 20px;
+    float: right;
+    color: #447BC4;
+}
+a.expando:after {
+    border-top-color: #447BC4;
+    top: 15px;
+}
+a.expando.expand:after {
+    -moz-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+}
+.expando-managed {
+    overflow: hidden;
+    height: 0;
+    -moz-transition: .5s height ease;
 }
 
 /************************************/
