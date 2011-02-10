@@ -135,21 +135,30 @@ class DELETE_FILE_FROM_VERSION:
     format = _(u'File {0} deleted from {version} of {addon}.')
 
 
-# TODO(davedash): When editor tools exist
 class APPROVE_VERSION:
     id = 21
     format = _(u'{addon} {version} approved.')
     keep = True
 
 
-# TODO(davedash): When editor tools exist
+class PRELIMINARY_VERSION:
+    id = 42
+    format = _(u'{addon} {version} given preliminary review.')
+    keep = True
+
+
+class REJECT_VERSION:
+    id = 43
+    format = _(u'{addon} {version} rejected.')
+    keep = True
+
+
 class RETAIN_VERSION:
     id = 22
     format = _(u'{addon} {version} retained.')
     keep = True
 
 
-# TODO(davedash): When editor tools exist
 class ESCALATE_VERSION:
     id = 23
     # L10n: {0.version} is the version of an addon.
@@ -157,7 +166,6 @@ class ESCALATE_VERSION:
     keep = True
 
 
-# TODO(davedash): When editor tools exist
 class REQUEST_VERSION:
     id = 24
     # L10n: {0.version} is the version of an addon.
@@ -284,7 +292,7 @@ LOGS = (CREATE_ADDON, EDIT_PROPERTIES, EDIT_DESCRIPTIONS, EDIT_CATEGORIES,
         ADD_RECOMMENDED_CATEGORY, REMOVE_RECOMMENDED_CATEGORY, ADD_RECOMMENDED,
         REMOVE_RECOMMENDED, ADD_APPVERSION, CUSTOM_TEXT, CUSTOM_HTML,
         CHANGE_USER_WITH_ROLE, CHANGE_LICENSE, CHANGE_POLICY, CHANGE_ICON,
-        APPROVE_REVIEW, DELETE_REVIEW,)
+        APPROVE_REVIEW, DELETE_REVIEW, PRELIMINARY_VERSION, REJECT_VERSION)
 LOG_BY_ID = dict((l.id, l) for l in LOGS)
 LOG = AttributeDict((l.__name__, l) for l in LOGS)
 LOG_KEEP = [l.id for l in LOGS if hasattr(l, 'keep')]
