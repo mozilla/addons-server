@@ -8,6 +8,7 @@ import sys
 import time
 import traceback
 import uuid
+import operator
 
 from django import http
 from django.conf import settings
@@ -40,8 +41,9 @@ from files.utils import parse_addon
 from translations.models import delete_translation
 from users.models import UserProfile
 from versions.models import License, Version
+from product_details import get_regions
 
-from . import forms, tasks, feeds
+from . import forms, tasks, feeds, responsys
 
 log = commonware.log.getLogger('z.devhub')
 
@@ -1094,3 +1096,24 @@ def admin(request, addon):
         form.save()
     return jingo.render(request, 'devhub/addons/edit/admin.html',
                         {'addon': addon, 'admin_form': form})
+
+
+# Newsletter details & signup
+def newsletter(request):
+    regions = get_regions(getattr(request, 'LANG', settings.LANGUAGE_CODE))
+    form = forms.NewsletterForm(request.POST or None,
+                                regions=sorted(regions.iteritems(),
+                                               key=operator.itemgetter(1)))
+
+    if request.method == 'POST':
+        if form.is_valid():
+            data = form.cleaned_data
+            responsys.subscribe.delay(
+                'ABOUT_ADDONS', data['email'], data['format'],
+                responsys.make_source_url(request), request.LANG,
+                data['region'])
+            messages.success(request, _('Thanks for subscribing!'))
+            return redirect('devhub.community.newsletter')
+
+    return jingo.render(request, 'devhub/newsletter.html',
+                        {'newsletter_form': form})

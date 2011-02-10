@@ -6,6 +6,7 @@ from django.conf import settings
 from django.db.models import Q
 from django.forms.models import modelformset_factory, BaseModelFormSet
 from django.utils.safestring import mark_safe
+from django.utils.encoding import force_unicode
 
 import happyforms
 from tower import ugettext as _, ugettext_lazy as _lazy
@@ -15,6 +16,7 @@ import addons.forms
 import paypal
 from addons.models import Addon, AddonUser, Charity, Preview
 from amo.forms import AMOModelForm
+from amo.widgets import EmailWidget
 from applications.models import Application, AppVersion
 from files.models import File, FileUpload, Platform
 from files.utils import parse_addon
@@ -220,7 +222,7 @@ class ContribForm(TranslationFormMixin, happyforms.ModelForm):
         widgets = {
             'annoying': forms.RadioSelect(),
             'suggested_amount': forms.TextInput(attrs={'class': 'short'}),
-            'paypal_id': forms.TextInput(attrs={'size':'50'})
+            'paypal_id': forms.TextInput(attrs={'size': '50'})
         }
 
     @staticmethod
@@ -564,5 +566,27 @@ class AdminForm(happyforms.ModelForm):
         fields = ('trusted', 'type', 'guid',
                   'target_locale', 'locale_disambiguation')
         widgets = {
-            'guid': forms.TextInput(attrs={'size':'50'})
+            'guid': forms.TextInput(attrs={'size': '50'})
         }
+
+
+class InlineRadioRenderer(forms.widgets.RadioFieldRenderer):
+
+    def render(self):
+        return mark_safe(''.join(force_unicode(w) for w in self))
+
+
+class NewsletterForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        regions = kwargs.pop('regions')
+        super(NewsletterForm, self).__init__(*args, **kwargs)
+        self.fields['region'].choices = regions
+
+    email = forms.EmailField(
+        widget=EmailWidget(placeholder=_lazy(u'Your Email Address')))
+    region = forms.ChoiceField(initial='us')
+    format = forms.ChoiceField(
+        widget=forms.widgets.RadioSelect(renderer=InlineRadioRenderer),
+        choices=(('html', _lazy(u'HTML')),
+                 ('text', _lazy(u'Text'))))
+    policy = forms.BooleanField()

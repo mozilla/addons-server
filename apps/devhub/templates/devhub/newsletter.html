@@ -1,0 +1,45 @@
+{% extends "devhub/base.html" %}
+
+{% block content %}
+<h2>{{ _('about:addons Newsletter') }}</h2>
+
+<p>
+  {% trans %}
+  about:addons is our monthly newsletter highlighting noteworthy
+  information and events in the world of add-ons. Take a look through
+  our archives below and sign up!
+  {% endtrans %}
+</p>
+
+<div class="newsletter-signup">
+  <h3>{{ _('Subscribe to Quarterly News') }}</h3>
+  <p>
+    {% trans %}
+    Enter your email address to subscribe to
+    our quarterly newsletter.
+    {% endtrans %}
+  </p>
+
+  <form action="" method="post">
+    {{ csrf() }}
+
+    <ul class="error">
+      {% for (name, err) in newsletter_form.errors.iteritems() %}
+      <li>{{ name|title }}: {{ err[0] }}</li>
+      {% endfor %}
+    </ul>
+
+    <p>{{ newsletter_form.email }}</p>
+    <p>{{ _('Country') }} {{ newsletter_form.region }}</p>
+    <p>{{ _('Email format') }} {{ newsletter_form.format }}</p>
+    <p>
+      {{ newsletter_form.policy }}
+      {% trans url='http://www.mozilla.com/privacy-policy' %}
+      I agree to the <a href="{{ url }}">Privacy Policy</a>
+      {% endtrans %}
+    </p>
+    <input type="submit" value="{{ _('Subscribe') }}" />
+  </form>
+</div>
+
+{% endblock %}

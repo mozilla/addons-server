@@ -1809,3 +1809,35 @@ form.select-review .errorlist {
     opacity: 0;
     pointer-events: none;
 }
+
+/* newsletter signup */
+.newsletter-signup {
+    width: 240px;
+    padding: 15px 20px;
+    float: right;
+    background-color: #C8E8F3;
+}
+
+.newsletter-signup input[type="email"],
+.newsletter-signup select {
+    width: 95%;
+}
+
+.newsletter-signup input[type="submit"] {
+    margin-top: 5px;
+    padding: 0 10px;
+}
+
+.newsletter-signup form {
+    margin-bottom: 0;
+}
+
+.newsletter-signup p {
+    margin: 10px 0;
+}
+
+.newsletter-signup h3 {
+    font-style: normal;
+    margin: 0;
+    margin-bottom: 10px;
+}

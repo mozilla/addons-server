@@ -124,4 +124,8 @@ urlpatterns = decorate(write, patterns('',
     # URLs for a single add-on.
     url('^addon/%s/' % ADDON_ID, include(detail_patterns)),
     url('^ajax/addon/%s/' % ADDON_ID, include(ajax_patterns)),
+
+    # Newsletter archive & signup
+    url('community/newsletter', views.newsletter,
+        name='devhub.community.newsletter'),
 ))

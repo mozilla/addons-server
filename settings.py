@@ -799,3 +799,6 @@ DEFAULT_SUGGESTED_CONTRIBUTION = 5
 PS_BIN = '/bin/ps'
 
 BLOCKLIST_COOKIE = 'BLOCKLIST_v1'
+
+# Responsys id used for newsletter subscribing
+RESPONSYS_ID = ''
