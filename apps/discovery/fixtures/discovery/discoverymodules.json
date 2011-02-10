@@ -1,0 +1,151 @@
+[
+    {
+        "pk": 1,
+        "model": "discovery.discoverymodule",
+        "fields": {
+            "created": "2010-05-13 16:38:37",
+            "ordering": 2,
+            "app": 1,
+            "modified": "2010-09-14 16:35:11",
+            "module": "Rock Your Firefox",
+            "locales": "en-US"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "discovery.discoverymodule",
+        "fields": {
+            "created": "2010-05-13 16:38:40",
+            "ordering": 3,
+            "app": 1,
+            "modified": "2010-09-14 16:35:37",
+            "module": "Shopping Collection",
+            "locales": ""
+        }
+    },
+    {
+        "pk": 3,
+        "model": "discovery.discoverymodule",
+        "fields": {
+            "created": "2010-05-13 16:38:41",
+            "ordering": null,
+            "app": 1,
+            "modified": "2010-09-14 16:35:11",
+            "module": "Webdev Collection",
+            "locales": ""
+        }
+    },
+    {
+        "pk": 5,
+        "model": "discovery.discoverymodule",
+        "fields": {
+            "created": "2010-09-14 16:34:54",
+            "ordering": 1,
+            "app": 1,
+            "modified": "2010-09-14 16:35:11",
+            "module": "Firefox Tester Tools",
+            "locales": ""
+        }
+    },
+    {
+        "pk": 10,
+        "model": "bandwagon.collection",
+        "fields": {
+            "rating": 566.80700000000002,
+            "downvotes": 58,
+            "uuid": "c37b85ec-f029-9ef1-1801-0e1ea52ca728",
+            "recommended_collection": null,
+            "author": 4757633,
+            "application": 1,
+            "listed": true,
+            "upvotes": 163,
+            "icontype": "image/png",
+            "type": 2,
+            "description": 394382,
+            "default_locale": "en-US",
+            "monthly_subscribers": 26,
+            "downloads": 468012,
+            "addon_index": "40e0f91e2ab3a5e666aedfbb6aca99ca",
+            "subscribers": 8609,
+            "nickname": "reference",
+            "slug": "reference",
+            "name": 394381,
+            "created": "2009-06-09 21:43:45",
+            "weekly_subscribers": 6,
+            "modified": "2010-10-01 14:06:19",
+            "addon_count": 5,
+            "all_personas": false
+        }
+    },
+    {
+        "pk": 16651,
+        "model": "bandwagon.collection",
+        "fields": {
+            "rating": 25434.900000000001,
+            "downvotes": 339,
+            "uuid": "c194cfdd-3be7-5724-27bf-d5571e12aa30",
+            "recommended_collection": null,
+            "author": 1023702,
+            "application": 1,
+            "listed": true,
+            "upvotes": 3428,
+            "icontype": "image/png",
+            "type": 0,
+            "description": 443766,
+            "default_locale": "en-US",
+            "monthly_subscribers": 195,
+            "downloads": 736229,
+            "addon_index": "a4dd4d4d92de179ede5aee586cbf1fbc",
+            "subscribers": 53767,
+            "nickname": "enkei",
+            "slug": "enkei",
+            "name": 443765,
+            "created": "2009-06-26 12:51:09",
+            "weekly_subscribers": 43,
+            "modified": "2010-10-05 04:39:06",
+            "addon_count": 11,
+            "all_personas": false
+        }
+    },
+    {
+        "pk": 82266,
+        "model": "bandwagon.collection",
+        "fields": {
+            "rating": 0.0,
+            "downvotes": 0,
+            "uuid": "9f471268-43f0-49db-9cac-14927c04c261",
+            "recommended_collection": null,
+            "author": 9945,
+            "application": 1,
+            "listed": true,
+            "upvotes": 1,
+            "icontype": "",
+            "type": 0,
+            "description": 1330518,
+            "default_locale": "en-US",
+            "monthly_subscribers": 6,
+            "downloads": 0,
+            "addon_index": "5bc6f1600288d91084eef30fffa6fa25",
+            "subscribers": 6,
+            "nickname": null,
+            "slug": "firefox-tester-tools",
+            "name": 1330517,
+            "created": "2010-09-14 12:06:10",
+            "weekly_subscribers": 1,
+            "modified": "2010-09-21 16:17:44",
+            "addon_count": 3,
+            "all_personas": false
+        }
+    },
+    {
+        "pk": 1,
+        "model": "discovery.blogcacheryf",
+        "fields": {
+            "permalink": "http://rockyourfirefox.com/2010/10/hyperwords/",
+            "excerpt": "Start by selecting any word on any webpage and search, share, translate, and much more in just a few clicks.",
+            "date_posted": "2010-10-04 18:22:05",
+            "image": "/uploads/2010/09/HighlightAWord-444x305.png",
+            "title": "Hyperwords"
+        }
+    }
+]

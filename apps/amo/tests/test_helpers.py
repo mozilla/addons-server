@@ -154,6 +154,11 @@ def test_url(mock_reverse):
                                     add_prefix=True)
 
 
+def test_url_src():
+    s = render('{{ url("addons.detail", "a3615", src="xxx") }}')
+    assert s.endswith('?src=xxx')
+
+
 def test_urlparams():
     url = '/en-US/firefox/themes/category'
     c = {'base': url,

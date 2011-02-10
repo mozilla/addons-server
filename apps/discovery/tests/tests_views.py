@@ -4,6 +4,7 @@ from django import test
 
 import mock
 from nose.tools import eq_
+from pyquery import PyQuery as pq
 import test_utils
 
 import amo
@@ -18,7 +19,7 @@ from discovery.models import DiscoveryModule
 from discovery.modules import registry
 
 
-class RecsTest(test_utils.TestCase):
+class TestRecs(test_utils.TestCase):
     fixtures = ['base/apps', 'base/appversion', 'base/addon-recs',
                 'base/addon_5299_gcal', 'base/category', 'base/featured']
 
@@ -205,3 +206,52 @@ class TestUrls(test_utils.TestCase):
                             follow=True)
         url = reverse('discovery.pane', args=['4.0b8', 'Darwin'])
         self.assertRedirects(r, url, 301)
+
+
+class TestDownloadSources(test_utils.TestCase):
+    fixtures = ['base/apps', 'base/addon_3615', 'base/collections',
+                'base/featured', 'addons/featured',
+                'discovery/discoverymodules']
+
+    def setUp(self):
+        self.url = reverse('discovery.pane', args=['3.7a1pre', 'Darwin'])
+
+    def test_promo(self):
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        urls = doc('#main-feature .collection a[href$="?src=discovery-promo"]')
+        eq_(urls.length, 2)
+
+    def test_featured_addons(self):
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        urls = doc('#featured-addons li a[href$="?src=discovery-featured"]')
+        eq_(urls.length, 2)
+
+    def test_top_addons(self):
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        urls = doc('#top-addons li a[href$="?src=discovery-top"]')
+        eq_(urls.length, 3)
+
+    def test_featured_personas(self):
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        assert doc('#featured-personas li a').attr('href').endswith(
+            '?src=discovery-top')
+
+    def test_detail(self):
+        url = reverse('discovery.addons.detail', args=['a3615'])
+        r = self.client.get(url)
+        doc = pq(r.content)
+        assert doc('#install li:eq(1)').find('a').attr('href').endswith(
+            '?src=discovery-learnmore')
+        assert doc('#install li:eq(2)').find('a').attr('href').endswith(
+            '?src=discovery-learnmore')
+
+    def test_eula(self):
+        url = reverse('discovery.addons.eula', args=['a3615'])
+        r = self.client.get(url)
+        doc = pq(r.content)
+        assert doc('#install a.download').attr('href').endswith(
+            '?src=discovery-details')

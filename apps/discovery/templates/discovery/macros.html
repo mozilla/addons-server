@@ -1,10 +1,11 @@
 {% macro addon_list(list, limit=5, sidebar=False) %}
 <ul>
+{% set src = 'discovery-top' if sidebar else 'discovery-featured' %}
 {# These are JSON add-ons from the API, not Addon objects. #}
 {% for addon in list[:limit] %}
   <li data-guid="{{ addon.guid }}" data-summary="{{ addon.summary }}">
     {{ addon.type }}
-    <a href="{{ services_url('discovery.addons.detail', addon.id) }}"
+    <a href="{{ services_url('discovery.addons.detail', addon.id, src=src) }}"
        target="_self" class="addon-title">
       <img src="{{ addon.icon }}" width="32" height="32">
       {% if sidebar %}

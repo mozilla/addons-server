@@ -193,7 +193,7 @@ def addon_detail(request, addon):
     return jingo.render(request, 'discovery/addons/detail.html',
                         {'addon': addon, 'reviews': reviews,
                          'get_replies': Review.get_replies,
-                         'src': 'discovery-pane-details'})
+                         'src': 'discovery-details'})
 
 
 @addon_view
@@ -206,4 +206,4 @@ def addon_eula(request, addon, file_id):
         version = addon.current_version
     return jingo.render(request, 'discovery/addons/eula.html',
                         {'addon': addon, 'version': version,
-                         'src': 'discovery-pane-eula'})
+                         'src': 'discovery-details'})

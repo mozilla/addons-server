@@ -2,7 +2,7 @@
   <div class="persona-inner">
     <div class="persona-preview">
       {% set tag = 'a' if linked else 'div' %}
-      {% with url = services_url('discovery.addons.detail', addon.slug)
+      {% with url = services_url('discovery.addons.detail', addon.slug, src='discovery-top')
                    if disco_link else addon.get_url_path() %}
         <{{ tag }} {{ ('href="%s" ' % url)|safe if linked else '' }}
       {% endwith %}

@@ -40,8 +40,8 @@ class UtilsTest(TestCase):
         d = api.utils.addon_to_dict(a)
         assert d['learnmore'].endswith('/addon/a3615/?src=api')
         d = api.utils.addon_to_dict(a, disco=True)
-        u = settings.SERVICES_URL + reverse('discovery.addons.detail',
-                                            args=['a3615'])
+        u = '%s%s?src=discovery-personalrec' % (settings.SERVICES_URL,
+            reverse('discovery.addons.detail', args=['a3615']))
         eq_(d['learnmore'], u)
 
 
@@ -444,7 +444,12 @@ class ListTest(TestCase):
         sorted_vals = sorted(vals, reverse=True)
         eq_(vals, sorted_vals)
 
-    def test_featured_no_persona(self):
+    def test_adu_no_personas(self):
+        """Verify that average daily users does not return Persona add-ons."""
+        response = make_call('list/by_adu')
+        self.assertNotContains(response, """<type id="9">Persona</type>""")
+
+    def test_featured_no_personas(self):
         """Verify that featured does not return Persona add-ons."""
         response = make_call('list/featured')
         self.assertNotContains(response, """<type id="9">Persona</type>""")
