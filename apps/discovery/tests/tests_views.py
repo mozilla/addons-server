@@ -8,8 +8,10 @@ import test_utils
 
 import amo
 from amo.urlresolvers import reverse
+from addons.models import Addon
 from applications.models import Application
 from bandwagon.models import Collection, SyncedCollection, CollectionToken
+from bandwagon.tests.test_models import TestRecommendations as Recs
 from discovery import views
 from discovery.forms import DiscoveryModuleForm
 from discovery.models import DiscoveryModule
@@ -30,10 +32,12 @@ class RecsTest(test_utils.TestCase):
                       'foxyproxy@eric.h.jung',
                       'isreaditlater@ideashower.com',
                       'not-a-real-guid',)
-        self.ids = [5299, 2464, 7661]
+        self.ids = Recs.ids
+        self.guids = [a.guid or 'bad-guid'
+                      for a in Addon.objects.filter(id__in=self.ids)]
         self.json = json.dumps({'guids': self.guids})
-        # Found in bandwagon.TestRecommendations.expected_recs.
-        self.expected_recs = [6249, 7661, 6665, 4781, 6366]
+        # The view is limited to returning 9 add-ons.
+        self.expected_recs = Recs.expected_recs()[:9]
 
     def test_get(self):
         """GET should find method not allowed."""
@@ -100,7 +104,7 @@ class RecsTest(test_utils.TestCase):
         data = json.loads(response.content)
 
         eq_(set(data.keys()), set(['token', 'recommendations', 'addons']))
-        eq_(len(data['addons']), 5)
+        eq_(len(data['addons']), 9)
         ids = [a['id'] for a in data['addons']]
         eq_(ids, self.expected_recs)
 

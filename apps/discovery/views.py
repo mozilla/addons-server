@@ -113,7 +113,7 @@ def _sync_db_and_registry(qs, app):
 
 @csrf_exempt
 @post_required
-def recommendations(request, limit=5):
+def recommendations(request, limit=9):
     """
     Figure out recommended add-ons for an anonymous user based on POSTed guids.
 

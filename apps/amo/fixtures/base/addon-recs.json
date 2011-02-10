@@ -59,8 +59,9 @@
         "pk": 1843,
         "model": "addons.addon",
         "fields": {
+            "guid": "1843@x.com",
             "slug": "1843",
-           "created": "2008-10-28 18:25:09",
+            "created": "2008-10-28 18:25:09",
             "type": 1
         }
     },
@@ -86,8 +87,9 @@
         "pk": 2464,
         "model": "addons.addon",
         "fields": {
+            "guid": "2464@x.com",
             "slug": "2464",
-           "created": "2008-10-28 18:25:09",
+            "created": "2008-10-28 18:25:09",
             "type": 1
         }
     },
@@ -131,8 +133,9 @@
         "pk": 5299,
         "model": "addons.addon",
         "fields": {
+            "guid": "5299@x.com",
             "slug": "5299",
-           "created": "2008-10-28 18:25:09",
+            "created": "2008-10-28 18:25:09",
             "type": 1
         }
     },
@@ -140,8 +143,9 @@
         "pk": 5369,
         "model": "addons.addon",
         "fields": {
+            "guid": "5369@x.biz",
             "slug": "5369",
-           "created": "2008-10-28 18:25:09",
+            "created": "2008-10-28 18:25:09",
             "type": 1
         }
     },
@@ -212,8 +216,9 @@
         "pk": 7661,
         "model": "addons.addon",
         "fields": {
+            "guid": "7661@x.com",
             "slug": "7661",
-           "created": "2008-10-28 18:25:09",
+            "created": "2008-10-28 18:25:09",
             "type": 1
         }
     },

@@ -163,6 +163,7 @@ class TestRecommendations(test_utils.TestCase):
         self.user = UserProfile.objects.create(username='uhhh', email='uh@hh')
         amo.set_user(self.user)
 
+    @classmethod
     def expected_recs(self):
         scores, ranked = [], {}
         # Get all the add-on => rank pairs.
