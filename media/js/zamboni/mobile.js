@@ -100,6 +100,11 @@ $(function() {
     
 });
 
+$(".desktop-link").attr("href", window.location).click(function() {
+    document.cookie = "mamo=off";
+    window.location.refresh();
+});
+
 $(".moz-menu .tab a").click(_pd(function() {
     $(".moz-menu").toggleClass("expand");
     this.blur();
