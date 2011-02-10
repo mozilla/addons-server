@@ -265,6 +265,29 @@
 
 </dl>
 
+{% if APP == amo.FIREFOX or APP == amo.MOBILE %}
+    <h3 id="personal-recommendations">Personalized recommendations</h3>
+
+    <dt>{{ _('What are personalized recommendations?') }}</dt>
+    <dd>{% trans %}Firefox 4 recommends add-ons for you based on the add-ons you
+    already have installed. If you have at least 3 add-ons installed, just visit
+    the Get Add-ons area of the Add-ons Manager to see the "Recommended for You"
+    box.{% endtrans %}</dd>
+
+    <dt>{{ _('How are personalized recommendations determined?') }}</dt>
+    <dd>{% trans privacy_url="http://www.mozilla.com/en-US/legal/privacy/firefox.html" %}
+    Firefox sends information about the add-ons you have installed to Mozilla
+    once a day in order to update the information displayed to you in the
+    Add-ons Manager, as explained in our <a href="{{ privacy_url }}">Privacy Policy</a>.
+    Add-ons that are often used together are determined from the aggregate data and
+    displayed to you as personalized recommendations.{% endtrans %}</dd>
+
+    <dt>{{ _('How can I opt out of these recommendations?') }}</dt>
+    <dd>{% trans support_url="http://blog.mozilla.com/addons/how-to-opt-out-of-add-on-metadata-updates/" %}
+    Please see <a href="{{ support_url }}">this support article</a> for
+    instructions on how to opt out.{% endtrans %}</dd>
+{% endif %}
+
 <h3 id="add-to-mobile">{{ _('Mobile Add-ons') }}</h3>
 <dl class="faq">
 
