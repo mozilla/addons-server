@@ -750,9 +750,6 @@ class TestUpdate(test_utils.TestCase):
         for a beta version, then you get a public version.
         """
         self.change_status(self.version_1_2_2, amo.STATUS_PENDING)
-        # We've made 1.2.2 pending so that it will not be selected
-        # and the highest version is 1.2.1
-
         eq_(self.addon.status, amo.STATUS_PUBLIC)
         version, file = self.get('1.2', self.version_int,
                                  self.app, self.platform)
@@ -760,13 +757,16 @@ class TestUpdate(test_utils.TestCase):
 
     def test_public_beta(self):
         """
-        If the addon status is public and you are asking
-        for a beta version and there are no beta upgrades, then
-        you won't get an update.
+        If the addon status is public, you are in beta and the file is
+        beta, the you get a beta.
         """
+        self.change_version(self.version_1_2_0, '1.2beta')
+        self.change_status(self.version_1_2_0, amo.STATUS_BETA)
+        self.change_status(self.version_1_2_1, amo.STATUS_BETA)
+
         version, file = self.get('1.2beta', self.version_int,
                                  self.app, self.platform)
-        assert not version
+        eq_(version, self.version_1_2_1)
 
     def test_can_downgrade(self):
         """
@@ -802,29 +802,17 @@ class TestUpdate(test_utils.TestCase):
         If the addon status is public and you are asking
         for a beta version we look up a version based on the
         file version at that point. If there are no files,
-        we look for a beta. That does not exist.
+        find a public version.
         """
         self.change_version(self.version_1_2_0, '1.2beta')
         Version.objects.get(pk=self.version_1_2_0).files.all().delete()
 
         version, file = self.get('1.2beta', self.version_int,
                                  self.app, self.platform)
-        assert not version
-
-    def test_public_pending_sort_of_exists(self):
-        """
-        If the addon status is public and you are asking
-        for a beta version we look up a version based on the
-        file version at that point. If there are no files,
-        we look for a beta. That does exist.
-        """
-        self.change_version(self.version_1_2_0, '1.2beta')
-        Version.objects.get(pk=self.version_1_2_0).files.all().delete()
-        self.change_status(self.version_1_2_1, amo.STATUS_BETA)
-
-        version, file = self.get('1.2beta', self.version_int,
-                                 self.app, self.platform)
-        eq_(version, self.version_1_2_1)
+        dest = Version.objects.get(pk=self.version_1_2_2)
+        eq_(dest.addon.status, amo.STATUS_PUBLIC)
+        eq_(dest.files.all()[0].status, amo.STATUS_PUBLIC)
+        eq_(version, dest.pk)
 
     def test_public_pending_not_exists(self):
         """

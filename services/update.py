@@ -110,12 +110,12 @@ class Update(object):
 
     def get_beta(self):
         data = self.data
-
+        data['status'] = STATUS_PUBLIC
+        
         if data['addon_status'] == STATUS_PUBLIC:
-            # Beta channel is a bit complicated but looks at the addon name
-            # and tries to figure out if it's beta.
+            # Beta channel looks at the addon name to see if it's beta.
             if self.is_beta_version:
-                # For beta look at the status of the existing addon.
+                # For beta look at the status of the existing files.
                 sql = """
                     SELECT versions.id, status
                     FROM files INNER JOIN versions
@@ -124,6 +124,7 @@ class Update(object):
                           AND versions.version = %(version)s LIMIT 1;"""
                 self.cursor.execute(sql, data)
                 result = self.cursor.fetchone()
+                # Only change the status if there are files.
                 if result is not None:
                     status = result[1]
                     # If it's in Beta or Public, then we should be looking
@@ -133,11 +134,7 @@ class Update(object):
                     else:
                         data.update(STATUSES_PUBLIC)
                         self.flags['multiple_status'] = True
-                else:
-                    # If unknown, then just look for something else in beta.
-                    data['status'] = STATUS_BETA
-            else:
-                data['status'] = STATUS_PUBLIC
+
         elif data['addon_status'] in (STATUS_LITE, STATUS_LITE_AND_NOMINATED):
             data['status'] = STATUS_LITE
         else:
