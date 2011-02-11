@@ -310,6 +310,9 @@ header #home {
     padding: 14px 0;
     line-height: 14px;
 }
+.mini-header .site-title {
+    padding-right: 120px;
+}
 .mini-header .site-title a {
     font-size: 22px;
     line-height: 22px;
