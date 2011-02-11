@@ -420,7 +420,8 @@ class TestAddonModels(test_utils.TestCase):
         v = Version.objects.create(addon=a)
         # The first LITE version is only 5 days old, no dice.
         first_f = File.objects.create(status=amo.STATUS_LITE, version=v)
-        first_f.update(datestatuschanged=now - timedelta(days=5))
+        first_f.update(datestatuschanged=now - timedelta(days=5),
+                       created=now - timedelta(days=20))
         # TODO(andym): can this go in Addon.objects.create? bug 618444
         a.update(status=amo.STATUS_LITE)
         eq_(a.can_request_review(), ())
@@ -431,7 +432,6 @@ class TestAddonModels(test_utils.TestCase):
         # of the first created file.
         second_f = File.objects.create(status=amo.STATUS_LITE, version=v)
         second_f.update(datestatuschanged=now - timedelta(days=5))
-        v = Version.objects.create(addon=a)
         eq_(a.status, amo.STATUS_LITE)
         eq_(a.can_request_review(), (amo.STATUS_PUBLIC,))
 

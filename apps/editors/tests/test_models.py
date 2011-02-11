@@ -62,9 +62,9 @@ class TestQueue(test_utils.TestCase):
         eq_(row.latest_version_id, latest['version'].id)
 
     def test_file_platforms(self):
-        self.new_file(version=u'0.1', platform=amo.PLATFORM_LINUX)
-        self.new_file(version=u'0.1', platform=amo.PLATFORM_MAC)
         # Here's a dupe platform in another version:
+        self.new_file(version=u'0.1', platform=amo.PLATFORM_MAC)
+        self.new_file(version=u'0.2', platform=amo.PLATFORM_LINUX)
         self.new_file(version=u'0.2', platform=amo.PLATFORM_MAC)
         row = self.Queue.objects.get()
         eq_(sorted(row.file_platform_ids),
