@@ -166,6 +166,22 @@ class TestVersion(test_utils.TestCase):
         version = Version.objects.get(pk=81551)
         assert not version.is_allowed_upload()
 
+    @mock.patch('files.models.File.hide_disabled_file')
+    def test_new_version_disable_old_unreviewed(self, hide_mock):
+        addon = Addon.objects.get(id=3615)
+        # The status doesn't change for public files.
+        qs = File.objects.filter(version=addon.current_version)
+        eq_(qs.all()[0].status, amo.STATUS_PUBLIC)
+        Version.objects.create(addon=addon)
+        eq_(qs.all()[0].status, amo.STATUS_PUBLIC)
+        assert not hide_mock.called
+
+        qs.update(status=amo.STATUS_UNREVIEWED)
+        Version.objects.create(addon=addon)
+        eq_(qs.all()[0].status, amo.STATUS_DISABLED)
+        f = addon.current_version.all_files[0]
+        assert hide_mock.called
+
 
 class TestViews(test_utils.TestCase):
     fixtures = ['addons/eula+contrib-addon', 'base/apps']

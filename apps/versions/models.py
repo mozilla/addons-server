@@ -175,6 +175,16 @@ def update_status(sender, instance, **kw):
             instance.addon.update_current_version()
         except models.ObjectDoesNotExist:
             pass
+        if kw.get('created'):
+            # Disable older unreviewed files for this add-on.
+            qs = File.objects.filter(version__addon=instance.addon_id,
+                                     version__lt=instance,
+                                     status=amo.STATUS_UNREVIEWED)
+            # Use File.update so signals are triggered.
+            for f in qs:
+                f.update(status=amo.STATUS_DISABLED)
+
+
 models.signals.post_save.connect(update_status, sender=Version,
                                  dispatch_uid='version_update_status')
 models.signals.post_delete.connect(update_status, sender=Version,
