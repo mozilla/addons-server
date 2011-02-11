@@ -91,8 +91,8 @@ def download_latest(request, addon, type='xpi', platform=None):
         file = sorted(files, key=lambda f: f.platform_id == platforms[-1])[-1]
     except IndexError:
         raise http.Http404()
-    url = posixpath.join(reverse('downloads.file', args=[file.id, type]),
-                         file.filename)
+    args = [file.id, type] if type else [file.id]
+    url = posixpath.join(reverse('downloads.file', args=args), file.filename)
     if request.GET:
         url += '?' + request.GET.urlencode()
     return redirect(url)

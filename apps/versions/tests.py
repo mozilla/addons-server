@@ -412,6 +412,12 @@ class TestDownloadsLatest(TestDownloadsBase):
         url = reverse('downloads.latest', args=[123])
         eq_(self.client.get(url).status_code, 404)
 
+    def test_type_none(self):
+        r = self.client.get(self.latest_url)
+        eq_(r.status_code, 302)
+        url = self.file_url + '/' + self.file.filename
+        assert r['Location'].endswith(url), r['Location']
+
     def test_success(self):
         assert self.addon.current_version
         self.assert_served_by_mirror(self.client.get(self.latest_url))
