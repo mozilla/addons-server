@@ -125,7 +125,7 @@ html {
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAABCAYAAAASC7TOAAAAEElEQVQIHWP8//8/Aw7wHwBR6AP+G53o6QAAAABJRU5ErkJggg=='),
                       -moz-linear-gradient(#dcedfd 0, #fff 120px);
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAABCAYAAAASC7TOAAAAEElEQVQIHWP8//8/Aw7wHwBR6AP+G53o6QAAAABJRU5ErkJggg=='),
-                      -webkit-gradient(linear, left top, left 120px, from(#dcedfd), to(#fff));
+                      -webkit-gradient(linear, left top, left 120, from(#dcedfd), to(#fff));
 
 }
 
@@ -258,7 +258,7 @@ table th {
     border-bottom: 1px solid #294976;
     border-top: 1px solid #537ab4;
     background-image: -moz-linear-gradient(#3a67af, #385eaa);
-    background-image: -webkit-gradient(linear, from(#3a67af), to(#385eaa));
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#3a67af), to(#385eaa));
     height: 50px;
     width: 100%;
     padding: 0 14px;
@@ -458,7 +458,7 @@ a.listview:before {
     height: 45px;
     width: 56px;
     background-image: -moz-linear-gradient(#83c53c, #4f9c19);
-    background-image: -webkit-linear-gradient(#83c53c, #4f9c19);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#83c53c), to(#4f9c19));
     border: 0;
     -webkit-box-shadow: 0 -3px rgba(0,0,0,.1) inset;
     -moz-box-shadow: 0 -3px rgba(0,0,0,.1) inset;
@@ -703,9 +703,20 @@ td .versions li a {
 
 .button {
     -moz-transition: -moz-box-shadow 0.3s ease 0s;
-    background: -moz-linear-gradient(#669BE1, #5784BF) repeat scroll 0 0 transparent;
-    border-radius: 6px 6px 6px 6px;
+    background-image: -moz-linear-gradient(#669BE1, #5784BF) repeat scroll 0 0 transparent;
+	background-image: -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        from(#669BE1),
+        to(#5784BF)
+    );
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
     box-shadow: 0 3px rgba(0, 0, 0, 0.1), 0 -4px rgba(0, 0, 0, 0.1) inset;
+    -moz-box-shadow: 0 3px rgba(0, 0, 0, 0.1), 0 -4px rgba(0, 0, 0, 0.1) inset;
+    -webkit-box-shadow: 0 3px rgba(0, 0, 0, 0.1), 0 -4px rgba(0, 0, 0, 0.1) inset;
     color: #FFFFFF;
     display: inline-block;
     font-family: "Droid Sans", "Trebuchet MS", sans-serif;
@@ -755,7 +766,15 @@ td .versions li a {
 }
 
 .button.install {
-	background: -moz-linear-gradient(#84C63C, #489615) no-repeat;
+    background-color: #84C63C;
+	background-image: -moz-linear-gradient(#84C63C, #489615);
+	background-image: -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        from(#84C63C),
+        to(#489615)
+    );
 	color: #fff;
 	padding-left: 40px;
 }
@@ -902,6 +921,7 @@ a.expando {
     overflow: hidden;
     height: 0;
     -moz-transition: .5s height ease;
+    -webkit-transition: .5s height ease;
 }
 
 /************************************/
