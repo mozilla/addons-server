@@ -349,6 +349,9 @@ def test_translation_unicode():
 
     eq_(unicode(t('hello')), 'hello')
     eq_(unicode(t(None)), '')
+    eq_(unicode(t('<evil>')), '&lt;evil&gt;')
+    assert isinstance(unicode(t('hello')), jinja2.Markup)
+    eq_(t('<evil>').__html__(), '&lt;evil&gt;')
 
 
 def test_widget_value_from_datadict():

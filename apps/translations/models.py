@@ -1,6 +1,7 @@
 from django.db import models, connection
 from django.utils import encoding
 
+import jinja2
 from bleach import Bleach
 
 import amo.models
@@ -35,7 +36,12 @@ class Translation(amo.models.ModelBase):
         unique_together = ('id', 'locale')
 
     def __unicode__(self):
-        return self.localized_string and unicode(self.localized_string) or ''
+        if self.localized_string:
+            return jinja2.escape(unicode(self.localized_string))
+        return ''
+
+    def __html__(self):
+        return unicode(self)
 
     def __nonzero__(self):
         # __nonzero__ is called to evaluate an object in a boolean context.  We
