@@ -532,55 +532,6 @@ asyncTest('Test html', function() {
     });
 });
 
-module('Validator: no msgs when passing', validatorFixtures);
-
-asyncTest('Test no msgs', function() {
-    var $suite = $('.addon-validator-suite', this.sandbox);
-
-    $.mockjax({
-        url: '/validate',
-        status: 200,
-        response: function(settings) {
-            this.responseText = {
-                "validation": {
-                    "errors": 0,
-                    "success": true,
-                    "warnings": 0,
-                    "ending_tier": 0,
-                    "messages": [{
-                        "context": null,
-                        "description": "",
-                        "column": 0,
-                        "line": 0,
-                        "file": "",
-                        "tier": 1,
-                        "message": "OpenSearch provider confirmed.",
-                        "type": "notice",
-                        "id": ["main", "test_search", "confirmed"],
-                        "uid": "dd5dab88026611e082c3c42c0301fe38"
-                    }],
-                    "rejected": false,
-                    "detected_type": "search",
-                    "notices": 1,
-                    "message_tree": {},
-                    "metadata": {}
-                }
-            };
-        }
-    });
-
-    $suite.trigger('validate');
-
-    tests.waitFor(function() {
-        return $('[class~="test-tier"][data-tier="1"]', $suite).hasClass(
-                                                            'tests-passed');
-    }).thenDo(function() {
-        equals($('[class~="msg-notice"] h5', $suite).text(), '');
-        equals($('[class~="msg-notice"] p', $suite).text(), '');
-        start();
-    });
-});
-
 module('Validator: error summaries', validatorFixtures);
 
 asyncTest('Test errors are brief', function() {
@@ -818,6 +769,51 @@ asyncTest('Test code indentation', function() {
                '&nbsp;&nbsp;&nbsp;&nbsp;setTimeout(blah);');
         equals($('.context .file:eq(1)', $suite).text(),
                'silvermelxt_1.3.5.xpi/path/to/somefile.js');
+        start();
+    });
+});
+
+
+module('validation counts', validatorFixtures);
+
+asyncTest('error/warning count', function() {
+    var $suite = $('.addon-validator-suite', this.sandbox);
+
+    $.mockjax({
+        url: '/validate',
+        status: 200,
+        response: function(settings) {
+            this.responseText = {
+                "error": null,
+                "validation": {
+                    "errors": 0,
+                    "success": false,
+                    "warnings": 1,
+                    "ending_tier": 3,
+                    "messages": [
+                        {"tier": 1,
+                         "type": "warning"},
+                        {"tier": 1,
+                         "type": "notice"},
+                        {"tier": 1,
+                         "type": "notice"}
+                    ],
+                    "notices": 2
+                }
+            }
+        }
+    });
+
+    $suite.trigger('validate');
+
+    tests.waitFor(function() {
+        return $('[class~="test-tier"][data-tier="1"]', $suite).hasClass(
+                                                            'tests-passed');
+    }).thenDo(function() {
+        equals($('[class~="test-tier"][data-tier="1"] .tier-summary').text(),
+               '0 errors, 3 warnings');
+        equals($('#suite-results-tier-1 .result-summary').text(),
+               '0 errors, 3 warnings.');
         start();
     });
 });

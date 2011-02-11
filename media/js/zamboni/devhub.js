@@ -1657,7 +1657,7 @@ $(document).ready(function() {
             if (msg['type'] == 'error') {
                 msgMap[msg.tier].errors += 1;
             }
-            else if (msg['type'] == 'warning') {
+            else if (msg['type'] == 'warning' || msg['type'] == 'notice') {
                 msgMap[msg.tier].warnings += 1;
             }
         });
