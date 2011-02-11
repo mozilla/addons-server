@@ -7,7 +7,7 @@
   {{ field(form.name, _('Name:'), class='long') }}
   {% if form.slug %}
     <p id="collection-form-slug">
-      {{ form.errors['slug'] }}
+      {{ form.slug.errors }}
       <label>{{ form.slug.label }}</label>
       {% set username = collection.author_username if collection else amo_user.username %}
       {% set slug_base = url('collections.user', username)|absolutify %}
@@ -21,6 +21,7 @@
     </p>
   {% endif %}
   <p>
+  {{ form.description.errors }}
   <label for="id_description">{{ form.description.label }}</label>
   {{ form.description }}
   </p>
@@ -45,7 +46,7 @@
         </div>
       {% endif %}
 
-      {{ form.errors['icon'] }}
+      {{ form.icon.errors }}
       {{ form.icon }}
 
       <p class="note">
@@ -54,5 +55,4 @@
     </div>
   </div>
 
- </fieldset>
-
+</fieldset>
