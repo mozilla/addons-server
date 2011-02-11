@@ -141,7 +141,7 @@ def recommendations(request, limit=5):
                 return _recommendations(request, limit, token, recs)
             else:
                 # Remove the link to the current sync, make a new one below.
-                synced.token_set.get(token=token).delete()
+                synced.token_set.filter(token=token).delete()
 
     synced = get_synced_collection(addon_ids, token)
     recs = synced.get_recommendations()
