@@ -166,7 +166,6 @@ class JSONEncoder(json.DjangoJSONEncoder):
         return super(JSONEncoder, self).default(obj)
 
 
-# By Ned Batchelder.
 def chunked(seq, n):
     """
     Yield successive n-sized chunks from seq.
@@ -177,8 +176,12 @@ def chunked(seq, n):
     [3, 4, 5]
     [6, 7]
     """
-    for i in xrange(0, len(seq), n):
-        yield seq[i:i + n]
+    seq = iter(seq)
+    while 1:
+        rv = list(itertools.islice(seq, 0, n))
+        if not rv:
+            break
+        yield rv
 
 
 def urlencode(items):

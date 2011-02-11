@@ -2,7 +2,6 @@ import collections
 import itertools
 import json
 import os
-import operator
 import random
 import time
 from datetime import datetime, timedelta
@@ -147,6 +146,7 @@ class Addon(amo.models.ModelBase):
             default=0, db_column='weeklydownloads', db_index=True)
     total_downloads = models.PositiveIntegerField(
             default=0, db_column='totaldownloads')
+    hotness = models.FloatField(default=0, db_index=True)
 
     average_daily_downloads = models.PositiveIntegerField(default=0)
     average_daily_users = models.PositiveIntegerField(default=0)
@@ -1259,3 +1259,14 @@ class BlacklistedSlug(amo.models.ModelBase):
     @classmethod
     def blocked(cls, slug):
         return slug.isdigit() or cls.objects.filter(name=slug).exists()
+
+
+class FrozenAddon(models.Model):
+    """Add-ons in this table never get a hotness score."""
+    addon = models.ForeignKey(Addon)
+
+    class Meta:
+        db_table = 'frozen_addons'
+
+    def __unicode__(self):
+        return 'Frozen: %s' % self.addon_id

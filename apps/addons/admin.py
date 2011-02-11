@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Addon, BlacklistedGuid, Feature, Category
+from .models import Addon, BlacklistedGuid, Feature, Category, FrozenAddon
 
 
 class AddonAdmin(admin.ModelAdmin):
@@ -55,7 +55,12 @@ class CategoryAdmin(admin.ModelAdmin):
     list_filter = ('application', 'type')
 
 
+class FrozenAddonAdmin(admin.ModelAdmin):
+    raw_id_fields = ('addon',)
+
+
 admin.site.register(BlacklistedGuid)
 admin.site.register(Feature, FeatureAdmin)
 admin.site.register(Addon, AddonAdmin)
 admin.site.register(Category, CategoryAdmin)
+admin.site.register(FrozenAddon, FrozenAddonAdmin)

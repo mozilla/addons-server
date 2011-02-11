@@ -93,6 +93,7 @@ HOME = /tmp
 30 9 * * * $REMORA; /usr/bin/python26 maintenance.py share_count_totals
 30 10 * * * $REMORA; /usr/bin/python26 build-recommendations.py addons
 30 20 * * * $Z_CRON update_perf
+30 22 * * * $Z_CRON deliver_hotness
 30 23 * * * $Z_CRON collection_meta
 40 23 * * * $Z_CRON update_compat_info_for_fx4
 45 23 * * * $DJANGO dump_apps

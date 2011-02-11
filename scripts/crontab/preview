@@ -52,6 +52,7 @@ HOME = /tmp
 30 9 * * * cd /data/amo/www/addons.mozilla.org-preview/bin; /usr/bin/python26 maintenance.py share_count_totals
 30 10 * * * cd /data/amo/www/addons.mozilla.org-preview/bin; /usr/bin/python26 build-recommendations.py addons
 30 20 * * * cd /data/amo_python/src/preview/zamboni; /usr/bin/python26 manage.py cron update_perf
+30 22 * * * cd /data/amo_python/src/preview/zamboni; /usr/bin/python26 manage.py cron deliver_hotness
 30 23 * * * cd /data/amo_python/src/preview/zamboni; /usr/bin/python26 manage.py cron collection_meta
 40 23 * * * cd /data/amo_python/src/preview/zamboni; /usr/bin/python26 manage.py cron update_compat_info_for_fx4
 45 23 * * * cd /data/amo_python/src/preview/zamboni; /usr/bin/python26 manage.py dump_apps
