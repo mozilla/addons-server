@@ -583,15 +583,30 @@ class Addon(amo.models.ModelBase):
         elif self.status == amo.STATUS_UNREVIEWED:
             return (amo.STATUS_PUBLIC,)
         elif self.status == amo.STATUS_LITE:
-            # You must wait 10 days after your first LITE approval to go FULL.
-            qs = (File.objects.filter(version__addon=self, status=self.status)
-                  .order_by('created').values_list('datestatuschanged'))[:1]
-            if qs and datetime.now() - qs[0][0] < timedelta(days=10):
-                return ()
-            else:
+            if self.days_until_full_nomination() == 0:
                 return (amo.STATUS_PUBLIC,)
+            else:
+                # Still in preliminary waiting period...
+                return ()
         else:
             return (amo.STATUS_LITE, amo.STATUS_PUBLIC)
+
+    def days_until_full_nomination(self):
+        """Returns number of days until author can request full review.
+
+        If wait period is over or this doesn't apply at all, returns 0 days.
+        An author must wait 10 days after submitting first LITE approval
+        to request FULL.
+        """
+        if self.status != amo.STATUS_LITE:
+            return 0
+        qs = (File.objects.filter(version__addon=self, status=self.status)
+              .order_by('created').values_list('datestatuschanged'))[:1]
+        if qs:
+            days_ago = datetime.now() - qs[0][0]
+            if days_ago < timedelta(days=10):
+                return 10 - days_ago.days
+        return 0
 
     def is_persona(self):
         return self.type == amo.ADDON_PERSONA

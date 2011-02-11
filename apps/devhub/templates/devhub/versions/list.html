@@ -60,6 +60,12 @@
               <button class="link" type="submit">{{ req[status] }}</button> &middot;
             </form>
           {% endfor %}
+          {% set days = addon.days_until_full_nomination() %}
+          {% if days != 0 %}
+            <span class="warning">{{ ngettext('Full nomination will be available in {0} day',
+                                              'Full nomination will be available in {0} days',
+                                              days)|f(days) }}</span>
+          {% endif %}
           {% if not addon.is_disabled and addon.is_under_review %}
             <a href="#" id="cancel-review">{{ _('Cancel Review Request') }}</a> &middot;
           {% endif %}
