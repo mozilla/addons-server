@@ -1,7 +1,7 @@
 $(document).ready(function(){
     storeBrowserInfo();
     initRecs();
-    initDescs();
+    initTrunc();
 });
 
 
@@ -15,11 +15,11 @@ function storeBrowserInfo() {
 }
 
 
-function initDescs() {
-    // Trim the description text to fit.
-    $("p.desc").vtruncate();
+function initTrunc() {
+    // Trim the add-on title and description text to fit.
+    $(".addons h3, .rec-addons h3, p.desc").vtruncate();
     $(window).resize(debounce(function() {
-        $("p.desc").vtruncate();
+        $(".addons h3 a, .rec-addons h3 a, p.desc").vtruncate();
     }, 200));
 }
 
@@ -71,7 +71,7 @@ function initRecs() {
             });
             $("#recs #nav-recs").fadeIn("slow").addClass("js");
             setPanelWidth("pane");
-            initDescs();
+            initTrunc();
         } else {
             var addons_url = $("#more-addons a").attr("href");
             var msg = format(gettext(

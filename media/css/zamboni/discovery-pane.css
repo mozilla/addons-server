@@ -562,6 +562,7 @@ ul.addons {
     font-weight: bold;
     font-family: inherit;
     margin: .25em 0;
+    overflow: hidden;
 }
 
 .addons li > a:hover h3,
@@ -590,6 +591,7 @@ ul.addons {
 
 .addons img,
 .rec-addons img {
+    display: block;
     max-width: 50px;
 }
 
