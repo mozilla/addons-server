@@ -1,5 +1,4 @@
 $(document).ready(function(){
-    $("body").addClass("no-recs");
     storeBrowserInfo();
     initRecs();
     initDescs();
@@ -39,7 +38,8 @@ function initRecs() {
         token;
     if (location.hash) {
         guids = Object.keys(JSON.parse(location.hash.slice(1)));
-    } else {
+    }
+    if (!location.hash || !guids.length) {
         // If the user has opted out of recommendations, clear out any
         // existing recommendations.
         localStorage.removeItem("discopane-recs");
@@ -47,7 +47,7 @@ function initRecs() {
     }
 
     function populateRecs() {
-        if (datastore.addons.length) {
+        if (datastore.addons !== undefined && datastore.addons.length) {
             var addon_item = template('<li class="panel">' +
                 '<a href="{url}" target="_self">' +
                 '<img src="{icon}" width="32" height="32">' +
@@ -84,7 +84,7 @@ function initRecs() {
     }
 
     // Hide "What are Add-ons?" and show "Recommended for You" module.
-    if (false && guids.length > MIN_ADDONS) {
+    if (guids.length > MIN_ADDONS) {
         $("body").removeClass("no-recs").addClass("recs");
 
         var cacheObject = localStorage.getItem("discopane-recs");
@@ -119,6 +119,7 @@ function initRecs() {
             if (token) {
                 data["token"] = token;
             }
+            datastore = {};
             $.ajax({
                 url: document.body.getAttribute("data-recs-url"),
                 type: "post",
@@ -129,6 +130,12 @@ function initRecs() {
                     datastore = JSON.parse(raw_data);
                     populateRecs();
                     localStorage.setItem("discopane-recs", raw_data);
+                    localStorage.setItem("discopane-guids", guids);
+                },
+                error: function(raw_data) {
+                    $("#recs .loading").remove();
+                    populateRecs();
+                    localStorage.setItem("discopane-recs", "{}");
                     localStorage.setItem("discopane-guids", guids);
                 }
             });

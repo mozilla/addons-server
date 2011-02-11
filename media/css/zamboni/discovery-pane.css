@@ -245,10 +245,11 @@ header:after,
 .recs #mission,
 .recs #my-account {
     border-left-width: 0;
+    border-radius: 8px;
     float: left;
     margin-left: 0;
     padding-left: 10px;
-    width: auto;
+    width: -moz-calc(100% - 20px);
 }
 
 .html-rtl #mission,
@@ -536,7 +537,10 @@ ul.addons {
 
 .addons li > a:hover,
 .addons li > a:focus,
-.addons li > a:active {
+.addons li > a:active,
+.rec-addons li > a:hover,
+.rec-addons li > a:focus,
+.rec-addons li > a:active {
     border-color: rgba(165,175,185,1);
     box-shadow: inset 0 -2px 0 rgba(58,78,103,0.1), 0 2px 0 rgba(190,210,230,0.85);
     -moz-transition-property: border-color, box-shadow;
@@ -795,6 +799,7 @@ ul.addons {
         padding-bottom: 10px;
         width: -moz-calc(100% - 20px);
     }
+    .recs header #mission,
     .recs header #my-account {
         border-radius: 8px;
         border-top-width: 0;
@@ -805,7 +810,6 @@ ul.addons {
 
     .recs header {
         float: none;
-        width: auto;
         width: -moz-calc(100% - 2px);
     }
 

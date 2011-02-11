@@ -21,10 +21,10 @@
     {% else %}
       {{ install_button(addon, show_contrib=False, show_warning=False) }}
     {% endif %}</li>
-  <li><a href="{{ url('addons.detail', addon.slug)|urlparams(src='discovery-learnmore') }}"
+  <li><a href="{{ url('addons.detail', addon.slug, src='discovery-learnmore') }}"
          class="button">{{ _('Learn More') }}</a></li>
   {% if addon.privacy_policy %}
-    <li><a href="{{ url('addons.privacy', addon.slug)|urlparams(src='discovery-learnmore') }}">
+    <li><a href="{{ url('addons.privacy', addon.slug, src='discovery-learnmore') }}">
       {{ _('View Privacy Policy') }}</a></li>
   {% endif %}
 </ul>

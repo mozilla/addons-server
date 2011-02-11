@@ -3,7 +3,7 @@
 {% block bodyclass %}detail{% endblock %}
 
 {% block bodyattrs %}
-data-pane-url="{{ url('discovery.pane', ':version:', ':platform:') }}"
+data-pane-url="{{ services_url('discovery.pane', ':version:', ':platform:') }}"
 {% endblock %}
 
 {% block title %}{{ page_title(addon.name) }}{% endblock %}
@@ -31,5 +31,5 @@ data-pane-url="{{ url('discovery.pane', ':version:', ':platform:') }}"
 
 {% block js %}
   {{ js('zamboni/discovery-addons') }}
-  <script async defer src="{{ url('addons.buttons.js') }}/build:{{ BUILD_ID_JS }}"></script>
+  <script async defer src="{{ services_url('addons.buttons.js') }}/build:{{ BUILD_ID_JS }}"></script>
 {% endblock %}

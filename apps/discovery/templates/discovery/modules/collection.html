@@ -4,8 +4,8 @@
     <ul class="addons">
       {% for addon in addons %}
         <li>
-          <a href="{{ services_url('discovery.addons.detail', addon.slug)|
-                      urlparams(src='discovery-promo') }}" target="_self">
+          <a href="{{ services_url('discovery.addons.detail', addon.slug,
+                                   src='discovery-promo') }}" target="_self">
             <img src="{{ addon.icon_url }}" width="32" height="32">
             <h3>{{ addon.name }}</h3>
             <p class="desc">{{ addon.summary.localized_string|strip_html }}</p>

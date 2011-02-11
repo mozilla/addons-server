@@ -253,10 +253,10 @@ function setPanelWidth(section) {
     // is liquid, so we'll set the width in px on pageload and on resize).
     if (section == "both" || section == "detail") {
         var panelWidth = $("#main").width();
-        $("#main-feature, #main-feature .panel, #images").css({width: panelWidth});
+        $("#main-feature, #main-feature .panel, #images").css("width", panelWidth);
         // We show three images at a time, so the width of each is 1/3 minus a
         // right margin of 10px.
-        $("#images .panel").css({width: panelWidth / 3 - 10});
+        $("#images .panel").css("width", panelWidth / 3 - 10);
     }
     if (section == "both" || section == "pane") {
         var galleryWidth = $("#recs .gallery").width();
@@ -265,7 +265,7 @@ function setPanelWidth(section) {
             "margin-right": 0.05 * galleryWidth
         });
         $("#recs .gallery .panel:nth-child(3n)").each(function(i){
-            $(this).css("margin-right", 0.05 * galleryWidth + (1 + i));
+            $(this).css("margin-right", 0.05 * galleryWidth + i + 2);
         });
     }
 }
