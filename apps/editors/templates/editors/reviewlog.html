@@ -23,7 +23,8 @@
         <thead>
           <tr>
             <th>{{ _('Date', 'editorcp_reviewlog_column_date') }}</th>
-            <th>{{ _('Add-on', 'editorcp_reviewlog_column_addon') }}</th>
+            <th>{{ _('Event') }}</th>
+            <th>{{ _('Details') }}</th>
             <th>{{ _('Editor') }}</th>
             <th>{{ _('Action', 'editorcp_reviewlog_column_action') }}</th>
             <td></td>
@@ -34,15 +35,18 @@
             <tr>
               <td>{{ item.created|babel_datetime }}</td>
               <td>
-                <a href="{{ url('editors.review', item.file.version_id) }}">
-                  {{ item.addon.name or item.id }}
+                {{ item }}
+              </td>
+              <td>
+                <a href="{{ url('editors.review', item.arguments[1].id) }}">
+                  {{ _('Details') }}
                 </a>
               </td>
               <td>{{ item.user.display_name }}</td>
               <td>
-                {% if item.reviewtype == 'nominated' %}
-                  {{ NOM_DICT[item.action] }}
-                {% elif item.reviewtype == 'pending' %}
+                {% if item.details['reviewtype'] == 'nominated' %}
+                  {{ NOM_DICT.get(item.action) }}
+                {% elif item.details['reviewtype'] == 'pending' %}
                   {{ PEN_DICT[item.action] }}
                 {% endif %}
               </td>
@@ -52,7 +56,7 @@
               </td>
             </tr>
             <tr class="comments hide">
-              <td colspan="5">{{ item.comments }}</td>
+              <td colspan="5">{{ item.details['comments'] }}</td>
             </tr>
           {% endfor %}
         </tbody>

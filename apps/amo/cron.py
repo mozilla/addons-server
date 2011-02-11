@@ -184,12 +184,14 @@ def _migrate_approvals(items, **kw):
              (len(items), _migrate_approvals.rate_limit))
     for item in Approval.objects.filter(pk__in=items):
         try:
-            args = (item.reviewtype, item.addon, item.file.version)
+            args = (item.addon, item.file.version)
         except File.DoesNotExist:
             log.warning("Couldn't find file for approval %d" % item.id)
             continue
 
-        kw = dict(user=item.user, created=item.created)
+        kw = dict(user=item.user, created=item.created,
+                  details=dict(comments=item.comments,
+                               reviewtype=item.reviewtype))
         if item.action == amo.STATUS_PUBLIC:
             amo.log(amo.LOG.APPROVE_VERSION, *args, **kw)
         elif item.action == amo.STATUS_LITE:
