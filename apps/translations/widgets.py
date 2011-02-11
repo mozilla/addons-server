@@ -39,6 +39,7 @@ class TransMulti(forms.widgets.MultiWidget):
     The backend dumps all the available translations into a set of widgets
     wrapped in div.trans and javascript handles the rest of the UI.
     """
+    choices = None  # Django expects widgets to have a choices attribute.
 
     def __init__(self, attrs=None):
         # We set up the widgets in render since every Translation needs a
