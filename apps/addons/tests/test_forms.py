@@ -99,7 +99,7 @@ class TestTagsForm(test_utils.TestCase):
 
     def add_tags(self, tags):
         data = self.data.copy()
-        data.update({"tags": tags})
+        data.update({'tags': tags})
         form = forms.AddonFormBasic(data=data, request=None,
                                     instance=self.addon)
         assert form.is_valid()
@@ -130,9 +130,12 @@ class TestTagsForm(test_utils.TestCase):
         self.add_tags(u'Österreich')
         eq_(self.get_tag_text(), [u'Österreich'.lower()])
 
-    def add_restricted(self):
-        tag = Tag.objects.create(tag_text='restartless', restricted=True)
-        AddonTag.objects.create(tag=tag, addon=self.addon)
+    def add_restricted(self, *args):
+        if not args:
+            args = ['restartless']
+        for arg in args:
+            tag = Tag.objects.create(tag_text=arg, restricted=True)
+            AddonTag.objects.create(tag=tag, addon=self.addon)
 
     def test_tags_restricted(self):
         self.add_restricted()
@@ -144,6 +147,20 @@ class TestTagsForm(test_utils.TestCase):
         eq_(self.get_tag_text(), ['bar', 'foo', 'restartless'])
         self.add_tags('')
         eq_(self.get_tag_text(), ['restartless'])
+
+    def test_tags_error(self):
+        self.add_restricted('restartless', 'sdk')
+        data = self.data.copy()
+        data.update({'tags': 'restartless'})
+        form = forms.AddonFormBasic(data=data, request=None,
+                                    instance=self.addon)
+        eq_(form.errors['tags'][0],
+            '"restartless" is a reserved tag and cannot be used.')
+        data.update({'tags': 'restartless, sdk'})
+        form = forms.AddonFormBasic(data=data, request=None,
+                                    instance=self.addon)
+        eq_(form.errors['tags'][0],
+            '"restartless", "sdk" are reserved tags and cannot be used.')
 
     def test_tags_restricted_count(self):
         self.add_restricted()

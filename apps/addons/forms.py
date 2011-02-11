@@ -94,15 +94,21 @@ class AddonFormBasic(AddonFormBase):
         max_tags = amo.MAX_TAGS
         total = len(target)
 
-        blocked = []
-        for tag in Tag.objects.filter(tag_text__in=target):
-            if (len(tag.tag_text) > 0 and (tag.blacklisted or tag.restricted)):
-                blocked.append(tag.tag_text)
-
-        if blocked:
+        blacklisted = (Tag.objects.values_list('tag_text', flat=True)
+                          .filter(tag_text__in=target, blacklisted=True))
+        if blacklisted:
             # L10n: {0} is a single tag or a comma-separated list of tags.
             msg = ngettext('Invalid tag: {0}', 'Invalid tags: {0}',
-                           len(blocked)).format(', '.join(blocked))
+                           len(blacklisted)).format(', '.join(blacklisted))
+            raise forms.ValidationError(msg)
+
+        restricted = (Tag.objects.values_list('tag_text', flat=True)
+                         .filter(tag_text__in=target, restricted=True))
+        if restricted:
+            # L10n: {0} is a single tag or a comma-separated list of tags.
+            msg = ngettext('"{0}" is a reserved tag and cannot be used.',
+                           '"{0}" are reserved tags and cannot be used.',
+                           len(restricted)).format('", "'.join(restricted))
             raise forms.ValidationError(msg)
 
         if total > max_tags:
