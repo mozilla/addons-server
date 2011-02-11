@@ -9,8 +9,7 @@ from product_details import firefox_versions, thunderbird_versions
 from tower import ugettext_lazy as _
 
 from licenses import license_text
-from .log import LOG, LOG_BY_ID, LOG_EDITORS, LOG_KEEP, log
-from django.utils.translation import trans_real as translation
+from .log import LOG, LOG_BY_ID, LOG_EDITORS, LOG_KEEP, LOG_REVIEW_QUEUE, log
 
 logger_log = commonware.log.getLogger('z.amo')
 

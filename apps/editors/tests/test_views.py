@@ -93,8 +93,8 @@ class TestReviewLog(EditorTest):
         for i in xrange(51):
             a = Addon.objects.create(type=amo.ADDON_EXTENSION)
             v = Version.objects.create(addon=a)
-            f = File.objects.create(version=v, platform_id=amo.PLATFORM_ALL.id)
-            Approval.objects.create(addon=a, file=f, user=u, comments='youwin')
+            amo.log(amo.LOG.REJECT_VERSION, a, v, user=u,
+                    details={'comments': 'youwin'})
 
     def test_basic(self):
         r = self.client.get(reverse('editors.reviewlog'))

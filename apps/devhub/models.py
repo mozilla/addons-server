@@ -118,6 +118,9 @@ class ActivityLogManager(amo.models.ManagerBase):
     def editor_events(self):
         return self.filter(action__in=amo.LOG_EDITORS)
 
+    def review_queue(self):
+        return self.filter(action__in=amo.LOG_REVIEW_QUEUE)
+
 
 class SafeFormatter(string.Formatter):
     """A replacement for str.format that escapes interpolated values."""

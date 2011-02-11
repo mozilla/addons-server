@@ -145,7 +145,7 @@ def reviewlog(request):
 
     form = forms.ReviewLogForm(data)
 
-    approvals = Approval.objects.select_related('file', 'user')
+    approvals = ActivityLog.objects.review_queue()
 
     if form.is_valid():
         data = form.cleaned_data
@@ -156,18 +156,17 @@ def reviewlog(request):
 
     pager = amo.utils.paginate(request, approvals, 50)
     nd = {
-            amo.STATUS_PUBLIC: _('Nomination Approved/Public'),
-            amo.STATUS_LITE: _('Nomination Denied/Preliminary'),
-            amo.STATUS_NULL: _('Nomination Denied/Incomplete'),
-            amo.STATUS_NOMINATED: _('Admin Review',
+            amo.LOG.APPROVE_VERSION.id: _('Nomination Approved/Public'),
+            amo.LOG.PRELIMINARY_VERSION.id: _('Nomination Denied/Preliminary'),
+            amo.LOG.REJECT_VERSION.id: _('Nomination Denied/Incomplete'),
+            amo.LOG.ESCALATE_VERSION.id: _('Admin Review',
                     'editors_review_history_nominated_adminreview'),
          }
     pd = {
-            amo.STATUS_PUBLIC: _('Approved/Public'),
-            amo.STATUS_DISABLED: _('Denied/Disabled'),
-            amo.STATUS_LITE: _('Approved/Preliminary'),
-            amo.STATUS_NULL: _('Preliminary Denied/Incomplete'),
-            amo.STATUS_PENDING: _('Admin Review',
+            amo.LOG.APPROVE_VERSION.id: _('Approved/Public'),
+            amo.LOG.PRELIMINARY_VERSION.id: _('Approved/Preliminary'),
+            amo.LOG.REJECT_VERSION.id: _('Preliminary Denied/Incomplete'),
+            amo.LOG.ESCALATE_VERSION.id: _('Admin Review',
                     'editors_review_history_nominated_adminreview'),
          }
     data = dict(form=form, pager=pager, NOM_DICT=nd, PEN_DICT=pd)

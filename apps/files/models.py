@@ -245,6 +245,7 @@ models.signals.post_save.connect(check_file_status, sender=File,
                                  dispatch_uid='check_file_status')
 
 
+# TODO(davedash): Get rid of this table once /editors is on zamboni
 class Approval(amo.models.ModelBase):
 
     reviewtype = models.CharField(max_length=10, default='pending')
