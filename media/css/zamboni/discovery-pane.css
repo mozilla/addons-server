@@ -239,7 +239,13 @@ header:after,
         -moz-linear-gradient(top, #fff 0, #ecf1f7 100%);
     border-radius: 0 8px 8px 0;
 }
+.no-recs header {
+    background:
+        url(../../img/zamboni/discovery_pane/bg-home.png) no-repeat 100% -moz-calc(100% - 3px),
+        -moz-linear-gradient(top, #fff 0, #ecf1f7 100%);
+}
 .no-recs #my-account {
+    background: none;
     padding-bottom: 0;
 }
 .recs #mission,
@@ -730,7 +736,7 @@ ul.addons {
     display: block;
     position: relative;
 }
-.persona-small .persona-preview [data-browsertheme] {
+.pane .persona-large .persona-preview [data-browsertheme] {
     background-position: 100% 50%;
     height: 60px;
 }
@@ -738,12 +744,12 @@ ul.addons {
     -moz-box-shadow: 0 1px 3px rgba(0,0,0,.15);
     width: 680px;
 }
-.persona-large .persona-preview [data-browsertheme] {
+.detail .persona-large .persona-preview [data-browsertheme] {
     background: transparent no-repeat left top;
     border: 1px solid #a9a9a9;
     height: 100px;
 }
-.persona-hover.persona-large .persona-preview [data-browsertheme] {
+.detail .persona-hover.persona-large .persona-preview [data-browsertheme] {
     border-color: #666;
 }
 /* @end */
@@ -781,6 +787,7 @@ ul.addons {
 
 #more-ways #more-personas {
     background: transparent url("../../img/zamboni/discovery_pane/bg-morepersonas.jpg") 70% 50% no-repeat;
+    border-radius: 0 0 8px 8px;
 }
 
 /* @Narrow *********/
