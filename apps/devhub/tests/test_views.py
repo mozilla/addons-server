@@ -707,6 +707,11 @@ class TestEditPayments(test_utils.TestCase):
         self.check(paypal_id='', suggested_amount=Decimal('11.50'),
                    charity=Charity.objects.get(name='fligtar fund'))
 
+    def test_dev_paypal_id_length(self):
+        r = self.client.get(self.url)
+        doc = pq(self.client.get(self.url).content)
+        eq_(int(doc('#id_paypal_id').attr('size')), 50)
+
     def test_dev_paypal_reqd(self):
         d = dict(recipient='dev', suggested_amount=2,
                  annoying=amo.CONTRIB_PASSIVE)

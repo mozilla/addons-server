@@ -220,6 +220,7 @@ class ContribForm(TranslationFormMixin, happyforms.ModelForm):
         widgets = {
             'annoying': forms.RadioSelect(),
             'suggested_amount': forms.TextInput(attrs={'class': 'short'}),
+            'paypal_id': forms.TextInput(attrs={'size':'50'})
         }
 
     @staticmethod
