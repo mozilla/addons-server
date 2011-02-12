@@ -799,15 +799,9 @@ a.more-actions:after:hover {
     float: left;
     font-size: 0.9em;
 }
-.older-activity a:after {
-    border-color: transparent transparent transparent #05e;
-    border-style: solid;
-    border-width: 3px 0 3px 4px;
-    content: "";
-    float: right;
-    height: 0;
-    margin: 7px 0 0 4px;
-    width: 0;
+
+.older-activity a {
+    display: block;
 }
 
 h3 a.subscribe-feed {
