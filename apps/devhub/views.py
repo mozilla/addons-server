@@ -214,6 +214,8 @@ def feed(request, addon_id=None):
     if request.GET.get('privaterss'):
         return feeds.ActivityFeedRSS()(request)
 
+    addon_selected = None
+
     if not request.user.is_authenticated():
         url = reverse('users.login')
         p = urlquote(request.get_full_path())
@@ -228,6 +230,8 @@ def feed(request, addon_id=None):
                 key = RssKey.objects.get(addon=addons)
             except RssKey.DoesNotExist:
                 key = RssKey.objects.create(addon=addons)
+
+            addon_selected = addon.id
 
             rssurl = urlparams(reverse('devhub.feed', args=[addon_id]),
                                privaterss=key.key)
@@ -244,7 +248,7 @@ def feed(request, addon_id=None):
     items = _get_items(action, addons)
 
     activities = _get_activities(request, action)
-    addon_items = _get_addons(request, addons_all, addon_id)
+    addon_items = _get_addons(request, addons_all, addon_selected)
 
     pager = amo.utils.paginate(request, items, 20)
     data = dict(addons=addon_items, pager=pager, activities=activities,
