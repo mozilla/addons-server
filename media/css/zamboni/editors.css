@@ -1,4 +1,8 @@
 /* sprites for data grid icons */
+.site-title {
+    padding-top: 27px;
+}
+
 .app-icon {
     float: left;
     margin-right: 4px;
