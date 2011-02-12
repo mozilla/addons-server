@@ -21,7 +21,7 @@
         data-media-url="{{ MEDIA_URL }}"
         {% block bodyattrs %}{% endblock %}>
     {% block content %}{% endblock %}
-    <script src="{{ services_url('jsi18n') }}/build:{{ BUILD_ID_JS }}"></script>
+    <script src="{{ url('jsi18n') }}/build:{{ BUILD_ID_JS }}"></script>
     {% block js %}{% endblock %}
   </body>
 </html>
