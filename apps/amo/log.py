@@ -12,6 +12,7 @@ class _LOG(object):
 
 class CREATE_ADDON(_LOG):
     id = 1
+    action_class = None
     format = _(u'{addon} was created.')
     keep = True
 
@@ -19,28 +20,33 @@ class CREATE_ADDON(_LOG):
 class EDIT_PROPERTIES(_LOG):
     """ Expects: addon """
     id = 2
+    action_class = 'edit'
     format = _(u'{addon} properties edited.')
 
 
 class EDIT_DESCRIPTIONS(_LOG):
     id = 3
+    action_class = 'edit'
     format = _(u'{addon} description edited.')
 
 
 # TODO(gkoberger): Log this type
 class EDIT_CATEGORIES(_LOG):
     id = 4
+    action_class = 'edit'
     format = _(u'Categories edited for {addon}.')
 
 
 class ADD_USER_WITH_ROLE(_LOG):
     id = 5
+    action_class = 'add'
     format = _(u'{0.name} ({1}) added to {addon}.')
     keep = True
 
 
 class REMOVE_USER_WITH_ROLE(_LOG):
     id = 6
+    action_class = 'delete'
     # L10n: {0} is the user being removed, {1} is their role.
     format = _(u'{0.name} ({1}) removed from {addon}.')
     keep = True
@@ -48,17 +54,20 @@ class REMOVE_USER_WITH_ROLE(_LOG):
 
 class EDIT_CONTRIBUTIONS(_LOG):
     id = 7
+    action_class = 'edit'
     format = _(u'Contributions for {addon}.')
 
 
 class USER_DISABLE(_LOG):
     id = 8
+    action_class = None
     format = _(u'{addon} set inactive.')
     keep = True
 
 
 class USER_ENABLE(_LOG):
     id = 9
+    action_class = None
     format = _(u'{addon} activated.')
     keep = True
 
@@ -66,6 +75,7 @@ class USER_ENABLE(_LOG):
 # TODO(davedash): Log these types when pages are present
 class SET_PUBLIC_STATS(_LOG):
     id = 10
+    action_class = None
     format = _(u'Stats set public for {addon}.')
     keep = True
 
@@ -73,6 +83,7 @@ class SET_PUBLIC_STATS(_LOG):
 # TODO(davedash): Log these types when pages are present
 class UNSET_PUBLIC_STATS(_LOG):
     id = 11
+    action_class = None
     format = _(u'{addon} stats set to private.')
     keep = True
 
@@ -80,6 +91,7 @@ class UNSET_PUBLIC_STATS(_LOG):
 # TODO(gkoberger): Log these types when editing statuses
 class CHANGE_STATUS(_LOG):
     id = 12
+    action_class = None
     # L10n: {0} is the status
     format = _(u'{addon} status changed to {0}.')
     keep = True
@@ -88,34 +100,40 @@ class CHANGE_STATUS(_LOG):
 # TODO(gkoberger): Do this in 604152
 class ADD_PREVIEW(_LOG):
     id = 13
+    action_class = 'add'
     format = _(u'Preview added to {addon}.')
 
 
 # TODO(gkoberger): Do this in 604152
 class EDIT_PREVIEW(_LOG):
     id = 14
+    action_class = 'edit'
     format = _(u'Preview edited for {addon}.')
 
 
 # TODO(gkoberger): Do this in 604152
 class DELETE_PREVIEW(_LOG):
     id = 15
+    action_class = 'delete'
     format = _(u'Preview deleted from {addon}.')
 
 
 class ADD_VERSION(_LOG):
     id = 16
+    action_class = 'add'
     format = _(u'{version} added to {addon}.')
     keep = True
 
 
 class EDIT_VERSION(_LOG):
     id = 17
+    action_class = 'edit'
     format = _(u'{version} edited for {addon}.')
 
 
 class DELETE_VERSION(_LOG):
     id = 18
+    action_class = 'delete'
     # Note, {0} is a string not a version since the version is deleted.
     # L10n: {0} is the version number
     format = _(u'Version {0} deleted from {addon}.')
@@ -124,6 +142,7 @@ class DELETE_VERSION(_LOG):
 
 class ADD_FILE_TO_VERSION(_LOG):
     id = 19
+    action_class = 'add'
     format = _(u'File {0.name} added to {version} of {addon}.')
 
 
@@ -134,11 +153,13 @@ class DELETE_FILE_FROM_VERSION(_LOG):
     should be strings and not the object.
     """
     id = 20
+    action_class = 'delete'
     format = _(u'File {0} deleted from {version} of {addon}.')
 
 
 class APPROVE_VERSION(_LOG):
     id = 21
+    action_class = 'approve'
     format = _(u'{addon} ({version}) approved.')
     keep = True
     review_queue = True
@@ -146,6 +167,7 @@ class APPROVE_VERSION(_LOG):
 
 class PRELIMINARY_VERSION(_LOG):
     id = 42
+    action_class = None
     format = _(u'{addon} ({version}) given preliminary review.')
     keep = True
     review_queue = True
@@ -154,6 +176,7 @@ class PRELIMINARY_VERSION(_LOG):
 class REJECT_VERSION(_LOG):
     # takes add-on, version, reviewtype
     id = 43
+    action_class = 'reject'
     format = _(u'{addon} ({version}) rejected.')
     keep = True
     review_queue = True
@@ -162,6 +185,7 @@ class REJECT_VERSION(_LOG):
 class RETAIN_VERSION(_LOG):
     # takes add-on, version, reviewtype
     id = 22
+    action_class = None
     format = _(u'{addon} ({version}) retained.')
     keep = True
     review_queue = True
@@ -170,6 +194,7 @@ class RETAIN_VERSION(_LOG):
 class ESCALATE_VERSION(_LOG):
     # takes add-on, version, reviewtype
     id = 23
+    action_class = None
     format = _(u'Review escalated for {addon} ({version}).')
     keep = True
     review_queue = True
@@ -178,6 +203,7 @@ class ESCALATE_VERSION(_LOG):
 class REQUEST_VERSION(_LOG):
     # takes add-on, version, reviewtype
     id = 24
+    action_class = None
     format = _(u'More information regarding {addon} {version} was requested.')
     keep = True
     review_queue = True
@@ -185,56 +211,66 @@ class REQUEST_VERSION(_LOG):
 
 class ADD_TAG(_LOG):
     id = 25
+    action_class = 'tag'
     format = _(u'{tag} added to {addon}.')
 
 
 class REMOVE_TAG(_LOG):
     id = 26
+    action_class = 'tag'
     format = _(u'{tag} removed from {addon}.')
 
 
 class ADD_TO_COLLECTION(_LOG):
     id = 27
+    action_class = 'collection'
     format = _(u'{addon} added to {collection}.')
 
 
 class REMOVE_FROM_COLLECTION(_LOG):
     id = 28
+    action_class = 'collection'
     format = _(u'{addon} removed from {collection}.')
 
 
 class ADD_REVIEW(_LOG):
     id = 29
+    action_class = 'review'
     format = _(u'{review} for {addon} written.')
 
 
 # TODO(davedash): Add these when we do the admin site
 class ADD_RECOMMENDED_CATEGORY(_LOG):
     id = 31
+    action_class = 'edit'
     # L10n: {0} is a category name.
     format = _(u'{addon} featured in {0}.')
 
 
 class REMOVE_RECOMMENDED_CATEGORY(_LOG):
     id = 32
+    action_class = 'edit'
     # L10n: {0} is a category name.
     format = _(u'{addon} no longer featured in {0}.')
 
 
 class ADD_RECOMMENDED(_LOG):
     id = 33
+    action_class = None
     format = _(u'{addon} is now featured.')
     keep = True
 
 
 class REMOVE_RECOMMENDED(_LOG):
     id = 34
+    action_class = None
     format = _(u'{addon} is no longer featured.')
     keep = True
 
 
 class ADD_APPVERSION(_LOG):
     id = 35
+    action_class = 'add'
     # L10n: {0} is the application, {1} is the version of the app
     format = _(u'{0} {1} added.')
 
@@ -242,6 +278,7 @@ class ADD_APPVERSION(_LOG):
 class CHANGE_USER_WITH_ROLE(_LOG):
     """ Expects: author.user, role, addon """
     id = 36
+    action_class = None
     # L10n: {0} is a user, {1} is their role
     format = _(u'{0.name} role changed to {1} for {addon}.')
     keep = True
@@ -250,21 +287,25 @@ class CHANGE_USER_WITH_ROLE(_LOG):
 class CHANGE_LICENSE(_LOG):
     """ Expects: license, addon """
     id = 37
+    action_class = 'edit'
     format = _(u'{addon} is now licensed under {0.name}.')
 
 
 class CHANGE_POLICY(_LOG):
     id = 38
+    action_class = 'edit'
     format = _(u'{addon} policy changed.')
 
 
 class CHANGE_ICON(_LOG):
     id = 39
+    action_class = 'edit'
     format = _(u'{addon} icon changed.')
 
 
 class APPROVE_REVIEW(_LOG):
     id = 40
+    action_class = 'approve'
     format = _(u'{review} for {addon} approved.')
     editor_format = _(u'{user} approved {review} for {addon}.')
     keep = True
@@ -274,6 +315,7 @@ class APPROVE_REVIEW(_LOG):
 class DELETE_REVIEW(_LOG):
     """Requires review.id and add-on objects."""
     id = 41
+    action_class = 'review'
     format = _(u'Review {0} for {addon} deleted.')
     editor_format = _(u'{user} deleted review {0}.')
     keep = True
@@ -282,11 +324,13 @@ class DELETE_REVIEW(_LOG):
 
 class CUSTOM_TEXT(_LOG):
     id = 98
+    action_class = None
     format = '{0}'
 
 
 class CUSTOM_HTML(_LOG):
     id = 99
+    action_class = None
     format = '{0}'
 
 

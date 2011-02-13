@@ -127,6 +127,16 @@ def test_summarize_validation():
         u'2 errors, 2 warnings')
 
 
+def test_log_action_class():
+    v = Mock()
+    for k, v in amo.LOG_BY_ID.iteritems():
+        if v.action_class is not None:
+            cls = 'action-' + v.action_class
+        else:
+            cls = ''
+        eq_(render('{{ log_action_class(id) }}', {'id': v.id}), cls)
+
+
 class TestDisplayUrl(unittest.TestCase):
 
     def setUp(self):

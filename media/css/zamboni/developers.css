@@ -805,7 +805,7 @@ a.more-actions:after:hover {
 }
 
 h3 a.subscribe-feed {
-    background: url(../../img/zamboni/icons/feed-icons.png) no-repeat;
+    background: url(../../img/zamboni/icons/subscribe-icons.png) no-repeat;
     display: inline-block;
     line-height: 16px;
     height: 16px;
@@ -1246,6 +1246,37 @@ a.extra {
 .secondary-feed .subscribe {
     padding: 2px 0 0 24px;
 }
+
+#recent-activity .listing .item img.icon {
+    top: 1em;
+}
+
+#recent-activity .listing .item p {
+    padding-left: 7px;
+}
+
+.listing .item .action {
+    background: url(../../img/zamboni/icons/feed-icons.png) no-repeat;
+    display: block;
+    float: left;
+    margin-top: 3px;
+    height: 32px;
+    width: 23px;
+}
+.listing .item .action.action-review     { background-position: 0 -32px; }
+.listing .item .action.action-tag        { background-position: 0 -64px; }
+.listing .item .action.action-collection { background-position: 0 -96px; }
+.listing .item .action.action-edit       { background-position: 0 -128px; }
+.listing .item .action.action-add        { background-position: 0 -160px; }
+.listing .item .action.action-delete     { background-position: 0 -192px; }
+.listing .item .action.action-approve    { background-position: 0 -224px; }
+.listing .item .action.action-reject     { background-position: 0 -256px; }
+
+#recent-activity .listing .item .timestamp {
+    color: #555;
+    font-size: 0.9em;
+}
+
 /* @end */
 
 /* @group Header and main navigation bar */

@@ -21,14 +21,18 @@
   {% endif %}
 </header>
 
-<section class="primary" role="main">
+<section id="recent-activity" class="primary" role="main">
   <div class="listing results">
     <div class="results-inner">
       {% if pager.object_list %}
         {% for item in pager.object_list %}
         <div class="item">
-          <p>{{ item }}</p>
+          <img class="icon" width="32" height="32" src="{{ addon.icon_url }}">
           <p>
+            <span class="action {{ log_action_class(item.action) }}"></span>
+            {{ item }}
+          </p>
+          <p class="timestamp">
           {% trans user=item.user|user_link, ago=item.created|timesince,
                    iso=item.created|isotime,
                    pretty=item.created|babel_datetime %}

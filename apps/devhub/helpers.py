@@ -137,6 +137,14 @@ def status_class(addon):
 
 
 @register.function
+def log_action_class(action_id):
+    if action_id in amo.LOG_BY_ID:
+        cls = amo.LOG_BY_ID[action_id].action_class
+        if cls is not None:
+            return 'action-' + cls
+
+
+@register.function
 def summarize_validation(validation):
     """Readable summary of add-on validation results."""
     # L10n: first parameter is the number of errors
