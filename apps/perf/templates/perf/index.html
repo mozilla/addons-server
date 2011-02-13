@@ -17,47 +17,71 @@
 
 <div class="primary" role="main">
   <p>{% trans %}
-    Add-ons provide many useful features and functions for your browser.
-    However, add-ons can also slow down your browsing experience.  Some add-ons
-    can even slow down {{ app }} until it is difficult to use for regular web
-    browsing.  It can also be difficult to determine what add-ons are the source
-    of the problem.  We provide this list in the hopes that it will help you
-    identify add-ons that are affecting the performance of your browser.
+    Add-ons provide many useful features and functions, but they can also cause
+    {{ app }} to become slower. Some add-ons can even slow {{ app }} to a crawl
+    and make it difficult to use for regular web browsing. If you think add-ons
+    might be the reason {{ app }} is lethargic, check the list below for some
+    of the biggest bottlenecks. And remember, for best performance you should
+    disable add-ons that you no longer use regularly.
   {% endtrans %}</p>
 
   <h3>{{ _('Add-ons with Slowest Start-up') }}</h3>
   <p>{% trans %}
-    The following add-ons have the most impact on how long it takes {{ app }} to
-    start up.
+    The following add-ons have the most impact on how long it takes {{ app }}
+    to start up.
   {% endtrans %}</p>
 
-  <table id="perf-results">
-    <thead>
-      <tr>
-        <th>{{ _('Rank') }}</th>
-        <th>{{ _('Add-on') }}</th>
-        <th>{{ _('Impact') }}</th>
-        <th class="shhhh">{{ _('Longer lines are slower') }}</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for addon in addons %}
-      <tr>
-        <td># {{ loop.index }}</td>
-        <td>
-          <img src="{{ addon.icon_url }}" class="icon">
-          <a href="{{ addon.get_url_path() }}">{{ addon.name }}</a>
-          {{ _('by') }} {{ users_list(addon.listed_authors) }}
-        </td>
-        {% with num = addon.ts_slowness %}
-          <td>{{ _('{0}% slower')|f(num|int) }}</td>
-          <td><div class="bar" style="background-color: red; width: {{ num / worst * 100 }}%">&nbsp</div></td>
-        {% endwith %}
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-  <a href="#">{{ _('Show more add-ons') }}</a>
+  <div id="perf-results">
+    <div id="perf-results-inner">
+      <table>
+        <thead>
+          <tr>
+            <th class="rank">{{ _('Rank') }}</th>
+            <th class="addon">{{ _('Add-on') }}</th>
+            <th class="impact">
+              <span class="slower">{{ _('Impact') }}</span>
+              <span class="percentage">{{ _('Longer lines are slower') }}</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for addon in addons %}
+          <tr id="addon-{{ loop.index }}" data-rank="{{ loop.index }}"
+              {% if loop.index > 10 %}class="perf-hidden perf-small"{% endif %}>
+            <td class="rank">#<b>{{ loop.index }}</b></td>
+            <td class="addon">
+              <div>
+                <img src="{{ addon.icon_url }}" class="icon"
+                     width="32" height="32">
+                <span class="addon-title">
+                  <a href="{{ addon.get_url_path() }}">{{
+                    addon.name.localized_string }}</a>
+                  <span class="author">
+                    {{ _('by') }} {{ users_list(addon.listed_authors) }}
+                  </span>
+                </span>
+              </div>
+            </td>
+            {% with num = addon.ts_slowness %}
+              <td class="impact">
+                <div class="slower">
+                  {# L10n: {0} is an add-on's percentage of slowness #}
+                  {{ _('<b>{0}%</b> <span>slower</span>')|f(num|int)|safe }}
+                </div>
+                <div class="percentage">
+                  <div class="bar" style="width: {{ num / worst * 100 }}%">&nbsp;</div>
+                </div>
+              </td>
+            {% endwith %}
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% if addons|length > 10 %}
+        <p id="perf-more"><a href="#addon-11">{{ _('Show more add-ons') }}</a></p>
+      {% endif %}
+    </div>
+  </div>
 </div>
 
 <div class="secondary">
@@ -67,8 +91,8 @@
     Don't let poor performance affect the experience of your users.  Here are a
     few tips on how to keep your add-ons responsive and nimble.
     {% endtrans %}</p>
-    <a class="more-info" href="#">
-      {{ _('Learn more about performance') }}</a>
+    <p><a class="more-info" href="#">
+      {{ _('Learn more about performance') }}</a></p>
   </div>
 </div>
 {% endblock %}

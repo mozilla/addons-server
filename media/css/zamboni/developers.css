@@ -1486,7 +1486,7 @@ form.select-review .errorlist {
 }
 
 .invisible-upload:hover a.button,
-.invisible-upload.focused a.button {
+.invisible-upload:focused a.button {
     border-color: #25f;
     -moz-box-shadow: inset 0 0 2px #fff;
     -webkit-box-shadow: inset 0 0 2px #fff;
@@ -1500,7 +1500,7 @@ form.select-review .errorlist {
 }
 
 .invisible-upload:hover a.link,
-.invisible-upload.focused a.link {
+.invisible-upload:focused a.link {
     text-decoration: underline;
 }
 /* @end */

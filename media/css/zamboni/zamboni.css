@@ -2114,6 +2114,204 @@ form .error .note.error {
 }
 
 
+/** Performance page. **/
+#perf-results {
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid #e0effd;
+    padding: 1em;
+}
+
+#perf-results table {
+    border-bottom: 1px dotted #add0dc;
+    margin-bottom: 0;
+    width: 100%;
+}
+
+#perf-results table .perf-hidden {
+    display: none;
+}
+
+#perf-results table th {
+    font-size: 11px;
+    vertical-align: top;
+    padding: 0 20px 8px 0;
+}
+
+#perf-results table th.rank {
+    width: 32px;
+}
+
+.html-rtl #perf-results table th.rank {
+    padding-right: 0;
+    text-align: right;
+}
+
+#perf-results table th.impact {
+    padding-right: 0;
+    width: 300px;
+}
+
+#perf-results table th.impact .percentage {
+    color: #999;
+    font-weight: normal;
+}
+
+#perf-results table td {
+    border-top: 1px dotted #add0dc;
+    padding: 8px 0;
+    vertical-align: middle;
+}
+
+#perf-results table td.rank {
+    vertical-align: top;
+}
+
+#perf-results table td.rank b,
+#perf-results table td.impact b,
+#perf-results table td.addon .addon-title > a {
+    font-size: 1.4em;
+}
+
+#perf-results table .perf-small td.rank b,
+#perf-results table .perf-small td.impact b,
+#perf-results table .perf-small td.addon .addon-title > a {
+    font-size: 1.0em;
+}
+
+#perf-results table .perf-small td.addon img.icon,
+#perf-results table .perf-small td.addon .author,
+#perf-results table .perf-small td.impact .slower span {
+    display: none;
+}
+
+#perf-results table td.rank b {
+    font-weight: normal;
+    vertical-align: top;
+}
+
+#perf-results table td.addon div {
+    position: relative;
+}
+
+#perf-results table td.addon img.icon,
+#perf-results table td.addon .addon-title,
+#perf-results table td.addon .author {
+    display: block;
+}
+
+#perf-results table td.addon img.icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.html-rtl #perf-results table td.addon img.icon {
+    right: 0;
+}
+
+#perf-results table th.addon,
+#perf-results table td.addon .addon-title {
+    padding-left: 50px;
+}
+
+.html-rtl #perf-results table th.addon,
+.html-rtl #perf-results table td.addon .addon-title {
+    padding-left: 0;
+    padding-right: 50px;
+}
+
+#perf-results table td.addon .addon-title > a {
+    font-weight: bold;
+}
+
+#perf-results table td.impact {
+    color: #777;
+    line-height: 1.3em;
+}
+
+#perf-results table .impact .slower,
+#perf-results table .impact .percentage {
+    display: table-cell;
+}
+
+#perf-results table .impact .slower {
+    text-align: right;
+    width: 100px;
+}
+
+.html-rtl #perf-results table .impact .slower {
+    text-align: left;
+}
+
+#perf-results table .impact .percentage {
+    width: 70%;
+}
+
+#perf-results table .impact .slower {
+    padding-right: 10px;
+}
+
+.html-rtl #perf-results table .impact .slower {
+    padding: 0 0 0 10px;
+}
+
+#perf-results table td.impact .slower {
+    border-right: 1px solid #f77;
+}
+
+.html-rtl #perf-results table td.impact .slower {
+    border-right-width: 0;
+    border-left: 1px solid #f77;
+}
+
+#perf-results table td.impact .percentage {
+    vertical-align: middle;
+}
+
+#perf-results table td.impact b {
+    color: #444;
+    display: block;
+}
+
+#perf-results .bar {
+    background-color: #f77;
+    height: 15px;
+}
+
+#perf-results .perf-small .bar {
+    height: 10px;
+}
+
+#perf-results p#perf-more {
+    font-size: 0.9em;
+    margin: 1em 0 0 52px;
+}
+
+#perf-results p#perf-more a {
+    background: url(../../img/amo2009/icons/arrows.gif) 100% -73px no-repeat;
+    padding-right: 15px;
+}
+
+.html-rtl #perf-results p#perf-more a {
+    background-position: 0 -73px;
+    padding: 0 0 0 15px;
+}
+
+#perf-results p#perf-more a:hover,
+#perf-results p#perf-more a:focus,
+#perf-results p#perf-more a:active {
+    background-position: 100% -113px;
+}
+
+.html-rtl #perf-results p#perf-more a:hover,
+.html-rtl #perf-results p#perf-more a:focus,
+.html-rtl #perf-results p#perf-more a:active {
+    background-position: 0 -113px;
+}
+
+
 /** =Personas Details page *********/
 .persona-img {
     height: 100px;

@@ -425,6 +425,9 @@ MINIFY_BUNDLES = {
             # Collections
             'js/zamboni/collections.js',
 
+            # Performance
+            'js/zamboni/perf.js',
+
             # Users
             'js/zamboni/users.js',
 
