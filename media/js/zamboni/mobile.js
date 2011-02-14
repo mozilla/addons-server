@@ -102,7 +102,87 @@ $(function() {
             }
         });
     });
-    
+    (function() {
+        var $document = $(document),
+            $lightbox = $("#lightbox"),
+            $content = $("#lightbox .content"),
+            $caption = $("#lightbox .caption"),
+            current, $strip,
+            lbImage = template('<img id="preview{0}" src="{1}">');
+        if (!$lightbox.length) return;
+        function posLightbox() {
+            $lightbox.css({
+                "top": $document.scrollTop()-1,
+                "left": $document.scrollLeft()
+            });
+            var $img = $lightbox.find("img");
+            $img.each(function () {
+                var $img = $(this);
+                $img.css({
+                    "margin-top": -$img.height()/2,
+                    "margin-left": -$img.width()/2,
+                    "top": "50%",
+                    "left": "50%"
+                });
+            });
+        }
+        $document.scroll(posLightbox);
+        $(window).bind("orientationchange", posLightbox);
+        function showLightbox() {
+            $lightbox.show();
+            showImage(this);
+            //I want to ensure the lightbox is painted before fading it in.
+            setTimeout(function () {
+                $lightbox.addClass("show");
+            },0);
+        }
+        function showImage(a) {
+            var $a = $(a),
+                $oldimg = $lightbox.find("img");
+            current = $a.parent().index();
+            $strip = $a.closest("ul").find("li");
+            var $img = $("#preview"+current);
+            if ($img.length) {
+                posLightbox();
+                $oldimg.css("opacity", 0);
+                $img.css("opacity", 1);
+            } else {
+                $img = $(lbImage([current, $a.attr("href")]));
+                $content.append($img);
+                $img.load(function(e) {
+                    posLightbox();
+                    $oldimg.css("opacity", 0);
+                    $img.css("opacity", 1);
+                    for (var i=0; i<$strip.length; i++) {
+                        if (i != current) {
+                            var $p = $strip.eq(i).find("a");
+                            $content.append(lbImage([i, $p.attr("href")]));
+                        }
+                    }
+                });
+            }
+            $caption.text($a.attr("title"));
+        }
+        $("#lightbox .next").click(_pd(function() {
+            if (current < $strip.length-1) {
+                showImage($strip.eq(current+1).find("a"));
+            }
+        }));
+        $("#lightbox .prev").click(_pd(function() {
+            if (current > 0) {
+                showImage($strip.eq(current-1).find("a"));
+            }
+        }));
+        $(".carousel ul a").click(_pd(showLightbox));
+        $("#lightbox .close, #lightbox .content").click(_pd(function() {
+            $lightbox.removeClass("show");
+            // We can't trust transitionend to fire in all cases.
+            setTimeout(function() {
+                $lightbox.hide();
+            }, 500);
+        }));
+        $document.scroll();
+    })();
 });
 
 $(".desktop-link").attr("href", window.location).click(function() {

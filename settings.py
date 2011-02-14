@@ -470,6 +470,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/jqmobile.js',
             'js/zamboni/truncation.js',
             'js/zamboni/mobile.js',
+            'js/zamboni/format.js',
         ),
     }
 }

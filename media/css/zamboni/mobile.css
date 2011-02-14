@@ -666,6 +666,85 @@ a.listview:before {
 }
 
 /************************************/
+/*             LIGHTBOX             */
+/************************************/
+
+#lightbox {
+    background: rgba(0,0,0,.9);
+    position: absolute;
+    width: 100%;
+    height: 101%;
+    display: none;
+    z-index: 9000;
+    color: white;
+    text-align: center;
+    opacity: 0;
+    pointer-events: none;
+    -moz-transition: .5s opacity ease;
+    -webkit-transition: .5s opacity ease;
+}
+#lightbox .close {
+    font-family: sans;
+    display: block;
+    position: absolute;
+    z-index: 100;
+    font-family: sans-serif;
+    color: white;
+    top: 14px;
+    right: 14px;
+    line-height: 12px;
+    text-align: center;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    width: 12px;
+    height: 12px;
+    padding: 12px;
+    border: 1px solid white;
+}
+
+#lightbox.show {
+    pointer-events: auto;
+    opacity: 1;
+}
+#lightbox section {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+#lightbox .content {
+    height: 70%;
+    display: block;
+    position: relative;
+    text-align: center;
+}
+#lightbox .controls {
+    height: 25%;
+    min-height: 100px;
+    position: relative;
+    padding: 5% 40px 0;
+}
+#lightbox .control.prev {
+    color: #fff;
+    left: 0;
+}
+#lightbox .control.next {
+    color: #fff;
+    right: 0;
+}
+#lightbox .caption {
+    font-size: 18px;
+}
+#lightbox img {
+    max-width: 100%;
+    max-height: 100%;
+    -moz-transition: .5s opacity ease;
+    -webkit-transition: .5s opacity ease;
+    opacity: 0;
+    position: absolute;
+}
+
+/************************************/
 /*           DETAILS PAGE           */
 /************************************/
 
@@ -877,7 +956,8 @@ td .versions li a {
 /*              CAROUSEL            */
 /************************************/
 
-.carousel .control {
+.carousel .control,
+#lightbox .control {
     display: block;
     position: absolute;
     top: 0;
