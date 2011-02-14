@@ -35,6 +35,8 @@ ADMINS = (
 MANAGERS = ADMINS
 
 FLIGTAR = 'amo-admins@mozilla.org'
+EDITORS_EMAIL = 'amo-editors@mozilla.org'
+SENIOR_EDITORS_EMAIL = 'amo-senior-editors@mozilla.org'
 
 DATABASES = {
     'default': {

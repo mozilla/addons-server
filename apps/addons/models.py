@@ -177,6 +177,8 @@ class Addon(amo.models.ModelBase):
     dev_agreement = models.BooleanField(default=False,
                             help_text="Has the dev agreement been signed?")
 
+    nomination_message = models.TextField(null=True,
+                                          db_column='nominationmessage')
     nomination_date = models.DateTimeField(null=True,
                                            db_column='nominationdate')
     target_locale = models.CharField(

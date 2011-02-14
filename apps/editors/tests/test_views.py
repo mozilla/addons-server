@@ -4,7 +4,7 @@ import re
 import time
 from datetime import datetime, timedelta
 
-from django import forms
+from django.core import mail
 
 from nose.tools import eq_
 from pyquery import PyQuery as pq
@@ -166,7 +166,7 @@ class TestHome(EditorTest):
             'editor deleted review %d' % review.id)
 
     def test_stats_total(self):
-        review = self.approve_reviews()
+        self.approve_reviews()
 
         r = self.client.get(reverse('editors.home'))
         doc = pq(r.content)
@@ -179,7 +179,7 @@ class TestHome(EditorTest):
         eq_(int(approval_count), 51)
 
     def test_stats_monthly(self):
-        review = self.approve_reviews()
+        self.approve_reviews()
 
         r = self.client.get(reverse('editors.home'))
         doc = pq(r.content)
@@ -198,8 +198,9 @@ class TestHome(EditorTest):
         r = self.client.get(reverse('editors.home'))
         doc = pq(r.content)
 
-        name =  doc('.editor-stats-table:eq(2)').find('td a')[0].text.strip()
+        name = doc('.editor-stats-table:eq(2)').find('td a')[0].text.strip()
         eq_(name, self.user.display_name)
+
 
 class QueueTest(EditorTest):
     fixtures = ['base/users']
@@ -666,3 +667,160 @@ class TestQueueSearchVersionSpecific(SearchTest):
         addons = self.named_addons(r)
         assert 'Justin Bieber Persona' in addons, (
                                 'Unexpected results: %r' % addons)
+
+
+class ReviewBase(QueueTest):
+    def setUp(self):
+        super(ReviewBase, self).setUp()
+        self.version = self.versions['Public']
+        self.addon = self.version.addon
+        self.editor = UserProfile.objects.get(email='editor@mozilla.com')
+        self.editor.update(display_name='An editor')
+        self.url = reverse('editors.review', args=[self.version.pk])
+
+
+class TestReview(ReviewBase):
+    def setUp(self):
+        super(TestReview, self).setUp()
+        AddonUser.objects.create(addon=self.addon,
+                         user=UserProfile.objects.get(pk=999))
+
+    def test_editor_required(self):
+        response = self.client.get(self.url)
+        eq_(response.status_code, 200)
+
+    def test_not_anonymous(self):
+        self.client.logout()
+        response = self.client.get(self.url)
+        eq_(response.status_code, 302)
+
+    def test_not_author(self):
+        AddonUser.objects.create(addon=self.addon, user=self.editor)
+        response = self.client.get(self.url)
+        eq_(response.status_code, 302)
+
+    def test_not_flags(self):
+        response = self.client.get(self.url)
+        eq_(len(response.context['flags']), 0)
+
+    def test_flags(self):
+        Review.objects.create(addon=self.addon, flag=True, user=self.editor)
+        Review.objects.create(addon=self.addon, flag=False, user=self.editor)
+        response = self.client.get(self.url)
+        eq_(len(response.context['flags']), 1)
+
+    def test_info_comments_requested(self):
+        response = self.client.post(self.url, {'action': 'info'})
+        eq_(response.context['form'].errors['comments'][0],
+            'This field is required.')
+
+    def test_info_requested(self):
+        response = self.client.post(self.url, {'action': 'info',
+                                               'comments': 'hello sailor'})
+        eq_(response.status_code, 302)
+        eq_(len(mail.outbox), 1)
+        self.assertTemplateUsed(response, 'editors/emails/info.ltxt')
+
+    def test_paging_none(self):
+        response = self.client.get(self.url)
+        eq_(response.context['paging'], {})
+
+    def test_paging_num(self):
+        response = self.client.get('%s?num=1' % self.url)
+        eq_(response.context['paging']['prev'], False)
+        eq_(response.context['paging']['next'], True)
+        eq_(response.context['paging']['total'], 2)
+
+        response = self.client.get('%s?num=2' % self.url)
+        eq_(response.context['paging']['prev'], True)
+        eq_(response.context['paging']['next'], False)
+
+
+class TestReviewPreliminary(ReviewBase):
+
+    def get_addon(self):
+        return Addon.objects.get(pk=self.addon.pk)
+
+    def setUp(self):
+        super(TestReviewPreliminary, self).setUp()
+        AddonUser.objects.create(addon=self.addon,
+                         user=UserProfile.objects.get(pk=999))
+
+    def prelim_dict(self):
+        return {'action': 'prelim', 'operating_systems': 'win',
+                'applications': 'something', 'comments': 'something',
+                'files': [int(self.version.files.all()[0].pk)]}
+
+    def test_prelim_comments_requested(self):
+        response = self.client.post(self.url, {'action': 'prelim'})
+        eq_(response.context['form'].errors['comments'][0],
+            'This field is required.')
+
+    def test_prelim_from_lite(self):
+        self.addon.update(status=amo.STATUS_LITE)
+        self.version.files.all()[0].update(status=amo.STATUS_UNREVIEWED)
+        response = self.client.post(self.url, self.prelim_dict())
+        eq_(response.status_code, 302)
+        eq_(self.get_addon().status, amo.STATUS_LITE)
+
+    def test_prelim_from_lite_required(self):
+        self.addon.update(status=amo.STATUS_LITE)
+        response = self.client.post(self.url, {'action': 'prelim'})
+
+        eq_(response.context['form'].errors['comments'][0],
+            'This field is required.')
+        eq_(response.context['form'].errors['applications'][0],
+            'Please enter the applications you tested.')
+        eq_(response.context['form'].errors['operating_systems'][0],
+            'Please enter the operating systems you tested.')
+
+    def test_prelim_from_lite_no_files(self):
+        self.addon.update(status=amo.STATUS_LITE)
+        data = self.prelim_dict()
+        del data['files']
+        response = self.client.post(self.url, data)
+
+        eq_(response.context['form'].errors['files'][0],
+            'You must select some files.')
+
+    def test_prelim_from_lite_wrong(self):
+        self.addon.update(status=amo.STATUS_LITE)
+        response = self.client.post(self.url, self.prelim_dict())
+
+        eq_(response.context['form'].errors['files'][0],
+            'File Public.xpi is not pending review.')
+
+    def test_prelim_from_lite_wrong_two(self):
+        self.addon.update(status=amo.STATUS_LITE)
+        data = self.prelim_dict()
+        file = self.version.files.all()[0]
+        for status in amo.STATUS_CHOICES:
+            if status != amo.STATUS_UNREVIEWED:
+                file.update(status=status)
+                response = self.client.post(self.url, data)
+                eq_(response.context['form'].errors['files'][0],
+                    'File Public.xpi is not pending review.')
+
+    def test_prelim_from_lite_files(self):
+        self.addon.update(status=amo.STATUS_LITE)
+        self.client.post(self.url, data=self.prelim_dict())
+        eq_(self.get_addon().status, amo.STATUS_LITE)
+
+    def test_prelim_from_unreviewed(self):
+        self.addon.update(status=amo.STATUS_UNREVIEWED)
+        response = self.client.post(self.url, self.prelim_dict())
+        eq_(response.status_code, 302)
+        eq_(self.get_addon().status, amo.STATUS_LITE)
+
+    def test_prelim_multiple_files(self):
+        version = self.addon.versions.all()[0]
+        file = version.files.all()[0]
+        file.pk = None
+        file.status = amo.STATUS_DISABLED
+        file.save()
+        self.addon.update(status=amo.STATUS_LITE)
+        data = self.prelim_dict()
+        data['files'] = [file.pk]
+        self.client.post(self.url, data)
+        eq_([amo.STATUS_DISABLED, amo.STATUS_LISTED],
+            [v.status for v in version.files.all().order_by('status')])

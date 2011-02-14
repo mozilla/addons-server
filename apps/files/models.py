@@ -4,6 +4,7 @@ import json
 import os
 import posixpath
 import uuid
+import shutil
 import zipfile
 
 from django.conf import settings
@@ -201,6 +202,22 @@ class File(amo.models.ModelBase):
                 os.remove(self.mirror_file_path)
         except UnicodeEncodeError:
             log.info('Hide Failure: %s %s %s' %
+                     (self.id, smart_str(self.filename),
+                      smart_str(self.file_path)))
+
+    def copy_to_mirror(self):
+        if not self.filename:
+            return
+        try:
+            if os.path.exists(self.file_path):
+                dst = self.mirror_file_path
+                log.info('Moving file to mirror: %s => %s'
+                         % (self.file_path, dst))
+                if not os.path.exists(os.path.dirname(dst)):
+                    os.makedirs(os.path.dirname(dst))
+                shutil.copyfile(self.file_path, dst)
+        except UnicodeEncodeError:
+            log.info('Copy Failure: %s %s %s' %
                      (self.id, smart_str(self.filename),
                       smart_str(self.file_path)))
 

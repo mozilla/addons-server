@@ -1,0 +1,13 @@
+{% extends "editors/emails/base.ltxt" %}{% load i18n %}{% block content %}{% blocktrans %}
+Your add-on, {{ name }} {{ number }}, has been preliminarily reviewed by an editor and is now available for download in our gallery at {{ addon_url }}
+{% endblocktrans %}{% include "editors/emails/files.ltxt" %}{% blocktrans %}
+Reviewer:
+{{ reviewer }}
+
+Comments:
+{{ comments }}
+
+Tested on {{ operating_systems }} with {{ applications }}
+
+To learn more about the review process, please visit https://addons.mozilla.org/developers/docs/policies/reviews#selection
+{% endblocktrans %}{% endblock %}

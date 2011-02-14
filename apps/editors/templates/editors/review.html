@@ -1,0 +1,56 @@
+{% extends "editors/base.html" %}
+
+{% block content %}
+<h3>{{ _('Review {0}')|f(addon.name) }}</h3>
+{{ num }}
+{% if paging %}
+{{ paging.current }} of {{ paging.total }}
+{% if paging.prev %}<a href="{{ paging.prev_url }}">prev</a>{% endif %}
+{% if paging.next %}<a href="{{ paging.next_url }}">next</a>{% endif %}
+{% endif %}
+<ul>
+{% for author in addon.authors.all() %}
+<li><a href="{{ url('users.profile', author.id) }}">{{ author.name }}</a></li>
+{% endfor %}
+</li>
+<ul>
+{% for category in addon.categories.all() %}
+<li>{{ category.name }}</a></li>
+{% endfor %}
+</ul>
+<ul>
+{% for app, appversion in addon.compatible_apps.items() %}
+{# TODO i18n this #}
+<li>{{ app.pretty }} {{ appversion.min }} {{ appversion.max }}</li>
+{% endfor %}
+</ul>
+<ul>
+{% for flag in flags %}
+{# TODO not sure what goes here #}
+<li>{{ flag }}</li>
+{% endfor %}
+</ul>
+<form method="POST">
+    {{ csrf() }}
+    {{ form }}
+    <input type="submit" value="save" />
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th>{{ _('Version/File') }}</th>
+            <th>{{ _('Date') }}</th>
+            <th>{{ _('Reviewer') }}</th>
+            <th>{{ _('Action') }}</th>
+            <th>{{ _('Comments') }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for record in history %}
+            {% include 'editors/includes/history.html' %}
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

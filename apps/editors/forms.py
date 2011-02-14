@@ -2,14 +2,20 @@ from datetime import timedelta
 
 from django import forms
 from django.db.models import Q
-from django.forms.widgets import Select
 from django.utils.translation import get_language
+from django.core.validators import ValidationError
+
 import happyforms
-from tower import ugettext_lazy as _lazy
+from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
 from amo.urlresolvers import reverse
 from applications.models import AppVersion
+
+
+from editors.models import CannedResponse
+from editors.helpers import ReviewHelper, ReviewAddon, ReviewFiles
+from files.models import File
 
 
 ACTION_FILTERS = (('', ''), ('approved', _lazy('Approved reviews')),
@@ -75,7 +81,7 @@ class QueueSearchForm(happyforms.Form):
                 required=False,
                 label=_lazy(u'Days Since Submission'),
                 choices=([('', '')] +
-                         [(i, i) for i in range(1,10)] + [('10+', '10+')]))
+                         [(i, i) for i in range(1, 10)] + [('10+', '10+')]))
     addon_type_ids = forms.MultipleChoiceField(
                 required=False,
                 label=_lazy(u'Add-on Types'),
@@ -166,3 +172,70 @@ class QueueSearchForm(happyforms.Form):
             else:
                 qs = qs.filter_raw(*args)
         return qs
+
+
+class ReviewAddonForm(happyforms.Form):
+    files = forms.ModelMultipleChoiceField(required=False,
+                                           queryset=File.objects.none(),
+                                           widget=forms.CheckboxInput())
+    comments = forms.CharField(required=True, widget=forms.Textarea())
+    canned_response = forms.ModelChoiceField(required=False,
+                                      queryset=CannedResponse.objects.all())
+    action = forms.ChoiceField(required=True, widget=forms.RadioSelect())
+    operating_systems = forms.CharField(required=False)
+    applications = forms.CharField(required=False)
+    notify = forms.BooleanField(required=False,
+                                label=_('Notify me the next time this add-on '
+                                        'is updated. (Subsequent updates will '
+                                        'not generate an email)'))
+
+    def is_valid(self):
+        result = super(ReviewAddonForm, self).is_valid()
+        if result:
+            self.helper.set_data(self.cleaned_data)
+        return result
+
+    def __init__(self, *args, **kw):
+        self.helper = kw.pop('helper')
+        super(ReviewAddonForm, self).__init__(*args, **kw)
+        self.fields['files'].queryset = self.helper.all_files
+        self.fields['action'].choices = [(k, v['label']) for k, v
+                                          in self.helper.actions.items()]
+
+
+class ReviewFileForm(ReviewAddonForm):
+
+    def clean_operating_systems(self):
+        operating_systems = self.data.get('operating_systems', '')
+        if not operating_systems and self.data.get('action', '') == 'prelim':
+            raise ValidationError(_('Please enter the operating '
+                                    'systems you tested.'))
+        return operating_systems
+
+    def clean_applications(self):
+        applications = self.data.get('applications', '')
+        if not applications and self.data.get('action', '') == 'prelim':
+            raise ValidationError(_('Please enter the applications '
+                                    'you tested.'))
+        return applications
+
+    def clean_files(self):
+        files = self.data.getlist('files')
+        if self.data.get('action', '') == 'prelim':
+            if not files:
+                raise ValidationError(_('You must select some files.'))
+            for pk in files:
+                file = self.helper.all_files.get(pk=pk)
+                if (file.status != amo.STATUS_UNREVIEWED and not
+                    (self.helper.addon.status == amo.STATUS_LITE and
+                     file.status == amo.STATUS_UNREVIEWED)):
+                    raise ValidationError(_('File %s is not pending review.')
+                                          % file.filename)
+        return self.fields['files'].queryset.filter(pk__in=files)
+
+
+def get_review_form(data, request=None, addon=None, version=None):
+    helper = ReviewHelper(request=request, addon=addon, version=version)
+    form = {ReviewAddon: ReviewAddonForm,
+            ReviewFiles: ReviewFileForm}[helper.handler.__class__]
+    return form(data, helper=helper)

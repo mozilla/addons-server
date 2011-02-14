@@ -1,0 +1,18 @@
+{% extends "editors/emails/base.ltxt" %}{% load i18n %}{% block content %}{% blocktrans %}
+Dear Superheroes,
+
+An editor has requested super-review of the following add-on due to security, copyright, or other administrative concerns.
+
+Please open your plethora of knowledge and wield your mighty administrative sword of decision making in the general vicinity of:
+
+{{ name }} - {{ addon_url }}
+
+Reviewer:
+{{ reviewer }}
+
+Comments:
+{{ comments}}
+
+
+Love,
+{% endblocktrans %}{% endblock %}

@@ -83,7 +83,8 @@ class TestFile(test_utils.TestCase):
         filesystem."""
         if not os.path.exists(os.path.dirname(filename)):
             os.makedirs(os.path.dirname(filename))
-        assert not os.path.exists(filename), 'File exists at: %s' % filename
+        if os.path.exists(filename):
+            os.remove(filename)
         try:
             open(filename, 'w')
             assert os.path.exists(filename)
@@ -162,6 +163,17 @@ class TestFile(test_utils.TestCase):
         f.version.compatible_apps = (amo.FIREFOX,)
         f.version.addon = Addon(name=u' フォクすけ  といっしょ')
         eq_(f.generate_filename(), 'addon-0.1.7-fx.xpi')
+
+    def test_copy_to_mirror(self):
+        f = File.objects.get(id=67442)
+        if os.path.exists(f.mirror_file_path):
+            os.remove(f.mirror_file_path)
+        if not os.path.exists(os.path.dirname(f.file_path)):
+            os.mkdir(os.path.dirname(f.file_path))
+        if not os.path.exists(f.file_path):
+            open(f.file_path, 'w')
+        f.copy_to_mirror()
+        assert os.path.exists(f.mirror_file_path)
 
 
 class TestParseXpi(test_utils.TestCase):

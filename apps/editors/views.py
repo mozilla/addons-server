@@ -10,6 +10,7 @@ from tower import ugettext as _
 import amo
 from access import acl
 from amo.decorators import login_required, json_view, post_required
+from addons.models import Version
 from amo.utils import paginate
 from amo.urlresolvers import reverse
 from devhub.models import ActivityLog
@@ -17,7 +18,7 @@ from editors import forms
 from editors.models import (ViewPendingQueue, ViewFullReviewQueue,
                             ViewPreliminaryQueue, EventLog)
 from editors.helpers import (ViewPendingQueueTable, ViewFullReviewQueueTable,
-                             ViewPreliminaryQueueTable)
+                             ViewPreliminaryQueueTable, LOG_STATUSES)
 from files.models import Approval
 from reviews.forms import ReviewFlagFormSet
 from reviews.models import Review, ReviewFlag
@@ -172,7 +173,42 @@ def application_versions_json(request):
 
 @editor_required
 def review(request, version_id):
-    return http.HttpResponse('Not implemented yet')
+    version = get_object_or_404(Version, pk=version_id)
+    addon = version.addon
+
+    if addon.authors.filter(user=request.user).exists():
+        amo.messages.warning(request, _('Self-reviews are not allowed.'))
+        return redirect(reverse('editors.queue'))
+
+    form = forms.get_review_form(request.POST or None, request=request,
+                                 addon=addon, version=version)
+
+    queue_type = (form.helper.review_type if form.helper.review_type
+                  != 'preliminary' else 'prelim')
+    redirect_url = reverse('editors.queue_%s' % queue_type)
+
+    num = request.GET.get('num')
+    paging = {}
+    if num:
+        num = int(num)
+        total = _queue_counts().get(queue_type)
+        paging = {'current': num, 'total': total,
+                  'prev': num > 1, 'next': num < total,
+                  'prev_url': '%s?num=%s' % (redirect_url, num - 1),
+                  'next_url': '%s?num=%s' % (redirect_url, num + 1)}
+
+    if request.method == 'POST' and form.is_valid():
+        form.helper.process()
+        amo.messages.info(request, _('Review successfully processed.'))
+        return redirect(redirect_url)
+
+    context = {'version': version, 'addon': addon,
+               'flags': Review.objects.filter(addon=addon, flag=True),
+               'form': form, 'paging': paging,
+               'history': ActivityLog.objects.for_addons(addon)
+                                     .filter(action__in=LOG_STATUSES)}
+
+    return jingo.render(request, 'editors/review.html', context)
 
 
 @editor_required

@@ -1,0 +1,7 @@
+<tr>
+    <td>{{ record.arguments.1.version }} </td>
+    <td>{{ record.created|datetime }}</td>
+    <td>{{ record.user.name }}</td>
+    <td>{{ record }}</td>
+    <td>{% if record.details %}{{ record.details.comments }}{% endif %}</td>
+</tr>
