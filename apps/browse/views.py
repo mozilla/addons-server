@@ -207,7 +207,8 @@ def creatured(request, category):
     ids = AddonCategory.creatured_random(category, request.LANG)
     addons = manual_order(Addon.objects.public(), ids)
     return jingo.render(request, 'browse/creatured.html',
-                        {'addons': addons, 'category': category})
+                        {'addons': addons, 'category': category,
+                         'sorting': 'featured'})
 
 
 class PersonasFilter(BaseFilter):

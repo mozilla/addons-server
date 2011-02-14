@@ -19,7 +19,7 @@
 {% endblock %}
 
 {% block rss_feed %}
-{% with sort = {'created': 'newest', 'popular': 'popular', 'rating': 'averagerating'}[sorting] %}
+{% with sort = {'featured': 'featured', 'created': 'newest', 'popular': 'popular', 'rating': 'averagerating'}[sorting] %}
   {% if not sort %}
     {% set sort = 'updated' %}
   {% endif %}
