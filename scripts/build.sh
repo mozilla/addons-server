@@ -54,7 +54,7 @@ ROOT_URLCONF = '%s.urls' % ROOT_PACKAGE
 LOG_LEVEL = logging.ERROR
 # Database name has to be set because of sphinx
 DATABASES['default']['NAME'] = 'zamboni_$1'
-DATABASES['default']['HOST'] = 'sm-hudson01'
+DATABASES['default']['HOST'] = 'localhost'
 DATABASES['default']['USER'] = 'hudson'
 DATABASES['default']['TEST_NAME'] = 'test_zamboni_$1'
 DATABASES['default']['TEST_CHARSET'] = 'utf8'
