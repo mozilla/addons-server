@@ -20,6 +20,11 @@ $(function() {
         }
     });
 
+    $("#learnmore, #learnmore-msg").click(_pd(function() {
+        $("#learnmore-msg").toggleClass("show");
+        $("#learnmore").blur();
+    }));
+
     $(".carousel").each(function() {
         var $self = $(this),
             $strip = $("ul", $self),

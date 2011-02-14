@@ -356,6 +356,50 @@ header #home {
 #home-header #search {
     margin: 0;
 }
+#learnmore-msg {
+    position: absolute;
+    left: 0;
+    margin: 12px 14px 0;
+    max-width: 260px;
+    color: white;
+    font-family: sans-serif;
+    line-height: 1.2em;
+    font-size: 14px;
+    padding: 14px;
+    z-index: 100;
+    -moz-border-radius: 1em;
+    -webkit-border-radius: 1em;
+    border-radius: 1em;
+    background: #444;
+    opacity: 0;
+    pointer-events: none;
+    -moz-transition: .3s opacity ease;
+    -webkit-transition: .3s opacity ease;
+    box-shadow: 0 0 3px #000;
+    -moz-box-shadow: 0 0 3px #000;
+    -webkit-box-shadow: 0 0 3px #000;
+}
+#learnmore-msg.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+#learnmore {
+    color: #447BC4;
+    padding: 4px 0;
+}
+#learnmore-msg:after {
+    content: "\00a0";
+    display: block;
+    position: absolute;
+    z-index: 100;
+    top: -28px;
+    left: 94px;
+    width: 0;
+    height: 0;
+    border: 15px solid transparent;
+    border-bottom-color: #444;
+    pointer-events: none;
+}
 /************************************/
 /*             LISTVIEWS            */
 /************************************/
