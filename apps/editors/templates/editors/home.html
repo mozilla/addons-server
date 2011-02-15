@@ -48,11 +48,16 @@
         <div class="editor-stats-table">
           <div>
             <table>
-              {# TODO(gkoberger): MOAR Stats #}
-              {% for i in range(5) %}
+              {% for editors in new_editors %}
               <tr>
-                <td>John Smith</td>
-                <td class="date">Today</td>
+                <td>
+                  <a href="{{ url('users.profile', editors['added']) }}">
+                    {{ editors['display_name'] }}
+                  </a>
+                </td>
+                <td class="date" title="{{ editors['created']|babel_datetime }}">
+                  {{ editors['created']|timesince }}
+                </td>
               </tr>
               {% endfor %}
             </table>

@@ -15,7 +15,7 @@ from amo.urlresolvers import reverse
 from devhub.models import ActivityLog
 from editors import forms
 from editors.models import (ViewPendingQueue, ViewFullReviewQueue,
-                            ViewPreliminaryQueue)
+                            ViewPreliminaryQueue, EventLog)
 from editors.helpers import (ViewPendingQueueTable, ViewFullReviewQueueTable,
                              ViewPreliminaryQueueTable)
 from files.models import Approval
@@ -66,6 +66,7 @@ def eventlog_detail(request, id):
 def home(request):
     data = dict(reviews_total=Approval.total_reviews(),
                 reviews_monthly=Approval.monthly_reviews(),
+                new_editors=EventLog.new_editors(),
                 motd=get_config('editors_review_motd'),
                 eventlog=ActivityLog.objects.editor_events()[:6],
                 )

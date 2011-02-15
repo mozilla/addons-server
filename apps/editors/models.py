@@ -7,9 +7,9 @@ from tower import ugettext_lazy as _
 
 import amo
 import amo.models
+from editors.sql_model import RawSQLModel
 from translations.fields import TranslatedField
 from users.models import UserProfile
-from editors.sql_model import RawSQLModel
 
 
 class CannedResponse(amo.models.ModelBase):
@@ -37,6 +37,19 @@ class EventLog(models.Model):
 
     class Meta:
         db_table = u'eventlog'
+
+    @staticmethod
+    def new_editors():
+        items = (EventLog.objects.values('added', 'created')
+                                 .filter(type='admin',
+                                         action='group_addmember',
+                                         changed_id=2)
+                                 .order_by('-created')[:5])
+
+        users = UserProfile.objects.filter(id__in=[i['added'] for i in items])
+        names = dict((u.id, u.display_name) for u in users)
+
+        return [dict(display_name=names[int(i['added'])], **i) for i in items]
 
 
 class ViewQueue(RawSQLModel):

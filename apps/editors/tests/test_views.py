@@ -14,6 +14,7 @@ from amo.urlresolvers import reverse
 from amo.tests import formset, initial
 from addons.models import Addon
 from devhub.models import ActivityLog
+from editors.models import EventLog
 import reviews
 from reviews.models import Review, ReviewFlag
 from users.models import UserProfile
@@ -144,7 +145,7 @@ class TestHome(EditorTest):
             v = Version.objects.create(addon=a)
             f = File.objects.create(version=v)
 
-            Approval(addon=a, user=u, file=f, created=created).save(force_insert=True)
+            Approval(addon=a, user=u, file=f, created=created).save()
 
     def test_approved_review(self):
         review = self.make_review()
@@ -187,6 +188,16 @@ class TestHome(EditorTest):
         approval_count = doc('.editor-stats-table:eq(1)').find('td')[1].text
         # 50 generated; doesn't show the fixture from a past month
         eq_(int(approval_count), 50)
+
+    def test_new_editors(self):
+        EventLog(type='admin', action='group_addmember', changed_id=2,
+                 added=self.user.id, user=self.user).save()
+
+        r = self.client.get(reverse('editors.home'))
+        doc = pq(r.content)
+
+        name =  doc('.editor-stats-table:eq(2)').find('td a')[0].text.strip()
+        eq_(name, self.user.display_name)
 
 class QueueTest(EditorTest):
     fixtures = ['base/users']
