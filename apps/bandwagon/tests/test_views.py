@@ -831,7 +831,8 @@ class TestFeeds(test_utils.TestCase):
 
 class TestMobileCollections(TestMobile):
 
+    # for now we want collections disabled.
     def test_collections(self):
         r = self.client.get(reverse('collections.list'))
         eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'bandwagon/mobile/collection_listing.html')
+        self.assertTemplateUsed(r, 'bandwagon/collection_listing.html')
