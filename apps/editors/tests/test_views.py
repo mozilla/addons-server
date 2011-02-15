@@ -23,7 +23,7 @@ from . test_models import create_addon_file
 
 
 class EditorTest(test_utils.TestCase):
-    fixtures = ('base/users', 'editors/pending-queue')
+    fixtures = ('base/users', 'editors/pending-queue', 'base/approvals')
 
     def login_as_editor(self):
         assert self.client.login(username='editor@mozilla.com',
@@ -105,7 +105,7 @@ class TestReviewLog(EditorTest):
         eq_(r.status_code, 200)
         doc = pq(r.content)
         assert doc('.listing button'), 'No filters.'
-        # shoul have 50 showing
+        # Should have 50 showing.
         eq_(len(doc('tbody tr').not_('.hide')), 50)
         eq_(doc('tbody tr.hide').eq(0).text(), 'youwin')
 
@@ -114,7 +114,7 @@ class TestReviewLog(EditorTest):
         Let's use today as an end-day filter and make sure we see stuff if we
         filter.
         """
-        # make sure we show th stuff we just made
+        # Make sure we show the stuff we just made.
         date = time.strftime('%Y-%m-%d')
         r = self.client.get(reverse('editors.reviewlog') + '?end=' + date)
         eq_(r.status_code, 200)
@@ -127,7 +127,24 @@ class TestHome(EditorTest):
     """Test the page at /editors."""
     def setUp(self):
         self.login_as_editor()
-        amo.set_user(UserProfile.objects.get(username='editor'))
+        self.user = UserProfile.objects.get(id=5497308)
+        self.user.display_name = 'editor'
+        self.user.save()
+        amo.set_user(self.user)
+
+    def approve_reviews(self):
+        Platform.objects.create(id=amo.PLATFORM_ALL.id)
+        u = self.user
+
+        now = datetime.now()
+        created = datetime(now.year - 1, now.month, 1)
+
+        for i in xrange(50):
+            a = Addon.objects.create(type=amo.ADDON_EXTENSION)
+            v = Version.objects.create(addon=a)
+            f = File.objects.create(version=v)
+
+            Approval(addon=a, user=u, file=f, created=created).save(force_insert=True)
 
     def test_approved_review(self):
         review = self.make_review()
@@ -145,6 +162,31 @@ class TestHome(EditorTest):
         eq_(doc('.row').eq(0).text().strip().split('.')[0],
             'editor deleted review %d' % review.id)
 
+    def test_stats_total(self):
+        review = self.approve_reviews()
+
+        r = self.client.get(reverse('editors.home'))
+        doc = pq(r.content)
+
+        display_name = doc('.editor-stats-table:eq(0)').find('td')[0].text
+        eq_(display_name, self.user.display_name)
+
+        approval_count = doc('.editor-stats-table:eq(0)').find('td')[1].text
+        # 50 generated + 1 fixture from a past month
+        eq_(int(approval_count), 51)
+
+    def test_stats_monthly(self):
+        review = self.approve_reviews()
+
+        r = self.client.get(reverse('editors.home'))
+        doc = pq(r.content)
+
+        display_name = doc('.editor-stats-table:eq(1)').find('td')[0].text
+        eq_(display_name, self.user.display_name)
+
+        approval_count = doc('.editor-stats-table:eq(1)').find('td')[1].text
+        # 50 generated; doesn't show the fixture from a past month
+        eq_(int(approval_count), 50)
 
 class QueueTest(EditorTest):
     fixtures = ['base/users']

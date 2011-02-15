@@ -27,7 +27,7 @@
               {% for row in reviews_total: %}
               <tr>
                 <td>{{ row['user__display_name'] }}</td>
-                <td class="int">{{ row['approval__count']|numberfmt }}</td>
+                <td class="int">{{ row['approval_count']|numberfmt }}</td>
               </tr>
               {% endfor %}
             </table>
@@ -39,7 +39,7 @@
               {% for row in reviews_monthly: %}
               <tr>
                 <td>{{ row['user__display_name'] }}</td>
-                <td class="int">{{ row['approval__count']|numberfmt }}</td>
+                <td class="int">{{ row['approval_count']|numberfmt }}</td>
               </tr>
               {% endfor %}
             </table>

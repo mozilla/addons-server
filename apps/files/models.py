@@ -266,8 +266,8 @@ class Approval(amo.models.ModelBase):
     @staticmethod
     def total_reviews():
         return (Approval.objects.values('user', 'user__display_name')
-                                .annotate(models.Count('approval'))
-                                .order_by('-approval__count')[:5])
+                                .annotate(approval_count=models.Count('id'))
+                                .order_by('-approval_count')[:5])
 
     @staticmethod
     def monthly_reviews():
@@ -275,8 +275,8 @@ class Approval(amo.models.ModelBase):
         created_date = datetime(now.year, now.month, 1)
         return (Approval.objects.values('user', 'user__display_name')
                                 .filter(created__gte=created_date)
-                                .annotate(models.Count('approval'))
-                                .order_by('-approval__count')[:5])
+                                .annotate(approval_count=models.Count('id'))
+                                .order_by('-approval_count')[:5])
 
 
 class Platform(amo.models.ModelBase):
