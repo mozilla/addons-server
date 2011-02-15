@@ -3,6 +3,7 @@ import test_utils
 
 from amo.urlresolvers import reverse
 from access.models import GroupUser
+from addons.tests.test_views import TestMobile
 from devhub.models import ActivityLog
 from reviews.models import Review, ReviewFlag
 
@@ -181,3 +182,12 @@ class TestEdit(ReviewTest):
         review = Review.objects.get(id=218468)
         eq_('%s' % review.title, 'fo')
         eq_('%s' % review.body, 'shizzle')
+
+
+class TestMobileReviews(TestMobile):
+    fixtures = ['base/apps', 'reviews/dev-reply.json']
+
+    def test_mobile(self):
+        r = self.client.get(reverse('reviews.list', args=['a1865']))
+        eq_(r.status_code, 200)
+        self.assertTemplateUsed(r, 'reviews/mobile/review_list.html')

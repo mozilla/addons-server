@@ -1,0 +1,43 @@
+{% extends "mobile/base.html" %}
+
+{# L10n: {0} is an addon name. #}
+{% block title %}{{ page_title(_('Reviews for {0}')|f(addon.name)) }}{% endblock %}
+
+{% block page %}
+<a href="{{ addon.get_url_path() }}">&laquo; {{ addon.name }}</a>
+
+{% if not addon.total_reviews %}
+  {{ _('No ratings yet.') }}
+{% else %}
+
+<h2>{{ _('Rating') }}</h2>
+<span>
+  {{ addon.average_rating|float|stars }}
+  {{ ngettext('Average from {0} Rating', 'Average from {0} Ratings',
+              addon.total_reviews)|f(addon.total_reviews|numberfmt) }}
+</span>
+{% include "reviews/grouped_ratings.html" %}
+
+
+<h2>{{ _('Reviews') }}</h2>
+{% for review in reviews.object_list %}
+  <div class="review">
+    {% if review.title %}
+      <h3>{{ review.title }}</h3>
+    {% endif %}
+    {{ review.rating|float|stars }}
+    {% trans user=review.user|user_link %}
+      by {{ user }}
+    {% endtrans %}
+    <p>{{ review.body|nl2br }}</p>
+    {% if review.version_id and review.version_id != addon._current_version_id %}
+      {# L10n: {0} is a version number (like 1.01) #}
+      <span>{{ _('This review is for a previous version of the add-on ({0}).')|f(review.version.version) }}&nbsp;</span>
+    {% endif %}
+  </div>
+{% endfor %}
+
+{{ reviews|mobile_paginator }}
+
+{% endif %} {# if addon.total_reviews #}
+{% endblock %}

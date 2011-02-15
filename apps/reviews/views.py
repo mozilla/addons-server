@@ -4,6 +4,7 @@ from django.shortcuts import get_object_or_404, redirect
 import commonware.log
 import jingo
 from tower import ugettext as _
+from mobility.decorators import mobile_template
 
 from amo import messages
 import amo.utils
@@ -25,7 +26,8 @@ def flag_context():
 
 
 @addon_view
-def review_list(request, addon, review_id=None, user_id=None):
+@mobile_template('reviews/{mobile/}review_list.html')
+def review_list(request, addon, review_id=None, user_id=None, template=None):
     q = (Review.objects.valid().filter(addon=addon)
          .order_by('-created'))
 
@@ -65,7 +67,7 @@ def review_list(request, addon, review_id=None, user_id=None):
         ctx['flags'] = get_flags(request, reviews.object_list)
     else:
         ctx['review_perms'] = {}
-    return jingo.render(request, 'reviews/review_list.html', ctx)
+    return jingo.render(request, template, ctx)
 
 
 def get_flags(request, reviews):
