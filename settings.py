@@ -778,3 +778,6 @@ MOBILE_COOKIE = 'mamo'
 MIN_BETA_VERSION = '3.7'
 
 DEFAULT_SUGGESTED_CONTRIBUTION = 5
+
+# Path to `ps`.
+PS_BIN = '/bin/ps'
