@@ -130,8 +130,13 @@ class RawSQLManager(object):
         if field in self.base_query['select']:
             # Support filtering by alias, similar to how a view works
             field = self.base_query['select'][field]
-        param_k = self._param(val)
-        return '%s %s %%(%s)s' % (field, clause.group('op'), param_k)
+        if clause.group('op').lower() == 'in':
+            # eg. WHERE foo IN (1, 2, 3)
+            parts = ['%%(%s)s' % self._param(p) for p in iter(val)]
+            param = '(%s)' % ', '.join(parts)
+        else:
+            param = '%%(%s)s' % self._param(val)
+        return '%s %s %s' % (field, clause.group('op'), param)
 
     def order_by(self, spec):
         """Order by column (ascending) or -column (descending)."""

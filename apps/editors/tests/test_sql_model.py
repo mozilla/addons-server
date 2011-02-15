@@ -148,6 +148,11 @@ class TestSQLModel(unittest.TestCase):
         c = Summary.objects.all().filter_raw('category =', 'apparel')[0]
         eq_(c.category, 'apparel')
 
+    def test_filter_raw_in(self):
+        qs = Summary.objects.all().filter_raw('category IN',
+                                              ['apparel', 'safety'])
+        eq_([c.category for c in qs], ['apparel', 'safety'])
+
     def test_having_gte(self):
         c = Summary.objects.all().having('total >=', 2)[0]
         eq_(c.category, 'safety')
