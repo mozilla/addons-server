@@ -9,6 +9,10 @@
 {% endblock %}
 
 {% block main %}
+{% if addon.type == amo.ADDON_PERSONA %}
+  {{ persona_preview(addon.persona, linked=False, caption=True) }}
+{% endif %}
+
 <p{{ addon.summary|locale_html }}>{{ addon.summary|nl2br }}</p>
 
 <ul id="install">
@@ -29,9 +33,7 @@
   {% endif %}
 </ul>
 
-{% if addon.type == amo.ADDON_PERSONA %}
-    {{ persona_preview(addon.persona, linked=False) }}
-{% else %}
+{% if addon.type != amo.ADDON_PERSONA %}
   {% if previews|length > 1 %}
     <div id="images">
       <ul class="nav-images">

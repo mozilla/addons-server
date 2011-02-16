@@ -26,6 +26,9 @@
         {% if title %}
           <span class="addon-title"><b>{{ addon.name }}</b></span>
         {% endif %}
+        {% if caption %}
+          <span class="caption">{{ _('Hover to Preview') }}</span>
+        {% endif %}
       </{{ tag }}>
 
       {% if details %}
