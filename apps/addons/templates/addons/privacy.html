@@ -25,7 +25,7 @@
   </h2>
 </header>
 <h3>{{ _('Privacy Policy') }}</h3>
-<div class="policy-statement">{{ addon.privacy_policy }}</div>
+<div class="policy-statement">{{ addon.privacy_policy|nl2br }}</div>
 <p class="policy-link">
   <a href ="{{ url('addons.detail', addon.slug) }}">
     {{ _('Back to {0}...')|f(addon.name) }}

@@ -2476,13 +2476,18 @@ form .error .note.error {
 .privacy-policy ul,
 .policy-statement ul {
     list-style: disc outside none;
-    margin-left: 20px;
+    margin: 0 0 0 20px;
 }
 
 .privacy-policy ol,
 .policy-statement ol {
     list-style: decimal outside none;
-    margin-left: 20px;
+    margin: 0 0 0 20px;
+}
+
+.privacy-policy blockquote,
+.policy-statement blockquote {
+    margin-bottom: 0;
 }
 
 .install-wrapper .extra {

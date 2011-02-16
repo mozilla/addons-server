@@ -31,7 +31,7 @@
     {% endtrans %}
   </p>
 </div>
-<div class="policy-statement">{{ addon.eula }}</div>
+<div class="policy-statement">{{ addon.eula|nl2br }}</div>
 {{ install_button(addon, version=version, show_contrib=False,
                   show_eula=False, show_warning=False) }}
 <p class="policy-link">

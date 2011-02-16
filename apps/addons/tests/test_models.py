@@ -318,6 +318,230 @@ class TestAddonModels(test_utils.TestCase):
         a.save()
         assert addon().has_eula
 
+    def newlines_helper(self, string_before):
+        addon = Addon.objects.get(pk=3615)
+        addon.privacy_policy = string_before
+        addon.save()
+        return addon.privacy_policy.localized_string_clean
+
+    def test_newlines_normal(self):
+        before = ("Paragraph one.\n"
+                  "This should be on the very next line.\n\n"
+                  "Should be two nl's before this line.\n\n\n"
+                  "Should be three nl's before this line.\n\n\n\n"
+                  "Should be four nl's before this line.")
+
+        after = before # Nothing special; this shouldn't change.
+
+        eq_(self.newlines_helper(before), after)
+
+    def test_newlines_ul(self):
+        before = ("<ul>\n\n"
+                  "<li>No nl's between the ul and the li.</li>\n\n"
+                  "<li>No nl's between li's.\n\n"
+                  "But there should be two before this line.</li>\n\n"
+                  "</ul>")
+
+        after = ("<ul>"
+                 "<li>No nl's between the ul and the li.</li>"
+                 "<li>No nl's between li's.\n\n"
+                 "But there should be two before this line.</li>"
+                 "</ul>")
+
+        eq_(self.newlines_helper(before), after)
+
+    def test_newlines_ul_tight(self):
+        before = ("There should be one nl between this and the ul.\n"
+                  "<ul><li>test</li><li>test</li></ul>\n"
+                  "There should be no nl's above this line.")
+
+        after = ("There should be one nl between this and the ul.\n"
+                 "<ul><li>test</li><li>test</li></ul>"
+                 "There should be no nl's above this line.")
+
+        eq_(self.newlines_helper(before), after)
+
+    def test_newlines_ul_loose(self):
+        before = ("There should be two nl's between this and the ul.\n\n"
+                  "<ul><li>test</li><li>test</li></ul>\n\n"
+                  "There should be one nl above this line.")
+
+        after = ("There should be two nl's between this and the ul.\n\n"
+                 "<ul><li>test</li><li>test</li></ul>\n"
+                 "There should be one nl above this line.")
+
+        eq_(self.newlines_helper(before), after)
+
+    def test_newlines_blockquote_tight(self):
+        before = ("There should be one nl below this.\n"
+                  "<blockquote>Hi</blockquote>\n"
+                  "There should be no nl's above this.")
+
+        after = ("There should be one nl below this.\n"
+                 "<blockquote>Hi</blockquote>"
+                 "There should be no nl's above this.")
+
+        eq_(self.newlines_helper(before), after)
+
+    def test_newlines_blockquote_loose(self):
+        before = ("There should be two nls below this.\n\n"
+                  "<blockquote>Hi</blockquote>\n\n"
+                  "There should be one nl above this.")
+
+        after = ("There should be two nls below this.\n\n"
+                 "<blockquote>Hi</blockquote>\n"
+                 "There should be one nl above this.")
+
+        eq_(self.newlines_helper(before), after)
+
+    def test_newlines_inline(self):
+        before = ("If we end a paragraph w/ a <b>non-block-level tag</b>\n\n"
+                  "<b>The newlines</b> should be kept")
+
+        after = before  # Should stay the same
+
+        eq_(self.newlines_helper(before), after)
+
+    def test_newlines_code_inline(self):
+        before = ("Code tags aren't blocks.\n\n"
+                  "<code>alert(test);</code>\n\n"
+                  "See?")
+
+        after = before  # Should stay the same
+
+        eq_(self.newlines_helper(before), after)
+
+    def test_newlines_li_newlines(self):
+        before = ("<ul><li>\nxx</li></ul>")
+        after = ("<ul><li>xx</li></ul>")
+        eq_(self.newlines_helper(before), after)
+
+        before = ("<ul><li>xx\n</li></ul>")
+        after = ("<ul><li>xx</li></ul>")
+        eq_(self.newlines_helper(before), after)
+
+        before = ("<ul><li>xx\nxx</li></ul>")
+        after = ("<ul><li>xx\nxx</li></ul>")
+        eq_(self.newlines_helper(before), after)
+
+        before = ("<ul><li></li></ul>")
+        after = ("<ul><li></li></ul>")
+        eq_(self.newlines_helper(before), after)
+
+        # All together now
+        before = ("<ul><li>\nxx</li> <li>xx\n</li> <li>xx\nxx</li> "
+                  "<li></li>\n</ul>")
+
+        after = ("<ul><li>xx</li><li>xx</li><li>xx\nxx</li>"
+                 "<li></li></ul>")
+
+        eq_(self.newlines_helper(before), after)
+
+    def test_newlines_empty_tag(self):
+        before = ("This is a <b></b> test!")
+        after = before
+
+        eq_(self.newlines_helper(before), after)
+
+    def test_newlines_empty_tag_nested(self):
+        before = ("This is a <b><i></i></b> test!")
+        after = before
+
+        eq_(self.newlines_helper(before), after)
+
+    def test_newlines_empty_tag_block_nested(self):
+        before = ("Test.\n\n<blockquote><ul><li></li></ul></blockquote>\ntest.")
+        after = ("Test.\n\n<blockquote><ul><li></li></ul></blockquote>test.")
+
+        eq_(self.newlines_helper(before), after)
+
+    def test_newlines_empty_tag_block_nested_spaced(self):
+        before = ("Test.\n\n<blockquote>\n\n<ul>\n\n<li>"
+                  "</li>\n\n</ul>\n\n</blockquote>\ntest.")
+        after = ("Test.\n\n<blockquote><ul><li></li></ul></blockquote>test.")
+
+        eq_(self.newlines_helper(before), after)
+
+    def test_newlines_li_newlines_inline(self):
+        before = ("<ul><li>\n<b>test\ntest\n\ntest</b>\n</li>"
+                  "<li>Test <b>test</b> test.</ul>")
+
+        after = ("<ul><li><b>test\ntest\n\ntest</b></li>"
+                 "<li>Test <b>test</b> test.</ul>")
+
+        eq_(self.newlines_helper(before), after)
+
+    def test_newlines_li_newlines_inline(self):
+        before = ("Test with <b>no newlines</b> and <code>block level "
+                  "stuff</code> to see what happens.")
+
+        after = before  # Should stay the same
+
+        eq_(self.newlines_helper(before), after)
+
+    def test_newlines_spaced_blocks(self):
+        before = ("<blockquote>\n\n<ul>\n\n<li>\n\ntest\n\n</li>\n\n"
+                  "</ul>\n\n</blockquote>")
+
+        after = "<blockquote><ul><li>test</li></ul></blockquote>"
+
+        eq_(self.newlines_helper(before), after)
+
+    def test_newlines_spaced_inline(self):
+        before = "Line.\n\n<b>\nThis line is bold.\n</b>\n\nThis isn't."
+        after = before
+
+        eq_(self.newlines_helper(before), after)
+
+    def test_newlines_nested_inline(self):
+        before = "<b>\nThis line is bold.\n\n<i>This is also italic</i></b>"
+        after = before
+
+        eq_(self.newlines_helper(before), after)
+
+    def test_newlines_xss_script(self):
+        before = "<script>\n\nalert('test');\n</script>"
+        after = "&lt;script&gt;\n\nalert('test');\n&lt;/script&gt;"
+
+        eq_(self.newlines_helper(before), after)
+
+    def test_newlines_xss_inline(self):
+        before = "<b onclick=\"alert('test');\">test</b>"
+        after = "<b>test</b>"
+
+        eq_(self.newlines_helper(before), after)
+
+    def test_newlines_attribute_doublequote(self):
+        before = '<a href="http://google.com">test</a>'
+
+        parsed = self.newlines_helper(before)
+
+        assert parsed.endswith('google.com" rel="nofollow">test</a>')
+
+    def test_newlines_attribute_singlequote(self):
+        before = "<abbr title='laugh out loud'>lol</abbr>"
+        after = '<abbr title="laugh out loud">lol</abbr>'
+
+        eq_(self.newlines_helper(before), after)
+
+    def test_newlines_attribute_doublequote(self):
+        before = '<abbr title="laugh out loud">lol</abbr>'
+        after = before
+
+        eq_(self.newlines_helper(before), after)
+
+    def test_newlines_attribute_nestedquotes_doublesingle(self):
+        before = '<abbr title="laugh \'out\' loud">lol</abbr>'
+        after = before
+
+        eq_(self.newlines_helper(before), after)
+
+    def test_newlines_attribute_nestedquotes_singledouble(self):
+        before = '<abbr title=\'laugh "out" loud\'>lol</abbr>'
+        after = before
+
+        eq_(self.newlines_helper(before), after)
+
     def test_app_categories(self):
         addon = lambda: Addon.objects.get(pk=3615)
 
