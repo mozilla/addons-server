@@ -261,7 +261,7 @@ def deliver_hotness():
 
     a = avg(users this week)
     b = avg(users three weeks before this week)
-    hotness = (a-b) / b if a > 100 and b > 1 else 0
+    hotness = (a-b) / b if a > 1000 and b > 1 else 0
     """
     frozen = [f.id for f in FrozenAddon.objects.all()]
     all_ids = list((Addon.objects.exclude(type=amo.ADDON_PERSONA)
@@ -278,7 +278,7 @@ def deliver_hotness():
         threeweek = dict(qs.filter(date__range=(four_weeks, one_week)))
         for addon in addons:
             this, three = thisweek.get(addon.id, 0), threeweek.get(addon.id, 0)
-            if this > 100 and three > 1:
+            if this > 1000 and three > 1:
                 addon.update(hotness=(this - three) / float(three))
             else:
                 addon.update(hotness=0)
