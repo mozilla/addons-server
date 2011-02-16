@@ -9,11 +9,12 @@ import happyforms
 import path
 from tower import ugettext as _, ungettext as ngettext
 
+from access import acl
 import amo
 import captcha.fields
 from amo.utils import slug_validator, slugify, sorted_groupby, remove_icons
 from addons.models import (Addon, AddonCategory, BlacklistedSlug,
-                           Category, MiniAddon, ReverseNameLookup)
+                           Category, ReverseNameLookup)
 from addons.widgets import IconWidgetRenderer, CategoriesSelectMultiple
 from applications.models import Application
 from devhub import tasks
@@ -22,7 +23,6 @@ from translations.fields import TransField, TransTextarea
 from translations.forms import TranslationFormMixin
 from translations.models import Translation
 from translations.widgets import TranslationTextInput
-from versions.compare import version_int
 
 
 def clean_name(name, instance=None):
@@ -55,8 +55,7 @@ class AddonFormBasic(AddonFormBase):
 
     def __init__(self, *args, **kw):
         super(AddonFormBasic, self).__init__(*args, **kw)
-        self.fields['tags'].initial = ', '.join(t.tag_text for
-                            t in self.instance.tags.filter(restricted=False))
+        self.fields['tags'].initial = ', '.join(self.get_tags(self.instance))
         # Do not simply append validators, as validators will persist between
         # instances.
         validate_name = lambda x: clean_name(x, self.instance)
@@ -64,10 +63,15 @@ class AddonFormBasic(AddonFormBase):
         name_validators.append(validate_name)
         self.fields['name'].validators = name_validators
 
+    def get_tags(self, addon):
+        if acl.action_allowed(self.request, 'Admin', 'EditAnyAddon'):
+            return [t.tag_text for t in addon.tags.all()]
+        else:
+            return [t.tag_text for t in addon.tags.filter(restricted=False)]
+
     def save(self, addon, commit=False):
         tags_new = self.cleaned_data['tags']
-        tags_old = [slugify(t.tag_text, spaces=True) for
-                    t in addon.tags.filter(restricted=False)]
+        tags_old = [slugify(t, spaces=True) for t in self.get_tags(addon)]
 
         # Add new tags.
         for t in set(tags_new) - set(tags_old):
@@ -104,12 +108,16 @@ class AddonFormBasic(AddonFormBase):
 
         restricted = (Tag.objects.values_list('tag_text', flat=True)
                          .filter(tag_text__in=target, restricted=True))
-        if restricted:
-            # L10n: {0} is a single tag or a comma-separated list of tags.
-            msg = ngettext('"{0}" is a reserved tag and cannot be used.',
-                           '"{0}" are reserved tags and cannot be used.',
-                           len(restricted)).format('", "'.join(restricted))
-            raise forms.ValidationError(msg)
+        if not acl.action_allowed(self.request, 'Admin', 'EditAnyAddon'):
+            if restricted:
+                # L10n: {0} is a single tag or a comma-separated list of tags.
+                msg = ngettext('"{0}" is a reserved tag and cannot be used.',
+                               '"{0}" are reserved tags and cannot be used.',
+                               len(restricted)).format('", "'.join(restricted))
+                raise forms.ValidationError(msg)
+        else:
+            # Admin's restricted tags don't count towards the limit.
+            total = len(target - set(restricted))
 
         if total > max_tags:
             num = total - max_tags
