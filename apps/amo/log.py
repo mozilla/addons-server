@@ -12,7 +12,7 @@ class _LOG(object):
 
 class CREATE_ADDON(_LOG):
     id = 1
-    action_class = None
+    action_class = 'add'
     format = _(u'{addon} was created.')
     keep = True
 
