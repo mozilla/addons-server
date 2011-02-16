@@ -426,9 +426,6 @@ MINIFY_BUNDLES = {
 
             # Hover delay for global header
             'js/global/menu.js',
-
-            # Paypal
-            'js/paypal.js'
         ),
         'zamboni/discovery-pane': (
             'js/zamboni/jquery-1.4.2.min.js',
@@ -581,6 +578,7 @@ PAYPAL_BN = ''
 PAYPAL_CGI_URL = 'https://www.paypal.com/cgi-bin/webscr'
 PAYPAL_PAY_URL = 'https://paypal.com/adaptivepayments/pay'
 PAYPAL_FLOW_URL = 'https://paypal.com/webapps/adaptivepayment/flow/pay'
+PAYPAL_JS_URL = 'https://www.paypalobjects.com/js/external/dg.js'
 PAYPAL_USER = ''
 PAYPAL_PASSWORD = ''
 PAYPAL_SIGNATURE = ''

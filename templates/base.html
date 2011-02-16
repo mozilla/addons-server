@@ -34,6 +34,7 @@
         data-anonymous="{{ (not request.user.is_authenticated())|json }}"
         data-readonly="{{ settings.READ_ONLY|json }}"
         data-media-url="{{ MEDIA_URL }}"
+        data-paypal-url="{{ settings.PAYPAL_JS_URL }}"
         {% block bodyattrs %}{% endblock %}>
 
     {% if ADMIN_MESSAGE or settings.READ_ONLY%}

@@ -186,8 +186,11 @@ var contributions = {
                 data: $(this).serialize(),
                 success: function(json) {
                     if (json.paykey) {
-                        dgFlow.startFlow(json.url);
-                        $self.find('span.cancel a').click()
+                        $.getScript($('body').attr('data-paypal-url'), function() {
+                            dgFlow = new PAYPAL.apps.DGFlow();
+                            dgFlow.startFlow(json.url);
+                            $self.find('span.cancel a').click();
+                        })
                     } else {
                         $self.find('#paypal-error').show();
                     }

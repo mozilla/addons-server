@@ -6,12 +6,15 @@ $(document).ready(function() {
          $.ajax({type: 'GET',
             url: $(this).attr('href') + '?result_type=json',
             success: function(json) {
-                dgFlow.startFlow(json.url);
+                $.getScript($('body').attr('data-paypal-url'), function() {
+                    dgFlow = new PAYPAL.apps.DGFlow();
+                    dgFlow.startFlow(json.url);
+                });
             }
         });
         return false;
     });
-    dgFlow = new PAYPAL.apps.DGFlow();
+
 });
 
 top_dgFlow = top.dgFlow || (top.opener && top.opener.top.dgFlow);
