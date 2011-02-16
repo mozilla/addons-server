@@ -84,7 +84,7 @@ function initRecs() {
     }
 
     // Hide "What are Add-ons?" and show "Recommended for You" module.
-    if (false && guids.length > MIN_ADDONS) {
+    if (guids.length > MIN_ADDONS) {
         $("body").removeClass("no-recs").addClass("recs");
 
         var cacheObject = localStorage.getItem("discopane-recs");
