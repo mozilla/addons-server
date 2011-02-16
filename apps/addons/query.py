@@ -39,6 +39,13 @@ class IndexQuery(models.query.sql.Query):
         if not hasattr(self, 'index_map'):
             self.index_map = {}
 
+    def get_count(self, using):
+        # Don't use the index for counts, it's slower.
+        index_map = self.index_map
+        self.index_map = {}
+        count = super(IndexQuery, self).get_count(using)
+        self.index_map = index_map
+        return count
 
 
 class IndexCompiler(compiler.SQLCompiler):
