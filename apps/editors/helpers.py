@@ -30,9 +30,11 @@ class EditorQueueTable(SQLTable):
     addon_name = tables.Column(verbose_name=_(u'Addon'))
     addon_type_id = tables.Column(verbose_name=_(u'Type'))
     waiting_time_days = tables.Column(verbose_name=_(u'Waiting Time'))
-    flags = tables.Column(verbose_name=_(u'Flags'))
-    applications = tables.Column(verbose_name=_(u'Applications'))
-    additional_info = tables.Column(verbose_name=_(u'Additional Information'))
+    flags = tables.Column(verbose_name=_(u'Flags'), sortable=False)
+    applications = tables.Column(verbose_name=_(u'Applications'),
+                                 sortable=False)
+    additional_info = tables.Column(verbose_name=_(u'Additional Information'),
+                                    sortable=False)
 
     def render_addon_name(self, row):
         url = '%s?num=%s' % (reverse('editors.review',

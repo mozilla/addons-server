@@ -6,7 +6,7 @@ import test_utils
 
 import amo
 from addons.models import Addon
-from versions.models import Version, ApplicationsVersions
+from versions.models import Version, ApplicationsVersions, VersionSummary
 from files.models import Platform, File
 from applications.models import Application, AppVersion
 from editors.models import (ViewPendingQueue, ViewFullReviewQueue,
@@ -14,7 +14,8 @@ from editors.models import (ViewPendingQueue, ViewFullReviewQueue,
 
 
 def create_addon_file(name, version_str, addon_status, file_status,
-                      platform=amo.PLATFORM_ALL, application=amo.FIREFOX):
+                      platform=amo.PLATFORM_ALL, application=amo.FIREFOX,
+                      admin_review=False, addon_type=amo.ADDON_EXTENSION):
     app, created = Application.objects.get_or_create(id=application.id,
                                                      guid=application.guid)
     app_vr, created = AppVersion.objects.get_or_create(application=app,
@@ -23,8 +24,15 @@ def create_addon_file(name, version_str, addon_status, file_status,
     try:
         ad = Addon.objects.get(name__localized_string=name)
     except Addon.DoesNotExist:
-        ad = Addon.objects.create(type=amo.ADDON_EXTENSION, name=name)
+        ad = Addon.objects.create(type=addon_type, name=name)
+    if admin_review:
+        ad.update(admin_review=True)
     vr, created = Version.objects.get_or_create(addon=ad, version=version_str)
+    vs, created = VersionSummary.objects.get_or_create(version=vr,
+                                                       addon=ad,
+                                                       application=app,
+                                                       max=app_vr.id,
+                                                       min=app_vr.id)
     va, created = ApplicationsVersions.objects.get_or_create(
                         version=vr, application=app, min=app_vr, max=app_vr)
     fi = File.objects.create(version=vr, filename=u"%s.xpi" % name,

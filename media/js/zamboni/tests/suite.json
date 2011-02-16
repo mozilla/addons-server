@@ -4,6 +4,7 @@
         "js/zamboni/jstestnet.js",
         "js/zamboni/tests.js",
         "js/zamboni/devhub.js",
-        "js/zamboni/l10n.js"
+        "js/zamboni/l10n.js",
+        "js/zamboni/editors.js"
     ]
 }
