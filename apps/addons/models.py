@@ -1271,3 +1271,11 @@ class FrozenAddon(models.Model):
 
     def __unicode__(self):
         return 'Frozen: %s' % self.addon_id
+
+
+def freezer(sender, instance, **kw):
+    # Adjust the hotness of the FrozenAddon.
+    if instance.addon_id:
+        Addon.objects.get(id=instance.addon_id).update(hotness=0)
+
+dbsignals.post_save.connect(freezer, sender=FrozenAddon)
