@@ -239,7 +239,7 @@ header:after,
         -moz-linear-gradient(top, #fff 0, #ecf1f7 100%);
     border-radius: 0 8px 8px 0;
 }
-.no-recs header {
+.no-recs header.auth {
     background:
         url(../../img/zamboni/discovery_pane/bg-home.png) no-repeat 100% -moz-calc(100% - 3px),
         -moz-linear-gradient(top, #fff 0, #ecf1f7 100%);

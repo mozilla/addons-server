@@ -208,6 +208,26 @@ class TestUrls(test_utils.TestCase):
         self.assertRedirects(r, url, 301)
 
 
+class TestPane(test_utils.TestCase):
+    fixtures = ['base/apps', 'base/users']
+
+    def setUp(self):
+        self.url = reverse('discovery.pane', args=['3.7a1pre', 'Darwin'])
+
+    def test_header_logged_in(self):
+        self.client.login(username='regular@mozilla.com', password='password')
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        assert doc('header.auth')
+        assert doc('#my-account')
+
+    def test_header_logged_out(self):
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        assert not doc('header.auth')
+        assert doc('#mission')
+
+
 class TestDownloadSources(test_utils.TestCase):
     fixtures = ['base/apps', 'base/addon_3615', 'base/collections',
                 'base/featured', 'addons/featured',
