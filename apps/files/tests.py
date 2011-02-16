@@ -324,7 +324,7 @@ class TestFileUpload(UploadTest):
 
     def upload(self):
         # The data should be in chunks.
-        data = list(amo.utils.chunked(self.data, 3))
+        data = [''.join(x) for x in amo.utils.chunked(self.data, 3)]
         return FileUpload.from_post(data, 'filename.xpi',
                                     len(self.data))
 
