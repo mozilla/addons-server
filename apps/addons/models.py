@@ -99,7 +99,7 @@ class AddonManager(amo.models.ManagerBase):
                 kw = dict((prefix + k, v) for k, v in kw.items())
             return Q(*args, **kw)
 
-        return q(q(type=amo.ADDON_PERSONA) | q(_current_version__isnull=False),
+        return q(q(_current_version__isnull=False),
                  disabled_by_user=False, status__in=status)
 
 

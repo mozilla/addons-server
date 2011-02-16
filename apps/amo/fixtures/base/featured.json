@@ -32,6 +32,7 @@
         "model": "addons.addon",
         "fields": {
             "slug": "15679",
+            "_current_version": 15679,
             "dev_agreement": 0,
             "last_updated": "2009-03-30 23:18:20",
             "average_daily_downloads": 0,
@@ -521,6 +522,16 @@
             "icontype": "",
             "modified": "2008-04-07 08:16:55",
             "created": "2007-03-05 13:09:27"
+        }
+    },
+    {
+        "pk": 15679,
+        "model": "versions.version",
+        "fields": {
+            "created": "2010-01-14 11:39:40",
+            "modified": "2010-01-14 11:40:45",
+            "version": "0",
+            "addon": 15679
         }
     },
     {
