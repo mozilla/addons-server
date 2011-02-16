@@ -162,6 +162,25 @@ class TestTagsForm(test_utils.TestCase):
         eq_(form.errors['tags'][0],
             '"restartless", "sdk" are reserved tags and cannot be used.')
 
+    @patch('access.acl.action_allowed')
+    def test_tags_admin_restricted(self, action_allowed):
+        action_allowed.return_value = True
+        self.add_restricted('restartless')
+        self.add_tags('foo, bar')
+        eq_(self.get_tag_text(), ['bar', 'foo'])
+        self.add_tags('foo, bar, restartless')
+        eq_(self.get_tag_text(), ['bar', 'foo', 'restartless'])
+        form = forms.AddonFormBasic(data=self.data, request=None,
+                                    instance=self.addon)
+        eq_(form.fields['tags'].initial, 'bar, foo, restartless')
+
+    @patch('access.acl.action_allowed')
+    def test_tags_admin_restricted_count(self, action_allowed):
+        action_allowed.return_value = True
+        self.add_restricted()
+        self.add_tags('restartless, %s' % (', '.join('tag-test-%s' %
+                                                     i for i in range(0, 20))))
+
     def test_tags_restricted_count(self):
         self.add_restricted()
         self.add_tags(', '.join('tag-test-%s' % i for i in range(0, 20)))
@@ -180,8 +199,8 @@ class TestTagsForm(test_utils.TestCase):
         form = forms.AddonFormBasic(data=data, request=None,
                                     instance=self.addon)
         assert not form.is_valid()
-        eq_(form.errors['tags'],['All tags must be 128 characters or '
-                                 'less after invalid characters are removed.'])
+        eq_(form.errors['tags'], ['All tags must be 128 characters or less'
+                                  ' after invalid characters are removed.'])
 
 
 class TestIconRemoval(test_utils.TestCase):
