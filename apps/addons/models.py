@@ -529,6 +529,12 @@ class Addon(amo.models.ModelBase):
         # Attach sharing stats.
         sharing.attach_share_counts(AddonShareCountTotal, 'addon', addon_dict)
 
+        # Attach previews.
+        qs = Preview.objects.filter(addon__in=addons).order_by()
+        qs = sorted(qs, key=lambda x: (x.addon_id, x.position, x.created))
+        for addon, previews in itertools.groupby(qs, lambda x: x.addon_id):
+            addon_dict[addon].all_previews = list(previews)
+
     @property
     def show_beta(self):
         return self.status == amo.STATUS_PUBLIC and self.current_beta_version
@@ -565,9 +571,8 @@ class Addon(amo.models.ModelBase):
         Returns the addon's thumbnail url or a default.
         """
         try:
-            preview = self.previews.all()[0]
+            preview = self.all_previews[0]
             return preview.thumbnail_url
-
         except IndexError:
             return settings.MEDIA_URL + '/img/amo2009/icons/no-preview.png'
 
@@ -776,6 +781,10 @@ class Addon(amo.models.ModelBase):
     @amo.cached_property(writable=True)
     def all_categories(self):
         return list(self.categories.all())
+
+    @amo.cached_property(writable=True)
+    def all_previews(self):
+        return list(self.previews.all())
 
     @property
     def app_categories(self):

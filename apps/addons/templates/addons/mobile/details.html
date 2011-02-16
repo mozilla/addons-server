@@ -25,13 +25,12 @@
     </p>
   </div>
 
-  {% set previews = addon.previews.all() %}
-  {% if previews %}
+  {% if addon.all_previews %}
   <div id="screenshots" class="carousel">
     <ul>
       {# TODO: lazy-load all, or at least the third and up. #}
       {# Avoid extra white-space in here- we need it collapsed. #}
-      {% for preview in previews -%}
+      {% for preview in addon.all_previews -%}
         <li>
           <a href="{{ preview.image_url }}" title="{{ preview.caption }}">
             <img src="{{ preview.thumbnail_url }}"></a>

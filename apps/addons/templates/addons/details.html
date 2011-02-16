@@ -4,7 +4,7 @@
 {% block js %}{% include("amo/recaptcha_js.html") %}{% endblock %}
 {% block bodyclass %}inverse{% endblock %}
 
-{% set previews = addon.previews.all() %}
+{% set previews = addon.all_previews %}
 
 {% block extrahead %}
   {% for preview in previews %}
