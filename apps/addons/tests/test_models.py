@@ -436,7 +436,8 @@ class TestAddonModels(test_utils.TestCase):
         eq_(a.can_request_review(), (amo.STATUS_PUBLIC,))
 
     def test_days_until_full_nomination(self):
-        now = datetime.now()
+        # Normalize to 12am for reliable day subtraction:
+        now = datetime.now().date()
         a = Addon.objects.create(type=1)
         v = Version.objects.create(addon=a)
         f = File.objects.create(status=amo.STATUS_LITE, version=v)
@@ -450,10 +451,10 @@ class TestAddonModels(test_utils.TestCase):
         f.update(datestatuschanged=now)
         eq_(a.days_until_full_nomination(), 10)
         # Only calculate days from first version:
-        f.update(datestatuschanged=now - timedelta(days=4))
+        f.update(datestatuschanged=now - timedelta(days=2))
         f2 = File.objects.create(status=amo.STATUS_LITE, version=v)
         f2.update(datestatuschanged=now - timedelta(days=1))
-        eq_(a.days_until_full_nomination(), 6)
+        eq_(a.days_until_full_nomination(), 8)
         # Wrong status:
         a.update(status=amo.STATUS_PUBLIC)
         f.update(datestatuschanged=now - timedelta(days=4))
