@@ -50,6 +50,13 @@ DATABASES = {
     },
 }
 
+SERVICES_DATABASE = {
+    'NAME': 'zamboni',
+    'USER': '',
+    'PASSWORD': '',
+    'HOST': '',
+}
+
 DATABASE_ROUTERS = ('multidb.PinningMasterSlaveRouter',)
 
 # Put the aliases for your slave databases in this list.

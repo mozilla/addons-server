@@ -29,7 +29,8 @@ from translations.query import order_by_translation
 from users.helpers import users_list
 from users.models import UserProfile
 from versions.models import Version
-from services import update, settings_services
+from services import update
+import settings_local
 
 
 def norm(s):
@@ -1033,11 +1034,13 @@ class TestUpdate(test_utils.TestCase):
         self.mac = amo.PLATFORM_MAC
         self.win = amo.PLATFORM_WIN
 
-        self.old_mirror_url = settings_services.MIRROR_URL
-        self.old_local_url = settings_services.LOCAL_MIRROR_URL
+        self.old_mirror_url = settings_local.MIRROR_URL
+        self.old_local_url = settings_local.LOCAL_MIRROR_URL
+        self.old_debug = settings_local.DEBUG
 
-        settings_services.MIRROR_URL = 'http://releases.m.o/'
-        settings_services.LOCAL_MIRROR_URL = 'http://addons.m.o/'
+        settings_local.MIRROR_URL = 'http://releases.m.o/'
+        settings_local.LOCAL_MIRROR_URL = 'http://addons.m.o/'
+        settings_local.DEBUG = False
 
     def get(self, data):
         up = update.Update(data)
@@ -1045,8 +1048,9 @@ class TestUpdate(test_utils.TestCase):
         return up
 
     def tearDown(self):
-        settings_services.MIRROR_URL = self.old_mirror_url
-        settings_services.LOCAL_MIRROR_URL = self.old_local_url
+        settings_local.MIRROR_URL = self.old_mirror_url
+        settings_local.LOCAL_MIRROR_URL = self.old_local_url
+        settings_local.DEBUG = self.old_debug
 
     def test_bad_guid(self):
         data = self.good_data.copy()
@@ -1170,14 +1174,14 @@ class TestUpdate(test_utils.TestCase):
     def test_url(self):
         up = self.get(self.good_data)
         up.get_rdf()
-        assert settings_services.MIRROR_URL in up.data['row']['url']
+        assert settings_local.MIRROR_URL in up.data['row']['url']
 
     def test_url_local_recent(self):
         a_bit_ago = datetime.now() - timedelta(seconds=60)
         File.objects.get(pk=67442).update(datestatuschanged=a_bit_ago)
         up = self.get(self.good_data)
         up.get_rdf()
-        assert settings_services.LOCAL_MIRROR_URL in up.data['row']['url']
+        assert settings_local.LOCAL_MIRROR_URL in up.data['row']['url']
 
     def test_url_remote_beta(self):
         file = File.objects.get(pk=67442)
@@ -1194,7 +1198,7 @@ class TestUpdate(test_utils.TestCase):
         self.addon_one.save()
         up.get_rdf()
         eq_(up.data['row']['file_id'], file.pk)
-        assert settings_services.MIRROR_URL in up.data['row']['url']
+        assert settings_local.MIRROR_URL in up.data['row']['url']
 
     def test_hash(self):
         rdf = self.get(self.good_data).get_rdf()

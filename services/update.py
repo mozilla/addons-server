@@ -5,7 +5,7 @@ from time import time
 import MySQLdb as mysql
 import sqlalchemy.pool as pool
 
-import settings_services as settings
+import settings_local as settings
 
 try:
     from compare import version_int
@@ -111,7 +111,7 @@ class Update(object):
     def get_beta(self):
         data = self.data
         data['status'] = STATUS_PUBLIC
-        
+
         if data['addon_status'] == STATUS_PUBLIC:
             # Beta channel looks at the addon name to see if it's beta.
             if self.is_beta_version:

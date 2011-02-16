@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta
-import settings_services as settings
+import settings_local as settings
 import posixpath
 import re
 
@@ -46,9 +46,9 @@ ADDON_SLUGS_UPDATE = {
     7: 'plugin'}
 
 
-STATUSES_PUBLIC = {'STATUS_PUBLIC':'4',
-                   'STATUS_LITE':'8',
-                   'STATUS_LITE_AND_NOMINATED':'9'}
+STATUSES_PUBLIC = {'STATUS_PUBLIC': '4',
+                   'STATUS_LITE': '8',
+                   'STATUS_LITE_AND_NOMINATED': '9'}
 
 
 version_re = re.compile(r"""(?P<major>\d+)         # major (x in x.y)
