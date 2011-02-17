@@ -3,12 +3,12 @@ from django.conf import settings
 from amo.urlresolvers import reverse
 from amo.utils import urlparams, epoch
 
+
 def addon_to_dict(addon, disco=False):
     """
     Renders an addon in JSON for the API.
     """
     v = addon.current_version
-    previews = addon.previews.all()
     url = lambda u, **kwargs: settings.SITE_URL + urlparams(u, **kwargs)
     src = 'api'
 
@@ -29,7 +29,7 @@ def addon_to_dict(addon, disco=False):
          'summary': addon.summary,
          'description': addon.description,
          'icon': addon.icon_url,
-         'previews': [p.as_dict(src=src) for p in previews],
+         'previews': [p.as_dict(src=src) for p in addon.all_previews],
          'learnmore': learnmore,
          'reviews': url(addon.reviews_url),
          'total_dls': addon.total_downloads,

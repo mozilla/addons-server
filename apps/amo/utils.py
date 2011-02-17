@@ -76,7 +76,7 @@ def sorted_groupby(seq, key):
 
     key should be a string (used with attrgetter) or a function.
     """
-    if isinstance(key, basestring):
+    if not hasattr(key, '__call__'):
         key = operator.attrgetter(key)
     return itertools.groupby(sorted(seq, key=key), key=key)
 

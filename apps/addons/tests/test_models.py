@@ -20,7 +20,8 @@ from amo import set_user
 from amo.signals import _connect, _disconnect
 from addons.models import (Addon, AddonCategory, AddonDependency,
                            AddonRecommendation, AddonType, BlacklistedGuid,
-                           Category, Charity, Feature, Persona, Preview)
+                           Category, Charity, Feature, FrozenAddon, Persona,
+                           Preview)
 from applications.models import Application, AppVersion
 from devhub.models import ActivityLog
 from files.models import File, Platform
@@ -1062,3 +1063,12 @@ class TestCharity(test_utils.TestCase):
     def test_url_foundation(self):
         foundation = Charity.objects.get(pk=amo.FOUNDATION_ORG)
         assert not foundation.outgoing_url.startswith(REDIRECT_URL)
+
+
+class TestFrozenAddons(test_utils.TestCase):
+
+    def test_immediate_freeze(self):
+        # Adding a FrozenAddon should immediately drop the addon's hotness.
+        a = Addon.objects.create(type=1, hotness=22)
+        FrozenAddon.objects.create(addon=a)
+        eq_(Addon.objects.get(id=a.id).hotness, 0)

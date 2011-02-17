@@ -50,7 +50,7 @@
   <eula>{{ addon.eula|strip_html(new_api) }}</eula>
   {%- if new_api -%}
   <previews>
-    {%- for preview in addon.previews.all() -%}
+    {%- for preview in addon.all_previews -%}
     <preview position="{{ preview.position|int }}">
       <full type="{{ preview.filetype }}">
         {{ preview.image_url|urlparams(src='api') }}

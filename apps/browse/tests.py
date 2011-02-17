@@ -847,6 +847,10 @@ class TestLegacyRedirects(test_utils.TestCase):
 class TestFeaturedPage(test_utils.TestCase):
     fixtures = ('base/apps', 'base/featured', 'addons/featured')
 
+    def setUp(self):
+        if hasattr(Addon, '_feature'):
+            del Addon._feature
+
     def test_featured_addons(self):
         """Make sure that only featured add-ons are shown"""
         # Persona returned by featured.

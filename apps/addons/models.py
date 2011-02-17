@@ -99,7 +99,7 @@ class AddonManager(amo.models.ManagerBase):
                 kw = dict((prefix + k, v) for k, v in kw.items())
             return Q(*args, **kw)
 
-        return q(q(type=amo.ADDON_PERSONA) | q(_current_version__isnull=False),
+        return q(q(_current_version__isnull=False),
                  disabled_by_user=False, status__in=status)
 
 
@@ -529,6 +529,12 @@ class Addon(amo.models.ModelBase):
         # Attach sharing stats.
         sharing.attach_share_counts(AddonShareCountTotal, 'addon', addon_dict)
 
+        # Attach previews.
+        qs = Preview.objects.filter(addon__in=addons).order_by()
+        qs = sorted(qs, key=lambda x: (x.addon_id, x.position, x.created))
+        for addon, previews in itertools.groupby(qs, lambda x: x.addon_id):
+            addon_dict[addon].all_previews = list(previews)
+
     @property
     def show_beta(self):
         return self.status == amo.STATUS_PUBLIC and self.current_beta_version
@@ -565,9 +571,8 @@ class Addon(amo.models.ModelBase):
         Returns the addon's thumbnail url or a default.
         """
         try:
-            preview = self.previews.all()[0]
+            preview = self.all_previews[0]
             return preview.thumbnail_url
-
         except IndexError:
             return settings.MEDIA_URL + '/img/amo2009/icons/no-preview.png'
 
@@ -776,6 +781,10 @@ class Addon(amo.models.ModelBase):
     @amo.cached_property(writable=True)
     def all_categories(self):
         return list(self.categories.all())
+
+    @amo.cached_property(writable=True)
+    def all_previews(self):
+        return list(self.previews.all())
 
     @property
     def app_categories(self):
@@ -1271,3 +1280,11 @@ class FrozenAddon(models.Model):
 
     def __unicode__(self):
         return 'Frozen: %s' % self.addon_id
+
+
+def freezer(sender, instance, **kw):
+    # Adjust the hotness of the FrozenAddon.
+    if instance.addon_id:
+        Addon.objects.get(id=instance.addon_id).update(hotness=0)
+
+dbsignals.post_save.connect(freezer, sender=FrozenAddon)

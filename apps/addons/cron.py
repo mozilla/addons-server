@@ -372,3 +372,11 @@ def _group_addons(qs):
             # array.array() lets us calculate similarities much faster.
             addons[addon] = array.array('l', cs)
     return addons
+
+
+@cronjobs.register
+def give_personas_versions():
+    cursor = connections['default'].cursor()
+    path = os.path.join(settings.ROOT, 'migrations/149-personas-versions.sql')
+    with open(path) as f:
+        cursor.execute(f.read())

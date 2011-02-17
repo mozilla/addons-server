@@ -133,8 +133,7 @@ def themes(request, category=None):
             raise http.Http404()
         addons = addons.filter(categories__id=category.id)
 
-    count = addons.with_index(addons='type_status_inactive_idx').count()
-    themes = amo.utils.paginate(request, addons, count=count)
+    themes = amo.utils.paginate(request, addons, count=addons.count())
     return jingo.render(request, 'browse/themes.html',
                         {'categories': categories,
                          'themes': themes, 'category': category,
@@ -160,8 +159,7 @@ def extensions(request, category=None, template=None):
     if category:
         addons = addons.filter(categories__id=category.id)
 
-    count = addons.with_index(addons='type_status_inactive_idx').count()
-    addons = amo.utils.paginate(request, addons, count=count)
+    addons = amo.utils.paginate(request, addons, count=addons.count())
     return jingo.render(request, template,
                         {'category': category, 'addons': addons,
                          'sorting': filter.field,
@@ -255,12 +253,9 @@ def personas_listing(request, category=None):
 def personas(request, category=None):
     categories, filter, base, category = personas_listing(request, category)
 
-    if category:
-        count = category.count
-    else:
-        # Pass the count from base instead of letting it come from
-        # filter.qs.count() since that would join against personas.
-        count = base.with_index(addons='type_status_inactive_idx').count()
+    # Pass the count from base instead of letting it come from
+    # filter.qs.count() since that would join against personas.
+    count = category.count if category else base.count()
 
     if 'sort' in request.GET or count < 5:
         template = 'grid.html'

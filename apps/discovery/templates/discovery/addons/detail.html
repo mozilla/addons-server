@@ -1,9 +1,7 @@
 {% extends "discovery/addons/base.html" %}
 
-{% set previews = addon.previews.all() %}
-
 {% block extrahead %}
-  {% for preview in previews %}
+  {% for preview in addon.all_previews %}
     <link rel="prefetch" href="{{ preview.image_url }}">
   {% endfor %}
 {% endblock %}
@@ -34,14 +32,14 @@
 </ul>
 
 {% if addon.type != amo.ADDON_PERSONA %}
-  {% if previews|length > 1 %}
+  {% if addon.all_previews|length > 1 %}
     <div id="images">
       <ul class="nav-images">
         <li class="nav-prev"><a href="#" class="prev">{{ _('Previous') }}</a></li>
         <li class="nav-next"><a href="#" class="next">{{ _('Next') }}</a></li>
       </ul>
       <ul class="slider">
-        {% for preview in previews %}
+        {% for preview in addon.all_previews %}
           <li class="panel">
             <a class="screenshot thumbnail" rel="jquery-lightbox"
                href="{{ preview.image_url }}" title="{{ preview.caption }}">

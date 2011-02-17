@@ -77,6 +77,7 @@ HOME = /tmp
 25 1,13 * * * $REMORA; /usr/bin/python26 import-personas.py
 # Add slugs after we get all the new personas.
 25 2,14 * * * $Z_CRON addons_add_slugs
+45 2,14 * * * $Z_CRON give_personas_versions
 25 3,15 * * * $Z_CRON update_addons_collections_downloads
 25 8,20 * * * $Z_CRON update_collections_total
 25 9,21 * * * $Z_CRON hide_disabled_files
