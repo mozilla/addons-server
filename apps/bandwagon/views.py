@@ -8,7 +8,6 @@ from django.shortcuts import get_object_or_404, redirect
 import commonware.log
 import jingo
 import caching.base as caching
-from mobility.decorators import mobile_template
 from tower import ugettext_lazy as _lazy, ugettext as _
 
 from amo import messages
@@ -53,10 +52,12 @@ def owner_required(f=None, require_owner=True):
     return decorator(f) if f else decorator
 
 
-def legacy_redirect(request, uuid):
+def legacy_redirect(request, uuid, edit=False):
     # Nicknames have a limit of 30, so len == 36 implies a uuid.
     key = 'uuid' if len(uuid) == 36 else 'nickname'
     c = get_object_or_404(Collection.objects, **{key: uuid})
+    if edit:
+        return redirect(c.edit_url())
     return redirect(c.get_url_path() + '?' + request.GET.urlencode())
 
 

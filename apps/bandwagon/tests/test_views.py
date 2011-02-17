@@ -108,6 +108,13 @@ class TestViews(test_utils.TestCase):
         for test in tests:
             self.check_response(*test)
 
+    def test_legacy_redirects_edit(self):
+        self.client.login(username='jbalogh@mozilla.com', password='foo')
+        u = UserProfile.objects.get(email='jbalogh@mozilla.com')
+        uuid = u.favorites_collection().uuid
+        self.check_response('/collections/edit/%s' % uuid, 301,
+                            u.favorites_collection().edit_url())
+
     def test_collection_directory_redirects(self):
         base = reverse('collections.list')
         tests = [
