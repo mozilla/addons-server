@@ -450,10 +450,13 @@ class TestAddonModels(test_utils.TestCase):
         eq_(a.days_until_full_nomination(), 0)
         f.update(datestatuschanged=now)
         eq_(a.days_until_full_nomination(), 10)
-        # Only calculate days from first version:
-        f.update(datestatuschanged=now - timedelta(days=2))
+        # Only calculate days from first submitted version:
+        f.update(datestatuschanged=now - timedelta(days=2),
+                 created=now - timedelta(days=2))
+        # Ignore this one:
         f2 = File.objects.create(status=amo.STATUS_LITE, version=v)
-        f2.update(datestatuschanged=now - timedelta(days=1))
+        f2.update(datestatuschanged=now - timedelta(days=1),
+                  created=now - timedelta(days=1))
         eq_(a.days_until_full_nomination(), 8)
         # Wrong status:
         a.update(status=amo.STATUS_PUBLIC)

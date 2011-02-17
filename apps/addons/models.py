@@ -600,6 +600,7 @@ class Addon(amo.models.ModelBase):
         """
         if self.status != amo.STATUS_LITE:
             return 0
+        # Calculate wait time from the earliest submitted version:
         qs = (File.objects.filter(version__addon=self, status=self.status)
               .order_by('created').values_list('datestatuschanged'))[:1]
         if qs:
