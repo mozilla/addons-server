@@ -248,12 +248,6 @@ class TestDownloadSources(test_utils.TestCase):
         urls = doc('#featured-addons li a[href$="?src=discovery-featured"]')
         eq_(urls.length, 2)
 
-    def test_top_addons(self):
-        r = self.client.get(self.url)
-        doc = pq(r.content)
-        urls = doc('#top-addons li a[href$="?src=discovery-top"]')
-        eq_(urls.length, 3)
-
     def test_featured_personas(self):
         r = self.client.get(self.url)
         doc = pq(r.content)

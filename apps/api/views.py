@@ -267,6 +267,9 @@ class ListView(APIView):
         elif list_type == 'by_adu':
             addons = qs.order_by('-average_daily_users')[:limit + BUFFER]
             shuffle = False  # By_adu is an ordered list.
+        elif list_type == 'hotness':
+            addons = qs.order_by('-hotness')[:limit + BUFFER]
+            shuffle = False
         else:
             addons = Addon.objects.featured(APP) & qs
 

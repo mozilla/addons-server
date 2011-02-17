@@ -41,7 +41,7 @@ def pane(request, version, platform):
     return jingo.render(request, 'discovery/pane.html',
                         {'modules': get_modules(request, platform, version),
                          'addon_downloads': addon_downloads,
-                         'top_addons': from_api('by_adu'),
+                         'top_addons': from_api('hotness'),
                          'featured_addons': from_api('featured'),
                          'featured_personas': get_featured_personas(request),
                          'version': version, 'platform': platform})
