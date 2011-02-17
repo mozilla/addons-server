@@ -149,7 +149,7 @@ if (z.browser.firefox) {
     var vc = new VersionCompare(),
         betaVer = document.body.getAttribute('data-min-beta-version');
     z.fxBeta = vc.compareVersions(z.browserVersion, betaVer);
-    if (z.fxBeta) {
+    if (z.fxBeta > -1) {
         $(document.body).addClass('fxbeta');
     }
 } else {
