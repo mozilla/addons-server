@@ -2,16 +2,10 @@
  * Based on amo2009/addons.js
 **/
 
-var escape_ = function(s){
-    return s.replace('&', '&amp;').replace('>', '&gt;').replace('<', '&lt;')
-            .replace("'", '&#39;').replace('"', '&#34;');
-};
-
 function BrowserUtils() {
     "use strict";
 
-    var exports = {},
-        userAgentStrings = {
+    var userAgentStrings = {
             'firefox' : /Mozilla.*(Firefox|Minefield|Namoroka|Shiretoko|GranParadiso|BonEcho|Iceweasel|Fennec|MozillaDeveloperPreview)\/([^\s]*).*$/,
             'seamonkey': /Mozilla.*(SeaMonkey|Iceape)\/([^\s]*).*$/,
             'mobile': /Mozilla.*(Fennec)\/([^\s]*)$/,
@@ -24,7 +18,7 @@ function BrowserUtils() {
         };
 
     // browser detection
-    var browser = exports.browser = {},
+    var browser = {},
         browserVersion = 0,
         pattern, match, i;
     for (i in userAgentStrings) {
@@ -37,25 +31,26 @@ function BrowserUtils() {
             }
         }
     }
-    if (browser.mobile) browser.firefox = false;
-    exports.browserVersion = browserVersion;
 
-    var os = exports.os = {},
+    var os = {},
         platform = "";
     for (i in osStrings) {
         if (osStrings.hasOwnProperty(i)) {
             pattern = osStrings[i];
-            if (navigator.platform.indexOf(pattern) != -1) {
-                $(document.body).addClass(os);
-                os[i] = true;
+            os[i] = navigator.platform.indexOf(pattern) != -1;
+            if (os[i]) {
                 platform = i;
             }
         }
     }
     os['other'] = !platform;
-    exports.platform = platform;
 
-    return exports;
+    return {
+        "browser": browser,
+        "browserVersion": browserVersion,
+        "os": os,
+        "platform": platform
+    };
 }
 
 var VersionCompare = {
@@ -68,11 +63,11 @@ var VersionCompare = {
         var al = a.split('.'),
             bl = b.split('.'),
             ap, bp, r, i;
-        for (var i=0; i<al.length || i<bl.length; i++) {
+        for (i=0; i<al.length || i<bl.length; i++) {
             ap = (i<al.length ? al[i] : null);
             bp = (i<bl.length ? bl[i] : null);
             r = this.compareVersionParts(ap,bp);
-            if (r != 0)
+            if (r !== 0)
                 return r;
         }
         return 0;
@@ -140,9 +135,9 @@ var VersionCompare = {
         if (as == bs)
             return 0;
         // any string comes *before* the empty string
-        if (as == '')
+        if (as === '')
             return 1;
-        if (bs == '')
+        if (bs === '')
             return -1;
         // normal string comparison for non-empty strings (like strcmp)
         if (as < bs)

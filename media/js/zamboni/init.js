@@ -99,6 +99,8 @@ _.haskey = function(obj, key) {
 
 /* Detect browser, version, and OS. */
 $.extend(z, BrowserUtils());
+$(document.body).addClass(z.platform);
+
 
 /* Details for the current application. */
 z.app = document.body.getAttribute('data-app');
@@ -113,7 +115,7 @@ z.readonly = JSON.parse(document.body.getAttribute('data-readonly'));
 
 if (z.browser.firefox) {
     var betaVer = document.body.getAttribute('data-min-beta-version');
-    z.fxBeta = VersionCompare.compareVersions(z.browserVersion, betaVer);
+    z.fxBeta = (VersionCompare.compareVersions(z.browserVersion, betaVer) > -1);
     if (z.fxBeta) {
         $(document.body).addClass('fxbeta');
     }
