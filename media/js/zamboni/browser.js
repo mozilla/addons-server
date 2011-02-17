@@ -1,0 +1,155 @@
+/* Browser Utilities
+ * Based on amo2009/addons.js
+**/
+
+var escape_ = function(s){
+    return s.replace('&', '&amp;').replace('>', '&gt;').replace('<', '&lt;')
+            .replace("'", '&#39;').replace('"', '&#34;');
+};
+
+function BrowserUtils() {
+    "use strict";
+
+    var exports = {},
+        userAgentStrings = {
+            'firefox' : /Mozilla.*(Firefox|Minefield|Namoroka|Shiretoko|GranParadiso|BonEcho|Iceweasel|Fennec|MozillaDeveloperPreview)\/([^\s]*).*$/,
+            'seamonkey': /Mozilla.*(SeaMonkey|Iceape)\/([^\s]*).*$/,
+            'mobile': /Mozilla.*(Fennec)\/([^\s]*)$/,
+            'thunderbird': /Mozilla.*(Thunderbird|Shredder|Lanikai)\/([^\s*]*).*$/
+        },
+        osStrings = {
+            'windows': 'Win32',
+            'mac': 'Mac',
+            'linux': 'Linux'
+        };
+
+    // browser detection
+    var browser = exports.browser = {},
+        browserVersion = 0,
+        pattern, match, i;
+    for (i in userAgentStrings) {
+        if (userAgentStrings.hasOwnProperty(i)) {
+            pattern = userAgentStrings[i];
+            match = pattern.exec(navigator.userAgent);
+            browser[i] = !!(match && match.length === 3);
+            if (browser[i]) {
+                browserVersion = escape_(match[2]);
+            }
+        }
+    }
+    if (browser.mobile) browser.firefox = false;
+    exports.browserVersion = browserVersion;
+
+    var os = exports.os = {},
+        platform = "";
+    for (i in osStrings) {
+        if (osStrings.hasOwnProperty(i)) {
+            pattern = osStrings[i];
+            if (navigator.platform.indexOf(pattern) != -1) {
+                $(document.body).addClass(os);
+                os[i] = true;
+                platform = i;
+            }
+        }
+    }
+    os['other'] = !platform;
+    exports.platform = platform;
+
+    return exports;
+}
+
+var VersionCompare = {
+    /**
+     * Mozilla-style version numbers comparison in Javascript
+     * (JS-translated version of PHP versioncompare component)
+     * @return -1: a<b, 0: a==b, 1: a>b
+     */
+    compareVersions: function(a,b) {
+        var al = a.split('.'),
+            bl = b.split('.'),
+            ap, bp, r, i;
+        for (var i=0; i<al.length || i<bl.length; i++) {
+            ap = (i<al.length ? al[i] : null);
+            bp = (i<bl.length ? bl[i] : null);
+            r = this.compareVersionParts(ap,bp);
+            if (r != 0)
+                return r;
+        }
+        return 0;
+    },
+
+    /**
+     * helper function: compare a single version part
+     */
+    compareVersionParts: function(ap,bp) {
+        var avp = this.parseVersionPart(ap),
+            bvp = this.parseVersionPart(bp),
+            r = this.cmp(avp['numA'],bvp['numA']);
+        if (r) return r;
+        r = this.strcmp(avp['strB'],bvp['strB']);
+        if (r) return r;
+        r = this.cmp(avp['numC'],bvp['numC']);
+        if (r) return r;
+        return this.strcmp(avp['extraD'],bvp['extraD']);
+    },
+
+    /**
+     * helper function: parse a version part
+     */
+    parseVersionPart: function(p) {
+        if (p == '*') {
+            return {
+                'numA'   : Number.MAX_VALUE,
+                'strB'   : '',
+                'numC'   : 0,
+                'extraD' : ''
+                };
+        }
+        var pattern = /^([-\d]*)([^-\d]*)([-\d]*)(.*)$/,
+            m = pattern.exec(p),
+            r = {
+            'numA'  : parseInt(m[1]),
+            'strB'   : m[2],
+            'numC'   : parseInt(m[3]),
+            'extraD' : m[4]
+            };
+        if (r['strB'] == '+') {
+            r['numA']++;
+            r['strB'] = 'pre';
+        }
+        return r;
+    },
+
+    /**
+     * helper function: compare numeric version parts
+     */
+    cmp: function(an,bn) {
+        if (isNaN(an)) an = 0;
+        if (isNaN(bn)) bn = 0;
+        if (an < bn)
+            return -1;
+        if (an > bn)
+            return 1;
+        return 0;
+    },
+
+    /**
+     * helper function: compare string version parts
+     */
+    strcmp: function(as,bs) {
+        if (as == bs)
+            return 0;
+        // any string comes *before* the empty string
+        if (as == '')
+            return 1;
+        if (bs == '')
+            return -1;
+        // normal string comparison for non-empty strings (like strcmp)
+        if (as < bs)
+            return -1;
+        else if(as > bs)
+            return 1;
+        else
+            return 0;
+    }
+};

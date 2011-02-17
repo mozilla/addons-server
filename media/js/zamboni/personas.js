@@ -81,8 +81,7 @@ $.hasPersonas = function() {
     if (!jQuery.browser.mozilla) return false;
 
     // Fx 3.6 has lightweight themes (aka personas)
-    var versionCompare = new VersionCompare();
-    if (versionCompare.compareVersions(
+    if (VersionCompare.compareVersions(
         $.browser.version, '1.9.2') > -1) {
         return true;
     }

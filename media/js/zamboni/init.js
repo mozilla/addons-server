@@ -98,41 +98,7 @@ _.haskey = function(obj, key) {
 
 
 /* Detect browser, version, and OS. */
-z.browser = {firefox: false, seamonkey: false, mobile: false,
-             thunderbird: false};
-z.browserVersion = 0;
-z.os = {windows: false, mac: false, linux: false, other: false};
-
-(function(){
-    // Globals are coming from amo2009/addons.js.
-    var ua = function(browser, pattern) {
-        match = pattern.exec(navigator.userAgent);
-        if (match && match.length == 3) {
-            z.browser[browser] = true;
-            z.browserVersion = escape_(match[2]);
-        }
-    }
-    // Mobile comes after Firefox to overwrite the browser version.
-    ua('firefox', UA_PATTERN_FIREFOX);
-    ua('mobile', UA_PATTERN_MOBILE);
-    ua('seamonkey', UA_PATTERN_SEAMONKEY);
-    ua('thunderbird', UA_PATTERN_THUNDERBIRD);
-
-    var platform = function(os, needle) {
-        if (navigator.platform.indexOf(needle) != -1) {
-            $(document.body).addClass(os);
-            z.os[os] = true;
-            z.platform = os;
-        }
-    }
-    platform('windows', 'Win32');
-    platform('mac', 'Mac');
-    platform('linux', 'Linux');
-
-    if (!_.any(_.values(z.os))) {
-        platform('other', '');
-    }
-})();
+$.extend(z, BrowserUtils());
 
 /* Details for the current application. */
 z.app = document.body.getAttribute('data-app');
@@ -146,9 +112,8 @@ z.media_url = document.body.getAttribute('data-media-url');
 z.readonly = JSON.parse(document.body.getAttribute('data-readonly'));
 
 if (z.browser.firefox) {
-    var vc = new VersionCompare(),
-        betaVer = document.body.getAttribute('data-min-beta-version');
-    z.fxBeta = vc.compareVersions(z.browserVersion, betaVer);
+    var betaVer = document.body.getAttribute('data-min-beta-version');
+    z.fxBeta = VersionCompare.compareVersions(z.browserVersion, betaVer);
     if (z.fxBeta) {
         $(document.body).addClass('fxbeta');
     }

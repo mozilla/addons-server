@@ -51,7 +51,7 @@ $(document).ready(function() {
     /* No restart required box. (Only shown in Fx4+). */
     var no_restart = $('#addon-summary #no-restart');
     if (no_restart.length && z.browser.firefox
-        && (new VersionCompare()).compareVersions(z.browserVersion, '4.0a1') > 0) {
+        && VersionCompare.compareVersions(z.browserVersion, '4.0a1') > 0) {
         no_restart.show();
     }
 });

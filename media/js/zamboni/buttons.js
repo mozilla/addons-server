@@ -11,8 +11,7 @@ z.button.after = {'contrib': function(xpi_url, status) {
     }
 }};
 
-var vc = new VersionCompare(),
-    notavail = '<div class="extra"><span class="notavail">{0}</span></div>',
+var notavail = '<div class="extra"><span class="notavail">{0}</span></div>',
     download_re = new RegExp('(/downloads/(?:latest|file)/\\d+)');
 
 /* Called by the jQuery plugin to set up a single button. */
@@ -67,8 +66,8 @@ var installButton = function() {
     // min and max only exist if the add-on is compatible with request[APP].
     if (appSupported) {
         // The user *has* an older/newer browser.
-        olderBrowser = vc.compareVersions(z.browserVersion, min) < 0;
-        newerBrowser = vc.compareVersions(z.browserVersion, max) > 0;
+        olderBrowser = VersionCompare.compareVersions(z.browserVersion, min) < 0;
+        newerBrowser = VersionCompare.compareVersions(z.browserVersion, max) > 0;
     }
 
     // Helper for dealing with lazy-loaded z.button.messages.
