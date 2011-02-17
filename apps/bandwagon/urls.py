@@ -37,6 +37,9 @@ ajax_urls = patterns('',
 urlpatterns = patterns('',
     url('^collection/(?P<uuid>[^/]+)/?$', views.legacy_redirect),
     url('^collections/view/(?P<uuid>[^/]+)/?$', views.legacy_redirect),
+    # Remora sharing API uses this:
+    url('^collections/edit/(?P<uuid>[^/]+)/?$', views.legacy_redirect,
+        {'edit': True}),
 
     url('^collections/$', views.collection_listing, name='collections.list'),
     url('^collections/(editors_picks|popular|mine|favorites)/?$',
