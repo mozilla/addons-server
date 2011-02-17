@@ -1332,7 +1332,7 @@ function initCompatibility() {
 function imagePoller() {
     this.start = function(override, delay) {
         if (override || !this.poll) {
-            this.poll = window.setTimeout(this.check, delay || 100);
+            this.poll = window.setTimeout(this.check, delay || 1000);
         }
     };
     this.stop = function() {
@@ -1364,8 +1364,11 @@ var imageStatus = {
         };
         this.preview.check = function() {
             var self = imageStatus;
-            $('div.preview-thumb').each(function(e) {
-                var $this = $(this);
+            $('div.preview-thumb').each(function(){
+                check_images(this);
+            });
+            function check_images(el) {
+                var $this = $(el);
                 if ($this.hasClass('preview-successful')) {
                     return;
                 }
@@ -1379,12 +1382,13 @@ var imageStatus = {
                     }
                 };
                 img.onerror = function() {
-                    self.preview.start(true, 2500);
+                    setTimeout(function(){ check_images(el) }, 2500);
                     self.polling();
                     $this.attr('style', '').addClass('preview-error');
+                    delete img;
                 };
                 img.src = self.newurl($this.attr('data-url'));
-            });
+            }
         };
         this.icon.start();
         this.preview.start();
