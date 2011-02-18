@@ -995,8 +995,11 @@ def submit_resume(request, addon_id, addon):
 
 
 def _resume(addon, step):
-    step = step[0].step if step else 7
-    return redirect('devhub.submit.%s' % step, addon.slug)
+    if step:
+        return redirect('devhub.submit.%s' % step[0].step, addon.slug)
+
+    return redirect('devhub.versions', addon.slug)
+
 
 
 @login_required

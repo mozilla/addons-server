@@ -3272,7 +3272,7 @@ class TestResumeStep(TestSubmitBase):
 
     def test_no_step_redirect(self):
         r = self.client.get(self.url, follow=True)
-        self.assertRedirects(r, reverse('devhub.submit.7', args=['a3615']),
+        self.assertRedirects(r, reverse('devhub.versions', args=['a3615']),
                              302)
 
     def test_step_redirects(self):
