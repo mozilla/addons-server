@@ -216,8 +216,7 @@ class RawSQLManager(object):
         if not FIELD_PATTERN.match(field):
             raise ValueError('Not a valid field for where clause: %r' % field)
         param_k = self._param(val)
-        if field in self.base_query['select']:
-            field = self.base_query['select'][field]
+        field = self._resolve_alias(field)
         return '%s = %%(%s)s' % (field, param_k)
 
     def _filter_to_clause(self, *specs):
@@ -234,9 +233,7 @@ class RawSQLManager(object):
                     'This is not a valid clause: %r; must match: %s' % (
                                             spec, RAW_FILTER_PATTERN.pattern))
             field = clause.group('field')
-            if field in self.base_query['select']:
-                # Support filtering by alias, similar to how a view works
-                field = self.base_query['select'][field]
+            field = self._resolve_alias(field)
             if clause.group('op').lower() == 'in':
                 # eg. WHERE foo IN (%(param_0)s, %(param_1)s, %(param_2)s)
                 #     WHERE foo IN (1, 2, 3)
@@ -252,6 +249,12 @@ class RawSQLManager(object):
             c = u'(%s)' % c
         return c
 
+    def _resolve_alias(self, field):
+        if field in self.base_query['select']:
+            # Support accedssing a field by alias, similar to how a view works
+            field = self.base_query['select'][field]
+        return field
+
     def order_by(self, spec):
         """Order by column (ascending) or -column (descending)."""
         if not ORDER_PATTERN.match(spec):
@@ -263,7 +266,8 @@ class RawSQLManager(object):
             dir = 'ASC'
             field = spec
         clone = self._clone()
-        clone.base_query['order_by'].append('%s %s' % (field, dir))
+        clone.base_query['order_by'].append(
+                            '%s %s' % (clone._resolve_alias(field), dir))
         return clone
 
     def _compile(self, parts):

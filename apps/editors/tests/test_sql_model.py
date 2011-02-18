@@ -161,6 +161,12 @@ class TestSQLModel(unittest.TestCase):
         c = Summary.objects.all().order_by('-category')[0]
         eq_(c.category, 'safety')
 
+    def test_order_by_alias(self):
+        c = ProductDetail.objects.all().order_by('product')[0]
+        eq_(c.product, 'defilbrilator')
+        c = ProductDetail.objects.all().order_by('-product')[0]
+        eq_(c.product, 'snake skin jacket')
+
     @raises(ValueError)
     def test_order_by_injection(self):
         qs = Summary.objects.order_by('category; drop table foo;')[0]
