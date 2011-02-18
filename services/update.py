@@ -1,6 +1,10 @@
 from email.Utils import formatdate
-from urlparse import parse_qsl
+from email.mime.text import MIMEText
+import smtplib
+import sys
 from time import time
+import traceback
+from urlparse import parse_qsl
 
 import MySQLdb as mysql
 import sqlalchemy.pool as pool
@@ -52,9 +56,9 @@ bad_rdf = """<?xml version="1.0"?>
 
 
 def getconn():
-    db = settings.DATABASE_SETTINGS
-    return mysql.connect(host=db['host'], user=db['user'],
-                         passwd=db['passwd'], db=db['db'])
+    db = settings.SERVICES_DATABASE
+    return mysql.connect(host=db['HOST'], user=db['USER'],
+                         passwd=db['PASSWORD'], db=db['NAME'])
 
 
 mypool = pool.QueuePool(getconn, max_overflow=10, pool_size=5)
@@ -248,10 +252,31 @@ class Update(object):
                 ('Content-Length', str(length))]
 
 
+def mail_exception(data):
+    if settings.EMAIL_BACKEND != 'django.core.mail.backends.smtp.EmailBackend':
+        return
+
+    msg = MIMEText('%s\n\n%s' % (
+        '\n'.join(traceback.format_exception(*sys.exc_info())), data))
+    msg['Subject'] = '[Update] ERROR at /services/update'
+    msg['To'] = settings.ADMINS
+    msg['From'] = settings.DEFAULT_FROM_EMAIL
+
+
+    conn = smtplib.SMTP(settings.EMAIL_HOST, settings.EMAIL_PORT)
+    conn.sendmail(settings.DEFAULT_FROM_EMAIL, settings.ADMINS,
+                  msg.as_string())
+    conn.close()
+
+
 def application(environ, start_response):
     status = '200 OK'
     data = dict(parse_qsl(environ['QUERY_STRING']))
-    update = Update(data)
-    output = update.get_rdf()
-    start_response(status, update.get_headers(len(output)))
+    try:
+        update = Update(data)
+        output = update.get_rdf()
+        start_response(status, update.get_headers(len(output)))
+    except:
+        mail_exception(data)
+        raise
     return output
