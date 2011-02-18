@@ -473,6 +473,12 @@ def profile(request, addon_id, addon):
                         dict(addon=addon, profile_form=profile_form))
 
 
+@login_required
+def validate_addon(request):
+    return jingo.render(request, 'devhub/validate_addon.html', {})
+
+
+@login_required
 @post_required
 def upload(request):
     if request.method == 'POST':

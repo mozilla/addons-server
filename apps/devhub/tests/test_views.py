@@ -3073,12 +3073,19 @@ class TestUpload(files.tests.UploadTest):
 
     def setUp(self):
         super(TestUpload, self).setUp()
+        assert self.client.login(username='regular@mozilla.com',
+                                 password='password')
         self.url = reverse('devhub.upload')
 
     def post(self):
         # Has to be a binary, non xpi file.
         data = open(get_image_path('animated.png'), 'rb')
         return self.client.post(self.url, {'upload': data})
+
+    def test_login_required(self):
+        self.client.logout()
+        r = self.post()
+        eq_(r.status_code, 302)
 
     def test_create_fileupload(self):
         self.post()
@@ -3130,6 +3137,11 @@ class TestUpload(files.tests.UploadTest):
 
 class TestUploadDetail(files.tests.UploadTest):
     fixtures = ['base/apps', 'base/appversion', 'base/users']
+
+    def setUp(self):
+        super(TestUploadDetail, self).setUp()
+        assert self.client.login(username='regular@mozilla.com',
+                                 password='password')
 
     def post(self):
         # Has to be a binary, non xpi file.
@@ -3346,6 +3358,27 @@ class TestFileValidation(test_utils.TestCase):
         eq_(msg['message'], 'The value of &lt;em:id&gt; is invalid.')
         eq_(sorted(msg['context']),
             [[u'&lt;foo/&gt;'], u'&lt;em:description&gt;...'])
+
+
+class TestValidateAddon(test_utils.TestCase):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        super(TestValidateAddon, self).setUp()
+        assert self.client.login(username='regular@mozilla.com',
+                                 password='password')
+
+    def test_login_required(self):
+        self.client.logout()
+        r = self.client.get(reverse('devhub.validate_addon'))
+        eq_(r.status_code, 302)
+
+    def test_context(self):
+        r = self.client.get(reverse('devhub.validate_addon'))
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        eq_(doc('.invisible-upload').attr('data-upload-url'),
+            reverse('devhub.upload'))
 
 
 class TestValidateFile(files.tests.UploadTest):

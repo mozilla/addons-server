@@ -105,6 +105,10 @@ urlpatterns = decorate(write, patterns('',
     url('^addon/submit/2$', views.submit_addon,
         name='devhub.submit.2'),
 
+    # Standalone validator:
+    url('^addon/validate/?$', views.validate_addon,
+        name='devhub.validate_addon'),
+
     # Redirect to /addons/ at the base.
     url('^addon$', lambda r: redirect('devhub.addons', permanent=True)),
     url('^addons$', views.dashboard, name='devhub.addons'),

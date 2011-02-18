@@ -1503,7 +1503,8 @@ form.select-review .errorlist {
     height: 110%;
     opacity: 0;
     cursor: pointer;
-    z-index: 1;
+    /* stack this below the navbar: */
+    z-index: 0;
     outline: none;
 }
 

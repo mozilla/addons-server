@@ -28,17 +28,14 @@ $(document).ready(function() {
 
     // Submission process
     if($('.addon-submission-process').length) {
-        initSubmit();
         initLicenseFields();
         initCharCount();
-        $('.invisible-upload [disabled]').attr("disabled", false);
-        $('.invisible-upload .disabled').removeClass("disabled");
-        $('.upload-status').bind('upload-success', function(e, json) {
-            $("#submit-upload-file-finish").attr("disabled", false);
-            $("#id_upload").val(json.upload);
-        }).bind('upload-error', function() {
-            $("#submit-upload-file-finish").attr("disabled", true);
-        });
+        initSubmit();
+    }
+
+    // Validate addon (standalone)
+    if($('.validate-addon').length) {
+        initSubmit();
     }
 
     // Upload form submit
@@ -682,6 +679,14 @@ function initSubmit() {
         });
     $('#id_slug').each(slugify);
     reorderPreviews();
+    $('.invisible-upload [disabled]').attr("disabled", false);
+    $('.invisible-upload .disabled').removeClass("disabled");
+    $('.upload-status').bind('upload-success', function(e, json) {
+        $("#submit-upload-file-finish").attr("disabled", false);
+        $("#id_upload").val(json.upload);
+    }).bind('upload-error', function() {
+        $("#submit-upload-file-finish").attr("disabled", true);
+    });
 }
 
 var file = {},
