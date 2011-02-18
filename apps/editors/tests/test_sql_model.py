@@ -118,6 +118,11 @@ class TestSQLModel(unittest.TestCase):
         c = Summary.objects.all().order_by('category')[0]
         eq_(c.category, 'apparel')
 
+    def test_get_by_index(self):
+        qs = Summary.objects.all().order_by('category')
+        eq_(qs[0].category, 'apparel')
+        eq_(qs[1].category, 'safety')
+
     def test_get(self):
         c = Summary.objects.all().having('total =', 1).get()
         eq_(c.category, 'apparel')
