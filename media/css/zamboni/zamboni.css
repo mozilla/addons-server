@@ -2795,41 +2795,32 @@ h6.author, .author a {
 
 .grouped_ratings .rating_bar {
     border-left: 1px solid black;
-    margin-left: 72px;
-    padding-right: 4em;
     height: 2em;
-}
-
-.grouped_ratings li {
-    margin: 0;
-    overflow: hidden;
-    height: 2em;
-}
-
-.grouped_ratings .rating_bar span.bar {
-    display: block;
-    background: #acd;
     float: left;
-    margin: .4em .5em 0 0;
-    height: .9em;
-    position: relative;
+    width: 0px;
+    overflow: visible;
+    width: 120px;
 }
-
-.grouped_ratings .rating_bar span.num_ratings {
+.num_ratings {
+    width: 1px;
     position: absolute;
-    right: -.5em;
+    right: -4px;
     top: -2px;
     line-height: 1em;
-    width: 1px;
+}
+.grouped_ratings .rating_bar span.bar {
+    display:block;
+    height: 100%;
+    position: relative;
+    background: #acd;
+    margin: .4em .5em 0 0;
+    height: .9em;
 }
 
 .html-rtl .grouped_ratings .rating_bar {
     border-left: 0;
     border-right: 1px solid black;
-    margin-left: 0;
-    margin-right: 72px;
-    padding-right: 0;
-    padding-left: 4em;
+    float: right;
 }
 
 .html-rtl .grouped_ratings .rating_bar span.bar {
@@ -2838,8 +2829,8 @@ h6.author, .author a {
 }
 
 .html-rtl .grouped_ratings .rating_bar span.num_ratings {
-    right: inherit;
-    left: -.5em;
+    right: auto;
+    left: -4px;
 }
 
 

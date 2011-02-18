@@ -59,7 +59,8 @@ table {
 .listview li a:after,
 header:after,
 section:after,
-.menu:after {
+.menu:after,
+.grouped_ratings:after {
     content: ".";
     display: block;
     clear: both;
@@ -76,10 +77,21 @@ h1, h2, h3,
 .moz-menu {
     font-family: Georgia, serif;
 }
+.num_ratings,
+.review .old-version {
+    font-family: "Droid Sans", sans-serif;
+}
 #content h2 {
     font-style: italic;
     margin: 0 14px 14px;
+    font-size: 1.4em;
+}
+#content h3 {
     font-size: 1.2em;
+    padding-bottom: 2px;
+}
+.copy p {
+    color: #444;
 }
 a:link {
     font-family: Georgia, serif;
@@ -123,9 +135,9 @@ footer:before,
 
 html {
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAABCAYAAAASC7TOAAAAEElEQVQIHWP8//8/Aw7wHwBR6AP+G53o6QAAAABJRU5ErkJggg=='),
-                      -moz-linear-gradient(#dcedfd 0, #fff 120px);
+                      -moz-linear-gradient(#dcedfd 0, #fff 200px);
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAABCAYAAAASC7TOAAAAEElEQVQIHWP8//8/Aw7wHwBR6AP+G53o6QAAAABJRU5ErkJggg=='),
-                      -webkit-gradient(linear, left top, left 120, from(#dcedfd), to(#fff));
+                      -webkit-gradient(linear, left top, left 200, from(#dcedfd), to(#fff));
 
 }
 
@@ -187,6 +199,12 @@ table th {
 
 .copy {
     line-height: 1.2em;
+}
+
+.text-listing h2 {
+    padding-bottom: 4px;
+    border-bottom: 1px solid #ccc;
+    box-shadow: 0 1px #fff;
 }
 
 .paginator {
@@ -303,7 +321,7 @@ header hgroup {
     position: relative;
     padding-left: 80px;
 }
-header #home {
+header #home, header .back-link {
     clear: both;
     color: #447BC4;
     float: left;
@@ -936,6 +954,13 @@ td .versions li a {
     width: 63px;
     display: block;
 }
+.reviews .stars {
+    float: left;
+}
+.html-rtl .stars {
+    float: right;
+}
+
 .stars-4 {
     background-position: -13px 50%;
 }
@@ -950,6 +975,83 @@ td .versions li a {
 }
 .stars-0 {
     background-position: -65px 50%;
+}
+.grouped_ratings {
+    margin: 16px 0;
+}
+.grouped_ratings .stars-4 {
+    background-position: 13px 50%;
+}
+.grouped_ratings .stars-3 {
+    background-position: 26px 50%;
+}
+.grouped_ratings .stars-2 {
+    background-position: 39px 50%;
+}
+.grouped_ratings .stars-1 {
+    background-position: 52px 50%;
+}
+.grouped_ratings .stars-0 {
+    background-position: 65px 50%;
+}
+
+.grouped_ratings li {
+    height: 12px;
+    margin-bottom: 8px;
+    clear: both;
+}
+
+
+.grouped_ratings .rating_bar {
+    float: left;
+    height: 12px;
+    margin-top: 4px;
+    background: #eee;
+    position: relative;
+    overflow: visible;
+    width: 120px;
+}
+.num_ratings {
+    font-size: .9em;
+    color: #888;
+    line-height: 22px;
+    width: 1px;
+    position: absolute;
+    right: -6px;
+    top: 0px;
+    line-height: 1em;
+    font-size: .9em;
+}
+.grouped_ratings .rating_bar span.bar {
+    display:block;
+    height: 100%;
+    background: #888;
+    height: 12px;
+}
+
+/* rtl */
+.html-rtl .grouped_ratings .rating_bar {
+    border-left: 0;
+    float: right;
+}
+
+.html-rtl .grouped_ratings .rating_bar span.bar {
+    float: right;
+}
+
+.html-rtl .grouped_ratings .rating_bar span.num_ratings {
+    right: auto;
+    left: -4px;
+}
+.review .old-version {
+    font-size: .8em;
+    font-style: italic;
+    line-height: 1em;
+    color: #888;
+    margin-top: 4px;
+}
+.review {
+    margin-bottom: 1.5em;
 }
 
 /************************************/
