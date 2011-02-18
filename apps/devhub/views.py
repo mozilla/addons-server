@@ -5,6 +5,7 @@ import json
 import os
 import path
 import sys
+import time
 import traceback
 import uuid
 
@@ -805,7 +806,8 @@ def version_list(request, addon_id, addon):
     new_file_form = forms.NewVersionForm(None, addon=addon)
     data = {'addon': addon,
             'versions': versions,
-            'new_file_form': new_file_form}
+            'new_file_form': new_file_form,
+            'timestamp': int(time.time())}
     return jingo.render(request, 'devhub/versions/list.html', data)
 
 

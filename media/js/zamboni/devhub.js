@@ -643,8 +643,20 @@ function initVersions() {
             return true;
         }});
 
+    function fixPasswordField() {
+        // This is a hack to prevent password managers from automatically
+        // deleting add-ons.  See bug 630126.
+        $(this).find('input[type=password]').each(function(){
+            var $this = $(this);
+            if($this.attr('data-name')) {
+                $this.attr('name', $this.attr('data-name'));
+            }
+        });
+        return true;
+    }
+
     $('#modal-cancel').modal('#cancel-review', {width: 400});
-    $('#modal-delete').modal('#delete-addon', {width: 400});
+    $('#modal-delete').modal('#delete-addon', {width: 400, callback:fixPasswordField});
     $('#modal-disable').modal('#disable-addon',
         {width: 400,
          callback: function(d){
