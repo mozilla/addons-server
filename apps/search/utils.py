@@ -53,6 +53,8 @@ def convert_version(version_string):
     # Replace .x or .* with .99 since these are equivalent.
     version_string = version_string.replace('.x', '.99')
     version_string = version_string.replace('.*', '.99')
+    # Replace any leftover * with .99 (e.g., 4.0* => 4.0.99).
+    version_string = version_string.replace('*', '.99')
 
     # Replace \d+\+ with $1++pre0 (e.g. 2.1+ => 2.2pre0).
 
