@@ -92,7 +92,7 @@ HOME = /tmp
 30 7 * * * $REMORA; php -f maintenance.php collection_subscribers
 30 8 * * * $REMORA; /usr/bin/python26 maintenance.py personas_adu
 30 9 * * * $REMORA; /usr/bin/python26 maintenance.py share_count_totals
-30 10 * * * $REMORA; /usr/bin/python26 build-recommendations.py addons
+30 10 * * * $Z_CRON recs
 30 20 * * * $Z_CRON update_perf
 30 22 * * * $Z_CRON deliver_hotness
 30 23 * * * $Z_CRON collection_meta

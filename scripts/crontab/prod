@@ -51,7 +51,7 @@ HOME = /tmp
 30 7 * * * apache cd /data/amo/www/addons.mozilla.org-remora/bin; php -f maintenance.php collection_subscribers
 30 8 * * * apache cd /data/amo/www/addons.mozilla.org-remora/bin; /usr/bin/python26 maintenance.py personas_adu
 30 9 * * * apache cd /data/amo/www/addons.mozilla.org-remora/bin; /usr/bin/python26 maintenance.py share_count_totals
-30 10 * * * apache cd /data/amo/www/addons.mozilla.org-remora/bin; /usr/bin/python26 build-recommendations.py addons
+30 10 * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py cron recs
 30 20 * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py cron update_perf
 30 22 * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py cron deliver_hotness
 30 23 * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py cron collection_meta
