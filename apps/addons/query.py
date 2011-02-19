@@ -18,6 +18,17 @@ class IndexQuerySet(caching.CachingQuerySet):
         q.query.index_map.update(kw)
         return q
 
+    def fetch_missed(self, pks):
+        # Remove the indexes before doing the id query.
+        if hasattr(self.query, 'index_map'):
+            index_map = self.query.index_map
+            self.query.index_map = {}
+            rv = super(IndexQuerySet, self).fetch_missed(pks)
+            self.query.index_map = index_map
+            return rv
+        else:
+            return super(IndexQuerySet, self).fetch_missed(pks)
+
 
 class IndexQuery(models.query.sql.Query):
     """
