@@ -1,3 +1,4 @@
+# -*- coding: utf8 -*-
 """Tests for SQL Model.
 
 Currently these tests are coupled tighly with MySQL
@@ -6,6 +7,7 @@ from datetime import datetime
 import unittest
 
 from django.db import connection, models
+from django.db.models import Q
 from nose.tools import eq_, raises
 
 from editors.sql_model import RawSQLModel
@@ -85,6 +87,24 @@ class Summary(RawSQLModel):
         }
 
 
+class ProductDetail(RawSQLModel):
+    product = models.CharField(max_length=255)
+    category = models.CharField(max_length=255)
+
+    def base_query(self):
+        return {
+            'select': {
+                'product': 'p.name',
+                'category': 'c.name'
+            },
+            'from': [
+                'sql_model_test_product p',
+                'join sql_model_test_product_cat x on x.product_id=p.id',
+                'join sql_model_test_cat c on x.cat_id=c.id'],
+            'where': []
+        }
+
+
 class TestSQLModel(unittest.TestCase):
 
     def test_all(self):
@@ -97,6 +117,11 @@ class TestSQLModel(unittest.TestCase):
     def test_one(self):
         c = Summary.objects.all().order_by('category')[0]
         eq_(c.category, 'apparel')
+
+    def test_get_by_index(self):
+        qs = Summary.objects.all().order_by('category')
+        eq_(qs[0].category, 'apparel')
+        eq_(qs[1].category, 'safety')
 
     def test_get(self):
         c = Summary.objects.all().having('total =', 1).get()
@@ -136,6 +161,12 @@ class TestSQLModel(unittest.TestCase):
         c = Summary.objects.all().order_by('-category')[0]
         eq_(c.category, 'safety')
 
+    def test_order_by_alias(self):
+        c = ProductDetail.objects.all().order_by('product')[0]
+        eq_(c.product, 'defilbrilator')
+        c = ProductDetail.objects.all().order_by('-product')[0]
+        eq_(c.product, 'snake skin jacket')
+
     @raises(ValueError)
     def test_order_by_injection(self):
         qs = Summary.objects.order_by('category; drop table foo;')[0]
@@ -147,6 +178,35 @@ class TestSQLModel(unittest.TestCase):
     def test_filter_raw_equals(self):
         c = Summary.objects.all().filter_raw('category =', 'apparel')[0]
         eq_(c.category, 'apparel')
+
+    def test_filter_raw_in(self):
+        qs = Summary.objects.all().filter_raw('category IN',
+                                              ['apparel', 'safety'])
+        eq_([c.category for c in qs], ['apparel', 'safety'])
+
+    def test_filter_raw_non_ascii(self):
+        uni = 'フォクすけといっしょ'.decode('utf8')
+        qs = (Summary.objects.all().filter_raw('category =', uni)
+              .filter_raw(Q('category =', uni) | Q('category !=', uni)))
+        eq_([c.category for c in qs], [])
+
+    def test_combining_filters_with_or(self):
+        qs = (ProductDetail.objects.all()
+              .filter(Q(product='life jacket') | Q(product='defilbrilator')))
+        eq_(sorted([r.product for r in qs]), ['defilbrilator', 'life jacket'])
+
+    def test_combining_raw_filters_with_or(self):
+        qs = (ProductDetail.objects.all()
+              .filter_raw(Q('product =', 'life jacket') |
+                          Q('product =', 'defilbrilator')))
+        eq_(sorted([r.product for r in qs]), ['defilbrilator', 'life jacket'])
+
+    def test_nested_raw_filters_with_or(self):
+        qs = (ProductDetail.objects.all()
+              .filter_raw(Q('category =', 'apparel',
+                            'product =', 'defilbrilator') |
+                          Q('product =', 'life jacket')))
+        eq_(sorted([r.product for r in qs]), ['life jacket'])
 
     def test_having_gte(self):
         c = Summary.objects.all().having('total >=', 2)[0]

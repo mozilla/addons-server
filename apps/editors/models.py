@@ -65,6 +65,7 @@ class ViewQueue(RawSQLModel):
     _application_ids = models.CharField(max_length=255)
     waiting_time_days = models.IntegerField()
     waiting_time_hours = models.IntegerField()
+    is_version_specific = False
 
     def base_query(self):
         return {
@@ -136,6 +137,7 @@ class ViewFullReviewQueue(ViewQueue):
 
 
 class VersionSpecificQueue(ViewQueue):
+    is_version_specific = True
 
     def base_query(self):
         q = copy.deepcopy(super(VersionSpecificQueue, self).base_query())

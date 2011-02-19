@@ -9,7 +9,7 @@ from tower import ugettext as _
 
 import amo
 from access import acl
-from amo.decorators import login_required
+from amo.decorators import login_required, json_view, post_required
 from amo.utils import paginate
 from amo.urlresolvers import reverse
 from devhub.models import ActivityLog
@@ -76,6 +76,12 @@ def home(request):
 
 def _queue(request, TableObj, tab):
     qs = TableObj.Meta.model.objects.all()
+    if request.GET:
+        search_form = forms.QueueSearchForm(request.GET)
+        if search_form.is_valid():
+            qs = search_form.filter_qs(qs)
+    else:
+        search_form = forms.QueueSearchForm()
     review_num = request.GET.get('num', None)
     if review_num:
         try:
@@ -99,6 +105,7 @@ def _queue(request, TableObj, tab):
     table.set_page(page)
     return jingo.render(request, 'editors/queue.html',
                         {'table': table, 'page': page, 'tab': tab,
+                         'search_form': search_form,
                          'queue_counts': queue_counts})
 
 
@@ -149,7 +156,17 @@ def queue_moderated(request):
 
     return jingo.render(request, 'editors/queue.html',
             {'reviews_formset': reviews_formset, 'tab': 'moderated',
-             'page': page, 'flags': flags, 'queue_counts': _queue_counts()})
+             'page': page, 'flags': flags, 'queue_counts': _queue_counts(),
+             'search_form': None})
+
+
+@editor_required
+@post_required
+@json_view
+def application_versions_json(request):
+    app_id = request.POST['application_id']
+    f = forms.QueueSearchForm()
+    return {'choices': f.version_choices_for_app_id(app_id)}
 
 
 @editor_required

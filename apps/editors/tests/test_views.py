@@ -1,7 +1,8 @@
 # -*- coding: utf8 -*-
+import json
 import re
 import time
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from django import forms
 
@@ -12,13 +13,14 @@ import test_utils
 import amo
 from amo.urlresolvers import reverse
 from amo.tests import formset, initial
-from addons.models import Addon
+from addons.models import Addon, AddonUser
+from applications.models import Application
 from devhub.models import ActivityLog
 from editors.models import EventLog
 import reviews
 from reviews.models import Review, ReviewFlag
 from users.models import UserProfile
-from versions.models import Version
+from versions.models import Version, VersionSummary, AppVersion
 from files.models import Approval, Platform, File
 from . test_models import create_addon_file
 
@@ -259,12 +261,12 @@ class TestQueueBasics(QueueTest):
         r = self.client.get(reverse('editors.queue_pending'))
         eq_(r.status_code, 200)
         doc = pq(r.content)
-        eq_(doc('div.section table tr th:eq(0)').text(), u'Addon')
-        eq_(doc('div.section table tr th:eq(1)').text(), u'Type')
-        eq_(doc('div.section table tr th:eq(2)').text(), u'Waiting Time')
-        eq_(doc('div.section table tr th:eq(3)').text(), u'Flags')
-        eq_(doc('div.section table tr th:eq(4)').text(), u'Applications')
-        eq_(doc('div.section table tr th:eq(5)').text(),
+        eq_(doc('table.data-grid tr th:eq(0)').text(), u'Addon')
+        eq_(doc('table.data-grid tr th:eq(1)').text(), u'Type')
+        eq_(doc('table.data-grid tr th:eq(2)').text(), u'Waiting Time')
+        eq_(doc('table.data-grid tr th:eq(3)').text(), u'Flags')
+        eq_(doc('table.data-grid tr th:eq(4)').text(), u'Applications')
+        eq_(doc('table.data-grid tr th:eq(5)').text(),
             u'Additional Information')
 
 
@@ -274,12 +276,12 @@ class TestPendingQueue(QueueTest):
         r = self.client.get(reverse('editors.queue_pending'))
         eq_(r.status_code, 200)
         doc = pq(r.content)
-        row = doc('div.section table tr:eq(1)')
+        row = doc('table.data-grid tr:eq(1)')
         eq_(doc('td:eq(0)', row).text(), u'Pending One 0.1')
         eq_(doc('td a:eq(0)', row).attr('href'),
             reverse('editors.review',
                     args=[self.versions[u'Pending One'].id]) + '?num=1')
-        row = doc('div.section table tr:eq(2)')
+        row = doc('table.data-grid tr:eq(2)')
         eq_(doc('td:eq(0)', row).text(), u'Pending Two 0.1')
         eq_(doc('a:eq(0)', row).attr('href'),
             reverse('editors.review',
@@ -300,12 +302,12 @@ class TestNominatedQueue(QueueTest):
         r = self.client.get(reverse('editors.queue_nominated'))
         eq_(r.status_code, 200)
         doc = pq(r.content)
-        row = doc('div.section table tr:eq(1)')
+        row = doc('table.data-grid tr:eq(1)')
         eq_(doc('td:eq(0)', row).text(), u'Nominated One 0.1')
         eq_(doc('td a:eq(0)', row).attr('href'),
             reverse('editors.review',
                     args=[self.versions[u'Nominated One'].id]) + '?num=1')
-        row = doc('div.section table tr:eq(2)')
+        row = doc('table.data-grid tr:eq(2)')
         eq_(doc('td:eq(0)', row).text(), u'Nominated Two 0.1')
         eq_(doc('a:eq(0)', row).attr('href'),
             reverse('editors.review',
@@ -326,12 +328,12 @@ class TestPreliminaryQueue(QueueTest):
         r = self.client.get(reverse('editors.queue_prelim'))
         eq_(r.status_code, 200)
         doc = pq(r.content)
-        row = doc('div.section table tr:eq(1)')
+        row = doc('table.data-grid tr:eq(1)')
         eq_(doc('td:eq(0)', row).text(), u'Prelim One 0.1')
         eq_(doc('td a:eq(0)', row).attr('href'),
             reverse('editors.review',
                     args=[self.versions[u'Prelim One'].id]) + '?num=1')
-        row = doc('div.section table tr:eq(2)')
+        row = doc('table.data-grid tr:eq(2)')
         eq_(doc('td:eq(0)', row).text(), u'Prelim Two 0.1')
         eq_(doc('a:eq(0)', row).attr('href'),
             reverse('editors.review',
@@ -441,3 +443,225 @@ class TestModeratedQueue(QueueTest):
         eq_(doc('.tabnav li a:eq(3)').text(), u'Moderated Review (1)')
         eq_(doc('.tabnav li a:eq(3)').attr('href'),
             reverse('editors.queue_moderated'))
+
+
+class SearchTest(EditorTest):
+
+    def setUp(self):
+        self.login_as_editor()
+
+    def named_addons(self, request):
+        return [row.data.addon_name
+                for row in request.context['page'].object_list]
+
+    def search(self, data):
+        r = self.client.get(self.url, data=data)
+        eq_(r.status_code, 200)
+        eq_(r.context['search_form'].errors.as_text(), '')
+        return r
+
+
+class TestQueueSearch(SearchTest):
+    fixtures = ('base/users', 'base/apps', 'base/appversion')
+
+    def setUp(self):
+        super(TestQueueSearch, self).setUp()
+        self.url = reverse('editors.queue_nominated')
+        create_addon_file('Not Admin Reviewed', '0.1',
+                          amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED)
+        create_addon_file('Admin Reviewed', '0.1',
+                          amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED,
+                          admin_review=True)
+        create_addon_file('Justin Bieber Persona', '0.1',
+                          amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED,
+                          addon_type=amo.ADDON_THEME)
+        create_addon_file('Justin Bieber Search Bar', '0.1',
+                          amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED,
+                          addon_type=amo.ADDON_SEARCH)
+        create_addon_file('Bieber For Mobile', '0.1',
+                          amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED,
+                          application=amo.MOBILE)
+        create_addon_file('Linux Widget', '0.1',
+                          amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED,
+                          platform=amo.PLATFORM_LINUX)
+        create_addon_file('Mac Widget', '0.1',
+                          amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED,
+                          platform=amo.PLATFORM_MAC)
+
+    def test_search_by_admin_reviewed(self):
+        r = self.search({'admin_review': 1})
+        eq_(self.named_addons(r), ['Admin Reviewed'])
+
+    def test_search_by_addon_name(self):
+        r = self.search({'text_query': 'admin'})
+        eq_(sorted(self.named_addons(r)), ['Admin Reviewed',
+                                           'Not Admin Reviewed'])
+
+    def test_search_by_addon_in_locale(self):
+        uni = 'フォクすけといっしょ'.decode('utf8')
+        d = create_addon_file('Some Addon', '0.1',
+                              amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED)
+        a = Addon.objects.get(pk=d['addon'].id)
+        a.name = {'ja': uni}
+        a.save()
+        r = self.client.get('/ja/' + self.url, data={'text_query': uni},
+                            follow=True)
+        eq_(r.status_code, 200)
+        eq_(sorted(self.named_addons(r)), ['Some Addon'])
+
+    def test_search_by_addon_author(self):
+        d = create_addon_file('For Author Search', '0.1',
+                              amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED)
+        u = UserProfile.objects.create(username='fligtar',
+                                       email='Fligtar@fligtar.com')
+        au = AddonUser.objects.create(user=u, addon=d['addon'])
+        author = AddonUser.objects.filter(id=au.id)
+        for role in [amo.AUTHOR_ROLE_OWNER,
+                     amo.AUTHOR_ROLE_DEV]:
+            author.update(role=role)
+            r = self.search({'text_query': 'fligtar@fligtar.com'})
+            eq_(self.named_addons(r), ['For Author Search'])
+        author.update(role=amo.AUTHOR_ROLE_VIEWER)
+        r = self.search({'text_query': 'fligtar@fligtar.com'})
+        eq_(self.named_addons(r), [])
+
+    def test_search_by_supported_email_in_locale(self):
+        d = create_addon_file('Some Addon', '0.1',
+                              amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED)
+        uni = 'フォクすけといっしょ@site.co.jp'.decode('utf8')
+        a = Addon.objects.get(pk=d['addon'].id)
+        a.support_email = {'ja': uni}
+        a.save()
+        r = self.client.get('/ja/' + self.url, data={'text_query': uni},
+                            follow=True)
+        eq_(r.status_code, 200)
+        eq_(sorted(self.named_addons(r)), ['Some Addon'])
+
+    def test_search_by_addon_type(self):
+        r = self.search({'addon_type_ids': [amo.ADDON_THEME]})
+        eq_(self.named_addons(r), ['Justin Bieber Persona'])
+
+    def test_search_by_many_addon_types(self):
+        r = self.search({'addon_type_ids': [amo.ADDON_THEME,
+                                            amo.ADDON_SEARCH]})
+        eq_(sorted(self.named_addons(r)),
+            ['Justin Bieber Persona', 'Justin Bieber Search Bar'])
+
+    def test_search_by_platform_mac(self):
+        r = self.search({'platform_ids': [amo.PLATFORM_MAC.id]})
+        eq_(r.status_code, 200)
+        eq_(self.named_addons(r), ['Mac Widget'])
+
+    def test_search_by_platform_linux(self):
+        r = self.search({'platform_ids': [amo.PLATFORM_LINUX.id]})
+        eq_(r.status_code, 200)
+        eq_(self.named_addons(r), ['Linux Widget'])
+
+    def test_search_by_platform_mac_linux(self):
+        r = self.search({'platform_ids': [amo.PLATFORM_MAC.id,
+                                          amo.PLATFORM_LINUX.id]})
+        eq_(r.status_code, 200)
+        eq_(sorted(self.named_addons(r)), ['Linux Widget', 'Mac Widget'])
+
+    def test_search_by_app(self):
+        r = self.search({'application_id': [amo.MOBILE.id]})
+        eq_(r.status_code, 200)
+        eq_(self.named_addons(r), ['Bieber For Mobile'])
+
+    def test_search_by_version_requires_app(self):
+        r = self.client.get(self.url, data={'max_version': '3.6'})
+        eq_(r.status_code, 200)
+        # This is not the most descriptive message but it's
+        # the easiest to show.  This missing app scenario is unlikely.
+        eq_(r.context['search_form'].errors.as_text(),
+            '* max_version\n  * Select a valid choice. 3.6 is not '
+            'one of the available choices.')
+
+    def test_search_by_app_version(self):
+        d = create_addon_file('Bieber For Mobile 4.0b2pre', '0.1',
+                              amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED,
+                              application=amo.MOBILE)
+        app = Application.objects.get(pk=amo.MOBILE.id)
+        max = AppVersion.objects.get(application=app, version='4.0b2pre')
+        VersionSummary.objects.create(application=app,
+                                      version=d['version'],
+                                      addon=d['addon'],
+                                      max=max.id)
+        r = self.search({'application_id': amo.MOBILE.id,
+                         'max_version': '4.0b2pre'})
+        eq_(self.named_addons(r), [u'Bieber For Mobile 4.0b2pre'])
+
+    def test_age_of_submission(self):
+        Addon.objects.update(
+                nomination_date=datetime.now() - timedelta(days=1))
+        bieber = (Addon.objects
+                  .filter(name__localized_string='Justin Bieber Persona'))
+        bieber.update(nomination_date=datetime.now() - timedelta(days=5))
+        r = self.search({'waiting_time_days': 2})
+        addons = self.named_addons(r)
+        assert 'Justin Bieber Persona' not in addons, (
+                                'Unexpected results: %r' % addons)
+        bieber.update(nomination_date=datetime.now() - timedelta(days=8))
+        r = self.search({'waiting_time_days': '10+'})
+        addons = self.named_addons(r)
+        assert 'Justin Bieber Persona' not in addons, (
+                                'Unexpected results: %r' % addons)
+        bieber.update(nomination_date=datetime.now() - timedelta(days=12))
+        r = self.search({'waiting_time_days': '10+'})
+        addons = self.named_addons(r)
+        assert 'Justin Bieber Persona' in addons, (
+                                'Unexpected results: %r' % addons)
+
+    def test_form(self):
+        r = self.search({})
+        doc = pq(r.content)
+        eq_(doc('#id_application_id').attr('data-url'),
+            reverse('editors.application_versions_json'))
+        eq_(doc('#id_max_version option').text(),
+            'Select an application first')
+        r = self.search({'application_id': amo.MOBILE.id})
+        doc = pq(r.content)
+        eq_(doc('#id_max_version option').text(), '4.0b2pre 2.0a1pre 1.0')
+
+    def test_application_versions_json(self):
+        r = self.client.post(reverse('editors.application_versions_json'),
+                             {'application_id': amo.MOBILE.id})
+        eq_(r.status_code, 200)
+        data = json.loads(r.content)
+        eq_(data['choices'],
+            [['', ''],
+             ['4.0b2pre', '4.0b2pre'],
+             ['2.0a1pre', '2.0a1pre'],
+             ['1.0', '1.0']])
+
+
+class TestQueueSearchVersionSpecific(SearchTest):
+
+    def setUp(self):
+        super(TestQueueSearchVersionSpecific, self).setUp()
+        self.url = reverse('editors.queue_prelim')
+        create_addon_file('Not Admin Reviewed', '0.1',
+                          amo.STATUS_LITE, amo.STATUS_UNREVIEWED)
+        create_addon_file('Justin Bieber Persona', '0.1',
+                          amo.STATUS_LITE, amo.STATUS_UNREVIEWED,
+                          addon_type=amo.ADDON_THEME)
+
+    def test_age_of_submission(self):
+        Version.objects.update(created=datetime.now() - timedelta(days=1))
+        bieber = (Version.objects.filter(
+                  addon__name__localized_string='Justin Bieber Persona'))
+        bieber.update(created=datetime.now() - timedelta(days=5))
+        r = self.search({'waiting_time_days': 2})
+        addons = self.named_addons(r)
+        assert 'Justin Bieber Persona' not in addons, (
+                                'Unexpected results: %r' % addons)
+        bieber.update(created=datetime.now() - timedelta(days=8))
+        r = self.search({'waiting_time_days': '10+'})
+        addons = self.named_addons(r)
+        assert 'Justin Bieber Persona' not in addons, (
+                                'Unexpected results: %r' % addons)
+        bieber.update(created=datetime.now() - timedelta(days=12))
+        r = self.search({'waiting_time_days': '10+'})
+        addons = self.named_addons(r)
+        assert 'Justin Bieber Persona' in addons, (
+                                'Unexpected results: %r' % addons)

@@ -350,3 +350,51 @@ tr.comments {
     color: #9A2E2E;
 }
 
+/* data grid search form */
+.queue-outer #queue-search table {
+    margin: 0;
+    padding: 0;
+}
+.queue-outer #queue-search {
+    padding: 1em;
+}
+#advanced-search {
+    display: none;
+    margin-top: 1em;
+}
+#advanced-search .column1 {
+    float: left;
+    width: 375px;
+}
+#advanced-search .column1 label {
+    display: block;
+    float: left;
+    width: 13em;
+}
+#advanced-search .form-elem {
+    margin-bottom: 0.5em;
+}
+#advanced-search .column2,
+#advanced-search .column3 {
+    float: left;
+    width: 250px;
+}
+#advanced-search .column2 label,
+#advanced-search .column3 label {
+    display: block;
+}
+#advanced-search .form-row {
+    clear: both;
+    padding-bottom: 1em;
+}
+#advanced-search .column3:after {
+    content: ".";
+    display: block;
+    clear: both;
+    height: 0;
+    visibility: hidden;
+}
+#id_text_query {
+    width: 25em;
+    height: 1.5em;
+}

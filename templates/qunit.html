@@ -177,6 +177,20 @@
       </div>
     </div>
   </div>
+  <div id="editors-search-form">
+    <form>
+      <label for="id_application_id">Application</label>
+      <select data-url="/application_versions.json" name="application_id" id="id_application_id">
+        <option value="" selected="selected"></option>
+        <option value="1">Firefox</option>
+        <option value="2">Mozilla</option>
+      </select>
+      <label for="id_max_version">Max. Version</label>
+      <select name="max_version" id="id_max_version">
+        <option value="" selected="selected">Select an application first</option>
+      </select>
+    </form>
+  </div>
 
 
   <script src="{{ url('jsi18n') }}/build:{{ BUILD_ID_JS }}"></script>

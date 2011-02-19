@@ -25,6 +25,46 @@
 
 <div class="queue-outer">
   <div class="queue-inner">
+    {% if search_form %}
+    <div id="queue-search">
+      <form action="" method="get">
+        <label for="id_text_query">{{ search_form['text_query'].label }}</label>
+        {{ search_form['text_query'] }}
+        <button type="submit">{{ _('Search') }}</button>
+        <a id="toggle-queue-search" href="#">{{ _('Advanced Search') }}</a>
+        {% if search_form.data %}
+          (<a href="{{ url('editors.queue_%s' % tab) }}">{{ _('clear search') }}</a>)
+        {% endif %}
+        <div id="advanced-search">
+          <div class="column1">
+            <div class="form-row">
+              {% for elem in ('admin_review', 'application_id',
+                              'max_version', 'waiting_time_days') %}
+                <label for="id_{{ elem }}">{{ search_form[elem].label }}</label>
+                <div class="form-elem">{{ search_form[elem] }}</div>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="column2">
+            <div class="form-row">
+              {% for elem in ('addon_type_ids',) %}
+                <label for="id_{{ elem }}">{{ search_form[elem].label }}</label>
+                <div class="form-elem">{{ search_form[elem] }}</div>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="column3">
+            <div class="form-row">
+              {% for elem in ('platform_ids',) %}
+                <label for="id_{{ elem }}">{{ search_form[elem].label }}</label>
+                <div class="form-elem">{{ search_form[elem] }}</div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    {% endif %}
     {% if page|paginator %}
     <div class="data-grid-content data-grid-top">
     {{ page|paginator }}
@@ -90,9 +130,13 @@
                   {% set cls, sprite = '', 'both' %}
                 {% endif %}
                 <th class="{{ cls }}">
-                  <a href="?sort={{ column.name_toggled }}" class="sort-icon ed-sprite-sort-{{ sprite }}">
+                  {% if column.sortable %}
+                    <a href="?sort={{ column.name_toggled }}" class="sort-icon ed-sprite-sort-{{ sprite }}">
+                      {{ column }}
+                    </a>
+                  {% else %}
                     {{ column }}
-                  </a>
+                  {% endif %}
                 </th>
               {% endfor %}
           </tr>
