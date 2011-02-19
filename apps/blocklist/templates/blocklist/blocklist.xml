@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<blocklist xmlns="http://www.mozilla.org/2006/addons-blocklist">
+{% if items %}
+  <emItems>
+  {% for guid, rows in items.items() %}
+    <emItem id="{{ guid }}" {{ attrs(os=rows.os) }}>
+      {% for row in rows.rows %}
+        {% if row.min or row.max or row.severity or row.apps %}
+          <versionRange {{ attrs(minVersion=row.min, maxVersion=row.max,
+                                 severity=row.severity) }}>
+          {% for app in row.apps %}
+            <targetApplication {{ attrs(id=app.guid) }}>
+              {% if app.min and app.max %}
+                <versionRange {{ attrs(minVersion=app.min, maxVersion=app.max) }} />
+              {% endif %}
+            </targetApplication>
+          {% endfor %}
+          </versionRange>
+        {% endif %}
+      {% endfor %}
+    </emItem>
+  {% endfor %}
+  </emItems>
+{% endif %}
+
+{% if plugins %}
+  <pluginItems>
+  {% for plugin in plugins %}
+    <pluginItem {{ attrs(os=plugin.os, xpcomabi=plugin.xpcomabi) }}>
+      {% if plugin.name %}<match name="name" exp="{{ plugin.name }}" />{% endif %}
+      {% if plugin.description %}<match name="description" exp="{{ plugin.description }}" />{% endif %}
+      {% if plugin.filename %}<match name="filename" exp="{{ plugin.filename }}" />{% endif %}
+      {% if plugin.severity or plugin.min or plugin.max %}
+        <versionRange {{ attrs(severity=plugin.severity) }}>
+          {% if apiver > 2 and plugin.min and plugin.max %}
+            <targetApplication id="{{ appguid }}">
+              <versionRange {{ attrs(minVersion=plugin.min, maxVersion=plugin.max) }} />
+            </targetApplication>
+          {% endif %}
+        </versionRange>
+      {% endif %}
+    </pluginItem>
+  {% endfor %}
+  </pluginItems>
+{% endif %}
+
+{% if gfxs %}
+  <gfxItems>
+  {% for gfx in gfxs %}
+    <gfxBlacklistEntry>
+      <os>{{ gfx.os }}</os>
+      <vendor>{{ gfx.vendor }}</vendor>
+      <devices>
+        {% for device in gfx.devices.split(' ') %}
+          <device>{{ device }}</device>
+        {% endfor %}
+      </devices>
+      <feature>{{ gfx.feature }}</feature>
+      <featureStatus>{{ gfx.feature_status }}</featureStatus>
+      <driverVersion>{{ gfx.driver_version }}</driverVersion>
+      <driverVersionComparator>{{ gfx.driver_version_comparator }}</driverVersionComparator>
+    </gfxBlacklistEntry>
+  {% endfor %}
+  </gfxItems>
+{% endif %}
+
+
+</blocklist>

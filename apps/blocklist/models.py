@@ -4,7 +4,7 @@ import amo.models
 
 
 class BlocklistApp(amo.models.ModelBase):
-    blitem = models.ForeignKey('BlocklistItem')
+    blitem = models.ForeignKey('BlocklistItem', related_name='app')
     guid = models.CharField(max_length=255, blank=True, db_index=True,
                             null=True)
     min = models.CharField(max_length=255, blank=True, null=True)
@@ -54,6 +54,28 @@ class BlocklistPlugin(amo.models.ModelBase):
     def __unicode__(self):
         return '%s: %s - %s' % (self.name or self.guid or self.filename,
                                     self.min, self.max)
+
+    def flush_urls(self):
+        return ['/blocklist*']  # no lang/app
+
+
+class BlocklistGfx(amo.models.ModelBase):
+    guid = models.CharField(max_length=255, blank=True, null=True)
+    os = models.CharField(max_length=255, blank=True, null=True)
+    vendor = models.CharField(max_length=255, blank=True, null=True)
+    devices = models.CharField(max_length=255, blank=True, null=True)
+    feature = models.CharField(max_length=255, blank=True, null=True)
+    feature_status = models.CharField(max_length=255, blank=True, null=True)
+    driver_version = models.CharField(max_length=255, blank=True, null=True)
+    driver_version_comparator = models.CharField(max_length=255, blank=True,
+                                                 null=True)
+
+    class Meta:
+        db_table = 'blgfxdrivers'
+
+    def __unicode__(self):
+        return '%s: %s : %s : %s' % (self.guid, self.os, self.vendor,
+                                     self.devices)
 
     def flush_urls(self):
         return ['/blocklist*']  # no lang/app

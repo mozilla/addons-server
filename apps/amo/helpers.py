@@ -351,3 +351,9 @@ def media(context, url):
     else:
         build = context['BUILD_ID_IMG']
     return context['MEDIA_URL'] + utils.urlparams(url, b=build)
+
+
+@register.function
+@jinja2.evalcontextfunction
+def attrs(ctx, *args, **kw):
+    return jinja2.filters.do_xmlattr(ctx, dict(*args, **kw))
