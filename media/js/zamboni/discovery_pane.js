@@ -198,8 +198,8 @@ $(document).ready(function(){
     // Construct URL for the link back to the discovery promo pane.
     if ($(".detail").length) {
         $(".install-action a").attr("target", "_self");
-        var version = localStorage.getItem("discopane-browser-version", version),
-            platform = localStorage.getItem("discopane-browser-platform", platform),
+        var version = localStorage.getItem("discopane-browser-version"),
+            platform = localStorage.getItem("discopane-browser-platform"),
             url = document.body.getAttribute("data-pane-url");
         url = url.replace(":version:", version).replace(":platform:", platform);
         $("p#back a").attr("href", url);
