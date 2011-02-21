@@ -700,6 +700,7 @@ a.listview:before {
     color: white;
     text-align: center;
     opacity: 0;
+    overflow: hidden;
     pointer-events: none;
     -moz-transition: .5s opacity ease;
     -webkit-transition: .5s opacity ease;
@@ -757,7 +758,7 @@ a.listview:before {
     font-size: 18px;
 }
 #lightbox img {
-    max-width: 100%;
+    max-width: 95%;
     max-height: 100%;
     -moz-transition: .5s opacity ease;
     -webkit-transition: .5s opacity ease;
