@@ -3,6 +3,10 @@
 {# L10n: {0} is an add-on name. #}
 {% block title %}{{ page_title('{0} :: Versions')|f(addon.name) }}{% endblock %}
 
+{% block back_link %}
+  <a class="back-link" href="{{ addon.get_url_path() }}">&laquo; {{ addon.name }}</a>
+{% endblock %}
+
 {% block page %}
 
 <h2>{{ _('Version History') }}</h2>
