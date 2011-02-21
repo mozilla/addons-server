@@ -1,5 +1,5 @@
 /* Global initialization script */
-z = {};
+var z = {};
 
 $(document).ready(function(){
 
@@ -90,7 +90,8 @@ var escape_ = function(s){
             .replace("'", '&#39;').replace('"', '&#34;');
 };
 
-
+//TODO(potch): kill underscore dead. until then, fake it on mobile.
+if (!('_' in window)) _ = {};
 /* is ``key`` in obj? */
 _.haskey = function(obj, key) {
     return typeof obj[key] !== "undefined";

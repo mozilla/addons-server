@@ -12,5 +12,6 @@ def version_detail(context, addon, version, src,
 
 
 @jingo.register.inclusion_tag('versions/mobile/version.html')
-def mobile_version_detail(addon, version, src):
-    return locals()
+@jinja2.contextfunction
+def mobile_version_detail(context, addon, version, src):
+    return new_context(**locals())

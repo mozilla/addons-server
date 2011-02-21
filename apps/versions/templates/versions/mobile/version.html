@@ -35,8 +35,5 @@
     {% endif %}
   </div>
 
-  <div class="installer">
-    <a class="button install">Add to Firefox</a>
-    {# TODO: privacy policy (in button.html right now) #}
-  </div>
+  {{ big_install_button(addon, version=version) }}
 </li>

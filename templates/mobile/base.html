@@ -70,6 +70,7 @@
     {% endblock %}
     {# js #}
     {% block site_js %}
+      <script src="{{ url('jsi18n') }}/build:{{ BUILD_ID_JS }}"></script>
       {{ js('zamboni/mobile') }}
     {% endblock %}
     {% block js %}{% endblock %}

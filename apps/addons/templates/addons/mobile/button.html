@@ -1,0 +1,51 @@
+{% set b = button %}
+{% set _obj = version if amo.HAS_COMPAT[addon.type] else addon %}
+{% set compat = _obj.compatible_apps[APP] if _obj else None %}
+
+<div class="install {{ b.install_class|join(' ') }}"
+     data-addon="{{ addon.id }}"
+     data-icon="{{ addon.icon_url }}"
+     data-developers="{{ addon.meet_the_dev_url() }}"
+     data-name="{{ addon.name }}"
+     {{ b.attrs()|xmlattr }}
+  {% if compat %}
+     data-min="{{ compat.min.version }}"
+     data-max="{{ compat.max.version }}"
+  {% endif %}>
+  {% set links = b.links() %}
+  {% if not links %}
+    <a class="button disabled">
+      {{ _('No compatible versions') }}
+    </a>
+  {% endif %}
+  {% for link in links %}
+    {% set extra = "platform " + link.os.shortname if link.os else "" %}
+    <a class="button add {{ b.button_class|join(' ') }} {{ extra }}"
+       data-hash="{{ link.file.hash }}"
+       {% if b.show_warning %}
+         href="{{ b.addon.get_url_path() }}"
+         data-realurl="{{ link.url }}"
+       {% else %}
+         href="{{ link.url }}"
+       {% endif %}>
+        {{ _('Add to Firefox') }}
+    </a>
+  {% endfor %}
+  <ul class="badges">
+    {% if False %}
+      <li class="error">{{ _('Requires Newer Version of Firefox') }}</li>
+    {% endif %}
+    {% if settings.PERF_THRESHOLD and addon.ts_slowness >= settings.PERF_THRESHOLD %}
+      <li class="warning">{{ _('May Slow Down Your Browser') }}</li>
+    {% endif %}
+    {% if files and files[0].no_restart %}
+      <li>{{ _('No Restart Required') }}</li>
+    {% endif %}
+  </ul>
+  {% if addon.privacy_policy %}
+    <a class="privacy-policy" href="{{ url('addons.privacy', addon.slug) }}">
+      {{ _('View privacy policy') }}
+    </a>
+  {% endif %}
+</div> {# install #}
+

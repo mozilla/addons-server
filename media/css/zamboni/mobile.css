@@ -77,8 +77,15 @@ h1, h2, h3,
 .moz-menu {
     font-family: Georgia, serif;
 }
+a:link {
+    font-family: Georgia, serif;
+    color: #447bc4;
+    text-decoration: none;
+}
 .num_ratings,
-.review .old-version {
+.review .old-version,
+.install-wrapper,
+.install-wrapper a {
     font-family: "Droid Sans", sans-serif;
 }
 #content h2 {
@@ -92,11 +99,6 @@ h1, h2, h3,
 }
 .copy p {
     color: #444;
-}
-a:link {
-    font-family: Georgia, serif;
-    color: #447bc4;
-    text-decoration: none;
 }
 
 /************************************/
@@ -836,17 +838,19 @@ td .versions li a {
 /*              BUTTONS             */
 /************************************/
 
-.installer {
+.install-wrapper {
     margin: 10px 0 4px;
     padding-top: 8px;
+    text-align: center;
+    font-weight: bold;
 }
 
-.infobox .installer {
+.infobox .install-wrapper {
     border-top: 2px solid #fff;
     box-shadow: 0 -1px #ccc;
 }
 
-.button {
+.button, a.button {
     -moz-transition: -moz-box-shadow 0.3s ease 0s;
     background-image: -moz-linear-gradient(#669BE1, #5784BF) repeat scroll 0 0 transparent;
 	background-image: -webkit-gradient(
@@ -910,7 +914,7 @@ td .versions li a {
 	                 0 0 100px rgba(255, 255, 255, 0.2) inset;
 }
 
-.button.install {
+.button.add {
     background-color: #84C63C;
 	background-image: -moz-linear-gradient(#84C63C, #489615);
 	background-image: -webkit-gradient(
@@ -923,7 +927,7 @@ td .versions li a {
 	color: #fff;
 	padding-left: 40px;
 }
-.button.install:before {
+.button.add:before {
     content: " ";
     display: block;
     width: 24px;
@@ -931,15 +935,78 @@ td .versions li a {
     position: absolute;
     left: 14px;
     top: 10px;
-    background: url(../../img/zamboni/mobile/install.svg) no-repeat center center;
+    background: url(../../img/zamboni/mobile/install.svg) no-repeat top left;
 }
 
-.button.install.disabled {
+.button.warning {
+  background-attachment: scroll, scroll;
+  background-clip: border-box, border-box;
+  background-color: transparent;
+  background-image: -moz-linear-gradient(rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.25)),
+                    url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAIAAAAC64paAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAGlJREFUeNqc0cEJACEMRFFNARaw/RexFe1dG3AjCBJJYDL/kNtjDqn9lRLUnlrixjd5qVdo6WNQOhiXN05Jg7PyYEJuzMmFaRn+GZG6KrQMlxHpY1A6GJc3TkmDs/JgQm7MyYVpqf0CDABVcj3T2ITzOAAAAABJRU5ErkJggg==);
+  background-origin: padding-box, padding-box;
+  background-position: 0 0%, 0 0;
+  background-repeat: repeat, repeat;
+  background-size: auto auto, auto auto;
+  color: #333333;
+  text-shadow: 0 -1px 0 rgba(255, 255, 255, 0.5);
+  top: 0;
+}
+.button.add.warning:before {
+    background: url(../../img/zamboni/mobile/install.svg) no-repeat 0 -50px;
+}
+.button.disabled {
 	background: -moz-linear-gradient(#d1d4d7, #c1c5ca);
 	color: #fff;
 	-moz-box-shadow: 0 3px rgba(0, 0, 0, 0.05),
 	                 0 -4px rgba(0, 0, 0, 0.05) inset;
 	top: 0;
+}
+.button.add.disabled:before {
+    background: url(../../img/zamboni/mobile/install.svg) no-repeat top left;
+}
+
+/** Button Badges */
+
+.badges {
+    margin-top: 8px;
+}
+.badges a, .badges li {
+    display: block;
+    color: black;
+}
+.badges li {
+    border: 1px solid #ddd;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    font-size: .8em;
+    line-height: 20px;
+    height: 20px;
+    background: #fff;
+}
+.badges .error {
+    background-color: #edd4d2;
+    border-color: #ac9a98;
+}
+.badges .warning {
+    background-color: #fef9d7;
+    border-color: #bebaa1;
+}
+.install .privacy-policy {
+    display: block;
+    margin-top: 12px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    height: 27px;
+    font-size: .9em;
+    color: black;
+    line-height: 25px;
+    border: 1px solid #ccc;
+    background-color: #e6e6e6;
+    background-image: -moz-linear-gradient(#e6e6e6, #d3d3d3);
 }
 
 /************************************/

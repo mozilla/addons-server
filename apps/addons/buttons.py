@@ -34,7 +34,8 @@ def install_button(context, addon, version=None, show_eula=True,
                  addon.id in request.amo_user.mobile_addons)
     c = {'button': button, 'addon': addon, 'version': button.version,
          'installed': installed}
-    t = jingo.render_to_string(request, 'addons/button.html', c)
+    template = 'addons/mobile/button.html' if request.MOBILE else 'addons/button.html'
+    t = jingo.render_to_string(request, template, c)
     return jinja2.Markup(t)
 
 
