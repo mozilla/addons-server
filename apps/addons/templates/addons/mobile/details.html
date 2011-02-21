@@ -8,7 +8,7 @@
     <h3>{{ addon.name }}</h3>
     {# TODO: make this a secret link #}
     <h4 class="author">{{ _('by') }} {{ users_list(addon.listed_authors) }}</h4>
-    {{ big_install_button(addon, show_warning=False) }}
+    {{ mobile_install_button(addon, show_warning=False) }}
     {# TODO: privacy policy (in button.html right now) #}
   </div>
   <div class="copy">

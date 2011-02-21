@@ -9,6 +9,7 @@ import amo
 
 register.function(buttons.install_button)
 register.function(buttons.big_install_button)
+register.function(buttons.mobile_install_button)
 
 
 @register.filter

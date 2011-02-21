@@ -15,7 +15,8 @@ from translations.models import Translation
 @jinja2.contextfunction
 def install_button(context, addon, version=None, show_eula=True,
                    show_contrib=True, show_warning=True, src='',
-                   collection=None, size='', detailed=False):
+                   collection=None, size='', detailed=False,
+                   mobile=False):
     """If version isn't given, we use the latest version."""
     request = context['request']
     app, lang = context['APP'], context['LANG']
@@ -34,7 +35,7 @@ def install_button(context, addon, version=None, show_eula=True,
                  addon.id in request.amo_user.mobile_addons)
     c = {'button': button, 'addon': addon, 'version': button.version,
          'installed': installed}
-    template = 'addons/mobile/button.html' if request.MOBILE else 'addons/button.html'
+    template = 'addons/mobile/button.html' if mobile else 'addons/button.html'
     t = jingo.render_to_string(request, template, c)
     return jinja2.Markup(t)
 
@@ -44,6 +45,16 @@ def big_install_button(context, addon, **kwargs):
     from addons.helpers import statusflags
     b = install_button(context, addon, detailed=True, size='prominent',
                        **kwargs)
+    flags = jinja2.escape(statusflags(context, addon))
+    s = u'<div class="install-wrapper %s">%s</div>'
+    return jinja2.Markup(s % (flags, b))
+
+
+@jinja2.contextfunction
+def mobile_install_button(context, addon, **kwargs):
+    from addons.helpers import statusflags
+    b = install_button(context, addon, detailed=True, size='prominent',
+                       mobile=True, **kwargs)
     flags = jinja2.escape(statusflags(context, addon))
     s = u'<div class="install-wrapper %s">%s</div>'
     return jinja2.Markup(s % (flags, b))

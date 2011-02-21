@@ -2,7 +2,7 @@
 {% set _obj = version if amo.HAS_COMPAT[addon.type] else addon %}
 {% set compat = _obj.compatible_apps[APP] if _obj else None %}
 
-<div class="install">
+<div class="install-shell">
 <div class="install {{ b.install_class|join(' ') }}"
      data-addon="{{ addon.id }}"
      data-icon="{{ addon.icon_url }}"
