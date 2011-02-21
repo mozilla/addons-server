@@ -18,8 +18,10 @@ $(document).ready(function(){
         $(this).prev('a').attr('href', 'mailto:' + em);
     });
 
-    // Set up input placeholders.
-    $('input[placeholder]').placeholder();
+    // fake placeholders if we need to.
+    if (!'placeholder' in document.createElement('input')) {
+        $('input[placeholder]').placeholder();
+    }
 
     if (z.readonly) {
         $('form[method=post]')
