@@ -222,13 +222,11 @@ class SearchView(APIView):
         if platform.upper() != 'ALL':
             opts['platform'] = platform.lower()
 
-        # By default we show public addons only for api_version < 1.5
-        statuses = [amo.STATUS_PUBLIC]
-
-        opts['status'] = statuses
-
-        # Fix doubly encoded query strings
         if self.version < 1.5:
+            # By default we show public addons only for api_version < 1.5
+            opts['status'] = [amo.STATUS_PUBLIC]
+
+            # Fix doubly encoded query strings
             try:
                 query = urllib.unquote(query.encode('ascii'))
             except UnicodeEncodeError:
