@@ -5,6 +5,7 @@ from django.shortcuts import redirect
 from django.views.i18n import javascript_catalog
 from django.views.decorators.cache import cache_page
 
+import blocklist.views
 import versions.urls
 
 admin.autodiscover()
@@ -15,6 +16,11 @@ handler500 = 'amo.views.handler500'
 urlpatterns = patterns('',
     # Discovery pane is first for undetectable efficiency wins.
     ('^discovery/', include('discovery.urls')),
+
+    # There are many more params but we only care about these three. The end is
+    # not anchored on purpose!
+    url('^blocklist/(?P<apiver>\d+)/(?P<app>[^/]+)/(?P<appver>[^/]+)/',
+        blocklist.views.blocklist, name='blocklist'),
 
     # Add-ons.
     ('', include('addons.urls')),

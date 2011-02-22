@@ -1,0 +1,308 @@
+from xml.dom import minidom
+
+from django.conf import settings
+from django.core.cache import cache
+
+import redisutils
+import test_utils
+from nose.tools import eq_
+
+import amo
+from amo.urlresolvers import reverse
+from .models import BlocklistItem, BlocklistApp, BlocklistPlugin, BlocklistGfx
+
+
+base_xml = """
+<?xml version="1.0"?>
+<blocklist xmlns="http://www.mozilla.org/2006/addons-blocklist">
+</blocklist>
+"""
+
+
+class BlocklistTest(test_utils.TestCase):
+
+    def setUp(self):
+        self.fx4_url = reverse('blocklist', args=[3, amo.FIREFOX.guid, '4.0'])
+        self.fx2_url = reverse('blocklist', args=[2, amo.FIREFOX.guid, '2.0'])
+        self.mobile_url = reverse('blocklist', args=[2, amo.MOBILE.guid, '.9'])
+        self._redis = redisutils.mock_redis()
+
+    def tearDown(self):
+        redisutils.reset_redis(self._redis)
+
+    def normalize(self, s):
+        return '\n'.join(x.strip() for x in s.split())
+
+    def eq_(self, x, y):
+        return eq_(self.normalize(x), self.normalize(y))
+
+
+class BlocklistItemTest(BlocklistTest):
+
+    def setUp(self):
+        super(BlocklistItemTest, self).setUp()
+        self.item = BlocklistItem.objects.create(guid='guid@addon.com')
+        self.app = BlocklistApp.objects.create(blitem=self.item,
+                                               guid=amo.FIREFOX.guid)
+
+    def test_no_items(self):
+        self.item.delete()
+        r = self.client.get(self.fx4_url)
+        self.eq_(r.content, base_xml)
+
+    def test_new_cookie_per_user(self):
+        self.client.get(self.fx4_url)
+        assert settings.BLOCKLIST_COOKIE in self.client.cookies
+        c = self.client.cookies[settings.BLOCKLIST_COOKIE]
+        eq_(c['path'], '/blocklist/')
+        eq_(c['secure'], True)
+
+    def test_existing_user_cookie(self):
+        self.client.cookies[settings.BLOCKLIST_COOKIE] = 'adfadf'
+        self.client.get(self.fx4_url)
+        eq_(self.client.cookies[settings.BLOCKLIST_COOKIE].value, 'adfadf')
+
+    def test_url_params(self):
+        eq_(self.client.get(self.fx4_url).status_code, 200)
+        eq_(self.client.get(self.fx2_url).status_code, 200)
+        # We ignore trailing url parameters.
+        eq_(self.client.get(self.fx4_url + 'other/junk/').status_code, 200)
+
+    def test_app_guid(self):
+        # There's one item for Firefox.
+        r = self.client.get(self.fx4_url)
+        eq_(r.status_code, 200)
+        eq_(len(r.context['items']), 1)
+
+        # There are no items for mobile.
+        r = self.client.get(self.mobile_url)
+        eq_(r.status_code, 200)
+        eq_(len(r.context['items']), 0)
+
+        # Without the app constraint we see the item.
+        self.app.delete()
+        r = self.client.get(self.mobile_url)
+        eq_(r.status_code, 200)
+        eq_(len(r.context['items']), 1)
+
+    def dom(self, url):
+        r = self.client.get(self.fx4_url)
+        return minidom.parseString(r.content)
+
+    def test_item_guid(self):
+        items = self.dom(self.fx4_url).getElementsByTagName('emItem')
+        eq_(len(items), 1)
+        eq_(items[0].getAttribute('id'), 'guid@addon.com')
+
+    def test_item_os(self):
+        item = self.dom(self.fx4_url).getElementsByTagName('emItem')[0]
+        assert 'os' not in item.attributes.keys()
+
+        self.item.update(os='win,mac')
+        item = self.dom(self.fx4_url).getElementsByTagName('emItem')[0]
+        eq_(item.getAttribute('os'), 'win,mac')
+
+    def test_item_severity(self):
+        self.item.update(severity=2)
+        eq_(len(self.vr()), 1)
+        item = self.dom(self.fx4_url).getElementsByTagName('emItem')[0]
+        vrange = item.getElementsByTagName('versionRange')
+        eq_(vrange[0].getAttribute('severity'), '2')
+
+    def vr(self):
+        item = self.dom(self.fx4_url).getElementsByTagName('emItem')[0]
+        return item.getElementsByTagName('versionRange')
+
+    def test_item_version_range(self):
+        self.item.update(min='0.1')
+        eq_(len(self.vr()), 1)
+        eq_(self.vr()[0].attributes.keys(), ['minVersion'])
+        eq_(self.vr()[0].getAttribute('minVersion'), '0.1')
+
+        self.item.update(max='0.2')
+        eq_(self.vr()[0].attributes.keys(), ['minVersion', 'maxVersion'])
+        eq_(self.vr()[0].getAttribute('minVersion'), '0.1')
+        eq_(self.vr()[0].getAttribute('maxVersion'), '0.2')
+
+    def test_item_multiple_version_range(self):
+        # There should be two <versionRange>s under one <emItem>.
+        self.item.update(min='0.1', max='0.2')
+        BlocklistItem.objects.create(guid=self.item.guid, severity=3)
+
+        item = self.dom(self.fx4_url).getElementsByTagName('emItem')
+        eq_(len(item), 1)
+        vr = item[0].getElementsByTagName('versionRange')
+        eq_(len(vr), 2)
+        eq_(vr[0].getAttribute('minVersion'), '0.1')
+        eq_(vr[0].getAttribute('maxVersion'), '0.2')
+        eq_(vr[1].getAttribute('severity'), '3')
+
+    def test_item_target_app(self):
+        app = self.app
+        self.app.delete()
+        self.item.update(severity=2)
+        version_range = self.vr()[0]
+        eq_(version_range.getElementsByTagName('targetApplication'), [])
+
+        app.save()
+        version_range = self.vr()[0]
+        target_app = version_range.getElementsByTagName('targetApplication')
+        eq_(len(target_app), 1)
+        eq_(target_app[0].getAttribute('id'), amo.FIREFOX.guid)
+
+        app.update(min='0.1', max='*')
+        version_range = self.vr()[0]
+        target_app = version_range.getElementsByTagName('targetApplication')
+        eq_(target_app[0].getAttribute('id'), amo.FIREFOX.guid)
+        tvr = target_app[0].getElementsByTagName('versionRange')
+        eq_(tvr[0].getAttribute('minVersion'), '0.1')
+        eq_(tvr[0].getAttribute('maxVersion'), '*')
+
+    def test_item_multiple_apps(self):
+        # Make sure all <targetApplication>s go under the same <versionRange>.
+        self.app.update(min='0.1', max='0.2')
+        BlocklistApp.objects.create(guid=amo.FIREFOX.guid, blitem=self.item,
+                                    min='3.0', max='3.1')
+        version_range = self.vr()[0]
+        apps = version_range.getElementsByTagName('targetApplication')
+        eq_(len(apps), 2)
+        eq_(apps[0].getAttribute('id'), amo.FIREFOX.guid)
+        vr = apps[0].getElementsByTagName('versionRange')[0]
+        eq_(vr.getAttribute('minVersion'), '0.1')
+        eq_(vr.getAttribute('maxVersion'), '0.2')
+        eq_(apps[1].getAttribute('id'), amo.FIREFOX.guid)
+        vr = apps[1].getElementsByTagName('versionRange')[0]
+        eq_(vr.getAttribute('minVersion'), '3.0')
+        eq_(vr.getAttribute('maxVersion'), '3.1')
+
+    def test_item_empty_version_range(self):
+        # No version_range without an app, min, max, or severity.
+        self.app.delete()
+        self.item.update(min=None, max=None, severity=None)
+        eq_(len(self.vr()), 0)
+
+    def test_item_empty_target_app(self):
+        # No empty <targetApplication>.
+        self.item.update(severity=1)
+        self.app.delete()
+        eq_(self.dom(self.fx4_url).getElementsByTagName('targetApplication'),
+            [])
+
+    def test_item_target_empty_version_range(self):
+        app = self.dom(self.fx4_url).getElementsByTagName('targetApplication')
+        eq_(app[0].getElementsByTagName('versionRange'), [])
+
+
+class BlocklistPluginTest(BlocklistTest):
+
+    def setUp(self):
+        super(BlocklistPluginTest, self).setUp()
+        self.plugin = BlocklistPlugin.objects.create(guid=amo.FIREFOX.guid)
+
+    def test_no_plugins(self):
+        r = self.client.get(self.mobile_url)
+        self.eq_(r.content, base_xml)
+
+    def dom(self, url=None):
+        url = url or self.fx4_url
+        r = self.client.get(url)
+        d = minidom.parseString(r.content)
+        return d.getElementsByTagName('pluginItem')[0]
+
+    def test_plugin_empty(self):
+        eq_(self.dom().attributes.keys(), [])
+        eq_(self.dom().getElementsByTagName('match'), [])
+        eq_(self.dom().getElementsByTagName('versionRange'), [])
+
+    def test_plugin_os(self):
+        self.plugin.update(os='win')
+        eq_(self.dom().attributes.keys(), ['os'])
+        eq_(self.dom().getAttribute('os'), 'win')
+
+    def test_plugin_xpcomabi(self):
+        self.plugin.update(xpcomabi='win')
+        eq_(self.dom().attributes.keys(), ['xpcomabi'])
+        eq_(self.dom().getAttribute('xpcomabi'), 'win')
+
+    def test_plugin_name(self):
+        self.plugin.update(name='flash')
+        match = self.dom().getElementsByTagName('match')
+        eq_(len(match), 1)
+        eq_(dict(match[0].attributes.items()),
+            {'name': 'name', 'exp': 'flash'})
+
+    def test_plugin_description(self):
+        self.plugin.update(description='flash')
+        match = self.dom().getElementsByTagName('match')
+        eq_(len(match), 1)
+        eq_(dict(match[0].attributes.items()),
+            {'name': 'description', 'exp': 'flash'})
+
+    def test_plugin_filename(self):
+        self.plugin.update(filename='flash')
+        match = self.dom().getElementsByTagName('match')
+        eq_(len(match), 1)
+        eq_(dict(match[0].attributes.items()),
+            {'name': 'filename', 'exp': 'flash'})
+
+    def test_plugin_severity(self):
+        self.plugin.update(severity=2)
+        v = self.dom().getElementsByTagName('versionRange')[0]
+        eq_(v.getAttribute('severity'), '2')
+
+    def test_plugin_target_app(self):
+        self.plugin.update(min='1', max='2')
+        v = self.dom().getElementsByTagName('versionRange')[0]
+        app = v.getElementsByTagName('targetApplication')[0]
+        eq_(app.getAttribute('id'), amo.FIREFOX.guid)
+        vr = app.getElementsByTagName('versionRange')[0]
+        eq_(vr.getAttribute('minVersion'), '1')
+        eq_(vr.getAttribute('maxVersion'), '2')
+
+    def test_plugin_apiver_lt_3(self):
+        self.plugin.update(severity='2')
+        # No min & max so the app matches.
+        e = self.dom(self.fx2_url).getElementsByTagName('versionRange')[0]
+        eq_(e.getAttribute('severity'), '2')
+        eq_(e.getElementsByTagName('targetApplication'), [])
+
+        # The app version is not in range.
+        self.plugin.update(min='3.0', max='4.0')
+        self.assertRaises(IndexError, self.dom, self.fx2_url)
+
+        # The app is back in range.
+        self.plugin.update(min='1.1')
+        e = self.dom(self.fx2_url).getElementsByTagName('versionRange')[0]
+        eq_(e.getAttribute('severity'), '2')
+        eq_(e.getElementsByTagName('targetApplication'), [])
+
+
+class BlocklistGfxTest(BlocklistTest):
+
+    def setUp(self):
+        super(BlocklistGfxTest, self).setUp()
+        self.gfx = BlocklistGfx.objects.create(
+            guid=amo.FIREFOX.guid, os='os', vendor='vendor', devices='x y z',
+            feature='feature', feature_status='status',
+            driver_version='version', driver_version_comparator='compare')
+
+    def test_no_gfx(self):
+        r = self.client.get(self.mobile_url)
+        self.eq_(r.content, base_xml)
+
+    def test_gfx(self):
+        r = self.client.get(self.fx4_url)
+        dom = minidom.parseString(r.content)
+        gfx = dom.getElementsByTagName('gfxBlacklistEntry')[0]
+        find = lambda e: gfx.getElementsByTagName(e)[0].childNodes[0].wholeText
+        eq_(find('os'), self.gfx.os)
+        eq_(find('feature'), self.gfx.feature)
+        eq_(find('vendor'), self.gfx.vendor)
+        eq_(find('featureStatus'), self.gfx.feature_status)
+        eq_(find('driverVersion'), self.gfx.driver_version)
+        eq_(find('driverVersionComparator'),
+            self.gfx.driver_version_comparator)
+        devices = gfx.getElementsByTagName('devices')[0]
+        for device, val in zip(devices.getElementsByTagName('device'),
+                               self.gfx.devices.split(' ')):
+            eq_(device.childNodes[0].wholeText, val)
