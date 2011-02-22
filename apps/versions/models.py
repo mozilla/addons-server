@@ -30,6 +30,7 @@ class Version(amo.models.ModelBase):
     releasenotes = PurifiedField()
     approvalnotes = models.TextField(default='', null=True)
     version = models.CharField(max_length=255, default='0.1')
+    version_int = models.BigIntegerField(null=True, editable=False)
 
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'versions'
@@ -41,6 +42,20 @@ class Version(amo.models.ModelBase):
 
     def __unicode__(self):
         return jinja2.escape(self.version)
+
+    def save(self, *args, **kw):
+        if not self.version_int and self.version:
+            version_int = compare.version_int(self.version)
+            # Magic number warning, this is the maximum size
+            # of a big int in MySQL to prevent version_int overflow, for
+            # people who have rather crazy version numbers.
+            # http://dev.mysql.com/doc/refman/5.5/en/numeric-types.html
+            if version_int < 9223372036854775807:
+                self.version_int = version_int
+            else:
+                log.error('No version_int written for version %s, %s' %
+                          (self.pk, self.version))
+        return super(Version, self).save(*args, **kw)
 
     @classmethod
     def from_upload(cls, upload, addon, platforms):

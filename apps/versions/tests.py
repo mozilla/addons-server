@@ -179,8 +179,21 @@ class TestVersion(test_utils.TestCase):
         qs.update(status=amo.STATUS_UNREVIEWED)
         Version.objects.create(addon=addon)
         eq_(qs.all()[0].status, amo.STATUS_DISABLED)
-        f = addon.current_version.all_files[0]
+        addon.current_version.all_files[0]
         assert hide_mock.called
+
+    def test_version_int(self):
+        version = Version.objects.get(pk=81551)
+        version.save()
+        eq_(version.version_int, 2017200200100)
+
+    def test_large_version_int(self):
+        # This version will fail to be written to the version_int
+        # table because the resulting int is bigger than mysql bigint.
+        version = Version.objects.get(pk=81551)
+        version.version = '1237.2319.32161734.2383290.34'
+        version.save()
+        eq_(version.version_int, None)
 
 
 class TestViews(test_utils.TestCase):

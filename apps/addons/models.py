@@ -824,7 +824,8 @@ dbsignals.pre_delete.connect(clear_name_table, sender=Addon)
 def version_changed(sender, **kw):
     from . import tasks
     tasks.version_changed.delay(sender.id)
-signals.version_changed.connect(version_changed)
+signals.version_changed.connect(version_changed,
+                                dispatch_uid='version_changed')
 
 
 def watch_status(sender, instance, **kw):
