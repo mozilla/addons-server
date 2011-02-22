@@ -8,6 +8,7 @@ from urlparse import parse_qsl
 
 import MySQLdb as mysql
 import sqlalchemy.pool as pool
+import commonware.log
 
 import settings_local as settings
 
@@ -53,6 +54,9 @@ bad_rdf = """<?xml version="1.0"?>
 <RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
          xmlns:em="http://www.mozilla.org/2004/em-rdf#">
 </RDF:RDF>"""
+
+
+timing_log = commonware.log.getLogger('z.timer')
 
 
 def getconn():
@@ -262,7 +266,6 @@ def mail_exception(data):
     msg['To'] = settings.ADMINS
     msg['From'] = settings.DEFAULT_FROM_EMAIL
 
-
     conn = smtplib.SMTP(settings.EMAIL_HOST, settings.EMAIL_PORT)
     conn.sendmail(settings.DEFAULT_FROM_EMAIL, settings.ADMINS,
                   msg.as_string())
@@ -270,13 +273,20 @@ def mail_exception(data):
 
 
 def application(environ, start_response):
+    start = time()
     status = '200 OK'
+    timing = (environ['REQUEST_METHOD'], '%s?%s' %
+              (environ['SCRIPT_NAME'], environ['QUERY_STRING']))
     data = dict(parse_qsl(environ['QUERY_STRING']))
     try:
         update = Update(data)
         output = update.get_rdf()
         start_response(status, update.get_headers(len(output)))
     except:
+        timing_log.info('%s "%s" (500) %.2f [ANON]' %
+                        (timing[0], timing[1], time() - start))
         mail_exception(data)
         raise
+    timing_log.info('%s "%s" (200) %.2f [ANON]' %
+                    (timing[0], timing[1], time() - start))
     return output
