@@ -1,5 +1,7 @@
 from django.db import models
 
+import redisutils
+
 import amo.models
 
 
