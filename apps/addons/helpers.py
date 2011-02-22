@@ -1,3 +1,5 @@
+from django.conf import settings
+
 import jinja2
 
 from jingo import register, env
@@ -44,7 +46,8 @@ def flag(context, addon):
 @register.function
 def support_addon(addon):
     t = env.get_template('addons/support_addon.html')
-    return jinja2.Markup(t.render(addon=addon, amo=amo))
+    return jinja2.Markup(t.render(addon=addon, amo=amo,
+                                  use_embedded=settings.PAYPAL_USE_EMBEDDED))
 
 
 @register.inclusion_tag('addons/performance_note.html')

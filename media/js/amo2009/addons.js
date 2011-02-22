@@ -56,28 +56,32 @@ var contributions = {
                     $(this).find('#contrib-too-much').show();
                     return false;
                 }
-                if (parseFloat(amt) >= 0.01) {
+                if (parseFloat(amt) < 0.01) {
                     $(this).find('#contrib-too-little').show();
                     return false;
                 }
             }
-            var $self = $(this);
-            $.ajax({type: 'GET',
-                url: $(this).attr('action') + '?result_type=json',
-                data: $(this).serialize(),
-                success: function(json) {
-                    if (json.paykey) {
-                        $.getScript($('body').attr('data-paypal-url'), function() {
-                            dgFlow = new PAYPAL.apps.DGFlow();
-                            dgFlow.startFlow(json.url);
-                            $self.find('span.cancel a').click();
-                        })
-                    } else {
-                        $self.find('#paypal-error').show();
+            if ($('body').attr('data-paypal-url')) {
+                var $self = $(this);
+                $.ajax({type: 'GET',
+                    url: $(this).attr('action') + '?result_type=json',
+                    data: $(this).serialize(),
+                    success: function(json) {
+                        if (json.paykey) {
+                            $.getScript($('body').attr('data-paypal-url'), function() {
+                                dgFlow = new PAYPAL.apps.DGFlow();
+                                dgFlow.startFlow(json.url);
+                                $self.find('span.cancel a').click();
+                            });
+                        } else {
+                            $self.find('#paypal-error').show();
+                        }
                     }
-                }
-            });
-            return false;
+                });
+                return false;
+            } else {
+                return true;
+            }
         });
 
         // enable overlay; make sure we have the jqm package available.

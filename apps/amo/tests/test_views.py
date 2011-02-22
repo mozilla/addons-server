@@ -136,6 +136,7 @@ class TestPaypal(test_utils.TestCase):
         self.url = reverse('amo.paypal')
         self.item = 1234567890
         self.client = Client()
+        settings.PAYPAL_USE_EMBEDDED = True
 
     def urlopener(self, status):
         m = Mock()

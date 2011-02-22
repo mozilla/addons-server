@@ -412,8 +412,55 @@ def developers(request, addon, page):
                          'page': page, 'version': version})
 
 
-@addon_view
-def contribute(request, addon):
+def old_contribute(request, addon):
+    contrib_type = request.GET.get('type', '')
+    is_suggested = contrib_type == 'suggested'
+    source = request.GET.get('source', '')
+    comment = request.GET.get('comment', '')
+
+    amount = {
+        'suggested': addon.suggested_amount,
+        'onetime': request.GET.get('onetime-amount', ''),
+        'monthly': request.GET.get('monthly-amount', '')}.get(contrib_type, '')
+
+    contribution_uuid = hashlib.md5(str(uuid.uuid4())).hexdigest()
+
+    contrib = Contribution(addon_id=addon.id,
+                           charity_id=addon.charity_id,
+                           amount=amount,
+                           source=source,
+                           source_locale=request.LANG,
+                           annoying=addon.annoying,
+                           uuid=str(contribution_uuid),
+                           is_suggested=is_suggested,
+                           suggested_amount=addon.suggested_amount,
+                           comment=comment)
+    contrib.save()
+
+    return_url = "%s?%s" % (reverse('addons.thanks', args=[addon.slug]),
+                            urllib.urlencode({'uuid': contribution_uuid}))
+    # L10n: {0} is an add-on name.
+    if addon.charity:
+        name, paypal = addon.charity.name, addon.charity.paypal
+    else:
+        name, paypal = addon.name, addon.paypal_id
+    contrib_for = _(u'Contribution for {0}').format(jinja2.escape(name))
+    redirect_url_params = contribute_url_params(
+                            paypal,
+                            addon.id,
+                            contrib_for,
+                            absolutify(return_url),
+                            amount,
+                            contribution_uuid,
+                            contrib_type == 'monthly',
+                            comment)
+
+    return http.HttpResponseRedirect(settings.PAYPAL_CGI_URL
+                                     + '?'
+                                     + urllib.urlencode(redirect_url_params))
+
+
+def embedded_contribute(request, addon):
     contrib_type = request.GET.get('type', 'suggested')
     is_suggested = contrib_type == 'suggested'
     source = request.GET.get('source', '')
@@ -477,6 +524,56 @@ def contribute(request, addon):
         # If there was an error getting the paykey, raise this.
         raise
     return http.HttpResponseRedirect(url)
+
+
+@addon_view
+def contribute(request, addon):
+    if settings.PAYPAL_USE_EMBEDDED:
+        return embedded_contribute(request, addon)
+    else:
+        return old_contribute(request, addon)
+
+
+def contribute_url_params(business, addon_id, item_name, return_url,
+                          amount='', item_number='',
+                          monthly=False, comment=''):
+
+    lang = translation.get_language()
+    try:
+        paypal_lang = settings.PAYPAL_COUNTRYMAP[lang]
+    except KeyError:
+        lang = lang.split('-')[0]
+        paypal_lang = settings.PAYPAL_COUNTRYMAP.get(lang, 'US')
+
+    # Get all the data elements that will be URL params
+    # on the Paypal redirect URL.
+    data = {'business': business,
+            'item_name': item_name,
+            'item_number': item_number,
+            'bn': settings.PAYPAL_BN + '-AddonID' + str(addon_id),
+            'no_shipping': '1',
+            'return': return_url,
+            'charset': 'utf-8',
+            'lc': paypal_lang,
+            'notify_url': "%s%s" % (settings.SERVICES_URL,
+                                    reverse('amo.paypal'))}
+
+    if not monthly:
+        data['cmd'] = '_donations'
+        if amount:
+            data['amount'] = amount
+    else:
+        data.update({
+            'cmd': '_xclick-subscriptions',
+            'p3': '12',  # duration: for 12 months
+            't3': 'M',  # time unit, 'M' for month
+            'a3': amount,  # recurring contribution amount
+            'no_note': '1'})  # required: no "note" text field for user
+
+    if comment:
+        data['custom'] = comment
+
+    return data
 
 
 @addon_view

@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime, timedelta
-from email import utils
 from decimal import Decimal
-import re
+from email import utils
 import json
+import re
+import urlparse
 
 from django import test
 from django.conf import settings
@@ -143,10 +144,11 @@ class TestContributeInstalled(test_utils.TestCase):
         eq_(title[:37], 'Thank you for installing Gmail S/MIME')
 
 
-class TestContribute(test_utils.TestCase):
+class TestContributeEmbedded(test_utils.TestCase):
     fixtures = ['base/apps', 'base/addon_3615', 'base/addon_592']
 
     def setUp(self):
+        settings.PAYPAL_USE_EMBEDDED = True
         self.addon = Addon.objects.get(pk=592)
         self.detail_url = reverse('addons.detail', args=[self.addon.slug])
 
@@ -236,6 +238,150 @@ class TestContribute(test_utils.TestCase):
                         reverse('addons.contribute', args=[self.addon.slug]),
                         'result_type=json'))
         assert not json.loads(res.content)['paykey']
+
+
+class TestContribute(test_utils.TestCase):
+    fixtures = ['base/apps', 'base/addon_3615', 'base/addon_592']
+
+    def setUp(self):
+        settings.PAYPAL_USE_EMBEDDED = False
+
+    def test_invalid_is_404(self):
+        """we get a 404 in case of invalid addon id"""
+        response = self.client.get(reverse('addons.contribute', args=[1]))
+        eq_(response.status_code, 404)
+
+    def test_redirect_params_no_type(self):
+        """Test that we have the required ppal params when no type is given"""
+        response = self.client.get(reverse('addons.contribute',
+                                           args=['a592']), follow=True)
+        redirect_url = response.redirect_chain[0][0]
+        required_params = ['bn', 'business', 'charset', 'cmd', 'item_name',
+                           'no_shipping', 'notify_url',
+                           'return', 'item_number']
+        for param in required_params:
+            assert(redirect_url.find(param + '=') > -1), \
+                   "param [%s] not found" % param
+
+    def test_redirect_params_common(self):
+        """Test for the common values that do not change based on type,
+           Check that they have expected values"""
+        response = self.client.get(reverse('addons.contribute',
+                                           args=['a592']), follow=True)
+        redirect_url = response.redirect_chain[0][0]
+        assert(re.search('business=([^&]+)', redirect_url))
+        common_params = {'bn': r'-AddonID592',
+                         'business': r'gmailsmime%40seantek.com',
+                         'charset': r'utf-8',
+                         'cmd': r'_donations',
+                         'item_name': r'Contribution\+for\+Gmail\+S%2FMIME',
+                         'no_shipping': r'1',
+                         'notify_url': r'%2Fservices%2Fpaypal',
+                         'return': r'x',
+                         'item_number': r'[a-f\d]{32}'}
+
+        message = 'param [%s] unexpected value: given [%s], ' \
+                  + 'expected pattern [%s]'
+        for param, value_pattern in common_params.items():
+            match = re.search(r'%s=([^&]+)' % param, redirect_url)
+            assert(match and re.search(value_pattern, match.group(1))), \
+                  message % (param, match.group(1), value_pattern)
+
+    def test_redirect_params_type_suggested(self):
+        """Test that we have the required ppal param when type
+           suggested is given"""
+        request_params = '?type=suggested'
+        response = self.client.get(reverse('addons.contribute',
+                                           args=['a592']) + request_params,
+                                           follow=True)
+        redirect_url = response.redirect_chain[0][0]
+        required_params = ['amount', 'bn', 'business', 'charset',
+                           'cmd', 'item_name', 'no_shipping', 'notify_url',
+                           'return', 'item_number']
+        for param in required_params:
+            assert(redirect_url.find(param + '=') > -1), \
+                   "param [%s] not found" % param
+
+    def test_redirect_params_type_onetime(self):
+        """Test that we have the required ppal param when
+           type onetime is given"""
+        request_params = '?type=onetime&onetime-amount=42'
+        response = self.client.get(reverse('addons.contribute',
+                                           args=['a592']) + request_params,
+                                           follow=True)
+        redirect_url = response.redirect_chain[0][0]
+        required_params = ['amount', 'bn', 'business', 'charset', 'cmd',
+                           'item_name', 'no_shipping', 'notify_url',
+                           'return', 'item_number']
+        for param in required_params:
+            assert(redirect_url.find(param + '=') > -1), \
+                   "param [%s] not found" % param
+
+        assert(redirect_url.find('amount=42') > -1)
+
+    def test_ppal_return_url_not_relative(self):
+        response = self.client.get(reverse('addons.contribute',
+                                           args=['a592']), follow=True)
+        redirect_url = response.redirect_chain[0][0]
+
+        assert(re.search('\?|&return=https?%3A%2F%2F', redirect_url)), \
+               ("return URL param did not start w/ "
+                "http%3A%2F%2F (http://) [%s]" % redirect_url)
+
+    def test_redirect_params_type_monthly(self):
+        """Test that we have the required ppal param when
+           type monthly is given"""
+        request_params = '?type=monthly&monthly-amount=42'
+        response = self.client.get(reverse('addons.contribute',
+                                           args=['a592']) + request_params,
+                                           follow=True)
+        redirect_url = response.redirect_chain[0][0]
+        required_params = ['no_note', 'a3', 't3', 'p3', 'bn', 'business',
+                           'charset', 'cmd', 'item_name', 'no_shipping',
+                           'notify_url', 'return', 'item_number']
+        for param in required_params:
+            assert(redirect_url.find(param + '=') > -1), \
+                   "param [%s] not found" % param
+
+        assert(redirect_url.find('cmd=_xclick-subscriptions') > -1), \
+              'param a3 was not 42'
+        assert(redirect_url.find('p3=12') > -1), 'param p3 was not 12'
+        assert(redirect_url.find('t3=M') > -1), 'param t3 was not M'
+        assert(redirect_url.find('a3=42') > -1), 'param a3 was not 42'
+        assert(redirect_url.find('no_note=1') > -1), 'param no_note was not 1'
+
+    def test_paypal_bounce(self):
+        """Paypal is retarded and posts to this page."""
+        args = dict(args=['a3615'])
+        r = self.client.post(reverse('addons.thanks', **args))
+        self.assertRedirects(r, reverse('addons.detail', **args))
+
+    def test_unicode_comment(self):
+        r = self.client.get(reverse('addons.contribute', args=['a592']),
+                            {'comment': u'版本历史记录'})
+        eq_(r.status_code, 302)
+        assert r['Location'].startswith(settings.PAYPAL_CGI_URL)
+
+    def test_organization(self):
+        c = Charity.objects.create(name='moz', url='moz.com', paypal='mozcom')
+        addon = Addon.objects.get(id=592)
+        addon.update(charity=c)
+
+        r = self.client.get(reverse('addons.contribute', args=['a592']))
+        eq_(r.status_code, 302)
+        qs = dict(urlparse.parse_qsl(r['Location']))
+        eq_(qs['item_name'], 'Contribution for moz')
+        eq_(qs['business'], 'mozcom')
+
+        contrib = Contribution.objects.get(addon=addon)
+        eq_(addon.charity_id, contrib.charity_id)
+
+    def test_no_org(self):
+        addon = Addon.objects.get(id=592)
+        r = self.client.get(reverse('addons.contribute', args=['a592']))
+        eq_(r.status_code, 302)
+        contrib = Contribution.objects.get(addon=addon)
+        eq_(contrib.charity_id, None)
 
 
 class TestDeveloperPages(test_utils.TestCase):

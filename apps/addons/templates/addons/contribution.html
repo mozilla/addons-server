@@ -119,6 +119,17 @@
                 '$', '<input type="text" name="onetime-amount" value=""/>')|safe }}
             </label>
           </li>
+          {% if not settings.PAYPAL_USE_EMBEDDED %}
+          <li>
+            <input type="radio" name="type" value="monthly"
+                   id="contrib-monthly"/>
+            <label for="contrib-monthly">
+              {# L10n: {0} is a currency symbol (e.g., $),
+                       {1} is an amount input field #}
+              {{ _('A regular monthly contribution of {0} {1}')|f(
+                '$', '</label><input type="text" name="monthly-amount" value=""/>')|safe }}
+          </li>
+          {% endif %}
         </ul>
 
         <h4 class="comment">

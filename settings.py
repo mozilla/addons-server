@@ -590,6 +590,8 @@ PAYPAL_API_VERSION = '50'
 PAYPAL_APP_ID = ''
 PAYPAL_BN = ''
 PAYPAL_CGI_URL = 'https://www.paypal.com/cgi-bin/webscr'
+
+PAYPAL_USE_EMBEDDED = True
 PAYPAL_PAY_URL = 'https://paypal.com/adaptivepayments/pay'
 PAYPAL_FLOW_URL = 'https://paypal.com/webapps/adaptivepayment/flow/pay'
 PAYPAL_JS_URL = 'https://www.paypalobjects.com/js/external/dg.js'
