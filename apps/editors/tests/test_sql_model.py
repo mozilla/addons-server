@@ -208,6 +208,16 @@ class TestSQLModel(unittest.TestCase):
                           Q('product =', 'life jacket')))
         eq_(sorted([r.product for r in qs]), ['life jacket'])
 
+    def test_crazy_nesting(self):
+        qs = (ProductDetail.objects.all()
+              .filter_raw(Q('category =', 'apparel',
+                            'product =', 'defilbrilator',
+                            Q('product =', 'life jacket') |
+                            Q('product =', 'snake skin jacket'),
+                            'category =', 'safety')))
+        # print qs.as_sql()
+        eq_(sorted([r.product for r in qs]), ['life jacket'])
+
     def test_having_gte(self):
         c = Summary.objects.all().having('total >=', 2)[0]
         eq_(c.category, 'safety')
