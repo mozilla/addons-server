@@ -454,6 +454,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/jquery-1.4.2.min.js',
             'js/zamboni/jquery-ui/custom-1.8.5.min.js',
             'js/zamboni/underscore-min.js',
+            'js/zamboni/browser.js',
             'js/amo2009/addons.js',
             'js/zamboni/init.js',
             'js/zamboni/format.js',
