@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
-from datetime import datetime, timedelta
+from datetime import datetime
 from decimal import Decimal
-from email import utils
 import json
 import re
 import urlparse
@@ -10,7 +9,6 @@ from django import test
 from django.conf import settings
 from django.core import mail
 from django.core.cache import cache
-from django.db import connection
 from django.utils.encoding import iri_to_uri
 
 from mock import patch
@@ -30,8 +28,6 @@ from translations.query import order_by_translation
 from users.helpers import users_list
 from users.models import UserProfile
 from versions.models import Version
-from services import update
-import settings_local
 
 
 def norm(s):
@@ -1160,227 +1156,6 @@ class TestReportAbuseDisabled(AbuseDisabledBase, test_utils.TestCase):
         r = self.client.get(reverse('addons.detail', args=['a15663']))
         doc = pq(r.content)
         assert not doc("fieldset.abuse")
-
-
-class TestUpdate(test_utils.TestCase):
-    fixtures = ['base/addon_3615',
-                'base/platforms',
-                'base/seamonkey']
-
-    def setUp(self):
-        self.addon_one = Addon.objects.get(pk=3615)
-        self.good_data = {
-            'id': '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}',
-            'version': '2.0.58',
-            'reqVersion': 1,
-            'appID': '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}',
-            'appVersion': '3.7a1pre',
-        }
-
-        self.mac = amo.PLATFORM_MAC
-        self.win = amo.PLATFORM_WIN
-
-        self.old_mirror_url = settings_local.MIRROR_URL
-        self.old_local_url = settings_local.LOCAL_MIRROR_URL
-        self.old_debug = settings_local.DEBUG
-
-        settings_local.MIRROR_URL = 'http://releases.m.o/'
-        settings_local.LOCAL_MIRROR_URL = 'http://addons.m.o/'
-        settings_local.DEBUG = False
-
-    def get(self, data):
-        up = update.Update(data)
-        up.cursor = connection.cursor()
-        return up
-
-    def tearDown(self):
-        settings_local.MIRROR_URL = self.old_mirror_url
-        settings_local.LOCAL_MIRROR_URL = self.old_local_url
-        settings_local.DEBUG = self.old_debug
-
-    def test_bad_guid(self):
-        data = self.good_data.copy()
-        data["id"] = "garbage"
-        up = self.get(data)
-        eq_(up.get_rdf(), up.get_bad_rdf())
-
-    def test_no_platform(self):
-        file = File.objects.get(pk=67442)
-        file.platform_id = self.win.id
-        file.save()
-
-        data = self.good_data.copy()
-        data["appOS"] = self.win.api_name
-        up = self.get(data)
-        assert up.get_rdf()
-        eq_(up.data['row']['file_id'], file.pk)
-
-        data["appOS"] = self.mac.api_name
-        up = self.get(data)
-        eq_(up.get_rdf(), up.get_bad_rdf())
-
-    def test_different_platform(self):
-        file = File.objects.get(pk=67442)
-        file.platform_id = self.win.id
-        file.save()
-        file_pk = file.pk
-
-        file.id = None
-        file.platform_id = self.mac.id
-        file.save()
-        mac_file_pk = file.pk
-
-        data = self.good_data.copy()
-        data['appOS'] = self.win.api_name
-        up = self.get(data)
-        up.is_valid()
-        up.get_update()
-        eq_(up.data['row']['file_id'], file_pk)
-
-        data['appOS'] = self.mac.api_name
-        up = self.get(data)
-        up.is_valid()
-        up.get_update()
-        eq_(up.data['row']['file_id'], mac_file_pk)
-
-    def test_good_version(self):
-        up = self.get(self.good_data)
-        up.is_valid()
-        up.get_update()
-        assert up.data['row']['hash'].startswith('sha256:3808b13e')
-        eq_(up.data['row']['min'], '2.0')
-        eq_(up.data['row']['max'], '3.7a1pre')
-
-    def test_beta_version(self):
-        file = File.objects.get(pk=67442)
-        file.status = amo.STATUS_BETA
-        file.save()
-
-        beta_version = '2.0.58 beta'
-
-        version = file.version
-        version.version = beta_version
-        version.save()
-
-        data = self.good_data.copy()
-        up = self.get(data)
-        up.is_valid()
-        assert not up.get_update()
-
-        data["version"] = beta_version
-        up = self.get(data)
-        up.is_valid()
-        up.get_update()
-        eq_(up.data['row']['file_id'], file.pk)
-
-    def test_no_app_version(self):
-        data = self.good_data.copy()
-        data['appVersion'] = '1.4'
-        up = self.get(data)
-        up.is_valid()
-        assert not up.get_update()
-
-    def test_low_app_version(self):
-        data = self.good_data.copy()
-        data['appVersion'] = '2.0'
-        up = self.get(data)
-        up.is_valid()
-        up.get_update()
-        assert up.data['row']['hash'].startswith('sha256:3808b13e')
-        eq_(up.data['row']['min'], '2.0')
-        eq_(up.data['row']['max'], '3.7a1pre')
-
-    def test_content_type(self):
-        up = self.get(self.good_data)
-        ('Content-Type', 'text/xml') in up.get_headers(1)
-
-    def test_cache_control(self):
-        up = self.get(self.good_data)
-        ('Cache-Control', 'public, max-age=3600') in up.get_headers(1)
-
-    def test_length(self):
-        up = self.get(self.good_data)
-        ('Cache-Length', '1') in up.get_headers(1)
-
-    def test_expires(self):
-        """Check there are these headers and that expires is 3600 later."""
-        # We aren't bother going to test the actual time in expires, that
-        # way lies pain with broken tests later.
-        up = self.get(self.good_data)
-        hdrs = dict(up.get_headers(1))
-        lm = datetime(*utils.parsedate_tz(hdrs['Last-Modified'])[:7])
-        exp = datetime(*utils.parsedate_tz(hdrs['Expires'])[:7])
-        eq_((exp - lm).seconds, 3600)
-
-    def test_appguid(self):
-        up = self.get(self.good_data)
-        rdf = up.get_rdf()
-        assert rdf.find(self.good_data['appID']) > -1
-
-    def test_url(self):
-        up = self.get(self.good_data)
-        up.get_rdf()
-        assert settings_local.MIRROR_URL in up.data['row']['url']
-
-    def test_url_local_recent(self):
-        a_bit_ago = datetime.now() - timedelta(seconds=60)
-        File.objects.get(pk=67442).update(datestatuschanged=a_bit_ago)
-        up = self.get(self.good_data)
-        up.get_rdf()
-        assert settings_local.LOCAL_MIRROR_URL in up.data['row']['url']
-
-    def test_url_remote_beta(self):
-        file = File.objects.get(pk=67442)
-        file.status = amo.STATUS_BETA
-        file.save()
-
-        beta_version = '2.0.58 beta'
-        file.version.update(version=beta_version)
-
-        data = self.good_data.copy()
-        data["version"] = beta_version
-        up = self.get(data)
-        self.addon_one.status = amo.STATUS_PUBLIC
-        self.addon_one.save()
-        up.get_rdf()
-        eq_(up.data['row']['file_id'], file.pk)
-        assert settings_local.MIRROR_URL in up.data['row']['url']
-
-    def test_hash(self):
-        rdf = self.get(self.good_data).get_rdf()
-        assert rdf.find('updateHash') > -1
-
-        file = File.objects.get(pk=67442)
-        file.hash = ''
-        file.save()
-
-        rdf = self.get(self.good_data).get_rdf()
-        eq_(rdf.find('updateHash'), -1)
-
-    def test_releasenotes(self):
-        rdf = self.get(self.good_data).get_rdf()
-        assert rdf.find('updateInfoURL') > -1
-
-        version = Version.objects.get(pk=81551)
-        version.update(releasenotes=None)
-
-        rdf = self.get(self.good_data).get_rdf()
-        eq_(rdf.find('updateInfoURL'), -1)
-
-    def test_sea_monkey(self):
-        data = {
-            'id': 'bettergmail2@ginatrapani.org',
-            'version': '1',
-            'appID': '{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}',
-            'reqVersion': 1,
-            'appVersion': '1.0',
-        }
-        up = self.get(data)
-        rdf = up.get_rdf()
-        assert up.data['row']['hash'].startswith('sha256:9d9a389')
-        eq_(up.data['row']['min'], '1.0')
-        eq_(up.data['row']['version'], '0.5.2')
-        assert rdf.find(data['appID']) > -1
 
 
 class TestMobile(test_utils.TestCase):

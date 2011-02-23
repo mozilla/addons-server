@@ -7,8 +7,6 @@ import test_utils
 from nose.tools import eq_
 from mock import patch
 
-from django.db import connection
-
 from redisutils import mock_redis, reset_redis
 from addons import forms, cron
 from addons.models import Addon, Category
@@ -16,7 +14,6 @@ from tags.models import Tag, AddonTag
 
 import amo
 from amo.tests.test_helpers import get_image_path
-from services import update
 
 
 class FormsTest(test_utils.TestCase):
@@ -244,81 +241,6 @@ class TestIconRemoval(test_utils.TestCase):
         form.save(self.addon)
         for path in self.get_icon_paths():
             assert os.path.exists(path)
-
-
-class TestUpdate(test_utils.TestCase):
-    fixtures = ['base/addon_3615',
-                'base/platforms',
-                'base/appversion']
-
-    def setUp(self):
-        self.good_data = {
-            'id': '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}',
-            'version': '2.0.58',
-            'reqVersion': 1,
-            'appID': '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}',
-            'appVersion': '3.7a1pre',
-        }
-
-    def get(self, data):
-        up = update.Update(data)
-        up.cursor = connection.cursor()
-        return up
-
-    def test_beta(self):
-        data = self.good_data.copy()
-        for good in ['1.0a', '1.0beta2', '1.0 beta2']:
-            data['version'] = good
-            form = self.get(data)
-            assert form.is_valid()
-            assert form.is_beta_version
-
-        for bad in ['1.0', 'beta 1.0', '1.0 beta 2']:
-            data['version'] = bad
-            form = self.get(data)
-            assert form.is_valid()
-            assert not form.is_beta_version
-
-    def test_app_os(self):
-        data = self.good_data.copy()
-        data['appOS'] = 'something %s penguin' % amo.PLATFORM_LINUX.api_name
-        form = self.get(data)
-        assert form.is_valid()
-        eq_(form.data['appOS'], amo.PLATFORM_LINUX.id)
-
-    def test_app_version_fails(self):
-        data = self.good_data.copy()
-        del data['appID']
-        form = self.get(data)
-        assert not form.is_valid()
-
-    def test_app_version_wrong(self):
-        data = self.good_data.copy()
-        data['appVersion'] = '67.7'
-        form = self.get(data)
-        # If you pass through the wrong version that's fine
-        # you will just end up with no updates because your
-        # version_int will be out.
-        assert form.is_valid()
-
-    def test_app_version(self):
-        data = self.good_data.copy()
-        form = self.get(data)
-        assert form.is_valid()
-        eq_(form.data['version_int'], 3070000001000)
-
-    def test_sql_injection(self):
-        data = self.good_data.copy()
-        data['id'] = "'"
-        up = self.get(data)
-        assert not up.is_valid()
-
-    def test_inactive(self):
-        addon = Addon.objects.get(pk=3615)
-        addon.update(disabled_by_user=True)
-
-        up = self.get(self.good_data)
-        assert not up.is_valid()
 
 
 class TestCategoryForm(test_utils.TestCase):
