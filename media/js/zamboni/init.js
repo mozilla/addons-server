@@ -19,7 +19,7 @@ $(document).ready(function(){
     });
 
     // fake placeholders if we need to.
-    if (!'placeholder' in document.createElement('input')) {
+    if (!('placeholder' in document.createElement('input'))) {
         $('input[placeholder]').placeholder();
     }
 
