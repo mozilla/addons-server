@@ -8,8 +8,6 @@ import time
 import urllib
 
 from django.conf import settings
-from django.contrib.auth.middleware import AuthenticationMiddleware
-from django.contrib.auth.models import AnonymousUser
 from django.contrib.sessions.middleware import SessionMiddleware
 from django.http import HttpResponsePermanentRedirect
 from django.middleware import common
@@ -99,18 +97,6 @@ class NoVarySessionMiddleware(SessionMiddleware):
         else:
             del new_response['Vary']
         return new_response
-
-
-class AMOAuthenticationMiddleware(AuthenticationMiddleware):
-    def process_request(self, request):
-        prefixes = request.path.split('/')
-        if (len(prefixes) > 1 and prefixes[1]
-            in settings.NO_AUTHENTICATION_PREFIX):
-            request.user = AnonymousUser()
-            return
-
-        return (super(AMOAuthenticationMiddleware, self)
-                .process_request(request))
 
 
 class RemoveSlashMiddleware(object):
