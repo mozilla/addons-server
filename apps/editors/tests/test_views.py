@@ -245,8 +245,9 @@ class TestQueueBasics(QueueTest):
 
     def test_redirect_to_review(self):
         r = self.client.get(reverse('editors.queue_pending'), data={'num': 2})
-        self.assertRedirects(r, reverse('editors.review',
-                        args=[self.versions['Pending Two'].id]) + '?num=2')
+        self.assertRedirects(r,
+                    reverse('editors.review',
+                            args=[self.versions['Pending Two'].id]) + '?num=2')
 
     def test_invalid_review_ignored(self):
         r = self.client.get(reverse('editors.queue_pending'), data={'num': 9})
