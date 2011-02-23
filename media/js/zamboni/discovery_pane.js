@@ -195,14 +195,16 @@ function css(el, prop) {
 
 
 $(document).ready(function(){
-    // Construct URL for the link back to the discovery promo pane.
     if ($(".detail").length) {
         $(".install-action a").attr("target", "_self");
-        var version = localStorage.getItem("discopane-browser-version"),
-            platform = localStorage.getItem("discopane-browser-platform"),
-            url = document.body.getAttribute("data-pane-url");
-        url = url.replace(":version:", version).replace(":platform:", platform);
-        $("p#back a").attr("href", url);
+
+        // Replace with the URL back to the discovery promo pane.
+        var pane_url = localStorage.getItem("discopane-url"),
+            hash = localStorage.getItem("discopane-hash");
+        if (hash) {
+            pane_url += hash;
+        }
+        $("p#back a").attr("href", pane_url);
 
         $("#images").fadeIn("slow").addClass("js").jCarouselLite({
             btnNext: "#images .nav-next a",

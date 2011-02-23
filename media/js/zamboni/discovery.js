@@ -6,12 +6,10 @@ $(document).ready(function(){
 
 
 function storeBrowserInfo() {
-    // Store the browser version and platform so we can construct the
-    // pane URL when we link from the add-on detail pages.
-    var version = document.body.getAttribute("data-browser-version"),
-        platform = document.body.getAttribute("data-browser-platform");
-    localStorage.setItem("discopane-browser-version", version);
-    localStorage.setItem("discopane-browser-platform", platform);
+    // Store the pane URL (with the browser version and platform) so we can
+    // link back from the add-on detail pages.
+    localStorage.setItem("discopane-url",
+                         document.body.getAttribute("data-pane-url"));
 }
 
 
@@ -38,6 +36,9 @@ function initRecs() {
         token;
     if (location.hash) {
         guids = Object.keys(JSON.parse(location.hash.slice(1)));
+        localStorage.setItem("discopane-hash", location.hash);
+    } else {
+        localStorage.removeItem("discopane-hash");
     }
     if (!location.hash || !guids.length) {
         // If the user has opted out of recommendations, clear out any
