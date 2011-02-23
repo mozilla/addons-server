@@ -8,7 +8,7 @@ from nose.tools import eq_
 
 from addons.models import Addon
 import amo
-from applications.models import Application
+from applications.models import Application, AppVersion
 from files.models import File
 from services import update
 import settings_local
@@ -134,9 +134,8 @@ class TestLookup(test_utils.TestCase):
 
     def test_low_client(self):
         """
-        Test a low client number. 86 is version 3.0a1 of Firefox,
-        which means we have version int of 3000000001100
-        and hence version 1.0.2 of the addon.
+        Version 3.0a1 of Firefox is 3000000001100 and version 1.0.2 of the
+        add-on is returned.
         """
         version, file = self.get('', '3000000001100',
                                  self.app, self.platform)
@@ -144,13 +143,27 @@ class TestLookup(test_utils.TestCase):
 
     def test_new_client(self):
         """
-        Test a high client number. 291 is version 3.0.12 of Firefox,
-        which means we have a version int of 3069900200100
-        and hence version 1.2.2 of the addon.
+        Version 3.0.12 of Firefox is 3069900200100 and version 1.2.2 of the
+        add-on is returned.
         """
         version, file = self.get('', self.version_int,
                                  self.app, self.platform)
         eq_(version, self.version_1_2_2)
+
+    def test_min_client(self):
+        """
+        Version 3.7a5pre of Firefox is 3070000005000 and version 1.1.3 of
+        the add-on is returned, because all later ones are set to minimum
+        version of 3.7a5.
+        """
+        for version in Version.objects.filter(pk__gte=self.version_1_2_0):
+            appversion = version.apps.all()[0]
+            appversion.min = AppVersion.objects.get(pk=325)  # 3.7a5
+            appversion.save()
+
+        version, file = self.get('', '3070000005000',  # 3.7a5pre
+                                 self.app, self.platform)
+        eq_(version, self.version_1_1_3)
 
     def test_new_client_ordering(self):
         """
