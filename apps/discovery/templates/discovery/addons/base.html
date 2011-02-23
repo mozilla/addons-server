@@ -2,10 +2,6 @@
 
 {% block bodyclass %}detail{% endblock %}
 
-{% block bodyattrs %}
-data-pane-url="{{ services_url('discovery.pane', ':version:', ':platform:') }}"
-{% endblock %}
-
 {% block title %}{{ page_title(addon.name) }}{% endblock %}
 
 {% block content %}

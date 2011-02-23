@@ -8,8 +8,7 @@
 {% block bodyattrs %}
 data-services-url="{{ settings.SERVICES_URL }}"
 data-recs-url="{{ services_url('discovery.recs') }}"
-data-browser-version="{{ version }}"
-data-browser-platform="{{ platform }}"
+data-pane-url="{{ services_url('discovery.pane', version, platform) }}"
 {% endblock %}
 
 {% block content %}
@@ -99,16 +98,20 @@ data-browser-platform="{{ platform }}"
   </section>
 
   <section id="sub">
-    <section class="featured" id="top-addons">
-      <h2><a class="all" href="{{ url('browse.extensions') }}">{{ _('See all') }}</a>
-        {{ _('Up & Coming') }}</h2>
-      {{ addon_list(top_addons, 5, sidebar=True) }}
-    </section>
-    <section class="featured personas" id="featured-personas">
-      <h2><a class="all" href="{{ url('browse.personas') }}">{{ _('See all') }}</a>
-        {{ _('Featured Personas') }}</h2>
-      {{ persona_list(featured_personas) }}
-    </section>
+    {% if top_addons %}
+      <section class="featured" id="top-addons">
+        <h2><a class="all" href="{{ url('browse.extensions') }}">{{ _('See all') }}</a>
+          {{ _('Up & Coming') }}</h2>
+        {{ addon_list(top_addons, 5, sidebar=True) }}
+      </section>
+    {% endif %}
+    {% if featured_personas %}
+      <section class="featured personas" id="featured-personas">
+        <h2><a class="all" href="{{ url('browse.personas') }}">{{ _('See all') }}</a>
+          {{ _('Featured Personas') }}</h2>
+        {{ persona_list(featured_personas) }}
+      </section>
+    {% endif %}
     <section id="more-ways">
       <h2>{{ _('More ways to customize') }}</h2>
       <ul>
