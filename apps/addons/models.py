@@ -1062,6 +1062,11 @@ class AddonUser(caching.CachingMixin, models.Model):
 
     objects = caching.CachingManager()
 
+    def __init__(self, *args, **kwargs):
+        super(AddonUser, self).__init__(*args, **kwargs)
+        self._original_role = self.role
+        self._original_user_id = self.user_id
+
     class Meta:
         db_table = 'addons_users'
 

@@ -38,6 +38,7 @@ from devhub.models import ActivityLog, RssKey, SubmitStep
 from files.models import File, FileUpload
 from files.utils import parse_addon
 from translations.models import delete_translation
+from users.models import UserProfile
 from versions.models import License, Version
 
 from . import forms, tasks, feeds
@@ -366,11 +367,21 @@ def ownership(request, addon_id, addon):
         # Authors.
         authors = user_form.save(commit=False)
         for author in authors:
-            action = (amo.LOG.CHANGE_USER_WITH_ROLE if author.id
-                      else amo.LOG.ADD_USER_WITH_ROLE)
-            author.addon = addon
+            action = None
+            if not author.id or author.user_id != author._original_user_id:
+                action = amo.LOG.ADD_USER_WITH_ROLE
+                author.addon = addon
+            elif author.role != author._original_role:
+                action = amo.LOG.CHANGE_USER_WITH_ROLE
+
             author.save()
-            amo.log(action, author.user, author.get_role_display(), addon)
+            if action:
+                amo.log(action, author.user, author.get_role_display(), addon)
+            if (author._original_user_id and
+                author.user_id != author._original_user_id):
+                amo.log(amo.LOG.REMOVE_USER_WITH_ROLE,
+                        (UserProfile, author._original_user_id),
+                        author.get_role_display(), addon)
 
         for author in user_form.deleted_objects:
             amo.log(amo.LOG.REMOVE_USER_WITH_ROLE, author.user,
@@ -1001,7 +1012,6 @@ def _resume(addon, step):
         return redirect('devhub.submit.%s' % step[0].step, addon.slug)
 
     return redirect('devhub.versions', addon.slug)
-
 
 
 @login_required

@@ -178,6 +178,29 @@ class TestEditLicense(TestOwnership):
 
 
 class TestEditAuthor(TestOwnership):
+    def test_reorder_authors(self):
+        """
+        Re-ordering authors should not generate role changes in the
+        ActivityLog.
+        """
+        # flip form-0-position
+        f = self.client.get(self.url).context['user_form'].initial_forms[0]
+        u = dict(user='regular@mozilla.com', listed=True,
+                 role=amo.AUTHOR_ROLE_DEV, position=0)
+        data = self.formset(f.initial, u, initial_count=1)
+        r = self.client.post(self.url, data)
+        eq_(r.status_code, 302)
+        f = self.client.get(self.url).context['user_form'].initial_forms[0]
+        u1 = f.initial
+        u1['position'] = 1
+        f = self.client.get(self.url).context['user_form'].initial_forms[1]
+        u2 = f.initial
+        data = self.formset(u1, u2)
+
+        eq_(ActivityLog.objects.all().count(), 2)
+        r = self.client.post(self.url, data)
+        eq_(r.status_code, 302)
+        eq_(ActivityLog.objects.all().count(), 2)
 
     def test_success_add_user(self):
         q = (AddonUser.objects.no_cache().filter(addon=3615)
@@ -236,18 +259,6 @@ class TestEditAuthor(TestOwnership):
         eq_(r.status_code, 302)
         eq_(999, AddonUser.objects.get(addon=3615).user_id)
 
-    def test_logs(self):
-        # A copy of switch ownership to test logs
-        f = self.client.get(self.url).context['user_form'].initial_forms[0]
-        f.initial['user'] = 'regular@mozilla.com'
-        data = self.formset(f.initial, initial_count=1)
-        o = ActivityLog.objects
-        eq_(o.count(), 0)
-        r = self.client.post(self.url, data)
-        eq_(o.filter(action=amo.LOG.CHANGE_USER_WITH_ROLE.id).count(), 1)
-        eq_(r.status_code, 302)
-        eq_(999, AddonUser.objects.get(addon=3615).user_id)
-
     def test_switch_owner(self):
         # See if we can transfer ownership in one POST.
         f = self.client.get(self.url).context['user_form'].initial_forms[0]
@@ -256,6 +267,10 @@ class TestEditAuthor(TestOwnership):
         r = self.client.post(self.url, data)
         eq_(r.status_code, 302)
         eq_(999, AddonUser.objects.get(addon=3615).user_id)
+        eq_(ActivityLog.objects.filter(
+            action=amo.LOG.ADD_USER_WITH_ROLE.id).count(), 1)
+        eq_(ActivityLog.objects.filter(
+            action=amo.LOG.REMOVE_USER_WITH_ROLE.id).count(), 1)
 
     def test_only_owner_can_edit(self):
         f = self.client.get(self.url).context['user_form'].initial_forms[0]
