@@ -377,7 +377,7 @@ def log(action, *args, **kw):
             if arg[0] == Addon:
                 AddonLog(addon_id=arg[1], activity_log=al).save()
             elif arg[0] == UserProfile:
-                AddonLog(user_id=arg[1], activity_log=al).save()
+                UserLog(user_id=arg[1], activity_log=al).save()
         if isinstance(arg, Addon):
             AddonLog(addon=arg, activity_log=al).save()
         elif isinstance(arg, UserProfile):
