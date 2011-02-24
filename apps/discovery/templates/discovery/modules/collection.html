@@ -1,6 +1,12 @@
+{% set collection = promo.collection %}
 <li class="panel">
-  <div class="feature collection {{ cls }}">
-    <h2>{{ title }}</h2>
+  <div id="{{ promo.id }}" class="feature collection {{ promo.cls }}">
+    <hgroup>
+      <h2>{{ promo.title }}</h2>
+      {% if promo.subtitle %}
+        <h3>{{ promo.subtitle }}</h3>
+      {% endif %}
+    </hgroup>
     <ul class="addons">
       {% for addon in addons %}
         <li>

@@ -3,6 +3,7 @@ import jingo
 import jinja2
 from tower import ugettext_lazy as _
 
+from addons.models import Addon
 from api.views import addon_filter
 from bandwagon.models import Collection
 from .models import BlogCacheRyf
@@ -42,19 +43,44 @@ class PromoModule(object):
         raise NotImplementedError
 
 
-class RockYourFirefox(PromoModule):
-    slug = 'Rock Your Firefox'
+class TemplatePromo(PromoModule):
+    abstract = True
+    template = None
+
+    def context(self):
+        return {}
 
     def render(self):
-        return jinja2.Markup(jingo.render_to_string(
-            self.request, 'discovery/modules/ryf.html',
-            {'ryf': BlogCacheRyf.objects.get()}))
+        r = jingo.render_to_string(self.request, self.template, self.context())
+        return jinja2.Markup(r)
+
+
+class RockYourFirefox(TemplatePromo):
+    slug = 'Rock Your Firefox'
+    template = 'discovery/modules/ryf.html'
+
+    def context(self):
+        return {'ryf': BlogCacheRyf.objects.get()}
+
+
+class MonthlyPick(TemplatePromo):
+    slug = 'Monthly Pick'
+    template = 'discovery/modules/monthly.html'
+
+    def context(self):
+        return {'addon': Addon.objects.get(id=197224)}
+
+
+class GoMobile(TemplatePromo):
+    slug = 'Go Mobile'
+    template = 'discovery/modules/go-mobile.html'
 
 
 class CollectionPromo(PromoModule):
     abstract = True
     template = 'discovery/modules/collection.html'
     title = None
+    subtitle = None
     limit = 3
 
     def __init__(self, *args, **kw):
@@ -69,8 +95,7 @@ class CollectionPromo(PromoModule):
         return caching.cached_with(addons, f, repr(kw))
 
     def render(self):
-        c = dict(title=self.title, collection=self.collection,
-                 cls=self.cls, addons=self.get_addons())
+        c = dict(promo=self, addons=self.get_addons())
         return jinja2.Markup(
             jingo.render_to_string(self.request, self.template, c))
 
@@ -94,3 +119,28 @@ class TesterCollection(CollectionPromo):
     pk = 82266
     cls = 'tester'
     title = _(u'Help test Firefox with these tools')
+
+
+class StarterPack(CollectionPromo):
+    slug = 'Starter Pack'
+    pk = 10
+    id = 'starter'
+    title = _(u'First time with Add-ons?')
+    subtitle = _(u' Not to worry, here are three to get started.')
+
+
+class Fx4Collection(CollectionPromo):
+    slug = 'Fx4 Collection'
+    pk = 10
+    id = 'fx4-collection'
+    title = _(u'Firefox 4 Collection')
+    subtitle = _(u'Here are some great add-ons for Firefox 4.')
+
+
+class StPatricksPersonas(CollectionPromo):
+    slug = 'St. Pat Personas'
+    pk = 10
+    id = 'st-patricks'
+    title = jinja2.Markup(_(u'St. Patrick&rsquo;s Day Personas'))
+    subtitle = jinja2.Markup(
+        _(u'Decorate your browser to celebrate St. Patrick&rsquo;s Day.'))

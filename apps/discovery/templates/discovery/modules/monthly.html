@@ -1,0 +1,16 @@
+<li class="panel">
+  <div class="feature monthly">
+    <h2>{{ _("Mozilla's Pick of the Month!") }}</h2>
+    <div>
+      <h3>{{ addon.name }}</h3>
+      <p>{% trans %}
+      Copy ShortURL lets you instantly create a short URL for web pages
+      that you visit, so you can easily share links with friends.
+      {% endtrans %}</p>
+      <p>{{ addon.summary }}</p>
+      {{ install_button(addon) }}
+      {# TODO: this will break if the add-on changes screenshots. #}
+      <img src="{{ addon.all_previews[1].image_url }}">
+    </div>
+  </div>
+</li>
