@@ -749,7 +749,7 @@ class TestReviewPreliminary(ReviewBase):
     def prelim_dict(self):
         return {'action': 'prelim', 'operating_systems': 'win',
                 'applications': 'something', 'comments': 'something',
-                'files': [int(self.version.files.all()[0].pk)]}
+                'files': [self.version.files.all()[0].pk]}
 
     def test_prelim_comments_requested(self):
         response = self.client.post(self.url, {'action': 'prelim'})

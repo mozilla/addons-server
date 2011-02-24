@@ -176,11 +176,11 @@ class QueueSearchForm(happyforms.Form):
 
 class ReviewAddonForm(happyforms.Form):
     files = forms.ModelMultipleChoiceField(required=False,
-                                           queryset=File.objects.none(),
-                                           widget=forms.CheckboxInput())
+                                        queryset=File.objects.none(),
+                                        widget=forms.CheckboxSelectMultiple())
     comments = forms.CharField(required=True, widget=forms.Textarea())
     canned_response = forms.ModelChoiceField(required=False,
-                                      queryset=CannedResponse.objects.all())
+                                        queryset=CannedResponse.objects.all())
     action = forms.ChoiceField(required=True, widget=forms.RadioSelect())
     operating_systems = forms.CharField(required=False)
     applications = forms.CharField(required=False)
