@@ -113,7 +113,7 @@ def _sync_db_and_registry(qs, app):
 
 @csrf_exempt
 @post_required
-def recommendations(request, limit=9):
+def recommendations(request, version, platform, limit=9):
     """
     Figure out recommended add-ons for an anonymous user based on POSTed guids.
 
@@ -138,19 +138,22 @@ def recommendations(request, limit=9):
             if synced.addon_index == Collection.make_index(addon_ids):
                 # Their add-ons didn't change, get out quick.
                 recs = synced.get_recommendations()
-                return _recommendations(request, limit, token, recs)
+                return _recommendations(request, version, platform,
+                                        limit, token, recs)
             else:
                 # Remove the link to the current sync, make a new one below.
                 synced.token_set.filter(token=token).delete()
 
     synced = get_synced_collection(addon_ids, token)
     recs = synced.get_recommendations()
-    return _recommendations(request, limit, token, recs)
+    return _recommendations(request, version, platform, limit, token, recs)
 
 
-def _recommendations(request, limit, token, recs):
+def _recommendations(request, version, platform, limit, token, recs):
     """Return a JSON response for the recs view."""
-    addons = list(recs.addons.order_by('collectionaddon__ordering'))[:limit]
+    qs = recs.addons.order_by('collectionaddon__ordering')
+    addons = api.views.addon_filter(qs, 'ALL', limit, request.APP,
+                                    platform, version, shuffle=False)
     data = {'token': token, 'recommendations': recs.get_url_path(),
             'addons': [api.utils.addon_to_dict(a, disco=True) for a in addons]}
     content = json.dumps(data, cls=amo.utils.JSONEncoder)

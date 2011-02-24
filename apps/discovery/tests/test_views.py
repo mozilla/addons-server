@@ -28,7 +28,7 @@ class TestRecs(test_utils.TestCase):
         test.Client().get('/')
 
     def setUp(self):
-        self.url = reverse('discovery.recs')
+        self.url = reverse('discovery.recs', args=['4.0', 'Darwin'])
         self.guids = ('bettergcal@ginatrapani.org',
                       'foxyproxy@eric.h.jung',
                       'isreaditlater@ideashower.com',
@@ -97,7 +97,9 @@ class TestRecs(test_utils.TestCase):
         views.get_synced_collection([], 'one')
         eq_(views.get_random_token(), 'two')
 
-    def test_success(self):
+    @mock.patch('api.views')
+    def test_success(self, api_mock):
+        api_mock.addon_filter = lambda xs, _, limit, *args, **kw: xs[:limit]
         response = self.client.post(self.url, self.json,
                                     content_type='application/json')
         eq_(response.status_code, 200)
@@ -116,7 +118,19 @@ class TestRecs(test_utils.TestCase):
         eq_(q[0].recommended_collection.get_url_path(),
             data['recommendations'])
 
-    def test_recs_bad_token(self):
+    def test_filter(self):
+        # The fixture doesn't contain valid add-ons so calling addon_filter on
+        # the recommendations will return nothing.
+        response = self.client.post(self.url, self.json,
+                                    content_type='application/json')
+        eq_(response.status_code, 200)
+        eq_(response['Content-type'], 'application/json')
+        data = json.loads(response.content)
+        eq_(len(data['addons']), 0)
+
+    @mock.patch('api.views')
+    def test_recs_bad_token(self, api_mock):
+        api_mock.addon_filter = lambda xs, _, limit, *args, **kw: xs[:limit]
         post_data = json.dumps(dict(guids=self.guids, token='fake'))
         response = self.client.post(self.url, post_data,
                                     content_type='application/json')
@@ -141,7 +155,9 @@ class TestRecs(test_utils.TestCase):
 
         eq_(CollectionToken.objects.count(), 1)
 
-    def test_update_new_index(self):
+    @mock.patch('api.views')
+    def test_update_new_index(self, api_mock):
+        api_mock.addon_filter = lambda xs, _, limit, *args, **kw: xs[:limit]
         response = self.client.post(self.url, self.json,
                                     content_type='application/json')
         one = json.loads(response.content)
