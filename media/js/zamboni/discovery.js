@@ -60,7 +60,7 @@ function initRecs() {
                     url: addon.learnmore,
                     icon: addon.icon,
                     name: addon.name,
-                    summary: addon.summary
+                    summary: addon.summary != null ? addon.summary : ""
                 });
                 $("#recs .slider").append(str);
             });
