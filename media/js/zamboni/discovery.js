@@ -35,7 +35,11 @@ function initRecs() {
     var guids = [],
         token;
     if (location.hash) {
-        guids = Object.keys(JSON.parse(location.hash.slice(1)));
+        $.each(JSON.parse(location.hash.slice(1)), function(i, val) {
+            if (val.type == "extension") {
+                guids.push(i);
+            }
+        });
         localStorage.setItem("discopane-hash", location.hash);
     } else {
         localStorage.removeItem("discopane-hash");
