@@ -6,7 +6,7 @@ from django.utils.encoding import force_unicode
 from addons.models import Addon
 import amo
 from editors.forms import get_review_form
-from editors.utils import NOMINATED_STATUSES
+from editors.helpers import NOMINATED_STATUSES
 from users.models import UserProfile
 
 
