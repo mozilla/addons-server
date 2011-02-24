@@ -8,8 +8,7 @@ $(document).ready(function(){
 function storeBrowserInfo() {
     // Store the pane URL (with the browser version and platform) so we can
     // link back from the add-on detail pages.
-    localStorage.setItem("discopane-url",
-                         document.body.getAttribute("data-pane-url"));
+    localStorage.setItem("discopane-url", location);
 }
 
 
@@ -40,9 +39,6 @@ function initRecs() {
                 guids.push(i);
             }
         });
-        localStorage.setItem("discopane-hash", location.hash);
-    } else {
-        localStorage.removeItem("discopane-hash");
     }
     if (!location.hash || !guids.length) {
         // If the user has opted out of recommendations, clear out any

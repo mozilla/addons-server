@@ -199,12 +199,7 @@ $(document).ready(function(){
         $(".install-action a").attr("target", "_self");
 
         // Replace with the URL back to the discovery promo pane.
-        var pane_url = localStorage.getItem("discopane-url"),
-            hash = localStorage.getItem("discopane-hash");
-        if (hash) {
-            pane_url += hash;
-        }
-        $("p#back a").attr("href", pane_url);
+        $("p#back a").attr("href", localStorage.getItem("discopane-url"));
 
         $("#images").fadeIn("slow").addClass("js").jCarouselLite({
             btnNext: "#images .nav-next a",
