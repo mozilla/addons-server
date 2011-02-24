@@ -14,12 +14,12 @@ import files.tests
 from amo.urlresolvers import reverse
 from addons.models import Addon
 from addons.tests.test_views import TestMobile
-from applications.models import AppVersion
+from applications.models import AppVersion, Application
 from devhub.models import ActivityLog
 from files.models import File, Platform
 from users.models import UserProfile
 from versions import views
-from versions.models import Version
+from versions.models import Version, ApplicationsVersions
 from versions.compare import version_int, dict_from_int
 
 
@@ -47,7 +47,20 @@ def test_dict_from_int():
 
 
 class TestVersion(test_utils.TestCase):
-    fixtures = ['base/addon_3615', 'base/admin', 'base/platforms']
+    fixtures = ['base/apps', 'base/addon_3615', 'base/admin', 'base/platforms']
+
+    def setUp(self):
+        self.version = Version.objects.get(pk=81551)
+
+    def named_plat(self, ids):
+        return [amo.PLATFORMS[i].shortname for i in ids]
+
+    def target_mobile(self):
+        app = Application.objects.get(pk=amo.MOBILE.id)
+        app_vr = AppVersion.objects.create(application=app, version='1.0')
+        ApplicationsVersions.objects.create(version=self.version,
+                                            application=app,
+                                            min=app_vr, max=app_vr)
 
     def test_compatible_apps(self):
         v = Version.objects.get(pk=81551)
@@ -57,6 +70,21 @@ class TestVersion(test_utils.TestCase):
     def test_supported_platforms(self):
         v = Version.objects.get(pk=81551)
         assert amo.PLATFORM_ALL in v.supported_platforms
+
+    def test_mobile_version_supports_only_mobile_platforms(self):
+        self.version.apps.all().delete()
+        self.target_mobile()
+        eq_(sorted(self.named_plat(self.version.compatible_platforms())),
+            ['all', u'android', u'maemo'])
+
+    def test_mixed_version_supports_all_platforms(self):
+        self.target_mobile()
+        eq_(sorted(self.named_plat(self.version.compatible_platforms())),
+            ['all', u'android', 'linux', 'mac', u'maemo', 'windows'])
+
+    def test_non_mobile_version_supports_non_mobile_platforms(self):
+        eq_(sorted(self.named_plat(self.version.compatible_platforms())),
+            ['all', 'linux', 'mac', 'windows'])
 
     def test_major_minor(self):
         """Check that major/minor/alpha is getting set."""

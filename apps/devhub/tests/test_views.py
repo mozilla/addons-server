@@ -2228,13 +2228,21 @@ class TestVersionEditFiles(TestVersionEdit):
         return File.objects.create(version=self.version,
                                    platform_id=amo.PLATFORM_BSD.id)
 
+    def get_platforms(self, form):
+        return [amo.PLATFORMS[i[0]].shortname
+                for i in form.fields['platform'].choices]
+
+    # The unsupported platform tests are for legacy addons.  We don't
+    # want new addons uploaded with unsupported platforms but the old files can
+    # still be edited.
+
     def test_all_unsupported_platforms(self):
         self.add_in_bsd()
         forms = self.client.get(self.url).context['file_form'].forms
-        # Forms[0] is the form for the MAC and forms[1] is the form for the
-        # BSD file, which should have one extra platform in it.
-        eq_(len(forms[0].fields['platform'].choices), 4)
-        eq_(len(forms[1].fields['platform'].choices), 5)
+        choices = self.get_platforms(forms[1])
+        assert 'bsd' in choices, (
+            'After adding a BSD file, expected its platform to be '
+            'available  in: %r' % choices)
 
     def test_all_unsupported_platforms_unchange(self):
         bsd = self.add_in_bsd()
@@ -2248,13 +2256,16 @@ class TestVersionEditFiles(TestVersionEdit):
         bsd = self.add_in_bsd()
         forms = self.client.get(self.url).context['file_form'].forms
         forms = map(initial, forms)
-        forms[1]['platform'] = 2
+        # Update the file platform to Linux:
+        forms[1]['platform'] = amo.PLATFORM_LINUX.id
         self.client.post(self.url, self.formset(*forms, prefix='files'))
         eq_(File.objects.no_cache().get(pk=bsd.pk).platform_id,
             amo.PLATFORM_LINUX.id)
-        # Check you can't choose BSD anymore.
         forms = self.client.get(self.url).context['file_form'].forms
-        eq_(len(forms[1].fields['platform'].choices), 4)
+        choices = self.get_platforms(forms[1])
+        assert 'bsd' not in choices, (
+            'After changing BSD file to Linux, BSD should no longer be a '
+            'platform choice in: %r' % choices)
 
     def test_add_file_modal(self):
         r = self.client.get(self.url)
@@ -2264,6 +2275,16 @@ class TestVersionEditFiles(TestVersionEdit):
         eq_(doc('input.platform').length, 3)
         eq_(set([i.attrib['type'] for i in doc('input.platform')]),
             set(['radio']))
+
+    def test_mobile_addon_supports_only_mobile_platforms(self):
+        # See versions tests for full coverage
+        app = Application.objects.get(pk=amo.MOBILE.id)
+        for a in self.version.apps.all():
+            a.application = app
+            a.save()
+        forms = self.client.get(self.url).context['file_form'].forms
+        choices = self.get_platforms(forms[0])
+        eq_(sorted(choices), ['all', u'android', u'maemo'])
 
 
 class TestPlatformSearch(TestVersionEdit):
@@ -3461,7 +3482,8 @@ class TestVersionAddFile(UploadTest):
         self.version.update(version='0.1')
         self.url = reverse('devhub.versions.add_file',
                            args=[self.addon.slug, self.version.id])
-
+        self.edit_url = reverse('devhub.versions.edit',
+                                args=[self.addon.slug, self.version.id])
         files = self.version.files.all()[0]
         files.platform_id = amo.PLATFORM_LINUX.id
         files.save()
@@ -3487,9 +3509,7 @@ class TestVersionAddFile(UploadTest):
                                'one of the available choices.')
 
     def test_platform_choices(self):
-        url = reverse('devhub.versions.edit',
-                      args=[self.addon.slug, self.version.id])
-        r = self.client.get(url)
+        r = self.client.get(self.edit_url)
         form = r.context['new_file_form']
         platform = self.version.files.get().platform_id
         choices = form.fields['platform'].choices
@@ -3507,6 +3527,17 @@ class TestVersionAddFile(UploadTest):
         form = r.context['new_file_form']
         eq_(sorted(dict(form.fields['platform'].choices).keys()),
             sorted([p.id for p in all_choices]))
+
+    def test_platform_choices_when_mobile(self):
+        app = Application.objects.get(pk=amo.MOBILE.id)
+        for a in self.version.apps.all():
+            a.application = app
+            a.save()
+        r = self.client.get(self.edit_url)
+        form = r.context['new_file_form']
+        eq_(sorted([unicode(c[1]) for c in form.fields['platform'].choices]),
+            [unicode(p.name) for p in [amo.PLATFORM_ANDROID,
+                                       amo.PLATFORM_MAEMO]])
 
     def test_type_matches(self):
         self.addon.update(type=amo.ADDON_THEME)

@@ -109,6 +109,21 @@ class Version(amo.models.ModelBase):
         avs = self.apps.select_related(depth=1)
         return self._compat_map(avs)
 
+    def compatible_platforms(self):
+        """Returns a dict of compatible file platforms for this version.
+
+        The result is based on which app(s) the version targets.
+        """
+        apps = set([a.application.id for a in self.apps.all()])
+        targets_mobile = amo.MOBILE.id in apps
+        targets_other = any((a != amo.MOBILE.id) for a in apps)
+        all_plats = {}
+        if targets_other:
+            all_plats.update(amo.SUPPORTED_PLATFORMS)
+        if targets_mobile:
+            all_plats.update(amo.MOBILE_PLATFORMS)
+        return all_plats
+
     @amo.cached_property(writable=True)
     def all_files(self):
         """Shortcut for list(self.files.all()).  Heavily cached."""

@@ -398,13 +398,16 @@ class NewFileForm(happyforms.Form):
         self.addon = kw.pop('addon')
         self.version = kw.pop('version')
         super(NewFileForm, self).__init__(*args, **kw)
+        # Reset platform choices to just those compatible with target app.
+        field = self.fields['platform']
+        field.choices = sorted((k, v.name) for k, v in
+                               self.version.compatible_platforms().items())
         # Don't allow platforms we already have.
         to_exclude = set(File.objects.filter(version=self.version)
                                      .values_list('platform', flat=True))
         # Don't allow platform=ALL if we already have platform files.
         if len(to_exclude):
             to_exclude.add(amo.PLATFORM_ALL.id)
-        field = self.fields['platform']
         field.choices = [p for p in field.choices if p[0] not in to_exclude]
         field.queryset = Platform.objects.filter(id__in=dict(field.choices))
 
@@ -433,9 +436,10 @@ class FileForm(happyforms.ModelForm):
         if kw['instance'].version.addon.type == amo.ADDON_SEARCH:
             del self.fields['platform']
         else:
+            compat = kw['instance'].version.compatible_platforms()
             pid = int(kw['instance'].platform_id)
-            plats = [(p.id, p.name) for p in amo.SUPPORTED_PLATFORMS.values()]
-            if pid not in amo.SUPPORTED_PLATFORMS:
+            plats = [(p.id, p.name) for p in compat.values()]
+            if pid not in compat:
                 plats.append([pid, amo.PLATFORMS[pid].name])
             self.fields['platform'].choices = plats
 
