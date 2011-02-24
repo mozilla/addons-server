@@ -350,11 +350,15 @@ def cspreport(request):
     """Accept CSP reports and log them."""
     try:
         v = json.loads(request.raw_post_data)['csp-report']
-        msg = ("CSP Violation Report:  (Request: %s) (Blocked: %s) (Rule: %s)"
-               % (v['request'], v['blocked-uri'], v['violated-directive']))
-        csp_log.warning(msg)
+        # Having the request headers was putting us close to a maxlen limit.
+        if 'request-headers' in v:
+            del v['request-headers']
+        # This requires you to use the cef.formatter to get something nice out.
+        csp_log.warning('Violation', dict(environ=request.META,
+                                          product='addons',
+                                          username=request.user,
+                                          data=v))
     except Exception:
-        csp_log.debug("Got a malformed violation report.  Ignoring...")
         return HttpResponseBadRequest()
 
     return HttpResponse()

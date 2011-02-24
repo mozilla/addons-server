@@ -666,6 +666,7 @@ LOG_LEVEL = logging.DEBUG
 HAS_SYSLOG = True  # syslog is used if HAS_SYSLOG and NOT DEBUG.
 SYSLOG_TAG = "http_app_addons"
 SYSLOG_TAG2 = "http_app_addons2"
+SYSLOG_CSP = "http_app_addons_csp"
 # See PEP 391 and log_settings.py for formatting help.  Each section of
 # LOGGING will get merged into the corresponding section of
 # log_settings.py. Handlers and log levels are set up automatically based

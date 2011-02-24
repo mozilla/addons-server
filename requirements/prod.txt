@@ -17,6 +17,7 @@ django-celery==2.0.2
 importlib==1.0.2
 mongoengine==0.3
 django-uuidfield==0.1
+cef==0.2
 
 -e git://github.com/jbalogh/django-multidb-router.git#egg=django-multidb-router
 -e git://github.com/jbalogh/django-cache-machine.git@0ca435683#egg=django-cache-machine
