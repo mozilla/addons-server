@@ -32,7 +32,7 @@
 </ul>
 
 {% if addon.type != amo.ADDON_PERSONA %}
-  {% if addon.all_previews|length > 1 %}
+  {% if addon.all_previews|length > 0 %}
     <div id="images">
       <ul class="nav-images">
         <li class="nav-prev"><a href="#" class="prev">{{ _('Previous') }}</a></li>
