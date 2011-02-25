@@ -45,9 +45,7 @@ def migrate_collection_users():
                                % collection.id)
 
         else:
-            task_log.warning('No users for collection %s. DELETING' %
-                             collection.id)
-            collection.delete()
+            task_log.warning('No users for collection %s.' % collection.id)
 
     # TODO(davedash): We can just remove this from the model altogether.
     CollectionUser.objects.all().update(role=amo.COLLECTION_ROLE_PUBLISHER)
