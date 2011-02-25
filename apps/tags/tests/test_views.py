@@ -42,13 +42,6 @@ class TestXSS(test_utils.TestCase):
         doc = pq(r.content)
         eq_(doc('li.tag')[0].text_content().strip(), self.xss)
 
-    def test_tags_xss_home(self):
-        """Test xss tag home."""
-        url = reverse('home')
-        r = self.client.get(url)
-        doc = pq(r.content)
-        eq_(doc('a.tag')[0].text_content().strip(), self.xss)
-
     def test_tags_xss_cloud(self):
         """Test xss tag cloud."""
         url = reverse('tags.top_cloud')
