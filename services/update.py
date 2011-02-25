@@ -8,9 +8,13 @@ from urlparse import parse_qsl
 
 import MySQLdb as mysql
 import sqlalchemy.pool as pool
+
 import commonware.log
+from django.core.management import setup_environ
 
 import settings_local as settings
+setup_environ(settings)
+import log_settings
 
 try:
     from compare import version_int
