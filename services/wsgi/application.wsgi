@@ -1,6 +1,5 @@
 import os
 import site
-os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
 
 wsgidir = os.path.dirname(__file__)
 for path in ['../', '../..', '../../vendor/src/commonware',
