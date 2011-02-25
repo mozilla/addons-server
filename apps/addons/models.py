@@ -103,7 +103,7 @@ class AddonManager(amo.models.ManagerBase):
                  disabled_by_user=False, status__in=status)
 
 
-class Addon(amo.models.ModelBase):
+class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     STATUS_CHOICES = amo.STATUS_CHOICES.items()
     LOCALES = [(translation.to_locale(k).replace('_', '-'), v) for k, v in
                settings.LANGUAGES.items()]
@@ -830,15 +830,18 @@ signals.version_changed.connect(version_changed,
                                 dispatch_uid='version_changed')
 
 
-def watch_status(sender, instance, **kw):
+def watch_status(old_attr={}, new_attr={}, instance=None,
+                 sender=None, **kw):
     """Set nominationdate if self.status asks for full review."""
-    if kw.get('raw'):
+    new_status = new_attr.get('status')
+    if not new_status:
         return
     addon = instance
     stati = (amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED)
-    if addon.status in stati:
-        addon.nomination_date = datetime.now()
-dbsignals.pre_save.connect(watch_status, sender=Addon)
+    if new_status in stati and old_attr['status'] != new_status:
+        addon.update(nomination_date=datetime.now())
+
+Addon.on_change(watch_status)
 
 
 class MiniAddonManager(AddonManager):
