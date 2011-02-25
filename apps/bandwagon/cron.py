@@ -29,7 +29,7 @@ def migrate_collection_users():
     Collection._meta.get_field('modified').auto_now = False
     collections = (Collection.objects.no_cache().using('default')
                    .exclude(type=amo.COLLECTION_ANONYMOUS)
-                   .filter(author__isnull=True))
+                   .filter(author__isnull=True, addon_index__isnull=True))
 
     task_log.info('Fixing users for %s collections.' % len(collections))
     for collection in collections:
