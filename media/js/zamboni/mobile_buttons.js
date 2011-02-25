@@ -119,9 +119,9 @@
         // performs the next action in the queue.
         function nextAction() {
             if (self.currentAction >= self.actionQueue.length) return;
-            self.currentAction++;
             // execute the next action.
-            var result = self.actionQueue[0][1].call(this);
+            var result = self.actionQueue[self.currentAction][1].call(this);
+            self.currentAction++;
             // execute the next action if the current action returns true.
             if (result === true) {
                 self.resumeInstall();
@@ -192,9 +192,14 @@
 
             if (classes.beta) warnings.push("experimental");
             if (classes.unreviewed) warnings.push("unreviewed");
-            
+
             if (classes.beta || classes.unreviewed) {
                 dom.buttons.addClass("warning");
+            }
+
+            if (classes.eula) {
+                self.actionQueue.push([1,z.eula.show]);
+                z.eula.acceptButton.click(_pd(self.resumeInstall));
             }
 
             if (!canInstall) {

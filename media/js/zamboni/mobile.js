@@ -134,6 +134,7 @@ $(function() {
             //I want to ensure the lightbox is painted before fading it in.
             setTimeout(function () {
                 $lightbox.addClass("show");
+                posLightbox();
             },0);
         }
         function showImage(a) {
@@ -183,6 +184,9 @@ $(function() {
         }));
         $document.scroll();
     })();
+
+    $("#eula .negative").click(_pd(z.eula.dismiss));
+    $("#eula .affirmative").click(_pd(z.eula.dismiss));
 });
 
 $(".desktop-link").attr("href", window.location).click(function() {
@@ -200,9 +204,27 @@ $("#sort-menu .label").click(_pd(function() {
     this.blur();
 }));
 
-function _pd(func) {
-    return function(e) {
-        e.preventDefault();
-        func.apply(this, arguments);
+z.eula = (function(){
+    var $eula = $("#eula"),
+        $body = $(document.body),
+        currentPos;
+    function show() {
+        if ($eula.length && !$body.hasClass("locked")) {
+            currentPos = $(document).scrollTop() || 1;
+            $eula.show();
+            $body.addClass("locked");
+        }
+    }
+    function dismiss() {
+        if ($eula.length && $body.hasClass("locked")) {
+            $eula.hide();
+            $body.removeClass("locked");
+            $(document).scrollTop(currentPos);
+        }
+    }
+    return {
+        show: show,
+        dismiss: dismiss,
+        acceptButton: $("#eula-menu .affirmative")
     };
-}
+})();

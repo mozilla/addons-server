@@ -31,41 +31,43 @@
         data-media-url="{{ MEDIA_URL }}"
         {% block bodyattrs %}{% endblock %}>
 
-    {% block header %}
-      <header class="mini-header">
-        {% include "mobile/header.html" %}
-        <hgroup>
-          <h1 class="site-title">
-            {% set appicon = 'firefox' if request.APP == amo.MOBILE else request.APP.short %}
-            <a href="{{ url('home') }}"
-              title="{{ _('Return to the {0} Add-ons homepage')|f(request.APP.pretty) }}">
-              <img alt="{{ request.APP.pretty }}" src="{{ media('img/zamboni/app_icons/' + appicon + '.png') }}">
-              {{ _('Mobile Add-ons') }}
-            </a>
-          </h1>
-        </hgroup>
-        {% block back_link %}
-        <a href="{{ url('home') }}" id="home">
-          <svg width="18" height="16"><polygon fill="#447BC4" points="9,0 18,9 15,9 15,16 11,16 11,11 7,11 7,18 3,16 3,9 0,9"/></svg>
-          {{ _('Mobile Add-ons Home') }}</a>
-        {% endblock %}
-      </header>
-    {% endblock %}
+    <div id="page">
+      {% block header %}
+        <header class="mini-header">
+          {% include "mobile/header.html" %}
+          <hgroup>
+            <h1 class="site-title">
+              {% set appicon = 'firefox' if request.APP == amo.MOBILE else request.APP.short %}
+              <a href="{{ url('home') }}"
+                title="{{ _('Return to the {0} Add-ons homepage')|f(request.APP.pretty) }}">
+                <img alt="{{ request.APP.pretty }}" src="{{ media('img/zamboni/app_icons/' + appicon + '.png') }}">
+                {{ _('Mobile Add-ons') }}
+              </a>
+            </h1>
+          </hgroup>
+          {% block back_link %}
+          <a href="{{ url('home') }}" id="home">
+            <svg width="18" height="16"><polygon fill="#447BC4" points="9,0 18,9 15,9 15,16 11,16 11,11 7,11 7,18 3,16 3,9 0,9"/></svg>
+            {{ _('Mobile Add-ons Home') }}</a>
+          {% endblock %}
+        </header>
+      {% endblock %}
 
-    <section id="content">
-      {% block page %}
-      {% endblock page %}
-    </section>
-    <footer>
-      {% include "includes/lang_switcher.html" %}
-      {% block footer %}
-        <a class="desktop-link" href="#">{{ _('View full site') }}</a>
-        <p id="footer-links">
-          <a href="http://mozilla.com/privacy-policy.html">{{ _('Privacy Policy') }}</a> &nbsp;|&nbsp;
-          <a href="http://mozilla.com/about/legal.html">{{ _('Legal Notices') }}</a>
-        </p>
-      {% endblock footer %}
-    </footer>
+      <section id="content">
+        {% block page %}
+        {% endblock page %}
+      </section>
+      <footer>
+        {% include "includes/lang_switcher.html" %}
+        {% block footer %}
+          <a class="desktop-link" href="#">{{ _('View full site') }}</a>
+          <p id="footer-links">
+            <a href="http://mozilla.com/privacy-policy.html">{{ _('Privacy Policy') }}</a> &nbsp;|&nbsp;
+            <a href="http://mozilla.com/about/legal.html">{{ _('Legal Notices') }}</a>
+          </p>
+        {% endblock footer %}
+      </footer>
+    </div>
     {% block staging %}
     {% endblock %}
     {# js #}

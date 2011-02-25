@@ -68,6 +68,10 @@ section:after,
     visibility: hidden;
 }
 
+.locked #page {
+    display: none;
+}
+
 /************************************/
 /*             TYPOGRAPHY           */
 /************************************/
@@ -88,7 +92,8 @@ a:link {
 .install-wrapper a {
     font-family: "Droid Sans", sans-serif;
 }
-#content h2 {
+#content h2,
+#eula h2 {
     font-style: italic;
     margin: 0 14px 14px;
     font-size: 1.4em;
@@ -203,7 +208,8 @@ table th {
     line-height: 1.2em;
 }
 
-.text-listing h2 {
+.text-listing h2,
+#eula h2 {
     padding-bottom: 4px;
     border-bottom: 1px solid #ccc;
     box-shadow: 0 1px #fff;
@@ -854,7 +860,7 @@ td .versions li a {
 .button, a.button {
     -moz-transition: -moz-box-shadow 0.3s ease 0s;
     background-image: -moz-linear-gradient(#669BE1, #5784BF) repeat scroll 0 0 transparent;
-	background-image: -webkit-gradient(
+    background-image: -webkit-gradient(
         linear,
         left top,
         left bottom,
@@ -883,50 +889,65 @@ td .versions li a {
 
 .button:active,
 .button.selected {
-	top: 2px;
-	-moz-box-shadow: 0 1px rgba(0, 0, 0, 0.1),
-	                 0 -4px rgba(0, 0, 0, 0.1) inset,
-	                 0 0 100px rgba(255, 255, 255, 0.2) inset;
+    top: 2px;
+    -moz-box-shadow: 0 1px rgba(0, 0, 0, 0.1),
+                     0 -4px rgba(0, 0, 0, 0.1) inset,
+                     0 0 100px rgba(255, 255, 255, 0.2) inset;
 }
 
 .button.small {
-	font-size: 13px;
-	font-weight: normal;
-	padding: 6px 12px;
-	padding-bottom: 9px;
-	-moz-box-shadow: 0 2px rgba(0, 0, 0, 0.1),
-	                 0 -3px rgba(0, 0, 0, 0.1) inset;
+    font-size: 13px;
+    font-weight: normal;
+    padding: 6px 12px;
+    padding-bottom: 9px;
+    -moz-box-shadow: 0 2px rgba(0, 0, 0, 0.1),
+                     0 -3px rgba(0, 0, 0, 0.1) inset;
 }
 
 .button.small:hover,
 .button.small:focus,
 .button.small:active,
 .button.small.selected {
-	-moz-box-shadow: 0 2px rgba(0, 0, 0, 0.1),
-	                 0 -3px rgba(0, 0, 0, 0.1) inset,
-	                 0 0 100px rgba(255, 255, 255, 0.2) inset;
+    -moz-box-shadow: 0 2px rgba(0, 0, 0, 0.1),
+                     0 -3px rgba(0, 0, 0, 0.1) inset,
+                     0 0 100px rgba(255, 255, 255, 0.2) inset;
 }
 
 .button.small:active,
 .button.small.selected {
-	top: 2px;
-	-moz-box-shadow: 0 0px rgba(0, 0, 0, 0.1),
-	                 0 -3px rgba(0, 0, 0, 0.1) inset,
-	                 0 0 100px rgba(255, 255, 255, 0.2) inset;
+    top: 2px;
+    -moz-box-shadow: 0 0px rgba(0, 0, 0, 0.1),
+                     0 -3px rgba(0, 0, 0, 0.1) inset,
+                     0 0 100px rgba(255, 255, 255, 0.2) inset;
 }
 
+.button.affirmative,
 .button.add {
     background-color: #84C63C;
-	background-image: -moz-linear-gradient(#84C63C, #489615);
-	background-image: -webkit-gradient(
+    background-image: -moz-linear-gradient(#84C63C, #489615);
+    background-image: -webkit-gradient(
         linear,
         left top,
         left bottom,
         from(#84C63C),
         to(#489615)
     );
-	color: #fff;
-	padding-left: 40px;
+    color: #fff;
+}
+.button.negative {
+    background-color: #84C63C;
+    background-image: -moz-linear-gradient(#b25951, #932b0d);
+    background-image: -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        from(#b25951),
+        to(#932b0d)
+    );
+    color: #fff;
+}
+.button.add {
+    padding-left: 40px;
 }
 .button.add:before {
     content: " ";
@@ -957,11 +978,11 @@ td .versions li a {
     background: url(../../img/zamboni/mobile/install.svg) no-repeat 0 -50px;
 }
 .button.disabled {
-	background: -moz-linear-gradient(#d1d4d7, #c1c5ca);
-	color: #fff;
-	-moz-box-shadow: 0 3px rgba(0, 0, 0, 0.05),
-	                 0 -4px rgba(0, 0, 0, 0.05) inset;
-	top: 0;
+    background: -moz-linear-gradient(#d1d4d7, #c1c5ca);
+    color: #fff;
+    -moz-box-shadow: 0 3px rgba(0, 0, 0, 0.05),
+                     0 -4px rgba(0, 0, 0, 0.05) inset;
+    top: 0;
 }
 .button.add.disabled:before {
     background: url(../../img/zamboni/mobile/install.svg) no-repeat top left;
@@ -1009,6 +1030,85 @@ td .versions li a {
     background-color: #e6e6e6;
     background-image: -moz-linear-gradient(#e6e6e6, #d3d3d3);
 }
+
+/************************************/
+/*                EULA              */
+/************************************/
+
+#eula {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #333;
+    display: none;
+}
+#eula-content {
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    margin: 14px;
+    padding: 14px 0 70px 0;
+    background: #fff;
+}
+#eula-text {
+    padding: 0 14px;
+    font-family: Georgia, serif;
+    line-height: 1.2em;
+}
+#eula-body {
+    margin-top: 14px;
+    color: #666;
+}
+#eula-body ul {
+    list-style: disc outside none;
+    margin-left: 20px;
+}
+#eula-body ol {
+    list-style: decimal outside none;
+    margin-left: 20px;
+}
+#eula-menu {
+    position: fixed;
+    bottom: -1px;
+    left: 14px;
+    width: -moz-calc(100% - 28px);
+    background: #fff;
+}
+#eula:after {
+    position: absolute;
+    content: "";
+    bottom: 0;
+    height: 20px;
+    width: -moz-calc(100% - 28px);
+    z-index: 1000;
+    border-width: 14px;
+    border-style: solid;
+    pointer-events: none;
+    border-color: transparent #333 #333;
+    -moz-border-radius: 14px;
+    -webkit-border-radius: 14px;
+    border-radius: 14px;
+}
+#eula-menu div {
+    margin-bottom: 14px;
+    overflow: hidden;
+    position: relative;
+    background: #fff;
+    -moz-border-radius: 0 0 6px 6px;
+    -webkit-border-radius: 0 0 6px 6px;
+    border-radius: 0 0 6px 6px;
+}
+#eula-menu .button {
+    margin: 8px;
+    display: block;
+    float: left;
+    width: -moz-calc(50% - 48px);
+}
+
+
 
 /************************************/
 /*              REVIEWS             */
