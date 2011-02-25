@@ -3,6 +3,7 @@ import uuid
 
 from django import http
 from django.contrib import admin
+from django.db import IntegrityError
 from django.forms.models import modelformset_factory
 from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.csrf import csrf_exempt
@@ -178,7 +179,12 @@ def get_synced_collection(addon_ids, token):
         c = SyncedCollection.objects.create(listed=False)
         c.set_addons(addon_ids)
 
-    c.token_set.create(token=token)
+    # Don't fail if the token is already there. This shouldn't happen but it
+    # seems to be pretty common.
+    try:
+        c.token_set.create(token=token)
+    except IntegrityError:
+        pass
     return c
 
 
