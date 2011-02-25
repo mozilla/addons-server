@@ -1,10 +1,12 @@
 import os
 import site
+os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
 
 wsgidir = os.path.dirname(__file__)
 for path in ['../', '../..', '../../vendor/src/commonware',
-             '../../vendor/src/django', '../../lib',
-             '../../vendor/lib/python', '../../apps/versions']:
+             '../../vendor/src/nuggets', '../../vendor/src/django',
+             '../../lib', '../../vendor/lib/python',
+             '../../apps/versions']:
     site.addsitedir(os.path.abspath(os.path.join(wsgidir, path)))
 
 from update import application
