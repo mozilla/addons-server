@@ -301,12 +301,8 @@ def home(request):
     except GlobalStat.DoesNotExist:
         downloads = None
 
-    # Top tags.
-    top_tags = Tag.objects.not_blacklisted().select_related(
-        'tagstat').order_by('-tagstat__num_addons')[:10]
-
     return jingo.render(request, 'addons/home.html',
-                        {'downloads': downloads, 'top_tags': top_tags,
+                        {'downloads': downloads,
                          'filter': filter, 'addon_sets': addon_sets,
                          'collections': collections, 'promobox': promobox})
 

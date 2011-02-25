@@ -109,24 +109,6 @@
 {% endblock content %}
 
 {% block under_categories %}
-{% cache top_tags %}
-  {% if top_tags %}
-  {% set max_tag_count = top_tags[0].popularity or 1 %}
-  {% set min_tag_count = (top_tags|last).popularity or 1 %}
-  <div class="highlight" id="tag-box">
-    <h3>{{ _('Popular Tags') }}</h3>
-    <div>
-      {% for tag in top_tags|list|shuffle if tag.tagstat %}
-        {{ tag_link(tag, min_tag_count, max_tag_count, min_level=3) }}
-      {% endfor %}
-    </div>
-    <p class="more">
-      <a href="{{ remora_url('/tags/top', app='') }}" class="more-link">
-        {{ _('View Top 100 Tags') }}</a>
-    </p>
-  </div>
-  {% endif %}
-{% endcache %}
 
 <div class="highlight">
   <h3>{{ _('Build a {0} Add-on')|f(request.APP.pretty) }}</h3>
