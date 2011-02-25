@@ -5,6 +5,7 @@ import re
 import socket
 
 from django.conf import settings
+from django.db.models import Q
 from django.utils import translation
 from django.utils.encoding import smart_unicode
 
@@ -548,7 +549,8 @@ class Client(object):
         if category_ids:
             qs = Category.objects.filter(id__in=set(category_ids))
             if 'app' in kwargs:
-                qs = qs.filter(application=kwargs['app'])
+                qs = qs.filter(Q(application=kwargs['app']) |
+                               Q(type=amo.ADDON_SEARCH))
             categories = order_by_translation(qs, 'name')
         return categories
 
