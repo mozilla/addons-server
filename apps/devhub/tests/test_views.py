@@ -2867,6 +2867,18 @@ class TestSubmitStep6(TestSubmitBase):
         assert_close_to_now(addon.nomination_date)
         assert_raises(SubmitStep.DoesNotExist, self.get_step)
 
+    def test_nomination_date_is_only_set_once(self):
+        # This was a regression, see bug 632191.
+        # Nominate:
+        r = self.client.post(self.url, dict(review_type=amo.STATUS_NOMINATED))
+        eq_(r.status_code, 302)
+        nomdate = datetime.now() - timedelta(days=5)
+        self.get_addon().update(nomination_date=nomdate, _signal=False)
+        # Update something else in the addon:
+        self.get_addon().update(slug='foobar')
+        eq_(self.get_addon().nomination_date.timetuple()[0:5],
+            nomdate.timetuple()[0:5])
+
 
 class TestSubmitStep7(TestSubmitBase):
 
@@ -3804,6 +3816,18 @@ class TestRequestReview(test_utils.TestCase):
                 # Pretend it was nominated in the past:
                 nomination_date=datetime.now() - timedelta(days=30))
         self.check(amo.STATUS_NULL, self.public_url, amo.STATUS_NOMINATED)
+        assert_close_to_now(self.get_addon().nomination_date)
+
+    def test_renomination_resets_nomination_date(self):
+        # Nominate:
+        self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
+        # Pretend it was nominated in the past:
+        self.addon.update(nomination_date=datetime.now() - timedelta(days=30),
+                          _signal=False)
+        # Reject it:
+        self.addon.update(status=amo.STATUS_NULL)
+        # Re-nominate:
+        self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
         assert_close_to_now(self.get_addon().nomination_date)
 
 
