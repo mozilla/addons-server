@@ -11,7 +11,7 @@
   </h3>
 
   <div class="item-info">
-    {{ install_button(addon, version=version) }}
+    {{ install_button(addon, version=version, show_backup=False) }}
 
     {% if version.compatible_apps %}
       <h5>{{ _('Works with:') }}</h5>

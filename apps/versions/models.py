@@ -204,7 +204,7 @@ def update_status(sender, instance, **kw):
     if not kw.get('raw'):
         try:
             instance.addon.update_status(using='default')
-            instance.addon.update_current_version()
+            instance.addon.update_version()
         except models.ObjectDoesNotExist:
             pass
         if kw.get('created'):

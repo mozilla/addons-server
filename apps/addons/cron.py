@@ -8,7 +8,7 @@ from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.db import connections, transaction
-from django.db.models import Q, F, Max, Avg
+from django.db.models import Q, F, Avg
 
 import commonware.log
 import multidb
@@ -93,7 +93,7 @@ def _update_addons_current_version(data, **kw):
     for pk in data:
         try:
             addon = Addon.objects.get(pk=pk[0])
-            addon.update_current_version()
+            addon.update_version()
         except Addon.DoesNotExist:
             task_log.debug("Missing addon: %d" % pk)
     transaction.commit_unless_managed()

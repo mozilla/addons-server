@@ -7,6 +7,7 @@ import threading
 import commonware.log
 from product_details import firefox_versions, thunderbird_versions
 from tower import ugettext_lazy as _
+from versions.compare import version_int
 
 from licenses import license_text
 from .log import LOG, LOG_BY_ID, LOG_EDITORS, LOG_KEEP, LOG_REVIEW_QUEUE, log
@@ -233,6 +234,7 @@ class FIREFOX:
     min_display_version = 3.0
     # These versions were relabeled and should not be displayed.
     exclude_versions = (3.1, 3.7)
+    backup_version = version_int('3.7.*')
     latest_version = firefox_versions['LATEST_FIREFOX_VERSION']
     user_agent_string = 'Firefox'
 

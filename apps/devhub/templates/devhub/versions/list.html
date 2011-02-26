@@ -78,7 +78,7 @@
           {% endif %}
           <a href="#" id="delete-addon">{{ _('Delete Add-on') }}</a>
         {% endif %}
-        {% set current = addon.get_current_version() %}
+        {% set current = addon.current_version %}
         {% if current %}
           <span class="version-changed">
           {{ _('Displayed version: {0}')|f(current.version) }}

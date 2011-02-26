@@ -205,7 +205,20 @@
   <div id="csrf-template">
     <input id="csrfmiddlewaretoken" value="<csrf-from-input>">
   </div>
-
+  <div id="buttons">
+    <div class="install-shell">
+        <div class="install featuredaddon"
+             data-version-supported="false">
+        </div>
+    </div>
+    <div class="backup-button hidden">
+        <div class="install-shell">
+            <div class="install featuredaddon"
+                 data-version-supported="true">
+            </div>
+        </div>
+    </div>
+  </div>
 
   <script src="{{ url('jsi18n') }}/build:{{ BUILD_ID_JS }}"></script>
   {{ js('common') }}

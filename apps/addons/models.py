@@ -225,6 +225,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     _current_version = models.ForeignKey(Version, related_name='___ignore',
             db_column='current_version', null=True, on_delete=models.SET_NULL)
+    # This is for Firefox only.
+    _backup_version = models.ForeignKey(Version, related_name='___backup',
+            db_column='backup_version', null=True, on_delete=models.SET_NULL)
 
     # This gets overwritten in the transformer.
     share_counts = collections.defaultdict(int)
@@ -375,8 +378,12 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     def language_ascii(self):
         return settings.LANGUAGES[translation.to_language(self.default_locale)]
 
-    def get_current_version(self):
-        """Retrieves the latest version of an addon."""
+    def get_version(self, backup_version=False):
+        """
+        Retrieves the latest version of an addon.
+        firefox_limit: if specified the highest file up to but *not* including
+                       this version will be found.
+        """
         if self.type == amo.ADDON_PERSONA:
             return
         try:
@@ -386,14 +393,15 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                                  amo.STATUS_LITE_AND_NOMINATED):
                 status = [amo.STATUS_PUBLIC, amo.STATUS_LITE,
                           amo.STATUS_LITE_AND_NOMINATED]
-            elif self.status == amo.STATUS_LISTED:
-                return self.versions.all()[0]
             else:
                 status = amo.VALID_STATUSES
 
             status_list = ','.join(map(str, status))
-            return self.versions.no_cache().filter(
-                files__status__in=status).extra(
+            fltr = {'files__status__in': status}
+            if backup_version:
+                fltr['apps__application__id'] = amo.FIREFOX.id
+                fltr['apps__min__version_int__lt'] = amo.FIREFOX.backup_version
+            return self.versions.no_cache().filter(**fltr).extra(
                 where=["""
                     NOT EXISTS (
                         SELECT 1 FROM versions as v2
@@ -405,21 +413,55 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         except (IndexError, Version.DoesNotExist):
             return None
 
-    def update_current_version(self):
-        "Returns true if we updated the current_version field."
-        current_version = self.get_current_version()
-        if current_version != self._current_version:
-            self._current_version = current_version
+    def update_version(self):
+        "Returns true if we updated the field."
+        backup = None
+        current = self.get_version()
+        if current:
+            firefox_min = current.compatible_apps.get(amo.FIREFOX)
+            if (firefox_min and
+                firefox_min.min.version_int > amo.FIREFOX.backup_version):
+                backup = self.get_version(backup_version=True)
+
+        diff = [self._backup_version, backup, self._current_version, current]
+
+        changed = False
+        if self._backup_version != backup:
+            self._backup_version = backup
+            changed = True
+        if self._current_version != current:
+            self._current_version = current
+            changed = True
+
+        if changed:
             try:
                 self.save()
                 signals.version_changed.send(sender=self)
-                log.debug('Current version changed: %r to %s' %
-                          (self, current_version))
-                return True
+                log.debug('Version changed from backup: %s to %s, '
+                          'current: %s to %s for addon %s'
+                          % tuple(diff + [self]))
             except Exception, e:
-                log.error('Could not save version %s for addon %s (%s)' %
-                          (current_version, self.id, e))
-        return False
+                log.error('Could not save version changes backup: %s to %s, '
+                          'current: %s to %s for addon %s (%s)' %
+                          tuple(diff + [self, e]))
+
+        return changed
+
+    @property
+    def current_version(self):
+        "Returns the current_version field or updates it if needed."
+        if self.type == amo.ADDON_PERSONA:
+            return
+        if not self._current_version:
+            self.update_version()
+        return self._current_version
+
+    @property
+    def backup_version(self):
+        """Returns the backup version."""
+        if not self._current_version:
+            return
+        return self._backup_version
 
     def get_icon_dir(self):
         return os.path.join(settings.ADDON_ICONS_PATH,
@@ -457,15 +499,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             return settings.ADDON_ICON_URL % (
                     self.id, int(time.mktime(self.modified.timetuple())))
 
-    @property
-    def current_version(self):
-        "Returns the current_version field or updates it if needed."
-        if self.type == amo.ADDON_PERSONA:
-            return
-        if not self._current_version:
-            self.update_current_version()
-        return self._current_version
-
     def update_status(self, using=None):
         if self.status == amo.STATUS_NULL:
             return
@@ -498,11 +531,16 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         addons = [a for a in addons if a.type != amo.ADDON_PERSONA]
 
         version_ids = filter(None, (a._current_version_id for a in addons))
-        versions = list(Version.objects.filter(id__in=version_ids).order_by()
+        backup_ids = filter(None, (a._backup_version_id for a in addons))
+        all_ids = set(version_ids) | set(backup_ids)
+        versions = list(Version.objects.filter(id__in=all_ids).order_by()
                         .transform(Version.transformer))
         for version in versions:
             addon = addon_dict[version.addon_id]
-            addon._current_version = version
+            if addon._current_version_id == version.id:
+                addon._current_version = version
+            elif addon._backup_version_id == version.id:
+                addon._backup_version = version
             version.addon = addon
 
         # Attach listed authors.

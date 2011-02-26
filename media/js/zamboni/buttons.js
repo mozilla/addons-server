@@ -190,6 +190,7 @@ var installButton = function() {
             // L10n: {0} is an app name, {1} is the app version.
             warn(format(gettext('Not available for {0} {1}'),
                               [z.appName, z.browserVersion]));
+            $button.closest('div').attr('data-version-supported', false);
             $button.addClass('concealed');
             if (!opts.addPopup) return;
 
@@ -205,10 +206,12 @@ var installButton = function() {
         } else if (badPlatform && opts.addPopup) {
             // Only bad platform is possible.
             $button.addPopup(pmsg);
+            $button.closest('div').attr('data-version-supported', true);
             return true;
         } else if (!unreviewed && (appSupported || search)) {
             // Good version, good platform.
             $button.addClass('installer');
+            $button.closest('div').attr('data-version-supported', true);
         }
         return false;
     };
@@ -272,6 +275,17 @@ jQuery.fn.installButton = function() {
     return this.each(installButton);
 };
 
+jQuery.fn.showBackupButton = function() {
+    this.each(function() {
+        var current = $(this).parent().find('.install'),
+            attr = 'data-version-supported';
+        if ($(this).find('.install').attr(attr) == 'true' &&
+            $(current).attr(attr) == 'false') {
+            $(current).closest('.install-shell').first().addClass('hidden');
+            $(this).removeClass('hidden').show();
+        }
+    });
+}
 
 // Create a popup box when the element is clicked.  html can be a function.
 jQuery.fn.addPopup = function(html, allowClick) {

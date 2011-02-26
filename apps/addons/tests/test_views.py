@@ -839,6 +839,20 @@ class TestDetailPage(test_utils.TestCase):
         r = self.client.get(url)
         self.assertContains(r, no_restart)
 
+    def test_no_backup(self):
+        addon = Addon.objects.get(id=3615)
+        url = reverse('addons.detail', args=[addon.slug])
+        res = self.client.get(url)
+        eq_(len(pq(res.content)('.backup-button')), 0)
+
+    def test_backup(self):
+        addon = Addon.objects.get(id=3615)
+        addon._backup_version = addon.versions.all()[0]
+        addon.save()
+        url = reverse('addons.detail', args=[addon.slug])
+        res = self.client.get(url)
+        eq_(len(pq(res.content)('.backup-button')), 1)
+
 
 class TestStatus(test_utils.TestCase):
     fixtures = ['base/apps', 'base/addon_3615']
@@ -896,49 +910,49 @@ class TestStatus(test_utils.TestCase):
 
     def test_public_new_lite_version(self):
         self.new_version(amo.STATUS_LITE)
-        eq_(self.addon.get_current_version(), self.version)
+        eq_(self.addon.get_version(), self.version)
 
     def test_public_new_nominated_version(self):
         self.new_version(amo.STATUS_NOMINATED)
-        eq_(self.addon.get_current_version(), self.version)
+        eq_(self.addon.get_version(), self.version)
 
     def test_public_new_public_version(self):
         v = self.new_version(amo.STATUS_PUBLIC)
-        eq_(self.addon.get_current_version(), v)
+        eq_(self.addon.get_version(), v)
 
     def test_public_new_unreviewed_version(self):
         self.new_version(amo.STATUS_UNREVIEWED)
-        eq_(self.addon.get_current_version(), self.version)
+        eq_(self.addon.get_version(), self.version)
 
     def test_lite_new_unreviewed_version(self):
         self.addon.update(status=amo.STATUS_LITE)
         self.new_version(amo.STATUS_UNREVIEWED)
-        eq_(self.addon.get_current_version(), self.version)
+        eq_(self.addon.get_version(), self.version)
 
     def test_lite_new_lan_version(self):
         self.addon.update(status=amo.STATUS_LITE)
         v = self.new_version(amo.STATUS_LITE_AND_NOMINATED)
-        eq_(self.addon.get_current_version(), v)
+        eq_(self.addon.get_version(), v)
 
     def test_lite_new_lite_version(self):
         self.addon.update(status=amo.STATUS_LITE)
         v = self.new_version(amo.STATUS_LITE)
-        eq_(self.addon.get_current_version(), v)
+        eq_(self.addon.get_version(), v)
 
     def test_lite_new_full_version(self):
         self.addon.update(status=amo.STATUS_LITE)
         v = self.new_version(amo.STATUS_PUBLIC)
-        eq_(self.addon.get_current_version(), v)
+        eq_(self.addon.get_version(), v)
 
     def test_lan_new_lite_version(self):
         self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
         v = self.new_version(amo.STATUS_LITE)
-        eq_(self.addon.get_current_version(), v)
+        eq_(self.addon.get_version(), v)
 
     def test_lan_new_full_version(self):
         self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
         v = self.new_version(amo.STATUS_PUBLIC)
-        eq_(self.addon.get_current_version(), v)
+        eq_(self.addon.get_version(), v)
 
 
 class TestTagsBox(test_utils.TestCase):
