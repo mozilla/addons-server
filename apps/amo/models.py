@@ -256,10 +256,9 @@ class OnChangeMixin(object):
 
         If _signal=False is in ``kw`` the post_save signal won't be sent.
         """
-        cls = self.__class__
         signal = kw.pop('_signal', True)
         old_attr = dict(self.__dict__)
-        result = cls.objects.filter(pk=self.pk).update(**kw)
+        result = super(OnChangeMixin, self).update(**kw)
         if signal:
             self._send_changes(old_attr, kw)
         return result
