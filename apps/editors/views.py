@@ -112,7 +112,7 @@ def _queue(request, TableObj, tab):
 
 
 def _queue_counts():
-    moderated = Review.objects.filter(reviewflag__isnull=False)
+    moderated = Review.objects.filter(reviewflag__isnull=False, editorreview=1)
 
     return {'pending': ViewPendingQueue.objects.count(),
             'nominated': ViewFullReviewQueue.objects.count(),
@@ -142,9 +142,11 @@ def queue_prelim(request):
 
 @editor_required
 def queue_moderated(request):
-    rf = Review.objects.order_by('reviewflag__created')
-                       .filter(reviewflag__isnull=False, addon__isnull=False)
-    page = paginate(request, rf, per_page=50)
+    rf = (Review.objects.filter(editorreview=1, reviewflag__isnull=False,
+                                addon__isnull=False)
+                        .order_by('reviewflag__created'))
+
+    page = paginate(request, rf, per_page=20)
 
     flags = dict(ReviewFlag.FLAGS)
 

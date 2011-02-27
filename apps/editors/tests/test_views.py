@@ -423,6 +423,10 @@ class TestModeratedQueue(QueueTest):
         """ Make sure the editor tools can remove flags and keep a review. """
         al = ActivityLog.objects.filter(action=amo.LOG.APPROVE_REVIEW.id)
         al_start = al.count()
+
+        review = Review.objects.filter(addon=1865, editorreview=1)
+        eq_(len(review), 1)
+
         self.setup_actions(reviews.REVIEW_MODERATE_KEEP)
 
         # Make sure it's removed from the queue.
@@ -431,8 +435,13 @@ class TestModeratedQueue(QueueTest):
         rows = doc('#reviews-flagged .review-flagged:not(.review-saved)')
         eq_(len(rows), 0)
 
-        # Make sure it's NOT deleted.
-        eq_(len(Review.objects.filter(addon=1865)), 2)
+        review = Review.objects.filter(addon=1865)
+
+        # Make sure it's NOT deleted...
+        eq_(len(review), 2)
+
+        # ...but it's no longer flagged
+        eq_(len(review.filter(editorreview=1)), 0)
 
         # One activity logged.
         al_end = ActivityLog.objects.filter(action=amo.LOG.APPROVE_REVIEW.id)

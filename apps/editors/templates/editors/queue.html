@@ -90,9 +90,7 @@
             <h3>
               <a href="{{ review.instance.addon.get_url_path() }}">
                 {{ review.instance.addon.name }}</a>
-              {%- if review.instance.title %}
-                : {{ review.instance.title }}
-              {% endif %}
+              {%- if review.instance.title %}: {{ review.instance.title }}{% endif %}
             </h3>
             <p>
             {% trans user=review.instance.user|user_link, date=review.instance.created|datetime,

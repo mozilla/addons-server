@@ -52,6 +52,8 @@ class BaseReviewFlagFormSet(BaseModelFormSet):
                     review.delete()
                     amo.log(amo.LOG.DELETE_REVIEW, review_addon, review_id)
                 elif action == reviews.REVIEW_MODERATE_KEEP:
+                    review.editorreview = False
+                    review.save()
                     amo.log(amo.LOG.APPROVE_REVIEW, review.addon, review)
 
 
