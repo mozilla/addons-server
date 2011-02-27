@@ -142,7 +142,8 @@ def queue_prelim(request):
 
 @editor_required
 def queue_moderated(request):
-    rf = Review.objects.filter(reviewflag__isnull=False, addon__isnull=False)
+    rf = Review.objects.order_by('reviewflag__created')
+                       .filter(reviewflag__isnull=False, addon__isnull=False)
     page = paginate(request, rf, per_page=50)
 
     flags = dict(ReviewFlag.FLAGS)
@@ -152,8 +153,6 @@ def queue_moderated(request):
 
     if reviews_formset.is_valid():
         reviews_formset.save()
-        # We have to redirect because forms have been deleted and the
-        # pagination will be all screwy.
         return redirect(reverse('editors.queue_moderated'))
 
     return jingo.render(request, 'editors/queue.html',
