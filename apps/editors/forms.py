@@ -178,12 +178,13 @@ class ReviewAddonForm(happyforms.Form):
     files = forms.ModelMultipleChoiceField(required=False,
                                         queryset=File.objects.none(),
                                         widget=forms.CheckboxSelectMultiple())
-    comments = forms.CharField(required=True, widget=forms.Textarea())
-    canned_response = forms.ModelChoiceField(required=False,
-                                        queryset=CannedResponse.objects.all())
+    comments = forms.CharField(required=True, widget=forms.Textarea(),
+                               label=_('Comments:'))
+    canned_response = forms.ChoiceField(required=False,
+                                        choices=[(c.response, c.name) for c in CannedResponse.objects.all()])
     action = forms.ChoiceField(required=True, widget=forms.RadioSelect())
-    operating_systems = forms.CharField(required=False)
-    applications = forms.CharField(required=False)
+    operating_systems = forms.CharField(required=False, label=_('Operating systems:'))
+    applications = forms.CharField(required=False, label=_('Applications:'))
     notify = forms.BooleanField(required=False,
                                 label=_('Notify me the next time this add-on '
                                         'is updated. (Subsequent updates will '
@@ -236,6 +237,8 @@ class ReviewFileForm(ReviewAddonForm):
 
 def get_review_form(data, request=None, addon=None, version=None):
     helper = ReviewHelper(request=request, addon=addon, version=version)
+
     form = {ReviewAddon: ReviewAddonForm,
             ReviewFiles: ReviewFileForm}[helper.handler.__class__]
     return form(data, helper=helper)
+

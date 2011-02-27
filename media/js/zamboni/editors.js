@@ -28,6 +28,22 @@ $(function() {
     if ($('#queue-search').length) {
         initQueueSearch($('#queue-search'));
     }
+
+    if($('.review-actions').length > 0) {
+        $('.review-actions > ul li').click(function(){
+            $(this).closest('.review-actions').addClass('on');
+            $('.review-actions > ul li').filter('.on-tab').removeClass('on-tab');
+            $(this).find('input').attr('checked', true);
+
+            $(this).addClass('on-tab');
+
+            $('#review-actions-form').slideDown();
+        });
+
+        $('.review-actions-canned select').change(function() {
+            $('#id_comments').val($(this).val());
+        });
+    }
 });
 
 function initEditorsMain() {

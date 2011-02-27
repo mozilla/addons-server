@@ -1,42 +1,26 @@
 {% extends "editors/base.html" %}
 
-{% block content %}
-<h3>{{ _('Review {0}')|f(addon.name) }}</h3>
-{{ num }}
-{% if paging %}
-{{ paging.current }} of {{ paging.total }}
-{% if paging.prev %}<a href="{{ paging.prev_url }}">prev</a>{% endif %}
-{% if paging.next %}<a href="{{ paging.next_url }}">next</a>{% endif %}
-{% endif %}
-<ul>
-{% for author in addon.authors.all() %}
-<li><a href="{{ url('users.profile', author.id) }}">{{ author.name }}</a></li>
-{% endfor %}
-</li>
-<ul>
-{% for category in addon.categories.all() %}
-<li>{{ category.name }}</a></li>
-{% endfor %}
-</ul>
-<ul>
-{% for app, appversion in addon.compatible_apps.items() %}
-{# TODO i18n this #}
-<li>{{ app.pretty }} {{ appversion.min }} {{ appversion.max }}</li>
-{% endfor %}
-</ul>
-<ul>
-{% for flag in flags %}
-{# TODO not sure what goes here #}
-<li>{{ flag }}</li>
-{% endfor %}
-</ul>
-<form method="POST">
-    {{ csrf() }}
-    {{ form }}
-    <input type="submit" value="save" />
-</form>
+{% block bodyclass %}inverse{% endblock %}
 
-<table>
+{% block content %}
+<hgroup>
+  <h2 class="addon"{{ addon.name|locale_html }}>
+    <img src="{{ addon.icon_url }}" class="icon"/>
+    {# L10n: "Review [add-on name]" #}
+    <span>
+      {{ _('Review {0}')|f(addon.name) }}
+    </span>
+    {% if version and not addon.is_selfhosted() %}
+      <span class="version">{{ version.version }}</span>
+    {% endif %}
+  </h2>
+  <h4 class="author">{{ _('by') }} {{ users_list(addon.listed_authors) }}</h4>
+</hgroup>
+
+<div id="addon" class="primary" role="main" data-id="{{ addon.id }}">
+{% include "addons/details_box.html" %}
+
+<table id="review-files">
     <thead>
         <tr>
             <th>{{ _('Version/File') }}</th>
@@ -53,4 +37,98 @@
     </tbody>
 </table>
 
+<form method="POST">
+  {{ csrf() }}
+  {# form #}
+  <div id="review-actions" class="review-actions">
+    {{ form.action }}
+    <div id="review-actions-form">
+      <label for="id_comments">{{ form.comments.label }}</label>
+      {{ form.comments }}
+      <div class="review-actions-canned">
+        {{ _('Or, select a canned response') }}
+        {{ form.canned_response }}
+      </div>
+
+      <div class="review-actions-section review-actions-tested">
+        <strong>{{ _('Tested on:') }}</strong>
+        <label>
+          {{ form.operating_systems.label }}
+        </label>
+        {{ form.operating_systems }}
+        <label>
+          {{ form.applications.label }}
+        </label>
+        {{ form.applications }}
+      </div>
+      <div class="review-actions-section">
+        {{ form.notify }}
+        <label for="id_notify">
+          {{ form.notify.label }}
+        </label>
+      </div>
+      <div class="review-actions-section review-actions-save">
+        <input type="submit" value="{{ _('Save') }}" />
+      </div>
+    </div>
+  </div>
+</form>
+
+</div> {# /#primary #}
+
+<div class="secondary">
+  {{ num }}
+  {% if paging %}
+  <div class="review-paging">
+    {% if paging.prev %}<a href="{{ paging.prev_url }}">{{ _('&laquo; Previous')|safe }}</a> &nbsp; {% endif %}
+    {% trans current=paging.current, total=paging.total %}
+    {{ current }} of {{ total }}
+    {% endtrans %}
+    {% if paging.next %} &nbsp; <a href="{{ paging.next_url }}">{{ _('Next &raquo;')|safe }}</a>{% endif %}
+  </div>
+  {% endif %}
+
+  <strong>{{ _('Review This Add-on') }}</strong>
+  <ul>
+    <li><a href="#more-about">{{ _('More Information') }}</a></li>
+    <li><a href="#review-files">{{ _('Add-on Files') }}</a></li>
+    <li><a href="#review-actions">{{ _('Editor Actions') }}</a></li>
+  </ul>
+
+  <strong>{{ _('Authors') }}</strong>
+  <ul>
+    {% for author in addon.authors.all() %}
+    <li><a href="{{ url('users.profile', author.id) }}">{{ author.name }}</a></li>
+    {% endfor %}
+  </ul>
+
+  <strong>{{ _('Categories') }}</strong>
+  <ul>
+    {% for category in addon.categories.all() %}
+    <li>{{ category.name }}</a></li>
+    {% endfor %}
+  </ul>
+
+  <strong>{{ _('Apps') }}</strong>
+  <ul>
+    {% for app, appversion in addon.compatible_apps.items() %}
+    <li>
+    {% trans app_name=app.pretty, version_min=appversion.min, version_max=appversion.max %}
+      {{ app_name }} {{ version_min }} {{ version_max }}
+    {% endtrans %}
+    </li>
+    {% endfor %}
+  </ul>
+
+  {% if flags: %}
+  <strong>{{ _('Flags') }}</strong>
+  <ul>
+    {% for flag in flags %}
+    {# TODO(andym): not sure what goes here #}
+    <li>{{ flag }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+
+</div>
 {% endblock %}

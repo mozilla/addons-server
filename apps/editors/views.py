@@ -16,7 +16,7 @@ from amo.urlresolvers import reverse
 from devhub.models import ActivityLog
 from editors import forms
 from editors.models import (ViewPendingQueue, ViewFullReviewQueue,
-                            ViewPreliminaryQueue, EventLog)
+                            ViewPreliminaryQueue, EventLog, CannedResponse)
 from editors.helpers import (ViewPendingQueueTable, ViewFullReviewQueueTable,
                              ViewPreliminaryQueueTable, LOG_STATUSES)
 from files.models import Approval
@@ -202,9 +202,12 @@ def review(request, version_id):
         amo.messages.info(request, _('Review successfully processed.'))
         return redirect(redirect_url)
 
+    canned = CannedResponse.objects.all()
+
     context = {'version': version, 'addon': addon,
                'flags': Review.objects.filter(addon=addon, flag=True),
                'form': form, 'paging': paging,
+               'canned': canned,
                'history': ActivityLog.objects.for_addons(addon)
                                      .filter(action__in=LOG_STATUSES)}
 

@@ -398,3 +398,143 @@ tr.comments {
     width: 25em;
     height: 1.5em;
 }
+
+/* Review Page */
+
+#review-actions-form textarea,
+#review-actions-form input[type=text],
+#review-actions-form select {
+    border: 1px solid #AFBDD3;
+}
+#review-actions-form textarea {
+    border: 1px solid #AFBDD3;
+    height: 100px;
+}
+
+#review-actions-form {
+    padding: 10px;
+    display: none;
+}
+
+.review-actions {
+    margin: auto;
+    border: 3px solid #E0EFFD;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    border-radius: 7px;
+}
+
+.review-actions > div {
+    display: none;
+}
+
+.review-actions ul {
+    margin: 0;
+    display: table;
+    width: 100%;
+}
+
+.review-actions li {
+    background-color: #E0EFFD;
+    background: -moz-linear-gradient(#FFFFFF, #E0EFFD) repeat scroll 0 0 transparent;
+    display: table-cell;
+    text-align: center;
+}
+
+.review-actions li:active {
+    background-color: #FFF;
+    background: -moz-linear-gradient(#E0EFFD, #FFF) repeat scroll 0 0 transparent;
+}
+
+.review-actions li input {
+    display: none;
+}
+
+.review-actions li label {
+    display: block;
+    padding: 5px;
+}
+
+.review-actions li {
+    text-shadow: 1px 1px 0 #FFFFFF;
+    border-top: 1px solid #2E5186;
+    border-bottom: 1px solid #2E5186;
+    border-right: 1px solid #A5BFCE;
+}
+
+.review-actions li:first-child {
+    border-left: 1px solid #2E5186;
+    -moz-border-radius: 5px 0 0 5px;
+    -webkit-border-radius: 5px 0 0 5px;
+    border-radius: 5px 0 0 5px;
+}
+
+.review-actions li:last-child {
+    border-right: 1px solid #2E5186;
+    -moz-border-radius: 0 5px 5px 0;
+    -webkit-border-radius: 0 5px 5px 0;
+    border-radius: 0 5px 5px 0;
+}
+
+.review-actions.on ul li.on-tab {
+    background: #fff;
+    border-bottom: none;
+}
+
+.review-actions.on #review-actions-form {
+    border: 0px solid #2E5186;
+    border-width: 0 1px 1px 1px;
+    -moz-border-radius: 0 0 5px 5px;
+    -webkit-border-radius: 0 0 5px 5px;
+    border-radius: 0 0 5px 5px;
+}
+
+.review-actions.on ul li:first-child {
+    -moz-border-radius: 5px 0 0;
+    -webkit-border-radius: 5px 0 0;
+    border-radius: 5px 0 0;
+}
+
+.review-actions.on ul li:last-child {
+    -moz-border-radius: 0 5px 0 0;
+    -webkit-border-radius: 0 5px 0 0;
+    border-radius: 0 5px 0 0;
+}
+
+.review-actions.on ul li {
+    border-bottom: 1px solid #A5BFCE;
+}
+
+.review-actions-canned {
+    text-align: right;
+}
+
+.review-actions-canned select {
+    padding: 0;
+}
+
+.review-actions-section {
+    border-top: 1px dotted #ccc;
+    margin-top: 1em;
+    padding-top: 1em;
+}
+.review-actions-tested label {
+    margin-left: 25px;
+    margin-right: 10px;
+}
+
+.review-actions-save {
+    text-align: right;
+}
+
+.review-actions-section label {
+    font-weight: normal;
+}
+
+.review-paging {
+    border-bottom: 1px dotted #ccc;
+    margin-bottom: 2em;
+    padding-bottom: 1em;
+}
+
+
