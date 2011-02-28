@@ -148,7 +148,7 @@ class PurifiedTranslation(Translation):
 
                     # Strip new lines directly inside block level elements.
                     if node.parent.name in html_blocks:
-                        value = value.strip()
+                        value = value.strip('\n')
 
                     # Remove the first new line after a block level element
                     if (prev_tag in html_blocks and value.startswith('\n')):

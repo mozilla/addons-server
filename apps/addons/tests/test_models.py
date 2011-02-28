@@ -430,7 +430,7 @@ class TestAddonModels(test_utils.TestCase):
         before = ("<ul><li>\nxx</li> <li>xx\n</li> <li>xx\nxx</li> "
                   "<li></li>\n</ul>")
 
-        after = ("<ul><li>xx</li><li>xx</li><li>xx\nxx</li>"
+        after = ("<ul><li>xx</li> <li>xx</li> <li>xx\nxx</li> "
                  "<li></li></ul>")
 
         eq_(self.newlines_helper(before), after)
@@ -462,14 +462,14 @@ class TestAddonModels(test_utils.TestCase):
 
     def test_newlines_li_newlines_inline(self):
         before = ("<ul><li>\n<b>test\ntest\n\ntest</b>\n</li>"
-                  "<li>Test <b>test</b> test.</ul>")
+                  "<li>Test <b>test</b> test.</li></ul>")
 
         after = ("<ul><li><b>test\ntest\n\ntest</b></li>"
-                 "<li>Test <b>test</b> test.</ul>")
+                 "<li>Test <b>test</b> test.</li></ul>")
 
         eq_(self.newlines_helper(before), after)
 
-    def test_newlines_li_newlines_inline(self):
+    def test_newlines_li_all_inline(self):
         before = ("Test with <b>no newlines</b> and <code>block level "
                   "stuff</code> to see what happens.")
 
@@ -509,7 +509,7 @@ class TestAddonModels(test_utils.TestCase):
 
         eq_(self.newlines_helper(before), after)
 
-    def test_newlines_attribute_doublequote(self):
+    def test_newlines_attribute_link_doublequote(self):
         before = '<a href="http://google.com">test</a>'
 
         parsed = self.newlines_helper(before)
@@ -537,6 +537,24 @@ class TestAddonModels(test_utils.TestCase):
     def test_newlines_attribute_nestedquotes_singledouble(self):
         before = '<abbr title=\'laugh "out" loud\'>lol</abbr>'
         after = before
+
+        eq_(self.newlines_helper(before), after)
+
+    def test_newlines_malformed_b(self):
+        before = ("<b>test")
+        after = ("<b>test</b>")
+
+        eq_(self.newlines_helper(before), after)
+
+    def test_newlines_malformed_b_wrapped(self):
+        before = ("This is a <b>test")
+        after = ("This is a <b>test</b>")
+
+        eq_(self.newlines_helper(before), after)
+
+    def test_newlines_malformed_li(self):
+        before = ("<ul><li>test</ul>")
+        after = ("<ul><li>test</li></ul>")
 
         eq_(self.newlines_helper(before), after)
 
