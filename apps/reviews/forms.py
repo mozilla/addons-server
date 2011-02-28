@@ -2,7 +2,7 @@ from django import forms
 from django.forms.models import modelformset_factory, BaseModelFormSet
 
 import happyforms
-from tower import ugettext as _
+from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
 import reviews
@@ -60,9 +60,9 @@ class BaseReviewFlagFormSet(BaseModelFormSet):
 class ModerateReviewFlagForm(happyforms.ModelForm):
 
     action_choices = [(reviews.REVIEW_MODERATE_KEEP,
-                       _('Keep review; remove flags')),
-                      (reviews.REVIEW_MODERATE_SKIP, _('Skip for now')),
-                      (reviews.REVIEW_MODERATE_DELETE, _('Delete review'))]
+                       _lazy('Keep review; remove flags')),
+                      (reviews.REVIEW_MODERATE_SKIP, _lazy('Skip for now')),
+                      (reviews.REVIEW_MODERATE_DELETE, _lazy('Delete review'))]
     action = forms.ChoiceField(choices=action_choices, required=False,
                                initial=0, widget=forms.RadioSelect())
 
