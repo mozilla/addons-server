@@ -127,5 +127,6 @@ data-recs-url="{{ services_url('discovery.recs', version, platform) }}"
 {% endblock %}
 
 {% block js %}
-  {{ js('zamboni/discovery-pane') }}
+  {{ js('zamboni/discovery') }}
+  <script async defer src="{{ url('addons.buttons.js') }}/build:{{ BUILD_ID_JS }}"></script>
 {% endblock %}

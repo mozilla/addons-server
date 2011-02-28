@@ -86,6 +86,7 @@ class CollectionPromo(PromoModule):
     def __init__(self, *args, **kw):
         super(CollectionPromo, self).__init__(*args, **kw)
         self.collection = Collection.objects.get(pk=self.pk)
+        self.context = dict(promo=self, addons=self.get_addons())
 
     def get_addons(self):
         addons = self.collection.addons.all()
@@ -95,9 +96,8 @@ class CollectionPromo(PromoModule):
         return caching.cached_with(addons, f, repr(kw))
 
     def render(self):
-        c = dict(promo=self, addons=self.get_addons())
         return jinja2.Markup(
-            jingo.render_to_string(self.request, self.template, c))
+            jingo.render_to_string(self.request, self.template, self.context))
 
 
 class ShoppingCollection(CollectionPromo):
@@ -123,15 +123,30 @@ class TesterCollection(CollectionPromo):
 
 class StarterPack(CollectionPromo):
     slug = 'Starter Pack'
-    pk = 10
+    pk = 153651
     id = 'starter'
     title = _(u'First time with Add-ons?')
-    subtitle = _(u' Not to worry, here are three to get started.')
+    subtitle = _(u'Not to worry, here are three to get started.')
+
+    def get_descriptions(self):
+        return {
+            2257: _(u'Translate content on the web from and into over 40 '
+                    'languages.'),
+            1833: _(u"Easily connect to your social networks, and share or "
+                    "comment on the page you're visiting."),
+            11377: _(u'A quick view to compare prices when you shop online '
+                     'or search for flights.')
+        }
+
+    def render(self):
+        self.context.update(descriptions=self.get_descriptions())
+        return jinja2.Markup(
+            jingo.render_to_string(self.request, self.template, self.context))
 
 
 class Fx4Collection(CollectionPromo):
     slug = 'Fx4 Collection'
-    pk = 10
+    pk = 153649
     id = 'fx4-collection'
     title = _(u'Firefox 4 Collection')
     subtitle = _(u'Here are some great add-ons for Firefox 4.')
@@ -139,7 +154,8 @@ class Fx4Collection(CollectionPromo):
 
 class StPatricksPersonas(CollectionPromo):
     slug = 'St. Pat Personas'
-    pk = 10
+    # TODO: Replace with actual collection pk.
+    pk = 153651
     id = 'st-patricks'
     title = jinja2.Markup(_(u'St. Patrick&rsquo;s Day Personas'))
     subtitle = jinja2.Markup(

@@ -1,11 +1,13 @@
 <li class="panel">
-  <div id="monthly">
+  <div id="go-mobile" class="feature">
     <h2>{{ _('Get Add-ons On The Go') }}</h2>
-    <p>{% trans url='http://www.mozilla.com/m/' %}
-      Visit <a href="{{ url }}">firefox.com/m</a> to get Firefox on your phone
-      and personalize your browser anytime, anywhere. Easily discover and
-      install add-ons from the mobile Add-ons Manager.
-    {% endtrans %}</p>
-    <a href="https://addons.mozilla.org/mobile/">{{ _('Get Mobile Add-ons') }}</a>
+    <div>
+      <p>{% trans url='http://www.mozilla.com/m/' %}
+        Visit <a href="{{ url }}">firefox.com/m</a> to get Firefox on your phone
+        and personalize your browser anytime, anywhere. Easily discover and
+        install add-ons from the mobile Add-ons Manager.
+      {% endtrans %}</p>
+      <a href="https://addons.mozilla.org/mobile/" class="button add">{{ _('Get Mobile Add-ons') }}</a>
+    </div>
   </div>
 </li>

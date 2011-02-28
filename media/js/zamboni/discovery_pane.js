@@ -1,277 +1,184 @@
-/**
- * jCarouselLite - jQuery plugin to navigate images/any content in a carousel style widget.
- * @requires jQuery v1.2 or above
- *
- * http://gmarwaha.com/jquery/jcarousellite/
- *
- * Copyright (c) 2007 Ganeshji Marwaha (gmarwaha.com)
- * Dual licensed under the MIT and GPL licenses:
- * http://www.opensource.org/licenses/mit-license.php
- * http://www.gnu.org/licenses/gpl.html
- *
- * Version: 1.0.1
- * Note: Requires jquery 1.2 or above from version 1.0.1
- */
+// Minimum number of installed extensions, used for toggling user
+// recommendations and "Starter Pack" promo pane.
+var MIN_EXTENSIONS = 3;
 
-(function($) {
-$.fn.jCarouselLite = function(o) {
-    o = $.extend({
-        btnPrev: null,
-        btnNext: null,
-        btnGo: null,
-        mouseWheel: false,
-        auto: null,
-
-        speed: 200,
-        easing: null,
-
-        vertical: false,
-        circular: true,
-        visible: 3,
-        start: 0,
-        scroll: 1,
-
-        beforeStart: null,
-        afterEnd: null
-    }, o || {});
-
-    return this.each(function() {
-        // Returns the element collection. Chainable.
-
-        var running = false,
-            animCss = o.vertical ? "top" : "left",
-            sizeCss = o.vertical ? "height" : "width",
-            div = $(this),
-            ul = $(".slider", div),
-            tLi = $(".panel", ul),
-            tl = tLi.size(),
-            v = o.visible;
-
-        if(o.circular) {
-            ul.prepend(tLi.slice(tl-v-1+1).clone())
-              .append(tLi.slice(0,v).clone());
-            o.start += v;
-        }
-
-        if (!o.circular && o.scroll > 1) {
-            while (tl % o.scroll != 0) {
-                ul.append('<li class="panel"></li>');
-                tl++;
-            }
-        }
-
-        var li = $(".panel", ul), itemLength = li.size(), curr = o.start;
-        div.css("visibility", "visible");
-
-        li.css({"float": o.vertical ? "none" : "left"});
-        ul.css({margin: "0", padding: "0", position: "relative", "list-style-type": "none", "z-index": "1"});
-        div.css({overflow: "hidden", position: "relative", "z-index": "2", left: "0"});
-
-        // Full li size (including margin, used for animation).
-        var liSize = o.vertical ? li.outerHeight(true) : li.outerWidth(true);
-        // Size of full ul (total length, not just for the visible items).
-        var ulSize = liSize * itemLength;
-        // Size of entire div (total length, for only the visible items).
-        var divSize = liSize * v;
-
-        li.css({width: li.width(), height: li.height()});
-        ul.css(sizeCss, ulSize+"px").css(animCss, -(curr*liSize));
-
-        // Width of the DIV. length of visible images.
-        div.css(sizeCss, divSize+"px");
-
-        if (!o.circular) {
-            $(o.btnPrev + "," + o.btnNext).removeClass("disabled");
-            if (o.btnPrev && curr == 0) {
-                $(o.btnPrev).addClass("disabled");
-            }
-            if (o.btnNext && curr >= itemLength - v) {
-                $(o.btnNext).addClass("disabled");
-            }
-        }
-
-        if(o.btnPrev) {
-            $(o.btnPrev).click(function() {
-                var to = curr - o.scroll;
-                if (!o.circular && to < 0) {
-                    to = 0;
-                }
-                return go(to);
-            });
-        }
-
-        if(o.btnNext) {
-            $(o.btnNext).click(function() {
-                var to = curr + o.scroll;
-                if (!o.circular && to > itemLength - v - 1){
-                    to = itemLength - v;
-                }
-                return go(to);
-            });
-        }
-
-        if(o.btnGo)
-            $.each(o.btnGo, function(i, val) {
-                $(val).click(function() {
-                    return go(o.circular ? o.visible+i : i);
-                });
-            });
-
-        if(o.mouseWheel && div.mousewheel)
-            div.mousewheel(function(e, d) {
-                return d>0 ? go(curr-o.scroll) : go(curr+o.scroll);
-            });
-
-        if(o.auto)
-            setInterval(function() {
-                go(curr+o.scroll);
-            }, o.auto+o.speed);
-
-        function vis() {
-            return li.slice(curr).slice(0,v);
-        };
-
-        function go(to) {
-            if(!running) {
-                if(o.beforeStart)
-                    o.beforeStart.call(this, vis());
-
-                if(o.circular) {            // If circular we are in first or last, then goto the other end
-                    if(to<=o.start-v-1) {           // If first, then goto last
-                        ul.css(animCss, -((itemLength-(v*2-curr))*liSize)+"px");
-                        // If "scroll" > 1, then the "to" might not be equal to the condition; it can be lesser depending on the number of elements.
-                        curr = to == o.start-v-1 ? itemLength-(v*2)-1 : itemLength-(v*2)-o.scroll+curr;
-                    } else if(to>=itemLength-v+1) { // If last, then goto first
-                        ul.css(animCss, -((curr - (itemLength - (v*2))) * liSize) + "px");
-                        // If "scroll" > 1, then the "to" might not be equal to the condition; it can be greater depending on the number of elements.
-                        curr = to == itemLength-v+1 ? v+1 : curr - (itemLength - (v*2)) + o.scroll;
-                    } else curr = to;
-                } else {                    // If non-circular and to points to first or last, we just return.
-                    if(to<0 || to>itemLength-v) return false;
-                    else curr = to;
-                }                           // If neither overrides it, the curr will still be "to" and we can proceed.
-
-                running = true;
-
-                ul.animate(
-                    animCss == "left" ? { left: -(curr*liSize) } : { top: -(curr*liSize) } , o.speed, o.easing,
-                    function() {
-                        if(o.afterEnd)
-                            o.afterEnd.call(this, vis());
-                        running = false;
-                    }
-                );
-                // Disable buttons when the carousel reaches the last/first,
-                // and enable when not.
-                if (!o.circular) {
-                    $(o.btnPrev + "," + o.btnNext).removeClass("disabled");
-                    if (o.btnPrev && curr == 0) {
-                        $(o.btnPrev).addClass("disabled");
-                    }
-                    if (o.btnNext && curr >= itemLength - v) {
-                        $(o.btnNext).addClass("disabled");
-                    }
-                }
-
-            }
-            return false;
-        };
-
-        // Change panel widths on resize to keep the page liquid
-        $(window).resize(function(){
-            setPanelWidth("both");
-            liSize = o.vertical ? li.outerHeight(true) : li.outerWidth(true);
-            ul.css(sizeCss, ulSize+"px").css(animCss, -(curr*liSize));
-        });
-
-    });
-};
-
-function css(el, prop) {
-    return parseInt($.css(el[0], prop)) || 0;
-};
-
-})(jQuery);
-
-
-var hasLocalStorage = ("localStorage" in window) && window["localStorage"] !== null;
+// Parse GUIDS of installed extensions from JSON fragment.
+var guids = getGuids();
 
 
 $(document).ready(function(){
-    if ($(".detail").length) {
-        $(".install-action a").attr("target", "_self");
+    if ($(".pane").length) {
+        storePaneLink();
 
-        // Replace with the URL back to the discovery promo pane.
-        var pane_url;
-        if (hasLocalStorage) {
-            pane_url = localStorage.getItem("discopane-url");
-        } else {
-            pane_url = $.cookie("discopane-url");
+        // Show "Starter Pack" panel only if user has fewer than three extensions.
+        if (guids.length >= MIN_EXTENSIONS) {
+            $("#starter").closest(".panel").remove();
         }
-        $("p#back a").attr("href", pane_url);
 
-        $("#images").fadeIn("slow").addClass("js").jCarouselLite({
-            btnNext: "#images .nav-next a",
-            btnPrev: "#images .nav-prev a",
-            circular: false
-        });
-        $(".addon-info").addClass("js");
+        initRecs();
 
-        // Set up the lightbox.
-        var lb_baseurl = z.media_url + "img/jquery-lightbox/";
-        $("#images li.panel a[rel=jquery-lightbox]").lightBox({
-            overlayOpacity: 0.6,
-            imageBlank: lb_baseurl + "lightbox-blank.gif",
-            imageLoading: lb_baseurl + "lightbox-ico-loading.gif",
-            imageBtnClose: "",
-            imageBtnPrev: "",
-            imageBtnNext: "",
-            containerResizeSpeed: 350
+        // Set up the promo carousel.
+        $("#main-feature").fadeIn("slow").addClass("js").jCarouselLite({
+            btnNext: "#main-feature .nav-next a",
+            btnPrev: "#main-feature .nav-prev a",
+            visible: 1
         });
+
+        initTrunc();
     }
-
-    // Set up the carousel.
-    $("#main-feature").fadeIn("slow").addClass("js").jCarouselLite({
-        btnNext: "#main-feature .nav-next a",
-        btnPrev: "#main-feature .nav-prev a",
-        visible: 1
-    });
-
-    setPanelWidth("detail");
 });
 
 
-function debounce(fn, ms, ctxt) {
-    var ctx = ctxt || window;
-    var to, del = ms, fun = fn;
-    return function () {
-        var args = arguments;
-        clearTimeout(to);
-        to = setTimeout(function() {
-            fun.apply(ctx, args);
-        }, del);
-    };
+function getGuids() {
+    // Store GUIDs of installed extensions.
+    var guids = [];
+    if (location.hash) {
+        $.each(JSON.parse(location.hash.slice(1)), function(i, val) {
+            if (val.type == "extension") {
+                guids.push(i);
+            }
+        });
+    }
+    return guids;
 }
 
 
-function setPanelWidth(section) {
-    // Set the width of panels (jCarousel requires a pixel width but our page
-    // is liquid, so we'll set the width in px on pageload and on resize).
-    if (section == "both" || section == "detail") {
-        var panelWidth = $("#main").width();
-        $("#main-feature, #main-feature .panel, #images").css("width", panelWidth);
-        // We show three images at a time, so the width of each is 1/3 minus a
-        // right margin of 10px.
-        $("#images .panel").css("width", panelWidth / 3 - 10);
+function storePaneLink() {
+    // Store the pane URL so we can link back from the add-on detail pages.
+    if (z.hasLocalStorage) {
+        localStorage.setItem("discopane-url", location);
+    } else {
+        $.cookie("discopane-url", location, {path: "/"});
     }
-    if (section == "both" || section == "pane") {
-        var galleryWidth = $("#recs .gallery").width();
-        $("#recs .gallery .panel").css({
-            "width": 0.3 * galleryWidth,
-            "margin-right": 0.05 * galleryWidth
-        });
-        $("#recs .gallery .panel:nth-child(3n)").each(function(i){
-            $(this).css("margin-right", 0.05 * galleryWidth + i + 2);
-        });
+}
+
+
+function initTrunc() {
+    // Trim the add-on title and description text to fit.
+    $(".addons h3, .rec-addons h3, p.desc").vtruncate();
+    $(window).resize(debounce(function() {
+        $(".addons h3 a, .rec-addons h3 a, p.desc").vtruncate();
+    }, 200));
+}
+
+
+function initRecs() {
+    var services_url = document.body.getAttribute("data-services-url");
+
+    // Where all the current recommendations data is kept.
+    var datastore = {};
+
+    var token;
+
+    if (z.hasLocalStorage && (!location.hash || !guids.length)) {
+        // If the user has opted out of recommendations, clear out any
+        // existing recommendations.
+        localStorage.removeItem("discopane-recs");
+        localStorage.removeItem("discopane-guids");
+    }
+
+    function populateRecs() {
+        if (datastore.addons !== undefined && datastore.addons.length) {
+            var addon_item = template('<li class="panel">' +
+                '<a href="{url}" target="_self">' +
+                '<img src="{icon}" width="32" height="32">' +
+                '<h3>{name}</h3>' +
+                '<p class="desc">{summary}</p>' +
+                '</a></li>');
+            $.each(datastore.addons, function(i, addon) {
+                var str = addon_item({
+                    url: addon.learnmore,
+                    icon: addon.icon,
+                    name: addon.name,
+                    summary: addon.summary != null ? addon.summary : ""
+                });
+                $("#recs .slider").append(str);
+            });
+            $("#recs .gallery").fadeIn("slow").addClass("js").jCarouselLite({
+                btnNext: "#recs .nav-next a",
+                btnPrev: "#recs .nav-prev a",
+                scroll: 3,
+                circular: false
+            });
+            $("#recs #nav-recs").fadeIn("slow").addClass("js");
+            setPanelWidth("pane");
+            initTrunc();
+        } else {
+            var addons_url = $("#more-addons a").attr("href");
+            var msg = format(gettext(
+                "Sorry, we couldn't find any recommendations for you.<br>" +
+                'Please visit the <a href="{0}">add-ons site</a> to ' +
+                "find an add-on that's right for you."), [addons_url]);
+            $("#recs .gallery").hide();
+            $("#recs").append('<div class="msg"><p>' + msg + "</p></div>");
+        }
+    }
+
+    // Hide "What are Add-ons?" and show "Recommended for You" module.
+    if (guids.length > MIN_EXTENSIONS) {
+        $("body").removeClass("no-recs").addClass("recs");
+
+        var cacheObject;
+        if (z.hasLocalStorage) {
+            cacheObject = localStorage.getItem("discopane-recs");
+            if (cacheObject) {
+                // Load local data.
+                cacheObject = JSON.parse(cacheObject);
+                if (cacheObject) {
+                    datastore = cacheObject;
+                    token = cacheObject.token;
+                }
+            }
+        }
+
+        // Get new recommendations if there are no saved recommendations or
+        // if the user has new installed add-ons.
+        var findRecs = !cacheObject;
+        var updateRecs = (
+            cacheObject && z.hasLocalStorage &&
+            localStorage.getItem("discopane-guids") != guids.toString()
+        );
+        if (findRecs || updateRecs) {
+            var msg;
+            if (findRecs) {
+                msg = gettext("Finding recommendations&hellip;");
+            } else if (updateRecs) {
+                msg = gettext("Updating recommendations&hellip;");
+            }
+            $("#recs .gallery").hide();
+            $("#recs").append('<div class="msg loading"><p><span></span>' +
+                              msg + "</p></div>");
+
+            var data = {"guids": guids};
+            if (token) {
+                data["token"] = token;
+            }
+            datastore = {};
+            $.ajax({
+                url: document.body.getAttribute("data-recs-url"),
+                type: "post",
+                data: JSON.stringify(data),
+                dataType: "text",
+                success: function(raw_data) {
+                    $("#recs .loading").remove();
+                    datastore = JSON.parse(raw_data);
+                    populateRecs();
+                    if (z.hasLocalStorage) {
+                        localStorage.setItem("discopane-recs", raw_data);
+                        localStorage.setItem("discopane-guids", guids);
+                    }
+                },
+                error: function(raw_data) {
+                    $("#recs .loading").remove();
+                    populateRecs();
+                    if (z.hasLocalStorage) {
+                        localStorage.setItem("discopane-recs", "{}");
+                        localStorage.setItem("discopane-guids", guids);
+                    }
+                }
+            });
+        } else {
+            populateRecs();
+        }
     }
 }
