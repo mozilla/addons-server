@@ -238,7 +238,8 @@ def feed(request, addon_id=None):
             rssurl = urlparams(reverse('devhub.feed', args=[addon_id]),
                                privaterss=key.key)
 
-            if not acl.has_perm(request, addons, viewer=True):
+            if not acl.has_perm(request, addons, viewer=True,
+                                ignore_disabled=True):
                 return http.HttpResponseForbidden()
         else:
             rssurl = _get_rss_feed(request)

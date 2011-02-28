@@ -1574,6 +1574,18 @@ class TestActivityFeed(test_utils.TestCase):
         eq_(doc('.breadcrumbs li:eq(3)').text(),
             addon.slug)
 
+    def test_feed_disabled(self):
+        addon = Addon.objects.no_cache().get(id=3615)
+        addon.update(status=amo.STATUS_DISABLED)
+        r = self.client.get(reverse('devhub.feed', args=[addon.slug]))
+        eq_(r.status_code, 200)
+
+    def test_feed_disabled_anon(self):
+        self.client.logout()
+        addon = Addon.objects.no_cache().get(id=3615)
+        r = self.client.get(reverse('devhub.feed', args=[addon.slug]))
+        eq_(r.status_code, 302)
+
 
 class TestProfileBase(test_utils.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']
