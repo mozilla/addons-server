@@ -708,7 +708,7 @@ class TestDetailPage(test_utils.TestCase):
         eq_(norm(doc(".policy-statement strong")),
             "<strong> what the hell..</strong>")
         eq_(norm(doc(".policy-statement ul")),
-            "<ul><li>papparapara</li><li>todotodotodo</li></ul>")
+            "<ul><li>papparapara</li> <li>todotodotodo</li> </ul>")
         eq_(doc(".policy-statement ol a").text(),
             "firefox")
         eq_(norm(doc(".policy-statement ol li:first")),
@@ -1023,7 +1023,7 @@ class TestEula(test_utils.TestCase):
         eq_(norm(doc(".policy-statement strong")),
             "<strong> what the hell..</strong>")
         eq_(norm(doc(".policy-statement ul")),
-            "<ul><li>papparapara</li><li>todotodotodo</li></ul>")
+            "<ul><li>papparapara</li> <li>todotodotodo</li> </ul>")
         eq_(doc(".policy-statement ol a").text(),
             "firefox")
         eq_(norm(doc(".policy-statement ol li:first")),
