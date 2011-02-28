@@ -1,5 +1,6 @@
 from django.conf import settings
 
+import amo
 from amo.urlresolvers import reverse
 from amo.utils import urlparams, epoch
 

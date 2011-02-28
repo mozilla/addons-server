@@ -438,27 +438,13 @@ MINIFY_BUNDLES = {
             # Hover delay for global header
             'js/global/menu.js',
         ),
-        'zamboni/discovery-pane': (
+        'zamboni/discovery': (
             'js/zamboni/jquery-1.4.2.min.js',
-            'js/zamboni/format.js',
-
-            # Personas
-            'js/zamboni/jquery.hoverIntent.min.js',
-            'js/zamboni/personas.js',
-
-            'js/zamboni/truncation.js',
-            'js/jquery.cookie.js',
-            'js/zamboni/discovery_pane.js',
-            'js/zamboni/discovery.js',
-        ),
-        'zamboni/discovery-addons': (
-            'js/zamboni/jquery-1.4.2.min.js',
-            'js/zamboni/jquery-ui/custom-1.8.5.min.js',
             'js/zamboni/browser.js',
             'js/zamboni/init.js',
             'js/zamboni/format.js',
 
-            # Add-ons details page
+            # Add-ons details
             'js/zamboni/buttons.js',
             'js/jquery-ui/ui.lightbox.js',
 
@@ -467,6 +453,8 @@ MINIFY_BUNDLES = {
             'js/zamboni/personas.js',
 
             'js/zamboni/truncation.js',
+            'js/jquery.cookie.js',
+            'js/zamboni/discovery_addons.js',
             'js/zamboni/discovery_pane.js',
         ),
         'zamboni/devhub': (

@@ -9,12 +9,20 @@
     </hgroup>
     <ul class="addons">
       {% for addon in addons %}
-        <li>
+        <li{% if addon.type == amo.ADDON_PERSONA %} class="persona-feature"{% endif %}>
           <a href="{{ services_url('discovery.addons.detail', addon.slug,
                                    src='discovery-promo') }}" target="_self">
-            <img src="{{ addon.icon_url }}" width="32" height="32">
-            <h3>{{ addon.name }}</h3>
-            <p class="desc">{{ addon.summary.localized_string|strip_html }}</p>
+            {% if addon.type == amo.ADDON_PERSONA %}
+              <h3>{{ addon.name }}</h3>
+              {{ disco_persona_preview(addon.persona, linked=False) }}
+            {% else %}
+              <img src="{{ addon.icon_url }}" width="32" height="32">
+              <h3>{{ addon.name }}</h3>
+              {% with desc = descriptions[addon.id] if addon.id in descriptions
+                             else addon.summary.localized_string|strip_html %}
+                <p class="desc">{{ desc }}</p>
+              {% endwith %}
+            {% endif %}
           </a>
         </li>
       {% endfor %}

@@ -449,11 +449,19 @@ header:after,
     white-space: nowrap;
 }
 
-.ryff h3 {
-    margin: 15px 0 .25em;
+.ryff h3,
+#starter h2,
+#st-patricks h2,
+#monthly h2,
+#go-mobile h2,
+#fx4-collection h2 {
     font-size: 36px;
     font-weight: bold;
     line-height: 1.1;
+}
+
+.ryff h3 {
+    margin: 15px 0 .25em;
 }
 
 .ryff h3 a {
@@ -470,12 +478,21 @@ header:after,
 /* @Collection *********/
 .collection h2,
 #featured-addons h2,
+#starter h3,
+#st-patricks h3,
+#fx4-collection h3,
 #recs .header h2,
 #recs .gallery {
     max-width: 650px;
     margin: 10px auto;
 }
 
+#starter h2,
+#starter h3,
+#st-patricks h2,
+#st-patricks h3,
+#fx4-collection h2,
+#fx4-collection h3,
 #recs .header h2,
 #recs .gallery {
     margin: 0 auto;
@@ -491,6 +508,118 @@ header:after,
     background-position: 107% 20px, 9% 92%;
     background-repeat: no-repeat;
 }
+
+/* @group Starter Pack */
+#starter.feature {
+    background: none;
+    background-image:
+        url(../../img/zamboni/discovery_pane/promos/starter-bg-left.png),
+        url(../../img/zamboni/discovery_pane/promos/starter-bg.png),
+        url(../../img/zamboni/discovery_pane/promos/starter-bg-right.png);
+    background-position: 0 100%, 50% 0, 100% 0;
+    background-repeat: no-repeat, repeat-x, no-repeat;
+}
+
+#starter.feature hgroup:after {
+    background: url(../../img/zamboni/discovery_pane/promos/starter-bg-right.png) 100% 0 no-repeat;
+    display: block;
+    content: "";
+    position: absolute;
+    height: 100%;
+    top: 0;
+    right: 0;
+    width: 153px;
+}
+
+#starter h2 {
+    color: #075f7a;
+}
+#starter h2,
+#st-patricks h2,
+#monthly h2,
+#go-mobile h2,
+#fx4-collection h2 {
+    text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+    margin-top: 10px;
+}
+#starter h3,
+#st-patricks h3,
+#monthly h2,
+#go-mobile h2,
+#fx4-collection h3 {
+    margin-bottom: 20px;
+}
+#starter .more,
+#st-patricks .more,
+#fx4-collection .more {
+    display: none;
+}
+/* @end */
+
+/* @group St. Patrick's Day Personas */
+#st-patricks.feature {
+    background: url(../../img/zamboni/discovery_pane/promos/st-patricks-bg.png) 50% 0 no-repeat;
+}
+#st-patricks h2 {
+    color: #296215;
+}
+/* @end */
+
+/* @group Monthly Pick */
+#monthly {
+    background: url(../../img/zamboni/discovery_pane/promos/monthly-bg.png) 50% 0 no-repeat;
+}
+#monthly > div,
+#go-mobile > div {
+    padding: 20px;
+}
+#monthly > div {
+    overflow: hidden;
+}
+#monthly h2 {
+    color: #8b0101;
+}
+#monthly h3 {
+    margin-bottom: 10px;
+}
+#monthly > div > div > p {
+    padding-right: 20px;
+}
+#monthly p.install-button,
+#go-mobile p.install-button {
+    margin-bottom: 0;
+}
+#monthly > div > div {
+    float: left;
+    width: 50%;
+}
+#monthly img {
+    display: block;
+    float: right;
+}
+/* @end */
+
+/* @group Go Mobile */
+#go-mobile {
+    background: url(../../img/zamboni/discovery_pane/promos/go-mobile-bg.png) 50% 0 no-repeat;
+}
+#go-mobile h2 {
+    color: #485c65;
+    width: 300px;
+}
+#go-mobile > div {
+    width: 365px;
+}
+/* @end */
+
+/* @group Firefox 4 Collection */
+#fx4-collection {
+    background: url(../../img/zamboni/discovery_pane/promos/fx4-collection-bg.png) 50% 0 no-repeat;
+}
+#fx4-collection h2 {
+    color: #2c5c89;
+}
+/* @end */
 
 #featured-addons {
     padding: 10px 9%;
@@ -521,6 +650,16 @@ ul.addons {
 }
 
 .addons li > a,
+.rec-addons li > a,
+#monthly > div,
+#go-mobile > div {
+    background: -moz-linear-gradient(top, #fff 0, #ecf1f7 100%);
+    border: 1px solid #b7c3d7;
+    border-radius: 6px;
+    box-shadow: inset 0 -2px 0 rgba(58,78,103,0.08), 0 2px 0 rgba(190,210,230,0.5);
+}
+
+.addons li > a,
 .rec-addons li > a {
     display: block;
     display: -moz-box;
@@ -531,11 +670,6 @@ ul.addons {
     width: 100%;
     width: -moz-calc(100% - 22px);
     padding: 10px;
-    background: -moz-linear-gradient(top, #fff 0, #ecf1f7 100%);
-    border: 1px solid #b7c3d7;
-    border-radius: 6px;
-    box-shadow: inset 0 -2px 0 rgba(58,78,103,0.08), 0 2px 0 rgba(190,210,230,0.5);
-    text-align: center;
     -moz-transition-property: border-color, box-shadow;
     -moz-transition-duration: 0.5s;
     -moz-transition-timing-function: ease-out;
@@ -738,10 +872,40 @@ ul.addons {
     display: block;
     position: relative;
 }
-.pane .persona-large .persona-preview [data-browsertheme] {
+
+.pane #main .persona-feature .persona,
+.pane #main .persona-feature h3,
+.pane #main .persona-feature .persona-preview {
+    position: absolute;
+    width: 100%;
+}
+
+.pane #main .persona-feature h3 {
+    top: 80px;
+    margin: 10px;
+    text-align: center;
+    width: -moz-calc(100% - 20px);
+}
+
+.pane #main .persona-feature .persona .persona-preview {
+    border: 1px solid #b7c3d7;
+    box-shadow: inset 0 -2px 0 rgba(58,78,103,0.08), 0 2px 0 rgba(190,210,230,0.5);
+    top: -132px;
+    margin-left: -4px;
+    width: -moz-calc(100% + 6px);
+}
+
+.pane #main .persona-large .persona-preview [data-browsertheme] {
+    background-position: 50% 0;
+    height: 67px;
+    width: 100%;
+}
+
+.pane #sub .persona-large .persona-preview [data-browsertheme] {
     background-position: 100% 50%;
     height: 60px;
 }
+
 .detail .persona-large {
     box-shadow: 0 1px 3px rgba(0,0,0,0.15);
     width: 680px;
@@ -884,61 +1048,60 @@ body.detail {
 
 .html-rtl.detail #main,
 .html-rtl.detail #addon-reviews {
-    padding-left: 0;
-    padding-right: 52px;
-    width: auto;
-    float: none;
-    position: relative;
+    padding: 0 52px 0 0;
 }
 
 /* @group Add-on details header */
-.detail #main header {
+.detail header {
     margin: 0 0 1.6em;
     position: relative;
     text-shadow: 0 1px 0 rgba(255,255,255,0.8);
 }
 
-h1.addon {
+.detail h1.addon,
+.detail h2.author {
+    width: 90%;
+}
+
+.detail h1.addon {
     color: #000;
     font-weight: bold;
 }
 
-h1.addon .version {
+.detail h1.addon .version {
     font-size: .833em;
     font-weight: normal;
     color: #76787b;
 }
 
-.html-rtl h1.addon,
-.html-rtl h2.author {
+.html-rtl.detail h1.addon,
+.html-rtl.detail h2.author {
     text-align: right;
 }
 
-h1.addon .icon {
+.detail h1.addon .icon {
     max-width: 32px;
     position: absolute;
     left: -52px;
 }
 
-.html-rtl h1.addon .icon {
+.html-rtl.detail h1.addon .icon {
     left: auto;
     right: -52px;
 }
 
-h2.author,
-p#back {
+.detail h2.author,
+.detail p#back {
     font-size: 1em;
     font-weight: bold;
 }
 
-/* @group Add-on details header */
 .detail p#back {
-    margin: 0 0 1em 1em;
     position: absolute;
-    top: 0;
+    top: 4px;
     right: 0;
 }
-.html-rtl p#back {
+.html-rtl.detail p#back {
     left: 0;
     margin: 0 1em 1em 0;
 }
@@ -956,7 +1119,7 @@ p#back a:visited {
     color: #144fae;
 }
 
-p.back:hover:before {
+p#back:hover:before {
     color: #083681;
 }
 /* @end */
@@ -966,6 +1129,17 @@ p.back:hover:before {
 #install,
 #install li {
     display: inline-block;
+}
+
+.install-shell .extra {
+    font-size: .85em;
+    font-weight: bold;
+    clear: both;
+}
+
+#main-feature .install-shell .extra {
+    display: block;
+    margin-top: 6px;
 }
 
 .install-shell .notavail {
