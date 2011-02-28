@@ -406,8 +406,8 @@ tr.comments {
 #review-actions-form select {
     border: 1px solid #AFBDD3;
 }
+
 #review-actions-form textarea {
-    border: 1px solid #AFBDD3;
     height: 100px;
 }
 
