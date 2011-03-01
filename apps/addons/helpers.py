@@ -7,8 +7,6 @@ from tower import ugettext as _
 
 from . import buttons
 import amo
-from amo.utils import urlparams
-from amo.urlresolvers import reverse
 
 
 register.function(buttons.install_button)
