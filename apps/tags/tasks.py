@@ -3,7 +3,6 @@ import commonware.log
 
 from amo.utils import slugify
 from tags.models import AddonTag, Tag
-from . import cron
 
 
 task_log = commonware.log.getLogger('z.task')
@@ -47,3 +46,18 @@ def clean_tag(pk, **kw):
 
             Tag.objects.filter(pk__in=[e.pk for e in existing]).delete()
         tag.update(tag_text=new, blacklisted=blacklisted)
+
+
+@task(rate_limit='10/m')
+def update_all_tag_stats(pks, **kw):
+    task_log.info("[%s@%s] Calculating stats for tags starting with %s" %
+                  (len(pks), update_all_tag_stats.rate_limit, pks[0]))
+    for tag in Tag.objects.filter(pk__in=pks):
+        tag.update_stat()
+
+
+@task(rate_limit='1000/m')
+def update_tag_stat(tag, **kw):
+    task_log.info("[1@%s] Calculating stats for tag %s" %
+                  (update_tag_stat.rate_limit, tag.pk))
+    tag.update_stat()

@@ -2,7 +2,7 @@ from nose.tools import eq_
 import test_utils
 
 from addons.models import Addon
-from tags.models import AddonTag, Tag
+from tags.models import AddonTag, Tag, TagStat
 from tags.tasks import clean_tag
 
 
@@ -109,3 +109,58 @@ class TestManagement(test_utils.TestCase):
         assert Tag.objects.get(tag_text='sun').blacklisted
         clean_tag(self.old.pk)
         assert Tag.objects.get(tag_text='sun').blacklisted
+
+
+class TestCount(test_utils.TestCase):
+    fixtures = ['base/addon_3615',
+                'base/addon_5369',
+                'tags/tags.json']
+
+    def setUp(self):
+        self.tag = Tag.objects.get(pk=2652)
+
+    def test_count(self):
+        self.tag.update_stat()
+        eq_(self.tag.tagstat.num_addons, 1)
+
+    def test_count_multiple(self):
+        AddonTag.objects.create(addon_id=5369, tag_id=self.tag.pk)
+        self.tag.update_stat()
+        eq_(self.tag.tagstat.num_addons, 2)
+
+    def test_blacklisted(self):
+        self.tag.update(blacklisted=True)
+        self.tag.update_stat()
+        eq_(TagStat.objects.filter(tag=self.tag).count(), 0)
+
+    def test_blacklisted_exists(self):
+        self.tag.update_stat()
+        self.tag.update(blacklisted=True)
+        self.tag.update_stat()
+        eq_(TagStat.objects.filter(tag=self.tag).count(), 0)
+
+    def test_save_tag(self):
+        self.tag.save_tag(addon=Addon.objects.get(pk=5369))
+        eq_(self.tag.tagstat.num_addons, 2)
+
+    def test_remove_tag(self):
+        self.tag.remove_tag(addon=Addon.objects.get(pk=3615))
+        eq_(self.tag.tagstat.num_addons, 0)
+
+    def test_add_addontag(self):
+        AddonTag.objects.create(addon=Addon.objects.get(pk=5369),
+                                tag=Tag.objects.get(pk=2652))
+        eq_(TagStat.objects.count(), 1)
+
+    def test_delete_addontag(self):
+        addontag = AddonTag.objects.all()[0]
+        addontag.tag.update_stat()
+        eq_(TagStat.objects.all()[0].num_addons, 1)
+        addontag.delete()
+        eq_(TagStat.objects.all()[0].num_addons, 0)
+
+    def test_delete_tag(self):
+        self.tag.update_stat()
+        eq_(TagStat.objects.count(), 1)
+        self.tag.delete()
+        eq_(TagStat.objects.count(), 0)
