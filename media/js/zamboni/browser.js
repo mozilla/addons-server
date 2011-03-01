@@ -12,9 +12,11 @@ function BrowserUtils() {
             'thunderbird': /Mozilla.*(Thunderbird|Shredder|Lanikai)\/([^\s*]*).*$/
         },
         osStrings = {
-            'windows': 'Win32',
+            'windows': 'Windows',
             'mac': 'Mac',
-            'linux': 'Linux'
+            'linux': 'Linux',
+            'android': 'Android',
+            'maemo': 'Maemo'
         };
 
     // browser detection
@@ -37,19 +39,23 @@ function BrowserUtils() {
     for (i in osStrings) {
         if (osStrings.hasOwnProperty(i)) {
             pattern = osStrings[i];
-            os[i] = navigator.platform.indexOf(pattern) != -1;
+            os[i] = navigator.userAgent.indexOf(pattern) != -1;
             if (os[i]) {
                 platform = i;
             }
         }
     }
-    os['other'] = !platform;
+    if (!platform) {
+        os['other'] = !platform;
+        platform = "other";
+    }
 
     return {
         "browser": browser,
         "browserVersion": browserVersion,
         "os": os,
-        "platform": platform
+        "platform": platform,
+        "platformName": gettext(osStrings[platform])
     };
 }
 
@@ -103,9 +109,9 @@ var VersionCompare = {
         var pattern = /^([-\d]*)([^-\d]*)([-\d]*)(.*)$/,
             m = pattern.exec(p),
             r = {
-            'numA'  : parseInt(m[1]),
+            'numA'  : parseInt(m[1], 10),
             'strB'   : m[2],
-            'numC'   : parseInt(m[3]),
+            'numC'   : parseInt(m[3], 10),
             'extraD' : m[4]
             };
         if (r['strB'] == '+') {
