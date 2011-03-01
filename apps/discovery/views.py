@@ -10,6 +10,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 import jingo
 
+import amo
 import amo.utils
 import api.utils
 import api.views
@@ -199,10 +200,10 @@ def get_random_token():
 @addon_view
 def addon_detail(request, addon):
     reviews = Review.objects.latest().filter(addon=addon)
+    src = request.GET.get('src', 'discovery-details')
     return jingo.render(request, 'discovery/addons/detail.html',
                         {'addon': addon, 'reviews': reviews,
-                         'get_replies': Review.get_replies,
-                         'src': 'discovery-details'})
+                         'get_replies': Review.get_replies, 'src': src})
 
 
 @addon_view
@@ -213,6 +214,6 @@ def addon_eula(request, addon, file_id):
         version = get_object_or_404(addon.versions, files__id=file_id)
     else:
         version = addon.current_version
+    src = request.GET.get('src', 'discovery-details')
     return jingo.render(request, 'discovery/addons/eula.html',
-                        {'addon': addon, 'version': version,
-                         'src': 'discovery-details'})
+                        {'addon': addon, 'version': version, 'src': src})

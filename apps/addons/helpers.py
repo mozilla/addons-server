@@ -7,6 +7,8 @@ from tower import ugettext as _
 
 from . import buttons
 import amo
+from amo.utils import urlparams
+from amo.urlresolvers import reverse
 
 
 register.function(buttons.install_button)
@@ -139,16 +141,15 @@ def new_context(context, **kw):
 @register.inclusion_tag('addons/persona_preview.html')
 @jinja2.contextfunction
 def persona_preview(context, persona, size='large', linked=True, extra=None,
-                    details=False, title=False, caption=False,
-                    disco_link=False):
+                    details=False, title=False, caption=False, url=None):
     preview_map = {'large': persona.preview_url,
                    'small': persona.thumb_url}
-
+    addon = persona.addon
     c = dict(context.items())
-    c.update({'persona': persona, 'addon': persona.addon, 'linked': linked,
+    c.update({'persona': persona, 'addon': addon, 'linked': linked,
               'size': size, 'preview': preview_map[size], 'extra': extra,
               'details': details, 'title': title, 'caption': caption,
-              'disco_link': disco_link})
+              'url': url})
     return c
 
 

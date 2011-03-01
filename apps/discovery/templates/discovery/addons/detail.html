@@ -8,7 +8,7 @@
 
 {% block main %}
 {% if addon.type == amo.ADDON_PERSONA %}
-  {{ persona_preview(addon.persona, linked=False, caption=True) }}
+  {{ disco_persona_preview(addon.persona, linked=False, caption=True) }}
 {% endif %}
 
 <p{{ addon.summary|locale_html }}>{{ addon.summary|nl2br }}</p>
@@ -16,7 +16,7 @@
 <ul id="install">
   <li class="install-action">
     {% if addon.has_eula %}
-      <a href="{{ services_url('discovery.addons.eula', addon.slug) }}"
+      <a href="{{ services_url('discovery.addons.eula', addon.slug, src=src) }}"
          class="button eula go installer">
          {# L10n: please keep &nbsp; in the string so the &rarr; does not wrap #}
          {{ _('Continue to Download&nbsp;&rarr;')|safe }}</a>
