@@ -45,7 +45,7 @@
         'tooOld': format(gettext("Requires Newer Version of {0}"), z.appName),
         'unreviewed': gettext("Unreviewed"),
         'badApp': format(gettext("Not Available for {0}"), z.appName),
-        'badPlatform': format(gettext("Not Available for {0}"), z.platform),
+        'badPlatform': format(gettext("Not Available for {0}"), z.platformName),
         'experimental': gettext("Experimental")
     };
 
@@ -85,7 +85,7 @@
             versionPlatformCheck();
 
             this.actionQueue.push([0, function() {
-                var href = activeInstaller.attr('href');
+                var href = activeInstaller.attr('href'),
                     hash = hashes[href],
                     attr = self.attr,
                     install = attr.search ? z.installSearch : z.installAddon;
@@ -101,7 +101,7 @@
             }
 
             // sort the actionQueue by priority
-            this.actionQueue.sort(function (a, b) {return b[0]-a[0]});
+            this.actionQueue.sort(function (a, b) {return b[0]-a[0];});
         };
 
         function collectHashes() {
@@ -126,7 +126,7 @@
             // execute the next action if the current action returns true.
             if (result === true) {
                 self.resumeInstall();
-            };
+            }
         }
         this.resumeInstall = function() {
             // moving on.
@@ -166,8 +166,8 @@
             var b = dom.self,
                 attr = self.attr,
                 classes = self.classes,
-                platformer = b.find('.platform').length,
-                platformSupported = (platformer && dom.buttons.filter("." + z.platform).length),
+                platformer = !!b.find('.platform').length,
+                platformSupported = !platformer || dom.buttons.filter("." + z.platform).length,
                 appSupported = z.appMatchesUserAgent && attr.min && attr.max,
                 olderBrowser, newerBrowser,
                 canInstall = true;
@@ -185,7 +185,7 @@
             } else {
                 if (!appSupported) errors.push("badApp");
                 if (!platformSupported) {
-                    errors.push("badApp");
+                    errors.push("badPlatform");
                     dom.buttons.hide().eq(0).show();
                 }
                 canInstall = false;
@@ -215,7 +215,7 @@
             } else {
                 dom.buttons.click(startInstall);
             }
-        };
+        }
 
         //and of course, initialize the button.
         this.init();
@@ -223,7 +223,7 @@
     
     z.b = function() {
         new Button(this);
-    }
+    };
     
     jQuery.fn.installButton = function() {
         return this.each(z.b);
