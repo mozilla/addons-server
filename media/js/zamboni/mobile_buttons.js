@@ -45,6 +45,7 @@
         'tooOld': format(gettext("Requires Newer Version of {0}"), z.appName),
         'unreviewed': gettext("Unreviewed"),
         'badApp': format(gettext("Not Available for {0}"), z.appName),
+        'badPlatform': format(gettext("Not Available for {0}"), z.platform),
         'experimental': gettext("Experimental")
     };
 
@@ -156,10 +157,6 @@
                 'search'      : b.hasattr('data-search'),
                 'eula'        : b.hasClass('eula')
             };
-
-            self.platforms = dom.buttons.filter(".platform").map(function () {
-                return self.attr("data-platform");
-            })
         }
 
         // Add version and platform warnings and (optionally) popups.  This is one
@@ -169,14 +166,14 @@
             var b = dom.self,
                 attr = self.attr,
                 classes = self.classes,
-                badPlatform = (b.find('.os').length &&
-                               !b.hasClass(z.platform)),
+                platformer = b.find('.platform').length,
+                platformSupported = (platformer && dom.buttons.filter("." + z.platform).length),
                 appSupported = z.appMatchesUserAgent && attr.min && attr.max,
                 olderBrowser, newerBrowser,
                 canInstall = true;
 
             // min and max only exist if the add-on is compatible with request[APP].
-            if (appSupported) {
+            if (appSupported && platformSupported) {
                 // The user *has* an older/newer browser.
                 self.tooOld = VersionCompare.compareVersions(z.browserVersion, attr.min) < 0;
                 self.tooNew = VersionCompare.compareVersions(z.browserVersion, attr.max) > 0;
@@ -186,8 +183,16 @@
                 if (self.tooOld) errors.push("tooOld");
                 if (self.tooNew) errors.push("tooNew");
             } else {
-                errors.push("badApp");
+                if (!appSupported) errors.push("badApp");
+                if (!platformSupported) {
+                    errors.push("badApp");
+                    dom.buttons.hide().eq(0).show();
+                }
                 canInstall = false;
+            }
+
+            if (platformer) {
+                dom.self.find(format(".platform:not(.{0})", z.platform)).hide();
             }
 
             if (classes.beta) warnings.push("experimental");
