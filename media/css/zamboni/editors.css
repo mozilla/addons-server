@@ -1,7 +1,11 @@
-/* sprites for data grid icons */
 .site-title {
     padding-top: 27px;
+    max-width: 530px;
 }
+.site-title a {
+    font-size: 40px;
+}
+/* sprites for data grid icons */
 
 .app-icon {
     float: left;
