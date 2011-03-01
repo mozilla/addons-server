@@ -268,16 +268,26 @@ class TestDownloadSources(test_utils.TestCase):
         r = self.client.get(self.url)
         doc = pq(r.content)
         assert doc('#featured-personas li a').attr('href').endswith(
-            '?src=discovery-top')
+            '?src=discovery-featured')
 
     def test_detail(self):
         url = reverse('discovery.addons.detail', args=['a3615'])
         r = self.client.get(url)
         doc = pq(r.content)
+        assert doc('#install a.go').attr('href').endswith(
+            '?src=discovery-details')
         assert doc('#install li:eq(1)').find('a').attr('href').endswith(
             '?src=discovery-learnmore')
         assert doc('#install li:eq(2)').find('a').attr('href').endswith(
             '?src=discovery-learnmore')
+
+    def test_detail_trickle(self):
+        url = (reverse('discovery.addons.detail', args=['a3615']) +
+               '?src=discovery-featured')
+        r = self.client.get(url)
+        doc = pq(r.content)
+        assert doc('#install a.go').attr('href').endswith(
+            '?src=discovery-featured')
 
     def test_eula(self):
         url = reverse('discovery.addons.eula', args=['a3615'])
@@ -285,3 +295,15 @@ class TestDownloadSources(test_utils.TestCase):
         doc = pq(r.content)
         assert doc('#install a.download').attr('href').endswith(
             '?src=discovery-details')
+        assert doc('#install li:eq(1)').find('a').attr('href').endswith(
+            '?src=discovery-details')
+
+    def test_eula_trickle(self):
+        url = (reverse('discovery.addons.eula', args=['a3615']) +
+               '?src=discovery-upandcoming')
+        r = self.client.get(url)
+        doc = pq(r.content)
+        assert doc('#install a.download').attr('href').endswith(
+            '?src=discovery-upandcoming')
+        assert doc('#install li:eq(1)').find('a').attr('href').endswith(
+            '?src=discovery-upandcoming')

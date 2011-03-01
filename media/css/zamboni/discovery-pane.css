@@ -647,7 +647,7 @@ ul.addons {
     text-decoration: none;
 }
 
-#sub #top-addons ul a.addon-title,
+#sub #up-and-coming ul a.addon-title,
 #sub #featured-personas ul span.addon-title {
     display: block;
     overflow: hidden;
@@ -655,7 +655,7 @@ ul.addons {
     color: #333;
 }
 
-#sub #top-addons ul a.addon-title,
+#sub #up-and-coming ul a.addon-title,
 #sub #featured-personas ul span.addon-title b {
     display: block;
     padding: 0.5em 30px 0.5em 10px;
@@ -674,9 +674,9 @@ ul.addons {
     width: 100%;
 }
 
-#sub #top-addons ul a.addon-title:hover,
-#sub #top-addons ul a.addon-title:focus,
-#sub #top-addons ul a.addon-title:active,
+#sub #up-and-coming ul a.addon-title:hover,
+#sub #up-and-coming ul a.addon-title:focus,
+#sub #up-and-coming ul a.addon-title:active,
 #sub #featured-personas ul a:hover span.addon-title,
 #sub #featured-personas ul a:focus span.addon-title,
 #sub #featured-personas ul a:active span.addon-title {
@@ -699,7 +699,7 @@ ul.addons {
     border-radius: 0 0 8px 8px;
 }
 
-#top-addons ul a img {
+#up-and-coming ul a img {
     vertical-align: middle;
     margin: 0 8px 0 0;
 }
@@ -854,7 +854,7 @@ ul.addons {
         float: none;
     }
 
-    #sub #top-addons,
+    #sub #up-and-coming,
     #sub #featured-personas,
     #sub #more-ways {
         float: left;
@@ -967,6 +967,18 @@ p.back:hover:before {
 #install li {
     display: inline-block;
 }
+
+.install-shell .notavail {
+    padding: 1px 0 1px 20px;
+    margin-left: 3px;
+    background: url(../../img/zamboni/icons/no-14x14.png) 0 30% no-repeat;
+    white-space: nowrap;
+}
+.html-rtl .install-shell .notavail {
+    padding: 1px 20px 1px 0;
+    background-position: 100% 30%;
+}
+
 #install li {
     font-weight: bold;
     margin-right: 10px;

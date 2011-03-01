@@ -1,6 +1,6 @@
 {% macro addon_list(list, limit=5, sidebar=False) %}
 <ul>
-{% set src = 'discovery-top' if sidebar else 'discovery-featured' %}
+{% set src = 'discovery-upandcoming' if sidebar else 'discovery-featured' %}
 {# These are JSON add-ons from the API, not Addon objects. #}
 {% for addon in list[:limit] %}
   <li data-guid="{{ addon.guid }}" data-summary="{{ addon.summary }}">
@@ -23,7 +23,7 @@
 {% macro persona_list(list, limit=5) %}
 <ul class="persona-list">
 {% for addon in list[:limit] %}
-  <li>{{ persona_preview(addon.persona, title=True, disco_link=True) }}</li>
+  <li>{{ disco_persona_preview(addon.persona, title=True, src='discovery-featured') }}</li>
 {% endfor %}
 </ul>
 {% endmacro %}
