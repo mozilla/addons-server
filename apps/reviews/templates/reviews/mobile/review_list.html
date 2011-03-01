@@ -31,7 +31,7 @@
       <h3>{{ review.title }}</h3>
     {% endif %}
     {{ review.rating|float|stars }}
-    {% trans user=review.user|user_link %}
+    {% trans user=review.user.name %}
       by {{ user }}
     {% endtrans %}
     <p>{{ review.body|nl2br }}</p>
