@@ -168,9 +168,6 @@ class TestPaypal(test_utils.TestCase):
 
     @patch('amo.views.urllib2.urlopen')
     def test_mysterious_contribution(self, urlopen):
-        scheme, servers, _ = parse_backend_uri(settings.CACHE_BACKEND)
-        if 'dummy' in scheme:
-            raise SkipTest()
         urlopen.return_value = self.urlopener('VERIFIED')
 
         key = "%s%s:%s" % (settings.CACHE_PREFIX, 'contrib', self.item)
