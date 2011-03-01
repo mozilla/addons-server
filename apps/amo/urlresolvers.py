@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 import hashlib
 import urllib
+from threading import local
 from urlparse import urlparse, urlsplit, urlunsplit
 
 from django.conf import settings
 from django.core import urlresolvers
 from django.utils import encoding
-from django.utils.thread_support import currentThread
 from django.utils.translation.trans_real import parse_accept_lang_header
 
 import jinja2
@@ -19,17 +19,17 @@ django_reverse = urlresolvers.reverse
 
 
 # Thread-local storage for URL prefixes.  Access with {get,set}_url_prefix.
-_prefixes = {}
+_local = local()
 
 
 def set_url_prefix(prefix):
     """Set ``prefix`` for the current thread."""
-    _prefixes[currentThread()] = prefix
+    _local.prefix = prefix
 
 
 def get_url_prefix():
     """Get the prefix for the current thread, or None."""
-    return _prefixes.get(currentThread())
+    return getattr(_local, 'prefix', None)
 
 
 def clean_url_prefixes():

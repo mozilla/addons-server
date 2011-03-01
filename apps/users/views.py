@@ -208,7 +208,7 @@ def _clean_next_url(request):
 
     # We want to not redirect outside of AMO via login/logout.
     if url and '://' in url:
-        url = None
+        url = '/'
 
     # TODO(davedash): This is a remora-ism, let's remove this after remora and
     # since all zamboni 'to' parameters will begin with '/'.
