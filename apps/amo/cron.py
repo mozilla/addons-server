@@ -16,15 +16,17 @@ import redisutils
 
 import amo
 from amo.utils import chunked
+from addons.models import Addon, AddonCategory
 from addons.utils import AdminActivityLogMigrationTracker, MigrationTracker
 from applications.models import Application, AppVersion
-from bandwagon.models import Collection
+from bandwagon.models import Collection, CollectionAddon
 from cake.models import Session
 from devhub.models import ActivityLog, LegacyAddonLog
 from editors.models import EventLog
 from files.models import Approval, File, TestResultCache
 from reviews.models import Review
 from sharing import SERVICES_LIST
+from tags.models import AddonTag
 from stats.models import AddonShareCount, Contribution
 from users.models import UserProfile
 
@@ -334,3 +336,30 @@ def ping(**kw):
     queue = kw['delivery_info']['routing_key']
     log.info('[1@None] Checking the %s queue' % queue)
     QueueCheck().set('pong', queue)
+
+
+# TODO(davedash): run once
+@cronjobs.register
+def delete_brand_thunder_addons():
+    ids = (102188, 102877, 103381, 103382, 103388, 107864, 109233, 109242,
+           111144, 111145, 115970, 150367, 146373, 143547, 142886, 140931,
+           113511, 100304, 130876, 126516, 124495, 123900, 120683, 159626,
+           159625, 157780, 157776, 155494, 155489, 155488, 152740, 152739,
+           151187, 193275, 184048, 182866, 179429, 179426, 161783, 161781,
+           161727, 160426, 160425, 220155, 219726, 219724, 219723, 219722,
+           218413, 200756, 200755, 199904, 221522, 221521, 221520, 221513,
+           221509, 221508, 221505, 220882, 220880, 220879, 223384, 223383,
+           223382, 223381, 223380, 223379, 223378, 223376, 222194, 221524,
+           223403, 223402, 223400, 223399, 223398, 223388, 223387, 223386,
+           223385, 232687, 232681, 228394, 228393, 228392, 228391, 228390,
+           226428, 226427, 226388, 235892, 235836, 235277, 235276, 235274,
+           232709, 232708, 232707, 232694, 232688, 94461, 94452, 54288, 50418,
+           49362, 49177, 239113, 102186, 102185, 101166, 101165, 101164,
+           99010, 99007, 99006, 98429, 98428, 45834, 179542, 103383)
+
+    for addon in (UserProfile.objects.get(email='patrick@brandthunder.com')
+                  .addons.filter(pk__in=ids)):
+        try:
+            addon.delete('Deleting per Brand Thunder request (bug 636834).')
+        except:
+            log.error('Could not delete add-on %d' % addon.id)
