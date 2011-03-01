@@ -190,8 +190,7 @@ $(function() {
 });
 
 $(".desktop-link").attr("href", window.location).click(function() {
-    document.cookie = "mamo=off";
-    window.location.refresh();
+    $.cookie("mamo", "off", {expires:30});
 });
 
 $(".moz-menu .tab a").click(_pd(function() {

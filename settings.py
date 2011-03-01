@@ -480,6 +480,7 @@ MINIFY_BUNDLES = {
         'zamboni/mobile': (
             'js/zamboni/jquery-1.5.min.js',
             'js/zamboni/jqmobile.js',
+            'js/jquery.cookie.js',
             'js/zamboni/browser.js',
             'js/zamboni/init.js',
             'js/zamboni/format.js',
