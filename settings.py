@@ -447,20 +447,19 @@ MINIFY_BUNDLES = {
             'js/zamboni/personas.js',
 
             'js/zamboni/truncation.js',
+            'js/jquery.cookie.js',
             'js/zamboni/discovery_pane.js',
             'js/zamboni/discovery.js',
         ),
         'zamboni/discovery-addons': (
             'js/zamboni/jquery-1.4.2.min.js',
             'js/zamboni/jquery-ui/custom-1.8.5.min.js',
-            'js/zamboni/underscore-min.js',
             'js/zamboni/browser.js',
-            'js/amo2009/addons.js',
             'js/zamboni/init.js',
             'js/zamboni/format.js',
-            'js/zamboni/buttons.js',
 
             # Add-ons details page
+            'js/zamboni/buttons.js',
             'js/jquery-ui/ui.lightbox.js',
 
             # Personas

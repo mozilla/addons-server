@@ -8,7 +8,11 @@ $(document).ready(function(){
 function storeBrowserInfo() {
     // Store the pane URL (with the browser version and platform) so we can
     // link back from the add-on detail pages.
-    localStorage.setItem("discopane-url", location);
+    if (hasLocalStorage) {
+        localStorage.setItem("discopane-url", location);
+    } else {
+        $.cookie("discopane-url", location, {path: "/"});
+    }
 }
 
 
@@ -40,7 +44,7 @@ function initRecs() {
             }
         });
     }
-    if (!location.hash || !guids.length) {
+    if (hasLocalStorage && (!location.hash || !guids.length)) {
         // If the user has opted out of recommendations, clear out any
         // existing recommendations.
         localStorage.removeItem("discopane-recs");
@@ -88,13 +92,16 @@ function initRecs() {
     if (guids.length > MIN_ADDONS) {
         $("body").removeClass("no-recs").addClass("recs");
 
-        var cacheObject = localStorage.getItem("discopane-recs");
-        if (cacheObject) {
-            // Load local data.
-            cacheObject = JSON.parse(cacheObject);
+        var cacheObject;
+        if (hasLocalStorage) {
+            cacheObject = localStorage.getItem("discopane-recs");
             if (cacheObject) {
-                datastore = cacheObject;
-                token = cacheObject.token;
+                // Load local data.
+                cacheObject = JSON.parse(cacheObject);
+                if (cacheObject) {
+                    datastore = cacheObject;
+                    token = cacheObject.token;
+                }
             }
         }
 
@@ -102,7 +109,7 @@ function initRecs() {
         // if the user has new installed add-ons.
         var findRecs = !cacheObject;
         var updateRecs = (
-            cacheObject &&
+            cacheObject && hasLocalStorage &&
             localStorage.getItem("discopane-guids") != guids.toString()
         );
         if (findRecs || updateRecs) {
@@ -130,14 +137,18 @@ function initRecs() {
                     $("#recs .loading").remove();
                     datastore = JSON.parse(raw_data);
                     populateRecs();
-                    localStorage.setItem("discopane-recs", raw_data);
-                    localStorage.setItem("discopane-guids", guids);
+                    if (hasLocalStorage) {
+                        localStorage.setItem("discopane-recs", raw_data);
+                        localStorage.setItem("discopane-guids", guids);
+                    }
                 },
                 error: function(raw_data) {
                     $("#recs .loading").remove();
                     populateRecs();
-                    localStorage.setItem("discopane-recs", "{}");
-                    localStorage.setItem("discopane-guids", guids);
+                    if (hasLocalStorage) {
+                        localStorage.setItem("discopane-recs", "{}");
+                        localStorage.setItem("discopane-guids", guids);
+                    }
                 }
             });
         } else {

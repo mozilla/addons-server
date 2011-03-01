@@ -194,12 +194,21 @@ function css(el, prop) {
 })(jQuery);
 
 
+var hasLocalStorage = ("localStorage" in window) && window["localStorage"] !== null;
+
+
 $(document).ready(function(){
     if ($(".detail").length) {
         $(".install-action a").attr("target", "_self");
 
         // Replace with the URL back to the discovery promo pane.
-        $("p#back a").attr("href", localStorage.getItem("discopane-url"));
+        var pane_url;
+        if (hasLocalStorage) {
+            pane_url = localStorage.getItem("discopane-url");
+        } else {
+            pane_url = $.cookie("discopane-url");
+        }
+        $("p#back a").attr("href", pane_url);
 
         $("#images").fadeIn("slow").addClass("js").jCarouselLite({
             btnNext: "#images .nav-next a",
