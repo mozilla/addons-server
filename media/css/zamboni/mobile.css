@@ -514,7 +514,7 @@ a.listview:before {
 }
 
 #search input[type=search] {
-    background: url(../../img/zamboni/mobile/search.svg) no-repeat 10px center;
+    background: url(../../img/zamboni/mobile/search.svg) no-repeat 10px center #fff;
     -webkit-box-flex: 1;
     -moz-box-flex: 1;
     height: 41px;
