@@ -22,5 +22,7 @@ $(document).ready(function() {
             });
         }
     }
-
+    $(".mobile-link").attr("href", window.location).click(function() {
+        $.cookie("mamo", "on", {expires:30});
+    });
 });
