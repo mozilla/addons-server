@@ -40,7 +40,7 @@
     {% if ADMIN_MESSAGE or settings.READ_ONLY%}
       <div id="site-notice">
         {% if ADMIN_MESSAGE %}
-          <p>{{ ADMIN_MESSAGE }}</p>
+          <p>{{ ADMIN_MESSAGE|safe }}</p>
         {% endif %}
         {% if settings.READ_ONLY %}
           <p>{{ _("Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly.") }}</p>
