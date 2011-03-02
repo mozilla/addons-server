@@ -153,7 +153,8 @@ def recommendations(request, version, platform, limit=9):
 
 def _recommendations(request, version, platform, limit, token, recs):
     """Return a JSON response for the recs view."""
-    qs = recs.addons.order_by('collectionaddon__ordering')
+    qs = (Addon.objects.public() &
+          recs.addons.order_by('collectionaddon__ordering'))
     addons = api.views.addon_filter(qs, 'ALL', limit, request.APP,
                                     platform, version, shuffle=False)
     data = {'token': token, 'recommendations': recs.get_url_path(),
