@@ -173,7 +173,8 @@ def migrate_approvals():
     a = MigrationTracker('approvals')
     id = a.get() or 0
 
-    items = Approval.objects.filter(pk__gt=id).values_list('id', flat=True)
+    items = (Approval.objects.filter(pk__gt=id).order_by('id')
+                             .values_list('id', flat=True))
 
     for chunk in chunked(items, 100):
         _migrate_approvals(chunk)

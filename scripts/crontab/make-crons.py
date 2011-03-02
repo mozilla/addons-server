@@ -38,6 +38,7 @@ for dict_ in CRONS.values():
             break
 
 
+# TODO(andym) remove migrate_approvals when zamboni editor tools are live
 cron = """\
 #
 # !!AUTO-GENERATED!!  Edit scripts/crontab/make-crons.py instead.
@@ -53,6 +54,7 @@ HOME = /tmp
 
 # Every 20 minutes.
 */20 * * * * $Z_CRON check_queues
+*/20 * * * * $Z_CRON migrate_approvals
 
 # Every 30 minutes.
 */30 * * * * $Z_CRON tag_jetpacks
