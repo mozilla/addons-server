@@ -147,7 +147,7 @@ def persona_preview(context, persona, size='large', linked=True, extra=None,
     c.update({'persona': persona, 'addon': addon, 'linked': linked,
               'size': size, 'preview': preview_map[size], 'extra': extra,
               'details': details, 'title': title, 'caption': caption,
-              'url': url})
+              'url_': url})
     return c
 
 

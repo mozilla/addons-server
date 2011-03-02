@@ -2,8 +2,8 @@
   <div class="persona-inner">
     <div class="persona-preview">
       {% set tag = 'a' if linked else 'div' %}
-      {% with url = url or addon.get_url_path() %}
-        <{{ tag }} {% if linked %}href="{{ url }}" target="_self"{% endif %}
+      {% with url_ = url or addon.get_url_path() %}
+        <{{ tag }} {% if linked %}href="{{ addon_url }}" target="_self"{% endif %}
       {% endwith %}
       title="{{ addon.name }}" style="background-image:url('{{ preview }}')"
       data-browsertheme="{{ persona.json_data }}">
