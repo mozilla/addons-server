@@ -230,6 +230,7 @@ class OnChangeMixin(object):
 
         """
         _on_change_callbacks[cls].append(callback)
+        return callback
 
     def _send_changes(self, old_attr, new_attr_kw):
         new_attr = old_attr.copy()

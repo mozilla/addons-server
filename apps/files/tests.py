@@ -127,6 +127,23 @@ class TestFile(test_utils.TestCase):
         f.save()
         assert hide_mock.called
 
+    @mock.patch('files.models.File.unhide_disabled_file')
+    def test_unhide_disabled_file(self, unhide_mock):
+        f = File.objects.get(pk=67442)
+        f.status = amo.STATUS_PUBLIC
+        f.save()
+        assert not unhide_mock.called
+
+        f = File.objects.get(pk=67442)
+        f.status = amo.STATUS_DISABLED
+        f.save()
+        assert not unhide_mock.called
+
+        f = File.objects.get(pk=67442)
+        f.status = amo.STATUS_PUBLIC
+        f.save()
+        assert unhide_mock.called
+
     def test_latest_url(self):
         # With platform.
         f = File.objects.get(id=74797)
