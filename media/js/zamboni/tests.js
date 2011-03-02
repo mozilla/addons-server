@@ -35,7 +35,9 @@ tests.waitFor = function(checkCondition, config) {
 
     run = function() {
         if (timeSpent > timeout) {
-            throw new Error("Spent too long waiting for condition");
+            var cond = checkCondition.toString()
+            ok(false, "Spent too long waiting for: " + cond);
+            start();
         }
         timeSpent += interval;
         var ready = checkCondition();
