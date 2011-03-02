@@ -2438,6 +2438,102 @@ form .error .note.error {
     color: #565656;
 }
 
+/** Notifications **/
+.notification-box {
+    margin: 10px 0 28px;
+    border: 3px solid #1d4900;
+    background-color: #e0effd;
+    padding: 13px 13px 13px 58px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+    font-family: "helvetica neue", arial, helvetica, sans-serif;
+    color: #444;
+    font-size: 13px;
+    position: relative;
+}
+
+.notification-box h2 {
+    margin: 0;
+    padding-top: 10px;
+    font-size: 130%;
+    line-height: 1.5em;
+    min-height: 38px;
+    color: #444444;
+}
+
+.html-rtl .notification-box h2 {
+    padding-left: 0;
+    background-position: top right;
+}
+
+.notification-box:before {
+    content: "\00a0";
+    width: 32px;
+    height: 32px;
+    display: block;
+    left: 10px;
+    top: 50%;
+    margin-top: -16px;
+    position: absolute;
+    background-image:url(../../img/zamboni/notifications.png);
+}
+
+.html-rtl .notification-box:before {
+    right: 10px;
+    left: auto;
+}
+
+.notification-box.error {
+    background-color: #FFA5A5;
+    color: #444;
+    border: 3px solid #550b00;
+}
+
+.notification-box.error:before {
+    background-position: 0 -83px;
+}
+
+.notification-box.error h2 {
+    color: #C63717;
+    background-position: 0 -150px;
+}
+
+.notification-box.info {
+    color: #444;
+    border: 3px solid #002955;
+}
+
+.notification-box.info:before {
+    background-position: 0 -435px;
+}
+
+.notification-box.info h2 {
+    color: #425A8B;
+    background-position: 0 -150px;
+}
+
+.html-rtl .notification-box {
+    padding: 13px 58px 13px 13px;
+}
+
+.notification-box h2 {
+    background: none;
+    font-weight: bold;
+    padding: 0;
+    font-family: "helvetica neue", arial, helvetica, sans-serif;
+    font-size: 13px;
+    line-height: 1;
+    min-height: 0;
+}
+
+.notification-box p {
+    margin: 0;
+}
+
 /** Add-on detail page buttons. **/
 #addon-summary .install-shell .install {
     float: left;
