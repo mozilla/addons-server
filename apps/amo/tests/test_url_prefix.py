@@ -94,7 +94,7 @@ class MiddlewareTest(test.TestCase):
 class TestPrefixer:
 
     def tearDown(self):
-        urlresolvers._prefixes.clear()
+        urlresolvers.clean_url_prefixes()
         set_script_prefix('/')
 
     def test_split_path(self):

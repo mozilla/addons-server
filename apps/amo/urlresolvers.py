@@ -34,7 +34,8 @@ def get_url_prefix():
 
 def clean_url_prefixes():
     """Purge prefix cache."""
-    _prefixes.clear()
+    if hasattr(_local, 'prefix'):
+       delattr(_local, 'prefix')
 
 
 def get_app_redirect(app):
