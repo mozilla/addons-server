@@ -50,7 +50,7 @@
       {% endif %}
 
       <div class="version-status-actions item-actions">
-        {% if has_perm(request, addon, dev=True) %}
+        {% if check_addon_ownership(request, addon, dev=True) %}
           {% set req = {amo.STATUS_PUBLIC: _('Request Full Review'),
                         amo.STATUS_LITE: _('Request Preliminary Review')} %}
           {% for status in addon.can_request_review() %}
@@ -70,7 +70,7 @@
             <a href="#" id="cancel-review">{{ _('Cancel Review Request') }}</a> &middot;
           {% endif %}
         {% endif %}
-        {% if has_perm(request, addon) %}
+        {% if check_addon_ownership(request, addon) %}
           {% if addon.disabled_by_user %}
             <a href="{{ url('devhub.addons.enable', addon.slug) }}" id="enable-addon">{{ _('Enable Add-on') }}</a> &middot;
           {% elif not addon.is_disabled %}

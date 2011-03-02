@@ -30,9 +30,12 @@ def action_allowed(request, app, action):
 
 
 def check_ownership(request, obj, require_owner=False):
-    """Check if request.user has permissions for the object."""
+    """
+    A convenience function.  Check if request.user has permissions
+    for the object.
+    """
     if isinstance(obj, Addon):
-        return has_perm(request, obj, viewer=not require_owner)
+        return check_addon_ownership(request, obj, viewer=not require_owner)
     elif isinstance(obj, Collection):
         return check_collection_ownership(request, obj, require_owner)
     else:
@@ -53,22 +56,7 @@ def check_collection_ownership(request, collection, require_owner=False):
         return False
 
 
-def check_addon_ownership(request, addon, require_owner=False):
-    """Check if request.user has owner permissions for the add-on."""
-    if not request.user.is_authenticated():
-        return False
-    if action_allowed(request, 'Admin', 'EditAnyAddon'):
-        return True
-
-    roles = (amo.AUTHOR_ROLE_OWNER, amo.AUTHOR_ROLE_DEV)
-    if not require_owner:
-        roles += (amo.AUTHOR_ROLE_VIEWER,)
-
-    return bool(addon.authors.filter(addonuser__role__in=roles,
-                                     user=request.amo_user))
-
-
-def has_perm(request, addon, viewer=False, dev=False, ignore_disabled=False):
+def check_addon_ownership(request, addon, viewer=False, dev=False, ignore_disabled=False):
     """
     Check request.amo_user's permissions for the addon.
 

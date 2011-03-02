@@ -64,7 +64,7 @@ def download_file(request, file_id, type=None):
     addon = get_object_or_404(Addon.objects, pk=file.version.addon_id)
 
     if addon.is_disabled or file.status == amo.STATUS_DISABLED:
-        if acl.has_perm(request, addon, viewer=True, ignore_disabled=True):
+        if acl.check_addon_ownership(request, addon, viewer=True, ignore_disabled=True):
             return HttpResponseSendFile(request, file.guarded_file_path,
                                         content_type='application/xp-install')
         else:

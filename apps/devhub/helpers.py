@@ -14,7 +14,7 @@ from access import acl
 from addons.helpers import new_context
 
 
-register.function(acl.has_perm)
+register.function(acl.check_addon_ownership)
 
 
 @register.inclusion_tag('devhub/addons/listing/items.html')

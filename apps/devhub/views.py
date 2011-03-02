@@ -67,11 +67,11 @@ def dev_required(owner_for_post=False, allow_editors=False):
                     return fun()
             # Require an owner or dev for POST requests.
             if request.method == 'POST':
-                if acl.has_perm(request, addon, dev=not owner_for_post):
+                if acl.check_addon_ownership(request, addon, dev=not owner_for_post):
                     return fun()
             # Ignore disabled so they can view their add-on.
-            elif acl.has_perm(request, addon, viewer=True,
-                              ignore_disabled=True):
+            elif acl.check_addon_ownership(request, addon, viewer=True,
+                                           ignore_disabled=True):
                 step = SubmitStep.objects.filter(addon=addon)
                 # Redirect to the submit flow if they're not done.
                 if not getattr(f, 'submitting', False) and step:
@@ -238,8 +238,8 @@ def feed(request, addon_id=None):
             rssurl = urlparams(reverse('devhub.feed', args=[addon_id]),
                                privaterss=key.key)
 
-            if not acl.has_perm(request, addons, viewer=True,
-                                ignore_disabled=True):
+            if not acl.check_addon_ownership(request, addons, viewer=True,
+                                             ignore_disabled=True):
                 return http.HttpResponseForbidden()
         else:
             rssurl = _get_rss_feed(request)

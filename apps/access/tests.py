@@ -10,7 +10,7 @@ from addons.models import Addon, AddonUser
 from cake.models import Session
 from users.models import UserProfile
 
-from .acl import match_rules, action_allowed, has_perm
+from .acl import match_rules, action_allowed, check_addon_ownership
 
 
 def test_match_rules():
@@ -111,51 +111,51 @@ class TestHasPerm(TestCase):
     def test_anonymous(self):
         self.request.user.is_authenticated.return_value = False
         self.client.logout()
-        assert not has_perm(self.request, self.addon)
+        assert not check_addon_ownership(self.request, self.addon)
 
     def test_admin(self):
         self.request.amo_user = self.login_admin()
         self.request.groups = self.request.amo_user.groups.all()
-        assert has_perm(self.request, self.addon)
+        assert check_addon_ownership(self.request, self.addon)
 
     def test_disabled(self):
         self.addon.update(status=amo.STATUS_DISABLED)
-        assert not has_perm(self.request, self.addon)
+        assert not check_addon_ownership(self.request, self.addon)
         self.test_admin()
 
     def test_ignore_disabled(self):
         self.addon.update(status=amo.STATUS_DISABLED)
-        assert has_perm(self.request, self.addon, ignore_disabled=True)
+        assert check_addon_ownership(self.request, self.addon, ignore_disabled=True)
 
     def test_owner(self):
-        assert has_perm(self.request, self.addon)
+        assert check_addon_ownership(self.request, self.addon)
 
         self.au.role = amo.AUTHOR_ROLE_DEV
         self.au.save()
-        assert not has_perm(self.request, self.addon)
+        assert not check_addon_ownership(self.request, self.addon)
 
         self.au.role = amo.AUTHOR_ROLE_VIEWER
         self.au.save()
-        assert not has_perm(self.request, self.addon)
+        assert not check_addon_ownership(self.request, self.addon)
 
     def test_dev(self):
-        assert has_perm(self.request, self.addon, dev=True)
+        assert check_addon_ownership(self.request, self.addon, dev=True)
 
         self.au.role = amo.AUTHOR_ROLE_DEV
         self.au.save()
-        assert has_perm(self.request, self.addon, dev=True)
+        assert check_addon_ownership(self.request, self.addon, dev=True)
 
         self.au.role = amo.AUTHOR_ROLE_VIEWER
         self.au.save()
-        assert not has_perm(self.request, self.addon, dev=True)
+        assert not check_addon_ownership(self.request, self.addon, dev=True)
 
     def test_viewer(self):
-        assert has_perm(self.request, self.addon, viewer=True)
+        assert check_addon_ownership(self.request, self.addon, viewer=True)
 
         self.au.role = amo.AUTHOR_ROLE_DEV
         self.au.save()
-        assert has_perm(self.request, self.addon, viewer=True)
+        assert check_addon_ownership(self.request, self.addon, viewer=True)
 
         self.au.role = amo.AUTHOR_ROLE_VIEWER
         self.au.save()
-        assert has_perm(self.request, self.addon, viewer=True)
+        assert check_addon_ownership(self.request, self.addon, viewer=True)

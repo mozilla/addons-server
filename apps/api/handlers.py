@@ -31,7 +31,7 @@ def check_addon_and_version(f):
             addon = Addon.objects.id_or_slug(addon_id).get()
         except:
             return rc.NOT_HERE
-        if not acl.has_perm(request, addon, viewer=True):
+        if not acl.check_addon_ownership(request, addon, viewer=True):
             return rc.FORBIDDEN
 
         if 'version_id' in kw:

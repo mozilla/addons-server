@@ -4,7 +4,7 @@
 {% block title %}{{ dev_page_title(title, addon) }}{% endblock %}
 
 {% set can_edit = (addon.status == amo.STATUS_PUBLIC
-                   and has_perm(request, addon)) %}
+                   and check_addon_ownership(request, addon)) %}
 {% block bodyclass %}
   {{ super() }}{% if not can_edit %} no-edit{% endif %}
 {% endblock %}

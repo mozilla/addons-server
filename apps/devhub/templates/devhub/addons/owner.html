@@ -7,7 +7,7 @@
 
 {% block bodyclass %}
 {{ super() }}
-{% if not has_perm(request, addon) %} no-edit{% endif %}
+{% if not check_addon_ownership(request, addon) %} no-edit{% endif %}
 {% endblock %}
 
 {% block content %}
