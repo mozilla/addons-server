@@ -20,7 +20,15 @@ from devhub.models import ActivityLog
 from editors.helpers import (ViewPendingQueueTable, ReviewHelper, ReviewFiles,
                              ReviewAddon, NOMINATED_STATUSES,
                              PRELIMINARY_STATUSES, PENDING_STATUSES)
+from files.models import File
 from users.models import UserProfile
+
+
+REVIEW_ADDON_STATUSES = (amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED,
+                         amo.STATUS_UNREVIEWED)
+REVIEW_FILES_STATUSES = (amo.STATUS_BETA, amo.STATUS_NULL, amo.STATUS_PUBLIC,
+                         amo.STATUS_DISABLED, amo.STATUS_LISTED,
+                         amo.STATUS_LITE)
 
 
 class TestViewPendingQueueTable(test_utils.TestCase):
@@ -179,15 +187,12 @@ class TestReviewHelper(test_utils.TestCase):
         eq_(self.setup_type(amo.STATUS_PURGATORY), 'pending')
 
     def test_review_files(self):
-        for status in (amo.STATUS_BETA, amo.STATUS_NULL, amo.STATUS_PUBLIC,
-                       amo.STATUS_DISABLED, amo.STATUS_LISTED,
-                       amo.STATUS_LITE):
+        for status in REVIEW_FILES_STATUSES:
             self.setup_data(status=status)
             eq_(self.helper.handler.__class__, ReviewFiles)
 
     def test_review_addon(self):
-        for status in (amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED,
-                       amo.STATUS_UNREVIEWED):
+        for status in REVIEW_ADDON_STATUSES:
             self.setup_data(status=status)
             eq_(self.helper.handler.__class__, ReviewAddon)
 
@@ -436,3 +441,25 @@ class TestReviewHelper(test_utils.TestCase):
             eq_(len(mail.outbox), 1)
             eq_(mail.outbox[0].subject,
                 'Super review requested: Delicious Bookmarks')
+
+    def test_nominated_review_time_set(self):
+        for status in REVIEW_ADDON_STATUSES:
+            for process in ['process_sandbox', 'process_preliminary',
+                            'process_public']:
+                if (status == amo.STATUS_UNREVIEWED
+                    and process == 'process_public'):
+                    continue
+                self.version.update(reviewed=None)
+                self.setup_data(status)
+                getattr(self.helper.handler, process)()
+                assert self.version.reviewed, ('Reviewed for status %r, %s()'
+                                               % (status, process))
+
+    def test_preliminary_review_time_set(self):
+        for status in REVIEW_FILES_STATUSES:
+            for process in ['process_sandbox', 'process_preliminary']:
+                self.file.update(reviewed=None)
+                self.setup_data(status)
+                getattr(self.helper.handler, process)()
+                assert File.objects.get(pk=self.file.pk).reviewed, (
+                       'Reviewed for status %r, %s()' % (status, process))

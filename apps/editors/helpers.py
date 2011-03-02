@@ -235,12 +235,18 @@ class ReviewBase:
         self.version = version
         self.review_type = review_type
 
+    def set_addon(self, **kw):
+        """Alters addon and sets reviewed timestamp on version."""
+        self.addon.update(**kw)
+        self.version.update(reviewed=datetime.now())
+
     def set_files(self, status, files, copy_to_mirror=False,
                   hide_disabled_file=False):
         """Change the files to be the new status
         and copy, remove from the mirror as appropriate."""
         for file in files:
             file.datestatuschanged = datetime.now()
+            file.reviewed = datetime.now()
             if copy_to_mirror:
                 file.copy_to_mirror()
             if hide_disabled_file:
@@ -301,10 +307,8 @@ class ReviewAddon(ReviewBase):
         if self.review_type == 'preliminary':
             raise AssertionError('Preliminary addons cannot be made public.')
 
-        self.addon.highest_status = amo.STATUS_PUBLIC
-        self.addon.status = amo.STATUS_PUBLIC
-        self.addon.save()
-
+        self.set_addon(highest_status=amo.STATUS_PUBLIC,
+                       status=amo.STATUS_PUBLIC)
         self.set_files(amo.STATUS_PUBLIC, self.version.files.all(),
                        copy_to_mirror=True)
 
@@ -318,9 +322,7 @@ class ReviewAddon(ReviewBase):
 
     def process_sandbox(self):
         """Set an addon back to sandbox."""
-        self.addon.status = amo.STATUS_NULL
-        self.addon.save()
-
+        self.set_addon(status=amo.STATUS_NULL)
         self.set_files(amo.STATUS_DISABLED, self.version.files.all(),
                        hide_disabled_file=True)
 
@@ -335,18 +337,17 @@ class ReviewAddon(ReviewBase):
 
     def process_preliminary(self):
         """Set an addon to preliminary."""
+        changes = {'status': amo.STATUS_LITE}
         if (self.addon.status in (amo.STATUS_PUBLIC,
-                                 amo.STATUS_LITE_AND_NOMINATED)):
-            self.addon.highest_status = amo.STATUS_LITE
+                                  amo.STATUS_LITE_AND_NOMINATED)):
+            changes['highest_status'] = amo.STATUS_LITE
 
         template = '%s_to_preliminary' % self.review_type
         if (self.review_type == 'preliminary' and
             self.addon.status == amo.STATUS_LITE_AND_NOMINATED):
             template = 'nominated_to_nominated'
 
-        self.addon.status = amo.STATUS_LITE
-        self.addon.save()
-
+        self.set_addon(**changes)
         self.set_files(amo.STATUS_LITE, self.version.files.all(),
                        copy_to_mirror=True)
 
@@ -361,9 +362,7 @@ class ReviewAddon(ReviewBase):
 
     def process_super_review(self):
         """Give an addon super review."""
-        self.addon.admin_review = True
-        self.addon.save()
-
+        self.addon.update(admin_review=True)
         self.send_super_mail()
 
 
@@ -399,8 +398,7 @@ class ReviewFiles(ReviewBase):
 
     def process_super_review(self):
         """Give an addon super review when preliminary."""
-        self.addon.admin_review = True
-        self.addon.save()
+        self.addon.update(admin_review=True)
 
         if any(f.status for f in self.data['files'] if f.status
                in (amo.STATUS_PENDING, amo.STATUS_UNREVIEWED)):

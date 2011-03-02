@@ -32,6 +32,8 @@ class Version(amo.models.ModelBase):
     version = models.CharField(max_length=255, default='0.1')
     version_int = models.BigIntegerField(null=True, editable=False)
 
+    reviewed = models.DateTimeField(null=True)
+
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'versions'
         ordering = ['-created', '-modified']

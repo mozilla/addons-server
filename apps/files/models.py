@@ -44,6 +44,8 @@ class File(amo.models.ModelBase):
     datestatuschanged = models.DateTimeField(null=True, auto_now_add=True)
     no_restart = models.BooleanField(default=False)
 
+    reviewed = models.DateTimeField(null=True)
+
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'files'
 
