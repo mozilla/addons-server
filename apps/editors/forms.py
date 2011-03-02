@@ -1,6 +1,7 @@
 from datetime import timedelta
 
 from django import forms
+from django.forms import widgets
 from django.db.models import Q
 from django.utils.translation import get_language
 from django.core.validators import ValidationError
@@ -242,3 +243,6 @@ def get_review_form(data, request=None, addon=None, version=None):
             ReviewFiles: ReviewFileForm}[helper.handler.__class__]
     return form(data, helper=helper)
 
+
+class MOTDForm(happyforms.Form):
+    motd = forms.CharField(required=True, widget=widgets.Textarea())

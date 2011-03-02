@@ -27,3 +27,10 @@ def get_config(conf):
         return
 
 get_config = memoize(get_config, _config_cache, 1)
+
+
+def set_config(conf, value):
+    cf, created = Config.objects.get_or_create(key=conf)
+    cf.value = value
+    cf.save()
+    _config_cache.clear()

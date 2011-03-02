@@ -51,7 +51,7 @@
       </ul>
     </li>
     <li class="top">
-    <a href="{{ remora_url('/editors/motd') }}" class="controller">{{ _('Announcement') }}</a>
+    <a href="{{ url('editors.motd') }}" class="controller">{{ _('Announcement') }}</a>
     </li>
   </ul>
 </div>
@@ -61,4 +61,7 @@
   {{ js('zamboni/editors') }}
 {% endblock %}
 
-{% block outer_content %}{% include "messages.html" %}{% endblock %}
+{% block outer_content %}
+  {% include "editors/includes/daily-message.html" %}
+  {% include "messages.html" %}
+{% endblock %}

@@ -541,4 +541,11 @@ tr.comments {
     padding-bottom: 1em;
 }
 
+#editor-motd textarea {
+    height: 5em;
+    margin-bottom: 0.5em;
+}
 
+#editor-motd .buttons {
+    text-align: right;
+}

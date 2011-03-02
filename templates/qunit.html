@@ -191,6 +191,17 @@
       </select>
     </form>
   </div>
+  <div id="editors-motd-template">
+    {% with motd='This is an announcement' %}
+      {% include "editors/includes/daily-message.html" %}
+    {% endwith %}
+  </div>
+  <div id="editors-motd-for-edit-template">
+    {% with motd='This is an announcement' %}
+      {% include "editors/includes/daily-message.html" %}
+    {% endwith %}
+    <div id="editor-motd"><!-- admin edit form and stuff --></div>
+  </div>
 
 
   <script src="{{ url('jsi18n') }}/build:{{ BUILD_ID_JS }}"></script>

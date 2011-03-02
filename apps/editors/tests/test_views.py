@@ -24,11 +24,16 @@ from reviews.models import Review, ReviewFlag
 from users.models import UserProfile
 from versions.models import Version, VersionSummary, AppVersion
 from files.models import Approval, Platform, File
+from zadmin.models import set_config, get_config
 from . test_models import create_addon_file
 
 
 class EditorTest(test_utils.TestCase):
     fixtures = ('base/users', 'editors/pending-queue', 'base/approvals')
+
+    def login_as_admin(self):
+        assert self.client.login(username='admin@mozilla.com',
+                                 password='password')
 
     def login_as_editor(self):
         assert self.client.login(username='editor@mozilla.com',
@@ -842,3 +847,41 @@ class TestReviewPreliminary(ReviewBase):
         self.client.post(self.url, data)
         eq_([amo.STATUS_DISABLED, amo.STATUS_LISTED],
             [v.status for v in version.files.all().order_by('status')])
+
+
+class TestEditorMOTD(EditorTest):
+
+    def test_change_motd(self):
+        self.login_as_admin()
+        r = self.client.post(reverse('editors.save_motd'),
+                             {'motd': "Let's get crazy"})
+        if r.context:
+            eq_(r.context['form'].errors.as_text(), "")
+        self.assertRedirects(r, reverse('editors.motd'))
+        r = self.client.get(reverse('editors.motd'))
+        doc = pq(r.content)
+        eq_(doc('.daily-message p').text(), "Let's get crazy")
+
+    def test_require_editor_to_view(self):
+        r = self.client.get(reverse('editors.motd'))
+        eq_(r.status_code, 302)
+
+    def test_require_admin_to_change_motd(self):
+        self.login_as_editor()
+        r = self.client.post(reverse('editors.save_motd'),
+                             {'motd': "I'm a sneaky editor"})
+        eq_(r.status_code, 403)
+
+    def test_editor_can_view_not_edit(self):
+        set_config('editors_review_motd', 'Some announcement')
+        self.login_as_editor()
+        r = self.client.get(reverse('editors.motd'))
+        doc = pq(r.content)
+        eq_(doc('.daily-message p').text(), "Some announcement")
+        eq_(r.context['form'], None)
+
+    def test_form_errors(self):
+        self.login_as_admin()
+        r = self.client.post(reverse('editors.save_motd'), {})
+        doc = pq(r.content)
+        eq_(doc('#editor-motd .errorlist').text(), 'This field is required.')

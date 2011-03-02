@@ -19,5 +19,7 @@ urlpatterns = patterns('',
     url(r'^log/(\d+)$', views.eventlog_detail, name='editors.eventlog.detail'),
     url(r'^reviewlog$', views.reviewlog, name='editors.reviewlog'),
     url(r'^review/(?P<version_id>\d+)$', views.review, name='editors.review'),
+    url(r'^motd$', views.motd, name='editors.motd'),
+    url(r'^motd/save$', views.save_motd, name='editors.save_motd'),
     url(r'^$', views.home, name='editors.home'),
 )

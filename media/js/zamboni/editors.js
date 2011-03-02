@@ -1,7 +1,6 @@
 $(function() {
-    // Main page
-    if($('#editors_main').length) {
-        initEditorsMain();
+    if($('.daily-message').length) {
+        initDailyMessage();
     }
 
 
@@ -46,27 +45,34 @@ $(function() {
     }
 });
 
-function initEditorsMain() {
-    var $motd = $('#editors_main .daily-message');
+function initDailyMessage(doc) {
+    var canCloseMsg,
+        $motd = $('.daily-message', doc);
     try {
-        if('localStorage' in window && window['localStorage'] !== null) {
-            if(window.localStorage['motd_closed'] == $('p', $motd).text()) {
-                $motd.hide();
-            }
-            $motd.find('.close').click(close_motd);
-            $motd.find('.close').show();
+        if ('localStorage' in window && window['localStorage'] !== null) {
+            canCloseMsg = true;
         }
-    } catch(e){}
-
-    function close_motd(e) {
-        e.stopPropagation();
-        try {
-            if('localStorage' in window && window['localStorage'] !== null) {
-                window.localStorage['motd_closed'] = $('#editors_main .daily-message p').text();
-            }
-            $motd.slideUp();
-        } catch(e){}
+    } catch(e) {
+        // Exception thrown when cookies are off (bug in older Firefox)
+        canCloseMsg = false;
     }
+    if ($('#editor-motd', doc).length) {
+        // The message on the MOTD page should never be closable
+        canCloseMsg = false;
+    }
+    if (!canCloseMsg) {
+        // Don't show close button, don't attach handlers
+        return;
+    }
+    $motd.find('.close').show();
+    if (window.localStorage['motd_closed'] == $('p', $motd).text()) {
+        $motd.hide();
+    }
+    $motd.find('.close').click(function(e) {
+        e.stopPropagation();
+        window.localStorage['motd_closed'] = $('.daily-message p').text();
+        $motd.slideUp();
+    });
 }
 
 function initQueueSearch(doc) {

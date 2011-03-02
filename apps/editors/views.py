@@ -23,7 +23,7 @@ from editors.helpers import (ViewPendingQueueTable, ViewFullReviewQueueTable,
 from files.models import Approval
 from reviews.forms import ReviewFlagFormSet
 from reviews.models import Review, ReviewFlag
-from zadmin.models import get_config
+from zadmin.models import get_config, set_config
 
 
 def editor_required(func):
@@ -36,6 +36,12 @@ def editor_required(func):
         else:
             return http.HttpResponseForbidden()
     return wrapper
+
+
+def context(**kw):
+    ctx = dict(motd=get_config('editors_review_motd'))
+    ctx.update(kw)
+    return ctx
 
 
 @editor_required
@@ -53,27 +59,47 @@ def eventlog(request):
 
     pager = amo.utils.paginate(request, eventlog, 50)
 
-    data = dict(form=form, pager=pager)
+    data = context(form=form, pager=pager)
     return jingo.render(request, 'editors/eventlog.html', data)
 
 
 @editor_required
 def eventlog_detail(request, id):
     log = get_object_or_404(ActivityLog.objects.editor_events(), pk=id)
-    data = dict(log=log)
+    data = context(log=log)
     return jingo.render(request, 'editors/eventlog_detail.html', data)
 
 
 @editor_required
 def home(request):
-    data = dict(reviews_total=Approval.total_reviews(),
-                reviews_monthly=Approval.monthly_reviews(),
-                new_editors=EventLog.new_editors(),
-                motd=get_config('editors_review_motd'),
-                eventlog=ActivityLog.objects.editor_events()[:6],
-                )
+    data = context(reviews_total=Approval.total_reviews(),
+                   reviews_monthly=Approval.monthly_reviews(),
+                   new_editors=EventLog.new_editors(),
+                   eventlog=ActivityLog.objects.editor_events()[:6])
 
     return jingo.render(request, 'editors/home.html', data)
+
+
+@editor_required
+def motd(request):
+    form = None
+    if acl.action_allowed(request, 'Admin', 'EditorsMOTD'):
+        form = forms.MOTDForm()
+    data = context(form=form)
+    return jingo.render(request, 'editors/motd.html', data)
+
+
+@editor_required
+@post_required
+def save_motd(request):
+    if not acl.action_allowed(request, 'Admin', 'EditorsMOTD'):
+        return http.HttpResponseForbidden()
+    form = forms.MOTDForm(request.POST)
+    if form.is_valid():
+        set_config('editors_review_motd', form.cleaned_data['motd'])
+        return redirect(reverse('editors.motd'))
+    data = context(form=form)
+    return jingo.render(request, 'editors/motd.html', data)
 
 
 def _queue(request, TableObj, tab):
@@ -107,9 +133,9 @@ def _queue(request, TableObj, tab):
                     count=queue_counts[tab])
     table.set_page(page)
     return jingo.render(request, 'editors/queue.html',
-                        {'table': table, 'page': page, 'tab': tab,
-                         'search_form': search_form,
-                         'queue_counts': queue_counts})
+                        context(table=table, page=page, tab=tab,
+                                search_form=search_form,
+                                queue_counts=queue_counts))
 
 
 def _queue_counts(type=None):
@@ -162,9 +188,9 @@ def queue_moderated(request):
         return redirect(reverse('editors.queue_moderated'))
 
     return jingo.render(request, 'editors/queue.html',
-            {'reviews_formset': reviews_formset, 'tab': 'moderated',
-             'page': page, 'flags': flags, 'queue_counts': _queue_counts(),
-             'search_form': None})
+                        context(reviews_formset=reviews_formset,
+                                tab='moderated', page=page, flags=flags,
+                                queue_counts=_queue_counts(), search_form=None))
 
 
 @editor_required
@@ -210,14 +236,13 @@ def review(request, version_id):
 
     canned = CannedResponse.objects.all()
 
-    context = {'version': version, 'addon': addon,
-               'flags': Review.objects.filter(addon=addon, flag=True),
-               'form': form, 'paging': paging,
-               'canned': canned,
-               'history': ActivityLog.objects.for_addons(addon)
-                                     .filter(action__in=LOG_STATUSES)}
+    ctx = context(version=version, addon=addon,
+                  flags=Review.objects.filter(addon=addon, flag=True),
+                  form=form, paging=paging, canned=canned,
+                  history=ActivityLog.objects.for_addons(addon)
+                          .filter(action__in=LOG_STATUSES))
 
-    return jingo.render(request, 'editors/review.html', context)
+    return jingo.render(request, 'editors/review.html', ctx)
 
 
 @editor_required
@@ -254,5 +279,5 @@ def reviewlog(request):
             amo.LOG.ESCALATE_VERSION.id: _('Admin Review',
                     'editors_review_history_nominated_adminreview'),
          }
-    data = dict(form=form, pager=pager, NOM_DICT=nd, PEN_DICT=pd)
+    data = context(form=form, pager=pager, NOM_DICT=nd, PEN_DICT=pd)
     return jingo.render(request, 'editors/reviewlog.html', data)

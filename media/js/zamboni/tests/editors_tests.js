@@ -70,4 +70,64 @@ asyncTest('de-select application', function() {
     });
 });
 
+module('editors MOTD', {
+    setup: function() {
+        window.localStorage['motd_closed'] = '';
+        this.sandbox = tests.createSandbox('#editors-motd-template');
+        $('.daily-message .close', this.sandbox).hide();
+        initDailyMessage(this.sandbox);
+    },
+    teardown: function() {
+        this.sandbox.remove();
+    }
+});
+
+test('is closable', function() {
+    var doc = this.sandbox;
+    equals($('.daily-message .close:visible', doc).length, 1);
+});
+
+asyncTest('click to close', function() {
+    var doc = this.sandbox;
+    $('.daily-message .close', doc).trigger('click');
+    tests.waitFor(function() {
+        return $('.daily-message .close:visible', doc).length == 0;
+    }).thenDo(function() {
+        ok(true, 'message was closed');
+        start();
+    });
+});
+
+module('editors MOTD page', {
+    setup: function() {
+        this.sandbox = tests.createSandbox('#editors-motd-for-edit-template');
+        $('.daily-message .close', this.sandbox).hide();
+        initDailyMessage(this.sandbox);
+    },
+    teardown: function() {
+        this.sandbox.remove();
+    }
+});
+
+test('not closable', function() {
+    var doc = this.sandbox;
+    equals($('.daily-message .close:visible', doc).length, 0);
+});
+
+module('editors MOTD after clicking', {
+    setup: function() {
+        window.localStorage['motd_closed'] = 'This is an announcement';
+        this.sandbox = tests.createSandbox('#editors-motd-template');
+        initDailyMessage(this.sandbox);
+    },
+    teardown: function() {
+        this.sandbox.remove();
+    }
+});
+
+test('message hidden', function() {
+    var doc = this.sandbox;
+    equals($('.daily-message .close:visible', doc).length, 0);
+});
+
 });
