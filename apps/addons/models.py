@@ -830,6 +830,7 @@ signals.version_changed.connect(version_changed,
                                 dispatch_uid='version_changed')
 
 
+@Addon.on_change
 def watch_status(old_attr={}, new_attr={}, instance=None,
                  sender=None, **kw):
     """Set nominationdate if self.status asks for full review."""
@@ -840,8 +841,6 @@ def watch_status(old_attr={}, new_attr={}, instance=None,
     stati = (amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED)
     if new_status in stati and old_attr['status'] != new_status:
         addon.update(nomination_date=datetime.now())
-
-Addon.on_change(watch_status)
 
 
 class MiniAddonManager(AddonManager):
