@@ -10,13 +10,15 @@ import test_utils
 import amo
 from amo.urlresolvers import reverse
 from addons.models import Addon
-from applications.models import Application
+from applications.models import Application, AppVersion
 from bandwagon.models import Collection, SyncedCollection, CollectionToken
 from bandwagon.tests.test_models import TestRecommendations as Recs
 from discovery import views
 from discovery.forms import DiscoveryModuleForm
 from discovery.models import DiscoveryModule
 from discovery.modules import registry
+from files.models import File
+from versions.models import Version, ApplicationsVersions
 
 
 class TestRecs(test_utils.TestCase):
@@ -39,6 +41,25 @@ class TestRecs(test_utils.TestCase):
         self.json = json.dumps({'guids': self.guids})
         # The view is limited to returning 9 add-ons.
         self.expected_recs = Recs.expected_recs()[:9]
+
+        self.min_id, self.max_id = 1, 313  # see test_min_max_appversion
+        for addon in Addon.objects.all():
+            v = Version.objects.create(addon=addon)
+            File.objects.create(version=v, status=amo.STATUS_PUBLIC)
+            ApplicationsVersions.objects.create(
+                version=v, application_id=amo.FIREFOX.id,
+                min_id=self.min_id, max_id=self.max_id)
+            addon.update(_current_version=v)
+        Addon.objects.update(status=amo.STATUS_PUBLIC, disabled_by_user=False)
+
+    def test_min_max_appversion(self):
+        # These version numbers are hardcoded for speed, make sure the
+        # assumption is correct.
+        versions = AppVersion.objects.filter(application=amo.FIREFOX.id)
+        min_ = versions.order_by('version_int')[0]
+        max_ = versions.order_by('-version_int')[0]
+        eq_(self.min_id, min_.id)
+        eq_(self.max_id, max_.id)
 
     def test_get(self):
         """GET should find method not allowed."""
@@ -117,6 +138,23 @@ class TestRecs(test_utils.TestCase):
         eq_(len(q), 1)
         eq_(q[0].recommended_collection.get_url_path(),
             data['recommendations'])
+
+    @mock.patch('api.views')
+    def test_only_show_public(self, api_mock):
+        api_mock.addon_filter = lambda xs, _, limit, *args, **kw: xs[:limit]
+
+        # Mark one add-on as non-public.
+        unpublic = self.expected_recs[0]
+        Addon.objects.filter(id=unpublic).update(status=amo.STATUS_LITE)
+        response = self.client.post(self.url, self.json,
+                                    content_type='application/json')
+        eq_(response.status_code, 200)
+
+        data = json.loads(response.content)
+        eq_(len(data['addons']), 9)
+        ids = [a['id'] for a in data['addons']]
+        eq_(ids, Recs.expected_recs()[1:10])
+        assert unpublic not in ids
 
     def test_filter(self):
         # The fixture doesn't contain valid add-ons so calling addon_filter on
