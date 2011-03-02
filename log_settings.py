@@ -58,7 +58,7 @@ cfg = {
         },
         'mail_admins': {
             'level': 'ERROR',
-            'class': 'django.utils.log.AdminEmailHandler'
+            'class': 'admin_log.AdminEmailHandler'
         },
     },
     'loggers': {
