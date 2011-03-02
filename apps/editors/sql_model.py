@@ -365,8 +365,23 @@ class RawSQLModel(object):
     def base_query(self):
         """Returns a dict with parts of the raw SQL query.
 
-        This method is called in a metaclass to create the manager
-        as Model.objects.  Therefore you can't use super.
+        Example::
+
+            def base_query(self):
+                return {
+                    'select': {
+                        'category': 'c.name',
+                        'total': 'count(*)',
+                        'latest_product_date': 'max(p.created)'
+                    },
+                    'from': [
+                        'product p',
+                        'join product_cat x on x.product_id=p.id',
+                        'join category c on x.category_id=c.id'],
+                    'where': [],
+                    'group_by': 'category',
+                    'having': []
+                }
         """
         return {}
 
