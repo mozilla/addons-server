@@ -2,6 +2,7 @@ from datetime import date
 import functools
 
 from django import http
+from django.conf import settings
 from django.shortcuts import redirect, get_object_or_404
 
 import jingo
@@ -111,14 +112,17 @@ def _queue(request, TableObj, tab):
                          'queue_counts': queue_counts})
 
 
-def _queue_counts():
-    moderated = Review.objects.filter(reviewflag__isnull=False, editorreview=1)
-
-    return {'pending': ViewPendingQueue.objects.count(),
-            'nominated': ViewFullReviewQueue.objects.count(),
-            'prelim': ViewPreliminaryQueue.objects.count(),
-            'moderated': moderated.count()}
-
+def _queue_counts(type=None):
+    counts = {'pending': ViewPendingQueue.objects.count,
+              'nominated': ViewFullReviewQueue.objects.count,
+              'prelim': ViewPreliminaryQueue.objects.count,
+              'moderated': Review.objects.filter(reviewflag__isnull=False,
+                                                 editorreview=1).count}
+    if type:
+        return counts[type]()
+    for k, v in counts.items():
+        counts[k] = v()
+    return counts
 
 @editor_required
 def queue(request):
@@ -177,7 +181,8 @@ def review(request, version_id):
     version = get_object_or_404(Version, pk=version_id)
     addon = version.addon
 
-    if addon.authors.filter(user=request.user).exists():
+    if (not settings.SELF_REVIEW_ALLOWED and
+        addon.authors.filter(user=request.user).exists()):
         amo.messages.warning(request, _('Self-reviews are not allowed.'))
         return redirect(reverse('editors.queue'))
 
@@ -192,7 +197,7 @@ def review(request, version_id):
     paging = {}
     if num:
         num = int(num)
-        total = _queue_counts().get(queue_type)
+        total = _queue_counts(queue_type)
         paging = {'current': num, 'total': total,
                   'prev': num > 1, 'next': num < total,
                   'prev_url': '%s?num=%s' % (redirect_url, num - 1),

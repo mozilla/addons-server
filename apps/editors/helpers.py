@@ -305,7 +305,7 @@ class ReviewAddon(ReviewBase):
         self.addon.status = amo.STATUS_PUBLIC
         self.addon.save()
 
-        self.set_files(amo.STATUS_PUBLIC, self.data['files'],
+        self.set_files(amo.STATUS_PUBLIC, self.version.files.all(),
                        copy_to_mirror=True)
 
         self.log_status()
@@ -321,7 +321,7 @@ class ReviewAddon(ReviewBase):
         self.addon.status = amo.STATUS_NULL
         self.addon.save()
 
-        self.set_files(amo.STATUS_DISABLED, self.data['files'],
+        self.set_files(amo.STATUS_DISABLED, self.version.files.all(),
                        hide_disabled_file=True)
 
         self.log_status()
@@ -347,7 +347,7 @@ class ReviewAddon(ReviewBase):
         self.addon.status = amo.STATUS_LITE
         self.addon.save()
 
-        self.set_files(amo.STATUS_LITE, self.data['files'],
+        self.set_files(amo.STATUS_LITE, self.version.files.all(),
                        copy_to_mirror=True)
 
         self.log_status()

@@ -246,13 +246,34 @@ class TestReviewHelper(test_utils.TestCase):
             self.helper.handler.notify_email(template, 'Sample subject %s, %s')
             eq_(len(mail.outbox), 1)
 
-    def setup_data(self, status):
+    def setup_data(self, status, delete=[]):
         mail.outbox = []
         ActivityLog.objects.for_addons(self.helper.addon).delete()
-
+        self.file.update(status=status)
         self.addon.status = status
         self.helper = self.get_helper()
-        self.helper.set_data(self.get_data())
+        data = self.get_data().copy()
+        for key in delete:
+            del data[key]
+        self.helper.set_data(data)
+
+    def test_nomination_to_public_no_files(self):
+        for status in NOMINATED_STATUSES:
+            self.setup_data(status, ['files'])
+            self.helper.handler.process_public()
+
+            eq_(self.addon.versions.all()[0].files.all()[0].status,
+                amo.STATUS_PUBLIC)
+
+    def test_nomination_to_public_and_current_version(self):
+        for status in NOMINATED_STATUSES:
+            self.setup_data(status, ['files'])
+            self.addon.update(_current_version=None)
+
+            addon = Addon.objects.get(pk=3615)
+            assert not addon.current_version
+            self.helper.handler.process_public()
+            assert addon.current_version
 
     def test_nomination_to_public(self):
         for status in NOMINATED_STATUSES:
@@ -374,8 +395,8 @@ class TestReviewHelper(test_utils.TestCase):
     def test_nomination_to_super_review_and_escalate(self):
         # Note we are changing the file status here.
         for file_status in (amo.STATUS_PENDING, amo.STATUS_UNREVIEWED):
-            self.file.update(status=file_status)
             self.setup_data(amo.STATUS_LITE)
+            self.file.update(status=file_status)
             self.helper.handler.process_super_review()
 
             eq_(self.addon.admin_review, True)

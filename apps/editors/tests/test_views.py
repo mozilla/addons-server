@@ -4,8 +4,10 @@ import re
 import time
 from datetime import datetime, timedelta
 
+from django.conf import settings
 from django.core import mail
 
+from mock import patch_object
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 import test_utils
@@ -703,10 +705,17 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         eq_(response.status_code, 302)
 
+    @patch_object(settings._wrapped, 'SELF_REVIEW_ALLOWED', False)
     def test_not_author(self):
         AddonUser.objects.create(addon=self.addon, user=self.editor)
         response = self.client.get(self.url)
         eq_(response.status_code, 302)
+
+    @patch_object(settings._wrapped, 'SELF_REVIEW_ALLOWED', True)
+    def test_not_author(self):
+        AddonUser.objects.create(addon=self.addon, user=self.editor)
+        response = self.client.get(self.url)
+        eq_(response.status_code, 200)
 
     def test_not_flags(self):
         response = self.client.get(self.url)
