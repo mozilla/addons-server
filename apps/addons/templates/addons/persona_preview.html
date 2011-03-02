@@ -2,7 +2,7 @@
   <div class="persona-inner">
     <div class="persona-preview">
       {% set tag = 'a' if linked else 'div' %}
-      {% with url_ = url or addon.get_url_path() %}
+      {% with url_ = url_ or addon.get_url_path() %}
         <{{ tag }} {% if linked %}href="{{ addon_url }}" target="_self"{% endif %}
       {% endwith %}
       title="{{ addon.name }}" style="background-image:url('{{ preview }}')"
