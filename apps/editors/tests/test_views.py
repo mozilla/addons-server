@@ -710,17 +710,11 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         eq_(response.status_code, 302)
 
-    @patch_object(settings._wrapped, 'SELF_REVIEW_ALLOWED', False)
+    @patch_object(settings._wrapped, 'DEBUG', False)
     def test_not_author(self):
         AddonUser.objects.create(addon=self.addon, user=self.editor)
         response = self.client.get(self.url)
         eq_(response.status_code, 302)
-
-    @patch_object(settings._wrapped, 'SELF_REVIEW_ALLOWED', True)
-    def test_not_author(self):
-        AddonUser.objects.create(addon=self.addon, user=self.editor)
-        response = self.client.get(self.url)
-        eq_(response.status_code, 200)
 
     def test_not_flags(self):
         response = self.client.get(self.url)

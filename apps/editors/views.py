@@ -207,7 +207,7 @@ def review(request, version_id):
     version = get_object_or_404(Version, pk=version_id)
     addon = version.addon
 
-    if (not settings.SELF_REVIEW_ALLOWED and
+    if (not settings.DEBUG and
         addon.authors.filter(user=request.user).exists()):
         amo.messages.warning(request, _('Self-reviews are not allowed.'))
         return redirect(reverse('editors.queue'))
