@@ -691,6 +691,9 @@ function initSubmit() {
     }).bind('upload-error', function() {
         $("#submit-upload-file-finish").attr("disabled", true);
     });
+
+    // Abort upload
+    $('#uploadstatus_abort a').click(abortUpload);
 }
 
 var file = {},
