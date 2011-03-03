@@ -10,7 +10,7 @@ from django.db.models import Q
 from django.shortcuts import get_list_or_404, get_object_or_404, redirect
 from django.utils.translation import trans_real as translation
 from django.utils import http as urllib
-from django.views.decorators.cache import cache_page
+from django.views.decorators.cache import cache_page, cache_control
 import caching.base as caching
 import jingo
 import jinja2
@@ -36,7 +36,7 @@ from tags.models import Tag
 from translations.query import order_by_translation
 from translations.helpers import truncate
 from versions.models import Version
-from .models import Addon, MiniAddon
+from .models import Addon, MiniAddon, Persona
 from .decorators import addon_view_factory
 
 log = commonware.log.getLogger('z.addons')
@@ -626,3 +626,9 @@ def report_abuse(request, addon):
         return jingo.render(request, 'addons/report_abuse_full.html',
                             {'addon': addon, 'abuse_form': form, })
     return redirect('addons.detail', addon.slug)
+
+
+@cache_control(max_age=60 * 60 * 24)
+def persona_redirect(request, persona_id):
+    persona = get_object_or_404(Persona, persona_id=persona_id)
+    return redirect('addons.detail', persona.addon.slug, permanent=True)

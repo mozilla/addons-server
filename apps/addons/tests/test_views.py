@@ -1203,3 +1203,16 @@ class TestMobileDetails(TestMobile):
 
         self.client.get(relnotes.attr('href'), follow=True)
         eq_(r.status_code, 200)
+
+
+class TestRedirect(test_utils.TestCase):
+    fixtures = ['addons/persona']
+
+    def test_redirect(self):
+        res = self.client.get(reverse('persona', args=[813]))
+        eq_(res.status_code, 301)
+        assert reverse('addons.detail', args=['a15663']) in res['Location']
+
+    def test_redirect_404(self):
+        res = self.client.get(reverse('persona', args=[2]))
+        eq_(res.status_code, 404)

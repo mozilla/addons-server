@@ -100,8 +100,8 @@ urlpatterns = patterns('',
      lambda r: redirect('pages.faq', permanent=True)),
 
     # Redirect persona/xxx
-    ('^persona/(\d+)',
-     lambda r, id: redirect('addons.detail', id, permanent=True)),
+    url('^persona/(?P<persona_id>\d+)', 'addons.views.persona_redirect',
+        name='persona'),
 
     # Redirect top-tags to tags/top
     ('^top-tags/?',
