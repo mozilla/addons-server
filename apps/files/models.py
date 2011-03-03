@@ -188,8 +188,8 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
     @classmethod
     def mv(cls, src, dst):
         """Move a file from src to dst."""
-        src, dst = path.path(src), path.path(dst)
         try:
+            src, dst = path.path(src), path.path(dst)
             if src.exists():
                 if not dst.dirname().exists():
                     dst.dirname().makedirs()
