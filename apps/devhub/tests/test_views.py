@@ -3873,3 +3873,41 @@ class TestRedirects(test_utils.TestCase):
         r = self.client.get(url, follow=True)
         self.assertRedirects(r, reverse('devhub.versions', args=['a3615']),
                              301)
+
+
+class TestAdmin(test_utils.TestCase):
+    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
+
+    def login_admin(self):
+        assert self.client.login(username='admin@mozilla.com',
+                                 password='password')
+
+    def login_user(self):
+        assert self.client.login(username='del@icio.us', password='password')
+
+    x=1
+    def test_show_admin_settings_admin(self):
+        self.login_admin()
+        url = reverse('devhub.addons.edit', args=['a3615'])
+        r = self.client.get(url)
+        eq_(r.status_code, 200)
+        self.assertContains(r, 'Admin Settings')
+
+    def test_show_admin_settings_nonadmin(self):
+        self.login_user()
+        url = reverse('devhub.addons.edit', args=['a3615'])
+        r = self.client.get(url)
+        eq_(r.status_code, 200)
+        self.assertNotContains(r, 'Admin Settings')
+
+    def test_post_as_admin(self):
+        self.login_admin()
+        url = reverse('devhub.addons.admin', args=['a3615'])
+        r = self.client.post(url)
+        eq_(r.status_code, 200)
+
+    def test_post_as_nonadmin(self):
+        self.login_user()
+        url = reverse('devhub.addons.admin', args=['a3615'])
+        r = self.client.post(url)
+        eq_(r.status_code, 403)

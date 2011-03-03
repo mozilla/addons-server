@@ -270,6 +270,9 @@ def edit(request, addon_id, addon):
        'tags': addon.tags.not_blacklisted().values_list('tag_text', flat=True),
        'previews': addon.previews.all()}
 
+    if acl.action_allowed(request, 'Admin', 'ConfigureAnyAddon'):
+        data['admin_form'] = forms.AdminForm(instance=addon)
+
     return jingo.render(request, 'devhub/addons/edit.html', data)
 
 
@@ -616,7 +619,9 @@ def addons_section(request, addon_id, addon, section, editable=False):
               'media': addon_forms.AddonFormMedia,
               'details': addon_forms.AddonFormDetails,
               'support': addon_forms.AddonFormSupport,
-              'technical': addon_forms.AddonFormTechnical}
+              'technical': addon_forms.AddonFormTechnical,
+              'admin': forms.AdminForm,
+    }
 
     if section not in models:
         return http.HttpResponseNotFound()
@@ -1074,3 +1079,15 @@ def request_review(request, addon_id, addon, status):
 def validator_redirect(request, version_id):
     v = get_object_or_404(Version, id=version_id)
     return redirect('devhub.versions', v.addon_id, permanent=True)
+
+
+@post_required
+@addon_view
+def admin(request, addon):
+    if not acl.action_allowed(request, 'Admin', 'ConfigureAnyAddon'):
+        return http.HttpResponseForbidden()
+    form = forms.AdminForm(request, request.POST or None, instance=addon)
+    if form.is_valid():
+        form.save()
+    return jingo.render(request, 'devhub/addons/edit/admin.html',
+                        {'addon': addon, 'admin_form': form})

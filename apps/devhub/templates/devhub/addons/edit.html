@@ -46,6 +46,12 @@
     {% include 'devhub/addons/edit/technical.html' %}
   </div>
 
+  {% if admin_form %}
+    <div class="edit-addon-section" id="edit-addon-technical">
+      {% include 'devhub/addons/edit/admin.html' %}
+    </div>
+  {% endif %}
+
 </div>
 </section>
 
