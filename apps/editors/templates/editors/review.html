@@ -37,14 +37,17 @@
     </tbody>
 </table>
 
-<form method="POST">
+<form method="POST" action="#review-actions">
   {{ csrf() }}
   {# form #}
   <div id="review-actions" class="review-actions">
-    {{ form.action }}
+    <div class="action_nav">
+      {{ form.action }}
+    </div>
     <div id="review-actions-form">
       <label for="id_comments">{{ form.comments.label }}</label>
       {{ form.comments }}
+      {{ form.comments.errors }}
       <div class="review-actions-canned">
         {{ _('Or, select a canned response') }}
         {{ form.canned_response }}
@@ -60,12 +63,15 @@
           {{ form.applications.label }}
         </label>
         {{ form.applications }}
+        {{ form.operating_systems.errors }}
+        {{ form.applications.errors }}
       </div>
       <div class="review-actions-section">
         {{ form.notify }}
         <label for="id_notify">
           {{ form.notify.label }}
         </label>
+        {{ form.notify.errors }}
       </div>
       <div class="review-actions-section review-actions-save">
         <input type="submit" value="{{ _('Save') }}" />

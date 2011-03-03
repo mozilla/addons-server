@@ -28,20 +28,35 @@ $(function() {
         initQueueSearch($('#queue-search'));
     }
 
-    if($('.review-actions').length > 0) {
-        $('.review-actions > ul li').click(function(){
-            $(this).closest('.review-actions').addClass('on');
-            $('.review-actions > ul li').filter('.on-tab').removeClass('on-tab');
-            $(this).find('input').attr('checked', true);
+    if($('#review-actions').length > 0) {
+        function showForm(element, pageload) {
+            var $element = $(element);
+            pageload = pageload || false;
+            $element.closest('.review-actions').addClass('on');
+            $('.review-actions .action_nav ul li').removeClass('on-tab');
+            $element.find('input').attr('checked', true);
 
-            $(this).addClass('on-tab');
+            $element.addClass('on-tab');
 
-            $('#review-actions-form').slideDown();
-        });
+            if (pageload) {
+              $('#review-actions-form').show();
+            } else {
+              $('#review-actions-form').slideDown();
+              $('#review-actions').find('.errorlist').remove();
+            }
+        }
+
+        $('#review-actions .action_nav ul li').click(function(){ showForm(this); });
 
         $('.review-actions-canned select').change(function() {
             $('#id_comments').val($(this).val());
         });
+
+        var review_checked = $('#review-actions [name=action]:checked');
+        if(review_checked.length > 0) {
+          showForm(review_checked.closest('li'), true);
+        }
+
     }
 });
 

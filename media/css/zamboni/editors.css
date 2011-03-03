@@ -428,59 +428,59 @@ tr.comments {
     border-radius: 7px;
 }
 
-.review-actions > div {
+.review-actions #review-actions-form {
     display: none;
 }
 
-.review-actions ul {
+.review-actions .action_nav ul {
     margin: 0;
     display: table;
     width: 100%;
 }
 
-.review-actions li {
+.review-actions .action_nav li {
     background-color: #E0EFFD;
     background: -moz-linear-gradient(#FFFFFF, #E0EFFD) repeat scroll 0 0 transparent;
     display: table-cell;
     text-align: center;
 }
 
-.review-actions li:active {
+.review-actions .action_nav li:active {
     background-color: #FFF;
     background: -moz-linear-gradient(#E0EFFD, #FFF) repeat scroll 0 0 transparent;
 }
 
-.review-actions li input {
+.review-actions .action_nav li input {
     display: none;
 }
 
-.review-actions li label {
+.review-actions .action_nav li label {
     display: block;
     padding: 5px;
 }
 
-.review-actions li {
+.review-actions .action_nav li {
     text-shadow: 1px 1px 0 #FFFFFF;
     border-top: 1px solid #2E5186;
     border-bottom: 1px solid #2E5186;
     border-right: 1px solid #A5BFCE;
 }
 
-.review-actions li:first-child {
+.review-actions .action_nav li:first-child {
     border-left: 1px solid #2E5186;
     -moz-border-radius: 5px 0 0 5px;
     -webkit-border-radius: 5px 0 0 5px;
     border-radius: 5px 0 0 5px;
 }
 
-.review-actions li:last-child {
+.review-actions .action_nav li:last-child {
     border-right: 1px solid #2E5186;
     -moz-border-radius: 0 5px 5px 0;
     -webkit-border-radius: 0 5px 5px 0;
     border-radius: 0 5px 5px 0;
 }
 
-.review-actions.on ul li.on-tab {
+.review-actions.on .action_nav ul li.on-tab {
     background: #fff;
     border-bottom: none;
 }
@@ -493,19 +493,19 @@ tr.comments {
     border-radius: 0 0 5px 5px;
 }
 
-.review-actions.on ul li:first-child {
+.review-actions.on .action_nav li:first-child {
     -moz-border-radius: 5px 0 0;
     -webkit-border-radius: 5px 0 0;
     border-radius: 5px 0 0;
 }
 
-.review-actions.on ul li:last-child {
+.review-actions.on .action_nav li:last-child {
     -moz-border-radius: 0 5px 0 0;
     -webkit-border-radius: 0 5px 0 0;
     border-radius: 0 5px 0 0;
 }
 
-.review-actions.on ul li {
+.review-actions.on .action_nav li {
     border-bottom: 1px solid #A5BFCE;
 }
 
