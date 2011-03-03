@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $("#perf-more a").click(function(e) {
         var loc = $(this).attr("href");
-        $("#perf-results tr.perf-hidden:lt(5)").removeClass("perf-hidden");
+        $("#perf-results tr.perf-hidden:lt(40)").removeClass("perf-hidden");
         var $next = $("#perf-results tr.perf-hidden:eq(0)");
         if ($next.length) {
             $(this).attr("href", "#addon-" + $next.attr("data-rank"));
