@@ -129,8 +129,15 @@ def _queue(request, TableObj, tab):
     order_by = request.GET.get('sort', '-waiting_time_min')
     table = TableObj(qs, order_by=order_by)
     queue_counts = _queue_counts()
-    page = paginate(request, table.rows, per_page=100,
-                    count=queue_counts[tab])
+    default = 100
+    per_page = request.GET.get('per_page', default)
+    try:
+        per_page = int(per_page)
+    except ValueError:
+        per_page = default
+    if per_page <= 0 or per_page > 200:
+        per_page = default
+    page = paginate(request, table.rows, per_page=per_page)
     table.set_page(page)
     return jingo.render(request, 'editors/queue.html',
                         context(table=table, page=page, tab=tab,

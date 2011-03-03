@@ -251,6 +251,12 @@ class TestQueueBasics(QueueTest):
         eq_(r.status_code, 200)
         eq_(r.context['page'].number, 1)
 
+    def test_invalid_per_page(self):
+        r = self.client.get(reverse('editors.queue_pending'),
+                            data={'per_page': '<garbage>'})
+        # No exceptions:
+        eq_(r.status_code, 200)
+
     def test_redirect_to_review(self):
         r = self.client.get(reverse('editors.queue_pending'), data={'num': 2})
         self.assertRedirects(r,
@@ -509,6 +515,12 @@ class TestQueueSearch(SearchTest):
     def test_search_by_admin_reviewed(self):
         r = self.search({'admin_review': 1})
         eq_(self.named_addons(r), ['Admin Reviewed'])
+
+    def test_queue_counts(self):
+        r = self.search({'text_query': 'admin', 'per_page': 1})
+        doc = pq(r.content)
+        eq_(doc('.data-grid-top .num-results').text(),
+            u'Results 1 \u2013 1 of 2')
 
     def test_search_by_addon_name(self):
         r = self.search({'text_query': 'admin'})
