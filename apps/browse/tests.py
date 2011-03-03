@@ -501,7 +501,7 @@ class TestListingByStatus(test_utils.TestCase):
     def get_addon(self, addon_status, file_status):
         self.addon.current_version.all_files[0].update(status=file_status)
         self.addon.update(status=addon_status, _current_version=None)
-        self.addon.update_current_version()
+        self.addon.update_version()
         return Addon.objects.get(id=3615)
 
     def check(self, exp):
