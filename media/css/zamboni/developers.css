@@ -15,7 +15,8 @@ form .char-count:after {
     position: relative;
 }
 
-.devhub-form .tip {
+.devhub-form .tip,
+.addon-submission-process .tip {
     margin-left: 3px;
 }
 
@@ -122,6 +123,7 @@ form .char-count:after {
 }
 
 .devhub-form .tip,
+.addon-submission-process .tip,
 a.remove {
     -moz-border-radius: 20px;
     -webkit-border-radius :20px;
@@ -138,7 +140,8 @@ a.remove {
     text-decoration :none;
     width: 18px;
 }
-.devhub-form .tip {
+.devhub-form .tip,
+.addon-submission-process .tip {
     vertical-align: top;
 }
 a.remove {
@@ -151,16 +154,19 @@ a.remove {
 .devhub-form .author:hover .remove,
 .devhub-form tr:hover .tip,
 .devhub-form tr:hover > td > a.remove,
+.addon-submission-process #icon_preview:hover .tip,
 .compat-versions tr:hover a.remove,
 #existing_locales li:hover a.remove {
     background-color: #CCC;
 }
 
-.devhub-form tr:hover .tip:hover {
+.devhub-form tr:hover .tip:hover,
+.addon-submission-process tr:hover .tip:hover {
     cursor: help;
 }
 
 .devhub-form tr:hover .tip:hover,
+.addon-submission-process #icon_preview .tip:hover,
 .devhub-form tr:hover a.remove:hover,
 .compat-versions tr:hover a.remove:hover,
 #existing_locales li:hover a.remove:hover,
