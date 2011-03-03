@@ -1,0 +1,29 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{{ page_title("Let's Undisable Some Files!") }}{% endblock %}
+
+{% block content %}
+<marquee>
+<img title="What Would Jorge Do?" src="https://static.addons.mozilla.net/img/uploads/userpics/0/4/4230.png?modified=1292626484">
+</marquee>
+{% include "messages.html" %}
+<p>Enter the id of the file you want to rescue from the disabled abyss.</p>
+<form method="post" action="">
+  {{ csrf() }}
+  <input type="number" name="file" value="{{ file_id }}">
+  {% if file %}
+    <input type="hidden" name="confirm" value="yessir">
+    <p>Is this the right file?</p>
+    <ul>
+      <li>File {{ file.id }}: {{ file.filename }}</li>
+      <li>Version {{ file.version.id }}: {{ file.version.version }}</li>
+      <li>Addon {{ file.version.addon.id }}: {{ file.version.addon.name }}</li>
+    </ul>
+  {% endif %}
+  {% if file %}
+    <button type="submit">Undisable it!</button>
+  {% else %}
+    <button type="submit">Let's fix this file</button>
+  {% endif %}
+</form>
+{% endblock %}
