@@ -202,6 +202,9 @@
     {% endwith %}
     <div id="editor-motd"><!-- admin edit form and stuff --></div>
   </div>
+  <div id="csrf-template">
+    <input id="csrfmiddlewaretoken" value="<csrf-from-input>">
+  </div>
 
 
   <script src="{{ url('jsi18n') }}/build:{{ BUILD_ID_JS }}"></script>
