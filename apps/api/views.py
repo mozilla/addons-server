@@ -106,6 +106,7 @@ def addon_filter(addons, addon_type, limit, app, platform, version,
                             lambda x: x.type == amo.ADDON_PERSONA))
     personas, addons = groups.get(True, []), groups.get(False, [])
 
+    platform = platform.lower()
     if platform != 'all' and platform in amo.PLATFORM_DICT:
         pid = amo.PLATFORM_DICT[platform]
         f = lambda ps: pid in ps or amo.PLATFORM_ALL in ps
