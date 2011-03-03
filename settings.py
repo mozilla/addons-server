@@ -440,6 +440,7 @@ MINIFY_BUNDLES = {
         ),
         'zamboni/discovery': (
             'js/zamboni/jquery-1.4.2.min.js',
+            'js/zamboni/underscore-min.js',
             'js/zamboni/browser.js',
             'js/zamboni/init.js',
             'js/zamboni/format.js',
