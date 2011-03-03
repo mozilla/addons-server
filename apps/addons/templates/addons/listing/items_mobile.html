@@ -6,11 +6,26 @@
       <h3>{{ addon.name }}</h3>
       <details>
         <span class="desc">{{ addon.summary|strip_html()|truncate(250) }}</span>
-        {% with num=addon.total_reviews %}
-          {% if num %}
-          {{ addon.average_rating|float|stars }}
+        <div>
+          {% if sort in ('newest', 'created') %}
+            {{ _('Added {0}')|f(addon.created|datetime) }}
+          {% elif sort == 'updated' %}
+            {{ _('Updated {0}')|f(addon.last_updated|datetime) }}
+          {% elif sort in ('weeklydownloads', 'popular') %}
+            {% with num=addon.weekly_downloads %}
+              {# L10n: {0} is the number of downloads. #}
+              {{ ngettext("<strong>{0}</strong> weekly download",
+                          "<strong>{0}</strong> weekly downloads",
+                          num)|f(num|numberfmt)|safe }}
+            {% endwith %}
+          {% else %}
+            {% with num=addon.total_reviews %}
+              {% if num %}
+                {{ addon.average_rating|float|stars }}
+              {% endif %}
+            {% endwith %}
           {% endif %}
-        {% endwith %}
+        </div>
       </details>
     </a>
   </li>

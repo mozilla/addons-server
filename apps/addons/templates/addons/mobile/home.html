@@ -39,15 +39,13 @@
   <div id="addon-lists" class="slider">
     <div id="listing-featured" class="tab-pane selected">
       <ul id="list-featured" class="listview">
-        {{ addon_listing_items_mobile(featured, show_date=key,
-                                       src='homepagebrowse') }}
+        {{ addon_listing_items_mobile(featured, src='homepagebrowse') }}
         <li><a href="{{ url('browse.featured') }}">
           {{ _('View all Featured add-ons') }}</a></li>
       </ul>
     </div><div id="listing-popular" class="tab-pane">
       <ul id="list-popular" class="listview">
-        {{ addon_listing_items_mobile(popular, show_date=key,
-                                       src='homepagebrowse') }}
+        {{ addon_listing_items_mobile(popular, sort='popular', src='homepagebrowse') }}
         <li><a href="{{ url('browse.extensions')|urlparams(sort='popular') }}">
           {{ _('View all Popular add-ons') }}</a></li>
       </ul>
