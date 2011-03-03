@@ -211,6 +211,9 @@
 
             if (!canInstall) {
                 dom.buttons.addClass("disabled");
+                if (!dom.buttons.filter(":visible").length) {
+                    dom.buttons.eq(0).show();
+                }
                 dom.buttons.each(function() {
                     this.removeAttribute("href");
                 });
