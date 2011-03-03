@@ -92,19 +92,35 @@ class TestViewPendingQueueTable(test_utils.TestCase):
         row = Mock()
         row.waiting_time_days = 10
         row.waiting_time_hours = 10 * 24
-        eq_(self.table.render_waiting_time_days(row), u'10 days')
+        eq_(self.table.render_waiting_time_min(row), u'10 days')
 
     def test_waiting_time_one_day(self):
         row = Mock()
         row.waiting_time_days = 1
         row.waiting_time_hours = 24
-        eq_(self.table.render_waiting_time_days(row), u'1 day')
+        row.waiting_time_min = 60 * 24
+        eq_(self.table.render_waiting_time_min(row), u'1 day')
 
     def test_waiting_time_in_hours(self):
         row = Mock()
         row.waiting_time_days = 0
         row.waiting_time_hours = 22
-        eq_(self.table.render_waiting_time_days(row), u'22 hours')
+        row.waiting_time_min = 60 * 22
+        eq_(self.table.render_waiting_time_min(row), u'22 hours')
+
+    def test_waiting_time_in_min(self):
+        row = Mock()
+        row.waiting_time_days = 0
+        row.waiting_time_hours = 0
+        row.waiting_time_min = 11
+        eq_(self.table.render_waiting_time_min(row), u'11 minutes')
+
+    def test_waiting_time_in_secs(self):
+        row = Mock()
+        row.waiting_time_days = 0
+        row.waiting_time_hours = 0
+        row.waiting_time_min = 0
+        eq_(self.table.render_waiting_time_min(row), u'moments ago')
 
     def test_flags_admin_review(self):
         row = Mock()

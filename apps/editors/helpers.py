@@ -34,7 +34,7 @@ def editor_page_title(context, title=None, addon=None):
 class EditorQueueTable(SQLTable):
     addon_name = tables.Column(verbose_name=_(u'Addon'))
     addon_type_id = tables.Column(verbose_name=_(u'Type'))
-    waiting_time_days = tables.Column(verbose_name=_(u'Waiting Time'))
+    waiting_time_min = tables.Column(verbose_name=_(u'Waiting Time'))
     flags = tables.Column(verbose_name=_(u'Flags'), sortable=False)
     applications = tables.Column(verbose_name=_(u'Applications'),
                                  sortable=False)
@@ -77,17 +77,21 @@ class EditorQueueTable(SQLTable):
         return (u'<div class="app-icon ed-sprite-admin-review" title="%s">'
                 u'</div>' % _('Admin Review'))
 
-    def render_waiting_time_days(self, row):
-        if row.waiting_time_days == 0:
+    def render_waiting_time_min(self, row):
+        if row.waiting_time_min == 0:
+            r = _('moments ago')
+        elif row.waiting_time_hours == 0:
+            # L10n: first argument is number of minutes
+            r = ngettext(u'{0} minute', u'{0} minutes',
+                         row.waiting_time_min).format(row.waiting_time_min)
+        elif row.waiting_time_days == 0:
             # L10n: first argument is number of hours
             r = ngettext(u'{0} hour', u'{0} hours',
-                            row.waiting_time_hours).format(
-                                                row.waiting_time_hours)
+                         row.waiting_time_hours).format(row.waiting_time_hours)
         else:
             # L10n: first argument is number of days
             r = ngettext(u'{0} day', u'{0} days',
-                         row.waiting_time_days).format(
-                                                row.waiting_time_days)
+                         row.waiting_time_days).format(row.waiting_time_days)
         return jinja2.escape(r)
 
     def set_page(self, page):
@@ -95,7 +99,7 @@ class EditorQueueTable(SQLTable):
 
     class Meta:
         sortable = True
-        columns = ['addon_name', 'addon_type_id', 'waiting_time_days',
+        columns = ['addon_name', 'addon_type_id', 'waiting_time_min',
                    'flags', 'applications', 'additional_info']
 
 

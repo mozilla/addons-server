@@ -126,7 +126,7 @@ def _queue(request, TableObj, tab):
                                 review_num))
             except IndexError:
                 pass
-    order_by = request.GET.get('sort', '-waiting_time_days')
+    order_by = request.GET.get('sort', '-waiting_time_min')
     table = TableObj(qs, order_by=order_by)
     queue_counts = _queue_counts()
     page = paginate(request, table.rows, per_page=100,

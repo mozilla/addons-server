@@ -65,6 +65,7 @@ class ViewQueue(RawSQLModel):
     _application_ids = models.CharField(max_length=255)
     waiting_time_days = models.IntegerField()
     waiting_time_hours = models.IntegerField()
+    waiting_time_min = models.IntegerField()
     is_version_specific = False
 
     def base_query(self):
@@ -127,7 +128,9 @@ class ViewFullReviewQueue(ViewQueue):
             'waiting_time_days':
                 'TIMESTAMPDIFF(DAY, addons.nominationdate, NOW())',
             'waiting_time_hours':
-                'TIMESTAMPDIFF(HOUR, addons.nominationdate, NOW())'
+                'TIMESTAMPDIFF(HOUR, addons.nominationdate, NOW())',
+            'waiting_time_min':
+                'TIMESTAMPDIFF(MINUTE, addons.nominationdate, NOW())'
         })
         q['where'].extend(['files.status <> %s' % amo.STATUS_BETA,
                            'addons.status IN (%s, %s)' % (
@@ -145,7 +148,9 @@ class VersionSpecificQueue(ViewQueue):
             'waiting_time_days':
                 'TIMESTAMPDIFF(DAY, MAX(versions.created), NOW())',
             'waiting_time_hours':
-                'TIMESTAMPDIFF(HOUR, MAX(versions.created), NOW())'
+                'TIMESTAMPDIFF(HOUR, MAX(versions.created), NOW())',
+            'waiting_time_min':
+                'TIMESTAMPDIFF(MINUTE, MAX(versions.created), NOW())'
         })
         return q
 

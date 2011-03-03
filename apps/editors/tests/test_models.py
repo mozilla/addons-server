@@ -201,5 +201,6 @@ class TestPreliminaryQueue(TestQueue):
         Version.objects.update(created=datetime.utcnow())
         row = self.Queue.objects.all()[0]
         eq_(row.waiting_time_days, 0)
-        # Time zone will be off, hard to test this.
+        # Time zone might be off due to your MySQL install, hard to test this.
+        assert row.waiting_time_min is not None
         assert row.waiting_time_hours is not None
