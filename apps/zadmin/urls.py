@@ -13,6 +13,7 @@ urlpatterns = patterns('',
     url('^flagged', views.flagged, name='zadmin.flagged'),
     url('^hera', views.hera, name='zadmin.hera'),
     url('^settings', views.settings, name='zadmin.settings'),
+    url('^fix-disabled', views.fix_disabled_file, name='zadmin.fix-disabled'),
 
     # The Django admin.
     url('^models/', include(admin.site.urls)),

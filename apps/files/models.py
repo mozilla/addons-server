@@ -28,7 +28,7 @@ log = commonware.log.getLogger('z.files')
 EXTENSIONS = ('.xpi', '.jar', '.xml')
 
 
-class File(amo.models.ModelBase):
+class File(amo.models.OnChangeMixin, amo.models.ModelBase):
     STATUS_CHOICES = amo.STATUS_CHOICES.items()
 
     version = models.ForeignKey('versions.Version', related_name='files')
@@ -185,27 +185,37 @@ class File(amo.models.ModelBase):
     def extension(self):
         return os.path.splitext(self.filename)[-1]
 
+    @classmethod
+    def mv(cls, src, dst):
+        """Move a file from src to dst."""
+        src, dst = path.path(src), path.path(dst)
+        try:
+            if src.exists():
+                if not dst.dirname().exists():
+                    dst.dirname().makedirs()
+                    src.rename(dst)
+        except UnicodeEncodeError:
+            log.error('Move Failure: %s %s' % (smart_str(src), smart_str(dst)))
+
     def hide_disabled_file(self):
         """Move a disabled file to the guarded file path."""
         if not self.filename:
             return
-        try:
-            if os.path.exists(self.file_path):
-                dst = self.guarded_file_path
-                log.info('Moving disabled file: %s => %s'
-                         % (self.file_path, dst))
-                if not os.path.exists(os.path.dirname(dst)):
-                    os.makedirs(os.path.dirname(dst))
-                os.rename(self.file_path, dst)
-            # Remove the file from the mirrors if necessary.
-            if os.path.exists(self.mirror_file_path):
-                log.info('Unmirroring disabled file: %s'
-                         % self.mirror_file_path)
-                os.remove(self.mirror_file_path)
-        except UnicodeEncodeError:
-            log.info('Hide Failure: %s %s %s' %
-                     (self.id, smart_str(self.filename),
-                      smart_str(self.file_path)))
+        src, dst = self.file_path, self.guarded_file_path
+        log.info('Moving disabled file: %s => %s' % (src, dst))
+        self.mv(src, dst)
+        # Remove the file from the mirrors if necessary.
+        if os.path.exists(self.mirror_file_path):
+            log.info('Unmirroring disabled file: %s'
+                     % self.mirror_file_path)
+            os.remove(self.mirror_file_path)
+
+    def unhide_disabled_file(self):
+        if not self.filename:
+            return
+        src, dst = self.guarded_file_path, self.file_path
+        log.info('Moving undisabled file: %s => %s' % (src, dst))
+        self.mv(src, dst)
 
     def copy_to_mirror(self):
         if not self.filename:
@@ -253,15 +263,15 @@ models.signals.post_delete.connect(cleanup_file, sender=File,
                                    dispatch_uid='cleanup_file')
 
 
-def check_file_status(sender, instance, **kw):
+@File.on_change
+def check_file_status(old_attr, new_attr, instance, sender, **kw):
     if kw.get('raw'):
         return
-    if instance.status == amo.STATUS_DISABLED:
+    old, new = old_attr.get('status'), instance.status
+    if new == amo.STATUS_DISABLED and old != amo.STATUS_DISABLED:
         instance.hide_disabled_file()
-
-
-models.signals.post_save.connect(check_file_status, sender=File,
-                                 dispatch_uid='check_file_status')
+    elif old == amo.STATUS_DISABLED and new != amo.STATUS_DISABLED:
+        instance.unhide_disabled_file()
 
 
 # TODO(davedash): Get rid of this table once /editors is on zamboni
