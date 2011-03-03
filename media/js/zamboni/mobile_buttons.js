@@ -172,39 +172,41 @@
                 olderBrowser, newerBrowser,
                 canInstall = true;
 
-            // min and max only exist if the add-on is compatible with request[APP].
-            if (appSupported && platformSupported) {
-                // The user *has* an older/newer browser.
-                self.tooOld = VersionCompare.compareVersions(z.browserVersion, attr.min) < 0;
-                self.tooNew = VersionCompare.compareVersions(z.browserVersion, attr.max) > 0;
-                if (self.tooOld || self.tooNew) {
+            if (!attr.search) {
+                // min and max only exist if the add-on is compatible with request[APP].
+                if (appSupported && platformSupported) {
+                    // The user *has* an older/newer browser.
+                    self.tooOld = VersionCompare.compareVersions(z.browserVersion, attr.min) < 0;
+                    self.tooNew = VersionCompare.compareVersions(z.browserVersion, attr.max) > 0;
+                    if (self.tooOld || self.tooNew) {
+                        canInstall = false;
+                    }
+                    if (self.tooOld) errors.push("tooOld");
+                    if (self.tooNew) errors.push("tooNew");
+                } else {
+                    if (!appSupported) errors.push("badApp");
+                    if (!platformSupported) {
+                        errors.push("badPlatform");
+                        dom.buttons.hide().eq(0).show();
+                    }
                     canInstall = false;
                 }
-                if (self.tooOld) errors.push("tooOld");
-                if (self.tooNew) errors.push("tooNew");
-            } else {
-                if (!appSupported) errors.push("badApp");
-                if (!platformSupported) {
-                    errors.push("badPlatform");
-                    dom.buttons.hide().eq(0).show();
+
+                if (platformer) {
+                    dom.self.find(format(".platform:not(.{0})", z.platform)).hide();
                 }
-                canInstall = false;
-            }
 
-            if (platformer) {
-                dom.self.find(format(".platform:not(.{0})", z.platform)).hide();
-            }
+                if (classes.beta) warnings.push("experimental");
+                if (classes.unreviewed) warnings.push("unreviewed");
 
-            if (classes.beta) warnings.push("experimental");
-            if (classes.unreviewed) warnings.push("unreviewed");
+                if (classes.beta || classes.unreviewed) {
+                    dom.buttons.addClass("warning");
+                }
 
-            if (classes.beta || classes.unreviewed) {
-                dom.buttons.addClass("warning");
-            }
-
-            if (classes.eula) {
-                self.actionQueue.push([1,z.eula.show]);
-                z.eula.acceptButton.click(_pd(self.resumeInstall));
+                if (classes.eula) {
+                    self.actionQueue.push([1,z.eula.show]);
+                    z.eula.acceptButton.click(_pd(self.resumeInstall));
+                }
             }
 
             if (!canInstall) {
