@@ -193,7 +193,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
             if src.exists():
                 if not dst.dirname().exists():
                     dst.dirname().makedirs()
-                    src.rename(dst)
+                src.rename(dst)
         except UnicodeEncodeError:
             log.error('Move Failure: %s %s' % (smart_str(src), smart_str(dst)))
 
@@ -202,8 +202,9 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         if not self.filename:
             return
         src, dst = self.file_path, self.guarded_file_path
-        log.info('Moving disabled file: %s => %s' % (src, dst))
-        self.mv(src, dst)
+        if os.path.exists(src):
+            log.info('Moving disabled file: %s => %s' % (src, dst))
+            self.mv(src, dst)
         # Remove the file from the mirrors if necessary.
         if os.path.exists(self.mirror_file_path):
             log.info('Unmirroring disabled file: %s'
@@ -214,8 +215,9 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         if not self.filename:
             return
         src, dst = self.guarded_file_path, self.file_path
-        log.info('Moving undisabled file: %s => %s' % (src, dst))
-        self.mv(src, dst)
+        if os.path.exists(src):
+            log.info('Moving undisabled file: %s => %s' % (src, dst))
+            self.mv(src, dst)
 
     def copy_to_mirror(self):
         if not self.filename:
