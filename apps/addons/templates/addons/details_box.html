@@ -1,4 +1,3 @@
-{# TODO(fwenzel): "add-on has been added to collection" notification #}
   {% include "messages.html" %}
   <div class="featured">
     <div class="featured-inner object-lead inverse">
@@ -101,8 +100,8 @@
       </div>{# /addon-summary-wrapper #}
 
       <div class="secondary">
-        {% if previews %}
-          {% with preview=previews[0] %}
+        {% if addon.all_previews %}
+          {% with preview=addon.all_previews[0] %}
             <a class="screenshot thumbnail" rel="jquery-lightbox"
               href="{{ preview.image_url }}" title="{{ preview.caption }}">
                 <img alt="" src="{{ preview.thumbnail_url }}" />
@@ -125,7 +124,7 @@
     </div>{# /featured-inner #}
   </div>{# /featured #}
 
-   {% if addon.description or previews|length > 1 or addon.developer_comments or
+   {% if addon.description or addon.all_previews|length > 1 or addon.developer_comments or
          addon.show_beta  %}
     <h3 id="more-about">{{ _('More about this add-on') }}</h3>
     <div class="article userinput">
@@ -135,9 +134,9 @@
       {% endif %}
       <p{{ addon.description|locale_html }}>{{ addon.description|nl2br }}</p>
 
-      {% if previews|length > 1 %}
+      {% if addon.all_previews|length > 1 %}
         <h4>{{ _('Image Gallery') }}</h4>
-        {% for preview in previews[1:] %}
+        {% for preview in addon.all_previews[1:] %}
         <a class="screenshot thumbnail" rel="jquery-lightbox"
           href="{{ preview.image_url }}" title="{{ preview.caption }}">
             <img src="{{ preview.thumbnail_url }}" alt="" />

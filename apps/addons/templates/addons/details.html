@@ -4,10 +4,8 @@
 {% block js %}{% include("amo/recaptcha_js.html") %}{% endblock %}
 {% block bodyclass %}inverse{% endblock %}
 
-{% set previews = addon.all_previews %}
-
 {% block extrahead %}
-  {% for preview in previews %}
+  {% for preview in addon.all_previews %}
     <link rel="prefetch" href="{{ preview.image_url }}">
   {% endfor %}
 {% endblock %}
