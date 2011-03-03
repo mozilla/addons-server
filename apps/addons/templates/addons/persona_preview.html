@@ -5,7 +5,7 @@
       {% with addon_url = url_ or addon.get_url_path() %}
         <{{ tag }} {% if linked %}href="{{ addon_url }}" target="_self"{% endif %}
       {% endwith %}
-      title="{{ addon.name }}" style="background-image:url('{{ preview }}')"
+      style="background-image:url('{{ preview }}')"
       data-browsertheme="{{ persona.json_data }}">
         {% if extra == 'created' %}
           <span class="created">

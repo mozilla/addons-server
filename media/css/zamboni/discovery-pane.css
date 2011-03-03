@@ -473,29 +473,47 @@ header:after,
 
 /* @Collection *********/
 .collection h2,
-#featured-addons h2,
-#starter h3,
-#st-patricks h3,
-#fx4-collection h3,
-#recs .header h2,
-#recs .gallery {
+#featured-addons h2 {
     max-width: 650px;
     margin: 10px auto;
 }
 
-#starter h2,
-#starter h3,
-#st-patricks h2,
-#st-patricks h3,
-#fx4-collection h2,
-#fx4-collection h3,
+.collection.promo h2 {
+    margin: 0;
+    max-width: auto;
+}
+
+.promo hgroup,
+#monthly .wrap,
+#go-mobile .wrap,
 #recs .header h2,
 #recs .gallery {
     margin: 0 auto;
+    max-width: 650px;
+    width: 100%;
+}
+
+.promo h2,
+.promo h3 {
+    margin-bottom: 0;
+}
+
+.promo h2 {
+    text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+}
+
+.promo hgroup {
+    margin: 10px auto 20px;
 }
 
 .collection .more {
     text-align: center;
+}
+
+#starter .more,
+#st-patricks .more,
+#fx4-collection .more {
+    display: none;
 }
 
 .shopping {
@@ -530,22 +548,6 @@ header:after,
 #starter h2 {
     color: #075f7a;
 }
-.promo h2 {
-    text-shadow: 0 1px 0 rgba(255,255,255,0.5);
-    margin-top: 10px;
-}
-#starter h3,
-#st-patricks h3,
-#monthly h2,
-#go-mobile h2,
-#fx4-collection h3 {
-    margin-bottom: 20px;
-}
-#starter .more,
-#st-patricks .more,
-#fx4-collection .more {
-    display: none;
-}
 /* @end */
 
 /* @group St. Patrick's Day Personas */
@@ -561,11 +563,11 @@ header:after,
 #monthly {
     background: url(../../img/zamboni/discovery_pane/promos/monthly-bg.png) 50% 0 no-repeat;
 }
-#monthly > div,
-#go-mobile > div {
+#monthly .wrap > div,
+#go-mobile .wrap > div {
     padding: 20px;
 }
-#monthly > div {
+#monthly .wrap > div {
     overflow: hidden;
 }
 #monthly h2 {
@@ -574,14 +576,14 @@ header:after,
 #monthly h3 {
     margin-bottom: 10px;
 }
-#monthly > div > div > p {
+#monthly .wrap > div > div > p {
     padding-right: 20px;
 }
 #monthly p.install-button,
 #go-mobile p.install-button {
     margin-bottom: 0;
 }
-#monthly > div > div {
+#monthly .wrap > div > div {
     float: left;
     width: 50%;
 }
@@ -599,7 +601,7 @@ header:after,
     color: #485c65;
     width: 300px;
 }
-#go-mobile > div {
+#go-mobile .wrap > div {
     width: 365px;
 }
 /* @end */
@@ -870,13 +872,15 @@ ul.addons {
 .pane #main .persona-feature h3,
 .pane #main .persona-feature .persona-preview {
     position: absolute;
+}
+
+.pane #main .persona-feature .persona {
     width: 100%;
 }
 
 .pane #main .persona-feature h3 {
     top: 80px;
     margin: 10px;
-    text-align: center;
     width: -moz-calc(100% - 20px);
 }
 
