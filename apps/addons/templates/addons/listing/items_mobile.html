@@ -22,6 +22,8 @@
             {% with num=addon.total_reviews %}
               {% if num %}
                 {{ addon.average_rating|float|stars }}
+              {% else %}
+                <i>{{ _('Not Yet Rated') }}</i>
               {% endif %}
             {% endwith %}
           {% endif %}

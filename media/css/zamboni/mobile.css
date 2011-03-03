@@ -55,6 +55,11 @@ table {
 }
 */
 
+i {
+    font-style: italic;
+    color: #838382;
+}
+
 /** Clearfix */
 .listview li a:after,
 header:after,
