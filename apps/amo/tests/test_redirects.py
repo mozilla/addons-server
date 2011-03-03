@@ -9,7 +9,8 @@ from applications.models import Application
 
 
 class TestRedirects(test_utils.TestCase):
-    fixtures = ['base/apps', 'reviews/test_models', 'base/global-stats']
+    fixtures = ['base/apps', 'reviews/test_models',
+                'addons/persona', 'base/global-stats']
 
     def test_persona_category(self):
         """`/personas/film and tv` should go to /personas/film-and-tv"""
@@ -25,8 +26,9 @@ class TestRedirects(test_utils.TestCase):
 
     def test_persona(self):
         """`/persona/\d+` should go to `/addon/\d+`."""
-        r = self.client.get(u'persona/4', follow=True)
-        assert r.redirect_chain[-1][0].endswith('/en-US/firefox/addon/a4/')
+        r = self.client.get(u'persona/813', follow=True)
+        self.assertRedirects(r, '/en-US/firefox/addon/a15663/',
+                             status_code=301)
 
     def test_contribute_installed(self):
         """`/addon/\d+/about` should go to
