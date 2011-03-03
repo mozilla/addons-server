@@ -113,7 +113,8 @@ def dashboard(request):
     addons = amo.utils.paginate(request, addons, per_page=10)
     data = dict(addons=addons, sorting=filter.field,
                 items=_get_items(None, request.amo_user.addons.all())[:4],
-                sort_opts=filter.opts, rss=_get_rss_feed(request))
+                sort_opts=filter.opts, rss=_get_rss_feed(request),
+                timestamp=int(time.time()))
     return jingo.render(request, 'devhub/addons/dashboard.html', data)
 
 
