@@ -435,37 +435,32 @@ header:after,
     visibility: hidden;
 }
 
-/* @Rock Your Firefox (@RYFF) *********/
+/* @group Rock Your Firefox (RYFF) */
 .ryff {
     position: relative;
     overflow: hidden;
-    padding: 10px 10% 10px 230px;
-    background: #fbf1cc url("../../img/zamboni/discovery_pane/bg-ryff.jpg") 5% 0 no-repeat;
+    padding: 20px 10% 10px 270px;
+    background: url(../../img/zamboni/discovery_pane/promos/ryff-bg.png) 0 0 no-repeat;
     color: #333;
 }
 
-.ryff h2 {
-    margin: 0 0 10px;
-    white-space: nowrap;
-}
-
 .ryff h3,
-#starter h2,
-#st-patricks h2,
-#monthly h2,
-#go-mobile h2,
-#fx4-collection h2 {
+.promo h2 {
     font-size: 36px;
     font-weight: bold;
     line-height: 1.1;
 }
 
+.ryff h2 {
+    white-space: nowrap;
+}
+
 .ryff h3 {
-    margin: 15px 0 .25em;
+    margin-bottom: 10px;
 }
 
 .ryff h3 a {
-    color: #333;
+    color: #7e100a;
     text-decoration: none;
 }
 
@@ -474,6 +469,7 @@ header:after,
     float: right;
     margin: 0 0 .5em 10px;
 }
+/* @end */
 
 /* @Collection *********/
 .collection h2,
@@ -534,11 +530,7 @@ header:after,
 #starter h2 {
     color: #075f7a;
 }
-#starter h2,
-#st-patricks h2,
-#monthly h2,
-#go-mobile h2,
-#fx4-collection h2 {
+.promo h2 {
     text-shadow: 0 1px 0 rgba(255,255,255,0.5);
     margin-top: 10px;
 }
@@ -696,6 +688,7 @@ ul.addons {
     font-weight: bold;
     font-family: inherit;
     margin: .25em 0;
+    text-align: center;
     overflow: hidden;
 }
 
@@ -974,26 +967,9 @@ ul.addons {
     }
 
     .no-recs header #mission,
-    .no-recs header #my-account {
-        border-radius: 0 0 8px 8px;
-        border-top: 1px inset rgba(0,0,0,0.15);
-        margin-left: 0;
-        margin-top: 10px;
-        padding-bottom: 10px;
-        width: -moz-calc(100% - 20px);
-    }
-    .recs header #mission,
-    .recs header #my-account {
-        border-radius: 8px;
-        border-top-width: 0;
-        margin-top: 0;
-        padding-bottom: 10px;
-        width: -moz-calc(100% - 20px);
-    }
-
+    .no-recs header #my-account,
     .recs header {
-        float: none;
-        width: -moz-calc(100% - 2px);
+        display: none;
     }
 
     #main,

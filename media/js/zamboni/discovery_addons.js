@@ -241,6 +241,8 @@ function setPanelWidth(section) {
 
 
 function initDetail() {
+    $(".install-action a").attr("target", "_self");
+
     // Replace with the URL back to the discovery promo pane.
     var pane_url;
     if (z.hasLocalStorage) {
