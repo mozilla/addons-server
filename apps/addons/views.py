@@ -193,10 +193,10 @@ def persona_detail(request, addon):
     return jingo.render(request, 'addons/persona_detail.html', data)
 
 
-@mobilized(persona_detail)
-def persona_detail(request, addon):
-    return jingo.render(request, 'addons/mobile/persona_detail.html',
-                        {'addon': addon})
+# @mobilized(persona_detail)
+# def persona_detail(request, addon):
+#     return jingo.render(request, 'addons/mobile/persona_detail.html',
+#                         {'addon': addon})
 
 
 class BaseFilter(object):

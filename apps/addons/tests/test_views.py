@@ -1189,7 +1189,7 @@ class TestMobileDetails(TestMobile):
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'addons/mobile/details.html')
 
-    def test_persona(self):
+    def _test_persona(self):
         addon = Addon.objects.filter(type=amo.ADDON_PERSONA)[0]
         r = self.client.get(addon.get_url_path())
         eq_(r.status_code, 200)
