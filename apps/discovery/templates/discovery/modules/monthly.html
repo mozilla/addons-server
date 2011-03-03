@@ -1,5 +1,5 @@
 <li class="panel">
-  <div id="monthly" class="feature">
+  <div id="monthly" class="feature promo">
     <h2>{{ _("Mozilla&rsquo;s Pick of the Month!")|safe }}</h2>
     <div>
       <h3>{{ addon.name }}</h3>
@@ -11,7 +11,7 @@
         {{ install_button(addon, src='discovery-promo') }}
         {# TODO: this will break if the add-on changes screenshots. #}
       </div>
-      <img src="{{ addon.all_previews[1].image_url }}">
+      <img src="{{ MEDIA_URL }}img/zamboni/discovery_pane/promos/monthly-screenshot.png">
     </div>
   </div>
 </li>

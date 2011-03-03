@@ -86,7 +86,9 @@ class CollectionPromo(PromoModule):
     def __init__(self, *args, **kw):
         super(CollectionPromo, self).__init__(*args, **kw)
         self.collection = Collection.objects.get(pk=self.pk)
-        self.context = dict(promo=self, addons=self.get_addons())
+
+    def get_descriptions(self):
+        return {}
 
     def get_addons(self):
         addons = self.collection.addons.all()
@@ -96,8 +98,10 @@ class CollectionPromo(PromoModule):
         return caching.cached_with(addons, f, repr(kw))
 
     def render(self):
+        c = dict(promo=self, addons=self.get_addons(),
+                 descriptions=self.get_descriptions())
         return jinja2.Markup(
-            jingo.render_to_string(self.request, self.template, self.context))
+            jingo.render_to_string(self.request, self.template, c))
 
 
 class ShoppingCollection(CollectionPromo):
@@ -123,8 +127,9 @@ class TesterCollection(CollectionPromo):
 
 class StarterPack(CollectionPromo):
     slug = 'Starter Pack'
-    pk = 153651
+    pk = 153649
     id = 'starter'
+    cls = 'promo'
     title = _(u'First time with Add-ons?')
     subtitle = _(u'Not to worry, here are three to get started.')
 
@@ -138,25 +143,21 @@ class StarterPack(CollectionPromo):
                      'or search for flights.')
         }
 
-    def render(self):
-        self.context.update(descriptions=self.get_descriptions())
-        return jinja2.Markup(
-            jingo.render_to_string(self.request, self.template, self.context))
-
 
 class Fx4Collection(CollectionPromo):
     slug = 'Fx4 Collection'
-    pk = 153649
+    pk = 153651
     id = 'fx4-collection'
+    cls = 'promo'
     title = _(u'Firefox 4 Collection')
     subtitle = _(u'Here are some great add-ons for Firefox 4.')
 
 
 class StPatricksPersonas(CollectionPromo):
     slug = 'St. Pat Personas'
-    # TODO: Replace with actual collection pk.
-    pk = 153651
+    pk = 666627
     id = 'st-patricks'
+    cls = 'promo'
     title = jinja2.Markup(_(u'St. Patrick&rsquo;s Day Personas'))
     subtitle = jinja2.Markup(
         _(u'Decorate your browser to celebrate St. Patrick&rsquo;s Day.'))
