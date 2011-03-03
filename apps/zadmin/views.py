@@ -4,7 +4,7 @@ from django import http
 # I'm so glad we named a function in here settings...
 from django.conf import settings as site_settings
 from django.contrib import admin
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 from django.views import debug
 
 import commonware.log
@@ -16,7 +16,7 @@ import jingo
 from amo import messages
 import amo.models
 from addons.models import Addon
-from files.models import Approval
+from files.models import Approval, File
 from versions.models import Version
 
 log = commonware.log.getLogger('z.zadmin')
@@ -114,3 +114,17 @@ def settings(request):
 @admin.site.admin_view
 def env(request):
     return http.HttpResponse(u'<pre>%s</pre>' % (jinja2.escape(request)))
+
+
+@admin.site.admin_view
+def fix_disabled_file(request):
+    file_ = None
+    if request.method == 'POST' and 'file' in request.POST:
+        file_ = get_object_or_404(File, id=request.POST['file'])
+        if 'confirm' in request.POST:
+            file_.unhide_disabled_file()
+            messages.success(request, 'We have done a great thing.')
+            return redirect('zadmin.fix-disabled')
+    return jingo.render(request, 'zadmin/fix-disabled.html',
+                        {'file': file_,
+                         'file_id': request.POST.get('file', '')})
