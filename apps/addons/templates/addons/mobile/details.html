@@ -94,7 +94,7 @@
                 {{ _('View All Versions') }}</a>
             </li>
             {% if addon.current_beta_version %}
-              <li><a href="#beta" class="expando">{{ _('View Beta Version') }}</a></li>
+              <li><a href="#beta" class="expando">{{ _('View Development Version') }}</a></li>
             {% endif %}
           </ul>
         </td>
@@ -106,9 +106,9 @@
       <div class="warning message">
         <h3>{{ _('Caution') }}</h3>
         <p>{% trans %}
-        The Beta Channel lets you test an experimental new version of
+        The Development Channel lets you test an experimental new version of
         this add-on before it's released to the general public. Once
-        you install the beta version, you will continue to get updates
+        you install the development version, you will continue to get updates
         from this channel.
         {% endtrans %}</p>
       </div>
