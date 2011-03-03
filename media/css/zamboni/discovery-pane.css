@@ -889,7 +889,8 @@ ul.addons {
     box-shadow: inset 0 -2px 0 rgba(58,78,103,0.08), 0 2px 0 rgba(190,210,230,0.5);
     top: -132px;
     margin-left: -4px;
-    width: -moz-calc(100% + 6px);
+    /* Think this is cheesy? You're right. Our minifier ruins additions within -moz-calc*/
+    width: -moz-calc(100% - -6px);
 }
 
 .pane #main .persona-large .persona-preview [data-browsertheme] {
