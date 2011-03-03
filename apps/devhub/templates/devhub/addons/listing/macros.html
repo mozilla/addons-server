@@ -2,7 +2,7 @@
   <h4>
     {% set is_complete = not addon.is_incomplete() %}
     {% if is_complete %}<a href="{{ addon.get_url_path() }}">{% endif %}
-    <img class="icon" width="32" height="32" src="{{ addon.icon_url }}">
+    <img class="icon" width="64" height="64" src="{{ addon.get_icon_url(64) }}">
     {{ addon.name }}{% if is_complete %}</a>{% endif %}
   </h4>
 {% endmacro %}

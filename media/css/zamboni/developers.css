@@ -644,6 +644,10 @@ form .char-count b {
 
 /* @group Dashboard */
 
+#dashboard .listing .item {
+    padding-left: 100px;
+}
+
 .action-needed {
     background-color: #fff;
     border: 3px solid #c8e8f3;
