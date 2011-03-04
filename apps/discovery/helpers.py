@@ -18,6 +18,7 @@ def disco_persona_preview(context, persona, size='large', linked=True,
     url = None
     if linked:
         url = reverse('discovery.addons.detail', args=[persona.addon.slug])
+        url = settings.SERVICES_URL + url
         if src in ('discovery-promo', 'discovery-featured'):
             url = urlparams(url, src=src)
     return persona_preview(context, persona, size=size, linked=linked,
