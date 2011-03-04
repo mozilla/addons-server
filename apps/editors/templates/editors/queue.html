@@ -65,10 +65,10 @@
       </form>
     </div>
     {% endif %}
-    {% if page|paginator %}
-    <div class="data-grid-content data-grid-top">
-    {{ page|paginator }}
-    </div>
+    {% if page.has_other_pages() %}
+      <div class="data-grid-content data-grid-top">
+      {{ page|paginator }}
+      </div>
     {% endif %}
 
     {% if tab == 'moderated' %}
@@ -149,8 +149,11 @@
           {% endfor %}
         </tbody>
       </table>
+      {% if page.paginator.count == 0 %}
+        <div class="no-results">{{ _('There are currently no add-ons of this type to review.') }}</div>
       {% endif %}
-      {% if page|paginator %}
+    {% endif %}
+    {% if page.has_other_pages() %}
       <div class="data-grid-content data-grid-bottom">
       {{ page|paginator }}
       </div>

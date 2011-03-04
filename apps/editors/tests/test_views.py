@@ -284,6 +284,32 @@ class TestQueueBasics(QueueTest):
         eq_(doc('table.data-grid tr th:eq(5)').text(),
             u'Additional Information')
 
+    def test_no_results(self):
+        File.objects.all().delete()
+        r = self.client.get(reverse('editors.queue_pending'))
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        eq_(doc('.queue-outer .no-results').length, 1)
+
+    def test_no_paginator_when_on_single_page(self):
+        r = self.client.get(reverse('editors.queue_pending'))
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        eq_(doc('.pagination').length, 0)
+
+    def test_paginator_when_many_pages(self):
+        q = File.objects.exclude(version__in=(self.versions['Nominated One'],
+                                              self.versions['Nominated Two']))
+        q.delete()
+        r = self.client.get(reverse('editors.queue_nominated'),
+                            data={'per_page': 1})
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        eq_(doc('.data-grid-top .num-results').text(),
+            u'Results 1 \u2013 1 of 2')
+        eq_(doc('.data-grid-bottom .num-results').text(),
+            u'Results 1 \u2013 1 of 2')
+
 
 class TestPendingQueue(QueueTest):
 

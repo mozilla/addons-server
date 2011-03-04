@@ -67,6 +67,11 @@
     background-color: #FFFFFF;
     border: 1px solid #2E5186;
 }
+.queue-outer .no-results {
+    margin: 0;
+    padding: 6em 1em;
+    font-size: 1.1em;
+}
 table.data-grid {
     width: 100%;
     margin-bottom: 0;
