@@ -187,9 +187,7 @@
     </div>{# /article #}
     {% endif %}
 
-  {% if reviews: %}
-    {{ review_list_box(addon=addon, reviews=reviews) }}
-  {% endif %}
+  {{ review_list_box(addon=addon, reviews=reviews) }}
 
   {% if review_form: %}
     {% if request.user.is_authenticated() %}
