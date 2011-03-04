@@ -94,7 +94,11 @@ function initQueueSearch(doc) {
     $('#toggle-queue-search', doc).click(function(e) {
         e.preventDefault();
         $(e.target).blur();
-        $('#advanced-search', doc).toggle();
+        if ($('#advanced-search:visible', doc).length) {
+            $('#advanced-search', doc).slideUp();
+        } else {
+            $('#advanced-search', doc).slideDown();
+        }
     });
 
     $('#id_application_id', doc).change(function(e) {
