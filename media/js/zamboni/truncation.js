@@ -2,26 +2,27 @@ $.fn.vtruncate = function(opts) {
     opts = opts || {};
     var showTitle = opts.showTitle || false,
         truncText = opts.truncText || "&hellip;",
-        split = [" ",""];
+        split = [" ",""], counter;
     this.each(function() {
         var $el = $(this),
             oldtext = $el.attr("oldtext") || $el.text(),
             txt, cutoff;
         if ($el.attr("oldtext")) {
+            oldtext = unescape(oldtext);
             $el.text(oldtext);
         }
-        $el.attr("oldtext", oldtext);
+        $el.attr("oldtext", escape(oldtext));
         for (var i in split) {
             delim = split[i];
             txt = oldtext.split(delim);
             cutoff = txt.length;
             var done = (this.scrollHeight - this.offsetHeight) < 2,
                 chunk = Math.ceil(txt.length/2), oc=0, wid, delim;
-            while (!done) {
+            for (counter = 0; counter < 10; counter++) {
                 $el.html(txt.slice(0,cutoff).join(delim)+truncText);
                 wid = (this.scrollHeight - this.offsetHeight);
-                if (wid < 2 && chunk == oc) {
-                   done = true;
+                if ((wid < 2 && chunk == oc) || cutoff < 1) {
+                   break;
                 } else if (wid > 1) {
                    cutoff -= chunk;
                 } else {
