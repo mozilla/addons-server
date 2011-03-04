@@ -293,7 +293,6 @@ class Client(object):
         """
 
         sc = self.sphinx
-
         high_int = convert_version(version)
         low_int = high_int
 
@@ -304,7 +303,7 @@ class Client(object):
         # lower-bound.  To work-around this limitation we set max_ver's
         # upperbound to be ridiculously large.
         if high_int:
-            sc.SetFilterRange('max_ver', low_int, MAX_VERSION)
+            sc.SetFilterRange('max_ver', low_int, low_int + MAX_VERSION)
             sc.SetFilterRange('min_ver', 0, high_int)
 
     def add_meta_query(self, field, term):

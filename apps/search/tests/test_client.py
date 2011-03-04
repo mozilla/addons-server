@@ -172,6 +172,7 @@ class SearchTest(SphinxTestCase):
         """This tests that sphinx will properly restrict by version."""
         eq_(query("Delicious version:3.6")[0].id, 3615)
         eq_(len(query("Delicious version:4.0")), 0)
+        eq_(len(query("Delicious version:10.2.152")), 0)
 
     def test_sorts(self):
         """
