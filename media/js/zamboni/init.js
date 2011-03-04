@@ -5,7 +5,9 @@ $(document).ready(function(){
 
     // Initialize install buttons.
     $('.install').installButton();
-    $('.backup-button').showBackupButton();
+    if ($('.backup-button').length) {
+        $('.backup-button').showBackupButton();
+    }
 
     // Initialize any tabbed interfaces.  See: tabs.js
     if ($.fn.tabify) {
