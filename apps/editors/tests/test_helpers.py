@@ -58,29 +58,6 @@ class TestViewPendingQueueTable(test_utils.TestCase):
         row.addon_type_id = amo.ADDON_THEME
         eq_(unicode(self.table.render_addon_type_id(row)), u'Theme')
 
-    def test_additional_info_site_specific(self):
-        row = Mock()
-        row.is_site_specific = True
-        eq_(self.table.render_additional_info(row), u'Site Specific')
-
-    def test_additional_info_for_platform(self):
-        row = Mock()
-        row.is_site_specific = False
-        row.file_platform_ids = [amo.PLATFORM_LINUX.id]
-        eq_(self.table.render_additional_info(row), u'Linux only')
-
-    def test_additional_info_for_all_platforms(self):
-        row = Mock()
-        row.is_site_specific = False
-        row.file_platform_ids = [amo.PLATFORM_ALL.id]
-        eq_(self.table.render_additional_info(row), u'')
-
-    def test_additional_info_for_mixed_platforms(self):
-        row = Mock()
-        row.is_site_specific = False
-        row.file_platform_ids = [amo.PLATFORM_ALL.id, amo.PLATFORM_LINUX.id]
-        eq_(self.table.render_additional_info(row), u'')
-
     def test_applications(self):
         row = Mock()
         row.application_ids = [amo.FIREFOX.id, amo.THUNDERBIRD.id]
@@ -132,6 +109,54 @@ class TestViewPendingQueueTable(test_utils.TestCase):
         row = Mock()
         row.admin_review = False
         eq_(self.table.render_flags(row), '')
+
+
+class TestAdditionalInfoInQueue(test_utils.TestCase):
+
+    def setUp(self):
+        super(TestAdditionalInfoInQueue, self).setUp()
+        qs = Mock()
+        self.table = ViewPendingQueueTable(qs)
+        self.row = Mock()
+        self.row.is_site_specific = False
+        self.row.file_platform_ids = [amo.PLATFORM_ALL.id]
+        self.row.external_software = False
+        self.row.binary = False
+
+    def test_no_info(self):
+        eq_(self.table.render_additional_info(self.row), '')
+
+    def test_site_specific(self):
+        self.row.is_site_specific = True
+        eq_(self.table.render_additional_info(self.row), u'Site Specific')
+
+    def test_platform(self):
+        self.row.file_platform_ids = [amo.PLATFORM_LINUX.id]
+        eq_(self.table.render_additional_info(self.row), u'Linux only')
+
+    def test_combo(self):
+        self.row.is_site_specific = True
+        self.row.file_platform_ids = [amo.PLATFORM_MAC.id]
+        eq_(self.table.render_additional_info(self.row),
+            u'Site Specific, Mac OS X only')
+
+    def test_all_platforms(self):
+        self.row.file_platform_ids = [amo.PLATFORM_ALL.id]
+        eq_(self.table.render_additional_info(self.row), u'')
+
+    def test_mixed_platforms(self):
+        self.row.file_platform_ids = [amo.PLATFORM_ALL.id,
+                                      amo.PLATFORM_LINUX.id]
+        eq_(self.table.render_additional_info(self.row), u'')
+
+    def test_external_software(self):
+        self.row.external_software = True
+        eq_(self.table.render_additional_info(self.row),
+            u'Requires External Software')
+
+    def test_binary(self):
+        self.row.binary = True
+        eq_(self.table.render_additional_info(self.row), u'Binary Components')
 
 
 yesterday = datetime.today() - timedelta(days=1)

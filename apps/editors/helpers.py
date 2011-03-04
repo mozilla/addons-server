@@ -54,16 +54,19 @@ class EditorQueueTable(SQLTable):
         return amo.ADDON_TYPE[row.addon_type_id]
 
     def render_additional_info(self, row):
+        info = []
         if row.is_site_specific:
-            r = _(u'Site Specific')
-        elif (len(row.file_platform_ids) == 1
-              and row.file_platform_ids != [amo.PLATFORM_ALL.id]):
+            info.append(_(u'Site Specific'))
+        if (len(row.file_platform_ids) == 1
+            and row.file_platform_ids != [amo.PLATFORM_ALL.id]):
             k = row.file_platform_ids[0]
             # L10n: first argument is the platform such as Linux, Mac OS X
-            r = _(u'{0} only').format(amo.PLATFORMS[k].name)
-        else:
-            r = ''
-        return jinja2.escape(r)
+            info.append(_(u'{0} only').format(amo.PLATFORMS[k].name))
+        if row.external_software:
+            info.append(_(u'Requires External Software'))
+        if row.binary:
+            info.append(_(u'Binary Components'))
+        return u', '.join([jinja2.escape(i) for i in info])
 
     def render_applications(self, row):
         # TODO(Kumar) show supported version ranges on hover (if still needed)
