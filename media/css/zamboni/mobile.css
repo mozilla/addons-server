@@ -118,7 +118,7 @@ a:link {
 /* 'Mozilla' */
 .moz-menu .tab {
     background: #33589f;
-    background: -webkit-gradient(
+/*    background: -webkit-gradient(
         linear,
         left bottom,
         left top,
@@ -135,7 +135,7 @@ a:link {
         rgb(42,65,135) 0%,
         rgb(59,105,177) 100%
     );
-}
+*/}
 
 footer:before,
 .tabs {
@@ -289,9 +289,10 @@ table th {
 .moz-menu .menu-items li {
     border-bottom: 1px solid #294976;
     border-top: 1px solid #537ab4;
-    background-image: -moz-linear-gradient(#3a67af, #385eaa);
+    background-color: #3a67af;
+/*    background-image: -moz-linear-gradient(#3a67af, #385eaa);
     background-image: -webkit-gradient(linear, left top, left bottom, from(#3a67af), to(#385eaa));
-    height: 50px;
+*/    height: 50px;
     width: 100%;
     padding: 0 14px;
 }
@@ -444,9 +445,9 @@ header #home, header .back-link {
     -webkit-border-radius: 6px;
     border: 1px solid #ddd;
     background-color: #f4f4f4;
-    background-image: -moz-linear-gradient(#fff, rgba(255,255,255,0) 12px);
+/*    background-image: -moz-linear-gradient(#fff, rgba(255,255,255,0) 12px);
     -moz-box-shadow: 0 -3px rgba(0,0,0,.1) inset;
-    -webkit-box-shadow: 0 -3px rgba(0,0,0,.1) inset;
+    -webkit-box-shadow: 0 -3px rgba(0,0,0,.1) inset;*/
     margin-bottom: 1em;
     display: block;
 }
@@ -536,8 +537,10 @@ a.listview:before {
     margin: 0;
     height: 45px;
     width: 56px;
-    background-image: -moz-linear-gradient(#83c53c, #4f9c19);
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#83c53c), to(#4f9c19));
+    background-color: #83c53c;
+    background-image: none;
+/*    background-image: -moz-linear-gradient(#83c53c, #4f9c19);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#83c53c), to(#4f9c19));*/
     border: 0;
     -webkit-box-shadow: 0 -3px rgba(0,0,0,.1) inset;
     -moz-box-shadow: 0 -3px rgba(0,0,0,.1) inset;
@@ -864,14 +867,15 @@ td .versions li a {
 
 .button, a.button {
     -moz-transition: -moz-box-shadow 0.3s ease 0s;
-    background-image: -moz-linear-gradient(#669BE1, #5784BF) repeat scroll 0 0 transparent;
+    background-color: #669BE1;
+/*    background-image: -moz-linear-gradient(#669BE1, #5784BF) repeat scroll 0 0 transparent;
     background-image: -webkit-gradient(
         linear,
         left top,
         left bottom,
         from(#669BE1),
         to(#5784BF)
-    );
+    );*/
     -moz-border-radius: 6px;
     -webkit-border-radius: 6px;
     border-radius: 6px;
@@ -929,26 +933,26 @@ td .versions li a {
 .button.affirmative,
 .button.add {
     background-color: #84C63C;
-    background-image: -moz-linear-gradient(#84C63C, #489615);
+/*    background-image: -moz-linear-gradient(#84C63C, #489615);
     background-image: -webkit-gradient(
         linear,
         left top,
         left bottom,
         from(#84C63C),
         to(#489615)
-    );
+    );*/
     color: #fff;
 }
 .button.negative {
     background-color: #84C63C;
-    background-image: -moz-linear-gradient(#b25951, #932b0d);
+/*    background-image: -moz-linear-gradient(#b25951, #932b0d);
     background-image: -webkit-gradient(
         linear,
         left top,
         left bottom,
         from(#b25951),
         to(#932b0d)
-    );
+    );*/
     color: #fff;
 }
 .button.add {
@@ -966,24 +970,27 @@ td .versions li a {
 }
 
 .button.warning {
-  background-attachment: scroll, scroll;
-  background-clip: border-box, border-box;
-  background-color: transparent;
-  background-image: -moz-linear-gradient(rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.25)),
+    background-attachment: scroll, scroll;
+    background-clip: border-box, border-box;
+    background-color: transparent;
+/*    background-image: -moz-linear-gradient(rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.25)),
                     url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAIAAAAC64paAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAGlJREFUeNqc0cEJACEMRFFNARaw/RexFe1dG3AjCBJJYDL/kNtjDqn9lRLUnlrixjd5qVdo6WNQOhiXN05Jg7PyYEJuzMmFaRn+GZG6KrQMlxHpY1A6GJc3TkmDs/JgQm7MyYVpqf0CDABVcj3T2ITzOAAAAABJRU5ErkJggg==);
-  background-origin: padding-box, padding-box;
-  background-position: 0 0%, 0 0;
-  background-repeat: repeat, repeat;
-  background-size: auto auto, auto auto;
-  color: #333333;
-  text-shadow: 0 -1px 0 rgba(255, 255, 255, 0.5);
-  top: 0;
+*/
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAIAAAAC64paAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAGlJREFUeNqc0cEJACEMRFFNARaw/RexFe1dG3AjCBJJYDL/kNtjDqn9lRLUnlrixjd5qVdo6WNQOhiXN05Jg7PyYEJuzMmFaRn+GZG6KrQMlxHpY1A6GJc3TkmDs/JgQm7MyYVpqf0CDABVcj3T2ITzOAAAAABJRU5ErkJggg==);
+    background-origin: padding-box, padding-box;
+    background-position: 0 0%, 0 0;
+    background-repeat: repeat, repeat;
+    background-size: auto auto, auto auto;
+    color: #333333;
+    text-shadow: 0 -1px 0 rgba(255, 255, 255, 0.5);
+    top: 0;
 }
 .button.add.warning:before {
     background: url(../../img/zamboni/mobile/install.svg) no-repeat 0 -50px;
 }
 .button.disabled {
-    background: -moz-linear-gradient(#d1d4d7, #c1c5ca);
+    background-color: #d1d4d7;
+/*    background-image: -moz-linear-gradient(#d1d4d7, #c1c5ca);*/
     color: #fff;
     -moz-box-shadow: 0 3px rgba(0, 0, 0, 0.05),
                      0 -4px rgba(0, 0, 0, 0.05) inset;
@@ -1033,7 +1040,7 @@ td .versions li a {
     line-height: 25px;
     border: 1px solid #ccc;
     background-color: #e6e6e6;
-    background-image: -moz-linear-gradient(#e6e6e6, #d3d3d3);
+/*    background-image: -moz-linear-gradient(#e6e6e6, #d3d3d3);*/
 }
 
 /************************************/
@@ -1252,7 +1259,7 @@ td .versions li a {
     color: #ccc;
 }
 .carousel .control.prev {
-    background: -moz-linear-gradient(left, #fff 20%, rgba(255,255,255,0));
+    background-image: -moz-linear-gradient(left, #fff 20%, rgba(255,255,255,0));
     left: 0;
 }
 .carousel .control.next {
@@ -1264,7 +1271,7 @@ td .versions li a {
     position: relative;
     padding: 14px 40px;
     overflow: hidden;
-    background-image: -moz-linear-gradient(#fff 95%, #dcedfd);
+/*    background-image: -moz-linear-gradient(#fff 95%, #dcedfd);*/
     background-color: #fff;
     border-bottom: 2px solid #dcedfd;
     margin-bottom: 20px;
@@ -1355,8 +1362,8 @@ footer {
 footer select {
     margin-top: 4px;
     display: block;
-    border-radius: 6px;
     width: 100%;
+    padding-top: 4px;
     height: 30px;
 }
 #footer-links, #footer-links a {
