@@ -181,9 +181,10 @@ class ReviewAddonForm(happyforms.Form):
                                         widget=forms.CheckboxSelectMultiple())
     comments = forms.CharField(required=True, widget=forms.Textarea(),
                                label=_('Comments:'))
-    canned_response = forms.ChoiceField(required=False, choices=[])
+    canned_response = forms.ChoiceField(required=False)
     action = forms.ChoiceField(required=True, widget=forms.RadioSelect())
-    operating_systems = forms.CharField(required=False, label=_('Operating systems:'))
+    operating_systems = forms.CharField(required=False,
+                                        label=_('Operating systems:'))
     applications = forms.CharField(required=False, label=_('Applications:'))
     notify = forms.BooleanField(required=False,
                                 label=_('Notify me the next time this add-on '
@@ -200,6 +201,8 @@ class ReviewAddonForm(happyforms.Form):
         self.helper = kw.pop('helper')
         super(ReviewAddonForm, self).__init__(*args, **kw)
         self.fields['files'].queryset = self.helper.all_files
+        self.fields['canned_response'].choices = ([(c.response, c.name)
+                                    for c in CannedResponse.objects.all()])
         self.fields['action'].choices = [(k, v['label']) for k, v
                                           in self.helper.actions.items()]
 
