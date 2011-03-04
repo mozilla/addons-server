@@ -163,15 +163,24 @@ $(function() {
                 });
             }
             $caption.text($a.attr("title"));
+            $lightbox.find(".control").removeClass("disabled");
+            if (current < 1) {
+                $lightbox.find(".control.prev").addClass("disabled");
+            }
+            if (current == $strip.length-1){
+                $lightbox.find(".control.next").addClass("disabled");
+            }
         }
         $("#lightbox .next").click(_pd(function() {
             if (current < $strip.length-1) {
                 showImage($strip.eq(current+1).find("a"));
+                $(this).blur();
             }
         }));
         $("#lightbox .prev").click(_pd(function() {
             if (current > 0) {
                 showImage($strip.eq(current-1).find("a"));
+                $(this).blur();
             }
         }));
         $(".carousel ul a").click(_pd(showLightbox));

@@ -760,13 +760,18 @@ a.listview:before {
     position: relative;
     padding: 5% 40px 0;
 }
-#lightbox .control.prev {
-    color: #fff;
-    left: 0;
-}
+#lightbox .control.prev,
 #lightbox .control.next {
     color: #fff;
+    left: 0;
+    -moz-transition: .3s opacity ease;
+}
+#lightbox .control.next {
+    left: auto;
     right: 0;
+}
+#lightbox .control.disabled {
+    opacity: 0;
 }
 #lightbox .caption {
     font-size: 18px;
