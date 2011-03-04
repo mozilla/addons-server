@@ -92,7 +92,7 @@ var installButton = function() {
     // Calls InstallTrigger.install or AddSearchProvider if we capture a click
     // on something with a .installer class.
     var clickHijack = function() {
-        if (!appSupported && !search) return;
+        if (!appSupported && !search || !("InstallTrigger" in window)) return;
 
         $this.click(function(e) {
             // If the click was on a.installer or a child, call the special
