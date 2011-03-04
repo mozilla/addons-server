@@ -3,6 +3,7 @@ import os
 
 from django.db import models
 from django.conf import settings
+from django.utils.datastructures import SortedDict
 from tower import ugettext_lazy as _
 
 import amo
@@ -59,6 +60,8 @@ class ViewQueue(RawSQLModel):
     addon_type_id = models.IntegerField()
     admin_review = models.BooleanField()
     is_site_specific = models.BooleanField()
+    external_software = models.BooleanField()
+    binary = models.BooleanField()
     _latest_versions = models.CharField(max_length=255)
     _latest_version_ids = models.CharField(max_length=255)
     _file_platform_ids = models.CharField(max_length=255)
@@ -70,25 +73,25 @@ class ViewQueue(RawSQLModel):
 
     def base_query(self):
         return {
-            'select': {
-                'id': 'addons.id',
-                'addon_name': 'tr.localized_string',
-                'addon_status': 'addons.status',
-                'addon_type_id': 'addons.addontype_id',
-                'admin_review': 'addons.adminreview',
-                'is_site_specific': 'addons.sitespecific',
-                '_latest_version_ids':
-                """GROUP_CONCAT(versions.id
-                                ORDER BY versions.created DESC)""",
-                '_latest_versions':
-                """GROUP_CONCAT(versions.version
-                                ORDER BY versions.created
-                                            DESC SEPARATOR '&&&&')""",
-                '_file_platform_ids':
-                    'GROUP_CONCAT(DISTINCT files.platform_id)',
-                '_application_ids':
-                    'GROUP_CONCAT(DISTINCT apps.application_id)'
-            },
+            'select': SortedDict([
+                ('id', 'addons.id'),
+                ('addon_name', 'tr.localized_string'),
+                ('addon_status', 'addons.status'),
+                ('addon_type_id', 'addons.addontype_id'),
+                ('admin_review', 'addons.adminreview'),
+                ('is_site_specific', 'addons.sitespecific'),
+                ('external_software', 'addons.externalsoftware'),
+                ('binary', 'addons.binary'),
+                ('_latest_version_ids', """GROUP_CONCAT(versions.id
+                                           ORDER BY versions.created DESC)"""),
+                ('_latest_versions', """GROUP_CONCAT(versions.version
+                                        ORDER BY versions.created
+                                                 DESC SEPARATOR '&&&&')"""),
+                ('_file_platform_ids', """GROUP_CONCAT(DISTINCT
+                                                       files.platform_id)"""),
+                ('_application_ids', """GROUP_CONCAT(DISTINCT
+                                                     apps.application_id)""")
+            ]),
             'from': [
                 'files',
                 'JOIN versions ON (files.version_id = versions.id)',
