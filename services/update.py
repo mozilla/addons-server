@@ -293,4 +293,4 @@ def application(environ, start_response):
         raise
     timing_log.info('%s "%s" (200) %.2f [ANON]' %
                     (timing[0], timing[1], time() - start))
-    return output
+    return [output]
