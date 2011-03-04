@@ -90,7 +90,7 @@ function initRecs() {
                     url: addon.learnmore,
                     icon: addon.icon,
                     name: addon.name,
-                    summary: addon.summary != null ? addon.summary : ""
+                    summary: $(addon.summary != null ? addon.summary : "").text()
                 });
                 $("#recs .slider").append(str);
             });
