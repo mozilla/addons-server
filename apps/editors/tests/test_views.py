@@ -626,16 +626,25 @@ class TestQueueSearch(SearchTest):
                 nomination_date=datetime.now() - timedelta(days=1))
         bieber = (Addon.objects
                   .filter(name__localized_string='Justin Bieber Persona'))
+        # Exclude anything out of range:
         bieber.update(nomination_date=datetime.now() - timedelta(days=5))
         r = self.search({'waiting_time_days': 2})
         addons = self.named_addons(r)
         assert 'Justin Bieber Persona' not in addons, (
                                 'Unexpected results: %r' % addons)
+        # Include anything submitted up to requested days:
+        bieber.update(nomination_date=datetime.now() - timedelta(days=2))
+        r = self.search({'waiting_time_days': 5})
+        addons = self.named_addons(r)
+        assert 'Justin Bieber Persona' in addons, (
+                                'Unexpected results: %r' % addons)
+        # Special case: exclude anything under 10 days:
         bieber.update(nomination_date=datetime.now() - timedelta(days=8))
         r = self.search({'waiting_time_days': '10+'})
         addons = self.named_addons(r)
         assert 'Justin Bieber Persona' not in addons, (
                                 'Unexpected results: %r' % addons)
+        # Special case: include anything 10 days and over:
         bieber.update(nomination_date=datetime.now() - timedelta(days=12))
         r = self.search({'waiting_time_days': '10+'})
         addons = self.named_addons(r)
@@ -680,16 +689,25 @@ class TestQueueSearchVersionSpecific(SearchTest):
         Version.objects.update(created=datetime.now() - timedelta(days=1))
         bieber = (Version.objects.filter(
                   addon__name__localized_string='Justin Bieber Persona'))
+        # Exclude anything out of range:
         bieber.update(created=datetime.now() - timedelta(days=5))
         r = self.search({'waiting_time_days': 2})
         addons = self.named_addons(r)
         assert 'Justin Bieber Persona' not in addons, (
                                 'Unexpected results: %r' % addons)
+        # Include anything submitted up to requested days:
+        bieber.update(created=datetime.now() - timedelta(days=2))
+        r = self.search({'waiting_time_days': 4})
+        addons = self.named_addons(r)
+        assert 'Justin Bieber Persona' in addons, (
+                                'Unexpected results: %r' % addons)
+        # Special case: exclude anything under 10 days:
         bieber.update(created=datetime.now() - timedelta(days=8))
         r = self.search({'waiting_time_days': '10+'})
         addons = self.named_addons(r)
         assert 'Justin Bieber Persona' not in addons, (
                                 'Unexpected results: %r' % addons)
+        # Special case: include anything 10 days and over:
         bieber.update(created=datetime.now() - timedelta(days=12))
         r = self.search({'waiting_time_days': '10+'})
         addons = self.named_addons(r)
