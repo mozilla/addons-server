@@ -1,3 +1,2 @@
-ALTER TABLE addons ADD COLUMN backup_version integer;
-ALTER TABLE addons ADD CONSTRAINT backup_version_refs_id_718a6c31
-    FOREIGN KEY (backup_version) REFERENCES versions (id);
+ALTER TABLE addons ADD COLUMN backup_version int(11) unsigned;
+ALTER TABLE addons ADD CONSTRAINT addons_ibfk_16 FOREIGN KEY (backup_version) REFERENCES versions (id) ON DELETE SET NULL;
