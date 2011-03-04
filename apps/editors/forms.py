@@ -181,8 +181,7 @@ class ReviewAddonForm(happyforms.Form):
                                         widget=forms.CheckboxSelectMultiple())
     comments = forms.CharField(required=True, widget=forms.Textarea(),
                                label=_('Comments:'))
-    canned_response = forms.ChoiceField(required=False,
-                                        choices=[(c.response, c.name) for c in CannedResponse.objects.all()])
+    canned_response = forms.ChoiceField(required=False, choices=[])
     action = forms.ChoiceField(required=True, widget=forms.RadioSelect())
     operating_systems = forms.CharField(required=False, label=_('Operating systems:'))
     applications = forms.CharField(required=False, label=_('Applications:'))
