@@ -278,7 +278,7 @@ class RawSQLManager(object):
     def _compile(self, parts):
         sep = u",\n"
         and_ = u' %s\n' % AND
-        select = [u'%s AS %s' % (v, k) for k, v in parts['select'].items()]
+        select = [u'%s AS `%s`' % (v, k) for k, v in parts['select'].items()]
         stmt = u"SELECT\n%s\nFROM\n%s" % (sep.join(select),
                                           u"\n".join(parts['from']))
         if parts.get('where'):
