@@ -534,8 +534,8 @@ def json_file_validation(request, addon_id, addon, file_id):
     if not file.has_been_validated:
         try:
             v_result = tasks.file_validator(file.id)
-        except Exception:
-            log.exception('file_validator(%s)' % file.id)
+        except Exception, exc:
+            log.error('file_validator(%s): %s' % (file.id, exc))
             return {
                 'validation': '',
                 'error': "\n".join(
@@ -584,12 +584,12 @@ def json_upload_detail(upload):
                                  text=unicode(amo.PLATFORM_MAEMO.name)),
                             dict(value=amo.PLATFORM_ANDROID.id,
                                  text=unicode(amo.PLATFORM_ANDROID.name))])
-            except django_forms.ValidationError:
+            except django_forms.ValidationError, exc:
                 # XPI parsing errors will be reported in the form submission
                 # (next request).
                 # TODO(Kumar) It would be nicer to present errors to the user
                 # right here to avoid confusion about platform selection.
-                log.exception("XPI parsing error, ignored")
+                log.error("XPI parsing error, ignored: %s" % exc)
 
     r = dict(upload=upload.uuid, validation=validation,
              error=upload.task_error, url=url,
