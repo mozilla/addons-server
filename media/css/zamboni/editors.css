@@ -2,7 +2,10 @@
     padding-top: 27px;
     max-width: 530px;
 }
-.site-title a {
+.site-title a,
+.site-title a:visited,
+.site-title a:hover,
+.site-title a:focus {
     font-size: 40px;
 }
 /* sprites for data grid icons */
