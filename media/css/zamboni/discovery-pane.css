@@ -868,6 +868,27 @@ ul.addons {
     position: relative;
 }
 
+.pane #main .persona-feature {
+    position: relative;
+    left: 4px;
+}
+
+.pane #main #recs .persona-feature + .addon-feature {
+    left: -4px;
+}
+
+.pane #main #recs .persona-feature + .persona-feature {
+    left: 0;
+}
+
+.pane #main #recs .addon-feature + .persona-feature {
+    left: 0;
+}
+
+.pane #main #recs .persona-feature:nth-child(3n) {
+    left: -4px;
+}
+
 .pane #main .persona-feature .persona,
 .pane #main .persona-feature h3,
 .pane #main .persona-feature .persona-preview {

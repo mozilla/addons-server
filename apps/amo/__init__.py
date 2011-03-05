@@ -201,6 +201,7 @@ ADDON_SLUGS_UPDATE = {
     ADDON_SEARCH: 'search',
     ADDON_LPAPP: 'item',
     ADDON_LPADDON: 'extension',
+    ADDON_PERSONA: 'persona',
     ADDON_PLUGIN: 'plugin',
 }
 

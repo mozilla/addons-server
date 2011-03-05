@@ -4,7 +4,6 @@
 {# These are JSON add-ons from the API, not Addon objects. #}
 {% for addon in list[:limit] %}
   <li data-guid="{{ addon.guid }}" data-summary="{{ addon.summary }}">
-    {{ addon.type }}
     <a href="{{ services_url('discovery.addons.detail', addon.id, src=src) }}"
        target="_self" class="addon-title">
       <img src="{{ addon.icon }}" width="32" height="32">

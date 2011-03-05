@@ -79,20 +79,39 @@ function initRecs() {
 
     function populateRecs() {
         if (datastore.addons !== undefined && datastore.addons.length) {
-            var addon_item = template('<li class="panel">' +
+            var addon_item = template('<li class="panel addon-feature">' +
                 '<a href="{url}" target="_self">' +
                 '<img src="{icon}" width="32" height="32">' +
                 '<h3>{name}</h3>' +
                 '<p class="desc">{summary}</p>' +
                 '</a></li>');
+            var persona_item = template('<li class="panel persona-feature">' +
+                '<a href="{url}" target="_self">' +
+                '<h3>{name}</h3>' +
+                '<div class="persona persona-large">' +
+                '<div class="persona-inner">' +
+                '<div class="persona-preview">' +
+                '<div data-browsertheme="" style="background-image:url({preview})"></div>' +
+                '</div></div></div>' +
+                '</a></li>');
+
             $.each(datastore.addons, function(i, addon) {
-                var str = addon_item({
-                    url: addon.learnmore,
-                    icon: addon.icon,
-                    name: addon.name,
-                    summary: $(addon.summary != null ? addon.summary : "").text()
-                });
-                $("#recs .slider").append(str);
+                var li;
+                if (addon.type == 'persona') {
+                    li = persona_item({
+                        url: addon.learnmore,
+                        name: addon.name,
+                        preview: addon.previews[0]
+                    });
+                } else {
+                    li = addon_item({
+                        url: addon.learnmore,
+                        icon: addon.icon,
+                        name: addon.name,
+                        summary: $("<span>" + (addon.summary != null ? addon.summary : "") + "</span>").text()
+                    });
+                }
+                $("#recs .slider").append(li);
             });
             $("#recs .gallery").fadeIn("slow").addClass("js").jCarouselLite({
                 btnNext: "#recs .nav-next a",

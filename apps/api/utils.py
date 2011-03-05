@@ -25,12 +25,12 @@ def addon_to_dict(addon, disco=False):
          'name': addon.name,
          'guid': addon.guid,
          'status': addon.status,
+         'type': amo.ADDON_SLUGS_UPDATE[addon.type],
          'author': (addon.listed_authors[0].name if
                     addon.listed_authors else ''),
          'summary': addon.summary,
          'description': addon.description,
          'icon': addon.icon_url,
-         'previews': [p.as_dict(src=src) for p in addon.all_previews],
          'learnmore': learnmore,
          'reviews': url(addon.reviews_url),
          'total_dls': addon.total_downloads,
@@ -60,5 +60,10 @@ def addon_to_dict(addon, disco=False):
                 'suggested_amount': addon.suggested_amount,
                 }
         d['contribution'] = contribution
+
+    if addon.type == amo.ADDON_PERSONA:
+        d['previews'] = [addon.persona.preview_url]
+    else:
+        d['previews'] = [p.as_dict(src=src) for p in addon.all_previews]
 
     return d
