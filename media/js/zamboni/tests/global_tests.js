@@ -80,4 +80,25 @@ asyncTest('CSRF not sent', function() {
     }, 'http://someserver/hijack');
 });
 
+asyncTest('CSRF not sent', function() {
+    _inspectHeaders(function(headers) {
+        var htype = typeof headers['X-CSRFToken'];
+        equals(htype, 'undefined');
+    }, 'https://someserver/hijack');
+});
+
+asyncTest('CSRF not sent', function() {
+    _inspectHeaders(function(headers) {
+        var htype = typeof headers['X-CSRFToken'];
+        equals(htype, 'undefined');
+    }, '//someserver/hijack');
+});
+
+asyncTest('CSRF not sent', function() {
+    _inspectHeaders(function(headers) {
+        var htype = typeof headers['X-CSRFToken'];
+        equals(htype, 'undefined');
+    }, '://someserver/hijack');
+});
+
 });

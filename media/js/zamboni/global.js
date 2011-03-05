@@ -5,7 +5,7 @@
 // Hijack the AJAX requests, and insert a CSRF token as a header.
 
 $('html').ajaxSend(function(event, xhr, ajaxSettings) {
-    if (!/^https?:/.test(ajaxSettings.url)) {
+    if (!/^((https?:)|:?[/]{2})/.test(ajaxSettings.url)) {
         // Only send the token to relative URLs i.e. locally.
         csrf = $.cookie('csrftoken') || $("#csrfmiddlewaretoken").val();
         xhr.setRequestHeader("X-CSRFToken", csrf);

@@ -227,7 +227,7 @@ collections.hijack_favorite_button = function() {
     /* Hijack form.favorite for some ajax fun. */
     $('form.favorite').submit(function(event){
         event.preventDefault();
-        var action = this.action + "/ajax";
+        var action = $(this).attr('action') + "/ajax";
 
         // `this` is the form.
         var fav_button = $(this).find('button');
@@ -295,7 +295,7 @@ $(document).ready(function() {
         if (vote_in_progress) return;
         vote_in_progress=true;
         var the_form = $(this);
-        $.post(this.action, $(this).serialize(), function(content, status, xhr) {
+        $.post($(this).attr('action'), $(this).serialize(), function(content, status, xhr) {
             vote_in_progress = false
             if (xhr.status == 200) {
                 var barometer = the_form.closest('.barometer');
