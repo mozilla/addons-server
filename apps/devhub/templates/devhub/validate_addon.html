@@ -17,20 +17,9 @@
   {% endtrans %}
   </p>
   <section id="upload-file" class="validate-addon">
-    <div>
-      <span class="invisible-upload cta" data-upload-url="{{ url('devhub.upload') }}">
-        <a class="button prominent disabled" href="#">{{ _('Select Add-on to Upload...') }}</a>
-        <input disabled type="file" id="upload-file-input">
-      </span>
-    </div>
-    <p class="extra">{{ _('We accept .xpi, .jar, and .xml files.') }}</p>
-    <div class="upload-status hidden">
-      <strong id="upload-status-text"></strong>
-      <div id="upload-status-bar">
-        <div></div>
-      </div>
-      <div id="upload-status-results"></div>
-    </div>
+
+    <input type="file" id="upload-addon" data-upload-url="{{ url('devhub.upload') }}">
+
   </section>
 </form>
 {% endblock content %}

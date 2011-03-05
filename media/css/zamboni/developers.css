@@ -1151,6 +1151,8 @@ a.extra {
 #upload-file .upload-details {
     font-size: 11px;
     color: #999;
+    margin-bottom: 10px;
+    margin-top: -7px;
 }
 
 #upload-file .upload-status div:first-child {

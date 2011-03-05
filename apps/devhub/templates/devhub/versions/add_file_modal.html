@@ -19,38 +19,16 @@
         {{ new_file_form.platforms }}
       {% endif %}
       </div>
+
       <div class="hidden">
-      {{ new_file_form.upload }}
+        {{ new_file_form.upload }}
       </div>
+      <input type="file" id="upload-addon"  data-upload-url="{{ upload_url }}">
 
-      <div class="invisible-upload" id="upload-file-widget" data-upload-url="{{ upload_url }}">
-        <a class="button prominent" href="#">{{ _('Select a File') }}</a>
-        <input type="file" id="upload-file-input">
-      </div>
-      <div class="upload-details">
-        {{ _('Your add-on should end with .xpi or .jar.') }}
-      </div>
-    </div>
-
-    <div class="upload-status">
-      <strong id="upload-status-text"></strong>
-      <div id="upload-status-bar">
-        <div></div>
-      </div>
-      <div id="uploadstatus">
-        <span id="uploadstatus_percent"></span>
-        &middot;
-        <progress id="uploadstatus_progress"></progress>
-        <span id="uploadstatus_abort">
-          &middot;
-          <a href="#">{{ _('Cancel') }}</a>
-        </span>
-      </div>
-      <div id="upload-status-results"></div>
     </div>
 
     <div class="upload-status-button-add">
-      <button id="upload-file-finish" disabled class="button">{{ action_label }}</button> or
+      <button class="addon-upload-dependant" id="upload-file-finish" disabled class="button">{{ action_label }}</button> or
       <a href="#" class="upload-file-cancel">{{ _('Cancel') }}</a>
     </div>
   </form>
