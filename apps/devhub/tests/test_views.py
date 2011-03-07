@@ -3164,7 +3164,7 @@ class TestUpload(files.tests.UploadTest):
 
         eq_(validation['success'], False)
         # The current interface depends on this JSON structure:
-        eq_(validation['errors'], 2)
+        eq_(validation['errors'], 1)
         eq_(validation['warnings'], 0)
         assert len(validation['messages'])
         msg = validation['messages'][0]
