@@ -703,7 +703,7 @@ $(document).ready(function () {
         var follow_text = gettext("Follow this Collection");
 
         $.ajax({
-            url: this.href,
+            url: $(this).attr('href'),
             type: 'POST',
             success: function(data) {
                 widget.removeClass('ajax-loading');
