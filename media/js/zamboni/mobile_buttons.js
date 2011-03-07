@@ -184,7 +184,7 @@
                     if (self.tooOld) errors.push("tooOld");
                     if (self.tooNew) errors.push("tooNew");
                 } else {
-                    if (!appSupported) errors.push("badApp");
+                    if (!appSupported && !z.badBrowser) errors.push("badApp");
                     if (!platformSupported) {
                         errors.push("badPlatform");
                         dom.buttons.hide().eq(0).show();
@@ -207,6 +207,10 @@
                     self.actionQueue.push([1,z.eula.show]);
                     z.eula.acceptButton.click(_pd(self.resumeInstall));
                 }
+            }
+
+            if (z.badBrowser) {
+                canInstall = false;
             }
 
             if (!canInstall) {

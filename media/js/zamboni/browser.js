@@ -22,7 +22,8 @@ function BrowserUtils() {
     // browser detection
     var browser = {},
         browserVersion = 0,
-        pattern, match, i;
+        pattern, match, i,
+        badBrowser = true;
     for (i in userAgentStrings) {
         if (userAgentStrings.hasOwnProperty(i)) {
             pattern = userAgentStrings[i];
@@ -30,6 +31,7 @@ function BrowserUtils() {
             browser[i] = !!(match && match.length === 3);
             if (browser[i]) {
                 browserVersion = escape_(match[2]);
+                badBrowser = false;
             }
         }
     }
@@ -53,6 +55,7 @@ function BrowserUtils() {
     return {
         "browser": browser,
         "browserVersion": browserVersion,
+        "badBrowser": badBrowser,
         "os": os,
         "platform": platform,
         "platformName": gettext(osStrings[platform])

@@ -434,6 +434,20 @@ header #home, header .back-link {
     border-bottom-color: #444;
     pointer-events: none;
 }
+
+.get-fx-message {
+    border: 1px solid #e3873b;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    background: #fcefb7 url(../../img/zamboni/icons/alert-32x32.png) 11px center no-repeat;
+    margin-top: 12px;
+    font-size: 105%;
+    clear: both;
+    display: none;
+    line-height: 1.1em;
+    padding: 12px 12px 10px 56px;
+}
 /************************************/
 /*             LISTVIEWS            */
 /************************************/

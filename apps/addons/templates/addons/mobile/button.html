@@ -32,9 +32,6 @@
     </a>
   {% endfor %}
   <ul class="badges">
-    {% if False %}
-      <li class="error">{{ _('Requires Newer Version of Firefox') }}</li>
-    {% endif %}
     {% if settings.PERF_THRESHOLD and addon.ts_slowness >= settings.PERF_THRESHOLD %}
       <li class="warning">{{ _('May Slow Down Your Browser') }}</li>
     {% endif %}

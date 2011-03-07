@@ -128,3 +128,7 @@ if (z.browser.firefox) {
 } else {
     z.fxBeta = false;
 }
+
+if (z.badBrowser) {
+    $(".get-fx-message").show();
+}

@@ -5,6 +5,9 @@
 {% block header %}
   <header id="home-header">
     {% include "mobile/header.html" %}
+    <div class="get-fx-message">
+      {{ _('You need Firefox to install addons. <a href="http://mozilla.com/firefox">Learn More&nbsp;&raquo;</a>') }}
+    </div>
     <hgroup>
       <h1 class="site-title">
         {% set appicon = 'firefox' if request.APP == amo.MOBILE else request.APP.short %}
