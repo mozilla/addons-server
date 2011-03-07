@@ -31,7 +31,7 @@ cef==0.2
 -e git://github.com/jsocol/commonware.git#egg=commonware
 -e git://github.com/mozilla/django-csp.git#egg=django_csp
 
--e git://github.com/mattbasta/amo-validator.git#egg=amo-validator
+-e git://github.com/mozilla/amo-validator.git#egg=amo-validator
 
 
 # Image cropping
