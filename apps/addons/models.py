@@ -1100,7 +1100,7 @@ class AddonUser(caching.CachingMixin, models.Model):
     user = UserForeignKey()
     role = models.SmallIntegerField(default=amo.AUTHOR_ROLE_OWNER,
                                     choices=amo.AUTHOR_CHOICES)
-    listed = models.BooleanField(default=True)
+    listed = models.BooleanField(_(u'Listed'), default=True)
     position = models.IntegerField(default=0)
 
     objects = caching.CachingManager()
