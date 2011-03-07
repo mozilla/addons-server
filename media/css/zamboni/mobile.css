@@ -196,6 +196,10 @@ table th {
     font-weight: bold;
     color: #666;
 }
+.html-rtl table th {
+    text-align: left;
+    padding: 0 0 8px 8px;
+}
 #content {
     width: 100%;
     overflow: hidden;
@@ -283,9 +287,15 @@ table th {
     overflow: hidden;
     position: relative;
 }
+.html-rtl .mini-header .moz-menu .tab {
+    float: left;
+}
 .mini-header .moz-menu .tab a {
     text-indent: -9999px;
     text-align: left;
+}
+.html-rtl .mini-header .moz-menu .tab a {
+    text-indent: 9999px;
 }
 .moz-menu .menu-items li {
     border-bottom: 1px solid #294976;
@@ -312,6 +322,7 @@ table th {
     position: absolute;
     width: 100%;
     left: -14px;
+    right: -14px;
     bottom: 46px;
 }
 .mini-header .moz-menu .menu-items {
@@ -337,6 +348,13 @@ header hgroup {
     position: relative;
     padding-left: 80px;
 }
+.html-rtl header hgroup {
+    padding-left: 0;
+    padding-right: 80px;
+}
+.html-rtl .mini-header hgroup {
+    padding-right: 0;
+}
 header #home, header .back-link {
     clear: both;
     color: #447BC4;
@@ -344,8 +362,15 @@ header #home, header .back-link {
     padding: 14px 0;
     line-height: 14px;
 }
+.html-rtl header #home, header .back-link {
+    float: right;
+}
 .mini-header .site-title {
     padding-right: 120px;
+}
+.html-rtl .mini-header .site-title {
+    padding-right: 0;
+    padding-left: 120px;
 }
 .mini-header .site-title a {
     font-size: 22px;
@@ -371,6 +396,10 @@ header #home, header .back-link {
     left: 0;
     top: 0;
 }
+.html-rtl #home-header .site-title img {
+    left: auto;
+    right: 0;
+}
 .site-title a {
     text-decoration: none;
     color: black;
@@ -386,6 +415,10 @@ header #home, header .back-link {
     float: left;
     height: 50px;
     margin-right: 6px;
+}
+.html-rtl .mini-header .site-title img {
+    float: right;
+    margin: 0 0 0 6px;
 }
 #home-header #search {
     margin: 0;
@@ -504,9 +537,21 @@ a.listview:before {
     margin-top: -8px;
     background: url(../../img/zamboni/mobile/arrow.svg) no-repeat center center;
 }
+.html-rtl .listview li > a:before,
+.html-rtl a.listview:before {
+    right: auto;
+    left: 10px;
+    background: url(../../img/zamboni/mobile/arrow.svg) no-repeat center center;
+    -moz-transform: scaleX(-1);
+}
 .icon {
     float: left;
     margin-right: 8px;
+}
+.html-rtl .icon {
+    float: right;
+    margin-left: 8px;
+    margin-right: 0;
 }
 
 .item {
@@ -547,6 +592,12 @@ a.listview:before {
     font-size: 18px;
     vertical-align: bottom;
 }
+.html-rtl #search input[type=search] {
+    margin: 0 0 0 7px;
+    padding-left: 0;
+    padding-right: 40px;
+    background-position: -moz-calc(100% - 10px) center;
+}
 
 #search button[type=submit] {
     height: 45px;
@@ -561,6 +612,9 @@ a.listview:before {
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     border-radius: 6px;
+}
+.html-rtl #search button[type=submit] {
+    -moz-transform: scaleX(-1);
 }
 
 /************************************/
@@ -701,8 +755,14 @@ a.listview:before {
     white-space:nowrap;
     position: relative;
     left: 0;
-    -moz-transition: .3s left ease;
-    -webkit-transition: .3s left ease;
+    -moz-transition-duration: .3s;
+    -moz-transition-property: left, right;
+    -webkit-transition-duration: .3s;
+    -webkit-transition-property: left, right;
+}
+.html-rtl .slider {
+    left: auto;
+    right: 0;
 }
 .slider-mask {
     width: 100%;
@@ -780,9 +840,17 @@ a.listview:before {
     left: 0;
     -moz-transition: .3s opacity ease;
 }
+.html-rtl #lightbox .control.prev {
+    left: auto;
+    right: 0;
+}
 #lightbox .control.next {
     left: auto;
     right: 0;
+}
+.html-rtl #lightbox .control.next {
+    right: auto;
+    left: 0;
 }
 #lightbox .control.disabled {
     opacity: 0;
@@ -1159,6 +1227,8 @@ td .versions li a {
 }
 .html-rtl .stars {
     float: right;
+    margin-left: 0.5em;
+    margin-right: 0;
 }
 
 .stars-4 {
@@ -1277,12 +1347,16 @@ td .versions li a {
 .carousel .control.disabled {
     color: #ccc;
 }
-.carousel .control.prev {
+.carousel .control.prev,
+.html-rtl .carousel .control.next {
     background-image: -moz-linear-gradient(left, #fff 20%, rgba(255,255,255,0));
+    right: auto;
     left: 0;
 }
-.carousel .control.next {
+.carousel .control.next,
+.html-rtl .carousel .control.prev {
     background-image: -moz-linear-gradient(left, rgba(255,255,255,0), #fff 80%);
+    left: auto;
     right: 0;
 }
 
@@ -1301,8 +1375,10 @@ td .versions li a {
     white-space: nowrap;
     position: relative;
     left: 0;
-    -moz-transition: .5s left ease;
-    -webkit-transition: .5s left ease;
+    -moz-transition-duration: .5s;
+    -moz-transition-property: left, right;
+    -webkit-transition-duration: .5s;
+    -webkit-transition-property: left, right;
 }
 
 .carousel li {
@@ -1337,6 +1413,9 @@ a.expando {
     padding: 10px 20px;
     float: right;
     color: #447BC4;
+}
+.html-rtl .menu a.expando {
+    float: left;
 }
 .menu a.expando:after {
     border-top-color: #447BC4;

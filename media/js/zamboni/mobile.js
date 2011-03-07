@@ -30,11 +30,12 @@ $(function() {
             $strip = $("ul", $self),
             $prev = $(".prev", $self),
             $next = $(".next", $self),
+            prop = $("body").hasClass("html-rtl") ? "right" : "left",
             currentPos = 0,
             maxPos = $("li", $strip).length/2-1;
         function render(pos) {
             currentPos = Math.min(Math.max(0, pos), maxPos);
-            $strip.css("left", currentPos * -100 + "%");
+            $strip.css(prop, currentPos * -100 + "%");
             $prev.toggleClass("disabled", currentPos == 0);
             $next.toggleClass("disabled", currentPos == maxPos);
         }
@@ -74,6 +75,7 @@ $(function() {
             $managed = $("#"+$strip.attr("data-manages")),
             isManaged = $managed.length,
             isSlider = isManaged && $managed.hasClass("slider"),
+            prop = $("body").hasClass("html-rtl") ? "right" : "left",
             current = $strip.find(".selected a").attr("href");
         if (isManaged) {
             if (isSlider)
@@ -94,10 +96,8 @@ $(function() {
                 $tgt.parent().addClass("selected");
                 $tgt.blur();
                 if (isManaged && isSlider && $pane.index() >= 0) {
-                    $managed.css({
-                        "left": ($pane.index() * -100) + "%",
-                        height: $pane.outerHeight() + "px"
-                    });
+                    $managed.css(prop, ($pane.index() * -100) + "%");
+                    $managed.css("height", $pane.outerHeight() + "px");
                 }
             }
         });
