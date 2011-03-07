@@ -888,6 +888,28 @@ class TestAddonModels(test_utils.TestCase):
         a.save()
         assert hide_mock.called
 
+    def test_set_nomination(self):
+        a = Addon.objects.get(id=3615)
+        a.update(status=amo.STATUS_NULL)
+        for s in (amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED):
+
+            a.update(status=s)
+            assert a.versions.latest().nomination
+
+    def test_nomination_no_version(self):
+        # Check that the on_change method still works if there are no versions.
+        a = Addon.objects.get(id=3615)
+        a.versions.all().delete()
+        a.update(status=amo.STATUS_NOMINATED)
+
+    def test_nomination_already_set(self):
+        addon = Addon.objects.get(id=3615)
+        earlier = datetime.today() - timedelta(days=2)
+        addon.versions.latest().update(nomination=earlier)
+        addon.update(status=amo.STATUS_NOMINATED)
+        eq_(addon.versions.latest().nomination.date(), earlier.date())
+
+
 
 class TestBackupVersion(test_utils.TestCase):
     fixtures = ['addons/update']

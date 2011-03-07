@@ -878,6 +878,9 @@ def watch_status(old_attr={}, new_attr={}, instance=None,
     addon = instance
     stati = (amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED)
     if new_status in stati and old_attr['status'] != new_status:
+        latest = addon.versions.latest()
+        if not latest.nomination:
+            latest.update(nomination=datetime.now())
         addon.update(nomination_date=datetime.now())
 
 
