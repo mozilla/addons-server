@@ -214,7 +214,7 @@
             }
 
             if (!canInstall) {
-                dom.buttons.addClass("disabled");
+                dom.buttons.removeClass("warning").addClass("disabled");
                 if (!dom.buttons.filter(":visible").length) {
                     dom.buttons.eq(0).show();
                 }
