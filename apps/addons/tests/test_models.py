@@ -33,6 +33,9 @@ from versions.models import ApplicationsVersions, Version
 class TestAddonManager(test_utils.TestCase):
     fixtures = ['base/addon_5299_gcal', 'addons/test_manager']
 
+    def setUp(self):
+        set_user(None)
+
     def test_featured(self):
         featured = Addon.objects.featured(amo.FIREFOX)[0]
         eq_(featured.id, 1)
@@ -846,6 +849,7 @@ class TestBackupVersion(test_utils.TestCase):
     def setUp(self):
         self.version_1_2_0 = 105387
         self.addon = Addon.objects.get(pk=1865)
+        set_user(None)
 
     def setup_new_version(self):
         for version in Version.objects.filter(pk__gte=self.version_1_2_0):

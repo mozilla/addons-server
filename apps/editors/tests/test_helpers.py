@@ -279,8 +279,9 @@ class TestReviewHelper(test_utils.TestCase):
         self.helper.handler.log_approval(amo.LOG.APPROVE_VERSION)
 
         log = ActivityLog.objects.for_addons(self.helper.addon)
-        eq_(log[0].action, amo.LOG.CHANGE_STATUS.id)
-        eq_(log[1].action, amo.LOG.APPROVE_VERSION.id)
+        eq_(len(log), 2)
+        ids = set([l.action for l in log])
+        eq_(ids, set([amo.LOG.CHANGE_STATUS.id, amo.LOG.APPROVE_VERSION.id]))
 
     def test_notify_email(self):
         self.helper.set_data(self.get_data())
@@ -338,8 +339,9 @@ class TestReviewHelper(test_utils.TestCase):
 
             log = ActivityLog.objects.for_addons(self.helper.addon)
             eq_(len(log), 2)
-            eq_(log[0].action, amo.LOG.CHANGE_STATUS.id)
-            eq_(log[1].action, amo.LOG.APPROVE_VERSION.id)
+            ids = set([l.action for l in log])
+            eq_(ids, set([amo.LOG.CHANGE_STATUS.id,
+                          amo.LOG.APPROVE_VERSION.id]))
 
     def test_nomination_to_preliminary(self):
         for status in NOMINATED_STATUSES:
