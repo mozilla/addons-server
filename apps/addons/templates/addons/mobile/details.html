@@ -40,16 +40,18 @@
   </div>
   {% endif %}
 
-  <a class="listview" href="{{ url('reviews.list', addon.slug) }}">
-    <div class="icon">
-      {{ addon.average_rating|stars }}
-    </div>
-    {% trans num=addon.total_reviews, cnt=addon.total_reviews|numberfmt %}
-      See All Reviews
-    {% pluralize %}
-      See All {{ cnt }} Reviews
-    {% endtrans %}
-  </a>
+  {% if addon.total_reviews %}
+    <a class="listview" href="{{ url('reviews.list', addon.slug) }}">
+      <div class="icon">
+        {{ addon.average_rating|stars }}
+      </div>
+      {% trans num=addon.total_reviews, cnt=addon.total_reviews|numberfmt %}
+        See All Reviews
+      {% pluralize %}
+        See All {{ cnt }} Reviews
+      {% endtrans %}
+    </a>
+  {% endif %}
 
   <details>
     <table>
