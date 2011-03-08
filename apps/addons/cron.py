@@ -295,6 +295,9 @@ def recs():
         FROM addons_collections ac
         INNER JOIN collections c
                 ON ac.collection_id=c.id AND c.collection_type IN %s
+        INNER JOIN addons ON
+            (ac.addon_id=addons.id AND inactive=0 AND status=4
+             AND addontype_id <> 9 AND current_version IS NOT NULL)
         ORDER BY addon_id, collection_id
     """, [(amo.COLLECTION_SYNCHRONIZED, amo.COLLECTION_FAVORITES)])
     qs = cursor.fetchall()
