@@ -3,21 +3,13 @@ import re
 from django.db import models, connection
 from django.utils import encoding
 
-from bleach import Bleach
+import bleach
 import html5lib
 from html5lib.serializer.htmlserializer import HTMLSerializer
 
 import amo.models
 from amo import urlresolvers
 from . import utils
-
-
-class MyBleach(Bleach):
-    def filter_url(self, url):
-        """Pass auto-linked URLs through the redirector."""
-        return urlresolvers.get_outgoing_url(url)
-
-bleach = MyBleach()
 
 
 class Translation(amo.models.ModelBase):
@@ -128,8 +120,10 @@ class PurifiedTranslation(Translation):
 
     def clean(self):
         super(PurifiedTranslation, self).clean()
-        string = self.clean_nl(self.localized_string)
-        self.localized_string_clean = bleach.bleach(string)
+        cleaned = bleach.clean(self.localized_string)
+        linkified = bleach.linkify(cleaned, nofollow=True,
+                filter_url=urlresolvers.get_outgoing_url)
+        self.localized_string_clean = self.clean_nl(linkified).strip()
 
     def clean_nl(self, string):
         """ This will clean up newlines so that nl2br can properly
@@ -182,7 +176,8 @@ class LinkifiedTranslation(PurifiedTranslation):
         proxy = True
 
     def clean(self):
-        linkified = bleach.linkify(self.localized_string)
+        linkified = bleach.linkify(self.localized_string,
+                filter_url=urlresolvers.get_outgoing_url)
         clean = bleach.clean(linkified, tags=['a'],
                              attributes={'a': ['href', 'rel']})
         self.localized_string_clean = clean
