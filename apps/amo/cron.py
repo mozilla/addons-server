@@ -8,6 +8,7 @@ from subprocess import Popen, PIPE
 
 from django.conf import settings
 
+from celery.messaging import establish_connection
 from celeryutils import task
 import cronjobs
 import commonware.log
@@ -16,17 +17,16 @@ import redisutils
 
 import amo
 from amo.utils import chunked
-from addons.models import Addon, AddonCategory
+from addons.models import Addon
 from addons.utils import AdminActivityLogMigrationTracker, MigrationTracker
 from applications.models import Application, AppVersion
-from bandwagon.models import Collection, CollectionAddon
+from bandwagon.models import Collection
 from cake.models import Session
 from devhub.models import ActivityLog, LegacyAddonLog
 from editors.models import EventLog
 from files.models import Approval, File, TestResultCache
 from reviews.models import Review
 from sharing import SERVICES_LIST
-from tags.models import AddonTag
 from stats.models import AddonShareCount, Contribution
 from users.models import UserProfile
 
@@ -39,6 +39,7 @@ def gc(test_result=True):
 
     three_months_ago = datetime.today() - timedelta(days=90)
     six_days_ago = datetime.today() - timedelta(days=6)
+    four_days_ago = datetime.today() - timedelta(days=4)
     two_days_ago = datetime.today() - timedelta(days=2)
     one_hour_ago = datetime.today() - timedelta(hours=1)
 
@@ -105,6 +106,27 @@ def gc(test_result=True):
     log.debug('Cleaning up anonymous collections.')
     Collection.objects.filter(created__lt=two_days_ago,
                               type=amo.COLLECTION_ANONYMOUS).delete()
+
+    # Remove Incomplete add-ons older than 4 days.
+    items = (Addon.objects.filter(
+             highest_status=amo.STATUS_NULL, status=amo.STATUS_NULL,
+             created__lt=four_days_ago).values_list('id', flat=True))
+    with establish_connection() as conn:
+        for chunk in chunked(items, 100):
+            _delete_incomplete_addons.apply_async(
+                    args=[chunk], connection=conn)
+
+
+@task
+def _delete_incomplete_addons(items, **kw):
+    log.info('[%s@%s] Deleting incomplete addons' %
+             (len(items), _migrate_editor_eventlog.rate_limit))
+    for addon in Addon.objects.filter(
+            highest_status=0, status=0, pk__in=items):
+        try:
+            addon.delete('Deleted for incompleteness')
+        except Exception:
+            log.error("Couldn't delete add-on: %s" % addon.id)
 
 
 @cronjobs.register
