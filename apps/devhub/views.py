@@ -67,7 +67,8 @@ def dev_required(owner_for_post=False, allow_editors=False):
                     return fun()
             # Require an owner or dev for POST requests.
             if request.method == 'POST':
-                if acl.check_addon_ownership(request, addon, dev=not owner_for_post):
+                if acl.check_addon_ownership(request, addon,
+                                             dev=not owner_for_post):
                     return fun()
             # Ignore disabled so they can view their add-on.
             elif acl.check_addon_ownership(request, addon, viewer=True,
@@ -781,7 +782,6 @@ def version_edit(request, addon_id, addon, version_id):
 def version_delete(request, addon_id, addon):
     version_id = request.POST.get('version_id')
     version = get_object_or_404(Version, pk=version_id, addon=addon)
-    amo.log(amo.LOG.DELETE_VERSION, version.version, addon)
     messages.success(request, _('Version %s deleted.') % version.version)
     version.delete()
     return redirect('devhub.versions', addon.slug)
