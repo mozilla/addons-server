@@ -14,7 +14,6 @@ from nose.tools import eq_, assert_not_equal
 import test_utils
 
 import amo
-import files.tests
 from amo import set_user
 from amo.signals import _connect, _disconnect
 from addons.models import (Addon, AddonCategory, AddonDependency,
@@ -24,6 +23,7 @@ from addons.models import (Addon, AddonCategory, AddonDependency,
 from applications.models import Application, AppVersion
 from devhub.models import ActivityLog
 from files.models import File, Platform
+from files.tests.test_models import UploadTest
 from reviews.models import Review
 from translations.models import TranslationSequence
 from users.models import UserProfile
@@ -332,7 +332,7 @@ class TestAddonModels(test_utils.TestCase):
                   "Should be three nl's before this line.\n\n\n\n"
                   "Should be four nl's before this line.")
 
-        after = before # Nothing special; this shouldn't change.
+        after = before  # Nothing special; this shouldn't change.
 
         eq_(self.newlines_helper(before), after)
 
@@ -926,7 +926,6 @@ class TestAddonModels(test_utils.TestCase):
         eq_(addon.versions.latest().nomination.date(), earlier.date())
 
 
-
 class TestBackupVersion(test_utils.TestCase):
     fixtures = ['addons/update']
 
@@ -1093,7 +1092,7 @@ class TestFlushURLs(test_utils.TestCase):
             assert self.is_url_hashed(url), url
 
 
-class TestAddonFromUpload(files.tests.UploadTest):
+class TestAddonFromUpload(UploadTest):
     fixtures = ('base/apps', 'base/users')
 
     def setUp(self):

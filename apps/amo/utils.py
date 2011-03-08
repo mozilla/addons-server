@@ -1,3 +1,4 @@
+import hashlib
 import itertools
 import operator
 import os
@@ -12,6 +13,7 @@ from django import http
 from django.conf import settings
 from django.contrib import messages
 from django.core import paginator
+from django.core.cache import cache
 from django.core.serializers import json
 from django.core.validators import ValidationError, validate_slug
 from django.core.mail import send_mail as django_send_mail
@@ -414,6 +416,7 @@ class HttpResponseSendFile(http.HttpResponse):
             return self.request.META['wsgi.file_wrapper'](fp, chunk)
         else:
             self['Content-Length'] = os.path.getsize(self.path)
+
             def wrapper():
                 while 1:
                     data = fp.read(chunk)
@@ -421,3 +424,26 @@ class HttpResponseSendFile(http.HttpResponse):
                         break
                     yield data
             return wrapper()
+
+
+def memoize(prefix, time=60):
+    """
+    A simple memoize that caches into memcache, using a simple
+    key based on stringing args and kwargs. Keep args simple.
+    """
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            key = hashlib.md5()
+            for arg in itertools.chain(args, kwargs):
+                key.update(str(arg))
+            key = '%s:memoize:%s:%s' % (settings.CACHE_PREFIX,
+                                        prefix, key.hexdigest())
+            data = cache.get(key)
+            if data is not None:
+                return data
+            data = func(*args, **kwargs)
+            cache.set(key, data, time)
+            return data
+        return wrapper
+    return decorator
+

@@ -120,7 +120,7 @@ def _queue(request, TableObj, tab):
         else:
             try:
                 # Force a limit query for efficiency:
-                row = qs[review_num - 1 : 1][0]
+                row = qs[review_num - 1:1][0]
                 return redirect('%s?num=%s' % (
                                 reverse('editors.review',
                                         args=[row.latest_version_id]),
@@ -155,6 +155,7 @@ def _queue_counts(type=None):
     for k, v in counts.items():
         counts[k] = v()
     return counts
+
 
 @editor_required
 def queue(request):

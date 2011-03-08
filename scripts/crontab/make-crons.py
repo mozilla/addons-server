@@ -70,6 +70,7 @@ HOME = /tmp
 35 * * * * $REMORA; php -f maintenance.php l10n_rss
 40 * * * * $Z_CRON fetch_ryf_blog
 45 * * * * $Z_CRON update_addon_appsupport
+50 * * * * $Z_CRON cleanup_extracted_file
 
 
 #every 3 hours

@@ -385,6 +385,9 @@ MINIFY_BUNDLES = {
         'zamboni/editors': (
             'css/zamboni/editors.css',
         ),
+        'zamboni/files': (
+            'css/zamboni/files.css',
+        ),
         'zamboni/mobile': (
             'css/zamboni/mobile.css',
         ),
@@ -467,6 +470,10 @@ MINIFY_BUNDLES = {
         ),
         'zamboni/editors': (
             'js/zamboni/editors.js',
+        ),
+        'zamboni/files': (
+            'js/diff/diff_match_patch_uncompressed.js',
+            'js/zamboni/files.js',
         ),
         'zamboni/mobile': (
             'js/zamboni/jquery-1.5.min.js',
@@ -583,13 +590,13 @@ PAYPAL_API_VERSION = '50'
 PAYPAL_APP_ID = ''
 PAYPAL_BN = ''
 PAYPAL_CGI_URL = 'https://www.paypal.com/cgi-bin/webscr'
-PAYPAL_CGI_AUTH = {'USER':'', 'PASSWORD':'', 'SIGNATURE':''}
+PAYPAL_CGI_AUTH = {'USER': '', 'PASSWORD': '', 'SIGNATURE': ''}
 
 PAYPAL_USE_EMBEDDED = True
 PAYPAL_PAY_URL = 'https://svcs.paypal.com/AdaptivePayments/Pay'
 PAYPAL_FLOW_URL = 'https://paypal.com/webapps/adaptivepayment/flow/pay'
 PAYPAL_JS_URL = 'https://www.paypalobjects.com/js/external/dg.js'
-PAYPAL_EMBEDDED_AUTH = {'USER':'', 'PASSWORD':'', 'SIGNATURE':''}
+PAYPAL_EMBEDDED_AUTH = {'USER': '', 'PASSWORD': '', 'SIGNATURE': ''}
 PAYPAL_EMAIL = ''
 
 # Paypal is an awful place that doesn't understand locales.  Instead they have

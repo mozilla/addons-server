@@ -1,5 +1,6 @@
 import collections
 import glob
+import hashlib
 import logging
 import os
 import re
@@ -134,16 +135,21 @@ def parse_search(filename, addon=None):
             'version': datetime.now().strftime('%Y%m%d')}
 
 
+def extract_xpi(xpi, path):
+    zip = zipfile.ZipFile(xpi)
+    for f in zip.namelist():
+        if '..' in f or f.startswith('/'):
+            log.error('Extraction error, Invalid archive: %s' % xpi)
+            raise forms.ValidationError(_('Invalid archive.'))
+    zip.extractall(path)
+
+
 def parse_xpi(xpi, addon=None):
     """Extract and parse an XPI."""
     # Extract to /tmp
     path = tempfile.mkdtemp()
     try:
-        zip = zipfile.ZipFile(xpi)
-        for f in zip.namelist():
-            if '..' in f or f.startswith('/'):
-                raise forms.ValidationError(_('Invalid archive.'))
-        zip.extractall(path)
+        extract_xpi(xpi, path)
         rdf = Extractor.parse(path)
     except forms.ValidationError:
         raise
@@ -198,3 +204,15 @@ def nfd_str(u):
     if isinstance(u, unicode):
         return unicodedata.normalize('NFD', u).encode('utf-8')
     return u
+
+
+def get_md5(filename, block_size=2 ** 20):
+    """Returns an MD5 hash for a filename."""
+    f = open(filename, 'rb')
+    md5 = hashlib.md5()
+    while True:
+        data = f.read(block_size)
+        if not data:
+            break
+        md5.update(data)
+    return md5.hexdigest()

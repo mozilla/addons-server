@@ -526,7 +526,7 @@ class TestZip(test_utils.TestCase):
     def test_zip(self):
         # This zip contains just one file chrome/ that we expect
         # to be unzipped as a directory, not a file.
-        xpi = os.path.join(os.path.dirname(__file__), 'fixtures',
+        xpi = os.path.join(os.path.dirname(__file__), '..', 'fixtures',
                            'files', 'directory-test.xpi')
 
         # This is to work around: http://bugs.python.org/issue4710

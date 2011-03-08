@@ -130,4 +130,6 @@ test('message hidden', function() {
     equals($('.daily-message .close:visible', doc).length, 0);
 });
 
+
+
 });

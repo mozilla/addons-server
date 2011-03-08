@@ -20,7 +20,6 @@ from redisutils import mock_redis, reset_redis
 import test_utils
 
 import amo
-import files.tests
 import paypal
 from amo.urlresolvers import reverse
 from amo.tests import formset, initial
@@ -33,6 +32,7 @@ from applications.models import Application, AppVersion
 from devhub.forms import ContribForm
 from devhub.models import ActivityLog, SubmitStep
 from files.models import File, FileUpload, Platform, FileValidation
+from files.tests.test_models import UploadTest as BaseUploadTest
 from reviews.models import Review
 from tags.models import Tag, AddonTag
 from users.models import UserProfile
@@ -2451,7 +2451,7 @@ class TestSubmitSteps(test_utils.TestCase):
         self.assert_highlight(doc, 7)
 
 
-class TestUpload(files.tests.UploadTest):
+class TestUpload(BaseUploadTest):
     fixtures = ['base/apps', 'base/users']
 
     def setUp(self):
@@ -2518,7 +2518,7 @@ class TestUpload(files.tests.UploadTest):
         self.assertRedirects(r, url)
 
 
-class TestUploadDetail(files.tests.UploadTest):
+class TestUploadDetail(BaseUploadTest):
     fixtures = ['base/apps', 'base/appversion', 'base/users']
 
     def setUp(self):
@@ -2644,7 +2644,7 @@ class TestUploadDetail(files.tests.UploadTest):
         eq_(data['new_platform_choices'], None)
 
 
-class TestUploadValidation(files.tests.UploadTest):
+class TestUploadValidation(BaseUploadTest):
     fixtures = ['base/apps', 'base/users',
                 'devhub/invalid-id-uploaded-xpi.json']
 
@@ -2764,7 +2764,7 @@ class TestValidateAddon(test_utils.TestCase):
             reverse('devhub.upload'))
 
 
-class TestValidateFile(files.tests.UploadTest):
+class TestValidateFile(BaseUploadTest):
     fixtures = ['base/apps', 'base/users',
                 'devhub/addon-file-100456', 'base/platforms']
 
@@ -2821,7 +2821,7 @@ def assert_json_field(request, field, msg):
     eq_(content[field], msg)
 
 
-class UploadTest(files.tests.UploadTest, test_utils.TestCase):
+class UploadTest(BaseUploadTest, test_utils.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615']
 
     def setUp(self):
@@ -2989,7 +2989,7 @@ class TestVersionXSS(UploadTest):
         assert '&lt;script&gt;alert' in r.content
 
 
-class TestCreateAddon(files.tests.UploadTest, test_utils.TestCase):
+class TestCreateAddon(BaseUploadTest, test_utils.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/platforms']
 
     def setUp(self):
@@ -3165,7 +3165,7 @@ class TestRequestReview(test_utils.TestCase):
         # The author must upload a new version and re-nominate.
         # However, renominating the *same* version does not adjust the
         # nomination date.
-        orig_date = nomination=datetime.now() - timedelta(days=30)
+        orig_date = datetime.now() - timedelta(days=30)
         # Pretend it was nominated in the past:
         self.version.update(nomination=orig_date)
         self.check(amo.STATUS_NULL, self.public_url, amo.STATUS_NOMINATED)

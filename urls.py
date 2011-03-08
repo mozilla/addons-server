@@ -34,6 +34,9 @@ urlpatterns = patterns('',
     # Collections.
     ('', include('bandwagon.urls')),
 
+    # Files
+    ('^files/', include('files.urls')),
+
     # Downloads.
     ('^downloads/', include(versions.urls.download_patterns)),
 

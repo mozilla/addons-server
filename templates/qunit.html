@@ -216,6 +216,21 @@
         </div>
     </div>
   </div>
+  <div id="file-viewer">
+    <div class="files">
+      <ul>
+        <li class="" style="padding-left: 0em;" data-parent="">
+            <a class="file" href="">someurl</a>
+        </li>
+        <li style="padding-left: 1em; display: list-item;" data-parent="">
+            <a class="file directory closed" href="">foo</a>
+        </li>
+        <li class="hidden" style="padding-left: 1em; display: list-item;" data-parent="foo">
+            <a class="file" href="someurl">foo/bar.txt</a>
+        </li>
+      </ul>
+    </div>
+  </div>
 
   <script src="{{ url('jsi18n') }}/build:{{ BUILD_ID_JS }}"></script>
   {{ js('common') }}

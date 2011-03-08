@@ -1,8 +1,8 @@
 # -*- coding: utf8 -*-
+from datetime import datetime, timedelta
 import json
 import re
 import time
-from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.core import mail
@@ -19,11 +19,11 @@ from addons.models import Addon, AddonUser
 from applications.models import Application
 from devhub.models import ActivityLog
 from editors.models import EventLog
+from files.models import Approval, Platform, File
 import reviews
 from reviews.models import Review, ReviewFlag
 from users.models import UserProfile
 from versions.models import Version, VersionSummary, AppVersion
-from files.models import Approval, Platform, File
 from zadmin.models import set_config
 from . test_models import create_addon_file
 

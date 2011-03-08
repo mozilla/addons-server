@@ -1,0 +1,85 @@
+{% extends "files/base.html" %}
+
+{% block bodyclass %}inverse{% endblock %}
+
+{% block content %}
+<h3>
+    <a href="{{ file_url }}">{{ addon.name }} {{ version }}</a>
+    {% if file.platform.id != amo.PLATFORM_ALL.id %}({{ file.platform }}){% endif %}
+</h3>
+<div id="file-viewer">
+    {% if not status %}
+        <p id="waiting" data-url="{{ poll_url }}">
+            {{ _('Add-on file being processed, please wait.') }}
+        </p>
+    {% endif %}
+    <div class="files">
+        <ul>
+        {% if files %}
+            {% for key, value in files.items() %}
+                <li data-parent="{{ value['parent'] }}"
+                    data-short="{{ value['short'] }}"
+                    style="padding-left: {{ value['depth'] }}em"
+                    class="{% if value['depth'] %}hidden{% endif %}">
+                    <a class="{{ file_viewer_class(value, selected) }}"
+                        href="{{ value['url'] }}">{{ value['filename'] }}</a>
+                </li>
+            {% endfor %}
+        {% endif %}
+        </ul>
+        {% if files %}
+        <p>
+            <a href="#" id="files-prev">{{ _('Prev') }}</a> |
+            <a href="#" id="files-next">{{ _('Next') }}</a><br />
+            <a href="#" id="files-expand-all">{{ _('Expand All') }}</a>
+        </p>
+
+        {% elif not files and status %}
+            <p>{{ _('No files in the uploaded file.') }}</p>
+        {% endif %}
+    </div>
+    <div class="content-wrapper">
+        {% if msg %}
+            <p><strong>{{ msg }}</strong></p>
+        {% endif %}
+        <div class="numbers">
+        </div>
+        <div class="content">
+        {% if viewer %}
+            {% if selected['binary'] and not selected['directory'] %}
+                <p>{{ _('Binary file, hash:') }} {{ selected.md5 }}</p>
+            {% else %}
+                {% if selected and content %}
+                    <pre id="content">{{ content }}</pre>
+                {% else %}
+                    <p>{{ _('No content.') }}</p>
+                {% endif %}
+            {% endif %}
+        {% endif %}
+        {% if diff and not diff.is_binary() %}
+            {% if text_one and text_two %}
+                <pre id="diff"></pre>
+            {% endif %}
+        {% endif %}
+        {% if diff and diff.is_binary() %}
+            <p>
+            {% if diff.is_different() %}
+                <strong>{{ _('Files are different.') }}</strong><br/>
+            {% else %}
+                <strong>{{ _('Files are the same.') }}</strong><br/>
+            {% endif %}
+            </p>
+        {% endif %}
+        {% if diff and not diff.is_binary() %}
+            <div class="hidden">
+                <pre id="file-one">{{ text_one }}</pre>
+                <pre id="file-two">{{ text_two }}</pre>
+            </div>
+        {% endif %}
+        </div>
+    </div>
+    <p class="help">
+            {{ _('Shortcuts: prev j, next k') }}
+    </p>
+</div>
+{% endblock %}

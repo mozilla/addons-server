@@ -10,13 +10,13 @@ from nose.tools import eq_
 from pyquery import PyQuery
 
 import amo
-import files.tests
 from amo.urlresolvers import reverse
 from addons.models import Addon
 from addons.tests.test_views import TestMobile
 from applications.models import AppVersion, Application
 from devhub.models import ActivityLog
 from files.models import File, Platform
+from files.tests.test_models import UploadTest
 from users.models import UserProfile
 from versions import views
 from versions.models import Version, ApplicationsVersions
@@ -523,7 +523,7 @@ class TestDownloadsLatest(TestDownloadsBase):
         assert r['Location'].endswith('?src=xxx'), r['Location']
 
 
-class TestVersionFromUpload(files.tests.UploadTest, test_utils.TestCase):
+class TestVersionFromUpload(UploadTest, test_utils.TestCase):
     fixtures = ['base/apps', 'base/addon_3615', 'base/users']
 
     def setUp(self):

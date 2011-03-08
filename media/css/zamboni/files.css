@@ -1,0 +1,104 @@
+#file-viewer {
+    background: white;
+    padding-top: 1em
+}
+
+#file-viewer .files {
+    width: 15em;
+    float: left;
+}
+
+#file-viewer .files li a {
+    display: inline-block;
+}
+
+#file-viewer .numbers {
+    width: 3em;
+    float: left;
+    padding-left: 4em;
+    border-top: 1px solid white;
+}
+
+#file-viewer .content {
+    width: 50em;
+    float: left;
+    padding-left: 1em;
+}
+
+pre div, pre ins, pre del {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    width: 50em;
+}
+
+pre div:hover, pre ins:hover, pre del:hover {
+    background-color: #ffffcc;
+}
+
+
+pre, #file-viewer .numbers {
+    line-height: 1.15em;
+}
+
+pre ins {
+    background-color: #e6ffe6;
+    text-decoration: none;
+    line-height: inherit;
+}
+
+pre del {
+    background-color: #ffe6e6;
+    text-decoration: none;
+    line-height: inherit;
+}
+
+#file-viewer .content {
+    width: 10em;
+    float: left;
+}
+
+#file-viewer .add {
+    background-color: #aae0aa;
+    width: 100%;
+}
+
+#file-viewer .delete {
+    background-color: #ffaaaa;
+    width: 100%;
+}
+
+#file-viewer span {
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+}
+
+#file-viewer li a {
+    margin-left: 20px;
+    padding: 2px 5px 2px 15px;
+    width: 100%;
+}
+
+#file-viewer a.selected {
+    background-color: #ddf8dd;
+}
+
+#file-viewer a.closed {
+    background: url('/media/img/icons/plus.gif') 0 no-repeat;
+}
+
+#file-viewer a.open {
+    background: url('/media/img/icons/minus.gif') 0 no-repeat;
+}
+
+#file-viewer #waiting {
+    background-image: url(../../img/zamboni/loading-white.gif);
+    background-repeat: no-repeat;
+    background-position: left top;
+    padding-left: 2em;
+}
+
+#file-viewer p.help {
+    clear: both;
+}

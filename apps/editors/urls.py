@@ -2,6 +2,7 @@ from django.conf.urls.defaults import patterns, url
 
 from . import views
 
+
 # All URLs under /editors/
 urlpatterns = patterns('',
     url(r'^queue$', views.queue, name='editors.queue'),
