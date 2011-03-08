@@ -7,6 +7,7 @@ from datetime import datetime, timedelta
 from subprocess import Popen, PIPE
 
 from django.conf import settings
+from django.db.models import Count
 
 from celery.messaging import establish_connection
 from celeryutils import task
@@ -17,7 +18,7 @@ import redisutils
 
 import amo
 from amo.utils import chunked
-from addons.models import Addon
+from addons.models import Addon, AddonCategory, Category
 from addons.utils import AdminActivityLogMigrationTracker, MigrationTracker
 from applications.models import Application, AppVersion
 from bandwagon.models import Collection
@@ -31,6 +32,76 @@ from stats.models import AddonShareCount, Contribution
 from users.models import UserProfile
 
 log = commonware.log.getLogger('z.cron')
+
+
+# TODO(davedash): Delete me after this has been run.
+@cronjobs.register
+def remove_extra_cats():
+    """
+    Remove 'misc' category if other categories are present.
+    Remove categories in excess of two categories.
+    """
+    # Remove misc categories from addons if they are also in other categories
+    # for that app.
+    for cat in Category.objects.filter(misc=True):
+        # Find all the add-ons in this category.
+        addons_in_misc = cat.addon_set.values_list('id', flat=True)
+        delete_me = []
+
+        # Count the categories they have per app.
+        cat_count = (AddonCategory.objects.values('addon')
+                     .annotate(num_cats=Count('category'))
+                     .filter(num_cats__gt=1, addon__in=addons_in_misc,
+                             category__application=cat.application_id))
+
+        delete_me = [item['addon'] for item in cat_count]
+        log.info('Removing %s from %d add-ons' % (cat, len(delete_me)))
+        (AddonCategory.objects.filter(category=cat, addon__in=delete_me)
+         .delete())
+
+    with establish_connection() as conn:
+        # Remove all but 2 categories from everything else, per app
+        for app in amo.APP_USAGE:
+            # SELECT
+            #   `addons_categories`.`addon_id`,
+            #   COUNT(`addons_categories`.`category_id`) AS `num_cats`
+            # FROM
+            #   `addons_categories` INNER JOIN `categories` ON
+            #   (`addons_categories`.`category_id` = `categories`.`id`)
+            # WHERE
+            #   (`categories`.`application_id` = 1 )
+            # GROUP BY
+            #   `addons_categories`.`addon_id`
+            # HAVING COUNT(`addons_categories`.`category_id`) > 2
+            log.info('Examining %s add-ons' % unicode(app.pretty))
+            results = (AddonCategory.objects
+                       .filter(category__application=app.id)
+                       .values('addon_id').annotate(num_cats=Count('category'))
+                       .filter(num_cats__gt=2))
+            for chunk in chunked(results, 100):
+                _trim_categories.apply_async(args=[chunk, app.id],
+                                             connection=conn)
+
+
+@task
+def _trim_categories(results, app_id, **kw):
+    """
+    `results` is a list of dicts.  E.g.:
+
+    [{'addon_id': 138L, 'num_cats': 4}, ...]
+    """
+    log.info('[%s@%s] Trimming category-fat add-ons' %
+             (len(results), _trim_categories.rate_limit))
+
+    delete_me = []
+    pks = [r['addon_id'] for r in results]
+
+    for addon in Addon.objects.filter(pk__in=pks):
+        qs = addon.addoncategory_set.filter(category__application=app_id)[2:]
+        delete_me.extend(qs.values_list('id', flat=True))
+
+    log.info('Deleting %d add-on categories.' % len(delete_me))
+    AddonCategory.objects.filter(pk__in=delete_me).delete()
 
 
 @cronjobs.register
@@ -119,8 +190,8 @@ def gc(test_result=True):
 
 @task
 def _delete_incomplete_addons(items, **kw):
-    log.info('[%s@%s] Deleting incomplete addons' %
-             (len(items), _migrate_editor_eventlog.rate_limit))
+    log.info('[%s@%s] Deleting incomplete add-ons' %
+             (len(items), _delete_incomplete_addons.rate_limit))
     for addon in Addon.objects.filter(
             highest_status=0, status=0, pk__in=items):
         try:

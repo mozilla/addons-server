@@ -3,13 +3,14 @@ from datetime import datetime, timedelta
 from nose.tools import eq_
 import test_utils
 
-from addons.models import Addon
+import amo
+from addons.models import Addon, AddonCategory, Category
 from bandwagon.models import Collection
 from cake.models import Session
 from devhub.models import ActivityLog
 from files.models import TestResult, TestResultCache
 from stats.models import AddonShareCount, Contribution
-from amo.cron import gc
+from amo.cron import gc, remove_extra_cats
 
 
 class GarbageTest(test_utils.TestCase):
@@ -39,3 +40,44 @@ class GarbageTest(test_utils.TestCase):
         assert Addon.objects.filter(status=0, highest_status=0)
         gc()
         assert not Addon.objects.filter(status=0, highest_status=0)
+
+
+class RemoveExtraCatTest(test_utils.TestCase):
+    fixtures = ['base/category']
+
+    def setUp(self):
+        self.misc = Category.objects.create(misc=True, name='misc',
+                                            type=amo.ADDON_EXTENSION,
+                                            application_id=amo.FIREFOX.id)
+        self.regular = []
+        for i in xrange(3):
+            self.regular.append(Category.objects.create(
+                name='normal_%d' % i, application_id=amo.FIREFOX.id,
+                type=amo.ADDON_EXTENSION))
+        self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
+
+    def test_remove_others(self):
+        eq_(self.addon.categories.count(), 0)
+        AddonCategory.objects.create(addon=self.addon, category=self.misc)
+        AddonCategory.objects.create(addon=self.addon,
+                                     category=self.regular[0])
+        eq_(self.addon.categories.count(), 2)
+        remove_extra_cats()
+        eq_(self.addon.categories.count(), 1)
+        eq_(unicode(self.addon.categories.get().name), 'normal_0')
+
+    def test_remove_extras(self):
+        eq_(self.addon.categories.count(), 0)
+        for cat in self.regular:
+            AddonCategory.objects.create(addon=self.addon, category=cat)
+        eq_(self.addon.categories.count(), 3)
+        remove_extra_cats()
+        eq_(self.addon.categories.count(), 2)
+
+    def test_noop(self):
+        eq_(self.addon.categories.count(), 0)
+        for cat in self.regular[:2]:
+            AddonCategory.objects.create(addon=self.addon, category=cat)
+        eq_(self.addon.categories.count(), 2)
+        remove_extra_cats()
+        eq_(self.addon.categories.count(), 2)
