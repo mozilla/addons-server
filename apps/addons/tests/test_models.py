@@ -543,21 +543,67 @@ class TestAddonModels(test_utils.TestCase):
 
         eq_(self.newlines_helper(before), after)
 
-    def test_newlines_malformed_b(self):
+    def test_newlines_unclosed_b(self):
         before = ("<b>test")
         after = ("<b>test</b>")
 
         eq_(self.newlines_helper(before), after)
 
-    def test_newlines_malformed_b_wrapped(self):
+    def test_newlines_unclosed_b_wrapped(self):
         before = ("This is a <b>test")
         after = ("This is a <b>test</b>")
 
         eq_(self.newlines_helper(before), after)
 
-    def test_newlines_malformed_li(self):
+    def test_newlines_unclosed_li(self):
         before = ("<ul><li>test</ul>")
         after = ("<ul><li>test</li></ul>")
+
+        eq_(self.newlines_helper(before), after)
+
+    def test_newlines_malformed_faketag(self):
+        before = "<madonna"
+        after = ""
+
+        eq_(self.newlines_helper(before), after)
+
+    def test_newlines_correct_faketag(self):
+        before = "<madonna>"
+        after = "&lt;madonna&gt;"
+
+        eq_(self.newlines_helper(before), after)
+
+    def test_newlines_malformed_tag(self):
+        before = "<strong"
+        after = ""
+
+        eq_(self.newlines_helper(before), after)
+
+    def test_newlines_malformed_faketag_surrounded(self):
+        before = "This is a <test of bleach"
+        after = 'This is a &lt;test of="" bleach=""&gt;'
+
+        # Output is ugly, but not much we can do.  Bleach+html5lib is adamant
+        # this is a tag.
+        eq_(self.newlines_helper(before), after)
+
+    def test_newlines_malformed_tag_surrounded(self):
+        before = "This is a <strong of bleach"
+        after = "This is a <strong></strong>"
+
+        # Bleach interprets 'of' and 'bleach' as attributes, and strips them.
+        # Good? No.  Any way around it?  Not really.
+        eq_(self.newlines_helper(before), after)
+
+    def test_newlines_less_than(self):
+        before = "3 < 5"
+        after = "3 &lt; 5"
+
+        eq_(self.newlines_helper(before), after)
+
+    def test_newlines_less_than_tight(self):
+        before = "abc 3<5 def"
+        after = "abc 3&lt;5 def"
 
         eq_(self.newlines_helper(before), after)
 
