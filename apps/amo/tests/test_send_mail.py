@@ -9,6 +9,12 @@ from amo.utils import send_mail
 
 class SendMailTest(test.TestCase):
 
+    def setUp(self):
+        self._email_blacklist = list(getattr(settings, 'EMAIL_BLACKLIST', []))
+
+    def tearDown(self):
+        settings.EMAIL_BLACKLIST = self._email_blacklist
+
     def test_blacklist(self):
         to = 'nobody@mozilla.org'
         settings.EMAIL_BLACKLIST = (to,)

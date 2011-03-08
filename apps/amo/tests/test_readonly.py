@@ -1,5 +1,3 @@
-import copy
-
 from django.conf import settings
 from django.db import models
 from django.utils import importlib
@@ -14,6 +12,20 @@ from amo.urlresolvers import reverse
 from addons.models import Addon
 
 
+def pubdir(ob):
+    for name in dir(ob):
+        if not name.startswith('_'):
+            yield name
+
+
+def quickcopy(val):
+    if isinstance(val, dict):
+        val = val.copy()
+    elif isinstance(val, list):
+        val = list(val)
+    return val
+
+
 class ReadOnlyModeTest(test_utils.TestCase):
     extra = ('amo.middleware.ReadOnlyMiddleware',)
 
@@ -21,14 +33,23 @@ class ReadOnlyModeTest(test_utils.TestCase):
         safe_signals.Signal.send = safe_signals.unsafe_send
         models.signals.pre_save.connect(self.db_error)
         models.signals.pre_delete.connect(self.db_error)
-        self.old_settings = copy.deepcopy(settings._wrapped.__dict__)
+        self.old_settings = dict((k, quickcopy(getattr(settings, k)))
+                                 for k in pubdir(settings))
         settings.SLAVE_DATABASES = ['default']
         settings_module = importlib.import_module(settings.SETTINGS_MODULE)
         settings_module.read_only_mode(settings._wrapped.__dict__)
         self.client.handler.load_middleware()
 
     def tearDown(self):
-        settings._wrapped.__dict__ = self.old_settings
+        for k in pubdir(settings):
+            if k not in self.old_settings:
+                delattr(self.old_settings, k)
+        for k, v in self.old_settings.items():
+            try:
+                setattr(settings, k, v)
+            except AttributeError:
+                # __weakref__
+                pass
         models.signals.pre_save.disconnect(self.db_error)
         models.signals.pre_delete.disconnect(self.db_error)
         safe_signals.Signal.send = safe_signals.safe_send
