@@ -1,4 +1,5 @@
 from django.db.models import Q
+from django.utils.safestring import mark_safe
 from django.views.decorators.cache import cache_page
 
 import jingo
@@ -46,8 +47,8 @@ def install_button(context, addon, **kwargs):
     if backup and addon.backup_version:
         kwargs['version'] = addon.backup_version
         backup = _install_button(context, addon, **kwargs)
-        return ('%s\n<div class="backup-button hidden install-wrapper">%s</div>'
-                % (base, backup))
+        return mark_safe('%s\n<div class="backup-button hidden '
+                         'install-wrapper">%s</div>' % (base, backup))
     return base
 
 
