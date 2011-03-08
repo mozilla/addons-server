@@ -158,6 +158,6 @@ class StPatricksPersonas(CollectionPromo):
     pk = 666627
     id = 'st-patricks'
     cls = 'promo'
-    title = jinja2.Markup(_(u'St. Patrick&rsquo;s Day Personas'))
-    subtitle = jinja2.Markup(
-        _(u'Decorate your browser to celebrate St. Patrick&rsquo;s Day.'))
+    title = _(u'St. Patrick&rsquo;s Day Personas')
+    subtitle = _(u'Decorate your browser to celebrate '
+                 'St. Patrick&rsquo;s Day.')
