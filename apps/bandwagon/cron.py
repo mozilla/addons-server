@@ -27,28 +27,26 @@ def migrate_collection_users():
     publishers."""
     # Don't touch the modified date.
     Collection._meta.get_field('modified').auto_now = False
-    collections = (Collection.objects.no_cache().using('default')
-                   .exclude(type=amo.COLLECTION_ANONYMOUS)
-                   .filter(author__isnull=True, addon_index__isnull=True))
+    # Check author_id in extra so Django doesn't join on the users table.
+    qs = (Collection.objects.no_cache().using('default')
+          .filter(users__isnull=False)
+          .extra(where=['author_id IS NULL']))
 
-    task_log.info('Fixing users for %s collections.' % len(collections))
-    for collection in collections:
-        users = (collection.collectionuser_set
-                 .order_by('id'))
-        if users:
-            collection.author_id = users[0].user_id
-            try:
-                collection.save()
-                users[0].delete()
-            except:
-                task_log.warning("No author found for collection: %d"
-                               % collection.id)
+    # Order by -id so we end up with the lowest user_id in the dict for each
+    # collection.
+    cu = (CollectionUser.objects.filter(collection__in=[c.id for c in qs])
+          .order_by('-id'))
+    users = {}
+    for user in cu:
+        users[user.collection_id] = user
 
-        else:
-            task_log.warning('No users for collection %s.' % collection.id)
-
-    # TODO(davedash): We can just remove this from the model altogether.
-    CollectionUser.objects.all().update(role=amo.COLLECTION_ROLE_PUBLISHER)
+    task_log.info('Fixing users for %s collections.' % len(qs))
+    for collection in qs:
+        if collection.id in users:
+            user = users[collection.id]
+            collection.author_id = user.user_id
+            collection.save()
+            user.delete()
 
 # /Migration tasks
 
