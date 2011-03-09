@@ -122,6 +122,7 @@ function initRecs() {
             $("#recs #nav-recs").fadeIn("slow").addClass("js");
             setPanelWidth("pane");
             initTrunc();
+            $("#recs .persona-preview").previewPersona(true);
         } else {
             var addons_url = $("#more-addons a").attr("href");
             var msg = format(gettext(
