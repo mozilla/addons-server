@@ -39,7 +39,8 @@ def editor_required(func):
 
 
 def context(**kw):
-    ctx = dict(motd=get_config('editors_review_motd'))
+    ctx = dict(motd=get_config('editors_review_motd'),
+               queue_counts=_queue_counts())
     ctx.update(kw)
     return ctx
 
@@ -128,7 +129,6 @@ def _queue(request, TableObj, tab):
                 pass
     order_by = request.GET.get('sort', '-waiting_time_min')
     table = TableObj(qs, order_by=order_by)
-    queue_counts = _queue_counts()
     default = 100
     per_page = request.GET.get('per_page', default)
     try:
@@ -141,8 +141,7 @@ def _queue(request, TableObj, tab):
     table.set_page(page)
     return jingo.render(request, 'editors/queue.html',
                         context(table=table, page=page, tab=tab,
-                                search_form=search_form,
-                                queue_counts=queue_counts))
+                                search_form=search_form))
 
 
 def _queue_counts(type=None):
@@ -197,7 +196,7 @@ def queue_moderated(request):
     return jingo.render(request, 'editors/queue.html',
                         context(reviews_formset=reviews_formset,
                                 tab='moderated', page=page, flags=flags,
-                                queue_counts=_queue_counts(), search_form=None))
+                                search_form=None))
 
 
 @editor_required

@@ -310,6 +310,14 @@ class TestQueueBasics(QueueTest):
         eq_(doc('.data-grid-bottom .num-results').text(),
             u'Results 1 \u2013 1 of 2')
 
+    def test_navbar_queue_counts(self):
+        r = self.client.get(reverse('editors.home'))
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        eq_(doc('#navbar li.top ul').eq(0).text(),
+            'Full Reviews (2) Pending Updates (2) '
+            'Preliminary Reviews (2) Moderated Reviews (0)')
+
 
 class TestPendingQueue(QueueTest):
 

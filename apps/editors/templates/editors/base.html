@@ -23,13 +23,13 @@
           {{ _('Queues') }}</a>
         <ul>
           <li><a href="{{ remora_url('/editors/queue/nominated') }}">
-                {{ _('Full Reviews') }}</a></li>
+                {{ _('Full Reviews') }} ({{ queue_counts['nominated'] }})</a></li>
           <li><a href="{{ remora_url('/editors/queue/pending') }}">
-                {{ _('Pending Updates') }}</a></li>
+                {{ _('Pending Updates') }} ({{ queue_counts['pending'] }})</a></li>
           <li><a href="{{ remora_url('/editors/queue/preliminary') }}">
-                {{ _('Preliminary Reviews') }}</a></li>
+                {{ _('Preliminary Reviews') }} ({{ queue_counts['prelim'] }})</a></li>
           <li><a href="{{ remora_url('/editors/queue/reviews') }}">
-                {{ _('Moderated Reviews') }}</a></li>
+                {{ _('Moderated Reviews') }} ({{ queue_counts['moderated'] }})</a></li>
         </ul>
       </li>
     <li class="top">
