@@ -129,6 +129,7 @@ class InstallButton(object):
         self.is_persona = addon.type == amo.ADDON_PERSONA
 
         self.accept_eula = addon.has_eula and not show_eula
+        self._show_contrib = show_contrib
         self.show_contrib = (show_contrib and addon.takes_contributions
                              and addon.annoying == amo.CONTRIB_ROADBLOCK)
         self.show_eula = not self.show_contrib and show_eula and addon.has_eula
@@ -161,7 +162,8 @@ class InstallButton(object):
     def attrs(self):
         rv = {}
         addon = self.addon
-        if addon.takes_contributions and addon.annoying == amo.CONTRIB_AFTER:
+        if (self._show_contrib and addon.takes_contributions
+            and addon.annoying == amo.CONTRIB_AFTER):
             rv['data-after'] = 'contrib'
         if addon.type == amo.ADDON_SEARCH:
             rv['data-search'] = 'true'

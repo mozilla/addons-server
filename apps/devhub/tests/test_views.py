@@ -3886,7 +3886,6 @@ class TestAdmin(test_utils.TestCase):
     def login_user(self):
         assert self.client.login(username='del@icio.us', password='password')
 
-    x=1
     def test_show_admin_settings_admin(self):
         self.login_admin()
         url = reverse('devhub.addons.edit', args=['a3615'])
