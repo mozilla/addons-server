@@ -32,6 +32,7 @@ MAX_TAGS = 10             # Number of tags we return by default.
 SPHINX_HARD_LIMIT = 1000  # A hard limit that sphinx imposes.
 THE_FUTURE = 9999999999
 MAX_VERSION = 10 ** 13 - 1  # Large version
+FIELD_WEIGHT_NAME = 104
 
 log = commonware.log.getLogger('z.sphinx')
 
@@ -374,7 +375,7 @@ class Client(object):
         # Setup some default parameters for the search.
         fields = ("addon_id, app, category, %s" % self.weight_field)
 
-        sc.SetFieldWeights({'name': 100})
+        sc.SetFieldWeights({'name': FIELD_WEIGHT_NAME})
 
         # Extract and apply various filters.
         (term, includes, excludes) = extract_filters(term, kwargs)
