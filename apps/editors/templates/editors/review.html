@@ -20,22 +20,29 @@
 <div id="addon" class="primary" role="main" data-id="{{ addon.id }}">
 {% include "addons/details_box.html" %}
 
-<table id="review-files">
-    <thead>
-        <tr>
-            <th>{{ _('Version/File') }}</th>
-            <th>{{ _('Date') }}</th>
-            <th>{{ _('Reviewer') }}</th>
-            <th>{{ _('Action') }}</th>
-            <th>{{ _('Comments') }}</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for record in history %}
-            {% include 'editors/includes/history.html' %}
-        {% endfor %}
-    </tbody>
-</table>
+<h3 id="file-history">{{ _('Item History') }}</h3>
+{% if history %}
+  <table id="review-files">
+      <thead>
+          <tr>
+              <th>{{ _('Version/File') }}</th>
+              <th>{{ _('Date') }}</th>
+              <th>{{ _('Reviewer') }}</th>
+              <th>{{ _('Action') }}</th>
+              <th>{{ _('Comments') }}</th>
+          </tr>
+      </thead>
+      <tbody>
+            {% for record in history %}
+              {% include 'editors/includes/history.html' %}
+            {% endfor %}
+      </tbody>
+  </table>
+{% else %}
+<p>
+  {{ _('No previous review entries could be found.') }}
+</p>
+{% endif %}
 
 <form method="POST" action="#review-actions">
   {{ csrf() }}
