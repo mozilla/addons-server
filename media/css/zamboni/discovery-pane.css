@@ -51,6 +51,11 @@ a:hover, a:focus, a:active {
     text-decoration: underline;
 }
 
+.hidden {
+    position: absolute;
+    top: -100000px;
+}
+
 section > section {
     background: rgba(255,255,255,0.35) no-repeat;
     border: 1px solid #a8b8d1;
