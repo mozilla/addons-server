@@ -80,7 +80,7 @@ def confirm_resend(request, user_id):
             'your account. Before you can log in, you have to activate '
             'your account by clicking on the link provided in this '
             'email.').format(user.email)
-    messages.info(request, msg)
+    messages.info(request, _('Confirmation Email Sent'), msg)
 
     return http.HttpResponseRedirect(reverse('users.login'))
 
@@ -138,11 +138,12 @@ def edit(request):
                      'mail2': amouser.email}
                 log.info(u"User (%(user)s) has requested email change from"
                           "(%(mail1)s) to (%(mail2)s)" % l)
-                messages.info(request, _(('An email has been sent to {0} to '
-                    'confirm your new email address. For the change to take '
-                    'effect, you need to click on the link provided in this '
-                    'email. Until then, you can keep logging in with your '
-                    'current email address.')).format(amouser.email))
+                messages.info(request, _('Email Confirmation Sent'),
+                    _(('An email has been sent to {0} to confirm your new ' +
+                       'email address. For the change to take effect, you ' +
+                       'need to click on the link provided in this email. ' +
+                       'Until then, you can keep logging in with your ' +
+                       'current email address.')).format(amouser.email))
 
                 domain = settings.DOMAIN
                 token, hash = EmailResetCode.create(amouser.id, amouser.email)
@@ -163,7 +164,8 @@ def edit(request):
             return http.HttpResponseRedirect(reverse('users.edit'))
         else:
 
-            messages.error(request, _('There were errors in the changes '
+            messages.error(request, _('Errors Found'),
+                                    _('There were errors in the changes '
                                       'you made. Please correct them and '
                                       'resubmit.'))
     else:
@@ -195,9 +197,8 @@ def emailchange(request, user_id, token, hash):
 
     l = {'user': user, 'newemail': newemail}
     log.info(u"User (%(user)s) confirmed new email address (%(newemail)s)" % l)
-    messages.success(request, _(('Your email address was changed '
-                                 'successfully.  From now on, please use {0} '
-                                 'to log in.')).format(newemail))
+    messages.success(request, _('Your email address was changed successfully'),
+            _('From now on, please use {0} to log in.').format(newemail))
 
     return http.HttpResponseRedirect(reverse('users.edit'))
 
@@ -256,8 +257,9 @@ def login(request):
                       'mail" or "spam". If you need to, you can have us '
                       '<a href="%s">resend the confirmation message</a> '
                       'to your email address mentioned above.') % url)
-            messages.error(request, msg1)
-            messages.info(request, msg2, title_safe=True)
+            messages.error(request, _('Activation Email Sent'),  msg1)
+            messages.info(request, _('Having Trouble?'), msg2,
+                          title_safe=True)
             return jingo.render(request, 'users/login.html',
                                 {'form': forms.AuthenticationForm()})
 
@@ -366,7 +368,7 @@ def register(request):
                      'your account. Before you can log in, you have to '
                      'activate your account by clicking on the link provided '
                      ' in this email.').format(u.email))
-            messages.info(request, msg)
+            messages.info(request, _('Confirmation Email Sent'), msg)
 
             amo.utils.clear_messages(request)
             return http.HttpResponseRedirect(reverse('users.login') + '?m=3')
@@ -375,8 +377,8 @@ def register(request):
             #return http.HttpResponseRedirect(reverse('users.login'))
 
         else:
-            messages.error(request, _(('There are errors in this form. Please '
-                                       'correct them and resubmit.')))
+            messages.error(request, _('There are errors in this form'),
+                            _('Please correct them and resubmit.'))
     else:
         form = forms.UserRegisterForm()
     return jingo.render(request, 'users/register.html', {'form': form, })

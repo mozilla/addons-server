@@ -2465,6 +2465,14 @@ form .error .note.error {
     color: #444444;
 }
 
+.notification-box p {
+     padding-top: 8px;
+}
+
+.notification-box p:first-child {
+     padding-top: 0pt;
+}
+
 .html-rtl .notification-box h2 {
     padding-left: 0;
     background-position: top right;
