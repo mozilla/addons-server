@@ -335,6 +335,15 @@ class TestButton(ButtonTest):
         b = self.get_button()
         eq_(b.attrs(), {'data-after': 'contrib', 'data-search': 'true'})
 
+    def test_after_no_show_contrib(self):
+        self.addon.takes_contributions = True
+        self.addon.annoying = amo.CONTRIB_AFTER
+        b = self.get_button()
+        eq_(b.attrs(), {'data-after': 'contrib'})
+
+        b = self.get_button(show_contrib=False)
+        eq_(b.attrs(), {})
+
     def test_file_details(self):
         file = self.get_file(amo.PLATFORM_ALL)
         self.addon.meet_the_dev_url.return_value = 'meet.dev'
