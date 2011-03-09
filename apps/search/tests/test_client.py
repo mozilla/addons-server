@@ -231,7 +231,7 @@ class SearchTest(SphinxTestCase):
         eq_(len(query("grapple", locale='fr')), 0)
 
     def test_status_filter(self):
-        # Tests that if we filter for public addons that MozEx does not show up.
+        # Tests that if we filter for public addons that MozEx does not show.
         # If we look for sandboxed addons as well MozEx still will not show up
         # since sandboxed addons are hidden.
 
@@ -296,6 +296,8 @@ class RankingTest(SphinxTestCase):
     fixtures = ('base/users',
                 'base/addon_1833_yoono',
                 'base/addon_9825_fastestfox',
+                'base/addon_5579',
+                'base/addon_personas-plus',
                )
 
     def test_twitter(self):
@@ -306,3 +308,9 @@ class RankingTest(SphinxTestCase):
         r = query('twitter')
         eq_(r[0].id, 1833)
         eq_(r[1].id, 9825)
+
+    def test_cool(self):
+        """Search for cool should return CoolIris before PersonasPlus."""
+        r = query('cool')
+        eq_(r[0].slug, 'cooliris')
+        eq_(r[1].slug, 'personas-plus')

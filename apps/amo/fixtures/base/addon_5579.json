@@ -39,7 +39,7 @@
         "pk": 5579,
         "model": "addons.addon",
         "fields": {
-            "slug": "a5579",
+            "slug": "cooliris",
             "dev_agreement": true,
             "eula": null,
             "_current_version": 90119,
@@ -55,7 +55,7 @@
             "locale_disambiguation": null,
             "binary": false,
             "the_future": null,
-            "weekly_downloads": 81392,
+            "weekly_downloads": 50000,
             "paypal_id": "",
             "average_rating": "3.98",
             "wants_contributions": false,

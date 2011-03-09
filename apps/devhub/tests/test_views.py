@@ -2932,7 +2932,8 @@ class TestSubmitStep7(TestSubmitBase):
         addon = Addon.objects.get(name__localized_string='Cooliris')
         AddonUser.objects.create(user=UserProfile.objects.get(pk=55021),
                                  addon=addon)
-        response = self.client.get(reverse('devhub.submit.7', args=['a5579']))
+        response = self.client.get(reverse('devhub.submit.7',
+                                   args=['cooliris']))
         eq_(response.status_code, 200)
         doc = pq(response.content)
         next_steps = doc(".done-next-steps li a")
