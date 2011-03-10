@@ -158,7 +158,7 @@
                 'eula'        : b.hasClass('eula')
             };
 
-            self.dom.buttons.each(funtion() {
+            self.dom.buttons.each(function() {
                 var $this = $(this);
                 if ($this.hasattr('data-realurl')) {
                     $this.attr('href', $this.attr('data-realurl'));
@@ -237,11 +237,11 @@
         //and of course, initialize the button.
         this.init();
     }
-    
+
     z.b = function() {
         new Button(this);
     };
-    
+
     jQuery.fn.installButton = function() {
         return this.each(z.b);
     };
