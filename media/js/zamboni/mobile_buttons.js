@@ -157,6 +157,14 @@
                 'search'      : b.hasattr('data-search'),
                 'eula'        : b.hasClass('eula')
             };
+
+            self.dom.buttons.each(funtion() {
+                var $this = $(this);
+                if ($this.hasattr('data-realurl')) {
+                    $this.attr('href', $this.attr('data-realurl'));
+                }
+            });
+
         }
 
         // Add version and platform warnings and (optionally) popups.  This is one
