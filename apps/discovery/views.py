@@ -14,7 +14,7 @@ import amo
 import amo.utils
 import api.utils
 import api.views
-from amo.decorators import post_required
+from amo.decorators import login_required, post_required
 from addons.decorators import addon_view_factory
 from addons.models import Addon
 from browse.views import personas_listing
@@ -47,6 +47,11 @@ def pane(request, version, platform):
                          'featured_addons': from_api('featured'),
                          'featured_personas': get_featured_personas(request),
                          'version': version, 'platform': platform})
+
+
+@login_required
+def pane_account(request):
+    return jingo.render(request, 'discovery/pane_account.html')
 
 
 def get_modules(request, platform, version):

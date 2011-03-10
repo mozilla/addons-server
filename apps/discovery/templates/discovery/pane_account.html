@@ -1,0 +1,9 @@
+{# L10n: {0} is the user's login name. #}
+<p>{{ _('Hi, {0}')|f(request.amo_user.welcome_name) }}</p>
+<ul>
+  <li><a href="{{ url('users.edit') }}">{{ _('My Profile') }}</a></li>
+  <li><a href="{{ url('collections.detail', request.amo_user.username,
+                      'favorites') }}">{{ _('My Favorites') }}</a></li>
+  <li><a href="{{ url('collections.user', request.amo_user.username) }}">{{ _('My Collections') }}</a></li>
+</ul>
+<p id="logout"><a href="{{ remora_url('/users/logout') }}">{{ _('Log out') }}</a></p>

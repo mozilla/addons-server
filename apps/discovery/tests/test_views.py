@@ -270,10 +270,8 @@ class TestPane(test_utils.TestCase):
 
     def test_header_logged_in(self):
         self.client.login(username='regular@mozilla.com', password='password')
-        r = self.client.get(self.url)
-        doc = pq(r.content)
-        assert doc('header.auth')
-        assert doc('#my-account')
+        r = self.client.get(reverse('discovery.pane_account'))
+        eq_(r.status_code, 200)
 
     def test_header_logged_out(self):
         r = self.client.get(self.url)

@@ -8,6 +8,8 @@ var guids = getGuids();
 
 $(document).ready(function(){
     if ($(".pane").length) {
+        initSidebar();
+
         storePaneLink();
 
         // Show "Starter Pack" panel only if user has fewer than three extensions.
@@ -59,6 +61,17 @@ function initTrunc() {
     $(window).resize(debounce(function() {
         $(".addons h3 a, .rec-addons h3 a, p.desc").vtruncate();
     }, 200));
+}
+
+
+function initSidebar() {
+    var account_url = document.body.getAttribute("data-account-url");
+    var $parent = $("section#mission");
+    $parent.hide().attr("id", "my-account");
+    $("header").addClass("auth");
+    $parent.load(account_url, function() {
+        $parent.slideDown("slow");
+    });
 }
 
 

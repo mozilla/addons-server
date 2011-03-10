@@ -8,10 +8,11 @@
 {% block bodyattrs %}
 data-services-url="{{ settings.SERVICES_URL }}"
 data-recs-url="{{ services_url('discovery.recs', version, platform) }}"
+data-account-url="{{ services_url('discovery.pane_account') }}"
 {% endblock %}
 
 {% block content %}
-  <header{% if user.is_authenticated() %} class="auth"{% endif %}>
+  <header>
     <section id="intro">
       <h1><img src="{{ media('img/zamboni/discovery_pane/logo-addons.png') }}"
                width="87" height="82">{{ _('What are Add-ons?') }}</h1>
@@ -25,19 +26,6 @@ data-recs-url="{{ services_url('discovery.recs', version, platform) }}"
       </p>
     </section>
 
-  {% if user.is_authenticated() %}
-    <section id="my-account">
-      {# L10n: {0} is the user's login name. #}
-      <p>{{ _('Hi, {0}')|f(request.amo_user.welcome_name) }}</p>
-      <ul>
-        <li><a href="{{ url('users.edit') }}">{{ _('My Profile') }}</a></li>
-        <li><a href="{{ url('collections.detail', request.amo_user.username,
-                            'favorites') }}">{{ _('My Favorites') }}</a></li>
-        <li><a href="{{ url('collections.user', request.amo_user.username) }}">{{ _('My Collections') }}</a></li>
-      </ul>
-      <p id="logout"><a href="{{ remora_url('/users/logout') }}">{{ _('Log out') }}</a></p>
-    </section>
-  {% else %}
     <section id="mission">
        <p>{% trans url="http://www.mozilla.org/" -%}
         Thanks for using {{ app }} and supporting
@@ -50,7 +38,6 @@ data-recs-url="{{ services_url('discovery.recs', version, platform) }}"
         </p>
       {% endif %}
     </section>
-  {% endif %}
   </header>
 
   <section id="main">

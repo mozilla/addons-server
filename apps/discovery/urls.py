@@ -22,6 +22,7 @@ urlpatterns = patterns('',
                                   addon_id, permanent=True)),
     url('^addon/%s/' % ADDON_ID, include(addon_patterns)),
 
+    url('^pane/account$', views.pane_account, name='discovery.pane_account'),
     url('^recs/%s$' % browser_re,
         views.recommendations, name='discovery.recs'),
     url('^%s$' % browser_re,
