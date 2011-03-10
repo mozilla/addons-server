@@ -19,6 +19,7 @@
         data-anonymous="{{ (not request.user.is_authenticated())|json }}"
         data-readonly="{{ settings.READ_ONLY|json }}"
         data-media-url="{{ MEDIA_URL }}"
+        data-show-recs="{{ settings.DISCOPANE_RECS|json }}"
         {% block bodyattrs %}{% endblock %}>
     {% block content %}{% endblock %}
     <script src="{{ url('jsi18n') }}/build:{{ BUILD_ID_JS }}"></script>
