@@ -892,7 +892,7 @@ class TestAddonModels(test_utils.TestCase):
         a = Addon.objects.get(id=3615)
         a.update(status=amo.STATUS_NULL)
         for s in (amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED):
-
+            a.versions.latest().update(nomination=None)
             a.update(status=s)
             assert a.versions.latest().nomination
 
