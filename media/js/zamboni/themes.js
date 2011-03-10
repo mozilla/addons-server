@@ -6,10 +6,9 @@ $(document).ready(function(){
     var themeCompat = function() {
         var $el = $(this),
             min = $el.attr('data-min'),
-            max = $el.attr('data-max')
-            vc = new VersionCompare();
-        if (vc.compareVersions(z.browserVersion, min) < 0
-            || vc.compareVersions(z.browserVersion, max) > 0) {
+            max = $el.attr('data-max');
+        if (VersionCompare.compareVersions(z.browserVersion, min) < 0
+            || VersionCompare.compareVersions(z.browserVersion, max) > 0) {
             $el.addClass('incompatible');
             var msg = format(gettext('This theme is incompatible with your version of {0}'),
                              [z.appName]);
