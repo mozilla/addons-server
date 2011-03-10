@@ -885,6 +885,25 @@ test('Too many messages', function() {
            '...and 2 more');
 });
 
+test('Notices count as warnings', function() {
+    addonUploaded({
+        validation: {
+            "warnings": 4,
+            "notices": 4,
+            "errors": 0,
+            "success": true,
+            "ending_tier": 3,
+            "messages": [],
+            "rejected": false,
+            "detected_type": "extension"
+        },
+        error: null,
+        full_report_url: '/full-report'
+    });
+    equals($('##upload-status-results strong', this.sandbox).text(),
+           'Your add-on passed validation with 0 errors and 8 warnings.');
+});
+
 
 module('fileUpload', {
     setup: function() {

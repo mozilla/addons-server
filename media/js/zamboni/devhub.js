@@ -858,12 +858,13 @@ function addonUploaded(json) {
         text = format(gettext('Validated {0}'), [file.name]);
         $('#upload-status-text').text(text);
 
-        var body = "<strong>";
+        var body = "<strong>",
+            warnings = v.warnings + v.notices;
         if(!v.errors) {
             body += format(ngettext(
                     "Your add-on passed validation with 0 errors and {0} warning.",
                     "Your add-on passed validation with 0 errors and {0} warnings.",
-                    v.warnings), [v.warnings]);
+                    warnings), [warnings]);
         } else {
             body += format(ngettext(
                     "Your add-on failed validation with {0} error.",
