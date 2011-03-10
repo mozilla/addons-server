@@ -22,6 +22,7 @@ from applications.models import Application
 from stats.models import CollectionShareCountTotal
 from translations.fields import TranslatedField, LinkifiedField
 from users.models import UserProfile
+from versions import compare
 
 SPECIAL_SLUGS = amo.COLLECTION_SPECIAL_SLUGS
 
@@ -247,6 +248,15 @@ class Collection(amo.models.ModelBase):
             self.recommended_collection = r
             self.save()
             return r
+
+    def get_recs(self, app, version):
+        addons = list(self.addons.values_list('id', flat=True))
+        vint = compare.version_int(version)
+        recs = RecommendedCollection.build_recs(addons)
+        qs = Addon.objects.public().filter(id__in=recs, appsupport__app=app.id,
+                                  appsupport__min__lte=vint,
+                                  appsupport__max__gte=vint)
+        return recs, qs[:Collection.RECOMMENDATION_LIMIT]
 
     def set_addons(self, addon_ids, comments={}):
         """Replace the current add-ons with a new list of add-on ids."""
