@@ -1,4 +1,7 @@
+import collections
+import itertools
 import json
+import urlparse
 import uuid
 
 from django import http
@@ -15,8 +18,9 @@ import amo.utils
 import api.utils
 import api.views
 from amo.decorators import post_required
+from amo.urlresolvers import reverse
 from addons.decorators import addon_view_factory
-from addons.models import Addon
+from addons.models import Addon, AddonRecommendation
 from browse.views import personas_listing
 from bandwagon.models import Collection, SyncedCollection, CollectionToken
 from reviews.models import Review
@@ -220,3 +224,47 @@ def addon_eula(request, addon, file_id):
     src = request.GET.get('src', 'discovery-details')
     return jingo.render(request, 'discovery/addons/eula.html',
                         {'addon': addon, 'version': version, 'src': src})
+
+
+def recs_transform(recs):
+    ids = [r.addon_id for r in recs] + [r.other_addon_id for r in recs]
+    addons = dict((a.id, a) for a in Addon.objects.filter(id__in=ids))
+    for r in recs:
+        r.addon = addons[r.addon_id]
+        r.other_addon = addons[r.other_addon_id]
+
+
+@admin.site.admin_view
+def recs_debug(request):
+    if request.method == 'POST':
+        url = request.POST.get('url')
+        if url:
+            fragment = urlparse.urlparse(url).fragment
+            guids = json.loads(urlparse.unquote(fragment)).keys()
+            qs = ','.join(map(str, get_addon_ids(guids)))
+            return redirect(reverse('discovery.recs.debug') + '?ids=' + qs)
+
+    ctx = {'ids': request.GET.get('ids')}
+    if 'ids' in request.GET:
+        ids = map(int, request.GET['ids'].split(','))
+        ctx['addons'] = Addon.objects.filter(id__in=ids)
+        synced = get_synced_collection(ids, None)
+        recs = synced.get_recommendations()
+        ctx['recommended'] = recs.addons.order_by('collectionaddon__ordering')
+
+        recs = AddonRecommendation.objects.filter(addon__in=ids)
+        recs_transform(recs)
+        ctx['recs'] = dict((k, list(v)) for k, v in
+                           itertools.groupby(recs, key=lambda x: x.addon_id))
+
+        all_recs = collections.defaultdict(int)
+        for rec in recs:
+            all_recs[rec.other_addon] += rec.score
+        ctx['all_recs'] = sorted([(v, k) for k, v in all_recs.items()],
+                                 reverse=True)
+
+        fragment = dict((a.guid, {'type': 'extension'}) for a in ctx['addons']
+                        if a.type == amo.ADDON_EXTENSION)
+        ctx['fragment'] = json.dumps(fragment, separators=(',', ':'))
+
+    return jingo.render(request, 'discovery/recs-debug.html', ctx)

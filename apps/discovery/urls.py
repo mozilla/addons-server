@@ -28,4 +28,5 @@ urlpatterns = patterns('',
         lambda r, **kw: redirect('discovery.pane', permanent=True, **kw)),
     url('^pane/%s$' % browser_re, views.pane, name='discovery.pane'),
     url('^modules$', views.module_admin, name='discovery.module_admin'),
+    url('^what-the-rec$', views.recs_debug, name='discovery.recs.debug'),
 )
