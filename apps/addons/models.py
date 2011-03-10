@@ -1285,6 +1285,8 @@ class AppSupport(amo.models.ModelBase):
     """Cache to tell us if an add-on's current version supports an app."""
     addon = models.ForeignKey(Addon)
     app = models.ForeignKey('applications.Application')
+    min = models.BigIntegerField("Minimum app version", null=True)
+    max = models.BigIntegerField("Maximum app version", null=True)
 
     class Meta:
         db_table = 'appsupport'

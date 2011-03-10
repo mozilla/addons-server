@@ -19,7 +19,7 @@ from celeryutils import task
 import amo
 import cronjobs
 from amo.utils import chunked
-from addons.models import Addon, FrozenAddon
+from addons.models import Addon, FrozenAddon, AppSupport
 from addons.utils import ReverseNameLookup
 from files.models import File
 from stats.models import UpdateCount
@@ -213,6 +213,14 @@ def update_addon_appsupport():
     with establish_connection() as conn:
         for chunk in chunked(ids, 20):
             _update_appsupport.apply_async(args=[chunk], connection=conn)
+
+
+@cronjobs.register
+def update_all_appsupport():
+    from .tasks import update_appsupport
+    ids = set(AppSupport.objects.values_list('addon', flat=True))
+    for chunk in chunked(ids, 100):
+        update_appsupport(chunk)
 
 
 @task(rate_limit='30/m')
