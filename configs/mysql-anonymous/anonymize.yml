@@ -1,0 +1,93 @@
+--- This is to be used with https://github.com/davedash/mysql-anonymous.
+
+database:
+    truncate:
+        - addonlogs
+        - api_auth_tokens
+        - approvals
+        - auth_group
+        - auth_group_permissions
+        - auth_message
+        - auth_permission
+        - auth_user_groups
+        - auth_user_user_permissions
+        - auth_user
+        - cache
+        - cake_sessions
+        - collections_tokens
+        - django_admin_log
+        - django_session
+        - django_site
+        - download_counts
+        - eventlog
+        - facebook_data
+        - facebook_detected
+        - facebook_favorites
+        - facebook_sessions
+        - facebook_users
+        - favorites
+        - global_stats
+        - hubrsskeys
+        - log_activity
+        - log_activity_addon
+        - log_activity_user
+        - piston_consumer
+        - piston_nonce
+        - piston_token
+        - reviewratings
+        - reviews_moderation_flags
+        - sphinx_index_feed_tmp
+        - stats_addons_collections_counts
+        - stats_collections
+        - stats_collections_counts
+        - stats_collections_share_counts
+        - stats_collections_share_counts_totals
+        - stats_contributions
+        - stats_share_counts
+        - stats_share_counts_totals
+        - subscription_events
+        - update_counts
+        - users_versioncomments
+        - versioncomments
+    tables:
+        addons:
+            nullify: [nominationmessage, paypal_id, charity_id]
+            random_int:
+                - average_daily_downloads
+                - average_daily_users
+                - total_contributions
+        addons_users:
+            delete:
+                listed: 0
+        blacklisted_guids:
+            nullify: comments
+        collections:
+            delete:
+                listed: 0
+            random_int: [downloads, weekly_subscribers, monthly_subscribers]
+        compatibility_reports:
+            random_ip: client_ip
+            nullify: [client_os, comments]
+        config:
+            delete:
+                value: "emailchange_secret"
+        reviews:
+            random_ip: ip_address
+        users:
+            random_email: email
+            nullify:
+                - firstname
+                - lastname
+                - password
+                - confirmationcode
+                - resetcode
+                - resetcode_expires
+                - notes
+                - last_login_ip
+                - last_login_ip
+                - last_login_attempt
+                - last_login_attempt_ip
+                - failed_login_attempts
+            random_username: [username, nickname]
+        versions:
+            nullify: approvalnotes
