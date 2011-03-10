@@ -1,5 +1,4 @@
---- This is to be used with https://github.com/davedash/mysql-anonymous.
-
+# This is to be used with https://github.com/davedash/mysql-anonymous.
 database:
     truncate:
         - addonlogs
