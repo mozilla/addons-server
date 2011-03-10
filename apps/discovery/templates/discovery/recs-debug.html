@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% macro a(addon) %}
+<a style="color: inherit" href="{{ addon.get_url_path() }}">{{ addon.name }}</a>
+{% endmacro %}
+
+{% block title %}Recommendations Debugging{% endblock %}
+
+{% block extrahead %}
+<style>
+  td { width: 30% }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<h2>{{ self.title() }}</h2>
+<form method="post" action="">
+  {{ csrf() }}
+  <label for="url">Paste your disco pane url here:</label>
+  <textarea id="url" name="url" rows="2" cols="90"
+            style="width:50%; margin-bottom:.5em"></textarea>
+  <button type="submit">Debug me Gently</button>
+</form>
+
+{% if ids %}
+
+<h3>What's going on here?</h3>
+<p style="width: 50%">
+Most add-ons have a list of 10 similar add-ons. Similarity is determined by
+looking at what add-ons are installed together. The more times one add-on is
+paired with another the higher the similarity score. To get the recommended
+collection we sum up all the similarity scores for the add-ons you have and take
+the top 10 again. We only consider app/platform similarity after finding the top
+10, so your top recommendations could all be incompatible.
+</p>
+<b>Use this page's URL for bugs. It's great.</b>
+<a href="{{ url('discovery.pane', '4.0', 'Darwin') }}#{{ fragment }}">
+  View the disco pane with these guids.</a>
+
+<h3>You gave me these add-ons:</h3>
+<ul>
+{% for addon in addons %}
+  <li>
+    <b>{{ addon.id }}: {{ a(addon) }}</b>
+    <table style="margin-left: 1em">
+      {% for other in recs[addon.id] %}
+      <tr>
+        <td>{{ a(other.other_addon) }}</td>
+        <td>{{ (other.score * 1000)|round(2) }}</td>
+        <td>{{ other.other_addon.compatible_apps[amo.FIREFOX] }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </li>
+{% endfor %}
+</ul>
+
+<h3>Here are the recommendations:</h3>
+<table>
+  {% for addon in recommended %}
+  <tr>
+    <td>{{ loop.index }}</td>
+    <td>{{ a(addon) }}</td>
+    <td>{{ addon.compatible_apps[amo.FIREFOX] }}</td>
+  </tr>
+  {% endfor %}
+</table>
+</ol>
+
+<h3>This is how it broke down (we only take the first 10):</h3>
+<table>
+  {% for score, addon in all_recs %}
+  <tr>
+    <td>{{ (score * 1000)|round(2) }}</td>
+    <td>{{ a(addon) }}</td>
+    <td>{{ addon.compatible_apps[amo.FIREFOX] }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+{% endif %}
+{% endblock %}
