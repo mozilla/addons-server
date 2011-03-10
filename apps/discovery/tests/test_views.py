@@ -277,7 +277,6 @@ class TestPane(test_utils.TestCase):
         r = self.client.get(self.url)
         doc = pq(r.content)
         assert not doc('header.auth')
-        assert doc('#mission')
 
 
 class TestDownloadSources(test_utils.TestCase):
