@@ -228,7 +228,10 @@ def review(request, version_id):
     num = request.GET.get('num')
     paging = {}
     if num:
-        num = int(num)
+        try:
+            num = int(num)
+        except (ValueError, TypeError):
+            raise http.Http404
         total = _queue_counts(queue_type)
         paging = {'current': num, 'total': total,
                   'prev': num > 1, 'next': num < total,

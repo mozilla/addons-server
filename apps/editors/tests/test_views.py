@@ -816,6 +816,10 @@ class TestReview(ReviewBase):
         eq_(response.context['paging']['prev'], True)
         eq_(response.context['paging']['next'], False)
 
+    def test_paging_error(self):
+        response = self.client.get('%s?num=x' % self.url)
+        eq_(response.status_code, 404)
+
 
 class TestReviewPreliminary(ReviewBase):
 
