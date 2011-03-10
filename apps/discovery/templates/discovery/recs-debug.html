@@ -38,7 +38,7 @@ the top 10 again. We only consider app/platform similarity after finding the top
 <a href="{{ url('discovery.pane', '4.0', 'Darwin') }}#{{ fragment }}">
   View the disco pane with these guids.</a>
 
-<h3>You gave me these add-ons:</h3>
+<h3 id="addons">You gave me these add-ons:</h3>
 <ul>
 {% for addon in addons %}
   <li>
@@ -56,7 +56,7 @@ the top 10 again. We only consider app/platform similarity after finding the top
 {% endfor %}
 </ul>
 
-<h3>Here are the recommendations:</h3>
+<h3 id="recs">Here are the recommendations:</h3>
 <table>
   {% for addon in recommended %}
   <tr>
@@ -68,7 +68,7 @@ the top 10 again. We only consider app/platform similarity after finding the top
 </table>
 </ol>
 
-<h3>This is how it broke down (we only take the first 10):</h3>
+<h3 id="all-recs">This is how it broke down (we only take the first 10):</h3>
 <table>
   {% for score, addon in all_recs %}
   <tr>
