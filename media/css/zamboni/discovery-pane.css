@@ -96,6 +96,10 @@ section > section {
     margin-bottom: 10px;
 }
 
+.pane #right-module {
+    display: none;
+}
+
 .detail header {
     margin-bottom: 20px;
 }

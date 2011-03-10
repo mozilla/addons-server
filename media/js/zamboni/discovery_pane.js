@@ -66,11 +66,12 @@ function initTrunc() {
 
 function initSidebar() {
     var account_url = document.body.getAttribute("data-account-url");
-    var $parent = $("section#mission");
-    $parent.hide().attr("id", "my-account");
-    $("header").addClass("auth");
-    $parent.load(account_url, function() {
-        $parent.slideDown("slow");
+    $.get(account_url, function(data) {
+        var $data = $(data);
+        if ($data.find("#my-account").length) {
+            $("header").addClass("auth");
+        }
+        $("#right-module").replaceWith(data).slideDown("slow");
     });
 }
 

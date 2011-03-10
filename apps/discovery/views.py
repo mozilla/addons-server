@@ -49,7 +49,6 @@ def pane(request, version, platform):
                          'version': version, 'platform': platform})
 
 
-@login_required
 def pane_account(request):
     return jingo.render(request, 'discovery/pane_account.html')
 

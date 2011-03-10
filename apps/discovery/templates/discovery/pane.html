@@ -25,19 +25,7 @@ data-account-url="{{ services_url('discovery.pane_account') }}"
         <a href="{{ url('home') }}" class="button">{{ _('Learn More') }}</a>
       </p>
     </section>
-
-    <section id="mission">
-       <p>{% trans url="http://www.mozilla.org/" -%}
-        Thanks for using {{ app }} and supporting
-        <a href="{{ url }}">Mozilla's mission</a>!
-        {%- endtrans %}</p>
-      {% if addon_downloads %}
-        <p id="download-count">
-          {{ _('Add-ons downloaded:') }}
-          <strong>{{ addon_downloads|numberfmt }}</strong>
-        </p>
-      {% endif %}
-    </section>
+    <section id="right-module"></section>
   </header>
 
   <section id="main">
