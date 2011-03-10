@@ -35,9 +35,11 @@
     {% if settings.PERF_THRESHOLD and addon.ts_slowness >= settings.PERF_THRESHOLD %}
       <li class="warning">{{ _('May Slow Down Your Browser') }}</li>
     {% endif %}
-    {% if files and files[0].no_restart %}
-      <li>{{ _('No Restart Required') }}</li>
-    {% endif %}
+    {% with files = addon.current_version.all_files %}
+      {% if files and files[0].no_restart %}
+        <li>{{ _('No Restart Required') }}</li>
+      {% endif %}
+    {% endwith %}
   </ul>
   {% if addon.privacy_policy %}
     <a class="privacy-policy" href="{{ url('addons.privacy', addon.slug) }}">
