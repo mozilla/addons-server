@@ -140,25 +140,27 @@ def recommendations(request, version, platform, limit=9):
             if synced.addon_index == Collection.make_index(addon_ids):
                 # Their add-ons didn't change, get out quick.
                 recs = synced.get_recommendations()
+                ids, recs = synced.get_recs(request.APP, version)
                 return _recommendations(request, version, platform,
-                                        limit, token, recs)
+                                        limit, token, ids, recs)
             else:
                 # Remove the link to the current sync, make a new one below.
                 synced.token_set.filter(token=token).delete()
 
     synced = get_synced_collection(addon_ids, token)
-    recs = synced.get_recommendations()
-    return _recommendations(request, version, platform, limit, token, recs)
+    ids, recs = synced.get_recs(request.APP, version)
+    return _recommendations(request, version, platform, limit,
+                            token, ids, recs)
 
 
-def _recommendations(request, version, platform, limit, token, recs):
+def _recommendations(request, version, platform, limit, token, ids, qs):
     """Return a JSON response for the recs view."""
-    qs = (Addon.objects.public() &
-          recs.addons.order_by('collectionaddon__ordering'))
     addons = api.views.addon_filter(qs, 'ALL', limit, request.APP,
                                     platform, version, shuffle=False)
-    data = {'token': token, 'recommendations': recs.get_url_path(),
-            'addons': [api.utils.addon_to_dict(a, disco=True) for a in addons]}
+    addons = dict((a.id, a) for a in addons)
+    data = {'token': token,
+            'addons': [api.utils.addon_to_dict(addons[i], disco=True)
+                       for i in ids if i in addons]}
     content = json.dumps(data, cls=amo.utils.JSONEncoder)
     return http.HttpResponse(content, content_type='application/json')
 
