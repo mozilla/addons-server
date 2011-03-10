@@ -216,7 +216,7 @@
 
                 if (classes.beta) warnings.push("experimental");
                 if (classes.unreviewed && !classes.beta) warnings.push("unreviewed");
-                if (classes.lite) warnings.push("lite");
+                if (classes.lite && !classes.beta) warnings.push("lite");
 
                 if (classes.beta || classes.unreviewed || classes.lite) {
                     dom.buttons.addClass("warning");
