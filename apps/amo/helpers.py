@@ -114,9 +114,10 @@ def sidebar(app):
     categories = order_by_translation(q, 'name')
     categories.query.extra_order_by.insert(0, 'weight')
 
-    Type = collections.namedtuple('Type', 'name url')
+    Type = collections.namedtuple('Type', 'id name url')
     base = urlresolvers.reverse('home')
-    types = [Type(_('Collections'), base + 'collections/')]
+    types = [Type(99, _('Collections'), base + 'collections/')]
+
     shown_types = {
         amo.ADDON_PERSONA: urlresolvers.reverse('browse.personas'),
         amo.ADDON_DICT: urlresolvers.reverse('browse.language-tools'),
@@ -128,7 +129,7 @@ def sidebar(app):
                   **{amo.ADDON_DICT: _('Dictionaries & Language Packs')})
     for type_, url in shown_types.items():
         if type_ in app.types:
-            types.append(Type(titles[type_], url))
+            types.append(Type(type_, titles[type_], url))
 
     return categories, sorted(types, key=lambda x: x.name)
 

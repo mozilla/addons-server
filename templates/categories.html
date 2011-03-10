@@ -22,7 +22,7 @@
     <li>
       <ul>
         {% for type_ in types %}
-          <li><a href="{{ type_.url }}">{{ type_.name }}</a></li>
+          <li><a id="_t-{{ type_.id }}" href="{{ type_.url }}">{{ type_.name }}</a></li>
         {% endfor %}
       </ul>
     </li>
