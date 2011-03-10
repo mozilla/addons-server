@@ -218,12 +218,12 @@ def update_addon_appsupport():
 @cronjobs.register
 def update_all_appsupport():
     from .tasks import update_appsupport
-    ids = set(AppSupport.objects.values_list('addon', flat=True))
+    ids = sorted(set(AppSupport.objects.values_list('addon', flat=True)))
     task_log.info('Updating appsupport for %s addons.' % len(ids))
     for idx, chunk in enumerate(chunked(ids, 100)):
         if idx % 10 == 0:
             task_log.info('[%s/%s] Updating appsupport.'
-                          % (idx * 1000, len(ids)))
+                          % (idx * 100, len(ids)))
         update_appsupport(chunk)
 
 
