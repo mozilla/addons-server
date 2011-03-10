@@ -1130,6 +1130,14 @@ td .versions li a {
 /*    background-image: -moz-linear-gradient(#e6e6e6, #d3d3d3);*/
 }
 
+.badges li span {
+    color: #447bc4;
+}
+.lite-msg {
+    display: none;
+    font-size: .9em;
+}
+
 /************************************/
 /*                EULA              */
 /************************************/

@@ -44,6 +44,7 @@
         'tooNew': format(gettext("Not Updated for {0} {1}"), z.appName, z.browserVersion),
         'tooOld': format(gettext("Requires Newer Version of {0}"), z.appName),
         'unreviewed': gettext("Unreviewed"),
+        'lite': gettext("Experimental <span>(Learn More)</span>"),
         'badApp': format(gettext("Not Available for {0}"), z.appName),
         'badPlatform': format(gettext("Not Available for {0}"), z.platformName),
         'experimental': gettext("Experimental")
@@ -96,8 +97,16 @@
             for (var i=0; i<errors.length; i++) {
                 dom.badges.append(format("<li class='error'>{0}</li>", messages[errors[i]]));
             }
+            var badgeEl;
             for (i=0; i<warnings.length; i++) {
-                dom.badges.append(format("<li class='warning'>{0}</li>", messages[warnings[i]]));
+                badgeEl = $(format("<li class='warning'>{0}</li>", messages[warnings[i]]));
+                dom.badges.append(badgeEl);
+                if (warnings[i] == "lite") {
+                    dom.badges.append("<p class='lite-msg'>"+gettext("This add-on has been preliminarily reviewed by Mozilla.")+"</p>");
+                    badgeEl.click(function() {
+                        dom.self.find('.lite-msg').toggle();
+                    });
+                }
             }
 
             // sort the actionQueue by priority
@@ -151,6 +160,7 @@
             self.classes = {
                 'selfhosted'  : b.hasClass('selfhosted'),
                 'beta'        : b.hasClass('beta'),
+                'lite'        : b.hasClass('lite'),
                 'unreviewed'  : b.hasClass('unreviewed'), // && !beta,
                 'persona'     : b.hasClass('persona'),
                 'contrib'     : b.hasClass('contrib'),
@@ -158,7 +168,7 @@
                 'eula'        : b.hasClass('eula')
             };
 
-            self.dom.buttons.each(function() {
+            dom.buttons.each(function() {
                 var $this = $(this);
                 if ($this.hasattr('data-realurl')) {
                     $this.attr('href', $this.attr('data-realurl'));
@@ -205,9 +215,10 @@
                 }
 
                 if (classes.beta) warnings.push("experimental");
-                if (classes.unreviewed) warnings.push("unreviewed");
+                if (classes.unreviewed && !classes.beta) warnings.push("unreviewed");
+                if (classes.lite) warnings.push("lite");
 
-                if (classes.beta || classes.unreviewed) {
+                if (classes.beta || classes.unreviewed || classes.lite) {
                     dom.buttons.addClass("warning");
                 }
 
