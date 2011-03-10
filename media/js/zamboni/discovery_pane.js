@@ -63,8 +63,7 @@ function initTrunc() {
 
 
 function initRecs() {
-    var services_url = document.body.getAttribute("data-services-url");
-
+    var showRecs = JSON.parse(document.body.getAttribute("data-show-recs"));
     // Where all the current recommendations data is kept.
     var datastore = {};
 
@@ -135,7 +134,7 @@ function initRecs() {
     }
 
     // Hide "What are Add-ons?" and show "Recommended for You" module.
-    if (guids.length > MIN_EXTENSIONS) {
+    if (showRecs && guids.length > MIN_EXTENSIONS) {
         $("body").removeClass("no-recs").addClass("recs");
 
         var cacheObject;
