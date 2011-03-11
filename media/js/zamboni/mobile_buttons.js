@@ -158,7 +158,7 @@
                 'eula'        : b.hasClass('eula')
             };
 
-            self.dom.buttons.each(function() {
+            dom.buttons.each(function() {
                 var $this = $(this);
                 if ($this.hasattr('data-realurl')) {
                     $this.attr('href', $this.attr('data-realurl'));
