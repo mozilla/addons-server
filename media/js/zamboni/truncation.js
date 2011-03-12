@@ -2,7 +2,7 @@ $.fn.vtruncate = function(opts) {
     opts = opts || {};
     var showTitle = opts.showTitle || false,
         truncText = opts.truncText || "&hellip;",
-        split = [" ",""], counter;
+        split = [" ",""], counter, success;
     this.each(function() {
         var $el = $(this),
             oldtext = $el.attr("oldtext") || $el.text(),
@@ -16,21 +16,28 @@ $.fn.vtruncate = function(opts) {
             delim = split[i];
             txt = oldtext.split(delim);
             cutoff = txt.length;
-            var done = (this.scrollHeight - this.offsetHeight) < 2,
-                chunk = Math.ceil(txt.length/2), oc=0, wid, delim;
+            success = false
+            if (done = (this.scrollHeight - this.offsetHeight) < 2) {
+                $el.removeClass("truncated");
+                break;
+            }
+            var chunk = Math.ceil(txt.length/2), oc=0, wid, delim;
             for (counter = 0; counter < 10; counter++) {
                 $el.html(txt.slice(0,cutoff).join(delim)+truncText);
                 wid = (this.scrollHeight - this.offsetHeight);
                 if ((wid < 2 && chunk == oc) || cutoff < 1) {
-                   break;
+                    success = true;
+                    $el.addClass("truncated");
+                    break;
                 } else if (wid > 1) {
-                   cutoff -= chunk;
+                    cutoff -= chunk;
                 } else {
-                   cutoff += chunk;
+                    cutoff += chunk;
                 }
                 oc = chunk;
                 chunk = Math.ceil(chunk/2);
             }
+            if (success) break;
         }
         if (showTitle) {
             $el.attr("title", oldtext);

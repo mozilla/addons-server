@@ -34,7 +34,8 @@
     {% trans user=review.user.name %}
       by {{ user }}
     {% endtrans %}
-    <p>{{ review.body|nl2br }}</p>
+    <p class="vtruncate">{{ review.body|nl2br }}</p>
+    <a href="#" class="readmore">{{ _('Read More&nbsp;&raquo;') }}</a>
     {% if review.version_id and review.version_id != addon._current_version_id %}
       {# L10n: {0} is a version number (like 1.01) #}
       <aside class="old-version">{{ _('This review is for a previous version of the add-on ({0}).')|f(review.version.version) }}&nbsp;</aside>

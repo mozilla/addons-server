@@ -1307,6 +1307,11 @@ td .versions li a {
     height: 12px;
 }
 
+.review p {
+    max-height: 6.2em;
+    overflow: hidden;
+}
+
 /* rtl */
 .html-rtl .grouped_ratings .rating_bar {
     border-left: 0;
@@ -1438,6 +1443,12 @@ a.expando {
     height: 0;
     -moz-transition: .5s height ease;
     -webkit-transition: .5s height ease;
+}
+.readmore {
+    padding: 10px 20px;
+    color: #447BC4;
+    text-align: right;
+    display: none;
 }
 
 /************************************/

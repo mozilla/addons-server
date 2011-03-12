@@ -4,6 +4,8 @@ $(function() {
     });
     $("details").htruncate({textEl: ".desc"});
 
+    $(".vtruncate").vtruncate();
+
     $('form.go').change(function() { this.submit(); })
         .find('button').hide();
 
@@ -196,6 +198,24 @@ $(function() {
 
     $("#eula .negative").click(_pd(z.eula.dismiss));
     $("#eula .affirmative").click(_pd(z.eula.dismiss));
+
+    //review truncation
+    if ($(".review").length) {
+        $(".review p").each(function() {
+            var $el = $(this);
+            if ($el.hasClass("truncated")) {
+                $el.closest(".review").find(".readmore").css("display", "block");
+            }
+        });
+        $("#content").delegate(".review .readmore", "click", _pd(function(e) {
+            var $el = $(this),
+                $revBody = $el.closest(".review").find("p");
+            $el.hide();
+            $revBody.removeClass("truncated")
+                    .html(unescape($revBody.attr("oldtext")))
+                    .css("max-height", "none");
+        }));
+    }
 });
 
 $(".desktop-link").attr("href", window.location).click(function() {
