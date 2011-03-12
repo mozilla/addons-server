@@ -33,6 +33,15 @@ $(document).ready(function(){
     }
 });
 
+z.inlineSVG = (function() {
+  var e = document.createElement('div');
+  e.innerHTML = '<svg></svg>';
+  return !!(window.SVGSVGElement && e.firstChild instanceof window.SVGSVGElement);
+})();
+if (!z.inlineSVG) {
+    $("body").addClass("noInlineSVG");
+}
+
 
 /* prevent-default function wrapper */
 function _pd(func) {

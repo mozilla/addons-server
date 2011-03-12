@@ -613,8 +613,12 @@ a.listview:before {
     -moz-border-radius: 6px;
     border-radius: 6px;
 }
+.noInlineSVG #search button[type=submit] {
+    background: #83c53c url(../../img/zamboni/mobile/arrow.png) center no-repeat;
+}
 .html-rtl #search button[type=submit] {
     -moz-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
 }
 
 /************************************/
