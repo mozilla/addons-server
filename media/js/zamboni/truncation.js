@@ -16,8 +16,8 @@ $.fn.vtruncate = function(opts) {
             delim = split[i];
             txt = oldtext.split(delim);
             cutoff = txt.length;
-            success = false
-            if (done = (this.scrollHeight - this.offsetHeight) < 2) {
+            success = false;
+            if ((this.scrollHeight - this.offsetHeight) < 2) {
                 $el.removeClass("truncated");
                 break;
             }
