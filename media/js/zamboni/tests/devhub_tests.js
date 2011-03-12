@@ -900,7 +900,7 @@ test('Notices count as warnings', function() {
         error: null,
         full_report_url: '/full-report'
     });
-    equals($('##upload-status-results strong', this.sandbox).text(),
+    equals($('#upload-status-results strong', this.sandbox).text(),
            'Your add-on passed validation with 0 errors and 8 warnings.');
 });
 
