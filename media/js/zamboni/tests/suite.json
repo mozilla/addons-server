@@ -6,6 +6,7 @@
         "js/zamboni/global.js",
         "js/zamboni/devhub.js",
         "js/zamboni/l10n.js",
-        "js/zamboni/editors.js"
+        "js/zamboni/editors.js",
+        "js/zamboni/upload.js"
     ]
 }

@@ -821,25 +821,35 @@ asyncTest('error/warning count', function() {
 
 module('addonUploaded', {
     setup: function() {
-        this.sandbox = tests.createSandbox('#addon-upload-template');
+        this.sandbox = tests.createSandbox('#file-upload-template');
+        $.fx.off = true;
+
+        $('#upload-file-input', this.sandbox).addonUploader();
+
+        this.el = $('#upload-file-input', this.sandbox)[0];
+        this.el.files = [{
+            size: 200,
+            name: 'some-addon.xpi'
+        }];
+
+        $(this.el).trigger('change');
     },
     teardown: function() {
+        $.fx.off = false;
         this.sandbox.remove();
     }
 });
 
 test('JSON error', function() {
-    addonUploaded({
-        validation: false,
-        error: "Traceback (most recent call last):...NameError"
-    });
+    $(this.el).trigger("upload_success_results", [{}, {'error': "Traceback (most recent call last): ...NameError"}]);
+
     ok($('#upload-status-bar', this.sandbox).hasClass('bar-fail'));
-    equals($('#upload-status-text', this.sandbox).text(),
+    equals($('#upload_errors', this.sandbox).text(),
            'Unexpected server error while validating.')
 });
 
 test('Too many messages', function() {
-    addonUploaded({
+    var results = {
         validation: {
             "errors": 7,
             "success": false,
@@ -879,29 +889,47 @@ test('Too many messages', function() {
         },
         error: null,
         full_report_url: '/full-report'
-    });
+    };
+
+    $(this.el).trigger("upload_success_results", [{}, results]);
+
     equals($('#upload-status-results ul li', this.sandbox).length, 6);
     equals($('#upload-status-results ul li:eq(5)', this.sandbox).text(),
-           '...and 2 more');
+           '…and 2 more');
+});
+
+
+test('form errors are cleared', function() {
+    var fxt = this;
+    // Simulate django form errors from the POST
+    this.sandbox.find('form').prepend(
+        '<ul class="errorlist"><li>Duplicate UUID found.</li></ul>');
+
+    $(this.el).trigger("upload_start", [{}]);
+
+    equals($('ul.errorlist', this.sandbox).length, 0);
 });
 
 test('Notices count as warnings', function() {
-    addonUploaded({
+
+    var results = {
         validation: {
             "warnings": 4,
             "notices": 4,
             "errors": 0,
             "success": true,
             "ending_tier": 3,
-            "messages": [],
             "rejected": false,
             "detected_type": "extension"
         },
         error: null,
         full_report_url: '/full-report'
-    });
-    equals($('#upload-status-results strong', this.sandbox).text(),
-           'Your add-on passed validation with 0 errors and 8 warnings.');
+    };
+
+    $(this.el).trigger("upload_success_results", [{}, results]);
+
+    equals($('##upload-status-results strong', this.sandbox).text(),
+           'Your add-on passed validation with no errors and 8 warnings.');
 });
 
 
@@ -922,27 +950,6 @@ module('fileUpload', {
         this.sandbox.remove();
         window.uploadFile = this.uploadFile;
     }
-});
-
-asyncTest('form errors are cleared', function() {
-    var fxt = this;
-    // Simulate django form errors from the POST
-    this.sandbox.prepend(
-        '<ul class="errorlist"><li>Duplicate UUID found.</li></ul>');
-
-    // Simulate a user selecting a file to upload:
-    $('#upload-file-input', this.sandbox)[0].files[0] = {
-        size: 200,
-        name: 'some-addon.xpi'
-    };
-    $('#upload-file-input', this.sandbox).trigger('change');
-
-    tests.waitFor(function() {
-        return fxt.uploadFileCalled;
-    }).thenDo(function() {
-        equals($('ul.errorlist', this.sandbox).length, 0);
-        start();
-    });
 });
 
 module('preview_edit', {
@@ -1044,6 +1051,18 @@ asyncTest('customized', function() {
 module('switch addon platforms', {
     setup: function() {
         this.sandbox = tests.createSandbox('#addon-platform-switching');
+
+        $.fx.off = true;
+
+        $('#upload-file-input', this.sandbox).addonUploader();
+
+        this.el = $('#upload-file-input', this.sandbox)[0];
+        this.el.files = [{
+            size: 200,
+            name: 'some-addon.xpi'
+        }];
+
+        $(this.el).trigger('change');
     },
     teardown: function() {
         this.sandbox.remove();
@@ -1051,7 +1070,7 @@ module('switch addon platforms', {
 });
 
 test('mobile', function() {
-    addonUploaded({
+    results = {
         validation: {
             "errors": 0,
             "detected_type": "mobile",
@@ -1067,12 +1086,15 @@ test('mobile', function() {
             {value: 2, checked: false, text: 'Maemo'},
             {value: 3, checked: false, text: 'Android'}
         ]
-    });
+    };
+
+    $(this.el).trigger("upload_success_results", [{}, results]);
+
     equals($('.platform input:eq(0)', this.sandbox).attr('value'), '1');
     equals($('.platform input:eq(0)', this.sandbox).attr('id'),
            'id_platforms_0');
     equals($('.platform input:eq(0)', this.sandbox).attr('checked'), true);
-    equals($('.platform li:eq(0)', this.sandbox).text(),
+    equals($('.platform li:eq(0)', this.sandbox).text().trim(),
            'All Platforms');
     equals($('.platform input:eq(1)', this.sandbox).attr('value'), '2');
     equals($('.platform input:eq(1)', this.sandbox).attr('id'),
@@ -1085,7 +1107,7 @@ test('mobile', function() {
 });
 
 test('non-ascii', function() {
-    addonUploaded({
+    var results = {
         validation: {
             "errors": 0,
             "detected_type": "mobile",
@@ -1099,7 +1121,10 @@ test('non-ascii', function() {
         new_platform_choices: [
             {value: 1, checked: true, text: 'フォクすけといっしょ'}
         ]
-    });
+    };
+
+    $(this.el).trigger("upload_success_results", [{}, results]);
+
     equals($('.platform li:eq(0)', this.sandbox).text(),
            'フォクすけといっしょ');
 });

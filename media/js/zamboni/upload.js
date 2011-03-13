@@ -55,7 +55,10 @@
                 // We should be good to go!
                 formData.open("POST", url, true);
                 formData.append("csrfmiddlewaretoken", csrf);
-                formData.append("upload", domfile);
+
+                if(domfile instanceof File) { // Needed b/c of tests.
+                  formData.append("upload", domfile);
+                }
 
                 $upload_field.bind("upload_action_abort", function() {
                     formData.xhr.abort();
@@ -255,7 +258,7 @@
 
                     $("<strong>").text(error_message).appendTo(upload_results);
 
-                    var errors_ul = $('<ul>');
+                    var errors_ul = $('<ul>', {'id': 'upload_errors'});
 
                     $.each(errors.splice(0, 5), function(i, error) {
                         errors_ul.append($("<li>", {'text': error }));
@@ -333,11 +336,12 @@
 
                     var message = "";
 
-                    if(v.warnings.length > 0) {
+                    var warnings = v.warnings + v.notices;
+                    if(warnings > 0) {
                         message = format(ngettext(
-                                    "Your add-on passed validation with 0 errors and {0} warning.",
-                                    "Your add-on passed validation with 0 errors and {0} warnings.",
-                                    v.warnings), [v.warnings]);
+                                    "Your add-on passed validation with no errors and {0} warning.",
+                                    "Your add-on passed validation with no errors and {0} warnings.",
+                                    warnings), [warnings]);
                     } else {
                         message = gettext("Your add-on passed validation with no errors or warnings.");
                     }
@@ -355,20 +359,17 @@
                         upload_results.append($("<a>", {'href':results.full_report_url,
                                                         'text': gettext('See full validation report')}));
                     }
-                    /*
 
-                    TODO: Put this back in.
-
-                    if (json.validation.detected_type == 'search') {
+                    if (results.validation.detected_type == 'search') {
                         // TODO(Kumar) this probably broke the versions page
                         // which does not use #create-addon. Remove the id.
                         $("#create-addon .platform").hide();
                     } else {
                         $("#create-addon .platform:hidden").show();
-                        if (json.new_platform_choices) {
+                        if (results.new_platform_choices) {
                             // e.g. after uploading a Mobile add-on
                             $('.platform ul').empty();
-                            $.each(json.new_platform_choices, function(i, pl) {
+                            $.each(results.new_platform_choices, function(i, pl) {
                                 var li = $(format('<li><label><input name="platforms" ' +
                                                   'type="checkbox" class="platform" />' +
                                                   '{0}</label></li>', [pl.text])),
@@ -385,8 +386,6 @@
                             });
                         }
                     }
-
-                    */
                 }
 
             });

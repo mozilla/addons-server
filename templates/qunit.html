@@ -91,21 +91,6 @@
     </div>
   </div>
 
-  <div id="addon-upload-template">
-    <div class="upload-status hidden">
-      <strong id="upload-status-text"></strong>
-      <div id="upload-status-bar">
-        <div></div>
-      </div>
-      <div id="upload-status-results"></div>
-    </div>
-  </div>
-  <div id="file-upload-template">
-    <span data-upload-url="/server-upload" class="invisible-upload cta">
-      <a href="#" class="button prominent">Select Add-on to Upload...</a>
-      <input type="file" id="upload-file-input">
-    </span>
-  </div>
   <div id="addon-platform-chooser">
     <form method="post" id="create-addon" class="item" action="">
       <ul>
@@ -124,24 +109,34 @@
       </ul>
     </form>
   </div>
+
   <div id="addon-platform-switching">
+
+  <div id="file-upload-template">
+    <form>
+    <div data-upload-url="/"  id="upload-file-input"></div>
+    </form>
+  </div>
+
+
     <div class="platform">
       <ul>
         <li><label for="id_platforms_0">
-          <input checked="checked" name="platforms" value="100" id="id_platforms_0" type="checkbox" class="platform" />
+          <input checked="checked" name="platforms" value="1" id="id_platforms_0" type="checkbox" class="platform" />
           All Platforms</label></li>
         <li><label for="id_platforms_1">
-          <input name="platforms" value="101" id="id_platforms_1" type="checkbox" class="platform" />
+          <input name="platforms" value="2" id="id_platforms_1" type="checkbox" class="platform" />
           Linux</label></li>
         <li><label for="id_platforms_2">
-          <input name="platforms" value="102" id="id_platforms_2" type="checkbox" class="platform" />
+          <input name="platforms" value="3" id="id_platforms_2" type="checkbox" class="platform" />
           Mac OS X</label></li>
         <li><label for="id_platforms_3">
-          <input name="platforms" value="103" id="id_platforms_3" type="checkbox" class="platform" />
+          <input name="platforms" value="4" id="id_platforms_3" type="checkbox" class="platform" />
           Windows</label></li>
       </ul>
     </div>
   </div>
+
   <div id="slugified-field">
     <input id="id_name" />
     <span id="slug_edit" class="edit_with_prefix edit_initially_hidden">
