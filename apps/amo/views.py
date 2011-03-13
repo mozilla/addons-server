@@ -348,11 +348,11 @@ def loaded(request):
 @require_POST
 def cspreport(request):
     """Accept CSP reports and log them."""
+    report = ('blocked-uri', 'violated-directive', 'original-policy')
+
     try:
         v = json.loads(request.raw_post_data)['csp-report']
-        # Having the request headers was putting us close to a maxlen limit.
-        if 'request-headers' in v:
-            del v['request-headers']
+        v = dict([(k, v) for k, v in v.items() if k in report])
         # This requires you to use the cef.formatter to get something nice out.
         csp_log.warning('Violation', dict(environ=request.META,
                                           product='addons',
