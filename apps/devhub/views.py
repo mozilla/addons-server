@@ -151,13 +151,15 @@ def ajax_compat_update(request, addon_id, addon, version_id):
                              compat_form=compat_form))
 
 
-def _get_addons(request, addons, addon_id):
+def _get_addons(request, addons, addon_id, action):
     """Create a list of ``MenuItem``s for the activity feed."""
     items = []
 
     a = MenuItem()
     a.selected = (not addon_id)
     (a.text, a.url) = (_('All My Add-ons'), reverse('devhub.feed_all'))
+    if action:
+        a.url += '?action=' + action
     items.append(a)
 
     for addon in addons:
@@ -167,6 +169,8 @@ def _get_addons(request, addons, addon_id):
         except ValueError:
             pass  # We won't get here... EVER
         url = reverse('devhub.feed', args=[addon.slug])
+        if action:
+            url += '?action=' + action
         item.text, item.url = addon.name, url
         items.append(item)
 
@@ -253,7 +257,7 @@ def feed(request, addon_id=None):
     items = _get_items(action, addons)
 
     activities = _get_activities(request, action)
-    addon_items = _get_addons(request, addons_all, addon_selected)
+    addon_items = _get_addons(request, addons_all, addon_selected, action)
 
     pager = amo.utils.paginate(request, items, 20)
     data = dict(addons=addon_items, pager=pager, activities=activities,

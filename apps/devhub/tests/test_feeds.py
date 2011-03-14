@@ -82,6 +82,11 @@ class TestActivity(HubTest):
         doc = self.get_pq()
         eq_(len(doc('.item')), 10)
 
+    def test_filter_persistence(self):
+        doc = self.get_pq(action='status')
+        assert '?action=status' in (doc('ul.refinements').eq(0)('a').eq(1)
+                                    .attr('href'))
+
     def test_filter_updates(self):
         self.log_creates(10)
         self.log_updates(10)
