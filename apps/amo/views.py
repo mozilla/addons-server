@@ -352,7 +352,7 @@ def cspreport(request):
 
     try:
         v = json.loads(request.raw_post_data)['csp-report']
-        v = dict([(k, v) for k, v in v.items() if k in report])
+        v = [(k, v[k]) for k in report if k in v]
         # This requires you to use the cef.formatter to get something nice out.
         csp_log.warning('Violation', dict(environ=request.META,
                                           product='addons',
