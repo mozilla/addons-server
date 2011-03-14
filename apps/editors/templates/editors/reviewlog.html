@@ -38,9 +38,11 @@
                 {{ item }}
               </td>
               <td>
+                {% if item.arguments|count >= 2 %}
                 <a href="{{ url('editors.review', item.arguments[1].id) }}">
                   {{ _('Details') }}
                 </a>
+                {% endif %}
               </td>
               <td>{{ item.user.display_name }}</td>
               <td>
