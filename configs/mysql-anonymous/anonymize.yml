@@ -26,6 +26,7 @@ database:
         - facebook_users
         - favorites
         - global_stats
+        - groups_users
         - hubrsskeys
         - log_activity
         - log_activity_addon
