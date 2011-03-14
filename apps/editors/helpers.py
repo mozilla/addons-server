@@ -261,10 +261,6 @@ class ReviewBase:
             file.status = status
             file.save()
 
-    def log_status(self):
-        amo.log(amo.LOG.CHANGE_STATUS, self.addon, self.addon.status,
-                user=self.user.get_profile())
-
     def log_approval(self, action):
         amo.log(action, self.addon, self.version, user=self.user.get_profile(),
                 created=datetime.now(),
@@ -319,7 +315,6 @@ class ReviewAddon(ReviewBase):
         self.set_files(amo.STATUS_PUBLIC, self.version.files.all(),
                        copy_to_mirror=True)
 
-        self.log_status()
         self.log_approval(amo.LOG.APPROVE_VERSION)
         self.notify_email('%s_to_public' % self.review_type,
                           _('Mozilla Add-ons: %s %s Fully Reviewed'))
@@ -333,7 +328,6 @@ class ReviewAddon(ReviewBase):
         self.set_files(amo.STATUS_DISABLED, self.version.files.all(),
                        hide_disabled_file=True)
 
-        self.log_status()
         self.log_approval(amo.LOG.REJECT_VERSION)
         self.notify_email('%s_to_sandbox' % self.review_type,
                           # L10n: addon name, version string
@@ -358,7 +352,6 @@ class ReviewAddon(ReviewBase):
         self.set_files(amo.STATUS_LITE, self.version.files.all(),
                        copy_to_mirror=True)
 
-        self.log_status()
         self.log_approval(amo.LOG.PRELIMINARY_VERSION)
         self.notify_email(template,
                           # L10n: addon name, version string

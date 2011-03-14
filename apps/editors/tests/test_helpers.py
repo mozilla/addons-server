@@ -275,13 +275,8 @@ class TestReviewHelper(test_utils.TestCase):
 
     def test_logs(self):
         self.helper.set_data({'comments': 'something'})
-        self.helper.handler.log_status()
         self.helper.handler.log_approval(amo.LOG.APPROVE_VERSION)
-
-        log = ActivityLog.objects.for_addons(self.helper.addon)
-        eq_(len(log), 2)
-        ids = set([l.action for l in log])
-        eq_(ids, set([amo.LOG.CHANGE_STATUS.id, amo.LOG.APPROVE_VERSION.id]))
+        eq_(self.check_log_count(amo.LOG.APPROVE_VERSION.id), 1)
 
     def test_notify_email(self):
         self.helper.set_data(self.get_data())
@@ -337,11 +332,7 @@ class TestReviewHelper(test_utils.TestCase):
 
             assert os.path.exists(self.file.mirror_file_path)
 
-            log = ActivityLog.objects.for_addons(self.helper.addon)
-            eq_(len(log), 2)
-            ids = set([l.action for l in log])
-            eq_(ids, set([amo.LOG.CHANGE_STATUS.id,
-                          amo.LOG.APPROVE_VERSION.id]))
+            eq_(self.check_log_count(amo.LOG.APPROVE_VERSION.id), 1)
 
     def test_nomination_to_preliminary(self):
         for status in NOMINATED_STATUSES:
@@ -360,7 +351,6 @@ class TestReviewHelper(test_utils.TestCase):
 
             assert os.path.exists(self.file.mirror_file_path)
 
-            eq_(self.check_log_count(amo.LOG.CHANGE_STATUS.id), 1)
             eq_(self.check_log_count(amo.LOG.PRELIMINARY_VERSION.id), 1)
 
     def test_nomination_to_sandbox(self):
@@ -377,7 +367,6 @@ class TestReviewHelper(test_utils.TestCase):
             eq_(mail.outbox[0].subject, '%s Reviewed' % self.preamble)
 
             assert not os.path.exists(self.file.mirror_file_path)
-            eq_(self.check_log_count(amo.LOG.CHANGE_STATUS.id), 1)
             eq_(self.check_log_count(amo.LOG.REJECT_VERSION.id), 1)
 
     def test_nomination_to_super_review(self):
