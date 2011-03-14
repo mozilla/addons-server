@@ -2759,6 +2759,7 @@ class TestValidateAddon(test_utils.TestCase):
         eq_(doc('#upload-addon').attr('data-upload-url'),
             reverse('devhub.upload'))
 
+
 class TestValidateFile(files.tests.UploadTest):
     fixtures = ['base/apps', 'base/users',
                 'devhub/addon-file-100456', 'base/platforms']
