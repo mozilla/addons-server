@@ -51,6 +51,7 @@
     <div class="action_nav">
       {{ form.action }}
     </div>
+
     <div id="review-actions-form">
       <label for="id_comments">{{ form.comments.label }}</label>
       {{ form.comments }}
@@ -58,6 +59,10 @@
       <div class="review-actions-canned">
         {{ _('Or, select a canned response') }}
         {{ form.canned_response }}
+      </div>
+
+      <div class="review-actions-section">
+        <label for="id_addon_files"><strong>{{ form.addon_files.label }}</strong></label>
       </div>
 
       <div class="review-actions-section review-actions-tested">

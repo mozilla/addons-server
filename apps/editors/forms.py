@@ -176,9 +176,9 @@ class QueueSearchForm(happyforms.Form):
 
 
 class ReviewAddonForm(happyforms.Form):
-    files = forms.ModelMultipleChoiceField(required=False,
-                                        queryset=File.objects.none(),
-                                        widget=forms.CheckboxSelectMultiple())
+    addon_files = forms.ModelMultipleChoiceField(required=False,
+            queryset=File.objects.none(), label=_('Files:'),
+            widget=forms.CheckboxSelectMultiple())
     comments = forms.CharField(required=True, widget=forms.Textarea(),
                                label=_('Comments:'))
     canned_response = forms.ChoiceField(required=False)
@@ -200,7 +200,8 @@ class ReviewAddonForm(happyforms.Form):
     def __init__(self, *args, **kw):
         self.helper = kw.pop('helper')
         super(ReviewAddonForm, self).__init__(*args, **kw)
-        self.fields['files'].queryset = self.helper.all_files
+        self.fields['addon_files'].queryset = self.helper.all_files
+
         self.fields['canned_response'].choices = ([(c.response, c.name)
                                     for c in CannedResponse.objects.all()])
         self.fields['action'].choices = [(k, v['label']) for k, v
@@ -223,8 +224,8 @@ class ReviewFileForm(ReviewAddonForm):
                                     'you tested.'))
         return applications
 
-    def clean_files(self):
-        files = self.data.getlist('files')
+    def clean_addon_files(self):
+        files = self.data.getlist('addon_files')
         if self.data.get('action', '') == 'prelim':
             if not files:
                 raise ValidationError(_('You must select some files.'))
@@ -235,7 +236,7 @@ class ReviewFileForm(ReviewAddonForm):
                      file.status == amo.STATUS_UNREVIEWED)):
                     raise ValidationError(_('File %s is not pending review.')
                                           % file.filename)
-        return self.fields['files'].queryset.filter(pk__in=files)
+        return self.fields['addon_files'].queryset.filter(pk__in=files)
 
 
 def get_review_form(data, request=None, addon=None, version=None):

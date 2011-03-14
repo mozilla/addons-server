@@ -834,7 +834,7 @@ class TestReviewPreliminary(ReviewBase):
     def prelim_dict(self):
         return {'action': 'prelim', 'operating_systems': 'win',
                 'applications': 'something', 'comments': 'something',
-                'files': [self.version.files.all()[0].pk]}
+                'addon_files': [self.version.files.all()[0].pk]}
 
     def test_prelim_comments_requested(self):
         response = self.client.post(self.url, {'action': 'prelim'})
@@ -862,17 +862,17 @@ class TestReviewPreliminary(ReviewBase):
     def test_prelim_from_lite_no_files(self):
         self.addon.update(status=amo.STATUS_LITE)
         data = self.prelim_dict()
-        del data['files']
+        del data['addon_files']
         response = self.client.post(self.url, data)
 
-        eq_(response.context['form'].errors['files'][0],
+        eq_(response.context['form'].errors['addon_files'][0],
             'You must select some files.')
 
     def test_prelim_from_lite_wrong(self):
         self.addon.update(status=amo.STATUS_LITE)
         response = self.client.post(self.url, self.prelim_dict())
 
-        eq_(response.context['form'].errors['files'][0],
+        eq_(response.context['form'].errors['addon_files'][0],
             'File Public.xpi is not pending review.')
 
     def test_prelim_from_lite_wrong_two(self):
@@ -883,7 +883,7 @@ class TestReviewPreliminary(ReviewBase):
             if status != amo.STATUS_UNREVIEWED:
                 file.update(status=status)
                 response = self.client.post(self.url, data)
-                eq_(response.context['form'].errors['files'][0],
+                eq_(response.context['form'].errors['addon_files'][0],
                     'File Public.xpi is not pending review.')
 
     def test_prelim_from_lite_files(self):
@@ -905,7 +905,7 @@ class TestReviewPreliminary(ReviewBase):
         file.save()
         self.addon.update(status=amo.STATUS_LITE)
         data = self.prelim_dict()
-        data['files'] = [file.pk]
+        data['addon_files'] = [file.pk]
         self.client.post(self.url, data)
         eq_([amo.STATUS_DISABLED, amo.STATUS_LISTED],
             [v.status for v in version.files.all().order_by('status')])

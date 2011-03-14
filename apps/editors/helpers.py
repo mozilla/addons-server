@@ -370,7 +370,7 @@ class ReviewFiles(ReviewBase):
 
     def process_sandbox(self):
         """Set an addon to sandbox."""
-        self.set_files(amo.STATUS_DISABLED, self.data['files'],
+        self.set_files(amo.STATUS_DISABLED, self.data['addon_files'],
                        hide_disabled_file=True)
 
         self.log_approval(amo.LOG.REJECT_VERSION)
@@ -379,12 +379,12 @@ class ReviewFiles(ReviewBase):
 
         log.info(u'Making %s files %s disabled' %
                  (self.addon,
-                  ', '.join([f.filename for f in self.data['files']])))
+                  ', '.join([f.filename for f in self.data['addon_files']])))
         log.info(u'Sending email for %s' % (self.addon))
 
     def process_preliminary(self):
         """Set an addon to preliminary."""
-        self.set_files(amo.STATUS_LITE, self.data['files'],
+        self.set_files(amo.STATUS_LITE, self.data['addon_files'],
                        copy_to_mirror=True)
 
         self.log_approval(amo.LOG.PRELIMINARY_VERSION)
@@ -393,14 +393,14 @@ class ReviewFiles(ReviewBase):
 
         log.info(u'Making %s files %s preliminary' %
                  (self.addon,
-                  ', '.join([f.filename for f in self.data['files']])))
+                  ', '.join([f.filename for f in self.data['addon_files']])))
         log.info(u'Sending email for %s' % (self.addon))
 
     def process_super_review(self):
         """Give an addon super review when preliminary."""
         self.addon.update(admin_review=True)
 
-        if any(f.status for f in self.data['files'] if f.status
+        if any(f.status for f in self.data['addon_files'] if f.status
                in (amo.STATUS_PENDING, amo.STATUS_UNREVIEWED)):
             self.log_approval(amo.LOG.ESCALATE_VERSION)
 
