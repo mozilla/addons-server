@@ -2756,9 +2756,8 @@ class TestValidateAddon(test_utils.TestCase):
         r = self.client.get(reverse('devhub.validate_addon'))
         eq_(r.status_code, 200)
         doc = pq(r.content)
-        eq_(doc('.invisible-upload').attr('data-upload-url'),
+        eq_(doc('#upload-addon').attr('data-upload-url'),
             reverse('devhub.upload'))
-
 
 class TestValidateFile(files.tests.UploadTest):
     fixtures = ['base/apps', 'base/users',
