@@ -49,8 +49,6 @@
   </header>
 {% endif %}
 
-{% set src = page if page == "developers" else None %}
-{% set src = 'meet-the-developer-post-install' if page == "installed" else src %}
 {% set contrib = contribution(addon=addon, src=src, text=msg,
                               show_install=(page != "installed")) %}
 

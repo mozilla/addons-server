@@ -400,12 +400,20 @@ def developers(request, addon, page):
         version = get_list_or_404(qs, version=request.GET['version'])[0]
     else:
         version = addon.current_version
+
+    if 'src' in request.GET:
+        src = request.GET['src']
+    else:
+        src = {'developers': 'developers',
+               'installed': 'meet-the-developer-post-install',
+               'roadblock': 'meetthedeveloper_roadblock'}.get(page, None)
+
     if addon.is_persona():
         raise http.Http404()
     author_addons = order_by_translation(addon.authors_other_addons, 'name')
     return jingo.render(request, 'addons/developers.html',
                         {'addon': addon, 'author_addons': author_addons,
-                         'page': page, 'version': version})
+                         'page': page, 'src': src, 'version': version})
 
 
 def old_contribute(request, addon):
