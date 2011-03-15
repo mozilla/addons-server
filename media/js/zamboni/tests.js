@@ -90,3 +90,35 @@ tests.createSandbox = function(tmpl) {
     $('#sandbox').append(sb);
     return sb;
 };
+
+tests.StubOb = function(Orig, overrides) {
+    /*
+        Returns a class-like replacement for Orig.
+
+        All properties in the overrides object will replace those of Orig's
+        prototype when you create an instance of the class.  This is useful
+        for stubbing out certain methods.  For example::
+
+            z.FileData = tests.StubOb(z.FormData, {
+                send: function() {}
+            });
+
+        This allows the creation of a FormData object that behaves just like
+        the original except that send() does not actually post data during
+        a test::
+
+            var fileData = new z.FileData();
+            fileData.send(); // does nothing
+
+        Be sure to assign the original class back when you're done testing.
+    */
+    var args = this.arguments;
+    return function() {
+        var ob = {}
+        Orig.apply(ob, args);
+        for (k in overrides) {
+            ob[k] = overrides[k];
+        }
+        return ob;
+    }
+};

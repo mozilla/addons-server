@@ -821,6 +821,10 @@ asyncTest('error/warning count', function() {
 
 module('addonUploaded', {
     setup: function() {
+        this._FormData = z.FormData;
+        z.FormData = tests.StubOb(z.FormData, {
+            send: function() {}
+        });
         this.sandbox = tests.createSandbox('#file-upload-template');
         $.fx.off = true;
 
@@ -837,6 +841,7 @@ module('addonUploaded', {
     teardown: function() {
         $.fx.off = false;
         this.sandbox.remove();
+        z.FormData = this._FormData;
     }
 });
 
@@ -1050,6 +1055,10 @@ asyncTest('customized', function() {
 
 module('switch addon platforms', {
     setup: function() {
+        this._FormData = z.FormData;
+        z.FormData = tests.StubOb(z.FormData, {
+            send: function() {}
+        });
         this.sandbox = tests.createSandbox('#addon-platform-switching');
 
         $.fx.off = true;
@@ -1066,6 +1075,7 @@ module('switch addon platforms', {
     },
     teardown: function() {
         this.sandbox.remove();
+        z.FormData = this._FormData;
     }
 });
 
