@@ -565,8 +565,7 @@ function initEditVersions() {
     // Modal box
     $modal = $(".add-file-modal").modal(".add-file", {
         width: '450px',
-        hideme: false,
-        callback: resetModal
+        hideme: false
     });
 
     // Handle uploader events

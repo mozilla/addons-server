@@ -114,7 +114,9 @@
 
   <div id="file-upload-template">
     <form>
-    <div data-upload-url="/"  id="upload-file-input"></div>
+      <!-- for testing this has to be a non-input element, since
+           you can't access ".file" on an input element -->
+        <div data-upload-url="/"  id="upload-file-input"></div>
     </form>
   </div>
 
