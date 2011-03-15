@@ -194,7 +194,7 @@ class TestReviewHelper(test_utils.TestCase):
         settings.ADDONS_PATH = self.old_normal
 
     def get_data(self):
-        return {'comments': 'foo', 'files': self.version.files.all(),
+        return {'comments': 'foo', 'addon_files': self.version.files.all(),
                 'action': 'prelim', 'operating_systems': 'osx',
                 'applications': 'Firefox'}
 
@@ -248,27 +248,27 @@ class TestReviewHelper(test_utils.TestCase):
 
     def test_set_files(self):
         self.file.update(datestatuschanged=yesterday)
-        self.helper.set_data({'files': self.version.files.all()})
+        self.helper.set_data({'addon_files': self.version.files.all()})
         self.helper.handler.set_files(amo.STATUS_PUBLIC,
-                                      self.helper.handler.data['files'])
+                                      self.helper.handler.data['addon_files'])
 
         self.file = self.version.files.all()[0]
         eq_(self.file.status, amo.STATUS_PUBLIC)
         assert self.file.datestatuschanged.date() > yesterday.date()
 
     def test_set_files_copy(self):
-        self.helper.set_data({'files': self.version.files.all()})
+        self.helper.set_data({'addon_files': self.version.files.all()})
         self.helper.handler.set_files(amo.STATUS_PUBLIC,
-                                      self.helper.handler.data['files'],
+                                      self.helper.handler.data['addon_files'],
                                       copy_to_mirror=True)
 
         assert os.path.exists(self.file.mirror_file_path)
 
     def test_set_files_remove(self):
         open(self.file.mirror_file_path, 'wb')
-        self.helper.set_data({'files': self.version.files.all()})
+        self.helper.set_data({'addon_files': self.version.files.all()})
         self.helper.handler.set_files(amo.STATUS_PUBLIC,
-                                      self.helper.handler.data['files'],
+                                      self.helper.handler.data['addon_files'],
                                       hide_disabled_file=True)
 
         assert not os.path.exists(self.file.mirror_file_path)
@@ -301,7 +301,7 @@ class TestReviewHelper(test_utils.TestCase):
 
     def test_nomination_to_public_no_files(self):
         for status in NOMINATED_STATUSES:
-            self.setup_data(status, ['files'])
+            self.setup_data(status, ['addon_files'])
             self.helper.handler.process_public()
 
             eq_(self.addon.versions.all()[0].files.all()[0].status,
@@ -309,7 +309,7 @@ class TestReviewHelper(test_utils.TestCase):
 
     def test_nomination_to_public_and_current_version(self):
         for status in NOMINATED_STATUSES:
-            self.setup_data(status, ['files'])
+            self.setup_data(status, ['addon_files'])
             self.addon.update(_current_version=None)
 
             addon = Addon.objects.get(pk=3615)
@@ -394,7 +394,7 @@ class TestReviewHelper(test_utils.TestCase):
             self.setup_data(status)
             self.helper.handler.process_preliminary()
 
-            for file in self.helper.handler.data['files']:
+            for file in self.helper.handler.data['addon_files']:
                 eq_(file.status, amo.STATUS_LITE)
 
             eq_(len(mail.outbox), 1)
@@ -409,7 +409,7 @@ class TestReviewHelper(test_utils.TestCase):
             self.setup_data(status)
             self.helper.handler.process_sandbox()
 
-            for file in self.helper.handler.data['files']:
+            for file in self.helper.handler.data['addon_files']:
                 eq_(file.status, amo.STATUS_DISABLED)
 
             eq_(len(mail.outbox), 1)
@@ -454,7 +454,7 @@ class TestReviewHelper(test_utils.TestCase):
             self.setup_data(status)
             self.helper.handler.process_sandbox()
 
-            for file in self.helper.handler.data['files']:
+            for file in self.helper.handler.data['addon_files']:
                 eq_(file.status, amo.STATUS_DISABLED)
 
             eq_(len(mail.outbox), 1)
