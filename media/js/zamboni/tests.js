@@ -112,10 +112,9 @@ tests.StubOb = function(Orig, overrides) {
 
         Be sure to assign the original class back when you're done testing.
     */
-    var args = this.arguments;
     return function() {
         var ob = {}
-        Orig.apply(ob, args);
+        Orig.apply(ob, this.arguments);
         for (k in overrides) {
             ob[k] = overrides[k];
         }
