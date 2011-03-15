@@ -26,8 +26,8 @@ def editor_page_title(context, title=None, addon=None):
     if addon:
         title = u'%s :: %s' % (title, addon.name)
     else:
-        devhub = _('Editor Tools')
-        title = '%s :: %s' % (title, devhub) if title else devhub
+        section = unicode(_('Editor Tools'))
+        title = '%s :: %s' % (title, section) if title else section
     return page_title(context, title)
 
 

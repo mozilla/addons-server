@@ -813,6 +813,13 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         eq_(response.context['paging'], {})
 
+    def test_page_title(self):
+        response = self.client.get(self.url)
+        eq_(response.status_code, 200)
+        doc = pq(response.content)
+        eq_(doc('title').text(),
+            '%s :: Editor Tools :: Add-ons' % self.addon.name)
+
     def test_paging_num(self):
         response = self.client.get('%s?num=1' % self.url)
         eq_(response.context['paging']['prev'], False)

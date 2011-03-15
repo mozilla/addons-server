@@ -1,5 +1,9 @@
 {% extends "editors/base.html" %}
 
+{% block title %}
+  {{ editor_page_title(title=addon.name) }}
+{% endblock %}
+
 {% block bodyclass %}inverse{% endblock %}
 
 {% block content %}
