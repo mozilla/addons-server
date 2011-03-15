@@ -310,10 +310,12 @@ class ReviewAddon(ReviewBase):
         if self.review_type == 'preliminary':
             raise AssertionError('Preliminary addons cannot be made public.')
 
-        self.set_addon(highest_status=amo.STATUS_PUBLIC,
-                       status=amo.STATUS_PUBLIC)
+        # Save files first, because set_addon checks to make sure there
+        # is at least one public file or it won't make the addon public.
         self.set_files(amo.STATUS_PUBLIC, self.version.files.all(),
                        copy_to_mirror=True)
+        self.set_addon(highest_status=amo.STATUS_PUBLIC,
+                       status=amo.STATUS_PUBLIC)
 
         self.log_approval(amo.LOG.APPROVE_VERSION)
         self.notify_email('%s_to_public' % self.review_type,

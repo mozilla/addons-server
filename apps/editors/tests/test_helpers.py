@@ -317,6 +317,33 @@ class TestReviewHelper(test_utils.TestCase):
             self.helper.handler.process_public()
             assert addon.current_version
 
+    def test_nomination_to_public_new_addon(self):
+        """ Make sure new add-ons can be made public (bug 637959) """
+        status = amo.STATUS_NOMINATED;
+        self.setup_data(status)
+
+        # Make sure we have no public files
+        for i in self.addon.versions.all():
+            i.files.update(status=amo.STATUS_UNREVIEWED)
+
+        self.helper.handler.process_public()
+
+        # Re-fetch the add-on
+        addon = Addon.objects.get(pk=3615)
+
+        eq_(addon.status, amo.STATUS_PUBLIC)
+        eq_(addon.highest_status, amo.STATUS_PUBLIC)
+
+        eq_(addon.versions.all()[0].files.all()[0].status,
+            amo.STATUS_PUBLIC)
+
+        eq_(len(mail.outbox), 1)
+        eq_(mail.outbox[0].subject, '%s Fully Reviewed' % self.preamble)
+
+        assert os.path.exists(self.file.mirror_file_path)
+
+        eq_(self.check_log_count(amo.LOG.APPROVE_VERSION.id), 1)
+
     def test_nomination_to_public(self):
         for status in NOMINATED_STATUSES:
             self.setup_data(status)
