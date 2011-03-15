@@ -61,9 +61,6 @@ class TestEventLog(EditorTest):
     def test_start_filter(self):
         r = self.client.get(reverse('editors.eventlog') + '?start=3011-01-01')
         eq_(r.status_code, 200)
-        doc = pq(r.content)
-        assert doc('tbody')
-        eq_(len(doc('tbody tr')), 0)
 
     def test_enddate_filter(self):
         """
@@ -87,6 +84,12 @@ class TestEventLog(EditorTest):
         r = self.client.get(reverse('editors.eventlog') + '?filter=deleted')
         doc = pq(r.content)
         eq_(len(doc('tbody tr')), 30)
+
+    def test_no_results(self):
+        r = self.client.get(reverse('editors.eventlog') + '?end=' +
+                            '2004-01-01')
+
+        assert 'No events found for this period.' in r.content
 
 
 class TestEventLogDetail(TestEventLog):

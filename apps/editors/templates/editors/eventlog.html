@@ -19,29 +19,33 @@
         <button type="submit">{{ _('Filter') }}</button>
       </p>
     </form>
-    <table>
-      <thead><tr>
-        <th>{{ _('Date') }}</th>
-        <th>{{ _('Event') }}</th>
-      </tr></thead>
-      <tbody>
-        {% for item in pager.object_list %}
-        <tr>
-          <td>
-            {{ item.created|babel_datetime }}
-          </td>
-          <td>
-            {{ item.to_string('editor') }}
-            {% if item.details %}
-            <a href="{{ url('editors.eventlog.detail', item.id) }}">
-              {{ _('More details.') }}
-            </a>
-            {% endif %}
-          </td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+    {% if pager.object_list %}
+      <table>
+        <thead><tr>
+          <th>{{ _('Date') }}</th>
+          <th>{{ _('Event') }}</th>
+        </tr></thead>
+        <tbody>
+          {% for item in pager.object_list %}
+          <tr>
+            <td>
+              {{ item.created|babel_datetime }}
+            </td>
+            <td>
+              {{ item.to_string('editor') }}
+              {% if item.details %}
+              <a href="{{ url('editors.eventlog.detail', item.id) }}">
+                {{ _('More details.') }}
+              </a>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p>No events found for this period.</p>
+    {% endif %}
   </div>
   <div class="listing-footer">
     {{ pager|paginator }}
