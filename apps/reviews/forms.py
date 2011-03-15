@@ -2,7 +2,7 @@ from django import forms
 from django.forms.models import modelformset_factory, BaseModelFormSet
 
 import happyforms
-from tower import ugettext as _, ugettext_lazy as _lazy
+from tower import ugettext_lazy as _lazy
 
 import amo
 import reviews
@@ -50,7 +50,9 @@ class BaseReviewFlagFormSet(BaseModelFormSet):
                     review_addon = review.addon
                     review_id = review.id
                     review.delete()
-                    amo.log(amo.LOG.DELETE_REVIEW, review_addon, review_id)
+                    amo.log(amo.LOG.DELETE_REVIEW, review_addon, review_id,
+                            details=dict(title=unicode(review.title),
+                                         body=unicode(review.body)))
                 elif action == reviews.REVIEW_MODERATE_KEEP:
                     review.editorreview = False
                     review.save()

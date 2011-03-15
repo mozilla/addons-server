@@ -24,7 +24,7 @@ from reviews.models import Review, ReviewFlag
 from users.models import UserProfile
 from versions.models import Version, VersionSummary, AppVersion
 from files.models import Approval, Platform, File
-from zadmin.models import set_config, get_config
+from zadmin.models import set_config
 from . test_models import create_addon_file
 
 
@@ -458,6 +458,10 @@ class TestModeratedQueue(QueueTest):
         doc = pq(r.content)
         rows = doc('#reviews-flagged .review-flagged:not(.review-saved)')
         eq_(len(rows), 0)
+
+        r = self.client.get(reverse('editors.eventlog'))
+        doc = pq(r.content)
+        assert 'More details' in doc('table a').text()
 
         # Make sure it was actually deleted.
         eq_(len(Review.objects.filter(addon=1865)), 1)
