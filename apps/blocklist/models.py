@@ -22,12 +22,23 @@ class BlocklistApp(amo.models.ModelBase):
         return ['/blocklist*']  # no lang/app
 
 
+class BlocklistDetail(amo.models.ModelBase):
+    name = models.CharField(max_length=255)
+    why = models.TextField()
+    who = models.TextField()
+    bug = models.URLField()
+
+    class Meta(amo.models.ModelBase.Meta):
+        db_table = 'bldetails'
+
+
 class BlocklistItem(amo.models.ModelBase):
     guid = models.CharField(max_length=255, blank=True, null=True)
     min = models.CharField(max_length=255, blank=True, null=True)
     max = models.CharField(max_length=255, blank=True, null=True)
     os = models.CharField(max_length=255, blank=True, null=True)
     severity = models.SmallIntegerField(null=True)
+    details = models.OneToOneField(BlocklistDetail, null=True)
 
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'blitems'
@@ -49,6 +60,7 @@ class BlocklistPlugin(amo.models.ModelBase):
     description = models.CharField(max_length=255, blank=True, null=True)
     filename = models.CharField(max_length=255, blank=True, null=True)
     severity = models.SmallIntegerField(null=True)
+    details = models.OneToOneField(BlocklistDetail, null=True)
 
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'blplugins'
@@ -71,6 +83,7 @@ class BlocklistGfx(amo.models.ModelBase):
     driver_version = models.CharField(max_length=255, blank=True, null=True)
     driver_version_comparator = models.CharField(max_length=255, blank=True,
                                                  null=True)
+    details = models.OneToOneField(BlocklistDetail, null=True)
 
     class Meta:
         db_table = 'blgfxdrivers'
