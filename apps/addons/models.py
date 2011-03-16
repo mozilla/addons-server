@@ -179,8 +179,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     nomination_message = models.TextField(null=True,
                                           db_column='nominationmessage')
-    nomination_date = models.DateTimeField(null=True,
-                                           db_column='nominationdate')
     target_locale = models.CharField(
         max_length=255, db_index=True, blank=True, null=True,
         help_text="For dictionaries and language packs")
@@ -871,7 +869,15 @@ signals.version_changed.connect(version_changed,
 @Addon.on_change
 def watch_status(old_attr={}, new_attr={}, instance=None,
                  sender=None, **kw):
-    """Set nominationdate if self.status asks for full review."""
+    """Set nomination date if self.status asks for full review.
+
+    The nomination date will only be set when the status of the addon changes.
+    The nomination date cannot be reset, say, when a developer cancels their
+    request for full review and re-requests full review.
+
+    If a version is rejected after nomination, the developer has to upload a
+    new version.
+    """
     new_status = new_attr.get('status')
     if not new_status:
         return
@@ -884,7 +890,6 @@ def watch_status(old_attr={}, new_attr={}, instance=None,
                 latest.update(nomination=datetime.now())
         except Version.DoesNotExist:
             pass
-        addon.update(nomination_date=datetime.now())
 
 
 class MiniAddonManager(AddonManager):

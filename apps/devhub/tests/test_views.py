@@ -1752,6 +1752,9 @@ class TestSubmitBase(test_utils.TestCase):
     def get_addon(self):
         return Addon.objects.no_cache().get(pk=3615)
 
+    def get_version(self):
+        return self.get_addon().versions.get()
+
     def get_step(self):
         return SubmitStep.objects.get(addon=self.get_addon())
 
@@ -2204,13 +2207,13 @@ class TestSubmitStep6(TestSubmitBase):
         assert_raises(SubmitStep.DoesNotExist, self.get_step)
 
     def test_full_review(self):
-        self.get_addon().update(nomination_date=None)
+        self.get_version().update(nomination=None)
         d = dict(review_type=amo.STATUS_NOMINATED)
         r = self.client.post(self.url, d)
         eq_(r.status_code, 302)
         addon = self.get_addon()
         eq_(addon.status, amo.STATUS_NOMINATED)
-        assert_close_to_now(addon.nomination_date)
+        assert_close_to_now(self.get_version().nomination)
         assert_raises(SubmitStep.DoesNotExist, self.get_step)
 
     def test_nomination_date_is_only_set_once(self):
@@ -2219,10 +2222,10 @@ class TestSubmitStep6(TestSubmitBase):
         r = self.client.post(self.url, dict(review_type=amo.STATUS_NOMINATED))
         eq_(r.status_code, 302)
         nomdate = datetime.now() - timedelta(days=5)
-        self.get_addon().update(nomination_date=nomdate, _signal=False)
+        self.get_version().update(nomination=nomdate, _signal=False)
         # Update something else in the addon:
         self.get_addon().update(slug='foobar')
-        eq_(self.get_addon().nomination_date.timetuple()[0:5],
+        eq_(self.get_version().nomination.timetuple()[0:5],
             nomdate.timetuple()[0:5])
 
 
@@ -3099,6 +3102,9 @@ class TestRequestReview(test_utils.TestCase):
     def get_addon(self):
         return Addon.objects.get(id=self.addon.id)
 
+    def get_version(self):
+        return Version.objects.get(pk=self.version.id)
+
     def check(self, old_status, url, new_status):
         self.addon.update(status=old_status)
         r = self.client.post(url)
@@ -3131,21 +3137,19 @@ class TestRequestReview(test_utils.TestCase):
         self.check_400(self.lite_url)
 
     def test_lite_to_public(self):
-        eq_(self.addon.nomination_date, None)
+        eq_(self.version.nomination, None)
         self.check(amo.STATUS_LITE, self.public_url,
                    amo.STATUS_LITE_AND_NOMINATED)
-        self.addon = Addon.objects.get(pk=self.addon.id)
-        assert_close_to_now(self.addon.nomination_date)
+        assert_close_to_now(self.get_version().nomination)
 
     def test_purgatory_to_lite(self):
         self.check(amo.STATUS_PURGATORY, self.lite_url, amo.STATUS_UNREVIEWED)
 
     def test_purgatory_to_public(self):
-        eq_(self.addon.nomination_date, None)
+        eq_(self.version.nomination, None)
         self.check(amo.STATUS_PURGATORY, self.public_url,
                    amo.STATUS_NOMINATED)
-        self.addon = Addon.objects.get(pk=self.addon.id)
-        assert_close_to_now(self.addon.nomination_date)
+        assert_close_to_now(self.get_version().nomination)
 
     def test_lite_and_nominated_to_public(self):
         self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
@@ -3159,23 +3163,27 @@ class TestRequestReview(test_utils.TestCase):
     def test_renominate_for_full_review(self):
         # When a version is rejected, the addon is disabled.
         # The author must upload a new version and re-nominate.
-        self.addon.update(
-                # Pretend it was nominated in the past:
-                nomination_date=datetime.now() - timedelta(days=30))
+        # However, renominating the *same* version does not adjust the
+        # nomination date.
+        orig_date = nomination=datetime.now() - timedelta(days=30)
+        # Pretend it was nominated in the past:
+        self.version.update(nomination=orig_date)
         self.check(amo.STATUS_NULL, self.public_url, amo.STATUS_NOMINATED)
-        assert_close_to_now(self.get_addon().nomination_date)
+        eq_(self.get_version().nomination.timetuple()[0:5],
+            orig_date.timetuple()[0:5])
 
-    def test_renomination_resets_nomination_date(self):
+    def test_renomination_doesnt_reset_nomination_date(self):
         # Nominate:
         self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
         # Pretend it was nominated in the past:
-        self.addon.update(nomination_date=datetime.now() - timedelta(days=30),
-                          _signal=False)
+        orig_date = datetime.now() - timedelta(days=30)
+        self.version.update(nomination=orig_date, _signal=False)
         # Reject it:
         self.addon.update(status=amo.STATUS_NULL)
         # Re-nominate:
         self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
-        assert_close_to_now(self.get_addon().nomination_date)
+        eq_(self.get_version().nomination.timetuple()[0:5],
+            orig_date.timetuple()[0:5])
 
 
 class TestRedirects(test_utils.TestCase):
