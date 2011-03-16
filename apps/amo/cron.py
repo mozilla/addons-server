@@ -126,6 +126,31 @@ def gc(test_result=True):
     log.debug('Cleaning up test results cache.')
     TestResultCache.objects.filter(date__lt=one_hour_ago).delete()
 
+    # Paypal only keeps retrying to verify transactions for up to 3 days. If we
+    # still have an unverified transaction after 6 days, we might as well get
+    # rid of it.
+    log.debug('Cleaning up outdated contributions statistics.')
+    Contribution.objects.filter(transaction_id__isnull=True,
+                                created__lt=six_days_ago).delete()
+
+    log.debug('Removing old entries from add-on news feeds.')
+
+    ActivityLog.objects.filter(created__lt=three_months_ago).exclude(
+            action__in=amo.LOG_KEEP).delete()
+
+    log.debug('Cleaning up anonymous collections.')
+    Collection.objects.filter(created__lt=two_days_ago,
+                              type=amo.COLLECTION_ANONYMOUS).delete()
+
+    # Remove Incomplete add-ons older than 4 days.
+    items = (Addon.objects.filter(
+             highest_status=amo.STATUS_NULL, status=amo.STATUS_NULL,
+             created__lt=four_days_ago).values_list('id', flat=True))
+    with establish_connection() as conn:
+        for chunk in chunked(items, 100):
+            _delete_incomplete_addons.apply_async(
+                    args=[chunk], connection=conn)
+
     log.debug('Cleaning up test results extraction cache.')
     if settings.NETAPP_STORAGE and settings.NETAPP_STORAGE != '/':
         cmd = ('find', settings.NETAPP_STORAGE, '-maxdepth', '1', '-name',
@@ -161,31 +186,6 @@ def gc(test_result=True):
 
         for line in output.split("\n"):
             log.debug(line)
-
-    # Paypal only keeps retrying to verify transactions for up to 3 days. If we
-    # still have an unverified transaction after 6 days, we might as well get
-    # rid of it.
-    log.debug('Cleaning up outdated contributions statistics.')
-    Contribution.objects.filter(transaction_id__isnull=True,
-                                created__lt=six_days_ago).delete()
-
-    log.debug('Removing old entries from add-on news feeds.')
-
-    ActivityLog.objects.filter(created__lt=three_months_ago).exclude(
-            action__in=amo.LOG_KEEP).delete()
-
-    log.debug('Cleaning up anonymous collections.')
-    Collection.objects.filter(created__lt=two_days_ago,
-                              type=amo.COLLECTION_ANONYMOUS).delete()
-
-    # Remove Incomplete add-ons older than 4 days.
-    items = (Addon.objects.filter(
-             highest_status=amo.STATUS_NULL, status=amo.STATUS_NULL,
-             created__lt=four_days_ago).values_list('id', flat=True))
-    with establish_connection() as conn:
-        for chunk in chunked(items, 100):
-            _delete_incomplete_addons.apply_async(
-                    args=[chunk], connection=conn)
 
 
 @task
