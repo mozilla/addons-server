@@ -1,8 +1,7 @@
 from django.db import models
 
-import redisutils
-
 import amo.models
+from amo.urlresolvers import reverse
 
 
 class BlocklistApp(amo.models.ModelBase):
@@ -31,8 +30,22 @@ class BlocklistDetail(amo.models.ModelBase):
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'bldetails'
 
+    def __unicode__(self):
+        return self.name
 
-class BlocklistItem(amo.models.ModelBase):
+
+class BlockId:
+
+    @property
+    def block_id(self):
+        return '%s%s' % (self._type, self.details_id)
+
+    def get_url_path(self):
+        return reverse('blocked.detail', args=[self.block_id])
+
+
+class BlocklistItem(BlockId, amo.models.ModelBase):
+    _type = 'i'
     guid = models.CharField(max_length=255, blank=True, null=True)
     min = models.CharField(max_length=255, blank=True, null=True)
     max = models.CharField(max_length=255, blank=True, null=True)
@@ -50,7 +63,8 @@ class BlocklistItem(amo.models.ModelBase):
         return ['/blocklist*']  # no lang/app
 
 
-class BlocklistPlugin(amo.models.ModelBase):
+class BlocklistPlugin(BlockId, amo.models.ModelBase):
+    _type = 'p'
     name = models.CharField(max_length=255, blank=True, null=True)
     guid = models.CharField(max_length=255, blank=True, null=True)
     min = models.CharField(max_length=255, blank=True, null=True)
@@ -73,7 +87,8 @@ class BlocklistPlugin(amo.models.ModelBase):
         return ['/blocklist*']  # no lang/app
 
 
-class BlocklistGfx(amo.models.ModelBase):
+class BlocklistGfx(BlockId, amo.models.ModelBase):
+    _type = 'g'
     guid = models.CharField(max_length=255, blank=True, null=True)
     os = models.CharField(max_length=255, blank=True, null=True)
     vendor = models.CharField(max_length=255, blank=True, null=True)

@@ -1,25 +1,28 @@
 import collections
 from datetime import datetime, timedelta
+from operator import attrgetter
 import time
 import uuid
 
 from django.core.cache import cache
 from django.conf import settings
 from django.db.models import Q, signals as db_signals
+from django.shortcuts import get_object_or_404
 
 import jingo
 import redisutils
 
 from amo.utils import sorted_groupby
 from versions.compare import version_int
-from .models import BlocklistItem, BlocklistPlugin, BlocklistGfx, BlocklistApp
+from .models import (BlocklistItem, BlocklistPlugin, BlocklistGfx,
+                     BlocklistApp, BlocklistDetail)
 
 
 App = collections.namedtuple('App', 'guid min max')
 
 
 def blocklist(request, apiver, app, appver):
-    key = 'blocklist:%s:%s:%s'%  (apiver, app, appver)
+    key = 'blocklist:%s:%s:%s' % (apiver, app, appver)
     response = cache.get(key)
     if response is None:
         response = _blocklist(request, apiver, app, appver)
@@ -93,3 +96,38 @@ def get_plugins(apiver, app, appver):
         app_version = version_int(appver)
         plugins = [p for p in plugins if between(app_version, p.min, p.max)]
     return plugins
+
+
+def blocked_list(request):
+    items = blocklist_objects()
+    return jingo.render(request, 'blocklist/blocked_list.html',
+                        {'items': items})
+
+
+blmodels = BlocklistItem, BlocklistPlugin, BlocklistGfx
+bltypes = dict((m._type, m) for m in blmodels)
+
+
+# The id is prefixed with [ipg] so we know which model to use.
+def blocked_detail(request, id):
+    item = blocklist_item(id)
+    return jingo.render(request, 'blocklist/blocked_detail.html',
+                        {'item': item})
+
+
+def blocklist_objects():
+    objs = [o for m in blmodels for o in m.objects.select_related('details')]
+    # Make sure all the blocklist objects have details.
+    for obj in objs:
+        if obj.details is None:
+            if obj.created is None:
+                obj.created = datetime.now()
+            d = BlocklistDetail.objects.create(
+                name=repr(obj), why='', who='', bug='', created=obj.created)
+            obj.details = d
+            obj.save()
+    return sorted(objs, key=attrgetter('created'), reverse=True)
+
+
+def blocklist_item(id):
+    return get_object_or_404(bltypes[id[0]], details=id[1:])
