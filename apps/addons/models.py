@@ -238,7 +238,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         db_table = 'addons'
 
     def __unicode__(self):
-        return '%s: %s' % (self.id, self.name)
+        return u'%s: %s' % (self.id, self.name)
 
     def __init__(self, *args, **kw):
         super(Addon, self).__init__(*args, **kw)
