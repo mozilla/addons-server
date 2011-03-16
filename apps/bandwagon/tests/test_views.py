@@ -835,6 +835,10 @@ class TestFeeds(test_utils.TestCase):
         loc = r['Location']
         assert loc.endswith(self.feed_url), loc
 
+    def test_private_collection(self):
+        self.collection.update(listed=False)
+        eq_(self.client.get(self.feed_url).status_code, 404)
+
 
 class TestMobileCollections(TestMobile):
 
