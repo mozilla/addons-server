@@ -252,12 +252,19 @@ def icons():
 
 class AddonFormMedia(AddonFormBase):
     icon_type = forms.CharField(widget=forms.RadioSelect(
-            renderer=IconWidgetRenderer, choices=icons()), required=False)
+            renderer=IconWidgetRenderer, choices=[]), required=False)
     icon_upload_hash = forms.CharField(required=False)
 
     class Meta:
         model = Addon
         fields = ('icon_upload_hash', 'icon_type')
+
+    def __init__(self, *args, **kwargs):
+        super(AddonFormMedia, self).__init__(*args, **kwargs)
+
+        # Add icons here so we only read the directory when
+        # AddonFormMedia is actually being used.
+        self.fields['icon_type'].widget.choices = icons()
 
     def save(self, addon, commit=True):
         if self.cleaned_data['icon_upload_hash']:
