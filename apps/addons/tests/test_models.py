@@ -206,7 +206,7 @@ class TestAddonModels(test_utils.TestCase):
         3. Test for default non-THEME icon.
         """
         a = Addon.objects.get(pk=3615)
-        expected = (settings.ADDON_ICON_URL % (3615, 0)).rstrip('/0')
+        expected = (settings.ADDON_ICON_URL % (3615, 32, 0)).rstrip('/0')
         assert a.icon_url.startswith(expected)
         a = Addon.objects.get(pk=6704)
         a.icon_type = None
@@ -1043,7 +1043,7 @@ class TestFlushURLs(test_utils.TestCase):
 
     def setUp(self):
         settings.ADDON_ICON_URL = (
-            '%s/%s/%s/images/addon_icon/%%d/?modified=%%s' % (
+            '%s/%s/%s/images/addon_icon/%%d-%%d.png?modified=%%s' % (
             settings.STATIC_URL, settings.LANGUAGE_CODE, settings.DEFAULT_APP))
         settings.PREVIEW_THUMBNAIL_URL = (settings.STATIC_URL +
             '/img/uploads/previews/thumbs/%s/%d.png?modified=%d')

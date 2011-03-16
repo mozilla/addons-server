@@ -1963,7 +1963,8 @@ class TestSubmitStep4(TestSubmitBase):
 
     def setUp(self):
         self.old_addon_icon_url = settings.ADDON_ICON_URL
-        settings.ADDON_ICON_URL = "%s/%s/%s/images/addon_icon/%%d/%%s" % (
+        url_string = "%s/%s/%s/images/addon_icon/%%d-%%d.png?%%s"
+        settings.ADDON_ICON_URL = url_string % (
             settings.STATIC_URL, settings.LANGUAGE_CODE, settings.DEFAULT_APP)
         super(TestSubmitStep4, self).setUp()
         SubmitStep.objects.create(addon_id=3615, step=5)
@@ -2046,8 +2047,8 @@ class TestSubmitStep4(TestSubmitBase):
 
         addon = self.get_addon()
 
-        eq_('/'.join(addon.get_icon_url(64).split('/')[-3:-1]),
-            'addon_icon/%s' % addon.id)
+        addon_url = addon.get_icon_url(64).split('?')[0]
+        assert addon_url.endswith('images/addon_icon/%s-64.png' % addon.id)
 
         eq_(data['icon_type'], 'image/png')
 
@@ -2078,8 +2079,8 @@ class TestSubmitStep4(TestSubmitBase):
         self.client.post(self.url, data_formset)
         addon = self.get_addon()
 
-        eq_('/'.join(addon.get_icon_url(64).split('/')[-3:-1]),
-            'addon_icon/%s' % addon.id)
+        addon_url = addon.get_icon_url(64).split('?')[0]
+        assert addon_url.endswith('images/addon_icon/%s-64.png' % addon.id)
 
         eq_(data['icon_type'], 'image/png')
 

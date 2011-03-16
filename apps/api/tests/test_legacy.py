@@ -198,7 +198,7 @@ class APITest(TestCase):
         self.assertContains(response, "<summary>Delicious Bookmarks is the")
         self.assertContains(response, "<description>This extension integrates")
 
-        icon_url = settings.ADDON_ICON_URL % (3615, '')
+        icon_url = settings.ADDON_ICON_URL % (3615, 32, '')
         self.assertContains(response, "<icon>" + icon_url)
         self.assertContains(response, "<application>")
         self.assertContains(response, "<name>Firefox</name>")
