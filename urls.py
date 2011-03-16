@@ -21,6 +21,7 @@ urlpatterns = patterns('',
     # not anchored on purpose!
     url('^blocklist/(?P<apiver>\d+)/(?P<app>[^/]+)/(?P<appver>[^/]+)/',
         blocklist.views.blocklist, name='blocklist'),
+    ('^blocked/', include('blocklist.urls')),
 
     # Add-ons.
     ('', include('addons.urls')),
