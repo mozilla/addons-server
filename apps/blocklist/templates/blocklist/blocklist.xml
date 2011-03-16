@@ -50,11 +50,13 @@
     <gfxBlacklistEntry>
       <os>{{ gfx.os }}</os>
       <vendor>{{ gfx.vendor }}</vendor>
-      <devices>
-        {% for device in gfx.devices.split(' ') %}
-          <device>{{ device }}</device>
-        {% endfor %}
-      </devices>
+      {% if gfx.devices %}
+        <devices>
+          {% for device in gfx.devices.split(' ') %}
+            <device>{{ device }}</device>
+          {% endfor %}
+        </devices>
+      {% endif %}
       <feature>{{ gfx.feature }}</feature>
       <featureStatus>{{ gfx.feature_status }}</featureStatus>
       <driverVersion>{{ gfx.driver_version }}</driverVersion>

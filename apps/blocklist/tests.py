@@ -306,3 +306,9 @@ class BlocklistGfxTest(BlocklistTest):
         for device, val in zip(devices.getElementsByTagName('device'),
                                self.gfx.devices.split(' ')):
             eq_(device.childNodes[0].wholeText, val)
+
+    def test_empty_devices(self):
+        self.gfx.devices = None
+        self.gfx.save()
+        r = self.client.get(self.fx4_url)
+        self.assertNotContains(r, '<devices>')
