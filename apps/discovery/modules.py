@@ -82,6 +82,7 @@ class CollectionPromo(PromoModule):
     title = None
     subtitle = None
     limit = 3
+    linkify_title = False
 
     def __init__(self, *args, **kw):
         super(CollectionPromo, self).__init__(*args, **kw)
