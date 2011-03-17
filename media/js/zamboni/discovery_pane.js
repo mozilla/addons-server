@@ -197,6 +197,7 @@ function initRecs() {
                     datastore = JSON.parse(raw_data);
                     populateRecs();
                     if (z.hasLocalStorage) {
+                        localStorage.setItem("discopane-updated", new Date());
                         localStorage.setItem("discopane-recs", raw_data);
                         localStorage.setItem("discopane-guids", guids);
                     }
