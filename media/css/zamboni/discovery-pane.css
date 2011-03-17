@@ -492,6 +492,11 @@ header:after,
     max-width: auto;
 }
 
+.collection.promo h2 a {
+    color: inherit;
+    text-decoration: none;
+}
+
 .promo hgroup,
 #monthly .wrap,
 #go-mobile .wrap,

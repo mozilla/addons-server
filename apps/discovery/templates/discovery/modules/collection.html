@@ -2,7 +2,11 @@
 <li class="panel">
   <div id="{{ promo.id }}" class="feature collection {{ promo.cls }}">
     <hgroup>
-      <h2>{{ promo.title|safe }}</h2>
+      {% if promo.linkify_title %}
+        <h2><a href="{{ collection.get_url_path()|urlparams(src='discovery-promo') }}">{{ promo.title|safe }}</a></h2>
+      {% else %}
+        <h2>{{ promo.title|safe }}</h2>
+      {% endif %}
       {% if promo.subtitle %}
         <h3>{{ promo.subtitle|safe }}</h3>
       {% endif %}

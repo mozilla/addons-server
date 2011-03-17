@@ -151,6 +151,7 @@ class Fx4Collection(CollectionPromo):
     cls = 'promo'
     title = _(u'Firefox 4 Collection')
     subtitle = _(u'Here are some great add-ons for Firefox 4.')
+    linkify_title = True
 
 
 class StPatricksPersonas(CollectionPromo):
