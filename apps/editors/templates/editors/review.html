@@ -24,6 +24,13 @@
 <div id="addon" class="primary" role="main" data-id="{{ addon.id }}">
 {% include "addons/details_box.html" %}
 
+{% if version.releasenotes %}
+  <h3 id="Version Notes">
+    {{ _('Version Notes') }}
+  </h3>
+  {{ version.releasenotes|nl2br }}
+{% endif %}
+
 <h3 id="validation">
   {{ _('Files and Validation Results') }}
   <span>[<a href="{{ remora_url('pages/validation') }}">{{ _('help') }}</a>]</span>
