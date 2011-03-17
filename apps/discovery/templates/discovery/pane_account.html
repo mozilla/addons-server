@@ -1,3 +1,5 @@
+{% set app = request.APP.pretty %}
+
 {% if user.is_authenticated() %}
   <section id="my-account">
     {# L10n: {0} is the user's login name. #}
