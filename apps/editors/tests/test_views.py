@@ -834,6 +834,77 @@ class TestReview(ReviewBase):
         response = self.client.get('%s?num=x' % self.url)
         eq_(response.status_code, 404)
 
+    def test_files_shown(self):
+        response = self.client.get(self.url)
+        eq_(response.status_code, 200)
+
+        validation = pq(response.content).find('#validation').next()
+        eq_(validation.children().length, 1)
+        eq_(validation.find('a strong').text(), 'Public.xpi')
+
+        eq_(validation.find('a').eq(1).text(), "Validation Results")
+        eq_(validation.find('a').eq(2).text(), "View Contents")
+
+        eq_(validation.find('a').length, 3)
+
+    def test_no_items(self):
+        response = self.client.get(self.url)
+        eq_(pq(response.content).find('#file-history').next().text(),
+            "No previous review entries could be found.")
+
+    def test_listing_link(self):
+        response = self.client.get(self.url)
+        text = pq(response.content).find('#actions-addon li a').eq(0).text()
+        eq_(text, "View Listing")
+
+    def test_no_public(self):
+        s = amo.STATUS_PUBLIC
+
+        has_public = self.version.files.filter(status=s).exists()
+        assert not has_public
+
+        for version_file in self.version.files.all():
+            version_file.status = amo.STATUS_PUBLIC
+            version_file.save()
+
+        has_public = self.version.files.filter(status=s).exists()
+        assert has_public
+
+        response = self.client.get(self.url)
+
+        validation = pq(response.content).find('#validation').next()
+        eq_(validation.find('a').eq(1).text(), "Validation Results")
+        eq_(validation.find('a').eq(2).text(), "View Contents")
+        eq_(validation.find('a').eq(3).text(), "Compare With Public Version")
+
+        eq_(validation.find('a').length, 4)
+
+    def test_public_search(self):
+        s = amo.STATUS_PUBLIC
+
+        has_public = self.version.files.filter(status=s).exists()
+        assert not has_public
+
+        for version_file in self.version.files.all():
+            version_file.status = amo.STATUS_PUBLIC
+            version_file.save()
+
+        has_public = self.version.files.filter(status=s).exists()
+        assert has_public
+
+        self.addon.type = amo.ADDON_SEARCH
+        self.addon.save()
+
+        eq_(self.addon.type, amo.ADDON_SEARCH)
+
+        response = self.client.get(self.url)
+
+        validation = pq(response.content).find('#validation').next()
+        eq_(validation.find('a').eq(1).text(), "Validation Results")
+        eq_(validation.find('a').eq(2).text(), "View Contents")
+
+        eq_(validation.find('a').length, 3)
+
 
 class TestReviewPreliminary(ReviewBase):
 

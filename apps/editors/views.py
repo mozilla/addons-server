@@ -245,10 +245,17 @@ def review(request, version_id):
 
     canned = CannedResponse.objects.all()
 
+    has_public_files = version.files.filter(status=amo.STATUS_PUBLIC).exists()
+    is_admin = acl.action_allowed(request, 'Admin', 'EditAnyAddon')
+
     ctx = context(version=version, addon=addon,
                   flags=Review.objects.filter(addon=addon, flag=True),
-                  form=form, paging=paging, canned=canned,
+                  form=form, paging=paging, canned=canned, is_admin=is_admin,
+                  status_types=amo.STATUS_CHOICES,
+                  has_public_files=has_public_files,
+                  actions=actions, actions_tested=actions_tested,
                   history=ActivityLog.objects.for_addons(addon)
+                          .order_by('created')
                           .filter(action__in=LOG_STATUSES))
 
     return jingo.render(request, 'editors/review.html', ctx)

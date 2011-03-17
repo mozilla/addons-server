@@ -24,6 +24,29 @@
 <div id="addon" class="primary" role="main" data-id="{{ addon.id }}">
 {% include "addons/details_box.html" %}
 
+<h3 id="validation">
+  {{ _('Files and Validation Results') }}
+  <span>[<a href="{{ remora_url('pages/validation') }}">{{ _('help') }}</a>]</span>
+</h3>
+<ul>
+{% for file in version.files.all() %}
+<li>
+  <a href="{{ remora_url('/downloads/file/%d/%s' %( file.id, file.filename)) }}">
+    <strong>{{ file.filename }}</strong></a>
+  <br>
+  {{ status_types[file.status] }}
+  &middot;
+  <a href="{{ url('devhub.file_validation', addon.slug, file.id) }}">{{ _('Validation Results') }}</a>
+  &middot;
+  <a href="{{ remora_url('/files/browse/%d/1' % file.id) }}">{{ _('View Contents') }}</a>
+  {% if has_public_files and addon.type != amo.ADDON_SEARCH %}
+    &middot;
+    <a href="{{ remora_url('/files/browse/%d/1' % file.id) }}">{{ _('Compare With Public Version') }}</a>
+  {% endif %}
+</li>
+{% endfor %}
+</ul>
+
 <h3 id="file-history">{{ _('Item History') }}</h3>
 {% if history %}
   <table id="review-files">
@@ -112,6 +135,18 @@
   </div>
   {% endif %}
 
+  <strong>{{ _('This Add-on') }}</strong>
+  <ul id="actions-addon">
+    <li><a href="{{ addon.get_url_path() }}">{{ _('View Listing') }}</a></li>
+  </ul>
+
+  {% if is_admin %}
+  <strong>{{ _('Admin Tools') }}</strong>
+  <ul id="actions-admin">
+    <li><a href="{{ url('devhub.addons.edit', addon.slug) }}">{{ _('Edit Add-on') }}</a></li>
+  </ul>
+  {% endif %}
+
   <strong>{{ _('Review This Add-on') }}</strong>
   <ul>
     <li><a href="#more-about">{{ _('More Information') }}</a></li>
@@ -135,12 +170,8 @@
 
   <strong>{{ _('Apps') }}</strong>
   <ul>
-    {% for app, appversion in addon.compatible_apps.items() %}
-    <li>
-    {% trans app_name=app.pretty, version_min=appversion.min, version_max=appversion.max %}
-      {{ app_name }} {{ version_min }} {{ version_max }}
-    {% endtrans %}
-    </li>
+    {% for compat in addon.compatible_apps.values() %}
+    <li> {{ compat }} </li>
     {% endfor %}
   </ul>
 
