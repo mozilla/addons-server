@@ -19,7 +19,7 @@ import amo.utils
 from addons.models import Addon
 from applications.models import Application, AppVersion
 from files.models import File, FileUpload, FileValidation, Platform
-from files.utils import parse_addon, parse_xpi
+from files.utils import parse_addon, parse_xpi, check_rdf
 from versions.models import Version
 
 
@@ -298,6 +298,22 @@ class TestParseXpi(test_utils.TestCase):
     def test_parse_langpack(self):
         result = self.parse(filename='langpack.xpi')
         eq_(result['type'], amo.ADDON_LPAPP)
+
+    def test_good_version_number(self):
+        check_rdf({'guid': 'guid', 'version': '1.2a-b+32*__yeah'})
+        check_rdf({'guid': 'guid', 'version': '1' * 32})
+
+    def test_bad_version_number(self):
+        with self.assertRaises(forms.ValidationError) as e:
+            check_rdf({'guid': 'guid', 'version': 'bad #version'})
+        msg = e.exception.messages[0]
+        assert msg.startswith('Version numbers should only contain'), msg
+
+    def test_long_version_number(self):
+        with self.assertRaises(forms.ValidationError) as e:
+            check_rdf({'guid': 'guid', 'version': '1' * 33})
+        msg = e.exception.messages[0]
+        eq_(msg, 'Version numbers should have fewer than 32 characters.')
 
 
 class TestParseAlternateXpi(test_utils.TestCase):

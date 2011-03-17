@@ -2,6 +2,7 @@ import collections
 import glob
 import logging
 import os
+import re
 import shutil
 import tempfile
 import unicodedata
@@ -22,6 +23,9 @@ log = logging.getLogger('files.utils')
 
 class ParseError(forms.ValidationError):
     pass
+
+
+VERSION_RE = re.compile('^[-+*.\w]{,32}$')
 
 
 class Extractor(object):
@@ -132,7 +136,6 @@ def parse_search(filename, addon=None):
 
 def parse_xpi(xpi, addon=None):
     """Extract and parse an XPI."""
-    from addons.models import Addon, BlacklistedGuid
     # Extract to /tmp
     path = tempfile.mkdtemp()
     try:
@@ -153,13 +156,24 @@ def parse_xpi(xpi, addon=None):
     finally:
         shutil.rmtree(path)
 
+    return check_rdf(rdf, addon)
+
+
+def check_rdf(rdf, addon=None):
+    from addons.models import Addon, BlacklistedGuid
     if addon and addon.guid != rdf['guid']:
         raise forms.ValidationError(_("UUID doesn't match add-on."))
     if (not addon
         and Addon.objects.filter(guid=rdf['guid'])
         or BlacklistedGuid.objects.filter(guid=rdf['guid']).exists()):
         raise forms.ValidationError(_('Duplicate UUID found.'))
-
+    if len(rdf['version']) > 32:
+        raise forms.ValidationError(
+            _('Version numbers should have fewer than 32 characters.'))
+    if not VERSION_RE.match(rdf['version']):
+        raise forms.ValidationError(
+            _('Version numbers should only contain letters, numbers, '
+              'and these punctuation characters: +*.-_.'))
     return rdf
 
 
