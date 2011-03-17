@@ -81,7 +81,7 @@ function initRecs() {
     // Where all the current recommendations data is kept.
     var datastore = {};
 
-    var token;
+    var token2;
 
     if (z.hasLocalStorage && (!location.hash || !guids.length)) {
         // If the user has opted out of recommendations, clear out any
@@ -159,7 +159,7 @@ function initRecs() {
                 cacheObject = JSON.parse(cacheObject);
                 if (cacheObject) {
                     datastore = cacheObject;
-                    token = cacheObject.token;
+                    token2 = cacheObject.token2;
                 }
             }
         }
@@ -183,8 +183,8 @@ function initRecs() {
                               msg + "</p></div>");
 
             var data = {"guids": guids};
-            if (token) {
-                data["token"] = token;
+            if (token2) {
+                data["token2"] = token2;
             }
             datastore = {};
             $.ajax({

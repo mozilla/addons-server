@@ -2,11 +2,11 @@ import collections
 import itertools
 import json
 import urlparse
-import uuid
 
 from django import http
 from django.contrib import admin
 from django.db import IntegrityError
+from django.db.models import F
 from django.forms.models import modelformset_factory
 from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.csrf import csrf_exempt
@@ -22,7 +22,7 @@ from amo.urlresolvers import reverse
 from addons.decorators import addon_view_factory
 from addons.models import Addon, AddonRecommendation
 from browse.views import personas_listing
-from bandwagon.models import Collection, SyncedCollection, CollectionToken
+from bandwagon.models import Collection, SyncedCollection
 from reviews.models import Review
 from stats.models import GlobalStat
 
@@ -138,27 +138,36 @@ def recommendations(request, version, platform, limit=9):
         return http.HttpResponseBadRequest()
 
     addon_ids = get_addon_ids(guids)
-    token = POST['token'] if 'token' in POST else get_random_token()
+    index = Collection.make_index(addon_ids)
 
-    if 'token' in POST:
-        q = SyncedCollection.objects.filter(token_set__token=token)
-        if q:
-            # We've seen this user before.
-            synced = q[0]
-            if synced.addon_index == Collection.make_index(addon_ids):
-                # Their add-ons didn't change, get out quick.
-                recs = synced.get_recommendations()
-                ids, recs = synced.get_recs(request.APP, version)
-                return _recommendations(request, version, platform,
-                                        limit, token, ids, recs)
-            else:
-                # Remove the link to the current sync, make a new one below.
-                synced.token_set.filter(token=token).delete()
+    ids, recs = Collection.get_recs_from_ids(addon_ids, request.APP, version)
+    recs = _recommendations(request, version, platform, limit,
+                            index, ids, recs)
 
-    synced = get_synced_collection(addon_ids, token)
-    ids, recs = synced.get_recs(request.APP, version)
-    return _recommendations(request, version, platform, limit,
-                            token, ids, recs)
+    # Users have a token2 if they've been here before. The token matches
+    # addon_index in their SyncedCollection.
+    if 'token2' in POST:
+        token = POST['token2']
+        if token == index:
+            # We've seen them before and their add-ons have not changed.
+            return recs
+        elif token != index:
+            # We've seen them before and their add-ons changed. Remove the
+            # reference to their old synced collection.
+            (SyncedCollection.objects.filter(addon_index=index)
+             .update(count=F('count') - 1))
+
+    # Try to create the SyncedCollection. There's a unique constraint on
+    # addon_index so it will fail if this addon_index already exists. If we
+    # checked for existence first and then created a collection there would
+    # be a race condition between multiple users with the same addon_index.
+    try:
+        c = SyncedCollection.objects.create(addon_index=index, count=1)
+        c.set_addons(addon_ids)
+    except IntegrityError:
+        (SyncedCollection.objects.filter(addon_index=index)
+         .update(count=F('count') + 1))
+    return recs
 
 
 def _recommendations(request, version, platform, limit, token, ids, qs):
@@ -166,7 +175,7 @@ def _recommendations(request, version, platform, limit, token, ids, qs):
     addons = api.views.addon_filter(qs, 'ALL', limit, request.APP,
                                     platform, version, shuffle=False)
     addons = dict((a.id, a) for a in addons)
-    data = {'token': token,
+    data = {'token2': token,
             'addons': [api.utils.addon_to_dict(addons[i], disco=True)
                        for i in ids if i in addons]}
     content = json.dumps(data, cls=amo.utils.JSONEncoder)
@@ -198,14 +207,6 @@ def get_synced_collection(addon_ids, token):
     except IntegrityError:
         pass
     return c
-
-
-def get_random_token():
-    """Get a random token for the user, make sure it's unique."""
-    while 1:
-        token = unicode(uuid.uuid4())
-        if CollectionToken.objects.filter(token=token).count() == 0:
-            return token
 
 
 @addon_view
