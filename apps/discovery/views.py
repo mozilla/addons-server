@@ -186,29 +186,6 @@ def get_addon_ids(guids):
     return Addon.objects.filter(guid__in=guids).values_list('id', flat=True)
 
 
-def get_synced_collection(addon_ids, token):
-    """
-    Get a synced collection for these addons. May reuse an existing collection.
-
-    The token is associated with the collection.
-    """
-    index = Collection.make_index(addon_ids)
-    try:
-        c = (SyncedCollection.objects.no_cache()
-             .filter(addon_index=index))[0]
-    except IndexError:
-        c = SyncedCollection.objects.create(listed=False)
-        c.set_addons(addon_ids)
-
-    # Don't fail if the token is already there. This shouldn't happen but it
-    # seems to be pretty common.
-    try:
-        c.token_set.create(token=token)
-    except IntegrityError:
-        pass
-    return c
-
-
 @addon_view
 def addon_detail(request, addon):
     reviews = Review.objects.latest().filter(addon=addon)
@@ -241,6 +218,7 @@ def recs_transform(recs):
 
 @admin.site.admin_view
 def recs_debug(request):
+    return http.HttpResponse('disabled :(')
     if request.method == 'POST':
         url = request.POST.get('url')
         if url:

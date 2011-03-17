@@ -80,11 +80,6 @@ class TestCollections(test_utils.TestCase):
         c.save()
         eq_(c.addon_index, Collection.make_index(ids))
 
-    def test_synced_collection(self):
-        """SyncedCollections automatically get type=sync."""
-        c = SyncedCollection.objects.create(author=self.user)
-        eq_(c.type, amo.COLLECTION_SYNCHRONIZED)
-
     def test_recommended_collection(self):
         """RecommendedCollections automatically get type=rec."""
         c = RecommendedCollection.objects.create(author=self.user)
