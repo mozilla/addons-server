@@ -788,6 +788,7 @@ ul.addons {
 #sub #up-and-coming ul a.addon-title,
 #sub #featured-personas ul span.addon-title {
     display: block;
+    pointer-events: none;
     overflow: hidden;
     background: rgba(255,255,255,0.35) url("../../img/zamboni/discovery_pane/arrow-right.png") 95% 50% no-repeat;
     color: #333;
