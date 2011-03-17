@@ -240,7 +240,7 @@ def review(request, version_id):
 
     if request.method == 'POST' and form.is_valid():
         form.helper.process()
-        amo.messages.info(request, _('Review successfully processed.'))
+        amo.messages.success(request, _('Review successfully processed.'))
         return redirect(redirect_url)
 
     canned = CannedResponse.objects.all()

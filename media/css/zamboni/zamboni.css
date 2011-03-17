@@ -2495,6 +2495,16 @@ form .error .note.error {
     left: auto;
 }
 
+.notification-box.warning {
+    background-color: #FD9;
+    color: #444;
+    border: 3px solid #550b00;
+}
+
+.notification-box.warning:before {
+    background-position: 0 -225px;
+}
+
 .notification-box.error {
     background-color: #FFA5A5;
     color: #444;
