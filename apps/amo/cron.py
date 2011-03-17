@@ -139,15 +139,22 @@ def gc(test_result=True):
             action__in=amo.LOG_KEEP).delete()
 
     log.debug('Cleaning up anonymous collections.')
-    Collection.objects.filter(created__lt=two_days_ago,
-                              type=amo.COLLECTION_ANONYMOUS).delete()
+    collections_to_delete = (Collection.objects.filter(
+            created__lt=two_days_ago, type=amo.COLLECTION_ANONYMOUS)
+            .values_list('id', flat=True))
 
     # Remove Incomplete add-ons older than 4 days.
-    items = (Addon.objects.filter(
-             highest_status=amo.STATUS_NULL, status=amo.STATUS_NULL,
-             created__lt=four_days_ago).values_list('id', flat=True))
+    addons_to_delete = (Addon.objects.filter(
+                        highest_status=amo.STATUS_NULL, status=amo.STATUS_NULL,
+                        created__lt=four_days_ago)
+                        .values_list('id', flat=True))
+
     with establish_connection() as conn:
-        for chunk in chunked(items, 100):
+        for chunk in chunked(collections_to_delete, 100):
+            _delete_anonymous_collections.apply_async(
+                    args=[chunk], connection=conn)
+
+        for chunk in chunked(addons_to_delete, 100):
             _delete_incomplete_addons.apply_async(
                     args=[chunk], connection=conn)
 
@@ -187,6 +194,14 @@ def gc(test_result=True):
         for line in output.split("\n"):
             log.debug(line)
 
+
+@task
+def _delete_anonymous_collections(items, **kw):
+    log.info('[%s@%s] Deleting anonymous collections' %
+             (len(items), _delete_anonymous_collections.rate_limit))
+    Collection.objects.filter(
+            created__lt=two_days_ago, type=amo.COLLECTION_ANONYMOUS,
+            pk__in=items).delete()
 
 @task
 def _delete_incomplete_addons(items, **kw):
