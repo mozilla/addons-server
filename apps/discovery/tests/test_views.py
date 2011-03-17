@@ -87,40 +87,6 @@ class TestRecs(test_utils.TestCase):
         ids = set(views.get_addon_ids(self.guids))
         eq_(ids, set(self.ids))
 
-    def test_get_synced_collection(self):
-        # Get a fresh synced collection.
-        c = views.get_synced_collection(self.ids, 'token')
-        eq_(c.listed, False)
-        eq_(c.type, amo.COLLECTION_SYNCHRONIZED)
-        eq_(set(c.addons.values_list('id', flat=True)), set(self.ids))
-
-        # Check that the token was set.
-        eq_(c.token_set.get().token, 'token')
-
-        # Make sure we get the same collection if we try again.
-        next = views.get_synced_collection(self.ids, 'next')
-        eq_(next.id, c.id)
-        eq_(set(next.addons.values_list('id', flat=True)), set(self.ids))
-        eq_(list(c.token_set.values_list('token', flat=True)),
-            ['token', 'next'])
-
-    def test_get_synced_collection_with_dupes(self):
-        """It shouldn't happen, but make sure we handled synced dupes."""
-        one = SyncedCollection.objects.create()
-        one.set_addons(self.ids)
-        two = SyncedCollection.objects.create()
-        two.set_addons(self.ids)
-
-        three = views.get_synced_collection(self.ids, 'token')
-        assert one.addon_index == two.addon_index == three.addon_index
-
-    @mock.patch('discovery.views.uuid.uuid4')
-    def test_get_random_token(self, uuid_mock):
-        uuid_mock.side_effect = ['two', 'one', 'one', 'one'].pop
-        eq_(views.get_random_token(), 'one')
-        views.get_synced_collection([], 'one')
-        eq_(views.get_random_token(), 'two')
-
     @mock.patch('api.views')
     def test_success(self, api_mock):
         raise SkipTest()  # bug 640694
@@ -187,7 +153,7 @@ class TestRecs(test_utils.TestCase):
                                     content_type='application/json')
         one = json.loads(response.content)
 
-        post_data = json.dumps(dict(guids=self.guids, token=one['token']))
+        post_data = json.dumps(dict(guids=self.guids, token2=one['token2']))
         response = self.client.post(self.url, post_data,
                                     content_type='application/json')
         eq_(response.status_code, 200)
@@ -197,22 +163,21 @@ class TestRecs(test_utils.TestCase):
         # responses should be identical.
         eq_(one, two)
 
-        eq_(CollectionToken.objects.count(), 1)
-
     @mock.patch('api.views')
     def test_update_new_index(self, api_mock):
+        raise SkipTest()
         api_mock.addon_filter = lambda xs, _, limit, *args, **kw: xs[:limit]
         response = self.client.post(self.url, self.json,
                                     content_type='application/json')
         one = json.loads(response.content)
 
-        post_data = json.dumps(dict(guids=self.guids[:1], token=one['token']))
+        post_data = json.dumps(dict(guids=self.guids[:1], token2=one['token2']))
         response = self.client.post(self.url, post_data,
                                     content_type='application/json')
         eq_(response.status_code, 200)
         two = json.loads(response.content)
 
-        eq_(one['token'], two['token'])
+        eq_(one['token2'], two['token2'])
         # assert one['recommendations'] != two['recommendations']
         assert one['addons'] != two['addons']
         eq_(CollectionToken.objects.count(), 1)
