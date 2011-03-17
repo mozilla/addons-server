@@ -2,7 +2,7 @@
 
 {% block content %}
   <div class="featured">
-    <div class="featured-inner">
+    <div class="featured-inner featured-inner-padded">
       <h2>{{ _('Log details') }}</h2>
       <p>{{ log.to_string('editor') }}</p>
       {% if log.details %}

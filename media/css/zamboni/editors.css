@@ -284,6 +284,10 @@ ul.tabnav a:hover {
     margin-top: 0;
 }
 
+.featured-inner-padded {
+    padding: 15px;
+}
+
 .controls {
     padding: 15px;
 }
