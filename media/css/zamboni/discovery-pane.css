@@ -473,7 +473,7 @@ header:after,
     text-decoration: none;
 }
 
-.ryff .desc img {
+.ryff img {
     width: 40%;
     float: right;
     margin: 0 0 .5em 10px;
@@ -615,8 +615,9 @@ header:after,
     color: #485c65;
     width: 300px;
 }
-#go-mobile .wrap > div {
-    width: 365px;
+#go-mobile .wrap {
+    width: 384px;
+    margin: 0;
 }
 /* @end */
 
