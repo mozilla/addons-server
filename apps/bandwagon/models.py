@@ -7,7 +7,7 @@ import uuid
 
 from django.conf import settings
 from django.core.cache import cache
-from django.db import models, connection
+from django.db import models, connection, transaction
 from django.db.models import Q
 
 import caching.base as caching
@@ -68,7 +68,29 @@ class CollectionManager(amo.models.ManagerBase):
         return self.filter(owned_by | publishable_by)
 
 
-class Collection(amo.models.ModelBase):
+class CollectionBase:
+    """A mixin with methods common to Collection and SyncedCollection."""
+
+    @classmethod
+    def make_index(cls, addon_ids):
+        ids = ':'.join(map(str, sorted(addon_ids)))
+        return hashlib.md5(ids).hexdigest()
+
+    def get_recs(self, app, version):
+        addons = list(self.addons.values_list('id', flat=True))
+        return self.get_recs_from_ids(addons, app, version)
+
+    @classmethod
+    def get_recs_from_ids(cls, addons, app, version):
+        vint = compare.version_int(version)
+        recs = RecommendedCollection.build_recs(addons)
+        qs = (Addon.objects.public()
+              .filter(id__in=recs, appsupport__app=app.id,
+                      appsupport__min__lte=vint, appsupport__max__gte=vint))
+        return recs, qs[:Collection.RECOMMENDATION_LIMIT]
+
+
+class Collection(CollectionBase, amo.models.ModelBase):
 
     TYPE_CHOICES = amo.COLLECTION_CHOICES.items()
     RECOMMENDATION_LIMIT = 15  # Maximum number of add-ons to recommend.
@@ -216,11 +238,6 @@ class Collection(amo.models.ModelBase):
     def get_fallback(cls):
         return cls._meta.get_field('default_locale')
 
-    @classmethod
-    def make_index(cls, addon_ids):
-        ids = ':'.join(map(str, sorted(addon_ids)))
-        return hashlib.md5(ids).hexdigest()
-
     @property
     def url_slug(self):
         """uuid or nickname if chosen"""
@@ -248,15 +265,6 @@ class Collection(amo.models.ModelBase):
             self.recommended_collection = r
             self.save()
             return r
-
-    def get_recs(self, app, version):
-        addons = list(self.addons.values_list('id', flat=True))
-        vint = compare.version_int(version)
-        recs = RecommendedCollection.build_recs(addons)
-        qs = Addon.objects.public().filter(id__in=recs, appsupport__app=app.id,
-                                  appsupport__min__lte=vint,
-                                  appsupport__max__gte=vint)
-        return recs, qs[:Collection.RECOMMENDATION_LIMIT]
 
     def set_addons(self, addon_ids, comments={}):
         """Replace the current add-ons with a new list of add-on ids."""
@@ -468,15 +476,55 @@ models.signals.post_delete.connect(CollectionVote.post_save_or_delete,
                                    sender=CollectionVote)
 
 
-class SyncedCollection(Collection):
-    """Collection that automatically sets type=SYNC."""
+class SyncedCollection(CollectionBase, amo.models.ModelBase):
+    """
+    We remember what add-ons a user has installed with this table.
+
+    The addon guids come in from the discovery pane and we translate those to
+    addon ids. If those addons match an addon_index of an existing
+    SyncedCollection its count is incremented; otherwise a new collection is
+    created for that bag of addons.
+
+    This uses separate tables because we don't want the high volume of data to
+    crush performance on normal collection tables. SyncedCollections are used
+    to generate recommendations and may be used for other data mining in the
+    future.
+    """
+    addon_index = models.CharField(max_length=40, null=True,
+                                   db_index=True, unique=True,
+        help_text='md5 of addon ids in this collection for fast comparisons')
+    addons = models.ManyToManyField(Addon, through='SyncedCollectionAddon',
+                                    related_name='synced_collections')
+    count = models.IntegerField("Number of users with this collection.",
+                                default=0)
 
     class Meta:
-        proxy = True
+        db_table = 'synced_collections'
 
     def save(self, **kw):
-        self.type = amo.COLLECTION_SYNCHRONIZED
         return super(SyncedCollection, self).save(**kw)
+
+    def set_addons(self, addon_ids):
+        # SyncedCollections are only written once so we don't need to deal with
+        # updates or deletes.
+        cursor = connection.cursor()
+        values = ['(%s,%s)' % (addon, self.id) for addon in addon_ids]
+        cursor.execute("""
+            INSERT INTO synced_addons_collections (addon_id, collection_id)
+            VALUES %s""" % ','.join(values))
+        if not self.addon_index:
+            self.addon_index = self.make_index(addon_ids)
+            self.save()
+        transaction.commit_unless_managed()
+
+
+class SyncedCollectionAddon(models.Model):
+    addon = models.ForeignKey(Addon)
+    collection = models.ForeignKey(SyncedCollection)
+
+    class Meta(amo.models.ModelBase.Meta):
+        db_table = 'synced_addons_collections'
+        unique_together = (('addon', 'collection'),)
 
 
 class RecommendedCollection(Collection):
