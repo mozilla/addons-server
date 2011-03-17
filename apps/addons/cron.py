@@ -304,14 +304,12 @@ def recs():
     cursor = connections[multidb.get_slave()].cursor()
     cursor.execute("""
         SELECT addon_id, collection_id
-        FROM addons_collections ac
-        INNER JOIN collections c
-                ON ac.collection_id=c.id AND c.collection_type IN %s
+        FROM synced_addons_collections ac
         INNER JOIN addons ON
             (ac.addon_id=addons.id AND inactive=0 AND status=4
              AND addontype_id <> 9 AND current_version IS NOT NULL)
         ORDER BY addon_id, collection_id
-    """, [(amo.COLLECTION_SYNCHRONIZED, amo.COLLECTION_FAVORITES)])
+    """)
     qs = cursor.fetchall()
     recs_log.info('%.2fs (query) : %s rows' % (time.time() - start, len(qs)))
     addons = _group_addons(qs)
