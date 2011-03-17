@@ -126,19 +126,18 @@ def gc(test_result=True):
     log.debug('Cleaning up test results cache.')
     TestResultCache.objects.filter(date__lt=one_hour_ago).delete()
 
-    # Paypal only keeps retrying to verify transactions for up to 3 days. If we
-    # still have an unverified transaction after 6 days, we might as well get
-    # rid of it.
-    log.debug('Cleaning up outdated contributions statistics.')
-    Contribution.objects.filter(transaction_id__isnull=True,
-                                created__lt=six_days_ago).delete()
-
     log.debug('Removing old entries from add-on news feeds.')
 
     ActivityLog.objects.filter(created__lt=three_months_ago).exclude(
             action__in=amo.LOG_KEEP).delete()
 
-    log.debug('Cleaning up anonymous collections.')
+    # Paypal only keeps retrying to verify transactions for up to 3 days. If we
+    # still have an unverified transaction after 6 days, we might as well get
+    # rid of it.
+    contributions_to_delete = (Contribution.objects
+            .filter(transaction_id__isnull=True, created__lt=six_days_ago)
+            .values_list('id', flat=True))
+
     collections_to_delete = (Collection.objects.filter(
             created__lt=two_days_ago, type=amo.COLLECTION_ANONYMOUS)
             .values_list('id', flat=True))
@@ -150,6 +149,10 @@ def gc(test_result=True):
                         .values_list('id', flat=True))
 
     with establish_connection() as conn:
+        for chunk in chunked(contributions_to_delete, 100):
+            _delete_stale_contributions.apply_async(
+                    args=[chunk], connection=conn)
+
         for chunk in chunked(collections_to_delete, 100):
             _delete_anonymous_collections.apply_async(
                     args=[chunk], connection=conn)
@@ -193,6 +196,14 @@ def gc(test_result=True):
 
         for line in output.split("\n"):
             log.debug(line)
+
+
+@task
+def _delete_stale_contributions(items, **kw):
+    log.info('[%s@%s] Deleting stale collections' %
+             (len(items), _delete_stale_contributions.rate_limit))
+    Contribution.objects.filter(
+            transaction_id__isnull=True, pk__in=items).delete()
 
 
 @task
