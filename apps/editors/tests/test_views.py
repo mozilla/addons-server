@@ -939,10 +939,6 @@ class TestReviewPreliminary(ReviewBase):
 
         eq_(response.context['form'].errors['comments'][0],
             'This field is required.')
-        eq_(response.context['form'].errors['applications'][0],
-            'Please enter the applications you tested.')
-        eq_(response.context['form'].errors['operating_systems'][0],
-            'Please enter the operating systems you tested.')
 
     def test_prelim_from_lite_no_files(self):
         self.addon.update(status=amo.STATUS_LITE)

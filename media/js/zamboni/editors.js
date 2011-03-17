@@ -30,7 +30,10 @@ $(function() {
 
     if($('#review-actions').length > 0) {
         function showForm(element, pageload) {
-            var $element = $(element);
+            var $element = $(element),
+                value = $element.find('input').val(),
+                $data_toggle = $('#review-actions-form').find('.data-toggle');
+
             pageload = pageload || false;
             $element.closest('.review-actions').addClass('on');
             $('.review-actions .action_nav ul li').removeClass('on-tab');
@@ -44,6 +47,9 @@ $(function() {
               $('#review-actions-form').slideDown();
               $('#review-actions').find('.errorlist').remove();
             }
+
+            $data_toggle.hide();
+            $data_toggle.filter('[data-value*="' + value + '"]').show();
         }
 
         $('#review-actions .action_nav ul li').click(function(){ showForm(this); });

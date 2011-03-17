@@ -1,3 +1,4 @@
+
 .site-title {
     padding-top: 27px;
     max-width: 530px;
@@ -421,6 +422,10 @@ tr.comments {
 
 #review-actions-form textarea {
     height: 100px;
+}
+
+#review-actions-form .review-actions-desc {
+    text-align: center;
 }
 
 #review-actions-form {

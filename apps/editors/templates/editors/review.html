@@ -80,6 +80,13 @@
     </div>
 
     <div id="review-actions-form">
+
+      {% for (setting, action) in actions %}
+      <div class="data-toggle review-actions-desc" data-value="{{ setting }}">
+        {{ action['details'] }}
+      </div>
+      {% endfor %}
+
       <label for="id_comments">{{ form.comments.label }}</label>
       {{ form.comments }}
       {{ form.comments.errors }}
@@ -94,7 +101,8 @@
         {{ form.addon_files.errors }}
       </div>
 
-      <div class="review-actions-section review-actions-tested">
+      <div class="review-actions-section review-actions-tested data-toggle"
+           data-value="{{ actions_tested|join("|") }}">
         <strong>{{ _('Tested on:') }}</strong>
         <label>
           {{ form.operating_systems.label }}

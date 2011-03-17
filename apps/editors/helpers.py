@@ -186,16 +186,20 @@ class ReviewHelper:
 
         actions['prelim'] = {'method': self.handler.process_preliminary,
                              'label': labels['prelim'],
-                             'details': details.get('prelim', '')}
+                             'details': details.get('prelim', ''),
+                             'tested_on': True}
         actions['reject'] = {'method': self.handler.process_sandbox,
                              'label': _('Reject'),
-                             'details': details.get('reject', '')}
+                             'details': details.get('reject', ''),
+                             'tested_on': True}
         actions['info'] = {'method': self.handler.request_information,
                            'label': _('Request more information'),
-                           'details': ''}
+                           'details': '',
+                           'tested_on': False}
         actions['super'] = {'method': self.handler.process_super_review,
                             'label': _('Request super-review'),
-                            'details': ''}
+                            'details': '',
+                            'tested_on': False}
         return actions
 
     def _review_actions(self):

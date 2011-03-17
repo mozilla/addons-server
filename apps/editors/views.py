@@ -248,6 +248,9 @@ def review(request, version_id):
     has_public_files = version.files.filter(status=amo.STATUS_PUBLIC).exists()
     is_admin = acl.action_allowed(request, 'Admin', 'EditAnyAddon')
 
+    actions = form.helper.actions.items()
+    actions_tested = [k for (k, a) in actions if a.get('tested_on')]
+
     ctx = context(version=version, addon=addon,
                   flags=Review.objects.filter(addon=addon, flag=True),
                   form=form, paging=paging, canned=canned, is_admin=is_admin,

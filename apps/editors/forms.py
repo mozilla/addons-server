@@ -210,20 +210,6 @@ class ReviewAddonForm(happyforms.Form):
 
 class ReviewFileForm(ReviewAddonForm):
 
-    def clean_operating_systems(self):
-        operating_systems = self.data.get('operating_systems', '')
-        if not operating_systems and self.data.get('action', '') == 'prelim':
-            raise ValidationError(_('Please enter the operating '
-                                    'systems you tested.'))
-        return operating_systems
-
-    def clean_applications(self):
-        applications = self.data.get('applications', '')
-        if not applications and self.data.get('action', '') == 'prelim':
-            raise ValidationError(_('Please enter the applications '
-                                    'you tested.'))
-        return applications
-
     def clean_addon_files(self):
         files = self.data.getlist('addon_files')
         if self.data.get('action', '') == 'prelim':
