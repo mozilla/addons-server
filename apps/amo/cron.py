@@ -199,9 +199,8 @@ def gc(test_result=True):
 def _delete_anonymous_collections(items, **kw):
     log.info('[%s@%s] Deleting anonymous collections' %
              (len(items), _delete_anonymous_collections.rate_limit))
-    Collection.objects.filter(
-            created__lt=two_days_ago, type=amo.COLLECTION_ANONYMOUS,
-            pk__in=items).delete()
+    Collection.objects.filter(type=amo.COLLECTION_ANONYMOUS,
+                              pk__in=items).delete()
 
 @task
 def _delete_incomplete_addons(items, **kw):
