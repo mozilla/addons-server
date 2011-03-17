@@ -38,15 +38,9 @@ def pane(request, version, platform):
     def from_api(list_type):
         r = api_view(request, platform, version, list_type)
         return json.loads(r.content)
-    try:
-        qs = GlobalStat.objects.filter(name='addon_total_downloads')
-        addon_downloads = qs.latest().count
-    except GlobalStat.DoesNotExist:
-        addon_downloads = None
 
     return jingo.render(request, 'discovery/pane.html',
                         {'modules': get_modules(request, platform, version),
-                         'addon_downloads': addon_downloads,
                          'top_addons': from_api('hotness'),
                          'featured_addons': from_api('featured'),
                          'featured_personas': get_featured_personas(request),
@@ -54,7 +48,14 @@ def pane(request, version, platform):
 
 
 def pane_account(request):
-    return jingo.render(request, 'discovery/pane_account.html')
+    try:
+        qs = GlobalStat.objects.filter(name='addon_total_downloads')
+        addon_downloads = qs.latest().count
+    except GlobalStat.DoesNotExist:
+        addon_downloads = None
+
+    return jingo.render(request, 'discovery/pane_account.html',
+                        {'addon_downloads': addon_downloads})
 
 
 def get_modules(request, platform, version):
