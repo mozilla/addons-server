@@ -4,8 +4,8 @@
       {{ _('Rock Your Firefox Featured Add-on') }}
     </h2>
     <h3><a href="{{ ryf.permalink }}">{{ ryf.title }}</a></h3>
+    <img src="{{ ryf.get_image_url() }}">
     <p class="desc">
-      <img src="{{ ryf.get_image_url() }}">
       {{ ryf.excerpt }}
     </p>
     <p class="more"><a href="{{ ryf.permalink }}" class="button">{{ _('Learn More') }}</a></p>
