@@ -13,7 +13,7 @@ import addons.signals
 from amo.urlresolvers import reverse
 from addons.models import Addon
 from applications.models import Application, AppVersion
-from bandwagon.models import Collection, SyncedCollection, CollectionToken
+from bandwagon.models import Collection, SyncedCollection
 from bandwagon.tests.test_models import TestRecommendations as Recs
 from discovery import views
 from discovery.forms import DiscoveryModuleForm
@@ -101,13 +101,6 @@ class TestRecs(test_utils.TestCase):
         eq_(len(data['addons']), 9)
         ids = [a['id'] for a in data['addons']]
         eq_(ids, self.expected_recs)
-
-        # Our token should match a synced collection, and that collection's
-        # recommendations should match what we got.
-        q = SyncedCollection.objects.filter(token_set__token=data['token'])
-        eq_(len(q), 1)
-        eq_(q[0].recommended_collection.get_url_path(),
-            data['recommendations'])
 
     @mock.patch('api.views')
     def test_only_show_public(self, api_mock):

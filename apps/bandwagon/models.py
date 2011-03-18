@@ -135,7 +135,6 @@ class Collection(CollectionBase, amo.models.ModelBase):
 
     addon_index = models.CharField(max_length=40, null=True, db_index=True,
         help_text='Custom index for the add-ons in this collection')
-    recommended_collection = models.ForeignKey('self', null=True)
 
     # This gets overwritten in the transformer.
     share_counts = collections.defaultdict(int)
@@ -252,19 +251,6 @@ class Collection(CollectionBase, amo.models.ModelBase):
             return settings.MEDIA_URL + 'img/icons/heart.png'
         else:
             return settings.MEDIA_URL + 'img/icons/collection.png'
-
-    def get_recommendations(self):
-        """Get a collection of recommended add-ons for this collection."""
-        if self.recommended_collection:
-            return self.recommended_collection
-        else:
-            r = RecommendedCollection.objects.create(listed=False)
-            addons = list(self.addons.values_list('id', flat=True))
-            recs = RecommendedCollection.build_recs(addons)
-            r.set_addons(recs[:Collection.RECOMMENDATION_LIMIT])
-            self.recommended_collection = r
-            self.save()
-            return r
 
     def set_addons(self, addon_ids, comments={}):
         """Replace the current add-ons with a new list of add-on ids."""
@@ -546,14 +532,3 @@ class RecommendedCollection(Collection):
                 d[addon] += score
         addons = sorted(d.items(), key=lambda x: x[1], reverse=True)
         return [addon for addon, score in addons if addon not in addon_ids]
-
-
-class CollectionToken(amo.models.ModelBase):
-    """Links a Collection to an anonymous token."""
-    token = models.CharField(max_length=255, unique=True)
-    collection = models.ForeignKey(Collection, related_name='token_set')
-
-    objects = models.Manager()
-
-    class Meta:
-        db_table = 'collections_tokens'

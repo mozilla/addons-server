@@ -175,19 +175,6 @@ class TestRecommendations(test_utils.TestCase):
         recs = RecommendedCollection.build_recs(self.ids)
         eq_(recs, self.expected_recs())
 
-    def test_get_recommendations(self):
-        c = Collection.objects.create(author=self.user)
-        c.set_addons(self.ids)
-        recs = c.get_recommendations()
-        eq_(recs.type, amo.COLLECTION_RECOMMENDED)
-        eq_(recs.listed, False)
-        expected = self.expected_recs()[:Collection.RECOMMENDATION_LIMIT]
-        eq_(get_addons(recs), expected)
-
-        # Test that we're getting the same recommendations.
-        recs2 = c.get_recommendations()
-        eq_(recs, recs2)
-
     @mock.patch('bandwagon.models.AddonRecommendation.scores')
     def test_no_dups(self, scores):
         # The inner dict is the recommended addons for addon 7.
