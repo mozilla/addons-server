@@ -65,7 +65,7 @@ data-account-url="{{ services_url('discovery.pane_account') }}"
     <section id="featured-addons">
       <h2>{{ _('Featured Add-ons') }}</h2>
       <div class="addons">
-        {{ addon_list(featured_addons) }}
+        {{ addon_list(featured_addons, limit=6) }}
       </div>
     </section>
 
