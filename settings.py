@@ -409,6 +409,7 @@ MINIFY_BUNDLES = {
             'js/jquery-ui/jqModal.js',
             'js/amo2009/home.js',
             'js/zamboni/l10n.js',
+            'js/zamboni/storage.js',
 
             # Homepage
             'js/zamboni/homepage.js',
@@ -456,7 +457,6 @@ MINIFY_BUNDLES = {
 
             'js/zamboni/truncation.js',
             'js/jquery.cookie.js',
-            'js/zamboni/storage.js',
             'js/zamboni/discovery_addons.js',
             'js/zamboni/discovery_pane.js',
         ),
