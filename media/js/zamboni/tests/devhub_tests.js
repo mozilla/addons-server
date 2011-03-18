@@ -846,7 +846,9 @@ module('addonUploaded', {
 });
 
 test('JSON error', function() {
-    $(this.el).trigger("upload_success_results", [{}, {'error': "Traceback (most recent call last): ...NameError"}]);
+    $(this.el).trigger("upload_success_results",
+                       [{name: 'somefile.txt'},
+                        {'error': "Traceback (most recent call last): ...NameError"}]);
 
     ok($('#upload-status-bar', this.sandbox).hasClass('bar-fail'));
     equals($('#upload_errors', this.sandbox).text(),
@@ -896,7 +898,8 @@ test('Too many messages', function() {
         full_report_url: '/full-report'
     };
 
-    $(this.el).trigger("upload_success_results", [{}, results]);
+    $(this.el).trigger("upload_success_results",
+                       [{name: 'somefile.txt'}, results]);
 
     equals($('#upload-status-results ul li', this.sandbox).length, 6);
     equals($('#upload-status-results ul li:eq(5)', this.sandbox).text(),
@@ -910,7 +913,7 @@ test('form errors are cleared', function() {
     this.sandbox.find('form').prepend(
         '<ul class="errorlist"><li>Duplicate UUID found.</li></ul>');
 
-    $(this.el).trigger("upload_start", [{}]);
+    $(this.el).trigger("upload_start", [{name: 'somefile.txt'}]);
 
     equals($('ul.errorlist', this.sandbox).length, 0);
 });
@@ -931,7 +934,8 @@ test('Notices count as warnings', function() {
         full_report_url: '/full-report'
     };
 
-    $(this.el).trigger("upload_success_results", [{}, results]);
+    $(this.el).trigger("upload_success_results",
+                       [{name: 'somefile.txt'}, results]);
 
     equals($('##upload-status-results strong', this.sandbox).text(),
            'Your add-on passed validation with no errors and 8 warnings.');
@@ -1098,7 +1102,8 @@ test('mobile', function() {
         ]
     };
 
-    $(this.el).trigger("upload_success_results", [{}, results]);
+    $(this.el).trigger("upload_success_results",
+                       [{name: 'somefile.txt'}, results]);
 
     equals($('.platform input:eq(0)', this.sandbox).attr('value'), '1');
     equals($('.platform input:eq(0)', this.sandbox).attr('id'),
@@ -1133,7 +1138,8 @@ test('non-ascii', function() {
         ]
     };
 
-    $(this.el).trigger("upload_success_results", [{}, results]);
+    $(this.el).trigger("upload_success_results",
+                       [{name: 'somefile.txt'}, results]);
 
     equals($('.platform li:eq(0)', this.sandbox).text(),
            'フォクすけといっしょ');
