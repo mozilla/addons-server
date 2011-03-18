@@ -1,4 +1,5 @@
 from datetime import timedelta
+import re
 
 from django import forms
 from django.forms import widgets
@@ -209,8 +210,26 @@ class ReviewAddonForm(happyforms.Form):
         super(ReviewAddonForm, self).__init__(*args, **kw)
         self.fields['addon_files'].queryset = self.helper.all_files
 
-        self.fields['canned_response'].choices = ([(c.response, c.name)
-                                    for c in CannedResponse.objects.all()])
+        # We're starting with an empty one, which will be hidden via CSS.
+        canned_choices = [['', [('', _('Choose a canned response...'))]]]
+
+        responses = CannedResponse.objects.all()
+
+        # Loop through the actions (prelim, public, etc).
+        for k, action in self.helper.actions.iteritems():
+            action_choices = [[c.response, c.name] for c in responses
+                              if c.sort_group and k in c.sort_group.split(',')]
+
+            # Add the group of responses to the canned_choices array.
+            if action_choices:
+                canned_choices.append([action['label'], action_choices])
+
+        # Now, add everything not in a group.
+        for r in responses:
+            if not r.sort_group:
+                canned_choices.append([r.response, r.name])
+
+        self.fields['canned_response'].choices = canned_choices
         self.fields['action'].choices = [(k, v['label']) for k, v
                                           in self.helper.actions.items()]
 

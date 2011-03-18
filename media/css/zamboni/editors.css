@@ -530,6 +530,10 @@ tr.comments {
     text-align: right;
 }
 
+.review-actions-canned #id_canned_response optgroup[label=""] {
+    display: none;
+}
+
 .review-actions-canned select {
     padding: 0;
 }

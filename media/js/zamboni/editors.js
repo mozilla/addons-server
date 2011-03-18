@@ -29,6 +29,7 @@ $(function() {
     }
 
     if($('#review-actions').length > 0) {
+        var groups = $('#id_canned_response').find('optgroup');
         function showForm(element, pageload) {
             var $element = $(element),
                 value = $element.find('input').val(),
@@ -50,10 +51,16 @@ $(function() {
 
             $data_toggle.hide();
             $data_toggle.filter('[data-value*="' + value + '"]').show();
+
+            /* Fade out canned responses */
+            var label = $element.text().trim();
+            groups.css('color', '#AAA');
+            groups.filter("[label='"+label+"']").css('color', '#444');
         }
 
         $('#review-actions .action_nav ul li').click(function(){ showForm(this); });
 
+        /* Canned Response stuff */
         $('.review-actions-canned select').change(function() {
             $('#id_comments').val($(this).val());
         });

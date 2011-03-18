@@ -17,6 +17,7 @@ class CannedResponse(amo.models.ModelBase):
 
     name = TranslatedField()
     response = TranslatedField()
+    sort_group = models.CharField(max_length=255)
 
     class Meta:
         db_table = 'cannedresponses'
