@@ -167,7 +167,7 @@ class TestFullReviewQueue(TestQueue):
 
     def test_waiting_time(self):
         self.new_file(name='Addon 1', version=u'0.1')
-        Addon.objects.update(nomination_date=datetime.utcnow())
+        Version.objects.update(nomination=datetime.utcnow())
         row = self.Queue.objects.all()[0]
         eq_(row.waiting_time_days, 0)
         # Time zone will be off, hard to test this.

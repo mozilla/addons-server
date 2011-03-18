@@ -66,8 +66,7 @@
             "suggested_amount": null,
             "site_specific": 0,
             "total_reviews": 0,
-            "the_reason": null,
-            "nomination_date": null
+            "the_reason": null
         }
     },
     {
@@ -195,8 +194,7 @@
             "suggested_amount": null,
             "site_specific": 0,
             "total_reviews": 87,
-            "the_reason": null,
-            "nomination_date": "2009-04-05 18:56:10"
+            "the_reason": null
         }
     },
     {
@@ -242,8 +240,7 @@
             "modified": "2009-10-20 08:25:58",
             "suggested_amount": "1",
             "site_specific": 0,
-            "total_reviews": 185,
-            "nomination_date": "2009-04-09 07:41:33"
+            "total_reviews": 185
         }
     },
     {
@@ -289,8 +286,7 @@
             "modified": "2009-11-14 16:12:16",
             "suggested_amount": "10.00",
             "site_specific": 0,
-            "total_reviews": 147,
-            "nomination_date": "2009-03-20 17:25:25"
+            "total_reviews": 147
         }
     },
     {
@@ -336,8 +332,7 @@
             "suggested_amount": null,
             "site_specific": 0,
             "total_reviews": 224,
-            "the_reason": null,
-            "nomination_date": "2009-01-26 09:30:15"
+            "the_reason": null
         }
     },
     {
@@ -511,8 +506,7 @@
             "suggested_amount": null,
             "site_specific": 0,
             "total_reviews": 0,
-            "the_reason": null,
-            "nomination_date": "2009-05-08 05:49:11"
+            "the_reason": null
         }
     },
     {
