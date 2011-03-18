@@ -15,7 +15,6 @@
     var pending_fetches = 0;
     var page_state = {};
     var capabilities = {
-        'localStorage' : ('localStorage' in window) && window['localStorage'] !== null,
         'JSON' : window.JSON && typeof JSON.parse == 'function',
         'debug' : !(('' + document.location).indexOf("dbg") < 0),
         'debug_in_page' : !(('' + document.location).indexOf("dbginpage") < 0),
@@ -24,9 +23,9 @@
     };
 
     var writeInterval = false;
-    
+
     var hashInterval = false;
-    
+
     function stop_hash_check() {
         clearInterval(hashInterval);
     }
@@ -55,7 +54,7 @@
     // Worker pool for Web Worker management
 
     var stats_worker_url = z.media_url+"js/zamboni/stats/stats_worker.js";
-    
+
     var StatsWorkerPool = new WorkerPool(4);
 
     var breakdown_metrics = {
@@ -94,11 +93,11 @@
     function date(d) {
         return Date.parse(date_string(d, '-'));
     }
-    
+
     function date_string(d, del) {
         return [d.getFullYear(), pad2(d.getMonth()+1), pad2(d.getDate())].join(del);
     }
-    
+
     function datepicker_format(d) {
         return [pad2(d.getMonth()+1), pad2(d.getDate()), d.getFullYear()].join('/');
     }
@@ -111,7 +110,7 @@
     document.onbeforeunload = function () {
         AMO.StatsManager.write_local();
     }
-    
+
     Series = new AsyncCache(
         function miss(key, set) {
             if (typeof key.time === "string") {
@@ -191,7 +190,7 @@
             AMO.StatsManager.getDataRange(key.metric, time.start, time.end, function() {
 
                 var ret = [];
-                
+
                 for (var i=time.end; i>time.start; i-= millis("1 day")) {
                     if (ds[i] !== undefined) {
                         var row = (key.metric == 'apps') ? AMO.StatsManager.collapseVersions(ds[i], 1) : ds[i];
@@ -240,54 +239,38 @@
     AMO.StatsManager = {
 
         init: function () {
-            if (capabilities.localStorage) {
-                dbg("looking for local data");
-                if (AMO.StatsManager.verify_local()) {
-                    var cacheObject = localStorage.getItem("statscache-" + AMO.getAddonId());
+            dbg("looking for local data");
+            if (AMO.StatsManager.verify_local()) {
+                var cacheObject = Storage.get("statscache-" + AMO.getAddonId());
+                if (cacheObject) {
+                    dbg("found local data, loading...");
+                    cacheObject = JSON.parse(cacheObject);
                     if (cacheObject) {
-                        dbg("found local data, loading...");
-                        cacheObject = JSON.parse(cacheObject);
-                        if (cacheObject) {
-                            datastore = cacheObject;
-                        }
+                        datastore = cacheObject;
                     }
                 }
-            } else {
-                dbg("no local storage");
             }
         },
 
         write_local: function () {
             dbg("saving local data");
-            if (capabilities.localStorage) {
-                dbg("user has local storage");
-                localStorage.setItem("statscache-" + AMO.getAddonId(), JSON.stringify(datastore));
-                localStorage.setItem("stats_version", version);
-                dbg("saved local data");
-            } else {
-                dbg("no local storage");
-            }
+            Storage.set("statscache-" + AMO.getAddonId(), JSON.stringify(datastore));
+            Storage.set("stats_version", version);
+            dbg("saved local data");
         },
 
         clear_local: function () {
-            if (capabilities.localStorage) {
-                var local_store = localStorage;
-                local_store.removeItem("statscache-" + AMO.getAddonId());
-                dbg("cleared local data");
-            }
+            Storage.remove("statscache-" + AMO.getAddonId());
+            dbg("cleared local data");
         },
 
         verify_local: function () {
-            if (capabilities.localStorage) {
-                var local_store = localStorage;
-                if (local_store.getItem("stats_version") == version) {
-                    return true;
-                } else {
-                    dbg("wrong offline data verion");
-                    return false;
-                }
+            if (Storage.get("stats_version") == version) {
+                return true;
+            } else {
+                dbg("wrong offline data verion");
+                return false;
             }
-            return false;
         },
 
         _fetchData: function (metric, start, end, callback) {
@@ -419,7 +402,7 @@
 
             finished();
         },
-        
+
         getDataSlice: function(metric, time, base) {
             base = base || "";
             if (typeof time === "string") {
@@ -431,9 +414,9 @@
             } else {
                 return false;
             }
-            
+
             var ds = datastore[metric];
-            
+
             var ret = [];
 
             for (var i=seriesStart; i<seriesEnd; i+= millis("1 day")) {
@@ -456,7 +439,7 @@
 
             return Math.ceil((ds.maxdate - ds.mindate) / millis("1 day") / size);
         },
-        
+
         collapseVersions: function(row, precision) {
             var out = {
                     count : row.count,
@@ -489,7 +472,7 @@
         },
 
         getAvailableFields: function(metric, start, end, callback) {
-            
+
         },
 
         processRange: function(field, start, end, callback) {
@@ -509,7 +492,7 @@
                         chunk.push(ds[i]);
                     }
                 }
-                
+
                 var job = {
                     task: "computeAggregates",
                     data: {
@@ -578,12 +561,12 @@
             return val;
 
         },
-        
+
         getPrettyName: function(metric, field) {
             var parts = field.split('_');
             var key = parts[0];
             parts = parts.slice(1);
-            
+
             if (metric in csv_keys) {
                 if (key in csv_keys[metric]) {
                     return csv_keys[metric][key] + ' ' + parts.join(' ');

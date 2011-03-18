@@ -67,31 +67,19 @@ $(function() {
 });
 
 function initDailyMessage(doc) {
-    var canCloseMsg,
-        $motd = $('.daily-message', doc);
-    try {
-        if ('localStorage' in window && window['localStorage'] !== null) {
-            canCloseMsg = true;
-        }
-    } catch(e) {
-        // Exception thrown when cookies are off (bug in older Firefox)
-        canCloseMsg = false;
-    }
+    var $motd = $('.daily-message', doc);
     if ($('#editor-motd', doc).length) {
-        // The message on the MOTD page should never be closable
-        canCloseMsg = false;
-    }
-    if (!canCloseMsg) {
-        // Don't show close button, don't attach handlers
+        // The message on the MOTD page should never be closable, so don't
+        // show close button nor attach handlers.
         return;
     }
     $motd.find('.close').show();
-    if (window.localStorage['motd_closed'] == $('p', $motd).text()) {
+    if (Storage.get('motd_closed') == $('p', $motd).text()) {
         $motd.hide();
     }
     $motd.find('.close').click(function(e) {
         e.stopPropagation();
-        window.localStorage['motd_closed'] = $('.daily-message p').text();
+        Storage.set('motd_closed', $('.daily-message p').text());
         $motd.slideUp();
     });
 }

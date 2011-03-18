@@ -403,6 +403,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/tabs.js',
 
             'js/jquery.cookie.js',
+            'js/storage.js',
             'js/zamboni/global.js',
             'js/amo2009/global.js',
             'js/jquery-ui/jqModal.js',
@@ -455,6 +456,7 @@ MINIFY_BUNDLES = {
 
             'js/zamboni/truncation.js',
             'js/jquery.cookie.js',
+            'js/zamboni/storage.js',
             'js/zamboni/discovery_addons.js',
             'js/zamboni/discovery_pane.js',
         ),
@@ -464,6 +466,8 @@ MINIFY_BUNDLES = {
             'js/zamboni/devhub.js',
         ),
         'zamboni/editors': (
+            'js/jquery.cookie.js',
+            'js/zamboni/storage.js',
             'js/zamboni/editors.js',
         ),
         'zamboni/mobile': (

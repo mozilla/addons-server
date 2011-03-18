@@ -85,12 +85,12 @@ var unique = function(arr, keyfunc) {
 };
 
 
-/* Maintains a list of unique objects in localStorage sorted by date-added
+/* Maintains a list of unique objects in (local)Storage sorted by date-added
  * (descending).
  *
  * Options:
- *  limit: max number of items to keep in localStorage (default: 10)
- *  storageKey: the key used for localStorage (default: "recently-viewed")
+ *  limit: max number of items to keep in Storage (default: 10)
+ *  storageKey: the key used for Storage (default: "recently-viewed")
  *  uniqueFunc: the function passed to `unique` to determine uniqueness
  *              of items (default: the whole object, without date-added)
  */
@@ -123,16 +123,16 @@ RecentlyViewed.prototype = {
         return $.fmap(this._list(), function(x) { return x[1]; });
     },
 
-    /* Save an array to localStorage, maintaining the storage limit. */
+    /* Save an array to Storage, maintaining the storage limit. */
     _save: function(arr) {
         arr = arr.slice(0, this.limit);
-        localStorage[this.storageKey] = JSON.stringify(arr);
+        Storage.set(this.storageKey, JSON.stringify(arr));
         return arr;
     },
 
     /* Fetch the internal list of (date, object) tuples. */
     _list: function() {
-        var val = localStorage[this.storageKey];
+        var val = Storage.get(this.storageKey);
         if (val === null || val === undefined) {
             return [];
         } else {
@@ -141,18 +141,12 @@ RecentlyViewed.prototype = {
     },
 
     clear: function() {
-        delete localStorage[this.storageKey];
+        Storage.remove(this.storageKey);
     }
 };
 
 
 collections.recently_viewed = function() {
-    try {
-        if (!window.localStorage) { return; }
-    } catch(ex) {
-        return;
-    }
-
     var recentlyViewed = new RecentlyViewed({
         storageKey: 'recently-viewed-collections',
         uniqueFunc: function(e) { return e[1].uuid; }
