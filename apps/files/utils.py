@@ -153,10 +153,17 @@ def parse_xpi(xpi, addon=None):
     finally:
         shutil.rmtree(path)
 
+    return check_rdf(rdf, addon)
+
+
+def check_rdf(rdf, addon=None):
+    from addons.models import Addon, BlacklistedGuid
+    if not rdf['guid']:
+        raise forms.ValidationError(_("Could not find a UUID."))
     if addon and addon.guid != rdf['guid']:
         raise forms.ValidationError(_("UUID doesn't match add-on."))
     if (not addon
-        and Addon.objects.filter(guid=rdf['guid'])
+        and Addon.objects.filter(guid=rdf['guid']).exists()
         or BlacklistedGuid.objects.filter(guid=rdf['guid']).exists()):
         raise forms.ValidationError(_('Duplicate UUID found.'))
 
