@@ -634,6 +634,25 @@ class TestQueueSearch(SearchTest):
         eq_(r.status_code, 200)
         eq_(sorted(self.named_addons(r)), ['Linux Widget', 'Mac Widget'])
 
+    def test_preserve_multi_platform_files(self):
+        for plat in (amo.PLATFORM_WIN, amo.PLATFORM_MAC):
+            create_addon_file('Multi Platform', '0.1',
+                              amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED,
+                              platform=plat)
+        r = self.search({'platform_ids': [amo.PLATFORM_WIN.id]})
+        doc = pq(r.content)
+        # Should not say Windows only:
+        eq_(doc('table.data-grid tr').eq(1).children('td').eq(5).text(), '')
+
+    def test_preserve_single_platform_files(self):
+        create_addon_file('Windows', '0.1',
+                          amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED,
+                          platform=amo.PLATFORM_WIN)
+        r = self.search({'platform_ids': [amo.PLATFORM_WIN.id]})
+        doc = pq(r.content)
+        eq_(doc('table.data-grid tr').eq(1).children('td').eq(5).text(),
+            'Windows only')
+
     def test_search_by_app(self):
         r = self.search({'application_id': [amo.MOBILE.id]})
         eq_(r.status_code, 200)

@@ -133,6 +133,13 @@ class QueueSearchForm(happyforms.Form):
                 qs = qs.filter_raw('max_version.version =', data['max_version'])
         if data['platform_ids']:
             qs = qs.filter_raw('files.platform_id IN', data['platform_ids'])
+            # Adjust _file_platform_ids so that it includes ALL platforms
+            # not the ones filtered by the search criteria:
+            qs.base_query['from'].extend([
+                """LEFT JOIN files all_files
+                   ON (all_files.version_id = versions.id)"""])
+            group = 'GROUP_CONCAT(DISTINCT all_files.platform_id)'
+            qs.base_query['select']['_file_platform_ids'] = group
         if data['text_query']:
             lang = get_language()
             joins = [
