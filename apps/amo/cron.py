@@ -106,60 +106,57 @@ def _trim_categories(results, app_id, **kw):
 
 @cronjobs.register
 def gc(test_result=True):
-    "Site-wide garbage collections."
+    """Site-wide garbage collections."""
 
-    three_months_ago = datetime.today() - timedelta(days=90)
-    six_days_ago = datetime.today() - timedelta(days=6)
-    four_days_ago = datetime.today() - timedelta(days=4)
-    two_days_ago = datetime.today() - timedelta(days=2)
+    days_ago = lambda days: datetime.today() - timedelta(days=days)
     one_hour_ago = datetime.today() - timedelta(hours=1)
 
-    log.debug('Cleaning up sessions table.')
-    # cake.Session is stupid so...
-    two_days_ago_unixtime = calendar.timegm(two_days_ago.utctimetuple())
-    Session.objects.filter(expires__lt=two_days_ago_unixtime).delete()
+    log.debug('Collecting data to delete')
 
-    log.debug('Cleaning up sharing services.')
-    AddonShareCount.objects.exclude(
-            service__in=[s.shortname for s in SERVICES_LIST]).delete()
-
-    log.debug('Cleaning up test results cache.')
-    TestResultCache.objects.filter(date__lt=one_hour_ago).delete()
-
-    log.debug('Removing old entries from add-on news feeds.')
-
-    ActivityLog.objects.filter(created__lt=three_months_ago).exclude(
-            action__in=amo.LOG_KEEP).delete()
+    logs = (ActivityLog.objects.filter(created__lt=days_ago(90))
+            .exclude(action__in=amo.LOG_KEEP).values_list('id', flat=True))
 
     # Paypal only keeps retrying to verify transactions for up to 3 days. If we
     # still have an unverified transaction after 6 days, we might as well get
     # rid of it.
     contributions_to_delete = (Contribution.objects
-            .filter(transaction_id__isnull=True, created__lt=six_days_ago)
+            .filter(transaction_id__isnull=True, created__lt=days_ago(6))
             .values_list('id', flat=True))
 
     collections_to_delete = (Collection.objects.filter(
-            created__lt=two_days_ago, type=amo.COLLECTION_ANONYMOUS)
+            created__lt=days_ago(2), type=amo.COLLECTION_ANONYMOUS)
             .values_list('id', flat=True))
 
     # Remove Incomplete add-ons older than 4 days.
     addons_to_delete = (Addon.objects.filter(
                         highest_status=amo.STATUS_NULL, status=amo.STATUS_NULL,
-                        created__lt=four_days_ago)
+                        created__lt=days_ago(4))
                         .values_list('id', flat=True))
 
     with establish_connection() as conn:
+        for chunk in chunked(logs, 100):
+            _delete_logs.apply_async(args=[chunk], connection=conn)
         for chunk in chunked(contributions_to_delete, 100):
             _delete_stale_contributions.apply_async(
                     args=[chunk], connection=conn)
-
         for chunk in chunked(collections_to_delete, 100):
             _delete_anonymous_collections.apply_async(
                     args=[chunk], connection=conn)
-
         for chunk in chunked(addons_to_delete, 100):
             _delete_incomplete_addons.apply_async(
                     args=[chunk], connection=conn)
+
+    log.debug('Cleaning up sharing services.')
+    AddonShareCount.objects.exclude(
+            service__in=[s.shortname for s in SERVICES_LIST]).delete()
+
+    log.debug('Cleaning up cake sessions.')
+    # cake.Session uses Unix Timestamps
+    two_days_ago = calendar.timegm(days_ago(2).utctimetuple())
+    Session.objects.filter(expires__lt=two_days_ago).delete()
+
+    log.debug('Cleaning up test results cache.')
+    TestResultCache.objects.filter(date__lt=one_hour_ago).delete()
 
     log.debug('Cleaning up test results extraction cache.')
     if settings.NETAPP_STORAGE and settings.NETAPP_STORAGE != '/':
@@ -199,6 +196,13 @@ def gc(test_result=True):
 
 
 @task
+def _delete_logs(items, **kw):
+    log.info('[%s@%s] Deleting logs' % (len(items), _delete_logs.rate_limit))
+    ActivityLog.objects.filter(pk__in=items).exclude(
+            action__in=amo.LOG_KEEP).delete()
+
+
+@task
 def _delete_stale_contributions(items, **kw):
     log.info('[%s@%s] Deleting stale collections' %
              (len(items), _delete_stale_contributions.rate_limit))
@@ -221,8 +225,8 @@ def _delete_incomplete_addons(items, **kw):
             highest_status=0, status=0, pk__in=items):
         try:
             addon.delete('Deleted for incompleteness')
-        except Exception:
-            log.error("Couldn't delete add-on: %s" % addon.id)
+        except Exception as e:
+            log.error("Couldn't delete add-on %s: %s" % (addon.id, e))
 
 
 @cronjobs.register
