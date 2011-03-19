@@ -3,6 +3,7 @@ import hashlib
 import json
 import os
 import posixpath
+import re
 import uuid
 import shutil
 import zipfile
@@ -154,6 +155,20 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
 
         self.filename = '-'.join(parts) + extension
         return self.filename
+
+    _pretty_filename = re.compile(r'(?P<slug>[a-z0-7_]+)(?P<suffix>.*)')
+
+    def pretty_filename(self, maxlen=20):
+        """Displayable filename.
+
+        Truncates filename so that the slug part fits maxlen.
+        """
+        m = self._pretty_filename.match(self.filename)
+        if not m:
+            return self.filename
+        if len(m.group('slug')) < maxlen:
+            return self.filename
+        return u'%s...%s' % (m.group('slug')[0:(maxlen-3)], m.group('suffix'))
 
     def latest_xpi_url(self):
         addon = self.version.addon_id

@@ -164,6 +164,17 @@ class TestFile(test_utils.TestCase):
         f = File.objects.get(id=67442)
         eq_(f.generate_filename(), 'delicious_bookmarks-2.1.072-fx.xpi')
 
+    def test_pretty_filename(self):
+        f = File.objects.get(id=67442)
+        f.generate_filename()
+        eq_(f.pretty_filename(), 'delicious_bookmarks-2.1.072-fx.xpi')
+
+    def test_pretty_filename_short(self):
+        f = File.objects.get(id=67442)
+        f.version.addon.name = 'A Place Where The Sea Remembers Your Name'
+        f.generate_filename()
+        eq_(f.pretty_filename(), 'a_place_where_the...-2.1.072-fx.xpi')
+
     def test_generate_filename_platform_specific(self):
         f = File.objects.get(id=67442)
         f.platform_id = amo.PLATFORM_MAC.id

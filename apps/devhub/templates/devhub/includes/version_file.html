@@ -2,7 +2,7 @@
   <tr>
     <td>
       <a href="{{ file.get_url_path(amo.FIREFOX, 'devhub') }}">
-        {{ file.filename }}</a>
+        {{ file.pretty_filename() }}</a>
     </td>
     <td>{{ (file.size * 1024)|filesizeformat }}</td>
     <td>{{ form.platform }}</td>
