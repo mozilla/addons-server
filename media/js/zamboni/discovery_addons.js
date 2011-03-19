@@ -78,7 +78,7 @@ $.fn.jCarouselLite = function(o) {
         ul.css(sizeCss, ulSize+"px").css(animCss, -(curr*liSize));
 
         // Width of the DIV. length of visible images.
-        div.css(sizeCss, divSize+"px");
+        //div.css(sizeCss, divSize+"px");
 
         if (!o.circular) {
             $(o.btnPrev + "," + o.btnNext).removeClass("disabled");
@@ -217,22 +217,26 @@ function debounce(fn, ms, ctxt) {
 function setPanelWidth(section) {
     // Set the width of panels (jCarousel requires a pixel width but our page
     // is liquid, so we'll set the width in px on pageload and on resize).
+    var panelWidth = $("#main").width();
     if (section == "both" || section == "detail") {
-        var panelWidth = $("#main").width();
-        $("#main-feature, #main-feature .panel, #images").css("width", panelWidth);
+        $("#images").css("width", panelWidth);
         // We show three images at a time, so the width of each is 1/3 minus a
         // right margin of 10px.
         $("#images .panel").css("width", panelWidth / 3 - 10);
     }
     if (section == "both" || section == "pane") {
-        var galleryWidth = $("#recs .gallery").width();
-        $("#recs .gallery .panel").css({
-            "width": 0.3 * galleryWidth,
-            "margin-right": 0.05 * galleryWidth
+        $("#main-feature, #main-feature .panel").css("width", panelWidth);
+        var galleryWidth = $("#recs .gallery").width(),
+            panelWidth = 0.3 * galleryWidth,
+            panelRight = 0.05 * galleryWidth;
+        $("#recs .panel").css({"margin-right": panelRight, "width": panelWidth});
+        $("#recs .panel:nth-child(3n)").each(function (i) {
+            if (i > 0) {
+                $(this).css("margin-left", -2);
+            }
+            $(this).css("margin-right", panelRight + i + 2);
         });
-        $("#recs .gallery .panel:nth-child(3n)").each(function(i){
-            $(this).css("margin-right", 0.05 * galleryWidth + i + 2);
-        });
+        $("#recs .panel:last-child").css("margin-right", 0);
     }
 }
 
@@ -252,7 +256,7 @@ function initDetail() {
 
     // Set up the lightbox.
     var lb_baseurl = z.media_url + "img/jquery-lightbox/";
-    $("#images li.panel a[rel=jquery-lightbox]").lightBox({
+    $("#images .panel a").lightBox({
         overlayOpacity: 0.6,
         imageBlank: lb_baseurl + "lightbox-blank.gif",
         imageLoading: lb_baseurl + "lightbox-ico-loading.gif",

@@ -190,32 +190,31 @@ header:after,
 }
 .recs #main #recs {
     display: block;
-    margin-top: -1px;
 }
 
-.recs #recs .gallery-wrap {
+#recs .gallery-wrap {
     background-color: #d4edea;
     border-radius: 0 0 8px 8px;
     position: relative;
 }
 
-.recs #recs .msg {
+#recs .msg {
     display: table;
     height: 160px;
     width: 100%;
 }
-.recs #recs .msg p {
+#recs .msg p {
     display: table-cell;
     font-size: 15px;
     line-height: 1.3;
     text-align: center;
     vertical-align: middle;
 }
-.recs #recs .loading p {
+#recs .loading p {
     margin-bottom: 0;
     padding-top: 78px;
 }
-.recs #recs .loading p > span {
+#recs .loading p > span {
     background: url(../../img/zamboni/discovery_pane/loading.gif) no-repeat;
     display: inline-block;
     opacity: 0.25;
@@ -387,7 +386,7 @@ header:after,
 
 #nav-recs a {
     margin: 0;
-    height: 163px;
+    height: 183px;
 }
 
 #nav-features a:hover,
@@ -758,8 +757,8 @@ ul.addons {
 
 #recs .header {
     margin: 0;
-    padding: 0.45em 0;
-    width: 100%;
+    padding: 0.45em 9%;
+    width: 82%;
 }
 
 #sub .featured ul,
@@ -891,19 +890,19 @@ ul.addons {
     left: 4px;
 }
 
-.pane #main #recs .persona-feature + .addon-feature {
+#recs .persona-feature + .addon-feature {
     left: -4px;
 }
 
-.pane #main #recs .persona-feature + .persona-feature {
+#recs .persona-feature + .persona-feature {
     left: 0;
 }
 
-.pane #main #recs .addon-feature + .persona-feature {
+#recs .addon-feature + .persona-feature {
     left: 0;
 }
 
-.pane #main #recs .persona-feature:nth-child(3n) {
+#recs .persona-feature:nth-child(3n) {
     left: -4px;
 }
 
@@ -1468,9 +1467,14 @@ a#lightbox-secNav-btnClose {
     border-radius: 8px;
 }
 
-.recs #recs .gallery {
+#recs .gallery {
     overflow: hidden;
-    height: 163px;
+    height: 183px;
+}
+
+#recs .gallery-addons {
+    margin: 0 auto;
+    width: 82%;
 }
 
 #images + .addon-info {
@@ -1487,10 +1491,8 @@ a#lightbox-secNav-btnClose {
 }
 
 #images .panel,
-.recs #recs .panel {
-    width: 33%;
+#recs .panel {
     float: left;
-    margin: 0 0 10px;
 }
 
 #images.js .panel {
@@ -1504,11 +1506,11 @@ a#lightbox-secNav-btnClose {
     box-shadow: none;
 }
 
-.recs #recs .gallery .panel {
+#recs .panel {
+    margin: 20px 5% 20px 0;
     width: 30%;
-    margin: 10px 5% 10px 0;
 }
-.recs #recs .gallery .panel:last-child {
+#recs .panel:last-child {
     margin-right: 0;
 }
 
