@@ -84,11 +84,18 @@ $(document).ready(function () {
 
     $(".primary").delegate(".errorlist .l10n", "click", switchLocale);
 
+    $("#all_locales").delegate("a", "switch", switchLocale);
+
+    $(format("#all_locales a[href$={0}]",[$.cookie('current_locale')])).trigger("switch");
+
     function switchLocale(e) {
         e.preventDefault();
         $tgt = $(this);
         var new_locale = $tgt.attr("data-lang") || $tgt.attr("href").substring(1);
         var unsaved = $("form .trans .unsaved");
+
+        $.cookie('current_locale', new_locale, {expires: 0});
+
         if (unsaved.length) {
             unsavedModal.children(".msg")
                 .html(format(unsavedModalMsg,[$("#change-locale").text()]));
@@ -154,7 +161,10 @@ $(document).ready(function () {
         } else {
             updateLocale(new_locale);
         }
-        localePopup.hideMe();
+
+        if(localePopup) {
+            localePopup.hideMe();
+        }
     }
 
     var localePopup = $("#locale-popup").popup("#change-locale", {
