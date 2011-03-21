@@ -305,8 +305,8 @@ def migrate_approvals():
 
 @task
 def _migrate_approvals(items, **kw):
-    log.info('[%s@%s] Migrating approval items' %
-             (len(items), _migrate_approvals.rate_limit))
+    log.info('[%s@%s] Migrating approval items starting with id: %s' %
+             (len(items), _migrate_approvals.rate_limit, items[0]))
     for item in Approval.objects.filter(pk__in=items):
         try:
             args = (item.addon, item.file.version)
@@ -316,7 +316,8 @@ def _migrate_approvals(items, **kw):
 
         kw = dict(user=item.user, created=item.created,
                   details=dict(comments=item.comments,
-                               reviewtype=item.reviewtype))
+                               reviewtype=item.reviewtype,
+                               source=item.pk))
         if item.action == amo.STATUS_PUBLIC:
             amo.log(amo.LOG.APPROVE_VERSION, *args, **kw)
         elif item.action == amo.STATUS_LITE:
