@@ -36,9 +36,9 @@ def get_paykey(data):
     """
     request = urllib2.Request(settings.PAYPAL_PAY_URL)
     for key, value in [
-            ('security-userid', settings.PAYPAL_USER),
-            ('security-password', settings.PAYPAL_PASSWORD),
-            ('security-signature', settings.PAYPAL_SIGNATURE),
+            ('security-userid', settings.PAYPAL_EMBEDDED_AUTH['USER']),
+            ('security-password', settings.PAYPAL_EMBEDDED_AUTH['PASSWORD']),
+            ('security-signature', settings.PAYPAL_EMBEDDED_AUTH['SIGNATURE']),
             ('application-id', settings.PAYPAL_APP_ID),
             ('device-ipaddress', data['ip']),
             ('request-data-format', 'NV'),
@@ -87,14 +87,22 @@ def check_paypal_id(name):
 
     Returns bool(valid), str(msg).  msg will be None if there wasn't an error.
     """
-    d = dict(user=settings.PAYPAL_USER,
-             pwd=settings.PAYPAL_PASSWORD,
-             signature=settings.PAYPAL_SIGNATURE,
-             version=settings.PAYPAL_API_VERSION,
+    d = dict(version=settings.PAYPAL_API_VERSION,
              buttoncode='cleartext',
              buttontype='donate',
              method='BMCreateButton',
              l_buttonvar0='business=%s' % name)
+    # TODO(andym): remove this once this is all live and settled down.
+    if hasattr(settings, 'PAYPAL_CGI_AUTH'):
+        d['user'] = settings.PAYPAL_CGI_AUTH['USER']
+        d['pwd'] = settings.PAYPAL_CGI_AUTH['PASSWORD']
+        d['signature'] = settings.PAYPAL_CGI_AUTH['SIGNATURE']
+    else:
+        # In production if PAYPAL_CGI_AUTH doesn't get defined yet,
+        # fall back to the existing values.
+        d.update(dict(user=settings.PAYPAL_USER,
+                      pwd=settings.PAYPAL_PASSWORD,
+                      signature=settings.PAYPAL_SIGNATURE))
     with socket_timeout(10):
         r = urllib.urlopen(settings.PAYPAL_API_URL, urlencode(d))
     response = dict(urlparse.parse_qsl(r.read()))
