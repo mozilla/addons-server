@@ -583,14 +583,13 @@ PAYPAL_API_VERSION = '50'
 PAYPAL_APP_ID = ''
 PAYPAL_BN = ''
 PAYPAL_CGI_URL = 'https://www.paypal.com/cgi-bin/webscr'
+PAYPAL_CGI_AUTH = {'USER':'', 'PASSWORD':'', 'SIGNATURE':''}
 
 PAYPAL_USE_EMBEDDED = True
 PAYPAL_PAY_URL = 'https://paypal.com/adaptivepayments/pay'
 PAYPAL_FLOW_URL = 'https://paypal.com/webapps/adaptivepayment/flow/pay'
 PAYPAL_JS_URL = 'https://www.paypalobjects.com/js/external/dg.js'
-PAYPAL_USER = ''
-PAYPAL_PASSWORD = ''
-PAYPAL_SIGNATURE = ''
+PAYPAL_EMBEDDED_AUTH = {'USER':'', 'PASSWORD':'', 'SIGNATURE':''}
 PAYPAL_EMAIL = ''
 
 # Paypal is an awful place that doesn't understand locales.  Instead they have
