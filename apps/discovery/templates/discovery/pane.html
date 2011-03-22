@@ -30,6 +30,25 @@ data-account-url="{{ services_url('discovery.pane_account') }}"
 
   <section id="main">
 
+    <section id="main-feature">
+      <ul id="nav-features">
+        <li class="nav-prev"><a href="#" class="prev">{{ _('Previous') }}</a></li>
+        <li class="nav-next"><a href="#" class="next">{{ _('Next') }}</a></li>
+      </ul>
+      <ul class="slider">
+      {% for module in modules %}
+        {{ module.render() }}
+      {% endfor %}
+      </ul>
+    </section>
+
+    <section id="featured-addons">
+      <h2>{{ _('Featured Add-ons') }}</h2>
+      <div class="addons">
+        {{ addon_list(featured_addons, limit=6) }}
+      </div>
+    </section>
+
     <section id="recs">
       <div class="header">
         <h2>
@@ -47,25 +66,6 @@ data-account-url="{{ services_url('discovery.pane_account') }}"
         <div class="gallery">
           <ul class="slider rec-addons"></ul>
         </div>
-      </div>
-    </section>
-
-    <section id="main-feature">
-      <ul id="nav-features">
-        <li class="nav-prev"><a href="#" class="prev">{{ _('Previous') }}</a></li>
-        <li class="nav-next"><a href="#" class="next">{{ _('Next') }}</a></li>
-      </ul>
-      <ul class="slider">
-      {% for module in modules %}
-        {{ module.render() }}
-      {% endfor %}
-      </ul>
-    </section>
-
-    <section id="featured-addons">
-      <h2>{{ _('Featured Add-ons') }}</h2>
-      <div class="addons">
-        {{ addon_list(featured_addons, limit=6) }}
       </div>
     </section>
 
