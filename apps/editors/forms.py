@@ -1,5 +1,4 @@
 from datetime import timedelta
-import re
 
 from django import forms
 from django.forms import widgets
