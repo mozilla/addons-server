@@ -61,6 +61,11 @@
       {% for item in eventlog %}
       <div class="row">
         {{ item.to_string('editor') }}
+        {% if item.details %}
+        <a href="{{ url('editors.eventlog.detail', item.id) }}">
+          {{ _('More details.') }}
+        </a>
+        {% endif %}
         {% trans ago=item.created|timesince, iso=item.created|isotime,
                  pretty=item.created|babel_datetime %}
           <time datetime="{{ iso }}" title="{{ pretty }}">{{ ago }}</time>
