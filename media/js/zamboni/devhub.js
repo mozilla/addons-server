@@ -580,6 +580,8 @@ function initEditVersions() {
     });
     */
 
+    $('.upload-file-cancel').click(_pd($modal.hideMe));
+
     $("#upload-file-finish").click(function (e) {
         e.preventDefault();
         $tgt = $(this);
