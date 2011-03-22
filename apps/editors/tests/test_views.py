@@ -919,6 +919,43 @@ class TestReview(ReviewBase):
 
         eq_(validation.find('a').length, 3)
 
+    def test_version_deletion(self):
+        """
+        Make sure that we still show review history for deleted versions.
+        """
+        # Add a new version to the add-on.
+        self.addon_file(u'something', u'0.2', amo.STATUS_PUBLIC,
+                        amo.STATUS_UNREVIEWED)
+        v2 = self.versions['something']
+        v2.addon = self.addon
+        v2.save()
+
+        eq_(self.addon.versions.count(), 2)
+
+        url = lambda v: reverse('editors.review', args=[v.id])
+
+        # Review both.
+        for version in [v2, self.version]:
+            version.files.all()[0].update(status=amo.STATUS_UNREVIEWED)
+            d = dict(action='prelim', operating_systems='win',
+                     applications='something', comments='something',
+                     addon_files=[version.files.all()[0].pk])
+            r = self.client.post(url(version), d)
+
+        r = self.client.get(url(self.version))
+        doc = pq(r.content)
+        # View the history verify two versions:
+        eq_(doc('table#review-files tr td:first-child').eq(0).text(), '0.2')
+        eq_(doc('table#review-files tr td:first-child').eq(1).text(), '0.1')
+        # Delete a version:
+        v2.delete()
+        # Verify two versions, one deleted:
+        r = self.client.get(url(self.version))
+        doc = pq(r.content)
+        eq_(doc('table#review-files tr td:first-child').eq(0).text(),
+            'Deleted version')
+        eq_(doc('table#review-files tr td:first-child').eq(1).text(), '0.1')
+
 
 class TestReviewPreliminary(ReviewBase):
 
