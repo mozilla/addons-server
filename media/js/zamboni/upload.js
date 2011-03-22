@@ -17,7 +17,8 @@
             var $upload_field = $(this),
                 formData = false,
                 $form = $upload_field.closest('form'),
-                errors = false;
+                errors = false,
+                aborted = false;
 
             if (options) {
                 $.extend( settings, options );
@@ -38,6 +39,7 @@
                             'type': domfile.type};
 
                 formData = new z.FormData();
+                aborted = false;
 
                 $upload_field.trigger("upload_start", [file]);
 
@@ -60,7 +62,8 @@
                   formData.append("upload", domfile);
                 }
 
-                $upload_field.bind("upload_action_abort", function() {
+                $upload_field.unbind("upload_action_abort").bind("upload_action_abort", function() {
+                    aborted = true;
                     formData.xhr.abort();
                     errors = [gettext("You cancelled the upload.")];
                     $upload_field.trigger("upload_errors", [file, errors]);
@@ -99,7 +102,7 @@
                         }
                         $upload_field.trigger("upload_finished", [file]);
 
-                    } else if(formData.xhr.readyState == 4) {
+                    } else if(formData.xhr.readyState == 4 && !aborted) {
                         errors = [gettext("There was a problem contacting the server.")];
                         $upload_field.trigger("upload_errors", [file, errors]);
                     }
@@ -107,7 +110,6 @@
 
                 formData.send();
             }
-
         });
 
     }
@@ -233,7 +235,7 @@
                 upload_box.addClass("ajax-loading");
 
                 upload_status_cancel_a.click(_pd(function(){
-                    $upload_field.trigger("upload_abort");
+                    $upload_field.trigger("upload_action_abort");
                 }));
             });
 
