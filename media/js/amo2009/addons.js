@@ -48,7 +48,8 @@ var contributions = {
             if (contrib_type == 'onetime') {
                 var amt = $(this).find('input[name="'+contrib_type+'-amount"]').val();
                 $(this).find('.error').hide();
-                if (isNaN(parseFloat(amt))) {
+                // parseFloat will catch everything except 1@, +amt will though
+                if (isNaN(parseFloat(amt)) || ((+amt) != amt)) {
                     $(this).find('#contrib-not-entered').show();
                     return false;
                 }
