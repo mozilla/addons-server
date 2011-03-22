@@ -11,6 +11,7 @@ from django.forms.models import modelformset_factory
 from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.csrf import csrf_exempt
 
+import commonware.log
 import jingo
 
 import amo
@@ -31,6 +32,8 @@ from .forms import DiscoveryModuleForm
 from .modules import registry as module_registry
 
 addon_view = addon_view_factory(Addon.objects.valid)
+
+log = commonware.log.getLogger('z.disco')
 
 
 def pane(request, version, platform):
@@ -166,8 +169,11 @@ def recommendations(request, version, platform, limit=9):
         c = SyncedCollection.objects.create(addon_index=index, count=1)
         c.set_addons(addon_ids)
     except IntegrityError:
-        (SyncedCollection.objects.filter(addon_index=index)
-         .update(count=F('count') + 1))
+        try:
+            (SyncedCollection.objects.filter(addon_index=index)
+             .update(count=F('count') + 1))
+        except Exception, e:
+            log.error(u'Could not count++ "%s" (%s).' % (index, e))
     return recs
 
 
