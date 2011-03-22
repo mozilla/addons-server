@@ -80,6 +80,8 @@ class Version(amo.models.ModelBase):
             platforms = [Platform.objects.get(id=amo.PLATFORM_ALL.id)]
         for platform in platforms:
             File.from_upload(upload, v, platform, parse_data=data)
+
+        v.disable_old_files()
         # After the upload has been copied to all
         # platforms, remove the upload.
         upload.path.unlink()
@@ -200,6 +202,15 @@ class Version(amo.models.ModelBase):
             version.compatible_apps = cls._compat_map(av_dict.get(v_id, []))
             version.all_files = file_dict.get(v_id, [])
 
+    def disable_old_files(self):
+        if not self.files.filter(status=amo.STATUS_BETA).exists():
+            qs = File.objects.filter(version__addon=self.addon_id,
+                                     version__lt=self,
+                                     status=amo.STATUS_UNREVIEWED)
+            # Use File.update so signals are triggered.
+            for f in qs:
+                f.update(status=amo.STATUS_DISABLED)
+
 
 def update_status(sender, instance, **kw):
     if not kw.get('raw'):
@@ -208,14 +219,6 @@ def update_status(sender, instance, **kw):
             instance.addon.update_version()
         except models.ObjectDoesNotExist:
             pass
-        if kw.get('created'):
-            # Disable older unreviewed files for this add-on.
-            qs = File.objects.filter(version__addon=instance.addon_id,
-                                     version__lt=instance,
-                                     status=amo.STATUS_UNREVIEWED)
-            # Use File.update so signals are triggered.
-            for f in qs:
-                f.update(status=amo.STATUS_DISABLED)
 
 
 models.signals.post_save.connect(update_status, sender=Version,

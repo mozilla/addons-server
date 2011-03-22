@@ -205,10 +205,21 @@ class TestVersion(test_utils.TestCase):
         assert not hide_mock.called
 
         qs.update(status=amo.STATUS_UNREVIEWED)
-        Version.objects.create(addon=addon)
+        version = Version.objects.create(addon=addon)
+        version.disable_old_files()
         eq_(qs.all()[0].status, amo.STATUS_DISABLED)
         addon.current_version.all_files[0]
         assert hide_mock.called
+
+    def test_new_version_beta(self):
+        addon = Addon.objects.get(id=3615)
+        qs = File.objects.filter(version=addon.current_version)
+        qs.update(status=amo.STATUS_UNREVIEWED)
+
+        version = Version.objects.create(addon=addon)
+        File.objects.create(version=version, status=amo.STATUS_BETA)
+        version.disable_old_files()
+        eq_(qs.all()[0].status, amo.STATUS_UNREVIEWED)
 
     def test_version_int(self):
         version = Version.objects.get(pk=81551)
@@ -624,6 +635,35 @@ class TestSearchVersionFromUpload(TestVersionFromUpload):
         files = version.all_files
         eq_(len(files), 1)
         eq_(files[0].platform.id, amo.PLATFORM_ALL.id)
+
+
+class TestStatusFromUpload(TestVersionFromUpload):
+    filename = 'extension.xpi'
+
+    def setUp(self):
+        super(TestStatusFromUpload, self).setUp()
+        self.current = self.addon.current_version
+        # We need one public file to stop the addon update signal
+        # moving the addon away from public. Only public addons check
+        # for beta status on from_upload.
+        self.current.files.all().update(status=amo.STATUS_UNREVIEWED)
+        File.objects.create(version=self.current, status=amo.STATUS_PUBLIC)
+        self.addon.update(status=amo.STATUS_PUBLIC)
+
+    def test_status(self):
+        qs = File.objects.filter(version=self.current)
+        Version.from_upload(self.upload, self.addon, [self.platform])
+        eq_(sorted([q.status for q in qs.all()]),
+            [amo.STATUS_PUBLIC, amo.STATUS_DISABLED])
+
+    @mock.patch('files.utils.parse_addon')
+    def test_status_beta(self, parse_addon):
+        parse_addon.return_value = {'version': u'0.1beta'}
+
+        qs = File.objects.filter(version=self.current)
+        Version.from_upload(self.upload, self.addon, [self.platform])
+        eq_(sorted([q.status for q in qs.all()]),
+            [amo.STATUS_UNREVIEWED, amo.STATUS_PUBLIC])
 
 
 class TestMobileVersions(TestMobile):
