@@ -245,47 +245,45 @@
             });
 
             $upload_field.bind("upload_errors", function(e, file, errors, results){
-                var addonFinished = function() {
-                    $upload_field.val("").attr('disabled', false);
+                upload_progress_inside.css({'width': '100%'});
 
-                    upload_title.text(format(gettext('Error with {0}'), [escape_(file.name)]));
+                $upload_field.val("").attr('disabled', false);
 
-                    upload_progress_outside.attr('class', 'bar-fail');
-                    upload_progress_inside.fadeOut();
+                upload_title.text(format(gettext('Error with {0}'), [escape_(file.name)]));
 
-                    var error_message = format(ngettext(
-                            "Your add-on failed validation with {0} error.",
-                            "Your add-on failed validation with {0} errors.",
-                            errors.length), [errors.length]);
+                upload_progress_outside.attr('class', 'bar-fail');
+                upload_progress_inside.fadeOut();
 
-                    $("<strong>").text(error_message).appendTo(upload_results);
+                var error_message = format(ngettext(
+                        "Your add-on failed validation with {0} error.",
+                        "Your add-on failed validation with {0} errors.",
+                        errors.length), [errors.length]);
 
-                    var errors_ul = $('<ul>', {'id': 'upload_errors'});
+                $("<strong>").text(error_message).appendTo(upload_results);
 
-                    $.each(errors.splice(0, 5), function(i, error) {
-                        errors_ul.append($("<li>", {'text': error }));
-                    });
+                var errors_ul = $('<ul>', {'id': 'upload_errors'});
 
-                    if(errors.length > 0) {
-                        var message = format(ngettext('&hellip;and {0} more',
-                                                      '&hellip;and {0} more',
-                                                      errors.length), [errors.length]);
-                        errors_ul.append($('<li>', {'html': message}));
-                    }
+                $.each(errors.splice(0, 5), function(i, error) {
+                    errors_ul.append($("<li>", {'text': error }));
+                });
 
-                    upload_results.append(errors_ul).addClass('status-fail');
+                if(errors.length > 0) {
+                    var message = format(ngettext('&hellip;and {0} more',
+                                                  '&hellip;and {0} more',
+                                                  errors.length), [errors.length]);
+                    errors_ul.append($('<li>', {'html': message}));
+                }
 
-                    if (results && results.full_report_url) {
-                        // There might not be a link to the full report
-                        // if we get an early error like unsupported type.
-                        upload_results.append($("<a>", {'href': results.full_report_url,
-                                                        'target': '_blank',
-                                                        'text': gettext('See full validation report')}));
-                    }
-                };
+                upload_results.append(errors_ul).addClass('status-fail');
 
-                var animateArgs = {duration: 300, step:function(i){ updateStatus(i, file.size); }, complete: addonFinished};
-                upload_progress_inside.animate({'width': '100%'}, animateArgs);
+                if (results && results.full_report_url) {
+                    // There might not be a link to the full report
+                    // if we get an early error like unsupported type.
+                    upload_results.append($("<a>", {'href': results.full_report_url,
+                                                    'target': '_blank',
+                                                    'text': gettext('See full validation report')}));
+                }
+
 
             });
 
