@@ -759,6 +759,22 @@ class TestAddonModels(test_utils.TestCase):
         File.objects.create(status=status, version=version)
         return addon, version
 
+    def test_no_change_disabled_user(self):
+        addon, version = self.setup_files(amo.STATUS_UNREVIEWED)
+        addon.update(status=amo.STATUS_PUBLIC)
+        addon.update(disabled_by_user=True)
+        version.save()
+        eq_(addon.status, amo.STATUS_PUBLIC)
+        assert addon.is_disabled
+
+    def test_no_change_disabled(self):
+        addon = Addon.objects.create(type=1)
+        version = Version.objects.create(addon=addon)
+        addon.update(status=amo.STATUS_DISABLED)
+        version.save()
+        eq_(addon.status, amo.STATUS_DISABLED)
+        assert addon.is_disabled
+
     def test_can_alter_in_prelim(self):
         addon, version = self.setup_files(amo.STATUS_LITE)
         addon.update(status=amo.STATUS_LITE)

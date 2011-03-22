@@ -498,7 +498,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                     self.id, size, int(time.mktime(self.modified.timetuple())))
 
     def update_status(self, using=None):
-        if self.status == amo.STATUS_NULL:
+        if self.status == amo.STATUS_NULL or self.is_disabled:
             return
 
         versions = self.versions.using(using)
