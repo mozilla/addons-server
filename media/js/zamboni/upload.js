@@ -143,7 +143,7 @@
             /* Add some UI */
 
             var ui_parent = $('<div>', {'class': 'invisible-upload prominent cta', 'id': 'upload-file-widget'}),
-                ui_link = $('<a>', {'class': 'button prominent', 'href': '#', 'text': gettext('Select an Add-On to Upload')}),
+                ui_link = $('<a>', {'class': 'button prominent', 'href': '#', 'text': gettext('Select a file...')}),
                 ui_details = $('<div>', {'class': 'upload-details', 'text': gettext('Your add-on should end with .xpi or .jar')});
 
             $upload_field.wrap(ui_parent);
