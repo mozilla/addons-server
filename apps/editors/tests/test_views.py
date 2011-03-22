@@ -1079,3 +1079,29 @@ class TestEditorMOTD(EditorTest):
         r = self.client.post(reverse('editors.save_motd'), {})
         doc = pq(r.content)
         eq_(doc('#editor-motd .errorlist').text(), 'This field is required.')
+
+
+class TestStatusFile(ReviewBase):
+
+    def setUp(self):
+        super(TestStatusFile, self).setUp()
+        self.file = self.addon.current_version.files.all()[0]
+
+    def test_status(self):
+        self.addon.update(status=amo.STATUS_UNREVIEWED)
+        res = self.client.get(self.url)
+        node = pq(res.content)('ul.files li:first-child')
+        assert 'Pending Preliminary Review' in node.text()
+
+    def test_status_full(self):
+        for status in [amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED]:
+            self.addon.update(status=status)
+            res = self.client.get(self.url)
+            node = pq(res.content)('ul.files li:first-child')
+            assert 'Pending Full Review' in node.text()
+
+    def test_other(self):
+        self.addon.update(status=amo.STATUS_BETA)
+        res = self.client.get(self.url)
+        node = pq(res.content)('ul.files li:first-child')
+        assert unicode(amo.STATUS_CHOICES[self.file.status]) in node.text()

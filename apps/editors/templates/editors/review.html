@@ -48,13 +48,13 @@
   {{ _('Files and Validation Results') }}
   <span>[<a href="{{ remora_url('pages/validation') }}">{{ _('help') }}</a>]</span>
 </h3>
-<ul>
+<ul class="files">
 {% for file in version.files.all() %}
 <li>
   <a href="{{ remora_url('/downloads/file/%d/%s' %( file.id, file.filename)) }}">
     <strong>{{ file.filename }}</strong></a>
   <br>
-  {{ status_types[file.status] }}
+  {{ file_review_status(addon, file) }}
   &middot;
   <a href="{{ url('devhub.file_validation', addon.slug, file.id) }}">{{ _('Validation Results') }}</a>
   &middot;

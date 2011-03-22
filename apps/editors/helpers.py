@@ -20,6 +20,15 @@ from editors.sql_table import SQLTable
 
 
 @register.function
+def file_review_status(addon, file):
+    if addon.status in [amo.STATUS_UNREVIEWED]:
+        return _('Pending Preliminary Review')
+    elif addon.status in [amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED]:
+        return _('Pending Full Review')
+    return amo.STATUS_CHOICES[file.status]
+
+
+@register.function
 @jinja2.contextfunction
 def editor_page_title(context, title=None, addon=None):
     """Wrapper for editor page titles.  Eerily similar to dev_page_title."""
