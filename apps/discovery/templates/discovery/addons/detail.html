@@ -38,16 +38,18 @@
         <li class="nav-prev"><a href="#" class="prev">{{ _('Previous') }}</a></li>
         <li class="nav-next"><a href="#" class="next">{{ _('Next') }}</a></li>
       </ul>
-      <ul class="slider">
-        {% for preview in addon.all_previews %}
-          <li class="panel">
-            <a class="screenshot thumbnail" rel="jquery-lightbox"
-               href="{{ preview.image_url }}" title="{{ preview.caption }}">
-              <img src="{{ preview.thumbnail_url }}">
-            </a>
-          </li>
-        {% endfor %}
-      </ul>
+      <div class="gallery-thumbs">
+        <ul class="slider">
+          {% for preview in addon.all_previews %}
+            <li class="panel">
+              <a class="screenshot thumbnail"
+                 href="{{ preview.image_url }}" title="{{ preview.caption }}">
+                <img src="{{ preview.thumbnail_url|replace('machine.local', 'addons.allizom.org') }}">
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
     </div>
   {% endif %}
 {% endif %}

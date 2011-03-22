@@ -219,10 +219,17 @@ function setPanelWidth(section) {
     // is liquid, so we'll set the width in px on pageload and on resize).
     var panelWidth = $("#main").width();
     if (section == "both" || section == "detail") {
-        $("#images").css("width", panelWidth);
-        // We show three images at a time, so the width of each is 1/3 minus a
-        // right margin of 10px.
-        $("#images .panel").css("width", panelWidth / 3 - 10);
+        var galleryWidth = $("#images .gallery-thumbs").width(),
+            panelWidth = 0.3 * galleryWidth,
+            panelRight = 0.05 * galleryWidth;
+        $("#images .panel").css({"margin-right": panelRight, "width": panelWidth});
+        $("#images .panel:nth-child(3n)").each(function (i) {
+            if (i > 0) {
+                $(this).css("margin-left", -2);
+            }
+            $(this).css("margin-right", panelRight + i + 2);
+        });
+        $("#images .panel:last-child").css("margin-right", 0);
     }
     if (section == "both" || section == "pane") {
         $("#main-feature, #main-feature .panel").css("width", panelWidth);
@@ -250,7 +257,8 @@ function initDetail() {
     $("#images").fadeIn("slow").addClass("js").jCarouselLite({
         btnNext: "#images .nav-next a",
         btnPrev: "#images .nav-prev a",
-        circular: false
+        circular: false,
+        scroll: 3
     });
     $(".addon-info").addClass("js");
 
