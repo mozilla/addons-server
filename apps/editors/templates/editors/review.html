@@ -35,8 +35,10 @@
 <ul>
   {% for compat in addon.compatible_apps.values() %}
   <li>
-    <div class="app-icon ed-sprite-{{ amo.APPS_ALL[compat.application_id].short }}"
-      title="{{ amo.APPS_ALL[compat.application_id].pretty}}"></div>
+    {% if compat.application_id in amo.APPS_ALL %}
+      <div class="app-icon ed-sprite-{{ amo.APPS_ALL[compat.application_id].short }}"
+        title="{{ amo.APPS_ALL[compat.application_id].pretty}}"></div>
+    {% endif %}
     {{ compat }}
   </li>
   {% endfor %}
