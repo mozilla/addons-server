@@ -184,6 +184,7 @@ header:after,
 /* @group Recommendations */
 #main #recs {
     display: none;
+    margin-bottom: 0;
     min-height: 200px;
     padding: 0;
     position: relative;
