@@ -31,6 +31,17 @@
   {{ version.releasenotes|nl2br }}
 {% endif %}
 
+<h3 id="compatibility">{{ _('Compatibility') }}</h3>
+<ul>
+  {% for compat in addon.compatible_apps.values() %}
+  <li>
+    <div class="app-icon ed-sprite-{{ amo.APPS_ALL[compat.application_id].short }}"
+      title="{{ amo.APPS_ALL[compat.application_id].pretty}}"></div>
+    {{ compat }}
+  </li>
+  {% endfor %}
+</ul>
+
 <h3 id="validation">
   {{ _('Files and Validation Results') }}
   <span>[<a href="{{ remora_url('pages/validation') }}">{{ _('help') }}</a>]</span>
@@ -181,13 +192,6 @@
   <ul>
     {% for category in addon.categories.all() %}
     <li>{{ category.name }}</a></li>
-    {% endfor %}
-  </ul>
-
-  <strong>{{ _('Apps') }}</strong>
-  <ul>
-    {% for compat in addon.compatible_apps.values() %}
-    <li> {{ compat }} </li>
     {% endfor %}
   </ul>
 
