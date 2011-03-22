@@ -16,16 +16,15 @@ $(document).ready(function() {
             return false;
         });
     }
-});
-
-if ($('body').attr('data-paypal-url')) {
-    if ($('#paypal-result').length) {
-        top_dgFlow = top.dgFlow || (top.opener && top.opener.top.dgFlow);
-        if (top_dgFlow !== null) {
-            top_dgFlow.closeFlow();
-            if (top !== null) {
-                top.close();
+    if ($('body').attr('data-paypal-url')) {
+        if ($('#paypal-result').length) {
+            top_dgFlow = top.dgFlow || (top.opener && top.opener.top.dgFlow);
+            if (top_dgFlow !== null) {
+                top_dgFlow.closeFlow();
+                if (top !== null) {
+                    top.close();
+                }
             }
         }
     }
-}
+});

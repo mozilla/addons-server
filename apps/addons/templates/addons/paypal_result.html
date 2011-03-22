@@ -23,5 +23,5 @@
 {% else %}
     <h4>{{ _('Payment completed') }}</h4>
 {% endif %}
-<p><a id="paypal-result" href="{{ url('addons.detail', addon.slug) }}">{{ _('Return to the addon.') }}</a></p>
+<p><a id="paypal-result" target="_top" href="{{ url('addons.detail', addon.slug) }}">{{ _('Return to the addon.') }}</a></p>
 {% endblock %}
