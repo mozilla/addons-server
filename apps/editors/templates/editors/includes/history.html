@@ -1,5 +1,12 @@
 <tr>
-    <td>{{ record.arguments.1.version }} </td>
+    <td>
+      {% if record.arguments.1 %}
+        {{ record.arguments.1.version }}
+      {% else %}
+        {{ _('Deleted version') }}
+      {% endif %}
+    </td>
+
     <td>{{ record.created|datetime }}</td>
     <td>{{ record.user.name }}</td>
     <td>{{ record }}</td>
