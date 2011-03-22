@@ -62,7 +62,7 @@ $(function() {
 
         /* Canned Response stuff */
         $('.review-actions-canned select').change(function() {
-            $('#id_comments').val($(this).val());
+            insertAtCursor($('#id_comments'), $(this).val());
         });
 
         var review_checked = $('#review-actions [name=action]:checked');
@@ -72,6 +72,29 @@ $(function() {
 
     }
 });
+
+function insertAtCursor(textarea, text) {
+    var area = $(textarea)[0],
+        scrollPos = area.scrollTop;
+    // IE
+    if (document.selection) {
+        area.focus();
+        var rng = document.selection.createRange();
+        rng.text = text + rng.text;
+    // FF/Safari/Chrome
+    } else if (area.selectionStart || area.selectionStart == '0') {
+        area.focus();
+        var startPos = area.selectionStart;
+        area.value = area.value.substring(0, startPos) + text + area.value.substring(startPos, area.value.length);
+        area.setSelectionRange(startPos + text.length, startPos + text.length);
+        // everything else - append text to end
+    } else {
+        area.value += text;
+    }
+    // restore scrollbar location
+    area.scrollTop = scrollPos;
+}
+
 
 function initDailyMessage(doc) {
     var $motd = $('.daily-message', doc);
