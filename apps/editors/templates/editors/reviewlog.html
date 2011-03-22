@@ -24,34 +24,27 @@
           <tr>
             <th>{{ _('Date', 'editorcp_reviewlog_column_date') }}</th>
             <th>{{ _('Event') }}</th>
-            <th>{{ _('Details') }}</th>
             <th>{{ _('Editor') }}</th>
-            <th>{{ _('Action', 'editorcp_reviewlog_column_action') }}</th>
             <td></td>
           </tr>
         </thead>
         <tbody>
           {% for item in pager.object_list %}
             <tr>
-              <td>{{ item.created|babel_datetime }}</td>
+              <td>{{ item.created|datetime('%Y-%m-%d') }}</td>
               <td>
-                {{ item }}
-              </td>
-              <td>
+                {{ item.arguments.0|link }}
                 {% if item.arguments|count >= 2 %}
-                <a href="{{ url('editors.review', item.arguments[1].id) }}">
-                  {{ _('Details') }}
-                </a>
+                  {{ item.arguments[1] }}
+
+                  <a href="{{ url('editors.review', item.arguments[1].id) }}">
+                    {{ ACTION_DICT.get(item.action) }}
+                  </a>
+                {% else %}
+                  {{ ACTION_DICT.get(item.action) }}
                 {% endif %}
               </td>
               <td>{{ item.user.display_name }}</td>
-              <td>
-                {% if item.details['reviewtype'] == 'nominated' %}
-                  {{ NOM_DICT.get(item.action) }}
-                {% elif item.details['reviewtype'] == 'pending' %}
-                  {{ PEN_DICT[item.action] }}
-                {% endif %}
-              </td>
               <td>
                 <a class="comments show" href="#">{{ _('Show Comments') }}</a>
                 <a class="comments hide" href="#">{{ _('Hide Comments') }}</a>

@@ -168,7 +168,7 @@ class APPROVE_VERSION(_LOG):
 class PRELIMINARY_VERSION(_LOG):
     id = 42
     action_class = None
-    format = _(u'{addon} ({version}) given preliminary review.')
+    format = _(u'{addon} {version} given preliminary review.')
     keep = True
     review_queue = True
 
@@ -177,7 +177,7 @@ class REJECT_VERSION(_LOG):
     # takes add-on, version, reviewtype
     id = 43
     action_class = 'reject'
-    format = _(u'{addon} ({version}) rejected.')
+    format = _(u'{addon} {version} rejected.')
     keep = True
     review_queue = True
 
@@ -186,7 +186,7 @@ class RETAIN_VERSION(_LOG):
     # takes add-on, version, reviewtype
     id = 22
     action_class = None
-    format = _(u'{addon} ({version}) retained.')
+    format = _(u'{addon} {version} retained.')
     keep = True
     review_queue = True
 
@@ -195,7 +195,7 @@ class ESCALATE_VERSION(_LOG):
     # takes add-on, version, reviewtype
     id = 23
     action_class = None
-    format = _(u'Review escalated for {addon} ({version}).')
+    format = _(u'{addon} {version} escalated.')
     keep = True
     review_queue = True
 
@@ -204,7 +204,7 @@ class REQUEST_VERSION(_LOG):
     # takes add-on, version, reviewtype
     id = 24
     action_class = None
-    format = _(u'More information regarding {addon} {version} was requested.')
+    format = _(u'{addon} {version} review requested.')
     keep = True
     review_queue = True
 

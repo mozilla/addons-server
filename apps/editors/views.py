@@ -286,19 +286,12 @@ def reviewlog(request):
             approvals = approvals.filter(created__lt=data['end'])
 
     pager = amo.utils.paginate(request, approvals, 50)
-    nd = {
-            amo.LOG.APPROVE_VERSION.id: _('Nomination Approved/Public'),
-            amo.LOG.PRELIMINARY_VERSION.id: _('Nomination Denied/Preliminary'),
-            amo.LOG.REJECT_VERSION.id: _('Nomination Denied/Incomplete'),
-            amo.LOG.ESCALATE_VERSION.id: _('Admin Review',
+    ad = {
+            amo.LOG.APPROVE_VERSION.id: _('was approved'),
+            amo.LOG.PRELIMINARY_VERSION.id: _('given preliminary review'),
+            amo.LOG.REJECT_VERSION.id: _('rejected'),
+            amo.LOG.ESCALATE_VERSION.id: _('escalated',
                     'editors_review_history_nominated_adminreview'),
          }
-    pd = {
-            amo.LOG.APPROVE_VERSION.id: _('Approved/Public'),
-            amo.LOG.PRELIMINARY_VERSION.id: _('Approved/Preliminary'),
-            amo.LOG.REJECT_VERSION.id: _('Preliminary Denied/Incomplete'),
-            amo.LOG.ESCALATE_VERSION.id: _('Admin Review',
-                    'editors_review_history_nominated_adminreview'),
-         }
-    data = context(form=form, pager=pager, NOM_DICT=nd, PEN_DICT=pd)
+    data = context(form=form, pager=pager, ACTION_DICT=ad)
     return jingo.render(request, 'editors/reviewlog.html', data)

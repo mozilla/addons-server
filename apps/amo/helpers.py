@@ -32,6 +32,11 @@ register.function(utils.randslice)
 
 
 @register.filter
+def link(item):
+    html = """<a href="%s">%s</a>""" % (item.get_url_path(), item.name)
+    return jinja2.Markup(html)
+
+@register.filter
 def xssafe(value):
     """
     Like |safe but for strings with interpolation.
