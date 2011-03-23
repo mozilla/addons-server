@@ -819,11 +819,11 @@ table caption {
     padding-left: 20px;
 }
 #version-history .oldversion ul.legal li.license {
-    background: url(../../img/amo2009/icons/script_code_red.png) left no-repeat;
+    background: url(../../img/icons/script_code_red.png) left no-repeat;
 }
 #version-history .oldversion ul.legal li.source,
 .version a.source-code {
-    background: url(../../img/amo2009/icons/page_code.png) left no-repeat;
+    background: url(../../img/icons/page_code.png) left no-repeat;
 }
 
 /* addons "source license" page */
@@ -1496,7 +1496,7 @@ html[xmlns] .clearfix {
 /** tag styles **/
 .addon-tags .tag .tagitem {
     padding-left: 20px;
-    background-image: url(../../img/amo2009/icons/icons.png);
+    background-image: url(../../img/icons/icons.png);
     background-repeat: no-repeat;
     background-position: 0px -1400px;
 }
@@ -1511,7 +1511,7 @@ html[xmlns] .clearfix {
 .collection-add > span,
 #addons-edit p strong {
 	padding-left: 22px;
-	background-image: url(../../img/amo2009/icons/icons.png);
+	background-image: url(../../img/icons/icons.png);
 	background-repeat: no-repeat;
 	background-position: 0px -300px;
 }
@@ -1524,7 +1524,7 @@ html[xmlns] .clearfix {
 
 .addon-otheraddons li .addonitem {
 	padding-left: 20px;
-	background-image: url(../../img/amo2009/icons/icons.png);
+	background-image: url(../../img/icons/icons.png);
 	background-repeat: no-repeat;
 	background-position: 0px -200px;
 }
@@ -1565,13 +1565,13 @@ html[xmlns] .clearfix {
     -moz-border-radius: 3px;
     border-radius: 3px;
     font-weight: bold;
-    background-image: url(../../img/amo2009/icons/arrows.gif);
+    background-image: url(../../img/icons/arrows.gif);
     background-repeat: no-repeat;
     background-position:4px -152px;
 }
 .secondary ul.refinements li a.tagitem {
     padding: 0.21em 2em;
-    background-image: url(../../img/amo2009/icons/icons.png);
+    background-image: url(../../img/icons/icons.png);
     background-repeat: no-repeat;
     background-position: 3px -596px;
 }
@@ -1811,7 +1811,7 @@ html[xmlns] .clearfix {
     color: #00b960;
     padding-left: 1.2em; /* Space for the image. */
     margin-right: 0.2em; /* Space between number and bar. */
-    background-image: url('../../img/amo2009/icons/thumbs.png');
+    background-image: url('../../img/icons/thumbs.png');
     background-position: left 33.2%;
 }
 
@@ -1823,7 +1823,7 @@ html[xmlns] .clearfix {
 
 .barometer .upvotes.voted,
 .barometer .upvotes:hover {
-    background-image: url('../../img/amo2009/icons/thumbs.png');
+    background-image: url('../../img/icons/thumbs.png');
     background-position: left 0;
 }
 
@@ -1836,7 +1836,7 @@ html[xmlns] .clearfix {
     color: #d93a40;
     padding-right: 1.2em; /* Space for the image. */
     margin-left: 0.2em; /* Space between number and bar. */
-    background-image: url('../../img/amo2009/icons/thumbs.png');
+    background-image: url('../../img/icons/thumbs.png');
     background-position: right 100%;
 }
 
@@ -1848,7 +1848,7 @@ html[xmlns] .clearfix {
 
 .barometer .downvotes.voted,
 .barometer .downvotes:hover {
-    background-image: url('../../img/amo2009/icons/thumbs.png');
+    background-image: url('../../img/icons/thumbs.png');
     background-position: right 67%;
 }
 
@@ -2001,7 +2001,7 @@ html[xmlns] .clearfix {
     text-indent: -999em;
     width: 9px;
     height: 9px;
-    background: url('../../img/amo2009/personas/slideshow-nav.png') 0 0 no-repeat;
+    background: url('../../img/personas/slideshow-nav.png') 0 0 no-repeat;
     margin: 0 3px;
     display: block;
     float: left;
@@ -2012,7 +2012,7 @@ html[xmlns] .clearfix {
 }
 
 .personas-feature .slideshow-nav li a.active {
-    background: url('../../img/amo2009/personas/slideshow-nav.png') -16px 0 no-repeat;
+    background: url('../../img/personas/slideshow-nav.png') -16px 0 no-repeat;
 }
 
 .personas-feature .slides {

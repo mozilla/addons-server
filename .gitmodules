@@ -1,6 +1,3 @@
-[submodule "media/img/amo2009"]
-	path = media/img/amo2009
-	url = git://github.com/jbalogh/amo2009-img.git
 [submodule "lib/product_details/json"]
 	path = lib/product_details/json
 	url = git://github.com/jbalogh/mozilla-product-details.git

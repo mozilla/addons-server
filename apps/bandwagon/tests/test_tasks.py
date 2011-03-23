@@ -11,7 +11,7 @@ from bandwagon.tasks import resize_icon
 
 
 def test_resize_icon():
-    somepic = "%s/img/amo2009/tab-mozilla.png" % settings.MEDIA_ROOT
+    somepic = "%s/img/tab-mozilla.png" % settings.MEDIA_ROOT
 
     src = tempfile.NamedTemporaryFile(mode='r+w+b', suffix=".png",
                                       delete=False)
@@ -33,7 +33,7 @@ def test_resize_icon():
 
 def test_resize_icon_poorly():
     """If we attempt to set the src/dst, we do nothing."""
-    somepic = "%s/img/amo2009/tab-mozilla.png" % settings.MEDIA_ROOT
+    somepic = "%s/img/tab-mozilla.png" % settings.MEDIA_ROOT
     src = tempfile.NamedTemporaryFile(mode='r+w+b', suffix=".png",
                                       delete=False)
     shutil.copyfile(somepic, src.name)

@@ -22,7 +22,7 @@ def test_delete_photo():
 
 
 def test_resize_photo():
-    somepic = "%s/img/amo2009/tab-mozilla.png" % settings.MEDIA_ROOT
+    somepic = "%s/img/tab-mozilla.png" % settings.MEDIA_ROOT
 
     src = tempfile.NamedTemporaryFile(mode='r+w+b', suffix=".png",
                                       delete=False)
@@ -45,7 +45,7 @@ def test_resize_photo():
 
 def test_resize_photo_poorly():
     """If we attempt to set the src/dst, we do nothing."""
-    somepic = "%s/img/amo2009/tab-mozilla.png" % settings.MEDIA_ROOT
+    somepic = "%s/img/tab-mozilla.png" % settings.MEDIA_ROOT
     src = tempfile.NamedTemporaryFile(mode='r+w+b', suffix=".png",
                                       delete=False)
     shutil.copyfile(somepic, src.name)

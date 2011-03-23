@@ -1336,7 +1336,7 @@ a.extra {
 }
 #navbar li.top:hover,
 #navbar li.top.selected {
-    background-image: url(../../img/amo2009/bg/heading-dark-blue-highlighted.png);
+    background-image: url(../../img/bg/heading-dark-blue-highlighted.png);
 }
 #navbar li.top ul {
     display: none;
@@ -1358,7 +1358,7 @@ a.extra {
     display: block;
 }
 #navbar li ul li {
-    background-image: url(../../img/amo2009/bg/heading-dark-blue-highlighted.png);
+    background-image: url(../../img/bg/heading-dark-blue-highlighted.png);
     background-repeat: repeat-x;
     background-position: bottom left;
     background-color: #305083;

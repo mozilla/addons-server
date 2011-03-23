@@ -1311,7 +1311,7 @@ p.users {
 /* @Star ratings *********/
 .stars {
     text-indent: -999em;
-    background: url(../../img/amo2009/icons/stars.png) 0 50% no-repeat;
+    background: url(../../img/icons/stars.png) 0 50% no-repeat;
     margin-right: .5em;
     width: 65px;
     float: left;

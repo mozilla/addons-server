@@ -51,7 +51,7 @@ def test_resize_icon_list():
 
 
 def _uploader(resize_size, final_size):
-    img = "%s/img/amo2009/tab-mozilla.png" % settings.MEDIA_ROOT
+    img = "%s/img/tab-mozilla.png" % settings.MEDIA_ROOT
     original_size = (82, 31)
 
     src = tempfile.NamedTemporaryFile(mode='r+w+b', suffix=".png",

@@ -349,16 +349,16 @@ $(document).ready(function() {
 $(document).ready(function(){
     var c = collections;
 
-    c.adding_img = '/img/amo2009/icons/white-loading-16x16.gif';
+    c.adding_img = '/img/icons/white-loading-16x16.gif';
     c.adding_text = gettext('Adding to Favorites&hellip;');
 
-    c.removing_img = '/img/amo2009/icons/white-loading-16x16.gif';
+    c.removing_img = '/img/icons/white-loading-16x16.gif';
     c.removing_text = gettext('Removing Favorite&hellip;');
 
-    c.add_img = '/img/amo2009/icons/buttons/plus-orange-16x16.gif';
+    c.add_img = '/img/icons/buttons/plus-orange-16x16.gif';
     c.add_text = gettext('Add to Favorites');
 
-    c.remove_img = '/img/amo2009/icons/buttons/minus-orange-16x16.gif';
+    c.remove_img = '/img/icons/buttons/minus-orange-16x16.gif';
     c.remove_text = gettext('Remove from Favorites');
 
     c.cookie_path = '/';

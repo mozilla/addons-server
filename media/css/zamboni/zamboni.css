@@ -91,7 +91,7 @@ ul.errorlist {
 
 .other-author-addons li .addonitem {
     padding-left: 20px;
-    background-image: url(../../img/amo2009/icons/icons.png);
+    background-image: url(../../img/icons/icons.png);
     background-repeat: no-repeat;
     background-position: 0px -200px;
 }
@@ -752,11 +752,11 @@ div.popup-shim {
 }
 
 .mobile .install-note .msg, .mobile.app,
-.firefox .install-note .msg, .firefox.app { background-image: url(../../img/amo2009/app-icons/small/firefox.png); }
-.thunderbird .install-note .msg, .thunderbird.app { background-image: url(../../img/amo2009/app-icons/small/thunderbird.png); }
-.sunbird .install-note .msg, .sunbird.app { background-image: url(../../img/amo2009/app-icons/small/sunbird.png); }
-.seamonkey .install-note .msg, .seamonkey.app { background-image: url(../../img/amo2009/app-icons/small/seamonkey.png); }
-.mz.app { background-image: url(../../img/amo2009/app-icons/small/mozilla.png); }
+.firefox .install-note .msg, .firefox.app { background-image: url(../../img/app-icons/small/firefox.png); }
+.thunderbird .install-note .msg, .thunderbird.app { background-image: url(../../img/app-icons/small/thunderbird.png); }
+.sunbird .install-note .msg, .sunbird.app { background-image: url(../../img/app-icons/small/sunbird.png); }
+.seamonkey .install-note .msg, .seamonkey.app { background-image: url(../../img/app-icons/small/seamonkey.png); }
+.mz.app { background-image: url(../../img/app-icons/small/mozilla.png); }
 
 .install-note .msg.m-unreviewed,
 .install-note .msg.m-selfhosted,
@@ -1437,7 +1437,7 @@ form .error .note.error {
 }
 
 .object-content .editprofile a {
-    background: transparent url("../../img/amo2009/icons/news-feed-sprite.png") 0 -538px no-repeat;
+    background: transparent url("../../img/icons/news-feed-sprite.png") 0 -538px no-repeat;
     font-weight: bold;
     font-size: .923em;
     margin-right: 1em;
@@ -2290,7 +2290,7 @@ form .error .note.error {
 }
 
 #perf-results p#perf-more a {
-    background: url(../../img/amo2009/icons/arrows.gif) 100% -73px no-repeat;
+    background: url(../../img/icons/arrows.gif) 100% -73px no-repeat;
     padding-right: 15px;
 }
 
@@ -3413,7 +3413,7 @@ td.input {
 .collections-landing {
     padding: 1em;
     min-height: 190px;
-    background-image: url(../../img/amo2009/illustrations/logo-collections-220x270.png),
+    background-image: url(../../img/illustrations/logo-collections-220x270.png),
                       -moz-linear-gradient(#e4f5fb, #ffffff);
     background-repeat: no-repeat;
     background-position: 95% 30px, left top;

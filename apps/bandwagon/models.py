@@ -249,9 +249,9 @@ class Collection(CollectionBase, amo.models.ModelBase):
         if self.icontype:
             return settings.COLLECTION_ICON_URL % (self.id, modified)
         elif self.type == amo.COLLECTION_FAVORITES:
-            return settings.MEDIA_URL + 'img/amo2009/icons/heart.png'
+            return settings.MEDIA_URL + 'img/icons/heart.png'
         else:
-            return settings.MEDIA_URL + 'img/amo2009/icons/collection.png'
+            return settings.MEDIA_URL + 'img/icons/collection.png'
 
     def get_recommendations(self):
         """Get a collection of recommended add-ons for this collection."""

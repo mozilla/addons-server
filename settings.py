@@ -538,7 +538,7 @@ PREVIEW_FULL_PATH = (PREVIEWS_PATH + '/full/%s/%d.png')
 # paths for images, e.g. mozcdn.com/amo or '/static'
 STATIC_URL = SITE_URL
 ADDON_ICONS_DEFAULT_URL = MEDIA_URL + '/img/addon-icons'
-ADDON_ICON_BASE_URL = MEDIA_URL + 'img/amo2009/icons/'
+ADDON_ICON_BASE_URL = MEDIA_URL + 'img/icons/'
 ADDON_ICON_URL = "%s/%s/%s/images/addon_icon/%%d-%%d.png?modified=%%s" % (
         STATIC_URL, LANGUAGE_CODE, DEFAULT_APP)
 PREVIEW_THUMBNAIL_URL = (STATIC_URL +

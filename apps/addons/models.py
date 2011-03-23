@@ -612,7 +612,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             preview = self.all_previews[0]
             return preview.thumbnail_url
         except IndexError:
-            return settings.MEDIA_URL + '/img/amo2009/icons/no-preview.png'
+            return settings.MEDIA_URL + '/img/icons/no-preview.png'
 
     def can_request_review(self):
         """Return the statuses an add-on can request."""
