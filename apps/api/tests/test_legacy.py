@@ -493,7 +493,8 @@ class SearchTest(SphinxTestCase):
     def test_guid_query(self):
         r = make_call('search/guid:{22870005-adef-4c9d-ae36-d0e1f2f27e5a},'
                       '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}')
-        eq_(['3615', '6113'], [a.attrib['id'] for a in pq(r.content)('addon')])
+        eq_(set(['3615', '6113']),
+            set([a.attrib['id'] for a in pq(r.content)('addon')]))
 
     def test_guid_empty(self):
         """

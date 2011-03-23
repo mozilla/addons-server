@@ -21,7 +21,7 @@ from api.utils import addon_to_dict
 from amo.urlresolvers import get_url_prefix
 from amo.utils import JSONEncoder
 from addons.models import Addon
-from search.client import Client as SearchClient, SearchError
+from search.client import Client as SearchClient, SearchError, extract_from_query
 from search import utils as search_utils
 
 ERROR = 'error'
@@ -200,11 +200,22 @@ class AddonDetailView(APIView):
 
 class SearchView(APIView):
 
+    def guid_search(self, query, limit):
+        _, guids = extract_from_query(query, 'guid', '[\s{}@_\.,\-0-9a-zA-Z]+',
+                                      end_of_word_boundary=False)
+        guids = [g.strip() for g in guids.split(',')]
+        results = Addon.objects.filter(guid__in=guids)
+        return self.render('api/search.xml',
+                           {'results': results, 'total': len(results)})
+
     def process_request(self, query, addon_type='ALL', limit=10,
                         platform='ALL', version=None):
         """
         This queries sphinx with `query` and serves the results in xml.
         """
+        if query.startswith('guid:'):
+            return self.guid_search(query, limit)
+
         sc = SearchClient()
         limit = min(MAX_LIMIT, int(limit))
 
