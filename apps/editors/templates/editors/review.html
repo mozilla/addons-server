@@ -31,6 +31,13 @@
   {{ version.releasenotes|nl2br }}
 {% endif %}
 
+{% if version.approvalnotes %}
+  <h3 id="approval-notes">
+    {{ _('Notes to reviewer') }}
+  </h3>
+  <p>{{ version.approvalnotes|nl2br }}</p>
+{% endif %}
+
 <h3 id="compatibility">{{ _('Compatibility') }}</h3>
 <ul>
   {% for compat in addon.compatible_apps.values() %}

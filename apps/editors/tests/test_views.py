@@ -827,6 +827,14 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         eq_(response.context['paging'], {})
 
+    def test_approvalnotes(self):
+        self.version.update(approvalnotes='Testing 123')
+        response = self.client.get(self.url)
+        eq_(response.status_code, 200)
+        doc = pq(response.content)
+        eq_(len(doc('#approval-notes')), 1)
+        eq_(doc('#approval-notes').next().text(), 'Testing 123')
+
     def test_page_title(self):
         response = self.client.get(self.url)
         eq_(response.status_code, 200)
