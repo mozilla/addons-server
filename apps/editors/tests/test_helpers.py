@@ -246,6 +246,36 @@ class TestReviewHelper(test_utils.TestCase):
         self.helper.process()
         eq_(len(mail.outbox), 1)
 
+    def test_action_details(self):
+        for status in amo.STATUS_CHOICES:
+            self.addon.update(status=status)
+            helper = self.get_helper()
+            actions = helper.actions
+            for k, v in actions.items():
+                assert unicode(v['details']), "Missing details for: %s" % k
+
+    def get_action(self, status, action):
+        self.addon.update(status=status)
+        return unicode(self.get_helper().actions[action]['details'])
+
+    def test_action_changes(self):
+        eq_(self.get_action(amo.STATUS_LITE, 'reject')[:26],
+            'This will reject the files')
+        eq_(self.get_action(amo.STATUS_UNREVIEWED, 'reject')[:27],
+            'This will reject the add-on')
+        eq_(self.get_action(amo.STATUS_UNREVIEWED, 'prelim')[:25],
+            'This will mark the add-on')
+        eq_(self.get_action(amo.STATUS_NOMINATED, 'prelim')[:25],
+            'This will mark the add-on')
+        eq_(self.get_action(amo.STATUS_LITE, 'prelim')[:24],
+            'This will mark the files')
+        eq_(self.get_action(amo.STATUS_LITE_AND_NOMINATED, 'prelim')[:27],
+            'This will retain the add-on')
+        eq_(self.get_action(amo.STATUS_NULL, 'reject')[:26],
+            'This will reject a version')
+        eq_(self.get_action(amo.STATUS_NOMINATED, 'public')[-31:],
+            'they are reviewed by an editor.')
+
     def test_set_files(self):
         self.file.update(datestatuschanged=yesterday)
         self.helper.set_data({'addon_files': self.version.files.all()})
@@ -319,7 +349,7 @@ class TestReviewHelper(test_utils.TestCase):
 
     def test_nomination_to_public_new_addon(self):
         """ Make sure new add-ons can be made public (bug 637959) """
-        status = amo.STATUS_NOMINATED;
+        status = amo.STATUS_NOMINATED
         self.setup_data(status)
 
         # Make sure we have no public files

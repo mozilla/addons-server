@@ -195,34 +195,40 @@ class ReviewHelper:
 
         actions['prelim'] = {'method': self.handler.process_preliminary,
                              'label': labels['prelim'],
-                             'details': details.get('prelim', ''),
                              'tested_on': True}
         actions['reject'] = {'method': self.handler.process_sandbox,
                              'label': _('Reject'),
-                             'details': details.get('reject', ''),
                              'tested_on': True}
         actions['info'] = {'method': self.handler.request_information,
                            'label': _('Request more information'),
-                           'details': '',
                            'tested_on': False}
         actions['super'] = {'method': self.handler.process_super_review,
                             'label': _('Request super-review'),
-                            'details': '',
                             'tested_on': False}
+        for k, v in actions.items():
+            v['details'] = details.get(k)
+
         return actions
 
     def _review_actions(self):
         labels = {'prelim': _('Grant preliminary review')}
         details = {'prelim': _('This will mark the files as '
                                'premliminary reviewed.'),
-                   'reject': ''}
+                   'info': _('Use this form to request more information from '
+                             'the author. They will receive an email and be '
+                             'able to answer here. You will be notified by '
+                             'email when they reply.'),
+                   'super': _('If you have concerns about this add-on\'s '
+                              'security, copyright issues, or other concerns '
+                              'that an administrator should look into, enter '
+                              'your comments in the area below. They will be '
+                              'sent to administrators, not the author.'),
+                   'reject': _('This will reject the add-on and remove '
+                               'it from the review queue.')}
 
-        if self.addon.status in (amo.STATUS_UNREVIEWED, amo.STATUS_LITE):
-            details['reject'] = _('This will reject the add-on and remove it '
-                                  'from the review queue.')
-            if self.addon.status == amo.STATUS_LITE:
-                details['reject'] = _('This will reject the files and remove '
-                                      'them from the review queue.')
+        if self.addon.status == amo.STATUS_LITE:
+            details['reject'] = _('This will reject the files and remove '
+                                  'them from the review queue.')
 
         if self.addon.status in (amo.STATUS_UNREVIEWED, amo.STATUS_NOMINATED):
             details['prelim'] = _('This will mark the add-on as preliminarily '
@@ -237,6 +243,15 @@ class ReviewHelper:
             details['prelim'] = _('This will retain the add-on as '
                                   'preliminarily reviewed. Future versions '
                                   'will undergo preliminary review.')
+        if self.review_type == 'pending':
+            details['reject'] = _('This will reject a version of a public '
+                                  'add-on and remove it from the queue.')
+        else:
+            details['public'] = _('This will mark the add-on and its most '
+                                  'recent version and files as public. Future '
+                                  'versions will go into the sandbox until '
+                                  'they are reviewed by an editor.')
+
         return labels, details
 
     def process(self):
