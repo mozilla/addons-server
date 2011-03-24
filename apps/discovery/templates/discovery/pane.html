@@ -36,9 +36,7 @@ data-account-url="{{ services_url('discovery.pane_account') }}"
         <li class="nav-next"><a href="#" class="next">{{ _('Next') }}</a></li>
       </ul>
       <ul class="slider">
-      {% for module in modules %}
-        {{ module.render() }}
-      {% endfor %}
+      {% for module in modules %}{{ module.render() }}{% endfor %}
       </ul>
     </section>
 

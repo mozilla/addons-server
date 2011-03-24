@@ -20,10 +20,10 @@ $(document).ready(function(){
         initRecs();
 
         // Set up the promo carousel.
-        $("#main-feature").fadeIn("slow").addClass("js").jCarouselLite({
+        $("#main-feature").fadeIn("slow").addClass("js").zCarousel({
             btnNext: "#main-feature .nav-next a",
             btnPrev: "#main-feature .nav-prev a",
-            visible: 1
+            circular: true
         });
 
         initTrunc();
@@ -122,14 +122,12 @@ function initRecs() {
                 }
                 $("#recs .slider").append(li);
             });
-            $("#recs .gallery").fadeIn("slow").addClass("js").jCarouselLite({
+            $("#recs .gallery").fadeIn("slow").addClass("js").zCarousel({
                 btnNext: "#recs .nav-next a",
                 btnPrev: "#recs .nav-prev a",
-                scroll: 3,
-                circular: false
+                itemsPerPage: 3
             });
             $("#recs #nav-recs").fadeIn("slow").addClass("js");
-            setPanelWidth("pane");
             initTrunc();
             $("#recs .persona-preview").previewPersona(true);
         } else {

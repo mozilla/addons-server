@@ -39,14 +39,14 @@
         <li class="nav-next"><a href="#" class="next">{{ _('Next') }}</a></li>
       </ul>
       <ul class="slider">
-        {% for preview in addon.all_previews %}
+        {%- for preview in addon.all_previews -%}
           <li class="panel">
             <a class="screenshot thumbnail" rel="jquery-lightbox"
                href="{{ preview.image_url }}" title="{{ preview.caption }}">
               <img src="{{ preview.thumbnail_url }}">
             </a>
           </li>
-        {% endfor %}
+        {%- endfor -%}
       </ul>
     </div>
   {% endif %}
