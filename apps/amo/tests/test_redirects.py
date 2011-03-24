@@ -83,56 +83,45 @@ class TestRedirects(test_utils.TestCase):
         for juicy details.
         """
 
-        # User wants de.  We send de
         response = self.client.get('/', follow=True, HTTP_ACCEPT_LANGUAGE='de')
         self.assertRedirects(response, '/de/firefox/', status_code=301)
 
-        # User wants en-US, de.  We send en-US
         response = self.client.get('/', follow=True,
                                    HTTP_ACCEPT_LANGUAGE='en-us, de')
         self.assertRedirects(response, '/en-US/firefox/', status_code=301)
 
-        # User wants fr, en.  We send fr
         response = self.client.get('/', follow=True,
                                    HTTP_ACCEPT_LANGUAGE='fr, en')
         self.assertRedirects(response, '/fr/firefox/', status_code=301)
 
-        # User wants pt-XX, xx, yy.  We send pt-BR
         response = self.client.get('/', follow=True,
                                    HTTP_ACCEPT_LANGUAGE='pt-XX, xx, yy')
-        self.assertRedirects(response, '/pt-BR/firefox/', status_code=301)
+        self.assertRedirects(response, '/pt-PT/firefox/', status_code=301)
 
-        # User wants pt.  We send pt-BR
         response = self.client.get('/', follow=True,
                                    HTTP_ACCEPT_LANGUAGE='pt')
-        self.assertRedirects(response, '/pt-BR/firefox/', status_code=301)
+        self.assertRedirects(response, '/pt-PT/firefox/', status_code=301)
 
-        # User wants pt, de.  We send de
         response = self.client.get('/', follow=True,
                                    HTTP_ACCEPT_LANGUAGE='pt, de')
-        self.assertRedirects(response, '/de/firefox/', status_code=301)
+        self.assertRedirects(response, '/pt-PT/firefox/', status_code=301)
 
-        # User wants pt-XX, xx, de.  We send de
         response = self.client.get('/', follow=True,
                                    HTTP_ACCEPT_LANGUAGE='pt-XX, xx, de')
-        self.assertRedirects(response, '/de/firefox/', status_code=301)
+        self.assertRedirects(response, '/pt-PT/firefox/', status_code=301)
 
-        # User wants de-XX, xx, en-XX.  We send de
         response = self.client.get('/', follow=True,
                                    HTTP_ACCEPT_LANGUAGE='pt-XX, xx, de')
-        self.assertRedirects(response, '/de/firefox/', status_code=301)
+        self.assertRedirects(response, '/pt-PT/firefox/', status_code=301)
 
-        # User wants xx, yy, zz.  We send en-US
         response = self.client.get('/', follow=True,
                                    HTTP_ACCEPT_LANGUAGE='xx, yy, zz')
         self.assertRedirects(response, '/en-US/firefox/', status_code=301)
 
-        # User wants some,thing-very;very,,,broken!\'jj.  We send en-US
         response = self.client.get('/', follow=True,
                    HTTP_ACCEPT_LANGUAGE='some,thing-very;very,,,broken!\'jj')
         self.assertRedirects(response, '/en-US/firefox/', status_code=301)
 
-        # User wants en-US;q=0.5, de.  We send de
         response = self.client.get('/', follow=True,
                                    HTTP_ACCEPT_LANGUAGE='en-us;q=0.5, de')
         self.assertRedirects(response, '/de/firefox/', status_code=301)
