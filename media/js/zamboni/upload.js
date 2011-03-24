@@ -227,7 +227,7 @@
                 ui_details.after(upload_box);
 
                 /* It's showtime! */
-                upload_title.text(format(gettext('Uploading {0}'), [escape_(file.name)]));
+                upload_title.html(format(gettext('Uploading {0}'), [escape_(file.name)]));
                 upload_box.show();
 
                 upload_box.addClass("ajax-loading");
@@ -246,7 +246,7 @@
                 var addonFinished = function() {
                     $upload_field.val("").attr('disabled', false);
 
-                    upload_title.text(format(gettext('Error with {0}'), [escape_(file.name)]));
+                    upload_title.html(format(gettext('Error with {0}'), [escape_(file.name)]));
 
                     upload_progress_outside.attr('class', 'bar-fail');
                     upload_progress_inside.fadeOut();
@@ -293,7 +293,7 @@
             });
 
             $upload_field.bind("upload_success", function(e, file, results) {
-                upload_title.text(format(gettext('Validating {0}'), [escape_(file.name)]));
+                upload_title.html(format(gettext('Validating {0}'), [escape_(file.name)]));
 
                 var animateArgs = {duration: 300, step:function(i){ updateStatus(i, file.size); }, complete: function() {
                     $upload_field.trigger("upload_success_results", [file, results]);
@@ -333,7 +333,7 @@
                     /* Allow submitting */
                     $('.addon-upload-dependant').attr('disabled', false);
 
-                    upload_title.text(format(gettext('Finished validating {0}'), [escape_(file.name)]));
+                    upload_title.html(format(gettext('Finished validating {0}'), [escape_(file.name)]));
 
                     var message = "";
 
