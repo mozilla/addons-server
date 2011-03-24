@@ -251,7 +251,7 @@ def review(request, version_id):
     actions = form.helper.actions.items()
 
     # The actions we should show a minimal form form.
-    actions_minimal = [k for (k, a) in actions if a.get('tested_on')]
+    actions_minimal = [k for (k, a) in actions if not a.get('minimal')]
 
     ctx = context(version=version, addon=addon,
                   flags=Review.objects.filter(addon=addon, flag=True),

@@ -862,7 +862,8 @@ class TestReview(ReviewBase):
 
         validation = pq(response.content).find('#validation').next()
         eq_(validation.children().length, 1)
-        eq_(validation.find('a strong').text(), 'Public.xpi')
+
+        eq_(validation.find('a').eq(0).text(), 'Public.xpi')
 
         eq_(validation.find('a').eq(1).text(), "Validation Results")
         eq_(validation.find('a').eq(2).text(), "View Contents")

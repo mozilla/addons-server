@@ -7,6 +7,7 @@ from django.utils.translation import get_language
 from django.core.validators import ValidationError
 
 import happyforms
+import jinja2
 from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
@@ -182,8 +183,16 @@ class QueueSearchForm(happyforms.Form):
         return qs
 
 
+class AddonFilesMultipleChoiceField(forms.ModelMultipleChoiceField):
+    def label_from_instance(self, addon_file):
+        # L10n: 0 = platform, 1 = filename, 2 = status message
+        return jinja2.Markup(_("<strong>%s</strong> &middot; %s &middot; %s") %
+                             (addon_file.platform, addon_file.filename,
+                              amo.STATUS_CHOICES[addon_file.status]))
+
+
 class ReviewAddonForm(happyforms.Form):
-    addon_files = forms.ModelMultipleChoiceField(required=False,
+    addon_files = AddonFilesMultipleChoiceField(required=False,
             queryset=File.objects.none(), label=_('Files:'),
             widget=forms.CheckboxSelectMultiple())
     comments = forms.CharField(required=True, widget=forms.Textarea(),

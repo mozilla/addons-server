@@ -191,20 +191,21 @@ class ReviewHelper:
         if (self.review_type != 'preliminary' and
             hasattr(self.handler, 'process_public')):
             actions['public'] = {'method': self.handler.process_public,
+                                 'minimal': False,
                                  'label': _('Push to public')}
 
         actions['prelim'] = {'method': self.handler.process_preliminary,
                              'label': labels['prelim'],
-                             'tested_on': True}
+                             'minimal': False}
         actions['reject'] = {'method': self.handler.process_sandbox,
                              'label': _('Reject'),
-                             'tested_on': True}
+                             'minimal': False}
         actions['info'] = {'method': self.handler.request_information,
                            'label': _('Request more information'),
-                           'tested_on': False}
+                           'minimal': True}
         actions['super'] = {'method': self.handler.process_super_review,
                             'label': _('Request super-review'),
-                            'tested_on': False}
+                            'minimal': True}
         for k, v in actions.items():
             v['details'] = details.get(k)
 

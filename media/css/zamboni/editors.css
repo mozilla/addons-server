@@ -526,6 +526,10 @@ tr.comments {
     border-bottom: 1px solid #A5BFCE;
 }
 
+#review-actions-files-warning {
+    color: red;
+}
+
 .review-actions-canned {
     text-align: right;
 }

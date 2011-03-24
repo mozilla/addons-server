@@ -29,49 +29,68 @@ $(function() {
     }
 
     if($('#review-actions').length > 0) {
-        var groups = $('#id_canned_response').find('optgroup');
-        function showForm(element, pageload) {
-            var $element = $(element),
-                value = $element.find('input').val(),
-                $data_toggle = $('#review-actions-form').find('.data-toggle');
-
-            pageload = pageload || false;
-            $element.closest('.review-actions').addClass('on');
-            $('.review-actions .action_nav ul li').removeClass('on-tab');
-            $element.find('input').attr('checked', true);
-
-            $element.addClass('on-tab');
-
-            if (pageload) {
-              $('#review-actions-form').show();
-            } else {
-              $('#review-actions-form').slideDown();
-              $('#review-actions').find('.errorlist').remove();
-            }
-
-            $data_toggle.hide();
-            $data_toggle.filter('[data-value*="' + value + '"]').show();
-
-            /* Fade out canned responses */
-            var label = $element.text().trim();
-            groups.css('color', '#AAA');
-            groups.filter("[label='"+label+"']").css('color', '#444');
-        }
-
-        $('#review-actions .action_nav ul li').click(function(){ showForm(this); });
-
-        /* Canned Response stuff */
-        $('.review-actions-canned select').change(function() {
-            insertAtCursor($('#id_comments'), $(this).val());
-        });
-
-        var review_checked = $('#review-actions [name=action]:checked');
-        if(review_checked.length > 0) {
-          showForm(review_checked.closest('li'), true);
-        }
-
+        initReviewActions();
     }
 });
+
+function initReviewActions() {
+    var groups = $('#id_canned_response').find('optgroup');
+    function showForm(element, pageload) {
+        var $element = $(element),
+            value = $element.find('input').val(),
+            $data_toggle = $('#review-actions-form').find('.data-toggle');
+
+        pageload = pageload || false;
+        $element.closest('.review-actions').addClass('on');
+        $('.review-actions .action_nav ul li').removeClass('on-tab');
+        $element.find('input').attr('checked', true);
+
+        $element.addClass('on-tab');
+
+        if (pageload) {
+          $('#review-actions-form').show();
+        } else {
+          $('#review-actions-form').slideDown();
+          $('#review-actions').find('.errorlist').remove();
+        }
+
+        $data_toggle.hide();
+        $data_toggle.filter('[data-value*="' + value + '"]').show();
+
+        /* Fade out canned responses */
+        var label = $element.text().trim();
+        groups.css('color', '#AAA');
+        groups.filter("[label='"+label+"']").css('color', '#444');
+    }
+
+    $('#review-actions .action_nav ul li').click(function(){ showForm(this); });
+
+    /* Canned Response stuff */
+    $('.review-actions-canned select').change(function() {
+        insertAtCursor($('#id_comments'), $(this).val());
+    });
+
+    var review_checked = $('#review-actions [name=action]:checked');
+    if(review_checked.length > 0) {
+      showForm(review_checked.closest('li'), true);
+    }
+
+    /* File checkboxes */
+    var $files_input = $('#review-actions .review-actions-files').find('input');
+    $files_input.attr('disabled', false); // In case they refresh
+
+    if($files_input.length == 1) {
+        $files_input.attr({'checked': true, 'disabled': true});
+    }
+
+    function toggle_input(){
+        var $files_checked = $files_input.filter(':checked');
+        $('.review-actions-save input').attr('disabled', $files_checked.length < 1);
+        $('#review-actions-files-warning').toggle($files_checked.length > 1);
+    }
+
+    $files_input.change(toggle_input).each(toggle_input);
+}
 
 function insertAtCursor(textarea, text) {
     var area = $(textarea)[0],

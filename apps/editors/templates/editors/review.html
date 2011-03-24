@@ -58,8 +58,8 @@
 <ul class="files">
 {% for file in version.files.all() %}
 <li>
-  <a href="{{ remora_url('/downloads/file/%d/%s' %( file.id, file.filename)) }}">
-    <strong>{{ file.filename }}</strong></a>
+  <strong>{{ file.platform }}</strong>
+  [<a href="{{ file.get_url_path(addon.app, 'editor') }}">{{ file.filename }}</a>]
   <br>
   {{ file_review_status(addon, file) }}
   &middot;
@@ -122,10 +122,15 @@
         {{ form.canned_response }}
       </div>
 
-      <div class="review-actions-section review-actions-tested data-toggle"
+      <div class="review-actions-section review-actions-files data-toggle"
            data-value="{{ actions_minimal|join("|") }}">
         <label for="id_addon_files"><strong>{{ form.addon_files.label }}</strong></label>
         {{ form.addon_files }}
+
+        <div id="review-actions-files-warning">
+          {{ _('Notice: Only review more than one file if you have tested <strong>every</strong> file you select.') }}
+        </div>
+
         {{ form.addon_files.errors }}
       </div>
 
