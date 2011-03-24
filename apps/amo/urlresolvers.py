@@ -122,27 +122,8 @@ class Prefixer(object):
             if lang in settings.LANGUAGE_URL_MAP:
                 return settings.LANGUAGE_URL_MAP[lang]
 
-        if self.request.META.get('HTTP_ACCEPT_LANGUAGE'):
-            ranked_languages = parse_accept_lang_header(
-                    self.request.META['HTTP_ACCEPT_LANGUAGE'])
-
-            # Do we support or remap their locale directly?
-            supported = [lang[0] for lang in ranked_languages if lang[0]
-                        in settings.LANGUAGE_URL_MAP]
-
-            # Do we support a less specific locale? (xx-YY -> xx)
-            if not len(supported):
-                for lang in ranked_languages:
-                    supported = [x for x in settings.LANGUAGE_URL_MAP if
-                                     lang[0].split('-', 1)[0] ==
-                                     x.split('-', 1)[0]]
-                    if supported:
-                        break
-
-            if len(supported):
-                return settings.LANGUAGE_URL_MAP[supported[0]]
-
-        return settings.LANGUAGE_CODE
+        accept = self.request.META.get('HTTP_ACCEPT_LANGUAGE', '')
+        return lang_from_accept_header(accept)
 
     def fix(self, path):
         path = path.lstrip('/')
@@ -200,3 +181,21 @@ def url_fix(s, charset='utf-8'):
     path = urllib.quote(path, '/%:')
     qs = urllib.quote_plus(qs, ':&=')
     return urlunsplit((scheme, netloc, path, qs, anchor))
+
+
+def lang_from_accept_header(header):
+    # Map all our lang codes and any prefixes to the locale code.
+    langs = [(k.lower(), v) for k, v in settings.LANGUAGE_URL_MAP.items()]
+    # Start with prefixes so any real matches override them.
+    lang_url_map = dict((k.split('-')[0], v) for k, v in langs)
+    lang_url_map.update(langs)
+
+    # If we have a lang or a prefix of the lang, return the locale code.
+    for lang, _ in parse_accept_lang_header(header.lower()):
+        if lang in lang_url_map:
+            return lang_url_map[lang]
+        prefix = lang.split('-')[0]
+        if prefix in lang_url_map:
+            return lang_url_map[prefix]
+
+    return settings.LANGUAGE_CODE

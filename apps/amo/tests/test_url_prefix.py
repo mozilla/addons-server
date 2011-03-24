@@ -215,3 +215,36 @@ def test_outgoing_url_query_params():
     url = 'http://xx.com?q=1&amp;v=2" style="123"'
     fixed = urlresolvers.get_outgoing_url(url)
     assert fixed.endswith('%3A//xx.com%3Fq=1&v=2%22%20style=%22123%22'), fixed
+
+
+def test_parse_accept_language():
+    check = lambda x, y: eq_(urlresolvers.lang_from_accept_header(x), y)
+    expected = 'ga-IE', 'zh-TW', 'zh-CN', 'en-US', 'fr'
+    for lang in expected:
+        assert lang in settings.AMO_LANGUAGES, lang
+    d = (('ga-ie', 'ga-IE'),
+         # Capitalization is no big deal.
+         ('ga-IE', 'ga-IE'),
+         ('GA-ie', 'ga-IE'),
+         # Go for something less specific.
+         ('fr-FR', 'fr'),
+         # Go for something more specific.
+         ('ga', 'ga-IE'),
+         ('ga-XX', 'ga-IE'),
+         # With multiple zh-XX choices, choose the first alphabetically.
+         ('zh', 'zh-CN'),
+         # Default to en-us.
+         ('xx', 'en-US'),
+         # Check q= sorting.
+         ('fr,en;q=0.8', 'fr'),
+         ('en;q=0.8,fr,ga-IE;q=0.9', 'fr'),
+         # Beware of invalid headers.
+         ('en;q=wtf,fr,ga-IE;q=oops', 'en-US'),
+         # zh is a partial match but it's still preferred.
+         ('zh, fr;q=0.8', 'zh-CN'),
+         # Caps + q= sorting.
+         ('ga-IE,en;q=0.8,fr;q=0.6', 'ga-IE'),
+         ('fr-fr, en;q=0.8, es;q=0.2', 'fr'),
+    )
+    for x, y in d:
+        yield check, x, y
