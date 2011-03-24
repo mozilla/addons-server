@@ -1198,6 +1198,16 @@ p#back:hover:before {
     display: none;
 }
 
+#install #no-restart-msg {
+    background-color: #FFFFFF;
+    border: 1px solid #B6D9E5;
+    border-radius: 3px 3px 3px 3px;
+    color: #294473;
+    font-size: 0.9em;
+    font-weight: bold;
+    padding: 4px 12px 3px;
+}
+
 .addon-info li {
     clear: both;
     overflow: hidden;

@@ -25,6 +25,13 @@
     {% endif %}</li>
   <li><a href="{{ url('addons.detail', addon.slug, src='discovery-learnmore') }}"
          class="button">{{ _('Learn More') }}</a></li>
+  {% with files = addon.current_version.all_files %}
+    {% if files and files[0].no_restart %}
+      <li id="no-restart">
+        <span id="no-restart-msg">{{ _('No restart required') }}</span>
+      </li>
+    {% endif %}
+  {% endwith %}
   {% if addon.privacy_policy %}
     <li><a href="{{ url('addons.privacy', addon.slug, src='discovery-learnmore') }}">
       {{ _('View Privacy Policy') }}</a></li>
