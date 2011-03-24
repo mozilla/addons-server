@@ -934,7 +934,8 @@ test('Notices count as warnings', function() {
             "detected_type": "extension"
         },
         error: null,
-        full_report_url: '/full-report'
+        full_report_url: '/full-report',
+        platforms_to_exclude: []
     };
 
     $(this.el).trigger("upload_success_results",
@@ -1052,10 +1053,8 @@ test('platforms > ALL', function() {
     this.check('input[value="3"]');
     // Check ALL platforms:
     this.check('input[value="1"]');
-    equals($('input[value="2"]', this.sandbox).attr('checked'),
-           false);
-    equals($('input[value="3"]', this.sandbox).attr('checked'),
-           false);
+    equals($('input[value="2"]', this.sandbox).attr('checked'), false);
+    equals($('input[value="3"]', this.sandbox).attr('checked'), false);
 });
 
 test('ALL > platforms', function() {
@@ -1063,8 +1062,36 @@ test('ALL > platforms', function() {
     this.check('input[value="1"]');
     // Check any other platform:
     this.check('input[value="2"]');
-    equals($('input[value="1"]', this.sandbox).attr('checked'),
-           false);
+    equals($('input[value="1"]', this.sandbox).attr('checked'), false);
+});
+
+test('mobile / desktop', function() {
+    // Check ALL desktop platforms:
+    this.check('input[value="1"]');
+    // Check ALL mobile platforms:
+    this.check('input[value="9"]');
+    // desktop platforms are still checked:
+    equals($('input[value="1"]', this.sandbox).attr('checked'), true);
+});
+
+test('mobile > ALL', function() {
+    // Check ALL mobile platforms:
+    this.check('input[value="9"]');
+    // Check Android:
+    this.check('input[value="7"]');
+    // ALL mobile is no longer checked:
+    equals($('input[value="9"]', this.sandbox).attr('checked'), false);
+});
+
+test('ALL > mobile', function() {
+    // Check Android, Maemo:
+    this.check('input[value="7"]');
+    this.check('input[value="8"]');
+    // Check ALL mobile platforms:
+    this.check('input[value="9"]');
+    // Specific platforms are no longer checked:
+    equals($('input[value="7"]', this.sandbox).attr('checked'), false);
+    equals($('input[value="8"]', this.sandbox).attr('checked'), false);
 });
 
 
@@ -1109,13 +1136,13 @@ asyncTest('customized', function() {
 });
 
 
-module('switch addon platforms', {
+module('exclude platforms', {
     setup: function() {
         this._FormData = z.FormData;
         z.FormData = tests.StubOb(z.FormData, {
             send: function() {}
         });
-        this.sandbox = tests.createSandbox('#addon-platform-switching');
+        this.sandbox = tests.createSandbox('#addon-platform-exclusion');
 
         $.fx.off = true;
 
@@ -1136,6 +1163,7 @@ module('switch addon platforms', {
 });
 
 test('mobile', function() {
+    var sb = this.sandbox;
     results = {
         validation: {
             "errors": 0,
@@ -1147,37 +1175,35 @@ test('mobile', function() {
             "messages": [],
             "rejected": false
         },
-        new_platform_choices: [
-            {value: 1, checked: true, text: 'All Platforms'},
-            {value: 2, checked: false, text: 'Maemo'},
-            {value: 3, checked: false, text: 'Android'}
-        ]
+        // exclude all but mobile:
+        platforms_to_exclude: ['1', '2', '3', '5']
     };
 
     $(this.el).trigger("upload_success_results",
                        [{name: 'somefile.txt'}, results]);
 
-    equals($('.platform input:eq(0)', this.sandbox).attr('value'), '1');
-    equals($('.platform input:eq(0)', this.sandbox).attr('id'),
-           'id_platforms_0');
-    equals($('.platform input:eq(0)', this.sandbox).attr('checked'), true);
-    equals($('.platform li:eq(0)', this.sandbox).text().trim(),
-           'All Platforms');
-    equals($('.platform input:eq(1)', this.sandbox).attr('value'), '2');
-    equals($('.platform input:eq(1)', this.sandbox).attr('id'),
-           'id_platforms_1');
-    equals($('.platform li:eq(1)', this.sandbox).text(), 'Maemo');
-    equals($('.platform input:eq(2)', this.sandbox).attr('value'), '3');
-    equals($('.platform input:eq(2)', this.sandbox).attr('id'),
-           'id_platforms_2');
-    equals($('.platform li:eq(2)', this.sandbox).text(), 'Android');
+    // All desktop platforms disabled:
+    equals($('.desktop-platforms input:eq(0)', sb).attr('disabled'), true);
+    equals($('.desktop-platforms input:eq(1)', sb).attr('disabled'), true);
+    equals($('.desktop-platforms input:eq(2)', sb).attr('disabled'), true);
+    equals($('.desktop-platforms input:eq(3)', sb).attr('disabled'), true);
+    equals($('.desktop-platforms label:eq(0)', sb).hasClass('platform-disabled'),
+           true);
+
+    ok($('.platform ul.errorlist', sb).length > 0, 'Message shown to user');
+
+    // All mobile platforms not disabled:
+    equals($('.mobile-platforms input:eq(0)', sb).attr('disabled'), false);
+    equals($('.mobile-platforms input:eq(1)', sb).attr('disabled'), false);
+    equals($('.mobile-platforms input:eq(2)', sb).attr('disabled'), false);
 });
 
-test('non-ascii', function() {
-    var results = {
+test('existing platforms', function() {
+    var sb = this.sandbox;
+    results = {
         validation: {
             "errors": 0,
-            "detected_type": "mobile",
+            "detected_type": "extension",
             "success": true,
             "warnings": 0,
             "notices": 0,
@@ -1185,16 +1211,17 @@ test('non-ascii', function() {
             "messages": [],
             "rejected": false
         },
-        new_platform_choices: [
-            {value: 1, checked: true, text: 'フォクすけといっしょ'}
-        ]
+        // exclude one platform as if this version already fulfilled it
+        platforms_to_exclude: ['2']
     };
 
     $(this.el).trigger("upload_success_results",
                        [{name: 'somefile.txt'}, results]);
 
-    equals($('.platform li:eq(0)', this.sandbox).text(),
-           'フォクすけといっしょ');
+    equals($('.desktop-platforms input:eq(0)', sb).attr('disabled'), false);
+    equals($('.desktop-platforms input:eq(1)', sb).attr('disabled'), true);
+    equals($('.desktop-platforms label:eq(0)', sb).hasClass('platform-disabled'),
+           false);
 });
 
 

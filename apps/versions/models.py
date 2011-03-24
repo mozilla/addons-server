@@ -78,6 +78,21 @@ class Version(amo.models.ModelBase):
         if addon.type == amo.ADDON_SEARCH:
             # Search extensions are always for all platforms.
             platforms = [Platform.objects.get(id=amo.PLATFORM_ALL.id)]
+        else:
+            new_plats = []
+            # Transform PLATFORM_ALL_MOBILE into specific mobile platform
+            # files (e.g. Android, Maemo).
+            # TODO(Kumar) Stop doing this when allmobile is supported
+            # for downloads. See bug 646268.
+            for p in platforms:
+                if p.id == amo.PLATFORM_ALL_MOBILE.id:
+                    for mobi_p in (set(amo.MOBILE_PLATFORMS.keys()) -
+                                   set([amo.PLATFORM_ALL_MOBILE.id])):
+                        new_plats.append(Platform.objects.get(id=mobi_p))
+                else:
+                    new_plats.append(p)
+            platforms = new_plats
+
         for platform in platforms:
             File.from_upload(upload, v, platform, parse_data=data)
 
@@ -124,7 +139,7 @@ class Version(amo.models.ModelBase):
         targets_other = any((a != amo.MOBILE.id) for a in apps)
         all_plats = {}
         if targets_other:
-            all_plats.update(amo.SUPPORTED_PLATFORMS)
+            all_plats.update(amo.DESKTOP_PLATFORMS)
         if targets_mobile:
             all_plats.update(amo.MOBILE_PLATFORMS)
         return all_plats
@@ -144,14 +159,20 @@ class Version(amo.models.ModelBase):
     def is_allowed_upload(self):
         """Check that a file can be uploaded based on the files
         per platform for that type of addon."""
+        num_files = len(self.all_files)
         if self.addon.type == amo.ADDON_SEARCH:
-            return not bool(len(self.all_files))
+            return num_files == 0
+        elif num_files == 0:
+            return True
         elif amo.PLATFORM_ALL in self.supported_platforms:
             return False
+        elif amo.PLATFORM_ALL_MOBILE in self.supported_platforms:
+            return False
         else:
-            available = amo.SUPPORTED_PLATFORMS.values()
-            available.remove(amo.PLATFORM_ALL)
-            return bool(set(available) - set(self.supported_platforms))
+            compatible = (v for k, v in self.compatible_platforms().items()
+                          if k not in (amo.PLATFORM_ALL.id,
+                                       amo.PLATFORM_ALL_MOBILE.id))
+            return bool(set(compatible) - set(self.supported_platforms))
 
     @property
     def has_files(self):

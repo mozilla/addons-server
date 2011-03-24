@@ -378,30 +378,40 @@
                                                         'text': gettext('See full validation report')}));
                     }
 
+                    $(".platform ul.error").empty();
+                    $(".platform ul.errorlist").empty();
                     if (results.validation.detected_type == 'search') {
-                        // TODO(Kumar) this probably broke the versions page
-                        // which does not use #create-addon. Remove the id.
-                        $("#create-addon .platform").hide();
+                        $(".platform").hide();
                     } else {
-                        $("#create-addon .platform:hidden").show();
-                        if (results.new_platform_choices) {
+                        $(".platform:hidden").show();
+                        $('.platform label').removeClass('platform-disabled');
+                        $('input.platform').attr('disabled', false);
+                        if (results.platforms_to_exclude.length) {
                             // e.g. after uploading a Mobile add-on
-                            $('.platform ul').empty();
-                            $.each(results.new_platform_choices, function(i, pl) {
-                                var li = $(format('<li><label><input name="platforms" ' +
-                                                  'type="checkbox" class="platform" />' +
-                                                  '{0}</label></li>', [pl.text])),
-                                    id = format('id_platforms_{0}', [i]),
-                                    label = $('label', li),
-                                    input = $('input', li);
-                                label.attr('for', id);
-                                input.attr('id', id);
-                                input.attr('value', pl.value);
-                                if (pl.checked) {
-                                    input.attr('checked', 'checked');
+                            var excluded = false;
+                            $('input.platform').each(function(e) {
+                                var $input = $(this);
+                                if ($.inArray($input.val(),
+                                              results.platforms_to_exclude) !== -1) {
+                                    excluded = true;
+                                    $('label[for=' + $input.attr('id') + ']').addClass('platform-disabled');
+                                    $input.attr('checked', false);
+                                    $input.attr('disabled', true);
                                 }
-                                $('.platform ul').append(li);
                             });
+                            $.each(['.desktop-platforms', '.mobile-platforms'], function(i, sel) {
+                                var disabled = $(sel + ' input:disabled').length,
+                                    all = $(sel + ' input').length;
+                                if (disabled > 0 && disabled == all) {
+                                    $(sel + ' label').addClass('platform-disabled');
+                                }
+                            });
+                            if (excluded) {
+                                var msg = gettext('Some platforms are not available for this type of add-on.');
+                                $('.platform').prepend(
+                                    format('<ul class="errorlist"><li>{0}</li></ul>',
+                                           msg));
+                            }
                         }
                     }
                 }

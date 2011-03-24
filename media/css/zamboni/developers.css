@@ -1249,6 +1249,10 @@ a.extra {
     margin-top: 4px;
 }
 
+.platform-disabled {
+    color: #777777;
+}
+
 /* @end */
 
 /* @group Recent Activity */

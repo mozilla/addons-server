@@ -47,7 +47,8 @@ def test_dict_from_int():
 
 
 class TestVersion(test_utils.TestCase):
-    fixtures = ['base/apps', 'base/addon_3615', 'base/admin', 'base/platforms']
+    fixtures = ['base/apps', 'base/addon_3615', 'base/admin',
+                'base/platforms']
 
     def setUp(self):
         self.version = Version.objects.get(pk=81551)
@@ -75,12 +76,13 @@ class TestVersion(test_utils.TestCase):
         self.version.apps.all().delete()
         self.target_mobile()
         eq_(sorted(self.named_plat(self.version.compatible_platforms())),
-            ['all', u'android', u'maemo'])
+            ['allmobile', u'android', u'maemo'])
 
     def test_mixed_version_supports_all_platforms(self):
         self.target_mobile()
         eq_(sorted(self.named_plat(self.version.compatible_platforms())),
-            ['all', u'android', 'linux', 'mac', u'maemo', 'windows'])
+            ['all', 'allmobile', 'android', 'linux', 'mac', 'maemo',
+             'windows'])
 
     def test_non_mobile_version_supports_non_mobile_platforms(self):
         eq_(sorted(self.named_plat(self.version.compatible_platforms())),
@@ -193,6 +195,11 @@ class TestVersion(test_utils.TestCase):
     def test_version_is_allowed_upload_all(self):
         version = Version.objects.get(pk=81551)
         assert not version.is_allowed_upload()
+
+    def test_mobile_all_version_is_not_allowed_upload(self):
+        self.target_mobile()
+        self.version.files.all().update(platform=amo.PLATFORM_ALL_MOBILE.id)
+        assert not self.version.is_allowed_upload()
 
     @mock.patch('files.models.File.hide_disabled_file')
     def test_new_version_disable_old_unreviewed(self, hide_mock):
@@ -524,14 +531,15 @@ class TestDownloadsLatest(TestDownloadsBase):
 
 
 class TestVersionFromUpload(UploadTest, test_utils.TestCase):
-    fixtures = ['base/apps', 'base/addon_3615', 'base/users']
+    fixtures = ['base/apps', 'base/addon_3615', 'base/users',
+                'base/platforms']
 
     def setUp(self):
         super(TestVersionFromUpload, self).setUp()
         self.upload = self.get_upload(self.filename)
         self.addon = Addon.objects.get(id=3615)
         self.addon.update(guid='guid@xpi')
-        self.platform = Platform.objects.create(id=amo.PLATFORM_MAC.id)
+        self.platform = Platform.objects.get(id=amo.PLATFORM_MAC.id)
         for version in ('3.0', '3.6.*'):
             AppVersion.objects.create(application_id=1, version=version)
 
@@ -581,6 +589,13 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
                             [Platform.objects.get(pk=amo.PLATFORM_ALL.id)])
         files = version.all_files
         eq_(files[0].filename, u'delicious_bookmarks-0.1-fx.xpi')
+
+    def test_mobile_all_creates_platform_files(self):
+        all_mobile = Platform.objects.get(id=amo.PLATFORM_ALL_MOBILE.id)
+        version = Version.from_upload(self.upload, self.addon, [all_mobile])
+        files = version.all_files
+        eq_(sorted(amo.PLATFORMS[f.platform.id].shortname for f in files),
+            ['android', 'maemo'])
 
     def test_multiple_platforms(self):
         platforms = [Platform.objects.get(pk=amo.PLATFORM_LINUX.id),

@@ -2541,6 +2541,14 @@ class TestUploadDetail(BaseUploadTest):
             'messages': [],
             'rejected': False}
 
+    def upload_file(self, file):
+        addon = os.path.join(settings.ROOT, 'apps', 'devhub', 'tests',
+                             'addons', file)
+        with open(addon, 'rb') as f:
+            r = self.client.post(reverse('devhub.upload'),
+                                 {'upload': f})
+        eq_(r.status_code, 302)
+
     @attr('validator')
     def test_detail_json(self):
         self.post()
@@ -2573,75 +2581,62 @@ class TestUploadDetail(BaseUploadTest):
             reverse('devhub.upload_detail', args=[upload.uuid, 'json']))
 
     @mock.patch('devhub.tasks._validator')
-    def test_multi_app_addon_cannot_have_platforms(self, v):
+    def test_multi_app_addon_can_have_all_platforms(self, v):
         v.return_value = json.dumps(self.validation_ok())
-        addon = os.path.join(settings.ROOT, 'apps', 'devhub', 'tests',
-                             'addons', 'mobile-2.9.10-fx+fn.xpi')
-        with open(addon, 'rb') as f:
-            r = self.client.post(reverse('devhub.upload'),
-                                 {'upload': f})
-        eq_(r.status_code, 302)
+        self.upload_file('mobile-2.9.10-fx+fn.xpi')
         upload = FileUpload.objects.get()
         r = self.client.get(reverse('devhub.upload_detail',
                                     args=[upload.uuid, 'json']))
         eq_(r.status_code, 200)
         data = json.loads(r.content)
-        eq_(data['new_platform_choices'], [
-                {'text': unicode(amo.PLATFORM_ALL.name), 'checked': True,
-                 'value': amo.PLATFORM_ALL.id}])
+        eq_(data['platforms_to_exclude'], [])
 
     @mock.patch('devhub.tasks._validator')
-    def test_new_platform_choices_for_mobile(self, v):
+    def test_mobile_excludes_desktop_platforms(self, v):
         v.return_value = json.dumps(self.validation_ok())
-        addon = os.path.join(settings.ROOT, 'apps', 'devhub', 'tests',
-                             'addons', 'mobile-0.1-fn.xpi')
-        with open(addon, 'rb') as f:
-            r = self.client.post(reverse('devhub.upload'),
-                                 {'upload': f})
-        eq_(r.status_code, 302)
+        self.upload_file('mobile-0.1-fn.xpi')
         upload = FileUpload.objects.get()
         r = self.client.get(reverse('devhub.upload_detail',
                                     args=[upload.uuid, 'json']))
         eq_(r.status_code, 200)
         data = json.loads(r.content)
-        eq_(data['new_platform_choices'], [
-                {'text': unicode(amo.PLATFORM_ALL.name), 'checked': True,
-                 'value': amo.PLATFORM_ALL.id},
-                {'text': unicode(amo.PLATFORM_MAEMO.name),
-                 'value': amo.PLATFORM_MAEMO.id},
-                {'text': unicode(amo.PLATFORM_ANDROID.name),
-                 'value': amo.PLATFORM_ANDROID.id}])
+        eq_(sorted(data['platforms_to_exclude']),
+            sorted([str(p) for p in amo.DESKTOP_PLATFORMS]))
 
     @mock.patch('devhub.tasks._validator')
-    def test_search_tool_bypasses_platform_check(self, v):
+    def test_search_tool_excludes_all_platforms(self, v):
         v.return_value = json.dumps(self.validation_ok())
-        addon = os.path.join(settings.ROOT, 'apps', 'devhub', 'tests',
-                             'addons', 'searchgeek-20090701.xml')
-        with open(addon, 'rb') as f:
-            r = self.client.post(reverse('devhub.upload'),
-                                 {'upload': f})
-        eq_(r.status_code, 302)
+        self.upload_file('searchgeek-20090701.xml')
         upload = FileUpload.objects.get()
         r = self.client.get(reverse('devhub.upload_detail',
                                     args=[upload.uuid, 'json']))
         eq_(r.status_code, 200)
         data = json.loads(r.content)
-        eq_(data['new_platform_choices'], None)
+        eq_(sorted(data['platforms_to_exclude']),
+            sorted([str(p) for p in amo.SUPPORTED_PLATFORMS]))
+
+    @mock.patch('devhub.tasks._validator')
+    def test_desktop_excludes_mobile(self, v):
+        v.return_value = json.dumps(self.validation_ok())
+        self.upload_file('desktop.xpi')
+        upload = FileUpload.objects.get()
+        r = self.client.get(reverse('devhub.upload_detail',
+                                    args=[upload.uuid, 'json']))
+        eq_(r.status_code, 200)
+        data = json.loads(r.content)
+        eq_(sorted(data['platforms_to_exclude']),
+            sorted([str(p) for p in amo.MOBILE_PLATFORMS]))
 
     @mock.patch('devhub.tasks._validator')
     def test_unparsable_xpi(self, v):
         v.return_value = json.dumps(self.validation_ok())
-        addon = os.path.join(settings.ROOT, 'apps', 'devhub', 'tests',
-                             'addons', 'unopenable.xpi')
-        with open(addon, 'rb') as f:
-            r = self.client.post(reverse('devhub.upload'),
-                                 {'upload': f})
+        self.upload_file('unopenable.xpi')
         upload = FileUpload.objects.get()
         r = self.client.get(reverse('devhub.upload_detail',
                                     args=[upload.uuid, 'json']))
         eq_(r.status_code, 200)
         data = json.loads(r.content)
-        eq_(data['new_platform_choices'], None)
+        eq_(data['platforms_to_exclude'], [])
 
 
 class TestUploadValidation(BaseUploadTest):
@@ -2850,6 +2845,12 @@ class TestVersionAddFile(UploadTest):
         files.platform_id = amo.PLATFORM_LINUX.id
         files.save()
 
+    def make_mobile(self):
+        app = Application.objects.get(pk=amo.MOBILE.id)
+        for a in self.version.apps.all():
+            a.application = app
+            a.save()
+
     def post(self, platform=amo.PLATFORM_MAC):
         return self.client.post(self.url, dict(upload=self.upload.pk,
                                                platform=platform.id))
@@ -2881,7 +2882,7 @@ class TestVersionAddFile(UploadTest):
         assert amo.PLATFORM_ALL.id not in dict(choices), choices
 
     def test_platform_choices_when_no_files(self):
-        all_choices = amo.SUPPORTED_PLATFORMS.values()
+        all_choices = self.version.compatible_platforms().values()
         self.version.files.all().delete()
         url = reverse('devhub.versions.edit',
                       args=[self.addon.slug, self.version.id])
@@ -2891,15 +2892,25 @@ class TestVersionAddFile(UploadTest):
             sorted([p.id for p in all_choices]))
 
     def test_platform_choices_when_mobile(self):
-        app = Application.objects.get(pk=amo.MOBILE.id)
-        for a in self.version.apps.all():
-            a.application = app
-            a.save()
+        self.make_mobile()
+        self.version.files.all().delete()
         r = self.client.get(self.edit_url)
         form = r.context['new_file_form']
+        # TODO(Kumar) Allow All Mobile Platforms when supported for downloads.
+        # See bug 646268.
+        exp_plats = (set(amo.MOBILE_PLATFORMS.values()) -
+                     set([amo.PLATFORM_ALL_MOBILE]))
         eq_(sorted([unicode(c[1]) for c in form.fields['platform'].choices]),
-            [unicode(p.name) for p in [amo.PLATFORM_ANDROID,
-                                       amo.PLATFORM_MAEMO]])
+            sorted([unicode(p.name) for p in exp_plats]))
+
+    def test_exclude_mobile_all_when_we_have_platform_files(self):
+        self.make_mobile()
+        # set one to Android
+        self.version.files.all().update(platform=amo.PLATFORM_ANDROID.id)
+        r = self.post(platform=amo.PLATFORM_ALL_MOBILE)
+        assert_json_error(r, 'platform',
+                          'Select a valid choice. That choice is not '
+                          'one of the available choices.')
 
     def test_type_matches(self):
         self.addon.update(type=amo.ADDON_THEME)
@@ -2939,10 +2950,11 @@ class TestVersionAddFile(UploadTest):
 
 class TestAddVersion(UploadTest):
 
-    def post(self, platforms=[amo.PLATFORM_MAC]):
-        return self.client.post(self.url, dict(upload=self.upload.pk,
-                                               platforms=[p.id for p in
-                                                          platforms]))
+    def post(self, desktop_platforms=[amo.PLATFORM_MAC], mobile_platforms=[]):
+        d = dict(upload=self.upload.pk,
+                 desktop_platforms=[p.id for p in desktop_platforms],
+                 mobile_platforms=[p.id for p in mobile_platforms])
+        return self.client.post(self.url, d)
 
     def setUp(self):
         super(TestAddVersion, self).setUp()
@@ -2971,8 +2983,8 @@ class TestAddVersion(UploadTest):
         assert_not_equal(fle.status, amo.STATUS_PUBLIC)
 
     def test_multiple_platforms(self):
-        r = self.post(platforms=[amo.PLATFORM_MAC,
-                                 amo.PLATFORM_LINUX])
+        r = self.post(desktop_platforms=[amo.PLATFORM_MAC,
+                                         amo.PLATFORM_LINUX])
         eq_(r.status_code, 200)
         version = self.addon.versions.get(version='0.1')
         eq_(len(version.all_files), 2)
@@ -3004,11 +3016,12 @@ class TestCreateAddon(BaseUploadTest, test_utils.TestCase):
     def tearDown(self):
         reset_redis(self._redis)
 
-    def post(self, platforms=[amo.PLATFORM_ALL], expect_errors=False):
-        r = self.client.post(self.url,
-                        dict(upload=self.upload.pk,
-                             platforms=[p.id for p in platforms]),
-                        follow=True)
+    def post(self, desktop_platforms=[amo.PLATFORM_ALL], mobile_platforms=[],
+             expect_errors=False):
+        d = dict(upload=self.upload.pk,
+                 desktop_platforms=[p.id for p in desktop_platforms],
+                 mobile_platforms=[p.id for p in mobile_platforms])
+        r = self.client.post(self.url, d, follow=True)
         eq_(r.status_code, 200)
         if not expect_errors:
             # Show any unexpected form errors.
@@ -3040,15 +3053,15 @@ class TestCreateAddon(BaseUploadTest, test_utils.TestCase):
         r = self.client.post(self.url, dict(upload=self.upload.pk))
         eq_(r.status_code, 200)
         eq_(r.context['new_addon_form'].errors.as_text(),
-            u'* platforms\n  * This field is required.')
+            '* __all__\n  * Need at least one platform.')
         doc = pq(r.content)
-        eq_(doc('.platform ul.errorlist').text(),
-            'This field is required.')
+        eq_(doc('ul.errorlist').text(),
+            'Need at least one platform.')
 
     def test_one_xpi_for_multiple_platforms(self):
         eq_(Addon.objects.count(), 0)
-        r = self.post(platforms=[amo.PLATFORM_MAC,
-                                 amo.PLATFORM_LINUX])
+        r = self.post(desktop_platforms=[amo.PLATFORM_MAC,
+                                         amo.PLATFORM_LINUX])
         addon = Addon.objects.get()
         self.assertRedirects(r, reverse('devhub.submit.3',
                                         args=[addon.slug]))

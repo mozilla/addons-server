@@ -92,50 +92,85 @@
   </div>
 
   <div id="addon-platform-chooser">
+    <!-- TODO(Kumar) create faux form objects and include add_file_modal.html here -->
     <form method="post" id="create-addon" class="item" action="">
-      <ul>
-        <li><label for="id_platforms_0">
-          <input checked="checked" name="platforms" value="1" id="id_platforms_0" type="checkbox" class="platform" />
-          All Platforms</label></li>
-        <li><label for="id_platforms_1">
-          <input id="id_platforms_1" type="checkbox" class="platform" value="2" name="platforms" />
-          Linux</label></li>
-        <li><label for="id_platforms_2">
-          <input value="3" type="checkbox" id="id_platforms_2" name="platforms" class="platform" />
-          Mac OS X</label></li>
-        <li><label for="id_platforms_3">
-          <input class="platform" type="checkbox" id="id_platforms_3" value="5" name="platforms" />
-          Windows</label></li>
-      </ul>
+      <div class="platform">
+        <div class="desktop-platforms">
+          <label>Which desktop platforms is this file compatible with?</label>
+          <ul>
+            <li><label for="id_desktop_platforms_0">
+                <input value="1" checked="checked" name="desktop_platforms" id="id_desktop_platforms_0" type="checkbox" class="platform">
+                All Platforms</label></li>
+            <li><label for="id_desktop_platforms_1">
+                <input value="2"  id="id_desktop_platforms_1" type="checkbox" class="platform" name="desktop_platforms">
+                Linux</label></li>
+            <li><label for="id_desktop_platforms_2">
+                <input value="3" type="checkbox" id="id_desktop_platforms_2" name="desktop_platforms" class="platform">
+                Mac OS X</label></li>
+            <li><label for="id_desktop_platforms_3">
+                <input value="5" class="platform" type="checkbox" id="id_desktop_platforms_3" name="desktop_platforms">
+                Windows</label> </li>
+          </ul>
+        </div>
+        <div class="mobile-platforms">
+          <label>Which mobile platforms is this file compatible with?</label>
+          <ul>
+            <li><label for="id_mobile_platforms_0">
+                <input value="9" type="checkbox" class="platform" name="mobile_platforms" id="id_mobile_platforms_0" />
+                All Platforms</label></li>
+            <li><label for="id_mobile_platforms_1">
+                <input value="7" id="id_mobile_platforms_1" type="checkbox" class="platform" name="mobile_platforms" />
+                Android</label></li>
+            <li><label for="id_mobile_platforms_2">
+                <input value="8" type="checkbox" id="id_mobile_platforms_2" name="mobile_platforms" class="platform" />
+                Maemo</label></li>
+          </ul>
+        </div>
+      </div>
     </form>
   </div>
 
-  <div id="addon-platform-switching">
-
-  <div id="file-upload-template">
-    <form>
-      <!-- for testing this has to be a non-input element, since
-           you can't access ".file" on an input element -->
+  <div id="addon-platform-exclusion">
+    <!-- TODO(Kumar) create faux form objects and include add_file_modal.html here -->
+    <div id="file-upload-template">
+      <form>
+        <!-- for testing this has to be a non-input element, since
+             you can't access ".file" on an input element -->
         <div data-upload-url="/"  id="upload-file-input"></div>
-    </form>
-  </div>
-
-
+      </form>
+    </div>
     <div class="platform">
-      <ul>
-        <li><label for="id_platforms_0">
-          <input checked="checked" name="platforms" value="1" id="id_platforms_0" type="checkbox" class="platform" />
-          All Platforms</label></li>
-        <li><label for="id_platforms_1">
-          <input name="platforms" value="2" id="id_platforms_1" type="checkbox" class="platform" />
-          Linux</label></li>
-        <li><label for="id_platforms_2">
-          <input name="platforms" value="3" id="id_platforms_2" type="checkbox" class="platform" />
-          Mac OS X</label></li>
-        <li><label for="id_platforms_3">
-          <input name="platforms" value="4" id="id_platforms_3" type="checkbox" class="platform" />
-          Windows</label></li>
-      </ul>
+      <div class="desktop-platforms">
+        <label>Which desktop platforms is this file compatible with?</label>
+        <ul>
+          <li><label for="id_desktop_platforms_0">
+              <input value="1" checked="checked" name="desktop_platforms" id="id_desktop_platforms_0" type="checkbox" class="platform">
+              All Platforms</label></li>
+          <li><label for="id_desktop_platforms_1">
+              <input value="2"  id="id_desktop_platforms_1" type="checkbox" class="platform" name="desktop_platforms">
+              Linux</label></li>
+          <li><label for="id_desktop_platforms_2">
+              <input value="3" type="checkbox" id="id_desktop_platforms_2" name="desktop_platforms" class="platform">
+              Mac OS X</label></li>
+          <li><label for="id_desktop_platforms_3">
+              <input value="5" class="platform" type="checkbox" id="id_desktop_platforms_3" name="desktop_platforms">
+              Windows</label> </li>
+        </ul>
+      </div>
+      <div class="mobile-platforms">
+        <label>Which mobile platforms is this file compatible with?</label>
+        <ul>
+          <li><label for="id_mobile_platforms_0">
+              <input value="9" type="checkbox" class="platform" name="mobile_platforms" id="id_mobile_platforms_0" />
+              All Platforms</label></li>
+          <li><label for="id_mobile_platforms_1">
+              <input value="7" id="id_mobile_platforms_1" type="checkbox" class="platform" name="mobile_platforms" />
+              Android</label></li>
+          <li><label for="id_mobile_platforms_2">
+              <input value="8" type="checkbox" id="id_mobile_platforms_2" name="mobile_platforms" class="platform" />
+              Maemo</label></li>
+        </ul>
+      </div>
     </div>
   </div>
 

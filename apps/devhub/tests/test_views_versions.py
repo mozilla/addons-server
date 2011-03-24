@@ -302,7 +302,8 @@ class TestVersion(test_utils.TestCase):
         eq_(r.status_code, 200)
         doc = pq(r.content)
         # Make sure checkboxes are visible:
-        eq_(doc('input.platform').length, 4)
+        eq_(doc('.desktop-platforms input.platform').length, 4)
+        eq_(doc('.mobile-platforms input.platform').length, 3)
         eq_(set([i.attrib['type'] for i in doc('input.platform')]),
             set(['checkbox']))
 
@@ -332,6 +333,27 @@ class TestVersionEdit(test_utils.TestCase):
         defaults = {'approvalnotes': 'xxx'}
         defaults.update(kw)
         return formset(*args, **defaults)
+
+
+class TestVersionEditMobile(TestVersionEdit):
+
+    def setUp(self):
+        super(TestVersionEditMobile, self).setUp()
+        self.version.apps.all().delete()
+        mobile = Application.objects.get(id=amo.MOBILE.id)
+        app_vr = AppVersion.objects.create(application=mobile, version='1.0')
+        ApplicationsVersions.objects.create(version=self.version,
+                                            application=mobile,
+                                            min=app_vr, max=app_vr)
+        self.version.files.update(platform=amo.PLATFORM_ANDROID.id)
+
+    def test_mobile_platform_options(self):
+        ctx = self.client.get(self.url).context
+        fld = ctx['file_form'].forms[0]['platform'].field
+        # TODO(Kumar) allow PLATFORM_ALL_MOBILE here when it is supported.
+        # See bug 646268.
+        eq_(sorted(amo.PLATFORMS[p[0]].shortname for p in fld.choices),
+            ['android', 'maemo'])
 
 
 class TestVersionEditDetails(TestVersionEdit):
@@ -365,7 +387,7 @@ class TestVersionEditDetails(TestVersionEdit):
         res = self.client.get(self.url)
         choices = res.context['new_file_form'].fields['platform'].choices
         taken = [f.platform_id for f in self.version.files.all()]
-        platforms = set(amo.SUPPORTED_PLATFORMS) - set(taken)
+        platforms = set(self.version.compatible_platforms()) - set(taken)
         eq_(len(choices), len(platforms))
 
     def test_can_upload(self):
@@ -559,19 +581,20 @@ class TestVersionEditFiles(TestVersionEdit):
         eq_(r.status_code, 200)
         doc = pq(r.content)
         # Make sure radio buttons are visible:
-        eq_(doc('input.platform').length, 3)
+        eq_(doc('.platform ul label').text(), 'Linux Mac OS X Windows')
         eq_(set([i.attrib['type'] for i in doc('input.platform')]),
             set(['radio']))
 
     def test_mobile_addon_supports_only_mobile_platforms(self):
-        # See versions tests for full coverage
         app = Application.objects.get(pk=amo.MOBILE.id)
         for a in self.version.apps.all():
             a.application = app
             a.save()
+        self.version.files.all().update(platform=amo.PLATFORM_ALL_MOBILE.id)
         forms = self.client.get(self.url).context['file_form'].forms
         choices = self.get_platforms(forms[0])
-        eq_(sorted(choices), ['all', u'android', u'maemo'])
+        eq_(sorted(choices),
+            sorted([p.shortname for p in amo.MOBILE_PLATFORMS.values()]))
 
 
 class TestPlatformSearch(TestVersionEdit):

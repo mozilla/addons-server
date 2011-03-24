@@ -355,18 +355,31 @@ class NewAddonForm(happyforms.Form):
         queryset=FileUpload.objects.filter(valid=True),
         error_messages={'invalid_choice': _lazy('There was an error with your '
                                                 'upload. Please try again.')})
-    platforms = forms.ModelMultipleChoiceField(
+    desktop_platforms = forms.ModelMultipleChoiceField(
             queryset=Platform.objects,
             widget=forms.CheckboxSelectMultiple(attrs={'class': 'platform'}),
-            initial=[amo.PLATFORM_ALL.id])
-    platforms.choices = sorted((p.id, p.name)
-                               for p in amo.SUPPORTED_PLATFORMS.values())
+            initial=[amo.PLATFORM_ALL.id],
+            required=False)
+    desktop_platforms.choices = ((p.id, p.name)
+                                 for p in amo.DESKTOP_PLATFORMS.values())
+    mobile_platforms = forms.ModelMultipleChoiceField(
+            queryset=Platform.objects,
+            widget=forms.CheckboxSelectMultiple(attrs={'class': 'platform'}),
+            required=False)
+    mobile_platforms.choices = ((p.id, p.name)
+                                for p in amo.MOBILE_PLATFORMS.values())
 
     def clean(self):
         if not self.errors:
             xpi = parse_addon(self.cleaned_data['upload'].path)
             addons.forms.clean_name(xpi['name'])
+            self._clean_all_platforms()
         return self.cleaned_data
+
+    def _clean_all_platforms(self):
+        if (not self.cleaned_data['desktop_platforms']
+            and not self.cleaned_data['mobile_platforms']):
+            raise forms.ValidationError(_('Need at least one platform.'))
 
 
 class NewVersionForm(NewAddonForm):
@@ -381,6 +394,7 @@ class NewVersionForm(NewAddonForm):
             if self.addon.versions.filter(version=xpi['version']):
                 raise forms.ValidationError(
                     _('Version %s already exists') % xpi['version'])
+            self._clean_all_platforms()
         return self.cleaned_data
 
 
@@ -408,6 +422,13 @@ class NewFileForm(happyforms.Form):
         # Don't allow platform=ALL if we already have platform files.
         if len(to_exclude):
             to_exclude.add(amo.PLATFORM_ALL.id)
+
+        # Always exclude PLATFORM_ALL_MOBILE because it's not supported for
+        # downloads yet. The developer can choose Android + Maemo for now.
+        # TODO(Kumar) Allow this option when it's supported everywhere.
+        # See bug 646268.
+        to_exclude.add(amo.PLATFORM_ALL_MOBILE.id)
+
         field.choices = [p for p in field.choices if p[0] not in to_exclude]
         field.queryset = Platform.objects.filter(id__in=dict(field.choices))
 
@@ -437,6 +458,10 @@ class FileForm(happyforms.ModelForm):
             del self.fields['platform']
         else:
             compat = kw['instance'].version.compatible_platforms()
+            # TODO(Kumar) Allow PLATFORM_ALL_MOBILE when it's supported.
+            # See bug 646268.
+            if amo.PLATFORM_ALL_MOBILE.id in compat:
+                del compat[amo.PLATFORM_ALL_MOBILE.id]
             pid = int(kw['instance'].platform_id)
             plats = [(p.id, p.name) for p in compat.values()]
             if pid not in compat:

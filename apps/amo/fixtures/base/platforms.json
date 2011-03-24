@@ -52,5 +52,32 @@
             "modified": "2008-04-07 08:16:56", 
             "created": "2007-03-05 13:09:27"
         }
+    },
+    {
+        "pk": 7,
+        "model": "files.platform",
+        "fields": {
+            "icontype": "",
+            "modified": "2008-04-07 08:16:56",
+            "created": "2007-03-05 13:09:27"
+        }
+    },
+    {
+        "pk": 8,
+        "model": "files.platform",
+        "fields": {
+            "icontype": "",
+            "modified": "2008-04-07 08:16:56",
+            "created": "2007-03-05 13:09:27"
+        }
+    },
+    {
+        "pk": 9,
+        "model": "files.platform",
+        "fields": {
+            "icontype": "",
+            "modified": "2008-04-07 08:16:56",
+            "created": "2007-03-05 13:09:27"
+        }
     }
 ]

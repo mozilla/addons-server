@@ -5,10 +5,11 @@ import re
 import threading
 
 import commonware.log
-from product_details import firefox_versions, thunderbird_versions
+from django.utils.datastructures import SortedDict
 from tower import ugettext_lazy as _
-from versions.compare import version_int
 
+from product_details import firefox_versions, thunderbird_versions
+from versions.compare import version_int
 from licenses import license_text
 from .log import LOG, LOG_BY_ID, LOG_EDITORS, LOG_KEEP, LOG_REVIEW_QUEUE, log
 
@@ -343,6 +344,13 @@ class PLATFORM_ALL:
     api_name = u'ALL'
 
 
+class PLATFORM_ALL_MOBILE:
+    id = 9
+    name = _(u'All Mobile Platforms')
+    shortname = 'allmobile'
+    api_name = u'ALL_mobile'
+
+
 class PLATFORM_LINUX:
     id = 2
     name = _(u'Linux')
@@ -391,22 +399,27 @@ class PLATFORM_MAEMO:
     shortname = u'maemo'
     api_name = u'Maemo'
 
-# Order matters
+# Contains historic platforms that are no longer supported.
+# These exist so that legacy files can still be edited.
 PLATFORMS = {PLATFORM_ANY.id: PLATFORM_ANY, PLATFORM_ALL.id: PLATFORM_ALL,
              PLATFORM_LINUX.id: PLATFORM_LINUX, PLATFORM_MAC.id: PLATFORM_MAC,
              PLATFORM_BSD.id: PLATFORM_BSD, PLATFORM_WIN.id: PLATFORM_WIN,
              PLATFORM_SUN.id: PLATFORM_SUN,
+             PLATFORM_ALL_MOBILE.id: PLATFORM_ALL_MOBILE,
              PLATFORM_ANDROID.id: PLATFORM_ANDROID,
              PLATFORM_MAEMO.id: PLATFORM_MAEMO}
 
-MOBILE_PLATFORMS = {PLATFORM_ALL.id: PLATFORM_ALL,
-                    PLATFORM_ANDROID.id: PLATFORM_ANDROID,
-                    PLATFORM_MAEMO.id: PLATFORM_MAEMO}
+MOBILE_PLATFORMS = SortedDict([(PLATFORM_ALL_MOBILE.id, PLATFORM_ALL_MOBILE),
+                               (PLATFORM_ANDROID.id, PLATFORM_ANDROID),
+                               (PLATFORM_MAEMO.id, PLATFORM_MAEMO)])
 
-SUPPORTED_PLATFORMS = {PLATFORM_ALL.id: PLATFORM_ALL,
-                       PLATFORM_LINUX.id: PLATFORM_LINUX,
-                       PLATFORM_MAC.id: PLATFORM_MAC,
-                       PLATFORM_WIN.id: PLATFORM_WIN}
+DESKTOP_PLATFORMS = SortedDict([(PLATFORM_ALL.id, PLATFORM_ALL),
+                                (PLATFORM_LINUX.id, PLATFORM_LINUX),
+                                (PLATFORM_MAC.id, PLATFORM_MAC),
+                                (PLATFORM_WIN.id, PLATFORM_WIN)])
+
+SUPPORTED_PLATFORMS = DESKTOP_PLATFORMS.copy()
+SUPPORTED_PLATFORMS.update(MOBILE_PLATFORMS)
 
 PLATFORM_DICT = {
     'all': PLATFORM_ALL,

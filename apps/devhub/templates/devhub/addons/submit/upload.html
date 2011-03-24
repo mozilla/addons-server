@@ -21,10 +21,17 @@
   {{ new_addon_form.non_field_errors() }}
 
       <div class="platform">
-      <label>{{ _('Select the target platform(s) for this file.') }}</label>
-      {{ new_addon_form.errors.platforms }}
-      {{ new_addon_form.platforms }}
-      {{ new_addon_form.upload }}
+        <div class="desktop-platforms">
+          <label>{{ _('Which desktop platforms is this file compatible with?') }}</label>
+          {{ new_addon_form.errors.desktop_platforms }}
+          {{ new_addon_form.desktop_platforms }}
+        </div>
+        <div class="mobile-platforms">
+          <label>{{ _('Which mobile platforms is this file compatible with?') }}</label>
+          {{ new_addon_form.errors.mobile_platforms }}
+          {{ new_addon_form.mobile_platforms }}
+        </div>
+        {{ new_addon_form.upload }}
       </div>
       <div class="submission-buttons addon-submission-field">
         <button class="addon-upload-dependant" id="submit-upload-file-finish" disabled=disabled type="submit">

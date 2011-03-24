@@ -570,28 +570,24 @@ def json_upload_detail(upload):
     validation = json.loads(upload.validation) if upload.validation else ""
     url = reverse('devhub.upload_detail', args=[upload.uuid, 'json'])
     full_report_url = reverse('devhub.upload_detail', args=[upload.uuid])
-    new_platform_choices = None
+    plat_exclude = []
 
     if validation:
         prepare_validation_results(validation)
         if validation['errors'] == 0:
             try:
                 apps = parse_addon(upload.path).get('apps', [])
-                app_ids = [a.id for a in apps]
+                app_ids = set([a.id for a in apps])
+                supported_platforms = []
                 if amo.MOBILE.id in app_ids:
-                    # For multiple apps, choosing a platform no longer makes
-                    # sense, so only allow ALL
-                    new_platform_choices = [
-                        dict(value=amo.PLATFORM_ALL.id,
-                             text=unicode(amo.PLATFORM_ALL.name),
-                             checked=True)]
-                    if len(app_ids) == 1:
-                        # For mobile only add-ons, show mobile platforms:
-                        new_platform_choices.extend([
-                            dict(value=amo.PLATFORM_MAEMO.id,
-                                 text=unicode(amo.PLATFORM_MAEMO.name)),
-                            dict(value=amo.PLATFORM_ANDROID.id,
-                                 text=unicode(amo.PLATFORM_ANDROID.name))])
+                    supported_platforms.extend(amo.MOBILE_PLATFORMS.keys())
+                    app_ids.remove(amo.MOBILE.id)
+                if len(app_ids):
+                    # Targets any other non-mobile app:
+                    supported_platforms.extend(amo.DESKTOP_PLATFORMS.keys())
+                s = amo.SUPPORTED_PLATFORMS.keys()
+                plat_exclude = set(s) - set(supported_platforms)
+                plat_exclude = [str(p) for p in plat_exclude]
             except django_forms.ValidationError, exc:
                 # XPI parsing errors will be reported in the form submission
                 # (next request).
@@ -602,7 +598,7 @@ def json_upload_detail(upload):
     r = dict(upload=upload.uuid, validation=validation,
              error=upload.task_error, url=url,
              full_report_url=full_report_url,
-             new_platform_choices=new_platform_choices)
+             platforms_to_exclude=plat_exclude)
     return r
 
 
@@ -802,8 +798,9 @@ def version_delete(request, addon_id, addon):
 def version_add(request, addon_id, addon):
     form = forms.NewVersionForm(request.POST, addon=addon)
     if form.is_valid():
-        v = Version.from_upload(form.cleaned_data['upload'], addon,
-                                form.cleaned_data['platforms'])
+        pl = (list(form.cleaned_data['desktop_platforms']) +
+              list(form.cleaned_data['mobile_platforms']))
+        v = Version.from_upload(form.cleaned_data['upload'], addon, pl)
         url = reverse('devhub.versions.edit', args=[addon.slug, str(v.id)])
         return dict(url=url)
     else:
@@ -924,7 +921,9 @@ def submit_addon(request, step):
     if request.method == 'POST':
         if form.is_valid():
             data = form.cleaned_data
-            addon = Addon.from_upload(data['upload'], data['platforms'])
+            p = (list(data['desktop_platforms']) +
+                 list(data['mobile_platforms']))
+            addon = Addon.from_upload(data['upload'], p)
             AddonUser(addon=addon, user=request.amo_user).save()
             SubmitStep.objects.create(addon=addon, step=3)
             return redirect('devhub.submit.3', addon.slug)
