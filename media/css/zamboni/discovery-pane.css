@@ -504,6 +504,7 @@ header:after,
 #recs .gallery {
     margin: 0 auto;
     max-width: 650px;
+    width: 100%;
 }
 
 .promo h2,
@@ -772,7 +773,7 @@ ul.addons {
     margin: 0 -10px;
     clear: both;
 }
-#featured-personas li {
+#sub #featured-personas li {
     border-bottom-color: #666;
 }
 #sub .featured li:last-child,
@@ -781,7 +782,7 @@ ul.addons {
 }
 
 #sub .featured li,
-#featured-personas li h6,
+#sub #featured-personas li h6,
 #more-ways li {
     font-size: 13px;
 }
@@ -790,28 +791,28 @@ ul.addons {
     text-decoration: none;
 }
 
-#up-and-coming ul a.addon-title,
-#featured-personas ul span.addon-title {
+#sub #up-and-coming ul a.addon-title,
+#sub #featured-personas ul span.addon-title {
     display: block;
     overflow: hidden;
     background: rgba(255,255,255,0.35) url("../../img/zamboni/discovery_pane/arrow-right.png") 95% 50% no-repeat;
     color: #333;
 }
-#featured-personas span.addon-title {
+#sub #featured-personas span.addon-title {
     pointer-events: none;
 }
 
-#up-and-coming ul a.addon-title,
-#featured-personas ul span.addon-title b {
+#sub #up-and-coming ul a.addon-title,
+#sub #featured-personas ul span.addon-title b {
     display: block;
     padding: 0.5em 30px 0.5em 10px;
 }
 
-#featured-personas ul span.addon-title b {
+#sub #featured-personas ul span.addon-title b {
     font-weight: normal;
 }
 
-#featured-personas ul span.addon-title {
+#sub #featured-personas ul span.addon-title {
     background-color: rgba(255,255,255,0.65);
     border-top: 1px solid rgba(255,255,255,0.35);
     text-decoration: none;
@@ -820,12 +821,12 @@ ul.addons {
     width: 100%;
 }
 
-#up-and-coming ul a.addon-title:hover,
-#up-and-coming ul a.addon-title:focus,
-#up-and-coming ul a.addon-title:active,
-#featured-personas ul a:hover span.addon-title,
-#featured-personas ul a:focus span.addon-title,
-#featured-personas ul a:active span.addon-title {
+#sub #up-and-coming ul a.addon-title:hover,
+#sub #up-and-coming ul a.addon-title:focus,
+#sub #up-and-coming ul a.addon-title:active,
+#sub #featured-personas ul a:hover span.addon-title,
+#sub #featured-personas ul a:focus span.addon-title,
+#sub #featured-personas ul a:active span.addon-title {
     background-color: rgba(255,255,255,0.65);
     background-position: 96% 50%;
     -moz-transition-property: background-color, background-position;
@@ -834,14 +835,14 @@ ul.addons {
     color: #083681;
 }
 
-#featured-personas ul a:hover span.addon-title,
-#featured-personas ul a:focus span.addon-title,
-#featured-personas ul a:active span.addon-title {
+#sub #featured-personas ul a:hover span.addon-title,
+#sub #featured-personas ul a:focus span.addon-title,
+#sub #featured-personas ul a:active span.addon-title {
     background-color: rgba(255,255,255,0.8);
 }
 
 #sub .featured ul li:last-child a,
-#featured-personas ul li:last-child a span.addon-title {
+#sub #featured-personas ul li:last-child a span.addon-title {
     border-radius: 0 0 8px 8px;
 }
 
@@ -1037,15 +1038,15 @@ ul.addons {
         float: none;
     }
 
-    #up-and-coming,
-    #featured-personas,
-    #more-ways {
+    #sub #up-and-coming,
+    #sub #featured-personas,
+    #sub #more-ways {
         float: left;
         margin-right: 1%;
         width: 30%;
         width: -moz-calc(100% / 3 - 22px - 0.5%);
     }
-    #more-ways {
+    #sub #more-ways {
         margin-right: 0;
         width: -moz-calc(100% / 3 - 22px - 1%);
     }
@@ -1460,27 +1461,25 @@ a#lightbox-secNav-btnClose {
 #images {
     background: rgba(255,255,255,0.35) no-repeat;
     border: 1px solid #a8b8d1;
-    border-radius: 8px;
     box-shadow: inset 0 1px 3px rgba(58,78,103,0.15), 0 1px 0 rgba(255,255,255,0.5);
-    max-height: 152px;
+    max-height: 140px;
     display: none;
     overflow: hidden;
-    width: 100% !important;
+    border-radius: 8px;
 }
 
 #recs .gallery {
-    height: 183px;
     overflow: hidden;
+    height: 183px;
 }
 
-#recs .gallery-addons,
-#images .gallery-thumbs {
+#recs .gallery-addons {
     margin: 0 auto;
     width: 82%;
 }
 
 #images + .addon-info {
-    margin-top: 168px;
+    margin-top: 158px;
 }
 
 #images + .addon-info.js {
@@ -1488,23 +1487,30 @@ a#lightbox-secNav-btnClose {
 }
 
 #images.js {
-    height: 150px;
+    height: 140px;
     overflow: hidden;
 }
 
 #images .panel,
 #recs .panel {
     float: left;
+}
+
+#images.js .panel {
+    width: 33%;
+    margin: 0 -3px;
+    padding: 15px 0;
+    text-align: center;
+    height: 110px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: none;
+}
+
+#recs .panel {
     margin: 20px 5% 20px 0;
     width: 30%;
 }
-
-#images .panel {
-    height: 110px;
-    text-align: center;
-}
-
-#images .panel:last-child,
 #recs .panel:last-child {
     margin-right: 0;
 }
