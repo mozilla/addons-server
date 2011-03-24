@@ -393,3 +393,4 @@ def give_personas_versions():
     path = os.path.join(settings.ROOT, 'migrations/149-personas-versions.sql')
     with open(path) as f:
         cursor.execute(f.read())
+    transaction.commit_unless_managed()
