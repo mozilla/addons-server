@@ -2,6 +2,8 @@
 
 {% block title %}{{ editor_page_title() }}{% endblock %}
 
+{% block bodyclass %}editor-tools {% endblock %}
+
 {% block site_header_title %}
 <h1 class="site-title">
   <a href="{{ url('editors.home') }}" title="{{ _('Return to the Editor Tools homepage') }}">

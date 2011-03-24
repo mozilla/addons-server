@@ -237,6 +237,7 @@ html[lang=it] #nav-main a {
 .sunbird #footer #footer-logo,
 .seamonkey #footer #footer-logo,
 .thunderbird #footer #footer-logo,
+.editor-tools #footer #footer-logo,
 .developer-hub #footer #footer-logo {
     display: none;
 }
