@@ -261,7 +261,7 @@
                     var errors_ul = $('<ul>', {'id': 'upload_errors'});
 
                     $.each(errors.splice(0, 5), function(i, error) {
-                        errors_ul.append($("<li>", {'text': error }));
+                        errors_ul.append($("<li>", {'html': error }));
                     });
 
                     if(errors.length > 0) {
