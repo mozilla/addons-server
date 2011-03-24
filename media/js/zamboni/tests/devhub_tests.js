@@ -837,11 +837,14 @@ module('addonUploaded', {
         }];
 
         $(this.el).trigger('change');
+        // sets all animation durations to 0
+        $.fx.off = true;
     },
     teardown: function() {
         $.fx.off = false;
         this.sandbox.remove();
         z.FormData = this._FormData;
+        $.fx.off = false;
     }
 });
 
@@ -939,6 +942,55 @@ test('Notices count as warnings', function() {
 
     equals($('##upload-status-results strong', this.sandbox).text(),
            'Your add-on passed validation with no errors and 8 warnings.');
+});
+
+test('HTML in errors', function() {
+    var results = {
+        validation: {
+            "errors": 1,
+            "success": false,
+            "warnings": 0,
+            "ending_tier": 3,
+            "messages": [{
+                // TODO(Kumar) when validator is no longer escaped, change this
+                "message": "invalid properties in the install.rdf like &lt;em:id&gt;",
+                "type": "error"
+            }],
+            "rejected": false,
+            "detected_type": "extension",
+            "notices": 0,
+        },
+        error: null,
+        full_report_url: '/full-report'
+    };
+    $(this.el).trigger("upload_success_results",
+                       [{name: 'somefile.txt'}, results]);
+    ok($('#upload-status-bar', this.sandbox).hasClass('bar-fail'));
+    equals($('#upload_errors', this.sandbox).text(),
+           'invalid properties in the install.rdf like <em:id>')
+});
+
+test('HTML in filename (on start)', function() {
+    $(this.el).trigger("upload_start", [{name: "tester's add-on2.xpi"}]);
+    equals($('#upload-status-text', this.sandbox).text(),
+           "Uploading tester's add-on2.xpi");
+});
+
+test('HTML in filename (on error)', function() {
+    var errors = [],
+        results = {};
+    $(this.el).trigger("upload_errors",
+                       [{name: "tester's add-on2.xpi"}, errors, results]);
+    equals($('#upload-status-text', this.sandbox).text(),
+           "Error with tester's add-on2.xpi");
+});
+
+test('HTML in filename (on success)', function() {
+    var results = {};
+    $(this.el).trigger("upload_success",
+                       [{name: "tester's add-on2.xpi"}, results]);
+    equals($('#upload-status-text', this.sandbox).text(),
+           "Validating tester's add-on2.xpi");
 });
 
 
