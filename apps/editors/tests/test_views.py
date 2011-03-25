@@ -965,6 +965,26 @@ class TestReview(ReviewBase):
             'Deleted version')
         eq_(doc('table#review-files tr td:first-child').eq(1).text(), '0.1')
 
+    def test_eula_displayed(self):
+        assert not self.addon.eula
+        r = self.client.get(self.url)
+        assert "View EULA" not in r.content
+
+        self.addon.eula = "Test!"
+        self.addon.save()
+        r = self.client.get(self.url)
+        assert "View EULA" in r.content
+
+    def test_privacy_policy_displayed(self):
+        assert not self.addon.privacy_policy
+        r = self.client.get(self.url)
+        assert "View Privacy Policy" not in r.content
+
+        self.addon.privacy_policy = "Test!"
+        self.addon.save()
+        r = self.client.get(self.url)
+        assert "View Privacy Policy" in r.content
+
 
 class TestReviewPreliminary(ReviewBase):
 

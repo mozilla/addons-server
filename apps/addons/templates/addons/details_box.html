@@ -74,24 +74,26 @@
                 </tr>
               {% endif %}
               {% if not show_actions %}
-              {% if addon.has_eula %}
-              <tr>
-                <th>{{ _('Privacy Policy') }}</th>
-                <td>
-                  <a href="{{ url('addons.privacy', addon.slug) }}">
-                    {{ _('View Privacy Policy') }}</a>
-                </td>
-              </tr>
-              {% endif %}
-              {% if addon.has_eula %}
-              <tr>
-                <th>{{ _('EULA') }}</th>
-                <td>
-                  <a href="{{ url('addons.eula', addon.slug) }}">
-                    {{ _('View EULA') }}</a>
-                </td>
-              </tr>
-              {% endif %}
+                {# Show privacy policy / eula if the button isn't shown #}
+                {# (Basically, on the editor review page) #}
+                {% if addon.privacy_policy %}
+                <tr>
+                  <th>{{ _('Privacy Policy') }}</th>
+                  <td>
+                    <a href="{{ url('addons.privacy', addon.slug) }}">
+                      {{ _('View Privacy Policy') }}</a>
+                  </td>
+                </tr>
+                {% endif %}
+                {% if addon.has_eula %}
+                <tr>
+                  <th>{{ _('EULA') }}</th>
+                  <td>
+                    <a href="{{ url('addons.eula', addon.slug) }}">
+                      {{ _('View EULA') }}</a>
+                  </td>
+                </tr>
+                {% endif %}
               {% endif %}
             </tbody>
           </table>
