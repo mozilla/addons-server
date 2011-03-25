@@ -201,11 +201,12 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         return os.path.splitext(self.filename)[-1]
 
     @classmethod
-    def mv(cls, src, dst):
+    def mv(cls, src, dst, msg):
         """Move a file from src to dst."""
         try:
             src, dst = path.path(src), path.path(dst)
             if src.exists():
+                log.info(msg % (src, dst))
                 if not dst.dirname().exists():
                     dst.dirname().makedirs()
                 src.rename(dst)
@@ -217,9 +218,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         if not self.filename:
             return
         src, dst = self.file_path, self.guarded_file_path
-        if os.path.exists(src):
-            log.info('Moving disabled file: %s => %s' % (src, dst))
-            self.mv(src, dst)
+        self.mv(src, dst, 'Moving disabled file: %s => %s')
         # Remove the file from the mirrors if necessary.
         if os.path.exists(self.mirror_file_path):
             log.info('Unmirroring disabled file: %s'
@@ -230,9 +229,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         if not self.filename:
             return
         src, dst = self.guarded_file_path, self.file_path
-        if os.path.exists(src):
-            log.info('Moving undisabled file: %s => %s' % (src, dst))
-            self.mv(src, dst)
+        self.mv(src, dst, 'Moving undisabled file: %s => %s')
 
     def copy_to_mirror(self):
         if not self.filename:
