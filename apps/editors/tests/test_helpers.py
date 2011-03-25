@@ -13,14 +13,16 @@ from nose.tools import eq_
 from pyquery import PyQuery as pq
 import test_utils
 
-from addons.models import Addon
 import amo
+from addons.models import Addon
 from amo.urlresolvers import reverse
 from devhub.models import ActivityLog
 from editors.helpers import (ViewPendingQueueTable, ReviewHelper, ReviewFiles,
                              ReviewAddon, NOMINATED_STATUSES,
-                             PRELIMINARY_STATUSES, PENDING_STATUSES)
+                             PRELIMINARY_STATUSES, PENDING_STATUSES,
+                             editor_page_title)
 from files.models import File
+from translations.models import Translation
 from users.models import UserProfile
 
 
@@ -552,3 +554,10 @@ class TestReviewHelper(test_utils.TestCase):
                 getattr(self.helper.handler, process)()
                 assert File.objects.get(pk=self.file.pk).reviewed, (
                        'Reviewed for status %r, %s()' % (status, process))
+
+
+def test_page_title_unicode():
+    t = Translation(localized_string=u'\u30de\u30eb\u30c1\u30d712\u30eb')
+    request = Mock()
+    request.APP = amo.FIREFOX
+    editor_page_title({'request': request}, title=t)
