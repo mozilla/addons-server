@@ -1,5 +1,6 @@
 import collections
 from datetime import datetime, timedelta
+import time
 import uuid
 
 from django.core.cache import cache
@@ -37,9 +38,12 @@ def _blocklist(request, apiver, app, appver):
     items = get_items(apiver, app, appver)
     plugins = get_plugins(apiver, app, appver)
     gfxs = BlocklistGfx.objects.filter(Q(guid__isnull=True) | Q(guid=app))
+    # The client expects milliseconds, Python's time returns seconds.
+    now = int(time.time() * 1000)
     return jingo.render(request, 'blocklist/blocklist.xml',
                             dict(items=items, plugins=plugins, gfxs=gfxs,
-                                 apiver=apiver, appguid=app, appver=appver))
+                                 apiver=apiver, appguid=app, appver=appver,
+                                 now=now))
 
 
 def clear_blocklist(*args, **kw):

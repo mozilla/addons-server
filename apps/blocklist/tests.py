@@ -1,3 +1,4 @@
+from datetime import datetime
 from xml.dom import minidom
 
 from django.conf import settings
@@ -26,6 +27,7 @@ class BlocklistTest(test_utils.TestCase):
         self.fx2_url = reverse('blocklist', args=[2, amo.FIREFOX.guid, '2.0'])
         self.mobile_url = reverse('blocklist', args=[2, amo.MOBILE.guid, '.9'])
         self._redis = redisutils.mock_redis()
+        cache.clear()
 
     def tearDown(self):
         redisutils.reset_redis(self._redis)
@@ -36,6 +38,10 @@ class BlocklistTest(test_utils.TestCase):
     def eq_(self, x, y):
         return eq_(self.normalize(x), self.normalize(y))
 
+    def dom(self, url):
+        r = self.client.get(url)
+        return minidom.parseString(r.content)
+
 
 class BlocklistItemTest(BlocklistTest):
 
@@ -45,10 +51,17 @@ class BlocklistItemTest(BlocklistTest):
         self.app = BlocklistApp.objects.create(blitem=self.item,
                                                guid=amo.FIREFOX.guid)
 
+    def test_lastupdate(self):
+        bl = self.dom(self.fx4_url).getElementsByTagName('blocklist')[0]
+        t = datetime.fromtimestamp(int(bl.getAttribute('lastupdate')) / 1000)
+        assert (datetime.now() - t).seconds < 5
+
     def test_no_items(self):
         self.item.delete()
-        r = self.client.get(self.fx4_url)
-        self.eq_(r.content, base_xml)
+        dom = self.dom(self.fx4_url)
+        children = dom.getElementsByTagName('blocklist')[0].childNodes
+        # There are only text nodes.
+        assert all(e.nodeType == 3 for e in children)
 
     def test_new_cookie_per_user(self):
         self.client.get(self.fx4_url)
@@ -84,10 +97,6 @@ class BlocklistItemTest(BlocklistTest):
         r = self.client.get(self.mobile_url)
         eq_(r.status_code, 200)
         eq_(len(r.context['items']), 1)
-
-    def dom(self, url):
-        r = self.client.get(self.fx4_url)
-        return minidom.parseString(r.content)
 
     def test_item_guid(self):
         items = self.dom(self.fx4_url).getElementsByTagName('emItem')
@@ -200,8 +209,10 @@ class BlocklistPluginTest(BlocklistTest):
         self.plugin = BlocklistPlugin.objects.create(guid=amo.FIREFOX.guid)
 
     def test_no_plugins(self):
-        r = self.client.get(self.mobile_url)
-        self.eq_(r.content, base_xml)
+        dom = BlocklistTest.dom(self, self.mobile_url)
+        children = dom.getElementsByTagName('blocklist')[0].childNodes
+        # There are only text nodes.
+        assert all(e.nodeType == 3 for e in children)
 
     def dom(self, url=None):
         url = url or self.fx4_url
@@ -287,8 +298,10 @@ class BlocklistGfxTest(BlocklistTest):
             driver_version='version', driver_version_comparator='compare')
 
     def test_no_gfx(self):
-        r = self.client.get(self.mobile_url)
-        self.eq_(r.content, base_xml)
+        dom = self.dom(self.mobile_url)
+        children = dom.getElementsByTagName('blocklist')[0].childNodes
+        # There are only text nodes.
+        assert all(e.nodeType == 3 for e in children)
 
     def test_gfx(self):
         r = self.client.get(self.fx4_url)
