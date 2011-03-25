@@ -91,6 +91,15 @@ class TestEventLog(EditorTest):
 
         assert 'No events found for this period.' in r.content
 
+    def test_breadcrumbs(self):
+        r = self.client.get(reverse('editors.eventlog'))
+        doc = pq(r.content)
+        list_items = doc('ol.breadcrumbs li')
+        eq_(list_items.length, 2)
+
+        eq_(list_items.eq(0).find('a').text(), "Editor Tools")
+        eq_(list_items.eq(1).text(), "Event Log")
+
 
 class TestEventLogDetail(TestEventLog):
     def test_me(self):
@@ -134,6 +143,15 @@ class TestReviewLog(EditorTest):
         doc = pq(r.content)
         eq_(len(doc('tbody tr').not_('.hide')), 50)
         eq_(doc('tbody tr.hide').eq(0).text(), 'youwin')
+
+    def test_breadcrumbs(self):
+        r = self.client.get(reverse('editors.reviewlog'))
+        doc = pq(r.content)
+        list_items = doc('ol.breadcrumbs li')
+        eq_(list_items.length, 2)
+
+        eq_(list_items.eq(0).find('a').text(), "Editor Tools")
+        eq_(list_items.eq(1).text(), "Review Log")
 
 
 class TestHome(EditorTest):
@@ -347,6 +365,15 @@ class TestPendingQueue(QueueTest):
         eq_(doc('.tabnav li a:eq(1)').attr('href'),
             reverse('editors.queue_pending'))
 
+    def test_breadcrumbs(self):
+        r = self.client.get(reverse('editors.queue_pending'))
+        doc = pq(r.content)
+        list_items = doc('ol.breadcrumbs li')
+        eq_(list_items.length, 2)
+
+        eq_(list_items.eq(0).find('a').text(), "Editor Tools")
+        eq_(list_items.eq(1).text(), "Pending Updates")
+
 
 class TestNominatedQueue(QueueTest):
 
@@ -398,6 +425,15 @@ class TestPreliminaryQueue(QueueTest):
         eq_(doc('.tabnav li a:eq(2)').text(), u'Preliminary Reviews (2)')
         eq_(doc('.tabnav li a:eq(2)').attr('href'),
             reverse('editors.queue_prelim'))
+
+    def test_breadcrumbs(self):
+        r = self.client.get(reverse('editors.queue_prelim'))
+        doc = pq(r.content)
+        list_items = doc('ol.breadcrumbs li')
+        eq_(list_items.length, 2)
+
+        eq_(list_items.eq(0).find('a').text(), "Editor Tools")
+        eq_(list_items.eq(1).text(), "Preliminary Reviews")
 
 
 class TestModeratedQueue(QueueTest):
@@ -508,6 +544,15 @@ class TestModeratedQueue(QueueTest):
         eq_(doc('.tabnav li a:eq(3)').text(), u'Moderated Review (1)')
         eq_(doc('.tabnav li a:eq(3)').attr('href'),
             reverse('editors.queue_moderated'))
+
+    def test_breadcrumbs(self):
+        r = self.client.get(reverse('editors.queue_moderated'))
+        doc = pq(r.content)
+        list_items = doc('ol.breadcrumbs li')
+        eq_(list_items.length, 2)
+
+        eq_(list_items.eq(0).find('a').text(), "Editor Tools")
+        eq_(list_items.eq(1).text(), "Moderated Reviews")
 
 
 class SearchTest(EditorTest):
@@ -985,6 +1030,15 @@ class TestReview(ReviewBase):
         r = self.client.get(self.url)
         assert "View Privacy Policy" in r.content
 
+    def test_breadcrumbs(self):
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        list_items = doc('ol.breadcrumbs li')
+        eq_(list_items.length, 3)
+
+        eq_(list_items.eq(0).find('a').text(), "Editor Tools")
+        eq_(list_items.eq(1).find('a').text(), "Pending Updates")
+
 
 class TestReviewPreliminary(ReviewBase):
 
@@ -1070,6 +1124,15 @@ class TestReviewPreliminary(ReviewBase):
         self.client.post(self.url, data)
         eq_([amo.STATUS_DISABLED, amo.STATUS_LISTED],
             [v.status for v in version.files.all().order_by('status')])
+
+    def test_breadcrumbs(self):
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        list_items = doc('ol.breadcrumbs li')
+        eq_(list_items.length, 3)
+
+        eq_(list_items.eq(0).find('a').text(), "Editor Tools")
+        eq_(list_items.eq(1).find('a').text(), "Pending Updates")
 
 
 class TestEditorMOTD(EditorTest):

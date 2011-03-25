@@ -1,5 +1,9 @@
 {% extends "editors/base.html" %}
 
+{% block breadcrumbs %}
+{{ editors_breadcrumbs(items=[(None, _('Event Log'))]) }}
+{% endblock %}
+
 {% block content %}
 <h2>{{ _('Event Log') }}</h2>
 

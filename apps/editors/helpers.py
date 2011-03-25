@@ -6,10 +6,10 @@ from django.utils.datastructures import SortedDict
 import django_tables as tables
 import jinja2
 from jingo import register
-from tower import ugettext_lazy as _, ungettext as ngettext
+from tower import ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext
 
 import amo
-from amo.helpers import page_title, absolutify
+from amo.helpers import breadcrumbs, page_title, absolutify
 from amo.urlresolvers import reverse
 from amo.utils import send_mail as amo_send_mail
 
@@ -22,10 +22,10 @@ from editors.sql_table import SQLTable
 @register.function
 def file_review_status(addon, file):
     if addon.status in [amo.STATUS_UNREVIEWED, amo.STATUS_LITE]:
-        return _('Pending Preliminary Review')
+        return _lazy('Pending Preliminary Review')
     elif addon.status in [amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED,
                           amo.STATUS_PUBLIC]:
-        return _('Pending Full Review')
+        return _lazy('Pending Full Review')
     return amo.STATUS_CHOICES[file.status]
 
 
@@ -36,20 +36,60 @@ def editor_page_title(context, title=None, addon=None):
     if addon:
         title = u'%s :: %s' % (title, addon.name)
     else:
-        section = _('Editor Tools')
+        section = _lazy('Editor Tools')
         title = u'%s :: %s' % (title, section) if title else section
     return page_title(context, title)
 
 
+@register.function
+@jinja2.contextfunction
+def editors_breadcrumbs(context, queue=None, queue_id=None, items=None):
+    """
+    Wrapper function for ``breadcrumbs``. Prepends 'Editor Tools'
+    breadcrumbs.
+
+    **items**
+        list of [(url, label)] to be inserted after Add-on.
+    **addon**
+        Adds the Add-on name to the end of the trail.  If items are
+        specified then the Add-on will be linked.
+    **add_default**
+        Prepends trail back to home when True.  Default is False.
+    """
+    crumbs = [(reverse('editors.home'), _('Editor Tools'))]
+
+    if queue_id:
+        queue_ids = {4: 'pending', 3: 'nominated', 1: 'prelim'}
+        queue = queue_ids.get(queue_id, 'queue')
+
+    if queue:
+        queues = {'queue': _("Queue"),
+                  'pending': _("Pending Updates"),
+                  'nominated': _("Full Reviews"),
+                  'prelim': _("Preliminary Reviews"),
+                  'moderated': _("Moderated Reviews")}
+
+        if items and not queue == 'queue':
+            url = reverse('editors.queue_%s' % queue)
+        else:
+            # The Addon is the end of the trail.
+            url = None
+        crumbs.append((url, queues[queue]))
+
+    if items:
+        crumbs.extend(items)
+    return breadcrumbs(context, crumbs, add_default=False)
+
+
 class EditorQueueTable(SQLTable):
-    addon_name = tables.Column(verbose_name=_(u'Addon'))
-    addon_type_id = tables.Column(verbose_name=_(u'Type'))
-    waiting_time_min = tables.Column(verbose_name=_(u'Waiting Time'))
-    flags = tables.Column(verbose_name=_(u'Flags'), sortable=False)
-    applications = tables.Column(verbose_name=_(u'Applications'),
+    addon_name = tables.Column(verbose_name=_lazy(u'Addon'))
+    addon_type_id = tables.Column(verbose_name=_lazy(u'Type'))
+    waiting_time_min = tables.Column(verbose_name=_lazy(u'Waiting Time'))
+    flags = tables.Column(verbose_name=_lazy(u'Flags'), sortable=False)
+    applications = tables.Column(verbose_name=_lazy(u'Applications'),
                                  sortable=False)
-    additional_info = tables.Column(verbose_name=_(u'Additional Information'),
-                                    sortable=False)
+    additional_info = tables.Column(
+            verbose_name=_lazy(u'Additional Information'), sortable=False)
 
     def render_addon_name(self, row):
         url = '%s?num=%s' % (reverse('editors.review',
@@ -66,16 +106,16 @@ class EditorQueueTable(SQLTable):
     def render_additional_info(self, row):
         info = []
         if row.is_site_specific:
-            info.append(_(u'Site Specific'))
+            info.append(_lazy(u'Site Specific'))
         if (len(row.file_platform_ids) == 1
             and row.file_platform_ids != [amo.PLATFORM_ALL.id]):
             k = row.file_platform_ids[0]
             # L10n: first argument is the platform such as Linux, Mac OS X
-            info.append(_(u'{0} only').format(amo.PLATFORMS[k].name))
+            info.append(_lazy(u'{0} only').format(amo.PLATFORMS[k].name))
         if row.external_software:
-            info.append(_(u'Requires External Software'))
+            info.append(_lazy(u'Requires External Software'))
         if row.binary:
-            info.append(_(u'Binary Components'))
+            info.append(_lazy(u'Binary Components'))
         return u', '.join([jinja2.escape(i) for i in info])
 
     def render_applications(self, row):
@@ -88,11 +128,11 @@ class EditorQueueTable(SQLTable):
         if not row.admin_review:
             return ''
         return (u'<div class="app-icon ed-sprite-admin-review" title="%s">'
-                u'</div>' % _('Admin Review'))
+                u'</div>' % _lazy('Admin Review'))
 
     def render_waiting_time_min(self, row):
         if row.waiting_time_min == 0:
-            r = _('moments ago')
+            r = _lazy('moments ago')
         elif row.waiting_time_hours == 0:
             # L10n: first argument is number of minutes
             r = ngettext(u'{0} minute', u'{0} minutes',
@@ -193,19 +233,19 @@ class ReviewHelper:
             hasattr(self.handler, 'process_public')):
             actions['public'] = {'method': self.handler.process_public,
                                  'minimal': False,
-                                 'label': _('Push to public')}
+                                 'label': _lazy('Push to public')}
 
         actions['prelim'] = {'method': self.handler.process_preliminary,
                              'label': labels['prelim'],
                              'minimal': False}
         actions['reject'] = {'method': self.handler.process_sandbox,
-                             'label': _('Reject'),
+                             'label': _lazy('Reject'),
                              'minimal': False}
         actions['info'] = {'method': self.handler.request_information,
-                           'label': _('Request more information'),
+                           'label': _lazy('Request more information'),
                            'minimal': True}
         actions['super'] = {'method': self.handler.process_super_review,
-                            'label': _('Request super-review'),
+                            'label': _lazy('Request super-review'),
                             'minimal': True}
         for k, v in actions.items():
             v['details'] = details.get(k)
@@ -213,46 +253,51 @@ class ReviewHelper:
         return actions
 
     def _review_actions(self):
-        labels = {'prelim': _('Grant preliminary review')}
-        details = {'prelim': _('This will mark the files as '
-                               'premliminary reviewed.'),
-                   'info': _('Use this form to request more information from '
-                             'the author. They will receive an email and be '
-                             'able to answer here. You will be notified by '
-                             'email when they reply.'),
-                   'super': _('If you have concerns about this add-on\'s '
-                              'security, copyright issues, or other concerns '
-                              'that an administrator should look into, enter '
-                              'your comments in the area below. They will be '
-                              'sent to administrators, not the author.'),
-                   'reject': _('This will reject the add-on and remove '
-                               'it from the review queue.')}
+        labels = {'prelim': _lazy('Grant preliminary review')}
+        details = {'prelim': _lazy('This will mark the files as '
+                                   'premliminary reviewed.'),
+                   'info': _lazy('Use this form to request more information '
+                                 'from the author. They will receive an email '
+                                 'and be able to answer here. You will be '
+                                 'notified by email when they reply.'),
+                   'super': _lazy('If you have concerns about this add-on\'s '
+                                  'security, copyright issues, or other '
+                                  'concerns that an administrator should look '
+                                  'into, enter your comments in the area '
+                                  'below. They will be sent to '
+                                  'administrators, not the author.'),
+                   'reject': _lazy('This will reject the add-on and remove '
+                                   'it from the review queue.')}
 
         if self.addon.status == amo.STATUS_LITE:
-            details['reject'] = _('This will reject the files and remove '
-                                  'them from the review queue.')
+            details['reject'] = _lazy('This will reject the files and remove '
+                                      'them from the review queue.')
 
         if self.addon.status in (amo.STATUS_UNREVIEWED, amo.STATUS_NOMINATED):
-            details['prelim'] = _('This will mark the add-on as preliminarily '
-                                  'reviewed. Future versions will undergo '
-                                  'preliminary review.')
+            details['prelim'] = _lazy('This will mark the add-on as '
+                                      'preliminarily reviewed. Future '
+                                      'versions will undergo '
+                                      'preliminary review.')
         elif self.addon.status == amo.STATUS_LITE:
-            details['prelim'] = _('This will mark the files as preliminarily '
-                                  'reviewed. Future versions will undergo '
-                                  'preliminary review.')
+            details['prelim'] = _lazy('This will mark the files as '
+                                      'preliminarily reviewed. Future '
+                                      'versions will undergo '
+                                      'preliminary review.')
         elif self.addon.status == amo.STATUS_LITE_AND_NOMINATED:
-            labels['prelim'] = _('Retain preliminary review')
-            details['prelim'] = _('This will retain the add-on as '
-                                  'preliminarily reviewed. Future versions '
-                                  'will undergo preliminary review.')
+            labels['prelim'] = _lazy('Retain preliminary review')
+            details['prelim'] = _lazy('This will retain the add-on as '
+                                      'preliminarily reviewed. Future '
+                                      'versions will undergo preliminary '
+                                      'review.')
         if self.review_type == 'pending':
-            details['reject'] = _('This will reject a version of a public '
-                                  'add-on and remove it from the queue.')
+            details['reject'] = _lazy('This will reject a version of a public '
+                                      'add-on and remove it from the queue.')
         else:
-            details['public'] = _('This will mark the add-on and its most '
-                                  'recent version and files as public. Future '
-                                  'versions will go into the sandbox until '
-                                  'they are reviewed by an editor.')
+            details['public'] = _lazy('This will mark the add-on and its most '
+                                      'recent version and files as public. '
+                                      'Future versions will go into the '
+                                      'sandbox until they are reviewed by an '
+                                      'editor.')
 
         return labels, details
 
@@ -321,14 +366,14 @@ class ReviewBase:
         log.info(u'Sending request for information for %s to %s' %
                  (self.addon, emails))
         send_mail('editors/emails/info.ltxt',
-                   _('Mozilla Add-ons: %s %s') %
+                   _lazy('Mozilla Add-ons: %s %s') %
                    (self.addon.name, self.version.version),
                    emails, Context(self.get_context_data()))
 
     def send_super_mail(self):
         log.info(u'Super review requested for %s' % (self.addon))
         send_mail('editors/emails/super_review.ltxt',
-                   _('Super review requested: %s') % (self.addon.name),
+                   _lazy('Super review requested: %s') % (self.addon.name),
                    [settings.SENIOR_EDITORS_EMAIL],
                    Context(self.get_context_data()))
 
@@ -349,7 +394,7 @@ class ReviewAddon(ReviewBase):
 
         self.log_approval(amo.LOG.APPROVE_VERSION)
         self.notify_email('%s_to_public' % self.review_type,
-                          _('Mozilla Add-ons: %s %s Fully Reviewed'))
+                          _lazy('Mozilla Add-ons: %s %s Fully Reviewed'))
 
         log.info(u'Making %s public' % (self.addon))
         log.info(u'Sending email for %s' % (self.addon))
@@ -363,7 +408,7 @@ class ReviewAddon(ReviewBase):
         self.log_approval(amo.LOG.REJECT_VERSION)
         self.notify_email('%s_to_sandbox' % self.review_type,
                           # L10n: addon name, version string
-                          _('Mozilla Add-ons: %s %s Reviewed'))
+                          _lazy('Mozilla Add-ons: %s %s Reviewed'))
 
         log.info(u'Making %s disabled' % (self.addon))
         log.info(u'Sending email for %s' % (self.addon))
@@ -387,7 +432,7 @@ class ReviewAddon(ReviewBase):
         self.log_approval(amo.LOG.PRELIMINARY_VERSION)
         self.notify_email(template,
                           # L10n: addon name, version string
-                          _('Mozilla Add-ons: %s %s Preliminary Reviewed'))
+                          _lazy('Mozilla Add-ons: %s %s Preliminary Reviewed'))
 
         log.info(u'Making %s preliminary' % (self.addon))
         log.info(u'Sending email for %s' % (self.addon))
@@ -407,7 +452,7 @@ class ReviewFiles(ReviewBase):
 
         self.log_approval(amo.LOG.REJECT_VERSION)
         self.notify_email('%s_to_preliminary' % self.review_type,
-                          _('Mozilla Add-ons: %s %s Reviewed'))
+                          _lazy('Mozilla Add-ons: %s %s Reviewed'))
 
         log.info(u'Making %s files %s disabled' %
                  (self.addon,
@@ -421,7 +466,7 @@ class ReviewFiles(ReviewBase):
 
         self.log_approval(amo.LOG.PRELIMINARY_VERSION)
         self.notify_email('%s_to_preliminary' % self.review_type,
-                          _('Mozilla Add-ons: %s %s Preliminary Reviewed'))
+                          _lazy('Mozilla Add-ons: %s %s Preliminary Reviewed'))
 
         log.info(u'Making %s files %s preliminary' %
                  (self.addon,

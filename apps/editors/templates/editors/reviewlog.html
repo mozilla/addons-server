@@ -1,4 +1,9 @@
 {% extends "editors/base.html" %}
+
+{% block breadcrumbs %}
+{{ editors_breadcrumbs(items=[(None, _('Review Log'))]) }}
+{% endblock %}
+
 {% block content %}
   <h2>{{ _('Add-on Editor Review Log', 'editorcp_reviewlog_page_heading') }}</h2>
 
@@ -33,15 +38,17 @@
             <tr>
               <td>{{ item.created|datetime('%Y-%m-%d') }}</td>
               <td>
-                {{ item.arguments.0|link }}
-                {% if item.arguments|count >= 2 %}
-                  {{ item.arguments[1] }}
+                {% if item.arguments.0 %}
+                  {{ item.arguments.0|link }}
+                  {% if item.arguments|count >= 2 %}
+                    {{ item.arguments[1] }}
 
-                  <a href="{{ url('editors.review', item.arguments[1].id) }}">
+                    <a href="{{ url('editors.review', item.arguments[1].id) }}">
+                      {{ ACTION_DICT.get(item.action) }}
+                    </a>
+                  {% else %}
                     {{ ACTION_DICT.get(item.action) }}
-                  </a>
-                {% else %}
-                  {{ ACTION_DICT.get(item.action) }}
+                  {% endif %}
                 {% endif %}
               </td>
               <td>{{ item.user.display_name }}</td>

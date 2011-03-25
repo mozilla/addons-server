@@ -6,7 +6,12 @@
 
 {% block bodyclass %}inverse{% endblock %}
 
+{% block breadcrumbs %}
+{{ editors_breadcrumbs(queue_id=addon.status, items=[(None, addon.name)]) }}
+{% endblock %}
+
 {% block content %}
+
 <hgroup>
   <h2 class="addon"{{ addon.name|locale_html }}>
     <img src="{{ addon.icon_url }}" class="icon"/>
