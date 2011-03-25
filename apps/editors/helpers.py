@@ -21,7 +21,7 @@ from editors.sql_table import SQLTable
 
 @register.function
 def file_review_status(addon, file):
-    if addon.status in [amo.STATUS_UNREVIEWED]:
+    if addon.status in [amo.STATUS_UNREVIEWED, amo.STATUS_LITE]:
         return _('Pending Preliminary Review')
     elif addon.status in [amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED,
                           amo.STATUS_PUBLIC]:

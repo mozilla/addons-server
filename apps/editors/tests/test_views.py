@@ -1117,10 +1117,11 @@ class TestStatusFile(ReviewBase):
         self.file = self.addon.current_version.files.all()[0]
 
     def test_status(self):
-        self.addon.update(status=amo.STATUS_UNREVIEWED)
-        res = self.client.get(self.url)
-        node = pq(res.content)('ul.files li:first-child')
-        assert 'Pending Preliminary Review' in node.text()
+        for status in [amo.STATUS_UNREVIEWED, amo.STATUS_LITE]:
+            self.addon.update(status=status)
+            res = self.client.get(self.url)
+            node = pq(res.content)('ul.files li:first-child')
+            assert 'Pending Preliminary Review' in node.text()
 
     def test_status_full(self):
         for status in [amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED,
