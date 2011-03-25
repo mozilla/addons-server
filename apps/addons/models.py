@@ -435,11 +435,11 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             try:
                 self.save()
                 signals.version_changed.send(sender=self)
-                log.debug('Version changed from backup: %s to %s, '
+                log.debug(u'Version changed from backup: %s to %s, '
                           'current: %s to %s for addon %s'
                           % tuple(diff + [self]))
             except Exception, e:
-                log.error('Could not save version changes backup: %s to %s, '
+                log.error(u'Could not save version changes backup: %s to %s, '
                           'current: %s to %s for addon %s (%s)' %
                           tuple(diff + [self, e]))
 
