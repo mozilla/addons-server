@@ -588,7 +588,7 @@ a.listview:before {
     border-radius: 6px;
     margin: 0 8px 0 0;
     width: 224px;
-    width: -moz-calc(100% - 110px);
+    width: -moz-calc(100% - 112px);
     font-size: 18px;
     vertical-align: bottom;
 }
