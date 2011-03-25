@@ -148,7 +148,7 @@ PENDING_STATUSES = (amo.STATUS_BETA, amo.STATUS_DISABLED, amo.STATUS_LISTED,
 
 def send_mail(template, subject, emails, context):
     template = loader.get_template(template)
-    amo_send_mail(subject, template.render(Context(context)),
+    amo_send_mail(subject, template.render(Context(context, autoescape=False)),
                   recipient_list=emails, from_email=settings.EDITORS_EMAIL,
                   use_blacklist=False)
 

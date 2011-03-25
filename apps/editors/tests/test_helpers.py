@@ -17,10 +17,7 @@ import amo
 from addons.models import Addon
 from amo.urlresolvers import reverse
 from devhub.models import ActivityLog
-from editors.helpers import (ViewPendingQueueTable, ReviewHelper, ReviewFiles,
-                             ReviewAddon, NOMINATED_STATUSES,
-                             PRELIMINARY_STATUSES, PENDING_STATUSES,
-                             editor_page_title)
+from editors import helpers
 from files.models import File
 from translations.models import Translation
 from users.models import UserProfile
@@ -38,7 +35,7 @@ class TestViewPendingQueueTable(test_utils.TestCase):
     def setUp(self):
         super(TestViewPendingQueueTable, self).setUp()
         qs = Mock()
-        self.table = ViewPendingQueueTable(qs)
+        self.table = helpers.ViewPendingQueueTable(qs)
 
     def test_addon_name(self):
         row = Mock()
@@ -118,7 +115,7 @@ class TestAdditionalInfoInQueue(test_utils.TestCase):
     def setUp(self):
         super(TestAdditionalInfoInQueue, self).setUp()
         qs = Mock()
-        self.table = ViewPendingQueueTable(qs)
+        self.table = helpers.ViewPendingQueueTable(qs)
         self.row = Mock()
         self.row.is_site_specific = False
         self.row.file_platform_ids = [amo.PLATFORM_ALL.id]
@@ -201,8 +198,8 @@ class TestReviewHelper(test_utils.TestCase):
                 'applications': 'Firefox'}
 
     def get_helper(self):
-        return ReviewHelper(request=self.request, addon=self.addon,
-                            version=self.version)
+        return helpers.ReviewHelper(request=self.request, addon=self.addon,
+                                    version=self.version)
 
     def setup_type(self, status):
         self.addon.update(status=status)
@@ -232,12 +229,12 @@ class TestReviewHelper(test_utils.TestCase):
     def test_review_files(self):
         for status in REVIEW_FILES_STATUSES:
             self.setup_data(status=status)
-            eq_(self.helper.handler.__class__, ReviewFiles)
+            eq_(self.helper.handler.__class__, helpers.ReviewFiles)
 
     def test_review_addon(self):
         for status in REVIEW_ADDON_STATUSES:
             self.setup_data(status=status)
-            eq_(self.helper.handler.__class__, ReviewAddon)
+            eq_(self.helper.handler.__class__, helpers.ReviewAddon)
 
     def test_process_action_none(self):
         self.helper.set_data({'action': 'foo'})
@@ -332,7 +329,7 @@ class TestReviewHelper(test_utils.TestCase):
         self.helper.set_data(data)
 
     def test_nomination_to_public_no_files(self):
-        for status in NOMINATED_STATUSES:
+        for status in helpers.NOMINATED_STATUSES:
             self.setup_data(status, ['addon_files'])
             self.helper.handler.process_public()
 
@@ -340,7 +337,7 @@ class TestReviewHelper(test_utils.TestCase):
                 amo.STATUS_PUBLIC)
 
     def test_nomination_to_public_and_current_version(self):
-        for status in NOMINATED_STATUSES:
+        for status in helpers.NOMINATED_STATUSES:
             self.setup_data(status, ['addon_files'])
             self.addon.update(_current_version=None)
 
@@ -377,7 +374,7 @@ class TestReviewHelper(test_utils.TestCase):
         eq_(self.check_log_count(amo.LOG.APPROVE_VERSION.id), 1)
 
     def test_nomination_to_public(self):
-        for status in NOMINATED_STATUSES:
+        for status in helpers.NOMINATED_STATUSES:
             self.setup_data(status)
             self.helper.handler.process_public()
 
@@ -394,7 +391,7 @@ class TestReviewHelper(test_utils.TestCase):
             eq_(self.check_log_count(amo.LOG.APPROVE_VERSION.id), 1)
 
     def test_nomination_to_preliminary(self):
-        for status in NOMINATED_STATUSES:
+        for status in helpers.NOMINATED_STATUSES:
             self.setup_data(status)
             self.helper.handler.process_preliminary()
 
@@ -413,7 +410,7 @@ class TestReviewHelper(test_utils.TestCase):
             eq_(self.check_log_count(amo.LOG.PRELIMINARY_VERSION.id), 1)
 
     def test_nomination_to_sandbox(self):
-        for status in NOMINATED_STATUSES:
+        for status in helpers.NOMINATED_STATUSES:
             self.setup_data(status)
             self.helper.handler.process_sandbox()
 
@@ -429,7 +426,7 @@ class TestReviewHelper(test_utils.TestCase):
             eq_(self.check_log_count(amo.LOG.REJECT_VERSION.id), 1)
 
     def test_nomination_to_super_review(self):
-        for status in NOMINATED_STATUSES:
+        for status in helpers.NOMINATED_STATUSES:
             self.setup_data(status)
             self.helper.handler.process_super_review()
 
@@ -449,7 +446,7 @@ class TestReviewHelper(test_utils.TestCase):
         assert not hasattr(self.helper.handler, 'process_public')
 
     def test_preliminary_to_preliminary(self):
-        for status in PRELIMINARY_STATUSES:
+        for status in helpers.PRELIMINARY_STATUSES:
             self.setup_data(status)
             self.helper.handler.process_preliminary()
 
@@ -464,7 +461,7 @@ class TestReviewHelper(test_utils.TestCase):
             eq_(self.check_log_count(amo.LOG.PRELIMINARY_VERSION.id), 1)
 
     def test_preliminary_to_sandbox(self):
-        for status in PRELIMINARY_STATUSES:
+        for status in helpers.PRELIMINARY_STATUSES:
             self.setup_data(status)
             self.helper.handler.process_sandbox()
 
@@ -478,7 +475,7 @@ class TestReviewHelper(test_utils.TestCase):
             eq_(self.check_log_count(amo.LOG.REJECT_VERSION.id), 1)
 
     def test_preliminary_to_super_review(self):
-        for status in PRELIMINARY_STATUSES:
+        for status in helpers.PRELIMINARY_STATUSES:
             self.setup_data(status)
             self.helper.handler.process_super_review()
 
@@ -504,12 +501,12 @@ class TestReviewHelper(test_utils.TestCase):
             eq_(self.check_log_count(amo.LOG.ESCALATE_VERSION.id), 1)
 
     def test_pending_to_public(self):
-        for status in PENDING_STATUSES:
+        for status in helpers.PENDING_STATUSES:
             self.setup_data(status)
             assert not hasattr(self.helper.handler, 'process_public')
 
     def test_pending_to_sandbox(self):
-        for status in PENDING_STATUSES:
+        for status in helpers.PENDING_STATUSES:
             self.setup_data(status)
             self.helper.handler.process_sandbox()
 
@@ -523,7 +520,7 @@ class TestReviewHelper(test_utils.TestCase):
             eq_(self.check_log_count(amo.LOG.REJECT_VERSION.id), 1)
 
     def test_pending_to_super_review(self):
-        for status in PENDING_STATUSES:
+        for status in helpers.PENDING_STATUSES:
             self.setup_data(status)
             self.helper.handler.process_super_review()
 
@@ -560,4 +557,14 @@ def test_page_title_unicode():
     t = Translation(localized_string=u'\u30de\u30eb\u30c1\u30d712\u30eb')
     request = Mock()
     request.APP = amo.FIREFOX
-    editor_page_title({'request': request}, title=t)
+    helpers.editor_page_title({'request': request}, title=t)
+
+
+def test_send_email_autoescape():
+    # Make sure HTML is not auto-escaped.
+    s = 'woo&&<>\'""'
+    ctx = dict(name=s, addon_url=s, reviewer=s, comments=s, SITE_URL=s)
+    helpers.send_mail('editors/emails/super_review.ltxt',
+                      'aww yeah', ['xx'], ctx)
+    eq_(len(mail.outbox), 1)
+    eq_(mail.outbox[0].body.count(s), len(ctx))
