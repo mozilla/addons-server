@@ -80,7 +80,9 @@ function initReviewActions() {
     $files_input.attr('disabled', false); // In case they refresh
 
     if($files_input.length == 1) {
-        $files_input.attr({'checked': true, 'disabled': true});
+        // Add a dummy, disabled input
+        $files_input.attr({'checked': true}).hide();
+        $files_input.after($('<input>', {'type': 'checkbox', 'checked': true, 'disabled': true}));
     }
 
     function toggle_input(){
