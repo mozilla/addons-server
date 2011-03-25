@@ -1123,7 +1123,8 @@ class TestStatusFile(ReviewBase):
         assert 'Pending Preliminary Review' in node.text()
 
     def test_status_full(self):
-        for status in [amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED]:
+        for status in [amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED,
+                       amo.STATUS_PUBLIC]:
             self.addon.update(status=status)
             res = self.client.get(self.url)
             node = pq(res.content)('ul.files li:first-child')

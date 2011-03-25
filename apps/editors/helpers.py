@@ -23,7 +23,8 @@ from editors.sql_table import SQLTable
 def file_review_status(addon, file):
     if addon.status in [amo.STATUS_UNREVIEWED]:
         return _('Pending Preliminary Review')
-    elif addon.status in [amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED]:
+    elif addon.status in [amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED,
+                          amo.STATUS_PUBLIC]:
         return _('Pending Full Review')
     return amo.STATUS_CHOICES[file.status]
 
