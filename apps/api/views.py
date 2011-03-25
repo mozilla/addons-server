@@ -18,6 +18,7 @@ from caching.base import cached_with
 import amo
 import api
 from api.utils import addon_to_dict
+from amo.models import manual_order
 from amo.urlresolvers import get_url_prefix
 from amo.utils import JSONEncoder
 from addons.models import Addon
@@ -284,7 +285,9 @@ class ListView(APIView):
                       .order_by('-hotness'))[:limit + BUFFER]
             shuffle = False
         else:
-            addons = Addon.objects.featured(APP) & qs
+            ids = Addon.featured_random(APP, self.request.LANG)
+            addons = manual_order(qs, ids[:limit + BUFFER], 'addons.id')
+            shuffle = False
 
         args = (addon_type, limit, APP, platform, version, shuffle)
         f = lambda: self._process(addons, *args)
