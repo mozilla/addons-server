@@ -352,9 +352,14 @@ def cspreport(request):
 
     try:
         v = json.loads(request.raw_post_data)['csp-report']
+        # CEF module wants a dictionary of environ, we want request
+        # to be the page with error on it, that's contained in the csp-report.
+        meta = request.META.copy()
+        method, url = v['request'].split(' ', 1)
+        meta.update({'REQUEST_METHOD': method, 'PATH_INFO': url})
         v = [(k, v[k]) for k in report if k in v]
         # This requires you to use the cef.formatter to get something nice out.
-        csp_log.warning('Violation', dict(environ=request.META,
+        csp_log.warning('Violation', dict(environ=meta,
                                           product='addons',
                                           username=request.user,
                                           data=v))
