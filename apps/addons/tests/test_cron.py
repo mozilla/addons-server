@@ -113,6 +113,7 @@ class TestLastUpdated(test_utils.TestCase):
 
 
 class TestHideDisabledFiles(test_utils.TestCase):
+    msg = 'Moving disabled file: %s => %s'
 
     def setUp(self):
         p = Platform.objects.create(id=amo.PLATFORM_ALL.id)
@@ -149,13 +150,15 @@ class TestHideDisabledFiles(test_utils.TestCase):
         cron.hide_disabled_files()
         # Check that f2 was moved.
         f2 = self.f2
-        mv_mock.assert_called_with(f2.file_path, f2.guarded_file_path)
+        mv_mock.assert_called_with(f2.file_path, f2.guarded_file_path,
+                                   self.msg)
         os_mock.remove.assert_called_with(f2.mirror_file_path)
         # Check that f1 was moved as well.
         f1 = self.f1
         mv_mock.call_args = mv_mock.call_args_list[0]
         os_mock.remove.call_args = os_mock.remove.call_args_list[0]
-        mv_mock.assert_called_with(f1.file_path, f1.guarded_file_path)
+        mv_mock.assert_called_with(f1.file_path, f1.guarded_file_path,
+                                   self.msg)
         os_mock.remove.assert_called_with(f1.mirror_file_path)
         # There's only 2 files, both should have been moved.
         eq_(mv_mock.call_count, 2)
@@ -170,13 +173,15 @@ class TestHideDisabledFiles(test_utils.TestCase):
         cron.hide_disabled_files()
         # Check that f2 was moved.
         f2 = self.f2
-        mv_mock.assert_called_with(f2.file_path, f2.guarded_file_path)
+        mv_mock.assert_called_with(f2.file_path, f2.guarded_file_path,
+                                   self.msg)
         os_mock.remove.assert_called_with(f2.mirror_file_path)
         # Check that f1 was moved as well.
         f1 = self.f1
         mv_mock.call_args = mv_mock.call_args_list[0]
         os_mock.remove.call_args = os_mock.remove.call_args_list[0]
-        mv_mock.assert_called_with(f1.file_path, f1.guarded_file_path)
+        mv_mock.assert_called_with(f1.file_path, f1.guarded_file_path,
+                                   self.msg)
         os_mock.remove.assert_called_with(f1.mirror_file_path)
         # There's only 2 files, both should have been moved.
         eq_(mv_mock.call_count, 2)
@@ -191,7 +196,8 @@ class TestHideDisabledFiles(test_utils.TestCase):
         cron.hide_disabled_files()
         # Only f1 should have been moved.
         f1 = self.f1
-        mv_mock.assert_called_with(f1.file_path, f1.guarded_file_path)
+        mv_mock.assert_called_with(f1.file_path, f1.guarded_file_path,
+                                   self.msg)
         eq_(mv_mock.call_count, 1)
         # It should have been removed from mirror stagins.
         os_mock.remove.assert_called_with(f1.mirror_file_path)
