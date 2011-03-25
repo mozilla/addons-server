@@ -26,4 +26,7 @@
   <li><a href="{{ services_url('discovery.addons.detail', addon.slug, src=src) }}" class="button">
     {{ _('Cancel Installation') }}</a></li>
 </ul>
+{% if settings.PERF_THRESHOLD and addon.ts_slowness >= settings.PERF_THRESHOLD %}
+  {{ performance_note(amount=addon.ts_slowness) }}
+{% endif %}
 {% endblock %}

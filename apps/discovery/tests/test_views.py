@@ -1,6 +1,7 @@
 import json
 
 from django import test
+from django.conf import settings
 
 import mock
 from nose import SkipTest
@@ -246,20 +247,58 @@ class TestPane(test_utils.TestCase):
 class TestDetails(test_utils.TestCase):
     fixtures = ['base/apps', 'base/addon_3615']
 
+    def setUp(self):
+        self.addon = self.get_addon()
+        self.detail_url = reverse('discovery.addons.detail',
+                                  args=[self.addon.slug])
+        self.eula_url = reverse('discovery.addons.eula',
+                                 args=[self.addon.slug])
+
+    def get_addon(self):
+        return Addon.objects.get(id=3615)
+
     def test_no_restart(self):
         no_restart = '<li id="no-restart"'
-        addon = Addon.objects.get(id=3615)
-        url = reverse('discovery.addons.detail', args=[addon.slug])
-        f = addon.current_version.all_files[0]
+        f = self.addon.current_version.all_files[0]
 
         assert f.no_restart == False
-        r = self.client.get(url)
+        r = self.client.get(self.detail_url)
         assert no_restart not in r.content
 
         f.no_restart = True
         f.save()
-        r = self.client.get(url)
+        r = self.client.get(self.detail_url)
         self.assertContains(r, no_restart)
+
+    def test_install_button_eula(self):
+        doc = pq(self.client.get(self.detail_url).content)
+        assert doc('#install .eula').text().startswith('Continue to Download')
+        doc = pq(self.client.get(self.eula_url).content)
+        eq_(doc('#install .install-button').text(), 'Accept and Download')
+
+    def test_install_button_no_eula(self):
+        self.addon.update(eula=None)
+        doc = pq(self.client.get(self.detail_url).content)
+        eq_(doc('#install .install-button').text(), 'Download Now')
+        r = self.client.get(self.eula_url)
+        self.assertRedirects(r, self.detail_url, 302)
+
+    def set_slowness(self):
+        settings.PERF_THRESHOLD = 1.0
+        self.addon.update(ts_slowness=100)
+
+    def test_perf_warning_eula(self):
+        self.set_slowness()
+        doc = pq(self.client.get(self.detail_url).content)
+        assert not doc('.performance-note').length
+        doc = pq(self.client.get(self.eula_url).content)
+        assert doc('.performance-note').length
+
+    def test_perf_warning_no_eula(self):
+        self.set_slowness()
+        self.addon.update(eula=None)
+        doc = pq(self.client.get(self.detail_url).content)
+        assert doc('.performance-note').length
 
 
 class TestDownloadSources(test_utils.TestCase):

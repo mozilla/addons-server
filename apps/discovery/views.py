@@ -205,7 +205,8 @@ def addon_detail(request, addon):
 @addon_view
 def addon_eula(request, addon, file_id):
     if not addon.eula:
-        return http.HttpResponseRedirect(addon.get_url_path())
+        return http.HttpResponseRedirect(reverse('discovery.addons.detail',
+                                         args=[addon.slug]))
     if file_id is not None:
         version = get_object_or_404(addon.versions, files__id=file_id)
     else:

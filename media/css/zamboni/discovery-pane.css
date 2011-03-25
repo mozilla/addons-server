@@ -1157,21 +1157,39 @@ p#back:hover:before {
 }
 /* @end */
 
-.install-shell .install,
-.install-shell .extra,
-#install,
+/* @group Add-on detail install button/links */
+#install {
+    overflow: hidden;
+}
+
 #install li {
-    display: inline-block;
+    float: left;
+    font-weight: bold;
+    margin-right: 10px;
+}
+.html-rtl #install li {
+    margin: 0 0 0 10px;
+}
+
+#install .privacy {
+    padding-top: 5px;
+}
+
+#install .button {
+    display: block;
+}
+
+#install p {
+    margin-bottom: 0;
 }
 
 .install-shell .extra {
     font-size: .85em;
     font-weight: bold;
-    clear: both;
+    padding-top: 6px;
 }
 
-#main-feature .install-shell .extra {
-    display: block;
+.install + .extra {
     margin-top: 6px;
 }
 
@@ -1186,27 +1204,40 @@ p#back:hover:before {
     background-position: 100% 30%;
 }
 
-#install li {
-    font-weight: bold;
-    margin-right: 10px;
-}
-.html-rtl #install li {
-    margin: 0 0 0 10px;
-}
-
 .featuredaddon .install-button + strong {
     display: none;
 }
 
 #install #no-restart-msg {
-    background-color: #FFFFFF;
+    background-color: #fff;
     border: 1px solid #B6D9E5;
-    border-radius: 3px 3px 3px 3px;
+    border-radius: 3px;
     color: #294473;
     font-size: 0.9em;
     font-weight: bold;
     padding: 4px 12px 3px;
 }
+
+.performance-note {
+    background: #fff3cc;
+    border-radius: 5px;
+    display: inline-block;
+    margin-bottom: 1.286em;
+    padding: 1em;
+}
+.performance-note h3 {
+    font: normal bold 14px/1.2em "helvetica neue", helvetica, arial, sans-serif;
+}
+.performance-note span:first-child {
+    background: url(../../img/zamboni/notifications.png) no-repeat 0 -226px;
+    float: left;
+    height: 32px;
+    width: 32px;
+}
+.performance-note div {
+    margin-left: 45px;
+}
+/* @end */
 
 .addon-info li {
     clear: both;
@@ -1257,13 +1288,13 @@ p#back:hover:before {
 
 /* @group Headings */
 #addon-reviews h3,
-body.eula h3 {
+body.eula header + h3 {
     margin-bottom: 0.75em;
     position: relative;
 }
 
 #addon-reviews h3:after,
-body.eula h3:after {
+body.eula header + h3:after {
     border-top: 2px groove rgba(255,255,255,.25);
     content: "";
     display: block;
@@ -1272,7 +1303,7 @@ body.eula h3:after {
     right: 0;
     width: -moz-calc(100% - 70px);
 }
-body.eula h3:after {
+body.eula header + h3:after {
     width: -moz-calc(100% - 235px);
 }
 
@@ -1386,20 +1417,20 @@ a.button.add:active {
 
 .button.download b,
 .button.add b {
-    padding: 4px 16px 3px 12px;
+    padding: 3px 16px 3px 12px;
     margin: 0 0 0 -12px;
     width: 16px;
     background: transparent url("../../img/zamboni/icons/button-icons.png") 25% 0 no-repeat;
 }
 
 .html-rtl .button b {
-    padding: 4px 12px 3px 16px;
+    padding: 3px 12px 3px 16px;
     margin: 0 -12px 0 0;
 }
 
 .button span {
     border-left: 2px groove rgba(150,150,150,0.35);
-    padding: 4px 0 3px 12px;
+    padding: 0 0 0 12px;
     margin: 0 2px 0 -2px;
     display: inline-block;
     line-height: 1.2;
@@ -1409,7 +1440,7 @@ a.button.add:active {
 .html-rtl .button span {
     border-left: 0;
     border-right: 2px groove rgba(150,150,150,0.35);
-    padding: 4px 8px 3px 6px;
+    padding: 0 8px 0 6px;
     margin: 0 -2px 0 2px;
 }
 

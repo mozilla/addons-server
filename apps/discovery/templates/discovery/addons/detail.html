@@ -33,10 +33,16 @@
     {% endif %}
   {% endwith %}
   {% if addon.privacy_policy %}
-    <li><a href="{{ url('addons.privacy', addon.slug, src='discovery-learnmore') }}">
+    <li class="privacy"><a href="{{ url('addons.privacy', addon.slug, src='discovery-learnmore') }}">
       {{ _('View Privacy Policy') }}</a></li>
   {% endif %}
 </ul>
+
+{% if not addon.has_eula %}
+  {% if settings.PERF_THRESHOLD and addon.ts_slowness >= settings.PERF_THRESHOLD %}
+    {{ performance_note(amount=addon.ts_slowness) }}
+  {% endif %}
+{% endif %}
 
 {% if addon.type != amo.ADDON_PERSONA %}
   {% if addon.all_previews|length > 0 %}
