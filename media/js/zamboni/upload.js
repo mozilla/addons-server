@@ -245,7 +245,7 @@
             });
 
             $upload_field.bind("upload_errors", function(e, file, errors, results){
-                upload_progress_inside.css({'width': '100%'});
+                upload_progress_inside.stop().css({'width': '100%'});
 
                 $upload_field.val("").attr('disabled', false);
 

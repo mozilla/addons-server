@@ -57,7 +57,11 @@ $(document).ready(function() {
     if ($(".version-upload").length) {
         $modal = $(".add-file-modal").modal(".version-upload", {
             width: '450px',
-            hideme: false
+            hideme: false,
+            callback: function() {
+                $('.upload-status').remove();
+                return true;
+            }
         });
 
         $('.upload-file-cancel').click(_pd($modal.hideMe));
@@ -565,7 +569,11 @@ function initEditVersions() {
     // Modal box
     $modal = $(".add-file-modal").modal(".add-file", {
         width: '450px',
-        hideme: false
+        hideme: false,
+        callback: function() {
+            $('.upload-status').remove();
+            return true;
+        }
     });
 
     // Handle uploader events
