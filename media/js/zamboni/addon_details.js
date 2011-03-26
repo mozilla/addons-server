@@ -4,9 +4,9 @@
 $(document).ready(function() {
     //performance warnings
 
-    if ($("#addon[data-id]").length) {
+    if ($("#addon[data-id], #persona[data-id]").length) {
         $(".addon .icon").click(function() {
-            window.location.hash = "id=" + $("#addon").attr("data-id");
+            window.location.hash = "id=" + $("#addon, #persona").attr("data-id");
         })
     }
 
