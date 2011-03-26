@@ -257,12 +257,12 @@ class UserProfile(amo.models.ModelBase):
     def log_login_attempt(self, request, successful):
         """Log a user's login attempt"""
         self.last_login_attempt = datetime.now()
-        self.last_login_attempt_ip = request.META['REMOTE_ADDR']
+        self.last_login_attempt_ip = commonware.log.get_remote_addr()
 
         if successful:
             log.debug(u"User (%s) logged in successfully" % self)
             self.failed_login_attempts = 0
-            self.last_login_ip = request.META['REMOTE_ADDR']
+            self.last_login_ip = commonware.log.get_remote_addr()
         else:
             log.debug(u"User (%s) failed to log in" % self)
             if self.failed_login_attempts < 16777216:
