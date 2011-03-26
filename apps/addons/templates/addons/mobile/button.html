@@ -26,7 +26,7 @@
          href="{{ b.addon.get_url_path() }}"
          data-realurl="{{ link.url }}"
        {% else %}
-         href="{{ link.url }}"
+         href="{{ link.url|absolutify }}"
        {% endif %}>
         {{ _('Add to Firefox') }}
     </a>
