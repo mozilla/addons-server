@@ -362,7 +362,8 @@ header #home, header .back-link {
     padding: 14px 0;
     line-height: 14px;
 }
-.html-rtl header #home, header .back-link {
+.html-rtl header #home,
+.html-rtl header .back-link {
     float: right;
 }
 .mini-header .site-title {
