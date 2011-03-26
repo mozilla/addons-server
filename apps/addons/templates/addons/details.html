@@ -5,6 +5,9 @@
 {% block bodyclass %}inverse{% endblock %}
 
 {% block extrahead %}
+  {% if settings.ENGAGE_ROBOTS and addon.status == amo.STATUS_UNREVIEWED %}
+    <meta name="robots" content="noindex">
+  {% endif %}
   {% for preview in addon.all_previews %}
     <link rel="prefetch" href="{{ preview.image_url }}">
   {% endfor %}

@@ -552,6 +552,27 @@ class TestDetailPage(test_utils.TestCase):
         assert '&lt;script&gt;alert("fff")&lt;/script&gt;' in html
         assert '<script>' not in html
 
+    def test_unreviewed_robots(self):
+        """Check that unreviewed add-ons do not get indexed."""
+        addon = Addon.objects.get(id=3615)
+        url = reverse('addons.detail', args=['a3615'])
+        m = 'meta[content=noindex]'
+
+        eq_(addon.status, amo.STATUS_PUBLIC)
+        settings.ENGAGE_ROBOTS = True
+        doc = pq(self.client.get(url).content)
+        assert doc(m)
+        settings.ENGAGE_ROBOTS = False
+        doc = pq(self.client.get(url).content)
+        assert not doc(m)
+
+        addon.update(status=amo.STATUS_UNREVIEWED)
+        doc = pq(self.client.get(url).content)
+        assert not doc(m)
+        settings.ENGAGE_ROBOTS = True
+        doc = pq(self.client.get(url).content)
+        assert doc(m)
+
     def test_listed(self):
         """Show certain things for hosted but not listed add-ons."""
         hosted_resp = self.client.get(reverse('addons.detail', args=['a3615']),
