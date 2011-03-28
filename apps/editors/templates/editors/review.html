@@ -128,7 +128,7 @@
       </div>
 
       <div class="review-actions-section review-actions-files data-toggle"
-           data-value="{{ actions_minimal|join("|") }}">
+           data-value="{{ actions_minimal|join("|") }}"{% if allow_unchecking_files %} data-uncheckable="1"{% endif %}>
         <label for="id_addon_files"><strong>{{ form.addon_files.label }}</strong></label>
         {{ form.addon_files }}
 
