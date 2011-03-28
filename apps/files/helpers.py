@@ -71,7 +71,7 @@ class FileViewer:
             major, minor = mimetype.split('/')
             if major == 'text' and minor in ['plain', 'html']:
                 return False
-            if minor in ['xml', 'rdf+xml', 'javascript']:
+            if minor in ['xml', 'rdf+xml', 'javascript', 'x-javascript']:
                 return False
         return True
 
