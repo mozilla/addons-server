@@ -66,10 +66,10 @@
           {{ _('More details.') }}
         </a>
         {% endif %}
-        {% trans ago=item.created|timesince, iso=item.created|isotime,
+        {% with ago=item.created|timesince, iso=item.created|isotime,
                  pretty=item.created|babel_datetime %}
           <time datetime="{{ iso }}" title="{{ pretty }}">{{ ago }}</time>
-        {% endtrans %}
+        {% endwith %}
       </div>
       {% endfor %}
     </div>
