@@ -51,7 +51,7 @@ $(document).ready(function() {
 
     // Add-on uploader
     if($('#upload-addon').length) {
-        $('#upload-addon').addonUploader();
+        $('#upload-addon').addonUploader({'cancel': $('.upload-file-cancel') });
     }
 
     if ($(".version-upload").length) {

@@ -9,7 +9,7 @@
         return results.errors;
     }
 
-    var settings = {'filetypes': [], 'getErrors': getErrors};
+    var settings = {'filetypes': [], 'getErrors': getErrors, 'cancel': $()};
 
     $.fn.fileUploader = function( options ) {
 
@@ -25,6 +25,10 @@
             }
 
             $upload_field.bind({"change": uploaderStart});
+
+            $(settings['cancel']).click(_pd(function(){
+                $upload_field.trigger('upload_action_abort');
+            }));
 
             function uploaderStart(e) {
                 if($upload_field[0].files.length == 0) {
@@ -122,25 +126,30 @@
  */
 
 (function( $ ){
-    $.fn.addonUploader = function() {
+    /* Normalize results */
+    function getErrors(results) {
+      var errors = [];
+
+      if(results.validation.messages) {
+          $.each(results.validation.messages, function(i, v){
+            if(v.type == "error") {
+              errors.push(v.message);
+            }
+          });
+      }
+      return errors;
+    }
+
+    $.fn.addonUploader = function( options ) {
+        var settings = {'filetypes': ['xpi', 'jar', 'xml'], 'getErrors': getErrors, 'cancel': $()};
+
+        if (options) {
+            $.extend( settings, options );
+        }
 
         return $(this).each(function(){
             var $upload_field = $(this),
                 file = {};
-
-            /* Normalize results */
-            function getErrors(results) {
-              var errors = [];
-
-              if(results.validation.messages) {
-                  $.each(results.validation.messages, function(i, v){
-                    if(v.type == "error") {
-                      errors.push(v.message);
-                    }
-                  });
-              }
-              return errors;
-            }
 
             /* Add some UI */
 
@@ -158,8 +167,7 @@
                 upload_status, upload_results, upload_status_percent, upload_status_progress,
                 upload_status_cancel;
 
-            $upload_field.fileUploader({'filetypes': ['xpi', 'jar', 'xml'],
-                                        'getErrors': getErrors});
+            $upload_field.fileUploader(settings);
 
             function textSize(bytes) {
                 // Based on code by Cary Dunn (http://bit.ly/d8qbWc).
