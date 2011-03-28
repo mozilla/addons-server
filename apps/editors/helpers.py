@@ -223,14 +223,13 @@ class ReviewHelper:
             self.handler = ReviewFiles(request, addon, version, 'preliminary')
         else:
             self.review_type = 'pending'
-            self.handler = ReviewFiles(request, addon, version, 'preliminary')
+            self.handler = ReviewFiles(request, addon, version, 'pending')
 
     def get_actions(self):
         labels, details = self._review_actions()
 
         actions = SortedDict()
-        if (self.review_type != 'preliminary' and
-            hasattr(self.handler, 'process_public')):
+        if (self.review_type != 'preliminary'):
             actions['public'] = {'method': self.handler.process_public,
                                  'minimal': False,
                                  'label': _lazy('Push to public')}
@@ -290,6 +289,9 @@ class ReviewHelper:
                                       'versions will undergo preliminary '
                                       'review.')
         if self.review_type == 'pending':
+            details['public'] = _lazy('This will approve a sandboxed version '
+                                      'of a public add-on to appear on the '
+                                      'public side.')
             details['reject'] = _lazy('This will reject a version of a public '
                                       'add-on and remove it from the queue.')
         else:
@@ -445,8 +447,25 @@ class ReviewAddon(ReviewBase):
 
 class ReviewFiles(ReviewBase):
 
+    def process_public(self):
+        """Set an addons files to public."""
+        if self.review_type == 'preliminary':
+            raise AssertionError('Preliminary addons cannot be made public.')
+
+        self.set_files(amo.STATUS_PUBLIC, self.data['addon_files'],
+                       copy_to_mirror=True)
+
+        self.log_approval(amo.LOG.APPROVE_VERSION)
+        self.notify_email('%s_to_public' % self.review_type,
+                          _lazy('Mozilla Add-ons: %s %s Fully Reviewed'))
+
+        log.info(u'Making %s files %s public' %
+                 (self.addon,
+                  ', '.join([f.filename for f in self.data['addon_files']])))
+        log.info(u'Sending email for %s' % (self.addon))
+
     def process_sandbox(self):
-        """Set an addon to sandbox."""
+        """Set an addons files to sandbox."""
         self.set_files(amo.STATUS_DISABLED, self.data['addon_files'],
                        hide_disabled_file=True)
 
@@ -460,7 +479,7 @@ class ReviewFiles(ReviewBase):
         log.info(u'Sending email for %s' % (self.addon))
 
     def process_preliminary(self):
-        """Set an addon to preliminary."""
+        """Set an addons files to preliminary."""
         self.set_files(amo.STATUS_LITE, self.data['addon_files'],
                        copy_to_mirror=True)
 
