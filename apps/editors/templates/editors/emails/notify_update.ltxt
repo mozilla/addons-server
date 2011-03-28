@@ -1,0 +1,20 @@
+{% load i18n %}
+{% blocktrans %}
+Dear editor,
+
+An add-on you previously reviewed was just updated.
+
+Add-on Information:
+
+Name: {{ name }}
+URL: {{ url }}
+
+Version Number: {{ number }}
+Review Link: {{ review }}
+
+Thanks!
+Mozilla Add-ons
+{{ SITE_URL }}
+
+This is a one-time notification sent to you because you requested a follow up email regarding queue activity for {{ name }}.  There is no need to unsubscribe if you don't wish to receive further mail.
+{% endblocktrans %}

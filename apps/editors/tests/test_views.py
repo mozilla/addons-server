@@ -19,7 +19,8 @@ from addons.models import Addon, AddonUser
 from applications.models import Application
 from cake.urlresolvers import remora_url
 from devhub.models import ActivityLog
-from editors.models import EventLog
+from editors.models import EditorSubscription, EventLog
+from files.models import Approval, Platform, File
 import reviews
 from reviews.models import Review, ReviewFlag
 from users.models import UserProfile
@@ -868,6 +869,19 @@ class TestReview(ReviewBase):
         eq_(response.status_code, 302)
         eq_(len(mail.outbox), 1)
         self.assertTemplateUsed(response, 'editors/emails/info.ltxt')
+
+    def test_notify(self):
+        response = self.client.post(self.url, {'action': 'info',
+                                               'comments': 'hello sailor',
+                                               'notify': True})
+        eq_(response.status_code, 302)
+        eq_(EditorSubscription.objects.count(), 1)
+
+    def test_no_notify(self):
+        response = self.client.post(self.url, {'action': 'info',
+                                               'comments': 'hello sailor'})
+        eq_(response.status_code, 302)
+        eq_(EditorSubscription.objects.count(), 0)
 
     def test_paging_none(self):
         response = self.client.get(self.url)
