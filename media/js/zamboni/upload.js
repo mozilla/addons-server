@@ -47,6 +47,14 @@
 
                 $upload_field.trigger("upload_start", [file]);
 
+                /* Disable uploading while something is uploading */
+                $upload_field.attr('disabled', true);
+                $upload_field.parent().find('a').addClass("disabled");
+                $upload_field.bind("upload_finished", function() {
+                    $upload_field.attr('disabled', false);
+                    $upload_field.parent().find('a').removeClass("disabled");
+                });
+
                 var exts = new RegExp("\\\.("+settings['filetypes'].join('|')+")$", "i");
 
                 if(!file.name.match(exts)) {
