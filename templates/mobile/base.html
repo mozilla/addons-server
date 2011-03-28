@@ -56,7 +56,7 @@
         </header>
       {% endblock %}
 
-      <section id="content">
+      <section id="content" class="{% block contentclass %}{% endblock %}">
         {% block page %}
         {% endblock page %}
       </section>

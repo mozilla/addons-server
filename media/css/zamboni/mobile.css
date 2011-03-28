@@ -622,6 +622,18 @@ a.listview:before {
     -webkit-transform: scaleX(-1);
 }
 
+#content.search .item .install-wrapper {
+    margin: 0 14px;
+    padding: 0;
+}
+#content.search .item .badges {
+    margin: 0;
+}
+#content.search .item .buttons,
+#content.search .item .privacy-policy {
+    display: none;
+}
+
 /************************************/
 /*            SORT MENU             */
 /************************************/

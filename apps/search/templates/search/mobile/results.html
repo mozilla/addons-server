@@ -13,8 +13,9 @@
 <meta name="WT.oss_r" content="{{ pager.paginator.count }}">
 {% endblock %}
 
+{% block contentclass %}search{% endblock %}
+
 {% block page %}
-<section id="content">
   <h2>{{ _('Search Results <i>({num})</i>')|f(num=pager.paginator.count)|safe }}</h2>
 
   <div class="menu">
@@ -29,5 +30,4 @@
   </div>
 
   {{ pager|mobile_paginator }}
-</section>
 {% endblock %}
