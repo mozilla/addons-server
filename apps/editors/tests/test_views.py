@@ -1048,7 +1048,7 @@ class TestReviewPreliminary(ReviewBase):
     def setUp(self):
         super(TestReviewPreliminary, self).setUp()
         AddonUser.objects.create(addon=self.addon,
-                         user=UserProfile.objects.get(pk=999))
+                                 user=UserProfile.objects.get(pk=999))
 
     def prelim_dict(self):
         return {'action': 'prelim', 'operating_systems': 'win',
@@ -1133,6 +1133,32 @@ class TestReviewPreliminary(ReviewBase):
 
         eq_(list_items.eq(0).find('a').text(), "Editor Tools")
         eq_(list_items.eq(1).find('a').text(), "Pending Updates")
+
+
+class TestReviewPending(ReviewBase):
+
+    def get_addon(self):
+        return Addon.objects.get(pk=self.addon.pk)
+
+    def setUp(self):
+        super(TestReviewPending, self).setUp()
+        self.addon.update(status=4)
+        AddonUser.objects.create(addon=self.addon,
+                                 user=UserProfile.objects.get(pk=999))
+        self.file = File.objects.create(version=self.version,
+                                        status=amo.STATUS_UNREVIEWED)
+
+    def pending_dict(self):
+        return {'action': 'public', 'operating_systems': 'win',
+                'applications': 'something', 'comments': 'something',
+                'addon_files': [v.pk for v in self.version.files.all()]}
+
+    def test_pending_to_public(self):
+        eq_(len(set([f.status for f in self.version.files.all()])), 2)
+        response = self.client.post(self.url, self.pending_dict())
+        eq_(response.status_code, 302)
+        eq_(self.get_addon().status, amo.STATUS_PUBLIC)
+        eq_(set([f.status for f in self.version.files.all()]), set([4]))
 
 
 class TestEditorMOTD(EditorTest):

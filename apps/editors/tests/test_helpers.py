@@ -180,10 +180,13 @@ class TestReviewHelper(test_utils.TestCase):
         settings.MIRROR_STAGE_PATH = tempfile.mkdtemp()
         settings.ADDONS_PATH = tempfile.mkdtemp()
 
-        os.mkdir(os.path.dirname(self.file.mirror_file_path))
-        # Make local.
-        if not os.path.exists(os.path.dirname(self.file.file_path)):
-            os.mkdir(os.path.dirname(self.file.file_path))
+        self.create_paths()
+
+    def create_paths(self):
+        for dr in [os.path.dirname(self.file.mirror_file_path),
+                   os.path.dirname(self.file.file_path)]:
+            if not os.path.exists(dr):
+                os.mkdir(dr)
         if not os.path.exists(self.file.file_path):
             open(self.file.file_path, 'w')
 
@@ -274,6 +277,8 @@ class TestReviewHelper(test_utils.TestCase):
             'This will reject a version')
         eq_(self.get_action(amo.STATUS_NOMINATED, 'public')[-31:],
             'they are reviewed by an editor.')
+        eq_(self.get_action(amo.STATUS_PUBLIC, 'public')[-29:],
+            'to appear on the public side.')
 
     def test_set_files(self):
         self.file.update(datestatuschanged=yesterday)
@@ -443,7 +448,8 @@ class TestReviewHelper(test_utils.TestCase):
 
     def test_lite_to_public(self):
         self.setup_data(amo.STATUS_LITE)
-        assert not hasattr(self.helper.handler, 'process_public')
+        self.assertRaises(AssertionError,
+                          self.helper.handler.process_public)
 
     def test_preliminary_to_preliminary(self):
         for status in helpers.PRELIMINARY_STATUSES:
@@ -503,7 +509,17 @@ class TestReviewHelper(test_utils.TestCase):
     def test_pending_to_public(self):
         for status in helpers.PENDING_STATUSES:
             self.setup_data(status)
-            assert not hasattr(self.helper.handler, 'process_public')
+            self.create_paths()
+            self.helper.handler.process_public()
+
+            for file in self.helper.handler.data['addon_files']:
+                eq_(file.status, amo.STATUS_PUBLIC)
+
+            eq_(len(mail.outbox), 1)
+            eq_(mail.outbox[0].subject, '%s Fully Reviewed' % self.preamble)
+
+            assert os.path.exists(self.file.mirror_file_path)
+            eq_(self.check_log_count(amo.LOG.APPROVE_VERSION.id), 1)
 
     def test_pending_to_sandbox(self):
         for status in helpers.PENDING_STATUSES:
