@@ -155,15 +155,16 @@ $(document).ready(function() {
     function poll_file_extraction() {
         $.getJSON($('#waiting').attr('data-url'), function(json) {
             if (json && json.status) {
-                $('#file-viewer').load(window.location.pathname + ' #file-viewer');
+                $('#file-viewer').load(window.location.pathname + ' #file-viewer', function() {
+                    numbers.count();
+                    bind_tree();
+                });
             } else {
                 setTimeout(poll_file_extraction, 2000);
             }
         });
     }
 
-    var tree = new Tree();
-    tree.selected();
     var numbers = new Numbers();
     numbers.count();
 
@@ -171,59 +172,65 @@ $(document).ready(function() {
         poll_file_extraction();
     }
 
-    if ($('#file-viewer').length) {
-        $('#file-viewer .directory').click(function() {
-            tree.show_leaf([$(this).closest('li').attr('data-short')]);
-            return false;
-        });
+    function bind_tree() {
+        var tree = new Tree();
+        tree.selected();
 
-        $('.files li a').click(function() {
-            var $link = $(this);
-            history.pushState({ path: this.text }, '', this.href);
-            $('.content-wrapper').load(this.href + ' .content-wrapper', function() {
-                numbers.count();
-                tree.select($link);
+        if ($('#file-viewer').length) {
+            $('#file-viewer .directory').click(function() {
+                tree.show_leaf([$(this).closest('li').attr('data-short')]);
+                return false;
             });
-            return false;
-        });
 
-        $(window).bind('popstate', function() {
-            $('.content').load(location.pathname + ' .content-wrapper', function() {
-                numbers.count();
+            $('.files li a').click(function() {
+                var $link = $(this);
+                history.pushState({ path: this.text }, '', this.href);
+                $('.content-wrapper').load(this.href + ' .content-wrapper', function() {
+                    numbers.count();
+                    tree.select($link);
+                });
+                return false;
             });
-        });
 
-        $('#files-prev').click(function() {
-            var $curr = $('#file-viewer a.selected').closest('li'),
-                choices = $curr.prevUntil('ul').find('a.file');
-            if (choices.length) {
-                $(choices[0]).trigger('click');
-            }
-            return false;
-        });
+            $(window).bind('popstate', function() {
+                $('.content').load(location.pathname + ' .content-wrapper', function() {
+                    numbers.count();
+                });
+            });
 
-        $('#files-next').click(function() {
-            var $curr = $('#file-viewer a.selected').closest('li'),
-                choices = $curr.nextUntil('ul').find('a.file');
-            if (choices.length) {
-                $(choices[0]).trigger('click');
-            }
-            return false;
-        });
+            $('#files-prev').click(function() {
+                var $curr = $('#file-viewer a.selected').closest('li'),
+                    choices = $curr.prevUntil('ul').find('a.file');
+                if (choices.length) {
+                    $(choices[0]).trigger('click');
+                }
+                return false;
+            });
 
-        $('#files-expand-all').click(function() {
-            $('#file-viewer .hidden').removeClass('hidden').show();
-            $('#file-viewer .directory').removeClass('closed').addClass('open');
-            return false;
-        });
+            $('#files-next').click(function() {
+                var $curr = $('#file-viewer a.selected').closest('li'),
+                    choices = $curr.nextUntil('ul').find('a.file');
+                if (choices.length) {
+                    $(choices[0]).trigger('click');
+                }
+                return false;
+            });
 
-        $(document).bind('keyup', function(e) {
-            if (e.keyCode === 75) {
-                $('#files-next').trigger('click');
-            } else if (e.keyCode === 74) {
-                $('#files-prev').trigger('click');
-            }
-            return false;
-        });
+            $('#files-expand-all').click(function() {
+                $('#file-viewer .hidden').removeClass('hidden').show();
+                $('#file-viewer .directory').removeClass('closed').addClass('open');
+                return false;
+            });
+
+            $(document).bind('keyup', function(e) {
+                if (e.keyCode === 75) {
+                    $('#files-next').trigger('click');
+                } else if (e.keyCode === 74) {
+                    $('#files-prev').trigger('click');
+                }
+                return false;
+            });
+        }
     }
+    bind_tree();
 });

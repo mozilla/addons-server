@@ -132,6 +132,9 @@ class DiffHelper:
         self.file_two = FileViewer(file_two_obj)
         self.status, self.one, self.two = None, None, None
 
+    def __str__(self):
+        return '%s, %s' % (self.file_one, self.file_two)
+
     def extract(self):
         self.file_one.extract()
         self.file_two.extract()

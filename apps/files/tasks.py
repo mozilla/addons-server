@@ -7,8 +7,8 @@ task_log = commonware.log.getLogger('z.task')
 
 @task
 def extract_file(viewer, **kw):
-    task_log.info('[1@%s] Unzipping file %s for file viewer.' % (
-                  extract_file.rate_limit, viewer.file.pk))
+    task_log.info('[1@%s] Unzipping %s for file viewer.' % (
+                  extract_file.rate_limit, viewer))
     try:
         viewer.extract()
     except ValueError, msg:
