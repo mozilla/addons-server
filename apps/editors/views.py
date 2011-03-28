@@ -16,8 +16,9 @@ from amo.utils import paginate
 from amo.urlresolvers import reverse
 from devhub.models import ActivityLog
 from editors import forms
-from editors.models import (ViewPendingQueue, ViewFullReviewQueue,
-                            ViewPreliminaryQueue, EventLog, CannedResponse)
+from editors.models import (EditorSubscription, ViewPendingQueue,
+                            ViewFullReviewQueue, ViewPreliminaryQueue,
+                            EventLog, CannedResponse)
 from editors.helpers import (ViewPendingQueueTable, ViewFullReviewQueueTable,
                              ViewPreliminaryQueueTable, LOG_STATUSES)
 from files.models import Approval
@@ -242,6 +243,9 @@ def review(request, version_id):
 
     if request.method == 'POST' and form.is_valid():
         form.helper.process()
+        if form.cleaned_data.get('notify'):
+            EditorSubscription.objects.get_or_create(user=request.amo_user,
+                                                     addon=addon)
         amo.messages.success(request, _('Review successfully processed.'))
         return redirect(redirect_url)
 

@@ -1,16 +1,26 @@
 import copy
-import os
 
-from django.db import models
 from django.conf import settings
+from django.db import models
+from django.template import Context, loader
 from django.utils.datastructures import SortedDict
-from tower import ugettext_lazy as _
 
 import amo
 import amo.models
+from amo.helpers import absolutify
+from amo.urlresolvers import reverse
+from amo.utils import send_mail
+from addons.models import Addon
 from editors.sql_model import RawSQLModel
 from translations.fields import TranslatedField
+from tower import ugettext as _
 from users.models import UserProfile
+from versions.models import Version
+
+import commonware.log
+
+
+user_log = commonware.log.getLogger('z.users')
 
 
 class CannedResponse(amo.models.ModelBase):
@@ -91,7 +101,7 @@ class ViewQueue(RawSQLModel):
                 ('_file_platform_ids', """GROUP_CONCAT(DISTINCT
                                                        files.platform_id)"""),
                 ('_application_ids', """GROUP_CONCAT(DISTINCT
-                                                     apps.application_id)""")
+                                                     apps.application_id)"""),
             ]),
             'from': [
                 'files',
@@ -134,7 +144,7 @@ class ViewFullReviewQueue(ViewQueue):
             'waiting_time_hours':
                 'TIMESTAMPDIFF(HOUR, versions.nomination, NOW())',
             'waiting_time_min':
-                'TIMESTAMPDIFF(MINUTE, versions.nomination, NOW())'
+                'TIMESTAMPDIFF(MINUTE, versions.nomination, NOW())',
         })
         q['where'].extend(['files.status <> %s' % amo.STATUS_BETA,
                            'addons.status IN (%s, %s)' % (
@@ -154,7 +164,7 @@ class VersionSpecificQueue(ViewQueue):
             'waiting_time_hours':
                 'TIMESTAMPDIFF(HOUR, MAX(versions.created), NOW())',
             'waiting_time_min':
-                'TIMESTAMPDIFF(MINUTE, MAX(versions.created), NOW())'
+                'TIMESTAMPDIFF(MINUTE, MAX(versions.created), NOW())',
         })
         return q
 
@@ -177,3 +187,46 @@ class ViewPreliminaryQueue(VersionSpecificQueue):
                                             amo.STATUS_LITE,
                                             amo.STATUS_UNREVIEWED)])
         return q
+
+
+class EditorSubscription(amo.models.ModelBase):
+    user = models.ForeignKey(UserProfile)
+    addon = models.ForeignKey(Addon)
+
+    class Meta:
+        db_table = 'editor_subscriptions'
+
+    def send_notification(self, version):
+        user_log.info('Sending addon update notice to %s for %s' %
+                      (self.user.email, self.addon.pk))
+        context = Context({
+            'name': self.addon.name,
+            'url': absolutify(reverse('addons.detail', args=[self.addon.pk])),
+            'number': version.version,
+            'review': absolutify(reverse('editors.review', args=[version.pk])),
+            'SITE_URL': settings.SITE_URL,
+        })
+        #L10N: addon.name
+        subject = _('Mozilla Add-ons: %s Updated') % self.addon.name
+        template = loader.get_template('editors/emails/notify_update.ltxt')
+        send_mail(subject, template.render(Context(context)),
+                  recipient_list=[self.user.email],
+                  from_email=settings.EDITORS_EMAIL,
+                  use_blacklist=False)
+
+
+def send_notifications(sender, instance, **kw):
+    if kw.get('raw') or not kw.get('created'):
+        return
+
+    subscribers = instance.addon.editorsubscription_set.all()
+    if not subscribers:
+        return
+
+    for subscriber in subscribers:
+        subscriber.send_notification(instance)
+        subscriber.delete()
+
+
+models.signals.post_save.connect(send_notifications, sender=Version,
+                                 dispatch_uid='version_send_notifications')

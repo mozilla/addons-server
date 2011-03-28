@@ -1,5 +1,7 @@
 # -*- coding: utf8 -*-
-from datetime import datetime, timedelta
+from datetime import datetime
+
+from django.core import mail
 
 from nose.tools import eq_
 import test_utils
@@ -9,8 +11,10 @@ from addons.models import Addon
 from versions.models import Version, ApplicationsVersions, VersionSummary
 from files.models import Platform, File
 from applications.models import Application, AppVersion
-from editors.models import (ViewPendingQueue, ViewFullReviewQueue,
+from editors.models import (EditorSubscription, send_notifications,
+                            ViewPendingQueue, ViewFullReviewQueue,
                             ViewPreliminaryQueue)
+from users.models import UserProfile
 
 
 def create_addon_file(name, version_str, addon_status, file_status,
@@ -35,14 +39,11 @@ def create_addon_file(name, version_str, addon_status, file_status,
                                                        min=app_vr.id)
     va, created = ApplicationsVersions.objects.get_or_create(
                         version=vr, application=app, min=app_vr, max=app_vr)
-    fi = File.objects.create(version=vr, filename=u"%s.xpi" % name,
-                             platform=pl, status=file_status)
+    File.objects.create(version=vr, filename=u"%s.xpi" % name,
+                        platform=pl, status=file_status)
     # Update status *after* there are files:
     Addon.objects.get(pk=ad.id).update(status=addon_status)
-    return {
-        'addon': ad,
-        'version': vr
-    }
+    return {'addon': ad, 'version': vr}
 
 
 def create_search_ext(name, version_str, addon_status, file_status):
@@ -52,8 +53,8 @@ def create_search_ext(name, version_str, addon_status, file_status):
         ad = Addon.objects.create(type=amo.ADDON_SEARCH, name=name)
     vr, created = Version.objects.get_or_create(addon=ad, version=version_str)
     pl, created = Platform.objects.get_or_create(id=amo.PLATFORM_ALL.id)
-    fi = File.objects.create(version=vr, filename=u"%s.xpi" % name,
-                             platform=pl, status=file_status)
+    File.objects.create(version=vr, filename=u"%s.xpi" % name,
+                        platform=pl, status=file_status)
     # Update status *after* there are files:
     Addon.objects.get(pk=ad.id).update(status=addon_status)
     return ad
@@ -61,7 +62,7 @@ def create_search_ext(name, version_str, addon_status, file_status):
 
 class TestQueue(test_utils.TestCase):
     """Tests common attributes and coercions that each view must support."""
-    __test__ = False # this is an abstract test case
+    __test__ = False  # this is an abstract test case
 
     def test_latest_version(self):
         self.new_file(version=u'0.1')
@@ -204,3 +205,52 @@ class TestPreliminaryQueue(TestQueue):
         # Time zone might be off due to your MySQL install, hard to test this.
         assert row.waiting_time_min is not None
         assert row.waiting_time_hours is not None
+
+
+class TestEditorSubscription(test_utils.TestCase):
+    fixtures = ['base/addon_3615', 'base/users']
+
+    def setUp(self):
+        self.addon = Addon.objects.get(pk=3615)
+        self.version = self.addon.current_version
+        self.user_one = UserProfile.objects.get(pk=55021)
+        self.user_two = UserProfile.objects.get(pk=999)
+        for user in [self.user_one, self.user_two]:
+            EditorSubscription.objects.create(addon=self.addon, user=user)
+
+    def test_email(self):
+        es = EditorSubscription.objects.get(user=self.user_one)
+        es.send_notification(self.version)
+        eq_(len(mail.outbox), 1)
+        eq_(mail.outbox[0].to, [u'del@icio.us'])
+        eq_(mail.outbox[0].subject,
+            'Mozilla Add-ons: Delicious Bookmarks Updated')
+
+    def test_notifications(self):
+        send_notifications(Version, self.version, created=True)
+        eq_(len(mail.outbox), 2)
+        emails = sorted([o.to for o in mail.outbox])
+        eq_(emails, [[u'del@icio.us'], [u'regular@mozilla.com']])
+
+    def test_notifications_clean(self):
+        send_notifications(Version, self.version, created=True)
+        eq_(EditorSubscription.objects.count(), 0)
+        mail.outbox = []
+        send_notifications(Version, self.version, created=True)
+        eq_(len(mail.outbox), 0)
+
+    def test_signal_edit(self):
+        self.version.save()
+        eq_(len(mail.outbox), 0)
+
+    def test_signal_create(self):
+        Version.objects.create(addon=self.addon)
+        eq_(len(mail.outbox), 2)
+        eq_(mail.outbox[0].subject,
+            'Mozilla Add-ons: Delicious Bookmarks Updated')
+
+    def test_signal_create_twice(self):
+        Version.objects.create(addon=self.addon)
+        mail.outbox = []
+        Version.objects.create(addon=self.addon)
+        eq_(len(mail.outbox), 0)
