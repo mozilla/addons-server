@@ -17,6 +17,7 @@ from amo.urlresolvers import reverse
 from amo.tests import formset, initial
 from addons.models import Addon, AddonUser
 from applications.models import Application
+from cake.urlresolvers import remora_url
 from devhub.models import ActivityLog
 from editors.models import EventLog
 from files.models import Approval, Platform, File
@@ -1038,6 +1039,26 @@ class TestReview(ReviewBase):
 
         eq_(list_items.eq(0).find('a').text(), "Editor Tools")
         eq_(list_items.eq(1).find('a').text(), "Pending Updates")
+
+    def test_no_compare_link(self):
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        # By default there are 3 links, download file, validation and browse
+        doc(len('.files a'), 3)
+
+    def test_compare_link(self):
+        version = Version.objects.create(addon=self.addon, version='0.2')
+        File.objects.create(version=version, status=amo.STATUS_PUBLIC)
+        self.addon.update(_current_version=version)
+        eq_(self.addon.current_version, version)
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        assert r.context['has_public_files']
+        eq_(doc('.files a:last-child').text(), 'Compare With Public Version')
+        # Note: remora url will be to the old version, the diff viewer figures
+        # out the version to compare too.
+        eq_(doc('.files a:last-child').attr('href'),
+            remora_url('/files/browse/%d/1' % self.version.files.all()[0].pk))
 
 
 class TestReviewPreliminary(ReviewBase):

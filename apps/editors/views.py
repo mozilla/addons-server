@@ -213,6 +213,7 @@ def application_versions_json(request):
 def review(request, version_id):
     version = get_object_or_404(Version, pk=version_id)
     addon = version.addon
+    current = addon.current_version
 
     if (not settings.DEBUG and
         addon.authors.filter(user=request.user).exists()):
@@ -245,13 +246,12 @@ def review(request, version_id):
         return redirect(redirect_url)
 
     canned = CannedResponse.objects.all()
-
-    has_public_files = version.files.filter(status=amo.STATUS_PUBLIC).exists()
     is_admin = acl.action_allowed(request, 'Admin', 'EditAnyAddon')
-
     actions = form.helper.actions.items()
 
-    # The actions we should show a minimal form form.
+    has_public_files = (current.files.filter(status=amo.STATUS_PUBLIC)
+                                     .exists()) if current else False
+    # The actions we should show a minimal form from.
     actions_minimal = [k for (k, a) in actions if not a.get('minimal')]
 
     # We only allow the user to check/uncheck files for "pending"
