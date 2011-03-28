@@ -418,6 +418,14 @@ tr.comments {
 
 /* Review Page */
 
+.primary {
+    width: 85%;
+}
+
+.secondary {
+    width: 13.49%;
+}
+
 #review-actions-form textarea,
 #review-actions-form input[type=text],
 #review-actions-form select {
@@ -574,3 +582,4 @@ tr.comments {
 #editor-motd .buttons {
     text-align: right;
 }
+

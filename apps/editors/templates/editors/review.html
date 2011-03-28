@@ -173,11 +173,11 @@
   {{ num }}
   {% if paging %}
   <div class="review-paging">
-    {% if paging.prev %}<a href="{{ paging.prev_url }}">{{ _('&laquo; Previous')|safe }}</a> &nbsp; {% endif %}
+    {% if paging.prev %}<a href="{{ paging.prev_url }}">&laquo;</a> &nbsp; {% endif %}
     {% trans current=paging.current, total=paging.total %}
     {{ current }} of {{ total }}
     {% endtrans %}
-    {% if paging.next %} &nbsp; <a href="{{ paging.next_url }}">{{ _('Next &raquo;')|safe }}</a>{% endif %}
+    {% if paging.next %} &nbsp; <a href="{{ paging.next_url }}">&raquo;</a>{% endif %}
   </div>
   {% endif %}
 
