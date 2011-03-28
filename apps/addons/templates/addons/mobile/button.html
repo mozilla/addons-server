@@ -12,25 +12,27 @@
      data-min="{{ compat.min.version }}"
      data-max="{{ compat.max.version }}"
   {% endif %}>
-  {% set links = b.links() %}
-  {% if not links %}
-    <a class="button disabled">
-      {{ _('No compatible versions') }}
-    </a>
-  {% endif %}
-  {% for link in links %}
-    {% set extra = "platform " + link.os.shortname if link.os else "" %}
-    <a class="button add {{ b.button_class|join(' ') }} {{ extra }}"
-       data-hash="{{ link.file.hash }}"
-       {% if b.show_warning %}
-         href="{{ b.addon.get_url_path() }}"
-         data-realurl="{{ link.url }}"
-       {% else %}
-         href="{{ link.url|absolutify }}"
-       {% endif %}>
-        {{ _('Add to Firefox') }}
-    </a>
-  {% endfor %}
+  <div class="buttons">
+    {% set links = b.links() %}
+    {% if not links %}
+      <a class="button disabled">
+        {{ _('No compatible versions') }}
+      </a>
+    {% endif %}
+    {% for link in links %}
+      {% set extra = "platform " + link.os.shortname if link.os else "" %}
+      <a class="button add {{ b.button_class|join(' ') }} {{ extra }}"
+         data-hash="{{ link.file.hash }}"
+         {% if b.show_warning %}
+           href="{{ b.addon.get_url_path() }}"
+           data-realurl="{{ link.url }}"
+         {% else %}
+           href="{{ link.url|absolutify }}"
+         {% endif %}>
+          {{ _('Add to Firefox') }}
+      </a>
+    {% endfor %}
+  </div>
   <ul class="badges">
     {% if settings.PERF_THRESHOLD and addon.ts_slowness >= settings.PERF_THRESHOLD %}
       <li class="warning">{{ _('May Slow Down Your Browser') }}</li>

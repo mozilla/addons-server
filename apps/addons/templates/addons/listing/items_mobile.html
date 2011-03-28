@@ -30,6 +30,9 @@
           {% endif %}
         </div>
       </details>
+      {% if src == 'search' %}
+        {{ mobile_install_button(addon, show_warning=False) }}
+      {% endif %}
     </a>
   </li>
 {% endfor %}
