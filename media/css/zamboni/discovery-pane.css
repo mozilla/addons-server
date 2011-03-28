@@ -1562,7 +1562,7 @@ a#lightbox-secNav-btnClose {
     margin: 20px 5% 20px 0;
     width: 30%;
 }
-#recs .panel:last-child {
+#recs .panel:nth-child(3n) {
     margin-right: 0;
 }
 
