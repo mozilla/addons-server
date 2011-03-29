@@ -11,6 +11,10 @@ log = logging.getLogger('z.perf.task')
 def update_perf(baseline, perf, **kw):
     log.info('[%s@%s] Updating perf' %
              (len(perf), update_perf.rate_limit))
-    for addon, avg in perf:
-        num = (avg - baseline) / baseline
-        Addon.objects.filter(pk=addon).update(ts_slowness=100 * num)
+    for addon, rows in perf:
+        if addon is None:
+            continue
+        deltas = [(avg - baseline[os]) / float(baseline[os])
+                  for _, os, avg in rows]
+        Addon.objects.filter(pk=addon).update(
+            ts_slowness=sum(deltas) / len(deltas) * 100)
