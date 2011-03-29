@@ -359,6 +359,11 @@ header:after,
     -webkit-transition-property: left, right;
 }
 
+.slider.noslide {
+    -moz-transition: none;
+    -webkit-transition: none;
+}
+
 .slider > li {
     width: 100%;
     white-space: normal;
