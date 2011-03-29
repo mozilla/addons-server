@@ -34,7 +34,7 @@ class BlocklistDetail(amo.models.ModelBase):
         return self.name
 
 
-class BlockId:
+class BlocklistBase(object):
 
     @property
     def block_id(self):
@@ -43,8 +43,15 @@ class BlockId:
     def get_url_path(self):
         return reverse('blocked.detail', args=[self.block_id])
 
+    def save(self, *args, **kw):
+        for field in self._meta.fields:
+            if isinstance(field, models.fields.CharField) and field.null:
+                if getattr(self, field.attname, None) == '':
+                    setattr(self, field.attname, None)
+        return super(BlocklistBase, self).save(*args, **kw)
 
-class BlocklistItem(BlockId, amo.models.ModelBase):
+
+class BlocklistItem(BlocklistBase, amo.models.ModelBase):
     _type = 'i'
     guid = models.CharField(max_length=255, blank=True, null=True)
     min = models.CharField(max_length=255, blank=True, null=True)
@@ -63,7 +70,7 @@ class BlocklistItem(BlockId, amo.models.ModelBase):
         return ['/blocklist*']  # no lang/app
 
 
-class BlocklistPlugin(BlockId, amo.models.ModelBase):
+class BlocklistPlugin(BlocklistBase, amo.models.ModelBase):
     _type = 'p'
     name = models.CharField(max_length=255, blank=True, null=True)
     guid = models.CharField(max_length=255, blank=True, null=True)
@@ -87,7 +94,7 @@ class BlocklistPlugin(BlockId, amo.models.ModelBase):
         return ['/blocklist*']  # no lang/app
 
 
-class BlocklistGfx(BlockId, amo.models.ModelBase):
+class BlocklistGfx(BlocklistBase, amo.models.ModelBase):
     _type = 'g'
     guid = models.CharField(max_length=255, blank=True, null=True)
     os = models.CharField(max_length=255, blank=True, null=True)
