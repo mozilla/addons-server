@@ -20,4 +20,4 @@ def update_perf(baseline, perf, **kw):
             slowness = None
         else:
             slowness = sum(deltas) / len(deltas) * 100
-        Addon.objects.filter(pk=addon).update(ts_slowness=None)
+        Addon.objects.filter(pk=addon).update(ts_slowness=slowness)

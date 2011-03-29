@@ -478,7 +478,6 @@ class SeamonkeyFeaturedTest(TestCase):
 
 class TestGuidSearch(TestCase):
     fixtures = ('base/apps', 'base/addon_6113', 'base/addon_3615')
-    x=1
 
     def test_success(self):
         r = make_call('search/guid:{22870005-adef-4c9d-ae36-d0e1f2f27e5a},'
