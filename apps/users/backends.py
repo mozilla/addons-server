@@ -11,7 +11,7 @@ class AmoUserBackend(object):
         try:
             profile = UserProfile.objects.get(email=username)
             if profile.check_password(password):
-                if profile.user is None:
+                if profile.user_id is None:
                     profile.create_django_user()
                 return profile.user
         except UserProfile.DoesNotExist:

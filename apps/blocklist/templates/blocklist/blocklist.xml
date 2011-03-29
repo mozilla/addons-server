@@ -3,7 +3,7 @@
 {% if items %}
   <emItems>
   {% for guid, rows in items.items() %}
-    <emItem id="{{ guid }}" {{ attrs(os=rows.os) }}>
+    <emItem {{ attrs(id=guid, os=rows.os, blockID=rows.block_id) }}>
       {% for row in rows.rows %}
         {% if row.min or row.max or row.severity or row.apps %}
           <versionRange {{ attrs(minVersion=row.min, maxVersion=row.max,
@@ -26,7 +26,7 @@
 {% if plugins %}
   <pluginItems>
   {% for plugin in plugins %}
-    <pluginItem {{ attrs(os=plugin.os, xpcomabi=plugin.xpcomabi) }}>
+    <pluginItem {{ attrs(os=plugin.os, xpcomabi=plugin.xpcomabi, blockID=plugin.block_id) }}>
       {% if plugin.name %}<match name="name" exp="{{ plugin.name }}" />{% endif %}
       {% if plugin.description %}<match name="description" exp="{{ plugin.description }}" />{% endif %}
       {% if plugin.filename %}<match name="filename" exp="{{ plugin.filename }}" />{% endif %}
@@ -47,7 +47,7 @@
 {% if gfxs %}
   <gfxItems>
   {% for gfx in gfxs %}
-    <gfxBlacklistEntry>
+  <gfxBlacklistEntry {{ attrs(blockID=gfx.block_id) }}>
       <os>{{ gfx.os }}</os>
       <vendor>{{ gfx.vendor }}</vendor>
       {% if gfx.devices %}
