@@ -16,5 +16,8 @@ def update_perf(baseline, perf, **kw):
             continue
         deltas = [(avg - baseline[os]) / float(baseline[os])
                   for _, os, avg in rows]
-        Addon.objects.filter(pk=addon).update(
-            ts_slowness=sum(deltas) / len(deltas) * 100)
+        if any(d < 0 for d in deltas):
+            slowness = None
+        else:
+            slowness = sum(deltas) / len(deltas) * 100
+        Addon.objects.filter(pk=addon).update(ts_slowness=None)
