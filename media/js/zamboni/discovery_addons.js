@@ -16,20 +16,27 @@ $.fn.zCarousel = function(o) {
     this.each(function() {
         var $self = $(this),
             $strip = $(".slider", $self),
+            $lis = $strip.find(".panel"),
             $prev = $(o.btnPrev),
             $next = $(o.btnNext),
             prop = $("body").hasClass("html-rtl") ? "right" : "left",
             currentPos = 0,
-            maxPos = Math.ceil($strip.find(".panel").length / o.itemsPerPage) - 1;
+            maxPos = Math.ceil($lis.length / o.itemsPerPage) - 1;
         function render(pos) {
             if (o.circular) {
-                currentPos = (pos > maxPos) ? (0) : (pos < 0 ? maxPos : pos);
+                currentPos = pos;
+                if ($strip.hasClass("noslide")) {
+                    currentPos = (pos > maxPos+o.itemsPerPage) ? (o.itemsPerPage) : (pos < o.itemsPerPage ? maxPos+o.itemsPerPage : pos);
+                }
             } else {
                 currentPos = Math.min(Math.max(0, pos), maxPos);
             }
             $strip.css(prop, currentPos * -100 + "%");
             $prev.toggleClass("disabled", currentPos == 0 && !o.circular);
             $next.toggleClass("disabled", currentPos == maxPos && !o.circular);
+            setTimeout(function() {
+                $strip.removeClass("noslide");
+            }, 0);
         }
         $next.click(_pd(function() {
             render(currentPos+1);
@@ -37,7 +44,30 @@ $.fn.zCarousel = function(o) {
         $prev.click(_pd(function() {
             render(currentPos-1);
         }));
-        render(0);
+
+        // Strip text nodes
+        var cn = $strip[0].childNodes;
+        for(var i = 0; i < cn.length; i++) {
+            if (cn[i].nodeType == 3) {
+                $strip[0].removeChild(cn[i]);
+            };
+        }
+
+        if (o.circular) {
+            $strip.prepend($lis.slice(-o.itemsPerPage).clone().addClass("cloned"))
+                  .append($lis.slice(0,o.itemsPerPage).clone().addClass("cloned"));
+            render(o.itemsPerPage);
+            $strip.bind("transitionend", function() {
+                if (currentPos > maxPos+o.itemsPerPage || currentPos < o.itemsPerPage) {
+                    $strip.addClass("noslide");
+                    setTimeout(function() {
+                        render(currentPos);
+                    }, 0);
+                }
+            });
+        } else {
+            render(0);
+        }
     });
 };
 
