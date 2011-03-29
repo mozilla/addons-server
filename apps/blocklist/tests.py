@@ -221,18 +221,18 @@ class BlocklistPluginTest(BlocklistTest):
         return d.getElementsByTagName('pluginItem')[0]
 
     def test_plugin_empty(self):
-        eq_(self.dom().attributes.keys(), [])
+        eq_(self.dom().attributes.keys(), ['blockID'])
         eq_(self.dom().getElementsByTagName('match'), [])
         eq_(self.dom().getElementsByTagName('versionRange'), [])
 
     def test_plugin_os(self):
         self.plugin.update(os='win')
-        eq_(self.dom().attributes.keys(), ['os'])
+        eq_(sorted(self.dom().attributes.keys()), ['blockID', 'os'])
         eq_(self.dom().getAttribute('os'), 'win')
 
     def test_plugin_xpcomabi(self):
         self.plugin.update(xpcomabi='win')
-        eq_(self.dom().attributes.keys(), ['xpcomabi'])
+        eq_(sorted(self.dom().attributes.keys()), ['blockID', 'xpcomabi'])
         eq_(self.dom().getAttribute('xpcomabi'), 'win')
 
     def test_plugin_name(self):
