@@ -11,6 +11,7 @@ import jingo
 from test_utils import TestCase
 from nose.tools import eq_
 
+import amo
 import api
 import api.utils
 from addons.models import Addon
@@ -475,6 +476,43 @@ class SeamonkeyFeaturedTest(TestCase):
         eq_(response.context['addons'], [])
 
 
+class TestGuidSearch(TestCase):
+    fixtures = ('base/apps', 'base/addon_6113', 'base/addon_3615')
+    x=1
+
+    def test_success(self):
+        r = make_call('search/guid:{22870005-adef-4c9d-ae36-d0e1f2f27e5a},'
+                      '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}')
+        eq_(set(['3615', '6113']),
+            set([a.attrib['id'] for a in pq(r.content)('addon')]))
+
+    def test_block_inactive(self):
+        Addon.objects.filter(id=6113).update(disabled_by_user=True)
+        r = make_call('search/guid:{22870005-adef-4c9d-ae36-d0e1f2f27e5a},'
+                      '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}')
+        eq_(set(['3615']),
+            set([a.attrib['id'] for a in pq(r.content)('addon')]))
+
+    def test_block_nonpublic(self):
+        Addon.objects.filter(id=6113).update(status=amo.STATUS_UNREVIEWED)
+        r = make_call('search/guid:{22870005-adef-4c9d-ae36-d0e1f2f27e5a},'
+                      '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}')
+        eq_(set(['3615']),
+            set([a.attrib['id'] for a in pq(r.content)('addon')]))
+
+    def test_empty(self):
+        """
+        Bug: https://bugzilla.mozilla.org/show_bug.cgi?id=607044
+        guid:foo, should search for just 'foo' and not empty guids.
+        """
+        r = make_call('search/guid:koberger,')
+        doc = pq(r.content)
+        # No addons should exist with guid koberger and the , should not
+        # indicate that we are searching for null guid.
+        eq_(len(doc('addon')), 0)
+
+
+
 class SearchTest(SphinxTestCase):
     fixtures = ('base/apps', 'base/addon_6113', 'base/addon_40',
                 'base/addon_3615', 'base/addon_6704_grapple',
@@ -489,23 +527,6 @@ class SearchTest(SphinxTestCase):
         resp = make_call('search/%25E6%2596%25B0%25E5%2590%258C%25E6%2596%'
                 '2587%25E5%25A0%2582/all/10/WINNT/3.6', version=1.2)
         self.assertContains(resp, '<addon id="6113">')
-
-    def test_guid_query(self):
-        r = make_call('search/guid:{22870005-adef-4c9d-ae36-d0e1f2f27e5a},'
-                      '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}')
-        eq_(set(['3615', '6113']),
-            set([a.attrib['id'] for a in pq(r.content)('addon')]))
-
-    def test_guid_empty(self):
-        """
-        Bug: https://bugzilla.mozilla.org/show_bug.cgi?id=607044
-        guid:foo, should search for just 'foo' and not empty guids.
-        """
-        r = make_call('search/guid:koberger,')
-        doc = pq(r.content)
-        # No addons should exist with guid koberger and the , should not
-        # indicate that we are searching for null guid.
-        eq_(len(doc('addon')), 0)
 
     def test_zero_results(self):
         """
