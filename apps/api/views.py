@@ -22,7 +22,8 @@ from amo.models import manual_order
 from amo.urlresolvers import get_url_prefix
 from amo.utils import JSONEncoder
 from addons.models import Addon
-from search.client import Client as SearchClient, SearchError, extract_from_query
+from search.client import (Client as SearchClient, SearchError,
+                           extract_from_query, SEARCHABLE_STATUSES)
 from search import utils as search_utils
 
 ERROR = 'error'
@@ -205,7 +206,8 @@ class SearchView(APIView):
         _, guids = extract_from_query(query, 'guid', '[\s{}@_\.,\-0-9a-zA-Z]+',
                                       end_of_word_boundary=False)
         guids = [g.strip() for g in guids.split(',')]
-        results = Addon.objects.filter(guid__in=guids)
+        results = Addon.objects.filter(guid__in=guids, disabled_by_user=False,
+                                       status__in=SEARCHABLE_STATUSES)
         return self.render('api/search.xml',
                            {'results': results, 'total': len(results)})
 
