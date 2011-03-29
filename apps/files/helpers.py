@@ -65,14 +65,17 @@ class FileViewer:
         """If the file has been extracted or not."""
         return os.path.exists(self.dest)
 
-    def is_binary(self, mimetype):
+    def is_binary(self, mimetype, filename):
         """Uses the filename to see if the file can be shown in HTML or not."""
         if mimetype:
             major, minor = mimetype.split('/')
             if major == 'text' and minor in ['plain', 'html']:
                 return False
-            if minor in ['xml', 'rdf+xml', 'javascript', 'x-javascript']:
+            elif minor in ['xml', 'rdf+xml', 'javascript', 'x-javascript',
+                         'xml-dtd', 'vnd.mozilla.xul+xml']:
                 return False
+        elif os.path.splitext(filename)[1] in ['.properties']:
+            return False
         return True
 
     def read_file(self, selected):
@@ -103,7 +106,7 @@ class FileViewer:
         for path, filename in sorted(all_files):
             short = path[len(self.dest) + 1:]
             mime, encoding = mimetypes.guess_type(filename)
-            binary = self.is_binary(mime)
+            binary = self.is_binary(mime, filename)
             # TODO: handling for st.a.m.o will be going in here
             url = reverse('files.list', args=[self.file.id, short])
             directory = os.path.isdir(path)

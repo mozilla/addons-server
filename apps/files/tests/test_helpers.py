@@ -45,14 +45,16 @@ class TestFileHelper(test_utils.TestCase):
         eq_(self.viewer.is_extracted, False)
 
     def test_isbinary(self):
+        binary = self.viewer.is_binary
         for f in ['foo.rdf', 'foo.xml', 'foo.js', 'foo.py'
-                  'foo.html', 'foo.txt']:
+                  'foo.html', 'foo.txt', 'foo.dtd', 'foo.xul',
+                  'foo.properties']:
             m, encoding = mimetypes.guess_type(f)
-            assert not self.viewer.is_binary(m), '%s should not be binary' % f
+            assert not binary(m, f), '%s should not be binary' % f
 
         for f in ['foo.png', 'foo.gif', 'foo.xls', 'foo.dic']:
             m, encoding = mimetypes.guess_type(f)
-            assert self.viewer.is_binary(m), '%s should be binary' % f
+            assert binary(m, f), '%s should be binary' % f
 
     def test_get_files_not_extracted(self):
         assert not self.viewer.get_files()
