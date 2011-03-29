@@ -52,6 +52,10 @@ class TestFileHelper(test_utils.TestCase):
             m, encoding = mimetypes.guess_type(f)
             assert not binary(m, f), '%s should not be binary' % f
 
+        for f in ['foo.dtd', 'foo.xul', 'foo.properties']:
+            m, encoding = mimetypes.guess_type(f)
+            assert not binary(None, f), '%s should not be binary' % f
+
         for f in ['foo.png', 'foo.gif', 'foo.xls', 'foo.dic']:
             m, encoding = mimetypes.guess_type(f)
             assert binary(m, f), '%s should be binary' % f
