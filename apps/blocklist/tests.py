@@ -51,6 +51,13 @@ class BlocklistItemTest(BlocklistTest):
         self.app = BlocklistApp.objects.create(blitem=self.item,
                                                guid=amo.FIREFOX.guid)
 
+    def test_empty_string_goes_null_on_save(self):
+        b = BlocklistItem(guid='guid', min='', max='', os='')
+        b.save()
+        assert b.min is None
+        assert b.max is None
+        assert b.os is None
+
     def test_lastupdate(self):
         bl = self.dom(self.fx4_url).getElementsByTagName('blocklist')[0]
         t = datetime.fromtimestamp(int(bl.getAttribute('lastupdate')) / 1000)
