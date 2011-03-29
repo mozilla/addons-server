@@ -1,6 +1,7 @@
 import hashlib
 
 from django import http
+from django.conf import settings
 from django.utils.http import http_date
 from django.views.decorators.cache import never_cache
 
@@ -56,9 +57,10 @@ def files_list(request, viewer, key='install.rdf'):
         extract_file.delay(viewer)
 
     response = jingo.render(request, 'files/viewer.html', data)
-    response['ETag'] = '"%s"' % hashlib.md5(response.content).hexdigest()
-    response['Last-Modified'] = http_date(data['selected']['modified'] if
-                                          data['selected'] else None)
+    if not settings.DEBUG:
+        response['ETag'] = '"%s"' % hashlib.md5(response.content).hexdigest()
+        response['Last-Modified'] = http_date(data['selected']['modified'] if
+                                              data['selected'] else None)
     return response
 
 
@@ -70,7 +72,7 @@ def files_compare_poll(request, diff):
 
 
 @compare_file_view
-def files_compare(request, diff, key=None):
+def files_compare(request, diff, key='install.rdf'):
     data = setup_viewer(request, diff.file_one.file)
     data['diff'] = diff
     data['poll_url'] = reverse('files.compare.poll',
@@ -99,7 +101,8 @@ def files_compare(request, diff, key=None):
         extract_file.delay(diff)
 
     response = jingo.render(request, 'files/viewer.html', data)
-    response['ETag'] = '"%s"' % hashlib.md5(response.content).hexdigest()
-    response['Last-Modified'] = http_date(data['selected']['modified'] if
-                                          data['selected'] else None)
+    if not settings.DEBUG:
+        response['ETag'] = '"%s"' % hashlib.md5(response.content).hexdigest()
+        response['Last-Modified'] = http_date(data['selected']['modified'] if
+                                              data['selected'] else None)
     return response

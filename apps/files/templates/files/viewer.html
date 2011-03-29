@@ -9,11 +9,11 @@
 </h3>
 <div id="file-viewer">
     {% if not status %}
-        <p id="waiting" data-url="{{ poll_url }}">
+        <p class="waiting" id="extracting" data-url="{{ poll_url }}">
             {{ _('Add-on file being processed, please wait.') }}
         </p>
     {% endif %}
-    <div class="files">
+    <div id="files">
         <ul>
         {% if files %}
             {% for key, value in files.items() %}
@@ -38,20 +38,25 @@
             <p>{{ _('No files in the uploaded file.') }}</p>
         {% endif %}
     </div>
-    <div class="content-wrapper">
+    <div id="thinking" class="hidden">
+        <p class="waiting">
+            {{ _('Fetching file.') }}
+        </p>
+    </div>
+    <div id="content-wrapper">
         {% if msg %}
             <p><strong>{{ msg }}</strong></p>
         {% endif %}
-        <div class="numbers">
+        <div id="numbers">
         </div>
-        <div class="content">
+        <div>
         {% if viewer %}
             {% if selected['binary'] and not selected['directory'] %}
                 <p>{{ _('Binary file, hash:') }} {{ selected.md5 }}</p>
             {% else %}
                 {% if selected and content %}
                     <pre id="content">{{ content }}</pre>
-                {% else %}
+                {% elif content == '' %}
                     <p>{{ _('No content.') }}</p>
                 {% endif %}
             {% endif %}
@@ -79,7 +84,7 @@
         </div>
     </div>
     <p class="help">
-            {{ _('Shortcuts: prev j, next k') }}
+        {{ _('Shortcuts: prev j, next k') }}
     </p>
 </div>
 {% endblock %}

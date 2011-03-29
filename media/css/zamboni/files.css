@@ -3,23 +3,23 @@
     padding-top: 1em
 }
 
-#file-viewer .files {
+#file-viewer #files {
     width: 15em;
     float: left;
 }
 
-#file-viewer .files li a {
+#file-viewer #files li a {
     display: inline-block;
 }
 
-#file-viewer .numbers {
+#file-viewer #numbers {
     width: 3em;
     float: left;
     padding-left: 4em;
     border-top: 1px solid white;
 }
 
-#file-viewer .content {
+#file-viewer #thinking, #file-viewer #content {
     width: 50em;
     float: left;
     padding-left: 1em;
@@ -37,7 +37,7 @@ pre div:hover, pre ins:hover, pre del:hover {
 }
 
 
-pre, #file-viewer .numbers {
+pre, #file-viewer #numbers {
     line-height: 1.15em;
 }
 
@@ -53,7 +53,7 @@ pre del {
     line-height: inherit;
 }
 
-#file-viewer .content {
+#file-viewer #content {
     width: 10em;
     float: left;
 }
@@ -92,7 +92,7 @@ pre del {
     background: url('/media/img/icons/minus.gif') 0 no-repeat;
 }
 
-#file-viewer #waiting {
+#file-viewer .waiting {
     background-image: url(../../img/zamboni/loading-white.gif);
     background-repeat: no-repeat;
     background-position: left top;
