@@ -67,7 +67,9 @@ $.fn.zCarousel = function(o) {
             $strip.bind("transitionend", function() {
                 if (currentPos > maxPos+1 || currentPos < 1) {
                     $strip.addClass("noslide");
-                    render(currentPos);
+                    setTimeout(function() {
+                        render(currentPos);
+                    }, 0);
                 }
             });
         } else {
