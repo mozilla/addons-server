@@ -7,7 +7,7 @@
         <span class="desc">{{ addon.summary|strip_html()|truncate(250) }}</span>
         <div>
           {% if sort in ('newest', 'created') %}
-            {{ _('Added {0}')|f(addon.created|datetime) }}
+            <span class="newest">{{ _('Added {0}')|f(addon.created|datetime) }}</span>
           {% elif sort == 'updated' %}
             {{ _('Updated {0}')|f(addon.last_updated|datetime) }}
           {% elif sort in ('weeklydownloads', 'popular') %}
