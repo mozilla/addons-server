@@ -534,6 +534,40 @@ class TestReviewHelper(test_utils.TestCase):
             assert not os.path.exists(self.file.mirror_file_path)
             eq_(self.check_log_count(amo.LOG.REJECT_VERSION.id), 1)
 
+    def test_operating_system_present(self):
+        self.setup_data(amo.STATUS_BETA)
+        self.helper.handler.process_sandbox()
+
+        assert 'Tested on osx with Firefox' in mail.outbox[0].body
+
+    def test_operating_system_not_present(self):
+        self.setup_data(amo.STATUS_BETA)
+        data = self.get_data().copy()
+        data['operating_systems'] = ''
+        self.helper.set_data(data)
+        self.helper.handler.process_sandbox()
+
+        assert 'Tested with Firefox' in mail.outbox[0].body
+
+    def test_application_not_present(self):
+        self.setup_data(amo.STATUS_BETA)
+        data = self.get_data().copy()
+        data['applications'] = ''
+        self.helper.set_data(data)
+        self.helper.handler.process_sandbox()
+
+        assert 'Tested on osx' in mail.outbox[0].body
+
+    def test_both_not_present(self):
+        self.setup_data(amo.STATUS_BETA)
+        data = self.get_data().copy()
+        data['applications'] = ''
+        data['operating_systems'] = ''
+        self.helper.set_data(data)
+        self.helper.handler.process_sandbox()
+
+        assert not 'Tested' in mail.outbox[0].body
+
     def test_pending_to_super_review(self):
         for status in helpers.PENDING_STATUSES:
             self.setup_data(status)
