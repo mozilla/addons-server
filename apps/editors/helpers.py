@@ -470,7 +470,7 @@ class ReviewFiles(ReviewBase):
                        hide_disabled_file=True)
 
         self.log_approval(amo.LOG.REJECT_VERSION)
-        self.notify_email('%s_to_preliminary' % self.review_type,
+        self.notify_email('%s_to_sandbox' % self.review_type,
                           _lazy('Mozilla Add-ons: %s %s Reviewed'))
 
         log.info(u'Making %s files %s disabled' %
