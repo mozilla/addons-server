@@ -1194,6 +1194,14 @@ class TestReviewPending(ReviewBase):
         eq_(self.get_addon().status, amo.STATUS_PUBLIC)
         eq_(set([f.status for f in self.version.files.all()]), set([4]))
 
+    def test_disabled_file(self):
+        obj = File.objects.create(version=self.version,
+                                  status=amo.STATUS_DISABLED)
+        response = self.client.get(self.url, self.pending_dict())
+        doc = pq(response.content)
+        assert 'disabled' in doc('#file-%s' % obj.pk)[0].keys()
+        assert 'disabled' not in doc('#file-%s' % self.file.pk)[0].keys()
+
 
 class TestEditorMOTD(EditorTest):
 
