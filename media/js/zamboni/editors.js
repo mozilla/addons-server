@@ -77,7 +77,6 @@ function initReviewActions() {
 
     /* File checkboxes */
     var $files_input = $('#review-actions .review-actions-files').find('input');
-    $files_input.attr('disabled', false); // In case they refresh
 
     if($files_input.length == 1 || ! $('#review-actions .review-actions-files').attr('data-uncheckable')) {
         // Add a dummy, disabled input

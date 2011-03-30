@@ -7,7 +7,10 @@ from addons.models import Addon
 import amo
 from editors.forms import get_review_form
 from editors.helpers import NOMINATED_STATUSES
+from files.models import File
 from users.models import UserProfile
+
+from pyquery import PyQuery as pq
 
 
 class TestReviewActions(test_utils.TestCase):
@@ -25,8 +28,10 @@ class TestReviewActions(test_utils.TestCase):
 
     def set_status(self, status):
         self.addon.update(status=status)
-        form = get_review_form({'files': self.file.pk}, request=self.request,
-                               addon=self.addon, version=self.version)
+        form = get_review_form({'addon_files': [self.file.pk]},
+                                request=self.request,
+                                addon=self.addon,
+                                version=self.version)
         return form.helper.get_actions()
 
     def test_lite_nominated(self):

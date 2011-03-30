@@ -21,11 +21,13 @@ from editors.sql_table import SQLTable
 
 @register.function
 def file_review_status(addon, file):
-    if addon.status in [amo.STATUS_UNREVIEWED, amo.STATUS_LITE]:
-        return _lazy('Pending Preliminary Review')
-    elif addon.status in [amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED,
-                          amo.STATUS_PUBLIC]:
-        return _lazy('Pending Full Review')
+    if file.status not in [amo.STATUS_DISABLED]:
+        if addon.status in [amo.STATUS_UNREVIEWED, amo.STATUS_LITE]:
+            return _lazy('Pending Preliminary Review')
+        elif addon.status in [amo.STATUS_NOMINATED,
+                              amo.STATUS_LITE_AND_NOMINATED,
+                              amo.STATUS_PUBLIC]:
+            return _lazy('Pending Full Review')
     return amo.STATUS_CHOICES[file.status]
 
 
