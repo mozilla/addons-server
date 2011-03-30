@@ -10,7 +10,8 @@ from nose.tools import eq_
 
 import amo
 from amo.urlresolvers import reverse
-from .models import BlocklistItem, BlocklistApp, BlocklistPlugin, BlocklistGfx
+from .models import (BlocklistApp, BlocklistDetail, BlocklistItem,
+                     BlocklistGfx, BlocklistPlugin)
 
 
 base_xml = """
@@ -28,6 +29,7 @@ class BlocklistTest(test_utils.TestCase):
         self.mobile_url = reverse('blocklist', args=[2, amo.MOBILE.guid, '.9'])
         self._redis = redisutils.mock_redis()
         cache.clear()
+        self.details = BlocklistDetail.objects.create()
 
     def tearDown(self):
         redisutils.reset_redis(self._redis)
@@ -47,7 +49,8 @@ class BlocklistItemTest(BlocklistTest):
 
     def setUp(self):
         super(BlocklistItemTest, self).setUp()
-        self.item = BlocklistItem.objects.create(guid='guid@addon.com')
+        self.item = BlocklistItem.objects.create(guid='guid@addon.com',
+                                                 details=self.details)
         self.app = BlocklistApp.objects.create(blitem=self.item,
                                                guid=amo.FIREFOX.guid)
 
@@ -131,6 +134,10 @@ class BlocklistItemTest(BlocklistTest):
         items = self.dom(self.fx4_url).getElementsByTagName('emItem')
         eq_(len(items), 1)
         eq_(items[0].getAttribute('id'), 'guid@addon.com')
+
+    def test_block_id(self):
+        item = self.dom(self.fx4_url).getElementsByTagName('emItem')[0]
+        eq_(item.getAttribute('blockID'), 'i' + str(self.details.id))
 
     def test_item_os(self):
         item = self.dom(self.fx4_url).getElementsByTagName('emItem')[0]
@@ -235,7 +242,8 @@ class BlocklistPluginTest(BlocklistTest):
 
     def setUp(self):
         super(BlocklistPluginTest, self).setUp()
-        self.plugin = BlocklistPlugin.objects.create(guid=amo.FIREFOX.guid)
+        self.plugin = BlocklistPlugin.objects.create(guid=amo.FIREFOX.guid,
+                                                     details=self.details)
 
     def test_no_plugins(self):
         dom = BlocklistTest.dom(self, self.mobile_url)
@@ -253,6 +261,10 @@ class BlocklistPluginTest(BlocklistTest):
         eq_(self.dom().attributes.keys(), ['blockID'])
         eq_(self.dom().getElementsByTagName('match'), [])
         eq_(self.dom().getElementsByTagName('versionRange'), [])
+
+    def test_block_id(self):
+        item = self.dom(self.fx4_url)
+        eq_(item.getAttribute('blockID'), 'p' + str(self.details.id))
 
     def test_plugin_os(self):
         self.plugin.update(os='win')
@@ -323,7 +335,7 @@ class BlocklistGfxTest(BlocklistTest):
         super(BlocklistGfxTest, self).setUp()
         self.gfx = BlocklistGfx.objects.create(
             guid=amo.FIREFOX.guid, os='os', vendor='vendor', devices='x y z',
-            feature='feature', feature_status='status',
+            feature='feature', feature_status='status', details=self.details,
             driver_version='version', driver_version_comparator='compare')
 
     def test_no_gfx(self):
@@ -354,3 +366,8 @@ class BlocklistGfxTest(BlocklistTest):
         self.gfx.save()
         r = self.client.get(self.fx4_url)
         self.assertNotContains(r, '<devices>')
+
+    def test_block_id(self):
+        item = (self.dom(self.fx4_url)
+                .getElementsByTagName('gfxBlacklistEntry')[0])
+        eq_(item.getAttribute('blockID'), 'g' + str(self.details.id))
