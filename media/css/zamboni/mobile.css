@@ -569,6 +569,11 @@ a.listview:before {
     margin-right: 12px;
 }
 
+.item .vital {
+    color: green;
+    font-size: .9em;
+}
+
 /************************************/
 /*              SEARCH              */
 /************************************/
