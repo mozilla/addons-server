@@ -2129,148 +2129,148 @@ form .error .note.error {
     width: 100%;
 }
 
-#perf-results table .perf-hidden {
+#perf-results .perf-hidden {
     display: none;
 }
 
-#perf-results table th {
+#perf-results th {
     font-size: 11px;
     vertical-align: top;
     padding: 0 20px 8px 0;
 }
 
-#perf-results table th.rank {
+#perf-results th.rank {
     width: 32px;
 }
 
-.html-rtl #perf-results table th.rank {
+.html-rtl #perf-results th.rank {
     padding-right: 0;
     text-align: right;
 }
 
-#perf-results table th.impact {
+#perf-results th.impact {
     padding-right: 0;
     width: 300px;
 }
 
-#perf-results table th.impact .percentage {
+#perf-results th.impact .percentage {
     color: #999;
     font-weight: normal;
 }
 
-#perf-results table td {
+#perf-results td {
     border-top: 1px dotted #add0dc;
     padding: 8px 0;
     vertical-align: middle;
 }
 
-#perf-results table td.rank {
+#perf-results td.rank {
     vertical-align: top;
 }
 
-#perf-results table td.rank b,
-#perf-results table td.impact b,
-#perf-results table td.addon .addon-title > a {
+#perf-results td.rank b,
+#perf-results td.impact b,
+#perf-results td.addon .addon-title > a {
     font-size: 1.4em;
 }
 
-#perf-results table .perf-small td.rank b,
-#perf-results table .perf-small td.impact b,
-#perf-results table .perf-small td.addon .addon-title > a {
+#perf-results .perf-small td.rank b,
+#perf-results .perf-small td.impact b,
+#perf-results .perf-small td.addon .addon-title > a {
     font-size: 1.0em;
 }
 
-#perf-results table .perf-small td.addon img.icon,
-#perf-results table .perf-small td.addon .author,
-#perf-results table .perf-small td.impact .slower span {
+#perf-results .perf-small td.addon img.icon,
+#perf-results .perf-small td.addon .author,
+#perf-results .perf-small td.impact .slower span {
     display: none;
 }
 
-#perf-results table td.rank b {
+#perf-results td.rank b {
     font-weight: normal;
     vertical-align: top;
 }
 
-#perf-results table td.addon div {
+#perf-results td.addon div {
     position: relative;
 }
 
-#perf-results table td.addon img.icon,
-#perf-results table td.addon .addon-title,
-#perf-results table td.addon .author {
+#perf-results td.addon img.icon,
+#perf-results td.addon .addon-title,
+#perf-results td.addon .author {
     display: block;
 }
 
-#perf-results table td.addon img.icon {
+#perf-results td.addon img.icon {
     position: absolute;
     top: 0;
     left: 0;
 }
 
-.html-rtl #perf-results table td.addon img.icon {
+.html-rtl #perf-results td.addon img.icon {
     right: 0;
 }
 
-#perf-results table th.addon,
-#perf-results table td.addon .addon-title {
+#perf-results th.addon,
+#perf-results td.addon .addon-title {
     padding-left: 50px;
 }
 
-.html-rtl #perf-results table th.addon,
-.html-rtl #perf-results table td.addon .addon-title {
+.html-rtl #perf-results th.addon,
+.html-rtl #perf-results td.addon .addon-title {
     padding-left: 0;
     padding-right: 50px;
 }
 
-#perf-results table td.addon .addon-title > a {
+#perf-results td.addon .addon-title > a {
     font-weight: bold;
 }
 
-#perf-results table td.impact {
+#perf-results td.impact {
     color: #777;
     line-height: 1.3em;
 }
 
-#perf-results table .impact .slower,
-#perf-results table .impact .percentage {
+#perf-results .impact .slower,
+#perf-results .impact .percentage {
     display: table-cell;
 }
 
-#perf-results table .impact .slower {
+#perf-results .impact .slower {
     text-align: right;
     width: 100px;
 }
 
-.html-rtl #perf-results table .impact .slower {
+.html-rtl #perf-results .impact .slower {
     text-align: left;
 }
 
-#perf-results table .impact .percentage {
+#perf-results .impact .percentage {
     width: 70%;
 }
 
-#perf-results table .impact .slower {
+#perf-results .impact .slower {
     padding-right: 10px;
 }
 
-.html-rtl #perf-results table .impact .slower {
+.html-rtl #perf-results .impact .slower {
     padding: 0 0 0 10px;
 }
 
-#perf-results table td.impact .slower {
+#perf-results td.impact .slower {
     border-right: 1px solid #f77;
 }
 
-.html-rtl #perf-results table td.impact .slower {
+.html-rtl #perf-results td.impact .slower {
     border-right-width: 0;
     border-left: 1px solid #f77;
 }
 
-#perf-results table td.impact .percentage {
+#perf-results td.impact .percentage {
     vertical-align: middle;
 }
 
-#perf-results table td.impact b {
+#perf-results td.impact b {
     color: #444;
     display: block;
 }
