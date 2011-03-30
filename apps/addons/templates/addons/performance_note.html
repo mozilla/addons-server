@@ -5,7 +5,7 @@
     &nbsp;<a href="#">{{ _('More&hellip;')|safe }}</a>
     <div class="popup warning hidden">
       <p class="msg">
-        {% trans %}
+        {% trans amount=amount|int %}
           <b>Performance warning:</b> Installing this add-on can slow down
           Firefox's start-up by <b>{{ amount }}%</b>.
         {% endtrans %}
@@ -20,7 +20,7 @@
     <span></span>
     <div>
       <h3>{{ _('This add-on can slow down Firefox.') }}</h3>
-      {% trans %}
+      {% trans amount=amount|int %}
         Installing this add-on can slow down
         Firefox's start-up by <b>{{ amount }}%</b>.
       {% endtrans %}
