@@ -7,7 +7,7 @@ Reviewer:
 Comments:
 {{ comments }}
 
-Tested on {{ operating_systems }} with {{ applications }}
+{{ tested }}
 
 To learn more about the review process, please visit https://addons.mozilla.org/developers/docs/policies/reviews#selection
 {% endblocktrans %}{% endblock %}
