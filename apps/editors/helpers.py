@@ -354,10 +354,13 @@ class ReviewBase:
         data['tested'] = ''
         os, app = data.get('operating_systems'), data.get('applications')
         if os and app:
+            #L10n: {0} is operating system (eg OSX), {1} is app (eg: Firefox)
             data['tested'] = _('Tested on {0} with {1}').format(os, app)
         elif os and not app:
+            #L10n: {0} is operating system (eg OSX)
             data['tested'] = _('Tested on {0}').format(os)
         elif not os and app:
+            #L10n: {0} is app (eg: Firefox)
             data['tested'] = _('Tested with {0}').format(app)
         send_mail('editors/emails/%s.ltxt' % template,
                    subject % (self.addon.name, self.version.version),
