@@ -5,7 +5,7 @@ $(document).ready(function() {
     if ($('body').attr('data-paypal-url')) {
         $('div.contribute a.suggested-amount').bind('click', function(event) {
              $.ajax({type: 'GET',
-                url: $(this).attr('href') + '?result_type=json',
+                url: $(this).attr('href') + '&result_type=json',
                 success: function(json) {
                     $.getScript($('body').attr('data-paypal-url'), function() {
                         dgFlow = new PAYPAL.apps.DGFlow();
