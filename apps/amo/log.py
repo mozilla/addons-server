@@ -167,7 +167,7 @@ class APPROVE_VERSION(_LOG):
 
 class PRELIMINARY_VERSION(_LOG):
     id = 42
-    action_class = None
+    action_class = 'approve'
     format = _(u'{addon} {version} given preliminary review.')
     keep = True
     review_queue = True
