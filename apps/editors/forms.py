@@ -195,19 +195,21 @@ class AddonFilesMultipleChoiceField(forms.ModelMultipleChoiceField):
 
 class ReviewAddonForm(happyforms.Form):
     addon_files = AddonFilesMultipleChoiceField(required=False,
-            queryset=File.objects.none(), label=_('Files:'),
+            queryset=File.objects.none(), label=_lazy('Files:'),
             widget=forms.CheckboxSelectMultiple())
     comments = forms.CharField(required=True, widget=forms.Textarea(),
-                               label=_('Comments:'))
+                               label=_lazy('Comments:'))
     canned_response = forms.ChoiceField(required=False)
     action = forms.ChoiceField(required=True, widget=forms.RadioSelect())
     operating_systems = forms.CharField(required=False,
-                                        label=_('Operating systems:'))
-    applications = forms.CharField(required=False, label=_('Applications:'))
+                                        label=_lazy('Operating systems:'))
+    applications = forms.CharField(required=False,
+                                   label=_lazy('Applications:'))
     notify = forms.BooleanField(required=False,
-                                label=_('Notify me the next time this add-on '
-                                        'is updated. (Subsequent updates will '
-                                        'not generate an email)'))
+                                label=_lazy('Notify me the next time this '
+                                            'add-on is updated. (Subsequent '
+                                            'updates will not generate an '
+                                            'email)'))
 
     def is_valid(self):
         result = super(ReviewAddonForm, self).is_valid()
