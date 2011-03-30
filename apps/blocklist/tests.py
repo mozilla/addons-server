@@ -59,9 +59,31 @@ class BlocklistItemTest(BlocklistTest):
         assert b.os is None
 
     def test_lastupdate(self):
-        bl = self.dom(self.fx4_url).getElementsByTagName('blocklist')[0]
-        t = datetime.fromtimestamp(int(bl.getAttribute('lastupdate')) / 1000)
-        assert (datetime.now() - t).seconds < 5
+        def eq(a, b):
+            eq_(a, b.replace(microsecond=0))
+
+        def find_lastupdate():
+            bl = self.dom(self.fx4_url).getElementsByTagName('blocklist')[0]
+            t = int(bl.getAttribute('lastupdate')) / 1000
+            return datetime.fromtimestamp(t)
+
+        eq(find_lastupdate(), self.item.created)
+
+        self.item.save()
+        eq(find_lastupdate(), self.item.modified)
+
+        plugin = BlocklistPlugin.objects.create(guid=amo.FIREFOX.guid)
+        eq(find_lastupdate(), plugin.created)
+        plugin.save()
+        eq(find_lastupdate(), plugin.modified)
+
+        gfx = BlocklistGfx.objects.create(guid=amo.FIREFOX.guid)
+        eq(find_lastupdate(), gfx.created)
+        gfx.save()
+        eq(find_lastupdate(), gfx.modified)
+
+        assert (self.item.created != self.item.modified != plugin.created
+                != plugin.modified != gfx.created != gfx.modified)
 
     def test_no_items(self):
         self.item.delete()

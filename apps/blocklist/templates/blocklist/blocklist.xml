@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<blocklist xmlns="http://www.mozilla.org/2006/addons-blocklist" lastupdate="{{ now }}">
+<blocklist xmlns="http://www.mozilla.org/2006/addons-blocklist" lastupdate="{{ last_update }}">
 {% if items %}
   <emItems>
   {% for guid, rows in items.items() %}

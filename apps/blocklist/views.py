@@ -19,6 +19,7 @@ from .models import (BlocklistItem, BlocklistPlugin, BlocklistGfx,
 
 
 App = collections.namedtuple('App', 'guid min max')
+BlItem = collections.namedtuple('BlItem', 'rows os modified block_id')
 
 
 def blocklist(request, apiver, app, appver):
@@ -41,12 +42,15 @@ def _blocklist(request, apiver, app, appver):
     items = get_items(apiver, app, appver)
     plugins = get_plugins(apiver, app, appver)
     gfxs = BlocklistGfx.objects.filter(Q(guid__isnull=True) | Q(guid=app))
+    # Find the latest created/modified date across all sections.
+    all_ = list(items.values()) + list(plugins) + list(gfxs)
+    last_update = max(x.modified for x in all_) if all_ else datetime.now()
     # The client expects milliseconds, Python's time returns seconds.
-    now = int(time.time() * 1000)
+    last_update = int(time.mktime(last_update.timetuple()) * 1000)
     return jingo.render(request, 'blocklist/blocklist.xml',
-                            dict(items=items, plugins=plugins, gfxs=gfxs,
-                                 apiver=apiver, appguid=app, appver=appver,
-                                 now=now))
+                        dict(items=items, plugins=plugins, gfxs=gfxs,
+                             apiver=apiver, appguid=app, appver=appver,
+                             last_update=last_update))
 
 
 def clear_blocklist(*args, **kw):
@@ -67,19 +71,22 @@ def get_items(apiver, app, appver):
     # item and collapse each item's apps.
     addons = (BlocklistItem.uncached
               .filter(Q(app__guid__isnull=True) | Q(app__guid=app))
+              .order_by('-modified')
               .extra(select={'app_guid': 'blapps.guid',
                              'app_min': 'blapps.min',
                              'app_max': 'blapps.max'}))
     items = {}
     for guid, rows in sorted_groupby(addons, 'guid'):
+        rows = list(rows)
         rr = []
-        for id, rs in sorted_groupby(list(rows), 'id'):
+        for id, rs in sorted_groupby(rows, 'id'):
             rs = list(rs)
             rr.append(rs[0])
             rs[0].apps = [App(r.app_guid, r.app_min, r.app_max)
                            for r in rs if r.app_guid]
         os = [r.os for r in rr if r.os]
-        items[guid] = {'rows': rr, 'os': os and os[0] or None}
+        items[guid] = BlItem(rr, os[0] if os else None, rows[0].modified,
+                             rows[0].block_id)
     return items
 
 
