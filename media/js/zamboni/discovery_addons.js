@@ -22,11 +22,12 @@ $.fn.zCarousel = function(o) {
             prop = $("body").hasClass("html-rtl") ? "right" : "left",
             currentPos = 0,
             maxPos = Math.ceil($lis.length / o.itemsPerPage) - 1;
+
         function render(pos) {
             if (o.circular) {
                 currentPos = pos;
                 if ($strip.hasClass("noslide")) {
-                    currentPos = (pos > maxPos+o.itemsPerPage) ? (o.itemsPerPage) : (pos < o.itemsPerPage ? maxPos+o.itemsPerPage : pos);
+                    currentPos = (pos > maxPos+1) ? 1 : (pos < 1 ? maxPos+1 : pos);
                 }
             } else {
                 currentPos = Math.min(Math.max(0, pos), maxPos);
@@ -34,10 +35,14 @@ $.fn.zCarousel = function(o) {
             $strip.css(prop, currentPos * -100 + "%");
             $prev.toggleClass("disabled", currentPos == 0 && !o.circular);
             $next.toggleClass("disabled", currentPos == maxPos && !o.circular);
+
+            //wait for paint to clear the class. lame.
             setTimeout(function() {
                 $strip.removeClass("noslide");
             }, 0);
         }
+
+        //wire up controls.
         $next.click(_pd(function() {
             render(currentPos+1);
         }));
@@ -45,7 +50,7 @@ $.fn.zCarousel = function(o) {
             render(currentPos-1);
         }));
 
-        // Strip text nodes
+        // Strip text nodes so inline-block works properly.
         var cn = $strip[0].childNodes;
         for(var i = 0; i < cn.length; i++) {
             if (cn[i].nodeType == 3) {
@@ -54,15 +59,15 @@ $.fn.zCarousel = function(o) {
         }
 
         if (o.circular) {
+            //pad the beginning with a page from the end vice-versa.
             $strip.prepend($lis.slice(-o.itemsPerPage).clone().addClass("cloned"))
                   .append($lis.slice(0,o.itemsPerPage).clone().addClass("cloned"));
             render(o.itemsPerPage);
+            //if we're outside the bounds, disable transitions and snap back to the beginning.
             $strip.bind("transitionend", function() {
-                if (currentPos > maxPos+o.itemsPerPage || currentPos < o.itemsPerPage) {
+                if (currentPos > maxPos+1 || currentPos < 1) {
                     $strip.addClass("noslide");
-                    setTimeout(function() {
-                        render(currentPos);
-                    }, 0);
+                    render(currentPos);
                 }
             });
         } else {
