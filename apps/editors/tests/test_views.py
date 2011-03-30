@@ -155,7 +155,7 @@ class TestReviewLog(EditorTest):
         eq_(list_items.eq(1).text(), "Review Log")
 
     def test_addon_missing(self):
-        Addon.objects.get(pk=222248).delete('test msg')
+        Addon.objects.all().delete()
         r = self.client.get(reverse('editors.reviewlog'))
         doc = pq(r.content)
         eq_(doc('#log-listing tr td')[2].text.strip(),
