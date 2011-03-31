@@ -15,8 +15,9 @@
         {{ form.start }}
         {{ form.end.label_tag() }}
         {{ form.end }}
-      </p>
-      <p>
+
+        &bullet;
+
         {{ form.filter.label_tag() }}
         {{ form.filter }}
         {# L10n: "Filter" is a button label (verb) #}
@@ -24,8 +25,8 @@
       </p>
     </form>
     {% if pager.object_list %}
-      <table>
-        <thead><tr>
+      <table class="data-grid">
+        <thead><tr class="listing-header">
           <th>{{ _('Date') }}</th>
           <th>{{ _('Event') }}</th>
         </tr></thead>
@@ -51,9 +52,12 @@
       <p>No events found for this period.</p>
     {% endif %}
   </div>
+
+  {% if pager.has_other_pages() %}
   <div class="listing-footer">
     {{ pager|paginator }}
   </div>
+  {% endif %}
 </div>
 {% endblock %}
 

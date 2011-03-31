@@ -158,7 +158,7 @@ class TestReviewLog(EditorTest):
         Addon.objects.all().delete()
         r = self.client.get(reverse('editors.reviewlog'))
         doc = pq(r.content)
-        eq_(doc('#log-listing tr td')[2].text.strip(),
+        eq_(doc('#log-listing tr td')[1].text.strip(),
             'Addon has been deleted.')
 
 

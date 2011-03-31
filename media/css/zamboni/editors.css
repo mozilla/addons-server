@@ -294,10 +294,6 @@ ul.tabnav a:hover {
     padding: 15px;
 }
 
-.controls {
-    padding: 15px;
-}
-
 tr.comments {
     background: #def;
 }
@@ -374,11 +370,15 @@ tr.comments {
 }
 
 /* data grid search form */
+#log-filter form {
+    margin: 0;
+}
 .queue-outer #queue-search table {
     margin: 0;
     padding: 0;
 }
-.queue-outer #queue-search {
+.queue-outer #queue-search,
+.date_range {
     padding: 1em;
 }
 #advanced-search {
