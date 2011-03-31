@@ -8,6 +8,10 @@
 
 {% block bodyclass %}inverse{% endblock %}
 
+{% block extrahead %}
+<link rel="stylesheet" href="{{ MEDIA_URL }}css/zamboni/perf.css">
+{% endblock %}
+
 
 {% block content %}
 <header>
@@ -30,8 +34,18 @@
     The following add-ons have the most impact on how long it takes {{ app }}
     to start up.
   {% endtrans %}</p>
+  {% if show_os %}
+    <p id="show">
+      {# L10n: Show All, Windows, Mac, Linux. The other names are inserted after the colon. #}
+      {{ _('Show:') }}
+      <span>
+        {# No spaces or all is ruined! #}
+        <a href="#"><b> {{ _('All') }}</b></a>{% for p in platforms|sort %}, <a href="#">{{ p }}</a>{% endfor %}
+      </span>
+    </p>
+  {% endif %}
 
-  <div id="perf-results">
+  <div id="perf-results" data-platforms="{{ platforms|json }}">
     <div id="perf-results-inner">
       <table>
         <thead>
@@ -46,8 +60,10 @@
         </thead>
         <tbody>
           {% for addon in addons %}
-          <tr id="addon-{{ loop.index }}" data-rank="{{ loop.index }}"
-              {% if loop.index > 10 %}class="perf-hidden perf-small"{% endif %}>
+          <tr class="addon-row"
+              {% if os_perf[addon.id] %}
+                data-platforms="{{ os_perf[addon.id] }}"
+              {% endif %}>
             <td class="rank">#<b>{{ loop.index }}</b></td>
             <td class="addon">
               <div>
@@ -78,7 +94,7 @@
         </tbody>
       </table>
       {% if addons|length > 10 %}
-        <p id="perf-more"><a href="#addon-11">{{ _('Show more add-ons') }}</a></p>
+        <p id="perf-more"><a href="#">{{ _('Show more add-ons') }}</a></p>
       {% endif %}
     </div>
   </div>

@@ -24,13 +24,19 @@ class PerformanceAppVersions(amo.models.ModelBase):
 class PerformanceOSVersion(amo.models.ModelBase):
     os = models.CharField(max_length=255)
     version = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
 
     class Meta:
         db_table = 'perf_osversions'
 
+    def __unicode__(self):
+        return self.name or '%s %s' % (self.os, self.version)
+
 
 class Performance(amo.models.ModelBase):
     """Add-on performance numbers.  A bit denormalized."""
+    # Cache storage for all platform perf numbers.
+    ALL_PLATFORMS = 'perf:platforms'
 
     TEST_CHOICES = [('ts', 'Startup Time')]
 

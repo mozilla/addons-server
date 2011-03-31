@@ -1,0 +1,206 @@
+/** Performance page. **/
+#perf-results {
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid #e0effd;
+    padding: 1em;
+}
+
+#perf-results table {
+    border-bottom: 1px dotted #add0dc;
+    margin-bottom: 0;
+    width: 100%;
+}
+
+/* Hide children over 10 until show-more is clicked. */
+#perf-results:not(.show-more) .addon-row:nth-child(n+10) {
+    display: none;
+}
+
+#perf-results th {
+    font-size: 11px;
+    vertical-align: top;
+    padding: 0 20px 8px 0;
+}
+
+#perf-results th.rank {
+    width: 32px;
+}
+
+.html-rtl #perf-results th.rank {
+    padding-right: 0;
+    text-align: right;
+}
+
+#perf-results th.impact {
+    padding-right: 0;
+    width: 300px;
+}
+
+#perf-results th.impact .percentage {
+    color: #999;
+    font-weight: normal;
+}
+
+#perf-results td {
+    border-top: 1px dotted #add0dc;
+    padding: 8px 0;
+    vertical-align: middle;
+}
+
+#perf-results td.rank {
+    vertical-align: top;
+}
+
+#perf-results td.rank b,
+#perf-results td.impact b,
+#perf-results td.addon .addon-title > a {
+    font-size: 1.4em;
+}
+
+#perf-results td.rank b {
+    font-weight: normal;
+    vertical-align: top;
+}
+
+#perf-results td.addon div {
+    position: relative;
+}
+
+#perf-results td.addon img.icon,
+#perf-results td.addon .addon-title,
+#perf-results td.addon .author {
+    display: block;
+}
+
+#perf-results td.addon img.icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.html-rtl #perf-results td.addon img.icon {
+    right: 0;
+}
+
+#perf-results th.addon,
+#perf-results td.addon .addon-title {
+    padding-left: 50px;
+}
+
+.html-rtl #perf-results th.addon,
+.html-rtl #perf-results td.addon .addon-title {
+    padding-left: 0;
+    padding-right: 50px;
+}
+
+#perf-results td.addon .addon-title > a {
+    font-weight: bold;
+}
+
+#perf-results td.impact {
+    color: #777;
+    line-height: 1.3em;
+}
+
+#perf-results .addon-row:nth-child(n+10) td.rank b,
+#perf-results .addon-row:nth-child(n+10) td.impact b,
+#perf-results .addon-row:nth-child(n+10) td.addon .addon-title > a {
+    font-size: 1.0em;
+}
+
+#perf-results .addon-row:nth-child(n+10) td.addon img.icon,
+#perf-results .addon-row:nth-child(n+10) td.addon .author,
+#perf-results .addon-row:nth-child(n+10) td.impact .slower span {
+    display: none;
+}
+
+#perf-results .addon-row:nth-child(n+10) td.addon img.icon {
+    display: none;
+}
+
+
+#perf-results .impact .slower,
+#perf-results .impact .percentage {
+    display: table-cell;
+}
+
+#perf-results .impact .slower {
+    text-align: right;
+    width: 100px;
+}
+
+.html-rtl #perf-results .impact .slower {
+    text-align: left;
+}
+
+#perf-results .impact .percentage {
+    width: 70%;
+}
+
+#perf-results .impact .slower {
+    padding-right: 10px;
+}
+
+.html-rtl #perf-results .impact .slower {
+    padding: 0 0 0 10px;
+}
+
+#perf-results td.impact .slower {
+    border-right: 1px solid #f77;
+}
+
+.html-rtl #perf-results td.impact .slower {
+    border-right-width: 0;
+    border-left: 1px solid #f77;
+}
+
+#perf-results td.impact .percentage {
+    vertical-align: middle;
+}
+
+#perf-results td.impact b {
+    color: #444;
+    display: block;
+}
+
+#perf-results .bar {
+    background-color: #f77;
+    height: 15px;
+    -moz-transition: .5s width;
+}
+
+#perf-results .addon-row:nth-child(n+10) .bar {
+    height: 10px;
+}
+
+#perf-results p#perf-more {
+    font-size: 0.9em;
+    margin: 1em 0 0 52px;
+}
+
+#perf-results p#perf-more a {
+    background: url(../../img/icons/arrows.gif) 100% -73px no-repeat;
+    padding-right: 15px;
+}
+
+.html-rtl #perf-results p#perf-more a {
+    background-position: 0 -73px;
+    padding: 0 0 0 15px;
+}
+
+#perf-results p#perf-more a:hover,
+#perf-results p#perf-more a:focus,
+#perf-results p#perf-more a:active {
+    background-position: 100% -113px;
+}
+
+.html-rtl #perf-results p#perf-more a:hover,
+.html-rtl #perf-results p#perf-more a:focus,
+.html-rtl #perf-results p#perf-more a:active {
+    background-position: 0 -113px;
+}
+
+
+
