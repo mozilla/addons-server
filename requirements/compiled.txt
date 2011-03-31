@@ -9,3 +9,5 @@ PIL
 # If you're in the same boat, I would suggest not installing this here and
 # following those directions instead.
 pymongo==1.8.1
+# This exists solely to run QUnit tests in Hudson/Jenkins (via jstestnetlib):
+psutil>=0.2.0
