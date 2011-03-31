@@ -76,6 +76,9 @@ INSTALLED_APPS += (
 SETTINGS
 
 
+# All DB tables need to exist so that runserver can start up.
+python manage.py syncdb
+
 echo "Starting JS tests..." `date`
 
 # NOTE: the host value here needs to match the 'zambnoi' suite in jstestnet
