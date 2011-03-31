@@ -1092,7 +1092,7 @@ class TestReview(ReviewBase):
         # Note: remora url will be to the old version, the diff viewer figures
         # out the version to compare too.
         eq_(doc('.files a:last-child').attr('href'),
-            remora_url('/files/browse/%d/1' % self.version.files.all()[0].pk))
+            remora_url('/files/diff/%d/' % self.version.files.all()[0].pk))
 
 
 class TestReviewPreliminary(ReviewBase):

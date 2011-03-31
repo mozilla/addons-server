@@ -68,12 +68,33 @@ class TestHelpers(test_utils.TestCase):
         settings = Mock()
         settings.MAX_CONTRIBUTION = 5
 
-        c = {'LANG': 'en-us', 'APP': amo.FIREFOX, 'settings': settings}
+        request = Mock()
+        request.GET = {'src': 'direct'}
+
+        c = {'LANG': 'en-us', 'APP': amo.FIREFOX, 'settings': settings,
+             'request': request}
 
         s = contribution(c, a)
         doc = PyQuery(s)
         # make sure input boxes are rendered correctly (bug 555867)
         assert doc('input[name=onetime-amount]').length == 1
+
+    def test_src_retained(self):
+        a = Addon.objects.get(pk=4664)
+        a.suggested_amount = '12'
+
+        settings = Mock()
+        settings.MAX_CONTRIBUTION = 5
+
+        request = Mock()
+        request.GET = {'src': 'direct'}
+
+        c = {'LANG': 'en-us', 'APP': amo.FIREFOX, 'settings': settings,
+             'request': request}
+
+        s = contribution(c, a)
+        doc = PyQuery(s)
+        eq_(doc('input[name=source]').attr('value'), 'direct')
 
 
 class TestPerformanceNote(test_utils.TestCase):
