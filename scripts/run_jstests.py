@@ -62,7 +62,7 @@ class Zamboni(Plugin):
 
 
 def main():
-    nose.main(plugins=[Zamboni(), JSTests()])
+    nose.main(addplugins=[Zamboni(), JSTests()])
 
 
 if __name__ == '__main__':
