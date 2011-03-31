@@ -361,3 +361,9 @@ class TestAnimatedImages(test_utils.TestCase):
         assert not img.is_image()
         img = ImageCheck(open(get_image_path('non-animated.gif')))
         assert img.is_image()
+
+
+def test_site_nav():
+    r = Mock()
+    r.APP = amo.FIREFOX
+    assert 'id="site-nav"' in helpers.site_nav({'request': r})

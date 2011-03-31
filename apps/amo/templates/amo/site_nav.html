@@ -1,0 +1,55 @@
+{% set extras = (
+    ('featured', _('Featured')),
+    ('popular', _('Most Popular')),
+    ('rating', _('Top Rated')),
+) %}
+
+{% macro section(title, base_url, extras, categories) %}
+  <li>
+    <a href="{{ base_url }}">{{ _('Extensions') }}</a>
+    <ul class="two-col">
+      {% for sort, title in extras %}
+        <li><em><a href="{{ base_url|urlparams(sort=sort) }}">{{ title }}</a></em></li>
+      {% endfor %}
+      {% for cat in categories %}
+      <li><a href="{{ cat.get_url_path() }}">{{ cat.name }}</a></li>
+      {% endfor %}
+    </ul>
+  </li>
+{% endmacro %}
+
+<nav id="site-nav" class="c">
+  <ul>
+    {{ section(_('Extensions'), url('browse.extensions'), extras, extensions) }}
+    {{ section(_('Personas'), url('browse.personas'), extras, personas) }}
+    {{ section(_('Themes'), url('browse.themes'), extras, themes) }}
+    <li>
+      <a href="#">{{ _('Collections') }}</a>
+      <ul>
+        {% with base_url = url('collections.list') %}
+          {% for sort, title in extras %}
+            <li><em><a href="{{ base_url|urlparams(sort=sort) }}">{{ title }}</a></em></li>
+          {% endfor %}
+        {% endwith %}
+        <hr>
+        <li><a href="{{ url('collections.mine') }}">
+          {{ _("Collections I've Made") }}</a></li>
+        <li><a href="{{ url('collections.following') }}">
+          {{ _("Collections I'm Following") }}</a></li>
+        {# We never let you change the favorites slug. #}
+        <li><a href="{{ url('collections.mine', 'favorites') }}">
+          {{ _('My Favorite Add-ons') }}</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#">{{ _('More&hellip;') }}</a>
+      <ul>
+        <li><a href="{{ url('browse.language-tools') }}">
+          {{ _('Dictionaries & Language Packs') }}</a></li>
+        <li><a href="{{ url('home') + 'browse/type:7' }}">{{ _('Plugins') }}</a></li>
+        <li><a href="{{ url('browse.search-tools') }}">{{ _('Search Tools') }}</a></li>
+        <li><a href="{{ url('devhub.index') }}">{{ _('Developer Hub') }}</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>

@@ -2,6 +2,7 @@ import collections
 import json as jsonlib
 import random
 import re
+from operator import attrgetter
 
 from django.conf import settings
 from django.utils import translation
@@ -10,6 +11,7 @@ from django.template import defaultfilters
 
 from babel import Locale
 from babel.support import Format
+import caching.base as caching
 import jinja2
 from jingo import register, env
 from tower import ugettext as _
@@ -363,3 +365,21 @@ def media(context, url):
 @jinja2.evalcontextfunction
 def attrs(ctx, *args, **kw):
     return jinja2.filters.do_xmlattr(ctx, dict(*args, **kw))
+
+
+@register.function
+@jinja2.contextfunction
+def site_nav(context):
+    return caching.cached(lambda: _site_nav(context), 'site-nav')
+
+
+def _site_nav(context):
+    request = context['request']
+    qs = Category.objects.filter(application=request.APP.id, weight__gte=0)
+    sort_key = attrgetter('weight', 'name')
+    extensions = sorted(qs.filter(type=amo.ADDON_EXTENSION), key=sort_key)
+    personas = sorted(qs.filter(type=amo.ADDON_PERSONA), key=sort_key)
+    themes = sorted(qs.filter(type=amo.ADDON_THEME), key=sort_key)
+    ctx = dict(request=request, extensions=extensions, personas=personas,
+               themes=themes)
+    return jinja2.Markup(env.get_template('amo/site_nav.html').render(ctx))

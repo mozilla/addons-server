@@ -543,3 +543,13 @@ def following(request):
     return render(request, 'bandwagon/user_listing.html',
                   dict(collections=collections, votes=votes,
                        page='following', filter=get_filter(request)))
+
+
+@login_required
+def mine(request, slug=None):
+    username = request.amo_user.username
+    if slug is None:
+        loc = reverse('collections.user', args=[username])
+    else:
+        loc = reverse('collections.detail', args=[username, slug])
+    return redirect(loc)

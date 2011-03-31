@@ -847,3 +847,21 @@ class TestMobileCollections(TestMobile):
         r = self.client.get(reverse('collections.list'))
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'bandwagon/collection_listing.html')
+
+
+class TestMine(test_utils.TestCase):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        assert self.client.login(username='admin@mozilla.com',
+                                 password='password')
+
+    def test_mine(self):
+        r = self.client.get(reverse('collections.mine'), follow=True)
+        self.assertRedirects(r, reverse('collections.user', args=['admin']))
+
+    def test_favorites(self):
+        r = self.client.get(reverse('collections.mine', args=['favorites']),
+                            follow=True)
+        expected = reverse('collections.detail', args=['admin', 'favorites'])
+        self.assertRedirects(r, expected)
