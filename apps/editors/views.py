@@ -129,6 +129,12 @@ def _queue(request, TableObj, tab):
             except IndexError:
                 pass
     order_by = request.GET.get('sort', '-waiting_time_min')
+    legacy_sorts = {
+        'name': 'addon_name',
+        'age': 'waiting_time_min',
+        'type': 'addon_type_id',
+    }
+    order_by = legacy_sorts.get(order_by, order_by)
     table = TableObj(qs, order_by=order_by)
     default = 100
     per_page = request.GET.get('per_page', default)
