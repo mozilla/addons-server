@@ -114,9 +114,13 @@
             </ul>
           </div>
           {% endfor %}
-          <div class="review-saved review-flagged">
-            <button type="submit">{{ _('Process Reviews') }}</button>
-          </div>
+          {% if page.paginator.count == 0 %}
+            <div class="no-results">{{ _('All reviews have been moderated.  Good work!') }}</div>
+          {% else %}
+            <div class="review-saved review-flagged">
+              <button type="submit">{{ _('Process Reviews') }}</button>
+            </div>
+          {% endif %}
         </form>
       </div>
     {% else %}

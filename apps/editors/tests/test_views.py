@@ -562,6 +562,20 @@ class TestModeratedQueue(QueueTest):
         eq_(list_items.eq(0).find('a').text(), "Editor Tools")
         eq_(list_items.eq(1).text(), "Moderated Reviews")
 
+    def test_no_reviews(self):
+        Review.objects.all().delete()
+
+        eq_(Review.objects.exists(), False)
+
+        r = self.client.get(reverse('editors.queue_moderated'))
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+
+        message = 'All reviews have been moderated. Good work!'
+        eq_(doc('.no-results').text(), message)
+
+        eq_(doc('.review-saved button').length, 1)  # Only show one button.
+
 
 class SearchTest(EditorTest):
 
