@@ -1,23 +1,19 @@
 import test_utils
 from nose.tools import eq_
 
-from redisutils import mock_redis, reset_redis
-
+import amo.tests
 from addons.models import Addon
 from addons.utils import ReverseNameLookup
 from addons import cron
 
 
-class TestReverseNameLookup(test_utils.TestCase):
+class TestReverseNameLookup(amo.tests.RedisTest, test_utils.TestCase):
     fixtures = ('base/addon_3615',)
 
     def setUp(self):
-        self._redis = mock_redis()
+        super(TestReverseNameLookup, self).setUp()
         cron.build_reverse_name_lookup()
         self.addon = Addon.objects.get()
-
-    def tearDown(self):
-        reset_redis(self._redis)
 
     def test_delete_addon(self):
         eq_(ReverseNameLookup.get('Delicious Bookmarks'), 3615)

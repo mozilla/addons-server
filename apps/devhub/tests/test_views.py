@@ -16,10 +16,10 @@ from nose.tools import eq_, assert_not_equal, assert_raises
 from nose.plugins.attrib import attr
 from PIL import Image
 from pyquery import PyQuery as pq
-from redisutils import mock_redis, reset_redis
 import test_utils
 
 import amo
+import amo.tests
 import paypal
 from amo.urlresolvers import reverse
 from amo.tests import formset, initial
@@ -658,7 +658,7 @@ class TestDelete(test_utils.TestCase):
         self.assertRaises(Addon.DoesNotExist, self.get_addon)
 
 
-class TestEdit(test_utils.TestCase):
+class TestEdit(amo.tests.RedisTest, test_utils.TestCase):
     fixtures = ('base/apps', 'base/users', 'base/addon_3615',
                 'base/addon_5579', 'base/addon_3615_categories')
 
@@ -677,7 +677,6 @@ class TestEdit(test_utils.TestCase):
         self.tags = ['tag3', 'tag2', 'tag1']
         for t in self.tags:
             Tag(tag_text=t).save_tag(addon)
-        self._redis = mock_redis()
 
         self.addon = self.get_addon()
 
@@ -697,7 +696,7 @@ class TestEdit(test_utils.TestCase):
                                    args=[self.addon.slug])
 
     def tearDown(self):
-        reset_redis(self._redis)
+        super(TestEdit, self).tearDown()
         settings.PREVIEW_THUMBNAIL_PATH = self.old_settings['preview']
         settings.ADDON_ICONS_PATH = self.old_settings['icons']
 
@@ -1794,7 +1793,7 @@ class TestSubmitStep2(test_utils.TestCase):
         self.assertRedirects(r, reverse('devhub.submit.1'))
 
 
-class TestSubmitStep3(test_utils.TestCase):
+class TestSubmitStep3(amo.tests.RedisTest, test_utils.TestCase):
     fixtures = ['base/addon_3615', 'base/addon_3615_categories',
                 'base/addon_5579', 'base/users']
 
@@ -1804,7 +1803,6 @@ class TestSubmitStep3(test_utils.TestCase):
         self.url = reverse('devhub.submit.3', args=['a3615'])
         assert self.client.login(username='del@icio.us', password='password')
         SubmitStep.objects.create(addon_id=3615, step=3)
-        self._redis = mock_redis()
         cron.build_reverse_name_lookup()
 
         AddonCategory.objects.filter(addon=self.get_addon(),
@@ -1817,9 +1815,6 @@ class TestSubmitStep3(test_utils.TestCase):
 
     def get_addon(self):
         return Addon.objects.no_cache().get(id=3615)
-
-    def tearDown(self):
-        reset_redis(self._redis)
 
     def get_dict(self, **kw):
         cat_initial = kw.pop('cat_initial', self.cat_initial)
@@ -3001,20 +2996,17 @@ class TestVersionXSS(UploadTest):
         assert '&lt;script&gt;alert' in r.content
 
 
-class TestCreateAddon(BaseUploadTest, test_utils.TestCase):
+class TestCreateAddon(amo.tests.RedisTest, BaseUploadTest,
+                      test_utils.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/platforms']
 
     def setUp(self):
         super(TestCreateAddon, self).setUp()
-        self._redis = mock_redis()
         self.upload = self.get_upload('extension.xpi')
         self.url = reverse('devhub.submit.2')
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
         self.client.post(reverse('devhub.submit.1'))
-
-    def tearDown(self):
-        reset_redis(self._redis)
 
     def post(self, desktop_platforms=[amo.PLATFORM_ALL], mobile_platforms=[],
              expect_errors=False):

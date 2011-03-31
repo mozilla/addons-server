@@ -1,17 +1,19 @@
 import test_utils
 from nose.tools import eq_
 
+import amo.tests
 from amo.urlresolvers import reverse
 from perf.cron import update_perf
 from perf.models import Performance
 from addons.models import Addon
 
 
-class TestPerfIndex(test_utils.TestCase):
+class TestPerfIndex(amo.tests.RedisTest, test_utils.TestCase):
     fixtures = ['base/apps', 'base/addon_3615', 'base/addon_5299_gcal',
                 'perf/index']
 
     def setUp(self):
+        super(TestPerfIndex, self).setUp()
         update_perf()
         self.url = reverse('perf.index')
 

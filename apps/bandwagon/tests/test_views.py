@@ -123,7 +123,6 @@ class TestViews(test_utils.TestCase):
             ('/collections/popular/', 301,
              urlparams(base, sort='popular')),
             # These don't work without a login.
-            ('/collections/mine', 301, base),
             ('/collections/favorites/', 301, base),
         ]
         for test in tests:

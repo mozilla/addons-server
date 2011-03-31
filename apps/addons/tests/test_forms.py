@@ -7,28 +7,24 @@ import test_utils
 from nose.tools import eq_
 from mock import patch
 
-from redisutils import mock_redis, reset_redis
+import amo
+import amo.tests
+from amo.tests.test_helpers import get_image_path
 from addons import forms, cron
 from addons.models import Addon, Category
 from tags.models import Tag, AddonTag
 
-import amo
-from amo.tests.test_helpers import get_image_path
 
-
-class FormsTest(test_utils.TestCase):
+class FormsTest(amo.tests.RedisTest, test_utils.TestCase):
     fixtures = ('base/addon_3615', 'base/addon_3615_categories',
                 'addons/blacklisted')
 
     def setUp(self):
-        self._redis = mock_redis()
+        super(FormsTest, self).setUp()
         cron.build_reverse_name_lookup()
         self.existing_name = 'Delicious Bookmarks'
         self.error_msg = ('This add-on name is already in use. '
                           'Please choose another.')
-
-    def tearDown(self):
-        reset_redis(self._redis)
 
     def test_new(self):
         """

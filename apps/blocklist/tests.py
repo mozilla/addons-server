@@ -4,11 +4,11 @@ from xml.dom import minidom
 from django.conf import settings
 from django.core.cache import cache
 
-import redisutils
 import test_utils
 from nose.tools import eq_
 
 import amo
+import amo.tests
 from amo.urlresolvers import reverse
 from .models import (BlocklistApp, BlocklistDetail, BlocklistItem,
                      BlocklistGfx, BlocklistPlugin)
@@ -21,18 +21,15 @@ base_xml = """
 """
 
 
-class BlocklistTest(test_utils.TestCase):
+class BlocklistTest(amo.tests.RedisTest, test_utils.TestCase):
 
     def setUp(self):
+        super(BlocklistTest, self).setUp()
         self.fx4_url = reverse('blocklist', args=[3, amo.FIREFOX.guid, '4.0'])
         self.fx2_url = reverse('blocklist', args=[2, amo.FIREFOX.guid, '2.0'])
         self.mobile_url = reverse('blocklist', args=[2, amo.MOBILE.guid, '.9'])
-        self._redis = redisutils.mock_redis()
         cache.clear()
         self.details = BlocklistDetail.objects.create()
-
-    def tearDown(self):
-        redisutils.reset_redis(self._redis)
 
     def normalize(self, s):
         return '\n'.join(x.strip() for x in s.split())

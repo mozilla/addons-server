@@ -1,5 +1,7 @@
 from django import forms
 
+from redisutils import mock_redis, reset_redis
+
 
 def formset(*args, **kw):
     """
@@ -36,3 +38,13 @@ def initial(form):
     return data
 
 
+class RedisTest(object):
+    """Mixin for when you need to mock redis for testing."""
+
+    def setUp(self):
+        super(RedisTest, self).setUp()
+        self._redis = mock_redis()
+
+    def tearDown(self):
+        super(RedisTest, self).tearDown()
+        reset_redis(self._redis)
