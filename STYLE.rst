@@ -13,7 +13,7 @@ Python
 JavaScript
 ----------
 - Soft tabs (4 space) indentation
-- Double quotes around strings (unless the string contains double quotes)
+- Single quotes around strings (unless the string contains single quotes)
 - variable names for jQuery objects start with $. for example::
 
     var $el = $(el);
