@@ -33,3 +33,4 @@ pylint
 -e git://github.com/simplegeo/python-oauth2.git#egg=python_oauth2
 
 -e git://github.com/kumar303/django-qunit.git#egg=django_qunit
+nosenicedots
