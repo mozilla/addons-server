@@ -561,14 +561,15 @@ class TestDetailPage(test_utils.TestCase):
         eq_(addon.status, amo.STATUS_PUBLIC)
         settings.ENGAGE_ROBOTS = True
         doc = pq(self.client.get(url).content)
-        assert doc(m)
+        assert not doc(m)
         settings.ENGAGE_ROBOTS = False
         doc = pq(self.client.get(url).content)
-        assert not doc(m)
+        assert doc(m)
 
         addon.update(status=amo.STATUS_UNREVIEWED)
+        settings.ENGAGE_ROBOTS = False
         doc = pq(self.client.get(url).content)
-        assert not doc(m)
+        assert doc(m)
         settings.ENGAGE_ROBOTS = True
         doc = pq(self.client.get(url).content)
         assert doc(m)
