@@ -58,6 +58,7 @@
 
   <div class="listing results">
     <div class="results-inner">
+      <div class="listing-header">{{ _('Recent Editor Activity') }}</div>
       {% for item in eventlog %}
       <div class="row">
         {{ item.to_string('editor') }}

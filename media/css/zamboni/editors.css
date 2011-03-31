@@ -175,7 +175,7 @@ ul.tabnav a:hover {
 }
 
 #editors_main .listing .results-inner {
-    padding: 0 0.5em;
+    padding: 0;
 }
 
 #editors_main .listing time {
@@ -185,11 +185,17 @@ ul.tabnav a:hover {
 
 #editors_main .listing .row {
     padding: 0.5em;
-    border-top: 1px dotted #ADD0DC;
+    margin: 0 5px;
+    border-bottom: 1px dotted #ADD0DC;
 }
 
-#editors_main .listing .row:first-child {
-    border-top-width: 0px;
+#editors_main .listing .row:last-child {
+    border-bottom-width: 0px;
+}
+
+#editors_main .listing .listing-header {
+    text-align: center;
+    font-weight: bold;
 }
 
 .editor-stats-title,
