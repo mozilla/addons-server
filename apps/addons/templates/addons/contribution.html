@@ -54,7 +54,7 @@
 
     <div id="contribute-box" class="jqmWindow">
       <form action="{{ url('addons.contribute', addon.id) }}" method="get">
-        <input type="hidden" name="source" value="{{ src }}"/>
+        <input type="hidden" name="source" value="{{ request.GET.get('src', src) }}"/>
         <h2>{{ _('Make a Contribution') }}</h2>
         <p class="support">
           {% with addon_name=addon.name, paypal_url='http://paypal.com' %}

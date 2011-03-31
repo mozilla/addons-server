@@ -22,7 +22,7 @@
         {% endif %}
     {% else %}
       {% if use_embedded %}
-      <a href="{{ url('addons.detail', addon.slug) }}#contribute-confirm" class="no-suggested-amount">{{ _('Support this add-on') }}</a>
+      <a href="{{ url('addons.detail', addon.slug) }}?src=direct#contribute-confirm" class="no-suggested-amount">{{ _('Support this add-on') }}</a>
       {% else %}
       <a href="{{ base }}">{{ _('Support this add-on') }}</a>
       {% endif %}
