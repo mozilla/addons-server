@@ -341,6 +341,19 @@ class TestQueueBasics(QueueTest):
             'Full Reviews (2) Pending Updates (2) '
             'Preliminary Reviews (2) Moderated Reviews (0)')
 
+    def test_legacy_queue_sort(self):
+        sorts = (
+            ['age', 'Waiting Time'],
+            ['name', 'Addon'],
+            ['type', 'Type']
+        )
+        for key, text in sorts:
+            url = reverse('editors.queue_pending') + '?sort=%s' % key
+            response = self.client.get(url)
+            eq_(response.status_code, 200)
+            doc = pq(response.content)
+            eq_(doc('th.ordered a').text(), text)
+
 
 class TestPendingQueue(QueueTest):
 
