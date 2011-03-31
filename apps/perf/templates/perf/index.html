@@ -66,17 +66,23 @@
               {% endif %}>
             <td class="rank">#<b>{{ loop.index }}</b></td>
             <td class="addon">
-              <div>
-                <img src="{{ addon.icon_url }}" class="icon"
-                     width="32" height="32">
-                <span class="addon-title">
-                  <a href="{{ addon.get_url_path() }}">{{
-                    addon.name.localized_string }}</a>
-                  <span class="author">
-                    {{ _('by') }} {{ users_list(addon.listed_authors) }}
-                  </span>
-                </span>
-              </div>
+              {% if loop.index < 11 %}
+                <div>
+                  <img src="{{ addon.icon_url }}" class="icon"
+                       width="32" height="32">
+                  <div class="addon-title">
+                    <a href="{{ addon.get_url_path() }}">{{
+                      addon.name.localized_string }}</a>
+                    <div class="author">
+                      {{ _('by') }} {{ users_list(addon.listed_authors) }}
+                    </div>
+                  </div>
+                </div>
+              {% else %}
+                <div class="addon-title">
+                  <a href="{{ addon.get_url_path() }}">{{ addon.name }}</a>
+                </div>
+              {% endif %}
             </td>
             {% with num = addon.ts_slowness %}
               <td class="impact">
