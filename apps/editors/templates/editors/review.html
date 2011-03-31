@@ -73,7 +73,7 @@
   <a href="{{ remora_url('/files/browse/%d/1' % file.id) }}">{{ _('View Contents') }}</a>
   {% if has_public_files and addon.type != amo.ADDON_SEARCH %}
     &middot;
-    <a href="{{ remora_url('/files/browse/%d/1' % file.id) }}">{{ _('Compare With Public Version') }}</a>
+    <a href="{{ remora_url('/files/diff/%d/' % file.id) }}">{{ _('Compare With Public Version') }}</a>
   {% endif %}
 </li>
 {% endfor %}
