@@ -77,7 +77,7 @@ SETTINGS
 
 
 # All DB tables need to exist so that runserver can start up.
-python manage.py syncdb
+python manage.py syncdb --noinput
 
 echo "Starting JS tests..." `date`
 
