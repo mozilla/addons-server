@@ -1141,6 +1141,7 @@ body.detail {
 }
 .html-rtl.detail p#back {
     left: 0;
+    right: auto;
     margin: 0 1em 1em 0;
 }
 
@@ -1149,6 +1150,9 @@ p#back:before {
     margin-right: 0.5em;
     position: relative;
     bottom: 1px;
+}
+.html-rtl p#back:before {
+    margin: 0 0 0 0.5em;
 }
 
 p#back:before,
@@ -1173,7 +1177,10 @@ p#back:hover:before {
     margin-right: 10px;
 }
 .html-rtl #install li {
-    margin: 0 0 0 10px;
+    float: right;
+}
+.html-rtl #install li:first-child {
+    margin-right: 0;
 }
 
 #install .privacy {
@@ -1314,13 +1321,14 @@ body.eula header + h3:after {
 }
 
 .html-rtl #addon-reviews h3,
-.html-rtl body.eula h3 {
+.html-rtl.eula h3 {
     text-align: right;
 }
 
 .html-rtl #addon-reviews h3:after,
-.html-rtl body.eula h3:after {
+.html-rtl.eula header + h3:after {
     left: 0;
+    right: auto;
 }
 /* @end */
 
