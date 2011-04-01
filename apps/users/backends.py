@@ -22,3 +22,15 @@ class AmoUserBackend(object):
             return User.objects.get(pk=user_id)
         except User.DoesNotExist:
             return None
+
+
+class NoAuthForYou(object):
+    """An authentication backend for read-only mode."""
+    supports_anonymous_user = False
+    supports_object_permissions = False
+
+    def authenticate(self, *args, **kw):
+        return None
+
+    def get_user(self, *args, **kw):
+        return None
