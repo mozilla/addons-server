@@ -73,28 +73,28 @@ module('CSRF Token: remote', {
     }
 });
 
-asyncTest('CSRF not sent', function() {
+asyncTest('CSRF not sent 1', function() {
     _inspectHeaders(function(headers) {
         var htype = typeof headers['X-CSRFToken'];
         equals(htype, 'undefined');
     }, 'http://someserver/hijack');
 });
 
-asyncTest('CSRF not sent', function() {
+asyncTest('CSRF not sent 2', function() {
     _inspectHeaders(function(headers) {
         var htype = typeof headers['X-CSRFToken'];
         equals(htype, 'undefined');
     }, 'https://someserver/hijack');
 });
 
-asyncTest('CSRF not sent', function() {
+asyncTest('CSRF not sent 3', function() {
     _inspectHeaders(function(headers) {
         var htype = typeof headers['X-CSRFToken'];
         equals(htype, 'undefined');
     }, '//someserver/hijack');
 });
 
-asyncTest('CSRF not sent', function() {
+asyncTest('CSRF not sent 4', function() {
     _inspectHeaders(function(headers) {
         var htype = typeof headers['X-CSRFToken'];
         equals(htype, 'undefined');
