@@ -1,10 +1,12 @@
 $(function() {
     $(window).bind("orientationchange", function(e) {
-        $("details").htruncate({textEl: ".desc"});
+        setTimeout(function() {
+            $("details").truncate({textEl: ".desc"});
+        }, 100);
     });
-    $("details").htruncate({textEl: ".desc"});
+    $("details").truncate({textEl: ".desc"});
 
-    $(".vtruncate").vtruncate();
+    $(".vtruncate").truncate({dir: 'v'});
 
     $('form.go').change(function() { this.submit(); })
         .find('button').hide();

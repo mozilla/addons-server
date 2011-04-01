@@ -53,9 +53,9 @@ function storePaneLink() {
 
 function initTrunc() {
     // Trim the add-on title and description text to fit.
-    $(".addons h3, .rec-addons h3, p.desc").vtruncate();
+    $(".addons h3, .rec-addons h3, p.desc").truncate({dir: 'v'});
     $(window).resize(debounce(function() {
-        $(".addons h3 a, .rec-addons h3 a, p.desc").vtruncate();
+        $(".addons h3 a, .rec-addons h3 a, p.desc").truncate({dir: 'v'});
     }, 200));
 }
 
