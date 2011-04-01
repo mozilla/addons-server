@@ -196,19 +196,19 @@ class TestFileViewer(FilesBase, test_utils.TestCase):
         res = self.client.get(self.file_url())
         doc = pq(res.content)
         # Note: this is text, not a DOM element, so escaped correctly.
-        assert doc('.files li a')[0].text.startswith('<script')
+        assert doc('#files li a')[0].text.startswith('<script')
 
     def test_content_file(self):
         self.file_viewer.extract()
         res = self.client.get(self.file_url('install.js'))
         doc = pq(res.content)
-        eq_(len(doc('.content pre')), 1)
+        eq_(len(doc('#content')), 1)
 
     def test_content_no_file(self):
         self.file_viewer.extract()
         res = self.client.get(self.file_url())
         doc = pq(res.content)
-        eq_(len(doc('.content pre')), 1)
+        eq_(len(doc('#content')), 1)
         eq_(res.context['selected']['short'], 'install.rdf')
 
     def test_content_xss(self):
@@ -221,7 +221,7 @@ class TestFileViewer(FilesBase, test_utils.TestCase):
             res = self.client.get(self.file_url(name))
             doc = pq(res.content)
             # Note: this is text, not a DOM element, so escaped correctly.
-            assert doc('.content pre')[0].text.startswith('<script')
+            assert doc('#content').text().startswith('<script')
 
     def test_binary(self):
         self.file_viewer.extract()
