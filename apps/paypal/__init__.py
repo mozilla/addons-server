@@ -1,5 +1,6 @@
 import contextlib
 import socket
+import time
 import urllib
 import urllib2
 import urlparse
@@ -34,6 +35,7 @@ def get_paykey(data):
     uuid: contribution_uuid (required)
     memo: any nice message
     """
+    start = time.time()
     request = urllib2.Request(settings.PAYPAL_PAY_URL)
     for key, value in [
             ('security-userid', settings.PAYPAL_EMBEDDED_AUTH['USER']),
@@ -77,7 +79,8 @@ def get_paykey(data):
         paypal_log.error('Paypal Error: %s' % response['error(0).message'])
         raise error(response['error(0).message'])
 
-    paypal_log.info('Paypal got key: %s' % response['payKey'])
+    paypal_log.info('Paypal got key: %s (%.2fs)' %
+                    (response['payKey'], time.time() - start))
     return response['payKey']
 
 
