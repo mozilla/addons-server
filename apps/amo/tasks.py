@@ -1,3 +1,5 @@
+import json
+
 from django.conf import settings
 
 import commonware.log
@@ -5,7 +7,10 @@ import celery.task
 from celeryutils import task
 from hera.contrib.django_utils import flush_urls
 
-from . import cron
+from addons.models import Addon
+from devhub.models import ActivityLog
+from editors.helpers import LOG_STATUSES
+
 
 log = commonware.log.getLogger('z.task')
 
@@ -36,3 +41,34 @@ def flush_front_end_cache_urls(urls, **kw):
                 urls[index] = u"%s%s" % (settings.SITE_URL, url)
 
     flush_urls(urls)
+
+
+@task
+def dedupe_approvals(items, **kw):
+    log.info('[%s@%s] Deduping approval items starting with addon: %s' %
+             (len(items), dedupe_approvals.rate_limit, items[0]))
+    for addon in Addon.objects.filter(pk__in=items):
+        last = {}
+        for activity in (ActivityLog.objects.for_addons(addon)
+                                    .order_by('-id')
+                                    .filter(action__in=LOG_STATUSES)):
+            arguments = json.loads(activity._arguments)
+            current = {
+                'action': activity.action,
+                'created': activity.created.date(),
+                'user': activity.user.pk,
+                'addon': arguments[0]['addons.addon'],
+                'version': arguments[1]['versions.version'],
+            }
+            if activity._details:
+                details = json.loads(activity._details)
+                current.update({
+                    'reviewtype': details['reviewtype'],
+                    'comments': details['comments'],
+                })
+
+            if last and last == current:
+                log.info('Deleting duplicate activity log %s '
+                         'from addon %s' % (activity.pk, addon.pk))
+                activity.delete()
+            last = current.copy()
