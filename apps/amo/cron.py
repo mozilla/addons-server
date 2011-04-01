@@ -217,6 +217,7 @@ def _delete_anonymous_collections(items, **kw):
     Collection.objects.filter(type=amo.COLLECTION_ANONYMOUS,
                               pk__in=items).delete()
 
+
 @task
 def _delete_incomplete_addons(items, **kw):
     log.info('[%s@%s] Deleting incomplete add-ons' %
@@ -293,7 +294,11 @@ def _migrate_editor_eventlog(items, **kw):
 @cronjobs.register
 def migrate_approvals():
     a = MigrationTracker('approvals')
-    id = a.get() or 0
+    id = a.get()
+    if not id:
+        log.warning('No last position reported from redis for '
+                    'migrating approvals, exiting.')
+        return
 
     items = (Approval.objects.filter(pk__gt=id).order_by('id')
                              .values_list('id', flat=True))
