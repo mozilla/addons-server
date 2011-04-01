@@ -83,6 +83,6 @@ echo "Starting JS tests..." `date`
 
 # NOTE: the host value here needs to match the 'zambnoi' suite in jstestnet
 cd scripts
-python run_jstests.py --with-xunit --with-zamboni --zamboni-host sm-hudson01 --with-jstests --jstests-server http://jstestnet.farmdev.com/ --jstests-suite zamboni --jstests-browsers firefox
+python run_jstests.py -v --with-xunit --with-zamboni --zamboni-host sm-hudson01 --with-jstests --jstests-server http://jstestnet.farmdev.com/ --jstests-suite zamboni --jstests-browsers firefox --debug nose.plugins.jstests
 
 echo 'shazam!'
