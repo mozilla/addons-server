@@ -7,7 +7,7 @@ import time
 from django.conf import settings
 from django.core import mail
 
-from mock import patch_object
+from mock import patch, patch_object
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 import test_utils
@@ -154,12 +154,13 @@ class TestReviewLog(EditorTest):
         eq_(list_items.eq(0).find('a').text(), "Editor Tools")
         eq_(list_items.eq(1).text(), "Review Log")
 
-    def test_addon_missing(self):
-        Addon.objects.all().delete()
+    @patch('devhub.models.ActivityLog.arguments')
+    def test_addon_missing(self, arguments):
+        arguments.return_value = []
         r = self.client.get(reverse('editors.reviewlog'))
         doc = pq(r.content)
         eq_(doc('#log-listing tr td')[1].text.strip(),
-            'Addon has been deleted.')
+            'Add-on has been deleted.')
 
 
 class TestHome(EditorTest):
