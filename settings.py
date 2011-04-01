@@ -731,7 +731,7 @@ def read_only_mode(env):
     env['DATABASES']['default'] = env['DATABASES'][slave]
 
     # No sessions without the database, so disable auth.
-    env['AUTHENTICATION_BACKENDS'] = ()
+    env['AUTHENTICATION_BACKENDS'] = ('users.backends.NoAuthForYou',)
 
     # Add in the read-only middleware before csrf middleware.
     extra = 'amo.middleware.ReadOnlyMiddleware'
