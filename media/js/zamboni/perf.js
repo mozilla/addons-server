@@ -1,4 +1,15 @@
+(function() {
+// protect globals
+
 $(document).ready(function() {
+    "use strict";
+
+    if ($('#perf-results').length) {
+        initPerf();
+    }
+});
+
+function initPerf() {
     "use strict";
 
     var $perfResults = $('#perf-results'),
@@ -57,4 +68,7 @@ $(document).ready(function() {
         });
         $('#show span').html(names.join(', '));
     }
-});
+}
+
+// END global protection
+})();
