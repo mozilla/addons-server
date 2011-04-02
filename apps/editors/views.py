@@ -259,7 +259,7 @@ def review(request, version_id):
     is_admin = acl.action_allowed(request, 'Admin', 'EditAnyAddon')
     actions = form.helper.actions.items()
 
-    has_public_files = (current.files.filter(status=amo.STATUS_PUBLIC)
+    has_public_files = (current.files.filter(status__in=amo.LISTED_STATUSES)
                                      .exists()) if current else False
     # The actions we should show a minimal form from.
     actions_minimal = [k for (k, a) in actions if not a.get('minimal')]
