@@ -96,7 +96,8 @@ $(document).ready(function() {
     }
 
     // when to start and stop image polling
-    if ($('#edit-addon-media').length) {
+    if ($('#edit-addon-media').length &&
+        $('#edit-addon-media').attr('data-checkurl') !== undefined) {
         imageStatus.start();
     }
     $('#edit-addon-media').bind('click', function() {
