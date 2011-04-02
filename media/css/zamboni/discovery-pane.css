@@ -184,7 +184,6 @@ header:after,
 /* @group Recommendations */
 #main #recs {
     display: none;
-    margin-bottom: 0;
     min-height: 200px;
     padding: 0;
     position: relative;
@@ -236,6 +235,11 @@ header:after,
     width: 22%;
     width: -moz-calc(24% - 22px);
     border-radius: 8px;
+}
+
+.recs #mission,
+.recs #my-account {
+    margin-bottom: 10px;
 }
 
 .recs #mission {
@@ -350,7 +354,7 @@ header:after,
 }
 
 .slider {
-    white-space:nowrap;
+    white-space: nowrap;
     position: relative;
     left: 0;
     -moz-transition-duration: .3s;
@@ -780,57 +784,65 @@ ul.addons {
     width: 82%;
 }
 
-#sub .featured ul,
-#more-ways ul {
+#sub ul {
     margin: 0 0 -10px;
 }
 
-#sub .featured li,
-#more-ways li {
+#sub li {
     border-bottom: 1px solid #cdd4de;
     margin: 0 -10px;
     clear: both;
 }
-#sub #featured-personas li {
+#featured-personas li {
     border-bottom-color: #666;
 }
-#sub .featured li:last-child,
-#more-ways ul li:last-child {
+#sub li:last-child {
     border-bottom-width: 0;
 }
 
 #sub .featured li,
-#sub #featured-personas li h6,
+#featured-personas li h6,
 #more-ways li {
     font-size: 13px;
 }
 
-#sub .featured li a {
+#sub li a {
     text-decoration: none;
 }
 
-#sub #up-and-coming ul a.addon-title,
-#sub #featured-personas ul span.addon-title {
-    display: block;
+.htruncate {
+    white-space: nowrap;
     overflow: hidden;
+}
+
+#up-and-coming a.addon-title .htruncate {
+    line-height: 32px;
+    display: inline-block;
+    width: -moz-calc(100% - 48px);
+}
+
+#up-and-coming a.addon-title,
+#featured-personas span.addon-title {
+    display: block;
     background: rgba(255,255,255,0.35) url("../../img/zamboni/discovery_pane/arrow-right.png") 95% 50% no-repeat;
     color: #333;
+    overflow: hidden;
 }
-#sub #featured-personas span.addon-title {
+#featured-personas span.addon-title {
     pointer-events: none;
 }
 
-#sub #up-and-coming ul a.addon-title,
-#sub #featured-personas ul span.addon-title b {
-    display: block;
+#up-and-coming a.addon-title,
+#featured-personas span.addon-title b {
     padding: 0.5em 30px 0.5em 10px;
 }
 
-#sub #featured-personas ul span.addon-title b {
+#featured-personas span.addon-title b {
+    display: block;
     font-weight: normal;
 }
 
-#sub #featured-personas ul span.addon-title {
+#featured-personas span.addon-title {
     background-color: rgba(255,255,255,0.65);
     border-top: 1px solid rgba(255,255,255,0.35);
     text-decoration: none;
@@ -839,12 +851,12 @@ ul.addons {
     width: 100%;
 }
 
-#sub #up-and-coming ul a.addon-title:hover,
-#sub #up-and-coming ul a.addon-title:focus,
-#sub #up-and-coming ul a.addon-title:active,
-#sub #featured-personas ul a:hover span.addon-title,
-#sub #featured-personas ul a:focus span.addon-title,
-#sub #featured-personas ul a:active span.addon-title {
+#up-and-coming a.addon-title:hover,
+#up-and-coming a.addon-title:focus,
+#up-and-coming a.addon-title:active,
+#featured-personas a:hover span.addon-title,
+#featured-personas a:focus span.addon-title,
+#featured-personas a:active span.addon-title {
     background-color: rgba(255,255,255,0.65);
     background-position: 96% 50%;
     -moz-transition-property: background-color, background-position;
@@ -853,29 +865,31 @@ ul.addons {
     color: #083681;
 }
 
-#sub #featured-personas ul a:hover span.addon-title,
-#sub #featured-personas ul a:focus span.addon-title,
-#sub #featured-personas ul a:active span.addon-title {
+#featured-personas a:hover span.addon-title,
+#featured-personas a:focus span.addon-title,
+#featured-personas a:active span.addon-title {
     background-color: rgba(255,255,255,0.8);
 }
 
-#sub .featured ul li:last-child a,
-#sub #featured-personas ul li:last-child a span.addon-title {
+#sub .featured li:last-child a,
+#featured-personas ul li:last-child a span.addon-title {
     border-radius: 0 0 8px 8px;
 }
 
-#up-and-coming ul a img {
+#up-and-coming img {
+    display: block;
+    float: left;
     vertical-align: middle;
     margin: 0 8px 0 0;
 }
 
-#sub .featured .all,
+#sub .all,
 #recs .header h2 a {
     line-height: 24px;
     font-size: 13px;
 }
 
-#sub .featured .all {
+#sub .all {
     display: block;
     float: right;
 }
@@ -991,7 +1005,7 @@ ul.addons {
     clear: right;
 }
 
-#more-ways ul a {
+#more-ways a {
     display: block;
     padding: 12px 30px 10px 12px;
     min-height: 45px;
@@ -1001,9 +1015,9 @@ ul.addons {
     text-shadow: 0 0 1px #fff;
 }
 
-#more-ways ul a:hover,
-#more-ways ul a:focus,
-#more-ways ul a:active {
+#more-ways a:hover,
+#more-ways a:focus,
+#more-ways a:active {
     background-position: 96% 8px;
     background-color: rgba(255,255,255,0.5);
     -moz-transition-property: background-position, background-color;
@@ -1012,11 +1026,11 @@ ul.addons {
     color: #083681;
 }
 
-#more-ways #more-addons {
+#more-addons {
     background: transparent url("../../img/zamboni/discovery_pane/bg-moreaddons.jpg") 95% 50% no-repeat;
 }
 
-#more-ways #more-personas {
+#more-personas {
     background: transparent url("../../img/zamboni/discovery_pane/bg-morepersonas.jpg") 70% 50% no-repeat;
     border-radius: 0 0 8px 8px;
 }
@@ -1203,6 +1217,10 @@ p#back:hover:before {
 
 .install + .extra {
     margin-top: 6px;
+}
+
+.install-note {
+    margin-top: 12px;
 }
 
 .install-shell .notavail {

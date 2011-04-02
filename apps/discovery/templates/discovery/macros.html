@@ -8,10 +8,10 @@
        target="_self" class="addon-title">
       <img src="{{ addon.icon }}" width="32" height="32">
       {% if sidebar %}
-        {{ addon.name }}
+        <span class="htruncate">{{ addon.name }}</span>
       {% else %}
-        <h3>{{ addon.name }}</h3>
-        <p class="desc">{{ addon.summary }}</p>
+        <h3 class="vtruncate">{{ addon.name }}</h3>
+        <p class="desc vtruncate">{{ addon.summary }}</p>
       {% endif %}
     </a>
   </li>
