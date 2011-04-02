@@ -1,19 +1,20 @@
 // Minimum number of installed extensions, used for toggling user
 // recommendations and "Starter Pack" promo pane.
-var MIN_EXTENSIONS = 3;
+z.MIN_EXTENSIONS = 3;
 
 // Parse GUIDS of installed extensions from JSON fragment.
-var guids = getGuids();
+z.guids = getGuids();
 
 
 $(document).ready(function(){
     if ($(".pane").length) {
         initSidebar();
 
-        storePaneLink();
+        // Store the pane URL so we can link back from the add-on detail pages.
+        Storage.set("discopane-url", location);
 
         // Show "Starter Pack" panel only if user has fewer than three extensions.
-        if (guids.length >= MIN_EXTENSIONS) {
+        if (z.guids.length >= z.MIN_EXTENSIONS) {
             $("#starter").closest(".panel").remove();
         }
 
@@ -45,12 +46,6 @@ function getGuids() {
 }
 
 
-function storePaneLink() {
-    // Store the pane URL so we can link back from the add-on detail pages.
-    Storage.set("discopane-url", location);
-}
-
-
 function initTrunc() {
     // Trim the add-on title and description text to fit.
     $(".addons h3, .rec-addons h3, p.desc").truncate({dir: 'v'});
@@ -63,11 +58,23 @@ function initTrunc() {
 function initSidebar() {
     var account_url = document.body.getAttribute("data-account-url");
     $.get(account_url, function(data) {
-        var $data = $(data);
-        if ($data.find("#my-account").length) {
+        if ($(data).find("#my-account").length) {
             $("header").addClass("auth");
         }
         $("#right-module").replaceWith(data).slideDown("slow");
+    });
+
+    $('li[data-guid]').each(function() {
+        var $el = $(this),
+            guid = $el.attr('data-guid');
+        if ($el.siblings().length > 1) {
+            for (key in z.guids) {
+                if (z.guids[key] == guid) {
+                    $el.remove();
+                    break;
+                }
+            }
+        }
     });
 }
 
@@ -79,7 +86,7 @@ function initRecs() {
 
     var token2;
 
-    if (!location.hash || !guids.length) {
+    if (!location.hash || !z.guids.length) {
         // If the user has opted out of recommendations, clear out any
         // existing recommendations.
         Storage.remove("discopane-recs");
@@ -142,7 +149,7 @@ function initRecs() {
     }
 
     // Hide "What are Add-ons?" and show "Recommended for You" module.
-    if (showRecs && guids.length > MIN_EXTENSIONS) {
+    if (showRecs && z.guids.length > z.MIN_EXTENSIONS) {
         $("body").removeClass("no-recs").addClass("recs");
 
         var cacheObject = Storage.get("discopane-recs");
@@ -158,7 +165,7 @@ function initRecs() {
         // Get new recommendations if there are no saved recommendations or
         // if the user has new installed add-ons.
         var findRecs = !cacheObject;
-        var updateRecs = cacheObject && Storage.get("discopane-guids") != guids.toString();
+        var updateRecs = cacheObject && Storage.get("discopane-guids") != z.guids.toString();
         if (findRecs || updateRecs) {
             var msg;
             if (findRecs) {
@@ -170,7 +177,7 @@ function initRecs() {
             $("#recs").append('<div class="msg loading"><p><span></span>' +
                               msg + "</p></div>");
 
-            var data = {"guids": guids};
+            var data = {"guids": z.guids};
             if (token2) {
                 data["token2"] = token2;
             }
@@ -186,7 +193,7 @@ function initRecs() {
                     populateRecs();
                     Storage.set("discopane-updated", new Date());
                     Storage.set("discopane-recs", raw_data);
-                    Storage.set("discopane-guids", guids);
+                    Storage.set("discopane-guids", z.guids);
                 },
                 error: function(raw_data) {
                     $("#recs .loading").remove();
