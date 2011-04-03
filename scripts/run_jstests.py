@@ -43,6 +43,9 @@ class Zamboni(Plugin):
                                'This must match the port '
                                'configured in your --jstests-suite URL. '
                                'Default: %default')
+        parser.add_option('--zamboni-log', default=None,
+                          help='Log filename for the manage.py runserver '
+                               'command. Logs to a temp file by default.')
         self.parser = parser
 
     def configure(self, options, conf):
@@ -54,6 +57,7 @@ class Zamboni(Plugin):
                                     ['python', 'manage.py', 'runserver',
                                      '%s:%s' % (self.options.zamboni_host,
                                                 self.options.zamboni_port)],
+                                    logfile=self.options.zamboni_log,
                                     cwd=ROOT)
         self.zamboni.startup()
 

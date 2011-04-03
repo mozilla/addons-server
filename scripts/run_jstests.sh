@@ -5,6 +5,7 @@ cd $WORKSPACE
 VENV=$WORKSPACE/venv
 VENDOR=$WORKSPACE/vendor
 LOCALE=$WORKSPACE/locale
+LOG=$WORKSPACE/jstests-runserver.log
 
 echo "Starting build on executor $EXECUTOR_NUMBER..." `date`
 
@@ -81,8 +82,9 @@ python manage.py syncdb --noinput
 
 echo "Starting JS tests..." `date`
 
+rm $LOG
 # NOTE: the host value here needs to match the 'zambnoi' suite in jstestnet
 cd scripts
-python run_jstests.py -v --with-xunit --with-zamboni --zamboni-host sm-hudson01 --with-jstests --jstests-server http://jstestnet.farmdev.com/ --jstests-suite zamboni --jstests-browsers firefox --debug nose.plugins.jstests
+python run_jstests.py -v --with-xunit --with-zamboni --zamboni-host sm-hudson01 --zamboni-log $LOG --with-jstests --jstests-server http://jstestnet.farmdev.com/ --jstests-suite zamboni --jstests-browsers firefox --debug nose.plugins.jstests
 
 echo 'shazam!'
