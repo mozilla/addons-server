@@ -53,12 +53,13 @@ class Zamboni(Plugin):
         self.options = options
 
     def begin(self):
+        bind = '%s:%s' % (self.options.zamboni_host,
+                          self.options.zamboni_port)
+        startup_url = 'http://%s/' % bind
         self.zamboni = webapp.WebappServerCmd(
-                                    ['python', 'manage.py', 'runserver',
-                                     '%s:%s' % (self.options.zamboni_host,
-                                                self.options.zamboni_port)],
-                                    logfile=self.options.zamboni_log,
-                                    cwd=ROOT)
+                                ['python', 'manage.py', 'runserver', bind],
+                                startup_url, logfile=self.options.zamboni_log,
+                                cwd=ROOT)
         self.zamboni.startup()
 
     def finalize(self, result):
