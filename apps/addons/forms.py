@@ -3,11 +3,12 @@ import re
 
 from django import forms
 from django.conf import settings
-from django.forms.formsets import BaseFormSet, formset_factory
+from django.forms.formsets import formset_factory
 
 import happyforms
 import path
 from tower import ugettext as _, ungettext as ngettext
+from quieter_formset.formset import BaseFormSet
 
 from access import acl
 import amo

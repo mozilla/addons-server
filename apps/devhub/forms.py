@@ -4,12 +4,13 @@ import socket
 from django import forms
 from django.conf import settings
 from django.db.models import Q
-from django.forms.models import modelformset_factory, BaseModelFormSet
+from django.forms.models import modelformset_factory
 from django.utils.safestring import mark_safe
 from django.utils.encoding import force_unicode
 
 import happyforms
 from tower import ugettext as _, ugettext_lazy as _lazy
+from quieter_formset.formset import BaseModelFormSet
 
 import amo
 import addons.forms
