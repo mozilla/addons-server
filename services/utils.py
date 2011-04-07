@@ -7,34 +7,16 @@ import re
 # Perhaps we can import these without any problems and we can
 # remove all this.
 
-APP_GUIDS = {
-    '{3550f703-e582-4d05-9a08-453d09bdfdc6}': 18,
-    '{718e30fb-e89b-41dd-9da7-e25a45638b28}': 52,
-    '{86c18b42-e466-45a9-ae7a-9b95ba6f5640}': 2,
-    '{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}': 59,
-    '{a23983c0-fd0e-11dc-95ff-0800200c9a66}': 60,
-    '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}': 1}
+from constants.applications import APPS_ALL
+from constants.platforms import PLATFORMS
+from constants.base import (STATUS_NULL, STATUS_UNREVIEWED, STATUS_PENDING,
+                            STATUS_NOMINATED, STATUS_PUBLIC, STATUS_DISABLED,
+                            STATUS_LISTED, STATUS_BETA, STATUS_LITE,
+                            STATUS_LITE_AND_NOMINATED, STATUS_PURGATORY,
+                            VERSION_BETA)
 
-PLATFORMS = {
-    'Linux': 2,
-    'BSD_OS': 4,
-    'Darwin': 3,
-    'WINNT': 5,
-    'SunOS': 6,
-    'Android': 7,
-    'Maemo': 8}
-
-STATUS_NULL = 0
-STATUS_UNREVIEWED = 1
-STATUS_PENDING = 2
-STATUS_NOMINATED = 3
-STATUS_PUBLIC = 4
-STATUS_DISABLED = 5
-STATUS_LISTED = 6
-STATUS_BETA = 7
-STATUS_LITE = 8
-STATUS_LITE_AND_NOMINATED = 9
-STATUS_PURGATORY = 10
+APP_GUIDS = dict([(app.guid, app.id) for app in APPS_ALL.values()])
+PLATFORMS = dict([(plat.api_name, plat.id) for plat in PLATFORMS.values()])
 
 ADDON_SLUGS_UPDATE = {
     1: 'extension',
@@ -46,9 +28,9 @@ ADDON_SLUGS_UPDATE = {
     7: 'plugin'}
 
 
-STATUSES_PUBLIC = {'STATUS_PUBLIC': '4',
-                   'STATUS_LITE': '8',
-                   'STATUS_LITE_AND_NOMINATED': '9'}
+STATUSES_PUBLIC = {'STATUS_PUBLIC': STATUS_PUBLIC,
+                   'STATUS_LITE': STATUS_LITE,
+                   'STATUS_LITE_AND_NOMINATED': STATUS_LITE_AND_NOMINATED}
 
 
 version_re = re.compile(r"""(?P<major>\d+)         # major (x in x.y)
@@ -60,9 +42,6 @@ version_re = re.compile(r"""(?P<major>\d+)         # major (x in x.y)
                             (?P<pre>pre)?          # pre release
                             (?P<pre_ver>\d)?       # pre release version""",
                         re.VERBOSE)
-
-
-VERSION_BETA = re.compile('(a|alpha|b|beta|pre|rc)\d*$')
 
 
 def get_mirror(status, id, row):
