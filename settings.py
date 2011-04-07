@@ -287,7 +287,6 @@ INSTALLED_APPS = (
     'extras',
     'files',
     'jingo_minify',
-    'nick',
     'pages',
     'perf',
     'reviews',

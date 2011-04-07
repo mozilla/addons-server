@@ -56,9 +56,6 @@ urlpatterns = patterns('',
     # Performance wall of shame.
     ('^performance/', include('perf.urls')),
 
-    # Nick's special pages.
-    ('^nickspages/', include('nick.urls')),
-
     # Localizable pages.
     ('', include('pages.urls')),
 
