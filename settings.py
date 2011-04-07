@@ -395,9 +395,9 @@ MINIFY_BUNDLES = {
     'js': {
         # JS files common to the entire site.
         'common': (
-            'js/zamboni/jquery-1.4.2.min.js',
-            'js/zamboni/jquery-ui/custom-1.8.5.min.js',
-            'js/zamboni/underscore-min.js',
+            'js/lib/jquery-1.4.2.min.js',
+            'js/lib/jquery-ui/custom-1.8.5.min.js',
+            'js/lib/underscore-min.js',
             'js/zamboni/browser.js',
             'js/amo2009/addons.js',
             'js/zamboni/init.js',
@@ -405,10 +405,10 @@ MINIFY_BUNDLES = {
             'js/zamboni/buttons.js',
             'js/zamboni/tabs.js',
 
-            'js/jquery.cookie.js',
+            'js/lib/jquery.cookie.js',
             'js/zamboni/global.js',
             'js/amo2009/global.js',
-            'js/jquery-ui/jqModal.js',
+            'js/lib/jquery-ui/jqModal.js',
             'js/amo2009/home.js',
             'js/zamboni/l10n.js',
             'js/zamboni/storage.js',
@@ -417,14 +417,14 @@ MINIFY_BUNDLES = {
             'js/zamboni/homepage.js',
 
             # Add-ons details page
-            'js/jquery-ui/ui.lightbox.js',
+            'js/lib/jquery-ui/ui.lightbox.js',
             'js/get-satisfaction-v2.js',
             'js/zamboni/contributions.js',
             'js/zamboni/addon_details.js',
             'js/zamboni/reviews.js',
 
             # Personas
-            'js/zamboni/jquery.hoverIntent.min.js',
+            'js/lib/jquery.hoverIntent.min.js',
             'js/zamboni/personas.js',
 
             # Collections
@@ -443,22 +443,22 @@ MINIFY_BUNDLES = {
             'js/global/menu.js',
         ),
         'zamboni/discovery': (
-            'js/zamboni/jquery-1.4.2.min.js',
-            'js/zamboni/underscore-min.js',
+            'js/lib/jquery-1.4.2.min.js',
+            'js/lib/underscore-min.js',
             'js/zamboni/browser.js',
             'js/zamboni/init.js',
             'js/zamboni/format.js',
 
             # Add-ons details
             'js/zamboni/buttons.js',
-            'js/jquery-ui/ui.lightbox.js',
+            'js/lib/jquery-ui/ui.lightbox.js',
 
             # Personas
-            'js/zamboni/jquery.hoverIntent.min.js',
+            'js/lib/jquery.hoverIntent.min.js',
             'js/zamboni/personas.js',
 
             'js/zamboni/truncation.js',
-            'js/jquery.cookie.js',
+            'js/lib/jquery.cookie.js',
             'js/zamboni/storage.js',
             'js/zamboni/discovery_addons.js',
             'js/zamboni/discovery_pane.js',
@@ -476,9 +476,9 @@ MINIFY_BUNDLES = {
             'js/zamboni/files.js',
         ),
         'zamboni/mobile': (
-            'js/zamboni/jquery-1.5.min.js',
-            'js/zamboni/jqmobile.js',
-            'js/jquery.cookie.js',
+            'js/lib/jquery-1.5.min.js',
+            'js/lib/jqmobile.js',
+            'js/lib/jquery.cookie.js',
             'js/zamboni/browser.js',
             'js/zamboni/init.js',
             'js/zamboni/format.js',

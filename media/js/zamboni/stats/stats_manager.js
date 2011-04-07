@@ -53,7 +53,7 @@
 
     // Worker pool for Web Worker management
 
-    var stats_worker_url = z.media_url+"js/zamboni/stats/stats_worker.js";
+    var stats_worker_url = z.media_url+"js/workers/stats_worker.js";
 
     var StatsWorkerPool = new WorkerPool(4);
 
