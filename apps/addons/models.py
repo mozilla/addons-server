@@ -305,7 +305,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             """ % (self.name, user_str, self.id, self.guid, authors,
                    self.total_downloads, self.average_daily_users, msg)
             log.debug('Sending delete email for add-on %s' % self.id)
-            subject = 'Deleting add-on %s' % self.id
+            subject = 'Deleting add-on %s (%d)' % (self.slug, self.id)
 
         rv = super(Addon, self).delete()
 
