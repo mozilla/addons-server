@@ -50,7 +50,7 @@ def dedupe_approvals(items, **kw):
     for addon in Addon.objects.filter(pk__in=items):
         last = {}
         for activity in (ActivityLog.objects.for_addons(addon)
-                                    .order_by('-id')
+                                    .order_by('-created')
                                     .filter(action__in=LOG_STATUSES)):
             arguments = json.loads(activity._arguments)
             current = {
@@ -71,4 +71,5 @@ def dedupe_approvals(items, **kw):
                 log.info('Deleting duplicate activity log %s '
                          'from addon %s' % (activity.pk, addon.pk))
                 activity.delete()
-            last = current.copy()
+            else:
+                last = current.copy()

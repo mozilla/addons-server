@@ -117,3 +117,14 @@ class TestDedupeApprovals(test_utils.TestCase):
         amo.log(amo.LOG.APPROVE_VERSION, self.addon, self.version)
         dedupe_approvals([self.addon.pk])
         eq_(ActivityLog.objects.for_addons(self.addon).count(), 2)
+
+    def test_dedupe_not_id(self):
+        date_one = datetime.today()
+        date_two = datetime.today() - timedelta(days=1)
+        for x in range(0, 4):
+            log = amo.log(amo.LOG.APPROVE_VERSION, self.addon, self.version)
+            log.update(created=date_one)
+            log = amo.log(amo.LOG.REJECT_VERSION, self.addon, self.version)
+            log.update(created=date_two)
+        dedupe_approvals([self.addon.pk])
+        eq_(ActivityLog.objects.for_addons(self.addon).count(), 2)
