@@ -764,6 +764,8 @@ ASYNC_SIGNALS = True
 # Performance notes on add-ons
 PERFORMANCE_NOTES = False
 
+PERF_THRESHOLD = 25
+
 # flag to turn on or off Abuse reports
 REPORT_ABUSE = True
 
