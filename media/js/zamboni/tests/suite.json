@@ -1,7 +1,7 @@
 {
     "name": "Main Test Suite",
     "extra_media_urls": [
-        "js/zamboni/jstestnet.js",
+        "js/lib/jstestnet.js",
         "js/zamboni/tests.js",
         "js/zamboni/global.js",
         "js/zamboni/devhub.js",
