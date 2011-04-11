@@ -1,3 +1,5 @@
+from datetime import datetime, timedelta
+
 import jingo
 import test_utils
 from nose.tools import eq_
@@ -199,3 +201,56 @@ class TestVersion(test_utils.TestCase):
         eq_(self.addon.status, amo.STATUS_PUBLIC)
         file_two.delete()
         eq_(self.addon.status, amo.STATUS_NULL)
+
+
+class TestActivityLog(test_utils.TestCase):
+    fixtures = ['base/addon_3615']
+
+    def setUp(self):
+        now = datetime.now()
+        bom = datetime(now.year, now.month, 1)
+        self.lm = bom - timedelta(days=1)
+        self.user = UserProfile.objects.get()
+        amo.set_user(self.user)
+
+    def test_not_review_count(self):
+        amo.log(amo.LOG['EDIT_VERSION'], Addon.objects.get())
+        eq_(len(ActivityLog.objects.monthly_reviews()), 0)
+
+    def test_review_count(self):
+        amo.log(amo.LOG['APPROVE_VERSION'], Addon.objects.get())
+        result = ActivityLog.objects.monthly_reviews()
+        eq_(len(result), 1)
+        eq_(result[0]['approval_count'], 1)
+        eq_(result[0]['user'], self.user.pk)
+
+    def test_review_count_few(self):
+        for x in range(0, 5):
+            amo.log(amo.LOG['APPROVE_VERSION'], Addon.objects.get())
+        result = ActivityLog.objects.monthly_reviews()
+        eq_(len(result), 1)
+        eq_(result[0]['approval_count'], 5)
+
+    def test_review_last_month(self):
+        log = amo.log(amo.LOG['APPROVE_VERSION'], Addon.objects.get())
+        log.update(created=self.lm)
+        eq_(len(ActivityLog.objects.monthly_reviews()), 0)
+
+    def test_not_total(self):
+        amo.log(amo.LOG['EDIT_VERSION'], Addon.objects.get())
+        eq_(len(ActivityLog.objects.total_reviews()), 0)
+
+    def test_total_few(self):
+        for x in range(0, 5):
+            amo.log(amo.LOG['APPROVE_VERSION'], Addon.objects.get())
+        result = ActivityLog.objects.total_reviews()
+        eq_(len(result), 1)
+        eq_(result[0]['approval_count'], 5)
+
+    def test_total_last_month(self):
+        log = amo.log(amo.LOG['APPROVE_VERSION'], Addon.objects.get())
+        log.update(created=self.lm)
+        result = ActivityLog.objects.total_reviews()
+        eq_(len(result), 1)
+        eq_(result[0]['approval_count'], 1)
+        eq_(result[0]['user'], self.user.pk)

@@ -182,9 +182,9 @@ class TestHome(EditorTest):
         for i in xrange(50):
             a = Addon.objects.create(type=amo.ADDON_EXTENSION)
             v = Version.objects.create(addon=a)
-            f = File.objects.create(version=v)
 
-            Approval(addon=a, user=u, file=f, created=created).save()
+            amo.set_user(u)
+            amo.log(amo.LOG['APPROVE_VERSION'], a, v)
 
     def test_approved_review(self):
         review = self.make_review()
@@ -212,8 +212,7 @@ class TestHome(EditorTest):
         eq_(display_name, self.user.display_name)
 
         approval_count = doc('.editor-stats-table:eq(0)').find('td')[1].text
-        # 50 generated + 1 fixture from a past month
-        eq_(int(approval_count), 51)
+        eq_(int(approval_count), 50)
 
     def test_stats_monthly(self):
         self.approve_reviews()
@@ -225,7 +224,6 @@ class TestHome(EditorTest):
         eq_(display_name, self.user.display_name)
 
         approval_count = doc('.editor-stats-table:eq(1)').find('td')[1].text
-        # 50 generated; doesn't show the fixture from a past month
         eq_(int(approval_count), 50)
 
     def test_new_editors(self):

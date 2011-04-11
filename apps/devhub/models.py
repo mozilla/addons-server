@@ -121,6 +121,21 @@ class ActivityLogManager(amo.models.ManagerBase):
     def review_queue(self):
         return self.filter(action__in=amo.LOG_REVIEW_QUEUE)
 
+    def total_reviews(self):
+        return (self.values('user', 'user__display_name')
+                    .filter(action__in=amo.LOG_REVIEW_QUEUE)
+                    .annotate(approval_count=models.Count('id'))
+                    .order_by('-approval_count')[:5])
+
+    def monthly_reviews(self):
+        now = datetime.now()
+        created_date = datetime(now.year, now.month, 1)
+        return (self.values('user', 'user__display_name')
+                    .filter(created__gte=created_date,
+                            action__in=amo.LOG_REVIEW_QUEUE)
+                    .annotate(approval_count=models.Count('id'))
+                    .order_by('-approval_count')[:5])
+
 
 class SafeFormatter(string.Formatter):
     """A replacement for str.format that escapes interpolated values."""
