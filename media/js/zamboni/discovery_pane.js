@@ -101,7 +101,7 @@ function initRecs() {
                 '<a href="{url}" target="_self">' +
                 '<img src="{icon}" width="32" height="32">' +
                 '<h3>{name}</h3>' +
-                '<p class="desc">{summary}</p>' +
+                '<p class="desc vtruncate">{summary}</p>' +
                 '</a></li>');
             var persona_item = template('<li class="panel persona-feature">' +
                 '<a href="{url}" target="_self">' +
