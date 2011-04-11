@@ -34,3 +34,7 @@ def update_perf(baseline, perf, **kw):
     # Add all the calculated values to redis so we can show per-platform perf.
     redis = redisutils.connections['master']
     redis.hmset(Performance.ALL_PLATFORMS, all_deltas)
+
+    for key, val in all_deltas.items():
+        if val is None:
+            redis.hdel(Performance.ALL_PLATFORMS, key)
