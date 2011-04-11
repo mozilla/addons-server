@@ -11,6 +11,7 @@ from django.template import defaultfilters
 
 from babel import Locale
 from babel.support import Format
+import bleach
 import caching.base as caching
 import jinja2
 from jingo import register, env
@@ -31,6 +32,7 @@ register.filter(utils.epoch)
 register.filter(utils.isotime)
 register.function(dict)
 register.function(utils.randslice)
+register.function(bleach.clean)
 
 
 @register.filter

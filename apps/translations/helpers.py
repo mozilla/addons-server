@@ -4,8 +4,9 @@ from django.utils.translation.trans_real import to_language
 from django.utils.encoding import smart_unicode
 
 import jinja2
-
 import jingo
+
+from .models import clean_nl
 
 jingo.register.filter(to_language)
 
@@ -61,3 +62,8 @@ def all_locales(addon, field_name, nl2br=False):
                nl2br=nl2br)
     t = jingo.env.get_template('translations/all-locales.html')
     return jinja2.Markup(t.render(ctx))
+
+
+@jingo.register.filter
+def clean(string):
+    return clean_nl(bleach.clean(string)).strip()
