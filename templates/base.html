@@ -26,6 +26,14 @@
 
     {% block extrahead %}{% endblock %}
     <noscript><link rel="stylesheet" href="{{ media('css/legacy/nojs.css') }}"></noscript>
+
+    {% if settings.DEBUG %}
+      {% if settings.LESS_LIVE_REFRESH %}
+        <meta id="live_refresh" name="live_refresh" value="1">
+      {% endif %}
+      {{ js('debug') }}
+    {% endif %}
+
   </head>
   <body class="html-{{ DIR }} {{ request.APP.short }} moz-header-slim {% block bodyclass %}{% endblock %}"
         data-app="{{ request.APP.short }}"

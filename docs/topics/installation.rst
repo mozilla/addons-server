@@ -244,5 +244,5 @@ Advanced Installation
 ---------------------
 
 In production we use things like memcached, rabbitmq + celery, sphinx, redis,
-and mongodb.  Learn more about installing these on the
+mongodb and LESS.  Learn more about installing these on the
 :doc:`./advanced-installation` page.

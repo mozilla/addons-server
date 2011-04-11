@@ -29,6 +29,11 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 DEBUG_PROPAGATE_EXCEPTIONS = True
 
+# LESS CSS OPTIONS (Debug only)
+LESS_PREPROCESS = False  # Compile LESS with Node, rather than client-side JS?
+LESS_LIVE_REFRESH = False  # Refresh the CSS on save?
+LESS_BIN = 'lessc'
+
 ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
 )
@@ -485,6 +490,12 @@ MINIFY_BUNDLES = {
             'js/zamboni/mobile_buttons.js',
             'js/zamboni/truncation.js',
             'js/zamboni/mobile.js',
+        ),
+        # This is included when DEBUG is True.  Bundle in <head>.
+        'debug': (
+            'js/debug/less_setup.js',
+            'js/lib/less-1.0.41.js',
+            'js/debug/less_live.js',
         ),
     }
 }
