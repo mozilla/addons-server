@@ -31,6 +31,10 @@ def dict_from_int(version_int):
     return d
 
 
+def num(vint):
+    return '{major}.{minor1}.{minor2}.{minor3}'.format(**dict_from_int(vint))
+
+
 def version_dict(version):
     """Turn a version string into a dict with major/minor/... info."""
     match = version_re.match(version or '')

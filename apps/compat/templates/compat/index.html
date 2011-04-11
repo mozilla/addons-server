@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page_title(_('Compatibility Center')) }}{% endblock %}
+{% block bodyclass %}inverse{% endblock %}
+
+{% macro percent(x, y) %}{{ (x / y|float * 100)|int }}{% endmacro %}
+
+{% set app = request.APP.pretty %}
+{% set num = percent(versions['latest'], total) %}
+
+{% block content %}
+
+<h1>{{ _('{app} {version} Add-on Compatibility Report')|f(app=app, version=version) }}</h1>
+<p>{% trans %}
+<b>{{ num }}%</b> of add-ons on addons.mozilla.org are compatible with {{ app }} {{ version }}.
+{% endtrans %}</p>
+
+<div id="chart" class="primary"
+  data-keys="{{ dict(keys)|json }}"
+  data-data="{{ versions|json }}"
+  data-total="{{ total }}"></div>
+<div class="secondary">
+  <table id="compat">
+    <tr>
+      <th>{{ _('Version') }}</th>
+      <th>{{ _('# of Add-ons') }}</th>
+    </tr>
+    {% for key, title in keys %}
+      <tr>
+        <td>{{ title }}</td>
+        <td>{{ versions[key]|numberfmt }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+  <p><a href="{{ url('compat.details', version) }}">{{ _('Detailed Report') }}</a></p>
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script src="{{ media('js/lib/highcharts.src.js') }}"></script>
+<script src="{{ media('js/zamboni/compat.js') }}"></script>
+{% endblock %}

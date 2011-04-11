@@ -284,6 +284,7 @@ INSTALLED_APPS = (
     'bandwagon',
     'blocklist',
     'browse',
+    'compat',
     'cronjobs',
     'csp',
     'devhub',
@@ -897,3 +898,14 @@ FILE_VIEWER_SIZE_LIMIT = 1048576
 
 # How long to delay modify updates to cope with alleged NFS slowness.
 MODIFIED_DELAY = 120
+
+# This is a list of dictionaries that we should generate compat info for.
+# app: should match amo.FIREFOX.id.
+# version: the app version we're generating compat info for.
+# alpha: the first version that should be considered alpha for :version.
+# previous: the major version before :version.
+COMPAT = (
+    dict(app=1, version='4.0', alpha='3.7a', previous='3.6'),
+    dict(app=1, version='5.0', alpha='5.0a', previous='4.0'),
+    dict(app=1, version='6.0', alpha='6.0a', previous='5.0'),
+)

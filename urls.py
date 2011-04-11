@@ -78,6 +78,8 @@ urlpatterns = patterns('',
     # SAMO/API
     ('^api/', include('api.urls')),
 
+    ('^compatibility/', include('compat.urls')),
+
     # Review spam.
     url('^reviews/spam/$', 'reviews.views.spam', name='reviews.spam'),
 
