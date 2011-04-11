@@ -106,6 +106,14 @@ class QueueSearchForm(happyforms.Form):
         versions = AppVersion.objects.filter(application__id=app_id)
         return [('', '')] + [(v.version, v.version) for v in versions]
 
+    def clean_addon_type_ids(self):
+        if self.cleaned_data['addon_type_ids']:
+            # Remove "Any Addon Extension" from the list so that no filter
+            # is applied in that case.
+            ids = set(self.cleaned_data['addon_type_ids'])
+            self.cleaned_data['addon_type_ids'] = ids - set(str(amo.ADDON_ANY))
+        return self.cleaned_data['addon_type_ids']
+
     def clean_application_id(self):
         if self.cleaned_data['application_id']:
             choices = self.version_choices_for_app_id(

@@ -693,6 +693,10 @@ class TestQueueSearch(SearchTest):
         r = self.search({'addon_type_ids': [amo.ADDON_THEME]})
         eq_(self.named_addons(r), ['Justin Bieber Persona'])
 
+    def test_search_by_addon_type_any(self):
+        r = self.search({'addon_type_ids': [amo.ADDON_ANY]})
+        assert len(self.named_addons(r)) > 0
+
     def test_search_by_many_addon_types(self):
         r = self.search({'addon_type_ids': [amo.ADDON_THEME,
                                             amo.ADDON_SEARCH]})
