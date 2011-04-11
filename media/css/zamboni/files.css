@@ -3,68 +3,78 @@
     padding-top: 1em
 }
 
-#file-viewer #files {
-    width: 15em;
+#files {
     float: left;
 }
 
-#file-viewer #files li a {
+#files li a {
     display: inline-block;
 }
 
-#file-viewer #numbers {
-    width: 3em;
-    float: left;
-    padding-left: 4em;
-    border-top: 1px solid white;
+#content a {
+    padding: 0em;
+    margin: 0em;
 }
 
-#file-viewer #thinking, #file-viewer #content {
+#content-wrapper, #thinking {
     width: 50em;
     float: left;
+    margin-left: 1em;
+    padding-left: 3em;
+}
+
+#content div.number, #diff div.number {
+    display: inline;
+    float: left;
+    vertical-align: top;
+}
+
+
+#content div.code, #diff div.code {
+    width: 50em;
+    display: block;
+    position: relative;
+    left: 3em;
     padding-left: 1em;
+}
+
+.wrapped {
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
 
 pre div, pre ins, pre del {
     display: inline-block;
     padding: 0;
     margin: 0;
-    width: 50em;
 }
 
 pre div:hover, pre ins:hover, pre del:hover {
     background-color: #ffffcc;
 }
 
-
-pre, #file-viewer #numbers {
-    line-height: 1.15em;
-}
-
 pre ins {
     background-color: #e6ffe6;
     text-decoration: none;
-    line-height: inherit;
 }
 
 pre del {
     background-color: #ffe6e6;
     text-decoration: none;
-    line-height: inherit;
 }
 
-#file-viewer #content {
-    width: 10em;
+#content, #diff {
+    background: white;
     float: left;
 }
 
-#file-viewer .add {
-    background-color: #aae0aa;
+.add {
+    background-color: #ddf8dd;
     width: 100%;
 }
 
-#file-viewer .delete {
-    background-color: #ffaaaa;
+.delete {
+    background-color: #ffdddd;
     width: 100%;
 }
 

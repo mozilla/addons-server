@@ -89,6 +89,11 @@ class TestFileHelper(test_utils.TestCase):
         eq_(files['dictionaries/license.txt']['depth'], 1)
         eq_(files['dictionaries/license.txt']['parent'], 'dictionaries')
 
+    def test_bom(self):
+        dest = tempfile.mkstemp()[1]
+        open(dest, 'w').write('foo'.encode('utf-16'))
+        eq_(self.viewer.read_file({'full': dest}), (u'foo', ''))
+
 
 class TestDiffHelper(test_utils.TestCase):
 

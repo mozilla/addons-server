@@ -1,27 +1,14 @@
 if (typeof diff_match_patch !== 'undefined') {
     diff_match_patch.prototype.diff_prettyHtml = function(diffs) {
         /* An override of prettyHthml from diff_match_patch. This
-           one will not put any style attrs in the ins or del. It will
-           also as side effect write an array of line numbers, ignoring
-           deletions */
-        var html = [],
-            pattern_amp = /&/g,
-            pattern_lt = /</g,
-            pattern_gt = />/g,
-            pattern_para = /\n/g;
-
-        this.line_numbers = [];
-        var k = 1,
-            i = 0;
+           one will not put any style attrs in the ins or del. */
+        var html = [];
+        var k = 1;
         for (var x = 0; x < diffs.length; x++) {
             var op = diffs[x][0];    // Operation (insert, delete, equal)
             var data = diffs[x][1];  // Text of change.
-            var text = data.replace(pattern_amp, '&amp;').replace(pattern_lt, '&lt;')
-                           .replace(pattern_gt, '&gt;').replace(pattern_para, '\n');
-            /* As as side effect, append on to the line_numbers a list
-              of numbers, with false for empty ones. So that <del> don't
-              have a line number. To get the numbers balanced, we need
-              to strip a starting or ending "" in the text */
+            var text = data.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            /* As as side effect, add in line numbers */
             var lines = text.split('\n');
             if (lines[lines.length-1] === '') {
                 lines.pop();
@@ -30,29 +17,23 @@ if (typeof diff_match_patch !== 'undefined') {
                 lines.splice(0, 1);
             }
             for (var t = 0; t < lines.length; t++) {
-                if (op === DIFF_DELETE) {
-                    this.line_numbers.push(false);
-                } else {
-                    this.line_numbers.push(k++);
-                }
-
                 switch (op) {
                     case DIFF_INSERT:
-                        html.push('<ins>+ ' + lines[t] + '</ins>');
+                        html.push(format('<div><div class="number"><a href="#L{0}" name="L{0}">{0}</a>' +
+                                         '</div><div class="code add">{1}</div></div>', k, lines[t]));
+                        k++;
                         break;
                     case DIFF_DELETE:
-                        html.push('<del>- ' + lines[t] + '</del>');
+                        html.push(format('<div><div class="number"></div>' +
+                                         '<div class="code delete">{0}</div></div>', lines[t]));
                         break;
                     case DIFF_EQUAL:
-                        html.push('<div> ' + lines[t] + '</div>');
-                    break;
-                }
-                if (op !== DIFF_DELETE) {
-                    i += data.length;
+                        html.push(format('<div><div class="number"><a href="#L{0}" name="L{0}">{0}</a>' +
+                                         '</div><div class="code">{1}</div></div>', k, lines[t]));
+                        k++;
+                        break;
                 }
             }
-
-
         }
         return html.join('\n');
     };
@@ -62,42 +43,32 @@ function bind_viewer() {
     function Viewer() {
         this.$tree = $('#files ul');
         this.compute = function() {
-            /* Counts the line numbers.
-              If we've got diffs, computes the diffs and the line numbers.
-              The line number computation is so that we don't show line numbers
-              on - lines. */
-            if ($('#content').length) {
-                var text = $('#content').text(),
-                    length = text.split('\n').length,
-                    num = [];
-                for (var k = 1; k < Math.max(1, length); k++) {
-                    num.push(k);
+            var node = $('#content');
+            if (node.length) {
+                var splitted = node.text().split('\n'),
+                    length = splitted.length,
+                    html = [];
+                if (splitted.splice(length-1, length) == '') {
+                    length = length - 1;
                 }
-                if (text.slice(text.length-1, text.length) !== '\n') {
-                    num.push(num.slice(num.length-1, num.length) + 1);}
-                this.add_numbers(num);
+                for (var k = 0; k < splitted.length; k++) {
+                    var text = splitted[k].replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                    html.push(format('<div><div class="number"><a href="#L{0}" name="L{0}">{0}</a></div>' +
+                                     '<div class="code">{1}</div></div>', k+1, text));
+                }
+                node.html(html.join('\n'));
             }
 
             if ($('#diff').length) {
                 var dmp = new diff_match_patch();
                 var diff = dmp.diff_main($('#file-one').text(), $('#file-two').text());
                 $('#diff').html(dmp.diff_prettyHtml(diff));
-                this.add_numbers(dmp.line_numbers);
             }
-            this.$tree.show();
-        };
-        this.add_numbers = function(num) {
-            /* Adds the line numbers into the page after counting. */
-            var text = [];
-            for (var k = 0; k < num.length; k++) {
-                text.push(num[k] === false ? '<br/>' : format('<a href="#L{0}" name="L{0}">{0}</a><br/>', num[k]));
-            }
-            // Because the line numbers are generated dynamically,
-            // it won't go to the anchor.
+
             if (window.location.hash) {
                 window.location = window.location;
             }
-            $('#numbers').html(text.join('\n'));
+            this.$tree.show();
         };
         this.show_leaf = function(names) {
             /* Exposes the leaves for a given set of nodes. */
@@ -147,10 +118,12 @@ function bind_viewer() {
                shows it all. */
             var self = this,
                 $thinking = $('#thinking'),
-                $wrapper = $('#wrapper');
+                $wrapper = $('#content-wrapper');
             $wrapper.hide();
             $thinking.removeClass('hidden').show();
-            history.pushState({ path: $link.text() }, '', $link.attr('href'));
+            if (history.pushState !== undefined) {
+                history.pushState({ path: $link.text() }, '', $link.attr('href'));
+            }
             $('#content-wrapper').load($link.attr('href') + ' #content-wrapper', function() {
                 $(this).children().unwrap();
                 self.compute();
@@ -190,13 +163,27 @@ function bind_viewer() {
         if (choices.length) { viewer.select($(choices[0])); }
     }));
 
+    $('#files-wrap').click(_pd(function() {
+        $('pre').addClass('wrapped');
+        $('#files-wrap').hide();
+        $('#files-unwrap').removeClass('hidden').show();
+    }));
+
+    $('#files-unwrap').click(_pd(function() {
+        $('pre').removeClass('wrapped');
+        $('#files-wrap').removeClass('hidden').show();
+        $('#files-unwrap').hide();
+    }));
+
     $('#files-expand-all').click(_pd(function() {
         viewer.$tree.find('li.hidden').removeClass('hidden').show();
         viewer.$tree.find('a.directory').removeClass('closed').addClass('open');
     }));
 
-    $('#files li a').click(_pd(function() {
+    viewer.$tree.find('.file').click(_pd(function() {
         viewer.select($(this));
+        $('#files-unwrap').removeClass('hidden').show();
+        $('#files-wrap').hide();
     }));
 
     $(document).bind('keyup', _pd(function(e) {

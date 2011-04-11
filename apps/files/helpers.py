@@ -1,3 +1,4 @@
+import codecs
 import mimetypes
 import os
 import shutil
@@ -79,12 +80,15 @@ class FileViewer:
         return True
 
     def read_file(self, selected):
-        content = open(selected['full']).read()
-        try:
-            return content.decode('utf-8'), ''
-        except UnicodeDecodeError:
-            return (content.decode('utf-8', 'ignore'),
-                    _('There were some problems decoding this file.'))
+        with open(selected['full'], 'r') as opened:
+            cont = opened.read()
+            codec = 'utf-16' if cont.startswith(codecs.BOM_UTF16) else 'utf-8'
+            try:
+                return cont.decode(codec), ''
+            except UnicodeDecodeError:
+                cont = cont.decode(codec, 'ignore')
+                #L10n: {0} is the filename.
+                return cont, _('Problems decoding using: %s.' % codec)
 
     def get_files(self):
         """

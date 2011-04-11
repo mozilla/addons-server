@@ -31,7 +31,9 @@
         <p>
             <a href="#" id="files-prev">{{ _('Prev') }}</a> |
             <a href="#" id="files-next">{{ _('Next') }}</a><br />
-            <a href="#" id="files-expand-all">{{ _('Expand All') }}</a>
+            <a href="#" id="files-expand-all">{{ _('Expand All') }}</a><br />
+            <a href="#" id="files-unwrap">{{ _('Unwrap text')}}</a>
+            <a href="#" id="files-wrap" class="hidden">{{ _('Wrap text')}}</a><br />
         </p>
 
         {% elif not files and status %}
@@ -45,17 +47,15 @@
     </div>
     <div id="content-wrapper">
         {% if msg %}
-            <p><strong>{{ msg }}</strong></p>
+            <p>{{ msg }}</p>
         {% endif %}
-        <div id="numbers">
-        </div>
         <div>
         {% if viewer %}
             {% if selected['binary'] and not selected['directory'] %}
                 <p>{{ _('Binary file, hash:') }} {{ selected.md5 }}</p>
             {% else %}
                 {% if selected and content %}
-                    <pre id="content">{{ content }}</pre>
+                    <pre id="content" class="wrapped">{{ content }}</pre>
                 {% elif content == '' %}
                     <p>{{ _('No content.') }}</p>
                 {% endif %}
@@ -63,15 +63,15 @@
         {% endif %}
         {% if diff and not diff.is_binary() %}
             {% if text_one and text_two %}
-                <pre id="diff"></pre>
+                <pre id="diff" class="wrapped"></pre>
             {% endif %}
         {% endif %}
         {% if diff and diff.is_binary() %}
             <p>
             {% if diff.is_different() %}
-                <strong>{{ _('Files are different.') }}</strong><br/>
+                {{ _('Files are different.') }}
             {% else %}
-                <strong>{{ _('Files are the same.') }}</strong><br/>
+                {{ _('Files are the same.') }}
             {% endif %}
             </p>
         {% endif %}
