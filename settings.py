@@ -308,6 +308,7 @@ INSTALLED_APPS = (
     # Third party apps
     'djcelery',
     'django_nose',
+    'gunicorn',
     'piston',
 
     # Django contrib apps
