@@ -1,3 +1,5 @@
+from django.conf import settings
+
 import test_utils
 from nose.tools import eq_
 
@@ -16,6 +18,11 @@ class TestPerfIndex(amo.tests.RedisTest, test_utils.TestCase):
         super(TestPerfIndex, self).setUp()
         update_perf()
         self.url = reverse('perf.index')
+        self._perf_threshold = settings.PERF_THRESHOLD
+        settings.PERF_THRESHOLD = 25
+
+    def tearDown(self):
+        settings.PERF_THRESHOLD = self._perf_threshold
 
     def test_get(self):
         # Are you there page?
