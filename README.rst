@@ -1,4 +1,4 @@
-Welcome to Zamboni!  This is the future version of `addons.mozilla.org`_, which
+Welcome to Zamboni! This is the future version of `addons.mozilla.org`_, which
 is based on CakePHP at the moment.  We like this version much better.
 
 We have some good `install docs`_ if you want to try it out.  You can come talk
