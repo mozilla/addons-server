@@ -27,6 +27,15 @@ class TestPerfIndex(amo.tests.RedisTest, test_utils.TestCase):
         eq_([a.id for a in addons],
             [p.addon_id for p in qs.order_by('-average')])
 
+    def test_threshold_filter(self):
+        # Threshold is 25, so only 1 add-on will show up
+        Addon.objects.get(pk=3615).update(ts_slowness=10)
+        Addon.objects.get(pk=5299).update(ts_slowness=50)
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        addons = r.context['addons']
+        eq_(len(addons), 1)
+
     def test_empty_perf_table(self):
         Addon.objects.update(ts_slowness=None)
         r = self.client.get(self.url)
