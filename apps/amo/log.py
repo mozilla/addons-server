@@ -160,7 +160,7 @@ class DELETE_FILE_FROM_VERSION(_LOG):
 class APPROVE_VERSION(_LOG):
     id = 21
     action_class = 'approve'
-    format = _(u'{addon} ({version}) approved.')
+    format = _(u'{addon} {version} approved.')
     keep = True
     review_queue = True
 
