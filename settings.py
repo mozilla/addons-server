@@ -705,6 +705,7 @@ CSP_IMG_SRC = ("'self'", STATIC_URL,
 CSP_SCRIPT_SRC = ("'self'", STATIC_URL,
                   "https://api-secure.recaptcha.net",
                   "https://www.google.com",  # Recaptcha
+                  "https://www.paypalobjects.com",
                   )
 CSP_STYLE_SRC = ("'self'", STATIC_URL,)
 CSP_OBJECT_SRC = ("'none'",)
