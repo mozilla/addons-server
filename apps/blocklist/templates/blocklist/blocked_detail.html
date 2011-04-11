@@ -10,12 +10,12 @@
 
 <section class="blocked">
   {# L10n: {0} is an add-on name. #}
-  <h1>{{ _('<b>{0}</b> has been blocked for your protection.')|fe(details.name)|safe }}</h1>
+  <h1>{{ _('<b>{0}</b> has been blocked for your protection.')|fe(details.name)|clean|nl2br }}</h1>
   <dl>
     <dt>{{ _('Why was it blocked?') }}</dt>
-    <dd>{{ details.why|safe }}</dd>
+    <dd>{{ details.why|clean|nl2br }}</dd>
     <dt>{{ _('Who is affected?') }}</dt>
-    <dd>{{ details.who|safe }}</dd>
+    <dd>{{ details.who|clean|nl2br }}</dd>
     <dt>{{ _('What does this mean?') }}</dt>
     <dd>
     {% if item.severity and item.severity == 1 %}

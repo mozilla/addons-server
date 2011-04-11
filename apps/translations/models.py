@@ -123,47 +123,7 @@ class PurifiedTranslation(Translation):
         cleaned = bleach.clean(self.localized_string)
         linkified = bleach.linkify(cleaned, nofollow=True,
                 filter_url=urlresolvers.get_outgoing_url)
-        self.localized_string_clean = self.clean_nl(linkified).strip()
-
-    def clean_nl(self, string):
-        """ This will clean up newlines so that nl2br can properly
-            be called on the cleaned text. """
-
-        html_blocks = ['blockquote', 'ol', 'li', 'ul']
-
-        if not string:
-            return string
-
-        def parse_html(tree):
-            prev_tag = ""
-            for i, node in enumerate(tree.childNodes):
-                if node.type == 4:  # Text node
-                    value = node.value
-
-                    # Strip new lines directly inside block level elements.
-                    if node.parent.name in html_blocks:
-                        value = value.strip('\n')
-
-                    # Remove the first new line after a block level element
-                    if (prev_tag in html_blocks and value.startswith('\n')):
-                        value = value[1:]
-
-                    tree.childNodes[i].value = value
-                else:
-                    tree.insertBefore(parse_html(node), node)
-                    tree.removeChild(node)
-
-                prev_tag = node.name
-            return tree
-
-        parse = parse_html(html5lib.parseFragment(string))
-
-        walker = html5lib.treewalkers.getTreeWalker('simpletree')
-        stream = walker(parse)
-        serializer = HTMLSerializer(quote_attr_values=True,
-                                    omit_optional_tags=False)
-
-        return serializer.render(stream)
+        self.localized_string_clean = clean_nl(linkified).strip()
 
     def __truncate__(self, length, killwords, end):
         return utils.truncate(unicode(self), length, killwords, end)
@@ -199,3 +159,43 @@ def delete_translation(obj, fieldname):
     obj.update(**{field.name: None})
     if trans:
         Translation.objects.filter(id=trans.id).delete()
+
+def clean_nl(string):
+    """ This will clean up newlines so that nl2br can properly
+        be called on the cleaned text. """
+
+    html_blocks = ['blockquote', 'ol', 'li', 'ul']
+
+    if not string:
+        return string
+
+    def parse_html(tree):
+        prev_tag = ''
+        for i, node in enumerate(tree.childNodes):
+            if node.type == 4:  # Text node
+                value = node.value
+
+                # Strip new lines directly inside block level elements.
+                if node.parent.name in html_blocks:
+                    value = value.strip('\n')
+
+                # Remove the first new line after a block level element
+                if (prev_tag in html_blocks and value.startswith('\n')):
+                    value = value[1:]
+
+                tree.childNodes[i].value = value
+            else:
+                tree.insertBefore(parse_html(node), node)
+                tree.removeChild(node)
+
+            prev_tag = node.name
+        return tree
+
+    parse = parse_html(html5lib.parseFragment(string))
+
+    walker = html5lib.treewalkers.getTreeWalker('simpletree')
+    stream = walker(parse)
+    serializer = HTMLSerializer(quote_attr_values=True,
+                                omit_optional_tags=False)
+
+    return serializer.render(stream)
