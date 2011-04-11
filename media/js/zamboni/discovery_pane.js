@@ -100,12 +100,12 @@ function initRecs() {
             var addon_item = template('<li class="panel addon-feature">' +
                 '<a href="{url}" target="_self">' +
                 '<img src="{icon}" width="32" height="32">' +
-                '<h3>{name}</h3>' +
+                '<h3 class="vtruncate">{name}</h3>' +
                 '<p class="desc vtruncate">{summary}</p>' +
                 '</a></li>');
             var persona_item = template('<li class="panel persona-feature">' +
                 '<a href="{url}" target="_self">' +
-                '<h3>{name}</h3>' +
+                '<h3 class="vtruncate">{name}</h3>' +
                 '<div class="persona persona-large">' +
                 '<div class="persona-inner">' +
                 '<div class="persona-preview">' +
