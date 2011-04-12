@@ -377,6 +377,10 @@ aside.highlight {
     display: block;
 }
 
+.highlight dd {
+    font-size: .8em;
+}
+
 #export_data {
     font: 13px "helvetica neue",arial,helvetica,sans-serif;
     margin-left:1em;

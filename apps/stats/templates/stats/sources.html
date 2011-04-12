@@ -37,3 +37,25 @@
   </div>
 </div>
 {% endblock %}
+
+{% block stats_note %}
+  {% trans slug=addon.slug, id=addon.id %}
+    <h3>Tracking external sources</h3>
+    <p>
+      If you link to your add-on's details page or directly to its file from an
+      external site, such as your blog or website, you can append a parameter to be
+      tracked as an additional download source on this page. For example, the
+      following links would appear as sourced by your blog:
+    <dl>
+      <dt>Add-on Details Page</dt>
+      <dd>https://addons.mozilla.org/addon/{{ slug }}?src=<b>external-blog</b></dd>
+      <dt>Direct File Link</dt>
+      <dd>https://addons.mozilla.org/downloads/latest/{{ id }}/addon-{{ id }}-latest.xpi?src=<b>external-blog</b></dd>
+    </dl>
+    <p>
+      Only src parameters that begin with "external-" will be tracked, up to 61
+      additional characters. Any text after "external-" can be used to describe the
+      source, such as "external-blog", "external-sidebar", "external-campaign225",
+      etc. The following URL-safe characters are allowed: alphanumeric <code>- . _ ~ % +</code>
+  {% endtrans %}
+{% endblock %}
