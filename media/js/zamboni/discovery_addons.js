@@ -104,7 +104,7 @@ function initDetail() {
     $(".install-action a").attr("target", "_self");
 
     // Replace with the URL back to the discovery promo pane.
-    $("p#back a").attr("href", Storage.get("discopane-url"));
+    $("p#back a").attr("href", z.Storage("discopane").get("url"));
 
     $("#images").fadeIn("slow").addClass("js").zCarousel({
         btnNext: "#images .nav-next a",

@@ -5,13 +5,15 @@ z.MIN_EXTENSIONS = 3;
 // Parse GUIDS of installed extensions from JSON fragment.
 z.guids = getGuids();
 
+z.discoStorage = z.Storage("discopane");
+
 
 $(document).ready(function(){
     if ($(".pane").length) {
         initSidebar();
 
         // Store the pane URL so we can link back from the add-on detail pages.
-        Storage.set("discopane-url", location);
+        z.discoStorage.set("url", location);
 
         // Show "Starter Pack" panel only if user has fewer than three extensions.
         if (z.guids.length >= z.MIN_EXTENSIONS) {
@@ -91,8 +93,8 @@ function initRecs() {
     if (!location.hash || !z.guids.length) {
         // If the user has opted out of recommendations, clear out any
         // existing recommendations.
-        Storage.remove("discopane-recs");
-        Storage.remove("discopane-guids");
+        z.discoStorage.remove("recs");
+        z.discoStorage.remove("guids");
     }
 
     function populateRecs() {
@@ -154,7 +156,7 @@ function initRecs() {
     if (showRecs && z.guids.length > z.MIN_EXTENSIONS) {
         $("body").removeClass("no-recs").addClass("recs");
 
-        var cacheObject = Storage.get("discopane-recs");
+        var cacheObject = z.discoStorage.get("recs");
         if (cacheObject) {
             // Load local data.
             cacheObject = JSON.parse(cacheObject);
@@ -167,7 +169,7 @@ function initRecs() {
         // Get new recommendations if there are no saved recommendations or
         // if the user has new installed add-ons.
         var findRecs = !cacheObject;
-        var updateRecs = cacheObject && Storage.get("discopane-guids") != z.guids.toString();
+        var updateRecs = cacheObject && z.discoStorage.get("guids") != z.guids.toString();
         if (findRecs || updateRecs) {
             var msg;
             if (findRecs) {
@@ -193,15 +195,13 @@ function initRecs() {
                     $("#recs .loading").remove();
                     datastore = JSON.parse(raw_data);
                     populateRecs();
-                    Storage.set("discopane-updated", new Date());
-                    Storage.set("discopane-recs", raw_data);
-                    Storage.set("discopane-guids", z.guids);
+                    z.discoStorage.set("updated", new Date());
+                    z.discoStorage.set("recs", raw_data);
+                    z.discoStorage.set("guids", z.guids);
                 },
                 error: function(raw_data) {
                     $("#recs .loading").remove();
                     populateRecs();
-                    Storage.remove("discopane-recs");
-                    Storage.remove("discopane-guids");
                 }
             });
         } else {

@@ -18,4 +18,4 @@ test('Buttons: Test backup button', function() {
     $('.backup-button').showBackupButton();
     equals(backup_wrapper.hasClass('hidden'), true);
     equals(current_wrapper.hasClass('hidden'), false);
-})
+});

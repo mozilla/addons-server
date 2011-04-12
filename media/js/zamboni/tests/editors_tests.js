@@ -72,7 +72,7 @@ asyncTest('de-select application', function() {
 
 module('editors MOTD', {
     setup: function() {
-        Storage.remove('motd_closed');
+        z.Storage().remove('motd_closed');
         this.sandbox = tests.createSandbox('#editors-motd-template');
         $('.daily-message .close', this.sandbox).hide();
         initDailyMessage(this.sandbox);
@@ -116,7 +116,7 @@ test('not closable', function() {
 
 module('editors MOTD after clicking', {
     setup: function() {
-        Storage.set('motd_closed', 'This is an announcement');
+        z.Storage().set('motd_closed', 'This is an announcement');
         this.sandbox = tests.createSandbox('#editors-motd-template');
         initDailyMessage(this.sandbox);
     },

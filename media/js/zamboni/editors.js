@@ -117,19 +117,20 @@ function insertAtCursor(textarea, text) {
 
 
 function initDailyMessage(doc) {
-    var $motd = $('.daily-message', doc);
+    var $motd = $('.daily-message', doc),
+        storage = z.Storage();
     if ($('#editor-motd', doc).length) {
         // The message on the MOTD page should never be closable, so don't
         // show close button nor attach handlers.
         return;
     }
     $motd.find('.close').show();
-    if (Storage.get('motd_closed') == $('p', $motd).text()) {
+    if (storage.get('motd_closed') == $('p', $motd).text()) {
         $motd.hide();
     }
     $motd.find('.close').click(function(e) {
         e.stopPropagation();
-        Storage.set('motd_closed', $('.daily-message p').text());
+        storage.set('motd_closed', $('.daily-message p').text());
         $motd.slideUp();
     });
 }

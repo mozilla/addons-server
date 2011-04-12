@@ -238,10 +238,14 @@
 
     AMO.StatsManager = {
 
+        storage: z.Storage("stats"),
+
+        storageCache: z.Storage("statscache"),
+
         init: function () {
             dbg("looking for local data");
             if (AMO.StatsManager.verify_local()) {
-                var cacheObject = Storage.get("statscache-" + AMO.getAddonId());
+                var cacheObject = storageCache.get(AMO.getAddonId());
                 if (cacheObject) {
                     dbg("found local data, loading...");
                     cacheObject = JSON.parse(cacheObject);
@@ -254,18 +258,18 @@
 
         write_local: function () {
             dbg("saving local data");
-            Storage.set("statscache-" + AMO.getAddonId(), JSON.stringify(datastore));
-            Storage.set("stats_version", version);
+            storageCache.set(AMO.getAddonId(), JSON.stringify(datastore));
+            storage.set("version", version);
             dbg("saved local data");
         },
 
         clear_local: function () {
-            Storage.remove("statscache-" + AMO.getAddonId());
+            storageCache.remove(AMO.getAddonId());
             dbg("cleared local data");
         },
 
         verify_local: function () {
-            if (Storage.get("stats_version") == version) {
+            if (storage.get("version") == version) {
                 return true;
             } else {
                 dbg("wrong offline data verion");

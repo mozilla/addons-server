@@ -97,6 +97,7 @@ var unique = function(arr, keyfunc) {
 RecentlyViewed = function(options) {
     var defaults = {
         limit: 10,
+        storage: z.Storage(),
         storageKey: 'recently-viewed',
         uniqueFunc: function(e) { return e[1]; }
     };
@@ -126,13 +127,13 @@ RecentlyViewed.prototype = {
     /* Save an array to Storage, maintaining the storage limit. */
     _save: function(arr) {
         arr = arr.slice(0, this.limit);
-        Storage.set(this.storageKey, JSON.stringify(arr));
+        this.storage.set(this.storageKey, JSON.stringify(arr));
         return arr;
     },
 
     /* Fetch the internal list of (date, object) tuples. */
     _list: function() {
-        var val = Storage.get(this.storageKey);
+        var val = this.storage.get(this.storageKey);
         if (val === null || val === undefined) {
             return [];
         } else {
@@ -141,7 +142,7 @@ RecentlyViewed.prototype = {
     },
 
     clear: function() {
-        Storage.remove(this.storageKey);
+        this.storage.remove(this.storageKey);
     }
 };
 
