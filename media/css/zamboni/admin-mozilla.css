@@ -34,3 +34,7 @@ html body.login {
 fieldset {
     padding: 0;
 }
+
+.footerlogo {
+    display: none;
+}
