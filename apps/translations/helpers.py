@@ -3,6 +3,7 @@ from django.utils import translation
 from django.utils.translation.trans_real import to_language
 from django.utils.encoding import smart_unicode
 
+import bleach
 import jinja2
 import jingo
 
