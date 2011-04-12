@@ -5,7 +5,7 @@ import jingo
 from mock import Mock
 from nose.tools import eq_
 
-from translations.helpers import locale_html
+from translations import helpers
 from translations.models import PurifiedTranslation
 
 
@@ -20,18 +20,18 @@ def test_locale_html():
     # same language: no need for attributes
     this_lang = translation.get_language()
     testfield.locale = this_lang
-    s = locale_html(testfield)
+    s = helpers.locale_html(testfield)
     assert not s, 'no special HTML attributes for site language'
 
     # non-rtl language
     testfield.locale = 'de'
-    s = locale_html(testfield)
+    s = helpers.locale_html(testfield)
     eq_(s, ' lang="de" dir="ltr"')
 
     # rtl language
     for lang in settings.RTL_LANGUAGES:
         testfield.locale = lang
-        s = locale_html(testfield)
+        s = helpers.locale_html(testfield)
         eq_(s, ' lang="%s" dir="rtl"' % testfield.locale)
 
 
@@ -41,14 +41,14 @@ def test_locale_html_xss():
 
     # same language: no need for attributes
     testfield.locale = '<script>alert(1)</script>'
-    s = locale_html(testfield)
+    s = helpers.locale_html(testfield)
     assert '<script>' not in s
     assert '&lt;script&gt;alert(1)&lt;/script&gt;' in s
 
 
 def test_empty_locale_html():
     """locale_html must still work if field is None."""
-    s = locale_html(None)
+    s = helpers.locale_html(None)
     assert not s, 'locale_html on None must be empty.'
 
 
@@ -67,3 +67,10 @@ def test_truncate_purified_field_xss():
     eq_(actual, 'safe &lt;script&gt;alert("omg")&lt;/script&gt;')
     actual = jingo.env.from_string('{{ s|truncate(6) }}').render(s=t)
     eq_(actual, 'safe ...')
+
+
+def test_clean():
+    # Links are not mangled, bad HTML is escaped, newlines are slimmed.
+    s = '<ul><li><a href="#woo">\n\nyeah</a></li>\n\n<li><script></li></ul>'
+    eq_(helpers.clean(s),
+        '<ul><li><a href="#woo">\n\nyeah</a></li><li>&lt;script&gt;</li></ul>')

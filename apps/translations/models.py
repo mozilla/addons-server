@@ -1,5 +1,3 @@
-import re
-
 from django.db import models, connection
 from django.utils import encoding
 
@@ -159,6 +157,7 @@ def delete_translation(obj, fieldname):
     obj.update(**{field.name: None})
     if trans:
         Translation.objects.filter(id=trans.id).delete()
+
 
 def clean_nl(string):
     """ This will clean up newlines so that nl2br can properly
