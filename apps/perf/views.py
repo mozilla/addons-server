@@ -7,6 +7,7 @@ from django.views.decorators.cache import cache_control
 import jingo
 import redisutils
 
+import amo
 from addons.models import Addon
 
 from .models import Performance, PerformanceOSVersion
@@ -18,7 +19,7 @@ def index(request):
     # By default don't show less than 25; bug 647398
     threshold = getattr(settings, 'PERF_THRESHOLD', 25) or 0
 
-    addons = (Addon.objects.listed(request.APP)
+    addons = (Addon.objects.listed(request.APP, *amo.MIRROR_STATUSES)
               .filter(ts_slowness__gte=threshold).order_by('-ts_slowness'))
     addons = get_list_or_404(addons[:50])
 
