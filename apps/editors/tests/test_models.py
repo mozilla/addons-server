@@ -239,6 +239,11 @@ class TestEditorSubscription(test_utils.TestCase):
         send_notifications(Version, self.version, created=True)
         eq_(len(mail.outbox), 0)
 
+    def test_notifications_beta(self):
+        self.version.all_files[0].update(status=amo.STATUS_BETA)
+        send_notifications(Version, self.version, created=True)
+        eq_(len(mail.outbox), 0)
+
     def test_signal_edit(self):
         self.version.save()
         eq_(len(mail.outbox), 0)

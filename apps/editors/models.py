@@ -216,7 +216,7 @@ class EditorSubscription(amo.models.ModelBase):
 
 
 def send_notifications(sender, instance, **kw):
-    if kw.get('raw') or not kw.get('created'):
+    if kw.get('raw') or not kw.get('created') or instance.is_beta:
         return
 
     subscribers = instance.addon.editorsubscription_set.all()
