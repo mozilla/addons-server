@@ -125,7 +125,7 @@ class ActivityLogManager(amo.models.ManagerBase):
         return (self.values('user', 'user__display_name')
                     .filter(action__in=amo.LOG_REVIEW_QUEUE)
                     .annotate(approval_count=models.Count('id'))
-                    .order_by('-approval_count')[:5])
+                    .order_by('-approval_count'))
 
     def monthly_reviews(self):
         now = datetime.now()
@@ -134,7 +134,7 @@ class ActivityLogManager(amo.models.ManagerBase):
                     .filter(created__gte=created_date,
                             action__in=amo.LOG_REVIEW_QUEUE)
                     .annotate(approval_count=models.Count('id'))
-                    .order_by('-approval_count')[:5])
+                    .order_by('-approval_count'))
 
 
 class SafeFormatter(string.Formatter):

@@ -25,7 +25,7 @@ from bandwagon.models import Collection
 from cake.models import Session
 from devhub.models import ActivityLog, LegacyAddonLog
 from editors.models import EventLog
-from files.models import TestResultCache
+from files.models import Approval, TestResultCache
 from reviews.models import Review
 from sharing import SERVICES_LIST
 from stats.models import AddonShareCount, Contribution
@@ -288,6 +288,68 @@ def _migrate_editor_eventlog(items, **kw):
                 amo.log(amo.LOG.ADD_REVIEW, r, r.addon, **kw)
             except Review.DoesNotExist:
                 log.warning("Couldn't find review for %d" % item.changed_id)
+
+
+# TODO(andym): Remove after editors/performace is on zamboni
+@cronjobs.register
+def migrate_activity_log():
+    a = MigrationTracker('activity_log')
+    id = a.get()
+    # Magic date, when 6.0.3 went out, plus a few hours. Because there were
+    # items migrated from Approvals over to the ActivityLog, the id cannot
+    # be relied upon, so make sure to keeping filtering by the date.
+    date = datetime(2011, 4, 1, 0, 0, 0)
+    if not id:
+        log.info('Migrate activity log seed not found.')
+        logs = ActivityLog.objects.filter(created__gte=date).order_by('id')
+        if not logs:
+            log.info('No activity logs to migrate.')
+            return
+        id = logs[0].pk - 1  # -1 because we are doing a pk__gt lookup
+        log.info('Staring migration at: %s' % id)
+
+    items = list(ActivityLog.objects.filter(pk__gt=id)
+                                    .filter(created__gte=date)
+                                    .filter(action__in=amo.LOG_REVIEW_QUEUE)
+                                    .values_list('id', flat=True)
+                                    .order_by('id'))[:100]
+
+    log.info('Found: %d items to migrate' % len(items))
+    if items:
+        _migrate_activity_log(items)
+        a.set(id)
+
+
+@task
+def _migrate_activity_log(items, **kw):
+    log.info('[%s@%s] Migrating back activity_log items starting with id: %s' %
+             (len(items), _migrate_activity_log.rate_limit, items[0]))
+
+    for item in ActivityLog.objects.filter(pk__in=items):
+        kw = dict(user=item.user,
+                  created=item.created,
+                  action=item.action,
+                  comments=str(item),
+                  addon=item.arguments[0],
+                  reviewtype=item.details['reviewtype'])
+
+        if item.action == amo.LOG.APPROVE_VERSION.id:
+            kw['action'] = amo.STATUS_PUBLIC
+        elif item.action == amo.LOG.PRELIMINARY_VERSION.id:
+            kw['action'] = amo.STATUS_LITE
+        elif item.action == amo.LOG.REJECT_VERSION.id:
+            kw['action'] = amo.STATUS_NULL
+        elif item.action == amo.LOG.ESCALATE_VERSION.id:
+            kw['action'] = amo.STATUS_NOMINATED
+        elif item.action == amo.LOG.RETAIN_VERSION.id:
+            kw['action'] = amo.STATUS_UNREVIEWED
+        else:
+            log.info('Unknown action %d for %d' % (item.action, item.pk))
+            continue
+
+        approval = Approval.objects.create(**kw)
+        log.info('Migrated activity log %d over to approval %d' %
+                 (item.pk, approval.pk))
 
 
 @cronjobs.register

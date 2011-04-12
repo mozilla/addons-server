@@ -203,7 +203,7 @@ class TestVersion(test_utils.TestCase):
         eq_(self.addon.status, amo.STATUS_NULL)
 
 
-class TestActivityLog(test_utils.TestCase):
+class TestActivityLogCount(test_utils.TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):

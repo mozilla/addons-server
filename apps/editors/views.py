@@ -74,8 +74,8 @@ def eventlog_detail(request, id):
 
 @editor_required
 def home(request):
-    data = context(reviews_total=ActivityLog.objects.total_reviews(),
-                   reviews_monthly=ActivityLog.objects.monthly_reviews(),
+    data = context(reviews_total=ActivityLog.objects.total_reviews()[:5],
+                   reviews_monthly=ActivityLog.objects.monthly_reviews()[:5],
                    new_editors=EventLog.new_editors(),
                    eventlog=ActivityLog.objects.editor_events()[:6])
 

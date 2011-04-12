@@ -12,7 +12,7 @@ HOME = /tmp
 
 # Every 20 minutes.
 */20 * * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py cron check_queues
-*/20 * * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py cron migrate_approvals
+*/20 * * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py cron migrate_activity_log
 
 # Every 30 minutes.
 */30 * * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py cron tag_jetpacks
@@ -28,6 +28,7 @@ HOME = /tmp
 35 * * * * apache cd /data/amo/www/addons.mozilla.org-remora/bin; php -f maintenance.php l10n_rss
 40 * * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py cron fetch_ryf_blog
 45 * * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py cron update_addon_appsupport
+50 * * * * apache cd /data/amo_python/src/prod/zamboni; /usr/bin/python26 manage.py cron cleanup_extracted_file
 
 
 #every 3 hours

@@ -38,6 +38,8 @@ for dict_ in CRONS.values():
             break
 
 
+# TODO(andym) Remove migrate_activity_log when zamboni editor/performance
+# page is live.
 cron = """\
 #
 # !!AUTO-GENERATED!!  Edit scripts/crontab/make-crons.py instead.
@@ -53,6 +55,7 @@ HOME = /tmp
 
 # Every 20 minutes.
 */20 * * * * $Z_CRON check_queues
+*/20 * * * * $Z_CRON migrate_activity_log
 
 # Every 30 minutes.
 */30 * * * * $Z_CRON tag_jetpacks
