@@ -1206,10 +1206,10 @@ p#back:hover:before {
 }
 
 #install .button {
-    display: block;
+    display: inline-block;
 }
 
-#install p {
+.install-shell p {
     margin-bottom: 0;
 }
 
@@ -1223,10 +1223,6 @@ p#back:hover:before {
     margin-top: 6px;
 }
 
-.install-note {
-    margin-top: 12px;
-}
-
 .install-shell .notavail {
     padding: 1px 0 1px 20px;
     margin-left: 3px;
@@ -1236,6 +1232,13 @@ p#back:hover:before {
 .html-rtl .install-shell .notavail {
     padding: 1px 20px 1px 0;
     background-position: 100% 30%;
+}
+
+#install .warning {
+    clear: both;
+    margin: 4px 0 0;
+    padding: 0 4px;
+    width: 175px;
 }
 
 .featuredaddon .install-button + strong {
@@ -1272,6 +1275,92 @@ p#back:hover:before {
 .performance-note div {
     margin-left: 45px;
 }
+
+/* @group Installation popup notices */
+
+.install-note .msg {
+    background-repeat: no-repeat;
+    margin-bottom: 10px;
+    min-height: 32px;
+}
+
+.mobile .install-note .msg,
+.firefox .install-note .msg { background-image: url(../../img/app-icons/small/firefox.png); }
+.thunderbird .install-note .msg { background-image: url(../../img/app-icons/small/thunderbird.png); }
+.sunbird .install-note .msg { background-image: url(../../img/app-icons/small/sunbird.png); }
+.seamonkey .install-note .msg { background-image: url(../../img/app-icons/small/seamonkey.png); }
+
+.install-note .msg.m-unreviewed,
+.install-note .msg.m-selfhosted {
+    background-image: url(../../img/zamboni/icons/alert-32x32.png);
+}
+
+.install-note .msg.m-platforms {
+    background-image: url(../../img/zamboni/icons/no-32x32.png);
+}
+
+.install-note .beta,
+.fxbeta .install-note .nobeta {
+    display: none;
+}
+
+.fxbeta .install-note .beta {
+    display: block;
+}
+
+.install-note {
+    position: absolute;
+    left: 35px;
+    background: #fff;
+    border: 3px solid #2e5186;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.35);
+    margin-top: 12px;
+    padding: 10px;
+}
+
+.install-note {
+    width: 300px;
+}
+
+.install-note:before,
+.install-note:after {
+    border: 10px solid transparent;
+    border-bottom-color: #2e5186;
+    content: "\00a0";
+    position: absolute;
+    left: 50px;
+    top: -20px; /* value = - border-top-width - border-bottom-width */
+    pointer-events: none;
+    width: 0;
+    height: 0;
+}
+
+/* creates the smaller triangle */
+.install-note:after {
+    border-width: 5px;
+    border-bottom-color: #fff;
+    left: 55px;
+    top: -10px; /* value = - border-top-width - border-bottom-width */
+}
+
+.install-note p {
+    font-weight: normal;
+    padding-left: 50px;
+}
+
+.install-note strong {
+    margin: 0;
+    color: inherit;
+    font-size: inherit;
+}
+
+.install-note .button {
+    display: inline-block;
+}
+
+/* @end */
+
 /* @end */
 
 .addon-info li {
@@ -1411,16 +1500,16 @@ a.button {
     box-shadow: inset 0 0 2px rgba(255,255,255,0.65);
 }
 
-a.button:hover,
-a.button:focus,
-a.button:active {
+.button:hover,
+.button:focus,
+.button:active {
     border-color: rgba(165,175,185,1);
     color: #083681;
     background: -moz-linear-gradient(top, rgba(255,255,255,0.8) 0, rgba(235,235,235,0.8) 50%, rgba(215,215,215,0.8) 52%, rgba(240,240,240,0.8) 100%);
 }
 
 /** @Blue @Button *********/
-a.button.go {
+.button.go {
     font-weight: bold;
     color: #fff;
     background: -moz-linear-gradient(top, #7bf 40%, #39f 60%);
@@ -1428,9 +1517,20 @@ a.button.go {
     text-shadow: 0 -1px 0 #05e;
 }
 
+.button.go:hover,
+.button.go:focus,
+.button.go:active {
+    border-color: #03c;
+}
+
+.button.go:active {
+    background: -moz-linear-gradient(top, #39f 40%, #7bf 60%);
+}
+
 /** @Green @button *********/
-a.button.download,
-a.button.add {
+.button.download,
+.button.add,
+.button.installer {
     font-weight: bold;
     color: #fff;
     background: -moz-linear-gradient(top, #93c85e 30%, #55a802 55%);
@@ -1438,16 +1538,18 @@ a.button.add {
     text-shadow: 0 -1px 0 #3a7404;
 }
 
-a.button.download:hover,
-a.button.download:focus,
-a.button.add:hover,
-a.button.add:focus {
+.button.download:hover,
+.button.download:focus,
+.button.add:hover,
+.button.add:focus,
+.button.installer:hover,
+.button.installer:focus {
     border-color: #1a5404;
 }
 
-a.button.download:active,
-a.button.add:active {
-    border-color: #1a5404;
+.button.download:active,
+.button.add:active,
+.button.installer:active {
     background: -moz-linear-gradient(#55a802 40%, #83c046 65%);
 }
 
@@ -1480,6 +1582,22 @@ a.button.add:active {
     margin: 0 -2px 0 2px;
 }
 
+.button.concealed {
+    background-image: -moz-linear-gradient(top, #bbb 40%, #888 60%);
+    border-color: #888;
+    text-shadow: 0 -1px 0 #666;
+}
+
+.button.concealed:hover,
+.button.concealed:focus,
+.button.concealed:active {
+    border-color: #666;
+}
+
+.button.concealed:active {
+    background: -moz-linear-gradient(top, #888 40%, #bbb 60%);
+}
+
 /* For other platforms */
 .install-button .button span.os {
     padding: 0;
@@ -1499,7 +1617,7 @@ a.button.add:active {
 .other .button.bsd,
 .other .button.solaris,
 .windows .button.windows {
-      display: inline;
+    display: inline;
 }
 
 /* @Images *********/
