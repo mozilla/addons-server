@@ -206,7 +206,7 @@ class EditorSubscription(amo.models.ModelBase):
             'review': absolutify(reverse('editors.review', args=[version.pk])),
             'SITE_URL': settings.SITE_URL,
         })
-        #L10N: addon.name
+        # L10n: %s is the addon.name, this is the subject for an email
         subject = _('Mozilla Add-ons: %s Updated') % self.addon.name
         template = loader.get_template('editors/emails/notify_update.ltxt')
         send_mail(subject, template.render(Context(context)),
