@@ -13,7 +13,8 @@
     </hgroup>
     <ul class="addons">
       {% for addon in addons %}
-        <li{% if addon.type == amo.ADDON_PERSONA %} class="persona-feature"{% endif %}>
+        <li data-guid="{{ addon.guid }}"
+            {% if addon.type == amo.ADDON_PERSONA %}class="persona-feature"{% endif %}>
           <a href="{{ services_url('discovery.addons.detail', addon.slug,
                                    src='discovery-promo') }}" target="_self">
             {% if addon.type == amo.ADDON_PERSONA %}

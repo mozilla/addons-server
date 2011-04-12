@@ -15,6 +15,8 @@ $(document).ready(function(){
         // Store the pane URL so we can link back from the add-on detail pages.
         z.discoStorage.set("url", location);
 
+        hideInstalled();
+
         // Show "Starter Pack" panel only if user has fewer than three extensions.
         if (z.guids.length >= z.MIN_EXTENSIONS) {
             $("#starter").closest(".panel").remove();
@@ -67,7 +69,11 @@ function initSidebar() {
         }
         $("#right-module").replaceWith(data).slideDown("slow");
     });
+}
 
+
+function hideInstalled() {
+    // Do not show installed extensions in the promo modules or sidebar.
     $('li[data-guid]').each(function() {
         var $el = $(this),
             guid = $el.attr('data-guid');
