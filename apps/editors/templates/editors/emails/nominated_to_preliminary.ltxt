@@ -1,6 +1,6 @@
-{% extends "editors/emails/base.ltxt" %}{% load i18n %}{% block content %}{% blocktrans %}
+{% extends "editors/emails/base.ltxt" %}{% block content %}
 Your add-on, {{ name }} {{ number }}, has been reviewed by an editor and did not meet the criteria for full review. However, your add-on has been granted preliminary review and is now available for download in our gallery at {{ addon_url }}
-{% endblocktrans %}{% include "editors/emails/files.ltxt" %}{% blocktrans %}
+{% include "editors/emails/files.ltxt" %}
 
 Reviewer:
 {{ reviewer }}
@@ -9,4 +9,4 @@ Comments:
 {{ comments }}
 
 Your add-on will now appear in search results and categories with some limitations. You may re-request full review by addressing the editor's comments and uploading a new version. To learn more about the review process, please visit https://addons.mozilla.org/developers/docs/policies/reviews#selection
-{% endblocktrans %}{% endblock %}
+{% endblock %}

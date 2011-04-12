@@ -1,7 +1,5 @@
-{% load i18n %}{% block content %}{% endblock %}
-{% blocktrans %}
+{% block content %}{% endblock %}
 If you have any questions or comments on this review, please reply to this email or join #addons on irc.mozilla.org
 --
 Mozilla Add-ons
 {{ SITE_URL }}
-{% endblocktrans %}

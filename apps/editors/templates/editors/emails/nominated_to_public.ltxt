@@ -1,6 +1,6 @@
-{% extends "editors/emails/base.ltxt" %}{% load i18n %}{% block content %}{% blocktrans %}
+{% extends "editors/emails/base.ltxt" %}{% block content %}
 Your add-on, {{ name }} {{ number }}, has been fully reviewed by an editor and is now available for download in our gallery at {{ addon_url}}
-{% endblocktrans %}{% include "editors/emails/files.ltxt" %}{% blocktrans %}
+{% include "editors/emails/files.ltxt" %}
 Reviewer:
 {{ reviewer }}
 
@@ -9,4 +9,4 @@ Comments:
 
 
 Your add-on will no longer display warnings and can make full use of features such as contributions and beta channels.  To learn more about the review process, please visit https://addons.mozilla.org/developers/docs/policies/reviews#selection
-{% endblocktrans %}{% endblock %}
+{% endblock %}

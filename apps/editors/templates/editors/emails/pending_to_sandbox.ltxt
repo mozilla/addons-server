@@ -1,7 +1,6 @@
-{% extends "editors/emails/base.ltxt" %}{% load i18n %}{% block content %}{% blocktrans %}
+{% extends "editors/emails/base.ltxt" %}{% block content %}
 Your add-on, {{ name }} {{ number }}, has been reviewed by an editor and did not meet the criteria for being hosted in our gallery.
-{% endblocktrans %}{% include "editors/emails/files.ltxt" %}{% blocktrans %}
-
+{% include "editors/emails/files.ltxt" %}
 Reviewer:
 {{ reviewer }}
 
@@ -11,4 +10,4 @@ Comments:
 {{ tested }}
 
 Your add-on's listing has been disabled. You may re-request review by addressing the editor's comments and uploading a new version. To learn more about the review process, please visit https://addons.mozilla.org/developers/docs/policies/reviews#selection
-{% endblocktrans %}{% endblock %}
+{% endblock %}

@@ -1,4 +1,4 @@
-{% extends "editors/emails/base.ltxt" %}{% load i18n %}{% block content %}{% blocktrans %}
+{% extends "editors/emails/base.ltxt" %}{% block content %}
 Dear Superheroes,
 
 An editor has requested super-review of the following add-on due to security, copyright, or other administrative concerns.
@@ -15,4 +15,4 @@ Comments:
 
 
 Love,
-{% endblocktrans %}{% endblock %}
+{% endblock %}

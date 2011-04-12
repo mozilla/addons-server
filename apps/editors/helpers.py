@@ -354,14 +354,11 @@ class ReviewBase:
         data['tested'] = ''
         os, app = data.get('operating_systems'), data.get('applications')
         if os and app:
-            #L10n: {0} is operating system (eg OSX), {1} is app (eg: Firefox)
-            data['tested'] = _('Tested on {0} with {1}').format(os, app)
+            data['tested'] = 'Tested on %s with %s' % (os, app)
         elif os and not app:
-            #L10n: {0} is operating system (eg OSX)
-            data['tested'] = _('Tested on {0}').format(os)
+            data['tested'] = 'Tested on %s' % os
         elif not os and app:
-            #L10n: {0} is app (eg: Firefox)
-            data['tested'] = _('Tested with {0}').format(app)
+            data['tested'] = 'Tested with %s' % app
         send_mail('editors/emails/%s.ltxt' % template,
                    subject % (self.addon.name, self.version.version),
                    emails, Context(data))
@@ -381,14 +378,14 @@ class ReviewBase:
         log.info(u'Sending request for information for %s to %s' %
                  (self.addon, emails))
         send_mail('editors/emails/info.ltxt',
-                   _lazy('Mozilla Add-ons: %s %s') %
+                   'Mozilla Add-ons: %s %s' %
                    (self.addon.name, self.version.version),
                    emails, Context(self.get_context_data()))
 
     def send_super_mail(self):
         log.info(u'Super review requested for %s' % (self.addon))
         send_mail('editors/emails/super_review.ltxt',
-                   _lazy('Super review requested: %s') % (self.addon.name),
+                   'Super review requested: %s' % (self.addon.name),
                    [settings.SENIOR_EDITORS_EMAIL],
                    Context(self.get_context_data()))
 
@@ -409,7 +406,7 @@ class ReviewAddon(ReviewBase):
 
         self.log_approval(amo.LOG.APPROVE_VERSION)
         self.notify_email('%s_to_public' % self.review_type,
-                          _lazy('Mozilla Add-ons: %s %s Fully Reviewed'))
+                          'Mozilla Add-ons: %s %s Fully Reviewed')
 
         log.info(u'Making %s public' % (self.addon))
         log.info(u'Sending email for %s' % (self.addon))
@@ -422,8 +419,7 @@ class ReviewAddon(ReviewBase):
 
         self.log_approval(amo.LOG.REJECT_VERSION)
         self.notify_email('%s_to_sandbox' % self.review_type,
-                          # L10n: addon name, version string
-                          _lazy('Mozilla Add-ons: %s %s Reviewed'))
+                          'Mozilla Add-ons: %s %s Reviewed')
 
         log.info(u'Making %s disabled' % (self.addon))
         log.info(u'Sending email for %s' % (self.addon))
@@ -446,8 +442,7 @@ class ReviewAddon(ReviewBase):
 
         self.log_approval(amo.LOG.PRELIMINARY_VERSION)
         self.notify_email(template,
-                          # L10n: addon name, version string
-                          _lazy('Mozilla Add-ons: %s %s Preliminary Reviewed'))
+                          'Mozilla Add-ons: %s %s Preliminary Reviewed')
 
         log.info(u'Making %s preliminary' % (self.addon))
         log.info(u'Sending email for %s' % (self.addon))
@@ -470,7 +465,7 @@ class ReviewFiles(ReviewBase):
 
         self.log_approval(amo.LOG.APPROVE_VERSION)
         self.notify_email('%s_to_public' % self.review_type,
-                          _lazy('Mozilla Add-ons: %s %s Fully Reviewed'))
+                          'Mozilla Add-ons: %s %s Fully Reviewed')
 
         log.info(u'Making %s files %s public' %
                  (self.addon,
@@ -484,7 +479,7 @@ class ReviewFiles(ReviewBase):
 
         self.log_approval(amo.LOG.REJECT_VERSION)
         self.notify_email('%s_to_sandbox' % self.review_type,
-                          _lazy('Mozilla Add-ons: %s %s Reviewed'))
+                          'Mozilla Add-ons: %s %s Reviewed')
 
         log.info(u'Making %s files %s disabled' %
                  (self.addon,
@@ -498,7 +493,7 @@ class ReviewFiles(ReviewBase):
 
         self.log_approval(amo.LOG.PRELIMINARY_VERSION)
         self.notify_email('%s_to_preliminary' % self.review_type,
-                          _lazy('Mozilla Add-ons: %s %s Preliminary Reviewed'))
+                          'Mozilla Add-ons: %s %s Preliminary Reviewed')
 
         log.info(u'Making %s files %s preliminary' %
                  (self.addon,
