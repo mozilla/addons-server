@@ -1,15 +1,9 @@
-import json
-
 from django.conf import settings
 
 import commonware.log
 import celery.task
 from celeryutils import task
 from hera.contrib.django_utils import flush_urls
-
-from addons.models import Addon
-from devhub.models import ActivityLog
-from editors.helpers import LOG_STATUSES
 
 
 log = commonware.log.getLogger('z.task')
@@ -41,44 +35,3 @@ def flush_front_end_cache_urls(urls, **kw):
                 urls[index] = u"%s%s" % (settings.SITE_URL, url)
 
     flush_urls(urls)
-
-
-@task
-def dedupe_approvals(items, **kw):
-    log.info('[%s@%s] Deduping approval items starting with addon: %s' %
-             (len(items), dedupe_approvals.rate_limit, items[0]))
-    for addon in Addon.objects.filter(pk__in=items):
-        last = {}
-        qs = (ActivityLog.objects.for_addons(addon)
-                                 .order_by('-created')
-                                 .filter(action__in=LOG_STATUSES))
-        log.info('Found %d logs for addon %d ordered by -created'
-                 % (qs.count(), addon.pk))
-        for activity in qs:
-            arguments = json.loads(activity._arguments)
-            current = {
-                'action': activity.action,
-                'created': activity.created.date(),
-                'user': activity.user.pk,
-                'addon': arguments[0]['addons.addon'],
-                'version': arguments[1]['versions.version'],
-            }
-            if activity._details:
-                details = json.loads(activity._details)
-                current.update({
-                    'reviewtype': details['reviewtype'],
-                    'comments': details['comments'],
-                })
-
-            if last and last == current:
-                log.info('Deleting duplicate activity log %s '
-                         'from addon %s' % (activity.pk, addon.pk))
-                activity.delete()
-            else:
-                if last:
-                    diff = dict(set(current.iteritems()) -
-                                set(last.iteritems())).keys()
-                    log.info('Not deleting duplicate activity log %s '
-                             'from addon %d difference found in %s' %
-                             (activity.pk, addon.pk, diff))
-                last = current.copy()

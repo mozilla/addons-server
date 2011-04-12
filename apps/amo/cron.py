@@ -25,7 +25,7 @@ from bandwagon.models import Collection
 from cake.models import Session
 from devhub.models import ActivityLog, LegacyAddonLog
 from editors.models import EventLog
-from files.models import Approval, File, TestResultCache
+from files.models import TestResultCache
 from reviews.models import Review
 from sharing import SERVICES_LIST
 from stats.models import AddonShareCount, Contribution
@@ -288,53 +288,6 @@ def _migrate_editor_eventlog(items, **kw):
                 amo.log(amo.LOG.ADD_REVIEW, r, r.addon, **kw)
             except Review.DoesNotExist:
                 log.warning("Couldn't find review for %d" % item.changed_id)
-
-
-# TODO(davedash): remove aftr /editors is on zamboni
-@cronjobs.register
-def migrate_approvals():
-    a = MigrationTracker('approvals')
-    id = a.get()
-    if not id:
-        log.warning('No last position reported from redis for '
-                    'migrating approvals, exiting.')
-        return
-
-    items = (Approval.objects.filter(pk__gt=id).order_by('id')
-                             .values_list('id', flat=True))
-
-    for chunk in chunked(items, 100):
-        _migrate_approvals(chunk)
-        a.set(chunk[-1])
-
-
-@task
-def _migrate_approvals(items, **kw):
-    log.info('[%s@%s] Migrating approval items starting with id: %s' %
-             (len(items), _migrate_approvals.rate_limit, items[0]))
-    for item in Approval.objects.filter(pk__in=items):
-        try:
-            args = (item.addon, item.file.version)
-        except File.DoesNotExist:
-            log.warning("Couldn't find file for approval %d" % item.id)
-            continue
-
-        kw = dict(user=item.user, created=item.created,
-                  details=dict(comments=item.comments,
-                               reviewtype=item.reviewtype,
-                               source=item.pk))
-        if item.action == amo.STATUS_PUBLIC:
-            amo.log(amo.LOG.APPROVE_VERSION, *args, **kw)
-        elif item.action == amo.STATUS_LITE:
-            amo.log(amo.LOG.PRELIMINARY_VERSION, *args, **kw)
-        elif item.action == amo.STATUS_NULL:
-            amo.log(amo.LOG.REJECT_VERSION, *args, **kw)
-        elif item.action in (amo.STATUS_PENDING, amo.STATUS_NOMINATED):
-            amo.log(amo.LOG.ESCALATE_VERSION, *args, **kw)
-        elif item.action == amo.STATUS_UNREVIEWED:
-            amo.log(amo.LOG.RETAIN_VERSION, *args, **kw)
-        else:
-            log.warning('Unknown action: %d' % item.action)
 
 
 @cronjobs.register

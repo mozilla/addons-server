@@ -5,15 +5,12 @@ import test_utils
 
 import amo
 from amo.cron import gc, remove_extra_cats
-from amo.tasks import dedupe_approvals
 from addons.models import Addon, AddonCategory, Category
 from bandwagon.models import Collection
 from cake.models import Session
 from devhub.models import ActivityLog
 from files.models import TestResult, TestResultCache
 from stats.models import AddonShareCount, Contribution
-from users.models import UserProfile
-from versions.models import Version
 
 
 class GarbageTest(test_utils.TestCase):
@@ -84,47 +81,3 @@ class RemoveExtraCatTest(test_utils.TestCase):
         eq_(self.addon.categories.count(), 2)
         remove_extra_cats()
         eq_(self.addon.categories.count(), 2)
-
-
-class TestDedupeApprovals(test_utils.TestCase):
-    fixtures = ['base/users']
-
-    def setUp(self):
-        self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
-        self.version = Version.objects.create(addon=self.addon)
-        amo.set_user(UserProfile.objects.get(username='editor'))
-
-    def test_dedupe(self):
-        for x in range(0, 4):
-            amo.log(amo.LOG.APPROVE_VERSION, self.addon, self.version)
-        dedupe_approvals([self.addon.pk])
-        eq_(ActivityLog.objects.for_addons(self.addon).count(), 1)
-
-    def test_dedupe_mix(self):
-        for x in range(0, 4):
-            amo.log(amo.LOG.APPROVE_VERSION, self.addon, self.version)
-        for x in range(0, 3):
-            amo.log(amo.LOG.REJECT_VERSION, self.addon, self.version)
-        for x in range(0, 5):
-            amo.log(amo.LOG.APPROVE_VERSION, self.addon, self.version)
-        dedupe_approvals([self.addon.pk])
-        eq_(ActivityLog.objects.for_addons(self.addon).count(), 3)
-
-    def test_dedupe_date(self):
-        # Test that a log spanning
-        old = amo.log(amo.LOG.APPROVE_VERSION, self.addon, self.version)
-        old.update(created=datetime.today() - timedelta(days=1))
-        amo.log(amo.LOG.APPROVE_VERSION, self.addon, self.version)
-        dedupe_approvals([self.addon.pk])
-        eq_(ActivityLog.objects.for_addons(self.addon).count(), 2)
-
-    def test_dedupe_not_id(self):
-        date_one = datetime.today()
-        date_two = datetime.today() - timedelta(days=1)
-        for x in range(0, 4):
-            log = amo.log(amo.LOG.APPROVE_VERSION, self.addon, self.version)
-            log.update(created=date_one)
-            log = amo.log(amo.LOG.REJECT_VERSION, self.addon, self.version)
-            log.update(created=date_two)
-        dedupe_approvals([self.addon.pk])
-        eq_(ActivityLog.objects.for_addons(self.addon).count(), 2)
