@@ -315,6 +315,7 @@ INSTALLED_APPS = (
     'django_nose',
     'gunicorn',
     'piston',
+    'waffle',
 
     # Django contrib apps
     'django.contrib.admin',
