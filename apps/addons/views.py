@@ -518,15 +518,14 @@ def embedded_contribute(request, addon):
                            paykey=paykey)
         contrib.save()
 
+    assert settings.PAYPAL_FLOW_URL, 'settings.PAYPAL_FLOW_URL is not defined'
+
     url = '%s?paykey=%s' % (settings.PAYPAL_FLOW_URL, paykey)
     if request.GET.get('result_type') == 'json' or request.is_ajax():
         # If there was an error getting the paykey, then JSON will
         # not have a paykey and the JS can cope appropriately.
         return http.HttpResponse(json.dumps({'url': url, 'paykey': paykey}),
                                  content_type='application/json')
-    elif paykey is None:
-        # If there was an error getting the paykey, raise this.
-        raise
     return http.HttpResponseRedirect(url)
 
 

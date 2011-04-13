@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from cStringIO import StringIO
 from datetime import datetime
 from decimal import Decimal
 import json
@@ -22,6 +23,7 @@ from amo.urlresolvers import reverse
 from amo.tests.test_helpers import AbuseBase, AbuseDisabledBase
 from addons.models import Addon, AddonUser, Charity
 from files.models import File
+from paypal.tests import other_error
 from stats.models import Contribution
 from translations.helpers import truncate
 from translations.query import order_by_translation
@@ -235,6 +237,13 @@ class TestContributeEmbedded(test_utils.TestCase):
                         'result_type=json'))
         assert not json.loads(res.content)['paykey']
 
+    @patch('urllib2.OpenerDirector.open')
+    def test_paypal_other_error_json(self, opener, **kwargs):
+        opener.return_value = StringIO(other_error)
+        res = self.client.get('%s?%s' % (
+                        reverse('addons.contribute', args=[self.addon.slug]),
+                        'result_type=json'))
+        assert not json.loads(res.content)['paykey']
 
 class TestContribute(test_utils.TestCase):
     fixtures = ['base/apps', 'base/addon_3615', 'base/addon_592']

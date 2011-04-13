@@ -21,6 +21,8 @@ auth_error = ('error(0).errorId=520003'
             '&error(0).message=Authentication+failed.+API+'
             'credentials+are+incorrect.')
 
+other_error = ('error(0).errorId=520001'
+            '&error(0).message=Foo')
 
 class TestPayPal(test_utils.TestCase):
     def setUp(self):
@@ -40,6 +42,11 @@ class TestPayPal(test_utils.TestCase):
     def test_get_key(self, opener):
         opener.return_value = StringIO(good_response)
         eq_(paypal.get_paykey(self.data), 'AP-9GD76073HJ780401K')
+
+    @mock.patch('urllib2.OpenerDirector.open')
+    def test_other_fails(self, opener):
+        opener.return_value = StringIO(other_error)
+        self.assertRaises(paypal.PaypalError, paypal.get_paykey, self.data)
 
     def _test_no_mock(self):
         # Remove _ and run if you'd like to try unmocked.
