@@ -50,7 +50,7 @@
                 /* Disable uploading while something is uploading */
                 $upload_field.attr('disabled', true);
                 $upload_field.parent().find('a').addClass("disabled");
-                $upload_field.bind("upload_success_results", function() {
+                $upload_field.bind("upload_success_results upload_errors", function() {
                     $upload_field.attr('disabled', false);
                     $upload_field.parent().find('a').removeClass("disabled");
                 });
