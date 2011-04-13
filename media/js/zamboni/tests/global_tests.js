@@ -68,6 +68,9 @@ asyncTest('header sent', function() {
 });
 
 module('CSRF Token: remote', {
+    setup: function() {
+        $.cookie('csrftoken', null);
+    },
     teardown: function() {
         $.mockjaxClear();
     }
