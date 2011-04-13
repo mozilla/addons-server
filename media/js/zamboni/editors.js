@@ -87,7 +87,9 @@ function initReviewActions() {
     function toggle_input(){
         var $files_checked = $files_input.filter(':checked');
         $('.review-actions-save input').attr('disabled', $files_checked.length < 1);
-        $('#review-actions-files-warning').toggle($files_checked.filter(':enabled').length > 1);
+
+        // If it's not :visible, we can assume it's been replaced with a dummy :disabled input
+        $('#review-actions-files-warning').toggle($files_checked.filter(':enabled:visible').length > 1);
     }
 
     $files_input.change(toggle_input).each(toggle_input);
