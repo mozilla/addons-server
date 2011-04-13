@@ -201,13 +201,19 @@ class AddonFilesMultipleChoiceField(forms.ModelMultipleChoiceField):
                               file_review_status(addon, addon_file)))
 
 
+class NonValidatingChoiceField(forms.ChoiceField):
+    """A ChoiceField that doesn't validate."""
+    def validate(self, value):
+        pass
+
+
 class ReviewAddonForm(happyforms.Form):
     addon_files = AddonFilesMultipleChoiceField(required=False,
             queryset=File.objects.none(), label=_lazy('Files:'),
             widget=forms.CheckboxSelectMultiple())
     comments = forms.CharField(required=True, widget=forms.Textarea(),
                                label=_lazy('Comments:'))
-    canned_response = forms.ChoiceField(required=False)
+    canned_response = NonValidatingChoiceField(required=False)
     action = forms.ChoiceField(required=True, widget=forms.RadioSelect())
     operating_systems = forms.CharField(required=False,
                                         label=_lazy('Operating systems:'))

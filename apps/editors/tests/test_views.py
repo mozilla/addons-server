@@ -908,6 +908,14 @@ class TestReview(ReviewBase):
         eq_(len(mail.outbox), 1)
         self.assertTemplateUsed(response, 'editors/emails/info.ltxt')
 
+    def test_info_requested_canned_response(self):
+        response = self.client.post(self.url, {'action': 'info',
+                                               'comments': 'hello sailor',
+                                               'canned_response': 'foo'})
+        eq_(response.status_code, 302)
+        eq_(len(mail.outbox), 1)
+        self.assertTemplateUsed(response, 'editors/emails/info.ltxt')
+
     def test_notify(self):
         response = self.client.post(self.url, {'action': 'info',
                                                'comments': 'hello sailor',
