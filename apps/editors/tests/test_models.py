@@ -8,7 +8,8 @@ import test_utils
 
 import amo
 from addons.models import Addon
-from versions.models import Version, ApplicationsVersions, VersionSummary
+from versions.models import (Version, version_uploaded,
+                             ApplicationsVersions, VersionSummary)
 from files.models import Platform, File
 from applications.models import Application, AppVersion
 from editors.models import (EditorSubscription, send_notifications,
@@ -227,21 +228,21 @@ class TestEditorSubscription(test_utils.TestCase):
             'Mozilla Add-ons: Delicious Bookmarks Updated')
 
     def test_notifications(self):
-        send_notifications(Version, self.version, created=True)
+        send_notifications(sender=self.version)
         eq_(len(mail.outbox), 2)
         emails = sorted([o.to for o in mail.outbox])
         eq_(emails, [[u'del@icio.us'], [u'regular@mozilla.com']])
 
     def test_notifications_clean(self):
-        send_notifications(Version, self.version, created=True)
+        send_notifications(Version, self.version)
         eq_(EditorSubscription.objects.count(), 0)
         mail.outbox = []
-        send_notifications(Version, self.version, created=True)
+        send_notifications(Version, self.version)
         eq_(len(mail.outbox), 0)
 
     def test_notifications_beta(self):
         self.version.all_files[0].update(status=amo.STATUS_BETA)
-        send_notifications(Version, self.version, created=True)
+        version_uploaded.send(sender=self.version)
         eq_(len(mail.outbox), 0)
 
     def test_signal_edit(self):
@@ -249,13 +250,16 @@ class TestEditorSubscription(test_utils.TestCase):
         eq_(len(mail.outbox), 0)
 
     def test_signal_create(self):
-        Version.objects.create(addon=self.addon)
+        v = Version.objects.create(addon=self.addon)
+        version_uploaded.send(sender=v)
         eq_(len(mail.outbox), 2)
         eq_(mail.outbox[0].subject,
             'Mozilla Add-ons: Delicious Bookmarks Updated')
 
     def test_signal_create_twice(self):
-        Version.objects.create(addon=self.addon)
+        v = Version.objects.create(addon=self.addon)
+        version_uploaded.send(sender=v)
         mail.outbox = []
-        Version.objects.create(addon=self.addon)
+        v = Version.objects.create(addon=self.addon)
+        version_uploaded.send(sender=v)
         eq_(len(mail.outbox), 0)

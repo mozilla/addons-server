@@ -3,6 +3,7 @@ import os
 
 from django.conf import settings
 from django.db import models
+import django.dispatch
 import jinja2
 
 import commonware.log
@@ -100,6 +101,7 @@ class Version(amo.models.ModelBase):
         # After the upload has been copied to all
         # platforms, remove the upload.
         upload.path.unlink()
+        version_uploaded.send(sender=v)
         return v
 
     @property
@@ -242,6 +244,7 @@ def update_status(sender, instance, **kw):
             pass
 
 
+version_uploaded = django.dispatch.Signal()
 models.signals.post_save.connect(update_status, sender=Version,
                                  dispatch_uid='version_update_status')
 models.signals.post_delete.connect(update_status, sender=Version,

@@ -15,7 +15,7 @@ from editors.sql_model import RawSQLModel
 from translations.fields import TranslatedField
 from tower import ugettext as _
 from users.models import UserProfile
-from versions.models import Version
+from versions.models import Version, version_uploaded
 
 import commonware.log
 
@@ -215,18 +215,17 @@ class EditorSubscription(amo.models.ModelBase):
                   use_blacklist=False)
 
 
-def send_notifications(sender, instance, **kw):
-    if kw.get('raw') or not kw.get('created') or instance.is_beta:
+def send_notifications(signal=None, sender=None):
+    if sender.is_beta:
         return
 
-    subscribers = instance.addon.editorsubscription_set.all()
+    subscribers = sender.addon.editorsubscription_set.all()
     if not subscribers:
         return
 
     for subscriber in subscribers:
-        subscriber.send_notification(instance)
+        subscriber.send_notification(sender)
         subscriber.delete()
 
 
-models.signals.post_save.connect(send_notifications, sender=Version,
-                                 dispatch_uid='version_send_notifications')
+version_uploaded.connect(send_notifications, dispatch_uid='send_notifications')
