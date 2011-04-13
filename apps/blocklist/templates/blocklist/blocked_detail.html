@@ -10,7 +10,7 @@
 
 <section class="blocked">
   {# L10n: {0} is an add-on name. #}
-  <h1>{{ _('<b>{0}</b> has been blocked for your protection.')|fe(details.name)|clean|nl2br }}</h1>
+  <h1>{{ _('<b>{0}</b> has been blocked for your protection.')|fe(details.name) }}</h1>
   <dl>
     <dt>{{ _('Why was it blocked?') }}</dt>
     <dd>{{ details.why|clean|nl2br }}</dd>
