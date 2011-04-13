@@ -215,7 +215,7 @@ class EditorSubscription(amo.models.ModelBase):
                   use_blacklist=False)
 
 
-def send_notifications(signal=None, sender=None):
+def send_notifications(signal=None, sender=None, **kw):
     if sender.is_beta:
         return
 
