@@ -165,6 +165,7 @@
                 ui_link = $('<a>', {'class': 'button prominent', 'href': '#', 'text': gettext('Select a file...')}),
                 ui_details = $('<div>', {'class': 'upload-details', 'text': gettext('Your add-on should end with .xpi or .jar')});
 
+            $upload_field.attr('disabled', false);
             $upload_field.wrap(ui_parent);
             $upload_field.before(ui_link);
             $upload_field.parent().after(ui_details);
