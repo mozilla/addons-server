@@ -50,7 +50,7 @@
                 /* Disable uploading while something is uploading */
                 $upload_field.attr('disabled', true);
                 $upload_field.parent().find('a').addClass("disabled");
-                $upload_field.bind("upload_success_results upload_errors", function() {
+                $upload_field.bind("reenable_uploader", function(e) {
                     $upload_field.attr('disabled', false);
                     $upload_field.parent().find('a').removeClass("disabled");
                 });
@@ -264,6 +264,7 @@
                 upload_progress_inside.stop().css({'width': '100%'});
 
                 $upload_field.val("").attr('disabled', false);
+                $upload_field.trigger("reenable_uploader");
 
                 upload_title.html(format(gettext('Error with {0}'), [escape_(file.name)]));
 
@@ -365,6 +366,8 @@
 
                     upload_progress_outside.attr('class', 'bar-success');
                     upload_progress_inside.fadeOut();
+
+                    $upload_field.trigger("reenable_uploader");
 
                     upload_results.addClass("status-pass");
 
