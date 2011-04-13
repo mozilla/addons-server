@@ -133,11 +133,11 @@
         <ul>
             {% for pk, label in form.fields.get('addon_files').choices %}
             <li>
-                <label for="file-{{ pk }}">
+              <label for="file-{{ pk }}"{% if pk in form.addon_files_disabled %} class="light"{% endif %}>
                 <input id="file-{{ pk }}" type="checkbox" value="{{ pk }}" name="addon_files"
                        {% if pk in form.addon_files_disabled %}disabled=""{% endif %} />
                 {{ label }}
-                </label>
+              </label>
             </li>
             {% endfor %}
         </ul>

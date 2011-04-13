@@ -76,7 +76,7 @@ function initReviewActions() {
     }
 
     /* File checkboxes */
-    var $files_input = $('#review-actions .review-actions-files').find('input');
+    var $files_input = $('#review-actions .review-actions-files').find('input:enabled');
 
     if($files_input.length == 1 || ! $('#review-actions .review-actions-files').attr('data-uncheckable')) {
         // Add a dummy, disabled input

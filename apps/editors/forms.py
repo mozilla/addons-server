@@ -236,8 +236,10 @@ class ReviewAddonForm(happyforms.Form):
         super(ReviewAddonForm, self).__init__(*args, **kw)
         self.fields['addon_files'].queryset = self.helper.all_files
         self.addon_files_disabled = (self.helper.all_files
-                                         .filter(status=amo.STATUS_DISABLED)
-                                         .values_list('pk', flat=True))
+                # We can't review disabled, and public are already reviewed.
+                .filter(status__in=[amo.STATUS_DISABLED, amo.STATUS_PUBLIC])
+                .values_list('pk', flat=True))
+
         # We're starting with an empty one, which will be hidden via CSS.
         canned_choices = [['', [('', _('Choose a canned response...'))]]]
 

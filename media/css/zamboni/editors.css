@@ -588,3 +588,10 @@ tr.comments {
     text-align: right;
 }
 
+.light {
+    color: #888;
+}
+
+.light .light {
+    color: #ccc;
+}
