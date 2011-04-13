@@ -32,6 +32,8 @@
 </hgroup>
 
 <div id="addon" class="primary" role="main" data-id="{{ addon.id }}">
+  {% include "messages.html" %}
+
   {% set show_actions = True %} {# Show things like the install button, favorites, etc #}
   {% include "addons/details_box.html" %}
 </div>
