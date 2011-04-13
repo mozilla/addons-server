@@ -27,6 +27,23 @@ function _inspectHeaders(inspector, url) {
     });
 }
 
+module('jQuery exists', {
+    setup: function() {
+        this.sandbox = tests.createSandbox('#exists');
+    },
+    teardown: function() {
+        this.sandbox.remove();
+    }
+});
+
+test('Element exists', function() {
+    equals($('.exists').exists(), true);
+});
+
+test('Element does not exist', function() {
+    equals($('.doesnotexist').exists(), false);
+});
+
 module('CSRF Token from input', {
     setup: function() {
         this._csrf = $.cookie('csrftoken');
