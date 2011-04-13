@@ -69,7 +69,7 @@
 
 <h3 id="compatibility">{{ _('Compatibility') }}</h3>
 <ul>
-  {% for compat in addon.compatible_apps.values() %}
+  {% for compat in version.compatible_apps.values() %}
   <li>
     {% if compat.application_id in amo.APPS_ALL %}
       <div class="app-icon ed-sprite-{{ amo.APPS_ALL[compat.application_id].short }}"
