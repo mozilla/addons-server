@@ -27,8 +27,7 @@ def file_review_status(addon, file):
         elif file.status in [amo.STATUS_PUBLIC]:
             return _(u'Fully Reviewed')
         elif file.status in [amo.STATUS_NOMINATED,
-                             amo.STATUS_LITE_AND_NOMINATED,
-                             amo.STATUS_PUBLIC]:
+                             amo.STATUS_LITE_AND_NOMINATED]:
             return _(u'Pending Full Review')
     return amo.STATUS_CHOICES[file.status]
 
