@@ -80,19 +80,7 @@ class Version(amo.models.ModelBase):
             # Search extensions are always for all platforms.
             platforms = [Platform.objects.get(id=amo.PLATFORM_ALL.id)]
         else:
-            new_plats = []
-            # Transform PLATFORM_ALL_MOBILE into specific mobile platform
-            # files (e.g. Android, Maemo).
-            # TODO(Kumar) Stop doing this when allmobile is supported
-            # for downloads. See bug 646268.
-            for p in platforms:
-                if p.id == amo.PLATFORM_ALL_MOBILE.id:
-                    for mobi_p in (set(amo.MOBILE_PLATFORMS.keys()) -
-                                   set([amo.PLATFORM_ALL_MOBILE.id])):
-                        new_plats.append(Platform.objects.get(id=mobi_p))
-                else:
-                    new_plats.append(p)
-            platforms = new_plats
+            platforms = cls._make_safe_platform_files(platforms)
 
         for platform in platforms:
             File.from_upload(upload, v, platform, parse_data=data)
@@ -103,6 +91,43 @@ class Version(amo.models.ModelBase):
         upload.path.unlink()
         version_uploaded.send(sender=v)
         return v
+
+    @classmethod
+    def _make_safe_platform_files(cls, platforms):
+        """Make file platform translations until all download pages
+        support desktop ALL + mobile ALL. See bug 646268.
+        """
+        pl_set = set([p.id for p in platforms])
+
+        if pl_set == set([amo.PLATFORM_ALL_MOBILE.id, amo.PLATFORM_ALL.id]):
+            # Make it really ALL:
+            return [Platform.objects.get(id=amo.PLATFORM_ALL.id)]
+
+        has_mobile = any(p in amo.MOBILE_PLATFORMS for p in pl_set)
+        has_desktop = any(p in amo.DESKTOP_PLATFORMS for p in pl_set)
+        has_all = any(p in (amo.PLATFORM_ALL_MOBILE.id,
+                            amo.PLATFORM_ALL.id) for p in pl_set)
+        is_mixed = has_mobile and has_desktop
+        if (is_mixed and has_all) or has_mobile:
+            # Mixing desktop and mobile w/ ALL is not safe;
+            # we have to split the files into exact platforms.
+            # Additionally, it is not safe to use all-mobile.
+            new_plats = []
+            for p in platforms:
+                if p.id == amo.PLATFORM_ALL_MOBILE.id:
+                    new_plats.extend(list(Platform.objects
+                                     .filter(id__in=amo.MOBILE_PLATFORMS)
+                                     .exclude(id=amo.PLATFORM_ALL_MOBILE.id)))
+                elif p.id == amo.PLATFORM_ALL.id:
+                    new_plats.extend(list(Platform.objects
+                                     .filter(id__in=amo.DESKTOP_PLATFORMS)
+                                     .exclude(id=amo.PLATFORM_ALL.id)))
+                else:
+                    new_plats.append(p)
+            return new_plats
+
+        # Platforms are safe as is
+        return platforms
 
     @property
     def path_prefix(self):

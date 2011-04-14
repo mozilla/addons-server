@@ -597,6 +597,33 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         eq_(sorted(amo.PLATFORMS[f.platform.id].shortname for f in files),
             ['android', 'maemo'])
 
+    def test_mobile_all_desktop_all_creates_all(self):
+        all_desktop = Platform.objects.get(id=amo.PLATFORM_ALL.id)
+        all_mobile = Platform.objects.get(id=amo.PLATFORM_ALL_MOBILE.id)
+        version = Version.from_upload(self.upload, self.addon, [all_desktop,
+                                                                all_mobile])
+        files = version.all_files
+        eq_(sorted(amo.PLATFORMS[f.platform.id].shortname for f in files),
+            ['all'])
+
+    def test_desktop_all_with_mixed_mobile_creates_platform_files(self):
+        all_desktop = Platform.objects.get(id=amo.PLATFORM_ALL.id)
+        android = Platform.objects.get(id=amo.PLATFORM_ANDROID.id)
+        version = Version.from_upload(self.upload, self.addon, [all_desktop,
+                                                                android])
+        files = version.all_files
+        eq_(sorted(amo.PLATFORMS[f.platform.id].shortname for f in files),
+            ['android', 'linux', 'mac', 'windows'])
+
+    def test_mobile_all_with_mixed_desktop_creates_platform_files(self):
+        all_mobile = Platform.objects.get(id=amo.PLATFORM_ALL_MOBILE.id)
+        linux = Platform.objects.get(id=amo.PLATFORM_LINUX.id)
+        version = Version.from_upload(self.upload, self.addon, [linux,
+                                                                all_mobile])
+        files = version.all_files
+        eq_(sorted(amo.PLATFORMS[f.platform.id].shortname for f in files),
+            ['android', 'linux', 'maemo'])
+
     def test_multiple_platforms(self):
         platforms = [Platform.objects.get(pk=amo.PLATFORM_LINUX.id),
                      Platform.objects.get(pk=amo.PLATFORM_MAC.id)]
