@@ -480,11 +480,10 @@ function initCharCount() {
     }
 })();
 
-
 // .exists()
 // This returns true if length > 0.
 
 $.fn.exists = function(){
   return $(this).length > 0;
-}
+};
 
