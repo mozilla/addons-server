@@ -74,3 +74,8 @@ def test_clean():
     s = '<ul><li><a href="#woo">\n\nyeah</a></li>\n\n<li><script></li></ul>'
     eq_(helpers.clean(s),
         '<ul><li><a href="#woo">\n\nyeah</a></li><li>&lt;script&gt;</li></ul>')
+
+
+def test_clean_in_template():
+    s = '<a href="#woo">yeah</a>'
+    eq_(jingo.env.from_string('{{ s|clean }}').render(s=s), s)

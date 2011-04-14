@@ -67,4 +67,4 @@ def all_locales(addon, field_name, nl2br=False):
 
 @jingo.register.filter
 def clean(string):
-    return clean_nl(bleach.clean(string)).strip()
+    return jinja2.Markup(clean_nl(bleach.clean(string)).strip())
