@@ -13,6 +13,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 import commonware.log
 import jingo
+import waffle
 
 import amo
 import amo.utils
@@ -147,6 +148,11 @@ def recommendations(request, version, platform, limit=9):
     ids, recs = Collection.get_recs_from_ids(addon_ids, request.APP, version)
     recs = _recommendations(request, version, platform, limit,
                             index, ids, recs)
+
+    # We're only storing a percentage of the collections we see because the db
+    # can't keep up with 100%.
+    if not waffle.sample_is_active('disco-pane-store-collections'):
+        return recs
 
     # Users have a token2 if they've been here before. The token matches
     # addon_index in their SyncedCollection.
