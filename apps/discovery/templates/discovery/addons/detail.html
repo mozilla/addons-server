@@ -15,14 +15,8 @@
 
 <ul id="install">
   <li class="install-action">
-    {% if addon.has_eula %}
-      <a href="{{ services_url('discovery.addons.eula', addon.slug, src=src) }}"
-         class="button eula go installer">
-         {# L10n: please keep &nbsp; in the string so the &rarr; does not wrap #}
-         {{ _('Continue to Download&nbsp;&rarr;')|safe }}</a>
-    {% else %}
-      {{ install_button(addon, show_contrib=False, show_warning=False) }}
-    {% endif %}</li>
+    {{ big_install_button(addon, show_contrib=False, show_warning=False) }}
+  </li>
   <li><a href="{{ url('addons.detail', addon.slug, src='discovery-learnmore') }}"
          class="button">{{ _('Learn More') }}</a></li>
   {% with files = addon.current_version.all_files %}
@@ -38,10 +32,8 @@
   {% endif %}
 </ul>
 
-{% if not addon.has_eula %}
-  {% if settings.PERF_THRESHOLD and addon.ts_slowness >= settings.PERF_THRESHOLD %}
-    {{ performance_note(amount=addon.ts_slowness) }}
-  {% endif %}
+{% if settings.PERF_THRESHOLD and addon.ts_slowness >= settings.PERF_THRESHOLD %}
+  {{ performance_note(amount=addon.ts_slowness) }}
 {% endif %}
 
 {% if addon.type != amo.ADDON_PERSONA %}

@@ -253,6 +253,11 @@ class TestDetails(test_utils.TestCase):
                                   args=[self.addon.slug])
         self.eula_url = reverse('discovery.addons.eula',
                                  args=[self.addon.slug])
+        self._perf_threshold = settings.PERF_THRESHOLD
+        settings.PERF_THRESHOLD = 25
+
+        def tearDown(self):
+            settings.PERF_THRESHOLD = self._perf_threshold
 
     def get_addon(self):
         return Addon.objects.get(id=3615)
@@ -283,21 +288,11 @@ class TestDetails(test_utils.TestCase):
         r = self.client.get(self.eula_url)
         self.assertRedirects(r, self.detail_url, 302)
 
-    def set_slowness(self):
-        settings.PERF_THRESHOLD = 1.0
+    def test_perf_warning(self):
         self.addon.update(ts_slowness=100)
-
-    def test_perf_warning_eula(self):
-        self.set_slowness()
         doc = pq(self.client.get(self.detail_url).content)
-        assert not doc('.performance-note').length
-        doc = pq(self.client.get(self.eula_url).content)
         assert doc('.performance-note').length
-
-    def test_perf_warning_no_eula(self):
-        self.set_slowness()
-        self.addon.update(eula=None)
-        doc = pq(self.client.get(self.detail_url).content)
+        doc = pq(self.client.get(self.eula_url).content)
         assert doc('.performance-note').length
 
 

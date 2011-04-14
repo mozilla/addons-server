@@ -1201,6 +1201,10 @@ p#back:hover:before {
     padding-top: 5px;
 }
 
+#install .privacy-policy {
+    display: none;
+}
+
 #install .button {
     display: block;
 }
@@ -1460,7 +1464,7 @@ a.button.add:active {
     margin: 0 -12px 0 0;
 }
 
-.button span {
+.button.add span {
     border-left: 2px groove rgba(150,150,150,0.35);
     padding: 0 0 0 12px;
     margin: 0 2px 0 -2px;
@@ -1469,7 +1473,7 @@ a.button.add:active {
     white-space: normal;
 }
 
-.html-rtl .button span {
+.html-rtl .button.add span {
     border-left: 0;
     border-right: 2px groove rgba(150,150,150,0.35);
     padding: 0 8px 0 6px;
