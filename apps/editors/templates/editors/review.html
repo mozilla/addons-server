@@ -45,22 +45,24 @@
 
 <h3 id="file-history">{{ _('Item History') }}</h3>
 {% if history %}
-  <table id="review-files">
+<div class="results">
+  <div class="results-inner">
+    <table id="review-files" class="data-grid">
       <thead>
-          <tr>
-              <th>{{ _('Version/File') }}</th>
-              <th>{{ _('Date') }}</th>
-              <th>{{ _('Reviewer') }}</th>
-              <th>{{ _('Action') }}</th>
-              <th>{{ _('Comments') }}</th>
-          </tr>
+        <tr class="listing-header">
+          <th width="15%">{{ _('Version') }}</th>
+          <th width="20%">{{ _('Review') }}</th>
+          <th>{{ _('Comments') }}</th>
+        </tr>
       </thead>
       <tbody>
-            {% for record in history %}
-              {% include 'editors/includes/history.html' %}
-            {% endfor %}
+        {% for record in history %}
+          {% include 'editors/includes/history.html' %}
+        {% endfor %}
       </tbody>
-  </table>
+    </table>
+  </div>
+</div>
 {% else %}
 <p>
   {{ _('No previous review entries could be found.') }}

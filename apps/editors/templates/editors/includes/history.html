@@ -7,8 +7,16 @@
       {% endif %}
     </td>
 
-    <td>{{ record.created|datetime }}</td>
-    <td>{{ record.user.name }}</td>
-    <td>{{ record }}</td>
-    <td>{% if record.details %}{{ record.details.comments }}{% endif %}</td>
+    <td>
+      {{ record.user.name }}<br>
+      <span class="light">{{ record.created|datetime }}</span>
+    </td>
+    <td>
+      <strong>{{ record }}</strong>
+      {% if record.details %}
+        <div class="history_comment">
+          {{ record.details.comments|nl2br }}
+        </div>
+      {% endif %}
+    </td>
 </tr>
