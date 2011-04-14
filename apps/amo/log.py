@@ -209,6 +209,22 @@ class REQUEST_VERSION(_LOG):
     review_queue = True
 
 
+class REQUEST_INFORMATION(_LOG):
+    id = 44
+    action_class = None
+    format = _(u'{addon} {version} more information requested.')
+    keep = True
+    review_queue = True
+
+
+class REQUEST_SUPER_REVIEW(_LOG):
+    id = 45
+    action_class = None
+    format = _(u'{addon} {version} super review requested.')
+    keep = True
+    review_queue = True
+
+
 class ADD_TAG(_LOG):
     id = 25
     action_class = 'tag'

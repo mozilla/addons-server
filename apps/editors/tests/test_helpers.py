@@ -308,7 +308,7 @@ class TestReviewHelper(test_utils.TestCase):
 
     def test_logs(self):
         self.helper.set_data({'comments': 'something'})
-        self.helper.handler.log_approval(amo.LOG.APPROVE_VERSION)
+        self.helper.handler.log_action(amo.LOG.APPROVE_VERSION)
         eq_(self.check_log_count(amo.LOG.APPROVE_VERSION.id), 1)
 
     def test_notify_email(self):
@@ -331,6 +331,15 @@ class TestReviewHelper(test_utils.TestCase):
         for key in delete:
             del data[key]
         self.helper.set_data(data)
+
+    def test_request_more_information(self):
+        self.setup_data(amo.STATUS_PUBLIC, ['addon_files'])
+        self.helper.handler.request_information()
+
+        eq_(len(mail.outbox), 1)
+        eq_(mail.outbox[0].subject, self.preamble)
+
+        eq_(self.check_log_count(amo.LOG.REQUEST_INFORMATION.id), 1)
 
     def test_nomination_to_public_no_files(self):
         for status in helpers.NOMINATED_STATUSES:
@@ -439,6 +448,7 @@ class TestReviewHelper(test_utils.TestCase):
             eq_(len(mail.outbox), 1)
             eq_(mail.outbox[0].subject,
                 'Super review requested: Delicious Bookmarks')
+            eq_(self.check_log_count(amo.LOG.REQUEST_SUPER_REVIEW.id), 1)
 
     def test_unreviewed_to_public(self):
         self.setup_data(amo.STATUS_UNREVIEWED)
@@ -489,6 +499,7 @@ class TestReviewHelper(test_utils.TestCase):
             eq_(len(mail.outbox), 1)
             eq_(mail.outbox[0].subject,
                 'Super review requested: Delicious Bookmarks')
+            eq_(self.check_log_count(amo.LOG.REQUEST_SUPER_REVIEW.id), 1)
 
     def test_nomination_to_super_review_and_escalate(self):
         # Note we are changing the file status here.
@@ -504,6 +515,7 @@ class TestReviewHelper(test_utils.TestCase):
                 'Super review requested: Delicious Bookmarks')
 
             eq_(self.check_log_count(amo.LOG.ESCALATE_VERSION.id), 1)
+            eq_(self.check_log_count(amo.LOG.REQUEST_SUPER_REVIEW.id), 1)
 
     def test_pending_to_public(self):
         for status in helpers.PENDING_STATUSES:

@@ -123,6 +123,12 @@ class TestReviewLog(EditorTest):
             amo.log(amo.LOG.REJECT_VERSION, a, v, user=u,
                     details={'comments': 'youwin'})
 
+    def make_an_approval(self, action):
+        u = UserProfile.objects.filter()[0]
+        a = Addon.objects.create(type=amo.ADDON_EXTENSION)
+        v = Version.objects.create(addon=a)
+        amo.log(action, a, v, user=u, details={'comments': 'youwin'})
+
     def test_basic(self):
         r = self.client.get(reverse('editors.reviewlog'))
         eq_(r.status_code, 200)
@@ -161,6 +167,20 @@ class TestReviewLog(EditorTest):
         doc = pq(r.content)
         eq_(doc('#log-listing tr td')[1].text.strip(),
             'Add-on has been deleted.')
+
+    def test_request_info_logs(self):
+        self.make_an_approval(amo.LOG.REQUEST_INFORMATION)
+        r = self.client.get(reverse('editors.reviewlog'))
+        doc = pq(r.content)
+        eq_(doc('#log-listing tr td a')[1].text.strip(),
+            'needs more information')
+
+    def test_super_review_logs(self):
+        self.make_an_approval(amo.LOG.REQUEST_SUPER_REVIEW)
+        r = self.client.get(reverse('editors.reviewlog'))
+        doc = pq(r.content)
+        eq_(doc('#log-listing tr td a')[1].text.strip(),
+            'needs super review')
 
 
 class TestHome(EditorTest):
@@ -350,7 +370,7 @@ class TestQueueBasics(QueueTest):
         sorts = (
             ['age', 'Waiting Time'],
             ['name', 'Addon'],
-            ['type', 'Type']
+            ['type', 'Type'],
         )
         for key, text in sorts:
             url = reverse('editors.queue_pending') + '?sort=%s' % key

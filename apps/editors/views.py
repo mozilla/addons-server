@@ -20,7 +20,7 @@ from editors.models import (EditorSubscription, ViewPendingQueue,
                             ViewFullReviewQueue, ViewPreliminaryQueue,
                             EventLog, CannedResponse)
 from editors.helpers import (ViewPendingQueueTable, ViewFullReviewQueueTable,
-                             ViewPreliminaryQueueTable, LOG_STATUSES)
+                             ViewPreliminaryQueueTable)
 from files.models import Approval
 from reviews.forms import ReviewFlagFormSet
 from reviews.models import Review, ReviewFlag
@@ -276,7 +276,7 @@ def review(request, version_id):
                   actions=actions, actions_minimal=actions_minimal,
                   history=ActivityLog.objects.for_addons(addon)
                           .order_by('created')
-                          .filter(action__in=LOG_STATUSES))
+                          .filter(action__in=amo.LOG_REVIEW_QUEUE))
 
     return jingo.render(request, 'editors/review.html', ctx)
 
@@ -307,6 +307,8 @@ def reviewlog(request):
             amo.LOG.REJECT_VERSION.id: _('rejected'),
             amo.LOG.ESCALATE_VERSION.id: _('escalated',
                     'editors_review_history_nominated_adminreview'),
+            amo.LOG.REQUEST_INFORMATION.id: _('needs more information'),
+            amo.LOG.REQUEST_SUPER_REVIEW.id: _('needs super review'),
          }
     data = context(form=form, pager=pager, ACTION_DICT=ad)
     return jingo.render(request, 'editors/reviewlog.html', data)

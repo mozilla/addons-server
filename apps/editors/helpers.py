@@ -180,9 +180,6 @@ class ViewPreliminaryQueueTable(EditorQueueTable):
 log = commonware.log.getLogger('z.mailer')
 
 
-LOG_STATUSES = (amo.LOG.APPROVE_VERSION.id, amo.LOG.PRELIMINARY_VERSION.id,
-                amo.LOG.REJECT_VERSION.id, amo.LOG.ESCALATE_VERSION.id,
-                amo.LOG.RETAIN_VERSION.id)
 NOMINATED_STATUSES = (amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED)
 PRELIMINARY_STATUSES = (amo.STATUS_UNREVIEWED, amo.STATUS_LITE)
 PENDING_STATUSES = (amo.STATUS_BETA, amo.STATUS_DISABLED, amo.STATUS_LISTED,
@@ -341,7 +338,7 @@ class ReviewBase:
             file.status = status
             file.save()
 
-    def log_approval(self, action):
+    def log_action(self, action):
         amo.log(action, self.addon, self.version, user=self.user.get_profile(),
                 created=datetime.now(),
                 details={'comments': self.data['comments'],
@@ -376,6 +373,7 @@ class ReviewBase:
     def request_information(self):
         """Send a request for information to the authors."""
         emails = [a.email for a in self.addon.authors.all()]
+        self.log_action(amo.LOG.REQUEST_INFORMATION)
         log.info(u'Sending request for information for %s to %s' %
                  (self.addon, emails))
         send_mail('editors/emails/info.ltxt',
@@ -384,6 +382,7 @@ class ReviewBase:
                    emails, Context(self.get_context_data()))
 
     def send_super_mail(self):
+        self.log_action(amo.LOG.REQUEST_SUPER_REVIEW)
         log.info(u'Super review requested for %s' % (self.addon))
         send_mail('editors/emails/super_review.ltxt',
                    'Super review requested: %s' % (self.addon.name),
@@ -405,7 +404,7 @@ class ReviewAddon(ReviewBase):
         self.set_addon(highest_status=amo.STATUS_PUBLIC,
                        status=amo.STATUS_PUBLIC)
 
-        self.log_approval(amo.LOG.APPROVE_VERSION)
+        self.log_action(amo.LOG.APPROVE_VERSION)
         self.notify_email('%s_to_public' % self.review_type,
                           'Mozilla Add-ons: %s %s Fully Reviewed')
 
@@ -418,7 +417,7 @@ class ReviewAddon(ReviewBase):
         self.set_files(amo.STATUS_DISABLED, self.version.files.all(),
                        hide_disabled_file=True)
 
-        self.log_approval(amo.LOG.REJECT_VERSION)
+        self.log_action(amo.LOG.REJECT_VERSION)
         self.notify_email('%s_to_sandbox' % self.review_type,
                           'Mozilla Add-ons: %s %s Reviewed')
 
@@ -441,7 +440,7 @@ class ReviewAddon(ReviewBase):
         self.set_files(amo.STATUS_LITE, self.version.files.all(),
                        copy_to_mirror=True)
 
-        self.log_approval(amo.LOG.PRELIMINARY_VERSION)
+        self.log_action(amo.LOG.PRELIMINARY_VERSION)
         self.notify_email(template,
                           'Mozilla Add-ons: %s %s Preliminary Reviewed')
 
@@ -464,7 +463,7 @@ class ReviewFiles(ReviewBase):
         self.set_files(amo.STATUS_PUBLIC, self.data['addon_files'],
                        copy_to_mirror=True)
 
-        self.log_approval(amo.LOG.APPROVE_VERSION)
+        self.log_action(amo.LOG.APPROVE_VERSION)
         self.notify_email('%s_to_public' % self.review_type,
                           'Mozilla Add-ons: %s %s Fully Reviewed')
 
@@ -478,7 +477,7 @@ class ReviewFiles(ReviewBase):
         self.set_files(amo.STATUS_DISABLED, self.data['addon_files'],
                        hide_disabled_file=True)
 
-        self.log_approval(amo.LOG.REJECT_VERSION)
+        self.log_action(amo.LOG.REJECT_VERSION)
         self.notify_email('%s_to_sandbox' % self.review_type,
                           'Mozilla Add-ons: %s %s Reviewed')
 
@@ -492,7 +491,7 @@ class ReviewFiles(ReviewBase):
         self.set_files(amo.STATUS_LITE, self.data['addon_files'],
                        copy_to_mirror=True)
 
-        self.log_approval(amo.LOG.PRELIMINARY_VERSION)
+        self.log_action(amo.LOG.PRELIMINARY_VERSION)
         self.notify_email('%s_to_preliminary' % self.review_type,
                           'Mozilla Add-ons: %s %s Preliminary Reviewed')
 
@@ -507,6 +506,6 @@ class ReviewFiles(ReviewBase):
 
         if any(f.status for f in self.data['addon_files'] if f.status
                in (amo.STATUS_PENDING, amo.STATUS_UNREVIEWED)):
-            self.log_approval(amo.LOG.ESCALATE_VERSION)
+            self.log_action(amo.LOG.ESCALATE_VERSION)
 
         self.send_super_mail()
