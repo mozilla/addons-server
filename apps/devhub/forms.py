@@ -485,7 +485,7 @@ class BaseFileFormSet(BaseModelFormSet):
 
             if amo.PLATFORM_ALL.id in platforms and len(files) > 1:
                 raise forms.ValidationError(
-                    _('The platfom All cannot be combined '
+                    _('The platform All cannot be combined '
                       'with specific platforms.'))
 
             if sorted(platforms) != sorted(set(platforms)):

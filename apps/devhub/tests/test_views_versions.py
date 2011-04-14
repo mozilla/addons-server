@@ -518,7 +518,7 @@ class TestVersionEditFiles(TestVersionEdit):
         forms = map(initial, forms)
         res = self.client.post(self.url, self.formset(*forms, prefix='files'))
         eq_(res.context['file_form'].non_form_errors()[0],
-            'The platfom All cannot be combined with specific platforms.')
+            'The platform All cannot be combined with specific platforms.')
 
     def test_all_platforms_and_delete(self):
         File.objects.create(version=self.version,
