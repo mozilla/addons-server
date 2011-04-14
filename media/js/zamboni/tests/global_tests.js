@@ -37,11 +37,11 @@ module('jQuery exists', {
 });
 
 test('Element exists', function() {
-    equals($('.exists').exists(), true);
+    equals($('.exists', this.sandbox).exists(), true);
 });
 
 test('Element does not exist', function() {
-    equals($('.doesnotexist').exists(), false);
+    equals($('.doesnotexist', this.sandbox).exists(), false);
 });
 
 module('CSRF Token from input', {
