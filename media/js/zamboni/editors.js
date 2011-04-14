@@ -93,6 +93,15 @@ function initReviewActions() {
     }
 
     $files_input.change(toggle_input).each(toggle_input);
+
+    /* Install Triggers */
+
+    $('.files .install').click(_pd(function(){
+        var $this = $(this),
+            installer = $this.is('[data-type=search-tools]') ? z.installSearch : z.installAddon;
+        installer($this.text(), $this.attr('href'), "")
+    }));
+
 }
 
 function insertAtCursor(textarea, text) {

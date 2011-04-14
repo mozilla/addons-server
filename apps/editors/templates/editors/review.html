@@ -88,7 +88,8 @@
 {% for file in version.files.all() %}
 <li>
   <strong>{{ file.platform }}</strong>
-  [<a href="{{ file.get_url_path(addon.app, 'editor') }}">{{ file.filename }}</a>]
+  [<a href="{{ file.get_url_path(addon.app, 'editor') }}" class="install"
+    data-type="{{ amo.ADDON_SLUGS[addon.type] }}">{{ file.filename }}</a>]
   <br>
   {{ file_review_status(addon, file) }}
   &middot;
