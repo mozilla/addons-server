@@ -11,4 +11,4 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         pks = Addon.objects.values_list('pk', flat=True).order_by('id')
         for chunk in chunked(pks, 100):
-            dedupe_approvals(chunk)
+            dedupe_approvals.delay(chunk)
