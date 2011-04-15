@@ -50,11 +50,11 @@ class FileViewer:
         Raises error on nasty files.
         """
         try:
-            os.makedirs(self.dest)
-        except OSError:
-            return
+            os.makedirs(os.path.dirname(self.dest))
+        except OSError, err:
+            pass
         try:
-            extract_xpi(self.src, self.dest)
+            extract_xpi(self.src, self.dest, expand=True)
         except Exception, err:
             task_log.error('Error (%s) extracting %s' % (err, self.src))
 
@@ -71,7 +71,7 @@ class FileViewer:
         """Uses the filename to see if the file can be shown in HTML or not."""
         if mimetype:
             major, minor = mimetype.split('/')
-            if major == 'text' and minor in ['plain', 'html']:
+            if major == 'text' and minor in ['plain', 'html', 'css']:
                 return False
             elif minor in ['xml', 'rdf+xml', 'javascript', 'x-javascript',
                          'xml-dtd', 'vnd.mozilla.xul+xml']:

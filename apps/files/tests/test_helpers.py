@@ -12,22 +12,24 @@ import test_utils
 
 from amo.urlresolvers import reverse
 from files.helpers import FileViewer, DiffHelper
+from files.utils import extract_zip
+
+root = os.path.join(settings.ROOT, 'apps/files/fixtures/files')
+dictionary = '%s/dictionary-test.xpi' % root
+recurse = '%s/recurse.xpi' % root
 
 
 class TestFileHelper(test_utils.TestCase):
 
     def setUp(self):
-        dictionary = 'apps/files/fixtures/files/dictionary-test.xpi'
-        src = os.path.join(settings.ROOT, dictionary)
-
         file_obj = Mock()
         file_obj.id = file_obj.pk = 1
-        file_obj.file_path = src
-
-        self.viewer = FileViewer(file_obj)
+        file_obj.file_path = dictionary
 
         self.old_tmp = settings.TMP_PATH
         settings.TMP_PATH = tempfile.mkdtemp()
+
+        self.viewer = FileViewer(file_obj)
 
     def tearDown(self):
         self.viewer.cleanup()
@@ -39,6 +41,20 @@ class TestFileHelper(test_utils.TestCase):
     def test_files_extracted(self):
         self.viewer.extract()
         eq_(self.viewer.is_extracted, True)
+
+    def test_recurse_extract(self):
+        self.viewer.src = recurse
+        self.viewer.extract()
+        eq_(self.viewer.is_extracted, True)
+
+    def test_recurse_contents(self):
+        self.viewer.src = recurse
+        self.viewer.extract()
+        files = self.viewer.get_files()
+        for name in ['chrome/test-root.txt', 'chrome/test.jar',
+                     'chrome/test.jar/test/test.text']:
+            eq_(name in files, True, 'File %r not extracted' % name)
+        eq_(files['chrome/test.jar/test']['directory'], True)
 
     def test_cleanup(self):
         self.viewer.extract()

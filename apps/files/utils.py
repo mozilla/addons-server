@@ -135,13 +135,53 @@ def parse_search(filename, addon=None):
             'version': datetime.now().strftime('%Y%m%d')}
 
 
-def extract_xpi(xpi, path):
-    zip = zipfile.ZipFile(xpi)
+def extract_zip(source, remove=False):
+    """Extracts the zip file. If remove is given, removes the source file."""
+    tempdir = tempfile.mkdtemp()
+    zip = zipfile.ZipFile(source)
     for f in zip.namelist():
         if '..' in f or f.startswith('/'):
-            log.error('Extraction error, Invalid archive: %s' % xpi)
+            log.error('Extraction error, Invalid archive: %s' % source)
             raise forms.ValidationError(_('Invalid archive.'))
-    zip.extractall(path)
+    zip.extractall(tempdir)
+    if remove:
+        os.remove(source)
+    return tempdir
+
+
+def copy_over(source, dest):
+    """
+    Copies from the source to the destination, removing the destination
+    if it exists and is a directory.
+    """
+    if os.path.exists(dest) and os.path.isdir(dest):
+        shutil.rmtree(dest)
+    shutil.copytree(source, dest)
+    shutil.rmtree(source)
+
+
+def extract_xpi(xpi, path, expand=False):
+    """
+    If expand is given, will look inside the expanded file
+    and find anything in the whitelist and try and expand it as well.
+    Currently only does one iteration of this.
+
+    It will replace the expanded file with a directory and the expanded
+    contents. If you have 'foo.jar', that contains 'some-image.jpg', then
+    it will create a folder, foo.jar, with an image inside.
+    """
+    expand_whitelist = ['.jar']
+    tempdir = extract_zip(xpi)
+
+    if expand:
+        for root, dirs, files in os.walk(tempdir):
+            for name in files:
+                if os.path.splitext(name)[1] in expand_whitelist:
+                    src = os.path.join(root, name)
+                    dest = extract_zip(src, remove=True)
+                    copy_over(dest, src)
+
+    copy_over(tempdir, path)
 
 
 def parse_xpi(xpi, addon=None):
