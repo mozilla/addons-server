@@ -259,8 +259,11 @@ def review(request, version_id):
     is_admin = acl.action_allowed(request, 'Admin', 'EditAnyAddon')
     actions = form.helper.actions.items()
 
-    has_public_files = (current.files.filter(status__in=amo.LISTED_STATUSES)
-                                     .exists()) if current else False
+    has_files = (addon.versions.exclude(id=version.id)
+                               .filter(files__isnull=False,
+                                       created__lt=version.created)
+                               .order_by('created').exists())
+
     # The actions we should show a minimal form from.
     actions_minimal = [k for (k, a) in actions if not a.get('minimal')]
 
@@ -270,8 +273,7 @@ def review(request, version_id):
     ctx = context(version=version, addon=addon,
                   flags=Review.objects.filter(addon=addon, flag=True),
                   form=form, paging=paging, canned=canned, is_admin=is_admin,
-                  status_types=amo.STATUS_CHOICES,
-                  has_public_files=has_public_files,
+                  status_types=amo.STATUS_CHOICES, has_files=has_files,
                   allow_unchecking_files=allow_unchecking_files,
                   actions=actions, actions_minimal=actions_minimal,
                   history=ActivityLog.objects.for_addons(addon)

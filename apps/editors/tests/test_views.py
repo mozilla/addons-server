@@ -1024,9 +1024,8 @@ class TestReview(ReviewBase):
         validation = pq(response.content).find('#validation').next()
         eq_(validation.find('a').eq(1).text(), "Validation Results")
         eq_(validation.find('a').eq(2).text(), "View Contents")
-        eq_(validation.find('a').eq(3).text(), "Compare With Public Version")
 
-        eq_(validation.find('a').length, 4)
+        eq_(validation.find('a').length, 3)
 
     def test_public_search(self):
         s = amo.STATUS_PUBLIC
@@ -1128,17 +1127,22 @@ class TestReview(ReviewBase):
 
     def test_compare_link(self):
         version = Version.objects.create(addon=self.addon, version='0.2')
+        version.created = datetime.today() + timedelta(days=1)
+        version.save()
+
+        url = reverse('editors.review', args=[version.pk])
         File.objects.create(version=version, status=amo.STATUS_PUBLIC)
         self.addon.update(_current_version=version)
         eq_(self.addon.current_version, version)
-        r = self.client.get(self.url)
+        r = self.client.get(url)
         doc = pq(r.content)
-        assert r.context['has_public_files']
-        eq_(doc('.files a:last-child').text(), 'Compare With Public Version')
+        assert r.context['has_files']
+        eq_(doc('.files a:last-child').text(), 'Compare With Previous Version')
         # Note: remora url will be to the old version, the diff viewer figures
         # out the version to compare too.
+
         eq_(doc('.files a:last-child').attr('href'),
-            remora_url('/files/diff/%d/' % self.version.files.all()[0].pk))
+            remora_url('/files/diff/%d/' % version.files.all()[0].pk))
 
 
 class TestReviewPreliminary(ReviewBase):
