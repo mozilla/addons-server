@@ -7,9 +7,11 @@ import socket
 import tempfile
 from datetime import datetime, timedelta
 from decimal import Decimal
+from collections import namedtuple
 
 from django.conf import settings
 from django.utils import translation
+from django.utils.http import urlencode
 
 import mock
 from nose.tools import eq_, assert_not_equal, assert_raises
@@ -3258,3 +3260,25 @@ class TestAdmin(test_utils.TestCase):
         url = reverse('devhub.addons.admin', args=['a3615'])
         r = self.client.post(url)
         eq_(r.status_code, 403)
+
+
+class TestNewsletter(test_utils.TestCase):
+
+    def test_get(self):
+        r = self.client.get(reverse('devhub.community.newsletter'))
+        eq_(r.status_code, 200)
+
+    @mock.patch('devhub.responsys.urllib2.urlopen')
+    def test_post(self, v):
+        v.return_value = namedtuple('_', 'code')
+        v.return_value.code = 200
+        email = 'test@example.com'
+
+        url = reverse('devhub.community.newsletter')
+        r = self.client.post(url, {'email': email, 'region': 'us',
+                                   'format': 'html', 'policy': 't'})
+        eq_(r.status_code, 302)
+
+        # Test call to responsys
+        eq_(v.call_args[0], ('http://awesomeness.mozilla.org/pub/rf',))
+        assert(urlencode({'EMAIL_ADDRESS_': email}) in v.call_args[1]['data'])
