@@ -796,9 +796,6 @@ VALIDATE_ADDONS = True
 SEARCH_EXCLUDE_PERSONAS = True
 UNLINK_SITE_STATS = True
 
-# Show recommendations on the discopane.
-DISCOPANE_RECS = True
-
 # Set to True if we're allowed to use X-SENDFILE.
 XSENDFILE = True
 
