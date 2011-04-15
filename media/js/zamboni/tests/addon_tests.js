@@ -19,3 +19,36 @@ test('Buttons: Test backup button', function() {
     equals(backup_wrapper.hasClass('hidden'), true);
     equals(current_wrapper.hasClass('hidden'), false);
 });
+
+var paypalFixtures = {
+    setup: function() {
+        this.sandbox = tests.createSandbox('#paypal');
+        $.mockjaxSettings = {
+            status: 200,
+            responseTime: 0
+        };
+    },
+    teardown: function() {
+        $.mockjaxClear();
+        this.sandbox.remove();
+    }
+};
+
+module('Contributions', paypalFixtures);
+
+asyncTest('Paypal failure', function() {
+    var self = this;
+    $.mockjax({
+        url: '/paykey?src=direct&result_type=json',
+        dataType: 'json',
+        responseText: { paykey: '', url:'', error:'Error' }
+    });
+    self.sandbox.find('div.contribute a.suggested-amount').trigger('click');
+    tests.waitFor(function() {
+        // Note: popup.render moves the element outside the sandbox.
+        return $('#paypal-error').length === 1;
+    }).thenDo(function() {
+        equals($('#paypal-error').text(), 'Error');
+        start();
+    });
+});

@@ -484,7 +484,7 @@ def embedded_contribute(request, addon):
         name, paypal_id = addon.name, addon.paypal_id
     contrib_for = _(u'Contribution for {0}').format(jinja2.escape(name))
 
-    paykey = None
+    paykey, nice_error = None, None
     try:
         paykey = paypal.get_paykey({
             'return_url': absolutify('%s?%s' % (reverse('addons.paypal',
@@ -500,8 +500,10 @@ def embedded_contribute(request, addon):
             'memo': contrib_for})
     except paypal.AuthError, error:
         paypal_log.error('Authentication error: %s' % error)
+        nice_error = _('There was a problem communicating with Paypal.')
     except Exception, error:
         paypal_log.error('Error: %s' % error)
+        nice_error = _('There was a problem with that contribution.')
 
     if paykey:
         contrib = Contribution(addon_id=addon.id,
@@ -523,7 +525,9 @@ def embedded_contribute(request, addon):
     if request.GET.get('result_type') == 'json' or request.is_ajax():
         # If there was an error getting the paykey, then JSON will
         # not have a paykey and the JS can cope appropriately.
-        return http.HttpResponse(json.dumps({'url': url, 'paykey': paykey}),
+        return http.HttpResponse(json.dumps({'url': url,
+                                             'paykey': paykey,
+                                             'error': nice_error}),
                                  content_type='application/json')
     return http.HttpResponseRedirect(url)
 

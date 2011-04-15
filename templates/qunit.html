@@ -12,6 +12,7 @@
         data-anonymous="true"
         data-readonly="false"
         data-media-url="{{ MEDIA_URL }}"
+        data-paypal-url="/paypal"
         data-default-locale="en-us">
   <h1 id="qunit-header">QUnit Test Suite ({{ suite.name }})</h1>
 	<h2 id="qunit-banner"></h2>
@@ -266,6 +267,11 @@
             <a class="file" href="someurl">foo/bar.txt</a>
         </li>
       </ul>
+    </div>
+    <div id="paypal">
+        <div class="contribute">
+            <a href="/paykey?src=direct" class="suggested-amount">Contribute</a>
+        </div>
     </div>
 
 

@@ -3,16 +3,23 @@ $(document).ready(function() {
         pointTo: "#contribute-more-info"
     });
     if ($('body').attr('data-paypal-url')) {
-        $('div.contribute a.suggested-amount').bind('click', function(event) {
-             $.ajax({type: 'GET',
-                url: $(this).attr('href') + '&result_type=json',
-                success: function(json) {
-                    $.getScript($('body').attr('data-paypal-url'), function() {
-                        dgFlow = new PAYPAL.apps.DGFlow();
-                        dgFlow.startFlow(json.url);
-                    });
+        $('div.contribute a.suggested-amount').live('click', function(event) {
+            var el = this;
+            $.getJSON($(this).attr('href') + '&result_type=json',
+                function(json) {
+                    if (json.paykey) {
+                        $.getScript($('body').attr('data-paypal-url'), function() {
+                            dgFlow = new PAYPAL.apps.DGFlow();
+                            dgFlow.startFlow(json.url);
+                        });
+                    } else {
+                        if (!$('#paypal-error').length) {
+                            $(el).closest('div').append('<div id="paypal-error" class="popup"></div>');
+                        }
+                        $('#paypal-error').text(json.error).popup(el, {pointTo:el}).render();
+                    }
                 }
-            });
+            );
             return false;
         });
     }

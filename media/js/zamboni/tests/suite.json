@@ -9,6 +9,7 @@
         "js/zamboni/storage.js",
         "js/zamboni/editors.js",
         "js/zamboni/upload.js",
-        "js/zamboni/files.js"
+        "js/zamboni/files.js",
+        "js/zamboni/contributions.js"
     ]
 }
