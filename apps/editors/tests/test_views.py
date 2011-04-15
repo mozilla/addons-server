@@ -112,7 +112,6 @@ class TestEventLogDetail(TestEventLog):
 class TestReviewLog(EditorTest):
     def setUp(self):
         self.login_as_editor()
-        self.make_approvals()
 
     def make_approvals(self):
         Platform.objects.create(id=amo.PLATFORM_ALL.id)
@@ -130,6 +129,7 @@ class TestReviewLog(EditorTest):
         amo.log(action, a, v, user=u, details={'comments': 'youwin'})
 
     def test_basic(self):
+        self.make_approvals()
         r = self.client.get(reverse('editors.reviewlog'))
         eq_(r.status_code, 200)
         doc = pq(r.content)
@@ -143,6 +143,7 @@ class TestReviewLog(EditorTest):
         Let's use today as an end-day filter and make sure we see stuff if we
         filter.
         """
+        self.make_approvals()
         # Make sure we show the stuff we just made.
         date = time.strftime('%Y-%m-%d')
         r = self.client.get(reverse('editors.reviewlog') + '?end=' + date)
@@ -162,6 +163,7 @@ class TestReviewLog(EditorTest):
 
     @patch('devhub.models.ActivityLog.arguments')
     def test_addon_missing(self, arguments):
+        self.make_approvals()
         arguments.return_value = []
         r = self.client.get(reverse('editors.reviewlog'))
         doc = pq(r.content)
