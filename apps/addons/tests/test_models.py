@@ -912,6 +912,44 @@ class TestAddonModels(test_utils.TestCase):
             a.update(status=s)
             assert a.versions.latest().nomination
 
+    def test_new_version_inherits_nomination(self):
+        a = Addon.objects.get(id=3615)
+        ver = 10
+        for st in (amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED):
+            a.update(status=st)
+            old_ver = a.versions.latest()
+            v = Version.objects.create(addon=a, version=str(ver))
+            eq_(v.nomination, old_ver.nomination)
+            ver += 1
+
+    def test_beta_version_does_not_inherit_nomination(self):
+        a = Addon.objects.get(id=3615)
+        a.update(status=amo.STATUS_LISTED)
+        v = Version.objects.create(addon=a, version='1.0')
+        v.nomination = None
+        v.save()
+        a.update(status=amo.STATUS_NOMINATED)
+        File.objects.create(version=v, status=amo.STATUS_BETA,
+                            filename='foobar.xpi')
+        v.version = '1.1'
+        v.save()
+        eq_(v.nomination, None)
+
+    def test_lone_version_does_not_inherit_nomination(self):
+        a = Addon.objects.get(id=3615)
+        Version.objects.all().delete()
+        v = Version.objects.create(addon=a, version='1.0')
+        eq_(v.nomination, None)
+
+    def test_reviwed_addon_does_not_inherit_nomination(self):
+        a = Addon.objects.get(id=3615)
+        ver = 10
+        for st in (amo.STATUS_PUBLIC, amo.STATUS_BETA, amo.STATUS_LISTED):
+            a.update(status=st)
+            v = Version.objects.create(addon=a, version=str(ver))
+            eq_(v.nomination, None)
+            ver += 1
+
     def test_nomination_no_version(self):
         # Check that the on_change method still works if there are no versions.
         a = Addon.objects.get(id=3615)

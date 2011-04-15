@@ -269,9 +269,27 @@ def update_status(sender, instance, **kw):
             pass
 
 
+def inherit_nomination(sender, instance, **kw):
+    """For new versions pending review, ensure nomination date
+    is inherited from last nominated version.
+    """
+    if kw.get('raw'):
+        return
+    if (instance.nomination is None
+        and instance.addon.status in (amo.STATUS_NOMINATED,
+                                      amo.STATUS_LITE_AND_NOMINATED)
+        and not instance.is_beta):
+        last_ver = (Version.objects.filter(addon=instance.addon)
+                    .exclude(nomination=None).order_by('-nomination'))
+        if last_ver.exists():
+            instance.update(nomination=last_ver[0].nomination)
+
+
 version_uploaded = django.dispatch.Signal()
 models.signals.post_save.connect(update_status, sender=Version,
                                  dispatch_uid='version_update_status')
+models.signals.post_save.connect(inherit_nomination, sender=Version,
+                                 dispatch_uid='version_inherit_nomination')
 models.signals.post_delete.connect(update_status, sender=Version,
                                    dispatch_uid='version_update_status')
 
