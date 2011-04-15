@@ -2,7 +2,6 @@ import functools
 import hashlib
 
 from django.utils.encoding import smart_str
-from django.core.cache import cache
 
 import commonware.log
 from redis.exceptions import ConnectionError
