@@ -16,7 +16,7 @@ from .models import Performance, PerformanceOSVersion
 def index(request):
 
     # By default don't show less than 25; bug 647398
-    threshold = getattr(settings, 'PERF_THRESHOLD', 25) or 0
+    threshold = getattr(settings, 'PERF_THRESHOLD', 25) or 25
 
     addons = (Addon.objects.listed(request.APP)
               .filter(ts_slowness__gte=threshold).order_by('-ts_slowness'))
