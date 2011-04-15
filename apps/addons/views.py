@@ -32,7 +32,6 @@ from reviews.forms import ReviewForm
 from reviews.models import Review
 from sharing.views import share as share_redirect
 from stats.models import GlobalStat, Contribution
-from tags.models import Tag
 from translations.query import order_by_translation
 from translations.helpers import truncate
 from versions.models import Version
