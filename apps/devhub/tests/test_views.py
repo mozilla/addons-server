@@ -62,14 +62,24 @@ def assert_no_validation_errors(validation):
                              error.rstrip().split("\n")[-1])
 
 
-def assert_close_to_now(dt):
+def close_to_now(dt):
     """
-    Make sure the datetime is within a minute from now.
+    Make sure the datetime is within a minute from `now`.
     """
-    dt_ts = time.mktime((dt + timedelta(minutes=1)).timetuple())
+    dt_ts = time.mktime(dt.timetuple())
+    dt_minute_ts = time.mktime((dt + timedelta(minutes=1)).timetuple())
     now_ts = time.mktime(datetime.now().timetuple())
 
-    assert now_ts < dt_ts
+    return now_ts >= dt_ts and now_ts < dt_minute_ts
+
+
+class MetaTests(test_utils.TestCase):
+
+    def test_assert_close_to_now(dt):
+        assert close_to_now(datetime.now() - timedelta(seconds=30))
+        assert not close_to_now(datetime.now() + timedelta(days=30))
+        assert not close_to_now(datetime.now() + timedelta(minutes=3))
+        assert not close_to_now(datetime.now() + timedelta(seconds=30))
 
 
 class HubTest(test_utils.TestCase):
@@ -2214,7 +2224,7 @@ class TestSubmitStep6(TestSubmitBase):
         eq_(r.status_code, 302)
         addon = self.get_addon()
         eq_(addon.status, amo.STATUS_NOMINATED)
-        assert_close_to_now(self.get_version().nomination)
+        assert close_to_now(self.get_version().nomination)
         assert_raises(SubmitStep.DoesNotExist, self.get_step)
 
     def test_nomination_date_is_only_set_once(self):
@@ -3151,7 +3161,7 @@ class TestRequestReview(test_utils.TestCase):
         eq_(self.version.nomination, None)
         self.check(amo.STATUS_LITE, self.public_url,
                    amo.STATUS_LITE_AND_NOMINATED)
-        assert_close_to_now(self.get_version().nomination)
+        assert close_to_now(self.get_version().nomination)
 
     def test_purgatory_to_lite(self):
         self.check(amo.STATUS_PURGATORY, self.lite_url, amo.STATUS_UNREVIEWED)
@@ -3160,7 +3170,7 @@ class TestRequestReview(test_utils.TestCase):
         eq_(self.version.nomination, None)
         self.check(amo.STATUS_PURGATORY, self.public_url,
                    amo.STATUS_NOMINATED)
-        assert_close_to_now(self.get_version().nomination)
+        assert close_to_now(self.get_version().nomination)
 
     def test_lite_and_nominated_to_public(self):
         self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
