@@ -1130,14 +1130,19 @@ class TestReview(ReviewBase):
         version.created = datetime.today() + timedelta(days=1)
         version.save()
 
+        first_file = self.addon.versions.order_by('created')[0].files.all()[0]
+        first_file.status = amo.STATUS_PUBLIC
+        first_file.save()
+
         url = reverse('editors.review', args=[version.pk])
         File.objects.create(version=version, status=amo.STATUS_PUBLIC)
         self.addon.update(_current_version=version)
         eq_(self.addon.current_version, version)
         r = self.client.get(url)
         doc = pq(r.content)
-        assert r.context['has_files']
-        eq_(doc('.files a:last-child').text(), 'Compare With Previous Version')
+
+        assert r.context['show_diff']
+        eq_(doc('.files a:last-child').text(), 'Compare With Public Version')
         # Note: remora url will be to the old version, the diff viewer figures
         # out the version to compare too.
 
