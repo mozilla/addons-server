@@ -5,6 +5,7 @@ import re
 import shutil
 import socket
 import tempfile
+import time
 from datetime import datetime, timedelta
 from decimal import Decimal
 from collections import namedtuple
@@ -63,9 +64,12 @@ def assert_no_validation_errors(validation):
 
 def assert_close_to_now(dt):
     """
-    Compare a datetime with datetime.now, with resolution up to the minute.
+    Make sure the datetime is within a minute from now.
     """
-    eq_(dt.timetuple()[:5], datetime.now().timetuple()[:5])
+    dt_ts = time.mktime((dt + timedelta(minutes=1)).timetuple())
+    now_ts = time.mktime(datetime.now().timetuple())
+
+    assert now_ts < dt_ts
 
 
 class HubTest(test_utils.TestCase):
