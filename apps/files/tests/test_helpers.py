@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import os
 import mimetypes
 import tempfile
@@ -59,6 +60,16 @@ class TestFileHelper(test_utils.TestCase):
         for f in ['foo.png', 'foo.gif', 'foo.xls', 'foo.dic']:
             m, encoding = mimetypes.guess_type(f)
             assert binary(m, f), '%s should be binary' % f
+
+    def test_truncate(self):
+        truncate = self.viewer.truncate
+        for x, y in (['foo.rdf', 'foo.rdf'],
+                     ['somelongfilename.rdf', 'somelongfilenam...rdf'],
+                     [u'unicode삮.txt', u'unicode\uc0ae.txt'],
+                     [u'unicodesomelong삮.txt', u'unicodesomelong...txt'],
+                     ['somelongfilename.somelongextension',
+                      'somelongfilenam...somelonge..'],):
+            eq_(truncate(x), y)
 
     def test_get_files_not_extracted(self):
         assert not self.viewer.get_files()

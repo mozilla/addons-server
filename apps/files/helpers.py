@@ -6,6 +6,7 @@ import stat
 
 from django.conf import settings
 from django.utils.datastructures import SortedDict
+from django.utils.encoding import smart_unicode
 
 import commonware.log
 from jingo import register
@@ -100,6 +101,22 @@ class FileViewer:
             return {}
         return self._get_files()
 
+    def truncate(self, filename, pre_length=15,
+                 post_length=10, ellipsis=u'..'):
+        """
+        Truncates a filename so that
+           somelongfilename.htm
+        becomes:
+           some...htm
+        as it truncates around the extension.
+        """
+        root, ext = os.path.splitext(filename)
+        if len(root) > pre_length:
+            root = root[:pre_length] + ellipsis
+        if len(ext) > post_length:
+            ext = ext[:post_length] + ellipsis
+        return root + ext
+
     @memoize(prefix='file-viewer')
     def _get_files(self):
         all_files, res = [], SortedDict()
@@ -108,7 +125,8 @@ class FileViewer:
                 all_files.append([os.path.join(root, filename), filename])
 
         for path, filename in sorted(all_files):
-            short = path[len(self.dest) + 1:]
+            filename = smart_unicode(filename)
+            short = smart_unicode(path[len(self.dest) + 1:])
             mime, encoding = mimetypes.guess_type(filename)
             binary = self.is_binary(mime, filename)
             # TODO: handling for st.a.m.o will be going in here
@@ -116,6 +134,7 @@ class FileViewer:
             directory = os.path.isdir(path)
             res[short] = {'full': path,
                           'filename': filename,
+                          'truncated': self.truncate(filename),
                           'short': short,
                           'directory': directory,
                           'url': url,

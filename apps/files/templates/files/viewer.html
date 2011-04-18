@@ -22,7 +22,8 @@
                     style="padding-left: {{ value['depth'] }}em"
                     class="{% if value['depth'] %}hidden{% endif %}">
                     <a class="{{ file_viewer_class(value, selected) }}"
-                        href="{{ value['url'] }}">{{ value['filename'] }}</a>
+                        href="{{ value['url'] }}"
+                        title="{{ value['filename'] }}">{{ value['truncated'] }}</a>
                 </li>
             {% endfor %}
         {% endif %}

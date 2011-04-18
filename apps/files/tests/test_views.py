@@ -1,12 +1,13 @@
 import json
+import os
 import shutil
 import tempfile
 
 from django.conf import settings
 from django.core.cache import cache
+from django.utils.encoding import iri_to_uri
 
 from nose.tools import eq_
-import os
 from pyquery import PyQuery as pq
 import test_utils
 
@@ -15,6 +16,10 @@ from addons.models import Addon
 from files.helpers import FileViewer, DiffHelper
 from files.models import File
 from users.models import UserProfile
+
+
+dictionary = 'apps/files/fixtures/files/dictionary-test.xpi'
+unicode_filenames = 'apps/files/fixtures/files/unicode-filenames.xpi'
 
 
 class FilesBase:
@@ -42,7 +47,6 @@ class FilesBase:
         settings.TMP_PATH = tempfile.mkdtemp()
         settings.ADDONS_PATH = tempfile.mkdtemp()
 
-        dictionary = 'apps/files/fixtures/files/dictionary-test.xpi'
         for file_obj in [self.file, self.file_two]:
             src = os.path.join(settings.ROOT, dictionary)
             try:
@@ -239,6 +243,12 @@ class TestFileViewer(FilesBase, test_utils.TestCase):
         self.file_viewer.extract()
         res = self.client.get(self.file_url('doesnotexist.js'))
         eq_(res.status_code, 404)
+
+    def test_unicode(self):
+        self.file_viewer.src = unicode_filenames
+        self.file_viewer.extract()
+        res = self.client.get(self.file_url(iri_to_uri(u'\u1109\u1161\u11a9')))
+        eq_(res.status_code, 200)
 
 
 class TestDiffViewer(FilesBase, test_utils.TestCase):
